@@ -5,7 +5,7 @@ export const createDigitalCollage_Skill_Data = defineSkill({
   id: '05ee1906-55b6-4985-9810-be8d48200e2c',
   name: {
     en: 'Create Digital Collage',
-    it: "Creare un collage digitale",
+    it: 'Creare un collage digitale',
     zh: '创作数字拼贴',
     hi: 'डिजिटल कोलाज बनाएँ',
     es: 'Crear un collage digital',
@@ -39,7 +39,7 @@ export const createDigitalCollage_Skill_Data = defineSkill({
     methodological: 'Combine images or fragments so their juxtaposition creates a new meaning.',
     frontend: {
       en: 'Combine digital images to create new relationships and meanings.',
-      it: "Combina immagini digitali per creare nuove relazioni e nuovi significati.",
+      it: 'Combina immagini digitali per creare nuove relazioni e nuovi significati.',
       zh: '组合数字图像，建立新的关联并表达新的意义。',
       hi: 'नए संबंध और अर्थ बनाने के लिए डिजिटल चित्रों को मिलाएँ।',
       es: 'Combina imágenes digitales para crear nuevas relaciones y significados.',

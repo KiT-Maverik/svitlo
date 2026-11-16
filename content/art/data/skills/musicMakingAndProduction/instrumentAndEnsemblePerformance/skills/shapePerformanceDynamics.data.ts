@@ -5,7 +5,7 @@ export const shapePerformanceDynamics_Skill_Data = defineSkill({
   id: 'a9700855-335a-4eb3-b713-13a513e9d239',
   name: {
     en: 'Shape Performance Dynamics',
-    it: 'Modellare la dinamica dell\'esecuzione',
+    it: "Modellare la dinamica dell'esecuzione",
     zh: '塑造演奏力度变化',
     hi: 'प्रस्तुति की गतिशीलता को आकार दें',
     es: 'Dar forma a la dinámica de la interpretación',
@@ -39,7 +39,7 @@ export const shapePerformanceDynamics_Skill_Data = defineSkill({
     methodological: 'Vary intensity and articulation to develop a musical gesture.',
     frontend: {
       en: 'Use changes in volume and articulation to make a performance expressive.',
-      it: 'Usa cambiamenti di volume e articolazione per rendere espressiva un\'esecuzione.',
+      it: "Usa cambiamenti di volume e articolazione per rendere espressiva un'esecuzione.",
       zh: '通过音量和发音方式的变化，让演奏更富表现力。',
       hi: 'प्रस्तुति को भावपूर्ण बनाने के लिए आवाज़ की तीव्रता और उच्चारण में बदलाव करें।',
       es: 'Usa cambios de volumen y articulación para dar expresividad a la interpretación.',

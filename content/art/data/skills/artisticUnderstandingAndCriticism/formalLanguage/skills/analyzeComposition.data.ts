@@ -5,7 +5,7 @@ export const analyzeComposition_Skill_Data = defineSkill({
   id: 'a9eda1ba-bf39-4bad-b54c-333fea445a1b',
   name: {
     en: 'Analyze Composition',
-    it: "Analizzare la composizione",
+    it: 'Analizzare la composizione',
     zh: '分析构图',
     hi: 'संरचना का विश्लेषण करें',
     es: 'Analizar la composición',

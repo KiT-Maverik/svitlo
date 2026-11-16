@@ -39,7 +39,7 @@ export const performAnInstrumentalPhrase_Skill_Data = defineSkill({
     methodological: 'Realize a sequence with intentional articulation, timing and musical expression.',
     frontend: {
       en: 'Play a connected musical idea with expressive timing and articulation.',
-      it: 'Suona un\'idea musicale continua con tempi e articolazioni espressivi.',
+      it: "Suona un'idea musicale continua con tempi e articolazioni espressivi.",
       zh: '用富有表现力的节奏处理和发音演奏连贯的音乐想法。',
       hi: 'भावपूर्ण समय-निर्धारण और उच्चारण के साथ जुड़ा हुआ संगीत विचार बजाएँ।',
       es: 'Toca una idea musical continua con ritmo y articulación expresivos.',

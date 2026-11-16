@@ -5,7 +5,7 @@ export const distinguishObservationFromInterpretation_Skill_Data = defineSkill({
   id: 'dc2a2b08-7ec3-4570-b516-99adf46b0f48',
   name: {
     en: 'Distinguish Observation from Interpretation',
-    it: "Distinguere osservazione e interpretazione",
+    it: 'Distinguere osservazione e interpretazione',
     zh: '区分观察与诠释',
     hi: 'अवलोकन और व्याख्या में अंतर करें',
     es: 'Distinguir la observación de la interpretación',
@@ -39,7 +39,7 @@ export const distinguishObservationFromInterpretation_Skill_Data = defineSkill({
     methodological: 'Separate directly perceptible details from symbolic, emotional or biographical inferences.',
     frontend: {
       en: 'Tell the difference between what you notice and what you think it means.',
-      it: "Distingui ciò che osservi dal significato che gli attribuisci.",
+      it: 'Distingui ciò che osservi dal significato che gli attribuisci.',
       zh: '区分你观察到的内容与自己对其含义的理解。',
       hi: 'जो आप देखते हैं और उसका जो अर्थ आप समझते हैं, उनमें अंतर पहचानें।',
       es: 'Distingue entre lo que observas y lo que crees que significa.',

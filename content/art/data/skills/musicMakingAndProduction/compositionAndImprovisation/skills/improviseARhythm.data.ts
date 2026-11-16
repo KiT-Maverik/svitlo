@@ -39,7 +39,7 @@ export const improviseARhythm_Skill_Data = defineSkill({
     methodological: 'Invent a coherent rhythmic phrase in real time against a chosen pulse.',
     frontend: {
       en: 'Make up a rhythmic idea as you play along with a steady beat.',
-      it: 'Crea sul momento un\'idea ritmica mentre suoni seguendo una pulsazione costante.',
+      it: "Crea sul momento un'idea ritmica mentre suoni seguendo una pulsazione costante.",
       zh: '跟随稳定节拍，即兴创造一个节奏想法。',
       hi: 'स्थिर ताल के साथ बजाते हुए उसी समय एक लय बनाएँ।',
       es: 'Inventa una idea rítmica mientras sigues un pulso constante.',

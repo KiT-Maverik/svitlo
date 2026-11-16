@@ -57,7 +57,7 @@ export const informationDesign_SkillGroup_Data = defineSkillGroup({
       'Visualization makes relationships understandable through disciplined selection of visual encodings.',
     frontend: {
       en: 'Turn complex information into understandable visual relationships.',
-      it: "Trasforma informazioni complesse in relazioni visive comprensibili.",
+      it: 'Trasforma informazioni complesse in relazioni visive comprensibili.',
 
       zh: '将复杂信息转化为易于理解的视觉关系。',
       hi: 'जटिल जानकारी को समझने योग्य दृश्य संबंधों में बदलें।',

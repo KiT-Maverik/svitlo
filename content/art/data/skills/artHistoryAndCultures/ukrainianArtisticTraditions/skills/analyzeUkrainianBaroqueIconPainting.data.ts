@@ -5,7 +5,7 @@ export const analyzeUkrainianBaroqueIconPainting_Skill_Data = defineSkill({
   id: '7653d186-1e75-48fd-a061-0f71e84c3a08',
   name: {
     en: 'Analyze Ukrainian Baroque Icon Painting',
-    it: "Analizzare la pittura di icone del Barocco ucraino",
+    it: 'Analizzare la pittura di icone del Barocco ucraino',
     zh: '分析乌克兰巴洛克圣像画',
     hi: 'यूक्रेनी बारोक आइकन चित्रकला का विश्लेषण करें',
     es: 'Analizar la pintura de iconos del barroco ucraniano',
@@ -40,7 +40,7 @@ export const analyzeUkrainianBaroqueIconPainting_Skill_Data = defineSkill({
       'Examine changes in figure modeling, ornament and devotional imagery in particular Ukrainian Baroque icon-painting contexts.',
     frontend: {
       en: 'Explore how Ukrainian Baroque icon painting developed its figures and decoration.',
-      it: "Esplora come la pittura di icone barocche ucraine ha sviluppato le proprie figure e decorazioni.",
+      it: 'Esplora come la pittura di icone barocche ucraine ha sviluppato le proprie figure e decorazioni.',
       zh: '探索乌克兰巴洛克圣像画如何发展人物形象与装饰风格。',
       hi: 'जानें कि यूक्रेनी बारोक आइकन चित्रकला में आकृतियों और सजावट का विकास कैसे हुआ।',
       es: 'Explora cómo la pintura de iconos del barroco ucraniano desarrolló sus figuras y su decoración.',

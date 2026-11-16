@@ -5,7 +5,7 @@ export const writeExhibitionInterpretationText_Skill_Data = defineSkill({
   id: '8ef791c2-e851-4fec-9016-fcf9b303c63f',
   name: {
     en: 'Write Exhibition Interpretation Text',
-    it: "Scrivere testi interpretativi per una mostra",
+    it: 'Scrivere testi interpretativi per una mostra',
     zh: '撰写展览解读文本',
     hi: 'प्रदर्शनी की व्याख्यात्मक सामग्री लिखें',
     es: 'Redactar textos interpretativos para una exposición',
@@ -39,7 +39,7 @@ export const writeExhibitionInterpretationText_Skill_Data = defineSkill({
     methodological: 'Communicate accurate context without forcing one mandatory emotional or symbolic interpretation.',
     frontend: {
       en: 'Write helpful exhibition labels that offer context without dictating what to feel.',
-      it: "Scrivi didascalie utili che offrano un contesto senza imporre al pubblico cosa provare.",
+      it: 'Scrivi didascalie utili che offrano un contesto senza imporre al pubblico cosa provare.',
       zh: '撰写有帮助的展览说明，提供背景信息但不规定观众应有的感受。',
       hi: 'ऐसे उपयोगी प्रदर्शनी लेबल लिखें जो संदर्भ दें, लेकिन यह न बताएं कि दर्शकों को क्या महसूस करना चाहिए।',
       es: 'Escribe textos de sala útiles que aporten contexto sin imponer qué sentir.',

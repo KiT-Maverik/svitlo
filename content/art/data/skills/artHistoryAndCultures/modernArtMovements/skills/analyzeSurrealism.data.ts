@@ -5,7 +5,7 @@ export const analyzeSurrealism_Skill_Data = defineSkill({
   id: '65205c29-e11c-4ce7-b4e6-b8efcf9fd3b0',
   name: {
     en: 'Analyze Surrealism',
-    it: "Analizzare il Surrealismo",
+    it: 'Analizzare il Surrealismo',
     zh: '分析超现实主义',
     hi: 'अतियथार्थवाद का विश्लेषण करें',
     es: 'Analizar el surrealismo',
@@ -40,7 +40,7 @@ export const analyzeSurrealism_Skill_Data = defineSkill({
       'Examine unexpected juxtapositions, dream imagery or automatism in works shaped by Surrealist debates and their wider cultural contexts.',
     frontend: {
       en: 'Discover how Surrealist artists explored dreams and surprising combinations.',
-      it: "Scopri come gli artisti surrealisti esploravano i sogni e gli accostamenti inattesi.",
+      it: 'Scopri come gli artisti surrealisti esploravano i sogni e gli accostamenti inattesi.',
       zh: '了解超现实主义艺术家如何探索梦境与意外组合。',
       hi: 'जानें कि अतियथार्थवादी कलाकारों ने सपनों और अप्रत्याशित संयोजनों को कैसे खोजा।',
       es: 'Descubre cómo los artistas surrealistas exploraron los sueños y las combinaciones inesperadas.',

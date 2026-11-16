@@ -40,7 +40,7 @@ export const planAShotSequence_Skill_Data = defineSkill({
     methodological: 'Select and order views that convey continuous action or a purposeful shift in focus.',
     frontend: {
       en: 'Choose and order camera views to make an action or change of focus clear.',
-      it: 'Scegli e ordina le inquadrature per rendere chiara un\'azione o un cambiamento di attenzione.',
+      it: "Scegli e ordina le inquadrature per rendere chiara un'azione o un cambiamento di attenzione.",
 
       zh: '选择并排列镜头视角，让动作或焦点变化清晰。',
       hi: 'किसी क्रिया या फ़ोकस के बदलाव को स्पष्ट करने के लिए कैमरा दृश्यों को चुनें और क्रम दें।',

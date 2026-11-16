@@ -5,7 +5,7 @@ export const analyzeUkrainianPoeticCinema_Skill_Data = defineSkill({
   id: '462de02b-cdad-471c-ad9b-43438205f1f2',
   name: {
     en: 'Analyze Ukrainian Poetic Cinema',
-    it: "Analizzare il cinema poetico ucraino",
+    it: 'Analizzare il cinema poetico ucraino',
     zh: '分析乌克兰诗意电影',
     hi: 'यूक्रेनी काव्यात्मक सिनेमा का विश्लेषण करें',
     es: 'Analizar el cine poético ucraniano',
@@ -40,7 +40,7 @@ export const analyzeUkrainianPoeticCinema_Skill_Data = defineSkill({
       'Interpret visual symbolism, regional cultural imagery and lyrical narrative strategies in Ukrainian poetic cinema and its historical development.',
     frontend: {
       en: 'Discover how Ukrainian poetic cinema uses visual symbolism and lyrical storytelling.',
-      it: "Scopri come il cinema poetico ucraino usa simboli visivi e narrazione lirica.",
+      it: 'Scopri come il cinema poetico ucraino usa simboli visivi e narrazione lirica.',
       zh: '了解乌克兰诗意电影如何运用视觉象征与抒情叙事。',
       hi: 'जानें कि यूक्रेनी काव्यात्मक सिनेमा दृश्य प्रतीकों और गीतात्मक कहानी कहने का उपयोग कैसे करता है।',
       es: 'Descubre cómo el cine poético ucraniano utiliza el simbolismo visual y la narración lírica.',

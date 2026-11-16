@@ -12,7 +12,7 @@ export const expressionAndMeaning_SkillGroup_Data = defineSkillGroup({
   id: '433ef00c-63d4-43d7-9d6f-764d0ba50c2b',
   name: {
     en: 'Expression and Meaning',
-    it: "Espressione e significato",
+    it: 'Espressione e significato',
     zh: '表达与意义',
     hi: 'अभिव्यक्ति और अर्थ',
     es: 'Expresión y significado',
@@ -61,7 +61,7 @@ export const expressionAndMeaning_SkillGroup_Data = defineSkillGroup({
       'Symbolism and emotional character require interpretations anchored in artistic choices and context.',
     frontend: {
       en: 'Explore how symbols, emotions and formal choices communicate artistic meaning.',
-      it: "Esplora come simboli, emozioni e scelte formali comunicano significati artistici.",
+      it: 'Esplora come simboli, emozioni e scelte formali comunicano significati artistici.',
       zh: '探索艺术如何通过隐喻、情感和形式传达意义。',
       hi: 'जानें कि कला रूपक, भावना और रूप के माध्यम से अर्थ कैसे व्यक्त करती है।',
       es: 'Explora cómo el arte comunica significado mediante metáforas, emociones y formas.',

@@ -39,7 +39,7 @@ export const controlMovementAlignment_Skill_Data = defineSkill({
     methodological: 'Coordinate body parts to create an intentional line and quality of movement in a dance form.',
     frontend: {
       en: 'Position your body parts deliberately to create clear dance lines.',
-      it: "Posiziona intenzionalmente le parti del corpo per creare linee di danza ben definite.",
+      it: 'Posiziona intenzionalmente le parti del corpo per creare linee di danza ben definite.',
       zh: '有意识地调整身体各部位的位置，形成清晰的舞蹈线条。',
       hi: 'स्पष्ट नृत्य रेखाएँ बनाने के लिए शरीर के अंगों को सोच-समझकर रखें।',
       es: 'Coloca deliberadamente las partes del cuerpo para crear líneas de danza claras.',

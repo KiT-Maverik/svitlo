@@ -5,7 +5,7 @@ export const compareArtisticInterpretations_Skill_Data = defineSkill({
   id: '35fb250e-4ae5-42bb-a48a-fa5c7dec8a26',
   name: {
     en: 'Compare Artistic Interpretations',
-    it: "Confrontare interpretazioni artistiche",
+    it: 'Confrontare interpretazioni artistiche',
     zh: '比较艺术诠释',
     hi: 'कलात्मक व्याख्याओं की तुलना करें',
     es: 'Comparar interpretaciones artísticas',

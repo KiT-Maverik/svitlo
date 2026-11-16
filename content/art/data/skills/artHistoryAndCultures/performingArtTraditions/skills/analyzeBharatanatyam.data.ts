@@ -5,7 +5,7 @@ export const analyzeBharatanatyam_Skill_Data = defineSkill({
   id: '6ba2fb84-e907-469b-ae0f-79b7ae626533',
   name: {
     en: 'Analyze Bharatanatyam',
-    it: "Analizzare il Bharatanatyam",
+    it: 'Analizzare il Bharatanatyam',
     zh: '分析婆罗多舞',
     hi: 'भरतनाट्यम का विश्लेषण करें',
     es: 'Analizar el bharatanatyam',

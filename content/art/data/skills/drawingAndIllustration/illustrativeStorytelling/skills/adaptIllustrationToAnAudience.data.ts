@@ -5,7 +5,7 @@ export const adaptIllustrationToAnAudience_Skill_Data = defineSkill({
   id: '52e08235-f3ac-47c3-a6b1-e22aa831cc7f',
   name: {
     en: 'Adapt Illustration to an Audience',
-    it: 'Adattare un\'illustrazione al pubblico',
+    it: "Adattare un'illustrazione al pubblico",
     zh: '根据受众调整插画',
     hi: 'दर्शकों के अनुसार चित्रण ढालें',
     es: 'Adaptar una ilustración al público',
@@ -39,7 +39,7 @@ export const adaptIllustrationToAnAudience_Skill_Data = defineSkill({
     methodological: 'Choose a degree of detail and relevant visual conventions suited to intended readers.',
     frontend: {
       en: 'Make illustration choices that suit the people who will read or view it.',
-      it: 'Fai scelte illustrative adatte alle persone che leggeranno o guarderanno l\'opera.',
+      it: "Fai scelte illustrative adatte alle persone che leggeranno o guarderanno l'opera.",
       zh: '选择适合阅读或观看插画的人群的表现方式。',
       hi: 'चित्रण में ऐसे विकल्प चुनें जो इसे पढ़ने या देखने वालों के लिए उपयुक्त हों।',
       es: 'Elige cómo ilustrar según las personas que leerán o verán la imagen.',

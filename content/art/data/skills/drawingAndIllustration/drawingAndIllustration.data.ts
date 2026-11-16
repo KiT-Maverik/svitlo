@@ -52,7 +52,7 @@ export const drawingAndIllustration_SkillDomain_Data = defineSkillDomain({
       'Drawing creates marks and constructed spatial relationships, whereas illustration connects a visual image to a communicative narrative or concept. Neither is limited to literal realism.',
     frontend: {
       en: 'Learn how drawing can represent what we see and how illustration can tell stories or share ideas.',
-      it: 'Scopri come il disegno può rappresentare ciò che vediamo e come l\'illustrazione può raccontare storie o trasmettere idee.',
+      it: "Scopri come il disegno può rappresentare ciò che vediamo e come l'illustrazione può raccontare storie o trasmettere idee.",
       zh: '了解绘画如何表现所见，以及插画如何讲述故事或传达想法。',
       hi: 'जानें कि चित्रांकन देखी गई चीज़ों को कैसे दर्शाता है और चित्रण कहानियाँ या विचार कैसे साझा करता है।',
       es: 'Aprende cómo el dibujo representa lo que vemos y cómo la ilustración cuenta historias o comparte ideas.',

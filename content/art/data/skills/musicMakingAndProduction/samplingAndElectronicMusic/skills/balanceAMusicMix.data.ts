@@ -39,7 +39,7 @@ export const balanceAMusicMix_Skill_Data = defineSkill({
     methodological: 'Adjust relative levels and spatial placement so the intended relationships remain audible.',
     frontend: {
       en: 'Adjust the balance of sounds so important musical parts can be heard.',
-      it: 'Regola l\'equilibrio dei suoni affinché le parti musicali importanti risultino udibili.',
+      it: "Regola l'equilibrio dei suoni affinché le parti musicali importanti risultino udibili.",
       zh: '调整各种声音的平衡，让重要的音乐声部都能被听见。',
       hi: 'ध्वनियों का संतुलन समायोजित करें ताकि महत्वपूर्ण संगीत भाग सुनाई दें।',
       es: 'Ajusta el equilibrio de los sonidos para que se escuchen las partes musicales importantes.',

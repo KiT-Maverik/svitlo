@@ -39,7 +39,7 @@ export const designAPrintMatrix_Skill_Data = defineSkill({
     methodological: 'Plan which areas of a printing surface will transfer the desired image.',
     frontend: {
       en: 'Plan which parts of a printing surface will leave an image.',
-      it: 'Pianifica quali parti di una superficie di stampa lasceranno un\'immagine.',
+      it: "Pianifica quali parti di una superficie di stampa lasceranno un'immagine.",
       zh: '规划印刷表面上哪些部分会留下图像。',
       hi: 'योजना बनाएँ कि छपाई की सतह के कौन-से हिस्से छवि बनाएँगे।',
       es: 'Planifica qué partes de una superficie de impresión dejarán una imagen.',

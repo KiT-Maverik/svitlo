@@ -5,7 +5,7 @@ export const analyzeRomanPortraiture_Skill_Data = defineSkill({
   id: 'e312357a-8f73-4dae-a7d7-ce571044e321',
   name: {
     en: 'Analyze Roman Portraiture',
-    it: "Analizzare la ritrattistica romana",
+    it: 'Analizzare la ritrattistica romana',
     zh: '分析罗马肖像艺术',
     hi: 'रोमन चित्रांकन का विश्लेषण करें',
     es: 'Analizar el retrato romano',
@@ -40,7 +40,7 @@ export const analyzeRomanPortraiture_Skill_Data = defineSkill({
       'Relate likeness, idealization and signs of public status to the social and political functions of particular Roman portraits.',
     frontend: {
       en: 'Explore how Roman portraits represented individuals and public standing.',
-      it: "Esplora come i ritratti romani rappresentavano le persone e il loro prestigio pubblico.",
+      it: 'Esplora come i ritratti romani rappresentavano le persone e il loro prestigio pubblico.',
       zh: '了解罗马肖像如何表现个人形象与社会地位。',
       hi: 'जानें कि रोमन चित्रों में व्यक्तियों और उनकी सार्वजनिक प्रतिष्ठा को कैसे दर्शाया गया।',
       es: 'Explora cómo los retratos romanos representaban a las personas y su posición pública.',

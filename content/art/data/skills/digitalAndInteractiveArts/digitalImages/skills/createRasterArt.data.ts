@@ -5,7 +5,7 @@ export const createRasterArt_Skill_Data = defineSkill({
   id: '958379cd-2786-4cb7-aa69-3cd194887b3c',
   name: {
     en: 'Create Raster Art',
-    it: "Creare arte raster",
+    it: 'Creare arte raster',
     zh: '创作栅格艺术',
     hi: 'रास्टर कला बनाएँ',
     es: 'Crear arte rasterizado',
@@ -39,7 +39,7 @@ export const createRasterArt_Skill_Data = defineSkill({
     methodological: 'Build an intentional pixel-based image using marks, tone and layered edits.',
     frontend: {
       en: 'Build pixel-based images with deliberate colors, marks and layers.',
-      it: "Costruisci immagini basate su pixel scegliendo consapevolmente colori, segni e livelli.",
+      it: 'Costruisci immagini basate su pixel scegliendo consapevolmente colori, segni e livelli.',
       zh: '运用有意识的色彩、笔触和图层创作基于像素的图像。',
       hi: 'सोचे-समझे रंगों, निशानों और परतों से पिक्सेल-आधारित चित्र बनाएँ।',
       es: 'Crea imágenes basadas en píxeles con colores, trazos y capas deliberados.',

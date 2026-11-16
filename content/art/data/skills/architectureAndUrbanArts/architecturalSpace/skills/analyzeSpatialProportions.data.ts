@@ -5,7 +5,7 @@ export const analyzeSpatialProportions_Skill_Data = defineSkill({
   id: '1b46c9cf-ccc6-4cac-b31f-2bdbd07e975b',
   name: {
     en: 'Analyze Spatial Proportions',
-    it: "Analizzare le proporzioni spaziali",
+    it: 'Analizzare le proporzioni spaziali',
     zh: '分析空间比例',
     hi: 'स्थानिक अनुपातों का विश्लेषण करें',
     es: 'Analizar las proporciones espaciales',

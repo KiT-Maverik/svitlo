@@ -5,7 +5,7 @@ export const curateGenerativeOutputs_Skill_Data = defineSkill({
   id: '886757e1-e7ef-46e4-8d92-d7ef53c5a49e',
   name: {
     en: 'Curate Generative Outputs',
-    it: 'Selezionare i risultati dell\'arte generativa',
+    it: "Selezionare i risultati dell'arte generativa",
     zh: '筛选生成结果',
     hi: 'जनरेटिव परिणामों का चयन और संयोजन करें',
     es: 'Seleccionar y organizar resultados generativos',

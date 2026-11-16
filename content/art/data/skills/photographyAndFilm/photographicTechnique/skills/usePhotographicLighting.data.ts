@@ -5,7 +5,7 @@ export const usePhotographicLighting_Skill_Data = defineSkill({
   id: '5ec484f8-d892-45c4-bb23-ed6025822f2f',
   name: {
     en: 'Use Photographic Lighting',
-    it: 'Usare l\'illuminazione fotografica',
+    it: "Usare l'illuminazione fotografica",
 
     zh: '摄影照明的运用',
     hi: 'फ़ोटोग्राफ़िक प्रकाश व्यवस्था का उपयोग करें',
@@ -40,7 +40,7 @@ export const usePhotographicLighting_Skill_Data = defineSkill({
     methodological: "Arrange or modify light to reveal the subject's shape, atmosphere and details.",
     frontend: {
       en: 'Shape the appearance and mood of a subject with lighting.',
-      it: 'Modella l\'aspetto e l\'atmosfera di un soggetto attraverso la luce.',
+      it: "Modella l'aspetto e l'atmosfera di un soggetto attraverso la luce.",
 
       zh: '通过照明塑造主体的外观和氛围。',
       hi: 'प्रकाश व्यवस्था से विषय का रूप और मनोदशा गढ़ें।',

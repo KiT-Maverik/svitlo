@@ -40,7 +40,7 @@ export const analyzeJapaneseUkiyoE_Skill_Data = defineSkill({
       'Relate woodblock printing, composition and subjects to the urban markets and cultural life that shaped selected ukiyo-e works.',
     frontend: {
       en: 'Explore how Japanese ukiyo-e prints relate to city life and woodblock printing.',
-      it: "Esplora il legame tra le stampe giapponesi ukiyo-e, la vita cittadina e la xilografia.",
+      it: 'Esplora il legame tra le stampe giapponesi ukiyo-e, la vita cittadina e la xilografia.',
       zh: '了解日本浮世绘版画如何体现城市生活，以及木版印刷如何塑造这些作品。',
       hi: 'जानें कि जापानी उकियो-ए चित्र शहर के जीवन और लकड़ी के ब्लॉक से छपाई से कैसे जुड़े हैं।',
       es: 'Explora la relación de las estampas ukiyo-e con la vida urbana y la impresión mediante xilografía.',

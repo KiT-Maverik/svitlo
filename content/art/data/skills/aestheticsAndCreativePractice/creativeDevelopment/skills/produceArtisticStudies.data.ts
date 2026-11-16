@@ -5,7 +5,7 @@ export const produceArtisticStudies_Skill_Data = defineSkill({
   id: '5373d6bf-fe99-43bc-bd5b-cef11c290dec',
   name: {
     en: 'Produce Artistic Studies',
-    it: "Realizzare studi artistici",
+    it: 'Realizzare studi artistici',
     zh: '创作艺术习作',
     hi: 'कलात्मक अध्ययन तैयार करें',
     es: 'Realizar estudios artísticos',

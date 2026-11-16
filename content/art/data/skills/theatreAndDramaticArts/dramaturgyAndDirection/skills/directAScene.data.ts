@@ -39,7 +39,7 @@ export const directAScene_Skill_Data = defineSkill({
     methodological: "Coordinate actors' interpretive choices toward a legible dramatic intention.",
     frontend: {
       en: "Guide performers' choices to communicate a shared dramatic idea.",
-      it: 'Guida le scelte degli interpreti per comunicare un\'idea drammatica condivisa.',
+      it: "Guida le scelte degli interpreti per comunicare un'idea drammatica condivisa.",
       zh: '引导演员的表演选择，传达共同的戏剧构想。',
       hi: 'कलाकारों के चयन और अभिनय को दिशा दें ताकि साझा नाटकीय विचार व्यक्त हो।',
       es: 'Guía las decisiones de los intérpretes para comunicar una idea dramática común.',

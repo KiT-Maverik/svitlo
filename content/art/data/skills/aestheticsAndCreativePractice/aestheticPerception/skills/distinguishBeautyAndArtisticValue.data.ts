@@ -5,7 +5,7 @@ export const distinguishBeautyAndArtisticValue_Skill_Data = defineSkill({
   id: 'bd0f1d89-6430-4d79-939f-0c92d0088e77',
   name: {
     en: 'Distinguish Beauty and Artistic Value',
-    it: "Distinguere bellezza e valore artistico",
+    it: 'Distinguere bellezza e valore artistico',
     zh: '区分美与艺术价值',
     hi: 'सुंदरता और कलात्मक मूल्य में अंतर करें',
     es: 'Distinguir la belleza del valor artístico',

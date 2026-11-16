@@ -12,7 +12,7 @@ export const socialContextAndExchange_SkillGroup_Data = defineSkillGroup({
   id: '88ac8eb9-4666-4cc2-b3b3-df1c04132e55',
   name: {
     en: 'Social Context and Exchange',
-    it: "Contesto sociale e scambi",
+    it: 'Contesto sociale e scambi',
     zh: '社会背景与交流',
     hi: 'सामाजिक संदर्भ और आदान-प्रदान',
     es: 'Contexto social e intercambio',
@@ -61,7 +61,7 @@ export const socialContextAndExchange_SkillGroup_Data = defineSkillGroup({
       'Artistic production responds to institutions, migration and technology without being reducible to them.',
     frontend: {
       en: 'Examine how people, institutions and technologies shape artistic exchange over time.',
-      it: "Esamina come persone, istituzioni e tecnologie modellano gli scambi artistici nel tempo.",
+      it: 'Esamina come persone, istituzioni e tecnologie modellano gli scambi artistici nel tempo.',
       zh: '考察人群、机构和技术如何随着时间推移塑造艺术交流。',
       hi: 'जाँचें कि समय के साथ लोग, संस्थाएँ और प्रौद्योगिकियाँ कलात्मक आदान-प्रदान को कैसे आकार देती हैं।',
       es: 'Examina cómo las personas, las instituciones y las tecnologías configuran el intercambio artístico a lo largo del tiempo.',

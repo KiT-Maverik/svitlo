@@ -5,7 +5,7 @@ export const analyzePostImpressionism_Skill_Data = defineSkill({
   id: '1bc4a7b5-2d20-48fd-bb7d-08fd51c39789',
   name: {
     en: 'Analyze Post-Impressionism',
-    it: "Analizzare il Postimpressionismo",
+    it: 'Analizzare il Postimpressionismo',
     zh: '分析后印象派',
     hi: 'उत्तर-प्रभाववाद का विश्लेषण करें',
     es: 'Analizar el postimpresionismo',

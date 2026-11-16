@@ -39,7 +39,7 @@ export const handBuildACeramicForm_Skill_Data = defineSkill({
     methodological: 'Shape clay through pinching, coils or slabs while controlling the overall object.',
     frontend: {
       en: 'Shape clay using your hands, coils or slabs.',
-      it: 'Modella l\'argilla con le mani, con cordoncini o con lastre.',
+      it: "Modella l'argilla con le mani, con cordoncini o con lastre.",
       zh: '用手捏、泥条或泥板来塑造黏土。',
       hi: 'अपने हाथों, मिट्टी की कुंडलियों या पट्टियों से मिट्टी को आकार दें।',
       es: 'Da forma a la arcilla con las manos, churros o planchas.',

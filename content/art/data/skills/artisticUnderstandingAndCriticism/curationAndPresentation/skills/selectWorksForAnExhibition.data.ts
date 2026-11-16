@@ -5,7 +5,7 @@ export const selectWorksForAnExhibition_Skill_Data = defineSkill({
   id: '2683a750-f868-4024-ba81-0b1a2d286933',
   name: {
     en: 'Select Works for an Exhibition',
-    it: "Selezionare opere per una mostra",
+    it: 'Selezionare opere per una mostra',
     zh: '为展览选择作品',
     hi: 'प्रदर्शनी के लिए कलाकृतियाँ चुनें',
     es: 'Seleccionar obras para una exposición',

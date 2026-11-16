@@ -5,7 +5,7 @@ export const establishTypographicHierarchy_Skill_Data = defineSkill({
   id: '1e3b7281-7a16-4094-9b83-375f8a6aeb35',
   name: {
     en: 'Establish Typographic Hierarchy',
-    it: "Stabilire una gerarchia tipografica",
+    it: 'Stabilire una gerarchia tipografica',
 
     zh: '建立字体层级',
     hi: 'टाइपोग्राफ़िक पदानुक्रम स्थापित करें',
@@ -40,7 +40,7 @@ export const establishTypographicHierarchy_Skill_Data = defineSkill({
     methodological: 'Distinguish levels of information through relative scale, weight and spacing.',
     frontend: {
       en: 'Use size, weight and spacing to show which information matters most.',
-      it: "Usa dimensioni, spessori e spaziature per indicare quali informazioni sono più importanti.",
+      it: 'Usa dimensioni, spessori e spaziature per indicare quali informazioni sono più importanti.',
 
       zh: '使用字号、字重和间距来显示信息的重要程度。',
       hi: 'कौन-सी जानकारी सबसे महत्वपूर्ण है, यह दिखाने के लिए आकार, मोटाई और अंतराल का उपयोग करें।',

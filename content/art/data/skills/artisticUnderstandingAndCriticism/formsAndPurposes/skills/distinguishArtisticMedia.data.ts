@@ -5,7 +5,7 @@ export const distinguishArtisticMedia_Skill_Data = defineSkill({
   id: 'e9476587-f315-4eaa-9c35-acf0f07d64ca',
   name: {
     en: 'Distinguish Artistic Media',
-    it: "Distinguere i mezzi espressivi artistici",
+    it: 'Distinguere i mezzi espressivi artistici',
     zh: '区分艺术媒介',
     hi: 'कला माध्यमों में अंतर करें',
     es: 'Distinguir medios artísticos',

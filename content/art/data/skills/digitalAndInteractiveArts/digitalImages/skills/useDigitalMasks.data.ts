@@ -39,7 +39,7 @@ export const useDigitalMasks_Skill_Data = defineSkill({
     methodological: 'Control selective visibility and alteration of parts of a composition.',
     frontend: {
       en: 'Hide or reveal parts of an image to make precise changes.',
-      it: 'Nascondi o rivela parti di un\'immagine per apportare modifiche precise.',
+      it: "Nascondi o rivela parti di un'immagine per apportare modifiche precise.",
       zh: '隐藏或显示图像的部分区域，以便进行精确修改。',
       hi: 'सटीक बदलाव करने के लिए चित्र के कुछ हिस्सों को छिपाएँ या दिखाएँ।',
       es: 'Oculta o muestra partes de una imagen para realizar cambios precisos.',

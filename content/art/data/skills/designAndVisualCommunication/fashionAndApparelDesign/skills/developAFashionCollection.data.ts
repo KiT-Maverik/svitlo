@@ -5,7 +5,7 @@ export const developAFashionCollection_Skill_Data = defineSkill({
   id: 'b71d1336-c7bb-4dde-bad3-e983e414b968',
   name: {
     en: 'Develop a Fashion Collection',
-    it: "Sviluppare una collezione di moda",
+    it: 'Sviluppare una collezione di moda',
 
     zh: '开发时装系列',
     hi: 'फ़ैशन संग्रह विकसित करें',

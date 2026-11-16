@@ -5,7 +5,7 @@ export const phraseAVocalPerformance_Skill_Data = defineSkill({
   id: 'b1bcf721-510d-44c4-bc3d-e9c88650b3ef',
   name: {
     en: 'Phrase a Vocal Performance',
-    it: 'Fraseggiare nell\'esecuzione vocale',
+    it: "Fraseggiare nell'esecuzione vocale",
     zh: '塑造声乐乐句',
     hi: 'स्वर प्रस्तुति को वाक्यांशों में ढालें',
     es: 'Dar forma a una frase vocal',

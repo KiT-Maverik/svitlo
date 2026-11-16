@@ -39,7 +39,7 @@ export const maintainStagePresence_Skill_Data = defineSkill({
     methodological: 'Sustain expressive focus and character continuity throughout a performance.',
     frontend: {
       en: 'Keep your attention and character consistent throughout a performance.',
-      it: 'Mantieni l\'attenzione e la coerenza del personaggio per tutta la rappresentazione.',
+      it: "Mantieni l'attenzione e la coerenza del personaggio per tutta la rappresentazione.",
       zh: '在整个表演过程中保持专注和角色状态的一致。',
       hi: 'पूरे प्रदर्शन के दौरान अपना ध्यान और पात्र की निरंतरता बनाए रखें।',
       es: 'Mantén la atención y la coherencia del personaje durante toda la actuación.',

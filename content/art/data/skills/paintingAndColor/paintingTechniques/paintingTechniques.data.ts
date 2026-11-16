@@ -70,7 +70,7 @@ export const paintingTechniques_SkillGroup_Data = defineSkillGroup({
       'Different physical application methods affect transparency, edges, layering and surface appearance.',
     frontend: {
       en: 'Discover how paint application changes transparency, layers and edges.',
-      it: 'Scopri come l\'applicazione del colore modifica trasparenze, strati e contorni.',
+      it: "Scopri come l'applicazione del colore modifica trasparenze, strati e contorni.",
       zh: '了解不同的上色方式如何影响透明度、颜料层次和边缘。',
       hi: 'जानें कि रंग लगाने के अलग-अलग तरीकों से पारदर्शिता, परतें और किनारे कैसे बदलते हैं।',
       es: 'Descubre cómo la aplicación de la pintura cambia la transparencia, las capas y los bordes.',

@@ -5,7 +5,7 @@ export const composeArchitecturalMassing_Skill_Data = defineSkill({
   id: 'bc3efa30-756b-43c2-8e4d-7b8d99f24e70',
   name: {
     en: 'Compose Architectural Massing',
-    it: "Comporre i volumi architettonici",
+    it: 'Comporre i volumi architettonici',
     zh: '组合建筑体量',
     hi: 'वास्तु आयतन संयोजित करें',
     es: 'Componer volúmenes arquitectónicos',
@@ -39,7 +39,7 @@ export const composeArchitecturalMassing_Skill_Data = defineSkill({
     methodological: 'Arrange volumes and voids into a coherent visual building form.',
     frontend: {
       en: 'Combine building volumes and open spaces into a balanced visual form.',
-      it: "Combina i volumi degli edifici e gli spazi aperti in una composizione visiva equilibrata.",
+      it: 'Combina i volumi degli edifici e gli spazi aperti in una composizione visiva equilibrata.',
       zh: '将建筑体量与开放空间组合成均衡的视觉形态。',
       hi: 'भवन के आयतनों और खुले स्थानों को मिलाकर संतुलित दृश्य रूप बनाएँ।',
       es: 'Combina los volúmenes de los edificios y los espacios abiertos en una forma visual equilibrada.',

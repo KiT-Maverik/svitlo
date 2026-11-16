@@ -5,7 +5,7 @@ export const analyzeRealistPainting_Skill_Data = defineSkill({
   id: '71d1c5ee-cc77-4663-a710-ffd10103c43b',
   name: {
     en: 'Analyze Realist Painting',
-    it: "Analizzare la pittura realista",
+    it: 'Analizzare la pittura realista',
     zh: '分析现实主义绘画',
     hi: 'यथार्थवादी चित्रकला का विश्लेषण करें',
     es: 'Analizar la pintura realista',
@@ -40,7 +40,7 @@ export const analyzeRealistPainting_Skill_Data = defineSkill({
       'Explain how selected artists challenged established conventions through depictions of contemporary social life and ordinary subjects.',
     frontend: {
       en: 'See how Realist painters portrayed everyday life and contemporary society.',
-      it: "Osserva come i pittori realisti rappresentavano la vita quotidiana e la società del loro tempo.",
+      it: 'Osserva come i pittori realisti rappresentavano la vita quotidiana e la società del loro tempo.',
       zh: '了解现实主义画家如何描绘日常生活与当代社会。',
       hi: 'देखें कि यथार्थवादी चित्रकारों ने रोज़मर्रा के जीवन और समकालीन समाज को कैसे दर्शाया।',
       es: 'Observa cómo los pintores realistas representaron la vida cotidiana y la sociedad contemporánea.',

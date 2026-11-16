@@ -11,7 +11,7 @@ export const ukrainianArtisticTraditions_SkillGroup_Data = defineSkillGroup({
   id: '44070f30-13ab-479f-9130-cb3354df3382',
   name: {
     en: 'Ukrainian Artistic Traditions',
-    it: "Tradizioni artistiche ucraine",
+    it: 'Tradizioni artistiche ucraine',
     zh: '乌克兰艺术传统',
     hi: 'यूक्रेनी कलात्मक परंपराएँ',
     es: 'Tradiciones artísticas ucranianas',

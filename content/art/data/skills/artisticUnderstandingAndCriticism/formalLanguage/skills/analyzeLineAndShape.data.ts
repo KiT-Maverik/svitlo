@@ -5,7 +5,7 @@ export const analyzeLineAndShape_Skill_Data = defineSkill({
   id: '002b4a55-6182-49b4-b6f2-33bd3f1f6ed4',
   name: {
     en: 'Analyze Line and Shape',
-    it: "Analizzare linee e forme",
+    it: 'Analizzare linee e forme',
     zh: '分析线条与形状',
     hi: 'रेखा और आकार का विश्लेषण करें',
     es: 'Analizar líneas y formas',

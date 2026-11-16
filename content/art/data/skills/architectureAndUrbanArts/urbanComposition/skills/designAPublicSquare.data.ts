@@ -5,7 +5,7 @@ export const designAPublicSquare_Skill_Data = defineSkill({
   id: '8119489d-bf61-4340-a1ae-30ee623ae5c1',
   name: {
     en: 'Design a Public Square',
-    it: "Progettare una piazza pubblica",
+    it: 'Progettare una piazza pubblica',
     zh: '设计公共广场',
     hi: 'सार्वजनिक चौक डिज़ाइन करें',
     es: 'Diseñar una plaza pública',

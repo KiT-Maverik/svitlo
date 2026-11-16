@@ -5,7 +5,7 @@ export const designReadableText_Skill_Data = defineSkill({
   id: '20f21893-f213-44b0-9031-04ffa599f80a',
   name: {
     en: 'Design Readable Text',
-    it: "Progettare testi leggibili",
+    it: 'Progettare testi leggibili',
 
     zh: '设计易读文本',
     hi: 'पठनीय पाठ डिज़ाइन करें',
@@ -40,7 +40,7 @@ export const designReadableText_Skill_Data = defineSkill({
     methodological: 'Balance contrast, spacing and line length for legible visual communication.',
     frontend: {
       en: 'Make text easy to read through suitable contrast, spacing and line lengths.',
-      it: "Rendi il testo facile da leggere scegliendo contrasto, spaziatura e lunghezza delle righe adeguati.",
+      it: 'Rendi il testo facile da leggere scegliendo contrasto, spaziatura e lunghezza delle righe adeguati.',
 
       zh: '通过合适的对比度、间距和行长，让文本易于阅读。',
       hi: 'उपयुक्त कंट्रास्ट, अंतराल और पंक्ति लंबाई से पाठ को पढ़ने योग्य बनाएँ।',

@@ -5,7 +5,7 @@ export const interpretUpperPaleolithicCavePainting_Skill_Data = defineSkill({
   id: '3b84298a-cd9d-4a32-9fa1-8093427cb127',
   name: {
     en: 'Interpret Upper Paleolithic Cave Painting',
-    it: "Interpretare la pittura rupestre del Paleolitico superiore",
+    it: 'Interpretare la pittura rupestre del Paleolitico superiore',
     zh: '解读旧石器时代晚期洞穴绘画',
     hi: 'उत्तर पुरापाषाण काल की गुफा चित्रकला की व्याख्या करें',
     es: 'Interpretar la pintura rupestre del Paleolítico superior',
@@ -40,7 +40,7 @@ export const interpretUpperPaleolithicCavePainting_Skill_Data = defineSkill({
       'Relate animal imagery, placement, layered marks and known archaeological context to supported readings while acknowledging uncertainty about original meanings.',
     frontend: {
       en: 'Explore what cave images and their locations reveal, and what remains unknown.',
-      it: "Esplora ciò che le immagini nelle grotte e la loro posizione ci rivelano, e ciò che resta sconosciuto.",
+      it: 'Esplora ciò che le immagini nelle grotte e la loro posizione ci rivelano, e ciò che resta sconosciuto.',
       zh: '探索洞穴图像及其所在位置揭示了什么，以及哪些问题仍未有定论。',
       hi: 'जानें कि गुफा-चित्र और उनका स्थान क्या बताते हैं, और किन बातों का उत्तर अभी अज्ञात है।',
       es: 'Explora qué revelan las imágenes rupestres y su ubicación, y qué aspectos siguen siendo desconocidos.',

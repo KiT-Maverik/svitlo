@@ -5,7 +5,7 @@ export const analyzeBeninCourtPlaques_Skill_Data = defineSkill({
   id: '6876cdd7-f714-4a57-9c6a-0f58f17e6a9c',
   name: {
     en: 'Analyze Benin Court Plaques',
-    it: "Analizzare le placche della corte del Benin",
+    it: 'Analizzare le placche della corte del Benin',
     zh: '分析贝宁宫廷浮雕铜牌',
     hi: 'बेनिन दरबार की पट्टिकाओं का विश्लेषण करें',
     es: 'Analizar las placas cortesanas de Benín',

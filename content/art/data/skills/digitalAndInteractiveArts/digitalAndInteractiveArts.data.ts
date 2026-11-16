@@ -11,7 +11,7 @@ export const digitalAndInteractiveArts_SkillDomain_Data = defineSkillDomain({
   id: 'c0712651-b591-4b73-97ff-6019793ad8af',
   title: {
     en: 'Digital and Interactive Arts',
-    it: "Arti digitali e interattive",
+    it: 'Arti digitali e interattive',
     zh: '数字与互动艺术',
     hi: 'डिजिटल और इंटरैक्टिव कला',
     es: 'Artes digitales e interactivas',

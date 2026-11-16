@@ -5,7 +5,7 @@ export const analyzeBebopJazz_Skill_Data = defineSkill({
   id: '86698621-3030-4d7c-b05b-d8a434d1e961',
   name: {
     en: 'Analyze Bebop Jazz',
-    it: "Analizzare il jazz bebop",
+    it: 'Analizzare il jazz bebop',
     zh: '分析比博普爵士乐',
     hi: 'बीबॉप जैज़ का विश्लेषण करें',
     es: 'Analizar el jazz bebop',

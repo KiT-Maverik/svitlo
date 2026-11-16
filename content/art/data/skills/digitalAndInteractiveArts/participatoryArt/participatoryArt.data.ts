@@ -61,7 +61,7 @@ export const participatoryArt_SkillGroup_Data = defineSkillGroup({
       "Interaction and visitor choices can form part of a work's artistic expression rather than merely controlling a viewer.",
     frontend: {
       en: 'Explore artworks in which audience choices become part of the experience.',
-      it: 'Esplora opere in cui le scelte del pubblico diventano parte dell\'esperienza artistica.',
+      it: "Esplora opere in cui le scelte del pubblico diventano parte dell'esperienza artistica.",
       zh: '探索观众的选择如何成为艺术体验的一部分。',
       hi: 'ऐसी कलाकृतियों को जानें जिनमें दर्शकों के विकल्प अनुभव का हिस्सा बनते हैं।',
       es: 'Explora obras en las que las decisiones del público forman parte de la experiencia.',

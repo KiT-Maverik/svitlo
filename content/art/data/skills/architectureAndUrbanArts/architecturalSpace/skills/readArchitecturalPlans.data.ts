@@ -5,7 +5,7 @@ export const readArchitecturalPlans_Skill_Data = defineSkill({
   id: 'af001f91-bf7a-4058-b18f-bcb1f93fdabb',
   name: {
     en: 'Read Architectural Plans',
-    it: "Leggere le planimetrie architettoniche",
+    it: 'Leggere le planimetrie architettoniche',
     zh: '阅读建筑平面图',
     hi: 'वास्तु योजनाएँ पढ़ें',
     es: 'Leer planos arquitectónicos',
@@ -39,7 +39,7 @@ export const readArchitecturalPlans_Skill_Data = defineSkill({
     methodological: 'Interpret spatial symbols to infer rooms, paths and relationships of enclosure.',
     frontend: {
       en: 'Use plan symbols to understand rooms, connections and routes through a building.',
-      it: "Usa i simboli delle planimetrie per comprendere ambienti, collegamenti e percorsi in un edificio.",
+      it: 'Usa i simboli delle planimetrie per comprendere ambienti, collegamenti e percorsi in un edificio.',
       zh: '利用平面图符号了解建筑中的房间、连接关系和通行路线。',
       hi: 'नक्शे के प्रतीकों से इमारत के कमरे, उनके संबंध और रास्ते समझें।',
       es: 'Usa los símbolos de los planos para comprender las habitaciones, las conexiones y los recorridos de un edificio.',

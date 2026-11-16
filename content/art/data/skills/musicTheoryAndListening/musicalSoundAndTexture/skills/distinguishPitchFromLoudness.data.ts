@@ -5,7 +5,7 @@ export const distinguishPitchFromLoudness_Skill_Data = defineSkill({
   id: '3984a4ae-4fd1-49c2-b66e-2347e714e433',
   name: {
     en: 'Distinguish Pitch from Loudness',
-    it: 'Distinguere l\'altezza dall\'intensità sonora',
+    it: "Distinguere l'altezza dall'intensità sonora",
     zh: '区分音高与响度',
     hi: 'स्वर की ऊँचाई और ध्वनि की तीव्रता में अंतर करें',
     es: 'Distinguir la altura y la intensidad del sonido',

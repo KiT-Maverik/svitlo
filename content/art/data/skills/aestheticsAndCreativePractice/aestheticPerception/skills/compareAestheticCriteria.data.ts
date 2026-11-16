@@ -5,7 +5,7 @@ export const compareAestheticCriteria_Skill_Data = defineSkill({
   id: 'd32b867b-413e-4b9d-80ac-f5de4c15ab3c',
   name: {
     en: 'Compare Aesthetic Criteria',
-    it: "Confrontare criteri estetici",
+    it: 'Confrontare criteri estetici',
     zh: '比较审美标准',
     hi: 'सौंदर्य मानदंडों की तुलना करें',
     es: 'Comparar criterios estéticos',

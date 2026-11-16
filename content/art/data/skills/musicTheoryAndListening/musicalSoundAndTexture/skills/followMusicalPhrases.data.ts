@@ -39,7 +39,7 @@ export const followMusicalPhrases_Skill_Data = defineSkill({
     methodological: 'Perceive the beginnings, continuations and closures of recognizable musical ideas.',
     frontend: {
       en: 'Follow where a musical idea starts, develops and comes to a close.',
-      it: 'Segui dove un\'idea musicale inizia, si sviluppa e si conclude.',
+      it: "Segui dove un'idea musicale inizia, si sviluppa e si conclude.",
       zh: '跟随一个音乐主题的开始、发展和结束。',
       hi: 'संगीत के विचार की शुरुआत, विकास और समापन को पहचानते हुए उसका अनुसरण करें।',
       es: 'Sigue dónde comienza una idea musical, cómo se desarrolla y cómo termina.',

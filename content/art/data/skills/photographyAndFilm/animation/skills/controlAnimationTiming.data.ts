@@ -5,7 +5,7 @@ export const controlAnimationTiming_Skill_Data = defineSkill({
   id: '1b95fe44-dfa9-4a83-9a10-ddd8b8969496',
   name: {
     en: 'Control Animation Timing',
-    it: 'Gestire i tempi dell\'animazione',
+    it: "Gestire i tempi dell'animazione",
 
     zh: '控制动画节奏',
     hi: 'एनीमेशन का समय नियंत्रित करें',

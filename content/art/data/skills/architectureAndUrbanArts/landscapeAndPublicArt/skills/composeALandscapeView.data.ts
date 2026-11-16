@@ -5,7 +5,7 @@ export const composeALandscapeView_Skill_Data = defineSkill({
   id: '3a1e27c6-f208-47be-90fd-e9c902a272de',
   name: {
     en: 'Compose a Landscape View',
-    it: "Comporre una veduta paesaggistica",
+    it: 'Comporre una veduta paesaggistica',
     zh: '构成景观视图',
     hi: 'परिदृश्य दृश्य की रचना करें',
     es: 'Componer una vista paisajística',

@@ -5,7 +5,7 @@ export const designAPictogramFamily_Skill_Data = defineSkill({
   id: 'e65a00c1-190f-49f8-abb5-4073a9077a61',
   name: {
     en: 'Design a Pictogram Family',
-    it: "Progettare una famiglia di pittogrammi",
+    it: 'Progettare una famiglia di pittogrammi',
 
     zh: '设计一组象形图标',
     hi: 'पिक्टोग्राम परिवार डिज़ाइन करें',
@@ -40,7 +40,7 @@ export const designAPictogramFamily_Skill_Data = defineSkill({
     methodological: 'Create related signs that are both mutually consistent and distinguishable.',
     frontend: {
       en: 'Design a family of signs that look related but remain easy to tell apart.',
-      it: "Progetta una serie di simboli visivamente coerenti ma facili da distinguere.",
+      it: 'Progetta una serie di simboli visivamente coerenti ma facili da distinguere.',
 
       zh: '设计一组风格相关但彼此容易区分的标志。',
       hi: 'ऐसे संकेतों का समूह डिज़ाइन करें जो एक जैसे दिखें लेकिन आसानी से अलग पहचाने जाएँ।',

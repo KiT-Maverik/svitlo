@@ -5,7 +5,7 @@ export const compareUrbanSpatialPatterns_Skill_Data = defineSkill({
   id: '88aa2d8e-a872-48ac-af85-3bd58cbaab20',
   name: {
     en: 'Compare Urban Spatial Patterns',
-    it: "Confrontare le configurazioni degli spazi urbani",
+    it: 'Confrontare le configurazioni degli spazi urbani',
     zh: '比较城市空间模式',
     hi: 'शहरी स्थानिक प्रतिरूपों की तुलना करें',
     es: 'Comparar patrones espaciales urbanos',
@@ -39,7 +39,7 @@ export const compareUrbanSpatialPatterns_Skill_Data = defineSkill({
     methodological: 'Relate street grids, irregular networks and open spaces to urban experience.',
     frontend: {
       en: 'Compare different street patterns and the experiences they create.',
-      it: "Confronta diversi tracciati stradali e le esperienze che creano.",
+      it: 'Confronta diversi tracciati stradali e le esperienze che creano.',
       zh: '比较不同的街道布局及其带来的空间体验。',
       hi: 'अलग-अलग सड़क विन्यासों और उनसे बनने वाले अनुभवों की तुलना करें।',
       es: 'Compara distintos trazados de calles y las experiencias que generan.',

@@ -39,7 +39,7 @@ export const analyzeAudienceParticipation_Skill_Data = defineSkill({
     methodological: 'Examine how participant contributions alter authorship, sequence or interpretation.',
     frontend: {
       en: 'Explore how participation can change who shapes an artwork and what it means.',
-      it: 'Esplora come la partecipazione possa cambiare chi contribuisce a creare un\'opera d\'arte e il suo significato.',
+      it: "Esplora come la partecipazione possa cambiare chi contribuisce a creare un'opera d'arte e il suo significato.",
       zh: '探索参与者的贡献如何改变作品的创作主体、顺序或解读。',
       hi: 'जानें कि प्रतिभागियों का योगदान कलाकृति के रचनाकार, क्रम या व्याख्या को कैसे बदलता है।',
       es: 'Explora cómo las aportaciones del público cambian la autoría, la secuencia o la interpretación de una obra.',

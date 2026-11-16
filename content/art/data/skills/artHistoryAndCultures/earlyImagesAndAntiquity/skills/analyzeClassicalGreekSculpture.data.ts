@@ -5,7 +5,7 @@ export const analyzeClassicalGreekSculpture_Skill_Data = defineSkill({
   id: '03821557-15ed-4615-af1e-8098db83ce7b',
   name: {
     en: 'Analyze Classical Greek Sculpture',
-    it: "Analizzare la scultura greca classica",
+    it: 'Analizzare la scultura greca classica',
     zh: '分析古希腊雕塑',
     hi: 'शास्त्रीय यूनानी मूर्तिकला का विश्लेषण करें',
     es: 'Analizar la escultura griega clásica',

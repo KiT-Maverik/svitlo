@@ -5,7 +5,7 @@ export const selectATypeface_Skill_Data = defineSkill({
   id: '357725bc-4ae9-4b71-8ee2-87dae0d95bd6',
   name: {
     en: 'Select a Typeface',
-    it: "Scegliere un carattere tipografico",
+    it: 'Scegliere un carattere tipografico',
 
     zh: '选择字体',
     hi: 'टाइपफ़ेस चुनें',
@@ -40,7 +40,7 @@ export const selectATypeface_Skill_Data = defineSkill({
     methodological: 'Match letterform characteristics to the purpose, tone and audience of communication.',
     frontend: {
       en: 'Choose letter styles that fit the message and its intended readers.',
-      it: "Scegli forme di lettere adatte al messaggio e ai lettori a cui è destinato.",
+      it: 'Scegli forme di lettere adatte al messaggio e ai lettori a cui è destinato.',
 
       zh: '选择适合信息内容及目标读者的字体风格。',
       hi: 'संदेश और लक्षित पाठकों के अनुकूल अक्षर शैली चुनें।',

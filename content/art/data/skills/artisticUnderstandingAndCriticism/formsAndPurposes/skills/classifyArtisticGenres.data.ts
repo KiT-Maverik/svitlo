@@ -5,7 +5,7 @@ export const classifyArtisticGenres_Skill_Data = defineSkill({
   id: '4bd0e896-7a2b-4431-bddf-eb76b7c9b7f0',
   name: {
     en: 'Classify Artistic Genres',
-    it: "Classificare i generi artistici",
+    it: 'Classificare i generi artistici',
     zh: '艺术门类分类',
     hi: 'कला विधाओं का वर्गीकरण करें',
     es: 'Clasificar géneros artísticos',
@@ -40,7 +40,7 @@ export const classifyArtisticGenres_Skill_Data = defineSkill({
       'Use established formal conventions to distinguish genres while allowing for hybrid works and evolving traditions.',
     frontend: {
       en: 'Recognize common art genres while noticing works that mix or challenge them.',
-      it: "Riconosci i generi artistici più comuni, notando anche le opere che li mescolano o li mettono in discussione.",
+      it: 'Riconosci i generi artistici più comuni, notando anche le opere che li mescolano o li mettono in discussione.',
       zh: '识别常见的艺术门类，同时留意融合或突破这些门类的作品。',
       hi: 'कला की आम विधाओं को पहचानें और उन रचनाओं पर भी ध्यान दें जो उन्हें मिलाती या चुनौती देती हैं।',
       es: 'Reconoce los géneros artísticos habituales y observa las obras que los combinan o cuestionan.',

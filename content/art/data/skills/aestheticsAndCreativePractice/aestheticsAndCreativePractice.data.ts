@@ -10,7 +10,7 @@ export const aestheticsAndCreativePractice_SkillDomain_Data = defineSkillDomain(
   id: '013a7a2a-8e50-4424-9c32-32915b51cd45',
   title: {
     en: 'Aesthetics and Creative Practice',
-    it: "Estetica e pratica creativa",
+    it: 'Estetica e pratica creativa',
     zh: '美学与创作实践',
     hi: 'सौंदर्यशास्त्र और रचनात्मक अभ्यास',
     es: 'Estética y práctica creativa',

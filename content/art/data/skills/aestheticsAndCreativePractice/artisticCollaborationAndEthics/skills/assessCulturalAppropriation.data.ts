@@ -39,7 +39,7 @@ export const assessCulturalAppropriation_Skill_Data = defineSkill({
     methodological: 'Weigh permission, cultural significance and power relationships when adapting artistic material.',
     frontend: {
       en: "Consider cultural meaning, permission and unequal power when using others' traditions.",
-      it: "Quando utilizzi tradizioni altrui, considera il loro significato culturale, il consenso e gli squilibri di potere.",
+      it: 'Quando utilizzi tradizioni altrui, considera il loro significato culturale, il consenso e gli squilibri di potere.',
       zh: '使用他人传统时，考虑其文化意义、许可和权力不平等。',
       hi: 'दूसरों की परंपराओं का उपयोग करते समय सांस्कृतिक अर्थ, अनुमति और असमान शक्ति पर विचार करें।',
       es: 'Considera el significado cultural, los permisos y las desigualdades de poder al usar tradiciones ajenas.',

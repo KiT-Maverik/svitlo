@@ -13,7 +13,7 @@ export const asianArtisticTraditions_SkillGroup_Data = defineSkillGroup({
   id: '1ec93970-d41f-4086-b3ba-8dbc3af59e9c',
   name: {
     en: 'Asian Artistic Traditions',
-    it: "Tradizioni artistiche asiatiche",
+    it: 'Tradizioni artistiche asiatiche',
     zh: '传统亚洲艺术',
     hi: 'एशिया की कलात्मक परंपराएँ',
     es: 'Tradiciones artísticas asiáticas',

@@ -5,7 +5,7 @@ export const analyzeRomanticPainting_Skill_Data = defineSkill({
   id: 'dcfe317b-171e-4db3-afc4-4b6e5be2b6e9',
   name: {
     en: 'Analyze Romantic Painting',
-    it: "Analizzare la pittura romantica",
+    it: 'Analizzare la pittura romantica',
     zh: '分析浪漫主义绘画',
     hi: 'रोमांटिक चित्रकला का विश्लेषण करें',
     es: 'Analizar la pintura romántica',
@@ -40,7 +40,7 @@ export const analyzeRomanticPainting_Skill_Data = defineSkill({
       'Relate expressive landscape, emotion or dramatic subject matter to selected nineteenth-century artists and cultural contexts without treating Romanticism as one uniform style.',
     frontend: {
       en: 'Examine how Romantic painters used landscapes, feeling and dramatic subjects.',
-      it: "Esamina come i pittori romantici usavano paesaggi, emozioni e soggetti drammatici.",
+      it: 'Esamina come i pittori romantici usavano paesaggi, emozioni e soggetti drammatici.',
       zh: '探究浪漫主义画家如何运用风景、情感与戏剧性题材。',
       hi: 'जानें कि रोमांटिक चित्रकारों ने दृश्यों, भावनाओं और नाटकीय विषयों का उपयोग कैसे किया।',
       es: 'Examina cómo los pintores románticos utilizaron paisajes, emociones y temas dramáticos.',

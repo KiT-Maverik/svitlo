@@ -5,7 +5,7 @@ export const analyzeColorRelationships_Skill_Data = defineSkill({
   id: '6ff4fe86-e694-4952-a32f-4780e999b530',
   name: {
     en: 'Analyze Color Relationships',
-    it: "Analizzare le relazioni tra i colori",
+    it: 'Analizzare le relazioni tra i colori',
     zh: '分析色彩关系',
     hi: 'रंगों के संबंधों का विश्लेषण करें',
     es: 'Analizar las relaciones entre colores',

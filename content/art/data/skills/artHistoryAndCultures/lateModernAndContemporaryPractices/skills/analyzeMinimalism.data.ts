@@ -5,7 +5,7 @@ export const analyzeMinimalism_Skill_Data = defineSkill({
   id: '8c95feca-d2be-4088-aaaf-40bff8a961fd',
   name: {
     en: 'Analyze Minimalism',
-    it: "Analizzare il Minimalismo",
+    it: 'Analizzare il Minimalismo',
     zh: '分析极简主义',
     hi: 'न्यूनतावाद का विश्लेषण करें',
     es: 'Analizar el minimalismo',

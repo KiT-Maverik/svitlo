@@ -40,7 +40,7 @@ export const editPhotographyExpressively_Skill_Data = defineSkill({
     methodological: 'Revise color, contrast or framing with attention to both expression and documentary integrity.',
     frontend: {
       en: "Adjust a photograph's color and framing while respecting what it claims to show.",
-      it: 'Modifica il colore e l\'inquadratura di una fotografia rispettando ciò che dichiara di mostrare.',
+      it: "Modifica il colore e l'inquadratura di una fotografia rispettando ciò che dichiara di mostrare.",
 
       zh: '在尊重照片所声称内容的前提下，调整色彩和取景。',
       hi: 'फ़ोटो के दावे का सम्मान करते हुए उसके रंग और फ़्रेमिंग समायोजित करें।',
