@@ -54,7 +54,7 @@ describe('Configurators', () => {
             true,
           );
           assert.deepEqual(markdown.build.props({ languages: ['uk'] }).locale, {
-            uk: { locale: { value: '# Привіт %_%NAME%_%', variables: { NAME: 'Ада' } } },
+            uk: { locale: { value: '# Привіт %_%NAME%_%\n', variables: { NAME: 'Ада' } } },
           });
         });
       });

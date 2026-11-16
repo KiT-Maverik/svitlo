@@ -1,9 +1,4 @@
-import type {
-  DeepPartial,
-  ConfigWithLanguages,
-  LanguageScope,
-  PublicationLanguageOptions,
-} from '#types';
+import type { DeepPartial, ConfigWithLanguages, LanguageScope, PublicationLanguageOptions } from '#types';
 import type { AllLanguageCodes, LanguageCode } from '#schemas';
 
 import {
