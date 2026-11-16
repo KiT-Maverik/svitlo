@@ -2056,7 +2056,7 @@ Skills: 5
 
 **Methodological description (English):** Identify systematic distortions from test wording, cultural assumptions, inaccessible formats, or observer expectations.
 
-**User-friendly description (it):** Individua i modi in cui una misurazione potrebbe svantaggiare o rappresentare in modo inesatto alcune persone sistematicamente.
+**User-friendly description (it):** Individua come una misurazione possa svantaggiare sistematicamente alcune persone o rappresentarle in modo inesatto.
 
 ##### Definizioni operative
 
@@ -2158,13 +2158,13 @@ Skills: 9
 
 **User-friendly description (it):** Scopri perché disegni di ricerca diversi consentano conclusioni differenti.
 
-##### Cecità negli studi di ricerca
+##### Mascheramento negli studi di ricerca
 
 [blindingInResearch.data.ts](../../../content/psychology/data/skills/psychologicalScienceAndInquiry/studyDesigns/skills/blindingInResearch.data.ts)
 
 **Methodological description (English):** Explain how keeping condition assignments unknown to participants or evaluators can reduce some sources of bias, and why blinding is not universally possible.
 
-**User-friendly description (it):** Spiega come tenere all'oscuro partecipanti o valutatori di alcune informazioni possa ridurre determinate distorsioni.
+**User-friendly description (it):** Spiega come non rivelare a partecipanti o valutatori l'assegnazione ai gruppi possa ridurre alcune distorsioni.
 
 ##### Esperimenti controllati
 
@@ -2518,7 +2518,7 @@ Skills: 5
 
 **User-friendly description (it):** Riconosci quando la pressione a raggiungere un accordo impedisce una valutazione critica nel gruppo.
 
-##### Pregiudizi verso il proprio gruppo e gli altri gruppi
+##### Favoritismo per il proprio gruppo e pregiudizi verso gli altri gruppi
 
 [inGroupAndOutGroupBias.data.ts](../../../content/psychology/data/skills/socialPsychology/groupDynamics/skills/inGroupAndOutGroupBias.data.ts)
 
