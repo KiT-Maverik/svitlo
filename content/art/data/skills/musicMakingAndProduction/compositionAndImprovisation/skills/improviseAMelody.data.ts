@@ -5,6 +5,7 @@ export const improviseAMelody_Skill_Data = defineSkill({
   id: '356ea625-bfd7-4a6e-81e2-0dbca1f262b6',
   name: {
     en: 'Improvise a Melody',
+    it: 'Improvvisare una melodia',
     zh: '即兴创作旋律',
     hi: 'धुन का तात्कालिक सृजन करें',
     es: 'Improvisar una melodía',
@@ -38,6 +39,7 @@ export const improviseAMelody_Skill_Data = defineSkill({
     methodological: 'Produce new pitch patterns in real time within an established musical context.',
     frontend: {
       en: 'Invent a melody in the moment while following a musical setting.',
+      it: 'Inventa una melodia sul momento seguendo un determinato contesto musicale.',
       zh: '在既定的音乐背景中即兴创作旋律。',
       hi: 'संगीत के संदर्भ का पालन करते हुए उसी समय एक धुन बनाएँ।',
       es: 'Inventa una melodía en el momento siguiendo un contexto musical.',

@@ -10,6 +10,7 @@ export const aestheticsAndCreativePractice_SkillDomain_Data = defineSkillDomain(
   id: '013a7a2a-8e50-4424-9c32-32915b51cd45',
   title: {
     en: 'Aesthetics and Creative Practice',
+    it: "Estetica e pratica creativa",
     zh: '美学与创作实践',
     hi: 'सौंदर्यशास्त्र और रचनात्मक अभ्यास',
     es: 'Estética y práctica creativa',
@@ -53,6 +54,7 @@ export const aestheticsAndCreativePractice_SkillDomain_Data = defineSkillDomain(
       'Artistic experience, imagination, revision and ethical decisions cross individual media. This domain avoids prescribing a universal theory of beauty or one compulsory creative workflow.',
     frontend: {
       en: 'Explore how art affects us, communicates meaning and grows through creative choices.',
+      it: "Esplora come l'arte ci influenza, comunica significati e si sviluppa attraverso le scelte creative.",
       zh: '探索艺术如何影响我们、传达意义，并通过创意选择不断发展。',
       hi: 'जानें कि कला हमें कैसे प्रभावित करती है, अर्थ कैसे संप्रेषित करती है और रचनात्मक विकल्पों से कैसे विकसित होती है।',
       es: 'Explora cómo el arte nos afecta, comunica significados y evoluciona mediante decisiones creativas.',

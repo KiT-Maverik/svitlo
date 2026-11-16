@@ -11,6 +11,7 @@ export const motionGraphics_SkillGroup_Data = defineSkillGroup({
   id: '2cedb7dd-a87d-4708-a506-b14cfe278bac',
   name: {
     en: 'Motion Graphics',
+    it: 'Grafica in movimento',
     zh: '动态图形',
     hi: 'मोशन ग्राफ़िक्स',
     es: 'Gráficos en movimiento',
@@ -53,6 +54,7 @@ export const motionGraphics_SkillGroup_Data = defineSkillGroup({
       'Moving designed graphics use visual change and pacing for expressive or communicative purposes; they differ from depicting characters in frame-by-frame or stop-motion cinema.',
     frontend: {
       en: 'Use moving graphics to communicate ideas, rhythm and visual change.',
+      it: 'Usa elementi grafici animati per comunicare idee, ritmo e cambiamenti visivi.',
       zh: '运用动态图形传达想法、节奏和视觉变化。',
       hi: 'विचारों, लय और दृश्य बदलाव को व्यक्त करने के लिए गतिशील ग्राफ़िक्स का उपयोग करें।',
       es: 'Usa gráficos en movimiento para comunicar ideas, ritmo y cambios visuales.',

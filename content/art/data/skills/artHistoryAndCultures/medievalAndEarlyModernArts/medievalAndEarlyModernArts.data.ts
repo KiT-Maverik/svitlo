@@ -13,6 +13,7 @@ export const medievalAndEarlyModernArts_SkillGroup_Data = defineSkillGroup({
   id: 'ba6cbbcc-2bf5-43a7-b8f6-5103031c4799',
   name: {
     en: 'Medieval and Early Modern Arts',
+    it: "Arti medievali e della prima età moderna",
     zh: '中世纪与早期现代艺术',
     hi: 'मध्यकालीन और आरंभिक आधुनिक कला',
     es: 'Artes medievales y de la Edad Moderna temprana',
@@ -63,6 +64,7 @@ export const medievalAndEarlyModernArts_SkillGroup_Data = defineSkillGroup({
       'Comparative analysis here concerns distinct sacred, civic and courtly image practices shaped by differing patrons, techniques and concepts of representation.',
     frontend: {
       en: 'Compare sacred and civic artworks in distinct medieval and early modern traditions.',
+      it: "Confronta opere sacre e civili in diverse tradizioni medievali e della prima età moderna.",
       zh: '比较不同中世纪与近世传统中的宗教和公共艺术。',
       hi: 'मध्यकालीन और आरंभिक आधुनिक परंपराओं की धार्मिक तथा नागरिक कलाकृतियों की तुलना करें।',
       es: 'Compara obras sagradas y cívicas de distintas tradiciones medievales y modernas tempranas.',

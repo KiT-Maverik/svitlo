@@ -5,6 +5,7 @@ export const renderDrawnTexture_Skill_Data = defineSkill({
   id: '32e1e308-127c-4926-b776-8e2025bd6a70',
   name: {
     en: 'Render Drawn Texture',
+    it: 'Rappresentare le texture con il disegno',
     zh: '用绘画表现质感',
     hi: 'रेखाचित्र में बनावट दिखाएँ',
     es: 'Representar texturas mediante el dibujo',
@@ -39,6 +40,7 @@ export const renderDrawnTexture_Skill_Data = defineSkill({
       "Choose marks that suggest a material's visual or tactile character without losing the larger form.",
     frontend: {
       en: 'Use drawing marks to suggest rough, smooth or other surface qualities.',
+      it: 'Usa i tratti per suggerire superfici ruvide, lisce o di altro tipo.',
       zh: '使用绘画笔触表现粗糙、光滑等表面特征。',
       hi: 'रेखाओं से खुरदरी, चिकनी या अन्य सतही विशेषताएँ दिखाएँ।',
       es: 'Utiliza trazos para sugerir superficies rugosas, lisas u otras cualidades.',

@@ -12,6 +12,7 @@ export const graphicIdentity_SkillGroup_Data = defineSkillGroup({
   id: 'ea36f58b-7263-4869-878e-4716f322976c',
   name: {
     en: 'Graphic Identity',
+    it: "Identità grafica",
 
     zh: '图形识别系统',
     hi: 'ग्राफ़िक पहचान',
@@ -56,6 +57,7 @@ export const graphicIdentity_SkillGroup_Data = defineSkillGroup({
       'Distinctive visual signs and consistent combinations establish recognizable communication across formats.',
     frontend: {
       en: 'Build recognizable visual identities using connected graphic choices.',
+      it: "Costruisci identità visive riconoscibili attraverso scelte grafiche coordinate.",
 
       zh: '通过相互关联的图形选择，建立易识别的视觉身份。',
       hi: 'जुड़े हुए ग्राफ़िक विकल्पों से पहचानने योग्य दृश्य पहचान बनाएँ।',

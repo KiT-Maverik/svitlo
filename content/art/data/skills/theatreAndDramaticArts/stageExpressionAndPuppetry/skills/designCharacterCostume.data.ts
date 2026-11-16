@@ -5,6 +5,7 @@ export const designCharacterCostume_Skill_Data = defineSkill({
   id: '8ee583a7-3a36-4c1e-8daf-efaef211af58',
   name: {
     en: 'Design Character Costume',
+    it: 'Progettare il costume di un personaggio',
     zh: '设计角色服装',
     hi: 'पात्र की वेशभूषा डिज़ाइन करें',
     es: 'Diseñar el vestuario de un personaje',
@@ -38,6 +39,7 @@ export const designCharacterCostume_Skill_Data = defineSkill({
     methodological: 'Use clothing form and visual cues to communicate role, time or transformation.',
     frontend: {
       en: "Design clothing that reveals a character's role or transformation.",
+      it: 'Progetta abiti che rivelino il ruolo o la trasformazione di un personaggio.',
       zh: '设计能够展现角色身份或转变的服装。',
       hi: 'ऐसे कपड़े डिज़ाइन करें जो पात्र की भूमिका या बदलाव दिखाएँ।',
       es: 'Diseña ropa que revele el papel o la transformación de un personaje.',

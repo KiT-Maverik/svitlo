@@ -13,6 +13,7 @@ export const choreography_SkillGroup_Data = defineSkillGroup({
   id: '6318e49f-0253-4a32-a0f5-24cba3bec330',
   name: {
     en: 'Choreography',
+    it: "Coreografia",
     zh: '编舞',
     hi: 'नृत्यरचना',
     es: 'Coreografía',
@@ -63,6 +64,7 @@ export const choreography_SkillGroup_Data = defineSkillGroup({
       'Movement motifs and their transformations create deliberate time-space relationships among dancers.',
     frontend: {
       en: 'Create and transform movement phrases to make a complete dance.',
+      it: "Crea e trasforma sequenze di movimento per comporre una danza completa.",
       zh: '通过创作和变换动作短句，编排完整的舞蹈。',
       hi: 'नृत्य को पूर्ण रूप देने के लिए गति-खंड बनाएँ और उनमें बदलाव करें।',
       es: 'Crea y transforma frases de movimiento para componer una danza completa.',

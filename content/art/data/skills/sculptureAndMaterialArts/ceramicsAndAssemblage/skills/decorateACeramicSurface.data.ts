@@ -5,6 +5,7 @@ export const decorateACeramicSurface_Skill_Data = defineSkill({
   id: '36423be2-dab0-4d05-98b7-b1e17ed81deb',
   name: {
     en: 'Decorate a Ceramic Surface',
+    it: 'Decorare una superficie ceramica',
     zh: '装饰陶瓷表面',
     hi: 'सिरेमिक सतह सजाएँ',
     es: 'Decorar una superficie cerámica',
@@ -38,6 +39,7 @@ export const decorateACeramicSurface_Skill_Data = defineSkill({
     methodological: 'Use suitable coatings or applied textures to achieve a selected expressive surface.',
     frontend: {
       en: 'Add colors or textures that suit the surface of a clay object.',
+      it: 'Aggiungi colori o texture adatti alla superficie di un oggetto in argilla.',
       zh: '为陶土制品的表面添加合适的颜色或纹理。',
       hi: 'मिट्टी की वस्तु की सतह के अनुकूल रंग या बनावट जोड़ें।',
       es: 'Añade colores o texturas adecuados a la superficie de un objeto de arcilla.',

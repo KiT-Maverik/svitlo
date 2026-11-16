@@ -5,6 +5,7 @@ export const analyzeKoreanCeladon_Skill_Data = defineSkill({
   id: 'eafea3b4-c39e-465b-a60f-0c76a649ac21',
   name: {
     en: 'Analyze Korean Celadon',
+    it: "Analizzare il celadon coreano",
     zh: '分析韩国青瓷',
     hi: 'कोरियाई सेलाडॉन का विश्लेषण करें',
     es: 'Analizar la cerámica celadón coreana',
@@ -39,6 +40,7 @@ export const analyzeKoreanCeladon_Skill_Data = defineSkill({
       'Examine vessel form, glaze effects and decoration in Korean celadon traditions and connect them to particular periods of production.',
     frontend: {
       en: 'Examine how Korean celadon ceramics combine shapes, glazes and decoration.',
+      it: "Esamina come le ceramiche coreane in celadon combinano forme, smalti e decorazioni.",
       zh: '观察韩国青瓷如何将器形、釉色效果与装饰结合起来。',
       hi: 'देखें कि कोरियाई सेलाडॉन सिरेमिक में आकार, चमकदार ग्लेज़ और सजावट का मेल कैसे होता है।',
       es: 'Examina cómo la cerámica celadón coreana combina formas, esmaltes y decoración.',

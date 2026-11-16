@@ -5,6 +5,7 @@ export const analyzeHaidaFormlineArt_Skill_Data = defineSkill({
   id: '2e85b04d-dc13-4e80-9154-acd030dc4c04',
   name: {
     en: 'Analyze Haida Formline Art',
+    it: "Analizzare l'arte formline haida",
     zh: '分析海达族形线（Formline）艺术',
     hi: 'हैडा फॉर्मलाइन कला का विश्लेषण करें',
     es: 'Analizar el arte formline del pueblo haida',
@@ -39,6 +40,7 @@ export const analyzeHaidaFormlineArt_Skill_Data = defineSkill({
       'Examine the formal relationships of ovoids, U-forms and negative space in works connected to Haida visual conventions and cultural contexts.',
     frontend: {
       en: 'Examine the shapes and spatial patterns of Haida formline art in cultural context.',
+      it: "Esamina le forme e le strutture spaziali dell'arte formline haida nel suo contesto culturale.",
       zh: '分析海达族形线艺术中的卵圆形、U 形和负空间，并联系其文化背景。',
       hi: 'हैडा फॉर्मलाइन कला में आकृतियों और रिक्त स्थान को सांस्कृतिक संदर्भ में देखें।',
       es: 'Examina las formas y el espacio negativo del arte haida en su contexto cultural.',

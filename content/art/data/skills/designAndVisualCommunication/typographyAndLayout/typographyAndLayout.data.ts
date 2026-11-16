@@ -12,6 +12,7 @@ export const typographyAndLayout_SkillGroup_Data = defineSkillGroup({
   id: '907d7702-6970-46a4-9801-22056e87b65c',
   name: {
     en: 'Typography and Layout',
+    it: "Tipografia e impaginazione",
 
     zh: '排版与字体设计',
     hi: 'टाइपोग्राफी और लेआउट',
@@ -56,6 +57,7 @@ export const typographyAndLayout_SkillGroup_Data = defineSkillGroup({
       'Text legibility, typographic tone and systematic spatial organization shape how designed information is read.',
     frontend: {
       en: 'Make written information clear and expressive through type and layout.',
+      it: "Rendi le informazioni scritte chiare ed espressive attraverso la tipografia e l'impaginazione.",
 
       zh: '通过字体和版式，让书面信息清晰且富有表现力。',
       hi: 'टाइपोग्राफी और लेआउट के माध्यम से लिखित जानकारी को स्पष्ट और अभिव्यंजक बनाएँ।',

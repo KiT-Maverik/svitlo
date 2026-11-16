@@ -12,6 +12,7 @@ export const appliedGraphics_SkillGroup_Data = defineSkillGroup({
   id: 'f80539fa-6eed-494b-8834-f80c16a4a026',
   name: {
     en: 'Applied Graphics',
+    it: "Grafica applicata",
 
     zh: '应用图形设计',
     hi: 'एप्लाइड ग्राफ़िक्स',
@@ -56,6 +57,7 @@ export const appliedGraphics_SkillGroup_Data = defineSkillGroup({
       'Packaging, editorial designs and pictograms require visual decisions constrained by surfaces or public information.',
     frontend: {
       en: 'Design graphics for packages, publications and public information.',
+      it: "Progetta elementi grafici per confezioni, pubblicazioni e informazioni rivolte al pubblico.",
 
       zh: '为包装、出版物和公共信息设计图形。',
       hi: 'पैकेजिंग, प्रकाशनों और सार्वजनिक जानकारी के लिए ग्राफ़िक्स डिज़ाइन करें।',

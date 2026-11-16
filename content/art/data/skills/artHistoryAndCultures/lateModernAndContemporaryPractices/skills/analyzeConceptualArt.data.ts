@@ -5,6 +5,7 @@ export const analyzeConceptualArt_Skill_Data = defineSkill({
   id: '4737a5a0-954b-401b-8a6a-b1d808fb352f',
   name: {
     en: 'Analyze Conceptual Art',
+    it: "Analizzare l'arte concettuale",
     zh: '分析观念艺术',
     hi: 'अवधारणात्मक कला का विश्लेषण करें',
     es: 'Analizar el arte conceptual',
@@ -39,6 +40,7 @@ export const analyzeConceptualArt_Skill_Data = defineSkill({
       'Examine how instructions, propositions or documentary traces may carry artistic significance independently of a conventional crafted object.',
     frontend: {
       en: 'Explore art in which an idea or instruction matters as much as a physical object.',
+      it: "Esplora opere in cui un'idea o un'istruzione conta quanto un oggetto materiale.",
       zh: '探索观念或指令与实体作品同样重要的艺术。',
       hi: 'ऐसी कला जानें जिसमें विचार या निर्देश भौतिक वस्तु जितना महत्वपूर्ण हो।',
       es: 'Explora un arte donde la idea o instrucción importa tanto como el objeto físico.',

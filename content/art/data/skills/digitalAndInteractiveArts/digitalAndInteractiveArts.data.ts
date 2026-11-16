@@ -11,6 +11,7 @@ export const digitalAndInteractiveArts_SkillDomain_Data = defineSkillDomain({
   id: 'c0712651-b591-4b73-97ff-6019793ad8af',
   title: {
     en: 'Digital and Interactive Arts',
+    it: "Arti digitali e interattive",
     zh: '数字与互动艺术',
     hi: 'डिजिटल और इंटरैक्टिव कला',
     es: 'Artes digitales e interactivas',
@@ -55,6 +56,7 @@ export const digitalAndInteractiveArts_SkillDomain_Data = defineSkillDomain({
       'Digital creative techniques provide editable imagery, audience-responsive experiences and rule-generated variation. The artistic design of outcomes is distinct from computer science implementation.',
     frontend: {
       en: 'Create expressive digital images, interactive experiences and art shaped by rules and variation.',
+      it: "Crea immagini digitali espressive, esperienze interattive e opere d'arte modellate da regole e variazioni.",
       zh: '创作富有表现力的数字图像、互动体验，以及由规则和变化塑造的艺术。',
       hi: 'अभिव्यंजक डिजिटल चित्र, संवादात्मक अनुभव और नियमों व विविधता से आकार लेने वाली कला बनाएँ।',
       es: 'Crea imágenes digitales expresivas, experiencias interactivas y arte basado en reglas y variaciones.',

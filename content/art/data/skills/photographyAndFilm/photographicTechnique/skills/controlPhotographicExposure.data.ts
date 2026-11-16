@@ -5,6 +5,7 @@ export const controlPhotographicExposure_Skill_Data = defineSkill({
   id: '7a5a86c5-ea10-409f-a70c-e1a771016f79',
   name: {
     en: 'Control Photographic Exposure',
+    it: 'Controllare l\'esposizione fotografica',
 
     zh: '控制摄影曝光',
     hi: 'फ़ोटोग्राफ़िक एक्सपोज़र नियंत्रित करें',
@@ -39,6 +40,7 @@ export const controlPhotographicExposure_Skill_Data = defineSkill({
     methodological: "Relate aperture, shutter time and sensitivity to an image's visual result.",
     frontend: {
       en: 'Adjust camera exposure to make an image brighter, darker or more expressive.',
+      it: 'Regola l\'esposizione della fotocamera per rendere un\'immagine più chiara, più scura o più espressiva.',
 
       zh: '调整相机曝光，让图像更亮、更暗或更具表现力。',
       hi: 'छवि को उजला, गहरा या अधिक अभिव्यंजक बनाने के लिए कैमरे का एक्सपोज़र बदलें।',

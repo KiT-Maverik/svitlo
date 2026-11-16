@@ -5,6 +5,7 @@ export const constructThreeDimensionalForm_Skill_Data = defineSkill({
   id: 'a4e3061d-4be1-4028-9afb-a5e3ba666423',
   name: {
     en: 'Construct Three-Dimensional Form',
+    it: 'Costruire una forma tridimensionale',
     zh: '构建立体形态',
     hi: 'त्रि-आयामी आकृति बनाएँ',
     es: 'Construir una forma tridimensional',
@@ -38,6 +39,7 @@ export const constructThreeDimensionalForm_Skill_Data = defineSkill({
     methodological: 'Organize masses and proportions to convey a coherent object from several viewing positions.',
     frontend: {
       en: 'Build a three-dimensional form that works from more than one angle.',
+      it: 'Realizza una forma tridimensionale che funzioni da più angolazioni.',
       zh: '构建立体形态，使其从多个角度观看都成立。',
       hi: 'ऐसा त्रि-आयामी रूप बनाएँ जो एक से अधिक कोणों से सुसंगत दिखे।',
       es: 'Construye una forma tridimensional que funcione desde más de un ángulo.',

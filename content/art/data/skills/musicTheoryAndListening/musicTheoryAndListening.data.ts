@@ -10,6 +10,7 @@ export const musicTheoryAndListening_SkillDomain_Data = defineSkillDomain({
   id: '8afffe49-bea2-4c5a-ae83-a35f8ae90a21',
   title: {
     en: 'Music Theory and Listening',
+    it: 'Teoria musicale e ascolto',
     zh: '音乐理论与聆听',
     hi: 'संगीत सिद्धांत और श्रवण',
     es: 'Teoría musical y escucha',
@@ -53,6 +54,7 @@ export const musicTheoryAndListening_SkillDomain_Data = defineSkillDomain({
       'Musical listening distinguishes acoustic character and patterned relationships among events. Theoretical models vary across traditions and are not confined to Western staff notation.',
     frontend: {
       en: 'Explore how music creates patterns of sound, rhythm, melody and form across different traditions.',
+      it: 'Esplora come la musica crea schemi di suono, ritmo, melodia e forma nelle diverse tradizioni.',
       zh: '探索音乐如何在不同传统中形成声音、节奏、旋律和曲式的规律。',
       hi: 'जानें कि विभिन्न परंपराओं में संगीत ध्वनि, लय, धुन और रूप के पैटर्न कैसे बनाता है।',
       es: 'Descubre cómo la música crea patrones de sonido, ritmo, melodía y forma en distintas tradiciones.',

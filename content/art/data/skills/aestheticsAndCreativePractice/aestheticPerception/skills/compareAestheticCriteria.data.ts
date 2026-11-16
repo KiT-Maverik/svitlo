@@ -5,6 +5,7 @@ export const compareAestheticCriteria_Skill_Data = defineSkill({
   id: 'd32b867b-413e-4b9d-80ac-f5de4c15ab3c',
   name: {
     en: 'Compare Aesthetic Criteria',
+    it: "Confrontare criteri estetici",
     zh: '比较审美标准',
     hi: 'सौंदर्य मानदंडों की तुलना करें',
     es: 'Comparar criterios estéticos',
@@ -38,6 +39,7 @@ export const compareAestheticCriteria_Skill_Data = defineSkill({
     methodological: 'Examine how harmony, novelty or expressiveness matter differently across traditions.',
     frontend: {
       en: 'Compare what different artistic traditions value in an artwork.',
+      it: "Confronta ciò che diverse tradizioni artistiche considerano importante in un'opera d'arte.",
       zh: '比较不同艺术传统在作品中重视的价值。',
       hi: 'तुलना करें कि अलग-अलग कला परंपराएँ किसी कलाकृति में किन बातों को महत्त्व देती हैं।',
       es: 'Compara qué valoran distintas tradiciones artísticas en una obra.',

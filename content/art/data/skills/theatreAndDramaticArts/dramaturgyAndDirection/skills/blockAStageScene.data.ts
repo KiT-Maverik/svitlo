@@ -5,6 +5,7 @@ export const blockAStageScene_Skill_Data = defineSkill({
   id: '6dcd5a9e-54be-4a7a-9871-e0eddfd88780',
   name: {
     en: 'Block a Stage Scene',
+    it: 'Definire la disposizione e i movimenti in scena',
     zh: '调度舞台场景',
     hi: 'मंच दृश्य की ब्लॉकिंग तय करें',
     es: 'Planificar posiciones y movimientos en escena',
@@ -38,6 +39,7 @@ export const blockAStageScene_Skill_Data = defineSkill({
     methodological: "Organize performers' positions and movements in relation to the audience and dramatic focus.",
     frontend: {
       en: 'Plan where actors stand and move so the scene is clear to the audience.',
+      it: 'Pianifica dove si trovano e come si muovono gli attori, affinché la scena sia chiara per il pubblico.',
       zh: '规划演员的站位和移动路线，让观众清楚理解场景。',
       hi: 'योजना बनाएँ कि कलाकार कहाँ खड़े हों और कैसे चलें ताकि दर्शकों को दृश्य स्पष्ट हो।',
       es: 'Planifica dónde se sitúan y se mueven los actores para que el público entienda la escena.',

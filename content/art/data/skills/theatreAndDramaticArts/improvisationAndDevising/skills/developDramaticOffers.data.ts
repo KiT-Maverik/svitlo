@@ -5,6 +5,7 @@ export const developDramaticOffers_Skill_Data = defineSkill({
   id: 'd27d46dd-f720-40f8-85f4-612a4170518b',
   name: {
     en: 'Develop Dramatic Offers',
+    it: 'Sviluppare le proposte sceniche',
     zh: '发展戏剧创意提议',
     hi: 'नाटकीय प्रस्तावों को विकसित करें',
     es: 'Desarrollar propuestas dramáticas',
@@ -38,6 +39,7 @@ export const developDramaticOffers_Skill_Data = defineSkill({
     methodological: "Build on another performer's contribution while preserving the shared imaginary situation.",
     frontend: {
       en: "Build on another actor's ideas to keep a shared scene moving.",
+      it: 'Riprendi e sviluppa le idee di un altro attore per far procedere la scena condivisa.',
       zh: '在其他演员的创意基础上继续发展，让共同场景持续推进。',
       hi: 'साझा दृश्य को आगे बढ़ाने के लिए दूसरे कलाकार के विचारों को विकसित करें।',
       es: 'Desarrolla las ideas de otro intérprete para mantener viva la escena compartida.',

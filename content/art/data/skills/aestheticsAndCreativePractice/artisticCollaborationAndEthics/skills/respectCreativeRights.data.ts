@@ -5,6 +5,7 @@ export const respectCreativeRights_Skill_Data = defineSkill({
   id: 'cecf4513-eb92-4159-bae8-bdbec53c9960',
   name: {
     en: 'Respect Creative Rights',
+    it: "Rispettare i diritti degli autori",
     zh: '尊重创作权利',
     hi: 'रचनात्मक अधिकारों का सम्मान करें',
     es: 'Respetar los derechos creativos',
@@ -39,6 +40,7 @@ export const respectCreativeRights_Skill_Data = defineSkill({
       'Distinguish licenses, attribution and permitted reuse from an assumption that access equals permission.',
     frontend: {
       en: 'Check whether artwork may be reused and give the credit its rights require.',
+      it: "Verifica se puoi riutilizzare un'opera d'arte e cita gli autori secondo le condizioni della licenza.",
       zh: '确认作品是否允许再利用，并按照权利要求注明出处。',
       hi: 'जाँचें कि कलाकृति का पुनः उपयोग किया जा सकता है या नहीं और आवश्यक श्रेय दें।',
       es: 'Comprueba si una obra puede reutilizarse y reconoce la autoría según corresponda.',

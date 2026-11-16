@@ -5,6 +5,7 @@ export const curateGenerativeOutputs_Skill_Data = defineSkill({
   id: '886757e1-e7ef-46e4-8d92-d7ef53c5a49e',
   name: {
     en: 'Curate Generative Outputs',
+    it: 'Selezionare i risultati dell\'arte generativa',
     zh: '筛选生成结果',
     hi: 'जनरेटिव परिणामों का चयन और संयोजन करें',
     es: 'Seleccionar y organizar resultados generativos',
@@ -38,6 +39,7 @@ export const curateGenerativeOutputs_Skill_Data = defineSkill({
     methodological: 'Select, reject or revise generated results according to expressive criteria.',
     frontend: {
       en: 'Choose and improve generated images based on your artistic goals.',
+      it: 'Scegli e perfeziona le immagini generate in base ai tuoi obiettivi artistici.',
       zh: '根据艺术目标选择并改进生成的图像。',
       hi: 'अपने कलात्मक लक्ष्यों के आधार पर उत्पन्न चित्र चुनें और बेहतर बनाएँ।',
       es: 'Elige y mejora las imágenes generadas según tus objetivos artísticos.',

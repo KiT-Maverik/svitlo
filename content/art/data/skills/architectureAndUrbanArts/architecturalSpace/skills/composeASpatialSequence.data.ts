@@ -5,6 +5,7 @@ export const composeASpatialSequence_Skill_Data = defineSkill({
   id: 'cff1460a-87db-46f8-bf97-f2a1d96b914b',
   name: {
     en: 'Compose a Spatial Sequence',
+    it: "Comporre una sequenza di spazi",
     zh: '组织空间序列',
     hi: 'स्थानिक क्रम रचें',
     es: 'Componer una secuencia espacial',
@@ -38,6 +39,7 @@ export const composeASpatialSequence_Skill_Data = defineSkill({
     methodological: 'Arrange connected spaces to create deliberate changes in focus or openness.',
     frontend: {
       en: 'Arrange connected spaces to create purposeful changes in openness and focus.',
+      it: "Disponi spazi collegati per creare passaggi intenzionali tra apertura e concentrazione dello sguardo.",
       zh: '安排相连的空间，有目的地改变开放感和视觉焦点。',
       hi: 'जुड़े हुए स्थानों को इस तरह व्यवस्थित करें कि खुलेपन और ध्यान के केंद्र में उद्देश्यपूर्ण बदलाव आए।',
       es: 'Organiza espacios conectados para crear cambios intencionados de apertura y enfoque.',

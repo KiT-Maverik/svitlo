@@ -5,6 +5,7 @@ export const choreographToMusic_Skill_Data = defineSkill({
   id: '78455098-c574-4d33-ae4e-a8042a8077f3',
   name: {
     en: 'Choreograph to Music',
+    it: "Creare una coreografia sulla musica",
     zh: '根据音乐编舞',
     hi: 'संगीत के अनुसार नृत्यरचना करें',
     es: 'Coreografiar con música',
@@ -38,6 +39,7 @@ export const choreographToMusic_Skill_Data = defineSkill({
     methodological: "Relate movement phrases to music's accents, rhythms or structural contrasts.",
     frontend: {
       en: 'Match movements to musical rhythms, accents and changes.',
+      it: "Abbina i movimenti ai ritmi, agli accenti e ai cambiamenti musicali.",
       zh: '让动作与音乐的节奏、重音和变化相呼应。',
       hi: 'गतियों को संगीत की लय, बलाघात और बदलावों से मिलाएँ।',
       es: 'Coordina los movimientos con los ritmos, acentos y cambios musicales.',

@@ -5,6 +5,7 @@ export const selectTextilesForGarments_Skill_Data = defineSkill({
   id: 'e15a2259-d06f-4534-bb82-9ad745591904',
   name: {
     en: 'Select Textiles for Garments',
+    it: "Selezionare i tessuti per i capi",
 
     zh: '为服装选择纺织面料',
     hi: 'परिधानों के लिए वस्त्र चुनें',
@@ -40,6 +41,7 @@ export const selectTextilesForGarments_Skill_Data = defineSkill({
       'Choose fabric properties such as weight, drape, texture and opacity to serve a particular garment form and expressive intention.',
     frontend: {
       en: 'Choose fabrics whose weight, texture and drape fit a garment design.',
+      it: "Scegli tessuti il cui peso, consistenza e drappeggio siano adatti al modello dell'indumento.",
 
       zh: '选择重量、质感和垂坠度适合服装设计的面料。',
       hi: 'ऐसे कपड़े चुनें जिनका वज़न, बनावट और गिरावट परिधान के डिज़ाइन के अनुकूल हो।',

@@ -13,6 +13,7 @@ export const pulseAndRhythm_SkillGroup_Data = defineSkillGroup({
   id: '7baa3205-c393-4572-81e5-6ed3f5401197',
   name: {
     en: 'Pulse and Rhythm',
+    it: 'Pulsazione e ritmo',
     zh: '节拍与节奏',
     hi: 'स्पंदन और ताल',
     es: 'Pulso y ritmo',
@@ -63,6 +64,7 @@ export const pulseAndRhythm_SkillGroup_Data = defineSkillGroup({
       'A steady temporal reference can coexist with differing performed durations, accents and layered rhythmic cycles.',
     frontend: {
       en: 'Explore how a steady pulse supports different rhythmic patterns.',
+      it: 'Esplora come una pulsazione regolare sostenga diversi schemi ritmici.',
       zh: '探索稳定拍点如何支撑不同的节奏型。',
       hi: 'जानें कि स्थिर ताल विभिन्न लयबद्ध पैटर्न को कैसे सहारा देती है।',
       es: 'Explora cómo un pulso constante sostiene distintos patrones rítmicos.',

@@ -5,6 +5,7 @@ export const relateArtisticFormToContent_Skill_Data = defineSkill({
   id: 'aef86e64-86f7-46c1-baa1-b131cfe7369a',
   name: {
     en: 'Relate Artistic Form to Content',
+    it: "Mettere in relazione forma e contenuto artistico",
     zh: '联系艺术形式与内容',
     hi: 'कलात्मक रूप को विषयवस्तु से जोड़ें',
     es: 'Relacionar la forma artística con el contenido',
@@ -38,6 +39,7 @@ export const relateArtisticFormToContent_Skill_Data = defineSkill({
     methodological: 'Explain how medium and organization shape what an expressive subject communicates.',
     frontend: {
       en: 'See how the way something is made changes the meaning it conveys.',
+      it: "Osserva come il modo in cui qualcosa viene realizzato ne modifica il significato.",
       zh: '观察作品的制作方式如何改变它所传达的意义。',
       hi: 'देखें कि किसी चीज़ को बनाने का तरीका उसके अर्थ को कैसे बदलता है।',
       es: 'Observa cómo la manera de crear algo cambia el significado que transmite.',

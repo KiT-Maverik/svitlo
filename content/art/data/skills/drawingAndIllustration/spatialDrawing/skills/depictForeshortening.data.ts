@@ -5,6 +5,7 @@ export const depictForeshortening_Skill_Data = defineSkill({
   id: '7728ce52-cdf9-46a4-a932-207461b91433',
   name: {
     en: 'Depict Foreshortening',
+    it: 'Rappresentare lo scorcio prospettico',
     zh: '描绘透视缩短效果',
     hi: 'परिप्रेक्ष्य में छोटा दिखना चित्रित करें',
     es: 'Representar el escorzo',
@@ -38,6 +39,7 @@ export const depictForeshortening_Skill_Data = defineSkill({
     methodological: 'Represent forms that appear compressed because their lengths point toward the viewer.',
     frontend: {
       en: 'Draw forms that look shorter when they point toward the viewer.',
+      it: 'Disegna forme che appaiono accorciate quando sono orientate verso chi guarda.',
       zh: '画出朝向观看者而显得更短的形体。',
       hi: 'दर्शक की ओर मुड़ने पर छोटे दिखने वाले आकारों को बनाएँ।',
       es: 'Dibuja formas que parecen más cortas cuando apuntan hacia quien las mira.',

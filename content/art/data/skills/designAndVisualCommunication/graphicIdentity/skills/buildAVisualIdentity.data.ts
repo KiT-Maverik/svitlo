@@ -5,6 +5,7 @@ export const buildAVisualIdentity_Skill_Data = defineSkill({
   id: 'a02a75a6-755c-4adb-83db-0c5eaef2d8b9',
   name: {
     en: 'Build a Visual Identity',
+    it: "Costruire un'identità visiva",
 
     zh: '构建视觉识别系统',
     hi: 'दृश्य पहचान बनाएँ',
@@ -39,6 +40,7 @@ export const buildAVisualIdentity_Skill_Data = defineSkill({
     methodological: 'Coordinate type, color and form into a consistent set of related expressions.',
     frontend: {
       en: 'Combine colors, lettering and shapes into a consistent visual identity.',
+      it: "Combina colori, caratteri e forme in un'identità visiva coerente.",
 
       zh: '将色彩、字体和形状结合起来，形成一致的视觉识别系统。',
       hi: 'रंग, अक्षरों और आकारों को मिलाकर सुसंगत दृश्य पहचान बनाएँ।',

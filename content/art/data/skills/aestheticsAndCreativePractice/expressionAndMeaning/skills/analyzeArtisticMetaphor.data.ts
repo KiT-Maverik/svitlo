@@ -5,6 +5,7 @@ export const analyzeArtisticMetaphor_Skill_Data = defineSkill({
   id: '578f26db-2e1d-4325-939a-2752e177b352',
   name: {
     en: 'Analyze Artistic Metaphor',
+    it: "Analizzare la metafora artistica",
     zh: '分析艺术隐喻',
     hi: 'कलात्मक रूपक का विश्लेषण करें',
     es: 'Analizar la metáfora artística',
@@ -38,6 +39,7 @@ export const analyzeArtisticMetaphor_Skill_Data = defineSkill({
     methodological: 'Explain how artistic choices transfer a relationship from one domain of experience to another.',
     frontend: {
       en: 'Explore how an artwork can communicate an idea through metaphor.',
+      it: "Esplora come un'opera d'arte può comunicare un'idea attraverso una metafora.",
       zh: '探索艺术作品如何通过隐喻传达想法。',
       hi: 'जानें कि कलाकृति रूपक के माध्यम से किसी विचार को कैसे व्यक्त कर सकती है।',
       es: 'Explora cómo una obra puede comunicar una idea mediante la metáfora.',

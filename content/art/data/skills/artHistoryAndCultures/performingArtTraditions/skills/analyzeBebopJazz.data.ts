@@ -5,6 +5,7 @@ export const analyzeBebopJazz_Skill_Data = defineSkill({
   id: '86698621-3030-4d7c-b05b-d8a434d1e961',
   name: {
     en: 'Analyze Bebop Jazz',
+    it: "Analizzare il jazz bebop",
     zh: '分析比博普爵士乐',
     hi: 'बीबॉप जैज़ का विश्लेषण करें',
     es: 'Analizar el jazz bebop',
@@ -39,6 +40,7 @@ export const analyzeBebopJazz_Skill_Data = defineSkill({
       'Explain how improvisation, harmonic language and ensemble roles differentiated bebop within particular jazz histories.',
     frontend: {
       en: 'Discover how bebop musicians reshaped jazz improvisation and ensemble roles.',
+      it: "Scopri come i musicisti bebop hanno trasformato l'improvvisazione jazz e i ruoli nell'ensemble.",
       zh: '了解比博普爵士乐手如何重塑爵士即兴演奏与乐队分工。',
       hi: 'जानें कि बीबॉप संगीतकारों ने जैज़ के तात्कालिक वादन और समूह की भूमिकाओं को कैसे नया रूप दिया।',
       es: 'Descubre cómo los músicos de bebop transformaron la improvisación del jazz y los roles del conjunto.',

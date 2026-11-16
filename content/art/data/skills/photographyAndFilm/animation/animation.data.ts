@@ -12,6 +12,7 @@ export const animation_SkillGroup_Data = defineSkillGroup({
   id: '4d3c4cb1-4525-470d-9fd1-19a8a0c25ecd',
   name: {
     en: 'Animation',
+    it: 'Animazione',
 
     zh: '动画',
     hi: 'एनीमेशन',
@@ -56,6 +57,7 @@ export const animation_SkillGroup_Data = defineSkillGroup({
       'Animating involves designing change across successive states and controlling the temporal character of motion.',
     frontend: {
       en: 'Bring drawings or objects to life by planning changes over time.',
+      it: 'Dai vita a disegni o oggetti pianificando i cambiamenti nel tempo.',
 
       zh: '通过规划随时间发生的变化，让绘画或物体栩栩如生。',
       hi: 'समय के साथ बदलावों की योजना बनाकर चित्रों या वस्तुओं में जान डालें।',

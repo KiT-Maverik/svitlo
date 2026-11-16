@@ -5,6 +5,7 @@ export const recognizeMelodicContour_Skill_Data = defineSkill({
   id: '01e30a13-9365-4f29-8585-b132a0477869',
   name: {
     en: 'Recognize Melodic Contour',
+    it: 'Riconoscere il profilo melodico',
     zh: '识别旋律走向',
     hi: 'धुन की दिशा पहचानें',
     es: 'Reconocer el contorno melódico',
@@ -38,6 +39,7 @@ export const recognizeMelodicContour_Skill_Data = defineSkill({
     methodological: 'Trace rising, falling and repeated pitches across an audible musical phrase.',
     frontend: {
       en: 'Hear whether a melody rises, falls or stays on the same note.',
+      it: 'Ascolta se una melodia sale, scende o rimane sulla stessa nota.',
       zh: '听辨旋律是上行、下行还是保持同一音高。',
       hi: 'सुनें कि धुन ऊपर जाती है, नीचे आती है या उसी स्वर पर रहती है।',
       es: 'Escucha si una melodía sube, baja o se mantiene en la misma nota.',

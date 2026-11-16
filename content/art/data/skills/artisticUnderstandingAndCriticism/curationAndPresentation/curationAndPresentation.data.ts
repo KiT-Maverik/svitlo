@@ -12,6 +12,7 @@ export const curationAndPresentation_SkillGroup_Data = defineSkillGroup({
   id: '17fba333-c8a4-48c7-b81a-31d7f7c3b0de',
   name: {
     en: 'Curation and Presentation',
+    it: "Curatela e presentazione",
     zh: '策展与展示',
     hi: 'क्यूरेशन और प्रस्तुति',
     es: 'Comisariado y presentación',
@@ -60,6 +61,7 @@ export const curationAndPresentation_SkillGroup_Data = defineSkillGroup({
       'Exhibiting work creates new relationships between artworks, their physical arrangement and audience access, independent of authoring the artworks.',
     frontend: {
       en: 'Explore how selecting and displaying artworks changes the way audiences experience them.',
+      it: "Esplora come la scelta e l'esposizione delle opere d'arte modificano l'esperienza del pubblico.",
       zh: '探索选择和展示艺术作品如何改变观众的体验。',
       hi: 'जानें कि कलाकृतियों का चयन और प्रदर्शन दर्शकों के अनुभव को कैसे बदलता है।',
       es: 'Explora cómo la selección y exhibición de obras de arte transforma la experiencia del público.',

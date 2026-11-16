@@ -5,6 +5,7 @@ export const analyzeMinimalism_Skill_Data = defineSkill({
   id: '8c95feca-d2be-4088-aaaf-40bff8a961fd',
   name: {
     en: 'Analyze Minimalism',
+    it: "Analizzare il Minimalismo",
     zh: '分析极简主义',
     hi: 'न्यूनतावाद का विश्लेषण करें',
     es: 'Analizar el minimalismo',
@@ -39,6 +40,7 @@ export const analyzeMinimalism_Skill_Data = defineSkill({
       'Explain the roles of repetition, literal materials, scale and viewer space in selected Minimalist works and their reception.',
     frontend: {
       en: "See how Minimalist art uses repetition, simple materials and the viewer's space.",
+      it: "Osserva come l'arte minimalista usa ripetizione, materiali semplici e lo spazio dello spettatore.",
       zh: '了解极简主义艺术如何运用重复、简洁材料和观众空间。',
       hi: 'देखें कि न्यूनतावादी कला दोहराव, सरल सामग्री और दर्शक के स्थान का उपयोग कैसे करती है।',
       es: 'Observa cómo el arte minimalista utiliza la repetición, materiales sencillos y el espacio del espectador.',

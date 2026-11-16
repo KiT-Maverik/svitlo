@@ -5,6 +5,7 @@ export const createStopMotionAnimation_Skill_Data = defineSkill({
   id: 'fe2faba3-cef1-406b-8071-30c76edc5593',
   name: {
     en: 'Create Stop-Motion Animation',
+    it: 'Realizzare un\'animazione in stop motion',
 
     zh: '制作定格动画',
     hi: 'स्टॉप-मोशन एनीमेशन बनाएं',
@@ -39,6 +40,7 @@ export const createStopMotionAnimation_Skill_Data = defineSkill({
     methodological: 'Reposition physical objects between exposures to produce an apparent continuous action.',
     frontend: {
       en: 'Move objects between photographs to create the illusion of motion.',
+      it: 'Sposta gli oggetti tra uno scatto fotografico e l\'altro per creare l\'illusione del movimento.',
 
       zh: '在每次拍摄之间移动物体，创造运动的错觉。',
       hi: 'हर तस्वीर के बीच वस्तुओं को हिलाकर गति का भ्रम पैदा करें।',

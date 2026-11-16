@@ -5,6 +5,7 @@ export const analyzeClassicalBalletTraditions_Skill_Data = defineSkill({
   id: 'd8c1a788-c93e-48e1-9321-4223ad6c596a',
   name: {
     en: 'Analyze Classical Ballet Traditions',
+    it: "Analizzare le tradizioni del balletto classico",
     zh: '分析古典芭蕾传统',
     hi: 'शास्त्रीय बैले परंपराओं का विश्लेषण करें',
     es: 'Analizar las tradiciones del ballet clásico',
@@ -39,6 +40,7 @@ export const analyzeClassicalBalletTraditions_Skill_Data = defineSkill({
       'Interpret codified movement and staging in relation to particular historical ballet institutions, repertoires and changing conventions.',
     frontend: {
       en: 'Examine how classical ballet techniques and staging developed across different settings.',
+      it: "Esamina come le tecniche e le forme di messa in scena del balletto classico si sono sviluppate in contesti diversi.",
       zh: '探究古典芭蕾技巧与舞台呈现如何在不同环境中发展。',
       hi: 'जानें कि विभिन्न परिवेशों में शास्त्रीय बैले की तकनीक और मंचन कैसे विकसित हुए।',
       es: 'Examina cómo evolucionaron las técnicas y la puesta en escena del ballet clásico en distintos contextos.',

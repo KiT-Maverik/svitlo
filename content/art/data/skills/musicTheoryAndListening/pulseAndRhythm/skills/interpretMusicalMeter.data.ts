@@ -5,6 +5,7 @@ export const interpretMusicalMeter_Skill_Data = defineSkill({
   id: '1b47357f-7db0-413a-b910-ee71068747b2',
   name: {
     en: 'Interpret Musical Meter',
+    it: 'Interpretare la metrica musicale',
     zh: '理解音乐拍号',
     hi: 'संगीत के ताल-विभाजन को समझें',
     es: 'Interpretar el compás musical',
@@ -38,6 +39,7 @@ export const interpretMusicalMeter_Skill_Data = defineSkill({
     methodological: 'Relate recurring metric emphasis to the organization of beats or measures.',
     frontend: {
       en: 'Hear how repeating strong and weak beats organize a musical pattern.',
+      it: 'Ascolta come la ripetizione di tempi forti e deboli organizza uno schema musicale.',
       zh: '听一听反复出现的强拍和弱拍如何组织音乐模式。',
       hi: 'सुनें कि बार-बार आने वाली मज़बूत और कमज़ोर मात्राएँ संगीत के पैटर्न को कैसे व्यवस्थित करती हैं।',
       es: 'Escucha cómo los pulsos fuertes y débiles que se repiten organizan un patrón musical.',

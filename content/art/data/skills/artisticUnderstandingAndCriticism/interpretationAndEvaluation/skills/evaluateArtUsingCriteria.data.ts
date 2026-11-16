@@ -5,6 +5,7 @@ export const evaluateArtUsingCriteria_Skill_Data = defineSkill({
   id: '73c5c519-2aaf-4a76-8407-d67be6400d5b',
   name: {
     en: 'Evaluate Art Using Criteria',
+    it: "Valutare l'arte secondo criteri",
     zh: '依据标准评价艺术',
     hi: 'मानदंडों का उपयोग करके कला का मूल्यांकन करें',
     es: 'Evaluar el arte mediante criterios',
@@ -39,6 +40,7 @@ export const evaluateArtUsingCriteria_Skill_Data = defineSkill({
       "Apply explicit standards appropriate to a work's purpose without treating personal taste as universal fact.",
     frontend: {
       en: 'Judge an artwork using clear criteria suited to its goals, not just your taste.',
+      it: "Valuta un'opera usando criteri chiari e coerenti con i suoi obiettivi, non soltanto con i tuoi gusti.",
       zh: '根据符合艺术作品目标的明确标准进行评价，而不只凭个人喜好。',
       hi: 'सिर्फ अपनी पसंद के आधार पर नहीं, बल्कि कलाकृति के उद्देश्यों के अनुरूप स्पष्ट मानदंडों से उसका मूल्यांकन करें।',
       es: 'Evalúa una obra con criterios claros y adecuados a sus objetivos, no solo según tus gustos.',

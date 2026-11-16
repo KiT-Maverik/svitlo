@@ -5,6 +5,7 @@ export const createRepeatingOrnament_Skill_Data = defineSkill({
   id: '1ed560b9-806b-451f-ba6a-455d53c9ce98',
   name: {
     en: 'Create Repeating Ornament',
+    it: 'Creare un motivo ornamentale ripetuto',
     qm: 'Tekrarlanğan naqış yaratmaq',
 
     zh: '创建重复纹样',
@@ -39,6 +40,7 @@ export const createRepeatingOrnament_Skill_Data = defineSkill({
     methodological: 'Develop a motif through planned translations, rotations, reflections or variations.',
     frontend: {
       en: 'Repeat and vary shapes to build a decorative pattern.',
+      it: 'Ripeti e varia le forme per costruire un motivo decorativo.',
       qm: 'Bezeme naqşını qurmaq içün şekillerni tekrarlañız ve deñiştiriñiz.',
 
       zh: '重复并变化形状，构建装饰图案。',

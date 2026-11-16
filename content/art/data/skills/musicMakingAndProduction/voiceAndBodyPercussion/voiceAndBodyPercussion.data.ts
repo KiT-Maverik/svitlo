@@ -13,6 +13,7 @@ export const voiceAndBodyPercussion_SkillGroup_Data = defineSkillGroup({
   id: '18c1fd5a-c540-42f6-8662-8f81858811c4',
   name: {
     en: 'Voice and Body Percussion',
+    it: 'Voce e percussioni corporee',
     zh: '人声与身体打击乐',
     hi: 'स्वर और शारीरिक तालवाद्य',
     es: 'Voz y percusión corporal',
@@ -63,6 +64,7 @@ export const voiceAndBodyPercussion_SkillGroup_Data = defineSkillGroup({
       'Vocal articulation, breath and deliberate bodily sounds allow melodic and rhythmic performance without external instruments.',
     frontend: {
       en: 'Create melodies and rhythms using singing and sounds made with your body.',
+      it: 'Crea melodie e ritmi con il canto e i suoni prodotti dal corpo.',
       zh: '用歌唱和身体发出的声音创造旋律与节奏。',
       hi: 'गायन और शरीर से निकली ध्वनियों का उपयोग करके धुन और लय बनाएँ।',
       es: 'Crea melodías y ritmos usando el canto y sonidos producidos con el cuerpo.',

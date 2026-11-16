@@ -5,6 +5,7 @@ export const applyAGlaze_Skill_Data = defineSkill({
   id: 'd358591e-6790-4617-84f1-394415a36252',
   name: {
     en: 'Apply a Glaze',
+    it: 'Applicare una velatura',
     zh: '施加透明罩染层',
     hi: 'पारदर्शी रंग की ग्लेज़ परत लगाएँ',
     es: 'Aplicar una veladura',
@@ -38,6 +39,7 @@ export const applyAGlaze_Skill_Data = defineSkill({
     methodological: 'Layer translucent paint over a dry passage to change its optical appearance.',
     frontend: {
       en: 'Place transparent color over dry paint to subtly change its appearance.',
+      it: 'Stendi un colore trasparente sopra una pittura asciutta per modificarne delicatamente l\'aspetto.',
       zh: '在干燥的颜料层上覆盖透明颜色，细微地改变画面的视觉效果。',
       hi: 'सूखे रंग के ऊपर पारदर्शी रंग की परत लगाकर उसके रूप में सूक्ष्म बदलाव करें।',
       es: 'Aplica una capa de color transparente sobre la pintura seca para modificar sutilmente su aspecto.',

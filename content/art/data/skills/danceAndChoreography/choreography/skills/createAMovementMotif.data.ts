@@ -5,6 +5,7 @@ export const createAMovementMotif_Skill_Data = defineSkill({
   id: '7d14499f-815f-477c-af71-065ee10f3ed6',
   name: {
     en: 'Create a Movement Motif',
+    it: "Creare un motivo di movimento",
     zh: '创作一个动作主题',
     hi: 'एक विशिष्ट गति-रूप बनाएँ',
     es: 'Crear un motivo de movimiento',
@@ -38,6 +39,7 @@ export const createAMovementMotif_Skill_Data = defineSkill({
     methodological: 'Develop a short distinctive sequence suitable for reuse or transformation.',
     frontend: {
       en: 'Invent a short, recognizable sequence of dance movements.',
+      it: "Inventa una breve sequenza riconoscibile di movimenti di danza.",
       zh: '创作一段简短且易于识别的舞蹈动作序列。',
       hi: 'नृत्य गतियों का एक छोटा, पहचानने योग्य क्रम बनाएँ।',
       es: 'Inventa una secuencia breve y reconocible de movimientos de danza.',

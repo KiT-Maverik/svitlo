@@ -9,6 +9,7 @@ export const danceAndChoreography_SkillDomain_Data = defineSkillDomain({
   id: '75ed10ea-1788-4f9c-8d96-b2db3ad59e67',
   title: {
     en: 'Dance and Choreography',
+    it: "Danza e coreografia",
     zh: '舞蹈与编舞',
     hi: 'नृत्य और नृत्यरचना',
     es: 'Danza y coreografía',
@@ -51,6 +52,7 @@ export const danceAndChoreography_SkillDomain_Data = defineSkillDomain({
       'Dance organizes bodily movement as expressive and culturally situated form. Its aim is choreographic communication rather than athletic conditioning.',
     frontend: {
       en: 'Explore how expressive movement, movement patterns and cultural traditions create dance.',
+      it: "Esplora come il movimento espressivo, gli schemi di movimento e le tradizioni culturali danno vita alla danza.",
       zh: '探索富有表现力的动作、动作模式和文化传统如何构成舞蹈。',
       hi: 'जानें कि अभिव्यंजक गतिविधियाँ, गति के पैटर्न और सांस्कृतिक परंपराएँ नृत्य कैसे रचती हैं।',
       es: 'Descubre cómo el movimiento expresivo, sus patrones y las tradiciones culturales crean la danza.',

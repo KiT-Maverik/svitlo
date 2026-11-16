@@ -5,6 +5,7 @@ export const controlDrawingMarks_Skill_Data = defineSkill({
   id: '3fad59ea-ccb2-4fad-8c19-b2f06032dfdb',
   name: {
     en: 'Control Drawing Marks',
+    it: 'Controllare i segni grafici',
     zh: '控制绘画笔触',
     hi: 'चित्रांकन की रेखाओं पर नियंत्रण रखें',
     es: 'Controlar los trazos del dibujo',
@@ -38,6 +39,7 @@ export const controlDrawingMarks_Skill_Data = defineSkill({
     methodological: 'Vary pressure, direction and density to create intentional differences in drawn lines and areas.',
     frontend: {
       en: 'Make different kinds of lines and marks by changing pressure and direction.',
+      it: 'Crea linee e segni diversi variando la pressione e la direzione.',
       zh: '改变力度和方向，画出不同的线条与笔痕。',
       hi: 'दबाव और दिशा बदलकर अलग-अलग तरह की रेखाएँ और निशान बनाएँ।',
       es: 'Crea líneas y marcas diferentes cambiando la presión y la dirección.',

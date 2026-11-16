@@ -5,6 +5,7 @@ export const analyzeSpatialProportions_Skill_Data = defineSkill({
   id: '1b46c9cf-ccc6-4cac-b31f-2bdbd07e975b',
   name: {
     en: 'Analyze Spatial Proportions',
+    it: "Analizzare le proporzioni spaziali",
     zh: '分析空间比例',
     hi: 'स्थानिक अनुपातों का विश्लेषण करें',
     es: 'Analizar las proporciones espaciales',
@@ -38,6 +39,7 @@ export const analyzeSpatialProportions_Skill_Data = defineSkill({
     methodological: 'Relate the sizes of rooms and openings to apparent scale and atmosphere.',
     frontend: {
       en: 'Notice how room sizes and openings influence the sense of scale and atmosphere.',
+      it: "Nota come le dimensioni delle stanze e le aperture influenzano la percezione della scala e dell'atmosfera.",
       zh: '观察房间大小和开口如何影响尺度感与氛围。',
       hi: 'ध्यान दें कि कमरों के आकार और खुलाव पैमाने की अनुभूति और वातावरण को कैसे प्रभावित करते हैं।',
       es: 'Fíjate en cómo el tamaño de las habitaciones y las aberturas influyen en la escala y la atmósfera.',

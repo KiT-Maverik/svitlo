@@ -5,6 +5,7 @@ export const createDramaticConflict_Skill_Data = defineSkill({
   id: '222f96a9-f7ef-433b-9314-7e3c4c53533d',
   name: {
     en: 'Create Dramatic Conflict',
+    it: 'Creare un conflitto drammatico',
     zh: '创造戏剧冲突',
     hi: 'नाटकीय संघर्ष रचें',
     es: 'Crear conflicto dramático',
@@ -38,6 +39,7 @@ export const createDramaticConflict_Skill_Data = defineSkill({
     methodological: 'Establish competing objectives that generate meaningful action.',
     frontend: {
       en: 'Create tension between characters who want different things.',
+      it: 'Crea tensione fra personaggi che desiderano cose diverse.',
       zh: '在目标不同的角色之间制造张力。',
       hi: 'अलग-अलग इच्छाएँ रखने वाले पात्रों के बीच तनाव पैदा करें।',
       es: 'Crea tensión entre personajes que desean cosas diferentes.',

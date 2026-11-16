@@ -5,6 +5,7 @@ export const establishAFocalPoint_Skill_Data = defineSkill({
   id: 'b22beb31-5975-4a48-a1f0-7c076cde1667',
   name: {
     en: 'Establish a Focal Point',
+    it: 'Definire un punto focale',
     zh: '确立视觉焦点',
     hi: 'मुख्य केंद्र स्थापित करें',
     es: 'Establecer un punto focal',
@@ -38,6 +39,7 @@ export const establishAFocalPoint_Skill_Data = defineSkill({
     methodological: 'Direct attention through controlled contrasts of placement, value, color or detail.',
     frontend: {
       en: "Guide the viewer's eye toward the most important part of a painting.",
+      it: 'Guida lo sguardo di chi osserva verso la parte più importante di un dipinto.',
       zh: '引导观者的视线关注画作中最重要的部分。',
       hi: 'दर्शक की नज़र को चित्र के सबसे महत्वपूर्ण हिस्से की ओर ले जाएँ।',
       es: 'Guía la mirada del espectador hacia la parte más importante de la pintura.',

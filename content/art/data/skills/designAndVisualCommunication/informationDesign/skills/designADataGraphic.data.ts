@@ -5,6 +5,7 @@ export const designADataGraphic_Skill_Data = defineSkill({
   id: '2e28ad27-342f-4385-91be-6181816dc967',
   name: {
     en: 'Design a Data Graphic',
+    it: "Progettare una visualizzazione dei dati",
 
     zh: '设计数据图表',
     hi: 'डेटा ग्राफ़िक डिज़ाइन करें',
@@ -39,6 +40,7 @@ export const designADataGraphic_Skill_Data = defineSkill({
     methodological: 'Depict sourced quantities without distorting comparative scale or context.',
     frontend: {
       en: 'Show numerical information clearly without distorting the comparisons.',
+      it: "Presenta le informazioni numeriche in modo chiaro, senza alterare i confronti.",
 
       zh: '清晰展示数值信息，同时不歪曲比较结果。',
       hi: 'तुलनाओं को विकृत किए बिना संख्यात्मक जानकारी स्पष्ट दिखाएँ।',

@@ -5,6 +5,7 @@ export const varyAMovementMotif_Skill_Data = defineSkill({
   id: '402e502d-dcd6-43b9-bb57-3584cd0610c3',
   name: {
     en: 'Vary a Movement Motif',
+    it: "Variare un motivo di movimento",
     zh: '变换动作主题',
     hi: 'गतिशील रूप में बदलाव करें',
     es: 'Variar un motivo de movimiento',
@@ -38,6 +39,7 @@ export const varyAMovementMotif_Skill_Data = defineSkill({
     methodological: 'Transform a recognizable phrase through timing, scale, direction or body-part choices.',
     frontend: {
       en: 'Change a movement idea through direction, size, speed or body position.',
+      it: "Trasforma un'idea di movimento cambiando direzione, ampiezza, velocità o posizione del corpo.",
       zh: '通过改变方向、幅度、速度或身体姿势来变化动作构思。',
       hi: 'दिशा, आकार, गति या शारीरिक स्थिति बदलकर गति-विचार में बदलाव करें।',
       es: 'Transforma una idea de movimiento cambiando la dirección, el tamaño, la velocidad o la posición corporal.',

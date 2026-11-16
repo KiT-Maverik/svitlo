@@ -13,6 +13,7 @@ export const harmonyAndMusicalForm_SkillGroup_Data = defineSkillGroup({
   id: '484cf7d8-91c9-40ea-984a-6aa564960b6c',
   name: {
     en: 'Harmony and Musical Form',
+    it: 'Armonia e forma musicale',
     zh: '和声与音乐曲式',
     hi: 'स्वर-सामंजस्य और संगीत रूप',
     es: 'Armonía y forma musical',
@@ -63,6 +64,7 @@ export const harmonyAndMusicalForm_SkillGroup_Data = defineSkillGroup({
       'Vertical sonorities and large-scale repetition create musical expectation within a chosen tradition.',
     frontend: {
       en: 'Discover how groups of notes and repeated sections shape a piece of music.',
+      it: 'Scopri come gruppi di note e sezioni ripetute danno forma a un brano musicale.',
       zh: '了解音符组合和重复段落如何塑造一首乐曲。',
       hi: 'जानें कि स्वरों के समूह और दोहराए गए खंड संगीत रचना को कैसे आकार देते हैं।',
       es: 'Descubre cómo los grupos de notas y las secciones repetidas dan forma a una pieza musical.',

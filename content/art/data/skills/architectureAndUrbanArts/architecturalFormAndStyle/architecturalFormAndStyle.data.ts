@@ -12,6 +12,7 @@ export const architecturalFormAndStyle_SkillGroup_Data = defineSkillGroup({
   id: '030e3145-f301-4171-a563-fea55b0586ff',
   name: {
     en: 'Architectural Form and Style',
+    it: "Forma e stile architettonici",
     zh: '建筑形式与风格',
     hi: 'वास्तु रूप और शैली',
     es: 'Forma y estilo arquitectónicos',
@@ -60,6 +61,7 @@ export const architecturalFormAndStyle_SkillGroup_Data = defineSkillGroup({
       'Building volumes, facade rhythms and ornament carry expressive meaning independently of engineering feasibility.',
     frontend: {
       en: 'Explore how building shapes and decorative details express architectural ideas.',
+      it: "Esplora come le forme degli edifici e i dettagli decorativi esprimono idee architettoniche.",
       zh: '探索建筑体量、立面节奏和装饰如何表达建筑风格。',
       hi: 'जानें कि ऐतिहासिक संदर्भ में वास्तुशिल्प सजावट क्या संदेश देती है।',
       es: 'Explora qué comunica la decoración arquitectónica en su contexto histórico.',

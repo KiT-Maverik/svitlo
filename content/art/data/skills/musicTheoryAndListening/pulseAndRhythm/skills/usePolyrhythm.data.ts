@@ -5,6 +5,7 @@ export const usePolyrhythm_Skill_Data = defineSkill({
   id: 'e6d94310-4988-40b8-9596-c376ac96ad27',
   name: {
     en: 'Use Polyrhythm',
+    it: 'Usare la poliritmia',
     zh: '运用复节奏',
     hi: 'पॉलीरिदम का उपयोग करें',
     es: 'Usar polirritmia',
@@ -38,6 +39,7 @@ export const usePolyrhythm_Skill_Data = defineSkill({
     methodological: 'Coordinate different simultaneous rhythmic cycles as a deliberate musical relationship.',
     frontend: {
       en: 'Combine different rhythmic patterns that happen at the same time.',
+      it: 'Combina diversi schemi ritmici che si svolgono contemporaneamente.',
       zh: '结合同时发生的不同节奏型。',
       hi: 'एक ही समय पर होने वाले अलग-अलग लयबद्ध पैटर्न को मिलाएँ।',
       es: 'Combina distintos patrones rítmicos que ocurren al mismo tiempo.',

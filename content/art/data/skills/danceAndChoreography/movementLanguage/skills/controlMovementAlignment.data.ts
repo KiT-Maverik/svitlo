@@ -5,6 +5,7 @@ export const controlMovementAlignment_Skill_Data = defineSkill({
   id: '4faf276e-d143-4500-b564-4784d5f12d47',
   name: {
     en: 'Control Movement Alignment',
+    it: "Controllare l'allineamento del corpo nel movimento",
     zh: '控制动作姿态',
     hi: 'गतियों का शारीरिक संरेखण नियंत्रित करें',
     es: 'Controlar la alineación corporal',
@@ -38,6 +39,7 @@ export const controlMovementAlignment_Skill_Data = defineSkill({
     methodological: 'Coordinate body parts to create an intentional line and quality of movement in a dance form.',
     frontend: {
       en: 'Position your body parts deliberately to create clear dance lines.',
+      it: "Posiziona intenzionalmente le parti del corpo per creare linee di danza ben definite.",
       zh: '有意识地调整身体各部位的位置，形成清晰的舞蹈线条。',
       hi: 'स्पष्ट नृत्य रेखाएँ बनाने के लिए शरीर के अंगों को सोच-समझकर रखें।',
       es: 'Coloca deliberadamente las partes del cuerpo para crear líneas de danza claras.',

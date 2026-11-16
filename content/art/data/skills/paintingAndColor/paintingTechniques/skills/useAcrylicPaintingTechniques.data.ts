@@ -5,6 +5,7 @@ export const useAcrylicPaintingTechniques_Skill_Data = defineSkill({
   id: '104b176f-1e8c-438f-ab0e-bb1c4e4b9836',
   name: {
     en: 'Use Acrylic Painting Techniques',
+    it: 'Usare le tecniche della pittura acrilica',
     zh: '运用丙烯绘画技法',
     hi: 'ऐक्रिलिक चित्रकारी की तकनीकों का उपयोग करें',
     es: 'Aplicar técnicas de pintura acrílica',
@@ -39,6 +40,7 @@ export const useAcrylicPaintingTechniques_Skill_Data = defineSkill({
       'Use the faster drying and film-forming behavior of acrylic-bound pigment to develop deliberate layers, textures and transitions appropriate to the medium.',
     frontend: {
       en: "Use acrylic paint's quick drying to build colors, textures and layers.",
+      it: 'Sfrutta la rapida asciugatura degli acrilici per creare colori, texture e strati.',
       zh: '利用丙烯颜料干得快的特点，逐步塑造色彩、肌理和层次。',
       hi: 'ऐक्रिलिक रंग के जल्दी सूखने का लाभ उठाकर रंग, बनावट और परतें बनाएँ।',
       es: 'Aprovecha el secado rápido de la pintura acrílica para crear colores, texturas y capas.',

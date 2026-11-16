@@ -5,6 +5,7 @@ export const compareArtisticInterpretations_Skill_Data = defineSkill({
   id: '35fb250e-4ae5-42bb-a48a-fa5c7dec8a26',
   name: {
     en: 'Compare Artistic Interpretations',
+    it: "Confrontare interpretazioni artistiche",
     zh: '比较艺术诠释',
     hi: 'कलात्मक व्याख्याओं की तुलना करें',
     es: 'Comparar interpretaciones artísticas',
@@ -38,6 +39,7 @@ export const compareArtisticInterpretations_Skill_Data = defineSkill({
     methodological: 'Examine how different plausible readings explain the same evidence and where each is limited.',
     frontend: {
       en: 'Compare different readings of an artwork and the evidence behind each.',
+      it: "Confronta diverse letture di un'opera e gli elementi che sostengono ciascuna interpretazione.",
       zh: '比较对同一艺术作品的不同解读，并考察各自依据的证据。',
       hi: 'किसी कलाकृति की अलग-अलग व्याख्याओं और उनमें दिए गए प्रमाणों की तुलना करें।',
       es: 'Compara distintas interpretaciones de una obra y las pruebas que respaldan cada una.',

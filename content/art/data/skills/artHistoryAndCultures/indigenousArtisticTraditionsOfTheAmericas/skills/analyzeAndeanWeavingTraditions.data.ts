@@ -5,6 +5,7 @@ export const analyzeAndeanWeavingTraditions_Skill_Data = defineSkill({
   id: '3888eeb0-80f8-405e-99fe-e7315b19207a',
   name: {
     en: 'Analyze Andean Weaving Traditions',
+    it: "Analizzare le tradizioni tessili andine",
     zh: '分析安第斯纺织传统',
     hi: 'एंडीज़ की बुनाई परंपराओं का विश्लेषण करें',
     es: 'Analizar las tradiciones textiles andinas',
@@ -39,6 +40,7 @@ export const analyzeAndeanWeavingTraditions_Skill_Data = defineSkill({
       'Interpret textile structure, motifs and social significance in a specified Andean community or period rather than treating all Andean fabrics as one style.',
     frontend: {
       en: 'Explore how weaving designs and meanings vary across Andean communities and periods.',
+      it: "Esplora come i motivi e i significati della tessitura variano fra comunità ed epoche delle Ande.",
       zh: '探索安第斯不同社群和时期的织物设计及其含义。',
       hi: 'जानें कि एंडीज़ के विभिन्न समुदायों और कालखंडों में बुनाई के नमूने और अर्थ कैसे बदलते हैं।',
       es: 'Explora cómo varían los diseños y significados textiles entre las comunidades y épocas andinas.',

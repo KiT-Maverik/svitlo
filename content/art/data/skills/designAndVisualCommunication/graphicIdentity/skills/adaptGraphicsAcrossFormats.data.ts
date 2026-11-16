@@ -5,6 +5,7 @@ export const adaptGraphicsAcrossFormats_Skill_Data = defineSkill({
   id: 'db056a85-53f1-4723-933b-52a83699554b',
   name: {
     en: 'Adapt Graphics Across Formats',
+    it: "Adattare la grafica a diversi formati",
 
     zh: '调整不同格式中的图形',
     hi: 'विभिन्न प्रारूपों में ग्राफ़िक्स अनुकूलित करें',
@@ -39,6 +40,7 @@ export const adaptGraphicsAcrossFormats_Skill_Data = defineSkill({
     methodological: 'Retain communicative priority when moving a design between sizes or media.',
     frontend: {
       en: 'Adapt a visual design for different sizes without losing its message.',
+      it: "Adatta un progetto grafico a dimensioni diverse senza perderne il messaggio.",
 
       zh: '在不同尺寸下调整视觉设计，同时保留其信息。',
       hi: 'संदेश खोए बिना अलग-अलग आकारों के लिए दृश्य डिज़ाइन अनुकूलित करें।',

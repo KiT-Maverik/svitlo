@@ -5,6 +5,7 @@ export const distinguishDanceGenres_Skill_Data = defineSkill({
   id: 'edfda0e0-699e-4dc1-b60d-960c80f9d894',
   name: {
     en: 'Distinguish Dance Genres',
+    it: "Distinguere i generi di danza",
     zh: '区分舞蹈类型',
     hi: 'नृत्य शैलियों में अंतर पहचानें',
     es: 'Distinguir géneros de danza',
@@ -38,6 +39,7 @@ export const distinguishDanceGenres_Skill_Data = defineSkill({
     methodological: 'Identify conventions of specific social, folk, concert or contemporary dance forms.',
     frontend: {
       en: 'Recognize how different dance styles use movement and social conventions.',
+      it: "Riconosci come i diversi stili di danza utilizzano movimenti e convenzioni sociali.",
       zh: '识别不同舞蹈风格如何运用动作和社会惯例。',
       hi: 'पहचानें कि अलग-अलग नृत्य शैलियाँ गति और सामाजिक परंपराओं का उपयोग कैसे करती हैं।',
       es: 'Reconoce cómo los distintos estilos de danza utilizan movimientos y convenciones sociales.',

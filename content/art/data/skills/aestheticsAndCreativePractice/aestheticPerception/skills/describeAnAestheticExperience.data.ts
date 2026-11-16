@@ -5,6 +5,7 @@ export const describeAnAestheticExperience_Skill_Data = defineSkill({
   id: 'bcf94c6e-f4e6-433f-b4fd-b3742eeab413',
   name: {
     en: 'Describe an Aesthetic Experience',
+    it: "Descrivere un'esperienza estetica",
     zh: '描述审美体验',
     hi: 'सौंदर्यात्मक अनुभव का वर्णन करें',
     es: 'Describir una experiencia estética',
@@ -38,6 +39,7 @@ export const describeAnAestheticExperience_Skill_Data = defineSkill({
     methodological: 'Articulate a response while separating felt qualities from unsupported assertions about the work.',
     frontend: {
       en: 'Describe how an artwork feels to you while distinguishing feelings from observations.',
+      it: "Descrivi le sensazioni che un'opera d'arte ti suscita, distinguendole da ciò che osservi.",
       zh: '描述作品带给你的感受，并区分感受与观察。',
       hi: 'किसी कलाकृति से मिली अनुभूति बताएँ और भावनाओं को अवलोकनों से अलग रखें।',
       es: 'Describe cómo te hace sentir una obra y distingue las emociones de las observaciones.',
