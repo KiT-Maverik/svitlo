@@ -612,9 +612,72 @@
         "locale": {
           "type": "object",
           "properties": {
-            "fileLocation": {
-              "type": "null",
-              "const": null
+            "fileName": {
+              "anyOf": [
+                {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}\\.(?:mp3|wav|ogg|m4a|flac)$"
+                    },
+                    {
+                      "type": "string",
+                      "format": "uri",
+                      "pattern": "^https?://"
+                    }
+                  ]
+                },
+                {
+                  "type": "object",
+                  "propertyNames": {
+                    "enum": [
+                      "ar",
+                      "be",
+                      "bn",
+                      "de",
+                      "en",
+                      "es",
+                      "et",
+                      "fr",
+                      "he",
+                      "hi",
+                      "id",
+                      "ja",
+                      "ka",
+                      "kk",
+                      "ko",
+                      "lt",
+                      "lv",
+                      "mr",
+                      "ms",
+                      "pl",
+                      "pt",
+                      "qm",
+                      "ta",
+                      "te",
+                      "tr",
+                      "uk",
+                      "ur",
+                      "vi",
+                      "zh"
+                    ]
+                  },
+                  "additionalProperties": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}\\.(?:mp3|wav|ogg|m4a|flac)$"
+                      },
+                      {
+                        "type": "string",
+                        "format": "uri",
+                        "pattern": "^https?://"
+                      }
+                    ]
+                  },
+                  "minProperties": 1
+                }
+              ]
             },
             "title": {
               "$ref": "#/$defs/__schema3"
@@ -642,7 +705,7 @@
             }
           },
           "required": [
-            "fileLocation",
+            "fileName",
             "title"
           ],
           "additionalProperties": false
@@ -836,9 +899,72 @@
         "locale": {
           "type": "object",
           "properties": {
-            "src": {
-              "type": "null",
-              "const": null
+            "fileName": {
+              "anyOf": [
+                {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}\\.(?:svg|png|jpg|jpeg|webp|gif|avif)$"
+                    },
+                    {
+                      "type": "string",
+                      "format": "uri",
+                      "pattern": "^https?://"
+                    }
+                  ]
+                },
+                {
+                  "type": "object",
+                  "propertyNames": {
+                    "enum": [
+                      "ar",
+                      "be",
+                      "bn",
+                      "de",
+                      "en",
+                      "es",
+                      "et",
+                      "fr",
+                      "he",
+                      "hi",
+                      "id",
+                      "ja",
+                      "ka",
+                      "kk",
+                      "ko",
+                      "lt",
+                      "lv",
+                      "mr",
+                      "ms",
+                      "pl",
+                      "pt",
+                      "qm",
+                      "ta",
+                      "te",
+                      "tr",
+                      "uk",
+                      "ur",
+                      "vi",
+                      "zh"
+                    ]
+                  },
+                  "additionalProperties": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}\\.(?:svg|png|jpg|jpeg|webp|gif|avif)$"
+                      },
+                      {
+                        "type": "string",
+                        "format": "uri",
+                        "pattern": "^https?://"
+                      }
+                    ]
+                  },
+                  "minProperties": 1
+                }
+              ]
             },
             "alt": {
               "$ref": "#/$defs/__schema3"
@@ -863,7 +989,7 @@
             }
           },
           "required": [
-            "src",
+            "fileName",
             "alt"
           ],
           "additionalProperties": false
@@ -1198,13 +1324,76 @@
         "locale": {
           "type": "object",
           "properties": {
-            "fileLocation": {
-              "type": "null",
-              "const": null
+            "fileName": {
+              "anyOf": [
+                {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}\\.(?:vtt|srt)$"
+                    },
+                    {
+                      "type": "string",
+                      "format": "uri",
+                      "pattern": "^https?://"
+                    }
+                  ]
+                },
+                {
+                  "type": "object",
+                  "propertyNames": {
+                    "enum": [
+                      "ar",
+                      "be",
+                      "bn",
+                      "de",
+                      "en",
+                      "es",
+                      "et",
+                      "fr",
+                      "he",
+                      "hi",
+                      "id",
+                      "ja",
+                      "ka",
+                      "kk",
+                      "ko",
+                      "lt",
+                      "lv",
+                      "mr",
+                      "ms",
+                      "pl",
+                      "pt",
+                      "qm",
+                      "ta",
+                      "te",
+                      "tr",
+                      "uk",
+                      "ur",
+                      "vi",
+                      "zh"
+                    ]
+                  },
+                  "additionalProperties": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}\\.(?:vtt|srt)$"
+                      },
+                      {
+                        "type": "string",
+                        "format": "uri",
+                        "pattern": "^https?://"
+                      }
+                    ]
+                  },
+                  "minProperties": 1
+                }
+              ]
             }
           },
           "required": [
-            "fileLocation"
+            "fileName"
           ],
           "additionalProperties": false
         }
@@ -1243,13 +1432,139 @@
         "locale": {
           "type": "object",
           "properties": {
-            "fileLocation": {
-              "type": "null",
-              "const": null
+            "fileName": {
+              "anyOf": [
+                {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}\\.(?:mp4|webm)$"
+                    },
+                    {
+                      "type": "string",
+                      "format": "uri",
+                      "pattern": "^https?://"
+                    }
+                  ]
+                },
+                {
+                  "type": "object",
+                  "propertyNames": {
+                    "enum": [
+                      "ar",
+                      "be",
+                      "bn",
+                      "de",
+                      "en",
+                      "es",
+                      "et",
+                      "fr",
+                      "he",
+                      "hi",
+                      "id",
+                      "ja",
+                      "ka",
+                      "kk",
+                      "ko",
+                      "lt",
+                      "lv",
+                      "mr",
+                      "ms",
+                      "pl",
+                      "pt",
+                      "qm",
+                      "ta",
+                      "te",
+                      "tr",
+                      "uk",
+                      "ur",
+                      "vi",
+                      "zh"
+                    ]
+                  },
+                  "additionalProperties": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}\\.(?:mp4|webm)$"
+                      },
+                      {
+                        "type": "string",
+                        "format": "uri",
+                        "pattern": "^https?://"
+                      }
+                    ]
+                  },
+                  "minProperties": 1
+                }
+              ]
             },
-            "poster": {
-              "type": "null",
-              "const": null
+            "posterFileName": {
+              "anyOf": [
+                {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}\\.(?:svg|png|jpg|jpeg|webp|gif|avif)$"
+                    },
+                    {
+                      "type": "string",
+                      "format": "uri",
+                      "pattern": "^https?://"
+                    }
+                  ]
+                },
+                {
+                  "type": "object",
+                  "propertyNames": {
+                    "enum": [
+                      "ar",
+                      "be",
+                      "bn",
+                      "de",
+                      "en",
+                      "es",
+                      "et",
+                      "fr",
+                      "he",
+                      "hi",
+                      "id",
+                      "ja",
+                      "ka",
+                      "kk",
+                      "ko",
+                      "lt",
+                      "lv",
+                      "mr",
+                      "ms",
+                      "pl",
+                      "pt",
+                      "qm",
+                      "ta",
+                      "te",
+                      "tr",
+                      "uk",
+                      "ur",
+                      "vi",
+                      "zh"
+                    ]
+                  },
+                  "additionalProperties": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}\\.(?:svg|png|jpg|jpeg|webp|gif|avif)$"
+                      },
+                      {
+                        "type": "string",
+                        "format": "uri",
+                        "pattern": "^https?://"
+                      }
+                    ]
+                  },
+                  "minProperties": 1
+                }
+              ]
             },
             "title": {
               "$ref": "#/$defs/__schema3"
@@ -1277,8 +1592,8 @@
             }
           },
           "required": [
-            "fileLocation",
-            "poster",
+            "fileName",
+            "posterFileName",
             "label"
           ],
           "additionalProperties": false
