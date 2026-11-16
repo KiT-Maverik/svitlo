@@ -5,6 +5,7 @@ export const explainThePrincipleOfSelectiveBreeding_Skill_Data = defineSkill({
   id: '01caa460-9e96-4e86-8a9e-1d1fd0cfdc84',
   name: {
     en: 'Explain the Principle of Selective Breeding',
+    it: 'Spiegare il principio della selezione artificiale',
     zh: '解释选择育种的原理',
     hi: 'चयनात्मक प्रजनन का सिद्धांत समझाना',
     es: 'Explicar el principio de la cría selectiva',
@@ -39,6 +40,7 @@ export const explainThePrincipleOfSelectiveBreeding_Skill_Data = defineSkill({
       "Define selective breeding as purposeful selection and reproduction of organisms with desired inherited traits across generations to create or improve crop varieties and animal breeds. Understand that a breeder selects carriers of hereditary variants rather than arbitrarily 'ordering' a characteristic in each offspring.",
     frontend: {
       en: 'Understand how selective breeding develops inherited traits over generations.',
+      it: 'Comprendi come la selezione artificiale sviluppa caratteri ereditari nel corso delle generazioni.',
       zh: '了解选择育种如何经过多代培育出可遗传的性状。',
       hi: 'समझें कि चयनात्मक प्रजनन कई पीढ़ियों में वंशानुगत लक्षणों को कैसे विकसित करता है।',
       es: 'Comprende cómo la cría selectiva desarrolla rasgos hereditarios a lo largo de generaciones.',

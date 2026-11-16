@@ -5,6 +5,7 @@ export const recognizeCnidarianCharacteristics_Skill_Data = defineSkill({
   id: 'f65cc35d-8e08-4b0e-b99f-90fc40da1321',
   name: {
     en: 'Recognize Cnidarian Characteristics',
+    it: 'Riconoscere le caratteristiche degli cnidari',
     zh: '识别刺胞动物的特征',
     hi: 'निडेरिया की विशेषताएँ पहचानना',
     es: 'Reconocer las características de los cnidarios',
@@ -39,6 +40,7 @@ export const recognizeCnidarianCharacteristics_Skill_Data = defineSkill({
       'Recognize cnidarians by stinging cells and the characteristic body plans of polyps and medusae; do not regard the medusa form as obligatory for every member.',
     frontend: {
       en: 'Recognize animals such as jellyfish and corals by their stinging cells.',
+      it: 'Riconosci animali come meduse e coralli grazie alle loro cellule urticanti.',
       zh: '通过刺细胞识别水母、珊瑚等动物。',
       hi: 'जेलीफ़िश और प्रवाल जैसे प्राणियों को उनकी डंक मारने वाली कोशिकाओं से पहचानें।',
       es: 'Reconoce animales como medusas y corales por sus células urticantes.',

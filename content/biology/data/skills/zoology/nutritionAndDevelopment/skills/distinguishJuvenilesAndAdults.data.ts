@@ -5,6 +5,7 @@ export const distinguishJuvenilesAndAdults_Skill_Data = defineSkill({
   id: '33455386-fd04-4175-887a-4422c41ec4b0',
   name: {
     en: 'Distinguish Juveniles and Adults',
+    it: 'Distinguere animali giovani e adulti',
     zh: '区分幼体与成体',
     hi: 'किशोर और वयस्क प्राणियों में अंतर करना',
     es: 'Distinguir animales juveniles y adultos',
@@ -39,6 +40,7 @@ export const distinguishJuvenilesAndAdults_Skill_Data = defineSkill({
       'Determine an individual’s developmental stage by body proportions, coverings, or reproductive maturity.',
     frontend: {
       en: 'Recognize differences between juvenile and adult animals.',
+      it: 'Riconosci le differenze tra animali giovani e adulti.',
       zh: '识别幼年动物与成年动物之间的差异。',
       hi: 'कम उम्र के और वयस्क प्राणियों के बीच अंतर पहचानें।',
       es: 'Reconoce las diferencias entre animales jóvenes y adultos.',

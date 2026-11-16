@@ -5,6 +5,7 @@ export const recognizeMolluscCharacteristics_Skill_Data = defineSkill({
   id: '0b776b55-4790-40f9-8e95-38cea90bacb8',
   name: {
     en: 'Recognize Mollusc Characteristics',
+    it: 'Riconoscere le caratteristiche dei molluschi',
     zh: '识别软体动物的特征',
     hi: 'मोलस्क की विशेषताएँ पहचानना',
     es: 'Reconocer las características de los moluscos',
@@ -39,6 +40,7 @@ export const recognizeMolluscCharacteristics_Skill_Data = defineSkill({
       'Identify the soft body, mantle, and other characteristic features of gastropods, bivalves, and cephalopods, taking into account that not all molluscs have an external shell.',
     frontend: {
       en: 'Identify molluscs by their characteristic soft bodies and other structures.',
+      it: 'Identifica i molluschi attraverso il loro corpo molle e le altre strutture caratteristiche.',
       zh: '通过柔软的身体和其他典型结构识别软体动物。',
       hi: 'मोलस्क को उनके मुलायम शरीर और अन्य विशिष्ट संरचनाओं से पहचानें।',
       es: 'Identifica moluscos por sus cuerpos blandos y otras estructuras características.',

@@ -5,6 +5,7 @@ export const explainMaintenanceOfHomeostasis_Skill_Data = defineSkill({
   id: '413155b3-2284-4d1b-bfd1-ed9f04c4f304',
   name: {
     en: 'Explain Maintenance of Homeostasis',
+    it: "Spiegare il mantenimento dell'omeostasi",
     zh: '解释稳态的维持',
     hi: 'समस्थिति बनाए रखने की प्रक्रिया समझाना',
     es: 'Explicar el mantenimiento de la homeostasis',
@@ -39,6 +40,7 @@ export const explainMaintenanceOfHomeostasis_Skill_Data = defineSkill({
       'Explain how temperature, water balance, and blood glucose are maintained through regulation and negative feedback; distinguish dynamic stability of the internal environment from a total absence of change.',
     frontend: {
       en: 'Understand how the body keeps internal conditions within workable ranges.',
+      it: 'Comprendi come il corpo mantiene le condizioni interne entro intervalli compatibili con il suo funzionamento.',
       zh: '理解人体如何将内部环境维持在适宜的范围内。',
       hi: 'समझें कि शरीर आंतरिक स्थितियों को उपयुक्त सीमाओं में कैसे बनाए रखता है।',
       es: 'Comprende cómo el cuerpo mantiene sus condiciones internas dentro de rangos adecuados.',

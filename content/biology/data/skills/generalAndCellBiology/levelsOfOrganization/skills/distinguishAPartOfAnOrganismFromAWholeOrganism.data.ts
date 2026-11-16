@@ -5,6 +5,7 @@ export const distinguishAPartOfAnOrganismFromAWholeOrganism_Skill_Data = defineS
   id: 'eefd2408-9c6b-4c35-aacf-4030acaf6251',
   name: {
     en: 'Distinguish a Part of an Organism from a Whole Organism',
+    it: "Distinguere una parte di un organismo dall'organismo intero",
     zh: '区分生物体的一部分与完整生物体',
     hi: 'जीव के किसी भाग और पूरे जीव में अंतर करना',
     es: 'Distinguir una parte de un organismo de un organismo completo',
@@ -39,6 +40,7 @@ export const distinguishAPartOfAnOrganismFromAWholeOrganism_Skill_Data = defineS
       'Identify the boundary between an individual organ, a part of that organ, and an organism as an independent living system.',
     frontend: {
       en: 'Distinguish a single organ or body part from a complete living organism.',
+      it: 'Distingui un singolo organo o una parte del corpo da un organismo vivente completo.',
       zh: '区分单个器官或身体部位与完整的生命个体。',
       hi: 'किसी एक अंग या शरीर के भाग को पूरे जीवित जीव से अलग पहचानें।',
       es: 'Distingue un órgano o una parte del cuerpo de un organismo vivo completo.',

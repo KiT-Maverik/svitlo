@@ -5,6 +5,7 @@ export const explainTheRoleOfPollinatorsInSpeciesInteractions_Skill_Data = defin
   id: 'f052071e-40e0-4ec6-a24b-f5d937f1ab4a',
   name: {
     en: 'Explain the Role of Pollinators in Species Interactions',
+    it: 'Spiegare il ruolo degli impollinatori nelle interazioni tra specie',
     zh: '解释传粉者在物种相互作用中的作用',
     hi: 'प्रजातियों के संबंधों में परागणकों की भूमिका समझाना',
     es: 'Explicar el papel de los polinizadores en las interacciones entre especies',
@@ -39,6 +40,7 @@ export const explainTheRoleOfPollinatorsInSpeciesInteractions_Skill_Data = defin
       'Explain how an animal’s transfer of pollen relates to plant reproduction and to the pollinator’s resources.',
     frontend: {
       en: 'Explain how pollinators and flowering plants depend on one another.',
+      it: 'Spiega come gli impollinatori e le piante con fiori dipendono gli uni dalle altre.',
       zh: '解释传粉者与开花植物如何相互依赖。',
       hi: 'समझाएँ कि परागण करने वाले जीव और फूलदार पौधे एक-दूसरे पर कैसे निर्भर हैं।',
       es: 'Explica cómo los polinizadores y las plantas con flores dependen unos de otros.',

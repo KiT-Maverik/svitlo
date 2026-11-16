@@ -12,6 +12,7 @@ export const cellularStructure_SkillGroup_Data = defineSkillGroup({
   id: 'cc5f3367-c53e-409c-90ec-9b0e6777dbd4',
   name: {
     en: 'Cellular Structure',
+    it: 'Struttura cellulare',
     zh: '细胞结构',
     hi: 'कोशिकीय संरचना',
     es: 'Estructura celular',
@@ -60,6 +61,7 @@ export const cellularStructure_SkillGroup_Data = defineSkillGroup({
       'Cells have membranes and internal components that sustain life processes; diagrams help reveal commonalities and differences among different cells.',
     frontend: {
       en: 'Learn what cells are made of and how their structures help them function.',
+      it: 'Scopri da che cosa sono formate le cellule e come le loro strutture ne permettono il funzionamento.',
       zh: '了解细胞由什么组成，以及这些结构如何帮助细胞发挥功能。',
       hi: 'जानें कि कोशिकाएँ किन भागों से बनी हैं और वे कैसे काम करती हैं।',
       es: 'Aprende de qué están hechas las células y cómo sus estructuras les permiten funcionar.',

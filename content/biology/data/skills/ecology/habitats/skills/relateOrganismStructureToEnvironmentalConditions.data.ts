@@ -5,6 +5,7 @@ export const relateOrganismStructureToEnvironmentalConditions_Skill_Data = defin
   id: 'e8ac8beb-7d61-4df4-b4f8-5c787508f8d5',
   name: {
     en: 'Relate Organism Structure to Environmental Conditions',
+    it: 'Collegare la struttura di un organismo alle condizioni ambientali',
     zh: '联系生物结构与环境条件',
     hi: 'जीव की संरचना को पर्यावरण से जोड़ना',
     es: 'Relacionar la estructura de un organismo con su entorno',
@@ -39,6 +40,7 @@ export const relateOrganismStructureToEnvironmentalConditions_Skill_Data = defin
       'Explain, at the level of ecological niches, how organisms’ structures affect resource use and survival under particular environmental factors. Unlike botanical analysis of individual plant organs, this competency assesses how an organism fits its environment and ecological role.',
     frontend: {
       en: "Explain how an organism's structure helps it survive and use resources in its environment.",
+      it: 'Spiega come la struttura di un organismo lo aiuta a sopravvivere e a utilizzare le risorse del suo ambiente.',
       zh: '解释生物的结构如何帮助它在环境中生存并利用资源。',
       hi: 'समझाएँ कि जीव की शारीरिक संरचना उसे अपने पर्यावरण में जीवित रहने और संसाधन पाने में कैसे मदद करती है।',
       es: 'Explica cómo la estructura de un organismo lo ayuda a sobrevivir y aprovechar recursos en su ambiente.',

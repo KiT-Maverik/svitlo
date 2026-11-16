@@ -13,6 +13,7 @@ export const nutritionAndGrowth_SkillGroup_Data = defineSkillGroup({
   id: '78aecc9a-264f-447e-a7a1-a28febffe2df',
   name: {
     en: 'Nutrition and Growth',
+    it: 'Nutrizione e crescita',
     zh: '营养与生长',
     hi: 'पोषण और वृद्धि',
     es: 'Nutrición y crecimiento',
@@ -63,6 +64,7 @@ export const nutritionAndGrowth_SkillGroup_Data = defineSkillGroup({
       'Water, light, atmospheric gases, and minerals play different roles; deviations in environmental conditions change the rate and pattern of plant development.',
     frontend: {
       en: 'Explore how water, light, air and minerals support plant growth.',
+      it: 'Scopri come acqua, luce, aria e sali minerali favoriscono la crescita delle piante.',
       zh: '了解水、光、空气和矿物质如何支持植物生长。',
       hi: 'जानें कि जल, प्रकाश, वायु और खनिज पौधों की वृद्धि में कैसे मदद करते हैं।',
       es: 'Descubre cómo el agua, la luz, el aire y los minerales favorecen el crecimiento vegetal.',

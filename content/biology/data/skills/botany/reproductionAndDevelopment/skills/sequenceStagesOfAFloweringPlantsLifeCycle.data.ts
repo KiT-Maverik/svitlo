@@ -5,6 +5,7 @@ export const sequenceStagesOfAFloweringPlantsLifeCycle_Skill_Data = defineSkill(
   id: '9141011f-abf0-42fb-90f3-5da7a0802bf3',
   name: {
     en: 'Sequence Stages of a Flowering Plant’s Life Cycle',
+    it: 'Ordinare le fasi del ciclo vitale di una pianta con fiori',
     zh: '排列开花植物的生命周期阶段',
     hi: 'पुष्पी पौधे के जीवन चक्र के चरण क्रम में रखना',
     es: 'Ordenar las etapas del ciclo de vida de una planta con flores',
@@ -38,6 +39,7 @@ export const sequenceStagesOfAFloweringPlantsLifeCycle_Skill_Data = defineSkill(
     methodological: 'Order stages from seed to mature plant, flowering, and formation of new seeds.',
     frontend: {
       en: 'Follow the stages from seed to mature flowering plant and new seeds.',
+      it: 'Segui le fasi dal seme alla pianta adulta in fiore, fino alla formazione di nuovi semi.',
       zh: '追踪从种子到成熟开花植物并产生新种子的各阶段。',
       hi: 'बीज से परिपक्व पुष्पी पौधे और फिर नए बीज बनने तक के चरणों का क्रम देखें।',
       es: 'Sigue las etapas desde la semilla hasta la planta madura con flores y las nuevas semillas.',

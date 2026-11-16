@@ -5,6 +5,7 @@ export const justifyProtectionOfSpeciesListedInRedDataBooks_Skill_Data = defineS
   id: 'd5d161e2-3235-40cf-ab3a-a65a3a4b6a2e',
   name: {
     en: 'Justify Protection of Species Listed in Red Data Books',
+    it: 'Giustificare la protezione delle specie elencate nei Libri rossi',
     zh: '解释保护列入红皮书物种的理由',
     hi: 'लाल डेटा पुस्तकों में दर्ज प्रजातियों के संरक्षण का औचित्य बताना',
     es: 'Justificar la protección de especies incluidas en los Libros Rojos',
@@ -39,6 +40,7 @@ export const justifyProtectionOfSpeciesListedInRedDataBooks_Skill_Data = defineS
       'Explain why species listed in national or regional Red Data Books require conservation attention in light of threats and population status. Distinguish the legal and informational status of a particular Red Data Book from the international IUCN Red List: these lists are not equivalent.',
     frontend: {
       en: 'Explain why threatened species listed in Red Data Books need conservation attention.',
+      it: 'Spiega perché le specie minacciate elencate nei Libri rossi richiedono interventi di tutela.',
       zh: '解释为什么红皮书所列的受威胁物种需要保护。',
       hi: 'समझाएँ कि लाल डेटा पुस्तकों में दर्ज संकटग्रस्त प्रजातियों के संरक्षण पर ध्यान देना क्यों ज़रूरी है।',
       es: 'Explica por qué las especies amenazadas de los Libros Rojos necesitan medidas de conservación.',

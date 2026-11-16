@@ -5,6 +5,7 @@ export const recognizeBryophyteCharacteristics_Skill_Data = defineSkill({
   id: 'bf0aa43b-af7a-4911-98d6-b171efb34eb0',
   name: {
     en: 'Recognize Bryophyte Characteristics',
+    it: 'Riconoscere le caratteristiche delle briofite',
     zh: '识别苔藓植物的特征',
     hi: 'ब्रायोफाइट पौधों के लक्षण पहचानना',
     es: 'Reconocer las características de las briofitas',
@@ -39,6 +40,7 @@ export const recognizeBryophyteCharacteristics_Skill_Data = defineSkill({
       'Recognize nonvascular land plants that produce spores and whose life cycle is dominated by the gametophyte; do not call rhizoids true roots.',
     frontend: {
       en: 'Learn the characteristic features and life cycles of mosses and related plants.',
+      it: 'Scopri le caratteristiche e i cicli vitali dei muschi e delle piante affini.',
       zh: '了解苔藓及相关植物的典型特征和生活史。',
       hi: 'काई और संबंधित पौधों की विशिष्ट विशेषताओं तथा जीवन चक्र को जानें।',
       es: 'Aprende las características y los ciclos de vida de los musgos y plantas relacionadas.',

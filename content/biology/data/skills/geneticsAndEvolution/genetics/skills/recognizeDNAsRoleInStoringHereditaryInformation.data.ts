@@ -5,6 +5,7 @@ export const recognizeDNAsRoleInStoringHereditaryInformation_Skill_Data = define
   id: '06e6dc45-e3ce-42f2-949b-3bbca155dde9',
   name: {
     en: 'Recognize DNA’s Role in Storing Hereditary Information',
+    it: "Riconoscere il ruolo del DNA nella conservazione dell'informazione ereditaria",
     zh: '认识 DNA 储存遗传信息的作用',
     hi: 'वंशानुगत सूचना के भंडारण में डीएनए की भूमिका पहचानना',
     es: 'Reconocer el papel del ADN en el almacenamiento de información hereditaria',
@@ -39,6 +40,7 @@ export const recognizeDNAsRoleInStoringHereditaryInformation_Skill_Data = define
       'Explain the role of DNA sequences in storing information about the construction and regulation of cellular structures.',
     frontend: {
       en: 'Explain how DNA stores information used by living cells.',
+      it: 'Spiega come il DNA conserva le informazioni utilizzate dalle cellule viventi.',
       zh: '解释 DNA 如何储存活细胞所需的信息。',
       hi: 'समझाएँ कि डीएनए जीवित कोशिकाओं द्वारा उपयोग की जाने वाली जानकारी कैसे संचित रखता है।',
       es: 'Explica cómo el ADN almacena información utilizada por las células vivas.',

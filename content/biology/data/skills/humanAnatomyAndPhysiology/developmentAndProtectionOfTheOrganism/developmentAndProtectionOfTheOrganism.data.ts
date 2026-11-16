@@ -12,6 +12,7 @@ export const developmentAndProtectionOfTheOrganism_SkillGroup_Data = defineSkill
   id: 'e64e4704-4951-4fa9-9fad-8f60a8c8f14f',
   name: {
     en: 'Development and Protection of the Organism',
+    it: "Sviluppo e protezione dell'organismo",
     zh: '人体的发育与保护',
     hi: 'शरीर का विकास और संरक्षण',
     es: 'Desarrollo y protección del organismo',
@@ -60,6 +61,7 @@ export const developmentAndProtectionOfTheOrganism_SkillGroup_Data = defineSkill
       'Changes from childhood to adulthood, immune mechanisms, and physiological recovery help maintain bodily functions over time.',
     frontend: {
       en: 'Explore how development, immune defenses and recovery help sustain the body.',
+      it: 'Scopri come sviluppo, difese immunitarie e recupero contribuiscono al benessere del corpo.',
       zh: '探索发育、免疫防御和身体恢复如何帮助维持生命活动。',
       hi: 'जानें कि विकास, प्रतिरक्षा और स्वास्थ्य-लाभ शरीर को कैसे सहारा देते हैं।',
       es: 'Explora cómo el desarrollo, las defensas inmunitarias y la recuperación ayudan a mantener el organismo.',

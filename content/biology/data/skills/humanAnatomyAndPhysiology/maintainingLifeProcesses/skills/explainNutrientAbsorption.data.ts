@@ -5,6 +5,7 @@ export const explainNutrientAbsorption_Skill_Data = defineSkill({
   id: '7e7c3a74-7ad7-4b55-9acc-23c3ff67b6da',
   name: {
     en: 'Explain Nutrient Absorption',
+    it: "Spiegare l'assorbimento dei nutrienti",
     zh: '解释营养物质吸收',
     hi: 'पोषक तत्वों का अवशोषण समझाना',
     es: 'Explicar la absorción de nutrientes',
@@ -39,6 +40,7 @@ export const explainNutrientAbsorption_Skill_Data = defineSkill({
       'Explain how digestive products pass through the intestinal epithelium into blood and lymph; distinguish chemical digestion from transport of already broken-down nutrients.',
     frontend: {
       en: 'Learn how digested nutrients move from the intestine into the body.',
+      it: "Scopri come i nutrienti digeriti passano dall'intestino all'organismo.",
       zh: '了解已消化的营养物质如何从肠道进入人体内部。',
       hi: 'जानें कि पचे हुए पोषक तत्व आँत से शरीर के भीतर कैसे पहुँचते हैं।',
       es: 'Aprende cómo los nutrientes digeridos pasan del intestino al interior del cuerpo.',

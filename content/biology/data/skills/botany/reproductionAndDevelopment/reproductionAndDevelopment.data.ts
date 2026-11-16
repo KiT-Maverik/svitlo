@@ -13,6 +13,7 @@ export const reproductionAndDevelopment_SkillGroup_Data = defineSkillGroup({
   id: 'b7d6cd43-66fc-4986-bc5d-7354db0eb6a9',
   name: {
     en: 'Reproduction and Development',
+    it: 'Riproduzione e sviluppo',
     zh: '繁殖与发育',
     hi: 'प्रजनन और विकास',
     es: 'Reproducción y desarrollo',
@@ -63,6 +64,7 @@ export const reproductionAndDevelopment_SkillGroup_Data = defineSkillGroup({
       'A seed plant progresses from a seed through a seedling to producing the next generation; pollination and seed dispersal occur at different stages.',
     frontend: {
       en: 'Follow how plants reproduce and develop through their life cycles.',
+      it: 'Segui come le piante si riproducono e si sviluppano durante il loro ciclo vitale.',
       zh: '了解植物如何繁殖并经历其生命周期。',
       hi: 'जानें कि पौधे अपने जीवन चक्र में कैसे प्रजनन और विकास करते हैं।',
       es: 'Sigue cómo se reproducen y desarrollan las plantas durante sus ciclos de vida.',

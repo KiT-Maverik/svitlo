@@ -5,6 +5,7 @@ export const recognizeMammalCharacteristics_Skill_Data = defineSkill({
   id: '0392f183-e04a-430c-8d94-ec09f60e1838',
   name: {
     en: 'Recognize Mammal Characteristics',
+    it: 'Riconoscere le caratteristiche dei mammiferi',
     zh: '识别哺乳动物的特征',
     hi: 'स्तनधारियों की विशेषताएँ पहचानना',
     es: 'Reconocer las características de los mamíferos',
@@ -39,6 +40,7 @@ export const recognizeMammalCharacteristics_Skill_Data = defineSkill({
       'Identify members by mammary glands and characteristic body coverings without assuming that every mammal gives birth to live young.',
     frontend: {
       en: 'Identify mammals by their defining features without assuming all give live birth.',
+      it: 'Identifica i mammiferi attraverso i loro caratteri distintivi senza supporre che tutti partoriscano piccoli vivi.',
       zh: '识别哺乳动物的关键特征，不要认为所有哺乳动物都产下活的幼崽。',
       hi: 'स्तनधारियों को उनकी प्रमुख विशेषताओं से पहचानें; यह न मानें कि सभी जीवित बच्चे ही जन्म देते हैं।',
       es: 'Identifica mamíferos por sus rasgos definitorios sin suponer que todos paren crías vivas.',

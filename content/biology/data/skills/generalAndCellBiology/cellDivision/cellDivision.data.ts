@@ -7,6 +7,7 @@ export const cellDivision_SkillGroup_Data = defineSkillGroup({
   id: '6ec69d3f-f17e-4696-9cc9-e3c68f5df94c',
   name: {
     en: 'Cell Division',
+    it: 'Divisione cellulare',
     zh: '细胞分裂',
     hi: 'कोशिका विभाजन',
     es: 'División celular',
@@ -48,6 +49,7 @@ export const cellDivision_SkillGroup_Data = defineSkillGroup({
       'The cell cycle involves division of genetic material and cytoplasm; mitosis supports growth and tissue renewal, while meiosis is associated with sexual reproduction and inherited variation.',
     frontend: {
       en: 'Discover how cells divide to support growth, renewal and reproduction.',
+      it: 'Scopri come le cellule si dividono per consentire crescita, rinnovamento e riproduzione.',
       zh: '了解细胞如何通过分裂支持生长、更新和繁殖。',
       hi: 'जानें कि कोशिका विभाजन वृद्धि, नवीनीकरण और प्रजनन में कैसे मदद करता है।',
       es: 'Descubre cómo se dividen las células para permitir el crecimiento, la renovación y la reproducción.',
