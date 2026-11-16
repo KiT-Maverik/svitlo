@@ -1,0 +1,110 @@
+{
+  "schemaVersion": 3,
+  "kind": "pr-scoped-agent-ci-artifacts",
+  "sourceCommit": "0750b3877ac4547946fe2d2008ad7e6c59b57a07",
+  "scope": {
+    "kind": "ui-kit",
+    "package": null,
+    "locale": "it",
+    "component": null,
+    "lesson": null
+  },
+  "packages": [],
+  "locales": [
+    "it"
+  ],
+  "generated": [
+    {
+      "kind": "ui-kit-locale",
+      "component": "audio",
+      "locale": "it",
+      "path": ".agent-ci-artifacts/ui-kit/audio/it.md",
+      "missing": 0,
+      "reviewReady": true
+    },
+    {
+      "kind": "ui-kit-locale",
+      "component": "checkpoint",
+      "locale": "it",
+      "path": ".agent-ci-artifacts/ui-kit/checkpoint/it.md",
+      "missing": 0,
+      "reviewReady": true
+    },
+    {
+      "kind": "ui-kit-locale",
+      "component": "flashcard",
+      "locale": "it",
+      "path": ".agent-ci-artifacts/ui-kit/flashcard/it.md",
+      "missing": 0,
+      "reviewReady": true
+    },
+    {
+      "kind": "ui-kit-locale",
+      "component": "image",
+      "locale": "it",
+      "path": ".agent-ci-artifacts/ui-kit/image/it.md",
+      "missing": 0,
+      "reviewReady": true
+    },
+    {
+      "kind": "ui-kit-locale",
+      "component": "learningLayout",
+      "locale": "it",
+      "path": ".agent-ci-artifacts/ui-kit/learningLayout/it.md",
+      "missing": 0,
+      "reviewReady": true
+    },
+    {
+      "kind": "ui-kit-locale",
+      "component": "lesson",
+      "locale": "it",
+      "path": ".agent-ci-artifacts/ui-kit/lesson/it.md",
+      "missing": 0,
+      "reviewReady": true
+    },
+    {
+      "kind": "ui-kit-locale",
+      "component": "navbarPreferences",
+      "locale": "it",
+      "path": ".agent-ci-artifacts/ui-kit/navbarPreferences/it.md",
+      "missing": 0,
+      "reviewReady": true
+    },
+    {
+      "kind": "ui-kit-locale",
+      "component": "questionFrame",
+      "locale": "it",
+      "path": ".agent-ci-artifacts/ui-kit/questionFrame/it.md",
+      "missing": 0,
+      "reviewReady": true
+    },
+    {
+      "kind": "ui-kit-locale",
+      "component": "video",
+      "locale": "it",
+      "path": ".agent-ci-artifacts/ui-kit/video/it.md",
+      "missing": 0,
+      "reviewReady": true
+    },
+    {
+      "kind": "ui-kit-locale",
+      "component": "youtube",
+      "locale": "it",
+      "path": ".agent-ci-artifacts/ui-kit/youtube/it.md",
+      "missing": 0,
+      "reviewReady": true
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "documents": 10,
+    "failures": 0,
+    "missingTranslations": 0,
+    "incompleteDocuments": 0,
+    "taxonomyDocuments": 0,
+    "lessonDocuments": 0,
+    "assessmentMethodDocuments": 0,
+    "uiKitDocuments": 10,
+    "geographyHomeCopyDocuments": 0
+  }
+}
