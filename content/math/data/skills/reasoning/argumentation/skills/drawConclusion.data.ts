@@ -5,6 +5,7 @@ export const drawConclusion_Skill_Data = defineSkill({
   id: 'cda308de-9fd0-4536-8635-2f5ba1a7010d',
   name: {
     en: 'Drawing a conclusion from given conditions and reasoning',
+    it: 'Trarre una conclusione da condizioni e ragionamenti dati',
     qm: 'Berilgen şartlardan mantıqiy netice çıqarmaq',
     lt: 'Išvados darymas remiantis sąlygomis ir samprotavimu',
     lv: 'Secinājuma izdarīšana no dotajiem nosacījumiem un spriedumiem',
@@ -39,6 +40,7 @@ export const drawConclusion_Skill_Data = defineSkill({
       'A logical conclusion must follow from established premises and prior statements through valid inference rules. Necessary consequences must be distinguished from plausible guesses and conclusions based on insufficient conditions.',
     frontend: {
       en: 'You can use the given facts to reach a conclusion that must follow from them, rather than simply making a plausible guess.',
+      it: 'Puoi usare i fatti forniti per arrivare a una conclusione che ne consegue necessariamente, invece di fare soltanto un\'ipotesi plausibile.',
       qm: 'Berilgen faktlarnı qullanıp, olardan mutlaqa kelip çıqqan neticege kele bilesiñ. Yalıñız aqlığa uyğun körüngen tahminnen çetlen.',
       zh: '你能根据已知事实进行推理，得出必然成立的结论，而不只是作出看似合理的猜测。',
       hi: 'आप दिए गए तथ्यों से तर्क करके ऐसा निष्कर्ष निकाल सकते हैं जो उनसे अनिवार्य रूप से निकलता हो, न कि केवल अनुमान लगा सकते हैं।',

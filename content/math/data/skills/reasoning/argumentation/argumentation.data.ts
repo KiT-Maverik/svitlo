@@ -13,6 +13,7 @@ export const argumentation_SkillGroup_Data = defineSkillGroup({
   id: '811e7c20-0dd4-40d2-8ff3-a7bce455d29f',
   name: {
     en: 'Mathematical argumentation',
+    it: 'Argomentazione matematica',
     qm: 'Matematik isbatlav',
     lt: 'Matematinis argumentavimas',
     lv: 'Matemātiskā argumentācija',

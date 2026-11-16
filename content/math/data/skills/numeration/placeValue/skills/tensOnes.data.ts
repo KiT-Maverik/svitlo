@@ -11,6 +11,7 @@ export const tensOnes_Skill_Data = defineSkill({
     ka: 'ათეულები და ერთეულები ორნიშნა რიცხვებში',
     kk: 'Екі таңбалы сандардағы ондықтар мен бірліктер',
     en: 'Tens and ones in two-digit numbers',
+    it: 'Decine e unità nei numeri di due cifre',
     qm: 'Eki raqamlı sayılardaki onluqlar ve birlikler',
     zh: '两位数的十位和个位',
     hi: 'दो अंकों की संख्या में दहाई और इकाई',
@@ -39,6 +40,7 @@ export const tensOnes_Skill_Data = defineSkill({
       'Express a two-digit number as a multiple of ten plus its remaining ones without changing the value. The numeral, place-value blocks, and addition expression are equivalent representations of one number.',
     frontend: {
       en: 'Build a two-digit number from tens and ones, or split it into them. For example, 47 = 40 + 7.',
+      it: 'Costruisci un numero di due cifre con decine e unità oppure scomponilo in queste parti. Per esempio, 47 = 40 + 7.',
       qm: 'Eki raqamlı sayını onluq ve birliklerden tüz ya da olarnı ayır. Meselâ, 47 = 40 + 7.',
       zh: '用十和一组成两位数，也能拆回去，例如47 = 40 + 7。',
       hi: 'दहाई और इकाई से दो अंकों की संख्या बनाएँ या तोड़ें, जैसे 47 = 40 + 7।',

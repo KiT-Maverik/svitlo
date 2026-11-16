@@ -31,6 +31,7 @@ export const divide_SkillGroup_Data = defineSkillGroup({
   id: 'ddb45d35-6e28-4e55-b934-949c3f0a21b2',
   name: {
     en: 'Division',
+    it: 'Divisione',
     qm: 'Bölüv',
     lt: 'Dalyba',
     lv: 'Dalīšana',
@@ -117,6 +118,7 @@ export const divide_SkillGroup_Data = defineSkillGroup({
       'Quotients as equal sharing or finding the number of equal groups, basic division facts, remainders, limitations, and verification of division.',
     frontend: {
       en: 'Learn to share quantities equally or count how many equal-sized groups fit into a total, and use multiplication to check quotients and remainders.',
+      it: 'Impara a distribuire quantità in parti uguali o a contare quanti gruppi della stessa dimensione si possono formare con un totale, e usa la moltiplicazione per verificare quozienti e resti.',
       qm: 'Miqdarlarnı teñ paylarğa bölmekni ya da umumiy miqdarda belli ölçüde qaç topar bar olğanını saymaqnı ögren. Bölüm neticesi ve qaldıqlarnı arttıruv yardımınen teşkere et.',
       zh: '学习如何平均分配数量，或求出总量中能分成多少个相等大小的组，并用乘法检查商和余数。',
       hi: 'सीखो कि मात्राओं को बराबर कैसे बाँटते हैं या कुल में समान आकार के कितने समूह आते हैं, और गुणा से भागफल व शेष कैसे जाँचते हैं।',

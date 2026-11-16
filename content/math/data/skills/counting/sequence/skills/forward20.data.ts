@@ -5,6 +5,7 @@ export const forward20_Skill_Data = defineSkill({
   id: '0fef6118-fa2e-4ffa-a31f-42f26ef94177',
   name: {
     en: 'Counting forward within 20',
+    it: 'Contare in avanti entro il 20',
     qm: '20 içinde ileri saymaq',
     lt: 'Skaičiavimas pirmyn iki 20',
     lv: 'Skaitīšana uz priekšu 20 robežās',
@@ -39,6 +40,7 @@ export const forward20_Skill_Data = defineSkill({
       'Find successive natural numbers by adding one from any starting value within the range. Understand crossing a ten boundary instead of relying on reciting the sequence from one.',
     frontend: {
       en: 'Start from any number within 20 and find the next number by adding one, even when crossing ten.',
+      it: 'Parti da un numero qualsiasi entro il 20 e trova quello successivo aggiungendo uno, anche oltre la decina.',
       qm: '20 içindeki er angi bir sayıdan başlayıp, onluq sıñırından keçkende de, bir qoşaraq soñraki sayını tap.',
       zh: '从20以内任意一个数开始，每次加一找到下一个数，包括跨过十的时候。',
       hi: '20 के भीतर किसी भी संख्या से शुरू करके एक जोड़ते हुए अगली संख्या खोजें, दस पार करते समय भी।',

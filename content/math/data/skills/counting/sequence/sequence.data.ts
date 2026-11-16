@@ -13,6 +13,7 @@ export const sequence_SkillGroup_Data = defineSkillGroup({
   id: 'e7fe00f1-52d4-43c2-8047-28de913d4de3',
   name: {
     en: 'Number sequences',
+    it: 'Sequenze numeriche',
     qm: 'Sayı silsileleri',
     lt: 'Skaičių sekos',
     lv: 'Skaitļu virknes',
@@ -57,6 +58,7 @@ export const sequence_SkillGroup_Data = defineSkillGroup({
       'Naming consecutive natural numbers, moving forward and backward, and restoring missing elements of the sequence without necessarily starting from one.',
     frontend: {
       en: 'Move through consecutive numbers from different starting points, forward or backward. Find which number comes next or is missing, even across tens or hundreds.',
+      it: 'Percorri la sequenza dei numeri consecutivi partendo da punti diversi, in avanti o all\'indietro. Trova il numero successivo o quello mancante, anche oltre le decine o le centinaia.',
       qm: 'Başqa-başqa sayılardan başlayıp, ketme-ket kelgen sayılar boyunca ileri ya da artqa say. Onluq ya da yüzlüq sıñırından keçkende de, soñraki ya da eksik sayını tap.',
       zh: '从不同的起点按顺序向前或向后数数。即使跨过整十或整百，也能找出下一个数或缺少的数。',
       hi: 'किसी भी शुरुआती संख्या से क्रम में आगे या पीछे बढ़ें। दहाई या सैकड़े की सीमा पार करते हुए अगली या छूटी संख्या पहचानें।',

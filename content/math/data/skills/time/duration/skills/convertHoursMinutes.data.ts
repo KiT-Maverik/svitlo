@@ -5,6 +5,7 @@ export const convertHoursMinutes_Skill_Data = defineSkill({
   id: '131741ec-c4d9-4f98-9c52-208326de7cd0',
   name: {
     en: 'Converting hours and minutes',
+    it: 'Convertire ore e minuti',
     qm: 'Saat ve daqiqalarnı çevirmek',
     lt: 'Valandų ir minučių keitimas',
     lv: 'Stundu un minūšu pārveidošana',
@@ -39,6 +40,7 @@ export const convertHoursMinutes_Skill_Data = defineSkill({
       'Hours and minutes are duration units related exactly by 1 hour = 60 minutes. Conversion must preserve the same elapsed duration irrespective of its numerical representation.',
     frontend: {
       en: 'You can change hours into minutes and minutes into hours, knowing that one hour is exactly 60 minutes and the duration stays the same.',
+      it: 'Puoi convertire ore in minuti e minuti in ore, sapendo che un\'ora contiene esattamente 60 minuti e che la durata resta invariata.',
       qm: 'Bir saatnıñ tam 60 daqiqa olğanını bilerek saatlarnı daqiqalarğa, daqiqalarnı ise saatlarğa çevire bilesiñ. Vaqıtnıñ devamlılığı deñişmey.',
       zh: '你能把小时换算成分钟，也能把分钟换算成小时，知道1小时恰好等于60分钟，时间长度不变。',
       hi: 'आप घंटे को मिनट और मिनट को घंटे में बदल सकते हैं, जानते हुए कि एक घंटे में ठीक 60 मिनट होते हैं और अवधि वही रहती है।',

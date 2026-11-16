@@ -5,6 +5,7 @@ export const unitPriceTotal_Skill_Data = defineSkill({
   id: '8d0f36a9-7994-427f-8a3a-fae3082c8837',
   name: {
     en: 'Calculating total cost from unit price and quantity',
+    it: 'Calcolare il costo totale da prezzo unitario e quantità',
     qm: 'Bir daneniñ fiyatı ve sayısına köre umumiy bahasını esaplav',
     lt: 'Bendros kainos skaičiavimas pagal vieneto kainą ir kiekį',
     lv: 'Kopējās cenas aprēķināšana pēc vienības cenas un daudzuma',
@@ -39,6 +40,7 @@ export const unitPriceTotal_Skill_Data = defineSkill({
       'When the unit price is fixed, total cost equals unit price multiplied by quantity; knowing any two of these values can determine the third. Monetary totals must be distinguished from prices per unit and the quantity units kept consistent.',
     frontend: {
       en: "You can work out the total cost from an item's price and how many you buy, or find the missing price or quantity when the other values are known.",
+      it: 'Puoi calcolare il costo totale conoscendo il prezzo di un articolo e quanti ne acquisti oppure trovare il prezzo o la quantità mancante quando conosci gli altri valori.',
       qm: 'Eşyanıñ bir danesiniñ fiyatını ve satın alınğan dane sayısını bilerek umumiy bahasını tapa bilesiñ. Diger qıymetler belli olğanda, belli olmağan fiyatnı ya da sayını da tapa bilesiñ.',
       zh: '你能根据商品单价和购买数量算出总价，也能在已知另外两个量时求出缺少的单价或数量。',
       hi: 'आप प्रति वस्तु कीमत और संख्या से कुल लागत निकाल सकते हैं, या अन्य दो मानों से अज्ञात कीमत या संख्या ढूँढ़ सकते हैं।',

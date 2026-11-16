@@ -5,6 +5,7 @@ export const forward100_Skill_Data = defineSkill({
   id: '64ecb242-b1d9-4967-a020-5f6fc711aa93',
   name: {
     en: 'Counting forward and backward within 100',
+    it: 'Contare avanti e indietro entro il 100',
     qm: '100 içinde ileri ve artqa saymaq',
     lt: 'Skaičiavimas pirmyn ir atgal iki 100',
     lv: 'Skaitīšana uz priekšu un atpakaļ 100 robežās',
@@ -39,6 +40,7 @@ export const forward100_Skill_Data = defineSkill({
       'Move forward or backward by one from any point within the hundred range. Crossing a ten boundary preserves the succession of neighboring numbers without restarting from one.',
     frontend: {
       en: 'Start anywhere within 100 and move to the next or previous number by one, even across a multiple of ten.',
+      it: 'Parti da un numero qualsiasi entro il 100 e passa al numero successivo o precedente di un\'unità, anche attraversando una decina.',
       qm: '100 içindeki er angi bir sayıdan başlayıp, onluq sıñırından keçkende de, birer-birer ilerideki ya da artqadaki sayını tap.',
       zh: '从100以内任意一个数开始，每次加一或减一，跨过整十也能继续。',
       hi: '100 के भीतर कहीं से भी एक जोड़कर या घटाकर अगली या पिछली संख्या खोजें, दहाई पार करते समय भी।',

@@ -5,6 +5,7 @@ export const readTemperature_Skill_Data = defineSkill({
   id: '3987a9c5-a8df-44e1-86e4-373aeebd9d02',
   name: {
     en: 'Reading nonnegative temperatures on a thermometer',
+    it: 'Leggere temperature non negative su un termometro',
     qm: 'Termometrde sıfırdan aşağı olmağan sıcaqlıqlarnı oqumaq',
     lt: 'Teigiamos ir nulinės temperatūros skaitymas termometre',
     lv: 'Nenegatīvu temperatūru nolasīšana termometrā',
@@ -39,6 +40,7 @@ export const readTemperature_Skill_Data = defineSkill({
       'A temperature scale relates numerical marks to temperature values in specified units, such as degrees Celsius. Reading intermediate divisions relies on the scale and must include the measurement unit.',
     frontend: {
       en: 'You can read a temperature of zero degrees or higher from a thermometer, using its scale marks and writing the correct unit, such as °C.',
+      it: 'Puoi leggere su un termometro una temperatura di zero gradi o superiore, usando le tacche della scala e indicando l\'unità corretta, per esempio °C.',
       qm: 'Termometrniñ belgilerini qullanıp sıfır derece ya da ondan yüksek sıcaqlıqnı oquy, °C kibi doğru birliknen yaza bilesiñ.',
       zh: '你能根据温度计的刻度读出零度及以上的温度，并写出正确的单位，例如°C。',
       hi: 'आप थर्मामीटर के पैमाने के निशान पढ़कर शून्य या उससे ऊपर का तापमान बता सकते हैं और °C जैसी सही इकाई लिख सकते हैं।',

@@ -11,6 +11,7 @@ export const twoDigitByOne_Skill_Data = defineSkill({
     ka: 'გამრავლება — ორნიშნა რიცხვი ერთნიშნაზე',
     kk: 'Көбейту — екі таңбалы санды бір таңбалы санға',
     en: 'Multiplication — 2-digit×1-digit',
+    it: 'Moltiplicazione — Due cifre per una cifra',
     qm: 'Arttıruv — eki raqamlı sayını bir raqamlı sayığa arttıruv',
     zh: '乘法 — 两位数乘一位数',
     hi: 'गुणा — 2-अंकीय×1-अंकीय',
@@ -39,6 +40,7 @@ export const twoDigitByOne_Skill_Data = defineSkill({
       'Decompose the two-digit factor into tens and ones, distribute multiplication over the resulting sum, and combine partial products. Each component must retain its original place-value weight.',
     frontend: {
       en: 'You can multiply a two-digit number by a one-digit number by splitting it into tens and ones and combining the partial products.',
+      it: 'Puoi moltiplicare un numero di due cifre per uno di una cifra scomponendolo in decine e unità e sommando i prodotti parziali.',
       qm: 'Eki raqamlı sayını onluq ve birliklerge bölüp, parçaviy neticelerni birleştirerek bir raqamlı sayığa arttıra bilesiñ.',
       zh: '你能把两位数拆成十和一，分别乘以一位数，再将部分乘积相加。',
       hi: 'तुम दो अंकों की संख्या को दहाइयों और इकाइयों में बाँटकर हर हिस्से का एक अंक से गुणा कर सकते हो और आंशिक गुणनफल जोड़ सकते हो।',

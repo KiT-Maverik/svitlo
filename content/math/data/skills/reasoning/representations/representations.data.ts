@@ -7,6 +7,7 @@ export const representations_SkillGroup_Data = defineSkillGroup({
   id: 'efaa3687-e789-421a-996b-78ac52d63f42',
   name: {
     en: 'Mathematical representations',
+    it: 'Rappresentazioni matematiche',
     qm: 'Matematik tasvirler',
     lt: 'Matematiniai vaizdavimo būdai',
     lv: 'Matemātiskie attēlojumi',

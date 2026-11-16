@@ -11,6 +11,7 @@ export const oneStepModel_Skill_Data = defineSkill({
     ka: 'ერთმოქმედებიანი ამოცანის მოდელირება',
     kk: 'Бір амалдық есепті модельдеу',
     en: 'Modeling a one-step problem',
+    it: 'Rappresentare un problema a un passaggio',
     qm: 'Bir amelli meseleni modellermek',
     zh: '建立一步应用题模型',
     hi: 'एक चरण की समस्या का मॉडल बनाना',
@@ -39,6 +40,7 @@ export const oneStepModel_Skill_Data = defineSkill({
       "A mathematical model must preserve the original problem's quantities, unknown, and relationships, regardless of whether it is a drawing, diagram, or expression. Using the correct numbers to represent a different relationship does not yield a valid model.",
     frontend: {
       en: 'You can show a one-step word problem using a drawing, diagram, or expression that accurately represents what is known and what must be found.',
+      it: 'Puoi rappresentare un problema a un passaggio con un disegno, uno schema o un\'espressione che mostri correttamente ciò che è noto e ciò che bisogna trovare.',
       qm: 'Bir amelli sözlü meseleni, belli olğan ve tapılması kerek olğan miqdarlarnı doğru köstergen resim, şema ya da ifade yardımınen tasvir et.',
       zh: '你能用图画、示意图或算式表示一步应用题，准确体现已知条件和需要求出的量。',
       hi: 'आप एक चरण वाली शब्द-समस्या को चित्र, आरेख या व्यंजक से दिखा सकते हैं, जिसमें ज्ञात बातें और खोजी जाने वाली मात्रा सही हों।',

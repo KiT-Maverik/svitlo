@@ -11,6 +11,7 @@ export const chooseOperationMulDiv_Skill_Data = defineSkill({
     ka: 'გამრავლების ან გაყოფის არჩევა',
     kk: 'Көбейту немесе бөлу амалын таңдау',
     en: 'Choosing multiplication or division',
+    it: 'Scegliere tra moltiplicazione e divisione',
     qm: 'Arttıruv ya da bölüvni saylav',
     zh: '选择乘法或除法',
     hi: 'गुणा या भाग चुनना',
@@ -39,6 +40,7 @@ export const chooseOperationMulDiv_Skill_Data = defineSkill({
       'Multiplication relates the number of equal groups, the size of each group, and their total; division finds an unknown component from the other two. The structure of equal groups determines the operation rather than a particular word in the problem.',
     frontend: {
       en: 'You can decide whether to multiply or divide by looking at the number of equal groups, the size of each group, and the total.',
+      it: 'Puoi decidere se moltiplicare o dividere considerando il numero di gruppi uguali, la dimensione di ciascuno e il totale.',
       qm: 'Teñ toparlar sayısına, er topardaki eşya miqdarına ve umumiy miqdarğa baqıp, arttırmaq ya da bölmek kerekligini belgile.',
       zh: '你能根据相等组的组数、每组数量和总数之间的关系判断该用乘法还是除法。',
       hi: 'आप बराबर समूहों की संख्या, हर समूह के आकार और कुल संख्या के संबंध को देखकर गुणा या भाग चुन सकते हैं।',

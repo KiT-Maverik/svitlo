@@ -11,6 +11,7 @@ export const by10_Skill_Data = defineSkill({
     ka: 'გამრავლება — × 10',
     kk: 'Көбейту — × 10',
     en: 'Multiplication — × 10',
+    it: 'Moltiplicazione — × 10',
     qm: 'Arttıruv — × 10',
     zh: '乘法 — × 10',
     hi: 'गुणा — × 10',
@@ -39,6 +40,7 @@ export const by10_Skill_Data = defineSkill({
       'Multiplying by ten scales a number by a factor of ten. In decimal positional notation each place-value unit shifts to the next higher place; for natural numbers the product has zero in the ones place.',
     frontend: {
       en: 'You can multiply by ten using place value: each place becomes worth ten times as much.',
+      it: 'Puoi moltiplicare per dieci usando il valore posizionale: ogni cifra assume un valore dieci volte maggiore.',
       qm: 'Razryad qıymetini qullanıp onğa arttıra bilesiñ: er razryadnıñ qıymeti on kere arta.',
       zh: '你能利用数位知识乘以十：每个数位上的值都扩大为原来的十倍。',
       hi: 'तुम स्थान-मूल्य की मदद से दस से गुणा कर सकते हो: हर स्थान का मान दस गुना हो जाता है।',

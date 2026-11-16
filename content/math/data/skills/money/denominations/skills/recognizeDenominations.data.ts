@@ -5,6 +5,7 @@ export const recognizeDenominations_Skill_Data = defineSkill({
   id: '2086fcee-1737-4cbb-aa46-34cfc4f3fe44',
   name: {
     en: 'Recognizing coin and banknote denominations',
+    it: 'Riconoscere i tagli di monete e banconote',
     qm: 'Tanga ve banknotlarnıñ nominalını tanımaq',
     lt: 'Monetų ir banknotų nominalų atpažinimas',
     lv: 'Monētu un banknošu nominālu atpazīšana',
@@ -39,6 +40,7 @@ export const recognizeDenominations_Skill_Data = defineSkill({
       'A denomination is the established monetary value of a coin or banknote in a specified currency; physical size, material, color, and printed symbols do not independently determine it. Valid denominations depend on the monetary system.',
     frontend: {
       en: 'You can recognize how much different coins and banknotes are worth in a given currency, regardless of their size or color.',
+      it: 'Puoi riconoscere il valore di monete e banconote diverse in una valuta, indipendentemente dalla dimensione o dal colore.',
       qm: 'Berilgen para birligindeki türlü tanga ve banknotlarnıñ, ölçüsine ya da tüsüne baqmayıp, ne qadar qıymeti olğanını tanıy bilesiñ.',
       zh: '你能认出指定货币中不同硬币和纸币的面值，而不受它们大小或颜色的影响。',
       hi: 'आप किसी मुद्रा में अलग-अलग सिक्कों और नोटों का मूल्य पहचान सकते हैं, चाहे उनका आकार या रंग कुछ भी हो।',

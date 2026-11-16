@@ -11,6 +11,7 @@ export const checkQuotient_Skill_Data = defineSkill({
     ka: 'გაყოფა — შედეგის შემოწმება',
     kk: 'Бөлу — нәтижені тексеру',
     en: 'Division — Result checking',
+    it: 'Divisione — Verificare il risultato',
     qm: 'Bölüv — neticeni teşkere etüv',
     zh: '除法 — 结果检验',
     hi: 'भाग — उत्तर की जाँच',
@@ -39,6 +40,7 @@ export const checkQuotient_Skill_Data = defineSkill({
       'Verify quotient and remainder using a = bq + r together with 0 <= r < b for positive b. The equation alone does not establish the correctness of canonical integer division.',
     frontend: {
       en: 'You can check division by multiplying the divisor by the quotient and adding any remainder. The remainder must be smaller than a positive divisor.',
+      it: 'Puoi verificare una divisione moltiplicando il divisore per il quoziente e aggiungendo l\'eventuale resto. Il resto deve essere minore del divisore positivo.',
       qm: 'Bölücini bölüm neticesine arttırıp ve bar ise qaldıqnı qoşaraq bölüvni teşkere ete bilesiñ. Qaldıq musbet bölüciden kiçik olmalı.',
       zh: '你能用除数乘商，再加余数来验算除法；余数必须小于正除数。',
       hi: 'तुम भाजक को भागफल से गुणा करके और शेष जोड़कर भाग की जाँच कर सकते हो। शेष धनात्मक भाजक से कम होना चाहिए।',

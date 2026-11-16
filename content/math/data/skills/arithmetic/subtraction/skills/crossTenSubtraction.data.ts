@@ -11,6 +11,7 @@ export const crossTenSubtraction_Skill_Data = defineSkill({
     ka: 'გამოკლება — ათეულის გადაცილებით',
     kk: 'Азайту — ондықтан аттап өту',
     en: 'Subtraction — Crossing ten',
+    it: 'Sottrazione — Superare la decina',
     qm: 'Çıqaruv — onluqtan keçüv',
     zh: '减法 — 跨十计算',
     hi: 'घटाव — दस पार करना',
@@ -39,6 +40,7 @@ export const crossTenSubtraction_Skill_Data = defineSkill({
       'When the minuend has insufficient ones, exchange one ten for ten ones without changing its value. Crossing ten also admits other equivalent strategies that preserve the difference.',
     frontend: {
       en: 'You can subtract across ten by exchanging one ten for ten ones without changing the starting number.',
+      it: 'Puoi sottrarre attraversando la decina scambiando una decina con dieci unità senza cambiare il numero iniziale.',
       qm: 'Başlanğıç sayını deñiştirmeden bir onluqnı on birlikke çevirip, onluq sıñırından keçerek çıqara bilesiñ.',
       zh: '你能在跨十减法中把一个十换成十个一，而不改变原数。',
       hi: 'तुम एक दहाई को दस इकाइयों में बदलकर दस की सीमा पार करते हुए घटा सकते हो, बिना शुरुआती संख्या बदले।',

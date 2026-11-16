@@ -11,6 +11,7 @@ export const factsWithin20_Skill_Data = defineSkill({
     ka: 'შეკრება და გამოკლება — გამოთვლები 20-ის ფარგლებში',
     kk: 'Қосу және азайту — 20 көлеміндегі негізгі амалдар',
     en: 'Addition and subtraction — Number facts ≤ 20',
+    it: 'Addizione e sottrazione — Calcoli entro il 20',
     qm: 'Qoşuv ve çıqaruv — 20 içinde esaplav',
     zh: '加减法 — 基本算式 ≤ 20',
     hi: 'जोड़ और घटाव — गणना तथ्य ≤ 20',
@@ -39,6 +40,7 @@ export const factsWithin20_Skill_Data = defineSkill({
       'Fluency within twenty combines knowledge of fundamental number facts with deriving sums and differences using decomposition, complements, decimal structure, and inverse operations. Speed alone does not establish correctness.',
     frontend: {
       en: 'You can find sums and differences within twenty using known number facts, decomposing numbers, and the link between addition and subtraction.',
+      it: 'Puoi trovare somme e differenze entro il 20 usando risultati già noti, scomponendo i numeri e sfruttando il legame tra addizione e sottrazione.',
       qm: 'Bilgen esaplav neticeleri, sayılarnı parçalav ve qoşuvnen çıqaruv arasındaki bağlılıqnı qullanıp, 20 içinde toplam ve farqlarnı tapa bilesiñ.',
       zh: '你能利用已知算式、拆分数字以及加减法的互逆关系，求出二十以内的和与差。',
       hi: 'तुम ज्ञात संख्या तथ्यों, संख्याओं को तोड़ने और जोड़-घटाव के संबंध से बीस के भीतर योग और अंतर निकाल सकते हो।',

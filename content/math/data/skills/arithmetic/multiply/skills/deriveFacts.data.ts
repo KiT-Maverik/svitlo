@@ -11,6 +11,7 @@ export const deriveFacts_Skill_Data = defineSkill({
     ka: 'გამრავლება — ნამრავლების გამოყვანა',
     kk: 'Көбейту — көбейту нәтижелерін шығару',
     en: 'Multiplication — Deriving multiplication Number facts',
+    it: 'Moltiplicazione — Ricavare risultati dalle tabelline',
     qm: 'Arttıruv — bilgen neticelerden yañı neticeler tapuv',
     zh: '乘法 — 推导乘法算式',
     hi: 'गुणा — गुणन तथ्य निकालना',
@@ -39,6 +40,7 @@ export const deriveFacts_Skill_Data = defineSkill({
       'An unknown table product may be derived from familiar products using commutativity, associativity, distributivity, doubling, or changing a factor. This demonstrates structural understanding rather than mere fact recall.',
     frontend: {
       en: 'You can work out unfamiliar multiplication facts from familiar ones by regrouping, splitting numbers, or doubling.',
+      it: 'Puoi ricavare prodotti che non conosci partendo da quelli familiari, raggruppando, scomponendo i numeri o raddoppiando.',
       qm: 'Sayıları başga şekilde toparlap, parçalarğa bölüp ya da ekileştirip, bilgen arttıruv neticelerinden bilmegenlerini tapa bilesiñ.',
       zh: '你能通过重新分组、拆分数字或翻倍，利用熟悉的乘法事实推算不熟悉的结果。',
       hi: 'तुम ज्ञात गुणा के तथ्यों से समूह बदलकर, संख्याएँ तोड़कर या दोगुना करके नए गुणनफल निकाल सकते हो।',

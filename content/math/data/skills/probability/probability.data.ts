@@ -8,6 +8,7 @@ export const probability_SkillDomain_Data = defineSkillDomain({
   id: '55bc6d54-f5fc-49fc-8e7f-8d31230e1aca',
   title: {
     en: 'Probability',
+    it: 'Probabilità',
     qm: 'İhtimallıq',
     lt: 'Tikimybė',
     lv: 'Varbūtība',

@@ -12,6 +12,7 @@ export const mass_SkillGroup_Data = defineSkillGroup({
   id: 'd4886ce5-e4e4-4df9-8482-244fed0d7e3c',
   name: {
     en: 'Mass',
+    it: 'Massa',
     qm: 'Kütle',
     lt: 'Masė',
     lv: 'Masa',

@@ -11,6 +11,7 @@ export const makeTen_Skill_Data = defineSkill({
     ka: 'ათი ერთეულის დაჯგუფება და დაშლა',
     kk: 'Он бірлікті топтастыру және қайта жіктеу',
     en: 'Grouping and ungrouping ten ones',
+    it: 'Raggruppare e separare dieci unità',
     qm: 'On birlikni birleştirmek ve qayta ayırmaq',
     zh: '十个一组成一个十及逆向拆分',
     hi: 'दस इकाइयों का एक दहाई में समूह और विघटन',
@@ -39,6 +40,7 @@ export const makeTen_Skill_Data = defineSkill({
       "Ten units of a given place are equivalent to one unit of the next higher place. Regrouping and ungrouping preserve the number's value and underpin decimal notation and carrying.",
     frontend: {
       en: 'Group ten ones into a ten, or split a ten back into ten ones. The amount stays the same.',
+      it: 'Raggruppa dieci unità in una decina oppure scomponi una decina in dieci unità. La quantità rimane invariata.',
       qm: 'On birlikni bir onluqqa birleştir ya da bir onluqnı qaytadan on birlikke ayır. Miqdar deñişmey.',
       zh: '十个一可以合成一个十，一个十也可以拆成十个一；总量不变。',
       hi: 'दस इकाइयों को एक दहाई बनाएँ या एक दहाई को फिर दस इकाइयों में बाँटें। मात्रा वही रहती है।',

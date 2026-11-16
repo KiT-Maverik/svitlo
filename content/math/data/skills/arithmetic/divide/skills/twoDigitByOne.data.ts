@@ -11,6 +11,7 @@ export const twoDigitByOne_Skill_Data = defineSkill({
     ka: 'გაყოფა — ორნიშნა რიცხვი ერთნიშნაზე',
     kk: 'Бөлу — екі таңбалы санды бір таңбалы санға',
     en: 'Division — 2-digit÷1-digit',
+    it: 'Divisione — Due cifre per una cifra',
     qm: 'Bölüv — eki raqamlı sayını bir raqamlı sayığa bölüv',
     zh: '除法 — 两位数除以一位数',
     hi: 'भाग — 2-अंकीय÷1-अंकीय',
@@ -39,6 +40,7 @@ export const twoDigitByOne_Skill_Data = defineSkill({
       "A dividend may be decomposed into convenient parts that are separately divisible in the chosen number domain, then the partial quotients combined using division's distributivity over a sum. Not every arbitrary partition divides evenly.",
     frontend: {
       en: 'You can divide a two-digit number by a one-digit number by splitting it into parts that are easier to divide and combining the results.',
+      it: 'Puoi dividere un numero di due cifre per uno di una cifra scomponendolo in parti più facili da dividere e combinando i risultati.',
       qm: 'Eki raqamlı sayını bölmesi qolay parçalarğa ayırıp, neticelerni birleştirerek bir raqamlı sayığa böle bilesiñ.',
       zh: '你能把两位数拆成容易整除的部分，分别除以一位数，再合并结果。',
       hi: 'तुम दो अंकों की संख्या को आसानी से विभाजित होने वाले भागों में बाँटकर एक अंक से भाग दे सकते हो और उत्तर मिला सकते हो।',

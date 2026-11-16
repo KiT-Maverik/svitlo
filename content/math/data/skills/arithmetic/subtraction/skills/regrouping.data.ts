@@ -5,6 +5,7 @@ export const regrouping_Skill_Data = defineSkill({
   id: '5ef6de35-c2d8-4073-98d8-d8779eaa7875',
   name: {
     en: 'Subtraction with regrouping',
+    it: 'Sottrazione con cambio',
     qm: 'Razryadlarnı deñiştirip çıqaruv',
     lt: 'Atimtis su pergrupavimu',
     lv: 'Atņemšana ar pārgrupēšanu',
@@ -39,6 +40,7 @@ export const regrouping_Skill_Data = defineSkill({
       'Subtraction with place-value regrouping exchanges a higher-place unit for ten lower-place units when needed, including exchanges across a zero. The same invariant holds for two-digit, three-digit and larger minuends: regrouping changes representation without changing value.',
     frontend: {
       en: 'You can subtract numbers by exchanging one ten for ten ones, or one hundred for ten tens, when there are not enough units in a place.',
+      it: 'Puoi sottrarre numeri scambiando una decina con dieci unità o un centinaio con dieci decine quando mancano unità in una posizione.',
       qm: 'Bir razryadda birlikler yetmegende, bir onluqnı on birlikke ya da bir yüzlükni on onluqqa çevirerek sayılarnı çıqara bilesiñ.',
       zh: '减法中，当某一数位不够减时，你能把一个十换成十个一，或把一个百换成十个十。',
       hi: 'घटाते समय जब किसी स्थान पर पर्याप्त अंक न हों, तो तुम एक दहाई को दस इकाइयों में या एक सैकड़े को दस दहाइयों में बदल सकते हो।',

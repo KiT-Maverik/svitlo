@@ -5,6 +5,7 @@ export const basicCardinality_Skill_Data = defineSkill({
   id: '806fb33e-81a3-4e59-b57b-1ea7ed549d9b',
   name: {
     en: 'Determining how many objects are in a set',
+    it: 'Determinare il numero di oggetti in un insieme',
     qm: 'Toplumda qaç eşya olğanını belgilemek',
     lt: 'Daiktų kiekio nustatymas',
     lv: 'Priekšmetu skaita noteikšana',
@@ -39,6 +40,7 @@ export const basicCardinality_Skill_Data = defineSkill({
       'The final number word in a one-to-one count states the cardinality of the entire set. Neither object arrangement nor counting order changes that cardinality.',
     frontend: {
       en: 'Count every object once and use the last number you say to tell how many there are. The total stays the same if you rearrange them or count in a different order.',
+      it: 'Conta ogni oggetto una sola volta e usa l\'ultimo numero pronunciato per indicare quanti ce ne sono. Il totale non cambia se sposti gli oggetti o li conti in un ordine diverso.',
       qm: 'Er eşyannı bir kere say ve soñki aytqan sayıñ bütün eşyalarnıñ sayısını bildirgenini añla. Eşyalar başqa tertipte yerleştirilse ya da sayılsa bile, olarnıñ umumiy sayısı deñişmez.',
       zh: '每个物品只数一次，最后说出的数就是总数。改变摆放或计数顺序不会改变总数。',
       hi: 'हर वस्तु को केवल एक बार गिनें। आख़िरी बोली गई संख्या कुल वस्तुओं की संख्या बताती है, जो क्रम या स्थान बदलने पर भी वही रहती है।',

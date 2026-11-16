@@ -5,6 +5,7 @@ export const regrouping_Skill_Data = defineSkill({
   id: 'a1ff147a-bf4c-4cc9-ab9d-ccacd0a5fa47',
   name: {
     en: 'Addition with regrouping',
+    it: 'Addizione con cambio',
     qm: 'Razryadlarnı deñiştirip qoşuv',
     lt: 'Sudėtis su pergrupavimu',
     lv: 'Saskaitīšana ar pārgrupēšanu',
@@ -39,6 +40,7 @@ export const regrouping_Skill_Data = defineSkill({
       'Addition with place-value regrouping exchanges ten units of one place for one unit of the next place (ones to tens, tens to hundreds). The same principle applies regardless of how many digits the addends have; single or multiple carries preserve the total sum.',
     frontend: {
       en: 'You can add numbers by exchanging ten ones for one ten, or ten tens for one hundred, whenever regrouping is needed.',
+      it: 'Puoi sommare i numeri scambiando dieci unità con una decina o dieci decine con un centinaio ogni volta che serve un cambio.',
       qm: 'Sayıları qoşqanda, kerek olğan yerde on birlikni bir onluqqa ya da on onluqnı bir yüzlükke birleştire bilesiñ.',
       zh: '你能在加法中按需要把十个一换成一个十，或把十个十换成一个百。',
       hi: 'तुम जोड़ करते समय ज़रूरत पड़ने पर दस इकाइयों को एक दहाई या दस दहाइयों को एक सैकड़े में बदल सकते हो।',

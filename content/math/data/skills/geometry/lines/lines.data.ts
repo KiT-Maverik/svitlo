@@ -13,6 +13,7 @@ export const lines_SkillGroup_Data = defineSkillGroup({
   id: 'a79b4663-5dd1-4d85-9500-aacd06128d88',
   name: {
     en: 'Lines',
+    it: 'Linee',
     qm: 'Sızıqlar',
     lt: 'Tiesės ir linijos',
     lv: 'Taisnes un līnijas',
@@ -57,6 +58,7 @@ export const lines_SkillGroup_Data = defineSkillGroup({
       'Points, lines, rays, segments, other line types, their components, relative positions, and graphical representations.',
     frontend: {
       en: 'Recognize points, straight and curved lines, rays, and segments, and how lines meet or relate to one another.',
+      it: 'Riconosci punti, linee rette e curve, semirette e segmenti e osserva come le linee si incontrano o si relazionano tra loro.',
       qm: 'Noqtalarnı, doğru ve egri sızıqlarnı, şualarnı, kesiklerni ve sızıqlarnıñ nasıl kesişkenini ya da bir-birinen bağlı olğanını tanı.',
       zh: '认识点、直线、曲线、射线和线段，以及直线之间的关系。',
       hi: 'बिंदु, सीधी और टेढ़ी रेखाएँ, किरणें, रेखाखंड और रेखाओं के आपसी संबंध पहचानें।',

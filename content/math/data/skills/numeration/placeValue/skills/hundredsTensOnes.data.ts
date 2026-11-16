@@ -11,6 +11,7 @@ export const hundredsTensOnes_Skill_Data = defineSkill({
     ka: 'ასეულები, ათეულები და ერთეულები სამნიშნა რიცხვებში',
     kk: 'Үш таңбалы сандардағы жүздіктер, ондықтар және бірліктер',
     en: 'Hundreds, tens and ones in three-digit numbers',
+    it: 'Centinaia, decine e unità nei numeri di tre cifre',
     qm: 'Üç raqamlı sayılardaki yüzlükler, onluqlar ve birlikler',
     zh: '三位数的百位、十位和个位',
     hi: 'तीन अंकों में सैकड़े, दहाई और इकाई',
@@ -39,6 +40,7 @@ export const hundredsTensOnes_Skill_Data = defineSkill({
       'A three-digit number has a unique standard decimal decomposition into hundreds, tens, and ones. Its digits provide coefficients of the corresponding place values; a zero indicates no units of that place.',
     frontend: {
       en: 'See how the digits in a three-digit number show hundreds, tens, and ones, including places containing zero.',
+      it: 'Osserva come le cifre di un numero di tre cifre indicano centinaia, decine e unità, anche quando una posizione contiene zero.',
       qm: 'Üç raqamlı sayınıñ raqamları yüzlük, onluq ve birliklerni nasıl bildirgenini añla. Sıfır olğan razryadlarnı da esapqa al.',
       zh: '三位数的数字分别表示百、十和个，某一数位也可能用零占位。',
       hi: 'तीन अंकों वाली संख्या में सैकड़ा, दहाई और इकाई पहचानें, जहाँ शून्य भी किसी खाली स्थान को दिखा सकता है।',

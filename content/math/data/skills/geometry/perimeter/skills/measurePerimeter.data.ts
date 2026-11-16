@@ -5,6 +5,7 @@ export const measurePerimeter_Skill_Data = defineSkill({
   id: '13a58a6e-d453-4d8b-bba8-fae79b2a77cd',
   name: {
     en: 'Measuring a polygon perimeter by adding its sides',
+    it: 'Misurare il perimetro di un poligono sommando i lati',
     qm: 'Çoqköşeliniñ taraflarını qoşaraq perimetrini ölçmek',
     lt: 'Daugiakampio perimetro matavimas sudedant kraštines',
     lv: 'Daudzstūra perimetra noteikšana, saskaitot malas',
@@ -39,6 +40,7 @@ export const measurePerimeter_Skill_Data = defineSkill({
       'The perimeter of a polygon is the sum of the lengths of all successive sides of its closed boundary. It is a linear measurement expressed in length units, unlike the area of its interior.',
     frontend: {
       en: 'Add all side lengths of a polygon to find its perimeter, measured in units of length.',
+      it: 'Somma le lunghezze di tutti i lati di un poligono per trovare il perimetro, espresso in unità di lunghezza.',
       qm: 'Çoqköşeliniñ bütün taraf uzunlıqlarını qoşaraq perimetrni tap. Onı uzunlıq birliklerinde ölç.',
       zh: '将多边形所有边长相加求周长，单位是长度单位。',
       hi: 'बहुभुज की हर भुजा जोड़कर परिमाप निकालें; यह लंबाई की इकाइयों में होता है।',

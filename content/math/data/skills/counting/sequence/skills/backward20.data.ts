@@ -5,6 +5,7 @@ export const backward20_Skill_Data = defineSkill({
   id: '6942872f-bd64-47a6-ac8d-3531f3d56668',
   name: {
     en: 'Counting backward within 20',
+    it: 'Contare all\'indietro entro il 20',
     qm: '20 içinde artqa saymaq',
     lt: 'Skaičiavimas atgal iki 20',
     lv: 'Skaitīšana atpakaļ 20 robežās',
@@ -39,6 +40,7 @@ export const backward20_Skill_Data = defineSkill({
       'Find successive predecessors by subtracting one from any starting number. Backward counting must work across ten boundaries, not merely reproduce a memorized counting rhyme.',
     frontend: {
       en: 'Start from any number within 20 and count backward one at a time, including across ten.',
+      it: 'Parti da un numero qualsiasi entro il 20 e conta all\'indietro uno alla volta, anche oltre la decina.',
       qm: '20 içindeki er angi bir sayıdan başlayıp, onluq sıñırından keçkende de, birer-birer artqa say.',
       zh: '从20以内任意一个数开始，每次减一向后数，包括跨过十的时候。',
       hi: '20 के भीतर किसी भी संख्या से शुरू करके एक-एक घटाते हुए पीछे गिनें, दस की सीमा पार करते समय भी।',

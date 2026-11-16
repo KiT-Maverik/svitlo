@@ -11,6 +11,7 @@ export const by8_Skill_Data = defineSkill({
     ka: 'გაყოფა — ÷ 8',
     kk: 'Бөлу — ÷ 8',
     en: 'Division — ÷ 8',
+    it: 'Divisione — ÷ 8',
     qm: 'Bölüv — ÷ 8',
     zh: '除法 — ÷ 8',
     hi: 'भाग — ÷ 8',
@@ -39,6 +40,7 @@ export const by8_Skill_Data = defineSkill({
       'Divide by eight using the corresponding multiplication-by-eight fact or a model of equal groups. Apply the relationship to different division facts, not only a single memorized example.',
     frontend: {
       en: 'You can divide by eight using equal groups or known products involving eight.',
+      it: 'Puoi dividere per otto usando gruppi uguali o prodotti noti che contengono il fattore otto.',
       qm: 'Teñ toparlar ya da sekiznen bağlı belli arttıruv neticeleri yardımınen sekizge böle bilesiñ.',
       zh: '你能利用相等的组或包含八的已知乘积来计算除以八。',
       hi: 'तुम बराबर समूहों या आठ वाले ज्ञात गुणनफल से आठ से भाग कर सकते हो।',

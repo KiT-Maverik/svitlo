@@ -11,6 +11,7 @@ export const twoStepPlan_Skill_Data = defineSkill({
     ka: 'ორმოქმედებიანი ამოცანის ამოხსნის დაგეგმვა',
     kk: 'Екі амалдық есептің шешу жоспарын құру',
     en: 'Planning a two-step solution',
+    it: 'Pianificare una soluzione in due passaggi',
     qm: 'Eki adımlı çezimni planlaştırmaq',
     zh: '制定两步解题计划',
     hi: 'दो चरणों के समाधान की योजना बनाना',
@@ -39,6 +40,7 @@ export const twoStepPlan_Skill_Data = defineSkill({
       'A two-step solution includes an intermediate quantity that must be found before the final answer. The order of steps follows dependencies between the given and unknown quantities, not simply the written order of operation signs.',
     frontend: {
       en: 'You can plan a two-step solution by finding which intermediate quantity is needed first and explaining why the steps go in that order.',
+      it: 'Puoi pianificare una soluzione in due passaggi individuando quale quantità intermedia serve prima e spiegando perché i passaggi seguono quell\'ordine.',
       qm: 'Eki adımlı çezimni planlaştırıp, evelâ qaysı ara miqdarnı tapmaq kerek olğanını ve adımlar ne içün bu tertipte kelgenini añlat.',
       zh: '你能先确定需要求出的中间量，再规划两步解题顺序，并说明这样安排的原因。',
       hi: 'आप दो चरणों के समाधान की योजना बना सकते हैं, पहले आवश्यक बीच की मात्रा पहचानकर और चरणों का क्रम समझाकर।',

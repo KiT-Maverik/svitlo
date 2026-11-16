@@ -5,6 +5,7 @@ export const sameDenominatorModel_Skill_Data = defineSkill({
   id: '78e25627-943c-4912-bde5-37d05a6045ac',
   name: {
     en: 'Comparing fractions with the same denominator using models',
+    it: 'Confrontare frazioni con lo stesso denominatore usando modelli',
     qm: 'Aynı paydalı kesirlerni modeller yardımınen qıyaslav',
     lt: 'Trupmenų su vienodais vardikliais palyginimas pagal modelius',
     lv: 'Daļu ar vienādiem saucējiem salīdzināšana ar modeļiem',
@@ -39,6 +40,7 @@ export const sameDenominatorModel_Skill_Data = defineSkill({
       "With the same positive denominator and whole, increasing the numerator increases the number of same-sized unit parts and hence the fraction's value. A visual model demonstrates but does not uniquely define the comparison method.",
     frontend: {
       en: 'When the bottom numbers match, the fraction with more equal parts is larger. A picture can show why 3/5 is greater than 2/5.',
+      it: 'Se i denominatori sono uguali, la frazione che contiene più parti uguali è maggiore. Un disegno può mostrare perché 3/5 è maggiore di 2/5.',
       qm: 'Paydalar aynı olsa, alınğan parçası daa çoq olğan kesir büyük ola. Resim 3/5-niñ 2/5-ten büyük olğanını köstere bilir.',
       zh: '分母相同时，取的等份越多，分数越大。图形能说明3/5大于2/5。',
       hi: 'समान हर वाले भिन्नों में अधिक बराबर भागों वाला भिन्न बड़ा है। चित्र से 3/5 > 2/5 समझें।',

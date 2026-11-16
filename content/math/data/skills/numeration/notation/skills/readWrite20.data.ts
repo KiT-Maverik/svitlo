@@ -11,6 +11,7 @@ export const readWrite20_Skill_Data = defineSkill({
     ka: '0–20 რიცხვების წაკითხვა, ჩაწერა და რაოდენობასთან დაკავშირება',
     kk: '0–20 сандарын оқу, жазу және мөлшермен сәйкестендіру',
     en: 'Reading, writing and matching numbers 0–20',
+    it: 'Leggere, scrivere e abbinare i numeri da 0 a 20',
     qm: '0–20 sayılarnı oqumaq, yazmaq ve uyğunlaştırmaq',
     zh: '读写并匹配0至20的数与数量',
     hi: '0–20 की संख्याएँ पढ़ना, लिखना और मात्रा से मिलाना',
@@ -39,6 +40,7 @@ export const readWrite20_Skill_Data = defineSkill({
       "Associate a number's spoken name, its positional numeral, and its representation as a quantity with the same value. Zero also has a numeral and a cardinal meaning; a number is distinct from its representations.",
     frontend: {
       en: 'Connect numbers from 0 to 20 with their spoken names, written forms, and matching quantities. Zero represents none.',
+      it: 'Collega i numeri da 0 a 20 ai loro nomi pronunciati, alle forme scritte e alle quantità corrispondenti. Zero indica nessun elemento.',
       qm: '0-dan 20-ge qadar sayılarnı olarnıñ aytılışı, yazılışı ve uyğun miqdarınen bağla. Sıfır iç bir şey olmağanını bildirir.',
       zh: '把0到20的数、读法、写法和相应数量对应起来；零表示一个也没有。',
       hi: '0 से 20 तक संख्याओं के नाम, लिखावट और मात्राओं का मेल समझें। शून्य का अर्थ कोई वस्तु नहीं है।',

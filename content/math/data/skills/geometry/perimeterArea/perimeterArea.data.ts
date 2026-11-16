@@ -7,6 +7,7 @@ export const perimeterArea_SkillGroup_Data = defineSkillGroup({
   id: '580b10f6-cb53-4db4-b74c-ffccef55564d',
   name: {
     en: 'Relationship between perimeter and area',
+    it: 'Relazione tra perimetro e area',
     qm: 'Perimetrnen meydan arasındaki bağlılıq',
     lt: 'Perimetro ir ploto ryšys',
     lv: 'Perimetra un laukuma saistība',
@@ -48,6 +49,7 @@ export const perimeterArea_SkillGroup_Data = defineSkillGroup({
       'Perimeter measures the boundary and area measures the interior; the same value for one does not uniquely determine the other.',
     frontend: {
       en: 'Understand the difference between the distance around a shape and the amount of space inside it.',
+      it: 'Comprendi la differenza tra la distanza lungo il contorno di una figura e la quantità di spazio al suo interno.',
       qm: 'Şekilniñ etrafındaki mesafenen onıñ içindeki yer meydanı arasında nasıl farq olğanını añla.',
       zh: '理解图形周围一圈的长度与内部所占面积的区别。',
       hi: 'आकृति के चारों ओर की लंबाई और अंदर के स्थान के बीच अंतर समझें।',

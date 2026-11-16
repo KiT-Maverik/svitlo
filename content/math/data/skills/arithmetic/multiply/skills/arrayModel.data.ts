@@ -11,6 +11,7 @@ export const arrayModel_Skill_Data = defineSkill({
     ka: 'გამრავლება — მართკუთხა მასივის მოდელი',
     kk: 'Көбейту — тікбұрышты қатарлар мен бағандар моделі',
     en: 'Multiplication — Array model',
+    it: 'Moltiplicazione — Modello a schieramento',
     qm: 'Arttıruv — satır ve sütun modeli',
     zh: '乘法 — 阵列模型',
     hi: 'गुणा — आयताकार सरणी',
@@ -39,6 +40,7 @@ export const arrayModel_Skill_Data = defineSkill({
       'A rectangular array with the same number of elements in each row models the product of row count and elements per row. Interchanging row and column roles preserves cardinality and demonstrates multiplication commutativity.',
     frontend: {
       en: 'You can arrange objects in equal rows and columns to show multiplication and find the total.',
+      it: 'Puoi disporre oggetti in righe e colonne uguali per rappresentare una moltiplicazione e trovare il totale.',
       qm: 'Eşyalarnı teñ satır ve sütunlarğa yerleştirip arttıruvnı köstere ve olarnıñ umumiy sayısını tapa bilesiñ.',
       zh: '你能把物体排成每行数量相同的长方形阵列，用行数乘每行个数求出总数。',
       hi: 'तुम वस्तुओं को बराबर पंक्तियों और स्तंभों में सजाकर गुणा दिखा सकते हो और कुल संख्या निकाल सकते हो।',

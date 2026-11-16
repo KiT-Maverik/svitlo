@@ -5,6 +5,7 @@ export const findCounterexample_Skill_Data = defineSkill({
   id: 'dde55a58-c038-4375-9b1d-b9ecfb4a9219',
   name: {
     en: 'Finding a counterexample to a false generalization',
+    it: 'Trovare un controesempio a una generalizzazione falsa',
     qm: 'Yañlış umumiy iddiağa qarşı misal tapmaq',
     lt: 'Klaidingo apibendrinimo kontrpavyzdžio radimas',
     lv: 'Pretpiemēra atrašana aplamam vispārinājumam',
@@ -39,6 +40,7 @@ export const findCounterexample_Skill_Data = defineSkill({
       'One valid case satisfying the premises but contradicting the conclusion is enough to refute a universal mathematical claim. A true counterexample must be distinguished from an example that merely fails to support the claim.',
     frontend: {
       en: 'You can disprove a claim about every case by finding one example that meets its conditions but makes it false.',
+      it: 'Puoi confutare un\'affermazione su tutti i casi trovando un esempio che soddisfa le condizioni ma la rende falsa.',
       qm: 'Er alda doğru olğanını iddia etken fikrini, onıñ şartlarına uyğun kelgen, amma iddianı yañlış köstergen bir misal taparaq red ete bilesiñ.',
       zh: '你能找出一个符合条件却使结论不成立的例子，从而推翻声称对所有情况都成立的说法。',
       hi: 'आप सभी स्थितियों के बारे में किए गए दावे को ऐसे एक उदाहरण से गलत साबित कर सकते हैं जो उसकी शर्तें पूरी करे, लेकिन दावा गलत निकले।',

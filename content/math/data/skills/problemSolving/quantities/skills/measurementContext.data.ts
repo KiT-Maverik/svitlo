@@ -11,6 +11,7 @@ export const measurementContext_Skill_Data = defineSkill({
     ka: 'გაზომვის ამოცანების მოდელირება',
     kk: 'Өлшеу есептерін модельдеу',
     en: 'Modeling measurement problems',
+    it: 'Rappresentare problemi con misure',
     qm: 'Ölçüv meselelerini modellermek',
     zh: '建立测量应用题模型',
     hi: 'मापन समस्याओं के मॉडल बनाना',
@@ -39,6 +40,7 @@ export const measurementContext_Skill_Data = defineSkill({
       'Modeling a word problem involving measured quantities requires identifying the physical quantity, its unit, and relationships between known and unknown values. Length, mass, capacity, and time are possible contexts rather than mandatory separate parts of this single skill; consistent units and dimensions determine model validity.',
     frontend: {
       en: 'You can turn a word problem about length, mass, capacity, time, or another measured quantity into a mathematical relationship, keeping the units consistent.',
+      it: 'Puoi tradurre un problema su lunghezza, massa, capacità, tempo o un\'altra grandezza misurata in una relazione matematica, mantenendo coerenti le unità.',
       qm: 'Uzunlıq, kütle, sıyımlılıq, vaqıt ya da başqa ölçülgen miqdar aqqındaki sözlü meseleni birliklerni uyğun saqlap matematik bağlılıqqa çevir.',
       zh: '你能把涉及长度、质量、容量、时间等测量量的应用题转化为数学关系，并保持单位一致。',
       hi: 'आप लंबाई, द्रव्यमान, क्षमता, समय या किसी अन्य मापी जाने वाली मात्रा की शब्द-समस्या को गणितीय संबंध में बदल सकते हैं, जिसमें इकाइयाँ संगत रहें।',

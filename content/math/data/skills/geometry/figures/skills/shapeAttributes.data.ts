@@ -5,6 +5,7 @@ export const shapeAttributes_Skill_Data = defineSkill({
   id: '91ac826f-9b38-4dee-8e19-bd7883514afe',
   name: {
     en: 'Classifying figures by sides and vertices',
+    it: 'Classificare le figure in base a lati e vertici',
     qm: 'Şekillerni taraf ve köşe sayısına köre sınıflaştırmaq',
     lt: 'Figūrų skirstymas pagal kraštines ir viršūnes',
     lv: 'Figūru klasificēšana pēc malām un virsotnēm',
@@ -39,6 +40,7 @@ export const shapeAttributes_Skill_Data = defineSkill({
       'Classify polygons by their side and vertex counts and defining geometric properties. A simple polygon has equally many sides and vertices, though orientation, side lengths, and shape can vary.',
     frontend: {
       en: 'Sort polygons by the number of sides and corners and by their geometric features, not by how they are drawn.',
+      it: 'Classifica i poligoni in base al numero di lati e vertici e alle loro proprietà geometriche, non al modo in cui sono disegnati.',
       qm: 'Çoqköşelilerni taraf ve köşe sayısına, geometriya hasiyetlerine köre ayır. Yalıñız çiziliş şekline baqma.',
       zh: '根据多边形的边数、顶点数及几何性质分类，而不受画法影响。',
       hi: 'बहुभुजों को भुजाओं, शीर्षों की संख्या और गुणों से वर्गीकृत करें, चित्र की दिशा से नहीं।',

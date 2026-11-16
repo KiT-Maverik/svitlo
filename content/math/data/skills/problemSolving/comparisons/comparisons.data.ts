@@ -12,6 +12,7 @@ export const comparisons_SkillGroup_Data = defineSkillGroup({
   id: '3a803d9d-9b01-444c-8581-2be710069c94',
   name: {
     en: 'Comparison problems',
+    it: 'Problemi di confronto',
     qm: 'Qıyaslav meseleleri',
     lt: 'Palyginimo uždaviniai',
     lv: 'Salīdzināšanas uzdevumi',

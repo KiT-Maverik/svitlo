@@ -5,6 +5,7 @@ export const addSubtractLengths_Skill_Data = defineSkill({
   id: 'c3226a47-162d-4c7e-8d56-52814767de5f',
   name: {
     en: 'Adding and subtracting lengths in compatible units',
+    it: 'Sommare e sottrarre lunghezze con unità compatibili',
     qm: 'Uyğun birliklerde uzunlıqlarnı qoşmaq ve çıqarmaq',
     lt: 'Ilgių sudėtis ir atimtis suderinamais vienetais',
     lv: 'Garumu saskaitīšana un atņemšana saderīgās mērvienībās',
@@ -39,6 +40,7 @@ export const addSubtractLengths_Skill_Data = defineSkill({
       'Adding and subtracting lengths requires quantities of the same physical dimension. Convert to a common scale or explicitly account for unit changes; the result must remain a length.',
     frontend: {
       en: 'You can add or subtract lengths after converting them to compatible units and give the answer as a length with the correct unit.',
+      it: 'Puoi sommare o sottrarre lunghezze dopo averle convertite in unità compatibili e dare la risposta con l\'unità di lunghezza corretta.',
       qm: 'Uzunlıqlarnı uyğun birliklerge çevirgenden soñ qoşa ya da çıqara, neticeni ise doğru uzunlıq birliknen yaza bilesiñ.',
       zh: '你能先把长度换算成相容的单位，再进行加法或减法，并用正确的长度单位写出答案。',
       hi: 'आप लंबाइयों को संगत इकाइयों में बदलने के बाद जोड़ या घटा सकते हैं और उत्तर सही लंबाई की इकाई के साथ दे सकते हैं।',

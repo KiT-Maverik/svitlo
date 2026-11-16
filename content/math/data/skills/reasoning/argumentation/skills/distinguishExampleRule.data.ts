@@ -5,6 +5,7 @@ export const distinguishExampleRule_Skill_Data = defineSkill({
   id: 'a7426dcb-f817-41c5-bc9e-47244ea5301b',
   name: {
     en: 'Distinguishing a single example from a general rule',
+    it: 'Distinguere un singolo esempio da una regola generale',
     qm: 'Tek misalnen umumiy qaide arasındaki farqnı añlav',
     lt: 'Atskiro pavyzdžio ir bendrosios taisyklės atskyrimas',
     lv: 'Atsevišķa piemēra atšķiršana no vispārīga noteikuma',
@@ -39,6 +40,7 @@ export const distinguishExampleRule_Skill_Data = defineSkill({
       'A confirming instance does not establish a universal mathematical proposition. A general rule requires justification across the entire specified class, while one valid counterexample refutes it.',
     frontend: {
       en: 'You can tell a single example from a rule meant to hold in every case. One matching example does not prove a general rule.',
+      it: 'Puoi distinguere un singolo esempio da una regola che dovrebbe valere in ogni caso. Un esempio coerente non dimostra una regola generale.',
       qm: 'Tek bir misalnen er alda doğru olmalı umumiy qaide arasındaki farqnı ayıra bilesiñ. Qaidege uyğun kelgen tek misal umumiy qaidenı isbatlamay.',
       zh: '你能区分单个例子和适用于所有情况的一般规律。一个符合规律的例子并不能证明规律总是成立。',
       hi: 'आप एक उदाहरण और हर स्थिति में लागू होने वाले सामान्य नियम में अंतर कर सकते हैं। एक सही उदाहरण पूरे नियम को सिद्ध नहीं करता।',

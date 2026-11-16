@@ -11,6 +11,7 @@ export const increaseDecreaseFactor_Skill_Data = defineSkill({
     ka: 'მოცემული ჯერადობით გაზრდა ან შემცირება',
     kk: 'Берілген есе арттыру немесе кеміту',
     en: 'Increasing or decreasing by a given factor',
+    it: 'Aumentare o diminuire di un fattore dato',
     qm: 'Berilgen qatqa köre arttırmaq ya da azlatmaq',
     zh: '按给定倍数增加或减少',
     hi: 'दिए गए गुणक से बढ़ाना या घटाना',
@@ -39,6 +40,7 @@ export const increaseDecreaseFactor_Skill_Data = defineSkill({
       "Multiplicative change is modeled by multiplying by a positive factor or using the corresponding inverse operation. 'Increase by a factor of k' differs from 'increase by k units', and the result must be meaningful in context.",
     frontend: {
       en: 'You can increase or decrease a quantity by a given factor and explain how multiplying or dividing differs from adding or subtracting a fixed amount.',
+      it: 'Puoi aumentare o diminuire una quantità di un fattore dato e spiegare in che modo moltiplicare o dividere differisce dall\'aggiungere o sottrarre una quantità fissa.',
       qm: 'Miqdarnı berilgen qatqa köre arttıra ya da azlata ve arttıruvnen bölüvniñ belli sayı qoşuv ya da çıqaruvdan farqını añlata bilesiñ.',
       zh: '你能按指定倍数增加或减少数量，并解释乘除与加减固定数量的区别。',
       hi: 'आप किसी मात्रा को दिए गए गुणक के अनुसार बढ़ा या घटा सकते हैं और बता सकते हैं कि गुणा-भाग करना निश्चित संख्या जोड़ने-घटाने से कैसे अलग है।',

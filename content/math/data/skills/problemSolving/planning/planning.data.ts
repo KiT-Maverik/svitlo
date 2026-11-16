@@ -13,6 +13,7 @@ export const planning_SkillGroup_Data = defineSkillGroup({
   id: 'e6efe33e-ba9c-44c1-85c9-92ac9f83a74e',
   name: {
     en: 'Solution planning',
+    it: 'Pianificare la soluzione',
     qm: 'Çezimni planlaştırmaq',
     lt: 'Sprendimo planavimas',
     lv: 'Risinājuma plānošana',

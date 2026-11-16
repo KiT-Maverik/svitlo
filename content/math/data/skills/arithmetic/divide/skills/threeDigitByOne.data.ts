@@ -11,6 +11,7 @@ export const threeDigitByOne_Skill_Data = defineSkill({
     ka: 'გაყოფა — სამნიშნა რიცხვი ერთნიშნაზე',
     kk: 'Бөлу — үш таңбалы санды бір таңбалы санға',
     en: 'Division — 3-digit÷1-digit',
+    it: 'Divisione — Tre cifre per una cifra',
     qm: 'Bölüv — üç raqamlı sayını bir raqamlı sayığa bölüv',
     zh: '除法 — 三位数除以一位数',
     hi: 'भाग — 3-अंकीय÷1-अंकीय',
@@ -39,6 +40,7 @@ export const threeDigitByOne_Skill_Data = defineSkill({
       'Decomposing a three-digit dividend into convenient place-value or additive parts allows computing partial quotients and reconstructing the total. Each division must be valid and retain the corresponding place-value weight.',
     frontend: {
       en: 'You can divide a three-digit number by a one-digit number by splitting it into convenient parts and combining their quotients.',
+      it: 'Puoi dividere un numero di tre cifre per uno di una cifra scomponendolo in parti comode da dividere e sommando i rispettivi quozienti.',
       qm: 'Üç raqamlı sayını bölmesi qolay parçalarga ayırıp, olarnıñ bölüm neticelerini birleştirerek bir raqamlı sayığa böle bilesiñ.',
       zh: '你能把三位数拆成便于计算的部分，分别除以一位数，再合并各部分的商。',
       hi: 'तुम तीन अंकों की संख्या को सुविधाजनक भागों में बाँटकर हर भाग को एक अंक से भाग दे सकते हो और भागफल जोड़ सकते हो।',

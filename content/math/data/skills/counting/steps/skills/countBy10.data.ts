@@ -5,6 +5,7 @@ export const countBy10_Skill_Data = defineSkill({
   id: 'f0669022-6bc5-45fc-acb7-92f03e03cf27',
   name: {
     en: 'Counting in steps of 10',
+    it: 'Contare a passi di 10',
     qm: 'Onarlap saymaq',
     lt: 'Skaičiavimas dešimtimis',
     lv: 'Skaitīšana ar soli 10',
@@ -39,6 +40,7 @@ export const countBy10_Skill_Data = defineSkill({
       'Each step of ten changes a number by one complete ten while preserving its remaining ones. Crossing a hundred requires recognizing that ten tens regroup into one hundred.',
     frontend: {
       en: 'Add ten at each step while the ones stay the same. Crossing a hundred means regrouping ten tens into one hundred.',
+      it: 'Aggiungi dieci a ogni passo mentre le unità restano uguali. Superare il centinaio significa raggruppare dieci decine in un centinaio.',
       qm: 'Er adımda on qoş, birlikler ise aynı qalsın. Yüzlükten keçkende on onluqnı bir yüzlük olaraq birleştirmek kerek.',
       zh: '每次加10，个位不变。跨过整百时，十个十组成一个百。',
       hi: 'हर कदम पर दस जोड़ें; इकाई का अंक वही रहता है। सौ पार करते समय दस दहाइयाँ मिलकर एक सैकड़ा बनती हैं।',

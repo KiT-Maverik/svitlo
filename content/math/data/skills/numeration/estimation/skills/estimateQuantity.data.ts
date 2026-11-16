@@ -11,6 +11,7 @@ export const estimateQuantity_Skill_Data = defineSkill({
     ka: 'რაოდენობების შეფასება და შემოწმება',
     kk: 'Мөлшерді бағалау және тексеру',
     en: 'Estimating and checking quantities',
+    it: 'Stimare e verificare le quantità',
     qm: 'Miqdarlarnı tahmin etmek ve teşkere etmek',
     zh: '估计并核对数量',
     hi: 'मात्रा का अनुमान और जाँच',
@@ -39,6 +40,7 @@ export const estimateQuantity_Skill_Data = defineSkill({
       'Cardinality estimation produces an approximate count without first enumerating every object, using grouping or extrapolation from part of a set. An exact count independently checks the estimate.',
     frontend: {
       en: 'Estimate how many objects there are by looking at groups or a small part, then check by counting them.',
+      it: 'Stima quanti oggetti ci sono osservando dei gruppi o una piccola parte, poi verifica contandoli.',
       qm: 'Toparlarğa ya da kiçik bir parçasına baqıp qaç eşya olğanını tahmin et, soñra eşyalarnı sayıp teşkere et.',
       zh: '观察一部分或按组估计物品总数，再逐个计数验证。',
       hi: 'समूहों या छोटे हिस्से को देखकर वस्तुओं की अनुमानित संख्या निकालें, फिर गिनकर जाँचें।',

@@ -7,6 +7,7 @@ export const experiments_SkillGroup_Data = defineSkillGroup({
   id: 'cbaceeaf-fdb7-44c1-8c11-8b10c20f80ea',
   name: {
     en: 'Random experiments',
+    it: 'Esperimenti casuali',
     qm: 'Tesadüfiy tecribeler',
     lt: 'Atsitiktiniai bandymai',
     lv: 'Nejauši eksperimenti',

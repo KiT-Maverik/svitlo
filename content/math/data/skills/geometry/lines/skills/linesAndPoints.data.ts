@@ -5,6 +5,7 @@ export const linesAndPoints_Skill_Data = defineSkill({
   id: '32258326-50ad-496c-a202-059bff6828b6',
   name: {
     en: 'Distinguishing points and line types',
+    it: 'Distinguere punti e tipi di linee',
     qm: 'Noqtalar ve sızıq çeşitlerini ayırmaq',
     lt: 'Taškų ir linijų tipų atskyrimas',
     lv: 'Punktu un līniju veidu atšķiršana',
@@ -39,6 +40,7 @@ export const linesAndPoints_Skill_Data = defineSkill({
       'A point specifies a position without dimension, a straight line extends infinitely both ways, a general curve need not consist of straight segments, and a polygonal chain consists of consecutive segments. Drawn marks are models, not the abstract objects themselves.',
     frontend: {
       en: 'Tell a point, a straight line, a curved line, and a line made of straight segments apart. A drawing represents each of them.',
+      it: 'Distingui un punto, una retta, una linea curva e una linea spezzata. Un disegno rappresenta ciascuno di questi elementi.',
       qm: 'Noqtanı, doğru sızıqnı, egri sızıqnı ve doğru kesiklerden tüzülgen sızıqnı ayır. Resim olarnıñ er birini tasvir ete.',
       zh: '区分点、直线、曲线和由直线段连接成的折线；画出的线只是它们的表示。',
       hi: 'बिंदु, सीधी रेखा, वक्र और जुड़े हुए सीधे खंडों की रेखा अलग पहचानें। चित्र इनका रूप दिखाता है।',

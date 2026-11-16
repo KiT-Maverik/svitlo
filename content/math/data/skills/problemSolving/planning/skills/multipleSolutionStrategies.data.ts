@@ -11,6 +11,7 @@ export const multipleSolutionStrategies_Skill_Data = defineSkill({
     ka: 'ამოხსნის სტრატეგიების შედარება',
     kk: 'Шешу тәсілдерін салыстыру',
     en: 'Comparing solution strategies',
+    it: 'Confrontare strategie di soluzione',
     qm: 'Çezim usullarını qıyaslav',
     zh: '比较解题策略',
     hi: 'समाधान की रणनीतियों की तुलना',
@@ -39,6 +40,7 @@ export const multipleSolutionStrategies_Skill_Data = defineSkill({
       'Different algorithms or models can reach the same correct answer. Comparing strategies requires mathematical validity, justification of each step, computational complexity, and the conditions under which each method applies.',
     frontend: {
       en: 'You can compare two correct ways to solve a problem and explain when each works and which is more efficient.',
+      it: 'Puoi confrontare due modi corretti di risolvere un problema e spiegare quando funziona ciascuno e quale è più efficiente.',
       qm: 'Bir meseleni çezmek içün eki doğru usulnı qıyaslap, er biri ne zaman işlegenini ve qaysısı daa semereli olğanını añlata bilesiñ.',
       zh: '你能比较同一道题的两种正确解法，说明各自何时适用以及哪种更高效。',
       hi: 'आप किसी समस्या के दो सही समाधान तरीकों की तुलना करके बता सकते हैं कि प्रत्येक कब काम करता है और कौन-सा अधिक कुशल है।',

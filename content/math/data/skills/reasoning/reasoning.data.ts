@@ -10,6 +10,7 @@ export const reasoning_SkillDomain_Data = defineSkillDomain({
   id: '91e2d845-0c04-4a81-b126-8bad16300cad',
   title: {
     en: 'Reasoning',
+    it: 'Ragionamento',
     qm: 'Fikir yürsetüv',
     lt: 'Samprotavimas',
     lv: 'Spriešana',

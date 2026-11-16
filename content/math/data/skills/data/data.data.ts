@@ -9,6 +9,7 @@ export const data_SkillDomain_Data = defineSkillDomain({
   id: 'ae6d7bb7-0ee8-4bdd-8853-3d8d11233007',
   title: {
     en: 'Data',
+    it: 'Dati',
     qm: 'Malümatlar',
     lt: 'Duomenys',
     lv: 'Dati',

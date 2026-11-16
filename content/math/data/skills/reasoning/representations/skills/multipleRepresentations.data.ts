@@ -5,6 +5,7 @@ export const multipleRepresentations_Skill_Data = defineSkill({
   id: '6e59c042-7eed-4fb0-83dc-836b3808bca7',
   name: {
     en: 'Converting between concrete, diagrammatic, verbal and symbolic representations',
+    it: 'Passare tra rappresentazioni concrete, grafiche, verbali e simboliche',
     qm: 'Eşya, diagramma, söz ve işaretler arasındaki tasvirlerni çevirmek',
     lt: 'Perėjimas tarp konkrečių, scheminių, žodinių ir simbolinių vaizdavimo būdų',
     lv: 'Pāreja starp konkrētiem, shematiskiem, vārdiskiem un simboliskiem attēlojumiem',
@@ -39,6 +40,7 @@ export const multipleRepresentations_Skill_Data = defineSkill({
       'Physical models, diagrams, verbal descriptions, and symbolic expressions can encode the same mathematical relationship. A valid translation preserves quantities, the roles of values, and their relationships, not just the written numerals.',
     frontend: {
       en: 'You can show the same mathematical relationship with objects, diagrams, words, or expressions while keeping the quantities and their connections unchanged.',
+      it: 'Puoi mostrare la stessa relazione matematica con oggetti, schemi, parole o espressioni, mantenendo invariate le quantità e i loro collegamenti.',
       qm: 'Aynı matematik bağlılıqnı eşyalar, diagrammalar, sözler ya da ifadeler yardımınen köstere bilesiñ. Bunı yapqanda miqdarlar ve olarnıñ arasındaki bağlılıqlar deñişmesin.',
       zh: '你能用实物、图示、文字或算式表示同一个数学关系，同时保持数量及其相互关系不变。',
       hi: 'आप वस्तुओं, चित्रों, शब्दों या व्यंजकों से एक ही गणितीय संबंध दिखा सकते हैं और मात्राओं तथा उनके संबंधों को सही रख सकते हैं।',

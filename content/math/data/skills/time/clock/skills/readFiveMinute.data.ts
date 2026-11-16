@@ -5,6 +5,7 @@ export const readFiveMinute_Skill_Data = defineSkill({
   id: '21d2c77f-39e4-4c54-98fc-b54a8e1568fe',
   name: {
     en: 'Reading time to five minutes',
+    it: 'Leggere l\'ora a intervalli di cinque minuti',
     qm: 'Vaqıtnı beş daqiqağa qadar oqumaq',
     lt: 'Laiko skaitymas penkių minučių tikslumu',
     lv: 'Laika nolasīšana ar piecu minūšu precizitāti',
@@ -39,6 +40,7 @@ export const readFiveMinute_Skill_Data = defineSkill({
       "Each numbered hour interval on a standard twelve-hour clock face represents five minutes. Reading the time combines the minute scale with the hour hand's position, without confusing an hour numeral with a minute count.",
     frontend: {
       en: 'You can tell time in five-minute steps on a clock by counting the minute-hand marks and checking the hour hand.',
+      it: 'Puoi leggere l\'ora a intervalli di cinque minuti usando le tacche del quadrante indicate dalla lancetta dei minuti e controllando la posizione della lancetta delle ore.',
       qm: 'Saatta daqiqa tiliniñ belgilerini sayıp ve saat tilini teşkere etip, vaqıtnı beş daqiqalıq adımlarnen ayta bilesiñ.',
       zh: '你能根据分针所指的刻度，每次以五分钟为单位读取时间，同时检查时针的位置。',
       hi: 'आप मिनट की सुई के निशान गिनकर और घंटे की सुई देखकर पाँच-पाँच मिनट के अंतर पर समय बता सकते हैं।',

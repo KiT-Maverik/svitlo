@@ -5,6 +5,7 @@ export const subtractLikeDenominators_Skill_Data = defineSkill({
   id: '80d0e1fc-eda0-4b6f-8aad-a27971ba7650',
   name: {
     en: 'Subtracting fractions with the same denominator within one whole',
+    it: 'Sottrarre frazioni con lo stesso denominatore',
     qm: 'Bir bütün içinde aynı paydalı kesirlerni çıqarmaq',
     lt: 'Trupmenų su vienodais vardikliais atimtis vieneto ribose',
     lv: 'Daļu ar vienādiem saucējiem atņemšana viena veselā robežās',
@@ -39,6 +40,7 @@ export const subtractLikeDenominators_Skill_Data = defineSkill({
       'Subtracting like-denominator fractions removes unit parts without changing their size: a/b - c/b = (a-c)/b. The allowable range of numerators depends on the relevant number domain.',
     frontend: {
       en: 'Subtract fractions with the same bottom number by subtracting their top numbers. You remove parts without changing their size.',
+      it: 'Sottrai frazioni con lo stesso denominatore sottraendo i numeratori. Togli delle parti senza cambiarne la dimensione.',
       qm: 'Paydaları aynı olğan kesirlerni çıqarmaq içün paylarını çıqar. Parçalarnı ölçülerini deñiştirmeden alıp taşlaysıñ.',
       zh: '分母相同的分数相减，只把分子相减。去掉的是一些份数，每份的大小不变。',
       hi: 'समान हर वाले भिन्न घटाने के लिए अंश घटाएँ। भाग कम होते हैं, उनका आकार नहीं बदलता।',

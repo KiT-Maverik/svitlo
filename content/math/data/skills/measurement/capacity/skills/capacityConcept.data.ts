@@ -5,6 +5,7 @@ export const capacityConcept_Skill_Data = defineSkill({
   id: 'a57c2d50-cd76-4614-9e12-f1505ef7f05c',
   name: {
     en: 'Comparing container capacities by pouring or measuring',
+    it: 'Confrontare capacità versando o misurando',
     qm: 'Aqıtıp ya da ölçüp idişlerniñ sıyımlılığını qıyaslav',
     lt: 'Indų talpos palyginimas pilstant ar matuojant',
     lv: 'Trauku ietilpības salīdzināšana, pārlejot vai mērot',
@@ -39,6 +40,7 @@ export const capacityConcept_Skill_Data = defineSkill({
       'Capacity is the maximum volume a container can hold. It can be compared by transferring contents under consistent conditions or measuring volume; height or shape alone does not determine capacity.',
     frontend: {
       en: 'You can compare how much different containers can hold by pouring or measuring, rather than judging only by their height or shape.',
+      it: 'Puoi confrontare quanto possono contenere recipienti diversi versando un liquido o misurando, anziché giudicare solo dall\'altezza o dalla forma.',
       qm: 'İdişlerge suv aqıtıp ya da ölçüp, olarnıñ qaç miqdar sıyğdırğanını qıyaslay bilesiñ. Yalıñız yükseklik ve şekline baqıp qarar berme.',
       zh: '你能通过倒水或测量比较不同容器能装多少，而不只看它们的高度或形状。',
       hi: 'आप पानी उँडेलकर या मापकर तुलना कर सकते हैं कि अलग-अलग बर्तनों में कितना समा सकता है, केवल उनकी ऊँचाई या आकार देखकर नहीं।',
