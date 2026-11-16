@@ -194,7 +194,7 @@ Skills: 5
 
 **Methodological description (English):** Recognize what a record or witness directly establishes and what depends on another person's retelling.
 
-**User-friendly description (it):** Distingui le testimonianze di prima mano dalle affermazioni riportate da altre persone.
+**User-friendly description (it):** Distingui le prove dirette dalle informazioni riferite da altri, valutando che cosa ciascuna fonte attesti.
 
 ##### Valutare l'attendibilità di una testimonianza
 
@@ -554,7 +554,7 @@ Skills: 4
 
 **Methodological description (English):** Separate causing an outcome from being appropriately accountable for it under relevant knowledge and control conditions.
 
-**User-friendly description (it):** Distingui l'essere responsabili di aver causato qualcosa dal meritare un rimprovero morale.
+**User-friendly description (it):** Distingui l'aver causato un evento dall'esserne moralmente responsabili, considerando conoscenza e controllo.
 
 #### Deliberazione morale
 
@@ -706,7 +706,7 @@ Skills: 4
 
 **Methodological description (English):** Assess reasons offered in a source rather than accepting or rejecting a view solely because of the author's reputation.
 
-**User-friendly description (it):** Valuta le ragioni presentate in un testo filosofico classico, non soltanto la reputazione del suo autore.
+**User-friendly description (it):** Valuta le ragioni presentate in un testo filosofico, non soltanto la reputazione del suo autore.
 
 ##### Individuare il problema centrale di un testo filosofico
 
@@ -1412,7 +1412,7 @@ Skills: 4
 
 **Methodological description (English):** Identify when a claim describes subjective experience, observable behavior, or bodily processes, and why they are not automatically equivalent.
 
-**User-friendly description (it):** Distingui le descrizioni delle sensazioni da quelle dei processi fisici del cervello.
+**User-friendly description (it):** Distingui le descrizioni delle esperienze soggettive da quelle del comportamento osservabile e dei processi corporei.
 
 ##### Spiegare il problema delle altre menti
 
@@ -1620,13 +1620,13 @@ Skills: 3
 
 **User-friendly description (it):** Impara come il contesto influenzi ciò che le persone dicono e comunicano.
 
-##### Distinguere significato letterale e implicazione
+##### Distinguere significato letterale e implicatura conversazionale
 
 [distinguishLiteralMeaningFromImplication.data.ts](../../../content/philosophy/data/skills/philosophyOfLanguage/communicationAndInterpretation/skills/distinguishLiteralMeaningFromImplication.data.ts)
 
 **Methodological description (English):** Identify content explicitly expressed versus a reasonable conversational inference that could be cancelled or revised.
 
-**User-friendly description (it):** Distingui il significato letterale di un'affermazione da ciò che essa suggerisce.
+**User-friendly description (it):** Distingui ciò che un'affermazione dice letteralmente da ciò che lascia intendere nel contesto.
 
 ##### Valutare interpretazioni contestuali
 
@@ -1878,7 +1878,7 @@ Skills: 8
 
 **Methodological description (English):** Identify premises and conclusion in a theistic, atheistic, or agnostic argument without treating the position as settled by its name.
 
-**User-friendly description (it):** Individua le ragioni presentate in un'argomentazione a favore o contro l'esistenza del divino.
+**User-friendly description (it):** Individua premesse e conclusioni di argomentazioni teistiche, ateistiche o agnostiche sulla divinità.
 
 ### Filosofia della scienza
 
@@ -2004,7 +2004,7 @@ Skills: 9
 
 **Methodological description (English):** Identify which party is kept unaware of assigned conditions and how that may reduce particular expectation-related effects.
 
-**User-friendly description (it):** Comprendi perché nascondere a un gruppo la condizione assegnata possa limitare gli effetti delle aspettative.
+**User-friendly description (it):** Comprendi come nascondere l'assegnazione alle condizioni sperimentali a una sola delle parti coinvolte possa ridurre gli effetti delle aspettative.
 
 ##### Spiegare lo scopo di un gruppo di controllo
 
@@ -2222,7 +2222,7 @@ Skills: 4
 
 **Methodological description (English):** Examine principles such as generality, accessibility, prospectivity, consistent application, and constraints on arbitrary power as grounds for evaluating a legal order.
 
-**User-friendly description (it):** Esplora i principi che rendono le leggi pubbliche e prevedibili e le proteggono dall'arbitrio del potere.
+**User-friendly description (it):** Esamina come regole generali, accessibili e applicate coerentemente possano limitare l'arbitrio del potere.
 
 ##### Valutare le teorie dell'interpretazione giuridica
 
@@ -2256,7 +2256,7 @@ Skills: 4
 
 **Methodological description (English):** Explain how alternative accounts use consent, cooperation, security, or fairness to justify political obligations.
 
-**User-friendly description (it):** Valuta le ragioni addotte per giustificare l'autorità delle istituzioni pubbliche di stabilire norme.
+**User-friendly description (it):** Confronta come le teorie del contratto sociale giustifichino gli obblighi politici tramite consenso, cooperazione, sicurezza o equità.
 
 ##### Valutare la legittimità dell'autorità politica
 
@@ -2264,7 +2264,7 @@ Skills: 4
 
 **Methodological description (English):** Examine reasons offered to justify the right to make binding public decisions, not merely whether an institution controls force.
 
-**User-friendly description (it):** Confronta argomentazioni che giustificano il governo attraverso consenso, sicurezza o cooperazione.
+**User-friendly description (it):** Valuta le ragioni che possono giustificare il diritto delle istituzioni di prendere decisioni pubbliche vincolanti.
 
 ##### Valutare i limiti della coercizione statale
 
