@@ -9,6 +9,13 @@ const en = {
 
 export type Youtube_Locale = typeof en;
 
+const it: Youtube_Locale = {
+  loading: 'Caricamento del video…',
+  offline: 'Per riprodurre questo video è necessaria una connessione a Internet.',
+  unavailable: 'Questo video non è disponibile.',
+  retry: 'Riprova',
+};
+
 const uk: Youtube_Locale = {
   loading: 'Завантаження відео…',
   offline: 'Для перегляду відео потрібен інтернет.',
@@ -207,6 +214,7 @@ const qm: Youtube_Locale = {
 
 export const youtube: UiKit_Component_Locale<Youtube_Locale> = {
   en,
+  it,
   uk,
   zh,
   hi,
