@@ -5,6 +5,7 @@ export const neuralSignaling_Skill_Data = defineSkill({
   id: 'ba92607d-1ad4-403c-a1f3-5c876731d284',
   name: {
     en: 'Neural Signaling',
+    it: 'Segnalazione neurale',
     zh: '神经信号传导',
     hi: 'तंत्रिका संकेत संचार',
     es: 'Señalización neuronal',
@@ -39,6 +40,7 @@ export const neuralSignaling_Skill_Data = defineSkill({
       'Connect electrical impulses and synaptic transmission with communication between neurons and the timing of responses.',
     frontend: {
       en: 'Explain how nerve cells transmit electrical and chemical signals.',
+      it: 'Spiega come le cellule nervose trasmettano segnali elettrici e chimici.',
       zh: '解释神经细胞如何传递电信号和化学信号。',
       hi: 'समझाएँ कि तंत्रिका कोशिकाएँ विद्युत और रासायनिक संकेत कैसे पहुँचाती हैं।',
       es: 'Explica cómo las células nerviosas transmiten señales eléctricas y químicas.',

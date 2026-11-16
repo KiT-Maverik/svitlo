@@ -5,6 +5,7 @@ export const distinguishCorrelationFromCausation_Skill_Data = defineSkill({
   id: 'ef685f1a-49aa-4d1f-978e-5a0e9f9b5e22',
   name: {
     en: 'Distinguish correlation from causation',
+    it: 'Distinguere correlazione e causalità',
     zh: '区分相关性与因果性',
     hi: 'सहसंबंध और कारणता में अंतर करें',
     es: 'Distinguir correlación de causalidad',
@@ -39,6 +40,7 @@ export const distinguishCorrelationFromCausation_Skill_Data = defineSkill({
       'Explain why two variables varying together does not alone show that changing one produces the other.',
     frontend: {
       en: 'Recognize that two variables changing together need not mean one causes the other.',
+      it: 'Riconosci che due variabili che cambiano insieme non indicano necessariamente un rapporto di causa ed effetto.',
       zh: '认识到两个变量同时变化并不意味着一个导致另一个。',
       hi: 'दो चर साथ बदलते हैं तो इसका मतलब नहीं कि एक दूसरे का कारण है।',
       es: 'Reconoce que dos variables que cambian juntas no indican necesariamente que una cause la otra.',

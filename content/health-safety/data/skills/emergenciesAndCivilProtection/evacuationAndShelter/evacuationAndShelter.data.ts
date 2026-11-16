@@ -11,6 +11,7 @@ export const evacuationAndShelter_SkillGroup_Data = defineSkillGroup({
   id: '4ef54213-b85b-4baf-a32b-832493ff721f',
   name: {
     en: 'Evacuation and Shelter',
+    it: 'Evacuazione e riparo',
     zh: '疏散与避难',
     hi: 'निकासी और आश्रय',
     es: 'Evacuación y refugio',
@@ -53,6 +54,7 @@ export const evacuationAndShelter_SkillGroup_Data = defineSkillGroup({
       'The correct protective action may be evacuation or remaining under cover, depending on the hazard and official guidance.',
     frontend: {
       en: 'Explore when staying in shelter is safer than evacuating.',
+      it: 'Esplora quando rimanere al riparo è più sicuro che evacuare.',
       zh: '了解何时留在避难所比撤离更安全。',
       hi: 'जानें कि कब आश्रय में रहना निकासी से अधिक सुरक्षित होता है।',
       es: 'Explora cuándo quedarse a resguardo es más seguro que evacuar.',

@@ -5,6 +5,7 @@ export const createFoundObjectAssemblage_Skill_Data = defineSkill({
   id: '2410762a-76d1-4a20-8aaa-d3eab0091764',
   name: {
     en: 'Create Found-Object Assemblage',
+    it: 'Creare un assemblaggio con oggetti trovati',
     zh: '组合现成物创作',
     hi: 'मिली हुई वस्तुओं से संयोजन कलाकृति बनाना',
     es: 'Crear un ensamblaje con objetos encontrados',
@@ -38,6 +39,7 @@ export const createFoundObjectAssemblage_Skill_Data = defineSkill({
     methodological: 'Combine preexisting items so their materials, histories or juxtaposition create new meaning.',
     frontend: {
       en: 'Combine existing objects to create a new artistic meaning.',
+      it: 'Combina oggetti esistenti per creare un nuovo significato artistico.',
       zh: '将现成物品组合起来，赋予它们新的艺术含义。',
       hi: 'मौजूदा वस्तुओं को मिलाकर नया कलात्मक अर्थ रचें।',
       es: 'Combina objetos existentes para crear un nuevo significado artístico.',

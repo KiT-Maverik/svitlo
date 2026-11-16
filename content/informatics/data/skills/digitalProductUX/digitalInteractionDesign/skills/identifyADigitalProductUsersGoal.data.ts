@@ -5,6 +5,7 @@ export const identifyADigitalProductUsersGoal_Skill_Data = defineSkill({
   id: '489f153e-8c9f-47eb-a459-31466cc13fb4',
   name: {
     en: "Identify a Digital Product User's Goal",
+    it: "Individuare l'obiettivo di un utente di un prodotto digitale",
     zh: '识别数字产品用户的目标',
     hi: 'डिजिटल उत्पाद के उपयोगकर्ता का लक्ष्य पहचानना',
     es: 'Identificar el objetivo del usuario de un producto digital',
@@ -39,6 +40,7 @@ export const identifyADigitalProductUsersGoal_Skill_Data = defineSkill({
       'Determine the specific action a person intends to perform in a program or on a digital device, distinguishing the user goal from internal technical system operations.',
     frontend: {
       en: 'Identify what someone wants to accomplish in an app or digital device.',
+      it: "Individua che cosa una persona vuole realizzare con un'app o un dispositivo digitale.",
       zh: '识别用户想通过应用或数字设备完成什么。',
       hi: 'पहचानें कि कोई व्यक्ति ऐप या डिजिटल उपकरण से क्या हासिल करना चाहता है।',
       es: 'Identifica lo que una persona quiere lograr con una aplicación o dispositivo digital.',

@@ -5,6 +5,7 @@ export const explainHowThePassageOfTimeDependsOnObserversRelativeMotion_Skill_Da
   id: 'bb06dcd5-0278-42ad-bd81-67495a8631e2',
   name: {
     en: "Explain how the passage of time depends on observers' relative motion",
+    it: 'Spiegare come il tempo dipende dal moto relativo degli osservatori',
     zh: '解释时间流逝如何依赖于观察者的相对运动',
     hi: 'प्रेक्षकों की सापेक्ष गति पर समय के बीतने की निर्भरता समझाना',
     es: 'Explicar cómo el transcurso del tiempo depende del movimiento relativo de los observadores',
@@ -39,6 +40,7 @@ export const explainHowThePassageOfTimeDependsOnObserversRelativeMotion_Skill_Da
       'Using a conceptual model, explain why observers moving relative to one another may measure a time interval differently; this is a physical principle, not an animation-use skill.',
     frontend: {
       en: 'Explore why observers in relative motion may measure different time intervals.',
+      it: 'Esplora perché osservatori in moto relativo possono misurare intervalli di tempo diversi.',
       zh: '探索为什么相对运动的观察者可能测量出不同的时间间隔。',
       hi: 'जानो कि एक-दूसरे के सापेक्ष चलते प्रेक्षक अलग-अलग समयांतराल क्यों माप सकते हैं।',
       es: 'Explora por qué observadores en movimiento relativo pueden medir distintos intervalos de tiempo.',

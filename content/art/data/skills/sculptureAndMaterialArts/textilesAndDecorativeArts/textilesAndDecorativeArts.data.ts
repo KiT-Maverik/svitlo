@@ -12,6 +12,7 @@ export const textilesAndDecorativeArts_SkillGroup_Data = defineSkillGroup({
   id: '1ebf4d14-8b7d-4282-b54b-3bb933401a63',
   name: {
     en: 'Textiles and Decorative Arts',
+    it: 'Tessuti e arti decorative',
     qm: 'Tekstil ve bezek sanatları',
 
     zh: '纺织与装饰艺术',
@@ -56,6 +57,7 @@ export const textilesAndDecorativeArts_SkillGroup_Data = defineSkillGroup({
       'Fabric structures, embellishments and motif repetition embody distinctive artistic design choices and cultural traditions.',
     frontend: {
       en: 'Explore pattern, weaving and decoration through textile materials.',
+      it: 'Esplora motivi, tessitura e decorazione attraverso i materiali tessili.',
       qm: 'Tekstil materialları vasıtası ile naqış, toquma ve bezemeni keşf etiñiz.',
 
       zh: '通过纺织材料探索图案、织造与装饰。',

@@ -5,6 +5,7 @@ export const closedOpenLines_Skill_Data = defineSkill({
   id: 'd52a91eb-a4b7-48c7-8d2c-97aceb88b146',
   name: {
     en: 'Identifying closed and open lines',
+    it: 'Riconoscere linee chiuse e aperte',
     qm: 'Qapalı ve açıq sızıqlarnı tanımaq',
     lt: 'Uždarųjų ir atvirųjų linijų atpažinimas',
     lv: 'Slēgtu un atvērtu līniju atpazīšana',
@@ -39,6 +40,7 @@ export const closedOpenLines_Skill_Data = defineSkill({
       'A closed line has no distinct start and end points, whereas an open line does not close into a loop. Not every closed line is polygonal, and a line is not the region it encloses.',
     frontend: {
       en: 'Tell whether a line forms a closed loop or stays open. A closed loop is not always made of straight sides.',
+      it: 'Stabilisci se una linea forma un percorso chiuso oppure rimane aperta. Una linea chiusa non è sempre formata da segmenti rettilinei.',
       qm: 'Sızıqnıñ qapalı alqa tüzgenini ya da açıq qalğanını ayıra bilesiñ. Qapalı sızıqnıñ bütün tarafları doğru olmaq zorunda degil.',
       zh: '判断线是否围成闭合的圈，还是保持开口。闭合的线不一定由直线段组成。',
       hi: 'बताएँ रेखा बंद घेरा बनाती है या खुली रहती है। बंद रेखा हमेशा सीधी भुजाओं की नहीं होती।',

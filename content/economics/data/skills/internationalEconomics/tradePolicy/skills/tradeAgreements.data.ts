@@ -5,6 +5,7 @@ export const tradeAgreements_Skill_Data = defineSkill({
   id: '5fa8f80d-9ec6-4706-9922-36e10a452a67',
   name: {
     en: 'Торговельні угоди',
+    it: 'Accordi commerciali',
     zh: '贸易协定',
     hi: 'व्यापार समझौते',
     es: 'Acuerdos comerciales',
@@ -39,6 +40,7 @@ export const tradeAgreements_Skill_Data = defineSkill({
       'Interpret mechanisms for reducing barriers reciprocally and the difficulty of reconciling different sectoral interests.',
     frontend: {
       en: 'Explore why countries negotiate trade agreements.',
+      it: 'Esplora perché i paesi negoziano accordi commerciali.',
       zh: '探索各国为何谈判贸易协定。',
       hi: 'जानें कि देश व्यापार समझौतों पर बातचीत क्यों करते हैं।',
       es: 'Explora por qué los países negocian acuerdos comerciales.',

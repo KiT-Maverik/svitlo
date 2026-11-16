@@ -5,6 +5,7 @@ export const attentionalCapture_Skill_Data = defineSkill({
   id: '04c696a6-f8fd-4684-be6a-9bff16c5d75c',
   name: {
     en: 'Attentional Capture',
+    it: "Cattura dell'attenzione",
     zh: '注意捕获',
     hi: 'ध्यान का अनायास आकर्षित होना',
     es: 'Captura de la atención',
@@ -38,6 +39,7 @@ export const attentionalCapture_Skill_Data = defineSkill({
     methodological: 'Explain why salient, novel, or personally relevant cues can involuntarily redirect focus.',
     frontend: {
       en: 'Recognize when a new or striking cue automatically attracts attention.',
+      it: "Riconosci quando uno stimolo nuovo o particolarmente evidente attira automaticamente l'attenzione.",
       zh: '识别新奇或醒目的线索何时会自动吸引注意。',
       hi: 'पहचानें कि नया या ध्यान खींचने वाला संकेत स्वतः ध्यान कब खींच लेता है।',
       es: 'Reconoce cuándo una señal nueva o llamativa atrae la atención automáticamente.',

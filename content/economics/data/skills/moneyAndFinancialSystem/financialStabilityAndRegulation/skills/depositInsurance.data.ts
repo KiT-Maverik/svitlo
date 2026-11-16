@@ -5,6 +5,7 @@ export const depositInsurance_Skill_Data = defineSkill({
   id: '86beff66-9c5a-4524-ad87-d6e8acbb8228',
   name: {
     en: 'Гарантування вкладів',
+    it: 'Assicurazione dei depositi',
     zh: '存款保险',
     hi: 'जमा बीमा',
     es: 'Seguro de depósitos',
@@ -39,6 +40,7 @@ export const depositInsurance_Skill_Data = defineSkill({
       'Explain the purposes and statutory limits of deposit protection without assuming unlimited coverage.',
     frontend: {
       en: 'Learn what deposit protection covers and where its limits apply.',
+      it: 'Scopri che cosa copre la tutela dei depositi e quali sono i suoi limiti.',
       zh: '了解存款保障覆盖什么及其限额。',
       hi: 'जानें कि जमा सुरक्षा क्या कवर करती है और इसकी सीमाएँ कहाँ हैं।',
       es: 'Aprende qué cubre la protección de depósitos y cuáles son sus límites.',

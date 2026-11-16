@@ -5,6 +5,7 @@ export const distinguishAScientificTheoryFromAHypothesis_Skill_Data = defineSkil
   id: 'b0f65d78-4c09-4db4-a1ce-3d58b278436f',
   name: {
     en: 'Distinguish a scientific theory from a hypothesis',
+    it: "Distinguere una teoria scientifica da un'ipotesi",
     zh: '区分科学理论与假设',
     hi: 'वैज्ञानिक सिद्धांत और परिकल्पना में अंतर',
     es: 'Distinguir una teoría científica de una hipótesis',
@@ -39,6 +40,7 @@ export const distinguishAScientificTheoryFromAHypothesis_Skill_Data = defineSkil
       'Recognize a theory as a broad explanatory framework supported and refined through inquiry, not merely an untested guess.',
     frontend: {
       en: 'Distinguish a broad tested scientific theory from an individual hypothesis.',
+      it: 'Distingui una teoria scientifica ampia e sottoposta a verifiche da una singola ipotesi.',
       zh: '区分经过广泛检验的科学理论和单个假设。',
       hi: 'व्यापक रूप से परखे गए सिद्धांत और किसी एक परिकल्पना में अंतर करें।',
       es: 'Distingue una teoría científica amplia y contrastada de una hipótesis concreta.',

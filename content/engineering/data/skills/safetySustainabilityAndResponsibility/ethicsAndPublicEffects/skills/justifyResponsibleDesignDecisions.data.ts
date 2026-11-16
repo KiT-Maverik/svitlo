@@ -5,6 +5,7 @@ export const justifyResponsibleDesignDecisions_Skill_Data = defineSkill({
   id: '46cd86ad-d0f8-41a0-af4b-e3f912a708c6',
   name: {
     en: 'Justify responsible design decisions',
+    it: 'Giustificare decisioni progettuali responsabili',
     zh: '论证负责任的设计决策',
     hi: 'जिम्मेदार डिज़ाइन निर्णयों का औचित्य',
     es: 'Justificar decisiones de diseño responsables',
@@ -38,6 +39,7 @@ export const justifyResponsibleDesignDecisions_Skill_Data = defineSkill({
     methodological: 'Explain how safety, access, resource use and cost influenced a choice.',
     frontend: {
       en: 'Justify engineering choices using evidence, safety and social consequences.',
+      it: 'Giustifica le scelte ingegneristiche considerando prove, sicurezza e conseguenze sociali.',
       zh: '运用证据、安全要求和社会后果来论证工程选择。',
       hi: 'प्रमाण, सुरक्षा और सामाजिक परिणामों के आधार पर इंजीनियरिंग विकल्प स्पष्ट करें।',
       es: 'Justifica las elecciones de ingeniería mediante pruebas, seguridad y consecuencias sociales.',

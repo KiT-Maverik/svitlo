@@ -5,6 +5,7 @@ export const explainThePurposeOfIP_Skill_Data = defineSkill({
   id: 'f75e6d5a-0f53-4be0-9d45-8a7dd0ce7c7d',
   name: {
     en: 'Explain the Purpose of IP',
+    it: 'Spiegare lo scopo di IP',
     zh: '解释 IP 的用途',
     hi: 'IP का उद्देश्य समझाना',
     es: 'Explicar el propósito de IP',
@@ -39,6 +40,7 @@ export const explainThePurposeOfIP_Skill_Data = defineSkill({
       "IP provides network addressing and forwards packets between networks; an IP address is not the same as a website's domain name.",
     frontend: {
       en: 'Understand how IP addresses and forwards packets across networks.',
+      it: 'Comprendi come IP indirizza e inoltra i pacchetti attraverso le reti.',
       zh: '理解 IP 如何跨网络寻址和转发数据包。',
       hi: 'समझें कि IP नेटवर्कों के बीच पैकेटों को कैसे पता देता और आगे भेजता है।',
       es: 'Comprende cómo IP direcciona y reenvía paquetes entre redes.',

@@ -12,6 +12,7 @@ export const productiveResourcesAndTechnology_SkillGroup_Data = defineSkillGroup
   id: 'c4cf8e74-e7a6-4bdf-bf0f-3549f5971048',
   name: {
     en: 'Productive Resources and Technology',
+    it: 'Risorse produttive e tecnologia',
     zh: '生产资源与技术',
     hi: 'उत्पादक संसाधन और प्रौद्योगिकी',
     es: 'Recursos productivos y tecnología',
@@ -55,6 +56,7 @@ export const productiveResourcesAndTechnology_SkillGroup_Data = defineSkillGroup
       'Labor, capital, land, knowledge, and methods of production determine output possibilities and the substitution of productive inputs.',
     frontend: {
       en: 'Discover how resources and technology affect what firms can produce.',
+      it: 'Scopri come risorse e tecnologia influenzano ciò che le imprese possono produrre.',
       zh: '了解资源和技术如何影响企业的生产能力。',
       hi: 'जानें कि संसाधन और तकनीक कंपनियों की उत्पादन क्षमता कैसे बदलते हैं।',
       es: 'Descubre cómo los recursos y la tecnología afectan lo que las empresas pueden producir.',

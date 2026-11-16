@@ -5,6 +5,7 @@ export const evaluateAClaimAboutDiscrimination_Skill_Data = defineSkill({
   id: '28822b27-99ac-47f0-983f-0f52b114ab73',
   name: {
     en: 'Evaluate a claim about discrimination',
+    it: "Valutare un'affermazione sulla discriminazione",
     zh: '评估关于歧视的主张',
     hi: 'भेदभाव के दावे का मूल्यांकन',
     es: 'Evaluar una afirmación sobre discriminación',
@@ -39,6 +40,7 @@ export const evaluateAClaimAboutDiscrimination_Skill_Data = defineSkill({
       'Examine whether a distinction in treatment is relevantly justified or imposes an unfair burden on a protected or vulnerable group.',
     frontend: {
       en: 'Examine whether differences in treatment are justified or discriminatory.',
+      it: 'Esamina se le differenze di trattamento siano giustificate o discriminatorie.',
       zh: '检查不同的待遇是有正当理由，还是构成歧视。',
       hi: 'जाँचो कि अलग व्यवहार उचित है या भेदभावपूर्ण।',
       es: 'Examina si las diferencias de trato están justificadas o son discriminatorias.',

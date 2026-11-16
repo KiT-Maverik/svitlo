@@ -5,6 +5,7 @@ export const bufferSolutions_Skill_Data = defineSkill({
   id: 'ea95aa6c-8f49-4e47-818d-af13f251b613',
   name: {
     en: 'Buffer Solutions',
+    it: 'Soluzioni tampone',
     zh: '缓冲溶液',
     hi: 'बफर विलयन',
     es: 'Disoluciones amortiguadoras',
@@ -38,6 +39,7 @@ export const bufferSolutions_Skill_Data = defineSkill({
     methodological: 'Explain how paired acid–base species resist moderate pH changes.',
     frontend: {
       en: 'See how buffer mixtures help resist changes in pH.',
+      it: 'Scopri come le miscele tampone aiutano a contrastare le variazioni di pH.',
       zh: '了解缓冲体系如何抵抗 pH 的变化。',
       hi: 'जानें कि बफर मिश्रण पीएच में बदलाव का प्रतिरोध कैसे करते हैं।',
       es: 'Observa cómo las mezclas tampón resisten cambios del pH.',

@@ -5,6 +5,7 @@ export const distinguishRulesFromTrainedModels_Skill_Data = defineSkill({
   id: '014446e9-1ee1-4797-85ce-869b67208166',
   name: {
     en: 'Distinguish Rules from Trained Models',
+    it: 'Distinguere le regole dai modelli addestrati',
     zh: '区分规则与训练模型',
     hi: 'नियमों और प्रशिक्षित मॉडलों में अंतर करना',
     es: 'Distinguir reglas y modelos entrenados',
@@ -39,6 +40,7 @@ export const distinguishRulesFromTrainedModels_Skill_Data = defineSkill({
       'Distinguish systems governed by explicitly programmed rules from models whose parameters are adjusted through training on data. Both use algorithms and may be combined in one product; not every AI system necessarily relies on machine learning.',
     frontend: {
       en: 'Distinguish explicitly programmed decision rules from systems trained on data.',
+      it: 'Distingui le regole decisionali programmate esplicitamente dai sistemi addestrati sui dati.',
       zh: '区分明确编写的决策规则与通过数据训练得到的系统。',
       hi: 'स्पष्ट रूप से प्रोग्राम किए गए निर्णय नियमों और डेटा से प्रशिक्षित प्रणालियों में अंतर करें।',
       es: 'Distingue las reglas de decisión programadas explícitamente de los sistemas entrenados con datos.',

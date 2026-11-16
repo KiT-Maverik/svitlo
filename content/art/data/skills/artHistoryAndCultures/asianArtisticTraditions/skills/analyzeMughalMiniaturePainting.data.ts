@@ -5,6 +5,7 @@ export const analyzeMughalMiniaturePainting_Skill_Data = defineSkill({
   id: '93730a06-751a-4179-bb69-12038af7c2c2',
   name: {
     en: 'Analyze Mughal Miniature Painting',
+    it: 'Analizzare la miniatura moghul',
     zh: '分析莫卧儿细密画',
     hi: 'मुग़ल लघुचित्रकला का विश्लेषण करें',
     es: 'Analizar la pintura en miniatura mogola',
@@ -39,6 +40,7 @@ export const analyzeMughalMiniaturePainting_Skill_Data = defineSkill({
       'Interpret courtly narrative, detailed rendering and manuscript or album contexts in paintings produced in specific Mughal settings.',
     frontend: {
       en: 'Discover the detailed storytelling of Mughal court and manuscript painting.',
+      it: 'Scopri la ricchezza narrativa dei dipinti di corte e delle miniature nei manoscritti moghul.',
       zh: '了解莫卧儿宫廷绘画和手稿绘画如何通过细节讲述故事。',
       hi: 'जानें कि मुग़ल दरबारी और पांडुलिपि चित्रकला में सूक्ष्म विवरणों के माध्यम से कहानियाँ कैसे प्रस्तुत की जाती हैं।',
       es: 'Descubre cómo la pintura mogola de corte y de manuscritos narra historias mediante detalles minuciosos.',

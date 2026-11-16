@@ -5,6 +5,7 @@ export const explainTheImportanceOfBiodiversity_Skill_Data = defineSkill({
   id: '607263de-1373-4d00-93a1-30daec0fdbb8',
   name: {
     en: 'Explain the Importance of Biodiversity',
+    it: "Spiegare l'importanza della biodiversità",
     zh: '解释生物多样性的重要性',
     hi: 'जैव विविधता का महत्त्व समझाना',
     es: 'Explicar la importancia de la biodiversidad',
@@ -39,6 +40,7 @@ export const explainTheImportanceOfBiodiversity_Skill_Data = defineSkill({
       'Explain why a diversity of ecological roles and relationships can support ecosystem resilience in the face of change.',
     frontend: {
       en: 'Explain how biodiversity can help ecosystems respond to change.',
+      it: 'Spiega come la biodiversità può aiutare gli ecosistemi a reagire ai cambiamenti.',
       zh: '解释生物多样性如何帮助生态系统应对变化。',
       hi: 'समझाएँ कि जैव विविधता पारितंत्रों को परिवर्तन का सामना करने में कैसे मदद कर सकती है।',
       es: 'Explica cómo la biodiversidad puede ayudar a los ecosistemas a responder a los cambios.',

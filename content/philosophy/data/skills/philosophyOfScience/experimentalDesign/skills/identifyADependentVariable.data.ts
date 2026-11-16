@@ -5,6 +5,7 @@ export const identifyADependentVariable_Skill_Data = defineSkill({
   id: 'c45c2c6f-10f5-4b6c-a901-66b44c29302b',
   name: {
     en: 'Identify a dependent variable',
+    it: 'Individuare una variabile dipendente',
     zh: '识别因变量',
     hi: 'आश्रित चर पहचानें',
     es: 'Identificar una variable dependiente',
@@ -39,6 +40,7 @@ export const identifyADependentVariable_Skill_Data = defineSkill({
       'Recognize the measured response or outcome whose variation an investigation attempts to account for, distinguishing outcome measurement from factors that may influence it.',
     frontend: {
       en: 'Recognize what a study measures as its outcome.',
+      it: 'Riconosci ciò che uno studio misura come risultato.',
       zh: '认出研究中被测量的结果。',
       hi: 'पहचानें कि अध्ययन में परिणाम के रूप में क्या मापा जाता है।',
       es: 'Reconoce qué se mide como resultado en un estudio.',

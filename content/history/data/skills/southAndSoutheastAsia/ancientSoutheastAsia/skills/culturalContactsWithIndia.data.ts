@@ -5,6 +5,7 @@ export const culturalContactsWithIndia_Skill_Data = defineSkill({
   id: '25d82126-471d-4fd0-a252-beb017ac2ea2',
   name: {
     en: 'Cultural Contacts with India',
+    it: "Contatti culturali con l'India",
     zh: '与印度的文化联系',
     hi: 'भारत के साथ सांस्कृतिक संपर्क',
     es: 'Contactos culturales con la India',
@@ -39,6 +40,7 @@ export const culturalContactsWithIndia_Skill_Data = defineSkill({
       'Examine local adaptation of scripts, religions, and royal symbols rather than passive copying of Indian models.',
     frontend: {
       en: 'Discover how local societies adapted ideas brought from India.',
+      it: "Scopri come le società locali adattarono le idee provenienti dall'India.",
       zh: '了解当地社会如何吸收并调整来自印度的观念。',
       hi: 'जानें कि स्थानीय समाजों ने भारत से आए विचारों को कैसे अपनाकर बदला।',
       es: 'Descubre cómo las sociedades locales adaptaron ideas llegadas de la India.',

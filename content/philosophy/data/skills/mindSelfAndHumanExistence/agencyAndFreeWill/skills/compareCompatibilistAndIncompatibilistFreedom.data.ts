@@ -5,6 +5,7 @@ export const compareCompatibilistAndIncompatibilistFreedom_Skill_Data = defineSk
   id: '9390f530-f3e8-40fd-80e7-823113dfb80a',
   name: {
     en: 'Compare compatibilist and incompatibilist freedom',
+    it: 'Confrontare concezioni compatibiliste e incompatibiliste della libertà',
     zh: '比较相容论与不相容论的自由观',
     hi: 'स्वतंत्रता की संगततावादी और असंगततावादी अवधारणाओं की तुलना',
     es: 'Comparar libertad compatibilista e incompatibilista',
@@ -39,6 +40,7 @@ export const compareCompatibilistAndIncompatibilistFreedom_Skill_Data = defineSk
       'Examine whether meaningful free action is possible under determinism and how rival views define freedom.',
     frontend: {
       en: 'Examine whether freedom and responsibility can coexist with determinism.',
+      it: 'Esamina se libertà e responsabilità possano coesistere con il determinismo.',
       zh: '探讨自由和责任能否与决定论共存。',
       hi: 'जाँचें कि क्या स्वतंत्रता और जिम्मेदारी नियतिवाद के साथ रह सकती हैं।',
       es: 'Examina si libertad y responsabilidad pueden coexistir con el determinismo.',

@@ -5,6 +5,7 @@ export const evaluateHealthInformationSources_Skill_Data = defineSkill({
   id: '8123783b-9415-4210-b01b-3b1206a2844c',
   name: {
     en: 'Evaluate health information sources',
+    it: 'Valutare le fonti di informazioni sanitarie',
     zh: '评估健康信息来源',
     hi: 'स्वास्थ्य सूचना स्रोतों का मूल्यांकन',
     es: 'Evaluar fuentes de información sanitaria',
@@ -39,6 +40,7 @@ export const evaluateHealthInformationSources_Skill_Data = defineSkill({
       'Assess provenance, professional consensus, supporting evidence, conflicts of interest, and publication context rather than relying on popularity or testimonials.',
     frontend: {
       en: 'Check whether health advice comes from credible, evidence-based sources.',
+      it: 'Verifica se i consigli sanitari provengono da fonti credibili e basate su prove scientifiche.',
       zh: '检查健康建议是否来自可信且有证据支持的来源。',
       hi: 'जाँचें कि स्वास्थ्य सलाह विश्वसनीय और प्रमाण-आधारित स्रोत से आती है या नहीं।',
       es: 'Comprueba si los consejos de salud proceden de fuentes creíbles y basadas en pruebas.',

@@ -5,6 +5,7 @@ export const assessAnArgumentAboutTheCommonGood_Skill_Data = defineSkill({
   id: '79097846-ca0e-437e-ae12-c880e3dea2ce',
   name: {
     en: 'Assess an argument about the common good',
+    it: "Valutare un'argomentazione sul bene comune",
     zh: '评估关于共同利益的论证',
     hi: 'सार्वजनिक भलाई के तर्क का मूल्यांकन',
     es: 'Evaluar un argumento sobre el bien común',
@@ -39,6 +40,7 @@ export const assessAnArgumentAboutTheCommonGood_Skill_Data = defineSkill({
       'Examine who benefits, who bears costs, and whether a proposed collective interest disregards legitimate dissent.',
     frontend: {
       en: 'Examine whose interests a claim about the common good represents.',
+      it: "Esamina quali interessi siano rappresentati da un'affermazione sul bene comune.",
       zh: '检查一项共同利益的主张究竟代表谁的利益。',
       hi: 'जाँचो कि सबकी भलाई के नाम पर दिए गए दावे में किनके हित शामिल हैं।',
       es: 'Examina a quién representa una afirmación sobre el bien común.',

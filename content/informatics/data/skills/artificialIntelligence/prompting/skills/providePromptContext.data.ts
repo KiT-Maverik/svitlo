@@ -5,6 +5,7 @@ export const providePromptContext_Skill_Data = defineSkill({
   id: 'b4ec3a28-504f-4685-a3d5-13292dd6fd5c',
   name: {
     en: 'Provide Prompt Context',
+    it: 'Fornire contesto a un prompt',
     zh: '为提示词提供上下文',
     hi: 'प्रॉम्प्ट के लिए संदर्भ देना',
     es: 'Aportar contexto a un prompt',
@@ -39,6 +40,7 @@ export const providePromptContext_Skill_Data = defineSkill({
       'Supply relevant facts, intended audience or use, and conditions needed to interpret a request correctly. Context helps but should exclude unnecessary personal information.',
     frontend: {
       en: 'Give relevant background information that helps an AI interpret your request.',
+      it: "Fornisci informazioni di contesto pertinenti che aiutino l'IA a interpretare la richiesta.",
       zh: '提供能帮助人工智能正确理解请求的相关背景信息。',
       hi: 'एआई को अनुरोध समझाने में मदद करने वाली प्रासंगिक पृष्ठभूमि बताएँ।',
       es: 'Proporciona información relevante que ayude a una IA a interpretar tu solicitud.',

@@ -5,6 +5,7 @@ export const questionnaireResearch_Skill_Data = defineSkill({
   id: '7b9fff4f-2e71-45c8-834b-62079b1a77a3',
   name: {
     en: 'Questionnaire Research',
+    it: 'Ricerca mediante questionari',
     zh: '问卷研究',
     hi: 'प्रश्नावली अनुसंधान',
     es: 'Investigación mediante cuestionarios',
@@ -39,6 +40,7 @@ export const questionnaireResearch_Skill_Data = defineSkill({
       'Interpret structured self-reports while considering item wording, response scales, and socially desirable answers.',
     frontend: {
       en: 'Interpret questionnaires while accounting for wording and response bias.',
+      it: 'Interpreta i questionari tenendo conto della formulazione delle domande e delle distorsioni nelle risposte.',
       zh: '解读问卷结果时，要考虑题目措辞和回答偏差。',
       hi: 'प्रश्नों के शब्दों और उत्तर देने के पक्षपात को ध्यान में रखते हुए प्रश्नावलियों की व्याख्या करें।',
       es: 'Interpreta cuestionarios teniendo en cuenta su redacción y los sesgos de respuesta.',

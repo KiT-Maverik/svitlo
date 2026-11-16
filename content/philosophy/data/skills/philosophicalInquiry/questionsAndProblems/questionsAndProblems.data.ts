@@ -12,6 +12,7 @@ export const questionsAndProblems_SkillGroup_Data = defineSkillGroup({
   id: '278bb972-fc1c-4cd2-8c68-a4c4d0009fbc',
   name: {
     en: 'Questions and Problems',
+    it: 'Domande e problemi',
     zh: '问题与难题',
     hi: 'प्रश्न और समस्याएँ',
     es: 'Preguntas y problemas',
@@ -61,6 +62,7 @@ export const questionsAndProblems_SkillGroup_Data = defineSkillGroup({
       'A productive philosophical problem can be examined through competing answers, explicit concepts, and reasons. The object is to make a question discussable without assuming that every question has a single empirical test.',
     frontend: {
       en: 'Learn to turn puzzling ideas into questions that can be discussed thoughtfully.',
+      it: 'Impara a trasformare le idee che suscitano perplessità in domande da discutere con attenzione.',
       zh: '学会把令人困惑的想法变成值得认真讨论的问题。',
       hi: 'उलझाने वाले विचारों को सोच-समझकर चर्चा किए जा सकने वाले प्रश्नों में बदलना सीखें।',
       es: 'Aprende a convertir ideas desconcertantes en preguntas que puedan debatirse con reflexión.',

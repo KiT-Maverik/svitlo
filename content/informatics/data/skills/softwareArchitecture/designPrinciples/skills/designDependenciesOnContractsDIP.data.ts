@@ -5,6 +5,7 @@ export const designDependenciesOnContractsDIP_Skill_Data = defineSkill({
   id: '1c760870-e709-4df3-9670-5df2f10c009a',
   name: {
     en: 'Design Dependencies on Contracts (DIP)',
+    it: 'Progettare dipendenze basate su contratti (DIP)',
     zh: '基于契约设计依赖关系（DIP）',
     hi: 'अनुबंधों पर निर्भरता डिज़ाइन करना (DIP)',
     es: 'Diseñar dependencias sobre contratos (DIP)',
@@ -39,6 +40,7 @@ export const designDependenciesOnContractsDIP_Skill_Data = defineSkill({
       'Separate business rules from concrete data-access mechanisms through an interface admitting multiple implementations. High-level logic receives dependencies from outside instead of instantiating a fixed service internally.',
     frontend: {
       en: 'Separate business logic from concrete services by depending on contracts.',
+      it: 'Separa la logica di business dai servizi concreti basandoti su contratti.',
       zh: '通过依赖抽象契约，将业务逻辑与具体服务分离。',
       hi: 'ठोस सेवाओं के बजाय अनुबंधों पर निर्भर होकर व्यापार तर्क को अलग रखें।',
       es: 'Separa la lógica de negocio de servicios concretos mediante contratos.',

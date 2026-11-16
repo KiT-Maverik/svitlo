@@ -5,6 +5,7 @@ export const comparePhilosophicalConceptionsOfDivinity_Skill_Data = defineSkill(
   id: '57d12ed9-a48e-47e5-a452-20ac44b0f557',
   name: {
     en: 'Compare philosophical conceptions of divinity',
+    it: 'Confrontare concezioni filosofiche della divinità',
     zh: '比较关于神性的哲学观念',
     hi: 'दिव्यता की दार्शनिक अवधारणाओं की तुलना',
     es: 'Comparar concepciones filosóficas de la divinidad',
@@ -39,6 +40,7 @@ export const comparePhilosophicalConceptionsOfDivinity_Skill_Data = defineSkill(
       'Distinguish personal, impersonal, and plural conceptions of ultimate reality while recognizing significant diversity within traditions.',
     frontend: {
       en: 'Compare personal, impersonal and plural understandings of ultimate reality.',
+      it: 'Confronta interpretazioni personali, impersonali e plurali della realtà ultima.',
       zh: '比较对终极实在的个人性、非个人性和多元性理解。',
       hi: 'परम वास्तविकता की व्यक्तिगत, अवैयक्तिक और बहुल अवधारणाओं की तुलना करें।',
       es: 'Compara ideas personales, impersonales y plurales de la realidad última.',

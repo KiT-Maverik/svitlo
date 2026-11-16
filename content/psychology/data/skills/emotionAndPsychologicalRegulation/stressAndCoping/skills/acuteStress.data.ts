@@ -5,6 +5,7 @@ export const acuteStress_Skill_Data = defineSkill({
   id: 'e2cd6a21-8341-443c-a6e5-159835a83b96',
   name: {
     en: 'Acute Stress',
+    it: 'Stress acuto',
     zh: '急性压力',
     hi: 'तीव्र तनाव',
     es: 'Estrés agudo',
@@ -39,6 +40,7 @@ export const acuteStress_Skill_Data = defineSkill({
       'Explain a relatively short-lived response to demands or threat and how recovery may follow the event.',
     frontend: {
       en: 'Understand short-term psychological responses to immediate challenges.',
+      it: 'Comprendi le risposte psicologiche di breve durata alle difficoltà immediate.',
       zh: '理解面对眼前挑战时的短期心理反应。',
       hi: 'तत्काल चुनौतियों पर होने वाली अल्पकालिक मानसिक प्रतिक्रियाएँ समझें।',
       es: 'Comprende las respuestas psicológicas breves ante desafíos inmediatos.',

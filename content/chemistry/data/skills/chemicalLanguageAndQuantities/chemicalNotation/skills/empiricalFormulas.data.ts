@@ -5,6 +5,7 @@ export const empiricalFormulas_Skill_Data = defineSkill({
   id: '35af22a1-4559-4f20-9f0b-ceafc5e16ed1',
   name: {
     en: 'Empirical Formulas',
+    it: 'Formule minime',
     zh: '最简式',
     hi: 'मूलानुपाती सूत्र',
     es: 'Fórmulas empíricas',
@@ -39,6 +40,7 @@ export const empiricalFormulas_Skill_Data = defineSkill({
       'Derive or interpret the simplest whole-number elemental ratio without assuming that it specifies one molecule.',
     frontend: {
       en: 'Interpret the simplest whole-number ratio of elements in a substance.',
+      it: 'Interpreta il rapporto più semplice, espresso in numeri interi, tra gli elementi di una sostanza.',
       zh: '解读物质中各元素原子的最简整数比。',
       hi: 'किसी पदार्थ में तत्त्वों के सरलतम पूर्णांक अनुपात को समझें।',
       es: 'Interpreta la proporción de números enteros más sencilla entre elementos de una sustancia.',

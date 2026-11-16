@@ -5,6 +5,7 @@ export const distinguishIntentionsFromConsequences_Skill_Data = defineSkill({
   id: 'd3c4d43f-0956-40f6-883d-dbc660e4893d',
   name: {
     en: 'Distinguish intentions from consequences',
+    it: 'Distinguere intenzioni e conseguenze',
     zh: '区分意图与后果',
     hi: 'इरादों और परिणामों में अंतर करना',
     es: 'Distinguir intenciones de consecuencias',
@@ -39,6 +40,7 @@ export const distinguishIntentionsFromConsequences_Skill_Data = defineSkill({
       "Explain why an action's aim and its actual effects may be evaluated separately in moral reasoning.",
     frontend: {
       en: "Evaluate an action's intended purpose separately from its effects.",
+      it: "Valuta lo scopo intenzionale di un'azione separatamente dai suoi effetti.",
       zh: '分别评估一项行动的预期目的与实际影响。',
       hi: 'किसी कार्य के इच्छित उद्देश्य और उसके प्रभावों का अलग-अलग मूल्यांकन करें।',
       es: 'Evalúa por separado el propósito previsto de una acción y sus efectos.',

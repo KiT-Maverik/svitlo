@@ -12,6 +12,7 @@ export const trees_SkillGroup_Data = defineSkillGroup({
   id: '20b9ef09-900e-4575-9c59-85f73c800db1',
   name: {
     en: 'Trees',
+    it: 'Alberi',
     zh: '树',
     hi: 'वृक्ष',
     es: 'Árboles',
@@ -60,6 +61,7 @@ export const trees_SkillGroup_Data = defineSkillGroup({
       'Trees organize nodes and edges into acyclic hierarchies; binary search trees also impose an ordering rule on keys.',
     frontend: {
       en: 'Explore how trees organize information through parent–child connections.',
+      it: 'Esplora come gli alberi organizzano le informazioni attraverso collegamenti genitore-figlio.',
       zh: '探索树如何通过父子关系组织信息。',
       hi: 'जानें कि वृक्ष मूल और संतान के संबंधों से जानकारी कैसे व्यवस्थित करते हैं।',
       es: 'Explora cómo los árboles organizan información mediante relaciones padre-hijo.',

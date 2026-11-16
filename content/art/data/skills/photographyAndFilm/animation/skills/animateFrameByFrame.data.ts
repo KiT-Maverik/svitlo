@@ -5,6 +5,7 @@ export const animateFrameByFrame_Skill_Data = defineSkill({
   id: '301187f2-870f-44c8-8e92-2641384bfa2b',
   name: {
     en: 'Animate Frame-by-Frame',
+    it: 'Animare fotogramma per fotogramma',
 
     zh: '逐帧制作动画',
     hi: 'फ़्रेम-दर-फ़्रेम एनीमेशन बनाएं',
@@ -39,6 +40,7 @@ export const animateFrameByFrame_Skill_Data = defineSkill({
     methodological: 'Produce the appearance of motion through successive deliberately varied images.',
     frontend: {
       en: 'Make motion by creating a sequence of slightly different images.',
+      it: 'Crea il movimento realizzando una sequenza di immagini leggermente diverse.',
 
       zh: '通过制作一系列略有不同的图像来形成运动。',
       hi: 'थोड़े-थोड़े अलग चित्रों की शृंखला बनाकर गति उत्पन्न करें।',

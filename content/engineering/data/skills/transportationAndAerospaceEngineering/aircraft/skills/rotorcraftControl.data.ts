@@ -5,6 +5,7 @@ export const rotorcraftControl_Skill_Data = defineSkill({
   id: 'fa901ccc-c6e9-4a91-8a54-281e89f5f094',
   name: {
     en: 'Rotorcraft control',
+    it: 'Controllo degli aeromobili ad ala rotante',
     zh: '旋翼飞行器控制',
     hi: 'रोटर-विमान नियंत्रण',
     es: 'Control de aeronaves de rotor',
@@ -38,6 +39,7 @@ export const rotorcraftControl_Skill_Data = defineSkill({
     methodological: 'Trace changes in rotor thrust to hovering and maneuvering.',
     frontend: {
       en: 'Understand how rotorcraft control changes lift and direction.',
+      it: 'Comprendi come i comandi di un aeromobile ad ala rotante modificano portanza e direzione.',
       zh: '理解旋翼飞行器如何控制升力和方向。',
       hi: 'समझें कि रोटर-विमान उत्थापन बल और दिशा को कैसे बदलता है।',
       es: 'Comprende cómo el control de un rotor modifica la sustentación y la dirección.',

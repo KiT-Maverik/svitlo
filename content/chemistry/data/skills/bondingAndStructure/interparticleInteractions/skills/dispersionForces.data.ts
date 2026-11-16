@@ -5,6 +5,7 @@ export const dispersionForces_Skill_Data = defineSkill({
   id: 'e0f8f3e4-9194-44ff-8142-85a826287b59',
   name: {
     en: 'Dispersion Forces',
+    it: 'Forze di dispersione',
     zh: '色散力',
     hi: 'परिक्षेपण बल',
     es: 'Fuerzas de dispersión',
@@ -39,6 +40,7 @@ export const dispersionForces_Skill_Data = defineSkill({
       'Explain attractions arising from fluctuating electron distributions and their broad dependence on particle polarizability.',
     frontend: {
       en: 'Explore the weak attractions caused by constantly shifting electron distributions.',
+      it: 'Esplora le deboli attrazioni dovute ai continui spostamenti delle distribuzioni elettroniche.',
       zh: '探索电子分布不断变化而产生的微弱吸引力。',
       hi: 'इलेक्ट्रॉनों के लगातार बदलते वितरण से उत्पन्न कमजोर आकर्षण को समझें।',
       es: 'Explora las atracciones débiles causadas por distribuciones electrónicas que cambian continuamente.',

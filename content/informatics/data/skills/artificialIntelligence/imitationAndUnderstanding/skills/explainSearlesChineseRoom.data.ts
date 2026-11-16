@@ -5,6 +5,7 @@ export const explainSearlesChineseRoom_Skill_Data = defineSkill({
   id: '8a77d93a-7440-4aa2-81d4-6c52d65c38ed',
   name: {
     en: "Explain Searle's Chinese Room",
+    it: 'Spiegare la stanza cinese di Searle',
     zh: '解释塞尔的中文房间',
     hi: 'सर्ल के चीनी कमरे की व्याख्या करना',
     es: 'Explicar la habitación china de Searle',
@@ -39,6 +40,7 @@ export const explainSearlesChineseRoom_Skill_Data = defineSkill({
       "Analyze John Searle's thought experiment about rule-based symbol manipulation without necessarily understanding their meaning. Distinguish a debated philosophical argument from a proven fact about the internal states of all AI systems.",
     frontend: {
       en: 'Explore the Chinese Room thought experiment and the debate it raises.',
+      it: "Esplora l'esperimento mentale della stanza cinese e il dibattito che suscita.",
       zh: '探索中文房间思想实验及其引发的争论。',
       hi: 'चीनी कमरे के विचार प्रयोग और उससे उठी बहस को समझें।',
       es: 'Explora el experimento mental de la habitación china y el debate que plantea.',

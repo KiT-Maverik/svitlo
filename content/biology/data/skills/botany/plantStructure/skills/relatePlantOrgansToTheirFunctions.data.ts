@@ -5,6 +5,7 @@ export const relatePlantOrgansToTheirFunctions_Skill_Data = defineSkill({
   id: '1c78f970-d391-4dea-8f97-5f2e36d4a713',
   name: {
     en: 'Relate Plant Organs to Their Functions',
+    it: 'Collegare gli organi delle piante alle loro funzioni',
     zh: '将植物器官与其功能联系起来',
     hi: 'पौधों के अंगों को उनके कार्यों से जोड़ना',
     es: 'Relacionar los órganos vegetales con sus funciones',
@@ -39,6 +40,7 @@ export const relatePlantOrgansToTheirFunctions_Skill_Data = defineSkill({
       'Explain which structures enable water absorption, support, substance transport, photosynthesis, and seed production.',
     frontend: {
       en: 'Connect each plant organ with the functions it performs.',
+      it: 'Collega ogni organo della pianta alle funzioni che svolge.',
       zh: '把每种植物器官与其承担的功能联系起来。',
       hi: 'पौधे के प्रत्येक अंग को उसके कार्य से जोड़ें।',
       es: 'Relaciona cada órgano de la planta con las funciones que cumple.',

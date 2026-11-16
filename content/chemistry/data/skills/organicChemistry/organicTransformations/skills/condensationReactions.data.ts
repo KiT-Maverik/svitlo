@@ -5,6 +5,7 @@ export const condensationReactions_Skill_Data = defineSkill({
   id: '289f94a4-2cbc-4b4d-9201-35a2b6b5fad1',
   name: {
     en: 'Condensation Reactions',
+    it: 'Reazioni di condensazione',
     zh: '缩合反应',
     hi: 'संघनन अभिक्रियाएँ',
     es: 'Reacciones de condensación',
@@ -38,6 +39,7 @@ export const condensationReactions_Skill_Data = defineSkill({
     methodological: 'Explain bond formation between organic partners accompanied by removal of a small molecule.',
     frontend: {
       en: 'Explore how two organic partners join while releasing a small molecule.',
+      it: 'Esplora come due reagenti organici si uniscono liberando una piccola molecola.',
       zh: '探索两个有机反应物如何结合并释放小分子。',
       hi: 'जानें कि दो कार्बनिक अभिकारक छोटे अणु को निकालते हुए कैसे जुड़ते हैं।',
       es: 'Explora cómo dos reactivos orgánicos se unen liberando una molécula pequeña.',

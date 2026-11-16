@@ -5,6 +5,7 @@ export const growingPattern_Skill_Data = defineSkill({
   id: 'ce88fbc1-1607-42c3-8d54-e87e9d368bf6',
   name: {
     en: 'Finding the rule of a growing pattern',
+    it: 'Individuare la regola di una sequenza crescente',
     qm: 'Artıp barğan sayı nümünesiniñ qaidesini tapmaq',
     lt: 'Didėjančio dėsningumo taisyklės radimas',
     lv: 'Augošas likumsakarības noteikuma atrašana',
@@ -39,6 +40,7 @@ export const growingPattern_Skill_Data = defineSkill({
       'From successive values such as 2, 6, 10, one may infer a growth rule of adding four, but the proposed rule must be tested against all supplied terms before treating it as established.',
     frontend: {
       en: 'You can find a rule that describes how a number sequence grows and check that it fits all the given numbers.',
+      it: 'Puoi trovare una regola che descrive come cresce una sequenza numerica e verificare che valga per tutti i numeri dati.',
       qm: 'Sayı silsilesiniñ nasıl artqanını añlatqan qaideni tapıp, onıñ bütün berilgen sayılarğa uyğun kelgenini teşkere ete bilesiñ.',
       zh: '你能发现数列增长的规律，并检查它是否符合所有给出的数。',
       hi: 'तुम बढ़ते संख्या-क्रम का नियम खोज सकते हो और जाँच सकते हो कि वह सभी दिए गए पदों पर लागू होता है।',

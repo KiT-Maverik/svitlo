@@ -5,6 +5,7 @@ export const printedCircuitBoardInterconnects_Skill_Data = defineSkill({
   id: '7f89e18e-57f5-4c64-9880-866bba1784e4',
   name: {
     en: 'Printed circuit board interconnects',
+    it: 'Interconnessioni dei circuiti stampati',
     zh: '印制电路板连接',
     hi: 'प्रिंटेड परिपथ पट्ट के संयोजन',
     es: 'Conexiones de placas de circuito impreso',
@@ -39,6 +40,7 @@ export const printedCircuitBoardInterconnects_Skill_Data = defineSkill({
       'Trace physical conductive pathways and connector functions that distribute signals and electrical power between mounted components.',
     frontend: {
       en: 'Trace electrical connections through a printed circuit board.',
+      it: 'Segui i collegamenti elettrici attraverso un circuito stampato.',
       zh: '沿着印制电路板上的导电线路追踪电气连接。',
       hi: 'जानें कि परिपथ पट्ट पर चालक मार्ग इलेक्ट्रॉनिक घटकों को कैसे जोड़ते हैं।',
       es: 'Descubre cómo las pistas de una placa conectan componentes electrónicos.',

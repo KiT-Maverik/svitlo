@@ -5,6 +5,7 @@ export const identify2dShapes_Skill_Data = defineSkill({
   id: '54f96aba-7db2-48bb-97ae-5ba2f3436095',
   name: {
     en: 'Identifying basic plane figures',
+    it: 'Riconoscere le principali figure piane',
     qm: 'Esas tüz şekillerni tanımaq',
     lt: 'Pagrindinių plokščiųjų figūrų atpažinimas',
     lv: 'Pamata plaknes figūru atpazīšana',
@@ -39,6 +40,7 @@ export const identify2dShapes_Skill_Data = defineSkill({
       "A figure's geometric class depends on its properties, not its size, color, or orientation in a drawing. A rotated square remains a square and is a special case of a rectangle.",
     frontend: {
       en: 'Recognize flat shapes even when turned, resized, or recolored. A square is also a kind of rectangle.',
+      it: 'Riconosci le figure piane anche quando vengono ruotate, ridimensionate o colorate diversamente. Un quadrato è anche un tipo di rettangolo.',
       qm: 'Tüz şekiller burulğan, ölçüsi ya da tüsü deñişken olsa bile olarnı tanıy bilesiñ. Kvadrat da bir dik dörtkenardır.',
       zh: '无论平面图形旋转、放大、缩小或变色，都能认出它；正方形也是一种长方形。',
       hi: 'घुमाने, आकार या रंग बदलने पर भी सपाट आकृतियाँ पहचानें। वर्ग भी एक प्रकार का आयत है।',

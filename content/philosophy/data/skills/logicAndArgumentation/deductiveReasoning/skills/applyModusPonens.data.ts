@@ -5,6 +5,7 @@ export const applyModusPonens_Skill_Data = defineSkill({
   id: 'ad886630-f7ee-456d-a8a8-db01f9caaa80',
   name: {
     en: 'Apply modus ponens',
+    it: 'Applicare il modus ponens',
     zh: '运用肯定前件式',
     hi: 'मोडस पोनेन्स लागू करना',
     es: 'Aplicar modus ponens',
@@ -39,6 +40,7 @@ export const applyModusPonens_Skill_Data = defineSkill({
       'Infer a consequent from a conditional and its antecedent without treating the inverse conditional as equivalent.',
     frontend: {
       en: 'Apply the rule that if A implies B and A holds, then B follows.',
+      it: 'Applica la regola secondo cui, se A implica B e A è vero, allora segue B.',
       zh: '运用规则：如果 A 蕴含 B，并且 A 为真，那么 B 也成立。',
       hi: 'यह नियम लागू करें: यदि A से B निकलता है और A सत्य है, तो B भी सत्य होगा।',
       es: 'Aplica la regla: si A implica B y A es verdadero, entonces B se sigue.',

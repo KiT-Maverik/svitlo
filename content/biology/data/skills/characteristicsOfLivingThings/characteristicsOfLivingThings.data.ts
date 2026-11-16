@@ -7,6 +7,7 @@ export const characteristicsOfLivingThings_SkillDomain_Data = defineSkillDomain(
   id: '73cc6edd-aa56-4999-966f-0c647868cabc',
   title: {
     en: 'Characteristics of Living Things',
+    it: 'Caratteristiche degli esseri viventi',
     zh: '生命的特征',
     hi: 'जीवित वस्तुओं की विशेषताएँ',
     es: 'Características de los seres vivos',
@@ -48,6 +49,7 @@ export const characteristicsOfLivingThings_SkillDomain_Data = defineSkillDomain(
       'Life processes, biological origin, and the distinction between living organisms, dead remains, and things that have never been alive. This distinction requires consideration of actual life processes rather than appearance or movement alone.',
     frontend: {
       en: 'Discover what makes something alive, what was once alive, and what has never been living.',
+      it: 'Scopri che cosa distingue ciò che è vivo, ciò che era vivo e ciò che non è mai stato vivente.',
       zh: '探索什么是活的、什么曾经有生命，以及什么从未有过生命。',
       hi: 'जानें कि कोई चीज़ जीवित क्यों है, कौन-सी कभी जीवित थी और कौन-सी कभी जीवित नहीं रही।',
       es: 'Descubre qué hace que algo esté vivo, qué estuvo vivo alguna vez y qué nunca ha tenido vida.',

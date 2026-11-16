@@ -11,6 +11,7 @@ export const lightAndShadows_SkillGroup_Data = defineSkillGroup({
   id: '70f653d9-a3de-4ebc-84e4-d7aac98b02f6',
   name: {
     en: 'Light and Shadows',
+    it: 'Luce e ombre',
     zh: '光与影',
     hi: 'प्रकाश और छायाएँ',
     es: 'Luz y sombras',
@@ -53,6 +54,7 @@ export const lightAndShadows_SkillGroup_Data = defineSkillGroup({
       "Obstacles and the source's position determine a shadow's appearance, direction, and size; a model enables qualitative predictions.",
     frontend: {
       en: 'Explore how the arrangement of objects and light sources creates shadows.',
+      it: 'Esplora come la disposizione di oggetti e sorgenti luminose crea le ombre.',
       zh: '探索物体与光源的相对位置如何产生阴影。',
       hi: 'जानें कि वस्तुओं और प्रकाश स्रोतों की व्यवस्था से छायाएँ कैसे बनती हैं।',
       es: 'Explora cómo la disposición de objetos y fuentes de luz produce sombras.',

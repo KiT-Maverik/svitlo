@@ -5,6 +5,7 @@ export const useSpatialLevels_Skill_Data = defineSkill({
   id: '0a2860f9-c61b-4d59-9d3d-53781b251018',
   name: {
     en: 'Use Spatial Levels',
+    it: 'Utilizzare i livelli spaziali',
     zh: '运用空间层次',
     hi: 'स्थानिक स्तरों का उपयोग करें',
     es: 'Usar niveles espaciales',
@@ -38,6 +39,7 @@ export const useSpatialLevels_Skill_Data = defineSkill({
     methodological: 'Move deliberately among high, middle and low positions and spatial pathways.',
     frontend: {
       en: 'Move through high, middle and low positions with intention.',
+      it: 'Muoviti intenzionalmente tra posizioni alte, medie e basse.',
       zh: '有意识地在高、中、低位置之间移动。',
       hi: 'ऊँचे, मध्यम और निचले स्तरों पर सोच-समझकर गति करें।',
       es: 'Muévete intencionadamente por niveles alto, medio y bajo.',

@@ -13,6 +13,7 @@ export const appliedEthics_SkillGroup_Data = defineSkillGroup({
   id: 'a60ee55b-42f1-43f9-a976-4c7cd1809b23',
   name: {
     en: 'Applied Ethics',
+    it: 'Etica applicata',
     zh: '应用伦理学',
     hi: 'अनुप्रयुक्त नीतिशास्त्र',
     es: 'Ética aplicada',
@@ -63,6 +64,7 @@ export const appliedEthics_SkillGroup_Data = defineSkillGroup({
       'Ethical principles face distinctive challenges when rights, vulnerable people, nonhuman life, and emerging technologies are involved.',
     frontend: {
       en: 'Explore ethical questions about consent, privacy, animals, nature and technology.',
+      it: 'Esplora le questioni etiche legate al consenso, alla riservatezza, agli animali, alla natura e alla tecnologia.',
       zh: '探索有关同意、隐私、动物、自然和技术的伦理问题。',
       hi: 'सहमति, निजता, जानवरों, प्रकृति और प्रौद्योगिकी से जुड़े नैतिक प्रश्नों पर विचार करें।',
       es: 'Explora cuestiones éticas sobre consentimiento, privacidad, animales, naturaleza y tecnología.',

@@ -5,6 +5,7 @@ export const countBy2_Skill_Data = defineSkill({
   id: 'f227f79b-0196-46b8-a227-8b7991729cc5',
   name: {
     en: 'Counting in steps of 2',
+    it: 'Contare a passi di 2',
     qm: 'Ekişerlep saymaq',
     lt: 'Skaičiavimas po du',
     lv: 'Skaitīšana ar soli 2',
@@ -39,6 +40,7 @@ export const countBy2_Skill_Data = defineSkill({
       'Counting by twos repeatedly adds two, corresponding to equal pairs of objects. The number of pairs and the number of individual elements must be distinguished.',
     frontend: {
       en: 'Add two at each step to count in pairs. Distinguish the number of pairs from the total number of objects.',
+      it: 'Aggiungi due a ogni passo per contare a coppie. Distingui il numero delle coppie dal numero totale degli oggetti.',
       qm: 'Er adımda eki qoşaraq çiftlernen say. Çiftler sayısını eşyalarnıñ umumiy sayısından ayır.',
       zh: '每次加2来按对计数。注意有多少对和一共有多少个物品并不相同。',
       hi: 'हर कदम पर दो जोड़कर जोड़ियों में गिनें। जोड़ियों की संख्या और कुल वस्तुओं की संख्या में अंतर समझें।',

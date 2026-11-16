@@ -5,6 +5,7 @@ export const researchConfidentiality_Skill_Data = defineSkill({
   id: 'f75a05f6-3a17-4b3b-aef5-dbb34fab4669',
   name: {
     en: 'Research Confidentiality',
+    it: 'Riservatezza nella ricerca',
     zh: '研究保密',
     hi: 'अनुसंधान में गोपनीयता',
     es: 'Confidencialidad en investigación',
@@ -39,6 +40,7 @@ export const researchConfidentiality_Skill_Data = defineSkill({
       'Explain how identifiable participant information may be protected through access restrictions and careful reporting.',
     frontend: {
       en: 'Understand how researchers protect identifiable participant data.',
+      it: 'Comprendi come i ricercatori proteggano i dati identificativi dei partecipanti.',
       zh: '了解研究人员如何保护可识别身份的参与者数据。',
       hi: 'समझें कि शोधकर्ता पहचान योग्य प्रतिभागी डेटा की रक्षा कैसे करते हैं।',
       es: 'Comprende cómo se protegen los datos que permiten identificar a los participantes.',

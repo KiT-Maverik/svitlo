@@ -5,6 +5,7 @@ export const operationalDefinitions_Skill_Data = defineSkill({
   id: '345f5e02-4971-4387-bef6-ffb1fee235a2',
   name: {
     en: 'Operational Definitions',
+    it: 'Definizioni operative',
     zh: '操作性定义',
     hi: 'प्रचालनात्मक परिभाषाएँ',
     es: 'Definiciones operacionales',
@@ -39,6 +40,7 @@ export const operationalDefinitions_Skill_Data = defineSkill({
       'Translate an abstract concept such as stress or attention into an observable indicator and identify what it leaves out.',
     frontend: {
       en: 'Translate an abstract psychological idea into observable measurements.',
+      it: "Traduci un'idea psicologica astratta in misurazioni osservabili.",
       zh: '将抽象的心理学概念转化为可观察的测量指标。',
       hi: 'एक अमूर्त मनोवैज्ञानिक विचार को प्रत्यक्ष रूप से देखे जा सकने वाले माप में बदलें।',
       es: 'Convierte una idea psicológica abstracta en medidas observables.',

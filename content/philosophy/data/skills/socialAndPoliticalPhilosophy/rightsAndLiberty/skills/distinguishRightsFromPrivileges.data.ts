@@ -5,6 +5,7 @@ export const distinguishRightsFromPrivileges_Skill_Data = defineSkill({
   id: 'b55cdb38-8ce5-4321-866f-313666c39108',
   name: {
     en: 'Distinguish rights from privileges',
+    it: 'Distinguere diritti e privilegi',
     zh: '区分权利与特权',
     hi: 'अधिकार और विशेषाधिकार में भेद',
     es: 'Distinguir derechos y privilegios',
@@ -39,6 +40,7 @@ export const distinguishRightsFromPrivileges_Skill_Data = defineSkill({
       'Identify whether a claim concerns an entitlement owed to a person or an advantage conditional on discretionary permission.',
     frontend: {
       en: 'Distinguish a claim owed to a person from a privilege granted conditionally.',
+      it: 'Distingui ciò che è dovuto a una persona come diritto da un privilegio concesso a determinate condizioni.',
       zh: '区分他人应保障的正当权利与有条件授予的特殊待遇。',
       hi: 'किसी व्यक्ति के उचित दावे को शर्तों पर मिले विशेष लाभ से अलग करो।',
       es: 'Distingue un derecho debido a una persona de un privilegio otorgado con condiciones.',

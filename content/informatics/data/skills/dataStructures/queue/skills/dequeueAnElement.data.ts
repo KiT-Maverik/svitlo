@@ -5,6 +5,7 @@ export const dequeueAnElement_Skill_Data = defineSkill({
   id: '7401fef0-db89-4569-b357-23b3276b0fab',
   name: {
     en: 'Dequeue an Element',
+    it: 'Estrarre un elemento da una coda',
     zh: '从队列中移除元素',
     hi: 'कतार से एक तत्व निकालना',
     es: 'Retirar un elemento de la cola',
@@ -39,6 +40,7 @@ export const dequeueAnElement_Skill_Data = defineSkill({
       'Remove the front element of a FIFO structure, preserving the order of the rest and handling an empty queue.',
     frontend: {
       en: 'Remove the front item from a queue without disturbing the others.',
+      it: 'Rimuovi il primo elemento della coda senza alterare gli altri.',
       zh: '从队列开头移除元素，而不打乱其他元素的顺序。',
       hi: 'बाकी तत्वों का क्रम बदले बिना कतार के सामने वाले तत्व को निकालें।',
       es: 'Retira el primer elemento de una cola sin alterar el orden de los demás.',

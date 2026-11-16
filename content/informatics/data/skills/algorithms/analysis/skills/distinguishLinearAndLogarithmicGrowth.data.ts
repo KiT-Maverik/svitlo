@@ -5,6 +5,7 @@ export const distinguishLinearAndLogarithmicGrowth_Skill_Data = defineSkill({
   id: '03958bf9-384b-4a11-87ba-b87506e0b9d6',
   name: {
     en: 'Distinguish Linear and Logarithmic Growth',
+    it: 'Distinguere la crescita lineare da quella logaritmica',
     zh: '区分线性增长与对数增长',
     hi: 'रैखिक और लघुगणकीय वृद्धि में अंतर करना',
     es: 'Distinguir crecimiento lineal y logarítmico',
@@ -39,6 +40,7 @@ export const distinguishLinearAndLogarithmicGrowth_Skill_Data = defineSkill({
       'Explain the difference between operations that grow approximately in proportion to input size and those tied to repeated halving; formal `O(n)` and `O(log n)` notation can deepen the analysis.',
     frontend: {
       en: 'Compare growth proportional to input size with growth from repeated halving.',
+      it: 'Confronta una crescita proporzionale alla dimensione dei dati con quella dovuta al loro dimezzamento ripetuto.',
       zh: '比较随输入规模成比例增长的操作次数与反复减半带来的增长。',
       hi: 'इनपुट के आकार के अनुपात में बढ़ने वाले कार्यों की तुलना बार-बार आधा करने वाली विधि से करें।',
       es: 'Compara un crecimiento proporcional al tamaño de entrada con el obtenido al dividir repetidamente por dos.',

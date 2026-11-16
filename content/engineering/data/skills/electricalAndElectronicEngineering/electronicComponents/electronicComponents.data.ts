@@ -12,6 +12,7 @@ export const electronicComponents_SkillGroup_Data = defineSkillGroup({
   id: '94d2e99f-bf2a-4b89-b5ed-f672c294a305',
   name: {
     en: 'Electronic Components',
+    it: 'Componenti elettronici',
     zh: '电子元件',
     hi: 'इलेक्ट्रॉनिक घटक',
     es: 'Componentes electrónicos',
@@ -55,6 +56,7 @@ export const electronicComponents_SkillGroup_Data = defineSkillGroup({
       'Components can limit, store, steer or switch electrical signals; their appropriate use depends on ratings and surrounding circuit context.',
     frontend: {
       en: 'Learn the functions of common electronic components.',
+      it: 'Impara a conoscere le funzioni dei componenti elettronici più comuni.',
       zh: '学习常见电子元件的功能。',
       hi: 'सामान्य इलेक्ट्रॉनिक घटकों के कार्य जानें।',
       es: 'Conoce las funciones de los componentes electrónicos habituales.',

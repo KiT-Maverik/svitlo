@@ -12,6 +12,7 @@ export const atomicStructure_SkillGroup_Data = defineSkillGroup({
   id: '1af2e5a2-0b7d-40b2-a822-b0aee201a4c5',
   name: {
     en: 'Atomic Structure',
+    it: 'Struttura atomica',
     zh: '原子结构',
     hi: 'परमाणु संरचना',
     es: 'Estructura atómica',
@@ -55,6 +56,7 @@ export const atomicStructure_SkillGroup_Data = defineSkillGroup({
       'Chemical element identity is determined by proton number; other atomic characteristics vary independently.',
     frontend: {
       en: "Learn what determines an element's identity and how atoms of the same element can differ.",
+      it: "Scopri che cosa determina l'identità di un elemento e come possono differire gli atomi dello stesso elemento.",
       zh: '了解什么决定元素的身份，以及同一种元素的原子为何也会存在差异。',
       hi: 'जानें कि किसी तत्व की पहचान किससे तय होती है और उसी तत्व के परमाणु कैसे अलग हो सकते हैं।',
       es: 'Aprende qué determina la identidad de un elemento y cómo pueden diferir sus átomos.',

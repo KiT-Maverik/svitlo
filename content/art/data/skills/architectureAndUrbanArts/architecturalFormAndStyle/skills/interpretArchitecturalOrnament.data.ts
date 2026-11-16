@@ -5,6 +5,7 @@ export const interpretArchitecturalOrnament_Skill_Data = defineSkill({
   id: '6dda5530-d26b-416e-8a15-f5c391e4b1c0',
   name: {
     en: 'Interpret Architectural Ornament',
+    it: 'Interpretare gli ornamenti architettonici',
     zh: '解读建筑装饰',
     hi: 'वास्तुशिल्प अलंकरण की व्याख्या करें',
     es: 'Interpretar el ornamento arquitectónico',
@@ -38,6 +39,7 @@ export const interpretArchitecturalOrnament_Skill_Data = defineSkill({
     methodological: 'Relate decorative features to meaning, period or cultural context.',
     frontend: {
       en: 'Explore what architectural decoration communicates in its historical setting.',
+      it: 'Esplora cosa comunicano le decorazioni architettoniche nel loro contesto storico.',
       zh: '探索建筑装饰如何体现其历史时期及文化含义。',
       hi: 'जानें कि वास्तुशिल्प अलंकरण किसी इमारत के ऐतिहासिक काल और सांस्कृतिक संदर्भ से जुड़ा अर्थ कैसे व्यक्त करता है।',
       es: 'Explora qué significado transmiten los ornamentos arquitectónicos según su época y su contexto cultural.',

@@ -5,6 +5,7 @@ export const evacuateSafely_Skill_Data = defineSkill({
   id: '93f5a8de-ef26-4622-a54d-4566aad48fa0',
   name: {
     en: 'Evacuate safely',
+    it: 'Evacuare in sicurezza',
     zh: '安全疏散',
     hi: 'सुरक्षित निकासी करना',
     es: 'Evacuar con seguridad',
@@ -39,6 +40,7 @@ export const evacuateSafely_Skill_Data = defineSkill({
       'Use an available route, account for smoke or structural danger, and assist others without entering a hazardous area.',
     frontend: {
       en: 'Recognize safer evacuation routes without entering hazardous areas.',
+      it: 'Riconosci i percorsi di evacuazione più sicuri senza entrare in aree pericolose.',
       zh: '识别安全的疏散路线，避免进入危险区域。',
       hi: 'खतरनाक क्षेत्रों में प्रवेश किए बिना सुरक्षित निकासी मार्ग पहचानें।',
       es: 'Identifica rutas de evacuación seguras sin entrar en zonas peligrosas.',

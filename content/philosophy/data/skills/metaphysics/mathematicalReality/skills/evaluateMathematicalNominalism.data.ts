@@ -5,6 +5,7 @@ export const evaluateMathematicalNominalism_Skill_Data = defineSkill({
   id: '7be1206a-331d-4fca-b0a5-f41c3632969a',
   name: {
     en: 'Evaluate mathematical nominalism',
+    it: 'Valutare il nominalismo matematico',
     zh: '评估数学唯名论',
     hi: 'गणितीय नामवाद का मूल्यांकन',
     es: 'Evaluar el nominalismo matemático',
@@ -39,6 +40,7 @@ export const evaluateMathematicalNominalism_Skill_Data = defineSkill({
       'Examine strategies for understanding mathematical language and successful reasoning without committing to independently existing abstract mathematical objects.',
     frontend: {
       en: 'Evaluate how mathematical reasoning might work without independently existing abstract objects.',
+      it: 'Valuta come possa funzionare il ragionamento matematico senza oggetti astratti che esistano autonomamente.',
       zh: '思考没有独立存在的抽象对象时，数学推理如何成立。',
       hi: 'विचार करें कि स्वतंत्र अमूर्त वस्तुओं के बिना गणितीय तर्क कैसे काम कर सकता है।',
       es: 'Evalúa cómo puede funcionar el razonamiento matemático sin objetos abstractos independientes.',

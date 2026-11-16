@@ -5,6 +5,7 @@ export const respondToSignsOfInfectiousIllness_Skill_Data = defineSkill({
   id: '8ad359d7-03e8-4d3a-9c14-e85d1e0c678a',
   name: {
     en: 'Respond to signs of infectious illness',
+    it: 'Reagire ai segni di una malattia infettiva',
     zh: '应对传染病症状',
     hi: 'संक्रामक बीमारी के संकेतों पर कार्रवाई',
     es: 'Responder a signos de enfermedad infecciosa',
@@ -39,6 +40,7 @@ export const respondToSignsOfInfectiousIllness_Skill_Data = defineSkill({
       'Decide when to rest, reduce exposure to others, monitor worsening symptoms, and seek professional advice rather than relying solely on home care.',
     frontend: {
       en: 'Recognize when illness requires reducing contact or seeking medical advice.',
+      it: 'Riconosci quando una malattia richiede di ridurre i contatti o chiedere un parere medico.',
       zh: '识别生病时何时应减少接触他人或寻求医疗建议。',
       hi: 'पहचानें कि बीमारी में कब दूसरों से दूरी बनानी या डॉक्टर से सलाह लेनी चाहिए।',
       es: 'Reconoce cuándo conviene reducir contactos o buscar consejo médico al enfermar.',

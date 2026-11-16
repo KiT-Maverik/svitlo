@@ -11,6 +11,7 @@ export const healthInformationAndMedicines_SkillGroup_Data = defineSkillGroup({
   id: '259ac15d-1522-4e57-bd61-14d0b518aae7',
   name: {
     en: 'Health Information and Medicines',
+    it: 'Informazioni sanitarie e medicinali',
     zh: '健康信息与药物',
     hi: 'स्वास्थ्य जानकारी और दवाएँ',
     es: 'Información sanitaria y medicamentos',
@@ -53,6 +54,7 @@ export const healthInformationAndMedicines_SkillGroup_Data = defineSkillGroup({
       'Claims about prevention and treatment should be evaluated against trustworthy evidence, and medicines require label-aware, safe handling; clinical observations and basic measurements are classified in Health and Risk.',
     frontend: {
       en: 'Learn to evaluate health advice and handle medicines safely.',
+      it: 'Impara a valutare i consigli sulla salute e a utilizzare i medicinali in sicurezza.',
       zh: '学会评估健康建议并安全使用药物。',
       hi: 'स्वास्थ्य सलाह का मूल्यांकन और दवाओं का सुरक्षित उपयोग करना सीखें।',
       es: 'Aprende a evaluar consejos de salud y manejar medicamentos de forma segura.',

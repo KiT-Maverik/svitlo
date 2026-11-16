@@ -5,6 +5,7 @@ export const wealthDistribution_Skill_Data = defineSkill({
   id: '0bfab2ab-f7e4-4644-bb85-03a2fc9a018f',
   name: {
     en: 'Розподіл багатства',
+    it: 'Distribuzione della ricchezza',
     zh: '财富分配',
     hi: 'संपत्ति का वितरण',
     es: 'Distribución de la riqueza',
@@ -39,6 +40,7 @@ export const wealthDistribution_Skill_Data = defineSkill({
       'Analyze inequality in household net assets—property and financial claims less debt—separately from current income flows.',
     frontend: {
       en: 'Distinguish inequality in wealth from inequality in income.',
+      it: 'Distingui la disuguaglianza della ricchezza da quella del reddito.',
       zh: '区分财富不平等与收入不平等。',
       hi: 'संपत्ति की असमानता और आय की असमानता में अंतर समझें।',
       es: 'Distingue la desigualdad de riqueza de la desigualdad de ingresos.',

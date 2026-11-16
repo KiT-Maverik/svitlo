@@ -5,6 +5,7 @@ export const lunarLibration_Skill_Data = defineSkill({
   id: '58878ae0-7163-44d4-826e-a1b03b47ec6a',
   name: {
     en: 'Lunar Libration',
+    it: 'Librazione lunare',
     zh: '月球天平动',
     hi: 'चंद्रमा का लाइब्रेशन',
     es: 'Libración lunar',
@@ -39,6 +40,7 @@ export const lunarLibration_Skill_Data = defineSkill({
       'Explain why changing perspective exposes slightly different portions of the lunar surface over time.',
     frontend: {
       en: 'Discover why slightly different parts of the Moon become visible over time.',
+      it: 'Scopri perché, con il passare del tempo, diventano visibili porzioni leggermente diverse della Luna.',
       zh: '了解为什么随着时间推移，我们能看到月球表面略有不同的区域。',
       hi: 'जानें कि समय के साथ चंद्रमा की सतह के थोड़े अलग हिस्से क्यों दिखाई देने लगते हैं।',
       es: 'Descubre por qué con el tiempo podemos ver partes ligeramente distintas de la superficie lunar.',

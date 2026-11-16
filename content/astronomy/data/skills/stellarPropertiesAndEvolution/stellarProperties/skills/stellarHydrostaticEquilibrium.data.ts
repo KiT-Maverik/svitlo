@@ -5,6 +5,7 @@ export const stellarHydrostaticEquilibrium_Skill_Data = defineSkill({
   id: 'ba40b6b2-bf44-47ca-953b-45514df23ad3',
   name: {
     en: 'Stellar Hydrostatic Equilibrium',
+    it: 'Equilibrio idrostatico stellare',
     zh: '恒星流体静力平衡',
     hi: 'तारकीय द्रवस्थैतिक संतुलन',
     es: 'Equilibrio hidrostático estelar',
@@ -39,6 +40,7 @@ export const stellarHydrostaticEquilibrium_Skill_Data = defineSkill({
       'Explain how the balance of inward gravitational forces and outward pressure gradients sustains an approximately stable star and how disruption of the balance causes structural changes.',
     frontend: {
       en: 'Understand how gravity and internal pressure keep a star balanced.',
+      it: 'Comprendi come gravità e pressione interna mantengono una stella in equilibrio.',
       zh: '理解引力与内部压力如何共同维持恒星的平衡。',
       hi: 'समझें कि गुरुत्वाकर्षण और आंतरिक दबाव तारे का संतुलन कैसे बनाए रखते हैं।',
       es: 'Comprende cómo la gravedad y la presión interna mantienen una estrella en equilibrio.',

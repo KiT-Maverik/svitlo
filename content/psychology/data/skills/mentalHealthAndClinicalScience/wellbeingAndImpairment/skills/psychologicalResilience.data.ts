@@ -5,6 +5,7 @@ export const psychologicalResilience_Skill_Data = defineSkill({
   id: 'c2f23149-c27e-4c38-97e9-fd3d32afdad3',
   name: {
     en: 'Psychological Resilience',
+    it: 'Resilienza psicologica',
     zh: '心理复原力',
     hi: 'मनोवैज्ञानिक लचीलापन',
     es: 'Resiliencia psicológica',
@@ -39,6 +40,7 @@ export const psychologicalResilience_Skill_Data = defineSkill({
       'Explain adaptive functioning amid adversity as a dynamic process involving resources and context rather than an unchangeable personal trait.',
     frontend: {
       en: 'Understand resilience as adaptation supported by personal and social resources.',
+      it: 'Comprendi la resilienza come un adattamento sostenuto da risorse personali e sociali.',
       zh: '理解复原力是一种受到个人及社会资源支持的适应过程。',
       hi: 'समझें कि अनुकूलन की क्षमता को व्यक्तिगत और सामाजिक संसाधनों का सहारा मिलता है।',
       es: 'Comprende la resiliencia como una adaptación apoyada por recursos personales y sociales.',

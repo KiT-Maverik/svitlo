@@ -5,6 +5,7 @@ export const determineCivilTimeUsingASpecifiedUTCOffset_Skill_Data = defineSkill
   id: '195f08c7-f9cd-427f-8cf1-f231a13a1e94',
   name: {
     en: 'Determine civil time using a specified UTC offset',
+    it: "Determinare l'ora civile usando uno scarto UTC specificato",
     zh: '根据指定的 UTC 时差计算法定时间',
     hi: 'दिए गए UTC अंतर से नागरिक समय निकालना',
     es: 'Calcular la hora civil con un desfase UTC indicado',
@@ -39,6 +40,7 @@ export const determineCivilTimeUsingASpecifiedUTCOffset_Skill_Data = defineSkill
       'Apply a stated positive or negative offset to a known UTC time for a particular date, including when the resulting local date moves to the previous or next day. Do not infer an offset from longitude alone.',
     frontend: {
       en: 'Find local clock time from a specified UTC time and offset, including date changes.',
+      it: "Ricava l'ora locale dall'ora UTC e dallo scarto indicato, considerando anche i cambiamenti di data.",
       zh: '根据给定的 UTC 时间和时差求当地时间，并考虑日期变化。',
       hi: 'दिए गए UTC समय और अंतर से स्थानीय घड़ी का समय निकालें, तारीख बदलने पर भी ध्यान दें।',
       es: 'Calcula la hora local a partir de una hora UTC y su desfase, incluso si cambia la fecha.',

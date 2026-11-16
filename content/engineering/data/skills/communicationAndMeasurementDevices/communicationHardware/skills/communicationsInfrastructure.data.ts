@@ -5,6 +5,7 @@ export const communicationsInfrastructure_Skill_Data = defineSkill({
   id: '4e09c759-f697-4950-98b2-4092aba243d1',
   name: {
     en: 'Communications infrastructure',
+    it: 'Infrastrutture di comunicazione',
     zh: '通信基础设施',
     hi: 'संचार अवसंरचना',
     es: 'Infraestructura de comunicaciones',
@@ -38,6 +39,7 @@ export const communicationsInfrastructure_Skill_Data = defineSkill({
     methodological: 'Identify the roles of repeaters, base stations and backhaul links in providing coverage.',
     frontend: {
       en: 'Understand how communication links rely on connected infrastructure.',
+      it: 'Comprendi come i collegamenti di comunicazione dipendono da infrastrutture interconnesse.',
       zh: '理解通信链路为何依赖互联的基础设施。',
       hi: 'समझें कि संचार लिंक आपस में जुड़ी अवसंरचना पर कैसे निर्भर हैं।',
       es: 'Comprende cómo los enlaces de comunicación dependen de infraestructura conectada.',

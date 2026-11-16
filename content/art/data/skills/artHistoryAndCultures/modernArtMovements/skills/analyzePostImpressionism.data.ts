@@ -5,6 +5,7 @@ export const analyzePostImpressionism_Skill_Data = defineSkill({
   id: '1bc4a7b5-2d20-48fd-bb7d-08fd51c39789',
   name: {
     en: 'Analyze Post-Impressionism',
+    it: 'Analizzare il Postimpressionismo',
     zh: '分析后印象派',
     hi: 'उत्तर-प्रभाववाद का विश्लेषण करें',
     es: 'Analizar el postimpresionismo',
@@ -39,6 +40,7 @@ export const analyzePostImpressionism_Skill_Data = defineSkill({
       'Compare historically distinct departures from Impressionism, such as structural construction or expressive color, without assuming a unified technique.',
     frontend: {
       en: 'Compare the distinct new directions artists pursued after Impressionism.',
+      it: "Confronta le diverse nuove direzioni intraprese dagli artisti dopo l'Impressionismo.",
       zh: '比较艺术家在印象派之后探索的不同新方向。',
       hi: 'प्रभाववाद के बाद कलाकारों द्वारा अपनाई गई अलग-अलग नई दिशाओं की तुलना करें।',
       es: 'Compara las distintas direcciones nuevas que exploraron los artistas después del impresionismo.',

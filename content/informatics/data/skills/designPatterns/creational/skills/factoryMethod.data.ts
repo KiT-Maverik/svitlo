@@ -5,6 +5,7 @@ export const factoryMethod_Skill_Data = defineSkill({
   id: '04ab1ac5-582e-451e-9c71-0000946454fc',
   name: {
     en: 'Factory Method',
+    it: 'Factory Method',
     zh: '工厂方法',
     hi: 'फ़ैक्टरी मेथड',
     es: 'Método fábrica',
@@ -39,6 +40,7 @@ export const factoryMethod_Skill_Data = defineSkill({
       'Delegate product instantiation to an overridable factory method so clients use a shared contract without knowing the concrete class.',
     frontend: {
       en: 'Let subclasses choose which concrete object a factory method creates.',
+      it: 'Consenti alle sottoclassi di scegliere quale oggetto concreto viene creato da un metodo di fabbrica.',
       zh: '让子类决定工厂方法创建哪种具体对象。',
       hi: 'उपवर्ग को तय करने दें कि फ़ैक्टरी मेथड कौन सा ठोस ऑब्जेक्ट बनाएगा।',
       es: 'Deja que las subclases decidan qué objeto concreto crea un método fábrica.',

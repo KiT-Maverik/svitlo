@@ -5,6 +5,7 @@ export const explainNewtonsFirstLaw_Skill_Data = defineSkill({
   id: 'aee7273b-bd77-4bcb-a5ff-5bb34ce10fc9',
   name: {
     en: "Explain Newton's first law",
+    it: 'Spiegare la prima legge di Newton',
     zh: '解释牛顿第一定律',
     hi: 'न्यूटन का पहला नियम समझाना',
     es: 'Explicar la primera ley de Newton',
@@ -39,6 +40,7 @@ export const explainNewtonsFirstLaw_Skill_Data = defineSkill({
       "When the net force is zero, a body's velocity in an inertial reference frame remains constant; rest is a special case.",
     frontend: {
       en: 'Explain why zero net force means constant velocity in an inertial frame.',
+      it: 'Spiega perché una forza risultante nulla implica velocità costante in un sistema di riferimento inerziale.',
       zh: '解释为什么在惯性参考系中，合力为零意味着速度保持不变。',
       hi: 'समझाएँ कि जड़त्वीय संदर्भ तंत्र में परिणामी बल शून्य होने पर वेग स्थिर क्यों रहता है।',
       es: 'Explica por qué una fuerza neta nula implica velocidad constante en un sistema de referencia inercial.',

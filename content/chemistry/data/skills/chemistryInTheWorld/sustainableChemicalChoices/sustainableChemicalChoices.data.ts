@@ -12,6 +12,7 @@ export const sustainableChemicalChoices_SkillGroup_Data = defineSkillGroup({
   id: 'e52a754e-4fdc-44ad-a881-9131c6ecfc7a',
   name: {
     en: 'Sustainable Chemical Choices',
+    it: 'Scelte chimiche sostenibili',
     zh: '可持续的化学选择',
     hi: 'टिकाऊ रासायनिक विकल्प',
     es: 'Decisiones químicas sostenibles',
@@ -55,6 +56,7 @@ export const sustainableChemicalChoices_SkillGroup_Data = defineSkillGroup({
       'Environmental and resource decisions benefit from chemical evidence about composition, persistence, transformations and alternatives.',
     frontend: {
       en: 'Use chemical evidence to make better decisions about materials, waste and resources.',
+      it: 'Usa le prove chimiche per prendere decisioni migliori su materiali, rifiuti e risorse.',
       zh: '依据化学证据对材料、废弃物和资源作出更明智的决定。',
       hi: 'पदार्थों, कचरे और संसाधनों के बारे में बेहतर निर्णय लेने के लिए रासायनिक साक्ष्य का उपयोग करें।',
       es: 'Usa pruebas químicas para tomar mejores decisiones sobre materiales, residuos y recursos.',

@@ -11,6 +11,7 @@ export const assistiveAndMedicalProducts_SkillGroup_Data = defineSkillGroup({
   id: 'e38896f4-4a54-4873-b28f-2743fd9b0914',
   name: {
     en: 'Assistive and Medical Products',
+    it: 'Ausili e dispositivi medici',
     zh: '辅助与医疗产品',
     hi: 'सहायक और चिकित्सा उत्पाद',
     es: 'Productos de asistencia y médicos',
@@ -53,6 +54,7 @@ export const assistiveAndMedicalProducts_SkillGroup_Data = defineSkillGroup({
       'Devices that contact or support human bodies require function, fit and safety considerations beyond an ordinary consumer gadget.',
     frontend: {
       en: 'Discover the engineering functions of assistive and medical devices.',
+      it: 'Scopri le funzioni ingegneristiche degli ausili e dei dispositivi medici.',
       zh: '了解辅助设备和医疗器械的工程功能。',
       hi: 'सहायक और चिकित्सा उपकरणों के अभियांत्रिकी कार्य समझें।',
       es: 'Descubre las funciones técnicas de los dispositivos de asistencia y médicos.',

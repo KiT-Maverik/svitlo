@@ -5,6 +5,7 @@ export const cosmicMicrowaveBackground_Skill_Data = defineSkill({
   id: '0e1b126f-d5f2-45e3-bb10-be82635ba9cc',
   name: {
     en: 'Cosmic Microwave Background',
+    it: 'Radiazione cosmica di fondo a microonde',
     qm: 'Kosmik mikrodalğa fonı',
     zh: '宇宙微波背景',
     hi: 'ब्रह्मांडीय सूक्ष्मतरंग पृष्ठभूमि',
@@ -39,6 +40,7 @@ export const cosmicMicrowaveBackground_Skill_Data = defineSkill({
       'Interpret relic microwave radiation and its spatial variations as evidence about the early Universe.',
     frontend: {
       en: 'Investigate the faint microwave glow left from the early Universe.',
+      it: "Indaga la debole radiazione a microonde rimasta dall'universo primordiale.",
       qm: 'Erte Kâinattan qalğan zayıf mikrodalğa şavlesini araştırıñız.',
       zh: '研究早期宇宙留下的微弱微波辐射。',
       hi: 'आरंभिक ब्रह्मांड से बची मंद सूक्ष्मतरंग चमक का अध्ययन करें।',

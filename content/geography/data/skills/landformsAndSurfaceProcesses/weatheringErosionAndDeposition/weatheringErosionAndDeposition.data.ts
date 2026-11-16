@@ -12,6 +12,7 @@ export const weatheringErosionAndDeposition_SkillGroup_Data = defineSkillGroup({
   id: '3836be4c-7168-4b49-873b-65ed206453b7',
   name: {
     en: 'Weathering, Erosion, and Deposition',
+    it: 'Alterazione, erosione e deposizione',
     zh: '风化、侵蚀与沉积',
     hi: 'अपक्षय, अपरदन और निक्षेपण',
     es: 'Meteorización, erosión y sedimentación',
@@ -60,6 +61,7 @@ export const weatheringErosionAndDeposition_SkillGroup_Data = defineSkillGroup({
       'Rocks and sediment change on the exposed surface as material breaks down in place, is carried by water, wind, ice or gravity, and comes to rest elsewhere. These processes can alter valleys, coasts and plains without being confused with deep tectonic deformation.',
     frontend: {
       en: 'Discover how rocks break down, material moves and sediment accumulates.',
+      it: 'Scopri come le rocce si disgregano, i materiali si spostano e i sedimenti si accumulano.',
       zh: '探索岩石如何破碎、物质如何搬运，以及沉积物如何堆积。',
       hi: 'जानें कि चट्टानें कैसे टूटती हैं, पदार्थ कैसे स्थानांतरित होता है और अवसाद कैसे जमा होता है।',
       es: 'Descubre cómo se descomponen las rocas, se transportan los materiales y se acumulan los sedimentos.',

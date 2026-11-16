@@ -5,6 +5,7 @@ export const combustion_Skill_Data = defineSkill({
   id: '1da858f6-17ed-41f4-b750-7addc4a4c29e',
   name: {
     en: 'Combustion',
+    it: 'Combustione',
     zh: '燃烧',
     hi: 'दहन',
     es: 'Combustión',
@@ -39,6 +40,7 @@ export const combustion_Skill_Data = defineSkill({
       'Characterize reactions with an oxidant that release energy, distinguishing combustion from mere heating.',
     frontend: {
       en: 'Understand combustion as an energy-releasing reaction involving an oxidant.',
+      it: 'Comprendi la combustione come reazione che libera energia e coinvolge un ossidante.',
       zh: '理解燃烧是有氧化剂参与并释放能量的反应。',
       hi: 'दहन को ऑक्सीकारक के साथ ऊर्जा मुक्त करने वाली अभिक्रिया के रूप में समझें।',
       es: 'Comprende la combustión como una reacción que libera energía con un oxidante.',

@@ -11,6 +11,7 @@ export const mentalHealthCrises_SkillGroup_Data = defineSkillGroup({
   id: '6712238b-386d-45eb-aa4d-780747dea487',
   name: {
     en: 'Mental Health Crises',
+    it: 'Crisi di salute mentale',
     zh: '心理健康危机',
     hi: 'मानसिक स्वास्थ्य संकट',
     es: 'Crisis de salud mental',
@@ -53,6 +54,7 @@ export const mentalHealthCrises_SkillGroup_Data = defineSkillGroup({
       'Immediate safety and connection to competent support take priority over attempting therapy or managing a potentially dangerous situation alone.',
     frontend: {
       en: 'Learn why urgent psychological danger requires competent immediate assistance.',
+      it: 'Comprendi perché un grave pericolo psicologico richiede assistenza immediata e competente.',
       zh: '了解紧急心理危险为何需要及时获得专业协助。',
       hi: 'जानें कि तात्कालिक मानसिक खतरे में सक्षम व्यक्ति की तुरंत मदद क्यों चाहिए।',
       es: 'Aprende por qué una emergencia psicológica requiere ayuda competente e inmediata.',

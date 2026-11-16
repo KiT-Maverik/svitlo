@@ -5,6 +5,7 @@ export const explainConservationOfAngularMomentum_Skill_Data = defineSkill({
   id: 'da9897f4-6a9f-4508-8ffe-00d786cd0662',
   name: {
     en: 'Explain conservation of angular momentum',
+    it: 'Spiegare la conservazione del momento angolare',
     zh: '解释角动量守恒',
     hi: 'कोणीय संवेग संरक्षण समझाना',
     es: 'Explicar la conservación del momento angular',
@@ -38,6 +39,7 @@ export const explainConservationOfAngularMomentum_Skill_Data = defineSkill({
     methodological: "In the absence of net external torque, a system's total angular momentum is conserved.",
     frontend: {
       en: 'Understand why angular momentum stays constant without net external torque.',
+      it: 'Comprendi perché il momento angolare rimane costante in assenza di momento risultante delle forze esterne.',
       zh: '理解为什么没有外部合力矩时角动量保持不变。',
       hi: 'समझें कि बाहरी परिणामी बलाघूर्ण न होने पर कोणीय संवेग स्थिर क्यों रहता है।',
       es: 'Comprende por qué el momento angular permanece constante sin torque externo neto.',

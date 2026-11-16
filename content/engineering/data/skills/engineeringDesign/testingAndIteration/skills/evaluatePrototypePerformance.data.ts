@@ -5,6 +5,7 @@ export const evaluatePrototypePerformance_Skill_Data = defineSkill({
   id: 'f594beb7-879c-46cc-95af-1e21e8c80279',
   name: {
     en: 'Evaluate prototype performance',
+    it: 'Valutare le prestazioni del prototipo',
     zh: '评估原型性能',
     hi: 'प्रोटोटाइप के प्रदर्शन का मूल्यांकन',
     es: 'Evaluar el rendimiento de un prototipo',
@@ -39,6 +40,7 @@ export const evaluatePrototypePerformance_Skill_Data = defineSkill({
       'Interpret observed prototype-test results under defined conditions and compare measured outputs with expected performance. This analysis alone does not establish full design verification or validate user needs.',
     frontend: {
       en: "Compare a prototype's measured performance with its expected performance.",
+      it: 'Confronta le prestazioni misurate di un prototipo con quelle attese.',
       zh: '将原型的实测性能与预期性能进行比较。',
       hi: 'प्रोटोटाइप के मापे गए परिणामों की अपेक्षित परिणामों से तुलना करें।',
       es: 'Compara el rendimiento medido de un prototipo con el previsto.',

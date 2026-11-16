@@ -5,6 +5,7 @@ export const identifyAConfoundingFactor_Skill_Data = defineSkill({
   id: 'a4634f3a-daa5-432a-a23d-14ea3a052c93',
   name: {
     en: 'Identify a confounding factor',
+    it: 'Individuare un fattore confondente',
     zh: '识别混杂因素',
     hi: 'भ्रामक प्रभाव डालने वाला कारक पहचानें',
     es: 'Identificar un factor de confusión',
@@ -39,6 +40,7 @@ export const identifyAConfoundingFactor_Skill_Data = defineSkill({
       'Find a plausible third variable or selection process capable of producing an apparent relationship.',
     frontend: {
       en: 'Find a third factor that could explain an apparent relationship.',
+      it: 'Individua un terzo fattore che potrebbe spiegare una relazione apparente.',
       zh: '找出可能解释表面关联的第三个因素。',
       hi: 'ऐसा तीसरा कारक खोजें जो दिखाई देने वाले संबंध की व्याख्या कर सके।',
       es: 'Encuentra un tercer factor que pueda explicar una relación aparente.',

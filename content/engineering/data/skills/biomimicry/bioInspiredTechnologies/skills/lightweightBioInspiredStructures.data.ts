@@ -5,6 +5,7 @@ export const lightweightBioInspiredStructures_Skill_Data = defineSkill({
   id: 'db5dc88f-7b81-49db-bb3a-51977c54f2f8',
   name: {
     en: 'Lightweight bio-inspired structures',
+    it: 'Strutture leggere bioispirate',
     zh: '轻质仿生结构',
     hi: 'हल्की जैव-प्रेरित संरचनाएँ',
     es: 'Estructuras ligeras bioinspiradas',
@@ -38,6 +39,7 @@ export const lightweightBioInspiredStructures_Skill_Data = defineSkill({
     methodological: 'Identify shells, cellular patterns or branching that motivate efficient material placement.',
     frontend: {
       en: 'Explore how natural structures inspire light yet strong engineered forms.',
+      it: 'Esplora come le strutture naturali ispirano soluzioni ingegneristiche leggere ma resistenti.',
       zh: '探索自然结构如何启发轻而坚固的工程形态。',
       hi: 'जानें कि प्राकृतिक संरचनाएँ हल्के लेकिन मज़बूत इंजीनियरिंग आकारों को कैसे प्रेरित करती हैं।',
       es: 'Explora cómo las estructuras naturales inspiran formas técnicas ligeras y resistentes.',

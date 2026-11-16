@@ -5,6 +5,7 @@ export const recognizeDrugRelatedRisks_Skill_Data = defineSkill({
   id: '1bd72ab3-d4ee-4dd4-ae41-e11c07f55e44',
   name: {
     en: 'Recognize drug-related risks',
+    it: 'Riconoscere i rischi legati alle droghe',
     zh: '识别药物和毒品相关风险',
     hi: 'नशीली दवाओं से जुड़े जोखिम पहचानें',
     es: 'Reconocer riesgos relacionados con las drogas',
@@ -39,6 +40,7 @@ export const recognizeDrugRelatedRisks_Skill_Data = defineSkill({
       'Distinguish unpredictable potency, impairment, overdose, and interactions without treating all substances as having identical effects.',
     frontend: {
       en: 'Identify impairment, overdose and interaction risks from drugs.',
+      it: 'Individua i rischi di alterazione delle capacità, overdose e interazioni tra sostanze.',
       zh: '识别物质造成的功能受损、过量和相互作用的风险。',
       hi: 'नशीली दवाओं से निर्णय क्षमता घटने, ओवरडोज़ और परस्पर असर के जोखिम पहचानें।',
       es: 'Identifica riesgos de alteración de capacidades, sobredosis e interacciones entre sustancias.',

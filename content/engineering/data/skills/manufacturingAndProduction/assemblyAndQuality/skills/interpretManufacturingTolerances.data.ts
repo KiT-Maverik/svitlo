@@ -5,6 +5,7 @@ export const interpretManufacturingTolerances_Skill_Data = defineSkill({
   id: '9f3917f3-6a2b-44e5-b00d-197f510ae750',
   name: {
     en: 'Interpret manufacturing tolerances',
+    it: 'Interpretare le tolleranze di fabbricazione',
     zh: '解读制造公差',
     hi: 'विनिर्माण सहनशीलता को समझना',
     es: 'Interpretar tolerancias de fabricación',
@@ -39,6 +40,7 @@ export const interpretManufacturingTolerances_Skill_Data = defineSkill({
       'Read permissible dimensions and deviations from a specified manufacturing drawing, deciding whether a measured component meets its stated production limits.',
     frontend: {
       en: 'Read permitted dimensional variations in a manufacturing drawing.',
+      it: 'Leggi le variazioni dimensionali ammesse in un disegno di produzione.',
       zh: '读懂制造图纸中允许的尺寸变化范围。',
       hi: 'विनिर्माण चित्र में अनुमत आयामी अंतर पढ़ें।',
       es: 'Lee las variaciones dimensionales permitidas en un plano de fabricación.',

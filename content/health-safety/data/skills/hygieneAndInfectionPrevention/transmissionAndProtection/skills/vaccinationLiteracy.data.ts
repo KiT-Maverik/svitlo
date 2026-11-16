@@ -5,6 +5,7 @@ export const vaccinationLiteracy_Skill_Data = defineSkill({
   id: 'b1214ba1-48cf-4ada-8da1-e6e33118f180',
   name: {
     en: 'Vaccination literacy',
+    it: 'Conoscere la vaccinazione',
     zh: '疫苗接种知识',
     hi: 'टीकाकरण की समझ',
     es: 'Comprensión de la vacunación',
@@ -39,6 +40,7 @@ export const vaccinationLiteracy_Skill_Data = defineSkill({
       'Distinguish how immunization reduces specified disease risks from claims of absolute protection and recognize the role of recommended schedules.',
     frontend: {
       en: 'Understand what vaccination can and cannot protect against.',
+      it: 'Comprendi contro quali rischi la vaccinazione può proteggere e quali limiti presenta.',
       zh: '了解疫苗接种能够预防什么，以及它的保护范围有哪些限制。',
       hi: 'समझें कि टीकाकरण किन बीमारियों से बचाता है और उसकी सीमाएँ क्या हैं।',
       es: 'Comprende frente a qué protege la vacunación y cuáles son sus límites.',

@@ -5,6 +5,7 @@ export const protectPersonalInformationOnline_Skill_Data = defineSkill({
   id: '767d243f-3d71-4ac5-980d-1900dde8746b',
   name: {
     en: 'Protect personal information online',
+    it: 'Proteggere i dati personali online',
     zh: '在网上保护个人信息',
     hi: 'ऑनलाइन व्यक्तिगत जानकारी बचाना',
     es: 'Proteger información personal en línea',
@@ -39,6 +40,7 @@ export const protectPersonalInformationOnline_Skill_Data = defineSkill({
       'Identify sensitive details and consider audience, persistence, and consequences before sharing location, documents, or images.',
     frontend: {
       en: 'Consider who might access sensitive information before posting it.',
+      it: 'Prima di pubblicare informazioni sensibili, considera chi potrebbe accedervi.',
       zh: '发布敏感信息前想一想谁可能获得这些内容。',
       hi: 'संवेदनशील जानकारी साझा करने से पहले सोचो कि उसे कौन देख सकता है।',
       es: 'Piensa quién podría acceder a datos sensibles antes de publicarlos.',

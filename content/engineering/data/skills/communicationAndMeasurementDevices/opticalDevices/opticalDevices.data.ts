@@ -13,6 +13,7 @@ export const opticalDevices_SkillGroup_Data = defineSkillGroup({
   id: '0fa1eeda-d99e-46e6-83d6-dee6fcd43014',
   name: {
     en: 'Optical Devices',
+    it: 'Dispositivi ottici',
     zh: '光学设备',
     hi: 'प्रकाशीय उपकरण',
     es: 'Dispositivos ópticos',
@@ -63,6 +64,7 @@ export const opticalDevices_SkillGroup_Data = defineSkillGroup({
       'Optical components manipulate or detect light for imaging, sensing and transmission; lasers require particular source and exposure precautions.',
     frontend: {
       en: 'Learn how optical devices manipulate light for imaging and communication.',
+      it: 'Scopri come i dispositivi ottici manipolano la luce per produrre immagini e comunicare.',
       zh: '了解光学装置如何操控光线以成像和通信。',
       hi: 'जानें कि प्रकाशीय उपकरण चित्र और संचार के लिए प्रकाश का उपयोग कैसे करते हैं।',
       es: 'Aprende cómo los dispositivos ópticos manipulan la luz para crear imágenes y transmitir información.',

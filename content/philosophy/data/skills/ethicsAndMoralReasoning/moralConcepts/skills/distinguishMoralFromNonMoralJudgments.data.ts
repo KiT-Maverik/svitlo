@@ -5,6 +5,7 @@ export const distinguishMoralFromNonMoralJudgments_Skill_Data = defineSkill({
   id: '5013a436-7b36-40ad-8e50-a333a817b4af',
   name: {
     en: 'Distinguish moral from non-moral judgments',
+    it: 'Distinguere giudizi morali e non morali',
     zh: '区分道德判断与非道德判断',
     hi: 'नैतिक और गैर-नैतिक निर्णयों में अंतर',
     es: 'Distinguir juicios morales de no morales',
@@ -39,6 +40,7 @@ export const distinguishMoralFromNonMoralJudgments_Skill_Data = defineSkill({
       'Identify when a claim concerns obligations or rights rather than taste, etiquette, prudence, or mere legality.',
     frontend: {
       en: 'Tell ethical claims apart from personal taste, etiquette and legal rules.',
+      it: 'Distingui le affermazioni etiche dai gusti personali, dalle norme di buona educazione e dalle regole giuridiche.',
       zh: '将伦理主张与个人喜好、礼仪和法律规则区分开。',
       hi: 'नैतिक दावों को व्यक्तिगत पसंद, शिष्टाचार और कानूनी नियमों से अलग पहचानें।',
       es: 'Distingue afirmaciones éticas de gustos personales, normas de cortesía y leyes.',

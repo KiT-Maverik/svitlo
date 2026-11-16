@@ -5,6 +5,7 @@ export const opticalComponentSuitability_Skill_Data = defineSkill({
   id: '3c9b4ca1-eb54-4ec4-a645-9ea37485c702',
   name: {
     en: 'Optical component suitability',
+    it: 'Idoneità dei componenti ottici',
     zh: '光学元件适用性',
     hi: 'प्रकाशीय घटकों की उपयुक्तता',
     es: 'Idoneidad de componentes ópticos',
@@ -39,6 +40,7 @@ export const opticalComponentSuitability_Skill_Data = defineSkill({
       'Assess the functional fit of lenses, mirrors, filters or detectors for an imaging, transmission or measurement purpose.',
     frontend: {
       en: 'Compare optical components against the function they must serve.',
+      it: 'Confronta i componenti ottici in base alla funzione che devono svolgere.',
       zh: '根据所需功能比较光学元件。',
       hi: 'प्रकाशीय घटकों की तुलना उनके आवश्यक कार्य के अनुसार करें।',
       es: 'Compara componentes ópticos según la función que deben cumplir.',

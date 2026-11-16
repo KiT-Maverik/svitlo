@@ -5,6 +5,7 @@ export const reactantsAndProducts_Skill_Data = defineSkill({
   id: '0fb55aa6-8d07-4998-b84b-7eb3134416d8',
   name: {
     en: 'Reactants and Products',
+    it: 'Reagenti e prodotti',
     zh: '反应物与生成物',
     hi: 'अभिकारक और उत्पाद',
     es: 'Reactivos y productos',
@@ -39,6 +40,7 @@ export const reactantsAndProducts_Skill_Data = defineSkill({
       'Identify starting and resulting chemical species while distinguishing them from catalysts and solvents.',
     frontend: {
       en: 'Distinguish starting reactants and resulting products from catalysts or solvents.',
+      it: 'Distingui reagenti iniziali e prodotti finali da catalizzatori e solventi.',
       zh: '区分起始反应物、生成物以及催化剂或溶剂。',
       hi: 'शुरुआती अभिकारकों, उत्पादों, उत्प्रेरकों और विलायकों में अंतर करें।',
       es: 'Distingue los reactivos iniciales y los productos de catalizadores o disolventes.',

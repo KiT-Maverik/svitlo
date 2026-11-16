@@ -5,6 +5,7 @@ export const anxietyRelatedDifficulties_Skill_Data = defineSkill({
   id: 'f03d8011-b586-4049-9f02-c4496e251d3c',
   name: {
     en: 'Anxiety-Related Difficulties',
+    it: "Difficoltà legate all'ansia",
     zh: '焦虑相关困难',
     hi: 'चिंता से जुड़ी कठिनाइयाँ',
     es: 'Dificultades relacionadas con la ansiedad',
@@ -39,6 +40,7 @@ export const anxietyRelatedDifficulties_Skill_Data = defineSkill({
       'Explain how excessive fear or worry may interfere with functioning while distinguishing them from common situational anxiety.',
     frontend: {
       en: 'Recognize when excessive fear or worry can affect functioning.',
+      it: 'Riconosci quando paura o preoccupazione eccessive possano compromettere il funzionamento quotidiano.',
       zh: '认识过度恐惧或担忧何时可能影响日常功能。',
       hi: 'समझें कि अत्यधिक डर या चिंता रोजमर्रा के कामों को कब प्रभावित कर सकती है।',
       es: 'Reconoce cuándo el miedo o la preocupación excesivos pueden afectar la vida diaria.',

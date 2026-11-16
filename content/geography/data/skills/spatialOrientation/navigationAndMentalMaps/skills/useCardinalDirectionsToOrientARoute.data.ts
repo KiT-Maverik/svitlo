@@ -5,6 +5,7 @@ export const useCardinalDirectionsToOrientARoute_Skill_Data = defineSkill({
   id: '3a7e6930-3de2-44eb-9bac-86f72630d700',
   name: {
     en: 'Use cardinal directions to orient a route',
+    it: 'Usare i punti cardinali per orientare un percorso',
     zh: '使用基本方位确定路线方向',
     hi: 'मुख्य दिशाओं से मार्ग निर्धारित करना',
     es: 'Usar los puntos cardinales para orientarse en una ruta',
@@ -39,6 +40,7 @@ export const useCardinalDirectionsToOrientARoute_Skill_Data = defineSkill({
       'Associate north, east, south, and west with actual movement or a stated orientation, even when the observer faces a different way.',
     frontend: {
       en: 'Use north, south, east and west while following a route.',
+      it: 'Usa nord, sud, est e ovest mentre segui un percorso.',
       zh: '沿路线行进时运用东、南、西、北四个方向。',
       hi: 'मार्ग पर चलते समय उत्तर, दक्षिण, पूर्व और पश्चिम का उपयोग करें।',
       es: 'Utiliza norte, sur, este y oeste al seguir una ruta.',

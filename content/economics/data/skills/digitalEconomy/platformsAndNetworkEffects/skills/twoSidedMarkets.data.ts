@@ -5,6 +5,7 @@ export const twoSidedMarkets_Skill_Data = defineSkill({
   id: '0b950209-d739-4539-b243-0546871f529e',
   name: {
     en: 'Двосторонні ринки',
+    it: 'Mercati a due versanti',
     zh: '双边市场',
     hi: 'दो-पक्षीय बाज़ार',
     es: 'Mercados de dos lados',
@@ -39,6 +40,7 @@ export const twoSidedMarkets_Skill_Data = defineSkill({
       'Analyze interdependent participation and pricing decisions of two customer groups, including access fees and joining decisions.',
     frontend: {
       en: 'Explore how a platform connects two groups such as buyers and sellers.',
+      it: 'Esplora come una piattaforma mette in contatto due gruppi, come acquirenti e venditori.',
       zh: '探索平台如何连接买方和卖方等两类群体。',
       hi: 'जानें कि प्लेटफ़ॉर्म खरीदारों और विक्रेताओं जैसे दो समूहों को कैसे जोड़ता है।',
       es: 'Explora cómo una plataforma conecta a dos grupos, como compradores y vendedores.',

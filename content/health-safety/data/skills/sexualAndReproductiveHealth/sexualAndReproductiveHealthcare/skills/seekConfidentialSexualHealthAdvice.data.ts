@@ -5,6 +5,7 @@ export const seekConfidentialSexualHealthAdvice_Skill_Data = defineSkill({
   id: 'b211063c-9fb0-48ec-b8eb-07c63f4327c8',
   name: {
     en: 'Seek confidential sexual health advice',
+    it: 'Cercare consulenza riservata sulla salute sessuale',
     zh: '寻求保密的性健康咨询',
     hi: 'गोपनीय यौन स्वास्थ्य सलाह लें',
     es: 'Buscar asesoramiento confidencial sobre salud sexual',
@@ -39,6 +40,7 @@ export const seekConfidentialSexualHealthAdvice_Skill_Data = defineSkill({
       'Identify appropriate services and questions about privacy, safeguarding, consent, and access to care.',
     frontend: {
       en: 'Find suitable services for confidential reproductive-health questions.',
+      it: 'Trova servizi adeguati per porre domande riservate sulla salute riproduttiva.',
       zh: '找到可以就生殖健康问题进行私密咨询的适当服务机构。',
       hi: 'प्रजनन स्वास्थ्य के प्रश्नों के लिए उपयुक्त गोपनीय सेवाएँ खोजें।',
       es: 'Encuentra servicios adecuados para consultar en privado sobre salud reproductiva.',

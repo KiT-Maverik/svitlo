@@ -5,6 +5,7 @@ export const earlyWestAfricanUrbanCenters_Skill_Data = defineSkill({
   id: '16f5aa75-8909-4f40-8f12-9e0b7e38f39d',
   name: {
     en: 'Early West African Urban Centers',
+    it: "Primi centri urbani dell'Africa occidentale",
     zh: '西非早期城市中心',
     hi: 'पश्चिम अफ्रीका के शुरुआती नगरीय केंद्र',
     es: 'Primeros centros urbanos de África occidental',
@@ -39,6 +40,7 @@ export const earlyWestAfricanUrbanCenters_Skill_Data = defineSkill({
       'Examine Inland Niger Delta sites, including Djenné-Djeno from about the third century BCE, distinguishing early settlement and crafts from later urban florescence.',
     frontend: {
       en: 'Explore how early towns developed in the Inland Niger Delta.',
+      it: 'Esplora come nacquero i primi centri abitati nel delta interno del Niger.',
       zh: '探索内尼日尔河三角洲早期城镇的发展。',
       hi: 'जानें कि आंतरिक नाइजर डेल्टा में शुरुआती नगर कैसे विकसित हुए।',
       es: 'Explora cómo surgieron las primeras ciudades del delta interior del Níger.',

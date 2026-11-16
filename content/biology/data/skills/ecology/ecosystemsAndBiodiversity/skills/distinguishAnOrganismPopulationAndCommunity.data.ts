@@ -5,6 +5,7 @@ export const distinguishAnOrganismPopulationAndCommunity_Skill_Data = defineSkil
   id: 'eee87fb8-cddb-4857-be95-a3784e2a5178',
   name: {
     en: 'Distinguish an Organism, Population, and Community',
+    it: 'Distinguere organismo, popolazione e comunità',
     zh: '区分个体、种群与群落',
     hi: 'जीव, आबादी और समुदाय में अंतर करना',
     es: 'Distinguir organismo, población y comunidad',
@@ -39,6 +40,7 @@ export const distinguishAnOrganismPopulationAndCommunity_Skill_Data = defineSkil
       'Distinguish a single individual from individuals of one species in an area and from a community composed of different species.',
     frontend: {
       en: 'Distinguish an individual organism, a population and a community.',
+      it: 'Distingui un singolo organismo, una popolazione e una comunità.',
       zh: '区分单个生物、种群和由不同物种组成的群落。',
       hi: 'एक जीव, एक प्रजाति की आबादी और विभिन्न प्रजातियों के समुदाय में अंतर करें।',
       es: 'Distingue un organismo individual, una población y una comunidad de especies.',

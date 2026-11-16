@@ -5,6 +5,7 @@ export const analyzeChineseInkPainting_Skill_Data = defineSkill({
   id: '739226a9-fa32-4e20-9cc7-491723f48edb',
   name: {
     en: 'Analyze Chinese Ink Painting',
+    it: 'Analizzare la pittura cinese a inchiostro',
     zh: '分析中国水墨画',
     hi: 'चीनी स्याही चित्रकला का विश्लेषण करें',
     es: 'Analizar la pintura china con tinta',
@@ -39,6 +40,7 @@ export const analyzeChineseInkPainting_Skill_Data = defineSkill({
       'Examine brushwork, spatial suggestion and the relationship of image and inscription in particular historical Chinese ink-painting traditions.',
     frontend: {
       en: 'See how Chinese ink paintings combine expressive brushwork, space and inscriptions.',
+      it: 'Osserva come i dipinti cinesi a inchiostro combinano pennellate espressive, spazio e iscrizioni.',
       zh: '了解中国水墨画如何将富有表现力的笔触、空间和题款结合起来。',
       hi: 'जानें कि चीनी स्याही चित्रों में अभिव्यंजक तूलिका-चालन, स्थान और लिखित अभिलेख कैसे एक साथ आते हैं।',
       es: 'Descubre cómo la pintura china con tinta combina pinceladas expresivas, espacio e inscripciones.',

@@ -11,6 +11,7 @@ export const makeTenStrategy_Skill_Data = defineSkill({
     ka: 'შეკრება — ათეულამდე შევსება',
     kk: 'Қосу — ондыққа толықтыру',
     en: 'Addition — Making ten',
+    it: 'Addizione — Completare la decina',
     qm: 'Qoşuv — onluqnı tamamlav',
     zh: '加法 — 凑十法',
     hi: 'जोड़ — दस पूरा करना',
@@ -39,6 +40,7 @@ export const makeTenStrategy_Skill_Data = defineSkill({
       'The make-ten strategy decomposes an addend so that a part combines with the other addend to reach a convenient ten; the remainder is then added. Regrouping preserves the original sum by addition properties.',
     frontend: {
       en: 'You can split one addend to reach the next ten first, then add what remains without changing the sum.',
+      it: 'Puoi scomporre un addendo per arrivare prima alla decina successiva, poi aggiungere ciò che resta senza cambiare la somma.',
       qm: 'Qoşulıcılardan birini bölüp, evelâ yaqındaki onluqnı tamamlap, soñra qalğan miqdarnı qoşa bilesiñ. Toplam deñişmey.',
       zh: '你可以拆分一个加数，先凑到下一个整十数，再加上剩余部分，和不变。',
       hi: 'तुम एक जोड़ने वाली संख्या को तोड़कर पहले अगली पूरी दहाई बना सकते हो, फिर बचा हिस्सा जोड़ सकते हो; योग वही रहता है।',

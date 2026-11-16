@@ -5,6 +5,7 @@ export const sourceCriticism_Skill_Data = defineSkill({
   id: 'a2588901-2159-428e-bf5a-0ba5fc3aebd0',
   name: {
     en: 'Source Criticism',
+    it: 'Critica delle fonti',
     zh: '史料批判',
     hi: 'स्रोतों की आलोचनात्मक जाँच',
     es: 'Crítica de fuentes',
@@ -38,6 +39,7 @@ export const sourceCriticism_Skill_Data = defineSkill({
     methodological: 'Assess origin, bias, omissions, and contradictions and verify claims with independent evidence.',
     frontend: {
       en: 'Check whether a historical source deserves confidence.',
+      it: 'Valuta se una fonte storica è attendibile.',
       zh: '核查历史资料是否值得信任。',
       hi: 'जाँचें कि किसी ऐतिहासिक स्रोत पर भरोसा किया जा सकता है या नहीं।',
       es: 'Comprueba si una fuente histórica merece confianza.',

@@ -5,6 +5,7 @@ export const chooseProtectiveMeasures_Skill_Data = defineSkill({
   id: '53c9c668-ade6-4c71-9aa2-edf28c9842bb',
   name: {
     en: 'Choose protective measures',
+    it: 'Scegliere misure di protezione',
     zh: '选择防护措施',
     hi: 'सुरक्षात्मक उपाय चुनना',
     es: 'Elegir medidas de protección',
@@ -39,6 +40,7 @@ export const chooseProtectiveMeasures_Skill_Data = defineSkill({
       'Prefer avoiding or removing a hazard, safe design and procedure, and suitable protection rather than relying solely on warnings.',
     frontend: {
       en: 'Choose protections that remove or control hazards instead of merely warning people.',
+      it: 'Scegli misure che eliminino o controllino i pericoli, invece di limitarsi ad avvertire le persone.',
       zh: '选择消除或控制危险的措施，而不只是提醒他人注意。',
       hi: 'सिर्फ चेतावनी देने के बजाय खतरे को हटाने या नियंत्रित करने वाले उपाय चुनें।',
       es: 'Elige medidas que eliminen o controlen peligros, no solo avisos.',

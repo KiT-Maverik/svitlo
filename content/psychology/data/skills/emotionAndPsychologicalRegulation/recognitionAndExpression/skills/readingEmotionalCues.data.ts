@@ -5,6 +5,7 @@ export const readingEmotionalCues_Skill_Data = defineSkill({
   id: 'af069da0-88f3-4754-a846-c0dfc5a0d9ae',
   name: {
     en: 'Reading Emotional Cues',
+    it: 'Interpretare gli indizi emotivi',
     zh: '解读情绪线索',
     hi: 'भावनात्मक संकेत समझना',
     es: 'Interpretar señales emocionales',
@@ -39,6 +40,7 @@ export const readingEmotionalCues_Skill_Data = defineSkill({
       'Interpret facial, vocal, and contextual signals cautiously rather than equating one expression with a definite inner state.',
     frontend: {
       en: 'Interpret emotional cues without treating expressions as certain proof of feelings.',
+      it: 'Interpreta i segnali emotivi senza considerare le espressioni una prova certa dei sentimenti.',
       zh: '理解情绪线索，但不要把表情当作感受的确凿证据。',
       hi: 'भावों के संकेत पढ़ें, पर चेहरे के भावों को भावनाओं का निश्चित प्रमाण न मानें।',
       es: 'Interpreta señales emocionales sin creer que una expresión prueba lo que alguien siente.',

@@ -5,6 +5,7 @@ export const protectAgainstHarmfulUVExposure_Skill_Data = defineSkill({
   id: '466006d1-8870-484f-97eb-bc6a0afeb422',
   name: {
     en: 'Protect against harmful UV exposure',
+    it: "Proteggersi dall'esposizione nociva ai raggi UV",
     zh: '防护有害紫外线',
     hi: 'हानिकारक पराबैंगनी किरणों से सुरक्षा',
     es: 'Protegerse de la radiación UV dañina',
@@ -39,6 +40,7 @@ export const protectAgainstHarmfulUVExposure_Skill_Data = defineSkill({
       'Choose suitable shade, clothing, eye protection and sunscreen practices according to ultraviolet exposure, recognizing that sunburn and eye damage do not depend on high air temperature.',
     frontend: {
       en: 'Protect skin and eyes from ultraviolet radiation even on cool days.',
+      it: 'Proteggi pelle e occhi dalle radiazioni ultraviolette anche nelle giornate fresche.',
       zh: '即使天气凉爽，也要保护皮肤和眼睛免受紫外线伤害。',
       hi: 'ठंडे दिनों में भी त्वचा और आँखों को पराबैंगनी किरणों से बचाएँ।',
       es: 'Protege la piel y los ojos de la radiación ultravioleta incluso en días frescos.',

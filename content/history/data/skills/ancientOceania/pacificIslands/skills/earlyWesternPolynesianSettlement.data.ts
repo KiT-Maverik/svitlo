@@ -5,6 +5,7 @@ export const earlyWesternPolynesianSettlement_Skill_Data = defineSkill({
   id: '6a35e7a7-4de3-4bbd-a3bd-3e30c420004f',
   name: {
     en: 'Early Western Polynesian Settlement',
+    it: 'Primi insediamenti della Polinesia occidentale',
     zh: '西波利尼西亚的早期定居',
     hi: 'पश्चिमी पोलिनेशिया में प्रारंभिक बसावट',
     es: 'Poblamiento temprano de la Polinesia occidental',
@@ -39,6 +40,7 @@ export const earlyWesternPolynesianSettlement_Skill_Data = defineSkill({
       'Trace the initial settlement of Tonga and Samoa with Lapita connections around the late second and early first millennia BCE; later East Polynesian settlement falls outside scope.',
     frontend: {
       en: 'Learn about the first communities in Tonga and Samoa.',
+      it: 'Scopri le prime comunità di Tonga e Samoa.',
       zh: '了解汤加和萨摩亚最早期的社群。',
       hi: 'टोंगा और समोआ के शुरुआती समुदायों के बारे में जानें।',
       es: 'Conoce las primeras comunidades de Tonga y Samoa.',

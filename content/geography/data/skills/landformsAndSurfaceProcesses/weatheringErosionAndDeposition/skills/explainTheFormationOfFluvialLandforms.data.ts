@@ -5,6 +5,7 @@ export const explainTheFormationOfFluvialLandforms_Skill_Data = defineSkill({
   id: 'e6294f6a-c06e-4a36-9cd6-c8cd8194f048',
   name: {
     en: 'Explain the formation of fluvial landforms',
+    it: 'Spiegare la formazione delle forme fluviali del rilievo',
     zh: '解释河流地貌的形成',
     hi: 'नदीजनित स्थलरूपों का निर्माण समझाना',
     es: 'Explicar la formación de formas fluviales',
@@ -39,6 +40,7 @@ export const explainTheFormationOfFluvialLandforms_Skill_Data = defineSkill({
       'Relate changing river flow, sediment transport and deposition to recognizable landforms such as meanders, floodplains, terraces and deltas. This integrative competency concerns the resulting landscape features, not a second generic definition of erosion or deposition.',
     frontend: {
       en: 'Connect river flow and sediment movement to meanders, floodplains and deltas.',
+      it: 'Collega il flusso dei fiumi e il trasporto dei sedimenti alla formazione di meandri, pianure alluvionali e delta.',
       zh: '将河流流动和泥沙搬运与曲流、泛滥平原和三角洲联系起来。',
       hi: 'नदी के प्रवाह और अवसाद के परिवहन को विसर्पों, बाढ़ के मैदानों और डेल्टाओं से जोड़ें।',
       es: 'Relaciona el flujo de los ríos y el transporte de sedimentos con meandros, llanuras aluviales y deltas.',

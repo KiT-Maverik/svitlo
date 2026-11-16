@@ -5,6 +5,7 @@ export const marketCoordination_Skill_Data = defineSkill({
   id: '90ca6a5c-1ee8-4df6-8d42-51abdc0253bd',
   name: {
     en: 'Ринкова координація',
+    it: 'Coordinamento di mercato',
     zh: '市场协调',
     hi: 'बाज़ार समन्वय',
     es: 'Coordinación de mercado',
@@ -38,6 +39,7 @@ export const marketCoordination_Skill_Data = defineSkill({
     methodological: 'Explain resource allocation through decentralized price signals and private decisions.',
     frontend: {
       en: 'See how prices help coordinate choices without central instructions.',
+      it: 'Scopri come i prezzi contribuiscono a coordinare le scelte senza direttive centrali.',
       zh: '了解价格如何在没有中央指令的情况下协调选择。',
       hi: 'देखें कि कीमतें केंद्रीय निर्देशों के बिना फैसलों में तालमेल कैसे बनाती हैं।',
       es: 'Observa cómo los precios coordinan decisiones sin órdenes centrales.',

@@ -5,6 +5,7 @@ export const colorPerception_Skill_Data = defineSkill({
   id: 'e57786e9-8809-4864-8835-b26687723fa0',
   name: {
     en: 'Color Perception',
+    it: 'Percezione del colore',
     zh: '颜色知觉',
     hi: 'रंग का प्रत्यक्षण',
     es: 'Percepción del color',
@@ -39,6 +40,7 @@ export const colorPerception_Skill_Data = defineSkill({
       'Relate wavelengths, relative context, and neural processing to perceived colors without equating color with one wavelength.',
     frontend: {
       en: 'Explore why perceived color depends on context and neural processing.',
+      it: "Esplora perché il colore percepito dipenda dal contesto e dall'elaborazione neurale.",
       zh: '探索为什么看到的颜色取决于环境和神经加工。',
       hi: 'जानें कि दिखने वाला रंग संदर्भ और तंत्रिका प्रसंस्करण पर क्यों निर्भर करता है।',
       es: 'Explora por qué el color percibido depende del contexto y del procesamiento neuronal.',

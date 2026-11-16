@@ -16,6 +16,7 @@ export const ultimateRealityAndDivinity_SkillGroup_Data = defineSkillGroup({
   id: '3f82449f-d089-4c83-a1f7-0c375b86a18e',
   name: {
     en: 'Ultimate Reality and Divinity',
+    it: 'Realtà ultima e divinità',
     zh: '终极实在与神性',
     hi: 'परम वास्तविकता और दिव्यता',
     es: 'Realidad última y divinidad',
@@ -72,6 +73,7 @@ export const ultimateRealityAndDivinity_SkillGroup_Data = defineSkillGroup({
       'Religious and nonreligious accounts of ultimate reality include competing conceptions of divinity and nontheistic accounts of liberation or existence. Their arguments may invoke experience, explanation, definition, or objections, without settling a worldview by stipulation.',
     frontend: {
       en: 'Examine arguments about ultimate explanations and different conceptions of divinity.',
+      it: 'Esamina le argomentazioni sulle spiegazioni ultime della realtà e sulle diverse concezioni della divinità.',
       zh: '考察关于终极解释以及不同神性观念的论证。',
       hi: 'परम व्याख्याओं और दिव्यता की विभिन्न अवधारणाओं से जुड़े तर्कों की जाँच करें।',
       es: 'Examina argumentos sobre explicaciones últimas y distintas concepciones de la divinidad.',

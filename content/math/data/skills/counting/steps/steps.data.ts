@@ -7,6 +7,7 @@ export const steps_SkillGroup_Data = defineSkillGroup({
   id: '6adaeb37-f3ed-4cad-899a-28057e94c8c3',
   name: {
     en: 'Skip counting',
+    it: 'Contare a salti',
     qm: 'Belli adımlarnen saymaq',
     lt: 'Skaičiavimas žingsniais',
     lv: 'Skaitīšana ar soli',
@@ -50,6 +51,7 @@ export const steps_SkillGroup_Data = defineSkillGroup({
       'Moving through the number sequence by fixed increments, connected with equal groups, tens, and hundreds rather than counting individual units.',
     frontend: {
       en: 'Count equal groups by adding the same amount each time. Use steps of 2, 5, 10, or 100 instead of counting each object separately.',
+      it: 'Conta gruppi uguali aggiungendo ogni volta la stessa quantità. Procedi a passi di 2, 5, 10 o 100 invece di contare ogni oggetto separatamente.',
       qm: 'Er seferinde aynı miqdarnı qoşaraq teñ toparlarnı say. Er eşyannı ayrı-ayrı saymaq yerine 2, 5, 10 ya da 100 adımlarnen say.',
       zh: '每次数相同的数量，就能按组数数。可以每次加2、5、10或100，不必逐个数物品。',
       hi: 'हर बार समान मात्रा जोड़कर बराबर समूहों की गिनती करें। हर वस्तु अलग गिनने के बजाय 2, 5, 10 या 100 के कदम लें।',

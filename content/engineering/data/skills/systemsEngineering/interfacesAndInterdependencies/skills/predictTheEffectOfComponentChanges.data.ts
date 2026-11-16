@@ -5,6 +5,7 @@ export const predictTheEffectOfComponentChanges_Skill_Data = defineSkill({
   id: '49ff501b-fa46-49d4-aa52-cdf267e19289',
   name: {
     en: 'Predict the effect of component changes',
+    it: 'Prevedere gli effetti delle modifiche ai componenti',
     zh: '预测组件更改的影响',
     hi: 'घटक में बदलाव के प्रभाव का अनुमान',
     es: 'Predecir efectos de cambios en componentes',
@@ -38,6 +39,7 @@ export const predictTheEffectOfComponentChanges_Skill_Data = defineSkill({
     methodological: 'Trace how altered dimensions, rates or capacities affect connected system functions.',
     frontend: {
       en: "Predict how changing a component's capacity or dimensions affects other components.",
+      it: 'Prevedi come cambiare capacità o dimensioni di un componente influisce sugli altri.',
       zh: '预测组件容量或尺寸的变化如何影响其他组件。',
       hi: 'अनुमान लगाएँ कि किसी हिस्से की क्षमता या आकार बदलने से दूसरे हिस्से कैसे प्रभावित होंगे।',
       es: 'Predice cómo cambiar la capacidad o el tamaño de una pieza afecta a las demás.',

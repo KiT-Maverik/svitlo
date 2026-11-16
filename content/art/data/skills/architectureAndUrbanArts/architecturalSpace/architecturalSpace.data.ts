@@ -12,6 +12,7 @@ export const architecturalSpace_SkillGroup_Data = defineSkillGroup({
   id: 'e7a0c57f-5516-46ab-9158-a9f7f9013d46',
   name: {
     en: 'Architectural Space',
+    it: 'Spazio architettonico',
     zh: '建筑空间',
     hi: 'वास्तुशिल्पीय स्थान',
     es: 'Espacio arquitectónico',
@@ -59,6 +60,7 @@ export const architecturalSpace_SkillGroup_Data = defineSkillGroup({
     methodological: 'Proportion, enclosure and movement shape the sensory experience of a building.',
     frontend: {
       en: 'Explore how the sizes and connections of spaces shape what a building feels like.',
+      it: 'Esplora come le dimensioni e i collegamenti degli ambienti influenzano la percezione di un edificio.',
       zh: '探索空间的大小与连接方式如何塑造建筑带给人的感受。',
       hi: 'जानें कि स्थानों के आकार और उनके आपसी जुड़ाव से किसी इमारत का अनुभव कैसे बनता है।',
       es: 'Explora cómo el tamaño y la conexión de los espacios determinan la experiencia de un edificio.',

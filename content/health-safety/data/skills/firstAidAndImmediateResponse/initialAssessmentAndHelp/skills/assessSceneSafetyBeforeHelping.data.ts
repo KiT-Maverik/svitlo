@@ -5,6 +5,7 @@ export const assessSceneSafetyBeforeHelping_Skill_Data = defineSkill({
   id: 'fbd55cb1-84bd-42fc-9f96-4e5769cdd9b1',
   name: {
     en: 'Assess scene safety before helping',
+    it: 'Valutare la sicurezza della scena prima di intervenire',
     zh: '救助前评估现场安全',
     hi: 'मदद से पहले घटनास्थल की सुरक्षा जाँचना',
     es: 'Evaluar la seguridad del lugar antes de ayudar',
@@ -39,6 +40,7 @@ export const assessSceneSafetyBeforeHelping_Skill_Data = defineSkill({
       'Identify traffic, fire, electricity, violence, contamination, or unstable surroundings before approaching an affected person.',
     frontend: {
       en: 'Check whether approaching an injured person would put you in danger.',
+      it: 'Verifica se avvicinarti a una persona ferita potrebbe metterti in pericolo.',
       zh: '检查接近受伤者是否会让自己陷入危险。',
       hi: 'जाँचो कि घायल व्यक्ति के पास जाने से तुम खतरे में तो नहीं पड़ोगे।',
       es: 'Comprueba si acercarte a una persona herida pondría en peligro tu seguridad.',

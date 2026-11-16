@@ -13,6 +13,7 @@ export const ethicsAndPublicEffects_SkillGroup_Data = defineSkillGroup({
   id: '822989c2-0371-4561-9cf3-59451ab57f4f',
   name: {
     en: 'Ethics and Public Effects',
+    it: 'Etica e impatti sulla collettività',
     zh: '伦理与公共影响',
     hi: 'नैतिकता और सार्वजनिक प्रभाव',
     es: 'Ética y efectos públicos',
@@ -63,6 +64,7 @@ export const ethicsAndPublicEffects_SkillGroup_Data = defineSkillGroup({
       'Technical solutions create benefits and burdens for users, maintainers, neighbors and communities; limitations must be disclosed.',
     frontend: {
       en: 'Explore responsibility toward everyone affected by engineered products.',
+      it: 'Esplora la responsabilità verso tutte le persone coinvolte dagli effetti dei prodotti ingegneristici.',
       zh: '探索对受工程产品影响的所有人承担责任。',
       hi: 'अभियांत्रिकी उत्पादों से प्रभावित सभी लोगों के प्रति जिम्मेदारी समझें।',
       es: 'Explora la responsabilidad hacia todas las personas afectadas por los productos diseñados.',

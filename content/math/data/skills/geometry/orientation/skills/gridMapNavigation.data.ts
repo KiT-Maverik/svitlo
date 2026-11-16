@@ -5,6 +5,7 @@ export const gridMapNavigation_Skill_Data = defineSkill({
   id: '43b1fdd6-0846-4c0c-a01b-375a6fec3b2f',
   name: {
     en: 'Reading and drawing simple grid maps',
+    it: 'Leggere e disegnare semplici mappe a griglia',
     qm: 'Sade kletkalı haritalarnı oqumaq ve çizmek',
     lt: 'Paprastų tinklelio planų skaitymas ir braižymas',
     lv: 'Vienkāršu rūtiņu plānu lasīšana un zīmēšana',
@@ -39,6 +40,7 @@ export const gridMapNavigation_Skill_Data = defineSkill({
       'A grid defines a discrete spatial system with consistent directions or coordinates. Plans, paths, and end positions must follow the same reference conventions; cell size and orientation affect interpretation.',
     frontend: {
       en: 'Read or draw a grid map to show positions and routes. Follow the same directions and grid scale throughout.',
+      it: 'Leggi o disegna una mappa a griglia per indicare posizioni e percorsi. Mantieni le stesse direzioni e la stessa scala per tutta la griglia.',
       qm: 'Yerlerni ve yollarnı köstermek içün kletkalı haritanı oqu ya da çiz. Bütün haritada aynı yönlerni ve kletka miqyasını qullan.',
       zh: '读懂或画出方格地图来表示位置和路线，始终使用一致的方向和方格比例。',
       hi: 'खानों वाले नक्शे को पढ़ें या बनाएँ और स्थान व रास्ते दिखाएँ। दिशा और खानों का पैमाना एक सा रखें।',

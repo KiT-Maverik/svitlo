@@ -5,6 +5,7 @@ export const distinguishObservationFromInterpretation_Skill_Data = defineSkill({
   id: '4f26ba31-bbac-489b-a45f-087b34efe21a',
   name: {
     en: 'Distinguish observation from interpretation',
+    it: 'Distinguere osservazione e interpretazione',
     zh: '区分观察与解释',
     hi: 'अवलोकन और व्याख्या में अंतर करें',
     es: 'Distinguir observación de interpretación',
@@ -38,6 +39,7 @@ export const distinguishObservationFromInterpretation_Skill_Data = defineSkill({
     methodological: 'Separate a recorded outcome from the theory-dependent explanation assigned to that outcome.',
     frontend: {
       en: 'Separate what was recorded from how someone explains it.',
+      it: 'Separa ciò che è stato registrato dal modo in cui qualcuno lo spiega.',
       zh: '把实际记录的内容与人们对它的解释分开。',
       hi: 'जो दर्ज किया गया है, उसे उसकी व्याख्या से अलग करें।',
       es: 'Separa lo registrado de la explicación que alguien ofrece.',

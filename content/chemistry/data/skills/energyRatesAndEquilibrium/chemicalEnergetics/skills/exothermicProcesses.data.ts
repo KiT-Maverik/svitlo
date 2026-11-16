@@ -5,6 +5,7 @@ export const exothermicProcesses_Skill_Data = defineSkill({
   id: '4f3130c7-4fcf-483d-99ed-30635d83b697',
   name: {
     en: 'Exothermic Processes',
+    it: 'Processi esotermici',
     zh: '放热过程',
     hi: 'ऊष्माक्षेपी प्रक्रियाएँ',
     es: 'Procesos exotérmicos',
@@ -39,6 +40,7 @@ export const exothermicProcesses_Skill_Data = defineSkill({
       'Interpret negative system enthalpy change under stated conditions and distinguish released heat from reaction rate.',
     frontend: {
       en: 'Recognize when a process releases heat without assuming that it happens quickly.',
+      it: 'Riconosci quando un processo libera calore senza supporre che avvenga rapidamente.',
       zh: '识别释放热量的过程，同时不假定它一定快速进行。',
       hi: 'ऊष्मा छोड़ने वाली प्रक्रिया पहचानें, यह न मानें कि वह तेज भी होगी।',
       es: 'Reconoce procesos que liberan calor sin suponer que ocurren rápidamente.',

@@ -5,6 +5,7 @@ export const createMaps_Skill_Data = defineSkill({
   id: '5ca5023d-7336-42bb-8b66-63bc02cf9290',
   name: {
     en: 'Create maps',
+    it: 'Realizzare carte geografiche',
     zh: '制作地图',
     hi: 'मानचित्र बनाना',
     es: 'Crear mapas',
@@ -39,6 +40,7 @@ export const createMaps_Skill_Data = defineSkill({
       'Select an appropriate spatial extent and represent places or geographically referenced information with consistent symbols, orientation, labels and scale as needed for a communication purpose. Sketching a classroom plan and constructing a thematic map are applications, not automatically distinct Skills.',
     frontend: {
       en: 'Create a clear map using suitable symbols, labels, orientation and scale.',
+      it: 'Realizza una carta chiara usando simboli, etichette, orientamento e scala adeguati.',
       zh: '使用合适的符号、注记、方向和比例尺绘制清晰易读的地图。',
       hi: 'उपयुक्त चिह्न, नामपट्टियाँ, दिशा और मापनी का उपयोग करके स्पष्ट मानचित्र बनाएँ।',
       es: 'Crea un mapa claro con símbolos, etiquetas, orientación y escala adecuados.',

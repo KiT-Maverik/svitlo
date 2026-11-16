@@ -7,6 +7,7 @@ export const portions_SkillGroup_Data = defineSkillGroup({
   id: '8e117fee-fc09-41e2-bf8a-fed07ffbd065',
   name: {
     en: 'Fractional parts of quantities',
+    it: 'Parti frazionarie delle quantità',
     qm: 'Miqdarnıñ kesir parçaları',
     lt: 'Dydžių dalys',
     lv: 'Lielumu daļas',
@@ -48,6 +49,7 @@ export const portions_SkillGroup_Data = defineSkillGroup({
       'Moving between a whole quantity and its unit fractional part through division and the inverse operation.',
     frontend: {
       en: 'Find a fractional part of a quantity or work backward from a known equal part to the whole.',
+      it: "Trova una parte frazionaria di una quantità oppure ricostruisci l'intero a partire da una parte uguale conosciuta.",
       qm: 'Miqdarnıñ kesir parçasını tap ya da belli teñ parçağa köre bütüni qayta belgile.',
       zh: '求一个数量的几分之一，或从已知的等份反推出整体。',
       hi: 'किसी मात्रा का भिन्न भाग खोजें या बराबर भाग से पूरी मात्रा निकालें।',

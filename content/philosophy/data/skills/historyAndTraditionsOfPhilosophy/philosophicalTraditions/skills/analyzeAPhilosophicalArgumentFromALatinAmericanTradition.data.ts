@@ -5,6 +5,7 @@ export const analyzeAPhilosophicalArgumentFromALatinAmericanTradition_Skill_Data
   id: 'ecaf1943-4ab0-445a-890d-82301fc72f4d',
   name: {
     en: 'Analyze a philosophical argument from a Latin American tradition',
+    it: "Analizzare un'argomentazione filosofica di una tradizione latinoamericana",
     zh: '分析拉丁美洲传统中的哲学论证',
     hi: 'लातिन अमेरिकी परंपरा के दार्शनिक तर्क का विश्लेषण',
     es: 'Analizar un argumento de una tradición latinoamericana',
@@ -39,6 +40,7 @@ export const analyzeAPhilosophicalArgumentFromALatinAmericanTradition_Skill_Data
       'Reconstruct an argument from a specific Latin American current, such as liberation or decolonial philosophy, in its intellectual and social context without reducing the region to one doctrine.',
     frontend: {
       en: 'Explore Latin American philosophical arguments in their social and intellectual context.',
+      it: 'Esplora le argomentazioni filosofiche latinoamericane nel loro contesto sociale e intellettuale.',
       zh: '在社会和思想背景中探索拉丁美洲的哲学论证。',
       hi: 'लातिन अमेरिकी दर्शन के तर्कों को उनके सामाजिक और बौद्धिक संदर्भ में समझो।',
       es: 'Explora argumentos filosóficos latinoamericanos en su contexto social e intelectual.',

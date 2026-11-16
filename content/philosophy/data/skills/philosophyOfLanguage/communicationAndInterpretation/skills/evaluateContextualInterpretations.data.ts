@@ -5,6 +5,7 @@ export const evaluateContextualInterpretations_Skill_Data = defineSkill({
   id: 'dcd359eb-2dee-42a8-ab25-c9aa524629a1',
   name: {
     en: 'Evaluate contextual interpretations',
+    it: 'Valutare interpretazioni contestuali',
     zh: '评估语境中的解释',
     hi: 'संदर्भगत व्याख्याओं का मूल्यांकन',
     es: 'Evaluar interpretaciones contextuales',
@@ -39,6 +40,7 @@ export const evaluateContextualInterpretations_Skill_Data = defineSkill({
       "Compare readings of an utterance using the speaker's context, conventions, and available evidence.",
     frontend: {
       en: 'Choose between interpretations by considering context and available evidence.',
+      it: 'Scegli tra interpretazioni diverse considerando il contesto e le prove disponibili.',
       zh: '结合语境和现有证据，在不同解释之间作出判断。',
       hi: 'संदर्भ और उपलब्ध प्रमाणों के आधार पर अलग व्याख्याओं में से चुनो।',
       es: 'Elige entre interpretaciones teniendo en cuenta el contexto y las pruebas disponibles.',

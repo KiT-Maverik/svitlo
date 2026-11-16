@@ -5,6 +5,7 @@ export const traceDrinkingWaterSupply_Skill_Data = defineSkill({
   id: '4f126259-184a-46f4-a1f2-1469b8ce6c6c',
   name: {
     en: 'Trace drinking-water supply',
+    it: "Seguire la distribuzione dell'acqua potabile",
     zh: '追踪饮用水供应流程',
     hi: 'पेयजल आपूर्ति का मार्ग पहचानें',
     es: 'Seguir el suministro de agua potable',
@@ -38,6 +39,7 @@ export const traceDrinkingWaterSupply_Skill_Data = defineSkill({
     methodological: 'Follow a source through treatment, storage and distribution to a point of use.',
     frontend: {
       en: 'Trace how water travels from a source through treatment and supply networks.',
+      it: "Segui il percorso dell'acqua dalla fonte, attraverso il trattamento e le reti di distribuzione.",
       zh: '追踪水从水源经处理设施到供水管网的路径。',
       hi: 'स्रोत से शोधन और वितरण नेटवर्क तक पानी का रास्ता देखें।',
       es: 'Sigue el recorrido del agua desde la fuente hasta el tratamiento y la red.',

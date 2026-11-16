@@ -5,6 +5,7 @@ export const readPictograph_Skill_Data = defineSkill({
   id: '4d9532aa-f47a-416f-a0a6-c219943ceb24',
   name: {
     en: 'Reading a one-to-one pictograph',
+    it: 'Leggere un pittogramma uno a uno',
     qm: 'Bir işaret bir eşyanı bildirgen resimli diagrammanı oqumaq',
     lt: 'Piktogramos su viena žyme skaitymas',
     lv: 'Piktogrammas lasīšana ar vienu simbolu katrai vienībai',
@@ -39,6 +40,7 @@ export const readPictograph_Skill_Data = defineSkill({
       'In a pictograph where one symbol represents one object, frequencies are encoded by the count of symbols. Reading it requires the key, category labels, and number of symbols.',
     frontend: {
       en: 'You can read a pictograph where one symbol means one item, using the key and category names to count each category correctly.',
+      it: 'Puoi leggere un pittogramma in cui ogni simbolo rappresenta un elemento, usando la legenda e i nomi delle categorie per contarle correttamente.',
       qm: 'Bir işaret bir eşyaga teñ olğan resimli diagrammada anahtar ve kategoriya adlarını qullanıp, er kategoriyadaki eşyalarnı doğru saya bilesiñ.',
       zh: '你能借助图例和类别名称读懂每个符号代表一个物品的象形统计图，正确数出各类数量。',
       hi: 'आप चित्र आलेख में जहाँ एक प्रतीक एक वस्तु दिखाता है, संकेत और श्रेणियों के नाम देखकर प्रत्येक की सही गिनती कर सकते हैं।',

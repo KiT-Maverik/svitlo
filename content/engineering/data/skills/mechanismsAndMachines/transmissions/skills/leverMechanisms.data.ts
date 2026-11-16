@@ -5,6 +5,7 @@ export const leverMechanisms_Skill_Data = defineSkill({
   id: '36fa9401-c05a-46b9-a3b8-e6c8a80ba16f',
   name: {
     en: 'Lever mechanisms',
+    it: 'Meccanismi a leva',
     zh: '杠杆机构',
     hi: 'उत्तोलक तंत्र',
     es: 'Mecanismos de palanca',
@@ -38,6 +39,7 @@ export const leverMechanisms_Skill_Data = defineSkill({
     methodological: 'Identify pivot, input and output arrangement in a lever-driven machine.',
     frontend: {
       en: 'Identify the pivot and input and output forces in a lever mechanism.',
+      it: 'Individua il fulcro e le forze di ingresso e uscita in un meccanismo a leva.',
       zh: '识别杠杆机构中的支点、输入力和输出力。',
       hi: 'उत्तोलक में आधार-बिंदु, लगने वाला बल और मिलने वाला बल पहचानें।',
       es: 'Identifica el punto de apoyo y las fuerzas de entrada y salida en una palanca.',

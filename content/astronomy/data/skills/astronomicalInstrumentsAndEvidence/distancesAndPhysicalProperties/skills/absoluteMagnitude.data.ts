@@ -5,6 +5,7 @@ export const absoluteMagnitude_Skill_Data = defineSkill({
   id: 'b1c508d6-634c-48b1-87ba-2cdf164d95ed',
   name: {
     en: 'Absolute Magnitude',
+    it: 'Magnitudine assoluta',
     qm: 'Mutlaq yıldız büyükligi',
     bn: 'পরম কান্তিমান',
     ur: 'مطلق قدر',
@@ -39,6 +40,7 @@ export const absoluteMagnitude_Skill_Data = defineSkill({
       "Interpret a source's magnitude at a defined reference distance and use it to compare intrinsic brightness.",
     frontend: {
       en: "Compare objects' intrinsic brightness using the same reference distance.",
+      it: 'Confronta la luminosità intrinseca degli oggetti usando la stessa distanza di riferimento.',
       qm: 'Cisimlerniñ öz parlaqlığını aynı örnek mesafede teñeştiriñiz.',
       bn: 'একই নির্দিষ্ট দূরত্ব ধরে বস্তুর প্রকৃত উজ্জ্বলতার তুলনা করো।',
       ur: 'ایک ہی معیاری فاصلے کو استعمال کر کے اجرام کی حقیقی روشنائی کا موازنہ کریں۔',

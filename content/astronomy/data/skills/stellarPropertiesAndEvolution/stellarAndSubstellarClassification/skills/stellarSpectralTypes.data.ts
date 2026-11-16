@@ -5,6 +5,7 @@ export const stellarSpectralTypes_Skill_Data = defineSkill({
   id: '200ba789-22b7-43cb-a334-68db0487f804',
   name: {
     en: 'Stellar Spectral Types',
+    it: 'Tipi spettrali stellari',
     zh: '恒星光谱型',
     hi: 'तारकीय वर्णक्रमीय प्रकार',
     es: 'Tipos espectrales estelares',
@@ -38,6 +39,7 @@ export const stellarSpectralTypes_Skill_Data = defineSkill({
     methodological: 'Classify stars by temperature-sensitive spectral characteristics rather than by color alone.',
     frontend: {
       en: 'Identify stellar spectral classes using features in their light.',
+      it: 'Identifica le classi spettrali delle stelle attraverso le caratteristiche della loro luce.',
       zh: '根据星光中观察到的特征识别恒星光谱类别。',
       hi: 'तारों के प्रकाश में दिखाई देने वाले लक्षणों से उनकी वर्णक्रमीय श्रेणियाँ पहचानें।',
       es: 'Identifica las clases espectrales de las estrellas por las características de su luz.',

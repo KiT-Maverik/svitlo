@@ -9,6 +9,7 @@ export const thermalAndFluidDevices_SkillDomain_Data = defineSkillDomain({
   id: 'd33742d7-e1a8-4ade-a7e6-dc3506b28a1c',
   title: {
     en: 'Thermal and Fluid Devices',
+    it: 'Dispositivi termici e a fluido',
     zh: '热工与流体设备',
     hi: 'ऊष्मीय और द्रव उपकरण',
     es: 'Equipos térmicos y de fluidos',
@@ -51,6 +52,7 @@ export const thermalAndFluidDevices_SkillDomain_Data = defineSkillDomain({
       'Practical equipment moves heat, air and other fluids through controlled component chains. Here the object of study is the apparatus and its operating cycle, not the isolated thermodynamic or fluid laws.',
     frontend: {
       en: 'Explore practical machines that control heating, cooling and the flow of fluids.',
+      it: 'Esplora le macchine pratiche che controllano riscaldamento, raffreddamento e flusso dei fluidi.',
       zh: '探索控制加热、冷却和流体流动的实用机器。',
       hi: 'गर्म करने, ठंडा करने और द्रव प्रवाह को नियंत्रित करने वाली मशीनें जानें।',
       es: 'Explora máquinas que controlan el calentamiento, la refrigeración y el flujo de fluidos.',

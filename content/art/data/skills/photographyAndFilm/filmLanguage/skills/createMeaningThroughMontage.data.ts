@@ -5,6 +5,7 @@ export const createMeaningThroughMontage_Skill_Data = defineSkill({
   id: '823f1699-0f71-4974-b588-cae55103db00',
   name: {
     en: 'Create Meaning Through Montage',
+    it: 'Creare significato attraverso il montaggio',
 
     zh: '通过蒙太奇创造意义',
     hi: 'मोंटाज के माध्यम से अर्थ बनाएं',
@@ -39,6 +40,7 @@ export const createMeaningThroughMontage_Skill_Data = defineSkill({
     methodological: 'Juxtapose shots so their combination expresses an idea beyond each separate view.',
     frontend: {
       en: 'Combine shots to create an idea that neither shot expresses alone.',
+      it: "Combina inquadrature per creare un'idea che nessuna delle due esprime da sola.",
 
       zh: '组合镜头，创造单个镜头无法独自表达的想法。',
       hi: 'शॉट्स को जोड़कर ऐसा विचार बनाएँ जिसे कोई एक शॉट अकेले व्यक्त नहीं करता।',

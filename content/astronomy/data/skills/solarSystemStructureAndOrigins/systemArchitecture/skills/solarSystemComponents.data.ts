@@ -5,6 +5,7 @@ export const solarSystemComponents_Skill_Data = defineSkill({
   id: '2c404b38-fbad-47f6-a70c-fe12218ac240',
   name: {
     en: 'Solar System Components',
+    it: 'Componenti del Sistema solare',
     zh: '太阳系的组成部分',
     hi: 'सौरमंडल के घटक',
     es: 'Componentes del Sistema Solar',
@@ -39,6 +40,7 @@ export const solarSystemComponents_Skill_Data = defineSkill({
       "Classify the Sun, planets, natural satellites and smaller bodies by their roles in the system's gravitational architecture.",
     frontend: {
       en: 'Recognize the Sun, planets, moons and smaller bodies by their roles in the Solar System.',
+      it: 'Riconosci il Sole, i pianeti, le lune e i corpi minori in base al loro ruolo nel Sistema solare.',
       zh: '认识太阳、行星、卫星和较小天体在太阳系中的不同作用。',
       hi: 'सूर्य, ग्रहों, चंद्रमाओं और छोटे पिंडों को सौरमंडल में उनकी भूमिकाओं के आधार पर पहचानें।',
       es: 'Reconoce el Sol, los planetas, las lunas y los cuerpos menores según su función en el Sistema Solar.',

@@ -12,6 +12,7 @@ export const ethicsOfDigitalInteraction_SkillGroup_Data = defineSkillGroup({
   id: '3467c890-5d7a-4298-9939-9f8ec5d3b342',
   name: {
     en: 'Ethics of Digital Interaction',
+    it: 'Etica delle interazioni digitali',
     zh: '数字互动伦理',
     hi: 'डिजिटल संवाद की नैतिकता',
     es: 'Ética de la interacción digital',
@@ -60,6 +61,7 @@ export const ethicsOfDigitalInteraction_SkillGroup_Data = defineSkillGroup({
       "Respect for other users and creators' rights, including recognizing bullying, attribution, and licensing conditions. Social norms and copyright differ from technical account protection.",
     frontend: {
       en: "Learn to communicate respectfully and respect creators' permissions.",
+      it: 'Impara a comunicare con rispetto e a osservare le autorizzazioni dei creatori.',
       zh: '学习尊重他人交流并遵守创作者的授权。',
       hi: 'सम्मानपूर्वक संवाद करना और रचनाकारों की अनुमतियों का आदर करना सीखें।',
       es: 'Aprende a comunicarte con respeto y a cumplir los permisos de los creadores.',

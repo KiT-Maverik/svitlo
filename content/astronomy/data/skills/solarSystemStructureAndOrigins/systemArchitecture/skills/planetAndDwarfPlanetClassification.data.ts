@@ -5,6 +5,7 @@ export const planetAndDwarfPlanetClassification_Skill_Data = defineSkill({
   id: '608431bd-6348-4fb5-8e37-5a4a854c6bec',
   name: {
     en: 'Planet and Dwarf Planet Classification',
+    it: 'Classificazione di pianeti e pianeti nani',
     zh: '行星与矮行星的分类',
     hi: 'ग्रहों और बौने ग्रहों का वर्गीकरण',
     es: 'Clasificación de planetas y planetas enanos',
@@ -39,6 +40,7 @@ export const planetAndDwarfPlanetClassification_Skill_Data = defineSkill({
       'Apply the physical and dynamical criteria that distinguish planets, dwarf planets and other orbiting bodies.',
     frontend: {
       en: 'Distinguish planets and dwarf planets using their physical and orbital characteristics.',
+      it: 'Distingui i pianeti dai pianeti nani attraverso le loro caratteristiche fisiche e orbitali.',
       zh: '根据天体的物理性质和轨道特征区分行星与矮行星。',
       hi: 'पिंडों की भौतिक और कक्षीय विशेषताओं के आधार पर ग्रहों और बौने ग्रहों में अंतर करें।',
       es: 'Distingue planetas de planetas enanos según sus características físicas y orbitales.',

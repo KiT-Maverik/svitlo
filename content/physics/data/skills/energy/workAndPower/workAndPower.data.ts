@@ -7,6 +7,7 @@ export const workAndPower_SkillGroup_Data = defineSkillGroup({
   id: '332a154e-4903-4dd7-94c9-0bb68c4da2ff',
   name: {
     en: 'Work and Power',
+    it: 'Lavoro e potenza',
     zh: '功与功率',
     hi: 'कार्य और शक्ति',
     es: 'Trabajo y potencia',
@@ -48,6 +49,7 @@ export const workAndPower_SkillGroup_Data = defineSkillGroup({
       'Work describes energy transfer by a force during displacement, while power describes the rate of energy transfer.',
     frontend: {
       en: 'Explore the physical meaning of mechanical work and power.',
+      it: 'Esplora il significato fisico del lavoro meccanico e della potenza.',
       zh: '探索机械功与功率的物理意义。',
       hi: 'यांत्रिक कार्य और शक्ति के भौतिक अर्थ जानें।',
       es: 'Explora el significado físico del trabajo mecánico y la potencia.',

@@ -5,6 +5,7 @@ export const reduction_Skill_Data = defineSkill({
   id: '03368a7e-bfb8-4ff7-8ac4-65f6fe424cfe',
   name: {
     en: 'Reduction',
+    it: 'Riduzione',
     zh: '还原',
     hi: 'अपचयन',
     es: 'Reducción',
@@ -39,6 +40,7 @@ export const reduction_Skill_Data = defineSkill({
       'Identify decreases in formal oxidation state or electron gain in appropriate reaction descriptions.',
     frontend: {
       en: 'Identify reduction through electron gain or a decrease in oxidation state.',
+      it: "Identifica la riduzione attraverso l'acquisto di elettroni o la diminuzione del numero di ossidazione.",
       zh: '通过得到电子或氧化态降低识别还原过程。',
       hi: 'इलेक्ट्रॉन मिलने या ऑक्सीकरण अवस्था घटने से अपचयन पहचानें।',
       es: 'Identifica la reducción por ganancia de electrones o disminución del número de oxidación.',

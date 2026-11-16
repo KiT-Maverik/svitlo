@@ -10,6 +10,7 @@ export const riversAndDrainageBasins_SkillGroup_Data = defineSkillGroup({
   id: 'da7661ab-8f47-4f14-ae2f-cb1793b3c081',
   name: {
     en: 'Rivers and Drainage Basins',
+    it: 'Fiumi e bacini idrografici',
     zh: '河流与流域',
     hi: 'नदियाँ और जलग्रहण क्षेत्र',
     es: 'Ríos y cuencas hidrográficas',
@@ -51,6 +52,7 @@ export const riversAndDrainageBasins_SkillGroup_Data = defineSkillGroup({
       'Flowing water links sources, tributaries and outlets into networks, while topography governs the surface catchment of a river. Describing different types of water bodies as objects belongs to Geographic Objects.',
     frontend: {
       en: 'Discover how streams and rivers connect into drainage networks.',
+      it: 'Scopri come ruscelli e fiumi si collegano formando reti idrografiche.',
       zh: '了解溪流和河流如何连成水系。',
       hi: 'जानें कि धाराएँ और नदियाँ मिलकर जलनिकासी जाल कैसे बनाती हैं।',
       es: 'Descubre cómo arroyos y ríos forman redes de drenaje.',

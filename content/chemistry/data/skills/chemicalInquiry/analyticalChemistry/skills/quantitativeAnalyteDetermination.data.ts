@@ -5,6 +5,7 @@ export const quantitativeAnalyteDetermination_Skill_Data = defineSkill({
   id: 'b4bbfd1a-b03e-45ef-8d5b-8f85959b4fae',
   name: {
     en: 'Quantitative Analyte Determination',
+    it: "Determinazione quantitativa dell'analita",
     zh: '分析物的定量测定',
     hi: 'विश्लेष्य का मात्रात्मक निर्धारण',
     es: 'Determinación cuantitativa del analito',
@@ -39,6 +40,7 @@ export const quantitativeAnalyteDetermination_Skill_Data = defineSkill({
       'Infer the amount or concentration of a specified analyte from a justified measured signal and calculation, accounting for relevant dilution or recovery factors.',
     frontend: {
       en: 'Determine how much of a target substance is present from appropriate measurements.',
+      it: 'Determina la quantità di una sostanza bersaglio mediante misurazioni appropriate.',
       zh: '根据适当的测量确定目标物质的含量。',
       hi: 'उचित मापों से पता लगाएँ कि लक्ष्य पदार्थ कितनी मात्रा में मौजूद है।',
       es: 'Determina cuánto analito contiene una muestra mediante mediciones adecuadas.',

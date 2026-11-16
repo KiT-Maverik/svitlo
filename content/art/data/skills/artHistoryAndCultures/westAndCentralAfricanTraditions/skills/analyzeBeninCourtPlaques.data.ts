@@ -5,6 +5,7 @@ export const analyzeBeninCourtPlaques_Skill_Data = defineSkill({
   id: '6876cdd7-f714-4a57-9c6a-0f58f17e6a9c',
   name: {
     en: 'Analyze Benin Court Plaques',
+    it: 'Analizzare le placche della corte del Benin',
     zh: '分析贝宁宫廷浮雕铜牌',
     hi: 'बेनिन दरबार की पट्टिकाओं का विश्लेषण करें',
     es: 'Analizar las placas cortesanas de Benín',
@@ -39,6 +40,7 @@ export const analyzeBeninCourtPlaques_Skill_Data = defineSkill({
       'Explain how Edo court plaques convey royal authority, hierarchy and historical events through relief imagery and material choices.',
     frontend: {
       en: 'Examine how plaques from the Benin court portray authority, people and events.',
+      it: "Esamina come le placche della corte del Benin rappresentano l'autorità, le persone e gli avvenimenti.",
       zh: '考察贝宁宫廷浮雕牌如何描绘权力、人物与历史事件。',
       hi: 'जानें कि बेनिन दरबार की पट्टिकाएँ सत्ता, लोगों और घटनाओं को कैसे दर्शाती हैं।',
       es: 'Examina cómo las placas de la corte de Benín representan el poder, a las personas y los acontecimientos.',

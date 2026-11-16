@@ -5,6 +5,7 @@ export const evaluateAProposedUltimateExplanation_Skill_Data = defineSkill({
   id: '9ddeff41-dbbc-4b32-83df-e1a44f19fbd7',
   name: {
     en: 'Evaluate a proposed ultimate explanation',
+    it: 'Valutare una spiegazione ultima proposta',
     zh: '评估所提出的终极解释',
     hi: 'प्रस्तावित अंतिम व्याख्या का मूल्यांकन',
     es: 'Evaluar una explicación última propuesta',
@@ -39,6 +40,7 @@ export const evaluateAProposedUltimateExplanation_Skill_Data = defineSkill({
       'Consider whether an account of why anything exists explains more than it assumes and what further questions it raises.',
     frontend: {
       en: 'Ask how much an explanation of existence explains and what it assumes.',
+      it: "Domandati quanto una spiegazione dell'esistenza riesca a spiegare e quali presupposti adotti.",
       zh: '思考一种关于存在的解释究竟解释了多少，以及它预设了什么。',
       hi: 'पूछें कि अस्तित्व की कोई व्याख्या कितना समझाती है और किन मान्यताओं पर निर्भर है।',
       es: 'Pregunta cuánto explica una explicación de la existencia y qué presupone.',

@@ -5,6 +5,7 @@ export const analyzeArtisticTechnologyHistorically_Skill_Data = defineSkill({
   id: 'baea476e-0650-4d5f-afc1-ad11e641459b',
   name: {
     en: 'Analyze Artistic Technology Historically',
+    it: 'Analizzare storicamente le tecnologie artistiche',
     zh: '从历史角度分析艺术技术',
     hi: 'कलात्मक तकनीक का ऐतिहासिक विश्लेषण करें',
     es: 'Analizar históricamente la tecnología artística',
@@ -38,6 +39,7 @@ export const analyzeArtisticTechnologyHistorically_Skill_Data = defineSkill({
     methodological: 'Connect changes in tools and media to new artistic possibilities.',
     frontend: {
       en: 'See how new tools and materials open different possibilities for artists.',
+      it: 'Osserva come nuovi strumenti e materiali aprono possibilità diverse agli artisti.',
       zh: '了解新工具与材料如何为艺术家带来不同的创作可能。',
       hi: 'जानें कि नए औज़ार और सामग्री कलाकारों के लिए नई संभावनाएँ कैसे खोलते हैं।',
       es: 'Descubre cómo las nuevas herramientas y materiales abren distintas posibilidades para los artistas.',

@@ -12,6 +12,7 @@ export const societiesAndStatesOfAncientIndia_SkillGroup_Data = defineSkillGroup
   id: 'c26d62e2-f630-4279-a5e9-7c2bb237ff27',
   name: {
     en: 'Societies and States of Ancient India',
+    it: "Società e Stati dell'India antica",
     zh: '古印度的社会与国家',
     hi: 'प्राचीन भारत के समाज और राज्य',
     es: 'Sociedades y estados de la India antigua',
@@ -55,6 +56,7 @@ export const societiesAndStatesOfAncientIndia_SkillGroup_Data = defineSkillGroup
       'After the Vedic period, regional kingdoms and larger empires arose with differing political systems.',
     frontend: {
       en: 'Discover how states developed in ancient India.',
+      it: "Scopri come si svilupparono gli Stati nell'India antica.",
       zh: '了解古代印度国家如何形成。',
       hi: 'जानें कि प्राचीन भारत में राज्यों का विकास कैसे हुआ।',
       es: 'Descubre cómo se desarrollaron los estados en la India antigua.',

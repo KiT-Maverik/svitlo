@@ -7,6 +7,7 @@ export const financialMarkets_SkillGroup_Data = defineSkillGroup({
   id: 'a1243a31-9b27-42ef-893f-e9624aafc724',
   name: {
     en: 'Фінансові ринки',
+    it: 'Mercati finanziari',
     zh: '金融市场',
     hi: 'वित्तीय बाज़ार',
     es: 'Mercados financieros',
@@ -50,6 +51,7 @@ export const financialMarkets_SkillGroup_Data = defineSkillGroup({
       'Capital and risk are transferred through contractual claims and ownership rights whose prices depend on expectations.',
     frontend: {
       en: 'Explore how people trade financial claims and ownership interests.',
+      it: 'Esplora come le persone scambiano crediti finanziari e partecipazioni di proprietà.',
       zh: '探索人们如何交易金融债权和所有权权益。',
       hi: 'जानें कि लोग वित्तीय दावे और स्वामित्व हिस्सेदारी का व्यापार कैसे करते हैं।',
       es: 'Explora cómo se negocian derechos financieros y participaciones de propiedad.',

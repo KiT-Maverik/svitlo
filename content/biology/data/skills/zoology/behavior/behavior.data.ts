@@ -11,6 +11,7 @@ export const behavior_SkillGroup_Data = defineSkillGroup({
   id: '59114693-ede5-4e1f-af01-366f42656347',
   name: {
     en: 'Behavior',
+    it: 'Comportamento',
     zh: '动物行为',
     hi: 'प्राणियों का व्यवहार',
     es: 'Comportamiento animal',
@@ -57,6 +58,7 @@ export const behavior_SkillGroup_Data = defineSkillGroup({
       'Animal actions arise in response to signals and needs; observation makes it possible to identify defense, communication, and benefits of living in groups.',
     frontend: {
       en: 'Explore how animal behavior supports communication, protection and group life.',
+      it: 'Scopri come il comportamento degli animali favorisce comunicazione, protezione e vita di gruppo.',
       zh: '探索动物的行为如何帮助它们交流、自卫和群居。',
       hi: 'जानें कि जानवरों का व्यवहार संचार, सुरक्षा और समूह में रहने में कैसे मदद करता है।',
       es: 'Explora cómo el comportamiento animal favorece la comunicación, la protección y la vida en grupo.',

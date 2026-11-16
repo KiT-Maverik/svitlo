@@ -5,6 +5,7 @@ export const evaluateScientificPeerReview_Skill_Data = defineSkill({
   id: 'e0c24a71-dea5-449e-97c0-51b72c0c8726',
   name: {
     en: 'Evaluate scientific peer review',
+    it: 'Valutare la revisione paritaria scientifica',
     zh: '评估科学同行评审',
     hi: 'वैज्ञानिक सहकर्मी समीक्षा का मूल्यांकन',
     es: 'Evaluar la revisión científica por pares',
@@ -39,6 +40,7 @@ export const evaluateScientificPeerReview_Skill_Data = defineSkill({
       'Distinguish expert scrutiny of methods and interpretation from a guarantee that published claims are correct.',
     frontend: {
       en: 'Recognize the value and limits of expert review of scientific work.',
+      it: 'Riconosci il valore e i limiti della valutazione del lavoro scientifico da parte di esperti.',
       zh: '认识专家审查科学研究的价值及局限。',
       hi: 'वैज्ञानिक कार्य की विशेषज्ञ समीक्षा का महत्व और सीमाएँ पहचानें।',
       es: 'Reconoce el valor y los límites de la evaluación de trabajos científicos por expertos.',

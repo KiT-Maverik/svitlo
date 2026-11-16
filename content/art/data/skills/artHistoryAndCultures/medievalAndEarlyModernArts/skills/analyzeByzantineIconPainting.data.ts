@@ -5,6 +5,7 @@ export const analyzeByzantineIconPainting_Skill_Data = defineSkill({
   id: '944b7fc2-6770-473b-ac20-e11b2dd6b782',
   name: {
     en: 'Analyze Byzantine Icon Painting',
+    it: 'Analizzare la pittura delle icone bizantine',
     zh: '分析拜占庭圣像画',
     hi: 'बीज़ेंटाइन आइकन चित्रकला का विश्लेषण करें',
     es: 'Analizar la pintura de iconos bizantinos',
@@ -39,6 +40,7 @@ export const analyzeByzantineIconPainting_Skill_Data = defineSkill({
       'Interpret symbolic poses, materials, visual conventions and devotional functions in a specified Byzantine icon context rather than judging the work by naturalistic realism.',
     frontend: {
       en: 'Discover how Byzantine icons use symbolic forms and materials in worship.',
+      it: 'Scopri come le icone bizantine utilizzano forme e materiali simbolici nel culto religioso.',
       zh: '了解拜占庭圣像如何在礼拜中运用象征性形式和材料。',
       hi: 'जानें कि बीज़ेंटाइन आइकन उपासना में प्रतीकात्मक रूपों और सामग्रियों का उपयोग कैसे करते हैं।',
       es: 'Descubre cómo los iconos bizantinos usan formas y materiales simbólicos en el culto.',

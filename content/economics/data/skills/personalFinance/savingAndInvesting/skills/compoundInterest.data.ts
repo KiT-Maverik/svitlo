@@ -5,6 +5,7 @@ export const compoundInterest_Skill_Data = defineSkill({
   id: '083738c5-cc2f-4eac-8898-c2c84c0cec8a',
   name: {
     en: 'Складні відсотки',
+    it: 'Interesse composto',
     zh: '复利',
     hi: 'चक्रवृद्धि ब्याज',
     es: 'Interés compuesto',
@@ -39,6 +40,7 @@ export const compoundInterest_Skill_Data = defineSkill({
       'Calculate growth of debt or savings when accrued interest is capitalized, considering compounding frequency and duration.',
     frontend: {
       en: 'Explore how interest on interest can increase savings or debt.',
+      it: 'Esplora come gli interessi sugli interessi possono far crescere i risparmi o i debiti.',
       zh: '探索利息再生利息如何增加储蓄或债务。',
       hi: 'समझें कि ब्याज पर मिलने वाला ब्याज बचत या कर्ज कैसे बढ़ाता है।',
       es: 'Descubre cómo los intereses sobre intereses aumentan ahorros o deudas.',

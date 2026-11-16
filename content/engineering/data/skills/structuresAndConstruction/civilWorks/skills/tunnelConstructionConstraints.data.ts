@@ -5,6 +5,7 @@ export const tunnelConstructionConstraints_Skill_Data = defineSkill({
   id: '81ffec97-e008-4f94-8622-98cad2feb6f4',
   name: {
     en: 'Tunnel construction constraints',
+    it: 'Vincoli nella costruzione di gallerie',
     zh: '隧道施工约束',
     hi: 'सुरंग निर्माण की बाधाएँ',
     es: 'Restricciones en la construcción de túneles',
@@ -38,6 +39,7 @@ export const tunnelConstructionConstraints_Skill_Data = defineSkill({
     methodological: 'Relate ground stability, lining and ventilation to tunneling methods.',
     frontend: {
       en: 'Recognize how ground conditions and ventilation shape tunnel construction.',
+      it: 'Riconosci come le condizioni del terreno e la ventilazione influiscono sulla costruzione di gallerie.',
       zh: '识别地质条件和通风要求如何影响隧道施工。',
       hi: 'जानें कि जमीन की स्थिति और वातन सुरंग निर्माण को कैसे प्रभावित करते हैं।',
       es: 'Reconoce cómo el terreno y la ventilación condicionan la construcción de túneles.',

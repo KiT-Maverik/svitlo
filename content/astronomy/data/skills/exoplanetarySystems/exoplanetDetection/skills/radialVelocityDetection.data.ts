@@ -5,6 +5,7 @@ export const radialVelocityDetection_Skill_Data = defineSkill({
   id: 'be2c5a7f-3121-4a90-b7e2-380b19adc3ce',
   name: {
     en: 'Radial-Velocity Detection',
+    it: 'Rilevamento tramite velocità radiale',
     zh: '径向速度探测法',
     hi: 'त्रिज्यीय वेग से ग्रहों की खोज',
     es: 'Detección por velocidad radial',
@@ -39,6 +40,7 @@ export const radialVelocityDetection_Skill_Data = defineSkill({
       'Interpret periodic stellar spectral shifts as evidence for an orbiting companion and constrain its mass.',
     frontend: {
       en: "Use a star's changing spectral motion to infer the pull of an orbiting planet.",
+      it: "Usa le variazioni dello spettro di una stella per dedurre l'attrazione esercitata da un pianeta in orbita.",
       zh: '通过恒星光谱中随时间变化的运动信号，推断绕转行星的引力影响。',
       hi: 'तारे के वर्णक्रम में बदलती गति से परिक्रमा करने वाले ग्रह के गुरुत्वीय खिंचाव का अनुमान लगाएँ।',
       es: 'Utiliza los cambios espectrales del movimiento de una estrella para deducir el tirón de un planeta en órbita.',

@@ -5,6 +5,7 @@ export const analyzeGermanExpressionistPainting_Skill_Data = defineSkill({
   id: '542e67c3-25d1-4ce2-a43c-cd590f83827c',
   name: {
     en: 'Analyze German Expressionist Painting',
+    it: 'Analizzare la pittura espressionista tedesca',
     zh: '分析德国表现主义绘画',
     hi: 'जर्मन अभिव्यंजनावादी चित्रकला का विश्लेषण करें',
     es: 'Analizar la pintura expresionista alemana',
@@ -39,6 +40,7 @@ export const analyzeGermanExpressionistPainting_Skill_Data = defineSkill({
       'Relate intensified color, altered forms and expressive subjects to particular Expressionist groups rather than to all expressionist art globally.',
     frontend: {
       en: 'Explore the vivid colors and altered forms of specific German Expressionist groups.',
+      it: 'Esplora i colori vivaci e le forme alterate di specifici gruppi espressionisti tedeschi.',
       zh: '探索德国表现主义不同团体鲜明的色彩与变形形式。',
       hi: 'जर्मन अभिव्यंजनावादी समूहों के चमकीले रंगों और बदले हुए रूपों को समझें।',
       es: 'Explora los colores intensos y las formas transformadas de distintos grupos expresionistas alemanes.',

@@ -5,6 +5,7 @@ export const distinguishAClaimFromItsEvidence_Skill_Data = defineSkill({
   id: '3b2a440f-c871-4bae-8358-69ca623b060d',
   name: {
     en: 'Distinguish a claim from its evidence',
+    it: "Distinguere un'affermazione dalle prove a suo sostegno",
     zh: '区分主张与证据',
     hi: 'दावे और उसके साक्ष्य में अंतर करें',
     es: 'Distinguir una afirmación de sus pruebas',
@@ -39,6 +40,7 @@ export const distinguishAClaimFromItsEvidence_Skill_Data = defineSkill({
       'Separate what someone asserts from the observations, documents, or arguments presented to support it.',
     frontend: {
       en: 'Separate an assertion from the evidence used to support it.',
+      it: "Separa un'affermazione dalle prove utilizzate per sostenerla.",
       zh: '把一个断言与用来支持它的证据分开。',
       hi: 'कथन को उसके समर्थन में दिए गए प्रमाण से अलग पहचानें।',
       es: 'Separa lo que se afirma de las pruebas utilizadas para respaldarlo.',

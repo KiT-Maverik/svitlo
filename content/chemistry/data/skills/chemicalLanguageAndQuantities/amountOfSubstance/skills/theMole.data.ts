@@ -5,6 +5,7 @@ export const theMole_Skill_Data = defineSkill({
   id: 'be668c98-af7a-4d3b-a27e-3fe0c7692807',
   name: {
     en: 'The Mole',
+    it: 'La mole',
     zh: '摩尔',
     hi: 'मोल',
     es: 'El mol',
@@ -38,6 +39,7 @@ export const theMole_Skill_Data = defineSkill({
     methodological: "Interpret amount of substance as a count-based quantity defined through Avogadro's constant.",
     frontend: {
       en: 'Understand a mole as a defined number of chemical entities.',
+      it: 'Comprendi la mole come una quantità definita di entità chimiche.',
       zh: '理解摩尔是一定数量化学微粒的计量单位。',
       hi: 'समझें कि एक मोल रासायनिक कणों की निश्चित संख्या है।',
       es: 'Entiende el mol como una cantidad definida de entidades químicas.',

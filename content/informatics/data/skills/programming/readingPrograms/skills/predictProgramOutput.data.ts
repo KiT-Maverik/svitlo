@@ -5,6 +5,7 @@ export const predictProgramOutput_Skill_Data = defineSkill({
   id: '862987ae-e4dd-46c7-945f-875b48120be1',
   name: {
     en: 'Predict Program Output',
+    it: "Prevedere l'output di un programma",
     zh: '预测程序输出',
     hi: 'प्रोग्राम के आउटपुट का अनुमान लगाना',
     es: 'Predecir la salida de un programa',
@@ -39,6 +40,7 @@ export const predictProgramOutput_Skill_Data = defineSkill({
       'Determine exactly what a program prints, draws, or returns for particular inputs and execution order. This concerns the externally observable result, not every internal state.',
     frontend: {
       en: 'Work out the visible result a program will produce for given inputs.',
+      it: 'Determina il risultato visibile che un programma produrrà con determinati dati in ingresso.',
       zh: '根据给定的输入推断程序会产生什么可见结果。',
       hi: 'दिए गए इनपुट के लिए प्रोग्राम क्या परिणाम दिखाएगा, इसका पता लगाएँ।',
       es: 'Deduce el resultado visible que producirá un programa con unas entradas dadas.',

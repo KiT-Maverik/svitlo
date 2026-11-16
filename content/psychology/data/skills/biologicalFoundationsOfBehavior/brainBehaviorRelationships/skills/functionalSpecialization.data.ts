@@ -5,6 +5,7 @@ export const functionalSpecialization_Skill_Data = defineSkill({
   id: '1c1bcb20-afb0-485d-b24b-da1b7e933142',
   name: {
     en: 'Functional Specialization',
+    it: 'Specializzazione funzionale',
     zh: '功能特化',
     hi: 'कार्यात्मक विशिष्टीकरण',
     es: 'Especialización funcional',
@@ -39,6 +40,7 @@ export const functionalSpecialization_Skill_Data = defineSkill({
       'Explain distinctive contributions of brain regions while rejecting the idea that complex experience lives in one isolated location.',
     frontend: {
       en: 'Recognize specialized brain functions without assigning complex thoughts to one spot.',
+      it: 'Riconosci le funzioni specializzate del cervello senza attribuire pensieri complessi a una sola area.',
       zh: '认识大脑功能的分工，但不要把复杂思维归于单一脑区。',
       hi: 'मस्तिष्क के विशेष कार्य पहचानें, लेकिन जटिल विचारों को केवल एक स्थान से न जोड़ें।',
       es: 'Reconoce funciones cerebrales especializadas sin atribuir pensamientos complejos a una sola zona.',

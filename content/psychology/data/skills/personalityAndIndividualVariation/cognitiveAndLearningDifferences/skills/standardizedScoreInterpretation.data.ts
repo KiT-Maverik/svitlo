@@ -5,6 +5,7 @@ export const standardizedScoreInterpretation_Skill_Data = defineSkill({
   id: 'e63c8873-23f3-4173-8d9a-fa454aa518f7',
   name: {
     en: 'Standardized Score Interpretation',
+    it: 'Interpretazione dei punteggi standardizzati',
     zh: '标准化分数的解读',
     hi: 'मानकीकृत अंकों की व्याख्या',
     es: 'Interpretación de puntuaciones estandarizadas',
@@ -38,6 +39,7 @@ export const standardizedScoreInterpretation_Skill_Data = defineSkill({
     methodological: 'Explain norm-referenced scores and why reference populations and test conditions matter.',
     frontend: {
       en: 'Interpret standardized scores with their reference groups and limitations.',
+      it: 'Interpreta i punteggi standardizzati tenendo conto dei gruppi di riferimento e dei loro limiti.',
       zh: '结合参照群体和局限性来理解标准化分数。',
       hi: 'मानकीकृत अंकों को उनके संदर्भ समूहों और सीमाओं के साथ समझें।',
       es: 'Interpreta puntuaciones estandarizadas considerando sus grupos de referencia y limitaciones.',

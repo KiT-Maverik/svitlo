@@ -12,6 +12,7 @@ export const preventionAndAccessToHelp_SkillGroup_Data = defineSkillGroup({
   id: 'b5f6b60d-c5c4-4e11-a2f3-85bd6dcf2810',
   name: {
     en: 'Prevention and Access to Help',
+    it: "Prevenzione e accesso all'aiuto",
     zh: '预防与获得帮助',
     hi: 'रोकथाम और मदद तक पहुँच',
     es: 'Prevención y acceso a la ayuda',
@@ -60,6 +61,7 @@ export const preventionAndAccessToHelp_SkillGroup_Data = defineSkillGroup({
       'Dependence involves more than a single behaviour; early support and non-stigmatizing treatment pathways matter.',
     frontend: {
       en: 'Discover how to prevent harmful use and find support early.',
+      it: 'Scopri come prevenire gli usi dannosi e trovare sostegno tempestivamente.',
       zh: '了解如何预防有害使用并尽早获得支持。',
       hi: 'हानिकारक उपयोग से बचाव और जल्दी सहायता पाने के तरीके जानें।',
       es: 'Descubre cómo prevenir el consumo dañino y buscar apoyo temprano.',

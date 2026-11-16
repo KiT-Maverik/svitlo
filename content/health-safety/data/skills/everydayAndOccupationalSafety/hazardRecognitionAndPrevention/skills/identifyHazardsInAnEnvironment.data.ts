@@ -5,6 +5,7 @@ export const identifyHazardsInAnEnvironment_Skill_Data = defineSkill({
   id: '5072e396-6375-47fa-b76e-72f69291fdb1',
   name: {
     en: 'Identify hazards in an environment',
+    it: 'Individuare i pericoli in un ambiente',
     zh: '识别环境中的危险',
     hi: 'परिवेश में खतरों की पहचान',
     es: 'Identificar peligros en un entorno',
@@ -39,6 +40,7 @@ export const identifyHazardsInAnEnvironment_Skill_Data = defineSkill({
       'Notice physical, chemical, electrical, and situational dangers without assuming a familiar place is automatically safe.',
     frontend: {
       en: 'Spot unsafe electrical, chemical and physical conditions nearby.',
+      it: 'Riconosci condizioni elettriche, chimiche e fisiche non sicure nelle vicinanze.',
       zh: '发现附近不安全的电气、化学和物理条件。',
       hi: 'आसपास बिजली, रसायन और भौतिक स्थितियों से जुड़े खतरे पहचानें।',
       es: 'Detecta condiciones eléctricas, químicas y físicas peligrosas a tu alrededor.',

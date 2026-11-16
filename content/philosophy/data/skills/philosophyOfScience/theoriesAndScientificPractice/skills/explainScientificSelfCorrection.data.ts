@@ -5,6 +5,7 @@ export const explainScientificSelfCorrection_Skill_Data = defineSkill({
   id: 'd22d7e13-e9d7-41c3-a8e6-5d9befd0fa15',
   name: {
     en: 'Explain scientific self-correction',
+    it: "Spiegare l'autocorrezione della scienza",
     zh: '解释科学的自我纠错',
     hi: 'विज्ञान में आत्म-सुधार समझाएँ',
     es: 'Explicar la autocorrección científica',
@@ -39,6 +40,7 @@ export const explainScientificSelfCorrection_Skill_Data = defineSkill({
       'Describe how independent criticism and new evidence can revise established models, without equating uncertainty with lack of knowledge.',
     frontend: {
       en: 'Explain how new evidence can lead science to revise earlier conclusions.',
+      it: 'Spiega come nuove prove possano indurre la scienza a rivedere conclusioni precedenti.',
       zh: '说明新证据如何促使科学修正过去的结论。',
       hi: 'बताएँ कि नए साक्ष्य विज्ञान को पुराने निष्कर्ष बदलने के लिए कैसे प्रेरित करते हैं।',
       es: 'Explica cómo las nuevas pruebas pueden llevar a revisar conclusiones anteriores.',

@@ -5,6 +5,7 @@ export const budgetAndResourceConstraints_Skill_Data = defineSkill({
   id: '106da766-965c-4e4b-8e58-fb82115b0bd3',
   name: {
     en: 'Budget and Resource Constraints',
+    it: 'Vincoli di bilancio e di risorse',
     zh: '预算和资源约束',
     hi: 'बजट और संसाधन सीमाएँ',
     es: 'Restricciones presupuestarias y de recursos',
@@ -39,6 +40,7 @@ export const budgetAndResourceConstraints_Skill_Data = defineSkill({
       'Construct the feasible set of economic alternatives available to any decision-maker under financial, time, technological, or other resource constraints; evaluating a specific consumption bundle is a specialized application.',
     frontend: {
       en: 'Identify which options are possible within money, time, and other limits.',
+      it: 'Individua quali opzioni sono possibili entro i limiti di denaro, tempo e altre risorse.',
       zh: '判断在金钱、时间及其他限制下哪些选项可行。',
       hi: 'धन, समय और अन्य सीमाओं में उपलब्ध विकल्प पहचानें।',
       es: 'Identifica qué opciones son viables con límites de dinero, tiempo y otros recursos.',

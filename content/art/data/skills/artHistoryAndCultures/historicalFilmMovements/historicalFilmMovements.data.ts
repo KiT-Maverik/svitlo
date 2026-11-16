@@ -12,6 +12,7 @@ export const historicalFilmMovements_SkillGroup_Data = defineSkillGroup({
   id: '6b41f816-853c-4a09-85a8-694b724971cf',
   name: {
     en: 'Historical Film Movements',
+    it: 'Movimenti cinematografici storici',
     zh: '历史电影运动',
     hi: 'ऐतिहासिक फ़िल्म आंदोलन',
     es: 'Movimientos cinematográficos históricos',
@@ -60,6 +61,7 @@ export const historicalFilmMovements_SkillGroup_Data = defineSkillGroup({
       'Movements in film history can be distinguished through camera, staging, editing, narrative and culturally situated aesthetic choices.',
     frontend: {
       en: 'Discover how different film movements developed distinctive visual and narrative choices.',
+      it: 'Scopri come diversi movimenti cinematografici hanno sviluppato scelte visive e narrative distintive.',
       zh: '了解不同电影运动如何形成各自独特的视觉与叙事方式。',
       hi: 'जानें कि विभिन्न फ़िल्म आंदोलनों ने अपनी विशिष्ट दृश्य और कथात्मक शैलियाँ कैसे विकसित कीं।',
       es: 'Descubre cómo distintos movimientos cinematográficos desarrollaron opciones visuales y narrativas propias.',

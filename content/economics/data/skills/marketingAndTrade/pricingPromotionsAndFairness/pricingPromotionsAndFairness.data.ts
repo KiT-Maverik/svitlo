@@ -15,6 +15,7 @@ export const pricingPromotionsAndFairness_SkillGroup_Data = defineSkillGroup({
   id: '3abaa57c-0495-4bba-9b46-22652eec60a7',
   name: {
     en: 'Ціни, акції та добросовісність',
+    it: 'Prezzi, promozioni e correttezza commerciale',
     zh: '定价、促销与公平交易',
     hi: 'मूल्य, प्रचार और निष्पक्षता',
     es: 'Precios, promociones y prácticas justas',
@@ -69,6 +70,7 @@ export const pricingPromotionsAndFairness_SkillGroup_Data = defineSkillGroup({
       'Price offers have commercial effects, but judging them requires verifying actual savings and methods of influencing buyers.',
     frontend: {
       en: 'Learn to evaluate sale prices, discounts, and fair selling practices.',
+      it: 'Impara a valutare prezzi in offerta, sconti e pratiche di vendita corrette.',
       zh: '学会评估促销价、折扣和公平的销售行为。',
       hi: 'बिक्री मूल्य, छूट और निष्पक्ष बिक्री व्यवहार का आकलन करना सीखें।',
       es: 'Aprende a evaluar precios de oferta, descuentos y prácticas de venta justas.',

@@ -5,6 +5,7 @@ export const compareLocationsAgainstStatedGeographicCriteria_Skill_Data = define
   id: '302df78f-c792-481b-98d8-062c38913e39',
   name: {
     en: 'Compare locations against stated geographic criteria',
+    it: 'Confrontare luoghi in base a criteri geografici dichiarati',
     zh: '按照明确的地理标准比较地点',
     hi: 'बताए गए भौगोलिक मानदंडों के अनुसार स्थानों की तुलना करना',
     es: 'Comparar lugares según criterios geográficos establecidos',
@@ -39,6 +40,7 @@ export const compareLocationsAgainstStatedGeographicCriteria_Skill_Data = define
       'Evaluate alternatives using relevant properties such as accessibility, hazard exposure, and resource availability without silently changing the criteria.',
     frontend: {
       en: 'Compare possible locations against clearly defined geographic needs.',
+      it: 'Confronta possibili luoghi in base a esigenze geografiche chiaramente definite.',
       zh: '依据清晰界定的地理需求比较备选地点。',
       hi: 'स्पष्ट रूप से तय की गई भौगोलिक जरूरतों के आधार पर संभावित स्थानों की तुलना करें।',
       es: 'Compara posibles ubicaciones según necesidades geográficas claramente definidas.',

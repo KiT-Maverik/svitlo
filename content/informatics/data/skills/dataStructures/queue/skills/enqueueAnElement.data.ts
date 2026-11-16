@@ -5,6 +5,7 @@ export const enqueueAnElement_Skill_Data = defineSkill({
   id: '17a1fd61-5d3e-47ae-89ff-9e4312cbd66c',
   name: {
     en: 'Enqueue an Element',
+    it: 'Inserire un elemento in una coda',
     zh: '将元素加入队列',
     hi: 'कतार में एक तत्व जोड़ना',
     es: 'Añadir un elemento a la cola',
@@ -38,6 +39,7 @@ export const enqueueAnElement_Skill_Data = defineSkill({
     methodological: 'Add a value to the back without rearranging those already waiting.',
     frontend: {
       en: 'Add a new item to the back of a queue.',
+      it: 'Aggiungi un nuovo elemento in fondo a una coda.',
       zh: '将新元素添加到队列末尾。',
       hi: 'कतार के अंत में एक नया तत्व जोड़ें।',
       es: 'Añade un elemento nuevo al final de una cola.',

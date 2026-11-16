@@ -5,6 +5,7 @@ export const advertisingClaims_Skill_Data = defineSkill({
   id: 'c9261d70-a201-4426-8115-27743229b721',
   name: {
     en: 'Рекламне твердження',
+    it: 'Affermazioni pubblicitarie',
     zh: '广告宣传主张',
     hi: 'विज्ञापन के दावे',
     es: 'Afirmaciones publicitarias',
@@ -38,6 +39,7 @@ export const advertisingClaims_Skill_Data = defineSkill({
     methodological: 'Distinguish facts, value judgments, and promises requiring evidence in commercial communication.',
     frontend: {
       en: 'Recognize which advertising statements need proof.',
+      it: 'Riconosci quali affermazioni pubblicitarie richiedono prove.',
       zh: '识别哪些广告说法需要证据支持。',
       hi: 'पहचानें कि विज्ञापन के कौन से कथन प्रमाण माँगते हैं।',
       es: 'Reconoce qué afirmaciones de los anuncios necesitan pruebas.',

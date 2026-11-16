@@ -5,6 +5,7 @@ export const divisionOfLabor_Skill_Data = defineSkill({
   id: '66fdff0e-f227-4cc4-8ccb-8afc7d473b68',
   name: {
     en: 'Division of Labor',
+    it: 'Divisione del lavoro',
     zh: '劳动分工',
     hi: 'श्रम विभाजन',
     es: 'División del trabajo',
@@ -39,6 +40,7 @@ export const divisionOfLabor_Skill_Data = defineSkill({
       'Identify how distributing production tasks among different workers changes productivity and mutual dependence.',
     frontend: {
       en: 'See how specialized tasks can make work more productive.',
+      it: 'Scopri come la specializzazione dei compiti può rendere il lavoro più produttivo.',
       zh: '了解任务专业化如何提高劳动生产率。',
       hi: 'जानें कि विशेषीकृत कार्य कैसे उत्पादकता बढ़ा सकते हैं।',
       es: 'Observa cómo la especialización de tareas puede aumentar la productividad.',

@@ -5,6 +5,7 @@ export const designArtisticInteraction_Skill_Data = defineSkill({
   id: '4024242e-6be3-4ec7-abfc-8b032a4b2b45',
   name: {
     en: 'Design Artistic Interaction',
+    it: "Progettare un'interazione artistica",
     zh: '设计艺术互动',
     hi: 'कलात्मक सहभागिता डिज़ाइन करें',
     es: 'Diseñar una interacción artística',
@@ -38,6 +39,7 @@ export const designArtisticInteraction_Skill_Data = defineSkill({
     methodological: 'Connect an audience action with an intentional aesthetic state change.',
     frontend: {
       en: 'Design an interaction that changes an artwork in an expressive way.',
+      it: "Progetta un'interazione che modifichi un'opera d'arte in modo espressivo.",
       zh: '设计能够以富有表现力的方式改变艺术作品的互动。',
       hi: 'ऐसी सहभागिता डिज़ाइन करें जो कलाकृति को अभिव्यंजक ढंग से बदल दे।',
       es: 'Diseña una interacción que transforme una obra de manera expresiva.',

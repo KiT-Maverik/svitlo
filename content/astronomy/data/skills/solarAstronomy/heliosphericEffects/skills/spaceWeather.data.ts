@@ -5,6 +5,7 @@ export const spaceWeather_Skill_Data = defineSkill({
   id: '78d330ce-dffd-4f9a-92bd-f46c8b7f33e4',
   name: {
     en: 'Space Weather',
+    it: 'Meteorologia spaziale',
     qm: 'Kosmik ava',
     bn: 'মহাকাশের আবহাওয়া',
     ur: 'خلائی موسم',
@@ -39,6 +40,7 @@ export const spaceWeather_Skill_Data = defineSkill({
       'Interpret solar-driven changes that can affect spacecraft, radio systems and near-Earth space without equating them with terrestrial weather.',
     frontend: {
       en: 'Learn how solar activity can disrupt space technology and communications.',
+      it: "Scopri come l'attività solare può disturbare le tecnologie spaziali e le comunicazioni.",
       qm: 'Küneş faaliyeti kosmik tehnikağa ve haberleşüvge nasıl zarar ketirebilgenini ögreniñiz.',
       bn: 'সৌর কার্যকলাপ কীভাবে মহাকাশ প্রযুক্তি ও যোগাযোগব্যবস্থায় বিঘ্ন ঘটাতে পারে তা জানো।',
       ur: 'جانیں کہ شمسی سرگرمیاں خلائی ٹیکنالوجی اور مواصلات میں خلل کیسے ڈال سکتی ہیں۔',

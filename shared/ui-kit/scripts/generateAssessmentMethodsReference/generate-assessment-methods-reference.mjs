@@ -159,11 +159,20 @@ function readAssessmentMethodDefinitions(root, languages, allowMissing = false) 
     if (allowMissing) {
       const unexpected = Object.keys(config.title).filter(code => !languages.includes(code));
       if (unexpected.length) throw new Error('Unexpected Assessment Method language(s): ' + unexpected.join(', '));
-      if (typeof config.title.en !== 'string' || !config.title.en.trim()) throw new Error('Missing English title for ' + key);
+      if (typeof config.title.en !== 'string' || !config.title.en.trim())
+        throw new Error('Missing English title for ' + key);
     } else {
       assertExactKeys(config.title, languages, 'Assessment Method titles for ' + key);
     }
-    definitions[key] = { id: config.id, description, title: config.title };
+    if (allowMissing) {
+      const unexpectedDescriptions = Object.keys(config.description).filter(code => !languages.includes(code));
+      if (unexpectedDescriptions.length) {
+        throw new Error('Unexpected Assessment Method description language(s): ' + unexpectedDescriptions.join(', '));
+      }
+    } else {
+      assertExactKeys(config.description, languages, 'Assessment Method descriptions for ' + key);
+    }
+    definitions[key] = { id: config.id, description, descriptions: config.description, title: config.title };
   }
   return definitions;
 }
@@ -187,15 +196,41 @@ export function readAssessmentMethodsReference({ root = repoRoot, locale, allowM
   const methods = keys.map(key => {
     const definition = definitions[key];
     const title = definition.title[locale];
-    const missing = typeof title !== 'string' || !title.trim();
-    if (missing && (!allowMissing || locale === 'en')) {
+    const localizedDescription = definition.descriptions[locale];
+    const missingTitle = typeof title !== 'string' || !title.trim();
+    const missingDescription = typeof localizedDescription !== 'string' || !localizedDescription.trim();
+    if (missingTitle && (!allowMissing || locale === 'en')) {
       throw new Error('Missing Assessment Method title for ' + key + ' (' + locale + ')');
     }
-    if (!missing && title === '%%MISSING%%') throw new Error('Reserved marker in Assessment Method title: ' + key);
-    if (!missing && /[\r\n]/.test(title)) throw new Error('Multiline Assessment Method title for ' + key + ' (' + locale + ')');
-    return { key, id: definition.id, title: missing ? '%%MISSING%%' : title, description: definition.description.trim() };
+    if (missingDescription && (!allowMissing || locale === 'en')) {
+      throw new Error('Missing Assessment Method description for ' + key + ' (' + locale + ')');
+    }
+    if (!missingTitle && title === '%%MISSING%%') throw new Error('Reserved marker in Assessment Method title: ' + key);
+    if (!missingDescription && localizedDescription === '%%MISSING%%') {
+      throw new Error('Reserved marker in Assessment Method description: ' + key);
+    }
+    if (!missingTitle && /[\r\n]/.test(title))
+      throw new Error('Multiline Assessment Method title for ' + key + ' (' + locale + ')');
+    if (!missingDescription && /[\r\n]/.test(localizedDescription)) {
+      throw new Error('Multiline Assessment Method description for ' + key + ' (' + locale + ')');
+    }
+    return {
+      key,
+      id: definition.id,
+      title: missingTitle ? '%%MISSING%%' : title,
+      localizedDescription: missingDescription ? '%%MISSING%%' : localizedDescription,
+      description: definition.description.trim(),
+    };
   });
-  return { locale, methods, missing: methods.filter(method => method.title === '%%MISSING%%').length };
+  return {
+    locale,
+    methods,
+    missing: methods.reduce(
+      (count, method) =>
+        count + Number(method.title === '%%MISSING%%') + Number(method.localizedDescription === '%%MISSING%%'),
+      0,
+    ),
+  };
 }
 
 function escapeMarkdown(text) {
@@ -203,7 +238,7 @@ function escapeMarkdown(text) {
 }
 
 export function renderAssessmentMethodsReference(options) {
-  const { locale, methods } = readAssessmentMethodsReference(options);
+  const { locale, methods, missing } = readAssessmentMethodsReference(options);
   const links = {
     descriptions: '../../' + sourcePaths.descriptions,
   };
@@ -211,7 +246,11 @@ export function renderAssessmentMethodsReference(options) {
     '<!-- GENERATED FROM CODE; DO NOT EDIT. -->',
     '# Assessment Methods — ' + locale,
     '',
-    'Frontend title language: ' + tick + locale + tick + '. Methodological descriptions: **English only**.',
+    'Localized titles and descriptions: ' +
+      tick +
+      locale +
+      tick +
+      '. English methodological source is shown for review.',
     '',
     'An **Assessment Method** specifies the cognitive operation a learner must demonstrate and the evidence a task should elicit. ' +
       'A **Question type** specifies how the learner supplies a response (such as selecting, matching or entering text). ' +
@@ -229,9 +268,14 @@ export function renderAssessmentMethodsReference(options) {
       ').',
     '',
     'Methods: ' + methods.length,
-    ...(options.allowMissing ? ['Missing translations: ' + methods.filter(method => method.title === '%%MISSING%%').length,
-      ...(methods.some(method => method.title === '%%MISSING%%')
-        ? ['', '> DRAFT REFERENCE: missing localized fields; not approved for independent review.'] : [])] : []),
+    ...(options.allowMissing
+      ? [
+          'Missing translations: ' + missing,
+          ...(missing > 0
+            ? ['', '> DRAFT REFERENCE: missing localized fields; not approved for independent review.']
+            : []),
+        ]
+      : []),
     '',
   ];
   for (const method of methods) {
@@ -240,6 +284,7 @@ export function renderAssessmentMethodsReference(options) {
       '',
       '- **UUID:** ' + tick + method.id + tick,
       '- **Frontend title (' + locale + '):** ' + escapeMarkdown(method.title),
+      '- **Localized description (' + locale + '):** ' + escapeMarkdown(method.localizedDescription),
       '- **Methodological description (English):** ' + escapeMarkdown(method.description),
       '- **Canonical definitions:** [definition and methodology](' + links.descriptions + '/' + method.key + '.ts)',
       '',
@@ -249,7 +294,14 @@ export function renderAssessmentMethodsReference(options) {
 }
 
 /** Integrates with the existing Agent CI Artifacts manifest and cleanup policy. */
-export function generateAssessmentMethodsReviewArtifacts({ root, output, languages, manifest, saveManifest, allowMissing = false }) {
+export function generateAssessmentMethodsReviewArtifacts({
+  root,
+  output,
+  languages,
+  manifest,
+  saveManifest,
+  allowMissing = false,
+}) {
   const destinationRoot = path.join(output, 'assessment-methods');
   if (path.resolve(output) !== path.resolve(root, '.agent-ci-artifacts')) {
     throw new Error('Assessment Methods output must be the PR-scoped .agent-ci-artifacts directory');
@@ -262,8 +314,13 @@ export function generateAssessmentMethodsReviewArtifacts({ root, output, languag
       const missing = Number(markdown.match(/^Missing translations: (\d+)$/m)?.[1] ?? 0);
       const relative = 'assessment-methods/' + locale + '.md';
       fs.writeFileSync(path.join(output, relative), markdown, 'utf8');
-      manifest.generated.push({ kind: 'assessment-method', locale, path: '.agent-ci-artifacts/' + relative,
-        missing, reviewReady: missing === 0 });
+      manifest.generated.push({
+        kind: 'assessment-method',
+        locale,
+        path: '.agent-ci-artifacts/' + relative,
+        missing,
+        reviewReady: missing === 0,
+      });
       stats.generated++;
       process.stdout.write('Generated ' + relative + '\n');
     } catch (error) {

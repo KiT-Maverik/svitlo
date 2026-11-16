@@ -5,6 +5,7 @@ export const stormwaterDrainage_Skill_Data = defineSkill({
   id: '0233cd16-21ee-4b2a-bda2-8f6d890eaf9f',
   name: {
     en: 'Stormwater drainage',
+    it: 'Drenaggio delle acque meteoriche',
     zh: '雨水排放',
     hi: 'वर्षा जल निकासी',
     es: 'Drenaje pluvial',
@@ -38,6 +39,7 @@ export const stormwaterDrainage_Skill_Data = defineSkill({
     methodological: 'Trace runoff from a built surface through inlet, conveyance and discharge or retention.',
     frontend: {
       en: 'Explore how drains and channels carry runoff away from populated areas.',
+      it: "Esplora come scarichi e canali allontanano l'acqua di ruscellamento dalle aree abitate.",
       zh: '探索排水沟和渠道如何将径流引离人口聚居区。',
       hi: 'जानें कि नालियाँ और चैनल बारिश का बहता पानी बस्तियों से कैसे दूर ले जाते हैं।',
       es: 'Explora cómo desagües y canales alejan la escorrentía de las zonas habitadas.',

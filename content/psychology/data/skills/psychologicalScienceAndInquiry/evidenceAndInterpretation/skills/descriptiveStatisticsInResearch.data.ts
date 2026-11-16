@@ -5,6 +5,7 @@ export const descriptiveStatisticsInResearch_Skill_Data = defineSkill({
   id: '6281b8d9-aaae-4a6f-90b1-99bb8dd66e4b',
   name: {
     en: 'Descriptive Statistics in Research',
+    it: 'Statistiche descrittive nella ricerca',
     zh: '研究中的描述性统计',
     hi: 'अनुसंधान में वर्णनात्मक सांख्यिकी',
     es: 'Estadística descriptiva en investigación',
@@ -39,6 +40,7 @@ export const descriptiveStatisticsInResearch_Skill_Data = defineSkill({
       "Interpret distributions, typical values, and variability without treating a group average as every participant's experience.",
     frontend: {
       en: 'Read typical values and variation without assuming everyone matches the average.',
+      it: 'Interpreta valori tipici e variabilità senza presumere che tutti corrispondano alla media.',
       zh: '理解典型数值和差异，不要认为每个人都与平均值相同。',
       hi: 'सामान्य मान और उनमें अंतर समझें; यह न मानें कि हर व्यक्ति औसत जैसा है।',
       es: 'Interpreta valores típicos y diferencias sin suponer que todas las personas se ajustan al promedio.',

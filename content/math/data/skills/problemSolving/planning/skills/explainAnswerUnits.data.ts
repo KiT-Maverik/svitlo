@@ -11,6 +11,7 @@ export const explainAnswerUnits_Skill_Data = defineSkill({
     ka: 'პასუხის ერთეულებისა და გონივრულობის შემოწმება',
     kk: 'Жауап бірліктері мен қисындылығын тексеру',
     en: 'Checking answer units and reasonableness',
+    it: 'Verificare unità e plausibilità delle risposte',
     qm: 'Cevapnıñ birligini ve aqılğa uyğunlığını teşkere etüv',
     zh: '检查答案单位与合理性',
     hi: 'उत्तर की इकाइयाँ और युक्तिसंगतता जाँचना',
@@ -39,6 +40,7 @@ export const explainAnswerUnits_Skill_Data = defineSkill({
       'A word-problem answer must name the requested quantity in consistent units and satisfy the constraints of its mathematical or real-world context. A bare number without a unit or a plausibility check may fail to answer the question.',
     frontend: {
       en: 'You can give an answer with the right units and check whether it makes sense in the situation, not just write a number.',
+      it: 'Puoi dare una risposta con le unità corrette e verificare che abbia senso nella situazione, anziché scrivere soltanto un numero.',
       qm: 'Yalıñız sayı yazmay, cevapta doğru birlikni köster ve vaziyetke uyğanını teşkere et.',
       zh: '你能用正确的单位写出答案，并检查答案是否符合实际情境，而不只是写一个数字。',
       hi: 'आप उत्तर सही इकाइयों के साथ लिख सकते हैं और जाँच सकते हैं कि वह परिस्थिति में उचित है या नहीं, सिर्फ एक संख्या नहीं लिखते।',

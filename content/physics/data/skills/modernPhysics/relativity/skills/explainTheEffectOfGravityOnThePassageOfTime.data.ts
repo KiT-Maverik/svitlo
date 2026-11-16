@@ -5,6 +5,7 @@ export const explainTheEffectOfGravityOnThePassageOfTime_Skill_Data = defineSkil
   id: '5098662d-76bc-4cc9-beaa-43829cf9ba52',
   name: {
     en: 'Explain the effect of gravity on the passage of time',
+    it: "Spiegare l'effetto della gravità sul trascorrere del tempo",
     zh: '解释引力对时间流逝的影响',
     hi: 'समय के बीतने पर गुरुत्वाकर्षण का प्रभाव समझाना',
     es: 'Explicar el efecto de la gravedad en el transcurso del tiempo',
@@ -39,6 +40,7 @@ export const explainTheEffectOfGravityOnThePassageOfTime_Skill_Data = defineSkil
       'The relative rates of clocks can depend on gravitational potential and observation conditions; this is a physical effect of general relativity.',
     frontend: {
       en: 'Explore how gravity can change the relative rates of clocks.',
+      it: 'Esplora come la gravità possa modificare il ritmo con cui gli orologi misurano il trascorrere del tempo.',
       zh: '探索引力如何改变不同位置时钟的相对走时速率。',
       hi: 'जानो कि गुरुत्वाकर्षण अलग-अलग स्थानों पर घड़ियों के चलने की सापेक्ष दर कैसे बदल सकता है।',
       es: 'Explora cómo la gravedad puede modificar el ritmo relativo al que marchan los relojes.',

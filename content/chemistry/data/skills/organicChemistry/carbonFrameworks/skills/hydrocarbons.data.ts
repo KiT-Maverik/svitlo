@@ -5,6 +5,7 @@ export const hydrocarbons_Skill_Data = defineSkill({
   id: '2ba703d0-151e-4c92-b5a9-cb4e0c3856fd',
   name: {
     en: 'Hydrocarbons',
+    it: 'Idrocarburi',
     zh: '碳氢化合物',
     hi: 'हाइड्रोकार्बन',
     es: 'Hidrocarburos',
@@ -39,6 +40,7 @@ export const hydrocarbons_Skill_Data = defineSkill({
       'Identify compounds containing only carbon and hydrogen and distinguish saturated from unsaturated connectivity.',
     frontend: {
       en: 'Recognize compounds made only of carbon and hydrogen.',
+      it: 'Riconosci i composti costituiti soltanto da carbonio e idrogeno.',
       zh: '识别仅由碳和氢两种元素构成的化合物。',
       hi: 'केवल कार्बन और हाइड्रोजन से बने यौगिकों को पहचानें।',
       es: 'Reconoce los compuestos formados únicamente por carbono e hidrógeno.',

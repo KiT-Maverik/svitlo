@@ -5,6 +5,7 @@ export const explainALanguageModelsContextWindow_Skill_Data = defineSkill({
   id: 'd4360ab9-32a7-4be5-8d74-40069809cf31',
   name: {
     en: "Explain a Language Model's Context Window",
+    it: 'Spiegare la finestra di contesto di un modello linguistico',
     zh: '解释语言模型的上下文窗口',
     hi: 'भाषा मॉडल की संदर्भ सीमा समझाना',
     es: 'Explicar la ventana de contexto de un modelo de lenguaje',
@@ -39,6 +40,7 @@ export const explainALanguageModelsContextWindow_Skill_Data = defineSkill({
       'Identify the limit on how many tokens a system can use for a request and understand that different models have different limits.',
     frontend: {
       en: 'Understand why a language model can use only a limited amount of context.',
+      it: 'Comprendi perché un modello linguistico può utilizzare solo una quantità limitata di contesto.',
       zh: '理解语言模型为什么只能使用有限长度的上下文。',
       hi: 'समझें कि भाषा मॉडल सीमित मात्रा में ही संदर्भ क्यों उपयोग कर सकते हैं।',
       es: 'Comprende por qué un modelo de lenguaje solo puede utilizar una cantidad limitada de contexto.',

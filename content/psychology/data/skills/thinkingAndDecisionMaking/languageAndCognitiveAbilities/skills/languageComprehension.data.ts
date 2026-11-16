@@ -5,6 +5,7 @@ export const languageComprehension_Skill_Data = defineSkill({
   id: '8d52bac8-b9ef-437b-978d-8cc350f69264',
   name: {
     en: 'Language Comprehension',
+    it: 'Comprensione del linguaggio',
     zh: '语言理解',
     hi: 'भाषा की समझ',
     es: 'Comprensión del lenguaje',
@@ -38,6 +39,7 @@ export const languageComprehension_Skill_Data = defineSkill({
     methodological: 'Relate context and prior knowledge to the interpretation of ambiguous expressions.',
     frontend: {
       en: 'Understand how listeners and readers build meaning from language.',
+      it: 'Comprendi come ascoltatori e lettori costruiscano il significato a partire dal linguaggio.',
       zh: '理解听者和读者如何从语言中构建意义。',
       hi: 'समझें कि सुनने और पढ़ने वाले भाषा से अर्थ कैसे बनाते हैं।',
       es: 'Comprende cómo quienes escuchan y leen construyen significado a partir del lenguaje.',

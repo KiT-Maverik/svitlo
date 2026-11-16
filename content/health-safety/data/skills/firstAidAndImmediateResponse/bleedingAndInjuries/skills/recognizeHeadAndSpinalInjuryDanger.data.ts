@@ -5,6 +5,7 @@ export const recognizeHeadAndSpinalInjuryDanger_Skill_Data = defineSkill({
   id: '250e2a65-04d4-4f2e-ac84-7255f1c3e49d',
   name: {
     en: 'Recognize head and spinal injury danger',
+    it: 'Riconoscere il pericolo di lesioni alla testa e alla colonna vertebrale',
     zh: '识别头部和脊柱损伤的危险',
     hi: 'सिर और रीढ़ की चोट का खतरा पहचानना',
     es: 'Reconocer el peligro de lesiones craneales y vertebrales',
@@ -39,6 +40,7 @@ export const recognizeHeadAndSpinalInjuryDanger_Skill_Data = defineSkill({
       'Identify concerning mechanisms or symptoms and avoid unnecessary movement while arranging urgent evaluation.',
     frontend: {
       en: 'Recognize why suspected head or spinal injury requires careful handling.',
+      it: 'Comprendi perché una sospetta lesione cranica o vertebrale richiede particolare cautela nei movimenti.',
       zh: '理解疑似头部或脊柱损伤为何需要谨慎处理。',
       hi: 'समझो कि सिर या रीढ़ की संदिग्ध चोट में बहुत सावधानी क्यों ज़रूरी है।',
       es: 'Comprende por qué las posibles lesiones de cabeza o columna requieren precaución.',

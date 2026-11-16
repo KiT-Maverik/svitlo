@@ -5,6 +5,7 @@ export const capacitorApplications_Skill_Data = defineSkill({
   id: 'bc55cfc4-b133-4628-acdf-0a8917afd21d',
   name: {
     en: 'Capacitor applications',
+    it: 'Applicazioni dei condensatori',
     zh: '电容器的应用',
     hi: 'संधारित्र के उपयोग',
     es: 'Aplicaciones de condensadores',
@@ -38,6 +39,7 @@ export const capacitorApplications_Skill_Data = defineSkill({
     methodological: 'Relate short-term charge storage to smoothing, filtering or timing in electronics.',
     frontend: {
       en: 'Understand how capacitors store and release electric charge.',
+      it: 'Comprendi come i condensatori accumulano e rilasciano carica elettrica.',
       zh: '理解电容器如何储存并释放电荷。',
       hi: 'समझें कि संधारित्र विद्युत आवेश कैसे संचित और मुक्त करते हैं।',
       es: 'Comprende cómo los condensadores almacenan y liberan carga eléctrica.',

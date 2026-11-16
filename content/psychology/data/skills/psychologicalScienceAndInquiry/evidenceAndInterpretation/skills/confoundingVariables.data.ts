@@ -5,6 +5,7 @@ export const confoundingVariables_Skill_Data = defineSkill({
   id: '33f3d70c-11ba-4627-9f0a-e0de4d3d028a',
   name: {
     en: 'Confounding Variables',
+    it: 'Variabili confondenti',
     zh: '混杂变量',
     hi: 'व्यतिकारी चर',
     es: 'Variables de confusión',
@@ -39,6 +40,7 @@ export const confoundingVariables_Skill_Data = defineSkill({
       'Identify background factors that move with a proposed cause and could produce an observed group difference.',
     frontend: {
       en: 'Identify other factors that might explain a difference between groups.',
+      it: 'Individua altri fattori che potrebbero spiegare una differenza tra gruppi.',
       zh: '识别可能解释组间差异的其他因素。',
       hi: 'ऐसे अन्य कारकों को पहचानें जो समूहों के बीच अंतर समझा सकते हैं।',
       es: 'Identifica otros factores que podrían explicar una diferencia entre grupos.',

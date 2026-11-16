@@ -5,6 +5,7 @@ export const explainTheConceptOfAClass_Skill_Data = defineSkill({
   id: '3268486b-813b-436b-b76a-a541d3db002f',
   name: {
     en: 'Explain the Concept of a Class',
+    it: 'Spiegare il concetto di classe',
     zh: '解释类的概念',
     hi: 'क्लास की अवधारणा समझाना',
     es: 'Explicar el concepto de clase',
@@ -39,6 +40,7 @@ export const explainTheConceptOfAClass_Skill_Data = defineSkill({
       'Understand a class as a definition of the structure and available operations of objects instantiated from it, such as the properties and methods of a hypothetical Counter. The class definition itself is not an instance with its own current count.',
     frontend: {
       en: 'Understand a class as a definition from which individual objects are created.',
+      it: 'Comprendi una classe come una definizione da cui vengono creati singoli oggetti.',
       zh: '理解类是用于创建具体对象的定义。',
       hi: 'क्लास को वह परिभाषा समझें जिससे अलग-अलग ऑब्जेक्ट बनते हैं।',
       es: 'Comprende una clase como la definición a partir de la cual se crean objetos individuales.',

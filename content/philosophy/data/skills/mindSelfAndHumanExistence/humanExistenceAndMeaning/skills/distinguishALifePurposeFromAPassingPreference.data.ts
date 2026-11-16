@@ -5,6 +5,7 @@ export const distinguishALifePurposeFromAPassingPreference_Skill_Data = defineSk
   id: '8bc12984-16ae-4114-8c8c-4ecde15d76af',
   name: {
     en: 'Distinguish a life purpose from a passing preference',
+    it: 'Distinguere uno scopo di vita da una preferenza passeggera',
     zh: '区分人生目标与一时偏好',
     hi: 'जीवन के उद्देश्य और क्षणिक पसंद में अंतर करना',
     es: 'Distinguir un propósito de vida de una preferencia pasajera',
@@ -39,6 +40,7 @@ export const distinguishALifePurposeFromAPassingPreference_Skill_Data = defineSk
       'Examine how sustained commitments and values differ from momentary wants when evaluating an account of a meaningful life.',
     frontend: {
       en: 'Distinguish long-term life commitments from momentary wishes.',
+      it: 'Distingui gli impegni di vita a lungo termine dai desideri momentanei.',
       zh: '区分长期的人生承诺与短暂的愿望。',
       hi: 'दीर्घकालिक जीवन प्रतिबद्धताओं और क्षणिक इच्छाओं में अंतर करें।',
       es: 'Distingue los compromisos vitales duraderos de los deseos momentáneos.',

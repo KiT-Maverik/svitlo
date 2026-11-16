@@ -5,6 +5,7 @@ export const distinguishRandomAndDeterministicEvents_Skill_Data = defineSkill({
   id: '40612c6f-e017-4758-b0b5-abd3171df718',
   name: {
     en: 'Distinguish Random and Deterministic Events',
+    it: 'Distinguere eventi casuali e deterministici',
     zh: '区分随机事件与确定性事件',
     hi: 'यादृच्छिक और नियतात्मक घटनाओं में अंतर करना',
     es: 'Distinguir sucesos aleatorios y deterministas',
@@ -39,6 +40,7 @@ export const distinguishRandomAndDeterministicEvents_Skill_Data = defineSkill({
       "Determine whether a model's known conditions fully determine its outcome or allow several possible outcomes with an unspecified selection. An outcome unknown to an observer does not itself prove physical randomness.",
     frontend: {
       en: 'Distinguish outcomes determined by a rule from those selected randomly.',
+      it: 'Distingui i risultati determinati da una regola da quelli selezionati casualmente.',
       zh: '区分由规则决定的结果与随机选出的结果。',
       hi: 'नियम से तय परिणाम और यादृच्छिक रूप से चुने गए परिणाम अलग पहचानें।',
       es: 'Distingue los resultados fijados por una regla de los elegidos al azar.',

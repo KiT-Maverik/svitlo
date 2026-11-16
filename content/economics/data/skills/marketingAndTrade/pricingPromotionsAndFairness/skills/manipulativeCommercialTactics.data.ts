@@ -5,6 +5,7 @@ export const manipulativeCommercialTactics_Skill_Data = defineSkill({
   id: '4e8ee056-f610-4dd6-8ec3-e7efeb8e29da',
   name: {
     en: 'Маніпулятивні комерційні прийоми',
+    it: 'Tecniche commerciali manipolative',
     zh: '操纵性销售手段',
     hi: 'भ्रामक व्यावसायिक तरीके',
     es: 'Tácticas comerciales manipuladoras',
@@ -39,6 +40,7 @@ export const manipulativeCommercialTactics_Skill_Data = defineSkill({
       'Recognize unsupported urgency, fake scarcity, misleading ratings, reviews, and popularity claims, distinguishing honest persuasion from deceptive commercial statements.',
     frontend: {
       en: 'Recognize misleading urgency, fake scarcity, and other shopping pressure tactics.',
+      it: 'Riconosci urgenze ingannevoli, scarsità artificiale e altre tecniche di pressione sugli acquisti.',
       zh: '识别虚假的紧迫感、假装缺货等购物施压手段。',
       hi: 'झूठी जल्दबाज़ी, नकली कमी और खरीदने का दबाव पहचानें।',
       es: 'Reconoce la falsa urgencia, la escasez inventada y otras presiones de compra.',

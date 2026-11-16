@@ -12,6 +12,7 @@ export const selfConceptAndIdentity_SkillGroup_Data = defineSkillGroup({
   id: 'b0f4bdbf-73f4-4656-a20a-2f746460d558',
   name: {
     en: 'Self-Concept and Identity',
+    it: 'Concetto di sé e identità',
     zh: '自我概念与身份认同',
     hi: 'आत्म-अवधारणा और पहचान',
     es: 'Autoconcepto e identidad',
@@ -55,6 +56,7 @@ export const selfConceptAndIdentity_SkillGroup_Data = defineSkillGroup({
       'Accounts people hold about themselves are shaped through experience and relationships and may not match external observations.',
     frontend: {
       en: "Discover how people's beliefs about themselves develop and change.",
+      it: 'Scopri come le convinzioni delle persone su sé stesse si sviluppino e cambino.',
       zh: '探索人们对自己的看法如何形成和变化。',
       hi: 'जानें कि अपने बारे में लोगों की धारणाएँ कैसे बनती और बदलती हैं।',
       es: 'Descubre cómo se desarrollan y cambian las creencias de las personas sobre sí mismas.',

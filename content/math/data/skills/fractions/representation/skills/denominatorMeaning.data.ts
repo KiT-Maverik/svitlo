@@ -5,6 +5,7 @@ export const denominatorMeaning_Skill_Data = defineSkill({
   id: '7297efca-9524-4bae-b64f-556efe5d2a5e',
   name: {
     en: 'Explaining the denominator of a fraction',
+    it: 'Spiegare il denominatore di una frazione',
     qm: 'Kesirniñ paydasınıñ manasını añlatmaq',
     lt: 'Trupmenos vardiklio reikšmės aiškinimas',
     lv: 'Daļas saucēja nozīmes skaidrošana',
@@ -39,6 +40,7 @@ export const denominatorMeaning_Skill_Data = defineSkill({
       'The positive denominator specifies the number of equal parts in the chosen unit whole. It determines the magnitude of one part but not how many parts have been selected.',
     frontend: {
       en: 'The bottom number tells how many equal parts make one whole. It tells the size of each part, not how many parts you have.',
+      it: 'Il numero sotto la linea di frazione indica in quante parti uguali è diviso un intero. Indica la dimensione delle parti, non quante ne possiedi.',
       qm: 'Aşağıdaki sayı bir bütüni qaç teñ parça tüzgenini köstere. O er parçanıñ ölçüsini belgiley, alğan parçalarıñnıñ sayısını degil.',
       zh: '分母表示一个整体平均分成多少份，决定每份大小，但不表示取了几份。',
       hi: 'हर बताता है कि पूरा कितने बराबर भागों में बँटा है। इससे एक भाग का आकार पता चलता है, लिए गए भागों की संख्या नहीं।',

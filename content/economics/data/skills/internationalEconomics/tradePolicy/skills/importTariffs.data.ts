@@ -5,6 +5,7 @@ export const importTariffs_Skill_Data = defineSkill({
   id: '46e5e999-6287-4c68-b8f4-83ed02a9a91f',
   name: {
     en: 'Мито',
+    it: 'Dazi sulle importazioni',
     zh: '进口关税',
     hi: 'आयात शुल्क',
     es: 'Aranceles de importación',
@@ -39,6 +40,7 @@ export const importTariffs_Skill_Data = defineSkill({
       'Analyze the effects of an import tariff on domestic prices, producers, consumers, and public revenue.',
     frontend: {
       en: 'Understand who may gain or lose when imported goods face a tariff.',
+      it: 'Comprendi chi può guadagnare o perdere quando un prodotto importato è soggetto a un dazio.',
       zh: '理解进口商品征收关税时谁可能获益、谁可能受损。',
       hi: 'समझें कि आयात पर शुल्क लगने से किसे लाभ और किसे नुकसान हो सकता है।',
       es: 'Comprende quién puede ganar o perder cuando se aplican aranceles a las importaciones.',

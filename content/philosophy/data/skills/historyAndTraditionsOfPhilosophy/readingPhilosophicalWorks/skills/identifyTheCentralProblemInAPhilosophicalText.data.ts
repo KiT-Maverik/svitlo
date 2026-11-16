@@ -5,6 +5,7 @@ export const identifyTheCentralProblemInAPhilosophicalText_Skill_Data = defineSk
   id: '038cacd3-c1d9-4f42-8fea-faadde6acec6',
   name: {
     en: 'Identify the central problem in a philosophical text',
+    it: 'Individuare il problema centrale di un testo filosofico',
     zh: '找出哲学文本的核心问题',
     hi: 'दार्शनिक पाठ की मुख्य समस्या पहचानना',
     es: 'Identificar el problema central de un texto filosófico',
@@ -39,6 +40,7 @@ export const identifyTheCentralProblemInAPhilosophicalText_Skill_Data = defineSk
       'Determine which issue motivates an argument rather than treating every illustrative passage as the main thesis.',
     frontend: {
       en: 'Identify the main problem a philosopher is trying to address.',
+      it: 'Individua il problema principale che un filosofo cerca di affrontare.',
       zh: '识别哲学家试图解决的主要问题。',
       hi: 'दार्शनिक जिस प्रमुख प्रश्न का समाधान चाहता है, उसे पहचानो।',
       es: 'Identifica el problema principal que intenta abordar un filósofo.',

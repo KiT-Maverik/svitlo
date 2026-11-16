@@ -5,6 +5,7 @@ export const spreadOfChristianity_Skill_Data = defineSkill({
   id: 'c093f651-30da-4cdb-ac64-8363199fc0e6',
   name: {
     en: 'Spread of Christianity',
+    it: 'Diffusione del cristianesimo',
     zh: '基督教的传播',
     hi: 'ईसाई धर्म का प्रसार',
     es: 'Difusión del cristianismo',
@@ -38,6 +39,7 @@ export const spreadOfChristianity_Skill_Data = defineSkill({
     methodological: 'Trace early Christian communities and changing positions within the Roman Empire.',
     frontend: {
       en: 'Explore how Christianity spread under Roman rule.',
+      it: 'Esplora come il cristianesimo si diffuse sotto il dominio romano.',
       zh: '探索基督教在罗马统治下如何传播。',
       hi: 'जानें कि रोमन शासन के दौरान ईसाई धर्म कैसे फैला।',
       es: 'Explora cómo se extendió el cristianismo bajo el dominio romano.',

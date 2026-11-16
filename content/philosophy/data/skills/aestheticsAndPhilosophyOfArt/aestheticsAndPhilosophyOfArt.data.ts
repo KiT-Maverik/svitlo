@@ -9,6 +9,7 @@ export const aestheticsAndPhilosophyOfArt_SkillDomain_Data = defineSkillDomain({
   id: 'a97ffcb1-ce72-44dc-b05b-3f6e7156fb19',
   title: {
     en: 'Aesthetics and Philosophy of Art',
+    it: "Estetica e filosofia dell'arte",
     zh: '美学与艺术哲学',
     hi: 'सौंदर्यशास्त्र और कला दर्शन',
     es: 'Estética y filosofía del arte',
@@ -51,6 +52,7 @@ export const aestheticsAndPhilosophyOfArt_SkillDomain_Data = defineSkillDomain({
       'Aesthetic inquiry asks why experiences, works, and environments are judged beautiful, expressive, meaningful, or artistically valuable. Its focus is justification and concepts of value, not techniques of making art.',
     frontend: {
       en: 'Explore why people consider experiences and artworks beautiful or valuable.',
+      it: "Esplora perché le persone considerano belle o preziose determinate esperienze e opere d'arte.",
       zh: '探索人们为何认为某些体验和艺术作品美丽或有价值。',
       hi: 'जानो कि लोग अनुभवों और कलाकृतियों को सुंदर या मूल्यवान क्यों मानते हैं।',
       es: 'Explora por qué las personas consideran bellas o valiosas ciertas experiencias y obras de arte.',

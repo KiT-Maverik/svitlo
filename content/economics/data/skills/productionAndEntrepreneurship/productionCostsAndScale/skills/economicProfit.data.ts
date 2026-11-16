@@ -5,6 +5,7 @@ export const economicProfit_Skill_Data = defineSkill({
   id: '7d133c5e-6125-4b24-a8c9-cd74c4507804',
   name: {
     en: 'Economic Profit',
+    it: 'Profitto economico',
     zh: '经济利润',
     hi: 'आर्थिक लाभ',
     es: 'Beneficio económico',
@@ -39,6 +40,7 @@ export const economicProfit_Skill_Data = defineSkill({
       "Evaluate a firm's result after both explicit expenditures and implicit opportunity costs, distinguishing economic from accounting profit.",
     frontend: {
       en: 'See why economic profit considers more than recorded expenses.',
+      it: 'Scopri perché il profitto economico considera più delle sole spese registrate.',
       zh: '理解经济利润为何考虑账面费用之外的成本。',
       hi: 'समझें कि आर्थिक लाभ दर्ज खर्चों से अधिक चीजों को क्यों गिनता है।',
       es: 'Comprende por qué el beneficio económico considera más que los gastos registrados.',

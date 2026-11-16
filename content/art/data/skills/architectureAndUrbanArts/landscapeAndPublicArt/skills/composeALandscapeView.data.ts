@@ -5,6 +5,7 @@ export const composeALandscapeView_Skill_Data = defineSkill({
   id: '3a1e27c6-f208-47be-90fd-e9c902a272de',
   name: {
     en: 'Compose a Landscape View',
+    it: 'Comporre una veduta paesaggistica',
     zh: '构成景观视图',
     hi: 'परिदृश्य दृश्य की रचना करें',
     es: 'Componer una vista paisajística',
@@ -38,6 +39,7 @@ export const composeALandscapeView_Skill_Data = defineSkill({
     methodological: 'Arrange depth planes, plant forms and focal elements within an outdoor scene.',
     frontend: {
       en: 'Arrange plants, views and focal features into a compelling outdoor composition.',
+      it: "Disponi piante, scorci ed elementi focali per creare una composizione all'aperto coinvolgente.",
       zh: '将植物、景观视野和视觉焦点组织成引人入胜的户外构图。',
       hi: 'पौधों, दृश्यों और मुख्य आकर्षक तत्वों को मिलाकर मनमोहक बाहरी संरचना बनाएँ।',
       es: 'Organiza plantas, vistas y elementos destacados en una composición exterior atractiva.',

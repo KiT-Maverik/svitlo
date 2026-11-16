@@ -5,6 +5,7 @@ export const analyzeACosmologicalArgument_Skill_Data = defineSkill({
   id: '4b7a9939-9483-4008-bf04-96a35bb66807',
   name: {
     en: 'Analyze a cosmological argument',
+    it: 'Analizzare un argomento cosmologico',
     zh: '分析宇宙论论证',
     hi: 'ब्रह्माण्ड संबंधी तर्क का विश्लेषण',
     es: 'Analizar un argumento cosmológico',
@@ -39,6 +40,7 @@ export const analyzeACosmologicalArgument_Skill_Data = defineSkill({
       'Evaluate reasoning from existence, dependence, contingency, or causation toward an ultimate explanation, including challenges to its assumptions.',
     frontend: {
       en: 'Evaluate arguments that reason from dependence or causation to an ultimate cause.',
+      it: 'Valuta le argomentazioni che risalgono dalla dipendenza o dalla causalità a una causa ultima.',
       zh: '评估从依赖关系或因果关系推论终极原因的论证。',
       hi: 'उन तर्कों का मूल्यांकन करें जो निर्भरता या कारण-कार्य संबंध से अंतिम कारण तक पहुँचते हैं।',
       es: 'Evalúa argumentos que parten de la dependencia o la causalidad para proponer una causa última.',

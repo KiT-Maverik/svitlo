@@ -5,6 +5,7 @@ export const translateTextIntoImagery_Skill_Data = defineSkill({
   id: '550600aa-68a0-4de6-ac03-e9ceae63b9d4',
   name: {
     en: 'Translate Text into Imagery',
+    it: 'Tradurre un testo in immagini',
     zh: '将文字转化为图像',
     hi: 'पाठ को चित्रों में बदलें',
     es: 'Transformar texto en imágenes',
@@ -38,6 +39,7 @@ export const translateTextIntoImagery_Skill_Data = defineSkill({
     methodological: 'Select visual details that communicate a written idea instead of literal word-for-word copying.',
     frontend: {
       en: 'Turn a written idea into meaningful images rather than copying every word.',
+      it: "Trasforma un'idea scritta in immagini significative, anziché copiare ogni parola.",
       zh: '把书面想法变成有意义的图像，而不是逐字照搬。',
       hi: 'हर शब्द की नकल किए बिना लिखे हुए विचार को अर्थपूर्ण चित्रों में बदलें।',
       es: 'Convierte una idea escrita en imágenes significativas sin copiar cada palabra.',

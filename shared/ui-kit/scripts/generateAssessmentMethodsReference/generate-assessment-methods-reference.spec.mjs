@@ -72,7 +72,7 @@ test('every supported language has exactly the canonical 16 keys, IDs and author
     const markdown = renderAssessmentMethodsReference({ locale });
     const headings = [...markdown.matchAll(keyHeading)].map(match => match[1]);
     assert.deepEqual(headings, keys);
-    assert.ok(markdown.includes('Frontend title language: ' + String.fromCharCode(96) + locale));
+    assert.ok(markdown.includes('Localized titles and descriptions: ' + String.fromCharCode(96) + locale));
     assert.ok(markdown.includes('Question type'));
     assert.ok(markdown.includes('Methods: 16'));
     assert.ok(!markdown.includes('assessmentMethod.ids.ts'));
@@ -83,8 +83,17 @@ test('every supported language has exactly the canonical 16 keys, IDs and author
       assert.equal(method.id, canonicalIds.get(method.key));
       assert.equal(method.description, reference.methods[i].description);
       assert.ok(method.title.trim().length > 0);
+      assert.ok(method.localizedDescription.trim().length > 0);
       assert.ok(markdown.includes(method.id));
       assert.ok(markdown.includes(method.title));
+      assert.ok(
+        markdown.includes(
+          '- **Localized description (' +
+            locale +
+            '):** ' +
+            method.localizedDescription.replace(/([*_()[\]<>])/g, '\\$1'),
+        ),
+      );
       assert.ok(markdown.includes(method.description.replace(/([*_()[\]<>])/g, '\\$1')));
     }
   }
@@ -134,6 +143,28 @@ test('missing method titles fail without English fallback', () =>
       () => readAssessmentMethodsReference({ root, locale: 'uk' }),
       /Assessment Method titles for retrieval: missing \[uk\]/,
     );
+  }));
+
+test('missing localized method descriptions fail strict mode and count in draft review coverage', () =>
+  withFixture(root => {
+    const file = sources[1];
+    replaceFile(root, file, text => {
+      const start = text.indexOf('  description: {');
+      assert.ok(start > 0);
+      const entry = text.slice(start);
+      assert.match(entry, /    uk: [^\n]+\n/);
+      return text.slice(0, start) + entry.replace(/    uk: [^\n]+\n/, '');
+    });
+    assert.throws(
+      () => readAssessmentMethodsReference({ root, locale: 'uk' }),
+      /Assessment Method descriptions for retrieval: missing \[uk\]/,
+    );
+    const draft = readAssessmentMethodsReference({ root, locale: 'uk', allowMissing: true });
+    assert.equal(draft.missing, 1);
+    assert.equal(draft.methods.find(method => method.key === 'retrieval').localizedDescription, '%%MISSING%%');
+    const markdown = renderAssessmentMethodsReference({ root, locale: 'uk', allowMissing: true });
+    assert.match(markdown, /Missing translations: 1/);
+    assert.match(markdown, /Localized description \(uk\):\*\* %%MISSING%%/);
   }));
 
 test('unknown locales, missing source, invalid UUIDs and missing English descriptions fail', () =>
@@ -215,15 +246,24 @@ test('PR-artifact manifest records success, failures and only allowed temporary 
 
 test('Italian draft reference marks missing titles while strict generation rejects them', () =>
   withFixture(root => {
-    const registry = sources[0];
-    replaceFile(root, registry, source => source.replace('export const DEFAULT_SUPPORTED_LANGUAGES = [',
-      "export const DEFAULT_SUPPORTED_LANGUAGES = [\n  { locale: 'it-IT', language: 'it' },"));
+    assert.ok(supportedAssessmentMethodLocales(root).includes('it'));
+    for (const file of sources.slice(1)) {
+      replaceFile(root, file, source => {
+        const italianEntries = source.match(/^    it: [^\n]*\n/gm) ?? [];
+        assert.equal(italianEntries.length, 2, 'Expected Italian title and description in ' + file);
+        return source.replace(/^    it: [^\n]*\n/gm, '');
+      });
+    }
     assert.throws(() => readAssessmentMethodsReference({ root, locale: 'it' }), /missing \[it\]/);
     const draft = readAssessmentMethodsReference({ root, locale: 'it', allowMissing: true });
-    assert.equal(draft.missing, 16);
-    assert.ok(draft.methods.every(method => method.title === '%%MISSING%%'));
+    assert.equal(draft.missing, 32);
+    assert.ok(
+      draft.methods.every(
+        method => method.title === '%%MISSING%%' && method.localizedDescription === '%%MISSING%%',
+      ),
+    );
     const markdown = renderAssessmentMethodsReference({ root, locale: 'it', allowMissing: true });
-    assert.match(markdown, /Missing translations: 16/);
+    assert.match(markdown, /Missing translations: 32/);
     assert.match(markdown, /%%MISSING%%/);
     assert.match(markdown, /Methodological description \(English\)/);
   }));

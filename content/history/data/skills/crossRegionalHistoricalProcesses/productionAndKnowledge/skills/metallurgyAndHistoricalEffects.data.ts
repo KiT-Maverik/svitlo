@@ -5,6 +5,7 @@ export const metallurgyAndHistoricalEffects_Skill_Data = defineSkill({
   id: '80f4a919-d893-479c-aa6a-631f3b37d068',
   name: {
     en: 'Metallurgy and Its Historical Effects',
+    it: 'Metallurgia e suoi effetti storici',
     zh: '冶金术及其历史影响',
     hi: 'धातुकर्म और उसके ऐतिहासिक प्रभाव',
     es: 'Metalurgia y sus efectos históricos',
@@ -38,6 +39,7 @@ export const metallurgyAndHistoricalEffects_Skill_Data = defineSkill({
     methodological: 'Connect ores, fuel, crafts, weapons, and trade under varying regional conditions.',
     frontend: {
       en: 'Understand how metalworking affected work and warfare.',
+      it: 'Comprendi come la lavorazione dei metalli influenzava il lavoro e la guerra.',
       zh: '了解金属加工如何影响劳动和战争。',
       hi: 'जानें कि धातुओं के काम ने श्रम और युद्ध को कैसे प्रभावित किया।',
       es: 'Comprende cómo el trabajo de los metales influyó en el trabajo y la guerra.',

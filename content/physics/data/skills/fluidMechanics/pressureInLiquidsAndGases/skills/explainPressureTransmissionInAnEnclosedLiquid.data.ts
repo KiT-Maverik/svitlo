@@ -5,6 +5,7 @@ export const explainPressureTransmissionInAnEnclosedLiquid_Skill_Data = defineSk
   id: '5fdbc80d-87de-4f69-90bd-5b4392e5b17c',
   name: {
     en: 'Explain pressure transmission in an enclosed liquid',
+    it: 'Spiegare la trasmissione della pressione in un liquido confinato',
     zh: '解释密闭液体中的压强传递',
     hi: 'बंद द्रव में दाब के संचरण को समझाना',
     es: 'Explicar la transmisión de presión en un líquido encerrado',
@@ -39,6 +40,7 @@ export const explainPressureTransmissionInAnEnclosedLiquid_Skill_Data = defineSk
       'A pressure change applied to an enclosed liquid at rest is transmitted in every direction, unlike the variation of hydrostatic pressure with depth.',
     frontend: {
       en: 'Explain how changes in pressure travel through an enclosed liquid.',
+      it: 'Spiega come le variazioni di pressione si trasmettono attraverso un liquido racchiuso.',
       zh: '解释压强变化如何在密闭液体中传递。',
       hi: 'समझाएँ कि बंद द्रव में दाब का परिवर्तन कैसे फैलता है।',
       es: 'Explica cómo se transmite un cambio de presión por un líquido encerrado.',

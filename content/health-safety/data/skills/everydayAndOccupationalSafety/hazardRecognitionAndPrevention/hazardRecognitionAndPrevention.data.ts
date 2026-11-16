@@ -12,6 +12,7 @@ export const hazardRecognitionAndPrevention_SkillGroup_Data = defineSkillGroup({
   id: '6760472c-84fa-40a3-af0c-044476a1a3c4',
   name: {
     en: 'Hazard Recognition and Prevention',
+    it: 'Riconoscimento e prevenzione dei pericoli',
     zh: '危险识别与预防',
     hi: 'खतरों की पहचान और रोकथाम',
     es: 'Identificación y prevención de peligros',
@@ -60,6 +61,7 @@ export const hazardRecognitionAndPrevention_SkillGroup_Data = defineSkillGroup({
       'Risk management involves identifying possible harm, checking exposure, and favouring elimination or protective controls over mere caution.',
     frontend: {
       en: 'Discover how to assess and reduce dangers before an accident happens.',
+      it: 'Scopri come valutare e ridurre i pericoli prima che si verifichi un incidente.',
       zh: '在事故发生前评估并降低危险。',
       hi: 'दुर्घटना से पहले खतरों का आकलन और कम करना सीखें।',
       es: 'Aprende a evaluar y reducir peligros antes de que ocurra un accidente.',

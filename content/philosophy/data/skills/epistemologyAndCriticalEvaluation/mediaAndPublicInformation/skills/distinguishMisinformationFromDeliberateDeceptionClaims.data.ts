@@ -5,6 +5,7 @@ export const distinguishMisinformationFromDeliberateDeceptionClaims_Skill_Data =
   id: 'a26c8161-2d35-4776-ae77-f89c00431348',
   name: {
     en: 'Distinguish misinformation from deliberate deception claims',
+    it: 'Distinguere disinformazione e accuse di inganno deliberato',
     zh: '区分错误信息与蓄意欺骗指控',
     hi: 'गलत सूचना और जानबूझकर धोखे के आरोप में अंतर',
     es: 'Distinguir la información errónea de las acusaciones de engaño deliberado',
@@ -39,6 +40,7 @@ export const distinguishMisinformationFromDeliberateDeceptionClaims_Skill_Data =
       "Identify inaccurate information without asserting an author's intention to deceive unless independent evidence supports that inference.",
     frontend: {
       en: 'Identify inaccurate claims without assuming a speaker intended to deceive.',
+      it: 'Individua affermazioni inesatte senza presumere che chi parla intendesse ingannare.',
       zh: '识别不准确的主张，但不要直接认定说话者有意欺骗。',
       hi: 'गलत दावे पहचानें, लेकिन बिना प्रमाण किसी की धोखा देने की मंशा न मानें।',
       es: 'Identifica afirmaciones inexactas sin suponer que quien las dijo pretendía engañar.',

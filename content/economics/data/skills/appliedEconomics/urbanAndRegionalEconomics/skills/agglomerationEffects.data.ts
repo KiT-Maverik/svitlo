@@ -5,6 +5,7 @@ export const agglomerationEffects_Skill_Data = defineSkill({
   id: 'bf60be05-668a-4c27-bf62-b36a40a7f09f',
   name: {
     en: 'Агломераційні ефекти',
+    it: 'Effetti di agglomerazione',
     zh: '集聚经济效应',
     hi: 'एकत्रीकरण के प्रभाव',
     es: 'Efectos de aglomeración',
@@ -39,6 +40,7 @@ export const agglomerationEffects_Skill_Data = defineSkill({
       'Explain benefits and costs of concentrating firms and workers in cities through knowledge exchange, shared resources, congestion, and land prices.',
     frontend: {
       en: 'Explore why clustering businesses can help productivity but also raise costs.',
+      it: 'Esplora perché concentrare le imprese può aumentare la produttività ma anche i costi.',
       zh: '探索企业聚集为什么可能提高生产率，也可能增加成本。',
       hi: 'जानें कि व्यवसायों का पास-पास होना उत्पादकता बढ़ाने के साथ लागत भी क्यों बढ़ा सकता है।',
       es: 'Explora por qué concentrar empresas puede elevar la productividad, pero también los costos.',

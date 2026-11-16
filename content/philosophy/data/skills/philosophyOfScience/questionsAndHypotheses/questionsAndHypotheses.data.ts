@@ -13,6 +13,7 @@ export const questionsAndHypotheses_SkillGroup_Data = defineSkillGroup({
   id: '4cb1242a-ab8c-491c-b79b-1d96a786c089',
   name: {
     en: 'Questions and Hypotheses',
+    it: 'Domande e ipotesi',
     zh: '研究问题与假设',
     hi: 'प्रश्न और परिकल्पनाएँ',
     es: 'Preguntas e hipótesis',
@@ -63,6 +64,7 @@ export const questionsAndHypotheses_SkillGroup_Data = defineSkillGroup({
       'Research design starts with propositions that can be addressed using evidence. Questions, hypotheses, predictions, and observation serve different epistemic roles.',
     frontend: {
       en: 'Learn the difference between research questions, hypotheses, predictions and observations.',
+      it: 'Impara a distinguere domande di ricerca, ipotesi, previsioni e osservazioni.',
       zh: '理解研究问题、假设、预测和观察之间的区别。',
       hi: 'अनुसंधान प्रश्न, परिकल्पना, भविष्यवाणी और अवलोकन के बीच अंतर जानें।',
       es: 'Aprende las diferencias entre preguntas de investigación, hipótesis, predicciones y observaciones.',

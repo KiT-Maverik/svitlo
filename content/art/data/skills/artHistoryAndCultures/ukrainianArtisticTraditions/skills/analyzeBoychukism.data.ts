@@ -5,6 +5,7 @@ export const analyzeBoychukism_Skill_Data = defineSkill({
   id: '1a9e1d25-aad2-4d56-949f-aea5227a7f29',
   name: {
     en: 'Analyze Boychukism',
+    it: 'Analizzare il boičukismo',
     zh: '分析博伊丘克主义',
     hi: 'बोयचुकवाद का विश्लेषण करें',
     es: 'Analizar el boychukismo',
@@ -39,6 +40,7 @@ export const analyzeBoychukism_Skill_Data = defineSkill({
       'Relate monumental form, references to Byzantine and Ukrainian traditions, and the suppression of the Boychuk school to its twentieth-century artistic development.',
     frontend: {
       en: 'Discover the monumental art of Boychukism and the history of the artists behind it.',
+      it: "Scopri l'arte monumentale del boičukismo e la storia degli artisti che ne sono stati protagonisti.",
       zh: '了解博伊丘克主义的纪念性艺术，以及其艺术家的历史。',
       hi: 'बोयचुकवाद की भव्य कला और इसके कलाकारों के इतिहास को जानें।',
       es: 'Descubre el arte monumental del boychukismo y la historia de sus artistas.',

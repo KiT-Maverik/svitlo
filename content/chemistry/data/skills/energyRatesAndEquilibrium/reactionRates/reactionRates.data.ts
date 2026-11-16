@@ -14,6 +14,7 @@ export const reactionRates_SkillGroup_Data = defineSkillGroup({
   id: '57cac1b7-17c4-4366-87be-106c398b85dc',
   name: {
     en: 'Reaction Rates',
+    it: 'Velocità delle reazioni',
     zh: '化学反应速率',
     hi: 'अभिक्रिया की दर',
     es: 'Velocidades de reacción',
@@ -59,6 +60,7 @@ export const reactionRates_SkillGroup_Data = defineSkillGroup({
       "Rates describe how fast concentrations or amounts change, which can vary independently of a reaction's net energy change.",
     frontend: {
       en: 'Investigate how quickly reactants turn into products.',
+      it: 'Indaga con quale rapidità i reagenti si trasformano in prodotti.',
       zh: '研究反应物转变为生成物的速度。',
       hi: 'जाँचें कि अभिकारक कितनी तेजी से उत्पादों में बदलते हैं।',
       es: 'Investiga con qué rapidez se transforman los reactivos en productos.',

@@ -12,6 +12,7 @@ export const rightsAndLiberty_SkillGroup_Data = defineSkillGroup({
   id: '054356fd-c4aa-4671-a5c0-6f4d77f1a769',
   name: {
     en: 'Rights and Liberty',
+    it: 'Diritti e libertà',
     zh: '权利与自由',
     hi: 'अधिकार और स्वतंत्रता',
     es: 'Derechos y libertad',
@@ -60,6 +61,7 @@ export const rightsAndLiberty_SkillGroup_Data = defineSkillGroup({
       "A right may protect a person's action, claim, or status and create obligations for others. Competing rights can require principled reconciliation.",
     frontend: {
       en: 'Explore what people may claim as rights and what liberty involves.',
+      it: 'Esplora quali diritti le persone possano rivendicare e che cosa comporti la libertà.',
       zh: '探索人们可以主张哪些权利，以及自由意味着什么。',
       hi: 'जानो कि लोग किन बातों को अपना अधिकार कह सकते हैं और स्वतंत्रता का क्या अर्थ है।',
       es: 'Explora qué pueden reclamar las personas como derechos y qué implica la libertad.',

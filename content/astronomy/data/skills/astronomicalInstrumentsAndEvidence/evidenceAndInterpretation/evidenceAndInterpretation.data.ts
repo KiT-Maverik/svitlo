@@ -12,6 +12,7 @@ export const evidenceAndInterpretation_SkillGroup_Data = defineSkillGroup({
   id: '0d98be20-60fe-4a16-ac5f-6735e9ed1214',
   name: {
     en: 'Evidence and Interpretation',
+    it: 'Prove e interpretazione',
     qm: 'Deliller ve olarnıñ izahı',
     bn: 'প্রমাণ ও ব্যাখ্যা',
     ur: 'شواہد اور ان کی تشریح',
@@ -60,6 +61,7 @@ export const evidenceAndInterpretation_SkillGroup_Data = defineSkillGroup({
       'Astronomical conclusions require comparisons between predictions and measured signals, including attention to uncertainty and alternative explanations.',
     frontend: {
       en: 'Learn to judge astronomical conclusions using measurements, uncertainties and competing explanations.',
+      it: 'Impara a valutare le conclusioni astronomiche usando misurazioni, incertezze e spiegazioni alternative.',
       qm: 'Astronomik neticelerni ölçüvler, belirsizlikler ve yarışqan izahlarğa esaslanıp değerlendirmege ögreniñiz.',
       bn: 'পরিমাপ, অনিশ্চয়তা ও বিকল্প ব্যাখ্যা ব্যবহার করে জ্যোতির্বৈজ্ঞানিক সিদ্ধান্ত বিচার করতে শেখো।',
       ur: 'پیمائشوں، غیر یقینی صورتِ حال اور متبادل وضاحتوں کی مدد سے فلکیاتی نتائج کو جانچنا سیکھیں۔',

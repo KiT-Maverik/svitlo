@@ -5,6 +5,7 @@ export const centralPlanning_Skill_Data = defineSkill({
   id: '7aee083f-b448-4121-811b-eeb7eb0d8b07',
   name: {
     en: 'Адміністративне планування',
+    it: 'Pianificazione centralizzata',
     zh: '中央计划经济',
     hi: 'केंद्रीय नियोजन',
     es: 'Planificación centralizada',
@@ -38,6 +39,7 @@ export const centralPlanning_Skill_Data = defineSkill({
     methodological: 'Analyze allocation through centrally defined targets, standards, and assigned production tasks.',
     frontend: {
       en: 'Understand how centralized plans allocate productive resources.',
+      it: 'Comprendi come i piani centralizzati distribuiscono le risorse produttive.',
       zh: '理解中央计划如何分配生产资源。',
       hi: 'समझें कि केंद्रीय योजनाएँ उत्पादन संसाधनों का आवंटन कैसे करती हैं।',
       es: 'Comprende cómo los planes centralizados distribuyen los recursos productivos.',

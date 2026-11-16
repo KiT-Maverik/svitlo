@@ -5,6 +5,7 @@ export const analyzeTextureAndSurface_Skill_Data = defineSkill({
   id: 'd3ab05e8-4344-473d-a0b8-abbc0411b1d4',
   name: {
     en: 'Analyze Texture and Surface',
+    it: 'Analizzare texture e superfici',
     zh: '分析肌理与表面',
     hi: 'बनावट और सतह का विश्लेषण करें',
     es: 'Analizar la textura y la superficie',
@@ -39,6 +40,7 @@ export const analyzeTextureAndSurface_Skill_Data = defineSkill({
       'Distinguish material texture from its visual depiction and explain its perceptual or expressive effect.',
     frontend: {
       en: 'Notice real and pictured textures and how they change the feel of an artwork.',
+      it: "Osserva le texture reali e rappresentate e come modificano la percezione di un'opera d'arte.",
       zh: '留意真实的肌理和画面表现出的肌理，以及它们如何改变作品给人的感受。',
       hi: 'वास्तविक और चित्रित बनावट पर ध्यान दें और देखें कि वे कलाकृति का एहसास कैसे बदलती हैं।',
       es: 'Observa las texturas reales y representadas, y cómo cambian la sensación que transmite una obra.',

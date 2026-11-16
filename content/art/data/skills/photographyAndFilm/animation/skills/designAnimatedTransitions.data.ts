@@ -5,6 +5,7 @@ export const designAnimatedTransitions_Skill_Data = defineSkill({
   id: 'e598542d-3cda-4aa9-b0e3-ae520319ca2d',
   name: {
     en: 'Design Animated Transitions',
+    it: 'Progettare transizioni animate',
 
     zh: '设计动画转场',
     hi: 'एनीमेटेड बदलाव डिज़ाइन करें',
@@ -39,6 +40,7 @@ export const designAnimatedTransitions_Skill_Data = defineSkill({
     methodological: 'Transform one visible state into another with intended expressive or narrative continuity.',
     frontend: {
       en: 'Design a smooth or expressive change from one animated state to another.',
+      it: 'Progetta un passaggio fluido o espressivo da uno stato animato a un altro.',
 
       zh: '设计从一种动画状态到另一种状态的流畅或富有表现力的变化。',
       hi: 'एक एनीमेशन अवस्था से दूसरी अवस्था तक सहज या अभिव्यंजक बदलाव डिज़ाइन करें।',

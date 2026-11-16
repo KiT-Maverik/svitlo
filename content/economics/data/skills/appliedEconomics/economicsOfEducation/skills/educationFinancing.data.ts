@@ -5,6 +5,7 @@ export const educationFinancing_Skill_Data = defineSkill({
   id: 'd49191c0-d578-41eb-b292-027dc517418b',
   name: {
     en: 'Фінансування освіти',
+    it: "Finanziamento dell'istruzione",
     zh: '教育融资',
     hi: 'शिक्षा का वित्तपोषण',
     es: 'Financiación de la educación',
@@ -38,6 +39,7 @@ export const educationFinancing_Skill_Data = defineSkill({
     methodological: 'Compare private and public financing of education by cost distribution, access, and incentives.',
     frontend: {
       en: 'Explore who pays for education and how funding choices affect access.',
+      it: "Esplora chi paga l'istruzione e come le scelte di finanziamento influiscono sull'accesso.",
       zh: '探索谁为教育付费，以及资金决策如何影响入学机会。',
       hi: 'जानें कि शिक्षा का खर्च कौन उठाता है और वित्तीय निर्णय पहुँच को कैसे प्रभावित करते हैं।',
       es: 'Explora quién paga la educación y cómo las decisiones de financiación afectan el acceso.',

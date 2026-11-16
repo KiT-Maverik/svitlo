@@ -5,6 +5,7 @@ export const unitFractionModel_Skill_Data = defineSkill({
   id: 'f2d8c7d5-68bd-4c23-8d6a-cc3c122ff0c3',
   name: {
     en: 'Modeling unit fractions 1/n',
+    it: 'Rappresentare le frazioni unitarie 1/n',
     qm: '1/n birlik kesirlerni modellermek',
     lt: 'Vienetinių trupmenų 1/n modeliavimas',
     lv: 'Vienības daļu 1/n modelēšana',
@@ -39,6 +40,7 @@ export const unitFractionModel_Skill_Data = defineSkill({
       'For positive integer n, 1/n represents one of n equal parts of a specified whole. In area, length, and discrete-set models, equality concerns the relevant magnitude, not necessarily identical shapes.',
     frontend: {
       en: 'Show 1/n as one of n equal parts of the same whole, using shapes, lengths, or groups of objects.',
+      it: 'Rappresenta 1/n come una delle n parti uguali dello stesso intero, usando forme, lunghezze o gruppi di oggetti.',
       qm: 'Şekiller, uzunlıqlar ya da eşya toparlarınen 1/n-ni aynı bütünniñ n teñ parçasından biri olaraq köster.',
       zh: '用图形、长度或一组物品，把1/n表示成同一整体的n个等份中的一份。',
       hi: 'आकारों, लंबाइयों या वस्तुओं के समूह से दिखाएँ कि 1/n एक ही पूरे के n बराबर भागों में से एक है।',

@@ -5,6 +5,7 @@ export const analyzeTheRuleOfLaw_Skill_Data = defineSkill({
   id: 'efdf6de1-9b86-4cc8-983d-07cfc1920346',
   name: {
     en: 'Analyze the rule of law',
+    it: 'Analizzare lo Stato di diritto',
     zh: '分析法治原则',
     hi: 'विधि के शासन का विश्लेषण',
     es: 'Analizar el Estado de derecho',
@@ -39,6 +40,7 @@ export const analyzeTheRuleOfLaw_Skill_Data = defineSkill({
       'Examine principles such as generality, accessibility, prospectivity, consistent application, and constraints on arbitrary power as grounds for evaluating a legal order.',
     frontend: {
       en: 'Explore principles that keep laws public, predictable and free from arbitrary power.',
+      it: "Esamina come regole generali, accessibili e applicate coerentemente possano limitare l'arbitrio del potere.",
       zh: '探索使法律公开、可预见并限制专断权力的原则。',
       hi: 'उन सिद्धांतों को जानो जो कानून को सार्वजनिक, अनुमान योग्य और मनमानी सत्ता से मुक्त रखते हैं।',
       es: 'Explora los principios que hacen las leyes públicas, previsibles y libres del poder arbitrario.',

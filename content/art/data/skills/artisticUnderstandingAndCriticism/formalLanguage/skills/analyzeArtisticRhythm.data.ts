@@ -5,6 +5,7 @@ export const analyzeArtisticRhythm_Skill_Data = defineSkill({
   id: 'c59983ff-0c41-447f-9d58-13ad79dac3bd',
   name: {
     en: 'Analyze Artistic Rhythm',
+    it: 'Analizzare il ritmo artistico',
     zh: '分析艺术节奏',
     hi: 'कलात्मक लय का विश्लेषण करें',
     es: 'Analizar el ritmo artístico',
@@ -38,6 +39,7 @@ export const analyzeArtisticRhythm_Skill_Data = defineSkill({
     methodological: 'Identify significant repetition, variation or pacing in images, movement or sound.',
     frontend: {
       en: 'Find patterns and changes in the rhythm of images, sounds or movement.',
+      it: 'Individua schemi ricorrenti e variazioni nel ritmo di immagini, suoni o movimenti.',
       zh: '发现图像、声音或动作节奏中的规律与变化。',
       hi: 'चित्रों, ध्वनियों या गतियों की लय में पैटर्न और बदलाव पहचानें।',
       es: 'Identifica patrones y cambios en el ritmo de las imágenes, los sonidos o el movimiento.',

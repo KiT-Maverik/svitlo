@@ -12,6 +12,7 @@ export const collectionProcessing_SkillGroup_Data = defineSkillGroup({
   id: 'de8be859-0b36-498b-b8c1-18c4e7ab0249',
   name: {
     en: 'Collection Processing',
+    it: 'Elaborazione di collezioni',
     zh: '集合处理',
     hi: 'संग्रह का प्रसंस्करण',
     es: 'Procesamiento de colecciones',
@@ -55,6 +56,7 @@ export const collectionProcessing_SkillGroup_Data = defineSkillGroup({
       'Step-by-step procedures that aggregate values while traversing a collection, such as counting, totaling, minimum, and maximum. Objects or cards can illustrate the operations.',
     frontend: {
       en: 'Learn how to count, total and find extreme values while scanning data.',
+      it: 'Impara a contare, sommare e individuare valori estremi scorrendo i dati.',
       zh: '学习扫描数据时如何计数、求和以及找出最大值和最小值。',
       hi: 'डेटा को क्रम से देखते हुए गिनना, जोड़ना तथा सबसे बड़े और छोटे मान खोजना सीखें।',
       es: 'Aprende a contar, sumar y encontrar valores extremos al recorrer datos.',

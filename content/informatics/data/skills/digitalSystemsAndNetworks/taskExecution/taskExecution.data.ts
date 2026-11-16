@@ -11,6 +11,7 @@ export const taskExecution_SkillGroup_Data = defineSkillGroup({
   id: '6a3b0d90-8bd8-4f14-bfd8-8228aa553fe3',
   name: {
     en: 'Task Execution',
+    it: 'Esecuzione dei compiti',
     zh: '任务执行',
     hi: 'कार्य निष्पादन',
     es: 'Ejecución de tareas',
@@ -53,6 +54,7 @@ export const taskExecution_SkillGroup_Data = defineSkillGroup({
       'Sequential execution, interleaving, and actual simultaneous work by multiple executors affect operation order and resource use. Concurrency organizes overlapping task progress; parallelism means operations truly execute at the same time. They are related but not identical.',
     frontend: {
       en: 'Discover the difference between overlapping tasks and truly simultaneous work.',
+      it: 'Scopri la differenza tra compiti che si sovrappongono nel tempo e lavoro veramente simultaneo.',
       zh: '理解任务交替推进与真正同时执行的区别。',
       hi: 'समझें कि बारी-बारी से आगे बढ़ते कार्य और सचमुच एक साथ चलने वाले कार्य कैसे अलग हैं।',
       es: 'Descubre la diferencia entre tareas que se solapan y tareas que se realizan realmente a la vez.',

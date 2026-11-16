@@ -5,6 +5,7 @@ export const propertyBasedIdentification_Skill_Data = defineSkill({
   id: '505b5ffb-f22d-40f3-b526-3da7185a8c0f',
   name: {
     en: 'Property-Based Identification',
+    it: 'Identificazione in base alle proprietà',
     zh: '根据性质鉴别物质',
     hi: 'गुणों के आधार पर पहचान',
     es: 'Identificación por propiedades',
@@ -39,6 +40,7 @@ export const propertyBasedIdentification_Skill_Data = defineSkill({
       'Compare multiple measured properties with reference information while acknowledging that one matching property may be insufficient.',
     frontend: {
       en: 'Compare several measured properties to identify a likely substance.',
+      it: 'Confronta più proprietà misurate per identificare la sostanza più probabile.',
       zh: '比较多种测得的性质，以确定最可能的物质。',
       hi: 'कई मापे हुए गुणों की तुलना करके संभावित पदार्थ पहचानें।',
       es: 'Compara varias propiedades medidas para identificar una sustancia probable.',

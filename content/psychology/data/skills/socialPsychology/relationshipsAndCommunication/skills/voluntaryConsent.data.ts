@@ -5,6 +5,7 @@ export const voluntaryConsent_Skill_Data = defineSkill({
   id: '9a9d642c-08d3-42d8-bcb3-88074992f420',
   name: {
     en: 'Voluntary Consent',
+    it: 'Consenso volontario',
     zh: '自愿同意',
     hi: 'स्वैच्छिक सहमति',
     es: 'Consentimiento voluntario',
@@ -39,6 +40,7 @@ export const voluntaryConsent_Skill_Data = defineSkill({
       'Distinguish an informed, freely given and revocable agreement from silence, coercion, or assumed permission.',
     frontend: {
       en: 'Understand that consent must be voluntary and can be withdrawn.',
+      it: 'Comprendi che il consenso deve essere volontario e può essere revocato.',
       zh: '理解同意必须出于自愿，并且可以随时撤回。',
       hi: 'समझें कि सहमति स्वेच्छा से होनी चाहिए और वापस ली जा सकती है।',
       es: 'Comprende que el consentimiento debe ser libre y puede retirarse.',

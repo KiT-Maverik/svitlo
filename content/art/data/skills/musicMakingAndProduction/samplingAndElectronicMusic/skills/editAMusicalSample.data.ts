@@ -5,6 +5,7 @@ export const editAMusicalSample_Skill_Data = defineSkill({
   id: 'a4702171-93ba-4928-aeee-fe5d07b38e10',
   name: {
     en: 'Edit a Musical Sample',
+    it: 'Modificare un campione musicale',
     zh: '编辑音乐采样',
     hi: 'संगीत नमूने को संपादित करें',
     es: 'Editar una muestra musical',
@@ -38,6 +39,7 @@ export const editAMusicalSample_Skill_Data = defineSkill({
     methodological: 'Trim or reshape captured sound to meet a rhythmic or expressive aim.',
     frontend: {
       en: 'Cut or reshape a recorded sound to fit your musical idea.',
+      it: 'Taglia o trasforma un suono registrato per adattarlo alla tua idea musicale.',
       zh: '剪辑或重塑录制的声音，使其符合你的音乐构想。',
       hi: 'रिकॉर्ड की गई ध्वनि को काटें या नया आकार दें ताकि वह आपके संगीत विचार के अनुकूल हो।',
       es: 'Corta o modifica un sonido grabado para adaptarlo a tu idea musical.',

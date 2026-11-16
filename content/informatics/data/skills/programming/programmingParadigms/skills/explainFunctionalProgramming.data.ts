@@ -5,6 +5,7 @@ export const explainFunctionalProgramming_Skill_Data = defineSkill({
   id: '11275005-176a-4332-b083-2d84428f6b53',
   name: {
     en: 'Explain Functional Programming',
+    it: 'Spiegare la programmazione funzionale',
     zh: '解释函数式编程',
     hi: 'कार्यात्मक प्रोग्रामिंग समझाना',
     es: 'Explicar la programación funcional',
@@ -39,6 +40,7 @@ export const explainFunctionalProgramming_Skill_Data = defineSkill({
       'Describe computation through function composition and transformations of values; demonstrate that pure functions do not modify external state.',
     frontend: {
       en: 'Understand programs that transform values by combining functions.',
+      it: 'Comprendi i programmi che trasformano valori combinando funzioni.',
       zh: '理解通过组合函数来转换值的程序。',
       hi: 'समझें कि फलनों को जोड़कर मान बदलने वाले प्रोग्राम कैसे काम करते हैं।',
       es: 'Comprende los programas que transforman valores combinando funciones.',

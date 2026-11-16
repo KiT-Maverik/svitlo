@@ -5,6 +5,7 @@ export const continuityAndChange_Skill_Data = defineSkill({
   id: 'bb6ee781-5440-4b57-a3ba-a11af97bab08',
   name: {
     en: 'Continuity and Change',
+    it: 'Continuità e cambiamento',
     zh: '延续与变化',
     hi: 'निरंतरता और परिवर्तन',
     es: 'Continuidad y cambio',
@@ -39,6 +40,7 @@ export const continuityAndChange_Skill_Data = defineSkill({
       'Recognize that institutions, practices, and traditions change at different speeds and can coexist.',
     frontend: {
       en: 'Notice what changed and what remained in past societies.',
+      it: 'Osserva che cosa cambiò e che cosa rimase nelle società del passato.',
       zh: '观察过去社会中哪些事物发生变化，哪些保持不变。',
       hi: 'देखें कि प्राचीन समाजों में क्या बदला और क्या बना रहा।',
       es: 'Observa qué cambió y qué permaneció en las sociedades del pasado.',

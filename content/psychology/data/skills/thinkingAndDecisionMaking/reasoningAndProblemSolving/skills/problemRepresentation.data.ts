@@ -5,6 +5,7 @@ export const problemRepresentation_Skill_Data = defineSkill({
   id: '8e75e208-3a6c-4e5d-8cb4-ccb6daeaff3b',
   name: {
     en: 'Problem Representation',
+    it: 'Rappresentazione del problema',
     zh: '问题表征',
     hi: 'समस्या का निरूपण',
     es: 'Representación de problemas',
@@ -38,6 +39,7 @@ export const problemRepresentation_Skill_Data = defineSkill({
     methodological: 'Explain how changing the formulation of a problem changes the possible solution search.',
     frontend: {
       en: 'Explore why defining the problem differently can reveal a solution.',
+      it: 'Esplora perché definire un problema in modo diverso possa rivelarne una soluzione.',
       zh: '探索为何以不同方式界定问题可能揭示解决方法。',
       hi: 'जानें कि समस्या को अलग ढंग से परिभाषित करने से समाधान कैसे दिखाई दे सकता है।',
       es: 'Explora por qué definir un problema de otra forma puede revelar una solución.',

@@ -5,6 +5,7 @@ export const stocks_Skill_Data = defineSkill({
   id: '680eb7e7-74df-4d4c-bcd8-360c981d4743',
   name: {
     en: 'Акції',
+    it: 'Azioni',
     zh: '股票',
     hi: 'शेयर',
     es: 'Acciones',
@@ -39,6 +40,7 @@ export const stocks_Skill_Data = defineSkill({
       'Understand equity ownership in a business, possible dividends, and exposure to market-price changes.',
     frontend: {
       en: 'See what owning shares in a company means.',
+      it: 'Scopri che cosa significa possedere quote di una società.',
       zh: '了解持有公司股份意味着什么。',
       hi: 'जानें कि किसी कंपनी में हिस्सेदारी रखने का क्या अर्थ है।',
       es: 'Descubre qué significa poseer acciones de una empresa.',

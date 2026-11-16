@@ -5,6 +5,7 @@ export const distinguishDigitalFormats_Skill_Data = defineSkill({
   id: 'a788abec-eaf2-4796-a2c3-849a55bddc49',
   name: {
     en: 'Distinguish Digital Formats',
+    it: 'Distinguere i formati digitali',
     zh: '区分数字文件格式',
     hi: 'डिजिटल फ़ॉर्मैट में अंतर करना',
     es: 'Distinguir formatos digitales',
@@ -39,6 +40,7 @@ export const distinguishDigitalFormats_Skill_Data = defineSkill({
       'Explain how formats determine the interpretation of stored bits: text files, raster images, and audio recordings have different structures. A filename extension is a clue, not proof of actual contents.',
     frontend: {
       en: 'Recognize that file formats determine how stored bits should be interpreted.',
+      it: 'Riconosci che il formato di un file determina come interpretare i bit memorizzati.',
       zh: '认识到文件格式决定存储的比特应如何解释。',
       hi: 'पहचानें कि फ़ाइल फ़ॉर्मैट तय करता है कि संग्रहीत बिट कैसे समझे जाएँ।',
       es: 'Reconoce que el formato de un archivo determina cómo interpretar los bits almacenados.',

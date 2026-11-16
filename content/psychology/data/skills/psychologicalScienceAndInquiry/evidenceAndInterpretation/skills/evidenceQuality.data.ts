@@ -5,6 +5,7 @@ export const evidenceQuality_Skill_Data = defineSkill({
   id: '5c4aeafb-6af7-4fca-a850-d1b59bcd3ed1',
   name: {
     en: 'Evidence Quality',
+    it: 'Qualità delle evidenze',
     zh: '证据质量',
     hi: 'साक्ष्य की गुणवत्ता',
     es: 'Calidad de la evidencia',
@@ -39,6 +40,7 @@ export const evidenceQuality_Skill_Data = defineSkill({
       'Weigh converging studies, effect magnitude, uncertainty, and publication bias instead of relying on one striking result.',
     frontend: {
       en: 'Compare research findings by their strength, uncertainty and possible biases.',
+      it: 'Confronta i risultati di ricerca in base alla loro solidità, incertezza e possibili distorsioni.',
       zh: '从证据强度、不确定性和潜在偏差等方面比较研究发现。',
       hi: 'अनुसंधान निष्कर्षों की तुलना उनकी मजबूती, अनिश्चितता और संभावित पक्षपात के आधार पर करें।',
       es: 'Compara los hallazgos según su solidez, incertidumbre y posibles sesgos.',

@@ -301,8 +301,23 @@ test('reused nested Config schemas are shared by reference instead of expanded c
   }
 });
 
-test('checked-in editor schemas match the current Engine Zod source', () => {
-  assert.equal(generateYamlSchemas('--check').length, 10);
+test('editor schemas are generated from current Engine Zod source before validation', () => {
+  const output = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-current-yaml-schemas-'));
+  try {
+    const generated = yamlJsonSchemaDocuments();
+    const names = generateYamlSchemas('--write', output);
+    assert.equal(names.length, 10);
+    for (const name of names) {
+      assert.deepEqual(
+        JSON.parse(fs.readFileSync(path.join(output, name), 'utf8')),
+        JSON.parse(generated[name]),
+        name + ' is generated from the current Zod contract',
+      );
+    }
+    assert.deepEqual(generateYamlSchemas('--check', output), names);
+  } finally {
+    fs.rmSync(output, { recursive: true, force: true });
+  }
 });
 
 test('unified scaffold composes manual production schema beside Engine Config at every node', () => {

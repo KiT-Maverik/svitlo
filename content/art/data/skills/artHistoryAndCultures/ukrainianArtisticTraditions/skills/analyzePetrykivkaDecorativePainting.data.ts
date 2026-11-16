@@ -5,6 +5,7 @@ export const analyzePetrykivkaDecorativePainting_Skill_Data = defineSkill({
   id: 'ba8f32f3-4940-4a2c-b960-040ee07b20ad',
   name: {
     en: 'Analyze Petrykivka Decorative Painting',
+    it: 'Analizzare la pittura decorativa di Petrykivka',
     zh: '分析彼得里基夫卡装饰画',
     hi: 'पेट्रिकिव्का सजावटी चित्रकला का विश्लेषण करें',
     es: 'Analizar la pintura decorativa de Petrikivka',
@@ -39,6 +40,7 @@ export const analyzePetrykivkaDecorativePainting_Skill_Data = defineSkill({
       'Interpret stylized plant motifs, characteristic brushstrokes and community transmission in the ornamental painting tradition associated with Petrykivka.',
     frontend: {
       en: 'Discover the floral motifs and brush techniques of the Petrykivka painting tradition.',
+      it: 'Scopri i motivi floreali e le tecniche del pennello della tradizione pittorica di Petrykivka.',
       zh: '了解彼得里基夫卡绘画传统中的花卉图案与笔触技法。',
       hi: 'पेट्रिकिव्का चित्रकला परंपरा के पुष्प रूपांकनों और ब्रश तकनीकों को जानें।',
       es: 'Descubre los motivos florales y las técnicas de pincel de la tradición pictórica de Petrikivka.',

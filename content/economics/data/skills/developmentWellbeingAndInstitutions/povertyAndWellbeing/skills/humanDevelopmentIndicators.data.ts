@@ -5,6 +5,7 @@ export const humanDevelopmentIndicators_Skill_Data = defineSkill({
   id: '42e428b3-f59b-46bb-86e6-e5659aaa9bb8',
   name: {
     en: 'Індикатори людського розвитку',
+    it: 'Indicatori di sviluppo umano',
     zh: '人类发展指标',
     hi: 'मानव विकास संकेतक',
     es: 'Indicadores de desarrollo humano',
@@ -39,6 +40,7 @@ export const humanDevelopmentIndicators_Skill_Data = defineSkill({
       'Interpret composite measures of health, education, and income while recognizing their methodological limitations.',
     frontend: {
       en: 'Understand what human development indexes measure and miss.',
+      it: 'Comprendi che cosa misurano gli indici di sviluppo umano e che cosa non rilevano.',
       zh: '理解人类发展指数衡量了什么，又忽略了什么。',
       hi: 'समझें कि मानव विकास सूचकांक क्या मापते हैं और क्या नहीं।',
       es: 'Comprende qué miden y qué no reflejan los índices de desarrollo humano.',

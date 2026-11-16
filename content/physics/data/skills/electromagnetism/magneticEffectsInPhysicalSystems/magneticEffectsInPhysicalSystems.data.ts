@@ -7,6 +7,7 @@ export const magneticEffectsInPhysicalSystems_SkillGroup_Data = defineSkillGroup
   id: '5148572d-a782-42c7-81e3-cf7f30be6c64',
   name: {
     en: 'Magnetic Effects in Physical Systems',
+    it: 'Effetti magnetici nei sistemi fisici',
     qm: 'Fizik sistemalarda magnit tesirleri',
     zh: '物理系统中的磁效应',
     hi: 'भौतिक प्रणालियों में चुंबकीय प्रभाव',
@@ -47,6 +48,7 @@ export const magneticEffectsInPhysicalSystems_SkillGroup_Data = defineSkillGroup
       'Magnetic forces in real systems are explained by fields and material properties; choosing an engineering design belongs to Engineering.',
     frontend: {
       en: 'Explore the effects of magnetic fields on physical systems.',
+      it: 'Esplora gli effetti dei campi magnetici sui sistemi fisici.',
       qm: 'Magnit maydanlarınıñ fizik sistemalarğa tesirini araştır.',
       zh: '探索磁场对物理系统的影响。',
       hi: 'भौतिक प्रणालियों पर चुंबकीय क्षेत्र के प्रभावों का अध्ययन करें।',

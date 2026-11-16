@@ -5,6 +5,7 @@ export const unknownDivisor_Skill_Data = defineSkill({
   id: 'c820dfa2-a186-4d00-8a53-4b6b4993a76b',
   name: {
     en: 'Finding an unknown divisor',
+    it: 'Trovare un divisore incognito',
     qm: 'Belli olmağan bölücini tapmaq',
     lt: 'Nežinomo daliklio radimas',
     lv: 'Nezināmā dalītāja atrašana',
@@ -39,6 +40,7 @@ export const unknownDivisor_Skill_Data = defineSkill({
       'Given a nonzero dividend and nonzero quotient, determine the divisor by dividing the dividend by the quotient in the relevant number domain. Check that the divisor is nonzero and the original division holds.',
     frontend: {
       en: 'When the dividend and a nonzero quotient are known, you can find the missing divisor and check it is not zero.',
+      it: 'Quando conosci il dividendo e un quoziente diverso da zero, puoi trovare il divisore mancante e verificare che non sia zero.',
       qm: 'Bölüngen sayı ve sıfır olmağan bölüm neticesi belli olsa, eksik bölücini tapıp, onıñ sıfır olmağanını teşkere ete bilesiñ.',
       zh: '已知被除数和非零的商时，你能求出未知除数，并检查它不等于零。',
       hi: 'भाज्य और शून्य से अलग भागफल ज्ञात हों, तो अज्ञात भाजक निकाल सकते हो और जाँच सकते हो कि वह शून्य नहीं है।',

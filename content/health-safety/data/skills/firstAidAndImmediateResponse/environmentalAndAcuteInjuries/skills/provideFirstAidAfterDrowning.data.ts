@@ -5,6 +5,7 @@ export const provideFirstAidAfterDrowning_Skill_Data = defineSkill({
   id: '617311e2-0a0e-4e36-b81a-8524558c640e',
   name: {
     en: 'Provide first aid after drowning',
+    it: 'Prestare primo soccorso dopo un annegamento',
     zh: '溺水后的急救',
     hi: 'डूबने के बाद प्राथमिक उपचार',
     es: 'Prestar primeros auxilios tras ahogamiento',
@@ -39,6 +40,7 @@ export const provideFirstAidAfterDrowning_Skill_Data = defineSkill({
       'Recognize the special urgency of impaired breathing after submersion, arrange emergency response and apply appropriate current resuscitation and monitoring guidance within training; do not delay vital assistance for nonessential actions.',
     frontend: {
       en: 'Recognize urgent breathing risks after drowning and the need for emergency assistance.',
+      it: 'Riconosci i rischi respiratori urgenti dopo un episodio di annegamento e la necessità di soccorsi immediati.',
       zh: '识别溺水后的紧急呼吸风险及获得急救帮助的必要性。',
       hi: 'डूबने के बाद साँस के गंभीर खतरों और आपात सहायता की ज़रूरत पहचानो।',
       es: 'Reconoce los riesgos respiratorios urgentes tras ahogamiento y la necesidad de ayuda de emergencia.',

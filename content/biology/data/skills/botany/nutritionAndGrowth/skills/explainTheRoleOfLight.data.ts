@@ -5,6 +5,7 @@ export const explainTheRoleOfLight_Skill_Data = defineSkill({
   id: 'd5c5d111-8465-4e2e-b998-3be6ada3f0da',
   name: {
     en: 'Explain the Role of Light',
+    it: 'Spiegare il ruolo della luce',
     zh: '解释光的作用',
     hi: 'प्रकाश की भूमिका समझाना',
     es: 'Explicar la función de la luz',
@@ -38,6 +39,7 @@ export const explainTheRoleOfLight_Skill_Data = defineSkill({
     methodological: 'Relate illumination to the production of organic substances in photosynthesizing parts of plants.',
     frontend: {
       en: 'Explain why light is essential for making food through photosynthesis.',
+      it: 'Spiega perché la luce è essenziale per produrre sostanze nutritive attraverso la fotosintesi.',
       zh: '说明为什么光是光合作用制造有机物所必需的。',
       hi: 'समझाएँ कि प्रकाश संश्लेषण से भोजन बनाने के लिए प्रकाश क्यों आवश्यक है।',
       es: 'Explica por qué la luz es esencial para producir alimento mediante la fotosíntesis.',

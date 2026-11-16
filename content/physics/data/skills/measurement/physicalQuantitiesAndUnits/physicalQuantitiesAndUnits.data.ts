@@ -12,6 +12,7 @@ export const physicalQuantitiesAndUnits_SkillGroup_Data = defineSkillGroup({
   id: '093b9b15-c9bb-4812-b026-b749cf33ea9d',
   name: {
     en: 'Physical Quantities and Units',
+    it: 'Grandezze fisiche e unità di misura',
     zh: '物理量与单位',
     hi: 'भौतिक राशियाँ और इकाइयाँ',
     es: 'Magnitudes físicas y unidades',
@@ -61,6 +62,7 @@ export const physicalQuantitiesAndUnits_SkillGroup_Data = defineSkillGroup({
       'A single object can be described using different quantities; comparisons of the same quantity require compatible units and observation conditions.',
     frontend: {
       en: 'Learn to describe physical properties with appropriate measurements and units.',
+      it: 'Impara a descrivere le proprietà fisiche con misurazioni e unità appropriate.',
       zh: '学习用适当的测量结果和单位描述物理性质。',
       hi: 'उचित माप और इकाइयों के साथ भौतिक गुणों का वर्णन करना सीखें।',
       es: 'Aprende a describir propiedades físicas con medidas y unidades adecuadas.',

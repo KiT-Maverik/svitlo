@@ -5,6 +5,7 @@ export const evaluateAnalogicalReasoning_Skill_Data = defineSkill({
   id: '68c45c5a-fd68-4468-8172-f4be74972d4b',
   name: {
     en: 'Evaluate analogical reasoning',
+    it: 'Valutare un ragionamento per analogia',
     zh: '评估类比推理',
     hi: 'सादृश्यात्मक तर्क का मूल्यांकन',
     es: 'Evaluar el razonamiento por analogía',
@@ -39,6 +40,7 @@ export const evaluateAnalogicalReasoning_Skill_Data = defineSkill({
       'Check whether compared cases share features relevant to the proposed conclusion rather than merely superficial similarities.',
     frontend: {
       en: 'Compare cases by similarities that actually matter to the conclusion.',
+      it: 'Confronta i casi considerando le somiglianze davvero pertinenti alla conclusione.',
       zh: '比较不同事例时，关注与结论真正相关的相似点。',
       hi: 'उदाहरणों की तुलना उन समानताओं के आधार पर करें जो निष्कर्ष के लिए सच में महत्त्वपूर्ण हों।',
       es: 'Compara casos según las semejanzas que realmente importan para la conclusión.',

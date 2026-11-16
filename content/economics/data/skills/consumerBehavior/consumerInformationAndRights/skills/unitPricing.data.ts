@@ -5,6 +5,7 @@ export const unitPricing_Skill_Data = defineSkill({
   id: '1fc15581-c58c-4af9-ab3b-0e2b229baecd',
   name: {
     en: 'Unit Pricing',
+    it: 'Prezzo unitario',
     zh: '单位价格',
     hi: 'प्रति इकाई मूल्य',
     es: 'Precio por unidad',
@@ -39,6 +40,7 @@ export const unitPricing_Skill_Data = defineSkill({
       'Convert offer prices into comparable units of mass, volume, or quantity while accounting for bundle contents, quality, and promotional conditions; a cheaper package need not have a cheaper unit price.',
     frontend: {
       en: 'Compare products fairly by calculating the cost per unit.',
+      it: 'Confronta equamente i prodotti calcolando il costo per unità.',
       zh: '计算每单位成本，公平比较商品。',
       hi: 'प्रति इकाई लागत निकालकर उत्पादों की निष्पक्ष तुलना करें।',
       es: 'Compara productos calculando el costo de cada unidad.',

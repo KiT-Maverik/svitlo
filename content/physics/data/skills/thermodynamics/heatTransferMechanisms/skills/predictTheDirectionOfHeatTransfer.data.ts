@@ -5,6 +5,7 @@ export const predictTheDirectionOfHeatTransfer_Skill_Data = defineSkill({
   id: 'f256429d-bbdd-42e3-adf2-600c0a375361',
   name: {
     en: 'Predict the direction of heat transfer',
+    it: 'Prevedere la direzione del trasferimento di calore',
     qm: 'Sıcaqlıq berilüviniñ yönüni evelden bilmek',
     zh: '预测热量传递的方向',
     hi: 'ऊष्मा स्थानांतरण की दिशा का अनुमान लगाना',
@@ -39,6 +40,7 @@ export const predictTheDirectionOfHeatTransfer_Skill_Data = defineSkill({
       'In the absence of external work, heat spontaneously flows from a warmer body to a colder one until thermal equilibrium is reached.',
     frontend: {
       en: 'Predict which way thermal energy flows between objects at different temperatures.',
+      it: "Prevedi in quale direzione fluisce l'energia termica tra oggetti a temperature diverse.",
       qm: 'Temperaturaları farqlı cisimler arasında sıcaqlıq energiyası qaysı yönge keçecegini ayt.',
       zh: '预测不同温度的物体之间热能会向哪个方向传递。',
       hi: 'अनुमान लगाएँ कि अलग-अलग तापमान की वस्तुओं के बीच ऊष्मीय ऊर्जा किस दिशा में जाएगी।',

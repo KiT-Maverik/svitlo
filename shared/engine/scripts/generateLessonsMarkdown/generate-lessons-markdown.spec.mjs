@@ -7,11 +7,14 @@ import { describe, it } from 'node:test';
 import { discoverLessons, generate, loadLesson, parseArguments } from './generate-lessons-markdown.mjs';
 import { localizeReviewValue, renderLessonMarkdown, sourceIndex, supportedLanguages } from './lesson-markdown.mjs';
 
-const lessonId = 'd3048d21-8690-5255-b62c-984c69ac272c';
-const relative = 'c/' + lessonId;
-const repositoryRoot = path.resolve(import.meta.dirname, '../../../..');
-const realLessonEntry = path.join(repositoryRoot, 'content/playground/data/lessons', relative, 'index.ts');
-const realPackage = path.join(repositoryRoot, 'content/playground');
+import {
+  testingRoot,
+  textbook,
+  lessonEntry,
+  lessonId,
+  lessonRelativePath as relative,
+  packagePath,
+} from '../../testing/fixtures.mjs';
 
 function fixture(locale = 'uk') {
   const t = (en, uk) => (locale === 'uk' ? uk : en);
@@ -24,11 +27,11 @@ function fixture(locale = 'uk') {
   });
   return {
     id: lessonId,
-    slug: 'howLightMoves',
+    slug: 'fixtureLesson',
     type: 'lesson',
     skills: ['skill-1'],
     params: { languages: ['en', 'uk'], requireQuiz: true, sections: { showIndexes: true } },
-    locale: { title: t('How Light Moves', 'Як рухається світло') },
+    locale: { title: t('Engine Test Lesson', 'Тестовий урок Engine') },
     section: [
       {
         id: 'section-id',
@@ -131,11 +134,13 @@ function fixture(locale = 'uk') {
         slug: 'quiz',
         type: 'quiz',
         locale: { title: t('Quiz', 'Тест'), navigationLabel: t('Quiz', 'Тест') },
-        params: { selection: { mode: 'all', questionIds: ['00000000-0000-4000-8000-000000000001'] }, layout: { mode: 'stepper' } },
+        params: {
+          selection: { mode: 'all', questionIds: ['00000000-0000-4000-8000-000000000001'] },
+          layout: { mode: 'stepper' },
+        },
         content: [],
       },
     ],
-
   };
 }
 
@@ -147,7 +152,7 @@ function temporaryRepo() {
     languageFile,
     "export const DEFAULT_SUPPORTED_LANGUAGES = [{ language: 'en' }, { language: 'uk' }] as const;\n",
   );
-  const lessonDir = path.join(root, 'content/playground/data/lessons', relative);
+  const lessonDir = path.join(root, 'content/engine-fixture/data/lessons', relative);
   fs.mkdirSync(lessonDir, { recursive: true });
   fs.writeFileSync(path.join(lessonDir, 'index.ts'), 'export const lesson = {};\n');
   return { root, lessonDir, cleanup: () => fs.rmSync(root, { recursive: true, force: true }) };
@@ -159,11 +164,12 @@ describe('Current Lesson Props → localized Markdown review projection', () => 
       lesson: fixture('uk'),
       locale: 'uk',
       languages: ['en', 'uk'],
-      packagePath: 'content/playground',
+      packagePath: 'content/engine-fixture',
     });
-    assert.match(markdown, /^# Як рухається світло/m);
+    assert.match(markdown, /^# Тестовий урок Engine/m);
     assert.match(markdown, /## Lesson/);
-    assert.ok(markdown.indexOf('Теорія') < markdown.indexOf('Тест'));
+    const theoryIndex = markdown.indexOf('Теорія');
+    assert.ok(theoryIndex >= 0 && markdown.indexOf('Тест', theoryIndex) > theoryIndex);
     assert.match(markdown, /Світло/);
     assert.match(markdown, /Quiz references independently published Question UUIDs/);
     assert.match(markdown, /00000000-0000-4000-8000-000000000001/);
@@ -190,7 +196,7 @@ describe('Current Lesson Props → localized Markdown review projection', () => 
         lesson: fixture('uk'),
         locale: 'uk',
         languages: ['en', 'uk'],
-        packagePath: 'content/playground',
+        packagePath: 'content/engine-fixture',
       }),
     );
     assert.match(markdown, /github.com\/KiT-Maverik\/svitlo\/blob/);
@@ -218,7 +224,7 @@ describe('Current Lesson Props → localized Markdown review projection', () => 
           lesson: unresolved,
           locale: 'uk',
           languages: ['en', 'uk'],
-          packagePath: 'content/playground',
+          packagePath: 'content/engine-fixture',
         }),
       /resolved locale.title/,
     );
@@ -233,7 +239,7 @@ describe('Current Lesson Props → localized Markdown review projection', () => 
           lesson,
           locale: 'uk',
           languages: ['en', 'uk'],
-          packagePath: 'content/playground',
+          packagePath: 'content/engine-fixture',
         }),
       /Unsupported content block type/,
     );
@@ -245,7 +251,7 @@ describe('Current Lesson Props → localized Markdown review projection', () => 
           lesson: broken,
           locale: 'uk',
           languages: ['en', 'uk'],
-          packagePath: 'content/playground',
+          packagePath: 'content/engine-fixture',
         }),
       /missing params/,
     );
@@ -253,8 +259,8 @@ describe('Current Lesson Props → localized Markdown review projection', () => 
 
   it('validates CLI arguments and canonical UUID identity', () => {
     assert.deepEqual(
-      parseArguments(['--package', 'content/playground', '--lesson', lessonId, '--locale', 'uk', '--stdout']),
-      { package: 'content/playground', lesson: lessonId, locale: 'uk', stdout: true },
+      parseArguments(['--package', 'content/engine-fixture', '--lesson', lessonId, '--locale', 'uk', '--stdout']),
+      { package: 'content/engine-fixture', lesson: lessonId, locale: 'uk', stdout: true },
     );
     assert.throws(
       () => parseArguments(['--package', 'content/../etc', '--lesson', lessonId, '--locale', 'uk', '--stdout']),
@@ -262,7 +268,15 @@ describe('Current Lesson Props → localized Markdown review projection', () => 
     );
     assert.throws(
       () =>
-        parseArguments(['--package', 'content/playground', '--lesson', 'c/' + lessonId, '--locale', 'uk', '--stdout']),
+        parseArguments([
+          '--package',
+          'content/engine-fixture',
+          '--lesson',
+          'c/' + lessonId,
+          '--locale',
+          'uk',
+          '--stdout',
+        ]),
       /canonical UUID/,
     );
   });
@@ -271,23 +285,23 @@ describe('Current Lesson Props → localized Markdown review projection', () => 
     const tmp = temporaryRepo();
     try {
       assert.deepEqual(
-        discoverLessons(path.join(tmp.root, 'content/playground')).map(x => x.id),
+        discoverLessons(path.join(tmp.root, 'content/engine-fixture')).map(x => x.id),
         [lessonId],
       );
       assert.equal(
-        discoverLessons(path.join(tmp.root, 'content/playground'))[0].entry,
+        discoverLessons(path.join(tmp.root, 'content/engine-fixture'))[0].entry,
         path.join(tmp.lessonDir, 'index.ts'),
       );
       assert.deepEqual(supportedLanguages(tmp.root), ['en', 'uk']);
-      const options = { package: 'content/playground', lesson: lessonId, locale: 'uk', stdout: true };
+      const options = { package: 'content/engine-fixture', lesson: lessonId, locale: 'uk', stdout: true };
       // Load the real configurator once and reuse it to isolate discovery and output handling.
-      const real = await loadLesson(realLessonEntry, realPackage);
+      const real = await loadLesson(lessonEntry, textbook);
       const loader = async () => real;
       const result = await generate(options, { root: tmp.root, loader });
-      assert.match(result, /Як рухається світло/);
+      assert.match(result, /Тестовий урок Engine/);
       assert.equal(result, await generate(options, { root: tmp.root, loader }));
       assert.equal(await generate({ ...options, stdout: false, output: 'out' }, { root: tmp.root, loader }), 1);
-      assert.equal(fs.readFileSync(path.join(tmp.root, 'out/playground', relative, 'uk.md'), 'utf8'), result);
+      assert.equal(fs.readFileSync(path.join(tmp.root, 'out/engine-fixture', relative, 'uk.md'), 'utf8'), result);
       assert.match(fs.readFileSync(path.join(tmp.lessonDir, 'index.ts'), 'utf8'), /export const lesson/);
       assert.throws(() => sourceIndex(tmp.root, '../tmp'), /Invalid/);
     } finally {
@@ -295,13 +309,13 @@ describe('Current Lesson Props → localized Markdown review projection', () => 
     }
   });
 
-  it('renders the actual Playground Lesson with independent assessment references', async () => {
-    const root = repositoryRoot;
-    const lesson = await loadLesson(realLessonEntry, realPackage);
+  it('renders the Engine-owned Lesson fixture with independent assessment references', async () => {
+    const root = testingRoot;
+    const lesson = await loadLesson(lessonEntry, textbook);
     assert.equal(lesson.id, lessonId);
     const markdown = await generate(
       {
-        package: 'content/playground',
+        package: packagePath,
         lesson: lessonId,
         locale: 'uk',
         stdout: true,
@@ -311,7 +325,7 @@ describe('Current Lesson Props → localized Markdown review projection', () => 
     assert.match(markdown, /## Assessment resources/);
     assert.doesNotMatch(markdown, /## Question Bank|## Flashcard Bank/);
     assert.match(markdown, /Quiz references independently published Question UUIDs/);
-    assert.match(markdown, /Як рухається світло/);
+    assert.match(markdown, /Тестовий урок Engine/);
     assert.doesNotMatch(markdown, /\[object Object\]|undefined/);
   });
 
@@ -319,7 +333,7 @@ describe('Current Lesson Props → localized Markdown review projection', () => 
     const tmp = temporaryRepo();
     try {
       fs.symlinkSync(tmp.lessonDir, path.join(tmp.lessonDir, 'self'));
-      assert.throws(() => sourceIndex(tmp.root, 'content/playground/data/lessons/' + relative), /Symlink/);
+      assert.throws(() => sourceIndex(tmp.root, 'content/engine-fixture/data/lessons/' + relative), /Symlink/);
     } finally {
       tmp.cleanup();
     }
@@ -327,11 +341,12 @@ describe('Current Lesson Props → localized Markdown review projection', () => 
 });
 
 it('requires an exact Lesson UUID for read-only language inventory', () => {
-  const args = parseArguments(['--package', 'content/playground', '--lesson', lessonId, '--list-locales']);
+  const args = parseArguments(['--package', 'content/engine-fixture', '--lesson', lessonId, '--list-locales']);
   assert.equal(args.listLocales, true);
-  assert.throws(() => parseArguments(['--package', 'content/playground', '--list-locales']), /Usage/);
+  assert.throws(() => parseArguments(['--package', 'content/engine-fixture', '--list-locales']), /Usage/);
   assert.throws(
-    () => parseArguments(['--package', 'content/playground', '--lesson', lessonId, '--locale', 'it', '--list-locales']),
+    () =>
+      parseArguments(['--package', 'content/engine-fixture', '--lesson', lessonId, '--locale', 'it', '--list-locales']),
     /Usage/,
   );
 });

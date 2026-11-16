@@ -5,6 +5,7 @@ export const presentAnArtwork_Skill_Data = defineSkill({
   id: '3e431186-a5fc-452f-80a5-7d7082ab1d0b',
   name: {
     en: 'Present an Artwork',
+    it: "Presentare un'opera d'arte",
     zh: '展示艺术作品',
     hi: 'कलाकृति प्रस्तुत करें',
     es: 'Presentar una obra de arte',
@@ -38,6 +39,7 @@ export const presentAnArtwork_Skill_Data = defineSkill({
     methodological: 'Choose an appropriate display or performance setting for an intended audience.',
     frontend: {
       en: 'Choose how and where to share an artwork with its intended audience.',
+      it: "Scegli come e dove condividere un'opera d'arte con il pubblico a cui è destinata.",
       zh: '选择合适的方式和场所，向目标观众展示作品。',
       hi: 'लक्षित दर्शकों के साथ कलाकृति साझा करने का सही तरीका और स्थान चुनें।',
       es: 'Elige cómo y dónde compartir una obra con el público al que va dirigida.',

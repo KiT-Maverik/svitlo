@@ -5,6 +5,7 @@ export const distinguishNecessaryFromSufficientConditions_Skill_Data = defineSki
   id: 'fa7a23aa-5680-4edc-ac28-c1fd48bdfa46',
   name: {
     en: 'Distinguish necessary from sufficient conditions',
+    it: 'Distinguere condizioni necessarie e sufficienti',
     zh: '区分必要条件与充分条件',
     hi: 'आवश्यक और पर्याप्त शर्तों में अंतर करना',
     es: 'Distinguir condiciones necesarias de suficientes',
@@ -39,6 +40,7 @@ export const distinguishNecessaryFromSufficientConditions_Skill_Data = defineSki
       'Determine whether a proposed property is required for a concept to apply, enough for it to apply, or both; a condition can fail one test and pass the other.',
     frontend: {
       en: 'Determine whether a condition is required, sufficient, both or neither.',
+      it: 'Determina se una condizione è necessaria, sufficiente, entrambe le cose o nessuna delle due.',
       zh: '判断某个条件是必要的、充分的、两者兼具，还是都不是。',
       hi: 'निर्धारित करें कि कोई शर्त आवश्यक है, पर्याप्त है, दोनों है या दोनों में से कोई नहीं।',
       es: 'Determina si una condición es necesaria, suficiente, ambas o ninguna.',

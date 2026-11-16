@@ -5,6 +5,7 @@ export const circadianTiming_Skill_Data = defineSkill({
   id: 'b1ec2dff-88d4-4b0d-8cd4-dd486d286315',
   name: {
     en: 'Circadian Timing',
+    it: 'Ritmi circadiani',
     zh: '昼夜节律计时',
     hi: 'सर्कैडियन समय-निर्धारण',
     es: 'Regulación circadiana del tiempo',
@@ -38,6 +39,7 @@ export const circadianTiming_Skill_Data = defineSkill({
     methodological: 'Relate internal rhythms, environmental light, and daily changes in alertness.',
     frontend: {
       en: 'Connect light and internal rhythms with daily changes in alertness.',
+      it: 'Collega la luce e i ritmi interni alle variazioni quotidiane della vigilanza.',
       zh: '将光照和内部生物节律与每天警觉性的变化联系起来。',
       hi: 'प्रकाश और शरीर की आंतरिक लय को दिनभर की सतर्कता में बदलाव से जोड़ें।',
       es: 'Relaciona la luz y los ritmos internos con los cambios diarios del estado de alerta.',

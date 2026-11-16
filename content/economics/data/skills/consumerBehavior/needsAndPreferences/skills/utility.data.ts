@@ -5,6 +5,7 @@ export const utility_Skill_Data = defineSkill({
   id: '08081f62-ba49-4cc5-9d0d-84cac4d39334',
   name: {
     en: 'Utility',
+    it: 'Utilità',
     zh: '效用',
     hi: 'उपयोगिता',
     es: 'Utilidad',
@@ -39,6 +40,7 @@ export const utility_Skill_Data = defineSkill({
       "Interpret utility as a model of an individual's preferences and valuation of consumption alternatives without assuming an objective universal unit of satisfaction.",
     frontend: {
       en: 'Understand utility as a way of describing what someone values.',
+      it: "Comprendi l'utilità come un modo per descrivere ciò a cui una persona attribuisce valore.",
       zh: '把效用理解为描述个人价值判断的一种方式。',
       hi: 'उपयोगिता को इस तरह समझें कि वह व्यक्ति की प्राथमिकताओं का वर्णन करती है।',
       es: 'Entiende la utilidad como una forma de describir lo que alguien valora.',

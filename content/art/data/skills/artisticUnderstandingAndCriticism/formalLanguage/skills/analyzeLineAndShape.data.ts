@@ -5,6 +5,7 @@ export const analyzeLineAndShape_Skill_Data = defineSkill({
   id: '002b4a55-6182-49b4-b6f2-33bd3f1f6ed4',
   name: {
     en: 'Analyze Line and Shape',
+    it: 'Analizzare linee e forme',
     zh: '分析线条与形状',
     hi: 'रेखा और आकार का विश्लेषण करें',
     es: 'Analizar líneas y formas',
@@ -38,6 +39,7 @@ export const analyzeLineAndShape_Skill_Data = defineSkill({
     methodological: 'Explain how contours, directional marks and organic or geometric shapes structure a visual work.',
     frontend: {
       en: 'Notice how lines and shapes lead your eye and organize an image.',
+      it: "Nota come linee e forme guidano lo sguardo e organizzano un'immagine.",
       zh: '留意线条和形状如何引导你的视线并组织画面。',
       hi: 'ध्यान दें कि रेखाएँ और आकार आपकी नज़र को कैसे दिशा देते हैं और चित्र को कैसे व्यवस्थित करते हैं।',
       es: 'Observa cómo las líneas y las formas guían tu mirada y organizan una imagen.',

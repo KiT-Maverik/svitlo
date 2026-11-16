@@ -5,6 +5,7 @@ export const gravitationalWaveAstronomy_Skill_Data = defineSkill({
   id: 'f6c506b9-73e7-4394-b518-d485c5965573',
   name: {
     en: 'Gravitational-Wave Astronomy',
+    it: 'Astronomia delle onde gravitazionali',
     qm: 'Gravitatsion dalğa astronomiyası',
     bn: 'মহাকর্ষীয় তরঙ্গ জ্যোতির্বিজ্ঞান',
     ur: 'ثقلی لہروں کی فلکیات',
@@ -39,6 +40,7 @@ export const gravitationalWaveAstronomy_Skill_Data = defineSkill({
       'Interpret gravitational-wave detections as evidence about accelerating compact massive systems and compare the signals with electromagnetic observations.',
     frontend: {
       en: 'Find out what gravitational-wave signals tell us about massive, rapidly changing systems.',
+      it: 'Scopri cosa rivelano i segnali delle onde gravitazionali sui sistemi massicci in rapido cambiamento.',
       qm: 'Gravitatsion dalğa signalları büyük kütleli ve tez deñişken sistemalar aqqında neler bildirgenini ögreniñiz.',
       bn: 'মহাকর্ষীয় তরঙ্গের সংকেত থেকে দ্রুত পরিবর্তনশীল বিশাল ভরের ব্যবস্থা সম্পর্কে কী জানা যায়, তা দেখো।',
       ur: 'جانیں کہ ثقلی لہروں کے اشارے تیزی سے بدلنے والے بھاری نظاموں کے بارے میں کیا بتاتے ہیں۔',

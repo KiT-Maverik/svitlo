@@ -5,6 +5,7 @@ export const vaporization_Skill_Data = defineSkill({
   id: 'd4b8e9b7-f999-4d5c-a0c2-ec4cda63f58a',
   name: {
     en: 'Vaporization',
+    it: 'Vaporizzazione',
     zh: '汽化',
     hi: 'वाष्पीकरण',
     es: 'Vaporización',
@@ -39,6 +40,7 @@ export const vaporization_Skill_Data = defineSkill({
       'Explain transformation of liquid to gas, distinguishing surface evaporation from boiling within a liquid under suitable pressure.',
     frontend: {
       en: 'Distinguish evaporation at a surface from boiling throughout a liquid.',
+      it: "Distingui l'evaporazione dalla superficie dall'ebollizione nell'intero liquido.",
       zh: '区分液体表面的蒸发与整个液体内部发生的沸腾。',
       hi: 'द्रव की सतह पर होने वाले वाष्पन और पूरे द्रव में होने वाले क्वथन में अंतर करें।',
       es: 'Distingue la evaporación en la superficie de la ebullición en todo el líquido.',

@@ -5,6 +5,7 @@ export const eliminationReactions_Skill_Data = defineSkill({
   id: '02399136-ad33-48aa-b575-775a1e636706',
   name: {
     en: 'Elimination Reactions',
+    it: 'Reazioni di eliminazione',
     zh: '消除反应',
     hi: 'विलोपन अभिक्रियाएँ',
     es: 'Reacciones de eliminación',
@@ -38,6 +39,7 @@ export const eliminationReactions_Skill_Data = defineSkill({
     methodological: 'Recognize removal of atoms or groups with formation of additional unsaturation.',
     frontend: {
       en: 'Explain how removing groups can create double or triple bonds.',
+      it: 'Spiega come la rimozione di gruppi può creare doppi o tripli legami.',
       zh: '解释移除原子或基团如何形成双键或三键。',
       hi: 'समझाएँ कि परमाणु या समूह हटाने से द्विबंध या त्रिबंध कैसे बन सकते हैं।',
       es: 'Explica cómo eliminar átomos o grupos puede crear enlaces dobles o triples.',

@@ -5,6 +5,7 @@ export const ancientMeasurementSystems_Skill_Data = defineSkill({
   id: '629b6996-0468-4991-879f-b6cc1e27ce39',
   name: {
     en: 'Ancient Measurement Systems',
+    it: 'Sistemi di misura antichi',
     zh: '古代度量衡体系',
     hi: 'प्राचीन मापन प्रणालियाँ',
     es: 'Sistemas de medición antiguos',
@@ -39,6 +40,7 @@ export const ancientMeasurementSystems_Skill_Data = defineSkill({
       'Trace local measures of mass, length, volume, and time used for trade, taxes, construction, and crafts.',
     frontend: {
       en: 'Explore how ancient people measured goods and time.',
+      it: 'Esplora come le popolazioni antiche misuravano le merci e il tempo.',
       zh: '探索古代人们如何测量商品和时间。',
       hi: 'जानें कि प्राचीन लोग वस्तुओं और समय को कैसे मापते थे।',
       es: 'Explora cómo se medían los bienes y el tiempo en la Antigüedad.',

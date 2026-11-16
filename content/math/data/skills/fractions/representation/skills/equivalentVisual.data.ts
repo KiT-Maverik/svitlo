@@ -5,6 +5,7 @@ export const equivalentVisual_Skill_Data = defineSkill({
   id: 'fbe8f4a0-92e8-4c98-83c0-3a0d6888bd38',
   name: {
     en: 'Showing equivalent fractions with visual models',
+    it: 'Mostrare frazioni equivalenti con modelli visivi',
     qm: 'Teñ kesirlerni resimnen köstermek',
     lt: 'Lygiaverčių trupmenų vaizdavimas modeliais',
     lv: 'Vienādas vērtības daļu attēlošana ar vizuāliem modeļiem',
@@ -39,6 +40,7 @@ export const equivalentVisual_Skill_Data = defineSkill({
       'Equivalent fractions denote the same part of the same whole despite different numerators and denominators. Multiplying both by the same nonzero factor preserves value, as can be shown using area or line models.',
     frontend: {
       en: 'Different fractions can represent the same amount of the same whole. See how, for example, 1/2 and 2/4 cover equal amounts.',
+      it: 'Frazioni diverse possono rappresentare la stessa quantità dello stesso intero. Osserva, per esempio, che 1/2 e 2/4 coprono quantità uguali.',
       qm: 'Türlü kesirler aynı bütünniñ aynı miqdarını köstere bile. Meselâ, 1/2 ve 2/4 nasıl aynı miqdarnı qaplağanını köre bilesiñ.',
       zh: '不同分数可以表示同一整体的相同数量，例如1/2和2/4覆盖的部分相等。',
       hi: 'अलग भिन्न एक ही पूरे की बराबर मात्रा बता सकते हैं, जैसे 1/2 और 2/4।',

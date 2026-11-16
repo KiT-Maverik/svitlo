@@ -5,6 +5,7 @@ export const explainTheRoleOfReplication_Skill_Data = defineSkill({
   id: '1d69dd00-ed5c-4029-a25c-4aba2658a0c4',
   name: {
     en: 'Explain the role of replication',
+    it: 'Spiegare il ruolo della replicazione',
     zh: '解释重复研究的作用',
     hi: 'पुनरावृत्ति की भूमिका समझाएँ',
     es: 'Explicar el papel de la replicación',
@@ -39,6 +40,7 @@ export const explainTheRoleOfReplication_Skill_Data = defineSkill({
       'Show why repeating an investigation can expose chance results, context dependence, or methodological errors.',
     frontend: {
       en: 'Understand why repeating research helps check findings.',
+      it: 'Comprendi perché ripetere una ricerca aiuti a verificare i risultati.',
       zh: '理解为什么重复进行研究有助于核查发现。',
       hi: 'समझें कि अध्ययन दोहराने से निष्कर्षों की जाँच क्यों आसान होती है।',
       es: 'Comprende por qué repetir una investigación ayuda a comprobar sus resultados.',

@@ -5,6 +5,7 @@ export const emergencySavings_Skill_Data = defineSkill({
   id: '134daf77-d2b7-434a-9f63-9ab254881be3',
   name: {
     en: 'Резерв на непередбачені витрати',
+    it: 'Risparmi per le emergenze',
     zh: '应急储蓄',
     hi: 'आपातकालीन बचत',
     es: 'Ahorro para emergencias',
@@ -39,6 +40,7 @@ export const emergencySavings_Skill_Data = defineSkill({
       'Assess the purpose and accessibility of funds reserved for unexpected needs without imposing a universal target on every household.',
     frontend: {
       en: 'Understand why accessible savings can help with unexpected expenses.',
+      it: 'Comprendi perché risparmi facilmente accessibili possono aiutare ad affrontare spese impreviste.',
       zh: '理解可随时使用的储蓄为何能帮助应对意外开支。',
       hi: 'जानें कि आसानी से मिलने वाली बचत अप्रत्याशित खर्च में कैसे मदद करती है।',
       es: 'Comprende cómo los ahorros disponibles ayudan a afrontar gastos imprevistos.',

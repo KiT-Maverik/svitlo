@@ -5,6 +5,7 @@ export const earlySoutheastAsianStates_Skill_Data = defineSkill({
   id: 'b4ece043-b725-456e-b541-40d7b1a9c462',
   name: {
     en: 'Early Southeast Asian States',
+    it: "Primi Stati dell'Asia sudorientale",
     zh: '东南亚早期国家',
     hi: 'दक्षिण-पूर्व एशिया के प्रारंभिक राज्य',
     es: 'Primeros estados del Sudeste Asiático',
@@ -38,6 +39,7 @@ export const earlySoutheastAsianStates_Skill_Data = defineSkill({
     methodological: 'Reconstruct centers such as Funan from archaeology and external written accounts.',
     frontend: {
       en: 'Explore how the first states of Southeast Asia formed.',
+      it: "Esplora come si formarono i primi Stati dell'Asia sudorientale.",
       zh: '探索东南亚最早的国家如何形成。',
       hi: 'जानें कि इस क्षेत्र के पहले राज्य कैसे बने।',
       es: 'Explora cómo se formaron los primeros estados de la región.',

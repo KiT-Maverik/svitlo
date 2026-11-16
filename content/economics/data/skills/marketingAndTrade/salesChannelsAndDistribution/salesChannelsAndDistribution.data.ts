@@ -7,6 +7,7 @@ export const salesChannelsAndDistribution_SkillGroup_Data = defineSkillGroup({
   id: '6131a2e9-3592-41cc-b0e7-af5ebc270965',
   name: {
     en: 'Канали збуту та дистрибуція',
+    it: 'Canali di vendita e distribuzione',
     zh: '销售渠道与分销',
     hi: 'बिक्री चैनल और वितरण',
     es: 'Canales de venta y distribución',
@@ -49,6 +50,7 @@ export const salesChannelsAndDistribution_SkillGroup_Data = defineSkillGroup({
       'Goods can reach end consumers through different numbers of intermediaries, wholesale transactions, warehouses, and transport; channel choice affects costs, availability, and control over sales.',
     frontend: {
       en: 'Discover how products travel from producers to customers.',
+      it: 'Scopri come i prodotti arrivano dai produttori ai clienti.',
       zh: '了解产品如何从生产者到达顾客。',
       hi: 'जानें कि उत्पाद निर्माताओं से ग्राहकों तक कैसे पहुँचते हैं।',
       es: 'Descubre cómo llegan los productos de los fabricantes a los clientes.',

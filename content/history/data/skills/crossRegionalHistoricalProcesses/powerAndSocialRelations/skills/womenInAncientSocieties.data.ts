@@ -5,6 +5,7 @@ export const womenInAncientSocieties_Skill_Data = defineSkill({
   id: '8b6eb041-89b8-4513-bd33-521bdcf62014',
   name: {
     en: 'Women in Ancient Societies',
+    it: 'Donne nelle società antiche',
     zh: '古代社会中的女性',
     hi: 'प्राचीन समाजों में महिलाएँ',
     es: 'Las mujeres en las sociedades antiguas',
@@ -39,6 +40,7 @@ export const womenInAncientSocieties_Skill_Data = defineSkill({
       "Examine differences in women's legal status, work, and influence while recognizing that many sources represent elites.",
     frontend: {
       en: "Explore women's varied experiences and roles in ancient societies.",
+      it: 'Esplora le diverse esperienze e i ruoli delle donne nelle società antiche.',
       zh: '探索古代社会中女性丰富多样的经历与角色。',
       hi: 'प्राचीन समाजों में महिलाओं के विविध अनुभवों और भूमिकाओं के बारे में जानें।',
       es: 'Explora las diversas experiencias y funciones de las mujeres en las sociedades antiguas.',

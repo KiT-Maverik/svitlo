@@ -5,6 +5,7 @@ export const readHour_Skill_Data = defineSkill({
   id: '587f72d3-5c93-4aa7-9e36-588a1f5483f0',
   name: {
     en: 'Reading time to the hour',
+    it: "Leggere l'ora esatta",
     qm: 'Vaqıtnı tam saatqa qadar oqumaq',
     lt: 'Laiko skaitymas valandų tikslumu',
     lv: 'Laika nolasīšana pilnās stundās',
@@ -39,6 +40,7 @@ export const readHour_Skill_Data = defineSkill({
       'Analog and digital clocks represent the same instant differently. Reading the hour requires interpreting both clock hands and relating their positions to digital notation; the hour hand moves continuously rather than jumping between hour marks.',
     frontend: {
       en: 'You can tell the time to the nearest hour on an analog or digital clock, using the hour and minute hands correctly.',
+      it: "Puoi leggere l'ora esatta su un orologio analogico o digitale, interpretando correttamente le lancette delle ore e dei minuti.",
       qm: 'Saat ve daqiqa tillerini doğru qullanıp, tilli ya da raqamlı saatta vaqıtnı tam saatqa qadar ayta bilesiñ.',
       zh: '你能根据时针和分针正确读取指针钟或电子钟上整点的时间。',
       hi: 'आप घंटे और मिनट की सुइयों को समझकर सुई वाली या डिजिटल घड़ी में पूरे घंटे का समय बता सकते हैं।',

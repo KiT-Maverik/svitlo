@@ -5,6 +5,7 @@ export const multiwavelengthObservation_Skill_Data = defineSkill({
   id: '5e2bd763-fd57-423f-b7c4-f8a82e94bcc8',
   name: {
     en: 'Multiwavelength Observation',
+    it: "Osservazione a più lunghezze d'onda",
     qm: 'Çeşit dalğa uzunlıqlarında közetüv',
     bn: 'বহু-তরঙ্গদৈর্ঘ্য পর্যবেক্ষণ',
     ur: 'کئی طولِ موجوں پر مشاہدہ',
@@ -39,6 +40,7 @@ export const multiwavelengthObservation_Skill_Data = defineSkill({
       'Relate observations in different electromagnetic bands to distinct physical components and processes within one object.',
     frontend: {
       en: 'Combine images and measurements from different kinds of light to understand a celestial object.',
+      it: 'Combina immagini e misurazioni ottenute con diversi tipi di luce per comprendere un oggetto celeste.',
       qm: 'Bir kök cismini añlamaq içün çeşit yarıq türlerinde alınğan suretlerni ve ölçüvlerni birleştiriñiz.',
       bn: 'একটি জ্যোতিষ্ক বুঝতে বিভিন্ন ধরনের আলো থেকে পাওয়া ছবি ও পরিমাপ একত্র করো।',
       ur: 'کسی آسمانی جسم کو سمجھنے کے لیے روشنی کی مختلف اقسام سے حاصل تصاویر اور پیمائشیں یکجا کریں۔',

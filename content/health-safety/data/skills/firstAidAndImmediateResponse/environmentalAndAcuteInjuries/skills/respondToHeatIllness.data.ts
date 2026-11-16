@@ -5,6 +5,7 @@ export const respondToHeatIllness_Skill_Data = defineSkill({
   id: 'e31324c2-766c-4a2f-8b6c-8e2a7b41368d',
   name: {
     en: 'Respond to heat illness',
+    it: 'Reagire ai malesseri dovuti al caldo',
     zh: '应对高温相关疾病',
     hi: 'गर्मी से होने वाली बीमारी पर प्रतिक्रिया',
     es: 'Responder a enfermedades por calor',
@@ -39,6 +40,7 @@ export const respondToHeatIllness_Skill_Data = defineSkill({
       'Distinguish concerning heat-related symptoms and prioritize safe cooling and escalation for severe illness.',
     frontend: {
       en: 'Recognize serious heat illness and the need for cooling and urgent care.',
+      it: 'Riconosci le gravi malattie da calore e la necessità di raffreddamento e assistenza urgente.',
       zh: '识别严重高温疾病以及降温和紧急治疗的必要性。',
       hi: 'गंभीर गर्मीजनित बीमारी और ठंडा करने व तुरंत चिकित्सा की ज़रूरत पहचानो।',
       es: 'Reconoce las afecciones graves por calor y la necesidad de enfriamiento y atención urgente.',

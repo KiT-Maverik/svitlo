@@ -5,6 +5,7 @@ export const interpretGeographicPatternsOfOceanCurrents_Skill_Data = defineSkill
   id: 'f9287665-1bc6-4911-a1eb-400d1d92a6dc',
   name: {
     en: 'Interpret geographic patterns of ocean currents',
+    it: 'Interpretare la distribuzione geografica delle correnti oceaniche',
     zh: '解读洋流的地理分布',
     hi: 'महासागरीय धाराओं के भौगोलिक प्रतिरूप समझना',
     es: 'Interpretar patrones geográficos de las corrientes oceánicas',
@@ -39,6 +40,7 @@ export const interpretGeographicPatternsOfOceanCurrents_Skill_Data = defineSkill
       'Recognize major surface-current directions and geographic effects on coastal climate, transport and marine conditions, without confusing circulation with periodic tidal change.',
     frontend: {
       en: 'Interpret ocean-current patterns and their effects on coastal regions.',
+      it: 'Interpreta la distribuzione delle correnti oceaniche e i loro effetti sulle regioni costiere.',
       zh: '解释洋流分布及其对沿海地区的影响。',
       hi: 'समुद्री धाराओं के मार्ग और तटीय क्षेत्रों पर उनके प्रभाव जानें।',
       es: 'Explica los patrones de corrientes marinas y sus efectos en las costas.',

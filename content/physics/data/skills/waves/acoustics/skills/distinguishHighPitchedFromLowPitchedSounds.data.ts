@@ -5,6 +5,7 @@ export const distinguishHighPitchedFromLowPitchedSounds_Skill_Data = defineSkill
   id: '72f5dad8-ceee-40d3-8e21-b772512a211e',
   name: {
     en: 'Distinguish high-pitched from low-pitched sounds',
+    it: 'Distinguere i suoni acuti da quelli gravi',
     zh: '区分高音与低音',
     hi: 'ऊँचे और नीचे तारत्व वाली ध्वनियों में अंतर करना',
     es: 'Distinguir sonidos agudos y graves',
@@ -39,6 +40,7 @@ export const distinguishHighPitchedFromLowPitchedSounds_Skill_Data = defineSkill
       'Pitch is primarily related to the frequency of sound oscillations, not amplitude, which affects intensity.',
     frontend: {
       en: 'Recognize high and low pitches by the frequency of sound waves.',
+      it: 'Riconosci suoni acuti e gravi attraverso la frequenza delle onde sonore.',
       zh: '通过声波的频率辨认音高和音低。',
       hi: 'ध्वनि तरंगों की आवृत्ति से ऊँचे और नीचे तारत्व पहचानें।',
       es: 'Reconoce tonos agudos y graves mediante la frecuencia de las ondas sonoras.',

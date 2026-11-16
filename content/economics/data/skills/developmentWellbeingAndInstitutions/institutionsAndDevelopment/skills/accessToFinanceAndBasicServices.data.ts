@@ -5,6 +5,7 @@ export const accessToFinanceAndBasicServices_Skill_Data = defineSkill({
   id: 'f7d569ee-87bc-4a49-ac84-734b233f1391',
   name: {
     en: 'Доступ до фінансових та базових послуг',
+    it: 'Accesso ai servizi finanziari e di base',
     zh: '金融服务与基本服务的可及性',
     hi: 'वित्तीय और आवश्यक सेवाओं तक पहुँच',
     es: 'Acceso a finanzas y servicios básicos',
@@ -39,6 +40,7 @@ export const accessToFinanceAndBasicServices_Skill_Data = defineSkill({
       'Evaluate the economic effects of access to infrastructure, payment systems, education, and health services.',
     frontend: {
       en: "Explore how essential services affect people's economic opportunities.",
+      it: 'Scopri come i servizi essenziali influiscono sulle opportunità economiche delle persone.',
       zh: '探索基本服务如何影响人们的经济机会。',
       hi: 'जानें कि आवश्यक सेवाएँ लोगों के आर्थिक अवसरों को कैसे प्रभावित करती हैं।',
       es: 'Explora cómo los servicios esenciales afectan las oportunidades económicas de las personas.',

@@ -5,6 +5,7 @@ export const relativisticJets_Skill_Data = defineSkill({
   id: 'c3da4ef3-ebca-42a6-b9a0-d2f3a3be061a',
   name: {
     en: 'Relativistic Jets',
+    it: 'Getti relativistici',
     qm: 'Relyativistik püskürmeler',
     zh: '相对论性喷流',
     hi: 'आपेक्षिकीय जेट',
@@ -39,6 +40,7 @@ export const relativisticJets_Skill_Data = defineSkill({
       'Explain the observed collimated outflows in some active galaxies and the role of viewing geometry.',
     frontend: {
       en: 'Explore the narrow, fast-moving jets produced by some active galaxies.',
+      it: 'Esplora i getti stretti e velocissimi prodotti da alcune galassie attive.',
       qm: 'Bazı faal galaktikalardan çıqqan tar ve pek tez areket etken madde aqımlarını araştırıñız.',
       zh: '探索一些活动星系发出的狭窄高速喷流。',
       hi: 'कुछ सक्रिय आकाशगंगाओं से निकलने वाली संकरी और तेज़ जेट धाराओं का अध्ययन करें।',

@@ -7,6 +7,7 @@ export const eclipsesAndAlignments_SkillGroup_Data = defineSkillGroup({
   id: '326cf167-b599-47d4-b53e-bea0cc5fc468',
   name: {
     en: 'Eclipses and Alignments',
+    it: 'Eclissi e allineamenti',
     zh: '食现象与天体排列',
     hi: 'ग्रहण और खगोलीय संरेखण',
     es: 'Eclipses y alineaciones',
@@ -49,6 +50,7 @@ export const eclipsesAndAlignments_SkillGroup_Data = defineSkillGroup({
       "Occultation and shadow phenomena depend on an observer's line of sight and the relative positions and apparent sizes of bodies.",
     frontend: {
       en: 'Learn how eclipses depend on the alignment of celestial objects and their shadows.',
+      it: "Scopri come le eclissi dipendono dall'allineamento degli oggetti celesti e dalle loro ombre.",
       zh: '了解日食和月食如何取决于天体的排列与它们投下的阴影。',
       hi: 'जानें कि ग्रहण खगोलीय पिंडों की स्थिति और उनकी छायाओं पर कैसे निर्भर करते हैं।',
       es: 'Aprende cómo los eclipses dependen de la alineación de los cuerpos celestes y de sus sombras.',

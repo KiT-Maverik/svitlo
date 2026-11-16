@@ -5,6 +5,7 @@ export const preventEntrapmentAndSuffocationHazards_Skill_Data = defineSkill({
   id: 'b8904b16-db62-40f4-9244-d8b5aa7175ce',
   name: {
     en: 'Prevent entrapment and suffocation hazards',
+    it: 'Prevenire i pericoli di intrappolamento e soffocamento',
     zh: '预防困陷与窒息危险',
     hi: 'फँसने और दम घुटने के खतरों से बचाव',
     es: 'Prevenir riesgos de atrapamiento y asfixia',
@@ -38,6 +39,7 @@ export const preventEntrapmentAndSuffocationHazards_Skill_Data = defineSkill({
     methodological: 'Identify risks from confined spaces, cords, bags, and unsafe storage for vulnerable people.',
     frontend: {
       en: 'Spot situations involving dangerous cords, bags or confined spaces.',
+      it: 'Individua le situazioni pericolose legate a corde, sacchetti o spazi ristretti.',
       zh: '识别绳索、塑料袋和狭小空间带来的危险情况。',
       hi: 'खतरनाक डोरियों, थैलियों और बंद जगहों से जुड़ी स्थितियाँ पहचानें।',
       es: 'Detecta situaciones peligrosas con cordones, bolsas o espacios reducidos.',

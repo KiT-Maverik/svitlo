@@ -5,6 +5,7 @@ export const useSafeCopingStrategies_Skill_Data = defineSkill({
   id: 'c6fdbda2-e0b3-4fea-9889-74e3e6ea27a9',
   name: {
     en: 'Use safe coping strategies',
+    it: 'Usare strategie sicure per affrontare le difficoltà',
     zh: '使用安全的应对策略',
     hi: 'सुरक्षित सामना करने की रणनीतियाँ अपनाएँ',
     es: 'Usar estrategias seguras de afrontamiento',
@@ -39,6 +40,7 @@ export const useSafeCopingStrategies_Skill_Data = defineSkill({
       'Select proportionate methods such as grounding, rest, movement, and social connection without presenting them as substitutes for necessary care.',
     frontend: {
       en: 'Choose proportionate, safe ways to handle ordinary distress.',
+      it: 'Scegli modi sicuri e proporzionati per gestire le difficoltà emotive quotidiane.',
       zh: '选择适度、安全的方法处理日常困扰。',
       hi: 'सामान्य परेशानियों को सँभालने के लिए उचित और सुरक्षित तरीके चुनें।',
       es: 'Elige maneras proporcionadas y seguras de manejar el malestar cotidiano.',

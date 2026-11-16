@@ -5,6 +5,7 @@ export const thermalEnergyStorage_Skill_Data = defineSkill({
   id: '180a5926-6bc4-474d-a270-48f9732c754d',
   name: {
     en: 'Thermal energy storage',
+    it: 'Accumulo di energia termica',
     zh: '热能储存',
     hi: 'ऊष्मीय ऊर्जा भंडारण',
     es: 'Almacenamiento de energía térmica',
@@ -38,6 +39,7 @@ export const thermalEnergyStorage_Skill_Data = defineSkill({
     methodological: 'Describe how heat or cooling can be retained for later use.',
     frontend: {
       en: 'Compare ways of storing heat for use at another time.',
+      it: 'Confronta i modi per immagazzinare calore da utilizzare in un altro momento.',
       zh: '比较把热量储存起来供以后使用的不同方法。',
       hi: 'बाद में उपयोग के लिए ऊष्मा सहेजने के अलग-अलग तरीकों की तुलना करें।',
       es: 'Compara maneras de almacenar calor para usarlo en otro momento.',

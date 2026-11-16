@@ -5,6 +5,7 @@ export const analyzeAPhilosophicalArgumentFromAnIslamicTradition_Skill_Data = de
   id: 'e4e30d62-dabf-42d4-9d2a-f9ee631d44b9',
   name: {
     en: 'Analyze a philosophical argument from an Islamic tradition',
+    it: "Analizzare un'argomentazione filosofica di una tradizione islamica",
     zh: '分析伊斯兰哲学传统中的论证',
     hi: 'इस्लामी दर्शन के तर्क का विश्लेषण',
     es: 'Analizar un argumento de una tradición filosófica islámica',
@@ -39,6 +40,7 @@ export const analyzeAPhilosophicalArgumentFromAnIslamicTradition_Skill_Data = de
       'Explain a selected debate in Islamic philosophy using its intellectual context rather than assuming theology and philosophy are identical.',
     frontend: {
       en: 'Examine a debate within Islamic philosophy using its historical setting.',
+      it: 'Esamina un dibattito della filosofia islamica tenendo conto del suo contesto storico.',
       zh: '结合历史背景考察伊斯兰哲学内部的一场争论。',
       hi: 'ऐतिहासिक संदर्भ में इस्लामी दर्शन के किसी विवाद की जाँच करो।',
       es: 'Examina un debate de filosofía islámica en su contexto histórico.',

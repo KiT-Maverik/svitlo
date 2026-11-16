@@ -7,6 +7,7 @@ export const personalSafetyInPublicPlaces_SkillGroup_Data = defineSkillGroup({
   id: 'cfe6de15-3b03-4c69-b8c6-dd343892a94c',
   name: {
     en: 'Personal Safety in Public Places',
+    it: 'Sicurezza personale nei luoghi pubblici',
     zh: '公共场所人身安全',
     hi: 'सार्वजनिक स्थानों पर व्यक्तिगत सुरक्षा',
     es: 'Seguridad personal en lugares públicos',
@@ -48,6 +49,7 @@ export const personalSafetyInPublicPlaces_SkillGroup_Data = defineSkillGroup({
       'Being approached by unknown people or separated from familiar companions calls for independent judgement about safe distance, exit options and trustworthy assistance, without assuming every unfamiliar person is dangerous.',
     frontend: {
       en: 'Learn how to respond to uncomfortable encounters and separation in public.',
+      it: 'Impara a reagire agli incontri spiacevoli e alla separazione dalle persone che ti accompagnano nei luoghi pubblici.',
       zh: '学习如何应对公共场所令人不安的接触及与同伴走散的情况。',
       hi: 'सार्वजनिक स्थानों पर असहज मुलाकातों और साथियों से बिछड़ने पर सुरक्षित प्रतिक्रिया देना सीखें।',
       es: 'Aprende a responder ante encuentros incómodos o una separación en público.',

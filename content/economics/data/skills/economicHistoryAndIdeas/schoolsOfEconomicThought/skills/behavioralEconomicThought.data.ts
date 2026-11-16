@@ -5,6 +5,7 @@ export const behavioralEconomicThought_Skill_Data = defineSkill({
   id: 'fee87813-844b-4b88-ba78-000806633c78',
   name: {
     en: 'Поведінкова економічна думка',
+    it: 'Pensiero economico comportamentale',
     zh: '行为经济思想',
     hi: 'व्यवहारवादी आर्थिक चिंतन',
     es: 'Pensamiento económico conductual',
@@ -39,6 +40,7 @@ export const behavioralEconomicThought_Skill_Data = defineSkill({
       'Analyze how evidence on bounded rationality, biases, and social influences supplements or revises conventional economic models.',
     frontend: {
       en: 'Discover how real human decisions challenge simplified economic assumptions.',
+      it: 'Scopri come le decisioni reali delle persone mettono in discussione le ipotesi economiche semplificate.',
       zh: '了解现实中的人类决策如何挑战简化的经济假设。',
       hi: 'जानें कि वास्तविक मानवीय फैसले सरल आर्थिक धारणाओं को कैसे चुनौती देते हैं।',
       es: 'Descubre cómo las decisiones humanas reales ponen a prueba supuestos económicos simplificados.',

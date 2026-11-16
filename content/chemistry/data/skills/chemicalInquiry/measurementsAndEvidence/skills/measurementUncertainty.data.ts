@@ -5,6 +5,7 @@ export const measurementUncertainty_Skill_Data = defineSkill({
   id: 'a24fcfe5-91bd-4c96-a7dd-e04c21517ecb',
   name: {
     en: 'Measurement Uncertainty',
+    it: 'Incertezza di misura',
     zh: '测量不确定度',
     hi: 'मापन की अनिश्चितता',
     es: 'Incertidumbre de medición',
@@ -39,6 +40,7 @@ export const measurementUncertainty_Skill_Data = defineSkill({
       'Interpret the precision and uncertainty of experimental measurements rather than treating every reported digit as exact.',
     frontend: {
       en: 'Understand why measured values have uncertainty rather than perfect precision.',
+      it: "Comprendi perché ogni misura presenta un'incertezza e non una precisione perfetta.",
       zh: '了解测量结果为什么存在不确定性，而不可能绝对精确。',
       hi: 'समझें कि मापे गए मान पूरी तरह सटीक होने के बजाय अनिश्चित क्यों होते हैं।',
       es: 'Comprende por qué las mediciones tienen incertidumbre y no precisión perfecta.',

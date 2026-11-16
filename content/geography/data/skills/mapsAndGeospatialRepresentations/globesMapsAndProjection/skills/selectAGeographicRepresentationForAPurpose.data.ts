@@ -5,6 +5,7 @@ export const selectAGeographicRepresentationForAPurpose_Skill_Data = defineSkill
   id: '3a1cb473-69f6-4eeb-b7e9-8044cf40e73a',
   name: {
     en: 'Select a geographic representation for a purpose',
+    it: 'Scegliere una rappresentazione geografica adatta allo scopo',
     zh: '根据目的选择地理表达方式',
     hi: 'उद्देश्य के लिए भौगोलिक निरूपण चुनना',
     es: 'Seleccionar una representación geográfica según el propósito',
@@ -39,6 +40,7 @@ export const selectAGeographicRepresentationForAPurpose_Skill_Data = defineSkill
       'Choose a globe, world or regional map, or detailed street plan according to the required spatial extent, scale and projection properties. This concerns the _representation and coverage_; choosing the subject matter of a political, geological or population map is a separate Skill.',
     frontend: {
       en: 'Choose between a globe, broad-area map and detailed plan for a geographic purpose.',
+      it: "Scegli tra un globo, una carta di un'area vasta e una pianta dettagliata in base allo scopo geografico.",
       zh: '根据地理任务，在地球仪、大范围地图和详细平面图之间作出选择。',
       hi: 'भौगोलिक उद्देश्य के अनुसार ग्लोब, बड़े क्षेत्र के मानचित्र और विस्तृत योजना में से चुनें।',
       es: 'Elige entre un globo, un mapa de gran extensión y un plano detallado según tu objetivo geográfico.',

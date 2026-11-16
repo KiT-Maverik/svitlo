@@ -12,6 +12,7 @@ export const motionConversion_SkillGroup_Data = defineSkillGroup({
   id: '8b3c6a1a-737a-4885-914a-3bb3d19a539e',
   name: {
     en: 'Motion Conversion',
+    it: 'Conversione del movimento',
     zh: '运动转换',
     hi: 'गति रूपांतरण',
     es: 'Conversión del movimiento',
@@ -55,6 +56,7 @@ export const motionConversion_SkillGroup_Data = defineSkillGroup({
       'Mechanical linkages and profiles transform rotation, translation or oscillation into required movement patterns.',
     frontend: {
       en: 'Discover how moving components transform one kind of motion into another.',
+      it: 'Scopri come i componenti mobili trasformano un tipo di movimento in un altro.',
       zh: '探索运动部件如何把一种运动转化为另一种。',
       hi: 'जानें कि चलने वाले पुर्जे एक प्रकार की गति को दूसरे में कैसे बदलते हैं।',
       es: 'Descubre cómo los componentes móviles transforman un tipo de movimiento en otro.',

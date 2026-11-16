@@ -5,6 +5,7 @@ export const rateLaws_Skill_Data = defineSkill({
   id: '09f4ff58-32ef-48ee-a524-0105387419cb',
   name: {
     en: 'Rate Laws',
+    it: 'Leggi cinetiche',
     zh: '速率方程',
     hi: 'दर समीकरण',
     es: 'Leyes de velocidad',
@@ -39,6 +40,7 @@ export const rateLaws_Skill_Data = defineSkill({
       'Relate reaction rate to reactant concentrations using an experimentally determined rate expression rather than assuming exponents from equation coefficients.',
     frontend: {
       en: 'Use an experimentally determined relationship between concentration and reaction rate.',
+      it: 'Usa una relazione determinata sperimentalmente tra concentrazione e velocità di reazione.',
       zh: '使用由实验确定的浓度与反应速率之间的关系。',
       hi: 'सांद्रता और अभिक्रिया दर के बीच प्रयोग से निर्धारित संबंध का उपयोग करें।',
       es: 'Usa relaciones determinadas experimentalmente entre concentración y velocidad de reacción.',

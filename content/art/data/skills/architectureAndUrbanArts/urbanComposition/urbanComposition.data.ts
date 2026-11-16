@@ -12,6 +12,7 @@ export const urbanComposition_SkillGroup_Data = defineSkillGroup({
   id: '347be040-a03c-4312-9fe0-2e8819bb3046',
   name: {
     en: 'Urban Composition',
+    it: 'Composizione urbana',
     zh: '城市空间构成',
     hi: 'शहरी संरचना',
     es: 'Composición urbana',
@@ -55,6 +56,7 @@ export const urbanComposition_SkillGroup_Data = defineSkillGroup({
       'The arrangement of streets, building fronts and public gathering places contributes to city identity and experience.',
     frontend: {
       en: "Discover how the arrangement of streets and public places shapes a city's character.",
+      it: 'Scopri come la disposizione delle strade e degli spazi pubblici dà forma al carattere di una città.',
       zh: '发现街道和公共空间的布局如何塑造城市特色。',
       hi: 'जानें कि सड़कों और सार्वजनिक स्थानों की बनावट शहर की पहचान कैसे गढ़ती है।',
       es: 'Descubre cómo la disposición de las calles y los espacios públicos da forma al carácter de una ciudad.',

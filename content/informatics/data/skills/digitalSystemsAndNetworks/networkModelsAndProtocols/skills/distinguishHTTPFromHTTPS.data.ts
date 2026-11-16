@@ -5,6 +5,7 @@ export const distinguishHTTPFromHTTPS_Skill_Data = defineSkill({
   id: '381e201f-294c-407e-beb5-b2a28fd39c3c',
   name: {
     en: 'Distinguish HTTP from HTTPS',
+    it: 'Distinguere HTTP e HTTPS',
     zh: '区分 HTTP 与 HTTPS',
     hi: 'HTTP और HTTPS में अंतर करना',
     es: 'Distinguir HTTP de HTTPS',
@@ -39,6 +40,7 @@ export const distinguishHTTPFromHTTPS_Skill_Data = defineSkill({
       "HTTPS uses TLS to secure HTTP communication, but a padlock alone does not establish that a website's operator is trustworthy.",
     frontend: {
       en: 'Recognize what HTTPS protects and why it does not guarantee a trustworthy site.',
+      it: "Riconosci che cosa protegge HTTPS e perché non garantisce l'affidabilità di un sito.",
       zh: '了解 HTTPS 保护什么，以及它为什么不能保证网站可信。',
       hi: 'जानें कि HTTPS किसकी सुरक्षा करता है और वह किसी वेबसाइट की विश्वसनीयता की गारंटी क्यों नहीं है।',
       es: 'Reconoce qué protege HTTPS y por qué no garantiza que un sitio sea fiable.',

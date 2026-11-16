@@ -5,6 +5,7 @@ export const wildlifeAndPlantSafety_Skill_Data = defineSkill({
   id: '2ca5ba1e-941a-4689-a48a-aaf5e9bf11f6',
   name: {
     en: 'Wildlife and plant safety',
+    it: 'Sicurezza rispetto ad animali e piante selvatici',
     zh: '野生动物与植物安全',
     hi: 'वन्यजीव और पौधों से सुरक्षा',
     es: 'Seguridad ante fauna y plantas',
@@ -39,6 +40,7 @@ export const wildlifeAndPlantSafety_Skill_Data = defineSkill({
       'Respect distance and local guidance for bites, stings, poisonous plants, and animal encounters without attempting unnecessary contact.',
     frontend: {
       en: 'Avoid unnecessary contact with hazardous wildlife or plants.',
+      it: 'Evita i contatti non necessari con animali selvatici o piante pericolosi.',
       zh: '避免不必要地接触可能有危险的野生动物或植物。',
       hi: 'खतरनाक वन्यजीवों या पौधों को बेवजह छूने से बचें।',
       es: 'Evita el contacto innecesario con animales o plantas silvestres peligrosos.',

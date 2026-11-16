@@ -5,6 +5,7 @@ export const taxProgressivity_Skill_Data = defineSkill({
   id: '4096e36b-d4b9-40ea-83ef-68b7ba1c75fe',
   name: {
     en: 'Прогресивність оподаткування',
+    it: 'Progressività fiscale',
     zh: '税收累进性',
     hi: 'कराधान की प्रगतिशीलता',
     es: 'Progresividad fiscal',
@@ -39,6 +40,7 @@ export const taxProgressivity_Skill_Data = defineSkill({
       'Distinguish progressive, proportional, and regressive effective tax rates according to the tax base and income structure.',
     frontend: {
       en: 'Compare how tax burdens change at different income levels.',
+      it: 'Confronta come il peso delle imposte varia tra diversi livelli di reddito.',
       zh: '比较不同收入水平下税收负担如何变化。',
       hi: 'तुलना करें कि आय के विभिन्न स्तरों पर कर का बोझ कैसे बदलता है।',
       es: 'Compara cómo cambia la carga tributaria según el nivel de ingresos.',

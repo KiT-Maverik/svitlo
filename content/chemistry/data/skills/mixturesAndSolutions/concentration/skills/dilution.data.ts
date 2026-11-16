@@ -5,6 +5,7 @@ export const dilution_Skill_Data = defineSkill({
   id: 'bf01c541-bd4e-4de9-9e52-81e3b17aa689',
   name: {
     en: 'Dilution',
+    it: 'Diluizione',
     zh: '稀释',
     hi: 'तनुकरण',
     es: 'Dilución',
@@ -39,6 +40,7 @@ export const dilution_Skill_Data = defineSkill({
       'Use conservation of solute amount to relate concentrations and volumes before and after adding solvent.',
     frontend: {
       en: 'Calculate how adding solvent changes concentration without changing solute amount.',
+      it: "Calcola come l'aggiunta di solvente modifica la concentrazione senza cambiare la quantità di soluto.",
       zh: '计算添加溶剂时浓度如何变化，而溶质的量保持不变。',
       hi: 'गणना करें कि विलेय की मात्रा बदले बिना विलायक जोड़ने से सांद्रता कैसे बदलती है।',
       es: 'Calcula cómo cambia la concentración al añadir disolvente sin alterar la cantidad de soluto.',

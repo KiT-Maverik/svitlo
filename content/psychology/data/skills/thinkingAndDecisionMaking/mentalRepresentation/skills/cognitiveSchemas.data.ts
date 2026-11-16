@@ -5,6 +5,7 @@ export const cognitiveSchemas_Skill_Data = defineSkill({
   id: '9c64fa99-9bc6-434d-8809-eae59e16df71',
   name: {
     en: 'Cognitive Schemas',
+    it: 'Schemi cognitivi',
     zh: '认知图式',
     hi: 'संज्ञानात्मक स्कीमा',
     es: 'Esquemas cognitivos',
@@ -38,6 +39,7 @@ export const cognitiveSchemas_Skill_Data = defineSkill({
     methodological: 'Explain how organized expectations influence the interpretation of familiar situations.',
     frontend: {
       en: 'Recognize how familiar mental structures affect expectations and interpretation.',
+      it: 'Riconosci come le strutture mentali familiari influenzino aspettative e interpretazioni.',
       zh: '认识熟悉的心理结构如何影响预期和解释。',
       hi: 'पहचानें कि परिचित मानसिक ढाँचे अपेक्षाओं और व्याख्या को कैसे प्रभावित करते हैं।',
       es: 'Reconoce cómo las estructuras mentales familiares influyen en las expectativas y las interpretaciones.',

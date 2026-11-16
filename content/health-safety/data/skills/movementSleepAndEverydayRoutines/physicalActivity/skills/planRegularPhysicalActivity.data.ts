@@ -5,6 +5,7 @@ export const planRegularPhysicalActivity_Skill_Data = defineSkill({
   id: 'ac729eb1-9050-4132-9925-a33d6ba2a20f',
   name: {
     en: 'Plan regular physical activity',
+    it: "Pianificare un'attività fisica regolare",
     zh: '规划规律身体活动',
     hi: 'नियमित शारीरिक गतिविधि की योजना बनाना',
     es: 'Planificar actividad física regular',
@@ -39,6 +40,7 @@ export const planRegularPhysicalActivity_Skill_Data = defineSkill({
       'Combine suitable types and amounts of movement with individual capacity and opportunities, rather than relying on one sport or a universal target.',
     frontend: {
       en: 'Plan achievable movement suited to your needs and circumstances.',
+      it: 'Pianifica attività motorie realizzabili e adatte alle tue esigenze e circostanze.',
       zh: '根据自己的需要和环境规划切实可行的活动。',
       hi: 'अपनी ज़रूरतों और परिस्थितियों के अनुरूप संभव गतिविधि की योजना बनाएँ।',
       es: 'Planifica movimientos realizables según tus necesidades y circunstancias.',

@@ -5,6 +5,7 @@ export const applyInsertionSort_Skill_Data = defineSkill({
   id: '8f11d73e-cce9-48f6-a432-3dc5c2af3ef4',
   name: {
     en: 'Apply Insertion Sort',
+    it: "Applicare l'ordinamento per inserimento",
     zh: '应用插入排序',
     hi: 'सम्मिलन क्रमबद्धता लागू करना',
     es: 'Aplicar ordenación por inserción',
@@ -39,6 +40,7 @@ export const applyInsertionSort_Skill_Data = defineSkill({
       'Take the next item, find its correct place in an already sorted prefix, and shift larger values to the right.',
     frontend: {
       en: 'Sort by inserting each new item into an already ordered section.',
+      it: 'Ordina inserendo ciascun nuovo elemento in una parte già ordinata.',
       zh: '将每个新元素插入前面已经排好序的部分。',
       hi: 'हर नया तत्व पहले से क्रमबद्ध भाग में सही जगह डालें।',
       es: 'Ordena insertando cada nuevo elemento en la sección que ya está ordenada.',

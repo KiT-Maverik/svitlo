@@ -13,6 +13,7 @@ export const atomsAndQuantumPhenomena_SkillGroup_Data = defineSkillGroup({
   id: '9f6d1390-b074-4434-905b-fc3f7a95e0d2',
   name: {
     en: 'Atoms and Quantum Phenomena',
+    it: 'Atomi e fenomeni quantistici',
     zh: '原子与量子现象',
     hi: 'परमाणु और क्वांटम घटनाएँ',
     es: 'Átomos y fenómenos cuánticos',
@@ -64,6 +65,7 @@ export const atomsAndQuantumPhenomena_SkillGroup_Data = defineSkillGroup({
       'Atomic models and discrete packets of energy help explain light and properties of matter that cannot be described solely in terms of mechanical motion.',
     frontend: {
       en: 'Discover how atomic structure and quantum behavior differ from classical models.',
+      it: 'Scopri come la struttura atomica e il comportamento quantistico differiscono dai modelli classici.',
       zh: '了解原子结构和量子行为为何与经典模型不同。',
       hi: 'जानो कि परमाणु संरचना और क्वांटम व्यवहार शास्त्रीय मॉडलों से कैसे अलग हैं।',
       es: 'Descubre cómo la estructura atómica y el comportamiento cuántico difieren de los modelos clásicos.',

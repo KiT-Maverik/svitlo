@@ -5,6 +5,7 @@ export const chainOfResponsibility_Skill_Data = defineSkill({
   id: 'f563a40e-9659-4152-a169-e93305a74fd8',
   name: {
     en: 'Chain of Responsibility',
+    it: 'Catena di responsabilità',
     zh: '责任链模式',
     hi: 'जिम्मेदारी की शृंखला',
     es: 'Cadena de responsabilidad',
@@ -38,6 +39,7 @@ export const chainOfResponsibility_Skill_Data = defineSkill({
     methodological: 'Pass a request through a chain of handlers until one processes it or passes it onward.',
     frontend: {
       en: 'Pass a request through handlers until one can process it.',
+      it: 'Passa una richiesta attraverso una serie di gestori finché uno è in grado di elaborarla.',
       zh: '沿着处理者链传递请求，直到有处理者能够处理它。',
       hi: 'अनुरोध को एक के बाद एक हैंडलर तक पहुँचाएं, जब तक कोई उसे संभाल न ले।',
       es: 'Pasa una solicitud por distintos manejadores hasta que uno pueda procesarla.',

@@ -5,6 +5,7 @@ export const laborMarketDiscrimination_Skill_Data = defineSkill({
   id: 'c64f572c-9d34-4c3f-8b8d-95896b6ffb89',
   name: {
     en: 'Дискримінація на ринку праці',
+    it: 'Discriminazione nel mercato del lavoro',
     zh: '劳动力市场歧视',
     hi: 'श्रम बाज़ार में भेदभाव',
     es: 'Discriminación en el mercado laboral',
@@ -39,6 +40,7 @@ export const laborMarketDiscrimination_Skill_Data = defineSkill({
       'Identify situations where compensation or access to employment depends on characteristics unrelated to productivity.',
     frontend: {
       en: 'Recognize unfair employment differences not explained by job performance.',
+      it: "Riconosci le disparità ingiuste nell'occupazione che non dipendono dalle prestazioni lavorative.",
       zh: '识别无法用工作表现解释的不公平就业差异。',
       hi: 'ऐसे अनुचित रोजगार अंतर पहचानें जो काम के प्रदर्शन से नहीं समझाए जा सकते।',
       es: 'Reconoce diferencias injustas en el empleo que no se explican por el desempeño laboral.',

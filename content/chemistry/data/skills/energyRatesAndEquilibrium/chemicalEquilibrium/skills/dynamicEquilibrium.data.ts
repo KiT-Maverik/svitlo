@@ -5,6 +5,7 @@ export const dynamicEquilibrium_Skill_Data = defineSkill({
   id: '61d38235-8ee4-467f-aa68-322a251f40bb',
   name: {
     en: 'Dynamic Equilibrium',
+    it: 'Equilibrio dinamico',
     zh: '动态平衡',
     hi: 'गतिशील साम्य',
     es: 'Equilibrio dinámico',
@@ -38,6 +39,7 @@ export const dynamicEquilibrium_Skill_Data = defineSkill({
     methodological: 'Distinguish equal forward and reverse rates from absence of reaction.',
     frontend: {
       en: 'Understand why chemical reactions continue even when equilibrium concentrations stay constant.',
+      it: "Comprendi perché le reazioni chimiche continuano anche quando le concentrazioni all'equilibrio restano costanti.",
       zh: '理解为什么平衡浓度不变时化学反应仍在继续。',
       hi: 'समझें कि साम्य पर सांद्रता स्थिर रहने पर भी अभिक्रियाएँ क्यों चलती रहती हैं।',
       es: 'Comprende por qué las reacciones continúan aunque las concentraciones de equilibrio no cambien.',

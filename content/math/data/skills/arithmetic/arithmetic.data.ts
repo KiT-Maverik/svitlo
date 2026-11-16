@@ -11,6 +11,7 @@ export const arithmetic_SkillDomain_Data = defineSkillDomain({
   id: '488e1b0d-4c9b-469d-b3ee-dba724111826',
   title: {
     en: 'Arithmetic',
+    it: 'Aritmetica',
     qm: 'Arifmetika',
     lt: 'Aritmetika',
     lv: 'Aritmētika',
@@ -55,6 +56,7 @@ export const arithmetic_SkillDomain_Data = defineSkillDomain({
       'The meanings and properties of addition, subtraction, multiplication, and division; their relationships; exact and approximate calculation methods; justifications of algorithms; and result verification. The Curriculum determines numerical ranges and degree of formalization.',
     frontend: {
       en: 'Explore how addition, subtraction, multiplication, and division work together to calculate quantities, make estimates, and check whether results make sense.',
+      it: 'Scopri come addizione, sottrazione, moltiplicazione e divisione si collegano tra loro per calcolare quantità, fare stime e verificare se i risultati sono plausibili.',
       qm: 'Qoşuv, çıqaruv, arttıruv ve bölüv amelleriniñ bir-birinen nasıl bağlı olğanını araştır. Olarnı miqdarlarnı esaplav, neticelerni tahmin etüv ve olarnıñ mantıqqa uyğunlığını teşkere etüv içün qullan.',
       zh: '了解加减乘除怎样相互联系，帮助你计算数量、估算结果，并检查答案是否合理。',
       hi: 'जानो कि जोड़, घटाव, गुणा और भाग एक-दूसरे से कैसे जुड़े हैं और गणना, अनुमान तथा उत्तर की जाँच में कैसे मदद करते हैं।',

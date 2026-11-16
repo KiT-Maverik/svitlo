@@ -5,6 +5,7 @@ export const explainRadiativeHeatTransfer_Skill_Data = defineSkill({
   id: 'd17a8e05-68a6-4b26-b09f-0d1940438439',
   name: {
     en: 'Explain radiative heat transfer',
+    it: 'Spiegare il trasferimento del calore per irraggiamento',
     qm: 'Nurlanuvnen sıcaqlıq berilüvini añlatmaq',
     zh: '解释辐射传热',
     hi: 'विकिरण से ऊष्मा स्थानांतरण समझाना',
@@ -39,6 +40,7 @@ export const explainRadiativeHeatTransfer_Skill_Data = defineSkill({
       'Using heat from the Sun or fire, demonstrate energy transfer by electromagnetic waves without contact or moving air.',
     frontend: {
       en: 'Explain how electromagnetic radiation transfers heat without a material medium.',
+      it: 'Spiega come la radiazione elettromagnetica trasferisce calore senza un mezzo materiale.',
       qm: 'Elektromagnit nurlanuv sıcaqlıqnı maddiy orta olmadan nasıl bergenini añlat.',
       zh: '解释电磁辐射如何不依靠物质介质传递热量。',
       hi: 'समझाएँ कि विद्युतचुंबकीय विकिरण बिना भौतिक माध्यम के ऊष्मा कैसे पहुँचाता है।',

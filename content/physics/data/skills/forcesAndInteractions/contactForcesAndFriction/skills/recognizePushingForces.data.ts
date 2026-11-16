@@ -5,6 +5,7 @@ export const recognizePushingForces_Skill_Data = defineSkill({
   id: 'e0ee3bb4-4cd1-4c1a-8e01-4a84084fd5df',
   name: {
     en: 'Recognize pushing forces',
+    it: 'Riconoscere le forze di spinta',
     zh: '识别推力',
     hi: 'धकेलने वाले बल पहचानना',
     es: 'Reconocer las fuerzas de empuje',
@@ -39,6 +40,7 @@ export const recognizePushingForces_Skill_Data = defineSkill({
       'A contact push transfers force from the acting body in the direction of pressure on another body; not every change in motion is caused by pushing.',
     frontend: {
       en: 'Recognize how one body pushes another through direct contact.',
+      it: 'Riconosci come un corpo ne spinge un altro attraverso il contatto diretto.',
       zh: '识别一个物体通过直接接触推动另一个物体的方式。',
       hi: 'समझें कि सीधा संपर्क होने पर एक वस्तु दूसरी को कैसे धकेलती है।',
       es: 'Reconoce cómo un cuerpo empuja a otro mediante contacto directo.',

@@ -12,6 +12,7 @@ export const industrialProcessEquipment_SkillGroup_Data = defineSkillGroup({
   id: '249ccd27-a422-400a-9a7a-0e52bff8480d',
   name: {
     en: 'Industrial Process Equipment',
+    it: 'Apparecchiature per processi industriali',
     zh: '工业工艺设备',
     hi: 'औद्योगिक प्रक्रिया उपकरण',
     es: 'Equipos de procesos industriales',
@@ -55,6 +56,7 @@ export const industrialProcessEquipment_SkillGroup_Data = defineSkillGroup({
       'Process apparatus can separate mixtures, support controlled chemical transformations or maintain thermal conditions while containing potentially hazardous materials.',
     frontend: {
       en: 'Discover equipment used to separate, react, heat and contain process materials.',
+      it: 'Scopri le apparecchiature impiegate per separare, far reagire, riscaldare e contenere i materiali di processo.',
       zh: '了解用于分离物质、进行反应、加热及安全容纳工艺物料的设备。',
       hi: 'पदार्थों को अलग करने, अभिक्रिया कराने, गरम करने और रोककर रखने वाले उपकरणों को जानें।',
       es: 'Descubre equipos que separan, hacen reaccionar, calientan y contienen materiales de proceso.',

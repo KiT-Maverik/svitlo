@@ -5,6 +5,7 @@ export const researchInterviews_Skill_Data = defineSkill({
   id: 'e2f316eb-c77f-4ba3-9f8b-106a61114e02',
   name: {
     en: 'Research Interviews',
+    it: 'Interviste di ricerca',
     zh: '研究访谈',
     hi: 'अनुसंधान साक्षात्कार',
     es: 'Entrevistas de investigación',
@@ -39,6 +40,7 @@ export const researchInterviews_Skill_Data = defineSkill({
       'Interpret conversational accounts of experience while considering interviewer influence, recall limits, and unequal disclosure pressures.',
     frontend: {
       en: 'Explore what interviews can reveal and how questions influence responses.',
+      it: 'Esplora che cosa le interviste possano rivelare e come le domande influenzino le risposte.',
       zh: '探索访谈能揭示什么，以及提问方式如何影响回答。',
       hi: 'जानें कि साक्षात्कार से क्या पता चलता है और प्रश्न उत्तरों को कैसे प्रभावित करते हैं।',
       es: 'Explora qué pueden revelar las entrevistas y cómo las preguntas influyen en las respuestas.',

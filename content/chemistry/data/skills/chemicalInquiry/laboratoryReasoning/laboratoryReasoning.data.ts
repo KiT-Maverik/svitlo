@@ -12,6 +12,7 @@ export const laboratoryReasoning_SkillGroup_Data = defineSkillGroup({
   id: 'e5cbb556-153e-4068-91b4-4812f46f4de7',
   name: {
     en: 'Laboratory Reasoning',
+    it: 'Ragionamento in laboratorio',
     zh: '实验室推理',
     hi: 'प्रयोगशाला में वैज्ञानिक तर्क',
     es: 'Razonamiento de laboratorio',
@@ -60,6 +61,7 @@ export const laboratoryReasoning_SkillGroup_Data = defineSkillGroup({
       'Working with substances involves controlling exposure, maintaining traceability of samples and drawing conclusions that do not exceed the evidence.',
     frontend: {
       en: 'Learn how to reason safely and draw justified conclusions when working with substances.',
+      it: 'Impara a ragionare in sicurezza e a trarre conclusioni motivate quando lavori con le sostanze.',
       zh: '学习如何安全地处理物质并得出有证据支持的结论。',
       hi: 'पदार्थों के साथ सुरक्षित ढंग से काम करना और उचित निष्कर्ष निकालना सीखें।',
       es: 'Aprende a trabajar con sustancias de forma segura y a sacar conclusiones justificadas.',

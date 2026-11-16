@@ -5,6 +5,7 @@ export const targetAudience_Skill_Data = defineSkill({
   id: '302bfa49-584b-4c3d-b5be-fd817d811bd9',
   name: {
     en: 'Цільова аудиторія',
+    it: 'Pubblico di riferimento',
     zh: '目标受众',
     hi: 'लक्षित ग्राहक समूह',
     es: 'Público objetivo',
@@ -39,6 +40,7 @@ export const targetAudience_Skill_Data = defineSkill({
       'Determine who is most likely to benefit from a particular offering and what evidence supports that choice.',
     frontend: {
       en: 'Identify the customers for whom a product is most relevant.',
+      it: 'Individua i clienti per cui un prodotto è più pertinente.',
       zh: '识别哪些顾客最适合某种产品。',
       hi: 'पहचानें कि किस ग्राहक समूह के लिए उत्पाद सबसे उपयोगी है।',
       es: 'Identifica para qué clientes resulta más pertinente un producto.',

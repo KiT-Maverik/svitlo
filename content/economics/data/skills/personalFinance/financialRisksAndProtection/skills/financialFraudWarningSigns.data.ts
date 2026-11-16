@@ -5,6 +5,7 @@ export const financialFraudWarningSigns_Skill_Data = defineSkill({
   id: 'af76cb6c-d23c-40d4-8b6c-174ce461436f',
   name: {
     en: 'Ознаки фінансового шахрайства',
+    it: 'Segnali di frode finanziaria',
     zh: '金融诈骗警示信号',
     hi: 'वित्तीय धोखाधड़ी के चेतावनी संकेत',
     es: 'Señales de fraude financiero',
@@ -39,6 +40,7 @@ export const financialFraudWarningSigns_Skill_Data = defineSkill({
       'Recognize implausible guaranteed returns, demands for urgent transfers, and opaque counterparties.',
     frontend: {
       en: 'Spot warning signs of suspicious or deceptive financial offers.',
+      it: "Individua i segnali d'allarme di offerte finanziarie sospette o ingannevoli.",
       zh: '识别可疑或欺骗性金融报价的危险信号。',
       hi: 'संदिग्ध या भ्रामक वित्तीय प्रस्तावों के खतरे के संकेत पहचानें।',
       es: 'Detecta señales de alerta en ofertas financieras sospechosas o engañosas.',

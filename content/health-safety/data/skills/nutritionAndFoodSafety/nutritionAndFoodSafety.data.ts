@@ -9,6 +9,7 @@ export const nutritionAndFoodSafety_SkillDomain_Data = defineSkillDomain({
   id: 'dda753e6-e49c-4d4e-ae16-6ddae38a4bf8',
   title: {
     en: 'Nutrition and Food Safety',
+    it: 'Alimentazione e sicurezza alimentare',
     zh: '营养与食品安全',
     hi: 'पोषण और खाद्य सुरक्षा',
     es: 'Nutrición y seguridad alimentaria',
@@ -51,6 +52,7 @@ export const nutritionAndFoodSafety_SkillDomain_Data = defineSkillDomain({
       'Eating and drinking support health through nutrients, adequate intake, and safe preparation. Nutritional choices and microbial or chemical food hazards are distinct competencies, even though the same meal can involve both.',
     frontend: {
       en: 'Learn how nourishment and careful food handling support health.',
+      it: 'Scopri come una buona alimentazione e una gestione attenta del cibo favoriscono la salute.',
       zh: '了解营养和小心处理食物如何维护健康。',
       hi: 'जानें कि पोषण और भोजन का सावधानी से उपयोग स्वास्थ्य को कैसे सहारा देता है।',
       es: 'Aprende cómo la alimentación y el manejo seguro de los alimentos favorecen la salud.',

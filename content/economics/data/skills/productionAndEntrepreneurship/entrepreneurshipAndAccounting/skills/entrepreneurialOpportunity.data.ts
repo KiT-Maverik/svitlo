@@ -5,6 +5,7 @@ export const entrepreneurialOpportunity_Skill_Data = defineSkill({
   id: '31bb70cb-5b08-4735-a3b4-a5286325522b',
   name: {
     en: 'Entrepreneurial Opportunity',
+    it: 'Opportunità imprenditoriale',
     zh: '创业机会',
     hi: 'उद्यमशीलता का अवसर',
     es: 'Oportunidad emprendedora',
@@ -39,6 +40,7 @@ export const entrepreneurialOpportunity_Skill_Data = defineSkill({
       'Evaluate an unmet need, potential customers, necessary resources, and risks involved in realizing a business idea.',
     frontend: {
       en: 'Identify what makes a business opportunity promising or risky.',
+      it: "Individua che cosa rende un'opportunità imprenditoriale promettente o rischiosa.",
       zh: '判断哪些因素使商业机会具有前景或风险。',
       hi: 'पहचानें कि व्यावसायिक अवसर आशाजनक या जोखिमपूर्ण क्यों होता है।',
       es: 'Identifica qué hace prometedora o arriesgada una oportunidad de negocio.',

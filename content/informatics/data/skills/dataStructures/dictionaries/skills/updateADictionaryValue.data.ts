@@ -5,6 +5,7 @@ export const updateADictionaryValue_Skill_Data = defineSkill({
   id: '40a4c105-9e0e-4165-832c-b92a35dae263',
   name: {
     en: 'Update a Dictionary Value',
+    it: 'Aggiornare un valore del dizionario',
     zh: '更新字典中的值',
     hi: 'डिक्शनरी का मान बदलना',
     es: 'Actualizar un valor del diccionario',
@@ -38,6 +39,7 @@ export const updateADictionaryValue_Skill_Data = defineSkill({
     methodological: 'Replace the value associated with an existing key without accidentally duplicating the key.',
     frontend: {
       en: 'Change a value stored under an existing dictionary key.',
+      it: 'Modifica un valore memorizzato sotto una chiave già presente nel dizionario.',
       zh: '更改字典中已有键所对应的值。',
       hi: 'डिक्शनरी में पहले से मौजूद कुंजी के अंतर्गत संग्रहीत मान बदलें।',
       es: 'Cambia un valor almacenado bajo una clave que ya existe en el diccionario.',

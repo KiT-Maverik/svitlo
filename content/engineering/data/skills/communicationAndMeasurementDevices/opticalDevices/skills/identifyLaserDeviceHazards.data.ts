@@ -5,6 +5,7 @@ export const identifyLaserDeviceHazards_Skill_Data = defineSkill({
   id: '452e6154-09af-439e-a3c4-6dd0a910bd9b',
   name: {
     en: 'Identify laser-device hazards',
+    it: 'Individuare i pericoli dei dispositivi laser',
     zh: '识别激光设备的危险',
     hi: 'लेज़र उपकरणों के खतरों की पहचान',
     es: 'Identificar peligros de los dispositivos láser',
@@ -38,6 +39,7 @@ export const identifyLaserDeviceHazards_Skill_Data = defineSkill({
     methodological: 'Connect beam intensity and reflection paths with protective measures and controlled operation.',
     frontend: {
       en: 'Recognize hazards associated with unsafe laser equipment.',
+      it: "Riconosci i rischi associati all'uso non sicuro di apparecchiature laser.",
       zh: '识别不安全的激光设备可能造成的危险。',
       hi: 'असुरक्षित लेज़र उपकरणों से जुड़े खतरों को पहचानें।',
       es: 'Reconoce los riesgos de la exposición directa o reflejada al haz de un láser.',

@@ -5,6 +5,7 @@ export const bigFiveTraitModel_Skill_Data = defineSkill({
   id: 'de8e3224-d8ac-4ccc-8cc3-4a31d74f883e',
   name: {
     en: 'Big Five Trait Model',
+    it: 'Modello dei cinque grandi fattori',
     zh: '大五人格特质模型',
     hi: 'पाँच प्रमुख व्यक्तित्व गुणों का मॉडल',
     es: 'Modelo de los Cinco Grandes rasgos',
@@ -39,6 +40,7 @@ export const bigFiveTraitModel_Skill_Data = defineSkill({
       'Explain the five broad personality dimensions as descriptive continua rather than categorical diagnoses.',
     frontend: {
       en: 'Understand the five broad dimensions used in a common personality model.',
+      it: 'Comprendi le cinque ampie dimensioni utilizzate in un diffuso modello della personalità.',
       zh: '理解一种常见人格模型使用的五个宽泛维度。',
       hi: 'व्यक्तित्व के एक सामान्य मॉडल में प्रयोग होने वाले पाँच व्यापक आयाम समझें।',
       es: 'Comprende las cinco dimensiones generales de un modelo habitual de personalidad.',

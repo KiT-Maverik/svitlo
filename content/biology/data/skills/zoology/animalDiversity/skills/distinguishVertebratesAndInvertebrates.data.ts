@@ -5,6 +5,7 @@ export const distinguishVertebratesAndInvertebrates_Skill_Data = defineSkill({
   id: '13808999-8f3d-4959-b221-6e501005d489',
   name: {
     en: 'Distinguish Vertebrates and Invertebrates',
+    it: 'Distinguere vertebrati e invertebrati',
     zh: '区分脊椎动物与无脊椎动物',
     hi: 'कशेरुकी और अकशेरुकी प्राणियों में अंतर करना',
     es: 'Distinguir vertebrados e invertebrados',
@@ -39,6 +40,7 @@ export const distinguishVertebratesAndInvertebrates_Skill_Data = defineSkill({
       'Use the presence of a vertebral column as the anatomical dividing line between these two broad groups.',
     frontend: {
       en: 'Distinguish animals with a backbone from those without one.',
+      it: 'Distingui gli animali dotati di colonna vertebrale da quelli che ne sono privi.',
       zh: '区分有脊柱的动物和没有脊柱的动物。',
       hi: 'रीढ़ की हड्डी वाले और बिना रीढ़ की हड्डी वाले प्राणियों में अंतर पहचानें।',
       es: 'Distingue los animales que tienen columna vertebral de los que no la tienen.',

@@ -5,6 +5,7 @@ export const applyModusTollens_Skill_Data = defineSkill({
   id: 'fb1822ac-5ac9-4d3e-89f0-c733ecff4d4c',
   name: {
     en: 'Apply modus tollens',
+    it: 'Applicare il modus tollens',
     zh: '运用否定后件式',
     hi: 'मोडस टोलेंस लागू करना',
     es: 'Aplicar modus tollens',
@@ -39,6 +40,7 @@ export const applyModusTollens_Skill_Data = defineSkill({
       'Reject the antecedent of a conditional from the denial of its consequent, under the conditional as stated.',
     frontend: {
       en: 'Use a conditional and the denial of its result to reject its antecedent.',
+      it: "Usa una proposizione condizionale e la negazione della sua conseguenza per negare l'antecedente.",
       zh: '用条件陈述及其结果的否定来否定前件。',
       hi: 'एक शर्त और उसके परिणाम के निषेध से उसके पूर्वपक्ष को अस्वीकार करें।',
       es: 'Usa una condición y la negación de su resultado para negar el antecedente.',

@@ -5,6 +5,7 @@ export const interpretArtisticSymbols_Skill_Data = defineSkill({
   id: 'f8be8696-5278-4f15-b025-49cc3c1b17cf',
   name: {
     en: 'Interpret Artistic Symbols',
+    it: 'Interpretare i simboli artistici',
     zh: '解读艺术符号',
     hi: 'कलात्मक प्रतीकों की व्याख्या करें',
     es: 'Interpretar símbolos artísticos',
@@ -38,6 +39,7 @@ export const interpretArtisticSymbols_Skill_Data = defineSkill({
     methodological: 'Connect an image, sound or gesture to contextually supported meanings.',
     frontend: {
       en: 'Look for clues that help explain what an artistic symbol might mean.',
+      it: 'Cerca indizi che aiutino a comprendere il possibile significato di un simbolo artistico.',
       zh: '寻找线索，帮助解释艺术符号可能代表的含义。',
       hi: 'ऐसे संकेत खोजें जो यह समझाने में मदद करें कि कलात्मक प्रतीक का क्या अर्थ हो सकता है।',
       es: 'Busca pistas que ayuden a explicar qué puede significar un símbolo artístico.',

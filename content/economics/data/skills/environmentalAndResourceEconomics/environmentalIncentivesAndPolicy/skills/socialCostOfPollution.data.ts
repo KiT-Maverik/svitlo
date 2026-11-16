@@ -5,6 +5,7 @@ export const socialCostOfPollution_Skill_Data = defineSkill({
   id: 'd5f9f207-6410-4870-9863-c06158cf3346',
   name: {
     en: 'Соціальна вартість забруднення',
+    it: "Costo sociale dell'inquinamento",
     zh: '污染的社会成本',
     hi: 'प्रदूषण की सामाजिक लागत',
     es: 'Costo social de la contaminación',
@@ -38,6 +39,7 @@ export const socialCostOfPollution_Skill_Data = defineSkill({
     methodological: "Evaluate harms not included in a polluter's private costs under stated assumptions.",
     frontend: {
       en: 'Recognize pollution costs that fall on other people.',
+      it: "Riconosci i costi dell'inquinamento che ricadono su altre persone.",
       zh: '识别由其他人承担的污染成本。',
       hi: 'प्रदूषण की उन लागतों को पहचानें जो दूसरों को उठानी पड़ती हैं।',
       es: 'Reconoce los costos de la contaminación que soportan otras personas.',

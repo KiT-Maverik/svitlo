@@ -5,6 +5,7 @@ export const distinguishMaterialStrengthAndStiffness_Skill_Data = defineSkill({
   id: 'a0499542-04ca-4b7f-90f3-c8de2874192a',
   name: {
     en: 'Distinguish material strength and stiffness',
+    it: 'Distinguere resistenza e rigidezza dei materiali',
     zh: '区分材料强度与刚度',
     hi: 'सामग्री की मज़बूती और कठोरता में अंतर',
     es: 'Distinguir resistencia y rigidez del material',
@@ -38,6 +39,7 @@ export const distinguishMaterialStrengthAndStiffness_Skill_Data = defineSkill({
     methodological: 'Explain why resisting failure and resisting deformation are different requirements.',
     frontend: {
       en: 'Distinguish resistance to breaking from resistance to deformation.',
+      it: 'Distingui la resistenza alla rottura dalla resistenza alla deformazione.',
       zh: '区分抵抗断裂的能力和抵抗变形的能力。',
       hi: 'टूटने का प्रतिरोध और आकार बदलने का प्रतिरोध अलग समझें।',
       es: 'Distingue la resistencia a romperse de la resistencia a deformarse.',

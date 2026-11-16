@@ -5,6 +5,7 @@ export const psychologicalScreeningVersusDiagnosis_Skill_Data = defineSkill({
   id: '40765758-0e2a-4376-808c-342cd77b5445',
   name: {
     en: 'Psychological Screening versus Diagnosis',
+    it: 'Screening psicologico e diagnosi',
     zh: '心理筛查与诊断的区别',
     hi: 'मनोवैज्ञानिक जाँच और निदान का अंतर',
     es: 'Cribado psicológico frente a diagnóstico',
@@ -38,6 +39,7 @@ export const psychologicalScreeningVersusDiagnosis_Skill_Data = defineSkill({
     methodological: 'Distinguish preliminary indicators from comprehensive professional assessment.',
     frontend: {
       en: 'Distinguish an initial screening result from a professional diagnosis.',
+      it: 'Distingui il risultato di uno screening iniziale da una diagnosi formulata da un professionista.',
       zh: '区分初步筛查结果与专业人员作出的诊断。',
       hi: 'शुरुआती जाँच के नतीजे और विशेषज्ञ निदान में फर्क करें।',
       es: 'Distingue un resultado de cribado inicial de un diagnóstico profesional.',

@@ -5,6 +5,7 @@ export const drawFromObservation_Skill_Data = defineSkill({
   id: '50960dcd-0929-4566-a613-fbce4ac736be',
   name: {
     en: 'Draw from Observation',
+    it: 'Disegnare dal vero',
     zh: '观察写生',
     hi: 'अवलोकन से चित्र बनाएँ',
     es: 'Dibujar a partir de la observación',
@@ -39,6 +40,7 @@ export const drawFromObservation_Skill_Data = defineSkill({
       'Compare visible relations among features and represent them coherently rather than copying a generic symbol.',
     frontend: {
       en: 'Draw a subject by carefully comparing its visible shapes and relationships.',
+      it: 'Disegna un soggetto confrontandone attentamente le forme visibili e i rapporti tra le parti.',
       zh: '仔细比较所见对象的形状与相互关系并画出来。',
       hi: 'दिखने वाली आकृतियों और उनके संबंधों की ध्यान से तुलना करके विषय बनाएँ।',
       es: 'Dibuja un sujeto comparando cuidadosamente sus formas visibles y sus relaciones.',

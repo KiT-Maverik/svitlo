@@ -5,6 +5,7 @@ export const saturation_Skill_Data = defineSkill({
   id: '0317ea71-b896-4521-90a4-ca6e4dfbe381',
   name: {
     en: 'Saturation',
+    it: 'Saturazione',
     zh: '饱和状态',
     hi: 'संतृप्ति',
     es: 'Saturación',
@@ -38,6 +39,7 @@ export const saturation_Skill_Data = defineSkill({
     methodological: 'Distinguish unsaturated, saturated and supersaturated states and their practical stability.',
     frontend: {
       en: 'Distinguish unsaturated, saturated and supersaturated solutions.',
+      it: 'Distingui le soluzioni insature, sature e sovrasature.',
       zh: '区分不饱和、饱和与过饱和溶液。',
       hi: 'असंतृप्त, संतृप्त और अतिसंतृप्त विलयनों में अंतर पहचानें।',
       es: 'Distingue disoluciones insaturadas, saturadas y sobresaturadas.',

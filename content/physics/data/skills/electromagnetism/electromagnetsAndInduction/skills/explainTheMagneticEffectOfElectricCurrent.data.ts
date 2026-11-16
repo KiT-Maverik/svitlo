@@ -5,6 +5,7 @@ export const explainTheMagneticEffectOfElectricCurrent_Skill_Data = defineSkill(
   id: 'd8198103-4001-4552-8e9a-aa8682152624',
   name: {
     en: 'Explain the magnetic effect of electric current',
+    it: "Spiegare l'effetto magnetico della corrente elettrica",
     qm: 'Elektrik aqımınıñ magnit tesirini añlatmaq',
     zh: '解释电流的磁效应',
     hi: 'विद्युत धारा का चुंबकीय प्रभाव समझाना',
@@ -39,6 +40,7 @@ export const explainTheMagneticEffectOfElectricCurrent_Skill_Data = defineSkill(
       'Moving electric charges create a magnetic field; changing the current changes the field it produces and the associated magnetic interactions.',
     frontend: {
       en: 'Explain why an electric current produces a magnetic field.',
+      it: 'Spiega perché una corrente elettrica produce un campo magnetico.',
       qm: 'Elektrik aqımı neden magnit maydanını yarattığını añlat.',
       zh: '解释为什么电流会产生磁场。',
       hi: 'समझाएँ कि विद्युत धारा चुंबकीय क्षेत्र क्यों बनाती है।',

@@ -5,6 +5,7 @@ export const perimeterVsArea_Skill_Data = defineSkill({
   id: '96ab255c-a9f4-40aa-b072-e4f59790dfe5',
   name: {
     en: 'Choosing perimeter or area for a measurement',
+    it: 'Scegliere tra perimetro e area per una misura',
     qm: 'Ölçüv içün perimetrni ya da meydannı saylav',
     lt: 'Perimetro arba ploto pasirinkimas matavimui',
     lv: 'Perimetra vai laukuma izvēle mērīšanai',
@@ -39,6 +40,7 @@ export const perimeterVsArea_Skill_Data = defineSkill({
       'Perimeter measures the length of a closed plane boundary in length units, while area measures the enclosed region in square units. Neither determines the other automatically, and they require different measurement procedures.',
     frontend: {
       en: 'Choose perimeter to measure the boundary in length units or area to measure the inside in square units.',
+      it: "Scegli il perimetro per misurare il contorno in unità di lunghezza oppure l'area per misurare la superficie interna in unità quadrate.",
       qm: 'Şekilniñ sıñırını uzunlıq birliklerinde ölçmek içün perimetrni, içindeki yerni kvadrat birliklerde ölçmek içün meydannı sayla.',
       zh: '需要测量边界时选周长，用长度单位；测量内部时选面积，用平方单位。',
       hi: 'सीमा नापने के लिए लंबाई की इकाइयों में परिमाप चुनें, भीतर की जगह के लिए वर्ग इकाइयों में क्षेत्रफल।',

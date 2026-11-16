@@ -5,6 +5,7 @@ export const planetaryDensityAndComposition_Skill_Data = defineSkill({
   id: '53bffe0e-2822-4ca4-8bc1-c9781059edce',
   name: {
     en: 'Planetary Density and Composition',
+    it: 'Densità e composizione planetaria',
     zh: '行星密度与组成',
     hi: 'ग्रहों का घनत्व और संरचना',
     es: 'Densidad y composición planetaria',
@@ -38,6 +39,7 @@ export const planetaryDensityAndComposition_Skill_Data = defineSkill({
     methodological: 'Use mass, radius and density to constrain plausible bulk material and planetary classification.',
     frontend: {
       en: "Use a world's mass, size and density to reason about what it contains.",
+      it: 'Usa massa, dimensioni e densità di un mondo per ragionare sui materiali che lo compongono.',
       zh: '根据天体的质量、大小和密度推断它可能由什么组成。',
       hi: 'किसी ग्रह के द्रव्यमान, आकार और घनत्व से अनुमान लगाएँ कि उसमें कौन-सी सामग्री हो सकती है।',
       es: 'Usa la masa, el tamaño y la densidad de un mundo para deducir de qué puede estar compuesto.',

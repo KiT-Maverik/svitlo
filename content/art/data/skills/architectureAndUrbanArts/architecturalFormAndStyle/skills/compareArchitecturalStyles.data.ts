@@ -5,6 +5,7 @@ export const compareArchitecturalStyles_Skill_Data = defineSkill({
   id: '7776587d-3529-4f9b-8558-e83aa254da5f',
   name: {
     en: 'Compare Architectural Styles',
+    it: 'Confrontare gli stili architettonici',
     zh: '比较建筑风格',
     hi: 'वास्तुशैलियों की तुलना करें',
     es: 'Comparar estilos arquitectónicos',
@@ -38,6 +39,7 @@ export const compareArchitecturalStyles_Skill_Data = defineSkill({
     methodological: 'Distinguish formal conventions in specific historical and regional settings.',
     frontend: {
       en: 'Compare architectural styles using their forms and cultural contexts.',
+      it: 'Confronta gli stili architettonici considerando le forme e i rispettivi contesti culturali.',
       zh: '通过形式和文化背景比较不同建筑风格。',
       hi: 'रूपों और सांस्कृतिक संदर्भों के आधार पर वास्तुशिल्प शैलियों की तुलना करें।',
       es: 'Compara estilos arquitectónicos a partir de sus formas y contextos culturales.',

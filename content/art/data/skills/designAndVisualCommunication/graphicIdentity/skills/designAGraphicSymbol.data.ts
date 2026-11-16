@@ -5,6 +5,7 @@ export const designAGraphicSymbol_Skill_Data = defineSkill({
   id: '3c3aee5b-5c53-4370-ba9a-d9cc48b4a705',
   name: {
     en: 'Design a Graphic Symbol',
+    it: 'Progettare un simbolo grafico',
 
     zh: '设计图形符号',
     hi: 'ग्राफ़िक प्रतीक डिज़ाइन करें',
@@ -39,6 +40,7 @@ export const designAGraphicSymbol_Skill_Data = defineSkill({
     methodological: 'Condense an idea into a distinctive sign appropriate to its intended context.',
     frontend: {
       en: 'Create a simple symbol that communicates a particular idea.',
+      it: "Crea un simbolo semplice che comunichi un'idea precisa.",
 
       zh: '创建一个能够传达特定想法的简洁符号。',
       hi: 'ऐसा सरल प्रतीक बनाएँ जो किसी विशेष विचार को व्यक्त करे।',

@@ -5,6 +5,7 @@ export const planetaryTectonics_Skill_Data = defineSkill({
   id: 'c00cb75e-f141-46c9-907c-f324a61832f4',
   name: {
     en: 'Planetary Tectonics',
+    it: 'Tettonica planetaria',
     zh: '行星构造活动',
     hi: 'ग्रहों का विवर्तनिकी अध्ययन',
     es: 'Tectónica planetaria',
@@ -39,6 +40,7 @@ export const planetaryTectonics_Skill_Data = defineSkill({
       'Compare crustal deformation and tectonic regimes across worlds without assuming Earth-style plate tectonics everywhere.',
     frontend: {
       en: 'Compare how the crusts of different worlds bend, break or move.',
+      it: 'Confronta come le croste dei diversi mondi si piegano, si fratturano o si muovono.',
       zh: '比较不同天体的地壳如何弯曲、断裂或移动。',
       hi: 'तुलना करें कि अलग-अलग ग्रहों की पर्पटियाँ कैसे मुड़ती, टूटती या खिसकती हैं।',
       es: 'Compara cómo las cortezas de distintos mundos se doblan, fracturan o desplazan.',

@@ -12,6 +12,7 @@ export const frozenAndSubsurfaceWater_SkillGroup_Data = defineSkillGroup({
   id: '6871971a-527c-42da-acf6-20c7534ec4e6',
   name: {
     en: 'Frozen and Subsurface Water',
+    it: 'Acqua allo stato solido e sotterranea',
     zh: '冰冻水与地下水',
     hi: 'जमे हुए और भूमिगत जल',
     es: 'Agua congelada y subterránea',
@@ -60,6 +61,7 @@ export const frozenAndSubsurfaceWater_SkillGroup_Data = defineSkillGroup({
       'Snow, ice and groundwater store freshwater for different durations and interact with landscapes and human supplies. Their accumulation and discharge vary with climate, geology and geography rather than being visible only in rivers.',
     frontend: {
       en: 'Discover how snow, ice and underground water store fresh water.',
+      it: 'Scopri come neve, ghiaccio e acque sotterranee costituiscono riserve di acqua dolce.',
       zh: '了解雪、冰和地下水如何储存淡水。',
       hi: 'जानें कि हिम, बर्फ़ और भूमिगत पानी मीठा पानी कैसे संचित रखते हैं।',
       es: 'Descubre cómo nieve, hielo y aguas subterráneas almacenan agua dulce.',

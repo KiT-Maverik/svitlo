@@ -5,6 +5,7 @@ export const pH_Skill_Data = defineSkill({
   id: '002fd049-95b6-4798-998e-9b647d0d8667',
   name: {
     en: 'pH',
+    it: 'pH',
     zh: 'pH 值',
     hi: 'पीएच',
     es: 'pH',
@@ -39,6 +40,7 @@ export const pH_Skill_Data = defineSkill({
       'Interpret a logarithmic measure of hydrogen-ion activity and its concentration-based approximations.',
     frontend: {
       en: 'Read pH as a logarithmic way to describe acidity in a solution.',
+      it: "Interpreta il pH come misura logaritmica dell'acidità di una soluzione.",
       zh: '理解 pH 是描述溶液酸度的对数尺度。',
       hi: 'पीएच को विलयन की अम्लता मापने का लघुगणकीय तरीका समझें।',
       es: 'Interpreta el pH como una medida logarítmica de la acidez de una disolución.',

@@ -5,6 +5,7 @@ export const immobilizeSuspectedFractures_Skill_Data = defineSkill({
   id: '7a44cfcb-c8d4-4485-ad22-951f684782e8',
   name: {
     en: 'Immobilize suspected fractures',
+    it: 'Immobilizzare una possibile frattura',
     zh: '固定疑似骨折部位',
     hi: 'संदिग्ध हड्डी टूटने पर स्थिर करना',
     es: 'Inmovilizar posibles fracturas',
@@ -39,6 +40,7 @@ export const immobilizeSuspectedFractures_Skill_Data = defineSkill({
       'Limit movement and provide appropriate support without attempting to straighten a suspected fracture or dislocation.',
     frontend: {
       en: 'Support a possible broken bone without attempting to realign it.',
+      it: 'Sostieni un osso che potrebbe essere fratturato senza tentare di riallinearlo.',
       zh: '支撑可能骨折的骨骼，不要尝试将其复位。',
       hi: 'संभावित टूटी हड्डी को सहारा दो, उसे सीधा करने का प्रयास मत करो।',
       es: 'Inmoviliza con cuidado la zona de una posible fractura sin intentar recolocar el hueso.',

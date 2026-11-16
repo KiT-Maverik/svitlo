@@ -5,6 +5,7 @@ export const compareNetworkAccessMethods_Skill_Data = defineSkill({
   id: '077fb5a7-d5cc-4dbb-8d7c-54f6f5a2e300',
   name: {
     en: 'Compare Network Access Methods',
+    it: 'Confrontare i metodi di accesso alla rete',
     zh: '比较网络接入方法',
     hi: 'नेटवर्क पहुँच विधियों की तुलना करना',
     es: 'Comparar métodos de acceso a la red',
@@ -39,6 +40,7 @@ export const compareNetworkAccessMethods_Skill_Data = defineSkill({
       'Select and justify comparisons among collision detection (CSMA/CD), collision avoidance (CSMA/CA), and token passing (Token Ring) according to how sending rights are obtained. These represent different technological settings, not three interchangeable protocols of modern Ethernet.',
     frontend: {
       en: 'Compare collision detection, avoidance and token passing in their proper settings.',
+      it: 'Confronta rilevamento delle collisioni, prevenzione delle collisioni e passaggio del token nei contesti appropriati.',
       zh: '比较碰撞检测、碰撞避免和令牌传递在各自适用环境中的工作方式。',
       hi: 'टकराव पहचान, टकराव रोकथाम और टोकन पासिंग की उनके उपयुक्त संदर्भों में तुलना करें।',
       es: 'Compara la detección de colisiones, su prevención y el paso de testigo en los entornos correspondientes.',

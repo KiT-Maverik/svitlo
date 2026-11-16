@@ -5,6 +5,7 @@ export const latches_Skill_Data = defineSkill({
   id: 'bc5f91eb-e51f-4f64-8488-c877bb736d7f',
   name: {
     en: 'Latches',
+    it: 'Chiusure a scatto',
     zh: '闩锁',
     hi: 'कुंडी तंत्र',
     es: 'Pestillos',
@@ -39,6 +40,7 @@ export const latches_Skill_Data = defineSkill({
       'Describe how a catch retains a door or moving part in its closed position and permits intentional release.',
     frontend: {
       en: 'Understand how a latch holds and releases a closure.',
+      it: 'Comprendi come una chiusura a scatto blocca e libera un elemento di chiusura.',
       zh: '了解闩锁如何保持关闭并允许有意打开。',
       hi: 'समझें कि कुंडी बंद रखने और ज़रूरत पर खोलने में कैसे मदद करती है।',
       es: 'Comprende cómo un pestillo mantiene algo cerrado y permite abrirlo a voluntad.',

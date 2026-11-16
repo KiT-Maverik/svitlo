@@ -5,6 +5,7 @@ export const bankDeposits_Skill_Data = defineSkill({
   id: '55bec763-a9f6-408a-a1a4-c94bc63aa71a',
   name: {
     en: 'Банківські депозити',
+    it: 'Depositi bancari',
     zh: '银行存款',
     hi: 'बैंक जमा',
     es: 'Depósitos bancarios',
@@ -39,6 +40,7 @@ export const bankDeposits_Skill_Data = defineSkill({
       'Interpret funds placed with banks, access conditions, interest, and the difference between a deposit and holding physical cash.',
     frontend: {
       en: 'Learn how bank deposits work and what their conditions mean.',
+      it: 'Scopri come funzionano i depositi bancari e che cosa significano le loro condizioni.',
       zh: '了解银行存款如何运作及其条件的含义。',
       hi: 'जानें कि बैंक जमा कैसे काम करते हैं और उनकी शर्तों का क्या अर्थ है।',
       es: 'Aprende cómo funcionan los depósitos bancarios y qué significan sus condiciones.',

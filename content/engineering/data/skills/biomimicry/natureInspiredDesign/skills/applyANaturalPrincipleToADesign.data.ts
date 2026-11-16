@@ -5,6 +5,7 @@ export const applyANaturalPrincipleToADesign_Skill_Data = defineSkill({
   id: 'c7e1eded-a31a-40ae-b414-4419cc864f93',
   name: {
     en: 'Apply a natural principle to a design',
+    it: 'Applicare un principio naturale alla progettazione',
     zh: '将自然原理应用于设计',
     hi: 'प्राकृतिक सिद्धांत को डिज़ाइन में लागू करना',
     es: 'Aplicar un principio natural al diseño',
@@ -38,6 +39,7 @@ export const applyANaturalPrincipleToADesign_Skill_Data = defineSkill({
     methodological: 'Propose a technical arrangement based on an identified biological mechanism.',
     frontend: {
       en: 'Use a principle observed in nature to develop a technical solution.',
+      it: 'Utilizza un principio osservato in natura per sviluppare una soluzione tecnica.',
       zh: '运用从自然界观察到的原理开发技术解决方案。',
       hi: 'प्रकृति में देखे गए सिद्धांत से तकनीकी समाधान विकसित करें।',
       es: 'Utiliza un principio observado en la naturaleza para desarrollar una solución técnica.',

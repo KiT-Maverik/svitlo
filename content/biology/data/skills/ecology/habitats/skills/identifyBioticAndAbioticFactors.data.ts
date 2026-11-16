@@ -5,6 +5,7 @@ export const identifyBioticAndAbioticFactors_Skill_Data = defineSkill({
   id: 'a7b8cb1c-4826-45a1-b93c-f8a4c5653d8e',
   name: {
     en: 'Identify Biotic and Abiotic Factors',
+    it: 'Individuare fattori biotici e abiotici',
     zh: '识别生物因素与非生物因素',
     hi: 'जैविक और अजैविक कारकों की पहचान करना',
     es: 'Identificar factores bióticos y abióticos',
@@ -39,6 +40,7 @@ export const identifyBioticAndAbioticFactors_Skill_Data = defineSkill({
       'Distinguish influences from other organisms from influences of water, light, soil, or temperature.',
     frontend: {
       en: 'Distinguish living influences from nonliving environmental factors.',
+      it: 'Distingui le influenze degli esseri viventi dai fattori ambientali non viventi.',
       zh: '区分生物带来的影响和非生物环境因素。',
       hi: 'जीवित चीजों के प्रभाव और निर्जीव पर्यावरणीय कारकों में अंतर करें।',
       es: 'Distingue las influencias de los seres vivos de los factores ambientales no vivos.',

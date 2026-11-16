@@ -5,6 +5,7 @@ export const explainTheHydrologicCycle_Skill_Data = defineSkill({
   id: 'c5dcb533-2f91-4f55-95c2-ee50b37c43be',
   name: {
     en: 'Explain the hydrologic cycle',
+    it: "Spiegare il ciclo dell'acqua",
     zh: '解释水循环',
     hi: 'जल चक्र समझाना',
     es: 'Explicar el ciclo hidrológico',
@@ -39,6 +40,7 @@ export const explainTheHydrologicCycle_Skill_Data = defineSkill({
       'Describe the movement and storage of water among atmosphere, surface, living systems, ice and subsurface through evaporation, condensation, precipitation and flow. The cycles are multiple interconnected paths, not one mandatory linear sequence.',
     frontend: {
       en: 'Explain the connected processes of evaporation, precipitation, storage and flow.',
+      it: 'Spiega i processi collegati di evaporazione, precipitazione, accumulo e deflusso.',
       zh: '解释蒸发、降水、储存和水流之间的联系。',
       hi: 'वाष्पीकरण, वर्षा, भंडारण और जल प्रवाह का संबंध समझाएँ।',
       es: 'Explica la relación entre evaporación, precipitación, almacenamiento y flujo.',

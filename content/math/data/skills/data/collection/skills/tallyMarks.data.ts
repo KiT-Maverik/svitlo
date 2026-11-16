@@ -5,6 +5,7 @@ export const tallyMarks_Skill_Data = defineSkill({
   id: '8930fd33-d7d2-448f-a97c-637053e95731',
   name: {
     en: 'Recording and reading tally marks',
+    it: 'Registrare e leggere i segni di conteggio',
     qm: 'Sayuv belgilerini yazmaq ve oqumaq',
     lt: 'Skaičiavimo brūkšnelių užrašymas ir skaitymas',
     lv: 'Uzskaites svītriņu pierakstīšana un lasīšana',
@@ -39,6 +40,7 @@ export const tallyMarks_Skill_Data = defineSkill({
       'Tally marks or other agreed symbols represent counted observations in each category. Converting between symbolic marks and numerical frequencies must consistently follow the established encoding rule.',
     frontend: {
       en: 'You can record counts with tally marks or agreed symbols and turn those marks back into the correct numbers.',
+      it: 'Puoi registrare quantità con tacche di conteggio o simboli concordati e riconvertire quei segni nei numeri corretti.',
       qm: 'Miqdarlarnı sayuv belgileri ya da ögünden kelişilgen işaretlernen yazıp, soñra bu işaretlerni doğru sayılarğa çevire bilesiñ.',
       zh: '你能用计数符号或约定的标记记录数量，也能把标记准确地换回数字。',
       hi: 'आप गिनती को मिलान चिह्नों या तय प्रतीकों से लिख सकते हैं और उन चिह्नों से सही संख्या वापस बता सकते हैं।',

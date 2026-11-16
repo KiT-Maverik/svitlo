@@ -5,6 +5,7 @@ export const identifyAssumptionsInAPhilosophicalProblem_Skill_Data = defineSkill
   id: 'c5022282-5f80-4ace-8efd-8c023673162e',
   name: {
     en: 'Identify assumptions in a philosophical problem',
+    it: 'Individuare i presupposti di un problema filosofico',
     zh: '识别哲学问题中的假设',
     hi: 'दार्शनिक समस्या में मान्यताओं की पहचान',
     es: 'Identificar supuestos en un problema filosófico',
@@ -39,6 +40,7 @@ export const identifyAssumptionsInAPhilosophicalProblem_Skill_Data = defineSkill
       'Expose propositions that a question or proposed answer takes for granted, such as what counts as a person or what makes an action fair.',
     frontend: {
       en: 'Find the hidden assumptions behind a philosophical question or proposed answer.',
+      it: 'Individua i presupposti nascosti dietro una domanda filosofica o una risposta proposta.',
       zh: '找出哲学问题或其拟议答案背后隐藏的假设。',
       hi: 'दार्शनिक प्रश्न या प्रस्तावित उत्तर के पीछे छिपी मान्यताओं को खोजें।',
       es: 'Encuentra los supuestos ocultos detrás de una pregunta filosófica o una respuesta propuesta.',

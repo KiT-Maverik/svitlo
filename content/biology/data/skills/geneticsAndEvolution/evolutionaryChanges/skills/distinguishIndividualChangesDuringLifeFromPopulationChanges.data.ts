@@ -5,6 +5,7 @@ export const distinguishIndividualChangesDuringLifeFromPopulationChanges_Skill_D
   id: 'a668c824-1686-4077-a867-6424734363e8',
   name: {
     en: 'Distinguish Individual Changes During Life from Population Changes',
+    it: 'Distinguere i cambiamenti individuali durante la vita da quelli delle popolazioni',
     zh: '区分个体一生中的变化与种群变化',
     hi: 'जीवनकाल में व्यक्तिगत परिवर्तन और आबादी में परिवर्तन में अंतर',
     es: 'Distinguir los cambios de un individuo durante su vida de los cambios de una población',
@@ -39,6 +40,7 @@ export const distinguishIndividualChangesDuringLifeFromPopulationChanges_Skill_D
       'Distinguish changes in the growth or behavior of one individual from changes in the frequencies of inherited traits in a population.',
     frontend: {
       en: "Distinguish changes during an individual's life from evolution across generations.",
+      it: "Distingui i cambiamenti che avvengono durante la vita di un individuo dall'evoluzione nel corso delle generazioni.",
       zh: '区分一个生物个体一生中的变化与种群经历多个世代的进化。',
       hi: 'किसी एक जीव के जीवनकाल में होने वाले बदलावों और पीढ़ियों के दौरान आबादी में होने वाले विकासवादी बदलावों में अंतर करें।',
       es: 'Distingue los cambios que ocurren en la vida de un individuo de la evolución a lo largo de las generaciones.',

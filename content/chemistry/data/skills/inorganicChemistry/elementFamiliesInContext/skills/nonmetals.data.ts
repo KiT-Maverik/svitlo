@@ -5,6 +5,7 @@ export const nonmetals_Skill_Data = defineSkill({
   id: 'f0fb6bc5-f59c-4acb-92de-043d93830b8f',
   name: {
     en: 'Nonmetals',
+    it: 'Non metalli',
     zh: '非金属',
     hi: 'अधातु',
     es: 'No metales',
@@ -39,6 +40,7 @@ export const nonmetals_Skill_Data = defineSkill({
       'Relate elemental forms such as oxygen, nitrogen, sulfur and halogens to characteristic chemical behavior.',
     frontend: {
       en: 'Explore how oxygen, nitrogen, sulfur and other nonmetals behave chemically.',
+      it: 'Esplora il comportamento chimico di ossigeno, azoto, zolfo e altri non metalli.',
       zh: '探索氧、氮、硫和其他非金属的化学行为。',
       hi: 'ऑक्सीजन, नाइट्रोजन, सल्फर और अन्य अधातुओं के रासायनिक व्यवहार को समझें।',
       es: 'Explora el comportamiento químico del oxígeno, nitrógeno, azufre y otros no metales.',

@@ -5,6 +5,7 @@ export const randomAssignment_Skill_Data = defineSkill({
   id: '1f801f05-e175-4bfc-ac67-bb23ef3e8055',
   name: {
     en: 'Random Assignment',
+    it: 'Assegnazione casuale',
     zh: '随机分配',
     hi: 'यादृच्छिक आवंटन',
     es: 'Asignación aleatoria',
@@ -39,6 +40,7 @@ export const randomAssignment_Skill_Data = defineSkill({
       'Explain how chance allocation to conditions reduces systematic differences without confusing it with population sampling.',
     frontend: {
       en: 'Understand how random assignment can make study groups more comparable.',
+      it: "Comprendi come l'assegnazione casuale possa rendere più confrontabili i gruppi di uno studio.",
       zh: '了解随机分配如何提高研究组之间的可比性。',
       hi: 'समझें कि प्रतिभागियों का यादृच्छिक आवंटन अध्ययन समूहों को अधिक तुलनीय कैसे बनाता है।',
       es: 'Comprende cómo la asignación aleatoria puede hacer más comparables los grupos de estudio.',

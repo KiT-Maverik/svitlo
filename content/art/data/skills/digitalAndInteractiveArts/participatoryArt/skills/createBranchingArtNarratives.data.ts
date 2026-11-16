@@ -5,6 +5,7 @@ export const createBranchingArtNarratives_Skill_Data = defineSkill({
   id: '1d8b812c-3632-4d3f-a6d3-40fbc947d8a8',
   name: {
     en: 'Create Branching Art Narratives',
+    it: 'Creare narrazioni artistiche a bivi',
     zh: '创作分支式艺术叙事',
     hi: 'शाखाओं वाली कलात्मक कथाएँ बनाएँ',
     es: 'Crear narrativas artísticas ramificadas',
@@ -38,6 +39,7 @@ export const createBranchingArtNarratives_Skill_Data = defineSkill({
     methodological: 'Organize viewer decisions that lead to meaningfully different narrative experiences.',
     frontend: {
       en: "Let an audience's choices lead to different meaningful story paths.",
+      it: 'Fai in modo che le scelte del pubblico conducano a percorsi narrativi diversi e significativi.',
       zh: '让观众的选择引向不同且有意义的故事路径。',
       hi: 'दर्शकों के विकल्पों से अलग-अलग अर्थपूर्ण कहानी के रास्ते बनाएँ।',
       es: 'Permite que las decisiones del público conduzcan a distintas rutas narrativas con sentido.',

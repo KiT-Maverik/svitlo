@@ -5,6 +5,7 @@ export const asterisms_Skill_Data = defineSkill({
   id: '4b52f809-2bfc-4e45-b715-bdcc1ada07f1',
   name: {
     en: 'Asterisms',
+    it: 'Asterismi',
     qm: 'Yıldız şekilleri',
     zh: '星群图案',
     hi: 'तारों की परिचित आकृतियाँ',
@@ -39,6 +40,7 @@ export const asterisms_Skill_Data = defineSkill({
       'Recognize named visual star patterns that can cross constellation boundaries and distinguish them from officially defined regions.',
     frontend: {
       en: 'Identify familiar star patterns that are not necessarily official constellations.',
+      it: 'Identifica configurazioni stellari familiari che non corrispondono necessariamente a costellazioni ufficiali.',
       qm: 'Resmiy yıldız burçları olmağan, amma tanış yıldız şekillerini tanıñız.',
       zh: '辨认熟悉的恒星排列图案，它们不一定是正式划定的星座。',
       hi: 'तारों के ऐसे परिचित पैटर्न पहचानें जो ज़रूरी नहीं कि आधिकारिक तारामंडल हों।',

@@ -12,6 +12,7 @@ export const fraudAndDeceptivePressure_SkillGroup_Data = defineSkillGroup({
   id: '8f786718-1e57-4e78-a818-c938201f90c3',
   name: {
     en: 'Fraud and Deceptive Pressure',
+    it: 'Frodi e pressioni ingannevoli',
     zh: '欺诈与诱骗施压',
     hi: 'धोखाधड़ी और भ्रामक दबाव',
     es: 'Fraude y presión engañosa',
@@ -60,6 +61,7 @@ export const fraudAndDeceptivePressure_SkillGroup_Data = defineSkillGroup({
       'Scams often combine impersonation, urgency, emotional leverage, and requests for information or money; persuasive framing is not proof of legitimacy.',
     frontend: {
       en: 'Learn to recognize scams based on impersonation, urgency and financial pressure.',
+      it: 'Impara a riconoscere le truffe basate su false identità, urgenza e pressioni economiche.',
       zh: '学会识别冒充身份、制造紧迫感和施加金钱压力的骗局。',
       hi: 'पहचान की नकल, जल्दबाज़ी और आर्थिक दबाव पर आधारित ठगी पहचानो।',
       es: 'Aprende a reconocer estafas basadas en suplantación, urgencia y presión financiera.',

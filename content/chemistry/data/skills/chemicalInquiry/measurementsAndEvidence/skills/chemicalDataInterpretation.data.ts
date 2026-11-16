@@ -5,6 +5,7 @@ export const chemicalDataInterpretation_Skill_Data = defineSkill({
   id: '4ce5217f-9701-4bf0-9f85-bd9dd2e5c02f',
   name: {
     en: 'Chemical Data Interpretation',
+    it: 'Interpretazione dei dati chimici',
     zh: '解读化学数据',
     hi: 'रासायनिक आँकड़ों की व्याख्या',
     es: 'Interpretación de datos químicos',
@@ -39,6 +40,7 @@ export const chemicalDataInterpretation_Skill_Data = defineSkill({
       'Use tables and graphs to relate changing composition, time, temperature or measured property to chemical behavior.',
     frontend: {
       en: 'Use chemical data to explore relationships between conditions and outcomes.',
+      it: 'Usa i dati chimici per esplorare le relazioni tra le condizioni sperimentali e i risultati.',
       zh: '利用化学数据研究条件与结果之间的关系。',
       hi: 'रासायनिक आँकड़ों से परिस्थितियों और परिणामों के बीच संबंध खोजें।',
       es: 'Utiliza datos químicos para explorar relaciones entre condiciones y resultados.',

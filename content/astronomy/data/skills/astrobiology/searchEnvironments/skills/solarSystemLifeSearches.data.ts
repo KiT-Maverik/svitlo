@@ -5,6 +5,7 @@ export const solarSystemLifeSearches_Skill_Data = defineSkill({
   id: '1a4baeb0-e27d-4a45-871d-6968d4b7f42d',
   name: {
     en: 'Solar System Life Searches',
+    it: 'Ricerca della vita nel Sistema solare',
     qm: 'Küneş sistemasında yaşayış izlevleri',
     bn: 'সৌরজগতে জীবনের অনুসন্ধান',
     ur: 'نظامِ شمسی میں زندگی کی تلاش',
@@ -39,6 +40,7 @@ export const solarSystemLifeSearches_Skill_Data = defineSkill({
       'Compare scientific search approaches for places such as Mars and icy moons using expected environmental indicators.',
     frontend: {
       en: 'Explore how scientists look for signs of habitability or life on Mars and icy moons.',
+      it: 'Esplora come gli scienziati cercano segni di abitabilità o di vita su Marte e sulle lune ghiacciate.',
       qm: 'Alimler Mars ve buzlı aylarda yaşayışqa uyğunlıq ya da yaşayış işaretlerini nasıl izlegenlerini araştırıñız.',
       bn: 'বিজ্ঞানীরা মঙ্গল ও বরফাবৃত উপগ্রহে বাসযোগ্য পরিবেশ বা জীবনের চিহ্ন কীভাবে খোঁজেন, তা জানো।',
       ur: 'جانیں کہ سائنس دان مریخ اور برفیلے چاندوں پر زندگی کے لیے موزوں حالات یا زندگی کی علامات کیسے تلاش کرتے ہیں۔',

@@ -5,6 +5,7 @@ export const designDigitalInterfaceFeedback_Skill_Data = defineSkill({
   id: '1d803d3f-9a87-43de-82e2-d589b6e76645',
   name: {
     en: 'Design Digital Interface Feedback',
+    it: "Progettare il feedback di un'interfaccia digitale",
     zh: '设计数字界面反馈',
     hi: 'डिजिटल इंटरफ़ेस की प्रतिक्रिया डिज़ाइन करना',
     es: 'Diseñar la retroalimentación de una interfaz digital',
@@ -39,6 +40,7 @@ export const designDigitalInterfaceFeedback_Skill_Data = defineSkill({
       'Provide clear feedback about taps, loading, errors, and completed actions so people need not guess whether the system has responded.',
     frontend: {
       en: 'Make buttons, loading states and errors give understandable feedback.',
+      it: 'Fai in modo che pulsanti, stati di caricamento ed errori forniscano riscontri comprensibili.',
       zh: '让按钮、加载状态和错误提示提供易懂的反馈。',
       hi: 'बटन, लोड होने की स्थिति और त्रुटि संदेशों से स्पष्ट प्रतिक्रिया दें।',
       es: 'Haz que botones, estados de carga y errores den mensajes comprensibles.',

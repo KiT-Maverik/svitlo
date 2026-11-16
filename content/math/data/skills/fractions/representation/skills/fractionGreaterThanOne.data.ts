@@ -5,6 +5,7 @@ export const fractionGreaterThanOne_Skill_Data = defineSkill({
   id: '59f5bbe7-63e4-4f1b-a23e-47f3e59c1ac7',
   name: {
     en: 'Representing fractions greater than one',
+    it: 'Rappresentare frazioni maggiori di uno',
     qm: 'Bir bütünden büyük kesirlerni tasvir etüv',
     lt: 'Trupmenų, didesnių už vienetą, vaizdavimas',
     lv: 'Daļskaitļu, kas lielāki par vienu, attēlošana',
@@ -39,6 +40,7 @@ export const fractionGreaterThanOne_Skill_Data = defineSkill({
       'An improper fraction whose numerator exceeds its positive denominator is greater than one. It can be represented as a mixed number or a point to the right of one on a positive number line; the unit whole stays fixed.',
     frontend: {
       en: 'When the top number is greater than the bottom number, the fraction is more than one whole. Show it with whole parts, a mixed number, or a number line.',
+      it: 'Quando il numeratore è maggiore del denominatore, la frazione supera un intero. Rappresentala con parti intere, un numero misto o una retta numerica.',
       qm: 'Üstteki sayı alttakından büyük olsa, kesir bir bütünden büyük ola. Onı bütün parçalar, qarışıq sayı ya da sayı sızığınen köster.',
       zh: '分子大于分母时，分数大于1。可以用整份、带分数或数轴来表示。',
       hi: 'अंश हर से बड़ा हो तो भिन्न एक से बड़ा है। इसे पूरे भागों, मिश्रित संख्या या संख्या रेखा पर दिखाएँ।',

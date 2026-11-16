@@ -5,6 +5,7 @@ export const conditionedResponseAcquisition_Skill_Data = defineSkill({
   id: '9093b240-d5ce-43d7-af89-e79ec68d3a9b',
   name: {
     en: 'Conditioned Response Acquisition',
+    it: 'Acquisizione della risposta condizionata',
     zh: '条件反应的习得',
     hi: 'अनुबंधित प्रतिक्रिया का अर्जन',
     es: 'Adquisición de la respuesta condicionada',
@@ -39,6 +40,7 @@ export const conditionedResponseAcquisition_Skill_Data = defineSkill({
       'Explain how repeated predictive relations can strengthen a newly learned response to a previously neutral cue.',
     frontend: {
       en: 'Recognize how a conditioned response develops through repeated pairings.',
+      it: 'Riconosci come una risposta condizionata si sviluppi attraverso associazioni ripetute.',
       zh: '识别通过反复配对刺激而形成条件反应的过程。',
       hi: 'पहचानें कि संकेतों को बार-बार साथ प्रस्तुत करने से अनुबंधित प्रतिक्रिया कैसे विकसित होती है।',
       es: 'Reconoce cómo se desarrolla una respuesta condicionada al emparejar estímulos repetidamente.',

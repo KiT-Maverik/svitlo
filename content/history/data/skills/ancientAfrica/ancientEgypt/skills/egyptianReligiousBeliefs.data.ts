@@ -5,6 +5,7 @@ export const egyptianReligiousBeliefs_Skill_Data = defineSkill({
   id: '416464dd-52a2-498b-a75a-276dd01e4b10',
   name: {
     en: 'Egyptian Religious Beliefs',
+    it: 'Credenze religiose degli Egizi',
     zh: '埃及宗教信仰',
     hi: 'मिस्र की धार्मिक मान्यताएँ',
     es: 'Creencias religiosas egipcias',
@@ -38,6 +39,7 @@ export const egyptianReligiousBeliefs_Skill_Data = defineSkill({
     methodological: 'Study deities, cosmology, temple cults, and changing beliefs across Egyptian regions and periods.',
     frontend: {
       en: 'Explore the many religious beliefs of ancient Egyptians.',
+      it: 'Esplora le diverse credenze religiose degli antichi Egizi.',
       zh: '探索古埃及丰富多样的宗教观念。',
       hi: 'प्राचीन मिस्र की विविध धार्मिक मान्यताओं को जानें।',
       es: 'Explora la diversidad de creencias religiosas del antiguo Egipto.',

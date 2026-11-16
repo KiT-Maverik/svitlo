@@ -5,6 +5,7 @@ export const formingProcesses_Skill_Data = defineSkill({
   id: '6ecadc7f-29bf-494a-985d-1b64eaa1981d',
   name: {
     en: 'Forming processes',
+    it: 'Processi di deformazione plastica',
     zh: '成形工艺',
     hi: 'आकार देने की प्रक्रियाएँ',
     es: 'Procesos de conformado',
@@ -38,6 +39,7 @@ export const formingProcesses_Skill_Data = defineSkill({
     methodological: 'Identify ways applied force reshapes a material without primarily removing it.',
     frontend: {
       en: 'Understand how a material is bent or pressed into a new shape.',
+      it: 'Comprendi come un materiale viene piegato o pressato per ottenere una nuova forma.',
       zh: '了解材料如何通过弯曲或压制形成新形状。',
       hi: 'समझें कि सामग्री को मोड़कर या दबाकर नया आकार कैसे दिया जाता है।',
       es: 'Comprende cómo se dobla o prensa un material para darle una nueva forma.',

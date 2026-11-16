@@ -5,6 +5,7 @@ export const entropy_Skill_Data = defineSkill({
   id: '14cc2bc0-729e-4a43-a42c-49c13cd0ad3d',
   name: {
     en: 'Entropy',
+    it: 'Entropia',
     zh: '熵',
     hi: 'एंट्रॉपी',
     es: 'Entropía',
@@ -39,6 +40,7 @@ export const entropy_Skill_Data = defineSkill({
       'Relate the multiplicity of microscopic arrangements and energy dispersal to changes in thermodynamic entropy.',
     frontend: {
       en: 'Explore how energy dispersal and particle arrangements relate to entropy.',
+      it: "Esplora come la dispersione dell'energia e la disposizione delle particelle si collegano all'entropia.",
       zh: '探索能量分散和粒子排列与熵的关系。',
       hi: 'ऊर्जा के फैलाव और कणों की व्यवस्थाओं का एंट्रॉपी से संबंध खोजें।',
       es: 'Explora cómo la dispersión de energía y las disposiciones de partículas se relacionan con la entropía.',

@@ -5,6 +5,7 @@ export const analyzeProceduralFairness_Skill_Data = defineSkill({
   id: 'c7a245c5-d9ef-4f83-bad0-e739d6166bf8',
   name: {
     en: 'Analyze procedural fairness',
+    it: "Analizzare l'equità procedurale",
     zh: '分析程序公正',
     hi: 'प्रक्रियात्मक निष्पक्षता का विश्लेषण',
     es: 'Analizar la justicia procedimental',
@@ -39,6 +40,7 @@ export const analyzeProceduralFairness_Skill_Data = defineSkill({
       'Assess the transparency, consistency, and opportunity to contest a decision independent of who benefits from its outcome.',
     frontend: {
       en: 'Decide whether a decision-making process is fair even when its result is disputed.',
+      it: 'Stabilisci se un processo decisionale sia equo anche quando il suo risultato è contestato.',
       zh: '判断决策过程是否公平，即使人们对结果有争议。',
       hi: 'निर्णय के परिणाम पर विवाद हो तब भी देखो कि उसे लेने की प्रक्रिया निष्पक्ष थी या नहीं।',
       es: 'Determina si un proceso de decisión es justo, aunque se discuta su resultado.',

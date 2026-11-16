@@ -14,6 +14,7 @@ export const ancientSoutheastAsia_SkillGroup_Data = defineSkillGroup({
   id: 'ee7d8586-eba9-48a9-84d7-d46a4a4b987a',
   name: {
     en: 'Southeast Asia',
+    it: 'Asia sudorientale',
     zh: '古代东南亚',
     hi: 'प्राचीन दक्षिण-पूर्व एशिया',
     es: 'Sudeste Asiático antiguo',
@@ -66,6 +67,7 @@ export const ancientSoutheastAsia_SkillGroup_Data = defineSkillGroup({
       'River valleys, islands, and ports exchanged ideas with India and China while retaining local traditions.',
     frontend: {
       en: 'Explore early Southeast Asian societies and maritime links.',
+      it: "Esplora le prime società dell'Asia sudorientale e i loro collegamenti marittimi.",
       zh: '探索早期东南亚社会及其海上联系。',
       hi: 'प्रारंभिक दक्षिण-पूर्व एशियाई समाजों और समुद्री संपर्कों को जानें।',
       es: 'Explora las primeras sociedades del Sudeste Asiático y sus vínculos marítimos.',

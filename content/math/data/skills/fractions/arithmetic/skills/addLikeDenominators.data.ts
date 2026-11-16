@@ -5,6 +5,7 @@ export const addLikeDenominators_Skill_Data = defineSkill({
   id: 'bb4932e9-7867-4556-a715-8c4d3afc1553',
   name: {
     en: 'Adding fractions with the same denominator within one whole',
+    it: 'Sommare frazioni con lo stesso denominatore',
     qm: 'Bir bütün içinde aynı paydalı kesirlerni qoşmaq',
     lt: 'Trupmenų su vienodais vardikliais sudėtis vieneto ribose',
     lv: 'Daļu ar vienādiem saucējiem saskaitīšana viena veselā robežās',
@@ -39,6 +40,7 @@ export const addLikeDenominators_Skill_Data = defineSkill({
       "To add fractions with equal nonzero denominators, add the counts of like unit parts: a/b + c/b = (a+c)/b. The rule still holds when the sum exceeds one, although the Skill's examples stay within one whole.",
     frontend: {
       en: 'Add fractions with the same bottom number by adding their top numbers. The size of each part stays the same, even if the total exceeds one whole.',
+      it: 'Somma frazioni con lo stesso denominatore aggiungendo i numeratori. La dimensione di ogni parte resta la stessa, anche se il totale supera un intero.',
       qm: 'Paydaları aynı olğan kesirlerni qoşmaq içün paylarını qoş. Parçalarnıñ ölçüsi deñişmey, toplam bir bütünden büyük olsa bile.',
       zh: '分母相同的分数相加，只要把分子相加。每份大小不变，和也可能超过一个整体。',
       hi: 'समान हर वाले भिन्नों को जोड़ने के लिए अंश जोड़ें। भागों का आकार नहीं बदलता, चाहे योग एक से बड़ा हो।',

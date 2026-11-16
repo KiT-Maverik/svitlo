@@ -5,6 +5,7 @@ export const distinguishPhilosophicalQuestionsFromEmpiricalQuestions_Skill_Data 
   id: 'f712bd5d-7aa0-4da9-9135-e687fd5e11d9',
   name: {
     en: 'Distinguish philosophical questions from empirical questions',
+    it: 'Distinguere le domande filosofiche da quelle empiriche',
     zh: '区分哲学问题与经验问题',
     hi: 'दार्शनिक और अनुभवजन्य प्रश्नों में अंतर करना',
     es: 'Distinguir preguntas filosóficas de preguntas empíricas',
@@ -39,6 +40,7 @@ export const distinguishPhilosophicalQuestionsFromEmpiricalQuestions_Skill_Data 
       'Identify when an issue asks what a concept means, what ought to be done, or what ultimately explains something, rather than only requesting a measurable fact; many questions have both aspects.',
     frontend: {
       en: 'Recognize how philosophical questions differ from questions answered by measurement.',
+      it: 'Riconosci in che cosa le domande filosofiche differiscono da quelle a cui si risponde attraverso misurazioni.',
       zh: '认识哲学问题与可以通过测量回答的问题有何不同。',
       hi: 'पहचानें कि दार्शनिक प्रश्न मापन से उत्तर दिए जाने वाले प्रश्नों से कैसे अलग हैं।',
       es: 'Reconoce cómo se diferencian las preguntas filosóficas de las que se responden mediante mediciones.',

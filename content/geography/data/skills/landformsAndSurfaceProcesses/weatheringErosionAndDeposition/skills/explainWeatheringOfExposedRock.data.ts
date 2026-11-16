@@ -5,6 +5,7 @@ export const explainWeatheringOfExposedRock_Skill_Data = defineSkill({
   id: 'ee90b01d-346c-4218-8d70-c9199cb77c4e',
   name: {
     en: 'Explain weathering of exposed rock',
+    it: "Spiegare l'alterazione delle rocce affioranti",
     zh: '解释裸露岩石的风化过程',
     hi: 'खुली चट्टान के अपक्षय को समझाना',
     es: 'Explicar la meteorización de la roca expuesta',
@@ -39,6 +40,7 @@ export const explainWeatheringOfExposedRock_Skill_Data = defineSkill({
       'Describe the in-place breakdown or alteration of exposed rock by temperature changes, water, organisms or chemical action; this does not by itself mean that broken material has been transported.',
     frontend: {
       en: 'Explain how exposed rock breaks down or changes without being carried away.',
+      it: 'Spiega come una roccia esposta si disgrega o si altera senza essere trasportata altrove.',
       zh: '解释裸露的岩石如何在未被搬走的情况下破碎或改变。',
       hi: 'समझाएँ कि खुली चट्टान बिना बहकर दूर गए कैसे टूटती या बदलती है।',
       es: 'Explica cómo se descompone o altera una roca expuesta sin ser transportada.',

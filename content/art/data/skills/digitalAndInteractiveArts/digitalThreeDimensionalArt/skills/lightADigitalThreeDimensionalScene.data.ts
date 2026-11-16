@@ -5,6 +5,7 @@ export const lightADigitalThreeDimensionalScene_Skill_Data = defineSkill({
   id: '3e861a92-d8a9-4cf7-94d0-9e8ac34c0d3f',
   name: {
     en: 'Light a Digital Three-Dimensional Scene',
+    it: 'Illuminare una scena digitale tridimensionale',
     zh: '为数字三维场景布光',
     hi: 'डिजिटल त्रि-आयामी दृश्य में प्रकाश व्यवस्था करें',
     es: 'Iluminar una escena digital tridimensional',
@@ -39,6 +40,7 @@ export const lightADigitalThreeDimensionalScene_Skill_Data = defineSkill({
       'Arrange illumination and shadows to establish form, mood and intended visual emphasis in a three-dimensional composition.',
     frontend: {
       en: 'Use digital lighting and shadows to create mood and reveal form.',
+      it: "Usa luci e ombre digitali per creare un'atmosfera e mettere in risalto le forme.",
       zh: '运用数字灯光和阴影营造氛围并呈现形体。',
       hi: 'माहौल बनाने और रूप उभारने के लिए डिजिटल प्रकाश और छाया का उपयोग करें।',
       es: 'Usa luces y sombras digitales para crear ambiente y revelar las formas.',

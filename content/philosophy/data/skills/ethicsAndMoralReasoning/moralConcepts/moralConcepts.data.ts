@@ -12,6 +12,7 @@ export const moralConcepts_SkillGroup_Data = defineSkillGroup({
   id: '6bf2d423-cf14-43e1-b2bc-269c1c561a6f',
   name: {
     en: 'Moral Concepts',
+    it: 'Concetti morali',
     zh: '道德概念',
     hi: 'नैतिक अवधारणाएँ',
     es: 'Conceptos morales',
@@ -61,6 +62,7 @@ export const moralConcepts_SkillGroup_Data = defineSkillGroup({
       'Ethical claims use concepts such as duty, harm, intention, and virtue that cannot be reduced to personal approval.',
     frontend: {
       en: 'Learn to recognize concepts such as duty, intention, harm and moral responsibility.',
+      it: 'Impara a riconoscere concetti come dovere, intenzione, danno e responsabilità morale.',
       zh: '学习识别义务、意图、伤害和道德责任等概念。',
       hi: 'कर्तव्य, इरादा, हानि और नैतिक जिम्मेदारी जैसी अवधारणाओं को पहचानना सीखें।',
       es: 'Aprende a reconocer conceptos como deber, intención, daño y responsabilidad moral.',

@@ -7,6 +7,7 @@ export const mixtureSystems_SkillGroup_Data = defineSkillGroup({
   id: '00bdfb4d-243a-4e7a-8983-155ffe616764',
   name: {
     en: 'Mixture Systems',
+    it: 'Sistemi di miscele',
     zh: '混合体系',
     hi: 'मिश्रण प्रणालियाँ',
     es: 'Sistemas de mezclas',
@@ -50,6 +51,7 @@ export const mixtureSystems_SkillGroup_Data = defineSkillGroup({
       'Mixtures may contain more than one phase or dispersed material with properties depending on particle size and composition.',
     frontend: {
       en: 'Recognize different kinds of mixtures based on their components and phases.',
+      it: 'Riconosci diversi tipi di miscele in base ai componenti e alle fasi presenti.',
       zh: '根据混合物的组分和相态识别不同类型的混合物。',
       hi: 'घटकों और अवस्थाओं के आधार पर मिश्रणों के विभिन्न प्रकार पहचानें।',
       es: 'Reconoce distintos tipos de mezclas por sus componentes y fases.',

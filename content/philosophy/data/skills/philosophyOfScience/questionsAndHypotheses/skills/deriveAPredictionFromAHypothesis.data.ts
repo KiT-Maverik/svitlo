@@ -5,6 +5,7 @@ export const deriveAPredictionFromAHypothesis_Skill_Data = defineSkill({
   id: '74f84cb0-893a-4c34-8006-5733c2338011',
   name: {
     en: 'Derive a prediction from a hypothesis',
+    it: "Derivare una previsione da un'ipotesi",
     zh: '从假设推导预测',
     hi: 'परिकल्पना से पूर्वानुमान निकालें',
     es: 'Derivar una predicción de una hipótesis',
@@ -38,6 +39,7 @@ export const deriveAPredictionFromAHypothesis_Skill_Data = defineSkill({
     methodological: 'Explain what should be observed under specified conditions if a proposed explanation is correct.',
     frontend: {
       en: 'Predict what should happen if a hypothesis is correct under stated conditions.',
+      it: "Prevedi che cosa dovrebbe accadere, nelle condizioni indicate, se un'ipotesi fosse corretta.",
       zh: '预测在既定条件下，如果假设正确会发生什么。',
       hi: 'बताएँ कि बताई गई परिस्थितियों में परिकल्पना सही हो तो क्या होगा।',
       es: 'Predice qué debería ocurrir en ciertas condiciones si la hipótesis es correcta.',

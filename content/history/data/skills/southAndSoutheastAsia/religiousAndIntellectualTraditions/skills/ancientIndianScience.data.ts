@@ -5,6 +5,7 @@ export const ancientIndianScience_Skill_Data = defineSkill({
   id: 'a30624e8-65ae-4f5d-aba5-9dd15a75b61c',
   name: {
     en: 'Ancient Indian Scientific Traditions',
+    it: "Tradizioni scientifiche dell'India antica",
     zh: '古印度科学文化',
     hi: 'प्राचीन भारतीय वैज्ञानिक संस्कृति',
     es: 'Cultura científica de la India antigua',
@@ -38,6 +39,7 @@ export const ancientIndianScience_Skill_Data = defineSkill({
     methodological: 'Study early mathematics, medicine, and astronomy while dating individual developments accurately.',
     frontend: {
       en: 'Learn about ancient Indian ideas in science and calculation.',
+      it: "Scopri le idee scientifiche e matematiche dell'India antica.",
       zh: '了解古印度在科学和计算方面的思想。',
       hi: 'प्राचीन भारत के विज्ञान और गणना संबंधी विचारों को जानें।',
       es: 'Conoce las ideas de ciencia y cálculo de la India antigua.',

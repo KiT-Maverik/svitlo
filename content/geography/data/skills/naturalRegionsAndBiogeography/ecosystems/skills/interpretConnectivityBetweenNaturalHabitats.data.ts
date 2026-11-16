@@ -5,6 +5,7 @@ export const interpretConnectivityBetweenNaturalHabitats_Skill_Data = defineSkil
   id: '98d54197-751e-463b-852f-315b1617a8dc',
   name: {
     en: 'Interpret connectivity between natural habitats',
+    it: 'Interpretare la connettività tra habitat naturali',
     zh: '解读自然栖息地之间的连通性',
     hi: 'प्राकृतिक आवासों के बीच जुड़ाव समझना',
     es: 'Interpretar la conectividad entre hábitats naturales',
@@ -39,6 +40,7 @@ export const interpretConnectivityBetweenNaturalHabitats_Skill_Data = defineSkil
       'Assess whether geographic corridors or barriers link habitat patches and enable movement across a landscape, without claiming that proximity automatically guarantees ecological connection.',
     frontend: {
       en: 'Identify natural corridors and barriers between habitat patches.',
+      it: 'Individua corridoi naturali e barriere tra porzioni di habitat.',
       zh: '识别各片栖息地之间的自然廊道与障碍。',
       hi: 'आवास के टुकड़ों के बीच प्राकृतिक गलियारों और बाधाओं को पहचानें।',
       es: 'Identifica corredores naturales y barreras entre fragmentos de hábitat.',

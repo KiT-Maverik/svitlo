@@ -5,6 +5,7 @@ export const ancientChineseMetallurgy_Skill_Data = defineSkill({
   id: '134855c3-aaf8-4391-8327-2b8db4bd3d3c',
   name: {
     en: 'Ancient Chinese Metallurgy',
+    it: "Metallurgia nell'antica Cina",
     zh: '中国古代冶金',
     hi: 'प्राचीन चीन में धातुकर्म',
     es: 'Metalurgia de la China antigua',
@@ -39,6 +40,7 @@ export const ancientChineseMetallurgy_Skill_Data = defineSkill({
       'Explain bronze and iron technologies including cast iron and their economic and military applications.',
     frontend: {
       en: 'Discover how metalworking developed in ancient China.',
+      it: "Scopri come si sviluppò la lavorazione dei metalli nell'antica Cina.",
       zh: '了解金属加工技术在古代中国如何发展。',
       hi: 'जानें कि प्राचीन चीन में धातुओं पर काम करने की तकनीक कैसे विकसित हुई।',
       es: 'Descubre cómo se desarrolló el trabajo de los metales en la China antigua.',

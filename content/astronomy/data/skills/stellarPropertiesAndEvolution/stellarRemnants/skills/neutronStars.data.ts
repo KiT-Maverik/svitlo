@@ -5,6 +5,7 @@ export const neutronStars_Skill_Data = defineSkill({
   id: '24dbd12c-5adc-4a4a-9b07-2594f6b6d79e',
   name: {
     en: 'Neutron Stars',
+    it: 'Stelle di neutroni',
     zh: '中子星',
     hi: 'न्यूट्रॉन तारे',
     es: 'Estrellas de neutrones',
@@ -39,6 +40,7 @@ export const neutronStars_Skill_Data = defineSkill({
       'Explain the physical properties and formation of ultra-compact neutron-rich remnants supported by dense matter, including limits imposed by mass and rotation.',
     frontend: {
       en: 'Discover how collapsing stellar cores can form neutron stars.',
+      it: 'Scopri come il collasso dei nuclei stellari può formare stelle di neutroni.',
       zh: '了解恒星核心坍缩如何形成中子星。',
       hi: 'जानें कि तारे के केंद्र के ढहने से न्यूट्रॉन तारा कैसे बन सकता है।',
       es: 'Descubre cómo el colapso del núcleo de una estrella puede formar una estrella de neutrones.',

@@ -5,6 +5,7 @@ export const mixedEconomies_Skill_Data = defineSkill({
   id: '76d22460-164f-46a1-942f-3e3b46cccbed',
   name: {
     en: 'Змішані економічні системи',
+    it: 'Economie miste',
     zh: '混合经济',
     hi: 'मिश्रित अर्थव्यवस्थाएँ',
     es: 'Economías mixtas',
@@ -38,6 +39,7 @@ export const mixedEconomies_Skill_Data = defineSkill({
     methodological: 'Compare combinations of markets, public sectors, regulation, and social institutions.',
     frontend: {
       en: 'Explore why many economies combine markets and government involvement.',
+      it: 'Esplora perché molte economie combinano mercati e intervento pubblico.',
       zh: '探索为什么许多经济体同时依靠市场和政府参与。',
       hi: 'जानें कि कई अर्थव्यवस्थाएँ बाज़ार और सरकार की भागीदारी को क्यों मिलाती हैं।',
       es: 'Explora por qué muchas economías combinan mercados e intervención del gobierno.',

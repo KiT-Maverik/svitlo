@@ -5,6 +5,7 @@ export const distinguishTasteFromAnArguedEvaluation_Skill_Data = defineSkill({
   id: 'c5ff19ee-99f5-438b-89c7-b77168ddf33b',
   name: {
     en: 'Distinguish taste from an argued evaluation',
+    it: 'Distinguere il gusto da una valutazione argomentata',
     zh: '区分个人品味与有理据的评价',
     hi: 'निजी रुचि और तर्कपूर्ण मूल्यांकन में भेद',
     es: 'Distinguir el gusto de una evaluación razonada',
@@ -39,6 +40,7 @@ export const distinguishTasteFromAnArguedEvaluation_Skill_Data = defineSkill({
       'Recognize that a personal reaction and a defensible public judgment may overlap but require different kinds of support.',
     frontend: {
       en: 'Recognize the difference between liking something and defending an evaluation of it.',
+      it: 'Riconosci la differenza tra apprezzare qualcosa e difenderne una valutazione con argomenti.',
       zh: '认识喜欢某物与能够为评价提出理由的区别。',
       hi: 'किसी चीज़ को पसंद करने और उसके मूल्यांकन के पक्ष में तर्क देने में अंतर पहचानो।',
       es: 'Reconoce la diferencia entre que algo te guste y justificar tu valoración de ello.',

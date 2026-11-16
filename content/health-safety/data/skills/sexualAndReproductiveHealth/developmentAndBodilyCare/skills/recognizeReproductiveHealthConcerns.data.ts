@@ -5,6 +5,7 @@ export const recognizeReproductiveHealthConcerns_Skill_Data = defineSkill({
   id: 'ba093605-7875-452e-a860-a8fa7fb7aef6',
   name: {
     en: 'Recognize reproductive health concerns',
+    it: 'Riconoscere problemi di salute riproduttiva',
     zh: '识别生殖健康问题',
     hi: 'प्रजनन स्वास्थ्य से जुड़ी चिंताएँ पहचानें',
     es: 'Reconocer problemas de salud reproductiva',
@@ -39,6 +40,7 @@ export const recognizeReproductiveHealthConcerns_Skill_Data = defineSkill({
       'Notice pain, abnormal symptoms, or other changes that may require confidential professional consultation without self-diagnosis.',
     frontend: {
       en: 'Identify reproductive-health changes that warrant confidential professional advice.',
+      it: 'Individua cambiamenti della salute riproduttiva che meritano un parere professionale riservato.',
       zh: '识别需要向专业人员保密咨询的生殖健康变化。',
       hi: 'ऐसे बदलाव पहचानें जिनके लिए गोपनीय रूप से योग्य विशेषज्ञ की सलाह चाहिए।',
       es: 'Identifica cambios de salud reproductiva que requieren consejo profesional confidencial.',

@@ -5,6 +5,7 @@ export const recognizeBalancedForces_Skill_Data = defineSkill({
   id: 'f75660d5-a2c4-4579-b6fd-642a0986b517',
   name: {
     en: 'Recognize balanced forces',
+    it: 'Riconoscere le forze equilibrate',
     zh: '识别平衡力',
     hi: 'संतुलित बल पहचानना',
     es: 'Reconocer fuerzas equilibradas',
@@ -39,6 +40,7 @@ export const recognizeBalancedForces_Skill_Data = defineSkill({
       'When the net force is zero, there is no acceleration; a body may be at rest or continue moving uniformly in a straight line.',
     frontend: {
       en: 'Recognize that balanced forces cause no acceleration, even in a moving object.',
+      it: 'Riconosci che forze equilibrate non provocano accelerazione, neppure su un oggetto in movimento.',
       zh: '理解力平衡时物体没有加速度，即使它正在运动。',
       hi: 'समझें कि बल संतुलित होने पर त्वरण शून्य होता है, भले ही वस्तु चल रही हो।',
       es: 'Reconoce que las fuerzas equilibradas no producen aceleración, incluso si el objeto se mueve.',

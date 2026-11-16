@@ -5,6 +5,7 @@ export const compassion_Skill_Data = defineSkill({
   id: 'd8ef3c93-77af-47e5-92bc-f6fb717e09fd',
   name: {
     en: 'Compassion',
+    it: 'Compassione',
     zh: '同情关怀',
     hi: 'करुणा',
     es: 'Compasión',
@@ -39,6 +40,7 @@ export const compassion_Skill_Data = defineSkill({
       "Explain concern for another person's suffering accompanied by motivation to offer appropriate help, distinct from understanding alone.",
     frontend: {
       en: "Distinguish compassionate concern from simply understanding another's feelings.",
+      it: 'Distingui la premura compassionevole dalla semplice comprensione dei sentimenti altrui.',
       zh: '区分希望帮助他人的关怀与仅仅理解其感受。',
       hi: 'दूसरे की सहायता करने की करुणापूर्ण इच्छा को केवल उसकी भावनाएँ समझने से अलग पहचानें।',
       es: 'Distingue la preocupación compasiva de solo comprender lo que siente otra persona.',

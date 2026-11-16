@@ -5,6 +5,7 @@ export const identifyProductionWaste_Skill_Data = defineSkill({
   id: '386ddad5-f38e-4603-a964-c946780bc29f',
   name: {
     en: 'Identify production waste',
+    it: 'Individuare gli sprechi produttivi',
     zh: '识别生产浪费',
     hi: 'उत्पादन में अपव्यय पहचानना',
     es: 'Identificar desperdicios de producción',
@@ -38,6 +39,7 @@ export const identifyProductionWaste_Skill_Data = defineSkill({
     methodological: 'Recognize avoidable scrap, waiting, transport or rework in a manufacturing process.',
     frontend: {
       en: 'Recognize wasted materials, movement or time in a production process.',
+      it: 'Riconosci gli sprechi di materiali, movimenti o tempo in un processo produttivo.',
       zh: '发现生产过程中浪费的材料、动作或时间。',
       hi: 'उत्पादन प्रक्रिया में सामग्री, गतिविधियों या समय की बर्बादी पहचानें।',
       es: 'Reconoce materiales, movimientos o tiempo desperdiciados en un proceso de producción.',

@@ -5,6 +5,7 @@ export const ionFormation_Skill_Data = defineSkill({
   id: '94e3a7e4-efe5-4c4f-ac47-7779435b25f1',
   name: {
     en: 'Ion Formation',
+    it: 'Formazione degli ioni',
     zh: '离子的形成',
     hi: 'आयन निर्माण',
     es: 'Formación de iones',
@@ -39,6 +40,7 @@ export const ionFormation_Skill_Data = defineSkill({
       'Predict plausible monatomic ion charges from electron gain or loss while recognizing chemical context.',
     frontend: {
       en: 'Predict common ion charges while accounting for the chemical setting.',
+      it: 'Prevedi le cariche ioniche più comuni tenendo conto del contesto chimico.',
       zh: '考虑化学环境，预测常见离子可能带有的电荷。',
       hi: 'रासायनिक परिस्थितियों को ध्यान में रखकर सामान्य आयनों के आवेश का अनुमान लगाएँ।',
       es: 'Predice las cargas habituales de los iones teniendo en cuenta el entorno químico.',

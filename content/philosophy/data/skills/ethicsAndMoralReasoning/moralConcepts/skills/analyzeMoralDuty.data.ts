@@ -5,6 +5,7 @@ export const analyzeMoralDuty_Skill_Data = defineSkill({
   id: '9fa83c4b-7ee8-44b5-b1b5-d3069afe0a5b',
   name: {
     en: 'Analyze moral duty',
+    it: 'Analizzare il dovere morale',
     zh: '分析道德义务',
     hi: 'नैतिक कर्तव्य का विश्लेषण',
     es: 'Analizar el deber moral',
@@ -39,6 +40,7 @@ export const analyzeMoralDuty_Skill_Data = defineSkill({
       'Identify what it means to hold that a person is obligated to act even when doing so is inconvenient.',
     frontend: {
       en: 'Understand why moral obligations can apply even when fulfilling them is inconvenient.',
+      it: 'Comprendi perché gli obblighi morali possano valere anche quando rispettarli è scomodo.',
       zh: '理解为什么即使履行道德义务很不方便，它仍可能适用。',
       hi: 'समझें कि नैतिक दायित्व असुविधाजनक होने पर भी क्यों लागू हो सकते हैं।',
       es: 'Comprende por qué las obligaciones morales pueden valer incluso cuando cumplirlas es incómodo.',

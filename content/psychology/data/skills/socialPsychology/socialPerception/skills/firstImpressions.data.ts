@@ -5,6 +5,7 @@ export const firstImpressions_Skill_Data = defineSkill({
   id: '236f87eb-686e-4a01-94f3-fc9e4d583a53',
   name: {
     en: 'First Impressions',
+    it: 'Prime impressioni',
     zh: '第一印象',
     hi: 'पहली छाप',
     es: 'Primeras impresiones',
@@ -38,6 +39,7 @@ export const firstImpressions_Skill_Data = defineSkill({
     methodological: 'Explain how early information can disproportionately influence expectations about a person.',
     frontend: {
       en: 'Recognize how first impressions form and why they can mislead.',
+      it: 'Riconosci come si formino le prime impressioni e perché possano essere fuorvianti.',
       zh: '认识第一印象如何形成，以及为何可能误导判断。',
       hi: 'जानें कि पहली छाप कैसे बनती है और क्यों भ्रामक हो सकती है।',
       es: 'Reconoce cómo se forman las primeras impresiones y por qué pueden engañar.',

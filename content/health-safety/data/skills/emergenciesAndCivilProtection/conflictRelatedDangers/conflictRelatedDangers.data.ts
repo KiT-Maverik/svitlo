@@ -13,6 +13,7 @@ export const conflictRelatedDangers_SkillGroup_Data = defineSkillGroup({
   id: '82adb658-f786-4948-ae59-6e7a333a0ffe',
   name: {
     en: 'Conflict-Related Dangers',
+    it: 'Pericoli legati ai conflitti',
     zh: '冲突相关危险',
     hi: 'संघर्ष से जुड़े खतरे',
     es: 'Peligros relacionados con conflictos',
@@ -63,6 +64,7 @@ export const conflictRelatedDangers_SkillGroup_Data = defineSkillGroup({
       'Armed conflict can produce immediate threats and leave dangerous remnants; civil protection centres on avoidance, shelter, and reporting rather than handling weapons.',
     frontend: {
       en: 'Explore ways to protect civilians from conflict-related threats.',
+      it: 'Esplora come proteggere i civili dalle minacce legate ai conflitti.',
       zh: '了解如何保护平民免受冲突相关威胁。',
       hi: 'जानें कि संघर्ष से जुड़े खतरों से नागरिकों की रक्षा कैसे की जा सकती है।',
       es: 'Explora formas de proteger a civiles de amenazas relacionadas con conflictos.',

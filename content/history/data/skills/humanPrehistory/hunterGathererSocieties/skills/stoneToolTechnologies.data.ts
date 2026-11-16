@@ -5,6 +5,7 @@ export const stoneToolTechnologies_Skill_Data = defineSkill({
   id: '8e60a62f-fcb2-4bd7-84fc-9ff2d7367c23',
   name: {
     en: 'Stone Tool Technologies',
+    it: 'Tecnologie degli utensili in pietra',
     zh: '石器技术',
     hi: 'पत्थर के औज़ारों की तकनीक',
     es: 'Tecnologías de herramientas de piedra',
@@ -38,6 +39,7 @@ export const stoneToolTechnologies_Skill_Data = defineSkill({
     methodological: 'Trace changes from simple flakes to specialized tools and their effects on work.',
     frontend: {
       en: 'Compare the stone tools used by early humans.',
+      it: 'Confronta gli utensili in pietra utilizzati dai primi esseri umani.',
       zh: '比较早期人类使用的各种石器。',
       hi: 'शुरुआती मानव द्वारा उपयोग किए गए पत्थर के औज़ारों की तुलना करें।',
       es: 'Compara las herramientas de piedra que utilizaban los primeros humanos.',

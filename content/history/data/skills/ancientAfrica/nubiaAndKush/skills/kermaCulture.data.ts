@@ -5,6 +5,7 @@ export const kermaCulture_Skill_Data = defineSkill({
   id: '7f6280b7-46b8-46d5-afe7-c8ebe305c0c1',
   name: {
     en: 'Kerma Culture',
+    it: 'Cultura di Kerma',
     zh: '克尔马文化',
     hi: 'केर्मा संस्कृति',
     es: 'Cultura de Kerma',
@@ -38,6 +39,7 @@ export const kermaCulture_Skill_Data = defineSkill({
     methodological: 'Study the Bronze Age urban center, burials, and regional state of Upper Nubia.',
     frontend: {
       en: 'Explore the archaeological remains of ancient Kerma.',
+      it: "Esplora i resti archeologici dell'antica Kerma.",
       zh: '探索古代克尔马的考古遗存。',
       hi: 'प्राचीन केर्मा के पुरातात्त्विक अवशेषों का अध्ययन करें।',
       es: 'Explora los restos arqueológicos de la antigua Kerma.',

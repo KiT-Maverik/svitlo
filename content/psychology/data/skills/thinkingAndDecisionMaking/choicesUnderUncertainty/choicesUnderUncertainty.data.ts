@@ -13,6 +13,7 @@ export const choicesUnderUncertainty_SkillGroup_Data = defineSkillGroup({
   id: '0659bda5-fcd2-4b35-be47-2e2d8bc65940',
   name: {
     en: 'Choices Under Uncertainty',
+    it: 'Scelte in condizioni di incertezza',
     zh: '不确定条件下的选择',
     hi: 'अनिश्चितता में विकल्प चुनना',
     es: 'Elecciones bajo incertidumbre',
@@ -57,6 +58,7 @@ export const choicesUnderUncertainty_SkillGroup_Data = defineSkillGroup({
       'Decisions depend on reference points, delayed consequences, uncertainty, and how alternatives are presented.',
     frontend: {
       en: 'Explore how uncertainty, probability and presentation influence choices.',
+      it: 'Esplora come incertezza, probabilità e presentazione delle informazioni influenzino le scelte.',
       zh: '探索不确定性、概率和信息呈现方式如何影响选择。',
       hi: 'जानें कि अनिश्चितता, संभावना और जानकारी प्रस्तुत करने का तरीका विकल्पों को कैसे प्रभावित करता है।',
       es: 'Explora cómo la incertidumbre, la probabilidad y la forma de presentar información influyen en las elecciones.',

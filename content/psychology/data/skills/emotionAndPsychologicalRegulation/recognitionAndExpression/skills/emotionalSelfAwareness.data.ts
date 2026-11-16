@@ -5,6 +5,7 @@ export const emotionalSelfAwareness_Skill_Data = defineSkill({
   id: '6dbe32fb-4578-4775-a43c-38d4cbdcbcab',
   name: {
     en: 'Emotional Self-Awareness',
+    it: 'Consapevolezza delle proprie emozioni',
     zh: '情绪自我觉察',
     hi: 'भावनात्मक आत्म-जागरूकता',
     es: 'Autoconciencia emocional',
@@ -39,6 +40,7 @@ export const emotionalSelfAwareness_Skill_Data = defineSkill({
       'Identify feelings, accompanying sensations, and possible triggers without assuming a single interpretation is certain.',
     frontend: {
       en: 'Observe and describe your own emotional state without assuming its cause.',
+      it: 'Osserva e descrivi il tuo stato emotivo senza presumerne la causa.',
       zh: '观察并描述自己的情绪状态，而不急于认定其原因。',
       hi: 'बिना कारण मान लिए अपनी भावनात्मक अवस्था को देखें और वर्णन करें।',
       es: 'Observa y describe tu estado emocional sin dar por hecha su causa.',

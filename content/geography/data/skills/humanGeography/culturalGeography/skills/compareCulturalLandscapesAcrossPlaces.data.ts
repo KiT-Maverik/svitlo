@@ -5,6 +5,7 @@ export const compareCulturalLandscapesAcrossPlaces_Skill_Data = defineSkill({
   id: '85c341b8-1bbb-486f-894c-f85fbe1d1035',
   name: {
     en: 'Compare cultural landscapes across places',
+    it: 'Confrontare i paesaggi culturali di luoghi diversi',
     zh: '比较不同地点的文化景观',
     hi: 'विभिन्न स्थानों के सांस्कृतिक परिदृश्यों की तुलना करना',
     es: 'Comparar paisajes culturales de distintos lugares',
@@ -39,6 +40,7 @@ export const compareCulturalLandscapesAcrossPlaces_Skill_Data = defineSkill({
       'Relate observable built forms, land use and place meanings to distinctive regional histories and practices, while avoiding stereotypes and one-to-one cultural labels.',
     frontend: {
       en: 'Compare cultural landscapes while respecting local diversity and histories.',
+      it: 'Confronta i paesaggi culturali rispettando la diversità e la storia locali.',
       zh: '比较各地的文化景观，同时尊重当地的多样性和历史。',
       hi: 'स्थानीय विविधता और इतिहास का सम्मान करते हुए सांस्कृतिक परिदृश्यों की तुलना करें।',
       es: 'Compara paisajes culturales respetando la diversidad y las historias locales.',

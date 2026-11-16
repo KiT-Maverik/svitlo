@@ -5,6 +5,7 @@ export const lightGatheringAperture_Skill_Data = defineSkill({
   id: '0f889f42-4335-4f00-ba04-bfd2333b7bf1',
   name: {
     en: 'Light-Gathering Aperture',
+    it: 'Apertura di raccolta della luce',
     qm: 'Yarıq toplav açıqlığı',
     bn: 'আলো সংগ্রহের ছিদ্রপথ',
     ur: 'روشنی جمع کرنے والا دہانہ',
@@ -39,6 +40,7 @@ export const lightGatheringAperture_Skill_Data = defineSkill({
       'Explain how telescope aperture affects collected light and the visibility of faint astronomical sources.',
     frontend: {
       en: 'Find out why a larger telescope aperture can reveal fainter celestial objects.',
+      it: 'Scopri perché un telescopio con apertura maggiore può rivelare oggetti celesti più deboli.',
       qm: 'Teleskopnıñ açıqlığı büyügende ne içün daa zayıf kök cisimleri körünebilgenini ögreniñiz.',
       bn: 'জেনে নাও, দূরবীক্ষণ যন্ত্রের আলো প্রবেশের মুখ বড় হলে কেন আরও ক্ষীণ জ্যোতিষ্ক দেখা যায়।',
       ur: 'جانیں کہ دوربین کا بڑا دہانہ کم روشن اجرامِ فلکی کو دیکھنے میں کیوں مدد دیتا ہے۔',

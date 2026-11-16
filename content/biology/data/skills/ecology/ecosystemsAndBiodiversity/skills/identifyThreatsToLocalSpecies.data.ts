@@ -5,6 +5,7 @@ export const identifyThreatsToLocalSpecies_Skill_Data = defineSkill({
   id: 'cdd2fab0-ebdc-4e3c-9741-bc5a394ef19f',
   name: {
     en: 'Identify Threats to Local Species',
+    it: 'Individuare le minacce alle specie locali',
     zh: '识别本地物种面临的威胁',
     hi: 'स्थानीय प्रजातियों के खतरों की पहचान करना',
     es: 'Identificar amenazas para las especies locales',
@@ -39,6 +40,7 @@ export const identifyThreatsToLocalSpecies_Skill_Data = defineSkill({
       'Distinguish habitat loss, pollution, excessive harvesting or removal, and invasive species as threat factors.',
     frontend: {
       en: 'Identify activities and environmental changes that threaten local species.',
+      it: 'Individua le attività e i cambiamenti ambientali che minacciano le specie del territorio.',
       zh: '识别威胁本地物种的人类活动和环境变化。',
       hi: 'स्थानीय प्रजातियों को खतरे में डालने वाली गतिविधियों और पर्यावरणीय बदलावों को पहचानें।',
       es: 'Identifica actividades y cambios ambientales que amenazan a las especies locales.',

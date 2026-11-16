@@ -5,6 +5,7 @@ export const renewableResourceDepletion_Skill_Data = defineSkill({
   id: 'c4403ac4-ec37-4aec-8071-74d69736a954',
   name: {
     en: 'Виснаження відновлюваних ресурсів',
+    it: 'Esaurimento delle risorse rinnovabili',
     zh: '可再生资源枯竭',
     hi: 'नवीकरणीय संसाधनों का क्षय',
     es: 'Agotamiento de recursos renovables',
@@ -39,6 +40,7 @@ export const renewableResourceDepletion_Skill_Data = defineSkill({
       'Analyze the balance between natural replenishment and extraction rates, without equating renewable resources with inexhaustible ones.',
     frontend: {
       en: 'Explore why even renewable resources can be depleted.',
+      it: 'Esplora perché anche le risorse rinnovabili possono esaurirsi.',
       zh: '了解为什么即使是可再生资源也可能耗尽。',
       hi: 'जानें कि नवीकरणीय संसाधन भी क्यों समाप्त हो सकते हैं।',
       es: 'Descubre por qué incluso los recursos renovables pueden agotarse.',

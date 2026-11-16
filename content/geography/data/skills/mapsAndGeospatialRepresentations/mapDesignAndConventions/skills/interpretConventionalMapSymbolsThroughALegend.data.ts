@@ -5,6 +5,7 @@ export const interpretConventionalMapSymbolsThroughALegend_Skill_Data = defineSk
   id: '4ee964ee-61b0-470b-a66e-46957d83e30b',
   name: {
     en: 'Interpret conventional map symbols through a legend',
+    it: 'Interpretare i simboli cartografici convenzionali tramite la legenda',
     zh: '通过图例解读地图惯用符号',
     hi: 'संकेत सूची से पारंपरिक मानचित्र चिह्न समझना',
     es: 'Interpretar símbolos cartográficos mediante la leyenda',
@@ -39,6 +40,7 @@ export const interpretConventionalMapSymbolsThroughALegend_Skill_Data = defineSk
       'Connect a symbol or color to its documented meaning instead of assuming that its appearance is self-explanatory.',
     frontend: {
       en: 'Use a map legend to find what symbols and colors actually mean.',
+      it: 'Usa la legenda per comprendere il significato effettivo dei simboli e dei colori su una carta.',
       zh: '通过地图图例查明符号和颜色的实际含义。',
       hi: 'मानचित्र की संकेत सूची से जानें कि चिह्न और रंग वास्तव में क्या दर्शाते हैं।',
       es: 'Usa la leyenda del mapa para saber qué significan los símbolos y colores.',

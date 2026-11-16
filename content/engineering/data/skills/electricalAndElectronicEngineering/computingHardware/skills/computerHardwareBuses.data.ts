@@ -5,6 +5,7 @@ export const computerHardwareBuses_Skill_Data = defineSkill({
   id: '9117147a-35d1-476a-9a72-8452d130750a',
   name: {
     en: 'Computer hardware buses',
+    it: 'Bus hardware del computer',
     zh: '计算机硬件总线',
     hi: 'संगणक हार्डवेयर बस',
     es: 'Buses de hardware informático',
@@ -39,6 +40,7 @@ export const computerHardwareBuses_Skill_Data = defineSkill({
       'Describe the communication pathways and electrical interfaces joining processors, memory controllers and peripheral equipment.',
     frontend: {
       en: 'Explain how computer buses transfer data between components.',
+      it: 'Spiega come i bus trasferiscono dati tra i componenti di un computer.',
       zh: '了解总线如何传送计算机内部组件间的数据。',
       hi: 'जानें कि बस कंप्यूटर के घटकों के बीच डेटा कैसे पहुँचाती है।',
       es: 'Aprende cómo los buses transmiten datos entre los componentes de un ordenador.',

@@ -10,6 +10,7 @@ export const fluidMechanics_SkillDomain_Data = defineSkillDomain({
   id: 'b00281a6-388a-497b-945b-b3286dbd4f03',
   title: {
     en: 'Fluid Mechanics',
+    it: 'Meccanica dei fluidi',
     zh: '流体力学',
     hi: 'द्रव यांत्रिकी',
     es: 'Mecánica de fluidos',
@@ -53,6 +54,7 @@ export const fluidMechanics_SkillDomain_Data = defineSkillDomain({
       "Water and air transmit pressure, flow, resist bodies' motion, and can provide buoyancy. Familiar containers, floating objects, and airflow make these phenomena accessible.",
     frontend: {
       en: 'Explore how liquids and gases flow, exert pressure and support moving bodies.',
+      it: 'Esplora come liquidi e gas scorrono, esercitano pressione e producono spinte sui corpi immersi.',
       zh: '探索液体和气体如何流动、产生压力并作用于运动的物体。',
       hi: 'जानें कि द्रव और गैसें कैसे बहती हैं, दाब डालती हैं और गतिमान वस्तुओं पर बल लगाती हैं।',
       es: 'Explora cómo fluyen los líquidos y gases, ejercen presión y actúan sobre cuerpos en movimiento.',

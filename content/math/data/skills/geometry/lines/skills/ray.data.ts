@@ -5,6 +5,7 @@ export const ray_Skill_Data = defineSkill({
   id: '1f1740cd-914a-4945-b564-5124a982c735',
   name: {
     en: 'Distinguishing rays, segments and lines',
+    it: 'Distinguere semirette, segmenti e rette',
     qm: 'Şua, kesik ve doğru sızıqnı ayırmaq',
     lt: 'Spindulių, atkarpų ir tiesių atskyrimas',
     lv: 'Staru, nogriežņu un taišņu atšķiršana',
@@ -39,6 +40,7 @@ export const ray_Skill_Data = defineSkill({
       'A line extends indefinitely in both directions; a ray has one endpoint and extends indefinitely in one direction; a segment has two endpoints. Drawing orientation does not change these properties.',
     frontend: {
       en: 'Tell a line that continues both ways from a ray that starts at one point and a segment with two endpoints.',
+      it: 'Distingui una retta che si estende in entrambe le direzioni da una semiretta che parte da un punto e da un segmento con due estremi.',
       qm: 'Eki yönge devam etken doğru sızıqnı bir noqtadan başlanğan şuadan ve eki uç noqtası olğan kesikten ayır.',
       zh: '区分向两边无限延伸的直线、从一个端点向一边延伸的射线和有两个端点的线段。',
       hi: 'दोनों ओर अनंत बढ़ती रेखा, एक सिरे से बढ़ती किरण और दो सिरों वाला रेखाखंड अलग पहचानें।',

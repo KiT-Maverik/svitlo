@@ -5,6 +5,7 @@ export const explainMechanismsOfEvolutionaryChange_Skill_Data = defineSkill({
   id: 'fc704e69-99f2-40a4-865d-8309f9df951b',
   name: {
     en: 'Explain Mechanisms of Evolutionary Change',
+    it: 'Spiegare i meccanismi del cambiamento evolutivo',
     zh: '解释进化变化的机制',
     hi: 'विकासवादी परिवर्तन की प्रक्रियाएँ समझाना',
     es: 'Explicar los mecanismos del cambio evolutivo',
@@ -39,6 +40,7 @@ export const explainMechanismsOfEvolutionaryChange_Skill_Data = defineSkill({
       'Distinguish mutation, natural selection, genetic drift, and gene flow as processes that alter the inherited composition of populations; explain their distinct roles and potential combined action without reducing all evolutionary change to selection.',
     frontend: {
       en: 'Compare mutation, natural selection, genetic drift and gene flow as causes of evolution.',
+      it: "Confronta mutazione, selezione naturale, deriva genetica e flusso genico come cause dell'evoluzione.",
       zh: '比较突变、自然选择、遗传漂变和基因流动如何推动进化。',
       hi: 'तुलना करें कि उत्परिवर्तन, प्राकृतिक वरण, आनुवंशिक विचलन और जीन प्रवाह कैसे विकास का कारण बनते हैं।',
       es: 'Compara la mutación, la selección natural, la deriva genética y el flujo génico como causas de la evolución.',

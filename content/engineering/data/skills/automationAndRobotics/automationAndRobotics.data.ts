@@ -10,6 +10,7 @@ export const automationAndRobotics_SkillDomain_Data = defineSkillDomain({
   id: 'c32e04b7-c5a4-4ac8-9d12-0fdcd8ab6248',
   title: {
     en: 'Automation and Robotics',
+    it: 'Automazione e robotica',
     zh: '自动化与机器人技术',
     hi: 'स्वचालन और रोबोटिकी',
     es: 'Automatización y robótica',
@@ -53,6 +54,7 @@ export const automationAndRobotics_SkillDomain_Data = defineSkillDomain({
       'Robotic and automated machinery converts physical observations into controlled actions. Engineering competencies concern sensors, actuators, feedback, mechanism geometry and dependable operation; general algorithms and software authoring remain in Informatics.',
     frontend: {
       en: 'Discover how sensors, controls and actuators make physical systems respond.',
+      it: 'Scopri come sensori, sistemi di controllo e attuatori permettono ai sistemi fisici di reagire.',
       zh: '了解传感器、控制器和执行器如何使物理系统作出响应。',
       hi: 'जानें कि सेंसर, नियंत्रक और प्रवर्तक भौतिक प्रणालियों को कैसे प्रतिक्रिया करने देते हैं।',
       es: 'Descubre cómo sensores, controles y actuadores hacen reaccionar a los sistemas físicos.',

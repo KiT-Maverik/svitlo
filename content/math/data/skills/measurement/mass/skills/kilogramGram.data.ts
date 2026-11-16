@@ -5,6 +5,7 @@ export const kilogramGram_Skill_Data = defineSkill({
   id: '2d6e3dbf-3b0e-4368-92aa-6853332f20d0',
   name: {
     en: 'Relating kilograms and grams',
+    it: 'Collegare chilogrammi e grammi',
     qm: 'Kilogram ve gramlar arasındaki bağlılıq',
     lt: 'Kilogramų ir gramų ryšys',
     lv: 'Kilogramu un gramu saistība',
@@ -39,6 +40,7 @@ export const kilogramGram_Skill_Data = defineSkill({
       'One kilogram equals 1,000 grams. Changing between these mass units alters the numerical measure but not the physical mass.',
     frontend: {
       en: 'You can measure mass in kilograms or grams and convert between them, knowing that 1 kilogram equals 1,000 grams.',
+      it: 'Puoi misurare la massa in chilogrammi o grammi e convertirli tra loro, sapendo che 1 chilogrammo equivale a 1000 grammi.',
       qm: 'Kütleni kilogram ya da gramlarda ölçep, bu birlikler arasında çevire bilesiñ. 1 kilogram = 1000 gram.',
       zh: '你能用千克或克表示质量并进行换算，知道1千克等于1000克。',
       hi: 'आप द्रव्यमान को किलोग्राम या ग्राम में माप और बदल सकते हैं, जानते हुए कि 1 किलोग्राम = 1,000 ग्राम।',

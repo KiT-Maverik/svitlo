@@ -5,6 +5,7 @@ export const archaeologicalDating_Skill_Data = defineSkill({
   id: 'a8c022ff-5bf3-44ff-bd36-21c78f985895',
   name: {
     en: 'Archaeological Dating',
+    it: 'Datazione archeologica',
     zh: '考古年代测定',
     hi: 'पुरातात्त्विक काल निर्धारण',
     es: 'Datación arqueológica',
@@ -39,6 +40,7 @@ export const archaeologicalDating_Skill_Data = defineSkill({
       'Distinguish stratigraphy, typological comparison, and scientific dating techniques, including uncertainties and limitations.',
     frontend: {
       en: 'Explore different ways archaeologists estimate the age of finds.',
+      it: "Esplora i diversi modi in cui gli archeologi stimano l'età dei reperti.",
       zh: '探索考古学家估计出土物年代的不同方法。',
       hi: 'जानें कि पुरातत्वविद् खोजी गई वस्तुओं की उम्र कैसे निर्धारित करते हैं।',
       es: 'Explora distintos métodos que usan los arqueólogos para estimar la antigüedad de sus hallazgos.',

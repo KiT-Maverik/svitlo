@@ -12,6 +12,7 @@ export const australiaAndNewGuinea_SkillGroup_Data = defineSkillGroup({
   id: '789a7c3c-8525-43fb-827f-1834d88ab398',
   name: {
     en: 'Australia and New Guinea',
+    it: 'Australia e Nuova Guinea',
     zh: '澳大利亚与新几内亚',
     hi: 'ऑस्ट्रेलिया और न्यू गिनी',
     es: 'Australia y Nueva Guinea',
@@ -55,6 +56,7 @@ export const australiaAndNewGuinea_SkillGroup_Data = defineSkillGroup({
       'Archaeology and living cultural traditions attest to long human presence in the former Sahul landmass.',
     frontend: {
       en: 'Discover the ancient communities of Australia and New Guinea.',
+      it: "Scopri le comunità antiche dell'Australia e della Nuova Guinea.",
       zh: '认识澳大利亚与新几内亚的古代社群。',
       hi: 'ऑस्ट्रेलिया और न्यू गिनी के प्राचीन समुदायों को जानें।',
       es: 'Descubre las comunidades antiguas de Australia y Nueva Guinea.',

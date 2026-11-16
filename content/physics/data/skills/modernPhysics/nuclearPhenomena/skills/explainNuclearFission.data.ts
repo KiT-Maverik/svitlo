@@ -5,6 +5,7 @@ export const explainNuclearFission_Skill_Data = defineSkill({
   id: '4bcc1616-d748-4ccd-b73b-1a5d27315078',
   name: {
     en: 'Explain nuclear fission',
+    it: 'Spiegare la fissione nucleare',
     zh: '解释核裂变',
     hi: 'नाभिकीय विखंडन समझाना',
     es: 'Explicar la fisión nuclear',
@@ -39,6 +40,7 @@ export const explainNuclearFission_Skill_Data = defineSkill({
       'Heavy nuclei can split into lighter fragments and release energy because of changes in binding energy.',
     frontend: {
       en: 'Explore how splitting heavy nuclei can release energy.',
+      it: 'Esplora come la scissione di nuclei pesanti possa liberare energia.',
       zh: '探索重原子核如何分裂并释放能量。',
       hi: 'जानो कि भारी परमाणु नाभिक टूटकर ऊर्जा कैसे छोड़ सकते हैं।',
       es: 'Explora cómo la división de núcleos pesados puede liberar energía.',

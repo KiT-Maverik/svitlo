@@ -5,6 +5,7 @@ export const exoplanetBulkComposition_Skill_Data = defineSkill({
   id: '3cae1ddc-a535-4230-a8ac-0dde170d289f',
   name: {
     en: 'Exoplanet Bulk Composition',
+    it: 'Composizione globale degli esopianeti',
     zh: '系外行星整体组成',
     hi: 'बहिर्ग्रहों की समग्र संरचना',
     es: 'Composición global de exoplanetas',
@@ -39,6 +40,7 @@ export const exoplanetBulkComposition_Skill_Data = defineSkill({
       "Relate a planet's mass-radius behavior to plausible internal materials while recognizing model degeneracy.",
     frontend: {
       en: 'Use mass and radius to investigate possible planetary materials without assuming one answer.',
+      it: 'Usa massa e raggio per indagare i possibili materiali di un pianeta senza supporre che esista una sola risposta.',
       zh: '利用质量和半径研究行星可能的组成物质，而不假定只有一种答案。',
       hi: 'द्रव्यमान और त्रिज्या से ग्रह के संभावित पदार्थों का अध्ययन करें, लेकिन एक ही उत्तर मानकर न चलें।',
       es: 'Usa la masa y el radio para investigar posibles materiales de un planeta sin asumir una única respuesta.',

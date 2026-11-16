@@ -5,6 +5,7 @@ export const interpretCalendarDateChangesAcrossTheInternationalDateLine_Skill_Da
   id: 'cf438f29-f7a1-4ae0-b2ee-86b526ac7fbb',
   name: {
     en: 'Interpret calendar-date changes across the International Date Line',
+    it: 'Interpretare i cambiamenti di data attraversando la linea internazionale del cambio di data',
     zh: '解释跨越国际日期变更线的日期变化',
     hi: 'अंतरराष्ट्रीय तिथि रेखा पार करने पर तारीख बदलना समझना',
     es: 'Interpretar cambios de fecha al cruzar la línea internacional de cambio de fecha',
@@ -39,6 +40,7 @@ export const interpretCalendarDateChangesAcrossTheInternationalDateLine_Skill_Da
       'Determine why adjacent locations on opposite sides of the approximate Pacific date boundary can have different calendar dates, noting that its actual course follows regional civil-time choices rather than a perfectly straight meridian.',
     frontend: {
       en: 'Explain why crossing the International Date Line can change the calendar date.',
+      it: 'Spiega perché attraversare la linea internazionale del cambio di data può modificare la data del calendario.',
       zh: '解释为什么越过国际日期变更线可能改变日历日期。',
       hi: 'समझाएँ कि अंतरराष्ट्रीय तिथि रेखा पार करने से कैलेंडर की तारीख क्यों बदल सकती है।',
       es: 'Explica por qué cruzar la línea internacional de cambio de fecha puede cambiar el día del calendario.',

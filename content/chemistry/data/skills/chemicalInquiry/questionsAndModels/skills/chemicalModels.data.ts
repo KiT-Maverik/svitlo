@@ -5,6 +5,7 @@ export const chemicalModels_Skill_Data = defineSkill({
   id: '9ece4a4c-0180-4d0e-9759-ad8c4186b485',
   name: {
     en: 'Chemical Models',
+    it: 'Modelli chimici',
     zh: '化学模型',
     hi: 'रासायनिक मॉडल',
     es: 'Modelos químicos',
@@ -39,6 +40,7 @@ export const chemicalModels_Skill_Data = defineSkill({
       'Use and critique diagrams, formulas and physical or computational representations according to what they show and omit.',
     frontend: {
       en: 'Use chemical diagrams and formulas while recognizing what they cannot show.',
+      it: 'Usa diagrammi e formule chimiche, riconoscendo anche ciò che non possono rappresentare.',
       zh: '使用化学图示和化学式，同时认识它们的局限。',
       hi: 'रासायनिक चित्रों और सूत्रों का उपयोग करें तथा उनकी सीमाएँ पहचानें।',
       es: 'Utiliza diagramas y fórmulas químicas reconociendo lo que no pueden mostrar.',

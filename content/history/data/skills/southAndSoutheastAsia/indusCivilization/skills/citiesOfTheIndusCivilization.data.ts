@@ -5,6 +5,7 @@ export const citiesOfTheIndusCivilization_Skill_Data = defineSkill({
   id: '970c36e7-04dd-4e0c-8e1a-6310f175d89f',
   name: {
     en: 'Cities of the Indus Civilization',
+    it: "Città della civiltà dell'Indo",
     zh: '印度河文明的城市',
     hi: 'सिंधु सभ्यता के नगर',
     es: 'Ciudades de la civilización del Indo',
@@ -38,6 +39,7 @@ export const citiesOfTheIndusCivilization_Skill_Data = defineSkill({
     methodological: 'Examine planning, drainage, and administration at Mohenjo-daro, Harappa, and other settlements.',
     frontend: {
       en: 'Explore how people organized streets and water in Indus cities.',
+      it: "Esplora come gli abitanti delle città dell'Indo organizzavano le strade e l'acqua.",
       zh: '探索印度河城市如何规划街道与供水排水。',
       hi: 'जानें कि सिंधु नगरों में सड़कें और पानी की व्यवस्था कैसे होती थी।',
       es: 'Explora cómo organizaban calles y agua en las ciudades del Indo.',

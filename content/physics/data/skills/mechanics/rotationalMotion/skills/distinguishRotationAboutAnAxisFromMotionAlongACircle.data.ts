@@ -5,6 +5,7 @@ export const distinguishRotationAboutAnAxisFromMotionAlongACircle_Skill_Data = d
   id: 'e1c8985d-82d8-45c9-b034-26f7112d0021',
   name: {
     en: 'Distinguish rotation about an axis from motion along a circle',
+    it: 'Distinguere la rotazione attorno a un asse dal moto circolare',
     zh: '区分绕轴自转与沿圆周运动',
     hi: 'अक्ष के चारों ओर घूमने और वृत्ताकार पथ पर चलने में अंतर करना',
     es: 'Distinguir el giro sobre un eje del movimiento circular',
@@ -39,6 +40,7 @@ export const distinguishRotationAboutAnAxisFromMotionAlongACircle_Skill_Data = d
       "A body's rotation about its own axis differs from the motion of its center along a circular path, during which the direction of velocity changes.",
     frontend: {
       en: 'Distinguish an object spinning on an axis from traveling along a circular path.',
+      it: 'Distingui un oggetto che ruota su un asse da uno che percorre una traiettoria circolare.',
       zh: '区分物体绕自身轴旋转和沿圆形轨道移动。',
       hi: 'वस्तु का अपने अक्ष पर घूमना और वृत्ताकार पथ पर चलना अलग-अलग पहचानें।',
       es: 'Distingue entre un objeto que gira alrededor de su eje y otro que se desplaza por una trayectoria circular.',

@@ -5,6 +5,7 @@ export const applyMaximumFinding_Skill_Data = defineSkill({
   id: '5818fb78-28b0-406a-803f-3b1a71f65b5b',
   name: {
     en: 'Apply Maximum Finding',
+    it: 'Applicare la ricerca del massimo',
     zh: '应用最大值查找算法',
     hi: 'अधिकतम मान खोजना',
     es: 'Aplicar la búsqueda del máximo',
@@ -38,6 +39,7 @@ export const applyMaximumFinding_Skill_Data = defineSkill({
     methodological: 'Maintain the largest value seen so far and update it when a larger number appears.',
     frontend: {
       en: 'Track the largest value seen while traversing a collection.',
+      it: 'Tieni traccia del valore più grande incontrato mentre percorri una collezione.',
       zh: '遍历集合时追踪已见过的最大值。',
       hi: 'संग्रह में आगे बढ़ते हुए अब तक का सबसे बड़ा मान याद रखें।',
       es: 'Mantén el mayor valor encontrado mientras recorres una colección.',

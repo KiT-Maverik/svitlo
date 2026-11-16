@@ -5,6 +5,7 @@ export const concentrationEffects_Skill_Data = defineSkill({
   id: '6028897b-16e3-4a11-95f1-e98ff9a8d2c0',
   name: {
     en: 'Concentration Effects',
+    it: 'Effetti della concentrazione',
     zh: '浓度的影响',
     hi: 'सांद्रता का प्रभाव',
     es: 'Efectos de la concentración',
@@ -38,6 +39,7 @@ export const concentrationEffects_Skill_Data = defineSkill({
     methodological: 'Explain how changing reactant concentration can influence encounter frequency and rate.',
     frontend: {
       en: 'Explain why changing reactant concentrations can change reaction speed.',
+      it: 'Spiega perché cambiare la concentrazione dei reagenti può modificare la velocità della reazione.',
       zh: '解释为什么改变反应物浓度会改变反应速率。',
       hi: 'समझाएँ कि अभिकारकों की सांद्रता बदलने से अभिक्रिया की गति क्यों बदलती है।',
       es: 'Explica por qué cambiar la concentración de reactivos puede alterar la velocidad.',

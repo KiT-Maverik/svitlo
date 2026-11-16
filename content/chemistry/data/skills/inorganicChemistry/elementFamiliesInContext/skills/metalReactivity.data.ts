@@ -5,6 +5,7 @@ export const metalReactivity_Skill_Data = defineSkill({
   id: '4ae45780-277e-496f-b31a-9a5cf60c2884',
   name: {
     en: 'Metal Reactivity',
+    it: 'Reattività dei metalli',
     zh: '金属的反应性',
     hi: 'धातुओं की अभिक्रियाशीलता',
     es: 'Reactividad de los metales',
@@ -39,6 +40,7 @@ export const metalReactivity_Skill_Data = defineSkill({
       'Compare how different metals undergo oxidation, form ions and participate in displacement reactions under relevant conditions, distinct from the detailed mechanisms of corrosion.',
     frontend: {
       en: 'Explain why different metals react differently under comparable conditions.',
+      it: 'Spiega perché metalli diversi reagiscono diversamente in condizioni confrontabili.',
       zh: '解释为什么不同金属在相同条件下的反应程度不同。',
       hi: 'समझाएँ कि समान परिस्थितियों में अलग धातुएँ अलग तरह से अभिक्रिया क्यों करती हैं।',
       es: 'Explica por qué distintos metales reaccionan de manera diferente en condiciones comparables.',

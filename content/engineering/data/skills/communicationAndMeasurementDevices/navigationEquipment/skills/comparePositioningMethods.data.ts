@@ -5,6 +5,7 @@ export const comparePositioningMethods_Skill_Data = defineSkill({
   id: '63888187-1591-488d-806b-2edd2f408be2',
   name: {
     en: 'Compare positioning methods',
+    it: 'Confrontare i metodi di posizionamento',
     zh: '比较定位方法',
     hi: 'स्थिति निर्धारण विधियों की तुलना',
     es: 'Comparar métodos de posicionamiento',
@@ -38,6 +39,7 @@ export const comparePositioningMethods_Skill_Data = defineSkill({
     methodological: 'Relate satellite, inertial and local-reference approaches to interference, coverage and drift.',
     frontend: {
       en: 'Compare positioning technologies by their operating limitations.',
+      it: 'Confronta le tecnologie di posizionamento in base ai loro limiti operativi.',
       zh: '比较定位技术及其工作限制。',
       hi: 'स्थिति निर्धारण तकनीकों की संचालन सीमाओं के अनुसार तुलना करें।',
       es: 'Compara tecnologías de posicionamiento según sus límites de funcionamiento.',

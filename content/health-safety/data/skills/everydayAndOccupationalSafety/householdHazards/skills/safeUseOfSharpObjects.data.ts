@@ -5,6 +5,7 @@ export const safeUseOfSharpObjects_Skill_Data = defineSkill({
   id: '653566eb-051e-41f6-8d9c-9392b90adb6c',
   name: {
     en: 'Safe use of sharp objects',
+    it: 'Uso sicuro degli oggetti taglienti',
     zh: '安全使用锐利物品',
     hi: 'नुकीली वस्तुओं का सुरक्षित उपयोग',
     es: 'Uso seguro de objetos cortantes',
@@ -39,6 +40,7 @@ export const safeUseOfSharpObjects_Skill_Data = defineSkill({
       'Apply appropriate handling, storage, and supervision to cutting or piercing tools while avoiding unnecessary exposure.',
     frontend: {
       en: 'Use sharp objects carefully and store them safely.',
+      it: 'Utilizza gli oggetti taglienti con attenzione e conservali in sicurezza.',
       zh: '小心使用并妥善存放锐利物品。',
       hi: 'नुकीली वस्तुओं को सावधानी से इस्तेमाल करें और सुरक्षित रखें।',
       es: 'Usa con cuidado los objetos cortantes y guárdalos de forma segura.',

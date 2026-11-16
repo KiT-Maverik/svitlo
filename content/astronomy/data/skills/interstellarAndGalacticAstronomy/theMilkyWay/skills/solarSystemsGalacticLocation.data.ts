@@ -5,6 +5,7 @@ export const solarSystemsGalacticLocation_Skill_Data = defineSkill({
   id: 'b4eca2f9-27c6-41d7-93e3-f1a183415b1f',
   name: {
     en: "Solar System's Galactic Location",
+    it: 'Posizione galattica del Sistema solare',
     qm: 'Küneş sistemasınıñ galaktikadaki yeri',
     zh: '太阳系在银河系中的位置',
     hi: 'आकाशगंगा में सौरमंडल का स्थान',
@@ -39,6 +40,7 @@ export const solarSystemsGalacticLocation_Skill_Data = defineSkill({
       'Locate the Sun approximately within the Galactic disk, distinguishing its local spiral-arm environment from the Galactic center.',
     frontend: {
       en: 'Locate the Solar System within the Milky Way rather than at its centre.',
+      it: "Localizza il Sistema solare all'interno della Via Lattea, anziché al suo centro.",
       qm: 'Küneş sistemasını Kâbe yolunıñ merkezinde degil, onıñ içinde olğan bir yerde tapıñız.',
       zh: '了解太阳系在银河系中的位置，而不是误以为它位于中心。',
       hi: 'आकाशगंगा में सौरमंडल की स्थिति खोजें और जानें कि यह केंद्र में नहीं है।',

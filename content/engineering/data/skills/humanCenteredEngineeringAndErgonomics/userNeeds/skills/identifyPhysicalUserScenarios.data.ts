@@ -5,6 +5,7 @@ export const identifyPhysicalUserScenarios_Skill_Data = defineSkill({
   id: 'fbe4abda-186d-4ce6-882c-2896bf6bb44d',
   name: {
     en: 'Identify physical user scenarios',
+    it: "Individuare scenari d'uso fisico",
     zh: '识别用户实体操作场景',
     hi: 'उपयोगकर्ता की भौतिक स्थितियाँ पहचानना',
     es: 'Identificar situaciones de uso físico',
@@ -38,6 +39,7 @@ export const identifyPhysicalUserScenarios_Skill_Data = defineSkill({
     methodological: 'Specify who uses an object, what task they perform and relevant conditions.',
     frontend: {
       en: 'Describe the physical actions people need to perform with a product.',
+      it: 'Descrivi le azioni fisiche che le persone devono compiere con un prodotto.',
       zh: '描述人们使用产品时需要完成的实体动作。',
       hi: 'वर्णन करें कि लोग किसी उत्पाद के साथ कौन-सी शारीरिक क्रियाएँ करते हैं।',
       es: 'Describe las acciones físicas que las personas necesitan realizar con un producto.',

@@ -5,6 +5,7 @@ export const tidalForces_Skill_Data = defineSkill({
   id: '8f33442d-70ec-473f-9a25-b71d236cd946',
   name: {
     en: 'Tidal Forces',
+    it: 'Forze di marea',
     zh: '潮汐力',
     hi: 'ज्वारीय बल',
     es: 'Fuerzas de marea',
@@ -39,6 +40,7 @@ export const tidalForces_Skill_Data = defineSkill({
       'Explain differences in gravitational pull across an extended body and their consequences for distortion and orbital evolution.',
     frontend: {
       en: 'See how unequal gravitational pulls across a world create tides.',
+      it: 'Scopri come le differenze di attrazione gravitazionale tra parti di un mondo generano le maree.',
       zh: '了解天体不同部位所受引力不同，如何产生潮汐。',
       hi: 'जानें कि किसी खगोलीय पिंड के अलग-अलग हिस्सों पर गुरुत्वाकर्षण का असमान खिंचाव ज्वार-भाटा कैसे पैदा करता है।',
       es: 'Observa cómo las diferencias de atracción gravitatoria entre distintas partes de un mundo generan mareas.',

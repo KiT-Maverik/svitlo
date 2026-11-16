@@ -5,6 +5,7 @@ export const sampleReturnEvidence_Skill_Data = defineSkill({
   id: 'eb3fd2e7-fa77-455b-9c9a-76e0128d7dd3',
   name: {
     en: 'Sample Return Evidence',
+    it: 'Prove dai campioni riportati a Terra',
     qm: 'Qaytarılğan numunalar delilleri',
     bn: 'মহাকাশ থেকে আনা নমুনার প্রমাণ',
     ur: 'خلا سے واپس لائے گئے نمونوں کے شواہد',
@@ -39,6 +40,7 @@ export const sampleReturnEvidence_Skill_Data = defineSkill({
       'Explain how collected extraterrestrial materials can be analyzed and how contamination or context loss affects conclusions.',
     frontend: {
       en: 'Explore what returned space samples reveal and how contamination can affect findings.',
+      it: 'Esplora cosa rivelano i campioni raccolti nello spazio e come la contaminazione può influenzare i risultati.',
       qm: 'Kosmostan qaytarılğan numunalar neni bildirgenini ve kirlenüv neticelerge nasıl tesir ete bilgenini araştırıñız.',
       bn: 'মহাকাশ থেকে ফিরিয়ে আনা নমুনা কী জানায় এবং দূষণ কীভাবে গবেষণার ফলকে প্রভাবিত করতে পারে, তা খুঁজে দেখো।',
       ur: 'دریافت کریں کہ خلا سے واپس لائے گئے نمونے کیا ظاہر کرتے ہیں اور آلودگی نتائج پر کیسے اثر ڈال سکتی ہے۔',

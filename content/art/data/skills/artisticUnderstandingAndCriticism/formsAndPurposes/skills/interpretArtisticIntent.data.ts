@@ -5,6 +5,7 @@ export const interpretArtisticIntent_Skill_Data = defineSkill({
   id: 'e03d0f70-f5f3-4137-97d1-a9b2fb6acf30',
   name: {
     en: 'Interpret Artistic Intent',
+    it: "Interpretare l'intenzione artistica",
     zh: '解读艺术意图',
     hi: 'कलात्मक आशय की व्याख्या करें',
     es: 'Interpretar la intención artística',
@@ -39,6 +40,7 @@ export const interpretArtisticIntent_Skill_Data = defineSkill({
       'Infer plausible aims from artistic choices, distinguishing supported observations from assumptions about the creator.',
     frontend: {
       en: 'Use clues in an artwork to explore what its creator may have intended.',
+      it: "Usa gli indizi presenti in un'opera per esplorare ciò che il suo autore potrebbe aver voluto esprimere.",
       zh: '利用艺术作品中的线索，探索创作者可能想表达什么。',
       hi: 'किसी कलाकृति में मिले संकेतों से जानें कि उसके रचयिता का क्या उद्देश्य रहा होगा।',
       es: 'Utiliza pistas de una obra para explorar qué pudo haber querido expresar su creador.',

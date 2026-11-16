@@ -5,6 +5,7 @@ export const useComplementaryColors_Skill_Data = defineSkill({
   id: '75432a57-2258-4908-b0bd-4872e0dc1d88',
   name: {
     en: 'Use Complementary Colors',
+    it: 'Usare i colori complementari',
     zh: '运用互补色',
     hi: 'पूरक रंगों का उपयोग करें',
     es: 'Usar colores complementarios',
@@ -38,6 +39,7 @@ export const useComplementaryColors_Skill_Data = defineSkill({
     methodological: 'Employ contrasting color relationships to produce emphasis or modify perceived intensity.',
     frontend: {
       en: 'Use colors opposite each other to create contrast and emphasis.',
+      it: 'Usa colori opposti nel cerchio cromatico per creare contrasto ed enfasi.',
       zh: '使用色轮上相对的颜色来营造对比并突出重点。',
       hi: 'विरोधाभास और ज़ोर पैदा करने के लिए रंग-चक्र पर एक-दूसरे के विपरीत रंगों का उपयोग करें।',
       es: 'Usa colores opuestos en el círculo cromático para crear contraste y énfasis.',

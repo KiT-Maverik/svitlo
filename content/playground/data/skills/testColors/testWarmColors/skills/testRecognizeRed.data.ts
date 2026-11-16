@@ -6,6 +6,7 @@ export const testRecognizeRed_Skill_Data = defineSkill({
   id: '00000000-0000-4000-8000-000000000001',
   name: {
     en: '[TEST en] Recognize red',
+    it: '[TEST it] Riconoscere il rosso',
     zh: '[TEST zh] Recognize red',
     hi: '[TEST hi] Recognize red',
     es: '[TEST es] Recognize red',
@@ -40,6 +41,7 @@ export const testRecognizeRed_Skill_Data = defineSkill({
       'Synthetic fixture skill for recognize red; it exists solely to exercise the Playground Skill Data graph.',
     frontend: {
       en: '[TEST en] Recognize the color red in a simple visual example.',
+      it: '[TEST it] Riconoscere il colore rosso in un semplice esempio visivo.',
       zh: '[TEST zh] Recognize the color red in a simple visual example.',
       hi: '[TEST hi] Recognize the color red in a simple visual example.',
       es: '[TEST es] Recognize the color red in a simple visual example.',

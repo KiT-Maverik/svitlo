@@ -7,6 +7,7 @@ export const testRoundShapes_SkillGroup_Data = defineSkillGroup({
   id: '00000000-0000-4000-8000-000000000010',
   name: {
     en: '[TEST en] Round shapes',
+    it: '[TEST it] Forme arrotondate',
     zh: '[TEST zh] Round shapes',
     hi: '[TEST hi] Round shapes',
     es: '[TEST es] Round shapes',
@@ -44,6 +45,7 @@ export const testRoundShapes_SkillGroup_Data = defineSkillGroup({
     methodological: 'Synthetic Playground fixture for testRoundShapes; testing only, not curricular content.',
     frontend: {
       en: '[TEST en] Synthetic testRoundShapes fixture.',
+      it: '[TEST it] Fixture sintetica per testRoundShapes.',
       zh: '[TEST zh] Synthetic testRoundShapes fixture.',
       hi: '[TEST hi] Synthetic testRoundShapes fixture.',
       es: '[TEST es] Synthetic testRoundShapes fixture.',

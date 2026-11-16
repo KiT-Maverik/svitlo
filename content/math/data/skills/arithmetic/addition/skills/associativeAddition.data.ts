@@ -11,6 +11,7 @@ export const associativeAddition_Skill_Data = defineSkill({
     ka: 'შეკრება — ჯუფთებადობის თვისება',
     kk: 'Қосу — терімділік қасиеті',
     en: 'Addition — Associative property',
+    it: 'Addizione — Proprietà associativa',
     qm: 'Qoşuv — birleştirüv hasiyeti',
     zh: '加法 — 结合律',
     hi: 'जोड़ — साहचर्य नियम',
@@ -39,6 +40,7 @@ export const associativeAddition_Skill_Data = defineSkill({
       'Associativity of addition allows regrouping three or more addends without changing their sum. Alongside commutativity it supports flexible strategies but does not permit arbitrary changes to addend values.',
     frontend: {
       en: 'You can group three or more numbers in different ways when adding them, without changing the total.',
+      it: "Puoi raggruppare tre o più numeri in modi diversi durante un'addizione senza cambiare la somma.",
       qm: 'Üç ya da daa çoq sayını qoşqanda, olarnı türlü şekilde toparlap qoşsañ da, umumiy toplam deñişmey.',
       zh: '三个或更多的数相加时，你可以改变分组方式，而总和不变。',
       hi: 'तीन या अधिक संख्याएँ जोड़ते समय आप उनका समूह बदल सकते हैं, लेकिन योग वही रहता है।',

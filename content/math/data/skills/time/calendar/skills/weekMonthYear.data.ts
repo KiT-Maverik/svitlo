@@ -5,6 +5,7 @@ export const weekMonthYear_Skill_Data = defineSkill({
   id: '3fccd9a5-9094-400e-8401-be2fa98cbfa6',
   name: {
     en: 'Navigating days, weeks, and months in a calendar',
+    it: 'Orientarsi tra giorni, settimane e mesi sul calendario',
     qm: 'Taqvimde künler, aftalar ve aylarnı tapmaq',
     lt: 'Orientavimasis kalendoriaus dienose, savaitėse ir mėnesiuose',
     lv: 'Dienu, nedēļu un mēnešu atrašana kalendārā',
@@ -39,6 +40,7 @@ export const weekMonthYear_Skill_Data = defineSkill({
       'A week is a recurring sequence of seven days, while a calendar year consists of months of different lengths. The competency covers ordering days and months, locating dates, and handling transitions between weeks, months, and years.',
     frontend: {
       en: 'You can find dates on a calendar, name days of the week and months in order, and follow changes from one week, month, or year to the next.',
+      it: "Puoi trovare le date sul calendario, nominare nell'ordine i giorni della settimana e i mesi e seguire i passaggi da una settimana, mese o anno al successivo.",
       qm: 'Taqvimde tarihlerni tapa, afta künleri ve aylarnı tertibinen ayta, bir aftadan, aydan ya da yıldan digerine keçüvni köre bilesiñ.',
       zh: '你能在日历上查找日期，按顺序说出星期和月份，并理解跨周、跨月或跨年的变化。',
       hi: 'आप कैलेंडर में तारीखें ढूँढ़ सकते हैं, सप्ताह के दिन और महीने क्रम से बता सकते हैं तथा सप्ताह, महीने और साल बदलने को समझ सकते हैं।',

@@ -5,6 +5,7 @@ export const distinguishImperativeAndDeclarativeApproaches_Skill_Data = defineSk
   id: '05e4a17d-74da-4fad-b4b5-3b12c0d62397',
   name: {
     en: 'Distinguish Imperative and Declarative Approaches',
+    it: 'Distinguere approcci imperativi e dichiarativi',
     zh: '区分命令式与声明式方法',
     hi: 'आदेशात्मक और घोषणात्मक तरीकों में अंतर करना',
     es: 'Distinguir enfoques imperativos y declarativos',
@@ -39,6 +40,7 @@ export const distinguishImperativeAndDeclarativeApproaches_Skill_Data = defineSk
       'Compare specifying concrete state-changing steps with specifying desired results or rules from which the environment chooses an execution strategy.',
     frontend: {
       en: 'Compare giving explicit instructions with describing the desired result.',
+      it: 'Confronta il fornire istruzioni esplicite con il descrivere il risultato desiderato.',
       zh: '比较明确指定执行步骤与描述期望结果两种方式。',
       hi: 'स्पष्ट निर्देश देने और इच्छित परिणाम बताने के तरीकों की तुलना करें।',
       es: 'Compara dar instrucciones explícitas con describir el resultado deseado.',

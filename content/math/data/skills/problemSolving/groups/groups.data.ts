@@ -7,6 +7,7 @@ export const groups_SkillGroup_Data = defineSkillGroup({
   id: 'fae06e19-607b-485c-88d4-cfe38e26e343',
   name: {
     en: 'Grouping problems',
+    it: 'Problemi di raggruppamento',
     qm: 'Toparlav meseleleri',
     lt: 'Grupavimo uždaviniai',
     lv: 'Grupēšanas uzdevumi',

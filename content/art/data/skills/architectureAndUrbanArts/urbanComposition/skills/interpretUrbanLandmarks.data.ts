@@ -5,6 +5,7 @@ export const interpretUrbanLandmarks_Skill_Data = defineSkill({
   id: 'd7c863ec-e9a0-4003-8af5-bed1cf5f6937',
   name: {
     en: 'Interpret Urban Landmarks',
+    it: 'Interpretare i punti di riferimento urbani',
     zh: '解读城市地标',
     hi: 'शहरी स्थलों की व्याख्या करें',
     es: 'Interpretar hitos urbanos',
@@ -38,6 +39,7 @@ export const interpretUrbanLandmarks_Skill_Data = defineSkill({
     methodological: 'Explain how distinctive spaces support orientation and shared identity.',
     frontend: {
       en: 'Explore how distinctive places help people find their way and feel connected.',
+      it: 'Esplora come i luoghi caratteristici aiutano le persone a orientarsi e a sentirsi parte di una comunità.',
       zh: '探索鲜明的城市地标如何帮助人们辨认方向并建立归属感。',
       hi: 'जानें कि विशिष्ट शहरी स्थलचिह्न लोगों को रास्ता पहचानने और जुड़ाव महसूस करने में कैसे मदद करते हैं।',
       es: 'Explora cómo los lugares emblemáticos ayudan a orientarse y a sentirse parte de la ciudad.',

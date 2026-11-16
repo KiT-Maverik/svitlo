@@ -13,6 +13,7 @@ export const genetics_SkillGroup_Data = defineSkillGroup({
   id: '892fece4-898f-42d7-bf04-7b965d5d82a8',
   name: {
     en: 'Genetics',
+    it: 'Genetica',
     qm: 'Genetika',
     zh: '遗传学',
     hi: 'आनुवंशिकी',
@@ -63,6 +64,7 @@ export const genetics_SkillGroup_Data = defineSkillGroup({
       'Genes, as segments of hereditary information, help explain relatedness and differences; how a trait is expressed also depends on regulation and the environment.',
     frontend: {
       en: 'Learn how DNA, genes and their activity shape inherited characteristics.',
+      it: 'Scopri come il DNA, i geni e la loro attività influenzano i caratteri ereditari.',
       qm: 'DNK, genler ve olarnıñ faaliyeti nesilden nesilge keçken hususiyetlerge nasıl tesir etkenini ögreniñiz.',
       zh: '了解 DNA、基因及其活动如何影响可遗传的性状。',
       hi: 'जानें कि डीएनए, जीन और उनकी सक्रियता वंशानुगत विशेषताओं को कैसे प्रभावित करते हैं।',

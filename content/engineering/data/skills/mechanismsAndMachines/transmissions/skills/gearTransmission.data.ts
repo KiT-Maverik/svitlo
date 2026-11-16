@@ -5,6 +5,7 @@ export const gearTransmission_Skill_Data = defineSkill({
   id: 'b826705e-a712-42d5-b95b-88c8fbc12e05',
   name: {
     en: 'Gear transmission',
+    it: 'Trasmissione a ingranaggi',
     zh: '齿轮传动',
     hi: 'गियर संचरण',
     es: 'Transmisión por engranajes',
@@ -38,6 +39,7 @@ export const gearTransmission_Skill_Data = defineSkill({
     methodological: 'Trace rotational transfer between meshing gears and the effect of tooth counts.',
     frontend: {
       en: 'Trace rotation through connected gears.',
+      it: 'Segui la rotazione attraverso ingranaggi collegati.',
       zh: '追踪相互啮合的齿轮之间如何传递旋转。',
       hi: 'आपस में जुड़े गियरों से घूमने की गति कैसे पहुँचती है, यह देखें।',
       es: 'Sigue cómo se transmite la rotación entre engranajes conectados.',

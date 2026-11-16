@@ -12,6 +12,7 @@ export const levelsOfOrganization_SkillGroup_Data = defineSkillGroup({
   id: '453e1185-8dd1-439f-b8cf-34bd3c7a5e1c',
   name: {
     en: 'Levels of Organization',
+    it: 'Livelli di organizzazione',
     zh: '生物体的结构层次',
     hi: 'संगठन के स्तर',
     es: 'Niveles de organización',
@@ -60,6 +61,7 @@ export const levelsOfOrganization_SkillGroup_Data = defineSkillGroup({
       'Parts of cellular organisms form nested levels; the functioning of a whole depends on the coordinated work of its structures.',
     frontend: {
       en: 'Explore how cells, tissues, organs and systems fit together in living organisms.',
+      it: 'Scopri come cellule, tessuti, organi e apparati si integrano negli organismi viventi.',
       zh: '探索细胞、组织、器官和器官系统如何在生物体内相互配合。',
       hi: 'जानें कि कोशिकाएँ, ऊतक, अंग और अंग तंत्र जीवों में कैसे जुड़े होते हैं।',
       es: 'Explora cómo se integran las células, los tejidos, los órganos y los sistemas en los seres vivos.',

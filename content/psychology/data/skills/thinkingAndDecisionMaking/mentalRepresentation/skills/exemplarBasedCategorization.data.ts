@@ -5,6 +5,7 @@ export const exemplarBasedCategorization_Skill_Data = defineSkill({
   id: 'e9daa38d-ee82-4f8b-998b-0ad5f47f5d1a',
   name: {
     en: 'Exemplar-Based Categorization',
+    it: 'Categorizzazione basata su esempi',
     zh: '基于实例的分类',
     hi: 'विशिष्ट उदाहरणों पर आधारित वर्गीकरण',
     es: 'Categorización basada en ejemplares',
@@ -38,6 +39,7 @@ export const exemplarBasedCategorization_Skill_Data = defineSkill({
     methodological: 'Explain how classification can rely on comparisons with specific remembered category instances.',
     frontend: {
       en: 'Explore how remembered individual examples shape classification.',
+      it: 'Esplora come il ricordo di singoli esempi influenzi la classificazione.',
       zh: '探索记忆中的具体例子如何影响分类。',
       hi: 'जानें कि याद रखे गए अलग-अलग उदाहरण वर्गीकरण को कैसे प्रभावित करते हैं।',
       es: 'Explora cómo los ejemplos concretos recordados influyen en la clasificación.',

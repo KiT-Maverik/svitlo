@@ -5,6 +5,7 @@ export const redGiants_Skill_Data = defineSkill({
   id: '5ccd0361-375d-4131-83bf-ee8425a7b06d',
   name: {
     en: 'Red Giants',
+    it: 'Giganti rosse',
     zh: '红巨星',
     hi: 'लाल दानव तारे',
     es: 'Gigantes rojas',
@@ -39,6 +40,7 @@ export const redGiants_Skill_Data = defineSkill({
       'Explain the expansion and cooling of stellar envelopes during post-main-sequence evolution and distinguish the relevant evolutionary paths by progenitor mass.',
     frontend: {
       en: 'Explore how stars expand and cool as they become red giants.',
+      it: 'Esplora come le stelle si espandono e si raffreddano diventando giganti rosse.',
       zh: '探索恒星成为红巨星时如何膨胀、表面温度如何降低。',
       hi: 'जानें कि लाल दानव बनने पर तारे कैसे फैलते हैं और उनकी सतह ठंडी होती है।',
       es: 'Explora cómo las estrellas se expanden y se enfrían al convertirse en gigantes rojas.',

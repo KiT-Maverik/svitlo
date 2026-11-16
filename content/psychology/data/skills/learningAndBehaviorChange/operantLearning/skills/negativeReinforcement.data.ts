@@ -5,6 +5,7 @@ export const negativeReinforcement_Skill_Data = defineSkill({
   id: 'aa339eeb-7080-431b-bff0-4a885f5e5834',
   name: {
     en: 'Negative Reinforcement',
+    it: 'Rinforzo negativo',
     zh: '负强化',
     hi: 'नकारात्मक प्रबलन',
     es: 'Refuerzo negativo',
@@ -39,6 +40,7 @@ export const negativeReinforcement_Skill_Data = defineSkill({
       'Identify a consequence removed after a behavior that increases future responding, without confusing removal with punishment.',
     frontend: {
       en: 'Understand how removing an unpleasant condition can strengthen behavior.',
+      it: 'Comprendi come eliminare una condizione spiacevole possa rafforzare un comportamento.',
       zh: '理解移除令人不快的条件如何增加某种行为发生的可能性。',
       hi: 'समझें कि अप्रिय स्थिति हटने से किसी व्यवहार के दोहराए जाने की संभावना कैसे बढ़ सकती है।',
       es: 'Comprende cómo eliminar una condición desagradable puede aumentar la frecuencia de una conducta.',

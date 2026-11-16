@@ -5,6 +5,7 @@ export const sequenceMotionGraphics_Skill_Data = defineSkill({
   id: '48dfcdff-074f-430f-b7e2-45e29edc5536',
   name: {
     en: 'Sequence Motion Graphics',
+    it: 'Organizzare sequenze di grafica in movimento',
     zh: '编排动态图形序列',
     hi: 'मोशन ग्राफ़िक्स का क्रम बनाएँ',
     es: 'Secuenciar gráficos en movimiento',
@@ -39,6 +40,7 @@ export const sequenceMotionGraphics_Skill_Data = defineSkill({
       'Organize distinct moving graphic passages with coherent transitions, rhythm and informational or aesthetic hierarchy.',
     frontend: {
       en: 'Arrange moving graphic passages with purposeful rhythm and transitions.',
+      it: 'Disponi segmenti grafici animati con un ritmo e transizioni intenzionali.',
       zh: '以有目的的节奏和转场编排动态视觉片段。',
       hi: 'उद्देश्यपूर्ण लय और ट्रांज़िशन के साथ गतिशील ग्राफ़िक दृश्यों को क्रम दें।',
       es: 'Organiza secuencias de gráficos en movimiento con ritmo y transiciones intencionados.',

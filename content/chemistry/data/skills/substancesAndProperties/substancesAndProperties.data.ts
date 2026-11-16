@@ -9,6 +9,7 @@ export const substancesAndProperties_SkillDomain_Data = defineSkillDomain({
   id: '030e5211-72db-4ad7-94c5-b52fc44c9bf5',
   title: {
     en: 'Substances and Properties',
+    it: 'Sostanze e proprietà',
     zh: '物质及其性质',
     hi: 'पदार्थ और उनके गुण',
     es: 'Sustancias y propiedades',
@@ -51,6 +52,7 @@ export const substancesAndProperties_SkillDomain_Data = defineSkillDomain({
       'Chemists classify samples by composition and characterize them through reproducible properties. This domain focuses on observable and bulk descriptions before explaining them through atomic structure or bonding.',
     frontend: {
       en: 'Discover how chemists identify substances through their composition, properties and changes.',
+      it: 'Scopri come i chimici identificano le sostanze attraverso composizione, proprietà e trasformazioni.',
       zh: '了解化学家如何通过组成、性质和变化识别物质。',
       hi: 'जानें कि रसायनज्ञ पदार्थों को उनकी संरचना, गुणों और परिवर्तनों से कैसे पहचानते हैं।',
       es: 'Descubre cómo los químicos identifican sustancias por su composición, propiedades y cambios.',

@@ -5,6 +5,7 @@ export const colligativeProperties_Skill_Data = defineSkill({
   id: 'e5729430-f619-4da6-b398-d6ea791d9a8e',
   name: {
     en: 'Colligative Properties',
+    it: 'Proprietà colligative',
     zh: '依数性',
     hi: 'अणुसंख्य गुणधर्म',
     es: 'Propiedades coligativas',
@@ -39,6 +40,7 @@ export const colligativeProperties_Skill_Data = defineSkill({
       'Relate changes such as freezing-point depression to dissolved particle concentration under appropriate assumptions.',
     frontend: {
       en: 'Explore why dissolved particles can change freezing and boiling behavior.',
+      it: "Esplora perché le particelle disciolte possono modificare il congelamento e l'ebollizione.",
       zh: '探索溶解的粒子为什么能改变凝固和沸腾的行为。',
       hi: 'जानें कि घुले हुए कण जमने और उबलने के व्यवहार को कैसे बदल सकते हैं।',
       es: 'Explora por qué las partículas disueltas pueden cambiar la congelación y la ebullición.',

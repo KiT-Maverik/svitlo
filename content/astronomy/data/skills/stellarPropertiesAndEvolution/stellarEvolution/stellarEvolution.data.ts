@@ -13,6 +13,7 @@ export const stellarEvolution_SkillGroup_Data = defineSkillGroup({
   id: '33289610-df9f-42ed-badd-631ab7731a51',
   name: {
     en: 'Stellar Evolution',
+    it: 'Evoluzione stellare',
     zh: '恒星演化',
     hi: 'तारकीय विकास',
     es: 'Evolución estelar',
@@ -57,6 +58,7 @@ export const stellarEvolution_SkillGroup_Data = defineSkillGroup({
       "Mass and composition strongly constrain the duration and physical stages of a star's nuclear-burning lifetime.",
     frontend: {
       en: 'Discover how stars change as they use up their nuclear fuel.',
+      it: 'Scopri come cambiano le stelle man mano che consumano il loro combustibile nucleare.',
       zh: '了解恒星在逐渐耗尽核燃料时会如何变化。',
       hi: 'जानें कि नाभिकीय ईंधन खर्च होने पर तारे कैसे बदलते हैं।',
       es: 'Descubre cómo cambian las estrellas a medida que consumen su combustible nuclear.',

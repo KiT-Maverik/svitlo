@@ -5,6 +5,7 @@ export const describeArtworksPrecisely_Skill_Data = defineSkill({
   id: '76e88082-1d5a-4296-a505-329f45e84524',
   name: {
     en: 'Describe Artworks Precisely',
+    it: "Descrivere le opere d'arte con precisione",
     zh: '准确描述艺术作品',
     hi: 'कलाकृतियों का सटीक वर्णन करें',
     es: 'Describir obras de arte con precisión',
@@ -39,6 +40,7 @@ export const describeArtworksPrecisely_Skill_Data = defineSkill({
       'Report recognizable features and formal relationships before advancing an account of their meaning.',
     frontend: {
       en: 'Describe the details you can actually see or hear before explaining their meaning.',
+      it: 'Descrivi i dettagli che puoi davvero vedere o sentire prima di spiegarne il significato.',
       zh: '先准确描述实际看到或听到的细节，再解释它们的含义。',
       hi: 'अर्थ समझाने से पहले उन विवरणों का वर्णन करें जिन्हें आप वास्तव में देख या सुन सकते हैं।',
       es: 'Describe los detalles que realmente puedes ver u oír antes de explicar su significado.',

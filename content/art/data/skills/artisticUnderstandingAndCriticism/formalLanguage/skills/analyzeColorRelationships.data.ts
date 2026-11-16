@@ -5,6 +5,7 @@ export const analyzeColorRelationships_Skill_Data = defineSkill({
   id: '6ff4fe86-e694-4952-a32f-4780e999b530',
   name: {
     en: 'Analyze Color Relationships',
+    it: 'Analizzare le relazioni tra i colori',
     zh: '分析色彩关系',
     hi: 'रंगों के संबंधों का विश्लेषण करें',
     es: 'Analizar las relaciones entre colores',
@@ -39,6 +40,7 @@ export const analyzeColorRelationships_Skill_Data = defineSkill({
       'Relate hue, value, saturation and juxtaposition to mood, contrast or visual emphasis in existing art.',
     frontend: {
       en: 'Explore how combinations of colors affect mood, contrast and attention.',
+      it: "Esplora come gli accostamenti di colori influenzano l'atmosfera, il contrasto e l'attenzione.",
       zh: '探索不同颜色的搭配如何影响情绪、对比和注意力。',
       hi: 'जानें कि रंगों के मेल से मनोदशा, विरोधाभास और ध्यान पर क्या असर पड़ता है।',
       es: 'Explora cómo las combinaciones de colores influyen en el estado de ánimo, el contraste y la atención.',

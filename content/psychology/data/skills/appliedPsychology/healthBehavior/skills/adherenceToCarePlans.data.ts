@@ -5,6 +5,7 @@ export const adherenceToCarePlans_Skill_Data = defineSkill({
   id: '46b93d09-0d5b-44b4-8694-88f970f3bb8f',
   name: {
     en: 'Adherence to Care Plans',
+    it: 'Adesione ai piani di cura',
     zh: '遵循专业照护计划',
     hi: 'देखभाल योजनाओं का पालन',
     es: 'Seguimiento de planes de atención',
@@ -39,6 +40,7 @@ export const adherenceToCarePlans_Skill_Data = defineSkill({
       'Explain psychological factors affecting follow-through on professional recommendations without independently prescribing treatment.',
     frontend: {
       en: 'Explore why people may struggle to follow professional care recommendations.',
+      it: 'Esplora perché le persone possono avere difficoltà a seguire le indicazioni dei professionisti sanitari.',
       zh: '探索人们为什么有时难以遵循专业人员的照护建议。',
       hi: 'जानें कि लोगों को विशेषज्ञों की देखभाल संबंधी सलाह मानने में कठिनाई क्यों हो सकती है।',
       es: 'Explora por qué a veces resulta difícil seguir las recomendaciones de profesionales de salud.',

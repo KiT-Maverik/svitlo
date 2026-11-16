@@ -9,6 +9,7 @@ export const chemicalLanguageAndQuantities_SkillDomain_Data = defineSkillDomain(
   id: 'b53c9b92-9cdb-46fa-9ec5-e4c86e6cfaa6',
   title: {
     en: 'Chemical Language and Quantities',
+    it: 'Linguaggio chimico e quantità',
     zh: '化学语言与化学计量',
     hi: 'रासायनिक भाषा और मात्राएँ',
     es: 'Lenguaje y cantidades químicas',
@@ -51,6 +52,7 @@ export const chemicalLanguageAndQuantities_SkillDomain_Data = defineSkillDomain(
       'Chemists represent composition and transformation with conventional symbols and use amounts to connect microscopic entities to measurable samples. This domain covers representational and quantitative relationships, not specific reaction mechanisms.',
     frontend: {
       en: 'Learn the symbols, formulas and calculations chemists use to describe substances and reactions.',
+      it: 'Impara a usare simboli, formule e calcoli per descrivere sostanze e reazioni chimiche.',
       zh: '学习化学家用来描述物质和反应的符号、化学式与计算方法。',
       hi: 'पदार्थों और अभिक्रियाओं को दर्शाने वाले रासायनिक प्रतीक, सूत्र और गणनाएँ सीखें।',
       es: 'Aprende los símbolos, fórmulas y cálculos que se usan para describir sustancias y reacciones.',

@@ -12,6 +12,7 @@ export const stabilityAndTesting_SkillGroup_Data = defineSkillGroup({
   id: '37a29f5a-5fbe-45e2-aa63-5514f9a8f35d',
   name: {
     en: 'Stability and Testing',
+    it: 'Stabilità e prove',
     zh: '结构稳定性与测试',
     hi: 'स्थिरता और परीक्षण',
     es: 'Estabilidad y ensayos',
@@ -60,6 +61,7 @@ export const stabilityAndTesting_SkillGroup_Data = defineSkillGroup({
       'Deformation, loss of equilibrium and local failure can all compromise a structure before every component breaks.',
     frontend: {
       en: 'Discover how engineers evaluate whether a structure remains stable.',
+      it: 'Scopri come gli ingegneri valutano se una struttura rimane stabile.',
       zh: '了解工程师如何判断结构是否保持稳定。',
       hi: 'जानें कि अभियंता किसी संरचना की स्थिरता कैसे जाँचते हैं।',
       es: 'Descubre cómo los ingenieros evalúan si una estructura sigue siendo estable.',

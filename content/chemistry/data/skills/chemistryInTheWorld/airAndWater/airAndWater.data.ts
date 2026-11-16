@@ -13,6 +13,7 @@ export const airAndWater_SkillGroup_Data = defineSkillGroup({
   id: '10df20fa-e7a4-4b8f-9509-35ed6266c32f',
   name: {
     en: 'Air and Water',
+    it: 'Aria e acqua',
     zh: '空气与水',
     hi: 'वायु और जल',
     es: 'Aire y agua',
@@ -63,6 +64,7 @@ export const airAndWater_SkillGroup_Data = defineSkillGroup({
       'Environmental samples contain reacting or partitioning chemical species whose measurements require attention to concentration and chemical form.',
     frontend: {
       en: 'Investigate the chemistry of air and water, including pollutants and dissolved materials.',
+      it: "Indaga la chimica dell'aria e dell'acqua, compresi inquinanti e materiali disciolti.",
       zh: '研究空气和水的化学性质，包括污染物和溶解的物质。',
       hi: 'प्रदूषकों और घुले पदार्थों सहित हवा और पानी की रासायनिक विशेषताओं की जाँच करें।',
       es: 'Investiga la química del aire y del agua, incluidos los contaminantes y las sustancias disueltas.',

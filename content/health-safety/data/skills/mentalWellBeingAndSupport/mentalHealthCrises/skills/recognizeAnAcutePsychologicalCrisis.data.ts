@@ -5,6 +5,7 @@ export const recognizeAnAcutePsychologicalCrisis_Skill_Data = defineSkill({
   id: 'b8663aeb-4c1a-4335-a2fa-4f2622bc5f3f',
   name: {
     en: 'Recognize an acute psychological crisis',
+    it: 'Riconoscere una crisi psicologica acuta',
     zh: '识别急性心理危机',
     hi: 'तीव्र मानसिक संकट पहचानें',
     es: 'Reconocer una crisis psicológica aguda',
@@ -39,6 +40,7 @@ export const recognizeAnAcutePsychologicalCrisis_Skill_Data = defineSkill({
       'Identify immediate danger, severe disorientation, or expressed intent to self-harm as circumstances requiring prompt adult or professional help.',
     frontend: {
       en: 'Recognize situations where immediate adult or professional help is needed.',
+      it: "Riconosci le situazioni in cui è necessario l'aiuto immediato di un adulto o di un professionista.",
       zh: '识别需要成年人或专业人员立即帮助的情况。',
       hi: 'ऐसी स्थितियाँ पहचानें जिनमें तुरंत किसी वयस्क या विशेषज्ञ की मदद चाहिए।',
       es: 'Reconoce situaciones en las que hace falta ayuda inmediata de un adulto o profesional.',

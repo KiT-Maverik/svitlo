@@ -11,6 +11,7 @@ export const historicalEconomicTransformations_SkillGroup_Data = defineSkillGrou
   id: '88b42a7a-2204-4d59-937b-bac54997f385',
   name: {
     en: 'Історичні трансформації',
+    it: 'Trasformazioni economiche storiche',
     zh: '历史上的经济转型',
     hi: 'ऐतिहासिक आर्थिक परिवर्तन',
     es: 'Transformaciones económicas históricas',
@@ -53,6 +54,7 @@ export const historicalEconomicTransformations_SkillGroup_Data = defineSkillGrou
       'Technological, commercial, and institutional changes have transformed how goods are produced and distributed.',
     frontend: {
       en: 'Discover how production and trade have changed over time.',
+      it: 'Scopri come la produzione e il commercio sono cambiati nel tempo.',
       zh: '了解生产与贸易如何随时间发生变化。',
       hi: 'जानें कि समय के साथ उत्पादन और व्यापार कैसे बदले।',
       es: 'Descubre cómo cambiaron la producción y el comercio con el tiempo.',

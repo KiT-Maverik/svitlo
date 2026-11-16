@@ -5,6 +5,7 @@ export const analyzeClassicMayaReliefSculpture_Skill_Data = defineSkill({
   id: '76038b21-a697-49f1-a741-6a0e5b438340',
   name: {
     en: 'Analyze Classic Maya Relief Sculpture',
+    it: 'Analizzare i rilievi scultorei dei Maya classici',
     zh: '分析古典玛雅浮雕',
     hi: 'शास्त्रीय माया उत्कीर्ण उभार-शिल्प का विश्लेषण करें',
     es: 'Analizar el relieve escultórico maya clásico',
@@ -39,6 +40,7 @@ export const analyzeClassicMayaReliefSculpture_Skill_Data = defineSkill({
       'Relate figures, glyphic inscriptions and dynastic imagery to specific Classic Maya sites and known historical contexts.',
     frontend: {
       en: 'Read how Maya reliefs use figures, inscriptions and dynastic imagery at particular sites.',
+      it: 'Interpreta come i rilievi maya impiegano figure, iscrizioni e immagini dinastiche in siti specifici.',
       zh: '了解古典期玛雅遗址的浮雕如何呈现人物、铭文和王权图像。',
       hi: 'जानें कि शास्त्रीय माया स्थलों के उत्कीर्ण शिल्प में आकृतियाँ, अभिलेख और राजकीय चित्रण कैसे दिखाई देते हैं।',
       es: 'Descubre cómo los relieves de sitios mayas clásicos representan figuras, inscripciones e imágenes dinásticas.',

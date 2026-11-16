@@ -5,6 +5,7 @@ export const explainNewtonsThirdLaw_Skill_Data = defineSkill({
   id: '8291351c-fce3-45eb-a974-7510844c484c',
   name: {
     en: "Explain Newton's third law",
+    it: 'Spiegare la terza legge di Newton',
     zh: '解释牛顿第三定律',
     hi: 'न्यूटन का तीसरा नियम समझाना',
     es: 'Explicar la tercera ley de Newton',
@@ -39,6 +40,7 @@ export const explainNewtonsThirdLaw_Skill_Data = defineSkill({
       'The interaction forces between two bodies are equal in magnitude and opposite in direction but act on different bodies, so they do not cancel on a single body.',
     frontend: {
       en: 'Recognize equal and opposite interaction forces acting on different bodies.',
+      it: 'Riconosci forze di interazione uguali e opposte che agiscono su corpi diversi.',
       zh: '识别作用在不同物体上的大小相等、方向相反的相互作用力。',
       hi: 'विभिन्न वस्तुओं पर लगने वाले समान परिमाण और विपरीत दिशा के परस्पर क्रिया बलों को पहचानें।',
       es: 'Reconoce fuerzas de interacción iguales y opuestas que actúan sobre cuerpos distintos.',

@@ -5,6 +5,7 @@ export const greekColonization_Skill_Data = defineSkill({
   id: '1b0af8dc-09c9-4abc-83fc-f9047f33e5ce',
   name: {
     en: 'Greek Colonization',
+    it: 'Colonizzazione greca',
     zh: '希腊殖民活动',
     hi: 'यूनानी उपनिवेश स्थापना',
     es: 'Colonización griega',
@@ -38,6 +39,7 @@ export const greekColonization_Skill_Data = defineSkill({
     methodological: 'Explain settlements beyond the Balkans and varied relationships with local societies.',
     frontend: {
       en: 'Trace where Greek communities founded settlements and met other peoples.',
+      it: 'Segui i luoghi in cui le comunità greche fondarono insediamenti e incontrarono altri popoli.',
       zh: '追溯希腊社群在哪里建立聚落并与其他族群接触。',
       hi: 'देखें कि यूनानी समुदायों ने कहाँ बस्तियाँ बसाईं और अन्य लोगों से मिले।',
       es: 'Sigue dónde fundaron asentamientos las comunidades griegas y entraron en contacto con otros pueblos.',

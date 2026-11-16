@@ -5,6 +5,7 @@ export const assessTheRiskOfFollowingALink_Skill_Data = defineSkill({
   id: 'db391362-ed9a-41d2-b0ed-06f370ca6f55',
   name: {
     en: 'Assess the Risk of Following a Link',
+    it: 'Valutare il rischio di aprire un collegamento',
     zh: '评估点击链接的风险',
     hi: 'लिंक खोलने का जोखिम आँकना',
     es: 'Evaluar el riesgo de abrir un enlace',
@@ -39,6 +40,7 @@ export const assessTheRiskOfFollowingALink_Skill_Data = defineSkill({
       'Based on context, requested actions, and warning signs, predict possible consequences such as fake login forms, suspicious downloads, or other unwanted behavior. Opening a page does not automatically cause infection; identifying the true domain is a different skill.',
     frontend: {
       en: 'Assess what could happen when a suspicious link is opened or followed.',
+      it: 'Valuta che cosa potrebbe accadere aprendo o seguendo un collegamento sospetto.',
       zh: '判断打开或访问可疑链接可能产生什么后果。',
       hi: 'समझें कि संदिग्ध लिंक खोलने पर क्या-क्या हो सकता है।',
       es: 'Evalúa qué podría suceder al abrir o seguir un enlace sospechoso.',

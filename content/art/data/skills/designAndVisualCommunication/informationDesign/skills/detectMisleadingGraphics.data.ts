@@ -5,6 +5,7 @@ export const detectMisleadingGraphics_Skill_Data = defineSkill({
   id: '23ada7db-8ce7-453a-80a2-6661dda98483',
   name: {
     en: 'Detect Misleading Graphics',
+    it: 'Individuare grafici fuorvianti',
 
     zh: '识别误导性图形',
     hi: 'भ्रामक ग्राफ़िक्स पहचानें',
@@ -39,6 +40,7 @@ export const detectMisleadingGraphics_Skill_Data = defineSkill({
     methodological: 'Identify omitted baselines, scale manipulation and decorative choices that bias interpretation.',
     frontend: {
       en: "Recognize when a graph's scale or design gives a misleading impression.",
+      it: "Riconosci quando la scala o la progettazione di un grafico crea un'impressione ingannevole.",
 
       zh: '识别图表的比例尺或设计何时会造成误导印象。',
       hi: 'पहचानें कि ग्राफ़ का पैमाना या डिज़ाइन कब भ्रामक प्रभाव देता है।',

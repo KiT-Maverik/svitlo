@@ -5,6 +5,7 @@ export const interpretEvidenceOfEvolution_Skill_Data = defineSkill({
   id: '6c94e310-5d8b-4abd-9352-8350e98390f8',
   name: {
     en: 'Interpret Evidence of Evolution',
+    it: "Interpretare le prove dell'evoluzione",
     zh: '解读进化的证据',
     hi: 'विकास के प्रमाणों की व्याख्या करना',
     es: 'Interpretar las pruebas de la evolución',
@@ -39,6 +40,7 @@ export const interpretEvidenceOfEvolution_Skill_Data = defineSkill({
       "Explain convergent evidence for life's history from fossils, comparative anatomy, biogeography, embryology, and molecular data, taking into account the limitations of each type of evidence.",
     frontend: {
       en: 'Explore how fossils, anatomy and DNA provide evidence for evolution.',
+      it: "Scopri come fossili, anatomia e DNA forniscono prove dell'evoluzione.",
       zh: '探索化石、解剖结构和 DNA 如何为进化提供证据。',
       hi: 'जानें कि जीवाश्म, शारीरिक संरचना और डीएनए विकास के प्रमाण कैसे देते हैं।',
       es: 'Explora cómo los fósiles, la anatomía y el ADN aportan pruebas de la evolución.',

@@ -5,6 +5,7 @@ export const agriculturalMarkets_Skill_Data = defineSkill({
   id: '1833f7fb-f8ec-4618-933a-a3642ae544cd',
   name: {
     en: 'Аграрні ринки',
+    it: 'Mercati agricoli',
     zh: '农产品市场',
     hi: 'कृषि बाज़ार',
     es: 'Mercados agrícolas',
@@ -39,6 +40,7 @@ export const agriculturalMarkets_Skill_Data = defineSkill({
       'Analyze farm-product prices in light of seasonality, storage opportunities, harvest variations, and international trade.',
     frontend: {
       en: 'Explore why food prices change with seasons, harvests, and trade.',
+      it: 'Esplora perché i prezzi degli alimenti cambiano con le stagioni, i raccolti e gli scambi commerciali.',
       zh: '探索食品价格为什么随季节、收成和贸易而变化。',
       hi: 'जानें कि मौसम, फसल और व्यापार के साथ खाद्य कीमतें क्यों बदलती हैं।',
       es: 'Explora por qué los precios de los alimentos varían con las estaciones, las cosechas y el comercio.',

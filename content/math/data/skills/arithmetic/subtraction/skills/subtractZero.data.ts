@@ -11,6 +11,7 @@ export const subtractZero_Skill_Data = defineSkill({
     ka: 'გამოკლება — ნული',
     kk: 'Азайту — нөл',
     en: 'Subtraction — Zero',
+    it: 'Sottrazione — Lo zero',
     qm: 'Çıqaruv — sıfır',
     zh: '减法 — 零',
     hi: 'घटाव — शून्य',
@@ -39,6 +40,7 @@ export const subtractZero_Skill_Data = defineSkill({
       'Subtracting zero leaves any number unchanged: a - 0 = a. This does not imply that zero minus a positive value is unchanged or that subtraction is commutative.',
     frontend: {
       en: 'Subtracting zero leaves the starting number unchanged; reversing the numbers in a subtraction is not the same thing.',
+      it: "Sottrarre zero lascia invariato il numero iniziale; invertire l'ordine dei numeri in una sottrazione è un'altra operazione.",
       qm: 'Sıfırnı çıqarğanda başlanğıç sayı deñişmey. Çıqaruvdaki sayılarnıñ yerlerini deñiştirüv buña teñ degil.',
       zh: '减去零不会改变原数；减法中把两个数交换位置并不一样。',
       hi: 'शून्य घटाने से मूल संख्या नहीं बदलती; घटाव में संख्याओं का क्रम उलटना अलग बात है।',

@@ -11,6 +11,7 @@ export const columnSubtraction_Skill_Data = defineSkill({
     ka: 'გამოკლება — სვეტურად',
     kk: 'Азайту — баған түрінде',
     en: 'Subtraction — Column method',
+    it: 'Sottrazione — Calcolo in colonna',
     qm: 'Çıqaruv — sütun usulı',
     zh: '减法 — 竖式计算',
     hi: 'घटाव — स्तंभ विधि',
@@ -39,6 +40,7 @@ export const columnSubtraction_Skill_Data = defineSkill({
       'Written column subtraction aligns like place values and performs needed exchanges before subtracting corresponding digits. Each exchange must correctly affect adjacent places in the decimal system.',
     frontend: {
       en: 'You can subtract numbers in columns by aligning place values and regrouping when a column does not have enough.',
+      it: 'Puoi sottrarre numeri in colonna allineando le cifre secondo il valore posizionale ed effettuando cambi quando una colonna non ha unità sufficienti.',
       qm: 'Razryadları bir sızıq boyunca tizip, sütun usulınen sayılarnı çıqara bilesiñ. Bir sütunda birlikler yetmese, razryadlarnı yañıdan toparla.',
       zh: '你能按数位对齐进行竖式减法，并在某一位不够减时进行退位换算。',
       hi: 'तुम स्थान-मूल्यों को एक सीध में रखकर स्तंभ विधि से घटा सकते हो और किसी स्थान पर कम अंक होने पर पुनर्गठन कर सकते हो।',

@@ -5,6 +5,7 @@ export const explainElectricCurrent_Skill_Data = defineSkill({
   id: '4e6d86a6-85fa-4121-85e2-1549b44c31d7',
   name: {
     en: 'Explain electric current',
+    it: 'Spiegare la corrente elettrica',
     qm: 'Elektrik aqımını añlatmaq',
     zh: '解释电流',
     hi: 'विद्युत धारा समझाना',
@@ -39,6 +40,7 @@ export const explainElectricCurrent_Skill_Data = defineSkill({
       'Electric current involves directed transport of charge, not merely random motion of charge carriers.',
     frontend: {
       en: 'Understand electric current as the directed movement of charge.',
+      it: 'Comprendi la corrente elettrica come movimento ordinato delle cariche.',
       qm: 'Elektrik aqımını yüklerniñ belli bir yönge areketi olaraq añla.',
       zh: '理解电流是电荷的定向移动。',
       hi: 'समझें कि विद्युत धारा आवेश का दिशात्मक प्रवाह है।',

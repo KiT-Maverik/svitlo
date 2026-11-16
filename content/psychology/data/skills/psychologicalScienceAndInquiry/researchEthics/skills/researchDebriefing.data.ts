@@ -5,6 +5,7 @@ export const researchDebriefing_Skill_Data = defineSkill({
   id: '5edffcfb-84d7-4f68-83a1-2c543b2518f3',
   name: {
     en: 'Research Debriefing',
+    it: 'Debriefing nella ricerca',
     zh: '研究结束后的说明',
     hi: 'अध्ययन के बाद स्पष्टीकरण',
     es: 'Explicación posterior al estudio',
@@ -39,6 +40,7 @@ export const researchDebriefing_Skill_Data = defineSkill({
       'Explain the purpose of a meaningful post-participation explanation and support when a study withheld important information.',
     frontend: {
       en: 'Explain why researchers sometimes need to debrief people after a study.',
+      it: 'Spiega perché a volte i ricercatori debbano fornire chiarimenti ai partecipanti dopo uno studio.',
       zh: '解释研究人员为何有时需要在研究结束后向参与者作出说明。',
       hi: 'समझाएँ कि शोधकर्ताओं को कभी-कभी अध्ययन के बाद प्रतिभागियों को पूरी जानकारी क्यों देनी होती है।',
       es: 'Explica por qué a veces es necesario informar a las personas después de un estudio.',

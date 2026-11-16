@@ -20,6 +20,7 @@ export const artHistoryAndCultures_SkillDomain_Data = defineSkillDomain({
   id: '08efb56e-fef3-43ba-8661-d47866a92834',
   title: {
     en: 'Art History and Cultures',
+    it: "Storia dell'arte e culture",
     zh: '艺术史与文化',
     hi: 'कला इतिहास और संस्कृतियाँ',
     es: 'Historia del arte y culturas',
@@ -88,6 +89,7 @@ export const artHistoryAndCultures_SkillDomain_Data = defineSkillDomain({
       'Artworks and artistic practices develop within particular communities, historical debates, patrons and material technologies. Study of art history distinguishes movements and named traditions through their own works and contexts rather than treating an entire continent or historical era as a single skill. This domain examines art-historical interpretation, not general political chronology.',
     frontend: {
       en: 'Explore how works of art reflect particular places, communities, periods and artistic debates.',
+      it: "Esplora come le opere d'arte riflettono luoghi, comunità, epoche e dibattiti artistici specifici.",
       zh: '探索艺术作品如何反映特定地点、社群、时代和艺术论争。',
       hi: 'जानें कि कलाकृतियाँ विशिष्ट स्थानों, समुदायों, कालखंडों और कलात्मक बहसों को कैसे दर्शाती हैं।',
       es: 'Explora cómo las obras de arte reflejan lugares, comunidades, épocas y debates artísticos concretos.',

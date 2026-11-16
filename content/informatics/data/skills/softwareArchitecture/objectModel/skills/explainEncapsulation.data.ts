@@ -5,6 +5,7 @@ export const explainEncapsulation_Skill_Data = defineSkill({
   id: '385f0a36-2341-49d1-b126-6ade78679eed',
   name: {
     en: 'Explain Encapsulation',
+    it: "Spiegare l'incapsulamento",
     zh: '解释封装',
     hi: 'एनकैप्सुलेशन समझाना',
     es: 'Explicar la encapsulación',
@@ -39,6 +40,7 @@ export const explainEncapsulation_Skill_Data = defineSkill({
       'Show how an object restricts direct access to internal state and provides controlled operations that preserve its rules. For example, a bank account changes through a withdrawal method that validates the transaction.',
     frontend: {
       en: 'Understand how objects protect their internal state through controlled methods.',
+      it: 'Comprendi come gli oggetti proteggono il proprio stato interno tramite metodi controllati.',
       zh: '理解对象如何通过受控方法保护内部状态。',
       hi: 'समझें कि ऑब्जेक्ट नियंत्रित विधियों से अपनी आंतरिक अवस्था कैसे सुरक्षित रखते हैं।',
       es: 'Comprende cómo los objetos protegen su estado interno mediante métodos controlados.',

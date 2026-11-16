@@ -5,6 +5,7 @@ export const collectiveBargaining_Skill_Data = defineSkill({
   id: '9f481508-ca1d-49c4-9f71-961414e3c84f',
   name: {
     en: 'Колективні переговори',
+    it: 'Contrattazione collettiva',
     zh: '集体谈判',
     hi: 'सामूहिक सौदेबाजी',
     es: 'Negociación colectiva',
@@ -39,6 +40,7 @@ export const collectiveBargaining_Skill_Data = defineSkill({
       "Explain how trade unions and employers' organizations can affect working conditions and bargaining power.",
     frontend: {
       en: 'Discover how groups of workers and employers negotiate employment terms.',
+      it: 'Scopri come gruppi di lavoratori e datori di lavoro negoziano le condizioni di impiego.',
       zh: '了解劳动者团体与雇主如何协商工作条件。',
       hi: 'जानें कि श्रमिक समूह और नियोक्ता रोजगार शर्तों पर कैसे बातचीत करते हैं।',
       es: 'Descubre cómo trabajadores organizados y empleadores negocian las condiciones laborales.',

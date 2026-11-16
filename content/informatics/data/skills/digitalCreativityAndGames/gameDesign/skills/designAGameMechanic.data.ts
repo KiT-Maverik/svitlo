@@ -5,6 +5,7 @@ export const designAGameMechanic_Skill_Data = defineSkill({
   id: 'd547e4c6-7fee-4c61-b649-3449d56a3bf6',
   name: {
     en: 'Design a Game Mechanic',
+    it: 'Progettare una meccanica di gioco',
     zh: '设计游戏机制',
     hi: 'गेम की कार्यप्रणाली डिज़ाइन करना',
     es: 'Diseñar una mecánica de juego',
@@ -39,6 +40,7 @@ export const designAGameMechanic_Skill_Data = defineSkill({
       "Define the relationship between a player's action, a change in game state, and feedback: pressing a control initiates movement; collision with an object changes the score. A mechanic makes a rule operative, not just a written description.",
     frontend: {
       en: "Connect a player's action to changes in game state and feedback.",
+      it: "Collega un'azione del giocatore ai cambiamenti dello stato del gioco e ai relativi riscontri.",
       zh: '将玩家操作与游戏状态变化及反馈联系起来。',
       hi: 'खिलाड़ी की क्रिया को खेल की स्थिति में बदलाव और प्रतिक्रिया से जोड़ें।',
       es: 'Relaciona la acción de un jugador con los cambios de estado del juego y la respuesta que recibe.',

@@ -5,6 +5,7 @@ export const particleMotion_Skill_Data = defineSkill({
   id: '5416a71d-e761-4965-8d77-bd458ad3f231',
   name: {
     en: 'Particle Motion',
+    it: 'Moto delle particelle',
     zh: '粒子运动',
     hi: 'कणों की गति',
     es: 'Movimiento de las partículas',
@@ -38,6 +39,7 @@ export const particleMotion_Skill_Data = defineSkill({
     methodological: 'Relate microscopic movement to spreading, mixing and temperature-dependent behavior.',
     frontend: {
       en: "Connect particles' motion with spreading, mixing and temperature changes.",
+      it: 'Collega il moto delle particelle alla diffusione, al mescolamento e ai cambiamenti di temperatura.',
       zh: '将粒子运动与扩散、混合和温度变化联系起来。',
       hi: 'कणों की गति को फैलाव, मिश्रण और तापमान में बदलाव से जोड़ें।',
       es: 'Relaciona el movimiento de las partículas con la difusión, la mezcla y los cambios de temperatura.',

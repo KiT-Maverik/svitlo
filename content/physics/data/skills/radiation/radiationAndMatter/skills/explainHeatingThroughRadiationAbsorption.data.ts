@@ -5,6 +5,7 @@ export const explainHeatingThroughRadiationAbsorption_Skill_Data = defineSkill({
   id: '13f31172-c719-461e-93a3-fefe803cb5b7',
   name: {
     en: 'Explain heating through radiation absorption',
+    it: 'Spiegare il riscaldamento per assorbimento di radiazione',
     zh: '解释吸收辐射引起的加热',
     hi: 'विकिरण अवशोषण से होने वाले ताप को समझाना',
     es: 'Explicar el calentamiento por absorción de radiación',
@@ -38,6 +39,7 @@ export const explainHeatingThroughRadiationAbsorption_Skill_Data = defineSkill({
     methodological: 'Using two surfaces in sunlight, relate differences in heating to energy absorption.',
     frontend: {
       en: 'Explain why different surfaces heat differently under the same radiation.',
+      it: 'Spiega perché superfici diverse si riscaldano diversamente sotto la stessa radiazione.',
       zh: '解释为什么不同的表面在相同辐射照射下升温程度不同。',
       hi: 'समझाओ कि समान विकिरण पड़ने पर भी अलग-अलग सतहें अलग मात्रा में क्यों गर्म होती हैं।',
       es: 'Explica por qué diferentes superficies se calientan de modo distinto bajo la misma radiación.',

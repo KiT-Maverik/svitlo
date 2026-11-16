@@ -11,6 +11,7 @@ export const noDivisionByZero_Skill_Data = defineSkill({
     ka: 'გაყოფა — ნულზე გაყოფა',
     kk: 'Бөлу — нөлге бөлу',
     en: 'Division — Division by Zero',
+    it: 'Divisione — Dividere per zero',
     qm: 'Bölüv — sıfırğa bölüv',
     zh: '除法 — 除以零',
     hi: 'भाग — शून्य से भाग',
@@ -39,6 +40,7 @@ export const noDivisionByZero_Skill_Data = defineSkill({
       'For nonzero a, 0 × x = a has no solution; for a = 0 it has many, so division by zero cannot define a unique inverse of multiplication. This covers a zero as well as a nonzero dividend.',
     frontend: {
       en: 'You cannot divide by zero: it never gives one uniquely defined quotient, even when the number being divided is zero.',
+      it: 'Non puoi dividere per zero: non si ottiene mai un unico quoziente definito, nemmeno quando il dividendo è zero.',
       qm: 'Sıfırğa bölmek mümkün degil: bölüngen sayı sıfır olğanda bile, bu amelniñ birden-bir belgili bölüm neticesi yoq.',
       zh: '不能除以零：即使被除数也是零，也无法得到唯一确定的商。',
       hi: 'शून्य से भाग नहीं दे सकते: संख्या शून्य होने पर भी भागफल एक निश्चित मान नहीं देता।',

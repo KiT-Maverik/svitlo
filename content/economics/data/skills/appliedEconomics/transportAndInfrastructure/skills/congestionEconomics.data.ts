@@ -5,6 +5,7 @@ export const congestionEconomics_Skill_Data = defineSkill({
   id: '7fd69507-4cd8-4925-9e69-73cf0e27f10a',
   name: {
     en: 'Економіка транспортних заторів',
+    it: 'Economia della congestione stradale',
     zh: '交通拥堵经济学',
     hi: 'यातायात जाम का अर्थशास्त्र',
     es: 'Economía de la congestión vial',
@@ -39,6 +40,7 @@ export const congestionEconomics_Skill_Data = defineSkill({
       'Evaluate the external costs of adding a user to a congested network and compare pricing or demand-management responses.',
     frontend: {
       en: 'Understand why each extra vehicle can slow down others.',
+      it: 'Comprendi perché ogni veicolo in più può rallentare gli altri.',
       zh: '理解为什么每增加一辆车都可能拖慢其他车辆。',
       hi: 'समझें कि एक अतिरिक्त वाहन अन्य वाहनों की गति क्यों घटा सकता है।',
       es: 'Comprende por qué un vehículo adicional puede ralentizar a los demás.',

@@ -5,6 +5,7 @@ export const justifyAnAestheticJudgment_Skill_Data = defineSkill({
   id: 'b1f6966d-c13a-41c8-bed1-1612379e6e4d',
   name: {
     en: 'Justify an aesthetic judgment',
+    it: 'Giustificare un giudizio estetico',
     zh: '为审美判断提供理由',
     hi: 'सौंदर्यात्मक निर्णय को उचित ठहराना',
     es: 'Justificar un juicio estético',
@@ -39,6 +40,7 @@ export const justifyAnAestheticJudgment_Skill_Data = defineSkill({
       'Support an appraisal with relevant features and criteria rather than simply reporting that one likes or dislikes an object.',
     frontend: {
       en: 'Explain an aesthetic evaluation using relevant features instead of personal taste alone.',
+      it: 'Motiva una valutazione estetica con caratteristiche pertinenti, anziché basarti soltanto sul gusto personale.',
       zh: '用作品的相关特点而非仅凭个人喜好来解释审美评价。',
       hi: 'केवल निजी पसंद नहीं, बल्कि प्रासंगिक विशेषताओं से अपना सौंदर्य निर्णय समझाओ।',
       es: 'Explica una valoración estética usando rasgos pertinentes, no solo el gusto personal.',

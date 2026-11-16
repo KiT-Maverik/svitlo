@@ -5,6 +5,7 @@ export const decompositionReactions_Skill_Data = defineSkill({
   id: '37417f58-dc4a-4800-b078-29f322327f52',
   name: {
     en: 'Decomposition Reactions',
+    it: 'Reazioni di decomposizione',
     zh: '分解反应',
     hi: 'अपघटन अभिक्रियाएँ',
     es: 'Reacciones de descomposición',
@@ -38,6 +39,7 @@ export const decompositionReactions_Skill_Data = defineSkill({
     methodological: 'Recognize processes in which one chemical species gives rise to multiple products.',
     frontend: {
       en: 'Recognize when a chemical substance breaks into multiple products.',
+      it: 'Riconosci quando una sostanza chimica si scompone in più prodotti.',
       zh: '识别一种化学物质分解成多种产物的反应。',
       hi: 'पहचानें कि कोई रासायनिक पदार्थ कब कई उत्पादों में टूटता है।',
       es: 'Reconoce cuándo una sustancia química se transforma en varios productos.',

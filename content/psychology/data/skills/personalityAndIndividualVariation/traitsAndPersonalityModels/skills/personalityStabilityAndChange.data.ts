@@ -5,6 +5,7 @@ export const personalityStabilityAndChange_Skill_Data = defineSkill({
   id: 'ecbd2bbf-2034-48a6-bcfe-00f503700f75',
   name: {
     en: 'Personality Stability and Change',
+    it: 'Stabilità e cambiamento della personalità',
     zh: '人格的稳定与变化',
     hi: 'व्यक्तित्व की स्थिरता और परिवर्तन',
     es: 'Estabilidad y cambio de la personalidad',
@@ -38,6 +39,7 @@ export const personalityStabilityAndChange_Skill_Data = defineSkill({
     methodological: 'Explain both rank-order consistency and mean-level changes across the lifespan.',
     frontend: {
       en: 'Understand why some personality tendencies persist while others change.',
+      it: 'Comprendi perché alcune tendenze della personalità persistano mentre altre cambino.',
       zh: '理解为什么有些人格倾向会持续，而另一些会改变。',
       hi: 'समझें कि व्यक्तित्व के कुछ रुझान बने रहते हैं, जबकि अन्य बदलते हैं।',
       es: 'Comprende por qué algunas tendencias de personalidad perduran y otras cambian.',

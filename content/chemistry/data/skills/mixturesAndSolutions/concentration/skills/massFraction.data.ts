@@ -5,6 +5,7 @@ export const massFraction_Skill_Data = defineSkill({
   id: '2fc283e4-1452-456b-b79a-bbd4034315d3',
   name: {
     en: 'Mass Fraction',
+    it: 'Frazione massica',
     zh: '质量分数',
     hi: 'द्रव्यमान अंश',
     es: 'Fracción másica',
@@ -38,6 +39,7 @@ export const massFraction_Skill_Data = defineSkill({
     methodological: 'Relate solute mass to total solution mass rather than to solvent mass.',
     frontend: {
       en: "Understand mass fraction as the solute's share of the whole solution's mass.",
+      it: "Comprendi la frazione massica come rapporto tra la massa del soluto e quella dell'intera soluzione.",
       zh: '理解质量分数表示溶质质量占整个溶液质量的比例。',
       hi: 'द्रव्यमान अंश को पूरे विलयन के द्रव्यमान में विलेय के हिस्से के रूप में समझें।',
       es: 'Comprende la fracción másica como la parte de la masa total de la disolución que corresponde al soluto.',

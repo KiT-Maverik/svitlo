@@ -5,6 +5,7 @@ export const careForMinorWounds_Skill_Data = defineSkill({
   id: '5247422e-e37e-49a6-bfa0-78dc057ba324',
   name: {
     en: 'Care for minor wounds',
+    it: 'Prendersi cura delle ferite lievi',
     zh: '处理轻微伤口',
     hi: 'छोटे घावों की देखभाल',
     es: 'Cuidar heridas leves',
@@ -39,6 +40,7 @@ export const careForMinorWounds_Skill_Data = defineSkill({
       'Reduce contamination, control minor bleeding, and recognize wounds requiring professional evaluation.',
     frontend: {
       en: 'Clean and protect minor wounds and recognize when assessment is needed.',
+      it: 'Pulisci e proteggi le piccole ferite e riconosci quando serve una valutazione sanitaria.',
       zh: '清洁并保护小伤口，识别何时需要医疗评估。',
       hi: 'छोटे घाव साफ़ कर सुरक्षित रखो और पहचानो कि चिकित्सा जाँच कब आवश्यक है।',
       es: 'Limpia y protege heridas leves y reconoce cuándo necesitan valoración médica.',

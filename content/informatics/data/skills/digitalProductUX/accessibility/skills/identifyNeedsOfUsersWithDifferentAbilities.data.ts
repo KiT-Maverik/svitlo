@@ -5,6 +5,7 @@ export const identifyNeedsOfUsersWithDifferentAbilities_Skill_Data = defineSkill
   id: '3fa9aa5f-9965-49c2-a9ab-fa9baf466491',
   name: {
     en: 'Identify Needs of Users with Different Abilities',
+    it: 'Individuare le esigenze di utenti con abilità diverse',
     zh: '识别不同能力用户的需求',
     hi: 'विभिन्न क्षमताओं वाले उपयोगकर्ताओं की ज़रूरतें पहचानना',
     es: 'Identificar necesidades de usuarios con distintas capacidades',
@@ -39,6 +40,7 @@ export const identifyNeedsOfUsersWithDifferentAbilities_Skill_Data = defineSkill
       'Determine how people with different vision, hearing, motor abilities, or input methods access information and control a digital product. Mouse-only controls, for example, create barriers for keyboard users.',
     frontend: {
       en: 'Recognize needs of people who use keyboards, enlarged text or assistive technology.',
+      it: 'Riconosci le esigenze di chi usa tastiere, testo ingrandito o tecnologie assistive.',
       zh: '识别使用键盘、放大文字或辅助技术的人们的需求。',
       hi: 'कीबोर्ड, बड़े अक्षरों या सहायक तकनीक का उपयोग करने वाले लोगों की ज़रूरतें पहचानें।',
       es: 'Reconoce las necesidades de quienes usan teclado, texto ampliado o tecnología de apoyo.',

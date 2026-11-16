@@ -5,6 +5,7 @@ export const papermakingInAncientChina_Skill_Data = defineSkill({
   id: '8f8981fb-d4ce-4c47-ba2b-7db5c9a18522',
   name: {
     en: 'Papermaking in Ancient China',
+    it: "Fabbricazione della carta nell'antica Cina",
     zh: '中国古代造纸术',
     hi: 'प्राचीन चीन में कागज़ निर्माण',
     es: 'Fabricación del papel en la China antigua',
@@ -39,6 +40,7 @@ export const papermakingInAncientChina_Skill_Data = defineSkill({
       'Trace materials and methods of papermaking, including Han developments, and their effects on writing and record keeping.',
     frontend: {
       en: 'Explore how Chinese papermaking changed the spread of information.',
+      it: 'Esplora come la fabbricazione della carta in Cina cambiò la diffusione delle informazioni.',
       zh: '了解中国的造纸技术如何改变了信息的传播。',
       hi: 'जानें कि चीनी कागज़ निर्माण ने सूचना के प्रसार को कैसे बदला।',
       es: 'Explora cómo la fabricación china del papel transformó la difusión de información.',

@@ -11,6 +11,7 @@ export const digitPlaceValue_Skill_Data = defineSkill({
     ka: 'ციფრის მნიშვნელობა პოზიციის მიხედვით',
     kk: 'Цифрдың разрядқа байланысты мәні',
     en: 'Value of a digit by position',
+    it: 'Valore di una cifra in base alla posizione',
     qm: 'Raqamnıñ yerine köre qıymeti',
     zh: '数字在不同数位上的值',
     hi: 'स्थान के अनुसार अंक का मान',
@@ -39,6 +40,7 @@ export const digitPlaceValue_Skill_Data = defineSkill({
       "A digit's value depends on its position: the two digits 2 in 232 represent 200 and 2. Place value is distinct from the digit's graphic form.",
     frontend: {
       en: "A digit's position changes its value: the two 2s in 232 mean 200 and 2.",
+      it: 'La posizione cambia il valore di una cifra: i due 2 nel numero 232 valgono 200 e 2.',
       qm: 'Raqamnıñ yeri onıñ qıymetini deñiştire: 232 sayısındaki eki 2 raqamı 200 ve 2-ni bildirir.',
       zh: '数字的值取决于位置：232里的两个2分别表示200和2。',
       hi: 'अंक का मान उसके स्थान पर निर्भर है: 232 में दो 2 का अर्थ 200 और 2 है।',

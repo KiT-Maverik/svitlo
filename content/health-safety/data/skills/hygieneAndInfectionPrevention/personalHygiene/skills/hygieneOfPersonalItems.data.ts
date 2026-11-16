@@ -5,6 +5,7 @@ export const hygieneOfPersonalItems_Skill_Data = defineSkill({
   id: '9cb29b4f-42b1-44f6-a96f-49f842f2a377',
   name: {
     en: 'Hygiene of personal items',
+    it: 'Igiene degli oggetti personali',
     zh: '个人物品卫生',
     hi: 'निजी वस्तुओं की स्वच्छता',
     es: 'Higiene de objetos personales',
@@ -39,6 +40,7 @@ export const hygieneOfPersonalItems_Skill_Data = defineSkill({
       'Reduce contamination from shared towels, grooming tools, and reusable items through appropriate individual use and cleaning.',
     frontend: {
       en: 'Keep personal items clean and avoid sharing items that may spread infection.',
+      it: 'Mantieni puliti gli oggetti personali ed evita di condividere quelli che potrebbero diffondere infezioni.',
       zh: '保持个人物品清洁，避免共用可能传播感染的物品。',
       hi: 'निजी चीज़ें साफ रखें और संक्रमण फैला सकने वाली वस्तुएँ साझा न करें।',
       es: 'Mantén limpios tus objetos y evita compartir los que puedan transmitir infecciones.',

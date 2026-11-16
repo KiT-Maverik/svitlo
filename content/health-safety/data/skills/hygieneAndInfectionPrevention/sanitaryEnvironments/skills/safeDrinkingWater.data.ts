@@ -5,6 +5,7 @@ export const safeDrinkingWater_Skill_Data = defineSkill({
   id: '73d13167-e92f-401e-adb2-dac04a987f29',
   name: {
     en: 'Safe drinking water',
+    it: 'Acqua potabile sicura',
     zh: '安全饮用水',
     hi: 'सुरक्षित पेयजल',
     es: 'Agua potable segura',
@@ -39,6 +40,7 @@ export const safeDrinkingWater_Skill_Data = defineSkill({
       'Distinguish potable from potentially contaminated supplies and recognize when verified treatment or an alternative source is required.',
     frontend: {
       en: 'Recognize when a water source may be unsafe for drinking.',
+      it: "Riconosci quando una fonte d'acqua potrebbe non essere sicura da bere.",
       zh: '识别饮用水源何时可能不安全。',
       hi: 'पहचानें कि पेयजल स्रोत कब असुरक्षित हो सकता है।',
       es: 'Reconoce cuándo una fuente de agua puede no ser segura para beber.',

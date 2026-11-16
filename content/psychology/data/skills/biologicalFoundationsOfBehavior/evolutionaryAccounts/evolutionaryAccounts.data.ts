@@ -11,6 +11,7 @@ export const evolutionaryAccounts_SkillGroup_Data = defineSkillGroup({
   id: '3b2fb696-68a0-4ec8-83cb-a3fdacf5c9fb',
   name: {
     en: 'Evolutionary Accounts',
+    it: 'Spiegazioni evoluzionistiche',
     zh: '进化论解释',
     hi: 'विकासवादी व्याख्याएँ',
     es: 'Explicaciones evolutivas',
@@ -53,6 +54,7 @@ export const evolutionaryAccounts_SkillGroup_Data = defineSkillGroup({
       'Evolutionary explanations generate testable hypotheses about behavior but require evidence beyond a plausible adaptation story.',
     frontend: {
       en: 'Learn how evolutionary theories make testable proposals about behavior.',
+      it: 'Scopri come le teorie evoluzionistiche formulano ipotesi verificabili sul comportamento.',
       zh: '了解进化理论如何针对行为提出可检验的主张。',
       hi: 'जानें कि विकासवादी सिद्धांत व्यवहार के बारे में जाँची जा सकने वाली बातें कैसे प्रस्तावित करते हैं।',
       es: 'Aprende cómo las teorías evolutivas proponen hipótesis comprobables sobre la conducta.',

@@ -5,6 +5,7 @@ export const explainLoadTransfer_Skill_Data = defineSkill({
   id: '28d6c100-8718-4daf-8d91-471971f3da15',
   name: {
     en: 'Explain load transfer',
+    it: 'Spiegare la trasmissione dei carichi',
     zh: '解释载荷传递',
     hi: 'भार के स्थानांतरण को समझाना',
     es: 'Explicar la transmisión de cargas',
@@ -39,6 +40,7 @@ export const explainLoadTransfer_Skill_Data = defineSkill({
       'Identify how forces from a load pass through structural elements to supports, and distinguish the force-transmission path from the shape of the structure.',
     frontend: {
       en: "Trace how a load's force passes through structural parts to their supports.",
+      it: 'Segui come la forza di un carico si trasmette attraverso gli elementi strutturali fino ai sostegni.',
       zh: '追踪载荷产生的力如何通过结构部件传递到支撑处。',
       hi: 'पता लगाएँ कि भार का बल संरचना के हिस्सों से होकर सहारों तक कैसे पहुँचता है।',
       es: 'Sigue cómo la fuerza de una carga pasa por las partes estructurales hasta sus apoyos.',

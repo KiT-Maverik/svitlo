@@ -5,6 +5,7 @@ export const compareStructuralModelsUnderLoad_Skill_Data = defineSkill({
   id: 'c4deacdb-c7e2-45f2-aa94-0dc25a49d11c',
   name: {
     en: 'Compare structural models under load',
+    it: 'Confrontare modelli strutturali sotto carico',
     zh: '比较受载结构模型',
     hi: 'भार के तहत संरचनात्मक मॉडलों की तुलना',
     es: 'Comparar modelos estructurales bajo carga',
@@ -39,6 +40,7 @@ export const compareStructuralModelsUnderLoad_Skill_Data = defineSkill({
       'Use consistent supports and loading to evaluate alternatives without treating a model as a certified full-scale design.',
     frontend: {
       en: 'Compare structural models under consistent loads and supports.',
+      it: 'Confronta modelli strutturali soggetti a carichi e vincoli di sostegno equivalenti.',
       zh: '在一致的荷载和支撑条件下比较结构模型。',
       hi: 'एक समान भार और सहारों के साथ संरचना मॉडलों की तुलना करें।',
       es: 'Compara modelos estructurales usando cargas y apoyos iguales.',

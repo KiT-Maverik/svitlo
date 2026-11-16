@@ -5,6 +5,7 @@ export const explainWhatConstitutesAMineralDeposit_Skill_Data = defineSkill({
   id: 'a9757c38-e3a1-4ec8-b309-170e2851c5da',
   name: {
     en: 'Explain what constitutes a mineral deposit',
+    it: 'Spiegare che cosa costituisce un giacimento minerario',
     zh: '解释矿床的构成条件',
     hi: 'खनिज निक्षेप किसे कहते हैं, समझाना',
     es: 'Explicar qué constituye un yacimiento mineral',
@@ -39,6 +40,7 @@ export const explainWhatConstitutesAMineralDeposit_Skill_Data = defineSkill({
       'Recognize a localized natural concentration of a mineral or useful material in rock or sediment, rather than treating every occurrence of a common mineral as a viable mine.',
     frontend: {
       en: 'Recognize what makes a natural concentration of useful minerals a deposit.',
+      it: 'Riconosci quando una concentrazione naturale di minerali utili costituisce un giacimento.',
       zh: '识别天然有用矿物的集中分布为何构成矿床。',
       hi: 'समझें कि उपयोगी खनिजों का प्राकृतिक संकेंद्रण कब निक्षेप कहलाता है।',
       es: 'Reconoce cuándo una concentración natural de minerales útiles constituye un yacimiento.',

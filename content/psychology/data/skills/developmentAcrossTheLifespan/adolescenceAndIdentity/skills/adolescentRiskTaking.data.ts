@@ -5,6 +5,7 @@ export const adolescentRiskTaking_Skill_Data = defineSkill({
   id: '808db5af-31be-47b1-97cc-efdd0cfacacc',
   name: {
     en: 'Adolescent Risk Taking',
+    it: "Assunzione di rischi nell'adolescenza",
     zh: '青少年的冒险行为',
     hi: 'किशोरों का जोखिम उठाना',
     es: 'Asunción de riesgos en la adolescencia',
@@ -39,6 +40,7 @@ export const adolescentRiskTaking_Skill_Data = defineSkill({
       'Explain the interaction between reward sensitivity, control, context, and opportunity without stereotyping all adolescents.',
     frontend: {
       en: 'Explore the social and developmental factors behind adolescent risk taking.',
+      it: 'Esplora i fattori sociali e di sviluppo che influenzano i comportamenti rischiosi degli adolescenti.',
       zh: '探索青少年冒险行为背后的社会与发展因素。',
       hi: 'किशोरों के जोखिम भरे फैसलों के पीछे सामाजिक और विकासात्मक कारण जानें।',
       es: 'Explora los factores sociales y del desarrollo que influyen en los riesgos que asumen los adolescentes.',

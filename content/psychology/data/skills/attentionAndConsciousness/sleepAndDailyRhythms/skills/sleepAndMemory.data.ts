@@ -5,6 +5,7 @@ export const sleepAndMemory_Skill_Data = defineSkill({
   id: 'f06f4067-f54e-4457-bf47-e3943a4d4845',
   name: {
     en: 'Sleep and Memory',
+    it: 'Sonno e memoria',
     zh: '睡眠与记忆',
     hi: 'नींद और स्मृति',
     es: 'Sueño y memoria',
@@ -38,6 +39,7 @@ export const sleepAndMemory_Skill_Data = defineSkill({
     methodological: 'Evaluate how sleep can support stabilization and reorganization of learned information.',
     frontend: {
       en: 'Understand how sleep can help stabilize and reorganize learned information.',
+      it: 'Comprendi come il sonno possa aiutare a stabilizzare e riorganizzare le informazioni apprese.',
       zh: '理解睡眠如何帮助巩固和重新组织学到的信息。',
       hi: 'जानें कि नींद सीखी हुई जानकारी को स्थिर और पुनर्गठित करने में कैसे मदद कर सकती है।',
       es: 'Comprende cómo el sueño ayuda a consolidar y reorganizar la información aprendida.',

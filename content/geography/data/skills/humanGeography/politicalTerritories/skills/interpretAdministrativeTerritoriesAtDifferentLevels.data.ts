@@ -5,6 +5,7 @@ export const interpretAdministrativeTerritoriesAtDifferentLevels_Skill_Data = de
   id: 'a67f24f7-0362-42c8-9649-0b44f1c2d96f',
   name: {
     en: 'Interpret administrative territories at different levels',
+    it: 'Interpretare i territori amministrativi a diversi livelli',
     zh: '理解不同层级的行政区划',
     hi: 'विभिन्न स्तरों की प्रशासनिक इकाइयाँ समझना',
     es: 'Interpretar territorios administrativos de distintos niveles',
@@ -39,6 +40,7 @@ export const interpretAdministrativeTerritoriesAtDifferentLevels_Skill_Data = de
       'Relate a municipality or region to a country without equating nested administrative units with continents or biomes.',
     frontend: {
       en: 'Recognize how municipalities and regions fit into larger administrative areas.',
+      it: 'Riconosci come comuni e regioni fanno parte di territori amministrativi più ampi.',
       zh: '认识市镇和地区如何归属于更大的行政区。',
       hi: 'जानें कि नगरपालिकाएँ और क्षेत्र बड़े प्रशासनिक क्षेत्रों का हिस्सा कैसे होते हैं।',
       es: 'Reconoce cómo los municipios y las regiones forman parte de áreas administrativas mayores.',

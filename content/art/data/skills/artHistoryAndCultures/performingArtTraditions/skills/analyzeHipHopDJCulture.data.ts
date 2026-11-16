@@ -5,6 +5,7 @@ export const analyzeHipHopDJCulture_Skill_Data = defineSkill({
   id: '765011ac-f09f-4a00-b7a8-e5c710973805',
   name: {
     en: 'Analyze Hip-Hop DJ Culture',
+    it: 'Analizzare la cultura dei DJ hip-hop',
     zh: '分析嘻哈 DJ 文化',
     hi: 'हिप-हॉप डीजे संस्कृति का विश्लेषण करें',
     es: 'Analizar la cultura del DJ en el hip-hop',
@@ -39,6 +40,7 @@ export const analyzeHipHopDJCulture_Skill_Data = defineSkill({
       'Trace the musical and social significance of breakbeats, turntables and neighborhood performance practices in early hip-hop contexts.',
     frontend: {
       en: 'Explore the musical and community roots of early hip-hop DJ practices.',
+      it: 'Esplora le radici musicali e comunitarie delle prime pratiche dei DJ hip-hop.',
       zh: '探索早期嘻哈 DJ 实践的音乐根源与社区背景。',
       hi: 'शुरुआती हिप-हॉप डीजे प्रथाओं की संगीत संबंधी और सामुदायिक जड़ों को जानें।',
       es: 'Explora las raíces musicales y comunitarias de las primeras prácticas de DJ del hip-hop.',

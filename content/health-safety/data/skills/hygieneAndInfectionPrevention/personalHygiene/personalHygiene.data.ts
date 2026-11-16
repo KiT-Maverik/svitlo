@@ -12,6 +12,7 @@ export const personalHygiene_SkillGroup_Data = defineSkillGroup({
   id: 'a0d84427-7a8d-45fa-93a0-21b930c5e107',
   name: {
     en: 'Personal Hygiene',
+    it: 'Igiene personale',
     zh: '个人卫生',
     hi: 'व्यक्तिगत स्वच्छता',
     es: 'Higiene personal',
@@ -55,6 +56,7 @@ export const personalHygiene_SkillGroup_Data = defineSkillGroup({
       'Effective routines reflect how contamination spreads between hands, body surfaces, shared objects, and everyday environments.',
     frontend: {
       en: 'Build useful routines that limit contamination of hands and everyday objects.',
+      it: 'Sviluppa abitudini utili per limitare la contaminazione delle mani e degli oggetti quotidiani.',
       zh: '养成有助于防止手和日常物品受到污染的卫生习惯。',
       hi: 'हाथों और रोज़मर्रा की वस्तुओं को दूषित होने से बचाने वाली आदतें अपनाएँ।',
       es: 'Adopta hábitos que limitan la contaminación de manos y objetos cotidianos.',

@@ -14,6 +14,7 @@ export const reasoningAndProblemSolving_SkillGroup_Data = defineSkillGroup({
   id: '337857fc-226b-4dcd-a9e8-459c9e552e0e',
   name: {
     en: 'Reasoning and Problem Solving',
+    it: 'Ragionamento e risoluzione dei problemi',
     zh: '推理与问题解决',
     hi: 'तर्क और समस्या समाधान',
     es: 'Razonamiento y resolución de problemas',
@@ -66,6 +67,7 @@ export const reasoningAndProblemSolving_SkillGroup_Data = defineSkillGroup({
       "A person's representation of a challenge constrains which rules, heuristics, and solutions become available.",
     frontend: {
       en: 'Explore psychological processes involved in reasoning and solving problems.',
+      it: 'Esplora i processi psicologici coinvolti nel ragionamento e nella risoluzione dei problemi.',
       zh: '探索推理和解决问题所涉及的心理过程。',
       hi: 'तर्क करने और समस्याएँ हल करने में शामिल मानसिक प्रक्रियाओं को जानें।',
       es: 'Explora los procesos psicológicos implicados en razonar y resolver problemas.',

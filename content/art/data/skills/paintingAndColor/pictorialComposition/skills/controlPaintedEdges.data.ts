@@ -5,6 +5,7 @@ export const controlPaintedEdges_Skill_Data = defineSkill({
   id: '816e12ed-872e-4a3c-91d6-ac31b861e528',
   name: {
     en: 'Control Painted Edges',
+    it: 'Controllare i bordi delle forme dipinte',
     zh: '控制画面边缘',
     hi: 'चित्रित किनारों को नियंत्रित करें',
     es: 'Controlar los bordes pintados',
@@ -38,6 +39,7 @@ export const controlPaintedEdges_Skill_Data = defineSkill({
     methodological: 'Choose sharp, soft or lost boundaries to establish spatial focus or visual hierarchy.',
     frontend: {
       en: 'Choose crisp or soft edges to direct attention and suggest space.',
+      it: "Scegli contorni netti o morbidi per guidare l'attenzione e suggerire la profondità.",
       zh: '选择清晰或柔和的边缘，引导视线并表现空间。',
       hi: 'ध्यान निर्देशित करने और स्थान का आभास देने के लिए स्पष्ट या मुलायम किनारे चुनें।',
       es: 'Elige bordes nítidos o suaves para dirigir la atención y sugerir el espacio.',

@@ -5,6 +5,7 @@ export const freezing_Skill_Data = defineSkill({
   id: '302a5c9e-7fc4-4688-9f61-bb382fc6f69a',
   name: {
     en: 'Freezing',
+    it: 'Solidificazione',
     zh: '凝固',
     hi: 'जमना',
     es: 'Solidificación',
@@ -39,6 +40,7 @@ export const freezing_Skill_Data = defineSkill({
       'Explain how a liquid transforms into a solid through changes in particle arrangement and energy exchange.',
     frontend: {
       en: 'Explain how cooling can arrange liquid particles into a solid.',
+      it: 'Spiega come il raffreddamento può organizzare le particelle di un liquido in un solido.',
       zh: '解释冷却如何使液体粒子排列成固体。',
       hi: 'समझाएँ कि ठंडा होने पर द्रव के कण व्यवस्थित होकर ठोस कैसे बनाते हैं।',
       es: 'Explica cómo el enfriamiento puede organizar las partículas de un líquido para formar un sólido.',

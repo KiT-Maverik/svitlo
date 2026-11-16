@@ -5,6 +5,7 @@ export const validateUserNeeds_Skill_Data = defineSkill({
   id: '78ba95a3-d087-44fe-b618-90d369514452',
   name: {
     en: 'Validate user needs',
+    it: 'Convalidare le esigenze degli utenti',
     zh: '确认用户需求得到满足',
     hi: 'उपयोगकर्ता की ज़रूरतों की पुष्टि',
     es: 'Validar las necesidades del usuario',
@@ -39,6 +40,7 @@ export const validateUserNeeds_Skill_Data = defineSkill({
       'Assess whether the finished or representative solution actually meets the real-world needs of intended users in appropriate conditions, even where formal design requirements have been met.',
     frontend: {
       en: 'Find out whether a finished solution actually serves its intended users.',
+      it: 'Verifica se la soluzione realizzata risponde davvero alle esigenze degli utenti destinatari.',
       zh: '了解完成的解决方案是否真正服务于预定用户。',
       hi: 'जाँचें कि तैयार समाधान वास्तव में लक्षित उपयोगकर्ताओं की मदद करता है या नहीं।',
       es: 'Averigua si la solución final satisface realmente a sus usuarios previstos.',

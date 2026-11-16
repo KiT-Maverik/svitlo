@@ -5,6 +5,7 @@ export const housingAffordability_Skill_Data = defineSkill({
   id: '3d338586-e7a7-40af-94b4-03c0cf6dc5b9',
   name: {
     en: 'Доступність житла',
+    it: 'Accessibilità economica degli alloggi',
     zh: '住房可负担性',
     hi: 'आवास की वहनीयता',
     es: 'Asequibilidad de la vivienda',
@@ -39,6 +40,7 @@ export const housingAffordability_Skill_Data = defineSkill({
       'Compare purchase or rental expenses with income, debts, quality, and location; distinguish affordability from market price alone.',
     frontend: {
       en: 'Find out what makes a home affordable for a particular household.',
+      it: "Scopri che cosa rende un'abitazione economicamente accessibile a una determinata famiglia.",
       zh: '判断什么样的住房对特定家庭来说负担得起。',
       hi: 'पता लगाएँ कि किसी परिवार के लिए घर किस स्थिति में वहनीय होता है।',
       es: 'Descubre qué hace que una vivienda sea asequible para un hogar determinado.',

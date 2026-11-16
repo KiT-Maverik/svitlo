@@ -5,6 +5,7 @@ export const analyzePublicArt_Skill_Data = defineSkill({
   id: '08d19e7d-ddf7-4ed0-a561-4f549de7196e',
   name: {
     en: 'Analyze Public Art',
+    it: "Analizzare l'arte pubblica",
     zh: '分析公共艺术',
     hi: 'सार्वजनिक कला का विश्लेषण करें',
     es: 'Analizar el arte público',
@@ -38,6 +39,7 @@ export const analyzePublicArt_Skill_Data = defineSkill({
     methodological: 'Explain how placement and community context affect access and reception.',
     frontend: {
       en: "Explore how a public artwork's location affects its meaning and accessibility.",
+      it: "Esplora come il luogo in cui si trova un'opera d'arte pubblica ne influenzi il significato e l'accessibilità.",
       zh: '探索公共艺术作品的位置如何影响其意义与可及性。',
       hi: 'जानें कि सार्वजनिक कला का स्थान उसके अर्थ और सुलभता को कैसे प्रभावित करता है।',
       es: 'Explora cómo la ubicación de una obra de arte público influye en su significado y accesibilidad.',

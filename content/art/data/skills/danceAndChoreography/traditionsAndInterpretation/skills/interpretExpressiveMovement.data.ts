@@ -5,6 +5,7 @@ export const interpretExpressiveMovement_Skill_Data = defineSkill({
   id: '1fbb8427-2a54-4655-afa5-fbc06e713f25',
   name: {
     en: 'Interpret Expressive Movement',
+    it: 'Interpretare il movimento espressivo',
     zh: '解读表现性动作',
     hi: 'अभिव्यंजक गति की व्याख्या करें',
     es: 'Interpretar el movimiento expresivo',
@@ -38,6 +39,7 @@ export const interpretExpressiveMovement_Skill_Data = defineSkill({
     methodological: 'Support a reading of movement choices using dynamics, space and phrasing.',
     frontend: {
       en: 'Use movement details to explain what a dance may express.',
+      it: 'Usa i dettagli del movimento per spiegare ciò che una danza potrebbe esprimere.',
       zh: '通过动作细节解读舞蹈可能表达的内容。',
       hi: 'गतियों के विवरण से समझाएँ कि नृत्य क्या व्यक्त कर सकता है।',
       es: 'Usa detalles del movimiento para explicar qué puede expresar una danza.',

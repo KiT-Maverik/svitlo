@@ -5,6 +5,7 @@ export const healthBeliefsAndAction_Skill_Data = defineSkill({
   id: '3a3abe3d-7548-4d3e-992d-dcb06b72725c',
   name: {
     en: 'Health Beliefs and Action',
+    it: 'Convinzioni sulla salute e azioni',
     zh: '健康信念与行动',
     hi: 'स्वास्थ्य संबंधी विश्वास और कदम',
     es: 'Creencias sobre salud y acción',
@@ -39,6 +40,7 @@ export const healthBeliefsAndAction_Skill_Data = defineSkill({
       'Explain why perceived risk, expected benefit, and practical barriers influence preventive behavior.',
     frontend: {
       en: 'Explore how perceived risk, benefits and barriers influence preventive actions.',
+      it: 'Esplora come la percezione dei rischi, dei benefici e degli ostacoli influenzi i comportamenti preventivi.',
       zh: '探索风险感知、预期收益和障碍如何影响预防行为。',
       hi: 'जानें कि जोखिम की धारणा, लाभ और बाधाएँ रोकथाम के कार्यों को कैसे प्रभावित करती हैं।',
       es: 'Explora cómo los riesgos percibidos, los beneficios y las barreras influyen en las medidas preventivas.',

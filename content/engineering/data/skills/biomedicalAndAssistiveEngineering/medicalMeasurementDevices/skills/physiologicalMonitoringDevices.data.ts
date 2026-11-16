@@ -5,6 +5,7 @@ export const physiologicalMonitoringDevices_Skill_Data = defineSkill({
   id: '76779ba3-19ac-44c9-b79e-0e771f4d833f',
   name: {
     en: 'Physiological monitoring devices',
+    it: 'Dispositivi di monitoraggio fisiologico',
     zh: '生理监测设备',
     hi: 'शारीरिक निगरानी उपकरण',
     es: 'Dispositivos de monitorización fisiológica',
@@ -39,6 +40,7 @@ export const physiologicalMonitoringDevices_Skill_Data = defineSkill({
       'Identify the sensing, acquisition and physical protection subsystems used to measure temperature, electrical activity or oxygen saturation without inferring clinical diagnoses.',
     frontend: {
       en: 'Trace how monitoring equipment converts physical signals into measurements.',
+      it: 'Segui come le apparecchiature di monitoraggio trasformano i segnali fisici in misurazioni.',
       zh: '追踪监测设备如何把物理信号转换成测量结果。',
       hi: 'जानें कि निगरानी उपकरण भौतिक संकेतों को माप में कैसे बदलते हैं।',
       es: 'Sigue cómo los equipos de monitorización convierten señales físicas en mediciones.',

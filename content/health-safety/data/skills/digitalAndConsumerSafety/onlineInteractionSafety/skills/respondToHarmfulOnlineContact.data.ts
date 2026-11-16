@@ -5,6 +5,7 @@ export const respondToHarmfulOnlineContact_Skill_Data = defineSkill({
   id: '4cd14c4a-88c7-4208-89ea-14e1c089df38',
   name: {
     en: 'Respond to harmful online contact',
+    it: 'Reagire ai contatti online dannosi',
     zh: '应对有害的网络联系',
     hi: 'नुकसानदेह ऑनलाइन संपर्क पर प्रतिक्रिया',
     es: 'Responder a contactos dañinos en línea',
@@ -39,6 +40,7 @@ export const respondToHarmfulOnlineContact_Skill_Data = defineSkill({
       'Disengage, avoid retaliation or additional disclosure, and use appropriate blocking, reporting, or trusted-person support.',
     frontend: {
       en: 'Disengage from harmful contacts and use appropriate reporting channels.',
+      it: 'Interrompi i contatti dannosi e utilizza i canali di segnalazione appropriati.',
       zh: '停止与有害联系人互动，并使用适当的举报渠道。',
       hi: 'हानिकारक लोगों से बातचीत बंद करो और उचित रिपोर्टिंग चैनल अपनाओ।',
       es: 'Deja de interactuar con contactos perjudiciales y utiliza los canales de denuncia adecuados.',

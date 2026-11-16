@@ -5,6 +5,7 @@ export const conceptFormation_Skill_Data = defineSkill({
   id: '7c850412-573c-4631-8269-933b408e71a5',
   name: {
     en: 'Concept Formation',
+    it: 'Formazione dei concetti',
     zh: '概念形成',
     hi: 'अवधारणा निर्माण',
     es: 'Formación de conceptos',
@@ -38,6 +39,7 @@ export const conceptFormation_Skill_Data = defineSkill({
     methodological: 'Explain how shared features and distinguishing properties support useful mental categories.',
     frontend: {
       en: 'Explain how people learn which examples belong to a concept.',
+      it: 'Spiega come le persone imparino quali esempi appartengano a un concetto.',
       zh: '解释人们如何学会判断哪些例子属于某一概念。',
       hi: 'समझाएँ कि लोग कैसे सीखते हैं कि कौन-से उदाहरण किसी अवधारणा में आते हैं।',
       es: 'Explica cómo aprendemos a reconocer qué ejemplos pertenecen a un concepto.',

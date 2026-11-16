@@ -5,6 +5,7 @@ export const designRationale_Skill_Data = defineSkill({
   id: 'a2878230-c083-4b3c-bc17-b66419101041',
   name: {
     en: 'Design rationale',
+    it: 'Motivazioni delle scelte progettuali',
     zh: '设计依据',
     hi: 'रचना के पीछे का तर्क',
     es: 'Justificación del diseño',
@@ -38,6 +39,7 @@ export const designRationale_Skill_Data = defineSkill({
     methodological: 'Communicate why components, arrangements and dimensions were chosen in relation to requirements.',
     frontend: {
       en: 'Explain why a design uses particular components and arrangements.',
+      it: 'Spiega perché un progetto utilizza componenti e configurazioni specifici.',
       zh: '解释设计为何采用特定的部件和布置方式。',
       hi: 'समझाएँ कि डिज़ाइन में विशेष हिस्से और व्यवस्थाएँ क्यों चुनी गईं।',
       es: 'Explica por qué un diseño usa ciertos componentes y disposiciones.',

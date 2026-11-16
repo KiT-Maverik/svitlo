@@ -5,6 +5,7 @@ export const marginalCostOfDigitalCopying_Skill_Data = defineSkill({
   id: '2f183279-4c68-4a00-9bf0-116ffcb92d33',
   name: {
     en: 'Граничні витрати цифрового копіювання',
+    it: 'Costo marginale della copia digitale',
     zh: '数字复制的边际成本',
     hi: 'डिजिटल प्रतिलिपि की सीमांत लागत',
     es: 'Costo marginal de la copia digital',
@@ -39,6 +40,7 @@ export const marginalCostOfDigitalCopying_Skill_Data = defineSkill({
       'Explain how the initial development cost of a digital product differs from the cost of reproducing and delivering an additional copy.',
     frontend: {
       en: 'Understand why making one more digital copy can cost very little.',
+      it: 'Comprendi perché produrre una copia digitale aggiuntiva può costare pochissimo.',
       zh: '理解为什么再制作一份数字副本的成本可能极低。',
       hi: 'समझें कि एक और डिजिटल प्रति बनाने में बहुत कम लागत क्यों आती है।',
       es: 'Comprende por qué producir una copia digital adicional puede costar muy poco.',

@@ -5,6 +5,7 @@ export const animateAPuppet_Skill_Data = defineSkill({
   id: '6b881f77-5271-4d1c-a114-2221519d88ba',
   name: {
     en: 'Animate a Puppet',
+    it: 'Animare un pupazzo teatrale',
     zh: '操纵木偶',
     hi: 'कठपुतली को जीवंत करें',
     es: 'Dar vida a un títere',
@@ -38,6 +39,7 @@ export const animateAPuppet_Skill_Data = defineSkill({
     methodological: "Control an object's timing, direction and gestures so audiences perceive dramatic agency.",
     frontend: {
       en: 'Bring a puppet to life through carefully timed and directed movements.',
+      it: 'Dai vita a un pupazzo attraverso movimenti accuratamente coordinati e orientati.',
       zh: '通过时机精准、方向明确的动作让木偶活灵活现。',
       hi: 'सही समय और दिशा वाली गतिविधियों से कठपुतली को जीवंत बनाएँ।',
       es: 'Da vida a un títere mediante movimientos bien sincronizados y dirigidos.',

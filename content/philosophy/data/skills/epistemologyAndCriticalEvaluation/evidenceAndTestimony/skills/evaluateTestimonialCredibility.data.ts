@@ -5,6 +5,7 @@ export const evaluateTestimonialCredibility_Skill_Data = defineSkill({
   id: '1620e060-a801-4b4c-8270-cc883d7f9086',
   name: {
     en: 'Evaluate testimonial credibility',
+    it: "Valutare l'attendibilità di una testimonianza",
     zh: '评估证言可信度',
     hi: 'गवाही की विश्वसनीयता का मूल्यांकन',
     es: 'Evaluar la credibilidad de un testimonio',
@@ -39,6 +40,7 @@ export const evaluateTestimonialCredibility_Skill_Data = defineSkill({
       "Consider the speaker's opportunity to know, relevant competence, track record, and possible conflicts without reducing evaluation to popularity.",
     frontend: {
       en: 'Evaluate a witness or expert using relevant experience and possible conflicts.',
+      it: "Valuta un testimone o un esperto considerando la sua esperienza pertinente e i possibili conflitti d'interesse.",
       zh: '根据相关经验和潜在利益冲突评估证人或专家。',
       hi: 'गवाह या विशेषज्ञ के अनुभव और संभावित हितों के टकराव पर विचार करें।',
       es: 'Evalúa a un testigo o experto según su experiencia pertinente y posibles conflictos de interés.',

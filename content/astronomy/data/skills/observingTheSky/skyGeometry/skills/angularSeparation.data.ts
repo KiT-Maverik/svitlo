@@ -5,6 +5,7 @@ export const angularSeparation_Skill_Data = defineSkill({
   id: 'd277a73a-b194-4918-8a23-63467f267d20',
   name: {
     en: 'Angular Separation',
+    it: 'Separazione angolare',
     qm: 'Kökteki bucaq mesafesi',
     zh: '角距离',
     hi: 'कोणीय दूरी',
@@ -39,6 +40,7 @@ export const angularSeparation_Skill_Data = defineSkill({
       "Determine or compare angular distances and apparent sizes on the sky independently of an object's physical diameter or distance.",
     frontend: {
       en: 'Compare how far apart objects appear in the sky using angles rather than kilometres.',
+      it: 'Confronta le distanze apparenti tra oggetti nel cielo usando gli angoli anziché i chilometri.',
       qm: 'Kökte cisimlerniñ bir-birinden ne qadar uzaq körüngenini kilometrnen degil, bucaqlarnen teñeştiriñiz.',
       zh: '用角度而不是千米来比较天体在天空中看起来相隔多远。',
       hi: 'आकाश में खगोलीय पिंड एक-दूसरे से कितने दूर दिखाई देते हैं, इसकी तुलना किलोमीटर के बजाय कोणों से करें।',

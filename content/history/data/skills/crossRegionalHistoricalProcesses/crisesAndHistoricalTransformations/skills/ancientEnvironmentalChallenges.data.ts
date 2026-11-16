@@ -5,6 +5,7 @@ export const ancientEnvironmentalChallenges_Skill_Data = defineSkill({
   id: '15263259-8bcb-407a-87b5-0ed1bba0f2a7',
   name: {
     en: 'Ancient Environmental Challenges',
+    it: "Sfide ambientali nell'antichità",
     zh: '古代环境挑战',
     hi: 'प्राचीन पर्यावरणीय चुनौतियाँ',
     es: 'Desafíos ambientales de la Antigüedad',
@@ -39,6 +40,7 @@ export const ancientEnvironmentalChallenges_Skill_Data = defineSkill({
       'Analyze historical effects of droughts, floods, land depletion, and ecological changes alongside human adaptation.',
     frontend: {
       en: 'Discover how ancient communities responded to environmental challenges.',
+      it: 'Scopri come le comunità antiche rispondevano alle sfide ambientali.',
       zh: '了解古代社群如何应对环境带来的挑战。',
       hi: 'जानें कि प्राचीन समुदायों ने पर्यावरणीय चुनौतियों का सामना कैसे किया।',
       es: 'Descubre cómo las comunidades antiguas respondían a los desafíos ambientales.',

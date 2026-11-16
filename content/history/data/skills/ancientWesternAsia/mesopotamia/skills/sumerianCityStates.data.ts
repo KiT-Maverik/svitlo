@@ -5,6 +5,7 @@ export const sumerianCityStates_Skill_Data = defineSkill({
   id: 'e17f88e3-0fd7-4ddc-b1f3-183fb1566675',
   name: {
     en: 'Sumerian City-States',
+    it: 'Città-Stato sumere',
     zh: '苏美尔城邦',
     hi: 'सुमेर के नगर-राज्य',
     es: 'Ciudades-Estado sumerias',
@@ -39,6 +40,7 @@ export const sumerianCityStates_Skill_Data = defineSkill({
       'Explain urban life, temple economies, and rivalry among political centers in southern Mesopotamia.',
     frontend: {
       en: 'Explore the independent cities of ancient Sumer.',
+      it: "Esplora le città indipendenti dell'antica Sumer.",
       zh: '探索古代苏美尔相对独立的城市。',
       hi: 'प्राचीन सुमेर के स्वतंत्र नगरों के बारे में जानें।',
       es: 'Explora las ciudades independientes de la antigua Sumeria.',

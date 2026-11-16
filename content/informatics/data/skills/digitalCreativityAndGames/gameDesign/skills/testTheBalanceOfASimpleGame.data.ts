@@ -5,6 +5,7 @@ export const testTheBalanceOfASimpleGame_Skill_Data = defineSkill({
   id: 'bbb9fc02-f6b5-4cfd-acb3-589509ee959d',
   name: {
     en: 'Test the Balance of a Simple Game',
+    it: "Verificare l'equilibrio di un gioco semplice",
     zh: '测试简单游戏的平衡性',
     hi: 'सरल खेल का संतुलन जाँचना',
     es: 'Probar el equilibrio de un juego sencillo',
@@ -39,6 +40,7 @@ export const testTheBalanceOfASimpleGame_Skill_Data = defineSkill({
       'Test whether rules and limitations make one choice always winning or render a game impossible to finish; compare outcomes with the design goal. Balance depends on game objectives; equal odds for every action are not universal requirements.',
     frontend: {
       en: "Test whether a game's rules make it fair, challenging and possible to finish.",
+      it: 'Verifica se le regole rendono un gioco equo, impegnativo e completabile.',
       zh: '测试游戏规则是否让游戏公平、有挑战性且能够完成。',
       hi: 'जाँचें कि खेल के नियम उसे निष्पक्ष, चुनौतीपूर्ण और पूरा करने योग्य बनाते हैं या नहीं।',
       es: 'Comprueba si las reglas hacen que el juego sea justo, desafiante y posible de terminar.',

@@ -12,6 +12,7 @@ export const communityMediaAndEnvironment_SkillGroup_Data = defineSkillGroup({
   id: '30c6d257-06ff-4f6b-af90-2a48e96a6d3b',
   name: {
     en: 'Community, Media, and Environment',
+    it: 'Comunità, media e ambiente',
     zh: '社区、媒体与环境',
     hi: 'समुदाय, मीडिया और पर्यावरण',
     es: 'Comunidad, medios y entorno',
@@ -60,6 +61,7 @@ export const communityMediaAndEnvironment_SkillGroup_Data = defineSkillGroup({
       'Social structures and mediated information influence beliefs, cooperation, and behavior beyond a single interpersonal exchange.',
     frontend: {
       en: 'Explore how media and community conditions shape shared behavior and beliefs.',
+      it: 'Esplora come i media e le condizioni delle comunità influenzano comportamenti e convinzioni condivisi.',
       zh: '探索媒体与社区条件如何塑造共同的行为和观念。',
       hi: 'जानें कि मीडिया और सामुदायिक परिस्थितियाँ साझा व्यवहार और मान्यताओं को कैसे प्रभावित करती हैं।',
       es: 'Explora cómo los medios y las condiciones comunitarias moldean conductas y creencias compartidas.',

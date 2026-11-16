@@ -5,6 +5,7 @@ export const reinforcementSchedules_Skill_Data = defineSkill({
   id: '83cd7047-b589-49b9-9179-fac8dc3ac52a',
   name: {
     en: 'Reinforcement Schedules',
+    it: 'Programmi di rinforzo',
     zh: '强化程序',
     hi: 'प्रबलन अनुसूचियाँ',
     es: 'Programas de reforzamiento',
@@ -38,6 +39,7 @@ export const reinforcementSchedules_Skill_Data = defineSkill({
     methodological: 'Explain how timing and predictability of consequences alter response rates and persistence.',
     frontend: {
       en: 'Explore how the timing and frequency of rewards influence learning.',
+      it: "Esplora come la frequenza e la distribuzione nel tempo delle ricompense influenzino l'apprendimento.",
       zh: '探索奖励出现的时间和频率如何影响学习。',
       hi: 'जानें कि पुरस्कार मिलने का समय और उसकी आवृत्ति सीखने को कैसे प्रभावित करते हैं।',
       es: 'Explora cómo el momento y la frecuencia de las recompensas influyen en el aprendizaje.',

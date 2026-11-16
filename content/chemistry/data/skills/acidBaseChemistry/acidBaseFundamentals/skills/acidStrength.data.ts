@@ -5,6 +5,7 @@ export const acidStrength_Skill_Data = defineSkill({
   id: 'e1080b0a-6222-47fb-a3da-bfa4c98f5493',
   name: {
     en: 'Acid Strength',
+    it: 'Forza degli acidi',
     zh: '酸的强度',
     hi: 'अम्ल की प्रबलता',
     es: 'Fuerza de los ácidos',
@@ -39,6 +40,7 @@ export const acidStrength_Skill_Data = defineSkill({
       'Describe how strongly an acid tends to donate a proton under specified conditions. A stronger acid transfers protons more readily in a comparable system; this does not mean the solution is necessarily more concentrated or more hazardous.',
     frontend: {
       en: "Distinguish an acid's strength from how concentrated or hazardous its solution is.",
+      it: 'Distingui la forza di un acido dalla concentrazione o dalla pericolosità della sua soluzione.',
       zh: '区分酸的强弱与溶液的浓度或危险性。',
       hi: 'अम्ल की प्रबलता को विलयन की सांद्रता या हानिकारकता से अलग पहचानें।',
       es: 'Distingue la fuerza de un ácido de la concentración o peligrosidad de su disolución.',

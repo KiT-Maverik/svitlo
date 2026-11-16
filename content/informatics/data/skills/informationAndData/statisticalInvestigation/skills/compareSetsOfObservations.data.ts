@@ -5,6 +5,7 @@ export const compareSetsOfObservations_Skill_Data = defineSkill({
   id: 'bdc0d418-89f0-45b2-89f0-a8c8d921c6d3',
   name: {
     en: 'Compare Sets of Observations',
+    it: 'Confrontare insiemi di osservazioni',
     zh: '比较观察结果集',
     hi: 'अवलोकनों के समूहों की तुलना करना',
     es: 'Comparar conjuntos de observaciones',
@@ -39,6 +40,7 @@ export const compareSetsOfObservations_Skill_Data = defineSkill({
       'Choose a common basis for comparing two datasets—categories, ranges, or frequencies—and explain observed differences. A difference alone does not establish its cause.',
     frontend: {
       en: 'Compare two datasets using the same measures or categories.',
+      it: 'Confronta due insiemi di dati usando le stesse misure o categorie.',
       zh: '使用相同的指标或类别比较两组数据。',
       hi: 'दो डेटासेट की तुलना समान मापों या श्रेणियों से करें।',
       es: 'Compara dos conjuntos de datos usando las mismas medidas o categorías.',

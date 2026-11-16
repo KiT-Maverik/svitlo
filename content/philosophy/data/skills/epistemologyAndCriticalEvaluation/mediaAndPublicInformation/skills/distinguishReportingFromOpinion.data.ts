@@ -5,6 +5,7 @@ export const distinguishReportingFromOpinion_Skill_Data = defineSkill({
   id: 'adf2266d-3671-47eb-ab9e-e46552d950cf',
   name: {
     en: 'Distinguish reporting from opinion',
+    it: 'Distinguere cronaca e opinione',
     zh: '区分新闻报道与意见',
     hi: 'खबर और राय में अंतर करें',
     es: 'Distinguir información de opinión',
@@ -39,6 +40,7 @@ export const distinguishReportingFromOpinion_Skill_Data = defineSkill({
       'Identify whether a passage presents checkable occurrences, interpretation, advocacy, or a mixture requiring separate evaluation.',
     frontend: {
       en: 'Distinguish factual reporting from interpretation and advocacy.',
+      it: 'Distingui la narrazione dei fatti dalle interpretazioni e dalle prese di posizione.',
       zh: '区分事实报道、解释性评论和观点倡导。',
       hi: 'तथ्यात्मक रिपोर्ट, व्याख्या और किसी पक्ष का समर्थन अलग पहचानें।',
       es: 'Distingue el relato de hechos de la interpretación y la defensa de una postura.',

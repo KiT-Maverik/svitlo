@@ -5,6 +5,7 @@ export const locks_Skill_Data = defineSkill({
   id: 'eb87ce34-d9a6-403c-9cba-1f785d167dac',
   name: {
     en: 'Locks',
+    it: 'Serrature',
     zh: '锁具',
     hi: 'ताले',
     es: 'Cerraduras',
@@ -39,6 +40,7 @@ export const locks_Skill_Data = defineSkill({
       'Identify how a key, code or other authorization mechanism restricts the operation of a secured closure.',
     frontend: {
       en: 'Recognize how locks limit access to an authorized user.',
+      it: "Riconosci come le serrature limitano l'accesso agli utenti autorizzati.",
       zh: '识别锁如何限制未经授权的人操作门或装置。',
       hi: 'पहचानें कि ताला अधिकृत व्यक्ति को ही प्रवेश या संचालन कैसे देता है।',
       es: 'Reconoce cómo una cerradura limita el acceso a usuarios autorizados.',

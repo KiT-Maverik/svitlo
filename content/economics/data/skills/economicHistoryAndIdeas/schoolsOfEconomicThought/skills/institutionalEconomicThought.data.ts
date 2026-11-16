@@ -5,6 +5,7 @@ export const institutionalEconomicThought_Skill_Data = defineSkill({
   id: 'e996552e-3c7c-475c-8d0a-ee2ecee6e868',
   name: {
     en: 'Інституційна економічна думка',
+    it: 'Pensiero economico istituzionalista',
     zh: '制度经济思想',
     hi: 'संस्थागत आर्थिक चिंतन',
     es: 'Pensamiento económico institucional',
@@ -39,6 +40,7 @@ export const institutionalEconomicThought_Skill_Data = defineSkill({
       'Analyze how formal rules, informal norms, power relations, and historical development enter economic theories and explanations.',
     frontend: {
       en: 'Understand how institutions and social rules shape economic outcomes.',
+      it: 'Comprendi come le istituzioni e le norme sociali influenzano i risultati economici.',
       zh: '理解制度与社会规则如何影响经济结果。',
       hi: 'समझें कि संस्थाएँ और सामाजिक नियम आर्थिक परिणामों को कैसे आकार देते हैं।',
       es: 'Comprende cómo las instituciones y las reglas sociales influyen en los resultados económicos.',

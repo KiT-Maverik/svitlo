@@ -12,6 +12,7 @@ export const roadAndRail_SkillGroup_Data = defineSkillGroup({
   id: '38105895-524b-4840-a2fa-4f5b6fa8aa27',
   name: {
     en: 'Road and Rail',
+    it: 'Trasporti stradali e ferroviari',
     zh: '公路与铁路',
     hi: 'सड़क और रेल',
     es: 'Carreteras y ferrocarriles',
@@ -55,6 +56,7 @@ export const roadAndRail_SkillGroup_Data = defineSkillGroup({
       'Surface vehicles depend on transmitting traction, guiding movement, supporting loads and maintaining control during stopping.',
     frontend: {
       en: 'Discover the connected systems that move and control land vehicles.',
+      it: 'Scopri i sistemi collegati che muovono e controllano i veicoli terrestri.',
       zh: '了解使陆上车辆移动和转向的相互连接系统。',
       hi: 'भूमि वाहनों को चलाने और नियंत्रित करने वाली जुड़ी प्रणालियाँ जानें।',
       es: 'Descubre los sistemas conectados que mueven y controlan vehículos terrestres.',

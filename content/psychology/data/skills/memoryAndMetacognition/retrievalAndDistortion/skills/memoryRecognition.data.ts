@@ -5,6 +5,7 @@ export const memoryRecognition_Skill_Data = defineSkill({
   id: '0776c1b4-5c0d-47ed-bb55-dd307d7453cf',
   name: {
     en: 'Memory Recognition',
+    it: 'Riconoscimento mnestico',
     zh: '记忆再认',
     hi: 'स्मृति पहचान',
     es: 'Reconocimiento en memoria',
@@ -38,6 +39,7 @@ export const memoryRecognition_Skill_Data = defineSkill({
     methodological: 'Explain identifying previously encountered information when the candidate item is presented.',
     frontend: {
       en: 'Recognize previously encountered information among alternatives.',
+      it: 'Riconosci tra diverse alternative informazioni già incontrate.',
       zh: '在多个选项中认出以前遇到过的信息。',
       hi: 'विकल्पों में से पहले देखी या सुनी जानकारी पहचानें।',
       es: 'Reconoce entre varias opciones información encontrada anteriormente.',

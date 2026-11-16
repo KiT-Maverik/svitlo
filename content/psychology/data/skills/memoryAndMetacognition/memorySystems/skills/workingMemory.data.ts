@@ -5,6 +5,7 @@ export const workingMemory_Skill_Data = defineSkill({
   id: '5279d579-50a7-459f-a088-562854c4de85',
   name: {
     en: 'Working Memory',
+    it: 'Memoria di lavoro',
     zh: '工作记忆',
     hi: 'कार्यशील स्मृति',
     es: 'Memoria de trabajo',
@@ -39,6 +40,7 @@ export const workingMemory_Skill_Data = defineSkill({
       'Explain active maintenance and manipulation of limited information while performing a cognitive task.',
     frontend: {
       en: 'Recognize the limited information we can actively hold and use.',
+      it: 'Riconosci la quantità limitata di informazioni che possiamo mantenere e usare attivamente.',
       zh: '识别我们能主动保持和使用的信息容量有限。',
       hi: 'समझें कि हम एक समय में सीमित जानकारी ही सक्रिय रूप से याद रख और उपयोग कर सकते हैं।',
       es: 'Reconoce que solo podemos mantener y usar activamente una cantidad limitada de información.',

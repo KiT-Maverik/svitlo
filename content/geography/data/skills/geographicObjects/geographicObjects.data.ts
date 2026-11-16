@@ -10,6 +10,7 @@ export const geographicObjects_SkillDomain_Data = defineSkillDomain({
   id: '81e44820-3abf-4b79-8f65-1ad6c68a5fb4',
   title: {
     en: 'Geographic Objects',
+    it: 'Elementi geografici',
     zh: '地理事物',
     hi: 'भौगोलिक वस्तुएँ',
     es: 'Objetos geográficos',
@@ -53,6 +54,7 @@ export const geographicObjects_SkillDomain_Data = defineSkillDomain({
       'The world contains natural and human-made places and features with recognizable form, position and geographic roles. Learners classify these objects, interpret the conventional division of Earth into continents, parts of the world, oceans and hemispheres, and locate both familiar and global features. Processes that create or change these features belong to the relevant physical and human geography Domains.',
     frontend: {
       en: 'Recognize natural and human-made geographic features and the ways we divide up Earth.',
+      it: 'Riconosci gli elementi geografici naturali e antropici e i modi in cui suddividiamo la Terra.',
       zh: '认识自然与人造地理事物，以及我们划分地球的不同方式。',
       hi: 'प्राकृतिक और मानव निर्मित भौगोलिक विशेषताओं तथा पृथ्वी के विभाजन के तरीकों को पहचानें।',
       es: 'Reconoce elementos geográficos naturales y humanos y las formas de dividir la Tierra.',

@@ -5,6 +5,7 @@ export const applyVirtueEthicalReasoning_Skill_Data = defineSkill({
   id: '0f47af1d-ef57-46d3-ae2f-ebc57868c44a',
   name: {
     en: 'Apply virtue-ethical reasoning',
+    it: "Applicare il ragionamento dell'etica delle virtù",
     zh: '运用德性伦理推理',
     hi: 'सद्गुण नैतिक तर्क लागू करना',
     es: 'Aplicar razonamiento de ética de la virtud',
@@ -39,6 +40,7 @@ export const applyVirtueEthicalReasoning_Skill_Data = defineSkill({
       'Consider the traits and practical judgment exemplified by an action rather than evaluating only isolated rules or outcomes.',
     frontend: {
       en: 'Ask what an action shows about character and practical wisdom.',
+      it: "Domandati che cosa un'azione riveli sul carattere e sulla saggezza pratica.",
       zh: '思考一项行动如何体现品格和实践智慧。',
       hi: 'पूछें कि कोई कार्य चरित्र और व्यावहारिक विवेक के बारे में क्या बताता है।',
       es: 'Pregunta qué revela una acción sobre el carácter y la sabiduría práctica.',

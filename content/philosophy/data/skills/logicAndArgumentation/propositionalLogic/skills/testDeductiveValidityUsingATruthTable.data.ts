@@ -5,6 +5,7 @@ export const testDeductiveValidityUsingATruthTable_Skill_Data = defineSkill({
   id: 'ebc763c6-1122-4e03-b6d4-7346ca1796bb',
   name: {
     en: 'Test deductive validity using a truth table',
+    it: 'Verificare la validità deduttiva con una tavola di verità',
     zh: '用真值表检验演绎有效性',
     hi: 'सत्यता सारणी से निगमनात्मक वैधता जाँचना',
     es: 'Comprobar la validez deductiva con una tabla de verdad',
@@ -39,6 +40,7 @@ export const testDeductiveValidityUsingATruthTable_Skill_Data = defineSkill({
       'Search for a case in which all premises are true but the conclusion false to determine propositional validity.',
     frontend: {
       en: 'Check a deduction by searching for true premises with a false conclusion.',
+      it: 'Controlla una deduzione cercando casi con premesse vere e conclusione falsa.',
       zh: '通过寻找前提全真而结论为假的情况检验演绎论证。',
       hi: 'ऐसी स्थिति खोजकर निगमन की जाँच करें जहाँ आधार-वाक्य सत्य हों लेकिन निष्कर्ष असत्य।',
       es: 'Comprueba una deducción buscando premisas verdaderas con una conclusión falsa.',

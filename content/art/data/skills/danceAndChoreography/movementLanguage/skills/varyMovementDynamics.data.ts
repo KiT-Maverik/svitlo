@@ -5,6 +5,7 @@ export const varyMovementDynamics_Skill_Data = defineSkill({
   id: '8196c75b-c9a3-4f58-b825-59df9c80f199',
   name: {
     en: 'Vary Movement Dynamics',
+    it: 'Variare le dinamiche del movimento',
     zh: '变化动作力度',
     hi: 'गति की गतिशीलता में विविधता लाएँ',
     es: 'Variar la dinámica del movimiento',
@@ -38,6 +39,7 @@ export const varyMovementDynamics_Skill_Data = defineSkill({
     methodological: 'Change weight, force, continuity or sharpness to express different qualities.',
     frontend: {
       en: 'Change the force, weight and flow of movement to express different qualities.',
+      it: 'Modifica forza, peso e fluidità dei movimenti per esprimere qualità diverse.',
       zh: '改变动作的力度、重量感和流畅度，以表达不同特质。',
       hi: 'अलग-अलग गुण व्यक्त करने के लिए गति का बल, भार और प्रवाह बदलें।',
       es: 'Cambia la fuerza, el peso y la fluidez del movimiento para expresar distintas cualidades.',

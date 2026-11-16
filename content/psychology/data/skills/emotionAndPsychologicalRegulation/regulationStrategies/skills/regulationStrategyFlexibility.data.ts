@@ -5,6 +5,7 @@ export const regulationStrategyFlexibility_Skill_Data = defineSkill({
   id: 'd200944c-302c-4530-8b41-2fc786cfe818',
   name: {
     en: 'Regulation Strategy Flexibility',
+    it: 'Flessibilità nelle strategie di regolazione',
     zh: '调节策略的灵活运用',
     hi: 'नियमन रणनीतियों में लचीलापन',
     es: 'Flexibilidad de las estrategias de regulación',
@@ -39,6 +40,7 @@ export const regulationStrategyFlexibility_Skill_Data = defineSkill({
       'Select and justify possible responses to changing situations instead of treating one technique as universally best.',
     frontend: {
       en: 'Choose emotional regulation strategies suited to a particular situation.',
+      it: 'Scegli strategie di regolazione emotiva adatte a una situazione specifica.',
       zh: '根据具体情境选择适合的情绪调节策略。',
       hi: 'विशेष परिस्थिति के अनुकूल भावना नियमन की रणनीति चुनें।',
       es: 'Elige estrategias de regulación emocional adecuadas a cada situación.',

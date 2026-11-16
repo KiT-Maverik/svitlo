@@ -6,6 +6,7 @@ export const testRecognizeOrange_Skill_Data = defineSkill({
   id: '00000000-0000-4000-8000-000000000002',
   name: {
     en: '[TEST en] Recognize orange',
+    it: '[TEST it] Riconoscere l\'arancione',
     zh: '[TEST zh] Recognize orange',
     hi: '[TEST hi] Recognize orange',
     es: '[TEST es] Recognize orange',
@@ -40,6 +41,7 @@ export const testRecognizeOrange_Skill_Data = defineSkill({
       'Synthetic fixture skill for recognize orange; it exists solely to exercise the Playground Skill Data graph.',
     frontend: {
       en: '[TEST en] Recognize the color orange in a simple visual example.',
+      it: '[TEST it] Riconoscere il colore arancione in un semplice esempio visivo.',
       zh: '[TEST zh] Recognize the color orange in a simple visual example.',
       hi: '[TEST hi] Recognize the color orange in a simple visual example.',
       es: '[TEST es] Recognize the color orange in a simple visual example.',

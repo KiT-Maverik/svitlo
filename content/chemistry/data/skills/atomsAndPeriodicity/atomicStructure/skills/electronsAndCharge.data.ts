@@ -5,6 +5,7 @@ export const electronsAndCharge_Skill_Data = defineSkill({
   id: '1f8346b2-1a3d-41c8-9684-5a17a5e47ec8',
   name: {
     en: 'Electrons and Charge',
+    it: 'Elettroni e carica elettrica',
     zh: '电子与电荷',
     hi: 'इलेक्ट्रॉन और आवेश',
     es: 'Electrones y carga eléctrica',
@@ -38,6 +39,7 @@ export const electronsAndCharge_Skill_Data = defineSkill({
     methodological: "Relate electron gain or loss to ionic charge while preserving an element's identity.",
     frontend: {
       en: "Explain how losing or gaining electrons changes an atom's charge.",
+      it: "Spiega come la perdita o l'acquisto di elettroni cambia la carica di un atomo.",
       zh: '解释原子失去或获得电子时，其电荷如何变化。',
       hi: 'समझाएँ कि इलेक्ट्रॉन खोने या पाने से परमाणु का आवेश कैसे बदलता है।',
       es: 'Explica cómo cambia la carga de un átomo al perder o ganar electrones.',

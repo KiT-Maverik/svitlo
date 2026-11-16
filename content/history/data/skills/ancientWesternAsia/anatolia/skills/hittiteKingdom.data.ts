@@ -5,6 +5,7 @@ export const hittiteKingdom_Skill_Data = defineSkill({
   id: '40aa3cad-4b59-478d-8b91-406fd9a50430',
   name: {
     en: 'Hittite Kingdom',
+    it: 'Regno ittita',
     zh: '赫梯王国',
     hi: 'हित्ती राज्य',
     es: 'Reino hitita',
@@ -38,6 +39,7 @@ export const hittiteKingdom_Skill_Data = defineSkill({
     methodological: 'Describe political structures, diplomacy, and competition for influence in the Late Bronze Age.',
     frontend: {
       en: 'Learn how the Hittites governed and negotiated with neighboring powers.',
+      it: 'Scopri come gli Ittiti governavano e negoziavano con le potenze vicine.',
       zh: '了解赫梯人如何治理国家并与邻国交涉。',
       hi: 'जानें कि हित्तियों ने शासन कैसे किया और पड़ोसी शक्तियों से बातचीत कैसे की।',
       es: 'Aprende cómo gobernaban los hititas y negociaban con los poderes vecinos.',

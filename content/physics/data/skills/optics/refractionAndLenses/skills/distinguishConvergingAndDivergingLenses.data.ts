@@ -5,6 +5,7 @@ export const distinguishConvergingAndDivergingLenses_Skill_Data = defineSkill({
   id: '2a056d27-1b13-4147-97e3-055437334a06',
   name: {
     en: 'Distinguish converging and diverging lenses',
+    it: 'Distinguere lenti convergenti e divergenti',
     zh: '区分会聚透镜与发散透镜',
     hi: 'अभिसारी और अपसारी लेंस में अंतर करना',
     es: 'Distinguir lentes convergentes y divergentes',
@@ -39,6 +40,7 @@ export const distinguishConvergingAndDivergingLenses_Skill_Data = defineSkill({
       'Use a simulation to observe how different lenses change the directions of light rays passing through them.',
     frontend: {
       en: 'Compare lenses that bring light rays together with lenses that spread them apart.',
+      it: 'Confronta le lenti che fanno convergere i raggi luminosi con quelle che li fanno divergere.',
       zh: '比较让光线会聚的透镜与让光线发散的透镜。',
       hi: 'प्रकाश किरणों को एकत्र करने वाले लेंस और उन्हें फैलाने वाले लेंस की तुलना करो।',
       es: 'Compara las lentes que reúnen rayos de luz con las que los separan.',

@@ -5,6 +5,7 @@ export const hindsightBias_Skill_Data = defineSkill({
   id: '5331abcc-5937-48b3-8c32-1dcb47c9c1f1',
   name: {
     en: 'Hindsight Bias',
+    it: 'Distorsione del senno di poi',
     zh: '后见之明偏差',
     hi: 'पश्चदृष्टि पूर्वाग्रह',
     es: 'Sesgo retrospectivo',
@@ -38,6 +39,7 @@ export const hindsightBias_Skill_Data = defineSkill({
     methodological: 'Explain why knowing an outcome retrospectively makes it seem more predictable.',
     frontend: {
       en: 'Recognize why past outcomes can seem more predictable after they happen.',
+      it: 'Riconosci perché gli eventi passati possano sembrare più prevedibili dopo che si sono verificati.',
       zh: '认识为什么在知道结果后，过去的事件会显得更容易预测。',
       hi: 'पहचानें कि घटना घटने के बाद उसका परिणाम पहले से अनुमान लगाने योग्य क्यों लग सकता है।',
       es: 'Reconoce por qué los resultados pasados parecen más previsibles una vez conocidos.',

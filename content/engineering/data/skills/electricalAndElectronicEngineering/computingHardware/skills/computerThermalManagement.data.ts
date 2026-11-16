@@ -5,6 +5,7 @@ export const computerThermalManagement_Skill_Data = defineSkill({
   id: 'f7acd032-2509-40ad-9a46-fe9525c3b25e',
   name: {
     en: 'Computer thermal management',
+    it: 'Gestione termica del computer',
     zh: '计算机热管理',
     hi: 'संगणक ताप प्रबंधन',
     es: 'Gestión térmica del ordenador',
@@ -39,6 +40,7 @@ export const computerThermalManagement_Skill_Data = defineSkill({
       'Relate computer component heat production to cooling paths, heat sinks, airflow and protection against excessive temperature.',
     frontend: {
       en: 'Explain why computing hardware needs cooling and heat management.',
+      it: 'Spiega perché i componenti informatici richiedono raffreddamento e gestione del calore.',
       zh: '解释为什么计算机硬件需要冷却和散热管理。',
       hi: 'जानें कि हीट सिंक, पंखे और हवा का प्रवाह अधिक गर्मी को कैसे रोकते हैं।',
       es: 'Descubre cómo disipadores, ventiladores y flujo de aire evitan el sobrecalentamiento.',

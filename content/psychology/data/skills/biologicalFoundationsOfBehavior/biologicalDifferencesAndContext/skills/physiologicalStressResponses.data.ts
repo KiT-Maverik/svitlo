@@ -5,6 +5,7 @@ export const physiologicalStressResponses_Skill_Data = defineSkill({
   id: 'd47b1e7d-95ce-4fe7-a2d8-c1a77ef752f8',
   name: {
     en: 'Physiological Stress Responses',
+    it: 'Risposte fisiologiche allo stress',
     zh: '生理应激反应',
     hi: 'शारीरिक तनाव प्रतिक्रियाएँ',
     es: 'Respuestas fisiológicas al estrés',
@@ -38,6 +39,7 @@ export const physiologicalStressResponses_Skill_Data = defineSkill({
     methodological: 'Relate autonomic and hormonal changes to perceived demands and subsequent recovery.',
     frontend: {
       en: 'Explore how the body responds to demands and returns toward recovery.',
+      it: 'Esplora come il corpo reagisce alle richieste e torna gradualmente a uno stato di recupero.',
       zh: '探索身体如何应对压力需求并逐渐恢复。',
       hi: 'जानें कि शरीर चुनौतियों पर कैसे प्रतिक्रिया देता है और फिर कैसे उबरता है।',
       es: 'Explora cómo responde el cuerpo a las exigencias y avanza hacia la recuperación.',

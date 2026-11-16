@@ -5,6 +5,7 @@ export const explainThePurposeOfAComputerNetwork_Skill_Data = defineSkill({
   id: '7a70b05e-7ca2-4bb5-a95b-7b24fd316434',
   name: {
     en: 'Explain the Purpose of a Computer Network',
+    it: 'Spiegare lo scopo di una rete informatica',
     zh: '解释计算机网络的用途',
     hi: 'कंप्यूटर नेटवर्क का उद्देश्य समझाना',
     es: 'Explicar el propósito de una red informática',
@@ -39,6 +40,7 @@ export const explainThePurposeOfAComputerNetwork_Skill_Data = defineSkill({
       'Show how networking separate devices allows them to exchange messages and share resources while each device maintains its own computing functions.',
     frontend: {
       en: 'Explain why networks connect separate devices to exchange information.',
+      it: 'Spiega perché le reti collegano dispositivi distinti per scambiare informazioni.',
       zh: '说明为什么网络要连接不同设备来交换信息。',
       hi: 'समझाएँ कि सूचना के आदान-प्रदान के लिए नेटवर्क अलग-अलग उपकरण क्यों जोड़ते हैं।',
       es: 'Explica por qué las redes conectan distintos dispositivos para intercambiar información.',

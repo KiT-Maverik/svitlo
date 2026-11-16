@@ -5,6 +5,7 @@ export const memoryConsolidation_Skill_Data = defineSkill({
   id: '982227cb-ac8f-4cbc-8b56-0984e44f6cd8',
   name: {
     en: 'Memory Consolidation',
+    it: 'Consolidamento della memoria',
     zh: '记忆巩固',
     hi: 'स्मृति सुदृढ़ीकरण',
     es: 'Consolidación de la memoria',
@@ -39,6 +40,7 @@ export const memoryConsolidation_Skill_Data = defineSkill({
       'Explain changes in retention after initial learning and how subsequent experience or sleep can affect them.',
     frontend: {
       en: 'Explain how newly formed memories can become more stable.',
+      it: 'Spiega come i ricordi appena formati possano diventare più stabili.',
       zh: '解释新形成的记忆如何逐渐变得更稳定。',
       hi: 'समझाएँ कि नई बनी यादें समय के साथ अधिक स्थिर कैसे हो सकती हैं।',
       es: 'Explica cómo los recuerdos recién formados pueden volverse más estables.',

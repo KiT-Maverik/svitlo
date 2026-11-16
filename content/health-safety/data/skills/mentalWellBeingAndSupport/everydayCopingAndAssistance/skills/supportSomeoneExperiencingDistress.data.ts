@@ -5,6 +5,7 @@ export const supportSomeoneExperiencingDistress_Skill_Data = defineSkill({
   id: 'c5550b53-53e8-4823-b5f9-c034d021734c',
   name: {
     en: 'Support someone experiencing distress',
+    it: 'Sostenere una persona in difficoltà emotiva',
     zh: '支持正在经历痛苦的人',
     hi: 'परेशानी झेल रहे व्यक्ति का साथ दें',
     es: 'Apoyar a alguien que atraviesa dificultades emocionales',
@@ -39,6 +40,7 @@ export const supportSomeoneExperiencingDistress_Skill_Data = defineSkill({
       'Listen without judgment, respect privacy, avoid diagnosing, and help the person reach appropriate assistance.',
     frontend: {
       en: 'Support someone by listening and helping them find appropriate care.',
+      it: 'Aiuta una persona ascoltandola e accompagnandola nella ricerca di assistenza adeguata.',
       zh: '通过倾听并协助对方获得适当帮助来提供支持。',
       hi: 'ध्यान से सुनकर और उचित देखभाल खोजने में मदद करके किसी का साथ दें।',
       es: 'Apoya a una persona escuchándola y ayudándola a encontrar atención adecuada.',

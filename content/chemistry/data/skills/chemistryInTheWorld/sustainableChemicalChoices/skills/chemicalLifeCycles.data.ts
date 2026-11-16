@@ -5,6 +5,7 @@ export const chemicalLifeCycles_Skill_Data = defineSkill({
   id: '8da44d2b-c294-4dbd-9284-18fea2641908',
   name: {
     en: 'Chemical Life Cycles',
+    it: 'Cicli di vita delle sostanze chimiche',
     zh: '化学物质的生命周期',
     hi: 'रासायनिक पदार्थों का जीवन चक्र',
     es: 'Ciclos de vida de sustancias químicas',
@@ -39,6 +40,7 @@ export const chemicalLifeCycles_Skill_Data = defineSkill({
       'Trace a substance through sourcing, use, chemical change and waste streams rather than evaluating one stage in isolation.',
     frontend: {
       en: 'Trace a chemical substance through production, use and waste rather than examining one step.',
+      it: "Segui una sostanza chimica dalla produzione all'uso e ai rifiuti invece di osservare una sola fase.",
       zh: '追踪化学物质从生产、使用到废弃的全过程，而不仅仅观察一个环节。',
       hi: 'किसी एक चरण के बजाय उत्पादन, उपयोग और कचरे तक पदार्थ का पूरा मार्ग देखें।',
       es: 'Sigue una sustancia por su producción, uso y desecho, en vez de mirar solo una etapa.',

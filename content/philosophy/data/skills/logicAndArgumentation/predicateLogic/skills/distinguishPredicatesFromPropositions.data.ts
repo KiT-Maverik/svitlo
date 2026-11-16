@@ -5,6 +5,7 @@ export const distinguishPredicatesFromPropositions_Skill_Data = defineSkill({
   id: 'eb8c4b87-96ef-42cf-83d6-c5c4d7b03dd5',
   name: {
     en: 'Distinguish predicates from propositions',
+    it: 'Distinguere predicati e proposizioni',
     zh: '区分谓词与命题',
     hi: 'विधेय और प्रस्ताव में अंतर करना',
     es: 'Distinguir predicados de proposiciones',
@@ -39,6 +40,7 @@ export const distinguishPredicatesFromPropositions_Skill_Data = defineSkill({
       'Recognize a predicate with an unbound variable as an open expression and a proposition as a statement with specified truth conditions.',
     frontend: {
       en: 'Distinguish an open expression about a variable from a complete proposition.',
+      it: "Distingui un'espressione aperta che contiene una variabile da una proposizione completa.",
       zh: '区分含有未定变量的开放表达式与完整命题。',
       hi: 'किसी चर वाले खुले व्यंजक और पूर्ण प्रस्ताव में अंतर करें।',
       es: 'Distingue una expresión abierta con una variable de una proposición completa.',

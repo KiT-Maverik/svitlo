@@ -5,6 +5,7 @@ export const readTemperatureAndPrecipitationObservations_Skill_Data = defineSkil
   id: 'e9c29ab1-fbca-4068-951f-4e86ac1d9550',
   name: {
     en: 'Read temperature and precipitation observations',
+    it: 'Leggere osservazioni di temperatura e precipitazioni',
     zh: '读取气温与降水观测记录',
     hi: 'तापमान और वर्षा के अवलोकन पढ़ना',
     es: 'Leer observaciones de temperatura y precipitación',
@@ -39,6 +40,7 @@ export const readTemperatureAndPrecipitationObservations_Skill_Data = defineSkil
       'Interpret a basic station table or chart with units and dates, separating amount of rain from air temperature.',
     frontend: {
       en: 'Read temperature and rainfall measurements with their units and dates.',
+      it: 'Leggi le misurazioni della temperatura e delle precipitazioni con le rispettive unità e date.',
       zh: '结合单位和日期读取气温及降雨测量值。',
       hi: 'इकाइयों और तारीखों के साथ तापमान तथा बारिश के माप पढ़ें।',
       es: 'Lee mediciones de temperatura y lluvia con sus unidades y fechas.',

@@ -5,6 +5,7 @@ export const observableUniverse_Skill_Data = defineSkill({
   id: 'a11a495e-93c5-44ed-8201-6a5258deb8f2',
   name: {
     en: 'Observable Universe',
+    it: 'Universo osservabile',
     qm: 'Közetilebilgen Kâinat',
     zh: '可观测宇宙',
     hi: 'प्रेक्षणीय ब्रह्मांड',
@@ -39,6 +40,7 @@ export const observableUniverse_Skill_Data = defineSkill({
       'Distinguish the observable region set by signal travel and cosmic history from claims about the entire Universe.',
     frontend: {
       en: 'Understand why the observable Universe is not necessarily the whole Universe.',
+      it: "Comprendi perché l'universo osservabile non coincide necessariamente con l'intero universo.",
       qm: 'Közetilebilgen Kâinatnıñ bütün Kâinat olmağa mecbur olmağanını añlañız.',
       zh: '理解可观测宇宙不一定就是整个宇宙。',
       hi: 'समझें कि प्रेक्षणीय ब्रह्मांड ज़रूरी नहीं कि पूरा ब्रह्मांड हो।',

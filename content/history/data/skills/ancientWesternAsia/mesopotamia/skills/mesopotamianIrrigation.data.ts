@@ -5,6 +5,7 @@ export const mesopotamianIrrigation_Skill_Data = defineSkill({
   id: '71e1ee98-234d-400f-9984-cfabb6e3756d',
   name: {
     en: 'Mesopotamian Irrigation',
+    it: 'Irrigazione mesopotamica',
     zh: '美索不达米亚灌溉',
     hi: 'मेसोपोटामिया में सिंचाई',
     es: 'Riego mesopotámico',
@@ -39,6 +40,7 @@ export const mesopotamianIrrigation_Skill_Data = defineSkill({
       'Connect canals, seasonal water, collective labor, and environmental risks with agricultural productivity.',
     frontend: {
       en: 'Understand why irrigation mattered to Mesopotamian farming.',
+      it: "Comprendi perché l'irrigazione era importante per l'agricoltura mesopotamica.",
       zh: '理解灌溉为何对美索不达米亚农业重要。',
       hi: 'समझें कि मेसोपोटामिया की खेती के लिए सिंचाई क्यों महत्त्वपूर्ण थी।',
       es: 'Comprende por qué el riego era importante para la agricultura mesopotámica.',

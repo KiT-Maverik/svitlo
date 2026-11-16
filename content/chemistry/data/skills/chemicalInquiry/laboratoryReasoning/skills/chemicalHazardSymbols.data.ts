@@ -5,6 +5,7 @@ export const chemicalHazardSymbols_Skill_Data = defineSkill({
   id: 'd238cafe-5ba0-410d-97b0-1ace06517c95',
   name: {
     en: 'Chemical Hazard Symbols',
+    it: 'Simboli di pericolo chimico',
     zh: '化学危险象形图',
     hi: 'रासायनिक खतरे के चिह्न',
     es: 'Símbolos de peligro químico',
@@ -38,6 +39,7 @@ export const chemicalHazardSymbols_Skill_Data = defineSkill({
     methodological: 'Interpret common chemical hazard pictograms and distinguish hazard from actual exposure and risk.',
     frontend: {
       en: 'Recognize chemical hazard symbols and understand that risk depends on exposure.',
+      it: "Riconosci i simboli di pericolo chimico e comprendi che il rischio dipende dall'esposizione.",
       zh: '识别化学危险标志，并理解风险取决于接触情况。',
       hi: 'रासायनिक खतरे के प्रतीक पहचानें और समझें कि जोखिम संपर्क पर निर्भर करता है।',
       es: 'Reconoce los pictogramas de peligro químico y entiende que el riesgo depende de la exposición.',

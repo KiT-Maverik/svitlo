@@ -10,6 +10,7 @@ export const developmentAcrossTheLifespan_SkillDomain_Data = defineSkillDomain({
   id: '7882b990-75ba-464c-bace-6869e2564135',
   title: {
     en: 'Development Across the Lifespan',
+    it: "Sviluppo lungo l'arco della vita",
     zh: '毕生发展',
     hi: 'जीवनकाल में विकास',
     es: 'Desarrollo a lo largo de la vida',
@@ -53,6 +54,7 @@ export const developmentAcrossTheLifespan_SkillDomain_Data = defineSkillDomain({
       'Cognition, relationships, identity, and emotional regulation change from infancy through older adulthood. Developmental patterns express interactions of maturation and lived experience, not identical milestones for every person.',
     frontend: {
       en: 'Explore how people change and adapt from infancy through later adulthood.',
+      it: "Esplora come le persone cambino e si adattino dall'infanzia fino alla tarda età adulta.",
       zh: '探索人们从婴儿期到老年如何变化和适应。',
       hi: 'जानें कि शैशव से वृद्धावस्था तक लोग कैसे बदलते और अनुकूलित होते हैं।',
       es: 'Explora cómo cambian y se adaptan las personas desde la infancia hasta la vejez.',

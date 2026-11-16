@@ -5,6 +5,7 @@ export const assessBreathing_Skill_Data = defineSkill({
   id: 'c70f51c3-a235-42f2-bfe7-0a6b3cba726f',
   name: {
     en: 'Assess breathing',
+    it: 'Valutare la respirazione',
     zh: '评估呼吸',
     hi: 'साँस का आकलन',
     es: 'Evaluar la respiración',
@@ -38,6 +39,7 @@ export const assessBreathing_Skill_Data = defineSkill({
     methodological: 'Recognize absent or abnormal breathing as a medical emergency without delaying the call for help.',
     frontend: {
       en: 'Recognize abnormal or absent breathing that needs emergency action.',
+      it: "Riconosci una respirazione anomala o assente che richiede un intervento d'emergenza.",
       zh: '识别需要紧急行动的异常或停止呼吸情况。',
       hi: 'असामान्य या बंद साँस पहचानो जिसके लिए तुरंत कार्रवाई ज़रूरी है।',
       es: 'Reconoce respiración anormal o ausente que requiere acción de emergencia.',

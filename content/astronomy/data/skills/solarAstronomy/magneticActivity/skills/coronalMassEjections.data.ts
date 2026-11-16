@@ -5,6 +5,7 @@ export const coronalMassEjections_Skill_Data = defineSkill({
   id: '2c01ced3-6d44-4446-bcc3-be76526aef33',
   name: {
     en: 'Coronal Mass Ejections',
+    it: 'Espulsioni di massa coronale',
     qm: 'Korona maddesiniñ püskürmeleri',
     bn: 'করোনীয় ভর নির্গমন',
     ur: 'کرونائی مادے کا اخراج',
@@ -38,6 +39,7 @@ export const coronalMassEjections_Skill_Data = defineSkill({
     methodological: 'Distinguish large ejections of coronal plasma from flares, including their possible coincidence.',
     frontend: {
       en: 'Distinguish massive eruptions of solar material from bursts of flare radiation.',
+      it: 'Distingui le grandi eruzioni di materiale solare dagli impulsi di radiazione dei brillamenti.',
       qm: 'Küneş maddesiniñ büyük püskürmelerini Küneş parlavlarınıñ şavlesinden ayırmağı ögreniñiz.',
       bn: 'সৌর প্লাজমার বিপুল নির্গমনকে সৌর শিখার বিকিরণের আকস্মিক বিস্ফোরণ থেকে আলাদা করতে শেখো।',
       ur: 'شمسی پلازما کے بڑے اخراج اور شمسی شعلوں کی تابکاری کے اچانک پھوٹ پڑنے میں فرق جانیں۔',

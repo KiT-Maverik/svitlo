@@ -5,6 +5,7 @@ export const chemicalProperties_Skill_Data = defineSkill({
   id: 'd3371a25-55c7-4950-8a56-e3285ad54be5',
   name: {
     en: 'Chemical Properties',
+    it: 'Proprietà chimiche',
     zh: '化学性质',
     hi: 'रासायनिक गुण',
     es: 'Propiedades químicas',
@@ -39,6 +40,7 @@ export const chemicalProperties_Skill_Data = defineSkill({
       'Identify how reactivity or resistance to chemical change characterizes a substance under specified conditions.',
     frontend: {
       en: "Recognize how a substance's reactivity describes its chemical properties.",
+      it: 'Riconosci come la reattività di una sostanza ne descrive le proprietà chimiche.',
       zh: '认识物质的反应性如何描述其化学性质。',
       hi: 'समझें कि पदार्थ की अभिक्रियाशीलता उसके रासायनिक गुणों का वर्णन कैसे करती है।',
       es: 'Reconoce cómo la reactividad de una sustancia describe sus propiedades químicas.',

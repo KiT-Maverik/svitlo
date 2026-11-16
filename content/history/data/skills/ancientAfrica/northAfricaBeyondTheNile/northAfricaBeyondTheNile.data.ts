@@ -12,6 +12,7 @@ export const northAfricaBeyondTheNile_SkillGroup_Data = defineSkillGroup({
   id: '1a0ba7c6-d424-4499-8f24-f4e1138fc594',
   name: {
     en: 'North Africa Beyond the Nile',
+    it: 'Africa settentrionale oltre il Nilo',
     zh: '尼罗河流域以外的北非',
     hi: 'नील घाटी से बाहर उत्तरी अफ्रीका',
     es: 'África del Norte fuera del valle del Nilo',
@@ -55,6 +56,7 @@ export const northAfricaBeyondTheNile_SkillGroup_Data = defineSkillGroup({
       'Carthaginian, Numidian, and Saharan societies maintained their own political traditions amid Mediterranean and inland contacts.',
     frontend: {
       en: 'Discover ancient North African societies beyond Egypt.',
+      it: "Scopri le antiche società dell'Africa settentrionale al di fuori dell'Egitto.",
       zh: '了解埃及之外的古代北非社会。',
       hi: 'मिस्र के बाहर के प्राचीन उत्तर अफ्रीकी समाजों को जानें।',
       es: 'Descubre las sociedades antiguas del norte de África más allá de Egipto.',

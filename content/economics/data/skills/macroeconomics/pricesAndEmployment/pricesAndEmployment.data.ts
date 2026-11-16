@@ -14,6 +14,7 @@ export const pricesAndEmployment_SkillGroup_Data = defineSkillGroup({
   id: '569a685b-d88e-4429-be52-d8ba505df4d6',
   name: {
     en: 'Ціни та зайнятість',
+    it: 'Prezzi e occupazione',
     zh: '价格与就业',
     hi: 'कीमतें और रोज़गार',
     es: 'Precios y empleo',
@@ -65,6 +66,7 @@ export const pricesAndEmployment_SkillGroup_Data = defineSkillGroup({
     methodological: 'Changes in the general price level and labor utilization have different causes and effects.',
     frontend: {
       en: 'Explore how inflation and unemployment are measured and explained.',
+      it: 'Esplora come vengono misurate e spiegate inflazione e disoccupazione.',
       zh: '探索通货膨胀和失业如何被衡量与解释。',
       hi: 'जानें कि मुद्रास्फीति और बेरोज़गारी को कैसे मापा और समझाया जाता है।',
       es: 'Explora cómo se miden y explican la inflación y el desempleo.',

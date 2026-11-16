@@ -5,6 +5,7 @@ export const resistManipulativeOffers_Skill_Data = defineSkill({
   id: '3d2dc95a-3c8d-46dc-93df-f8dc5e32d91c',
   name: {
     en: 'Resist manipulative offers',
+    it: 'Resistere alle offerte manipolatorie',
     zh: '拒绝带有操纵性的诱导',
     hi: 'चालाकी भरे प्रस्तावों से बचना',
     es: 'Resistir ofertas manipuladoras',
@@ -39,6 +40,7 @@ export const resistManipulativeOffers_Skill_Data = defineSkill({
       'When pressured by an urgent, secretive or fear-based offer, pause the requested action, decline unsafe disclosure or payment, seek independent verification through a known channel and disengage if the pressure continues.',
     frontend: {
       en: 'Pause and independently verify offers that demand urgent action.',
+      it: "Fermati e verifica in modo indipendente le offerte che richiedono un'azione urgente.",
       zh: '遇到催促你立即行动的提议时，先暂停并通过可信渠道独立核实。',
       hi: 'तुरंत कार्रवाई माँगने वाले प्रस्ताव पर रुको और स्वतंत्र पुष्टि करो।',
       es: 'Detente y verifica por tu cuenta las ofertas que exigen actuar con urgencia.',

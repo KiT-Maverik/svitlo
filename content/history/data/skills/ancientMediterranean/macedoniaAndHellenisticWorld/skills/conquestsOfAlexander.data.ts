@@ -5,6 +5,7 @@ export const conquestsOfAlexander_Skill_Data = defineSkill({
   id: '5bbd9ba0-9852-45e5-aa48-2404b2f931a7',
   name: {
     en: 'Conquests of Alexander the Great',
+    it: 'Conquiste di Alessandro Magno',
     zh: '亚历山大的征服',
     hi: 'सिकंदर की विजयें',
     es: 'Conquistas de Alejandro',
@@ -39,6 +40,7 @@ export const conquestsOfAlexander_Skill_Data = defineSkill({
       "Trace the reach of Alexander's campaigns, changed governments, and the limits of his short-lived personal empire.",
     frontend: {
       en: "Follow Alexander's conquests and their political consequences.",
+      it: 'Segui le conquiste di Alessandro e le loro conseguenze politiche.',
       zh: '追溯亚历山大的征服活动及其政治后果。',
       hi: 'सिकंदर की विजयों और उनके राजनीतिक परिणामों का अध्ययन करें।',
       es: 'Sigue las conquistas de Alejandro y sus consecuencias políticas.',

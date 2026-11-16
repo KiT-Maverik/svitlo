@@ -5,6 +5,7 @@ export const identifyStructuralSupportElements_Skill_Data = defineSkill({
   id: '2b99e697-238e-49dd-bc45-11ba9e43d359',
   name: {
     en: 'Identify structural support elements',
+    it: 'Individuare gli elementi strutturali di sostegno',
     zh: '识别结构中的支撑部件',
     hi: 'संरचना के सहायक तत्व पहचानना',
     es: 'Identificar los elementos de soporte de una estructura',
@@ -38,6 +39,7 @@ export const identifyStructuralSupportElements_Skill_Data = defineSkill({
     methodological: 'Identify the elements supporting a model bridge or building.',
     frontend: {
       en: 'Identify the parts that support the weight of a model structure.',
+      it: 'Individua le parti che sostengono il peso di una struttura modello.',
       zh: '识别支撑模型结构重量的部件。',
       hi: 'मॉडल संरचना का भार सँभालने वाले भागों की पहचान करें।',
       es: 'Identifica las piezas que sostienen el peso de una estructura modelo.',

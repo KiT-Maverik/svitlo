@@ -5,6 +5,7 @@ export const accretionPoweredEmission_Skill_Data = defineSkill({
   id: '9c5e3fce-a8a8-4d6f-b111-0b9bbeb3fed2',
   name: {
     en: 'Accretion-Powered Emission',
+    it: "Emissione alimentata dall'accrescimento",
     qm: 'Madde tüşüvinden peyda olğan şavle',
     zh: '吸积驱动的辐射',
     hi: 'अभिवृद्धि से उत्पन्न विकिरण',
@@ -39,6 +40,7 @@ export const accretionPoweredEmission_Skill_Data = defineSkill({
       'Explain how infalling material can release substantial radiation before crossing an event horizon.',
     frontend: {
       en: 'Learn how material falling toward a black hole can produce powerful radiation.',
+      it: 'Scopri come la materia che cade verso un buco nero può produrre radiazioni intense.',
       qm: 'Qara deşikke tüşken madde nasıl küçlü şavle çıqara bilgenini ögreniñiz.',
       zh: '了解落向黑洞的物质如何产生强烈辐射。',
       hi: 'जानें कि ब्लैक होल की ओर गिरता पदार्थ शक्तिशाली विकिरण कैसे उत्पन्न कर सकता है।',

@@ -5,6 +5,7 @@ export const reconstructAHistoricalPhilosophicalArgument_Skill_Data = defineSkil
   id: '07f542da-7b6d-4d7e-952d-6b98074f8221',
   name: {
     en: 'Reconstruct a historical philosophical argument',
+    it: "Ricostruire un'argomentazione filosofica storica",
     zh: '重构历史哲学论证',
     hi: 'ऐतिहासिक दार्शनिक तर्क का पुनर्निर्माण',
     es: 'Reconstruir un argumento filosófico histórico',
@@ -39,6 +40,7 @@ export const reconstructAHistoricalPhilosophicalArgument_Skill_Data = defineSkil
       "Extract claims and reasons from a source while distinguishing a philosopher's stated position from later summaries.",
     frontend: {
       en: 'Reconstruct a historical argument using what the philosopher actually wrote.',
+      it: "Ricostruisci un'argomentazione storica basandoti su ciò che il filosofo ha realmente scritto.",
       zh: '根据哲学家实际写下的内容重构其论证。',
       hi: 'दार्शनिक ने वास्तव में जो लिखा, उसी से उसका तर्क फिर बनाओ।',
       es: 'Reconstruye el argumento usando lo que el filósofo realmente escribió.',

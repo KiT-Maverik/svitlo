@@ -5,6 +5,7 @@ export const selfTestingAndCalibration_Skill_Data = defineSkill({
   id: '238a8808-07fe-4f06-8fd6-e799cbb49698',
   name: {
     en: 'Self-Testing and Calibration',
+    it: 'Autoverifica e calibrazione',
     zh: '自我测试与校准',
     hi: 'स्व-परीक्षण और आकलन का समायोजन',
     es: 'Autoevaluación y calibración',
@@ -38,6 +39,7 @@ export const selfTestingAndCalibration_Skill_Data = defineSkill({
     methodological: 'Use attempted retrieval and feedback to compare judged understanding with actual performance.',
     frontend: {
       en: 'Check understanding by testing yourself and comparing confidence with results.',
+      it: 'Verifica la comprensione mettendoti alla prova e confrontando la tua sicurezza con i risultati.',
       zh: '通过自测并比较自信程度与实际结果来检验理解。',
       hi: 'खुद को जाँचें और अपने भरोसे की तुलना वास्तविक नतीजों से करें।',
       es: 'Comprueba tu comprensión con pruebas propias y compara tu confianza con los resultados.',

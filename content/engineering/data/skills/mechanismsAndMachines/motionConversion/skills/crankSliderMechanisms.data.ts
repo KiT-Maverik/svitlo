@@ -5,6 +5,7 @@ export const crankSliderMechanisms_Skill_Data = defineSkill({
   id: '405e7ea7-7981-4f79-bc99-bc3f503d5399',
   name: {
     en: 'Crank-slider mechanisms',
+    it: 'Meccanismi biella-manovella e cursore',
     zh: '曲柄滑块机构',
     hi: 'क्रैंक-स्लाइडर तंत्र',
     es: 'Mecanismos de biela y corredera',
@@ -38,6 +39,7 @@ export const crankSliderMechanisms_Skill_Data = defineSkill({
     methodological: 'Trace conversion between rotary and reciprocating motion in a piston machine.',
     frontend: {
       en: 'Explain how a crank and slider connect rotation with back-and-forth motion.',
+      it: 'Spiega come una manovella e un cursore collegano la rotazione al movimento alternativo.',
       zh: '解释曲柄和滑块如何连接旋转运动与往复运动。',
       hi: 'समझाएँ कि क्रैंक और स्लाइडर घूमने तथा आगे-पीछे चलने की गति को कैसे जोड़ते हैं।',
       es: 'Explica cómo una manivela y una corredera conectan la rotación con el movimiento alternativo.',

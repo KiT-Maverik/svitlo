@@ -5,6 +5,7 @@ export const barycentricMotion_Skill_Data = defineSkill({
   id: '9b0e19d9-848c-4f09-8985-17588e9748cc',
   name: {
     en: 'Barycentric Motion',
+    it: 'Moto baricentrico',
     zh: '质心运动',
     hi: 'द्रव्यमान-केंद्र के चारों ओर गति',
     es: 'Movimiento baricéntrico',
@@ -39,6 +40,7 @@ export const barycentricMotion_Skill_Data = defineSkill({
       'Explain why interacting celestial bodies orbit a shared center of mass rather than one body always remaining stationary.',
     frontend: {
       en: 'Understand why two orbiting bodies move around a shared centre of mass.',
+      it: 'Comprendi perché due corpi in orbita si muovono intorno a un centro di massa comune.',
       zh: '理解为什么两个相互绕转的天体会围绕共同的质心运动。',
       hi: 'समझें कि परिक्रमा करने वाले दो पिंड साझा द्रव्यमान केंद्र के चारों ओर क्यों घूमते हैं।',
       es: 'Comprende por qué dos cuerpos en órbita se mueven alrededor de un centro de masas común.',

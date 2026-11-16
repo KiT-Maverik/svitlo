@@ -5,6 +5,7 @@ export const analyzeClassicalGreekSculpture_Skill_Data = defineSkill({
   id: '03821557-15ed-4615-af1e-8098db83ce7b',
   name: {
     en: 'Analyze Classical Greek Sculpture',
+    it: 'Analizzare la scultura greca classica',
     zh: '分析古希腊雕塑',
     hi: 'शास्त्रीय यूनानी मूर्तिकला का विश्लेषण करें',
     es: 'Analizar la escultura griega clásica',
@@ -39,6 +40,7 @@ export const analyzeClassicalGreekSculpture_Skill_Data = defineSkill({
       'Examine idealized bodily proportion, stance and movement in selected Greek sculptural periods without assuming a single unchanging classical ideal.',
     frontend: {
       en: 'Examine how Greek sculptors represented bodies, balance and movement over time.',
+      it: "Esamina come, nel corso del tempo, gli scultori greci hanno rappresentato il corpo, l'equilibrio e il movimento.",
       zh: '了解希腊雕塑家如何在不同时期表现人体、平衡与动作。',
       hi: 'जानें कि यूनानी मूर्तिकारों ने समय के साथ शरीर, संतुलन और गति को कैसे दर्शाया।',
       es: 'Examina cómo los escultores griegos representaron el cuerpo, el equilibrio y el movimiento a lo largo del tiempo.',

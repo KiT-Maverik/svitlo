@@ -5,6 +5,7 @@ export const organizeFigureAndGround_Skill_Data = defineSkill({
   id: '495f20e2-5b31-4e90-ab6e-29e38ac0bb1f',
   name: {
     en: 'Organize Figure and Ground',
+    it: 'Organizzare figura e sfondo',
     zh: '组织图形与背景',
     hi: 'आकृति और पृष्ठभूमि को व्यवस्थित करें',
     es: 'Organizar figura y fondo',
@@ -38,6 +39,7 @@ export const organizeFigureAndGround_Skill_Data = defineSkill({
     methodological: 'Differentiate a principal visual form from surrounding space in a chosen pictorial manner.',
     frontend: {
       en: 'Use the relationship between a main shape and its background.',
+      it: 'Sfrutta il rapporto tra una forma principale e il suo sfondo.',
       zh: '处理主体形状与背景之间的关系。',
       hi: 'मुख्य आकार और उसकी पृष्ठभूमि के बीच के संबंध का उपयोग करें।',
       es: 'Trabaja con la relación entre una forma principal y su fondo.',

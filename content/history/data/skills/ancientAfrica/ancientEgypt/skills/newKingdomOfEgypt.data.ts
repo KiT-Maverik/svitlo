@@ -5,6 +5,7 @@ export const newKingdomOfEgypt_Skill_Data = defineSkill({
   id: '256384fc-09ce-4021-8161-ea91103f5090',
   name: {
     en: 'New Kingdom of Egypt',
+    it: "Nuovo Regno d'Egitto",
     zh: '埃及新王国',
     hi: 'मिस्र का नवीन साम्राज्य',
     es: 'Imperio Nuevo de Egipto',
@@ -39,6 +40,7 @@ export const newKingdomOfEgypt_Skill_Data = defineSkill({
       'Examine conquest, diplomacy, temple institutions, and political transformations in Dynasties XVIII–XX.',
     frontend: {
       en: 'Discover how New Kingdom Egypt interacted with neighboring lands.',
+      it: "Scopri come l'Egitto del Nuovo Regno interagiva con le terre vicine.",
       zh: '探索新王国时期埃及如何与邻近地区交往。',
       hi: 'जानें कि नवीन साम्राज्य के मिस्र ने पड़ोसी क्षेत्रों से कैसे संबंध बनाए।',
       es: 'Descubre cómo el Egipto del Imperio Nuevo se relacionaba con las tierras vecinas.',

@@ -12,6 +12,7 @@ export const describingMotion_SkillGroup_Data = defineSkillGroup({
   id: '60a0fc2f-85cd-4712-8cd1-a2a2de88270d',
   name: {
     en: 'Describing Motion',
+    it: 'Descrizione del moto',
     zh: '描述运动',
     hi: 'गति का वर्णन',
     es: 'Descripción del movimiento',
@@ -60,6 +61,7 @@ export const describingMotion_SkillGroup_Data = defineSkillGroup({
       'Position, direction, speed, and repetition are needed for a qualitative description of a trajectory; motion is always considered relative to a chosen reference.',
     frontend: {
       en: 'Learn to describe where things move and how motion changes with time.',
+      it: 'Impara a descrivere dove si muovono gli oggetti e come il moto cambia nel tempo.',
       zh: '学习描述物体向哪里运动，以及运动如何随时间变化。',
       hi: 'सीखें कि वस्तुएँ किस दिशा में चलती हैं और समय के साथ उनकी गति कैसे बदलती है।',
       es: 'Aprende a describir hacia dónde se mueven los objetos y cómo cambia el movimiento con el tiempo.',

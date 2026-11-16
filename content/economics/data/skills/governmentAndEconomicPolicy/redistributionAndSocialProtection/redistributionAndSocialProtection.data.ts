@@ -11,6 +11,7 @@ export const redistributionAndSocialProtection_SkillGroup_Data = defineSkillGrou
   id: '78be65cd-4f00-4b50-bea4-1982e00aafa9',
   name: {
     en: 'Перерозподіл та соціальний захист',
+    it: 'Redistribuzione e protezione sociale',
     zh: '再分配与社会保障',
     hi: 'पुनर्वितरण और सामाजिक सुरक्षा',
     es: 'Redistribución y protección social',
@@ -53,6 +54,7 @@ export const redistributionAndSocialProtection_SkillGroup_Data = defineSkillGrou
       'Transfers and public services change resource distribution and insure against specified social risks.',
     frontend: {
       en: 'Discover how public support can reduce particular financial risks.',
+      it: 'Scopri come il sostegno pubblico può ridurre determinati rischi finanziari.',
       zh: '了解公共支持如何降低某些经济风险。',
       hi: 'जानें कि सार्वजनिक सहायता कुछ वित्तीय जोखिम कैसे घटा सकती है।',
       es: 'Descubre cómo el apoyo público puede reducir determinados riesgos económicos.',

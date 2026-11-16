@@ -5,6 +5,7 @@ export const neurodevelopmentalVariability_Skill_Data = defineSkill({
   id: '88fba4ed-51bb-4932-b7cb-fb91cfd0d2ed',
   name: {
     en: 'Neurodevelopmental Variability',
+    it: 'Variabilità del neurosviluppo',
     zh: '神经发育差异',
     hi: 'तंत्रिका-विकास में विविधता',
     es: 'Variabilidad del neurodesarrollo',
@@ -39,6 +40,7 @@ export const neurodevelopmentalVariability_Skill_Data = defineSkill({
       'Explain differences in developmental trajectories of attention, communication, sensory processing, and executive functions, accounting for the role of environment and support without treating variation itself as a disorder.',
     frontend: {
       en: 'Understand that neurodevelopmental differences vary widely between people.',
+      it: 'Comprendi che le differenze del neurosviluppo variano notevolmente da persona a persona.',
       zh: '理解不同人的神经发育方式可能存在很大差异。',
       hi: 'समझें कि लोगों में तंत्रिका-विकास के अंतर बहुत विविध हो सकते हैं।',
       es: 'Comprende que el neurodesarrollo puede variar mucho de una persona a otra.',

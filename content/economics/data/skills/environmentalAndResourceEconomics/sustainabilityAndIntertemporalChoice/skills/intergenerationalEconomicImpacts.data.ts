@@ -5,6 +5,7 @@ export const intergenerationalEconomicImpacts_Skill_Data = defineSkill({
   id: '09226778-fe37-4dc9-8a1d-3806a0c1fb8b',
   name: {
     en: 'Міжпоколінні економічні наслідки',
+    it: 'Impatti economici intergenerazionali',
     zh: '跨代经济影响',
     hi: 'आने वाली पीढ़ियों पर आर्थिक प्रभाव',
     es: 'Impactos económicos entre generaciones',
@@ -38,6 +39,7 @@ export const intergenerationalEconomicImpacts_Skill_Data = defineSkill({
     methodological: 'Evaluate how benefits and harms from current decisions are distributed among future generations.',
     frontend: {
       en: 'Consider who gains or loses from decisions across generations.',
+      it: 'Valuta come le scelte di oggi distribuiscono benefici e danni tra le generazioni future.',
       zh: '思考一项决策会让哪些世代获益或受损。',
       hi: 'सोचें कि किसी फैसले से कौन-सी पीढ़ियों को लाभ या हानि होती है।',
       es: 'Considera qué generaciones ganan o pierden por una decisión.',

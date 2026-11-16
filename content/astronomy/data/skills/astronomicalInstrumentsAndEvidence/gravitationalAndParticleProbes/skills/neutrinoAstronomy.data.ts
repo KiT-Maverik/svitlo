@@ -5,6 +5,7 @@ export const neutrinoAstronomy_Skill_Data = defineSkill({
   id: 'd8012b76-7228-4f0c-b5ae-90acaa920f90',
   name: {
     en: 'Neutrino Astronomy',
+    it: 'Astronomia dei neutrini',
     qm: 'Neytrino astronomiyası',
     bn: 'নিউট্রিনো জ্যোতির্বিজ্ঞান',
     ur: 'نیوٹرینو فلکیات',
@@ -39,6 +40,7 @@ export const neutrinoAstronomy_Skill_Data = defineSkill({
       'Explain how astrophysical neutrinos probe energetic processes that electromagnetic observations may not reveal.',
     frontend: {
       en: 'Discover how neutrinos reveal energetic events that light may not fully show.',
+      it: 'Scopri come i neutrini rivelano eventi energetici che la luce potrebbe non mostrare completamente.',
       qm: 'Yarıq tam kösterip olamağan energiyalı vaqialarnı neytrinolar nasıl bildirgenini ögreniñiz.',
       bn: 'আলো দিয়ে পুরোপুরি বোঝা যায় না এমন উচ্চ-শক্তির ঘটনা নিউট্রিনো কীভাবে প্রকাশ করে, তা জানো।',
       ur: 'جانیں کہ نیوٹرینو اعلیٰ توانائی کے ایسے واقعات کیسے ظاہر کرتے ہیں جو صرف روشنی سے پوری طرح معلوم نہیں ہوتے۔',

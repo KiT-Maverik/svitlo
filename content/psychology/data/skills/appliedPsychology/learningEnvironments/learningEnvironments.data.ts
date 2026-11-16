@@ -11,6 +11,7 @@ export const learningEnvironments_SkillGroup_Data = defineSkillGroup({
   id: '1086e6e8-5f7f-43d9-badf-b6290495535e',
   name: {
     en: 'Learning Environments',
+    it: 'Ambienti di apprendimento',
     zh: '学习环境',
     hi: 'सीखने के वातावरण',
     es: 'Entornos de aprendizaje',
@@ -53,6 +54,7 @@ export const learningEnvironments_SkillGroup_Data = defineSkillGroup({
       'Educational psychology examines attention, feedback, motivation, and differences among learners to understand conditions for effective learning.',
     frontend: {
       en: 'Discover how attention, motivation and feedback affect opportunities to learn.',
+      it: 'Scopri come attenzione, motivazione e feedback influiscono sulle opportunità di apprendere.',
       zh: '了解注意力、动机和反馈如何影响学习机会。',
       hi: 'जानें कि ध्यान, प्रेरणा और प्रतिक्रिया सीखने के अवसरों को कैसे प्रभावित करते हैं।',
       es: 'Descubre cómo la atención, la motivación y la retroalimentación afectan las oportunidades de aprender.',

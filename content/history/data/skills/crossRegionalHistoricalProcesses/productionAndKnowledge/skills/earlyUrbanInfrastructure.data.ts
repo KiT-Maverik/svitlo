@@ -5,6 +5,7 @@ export const earlyUrbanInfrastructure_Skill_Data = defineSkill({
   id: 'b26c85b5-0119-4318-874d-5031bfe8e5c7',
   name: {
     en: 'Early Urban Infrastructure',
+    it: 'Prime infrastrutture urbane',
     zh: '早期城市基础设施',
     hi: 'प्रारंभिक शहरी अवसंरचना',
     es: 'Infraestructura de las primeras ciudades',
@@ -39,6 +40,7 @@ export const earlyUrbanInfrastructure_Skill_Data = defineSkill({
       'Study water supply, drainage, roads, and public buildings as results of technical and administrative choices.',
     frontend: {
       en: 'Explore how early cities built shared infrastructure.',
+      it: 'Esplora come le prime città costruivano infrastrutture comuni.',
       zh: '探索早期城市如何建设供人们共同使用的基础设施。',
       hi: 'जानें कि शुरुआती नगरों ने साझा उपयोग की सुविधाएँ कैसे बनाईं।',
       es: 'Explora cómo las primeras ciudades construyeron infraestructuras de uso común.',

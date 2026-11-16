@@ -9,6 +9,7 @@ export const philosophicalInquiry_SkillDomain_Data = defineSkillDomain({
   id: 'fd86f4b0-a38b-442f-aaa4-c8a193ebd520',
   title: {
     en: 'Philosophical Inquiry',
+    it: 'Indagine filosofica',
     zh: '哲学探究',
     hi: 'दार्शनिक अन्वेषण',
     es: 'Indagación filosófica',
@@ -51,6 +52,7 @@ export const philosophicalInquiry_SkillDomain_Data = defineSkillDomain({
       'Philosophy investigates conceptual, normative, and foundational questions whose answers require reasons rather than observation alone. This domain concerns the practices used to formulate, refine, and discuss such questions; it is distinct from the formal evaluation of arguments in Logic.',
     frontend: {
       en: 'Explore questions about meaning, values and assumptions through reasoned discussion.',
+      it: 'Esplora domande sul significato, sui valori e sui presupposti attraverso il confronto ragionato.',
       zh: '通过有理有据的讨论，探索意义、价值观和假设方面的问题。',
       hi: 'तर्कसंगत चर्चा के माध्यम से अर्थ, मूल्यों और मान्यताओं से जुड़े प्रश्नों का अन्वेषण करें।',
       es: 'Explora preguntas sobre el significado, los valores y los supuestos mediante el diálogo razonado.',

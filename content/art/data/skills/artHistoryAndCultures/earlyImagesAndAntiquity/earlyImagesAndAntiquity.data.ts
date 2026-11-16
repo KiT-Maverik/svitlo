@@ -13,6 +13,7 @@ export const earlyImagesAndAntiquity_SkillGroup_Data = defineSkillGroup({
   id: 'eccab0e6-bbf1-44c9-a3ba-2d3cf4a429e7',
   name: {
     en: 'Early Images and Antiquity',
+    it: 'Prime immagini e arte antica',
     zh: '早期图像与古代艺术',
     hi: 'प्रारंभिक चित्र और प्राचीन कला',
     es: 'Imágenes tempranas y Antigüedad',
@@ -63,6 +64,7 @@ export const earlyImagesAndAntiquity_SkillGroup_Data = defineSkillGroup({
       'These practices emerged in different historical settings and should be read through their own surviving works, functions and available archaeological evidence. Similar motifs do not imply that their makers shared one artistic tradition.',
     frontend: {
       en: 'Study early images and ancient art through surviving objects and their specific contexts.',
+      it: "Studia le prime immagini e l'arte antica attraverso gli oggetti conservati e i loro contesti specifici.",
       zh: '通过留存的实物及其具体背景研究早期图像与古代艺术。',
       hi: 'बची हुई वस्तुओं और उनके विशिष्ट संदर्भों के माध्यम से प्रारंभिक चित्रों और प्राचीन कला का अध्ययन करें।',
       es: 'Estudia las primeras imágenes y el arte antiguo a través de objetos conservados y sus contextos específicos.',

@@ -12,6 +12,7 @@ export const mechanics_SkillDomain_Data = defineSkillDomain({
   id: '8aad83d7-dbc9-428d-b369-66913e81649c',
   title: {
     en: 'Mechanics',
+    it: 'Meccanica',
     zh: '力学',
     hi: 'यांत्रिकी',
     es: 'Mecánica',
@@ -64,6 +65,7 @@ export const mechanics_SkillDomain_Data = defineSkillDomain({
       "Mechanics describes changes in bodies' positions over time, the inertial properties of motion, and the transmission of mechanical action through simple systems. Basic explanations of types of forces and equilibrium are assigned to the neighboring Domain.",
     frontend: {
       en: 'Explore how bodies move, resist changes and transfer motion through mechanical systems.',
+      it: 'Esplora come i corpi si muovono, resistono ai cambiamenti e trasmettono il moto nei sistemi meccanici.',
       zh: '探索物体如何运动、抵抗变化，以及机械系统如何传递运动。',
       hi: 'जानें कि वस्तुएँ कैसे चलती हैं, परिवर्तन का विरोध कैसे करती हैं और यांत्रिक प्रणालियाँ गति कैसे पहुँचाती हैं।',
       es: 'Explora cómo se mueven los cuerpos, resisten cambios y transmiten movimiento mediante sistemas mecánicos.',

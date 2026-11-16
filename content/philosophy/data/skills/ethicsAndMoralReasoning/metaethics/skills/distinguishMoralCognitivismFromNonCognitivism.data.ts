@@ -5,6 +5,7 @@ export const distinguishMoralCognitivismFromNonCognitivism_Skill_Data = defineSk
   id: 'fac5f632-bd40-4934-bda0-69200cd2b3ba',
   name: {
     en: 'Distinguish moral cognitivism from non-cognitivism',
+    it: 'Distinguere cognitivismo e non cognitivismo morale',
     zh: '区分道德认知主义与非认知主义',
     hi: 'नैतिक संज्ञानवाद और असंज्ञानवाद में अंतर',
     es: 'Distinguir cognitivismo y no cognitivismo moral',
@@ -39,6 +40,7 @@ export const distinguishMoralCognitivismFromNonCognitivism_Skill_Data = defineSk
       'Examine whether moral utterances express truth-apt beliefs or instead function as prescriptions, commitments, or other attitudes.',
     frontend: {
       en: 'Explore whether moral sentences state facts or express attitudes and commitments.',
+      it: 'Esplora se le proposizioni morali enuncino fatti oppure esprimano atteggiamenti e impegni.',
       zh: '探讨道德语句是在陈述事实，还是在表达态度与承诺。',
       hi: 'जाँचें कि नैतिक वाक्य तथ्य बताते हैं या दृष्टिकोण और प्रतिबद्धता व्यक्त करते हैं।',
       es: 'Explora si las frases morales afirman hechos o expresan actitudes y compromisos.',

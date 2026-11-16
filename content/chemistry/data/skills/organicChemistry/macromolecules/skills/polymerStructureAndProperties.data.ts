@@ -5,6 +5,7 @@ export const polymerStructureAndProperties_Skill_Data = defineSkill({
   id: 'ae7794aa-d6cc-4956-bf4c-44524968371d',
   name: {
     en: 'Polymer Structure and Properties',
+    it: 'Struttura e proprietà dei polimeri',
     zh: '聚合物结构与性质',
     hi: 'बहुलक की संरचना और गुण',
     es: 'Estructura y propiedades de polímeros',
@@ -38,6 +39,7 @@ export const polymerStructureAndProperties_Skill_Data = defineSkill({
     methodological: 'Relate chain length, branching and cross-linking to bulk material behavior.',
     frontend: {
       en: 'Connect polymer chain shape and cross-links with material properties.',
+      it: 'Collega la forma delle catene polimeriche e i legami trasversali alle proprietà dei materiali.',
       zh: '联系聚合物链的形状和交联结构与材料性质。',
       hi: 'बहुलक शृंखलाओं के आकार और आपसी जुड़ाव को पदार्थ के गुणों से जोड़ें।',
       es: 'Relaciona la forma de las cadenas y los enlaces cruzados con las propiedades del material.',

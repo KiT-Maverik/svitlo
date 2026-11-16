@@ -5,6 +5,7 @@ export const analyzeReligiousPluralismAsAPhilosophicalProblem_Skill_Data = defin
   id: '1430870b-b9d3-4105-93cb-1ed0cf626c62',
   name: {
     en: 'Analyze religious pluralism as a philosophical problem',
+    it: 'Analizzare il pluralismo religioso come problema filosofico',
     zh: '将宗教多元论作为哲学问题来分析',
     hi: 'धार्मिक बहुलवाद का दार्शनिक समस्या के रूप में विश्लेषण',
     es: 'Analizar el pluralismo religioso como problema filosófico',
@@ -39,6 +40,7 @@ export const analyzeReligiousPluralismAsAPhilosophicalProblem_Skill_Data = defin
       'Compare accounts of how conflicting ultimate-belief claims might be understood and evaluated while respecting freedom of conscience.',
     frontend: {
       en: 'Explore philosophical responses to competing religious truth claims.',
+      it: 'Esplora le risposte filosofiche alle affermazioni di verità contrastanti delle diverse religioni.',
       zh: '探索哲学如何回应相互竞争的宗教真理主张。',
       hi: 'परस्पर विरोधी धार्मिक सत्य के दावों पर दार्शनिक प्रतिक्रियाओं की जाँच करें।',
       es: 'Explora respuestas filosóficas a afirmaciones religiosas de verdad que compiten entre sí.',

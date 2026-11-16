@@ -14,6 +14,7 @@ export const evidenceAndCausalInference_SkillGroup_Data = defineSkillGroup({
   id: 'b8d2d950-9001-44af-a7ef-e19c39b6f6c6',
   name: {
     en: 'Evidence and Causal Inference',
+    it: 'Prove e inferenza causale',
     zh: '证据与因果推断',
     hi: 'साक्ष्य और कारणात्मक अनुमान',
     es: 'Evidencia e inferencia causal',
@@ -66,6 +67,7 @@ export const evidenceAndCausalInference_SkillGroup_Data = defineSkillGroup({
       'Observations become informative only through assumptions about measurement, variation, and alternative explanations. The quality of a causal conclusion is not identical to the size of an observed association.',
     frontend: {
       en: 'Explore what evidence can and cannot establish about causal relationships.',
+      it: 'Esplora che cosa le prove possano e non possano stabilire riguardo ai rapporti di causa ed effetto.',
       zh: '探索证据能与不能证明哪些因果关系。',
       hi: 'समझें कि साक्ष्य कारण-संबंधों के बारे में क्या स्थापित कर सकते हैं और क्या नहीं।',
       es: 'Explora qué pueden y qué no pueden demostrar las pruebas sobre relaciones causales.',

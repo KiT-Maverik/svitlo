@@ -5,6 +5,7 @@ export const intrinsicMotivation_Skill_Data = defineSkill({
   id: 'f5a70fc6-6332-4626-afcd-44b1f895066b',
   name: {
     en: 'Intrinsic Motivation',
+    it: 'Motivazione intrinseca',
     zh: '内在动机',
     hi: 'आंतरिक प्रेरणा',
     es: 'Motivación intrínseca',
@@ -38,6 +39,7 @@ export const intrinsicMotivation_Skill_Data = defineSkill({
     methodological: 'Explain engaging in an activity because it is personally interesting or satisfying in itself.',
     frontend: {
       en: 'Recognize the desire to do an activity for its own satisfaction.',
+      it: "Riconosci il desiderio di svolgere un'attività per la soddisfazione che essa stessa procura.",
       zh: '认识为了活动本身带来的满足感而参与的愿望。',
       hi: 'किसी काम को उसके अपने आनंद के लिए करने की इच्छा पहचानें।',
       es: 'Reconoce el deseo de realizar una actividad por la satisfacción que ofrece.',

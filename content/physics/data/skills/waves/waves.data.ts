@@ -10,6 +10,7 @@ export const waves_SkillDomain_Data = defineSkillDomain({
   id: 'f2aa9a7f-36ce-4add-8f7d-dd2e0973b159',
   title: {
     en: 'Waves',
+    it: 'Onde',
     zh: '波',
     hi: 'तरंगें',
     es: 'Ondas',
@@ -53,6 +54,7 @@ export const waves_SkillDomain_Data = defineSkillDomain({
       'Oscillations produce recurring disturbances that can propagate through water, air, and other media. Sound is one manifestation, while wave patterns are visible on the surface of water.',
     frontend: {
       en: 'Explore vibrations, sound and the ways wave disturbances travel and interact.',
+      it: 'Esplora vibrazioni, suoni e modi in cui le perturbazioni ondulatorie si propagano e interagiscono.',
       zh: '探索振动、声音以及波动如何传播和相互作用。',
       hi: 'कंपन, ध्वनि और तरंग विक्षोभ के प्रसार तथा परस्पर क्रिया को जानें।',
       es: 'Explora las vibraciones, el sonido y cómo se propagan e interactúan las perturbaciones ondulatorias.',

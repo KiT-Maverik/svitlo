@@ -13,6 +13,7 @@ export const asianArtisticTraditions_SkillGroup_Data = defineSkillGroup({
   id: '1ec93970-d41f-4086-b3ba-8dbc3af59e9c',
   name: {
     en: 'Asian Artistic Traditions',
+    it: 'Tradizioni artistiche asiatiche',
     zh: '传统亚洲艺术',
     hi: 'एशिया की कलात्मक परंपराएँ',
     es: 'Tradiciones artísticas asiáticas',
@@ -63,6 +64,7 @@ export const asianArtisticTraditions_SkillGroup_Data = defineSkillGroup({
       'Specific regional practices use different material systems, pictorial conventions and patronage contexts; geographic proximity does not imply shared aesthetic rules.',
     frontend: {
       en: 'Discover distinct artistic practices across Asia through their own histories and materials.',
+      it: "Scopri le diverse pratiche artistiche dell'Asia attraverso le loro storie e i materiali utilizzati.",
       zh: '探索亚洲各地艺术实践的独特历史与材料。',
       hi: 'एशिया की विविध कलात्मक प्रथाओं को उनके इतिहास और सामग्रियों के माध्यम से जानें।',
       es: 'Explora prácticas artísticas distintas de Asia a través de sus historias y materiales.',

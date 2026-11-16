@@ -5,6 +5,7 @@ export const breakAComplexPromptIntoSubtasks_Skill_Data = defineSkill({
   id: 'd6f91678-7346-4d54-aad0-b9382f0a0ef6',
   name: {
     en: 'Break a Complex Prompt into Subtasks',
+    it: 'Suddividere un prompt complesso in sottocompiti',
     zh: '将复杂提示词拆分为子任务',
     hi: 'जटिल प्रॉम्प्ट को छोटे कामों में बाँटना',
     es: 'Dividir un prompt complejo en subtareas',
@@ -39,6 +40,7 @@ export const breakAComplexPromptIntoSubtasks_Skill_Data = defineSkill({
       'Split a multi-stage request into sequential prompts with verifiable intermediate outcomes while preserving the original objective.',
     frontend: {
       en: 'Divide a complicated request into smaller steps with results you can verify.',
+      it: 'Dividi una richiesta complessa in passaggi più piccoli, con risultati verificabili.',
       zh: '把复杂请求分成较小的步骤，以便逐步核查结果。',
       hi: 'मुश्किल अनुरोध को छोटे चरणों में बाँटें जिनके परिणाम जाँचे जा सकें।',
       es: 'Divide una solicitud complicada en pasos más pequeños con resultados verificables.',

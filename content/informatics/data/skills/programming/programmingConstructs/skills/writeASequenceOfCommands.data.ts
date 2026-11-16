@@ -5,6 +5,7 @@ export const writeASequenceOfCommands_Skill_Data = defineSkill({
   id: 'e62d8ab7-d6d7-4d44-9030-4bf107580631',
   name: {
     en: 'Write a Sequence of Commands',
+    it: 'Scrivere una sequenza di comandi',
     zh: '编写命令序列',
     hi: 'आदेशों का अनुक्रम लिखना',
     es: 'Escribir una secuencia de instrucciones',
@@ -39,6 +40,7 @@ export const writeASequenceOfCommands_Skill_Data = defineSkill({
       'Translate specified steps into syntactically valid instructions for an environment that executes them in order. Unlike describing an algorithm in prose, this requires observing language rules and command effects.',
     frontend: {
       en: 'Write valid commands that perform actions in the intended order.',
+      it: "Scrivi comandi validi che eseguano le azioni nell'ordine previsto.",
       zh: '编写有效命令，使操作按预定顺序执行。',
       hi: 'वैध आदेश लिखें जो कार्यों को तय क्रम में पूरा करें।',
       es: 'Escribe instrucciones válidas que ejecuten acciones en el orden previsto.',

@@ -5,6 +5,7 @@ export const needsAndDrives_Skill_Data = defineSkill({
   id: 'f4937795-3dbe-4176-87d9-1d6baf40171a',
   name: {
     en: 'Needs and Drives',
+    it: 'Bisogni e pulsioni',
     zh: '需要与驱力',
     hi: 'आवश्यकताएँ और प्रेरक शक्तियाँ',
     es: 'Necesidades e impulsos',
@@ -39,6 +40,7 @@ export const needsAndDrives_Skill_Data = defineSkill({
       'Explain how physiological and psychological needs can influence the direction and intensity of behavior.',
     frontend: {
       en: 'Understand how psychological and bodily needs can shape behavior.',
+      it: 'Comprendi come i bisogni psicologici e corporei possano plasmare il comportamento.',
       zh: '理解心理和身体需要如何塑造行为。',
       hi: 'समझें कि मानसिक और शारीरिक ज़रूरतें व्यवहार को कैसे ढालती हैं।',
       es: 'Comprende cómo las necesidades psicológicas y corporales modelan el comportamiento.',

@@ -5,6 +5,7 @@ export const explainTheRoleOfSignalsInAnimalCommunication_Skill_Data = defineSki
   id: 'a93646a6-a95a-4426-bffd-98465bb3eba4',
   name: {
     en: 'Explain the Role of Signals in Animal Communication',
+    it: 'Spiegare il ruolo dei segnali nella comunicazione animale',
     zh: '解释信号在动物交流中的作用',
     hi: 'प्राणियों के संचार में संकेतों की भूमिका समझाना',
     es: 'Explicar la función de las señales en la comunicación animal',
@@ -38,6 +39,7 @@ export const explainTheRoleOfSignalsInAnimalCommunication_Skill_Data = defineSki
     methodological: 'Relate sound, smell, movement, or coloration to information received by another individual.',
     frontend: {
       en: 'Explain how animals communicate using sounds, movement and other signals.',
+      it: 'Spiega come gli animali comunicano attraverso suoni, movimenti e altri segnali.',
       zh: '解释动物如何利用声音、动作和其他信号交流。',
       hi: 'समझाएँ कि जानवर ध्वनियों, हरकतों और अन्य संकेतों से कैसे संवाद करते हैं।',
       es: 'Explica cómo se comunican los animales mediante sonidos, movimientos y otras señales.',

@@ -5,6 +5,7 @@ export const correlationalStudies_Skill_Data = defineSkill({
   id: '7c0f8e27-0692-4aff-9d76-990eb7a03b53',
   name: {
     en: 'Correlational Studies',
+    it: 'Studi correlazionali',
     zh: '相关研究',
     hi: 'सहसंबंधात्मक अध्ययन',
     es: 'Estudios correlacionales',
@@ -39,6 +40,7 @@ export const correlationalStudies_Skill_Data = defineSkill({
       'Determine what an association between measured variables reveals without treating co-occurrence as proof of cause.',
     frontend: {
       en: 'Recognize what correlations show and what they cannot prove.',
+      it: 'Riconosci ciò che le correlazioni mostrano e ciò che non possono dimostrare.',
       zh: '认识相关性能够说明什么，以及不能证明什么。',
       hi: 'पहचानें कि सहसंबंध क्या दिखाते हैं और क्या सिद्ध नहीं कर सकते।',
       es: 'Reconoce qué muestran las correlaciones y qué no pueden demostrar.',

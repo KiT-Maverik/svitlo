@@ -5,6 +5,7 @@ export const biosignatures_Skill_Data = defineSkill({
   id: '7841d1ff-7ed6-443a-8752-689dc6ce0768',
   name: {
     en: 'Biosignatures',
+    it: 'Biofirme',
     qm: 'Yaşayışnıñ biologik işaretleri',
     bn: 'জৈবস্বাক্ষর',
     ur: 'حیاتی نشانات',
@@ -39,6 +40,7 @@ export const biosignatures_Skill_Data = defineSkill({
       'Evaluate chemical, morphological or other candidate indicators that might be produced by living systems.',
     frontend: {
       en: 'Recognize candidate chemical or physical clues that could be linked to living systems.',
+      it: 'Riconosci indizi chimici o fisici potenzialmente collegati a sistemi viventi.',
       qm: 'Canlı sistemalarnen bağlı ola bilgen kimyeviy ya da fiziki işaretlerni tanıñız.',
       bn: 'জীবিত ব্যবস্থার সঙ্গে যুক্ত থাকতে পারে এমন রাসায়নিক বা ভৌত সূত্র শনাক্ত করো।',
       ur: 'ایسے ممکنہ کیمیائی یا طبعی آثار پہچانیں جن کا تعلق جاندار نظاموں سے ہو سکتا ہے۔',

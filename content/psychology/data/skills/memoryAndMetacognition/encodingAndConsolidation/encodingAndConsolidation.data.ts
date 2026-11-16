@@ -12,6 +12,7 @@ export const encodingAndConsolidation_SkillGroup_Data = defineSkillGroup({
   id: '3c2d8ef5-979a-4ffb-8c64-b284739179e3',
   name: {
     en: 'Encoding and Consolidation',
+    it: 'Codifica e consolidamento',
     zh: '编码与巩固',
     hi: 'कूटबद्धन और सुदृढ़ीकरण',
     es: 'Codificación y consolidación',
@@ -55,6 +56,7 @@ export const encodingAndConsolidation_SkillGroup_Data = defineSkillGroup({
       'Attention, meaningful structure, and subsequent processing influence what can later be remembered.',
     frontend: {
       en: 'Discover processes that help new information enter and stabilize in memory.',
+      it: 'Scopri i processi che aiutano le nuove informazioni a entrare nella memoria e a stabilizzarsi.',
       zh: '探索哪些过程有助于新信息进入记忆并得到稳定保存。',
       hi: 'जानें कि कौन-सी प्रक्रियाएँ नई जानकारी को स्मृति में दर्ज और स्थिर करने में मदद करती हैं।',
       es: 'Descubre los procesos que ayudan a registrar y estabilizar información nueva en la memoria.',

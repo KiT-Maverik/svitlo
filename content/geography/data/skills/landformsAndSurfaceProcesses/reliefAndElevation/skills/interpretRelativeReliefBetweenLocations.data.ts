@@ -5,6 +5,7 @@ export const interpretRelativeReliefBetweenLocations_Skill_Data = defineSkill({
   id: '014c40ec-7723-457d-8d99-bd1c377cdab8',
   name: {
     en: 'Interpret relative relief between locations',
+    it: 'Interpretare il dislivello relativo tra luoghi',
     zh: '理解不同地点之间的相对高差',
     hi: 'स्थानों के बीच सापेक्ष ऊँचाई के अंतर को समझना',
     es: 'Interpretar el desnivel relativo entre lugares',
@@ -39,6 +40,7 @@ export const interpretRelativeReliefBetweenLocations_Skill_Data = defineSkill({
       'Determine or explain the difference in elevation between local points independently of their absolute heights above sea level, using it to describe the vertical variation of a landscape.',
     frontend: {
       en: 'Compare height differences between nearby places independently of sea-level elevation.',
+      it: "Confronta le differenze di quota tra luoghi vicini indipendentemente dall'altitudine sul livello del mare.",
       zh: '不依赖于海拔高度，比较邻近地点之间的高差。',
       hi: 'समुद्र तल से ऊँचाई की परवाह किए बिना आसपास के स्थानों के बीच ऊँचाई के अंतर की तुलना करें।',
       es: 'Compara las diferencias de altura entre lugares cercanos sin depender de su altitud sobre el nivel del mar.',

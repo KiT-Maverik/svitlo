@@ -5,6 +5,7 @@ export const policyEffectEvaluation_Skill_Data = defineSkill({
   id: 'b3c0e066-7a3b-456b-add6-07e49e2ebbae',
   name: {
     en: 'Оцінювання ефекту політики',
+    it: 'Valutazione degli effetti delle politiche',
     zh: '政策效果评估',
     hi: 'नीति के प्रभाव का मूल्यांकन',
     es: 'Evaluación del efecto de las políticas',
@@ -39,6 +40,7 @@ export const policyEffectEvaluation_Skill_Data = defineSkill({
       'Formulate the counterfactual question of what would have occurred without an intervention and assess whether evidence can answer it.',
     frontend: {
       en: 'Assess what a policy changed compared with what might have happened otherwise.',
+      it: 'Valuta quali cambiamenti ha prodotto una politica rispetto a ciò che sarebbe potuto accadere senza di essa.',
       zh: '评估某项政策带来了哪些变化，并与没有该政策时可能发生的情况比较。',
       hi: 'आकलन करें कि नीति से क्या बदला, उसकी तुलना में जो नीति के बिना हो सकता था।',
       es: 'Evalúa qué cambió una política frente a lo que habría ocurrido sin ella.',

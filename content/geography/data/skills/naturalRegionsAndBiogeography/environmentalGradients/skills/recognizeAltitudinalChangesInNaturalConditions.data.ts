@@ -5,6 +5,7 @@ export const recognizeAltitudinalChangesInNaturalConditions_Skill_Data = defineS
   id: '7658f34e-50bb-4a95-9397-b118991df1ea',
   name: {
     en: 'Recognize altitudinal changes in natural conditions',
+    it: "Riconoscere i cambiamenti delle condizioni naturali con l'altitudine",
     zh: '识别自然条件随海拔的变化',
     hi: 'ऊँचाई के साथ प्राकृतिक स्थितियों में बदलाव पहचानना',
     es: 'Reconocer cambios de las condiciones naturales con la altitud',
@@ -39,6 +40,7 @@ export const recognizeAltitudinalChangesInNaturalConditions_Skill_Data = defineS
       'Describe how cooler temperatures and vegetation zones can occur higher on mountains without assuming identical patterns everywhere.',
     frontend: {
       en: 'Recognize how habitats and temperatures change up mountain slopes.',
+      it: 'Riconosci come habitat e temperature cambiano salendo lungo i versanti montani.',
       zh: '了解沿山坡向上时栖息地和气温如何变化。',
       hi: 'पहाड़ की ढलानों पर ऊपर जाने से आवास और तापमान कैसे बदलते हैं, पहचानें।',
       es: 'Reconoce cómo cambian los hábitats y las temperaturas al ascender por las laderas.',

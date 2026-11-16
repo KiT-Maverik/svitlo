@@ -5,6 +5,7 @@ export const generateAlternativeDesignConcepts_Skill_Data = defineSkill({
   id: '2eefbcdd-0434-40ac-890a-88b7d0dda605',
   name: {
     en: 'Generate alternative design concepts',
+    it: 'Generare concetti progettuali alternativi',
     zh: '提出替代设计方案',
     hi: 'वैकल्पिक डिज़ाइन अवधारणाएँ बनाना',
     es: 'Generar conceptos alternativos de diseño',
@@ -39,6 +40,7 @@ export const generateAlternativeDesignConcepts_Skill_Data = defineSkill({
       'Propose more than one functional approach to a need rather than only cosmetic variations of one approach.',
     frontend: {
       en: 'Suggest different functional approaches to the same design challenge.',
+      it: 'Proponi approcci funzionali diversi alla stessa sfida progettuale.',
       zh: '针对同一个设计挑战，提出不同的功能实现方法。',
       hi: 'एक ही डिज़ाइन चुनौती के लिए अलग-अलग कार्यात्मक तरीके सुझाएँ।',
       es: 'Propón distintas soluciones funcionales para un mismo desafío de diseño.',

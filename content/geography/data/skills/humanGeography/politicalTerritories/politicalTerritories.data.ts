@@ -11,6 +11,7 @@ export const politicalTerritories_SkillGroup_Data = defineSkillGroup({
   id: '3baf0512-af44-4dfe-a0ee-be18f9686e1f',
   name: {
     en: 'Political Territories',
+    it: 'Territori politici',
     zh: '政治领土',
     hi: 'राजनीतिक क्षेत्र',
     es: 'Territorios políticos',
@@ -58,6 +59,7 @@ export const politicalTerritories_SkillGroup_Data = defineSkillGroup({
       'Jurisdictions organize places using legally and socially defined boundaries that may change over time or be disputed. Political borders may follow rivers or mountains, but they are not the same kind of object as those natural features; cultural-landscape interpretation is covered separately in Cultural Geography.',
     frontend: {
       en: 'Discover how political borders and administrative areas organize geographic space.',
+      it: 'Scopri come i confini politici e le suddivisioni amministrative organizzano lo spazio geografico.',
       zh: '了解政治边界和行政区划如何组织地理空间。',
       hi: 'जानें कि राजनीतिक सीमाएँ और प्रशासनिक क्षेत्र भौगोलिक स्थान को कैसे व्यवस्थित करते हैं।',
       es: 'Descubre cómo las fronteras políticas y las divisiones administrativas organizan el espacio geográfico.',

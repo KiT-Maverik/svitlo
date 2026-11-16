@@ -5,6 +5,7 @@ export const economicIncentives_Skill_Data = defineSkill({
   id: 'c2add03a-ab5d-4c01-9c70-ac1be1a3349b',
   name: {
     en: 'Economic Incentives',
+    it: 'Incentivi economici',
     zh: '经济激励',
     hi: 'आर्थिक प्रोत्साहन',
     es: 'Incentivos económicos',
@@ -39,6 +40,7 @@ export const economicIncentives_Skill_Data = defineSkill({
       'Identify how a reward, penalty, price, or social norm can change the behavior of individuals or organizations.',
     frontend: {
       en: 'Explain how rewards and penalties can influence economic choices.',
+      it: 'Spiega come premi e penalità possono influenzare le scelte economiche.',
       zh: '解释奖励和惩罚如何影响经济选择。',
       hi: 'समझाएँ कि पुरस्कार और दंड आर्थिक चुनावों को कैसे प्रभावित करते हैं।',
       es: 'Explica cómo recompensas y sanciones influyen en las elecciones económicas.',

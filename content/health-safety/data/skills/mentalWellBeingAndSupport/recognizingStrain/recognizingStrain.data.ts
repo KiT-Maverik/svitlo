@@ -11,6 +11,7 @@ export const recognizingStrain_SkillGroup_Data = defineSkillGroup({
   id: 'e6e0d496-8df9-4b0b-a191-f2323bb7d394',
   name: {
     en: 'Recognizing Strain',
+    it: 'Riconoscere il disagio psicologico',
     zh: '识别心理负担',
     hi: 'मानसिक दबाव की पहचान',
     es: 'Reconocer señales de sobrecarga',
@@ -53,6 +54,7 @@ export const recognizingStrain_SkillGroup_Data = defineSkillGroup({
       'Distress varies in intensity and duration; a sign can indicate a need for support without establishing a psychiatric diagnosis.',
     frontend: {
       en: 'Recognize changes that may signal a need for psychological support.',
+      it: 'Riconosci i cambiamenti che possono segnalare la necessità di sostegno psicologico.',
       zh: '识别可能表示需要心理支持的变化。',
       hi: 'ऐसे बदलाव पहचानें जिनसे मनोवैज्ञानिक सहायता की जरूरत का संकेत मिले।',
       es: 'Identifica cambios que pueden indicar que hace falta apoyo psicológico.',

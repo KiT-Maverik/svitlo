@@ -5,6 +5,7 @@ export const anchoringBias_Skill_Data = defineSkill({
   id: '643e9557-0ccf-4881-9f61-a77246abe7cc',
   name: {
     en: 'Anchoring Bias',
+    it: 'Effetto di ancoraggio',
     zh: '锚定偏差',
     hi: 'एंकरिंग पूर्वाग्रह',
     es: 'Sesgo de anclaje',
@@ -38,6 +39,7 @@ export const anchoringBias_Skill_Data = defineSkill({
     methodological: 'Describe how an initial number or reference shifts later quantitative estimates.',
     frontend: {
       en: 'Understand how an initial number can bias later judgments.',
+      it: 'Comprendi come un numero iniziale possa distorcere i giudizi successivi.',
       zh: '理解最初看到的数字如何使之后的判断产生偏差。',
       hi: 'समझें कि शुरुआती संख्या बाद के अनुमानों को कैसे प्रभावित कर सकती है।',
       es: 'Comprende cómo un número inicial puede sesgar los juicios posteriores.',

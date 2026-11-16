@@ -5,6 +5,7 @@ export const biomimeticStreamlining_Skill_Data = defineSkill({
   id: '5df800c8-cee8-47b8-bf47-24a6424cacb1',
   name: {
     en: 'Biomimetic streamlining',
+    it: 'Ottimizzazione aerodinamica biomimetica',
     zh: '仿生流线设计',
     hi: 'जैव-अनुकरणीय प्रवाहरेखीय आकार',
     es: 'Diseño aerodinámico biomimético',
@@ -38,6 +39,7 @@ export const biomimeticStreamlining_Skill_Data = defineSkill({
     methodological: 'Relate a biological shape to a proposed drag-reducing vehicle design requiring testing.',
     frontend: {
       en: 'Recognize how biological shapes can reduce drag in technical designs.',
+      it: 'Riconosci come le forme biologiche possono ridurre la resistenza al movimento nei progetti tecnici.',
       zh: '认识生物形状如何减少技术设计中的流体阻力。',
       hi: 'पहचानें कि जैविक आकृतियाँ तकनीकी डिज़ाइन में प्रवाह प्रतिरोध कैसे घटाती हैं।',
       es: 'Reconoce cómo las formas biológicas pueden reducir la resistencia al avance en diseños técnicos.',

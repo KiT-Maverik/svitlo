@@ -5,6 +5,7 @@ export const molarMass_Skill_Data = defineSkill({
   id: '5bc28cd2-056a-4bdf-856a-1ef79763ba62',
   name: {
     en: 'Molar Mass',
+    it: 'Massa molare',
     zh: '摩尔质量',
     hi: 'मोलर द्रव्यमान',
     es: 'Masa molar',
@@ -38,6 +39,7 @@ export const molarMass_Skill_Data = defineSkill({
     methodological: 'Connect formula composition to mass per mole using atomic masses.',
     frontend: {
       en: 'Use molar mass to relate a chemical formula to the mass of a mole.',
+      it: 'Usa la massa molare per collegare la formula chimica alla massa di una mole.',
       zh: '利用摩尔质量联系化学式与一摩尔物质的质量。',
       hi: 'मोलर द्रव्यमान से रासायनिक सूत्र और एक मोल का द्रव्यमान जोड़ें।',
       es: 'Usa la masa molar para relacionar una fórmula con la masa de un mol.',

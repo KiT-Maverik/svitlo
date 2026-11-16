@@ -5,6 +5,7 @@ export const computeSetIntersection_Skill_Data = defineSkill({
   id: '1fcffa8d-5b4f-4708-ae32-f5f488e42ea9',
   name: {
     en: 'Compute Set Intersection',
+    it: "Calcolare l'intersezione di insiemi",
     zh: '求集合的交集',
     hi: 'समुच्चयों का प्रतिच्छेद निकालना',
     es: 'Calcular la intersección de conjuntos',
@@ -38,6 +39,7 @@ export const computeSetIntersection_Skill_Data = defineSkill({
     methodological: 'Find only values shared by two sets, distinguishing intersection from union.',
     frontend: {
       en: 'Find only the elements shared by two sets.',
+      it: 'Trova soltanto gli elementi comuni a due insiemi.',
       zh: '只找出两个集合共有的元素。',
       hi: 'दोनों समुच्चयों में मौजूद तत्व ही निकालें।',
       es: 'Encuentra únicamente los elementos comunes a dos conjuntos.',

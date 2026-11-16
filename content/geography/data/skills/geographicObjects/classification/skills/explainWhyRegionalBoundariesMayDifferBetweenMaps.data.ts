@@ -5,6 +5,7 @@ export const explainWhyRegionalBoundariesMayDifferBetweenMaps_Skill_Data = defin
   id: '8f52d85b-153e-4525-be83-6f3bb2e28967',
   name: {
     en: 'Explain why regional boundaries may differ between maps',
+    it: 'Spiegare perché i confini regionali possono differire tra carte',
     zh: '解释不同地图上的区域边界为何可能不同',
     hi: 'मानचित्रों में क्षेत्रीय सीमाएँ अलग क्यों दिख सकती हैं, समझाना',
     es: 'Explicar por qué los límites regionales pueden variar entre mapas',
@@ -39,6 +40,7 @@ export const explainWhyRegionalBoundariesMayDifferBetweenMaps_Skill_Data = defin
       'Recognize that changing the defining variable or classification threshold can redraw a region without moving any physical feature.',
     frontend: {
       en: "Explain why different maps may draw the same region's boundary differently.",
+      it: 'Spiega perché carte diverse possono rappresentare diversamente i confini di una stessa regione.',
       zh: '解释为什么不同地图可能以不同方式画出同一区域的边界。',
       hi: 'समझाएँ कि अलग-अलग मानचित्र एक ही क्षेत्र की सीमा अलग क्यों दिखा सकते हैं।',
       es: 'Explica por qué distintos mapas pueden trazar de forma diferente el límite de una misma región.',

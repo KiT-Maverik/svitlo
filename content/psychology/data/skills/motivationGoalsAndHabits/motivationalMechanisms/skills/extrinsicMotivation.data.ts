@@ -5,6 +5,7 @@ export const extrinsicMotivation_Skill_Data = defineSkill({
   id: 'd6e36b6c-060b-4e4b-b2fb-32f80849b8e1',
   name: {
     en: 'Extrinsic Motivation',
+    it: 'Motivazione estrinseca',
     zh: '外在动机',
     hi: 'बाहरी प्रेरणा',
     es: 'Motivación extrínseca',
@@ -39,6 +40,7 @@ export const extrinsicMotivation_Skill_Data = defineSkill({
       'Explain pursuing an activity because of an outcome separable from the activity, such as recognition, payment, or avoidance of a consequence.',
     frontend: {
       en: 'Explore how outside rewards and pressures can influence motivation.',
+      it: 'Esplora come ricompense e pressioni esterne possano influenzare la motivazione.',
       zh: '探索外部奖励和压力如何影响动机。',
       hi: 'जानें कि बाहरी पुरस्कार और दबाव प्रेरणा को कैसे प्रभावित करते हैं।',
       es: 'Explora cómo las recompensas y presiones externas influyen en la motivación.',

@@ -14,6 +14,7 @@ export const equilibriumAndStability_SkillGroup_Data = defineSkillGroup({
   id: 'b35c01ed-da1c-479e-bb44-7bad565f0c5f',
   name: {
     en: 'Equilibrium and Stability',
+    it: 'Equilibrio e stabilità',
     zh: '平衡与稳定性',
     hi: 'संतुलन और स्थिरता',
     es: 'Equilibrio y estabilidad',
@@ -66,6 +67,7 @@ export const equilibriumAndStability_SkillGroup_Data = defineSkillGroup({
       "Balanced forces allow a body to remain at rest, while the arrangement of supports and loads affects a model's stability and deformation.",
     frontend: {
       en: 'Understand the forces that keep structures balanced and stable.',
+      it: 'Comprendi le forze che mantengono le strutture in equilibrio e stabili.',
       zh: '理解使结构保持力的平衡和稳定的作用。',
       hi: 'समझें कि कौन-से बल संरचनाओं को संतुलित और स्थिर रखते हैं।',
       es: 'Comprende las fuerzas que mantienen las estructuras equilibradas y estables.',

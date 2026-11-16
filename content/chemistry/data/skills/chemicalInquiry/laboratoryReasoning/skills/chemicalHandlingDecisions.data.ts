@@ -5,6 +5,7 @@ export const chemicalHandlingDecisions_Skill_Data = defineSkill({
   id: '0f8497b3-aba2-42ba-9d4c-7450200abf08',
   name: {
     en: 'Chemical Handling Decisions',
+    it: 'Decisioni sulla manipolazione delle sostanze chimiche',
     zh: '化学品操作决策',
     hi: 'रसायनों को संभालने के निर्णय',
     es: 'Decisiones sobre manipulación de sustancias químicas',
@@ -39,6 +40,7 @@ export const chemicalHandlingDecisions_Skill_Data = defineSkill({
       'Choose risk-appropriate handling and disposal principles from substance identity, concentration and safety information rather than assuming familiar products are harmless.',
     frontend: {
       en: 'Choose safe handling principles based on chemical information and conditions.',
+      it: 'Scegli principi di manipolazione sicura sulla base delle informazioni chimiche e delle condizioni.',
       zh: '依据化学品信息和使用条件选择安全的操作原则。',
       hi: 'रासायनिक जानकारी और परिस्थितियों के आधार पर सुरक्षित संचालन सिद्धांत चुनें।',
       es: 'Elige principios de manipulación segura según la información química y las condiciones.',

@@ -5,6 +5,7 @@ export const orbitalStability_Skill_Data = defineSkill({
   id: 'ff5961e6-5ce4-426d-8770-b9e52d294bac',
   name: {
     en: 'Orbital Stability',
+    it: 'Stabilità orbitale',
     zh: '轨道稳定性',
     hi: 'कक्षीय स्थिरता',
     es: 'Estabilidad orbital',
@@ -39,6 +40,7 @@ export const orbitalStability_Skill_Data = defineSkill({
       'Evaluate how changing orbital parameters and interactions can affect whether a system remains dynamically stable.',
     frontend: {
       en: 'Explore what helps an orbital system remain stable—or makes it change.',
+      it: 'Esplora cosa rende stabile un sistema orbitale e cosa invece può cambiarlo.',
       zh: '探索哪些因素使轨道系统保持稳定，以及哪些因素会导致它发生变化。',
       hi: 'जानें कि कौन-से कारक किसी कक्षीय तंत्र को स्थिर रखते हैं और कौन-से उसे बदल सकते हैं।',
       es: 'Explora qué ayuda a mantener estable un sistema orbital y qué puede hacerlo cambiar.',

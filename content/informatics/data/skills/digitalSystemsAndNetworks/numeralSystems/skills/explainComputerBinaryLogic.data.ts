@@ -5,6 +5,7 @@ export const explainComputerBinaryLogic_Skill_Data = defineSkill({
   id: '7da196fa-504d-47f1-8e93-d25d31843e8e',
   name: {
     en: 'Explain Computer Binary Logic',
+    it: 'Spiegare la logica binaria dei computer',
     zh: '解释计算机二进制逻辑',
     hi: 'कंप्यूटर की द्विआधारी तर्क प्रणाली समझाना',
     es: 'Explicar la lógica binaria de las computadoras',
@@ -39,6 +40,7 @@ export const explainComputerBinaryLogic_Skill_Data = defineSkill({
       'Two reliably distinguishable electronic signal levels allow encoding zeros and ones, even though physical circuits are more complex than two abstract symbols.',
     frontend: {
       en: 'Connect binary zeros and ones to distinguishable electronic signal states.',
+      it: 'Collega gli zeri e gli uni binari a stati distinguibili dei segnali elettronici.',
       zh: '把二进制中的零和一与可区分的电子信号状态联系起来。',
       hi: 'द्विआधारी शून्य और एक को अलग पहचाने जा सकने वाली इलेक्ट्रॉनिक संकेत अवस्थाओं से जोड़ें।',
       es: 'Relaciona los ceros y unos binarios con estados distinguibles de señales electrónicas.',

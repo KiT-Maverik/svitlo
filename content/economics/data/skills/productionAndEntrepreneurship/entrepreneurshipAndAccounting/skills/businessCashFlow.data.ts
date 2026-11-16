@@ -5,6 +5,7 @@ export const businessCashFlow_Skill_Data = defineSkill({
   id: '0f8ff663-2fe5-42fb-a491-b99854d5d3a1',
   name: {
     en: 'Business Cash Flow',
+    it: 'Flusso di cassa aziendale',
     zh: '企业现金流',
     hi: 'व्यवसाय का नकद प्रवाह',
     es: 'Flujo de caja empresarial',
@@ -39,6 +40,7 @@ export const businessCashFlow_Skill_Data = defineSkill({
       'Track receipts and payments over time and detect liquidity needs even when accounting reports show a profit.',
     frontend: {
       en: 'See why a profitable business can still run short of cash.',
+      it: "Scopri perché anche un'impresa redditizia può rimanere senza liquidità.",
       zh: '理解为什么盈利的企业仍可能缺乏现金。',
       hi: 'समझें कि लाभ कमाने वाला व्यवसाय भी नकदी की कमी से क्यों जूझ सकता है।',
       es: 'Comprende por qué una empresa rentable puede quedarse sin efectivo.',

@@ -7,6 +7,7 @@ export const verification_SkillGroup_Data = defineSkillGroup({
   id: 'a40b2d58-257b-4517-a48d-8e839b9687bf',
   name: {
     en: 'Checking solutions',
+    it: 'Verifica delle soluzioni',
     qm: 'Çözümlerini teşkere etüv',
     lt: 'Sprendimų tikrinimas',
     lv: 'Risinājumu pārbaude',

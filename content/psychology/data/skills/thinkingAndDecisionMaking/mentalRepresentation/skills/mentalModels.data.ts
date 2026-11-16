@@ -5,6 +5,7 @@ export const mentalModels_Skill_Data = defineSkill({
   id: '393d9ebe-ec28-4aed-83f5-c2bc172509f2',
   name: {
     en: 'Mental Models',
+    it: 'Modelli mentali',
     zh: '心理模型',
     hi: 'मानसिक मॉडल',
     es: 'Modelos mentales',
@@ -39,6 +40,7 @@ export const mentalModels_Skill_Data = defineSkill({
       'Analyze how simplified internal representations predict outcomes and where neglected details cause errors.',
     frontend: {
       en: 'Use a mental model to reason about how a situation might work.',
+      it: 'Usa un modello mentale per ragionare su come potrebbe funzionare una situazione.',
       zh: '运用心理模型推理某种情境可能如何运作。',
       hi: 'किसी स्थिति के काम करने के तरीके पर विचार करने के लिए मानसिक मॉडल का उपयोग करें।',
       es: 'Usa un modelo mental para razonar cómo podría funcionar una situación.',

@@ -8,6 +8,7 @@ export const radiation_SkillDomain_Data = defineSkillDomain({
   id: 'd6520f72-342a-4286-9f2e-5e45b70a3971',
   title: {
     en: 'Radiation',
+    it: 'Radiazione',
     zh: '辐射',
     hi: 'विकिरण',
     es: 'Radiación',
@@ -49,6 +50,7 @@ export const radiation_SkillDomain_Data = defineSkillDomain({
       'Radiation describes energy transfer from a source through space, including invisible parts of the electromagnetic spectrum and their interaction with matter. Geometric image formation with light belongs to Optics.',
     frontend: {
       en: 'Explore electromagnetic radiation and its interactions with matter.',
+      it: 'Esplora la radiazione elettromagnetica e le sue interazioni con la materia.',
       zh: '探索电磁辐射及其与物质的相互作用。',
       hi: 'विद्युतचुंबकीय विकिरण और पदार्थ के साथ उसकी अंतःक्रियाओं का अध्ययन करो।',
       es: 'Explora la radiación electromagnética y sus interacciones con la materia.',

@@ -5,6 +5,7 @@ export const identifyCommonMapTypesByTheirInformationContent_Skill_Data = define
   id: '89a00d18-137f-4a46-a9d8-66b41fc77acb',
   name: {
     en: 'Identify common map types by their information content',
+    it: 'Individuare i tipi di carte in base alle informazioni rappresentate',
     zh: '根据所含信息识别常见地图类型',
     hi: 'दिखाई गई जानकारी से सामान्य मानचित्र प्रकार पहचानना',
     es: 'Identificar tipos de mapas por la información que contienen',
@@ -39,6 +40,7 @@ export const identifyCommonMapTypesByTheirInformationContent_Skill_Data = define
       'Recognize whether a map presents political boundaries, physical relief, topographic detail, geological units, climate, population, resources or transport, using its title, legend and depicted variables. Explain that reference and thematic are broad roles, not mutually exclusive lists of named maps.',
     frontend: {
       en: 'Identify what kind of geographic information a map represents.',
+      it: 'Individua quale tipo di informazione geografica è rappresentato su una carta.',
       zh: '辨认地图展示的是哪一类地理信息。',
       hi: 'पहचानें कि मानचित्र किस प्रकार की भौगोलिक जानकारी दिखाता है।',
       es: 'Identifica qué clase de información geográfica muestra un mapa.',

@@ -5,6 +5,7 @@ export const stellarMassBlackHoles_Skill_Data = defineSkill({
   id: '3ed3c66f-5102-4dc3-9ee8-98f63a1b4131',
   name: {
     en: 'Stellar-Mass Black Holes',
+    it: 'Buchi neri di massa stellare',
     zh: '恒星质量黑洞',
     hi: 'तारकीय-द्रव्यमान वाले ब्लैक होल',
     es: 'Agujeros negros de masa estelar',
@@ -38,6 +39,7 @@ export const stellarMassBlackHoles_Skill_Data = defineSkill({
     methodological: 'Explain the formation and observational inference of compact remnants with event horizons.',
     frontend: {
       en: 'Explore how stellar-mass black holes form and how astronomers detect their effects.',
+      it: 'Esplora come si formano i buchi neri di massa stellare e come gli astronomi ne rilevano gli effetti.',
       zh: '探索恒星质量黑洞如何形成，以及天文学家怎样探测它们产生的影响。',
       hi: 'जानें कि तारकीय-द्रव्यमान वाले ब्लैक होल कैसे बनते हैं और खगोलविद उनके प्रभावों का पता कैसे लगाते हैं।',
       es: 'Explora cómo se forman los agujeros negros de masa estelar y cómo los astrónomos detectan sus efectos.',

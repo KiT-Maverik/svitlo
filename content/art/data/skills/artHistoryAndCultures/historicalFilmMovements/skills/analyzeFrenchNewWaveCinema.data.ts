@@ -5,6 +5,7 @@ export const analyzeFrenchNewWaveCinema_Skill_Data = defineSkill({
   id: '2fbec023-776d-4232-b68f-df1ae8c98141',
   name: {
     en: 'Analyze French New Wave Cinema',
+    it: 'Analizzare il cinema della Nouvelle Vague francese',
     zh: '分析法国新浪潮电影',
     hi: 'फ़्रेंच न्यू वेव सिनेमा का विश्लेषण करें',
     es: 'Analizar el cine de la Nouvelle Vague francesa',
@@ -39,6 +40,7 @@ export const analyzeFrenchNewWaveCinema_Skill_Data = defineSkill({
       'Relate location shooting, discontinuous editing and authorial experimentation to selected French New Wave works and contexts.',
     frontend: {
       en: 'Explore the experimental filming and editing of French New Wave cinema.',
+      it: 'Esplora le riprese e il montaggio sperimentali del cinema della Nouvelle Vague francese.',
       zh: '探索法国新浪潮电影实验性的拍摄与剪辑手法。',
       hi: 'फ़्रेंच न्यू वेव सिनेमा की प्रयोगधर्मी फ़िल्मांकन और संपादन शैली को जानें।',
       es: 'Explora la filmación y el montaje experimentales del cine de la Nouvelle Vague francesa.',

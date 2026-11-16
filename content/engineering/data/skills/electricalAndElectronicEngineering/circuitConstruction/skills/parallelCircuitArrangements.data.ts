@@ -5,6 +5,7 @@ export const parallelCircuitArrangements_Skill_Data = defineSkill({
   id: '228dc7ab-48d6-4476-a862-d94522920d23',
   name: {
     en: 'Parallel circuit arrangements',
+    it: 'Configurazioni di circuiti in parallelo',
     zh: '并联电路结构',
     hi: 'समानांतर परिपथ विन्यास',
     es: 'Disposición de circuitos en paralelo',
@@ -38,6 +39,7 @@ export const parallelCircuitArrangements_Skill_Data = defineSkill({
     methodological: 'Identify separate supply branches and why loads can operate independently.',
     frontend: {
       en: 'Understand how parallel branches receive the same voltage.',
+      it: 'Comprendi come i rami in parallelo sono soggetti alla stessa tensione.',
       zh: '理解并联支路两端电压相同的原因。',
       hi: 'समझें कि समानांतर शाखाओं पर समान वोल्टता क्यों होती है।',
       es: 'Comprende por qué las ramas en paralelo tienen el mismo voltaje.',

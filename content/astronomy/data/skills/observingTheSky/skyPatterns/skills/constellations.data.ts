@@ -5,6 +5,7 @@ export const constellations_Skill_Data = defineSkill({
   id: 'fa760e4a-df7a-4ebc-a0d6-5b913e1aacfe',
   name: {
     en: 'Constellations',
+    it: 'Costellazioni',
     qm: 'Yıldız burçları',
     zh: '星座',
     hi: 'तारामंडल',
@@ -39,6 +40,7 @@ export const constellations_Skill_Data = defineSkill({
       'Use officially defined regions of the celestial sphere to locate objects without assuming their member stars form a physical cluster.',
     frontend: {
       en: 'Use constellation regions to locate objects without assuming their stars are physically close together.',
+      it: 'Usa le regioni delle costellazioni per localizzare gli oggetti senza supporre che le loro stelle siano vicine nello spazio.',
       qm: 'Yıldız burçlarınıñ kökteki bölgeleri yardımınen cisimlerni tapıñız; olardaki yıldızlar birbirine yaqın dep faraz etmeñiz.',
       zh: '利用正式划定的星座区域定位天体，不要以为其中的恒星在空间中一定彼此靠近。',
       hi: 'खगोलीय पिंड खोजने के लिए आधिकारिक तारामंडल क्षेत्रों का उपयोग करें, पर यह न मानें कि उनके तारे वास्तव में पास-पास हैं।',

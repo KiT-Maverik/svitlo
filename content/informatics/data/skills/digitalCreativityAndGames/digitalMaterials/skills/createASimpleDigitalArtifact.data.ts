@@ -5,6 +5,7 @@ export const createASimpleDigitalArtifact_Skill_Data = defineSkill({
   id: '297e06ed-d39c-48bd-81eb-b4e5bf5c4d4f',
   name: {
     en: 'Create a Simple Digital Artifact',
+    it: 'Creare un semplice contenuto digitale',
     zh: '创作简单的数字作品',
     hi: 'सरल डिजिटल सामग्री बनाना',
     es: 'Crear un artefacto digital sencillo',
@@ -39,6 +40,7 @@ export const createASimpleDigitalArtifact_Skill_Data = defineSkill({
       'Combine text, images, or other elements into a finished artifact with a defined message and audience, such as an explanatory card. Meaningful coherence matters more than a particular editor.',
     frontend: {
       en: 'Make a coherent digital card, image or other artifact for a particular audience.',
+      it: "Realizza una scheda digitale, un'immagine o un altro prodotto coerente per un pubblico specifico.",
       zh: '为特定受众制作内容连贯的数字卡片、图片或其他作品。',
       hi: 'किसी खास दर्शक समूह के लिए अर्थपूर्ण डिजिटल कार्ड, चित्र या दूसरी रचना बनाएँ।',
       es: 'Crea una tarjeta, imagen u otra pieza digital coherente para un público concreto.',

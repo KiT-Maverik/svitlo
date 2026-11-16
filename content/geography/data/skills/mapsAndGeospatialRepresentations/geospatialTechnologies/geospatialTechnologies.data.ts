@@ -11,6 +11,7 @@ export const geospatialTechnologies_SkillGroup_Data = defineSkillGroup({
   id: 'fa687826-95fb-4580-92b6-d4308b2521ab',
   name: {
     en: 'Geospatial Technologies',
+    it: 'Tecnologie geospaziali',
     zh: '地理空间技术',
     hi: 'भूस्थानिक प्रौद्योगिकियाँ',
     es: 'Tecnologías geoespaciales',
@@ -59,6 +60,7 @@ export const geospatialTechnologies_SkillGroup_Data = defineSkillGroup({
       'Satellite and aerial imagery, positioning systems and geographic information systems provide different kinds of geographically referenced evidence. The focus is interpreting and using that evidence for geographic questions, not programming a software package or memorizing individual interface controls.',
     frontend: {
       en: 'Explore how satellite images, positioning systems and spatial layers provide evidence.',
+      it: 'Esplora come immagini satellitari, sistemi di posizionamento e livelli di dati spaziali forniscono prove.',
       zh: '了解卫星图像、定位系统和空间数据图层如何提供证据。',
       hi: 'जानें कि उपग्रह चित्र, स्थिति निर्धारण प्रणालियाँ और स्थानिक परतें कैसे साक्ष्य देती हैं।',
       es: 'Explora cómo las imágenes satelitales, los sistemas de posicionamiento y las capas espaciales aportan pruebas.',

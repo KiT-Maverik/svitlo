@@ -10,6 +10,7 @@ export const emotionAndPsychologicalRegulation_SkillDomain_Data = defineSkillDom
   id: '73a0c114-3219-4229-b19f-d67cf632abb7',
   title: {
     en: 'Emotion and Psychological Regulation',
+    it: 'Emozioni e regolazione psicologica',
     zh: '情绪与心理调节',
     hi: 'भावनाएँ और मनोवैज्ञानिक नियमन',
     es: 'Emoción y regulación psicológica',
@@ -53,6 +54,7 @@ export const emotionAndPsychologicalRegulation_SkillDomain_Data = defineSkillDom
       'Emotional responses combine appraisal, bodily activation, expression, and action tendencies. Regulation concerns responding flexibly to emotions, not suppressing every uncomfortable experience.',
     frontend: {
       en: 'Explore how emotions arise, communicate information and can be managed.',
+      it: 'Esplora come nascono le emozioni, quali informazioni comunicano e come possono essere gestite.',
       zh: '探索情绪如何产生、传递信息以及如何得到调节。',
       hi: 'जानें कि भावनाएँ कैसे उत्पन्न होती हैं, जानकारी देती हैं और उन्हें कैसे सँभाला जा सकता है।',
       es: 'Explora cómo surgen las emociones, qué información aportan y cómo regularlas.',

@@ -5,6 +5,7 @@ export const hearingAssistanceDevices_Skill_Data = defineSkill({
   id: '131473c2-3c17-4bf1-a988-b960d5360d2b',
   name: {
     en: 'Hearing-assistance devices',
+    it: 'Dispositivi di assistenza uditiva',
     zh: '听力辅助设备',
     hi: 'श्रवण सहायता उपकरण',
     es: 'Dispositivos de asistencia auditiva',
@@ -38,6 +39,7 @@ export const hearingAssistanceDevices_Skill_Data = defineSkill({
     methodological: 'Trace sound pickup, processing, amplification or other output and fitting.',
     frontend: {
       en: 'Recognize how hearing-assistance equipment processes or delivers sound.',
+      it: "Riconosci come gli apparecchi per l'assistenza uditiva elaborano o trasmettono il suono.",
       zh: '了解听力辅助设备如何处理或传递声音。',
       hi: 'पहचानें कि श्रवण सहायक उपकरण ध्वनि को कैसे संसाधित या पहुँचाते हैं।',
       es: 'Reconoce cómo los equipos de asistencia auditiva procesan o transmiten sonido.',

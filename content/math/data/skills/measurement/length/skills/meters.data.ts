@@ -5,6 +5,7 @@ export const meters_Skill_Data = defineSkill({
   id: 'd427dfd0-7501-447b-ad8a-c75e8ec25196',
   name: {
     en: 'Relating meters, decimeters and centimeters',
+    it: 'Collegare metri, decimetri e centimetri',
     qm: 'Metr, detsimetr ve santimetrler arasındaki bağlılıq',
     lt: 'Metrų, decimetrų ir centimetrų ryšys',
     lv: 'Metru, decimetru un centimetru saistība',
@@ -39,6 +40,7 @@ export const meters_Skill_Data = defineSkill({
       '1 m = 10 dm = 100 cm: these length units are related by powers of ten. Different unit expressions for the same length must be equivalent; mixed-unit measurement requires consistent scaling.',
     frontend: {
       en: 'You can measure and describe lengths in meters, decimeters, or centimeters and convert them using 1 m = 10 dm = 100 cm.',
+      it: 'Puoi misurare e descrivere lunghezze in metri, decimetri o centimetri e convertirle usando 1 m = 10 dm = 100 cm.',
       qm: 'Uzunlıqnı metr, detsimetr ya da santimetrlerde ölçep, 1 m = 10 dm = 100 cm uyğunlığını qullanaraq birlikler arasında çevire bilesiñ.',
       zh: '你能用米、分米或厘米测量和描述长度，并根据1米＝10分米＝100厘米进行换算。',
       hi: 'आप लंबाई को मीटर, डेसीमीटर या सेंटीमीटर में माप और बता सकते हैं तथा 1 मीटर = 10 डेसीमीटर = 100 सेंटीमीटर से बदल सकते हैं।',

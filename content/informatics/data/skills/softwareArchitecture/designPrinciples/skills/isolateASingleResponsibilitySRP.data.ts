@@ -5,6 +5,7 @@ export const isolateASingleResponsibilitySRP_Skill_Data = defineSkill({
   id: '3da073e9-ec55-4ab5-94c7-20664d21e94d',
   name: {
     en: 'Isolate a Single Responsibility (SRP)',
+    it: 'Isolare una singola responsabilità (SRP)',
     zh: '隔离单一职责（SRP）',
     hi: 'एकल जिम्मेदारी अलग रखना (SRP)',
     es: 'Aislar una única responsabilidad (SRP)',
@@ -39,6 +40,7 @@ export const isolateASingleResponsibilitySRP_Skill_Data = defineSkill({
       'Explain why a module should be organized around one coherent reason to change rather than independent needs of different stakeholders. A class can have many methods if they all support that responsibility.',
     frontend: {
       en: 'Organize a module around one coherent reason to change.',
+      it: 'Organizza un modulo attorno a un unico motivo coerente per cui potrebbe cambiare.',
       zh: '围绕一个一致的变更原因组织模块。',
       hi: 'मॉड्यूल को बदलने के एक संगत कारण के आसपास व्यवस्थित करें।',
       es: 'Organiza un módulo alrededor de una razón coherente para cambiar.',

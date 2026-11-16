@@ -13,6 +13,7 @@ export const contactForcesAndFriction_SkillGroup_Data = defineSkillGroup({
   id: '47da74b7-4574-4a75-9700-4cee1f608ba3',
   name: {
     en: 'Contact Forces and Friction',
+    it: 'Forze di contatto e attrito',
     zh: '接触力与摩擦力',
     hi: 'संपर्क बल और घर्षण',
     es: 'Fuerzas de contacto y rozamiento',
@@ -63,6 +64,7 @@ export const contactForcesAndFriction_SkillGroup_Data = defineSkillGroup({
       'Contact can produce pushing, pulling, and friction; the direction of interaction and surface properties affect motion.',
     frontend: {
       en: 'Explore how pushing, pulling and friction affect contacting objects.',
+      it: 'Esplora come spinte, trazioni e attrito influenzano gli oggetti a contatto.',
       zh: '探索推力、拉力和摩擦力如何影响相互接触的物体。',
       hi: 'जानें कि धक्का, खिंचाव और घर्षण संपर्क में आने वाली वस्तुओं को कैसे प्रभावित करते हैं।',
       es: 'Explora cómo empujar, tirar y el rozamiento afectan a los objetos en contacto.',

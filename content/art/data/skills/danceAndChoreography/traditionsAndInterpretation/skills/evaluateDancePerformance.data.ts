@@ -5,6 +5,7 @@ export const evaluateDancePerformance_Skill_Data = defineSkill({
   id: '6a706c2a-d36c-41d0-86ac-26b18f4fea4c',
   name: {
     en: 'Evaluate Dance Performance',
+    it: "Valutare un'esibizione di danza",
     zh: '评价舞蹈表演',
     hi: 'नृत्य प्रस्तुति का मूल्यांकन करें',
     es: 'Evaluar una actuación de danza',
@@ -38,6 +39,7 @@ export const evaluateDancePerformance_Skill_Data = defineSkill({
     methodological: 'Assess a work through stated expressive and technical criteria rather than preference alone.',
     frontend: {
       en: 'Discuss a dance performance using clear artistic and technical criteria.',
+      it: "Discuti un'esibizione di danza usando criteri artistici e tecnici chiari.",
       zh: '使用明确的艺术和技术标准讨论舞蹈表演。',
       hi: 'स्पष्ट कलात्मक और तकनीकी मानदंडों के आधार पर नृत्य प्रस्तुति पर चर्चा करें।',
       es: 'Comenta una actuación de danza con criterios artísticos y técnicos claros.',

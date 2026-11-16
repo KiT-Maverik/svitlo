@@ -5,6 +5,7 @@ export const explainBranchMerging_Skill_Data = defineSkill({
   id: 'f19dc47a-5c06-404e-9ad2-b5127517eaa8',
   name: {
     en: 'Explain Branch Merging',
+    it: "Spiegare l'unione dei branch",
     zh: '解释分支合并',
     hi: 'ब्रांच मर्ज करना समझाना',
     es: 'Explicar la fusión de ramas',
@@ -38,6 +39,7 @@ export const explainBranchMerging_Skill_Data = defineSkill({
     methodological: 'Merging combines lines of history; incompatible overlapping changes require conflict resolution.',
     frontend: {
       en: 'Learn how branches are merged and why conflicts sometimes need resolving.',
+      it: 'Scopri come si uniscono i branch e perché a volte è necessario risolvere conflitti.',
       zh: '学习如何合并分支，以及为什么有时需要解决冲突。',
       hi: 'जानें कि ब्रांच कैसे मिलती हैं और कभी-कभी टकराव क्यों सुलझाना पड़ता है।',
       es: 'Aprende cómo se fusionan las ramas y por qué a veces hay conflictos que resolver.',

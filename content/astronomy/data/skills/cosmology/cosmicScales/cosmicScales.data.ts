@@ -12,6 +12,7 @@ export const cosmicScales_SkillGroup_Data = defineSkillGroup({
   id: '66d02a1e-1d48-4737-853b-1ee24be54d45',
   name: {
     en: 'Cosmic Scales',
+    it: 'Scale cosmiche',
     qm: 'Kosmik miqyaslar',
     zh: '宇宙尺度',
     hi: 'ब्रह्मांडीय पैमाने',
@@ -55,6 +56,7 @@ export const cosmicScales_SkillGroup_Data = defineSkillGroup({
       'Distances and times become linked by the finite speed of light, which limits how much of the Universe can be observed.',
     frontend: {
       en: 'Explore the immense distances and times involved in observing the cosmos.',
+      it: "Esplora le immense distanze e i lunghissimi intervalli di tempo coinvolti nell'osservazione del cosmo.",
       qm: 'Kâinatnı közetkende rastkelgen pek büyük mesafeler ve zaman aralıqlarını araştırıñız.',
       zh: '探索研究宇宙时涉及的巨大距离和漫长时间。',
       hi: 'ब्रह्मांड के अवलोकन में शामिल विशाल दूरियों और लंबे समयों को जानें।',

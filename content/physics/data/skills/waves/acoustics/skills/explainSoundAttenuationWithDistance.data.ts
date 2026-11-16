@@ -5,6 +5,7 @@ export const explainSoundAttenuationWithDistance_Skill_Data = defineSkill({
   id: '1bc9b549-4b42-45a5-a5cc-b7e6431165f6',
   name: {
     en: 'Explain sound attenuation with distance',
+    it: "Spiegare l'attenuazione del suono con la distanza",
     zh: '解释声音随距离衰减',
     hi: 'दूरी के साथ ध्वनि का कम होना समझाना',
     es: 'Explicar la atenuación del sonido con la distancia',
@@ -39,6 +40,7 @@ export const explainSoundAttenuationWithDistance_Skill_Data = defineSkill({
       'As a wave spreads from a localized source, its energy is generally distributed over an increasing area, reducing intensity; absorption also affects sound levels.',
     frontend: {
       en: 'Understand why sounds from a source usually weaken with distance.',
+      it: 'Comprendi perché i suoni di una sorgente generalmente si indeboliscono con la distanza.',
       zh: '理解为什么声源的声音通常随着距离增大而减弱。',
       hi: 'समझें कि स्रोत से दूर जाने पर ध्वनि सामान्यतः कमजोर क्यों होती है।',
       es: 'Comprende por qué el sonido suele debilitarse al alejarse de su fuente.',

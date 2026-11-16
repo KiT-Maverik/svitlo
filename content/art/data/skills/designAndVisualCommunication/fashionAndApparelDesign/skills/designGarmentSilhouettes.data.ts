@@ -5,6 +5,7 @@ export const designGarmentSilhouettes_Skill_Data = defineSkill({
   id: '8198f16e-0d7b-4f5e-ac27-014844b2a62b',
   name: {
     en: 'Design Garment Silhouettes',
+    it: 'Progettare le silhouette degli abiti',
 
     zh: '设计服装廓形',
     hi: 'परिधान की आकृति डिज़ाइन करें',
@@ -40,6 +41,7 @@ export const designGarmentSilhouettes_Skill_Data = defineSkill({
       'Develop a clothing form through deliberate decisions about outline, volume and proportion in relation to the moving human body.',
     frontend: {
       en: "Shape a garment's outline and volume around a moving body.",
+      it: 'Definisci il contorno e il volume di un indumento in relazione a un corpo in movimento.',
 
       zh: '设计服装的外轮廓和体积，使其适应身体运动。',
       hi: 'चलते शरीर के अनुसार परिधान की बाहरी आकृति और आयतन बनाएँ।',

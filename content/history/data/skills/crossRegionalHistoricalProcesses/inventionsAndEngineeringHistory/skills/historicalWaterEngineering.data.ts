@@ -5,6 +5,7 @@ export const historicalWaterEngineering_Skill_Data = defineSkill({
   id: 'a285f2fd-6d7f-434b-b78a-261875a3b867',
   name: {
     en: 'Historical Water Engineering',
+    it: 'Ingegneria idraulica nella storia',
     zh: '古代水利工程',
     hi: 'प्राचीन जल अभियांत्रिकी',
     es: 'Ingeniería hidráulica histórica',
@@ -38,6 +39,7 @@ export const historicalWaterEngineering_Skill_Data = defineSkill({
     methodological: 'Compare canals, reservoirs, and distribution systems across arid and floodplain settings.',
     frontend: {
       en: 'Discover how people engineered water systems in different regions.',
+      it: "Scopri come le popolazioni di diverse regioni progettavano sistemi per gestire l'acqua.",
       zh: '认识不同地区的人们如何建造水利系统。',
       hi: 'जानें कि अलग-अलग क्षेत्रों में लोगों ने जल प्रणालियाँ कैसे बनाईं।',
       es: 'Descubre cómo las personas diseñaban sistemas de agua en distintas regiones.',

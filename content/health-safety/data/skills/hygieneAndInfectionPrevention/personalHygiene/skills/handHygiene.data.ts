@@ -5,6 +5,7 @@ export const handHygiene_Skill_Data = defineSkill({
   id: '456a5d69-5a03-44b3-acff-eb9d42afea7f',
   name: {
     en: 'Hand hygiene',
+    it: 'Igiene delle mani',
     zh: '手部卫生',
     hi: 'हाथों की स्वच्छता',
     es: 'Higiene de manos',
@@ -39,6 +40,7 @@ export const handHygiene_Skill_Data = defineSkill({
       'Use washing or an appropriate hand sanitizer at meaningful moments, paying attention to coverage and the circumstances in which soap and water are needed.',
     frontend: {
       en: 'Recognize when to clean your hands and how to do it effectively.',
+      it: 'Riconosci quando lavare le mani e come farlo in modo efficace.',
       zh: '识别何时需要清洁双手，以及如何有效洗手。',
       hi: 'जानें कि कब हाथ साफ करने चाहिए और सही ढंग से कैसे धोना है।',
       es: 'Reconoce cuándo y cómo limpiar las manos de forma eficaz.',

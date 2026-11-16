@@ -5,6 +5,7 @@ export const explainResonance_Skill_Data = defineSkill({
   id: '24087d08-7fe9-4e22-8ac7-162ccf6f56d8',
   name: {
     en: 'Explain resonance',
+    it: 'Spiegare la risonanza',
     zh: '解释共振',
     hi: 'अनुनाद समझाना',
     es: 'Explicar la resonancia',
@@ -39,6 +40,7 @@ export const explainResonance_Skill_Data = defineSkill({
       "A periodic driving force near a system's natural frequency can substantially increase the amplitude of its oscillations.",
     frontend: {
       en: 'Understand how repeated driving near a natural frequency can amplify oscillations.',
+      it: 'Comprendi come una sollecitazione ripetuta vicino alla frequenza naturale possa amplificare le oscillazioni.',
       zh: '理解接近固有频率的周期性驱动如何增大振幅。',
       hi: 'समझें कि प्राकृतिक आवृत्ति के निकट आवधिक प्रेरण कंपन का आयाम कैसे बढ़ा सकता है।',
       es: 'Comprende cómo una excitación periódica próxima a la frecuencia natural puede aumentar las oscilaciones.',

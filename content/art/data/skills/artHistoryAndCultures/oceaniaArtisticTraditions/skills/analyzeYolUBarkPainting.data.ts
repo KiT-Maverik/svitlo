@@ -5,6 +5,7 @@ export const analyzeYolUBarkPainting_Skill_Data = defineSkill({
   id: 'f8707488-f037-4ae7-94d0-5c11b4a86c60',
   name: {
     en: 'Analyze Yolŋu Bark Painting',
+    it: 'Analizzare la pittura su corteccia yolŋu',
     zh: '分析 Yolŋu 树皮画',
     hi: 'योलŋु छाल-चित्रकला का विश्लेषण करें',
     es: 'Analizar la pintura sobre corteza Yolŋu',
@@ -39,6 +40,7 @@ export const analyzeYolUBarkPainting_Skill_Data = defineSkill({
       'Relate visual pattern, materials and authorized meanings to the specific Yolŋu communities and knowledge systems associated with a work.',
     frontend: {
       en: 'Study Yolŋu bark paintings with respect for community knowledge and authorized meanings.',
+      it: 'Studia i dipinti su corteccia yolŋu rispettando il sapere della comunità e i significati che essa autorizza a condividere.',
       zh: '尊重社区知识与经授权的含义，研究 Yolŋu 树皮画。',
       hi: 'समुदाय के ज्ञान और अधिकृत अर्थों का सम्मान करते हुए योलŋु छाल-चित्रों का अध्ययन करें।',
       es: 'Estudia las pinturas Yolŋu sobre corteza respetando los conocimientos comunitarios y los significados autorizados.',

@@ -5,6 +5,7 @@ export const explainReplenishmentAndDepletionOfNaturalResources_Skill_Data = def
   id: 'd5091906-395e-4955-839b-9db8729765c7',
   name: {
     en: 'Explain replenishment and depletion of natural resources',
+    it: "Spiegare il rinnovamento e l'esaurimento delle risorse naturali",
     zh: '解释自然资源的补充与消耗',
     hi: 'प्राकृतिक संसाधनों की पुनःपूर्ति और कमी समझाना',
     es: 'Explicar la renovación y el agotamiento de los recursos naturales',
@@ -39,6 +40,7 @@ export const explainReplenishmentAndDepletionOfNaturalResources_Skill_Data = def
       'Relate regeneration, formation or supply rates to rates of human use: sunlight is a continuing energy flow, managed forests can regrow, while fossil fuels and many mineral deposits form far too slowly to replace extraction on human timescales. Renewable does not mean inexhaustible.',
     frontend: {
       en: 'Distinguish resources that can replenish from those depleted faster than they form.',
+      it: 'Distingui le risorse che possono rigenerarsi da quelle che si esauriscono più rapidamente di quanto si formino.',
       zh: '区分能够再生的资源和消耗速度超过形成速度的资源。',
       hi: 'उन संसाधनों में अंतर करें जो फिर बन सकते हैं और उन संसाधनों में जो बनने से तेज़ घटते हैं।',
       es: 'Distingue los recursos que pueden renovarse de los que se agotan más rápido de lo que se forman.',

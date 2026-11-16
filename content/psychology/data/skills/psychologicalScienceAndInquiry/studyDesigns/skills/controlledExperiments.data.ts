@@ -5,6 +5,7 @@ export const controlledExperiments_Skill_Data = defineSkill({
   id: '16998c04-9c36-4b4a-b4d1-f2b6655c1214',
   name: {
     en: 'Controlled Experiments',
+    it: 'Esperimenti controllati',
     zh: '控制实验',
     hi: 'नियंत्रित प्रयोग',
     es: 'Experimentos controlados',
@@ -39,6 +40,7 @@ export const controlledExperiments_Skill_Data = defineSkill({
       'Identify manipulated variables, outcome measures, comparison conditions, and the logic of an experimental contrast.',
     frontend: {
       en: 'Identify manipulated factors, measured outcomes and controls in an experiment.',
+      it: 'Individua i fattori manipolati, i risultati misurati e i controlli di un esperimento.',
       zh: '识别实验中被操纵的因素、测量的结果和控制条件。',
       hi: 'प्रयोग में बदले गए कारकों, मापे गए परिणामों और नियंत्रणों को पहचानें।',
       es: 'Identifica los factores manipulados, los resultados medidos y los controles de un experimento.',

@@ -5,6 +5,7 @@ export const applyObjectAbstraction_Skill_Data = defineSkill({
   id: '13839a46-aec2-4764-bf85-88e7ebbd35de',
   name: {
     en: 'Apply Object Abstraction',
+    it: "Applicare l'astrazione degli oggetti",
     zh: '应用对象抽象',
     hi: 'ऑब्जेक्ट अमूर्तन लागू करना',
     es: 'Aplicar abstracción de objetos',
@@ -39,6 +40,7 @@ export const applyObjectAbstraction_Skill_Data = defineSkill({
       "Identify the minimal set of operations or properties relevant to a component's user while hiding details that do not affect the contract. For example, a 'move' operation need not expose a robot's motor-control logic.",
     frontend: {
       en: 'Choose the essential operations a component should reveal to its users.',
+      it: 'Scegli le operazioni essenziali che un componente dovrebbe esporre ai propri utilizzatori.',
       zh: '选择组件应当向使用者公开的必要操作。',
       hi: 'चुनें कि किसी घटक को उपयोगकर्ताओं के सामने कौन-से आवश्यक कार्य दिखाने चाहिए।',
       es: 'Elige las operaciones esenciales que un componente debe mostrar a sus usuarios.',

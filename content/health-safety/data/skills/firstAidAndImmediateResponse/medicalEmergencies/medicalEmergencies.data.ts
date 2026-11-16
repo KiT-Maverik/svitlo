@@ -16,6 +16,7 @@ export const medicalEmergencies_SkillGroup_Data = defineSkillGroup({
   id: 'fae5a6bf-f81e-4142-bf4e-53866f75eb4d',
   name: {
     en: 'Medical Emergencies',
+    it: 'Emergenze mediche',
     zh: '医疗紧急情况',
     hi: 'चिकित्सीय आपात स्थितियाँ',
     es: 'Emergencias médicas',
@@ -72,6 +73,7 @@ export const medicalEmergencies_SkillGroup_Data = defineSkillGroup({
       'Prompt recognition and appropriate escalation are more important than attempting diagnosis or administering unfamiliar medication.',
     frontend: {
       en: 'Learn warning signs that require a rapid medical emergency response.',
+      it: "Impara a riconoscere i segnali d'allarme che richiedono un rapido intervento sanitario.",
       zh: '识别需要迅速启动紧急医疗救援的警示信号。',
       hi: 'ऐसे चेतावनी संकेत पहचानो जिनमें तुरंत आपात चिकित्सा सहायता चाहिए।',
       es: 'Aprende a reconocer señales de alerta que requieren respuesta médica urgente.',

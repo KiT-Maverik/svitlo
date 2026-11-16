@@ -5,6 +5,7 @@ export const assyrianEmpire_Skill_Data = defineSkill({
   id: 'bff9103d-75de-4d10-b870-7ce10a6c1e45',
   name: {
     en: 'Assyrian Empire',
+    it: 'Impero assiro',
     zh: '亚述帝国',
     hi: 'असीरियाई साम्राज्य',
     es: 'Imperio asirio',
@@ -39,6 +40,7 @@ export const assyrianEmpire_Skill_Data = defineSkill({
       'Explain military organization, provincial administration, and imperial control in the Neo-Assyrian state.',
     frontend: {
       en: 'Understand how Assyria governed its empire.',
+      it: "Comprendi come l'Assiria governava il proprio impero.",
       zh: '理解亚述如何统治其帝国。',
       hi: 'समझें कि असीरिया ने अपने साम्राज्य का प्रशासन कैसे किया।',
       es: 'Comprende cómo Asiria gobernaba su imperio.',

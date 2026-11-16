@@ -5,6 +5,7 @@ export const distinguishPitchFromLoudness_Skill_Data = defineSkill({
   id: '3984a4ae-4fd1-49c2-b66e-2347e714e433',
   name: {
     en: 'Distinguish Pitch from Loudness',
+    it: "Distinguere l'altezza dall'intensità sonora",
     zh: '区分音高与响度',
     hi: 'स्वर की ऊँचाई और ध्वनि की तीव्रता में अंतर करें',
     es: 'Distinguir la altura y la intensidad del sonido',
@@ -38,6 +39,7 @@ export const distinguishPitchFromLoudness_Skill_Data = defineSkill({
     methodological: 'Identify perceived note height separately from sound intensity rather than conflating them.',
     frontend: {
       en: 'Tell whether a sound is high or low without confusing it with loudness.',
+      it: 'Riconosci se un suono è acuto o grave senza confonderlo con il volume.',
       zh: '判断声音是高还是低，不要与响度混淆。',
       hi: 'ध्वनि ऊँची है या नीची, यह पहचानें और इसे आवाज़ की तीव्रता से न मिलाएँ।',
       es: 'Identifica si un sonido es agudo o grave sin confundirlo con su volumen.',

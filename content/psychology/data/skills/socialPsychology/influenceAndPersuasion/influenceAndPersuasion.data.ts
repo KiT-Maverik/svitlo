@@ -14,6 +14,7 @@ export const influenceAndPersuasion_SkillGroup_Data = defineSkillGroup({
   id: 'd25577b7-abdb-4a10-b5b1-1b82e4a55191',
   name: {
     en: 'Influence and Persuasion',
+    it: 'Influenza e persuasione',
     zh: '社会影响与说服',
     hi: 'सामाजिक प्रभाव और अनुनय',
     es: 'Influencia y persuasión',
@@ -66,6 +67,7 @@ export const influenceAndPersuasion_SkillGroup_Data = defineSkillGroup({
       "Other people's behavior, claims, and group norms can shift beliefs or actions through identifiable social mechanisms.",
     frontend: {
       en: 'Discover how groups, authority and messages influence choices.',
+      it: 'Scopri come gruppi, autorità e messaggi influenzino le scelte.',
       zh: '探索群体、权威和信息如何影响选择。',
       hi: 'जानें कि समूह, प्राधिकारी और संदेश विकल्पों को कैसे प्रभावित करते हैं।',
       es: 'Descubre cómo grupos, autoridades y mensajes influyen en las decisiones.',

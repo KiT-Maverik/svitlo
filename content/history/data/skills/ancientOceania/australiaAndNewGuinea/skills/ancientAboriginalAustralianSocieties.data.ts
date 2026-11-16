@@ -5,6 +5,7 @@ export const ancientAboriginalAustralianSocieties_Skill_Data = defineSkill({
   id: '1784b5ad-11c2-44d4-a160-fabc89363a24',
   name: {
     en: 'Ancient Aboriginal Australian Societies',
+    it: 'Antiche società aborigene australiane',
     zh: '澳大利亚原住民的古代社会',
     hi: 'ऑस्ट्रेलियाई आदिवासियों के प्राचीन समाज',
     es: 'Sociedades antiguas de los pueblos aborígenes australianos',
@@ -39,6 +40,7 @@ export const ancientAboriginalAustralianSocieties_Skill_Data = defineSkill({
       'Examine diverse lifeways, environmental interactions, and the longevity of Aboriginal Australian traditions.',
     frontend: {
       en: 'Explore the long and varied histories of Aboriginal Australian communities.',
+      it: 'Esplora le storie lunghe e diversificate delle comunità aborigene australiane.',
       zh: '探索澳大利亚原住民社群悠久而多样的历史。',
       hi: 'ऑस्ट्रेलियाई आदिवासी समुदायों का लंबा और विविध इतिहास जानें।',
       es: 'Explora las historias largas y diversas de los pueblos aborígenes australianos.',

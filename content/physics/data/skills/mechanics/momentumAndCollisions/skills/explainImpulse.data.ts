@@ -5,6 +5,7 @@ export const explainImpulse_Skill_Data = defineSkill({
   id: 'fb50ca43-45b4-404f-92af-e139fb0d6348',
   name: {
     en: 'Explain impulse',
+    it: "Spiegare l'impulso",
     zh: '解释冲量',
     hi: 'आवेग समझाना',
     es: 'Explicar el impulso de una fuerza',
@@ -39,6 +40,7 @@ export const explainImpulse_Skill_Data = defineSkill({
       "A change in a body's momentum is related to the magnitude and duration of an applied force, which explains physical differences among braking methods.",
     frontend: {
       en: 'Explore how a force acting over time changes momentum.',
+      it: 'Esplora come una forza applicata nel tempo modifica la quantità di moto.',
       zh: '探索力持续作用一段时间如何改变动量。',
       hi: 'जानें कि कुछ समय तक लगाया गया बल संवेग को कैसे बदलता है।',
       es: 'Explora cómo una fuerza aplicada durante cierto tiempo cambia el momento lineal.',

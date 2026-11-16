@@ -5,6 +5,7 @@ export const evaluateMoralRelativism_Skill_Data = defineSkill({
   id: '495e5a73-c2e4-4d48-a992-063bda3ee434',
   name: {
     en: 'Evaluate moral relativism',
+    it: 'Valutare il relativismo morale',
     zh: '评估道德相对主义',
     hi: 'नैतिक सापेक्षवाद का मूल्यांकन',
     es: 'Evaluar el relativismo moral',
@@ -39,6 +40,7 @@ export const evaluateMoralRelativism_Skill_Data = defineSkill({
       'Test the view that moral truth or justification varies by culture or individual against cases involving disagreement, criticism, and reform.',
     frontend: {
       en: 'Examine whether right and wrong depend on culture or individual perspective.',
+      it: 'Esamina se il giusto e lo sbagliato dipendano dalla cultura o dalla prospettiva individuale.',
       zh: '探讨对错是否取决于文化或个人立场。',
       hi: 'जाँचें कि सही और गलत संस्कृति या व्यक्तिगत दृष्टिकोण पर निर्भर करते हैं या नहीं।',
       es: 'Examina si lo correcto y lo incorrecto dependen de la cultura o perspectiva individual.',

@@ -5,6 +5,7 @@ export const networkSolids_Skill_Data = defineSkill({
   id: '5931e8ed-972b-48b6-8d90-82b54a07f29e',
   name: {
     en: 'Network Solids',
+    it: 'Solidi a reticolo covalente',
     zh: '共价网络固体',
     hi: 'सहसंयोजक जालक ठोस',
     es: 'Sólidos de red covalente',
@@ -39,6 +40,7 @@ export const networkSolids_Skill_Data = defineSkill({
       'Contrast extended covalent structures with discrete molecular solids using examples such as diamond and silica.',
     frontend: {
       en: 'Explore why extended covalent networks behave differently from individual molecules.',
+      it: 'Esplora perché le reti covalenti estese si comportano diversamente dalle singole molecole.',
       zh: '探索为什么延展的共价网络与独立分子表现出不同的性质。',
       hi: 'जानें कि विस्तृत सहसंयोजक जालक अलग-अलग अणुओं से अलग क्यों व्यवहार करते हैं।',
       es: 'Explora por qué las redes covalentes extendidas se comportan de otra forma que las moléculas individuales.',

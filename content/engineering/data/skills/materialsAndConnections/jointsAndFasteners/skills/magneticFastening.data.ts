@@ -5,6 +5,7 @@ export const magneticFastening_Skill_Data = defineSkill({
   id: '70a0f1ed-5f4c-4b90-a742-1967d2de16de',
   name: {
     en: 'Magnetic fastening',
+    it: 'Fissaggio magnetico',
     zh: '磁力固定',
     hi: 'चुंबकीय बंधन',
     es: 'Fijación magnética',
@@ -38,6 +39,7 @@ export const magneticFastening_Skill_Data = defineSkill({
     methodological: 'Identify how magnetic attraction can retain a part and when an alternative joint is necessary.',
     frontend: {
       en: 'Understand when magnets can secure a component.',
+      it: 'Comprendi quando i magneti possono mantenere un componente in posizione.',
       zh: '了解磁铁在哪些情况下能够固定组件。',
       hi: 'जानें कि चुंबक किन परिस्थितियों में किसी हिस्से को थाम सकता है।',
       es: 'Comprende cuándo los imanes pueden sujetar un componente.',

@@ -5,6 +5,7 @@ export const supernovae_Skill_Data = defineSkill({
   id: '4bd7ed89-0734-4d58-8e99-24ed26f7092d',
   name: {
     en: 'Supernovae',
+    it: 'Supernove',
     zh: '超新星',
     hi: 'सुपरनोवा',
     es: 'Supernovas',
@@ -39,6 +40,7 @@ export const supernovae_Skill_Data = defineSkill({
       'Distinguish major physical mechanisms that produce stellar explosions and interpret their observational signatures.',
     frontend: {
       en: 'Compare the different processes that produce supernova explosions.',
+      it: 'Confronta i diversi processi che producono le esplosioni delle supernove.',
       zh: '比较会引发超新星爆炸的不同物理过程。',
       hi: 'सुपरनोवा विस्फोट पैदा करने वाली विभिन्न प्रक्रियाओं की तुलना करें।',
       es: 'Compara los distintos procesos que producen explosiones de supernova.',

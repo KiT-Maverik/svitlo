@@ -5,6 +5,7 @@ export const riseOfMacedonia_Skill_Data = defineSkill({
   id: '177e98cd-ed0c-4a37-8328-978cd049dd2a',
   name: {
     en: 'Rise of Macedonia',
+    it: 'Ascesa della Macedonia',
     zh: '马其顿的崛起',
     hi: 'मकदूनिया का उदय',
     es: 'Ascenso de Macedonia',
@@ -38,6 +39,7 @@ export const riseOfMacedonia_Skill_Data = defineSkill({
     methodological: "Analyze Philip II's consolidation and Macedon's relationships with Greek poleis.",
     frontend: {
       en: 'Understand how Macedonia became a regional power.',
+      it: 'Comprendi come la Macedonia divenne una potenza regionale.',
       zh: '了解马其顿如何成为地区强国。',
       hi: 'समझें कि मकदूनिया कैसे एक क्षेत्रीय शक्ति बना।',
       es: 'Comprende cómo Macedonia se convirtió en una potencia regional.',

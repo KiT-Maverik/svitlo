@@ -5,6 +5,7 @@ export const nazcaCulture_Skill_Data = defineSkill({
   id: 'f007b6d7-8d2e-4c3a-9ec2-df53352db41c',
   name: {
     en: 'Nazca Culture',
+    it: 'Cultura Nazca',
     zh: '纳斯卡文化',
     hi: 'नाज़्का संस्कृति',
     es: 'Cultura nazca',
@@ -38,6 +39,7 @@ export const nazcaCulture_Skill_Data = defineSkill({
     methodological: 'Examine dry-valley economies, pottery, and geoglyphs without pseudoscientific origin stories.',
     frontend: {
       en: 'Explore the Nazca geoglyphs and the society that made them.',
+      it: 'Esplora i geoglifi di Nazca e la società che li realizzò.',
       zh: '探索纳斯卡地画及其创作者的社会。',
       hi: 'नाज़्का रेखाचित्रों और उन्हें बनाने वाले समाज को जानें।',
       es: 'Explora los geoglifos de Nazca y la sociedad que los creó.',

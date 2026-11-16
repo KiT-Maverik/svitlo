@@ -5,6 +5,7 @@ export const compareAPrioriAndEmpiricalJustification_Skill_Data = defineSkill({
   id: '0ec8701e-f6f4-470e-8e19-7ff433efe49e',
   name: {
     en: 'Compare a priori and empirical justification',
+    it: 'Confrontare giustificazione a priori ed empirica',
     zh: '比较先验与经验性证成',
     hi: 'प्रागनुभविक और अनुभवजन्य औचित्य की तुलना',
     es: 'Comparar la justificación a priori y empírica',
@@ -39,6 +40,7 @@ export const compareAPrioriAndEmpiricalJustification_Skill_Data = defineSkill({
       'Distinguish support based primarily on reasoning from support requiring experience, without assuming the boundary is universally uncontested.',
     frontend: {
       en: 'Compare knowledge grounded in reasoning with knowledge grounded in experience.',
+      it: "Confronta la conoscenza fondata sul ragionamento con quella fondata sull'esperienza.",
       zh: '比较基于推理的知识与基于经验的知识。',
       hi: 'तर्क पर आधारित ज्ञान की तुलना अनुभव पर आधारित ज्ञान से करें।',
       es: 'Compara el conocimiento basado en el razonamiento con el basado en la experiencia.',

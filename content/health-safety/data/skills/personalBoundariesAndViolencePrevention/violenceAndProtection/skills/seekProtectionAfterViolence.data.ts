@@ -5,6 +5,7 @@ export const seekProtectionAfterViolence_Skill_Data = defineSkill({
   id: 'de54526c-b861-4cd7-a223-02db43cf018c',
   name: {
     en: 'Seek protection after violence',
+    it: 'Cercare protezione dopo una violenza',
     zh: '遭受暴力后寻求保护',
     hi: 'हिंसा के बाद सुरक्षा प्राप्त करें',
     es: 'Buscar protección después de sufrir violencia',
@@ -39,6 +40,7 @@ export const seekProtectionAfterViolence_Skill_Data = defineSkill({
       'Identify safe contacts, support organizations, emergency services, and appropriate documentation without requiring disclosure to an unsafe person.',
     frontend: {
       en: 'Find safe people and services to contact after experiencing violence.',
+      it: 'Individua persone e servizi sicuri da contattare dopo aver subito violenza.',
       zh: '知道遭受暴力后可以安全联系哪些人和服务机构。',
       hi: 'जानें कि हिंसा झेलने के बाद किन सुरक्षित लोगों और सेवाओं से संपर्क किया जा सकता है।',
       es: 'Encuentra personas y servicios seguros a los que acudir tras sufrir violencia.',

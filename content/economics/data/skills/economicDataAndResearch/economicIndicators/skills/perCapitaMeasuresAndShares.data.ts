@@ -5,6 +5,7 @@ export const perCapitaMeasuresAndShares_Skill_Data = defineSkill({
   id: '7df03ddf-b7ae-44c5-a5b9-b98726c982a7',
   name: {
     en: 'Показники на одну особу та частки',
+    it: 'Indicatori pro capite e quote percentuali',
     zh: '人均指标与占比',
     hi: 'प्रति व्यक्ति माप और हिस्से',
     es: 'Medidas per cápita y proporciones',
@@ -38,6 +39,7 @@ export const perCapitaMeasuresAndShares_Skill_Data = defineSkill({
     methodological: 'Interpret denominators, scales, and comparability of ratios between groups.',
     frontend: {
       en: 'Compare figures per person and percentages between populations.',
+      it: 'Confronta valori per persona e percentuali tra popolazioni.',
       zh: '比较不同人群的人均数值与百分比。',
       hi: 'विभिन्न जनसंख्याओं के प्रति व्यक्ति आँकड़ों और प्रतिशतों की तुलना करें।',
       es: 'Compara cifras por persona y porcentajes entre poblaciones.',

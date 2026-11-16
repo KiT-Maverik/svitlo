@@ -32,6 +32,7 @@ export const multiply_SkillGroup_Data = defineSkillGroup({
   id: '1cb60869-1e45-44c0-bc72-aab0a8df8af7',
   name: {
     en: 'Multiplication',
+    it: 'Moltiplicazione',
     qm: 'Arttıruv',
     lt: 'Daugyba',
     lv: 'Reizināšana',
@@ -120,6 +121,7 @@ export const multiply_SkillGroup_Data = defineSkillGroup({
       'Products as equal groups or rectangular arrays, multiplication facts and properties, and place-value-based computation methods.',
     frontend: {
       en: 'Explore multiplication through equal groups and arrays, use its properties to find products, and learn how place value helps with larger calculations.',
+      it: 'Esplora la moltiplicazione con gruppi uguali e schieramenti, usa le sue proprietà per trovare i prodotti e scopri come il valore posizionale aiuta nei calcoli più grandi.',
       qm: 'Teñ toparlar ve satır-sütun şeklindeki tertipler yardımınen arttıruvnı araştır. Arttıruv hasiyetlerinen neticelerni tap ve büyük sayılarnı esaplavda razryad qıymetiniñ nasıl yardım etkenini ögren.',
       zh: '通过相等的组和方阵理解乘法，利用乘法的规律求积，并了解数位怎样帮助计算更大的数。',
       hi: 'बराबर समूहों और पंक्ति-स्तंभों से गुणा समझो, उसके नियमों से गुणनफल निकालो और जानो कि स्थान-मूल्य बड़ी गणनाओं में कैसे मदद करता है।',

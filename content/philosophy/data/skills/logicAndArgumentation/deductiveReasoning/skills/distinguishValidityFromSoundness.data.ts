@@ -5,6 +5,7 @@ export const distinguishValidityFromSoundness_Skill_Data = defineSkill({
   id: 'dac1c7e0-93fa-4aac-afe8-8dcb3cfbdf28',
   name: {
     en: 'Distinguish validity from soundness',
+    it: 'Distinguere validità e correttezza di un argomento',
     zh: '区分有效性与健全性',
     hi: 'वैधता और ठोसपन में अंतर करना',
     es: 'Distinguir validez de solidez',
@@ -38,6 +39,7 @@ export const distinguishValidityFromSoundness_Skill_Data = defineSkill({
     methodological: 'Recognize that a sound deductive argument requires both a valid inference and true premises.',
     frontend: {
       en: 'Understand why a logically valid argument can still have false premises.',
+      it: "Comprendi perché un'argomentazione logicamente valida possa comunque avere premesse false.",
       zh: '了解为何逻辑上有效的论证仍可能包含错误前提。',
       hi: 'समझें कि तार्किक रूप से वैध तर्क के आधार-वाक्य फिर भी असत्य क्यों हो सकते हैं।',
       es: 'Comprende por qué un argumento lógicamente válido puede tener premisas falsas.',

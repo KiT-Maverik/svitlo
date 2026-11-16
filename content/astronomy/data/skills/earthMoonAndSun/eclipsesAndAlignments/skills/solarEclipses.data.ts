@@ -5,6 +5,7 @@ export const solarEclipses_Skill_Data = defineSkill({
   id: 'cfa13baf-336a-47b6-bb34-8944d8ee60b5',
   name: {
     en: 'Solar Eclipses',
+    it: 'Eclissi solari',
     zh: '日食',
     hi: 'सूर्य ग्रहण',
     es: 'Eclipses solares',
@@ -39,6 +40,7 @@ export const solarEclipses_Skill_Data = defineSkill({
       'Explain the conditions, shadow regions and different observational appearances of a solar eclipse.',
     frontend: {
       en: 'Explain when a solar eclipse happens and why its appearance varies by location.',
+      it: "Spiega quando avviene un'eclissi solare e perché il suo aspetto varia a seconda del luogo.",
       zh: '解释日食在什么情况下发生，以及为什么从不同地点看到的日食不同。',
       hi: 'समझाएँ कि सूर्य ग्रहण कब होता है और अलग-अलग स्थानों से उसका रूप अलग क्यों दिखाई देता है।',
       es: 'Explica cuándo ocurre un eclipse solar y por qué se ve de manera distinta según el lugar.',

@@ -5,6 +5,7 @@ export const preventHouseholdPoisoning_Skill_Data = defineSkill({
   id: '03a60e11-f837-4db9-b01f-c763608ba558',
   name: {
     en: 'Prevent household poisoning',
+    it: 'Prevenire gli avvelenamenti domestici',
     zh: '预防家庭中毒',
     hi: 'घरेलू विषाक्तता से बचाव',
     es: 'Prevenir intoxicaciones domésticas',
@@ -39,6 +40,7 @@ export const preventHouseholdPoisoning_Skill_Data = defineSkill({
       'Reduce access to hazardous chemicals, use original labelled containers, and avoid unsafe storage near food or medicine.',
     frontend: {
       en: 'Keep hazardous household substances properly labeled and away from children.',
+      it: 'Conserva le sostanze domestiche pericolose con etichette adeguate e fuori dalla portata dei bambini.',
       zh: '给危险的家用化学品贴好标签，并放在儿童接触不到的地方。',
       hi: 'खतरनाक घरेलू रसायनों को उनके मूल, लेबल लगे डिब्बों में और बच्चों की पहुँच से दूर रखें।',
       es: 'Conserva las sustancias domésticas peligrosas en sus envases originales etiquetados y fuera del alcance de los niños.',

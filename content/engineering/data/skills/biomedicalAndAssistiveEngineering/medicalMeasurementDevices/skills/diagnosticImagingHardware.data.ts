@@ -5,6 +5,7 @@ export const diagnosticImagingHardware_Skill_Data = defineSkill({
   id: '53e0cc38-451f-4173-8f9e-cce5e752da58',
   name: {
     en: 'Diagnostic imaging hardware',
+    it: 'Apparecchiature per la diagnostica per immagini',
     zh: '诊断成像硬件',
     hi: 'नैदानिक इमेजिंग हार्डवेयर',
     es: 'Equipos de diagnóstico por imagen',
@@ -39,6 +40,7 @@ export const diagnosticImagingHardware_Skill_Data = defineSkill({
       'Distinguish sources, detectors, positioning and associated hardware in ultrasound, radiographic or magnetic-resonance equipment without teaching clinical image interpretation.',
     frontend: {
       en: 'Explore hardware used to create images for medical investigation.',
+      it: 'Esplora le apparecchiature impiegate per ottenere immagini a scopo diagnostico.',
       zh: '探索用于医学检查成像的硬件。',
       hi: 'चिकित्सीय जाँच के लिए चित्र बनाने वाले हार्डवेयर को जानें।',
       es: 'Explora el hardware utilizado para crear imágenes en exploraciones médicas.',

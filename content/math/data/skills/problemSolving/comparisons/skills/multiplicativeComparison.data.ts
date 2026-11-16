@@ -11,6 +11,7 @@ export const multiplicativeComparison_Skill_Data = defineSkill({
     ka: 'ჯერადი შედარების ამოცანების ამოხსნა',
     kk: 'Еселік салыстыру есептерін шығару',
     en: 'Solving multiplicative comparison problems',
+    it: 'Risolvere problemi di confronto moltiplicativo',
     qm: 'Qatlı qıyaslav meselelerini çezmek',
     zh: '解决倍数比较问题',
     hi: 'गुणात्मक तुलना की समस्याएँ हल करना',
@@ -39,6 +40,7 @@ export const multiplicativeComparison_Skill_Data = defineSkill({
       "Multiplicative comparison finds the ratio between two positive quantities of the same dimension, not their difference. 'How many times as much' expresses a scale factor rather than an additive comparison.",
     frontend: {
       en: 'You can find how many times one positive quantity is as large as another by comparing their ratio, not their difference.',
+      it: "Puoi trovare quante volte una quantità positiva è grande rispetto a un'altra confrontando il loro rapporto, non la loro differenza.",
       qm: 'Bir musbet miqdarnıñ digerinden neçe qat büyük olğanını farqını degil, nisbetini qıyaslap tapa bilesiñ.',
       zh: '你能通过两个正数量的比值，求出一个是另一个的几倍，而不是比较它们的差。',
       hi: 'आप दो धनात्मक मात्राओं का अनुपात देखकर बता सकते हैं कि एक दूसरी से कितने गुना है, उनके अंतर से नहीं।',

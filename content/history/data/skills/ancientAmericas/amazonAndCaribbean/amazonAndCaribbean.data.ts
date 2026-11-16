@@ -11,6 +11,7 @@ export const amazonAndCaribbean_SkillGroup_Data = defineSkillGroup({
   id: 'b71fa763-19d5-423f-b785-85046c9dbf4f',
   name: {
     en: 'Amazonia and the Caribbean',
+    it: 'Amazzonia e Caraibi',
     zh: '亚马孙地区与加勒比海地区',
     hi: 'अमेज़न और कैरेबियाई क्षेत्र',
     es: 'Amazonía y el Caribe',
@@ -53,6 +54,7 @@ export const amazonAndCaribbean_SkillGroup_Data = defineSkillGroup({
       'River and island environments supported diverse cultures that cannot be judged only by the presence of stone cities.',
     frontend: {
       en: 'Discover ancient Amazonian and Caribbean communities.',
+      it: "Scopri le antiche comunità dell'Amazzonia e dei Caraibi.",
       zh: '认识亚马孙地区和加勒比海地区的古代社群。',
       hi: 'अमेज़न और कैरेबियाई क्षेत्रों के प्राचीन समुदायों को जानें।',
       es: 'Descubre las comunidades antiguas de la Amazonía y el Caribe.',

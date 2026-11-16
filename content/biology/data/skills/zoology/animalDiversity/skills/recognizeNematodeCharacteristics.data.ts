@@ -5,6 +5,7 @@ export const recognizeNematodeCharacteristics_Skill_Data = defineSkill({
   id: 'b69b5b59-0a80-4cc5-bb4c-866d223dc68d',
   name: {
     en: 'Recognize Nematode Characteristics',
+    it: 'Riconoscere le caratteristiche dei nematodi',
     zh: '识别线虫的特征',
     hi: 'सूत्रकृमियों की विशेषताएँ पहचानना',
     es: 'Reconocer las características de los nematodos',
@@ -39,6 +40,7 @@ export const recognizeNematodeCharacteristics_Skill_Data = defineSkill({
       'Recognize the unsegmented elongated bodies of roundworms and features of their lifestyles, including free-living and parasitic forms.',
     frontend: {
       en: 'Recognize roundworms by their unsegmented bodies and other traits.',
+      it: 'Riconosci i vermi cilindrici dal corpo non segmentato e da altre caratteristiche.',
       zh: '通过不分节的身体和其他特征识别线虫。',
       hi: 'सूत्रकृमियों को उनके अखंडित शरीर और अन्य लक्षणों से पहचानें।',
       es: 'Reconoce los nematodos por sus cuerpos no segmentados y otros rasgos.',

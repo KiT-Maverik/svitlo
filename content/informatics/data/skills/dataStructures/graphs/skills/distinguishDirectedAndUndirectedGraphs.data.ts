@@ -5,6 +5,7 @@ export const distinguishDirectedAndUndirectedGraphs_Skill_Data = defineSkill({
   id: 'eed7de30-8bf4-4e59-a4b3-06c965c82c4c',
   name: {
     en: 'Distinguish Directed and Undirected Graphs',
+    it: 'Distinguere grafi orientati e non orientati',
     zh: '区分有向图和无向图',
     hi: 'दिशात्मक और अदिशात्मक ग्राफ़ में अंतर करना',
     es: 'Distinguir grafos dirigidos y no dirigidos',
@@ -39,6 +40,7 @@ export const distinguishDirectedAndUndirectedGraphs_Skill_Data = defineSkill({
       'Determine whether an edge permits travel only one way or represents a connection that can be traversed in both directions.',
     frontend: {
       en: 'Tell whether connections have one-way or two-way direction.',
+      it: 'Stabilisci se i collegamenti hanno una direzione unica oppure sono bidirezionali.',
       zh: '判断连接是单向的还是双向的。',
       hi: 'पहचानें कि कोई जुड़ाव एक दिशा में है या दोनों दिशाओं में।',
       es: 'Determina si las conexiones permiten ir en una sola dirección o en ambas.',

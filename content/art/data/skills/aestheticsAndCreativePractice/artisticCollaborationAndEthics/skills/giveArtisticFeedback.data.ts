@@ -5,6 +5,7 @@ export const giveArtisticFeedback_Skill_Data = defineSkill({
   id: 'b1723767-0061-4f30-98c5-e6148c5ec3f0',
   name: {
     en: 'Give Artistic Feedback',
+    it: 'Fornire un riscontro artistico',
     zh: '提供艺术反馈',
     hi: 'कलात्मक प्रतिक्रिया दें',
     es: 'Dar comentarios artísticos',
@@ -38,6 +39,7 @@ export const giveArtisticFeedback_Skill_Data = defineSkill({
     methodological: "Offer specific observations and actionable suggestions aligned with a maker's goals.",
     frontend: {
       en: "Offer useful, specific suggestions that support another artist's goals.",
+      it: 'Offri suggerimenti utili e specifici che aiutino un altro artista a raggiungere i suoi obiettivi.',
       zh: '提出具体且有用的建议，帮助其他艺术家实现目标。',
       hi: 'दूसरे कलाकार के लक्ष्यों का समर्थन करने वाले उपयोगी और स्पष्ट सुझाव दें।',
       es: 'Ofrece sugerencias útiles y concretas que apoyen los objetivos de otro artista.',

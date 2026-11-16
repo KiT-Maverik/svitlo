@@ -5,6 +5,7 @@ export const distinguishAnArgumentFromAnExplanation_Skill_Data = defineSkill({
   id: 'e94789cd-a8ee-4a87-a123-24e560ec25d5',
   name: {
     en: 'Distinguish an argument from an explanation',
+    it: "Distinguere un'argomentazione da una spiegazione",
     zh: '区分论证与解释',
     hi: 'तर्क और व्याख्या में अंतर करना',
     es: 'Distinguir un argumento de una explicación',
@@ -39,6 +40,7 @@ export const distinguishAnArgumentFromAnExplanation_Skill_Data = defineSkill({
       'Tell reasoning intended to establish a claim from an account of why an already accepted event or fact occurred.',
     frontend: {
       en: 'Tell a reason for believing something apart from an explanation of an accepted fact.',
+      it: 'Distingui una ragione per credere a qualcosa dalla spiegazione di un fatto già accettato.',
       zh: '区分相信某事的理由与对已知事实的解释。',
       hi: 'किसी बात पर विश्वास करने के कारण और स्वीकार किए गए तथ्य की व्याख्या में अंतर करें।',
       es: 'Distingue una razón para creer algo de una explicación de un hecho aceptado.',

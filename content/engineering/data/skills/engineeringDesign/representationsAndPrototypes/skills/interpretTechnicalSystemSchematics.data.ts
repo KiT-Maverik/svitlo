@@ -5,6 +5,7 @@ export const interpretTechnicalSystemSchematics_Skill_Data = defineSkill({
   id: '2bc0eb68-e340-4eb9-9a72-e41add5fe541',
   name: {
     en: 'Interpret technical system schematics',
+    it: 'Interpretare gli schemi dei sistemi tecnici',
     zh: '解读技术系统原理图',
     hi: 'तकनीकी प्रणाली के योजनाचित्र पढ़ना',
     es: 'Interpretar esquemas de sistemas técnicos',
@@ -39,6 +40,7 @@ export const interpretTechnicalSystemSchematics_Skill_Data = defineSkill({
       'Interpret functional symbols and relationships in mechanical, hydraulic, pneumatic or block diagrams. Specialized electrical-circuit connectivity and electrical symbols have a separate competency.',
     frontend: {
       en: 'Read diagrams to understand how technical components relate.',
+      it: 'Leggi gli schemi per comprendere le relazioni tra i componenti tecnici.',
       zh: '通过阅读图纸理解技术组件之间的关系。',
       hi: 'आरेख पढ़कर समझें कि तकनीकी घटक आपस में कैसे जुड़े हैं।',
       es: 'Lee esquemas para entender la relación entre componentes técnicos.',

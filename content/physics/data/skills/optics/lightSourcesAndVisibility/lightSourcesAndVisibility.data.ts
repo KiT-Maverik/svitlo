@@ -11,6 +11,7 @@ export const lightSourcesAndVisibility_SkillGroup_Data = defineSkillGroup({
   id: 'a7f25a6b-49d9-43d7-8e43-a107ca77b459',
   name: {
     en: 'Light Sources and Visibility',
+    it: 'Sorgenti luminose e visibilità',
     zh: '光源与可见性',
     hi: 'प्रकाश स्रोत और दृश्यता',
     es: 'Fuentes de luz y visibilidad',
@@ -57,6 +58,7 @@ export const lightSourcesAndVisibility_SkillGroup_Data = defineSkillGroup({
       'An object is visible when light from it reaches the eye; a light source and an illuminated surface play different roles.',
     frontend: {
       en: 'Discover why some objects emit light and others are visible by reflection.',
+      it: 'Scopri perché alcuni oggetti emettono luce e altri sono visibili grazie alla riflessione.',
       zh: '了解为什么有些物体自己发光，而另一些物体靠反射光线才被看见。',
       hi: 'जानो कि कुछ वस्तुएँ स्वयं प्रकाश देती हैं और दूसरी परावर्तित प्रकाश से दिखाई देती हैं।',
       es: 'Descubre por qué unos objetos emiten luz y otros se ven gracias a la luz reflejada.',

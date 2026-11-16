@@ -5,6 +5,7 @@ export const brownDwarfs_Skill_Data = defineSkill({
   id: 'e8cd7af1-2fe2-448d-bdf4-dabc2957d885',
   name: {
     en: 'Brown Dwarfs',
+    it: 'Nane brune',
     zh: '褐矮星',
     hi: 'भूरे बौने पिंड',
     es: 'Enanas marrones',
@@ -39,6 +40,7 @@ export const brownDwarfs_Skill_Data = defineSkill({
       'Distinguish substellar objects below the sustained hydrogen-fusion threshold from stars, including their cooling, atmospheric spectra and uncertain classification near planetary masses.',
     frontend: {
       en: 'Find out how brown dwarfs differ from stars and planetary-mass objects.',
+      it: 'Scopri come le nane brune si distinguono dalle stelle e dagli oggetti di massa planetaria.',
       zh: '了解褐矮星与恒星及行星质量天体之间的区别。',
       hi: 'जानें कि भूरे बौने पिंड तारे और ग्रह-द्रव्यमान वाले पिंडों से कैसे अलग हैं।',
       es: 'Descubre en qué se diferencian las enanas marrones de las estrellas y los objetos de masa planetaria.',

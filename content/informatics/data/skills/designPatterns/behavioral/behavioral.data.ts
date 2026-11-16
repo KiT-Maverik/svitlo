@@ -19,6 +19,7 @@ export const behavioral_SkillGroup_Data = defineSkillGroup({
   id: '5c278519-00a4-4122-9d85-c576c398fb91',
   name: {
     en: 'Behavioral',
+    it: 'Pattern comportamentali',
     zh: '行为型模式',
     hi: 'व्यवहारात्मक पैटर्न',
     es: 'Patrones de comportamiento',
@@ -81,6 +82,7 @@ export const behavioral_SkillGroup_Data = defineSkillGroup({
       'Eleven approaches to handling requests, selecting algorithms, delivering notifications, managing state, and distributing responsibility.',
     frontend: {
       en: 'Explore ways objects coordinate requests and change behavior.',
+      it: 'Esplora i modi in cui gli oggetti coordinano le richieste e modificano il comportamento.',
       zh: '探索对象协调请求并改变行为的方式。',
       hi: 'जानें कि ऑब्जेक्ट अनुरोधों को कैसे समन्वयित करते और व्यवहार बदलते हैं।',
       es: 'Explora cómo coordinan solicitudes los objetos y cambian su comportamiento.',

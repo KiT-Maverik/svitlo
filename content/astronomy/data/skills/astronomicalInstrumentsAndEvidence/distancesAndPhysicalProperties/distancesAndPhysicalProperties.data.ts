@@ -14,6 +14,7 @@ export const distancesAndPhysicalProperties_SkillGroup_Data = defineSkillGroup({
   id: '5c0ef873-fe6c-4cd8-9633-c2e27dd267d8',
   name: {
     en: 'Distances and Physical Properties',
+    it: 'Distanze e proprietà fisiche',
     qm: 'Mesafeler ve fiziki hususiyetler',
     bn: 'দূরত্ব ও ভৌত বৈশিষ্ট্য',
     ur: 'فاصلے اور طبعی خصوصیات',
@@ -66,6 +67,7 @@ export const distancesAndPhysicalProperties_SkillGroup_Data = defineSkillGroup({
       'Astronomical measurements connect remote observations to inferred size, distance and energy output using explicit models rather than direct contact.',
     frontend: {
       en: 'Explore how astronomers estimate properties they cannot measure directly.',
+      it: 'Scopri come gli astronomi stimano proprietà che non possono misurare direttamente.',
       qm: 'Astronomlar doğrudan ölçey olamağan hususiyetlerni nasıl esaplağanlarını araştırıñız.',
       bn: 'জ্যোতির্বিজ্ঞানীরা সরাসরি মাপতে না পারা বৈশিষ্ট্যের অনুমান কীভাবে করেন, তা জানো।',
       ur: 'جانیں کہ ماہرینِ فلکیات ان خصوصیات کا اندازہ کیسے لگاتے ہیں جنہیں وہ براہِ راست نہیں ناپ سکتے۔',

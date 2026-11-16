@@ -5,6 +5,7 @@ export const coordinateSoundAndImage_Skill_Data = defineSkill({
   id: '8194a531-cf7f-41a8-ad1e-ea360615c94a',
   name: {
     en: 'Coordinate Sound and Image',
+    it: 'Coordinare suono e immagine',
 
     zh: '协调声音与画面',
     hi: 'ध्वनि और छवि का समन्वय करें',
@@ -39,6 +40,7 @@ export const coordinateSoundAndImage_Skill_Data = defineSkill({
     methodological: 'Use dialogue, ambience, effects or music to support or complicate visible action.',
     frontend: {
       en: "Use sound and imagery together to support or challenge a scene's meaning.",
+      it: 'Usa suoni e immagini insieme per rafforzare o mettere in discussione il significato di una scena.',
 
       zh: '结合声音与图像，支持或挑战场景所表达的意义。',
       hi: 'दृश्य के अर्थ को मज़बूत करने या चुनौती देने के लिए ध्वनि और चित्र साथ इस्तेमाल करें।',

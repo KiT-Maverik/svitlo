@@ -5,6 +5,7 @@ export const explainDoubleBlinding_Skill_Data = defineSkill({
   id: 'f42fcf85-ae99-4495-8977-8d10cd57e74c',
   name: {
     en: 'Explain double blinding',
+    it: 'Spiegare il doppio mascheramento',
     zh: '解释双盲法',
     hi: 'द्वि-अंध अध्ययन समझाएँ',
     es: 'Explicar el doble enmascaramiento',
@@ -39,6 +40,7 @@ export const explainDoubleBlinding_Skill_Data = defineSkill({
       'Identify when both participants and interacting researchers or outcome assessors are kept unaware of allocation, and why such a design is neither always feasible nor universally required.',
     frontend: {
       en: 'Explore how blinding both participants and researchers can reduce some biases.',
+      it: 'Esplora come il mascheramento sia dei partecipanti sia dei ricercatori possa ridurre alcuni tipi di distorsione.',
       zh: '探索让参与者和研究者都不知道分组如何减少某些偏差。',
       hi: 'जानें कि प्रतिभागियों और शोधकर्ताओं दोनों को समूह की जानकारी न देने से कुछ पूर्वाग्रह कैसे घटते हैं।',
       es: 'Explora cómo ocultar la asignación a participantes e investigadores puede reducir ciertos sesgos.',

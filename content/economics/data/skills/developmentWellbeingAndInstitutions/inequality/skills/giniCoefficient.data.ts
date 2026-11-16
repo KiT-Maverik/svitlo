@@ -5,6 +5,7 @@ export const giniCoefficient_Skill_Data = defineSkill({
   id: '548e864e-980f-4d9a-9f9c-f6d4f4fe6f78',
   name: {
     en: 'Коефіцієнт Джині',
+    it: 'Coefficiente di Gini',
     zh: '基尼系数',
     hi: 'जिनी गुणांक',
     es: 'Coeficiente de Gini',
@@ -38,6 +39,7 @@ export const giniCoefficient_Skill_Data = defineSkill({
     methodological: 'Interpret a summary index of inequality and its limits in describing the shape of a distribution.',
     frontend: {
       en: 'Read a Gini coefficient without assuming it tells the whole story.',
+      it: 'Interpreta un coefficiente di Gini senza supporre che racconti tutta la situazione.',
       zh: '解读基尼系数，同时认识它无法说明全部情况。',
       hi: 'जिनी गुणांक समझें, लेकिन इसे पूरी तस्वीर न मानें।',
       es: 'Interpreta un coeficiente de Gini sin asumir que lo explica todo.',

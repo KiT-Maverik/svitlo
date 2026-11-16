@@ -5,6 +5,7 @@ export const explainHowALeverWorks_Skill_Data = defineSkill({
   id: 'e04adc30-d6eb-4041-8960-fbc1cf2f4f71',
   name: {
     en: 'Explain how a lever works',
+    it: 'Spiegare come funziona una leva',
     zh: '解释杠杆的工作原理',
     hi: 'उत्तोलक कैसे काम करता है, समझाना',
     es: 'Explicar cómo funciona una palanca',
@@ -39,6 +40,7 @@ export const explainHowALeverWorks_Skill_Data = defineSkill({
       "A lever's mechanical advantage depends on distances between the fulcrum and the points where forces are applied; gaining force involves a corresponding change in displacement.",
     frontend: {
       en: 'Explore how a lever changes the relationship between force and distance.',
+      it: 'Esplora come una leva modifica il rapporto tra forza e distanza.',
       zh: '探索杠杆如何改变力与移动距离之间的关系。',
       hi: 'जानें कि उत्तोलक बल और दूरी के संबंध को कैसे बदलता है।',
       es: 'Explora cómo una palanca cambia la relación entre la fuerza y la distancia.',

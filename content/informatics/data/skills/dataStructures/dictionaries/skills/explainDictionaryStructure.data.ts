@@ -5,6 +5,7 @@ export const explainDictionaryStructure_Skill_Data = defineSkill({
   id: 'b6e8bf86-54ec-4a63-bae9-643a63bacf1c',
   name: {
     en: 'Explain Dictionary Structure',
+    it: 'Spiegare la struttura di un dizionario',
     zh: '解释字典结构',
     hi: 'डिक्शनरी की संरचना समझाना',
     es: 'Explicar la estructura de un diccionario',
@@ -38,6 +39,7 @@ export const explainDictionaryStructure_Skill_Data = defineSkill({
     methodological: 'A dictionary maps keys to values; keys need not be numeric or correspond to array positions.',
     frontend: {
       en: 'Understand how a dictionary retrieves information by key rather than position.',
+      it: 'Comprendi come un dizionario recupera informazioni tramite una chiave anziché una posizione.',
       zh: '理解字典如何通过键而不是位置来检索信息。',
       hi: 'समझें कि डिक्शनरी स्थान के बजाय कुंजी से जानकारी कैसे प्राप्त करती है।',
       es: 'Comprende cómo un diccionario recupera información mediante una clave y no mediante su posición.',

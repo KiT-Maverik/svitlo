@@ -5,6 +5,7 @@ export const selectAUnitForAFamiliarPhysicalQuantity_Skill_Data = defineSkill({
   id: '8d55cdc8-7c97-4574-91e2-77e596b0db24',
   name: {
     en: 'Select a unit for a familiar physical quantity',
+    it: "Scegliere un'unità per una grandezza fisica familiare",
     zh: '为常见物理量选择单位',
     hi: 'परिचित भौतिक राशि के लिए इकाई चुनना',
     es: 'Elegir una unidad para una magnitud física conocida',
@@ -39,6 +40,7 @@ export const selectAUnitForAFamiliarPhysicalQuantity_Skill_Data = defineSkill({
       'Choose appropriate units of time, length, and mass in everyday examples without confusing a physical quantity with an object.',
     frontend: {
       en: 'Choose meaningful measurement units for time, mass and length.',
+      it: 'Scegli unità di misura significative per tempo, massa e lunghezza.',
       zh: '为时间、质量和长度选择有意义的测量单位。',
       hi: 'समय, द्रव्यमान और लंबाई के लिए उपयुक्त मापन इकाइयाँ चुनें।',
       es: 'Elige unidades de medida apropiadas para el tiempo, la masa y la longitud.',

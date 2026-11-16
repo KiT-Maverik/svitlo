@@ -5,6 +5,7 @@ export const identifyALocationUsingAnAbsoluteReference_Skill_Data = defineSkill(
   id: 'fd9370d5-f116-45b4-87c0-42235599551b',
   name: {
     en: 'Identify a location using an absolute reference',
+    it: 'Individuare un luogo tramite un riferimento assoluto',
     zh: '使用绝对参照确定位置',
     hi: 'निरपेक्ष संदर्भ से स्थान पहचानना',
     es: 'Identificar un lugar mediante una referencia absoluta',
@@ -39,6 +40,7 @@ export const identifyALocationUsingAnAbsoluteReference_Skill_Data = defineSkill(
       'Use a stable agreed identifier, such as a coordinate pair in a named system or an address within a specified jurisdiction, to locate a place independently of a movable observer. Interpreting latitude and longitude is a separate cartographic competency.',
     frontend: {
       en: 'Locate a place using a stable reference such as an address or coordinates.',
+      it: 'Localizza un luogo usando un riferimento stabile, come un indirizzo o le coordinate.',
       zh: '使用地址或坐标等稳定的参照信息找到一个地点。',
       hi: 'पते या निर्देशांकों जैसे स्थिर संदर्भ से किसी स्थान को खोजें।',
       es: 'Localiza un lugar mediante una referencia estable, como una dirección o unas coordenadas.',

@@ -5,6 +5,7 @@ export const testPhysicalProductUsability_Skill_Data = defineSkill({
   id: '9711cd92-d232-4cce-82ab-91b7f62dbc34',
   name: {
     en: 'Test physical product usability',
+    it: "Verificare l'usabilità di un prodotto fisico",
     zh: '测试实体产品的易用性',
     hi: 'भौतिक उत्पाद की उपयोगिता जाँचना',
     es: 'Probar la usabilidad de un producto físico',
@@ -38,6 +39,7 @@ export const testPhysicalProductUsability_Skill_Data = defineSkill({
     methodological: 'Observe representative tasks and record whether operation meets defined requirements.',
     frontend: {
       en: 'Observe people completing real tasks with a physical prototype.',
+      it: 'Osserva le persone mentre svolgono compiti reali con un prototipo fisico.',
       zh: '观察人们使用实体原型完成真实任务的过程。',
       hi: 'लोगों को भौतिक नमूने पर वास्तविक काम करते हुए देखें।',
       es: 'Observa a personas realizando tareas reales con un prototipo físico.',

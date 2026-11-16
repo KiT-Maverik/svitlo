@@ -5,6 +5,7 @@ export const classifyObjectsAsLivingDeadOrNeverAlive_Skill_Data = defineSkill({
   id: '5b92ed2d-af5d-47ff-b7f1-71209407050c',
   name: {
     en: 'Classify objects as living, dead, or never alive',
+    it: 'Classificare gli oggetti come viventi, morti o mai stati viventi',
     zh: '将物体分为活的、死亡的或从未有过生命的',
     hi: 'वस्तुओं को जीवित, मृत या कभी जीवित न रही वस्तुओं के रूप में वर्गीकृत करना',
     es: 'Clasificar objetos como vivos, muertos o que nunca estuvieron vivos',
@@ -39,6 +40,7 @@ export const classifyObjectsAsLivingDeadOrNeverAlive_Skill_Data = defineSkill({
       'Use evidence of life processes and origin to classify an object and justify the decision through diagnostic features. A living tree carries out life processes, a dead leaf once belonged to a living organism, and a stone has no biological origin. Do not equate dead organisms with their remains or with products of biological origin.',
     frontend: {
       en: 'Use evidence to decide whether something is living, dead or has never been alive.',
+      it: 'Usa le osservazioni per stabilire se qualcosa è vivo, è morto o non è mai stato vivente.',
       zh: '根据证据判断某物是活的、已经死亡的，还是从未有过生命。',
       hi: 'प्रमाणों के आधार पर तय करें कि कोई चीज़ जीवित है, मर चुकी है या कभी जीवित नहीं थी।',
       es: 'Usa pruebas para decidir si algo está vivo, está muerto o nunca estuvo vivo.',

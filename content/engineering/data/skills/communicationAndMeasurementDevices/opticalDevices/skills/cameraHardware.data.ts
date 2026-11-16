@@ -5,6 +5,7 @@ export const cameraHardware_Skill_Data = defineSkill({
   id: '996b9ce3-2e0c-4f98-bfb4-d7e930267e24',
   name: {
     en: 'Camera hardware',
+    it: 'Componenti di una fotocamera',
     zh: '相机硬件',
     hi: 'कैमरा हार्डवेयर',
     es: 'Componentes físicos de cámaras',
@@ -38,6 +39,7 @@ export const cameraHardware_Skill_Data = defineSkill({
     methodological: 'Trace light through an optical path onto an image sensor, apart from software image processing.',
     frontend: {
       en: "Trace how a camera's optics and sensor produce an image.",
+      it: "Segui come l'ottica e il sensore di una fotocamera producono un'immagine.",
       zh: '追踪相机的光学系统和传感器如何形成图像。',
       hi: 'जानें कि कैमरे के प्रकाशिकी घटक और सेंसर से चित्र कैसे बनता है।',
       es: 'Sigue cómo la óptica y el sensor de una cámara producen una imagen.',

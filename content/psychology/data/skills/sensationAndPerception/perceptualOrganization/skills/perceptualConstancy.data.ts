@@ -5,6 +5,7 @@ export const perceptualConstancy_Skill_Data = defineSkill({
   id: '49551c38-1494-4b12-bc40-0ed57973095d',
   name: {
     en: 'Perceptual Constancy',
+    it: 'Costanza percettiva',
     zh: '知觉恒常性',
     hi: 'प्रत्यक्षण की स्थिरता',
     es: 'Constancia perceptiva',
@@ -38,6 +39,7 @@ export const perceptualConstancy_Skill_Data = defineSkill({
     methodological: 'Explain relatively stable perceived size, shape, or color across changing sensory conditions.',
     frontend: {
       en: 'Understand why size, shape or color can seem stable under changing conditions.',
+      it: 'Comprendi perché dimensione, forma e colore possano sembrare stabili anche quando le condizioni cambiano.',
       zh: '理解为什么条件变化时大小、形状或颜色仍可能显得稳定。',
       hi: 'समझें कि परिस्थितियाँ बदलने पर भी आकार, रूप या रंग स्थिर क्यों लग सकते हैं।',
       es: 'Comprende por qué el tamaño, la forma o el color pueden parecer estables en distintas condiciones.',

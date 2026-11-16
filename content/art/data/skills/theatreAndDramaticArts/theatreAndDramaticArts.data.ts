@@ -10,6 +10,7 @@ export const theatreAndDramaticArts_SkillDomain_Data = defineSkillDomain({
   id: 'db9a6b16-6707-4a85-80bf-875fb766fc20',
   title: {
     en: 'Theatre and Dramatic Arts',
+    it: 'Teatro e arti drammatiche',
     zh: '戏剧与戏剧艺术',
     hi: 'रंगमंच और नाट्य कला',
     es: 'Teatro y artes dramáticas',
@@ -53,6 +54,7 @@ export const theatreAndDramaticArts_SkillDomain_Data = defineSkillDomain({
       'Theatre creates meaning through embodied roles, dramatic situations, live collaboration and staging. Its practical focus differs from general literary theory or building stage machinery.',
     frontend: {
       en: 'Explore how actors, stories, staging and collaboration bring live drama to life.',
+      it: 'Scopri come attori, storie, messa in scena e collaborazione danno vita a uno spettacolo teatrale dal vivo.',
       zh: '探索演员、故事、舞台呈现与协作如何让现场戏剧焕发生机。',
       hi: 'जानें कि अभिनेता, कहानियाँ, मंचन और सहयोग मिलकर जीवंत नाटक को कैसे साकार करते हैं।',
       es: 'Descubre cómo los actores, las historias, la puesta en escena y la colaboración dan vida al teatro.',

@@ -5,6 +5,7 @@ export const respondToAttackWarnings_Skill_Data = defineSkill({
   id: '6c36a614-b152-4f62-81be-8d4e93c5113c',
   name: {
     en: 'Respond to attack warnings',
+    it: 'Reagire agli avvisi di attacco',
     zh: '应对袭击警报',
     hi: 'हमले की चेतावनी पर प्रतिक्रिया',
     es: 'Responder a alertas de ataque',
@@ -39,6 +40,7 @@ export const respondToAttackWarnings_Skill_Data = defineSkill({
       'Use authoritative warnings and preidentified protective locations, accounting for obstacles and people needing assistance.',
     frontend: {
       en: 'Use official attack warnings to reach a preidentified safer place.',
+      it: 'Segui gli avvisi ufficiali per raggiungere un luogo più sicuro individuato in precedenza.',
       zh: '根据官方袭击警报前往预先选定的较安全地点。',
       hi: 'आधिकारिक हमले की चेतावनी पर पहले से तय सुरक्षित जगह जाएँ।',
       es: 'Usa las alertas oficiales de ataque para ir a un lugar seguro previamente identificado.',

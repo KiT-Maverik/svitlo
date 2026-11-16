@@ -5,6 +5,7 @@ export const predictConsequencesOfExecutionOrder_Skill_Data = defineSkill({
   id: '69fe2aee-51a3-4129-a6ea-56b8042b7db7',
   name: {
     en: 'Predict Consequences of Execution Order',
+    it: "Prevedere le conseguenze dell'ordine di esecuzione",
     zh: '预测执行顺序的影响',
     hi: 'निष्पादन क्रम के परिणाम का अनुमान लगाना',
     es: 'Predecir las consecuencias del orden de ejecución',
@@ -39,6 +40,7 @@ export const predictConsequencesOfExecutionOrder_Skill_Data = defineSkill({
       'Determine how the order of assignments, calls, or checks affects program state and outcomes, especially when intuitive code reading is misleading. For example, a later instruction operates on a value already changed by an earlier one; unlike merely predicting output, this analyzes causal dependencies on order.',
     frontend: {
       en: 'Explain why changing the order of commands can change the result.',
+      it: "Spiega perché cambiare l'ordine dei comandi può modificare il risultato.",
       zh: '解释为什么改变命令顺序可能改变结果。',
       hi: 'समझाएँ कि आदेशों का क्रम बदलने से परिणाम क्यों बदल सकता है।',
       es: 'Explica por qué cambiar el orden de las instrucciones puede cambiar el resultado.',

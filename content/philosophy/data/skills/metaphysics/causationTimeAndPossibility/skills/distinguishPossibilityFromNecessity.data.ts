@@ -5,6 +5,7 @@ export const distinguishPossibilityFromNecessity_Skill_Data = defineSkill({
   id: '52c119a7-45f1-422c-aaa0-a82a0bbf62d1',
   name: {
     en: 'Distinguish possibility from necessity',
+    it: 'Distinguere possibilità e necessità',
     zh: '区分可能性与必然性',
     hi: 'संभावना और अनिवार्यता में अंतर करें',
     es: 'Distinguir posibilidad de necesidad',
@@ -39,6 +40,7 @@ export const distinguishPossibilityFromNecessity_Skill_Data = defineSkill({
       'Identify claims that could be otherwise and those held to be true in every relevant possible circumstance.',
     frontend: {
       en: 'Distinguish something that might happen from something that must be true.',
+      it: 'Distingui ciò che potrebbe accadere da ciò che deve necessariamente essere vero.',
       zh: '区分可能发生的事情与必然为真的事情。',
       hi: 'जो हो सकता है और जो अनिवार्य रूप से सत्य होना चाहिए, उनमें फर्क करें।',
       es: 'Distingue lo que podría ocurrir de lo que necesariamente debe ser verdadero.',

@@ -5,6 +5,7 @@ export const recognizeSignsOfStress_Skill_Data = defineSkill({
   id: 'c5cbb1e4-27c1-43c9-b506-74c47c2c3355',
   name: {
     en: 'Recognize signs of stress',
+    it: 'Riconoscere i segni dello stress',
     zh: '识别压力迹象',
     hi: 'तनाव के लक्षण पहचानें',
     es: 'Reconocer señales de estrés',
@@ -39,6 +40,7 @@ export const recognizeSignsOfStress_Skill_Data = defineSkill({
       'Connect changes in sleep, concentration, mood, behaviour, or bodily tension with potential overload while considering other causes.',
     frontend: {
       en: 'Identify common signs of stress while considering other causes.',
+      it: 'Individua i segni comuni dello stress tenendo conto anche di altre possibili cause.',
       zh: '识别常见的压力迹象，同时考虑其他可能原因。',
       hi: 'तनाव के सामान्य संकेत पहचानें और अन्य संभावित कारणों पर भी विचार करें।',
       es: 'Identifica señales habituales de estrés sin descartar otras causas posibles.',

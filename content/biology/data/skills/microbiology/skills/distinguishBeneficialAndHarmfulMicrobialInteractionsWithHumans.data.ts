@@ -5,6 +5,7 @@ export const distinguishBeneficialAndHarmfulMicrobialInteractionsWithHumans_Skil
   id: '976ad88d-e78d-40c9-961e-96e7be1fc617',
   name: {
     en: 'Distinguish Beneficial and Harmful Microbial Interactions with Humans',
+    it: 'Distinguere le interazioni benefiche e dannose tra microbi ed esseri umani',
     zh: '区分微生物与人类之间有益和有害的相互作用',
     hi: 'मानवों के साथ सूक्ष्मजीवों की लाभकारी और हानिकारक अंतःक्रियाओं में अंतर करना',
     es: 'Distinguir las interacciones beneficiosas y perjudiciales de los microbios con las personas',
@@ -39,6 +40,7 @@ export const distinguishBeneficialAndHarmfulMicrobialInteractionsWithHumans_Skil
       'Distinguish normal, beneficial, and potentially disease-causing interactions according to the microorganism, host, and conditions.',
     frontend: {
       en: 'Distinguish helpful, harmless and harmful interactions between microbes and people.',
+      it: 'Distingui le interazioni utili, innocue e dannose tra microbi e persone.',
       zh: '区分微生物与人之间有益、无害和有害的相互作用。',
       hi: 'सूक्ष्मजीवों और मनुष्यों के बीच लाभकारी, हानिरहित और हानिकारक संबंधों में अंतर करें।',
       es: 'Distingue las interacciones útiles, inofensivas y perjudiciales entre los microbios y las personas.',

@@ -12,6 +12,7 @@ export const politicalAuthority_SkillGroup_Data = defineSkillGroup({
   id: 'e6aae331-0352-41f5-a7e3-fce6fcb3466b',
   name: {
     en: 'Political Authority',
+    it: 'Autorità politica',
     zh: '政治权威',
     hi: 'राजनीतिक सत्ता',
     es: 'Autoridad política',
@@ -60,6 +61,7 @@ export const politicalAuthority_SkillGroup_Data = defineSkillGroup({
       'Institutions exercise collective power that requires justification. Political legitimacy, coercion, and obedience are distinct concepts.',
     frontend: {
       en: 'Examine what makes political authority legitimate rather than merely powerful.',
+      it: "Esamina che cosa renda legittima un'autorità politica, oltre al semplice esercizio del potere.",
       zh: '探究政治权威为何正当，而不仅仅是拥有强大力量。',
       hi: 'जाँचो कि राजनीतिक सत्ता केवल शक्तिशाली होने के बजाय वैध कैसे बनती है।',
       es: 'Examina qué hace legítima a la autoridad política, además de tener poder.',

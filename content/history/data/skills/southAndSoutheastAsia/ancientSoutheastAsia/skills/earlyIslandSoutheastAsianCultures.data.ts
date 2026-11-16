@@ -5,6 +5,7 @@ export const earlyIslandSoutheastAsianCultures_Skill_Data = defineSkill({
   id: '481ec4ae-020c-45a3-86e7-7d044851e685',
   name: {
     en: 'Early Island Southeast Asian Cultures',
+    it: "Prime culture insulari dell'Asia sudorientale",
     zh: '东南亚岛屿早期文化',
     hi: 'दक्षिण-पूर्व एशियाई द्वीपों की प्रारंभिक संस्कृतियाँ',
     es: 'Primeras culturas insulares del Sudeste Asiático',
@@ -39,6 +40,7 @@ export const earlyIslandSoutheastAsianCultures_Skill_Data = defineSkill({
       'Examine settlements, crafts, and local sea connections in Indonesian and Philippine archipelagos before medieval maritime states.',
     frontend: {
       en: 'Explore life on Southeast Asian islands before later empires.',
+      it: "Esplora la vita nelle isole dell'Asia sudorientale prima degli imperi successivi.",
       zh: '探索后期帝国出现之前东南亚岛屿上的生活。',
       hi: 'बाद के साम्राज्यों से पहले इन द्वीपों के जीवन के बारे में जानें।',
       es: 'Explora la vida en las islas del Sudeste Asiático antes de los imperios posteriores.',

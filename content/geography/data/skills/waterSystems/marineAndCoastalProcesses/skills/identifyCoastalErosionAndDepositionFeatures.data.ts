@@ -5,6 +5,7 @@ export const identifyCoastalErosionAndDepositionFeatures_Skill_Data = defineSkil
   id: '9accfd4b-7854-4f3c-8c69-ee169ea0375d',
   name: {
     en: 'Identify coastal erosion and deposition features',
+    it: "Individuare le forme costiere dovute all'erosione e alla deposizione",
     zh: '识别海岸侵蚀与沉积地貌',
     hi: 'तटीय अपरदन और निक्षेपण के स्थलरूप पहचानना',
     es: 'Identificar formas de erosión y sedimentación costera',
@@ -39,6 +40,7 @@ export const identifyCoastalErosionAndDepositionFeatures_Skill_Data = defineSkil
       'Relate cliffs, beaches, spits, or deltas to material removal and accumulation in their coastal setting.',
     frontend: {
       en: 'Recognize coastal features created by erosion and sediment deposition.',
+      it: "Riconosci gli elementi costieri creati dall'erosione e dalla deposizione dei sedimenti.",
       zh: '辨认由侵蚀及沉积物堆积形成的海岸地貌。',
       hi: 'अपरदन और तलछट के जमाव से बनी तटीय आकृतियाँ पहचानें।',
       es: 'Reconoce formas costeras creadas por erosión y acumulación de sedimentos.',

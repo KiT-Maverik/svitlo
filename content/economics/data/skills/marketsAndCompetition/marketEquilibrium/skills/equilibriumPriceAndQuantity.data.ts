@@ -5,6 +5,7 @@ export const equilibriumPriceAndQuantity_Skill_Data = defineSkill({
   id: 'ed99e7ec-8c48-4f31-b1ee-47bff8b4d171',
   name: {
     en: 'Equilibrium Price and Quantity',
+    it: 'Prezzo e quantità di equilibrio',
     zh: '均衡价格与数量',
     hi: 'संतुलन कीमत और मात्रा',
     es: 'Precio y cantidad de equilibrio',
@@ -39,6 +40,7 @@ export const equilibriumPriceAndQuantity_Skill_Data = defineSkill({
       'Find the price and quantity at which planned purchases equal planned sales in a specified market model.',
     frontend: {
       en: 'Find where a demand curve and supply curve meet.',
+      it: 'Individua il punto in cui si incontrano le curve di domanda e di offerta.',
       zh: '找出需求曲线与供给曲线的交点。',
       hi: 'माँग और आपूर्ति वक्रों का मिलन बिंदु खोजें।',
       es: 'Encuentra el punto de intersección entre las curvas de oferta y demanda.',

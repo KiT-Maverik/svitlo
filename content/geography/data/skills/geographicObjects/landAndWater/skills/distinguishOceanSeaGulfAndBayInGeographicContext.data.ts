@@ -5,6 +5,7 @@ export const distinguishOceanSeaGulfAndBayInGeographicContext_Skill_Data = defin
   id: '786ac60a-7c77-4791-8b1f-a8f4b899190d',
   name: {
     en: 'Distinguish ocean, sea, gulf, and bay in geographic context',
+    it: 'Distinguere oceani, mari, golfi e baie nel loro contesto geografico',
     zh: '在地理背景下区分大洋、海、海湾和湾',
     hi: 'भौगोलिक संदर्भ में महासागर, समुद्र, खाड़ी और उपसागर में अंतर करना',
     es: 'Distinguir océano, mar, golfo y bahía en contexto geográfico',
@@ -39,6 +40,7 @@ export const distinguishOceanSeaGulfAndBayInGeographicContext_Skill_Data = defin
       'Use scale, enclosure, and connection to larger water bodies while acknowledging that some named features are historical conventions.',
     frontend: {
       en: 'Compare oceans, seas, gulfs and bays by size, enclosure and connection.',
+      it: 'Confronta oceani, mari, golfi e baie in base a dimensioni, grado di chiusura e collegamenti.',
       zh: '根据大小、围合程度和连通关系比较大洋、海和不同类型的海湾。',
       hi: 'आकार, घिराव और जुड़ाव के आधार पर महासागर, समुद्र, खाड़ी और उपसागर की तुलना करें।',
       es: 'Compara océanos, mares, golfos y bahías por tamaño, grado de encierro y conexión.',

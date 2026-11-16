@@ -5,6 +5,7 @@ export const patricianPlebeianConflict_Skill_Data = defineSkill({
   id: '3b20808e-778a-4c9b-a9db-9e798c2af53c',
   name: {
     en: 'Patrician–Plebeian Conflict',
+    it: 'Conflitto tra patrizi e plebei',
     zh: '贵族与平民的斗争',
     hi: 'पैट्रिशियन और प्लेबियन संघर्ष',
     es: 'Conflicto entre patricios y plebeyos',
@@ -38,6 +39,7 @@ export const patricianPlebeianConflict_Skill_Data = defineSkill({
     methodological: 'Trace expansion of plebeian rights and revisions to republican institutions.',
     frontend: {
       en: 'Discover how ordinary Roman citizens gained political rights.',
+      it: 'Scopri come i cittadini romani comuni conquistarono diritti politici.',
       zh: '了解普通罗马公民如何逐步获得政治权利。',
       hi: 'जानें कि सामान्य रोमन नागरिकों ने राजनीतिक अधिकार कैसे प्राप्त किए।',
       es: 'Descubre cómo los ciudadanos romanos comunes consiguieron derechos políticos.',

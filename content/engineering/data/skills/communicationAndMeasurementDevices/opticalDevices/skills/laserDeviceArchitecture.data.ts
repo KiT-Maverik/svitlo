@@ -5,6 +5,7 @@ export const laserDeviceArchitecture_Skill_Data = defineSkill({
   id: 'e10b00c9-361d-4035-8f71-d2ef20c377f2',
   name: {
     en: 'Laser device architecture',
+    it: 'Struttura dei dispositivi laser',
     zh: '激光设备结构',
     hi: 'लेज़र उपकरण की संरचना',
     es: 'Arquitectura de dispositivos láser',
@@ -38,6 +39,7 @@ export const laserDeviceArchitecture_Skill_Data = defineSkill({
     methodological: 'Identify an energized gain medium, light amplification and relevant resonator or output optics.',
     frontend: {
       en: 'Identify the main components of a laser-based device.',
+      it: 'Identifica i principali componenti di un dispositivo basato sul laser.',
       zh: '识别激光设备的主要组成部分。',
       hi: 'लेज़र-आधारित उपकरण के मुख्य घटक पहचानें।',
       es: 'Identifica los componentes principales de un dispositivo láser.',

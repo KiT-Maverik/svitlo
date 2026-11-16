@@ -11,6 +11,7 @@ export const socialLearning_SkillGroup_Data = defineSkillGroup({
   id: 'c939f4dc-93c6-4267-b92f-0fd84b56ef8e',
   name: {
     en: 'Social Learning',
+    it: 'Apprendimento sociale',
     zh: '社会学习',
     hi: 'सामाजिक अधिगम',
     es: 'Aprendizaje social',
@@ -53,6 +54,7 @@ export const socialLearning_SkillGroup_Data = defineSkillGroup({
       'Observing models informs anticipated outcomes and possible actions even without immediate imitation.',
     frontend: {
       en: 'Discover how observing other people changes what we learn.',
+      it: 'Scopri come osservare le altre persone cambi ciò che impariamo.',
       zh: '了解观察他人的行为如何改变我们的学习。',
       hi: 'जानें कि दूसरे लोगों का व्यवहार देखकर हम कैसे सीखते हैं।',
       es: 'Descubre cómo observar a otras personas cambia lo que aprendemos.',

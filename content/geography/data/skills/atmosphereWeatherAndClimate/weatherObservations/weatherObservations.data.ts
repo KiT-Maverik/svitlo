@@ -12,6 +12,7 @@ export const weatherObservations_SkillGroup_Data = defineSkillGroup({
   id: '5e8b508b-c2af-4ac9-b5d5-381002c5bb0f',
   name: {
     en: 'Weather Observations',
+    it: 'Osservazioni meteorologiche',
     zh: '天气观测',
     hi: 'मौसम अवलोकन',
     es: 'Observaciones del tiempo',
@@ -60,6 +61,7 @@ export const weatherObservations_SkillGroup_Data = defineSkillGroup({
       'Weather is described by measurable conditions at a particular location and time. Observations must be interpreted with appropriate units and temporal context.',
     frontend: {
       en: 'Learn how to record and interpret weather at a particular place and time.',
+      it: 'Impara a registrare e interpretare le condizioni meteorologiche in un luogo e momento specifici.',
       zh: '学习如何记录并解读特定地点和时间的天气。',
       hi: 'किसी स्थान और समय का मौसम दर्ज करना और समझना सीखें।',
       es: 'Aprende a registrar e interpretar el tiempo de un lugar y momento determinados.',

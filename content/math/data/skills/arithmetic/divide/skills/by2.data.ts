@@ -11,6 +11,7 @@ export const by2_Skill_Data = defineSkill({
     ka: 'გაყოფა — ÷ 2',
     kk: 'Бөлу — ÷ 2',
     en: 'Division — ÷ 2',
+    it: 'Divisione — ÷ 2',
     qm: 'Bölüv — ÷ 2',
     zh: '除法 — ÷ 2',
     hi: 'भाग — ÷ 2',
@@ -39,6 +40,7 @@ export const by2_Skill_Data = defineSkill({
       'Division facts by two rely on inverse multiplication-by-two facts and models of halving or pairing. Context determines whether the quotient represents a group count or the size of each group.',
     frontend: {
       en: 'You can divide by two to find two equal shares or work out how many groups of two fit into a total.',
+      it: 'Puoi dividere per due per trovare due parti uguali o stabilire quanti gruppi da due sono contenuti in un totale.',
       qm: 'Ekige bölüp, eki teñ paynıñ er birini ya da umumiy miqdarda eki eşyadan ibaret qaç topar bar olğanını tapa bilesiñ.',
       zh: '你能通过除以二，把总量分成两等份，或求出其中包含多少组两个。',
       hi: 'तुम दो से भाग देकर दो बराबर हिस्से निकाल सकते हो या देख सकते हो कि कुल में दो-दो के कितने समूह हैं।',

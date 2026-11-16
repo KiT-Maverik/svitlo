@@ -10,6 +10,7 @@ export const sculptureAndMaterialArts_SkillDomain_Data = defineSkillDomain({
   id: 'a30b85bf-1f13-4ac9-bcdb-57d3d5531a12',
   title: {
     en: 'Sculpture and Material Arts',
+    it: 'Scultura e arti dei materiali',
     qm: 'Heykel ve material sanatları',
 
     zh: '雕塑与材料艺术',
@@ -54,6 +55,7 @@ export const sculptureAndMaterialArts_SkillDomain_Data = defineSkillDomain({
       'Physical media can be shaped, assembled, printed or woven to produce objects, editions and decorative surfaces. This domain concerns expressive material practices rather than engineering manufacture.',
     frontend: {
       en: 'Create expressive physical objects using shaping, printing, clay, fabric and other materials.',
+      it: 'Crea oggetti fisici espressivi usando modellazione, stampa, argilla, tessuti e altri materiali.',
       qm: 'Şekil bermek, baskı, balçıq, kumaş ve başqa materiallarnı qullanıp ifadeleyici fiziki obyektler yaratıñız.',
 
       zh: '通过塑形、印制、陶土、织物和其他材料，创造富有表现力的实体作品。',

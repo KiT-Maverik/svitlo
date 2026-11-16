@@ -9,6 +9,7 @@ export const chemicalReactions_SkillDomain_Data = defineSkillDomain({
   id: '307ec31d-a1a3-41ab-8681-799f49aa1825',
   title: {
     en: 'Chemical Reactions',
+    it: 'Reazioni chimiche',
     zh: '化学反应',
     hi: 'रासायनिक अभिक्रियाएँ',
     es: 'Reacciones químicas',
@@ -51,6 +52,7 @@ export const chemicalReactions_SkillDomain_Data = defineSkillDomain({
       'This domain identifies and explains transformations in which constituent atoms are rearranged or electron/proton transfer occurs. Chemical equation notation and amount calculations remain in their dedicated domain.',
     frontend: {
       en: 'Explore how chemical reactions change substances by rearranging atoms and transferring particles.',
+      it: 'Esplora come le reazioni chimiche trasformano le sostanze riorganizzando gli atomi e trasferendo particelle.',
       zh: '探索化学反应如何通过原子重排与粒子转移改变物质。',
       hi: 'जानें कि परमाणुओं की पुनर्व्यवस्था और कणों के स्थानांतरण से अभिक्रियाएँ पदार्थ कैसे बदलती हैं।',
       es: 'Explora cómo las reacciones transforman sustancias al reordenar átomos y transferir partículas.',

@@ -11,6 +11,7 @@ export const counting_SkillDomain_Data = defineSkillDomain({
   id: 'b41da424-c12f-4563-87d5-c8a58052a922',
   title: {
     en: 'Counting',
+    it: 'Contare',
     qm: 'Saymaq',
     lt: 'Skaičiavimas',
     lv: 'Skaitīšana',
@@ -55,6 +56,7 @@ export const counting_SkillDomain_Data = defineSkillDomain({
       'The concept of quantity develops through one-to-one correspondence between objects and number words, movement along the natural-number sequence, ordinal positions, and grouping objects for counting.',
     frontend: {
       en: 'Learn how numbers tell how many things there are, where things are in order, and how to count forward, backward, or in equal steps.',
+      it: "Impara come i numeri indicano quanti oggetti ci sono, quale posizione occupano in un ordine e come contare in avanti, all'indietro o a intervalli uguali.",
       qm: 'Sayılar eşyalarnıñ ne qadar olğanını ve bir tertipte qaysı yerde turğanını nasıl bildirgenini ögren. İleri, artqa ve aynı adımlarnen saymaqnı da ögren.',
       zh: '了解数字如何表示物品的数量、排列的位置，以及怎样顺数、倒数或按固定步长数数。',
       hi: 'जानें कि संख्याएँ वस्तुओं की मात्रा और क्रम में स्थान कैसे बताती हैं तथा आगे, पीछे या समान अंतर से कैसे गिनते हैं।',

@@ -12,6 +12,7 @@ export const robotControl_SkillGroup_Data = defineSkillGroup({
   id: '346f7bb7-c1ac-4615-99b2-d9551d10e129',
   name: {
     en: 'Robot Control',
+    it: 'Controllo dei robot',
     zh: '机器人控制',
     hi: 'रोबोट नियंत्रण',
     es: 'Control de robots',
@@ -60,6 +61,7 @@ export const robotControl_SkillGroup_Data = defineSkillGroup({
       'Construct and adjust commands for movement, obstacle response, and repeated robot operations. Unlike general programming, these algorithms interact with a physical or simulated environment.',
     frontend: {
       en: "Create and improve instructions for a robot's movements and responses.",
+      it: 'Crea e migliora istruzioni per i movimenti e le risposte di un robot.',
       zh: '为机器人的移动和反应编写并改进指令。',
       hi: 'रोबोट की चाल और प्रतिक्रियाओं के लिए निर्देश बनाएँ और सुधारें।',
       es: 'Crea y mejora instrucciones para los movimientos y respuestas de un robot.',

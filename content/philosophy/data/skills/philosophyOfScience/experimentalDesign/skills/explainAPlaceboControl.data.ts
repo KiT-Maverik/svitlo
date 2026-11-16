@@ -5,6 +5,7 @@ export const explainAPlaceboControl_Skill_Data = defineSkill({
   id: '91f13c32-4dbe-41a3-8889-6cec87b06f2e',
   name: {
     en: 'Explain a placebo control',
+    it: 'Spiegare il controllo con placebo',
     zh: '解释安慰剂对照',
     hi: 'प्लेसिबो नियंत्रण समझाएँ',
     es: 'Explicar un control con placebo',
@@ -39,6 +40,7 @@ export const explainAPlaceboControl_Skill_Data = defineSkill({
       'Distinguish a comparison intended to account for expectations or contextual effects from an active treatment or mere absence of intervention.',
     frontend: {
       en: 'Understand why placebo comparisons can help separate treatment and expectation effects.',
+      it: 'Comprendi perché il confronto con un placebo possa aiutare a distinguere gli effetti del trattamento da quelli delle aspettative.',
       zh: '理解为什么安慰剂比较有助于区分治疗效果与预期效果。',
       hi: 'समझें कि प्लेसिबो तुलना उपचार के असर को अपेक्षा के असर से अलग करने में कैसे मदद करती है।',
       es: 'Comprende por qué comparar con un placebo ayuda a distinguir los efectos del tratamiento y de las expectativas.',

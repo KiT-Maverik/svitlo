@@ -5,6 +5,7 @@ export const interpersonalConflict_Skill_Data = defineSkill({
   id: '4e162461-447c-4463-ab88-69ddda3bf9f8',
   name: {
     en: 'Interpersonal Conflict',
+    it: 'Conflitto interpersonale',
     zh: '人际冲突',
     hi: 'आपसी संघर्ष',
     es: 'Conflicto interpersonal',
@@ -39,6 +40,7 @@ export const interpersonalConflict_Skill_Data = defineSkill({
       'Analyze how unmet expectations, differing interpretations, communication patterns, and situational pressures contribute to the emergence or escalation of disagreements between people.',
     frontend: {
       en: 'Explore how disagreements escalate or can be resolved constructively.',
+      it: 'Esplora come i disaccordi possano intensificarsi o essere risolti in modo costruttivo.',
       zh: '探索分歧如何升级，以及怎样以建设性的方式解决。',
       hi: 'जानें कि असहमति कैसे बढ़ती है और उसे रचनात्मक ढंग से कैसे सुलझाया जा सकता है।',
       es: 'Explora cómo se agravan los desacuerdos y cómo resolverlos constructivamente.',

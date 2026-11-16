@@ -5,6 +5,7 @@ export const nileCulturalExchange_Skill_Data = defineSkill({
   id: 'a4ab7d39-0567-444e-9946-46e7d113aa8f',
   name: {
     en: 'Nile Cultural Exchange',
+    it: 'Scambi culturali lungo il Nilo',
     zh: '尼罗河流域的文化交流',
     hi: 'नील क्षेत्र का सांस्कृतिक आदान-प्रदान',
     es: 'Intercambio cultural en el Nilo',
@@ -39,6 +40,7 @@ export const nileCulturalExchange_Skill_Data = defineSkill({
       'Study mutual influences between Egypt and Nubia without reducing Nubian culture to an Egyptian derivative.',
     frontend: {
       en: 'Understand how Egyptian and Nubian societies influenced each other.',
+      it: 'Comprendi come le società egizia e nubiana si influenzavano a vicenda.',
       zh: '理解埃及与努比亚社会如何相互影响。',
       hi: 'समझें कि मिस्री और नूबियाई समाजों ने एक-दूसरे को कैसे प्रभावित किया।',
       es: 'Comprende cómo las sociedades egipcia y nubia se influyeron mutuamente.',

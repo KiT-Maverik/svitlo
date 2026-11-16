@@ -5,6 +5,7 @@ export const analyzePerformanceArt_Skill_Data = defineSkill({
   id: 'b510ac5a-a674-4bfb-9f51-7392ea090932',
   name: {
     en: 'Analyze Performance Art',
+    it: 'Analizzare la performance artistica',
     zh: '分析行为艺术',
     hi: 'प्रदर्शन कला का विश्लेषण करें',
     es: 'Analizar el arte de performance',
@@ -39,6 +40,7 @@ export const analyzePerformanceArt_Skill_Data = defineSkill({
       'Interpret duration, live action, audience presence and documentation in historically situated practices distinct from theatrical character portrayal.',
     frontend: {
       en: 'Explore performances where live action and audience presence become art.',
+      it: "Esplora le performance in cui l'azione dal vivo e la presenza del pubblico diventano arte.",
       zh: '探索现场行动与观众在场本身成为艺术的表演。',
       hi: 'ऐसी प्रस्तुतियों को जानें जिनमें जीवंत क्रिया और दर्शकों की उपस्थिति कला बन जाती है।',
       es: 'Explora performances donde la acción en vivo y la presencia del público se convierten en arte.',

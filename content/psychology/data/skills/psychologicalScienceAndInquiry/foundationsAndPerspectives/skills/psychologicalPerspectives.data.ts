@@ -5,6 +5,7 @@ export const psychologicalPerspectives_Skill_Data = defineSkill({
   id: '61316b2d-b6b0-4b65-8d35-4d2daa40fc55',
   name: {
     en: 'Psychological Perspectives',
+    it: 'Prospettive psicologiche',
     zh: '心理学的不同视角',
     hi: 'मनोवैज्ञानिक दृष्टिकोण',
     es: 'Perspectivas psicológicas',
@@ -39,6 +40,7 @@ export const psychologicalPerspectives_Skill_Data = defineSkill({
       'Compare how behavioral, cognitive, biological, developmental, and sociocultural models explain different aspects of the same phenomenon.',
     frontend: {
       en: 'Compare how different psychological approaches explain the same behavior.',
+      it: 'Confronta il modo in cui diversi approcci psicologici spiegano lo stesso comportamento.',
       zh: '比较不同心理学理论如何解释同一种行为。',
       hi: 'तुलना करें कि अलग-अलग मनोवैज्ञानिक दृष्टिकोण एक ही व्यवहार की व्याख्या कैसे करते हैं।',
       es: 'Compara cómo distintos enfoques psicológicos explican una misma conducta.',

@@ -5,6 +5,7 @@ export const explainHistoricalCryptanalysisMethods_Skill_Data = defineSkill({
   id: 'a759f993-7f18-4c6a-9639-e894ed77bbd4',
   name: {
     en: 'Explain Historical Cryptanalysis Methods',
+    it: 'Spiegare i metodi storici di crittoanalisi',
     zh: '解释历史上的密码分析方法',
     hi: 'ऐतिहासिक कूटविश्लेषण विधियाँ समझाना',
     es: 'Explicar métodos históricos de criptoanálisis',
@@ -39,6 +40,7 @@ export const explainHistoricalCryptanalysisMethods_Skill_Data = defineSkill({
       'Explain how mathematical analysis of patterns and systematic elimination of possibilities helped find cipher-machine settings. Historical examples include Polish cryptanalysts, Joan Clarke, Alan Turing, Gordon Welchman, and other specialists at Bletchley Park.',
     frontend: {
       en: 'Explore how cryptanalysts used patterns and systematic testing to break codes.',
+      it: 'Esplora come i crittoanalisti utilizzavano schemi ricorrenti e verifiche sistematiche per decifrare codici.',
       zh: '探索密码分析人员如何通过模式分析和系统性测试破解密码。',
       hi: 'जानें कि कूटविश्लेषकों ने पैटर्न और व्यवस्थित जाँच से गुप्त संदेश कैसे तोड़े।',
       es: 'Descubre cómo los criptoanalistas usaron patrones y pruebas sistemáticas para descifrar códigos.',

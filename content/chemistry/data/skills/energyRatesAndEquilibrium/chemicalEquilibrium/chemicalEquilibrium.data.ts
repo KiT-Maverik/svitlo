@@ -13,6 +13,7 @@ export const chemicalEquilibrium_SkillGroup_Data = defineSkillGroup({
   id: '4e5a9f8e-754b-4988-8ad8-108ff06fc370',
   name: {
     en: 'Chemical Equilibrium',
+    it: 'Equilibrio chimico',
     zh: '化学平衡',
     hi: 'रासायनिक साम्य',
     es: 'Equilibrio químico',
@@ -63,6 +64,7 @@ export const chemicalEquilibrium_SkillGroup_Data = defineSkillGroup({
       'Forward and reverse processes may continue while bulk composition becomes steady; equilibrium responds to conditions.',
     frontend: {
       en: 'Explore what happens when forward and reverse reactions reach equilibrium.',
+      it: "Esplora che cosa succede quando le reazioni diretta e inversa raggiungono l'equilibrio.",
       zh: '探索正向反应和逆向反应达到平衡时会发生什么。',
       hi: 'जानें कि अग्र और विपरीत अभिक्रियाएँ संतुलन में पहुँचने पर क्या होता है।',
       es: 'Explora qué ocurre cuando las reacciones directa e inversa alcanzan el equilibrio.',

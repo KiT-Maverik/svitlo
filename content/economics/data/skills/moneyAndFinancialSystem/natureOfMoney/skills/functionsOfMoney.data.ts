@@ -5,6 +5,7 @@ export const functionsOfMoney_Skill_Data = defineSkill({
   id: 'ec568a5d-a017-4a96-b3af-84a792619cc5',
   name: {
     en: 'Функції грошей',
+    it: 'Funzioni della moneta',
     zh: '货币的职能',
     hi: 'मुद्रा के कार्य',
     es: 'Funciones del dinero',
@@ -39,6 +40,7 @@ export const functionsOfMoney_Skill_Data = defineSkill({
       'Distinguish money as a medium of exchange, unit of account, and store of value, including the limitations of each function.',
     frontend: {
       en: 'Recognize the different jobs that money performs.',
+      it: 'Riconosci le diverse funzioni che la moneta svolge.',
       zh: '认识货币承担的不同职能。',
       hi: 'मुद्रा के अलग-अलग कामों को पहचानें।',
       es: 'Reconoce las distintas funciones que cumple el dinero.',

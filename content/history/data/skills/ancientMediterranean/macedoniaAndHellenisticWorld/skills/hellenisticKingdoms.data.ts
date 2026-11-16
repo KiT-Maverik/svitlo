@@ -5,6 +5,7 @@ export const hellenisticKingdoms_Skill_Data = defineSkill({
   id: 'cf536c38-8ab6-4cdd-8b20-543d85bc0fd8',
   name: {
     en: 'Hellenistic Kingdoms',
+    it: 'Regni ellenistici',
     zh: '希腊化诸王国',
     hi: 'हेलेनिस्टिक राज्य',
     es: 'Reinos helenísticos',
@@ -38,6 +39,7 @@ export const hellenisticKingdoms_Skill_Data = defineSkill({
     methodological: 'Examine successor states and interaction between Greek-speaking and local traditions.',
     frontend: {
       en: 'Explore the different kingdoms formed after Alexander.',
+      it: 'Esplora i diversi regni nati dopo Alessandro.',
       zh: '探索亚历山大死后形成的不同王国。',
       hi: 'सिकंदर के बाद बने अलग-अलग राज्यों के बारे में जानें।',
       es: 'Explora los distintos reinos formados después de Alejandro.',

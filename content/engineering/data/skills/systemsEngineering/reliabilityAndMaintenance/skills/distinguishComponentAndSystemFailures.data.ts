@@ -5,6 +5,7 @@ export const distinguishComponentAndSystemFailures_Skill_Data = defineSkill({
   id: 'f3feca6f-aff7-4c67-9986-012ec5bc9cc5',
   name: {
     en: 'Distinguish component and system failures',
+    it: 'Distinguere i guasti dei componenti da quelli del sistema',
     zh: '区分部件故障与系统故障',
     hi: 'घटक और प्रणाली की विफलताओं में अंतर',
     es: 'Distinguir fallos de componentes y del sistema',
@@ -38,6 +39,7 @@ export const distinguishComponentAndSystemFailures_Skill_Data = defineSkill({
     methodological: 'Explain why the loss of a part may or may not disable the overall function.',
     frontend: {
       en: 'Distinguish a failed part from failure of the complete system.',
+      it: 'Distingui il guasto di una parte dal guasto del sistema completo.',
       zh: '区分单个部件失效与整个系统失效。',
       hi: 'एक खराब पुर्ज़े और पूरी प्रणाली के विफल होने में अंतर करें।',
       es: 'Distingue una pieza averiada del fallo del sistema completo.',

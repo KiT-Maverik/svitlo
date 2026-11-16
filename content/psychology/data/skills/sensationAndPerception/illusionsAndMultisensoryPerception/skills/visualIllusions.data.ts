@@ -5,6 +5,7 @@ export const visualIllusions_Skill_Data = defineSkill({
   id: '83151cd1-bb73-4004-9c01-9517fbf573cd',
   name: {
     en: 'Visual Illusions',
+    it: 'Illusioni visive',
     zh: '视觉错觉',
     hi: 'दृश्य भ्रम',
     es: 'Ilusiones visuales',
@@ -39,6 +40,7 @@ export const visualIllusions_Skill_Data = defineSkill({
       "Explain how contextual cues create reliable differences between an object's measured property and its appearance.",
     frontend: {
       en: 'Explain why a visual illusion can differ from a measured physical feature.',
+      it: "Spiega perché un'illusione visiva possa differire da una caratteristica fisica misurata.",
       zh: '解释为什么视觉错觉会与实际测量的物理特征不同。',
       hi: 'समझाएँ कि दृश्य भ्रम किसी मापी गई भौतिक विशेषता से अलग क्यों दिख सकता है।',
       es: 'Explica por qué una ilusión visual puede diferir de una propiedad física medida.',

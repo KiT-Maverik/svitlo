@@ -5,6 +5,7 @@ export const distinguishContinentsFromPartsOfTheWorld_Skill_Data = defineSkill({
   id: 'd7e8a715-4407-414f-b7f5-081ade12ea06',
   name: {
     en: 'Distinguish continents from parts of the world',
+    it: 'Distinguere i continenti dalle parti del mondo',
     zh: '区分大陆与世界地区',
     hi: 'महाद्वीप और विश्व के भाग में अंतर करना',
     es: 'Distinguir continentes de partes del mundo',
@@ -39,6 +40,7 @@ export const distinguishContinentsFromPartsOfTheWorld_Skill_Data = defineSkill({
       'Select or explain which geographic classification system is being used and why Europe and Asia may be treated as two parts of the world yet Eurasia as one landmass in another convention. This is a relationship between systems, not just naming a region.',
     frontend: {
       en: 'Distinguish a continental landmass from a historically recognized world region.',
+      it: 'Distingui una massa continentale da una parte del mondo riconosciuta storicamente.',
       zh: '区分作为连续陆地的大陆与历史上约定的世界地区。',
       hi: 'महाद्वीपीय भूभाग और ऐतिहासिक रूप से मान्य विश्व क्षेत्र में अंतर करें।',
       es: 'Distingue una masa continental de una región mundial reconocida históricamente.',

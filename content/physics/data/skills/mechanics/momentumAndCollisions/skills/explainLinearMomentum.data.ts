@@ -5,6 +5,7 @@ export const explainLinearMomentum_Skill_Data = defineSkill({
   id: '2ab0c397-0d29-4478-af28-adfe70b7a752',
   name: {
     en: 'Explain linear momentum',
+    it: 'Spiegare la quantità di moto',
     zh: '解释线动量',
     hi: 'रेखीय संवेग समझाना',
     es: 'Explicar el momento lineal',
@@ -39,6 +40,7 @@ export const explainLinearMomentum_Skill_Data = defineSkill({
       "Momentum depends on a body's mass and velocity and has a direction; equal velocities of bodies with different masses do not imply equal momentum.",
     frontend: {
       en: 'Explain how momentum depends on mass, velocity and direction.',
+      it: 'Spiega come la quantità di moto dipende da massa, velocità e direzione.',
       zh: '解释动量如何取决于质量、速度及其方向。',
       hi: 'समझाएँ कि संवेग द्रव्यमान, वेग और दिशा पर कैसे निर्भर करता है।',
       es: 'Explica cómo el momento lineal depende de la masa, la velocidad y su dirección.',

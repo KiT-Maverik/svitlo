@@ -5,6 +5,7 @@ export const robotDegreesOfFreedom_Skill_Data = defineSkill({
   id: 'b30fb4bc-65d7-4a6a-ad06-d1a59431e161',
   name: {
     en: 'Robot degrees of freedom',
+    it: 'Gradi di libertà di un robot',
     zh: '机器人自由度',
     hi: 'रोबोट की स्वतंत्रता की कोटियाँ',
     es: 'Grados de libertad del robot',
@@ -38,6 +39,7 @@ export const robotDegreesOfFreedom_Skill_Data = defineSkill({
     methodological: 'Connect the axes and joints of a mechanism to its possible independent movements.',
     frontend: {
       en: "Understand how the degrees of freedom describe a robot's possible movement.",
+      it: 'Comprendi come i gradi di libertà descrivono i movimenti possibili di un robot.',
       zh: '理解自由度如何描述机器人能够进行的运动。',
       hi: 'समझें कि स्वतंत्रता की कोटियाँ रोबोट की संभावित गतियों का वर्णन कैसे करती हैं।',
       es: 'Comprende cómo los grados de libertad describen los movimientos posibles de un robot.',

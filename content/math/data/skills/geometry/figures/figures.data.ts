@@ -13,6 +13,7 @@ export const figures_SkillGroup_Data = defineSkillGroup({
   id: 'd4c9c57c-09a9-43f5-a7c5-3544d3133e51',
   name: {
     en: 'Plane figures',
+    it: 'Figure piane',
     qm: 'Tüz şekiller',
     lt: 'Plokščiosios figūros',
     lv: 'Plaknes figūras',
@@ -57,6 +58,7 @@ export const figures_SkillGroup_Data = defineSkillGroup({
       'Properties of polygons and other plane figures that remain independent of scale or orientation, and composing shapes from parts.',
     frontend: {
       en: 'Recognize flat shapes by their sides, corners, and other properties, and build new shapes from parts.',
+      it: 'Riconosci le figure piane dai lati, dai vertici e dalle altre proprietà e costruisci nuove figure a partire da parti.',
       qm: 'Tüz şekillerni olarnıñ tarafları, köşeleri ve başqa hasiyetlerine köre tanı ve parçalardan yañı şekiller tüz.',
       zh: '根据边、角和其他性质认识平面图形，并用部分拼出新图形。',
       hi: 'भुजाओं, कोनों और गुणों से सपाट आकृतियाँ पहचानें तथा हिस्सों से नई आकृतियाँ बनाएँ।',

@@ -5,6 +5,7 @@ export const explainADatabaseTable_Skill_Data = defineSkill({
   id: '496da37a-d415-4646-a8d2-9f0018435cf5',
   name: {
     en: 'Explain a Database Table',
+    it: 'Spiegare una tabella di database',
     zh: '解释数据库表',
     hi: 'डेटाबेस तालिका समझाना',
     es: 'Explicar una tabla de base de datos',
@@ -39,6 +40,7 @@ export const explainADatabaseTable_Skill_Data = defineSkill({
       'Describe how a relational table stores records of one type using a common set of fields, such as a book catalog. A formatted table in a document is not automatically a database.',
     frontend: {
       en: 'Understand how a database table stores similar kinds of records.',
+      it: 'Comprendi come una tabella di database memorizza record dello stesso tipo.',
       zh: '理解数据库表如何存储同类型的记录。',
       hi: 'समझें कि डेटाबेस तालिका समान प्रकार के रिकॉर्ड कैसे रखती है।',
       es: 'Comprende cómo una tabla almacena registros del mismo tipo.',

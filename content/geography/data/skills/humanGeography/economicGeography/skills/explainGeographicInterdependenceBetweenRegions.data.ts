@@ -5,6 +5,7 @@ export const explainGeographicInterdependenceBetweenRegions_Skill_Data = defineS
   id: '24a609dc-1d1a-4dd4-a8f1-6d06aed0178e',
   name: {
     en: 'Explain geographic interdependence between regions',
+    it: "Spiegare l'interdipendenza geografica tra regioni",
     zh: '解释地区之间的地理相互依赖',
     hi: 'क्षेत्रों के बीच भौगोलिक परस्पर निर्भरता समझाना',
     es: 'Explicar la interdependencia geográfica entre regiones',
@@ -39,6 +40,7 @@ export const explainGeographicInterdependenceBetweenRegions_Skill_Data = defineS
       'Describe how exchange of goods, services and resources links different regions so that changes in supply, transport or demand in one place can affect others.',
     frontend: {
       en: 'Explain how regions depend on one another for goods, services and resources.',
+      it: 'Spiega come le regioni dipendono le une dalle altre per beni, servizi e risorse.',
       zh: '解释各地区如何在商品、服务和资源方面相互依赖。',
       hi: 'समझाएँ कि वस्तुओं, सेवाओं और संसाधनों के लिए क्षेत्र एक-दूसरे पर कैसे निर्भर हैं।',
       es: 'Explica cómo las regiones dependen unas de otras para obtener bienes, servicios y recursos.',

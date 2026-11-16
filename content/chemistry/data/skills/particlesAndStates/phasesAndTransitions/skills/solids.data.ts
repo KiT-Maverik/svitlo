@@ -5,6 +5,7 @@ export const solids_Skill_Data = defineSkill({
   id: '5c58c349-7f15-482e-b853-6ad38e9dd95e',
   name: {
     en: 'Solids',
+    it: 'Solidi',
     zh: '固体',
     hi: 'ठोस पदार्थ',
     es: 'Sólidos',
@@ -39,6 +40,7 @@ export const solids_Skill_Data = defineSkill({
       'Relate stable shape and structure to constrained particle motion without assuming every solid is crystalline.',
     frontend: {
       en: 'Explain why solids hold their shape even though their particles are not still.',
+      it: 'Spiega perché i solidi mantengono la forma anche se le particelle al loro interno non sono ferme.',
       zh: '解释为什么固体能保持形状，尽管其中的粒子并非完全静止。',
       hi: 'समझाएँ कि कण स्थिर न होने पर भी ठोस अपना आकार क्यों बनाए रखते हैं।',
       es: 'Explica por qué los sólidos mantienen su forma aunque sus partículas no estén inmóviles.',

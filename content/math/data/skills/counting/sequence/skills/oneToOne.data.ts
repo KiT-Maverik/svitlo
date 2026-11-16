@@ -5,6 +5,7 @@ export const oneToOne_Skill_Data = defineSkill({
   id: '8d4c247d-8d53-4703-9c83-9072c211a23c',
   name: {
     en: 'One-to-one correspondence when counting',
+    it: 'Corrispondenza uno a uno nel conteggio',
     qm: 'Sayğanda er eşyaga bir sayı uyğunlaştırmaq',
     lt: 'Vienas su vienu atitikimas skaičiuojant',
     lv: 'Savstarpēji viennozīmīga atbilstība skaitīšanā',
@@ -39,6 +40,7 @@ export const oneToOne_Skill_Data = defineSkill({
       'Counting a set establishes a one-to-one correspondence between each element and the next number word. Traversal order, spatial arrangement, and appearance do not affect cardinality if each element is counted exactly once.',
     frontend: {
       en: 'Give each object exactly one counting word, without skipping or counting any twice. Counting order does not change the total.',
+      it: "Associa a ogni oggetto una sola parola-numero, senza saltarne nessuno o contarne uno due volte. L'ordine del conteggio non cambia il totale.",
       qm: 'Er eşyaga bir sanav sözüni uyğunlaştır: iç birini atlap ketme ve iç birini eki kere sayma. Sanav tertibi umumiy sayını deñiştirmey.',
       zh: '给每个物品对应一个数词，不漏数也不重复数。计数顺序不会改变总数。',
       hi: 'हर वस्तु के लिए गिनती का ठीक एक शब्द बोलें; कोई वस्तु न छूटे, न दोबारा गिनी जाए। क्रम बदलने से कुल नहीं बदलता।',

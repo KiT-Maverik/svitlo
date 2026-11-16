@@ -5,6 +5,7 @@ export const housingMarket_Skill_Data = defineSkill({
   id: 'f7db6a27-2c7a-4cfd-bb56-527fd3886684',
   name: {
     en: 'Ринок житла',
+    it: 'Mercato immobiliare residenziale',
     zh: '住房市场',
     hi: 'आवास बाज़ार',
     es: 'Mercado de la vivienda',
@@ -39,6 +40,7 @@ export const housingMarket_Skill_Data = defineSkill({
       'Analyze rents and house prices in relation to local demand, available supply, construction lead times, and financing.',
     frontend: {
       en: 'Understand how local supply and demand affect housing prices.',
+      it: "Comprendi come l'offerta e la domanda locali influiscono sui prezzi delle abitazioni.",
       zh: '理解当地供给与需求如何影响住房价格。',
       hi: 'समझें कि स्थानीय आपूर्ति और मांग घरों की कीमतें कैसे बदलती हैं।',
       es: 'Comprende cómo la oferta y la demanda locales influyen en los precios de las viviendas.',

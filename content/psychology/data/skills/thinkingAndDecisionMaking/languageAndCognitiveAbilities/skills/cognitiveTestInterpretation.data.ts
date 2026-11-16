@@ -5,6 +5,7 @@ export const cognitiveTestInterpretation_Skill_Data = defineSkill({
   id: '44898387-5f12-4ef3-9d8e-309bfde3e1b1',
   name: {
     en: 'Cognitive Test Interpretation',
+    it: 'Interpretazione dei test cognitivi',
     zh: '认知测验结果解读',
     hi: 'संज्ञानात्मक परीक्षण की व्याख्या',
     es: 'Interpretación de pruebas cognitivas',
@@ -39,6 +40,7 @@ export const cognitiveTestInterpretation_Skill_Data = defineSkill({
       'Distinguish a measured score from a complete account of intellectual capacity, considering error and conditions.',
     frontend: {
       en: 'Recognize what a cognitive test can and cannot tell us about someone.',
+      it: 'Riconosci che cosa un test cognitivo possa e non possa dirci su una persona.',
       zh: '识别认知测验能够与不能够告诉我们关于一个人的哪些信息。',
       hi: 'पहचानें कि संज्ञानात्मक परीक्षण किसी व्यक्ति के बारे में क्या बता सकता है और क्या नहीं।',
       es: 'Reconoce qué puede y qué no puede decirnos una prueba cognitiva sobre una persona.',

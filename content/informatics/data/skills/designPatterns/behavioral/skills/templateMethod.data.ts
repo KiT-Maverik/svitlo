@@ -5,6 +5,7 @@ export const templateMethod_Skill_Data = defineSkill({
   id: 'bbbfce51-ab9b-49d0-960f-204134b75b00',
   name: {
     en: 'Template Method',
+    it: 'Metodo modello',
     zh: '模板方法模式',
     hi: 'टेम्पलेट मेथड',
     es: 'Método plantilla',
@@ -39,6 +40,7 @@ export const templateMethod_Skill_Data = defineSkill({
       'Define an algorithm skeleton with fixed steps while subclasses implement selected details through specified extension points.',
     frontend: {
       en: "Keep an algorithm's main steps fixed while allowing selected steps to vary.",
+      it: 'Mantieni fissi i passaggi principali di un algoritmo consentendo di variare quelli selezionati.',
       zh: '保持算法主要步骤不变，同时允许特定步骤变化。',
       hi: 'एल्गोरिदम के मुख्य चरण निश्चित रखें और कुछ चुने चरण बदलने दें।',
       es: 'Mantén fijos los pasos principales del algoritmo permitiendo variar algunos pasos.',

@@ -5,6 +5,7 @@ export const protectSecretsWhenUsingAI_Skill_Data = defineSkill({
   id: 'ce8bc546-e3c4-4539-ad46-5666db8bfbb4',
   name: {
     en: 'Protect Secrets When Using AI',
+    it: "Proteggere i segreti nell'uso dell'IA",
     zh: '使用人工智能时保护机密信息',
     hi: 'एआई इस्तेमाल करते समय गोपनीय जानकारी की रक्षा करना',
     es: 'Proteger secretos al usar IA',
@@ -39,6 +40,7 @@ export const protectSecretsWhenUsingAI_Skill_Data = defineSkill({
       'Avoid entering passwords, confirmation codes, access keys, or confidential information into chatbots without proper authorization and verified safeguards.',
     frontend: {
       en: 'Protect passwords, access keys and confidential information when working with AI.',
+      it: "Proteggi password, chiavi di accesso e informazioni riservate quando utilizzi l'IA.",
       zh: '使用人工智能时保护密码、访问密钥和保密资料。',
       hi: 'एआई के साथ काम करते समय पासवर्ड, एक्सेस कुंजियाँ और गोपनीय सूचना सुरक्षित रखें।',
       es: 'Protege contraseñas, claves de acceso e información confidencial al trabajar con IA.',

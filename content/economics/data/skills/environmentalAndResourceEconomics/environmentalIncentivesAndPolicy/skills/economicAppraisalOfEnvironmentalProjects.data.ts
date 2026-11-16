@@ -5,6 +5,7 @@ export const economicAppraisalOfEnvironmentalProjects_Skill_Data = defineSkill({
   id: 'fcd43289-bb45-4b25-bc5e-869b86314f44',
   name: {
     en: 'Економічна оцінка екологічного проєкту',
+    it: 'Valutazione economica di un progetto ambientale',
     zh: '环境项目经济评估',
     hi: 'पर्यावरणीय परियोजनाओं का आर्थिक मूल्यांकन',
     es: 'Evaluación económica de proyectos ambientales',
@@ -39,6 +40,7 @@ export const economicAppraisalOfEnvironmentalProjects_Skill_Data = defineSkill({
       'Compare financial and wider social benefits and costs while explicitly acknowledging uncertainty in estimates.',
     frontend: {
       en: 'Assess whether an environmental project offers benefits worth its costs.',
+      it: 'Valuta se un progetto ambientale offre benefici che giustificano i suoi costi.',
       zh: '评估环境项目的收益是否值得其成本。',
       hi: 'आकलन करें कि पर्यावरणीय परियोजना के लाभ उसकी लागत के उचित हैं या नहीं।',
       es: 'Evalúa si los beneficios de un proyecto ambiental justifican sus costos.',

@@ -5,6 +5,7 @@ export const coordinationCompounds_Skill_Data = defineSkill({
   id: '6cd3e7e7-d30c-4ab1-9206-e17d9a50b139',
   name: {
     en: 'Coordination Compounds',
+    it: 'Composti di coordinazione',
     zh: '配位化合物',
     hi: 'समन्वय यौगिक',
     es: 'Compuestos de coordinación',
@@ -39,6 +40,7 @@ export const coordinationCompounds_Skill_Data = defineSkill({
       'Interpret a central metal species surrounded by ligands as a structure distinct from a simple ionic formula.',
     frontend: {
       en: 'Understand how ligands surround a central metal species in coordination compounds.',
+      it: 'Comprendi come i ligandi circondano una specie metallica centrale nei composti di coordinazione.',
       zh: '理解配位化合物中配体如何围绕中心金属物种排列。',
       hi: 'समझें कि समन्वय यौगिकों में लिगैंड केंद्रीय धातु प्रजाति के चारों ओर कैसे होते हैं।',
       es: 'Comprende cómo los ligandos rodean una especie metálica central en los compuestos de coordinación.',

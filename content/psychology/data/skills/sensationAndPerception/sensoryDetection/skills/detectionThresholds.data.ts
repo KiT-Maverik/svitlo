@@ -5,6 +5,7 @@ export const detectionThresholds_Skill_Data = defineSkill({
   id: '319512be-6e2b-4fda-b96d-6a1bdc951f0c',
   name: {
     en: 'Detection Thresholds',
+    it: 'Soglie di rilevazione',
     zh: '检测阈限',
     hi: 'पहचान सीमा',
     es: 'Umbrales de detección',
@@ -38,6 +39,7 @@ export const detectionThresholds_Skill_Data = defineSkill({
     methodological: 'Explain how signal strength and competing noise affect the likelihood of noticing a stimulus.',
     frontend: {
       en: 'Explain why stronger signals may be easier to notice amid noise.',
+      it: 'Spiega perché i segnali più intensi possano essere più facili da notare in presenza di rumore.',
       zh: '解释为什么更强的信号可能更容易从噪声中被察觉。',
       hi: 'समझाएँ कि शोर के बीच अधिक शक्तिशाली संकेत पहचानना आसान क्यों हो सकता है।',
       es: 'Explica por qué las señales más intensas pueden resultar más fáciles de detectar entre el ruido.',

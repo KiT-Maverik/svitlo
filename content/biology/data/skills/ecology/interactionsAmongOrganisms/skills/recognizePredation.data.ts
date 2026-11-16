@@ -5,6 +5,7 @@ export const recognizePredation_Skill_Data = defineSkill({
   id: '2aabf2b4-0952-4d81-b872-b1dbfd440fd8',
   name: {
     en: 'Recognize Predation',
+    it: 'Riconoscere la predazione',
     zh: '识别捕食关系',
     hi: 'परभक्षण पहचानना',
     es: 'Reconocer la depredación',
@@ -38,6 +39,7 @@ export const recognizePredation_Skill_Data = defineSkill({
     methodological: 'Distinguish consumption of one organism by another from competition over a shared resource.',
     frontend: {
       en: 'Recognize when one organism captures and feeds on another.',
+      it: 'Riconosci i casi in cui un organismo cattura un altro organismo e se ne nutre.',
       zh: '识别一种生物捕获并取食另一种生物的情况。',
       hi: 'पहचानें कि एक जीव दूसरे जीव को पकड़कर कब खाता है।',
       es: 'Reconoce cuándo un organismo captura a otro y se alimenta de él.',

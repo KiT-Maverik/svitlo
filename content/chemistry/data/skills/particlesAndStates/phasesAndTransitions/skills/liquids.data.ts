@@ -5,6 +5,7 @@ export const liquids_Skill_Data = defineSkill({
   id: 'f6d29d2f-c342-41dd-9de7-1890e2797103',
   name: {
     en: 'Liquids',
+    it: 'Liquidi',
     zh: '液体',
     hi: 'द्रव',
     es: 'Líquidos',
@@ -38,6 +39,7 @@ export const liquids_Skill_Data = defineSkill({
     methodological: 'Relate flow and nearly fixed volume to mobile particles that remain close together.',
     frontend: {
       en: 'Explore how nearby moving particles allow liquids to flow.',
+      it: 'Esplora come le particelle vicine ma mobili permettono ai liquidi di scorrere.',
       zh: '探索彼此接近且能够移动的粒子如何让液体流动。',
       hi: 'जानें कि पास-पास मौजूद गतिशील कण द्रव को बहने कैसे देते हैं।',
       es: 'Explora cómo las partículas cercanas y móviles permiten que los líquidos fluyan.',

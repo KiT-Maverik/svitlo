@@ -5,6 +5,7 @@ export const evaluateMathematicalPlatonism_Skill_Data = defineSkill({
   id: '9444eca7-f05e-4fb3-83df-70253527876b',
   name: {
     en: 'Evaluate mathematical Platonism',
+    it: 'Valutare il platonismo matematico',
     zh: '评估数学柏拉图主义',
     hi: 'गणितीय प्लेटोनवाद का मूल्यांकन',
     es: 'Evaluar el platonismo matemático',
@@ -39,6 +40,7 @@ export const evaluateMathematicalPlatonism_Skill_Data = defineSkill({
       'Assess the view that mathematical objects or structures exist independently of human thought and how it attempts to explain the apparent objectivity of mathematics.',
     frontend: {
       en: 'Examine arguments that mathematical entities exist independently of human minds.',
+      it: 'Esamina le argomentazioni secondo cui le entità matematiche esistono indipendentemente dalla mente umana.',
       zh: '考察认为数学实体独立于人类心智而存在的论证。',
       hi: 'उन तर्कों को परखें कि गणितीय सत्ताएँ मानव मस्तिष्क से स्वतंत्र मौजूद हैं।',
       es: 'Examina los argumentos de que las entidades matemáticas existen con independencia de las mentes humanas.',

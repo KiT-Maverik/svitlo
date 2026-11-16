@@ -5,6 +5,7 @@ export const interpretABasicClimateDiagram_Skill_Data = defineSkill({
   id: 'e604fdad-40ad-4e5d-9179-dc65d58f9239',
   name: {
     en: 'Interpret a basic climate diagram',
+    it: 'Interpretare un semplice diagramma climatico',
     zh: '解读基础气候图',
     hi: 'आधारभूत जलवायु आरेख पढ़ना',
     es: 'Interpretar un climograma básico',
@@ -39,6 +40,7 @@ export const interpretABasicClimateDiagram_Skill_Data = defineSkill({
       'Compare monthly temperature and precipitation patterns to identify seasonality without treating averages as daily forecasts.',
     frontend: {
       en: 'Read graphs of average monthly rainfall and temperature.',
+      it: 'Leggi i grafici delle precipitazioni e delle temperature medie mensili.',
       zh: '读取月平均降水量和气温图表。',
       hi: 'औसत मासिक वर्षा और तापमान के ग्राफ पढ़ें।',
       es: 'Lee gráficos de temperatura y precipitación media mensual.',

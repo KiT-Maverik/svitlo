@@ -5,6 +5,7 @@ export const inferBasicLandUseConstraintsFromSoilConditions_Skill_Data = defineS
   id: '96134f6b-f7de-4677-8c7f-3c10a5f949b4',
   name: {
     en: 'Infer basic land-use constraints from soil conditions',
+    it: "Dedurre i principali vincoli d'uso del suolo dalle sue condizioni",
     zh: '根据土壤条件推断土地利用的基本限制',
     hi: 'मृदा की दशाओं से भूमि उपयोग की बुनियादी सीमाएँ समझना',
     es: 'Inferir limitaciones básicas de uso del suelo según sus condiciones',
@@ -39,6 +40,7 @@ export const inferBasicLandUseConstraintsFromSoilConditions_Skill_Data = defineS
       'Relate waterlogging, shallow soils, or steep slopes to limitations on cultivation or construction without predicting engineering safety from appearance alone.',
     frontend: {
       en: 'Recognize how soil conditions and slopes may limit farming or construction.',
+      it: "Riconosci come le condizioni del suolo e le pendenze possono limitare l'agricoltura o le costruzioni.",
       zh: '识别土壤条件和坡度如何限制耕作或建筑。',
       hi: 'जानें कि मृदा की दशाएँ और ढलान खेती या निर्माण को कैसे सीमित कर सकती हैं।',
       es: 'Reconoce cómo las condiciones del suelo y las pendientes pueden limitar los cultivos o la construcción.',

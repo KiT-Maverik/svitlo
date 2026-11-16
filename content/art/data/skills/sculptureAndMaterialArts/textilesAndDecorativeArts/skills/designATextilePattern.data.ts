@@ -5,6 +5,7 @@ export const designATextilePattern_Skill_Data = defineSkill({
   id: '3bb8a362-1071-4c78-aba6-d7dfa3c52e09',
   name: {
     en: 'Design a Textile Pattern',
+    it: 'Progettare un motivo tessile',
     qm: 'Tekstil naqşını tasarlamaq',
 
     zh: '设计纺织图案',
@@ -39,6 +40,7 @@ export const designATextilePattern_Skill_Data = defineSkill({
     methodological: 'Adapt a visual motif to fabric scale and an appropriate repeat structure.',
     frontend: {
       en: 'Adapt a design so it repeats effectively across fabric.',
+      it: 'Adatta un disegno affinché si ripeta efficacemente sul tessuto.',
       qm: 'Tasarımlarnı kumaş üstünde muntazam tekrarlanacaq şekilde uyğulañız.',
 
       zh: '调整设计，使图案能够在织物上有效重复。',

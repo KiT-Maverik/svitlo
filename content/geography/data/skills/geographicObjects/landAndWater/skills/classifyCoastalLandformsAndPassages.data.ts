@@ -5,6 +5,7 @@ export const classifyCoastalLandformsAndPassages_Skill_Data = defineSkill({
   id: '50fb7c45-3893-4980-bf9c-6e2abd2764c7',
   name: {
     en: 'Classify coastal landforms and passages',
+    it: 'Classificare le forme costiere e i passaggi geografici',
     zh: '分类海岸地形与水道',
     hi: 'तटीय भूआकृतियों और जलमार्गों का वर्गीकरण',
     es: 'Clasificar formas costeras y pasos',
@@ -39,6 +40,7 @@ export const classifyCoastalLandformsAndPassages_Skill_Data = defineSkill({
       'Classify coast-related geographic forms using enclosure, land connection and water passage: islands, peninsulas, capes, straits and isthmuses serve as contrasting examples. The transferable competency is recognizing the geographic relationships, not memorizing one named feature or a particular illustrative list.',
     frontend: {
       en: 'Recognize islands, peninsulas, capes, straits and isthmuses by their shapes and connections.',
+      it: 'Riconosci isole, penisole, promontori, stretti e istmi dalla loro forma e dai loro collegamenti.',
       zh: '根据形状和相互连接关系识别岛屿、半岛、海角、海峡和地峡。',
       hi: 'आकार और जुड़ाव के आधार पर द्वीप, प्रायद्वीप, अंतरीप, जलडमरूमध्य और स्थलडमरूमध्य पहचानें।',
       es: 'Reconoce islas, penínsulas, cabos, estrechos e istmos por su forma y conexiones.',

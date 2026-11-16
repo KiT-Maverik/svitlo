@@ -5,6 +5,7 @@ export const designAPoster_Skill_Data = defineSkill({
   id: '91915017-0c79-48ac-9433-c630a482620e',
   name: {
     en: 'Design a Poster',
+    it: 'Progettare un manifesto',
 
     zh: '设计海报',
     hi: 'पोस्टर डिज़ाइन करें',
@@ -39,6 +40,7 @@ export const designAPoster_Skill_Data = defineSkill({
     methodological: 'Organize image, headline and details around a clear primary message.',
     frontend: {
       en: 'Design a poster that makes its main message clear at a glance.',
+      it: "Progetta un manifesto che renda il suo messaggio principale comprensibile a colpo d'occhio.",
 
       zh: '设计一张让主要信息一目了然的海报。',
       hi: 'ऐसा पोस्टर बनाएँ जिसका मुख्य संदेश तुरंत स्पष्ट हो।',

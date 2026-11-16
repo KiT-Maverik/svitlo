@@ -5,6 +5,7 @@ export const angleAsTurn_Skill_Data = defineSkill({
   id: '72f07de3-30ee-4b55-a38c-3d0a12f5de9b',
   name: {
     en: 'Comparing angles as turns',
+    it: 'Confrontare gli angoli come rotazioni',
     qm: 'Köşelerni buruluv olaraq qıyaslav',
     lt: 'Kampų palyginimas kaip posūkių',
     lv: 'Leņķu salīdzināšana kā pagriezieni',
@@ -39,6 +40,7 @@ export const angleAsTurn_Skill_Data = defineSkill({
       'Angle magnitude describes the turn between rays sharing an endpoint and does not depend on how long the rays are drawn. A right angle is one quarter of a full turn; acute and obtuse angles are compared with it.',
     frontend: {
       en: 'Compare how far two rays turn away from each other. Longer drawn arms do not make a bigger angle.',
+      it: "Confronta quanto due semirette divergono l'una dall'altra. Disegnare lati più lunghi non rende più grande un angolo.",
       qm: 'Eki şuanıñ bir-birinden ne qadar burulğanını qıyasla. Çizilgen qollarnıñ uzun oluvı köşeni büyük yapmay.',
       zh: '比较从一条射线转到另一条射线的程度。画得更长的边不会让角变大。',
       hi: 'दो किरणों के बीच कितना घुमाव है तुलना करें। भुजाएँ लंबी खींचने से कोण बड़ा नहीं होता।',

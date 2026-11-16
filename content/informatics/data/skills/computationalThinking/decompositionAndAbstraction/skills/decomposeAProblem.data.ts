@@ -5,6 +5,7 @@ export const decomposeAProblem_Skill_Data = defineSkill({
   id: 'e55d6094-24de-4bb5-89cd-38ab16451d9d',
   name: {
     en: 'Decompose a Problem',
+    it: 'Scomporre un problema',
     zh: '分解问题',
     hi: 'समस्या को भागों में बाँटना',
     es: 'Descomponer un problema',
@@ -39,6 +40,7 @@ export const decomposeAProblem_Skill_Data = defineSkill({
       'Identify independent subproblems with distinct outcomes that collectively solve the original problem. For example, finding a route involves identifying the start, destination, and allowed transitions.',
     frontend: {
       en: 'Break a large problem into smaller tasks that can be solved separately.',
+      it: 'Dividi un problema grande in compiti più piccoli che possono essere risolti separatamente.',
       zh: '将大问题拆分为可以分别解决的小任务。',
       hi: 'बड़ी समस्या को छोटे कार्यों में बाँटें जिन्हें अलग-अलग हल किया जा सके।',
       es: 'Divide un problema grande en tareas más pequeñas que puedan resolverse por separado.',

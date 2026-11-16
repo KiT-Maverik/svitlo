@@ -5,6 +5,7 @@ export const explainBasicGeographicFactorsAffectingActivityLocation_Skill_Data =
   id: '22308655-e0ef-459e-acd3-f38304d843ed',
   name: {
     en: 'Explain basic geographic factors affecting activity location',
+    it: "Spiegare i principali fattori geografici che influenzano l'ubicazione delle attività",
     zh: '解释影响经济活动选址的基本地理因素',
     hi: 'गतिविधियों के स्थान को प्रभावित करने वाले मूल भौगोलिक कारक समझाना',
     es: 'Explicar factores geográficos básicos de la localización de actividades',
@@ -39,6 +40,7 @@ export const explainBasicGeographicFactorsAffectingActivityLocation_Skill_Data =
       'Relate transport access, resources, population, and environmental constraints to plausible site choices without claiming one universal optimal location.',
     frontend: {
       en: 'Explain why access, resources and terrain influence business locations.',
+      it: 'Spiega perché accessibilità, risorse e rilievo influenzano la localizzazione delle imprese.',
       zh: '解释交通条件、资源和地形为何影响企业选址。',
       hi: 'समझाएँ कि पहुँच, संसाधन और भूप्रदेश व्यवसायों के स्थान को क्यों प्रभावित करते हैं।',
       es: 'Explica por qué el acceso, los recursos y el relieve influyen en la ubicación de empresas.',

@@ -7,6 +7,7 @@ export const ancientJapan_SkillGroup_Data = defineSkillGroup({
   id: 'db7670ec-8b18-41b9-b78d-47b961434f18',
   name: {
     en: 'Japan',
+    it: 'Giappone',
     zh: '古代日本',
     hi: 'प्राचीन जापान',
     es: 'Japón antiguo',
@@ -49,6 +50,7 @@ export const ancientJapan_SkillGroup_Data = defineSkillGroup({
       'Archaeological traditions from pottery to rice farming and burial mounds show uneven regional changes.',
     frontend: {
       en: 'Discover the ancient cultures of the Japanese archipelago.',
+      it: "Scopri le culture antiche dell'arcipelago giapponese.",
       zh: '探索日本列岛上的古代文化。',
       hi: 'जापानी द्वीपसमूह की प्राचीन संस्कृतियों के बारे में जानें।',
       es: 'Descubre las culturas antiguas del archipiélago japonés.',

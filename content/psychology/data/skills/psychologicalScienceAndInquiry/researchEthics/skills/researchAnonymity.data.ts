@@ -5,6 +5,7 @@ export const researchAnonymity_Skill_Data = defineSkill({
   id: '479fb9be-120c-4c75-8fc9-b8599c4ffdfe',
   name: {
     en: 'Research Anonymity',
+    it: 'Anonimato nella ricerca',
     zh: '研究匿名性',
     hi: 'अनुसंधान में गुमनामी',
     es: 'Anonimato en investigación',
@@ -39,6 +40,7 @@ export const researchAnonymity_Skill_Data = defineSkill({
       'Explain when collected data cannot be linked to a participant and why this differs from merely promising confidentiality.',
     frontend: {
       en: 'Distinguish anonymous research data from information kept confidential.',
+      it: 'Distingui i dati di ricerca anonimi dalle informazioni mantenute riservate.',
       zh: '区分匿名研究数据和受到保密保护的信息。',
       hi: 'गुमनाम शोध डेटा और गोपनीय रखी गई जानकारी में अंतर करें।',
       es: 'Distingue los datos de investigación anónimos de la información que se mantiene confidencial.',

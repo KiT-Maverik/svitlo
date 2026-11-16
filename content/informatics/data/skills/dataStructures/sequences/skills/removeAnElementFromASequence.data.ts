@@ -5,6 +5,7 @@ export const removeAnElementFromASequence_Skill_Data = defineSkill({
   id: '6c2e4182-d9ba-468d-94c9-43f7f0447377',
   name: {
     en: 'Remove an Element from a Sequence',
+    it: 'Rimuovere un elemento da una sequenza',
     zh: '从序列中移除元素',
     hi: 'अनुक्रम से एक तत्व हटाना',
     es: 'Eliminar un elemento de una secuencia',
@@ -39,6 +40,7 @@ export const removeAnElementFromASequence_Skill_Data = defineSkill({
       'Delete an item at a position while preserving the proper order and accessibility of the remaining elements.',
     frontend: {
       en: 'Remove an item while preserving the remaining sequence.',
+      it: 'Rimuovi un elemento preservando la sequenza degli elementi rimanenti.',
       zh: '移除一个元素，同时保留其余元素的顺序。',
       hi: 'बाकी अनुक्रम का क्रम बनाए रखते हुए एक तत्व हटाएँ।',
       es: 'Elimina un elemento sin alterar el orden de los restantes.',

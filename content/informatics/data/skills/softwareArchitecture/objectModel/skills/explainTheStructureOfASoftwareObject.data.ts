@@ -5,6 +5,7 @@ export const explainTheStructureOfASoftwareObject_Skill_Data = defineSkill({
   id: 'a827a8b7-36b9-48f5-8295-32019503251d',
   name: {
     en: 'Explain the Structure of a Software Object',
+    it: 'Spiegare la struttura di un oggetto software',
     zh: '解释软件对象的结构',
     hi: 'सॉफ़्टवेयर ऑब्जेक्ट की संरचना समझाना',
     es: 'Explicar la estructura de un objeto de software',
@@ -39,6 +40,7 @@ export const explainTheStructureOfASoftwareObject_Skill_Data = defineSkill({
       "Analyze a given object's identity, the properties storing state values, and methods defining its operations. For example, two Counter instances can share `increment()` yet have different `count` values. This concerns understanding an existing software structure rather than independently choosing its parts.",
     frontend: {
       en: 'Identify the identity, properties and methods of an existing software object.',
+      it: 'Individua identità, proprietà e metodi di un oggetto software esistente.',
       zh: '识别现有软件对象的身份、属性和方法。',
       hi: 'मौजूदा ऑब्जेक्ट की पहचान, गुण और विधियाँ पहचानें।',
       es: 'Identifica la identidad, las propiedades y los métodos de un objeto existente.',

@@ -5,6 +5,7 @@ export const marketShortagesAndSurpluses_Skill_Data = defineSkill({
   id: 'b25ac561-dd31-4136-99d3-cc751559a37d',
   name: {
     en: 'Market Shortages and Surpluses',
+    it: 'Carenze ed eccedenze di mercato',
     zh: '市场短缺与过剩',
     hi: 'बाजार में कमी और अधिशेष',
     es: 'Escasez y excedentes de mercado',
@@ -38,6 +39,7 @@ export const marketShortagesAndSurpluses_Skill_Data = defineSkill({
     methodological: 'Diagnose excess demand or excess supply when a price differs from its equilibrium level.',
     frontend: {
       en: 'Recognize when a market has too little or too much of a product.',
+      it: "Riconosci quando su un mercato c'è troppo poco o troppo di un prodotto.",
       zh: '识别市场上商品供不应求或供过于求的情况。',
       hi: 'पहचानें कि बाजार में उत्पाद बहुत कम या बहुत अधिक कब है।',
       es: 'Reconoce cuándo hay demasiado poco o demasiado producto en el mercado.',

@@ -5,6 +5,7 @@ export const seekHelpForSubstanceRelatedProblems_Skill_Data = defineSkill({
   id: '8e095ec3-e994-4785-9486-ce425340917d',
   name: {
     en: 'Seek help for substance-related problems',
+    it: 'Cercare aiuto per problemi legati alle sostanze',
     zh: '就物质使用问题寻求帮助',
     hi: 'पदार्थों से जुड़ी समस्याओं में मदद लें',
     es: 'Buscar ayuda por problemas relacionados con sustancias',
@@ -39,6 +40,7 @@ export const seekHelpForSubstanceRelatedProblems_Skill_Data = defineSkill({
       'Identify trusted people and health or addiction services, including urgent assistance for suspected poisoning or overdose.',
     frontend: {
       en: 'Know when to ask for support or urgent help for substance-related harm.',
+      it: "Comprendi quando chiedere sostegno o aiuto urgente per danni legati all'uso di sostanze.",
       zh: '知道何时因物质相关伤害寻求支持或紧急援助。',
       hi: 'जानें कि पदार्थों से होने वाले नुकसान पर सहायता या आपात मदद कब माँगनी चाहिए।',
       es: 'Reconoce cuándo pedir apoyo o ayuda urgente por daños relacionados con sustancias.',

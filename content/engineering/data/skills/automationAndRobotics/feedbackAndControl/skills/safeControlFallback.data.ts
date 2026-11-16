@@ -5,6 +5,7 @@ export const safeControlFallback_Skill_Data = defineSkill({
   id: 'b8a25003-e4e7-45e1-a7f8-b9c23f1cbbe6',
   name: {
     en: 'Safe control fallback',
+    it: 'Modalità di ripiego sicura del controllo',
     zh: '安全控制备用方案',
     hi: 'सुरक्षित नियंत्रण का वैकल्पिक तरीका',
     es: 'Respaldo seguro del control',
@@ -39,6 +40,7 @@ export const safeControlFallback_Skill_Data = defineSkill({
       'Describe how critical equipment should react to missing power, unreliable sensing or lost communication.',
     frontend: {
       en: 'Recognize when a control system needs a safe response to failure.',
+      it: 'Riconosci quando un sistema di controllo deve reagire a un guasto in modo sicuro.',
       zh: '识别控制系统发生故障时何时必须进入安全状态。',
       hi: 'पहचानें कि नियंत्रण प्रणाली में खराबी पर सुरक्षित विकल्प कब आवश्यक है।',
       es: 'Reconoce cuándo un sistema de control necesita una respuesta segura ante fallos.',

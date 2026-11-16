@@ -14,6 +14,7 @@ export const memorySystems_SkillGroup_Data = defineSkillGroup({
   id: '6edbad9c-a04d-4ca6-b82c-322269dae5fb',
   name: {
     en: 'Memory Systems',
+    it: 'Sistemi di memoria',
     zh: '记忆系统',
     hi: 'स्मृति प्रणालियाँ',
     es: 'Sistemas de memoria',
@@ -66,6 +67,7 @@ export const memorySystems_SkillGroup_Data = defineSkillGroup({
       'Distinct forms of memory support immediate processing, recall of experiences and facts, and skilled performance.',
     frontend: {
       en: 'Explore the different memory systems involved in remembering.',
+      it: 'Esplora i diversi sistemi di memoria coinvolti nel ricordare.',
       zh: '探索参与记忆的不同记忆系统。',
       hi: 'याद रखने में शामिल विभिन्न स्मृति प्रणालियों को जानें।',
       es: 'Explora los distintos sistemas de memoria que participan en el recuerdo.',

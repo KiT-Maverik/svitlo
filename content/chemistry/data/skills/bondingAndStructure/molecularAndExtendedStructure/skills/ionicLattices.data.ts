@@ -5,6 +5,7 @@ export const ionicLattices_Skill_Data = defineSkill({
   id: 'f7a9232d-67ba-4998-850d-0fd4f6874ccb',
   name: {
     en: 'Ionic Lattices',
+    it: 'Reticoli ionici',
     zh: '离子晶格',
     hi: 'आयनिक जालक',
     es: 'Redes iónicas',
@@ -38,6 +39,7 @@ export const ionicLattices_Skill_Data = defineSkill({
     methodological: 'Relate repeating ionic arrangements to melting behavior, brittleness and conduction conditions.',
     frontend: {
       en: 'Connect repeating ionic structures with brittleness, melting and electrical conduction.',
+      it: 'Collega le strutture ioniche ripetute alla fragilità, alla fusione e alla conduzione elettrica.',
       zh: '把重复排列的离子结构与脆性、熔化和导电性联系起来。',
       hi: 'आयनिक जालक की दोहराती संरचना को भंगुरता, गलन और विद्युत चालकता से जोड़ें।',
       es: 'Relaciona las estructuras iónicas repetitivas con la fragilidad, la fusión y la conducción eléctrica.',

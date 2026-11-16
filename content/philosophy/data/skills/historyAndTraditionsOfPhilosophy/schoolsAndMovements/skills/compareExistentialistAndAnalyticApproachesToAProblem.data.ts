@@ -5,6 +5,7 @@ export const compareExistentialistAndAnalyticApproachesToAProblem_Skill_Data = d
   id: 'b174a183-2a53-4d32-9d5c-689be822d553',
   name: {
     en: 'Compare existentialist and analytic approaches to a problem',
+    it: 'Confrontare approcci esistenzialisti e analitici a un problema',
     zh: '比较存在主义与分析哲学的解决方式',
     hi: 'अस्तित्ववादी और विश्लेषणात्मक दृष्टिकोणों की तुलना',
     es: 'Comparar enfoques existencialistas y analíticos',
@@ -39,6 +40,7 @@ export const compareExistentialistAndAnalyticApproachesToAProblem_Skill_Data = d
       'Identify differences in methods and questions without claiming that either broad family has one uniform answer.',
     frontend: {
       en: 'Compare existentialist and analytic approaches without oversimplifying either tradition.',
+      it: 'Confronta approcci esistenzialisti e analitici senza semplificare eccessivamente nessuna delle due tradizioni.',
       zh: '比较存在主义和分析哲学的方法，不要过度简化任何一方。',
       hi: 'दोनों दार्शनिक परंपराओं को अत्यधिक सरल किए बिना तुलना करो।',
       es: 'Compara ambos enfoques sin simplificar en exceso ninguna tradición.',

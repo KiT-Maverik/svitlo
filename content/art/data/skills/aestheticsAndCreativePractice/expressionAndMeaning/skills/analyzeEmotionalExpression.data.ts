@@ -5,6 +5,7 @@ export const analyzeEmotionalExpression_Skill_Data = defineSkill({
   id: '2d04d66f-a2c4-4fa6-bbb5-b37e374bbca8',
   name: {
     en: 'Analyze Emotional Expression',
+    it: "Analizzare l'espressione emotiva",
     zh: '分析情感表达',
     hi: 'भावनात्मक अभिव्यक्ति का विश्लेषण करें',
     es: 'Analizar la expresión emocional',
@@ -38,6 +39,7 @@ export const analyzeEmotionalExpression_Skill_Data = defineSkill({
     methodological: 'Relate formal choices to perceived affect without assuming everyone responds identically.',
     frontend: {
       en: "Connect an artwork's expressive features with feelings it may suggest.",
+      it: "Collega le caratteristiche espressive di un'opera alle emozioni che potrebbe evocare.",
       zh: '将作品的表现特征与它可能引发的感受联系起来。',
       hi: 'कलाकृति की अभिव्यंजक विशेषताओं को उससे उत्पन्न हो सकने वाली भावनाओं से जोड़ें।',
       es: 'Relaciona los rasgos expresivos de una obra con los sentimientos que puede sugerir.',

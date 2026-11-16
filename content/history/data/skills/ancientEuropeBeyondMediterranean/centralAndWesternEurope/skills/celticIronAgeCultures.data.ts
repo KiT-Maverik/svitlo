@@ -5,6 +5,7 @@ export const celticIronAgeCultures_Skill_Data = defineSkill({
   id: '44b3d703-102b-4c58-86d1-721c346c287a',
   name: {
     en: 'Celtic Iron Age Cultures',
+    it: "Culture celtiche dell'età del ferro",
     zh: '凯尔特铁器时代文化',
     hi: 'लौह युग की केल्टिक संस्कृतियाँ',
     es: 'Culturas celtas de la Edad del Hierro',
@@ -39,6 +40,7 @@ export const celticIronAgeCultures_Skill_Data = defineSkill({
       'Study Hallstatt and La Tène material cultures and the limits of assigning archaeological finds to ethnic names.',
     frontend: {
       en: 'Explore Celtic-related Iron Age cultures through archaeological finds.',
+      it: "Esplora le culture legate ai Celti nell'età del ferro attraverso i ritrovamenti archeologici.",
       zh: '通过考古发现探索与凯尔特人有关的铁器时代文化。',
       hi: 'पुरातात्त्विक खोजों के माध्यम से केल्टिक-संबंधित लौह युगीन संस्कृतियों को जानें।',
       es: 'Explora las culturas de la Edad del Hierro vinculadas a los celtas mediante hallazgos arqueológicos.',

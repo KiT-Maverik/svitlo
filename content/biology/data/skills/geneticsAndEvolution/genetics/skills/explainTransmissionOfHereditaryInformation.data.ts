@@ -5,6 +5,7 @@ export const explainTransmissionOfHereditaryInformation_Skill_Data = defineSkill
   id: '415e75b4-2c99-4f0b-a631-b98a440b4bde',
   name: {
     en: 'Explain Transmission of Hereditary Information',
+    it: "Spiegare la trasmissione dell'informazione ereditaria",
     zh: '解释遗传信息的传递',
     hi: 'आनुवंशिक सूचना का संचरण समझाना',
     es: 'Explicar la transmisión de información hereditaria',
@@ -39,6 +40,7 @@ export const explainTransmissionOfHereditaryInformation_Skill_Data = defineSkill
       'Explain how DNA is copied and distributed during cell division and passed between generations through sex cells or asexual reproduction. Distinguish transmission of molecular information from its expression in observable traits.',
     frontend: {
       en: 'Understand how hereditary information is copied and passed on.',
+      it: "Comprendi come l'informazione ereditaria viene copiata e trasmessa.",
       zh: '理解遗传信息如何复制并传给后代。',
       hi: 'समझें कि वंशानुगत जानकारी की प्रतिलिपि कैसे बनती है और वह आगे कैसे पहुँचती है।',
       es: 'Comprende cómo se copia y se transmite la información hereditaria.',

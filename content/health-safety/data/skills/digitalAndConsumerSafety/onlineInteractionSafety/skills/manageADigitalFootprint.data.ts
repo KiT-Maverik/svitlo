@@ -5,6 +5,7 @@ export const manageADigitalFootprint_Skill_Data = defineSkill({
   id: '3105f993-ce8d-4254-8859-922296c23017',
   name: {
     en: 'Manage a digital footprint',
+    it: 'Gestire la propria impronta digitale',
     zh: '管理数字足迹',
     hi: 'डिजिटल पदचिह्न सँभालना',
     es: 'Gestionar la huella digital',
@@ -39,6 +40,7 @@ export const manageADigitalFootprint_Skill_Data = defineSkill({
       'Consider persistence, redistribution, and audience of posted information, including the limits of deleting content after sharing.',
     frontend: {
       en: 'Understand that shared digital information can persist after deletion.',
+      it: "Comprendi che le informazioni condivise online possono rimanere accessibili anche dopo l'eliminazione.",
       zh: '理解已分享的数字信息在删除后仍可能长期留存。',
       hi: 'समझो कि साझा की गई डिजिटल जानकारी हटाने के बाद भी बनी रह सकती है।',
       es: 'Comprende que la información compartida puede permanecer incluso después de eliminarla.',

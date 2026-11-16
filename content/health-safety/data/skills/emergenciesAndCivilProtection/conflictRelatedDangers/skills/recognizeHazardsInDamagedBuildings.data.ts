@@ -5,6 +5,7 @@ export const recognizeHazardsInDamagedBuildings_Skill_Data = defineSkill({
   id: '592ac848-6c5f-499f-b80f-100338b4ad83',
   name: {
     en: 'Recognize hazards in damaged buildings',
+    it: 'Riconoscere i pericoli negli edifici danneggiati',
     zh: '识别受损建筑中的危险',
     hi: 'क्षतिग्रस्त इमारतों के खतरे पहचानना',
     es: 'Reconocer riesgos en edificios dañados',
@@ -39,6 +40,7 @@ export const recognizeHazardsInDamagedBuildings_Skill_Data = defineSkill({
       'Avoid compromised structures, debris, unstable utilities, and unauthorized entry until qualified personnel assess the site.',
     frontend: {
       en: 'Avoid unstable buildings and dangerous infrastructure after damage.',
+      it: 'Evita edifici instabili e infrastrutture pericolose dopo un danneggiamento.',
       zh: '建筑受损后，避开不稳固的结构和危险基础设施。',
       hi: 'नुकसान के बाद अस्थिर इमारतों और खतरनाक ढाँचे से दूर रहें।',
       es: 'Evita edificios inestables e infraestructuras peligrosas después de daños.',

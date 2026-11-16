@@ -13,6 +13,7 @@ export const wavePhenomena_SkillGroup_Data = defineSkillGroup({
   id: '8a9c2e30-5221-42e2-9adf-84085ee72d7f',
   name: {
     en: 'Wave Phenomena',
+    it: 'Fenomeni ondulatori',
     zh: '波动现象',
     hi: 'तरंग घटनाएँ',
     es: 'Fenómenos ondulatorios',
@@ -63,6 +64,7 @@ export const wavePhenomena_SkillGroup_Data = defineSkillGroup({
       'Reflection, refraction, interference, diffraction, and resonance can occur in different kinds of physical waves.',
     frontend: {
       en: 'Discover how waves reflect, bend, overlap, spread and resonate.',
+      it: 'Scopri come le onde si riflettono, cambiano direzione, si sovrappongono, si diffondono e risuonano.',
       zh: '了解波如何反射、折射、叠加、衍射和共振。',
       hi: 'जानें कि तरंगें कैसे परावर्तित, अपवर्तित, अध्यारोपित, विवर्तित और अनुनादित होती हैं।',
       es: 'Descubre cómo las ondas se reflejan, refractan, superponen, difractan y resuenan.',

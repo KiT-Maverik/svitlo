@@ -5,6 +5,7 @@ export const amines_Skill_Data = defineSkill({
   id: '901cac73-ecae-4458-b1a4-6d8746606432',
   name: {
     en: 'Amines',
+    it: 'Ammine',
     zh: '胺',
     hi: 'ऐमीन',
     es: 'Aminas',
@@ -38,6 +39,7 @@ export const amines_Skill_Data = defineSkill({
     methodological: 'Relate nitrogen-containing organic groups to basicity and substitution.',
     frontend: {
       en: 'Explore the behavior of nitrogen-containing amine groups.',
+      it: 'Esplora il comportamento dei gruppi amminici contenenti azoto.',
       zh: '探索含氮胺官能团的化学行为。',
       hi: 'नाइट्रोजन युक्त ऐमीन समूहों के रासायनिक व्यवहार का अध्ययन करें।',
       es: 'Explora el comportamiento químico de los grupos amino que contienen nitrógeno.',
