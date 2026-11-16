@@ -50,7 +50,8 @@ Other language values are not fabricated.
 
 Generated TypeScript uses valid unquoted object keys, shorthand collection
 properties, factory-specific generic arguments, and types derived from the
-Lesson's immutable YAML language tuple. Skill UUIDs are resolved to actual
+provisional active `languages` tuple in `constants.ts` (initially the source
+document language). The complete planned YAML language tuple stays untouched. Skill UUIDs are resolved to actual
 textbook Skill imports, never replaced with invented symbols. Unresolved or
 duplicate Skill references are reported rather than silently serialized as
 authoritative source references.
@@ -61,6 +62,45 @@ textbook build must recognize that entrypoint independently of the existing
 UUID directory. Stage 4 changes Lesson Scene/media specification handoffs to the colocated
 slug modules. It does **not** change Scene implementation IDs or create
 real binary assets.
+
+## Provisional source-language authoring scope (implemented)
+
+The Lesson YAML `config.params.languages` remains the **complete planned**
+language set, with its original values and order. During initial scaffolding,
+`renderLessonModules` creates one active `constants.ts` export using a
+new one-element tuple from `production.documentLanguage` **directly**, not
+by truncating, slicing or filtering the YAML tuple. The complete YAML tuple
+is emitted separately as a **commented-out declaration of the same name** for
+manual activation after translations are ready.
+
+For example, `production.documentLanguage: en` and
+`config.params.languages: [en, uk, pl, qm]` produce:
+
+```ts
+import type { LanguageCode } from '@svitlo/engine/build';
+
+// Restore the complete language set when translations are ready:
+// export const languages = ["en","uk","pl","qm"] as const satisfies readonly [LanguageCode, ...LanguageCode[]];
+
+export const languages = ["en"] as const satisfies readonly [LanguageCode, ...LanguageCode[]];
+export type LessonLanguages = typeof languages;
+```
+
+The root `defineLesson` uses the active `languages` value; nested
+Configurators use its derived `LessonLanguages` type. This enables an
+initial source-language-only Lesson draft without inventing translations or
+loosening `RequireLanguages` / `ChildrenSupporting`. Only the active source
+language can be previewed/published until translations are truly present.
+After completing the translations, the author can manually activate the
+commented full declaration and deactivate the provisional one; the existing
+TypeScript constraints enforce expanded coverage.
+
+The builder never modifies the YAML or overwrites existing authored
+`constants.ts` (or other Lesson source) files. `generate` retains its
+creation-only `SKIP` protection, and `check` remains strictly read-only.
+The scaffolder is still draft-only; pending media, Scene, Review and other
+dependencies may prevent TypeScript compilation. This does not introduce
+a new Props API, language override, or publication mode.
 
 ## Stage 3 file-backed Markdown/Code
 
