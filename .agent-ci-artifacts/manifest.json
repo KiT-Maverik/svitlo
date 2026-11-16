@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 3,
+  "kind": "pr-scoped-agent-ci-artifacts",
+  "sourceCommit": "78ac52c7335f94beadcbd054931562f0c907c6f1",
+  "scope": {
+    "kind": "assessment-methods",
+    "package": null,
+    "locale": "it",
+    "component": null,
+    "lesson": null
+  },
+  "packages": [],
+  "locales": [
+    "it"
+  ],
+  "generated": [
+    {
+      "kind": "assessment-method",
+      "locale": "it",
+      "path": ".agent-ci-artifacts/assessment-methods/it.md",
+      "missing": 32,
+      "reviewReady": false
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "documents": 1,
+    "failures": 0,
+    "missingTranslations": 32,
+    "incompleteDocuments": 1,
+    "taxonomyDocuments": 0,
+    "lessonDocuments": 0,
+    "assessmentMethodDocuments": 1,
+    "uiKitDocuments": 0,
+    "geographyHomeCopyDocuments": 0
+  }
+}
