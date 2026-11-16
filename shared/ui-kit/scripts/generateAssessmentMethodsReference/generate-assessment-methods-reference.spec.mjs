@@ -86,8 +86,14 @@ test('every supported language has exactly the canonical 16 keys, IDs and author
       assert.ok(method.localizedDescription.trim().length > 0);
       assert.ok(markdown.includes(method.id));
       assert.ok(markdown.includes(method.title));
-      assert.ok(markdown.includes('- **Localized description (' + locale + '):** ' +
-        method.localizedDescription.replace(/([*_()[\]<>])/g, '\\$1')));
+      assert.ok(
+        markdown.includes(
+          '- **Localized description (' +
+            locale +
+            '):** ' +
+            method.localizedDescription.replace(/([*_()[\]<>])/g, '\\$1'),
+        ),
+      );
       assert.ok(markdown.includes(method.description.replace(/([*_()[\]<>])/g, '\\$1')));
     }
   }
@@ -241,8 +247,12 @@ test('PR-artifact manifest records success, failures and only allowed temporary 
 test('Italian draft reference marks missing titles while strict generation rejects them', () =>
   withFixture(root => {
     const registry = sources[0];
-    replaceFile(root, registry, source => source.replace('export const DEFAULT_SUPPORTED_LANGUAGES = [',
-      "export const DEFAULT_SUPPORTED_LANGUAGES = [\n  { locale: 'it-IT', language: 'it' },"));
+    replaceFile(root, registry, source =>
+      source.replace(
+        'export const DEFAULT_SUPPORTED_LANGUAGES = [',
+        "export const DEFAULT_SUPPORTED_LANGUAGES = [\n  { locale: 'it-IT', language: 'it' },",
+      ),
+    );
     assert.throws(() => readAssessmentMethodsReference({ root, locale: 'it' }), /missing \[it\]/);
     const draft = readAssessmentMethodsReference({ root, locale: 'it', allowMissing: true });
     assert.equal(draft.missing, 32);

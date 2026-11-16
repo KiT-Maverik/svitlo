@@ -159,7 +159,8 @@ function readAssessmentMethodDefinitions(root, languages, allowMissing = false) 
     if (allowMissing) {
       const unexpected = Object.keys(config.title).filter(code => !languages.includes(code));
       if (unexpected.length) throw new Error('Unexpected Assessment Method language(s): ' + unexpected.join(', '));
-      if (typeof config.title.en !== 'string' || !config.title.en.trim()) throw new Error('Missing English title for ' + key);
+      if (typeof config.title.en !== 'string' || !config.title.en.trim())
+        throw new Error('Missing English title for ' + key);
     } else {
       assertExactKeys(config.title, languages, 'Assessment Method titles for ' + key);
     }
@@ -208,7 +209,8 @@ export function readAssessmentMethodsReference({ root = repoRoot, locale, allowM
     if (!missingDescription && localizedDescription === '%%MISSING%%') {
       throw new Error('Reserved marker in Assessment Method description: ' + key);
     }
-    if (!missingTitle && /[\r\n]/.test(title)) throw new Error('Multiline Assessment Method title for ' + key + ' (' + locale + ')');
+    if (!missingTitle && /[\r\n]/.test(title))
+      throw new Error('Multiline Assessment Method title for ' + key + ' (' + locale + ')');
     if (!missingDescription && /[\r\n]/.test(localizedDescription)) {
       throw new Error('Multiline Assessment Method description for ' + key + ' (' + locale + ')');
     }
@@ -223,8 +225,11 @@ export function readAssessmentMethodsReference({ root = repoRoot, locale, allowM
   return {
     locale,
     methods,
-    missing: methods.reduce((count, method) =>
-      count + Number(method.title === '%%MISSING%%') + Number(method.localizedDescription === '%%MISSING%%'), 0),
+    missing: methods.reduce(
+      (count, method) =>
+        count + Number(method.title === '%%MISSING%%') + Number(method.localizedDescription === '%%MISSING%%'),
+      0,
+    ),
   };
 }
 
@@ -241,7 +246,11 @@ export function renderAssessmentMethodsReference(options) {
     '<!-- GENERATED FROM CODE; DO NOT EDIT. -->',
     '# Assessment Methods — ' + locale,
     '',
-    'Localized titles and descriptions: ' + tick + locale + tick + '. English methodological source is shown for review.',
+    'Localized titles and descriptions: ' +
+      tick +
+      locale +
+      tick +
+      '. English methodological source is shown for review.',
     '',
     'An **Assessment Method** specifies the cognitive operation a learner must demonstrate and the evidence a task should elicit. ' +
       'A **Question type** specifies how the learner supplies a response (such as selecting, matching or entering text). ' +
@@ -259,9 +268,14 @@ export function renderAssessmentMethodsReference(options) {
       ').',
     '',
     'Methods: ' + methods.length,
-    ...(options.allowMissing ? ['Missing translations: ' + missing,
-      ...(missing > 0
-        ? ['', '> DRAFT REFERENCE: missing localized fields; not approved for independent review.'] : [])] : []),
+    ...(options.allowMissing
+      ? [
+          'Missing translations: ' + missing,
+          ...(missing > 0
+            ? ['', '> DRAFT REFERENCE: missing localized fields; not approved for independent review.']
+            : []),
+        ]
+      : []),
     '',
   ];
   for (const method of methods) {
@@ -280,7 +294,14 @@ export function renderAssessmentMethodsReference(options) {
 }
 
 /** Integrates with the existing Agent CI Artifacts manifest and cleanup policy. */
-export function generateAssessmentMethodsReviewArtifacts({ root, output, languages, manifest, saveManifest, allowMissing = false }) {
+export function generateAssessmentMethodsReviewArtifacts({
+  root,
+  output,
+  languages,
+  manifest,
+  saveManifest,
+  allowMissing = false,
+}) {
   const destinationRoot = path.join(output, 'assessment-methods');
   if (path.resolve(output) !== path.resolve(root, '.agent-ci-artifacts')) {
     throw new Error('Assessment Methods output must be the PR-scoped .agent-ci-artifacts directory');
@@ -293,8 +314,13 @@ export function generateAssessmentMethodsReviewArtifacts({ root, output, languag
       const missing = Number(markdown.match(/^Missing translations: (\d+)$/m)?.[1] ?? 0);
       const relative = 'assessment-methods/' + locale + '.md';
       fs.writeFileSync(path.join(output, relative), markdown, 'utf8');
-      manifest.generated.push({ kind: 'assessment-method', locale, path: '.agent-ci-artifacts/' + relative,
-        missing, reviewReady: missing === 0 });
+      manifest.generated.push({
+        kind: 'assessment-method',
+        locale,
+        path: '.agent-ci-artifacts/' + relative,
+        missing,
+        reviewReady: missing === 0,
+      });
       stats.generated++;
       process.stdout.write('Generated ' + relative + '\n');
     } catch (error) {
