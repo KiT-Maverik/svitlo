@@ -5,7 +5,7 @@ export const multimessengerEvidence_Skill_Data = defineSkill({
   id: '134a1b71-7e68-433b-87c0-e7163e549ffc',
   name: {
     en: 'Multimessenger Evidence',
-    it: 'Prove multimessaggero',
+    it: 'Prove multimessaggere',
     qm: 'Bir qaç haberci delillerini birleştirüv',
     bn: 'বহু-বার্তাবাহক প্রমাণ',
     ur: 'کئی ذرائع سے حاصل شواہد',
