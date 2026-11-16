@@ -1,4 +1,4 @@
-import { defineContentSection, defineMarkdown } from '@svitlo/engine/build';
+import { defineContentSection, defineMarkdown, readMarkdown } from '@svitlo/engine/build';
 import { howLightMoves_languages } from '../../constants';
 import { checkpoint } from './checkpoints/checkpoint';
 import { lightPropagationSimulation } from './scenes/lightPropagationSimulation';
@@ -49,9 +49,8 @@ export const contentSection = defineContentSection({
         slug: 'p1',
         type: 'markdown',
         params: {},
-        files: {
-          moduleUrl: new URL('./markdown/p1/', import.meta.url).href,
-          languages: howLightMoves_languages,
+        locale: {
+          value: readMarkdown(new URL('./markdown/p1/locale/', import.meta.url).href, howLightMoves_languages),
         },
       }),
       p2: defineMarkdown({
@@ -59,9 +58,8 @@ export const contentSection = defineContentSection({
         slug: 'p2',
         type: 'markdown',
         params: {},
-        files: {
-          moduleUrl: new URL('./markdown/p2/', import.meta.url).href,
-          languages: howLightMoves_languages,
+        locale: {
+          value: readMarkdown(new URL('./markdown/p2/locale/', import.meta.url).href, howLightMoves_languages),
         },
       }),
       p3: defineMarkdown({
@@ -69,9 +67,8 @@ export const contentSection = defineContentSection({
         slug: 'p3',
         type: 'markdown',
         params: {},
-        files: {
-          moduleUrl: new URL('./markdown/p3/', import.meta.url).href,
-          languages: howLightMoves_languages,
+        locale: {
+          value: readMarkdown(new URL('./markdown/p3/locale/', import.meta.url).href, howLightMoves_languages),
         },
       }),
       lightRayDiagram,
