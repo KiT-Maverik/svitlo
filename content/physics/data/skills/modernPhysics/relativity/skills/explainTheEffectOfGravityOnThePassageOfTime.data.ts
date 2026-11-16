@@ -40,7 +40,7 @@ export const explainTheEffectOfGravityOnThePassageOfTime_Skill_Data = defineSkil
       'The relative rates of clocks can depend on gravitational potential and observation conditions; this is a physical effect of general relativity.',
     frontend: {
       en: 'Explore how gravity can change the relative rates of clocks.',
-      it: 'Esplora come la gravità può modificare la velocità relativa con cui procedono gli orologi.',
+      it: 'Esplora come la gravità possa modificare il ritmo con cui gli orologi misurano il trascorrere del tempo.',
       zh: '探索引力如何改变不同位置时钟的相对走时速率。',
       hi: 'जानो कि गुरुत्वाकर्षण अलग-अलग स्थानों पर घड़ियों के चलने की सापेक्ष दर कैसे बदल सकता है।',
       es: 'Explora cómo la gravedad puede modificar el ritmo relativo al que marchan los relojes.',
