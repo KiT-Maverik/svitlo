@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 3,
+  "kind": "pr-scoped-agent-ci-artifacts",
+  "sourceCommit": "55bc79c1664cb4686b4744a8b814b66b4b599ae4",
+  "scope": {
+    "kind": "skills",
+    "package": "content/philosophy",
+    "locale": "it",
+    "component": null,
+    "lesson": null
+  },
+  "packages": [
+    "content/philosophy"
+  ],
+  "locales": [
+    "it"
+  ],
+  "generated": [
+    {
+      "kind": "taxonomy",
+      "textbook": "content/philosophy",
+      "locale": "it",
+      "path": ".agent-ci-artifacts/taxonomies/philosophy/it.md",
+      "domains": 12,
+      "groups": 48,
+      "skills": 222,
+      "missing": 0,
+      "reviewReady": true
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "documents": 1,
+    "failures": 0,
+    "missingTranslations": 0,
+    "incompleteDocuments": 0,
+    "taxonomyDocuments": 1,
+    "lessonDocuments": 0,
+    "assessmentMethodDocuments": 0,
+    "uiKitDocuments": 0,
+    "geographyHomeCopyDocuments": 0
+  }
+}
