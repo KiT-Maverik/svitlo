@@ -40,7 +40,7 @@ export const locateTheCauseOfAnError_Skill_Data = defineSkill({
       'Narrow a defect to a particular instruction, condition, or state transition by tracing execution and testing hypotheses. Recognizing a wrong result does not by itself identify its cause.',
     frontend: {
       en: 'Trace a programming error to the instruction or condition causing it.',
-      it: "Risalire dall'errore di programmazione all'istruzione o alla condizione che lo provoca.",
+      it: "Individua l'istruzione, la condizione o il cambiamento di stato che provoca un errore seguendo l'esecuzione del programma.",
       zh: '追踪程序错误，找到造成错误的指令或条件。',
       hi: 'प्रोग्राम की गलती को उसके कारण बने निर्देश या शर्त तक खोजें।',
       es: 'Rastrea un error de programación hasta la instrucción o condición que lo provoca.',
