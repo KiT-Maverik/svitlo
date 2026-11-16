@@ -76,7 +76,7 @@ Skills: 4
 
 **Methodological description (English):** Connect cooling moist air and condensation onto tiny particles with cloud formation, distinguishing suspended droplets or ice crystals from rainfall already reaching the ground.
 
-**User-friendly description (it):** Spiega come l'umidità condensa formando minuscole goccioline d'acqua o cristalli di ghiaccio nelle nuvole.
+**User-friendly description (it):** Spiega come l'aria umida, raffreddandosi, forma minuscole goccioline d'acqua o cristalli di ghiaccio nelle nuvole.
 
 ##### Spiegare come si formano le precipitazioni
 
@@ -604,13 +604,13 @@ Skills: 5
 
 **User-friendly description (it):** Individua sulle carte le fasce sismiche e la loro relazione con i margini delle placche.
 
-##### Interpretare l'esposizione geografica ai rischi geologici
+##### Interpretare l'esposizione geografica ai pericoli geologici
 
 [interpretGeographicExposureToGeologicalHazards.data.ts](../../../content/geography/data/skills/geology/earthquakesAndVolcanism/skills/interpretGeographicExposureToGeologicalHazards.data.ts)
 
 **Methodological description (English):** Use an earthquake, volcano or fault map together with settlement locations to identify potentially exposed places, distinguishing hazard location from a precise prediction of future damage.
 
-**User-friendly description (it):** Usa le carte dei rischi geologici per individuare gli insediamenti esposti a tali eventi.
+**User-friendly description (it):** Usa le carte dei pericoli geologici per individuare gli insediamenti esposti a tali eventi.
 
 ##### Riconoscere le forme del rilievo create dall'attività vulcanica
 
@@ -730,13 +730,13 @@ Skills: 5
 
 **User-friendly description (it):** Riconosci quando una concentrazione naturale di minerali utili costituisce un giacimento.
 
-##### Spiegare perché un giacimento minerario può essere o non essere un giacimento sfruttabile
+##### Spiegare perché non tutti i giacimenti minerari sono sfruttabili
 
 [explainWhyAMineralDepositMayOrMayNotBeAnOre.data.ts](../../../content/geography/data/skills/geology/mineralDeposits/skills/explainWhyAMineralDepositMayOrMayNotBeAnOre.data.ts)
 
 **Methodological description (English):** Relate concentration, recoverability, access and prevailing economic or technical conditions to whether extraction is practical, without equating 'ore' with every rock containing metal.
 
-**User-friendly description (it):** Spiega perché alcuni giacimenti possono essere estratti in modo praticabile e altri no.
+**User-friendly description (it):** Spiega perché lo sfruttamento di alcuni giacimenti è praticabile e di altri no.
 
 ##### Individuare le conseguenze geografiche dell'estrazione mineraria
 
@@ -1780,7 +1780,7 @@ Skills: 3
 
 **Methodological description (English):** Identify regional and temporal variations in tidal water levels and their implications for coastlines and navigation, distinguishing tidal cycles from persistent ocean currents.
 
-**User-friendly description (it):** Confronta come le maree variano secondo il luogo e il momento lungo le coste.
+**User-friendly description (it):** Confronta le variazioni delle maree tra luoghi e momenti diversi lungo le coste.
 
 #### Fiumi e bacini idrografici
 
