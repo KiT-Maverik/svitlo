@@ -92,7 +92,6 @@ export const defineCheckpointAnswer = <
     content: { items: Items & ChildrenSupporting<Languages, Items>; order: string[] };
   },
 ) => {
-  validate(config);
   const { id, type, slug } = config;
   const initialItems: Items = { ...config.content.items };
   const initialOrder = [...config.content.order];
@@ -140,6 +139,7 @@ export const defineCheckpointAnswer = <
 
   const props = (options: PublicationLanguageOptions<Languages>): AnswerPublication<AnswerBase> => {
     const languages = resolvePublicationLanguages(options);
+    validate({ id, type, slug, content: { items: initialItems, order: initialOrder } });
     const built = buildContent(initialItems, initialOrder, languages);
     const output = {
       base: { id, slug, type, content: built.bases },
@@ -157,6 +157,7 @@ export const defineCheckpointAnswer = <
   ): AnswerPublication<AnswerOverrideBase> => {
     try {
       const languages = resolvePublicationLanguages(options);
+      validate({ id, type, slug, content: { items: initialItems, order: initialOrder } });
       if (!isObject(patch)) throw new Error('Expected an overrides object');
       for (const key of Object.keys(patch))
         if (key !== 'content') throw new Error('Unknown Answer override field: ' + key);

@@ -85,7 +85,6 @@ export function defineFlashcardSide<
   const Items extends Record<string, Block>,
   const Languages extends readonly LanguageCode[] = AllLanguageCodes,
 >(config: { items: Items & ChildrenSupporting<Languages, Items>; order: string[] }) {
-  validateSide(config);
   const initialItems: Items = { ...config.items };
   const initialOrder = [...config.order];
   const items = { ...initialItems };
@@ -130,6 +129,7 @@ export function defineFlashcardSide<
 
   const props = (options: PublicationLanguageOptions<Languages>): SidePublication => {
     const languages = resolvePublicationLanguages(options);
+    validateSide({ items: initialItems, order: initialOrder });
     const result = structuredClone(buildContent(initialItems, initialOrder, languages));
     validatePublication(result, languages);
     return result;
@@ -142,6 +142,7 @@ export function defineFlashcardSide<
     options: PublicationLanguageOptions<Languages>,
   ): SidePublication => {
     const languages = resolvePublicationLanguages(options);
+      validateSide({ items: initialItems, order: initialOrder });
     if (!isRecord(patch)) throw new Error('Expected a Flashcard side override object');
     for (const key of Object.keys(patch)) {
       if (!['items', 'additionalItems', 'order'].includes(key))

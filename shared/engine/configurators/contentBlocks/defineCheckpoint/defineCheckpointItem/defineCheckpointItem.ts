@@ -89,12 +89,12 @@ export const defineCheckpointItem = <
     answer: Answer & ChildSupporting<Languages, Answer>;
   },
 ) => {
-  validate(config);
   const { id, type, slug, question, answer, check } = config;
   const base = { id, type, slug, ...(check !== undefined ? { check } : {}) };
 
   const props = (options: PublicationLanguageOptions<Languages>): ItemPublication<ItemBase> => {
     const languages = resolvePublicationLanguages(options);
+    validate({ id, type, slug, question, answer, ...(check !== undefined ? { check } : {}) });
     const builtQuestion = question.build.props({ languages });
     const builtAnswer = answer.build.props({ languages });
     const locale: ItemFiles = {};
@@ -123,6 +123,7 @@ export const defineCheckpointItem = <
   ): ItemPublication<ItemOverrideBase> => {
     try {
       const languages = resolvePublicationLanguages(options);
+      validate({ id, type, slug, question, answer, ...(check !== undefined ? { check } : {}) });
       if (!isObject(patch)) throw new Error('Expected an overrides object');
       for (const key of Object.keys(patch))
         if (!['check', 'question', 'answer'].includes(key))
