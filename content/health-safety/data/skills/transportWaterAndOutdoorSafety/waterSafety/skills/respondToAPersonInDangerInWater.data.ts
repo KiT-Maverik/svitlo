@@ -40,7 +40,7 @@ export const respondToAPersonInDangerInWater_Skill_Data = defineSkill({
       'Call for help and use safe reach-or-throw assistance where appropriate without putting an untrained rescuer into the water.',
     frontend: {
       en: 'Seek help and use safe non-entry assistance for someone in water danger.',
-      it: 'Chiedi aiuto e presta assistenza sicura senza entrare in acqua a una persona in pericolo.',
+      it: 'Chiedi aiuto e presta soccorso in sicurezza a una persona in pericolo, senza entrare in acqua.',
       zh: '寻求救援，优先采用岸上非下水援助方式。',
       hi: 'मदद बुलाएँ और पानी में उतरे बिना सुरक्षित सहायता दें।',
       es: 'Pide ayuda y ofrece asistencia segura sin entrar al agua.',
