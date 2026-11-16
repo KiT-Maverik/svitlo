@@ -5,6 +5,7 @@ export const macroeconomicShocks_Skill_Data = defineSkill({
   id: '3d55ce6d-34ca-4282-88e9-7fb9a890f00b',
   name: {
     en: 'Макроекономічні шоки',
+    it: 'Shock macroeconomici',
     zh: '宏观经济冲击',
     hi: 'समष्टि आर्थिक झटके',
     es: 'Perturbaciones macroeconómicas',
@@ -39,6 +40,7 @@ export const macroeconomicShocks_Skill_Data = defineSkill({
       'Distinguish demand, supply, and financial disturbances by their possible effects on output and prices.',
     frontend: {
       en: 'Compare how different kinds of shocks affect the economy.',
+      it: "Confronta gli effetti di diversi tipi di shock sull'economia.",
       zh: '比较不同类型的冲击如何影响经济。',
       hi: 'तुलना करें कि विभिन्न प्रकार के झटके अर्थव्यवस्था को कैसे प्रभावित करते हैं।',
       es: 'Compara cómo afectan a la economía distintos tipos de perturbaciones.',

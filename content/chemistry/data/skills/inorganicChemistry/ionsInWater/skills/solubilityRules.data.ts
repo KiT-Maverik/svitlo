@@ -5,6 +5,7 @@ export const solubilityRules_Skill_Data = defineSkill({
   id: 'cb010de7-42a1-488c-abe6-3e93fde31b02',
   name: {
     en: 'Solubility Rules',
+    it: 'Regole di solubilità',
     zh: '溶解性规律',
     hi: 'विलेयता के नियम',
     es: 'Reglas de solubilidad',
@@ -38,6 +39,7 @@ export const solubilityRules_Skill_Data = defineSkill({
     methodological: 'Use empirical patterns to anticipate precipitation while checking exceptions and conditions.',
     frontend: {
       en: 'Use solubility patterns to anticipate precipitates while checking exceptions.',
+      it: 'Usa le regolarità della solubilità per prevedere la formazione di precipitati, verificando le eccezioni.',
       zh: '利用溶解性规律预测沉淀，同时检查例外情况。',
       hi: 'अवक्षेप बनने का अनुमान लगाने के लिए विलेयता के पैटर्न उपयोग करें, लेकिन अपवाद भी जाँचें।',
       es: 'Usa patrones de solubilidad para prever precipitados y comprueba las excepciones.',

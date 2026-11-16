@@ -5,6 +5,7 @@ export const observingConditions_Skill_Data = defineSkill({
   id: 'e03d9418-ddf6-4202-946a-6e76d2deeb85',
   name: {
     en: 'Observing Conditions',
+    it: 'Condizioni di osservazione',
     qm: 'Közetüv şartları',
     zh: '观测条件',
     hi: 'अवलोकन की परिस्थितियाँ',
@@ -39,6 +40,7 @@ export const observingConditions_Skill_Data = defineSkill({
       'Evaluate how clouds, atmospheric turbulence, transparency, artificial light and horizon obstructions affect a planned observation.',
     frontend: {
       en: 'Choose observing times and places with suitable weather, darkness and visibility.',
+      it: 'Scegli orari e luoghi di osservazione con condizioni adatte di meteo, buio e visibilità.',
       qm: 'Ava, qaranlıq ve körünüv şartlarına köre közetüv içün uyğun vaqıt ve yer saylañız.',
       zh: '选择天气、黑暗程度和能见度适合观测的时间和地点。',
       hi: 'उपयुक्त मौसम, अँधेरे और दृश्यता वाले समय और स्थान चुनें।',

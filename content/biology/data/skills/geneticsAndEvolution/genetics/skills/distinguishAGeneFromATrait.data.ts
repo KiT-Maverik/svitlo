@@ -5,6 +5,7 @@ export const distinguishAGeneFromATrait_Skill_Data = defineSkill({
   id: 'd141d11a-9313-48e0-bb73-e160c76958e7',
   name: {
     en: 'Distinguish a Gene from a Trait',
+    it: 'Distinguere un gene da un carattere',
     zh: '区分基因与性状',
     hi: 'जीन और लक्षण में अंतर करना',
     es: 'Distinguir un gen de un rasgo',
@@ -39,6 +40,7 @@ export const distinguishAGeneFromATrait_Skill_Data = defineSkill({
       'Explain that a gene is a segment of hereditary information, while an observable trait results from its activity and environmental influences.',
     frontend: {
       en: 'Distinguish a gene from the visible trait it may help influence.',
+      it: 'Distingui un gene dal carattere osservabile che può contribuire a influenzare.',
       zh: '区分基因及其可能影响的可观察性状。',
       hi: 'जीन और उस दिखाई देने वाले लक्षण में अंतर करें जिस पर जीन प्रभाव डाल सकता है।',
       es: 'Distingue un gen del rasgo observable en el que puede influir.',

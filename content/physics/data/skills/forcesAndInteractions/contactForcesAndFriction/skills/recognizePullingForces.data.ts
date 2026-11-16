@@ -5,6 +5,7 @@ export const recognizePullingForces_Skill_Data = defineSkill({
   id: '4b3998ea-8366-4a38-8c3d-610d410b66f4',
   name: {
     en: 'Recognize pulling forces',
+    it: 'Riconoscere le forze di trazione',
     zh: '识别拉力',
     hi: 'खींचने वाले बल पहचानना',
     es: 'Reconocer las fuerzas de tracción',
@@ -39,6 +40,7 @@ export const recognizePullingForces_Skill_Data = defineSkill({
       'Pulling is a contact interaction through a connection or grip, with force directed toward its source; it differs from pressure and pushing.',
     frontend: {
       en: 'Recognize a pulling force and the connection through which it acts.',
+      it: 'Riconosci una forza di trazione e il collegamento attraverso cui agisce.',
       zh: '识别拉力及其通过何种连接传递。',
       hi: 'खींचने वाले बल और उसके काम करने वाली कड़ी को पहचानें।',
       es: 'Reconoce una fuerza de tracción y la conexión mediante la que actúa.',

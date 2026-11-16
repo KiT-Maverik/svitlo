@@ -5,6 +5,7 @@ export const astronomicalObservationRecords_Skill_Data = defineSkill({
   id: '05f79f1d-da4d-4c52-a2d1-332cfd48867c',
   name: {
     en: 'Astronomical Observation Records',
+    it: 'Registrazioni delle osservazioni astronomiche',
     qm: 'Astronomik közetüv qaydları',
     zh: '天文观测记录',
     hi: 'खगोलीय अवलोकन के अभिलेख',
@@ -39,6 +40,7 @@ export const astronomicalObservationRecords_Skill_Data = defineSkill({
       'Record the time, location, conditions, method and observed changes so that a sighting can be interpreted or compared.',
     frontend: {
       en: 'Record when, where and how you saw something in the sky.',
+      it: 'Registra quando, dove e come hai osservato un fenomeno nel cielo.',
       qm: 'Kökte bir şeyni qaçan, qayda ve nasıl körgeniñizni qayd etiñiz.',
       zh: '记录你在何时、何地、以何种方式看到了天空中的天体或现象。',
       hi: 'लिखें कि आपने आकाश में कुछ कब, कहाँ और कैसे देखा।',

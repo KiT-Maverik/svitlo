@@ -5,6 +5,7 @@ export const compulsiveAndRepetitivePatterns_Skill_Data = defineSkill({
   id: '3201830a-2129-4df4-9cd8-6cd410fe9885',
   name: {
     en: 'Compulsive and Repetitive Patterns',
+    it: 'Schemi compulsivi e ripetitivi',
     zh: '强迫与重复行为模式',
     hi: 'बाध्यकारी और दोहराए जाने वाले पैटर्न',
     es: 'Patrones compulsivos y repetitivos',
@@ -39,6 +40,7 @@ export const compulsiveAndRepetitivePatterns_Skill_Data = defineSkill({
       'Distinguish persistent unwanted thoughts and ritualized behavior associated with impairment from ordinary habits.',
     frontend: {
       en: 'Distinguish impairing unwanted thoughts and rituals from ordinary routines.',
+      it: 'Distingui pensieri indesiderati e rituali invalidanti dalle normali abitudini quotidiane.',
       zh: '区分造成困扰的侵入性想法及仪式行为与普通习惯。',
       hi: 'परेशान करने वाले अनचाहे विचारों और बाध्यकारी क्रियाओं को सामान्य आदतों से अलग करें।',
       es: 'Distingue pensamientos no deseados y rituales incapacitantes de rutinas habituales.',

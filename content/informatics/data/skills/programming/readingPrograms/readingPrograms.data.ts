@@ -12,6 +12,7 @@ export const readingPrograms_SkillGroup_Data = defineSkillGroup({
   id: '3880c31f-9f35-46e2-bdf7-4049c05922c1',
   name: {
     en: 'Reading Programs',
+    it: 'Lettura dei programmi',
     zh: '阅读程序',
     hi: 'प्रोग्राम पढ़ना',
     es: 'Lectura de programas',
@@ -60,6 +61,7 @@ export const readingPrograms_SkillGroup_Data = defineSkillGroup({
       'Interpreting existing commands and their execution order, including intermediate state changes and final outcomes. This differs from writing new instructions or fixing an identified defect.',
     frontend: {
       en: 'Discover how to read a program and follow what it does.',
+      it: 'Scopri come leggere un programma e seguire le sue operazioni.',
       zh: '探索如何阅读程序并追踪其行为。',
       hi: 'जानें कि प्रोग्राम कैसे पढ़ें और वह क्या करता है, कैसे समझें।',
       es: 'Descubre cómo leer un programa y seguir lo que hace.',

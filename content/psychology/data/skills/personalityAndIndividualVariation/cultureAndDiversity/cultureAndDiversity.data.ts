@@ -12,6 +12,7 @@ export const cultureAndDiversity_SkillGroup_Data = defineSkillGroup({
   id: '344b7dfb-067a-425a-afcb-3e9d60ddc72b',
   name: {
     en: 'Culture and Diversity',
+    it: 'Cultura e diversità',
     zh: '文化与多样性',
     hi: 'संस्कृति और विविधता',
     es: 'Cultura y diversidad',
@@ -60,6 +61,7 @@ export const cultureAndDiversity_SkillGroup_Data = defineSkillGroup({
       'Human psychological patterns must be examined against differences in context, institutions, and ways of interpreting experience.',
     frontend: {
       en: 'Learn how culture and diversity affect psychological experience.',
+      it: 'Scopri come cultura e diversità influenzino le esperienze psicologiche.',
       zh: '了解文化与多样性如何影响心理体验。',
       hi: 'जानें कि संस्कृति और विविधता मनोवैज्ञानिक अनुभव को कैसे प्रभावित करती हैं।',
       es: 'Aprende cómo la cultura y la diversidad influyen en la experiencia psicológica.',

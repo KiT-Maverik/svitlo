@@ -5,6 +5,7 @@ export const halfLife_Skill_Data = defineSkill({
   id: 'd43c4ea2-0821-4347-9c9c-dbd85622f5a6',
   name: {
     en: 'Half-Life',
+    it: 'Tempo di dimezzamento',
     zh: '半衰期',
     hi: 'अर्धायु',
     es: 'Período de semidesintegración',
@@ -39,6 +40,7 @@ export const halfLife_Skill_Data = defineSkill({
       'Interpret the characteristic decay time of a radioactive population without implying that individual nuclei have predictable lifetimes.',
     frontend: {
       en: 'Understand half-life as a pattern for many radioactive atoms, not a clock for one atom.',
+      it: 'Comprendi il tempo di dimezzamento come andamento statistico di molti atomi radioattivi, non come orologio di un singolo atomo.',
       zh: '把半衰期理解为大量放射性原子的统计规律，而不是某一个原子的计时器。',
       hi: 'अर्धायु को अनेक रेडियोधर्मी परमाणुओं का सांख्यिकीय पैटर्न समझें, किसी एक परमाणु की घड़ी नहीं।',
       es: 'Comprende la semivida como un patrón de muchos átomos radiactivos, no como un reloj de un solo átomo.',

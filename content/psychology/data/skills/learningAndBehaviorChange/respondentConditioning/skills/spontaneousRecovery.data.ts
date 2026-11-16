@@ -5,6 +5,7 @@ export const spontaneousRecovery_Skill_Data = defineSkill({
   id: '87592b6d-3f42-466b-9dc1-e23de6fe9d36',
   name: {
     en: 'Spontaneous Recovery',
+    it: 'Recupero spontaneo',
     zh: '自发恢复',
     hi: 'स्वतः पुनरावर्तन',
     es: 'Recuperación espontánea',
@@ -38,6 +39,7 @@ export const spontaneousRecovery_Skill_Data = defineSkill({
     methodological: 'Explain why a previously weakened conditioned response may reappear after a delay.',
     frontend: {
       en: 'Understand why an extinguished response can sometimes return.',
+      it: 'Comprendi perché una risposta estinta possa talvolta ricomparire.',
       zh: '理解已经消退的条件反应为何有时会再次出现。',
       hi: 'समझें कि विलोपित प्रतिक्रिया कभी-कभी फिर क्यों दिखाई देती है।',
       es: 'Comprende por qué una respuesta extinguida puede reaparecer a veces.',

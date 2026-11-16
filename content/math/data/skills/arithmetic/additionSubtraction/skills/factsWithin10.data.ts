@@ -11,6 +11,7 @@ export const factsWithin10_Skill_Data = defineSkill({
     ka: 'შეკრება და გამოკლება — გამოთვლები 10-ის ფარგლებში',
     kk: 'Қосу және азайту — 10 көлеміндегі негізгі амалдар',
     en: 'Addition and subtraction — Number facts ≤ 10',
+    it: 'Addizione e sottrazione — Calcoli entro il 10',
     qm: 'Qoşuv ve çıqaruv — 10 içinde esaplav',
     zh: '加减法 — 基本算式 ≤ 10',
     hi: 'जोड़ और घटाव — गणना तथ्य ≤ 10',
@@ -39,6 +40,7 @@ export const factsWithin10_Skill_Data = defineSkill({
       'Addition and subtraction facts can be recalled or derived without recounting physical objects. Part-whole relations and inverse operations support accurate computation and generalization.',
     frontend: {
       en: 'You can find sums and differences within ten using number relationships rather than counting each item.',
+      it: 'Puoi trovare somme e differenze entro il 10 usando le relazioni tra i numeri invece di contare ogni elemento.',
       qm: 'Er eşyannı ayrı-ayrı saymaq yerine sayılar arasındaki bağlılıqlarnı qullanıp, 10 içindeki toplam ve farqlarnı tapa bilesiñ.',
       zh: '你能利用数字之间的关系求出十以内的和与差，而不必逐个数数。',
       hi: 'तुम हर वस्तु को गिने बिना संख्याओं के संबंधों से दस के भीतर योग और अंतर निकाल सकते हो।',

@@ -5,6 +5,7 @@ export const coordinateChangesInASharedDigitalProject_Skill_Data = defineSkill({
   id: 'b9ca0419-8047-43a7-889b-4bd7d12e9e3e',
   name: {
     en: 'Coordinate Changes in a Shared Digital Project',
+    it: 'Coordinare le modifiche in un progetto digitale condiviso',
     zh: '协调共享数字项目中的修改',
     hi: 'साझा डिजिटल परियोजना में बदलावों का समन्वय करना',
     es: 'Coordinar cambios en un proyecto digital compartido',
@@ -39,6 +40,7 @@ export const coordinateChangesInASharedDigitalProject_Skill_Data = defineSkill({
       'Agree on ownership of changes, merge order, and resolution when contributors edit the same area. Collaboration is not just placing files in a common folder.',
     frontend: {
       en: 'Plan who changes what and how shared edits will be combined.',
+      it: 'Pianifica chi modifica cosa e come verranno combinate le modifiche condivise.',
       zh: '规划谁负责修改什么，以及如何合并共享的改动。',
       hi: 'तय करें कि कौन क्या बदलेगा और साझा बदलाव कैसे जोड़े जाएँगे।',
       es: 'Planifica quién cambia qué y cómo se unirán las modificaciones compartidas.',

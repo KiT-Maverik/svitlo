@@ -5,6 +5,7 @@ export const wholesaleTrade_Skill_Data = defineSkill({
   id: 'd480881d-ac5d-4ae7-9271-aa475116a467',
   name: {
     en: 'Оптова торгівля',
+    it: "Commercio all'ingrosso",
     zh: '批发贸易',
     hi: 'थोक व्यापार',
     es: 'Comercio mayorista',
@@ -39,6 +40,7 @@ export const wholesaleTrade_Skill_Data = defineSkill({
       'Analyze bulk transactions and intermediaries linking producers and retailers, distinguishing wholesale pricing and functions from retail sales.',
     frontend: {
       en: 'Understand how wholesale trading differs from selling directly to consumers.',
+      it: "Comprendi come il commercio all'ingrosso differisce dalla vendita diretta ai consumatori.",
       zh: '理解批发与直接向消费者零售的区别。',
       hi: 'समझें कि थोक व्यापार सीधे ग्राहकों को बेचने से कैसे अलग है।',
       es: 'Comprende en qué se diferencia la venta mayorista de la venta directa a consumidores.',

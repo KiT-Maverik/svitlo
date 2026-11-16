@@ -5,6 +5,7 @@ export const analyzeEarlyItalianRenaissancePainting_Skill_Data = defineSkill({
   id: '6ab96dd1-dfc6-4eff-8fff-43126b9c9d3e',
   name: {
     en: 'Analyze Early Italian Renaissance Painting',
+    it: 'Analizzare la pittura del primo Rinascimento italiano',
     zh: '分析意大利早期文艺复兴绘画',
     hi: 'प्रारंभिक इतालवी पुनर्जागरण चित्रकला का विश्लेषण करें',
     es: 'Analizar la pintura del primer Renacimiento italiano',
@@ -39,6 +40,7 @@ export const analyzeEarlyItalianRenaissancePainting_Skill_Data = defineSkill({
       'Examine experimentation with spatial construction, human figures and narrative organization within specified early Renaissance workshops and settings.',
     frontend: {
       en: 'See how early Italian Renaissance painters explored space, people and narrative.',
+      it: 'Osserva come i pittori del primo Rinascimento italiano esploravano lo spazio, le figure umane e il racconto.',
       zh: '了解意大利早期文艺复兴画家如何探索空间、人物和叙事。',
       hi: 'जानें कि प्रारंभिक इतालवी पुनर्जागरण के चित्रकारों ने स्थान, मानव आकृतियों और कथा का अन्वेषण कैसे किया।',
       es: 'Descubre cómo los pintores del primer Renacimiento italiano exploraron el espacio, las figuras y la narración.',

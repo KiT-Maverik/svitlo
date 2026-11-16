@@ -5,6 +5,7 @@ export const identifyEnvironmentalShiftsFromComparativeGeographicEvidence_Skill_
   id: '39addcdb-17af-4363-bbfd-fcd3475d0e39',
   name: {
     en: 'Identify environmental shifts from comparative geographic evidence',
+    it: 'Individuare cambiamenti ambientali confrontando prove geografiche',
     zh: '通过地理证据对比识别环境变化',
     hi: 'तुलनात्मक भौगोलिक साक्ष्य से पर्यावरणीय बदलाव पहचानना',
     es: 'Identificar cambios ambientales comparando pruebas geográficas',
@@ -39,6 +40,7 @@ export const identifyEnvironmentalShiftsFromComparativeGeographicEvidence_Skill_
       'Use two dated distributions or observations to describe a change in habitat range, without automatically assigning a single cause.',
     frontend: {
       en: 'Use maps or observations from different dates to notice habitat shifts.',
+      it: 'Usa carte o osservazioni di date diverse per individuare cambiamenti nella distribuzione degli habitat.',
       zh: '利用不同日期的地图或观测结果识别栖息地分布的变化。',
       hi: 'अलग-अलग तारीखों के मानचित्रों या अवलोकनों से आवास में बदलाव पहचानें।',
       es: 'Usa mapas u observaciones de distintas fechas para detectar cambios en los hábitats.',

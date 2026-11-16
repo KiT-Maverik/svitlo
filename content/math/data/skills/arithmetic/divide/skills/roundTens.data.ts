@@ -11,6 +11,7 @@ export const roundTens_Skill_Data = defineSkill({
     ka: 'გაყოფა — სრული ათეულები',
     kk: 'Бөлу — толық ондықтар',
     en: 'Division — Whole tens',
+    it: 'Divisione — Decine intere',
     qm: 'Bölüv — tolu onluqlar',
     zh: '除法 — 整十数',
     hi: 'भाग — पूरी दहाइयाँ',
@@ -39,6 +40,7 @@ export const roundTens_Skill_Data = defineSkill({
       'Division of multiples of ten can operate on whole tens when quotients preserve place-value weights. If the tens do not divide evenly, regroup into smaller units rather than silently discard a remainder.',
     frontend: {
       en: 'You can divide whole tens by a one-digit number, changing tens into smaller place-value units if they do not divide evenly.',
+      it: 'Puoi dividere decine intere per un numero di una cifra, trasformando le decine in unità più piccole quando la divisione non è esatta.',
       qm: 'Tolu onluqlarnı bir raqamlı sayığa böle bilesiñ. Onluqlar qaldıqsız bölünmese, olarnı daa kiçik razryad birliklerine çevir.',
       zh: '你能用一位数除整十数，如果十位不能整除，可以把十换成更小的数位单位。',
       hi: 'तुम पूरी दहाइयों को एक अंक से भाग दे सकते हो और दहाइयाँ पूरी न बँटें तो छोटी स्थान-मूल्य इकाइयों में बदल सकते हो।',

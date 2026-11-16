@@ -5,6 +5,7 @@ export const locateAPointFromALatitudeLongitudePair_Skill_Data = defineSkill({
   id: 'c9053fd9-cf5d-4dd1-82bb-0e256469c892',
   name: {
     en: 'Locate a point from a latitude–longitude pair',
+    it: 'Localizzare un punto tramite una coppia latitudine-longitudine',
     zh: '根据经纬度坐标对定位',
     hi: 'अक्षांश–देशांतर युग्म से स्थान ढूँढ़ना',
     es: 'Localizar un punto a partir de latitud y longitud',
@@ -38,6 +39,7 @@ export const locateAPointFromALatitudeLongitudePair_Skill_Data = defineSkill({
     methodological: 'Use both coordinates in their proper order and hemispheres to identify a geographic position.',
     frontend: {
       en: 'Find a location from a correctly ordered latitude–longitude pair.',
+      it: "Trova un luogo a partire da una coppia di latitudine e longitudine riportata nell'ordine corretto.",
       zh: '根据按正确顺序给出的纬度和经度找到位置。',
       hi: 'सही क्रम में दिए गए अक्षांश और देशांतर से स्थान खोजें।',
       es: 'Encuentra un lugar con un par de coordenadas de latitud y longitud en el orden correcto.',

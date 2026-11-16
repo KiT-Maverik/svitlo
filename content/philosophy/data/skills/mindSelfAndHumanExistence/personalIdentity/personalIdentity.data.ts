@@ -12,6 +12,7 @@ export const personalIdentity_SkillGroup_Data = defineSkillGroup({
   id: '5ff765a3-fed4-4469-871d-5f77ee91f446',
   name: {
     en: 'Personal Identity',
+    it: 'Identità personale',
     zh: '个人同一性',
     hi: 'व्यक्तिगत पहचान',
     es: 'Identidad personal',
@@ -60,6 +61,7 @@ export const personalIdentity_SkillGroup_Data = defineSkillGroup({
       'The self may be characterized by bodily, psychological, narrative, or relational continuity. The question is what makes someone the same person, not how memory works empirically.',
     frontend: {
       en: 'Explore what makes someone the same person despite changes over time.',
+      it: 'Esplora che cosa rende una persona la stessa nonostante i cambiamenti nel tempo.',
       zh: '探索一个人经历时间变化后仍是同一个人的原因。',
       hi: 'समय के साथ बदलावों के बावजूद कोई व्यक्ति वही व्यक्ति कैसे बना रहता है, यह जानें।',
       es: 'Explora qué hace que alguien siga siendo la misma persona pese a cambiar con el tiempo.',

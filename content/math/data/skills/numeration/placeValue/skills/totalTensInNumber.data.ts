@@ -11,6 +11,7 @@ export const totalTensInNumber_Skill_Data = defineSkill({
     ka: 'რიცხვში სრული ათეულებისა და ასეულების რაოდენობა',
     kk: 'Сандағы толық ондықтар мен жүздіктердің саны',
     en: 'Total tens and hundreds in a number',
+    it: 'Numero totale di decine e centinaia in un numero',
     qm: 'Sayıdaki bütün tolu onluq ve yüzlükler',
     zh: '求一个数中完整的十和百的总数',
     hi: 'संख्या में कुल दहाइयाँ और सैकड़े',
@@ -39,6 +40,7 @@ export const totalTensInNumber_Skill_Data = defineSkill({
       'Distinguish the total number of complete units of a place value from the digit in that place: 348 contains 34 complete tens, although its tens digit is 4. Smaller-place remainders must be counted separately.',
     frontend: {
       en: 'Find all the complete tens or hundreds inside a number, not just the digit in that place. For example, 348 contains 34 full tens.',
+      it: 'Trova tutte le decine o centinaia complete contenute in un numero, non soltanto la cifra in quella posizione. Per esempio, 348 contiene 34 decine complete.',
       qm: 'Sayı içinde qaç tolu onluq ya da yüzlük olğanını tap; yalıñız o razryaddaki raqamnı sayma. Meselâ, 348 sayısında 34 tolu onluq bar.',
       zh: '找出一个数含有多少个完整的十或百，而不只是看该数位的数字。例如348含有34个完整的十。',
       hi: 'संख्या में पूरी दहाइयों या सैकड़ों की कुल गिनती करें, केवल उस स्थान का अंक नहीं। 348 में 34 पूरी दहाइयाँ हैं।',

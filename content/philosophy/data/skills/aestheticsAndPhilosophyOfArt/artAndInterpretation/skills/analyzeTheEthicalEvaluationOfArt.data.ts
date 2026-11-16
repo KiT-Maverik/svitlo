@@ -5,6 +5,7 @@ export const analyzeTheEthicalEvaluationOfArt_Skill_Data = defineSkill({
   id: 'd0b1ea09-2871-47b7-afdb-1bfdab8014ab',
   name: {
     en: 'Analyze the ethical evaluation of art',
+    it: "Analizzare la valutazione etica dell'arte",
     zh: '分析艺术的伦理评价',
     hi: 'कला के नैतिक मूल्यांकन का विश्लेषण',
     es: 'Analizar la valoración ética del arte',
@@ -39,6 +40,7 @@ export const analyzeTheEthicalEvaluationOfArt_Skill_Data = defineSkill({
       'Explore whether and how moral concerns about content, production, or reception bear on artistic appraisal.',
     frontend: {
       en: 'Examine whether moral concerns should influence artistic judgment.',
+      it: 'Esamina se le considerazioni morali debbano influenzare il giudizio artistico.',
       zh: '探讨道德问题是否应影响艺术判断。',
       hi: 'जाँचो कि नैतिक चिंताएँ कला के मूल्यांकन को प्रभावित करनी चाहिए या नहीं।',
       es: 'Examina si las cuestiones morales deberían influir en el juicio artístico.',

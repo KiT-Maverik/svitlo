@@ -5,6 +5,7 @@ export const compareMoralRealismAndAntiRealism_Skill_Data = defineSkill({
   id: '7cedc9b6-469c-4060-a76f-a9a7e2db113a',
   name: {
     en: 'Compare moral realism and anti-realism',
+    it: 'Confrontare realismo e antirealismo morale',
     zh: '比较道德实在论与反实在论',
     hi: 'नैतिक यथार्थवाद और प्रतियथार्थवाद की तुलना',
     es: 'Comparar realismo y antirrealismo moral',
@@ -39,6 +40,7 @@ export const compareMoralRealismAndAntiRealism_Skill_Data = defineSkill({
       'Assess opposing views about whether moral truths exist independently of attitudes, and distinguish this ontological disagreement from practical moral choices.',
     frontend: {
       en: 'Compare views that affirm objective moral truths with views that reject them.',
+      it: "Confronta le posizioni che affermano l'esistenza di verità morali oggettive con quelle che le negano.",
       zh: '比较承认客观道德真理的观点与否认其存在的观点。',
       hi: 'वस्तुनिष्ठ नैतिक सत्यों को स्वीकारने और अस्वीकारने वाले दृष्टिकोणों की तुलना करें।',
       es: 'Compara posturas que afirman verdades morales objetivas con otras que las rechazan.',

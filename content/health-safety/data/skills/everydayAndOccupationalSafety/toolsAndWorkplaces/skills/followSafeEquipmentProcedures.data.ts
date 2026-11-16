@@ -5,6 +5,7 @@ export const followSafeEquipmentProcedures_Skill_Data = defineSkill({
   id: '45c2e8ec-b7c8-485b-9b60-d9b42cd9484e',
   name: {
     en: 'Follow safe equipment procedures',
+    it: "Seguire procedure sicure per l'uso delle attrezzature",
     zh: '遵守设备安全操作程序',
     hi: 'उपकरणों की सुरक्षित प्रक्रियाओं का पालन',
     es: 'Seguir procedimientos seguros con equipos',
@@ -39,6 +40,7 @@ export const followSafeEquipmentProcedures_Skill_Data = defineSkill({
       'Respect guards, operating limits, maintenance restrictions, and stop conditions without attempting unauthorized repair.',
     frontend: {
       en: 'Respect safety guards, stop conditions and training requirements.',
+      it: 'Rispetta le protezioni di sicurezza, le condizioni di arresto e i requisiti di formazione.',
       zh: '遵守防护装置、停机条件和必要培训的要求。',
       hi: 'सुरक्षा कवच, रुकने की स्थिति और आवश्यक प्रशिक्षण का सम्मान करें।',
       es: 'Respeta las protecciones, las condiciones de parada y los requisitos de formación.',

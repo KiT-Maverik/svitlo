@@ -14,6 +14,7 @@ export const laborSupplyAndDemand_SkillGroup_Data = defineSkillGroup({
   id: '97b9982e-cbf5-428f-83e6-a05ee6cfa142',
   name: {
     en: 'Пропозиція та попит на працю',
+    it: 'Domanda e offerta di lavoro',
     zh: '劳动力供给与需求',
     hi: 'श्रम की आपूर्ति और माँग',
     es: 'Oferta y demanda de trabajo',
@@ -66,6 +67,7 @@ export const laborSupplyAndDemand_SkillGroup_Data = defineSkillGroup({
       'Workers and employers make interdependent decisions about working time, skills, wages, and numbers of jobs.',
     frontend: {
       en: 'Understand how workers and businesses shape the market for labor.',
+      it: 'Comprendi come lavoratori e imprese influenzano il mercato del lavoro.',
       zh: '理解劳动者和企业如何共同影响劳动力市场。',
       hi: 'समझें कि श्रमिक और व्यवसाय श्रम बाज़ार को कैसे आकार देते हैं।',
       es: 'Comprende cómo trabajadores y empresas configuran el mercado laboral.',

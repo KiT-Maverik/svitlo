@@ -5,6 +5,7 @@ export const guptaKingdom_Skill_Data = defineSkill({
   id: '80197cc7-5ad0-4a5c-b6ef-816f1c5873de',
   name: {
     en: 'Gupta Kingdom',
+    it: 'Regno Gupta',
     zh: '笈多王朝',
     hi: 'गुप्त साम्राज्य',
     es: 'Reino gupta',
@@ -39,6 +40,7 @@ export const guptaKingdom_Skill_Data = defineSkill({
       'Examine northern Indian politics, scholarship, and cultural centers without calling the period a uniform golden age for all.',
     frontend: {
       en: 'Learn about Gupta-era government, science and culture.',
+      it: "Scopri il governo, la scienza e la cultura dell'epoca Gupta.",
       zh: '了解笈多时期的政府、科学与文化。',
       hi: 'गुप्त काल के शासन, विज्ञान और संस्कृति के बारे में जानें।',
       es: 'Conoce el gobierno, la ciencia y la cultura del período gupta.',

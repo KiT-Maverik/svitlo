@@ -13,6 +13,7 @@ export const interpretationAndEvaluation_SkillGroup_Data = defineSkillGroup({
   id: '4dd3052d-eefd-4b00-b051-abc1c585973f',
   name: {
     en: 'Interpretation and Evaluation',
+    it: 'Interpretazione e valutazione',
     zh: '阐释与评价',
     hi: 'व्याख्या और मूल्यांकन',
     es: 'Interpretación y evaluación',
@@ -63,6 +64,7 @@ export const interpretationAndEvaluation_SkillGroup_Data = defineSkillGroup({
       'Judgments about art become more useful when observable evidence, contextual claims and chosen evaluative criteria are stated separately.',
     frontend: {
       en: 'Learn to discuss what an artwork might mean using evidence and clear criteria.',
+      it: "Impara a discutere i possibili significati di un'opera usando prove e criteri chiari.",
       zh: '学习运用证据和明确标准讨论艺术作品可能表达的含义。',
       hi: 'प्रमाणों और स्पष्ट मानदंडों के आधार पर चर्चा करें कि किसी कलाकृति का क्या अर्थ हो सकता है।',
       es: 'Aprende a debatir qué puede significar una obra utilizando pruebas y criterios claros.',

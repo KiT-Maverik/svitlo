@@ -5,6 +5,7 @@ export const designProductsForMaterialRecycling_Skill_Data = defineSkill({
   id: '092b78a8-0a2e-47de-a7f1-f4e5ee1cab2d',
   name: {
     en: 'Design products for material recycling',
+    it: 'Progettare prodotti per il riciclo dei materiali',
     zh: '为材料回收设计产品',
     hi: 'सामग्री पुनर्चक्रण के लिए उत्पाद डिज़ाइन करना',
     es: 'Diseñar productos para reciclar materiales',
@@ -39,6 +40,7 @@ export const designProductsForMaterialRecycling_Skill_Data = defineSkill({
       'Relate material identification, compatibility and separable assemblies to viable recovery of constituent materials.',
     frontend: {
       en: 'Plan for recovering materials when a product reaches the end of use.',
+      it: 'Pianifica il recupero dei materiali quando un prodotto raggiunge la fine del suo utilizzo.',
       zh: '规划产品使用终结时的材料回收。',
       hi: 'उपयोग समाप्त होने पर सामग्री वापस पाने की योजना बनाएँ।',
       es: 'Planifica la recuperación de materiales cuando termine el uso de un producto.',

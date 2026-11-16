@@ -13,6 +13,7 @@ export const foodborneHazards_SkillGroup_Data = defineSkillGroup({
   id: 'c278cf38-29cb-451a-b710-7c325d81568d',
   name: {
     en: 'Foodborne Hazards',
+    it: 'Rischi legati agli alimenti',
     zh: '食源性危害',
     hi: 'खाद्यजनित खतरे',
     es: 'Peligros transmitidos por alimentos',
@@ -63,6 +64,7 @@ export const foodborneHazards_SkillGroup_Data = defineSkillGroup({
       'Food safety depends on separation, temperature, handling, and storage; appearance or smell alone cannot always establish whether food is safe.',
     frontend: {
       en: 'Discover how food preparation and storage can prevent illness.',
+      it: 'Scopri come la preparazione e la conservazione degli alimenti possono prevenire le malattie.',
       zh: '了解食物准备和储存如何帮助预防疾病。',
       hi: 'जानें कि भोजन तैयार करने और रखने के तरीके बीमारी कैसे रोक सकते हैं।',
       es: 'Descubre cómo preparar y guardar alimentos correctamente ayuda a prevenir enfermedades.',

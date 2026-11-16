@@ -12,6 +12,7 @@ export const sorting_SkillGroup_Data = defineSkillGroup({
   id: '00da5ac1-e268-4e7a-9676-d3a6631feb96',
   name: {
     en: 'Sorting',
+    it: 'Ordinamento',
     zh: '排序',
     hi: 'क्रमबद्ध करना',
     es: 'Ordenación',
@@ -55,6 +56,7 @@ export const sorting_SkillGroup_Data = defineSkillGroup({
       'Put elements in order according to a criterion using successive selection, insertion into a sorted prefix, or swapping adjacent items. Each method has its own independently assessable Skill.',
     frontend: {
       en: 'Learn how sorting methods arrange values into a chosen order.',
+      it: "Impara come i metodi di ordinamento dispongono i valori nell'ordine scelto.",
       zh: '学习如何使用排序方法将值按指定顺序排列。',
       hi: 'मानों को चुने हुए क्रम में लगाने की विधियाँ सीखें।',
       es: 'Aprende cómo los métodos de ordenación organizan valores en el orden elegido.',

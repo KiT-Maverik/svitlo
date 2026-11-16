@@ -5,6 +5,7 @@ export const historicalUncertainty_Skill_Data = defineSkill({
   id: '6c9ed840-5814-44b8-b841-45690e997ebb',
   name: {
     en: 'Historical Uncertainty',
+    it: 'Incertezza storica',
     zh: '历史的不确定性',
     hi: 'ऐतिहासिक अनिश्चितता',
     es: 'Incertidumbre histórica',
@@ -39,6 +40,7 @@ export const historicalUncertainty_Skill_Data = defineSkill({
       'Separate well-supported conclusions from hypotheses and unknowns, updating interpretations when new evidence appears.',
     frontend: {
       en: 'Understand what historians know, suspect or still cannot determine.',
+      it: 'Comprendi che cosa gli storici sanno, ipotizzano o non riescono ancora a determinare.',
       zh: '理解历史学家哪些事情已经知道、哪些只是推测、哪些仍无法确定。',
       hi: 'समझें कि इतिहासकार क्या जानते हैं, किसका अनुमान लगाते हैं और क्या अभी तय नहीं कर सकते।',
       es: 'Comprende lo que los historiadores saben, sospechan o aún no pueden determinar.',

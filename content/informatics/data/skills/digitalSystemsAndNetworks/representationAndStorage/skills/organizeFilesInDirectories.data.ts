@@ -5,6 +5,7 @@ export const organizeFilesInDirectories_Skill_Data = defineSkill({
   id: 'b07ce53a-51b9-40b3-b7ad-c1b580c3da22',
   name: {
     en: 'Organize Files in Directories',
+    it: 'Organizzare i file in cartelle',
     zh: '在目录中整理文件',
     hi: 'फ़ोल्डरों में फ़ाइलें व्यवस्थित करना',
     es: 'Organizar archivos en directorios',
@@ -39,6 +40,7 @@ export const organizeFilesInDirectories_Skill_Data = defineSkill({
       'Create a clear directory hierarchy for resources and choose names and locations that allow a file to be found by its path. Directory organization does not determine file format.',
     frontend: {
       en: 'Arrange files in useful folders so they can be found by their paths.',
+      it: 'Disponi i file in cartelle utili per ritrovarli tramite i rispettivi percorsi.',
       zh: '把文件放在合适的文件夹中，以便通过路径找到它们。',
       hi: 'फ़ाइलों को उपयोगी फ़ोल्डरों में रखें ताकि उनके पथ से उन्हें खोजा जा सके।',
       es: 'Ordena los archivos en carpetas útiles para encontrarlos por sus rutas.',

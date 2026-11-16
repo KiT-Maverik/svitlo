@@ -10,6 +10,7 @@ export const artisticUnderstandingAndCriticism_SkillDomain_Data = defineSkillDom
   id: '60ca5a77-0ef4-4397-a1b0-619852fbea02',
   title: {
     en: 'Artistic Understanding and Criticism',
+    it: "Comprensione e critica dell'arte",
     zh: '艺术理解与批评',
     hi: 'कला की समझ और आलोचना',
     es: 'Comprensión y crítica artística',
@@ -53,6 +54,7 @@ export const artisticUnderstandingAndCriticism_SkillDomain_Data = defineSkillDom
       'Interpretation of artistic work depends on the medium, formal relationships, intentions and cultural contexts. This field supports attentive analysis of existing artworks rather than instruction in a particular material technique.',
     frontend: {
       en: 'Discover how artistic choices and cultural context help us understand and discuss artworks.',
+      it: 'Scopri come le scelte artistiche e il contesto culturale ci aiutano a comprendere e discutere le opere.',
       zh: '探索艺术选择和文化背景如何帮助我们理解并讨论艺术作品。',
       hi: 'जानें कि कलात्मक चयन और सांस्कृतिक संदर्भ हमें कलाकृतियों को समझने और उन पर चर्चा करने में कैसे मदद करते हैं।',
       es: 'Descubre cómo las decisiones artísticas y el contexto cultural nos ayudan a comprender y debatir las obras.',

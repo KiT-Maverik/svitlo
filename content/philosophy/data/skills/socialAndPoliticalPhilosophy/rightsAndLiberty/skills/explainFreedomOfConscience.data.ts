@@ -5,6 +5,7 @@ export const explainFreedomOfConscience_Skill_Data = defineSkill({
   id: '12b47368-50cf-44b0-85b7-f0dc90b34e09',
   name: {
     en: 'Explain freedom of conscience',
+    it: 'Spiegare la libertà di coscienza',
     zh: '解释良心自由',
     hi: 'अंतःकरण की स्वतंत्रता समझाना',
     es: 'Explicar la libertad de conciencia',
@@ -39,6 +40,7 @@ export const explainFreedomOfConscience_Skill_Data = defineSkill({
       'Assess why protecting personal belief and nonbelief may matter independently of agreement with any particular worldview.',
     frontend: {
       en: 'Explore why people should be free to hold religious or nonreligious convictions.',
+      it: 'Esplora perché le persone dovrebbero essere libere di avere convinzioni religiose o non religiose.',
       zh: '探索人们为何应该能够自由持有宗教或非宗教信念。',
       hi: 'जानो कि लोगों को धार्मिक या गैर-धार्मिक विश्वास रखने की आज़ादी क्यों होनी चाहिए।',
       es: 'Explora por qué las personas deben ser libres de tener convicciones religiosas o no religiosas.',

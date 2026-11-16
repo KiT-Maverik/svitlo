@@ -5,6 +5,7 @@ export const checkCorroborationAcrossSources_Skill_Data = defineSkill({
   id: '28d6a919-6caf-4e52-a016-2a363a666a99',
   name: {
     en: 'Check corroboration across sources',
+    it: 'Verificare la conferma tra fonti diverse',
     zh: '核查多个来源的相互印证',
     hi: 'अलग-अलग स्रोतों से पुष्टि की जाँच',
     es: 'Comprobar la corroboración entre fuentes',
@@ -39,6 +40,7 @@ export const checkCorroborationAcrossSources_Skill_Data = defineSkill({
       'Determine whether apparently agreeing accounts are genuinely independent or reproduce one underlying report.',
     frontend: {
       en: 'Check whether several agreeing sources truly provide independent evidence.',
+      it: 'Controlla se più fonti concordanti forniscano davvero prove indipendenti.',
       zh: '检查多个一致的来源是否真的提供独立证据。',
       hi: 'जाँचें कि सहमत दिखने वाले कई स्रोत वास्तव में स्वतंत्र साक्ष्य देते हैं या नहीं।',
       es: 'Comprueba si varias fuentes concordantes aportan pruebas verdaderamente independientes.',

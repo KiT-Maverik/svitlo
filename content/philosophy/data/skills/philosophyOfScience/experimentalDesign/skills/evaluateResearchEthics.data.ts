@@ -5,6 +5,7 @@ export const evaluateResearchEthics_Skill_Data = defineSkill({
   id: '8dd89c03-8e93-4ce4-bc3c-e11af0808216',
   name: {
     en: 'Evaluate research ethics',
+    it: "Valutare l'etica della ricerca",
     zh: '评估研究伦理',
     hi: 'अनुसंधान नैतिकता का मूल्यांकन',
     es: 'Evaluar la ética de la investigación',
@@ -39,6 +40,7 @@ export const evaluateResearchEthics_Skill_Data = defineSkill({
       'Assess informed consent, voluntary participation, proportionality of risk, participant protection, and integrity of reporting in proposed research; distinguish ethical permissibility from whether a study can yield valid data.',
     frontend: {
       en: 'Consider consent, safety and truthful reporting when evaluating a proposed study.',
+      it: 'Considera il consenso, la sicurezza e la correttezza dei resoconti nel valutare uno studio proposto.',
       zh: '考虑知情同意、安全和诚实报告，以评估拟开展的研究。',
       hi: 'प्रस्तावित अध्ययन में सहमति, सुरक्षा और ईमानदार रिपोर्टिंग पर विचार करें।',
       es: 'Considera el consentimiento, la seguridad y la comunicación honesta al evaluar un estudio propuesto.',

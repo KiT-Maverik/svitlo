@@ -12,6 +12,7 @@ export const workAndOrganizations_SkillGroup_Data = defineSkillGroup({
   id: 'f03960a9-616f-4671-9cb9-dff1e7a7f208',
   name: {
     en: 'Work and Organizations',
+    it: 'Lavoro e organizzazioni',
     zh: '工作与组织',
     hi: 'कार्य और संगठन',
     es: 'Trabajo y organizaciones',
@@ -55,6 +56,7 @@ export const workAndOrganizations_SkillGroup_Data = defineSkillGroup({
       'Individual motivation, coordination, organizational culture, and workplace design shape performance and wellbeing at work.',
     frontend: {
       en: 'Learn how psychology explains cooperation, stress and motivation at work.',
+      it: 'Scopri come la psicologia spiega cooperazione, stress e motivazione sul lavoro.',
       zh: '了解心理学如何解释工作中的合作、压力和动机。',
       hi: 'जानें कि मनोविज्ञान काम पर सहयोग, तनाव और प्रेरणा को कैसे समझाता है।',
       es: 'Descubre cómo la psicología explica la cooperación, el estrés y la motivación en el trabajo.',

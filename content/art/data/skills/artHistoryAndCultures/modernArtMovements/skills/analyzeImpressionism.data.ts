@@ -5,6 +5,7 @@ export const analyzeImpressionism_Skill_Data = defineSkill({
   id: '82e09dfe-8fcb-4ab2-8af1-3c6da8da4fe3',
   name: {
     en: 'Analyze Impressionism',
+    it: "Analizzare l'Impressionismo",
     zh: '分析印象派',
     hi: 'प्रभाववाद का विश्लेषण करें',
     es: 'Analizar el impresionismo',
@@ -39,6 +40,7 @@ export const analyzeImpressionism_Skill_Data = defineSkill({
       'Connect broken brushwork, shifting light and scenes of modern life to specific Impressionist practices and their historical reception.',
     frontend: {
       en: 'Notice how Impressionist painters captured changing light and moments of modern life.',
+      it: 'Nota come i pittori impressionisti coglievano la luce mutevole e i momenti della vita moderna.',
       zh: '观察印象派画家如何捕捉光线变化与现代生活瞬间。',
       hi: 'देखें कि प्रभाववादी चित्रकारों ने बदलती रोशनी और आधुनिक जीवन के क्षणों को कैसे चित्रित किया।',
       es: 'Observa cómo los pintores impresionistas captaron la luz cambiante y momentos de la vida moderna.',

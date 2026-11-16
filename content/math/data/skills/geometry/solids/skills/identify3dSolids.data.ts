@@ -5,6 +5,7 @@ export const identify3dSolids_Skill_Data = defineSkill({
   id: '6aed363a-9049-445d-aa9e-fa35c8018855',
   name: {
     en: 'Identifying basic solid figures',
+    it: 'Riconoscere i principali solidi geometrici',
     qm: 'Esas hacımlı şekillerni tanımaq',
     lt: 'Pagrindinių erdvinių figūrų atpažinimas',
     lv: 'Pamata telpisku figūru atpazīšana',
@@ -39,6 +40,7 @@ export const identify3dSolids_Skill_Data = defineSkill({
       "Identify solids by their surface structure and the number or shape of faces, bases, edges, and vertices where applicable. Perspective drawings can distort proportions; geometric properties determine the solid's class.",
     frontend: {
       en: 'Recognize solid shapes by their surfaces, faces, edges, and corners, even when drawn from another viewpoint.',
+      it: 'Riconosci i solidi dalle superfici, facce, spigoli e vertici, anche quando sono disegnati da un altro punto di vista.',
       qm: 'Hacımlı şekillerni yüzleri, tüz yaqları, qırları ve köşelerine köre, başqa taraftan çizilgen olsa bile, tanı.',
       zh: '根据表面、面、棱和顶点识别立体图形，即使观察角度不同。',
       hi: 'ठोस आकृतियों को सतह, फलक, किनारों और कोनों से पहचानें, चाहे चित्र दूसरे कोण से हो।',

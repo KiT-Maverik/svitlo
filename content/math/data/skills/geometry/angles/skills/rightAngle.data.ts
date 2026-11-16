@@ -5,6 +5,7 @@ export const rightAngle_Skill_Data = defineSkill({
   id: '8a62dd2e-68cb-4e4f-b971-14aeb86d5a6e',
   name: {
     en: 'Identifying and checking right angles',
+    it: 'Riconoscere e verificare gli angoli retti',
     qm: 'Doğru köşelerni tanımaq ve teşkere etmek',
     lt: 'Stačiųjų kampų atpažinimas ir tikrinimas',
     lv: 'Taisu leņķu atpazīšana un pārbaude',
@@ -39,6 +40,7 @@ export const rightAngle_Skill_Data = defineSkill({
       'A right angle measures 90 degrees regardless of ray orientation. A reference or measuring tool can verify this property; rotating the drawing does not change the angle type.',
     frontend: {
       en: 'Find and check right angles, including ones tilted in a drawing. Every right angle is 90 degrees.',
+      it: 'Trova e verifica gli angoli retti, anche quelli inclinati in un disegno. Ogni angolo retto misura 90 gradi.',
       qm: 'Resimde qıya turğan doğru köşelerni de tapıp teşkere ete bilesiñ. Er doğru köşe 90 derecege teñ.',
       zh: '找出并检查直角，包括图中倾斜的直角。每个直角都是90度。',
       hi: 'झुके हुए चित्र में भी समकोण खोजें और जाँचें। हर समकोण 90 डिग्री होता है।',

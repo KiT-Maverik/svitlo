@@ -5,6 +5,7 @@ export const unknownSideFromPerimeter_Skill_Data = defineSkill({
   id: '41da7699-fdbd-4872-bb37-615a456a92c3',
   name: {
     en: 'Finding an unknown rectangle side from its perimeter',
+    it: 'Trovare un lato incognito del rettangolo dal perimetro',
     qm: 'Perimetrine köre dik dörtkenarnıñ belli olmağan tarafını tapmaq',
     lt: 'Nežinomos stačiakampio kraštinės radimas iš perimetro',
     lv: 'Nezināmas taisnstūra malas atrašana pēc perimetra',
@@ -39,6 +40,7 @@ export const unknownSideFromPerimeter_Skill_Data = defineSkill({
       'For a rectangle, P = 2(a+b) permits recovering an unknown side from the perimeter and known other side: b = P/2 - a. The result must be positive and expressed in compatible length units.',
     frontend: {
       en: 'Use a rectangle’s known perimeter and one side to calculate the length of the other side.',
+      it: "Usa il perimetro noto di un rettangolo e la lunghezza di un lato per calcolare la lunghezza dell'altro.",
       qm: 'Dik dörtkenarnıñ belli perimetri ve bir tarafınıñ uzunlığı yardımınen diger tarafınıñ uzunlığını esapla.',
       zh: '已知长方形的周长和一条边，算出另一条边的长度。',
       hi: 'आयत का परिमाप और एक भुजा जानकर दूसरी भुजा की लंबाई निकालें।',

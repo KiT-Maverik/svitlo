@@ -5,6 +5,7 @@ export const subsystemFunctions_Skill_Data = defineSkill({
   id: '7ada4a69-c3c2-4eb3-ae54-d4d86587ee22',
   name: {
     en: 'Subsystem functions',
+    it: 'Funzioni dei sottosistemi',
     zh: '子系统功能',
     hi: 'उपप्रणालियों के कार्य',
     es: 'Funciones de los subsistemas',
@@ -38,6 +39,7 @@ export const subsystemFunctions_Skill_Data = defineSkill({
     methodological: 'Identify why each major assembly is necessary to the overall service.',
     frontend: {
       en: 'Explain the role of each major subsystem in the overall function.',
+      it: 'Spiega il ruolo di ciascun sottosistema principale nella funzione complessiva.',
       zh: '解释各主要子系统在整体功能中的作用。',
       hi: 'समझाएँ कि हर प्रमुख उपप्रणाली पूरे सिस्टम के कार्य में क्या योगदान देती है।',
       es: 'Explica la función de cada subsistema principal dentro del conjunto.',

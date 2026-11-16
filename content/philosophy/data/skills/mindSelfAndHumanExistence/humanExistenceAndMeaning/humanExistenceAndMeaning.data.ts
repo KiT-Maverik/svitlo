@@ -12,6 +12,7 @@ export const humanExistenceAndMeaning_SkillGroup_Data = defineSkillGroup({
   id: '90504c2d-cce8-4feb-93fa-34689676c527',
   name: {
     en: 'Human Existence and Meaning',
+    it: 'Esistenza umana e significato',
     zh: '人类存在与意义',
     hi: 'मानव अस्तित्व और अर्थ',
     es: 'Existencia humana y sentido',
@@ -60,6 +61,7 @@ export const humanExistenceAndMeaning_SkillGroup_Data = defineSkillGroup({
       'Existential reflection examines how people understand purpose, authenticity, finitude, and commitments, without prescribing a single life ideal or substituting for mental-health care.',
     frontend: {
       en: 'Explore philosophical approaches to living a meaningful and authentic life.',
+      it: 'Esplora gli approcci filosofici a una vita autentica e ricca di significato.',
       zh: '探索关于如何过有意义且真实生活的哲学思考。',
       hi: 'सार्थक और प्रामाणिक जीवन जीने के दार्शनिक दृष्टिकोणों को जानें।',
       es: 'Explora enfoques filosóficos para vivir una vida significativa y auténtica.',

@@ -5,6 +5,7 @@ export const europeanBronzeAge_Skill_Data = defineSkill({
   id: '7cbe6eb7-b1cd-465d-80db-fab78e37eecc',
   name: {
     en: 'European Bronze Age',
+    it: 'Età del bronzo in Europa',
     zh: '欧洲青铜时代',
     hi: 'यूरोपीय कांस्य युग',
     es: 'Edad del Bronce europea',
@@ -39,6 +40,7 @@ export const europeanBronzeAge_Skill_Data = defineSkill({
       'Trace production, settlements, and exchange networks using local archaeological chronologies outside the Mediterranean.',
     frontend: {
       en: 'Discover how Bronze Age people worked and traded in Europe.',
+      it: "Scopri come le popolazioni dell'età del bronzo lavoravano e commerciavano in Europa.",
       zh: '了解青铜时代的欧洲人如何劳动与贸易。',
       hi: 'जानें कि कांस्य युग में यूरोप के लोग कैसे काम और व्यापार करते थे।',
       es: 'Descubre cómo trabajaban y comerciaban las personas de la Edad del Bronce en Europa.',

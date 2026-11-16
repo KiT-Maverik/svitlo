@@ -5,6 +5,7 @@ export const mainSequence_Skill_Data = defineSkill({
   id: '7dd1598d-acb4-45d1-8ad3-bf1be0436e39',
   name: {
     en: 'Main Sequence',
+    it: 'Sequenza principale',
     zh: '主序星阶段',
     hi: 'मुख्य अनुक्रम',
     es: 'Secuencia principal',
@@ -39,6 +40,7 @@ export const mainSequence_Skill_Data = defineSkill({
       'Explain why stars can remain in a long-lived core hydrogen-burning state and why mass changes its duration.',
     frontend: {
       en: 'Explain why stars spend much of their lives fusing hydrogen in their cores.',
+      it: 'Spiega perché le stelle trascorrono gran parte della loro vita fondendo idrogeno nel nucleo.',
       zh: '解释恒星为什么会在核心聚变氢的阶段度过生命中的大部分时间。',
       hi: 'समझाएँ कि तारे अपने जीवन का अधिकांश समय केंद्र में हाइड्रोजन का संलयन करते हुए क्यों बिताते हैं।',
       es: 'Explica por qué las estrellas pasan gran parte de su vida fusionando hidrógeno en sus núcleos.',

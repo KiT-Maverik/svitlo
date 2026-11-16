@@ -5,6 +5,7 @@ export const displayHardware_Skill_Data = defineSkill({
   id: '94465355-c9f8-4245-abce-0febd04832a6',
   name: {
     en: 'Display hardware',
+    it: 'Componenti hardware dei display',
     zh: '显示硬件',
     hi: 'डिस्प्ले हार्डवेयर',
     es: 'Hardware de pantalla',
@@ -39,6 +40,7 @@ export const displayHardware_Skill_Data = defineSkill({
       'Identify the physical image-forming panel, drive electronics and light-emission or modulation mechanisms independently from displayed software content.',
     frontend: {
       en: 'Recognize the main hardware functions of a display.',
+      it: 'Riconosci le principali funzioni hardware di uno schermo.',
       zh: '识别显示屏的主要硬件部件及其功能。',
       hi: 'जानें कि स्क्रीन इलेक्ट्रॉनिक संकेतों को दृश्य चित्र में कैसे बदलती है।',
       es: 'Descubre cómo las pantallas convierten señales electrónicas en imágenes visibles.',

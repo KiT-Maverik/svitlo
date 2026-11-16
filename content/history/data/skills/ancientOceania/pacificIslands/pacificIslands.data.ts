@@ -12,6 +12,7 @@ export const pacificIslands_SkillGroup_Data = defineSkillGroup({
   id: '5c26ca3e-28b8-435c-abc0-8959cf1af92f',
   name: {
     en: 'Pacific Islands',
+    it: 'Isole del Pacifico',
     zh: '太平洋岛屿',
     hi: 'प्रशांत महासागर के द्वीप',
     es: 'Islas del Pacífico',
@@ -55,6 +56,7 @@ export const pacificIslands_SkillGroup_Data = defineSkillGroup({
       'Seafaring societies progressively settled distant archipelagos, transporting languages, crops, animals, and navigation knowledge.',
     frontend: {
       en: 'Explore how people traveled among distant Pacific islands.',
+      it: 'Esplora come le persone viaggiavano tra le lontane isole del Pacifico.',
       zh: '探索人们如何在相距遥远的太平洋岛屿之间航行。',
       hi: 'जानें कि लोग प्रशांत महासागर के दूर-दूर स्थित द्वीपों के बीच कैसे यात्रा करते थे।',
       es: 'Explora cómo viajaban las personas entre lejanas islas del Pacífico.',

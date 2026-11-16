@@ -13,6 +13,7 @@ export const pictorialComposition_SkillGroup_Data = defineSkillGroup({
   id: '05ace255-9fc6-4cd9-9d64-000cb089cdb9',
   name: {
     en: 'Pictorial Composition',
+    it: 'Composizione pittorica',
     zh: '绘画构图',
     hi: 'चित्रात्मक संयोजन',
     es: 'Composición pictórica',
@@ -63,6 +64,7 @@ export const pictorialComposition_SkillGroup_Data = defineSkillGroup({
       "Color areas, focal structure and handling of edges determine a painting's organization separately from subject matter.",
     frontend: {
       en: 'Organize large areas, contrasts and edges to make a painting work as a whole.',
+      it: 'Organizza grandi aree, contrasti e contorni affinché il dipinto funzioni come un insieme.',
       zh: '组织大色块、对比和边缘关系，使画面形成统一整体。',
       hi: 'बड़े रंग-क्षेत्रों, विरोधाभासों और किनारों को व्यवस्थित करके चित्र को एक समग्र रूप दें।',
       es: 'Organiza las grandes áreas, los contrastes y los bordes para dar unidad al conjunto de la pintura.',

@@ -5,6 +5,7 @@ export const findStartOrEnd_Skill_Data = defineSkill({
   id: 'f98b80c1-0692-4ac2-a254-95a20ab13686',
   name: {
     en: 'Finding a start or end time from a duration',
+    it: "Trovare l'ora di inizio o di fine da una durata",
     qm: 'Devamlılığına köre başlanğıç ya da bitiş vaqıtını tapmaq',
     lt: 'Pradžios arba pabaigos laiko radimas pagal trukmę',
     lv: 'Sākuma vai beigu laika atrašana pēc ilguma',
@@ -39,6 +40,7 @@ export const findStartOrEnd_Skill_Data = defineSkill({
       'A known instant and a duration determine the other instant by adding or subtracting a time interval. Hour, day, and date rollovers must be handled without confusing clock-time notation with duration units.',
     frontend: {
       en: 'You can find when an event began or will end if you know its duration and the other time, including when the date changes.',
+      it: "Puoi trovare quando un evento è iniziato o terminerà conoscendo la durata e l'altro orario, anche quando cambia la data.",
       qm: 'Vaqianıñ devamlılığını ve başlanğıç ya da bitiş vaqıtlarından birini bilseñ, digerini tapa bilesiñ. Tarih deñişken alda da bu esaplavnı yerine ketire bilesiñ.',
       zh: '你能在知道持续时间和另一个时刻时，求出事件开始或结束的时刻，包括跨日期的情况。',
       hi: 'आप अवधि और दूसरा समय ज्ञात होने पर घटना के शुरू या समाप्त होने का समय निकाल सकते हैं, भले ही तारीख बदल जाए।',

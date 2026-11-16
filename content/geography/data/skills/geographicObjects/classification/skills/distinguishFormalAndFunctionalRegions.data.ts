@@ -5,6 +5,7 @@ export const distinguishFormalAndFunctionalRegions_Skill_Data = defineSkill({
   id: '7b8e91c5-9e1c-43a1-83f2-f11912f0fc91',
   name: {
     en: 'Distinguish formal and functional regions',
+    it: 'Distinguere regioni formali e funzionali',
     zh: '区分同质区域与功能区域',
     hi: 'औपचारिक और कार्यात्मक क्षेत्रों में अंतर करना',
     es: 'Distinguir regiones formales y funcionales',
@@ -39,6 +40,7 @@ export const distinguishFormalAndFunctionalRegions_Skill_Data = defineSkill({
       'Separate areas sharing a measurable characteristic from areas connected through activity around a center, such as a commuting region.',
     frontend: {
       en: 'Recognize regions defined by shared properties or by connections to a center.',
+      it: 'Riconosci le regioni definite da proprietà comuni o dai collegamenti con un centro.',
       zh: '识别根据共同特征或与某个中心的联系来划定的区域。',
       hi: 'साझा गुणों या किसी केंद्र से संबंधों के आधार पर बने क्षेत्रों को पहचानें।',
       es: 'Reconoce regiones definidas por propiedades compartidas o por vínculos con un centro.',

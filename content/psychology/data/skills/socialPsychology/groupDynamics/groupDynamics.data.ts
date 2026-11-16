@@ -13,6 +13,7 @@ export const groupDynamics_SkillGroup_Data = defineSkillGroup({
   id: 'dba1c136-fe98-4ef4-be7c-e632c64496c8',
   name: {
     en: 'Group Dynamics',
+    it: 'Dinamiche di gruppo',
     zh: '群体动力',
     hi: 'समूह की गतिशीलता',
     es: 'Dinámica de grupos',
@@ -57,6 +58,7 @@ export const groupDynamics_SkillGroup_Data = defineSkillGroup({
       'Belonging and coordination can alter performance, responsibility, intergroup attitudes, and collective decisions.',
     frontend: {
       en: 'Explore how group identities and discussions shape behavior.',
+      it: 'Esplora come le identità di gruppo e le discussioni influenzino il comportamento.',
       zh: '探索群体身份与讨论如何塑造行为。',
       hi: 'जानें कि समूह पहचान और चर्चाएँ व्यवहार कैसे बदलती हैं।',
       es: 'Explora cómo las identidades grupales y las conversaciones modelan el comportamiento.',

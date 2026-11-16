@@ -5,6 +5,7 @@ export const composeAMusicalPiece_Skill_Data = defineSkill({
   id: '989bb572-3c63-41f5-9c35-ab40002bb8a7',
   name: {
     en: 'Compose a Musical Piece',
+    it: 'Comporre un brano musicale',
     zh: '创作一首乐曲',
     hi: 'एक संगीत रचना तैयार करें',
     es: 'Componer una pieza musical',
@@ -38,6 +39,7 @@ export const composeAMusicalPiece_Skill_Data = defineSkill({
     methodological: 'Organize musical ideas through development, contrast and a deliberate sense of closure.',
     frontend: {
       en: 'Develop musical ideas into a piece with contrast and a satisfying ending.',
+      it: 'Sviluppa idee musicali in un brano con contrasti e una conclusione soddisfacente.',
       zh: '发展音乐创意，创作出有对比且结尾圆满的作品。',
       hi: 'संगीत विचारों को विकसित करके ऐसी रचना बनाएँ जिसमें विविधता और संतोषजनक समापन हो।',
       es: 'Desarrolla ideas musicales hasta crear una pieza con contraste y un final satisfactorio.',

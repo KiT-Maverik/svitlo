@@ -5,6 +5,7 @@ export const justifyAMoralJudgment_Skill_Data = defineSkill({
   id: '5b039d59-16e3-430c-be2e-064786a08db5',
   name: {
     en: 'Justify a moral judgment',
+    it: 'Giustificare un giudizio morale',
     zh: '论证道德判断',
     hi: 'नैतिक निर्णय का औचित्य सिद्ध करना',
     es: 'Justificar un juicio moral',
@@ -39,6 +40,7 @@ export const justifyAMoralJudgment_Skill_Data = defineSkill({
       'Connect a normative conclusion to stated values, principles, and case facts rather than mere personal preference.',
     frontend: {
       en: 'Support a moral judgment using explicit principles and relevant facts.',
+      it: 'Sostieni un giudizio morale usando principi espliciti e fatti pertinenti.',
       zh: '使用明确的原则和相关事实来支持道德判断。',
       hi: 'स्पष्ट सिद्धांतों और प्रासंगिक तथ्यों से नैतिक निर्णय का समर्थन करें।',
       es: 'Apoya un juicio moral mediante principios explícitos y hechos relevantes.',

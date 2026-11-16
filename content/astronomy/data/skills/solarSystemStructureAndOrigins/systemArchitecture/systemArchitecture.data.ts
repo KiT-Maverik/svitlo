@@ -12,6 +12,7 @@ export const systemArchitecture_SkillGroup_Data = defineSkillGroup({
   id: 'abfb0627-a4a5-410e-9881-04d22158a297',
   name: {
     en: 'System Architecture',
+    it: 'Struttura del sistema',
     zh: '太阳系的结构',
     hi: 'सौरमंडल की संरचना',
     es: 'Organización del Sistema Solar',
@@ -60,6 +61,7 @@ export const systemArchitecture_SkillGroup_Data = defineSkillGroup({
       'A planetary system includes one or more stars and gravitationally associated objects whose locations are described by nested orbital regions.',
     frontend: {
       en: 'Discover the different regions and kinds of objects orbiting the Sun.',
+      it: 'Scopri le diverse regioni e categorie di oggetti che orbitano intorno al Sole.',
       zh: '了解太阳系的不同区域以及绕太阳运行的各类天体。',
       hi: 'सूर्य की परिक्रमा करने वाले विभिन्न प्रकार के पिंडों और सौरमंडल के क्षेत्रों के बारे में जानें।',
       es: 'Descubre las distintas regiones del Sistema Solar y los tipos de objetos que orbitan el Sol.',

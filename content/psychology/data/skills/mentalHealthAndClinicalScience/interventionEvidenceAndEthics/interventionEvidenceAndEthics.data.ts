@@ -12,6 +12,7 @@ export const interventionEvidenceAndEthics_SkillGroup_Data = defineSkillGroup({
   id: 'e03d5269-19ec-47a2-855a-dcddf4f0216e',
   name: {
     en: 'Intervention Evidence and Ethics',
+    it: 'Evidenze ed etica degli interventi',
     zh: '干预证据与伦理',
     hi: 'हस्तक्षेप के प्रमाण और नैतिकता',
     es: 'Evidencia y ética de las intervenciones',
@@ -60,6 +61,7 @@ export const interventionEvidenceAndEthics_SkillGroup_Data = defineSkillGroup({
       'Treatment approaches propose different mechanisms and require evaluation for effectiveness, suitability, potential harm, and professional standards.',
     frontend: {
       en: 'Explore why treatment claims require evidence, safeguards and professional ethics.',
+      it: 'Esplora perché le affermazioni sui trattamenti richiedano prove, misure di tutela ed etica professionale.',
       zh: '探索为什么治疗主张需要科学证据、安全保障和专业伦理。',
       hi: 'जानें कि उपचार के दावों के लिए प्रमाण, सुरक्षा और पेशेवर नैतिकता क्यों जरूरी हैं।',
       es: 'Explora por qué las afirmaciones sobre tratamientos requieren pruebas, garantías y ética profesional.',

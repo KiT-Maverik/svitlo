@@ -5,6 +5,7 @@ export const solarAltitudeAndDaylight_Skill_Data = defineSkill({
   id: 'af55a0d8-0cbb-4317-bccc-92c31d5100d5',
   name: {
     en: 'Solar Altitude and Daylight',
+    it: 'Altezza del Sole e durata del giorno',
     zh: '太阳高度与日照时长',
     hi: 'सूर्य की ऊँचाई और दिन के उजाले की अवधि',
     es: 'Altura del Sol y duración del día',
@@ -38,6 +39,7 @@ export const solarAltitudeAndDaylight_Skill_Data = defineSkill({
     methodological: "Relate the Sun's apparent height and daily path to latitude, date and daylight duration.",
     frontend: {
       en: "See how the Sun's apparent height and the length of daylight change with place and season.",
+      it: "Osserva come l'altezza apparente del Sole e le ore di luce cambiano con il luogo e la stagione.",
       zh: '观察太阳在天空中的视高度和白昼长度如何随地点与季节而变化。',
       hi: 'जानें कि आकाश में सूर्य की दिखाई देने वाली ऊँचाई और दिन के उजाले की अवधि स्थान तथा ऋतु के साथ कैसे बदलती है।',
       es: 'Observa cómo cambian la altura aparente del Sol y la duración del día según el lugar y la estación.',

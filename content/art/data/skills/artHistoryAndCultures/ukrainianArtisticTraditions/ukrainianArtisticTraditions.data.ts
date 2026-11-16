@@ -11,6 +11,7 @@ export const ukrainianArtisticTraditions_SkillGroup_Data = defineSkillGroup({
   id: '44070f30-13ab-479f-9130-cb3354df3382',
   name: {
     en: 'Ukrainian Artistic Traditions',
+    it: 'Tradizioni artistiche ucraine',
     zh: '乌克兰艺术传统',
     hi: 'यूक्रेनी कलात्मक परंपराएँ',
     es: 'Tradiciones artísticas ucranianas',
@@ -53,6 +54,7 @@ export const ukrainianArtisticTraditions_SkillGroup_Data = defineSkillGroup({
       'These practices distinguish decorative folk art, historical religious painting and a twentieth-century monumental-art movement while acknowledging their exchanges and transformations.',
     frontend: {
       en: 'Explore distinct Ukrainian painting and monumental art traditions through their histories.',
+      it: "Esplora diverse tradizioni ucraine della pittura e dell'arte monumentale attraverso la loro storia.",
       zh: '通过历史探索乌克兰不同的绘画与纪念性艺术传统。',
       hi: 'यूक्रेन की विशिष्ट चित्रकला और स्मारकीय कला परंपराओं को उनके इतिहास के माध्यम से जानें।',
       es: 'Explora distintas tradiciones ucranianas de pintura y arte monumental a través de su historia.',

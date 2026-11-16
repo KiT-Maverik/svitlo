@@ -5,6 +5,7 @@ export const analyzeKongoNkisiFigures_Skill_Data = defineSkill({
   id: 'd4bd7f1e-dbd5-40df-9873-831f8e0ecc26',
   name: {
     en: 'Analyze Kongo Nkisi Figures',
+    it: 'Analizzare le figure nkisi del Kongo',
     zh: '分析刚果恩基西神像',
     hi: 'कोंगो एनकिसी आकृतियों का विश्लेषण करें',
     es: 'Analizar las figuras nkisi del Kongo',
@@ -39,6 +40,7 @@ export const analyzeKongoNkisiFigures_Skill_Data = defineSkill({
       'Relate the formal and material features of particular Kongo power figures to the culturally situated purposes and practices associated with them.',
     frontend: {
       en: 'Explore the materials and cultural roles of Kongo nkisi figures.',
+      it: 'Esplora i materiali e i ruoli culturali delle figure nkisi del Kongo.',
       zh: '了解刚果恩基西神像所用的材料及其文化角色。',
       hi: 'कोंगो एनकिसी आकृतियों की सामग्री और सांस्कृतिक भूमिकाओं को जानें।',
       es: 'Explora los materiales y las funciones culturales de las figuras nkisi del Kongo.',

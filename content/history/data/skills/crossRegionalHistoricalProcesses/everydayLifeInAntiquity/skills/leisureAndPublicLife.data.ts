@@ -5,6 +5,7 @@ export const leisureAndPublicLife_Skill_Data = defineSkill({
   id: 'dfe0c934-4149-4d55-b611-754da4545cdb',
   name: {
     en: 'Leisure and Public Life',
+    it: 'Tempo libero e vita pubblica',
     zh: '古代休闲与公共生活',
     hi: 'प्राचीन अवकाश और सार्वजनिक जीवन',
     es: 'Ocio y vida pública en la Antigüedad',
@@ -38,6 +39,7 @@ export const leisureAndPublicLife_Skill_Data = defineSkill({
     methodological: 'Compare festivals, games, assemblies, and leisure across social groups and settlements.',
     frontend: {
       en: 'Discover how ancient communities celebrated and spent free time.',
+      it: 'Scopri come le comunità antiche festeggiavano e trascorrevano il tempo libero.',
       zh: '认识古代社群如何庆祝节日和度过闲暇时间。',
       hi: 'जानें कि प्राचीन समुदाय उत्सव कैसे मनाते और खाली समय कैसे बिताते थे।',
       es: 'Descubre cómo celebraban las comunidades antiguas y pasaban su tiempo libre.',

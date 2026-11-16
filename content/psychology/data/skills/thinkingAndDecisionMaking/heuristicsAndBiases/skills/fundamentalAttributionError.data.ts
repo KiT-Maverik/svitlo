@@ -5,6 +5,7 @@ export const fundamentalAttributionError_Skill_Data = defineSkill({
   id: 'e2d90b4f-350b-4edd-aa75-244e7fc1adef',
   name: {
     en: 'Fundamental Attribution Error',
+    it: 'Errore fondamentale di attribuzione',
     zh: '基本归因错误',
     hi: 'मूलभूत आरोपण त्रुटि',
     es: 'Error fundamental de atribución',
@@ -39,6 +40,7 @@ export const fundamentalAttributionError_Skill_Data = defineSkill({
       "Describe overemphasizing dispositions and neglecting situational constraints when explaining another person's behavior.",
     frontend: {
       en: "Recognize when others' behavior is explained too strongly by their personality.",
+      it: 'Riconosci quando il comportamento altrui viene spiegato attribuendo un peso eccessivo alla personalità.',
       zh: '识别何时人们过度用他人的性格来解释其行为。',
       hi: 'पहचानें कि कब दूसरों के व्यवहार को उनके व्यक्तित्व से जरूरत से ज्यादा जोड़ दिया जाता है।',
       es: 'Reconoce cuándo explicamos demasiado el comportamiento ajeno por su personalidad.',

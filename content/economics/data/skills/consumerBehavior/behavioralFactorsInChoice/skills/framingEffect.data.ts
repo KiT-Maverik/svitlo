@@ -5,6 +5,7 @@ export const framingEffect_Skill_Data = defineSkill({
   id: '4b682919-1ef4-4979-be79-c542ea4094bf',
   name: {
     en: 'Framing Effect',
+    it: 'Effetto di inquadramento',
     zh: '框架效应',
     hi: 'फ्रेमिंग प्रभाव',
     es: 'Efecto de encuadre',
@@ -39,6 +40,7 @@ export const framingEffect_Skill_Data = defineSkill({
       'Identify how equivalent information framed as gains or losses can change the assessment of a choice.',
     frontend: {
       en: 'Explore why the same facts can feel different when described as gains or losses.',
+      it: 'Esplora perché gli stessi fatti possono suscitare impressioni diverse se presentati come guadagni o perdite.',
       zh: '探索为什么同一事实表述为收益或损失时给人的感觉不同。',
       hi: 'जानें कि वही तथ्य लाभ या हानि के रूप में बताए जाने पर अलग क्यों लगते हैं।',
       es: 'Explora por qué los mismos datos se perciben distinto como ganancias o pérdidas.',

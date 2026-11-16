@@ -5,6 +5,7 @@ export const prioritizeRequirements_Skill_Data = defineSkill({
   id: 'd8cdab54-3ea8-465e-9dd7-7c35de5b584f',
   name: {
     en: 'Prioritize requirements',
+    it: 'Stabilire la priorità dei requisiti',
     zh: '确定需求优先级',
     hi: 'आवश्यकताओं को प्राथमिकता देना',
     es: 'Priorizar requisitos',
@@ -38,6 +39,7 @@ export const prioritizeRequirements_Skill_Data = defineSkill({
     methodological: 'Separate essential conditions from preferred attributes when several goals compete.',
     frontend: {
       en: 'Decide which requirements are essential and which are optional.',
+      it: 'Decidi quali requisiti sono indispensabili e quali facoltativi.',
       zh: '判断哪些要求是必要的，哪些是可选的。',
       hi: 'तय करें कि कौन-सी आवश्यकताएँ अनिवार्य हैं और कौन-सी वैकल्पिक।',
       es: 'Decide qué requisitos son esenciales y cuáles son opcionales.',

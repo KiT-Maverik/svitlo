@@ -5,6 +5,7 @@ export const adapter_Skill_Data = defineSkill({
   id: 'df520d41-4bc3-4451-8fb1-0e70f755d5e6',
   name: {
     en: 'Adapter',
+    it: 'Adapter',
     zh: '适配器模式',
     hi: 'एडाप्टर',
     es: 'Adaptador',
@@ -39,6 +40,7 @@ export const adapter_Skill_Data = defineSkill({
       'Translate the interface expected by a client into that of an existing component without rewriting that component.',
     frontend: {
       en: 'Connect incompatible interfaces by translating between them.',
+      it: 'Collega interfacce incompatibili traducendo le operazioni tra di esse.',
       zh: '通过接口转换连接不兼容的接口。',
       hi: 'असंगत इंटरफ़ेस के बीच अनुवाद करके उन्हें जोड़ें।',
       es: 'Conecta interfaces incompatibles traduciendo entre ellas.',

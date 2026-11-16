@@ -5,6 +5,7 @@ export const solsticesAndEquinoxes_Skill_Data = defineSkill({
   id: '26a9979c-b8ae-4617-984b-b4ab2827d077',
   name: {
     en: 'Solstices and Equinoxes',
+    it: 'Solstizi ed equinozi',
     zh: '至日与分日',
     hi: 'अयनांत और विषुव',
     es: 'Solsticios y equinoccios',
@@ -39,6 +40,7 @@ export const solsticesAndEquinoxes_Skill_Data = defineSkill({
       'Explain these seasonal reference points from the changing Sun–Earth geometry and the distribution of daylight.',
     frontend: {
       en: 'Understand what makes solstices and equinoxes special points in the year.',
+      it: "Comprendi cosa rende solstizi ed equinozi momenti particolari dell'anno.",
       zh: '了解为什么至日和分日是一年中特别的时间节点。',
       hi: 'समझें कि अयनांत और विषुव वर्ष के खास समय क्यों होते हैं।',
       es: 'Comprende por qué los solsticios y los equinoccios son momentos especiales del año.',

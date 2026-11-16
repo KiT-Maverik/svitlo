@@ -5,6 +5,7 @@ export const groupDataByAttribute_Skill_Data = defineSkill({
   id: '6ecd4fd6-27e8-470a-8003-6f5819e59078',
   name: {
     en: 'Group Data by Attribute',
+    it: 'Raggruppare i dati per attributo',
     zh: '按属性对数据分组',
     hi: 'गुण के आधार पर डेटा समूहित करना',
     es: 'Agrupar datos por atributo',
@@ -39,6 +40,7 @@ export const groupDataByAttribute_Skill_Data = defineSkill({
       'Apply one criterion consistently across items to create categories with a clear membership rule. For example, classify messages by file type without mixing this attribute with file size.',
     frontend: {
       en: 'Group records using one clear characteristic.',
+      it: 'Raggruppa i record usando una caratteristica chiara.',
       zh: '依据一个明确的特征对记录进行分组。',
       hi: 'रिकॉर्ड को एक स्पष्ट विशेषता के आधार पर समूहित करें।',
       es: 'Agrupa los registros según una característica clara.',

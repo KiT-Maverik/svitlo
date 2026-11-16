@@ -11,6 +11,7 @@ export const ventilationAndAirTreatment_SkillGroup_Data = defineSkillGroup({
   id: 'd14e02d6-e0d0-4a43-a972-4af50a92d10c',
   name: {
     en: 'Ventilation and Air Treatment',
+    it: "Ventilazione e trattamento dell'aria",
     zh: '通风与空气处理',
     hi: 'वातन और वायु शोधन',
     es: 'Ventilación y tratamiento del aire',
@@ -53,6 +54,7 @@ export const ventilationAndAirTreatment_SkillGroup_Data = defineSkillGroup({
       'Indoor climate equipment needs functional air paths, treatment components and regulation appropriate to occupied spaces.',
     frontend: {
       en: 'Explore how buildings circulate and treat indoor air.',
+      it: "Esplora come gli edifici fanno circolare e trattano l'aria interna.",
       zh: '探索建筑如何循环和处理室内空气。',
       hi: 'जानें कि इमारतों में अंदर की हवा कैसे घूमती और साफ होती है।',
       es: 'Explora cómo los edificios hacen circular y tratan el aire interior.',

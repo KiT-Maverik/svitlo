@@ -5,6 +5,7 @@ export const crystallization_Skill_Data = defineSkill({
   id: '63a39a88-f7e4-4745-b110-8f9b8dfc8196',
   name: {
     en: 'Crystallization',
+    it: 'Cristallizzazione',
     zh: '结晶',
     hi: 'क्रिस्टलीकरण',
     es: 'Cristalización',
@@ -39,6 +40,7 @@ export const crystallization_Skill_Data = defineSkill({
       'Exploit changes in solubility and the organization of solid particles to obtain crystals from a solution.',
     frontend: {
       en: 'Use controlled crystal formation to separate a substance from a solution.',
+      it: 'Usa la formazione controllata di cristalli per separare una sostanza da una soluzione.',
       zh: '利用可控的晶体形成过程，将物质从溶液中分离出来。',
       hi: 'नियंत्रित रूप से क्रिस्टल बनाकर किसी पदार्थ को विलयन से अलग करें।',
       es: 'Separa una sustancia de una disolución mediante la formación controlada de cristales.',

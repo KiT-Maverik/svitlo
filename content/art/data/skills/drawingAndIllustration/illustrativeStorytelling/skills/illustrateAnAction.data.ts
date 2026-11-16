@@ -5,6 +5,7 @@ export const illustrateAnAction_Skill_Data = defineSkill({
   id: '6927891f-e744-49f2-b5f1-58522e96f8e6',
   name: {
     en: 'Illustrate an Action',
+    it: "Illustrare un'azione",
     zh: '描绘一个动作',
     hi: 'किसी क्रिया का चित्रण करें',
     es: 'Ilustrar una acción',
@@ -38,6 +39,7 @@ export const illustrateAnAction_Skill_Data = defineSkill({
     methodological: 'Use gesture, position and spatial cues to make a represented event legible.',
     frontend: {
       en: "Show an action clearly through a figure's pose and placement.",
+      it: "Mostra un'azione in modo chiaro attraverso la posa e la posizione di una figura.",
       zh: '通过人物的姿势和位置清楚地表现动作。',
       hi: 'पात्र की मुद्रा और स्थिति से क्रिया को साफ़-साफ़ दिखाएँ।',
       es: 'Muestra claramente una acción mediante la postura y la posición de una figura.',

@@ -5,6 +5,7 @@ export const identifyPremisesInAnArgument_Skill_Data = defineSkill({
   id: '8208c00e-a65f-4115-b229-386545bb1927',
   name: {
     en: 'Identify premises in an argument',
+    it: "Individuare le premesse di un'argomentazione",
     zh: '识别论证中的前提',
     hi: 'तर्क में आधार-वाक्यों की पहचान',
     es: 'Identificar premisas en un argumento',
@@ -39,6 +40,7 @@ export const identifyPremisesInAnArgument_Skill_Data = defineSkill({
       'Locate the reasons offered in support of a conclusion, including unstated propositions when context makes them indispensable.',
     frontend: {
       en: 'Find the statements offered as reasons for a claim.',
+      it: 'Trova le affermazioni presentate come ragioni a sostegno di una tesi.',
       zh: '找出为某个主张提供理由的陈述。',
       hi: 'किसी दावे के समर्थन में दिए गए कथनों को पहचानें।',
       es: 'Encuentra los enunciados ofrecidos como razones para sostener una afirmación.',

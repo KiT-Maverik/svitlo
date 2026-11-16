@@ -5,6 +5,7 @@ export const pavementLayers_Skill_Data = defineSkill({
   id: '6c59bcb0-7992-4f63-9ad3-f3af44c1acc0',
   name: {
     en: 'Pavement layers',
+    it: 'Strati della pavimentazione stradale',
     zh: '路面结构层',
     hi: 'सड़क की परतें',
     es: 'Capas del pavimento',
@@ -38,6 +39,7 @@ export const pavementLayers_Skill_Data = defineSkill({
     methodological: 'Identify why different road layers distribute vehicle loads to supporting ground.',
     frontend: {
       en: 'Understand why pavement uses layers that spread traffic loads.',
+      it: 'Comprendi perché le pavimentazioni stradali utilizzano strati che distribuiscono i carichi del traffico.',
       zh: '理解路面为何采用多层来分散交通荷载。',
       hi: 'समझें कि यातायात के भार को फैलाने के लिए सड़क में कई परतें क्यों होती हैं।',
       es: 'Comprende por qué el pavimento utiliza capas para distribuir las cargas del tráfico.',

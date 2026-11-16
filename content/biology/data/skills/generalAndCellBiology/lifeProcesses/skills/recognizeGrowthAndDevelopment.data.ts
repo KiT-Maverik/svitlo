@@ -5,6 +5,7 @@ export const recognizeGrowthAndDevelopment_Skill_Data = defineSkill({
   id: '492c4f54-5116-4a66-bcd6-4af38256484c',
   name: {
     en: 'Recognize Growth and Development',
+    it: 'Riconoscere crescita e sviluppo',
     zh: '识别生长与发育',
     hi: 'वृद्धि और विकास पहचानना',
     es: 'Reconocer el crecimiento y el desarrollo',
@@ -39,6 +40,7 @@ export const recognizeGrowthAndDevelopment_Skill_Data = defineSkill({
       'Distinguish increases in mass or size from changes in structure and function during transitions between life stages.',
     frontend: {
       en: "Distinguish an increase in size from changes in an organism's development.",
+      it: "Distingui l'aumento delle dimensioni dai cambiamenti che avvengono durante lo sviluppo di un organismo.",
       zh: '区分体积或质量的增加与生物体结构和功能的变化。',
       hi: 'आकार या द्रव्यमान में वृद्धि को संरचना और कार्य में परिवर्तन से अलग समझें।',
       es: 'Distingue el aumento de tamaño de los cambios en la estructura y las funciones del organismo.',

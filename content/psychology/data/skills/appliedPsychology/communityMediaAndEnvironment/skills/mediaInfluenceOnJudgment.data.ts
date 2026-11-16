@@ -5,6 +5,7 @@ export const mediaInfluenceOnJudgment_Skill_Data = defineSkill({
   id: '82d7f6e1-f9df-493c-aa24-0286e5b8b0df',
   name: {
     en: 'Media Influence on Judgment',
+    it: 'Influenza dei media sul giudizio',
     zh: '媒体对判断的影响',
     hi: 'निर्णय पर मीडिया का प्रभाव',
     es: 'Influencia de los medios en el juicio',
@@ -38,6 +39,7 @@ export const mediaInfluenceOnJudgment_Skill_Data = defineSkill({
     methodological: 'Analyze how repetition, salience, and selective exposure affect perceived norms or risks.',
     frontend: {
       en: 'Recognize how repeated or prominent media messages influence perceived risks.',
+      it: 'Riconosci come messaggi mediatici ripetuti o molto evidenti influenzino la percezione dei rischi.',
       zh: '认识反复出现或特别显眼的媒体信息如何改变人们对风险的感知。',
       hi: 'जानें कि बार-बार या प्रमुखता से दिखाए संदेश जोखिम की धारणा को कैसे बदलते हैं।',
       es: 'Reconoce cómo los mensajes mediáticos repetidos o destacados influyen en los riesgos percibidos.',

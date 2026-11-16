@@ -7,6 +7,7 @@ import { quizSection } from './sections/quiz';
 
 export const howLightMovesTitle = {
   en: 'How Light Travels',
+  it: 'Come si propaga la luce',
   qm: 'Yarıq nasıl yayıla?',
   lt: 'Kaip sklinda šviesa',
   lv: 'Kā izplatās gaisma',

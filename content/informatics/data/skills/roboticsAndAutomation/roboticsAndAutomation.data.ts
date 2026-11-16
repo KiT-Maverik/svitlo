@@ -8,6 +8,7 @@ export const roboticsAndAutomation_SkillDomain_Data = defineSkillDomain({
   id: 'ed451cc0-6d3a-44d2-8dba-ad0b89441519',
   title: {
     en: 'Robotics and Automation',
+    it: 'Robotica e automazione',
     zh: '机器人技术与自动化',
     hi: 'रोबोटिक्स और स्वचालन',
     es: 'Robótica y automatización',
@@ -49,6 +50,7 @@ export const roboticsAndAutomation_SkillDomain_Data = defineSkillDomain({
       'Programming the control logic of physical or simulated actuators in response to sensor readings. Engineering may also study mechanical design; this taxonomy emphasizes the relationship among information, rules, and actions.',
     frontend: {
       en: 'Explore how sensors, programming and actuators allow robots to respond to their surroundings.',
+      it: "Esplora come sensori, programmazione e attuatori permettono ai robot di reagire all'ambiente.",
       zh: '探索传感器、程序和执行器如何让机器人对周围环境作出反应。',
       hi: 'जानें कि सेंसर, प्रोग्रामिंग और एक्चुएटर रोबोट को वातावरण के अनुसार कैसे प्रतिक्रिया करने देते हैं।',
       es: 'Explora cómo los sensores, la programación y los actuadores permiten a los robots responder a su entorno.',

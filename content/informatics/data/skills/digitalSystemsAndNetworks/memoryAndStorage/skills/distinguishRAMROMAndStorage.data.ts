@@ -5,6 +5,7 @@ export const distinguishRAMROMAndStorage_Skill_Data = defineSkill({
   id: 'ed6e27d5-70d8-4241-9b74-10f093ac2ed3',
   name: {
     en: 'Distinguish RAM, ROM, and Storage',
+    it: 'Distinguere RAM, ROM e memoria di archiviazione',
     zh: '区分RAM、ROM与存储设备',
     hi: 'RAM, ROM और भंडारण में अंतर करना',
     es: 'Distinguir RAM, ROM y almacenamiento',
@@ -39,6 +40,7 @@ export const distinguishRAMROMAndStorage_Skill_Data = defineSkill({
       "Working memory, firmware memory, and storage for user files serve different purposes; the term 'permanent memory' is ambiguous without context.",
     frontend: {
       en: 'Compare what RAM, ROM and persistent storage are designed to hold.',
+      it: 'Confronta ciò che RAM, ROM e memoria persistente sono progettate per conservare.',
       zh: '比较RAM、ROM和持久化存储分别用于保存哪些信息。',
       hi: 'तुलना करें कि RAM, ROM और स्थायी भंडारण किस तरह की जानकारी रखने के लिए हैं।',
       es: 'Compara qué información se guarda en RAM, ROM y almacenamiento persistente.',

@@ -5,6 +5,7 @@ export const dissolving_Skill_Data = defineSkill({
   id: '3751b241-d27b-4435-95b9-fc1a65e98ec7',
   name: {
     en: 'Dissolving',
+    it: 'Dissoluzione',
     zh: '溶解过程',
     hi: 'घुलना',
     es: 'Disolución',
@@ -39,6 +40,7 @@ export const dissolving_Skill_Data = defineSkill({
       'Explain distribution of solute species among solvent particles while distinguishing dissolution from reaction.',
     frontend: {
       en: 'Explain how solute particles spread among solvent particles.',
+      it: 'Spiega come le particelle di soluto si distribuiscono tra quelle del solvente.',
       zh: '解释溶质粒子如何分散到溶剂粒子之间。',
       hi: 'समझाएँ कि विलेय के कण विलायक के कणों के बीच कैसे फैलते हैं।',
       es: 'Explica cómo las partículas del soluto se distribuyen entre las del disolvente.',

@@ -5,6 +5,7 @@ export const clarifyAContestedConcept_Skill_Data = defineSkill({
   id: 'f52e7b99-ac9b-45eb-84d8-13334c309ed1',
   name: {
     en: 'Clarify a contested concept',
+    it: 'Chiarire un concetto controverso',
     zh: '澄清有争议的概念',
     hi: 'विवादित अवधारणा को स्पष्ट करना',
     es: 'Aclarar un concepto controvertido',
@@ -39,6 +40,7 @@ export const clarifyAContestedConcept_Skill_Data = defineSkill({
       'Specify relevant conditions or uses of a term such as freedom so interlocutors can determine what their disagreement concerns.',
     frontend: {
       en: 'Clarify the meaning of a term when people disagree about how it is used.',
+      it: 'Chiarisci il significato di un termine quando le persone non concordano su come usarlo.',
       zh: '当人们对一个术语的用法有分歧时，澄清它的含义。',
       hi: 'जब लोग किसी शब्द के प्रयोग पर असहमत हों, तो उसका अर्थ स्पष्ट करें।',
       es: 'Aclara el significado de un término cuando hay desacuerdo sobre su uso.',

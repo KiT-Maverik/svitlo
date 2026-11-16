@@ -5,6 +5,7 @@ export const maturationAndExperience_Skill_Data = defineSkill({
   id: 'd30933f3-7204-4b80-ac5a-08e8fcdb2045',
   name: {
     en: 'Maturation and Experience',
+    it: 'Maturazione ed esperienza',
     zh: '成熟与经历',
     hi: 'परिपक्वता और अनुभव',
     es: 'Maduración y experiencia',
@@ -39,6 +40,7 @@ export const maturationAndExperience_Skill_Data = defineSkill({
       'Explain how developmental changes reflect interacting biological processes and opportunities for learning.',
     frontend: {
       en: 'Recognize how maturation and experience influence development together.',
+      it: 'Riconosci come maturazione ed esperienza influenzino insieme lo sviluppo.',
       zh: '认识生理成熟与生活经历如何共同影响发展。',
       hi: 'पहचानें कि जैविक परिपक्वता और अनुभव मिलकर विकास को कैसे प्रभावित करते हैं।',
       es: 'Reconoce cómo la maduración y la experiencia influyen juntas en el desarrollo.',

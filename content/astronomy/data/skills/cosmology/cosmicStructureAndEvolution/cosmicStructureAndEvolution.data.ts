@@ -7,6 +7,7 @@ export const cosmicStructureAndEvolution_SkillGroup_Data = defineSkillGroup({
   id: '1ce2a9e1-43b6-4f49-aaad-0816c74d5916',
   name: {
     en: 'Cosmic Structure and Evolution',
+    it: 'Struttura ed evoluzione cosmica',
     qm: 'Kosmik quruluş ve evolyutsiya',
     zh: '宇宙结构与演化',
     hi: 'ब्रह्मांड की संरचना और विकास',
@@ -48,6 +49,7 @@ export const cosmicStructureAndEvolution_SkillGroup_Data = defineSkillGroup({
       "Density perturbations, gravity and cosmic expansion shape the cosmic web over time. This branch focuses on spatial organization and dynamical evolution, as distinct from the initial hot state or the physical nature of the Universe's dark components.",
     frontend: {
       en: 'Investigate how gravity shapes matter into large structures over cosmic history.',
+      it: 'Indaga come la gravità organizza la materia in grandi strutture nel corso della storia cosmica.',
       qm: 'Cazibe quveti milyarlarca yıl devamında maddeni büyük quruluşlarğa nasıl toplağanını araştırıñız.',
       zh: '研究引力如何在漫长的宇宙历史中塑造大尺度物质结构。',
       hi: 'जानें कि गुरुत्वाकर्षण ब्रह्मांड के इतिहास में पदार्थ से विशाल संरचनाएँ कैसे बनाता है।',

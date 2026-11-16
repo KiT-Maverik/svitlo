@@ -5,6 +5,7 @@ export const earlyEthiopianHighlandStates_Skill_Data = defineSkill({
   id: '8b35ae63-b070-4370-93f5-67bce4a59b7b',
   name: {
     en: 'Early Ethiopian Highland States',
+    it: 'Primi Stati degli altopiani etiopici',
     zh: '埃塞俄比亚高原早期国家',
     hi: 'इथियोपियाई उच्चभूमि के प्रारंभिक राज्य',
     es: 'Primeros estados de las tierras altas etíopes',
@@ -38,6 +39,7 @@ export const earlyEthiopianHighlandStates_Skill_Data = defineSkill({
     methodological: 'Examine local political centers and southern Arabian contacts in the northern Horn of Africa.',
     frontend: {
       en: 'Discover the early states of the Ethiopian highlands.',
+      it: 'Scopri i primi Stati degli altopiani etiopici.',
       zh: '了解埃塞俄比亚高原的早期国家。',
       hi: 'इथियोपियाई उच्चभूमि के शुरुआती राज्यों के बारे में जानें।',
       es: 'Descubre los primeros estados de las tierras altas de Etiopía.',

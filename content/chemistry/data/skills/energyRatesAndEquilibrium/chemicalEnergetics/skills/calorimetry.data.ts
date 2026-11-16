@@ -5,6 +5,7 @@ export const calorimetry_Skill_Data = defineSkill({
   id: '24c3b3eb-a76b-4308-8cf6-3b5761909bf9',
   name: {
     en: 'Calorimetry',
+    it: 'Calorimetria',
     zh: '量热法',
     hi: 'कैलोरीमिति',
     es: 'Calorimetría',
@@ -39,6 +40,7 @@ export const calorimetry_Skill_Data = defineSkill({
       'Infer heat transfer from measured temperature change, heat capacity and appropriate system boundaries, recognizing energy losses and measurement uncertainty.',
     frontend: {
       en: 'Use temperature change to estimate heat transfer, accounting for heat losses.',
+      it: 'Usa le variazioni di temperatura per stimare il calore trasferito, tenendo conto delle dispersioni.',
       zh: '利用温度变化估算热量传递，并考虑热损失。',
       hi: 'ऊष्मा हानि ध्यान में रखते हुए तापमान परिवर्तन से ऊष्मा स्थानांतरण का अनुमान लगाएँ।',
       es: 'Estima la transferencia de calor a partir de cambios de temperatura, considerando pérdidas.',

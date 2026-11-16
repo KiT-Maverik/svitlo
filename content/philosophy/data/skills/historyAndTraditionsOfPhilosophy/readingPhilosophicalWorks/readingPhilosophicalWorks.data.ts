@@ -12,6 +12,7 @@ export const readingPhilosophicalWorks_SkillGroup_Data = defineSkillGroup({
   id: '89ad430b-07d6-4e89-80ca-00b65dbb6696',
   name: {
     en: 'Reading Philosophical Works',
+    it: 'Lettura delle opere filosofiche',
     zh: '阅读哲学著作',
     hi: 'दार्शनिक ग्रंथों का अध्ययन',
     es: 'Lectura de obras filosóficas',
@@ -60,6 +61,7 @@ export const readingPhilosophicalWorks_SkillGroup_Data = defineSkillGroup({
       'Texts require interpreting claims, their argumentative context, and the questions the author sought to answer; historical wording cannot always be mapped directly to modern categories.',
     frontend: {
       en: 'Learn to read philosophical works with attention to their questions and context.',
+      it: 'Impara a leggere le opere filosofiche prestando attenzione alle domande che pongono e al loro contesto.',
       zh: '学习阅读哲学文本时关注其问题与背景。',
       hi: 'दार्शनिक रचनाएँ पढ़ते समय उनके प्रश्न और संदर्भ पर ध्यान देना सीखो।',
       es: 'Aprende a leer obras filosóficas atendiendo a sus preguntas y su contexto.',

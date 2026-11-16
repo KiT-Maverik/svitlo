@@ -5,6 +5,7 @@ export const effectsOfDemandChanges_Skill_Data = defineSkill({
   id: '079ee920-92c3-4cc7-be95-488a6e88ea57',
   name: {
     en: 'Effects of Changes in Demand',
+    it: 'Effetti delle variazioni della domanda',
     zh: '需求变化的影响',
     hi: 'माँग बदलने के प्रभाव',
     es: 'Efectos de cambios en la demanda',
@@ -39,6 +40,7 @@ export const effectsOfDemandChanges_Skill_Data = defineSkill({
       'Predict the direction of changes in equilibrium price and quantity after a demand shift under stated supply conditions.',
     frontend: {
       en: 'Predict what happens to price when demand rises or falls.',
+      it: 'Prevedi come cambiano il prezzo e la quantità di equilibrio quando la domanda aumenta o diminuisce.',
       zh: '预测需求上升或下降时价格会怎样变化。',
       hi: 'अनुमान लगाएँ कि माँग बढ़ने या घटने पर कीमत का क्या होगा।',
       es: 'Predice qué sucede con el precio cuando sube o baja la demanda.',

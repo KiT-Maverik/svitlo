@@ -5,6 +5,7 @@ export const traceMaterialBalances_Skill_Data = defineSkill({
   id: '02540402-28e2-4d25-92c1-47863215e213',
   name: {
     en: 'Trace material balances',
+    it: 'Seguire i bilanci di materia',
     zh: '追踪物料平衡',
     hi: 'पदार्थ संतुलन का पता लगाना',
     es: 'Seguir balances de materia',
@@ -39,6 +40,7 @@ export const traceMaterialBalances_Skill_Data = defineSkill({
       'Relate input, accumulation, product and waste flows across a specified process boundary without confusing mass conservation with constant volume.',
     frontend: {
       en: 'Track material entering, leaving and accumulating in a processing system.',
+      it: 'Tieni traccia del materiale in ingresso, in uscita e accumulato in un sistema di processo.',
       zh: '追踪物料如何进入、离开并积聚在加工系统中。',
       hi: 'प्रसंस्करण तंत्र में आने, जाने और जमा होने वाले पदार्थ का हिसाब रखें।',
       es: 'Sigue la materia que entra, sale y se acumula en un sistema de procesamiento.',

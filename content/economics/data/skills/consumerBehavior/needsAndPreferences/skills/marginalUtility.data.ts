@@ -5,6 +5,7 @@ export const marginalUtility_Skill_Data = defineSkill({
   id: '3558c469-640f-40e9-8708-d32ba3643f1f',
   name: {
     en: 'Marginal Utility',
+    it: 'Utilità marginale',
     zh: '边际效用',
     hi: 'सीमांत उपयोगिता',
     es: 'Utilidad marginal',
@@ -39,6 +40,7 @@ export const marginalUtility_Skill_Data = defineSkill({
       'Evaluate the change in utility from consuming an additional unit with relevant conditions held constant; distinguish it from total utility.',
     frontend: {
       en: 'Explore what an extra unit of something adds to its value for you.',
+      it: "Esplora quanto valore aggiunge per te un'unità in più di un bene.",
       zh: '探索额外一单位商品带来的新增价值。',
       hi: 'जानें कि किसी वस्तु की एक अतिरिक्त इकाई से कितना और मूल्य मिलता है।',
       es: 'Explora cuánto valor añade para ti una unidad adicional.',

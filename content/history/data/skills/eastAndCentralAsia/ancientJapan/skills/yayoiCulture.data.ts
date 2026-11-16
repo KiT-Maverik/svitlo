@@ -5,6 +5,7 @@ export const yayoiCulture_Skill_Data = defineSkill({
   id: '9a7aee8a-863a-463c-b81a-f3aec307863f',
   name: {
     en: 'Yayoi Culture',
+    it: 'Cultura Yayoi',
     zh: '弥生文化',
     hi: 'यायोई संस्कृति',
     es: 'Cultura Yayoi',
@@ -38,6 +39,7 @@ export const yayoiCulture_Skill_Data = defineSkill({
     methodological: 'Trace rice agriculture, metalworking, and settlement changes in Yayoi Japan.',
     frontend: {
       en: 'Explore how rice cultivation and metal tools changed Japan.',
+      it: 'Esplora come la coltivazione del riso e gli utensili metallici cambiarono il Giappone.',
       zh: '探索稻作农业和金属工具如何改变日本。',
       hi: 'जानें कि धान की खेती और धातु के औज़ारों ने जापान को कैसे बदला।',
       es: 'Explora cómo el cultivo de arroz y las herramientas de metal cambiaron Japón.',

@@ -5,6 +5,7 @@ export const gasPressureVolumeRelationship_Skill_Data = defineSkill({
   id: '0c29d864-076c-4c91-aaab-cd75c2b8b11a',
   name: {
     en: 'Gas Pressure–Volume Relationship',
+    it: 'Relazione tra pressione e volume dei gas',
     zh: '气体压强与体积的关系',
     hi: 'गैस के दाब और आयतन का संबंध',
     es: 'Relación presión–volumen de los gases',
@@ -39,6 +40,7 @@ export const gasPressureVolumeRelationship_Skill_Data = defineSkill({
       'Relate gas pressure and volume at constant temperature and amount of substance, recognizing the limits of the inverse ideal-gas relationship.',
     frontend: {
       en: 'Explore how changing volume affects gas pressure when temperature stays constant.',
+      it: 'Esplora come varia la pressione di un gas al variare del volume, mantenendo costante la temperatura.',
       zh: '探索温度保持不变时，体积变化如何影响气体压强。',
       hi: 'जानें कि तापमान स्थिर रहने पर आयतन बदलने से गैस का दाब कैसे बदलता है।',
       es: 'Explora cómo cambia la presión al variar el volumen de un gas a temperatura constante.',

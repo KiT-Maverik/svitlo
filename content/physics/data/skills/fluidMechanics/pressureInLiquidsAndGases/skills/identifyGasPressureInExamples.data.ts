@@ -5,6 +5,7 @@ export const identifyGasPressureInExamples_Skill_Data = defineSkill({
   id: 'd6cfcd2e-64ae-4509-8896-dfce0c4dad30',
   name: {
     en: 'Identify gas pressure in examples',
+    it: 'Individuare la pressione dei gas negli esempi',
     zh: '识别气体压强的实例',
     hi: 'गैस के दाब के उदाहरण पहचानना',
     es: 'Identificar la presión de gases en ejemplos',
@@ -39,6 +40,7 @@ export const identifyGasPressureInExamples_Skill_Data = defineSkill({
       "A gas acts on surfaces through collisions of its particles; pressure depends on the gas's physical state and the conditions of its confinement.",
     frontend: {
       en: 'Identify how confined gas exerts pressure on surrounding surfaces.',
+      it: 'Individua come un gas confinato esercita pressione sulle superfici circostanti.',
       zh: '识别密闭气体如何向周围表面施加压强。',
       hi: 'पहचानें कि बंद गैस आसपास की सतहों पर दाब कैसे डालती है।',
       es: 'Identifica cómo un gas confinado ejerce presión sobre las superficies que lo rodean.',

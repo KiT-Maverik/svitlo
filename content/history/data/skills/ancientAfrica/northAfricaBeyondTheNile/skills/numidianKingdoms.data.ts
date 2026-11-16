@@ -5,6 +5,7 @@ export const numidianKingdoms_Skill_Data = defineSkill({
   id: 'fa62cd73-5220-42ca-93a3-0a819c2cc34f',
   name: {
     en: 'Numidian Kingdoms',
+    it: 'Regni numidi',
     zh: '努米底亚诸王国',
     hi: 'न्यूमीडिया के राज्य',
     es: 'Reinos númidas',
@@ -38,6 +39,7 @@ export const numidianKingdoms_Skill_Data = defineSkill({
     methodological: 'Study North African political confederations and relations with Carthage and Rome.',
     frontend: {
       en: 'Learn how Numidian kingdoms interacted with Mediterranean powers.',
+      it: 'Scopri come i regni numidi interagivano con le potenze mediterranee.',
       zh: '了解努米底亚王国与地中海势力的交往。',
       hi: 'जानें कि न्यूमीडिया के राज्यों ने भूमध्यसागरीय शक्तियों से कैसे संबंध बनाए।',
       es: 'Aprende cómo se relacionaron los reinos númidas con las potencias mediterráneas.',

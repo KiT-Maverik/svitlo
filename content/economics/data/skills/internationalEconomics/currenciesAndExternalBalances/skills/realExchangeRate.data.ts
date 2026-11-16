@@ -5,6 +5,7 @@ export const realExchangeRate_Skill_Data = defineSkill({
   id: '6c3b5e76-2e5f-493d-98dc-beb3133f9aad',
   name: {
     en: 'Реальний валютний курс',
+    it: 'Tasso di cambio reale',
     zh: '实际汇率',
     hi: 'वास्तविक विनिमय दर',
     es: 'Tipo de cambio real',
@@ -38,6 +39,7 @@ export const realExchangeRate_Skill_Data = defineSkill({
     methodological: 'Connect nominal exchange rates and relative price levels to assess international competitiveness.',
     frontend: {
       en: 'Compare prices across countries after allowing for exchange rates.',
+      it: 'Confronta i prezzi tra paesi tenendo conto dei tassi di cambio.',
       zh: '考虑汇率因素后比较不同国家的价格。',
       hi: 'विनिमय दर को ध्यान में रखकर देशों के बीच कीमतों की तुलना करें।',
       es: 'Compara precios entre países teniendo en cuenta los tipos de cambio.',

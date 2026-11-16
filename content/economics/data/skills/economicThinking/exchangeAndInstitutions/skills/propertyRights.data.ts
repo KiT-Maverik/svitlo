@@ -5,6 +5,7 @@ export const propertyRights_Skill_Data = defineSkill({
   id: '98ceed9e-8e89-41ff-99ad-d0557adab1a8',
   name: {
     en: 'Property Rights',
+    it: 'Diritti di proprietà',
     zh: '产权',
     hi: 'संपत्ति अधिकार',
     es: 'Derechos de propiedad',
@@ -39,6 +40,7 @@ export const propertyRights_Skill_Data = defineSkill({
       'Explain how defined rights to own, use, and transfer property affect incentives and economic conflicts.',
     frontend: {
       en: 'Explore why clear property rights matter for economic decisions.',
+      it: 'Esplora perché diritti di proprietà chiari sono importanti per le decisioni economiche.',
       zh: '探索明确的产权为何影响经济决策。',
       hi: 'जानें कि स्पष्ट संपत्ति अधिकार आर्थिक निर्णयों में क्यों महत्त्वपूर्ण हैं।',
       es: 'Explora por qué los derechos de propiedad claros importan en las decisiones económicas.',

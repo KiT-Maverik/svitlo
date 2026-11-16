@@ -5,6 +5,7 @@ export const explainInfiltrationDifferencesAmongSurfaceMaterials_Skill_Data = de
   id: 'c8ce5099-6f33-4188-aae1-810ca97f8b83',
   name: {
     en: 'Explain infiltration differences among surface materials',
+    it: 'Spiegare le differenze di infiltrazione tra materiali superficiali',
     zh: '解释不同地表物质的入渗差异',
     hi: 'विभिन्न सतही पदार्थों में जल अंतःस्रवण का अंतर समझाना',
     es: 'Explicar diferencias de infiltración entre materiales superficiales',
@@ -39,6 +40,7 @@ export const explainInfiltrationDifferencesAmongSurfaceMaterials_Skill_Data = de
       'Use grain size, pore connectivity, compaction and water saturation to explain why water infiltrates into different soil or sediment deposits at different rates. Avoid assuming large grains always guarantee drainage in every setting.',
     frontend: {
       en: 'Explain why water enters different soils or sediment layers at different rates.',
+      it: "Spiega perché l'acqua penetra in suoli e strati sedimentari diversi a velocità differenti.",
       zh: '解释为什么水渗入不同土壤或沉积层的速度不同。',
       hi: 'समझाएँ कि पानी अलग-अलग मृदाओं या अवसाद परतों में अलग गति से क्यों समाता है।',
       es: 'Explica por qué el agua penetra a distintas velocidades en suelos o capas de sedimentos.',

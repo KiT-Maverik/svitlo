@@ -5,6 +5,7 @@ export const designAccessibleBuildingCirculation_Skill_Data = defineSkill({
   id: '9e7c897d-24fa-4447-82ea-6c5a56da26e0',
   name: {
     en: 'Design accessible building circulation',
+    it: 'Progettare percorsi accessibili negli edifici',
     zh: '设计无障碍建筑通行路线',
     hi: 'सुगम भवन आवागमन डिजाइन करें',
     es: 'Diseñar recorridos accesibles en edificios',
@@ -39,6 +40,7 @@ export const designAccessibleBuildingCirculation_Skill_Data = defineSkill({
       'Create a proposed arrangement of entrances, corridors, turning spaces and level transitions so people with varying mobility can move through a planned building.',
     frontend: {
       en: 'Plan pathways and entrances usable by people with different mobility needs.',
+      it: 'Progetta percorsi e ingressi utilizzabili da persone con diverse esigenze di mobilità.',
       zh: '规划适合不同出行能力人群的通道和入口。',
       hi: 'अलग गतिशीलता जरूरतों वाले लोगों के लिए रास्ते और प्रवेश द्वार बनाएँ।',
       es: 'Planifica caminos y entradas utilizables por personas con distintas necesidades de movilidad.',

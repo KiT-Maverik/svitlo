@@ -5,6 +5,7 @@ export const historicalPeriodization_Skill_Data = defineSkill({
   id: 'a981f46d-c5c3-4d5e-9830-f64fd1f7bb94',
   name: {
     en: 'Historical Periodization',
+    it: 'Periodizzazione storica',
     zh: '历史分期',
     hi: 'ऐतिहासिक काल-विभाजन',
     es: 'Periodización histórica',
@@ -39,6 +40,7 @@ export const historicalPeriodization_Skill_Data = defineSkill({
       'Explain criteria for dividing the past into periods and recognize that regional transitions occurred at different times.',
     frontend: {
       en: 'Recognize why different regions use different historical period boundaries.',
+      it: 'Riconosci perché regioni diverse adottano confini diversi tra i periodi storici.',
       zh: '理解为什么不同地区采用不同的历史时期界限。',
       hi: 'समझें कि अलग-अलग क्षेत्रों में ऐतिहासिक कालों की सीमाएँ अलग क्यों होती हैं।',
       es: 'Reconoce por qué distintas regiones usan límites diferentes entre períodos históricos.',

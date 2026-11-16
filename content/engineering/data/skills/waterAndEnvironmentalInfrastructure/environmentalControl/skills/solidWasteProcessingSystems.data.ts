@@ -5,6 +5,7 @@ export const solidWasteProcessingSystems_Skill_Data = defineSkill({
   id: '02310dd0-f7fc-49ee-842c-49939037a993',
   name: {
     en: 'Solid-waste processing systems',
+    it: 'Sistemi di trattamento dei rifiuti solidi',
     zh: '固体废物处理系统',
     hi: 'ठोस कचरा प्रसंस्करण प्रणालियाँ',
     es: 'Sistemas de tratamiento de residuos sólidos',
@@ -39,6 +40,7 @@ export const solidWasteProcessingSystems_Skill_Data = defineSkill({
       'Trace collection, sorting, material recovery and residual handling through an engineered waste-management facility.',
     frontend: {
       en: 'Trace how facilities sort, transform and process solid waste.',
+      it: 'Segui come gli impianti selezionano, trasformano e trattano i rifiuti solidi.',
       zh: '追踪设施如何分拣、转化和处理固体废弃物。',
       hi: 'देखें कि संयंत्र ठोस कचरे को कैसे छाँटते, बदलते और संसाधित करते हैं।',
       es: 'Sigue cómo las instalaciones clasifican, transforman y procesan residuos sólidos.',

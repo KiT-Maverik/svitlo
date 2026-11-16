@@ -5,6 +5,7 @@ export const gibbsEnergy_Skill_Data = defineSkill({
   id: '9007dc88-e77d-415c-9f00-0c90e217b296',
   name: {
     en: 'Gibbs Energy',
+    it: 'Energia libera di Gibbs',
     zh: '吉布斯自由能',
     hi: 'गिब्स मुक्त ऊर्जा',
     es: 'Energía de Gibbs',
@@ -39,6 +40,7 @@ export const gibbsEnergy_Skill_Data = defineSkill({
       'Relate enthalpy, temperature and entropy to the direction of spontaneous change at constant temperature and pressure.',
     frontend: {
       en: 'Use Gibbs energy to judge when a chemical change is favorable under stated conditions.',
+      it: "Usa l'energia di Gibbs per valutare quando una trasformazione chimica è favorita in condizioni specificate.",
       zh: '利用吉布斯能判断在特定条件下化学变化是否有利于自发进行。',
       hi: 'निर्धारित परिस्थितियों में परिवर्तन अनुकूल है या नहीं, गिब्स ऊर्जा से जाँचें।',
       es: 'Usa la energía de Gibbs para juzgar si un cambio químico es favorable en ciertas condiciones.',

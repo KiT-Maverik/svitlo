@@ -5,6 +5,7 @@ export const inGroupAndOutGroupBias_Skill_Data = defineSkill({
   id: '5093dc6d-1357-4b93-bc7b-93c57dea1573',
   name: {
     en: 'In-Group and Out-Group Bias',
+    it: 'Favoritismo per il proprio gruppo e pregiudizi verso gli altri gruppi',
     zh: '内群体与外群体偏见',
     hi: 'अपने और दूसरे समूह के प्रति पक्षपात',
     es: 'Sesgo hacia el grupo propio y el ajeno',
@@ -39,6 +40,7 @@ export const inGroupAndOutGroupBias_Skill_Data = defineSkill({
       'Analyze unequal evaluation of people based on group membership even without direct personal experience.',
     frontend: {
       en: "Recognize unjustified favoritism toward one's own group.",
+      it: 'Riconosci il favoritismo ingiustificato verso il gruppo a cui si appartiene.',
       zh: '识别没有正当理由地偏袒自己所属群体的现象。',
       hi: 'बिना पर्याप्त कारण अपने समूह को अधिक महत्व देना पहचानें।',
       es: 'Reconoce el favoritismo injustificado hacia el propio grupo.',

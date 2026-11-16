@@ -5,6 +5,7 @@ export const locateCountriesOnAMap_Skill_Data = defineSkill({
   id: '6db76bde-5aa4-4a64-80bf-a752b0a9ee16',
   name: {
     en: 'Locate countries on a map',
+    it: 'Localizzare i paesi su una carta',
     zh: '在地图上定位国家',
     hi: 'मानचित्र पर देशों का स्थान बताना',
     es: 'Localizar países en un mapa',
@@ -39,6 +40,7 @@ export const locateCountriesOnAMap_Skill_Data = defineSkill({
       'Identify the positions of named sovereign states using a political map and stated time/context, recognizing that boundaries, names and political recognition may be disputed or change. Which countries are studied belongs to the Program, not the Skill identity.',
     frontend: {
       en: 'Locate countries while recognizing that boundaries and recognition can change.',
+      it: 'Localizza i paesi tenendo presente che confini e riconoscimento internazionale possono cambiare.',
       zh: '在辨认国家位置时，注意边界和政治承认可能发生变化。',
       hi: 'देशों को मानचित्र पर खोजें और समझें कि सीमाएँ तथा मान्यता बदल सकती हैं।',
       es: 'Ubica países sabiendo que las fronteras y el reconocimiento pueden cambiar.',

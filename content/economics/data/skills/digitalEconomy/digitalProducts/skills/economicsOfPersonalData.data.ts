@@ -5,6 +5,7 @@ export const economicsOfPersonalData_Skill_Data = defineSkill({
   id: '3c84baef-7753-491e-aa48-1248e473bf7d',
   name: {
     en: 'Економіка персональних даних',
+    it: 'Economia dei dati personali',
     zh: '个人数据经济学',
     hi: 'व्यक्तिगत डेटा का अर्थशास्त्र',
     es: 'Economía de los datos personales',
@@ -39,6 +40,7 @@ export const economicsOfPersonalData_Skill_Data = defineSkill({
       'Evaluate exchanges of personal data for services, information asymmetry, and the economic value of privacy.',
     frontend: {
       en: 'Explore the hidden economic trade-offs of services funded by personal data.',
+      it: 'Esplora i compromessi economici nascosti nei servizi finanziati tramite i dati personali.',
       zh: '探索以个人数据换取服务时不易察觉的经济取舍。',
       hi: 'व्यक्तिगत डेटा देकर सेवाएँ पाने में छिपे आर्थिक समझौतों को समझें।',
       es: 'Explora las compensaciones económicas ocultas de servicios financiados con datos personales.',

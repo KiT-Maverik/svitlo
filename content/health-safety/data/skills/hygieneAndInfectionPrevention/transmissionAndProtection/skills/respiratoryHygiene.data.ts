@@ -5,6 +5,7 @@ export const respiratoryHygiene_Skill_Data = defineSkill({
   id: '31f3fc68-f004-4a6a-9140-e28700fc082f',
   name: {
     en: 'Respiratory hygiene',
+    it: 'Igiene respiratoria',
     zh: '呼吸道卫生',
     hi: 'श्वसन स्वच्छता',
     es: 'Higiene respiratoria',
@@ -39,6 +40,7 @@ export const respiratoryHygiene_Skill_Data = defineSkill({
       'Reduce exposure when coughing, sneezing, or experiencing respiratory symptoms using appropriate etiquette, ventilation, and context-specific precautions.',
     frontend: {
       en: 'Use appropriate coughing, ventilation and illness-related precautions.',
+      it: 'Adotta precauzioni appropriate per la tosse, la ventilazione e la presenza di malattie.',
       zh: '咳嗽时采取合适措施，注意通风和生病时的预防。',
       hi: 'खाँसते समय सही सावधानी, हवा का आवागमन और बीमारी से जुड़े बचाव अपनाएँ।',
       es: 'Practica hábitos adecuados al toser, ventilar y prevenir contagios durante enfermedades.',

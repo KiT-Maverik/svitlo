@@ -5,6 +5,7 @@ export const alkenes_Skill_Data = defineSkill({
   id: '8738e5cf-720d-4535-a56a-8f738867f868',
   name: {
     en: 'Alkenes',
+    it: 'Alcheni',
     zh: '烯烃',
     hi: 'ऐल्कीन',
     es: 'Alquenos',
@@ -38,6 +39,7 @@ export const alkenes_Skill_Data = defineSkill({
     methodological: 'Relate carbon–carbon double bonds to connectivity and common addition chemistry.',
     frontend: {
       en: 'Explore how carbon–carbon double bonds affect reactions in alkenes.',
+      it: 'Esplora come i doppi legami carbonio-carbonio influenzano le reazioni degli alcheni.',
       zh: '探索碳碳双键如何影响烯烃的化学反应。',
       hi: 'जानें कि कार्बन–कार्बन द्विबंध ऐल्कीन की अभिक्रियाओं को कैसे प्रभावित करता है।',
       es: 'Explora cómo los dobles enlaces carbono-carbono afectan las reacciones de los alquenos.',

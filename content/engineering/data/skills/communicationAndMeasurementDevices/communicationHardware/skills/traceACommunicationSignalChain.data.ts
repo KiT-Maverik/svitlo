@@ -5,6 +5,7 @@ export const traceACommunicationSignalChain_Skill_Data = defineSkill({
   id: '1d72bd09-d84d-4222-85bc-f59467e84cb9',
   name: {
     en: 'Trace a communication signal chain',
+    it: 'Seguire la catena di un segnale di comunicazione',
     zh: '追踪通信信号链',
     hi: 'संचार संकेत श्रृंखला का पता लगाना',
     es: 'Seguir una cadena de señal de comunicación',
@@ -38,6 +39,7 @@ export const traceACommunicationSignalChain_Skill_Data = defineSkill({
     methodological: 'Identify input conversion, transmission, propagation, reception and output in a practical link.',
     frontend: {
       en: 'Trace a signal through transmission, propagation and reception.',
+      it: 'Segui il percorso di un segnale durante la trasmissione, la propagazione e la ricezione.',
       zh: '追踪信号从发射、传播到接收的过程。',
       hi: 'संकेत के प्रसारण, संचरण और ग्रहण की पूरी प्रक्रिया का पता लगाएँ।',
       es: 'Sigue una señal durante su transmisión, propagación y recepción.',

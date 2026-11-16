@@ -5,6 +5,7 @@ export const reliabilityOfMeasures_Skill_Data = defineSkill({
   id: 'd2bf1696-3d72-4569-b0dc-da7181135d42',
   name: {
     en: 'Reliability of Measures',
+    it: 'Attendibilità delle misure',
     zh: '测量的信度',
     hi: 'माप की विश्वसनीयता',
     es: 'Fiabilidad de las medidas',
@@ -39,6 +40,7 @@ export const reliabilityOfMeasures_Skill_Data = defineSkill({
       'Evaluate whether repeated or equivalent measurements are consistent enough for their intended interpretation.',
     frontend: {
       en: 'Check whether a psychological measure gives consistent results.',
+      it: 'Verifica se una misura psicologica fornisca risultati coerenti.',
       zh: '检查心理测量能否给出一致的结果。',
       hi: 'जाँचें कि मनोवैज्ञानिक माप लगातार समान परिणाम देता है या नहीं।',
       es: 'Comprueba si una medida psicológica produce resultados consistentes.',

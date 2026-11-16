@@ -5,6 +5,7 @@ export const analyzeAuthenticityAsAPhilosophicalConcept_Skill_Data = defineSkill
   id: '1e9ff7ef-a5cb-452a-873c-9b13fd7d4d73',
   name: {
     en: 'Analyze authenticity as a philosophical concept',
+    it: "Analizzare l'autenticità come concetto filosofico",
     zh: '将真实性作为哲学概念来分析',
     hi: 'प्रामाणिकता का दार्शनिक अवधारणा के रूप में विश्लेषण',
     es: 'Analizar la autenticidad como concepto filosófico',
@@ -39,6 +40,7 @@ export const analyzeAuthenticityAsAPhilosophicalConcept_Skill_Data = defineSkill
       "Evaluate competing claims about acting from one's commitments, social expectations, and self-understanding.",
     frontend: {
       en: 'Explore whether acting authentically requires independence from social expectations.',
+      it: 'Esplora se agire in modo autentico richieda indipendenza dalle aspettative sociali.',
       zh: '探索真实地生活是否要求摆脱社会期待的影响。',
       hi: 'जाँचें कि प्रामाणिक जीवन के लिए सामाजिक अपेक्षाओं से स्वतंत्र होना जरूरी है या नहीं।',
       es: 'Explora si actuar con autenticidad exige independencia de las expectativas sociales.',

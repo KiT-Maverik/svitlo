@@ -5,6 +5,7 @@ export const evaluateGripAndHandling_Skill_Data = defineSkill({
   id: '1977cbe8-f8c8-4d6f-9f8a-1ca4bdabb58a',
   name: {
     en: 'Evaluate grip and handling',
+    it: 'Valutare la presa e la manipolazione',
     zh: '评估抓握与操作',
     hi: 'पकड़ और संभालने की आसानी का मूल्यांकन',
     es: 'Evaluar el agarre y la manipulación',
@@ -38,6 +39,7 @@ export const evaluateGripAndHandling_Skill_Data = defineSkill({
     methodological: 'Relate handle dimensions, texture and operating force to controlled manipulation.',
     frontend: {
       en: 'Evaluate how well an object can be held and manipulated.',
+      it: 'Valuta quanto facilmente un oggetto può essere afferrato e maneggiato.',
       zh: '评估物品是否容易握持和操作。',
       hi: 'मूल्यांकन करें कि वस्तु को पकड़ना और चलाना कितना आसान है।',
       es: 'Evalúa lo fácil que resulta sujetar y manipular un objeto.',

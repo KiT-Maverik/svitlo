@@ -5,6 +5,7 @@ export const compareTheStrengthOfStructuralShapes_Skill_Data = defineSkill({
   id: '3b9aeffe-2c29-45e6-8b4a-11794ebb673d',
   name: {
     en: 'Compare the strength of structural shapes',
+    it: 'Confrontare la resistenza di forme strutturali diverse',
     zh: '比较不同结构形状的承载能力',
     hi: 'संरचनात्मक आकृतियों की मजबूती की तुलना करना',
     es: 'Comparar la resistencia de distintas formas estructurales',
@@ -38,6 +39,7 @@ export const compareTheStrengthOfStructuralShapes_Skill_Data = defineSkill({
     methodological: 'Under identical testing conditions, determine which shape better withstands a load.',
     frontend: {
       en: 'Compare how differently shaped structures resist the same applied load.',
+      it: 'Confronta come strutture di forme diverse resistono allo stesso carico applicato.',
       zh: '比较不同形状的结构承受相同外加载荷的能力。',
       hi: 'तुलना करें कि अलग-अलग आकार की संरचनाएँ समान भार का कितना प्रतिरोध करती हैं।',
       es: 'Compara cómo estructuras de diferentes formas resisten la misma carga aplicada.',

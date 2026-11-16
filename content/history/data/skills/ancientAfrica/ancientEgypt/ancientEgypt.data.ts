@@ -20,6 +20,7 @@ export const ancientEgypt_SkillGroup_Data = defineSkillGroup({
   id: '49358541-07a4-465a-a44f-2efd1da01604',
   name: {
     en: 'Egypt',
+    it: 'Egitto',
     zh: '古埃及',
     hi: 'प्राचीन मिस्र',
     es: 'Egipto antiguo',
@@ -84,6 +85,7 @@ export const ancientEgypt_SkillGroup_Data = defineSkillGroup({
       'The Nile state combined long-standing kingship, water management, written culture, and contact with neighbors.',
     frontend: {
       en: 'Discover how the Nile supported ancient Egyptian society and government.',
+      it: "Scopri come il Nilo sosteneva la società e il governo dell'antico Egitto.",
       zh: '了解尼罗河如何支撑古埃及社会与统治。',
       hi: 'जानें कि नील नदी ने प्राचीन मिस्री समाज और शासन को कैसे सहारा दिया।',
       es: 'Descubre cómo el Nilo sostenía la sociedad y el gobierno del antiguo Egipto.',

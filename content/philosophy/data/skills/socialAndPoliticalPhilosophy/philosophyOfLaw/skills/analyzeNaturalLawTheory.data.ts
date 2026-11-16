@@ -5,6 +5,7 @@ export const analyzeNaturalLawTheory_Skill_Data = defineSkill({
   id: 'b6a7cd29-e546-47e1-a699-e9bf10aecffc',
   name: {
     en: 'Analyze natural law theory',
+    it: 'Analizzare la teoria del diritto naturale',
     zh: '分析自然法理论',
     hi: 'प्राकृतिक विधि सिद्धांत का विश्लेषण',
     es: 'Analizar la teoría del derecho natural',
@@ -39,6 +40,7 @@ export const analyzeNaturalLawTheory_Skill_Data = defineSkill({
       'Evaluate theories that understand legal authority or validity as importantly connected to morality, distinguishing different versions of this connection.',
     frontend: {
       en: 'Compare views that connect the authority of law with moral principles.',
+      it: "Confronta concezioni che collegano l'autorità del diritto ai principi morali.",
       zh: '比较认为法律权威与道德原则相联系的观点。',
       hi: 'कानून के अधिकार को नैतिक सिद्धांतों से जोड़ने वाले विचारों की तुलना करो।',
       es: 'Compara teorías que relacionan la autoridad del derecho con principios morales.',

@@ -5,6 +5,7 @@ export const northAfricanCulturalInteractions_Skill_Data = defineSkill({
   id: '9c42ea37-d538-46f1-97ae-f1c329392d8f',
   name: {
     en: 'North African Cultural Interactions',
+    it: "Interazioni culturali nell'Africa settentrionale",
     zh: '北非文化交流',
     hi: 'उत्तर अफ्रीकी सांस्कृतिक संपर्क',
     es: 'Interacciones culturales norteafricanas',
@@ -39,6 +40,7 @@ export const northAfricanCulturalInteractions_Skill_Data = defineSkill({
       'Explore coexistence of local languages and traditions with Phoenician, Greek, and Roman influences in antiquity.',
     frontend: {
       en: 'Explore cultural exchanges in ancient North Africa.',
+      it: "Esplora gli scambi culturali nell'Africa settentrionale antica.",
       zh: '探索古代北非的文化互动。',
       hi: 'प्राचीन उत्तरी अफ्रीका के सांस्कृतिक आदान-प्रदान को जानें।',
       es: 'Explora los intercambios culturales de la antigua África del Norte.',

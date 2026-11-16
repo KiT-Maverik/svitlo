@@ -5,6 +5,7 @@ export const respondSafelyToBullying_Skill_Data = defineSkill({
   id: 'f99cd116-8f4e-4d08-97a2-8827cfacacff',
   name: {
     en: 'Respond safely to bullying',
+    it: 'Reagire al bullismo in sicurezza',
     zh: '安全应对霸凌',
     hi: 'बदमाशी का सुरक्षित जवाब दें',
     es: 'Responder de forma segura al acoso',
@@ -39,6 +40,7 @@ export const respondSafelyToBullying_Skill_Data = defineSkill({
       'Prioritize disengagement, trusted assistance, and reporting channels over retaliation or direct confrontation with aggressors.',
     frontend: {
       en: 'Choose safer help-seeking and reporting instead of retaliation.',
+      it: 'Scegli di chiedere aiuto e segnalare in sicurezza, invece di vendicarti.',
       zh: '选择求助和报告等更安全的方式，而不是报复。',
       hi: 'बदला लेने के बजाय सुरक्षित मदद माँगने और शिकायत करने के तरीके चुनें।',
       es: 'Elige pedir ayuda y denunciar de forma segura en lugar de vengarte.',

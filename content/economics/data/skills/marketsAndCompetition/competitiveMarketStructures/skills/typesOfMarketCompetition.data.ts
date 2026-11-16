@@ -5,6 +5,7 @@ export const typesOfMarketCompetition_Skill_Data = defineSkill({
   id: 'a40fb322-7218-48d9-bfa6-901cbf75a10f',
   name: {
     en: 'Types of Market Competition',
+    it: 'Tipi di concorrenza di mercato',
     zh: '市场竞争类型',
     hi: 'बाजार प्रतिस्पर्धा के प्रकार',
     es: 'Tipos de competencia de mercado',
@@ -39,6 +40,7 @@ export const typesOfMarketCompetition_Skill_Data = defineSkill({
       'Distinguish perfect competition, monopolistic competition, oligopoly, and monopoly by their defining conditions.',
     frontend: {
       en: 'Recognize different market structures based on competition.',
+      it: 'Riconosci diverse strutture di mercato in base alla concorrenza.',
       zh: '根据竞争状况识别不同的市场结构。',
       hi: 'प्रतिस्पर्धा के आधार पर बाजार की विभिन्न संरचनाएँ पहचानें।',
       es: 'Reconoce distintas estructuras de mercado según la competencia.',

@@ -5,6 +5,7 @@ export const maritimeTradeOfSoutheastAsia_Skill_Data = defineSkill({
   id: '1426feaa-27a5-42bb-87c9-988cc52097cd',
   name: {
     en: 'Maritime Trade of Southeast Asia',
+    it: "Commercio marittimo dell'Asia sudorientale",
     zh: '东南亚海上贸易',
     hi: 'दक्षिण-पूर्व एशिया का समुद्री व्यापार',
     es: 'Comercio marítimo del Sudeste Asiático',
@@ -38,6 +39,7 @@ export const maritimeTradeOfSoutheastAsia_Skill_Data = defineSkill({
     methodological: 'Explain the roles of straits, monsoon routes, and ports in exchanges of goods and ideas.',
     frontend: {
       en: 'Follow the sea routes connecting Southeast Asian trading ports.',
+      it: "Segui le rotte marittime che collegavano i porti commerciali dell'Asia sudorientale.",
       zh: '追踪连接东南亚贸易港口的海上航线。',
       hi: 'दक्षिण-पूर्व एशिया के व्यापारिक बंदरगाहों को जोड़ने वाले समुद्री मार्ग जानें।',
       es: 'Sigue las rutas marítimas que unían los puertos comerciales del Sudeste Asiático.',

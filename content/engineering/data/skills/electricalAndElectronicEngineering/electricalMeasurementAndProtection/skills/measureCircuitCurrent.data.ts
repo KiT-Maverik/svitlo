@@ -5,6 +5,7 @@ export const measureCircuitCurrent_Skill_Data = defineSkill({
   id: '6ab7298a-e74b-4fde-9a3f-f6b64541c5cb',
   name: {
     en: 'Measure circuit current',
+    it: 'Misurare la corrente in un circuito',
     zh: '测量电路电流',
     hi: 'परिपथ की धारा मापना',
     es: 'Medir la corriente del circuito',
@@ -38,6 +39,7 @@ export const measureCircuitCurrent_Skill_Data = defineSkill({
     methodological: 'Choose an appropriate sensing method and insertion point for a selected branch.',
     frontend: {
       en: 'Measure current through a circuit without connecting the meter incorrectly.',
+      it: 'Misura la corrente che attraversa un circuito senza collegare erroneamente lo strumento.',
       zh: '测量流经电路的电流，并避免错误连接仪表。',
       hi: 'मीटर को गलत तरीके से जोड़े बिना परिपथ में बहती धारा मापें।',
       es: 'Mide la corriente de un circuito sin conectar mal el instrumento.',

@@ -5,6 +5,7 @@ export const stellarLifetimes_Skill_Data = defineSkill({
   id: '9707419e-d71f-4a9f-9465-151641001fbb',
   name: {
     en: 'Stellar Lifetimes',
+    it: 'Durata della vita delle stelle',
     zh: '恒星寿命',
     hi: 'तारों का जीवनकाल',
     es: 'Vida de las estrellas',
@@ -38,6 +39,7 @@ export const stellarLifetimes_Skill_Data = defineSkill({
     methodological: 'Compare the evolutionary timescales of stars with different initial masses.',
     frontend: {
       en: 'Compare how long stars live depending on their initial masses.',
+      it: 'Confronta quanto a lungo vivono le stelle in base alla loro massa iniziale.',
       zh: '比较初始质量不同的恒星能存在多长时间。',
       hi: 'तारों के शुरुआती द्रव्यमान के अनुसार उनके जीवनकाल की तुलना करें।',
       es: 'Compara cuánto viven las estrellas según sus masas iniciales.',

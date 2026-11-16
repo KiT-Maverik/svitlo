@@ -15,6 +15,7 @@ export const heuristicsAndBiases_SkillGroup_Data = defineSkillGroup({
   id: 'ecfda315-3e86-4a7f-901f-6e4aeebc8cfe',
   name: {
     en: 'Heuristics and Biases',
+    it: 'Euristiche e distorsioni cognitive',
     zh: '启发式与认知偏差',
     hi: 'सरलीकृत नियम और संज्ञानात्मक पूर्वाग्रह',
     es: 'Heurísticos y sesgos',
@@ -69,6 +70,7 @@ export const heuristicsAndBiases_SkillGroup_Data = defineSkillGroup({
       'Fast judgments exploit convenient cues but may be systematically distorted by memory, presentation, or expectations.',
     frontend: {
       en: 'Discover shortcuts and biases that influence judgments.',
+      it: 'Scopri le scorciatoie mentali e le distorsioni che influenzano i giudizi.',
       zh: '探索影响判断的思维捷径和认知偏差。',
       hi: 'निर्णय को प्रभावित करने वाले मानसिक शॉर्टकट और पूर्वाग्रहों को पहचानें।',
       es: 'Descubre los atajos mentales y sesgos que influyen en los juicios.',

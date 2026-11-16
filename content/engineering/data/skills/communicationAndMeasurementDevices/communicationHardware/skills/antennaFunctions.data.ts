@@ -5,6 +5,7 @@ export const antennaFunctions_Skill_Data = defineSkill({
   id: 'ead44198-03b1-4e8d-88ee-c93e808a7a87',
   name: {
     en: 'Antenna functions',
+    it: 'Funzioni delle antenne',
     zh: '天线的功能',
     hi: 'एंटीना के कार्य',
     es: 'Funciones de las antenas',
@@ -38,6 +39,7 @@ export const antennaFunctions_Skill_Data = defineSkill({
     methodological: 'Relate antenna coupling, placement and orientation to the intended link.',
     frontend: {
       en: 'Explore how antennas couple signals to electromagnetic waves.',
+      it: 'Esplora come le antenne accoppiano i segnali alle onde elettromagnetiche.',
       zh: '探索天线如何将信号与电磁波耦合。',
       hi: 'जानें कि एंटीना संकेतों को विद्युतचुंबकीय तरंगों से कैसे जोड़ते हैं।',
       es: 'Explora cómo las antenas acoplan señales a ondas electromagnéticas.',

@@ -5,6 +5,7 @@ export const recognizeLiquidPressureActingInDifferentDirections_Skill_Data = def
   id: 'a4874baa-8a7b-4ce6-9a7f-012009758994',
   name: {
     en: 'Recognize liquid pressure acting in different directions',
+    it: 'Riconoscere che la pressione dei liquidi agisce in diverse direzioni',
     zh: '认识液体压强作用于不同方向',
     hi: 'द्रव के दाब का विभिन्न दिशाओं में प्रभाव पहचानना',
     es: 'Reconocer la presión de los líquidos en distintas direcciones',
@@ -39,6 +40,7 @@ export const recognizeLiquidPressureActingInDifferentDirections_Skill_Data = def
       'Use a model of holes in a container to explain why water exerts pressure in directions other than downward.',
     frontend: {
       en: 'Recognize that liquid pressure acts sideways as well as downward.',
+      it: 'Riconosci che la pressione dei liquidi agisce lateralmente oltre che verso il basso.',
       zh: '认识液体压强不仅向下，也向侧面作用。',
       hi: 'जानें कि द्रव का दाब नीचे के साथ-साथ बगल में भी लगता है।',
       es: 'Reconoce que la presión del líquido actúa hacia los lados y hacia abajo.',

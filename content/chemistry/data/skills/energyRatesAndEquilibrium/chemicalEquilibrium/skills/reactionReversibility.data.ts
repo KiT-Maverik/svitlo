@@ -5,6 +5,7 @@ export const reactionReversibility_Skill_Data = defineSkill({
   id: 'e56e1543-4fb1-49f1-8922-398a4240f9fd',
   name: {
     en: 'Reaction Reversibility',
+    it: 'Reversibilità delle reazioni',
     zh: '反应可逆性',
     hi: 'अभिक्रिया की उत्क्रमणीयता',
     es: 'Reversibilidad de las reacciones',
@@ -39,6 +40,7 @@ export const reactionReversibility_Skill_Data = defineSkill({
       'Determine when products can reform reactants, distinguishing a possible reverse pathway from a system that has actually reached dynamic equilibrium.',
     frontend: {
       en: 'Recognize reactions that can proceed in both directions.',
+      it: 'Riconosci le reazioni che possono procedere in entrambe le direzioni.',
       zh: '识别能沿正反两个方向进行的反应。',
       hi: 'दोनों दिशाओं में चल सकने वाली अभिक्रियाओं को पहचानें।',
       es: 'Reconoce reacciones que pueden avanzar en ambos sentidos.',

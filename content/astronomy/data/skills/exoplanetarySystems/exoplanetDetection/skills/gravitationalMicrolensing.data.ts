@@ -5,6 +5,7 @@ export const gravitationalMicrolensing_Skill_Data = defineSkill({
   id: 'ce90c91a-cfbe-469c-85eb-d10aa16bc36a',
   name: {
     en: 'Gravitational Microlensing',
+    it: 'Microlente gravitazionale',
     zh: '引力微透镜效应',
     hi: 'गुरुत्वीय सूक्ष्म लेंसिंग',
     es: 'Microlente gravitacional',
@@ -39,6 +40,7 @@ export const gravitationalMicrolensing_Skill_Data = defineSkill({
       'Explain how temporary lensing signatures can reveal otherwise difficult-to-detect planetary companions.',
     frontend: {
       en: "Understand how gravity can briefly magnify a distant star's light and reveal a planet.",
+      it: 'Comprendi come la gravità possa amplificare per breve tempo la luce di una stella distante e rivelare un pianeta.',
       zh: '理解引力如何使遥远恒星的视亮度短暂增强，从而揭示行星的存在。',
       hi: 'समझें कि गुरुत्वीय लेंसिंग दूर के तारे की दिखाई देने वाली चमक कुछ समय के लिए बढ़ाकर ग्रह का संकेत कैसे दे सकती है।',
       es: 'Comprende cómo la gravedad puede aumentar temporalmente el brillo aparente de una estrella distante y revelar un planeta.',

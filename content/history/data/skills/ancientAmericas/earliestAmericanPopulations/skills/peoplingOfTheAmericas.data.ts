@@ -5,6 +5,7 @@ export const peoplingOfTheAmericas_Skill_Data = defineSkill({
   id: '70b3a1bf-cfb2-494f-ade3-a664bfeb607e',
   name: {
     en: 'Peopling of the Americas',
+    it: 'Popolamento delle Americhe',
     zh: '美洲的最初定居',
     hi: 'अमेरिकी महाद्वीपों का प्रारंभिक बसाव',
     es: 'Poblamiento de las Américas',
@@ -39,6 +40,7 @@ export const peoplingOfTheAmericas_Skill_Data = defineSkill({
       'Compare scientific models of arrival routes and dates while acknowledging limits of current evidence.',
     frontend: {
       en: 'Explore how people first reached the Americas.',
+      it: 'Esplora come gli esseri umani raggiunsero per la prima volta le Americhe.',
       zh: '探索人类最初如何到达美洲。',
       hi: 'जानें कि मनुष्य पहली बार अमेरिका कैसे पहुँचे।',
       es: 'Explora cómo las personas llegaron por primera vez a las Américas.',

@@ -5,6 +5,7 @@ export const automatedManufacturingCells_Skill_Data = defineSkill({
   id: '9b32d811-67fe-496c-9a9b-1ade7552b5a6',
   name: {
     en: 'Automated manufacturing cells',
+    it: 'Celle di produzione automatizzate',
     zh: '自动化制造单元',
     hi: 'स्वचालित विनिर्माण इकाइयाँ',
     es: 'Células de fabricación automatizadas',
@@ -38,6 +39,7 @@ export const automatedManufacturingCells_Skill_Data = defineSkill({
     methodological: 'Identify handling mechanisms, sensors, drives and safety boundaries in repetitive production.',
     frontend: {
       en: 'Understand how automated workstations coordinate production steps.',
+      it: 'Comprendi come le postazioni di lavoro automatizzate coordinano le fasi produttive.',
       zh: '了解自动化工作站如何协调生产步骤。',
       hi: 'समझें कि स्वचालित कार्यस्थल उत्पादन के चरणों का तालमेल कैसे करते हैं।',
       es: 'Comprende cómo las estaciones de trabajo automatizadas coordinan los pasos de producción.',

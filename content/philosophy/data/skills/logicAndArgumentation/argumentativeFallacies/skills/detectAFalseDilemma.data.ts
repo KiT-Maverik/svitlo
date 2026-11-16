@@ -5,6 +5,7 @@ export const detectAFalseDilemma_Skill_Data = defineSkill({
   id: '06f0eb6f-29e7-49a6-aba1-9a7e654f4670',
   name: {
     en: 'Detect a false dilemma',
+    it: 'Riconoscere un falso dilemma',
     zh: '识别虚假两难',
     hi: 'झूठे द्वंद्व को पहचानना',
     es: 'Detectar un falso dilema',
@@ -39,6 +40,7 @@ export const detectAFalseDilemma_Skill_Data = defineSkill({
       'Identify a purported exhaustive choice that overlooks meaningful alternatives or combined possibilities.',
     frontend: {
       en: 'Find meaningful alternatives hidden by a misleading either-or choice.',
+      it: 'Individua alternative significative nascoste da una scelta ingannevole tra sole due opzioni.',
       zh: '找出误导性的非此即彼选择所掩盖的其他可行方案。',
       hi: "भ्रामक 'या यह या वह' विकल्प से छिपे सार्थक विकल्प खोजें।",
       es: 'Encuentra alternativas relevantes ocultas por una falsa elección entre solo dos opciones.',

@@ -12,6 +12,7 @@ export const publicReasonAndCivicLife_SkillGroup_Data = defineSkillGroup({
   id: 'f4faa2aa-3c17-48a7-a10e-9eb442653432',
   name: {
     en: 'Public Reason and Civic Life',
+    it: 'Ragione pubblica e vita civica',
     zh: '公共理性与公民生活',
     hi: 'सार्वजनिक तर्क और नागरिक जीवन',
     es: 'Razón pública y vida cívica',
@@ -60,6 +61,7 @@ export const publicReasonAndCivicLife_SkillGroup_Data = defineSkillGroup({
       'People with incompatible values must still make shared decisions. Philosophical inquiry examines how disagreements can be handled under pluralism and institutional accountability.',
     frontend: {
       en: 'Discover how people with different values can justify decisions affecting everyone.',
+      it: 'Scopri come persone con valori diversi possano giustificare decisioni che riguardano tutti.',
       zh: '了解价值观不同的人如何为影响所有人的决定提供理由。',
       hi: 'जानो कि अलग मूल्यों वाले लोग सबको प्रभावित करने वाले निर्णयों का औचित्य कैसे समझाते हैं।',
       es: 'Descubre cómo personas con valores diferentes justifican decisiones que afectan a todos.',

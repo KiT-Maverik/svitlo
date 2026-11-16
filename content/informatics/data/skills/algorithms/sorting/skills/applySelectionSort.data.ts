@@ -5,6 +5,7 @@ export const applySelectionSort_Skill_Data = defineSkill({
   id: 'd27b3cb1-5fd8-4ffd-becb-3b4f1f52d2a3',
   name: {
     en: 'Apply Selection Sort',
+    it: "Applicare l'ordinamento per selezione",
     zh: '应用选择排序',
     hi: 'चयन क्रमबद्धता लागू करना',
     es: 'Aplicar ordenación por selección',
@@ -39,6 +40,7 @@ export const applySelectionSort_Skill_Data = defineSkill({
       'On each pass, find the smallest remaining item and move it to the next position in the sorted prefix.',
     frontend: {
       en: 'Sort items by repeatedly selecting the smallest remaining one.',
+      it: 'Ordina gli elementi selezionando ripetutamente quello più piccolo tra i rimanenti.',
       zh: '每次从未排序部分选出最小的元素来排序。',
       hi: 'हर बार बचे हुए तत्वों में सबसे छोटा चुनकर क्रम बनाएँ।',
       es: 'Ordena seleccionando una y otra vez el menor elemento restante.',

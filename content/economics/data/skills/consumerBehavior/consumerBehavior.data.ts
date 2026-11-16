@@ -9,6 +9,7 @@ export const consumerBehavior_SkillDomain_Data = defineSkillDomain({
   id: 'd69b6b66-cd9a-44c0-95e1-4cadaa325466',
   title: {
     en: 'Consumer Behavior',
+    it: 'Comportamento dei consumatori',
     zh: '消费者行为',
     hi: 'उपभोक्ता व्यवहार',
     es: 'Comportamiento del consumidor',
@@ -51,6 +52,7 @@ export const consumerBehavior_SkillDomain_Data = defineSkillDomain({
       "Consumers evaluate needs, quality, alternatives, and information under varying incomes and psychological constraints. This domain analyzes their choices rather than sellers' methods of promoting goods.",
     frontend: {
       en: 'Explore how people choose what to buy and what information shapes their decisions.',
+      it: 'Esplora come le persone scelgono cosa acquistare e quali informazioni influenzano le loro decisioni.',
       zh: '探索人们如何决定购买什么，以及哪些信息影响他们的选择。',
       hi: 'जानें कि लोग क्या खरीदें, यह कैसे तय करते हैं और कौन-सी जानकारी उनके निर्णयों को प्रभावित करती है।',
       es: 'Explora cómo deciden las personas qué comprar y qué información influye en ellas.',

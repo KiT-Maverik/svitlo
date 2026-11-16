@@ -5,6 +5,7 @@ export const emotionFocusedCoping_Skill_Data = defineSkill({
   id: '80fe3eac-935c-4f0d-8dc7-e042bd5b078a',
   name: {
     en: 'Emotion-Focused Coping',
+    it: 'Strategie di coping centrate sulle emozioni',
     zh: '情绪导向的应对',
     hi: 'भावना-केंद्रित सामना',
     es: 'Afrontamiento centrado en las emociones',
@@ -39,6 +40,7 @@ export const emotionFocusedCoping_Skill_Data = defineSkill({
       'Explain responses aimed at managing distress when the situation itself may not be immediately alterable.',
     frontend: {
       en: 'Explore ways to manage emotional responses when circumstances cannot be changed.',
+      it: 'Esplora modi per gestire le risposte emotive quando le circostanze non possono essere cambiate.',
       zh: '探索在无法改变环境时管理情绪反应的方法。',
       hi: 'परिस्थितियाँ न बदल सकें तो भावनात्मक प्रतिक्रियाएँ सँभालने के तरीके जानें।',
       es: 'Explora cómo gestionar las emociones cuando no es posible cambiar las circunstancias.',

@@ -5,6 +5,7 @@ export const recognizeHeating_Skill_Data = defineSkill({
   id: '2450cde5-4854-40ac-96e8-7138f35bdaa5',
   name: {
     en: 'Recognize heating',
+    it: 'Riconoscere il riscaldamento',
     qm: 'Qızdırıluvnı tanımaq',
     zh: '识别加热现象',
     hi: 'गर्म होने की प्रक्रिया पहचानना',
@@ -39,6 +40,7 @@ export const recognizeHeating_Skill_Data = defineSkill({
       'An increase in temperature reflects a change in thermal state, but energy input does not always increase temperature during a phase transition.',
     frontend: {
       en: 'Recognize changes in thermal state during heating.',
+      it: 'Riconosci le variazioni dello stato termico durante il riscaldamento.',
       qm: 'Qızdırıluv vaqtında cisimniñ termik alında olğan deñişmelerni tanı.',
       zh: '识别加热过程中物体热状态的变化。',
       hi: 'गर्म करते समय ऊष्मीय अवस्था में होने वाले बदलाव पहचानें।',

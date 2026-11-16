@@ -5,6 +5,7 @@ export const nominalAndRealOutput_Skill_Data = defineSkill({
   id: '7f5b9682-cf3b-4147-8a47-d2db01dfbdd5',
   name: {
     en: 'Номінальний і реальний випуск',
+    it: 'Produzione nominale e reale',
     zh: '名义产出与实际产出',
     hi: 'नाममात्र और वास्तविक उत्पादन',
     es: 'Producción nominal y real',
@@ -39,6 +40,7 @@ export const nominalAndRealOutput_Skill_Data = defineSkill({
       'Separate changes in prices from changes in aggregate physical output using appropriate bases and indexes in national accounts; this is a specific macroeconomic application of real quantities.',
     frontend: {
       en: 'Tell whether production increased or only prices rose.',
+      it: 'Distingui se è aumentata la produzione oppure sono cresciuti soltanto i prezzi.',
       zh: '辨别生产增加了，还是仅仅价格上涨了。',
       hi: 'पहचानें कि उत्पादन बढ़ा है या केवल कीमतें बढ़ी हैं।',
       es: 'Distingue si aumentó la producción o si solo subieron los precios.',

@@ -5,6 +5,7 @@ export const gdpPerCapitaAndWelfare_Skill_Data = defineSkill({
   id: 'e0d150ed-20d3-43bd-b9dd-e050acf4970e',
   name: {
     en: 'ВВП на одну особу та добробут',
+    it: 'PIL pro capite e benessere',
     zh: '人均国内生产总值与福利',
     hi: 'प्रति व्यक्ति जीडीपी और कल्याण',
     es: 'PIB por habitante y bienestar',
@@ -39,6 +40,7 @@ export const gdpPerCapitaAndWelfare_Skill_Data = defineSkill({
       'Explain why average output does not measure distribution, unpaid work, environmental effects, or every aspect of quality of life.',
     frontend: {
       en: 'Recognize why GDP per person is not a complete measure of wellbeing.',
+      it: 'Riconosci perché il PIL per persona non misura completamente il benessere.',
       zh: '理解人均GDP为何无法完整衡量生活福祉。',
       hi: 'जानें कि प्रति व्यक्ति जीडीपी कल्याण का पूरा माप क्यों नहीं है।',
       es: 'Reconoce por qué el PIB por persona no mide por completo el bienestar.',

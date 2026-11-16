@@ -5,6 +5,7 @@ export const molecularFormulas_Skill_Data = defineSkill({
   id: '26090a64-c55f-44c2-989d-154c5c884e4b',
   name: {
     en: 'Molecular Formulas',
+    it: 'Formule molecolari',
     zh: '分子式',
     hi: 'आणविक सूत्र',
     es: 'Fórmulas moleculares',
@@ -38,6 +39,7 @@ export const molecularFormulas_Skill_Data = defineSkill({
     methodological: 'Interpret how many atoms of each element are present in a specified discrete molecule.',
     frontend: {
       en: 'Read a molecular formula to identify the atoms in one molecule.',
+      it: 'Leggi una formula molecolare per individuare gli atomi presenti in una molecola.',
       zh: '根据分子式识别一个分子中的原子。',
       hi: 'एक अणु में मौजूद परमाणुओं को आणविक सूत्र से पहचानें।',
       es: 'Lee una fórmula molecular para identificar los átomos de una molécula.',

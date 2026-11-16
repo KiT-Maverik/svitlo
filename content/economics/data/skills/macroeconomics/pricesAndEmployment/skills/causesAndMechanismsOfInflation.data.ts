@@ -5,6 +5,7 @@ export const causesAndMechanismsOfInflation_Skill_Data = defineSkill({
   id: '34c55190-22b3-4ab8-9351-5cc77b12f4fb',
   name: {
     en: 'Причини та механізми інфляції',
+    it: "Cause e meccanismi dell'inflazione",
     zh: '通货膨胀的原因与机制',
     hi: 'मुद्रास्फीति के कारण और तंत्र',
     es: 'Causas y mecanismos de la inflación',
@@ -39,6 +40,7 @@ export const causesAndMechanismsOfInflation_Skill_Data = defineSkill({
       'Analyze rises in the overall price level through aggregate demand, production costs, monetary conditions, expectations, and shocks, accounting for context and time lags.',
     frontend: {
       en: 'Explore the different reasons why prices may rise across an economy.',
+      it: "Esplora le diverse ragioni per cui i prezzi possono aumentare in tutta l'economia.",
       zh: '探索整个经济物价普遍上涨的不同原因。',
       hi: 'जानें कि पूरे अर्थतंत्र में कीमतें बढ़ने के कौन-कौन से कारण हैं।',
       es: 'Explora las distintas razones por las que suben los precios en toda la economía.',

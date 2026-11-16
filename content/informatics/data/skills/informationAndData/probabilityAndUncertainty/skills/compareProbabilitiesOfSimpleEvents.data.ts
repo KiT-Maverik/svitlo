@@ -5,6 +5,7 @@ export const compareProbabilitiesOfSimpleEvents_Skill_Data = defineSkill({
   id: '4916b92e-f8e8-46d6-a83d-dd2b33bc87e7',
   name: {
     en: 'Compare Probabilities of Simple Events',
+    it: 'Confrontare le probabilità di eventi semplici',
     zh: '比较简单事件的概率',
     hi: 'सरल घटनाओं की प्रायिकताओं की तुलना करना',
     es: 'Comparar probabilidades de sucesos simples',
@@ -39,6 +40,7 @@ export const compareProbabilitiesOfSimpleEvents_Skill_Data = defineSkill({
       "Compare two events' likelihoods under consistent assumptions, such as choosing from two sets of equally likely outcomes. A valid comparison needs distribution information, not merely a count of verbally named outcomes.",
     frontend: {
       en: 'Compare how likely two outcomes are under the same assumptions.',
+      it: 'Confronta quanto sono probabili due risultati sulla base delle stesse ipotesi.',
       zh: '在相同假设下比较两种结果发生的可能性。',
       hi: 'समान मान्यताओं में दो परिणामों की संभावना की तुलना करें।',
       es: 'Compara la probabilidad de dos resultados bajo los mismos supuestos.',

@@ -5,6 +5,7 @@ export const expressCharacterThroughGesture_Skill_Data = defineSkill({
   id: 'aaa77be4-669f-4c71-9805-fa3f752cac6f',
   name: {
     en: 'Express Character Through Gesture',
+    it: 'Esprimere il personaggio attraverso i gesti',
     zh: '通过手势表达角色',
     hi: 'हाव-भाव से पात्र व्यक्त करें',
     es: 'Expresar el personaje mediante gestos',
@@ -38,6 +39,7 @@ export const expressCharacterThroughGesture_Skill_Data = defineSkill({
     methodological: "Use deliberate posture and movement to convey a role's intention or circumstances.",
     frontend: {
       en: 'Use posture and gestures to show what a character feels or intends.',
+      it: 'Usa la postura e i gesti per mostrare cosa prova o intende fare un personaggio.',
       zh: '通过姿态和手势展现角色的感受或意图。',
       hi: 'मुद्रा और हाव-भाव से दिखाएँ कि पात्र क्या महसूस करता है या क्या चाहता है।',
       es: 'Usa la postura y los gestos para mostrar lo que siente o pretende un personaje.',

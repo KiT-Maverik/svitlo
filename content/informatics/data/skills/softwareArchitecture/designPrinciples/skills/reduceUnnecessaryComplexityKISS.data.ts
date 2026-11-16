@@ -5,6 +5,7 @@ export const reduceUnnecessaryComplexityKISS_Skill_Data = defineSkill({
   id: 'c51781c1-1fda-47a7-9714-bdec0cb50352',
   name: {
     en: 'Reduce Unnecessary Complexity (KISS)',
+    it: 'Ridurre la complessità superflua (KISS)',
     zh: '减少不必要的复杂性（KISS）',
     hi: 'अनावश्यक जटिलता घटाना (KISS)',
     es: 'Reducir la complejidad innecesaria (KISS)',
@@ -39,6 +40,7 @@ export const reduceUnnecessaryComplexityKISS_Skill_Data = defineSkill({
       'Compare a solution with actual requirements and remove mechanisms that add nothing to needed behavior. Simplicity means reducing unjustified complexity, not ignoring important constraints or correctness.',
     frontend: {
       en: 'Simplify software by removing mechanisms the requirements do not justify.',
+      it: 'Semplifica il software eliminando i meccanismi non giustificati dai requisiti.',
       zh: '移除需求并不要求的机制，简化软件。',
       hi: 'आवश्यकताओं से उचित न ठहरने वाले तंत्र हटाकर सॉफ़्टवेयर सरल बनाएं।',
       es: 'Simplifica el software eliminando mecanismos que los requisitos no justifican.',

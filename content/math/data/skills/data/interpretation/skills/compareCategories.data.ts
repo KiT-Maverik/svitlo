@@ -5,6 +5,7 @@ export const compareCategories_Skill_Data = defineSkill({
   id: 'b245a322-1c1f-4977-9a0b-838ac058392a',
   name: {
     en: 'Comparing category totals and differences',
+    it: 'Confrontare i totali e le differenze tra categorie',
     qm: 'Kategoriyalarnıñ toplamlarını ve farqlarını qıyaslav',
     lt: 'Kategorijų sumų ir skirtumų palyginimas',
     lv: 'Kategoriju kopsummu un starpību salīdzināšana',
@@ -39,6 +40,7 @@ export const compareCategories_Skill_Data = defineSkill({
       'Arithmetic on frequencies of different categories requires comparable units and a shared observation context. Their sum gives a combined count; their difference gives the numerical gap between categories.',
     frontend: {
       en: 'You can use values from a table or chart to find the combined total or the difference between categories, comparing only compatible quantities.',
+      it: 'Puoi usare i valori di una tabella o di un grafico per trovare il totale combinato o la differenza tra categorie, confrontando solo quantità compatibili.',
       qm: 'Cedvelden ya da diagrammadan alınğan qıymetlernen kategoriyalarnıñ umumiy sayısını ya da aralarındaki farqnı tap. Yalıñız bir-birinen qıyaslamağa uyğun miqdarlarnı qıyasla.',
       zh: '你能用表格或图表中的数据计算不同类别的合计或差值，同时只比较单位相容的数量。',
       hi: 'आप तालिका या आलेख के मानों से श्रेणियों का संयुक्त कुल या उनका अंतर निकाल सकते हैं, केवल संगत मात्राओं की तुलना करके।',

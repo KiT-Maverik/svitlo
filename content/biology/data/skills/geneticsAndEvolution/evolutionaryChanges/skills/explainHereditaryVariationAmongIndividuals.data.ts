@@ -5,6 +5,7 @@ export const explainHereditaryVariationAmongIndividuals_Skill_Data = defineSkill
   id: '18f52f10-e079-459e-ac5e-0fe425dec00f',
   name: {
     en: 'Explain Hereditary Variation Among Individuals',
+    it: 'Spiegare la variabilità ereditaria tra individui',
     zh: '解释个体之间的遗传差异',
     hi: 'व्यक्तियों में वंशानुगत विविधता समझाना',
     es: 'Explicar la variación hereditaria entre individuos',
@@ -39,6 +40,7 @@ export const explainHereditaryVariationAmongIndividuals_Skill_Data = defineSkill
       'Relate differences that may be inherited to diversity among individuals and the possibility of population change.',
     frontend: {
       en: 'Explain why inherited differences exist between individuals.',
+      it: 'Spiega perché esistono differenze ereditarie tra individui.',
       zh: '解释为什么不同个体之间会存在可遗传的差异。',
       hi: 'समझाएँ कि अलग-अलग जीवों के बीच वंशानुगत अंतर क्यों होते हैं।',
       es: 'Explica por qué existen diferencias heredadas entre distintos individuos.',

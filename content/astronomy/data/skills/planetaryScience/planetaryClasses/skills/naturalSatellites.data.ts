@@ -5,6 +5,7 @@ export const naturalSatellites_Skill_Data = defineSkill({
   id: 'b5dae7fe-35f4-41ad-a931-7bef62bdf808',
   name: {
     en: 'Natural Satellites',
+    it: 'Satelliti naturali',
     zh: '天然卫星',
     hi: 'प्राकृतिक उपग्रह',
     es: 'Satélites naturales',
@@ -39,6 +40,7 @@ export const naturalSatellites_Skill_Data = defineSkill({
       'Compare moons by origin, orbit, composition and geological activity without treating all satellites as Moon-like.',
     frontend: {
       en: 'Discover how moons differ in size, origin, composition and activity.',
+      it: 'Scopri come le lune differiscono per dimensioni, origine, composizione e attività.',
       zh: '探索不同卫星在大小、起源、组成和活动方面的差异。',
       hi: 'जानें कि विभिन्न चंद्रमा आकार, उत्पत्ति, संरचना और सक्रियता में कैसे अलग हैं।',
       es: 'Descubre cómo varían las lunas en tamaño, origen, composición y actividad.',

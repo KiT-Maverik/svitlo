@@ -5,6 +5,7 @@ export const equilibriumShifts_Skill_Data = defineSkill({
   id: 'e4f393fb-3a37-49f7-9dd6-5b58e03c0110',
   name: {
     en: 'Equilibrium Shifts',
+    it: "Spostamenti dell'equilibrio",
     zh: '平衡移动',
     hi: 'साम्य में बदलाव',
     es: 'Desplazamientos del equilibrio',
@@ -39,6 +40,7 @@ export const equilibriumShifts_Skill_Data = defineSkill({
       'Reason about changes in equilibrium composition after concentration, pressure or temperature disturbances.',
     frontend: {
       en: 'Predict how a change in conditions can shift equilibrium composition.',
+      it: "Prevedi come un cambiamento delle condizioni può modificare la composizione all'equilibrio.",
       zh: '预测条件变化会如何改变平衡组成。',
       hi: 'पूर्वानुमान लगाएँ कि परिस्थितियाँ बदलने पर साम्य की संरचना कैसे बदलती है।',
       es: 'Predice cómo los cambios de condiciones modifican la composición en equilibrio.',

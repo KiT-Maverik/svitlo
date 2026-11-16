@@ -5,6 +5,7 @@ export const evaluateDutiesTowardNonhumanAnimals_Skill_Data = defineSkill({
   id: '4a31746b-7543-43f5-8626-4f914ad662bc',
   name: {
     en: 'Evaluate duties toward nonhuman animals',
+    it: 'Valutare i doveri verso gli animali non umani',
     zh: '评估人类对非人类动物的义务',
     hi: 'मानवेतर पशुओं के प्रति कर्तव्यों का मूल्यांकन',
     es: 'Evaluar deberes hacia animales no humanos',
@@ -39,6 +40,7 @@ export const evaluateDutiesTowardNonhumanAnimals_Skill_Data = defineSkill({
       'Compare grounds for considering animal welfare or moral status in choices that affect sentient beings.',
     frontend: {
       en: 'Examine moral reasons for considering the welfare of nonhuman animals.',
+      it: 'Esamina le ragioni morali per tenere conto del benessere degli animali non umani.',
       zh: '考察关心非人类动物福祉的道德理由。',
       hi: 'मानवेतर पशुओं के कल्याण का ध्यान रखने के नैतिक कारणों की जाँच करें।',
       es: 'Examina razones morales para considerar el bienestar de los animales no humanos.',

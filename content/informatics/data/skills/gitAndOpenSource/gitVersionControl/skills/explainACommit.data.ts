@@ -5,6 +5,7 @@ export const explainACommit_Skill_Data = defineSkill({
   id: 'bee6bd52-b259-49a2-ab94-030c80fe2af5',
   name: {
     en: 'Explain a Commit',
+    it: 'Spiegare un commit',
     zh: '解释提交',
     hi: 'कमिट समझाना',
     es: 'Explicar un commit',
@@ -39,6 +40,7 @@ export const explainACommit_Skill_Data = defineSkill({
       'A Git commit captures a coherent state of changes with an identifier and links to preceding history.',
     frontend: {
       en: 'Recognize a commit as an identified snapshot linked to previous work.',
+      it: "Riconosci un commit come un'istantanea identificata e collegata al lavoro precedente.",
       zh: '认识提交是带有标识符且与之前工作相连的项目快照。',
       hi: 'समझें कि कमिट एक पहचान वाली स्थिति है जो पुराने काम से जुड़ी रहती है।',
       es: 'Reconoce un commit como una instantánea identificada y vinculada al historial anterior.',

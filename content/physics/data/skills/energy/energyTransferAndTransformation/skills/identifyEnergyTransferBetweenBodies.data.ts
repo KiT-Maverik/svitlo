@@ -5,6 +5,7 @@ export const identifyEnergyTransferBetweenBodies_Skill_Data = defineSkill({
   id: 'f3a822e0-c51e-4d80-8cab-27c3ee023abf',
   name: {
     en: 'Identify energy transfer between bodies',
+    it: 'Individuare il trasferimento di energia tra corpi',
     zh: '识别物体之间的能量传递',
     hi: 'वस्तुओं के बीच ऊर्जा स्थानांतरण पहचानना',
     es: 'Identificar la transferencia de energía entre cuerpos',
@@ -38,6 +39,7 @@ export const identifyEnergyTransferBetweenBodies_Skill_Data = defineSkill({
     methodological: 'Using colliding balls or water heating, show which body transfers energy to which other body.',
     frontend: {
       en: 'Identify which body gives energy to another during an interaction.',
+      it: "Individua quale corpo trasferisce energia a un altro durante un'interazione.",
       zh: '识别相互作用中哪个物体向另一个物体传递能量。',
       hi: 'पहचानें कि अंतःक्रिया में कौन सी वस्तु दूसरी को ऊर्जा देती है।',
       es: 'Identifica qué cuerpo entrega energía a otro durante una interacción.',

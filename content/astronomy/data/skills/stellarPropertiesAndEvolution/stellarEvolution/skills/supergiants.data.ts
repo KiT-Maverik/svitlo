@@ -5,6 +5,7 @@ export const supergiants_Skill_Data = defineSkill({
   id: '676db779-d765-4ce6-8c57-58de4a6f0e31',
   name: {
     en: 'Supergiants',
+    it: 'Supergiganti',
     zh: '超巨星',
     hi: 'महादानव तारे',
     es: 'Supergigantes',
@@ -39,6 +40,7 @@ export const supergiants_Skill_Data = defineSkill({
       'Interpret the very large sizes and high luminosities of massive evolved stars and their connection to advanced stellar evolution and mass loss.',
     frontend: {
       en: 'Recognize the great size and brightness of evolved massive stars.',
+      it: 'Riconosci le dimensioni e la luminosità enormi delle stelle massicce evolute.',
       zh: '认识大质量恒星演化后可以达到的巨大尺寸和极高光度。',
       hi: 'विकसित हो चुके भारी तारों के विशाल आकार और तेज दीप्ति को पहचानें।',
       es: 'Reconoce el enorme tamaño y la gran luminosidad de las estrellas masivas evolucionadas.',

@@ -5,6 +5,7 @@ export const stellarTemperature_Skill_Data = defineSkill({
   id: '37f8113a-03ef-4ad7-ade7-dac0d05a1418',
   name: {
     en: 'Stellar Temperature',
+    it: 'Temperatura stellare',
     zh: '恒星温度',
     hi: 'तारों का तापमान',
     es: 'Temperatura estelar',
@@ -38,6 +39,7 @@ export const stellarTemperature_Skill_Data = defineSkill({
     methodological: 'Explain how stellar spectra and emitted energy distributions constrain effective temperature.',
     frontend: {
       en: 'Use the colors and patterns in starlight to investigate temperature.',
+      it: 'Usa i colori e le caratteristiche della luce stellare per studiare la temperatura.',
       zh: '利用星光的颜色与光谱特征研究恒星温度。',
       hi: 'तारों के प्रकाश के रंगों और वर्णक्रमीय पैटर्न से उनके तापमान का अध्ययन करें।',
       es: 'Utiliza los colores y patrones de la luz estelar para investigar su temperatura.',

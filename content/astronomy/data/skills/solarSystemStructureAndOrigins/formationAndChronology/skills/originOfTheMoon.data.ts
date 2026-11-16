@@ -5,6 +5,7 @@ export const originOfTheMoon_Skill_Data = defineSkill({
   id: '011a8a09-cde6-4b21-a5b6-1cbd8dc8d74f',
   name: {
     en: 'Origin of the Moon',
+    it: 'Origine della Luna',
     zh: '月球的起源',
     hi: 'चंद्रमा की उत्पत्ति',
     es: 'Origen de la Luna',
@@ -39,6 +40,7 @@ export const originOfTheMoon_Skill_Data = defineSkill({
       "Evaluate proposed formation scenarios for Earth's Moon, including giant-impact models, using angular momentum, lunar samples, isotopic composition and the limitations of current evidence.",
     frontend: {
       en: "Compare evidence for different theories of the Moon's origin, including a giant impact.",
+      it: "Confronta le prove a favore di diverse teorie sull'origine della Luna, compresa quella di un impatto gigante.",
       zh: '比较关于月球起源的不同理论所依据的证据，包括巨大撞击假说。',
       hi: 'चंद्रमा की उत्पत्ति के विभिन्न सिद्धांतों के प्रमाणों की तुलना करें, जिनमें विशाल टक्कर की परिकल्पना भी शामिल है।',
       es: 'Compara las pruebas de distintas teorías sobre el origen de la Luna, incluida la hipótesis de un gran impacto.',

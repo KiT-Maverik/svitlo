@@ -13,6 +13,7 @@ export const lateModernAndContemporaryPractices_SkillGroup_Data = defineSkillGro
   id: '6118e75b-0c4a-4fe1-9e6a-a5415066f280',
   name: {
     en: 'Late Modern and Contemporary Practices',
+    it: 'Pratiche tardomoderne e contemporanee',
     zh: '晚期现代与当代艺术实践',
     hi: 'उत्तर-आधुनिक और समकालीन कलात्मक प्रथाएँ',
     es: 'Prácticas modernas tardías y contemporáneas',
@@ -63,6 +64,7 @@ export const lateModernAndContemporaryPractices_SkillGroup_Data = defineSkillGro
       'Artworks in these practices can privilege ideas, everyday images, participation or spatial conditions over traditional single-object representation.',
     frontend: {
       en: 'Explore artworks that place unusual emphasis on ideas, space, participation or everyday imagery.',
+      it: 'Esplora opere che attribuiscono particolare importanza alle idee, allo spazio, alla partecipazione o alle immagini del quotidiano.',
       zh: '探索重视观念、空间、参与或日常图像的艺术作品。',
       hi: 'ऐसी कलाकृतियों का अध्ययन करें जो विचारों, स्थान, सहभागिता या रोज़मर्रा की छवियों पर विशेष ज़ोर देती हैं।',
       es: 'Explora obras que destacan las ideas, el espacio, la participación o las imágenes cotidianas.',

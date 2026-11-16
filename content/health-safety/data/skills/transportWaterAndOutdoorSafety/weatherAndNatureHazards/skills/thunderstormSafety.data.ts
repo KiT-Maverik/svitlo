@@ -5,6 +5,7 @@ export const thunderstormSafety_Skill_Data = defineSkill({
   id: 'b99b9367-3094-4645-8a82-a413a6cbaca4',
   name: {
     en: 'Thunderstorm safety',
+    it: 'Sicurezza durante i temporali',
     zh: '雷暴安全',
     hi: 'आँधी-तूफान सुरक्षा',
     es: 'Seguridad durante tormentas eléctricas',
@@ -39,6 +40,7 @@ export const thunderstormSafety_Skill_Data = defineSkill({
       'Choose safer shelter and avoid exposed locations and dangerous structures when lightning threatens.',
     frontend: {
       en: 'Choose safer shelter and behavior during thunderstorms.',
+      it: 'Scegli ripari e comportamenti più sicuri durante i temporali.',
       zh: '雷暴期间选择更安全的避难地点和行为方式。',
       hi: 'गरज-चमक वाले तूफान में सुरक्षित आश्रय और व्यवहार चुनें।',
       es: 'Elige refugio y conductas más seguros durante una tormenta eléctrica.',

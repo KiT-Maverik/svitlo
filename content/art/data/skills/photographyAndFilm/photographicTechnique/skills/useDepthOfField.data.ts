@@ -5,6 +5,7 @@ export const useDepthOfField_Skill_Data = defineSkill({
   id: 'cb4e73ad-72ea-4b1e-b360-0799a4aedec2',
   name: {
     en: 'Use Depth of Field',
+    it: 'Usare la profondità di campo',
 
     zh: '景深的运用',
     hi: 'डेप्थ ऑफ़ फ़ील्ड का उपयोग करें',
@@ -39,6 +40,7 @@ export const useDepthOfField_Skill_Data = defineSkill({
     methodological: 'Select an appropriate range of sharpness to guide attention among spatial planes.',
     frontend: {
       en: 'Choose what stays sharp and what becomes blurred in a photograph.',
+      it: 'Scegli quali elementi mantenere nitidi e quali sfocare in una fotografia.',
 
       zh: '选择照片中保持清晰的部分以及变得模糊的部分。',
       hi: 'तय करें कि तस्वीर में क्या स्पष्ट रहेगा और क्या धुंधला होगा।',

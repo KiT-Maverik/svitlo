@@ -5,6 +5,7 @@ export const recognizeMicroscopicEukaryotes_Skill_Data = defineSkill({
   id: 'c3b920aa-3964-469d-8889-10111f03ec0d',
   name: {
     en: 'Recognize Microscopic Eukaryotes',
+    it: 'Riconoscere gli eucarioti microscopici',
     zh: '识别微小的真核生物',
     hi: 'सूक्ष्म यूकैरियोटिक जीवों को पहचानना',
     es: 'Reconocer eucariotas microscópicos',
@@ -39,6 +40,7 @@ export const recognizeMicroscopicEukaryotes_Skill_Data = defineSkill({
       "Recognize nucleated unicellular eukaryotes, including diverse protists, algae, and yeasts; do not treat 'microorganisms' as a single biological taxon.",
     frontend: {
       en: 'Recognize microscopic organisms whose cells contain nuclei.',
+      it: 'Riconosci gli organismi microscopici le cui cellule contengono un nucleo.',
       zh: '识别细胞内含有细胞核的微小生物。',
       hi: 'ऐसे सूक्ष्म जीवों को पहचानें जिनकी कोशिकाओं में केंद्रक होता है।',
       es: 'Reconoce organismos microscópicos cuyas células tienen núcleo.',

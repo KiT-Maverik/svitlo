@@ -5,6 +5,7 @@ export const pulleySystems_Skill_Data = defineSkill({
   id: 'befc41a5-31d8-4250-9082-55c004d2e1a2',
   name: {
     en: 'Pulley systems',
+    it: 'Sistemi di carrucole',
     zh: '滑轮系统',
     hi: 'चरखी प्रणालियाँ',
     es: 'Sistemas de poleas',
@@ -38,6 +39,7 @@ export const pulleySystems_Skill_Data = defineSkill({
     methodological: 'Trace rope paths, supporting segments and moving loads in lifting arrangements.',
     frontend: {
       en: 'Follow the rope path and supporting segments of a pulley arrangement.',
+      it: 'Segui il percorso della fune e i tratti portanti di un sistema di carrucole.',
       zh: '沿着滑轮装置的绳索路径和承重绳段追踪受力情况。',
       hi: 'चरखी व्यवस्था में रस्सी का रास्ता और भार सँभालने वाले हिस्से देखें।',
       es: 'Sigue el recorrido de la cuerda y los tramos que sostienen la carga en las poleas.',

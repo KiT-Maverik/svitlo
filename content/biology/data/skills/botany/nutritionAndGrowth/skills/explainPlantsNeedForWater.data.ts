@@ -5,6 +5,7 @@ export const explainPlantsNeedForWater_Skill_Data = defineSkill({
   id: '07c93377-44af-40ac-aa6f-7e3874f433c5',
   name: {
     en: 'Explain Plants’ Need for Water',
+    it: 'Spiegare perché le piante hanno bisogno di acqua',
     zh: '解释植物为什么需要水',
     hi: 'पौधों को जल की आवश्यकता समझाना',
     es: 'Explicar por qué las plantas necesitan agua',
@@ -39,6 +40,7 @@ export const explainPlantsNeedForWater_Skill_Data = defineSkill({
       "Explain water’s involvement in substance transport, cell maintenance, and photosynthesis rather than treating water merely as a plant’s 'drink'.",
     frontend: {
       en: 'Understand why plants need water for transport, cell function and photosynthesis.',
+      it: 'Comprendi perché le piante hanno bisogno di acqua per il trasporto delle sostanze, il funzionamento delle cellule e la fotosintesi.',
       zh: '了解植物为什么需要水来运输物质、维持细胞功能和进行光合作用。',
       hi: 'जानें कि परिवहन, कोशिका कार्य और प्रकाश संश्लेषण के लिए पौधों को पानी क्यों चाहिए।',
       es: 'Comprende por qué las plantas necesitan agua para transportar sustancias, mantener las células y realizar fotosíntesis.',

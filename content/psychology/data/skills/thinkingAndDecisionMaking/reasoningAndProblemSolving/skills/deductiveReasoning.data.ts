@@ -5,6 +5,7 @@ export const deductiveReasoning_Skill_Data = defineSkill({
   id: '8b395705-3e73-495e-aa72-a63866ce7e96',
   name: {
     en: 'Deductive Reasoning',
+    it: 'Ragionamento deduttivo',
     zh: '演绎推理',
     hi: 'निगमनात्मक तर्क',
     es: 'Razonamiento deductivo',
@@ -39,6 +40,7 @@ export const deductiveReasoning_Skill_Data = defineSkill({
       'Explain drawing conclusions that follow from given premises, distinguishing actual human performance from formal validity.',
     frontend: {
       en: 'Distinguish conclusions that necessarily follow from stated premises.',
+      it: 'Distingui le conclusioni che derivano necessariamente dalle premesse dichiarate.',
       zh: '区分哪些结论必然由给定的前提推出。',
       hi: 'उन निष्कर्षों को अलग पहचानें जो दिए गए आधार-वाक्यों से अनिवार्य रूप से निकलते हैं।',
       es: 'Distingue las conclusiones que se siguen necesariamente de las premisas dadas.',

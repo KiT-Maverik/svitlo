@@ -5,6 +5,7 @@ export const compareMajorModernEpistemologicalApproaches_Skill_Data = defineSkil
   id: '991b455f-fa36-4053-b4ea-9c4ccc7dd499',
   name: {
     en: 'Compare major modern epistemological approaches',
+    it: 'Confrontare i principali approcci epistemologici moderni',
     zh: '比较现代主要认识论方法',
     hi: 'आधुनिक ज्ञानमीमांसा के प्रमुख दृष्टिकोणों की तुलना',
     es: 'Comparar enfoques epistemológicos modernos',
@@ -39,6 +40,7 @@ export const compareMajorModernEpistemologicalApproaches_Skill_Data = defineSkil
       'Explain the distinct emphases of rationalist, empiricist, and critical traditions through representative arguments.',
     frontend: {
       en: 'Compare how rationalism, empiricism and critical philosophy approach knowledge.',
+      it: 'Confronta il modo in cui razionalismo, empirismo e filosofia critica affrontano la conoscenza.',
       zh: '比较理性主义、经验主义和批判哲学如何理解知识。',
       hi: 'तर्कवाद, अनुभववाद और आलोचनात्मक दर्शन के ज्ञान संबंधी विचारों की तुलना करो।',
       es: 'Compara cómo racionalismo, empirismo y filosofía crítica abordan el conocimiento.',

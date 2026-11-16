@@ -5,6 +5,7 @@ export const apparentBrightness_Skill_Data = defineSkill({
   id: '87009192-1fa7-4c8b-8740-685be43f9477',
   name: {
     en: 'Apparent Brightness',
+    it: 'Luminosità apparente',
     qm: 'Körüngen parlaqlıq',
     zh: '视亮度',
     hi: 'प्रतीत होने वाली चमक',
@@ -39,6 +40,7 @@ export const apparentBrightness_Skill_Data = defineSkill({
       'Compare how bright celestial objects look from Earth without equating observed brightness with intrinsic luminosity.',
     frontend: {
       en: 'Compare how bright objects look from Earth, without confusing brightness with their actual light output.',
+      it: 'Confronta quanto appaiono luminosi gli oggetti dalla Terra, senza confonderlo con la luce che emettono realmente.',
       qm: 'Cisimlerniñ Yerden ne qadar parlaq körüngenini teñeştiriñiz, bunı olarnıñ aqiqiy yarıq çıqaruvı ile qarıştırmañız.',
       zh: '比较天体从地球上看起来有多亮，不要把视亮度与它们实际发出的光量混为一谈。',
       hi: 'पृथ्वी से वस्तुएँ कितनी चमकीली दिखती हैं, इसकी तुलना करें और इस चमक को उनके वास्तविक प्रकाश उत्सर्जन से अलग समझें।',

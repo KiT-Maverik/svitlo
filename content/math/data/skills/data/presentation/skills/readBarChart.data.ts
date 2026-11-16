@@ -5,6 +5,7 @@ export const readBarChart_Skill_Data = defineSkill({
   id: '391638bc-6f41-49cf-b499-a35253bb0ef7',
   name: {
     en: 'Reading a bar chart',
+    it: 'Leggere un grafico a barre',
     qm: 'Sütunlı diagrammanı oqumaq',
     lt: 'Stulpelinės diagramos skaitymas',
     lv: 'Stabiņu diagrammas lasīšana',
@@ -39,6 +40,7 @@ export const readBarChart_Skill_Data = defineSkill({
       'The height or length of a bar encodes a numerical value according to a given scale and baseline. Comparisons require reading the axes and categories rather than relying on decorative bar width or area.',
     frontend: {
       en: 'You can read a bar chart by using the labels and number scale to find and compare values, not by judging how wide the bars look.',
+      it: 'Puoi leggere un grafico a barre usando le etichette e la scala numerica per trovare e confrontare i valori, senza basarti sulla larghezza apparente delle barre.',
       qm: 'Sütunlarnıñ genişligine baqıp tahmin etmeden, adlar ve sayı miqyası yardımınen sütunlı diagrammadaki qıymetlerni tapıp qıyaslay bilesiñ.',
       zh: '你能根据标签和数值刻度读取条形图并比较数据，而不是凭条形的宽度判断数量。',
       hi: 'आप नामों और संख्यात्मक पैमाने से स्तंभ आलेख के मान पढ़कर उनकी तुलना कर सकते हैं, केवल स्तंभों की चौड़ाई देखकर नहीं।',

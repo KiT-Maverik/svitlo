@@ -5,6 +5,7 @@ export const explainComputabilityTheory_Skill_Data = defineSkill({
   id: '78859510-3c8b-47ef-8fe3-e15d43a1b529',
   name: {
     en: 'Explain Computability Theory',
+    it: 'Spiegare la teoria della calcolabilità',
     zh: '解释可计算性理论',
     hi: 'संगणनीयता सिद्धांत समझाना',
     es: 'Explicar la teoría de la computabilidad',
@@ -39,6 +40,7 @@ export const explainComputabilityTheory_Skill_Data = defineSkill({
       "Describe the idea of a formal model of universal computation and limits on which problems are algorithmically solvable. Alan Turing's work is a principal historical example; his cryptanalysis and the debate over machine intelligence are separate topics.",
     frontend: {
       en: 'Learn how formal models reveal what computers can and cannot calculate.',
+      it: 'Scopri come i modelli formali mostrano ciò che i computer possono e non possono calcolare.',
       zh: '了解形式化模型如何揭示计算机能算什么和不能算什么。',
       hi: 'जानें कि औपचारिक मॉडल कंप्यूटर क्या गणना कर सकते हैं और क्या नहीं, यह कैसे दिखाते हैं।',
       es: 'Descubre cómo los modelos formales revelan qué pueden calcular las computadoras y qué no.',

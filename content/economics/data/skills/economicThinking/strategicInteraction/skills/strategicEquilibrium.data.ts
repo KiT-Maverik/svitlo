@@ -5,6 +5,7 @@ export const strategicEquilibrium_Skill_Data = defineSkill({
   id: '93904d80-dcea-461d-9016-b9d53e4b8a19',
   name: {
     en: 'Strategic Equilibrium',
+    it: 'Equilibrio strategico',
     zh: '策略均衡',
     hi: 'रणनीतिक संतुलन',
     es: 'Equilibrio estratégico',
@@ -39,6 +40,7 @@ export const strategicEquilibrium_Skill_Data = defineSkill({
       "Identify a situation in which no participant has an incentive to change strategy unilaterally while others' strategies remain fixed.",
     frontend: {
       en: 'Recognize when nobody can improve their outcome by changing strategy alone.',
+      it: 'Riconosci quando nessuno può migliorare il proprio risultato modificando da solo la propria strategia.',
       zh: '认识何时没有人能仅靠自己改变策略改善结果。',
       hi: 'पहचानें कि कब कोई अकेले रणनीति बदलकर अपना परिणाम बेहतर नहीं कर सकता।',
       es: 'Reconoce cuándo nadie mejora su resultado cambiando de estrategia por sí solo.',

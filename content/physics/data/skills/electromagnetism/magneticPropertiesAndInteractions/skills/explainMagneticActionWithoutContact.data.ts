@@ -5,6 +5,7 @@ export const explainMagneticActionWithoutContact_Skill_Data = defineSkill({
   id: '202c5889-61e9-4f27-8104-bb1161388d2e',
   name: {
     en: 'Explain magnetic action without contact',
+    it: "Spiegare l'azione magnetica a distanza",
     qm: 'Toqunmadan magnit tesirini añlatmaq',
     zh: '解释非接触磁力',
     hi: 'बिना संपर्क के चुंबकीय बल समझाना',
@@ -38,6 +39,7 @@ export const explainMagneticActionWithoutContact_Skill_Data = defineSkill({
     methodological: 'Recognize magnetic force as an interaction that does not require direct contact.',
     frontend: {
       en: 'Explain why a magnet can exert force without touching an object.',
+      it: 'Spiega perché un magnete può esercitare una forza senza toccare un oggetto.',
       qm: 'Magnit cisimge toqunmadan nasıl quvetnen tesir etkenini añlat.',
       zh: '解释为什么磁铁不接触物体也能对其施力。',
       hi: 'समझाएँ कि चुंबक बिना छुए किसी वस्तु पर बल क्यों लगा सकता है।',

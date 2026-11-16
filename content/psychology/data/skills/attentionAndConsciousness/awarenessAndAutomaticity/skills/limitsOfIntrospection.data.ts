@@ -5,6 +5,7 @@ export const limitsOfIntrospection_Skill_Data = defineSkill({
   id: 'aa38156e-a59c-48c3-9c30-cf96bf533ee6',
   name: {
     en: 'Limits of Introspection',
+    it: "Limiti dell'introspezione",
     zh: '内省的局限',
     hi: 'आत्मनिरीक्षण की सीमाएँ',
     es: 'Límites de la introspección',
@@ -39,6 +40,7 @@ export const limitsOfIntrospection_Skill_Data = defineSkill({
       'Identify why a person may report experiences accurately yet misidentify mechanisms that produced them.',
     frontend: {
       en: 'Recognize why people may misjudge the causes of their own decisions.',
+      it: 'Riconosci perché le persone possono valutare erroneamente le cause delle proprie decisioni.',
       zh: '了解为什么人可能误判自己作出决定的原因。',
       hi: 'जानें कि लोग अपने निर्णयों के कारणों को गलत क्यों समझ सकते हैं।',
       es: 'Reconoce por qué las personas pueden equivocarse al explicar sus propias decisiones.',

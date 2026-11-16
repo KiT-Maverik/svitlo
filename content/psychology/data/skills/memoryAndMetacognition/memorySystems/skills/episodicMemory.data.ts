@@ -5,6 +5,7 @@ export const episodicMemory_Skill_Data = defineSkill({
   id: '77afb10b-e5ea-4ad6-b521-5af0ae57a6b3',
   name: {
     en: 'Episodic Memory',
+    it: 'Memoria episodica',
     zh: '情景记忆',
     hi: 'प्रासंगिक स्मृति',
     es: 'Memoria episódica',
@@ -39,6 +40,7 @@ export const episodicMemory_Skill_Data = defineSkill({
       'Explain recollection of personally experienced events within an experienced temporal or situational context.',
     frontend: {
       en: 'Distinguish memories of personal experiences from other knowledge.',
+      it: 'Distingui i ricordi delle esperienze personali da altre forme di conoscenza.',
       zh: '区分个人经历的记忆与其他类型的知识。',
       hi: 'निजी अनुभवों की यादों और अन्य ज्ञान में अंतर करें।',
       es: 'Distingue los recuerdos de experiencias personales de otros conocimientos.',

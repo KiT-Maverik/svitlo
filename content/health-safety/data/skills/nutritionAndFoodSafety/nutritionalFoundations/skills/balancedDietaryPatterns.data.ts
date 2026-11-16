@@ -5,6 +5,7 @@ export const balancedDietaryPatterns_Skill_Data = defineSkill({
   id: '0c739f02-6ef6-44d1-a924-3bd791ca7ecb',
   name: {
     en: 'Balanced dietary patterns',
+    it: 'Modelli alimentari equilibrati',
     zh: '均衡饮食模式',
     hi: 'संतुलित खानपान के तरीके',
     es: 'Patrones de alimentación equilibrada',
@@ -39,6 +40,7 @@ export const balancedDietaryPatterns_Skill_Data = defineSkill({
       'Consider variety, food groups, nutrient adequacy, and individual needs without assuming one fixed menu fits everyone.',
     frontend: {
       en: 'Build a varied eating pattern suited to individual needs.',
+      it: "Costruisci un'alimentazione varia e adatta alle esigenze individuali.",
       zh: '根据个人需要建立多样化的饮食习惯。',
       hi: 'अपनी ज़रूरतों के अनुरूप विविध भोजन की आदतें बनाएँ।',
       es: 'Construye una alimentación variada acorde con tus necesidades.',

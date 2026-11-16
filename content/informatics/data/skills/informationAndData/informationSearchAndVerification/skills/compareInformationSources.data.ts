@@ -5,6 +5,7 @@ export const compareInformationSources_Skill_Data = defineSkill({
   id: '4a4bc652-a54b-4ac4-92b5-0929ff871964',
   name: {
     en: 'Compare Information Sources',
+    it: 'Confrontare fonti di informazione',
     zh: '比较信息来源',
     hi: 'सूचना स्रोतों की तुलना करना',
     es: 'Comparar fuentes de información',
@@ -39,6 +40,7 @@ export const compareInformationSources_Skill_Data = defineSkill({
       'Compare accounts from multiple sources concerning the same claim, separate shared facts from discrepancies, and identify what further evidence is needed to explain the differences.',
     frontend: {
       en: 'Compare multiple sources and identify where their accounts disagree.',
+      it: 'Confronta più fonti e individua dove i loro resoconti non coincidono.',
       zh: '比较多个来源，找出其叙述不一致的地方。',
       hi: 'अनेक स्रोतों की तुलना करें और उनके विवरणों में मतभेद पहचानें।',
       es: 'Compara varias fuentes e identifica en qué difieren sus relatos.',

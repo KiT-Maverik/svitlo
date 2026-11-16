@@ -5,6 +5,7 @@ export const eclipseSeasons_Skill_Data = defineSkill({
   id: 'abe40ae4-5a7e-4b2c-92e1-f339efde7270',
   name: {
     en: 'Eclipse Seasons',
+    it: 'Stagioni delle eclissi',
     zh: '食季',
     hi: 'ग्रहण ऋतु',
     es: 'Temporadas de eclipses',
@@ -39,6 +40,7 @@ export const eclipseSeasons_Skill_Data = defineSkill({
       'Explain why solar and lunar eclipses are not observed at every new or full Moon, using orbital inclination and alignment.',
     frontend: {
       en: 'Discover why a new or full Moon does not produce an eclipse every month.',
+      it: "Scopri perché non ogni Luna nuova o piena provoca un'eclissi.",
       zh: '了解为什么并不是每次新月或满月都会发生食。',
       hi: 'जानें कि हर अमावस्या या पूर्णिमा को ग्रहण क्यों नहीं होता।',
       es: 'Descubre por qué no hay un eclipse cada mes, aunque se produzcan lunas nuevas y llenas.',

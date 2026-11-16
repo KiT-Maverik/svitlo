@@ -5,6 +5,7 @@ export const solarTime_Skill_Data = defineSkill({
   id: 'b376ce37-2809-499f-b7c3-4ce02a988daa',
   name: {
     en: 'Solar Time',
+    it: 'Tempo solare',
     qm: 'Küneş vaqtı',
     zh: '太阳时',
     hi: 'सौर समय',
@@ -39,6 +40,7 @@ export const solarTime_Skill_Data = defineSkill({
       'Describe Sun-referenced time as related to the apparent position of the Sun, including mean and apparent solar conventions.',
     frontend: {
       en: "Understand how the Sun's position relates to solar time.",
+      it: 'Comprendi come la posizione del Sole è collegata al tempo solare.',
       qm: 'Küneşniñ kökteki yeriniñ Küneş vaqtı ile nasıl bağlı olğanını añlañız.',
       zh: '理解太阳在天空中的位置与太阳时之间的关系。',
       hi: 'समझें कि आकाश में सूर्य की स्थिति सौर समय से कैसे जुड़ी है।',

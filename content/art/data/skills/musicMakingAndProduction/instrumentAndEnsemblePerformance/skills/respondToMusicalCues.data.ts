@@ -5,6 +5,7 @@ export const respondToMusicalCues_Skill_Data = defineSkill({
   id: '5c74c55f-9f2d-478b-ae1f-0bc33b20fad4',
   name: {
     en: 'Respond to Musical Cues',
+    it: 'Rispondere ai segnali musicali',
     zh: '响应音乐提示',
     hi: 'संगीत संकेतों पर प्रतिक्रिया दें',
     es: 'Responder a las señales musicales',
@@ -38,6 +39,7 @@ export const respondToMusicalCues_Skill_Data = defineSkill({
     methodological: 'Adjust timing, entrances or dynamics in response to conductor or performer signals.',
     frontend: {
       en: 'Notice musical signals and respond together at the right moment.',
+      it: 'Riconosci i segnali musicali e rispondi insieme agli altri al momento giusto.',
       zh: '留意音乐提示，并在恰当时机一起作出回应。',
       hi: 'संगीत संकेतों पर ध्यान दें और सही समय पर मिलकर प्रतिक्रिया दें।',
       es: 'Presta atención a las señales musicales y responde en conjunto en el momento adecuado.',

@@ -5,6 +5,7 @@ export const performBeatboxing_Skill_Data = defineSkill({
   id: '7b32135d-c4ed-4d14-9bff-3ae44f4786b0',
   name: {
     en: 'Perform Beatboxing',
+    it: 'Eseguire il beatboxing',
     zh: '表演人声节奏',
     hi: 'बीटबॉक्सिंग करें',
     es: 'Practicar beatboxing',
@@ -38,6 +39,7 @@ export const performBeatboxing_Skill_Data = defineSkill({
     methodological: 'Combine vocal percussion techniques into intelligible rhythmic grooves.',
     frontend: {
       en: 'Make a rhythmic groove with controlled vocal percussion sounds.',
+      it: 'Crea un groove ritmico con suoni di percussione vocale controllati.',
       zh: '用可控的人声打击乐声音创造节奏律动。',
       hi: 'नियंत्रित मुख-ताल ध्वनियों से एक लयबद्ध ग्रूव बनाएँ।',
       es: 'Crea un ritmo con sonidos controlados de percusión vocal.',

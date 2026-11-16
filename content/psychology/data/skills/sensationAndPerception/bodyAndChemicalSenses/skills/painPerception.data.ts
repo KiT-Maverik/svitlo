@@ -5,6 +5,7 @@ export const painPerception_Skill_Data = defineSkill({
   id: '85236b62-a973-4292-bc75-45daa2983fac',
   name: {
     en: 'Pain Perception',
+    it: 'Percezione del dolore',
     zh: '痛觉知觉',
     hi: 'दर्द का प्रत्यक्षण',
     es: 'Percepción del dolor',
@@ -39,6 +40,7 @@ export const painPerception_Skill_Data = defineSkill({
       'Explain how nociceptive input, context, attention, and expectations interact in the experience of pain, without equating its intensity with a single tissue measurement.',
     frontend: {
       en: 'Explore why pain experience depends on more than one tissue signal.',
+      it: "Esplora perché l'esperienza del dolore dipenda da più di un singolo segnale dei tessuti.",
       zh: '探索为什么痛觉体验不只取决于某一种组织信号。',
       hi: 'जानें कि दर्द का अनुभव किसी एक ऊतक संकेत से अधिक चीज़ों पर क्यों निर्भर करता है।',
       es: 'Explora por qué sentir dolor depende de más de una señal del tejido.',

@@ -5,6 +5,7 @@ export const lunarPhases_Skill_Data = defineSkill({
   id: '53bba831-1f84-4b25-8e05-33f54167cc98',
   name: {
     en: 'Lunar Phases',
+    it: 'Fasi lunari',
     zh: '月相',
     hi: 'चंद्र कलाएँ',
     es: 'Fases de la Luna',
@@ -39,6 +40,7 @@ export const lunarPhases_Skill_Data = defineSkill({
       'Explain the repeating illuminated shapes visible from Earth through the Sun–Moon–observer geometry.',
     frontend: {
       en: 'Explain the changing shape of the sunlit Moon throughout its phases.',
+      it: 'Spiega come cambia nel tempo la parte illuminata della Luna visibile dalla Terra.',
       zh: '解释月球受阳光照亮的部分为何在不同月相中呈现出不同的形状。',
       hi: 'समझाएँ कि चंद्रमा का सूर्य से प्रकाशित भाग अलग-अलग कलाओं में अलग आकार का क्यों दिखाई देता है।',
       es: 'Explica por qué la parte iluminada de la Luna parece cambiar de forma durante sus fases.',

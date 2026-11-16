@@ -5,6 +5,7 @@ export const analyzeAPhilosophicalProblemOfArtificialConsciousness_Skill_Data = 
   id: '1f56dc50-909d-4301-9205-48bebc96380e',
   name: {
     en: 'Analyze a philosophical problem of artificial consciousness',
+    it: 'Analizzare un problema filosofico della coscienza artificiale',
     zh: '分析人工意识的哲学问题',
     hi: 'कृत्रिम चेतना की दार्शनिक समस्या का विश्लेषण',
     es: 'Analizar un problema filosófico de la conciencia artificial',
@@ -39,6 +40,7 @@ export const analyzeAPhilosophicalProblemOfArtificialConsciousness_Skill_Data = 
       'Assess what would and would not count as evidence of experience in an artificial system, without claiming a settled test exists.',
     frontend: {
       en: 'Consider what evidence could support a claim about artificial consciousness.',
+      it: "Considera quali prove potrebbero sostenere un'affermazione sulla coscienza artificiale.",
       zh: '思考什么样的证据能够支持关于人工意识的主张。',
       hi: 'विचार करें कि कृत्रिम चेतना के दावे का समर्थन कौन-सा प्रमाण कर सकता है।',
       es: 'Considera qué pruebas podrían respaldar una afirmación sobre conciencia artificial.',

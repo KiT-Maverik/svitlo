@@ -5,6 +5,7 @@ export const compareAircraftPropulsionTechnologies_Skill_Data = defineSkill({
   id: '5d8151f5-ab35-49b2-8186-b62e9896b7c4',
   name: {
     en: 'Compare aircraft propulsion technologies',
+    it: 'Confrontare tecnologie di propulsione aeronautica',
     zh: '比较飞机推进技术',
     hi: 'विमान प्रणोदन प्रौद्योगिकियों की तुलना',
     es: 'Comparar tecnologías de propulsión de aeronaves',
@@ -38,6 +39,7 @@ export const compareAircraftPropulsionTechnologies_Skill_Data = defineSkill({
     methodological: 'Connect propeller, jet and other arrangements to operating conditions and mission constraints.',
     frontend: {
       en: 'Compare propulsion systems suited to different aircraft.',
+      it: 'Confronta i sistemi di propulsione adatti a diversi aeromobili.',
       zh: '比较适用于不同航空器的推进系统。',
       hi: 'विभिन्न विमानों के लिए उपयुक्त प्रणोदन प्रणालियों की तुलना करें।',
       es: 'Compara sistemas de propulsión apropiados para distintas aeronaves.',

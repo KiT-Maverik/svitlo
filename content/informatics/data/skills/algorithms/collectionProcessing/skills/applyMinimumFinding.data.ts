@@ -5,6 +5,7 @@ export const applyMinimumFinding_Skill_Data = defineSkill({
   id: '002178c5-f6c6-4d2b-9cc8-b295198fc3c8',
   name: {
     en: 'Apply Minimum Finding',
+    it: 'Applicare la ricerca del minimo',
     zh: '应用最小值查找算法',
     hi: 'न्यूनतम मान खोजना',
     es: 'Aplicar la búsqueda del mínimo',
@@ -38,6 +39,7 @@ export const applyMinimumFinding_Skill_Data = defineSkill({
     methodological: 'Maintain the smallest value seen so far and update it when a smaller number appears.',
     frontend: {
       en: 'Track the smallest value seen while traversing a collection.',
+      it: 'Tieni traccia del valore più piccolo incontrato mentre percorri una collezione.',
       zh: '遍历集合时追踪已见过的最小值。',
       hi: 'संग्रह में आगे बढ़ते हुए अब तक का सबसे छोटा मान याद रखें।',
       es: 'Mantén el menor valor encontrado mientras recorres una colección.',

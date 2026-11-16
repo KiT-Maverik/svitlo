@@ -5,6 +5,7 @@ export const evaluateInjuryRisk_Skill_Data = defineSkill({
   id: 'e15f7460-ad4f-45ad-94bb-b36bd3f25953',
   name: {
     en: 'Evaluate injury risk',
+    it: 'Valutare il rischio di lesioni',
     zh: '评估受伤风险',
     hi: 'चोट के जोखिम का मूल्यांकन',
     es: 'Evaluar el riesgo de lesiones',
@@ -39,6 +40,7 @@ export const evaluateInjuryRisk_Skill_Data = defineSkill({
       'Evaluate how an identifiable hazard could cause immediate accidental injury, who may be exposed and how reliably existing controls reduce that danger; chronic disease-risk estimation belongs to Health and Risk.',
     frontend: {
       en: 'Evaluate how a hazard might cause immediate injury.',
+      it: 'Valuta come un pericolo potrebbe causare una lesione immediata.',
       zh: '评估某种危险如何导致直接伤害。',
       hi: 'आकलन करें कि कोई खतरा तुरंत चोट कैसे पहुँचा सकता है।',
       es: 'Evalúa cómo un peligro puede causar una lesión inmediata.',

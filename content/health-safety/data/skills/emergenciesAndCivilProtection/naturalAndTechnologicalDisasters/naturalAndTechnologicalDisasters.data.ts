@@ -12,6 +12,7 @@ export const naturalAndTechnologicalDisasters_SkillGroup_Data = defineSkillGroup
   id: 'e86c58d5-2069-4c5d-a4de-38c61e262a16',
   name: {
     en: 'Natural and Technological Disasters',
+    it: 'Disastri naturali e tecnologici',
     zh: '自然灾害与技术事故',
     hi: 'प्राकृतिक और तकनीकी आपदाएँ',
     es: 'Desastres naturales y tecnológicos',
@@ -60,6 +61,7 @@ export const naturalAndTechnologicalDisasters_SkillGroup_Data = defineSkillGroup
       'Floods, earthquakes, chemical releases, and radiation incidents create different exposure pathways and require different protective behaviour.',
     frontend: {
       en: 'Learn why floods, earthquakes and contamination demand different responses.',
+      it: 'Scopri perché alluvioni, terremoti e contaminazione richiedono risposte diverse.',
       zh: '了解洪水、地震和污染事故为何需要不同的应对方式。',
       hi: 'समझें कि बाढ़, भूकंप और प्रदूषण की घटनाओं में अलग-अलग कार्रवाई क्यों जरूरी है।',
       es: 'Aprende por qué inundaciones, terremotos y contaminación requieren respuestas diferentes.',

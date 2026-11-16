@@ -13,6 +13,7 @@ export const traitsAndPersonalityModels_SkillGroup_Data = defineSkillGroup({
   id: 'ba17120b-44c3-45af-9cf9-38283e366307',
   name: {
     en: 'Traits and Personality Models',
+    it: 'Tratti e modelli della personalità',
     zh: '人格特质与人格模型',
     hi: 'व्यक्तित्व के गुण और मॉडल',
     es: 'Rasgos y modelos de personalidad',
@@ -63,6 +64,7 @@ export const traitsAndPersonalityModels_SkillGroup_Data = defineSkillGroup({
       'Trait models summarize recurring behavioral tendencies while leaving room for situational variation and change.',
     frontend: {
       en: 'Discover how personality traits are described and assessed.',
+      it: 'Scopri come i tratti della personalità vengano descritti e valutati.',
       zh: '了解如何描述和评估人格特质。',
       hi: 'जानें कि व्यक्तित्व के गुणों का वर्णन और आकलन कैसे किया जाता है।',
       es: 'Descubre cómo se describen y evalúan los rasgos de personalidad.',

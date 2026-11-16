@@ -5,6 +5,7 @@ export const constructAValueScale_Skill_Data = defineSkill({
   id: 'd263ede2-1175-4d83-a92b-4cf2cc666e25',
   name: {
     en: 'Construct a Value Scale',
+    it: 'Costruire una scala tonale',
     zh: '构建明度阶梯',
     hi: 'टोनल मानों का क्रम तैयार करें',
     es: 'Crear una escala de valores tonales',
@@ -38,6 +39,7 @@ export const constructAValueScale_Skill_Data = defineSkill({
     methodological: 'Produce a controlled progression from light to dark that can organize tonal modeling.',
     frontend: {
       en: 'Make an even progression of tones from light to dark.',
+      it: 'Crea una progressione uniforme di toni dal chiaro allo scuro.',
       zh: '制作从浅到深、过渡均匀的色调阶梯。',
       hi: 'हल्के से गहरे टोन तक एक समान क्रम बनाएँ।',
       es: 'Crea una progresión uniforme de tonos, de claro a oscuro.',

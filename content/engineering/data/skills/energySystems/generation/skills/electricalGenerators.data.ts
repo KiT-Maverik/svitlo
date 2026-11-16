@@ -5,6 +5,7 @@ export const electricalGenerators_Skill_Data = defineSkill({
   id: '545c6004-8799-4ac1-a2fe-cc0e10b41ad1',
   name: {
     en: 'Electrical generators',
+    it: 'Generatori elettrici',
     zh: '发电机',
     hi: 'विद्युत जनित्र',
     es: 'Generadores eléctricos',
@@ -38,6 +39,7 @@ export const electricalGenerators_Skill_Data = defineSkill({
     methodological: 'Trace mechanical input to electricity through a generator assembly.',
     frontend: {
       en: 'Recognize how mechanical rotation drives an electrical generator.',
+      it: 'Riconosci come la rotazione meccanica aziona un generatore elettrico.',
       zh: '理解机械旋转如何驱动发电机。',
       hi: 'जानें कि यांत्रिक घुमाव जनित्र को कैसे चलाता है।',
       es: 'Reconoce cómo la rotación mecánica acciona un generador eléctrico.',

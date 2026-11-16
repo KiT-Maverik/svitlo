@@ -9,6 +9,7 @@ export const systemsEngineering_SkillDomain_Data = defineSkillDomain({
   id: '5f17c610-3f02-41b7-a8c3-f9a053045806',
   title: {
     en: 'Systems Engineering',
+    it: 'Ingegneria dei sistemi',
     zh: '系统工程',
     hi: 'प्रणाली अभियांत्रिकी',
     es: 'Ingeniería de sistemas',
@@ -51,6 +52,7 @@ export const systemsEngineering_SkillDomain_Data = defineSkillDomain({
       'An engineered system is defined by coordinated functions and exchanges, not just a collection of parts. This domain addresses architecture, interfaces, dependencies, reliability and the consequences of faults.',
     frontend: {
       en: 'Explore how components cooperate in complex systems and what happens when they fail.',
+      it: 'Esplora come i componenti cooperano nei sistemi complessi e cosa accade quando si guastano.',
       zh: '探索复杂系统中各组件如何协作，以及出现故障时会怎样。',
       hi: 'जटिल प्रणालियों में हिस्से कैसे मिलकर काम करते हैं और खराबी पर क्या होता है, जानें।',
       es: 'Explora cómo colaboran los componentes de sistemas complejos y qué ocurre cuando fallan.',

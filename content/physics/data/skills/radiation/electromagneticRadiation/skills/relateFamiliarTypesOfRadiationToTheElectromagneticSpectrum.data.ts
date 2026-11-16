@@ -5,6 +5,7 @@ export const relateFamiliarTypesOfRadiationToTheElectromagneticSpectrum_Skill_Da
   id: 'e1756318-44d9-4319-b1f4-7af63c4c1213',
   name: {
     en: 'Relate familiar types of radiation to the electromagnetic spectrum',
+    it: 'Collegare i tipi comuni di radiazione allo spettro elettromagnetico',
     zh: '将常见辐射类型与电磁波谱相联系',
     hi: 'परिचित विकिरणों को विद्युतचुंबकीय वर्णक्रम से जोड़ना',
     es: 'Relacionar tipos habituales de radiación con el espectro electromagnético',
@@ -39,6 +40,7 @@ export const relateFamiliarTypesOfRadiationToTheElectromagneticSpectrum_Skill_Da
       'Radio waves, infrared, visible, and ultraviolet radiation occupy positions in the spectrum according to frequency and wavelength; visibility does not determine their physical nature.',
     frontend: {
       en: 'Locate familiar radiation types along the electromagnetic spectrum.',
+      it: 'Individua i tipi comuni di radiazione lungo lo spettro elettromagnetico.',
       zh: '确定常见辐射类型在电磁波谱中的位置。',
       hi: 'परिचित विकिरणों को विद्युतचुंबकीय वर्णक्रम में सही स्थान पर रखो।',
       es: 'Ubica tipos conocidos de radiación dentro del espectro electromagnético.',

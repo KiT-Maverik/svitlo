@@ -5,6 +5,7 @@ export const figureGroundOrganization_Skill_Data = defineSkill({
   id: 'f5b29d90-a5ec-475d-9528-df16c0d0a358',
   name: {
     en: 'Figure–Ground Organization',
+    it: 'Organizzazione figura-sfondo',
     zh: '图形与背景组织',
     hi: 'आकृति और पृष्ठभूमि का संगठन',
     es: 'Organización figura–fondo',
@@ -38,6 +39,7 @@ export const figureGroundOrganization_Skill_Data = defineSkill({
     methodological: 'Identify how context changes which part of a scene is experienced as a foreground object.',
     frontend: {
       en: 'Recognize which parts of a scene appear as foreground or background.',
+      it: 'Riconosci quali parti di una scena appaiano in primo piano e quali sullo sfondo.',
       zh: '识别场景中的哪些部分被看作前景，哪些被看作背景。',
       hi: 'पहचानें कि दृश्य के कौन से भाग आगे और कौन से पृष्ठभूमि में दिखाई देते हैं।',
       es: 'Identifica qué partes de una escena parecen estar en primer plano o en el fondo.',

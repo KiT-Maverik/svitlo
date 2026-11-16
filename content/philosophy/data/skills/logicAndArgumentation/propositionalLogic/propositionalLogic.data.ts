@@ -17,6 +17,7 @@ export const propositionalLogic_SkillGroup_Data = defineSkillGroup({
   id: '27fc05a1-0fee-4c85-bcef-0198a9b54055',
   name: {
     en: 'Propositional Logic',
+    it: 'Logica proposizionale',
     zh: '命题逻辑',
     hi: 'प्रस्तावनात्मक तर्कशास्त्र',
     es: 'Lógica proposicional',
@@ -75,6 +76,7 @@ export const propositionalLogic_SkillGroup_Data = defineSkillGroup({
       'Truth-functional connections between propositions determine the logical properties of compound statements. Symbolic operators and truth tables clarify implications independent of the subject matter used in examples.',
     frontend: {
       en: 'Discover how truth conditions work for statements joined by logical operators.',
+      it: 'Scopri come funzionano le condizioni di verità delle proposizioni collegate da operatori logici.',
       zh: '了解通过逻辑运算符连接的陈述，其真假条件如何变化。',
       hi: 'जानें कि तार्किक संयोजकों से जुड़े कथनों की सत्य-शर्तें कैसे काम करती हैं।',
       es: 'Descubre cómo funcionan las condiciones de verdad de enunciados unidos por operadores lógicos.',

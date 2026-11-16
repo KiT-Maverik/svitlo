@@ -5,6 +5,7 @@ export const assessProportionalityInMoralDecisions_Skill_Data = defineSkill({
   id: '28c0ba90-73da-4e0d-9d37-5c6e80f51ab9',
   name: {
     en: 'Assess proportionality in moral decisions',
+    it: 'Valutare la proporzionalità nelle decisioni morali',
     zh: '评估道德决策中的比例原则',
     hi: 'नैतिक निर्णयों में अनुपातिकता का मूल्यांकन',
     es: 'Evaluar la proporcionalidad en decisiones morales',
@@ -39,6 +40,7 @@ export const assessProportionalityInMoralDecisions_Skill_Data = defineSkill({
       'Consider whether a harmful burden or restriction is justified in relation to its aim and less harmful alternatives.',
     frontend: {
       en: 'Evaluate whether harms or restrictions are proportionate to a justified aim.',
+      it: 'Valuta se danni o limitazioni siano proporzionati a uno scopo giustificato.',
       zh: '评估造成的伤害或施加的限制是否与正当目标相称。',
       hi: 'जाँचें कि हानि या प्रतिबंध उचित लक्ष्य के अनुपात में हैं या नहीं।',
       es: 'Evalúa si los daños o restricciones son proporcionales a una finalidad justificada.',

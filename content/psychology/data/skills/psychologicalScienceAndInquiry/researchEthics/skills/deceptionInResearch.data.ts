@@ -5,6 +5,7 @@ export const deceptionInResearch_Skill_Data = defineSkill({
   id: 'd8015eb2-699d-4270-b34e-c15050ec7f75',
   name: {
     en: 'Deception in Research',
+    it: 'Inganno nella ricerca',
     zh: '研究中的欺瞒',
     hi: 'अनुसंधान में भ्रामक जानकारी',
     es: 'Engaño en investigación',
@@ -39,6 +40,7 @@ export const deceptionInResearch_Skill_Data = defineSkill({
       'Evaluate the rare conditions under which incomplete disclosure might be ethically defensible given oversight, scientific necessity, and risks.',
     frontend: {
       en: 'Consider when withholding information in research might be ethically defensible.',
+      it: 'Considera quando omettere informazioni durante una ricerca possa essere eticamente giustificabile.',
       zh: '思考在什么情况下隐瞒研究信息可能符合伦理。',
       hi: 'सोचें कि अनुसंधान में कुछ जानकारी रोकना किन परिस्थितियों में नैतिक हो सकता है।',
       es: 'Considera cuándo ocultar información en una investigación podría ser éticamente justificable.',

@@ -5,6 +5,7 @@ export const assessLimitationsOfGeographicDataSources_Skill_Data = defineSkill({
   id: 'c6769bab-2816-494b-889c-1349e8f03183',
   name: {
     en: 'Assess limitations of geographic data sources',
+    it: 'Valutare i limiti delle fonti di dati geografici',
     zh: '评估地理数据来源的局限性',
     hi: 'भौगोलिक डेटा स्रोतों की सीमाएँ आँकना',
     es: 'Evaluar las limitaciones de fuentes de datos geográficos',
@@ -39,6 +40,7 @@ export const assessLimitationsOfGeographicDataSources_Skill_Data = defineSkill({
       'Check coverage, age, resolution, classification, and possible bias before drawing conclusions from a map or dataset.',
     frontend: {
       en: 'Recognize when a map or geographic dataset is incomplete, outdated or biased.',
+      it: 'Riconosci quando una carta o un insieme di dati geografici è incompleto, superato o distorto.',
       zh: '识别地图或地理数据集何时不完整、过时或带有偏差。',
       hi: 'पहचानें कि कोई मानचित्र या भौगोलिक डेटा अधूरा, पुराना या पक्षपाती कब है।',
       es: 'Reconoce cuándo un mapa o conjunto de datos geográficos está incompleto, desactualizado o sesgado.',

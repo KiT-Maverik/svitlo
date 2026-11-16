@@ -5,6 +5,7 @@ export const calculateChange_Skill_Data = defineSkill({
   id: '56a4bd47-1221-489d-a11a-577d07bcb9af',
   name: {
     en: 'Calculating change',
+    it: 'Calcolare il resto',
     qm: 'Qaytım aqçasını esaplav',
     lt: 'Grąžos apskaičiavimas',
     lv: 'Atlikuma aprēķināšana',
@@ -39,6 +40,7 @@ export const calculateChange_Skill_Data = defineSkill({
       'Change is the difference between the amount actually paid and the amount due, provided the payment is sufficient. It must be expressed in the same currency, and adding the change to the purchase price checks the result.',
     frontend: {
       en: 'You can calculate the change you should receive when you pay enough money for a purchase and check it against the price.',
+      it: 'Puoi calcolare il resto che dovresti ricevere quando paghi una somma sufficiente per un acquisto e verificarlo rispetto al prezzo.',
       qm: 'Satın aluv içün yeterli aqça bergen soñ almalı olğan qaytım aqçasını esaplay ve onı eşyanıñ fiyatına köre teşkere bilesiñ.',
       zh: '你能在付款足够时算出购物应找回的零钱，并核对找零与商品价格是否相符。',
       hi: 'आप पर्याप्त भुगतान करने पर मिलने वाली बाकी रकम निकाल सकते हैं और खरीद के दाम से उसकी जाँच कर सकते हैं।',

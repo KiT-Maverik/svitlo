@@ -5,6 +5,7 @@ export const traitSituationInteraction_Skill_Data = defineSkill({
   id: '10de8c02-70d2-420c-aad8-5deb7fa8cef9',
   name: {
     en: 'Trait–Situation Interaction',
+    it: 'Interazione tra tratti e situazioni',
     zh: '特质与情境的相互作用',
     hi: 'व्यक्तित्व गुण और परिस्थिति की अंतःक्रिया',
     es: 'Interacción entre rasgos y situaciones',
@@ -38,6 +39,7 @@ export const traitSituationInteraction_Skill_Data = defineSkill({
     methodological: 'Analyze why the same person may behave differently under different incentives or social demands.',
     frontend: {
       en: 'Recognize how personality and situation jointly affect behavior.',
+      it: 'Riconosci come la personalità e la situazione influenzino insieme il comportamento.',
       zh: '认识人格与具体情境如何共同影响行为。',
       hi: 'समझें कि व्यक्तित्व और स्थिति मिलकर व्यवहार को कैसे प्रभावित करते हैं।',
       es: 'Reconoce cómo la personalidad y la situación influyen conjuntamente en el comportamiento.',

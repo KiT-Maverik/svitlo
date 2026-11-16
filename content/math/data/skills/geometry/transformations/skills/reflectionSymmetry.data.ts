@@ -5,6 +5,7 @@ export const reflectionSymmetry_Skill_Data = defineSkill({
   id: 'f570551e-7d44-4a2c-8567-16ebbffeb142',
   name: {
     en: 'Finding symmetry axes and completing reflections',
+    it: 'Individuare assi di simmetria e completare riflessioni',
     qm: 'Simmetriya oqlarını tapmaq ve aks etüvni tamamlamaq',
     lt: 'Simetrijos ašių radimas ir atspindžių užbaigimas',
     lv: 'Simetrijas asu atrašana un atspoguļojumu pabeigšana',
@@ -39,6 +40,7 @@ export const reflectionSymmetry_Skill_Data = defineSkill({
       'An axis of symmetry defines a reflection that maps a figure onto itself. Corresponding points lie on opposite sides at equal perpendicular distances; points on the axis remain fixed.',
     frontend: {
       en: 'Find a line that divides a shape into mirror-image halves, or finish drawing its reflection.',
+      it: 'Trova una retta che divide una figura in due metà speculari oppure completa il disegno della sua immagine riflessa.',
       qm: 'Şekilni ayna közüne benzegen eki yarımğa bölgen sızıqnı tap ya da şekilniñ aynadaki aksini çizip tamamla.',
       zh: '找到让图形两边成镜像的对称轴，或补画出反射后的另一半。',
       hi: 'आकृति को दर्पण जैसे दो भागों में बाँटने वाली सममिति रेखा खोजें या परावर्तित हिस्सा पूरा करें।',

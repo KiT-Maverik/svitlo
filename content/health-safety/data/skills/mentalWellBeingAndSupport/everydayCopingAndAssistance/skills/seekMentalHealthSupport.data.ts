@@ -5,6 +5,7 @@ export const seekMentalHealthSupport_Skill_Data = defineSkill({
   id: '317a95d4-96b5-4fc6-9d08-84ed1a679db7',
   name: {
     en: 'Seek mental health support',
+    it: 'Cercare sostegno per la salute mentale',
     zh: '寻求心理健康支持',
     hi: 'मानसिक स्वास्थ्य सहायता प्राप्त करें',
     es: 'Buscar apoyo para la salud mental',
@@ -39,6 +40,7 @@ export const seekMentalHealthSupport_Skill_Data = defineSkill({
       'Identify trusted people, professional services, and ways of communicating a concern, including when ordinary support is insufficient.',
     frontend: {
       en: 'Know how to contact a trusted person or qualified mental-health service.',
+      it: 'Scopri come contattare una persona fidata o un servizio qualificato di salute mentale.',
       zh: '知道如何联系值得信任的人或合格的心理健康服务机构。',
       hi: 'जानें कि भरोसेमंद व्यक्ति या योग्य मानसिक स्वास्थ्य सेवा से कैसे संपर्क करें।',
       es: 'Aprende a contactar a alguien de confianza o un servicio de salud mental cualificado.',

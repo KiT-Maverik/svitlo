@@ -5,6 +5,7 @@ export const explainTheDevelopmentOfCompilers_Skill_Data = defineSkill({
   id: '291e600d-7285-4f92-9359-ecf8d4ecc11b',
   name: {
     en: 'Explain the Development of Compilers',
+    it: 'Spiegare lo sviluppo dei compilatori',
     zh: '解释编译器的发展',
     hi: 'कंपाइलर का विकास समझाना',
     es: 'Explicar el desarrollo de los compiladores',
@@ -39,6 +40,7 @@ export const explainTheDevelopmentOfCompilers_Skill_Data = defineSkill({
       'Explain how translating more human-readable program notation into machine instructions changed programming. Include the contributions of Grace Hopper and other researchers to early compilers and languages without confusing a compiler with the language itself.',
     frontend: {
       en: 'Explore how compilers made it easier to write programs using readable languages.',
+      it: 'Esplora come i compilatori hanno semplificato la scrittura di programmi in linguaggi leggibili.',
       zh: '探索编译器如何使人们更容易用可读的语言编写程序。',
       hi: 'जानें कि कंपाइलर ने पढ़ने योग्य भाषाओं में प्रोग्राम लिखना कैसे आसान बनाया।',
       es: 'Explora cómo los compiladores facilitaron escribir programas con lenguajes legibles.',

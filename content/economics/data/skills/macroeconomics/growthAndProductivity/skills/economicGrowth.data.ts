@@ -5,6 +5,7 @@ export const economicGrowth_Skill_Data = defineSkill({
   id: '5f006a43-3af3-40b4-8de3-5d254d9f0f5c',
   name: {
     en: 'Економічне зростання',
+    it: 'Crescita economica',
     zh: '经济增长',
     hi: 'आर्थिक वृद्धि',
     es: 'Crecimiento económico',
@@ -39,6 +40,7 @@ export const economicGrowth_Skill_Data = defineSkill({
       'Evaluate changes in real output over time and distinguish its growth rate from its absolute level.',
     frontend: {
       en: 'Measure how quickly inflation-adjusted production is growing.',
+      it: "Misura quanto rapidamente cresce la produzione al netto dell'inflazione.",
       zh: '衡量扣除通胀因素后的生产增长速度。',
       hi: 'मुद्रास्फीति समायोजित उत्पादन की वृद्धि दर मापें।',
       es: 'Mide a qué ritmo crece la producción ajustada por inflación.',

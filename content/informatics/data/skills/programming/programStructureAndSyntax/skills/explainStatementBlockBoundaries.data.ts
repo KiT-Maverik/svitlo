@@ -5,6 +5,7 @@ export const explainStatementBlockBoundaries_Skill_Data = defineSkill({
   id: '8e1df7cf-ed63-44f9-af83-05d0e564eb72',
   name: {
     en: 'Explain Statement Block Boundaries',
+    it: 'Spiegare i confini dei blocchi di istruzioni',
     zh: '解释语句块的边界',
     hi: 'कथन ब्लॉक की सीमाएँ समझाना',
     es: 'Explicar los límites de los bloques de instrucciones',
@@ -39,6 +40,7 @@ export const explainStatementBlockBoundaries_Skill_Data = defineSkill({
       'Identify which instructions belong to a function, loop, or conditional branch based on braces or indentation in a language, without confusing a block with an entire file.',
     frontend: {
       en: 'Find which commands belong inside a loop, function or conditional block.',
+      it: 'Individua quali comandi appartengono a un ciclo, una funzione o un blocco condizionale.',
       zh: '找出属于循环、函数或条件代码块的命令。',
       hi: 'पता लगाएँ कि कौन-से आदेश लूप, फलन या शर्त वाले ब्लॉक में आते हैं।',
       es: 'Identifica qué instrucciones pertenecen a un bucle, una función o un bloque condicional.',

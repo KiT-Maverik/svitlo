@@ -5,6 +5,7 @@ export const relateBodyCoveringsToTheirFunctions_Skill_Data = defineSkill({
   id: '4168cd90-7916-4e8f-9126-917525761ae6',
   name: {
     en: 'Relate Body Coverings to Their Functions',
+    it: 'Collegare i rivestimenti corporei alle loro funzioni',
     zh: '将动物的体表覆盖物与其功能联系起来',
     hi: 'शरीर के आवरण और उनके कार्यों का संबंध समझाना',
     es: 'Relacionar las cubiertas corporales con sus funciones',
@@ -39,6 +40,7 @@ export const relateBodyCoveringsToTheirFunctions_Skill_Data = defineSkill({
       'Explain how feathers, fur, scales, and skin provide protection, thermal insulation, or water balance.',
     frontend: {
       en: 'Explain how fur, feathers, scales and skin protect animal bodies.',
+      it: 'Spiega come pelliccia, piume, squame e pelle proteggono il corpo degli animali.',
       zh: '解释毛发、羽毛、鳞片和皮肤如何保护动物的身体。',
       hi: 'समझाएँ कि बाल, पंख, शल्क और त्वचा जानवरों के शरीर की रक्षा कैसे करते हैं।',
       es: 'Explica cómo el pelaje, las plumas, las escamas y la piel protegen el cuerpo de los animales.',

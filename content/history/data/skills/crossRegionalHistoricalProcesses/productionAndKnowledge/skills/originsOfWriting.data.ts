@@ -5,6 +5,7 @@ export const originsOfWriting_Skill_Data = defineSkill({
   id: 'b43d6075-29df-4a09-a83a-bca1050bf6b8',
   name: {
     en: 'Origins of Writing',
+    it: 'Origini della scrittura',
     zh: '文字的起源',
     hi: 'लेखन का उद्भव',
     es: 'Orígenes de la escritura',
@@ -39,6 +40,7 @@ export const originsOfWriting_Skill_Data = defineSkill({
       'Distinguish independent emergence of writing systems recording language from counting marks or pictures.',
     frontend: {
       en: 'Discover how different societies began recording language.',
+      it: 'Scopri come società diverse iniziarono a registrare la lingua.',
       zh: '探索不同社会如何开始用文字记录语言。',
       hi: 'जानें कि अलग-अलग समाजों ने भाषा को लिखित रूप में दर्ज करना कैसे शुरू किया।',
       es: 'Descubre cómo distintas sociedades empezaron a registrar el lenguaje por escrito.',

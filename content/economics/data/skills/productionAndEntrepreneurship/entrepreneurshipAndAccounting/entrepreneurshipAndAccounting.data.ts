@@ -12,6 +12,7 @@ export const entrepreneurshipAndAccounting_SkillGroup_Data = defineSkillGroup({
   id: '706a9ce9-d932-43da-a1c3-680422c1bc83',
   name: {
     en: 'Entrepreneurship and Accounting',
+    it: 'Imprenditorialità e contabilità',
     zh: '创业与会计',
     hi: 'उद्यमिता और लेखांकन',
     es: 'Emprendimiento y contabilidad',
@@ -55,6 +56,7 @@ export const entrepreneurshipAndAccounting_SkillGroup_Data = defineSkillGroup({
       'A new business requires testing the value offered, organizing resources, and analyzing its financial results.',
     frontend: {
       en: 'Learn what makes a business idea economically workable.',
+      it: "Scopri che cosa rende un'idea imprenditoriale economicamente sostenibile.",
       zh: '了解哪些因素使商业创意在经济上可行。',
       hi: 'जानें कि कोई व्यावसायिक विचार आर्थिक रूप से व्यावहारिक क्यों होता है।',
       es: 'Aprende qué hace económicamente viable una idea empresarial.',

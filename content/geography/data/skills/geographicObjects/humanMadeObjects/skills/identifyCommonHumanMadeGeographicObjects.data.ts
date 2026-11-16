@@ -5,6 +5,7 @@ export const identifyCommonHumanMadeGeographicObjects_Skill_Data = defineSkill({
   id: '86acc10c-8c69-4c10-9edc-31abb845f6dd',
   name: {
     en: 'Identify common human-made geographic objects',
+    it: 'Individuare i principali elementi geografici antropici',
     zh: '识别常见人造地理事物',
     hi: 'आम मानव निर्मित भौगोलिक वस्तुएँ पहचानना',
     es: 'Identificar objetos geográficos comunes construidos por personas',
@@ -39,6 +40,7 @@ export const identifyCommonHumanMadeGeographicObjects_Skill_Data = defineSkill({
       'Recognize constructed features such as roads, bridges, dams, ports and canals by their observable geographic function, rather than assuming all visible landscape elements are natural.',
     frontend: {
       en: 'Identify roads, bridges, ports, dams and canals by their geographic functions.',
+      it: 'Individua strade, ponti, porti, dighe e canali in base alle loro funzioni geografiche.',
       zh: '根据地理功能识别道路、桥梁、港口、大坝和运河。',
       hi: 'सड़क, पुल, बंदरगाह, बाँध और नहर को उनके भौगोलिक कार्यों से पहचानें।',
       es: 'Identifica carreteras, puentes, puertos, presas y canales por su función geográfica.',

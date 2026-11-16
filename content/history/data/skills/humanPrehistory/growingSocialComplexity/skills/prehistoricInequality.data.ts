@@ -5,6 +5,7 @@ export const prehistoricInequality_Skill_Data = defineSkill({
   id: '0eb52a18-8fc5-4a40-bb32-7ff04bab41d5',
   name: {
     en: 'Wealth and Social Inequality',
+    it: 'Ricchezza e disuguaglianza sociale',
     zh: '史前财产与社会不平等',
     hi: 'प्रागैतिहासिक असमानता',
     es: 'Desigualdad en la prehistoria',
@@ -39,6 +40,7 @@ export const prehistoricInequality_Skill_Data = defineSkill({
       'Use material remains to assess unequal access to resources and prestige while considering alternate interpretations.',
     frontend: {
       en: 'Look for archaeological clues about differences in wealth and status.',
+      it: 'Cerca indizi archeologici sulle differenze di ricchezza e di status.',
       zh: '寻找反映财富与地位差异的考古线索。',
       hi: 'धन और सामाजिक स्थिति में अंतर के पुरातात्त्विक संकेत खोजें।',
       es: 'Busca indicios arqueológicos de diferencias de riqueza y posición social.',

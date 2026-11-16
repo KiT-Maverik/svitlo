@@ -5,6 +5,7 @@ export const reconstructAnotherPersonsPositionFairly_Skill_Data = defineSkill({
   id: '1e579ada-dc74-44d8-98cc-e9092a9b375c',
   name: {
     en: "Reconstruct another person's position fairly",
+    it: 'Ricostruire correttamente la posizione altrui',
     zh: '公正复述他人立场',
     hi: 'दूसरे व्यक्ति के दृष्टिकोण को निष्पक्ष रूप से प्रस्तुत करना',
     es: 'Reconstruir con justicia la postura de otra persona',
@@ -39,6 +40,7 @@ export const reconstructAnotherPersonsPositionFairly_Skill_Data = defineSkill({
       "Restate an interlocutor's strongest contextually plausible position accurately and charitably, rather than attacking a weaker caricature; fair reconstruction does not require overlooking genuine contradictions or unsupported claims.",
     frontend: {
       en: "Restate someone else's position accurately before criticizing it.",
+      it: "Riformula con precisione la posizione di un'altra persona prima di criticarla.",
       zh: '在批评别人的立场前，先准确复述其观点。',
       hi: 'आलोचना करने से पहले किसी दूसरे व्यक्ति की स्थिति को सही रूप में दोहराएँ।',
       es: 'Expón con precisión la postura de otra persona antes de criticarla.',

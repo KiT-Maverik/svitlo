@@ -5,6 +5,7 @@ export const improviseADramaticScene_Skill_Data = defineSkill({
   id: 'f70a4d59-35aa-4b3e-a548-b08fd075f3a7',
   name: {
     en: 'Improvise a Dramatic Scene',
+    it: 'Improvvisare una scena teatrale',
     zh: '即兴创作戏剧情景',
     hi: 'नाटकीय दृश्य का तात्कालिक अभिनय करें',
     es: 'Improvisar una escena dramática',
@@ -38,6 +39,7 @@ export const improviseADramaticScene_Skill_Data = defineSkill({
     methodological: 'Develop actions consistent with a given premise and new information from performers.',
     frontend: {
       en: 'Invent a scene while responding to new ideas from fellow performers.',
+      it: 'Inventa una scena reagendo alle nuove idee degli altri interpreti.',
       zh: '回应其他表演者的新想法，即兴构思一个场景。',
       hi: 'साथी कलाकारों के नए विचारों पर प्रतिक्रिया देते हुए दृश्य गढ़ें।',
       es: 'Inventa una escena mientras respondes a las nuevas ideas de otros intérpretes.',

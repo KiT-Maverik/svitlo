@@ -5,6 +5,7 @@ export const economicReturnsToEducation_Skill_Data = defineSkill({
   id: '3f272801-44ff-4508-9e3b-10ba51945b2e',
   name: {
     en: 'Економічна віддача від освіти',
+    it: "Rendimento economico dell'istruzione",
     zh: '教育的经济回报',
     hi: 'शिक्षा से आर्थिक प्रतिफल',
     es: 'Rendimientos económicos de la educación',
@@ -39,6 +40,7 @@ export const economicReturnsToEducation_Skill_Data = defineSkill({
       'Assess expected changes in earnings, productivity, and opportunity relative to time and schooling costs without automatically interpreting an education–earnings correlation as causal.',
     frontend: {
       en: 'Compare the economic value of education with its time and financial costs.',
+      it: "Confronta il valore economico dell'istruzione con il tempo e i costi necessari per ottenerla.",
       zh: '比较教育带来的经济价值及其时间和金钱成本。',
       hi: 'शिक्षा के आर्थिक लाभ की तुलना उसके समय और धन की लागत से करें।',
       es: 'Compara el valor económico de la educación con sus costos de tiempo y dinero.',

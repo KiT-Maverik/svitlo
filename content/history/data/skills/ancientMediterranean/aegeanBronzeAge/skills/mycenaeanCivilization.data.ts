@@ -5,6 +5,7 @@ export const mycenaeanCivilization_Skill_Data = defineSkill({
   id: '87f99176-bf8f-43dd-a133-d2fb88c9bfaf',
   name: {
     en: 'Mycenaean Civilization',
+    it: 'Civiltà micenea',
     zh: '迈锡尼文明',
     hi: 'माइसीनी सभ्यता',
     es: 'Civilización micénica',
@@ -38,6 +39,7 @@ export const mycenaeanCivilization_Skill_Data = defineSkill({
     methodological: 'Study palace economies, fortified centers, and Linear B evidence of early Greek.',
     frontend: {
       en: 'Learn what the Mycenaean palaces and records reveal about early Greeks.',
+      it: 'Scopri che cosa rivelano i palazzi e i documenti micenei sui primi Greci.',
       zh: '了解迈锡尼宫殿和档案揭示了哪些关于早期希腊人的信息。',
       hi: 'जानें कि माइसीनी महल और अभिलेख प्रारंभिक यूनानियों के बारे में क्या बताते हैं।',
       es: 'Descubre qué revelan los palacios y registros micénicos sobre los primeros griegos.',

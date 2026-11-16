@@ -5,6 +5,7 @@ export const sensorInterfaceCompatibility_Skill_Data = defineSkill({
   id: 'b901921d-8e5a-487f-8e84-85d5a475cf9f',
   name: {
     en: 'Sensor-interface compatibility',
+    it: 'Compatibilità tra sensore e interfaccia',
     zh: '传感器接口兼容性',
     hi: 'संवेदक इंटरफ़ेस अनुकूलता',
     es: 'Compatibilidad de interfaces de sensores',
@@ -39,6 +40,7 @@ export const sensorInterfaceCompatibility_Skill_Data = defineSkill({
       'Assess whether a sensor output, supply voltage, signal level and timing are compatible with a particular data acquisition input.',
     frontend: {
       en: "Check whether sensor signals match a controller's input requirements.",
+      it: 'Verifica se i segnali di un sensore soddisfano i requisiti di ingresso di un controllore.',
       zh: '检查传感器信号是否满足控制器输入要求。',
       hi: 'जाँचें कि संवेदक के संकेत नियंत्रक के इनपुट से मेल खाते हैं या नहीं।',
       es: 'Comprueba si las señales del sensor cumplen los requisitos de entrada del controlador.',

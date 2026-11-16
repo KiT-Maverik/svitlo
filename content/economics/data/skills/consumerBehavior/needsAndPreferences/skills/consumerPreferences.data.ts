@@ -5,6 +5,7 @@ export const consumerPreferences_Skill_Data = defineSkill({
   id: '3e291196-cc0d-4cb3-b9de-600a67d59c3b',
   name: {
     en: 'Consumer Preferences',
+    it: 'Preferenze dei consumatori',
     zh: '消费者偏好',
     hi: 'उपभोक्ता की प्राथमिकताएँ',
     es: 'Preferencias del consumidor',
@@ -39,6 +40,7 @@ export const consumerPreferences_Skill_Data = defineSkill({
       'Describe how an individual ranks alternative bundles of goods and services according to their own priorities.',
     frontend: {
       en: 'Compare how someone might rank different combinations of goods.',
+      it: 'Confronta come una persona potrebbe ordinare diverse combinazioni di beni secondo le proprie preferenze.',
       zh: '比较一个人如何给不同的商品组合排序。',
       hi: 'तुलना करें कि कोई व्यक्ति वस्तुओं के अलग-अलग संयोजनों को कैसे क्रम दे सकता है।',
       es: 'Compara cómo alguien ordena distintas combinaciones de bienes.',

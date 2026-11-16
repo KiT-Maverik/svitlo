@@ -14,6 +14,7 @@ export const socialPerception_SkillGroup_Data = defineSkillGroup({
   id: '6d157f4e-e68d-44ed-ae37-eefc03f307c4',
   name: {
     en: 'Social Perception',
+    it: 'Percezione sociale',
     zh: '社会知觉',
     hi: 'सामाजिक धारणा',
     es: 'Percepción social',
@@ -66,6 +67,7 @@ export const socialPerception_SkillGroup_Data = defineSkillGroup({
       'Judgments about other people are inferred from limited evidence and shaped by expectations, roles, and context.',
     frontend: {
       en: "Explore how we interpret people's actions, intentions and feelings.",
+      it: 'Esplora come interpretiamo le azioni, le intenzioni e i sentimenti delle altre persone.',
       zh: '探索我们如何理解他人的行为、意图和感受。',
       hi: 'देखें कि हम दूसरों के कार्य, इरादे और भावनाओं को कैसे समझते हैं।',
       es: 'Explora cómo interpretamos las acciones, intenciones y sentimientos ajenos.',

@@ -5,6 +5,7 @@ export const proprioception_Skill_Data = defineSkill({
   id: '5c8f5a24-35bc-4076-826d-bb49a0656a6b',
   name: {
     en: 'Proprioception',
+    it: 'Propriocezione',
     zh: '本体感觉',
     hi: 'शरीर की स्थिति का बोध',
     es: 'Propiocepción',
@@ -39,6 +40,7 @@ export const proprioception_Skill_Data = defineSkill({
       'Explain how information about muscle and joint state supports awareness of limb position and movement even without vision.',
     frontend: {
       en: 'Understand how your body senses limb position without looking.',
+      it: 'Comprendi come il corpo percepisca la posizione degli arti senza guardarli.',
       zh: '了解不看身体时也能感知四肢位置的方式。',
       hi: 'समझें कि बिना देखे शरीर को अंगों की स्थिति कैसे पता चलती है।',
       es: 'Comprende cómo tu cuerpo percibe la posición de tus extremidades sin mirar.',

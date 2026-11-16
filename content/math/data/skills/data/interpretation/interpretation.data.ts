@@ -7,6 +7,7 @@ export const interpretation_SkillGroup_Data = defineSkillGroup({
   id: '6a6d3bce-2ed3-42d6-b155-6a50bd403936',
   name: {
     en: 'Data interpretation',
+    it: 'Interpretazione dei dati',
     qm: 'Malümatlarnı talil etüv',
     lt: 'Duomenų aiškinimas',
     lv: 'Datu interpretācija',

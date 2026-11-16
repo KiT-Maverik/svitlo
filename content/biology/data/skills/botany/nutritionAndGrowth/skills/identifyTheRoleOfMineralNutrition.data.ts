@@ -5,6 +5,7 @@ export const identifyTheRoleOfMineralNutrition_Skill_Data = defineSkill({
   id: '7ca1f76b-6543-490b-9138-63275fb668b8',
   name: {
     en: 'Identify the Role of Mineral Nutrition',
+    it: 'Individuare il ruolo della nutrizione minerale',
     zh: '识别矿质营养的作用',
     hi: 'खनिज पोषण की भूमिका पहचानना',
     es: 'Identificar la función de la nutrición mineral',
@@ -39,6 +40,7 @@ export const identifyTheRoleOfMineralNutrition_Skill_Data = defineSkill({
       'Explain why mineral elements from soil are necessary for tissue formation, although they do not replace food as an energy source.',
     frontend: {
       en: 'Understand why mineral nutrients help plants build healthy tissues.',
+      it: 'Comprendi perché i nutrienti minerali aiutano le piante a sviluppare tessuti sani.',
       zh: '了解矿质营养元素如何帮助植物形成健康的组织。',
       hi: 'समझें कि खनिज पोषक तत्व पौधों में स्वस्थ ऊतकों के निर्माण में कैसे मदद करते हैं।',
       es: 'Comprende por qué los nutrientes minerales ayudan a formar tejidos vegetales sanos.',

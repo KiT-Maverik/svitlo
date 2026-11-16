@@ -5,6 +5,7 @@ export const assembleALowVoltageCircuit_Skill_Data = defineSkill({
   id: '44e7b497-b136-4ba3-907d-fd0f4ce61ec1',
   name: {
     en: 'Assemble a low-voltage circuit',
+    it: 'Assemblare un circuito a bassa tensione',
     zh: '组装低压电路',
     hi: 'कम वोल्टता वाला परिपथ जोड़ना',
     es: 'Montar un circuito de baja tensión',
@@ -38,6 +39,7 @@ export const assembleALowVoltageCircuit_Skill_Data = defineSkill({
     methodological: 'Connect a suitable power source and load with correctly rated components while avoiding shorts.',
     frontend: {
       en: 'Assemble a simple circuit using safe low-voltage components.',
+      it: 'Assembla un circuito semplice utilizzando componenti sicuri a bassa tensione.',
       zh: '使用安全的低压元件组装简单电路。',
       hi: 'सुरक्षित कम वोल्टता वाले घटकों से सरल परिपथ जोड़ें।',
       es: 'Monta un circuito sencillo con componentes seguros de baja tensión.',

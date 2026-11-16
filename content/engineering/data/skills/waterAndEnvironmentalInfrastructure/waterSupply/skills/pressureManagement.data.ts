@@ -5,6 +5,7 @@ export const pressureManagement_Skill_Data = defineSkill({
   id: '5a09f9a8-5fc0-4d59-b177-e84802fa2bd4',
   name: {
     en: 'Pressure management',
+    it: 'Gestione della pressione',
     zh: '供水压力管理',
     hi: 'जल-दबाव प्रबंधन',
     es: 'Gestión de la presión',
@@ -38,6 +39,7 @@ export const pressureManagement_Skill_Data = defineSkill({
     methodological: 'Relate tanks, pumps and control devices to service pressure and continuity.',
     frontend: {
       en: 'Understand how supply systems maintain appropriate water pressure.',
+      it: "Comprendi come le reti di approvvigionamento mantengono una pressione dell'acqua adeguata.",
       zh: '理解供水系统如何保持适当水压。',
       hi: 'समझें कि जल आपूर्ति प्रणालियाँ उपयुक्त दबाव कैसे बनाए रखती हैं।',
       es: 'Comprende cómo las redes de agua mantienen una presión adecuada.',

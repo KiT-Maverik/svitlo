@@ -5,6 +5,7 @@ export const shapeOnSolidSurface_Skill_Data = defineSkill({
   id: 'a9355c95-a65a-472e-bb7d-f11c7a23fe49',
   name: {
     en: 'Identifying plane figures on solid surfaces',
+    it: 'Riconoscere figure piane sulle superfici dei solidi',
     qm: 'Hacımlı cisımniñ yüzünde tüz şekillerni tanımaq',
     lt: 'Plokščiųjų figūrų atpažinimas erdvinių kūnų paviršiuose',
     lv: 'Plaknes figūru atpazīšana telpisku ķermeņu virsmās',
@@ -39,6 +40,7 @@ export const shapeOnSolidSurface_Skill_Data = defineSkill({
       'Plane figures can coincide with the faces of solids or their plane sections, but the solid itself remains three-dimensional. Distinguish a two-dimensional part of a surface from the entire three-dimensional object.',
     frontend: {
       en: 'Find flat shapes on the faces or slices of solid objects. A flat face is not the whole three-dimensional shape.',
+      it: "Individua figure piane sulle facce o sulle sezioni di oggetti solidi. Una faccia piana non coincide con l'intero oggetto tridimensionale.",
       qm: 'Hacımlı eşyalarnıñ yaqlarında ya da kesitlerinde tüz şekillerni tap. Tüz yaq bütün üç ölçüli şekil degil.',
       zh: '在立体物体的面或截面上找出平面图形。平面的一面不是整个立体图形。',
       hi: 'ठोस वस्तु के फलकों या काटने से बने हिस्सों पर सपाट आकृतियाँ पहचानें। सपाट फलक पूरा ठोस नहीं होता।',

@@ -5,6 +5,7 @@ export const extendBehaviorWithoutModifyingTheCoreOCP_Skill_Data = defineSkill({
   id: '2300c155-5699-4e5f-bdc1-dd71cad8c059',
   name: {
     en: 'Extend Behavior Without Modifying the Core (OCP)',
+    it: 'Estendere il comportamento senza modificare il nucleo (OCP)',
     zh: '无需修改核心即可扩展行为（OCP）',
     hi: 'मूल भाग बदले बिना व्यवहार बढ़ाना (OCP)',
     es: 'Ampliar el comportamiento sin modificar el núcleo (OCP)',
@@ -39,6 +40,7 @@ export const extendBehaviorWithoutModifyingTheCoreOCP_Skill_Data = defineSkill({
       'Identify extension points that allow a new implementation through a contract without rewriting tested shared logic. A stable core is a goal, not an absolute prohibition on changing existing code.',
     frontend: {
       en: 'Design extension points for new behavior without rewriting stable core logic.',
+      it: 'Progetta punti di estensione per nuovi comportamenti senza riscrivere la logica centrale stabile.',
       zh: '设计扩展点，在不重写稳定核心逻辑的情况下增加新行为。',
       hi: 'स्थिर मुख्य तर्क दोबारा लिखे बिना नए व्यवहार के लिए विस्तार बिंदु तैयार करें।',
       es: 'Diseña puntos de extensión para incorporar comportamientos sin reescribir la lógica central estable.',

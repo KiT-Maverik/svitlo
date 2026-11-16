@@ -12,6 +12,7 @@ export const decompositionAndAbstraction_SkillGroup_Data = defineSkillGroup({
   id: '0aced4cc-9732-4bc2-ad8e-59febc0d78db',
   name: {
     en: 'Decomposition and Abstraction',
+    it: 'Scomposizione e astrazione',
     zh: '分解与抽象',
     hi: 'विघटन और अमूर्तन',
     es: 'Descomposición y abstracción',
@@ -60,6 +61,7 @@ export const decompositionAndAbstraction_SkillGroup_Data = defineSkillGroup({
       "Defining a problem's boundaries by breaking it into subproblems, identifying meaningful characteristics, and constructing a simplified model. These operations precede selecting a specific algorithm or class structure.",
     frontend: {
       en: 'Learn to simplify problems by identifying their essential parts and relationships.',
+      it: 'Impara a semplificare i problemi individuandone le parti e le relazioni essenziali.',
       zh: '学习通过找出问题的关键部分及其关系来简化问题。',
       hi: 'समस्या के आवश्यक भागों और उनके संबंधों की पहचान करके उसे सरल बनाना सीखें।',
       es: 'Aprende a simplificar problemas identificando sus partes y relaciones esenciales.',

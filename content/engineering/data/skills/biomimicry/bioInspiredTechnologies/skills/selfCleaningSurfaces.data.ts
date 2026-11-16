@@ -5,6 +5,7 @@ export const selfCleaningSurfaces_Skill_Data = defineSkill({
   id: '154dde6b-36a2-4fd9-bbb0-38b16dbea7ba',
   name: {
     en: 'Self-cleaning surfaces',
+    it: 'Superfici autopulenti',
     zh: '自清洁表面',
     hi: 'अपने-आप साफ़ होने वाली सतहें',
     es: 'Superficies autolimpiables',
@@ -38,6 +39,7 @@ export const selfCleaningSurfaces_Skill_Data = defineSkill({
     methodological: 'Connect surface texture and wetting behavior with liquid and dirt removal.',
     frontend: {
       en: 'Understand how natural surface structures inspire self-cleaning materials.',
+      it: 'Comprendi come le strutture delle superfici naturali ispirano materiali autopulenti.',
       zh: '了解天然表面结构如何启发自清洁材料。',
       hi: 'समझें कि प्राकृतिक सतहों की बनावट स्व-सफाई वाले पदार्थ बनाने में कैसे प्रेरणा देती है।',
       es: 'Comprende cómo las estructuras naturales de las superficies inspiran materiales autolimpiables.',

@@ -5,6 +5,7 @@ export const designMultisensoryRelationships_Skill_Data = defineSkill({
   id: 'b076bad5-eec8-4b77-93ce-b74b1ed425d0',
   name: {
     en: 'Design Multisensory Relationships',
+    it: 'Progettare relazioni multisensoriali',
     zh: '设计多感官关系',
     hi: 'बहु-संवेदी संबंध डिज़ाइन करें',
     es: 'Diseñar relaciones multisensoriales',
@@ -38,6 +39,7 @@ export const designMultisensoryRelationships_Skill_Data = defineSkill({
     methodological: 'Coordinate image, movement, sound or tactile response as expressive elements.',
     frontend: {
       en: 'Combine sound, images, movement or touch into one artistic experience.',
+      it: "Combina suoni, immagini, movimenti o esperienze tattili in un'unica esperienza artistica.",
       zh: '将声音、图像、动作或触觉结合为一种艺术体验。',
       hi: 'ध्वनि, चित्र, गति या स्पर्श को एक कलात्मक अनुभव में जोड़ें।',
       es: 'Combina sonido, imágenes, movimiento o tacto en una experiencia artística.',

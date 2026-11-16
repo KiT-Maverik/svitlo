@@ -5,6 +5,7 @@ export const explainRotationalInertia_Skill_Data = defineSkill({
   id: '4de89d97-f976-4af7-bbf3-ca5bf8eda3e9',
   name: {
     en: 'Explain rotational inertia',
+    it: "Spiegare il momento d'inerzia",
     zh: '解释转动惯量',
     hi: 'घूर्णी जड़त्व समझाना',
     es: 'Explicar la inercia rotacional',
@@ -39,6 +40,7 @@ export const explainRotationalInertia_Skill_Data = defineSkill({
       'The distribution of mass relative to an axis affects how rotation changes, even when the total mass is the same.',
     frontend: {
       en: 'Recognize how mass farther from an axis changes resistance to rotation.',
+      it: "Riconosci come la distribuzione della massa rispetto all'asse influisce sulla resistenza a cambiare il moto rotatorio.",
       zh: '识别质量离转轴越远，物体抵抗转动变化的能力如何改变。',
       hi: 'जानें कि अक्ष से दूर स्थित द्रव्यमान घूर्णन बदलने के प्रतिरोध को कैसे प्रभावित करता है।',
       es: 'Reconoce cómo la masa situada más lejos del eje modifica la resistencia a cambiar la rotación.',

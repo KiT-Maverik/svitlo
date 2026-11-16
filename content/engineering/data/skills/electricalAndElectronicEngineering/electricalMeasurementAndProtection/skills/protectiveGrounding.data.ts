@@ -5,6 +5,7 @@ export const protectiveGrounding_Skill_Data = defineSkill({
   id: 'fa9d0440-9dc1-4825-bf93-efa881b60989',
   name: {
     en: 'Protective grounding',
+    it: 'Messa a terra di protezione',
     zh: '保护接地',
     hi: 'सुरक्षात्मक अर्थिंग',
     es: 'Puesta a tierra de protección',
@@ -39,6 +40,7 @@ export const protectiveGrounding_Skill_Data = defineSkill({
       'Identify intentional fault-current or equipotential connections that reduce electric-shock risk in appropriately designed equipment.',
     frontend: {
       en: 'Understand how protective grounding supports electrical safety.',
+      it: 'Comprendi come la messa a terra di protezione contribuisce alla sicurezza elettrica.',
       zh: '理解保护接地如何提高电气安全性。',
       hi: 'समझें कि सुरक्षात्मक अर्थिंग विद्युत सुरक्षा कैसे बढ़ाती है।',
       es: 'Comprende cómo la puesta a tierra de protección mejora la seguridad eléctrica.',

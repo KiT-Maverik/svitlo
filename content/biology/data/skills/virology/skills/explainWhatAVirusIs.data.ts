@@ -5,6 +5,7 @@ export const explainWhatAVirusIs_Skill_Data = defineSkill({
   id: '7ca389ef-0006-4ae3-b7c2-dbddcf7e9907',
   name: {
     en: 'Explain What a Virus Is',
+    it: "Spiegare che cos'è un virus",
     zh: '解释什么是病毒',
     hi: 'विषाणु क्या है, यह समझाना',
     es: 'Explicar qué es un virus',
@@ -39,6 +40,7 @@ export const explainWhatAVirusIs_Skill_Data = defineSkill({
       'Explain that a virus is a noncellular infectious agent containing genetic material; it lacks its own protein-synthesis machinery and reproduces using a host cell.',
     frontend: {
       en: 'Explain why viruses need living cells to make more viruses.',
+      it: 'Spiega perché i virus hanno bisogno di cellule viventi per produrre altri virus.',
       zh: '解释为什么病毒需要活细胞才能产生更多病毒。',
       hi: 'समझाएँ कि अधिक विषाणु बनाने के लिए विषाणुओं को जीवित कोशिकाओं की आवश्यकता क्यों होती है।',
       es: 'Explica por qué los virus necesitan células vivas para producir más virus.',

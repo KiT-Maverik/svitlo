@@ -5,6 +5,7 @@ export const createADimensionedDrawing_Skill_Data = defineSkill({
   id: '9f211857-0a0e-4347-8b45-15b317ec9419',
   name: {
     en: 'Create a dimensioned drawing',
+    it: 'Creare un disegno quotato',
     zh: '绘制标注尺寸的图纸',
     hi: 'आयाम अंकित चित्र बनाना',
     es: 'Crear un dibujo acotado',
@@ -38,6 +39,7 @@ export const createADimensionedDrawing_Skill_Data = defineSkill({
     methodological: 'Specify relevant sizes and geometric relations so another person could reproduce a part.',
     frontend: {
       en: 'Draw a part with dimensions that communicate its intended size.',
+      it: 'Disegna un componente con quote che ne indichino le dimensioni previste.',
       zh: '绘制零件并标注尺寸，以传达预定大小。',
       hi: 'एक पुर्ज़े का चित्र उसके इच्छित आकार को बताने वाले आयामों के साथ बनाएँ।',
       es: 'Dibuja una pieza con cotas que indiquen el tamaño previsto.',

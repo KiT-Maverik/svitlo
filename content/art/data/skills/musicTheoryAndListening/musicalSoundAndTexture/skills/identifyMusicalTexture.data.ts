@@ -5,6 +5,7 @@ export const identifyMusicalTexture_Skill_Data = defineSkill({
   id: 'd96647e9-3127-4945-8dac-174945bf7545',
   name: {
     en: 'Identify Musical Texture',
+    it: 'Riconoscere la trama musicale',
     zh: '识别音乐织体',
     hi: 'संगीत की बनावट पहचानें',
     es: 'Identificar la textura musical',
@@ -38,6 +39,7 @@ export const identifyMusicalTexture_Skill_Data = defineSkill({
     methodological: 'Distinguish solo, unison, accompaniment and simultaneous independent lines by listening.',
     frontend: {
       en: 'Hear when music has one line, shared notes or several parts together.',
+      it: 'Ascolta quando la musica presenta una sola linea, note suonate insieme o diverse parti simultanee.',
       zh: '听出音乐是单声部、齐奏还是多个声部同时演奏。',
       hi: 'सुनकर पहचानें कि संगीत में एक धुन, एक साथ गाए/बजाए गए स्वर या कई हिस्से एक साथ हैं।',
       es: 'Reconoce si la música tiene una sola línea, notas al unísono o varias partes simultáneas.',

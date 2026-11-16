@@ -5,6 +5,7 @@ export const inattentionalBlindness_Skill_Data = defineSkill({
   id: '504c106d-ce31-42a4-abff-21b167681716',
   name: {
     en: 'Inattentional Blindness',
+    it: 'Cecità da disattenzione',
     zh: '无意视盲',
     hi: 'अनवधान अंधता',
     es: 'Ceguera por falta de atención',
@@ -38,6 +39,7 @@ export const inattentionalBlindness_Skill_Data = defineSkill({
     methodological: 'Describe failing to notice an unexpected event while engaged in a demanding task.',
     frontend: {
       en: 'Understand why a focused person may miss an unexpected visible event.',
+      it: 'Comprendi perché una persona molto concentrata può non notare un evento visibile inatteso.',
       zh: '理解一个人专注于任务时为什么可能看不到意外出现的可见事件。',
       hi: 'समझें कि किसी काम पर ध्यान देने वाला व्यक्ति सामने घटी अनपेक्षित घटना को क्यों न देख पाए।',
       es: 'Comprende por qué alguien concentrado puede no advertir un hecho visible e inesperado.',

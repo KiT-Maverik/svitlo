@@ -5,6 +5,7 @@ export const respondToASuspectedExplosiveObject_Skill_Data = defineSkill({
   id: '0771a6cc-5660-4641-a273-b54be12e563a',
   name: {
     en: 'Respond to a suspected explosive object',
+    it: 'Reagire alla presenza di un possibile ordigno esplosivo',
     zh: '应对疑似爆炸物',
     hi: 'संदिग्ध विस्फोटक वस्तु पर सुरक्षित प्रतिक्रिया',
     es: 'Responder ante un objeto explosivo sospechoso',
@@ -39,6 +40,7 @@ export const respondToASuspectedExplosiveObject_Skill_Data = defineSkill({
       'Avoid approaching, touching, or moving it; withdraw safely when possible and report its location through authorized services.',
     frontend: {
       en: 'Keep away from suspicious explosive objects and report them safely.',
+      it: 'Mantieniti a distanza dagli oggetti sospetti che potrebbero esplodere e segnalali in sicurezza.',
       zh: '远离疑似爆炸物，并以安全方式报告。',
       hi: 'संदिग्ध विस्फोटक वस्तुओं से दूर रहें और सुरक्षित तरीके से सूचना दें।',
       es: 'Mantente lejos de objetos explosivos sospechosos y avisa de forma segura.',

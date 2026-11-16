@@ -10,6 +10,7 @@ export const interstellarAndGalacticAstronomy_SkillDomain_Data = defineSkillDoma
   id: '5d195196-4e99-4b09-85e4-b6119f97ec99',
   title: {
     en: 'Interstellar and Galactic Astronomy',
+    it: 'Astronomia interstellare e galattica',
     qm: 'Yıldızlararası ve galaktik astronomiya',
     zh: '星际与星系天文学',
     hi: 'अंतरतारकीय और आकाशगंगीय खगोलविज्ञान',
@@ -53,6 +54,7 @@ export const interstellarAndGalacticAstronomy_SkillDomain_Data = defineSkillDoma
       'This domain investigates matter between stars and the structure, dynamics and transformations of galaxies. The Milky Way is one case, while distant galaxies reveal different environments and stages of evolution.',
     frontend: {
       en: 'Explore the matter between stars and how galaxies form, behave and evolve.',
+      it: 'Esplora la materia tra le stelle e come le galassie si formano, si comportano ed evolvono.',
       qm: 'Yıldızlar arasındaki maddeni ve galaktikalarnıñ nasıl peyda olıp, areket etip, deñişkenini araştırıñız.',
       zh: '探索恒星之间的物质，以及星系如何形成和演化。',
       hi: 'तारों के बीच के पदार्थ और आकाशगंगाओं के बनने और विकसित होने के तरीकों का अध्ययन करें।',

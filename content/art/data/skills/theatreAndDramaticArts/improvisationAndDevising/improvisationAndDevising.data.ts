@@ -12,6 +12,7 @@ export const improvisationAndDevising_SkillGroup_Data = defineSkillGroup({
   id: 'aae1e673-0bad-42ac-86aa-018d7fa8f035',
   name: {
     en: 'Improvisation and Devising',
+    it: 'Improvvisazione e creazione scenica collettiva',
     zh: '即兴与集体创作',
     hi: 'तात्कालिक अभिनय और नाट्य-निर्माण',
     es: 'Improvisación y creación escénica',
@@ -60,6 +61,7 @@ export const improvisationAndDevising_SkillGroup_Data = defineSkillGroup({
       'Co-created drama develops from shared offers, emergent situations and meaningful conflict rather than only a finished script.',
     frontend: {
       en: 'Create theatre together by inventing situations, actions and conflicts.',
+      it: 'Crea teatro insieme ad altri inventando situazioni, azioni e conflitti.',
       zh: '通过共同构思情境、行动和冲突来创作戏剧。',
       hi: 'परिस्थितियाँ, क्रियाएँ और संघर्ष गढ़कर मिलकर थिएटर बनाएँ।',
       es: 'Crea teatro en equipo inventando situaciones, acciones y conflictos.',

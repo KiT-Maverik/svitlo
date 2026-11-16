@@ -5,6 +5,7 @@ export const nonverbalCommunication_Skill_Data = defineSkill({
   id: '70b2d240-1dd9-4ab7-b828-b0ee7cfa763c',
   name: {
     en: 'Nonverbal Communication',
+    it: 'Comunicazione non verbale',
     zh: '非语言沟通',
     hi: 'अशाब्दिक संचार',
     es: 'Comunicación no verbal',
@@ -39,6 +40,7 @@ export const nonverbalCommunication_Skill_Data = defineSkill({
       'Interpret gesture, tone, and interpersonal distance in cultural and situational context rather than through universal decoding rules.',
     frontend: {
       en: 'Recognize how facial expression, gesture and tone convey information.',
+      it: 'Riconosci come espressioni del viso, gesti e tono della voce trasmettano informazioni.',
       zh: '认识表情、手势与语调如何传递信息。',
       hi: 'जानें कि चेहरे के भाव, इशारे और आवाज़ का लहजा जानकारी कैसे देते हैं।',
       es: 'Reconoce cómo la expresión facial, los gestos y el tono transmiten información.',

@@ -5,6 +5,7 @@ export const habitSubstitution_Skill_Data = defineSkill({
   id: 'c0f4f926-1ce4-4ba3-8152-2160eae06426',
   name: {
     en: 'Habit Substitution',
+    it: 'Sostituzione delle abitudini',
     zh: '习惯替代',
     hi: 'आदत का प्रतिस्थापन',
     es: 'Sustitución de hábitos',
@@ -39,6 +40,7 @@ export const habitSubstitution_Skill_Data = defineSkill({
       'Analyze replacing an established response with an alternative to the same cue rather than relying only on suppression.',
     frontend: {
       en: 'Explore replacing an unwanted routine with a different response.',
+      it: 'Esplora come sostituire una routine indesiderata con una risposta diversa.',
       zh: '探索如何用另一种反应取代不想要的日常习惯。',
       hi: 'अनचाही दिनचर्या की जगह अलग प्रतिक्रिया अपनाना जानें।',
       es: 'Explora cómo reemplazar una rutina no deseada por otra respuesta.',

@@ -5,6 +5,7 @@ export const explainDNS_Skill_Data = defineSkill({
   id: 'c74ae7d0-025f-4abb-b8f2-282166c52a98',
   name: {
     en: 'Explain DNS',
+    it: 'Spiegare il DNS',
     zh: '解释 DNS',
     hi: 'DNS समझाना',
     es: 'Explicar DNS',
@@ -39,6 +40,7 @@ export const explainDNS_Skill_Data = defineSkill({
       'DNS resolves domain names to network addresses; it does not replace actual data transmission between devices.',
     frontend: {
       en: 'Explain how DNS helps find network addresses from domain names.',
+      it: 'Spiega come il DNS aiuta a trovare gli indirizzi di rete partendo dai nomi di dominio.',
       zh: '解释 DNS 如何通过域名找到网络地址。',
       hi: 'समझाएँ कि DNS डोमेन नामों से नेटवर्क पते खोजने में कैसे मदद करता है।',
       es: 'Explica cómo DNS ayuda a encontrar direcciones de red a partir de nombres de dominio.',

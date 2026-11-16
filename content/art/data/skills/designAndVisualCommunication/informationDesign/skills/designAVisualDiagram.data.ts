@@ -5,6 +5,7 @@ export const designAVisualDiagram_Skill_Data = defineSkill({
   id: '34488c4e-d90e-4540-90f6-ca6576840a75',
   name: {
     en: 'Design a Visual Diagram',
+    it: 'Progettare un diagramma visivo',
 
     zh: '设计视觉示意图',
     hi: 'दृश्य आरेख डिज़ाइन करें',
@@ -39,6 +40,7 @@ export const designAVisualDiagram_Skill_Data = defineSkill({
     methodological: 'Arrange labeled components and connections to clarify a process or structure.',
     frontend: {
       en: 'Organize labels, shapes and connections to explain how something works.',
+      it: 'Organizza etichette, forme e collegamenti per spiegare come funziona qualcosa.',
 
       zh: '通过组织标签、形状和连接关系，解释事物的工作方式。',
       hi: 'लेबल, आकार और कनेक्शन व्यवस्थित करके समझाएँ कि कोई चीज़ कैसे काम करती है।',

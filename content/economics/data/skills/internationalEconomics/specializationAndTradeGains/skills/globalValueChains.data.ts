@@ -5,6 +5,7 @@ export const globalValueChains_Skill_Data = defineSkill({
   id: '8278467d-1c25-4bc7-84ae-a00a5ede7ea3',
   name: {
     en: 'Глобальні виробничі ланцюги',
+    it: 'Catene globali del valore',
     zh: '全球价值链',
     hi: 'वैश्विक मूल्य शृंखलाएँ',
     es: 'Cadenas globales de valor',
@@ -39,6 +40,7 @@ export const globalValueChains_Skill_Data = defineSkill({
       'Trace the allocation of production stages and value added among countries and the risks of dependence.',
     frontend: {
       en: 'See how different countries contribute to making one product.',
+      it: 'Scopri come paesi diversi contribuiscono alla realizzazione di un unico prodotto.',
       zh: '了解不同国家如何参与同一产品的生产。',
       hi: 'देखें कि एक उत्पाद बनाने में अलग-अलग देश कैसे योगदान देते हैं।',
       es: 'Descubre cómo distintos países contribuyen a fabricar un mismo producto.',

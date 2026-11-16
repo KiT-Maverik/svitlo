@@ -5,6 +5,7 @@ export const transferOfLearning_Skill_Data = defineSkill({
   id: 'f3cb60cd-75bf-4093-9c3c-99407a8bb46f',
   name: {
     en: 'Transfer of Learning',
+    it: "Trasferimento dell'apprendimento",
     zh: '学习迁移',
     hi: 'अधिगम का स्थानांतरण',
     es: 'Transferencia del aprendizaje',
@@ -39,6 +40,7 @@ export const transferOfLearning_Skill_Data = defineSkill({
       'Assess how prior learning assists, interferes with, or fails to transfer to a new task or context, accounting for meaningful similarities and differences.',
     frontend: {
       en: 'Explain how learning in one context can help in a different context.',
+      it: 'Spiega come ciò che si è appreso in un contesto possa essere utile in un altro.',
       zh: '解释在一种情境中学到的知识或技能如何在另一情境中提供帮助。',
       hi: 'समझाएँ कि एक स्थिति में सीखी हुई बात दूसरी स्थिति में कैसे मदद कर सकती है।',
       es: 'Explica cómo lo aprendido en un contexto puede ayudar en otro diferente.',

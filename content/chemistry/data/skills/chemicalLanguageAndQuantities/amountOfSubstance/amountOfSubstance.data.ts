@@ -14,6 +14,7 @@ export const amountOfSubstance_SkillGroup_Data = defineSkillGroup({
   id: '730aaa3e-c1de-4895-ba78-14f78184e74b',
   name: {
     en: 'Amount of Substance',
+    it: 'Quantità di sostanza',
     zh: '物质的量',
     hi: 'पदार्थ की मात्रा',
     es: 'Cantidad de sustancia',
@@ -59,6 +60,7 @@ export const amountOfSubstance_SkillGroup_Data = defineSkillGroup({
       'The mole and associated quantities link atom-scale counting to bulk mass, volume and reaction proportions.',
     frontend: {
       en: 'Connect numbers of particles with measurable masses and reaction amounts.',
+      it: 'Collega il numero di particelle alle masse misurabili e alle quantità nelle reazioni.',
       zh: '了解粒子数如何与可测量的质量和反应物质的量联系起来。',
       hi: 'कणों की संख्या को मापनीय द्रव्यमान और अभिक्रिया की मात्राओं से जोड़ें।',
       es: 'Relaciona el número de partículas con masas medibles y cantidades de reacción.',

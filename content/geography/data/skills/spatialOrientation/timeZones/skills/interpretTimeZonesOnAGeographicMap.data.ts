@@ -5,6 +5,7 @@ export const interpretTimeZonesOnAGeographicMap_Skill_Data = defineSkill({
   id: 'f7c19fb8-bd0c-4aec-8dbf-7f5fd3582d04',
   name: {
     en: 'Interpret time zones on a geographic map',
+    it: 'Interpretare i fusi orari su una carta geografica',
     zh: '解读地图上的时区',
     hi: 'मानचित्र पर समय क्षेत्रों को समझना',
     es: 'Interpretar los husos horarios en un mapa',
@@ -39,6 +40,7 @@ export const interpretTimeZonesOnAGeographicMap_Skill_Data = defineSkill({
       'Locate places assigned to different civil time zones using a legend or UTC offsets; recognize that boundaries may follow political borders and that some regions use half-hour or quarter-hour offsets.',
     frontend: {
       en: 'Read time-zone boundaries and UTC offsets on a map.',
+      it: 'Leggi su una carta i confini dei fusi orari e i relativi scarti rispetto a UTC.',
       zh: '在地图上读取时区边界和相对于 UTC 的时差。',
       hi: 'मानचित्र पर समय क्षेत्र की सीमाएँ और UTC से अंतर पढ़ें।',
       es: 'Lee en el mapa los límites de los husos horarios y sus desfases UTC.',

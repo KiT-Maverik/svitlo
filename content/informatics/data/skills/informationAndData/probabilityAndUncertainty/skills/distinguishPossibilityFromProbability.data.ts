@@ -5,6 +5,7 @@ export const distinguishPossibilityFromProbability_Skill_Data = defineSkill({
   id: '9917649a-c868-41a3-aba2-00d45a3b750f',
   name: {
     en: 'Distinguish Possibility from Probability',
+    it: 'Distinguere possibilità e probabilità',
     zh: '区分可能性与概率',
     hi: 'संभवता और प्रायिकता में अंतर करना',
     es: 'Distinguir posibilidad de probabilidad',
@@ -39,6 +40,7 @@ export const distinguishPossibilityFromProbability_Skill_Data = defineSkill({
       "Separate 'it can happen' from an estimated chance and from a promised result: two options labeled 'yes' and 'no' do not imply 50/50 odds. A first-try success among 100 equally likely hidden cells is possible but not as likely as a miss.",
     frontend: {
       en: 'Understand why an event being possible does not make it likely.',
+      it: 'Comprendi perché un evento possibile non è necessariamente probabile.',
       zh: '理解某件事可能发生，并不意味着它很可能发生。',
       hi: 'समझें कि किसी घटना का संभव होना उसके अधिक संभावित होने का अर्थ नहीं है।',
       es: 'Comprende por qué un suceso posible no es necesariamente probable.',

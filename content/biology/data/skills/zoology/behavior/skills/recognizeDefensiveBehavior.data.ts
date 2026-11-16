@@ -5,6 +5,7 @@ export const recognizeDefensiveBehavior_Skill_Data = defineSkill({
   id: 'f0b5a1bb-a72b-4b0e-85de-aed764100045',
   name: {
     en: 'Recognize Defensive Behavior',
+    it: 'Riconoscere i comportamenti difensivi',
     zh: '识别防御行为',
     hi: 'रक्षात्मक व्यवहार पहचानना',
     es: 'Reconocer comportamientos defensivos',
@@ -39,6 +40,7 @@ export const recognizeDefensiveBehavior_Skill_Data = defineSkill({
       'Determine whether fleeing, freezing, distraction, or attacking reduces a threat in a given situation.',
     frontend: {
       en: 'Recognize behaviors animals use when threatened.',
+      it: 'Riconosci i comportamenti che gli animali adottano quando si sentono minacciati.',
       zh: '识别动物在受到威胁时采取的行为。',
       hi: 'खतरा महसूस होने पर जानवर जो व्यवहार करते हैं, उन्हें पहचानें।',
       es: 'Reconoce los comportamientos que utilizan los animales cuando se sienten amenazados.',

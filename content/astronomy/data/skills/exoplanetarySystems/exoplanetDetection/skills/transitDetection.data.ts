@@ -5,6 +5,7 @@ export const transitDetection_Skill_Data = defineSkill({
   id: '92e94b4c-6676-4db0-94ed-36a264989713',
   name: {
     en: 'Transit Detection',
+    it: 'Rilevamento tramite transiti',
     zh: '凌星探测法',
     hi: 'पारगमन से ग्रहों की खोज',
     es: 'Detección por tránsito',
@@ -39,6 +40,7 @@ export const transitDetection_Skill_Data = defineSkill({
       "Explain how repeated stellar dimming can indicate a planet crossing a star's disk and why geometry matters.",
     frontend: {
       en: 'Recognize how a repeating dip in starlight may reveal a planet passing in front of its star.',
+      it: 'Riconosci come una diminuzione periodica della luce stellare possa indicare il passaggio di un pianeta davanti alla sua stella.',
       zh: '了解恒星亮度周期性下降如何表明行星正从恒星前方经过。',
       hi: 'जानें कि तारों की रोशनी में बार-बार आने वाली कमी कैसे सामने से गुज़रने वाले ग्रह का संकेत हो सकती है।',
       es: 'Reconoce cómo una caída repetida en el brillo estelar puede indicar el paso de un planeta frente a su estrella.',

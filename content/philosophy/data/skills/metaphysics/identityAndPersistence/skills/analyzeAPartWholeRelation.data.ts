@@ -5,6 +5,7 @@ export const analyzeAPartWholeRelation_Skill_Data = defineSkill({
   id: '59a7900a-06d5-4d86-8c46-0afe02a18897',
   name: {
     en: 'Analyze a part–whole relation',
+    it: 'Analizzare una relazione parte-tutto',
     zh: '分析部分与整体的关系',
     hi: 'अंश और समग्र के संबंध का विश्लेषण',
     es: 'Analizar la relación parte-todo',
@@ -39,6 +40,7 @@ export const analyzeAPartWholeRelation_Skill_Data = defineSkill({
       'Examine whether a component and a composite have different identities and what changes follow from replacing parts.',
     frontend: {
       en: "Explore how an object's parts relate to the whole they compose.",
+      it: "Esplora come le parti di un oggetto si rapportino all'insieme che compongono.",
       zh: '探索物体的部分如何与组成的整体相关联。',
       hi: 'समझें कि किसी वस्तु के हिस्से उससे बने पूरे रूप से कैसे जुड़े हैं।',
       es: 'Explora cómo se relacionan las partes de un objeto con el conjunto que forman.',

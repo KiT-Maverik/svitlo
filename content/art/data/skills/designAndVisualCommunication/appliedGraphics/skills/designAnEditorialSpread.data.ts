@@ -5,6 +5,7 @@ export const designAnEditorialSpread_Skill_Data = defineSkill({
   id: 'ce555947-b877-4e48-9891-d73448cdc087',
   name: {
     en: 'Design an Editorial Spread',
+    it: 'Progettare una doppia pagina editoriale',
 
     zh: '设计编辑版面',
     hi: 'संपादकीय पृष्ठ-विन्यास डिज़ाइन करें',
@@ -39,6 +40,7 @@ export const designAnEditorialSpread_Skill_Data = defineSkill({
     methodological: 'Relate text, image and whitespace across a composed reading surface.',
     frontend: {
       en: 'Arrange words, pictures and empty space across pages or a spread.',
+      it: 'Disponi testi, immagini e spazi vuoti su una pagina o su una doppia pagina.',
 
       zh: '在页面或跨页版面中安排文字、图片和留白。',
       hi: 'पृष्ठों या दोहरे पृष्ठ पर शब्दों, चित्रों और खाली जगह को व्यवस्थित करें।',

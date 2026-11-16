@@ -12,6 +12,7 @@ export const macromolecules_SkillGroup_Data = defineSkillGroup({
   id: 'cd5a512e-29a2-4a69-92c3-18aef052399c',
   name: {
     en: 'Macromolecules',
+    it: 'Macromolecole',
     zh: '高分子',
     hi: 'महाअणु',
     es: 'Macromoléculas',
@@ -55,6 +56,7 @@ export const macromolecules_SkillGroup_Data = defineSkillGroup({
       'Repeated subunits and molecular architecture create materials with behaviors not predicted by monomer identities alone.',
     frontend: {
       en: 'Understand how repeated building blocks produce large molecules with distinctive properties.',
+      it: 'Comprendi come unità ripetute formano grandi molecole con proprietà caratteristiche.',
       zh: '理解重复的结构单元如何构成具有独特性质的大分子。',
       hi: 'समझें कि दोहराई जाने वाली इकाइयाँ विशेष गुणों वाले बड़े अणु कैसे बनाती हैं।',
       es: 'Comprende cómo unidades repetidas forman moléculas grandes con propiedades particulares.',

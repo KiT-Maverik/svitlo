@@ -5,6 +5,7 @@ export const baseRateNeglect_Skill_Data = defineSkill({
   id: '6c3ba586-db45-4d6a-b69e-3126cbc7dacf',
   name: {
     en: 'Base-Rate Neglect',
+    it: 'Trascuratezza della frequenza di base',
     zh: '忽视基础比率',
     hi: 'आधार-दर की उपेक्षा',
     es: 'Desatención a la tasa base',
@@ -39,6 +40,7 @@ export const baseRateNeglect_Skill_Data = defineSkill({
       'Explain failures to incorporate prior frequencies when a compelling individual example is present.',
     frontend: {
       en: 'Recognize when people overlook background frequencies in their judgments.',
+      it: 'Riconosci quando le persone trascurano le frequenze di riferimento nei loro giudizi.',
       zh: '识别人们在判断时何时忽略总体中的出现频率。',
       hi: 'पहचानें कि लोग निर्णय लेते समय पृष्ठभूमि की आवृत्तियों को कब अनदेखा करते हैं।',
       es: 'Reconoce cuándo las personas pasan por alto las frecuencias de referencia al juzgar.',

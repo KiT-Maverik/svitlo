@@ -10,6 +10,7 @@ export const socialAndEnvironmentalImpactOfComputing_SkillGroup_Data = defineSki
   id: '111fbee4-d6da-4865-b0b8-56b6c1c3f39f',
   name: {
     en: 'Social and Environmental Impact of Computing',
+    it: "Impatto sociale e ambientale dell'informatica",
     zh: '计算技术的社会与环境影响',
     hi: 'कंप्यूटिंग का सामाजिक और पर्यावरणीय प्रभाव',
     es: 'Impacto social y ambiental de la informática',
@@ -51,6 +52,7 @@ export const socialAndEnvironmentalImpactOfComputing_SkillGroup_Data = defineSki
       "Digital systems may affect social groups and the environment through uneven benefits and harms, energy consumption, material use, and electronic waste. Evaluation requires a specific context, not an abstract 'good/bad' label.",
     frontend: {
       en: 'Explore how computing affects fairness, resource use and the environment.',
+      it: "Esplora come l'informatica influisce sull'equità, sull'uso delle risorse e sull'ambiente.",
       zh: '探索计算技术如何影响公平、资源消耗与环境。',
       hi: 'जानें कि कंप्यूटिंग निष्पक्षता, संसाधनों और पर्यावरण को कैसे प्रभावित करती है।',
       es: 'Explora cómo la informática afecta a la equidad, los recursos y el medioambiente.',

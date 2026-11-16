@@ -7,6 +7,7 @@ export const testCoolColors_SkillGroup_Data = defineSkillGroup({
   id: '00000000-0000-4000-8000-000000000006',
   name: {
     en: '[TEST en] Cool colors',
+    it: '[TEST it] Colori freddi',
     zh: '[TEST zh] Cool colors',
     hi: '[TEST hi] Cool colors',
     es: '[TEST es] Cool colors',
@@ -44,6 +45,7 @@ export const testCoolColors_SkillGroup_Data = defineSkillGroup({
     methodological: 'Synthetic Playground fixture for testCoolColors; testing only, not curricular content.',
     frontend: {
       en: '[TEST en] Synthetic testCoolColors fixture.',
+      it: '[TEST it] Fixture sintetica per testCoolColors.',
       zh: '[TEST zh] Synthetic testCoolColors fixture.',
       hi: '[TEST hi] Synthetic testCoolColors fixture.',
       es: '[TEST es] Synthetic testCoolColors fixture.',

@@ -5,6 +5,7 @@ export const aggregateDemand_Skill_Data = defineSkill({
   id: 'c2854cc7-8465-4c44-b081-eeeaf1c1a886',
   name: {
     en: 'Сукупний попит',
+    it: 'Domanda aggregata',
     zh: '总需求',
     hi: 'समग्र माँग',
     es: 'Demanda agregada',
@@ -39,6 +40,7 @@ export const aggregateDemand_Skill_Data = defineSkill({
       'Analyze the relationship between total planned spending, the overall price level, and economic conditions within a specified model.',
     frontend: {
       en: 'Explore what shapes overall demand for goods and services.',
+      it: 'Esplora i fattori che determinano la domanda complessiva di beni e servizi.',
       zh: '探索影响整个经济商品和服务需求的因素。',
       hi: 'जानें कि वस्तुओं और सेवाओं की कुल माँग को क्या प्रभावित करता है।',
       es: 'Explora qué determina la demanda total de bienes y servicios.',

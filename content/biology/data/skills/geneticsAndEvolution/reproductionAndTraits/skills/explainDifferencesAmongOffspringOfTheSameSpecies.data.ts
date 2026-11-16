@@ -5,6 +5,7 @@ export const explainDifferencesAmongOffspringOfTheSameSpecies_Skill_Data = defin
   id: '497d8f87-fd66-4716-9b6c-91a10bbd0e61',
   name: {
     en: 'Explain Differences Among Offspring of the Same Species',
+    it: 'Spiegare le differenze tra discendenti della stessa specie',
     zh: '解释同一物种子代之间的差异',
     hi: 'एक ही प्रजाति की संतानों में अंतर समझाना',
     es: 'Explicar diferencias entre descendientes de la misma especie',
@@ -39,6 +40,7 @@ export const explainDifferencesAmongOffspringOfTheSameSpecies_Skill_Data = defin
       'Explain why recombination, mutations, and developmental conditions can produce differences among individuals.',
     frontend: {
       en: 'Explain why individuals of the same species can develop different features.',
+      it: 'Spiega perché individui della stessa specie possono sviluppare caratteristiche diverse.',
       zh: '解释为什么同一物种的不同个体可能形成不同的性状。',
       hi: 'समझाएँ कि एक ही प्रजाति के अलग-अलग जीवों में विभिन्न विशेषताएँ क्यों विकसित हो सकती हैं।',
       es: 'Explica por qué individuos de una misma especie pueden desarrollar características diferentes.',

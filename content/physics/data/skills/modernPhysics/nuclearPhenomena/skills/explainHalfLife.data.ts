@@ -5,6 +5,7 @@ export const explainHalfLife_Skill_Data = defineSkill({
   id: 'abd2d230-07c6-4986-bbdb-9434cac88287',
   name: {
     en: 'Explain half-life',
+    it: 'Spiegare il tempo di dimezzamento',
     zh: '解释半衰期',
     hi: 'अर्ध-आयु समझाना',
     es: 'Explicar la vida media radiactiva',
@@ -39,6 +40,7 @@ export const explainHalfLife_Skill_Data = defineSkill({
       'Half-life describes the statistical decline in the number of unstable nuclei in a population, not the lifetime of an individual nucleus.',
     frontend: {
       en: 'Understand half-life as a statistical pattern across many unstable nuclei.',
+      it: 'Comprendi il tempo di dimezzamento come un andamento statistico riferito a molti nuclei instabili.',
       zh: '理解半衰期描述的是大量不稳定原子核的统计规律。',
       hi: 'समझो कि अर्ध-आयु बहुत-से अस्थिर नाभिकों में दिखाई देने वाला सांख्यिकीय पैटर्न है।',
       es: 'Comprende la vida media como un patrón estadístico entre muchos núcleos inestables.',

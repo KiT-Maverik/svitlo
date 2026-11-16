@@ -5,6 +5,7 @@ export const respondToSuspectedHypoglycaemia_Skill_Data = defineSkill({
   id: 'bdc94536-95c2-48f6-9c71-f6e5bd42e632',
   name: {
     en: 'Respond to suspected hypoglycaemia',
+    it: 'Reagire a una sospetta ipoglicemia',
     zh: '应对疑似低血糖',
     hi: 'संभावित निम्न रक्त शर्करा पर प्रतिक्रिया',
     es: 'Responder a una posible hipoglucemia',
@@ -39,6 +40,7 @@ export const respondToSuspectedHypoglycaemia_Skill_Data = defineSkill({
       'Recognize possible low blood glucose and distinguish safe assistance for a person who is fully alert and can swallow from the need for urgent help when consciousness or swallowing is impaired.',
     frontend: {
       en: 'Recognize possible low blood sugar and when swallowing makes assistance unsafe.',
+      it: 'Riconosci una possibile glicemia troppo bassa e quando la difficoltà a deglutire rende pericoloso intervenire per bocca.',
       zh: '识别可能的低血糖，并了解无法安全吞咽时不宜经口给予帮助。',
       hi: 'कम रक्त शर्करा पहचानो और समझो कि निगलना असुरक्षित होने पर मुँह से कुछ देना खतरनाक है।',
       es: 'Reconoce una posible bajada de glucosa y cuándo no es seguro dar algo por boca.',

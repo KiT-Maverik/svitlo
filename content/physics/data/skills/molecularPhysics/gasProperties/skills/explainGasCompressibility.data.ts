@@ -5,6 +5,7 @@ export const explainGasCompressibility_Skill_Data = defineSkill({
   id: '7e89bb8b-8962-41fb-b1e7-6db4f615997c',
   name: {
     en: 'Explain gas compressibility',
+    it: 'Spiegare la comprimibilità dei gas',
     qm: 'Gaznıñ sıqıluv qabiliyetini añlatmaq',
     zh: '解释气体的可压缩性',
     hi: 'गैस की संपीड्यता समझाना',
@@ -39,6 +40,7 @@ export const explainGasCompressibility_Skill_Data = defineSkill({
       'Compressing a gas reduces the average distances between particles while the sizes of the molecules remain virtually unchanged.',
     frontend: {
       en: 'Understand why gases can be squeezed into a smaller volume.',
+      it: 'Comprendi perché i gas possono essere compressi in un volume minore.',
       qm: 'Gaznıñ neden daa kiçik hacımğa sıqıştırıla bilgenini añla.',
       zh: '理解为什么气体能够被压缩到更小的体积。',
       hi: 'समझें कि गैस को छोटे आयतन में क्यों दबाया जा सकता है।',

@@ -5,6 +5,7 @@ export const classifyMaterialsByTransparency_Skill_Data = defineSkill({
   id: '4554897d-8f45-4d09-a727-c56266428117',
   name: {
     en: 'Classify materials by transparency',
+    it: 'Classificare i materiali secondo la trasparenza',
     zh: '按透光性对材料分类',
     hi: 'पारदर्शिता के आधार पर पदार्थों का वर्गीकरण',
     es: 'Clasificar materiales según su transparencia',
@@ -39,6 +40,7 @@ export const classifyMaterialsByTransparency_Skill_Data = defineSkill({
       'Distinguish transparent, translucent, and opaque materials by their ability to transmit light and form a clear image through the material.',
     frontend: {
       en: 'Distinguish transparent, translucent and opaque materials.',
+      it: 'Distingui i materiali trasparenti, traslucidi e opachi.',
       zh: '区分透明、半透明和不透明的材料。',
       hi: 'पारदर्शी, अर्धपारदर्शी और अपारदर्शी पदार्थों में अंतर करो।',
       es: 'Distingue materiales transparentes, translúcidos y opacos.',

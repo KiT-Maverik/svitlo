@@ -5,6 +5,7 @@ export const sensoryTransduction_Skill_Data = defineSkill({
   id: 'c632d266-0760-488c-8bd8-0c4ed2c52724',
   name: {
     en: 'Sensory Transduction',
+    it: 'Trasduzione sensoriale',
     zh: '感觉换能',
     hi: 'संवेदी रूपांतरण',
     es: 'Transducción sensorial',
@@ -39,6 +40,7 @@ export const sensoryTransduction_Skill_Data = defineSkill({
       'Explain how sensory receptors transform light, mechanical stimulation, or chemical signals into neural activity, distinguishing this initial encoding from later perception.',
     frontend: {
       en: 'Understand how sensory receptors convert stimulation into neural signals.',
+      it: 'Comprendi come i recettori sensoriali trasformino gli stimoli in segnali nervosi.',
       zh: '了解感受器如何把刺激转化为神经信号。',
       hi: 'समझें कि संवेदी ग्राही उत्तेजना को तंत्रिका संकेतों में कैसे बदलते हैं।',
       es: 'Comprende cómo los receptores sensoriales convierten la estimulación en señales nerviosas.',

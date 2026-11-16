@@ -9,6 +9,7 @@ export const historyAndTraditionsOfPhilosophy_SkillDomain_Data = defineSkillDoma
   id: '0b8f224a-c4a3-4c26-9e10-d9fd054b2862',
   title: {
     en: 'History and Traditions of Philosophy',
+    it: 'Storia e tradizioni della filosofia',
     zh: '哲学的历史与传统',
     hi: 'दर्शन का इतिहास और परंपराएँ',
     es: 'Historia y tradiciones de la filosofía',
@@ -51,6 +52,7 @@ export const historyAndTraditionsOfPhilosophy_SkillDomain_Data = defineSkillDoma
       "Historically situated philosophical arguments develop through schools, intellectual movements, and traditions across cultures. Interpretation requires understanding both what a thinker argued and the debate that shaped the argument, without privileging one lineage as philosophy's default.",
     frontend: {
       en: 'Explore philosophical ideas across cultures and historical periods through their arguments.',
+      it: 'Esplora idee filosofiche di culture ed epoche diverse attraverso le argomentazioni che le sostengono.',
       zh: '通过论证探索不同文化与历史时期的哲学思想。',
       hi: 'विभिन्न संस्कृतियों और ऐतिहासिक कालों के दार्शनिक विचारों को उनके तर्कों से समझो।',
       es: 'Explora ideas filosóficas de distintas culturas y épocas a través de sus argumentos.',

@@ -5,6 +5,7 @@ export const nokCulture_Skill_Data = defineSkill({
   id: 'dce464f8-c4e0-4763-99e4-92ff0926fffc',
   name: {
     en: 'Nok Culture',
+    it: 'Cultura di Nok',
     zh: '诺克文化',
     hi: 'नोक संस्कृति',
     es: 'Cultura Nok',
@@ -39,6 +40,7 @@ export const nokCulture_Skill_Data = defineSkill({
       'Study terracotta art and early iron use in present-day Nigeria while recognizing gaps in evidence.',
     frontend: {
       en: 'Discover what Nok artifacts reveal about an ancient West African culture.',
+      it: "Scopri che cosa rivelano i reperti di Nok su un'antica cultura dell'Africa occidentale.",
       zh: '了解诺克遗物揭示了怎样的古代西非文化。',
       hi: 'जानें कि नोक की पुरावस्तुएँ प्राचीन पश्चिम अफ्रीकी संस्कृति के बारे में क्या बताती हैं।',
       es: 'Descubre qué revelan los objetos Nok sobre una cultura antigua de África occidental.',

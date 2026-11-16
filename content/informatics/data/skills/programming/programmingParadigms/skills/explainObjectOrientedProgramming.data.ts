@@ -5,6 +5,7 @@ export const explainObjectOrientedProgramming_Skill_Data = defineSkill({
   id: '8c6f945f-5add-4006-925d-0e4264ee80ec',
   name: {
     en: 'Explain Object-Oriented Programming',
+    it: 'Spiegare la programmazione orientata agli oggetti',
     zh: '解释面向对象编程',
     hi: 'ऑब्जेक्ट-ओरिएंटेड प्रोग्रामिंग समझाना',
     es: 'Explicar la programación orientada a objetos',
@@ -39,6 +40,7 @@ export const explainObjectOrientedProgramming_Skill_Data = defineSkill({
       'Organize a program around interacting objects with state and methods, rather than as a list of global procedures.',
     frontend: {
       en: 'Explore programs built from interacting objects with state and behavior.',
+      it: 'Esplora i programmi composti da oggetti interagenti dotati di stato e comportamento.',
       zh: '探索由具有状态和行为、相互协作的对象组成的程序。',
       hi: 'जानें कि स्थिति और व्यवहार वाले आपस में जुड़े ऑब्जेक्ट से प्रोग्राम कैसे बनते हैं।',
       es: 'Explora programas formados por objetos que interactúan y tienen estado y comportamiento.',

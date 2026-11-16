@@ -5,6 +5,7 @@ export const smallBodyReservoirs_Skill_Data = defineSkill({
   id: 'a695574f-62d8-4cf1-be70-2f36b41a73ea',
   name: {
     en: 'Small-Body Reservoirs',
+    it: 'Regioni dei corpi minori',
     zh: '小天体聚集区域',
     hi: 'छोटे पिंडों के संग्रह क्षेत्र',
     es: 'Reservorios de cuerpos menores',
@@ -39,6 +40,7 @@ export const smallBodyReservoirs_Skill_Data = defineSkill({
       'Locate and distinguish the asteroid belt, Kuiper Belt and hypothesized Oort Cloud as populations or reservoirs.',
     frontend: {
       en: 'Locate the asteroid belt, Kuiper Belt and proposed distant Oort Cloud.',
+      it: "Localizza la fascia degli asteroidi, la fascia di Kuiper e l'ipotetica nube di Oort lontana.",
       zh: '找出小行星带、柯伊伯带以及假设存在的遥远奥尔特云。',
       hi: 'क्षुद्रग्रह पट्टी, काइपर बेल्ट और प्रस्तावित दूरस्थ ऊर्ट बादल की स्थिति पहचानें।',
       es: 'Ubica el cinturón de asteroides, el cinturón de Kuiper y la hipotética y lejana nube de Oort.',

@@ -5,6 +5,7 @@ export const recognizeThePeriodicityOfOscillations_Skill_Data = defineSkill({
   id: '7a925ad2-27cb-48a2-b0ac-d470be36976f',
   name: {
     en: 'Recognize the periodicity of oscillations',
+    it: 'Riconoscere la periodicità delle oscillazioni',
     zh: '识别振荡的周期性',
     hi: 'दोलन की आवधिकता पहचानना',
     es: 'Reconocer la periodicidad de las oscilaciones',
@@ -39,6 +40,7 @@ export const recognizeThePeriodicityOfOscillations_Skill_Data = defineSkill({
       'A periodic oscillation repeats a physical state at equal time intervals; not every motion that changes direction is periodic.',
     frontend: {
       en: 'Recognize an oscillation that repeats at regular intervals.',
+      it: "Riconosci un'oscillazione che si ripete a intervalli regolari.",
       zh: '识别按固定时间间隔重复的振荡。',
       hi: 'नियमित समय अंतराल पर दोहराए जाने वाले दोलन पहचानें।',
       es: 'Reconoce una oscilación que se repite a intervalos regulares.',

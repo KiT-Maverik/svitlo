@@ -5,6 +5,7 @@ export const evaluateAnAppealToAuthority_Skill_Data = defineSkill({
   id: '8a8c0589-bc2f-4930-bbee-9297972ff37e',
   name: {
     en: 'Evaluate an appeal to authority',
+    it: "Valutare un appello all'autorità",
     zh: '评估诉诸权威的论证',
     hi: 'प्राधिकार की अपील का मूल्यांकन',
     es: 'Evaluar una apelación a la autoridad',
@@ -39,6 +40,7 @@ export const evaluateAnAppealToAuthority_Skill_Data = defineSkill({
       'Examine whether expertise is relevant and reliable evidence in context, rather than assuming that invoking any authority proves a conclusion.',
     frontend: {
       en: 'Decide whether cited expertise is relevant evidence rather than automatic proof.',
+      it: 'Stabilisci se la competenza citata costituisca una prova pertinente anziché una dimostrazione automatica.',
       zh: '判断引用的专业知识是相关证据，而不是自动成立的证明。',
       hi: 'जाँचें कि उद्धृत विशेषज्ञता प्रासंगिक प्रमाण है या उसे बिना जाँच अंतिम सत्य मान लिया गया है।',
       es: 'Decide si la experiencia citada es evidencia pertinente y no una prueba automática.',

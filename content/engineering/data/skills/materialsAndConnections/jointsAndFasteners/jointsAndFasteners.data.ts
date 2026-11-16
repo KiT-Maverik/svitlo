@@ -13,6 +13,7 @@ export const jointsAndFasteners_SkillGroup_Data = defineSkillGroup({
   id: '9996ee09-eed9-4c91-afa3-f2d57596ecbf',
   name: {
     en: 'Joints and Fasteners',
+    it: 'Giunzioni e sistemi di fissaggio',
     zh: '连接与紧固件',
     hi: 'जोड़ और बंधन उपकरण',
     es: 'Uniones y fijaciones',
@@ -57,6 +58,7 @@ export const jointsAndFasteners_SkillGroup_Data = defineSkillGroup({
       'Connections can be temporary or permanent, transmit different forces and impose different maintenance requirements.',
     frontend: {
       en: 'Discover how different joints hold parts together and transfer loads.',
+      it: 'Scopri come le diverse giunzioni tengono insieme i componenti e trasferiscono i carichi.',
       zh: '了解不同的接头如何固定部件并传递载荷。',
       hi: 'जानें कि अलग-अलग जोड़ हिस्सों को कैसे थामते और भार पहुँचाते हैं।',
       es: 'Descubre cómo diferentes uniones mantienen piezas juntas y transmiten cargas.',

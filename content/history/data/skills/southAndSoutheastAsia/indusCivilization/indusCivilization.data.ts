@@ -12,6 +12,7 @@ export const indusCivilization_SkillGroup_Data = defineSkillGroup({
   id: '2fb73927-8f98-41e4-be76-9179ae3f9426',
   name: {
     en: 'Indus Civilization',
+    it: "Civiltà dell'Indo",
     zh: '印度河文明',
     hi: 'सिंधु सभ्यता',
     es: 'Civilización del Indo',
@@ -55,6 +56,7 @@ export const indusCivilization_SkillGroup_Data = defineSkillGroup({
       'Indus cities showed planning, crafts, and trade, while political and linguistic questions remain unresolved.',
     frontend: {
       en: 'Discover what makes the Indus cities remarkable and mysterious.',
+      it: "Scopri che cosa rende straordinarie ed enigmatiche le città della civiltà dell'Indo.",
       zh: '发现印度河流域城市的非凡之处及未解之谜。',
       hi: 'जानें कि सिंधु नगर विशिष्ट और रहस्यमय क्यों हैं।',
       es: 'Descubre qué hace notables y misteriosas las ciudades del Indo.',

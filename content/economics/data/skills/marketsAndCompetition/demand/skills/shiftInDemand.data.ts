@@ -5,6 +5,7 @@ export const shiftInDemand_Skill_Data = defineSkill({
   id: '25aa0b77-9f59-4f8f-9803-92e97617428b',
   name: {
     en: 'Shift in Demand',
+    it: 'Spostamento della curva di domanda',
     zh: '需求曲线移动',
     hi: 'माँग वक्र का खिसकना',
     es: 'Desplazamiento de la demanda',
@@ -39,6 +40,7 @@ export const shiftInDemand_Skill_Data = defineSkill({
       'Identify how income, expectations, tastes, and the prices of substitutes and complements change the entire demand relationship.',
     frontend: {
       en: "Explain what can shift demand even if a product's price stays the same.",
+      it: 'Spiega che cosa può modificare la domanda anche se il prezzo di un prodotto resta invariato.',
       zh: '解释即使商品价格不变，什么因素也会改变需求。',
       hi: 'समझाएँ कि कीमत समान रहने पर भी कौन से कारण माँग बदलते हैं।',
       es: 'Explica qué puede cambiar la demanda aun cuando el precio permanezca igual.',

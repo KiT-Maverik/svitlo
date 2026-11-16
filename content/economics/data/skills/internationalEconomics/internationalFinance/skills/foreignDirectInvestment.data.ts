@@ -5,6 +5,7 @@ export const foreignDirectInvestment_Skill_Data = defineSkill({
   id: '4d9f8662-5fb5-4e58-971a-998cbafd102a',
   name: {
     en: 'Прямі іноземні інвестиції',
+    it: 'Investimenti diretti esteri',
     zh: '外国直接投资',
     hi: 'प्रत्यक्ष विदेशी निवेश',
     es: 'Inversión extranjera directa',
@@ -39,6 +40,7 @@ export const foreignDirectInvestment_Skill_Data = defineSkill({
       'Distinguish long-term managerial participation in a firm from purchasing financial assets without control.',
     frontend: {
       en: 'Recognize investment that involves a lasting role in a foreign business.',
+      it: "Riconosci gli investimenti che comportano una partecipazione duratura in un'impresa estera.",
       zh: '识别对外国企业具有持久经营参与的投资。',
       hi: 'ऐसे निवेश पहचानें जिनमें विदेशी व्यवसाय में दीर्घकालिक भूमिका शामिल हो।',
       es: 'Reconoce la inversión que implica una participación duradera en un negocio extranjero.',

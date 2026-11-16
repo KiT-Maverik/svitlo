@@ -10,6 +10,7 @@ export const transportationAndAerospaceEngineering_SkillDomain_Data = defineSkil
   id: 'c1f92626-c711-4809-81de-1b44b472c738',
   title: {
     en: 'Transportation and Aerospace Engineering',
+    it: 'Ingegneria dei trasporti e aerospaziale',
     zh: '交通运输与航空航天工程',
     hi: 'परिवहन और वांतरिक्ष अभियांत्रिकी',
     es: 'Ingeniería del transporte y aeroespacial',
@@ -53,6 +54,7 @@ export const transportationAndAerospaceEngineering_SkillDomain_Data = defineSkil
       'Transport machines coordinate power, support, steering, stopping and protection while moving through land, air, water or space. Each vehicle is a system with characteristic environmental and operating constraints.',
     frontend: {
       en: 'Explore the engineering systems that move vehicles on land, in the air, on water and in space.',
+      it: "Esplora i sistemi ingegneristici che muovono i veicoli sulla terraferma, in aria, sull'acqua e nello spazio.",
       zh: '探索使车辆在陆地、空中、水上和太空中运动的工程系统。',
       hi: 'भूमि, हवा, जल और अंतरिक्ष में वाहनों को चलाने वाली इंजीनियरिंग प्रणालियों को जानें।',
       es: 'Explora los sistemas de ingeniería que mueven vehículos por tierra, aire, agua y el espacio.',

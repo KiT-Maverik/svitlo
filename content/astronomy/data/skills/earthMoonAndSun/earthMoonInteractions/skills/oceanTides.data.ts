@@ -5,6 +5,7 @@ export const oceanTides_Skill_Data = defineSkill({
   id: '08922c2a-346e-4bd5-9215-bdc8d2124635',
   name: {
     en: 'Ocean Tides',
+    it: 'Maree oceaniche',
     zh: '海洋潮汐',
     hi: 'समुद्री ज्वार-भाटा',
     es: 'Mareas oceánicas',
@@ -39,6 +40,7 @@ export const oceanTides_Skill_Data = defineSkill({
       'Explain the dominant lunar and solar gravitational contributions to periodic changes in sea level, distinguishing ideal equilibrium tides from local coastal conditions.',
     frontend: {
       en: 'Understand how the Moon and Sun help produce ocean tides.',
+      it: 'Comprendi come Luna e Sole contribuiscono a generare le maree degli oceani.',
       zh: '了解月球和太阳如何共同引起海洋的潮汐。',
       hi: 'समझें कि चंद्रमा और सूर्य समुद्र में ज्वार-भाटा उत्पन्न करने में कैसे योगदान देते हैं।',
       es: 'Comprende cómo la Luna y el Sol contribuyen a producir las mareas oceánicas.',

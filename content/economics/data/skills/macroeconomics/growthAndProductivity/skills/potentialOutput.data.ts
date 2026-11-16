@@ -5,6 +5,7 @@ export const potentialOutput_Skill_Data = defineSkill({
   id: '637f73a9-83dd-4c35-ab39-72940f693eda',
   name: {
     en: 'Потенційний випуск',
+    it: 'Produzione potenziale',
     zh: '潜在产出',
     hi: 'संभावित उत्पादन',
     es: 'Producción potencial',
@@ -38,6 +39,7 @@ export const potentialOutput_Skill_Data = defineSkill({
     methodological: 'Distinguish sustainable production capacity from actual output during cyclical deviations.',
     frontend: {
       en: 'Understand why an economy may produce below or above its sustainable capacity.',
+      it: "Comprendi perché un'economia può produrre al di sotto o al di sopra della sua capacità sostenibile.",
       zh: '理解经济产出为何可能高于或低于可持续生产能力。',
       hi: 'समझें कि अर्थव्यवस्था अपनी टिकाऊ क्षमता से कम या अधिक उत्पादन क्यों कर सकती है।',
       es: 'Comprende por qué una economía puede producir por debajo o por encima de su capacidad sostenible.',

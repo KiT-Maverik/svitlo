@@ -5,6 +5,7 @@ export const createGenerativeVisualRules_Skill_Data = defineSkill({
   id: 'ad63c2ef-ea7e-4449-9a02-c8bcecf8a9b1',
   name: {
     en: 'Create Generative Visual Rules',
+    it: 'Creare regole visive generative',
     zh: '创建生成式视觉规则',
     hi: 'जनरेटिव दृश्य नियम बनाएँ',
     es: 'Crear reglas visuales generativas',
@@ -38,6 +39,7 @@ export const createGenerativeVisualRules_Skill_Data = defineSkill({
     methodological: 'Define a transformation that yields a coherent family of related visual outcomes.',
     frontend: {
       en: 'Create a visual rule that produces different but related images.',
+      it: 'Crea una regola visiva capace di produrre immagini diverse ma correlate.',
       zh: '创建能够生成不同但彼此相关图像的视觉规则。',
       hi: 'ऐसा दृश्य नियम बनाएँ जो अलग-अलग लेकिन आपस में जुड़े चित्र उत्पन्न करे।',
       es: 'Crea una regla visual que produzca imágenes diferentes pero relacionadas.',

@@ -5,6 +5,7 @@ export const opticalTelescopeSystems_Skill_Data = defineSkill({
   id: 'b14e2df7-c6e3-4503-aa9d-33e0c858d39b',
   name: {
     en: 'Optical Telescope Systems',
+    it: 'Sistemi di telescopi ottici',
     qm: 'Optik teleskop sistemaları',
     bn: 'আলোকীয় দূরবীক্ষণ ব্যবস্থাসমূহ',
     ur: 'بصری دوربینوں کے نظام',
@@ -39,6 +40,7 @@ export const opticalTelescopeSystems_Skill_Data = defineSkill({
       'Interpret the scientific roles of refractors, reflectors and optical configurations without designing their mechanical construction.',
     frontend: {
       en: 'Compare how refracting and reflecting telescopes collect and focus light.',
+      it: 'Confronta come i telescopi rifrattori e riflettori raccolgono e mettono a fuoco la luce.',
       qm: 'Yarıqnı sındırğan ve aks ettirgen teleskoplarnıñ yarıqnı toplav ve fokuslav usullarını teñeştiriñiz.',
       bn: 'লেন্সযুক্ত ও দর্পণযুক্ত দূরবীক্ষণ যন্ত্র কীভাবে আলো সংগ্রহ করে ও কেন্দ্রীভূত করে, তা তুলনা করো।',
       ur: 'موازنہ کریں کہ عدسوں والی اور آئینوں والی دوربینیں روشنی کیسے جمع اور مرکوز کرتی ہیں۔',

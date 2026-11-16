@@ -5,6 +5,7 @@ export const lateBronzeAgeCollapse_Skill_Data = defineSkill({
   id: 'b5fc72e9-66ff-406a-a89b-f03d70cc6a75',
   name: {
     en: 'Late Bronze Age Collapse',
+    it: 'Collasso della tarda età del bronzo',
     zh: '青铜时代晚期崩溃',
     hi: 'उत्तर कांस्य युग का पतन',
     es: 'Colapso del Bronce Final',
@@ -39,6 +40,7 @@ export const lateBronzeAgeCollapse_Skill_Data = defineSkill({
       'Evaluate multiple causes and uneven impacts of political and economic disruptions in the eastern Mediterranean.',
     frontend: {
       en: 'Explore why Bronze Age states changed or collapsed differently.',
+      it: "Esplora perché gli Stati dell'età del bronzo cambiarono o crollarono in modi diversi.",
       zh: '探索青铜时代各国为何以不同方式转变或崩溃。',
       hi: 'जानें कि कांस्य युग के राज्यों में परिवर्तन या पतन अलग-अलग ढंग से क्यों हुआ।',
       es: 'Explora por qué los Estados de la Edad del Bronce cambiaron o colapsaron de distintas maneras.',

@@ -5,6 +5,7 @@ export const explainPersistentStorage_Skill_Data = defineSkill({
   id: 'c29594da-7041-478d-9168-82eadbb6dbb7',
   name: {
     en: 'Explain Persistent Storage',
+    it: "Spiegare l'archiviazione persistente",
     zh: '解释持久化存储',
     hi: 'स्थायी भंडारण समझाना',
     es: 'Explicar el almacenamiento persistente',
@@ -39,6 +40,7 @@ export const explainPersistentStorage_Skill_Data = defineSkill({
       'An SSD, flash memory, or another nonvolatile medium stores files without continuous power, unlike the typical working state held in RAM.',
     frontend: {
       en: 'Understand why storage devices preserve files after power is switched off.',
+      it: 'Comprendi perché i dispositivi di archiviazione conservano i file anche dopo lo spegnimento.',
       zh: '理解为什么存储设备在断电后仍能保存文件。',
       hi: 'समझें कि बिजली बंद होने के बाद भी भंडारण उपकरण फ़ाइलें क्यों बनाए रखते हैं।',
       es: 'Comprende por qué los dispositivos de almacenamiento conservan archivos después de cortar la corriente.',

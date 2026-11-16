@@ -5,6 +5,7 @@ export const healthcareFinancing_Skill_Data = defineSkill({
   id: '5ca61e05-cebe-490f-83a0-13b3ba27226f',
   name: {
     en: 'Фінансування охорони здоров’я',
+    it: 'Finanziamento della sanità',
     zh: '医疗卫生筹资',
     hi: 'स्वास्थ्य सेवा का वित्तपोषण',
     es: 'Financiación de la atención sanitaria',
@@ -39,6 +40,7 @@ export const healthcareFinancing_Skill_Data = defineSkill({
       'Compare tax-based, insurance-based, and direct payment by access, household financial risk, and system costs.',
     frontend: {
       en: 'Compare different ways healthcare is funded.',
+      it: "Confronta i diversi modi di finanziare l'assistenza sanitaria.",
       zh: '比较各种医疗卫生筹资方式。',
       hi: 'स्वास्थ्य सेवाओं के वित्तपोषण के अलग-अलग तरीकों की तुलना करें।',
       es: 'Compara distintas formas de financiar la atención sanitaria.',

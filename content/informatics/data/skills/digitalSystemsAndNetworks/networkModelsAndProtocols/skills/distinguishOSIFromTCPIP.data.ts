@@ -5,6 +5,7 @@ export const distinguishOSIFromTCPIP_Skill_Data = defineSkill({
   id: '453c8f7e-3d89-4cf9-aae3-7a70180443cb',
   name: {
     en: 'Distinguish OSI from TCP/IP',
+    it: 'Distinguere OSI e TCP/IP',
     zh: '区分 OSI 与 TCP/IP',
     hi: 'OSI और TCP/IP में अंतर करना',
     es: 'Distinguir OSI de TCP/IP',
@@ -39,6 +40,7 @@ export const distinguishOSIFromTCPIP_Skill_Data = defineSkill({
       'The OSI reference model has seven conceptual layers, whereas TCP/IP organizes real Internet protocols into a different set of functional layers.',
     frontend: {
       en: "Compare the conceptual OSI layers with the Internet's TCP/IP stack.",
+      it: 'Confronta i livelli concettuali del modello OSI con la pila TCP/IP di Internet.',
       zh: '比较概念性的 OSI 分层与互联网的 TCP/IP 协议栈。',
       hi: 'सैद्धांतिक OSI परतों और इंटरनेट के TCP/IP प्रोटोकॉल स्टैक की तुलना करें।',
       es: 'Compara las capas conceptuales de OSI con la pila TCP/IP de Internet.',

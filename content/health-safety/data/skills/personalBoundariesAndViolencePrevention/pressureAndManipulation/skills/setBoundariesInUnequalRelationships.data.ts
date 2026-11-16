@@ -5,6 +5,7 @@ export const setBoundariesInUnequalRelationships_Skill_Data = defineSkill({
   id: '425da2c9-7fa8-4760-8135-168c9b11f97f',
   name: {
     en: 'Set boundaries in unequal relationships',
+    it: 'Stabilire confini nelle relazioni asimmetriche',
     zh: '在不平等关系中设立边界',
     hi: 'असमान रिश्तों में सीमाएँ तय करें',
     es: 'Establecer límites en relaciones desiguales',
@@ -39,6 +40,7 @@ export const setBoundariesInUnequalRelationships_Skill_Data = defineSkill({
       'Account for authority, dependency, age, or financial power when judging whether a demand or apparent agreement is free.',
     frontend: {
       en: 'Understand how authority or dependency can undermine apparent agreement.',
+      it: "Comprendi come l'autorità o la dipendenza possono compromettere un consenso solo apparente.",
       zh: '理解权威或依赖关系如何削弱表面同意的真实性。',
       hi: 'समझें कि अधिकार या निर्भरता दिखावटी सहमति को कैसे प्रभावित कर सकती है।',
       es: 'Comprende cómo la autoridad o la dependencia pueden socavar un acuerdo aparente.',

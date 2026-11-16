@@ -5,6 +5,7 @@ export const adaptiveTradeOffs_Skill_Data = defineSkill({
   id: 'efa928bd-2adf-42ad-a919-fd7ce9129a87',
   name: {
     en: 'Adaptive Trade-offs',
+    it: 'Compromessi adattativi',
     zh: '适应性权衡',
     hi: 'अनुकूलन के समझौते',
     es: 'Compensaciones adaptativas',
@@ -39,6 +40,7 @@ export const adaptiveTradeOffs_Skill_Data = defineSkill({
       'Explain why a tendency advantageous in one context may impose costs in another rather than treating all traits as optimal.',
     frontend: {
       en: 'Understand why a useful tendency in one environment may have costs in another.',
+      it: 'Comprendi perché una tendenza utile in un ambiente possa comportare svantaggi in un altro.',
       zh: '理解为什么在某种环境中有用的倾向，在另一种环境中可能带来代价。',
       hi: 'समझें कि एक वातावरण में लाभकारी प्रवृत्ति दूसरे में नुकसानदेह क्यों हो सकती है।',
       es: 'Comprende por qué una tendencia útil en un entorno puede tener costos en otro.',

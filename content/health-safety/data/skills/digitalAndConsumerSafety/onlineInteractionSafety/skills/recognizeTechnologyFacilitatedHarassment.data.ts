@@ -5,6 +5,7 @@ export const recognizeTechnologyFacilitatedHarassment_Skill_Data = defineSkill({
   id: '881caf9f-c739-4cdd-83fb-973426770dd1',
   name: {
     en: 'Recognize technology-facilitated harassment',
+    it: 'Riconoscere le molestie facilitate dalla tecnologia',
     zh: '识别技术辅助骚扰',
     hi: 'तकनीक के ज़रिये उत्पीड़न पहचानना',
     es: 'Reconocer acoso facilitado por tecnología',
@@ -39,6 +40,7 @@ export const recognizeTechnologyFacilitatedHarassment_Skill_Data = defineSkill({
       'Identify the distinctive risks of persistent unwanted online contact, coordinated targeting, cross-platform stalking and harmful redistribution of content, including online forms of bullying, without duplicating the general recognition of harassment.',
     frontend: {
       en: 'Recognize persistent harassment and stalking conducted through online platforms.',
+      it: 'Riconosci molestie persistenti e atti persecutori compiuti tramite piattaforme online.',
       zh: '识别通过网络平台实施的持续骚扰和跟踪。',
       hi: 'ऑनलाइन मंचों पर लगातार परेशान करने और पीछा करने की हरकतें पहचानो।',
       es: 'Reconoce el acoso persistente y la vigilancia hostil mediante plataformas digitales.',

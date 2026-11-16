@@ -5,6 +5,7 @@ export const editFilmContinuity_Skill_Data = defineSkill({
   id: 'efcc4b8b-59f3-447a-a905-e3778fb75521',
   name: {
     en: 'Edit Film Continuity',
+    it: 'Montare per garantire la continuità',
 
     zh: '剪辑电影连续性',
     hi: 'फ़िल्म की निरंतरता संपादित करें',
@@ -39,6 +40,7 @@ export const editFilmContinuity_Skill_Data = defineSkill({
     methodological: 'Arrange transitions so viewers can understand time, space and action.',
     frontend: {
       en: 'Connect shots so the audience can follow where and when events happen.',
+      it: 'Collega le inquadrature affinché il pubblico possa seguire dove e quando avvengono gli eventi.',
 
       zh: '连接镜头，让观众理解事件发生的地点和时间。',
       hi: 'शॉट्स को इस तरह जोड़ें कि दर्शक घटनाओं का स्थान और समय समझ सकें।',

@@ -5,6 +5,7 @@ export const limitSwitches_Skill_Data = defineSkill({
   id: '68b70263-3109-4b67-bc8e-a387eeeb4293',
   name: {
     en: 'Limit switches',
+    it: 'Interruttori di finecorsa',
     zh: '限位开关',
     hi: 'सीमा स्विच',
     es: 'Interruptores de fin de carrera',
@@ -38,6 +39,7 @@ export const limitSwitches_Skill_Data = defineSkill({
     methodological: 'Recognize how end-of-travel signals protect a mechanism from excessive movement.',
     frontend: {
       en: 'Recognize how limit switches detect the end of travel.',
+      it: 'Riconosci come gli interruttori di finecorsa rilevano il termine di una corsa.',
       zh: '识别限位开关如何检测运动行程终点。',
       hi: 'समझें कि सीमा स्विच गति की अंतिम स्थिति कैसे पहचानते हैं।',
       es: 'Reconoce cómo los interruptores de fin de carrera detectan el final del recorrido.',

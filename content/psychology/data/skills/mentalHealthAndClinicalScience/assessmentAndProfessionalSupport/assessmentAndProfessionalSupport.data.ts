@@ -12,6 +12,7 @@ export const assessmentAndProfessionalSupport_SkillGroup_Data = defineSkillGroup
   id: 'fe5923c9-4c5c-4ea1-861d-fc8dd0902af2',
   name: {
     en: 'Assessment and Professional Support',
+    it: 'Valutazione e sostegno professionale',
     zh: '评估与专业支持',
     hi: 'आकलन और पेशेवर सहायता',
     es: 'Evaluación y apoyo profesional',
@@ -60,6 +61,7 @@ export const assessmentAndProfessionalSupport_SkillGroup_Data = defineSkillGroup
       'Clinical decisions use trained judgment, validated measures, and context; ethical education focuses on how professional care works rather than practicing diagnosis.',
     frontend: {
       en: 'Discover how trained professionals assess difficulties and provide support.',
+      it: 'Scopri come i professionisti qualificati valutano le difficoltà e offrono sostegno.',
       zh: '了解受过训练的专业人士如何评估困难并提供支持。',
       hi: 'जानें कि प्रशिक्षित विशेषज्ञ कठिनाइयों का मूल्यांकन और सहायता कैसे देते हैं।',
       es: 'Descubre cómo profesionales cualificados evalúan dificultades y ofrecen apoyo.',

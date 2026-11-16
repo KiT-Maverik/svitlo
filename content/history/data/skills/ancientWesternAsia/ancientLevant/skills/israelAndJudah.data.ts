@@ -5,6 +5,7 @@ export const israelAndJudah_Skill_Data = defineSkill({
   id: 'e01c33bf-c598-4466-ab57-d56ddb6bbd74',
   name: {
     en: 'Israel and Judah',
+    it: 'Israele e Giuda',
     zh: '以色列与犹大',
     hi: 'इस्राएल और यहूदा',
     es: 'Israel y Judá',
@@ -39,6 +40,7 @@ export const israelAndJudah_Skill_Data = defineSkill({
       'Compare histories of ancient Levantine kingdoms with archaeological evidence and later written traditions.',
     frontend: {
       en: 'Explore Israel and Judah through texts and archaeological finds.',
+      it: 'Esplora Israele e Giuda attraverso i testi e i ritrovamenti archeologici.',
       zh: '通过文献与考古发现探索以色列和犹大的历史。',
       hi: 'ग्रंथों और पुरातात्त्विक खोजों के माध्यम से इस्राएल और यहूदा का अध्ययन करें।',
       es: 'Explora Israel y Judá mediante textos y hallazgos arqueológicos.',

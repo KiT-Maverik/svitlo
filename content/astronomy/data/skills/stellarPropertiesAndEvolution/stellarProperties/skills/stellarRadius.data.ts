@@ -5,6 +5,7 @@ export const stellarRadius_Skill_Data = defineSkill({
   id: '32ed5f6b-3ae3-4019-b6fd-d969ffa37b4c',
   name: {
     en: 'Stellar Radius',
+    it: 'Raggio stellare',
     zh: '恒星半径',
     hi: 'तारों की त्रिज्या',
     es: 'Radio estelar',
@@ -38,6 +39,7 @@ export const stellarRadius_Skill_Data = defineSkill({
     methodological: "Infer a star's size from luminosity, temperature, eclipses or other relevant evidence.",
     frontend: {
       en: "Find out how astronomers infer a star's radius from its light and other observations.",
+      it: 'Scopri come gli astronomi ricavano il raggio di una stella dalla sua luce e da altre osservazioni.',
       zh: '了解天文学家如何根据星光及其他观测推算恒星的半径。',
       hi: 'जानें कि खगोलविद तारों की रोशनी और अन्य अवलोकनों से उनकी त्रिज्या का अनुमान कैसे लगाते हैं।',
       es: 'Descubre cómo los astrónomos deducen el radio de una estrella a partir de su luz y otras observaciones.',

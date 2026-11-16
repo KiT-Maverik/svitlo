@@ -5,6 +5,7 @@ export const compareClassicalGreekPhilosophicalApproaches_Skill_Data = defineSki
   id: '329be188-7ed8-40f2-af93-9a46c70c6058',
   name: {
     en: 'Compare classical Greek philosophical approaches',
+    it: 'Confrontare gli approcci filosofici della Grecia classica',
     zh: '比较古典希腊哲学方法',
     hi: 'प्राचीन यूनानी दार्शनिक दृष्टिकोणों की तुलना',
     es: 'Comparar enfoques de la filosofía griega clásica',
@@ -39,6 +40,7 @@ export const compareClassicalGreekPhilosophicalApproaches_Skill_Data = defineSki
       'Contrast representative methods or commitments in Socratic, Platonic, and Aristotelian arguments without collapsing them into one doctrine.',
     frontend: {
       en: 'Compare ideas associated with Socrates, Plato and Aristotle.',
+      it: 'Confronta le idee associate a Socrate, Platone e Aristotele.',
       zh: '比较苏格拉底、柏拉图和亚里士多德的哲学思想。',
       hi: 'सुकरात, प्लेटो और अरस्तू के विचारों की तुलना करो।',
       es: 'Compara ideas de Sócrates, Platón y Aristóteles.',

@@ -12,6 +12,7 @@ export const centralAndWesternEurope_SkillGroup_Data = defineSkillGroup({
   id: '0fbaa949-a1c8-44cd-8f95-a40687821dc1',
   name: {
     en: 'Central and Western Europe',
+    it: 'Europa centrale e occidentale',
     zh: '中欧和西欧',
     hi: 'मध्य और पश्चिमी यूरोप',
     es: 'Europa central y occidental',
@@ -55,6 +56,7 @@ export const centralAndWesternEurope_SkillGroup_Data = defineSkillGroup({
       'Study metallurgy, settlements, and confederations primarily through archaeological evidence and uneven external descriptions.',
     frontend: {
       en: 'Explore Bronze and Iron Age cultures in Central and Western Europe.',
+      it: "Esplora le culture dell'età del bronzo e del ferro nell'Europa centrale e occidentale.",
       zh: '探索中欧与西欧的青铜时代和铁器时代文化。',
       hi: 'मध्य और पश्चिमी यूरोप की कांस्य और लौह युगीन संस्कृतियों का अध्ययन करें।',
       es: 'Explora las culturas de la Edad del Bronce y del Hierro de Europa central y occidental.',

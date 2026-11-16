@@ -12,6 +12,7 @@ export const exchangeAndInstitutions_SkillGroup_Data = defineSkillGroup({
   id: '50673eda-6225-46e8-beb7-6529231473af',
   name: {
     en: 'Exchange and Institutions',
+    it: 'Scambio e istituzioni',
     zh: '交换与制度',
     hi: 'विनिमय और संस्थाएँ',
     es: 'Intercambio e instituciones',
@@ -55,6 +56,7 @@ export const exchangeAndInstitutions_SkillGroup_Data = defineSkillGroup({
       'Cooperation and resource allocation depend on specialization, agreements, rights, and mechanisms for enforcing them.',
     frontend: {
       en: 'Explore how agreements and rules help people cooperate and exchange.',
+      it: 'Esplora come accordi e regole aiutano le persone a cooperare e a scambiare beni.',
       zh: '探索约定和规则如何帮助人们合作与交换。',
       hi: 'जानें कि समझौते और नियम लोगों को सहयोग और विनिमय में कैसे मदद करते हैं।',
       es: 'Explora cómo los acuerdos y las reglas ayudan a cooperar e intercambiar.',

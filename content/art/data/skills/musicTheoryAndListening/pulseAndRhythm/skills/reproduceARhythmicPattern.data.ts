@@ -5,6 +5,7 @@ export const reproduceARhythmicPattern_Skill_Data = defineSkill({
   id: 'd06e4955-fb54-4346-a2c8-4d2f5d4c6fb6',
   name: {
     en: 'Reproduce a Rhythmic Pattern',
+    it: 'Riprodurre uno schema ritmico',
     zh: '再现节奏型',
     hi: 'लयबद्ध पैटर्न दोहराएँ',
     es: 'Reproducir un patrón rítmico',
@@ -38,6 +39,7 @@ export const reproduceARhythmicPattern_Skill_Data = defineSkill({
     methodological: 'Represent an ordered arrangement of relative durations, onsets and rests.',
     frontend: {
       en: 'Clap, tap or play a sequence of note lengths and rests.',
+      it: 'Batti le mani, tamburella o suona una sequenza di durate delle note e pause.',
       zh: '通过拍手、敲击或演奏来再现音符时值和休止的序列。',
       hi: 'स्वरों की अवधि और विरामों के क्रम को ताली, थपकी या वादन से दोहराएँ।',
       es: 'Reproduce una secuencia de duraciones y silencios con palmas, golpes o instrumentos.',

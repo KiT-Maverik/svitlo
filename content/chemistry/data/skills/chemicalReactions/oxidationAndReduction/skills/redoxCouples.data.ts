@@ -5,6 +5,7 @@ export const redoxCouples_Skill_Data = defineSkill({
   id: '5a928525-684a-473f-b0f5-ee4401fe00dc',
   name: {
     en: 'Redox Couples',
+    it: 'Coppie ossidoriduttive',
     zh: '氧化还原对',
     hi: 'रेडॉक्स युग्म',
     es: 'Pares redox',
@@ -39,6 +40,7 @@ export const redoxCouples_Skill_Data = defineSkill({
       'Relate oxidation of one participant to reduction of another and identify oxidizing or reducing agents.',
     frontend: {
       en: 'Explain how one participant is oxidized while another is reduced.',
+      it: 'Spiega come un partecipante alla reazione si ossida mentre un altro si riduce.',
       zh: '解释一种物质被氧化时，另一种物质如何被还原。',
       hi: 'समझाएँ कि एक पदार्थ के ऑक्सीकरण के साथ दूसरे का अपचयन कैसे होता है।',
       es: 'Explica cómo una sustancia se oxida mientras otra se reduce.',

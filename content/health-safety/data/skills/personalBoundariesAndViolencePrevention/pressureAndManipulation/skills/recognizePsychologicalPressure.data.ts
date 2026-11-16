@@ -5,6 +5,7 @@ export const recognizePsychologicalPressure_Skill_Data = defineSkill({
   id: '9d851992-0daf-4398-b262-348794cbee2b',
   name: {
     en: 'Recognize psychological pressure',
+    it: 'Riconoscere la pressione psicologica',
     zh: '识别心理施压',
     hi: 'मनोवैज्ञानिक दबाव पहचानें',
     es: 'Reconocer la presión psicológica',
@@ -39,6 +40,7 @@ export const recognizePsychologicalPressure_Skill_Data = defineSkill({
       'Identify demands reinforced by guilt, intimidation, isolation, or threatened consequences rather than genuine choice.',
     frontend: {
       en: 'Identify pressure based on intimidation, isolation or threatened punishment.',
+      it: 'Individua le pressioni basate su intimidazione, isolamento o minacce di punizione.',
       zh: '识别基于恐吓、孤立或惩罚威胁的压力。',
       hi: 'डराने, अलग-थलग करने या सज़ा की धमकी पर आधारित दबाव पहचानें।',
       es: 'Identifica presiones basadas en intimidación, aislamiento o amenazas de castigo.',

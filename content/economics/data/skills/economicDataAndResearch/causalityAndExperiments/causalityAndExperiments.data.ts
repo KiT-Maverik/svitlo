@@ -11,6 +11,7 @@ export const causalityAndExperiments_SkillGroup_Data = defineSkillGroup({
   id: '5fd2d55d-2a2a-4050-87c3-4480f191f878',
   name: {
     en: 'Причинність та експерименти',
+    it: 'Causalità ed esperimenti',
     zh: '因果关系与实验',
     hi: 'कारण-कार्य संबंध और प्रयोग',
     es: 'Causalidad y experimentos',
@@ -53,6 +54,7 @@ export const causalityAndExperiments_SkillGroup_Data = defineSkillGroup({
       'Correlation does not necessarily demonstrate a causal effect; research design must account for alternative explanations.',
     frontend: {
       en: 'Discover how economists investigate causes rather than mere associations.',
+      it: 'Scopri come gli economisti studiano le cause, anziché limitarsi alle associazioni.',
       zh: '了解经济学家如何研究原因，而不只看表面关联。',
       hi: 'जानें कि अर्थशास्त्री केवल संबंध नहीं, बल्कि कारणों की जाँच कैसे करते हैं।',
       es: 'Descubre cómo los economistas investigan causas y no solo asociaciones.',

@@ -5,6 +5,7 @@ export const protectiveSurfaceTreatments_Skill_Data = defineSkill({
   id: '12c4550c-d921-4889-82e3-ef2fd6b50fc9',
   name: {
     en: 'Protective surface treatments',
+    it: 'Trattamenti protettivi delle superfici',
     zh: '表面防护处理',
     hi: 'सतह की सुरक्षात्मक परतें',
     es: 'Tratamientos protectores de superficies',
@@ -38,6 +39,7 @@ export const protectiveSurfaceTreatments_Skill_Data = defineSkill({
     methodological: 'Relate coatings or treatments to corrosion, wear, wetting or other surface properties.',
     frontend: {
       en: 'Choose coatings that protect a surface against wear or corrosion.',
+      it: "Scegli rivestimenti che proteggano una superficie dall'usura o dalla corrosione.",
       zh: '选择能防止表面磨损或腐蚀的涂层。',
       hi: 'सतह को घिसाव या जंग से बचाने वाली परतें चुनें।',
       es: 'Elige recubrimientos que protejan una superficie del desgaste o la corrosión.',

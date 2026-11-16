@@ -5,6 +5,7 @@ export const identifyTheMainPartsOfAMushroomFruitingBody_Skill_Data = defineSkil
   id: 'e25e0cf7-e313-422a-8350-210143298faf',
   name: {
     en: 'Identify the Main Parts of a Mushroom Fruiting Body',
+    it: 'Individuare le parti principali del corpo fruttifero di un fungo',
     zh: '识别蘑菇子实体的主要部分',
     hi: 'मशरूम के फलनकाय के मुख्य भाग पहचानना',
     es: 'Identificar las partes principales del cuerpo fructífero de una seta',
@@ -39,6 +40,7 @@ export const identifyTheMainPartsOfAMushroomFruitingBody_Skill_Data = defineSkil
       'Locate the cap, stalk, and spore-producing structures on a diagram of a typical cap-and-stalk mushroom.',
     frontend: {
       en: 'Identify the cap, stalk and spore-producing structures of a familiar mushroom.',
+      it: 'Individua cappello, gambo e strutture produttrici di spore di un fungo comune.',
       zh: '识别常见蘑菇的菌盖、菌柄和产生孢子的结构。',
       hi: 'परिचित मशरूम की टोपी, डंठल और बीजाणु बनाने वाली संरचनाओं को पहचानें।',
       es: 'Identifica el sombrero, el pie y las estructuras que producen esporas en una seta común.',

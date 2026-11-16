@@ -14,6 +14,7 @@ export const deductiveReasoning_SkillGroup_Data = defineSkillGroup({
   id: '05213612-9652-41aa-9e86-831a7a0ce9b7',
   name: {
     en: 'Deductive Reasoning',
+    it: 'Ragionamento deduttivo',
     zh: '演绎推理',
     hi: 'निगमनात्मक तर्क',
     es: 'Razonamiento deductivo',
@@ -66,6 +67,7 @@ export const deductiveReasoning_SkillGroup_Data = defineSkillGroup({
       'Deduction concerns whether it is possible for premises to be true while a conclusion is false. Logical form is evaluated separately from whether the premises describe the world correctly.',
     frontend: {
       en: 'Explore when conclusions necessarily follow from given premises.',
+      it: 'Esplora quando le conclusioni derivano necessariamente dalle premesse date.',
       zh: '探索何时结论必然从给定前提中推出。',
       hi: 'जानें कि किन स्थितियों में निष्कर्ष दिए गए आधार-वाक्यों से अनिवार्य रूप से निकलता है।',
       es: 'Explora cuándo las conclusiones se siguen necesariamente de las premisas dadas.',

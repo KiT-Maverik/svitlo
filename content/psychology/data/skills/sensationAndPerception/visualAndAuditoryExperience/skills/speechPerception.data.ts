@@ -5,6 +5,7 @@ export const speechPerception_Skill_Data = defineSkill({
   id: '6c7c7fdc-bf6f-48a5-b53c-70cfdd98c265',
   name: {
     en: 'Speech Perception',
+    it: 'Percezione del parlato',
     zh: '言语知觉',
     hi: 'बोली का प्रत्यक्षण',
     es: 'Percepción del habla',
@@ -39,6 +40,7 @@ export const speechPerception_Skill_Data = defineSkill({
       'Analyze how acoustic cues, noise, and language expectations shape understanding of spoken messages.',
     frontend: {
       en: 'Recognize how sound and language expectations affect speech understanding.',
+      it: 'Riconosci come i suoni e le aspettative linguistiche influenzino la comprensione del parlato.',
       zh: '认识声音和语言预期如何影响对口语的理解。',
       hi: 'पहचानें कि ध्वनियाँ और भाषा से जुड़ी अपेक्षाएँ बोलचाल समझने को कैसे प्रभावित करती हैं।',
       es: 'Reconoce cómo el sonido y las expectativas lingüísticas influyen en la comprensión del habla.',

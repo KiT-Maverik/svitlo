@@ -5,6 +5,7 @@ export const socialTransfers_Skill_Data = defineSkill({
   id: '70bb9740-ebc5-401d-bb0b-80ec8ce3c35a',
   name: {
     en: 'Соціальні трансферти',
+    it: 'Trasferimenti sociali',
     zh: '社会转移支付',
     hi: 'सामाजिक अंतरण',
     es: 'Transferencias sociales',
@@ -39,6 +40,7 @@ export const socialTransfers_Skill_Data = defineSkill({
       'Analyze the purposes of public benefits and payments and their effects on disposable income and incentives.',
     frontend: {
       en: 'Explore how social payments change household resources.',
+      it: 'Esplora come le prestazioni sociali modificano le risorse delle famiglie.',
       zh: '探索社会补助如何改变家庭资源。',
       hi: 'जानें कि सामाजिक भुगतान परिवार के संसाधनों को कैसे बदलते हैं।',
       es: 'Explora cómo las ayudas sociales modifican los recursos de los hogares.',

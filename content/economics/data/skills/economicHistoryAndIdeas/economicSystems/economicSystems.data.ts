@@ -7,6 +7,7 @@ export const economicSystems_SkillGroup_Data = defineSkillGroup({
   id: '4f15e5dd-93d8-43ba-b9b4-08126f18c563',
   name: {
     en: 'Економічні системи',
+    it: 'Sistemi economici',
     zh: '经济制度',
     hi: 'आर्थिक व्यवस्थाएँ',
     es: 'Sistemas económicos',
@@ -49,6 +50,7 @@ export const economicSystems_SkillGroup_Data = defineSkillGroup({
       'Societies combine markets, planning, public coordination, traditions, and ownership forms in different ways.',
     frontend: {
       en: 'Compare how different systems organize economic decisions.',
+      it: 'Confronta come i diversi sistemi organizzano le decisioni economiche.',
       zh: '比较不同经济制度如何组织经济决策。',
       hi: 'तुलना करें कि विभिन्न प्रणालियाँ आर्थिक फैसलों को कैसे व्यवस्थित करती हैं।',
       es: 'Compara cómo distintos sistemas organizan las decisiones económicas.',

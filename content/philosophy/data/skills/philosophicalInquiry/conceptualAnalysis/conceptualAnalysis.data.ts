@@ -12,6 +12,7 @@ export const conceptualAnalysis_SkillGroup_Data = defineSkillGroup({
   id: '59dba4e3-0c6d-475d-a150-ddb85f287dde',
   name: {
     en: 'Conceptual Analysis',
+    it: 'Analisi concettuale',
     zh: '概念分析',
     hi: 'अवधारणात्मक विश्लेषण',
     es: 'Análisis conceptual',
@@ -60,6 +61,7 @@ export const conceptualAnalysis_SkillGroup_Data = defineSkillGroup({
       'Careful discussion depends on tracking the boundaries of concepts, especially when ordinary words cover multiple cases. These abilities refine meanings rather than merely memorize technical vocabulary.',
     frontend: {
       en: 'Explore how clear definitions and carefully chosen examples improve philosophical thinking.',
+      it: 'Esplora come definizioni chiare ed esempi scelti con cura migliorino il pensiero filosofico.',
       zh: '了解清晰的定义和精心挑选的例子如何改善哲学思考。',
       hi: 'समझें कि स्पष्ट परिभाषाएँ और सोच-समझकर चुने गए उदाहरण दार्शनिक चिंतन को कैसे बेहतर बनाते हैं।',
       es: 'Explora cómo las definiciones claras y los ejemplos bien elegidos mejoran el pensamiento filosófico.',

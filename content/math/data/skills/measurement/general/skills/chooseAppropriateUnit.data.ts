@@ -5,6 +5,7 @@ export const chooseAppropriateUnit_Skill_Data = defineSkill({
   id: 'bc720d51-24c5-43a2-b034-0b58055a0efd',
   name: {
     en: 'Choosing suitable units for length, mass or capacity',
+    it: 'Scegliere unità adatte per lunghezza, massa o capacità',
     qm: 'Uzunlıq, kütle ya da sıyımlılıq içün uyğun birlik saylav',
     lt: 'Tinkamų ilgio, masės ar talpos matavimo vienetų pasirinkimas',
     lv: 'Piemērotu garuma, masas vai ietilpības mērvienību izvēle',
@@ -39,6 +40,7 @@ export const chooseAppropriateUnit_Skill_Data = defineSkill({
       'Choose a measurement unit based on the physical quantity, size of the object, and needed precision. The choice must be justified without mixing dimensions or copying a conventional example uncritically.',
     frontend: {
       en: 'You can choose a sensible unit for measuring length, mass, or capacity, based on what you measure and how precise it needs to be.',
+      it: "Puoi scegliere un'unità sensata per misurare lunghezza, massa o capacità in base a ciò che misuri e alla precisione necessaria.",
       qm: 'Ne ölçkeniñge ve qanday doğrulıq kerek olğanına köre uzunlıq, kütle ya da sıyımlılıq içün uyğun ölçü birlikni saylay bilesiñ.',
       zh: '你能根据测量的长度、质量或容量，以及所需精度，选择合适的单位。',
       hi: 'आप क्या माप रहे हैं और कितनी सटीकता चाहिए, इसके अनुसार लंबाई, द्रव्यमान या धारिता की उपयुक्त इकाई चुन सकते हैं।',

@@ -5,6 +5,7 @@ export const reproduceResultsUsingAGenerationSeed_Skill_Data = defineSkill({
   id: 'e28d313e-86fa-45a4-b20f-432f99a12138',
   name: {
     en: 'Reproduce Results Using a Generation Seed',
+    it: 'Riprodurre i risultati con un seme di generazione',
     zh: '用生成种子重现结果',
     hi: 'जनरेशन सीड से परिणाम दोहराना',
     es: 'Reproducir resultados con una semilla de generación',
@@ -39,6 +40,7 @@ export const reproduceResultsUsingAGenerationSeed_Skill_Data = defineSkill({
       'Explain why the same pseudorandom seed, algorithm, parameters, and call order produce identical results. Changing any of these may break reproducibility.',
     frontend: {
       en: 'Understand how a fixed seed and unchanged rules reproduce the same result.',
+      it: 'Comprendi come un seme fisso e regole invariate permettono di riprodurre lo stesso risultato.',
       zh: '理解固定种子和不变规则为何能重现相同结果。',
       hi: 'समझें कि एक ही सीड और अपरिवर्तित नियमों से वही परिणाम कैसे मिलता है।',
       es: 'Comprende cómo una semilla fija y unas reglas sin cambios reproducen el mismo resultado.',

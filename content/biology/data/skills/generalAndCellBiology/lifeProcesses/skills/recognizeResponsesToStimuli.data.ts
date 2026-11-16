@@ -5,6 +5,7 @@ export const recognizeResponsesToStimuli_Skill_Data = defineSkill({
   id: 'c5917777-664d-4800-8efc-7d2db2d4052f',
   name: {
     en: 'Recognize Responses to Stimuli',
+    it: 'Riconoscere le risposte agli stimoli',
     zh: '识别对刺激的反应',
     hi: 'उद्दीपनों के प्रति प्रतिक्रियाएँ पहचानना',
     es: 'Reconocer respuestas a estímulos',
@@ -39,6 +40,7 @@ export const recognizeResponsesToStimuli_Skill_Data = defineSkill({
       'Establish how light, touch, or a chemical signal elicits a change in an organism’s state or movement.',
     frontend: {
       en: 'Recognize how living things respond to light, touch and other signals.',
+      it: 'Riconosci come gli esseri viventi reagiscono alla luce, al contatto e ad altri segnali.',
       zh: '识别生物如何对光、触碰等信号作出反应。',
       hi: 'जानें कि जीव प्रकाश, स्पर्श और अन्य संकेतों के प्रति कैसे प्रतिक्रिया देते हैं।',
       es: 'Reconoce cómo los seres vivos responden a la luz, al contacto y a otras señales.',

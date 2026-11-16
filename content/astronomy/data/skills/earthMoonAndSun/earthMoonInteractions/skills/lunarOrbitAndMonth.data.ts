@@ -5,6 +5,7 @@ export const lunarOrbitAndMonth_Skill_Data = defineSkill({
   id: '96badd43-a7c8-458a-bf67-58d9b9ef202d',
   name: {
     en: 'Lunar Orbit and Month',
+    it: 'Orbita lunare e mese',
     zh: '月球轨道与月份',
     hi: 'चंद्रमा की कक्षा और महीना',
     es: 'Órbita lunar y mes',
@@ -39,6 +40,7 @@ export const lunarOrbitAndMonth_Skill_Data = defineSkill({
       "Distinguish the Moon's orbital cycle from the phase cycle by considering Earth's simultaneous revolution around the Sun.",
     frontend: {
       en: "Compare the Moon's journey around Earth with its repeating cycle of phases.",
+      it: 'Confronta il percorso della Luna attorno alla Terra con il ciclo ricorrente delle sue fasi.',
       zh: '比较月球绕地球运行的周期与月相重复出现的周期。',
       hi: 'चंद्रमा की पृथ्वी के चारों ओर परिक्रमा की तुलना उसकी कलाओं के दोहराने वाले चक्र से करें।',
       es: 'Compara el recorrido de la Luna alrededor de la Tierra con su ciclo repetitivo de fases.',

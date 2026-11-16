@@ -5,6 +5,7 @@ export const traceAPathwayThroughTheRockCycle_Skill_Data = defineSkill({
   id: 'f0323e11-98ba-4846-b6a4-985b26ff4ee0',
   name: {
     en: 'Trace a pathway through the rock cycle',
+    it: 'Ricostruire un percorso nel ciclo delle rocce',
     zh: '追踪岩石循环中的转化路径',
     hi: 'शैल चक्र में परिवर्तन का मार्ग पता लगाना',
     es: 'Seguir una trayectoria a través del ciclo de las rocas',
@@ -39,6 +40,7 @@ export const traceAPathwayThroughTheRockCycle_Skill_Data = defineSkill({
       'Construct a plausible multi-stage change from one rock type to another using weathering, deposition, melting, cooling or metamorphism as applicable; different starting points need not follow one circular order.',
     frontend: {
       en: 'Trace more than one possible path between types of rock.',
+      it: 'Ricostruisci più di un possibile percorso di trasformazione tra tipi di roccia.',
       zh: '追踪不同类型岩石之间不止一种可能的转化路径。',
       hi: 'विभिन्न शैल प्रकारों के बीच परिवर्तन के एक से अधिक संभावित रास्ते खोजें।',
       es: 'Sigue más de una posible vía de transformación entre tipos de roca.',

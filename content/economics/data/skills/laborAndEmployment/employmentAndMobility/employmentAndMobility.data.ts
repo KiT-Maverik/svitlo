@@ -12,6 +12,7 @@ export const employmentAndMobility_SkillGroup_Data = defineSkillGroup({
   id: 'b02d11b1-e6df-413d-ac0b-337df2f8a497',
   name: {
     en: 'Працевлаштування та мобільність',
+    it: 'Occupazione e mobilità',
     zh: '就业与流动',
     hi: 'रोजगार और गतिशीलता',
     es: 'Empleo y movilidad',
@@ -55,6 +56,7 @@ export const employmentAndMobility_SkillGroup_Data = defineSkillGroup({
       'Job searches and occupational changes are constrained by information, location, and qualifications.',
     frontend: {
       en: 'Discover what helps or prevents people from finding or changing jobs.',
+      it: 'Scopri che cosa aiuta o ostacola le persone nel trovare o cambiare lavoro.',
       zh: '发现哪些因素帮助或阻碍人们找到或更换工作。',
       hi: 'जानें कि लोगों को नौकरी खोजने या बदलने में क्या मदद या बाधा बनता है।',
       es: 'Descubre qué ayuda o dificulta encontrar o cambiar de empleo.',

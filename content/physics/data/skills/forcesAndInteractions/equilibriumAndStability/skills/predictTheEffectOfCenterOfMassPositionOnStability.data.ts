@@ -5,6 +5,7 @@ export const predictTheEffectOfCenterOfMassPositionOnStability_Skill_Data = defi
   id: '6213d294-8d95-4def-85e7-2e29d9be0bda',
   name: {
     en: 'Predict the effect of center-of-mass position on stability',
+    it: "Prevedere l'effetto del baricentro sulla stabilità",
     zh: '预测质心位置对稳定性的影响',
     hi: 'द्रव्यमान केंद्र की स्थिति का स्थिरता पर असर अनुमानित करना',
     es: 'Predecir el efecto de la posición del centro de masa en la estabilidad',
@@ -39,6 +40,7 @@ export const predictTheEffectOfCenterOfMassPositionOnStability_Skill_Data = defi
       'The position of the center of mass relative to the support area affects whether a body can overturn under gravity.',
     frontend: {
       en: 'Predict when the center of mass makes an object more likely to tip.',
+      it: 'Prevedi quando la posizione del centro di massa rende un oggetto più incline a ribaltarsi.',
       zh: '预测质心在何种位置时物体更容易倾倒。',
       hi: 'अनुमान लगाएँ कि द्रव्यमान केंद्र की किस स्थिति में वस्तु के पलटने की संभावना बढ़ती है।',
       es: 'Predice cuándo la posición del centro de masa hace que un objeto tenga más probabilidades de volcar.',

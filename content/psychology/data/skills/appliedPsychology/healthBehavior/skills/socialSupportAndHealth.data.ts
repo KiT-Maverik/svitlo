@@ -5,6 +5,7 @@ export const socialSupportAndHealth_Skill_Data = defineSkill({
   id: 'f19f0ef3-fdad-4cc8-a3ad-13b4684860c4',
   name: {
     en: 'Social Support and Health',
+    it: 'Sostegno sociale e salute',
     zh: '社会支持与健康',
     hi: 'सामाजिक सहयोग और स्वास्थ्य',
     es: 'Apoyo social y salud',
@@ -38,6 +39,7 @@ export const socialSupportAndHealth_Skill_Data = defineSkill({
     methodological: 'Analyze how perceived and available support may influence coping and health-related behavior.',
     frontend: {
       en: 'Recognize the different ways social support can affect coping and health behavior.',
+      it: 'Riconosci i diversi modi in cui il sostegno sociale può influire sulla gestione delle difficoltà e sui comportamenti di salute.',
       zh: '认识社会支持影响应对困难和健康行为的不同方式。',
       hi: 'पहचानें कि सामाजिक सहयोग कठिनाइयों से निपटने और स्वास्थ्य व्यवहार को कैसे प्रभावित करता है।',
       es: 'Reconoce las distintas maneras en que el apoyo social influye en el afrontamiento y las conductas de salud.',

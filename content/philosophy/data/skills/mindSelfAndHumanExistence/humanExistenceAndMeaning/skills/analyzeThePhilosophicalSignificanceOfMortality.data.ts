@@ -5,6 +5,7 @@ export const analyzeThePhilosophicalSignificanceOfMortality_Skill_Data = defineS
   id: 'b46f4844-846f-4410-ba19-fc840fa3664e',
   name: {
     en: 'Analyze the philosophical significance of mortality',
+    it: 'Analizzare il significato filosofico della mortalità',
     zh: '分析死亡必然性的哲学意义',
     hi: 'मरणशीलता के दार्शनिक महत्व का विश्लेषण',
     es: 'Analizar la importancia filosófica de la mortalidad',
@@ -39,6 +40,7 @@ export const analyzeThePhilosophicalSignificanceOfMortality_Skill_Data = defineS
       "Examine how finitude affects arguments about priorities and meaning rather than making predictions about an individual's emotional response.",
     frontend: {
       en: "Reflect on how human mortality can shape arguments about life's priorities.",
+      it: 'Rifletti su come la mortalità umana possa influenzare i ragionamenti sulle priorità della vita.',
       zh: '思考人类必然死亡这一事实如何影响对人生优先事项的讨论。',
       hi: 'विचार करें कि मनुष्य की मृत्युशीलता जीवन की प्राथमिकताओं पर तर्कों को कैसे प्रभावित करती है।',
       es: 'Reflexiona sobre cómo la mortalidad humana influye en los argumentos sobre las prioridades de la vida.',

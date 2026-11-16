@@ -12,6 +12,7 @@ export const productionFlow_SkillGroup_Data = defineSkillGroup({
   id: '977b1b83-60b2-4ef9-ab30-0d18726d0587',
   name: {
     en: 'Production Flow',
+    it: 'Flusso produttivo',
     zh: '生产流程',
     hi: 'उत्पादन प्रवाह',
     es: 'Flujo de producción',
@@ -60,6 +61,7 @@ export const productionFlow_SkillGroup_Data = defineSkillGroup({
       'Repeated manufacture introduces throughput limits and choices between flexible batches and continuous processes.',
     frontend: {
       en: 'Explore how resources and components move through production.',
+      it: 'Esplora come risorse e componenti si spostano attraverso il processo produttivo.',
       zh: '探索资源和零部件如何在生产过程中流转。',
       hi: 'जानें कि संसाधन और घटक उत्पादन के चरणों में कैसे आगे बढ़ते हैं।',
       es: 'Explora cómo se desplazan los recursos y componentes a través de la producción.',

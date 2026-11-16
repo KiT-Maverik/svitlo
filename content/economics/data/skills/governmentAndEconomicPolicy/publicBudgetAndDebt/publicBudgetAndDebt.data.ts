@@ -11,6 +11,7 @@ export const publicBudgetAndDebt_SkillGroup_Data = defineSkillGroup({
   id: '8a0568e7-420a-4ae1-a410-64489d73faf6',
   name: {
     en: 'Бюджет та борг',
+    it: 'Bilancio pubblico e debito',
     zh: '公共预算与债务',
     hi: 'सार्वजनिक बजट और ऋण',
     es: 'Presupuesto público y deuda',
@@ -53,6 +54,7 @@ export const publicBudgetAndDebt_SkillGroup_Data = defineSkillGroup({
       'Government revenue and spending occur over time; deficits create future obligations and opportunity costs.',
     frontend: {
       en: 'Discover how public budgets, deficits, and debt are connected.',
+      it: 'Scopri come sono collegati bilanci pubblici, disavanzi e debito.',
       zh: '了解公共预算、财政赤字和政府债务之间的联系。',
       hi: 'समझें कि सरकारी बजट, घाटा और सार्वजनिक ऋण कैसे जुड़े हैं।',
       es: 'Descubre cómo se relacionan presupuestos públicos, déficits y deuda.',

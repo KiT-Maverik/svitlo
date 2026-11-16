@@ -5,6 +5,7 @@ export const industrialEmissionsControl_Skill_Data = defineSkill({
   id: 'dfd70b0b-31c9-4af6-b4b0-2071c0df2d4d',
   name: {
     en: 'Industrial emissions control',
+    it: 'Controllo delle emissioni industriali',
     zh: '工业排放控制',
     hi: 'औद्योगिक उत्सर्जन नियंत्रण',
     es: 'Control de emisiones industriales',
@@ -39,6 +40,7 @@ export const industrialEmissionsControl_Skill_Data = defineSkill({
       'Identify capture and treatment stages intended to reduce selected pollutants before a process stream is released.',
     frontend: {
       en: 'Identify equipment used to control emissions from industrial processes.',
+      it: 'Individua le apparecchiature utilizzate per controllare le emissioni dei processi industriali.',
       zh: '识别用于控制工业生产过程排放的设备。',
       hi: 'औद्योगिक प्रक्रियाओं से उत्सर्जन नियंत्रित करने वाले उपकरण पहचानें।',
       es: 'Identifica equipos que controlan emisiones de procesos industriales.',

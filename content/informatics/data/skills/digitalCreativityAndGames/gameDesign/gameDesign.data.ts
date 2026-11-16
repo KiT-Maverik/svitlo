@@ -11,6 +11,7 @@ export const gameDesign_SkillGroup_Data = defineSkillGroup({
   id: '2d72fb63-9d5e-495b-8db5-530419a07175',
   name: {
     en: 'Game Design',
+    it: 'Progettazione di videogiochi',
     zh: '游戏设计',
     hi: 'गेम डिज़ाइन',
     es: 'Diseño de juegos',
@@ -53,6 +54,7 @@ export const gameDesign_SkillGroup_Data = defineSkillGroup({
       'Define game rules, create mechanics, and evaluate their effects on gameplay. Describing a rule, implementing it as interaction, and testing balance are related but independently assessable.',
     frontend: {
       en: 'Explore how rules and player actions shape the experience of a game.',
+      it: "Esplora come le regole e le azioni del giocatore determinano l'esperienza di gioco.",
       zh: '探索规则和玩家行为如何影响游戏体验。',
       hi: 'जानें कि नियम और खिलाड़ियों की क्रियाएँ खेल का अनुभव कैसे बदलती हैं।',
       es: 'Explora cómo las reglas y las acciones de los jugadores moldean la experiencia de juego.',

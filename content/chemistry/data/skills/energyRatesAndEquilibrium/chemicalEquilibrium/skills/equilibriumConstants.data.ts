@@ -5,6 +5,7 @@ export const equilibriumConstants_Skill_Data = defineSkill({
   id: 'da2b6a56-9b54-4022-a6e4-a98d18b55139',
   name: {
     en: 'Equilibrium Constants',
+    it: 'Costanti di equilibrio',
     zh: '平衡常数',
     hi: 'साम्य स्थिरांक',
     es: 'Constantes de equilibrio',
@@ -39,6 +40,7 @@ export const equilibriumConstants_Skill_Data = defineSkill({
       'Interpret an equilibrium expression as relating activities or their appropriate approximations at a given temperature.',
     frontend: {
       en: 'Read an equilibrium constant as a relationship between reacting substances.',
+      it: 'Interpreta una costante di equilibrio come relazione tra le sostanze coinvolte nella reazione.',
       zh: '将平衡常数理解为参与反应物质之间的关系。',
       hi: 'साम्य स्थिरांक को अभिक्रिया में शामिल पदार्थों के संबंध के रूप में समझें।',
       es: 'Interpreta una constante de equilibrio como una relación entre las sustancias implicadas.',

@@ -5,6 +5,7 @@ export const correlationAndCausation_Skill_Data = defineSkill({
   id: 'f5fc044c-3820-4941-ba9d-c2f715ad47dd',
   name: {
     en: 'Кореляція і причинність',
+    it: 'Correlazione e causalità',
     zh: '相关性与因果性',
     hi: 'सहसंबंध और कारणता',
     es: 'Correlación y causalidad',
@@ -39,6 +40,7 @@ export const correlationAndCausation_Skill_Data = defineSkill({
       'Distinguish variables changing together from evidence supporting the causal effect of an intervention or changed factor.',
     frontend: {
       en: 'Explain why two trends moving together does not prove one caused the other.',
+      it: "Spiega perché due tendenze che si muovono insieme non dimostrano che una causi l'altra.",
       zh: '解释为什么两个趋势同时变化，并不能证明一个导致另一个。',
       hi: 'समझाएँ कि दो रुझान साथ बदलने से एक के दूसरे का कारण होने का प्रमाण क्यों नहीं मिलता।',
       es: 'Explica por qué dos tendencias que cambian juntas no prueban que una cause la otra.',

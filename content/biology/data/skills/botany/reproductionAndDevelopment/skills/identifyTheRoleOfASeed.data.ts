@@ -5,6 +5,7 @@ export const identifyTheRoleOfASeed_Skill_Data = defineSkill({
   id: '4563391d-fa54-4096-a8f4-871c31b5f460',
   name: {
     en: 'Identify the Role of a Seed',
+    it: 'Individuare il ruolo di un seme',
     zh: '识别种子的作用',
     hi: 'बीज की भूमिका पहचानना',
     es: 'Identificar la función de una semilla',
@@ -38,6 +39,7 @@ export const identifyTheRoleOfASeed_Skill_Data = defineSkill({
     methodological: 'Understand that a seed contains an embryo and a store or source of nutrients for initial growth.',
     frontend: {
       en: "Explore how a seed supports the first stage of a new plant's growth.",
+      it: 'Scopri come un seme sostiene la prima fase di crescita di una nuova pianta.',
       zh: '探索种子如何支持新植物初期的生长。',
       hi: 'जानें कि बीज नए पौधे की शुरुआती वृद्धि में कैसे सहायता करता है।',
       es: 'Explora cómo una semilla sostiene la primera etapa de crecimiento de una nueva planta.',

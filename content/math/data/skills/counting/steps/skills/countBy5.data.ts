@@ -5,6 +5,7 @@ export const countBy5_Skill_Data = defineSkill({
   id: '422c0a18-53eb-43fb-a816-ba38a9567894',
   name: {
     en: 'Counting in steps of 5',
+    it: 'Contare a passi di 5',
     qm: 'Beşerlep saymaq',
     lt: 'Skaičiavimas po penkis',
     lv: 'Skaitīšana ar soli 5',
@@ -39,6 +40,7 @@ export const countBy5_Skill_Data = defineSkill({
       'Counting by fives is repeated addition of equal groups containing five elements. The number of groups and total elements are related independently of visual representation.',
     frontend: {
       en: 'Add five at each step to count equal groups of five and find their total.',
+      it: 'Aggiungi cinque a ogni passo per contare gruppi uguali di cinque e trovarne il totale.',
       qm: 'Er adımda beş qoşaraq beşer eşyadan ibaret teñ toparlarnı say ve olarnıñ umumiy sayısını tap.',
       zh: '每次加5，数一数每组五个的物品一共有多少个。',
       hi: 'हर कदम पर पाँच जोड़कर पाँच-पाँच वस्तुओं के बराबर समूहों की कुल संख्या निकालें।',

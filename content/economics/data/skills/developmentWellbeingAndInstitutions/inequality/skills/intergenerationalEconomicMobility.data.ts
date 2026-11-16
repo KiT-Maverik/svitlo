@@ -5,6 +5,7 @@ export const intergenerationalEconomicMobility_Skill_Data = defineSkill({
   id: '429aca25-d04e-424c-839a-a6e440ce8b3e',
   name: {
     en: 'Міжпоколінна економічна мобільність',
+    it: 'Mobilità economica intergenerazionale',
     zh: '代际经济流动性',
     hi: 'पीढ़ियों के बीच आर्थिक गतिशीलता',
     es: 'Movilidad económica intergeneracional',
@@ -39,6 +40,7 @@ export const intergenerationalEconomicMobility_Skill_Data = defineSkill({
       "Evaluate the relationship between parents' economic position and the opportunities available to the next generation.",
     frontend: {
       en: 'Explore how family circumstances can shape future opportunities.',
+      it: 'Esplora come le condizioni familiari possano influenzare le opportunità future.',
       zh: '探索家庭背景如何影响下一代的机会。',
       hi: 'जानें कि पारिवारिक परिस्थितियाँ भविष्य के अवसर कैसे प्रभावित करती हैं।',
       es: 'Explora cómo las circunstancias familiares influyen en las oportunidades futuras.',

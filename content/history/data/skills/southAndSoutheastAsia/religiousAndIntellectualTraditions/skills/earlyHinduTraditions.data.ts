@@ -5,6 +5,7 @@ export const earlyHinduTraditions_Skill_Data = defineSkill({
   id: '0cc39976-d667-4b4b-a105-9763ff2ea7ff',
   name: {
     en: 'Early Hindu Traditions',
+    it: 'Prime tradizioni induiste',
     zh: '早期印度教传统',
     hi: 'प्रारंभिक हिंदू परंपराएँ',
     es: 'Primeras tradiciones hindúes',
@@ -38,6 +39,7 @@ export const earlyHinduTraditions_Skill_Data = defineSkill({
     methodological: 'Trace changing Vedic rituals, philosophy, and practices without inventing one founder.',
     frontend: {
       en: 'Learn how different traditions contributed to early Hinduism.',
+      it: "Scopri come diverse tradizioni contribuirono alla formazione dell'induismo antico.",
       zh: '了解不同传统如何促成早期印度教的发展。',
       hi: 'जानें कि विभिन्न परंपराओं ने प्रारंभिक हिंदू धर्म को कैसे आकार दिया।',
       es: 'Aprende cómo distintas tradiciones contribuyeron al hinduismo temprano.',

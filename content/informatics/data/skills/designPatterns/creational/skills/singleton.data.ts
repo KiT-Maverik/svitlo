@@ -5,6 +5,7 @@ export const singleton_Skill_Data = defineSkill({
   id: '75b52db2-e571-4fae-89ef-02bf9e4141c2',
   name: {
     en: 'Singleton',
+    it: 'Singleton',
     zh: '单例模式',
     hi: 'सिंगलटन',
     es: 'Instancia única',
@@ -39,6 +40,7 @@ export const singleton_Skill_Data = defineSkill({
       'Maintain one shared instance within a defined scope and control access to it while recognizing the risks of hidden global state.',
     frontend: {
       en: 'Control access to a single shared instance while considering global-state risks.',
+      it: "Controlla l'accesso a un'unica istanza condivisa, considerando i rischi dello stato globale.",
       zh: '控制对唯一共享实例的访问，同时考虑全局状态的风险。',
       hi: 'वैश्विक अवस्था के जोखिम समझते हुए एक साझा इंस्टेंस तक पहुँच नियंत्रित करें।',
       es: 'Controla el acceso a una única instancia compartida considerando los riesgos del estado global.',

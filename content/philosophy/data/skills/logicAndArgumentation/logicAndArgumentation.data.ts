@@ -12,6 +12,7 @@ export const logicAndArgumentation_SkillDomain_Data = defineSkillDomain({
   id: 'ad30ef0a-43a4-449a-9b2f-c37e41b7d5a4',
   title: {
     en: 'Logic and Argumentation',
+    it: 'Logica e argomentazione',
     zh: '逻辑与论证',
     hi: 'तर्कशास्त्र और युक्तिवाद',
     es: 'Lógica y argumentación',
@@ -64,6 +65,7 @@ export const logicAndArgumentation_SkillDomain_Data = defineSkillDomain({
       'The central question is whether reasons support a conclusion and in what way. Formal entailment, defeasible inference, and argumentative defects are distinguished from psychological causes of belief, which belong chiefly to Psychology.',
     frontend: {
       en: 'Learn to evaluate whether reasons support a conclusion and recognize faulty reasoning.',
+      it: 'Impara a valutare se le ragioni addotte sostengono una conclusione e a riconoscere i ragionamenti fallaci.',
       zh: '学习评价理由是否支持结论，并识别有缺陷的推理。',
       hi: 'जानें कि कारण किसी निष्कर्ष का समर्थन करते हैं या नहीं और त्रुटिपूर्ण तर्क को कैसे पहचानें।',
       es: 'Aprende a evaluar si las razones respaldan una conclusión y a reconocer razonamientos defectuosos.',

@@ -5,6 +5,7 @@ export const greekPolis_Skill_Data = defineSkill({
   id: 'c5e647a5-8e3e-42e4-b642-0fe49293d96c',
   name: {
     en: 'Greek Polis',
+    it: 'Polis greca',
     zh: '城邦',
     hi: 'यूनानी नगर-राज्य (पोलिस)',
     es: 'Polis griega',
@@ -39,6 +40,7 @@ export const greekPolis_Skill_Data = defineSkill({
       'Relate civic community, surrounding land, institutions, and citizenship in the ancient Greek world.',
     frontend: {
       en: 'Understand the city-state as a community and political institution.',
+      it: 'Comprendi la città-Stato come comunità e istituzione politica.',
       zh: '认识城邦既是共同体，也是政治制度。',
       hi: 'नगर-राज्य को एक समुदाय और राजनीतिक संस्था दोनों के रूप में समझें।',
       es: 'Comprende la ciudad-Estado como comunidad e institución política.',

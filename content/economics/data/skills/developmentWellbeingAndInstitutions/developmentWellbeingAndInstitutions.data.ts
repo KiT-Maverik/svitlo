@@ -10,6 +10,7 @@ export const developmentWellbeingAndInstitutions_SkillDomain_Data = defineSkillD
   id: '059fa85a-a9f1-4b2b-9c90-9ed6280133c5',
   title: {
     en: 'Розвиток, добробут та інституції',
+    it: 'Sviluppo, benessere e istituzioni',
     zh: '发展、福祉与制度',
     hi: 'विकास, कल्याण और संस्थाएँ',
     es: 'Desarrollo, bienestar e instituciones',
@@ -53,6 +54,7 @@ export const developmentWellbeingAndInstitutions_SkillDomain_Data = defineSkillD
       "Long-term differences between countries and population groups arise from productivity, distribution of resources, and rules of social interaction. Growth does not necessarily improve everyone's living conditions equally.",
     frontend: {
       en: 'Explore why wealth, opportunities, and quality of life differ across societies.',
+      it: 'Esplora perché ricchezza, opportunità e qualità della vita differiscono tra società.',
       zh: '探索不同社会的财富、机会和生活质量为何存在差异。',
       hi: 'जानें कि समाजों में संपत्ति, अवसर और जीवन की गुणवत्ता अलग क्यों होती है।',
       es: 'Explora por qué la riqueza, las oportunidades y la calidad de vida varían entre sociedades.',

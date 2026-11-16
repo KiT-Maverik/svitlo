@@ -5,6 +5,7 @@ export const specifyPromptConstraints_Skill_Data = defineSkill({
   id: 'c3fe58c1-9d38-4457-9f4b-0238f2bf5918',
   name: {
     en: 'Specify Prompt Constraints',
+    it: 'Specificare i vincoli di un prompt',
     zh: '指定提示词的限制条件',
     hi: 'प्रॉम्प्ट की सीमाएँ तय करना',
     es: 'Definir restricciones del prompt',
@@ -39,6 +40,7 @@ export const specifyPromptConstraints_Skill_Data = defineSkill({
       'Define the boundaries of acceptable output, such as permitted sources, length, exclusions, or a prohibition on inventing missing data. Unlike the objective, constraints define which responses are not acceptable.',
     frontend: {
       en: 'Specify boundaries such as length, sources and information that must not be invented.',
+      it: 'Specifica limiti come lunghezza, fonti e informazioni che non devono essere inventate.',
       zh: '说明篇幅、来源以及不得编造的信息等边界。',
       hi: 'लंबाई, स्रोत और ऐसी जानकारी जैसी सीमाएँ बताएँ जिन्हें गढ़ा नहीं जाना चाहिए।',
       es: 'Especifica límites como extensión, fuentes e información que no debe inventarse.',

@@ -5,6 +5,7 @@ export const testingMarketDemand_Skill_Data = defineSkill({
   id: '1b2c3b7f-8410-4c9f-9ab1-ec451cf4eccb',
   name: {
     en: 'Перевірка ринкового попиту',
+    it: 'Verifica della domanda di mercato',
     zh: '检验市场需求',
     hi: 'बाज़ार की माँग जाँचना',
     es: 'Comprobación de demanda del mercado',
@@ -39,6 +40,7 @@ export const testingMarketDemand_Skill_Data = defineSkill({
       'Select evidence of willingness to purchase, distinguishing expressed interest from actual buying behavior.',
     frontend: {
       en: 'Find out whether people will really buy a proposed product.',
+      it: 'Scopri se le persone acquisterebbero davvero un prodotto proposto.',
       zh: '找出人们是否真的愿意购买拟推出的产品。',
       hi: 'पता लगाएँ कि लोग प्रस्तावित उत्पाद वास्तव में खरीदेंगे या नहीं।',
       es: 'Averigua si las personas comprarían realmente un producto propuesto.',

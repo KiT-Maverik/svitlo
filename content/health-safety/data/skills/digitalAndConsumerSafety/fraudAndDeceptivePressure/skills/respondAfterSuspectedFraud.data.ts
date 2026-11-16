@@ -5,6 +5,7 @@ export const respondAfterSuspectedFraud_Skill_Data = defineSkill({
   id: 'e65eeb0b-3f2a-4405-a83c-a4ebf5e8530d',
   name: {
     en: 'Respond after suspected fraud',
+    it: 'Reagire a una sospetta frode',
     zh: '疑似被骗后的应对',
     hi: 'धोखाधड़ी के संदेह के बाद कदम',
     es: 'Responder tras una posible estafa',
@@ -39,6 +40,7 @@ export const respondAfterSuspectedFraud_Skill_Data = defineSkill({
       'Stop further interaction, secure affected access, preserve relevant evidence safely, and contact appropriate providers or authorities.',
     frontend: {
       en: 'Secure your accounts and seek appropriate help after suspected fraud.',
+      it: 'Proteggi i tuoi account e cerca aiuto adeguato se sospetti una frode.',
       zh: '怀疑遭遇诈骗后保护账户并寻求适当帮助。',
       hi: 'ठगी का शक होने पर अपने खाते सुरक्षित करो और उचित सहायता माँगो।',
       es: 'Protege tus cuentas y busca ayuda adecuada si sospechas fraude.',

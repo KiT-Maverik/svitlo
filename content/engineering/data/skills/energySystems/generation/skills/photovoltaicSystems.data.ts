@@ -5,6 +5,7 @@ export const photovoltaicSystems_Skill_Data = defineSkill({
   id: '23cef1a5-1e2d-4037-ae14-c4a7f17c1078',
   name: {
     en: 'Photovoltaic systems',
+    it: 'Sistemi fotovoltaici',
     zh: '光伏系统',
     hi: 'प्रकाश-वोल्टीय प्रणालियाँ',
     es: 'Sistemas fotovoltaicos',
@@ -38,6 +39,7 @@ export const photovoltaicSystems_Skill_Data = defineSkill({
     methodological: 'Identify modules and power electronics used to produce usable electricity from sunlight.',
     frontend: {
       en: 'Explain how solar cells convert incident light into electricity.',
+      it: 'Spiega come le celle solari trasformano la luce incidente in energia elettrica.',
       zh: '解释太阳能电池如何把照射到的光转换为电能。',
       hi: 'समझाएँ कि सौर कोशिकाएँ पड़ने वाली रोशनी को बिजली में कैसे बदलती हैं।',
       es: 'Explica cómo las células solares convierten la luz incidente en electricidad.',

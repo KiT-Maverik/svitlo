@@ -5,6 +5,7 @@ export const interpretTheMovementOfAirMassesAndFronts_Skill_Data = defineSkill({
   id: 'bffaf95e-0987-4022-9c6d-204bccfc9489',
   name: {
     en: 'Interpret the movement of air masses and fronts',
+    it: "Interpretare lo spostamento delle masse d'aria e dei fronti",
     zh: '解读气团与锋面的移动',
     hi: 'वायु राशियों और वाताग्रों की गति समझना',
     es: 'Interpretar el movimiento de masas de aire y frentes',
@@ -39,6 +40,7 @@ export const interpretTheMovementOfAirMassesAndFronts_Skill_Data = defineSkill({
       'Relate contrasting air-mass properties and their boundaries to changing conditions across a region, using maps or descriptions without assuming every front guarantees the same weather.',
     frontend: {
       en: 'Recognize how moving air masses and fronts can change regional weather.',
+      it: "Riconosci come lo spostamento delle masse d'aria e dei fronti può modificare il tempo in una regione.",
       zh: '认识移动的气团和锋面如何改变地区天气。',
       hi: 'जानें कि चलती वायु राशियाँ और वाताग्र क्षेत्रीय मौसम कैसे बदलते हैं।',
       es: 'Reconoce cómo las masas de aire y los frentes móviles cambian el tiempo regional.',

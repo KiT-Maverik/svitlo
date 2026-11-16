@@ -5,6 +5,7 @@ export const zhouDynasty_Skill_Data = defineSkill({
   id: 'cad57066-0756-41ad-ae58-f8c1b809dce5',
   name: {
     en: 'Zhou Dynasty',
+    it: 'Dinastia Zhou',
     zh: '周朝',
     hi: 'झोउ राजवंश',
     es: 'Dinastía Zhou',
@@ -38,6 +39,7 @@ export const zhouDynasty_Skill_Data = defineSkill({
     methodological: "Trace political changes and the idea of Heaven's Mandate between Zhou rulers and regional elites.",
     frontend: {
       en: 'Explore how Zhou rulers explained and shared authority.',
+      it: "Esplora come i sovrani Zhou giustificavano e condividevano l'autorità.",
       zh: '探索周朝统治者如何解释权力的来源并分配权力。',
       hi: 'जानें कि झोउ शासकों ने सत्ता को कैसे उचित ठहराया और बाँटा।',
       es: 'Explora cómo los gobernantes Zhou justificaban y compartían la autoridad.',

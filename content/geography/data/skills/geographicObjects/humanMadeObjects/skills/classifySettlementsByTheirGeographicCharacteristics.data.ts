@@ -5,6 +5,7 @@ export const classifySettlementsByTheirGeographicCharacteristics_Skill_Data = de
   id: 'c7a4b04b-29ed-4a90-886a-40937cce844e',
   name: {
     en: 'Classify settlements by their geographic characteristics',
+    it: 'Classificare gli insediamenti in base alle caratteristiche geografiche',
     zh: '按地理特征分类聚落',
     hi: 'भौगोलिक विशेषताओं के आधार पर बस्तियों का वर्गीकरण',
     es: 'Clasificar asentamientos según sus características geográficas',
@@ -39,6 +40,7 @@ export const classifySettlementsByTheirGeographicCharacteristics_Skill_Data = de
       'Distinguish categories such as villages, towns and cities using available attributes, explicitly noting that legal and population thresholds differ between countries.',
     frontend: {
       en: 'Compare types of settlements while accounting for different national definitions.',
+      it: 'Confronta i tipi di insediamento tenendo conto delle diverse definizioni nazionali.',
       zh: '比较不同类型的聚落，同时考虑各国定义可能不同。',
       hi: 'अलग-अलग देशों की परिभाषाओं को ध्यान में रखकर बस्तियों के प्रकारों की तुलना करें।',
       es: 'Compara tipos de asentamientos considerando que las definiciones nacionales pueden variar.',

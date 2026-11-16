@@ -9,6 +9,7 @@ export const digitalCreativityAndGames_SkillDomain_Data = defineSkillDomain({
   id: '0858c7b1-018e-4f2c-91e4-05dd53a4fb4a',
   title: {
     en: 'Digital Creativity and Games',
+    it: 'Creatività digitale e giochi',
     zh: '数字创意与游戏',
     hi: 'डिजिटल रचनात्मकता और खेल',
     es: 'Creatividad digital y juegos',
@@ -51,6 +52,7 @@ export const digitalCreativityAndGames_SkillDomain_Data = defineSkillDomain({
       'Creating and editing digital content, game mechanics and rules, and procedural generation of resources. Digital product UX has its own domain, while the use of musical or engineering learning tools does not in itself create Informatics skills.',
     frontend: {
       en: 'Create digital media, design playable rules and explore procedural generation.',
+      it: 'Crea contenuti digitali, progetta regole di gioco e scopri la generazione procedurale.',
       zh: '创作数字媒体、设计可玩的规则，并探索程序化生成。',
       hi: 'डिजिटल मीडिया बनाएँ, खेलने योग्य नियम डिज़ाइन करें और प्रक्रियात्मक सृजन का अन्वेषण करें।',
       es: 'Crea contenidos digitales, diseña reglas de juego y explora la generación procedimental.',

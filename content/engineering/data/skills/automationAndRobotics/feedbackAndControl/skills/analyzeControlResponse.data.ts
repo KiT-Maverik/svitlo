@@ -5,6 +5,7 @@ export const analyzeControlResponse_Skill_Data = defineSkill({
   id: '86d0182f-60cb-4f89-a9ca-f1c51f847f53',
   name: {
     en: 'Analyze control response',
+    it: 'Analizzare la risposta del sistema di controllo',
     zh: '分析控制响应',
     hi: 'नियंत्रण प्रतिक्रिया का विश्लेषण',
     es: 'Analizar la respuesta del control',
@@ -38,6 +39,7 @@ export const analyzeControlResponse_Skill_Data = defineSkill({
     methodological: 'Identify overshoot, steady error, oscillation or excessive delay in observed behavior.',
     frontend: {
       en: 'Interpret how a control system responds over time to a change.',
+      it: 'Interpreta come un sistema di controllo reagisce nel tempo a un cambiamento.',
       zh: '解释控制系统如何随时间响应变化。',
       hi: 'समझें कि परिवर्तन के बाद नियंत्रण प्रणाली समय के साथ कैसे प्रतिक्रिया करती है।',
       es: 'Interpreta cómo responde un sistema de control a un cambio a lo largo del tiempo.',

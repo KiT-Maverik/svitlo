@@ -5,6 +5,7 @@ export const compareDevelopmentWithAndWithoutMetamorphosis_Skill_Data = defineSk
   id: '8ca2ea87-fb7c-439c-886e-b6972c8db18b',
   name: {
     en: 'Compare Development With and Without Metamorphosis',
+    it: 'Confrontare lo sviluppo con e senza metamorfosi',
     zh: '比较变态发育与非变态发育',
     hi: 'कायांतरण के साथ और बिना विकास की तुलना करना',
     es: 'Comparar el desarrollo con y sin metamorfosis',
@@ -39,6 +40,7 @@ export const compareDevelopmentWithAndWithoutMetamorphosis_Skill_Data = defineSk
       'Compare life cycles involving radical structural change with cycles in which young individuals resemble adults.',
     frontend: {
       en: 'Compare animals that change form during development with those that do not.',
+      it: 'Confronta gli animali che cambiano forma durante lo sviluppo con quelli che non lo fanno.',
       zh: '比较发育过程中形态发生变化的动物和形态不发生明显变化的动物。',
       hi: 'उन प्राणियों की तुलना करें जिनका रूप विकास के दौरान बदलता है, उनसे जिनका रूप नहीं बदलता।',
       es: 'Compara los animales que cambian de forma durante su desarrollo con los que no lo hacen.',

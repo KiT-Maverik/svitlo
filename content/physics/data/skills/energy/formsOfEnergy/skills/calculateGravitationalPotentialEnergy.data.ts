@@ -5,6 +5,7 @@ export const calculateGravitationalPotentialEnergy_Skill_Data = defineSkill({
   id: '44abbee0-6cd7-4044-9a2b-47d9b1d9832e',
   name: {
     en: 'Calculate gravitational potential energy',
+    it: "Calcolare l'energia potenziale gravitazionale",
     zh: '计算重力势能',
     hi: 'गुरुत्वीय स्थितिज ऊर्जा की गणना करना',
     es: 'Calcular la energía potencial gravitatoria',
@@ -39,6 +40,7 @@ export const calculateGravitationalPotentialEnergy_Skill_Data = defineSkill({
       "Determine the change in a body's gravitational potential energy near Earth's surface from its mass, gravitational acceleration, and change in height, correctly accounting for the chosen reference level and units. This calculation assumes an approximately uniform gravitational field and differs from calculating elastic potential energy.",
     frontend: {
       en: 'Calculate changes in gravitational potential energy from mass, gravity and height.',
+      it: 'Calcola le variazioni di energia potenziale gravitazionale usando massa, gravità e altezza.',
       zh: '根据质量、重力加速度和高度变化计算重力势能的变化。',
       hi: 'द्रव्यमान, गुरुत्वीय त्वरण और ऊँचाई से गुरुत्वीय स्थितिज ऊर्जा का परिवर्तन निकालें।',
       es: 'Calcula cambios de energía potencial gravitatoria usando masa, gravedad y altura.',

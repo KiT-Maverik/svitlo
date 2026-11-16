@@ -5,6 +5,7 @@ export const chemicalIncidentProtection_Skill_Data = defineSkill({
   id: 'e4f7969b-0328-406a-85ee-b0decf750b79',
   name: {
     en: 'Chemical incident protection',
+    it: 'Proteggersi durante un incidente chimico',
     zh: '化学事故防护',
     hi: 'रासायनिक दुर्घटना में सुरक्षा',
     es: 'Protección ante incidentes químicos',
@@ -39,6 +40,7 @@ export const chemicalIncidentProtection_Skill_Data = defineSkill({
       'Follow authoritative shelter or evacuation directions and avoid direct exposure or self-directed decontamination beyond safe guidance.',
     frontend: {
       en: 'Follow verified protective instructions during a chemical release.',
+      it: 'Segui indicazioni di protezione verificate durante un rilascio di sostanze chimiche.',
       zh: '化学物质泄漏时遵循经过核实的防护指示。',
       hi: 'रासायनिक रिसाव के समय सत्यापित सुरक्षा निर्देशों का पालन करें।',
       es: 'Sigue instrucciones de protección verificadas durante una fuga química.',

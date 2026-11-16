@@ -5,6 +5,7 @@ export const respondToOffersOfHarmfulSubstances_Skill_Data = defineSkill({
   id: 'd134cb4d-288e-40f7-ad7e-96b755810eb2',
   name: {
     en: 'Respond to offers of harmful substances',
+    it: 'Reagire alle offerte di sostanze nocive',
     zh: '应对有害物质的邀约',
     hi: 'हानिकारक पदार्थों के प्रस्ताव पर प्रतिक्रिया दें',
     es: 'Responder a ofrecimientos de sustancias perjudiciales',
@@ -38,6 +39,7 @@ export const respondToOffersOfHarmfulSubstances_Skill_Data = defineSkill({
     methodological: 'Use refusal and exit strategies appropriate to pressure, power dynamics, and immediate safety.',
     frontend: {
       en: 'Use safe refusal and exit strategies when offered harmful substances.',
+      it: 'Usa strategie sicure per rifiutare e allontanarti quando ti vengono offerte sostanze nocive.',
       zh: '有人提供有害物质时，使用安全的拒绝和离开策略。',
       hi: 'नुकसानदेह पदार्थ दिए जाने पर सुरक्षित इंकार और वहाँ से हटने के तरीके अपनाएँ।',
       es: 'Usa estrategias seguras para rechazar y alejarte cuando te ofrezcan sustancias nocivas.',

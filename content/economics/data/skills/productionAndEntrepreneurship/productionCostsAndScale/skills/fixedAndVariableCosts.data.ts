@@ -5,6 +5,7 @@ export const fixedAndVariableCosts_Skill_Data = defineSkill({
   id: '618c4c43-306e-48bd-b444-0ddc2412be9c',
   name: {
     en: 'Fixed and Variable Costs',
+    it: 'Costi fissi e variabili',
     zh: '固定成本与可变成本',
     hi: 'स्थिर और परिवर्तनीय लागत',
     es: 'Costos fijos y variables',
@@ -39,6 +40,7 @@ export const fixedAndVariableCosts_Skill_Data = defineSkill({
       'Distinguish costs that do not depend on output over a stated time horizon from those that vary with production.',
     frontend: {
       en: 'Tell the difference between costs that stay fixed and those that rise with output.',
+      it: 'Distingui i costi che rimangono fissi da quelli che aumentano con la produzione.',
       zh: '区分保持不变的成本和随产量增加的成本。',
       hi: 'स्थिर रहने वाली और उत्पादन बढ़ने पर बढ़ने वाली लागत में अंतर करें।',
       es: 'Distingue costos constantes y costos que aumentan con la producción.',

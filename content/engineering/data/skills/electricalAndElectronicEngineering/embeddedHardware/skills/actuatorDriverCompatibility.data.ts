@@ -5,6 +5,7 @@ export const actuatorDriverCompatibility_Skill_Data = defineSkill({
   id: '096f69e5-265e-4448-b444-40a99825cd04',
   name: {
     en: 'Actuator-driver compatibility',
+    it: 'Compatibilità tra attuatore e circuito di pilotaggio',
     zh: '执行器驱动兼容性',
     hi: 'प्रवर्तक चालक अनुकूलता',
     es: 'Compatibilidad de controladores de actuadores',
@@ -39,6 +40,7 @@ export const actuatorDriverCompatibility_Skill_Data = defineSkill({
       'Determine whether voltage, current, protection and command characteristics suit the drive and the expected actuator load.',
     frontend: {
       en: 'Recognize when an actuator needs a suitable driver circuit.',
+      it: 'Riconosci quando un attuatore richiede un circuito di pilotaggio adatto.',
       zh: '识别何时执行器需要合适的驱动电路。',
       hi: 'पहचानें कि प्रवर्तक को उचित चालक परिपथ कब चाहिए।',
       es: 'Reconoce cuándo un actuador necesita un circuito controlador adecuado.',

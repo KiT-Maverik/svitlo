@@ -5,6 +5,7 @@ export const ancientNorthernEuropeanEconomies_Skill_Data = defineSkill({
   id: '7a22b2d7-b5cc-4bdd-af62-1d5e72f663b8',
   name: {
     en: 'Ancient Northern European Economies',
+    it: "Economie antiche dell'Europa settentrionale",
     zh: '古代北欧的生计',
     hi: 'प्राचीन उत्तरी यूरोप की आजीविकाएँ',
     es: 'Economías antiguas del norte de Europa',
@@ -38,6 +39,7 @@ export const ancientNorthernEuropeanEconomies_Skill_Data = defineSkill({
     methodological: 'Compare regional farming, pastoral, hunting, and fishing economies.',
     frontend: {
       en: 'Learn how ancient northern communities made a living.',
+      it: "Scopri di che cosa vivevano le antiche comunità dell'Europa settentrionale.",
       zh: '了解古代北方社群如何维持生活。',
       hi: 'जानें कि प्राचीन उत्तरी समुदाय अपना जीवनयापन कैसे करते थे।',
       es: 'Conoce cómo se ganaban la vida las comunidades antiguas del norte.',

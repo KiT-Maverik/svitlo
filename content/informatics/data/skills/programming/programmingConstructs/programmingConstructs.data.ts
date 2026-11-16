@@ -15,6 +15,7 @@ export const programmingConstructs_SkillGroup_Data = defineSkillGroup({
   id: '8da65c85-bad1-4a3c-bd42-deb0faeee09b',
   name: {
     en: 'Programming Constructs',
+    it: 'Costrutti di programmazione',
     zh: '程序控制结构',
     hi: 'प्रोग्रामिंग संरचनाएँ',
     es: 'Estructuras de programación',
@@ -69,6 +70,7 @@ export const programmingConstructs_SkillGroup_Data = defineSkillGroup({
       'Using executable commands, conditions, loops, and event responses to control a program. Unlike algorithm design, the constructs must be implemented in a particular execution environment.',
     frontend: {
       en: 'Learn to control programs using sequences, conditions, loops and events.',
+      it: 'Impara a controllare i programmi mediante sequenze, condizioni, cicli ed eventi.',
       zh: '学习用顺序、条件、循环和事件控制程序。',
       hi: 'अनुक्रम, शर्तों, लूप और घटनाओं से प्रोग्राम नियंत्रित करना सीखें।',
       es: 'Aprende a controlar programas mediante secuencias, condiciones, bucles y eventos.',

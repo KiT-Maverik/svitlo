@@ -5,6 +5,7 @@ export const respondToAnImmediateAttack_Skill_Data = defineSkill({
   id: '271cbe81-d0d8-43e2-a6a7-cad58b824d76',
   name: {
     en: 'Respond to an immediate attack',
+    it: 'Reagire a un attacco improvviso',
     zh: '应对突发袭击',
     hi: 'अचानक हमले पर प्रतिक्रिया',
     es: 'Responder a un ataque inmediato',
@@ -39,6 +40,7 @@ export const respondToAnImmediateAttack_Skill_Data = defineSkill({
       'Recognize the need for immediate protection if an explosion, gunfire or other attack occurs without warning; seek the safest available cover or shelter and follow verified local civil-protection guidance when feasible.',
     frontend: {
       en: 'Find immediate cover or shelter when an attack begins without warning.',
+      it: 'Cerca immediatamente riparo o protezione se un attacco inizia senza preavviso.',
       zh: '若袭击毫无预警地开始，立即寻找遮蔽物或避难处。',
       hi: 'बिना चेतावनी हमला शुरू हो तो तुरंत सुरक्षित ओट या आश्रय लें।',
       es: 'Busca cobertura o refugio inmediato si comienza un ataque sin aviso.',

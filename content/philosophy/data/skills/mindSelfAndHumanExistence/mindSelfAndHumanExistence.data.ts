@@ -10,6 +10,7 @@ export const mindSelfAndHumanExistence_SkillDomain_Data = defineSkillDomain({
   id: 'ec68429d-00ef-4c06-969e-fa19cce50f6a',
   title: {
     en: 'Mind, Self, and Human Existence',
+    it: 'Mente, identità personale ed esistenza umana',
     zh: '心灵、自我与人类存在',
     hi: 'मन, स्व और मानव अस्तित्व',
     es: 'Mente, identidad personal y existencia humana',
@@ -53,6 +54,7 @@ export const mindSelfAndHumanExistence_SkillDomain_Data = defineSkillDomain({
       'Questions about subjective experience, the continuity of the self, deliberate action, and a meaningful human life cannot be resolved solely through psychological measurement. This domain examines theories of mind, identity, agency, and existential commitments, distinguishing them from empirical mental-health claims.',
     frontend: {
       en: 'Explore philosophical questions about consciousness, personal identity, freedom and meaning.',
+      it: "Esplora le domande filosofiche sulla coscienza, sull'identità personale, sulla libertà e sul senso della vita.",
       zh: '探索有关意识、个人身份、自由与生命意义的哲学问题。',
       hi: 'चेतना, व्यक्तिगत पहचान, स्वतंत्रता और जीवन के अर्थ से जुड़े दार्शनिक प्रश्नों को समझें।',
       es: 'Explora preguntas filosóficas sobre la conciencia, la identidad personal, la libertad y el sentido de la vida.',

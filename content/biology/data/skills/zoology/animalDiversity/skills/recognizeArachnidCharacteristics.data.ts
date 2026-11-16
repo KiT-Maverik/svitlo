@@ -5,6 +5,7 @@ export const recognizeArachnidCharacteristics_Skill_Data = defineSkill({
   id: '89e9d745-c31d-44a0-9988-5f10c2057abe',
   name: {
     en: 'Recognize Arachnid Characteristics',
+    it: 'Riconoscere le caratteristiche degli aracnidi',
     zh: '识别蛛形纲动物的特征',
     hi: 'अरैक्निड की विशेषताएँ पहचानना',
     es: 'Reconocer las características de los arácnidos',
@@ -39,6 +40,7 @@ export const recognizeArachnidCharacteristics_Skill_Data = defineSkill({
       'Recognize arthropods with characteristic chelicerae and usually four pairs of walking legs in adults; distinguish spiders, ticks and mites, and scorpions from insects.',
     frontend: {
       en: 'Recognize spiders and other arachnids by their distinctive body features.',
+      it: 'Riconosci ragni e altri aracnidi dalle loro caratteristiche corporee distintive.',
       zh: '根据身体的独特结构识别蜘蛛和其他蛛形纲动物。',
       hi: 'मकड़ियों और अन्य अरैक्निड को उनके विशिष्ट शारीरिक लक्षणों से पहचानें।',
       es: 'Reconoce arañas y otros arácnidos por sus rasgos corporales distintivos.',

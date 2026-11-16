@@ -5,6 +5,7 @@ export const alkanes_Skill_Data = defineSkill({
   id: '6da9643d-cc78-44c3-8dda-e86b44ca4371',
   name: {
     en: 'Alkanes',
+    it: 'Alcani',
     zh: '烷烃',
     hi: 'ऐल्केन',
     es: 'Alcanos',
@@ -39,6 +40,7 @@ export const alkanes_Skill_Data = defineSkill({
       'Recognize saturated acyclic hydrocarbon structure and characteristic substitution or combustion behavior.',
     frontend: {
       en: 'Identify alkanes and their characteristic saturated carbon frameworks.',
+      it: 'Identifica gli alcani e i loro caratteristici scheletri carboniosi saturi.',
       zh: '识别烷烃及其典型的饱和碳骨架结构。',
       hi: 'ऐल्केन और उनकी विशिष्ट संतृप्त कार्बन संरचनाओं को पहचानें।',
       es: 'Identifica los alcanos y sus características estructuras de carbono saturadas.',

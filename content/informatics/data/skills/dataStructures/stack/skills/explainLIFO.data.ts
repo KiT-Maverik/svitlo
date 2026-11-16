@@ -5,6 +5,7 @@ export const explainLIFO_Skill_Data = defineSkill({
   id: '977eed9c-94bd-46ca-a759-1fb3b1114bf1',
   name: {
     en: 'Explain LIFO',
+    it: 'Spiegare il principio LIFO',
     zh: '解释后进先出原则（LIFO）',
     hi: 'LIFO सिद्धांत समझाना',
     es: 'Explicar el principio LIFO',
@@ -39,6 +40,7 @@ export const explainLIFO_Skill_Data = defineSkill({
       'In a stack, the most recently added element is removed first, like the top plate in a pile; this does not mean sorting by value.',
     frontend: {
       en: 'Understand why a stack returns the latest added item first.',
+      it: "Comprendi perché una pila restituisce per primo l'elemento aggiunto più recentemente.",
       zh: '理解为什么栈会先取出最后加入的元素。',
       hi: 'समझें कि स्टैक में अंतिम जोड़ा गया तत्व सबसे पहले क्यों निकलता है।',
       es: 'Comprende por qué una pila devuelve primero el último elemento añadido.',

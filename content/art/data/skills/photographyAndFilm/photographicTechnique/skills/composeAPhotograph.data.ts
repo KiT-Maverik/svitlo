@@ -5,6 +5,7 @@ export const composeAPhotograph_Skill_Data = defineSkill({
   id: '8f704ea8-f4fc-4ad2-b49c-2a27c66a7256',
   name: {
     en: 'Compose a Photograph',
+    it: 'Comporre una fotografia',
 
     zh: '构图拍摄',
     hi: 'फ़ोटोग्राफ़ की रचना करें',
@@ -39,6 +40,7 @@ export const composeAPhotograph_Skill_Data = defineSkill({
     methodological: 'Arrange subject and boundaries to establish a chosen relationship within the frame.',
     frontend: {
       en: 'Decide what to include in the frame and how to position the subject.',
+      it: "Decidi cosa includere nell'inquadratura e come posizionare il soggetto.",
 
       zh: '决定画面中包含什么，以及主体应放在何处。',
       hi: 'तय करें कि फ़्रेम में क्या शामिल होगा और विषय कहाँ रखा जाएगा।',

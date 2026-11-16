@@ -5,6 +5,7 @@ export const gasVolumeTemperatureRelationship_Skill_Data = defineSkill({
   id: '6fe238cc-f9e4-4a52-b983-58ccc84246ab',
   name: {
     en: 'Gas Volume–Temperature Relationship',
+    it: 'Relazione tra volume e temperatura dei gas',
     zh: '气体体积与温度的关系',
     hi: 'गैस के आयतन और तापमान का संबंध',
     es: 'Relación volumen–temperatura de los gases',
@@ -39,6 +40,7 @@ export const gasVolumeTemperatureRelationship_Skill_Data = defineSkill({
       'Relate gas volume to absolute temperature when pressure and gas amount remain fixed under appropriate conditions.',
     frontend: {
       en: 'Connect gas volume with absolute temperature under fixed pressure.',
+      it: 'Collega il volume di un gas alla temperatura assoluta quando la pressione rimane costante.',
       zh: '在压强恒定时，将气体体积与绝对温度联系起来。',
       hi: 'दाब स्थिर होने पर गैस के आयतन को परम तापमान से जोड़ें।',
       es: 'Relaciona el volumen del gas con la temperatura absoluta a presión constante.',

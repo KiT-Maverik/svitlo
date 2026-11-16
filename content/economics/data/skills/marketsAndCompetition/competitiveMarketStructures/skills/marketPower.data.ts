@@ -5,6 +5,7 @@ export const marketPower_Skill_Data = defineSkill({
   id: 'a8bb2902-0254-4eea-a24a-079dc6bb1a34',
   name: {
     en: 'Market Power',
+    it: 'Potere di mercato',
     zh: '市场力量',
     hi: 'बाजार शक्ति',
     es: 'Poder de mercado',
@@ -39,6 +40,7 @@ export const marketPower_Skill_Data = defineSkill({
       "Identify a seller's or buyer's ability to influence market terms instead of merely accepting prevailing prices.",
     frontend: {
       en: 'Understand how some participants can influence market prices.',
+      it: 'Comprendi come alcuni operatori possono influenzare i prezzi di mercato.',
       zh: '理解为什么一些参与者能影响市场价格。',
       hi: 'समझें कि कुछ भागीदार बाजार की कीमतें कैसे प्रभावित कर सकते हैं।',
       es: 'Comprende cómo algunos participantes pueden influir en los precios.',

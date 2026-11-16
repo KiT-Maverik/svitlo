@@ -11,6 +11,7 @@ export const sensationAndPerception_SkillDomain_Data = defineSkillDomain({
   id: '763ba27f-79d7-419a-aa84-bc769903dd3a',
   title: {
     en: 'Sensation and Perception',
+    it: 'Sensazione e percezione',
     zh: '感觉与知觉',
     hi: 'संवेदना और प्रत्यक्षण',
     es: 'Sensación y percepción',
@@ -61,6 +62,7 @@ export const sensationAndPerception_SkillDomain_Data = defineSkillDomain({
       'Sensory information is detected, selected, organized, and interpreted into an experienced world. Psychological perception differs from simple measurement of physical stimuli or anatomy of sense organs.',
     frontend: {
       en: 'Discover how sensory signals become experiences of the world around us.',
+      it: 'Scopri come i segnali sensoriali diventino esperienze del mondo circostante.',
       zh: '探索感官信号如何转变为我们对周围世界的体验。',
       hi: 'जानें कि इंद्रियों के संकेत हमारे आसपास की दुनिया के अनुभव में कैसे बदलते हैं।',
       es: 'Descubre cómo las señales sensoriales se convierten en experiencias del mundo que nos rodea.',

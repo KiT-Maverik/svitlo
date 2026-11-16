@@ -5,6 +5,7 @@ export const oldKingdomOfEgypt_Skill_Data = defineSkill({
   id: 'e37fca92-2987-4b0f-8376-5b669cfc236d',
   name: {
     en: 'Old Kingdom of Egypt',
+    it: "Antico Regno d'Egitto",
     zh: '埃及古王国',
     hi: 'मिस्र का पुरातन साम्राज्य',
     es: 'Imperio Antiguo de Egipto',
@@ -39,6 +40,7 @@ export const oldKingdomOfEgypt_Skill_Data = defineSkill({
       'Study centralized monarchy of Dynasties III–VI, pyramid complexes, and royal control of regional resources.',
     frontend: {
       en: 'Learn about Old Kingdom rulers and the building of pyramids.',
+      it: "Scopri i sovrani dell'Antico Regno e la costruzione delle piramidi.",
       zh: '了解古王国的统治者与金字塔建造。',
       hi: 'पुरातन साम्राज्य के शासकों और पिरामिड निर्माण के बारे में जानें।',
       es: 'Aprende sobre los gobernantes del Imperio Antiguo y la construcción de pirámides.',

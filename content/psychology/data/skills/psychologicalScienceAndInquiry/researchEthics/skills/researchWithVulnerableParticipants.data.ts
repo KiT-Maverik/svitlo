@@ -5,6 +5,7 @@ export const researchWithVulnerableParticipants_Skill_Data = defineSkill({
   id: 'd5c35f4d-bb00-48c8-9b2e-94e79b6ee77c',
   name: {
     en: 'Research with Vulnerable Participants',
+    it: 'Ricerca con partecipanti vulnerabili',
     zh: '涉及弱势参与者的研究',
     hi: 'संवेदनशील प्रतिभागियों के साथ अनुसंधान',
     es: 'Investigación con participantes vulnerables',
@@ -39,6 +40,7 @@ export const researchWithVulnerableParticipants_Skill_Data = defineSkill({
       'Explain additional assent, consent, power-balance, and accessibility considerations involving children or dependent groups.',
     frontend: {
       en: 'Recognize additional protections needed for children and vulnerable participants.',
+      it: 'Riconosci le tutele aggiuntive necessarie per bambini e partecipanti vulnerabili.',
       zh: '认识对儿童和处境脆弱的参与者所需的额外保护。',
       hi: 'बच्चों और असुरक्षित स्थिति वाले प्रतिभागियों के लिए अतिरिक्त सुरक्षा उपाय पहचानें।',
       es: 'Reconoce las protecciones adicionales necesarias para niños y participantes vulnerables.',

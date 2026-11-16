@@ -12,6 +12,7 @@ export const spacecraftObservations_SkillGroup_Data = defineSkillGroup({
   id: 'c6f1e706-cd72-4036-b85f-2ee7e37b22f8',
   name: {
     en: 'Spacecraft Observations',
+    it: 'Osservazioni tramite sonde spaziali',
     qm: 'Kosmik apparatlarnen közetüvler',
     bn: 'মহাকাশযানের পর্যবেক্ষণ',
     ur: 'خلائی جہازوں سے مشاہدات',
@@ -55,6 +56,7 @@ export const spacecraftObservations_SkillGroup_Data = defineSkillGroup({
       'Remote flybys, orbiters, landers and sample-return missions provide different access to remote worlds. These competencies concern scientific evidence, temporal coverage, sampling limits and interpretation; they exclude the engineering design of the vehicles.',
     frontend: {
       en: 'Explore what different spacecraft missions can measure about distant worlds.',
+      it: 'Esplora cosa possono misurare le diverse missioni spaziali sui mondi lontani.',
       qm: 'Çeşit kosmik seferler uzaqtaki dünyalar aqqında neler ölçey bilgenini araştırıñız.',
       bn: 'বিভিন্ন মহাকাশ অভিযানে দূরবর্তী জগৎ সম্পর্কে কী কী পরিমাপ করা যায়, তা অন্বেষণ করো।',
       ur: 'جانیں کہ مختلف خلائی مشن دور دراز دنیاؤں کے بارے میں کیا کچھ ناپ سکتے ہیں۔',

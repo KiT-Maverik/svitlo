@@ -5,6 +5,7 @@ export const earlyMayaCities_Skill_Data = defineSkill({
   id: '327f722b-bcde-4b13-be8b-5b90ed6f8ccc',
   name: {
     en: 'Early Maya Cities',
+    it: 'Prime città maya',
     zh: '早期玛雅城市',
     hi: 'प्रारंभिक माया नगर',
     es: 'Primeras ciudades mayas',
@@ -38,6 +39,7 @@ export const earlyMayaCities_Skill_Data = defineSkill({
     methodological: 'Trace emerging urban centers and royal institutions of Preclassic and Early Classic Maya periods.',
     frontend: {
       en: 'Explore how the early Maya built cities and kingdoms.',
+      it: 'Esplora come gli antichi Maya costruirono città e regni.',
       zh: '探索早期玛雅人如何建立城市与王国。',
       hi: 'जानें कि आरंभिक माया समाज ने नगर और राज्य कैसे बनाए।',
       es: 'Explora cómo los primeros mayas construyeron ciudades y reinos.',

@@ -5,6 +5,7 @@ export const analyzePerceptualAmbiguity_Skill_Data = defineSkill({
   id: 'cb6e249e-37cc-4241-83a0-91760639c1a2',
   name: {
     en: 'Analyze Perceptual Ambiguity',
+    it: "Analizzare l'ambiguità percettiva",
     zh: '分析知觉歧义',
     hi: 'प्रत्यक्षण की अस्पष्टता का विश्लेषण करें',
     es: 'Analizar la ambigüedad perceptiva',
@@ -38,6 +39,7 @@ export const analyzePerceptualAmbiguity_Skill_Data = defineSkill({
     methodological: 'Explain how one artistic configuration supports different perceptual organizations.',
     frontend: {
       en: 'Explore why the same picture or form can be perceived in different ways.',
+      it: 'Esplora perché la stessa immagine o forma può essere percepita in modi diversi.',
       zh: '探索同一图像或形式为何会产生不同的感知方式。',
       hi: 'जानें कि एक ही चित्र या रूप को अलग-अलग तरीकों से क्यों देखा जा सकता है।',
       es: 'Explora por qué una misma imagen o forma puede percibirse de distintas maneras.',

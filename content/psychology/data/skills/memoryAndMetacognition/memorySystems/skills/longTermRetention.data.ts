@@ -5,6 +5,7 @@ export const longTermRetention_Skill_Data = defineSkill({
   id: '722f6f85-3dba-461c-908c-0a9903f122ca',
   name: {
     en: 'Long-Term Retention',
+    it: 'Ritenzione a lungo termine',
     zh: '长期保持',
     hi: 'दीर्घकालिक धारण',
     es: 'Retención a largo plazo',
@@ -38,6 +39,7 @@ export const longTermRetention_Skill_Data = defineSkill({
     methodological: 'Describe durable storage of information and why persistence does not guarantee immediate access.',
     frontend: {
       en: 'Explore how information can be retained over longer periods.',
+      it: 'Esplora come le informazioni possano essere conservate per periodi prolungati.',
       zh: '探索信息如何在较长时间内保存在记忆中。',
       hi: 'जानें कि जानकारी लंबे समय तक स्मृति में कैसे बनी रह सकती है।',
       es: 'Explora cómo la información puede conservarse durante períodos prolongados.',

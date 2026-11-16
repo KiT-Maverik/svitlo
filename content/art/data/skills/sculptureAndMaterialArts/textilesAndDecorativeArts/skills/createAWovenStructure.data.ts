@@ -5,6 +5,7 @@ export const createAWovenStructure_Skill_Data = defineSkill({
   id: '98dc630d-c096-4a76-a1e7-db11aa6fe57a',
   name: {
     en: 'Create a Woven Structure',
+    it: 'Realizzare una struttura intrecciata',
     qm: 'Toqulğan yapı yaratmaq',
 
     zh: '创建编织结构',
@@ -39,6 +40,7 @@ export const createAWovenStructure_Skill_Data = defineSkill({
     methodological: 'Interlace strands according to a selected structure and visual pattern.',
     frontend: {
       en: 'Interlace threads or strips to create a planned woven pattern.',
+      it: 'Intreccia fili o strisce per creare una trama progettata.',
       qm: 'Planlanğan toquma naqşını yaratmaq içün iplerni ya da şeritlerni bir-biriniñ arasından keçiriñiz.',
 
       zh: '将线或条带交错编织，形成预先设计的织物图案。',

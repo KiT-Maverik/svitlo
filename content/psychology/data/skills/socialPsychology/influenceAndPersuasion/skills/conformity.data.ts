@@ -5,6 +5,7 @@ export const conformity_Skill_Data = defineSkill({
   id: 'ea92f870-0086-44f2-9e77-249916617795',
   name: {
     en: 'Conformity',
+    it: 'Conformismo',
     zh: '从众',
     hi: 'समूह के अनुरूप चलना',
     es: 'Conformidad social',
@@ -38,6 +39,7 @@ export const conformity_Skill_Data = defineSkill({
     methodological: 'Explain changes in expressed judgments or behavior under perceived group pressure.',
     frontend: {
       en: "Recognize changes in behavior made to match a group's expectations.",
+      it: 'Riconosci i cambiamenti di comportamento compiuti per adeguarsi alle aspettative di un gruppo.',
       zh: '认识为了符合群体期待而改变行为的现象。',
       hi: 'समूह की अपेक्षाओं से मेल खाने के लिए व्यवहार में बदलाव पहचानें।',
       es: 'Reconoce cambios de conducta para ajustarse a las expectativas de un grupo.',

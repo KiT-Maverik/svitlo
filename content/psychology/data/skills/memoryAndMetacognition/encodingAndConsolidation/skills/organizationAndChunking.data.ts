@@ -5,6 +5,7 @@ export const organizationAndChunking_Skill_Data = defineSkill({
   id: '200dbc05-aa27-4e0c-9d3c-d5c50181b506',
   name: {
     en: 'Organization and Chunking',
+    it: 'Organizzazione e raggruppamento delle informazioni',
     zh: '组织与组块化',
     hi: 'संगठन और खंडबद्ध करना',
     es: 'Organización y agrupación en bloques',
@@ -38,6 +39,7 @@ export const organizationAndChunking_Skill_Data = defineSkill({
     methodological: 'Relate meaningful grouping to reduced processing demands and more efficient retrieval.',
     frontend: {
       en: 'Explore how organizing information into chunks helps memory.',
+      it: 'Esplora come organizzare le informazioni in gruppi significativi aiuti la memoria.',
       zh: '探索把信息整理成小组块如何帮助记忆。',
       hi: 'जानें कि जानकारी को समूहों में बाँटने से याद रखने में कैसे मदद मिलती है।',
       es: 'Explora cómo organizar la información en bloques facilita recordarla.',

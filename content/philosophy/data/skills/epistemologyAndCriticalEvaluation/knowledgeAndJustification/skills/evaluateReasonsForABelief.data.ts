@@ -5,6 +5,7 @@ export const evaluateReasonsForABelief_Skill_Data = defineSkill({
   id: '2ddc3efc-52c3-4f65-9b54-e57d1d2cb49f',
   name: {
     en: 'Evaluate reasons for a belief',
+    it: 'Valutare le ragioni di una credenza',
     zh: '评估信念的理由',
     hi: 'विश्वास के कारणों का मूल्यांकन करें',
     es: 'Evaluar razones para una creencia',
@@ -39,6 +40,7 @@ export const evaluateReasonsForABelief_Skill_Data = defineSkill({
       'Determine whether offered grounds actually bear on the proposition and withstand plausible objections.',
     frontend: {
       en: 'Check whether the reasons offered actually support a belief.',
+      it: 'Verifica se le ragioni presentate sostengono davvero una convinzione.',
       zh: '检查给出的理由是否真正支持某个信念。',
       hi: 'जाँचें कि दिए गए कारण वास्तव में उस विश्वास का समर्थन करते हैं या नहीं।',
       es: 'Comprueba si las razones ofrecidas realmente respaldan una creencia.',

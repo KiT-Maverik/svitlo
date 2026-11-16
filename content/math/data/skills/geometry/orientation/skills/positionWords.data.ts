@@ -5,6 +5,7 @@ export const positionWords_Skill_Data = defineSkill({
   id: '30001f22-2352-4068-a1be-f0e8f0278588',
   name: {
     en: 'Describing relative positions',
+    it: 'Descrivere posizioni relative',
     qm: 'Bir-birine nisbeten yerleşüvni añlatmaq',
     lt: 'Santykinės padėties apibūdinimas',
     lv: 'Relatīvā novietojuma aprakstīšana',
@@ -39,6 +40,7 @@ export const positionWords_Skill_Data = defineSkill({
       'Spatial relations are defined relative to an object, observer, or coordinate frame. Left, right, and ahead depend on the reference point; distinguish relative orientation from absolute coordinates.',
     frontend: {
       en: 'Use words such as left, right, above, behind, and ahead to describe positions. The answer can change with your viewpoint.',
+      it: 'Usa parole come sinistra, destra, sopra, dietro e davanti per descrivere le posizioni. La risposta può cambiare con il punto di vista.',
       qm: 'Sol, sağ, üstte, artında ve ögde kibi sözlernen eşyalarnıñ yerlerini añlat. Baqış noqtası deñişse, cevap da deñişebilir.',
       zh: '用左、右、上方、后方、前方等词描述位置。观察方向变了，答案也可能变。',
       hi: 'बाएँ, दाएँ, ऊपर, पीछे और आगे जैसे शब्दों से स्थान बताएँ। देखने की दिशा बदलने पर उत्तर बदल सकता है।',

@@ -5,6 +5,7 @@ export const readTemperatureFromAThermometer_Skill_Data = defineSkill({
   id: '9c9ff04f-5ae3-4d31-bfc1-562652307a03',
   name: {
     en: 'Read temperature from a thermometer',
+    it: 'Leggere la temperatura da un termometro',
     zh: '从温度计读取温度',
     hi: 'तापमापी से तापमान पढ़ना',
     es: 'Leer la temperatura en un termómetro',
@@ -39,6 +40,7 @@ export const readTemperatureFromAThermometer_Skill_Data = defineSkill({
       'Relate the position of a pointer or liquid column to the temperature scale and units, accounting for the scale origin and measurement limits.',
     frontend: {
       en: "Read a thermometer's scale and units to determine temperature.",
+      it: 'Leggi la scala e le unità di un termometro per determinare la temperatura.',
       zh: '读取温度计的刻度和单位，确定温度。',
       hi: 'तापमान जानने के लिए तापमापी का पैमाना और इकाइयाँ पढ़ें।',
       es: 'Lee la escala y las unidades de un termómetro para determinar la temperatura.',

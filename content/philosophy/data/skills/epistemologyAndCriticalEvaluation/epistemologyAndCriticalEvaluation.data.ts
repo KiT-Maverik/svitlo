@@ -10,6 +10,7 @@ export const epistemologyAndCriticalEvaluation_SkillDomain_Data = defineSkillDom
   id: 'b9b076ca-f5fc-47ed-ac06-d5a516f3176e',
   title: {
     en: 'Epistemology and Critical Evaluation',
+    it: 'Epistemologia e valutazione critica',
     zh: '认识论与批判性评估',
     hi: 'ज्ञानमीमांसा और आलोचनात्मक मूल्यांकन',
     es: 'Epistemología y evaluación crítica',
@@ -58,6 +59,7 @@ export const epistemologyAndCriticalEvaluation_SkillDomain_Data = defineSkillDom
       'Questions about knowledge concern what can be believed responsibly, what makes claims true, and when confidence should change. This domain applies general standards of justification to testimony and public information; scientific experimental design has its own domain.',
     frontend: {
       en: 'Explore what makes a belief justified and how to evaluate public information.',
+      it: 'Esplora che cosa rende giustificata una convinzione e come valutare le informazioni diffuse pubblicamente.',
       zh: '探索什么使信念具有正当理由，以及如何评估公共信息。',
       hi: 'जानें कि किसी विश्वास को उचित क्या बनाता है और सार्वजनिक जानकारी का मूल्यांकन कैसे करें।',
       es: 'Explora qué justifica una creencia y cómo evaluar la información pública.',

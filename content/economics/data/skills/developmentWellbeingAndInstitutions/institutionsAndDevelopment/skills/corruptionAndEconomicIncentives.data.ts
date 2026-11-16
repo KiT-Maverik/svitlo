@@ -5,6 +5,7 @@ export const corruptionAndEconomicIncentives_Skill_Data = defineSkill({
   id: '7986fdd5-ebc3-4f9d-a161-d61ae154e116',
   name: {
     en: 'Корупція та економічні стимули',
+    it: 'Corruzione e incentivi economici',
     zh: '腐败与经济激励',
     hi: 'भ्रष्टाचार और आर्थिक प्रोत्साहन',
     es: 'Corrupción e incentivos económicos',
@@ -38,6 +39,7 @@ export const corruptionAndEconomicIncentives_Skill_Data = defineSkill({
     methodological: 'Identify how unofficial payments and selective rule enforcement influence costs and competition.',
     frontend: {
       en: 'Understand how corruption distorts business decisions and competition.',
+      it: 'Comprendi come la corruzione altera le decisioni delle imprese e la concorrenza.',
       zh: '理解腐败如何扭曲企业决策与竞争。',
       hi: 'समझें कि भ्रष्टाचार व्यापारिक निर्णय और प्रतिस्पर्धा को कैसे बिगाड़ता है।',
       es: 'Comprende cómo la corrupción distorsiona las decisiones empresariales y la competencia.',

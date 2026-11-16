@@ -5,6 +5,7 @@ export const cryovolcanism_Skill_Data = defineSkill({
   id: '30c28dc9-f69f-44d4-90c4-fe122ec9039e',
   name: {
     en: 'Cryovolcanism',
+    it: 'Criovulcanismo',
     zh: '冰火山活动',
     hi: 'हिम-ज्वालामुखीय क्रिया',
     es: 'Criovulcanismo',
@@ -38,6 +39,7 @@ export const cryovolcanism_Skill_Data = defineSkill({
     methodological: 'Recognize and explain eruptions driven by volatile liquids and ices rather than molten rock.',
     frontend: {
       en: 'Discover how cold worlds can erupt icy or volatile materials instead of molten rock.',
+      it: 'Scopri come i mondi freddi possano eruttare materiali ghiacciati o volatili invece di rocce fuse.',
       zh: '了解寒冷天体如何喷发冰和挥发性物质，而非熔融岩石。',
       hi: 'जानें कि ठंडे खगोलीय पिंड पिघली चट्टान के बजाय बर्फीले या वाष्पशील पदार्थ कैसे उगल सकते हैं।',
       es: 'Descubre cómo los mundos fríos pueden expulsar hielo o materiales volátiles en lugar de roca fundida.',

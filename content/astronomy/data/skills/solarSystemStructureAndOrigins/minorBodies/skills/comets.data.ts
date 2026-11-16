@@ -5,6 +5,7 @@ export const comets_Skill_Data = defineSkill({
   id: 'e5a1338a-14fc-4fdf-bdaf-55671d124335',
   name: {
     en: 'Comets',
+    it: 'Comete',
     zh: '彗星',
     hi: 'धूमकेतु',
     es: 'Cometas',
@@ -39,6 +40,7 @@ export const comets_Skill_Data = defineSkill({
       'Explain the development of a coma and tails as volatile material responds to solar heating and the solar wind.',
     frontend: {
       en: 'Discover how sunlight makes comets develop glowing clouds and tails.',
+      it: 'Scopri come la luce del Sole fa sviluppare alle comete chiome luminose e code.',
       zh: '了解阳光如何使彗星周围形成明亮的气体尘埃云和彗尾。',
       hi: 'जानें कि सूर्य का प्रकाश धूमकेतुओं के आसपास चमकते गैस-धूल के बादल और पूँछ कैसे बनाता है।',
       es: 'Descubre cómo la luz solar hace que los cometas desarrollen nubes brillantes y colas.',

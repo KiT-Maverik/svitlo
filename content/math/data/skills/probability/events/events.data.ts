@@ -7,6 +7,7 @@ export const events_SkillGroup_Data = defineSkillGroup({
   id: 'd41710f5-a1ce-4a10-ae8f-65b9ad51026c',
   name: {
     en: 'Random events',
+    it: 'Eventi casuali',
     qm: 'Tesadüfiy vaqialar',
     lt: 'Atsitiktiniai įvykiai',
     lv: 'Nejauši notikumi',

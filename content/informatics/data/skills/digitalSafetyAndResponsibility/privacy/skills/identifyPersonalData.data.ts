@@ -5,6 +5,7 @@ export const identifyPersonalData_Skill_Data = defineSkill({
   id: 'cadaea6e-bd81-441e-82f3-73389d1373bf',
   name: {
     en: 'Identify Personal Data',
+    it: 'Individuare i dati personali',
     zh: '识别个人数据',
     hi: 'व्यक्तिगत डेटा पहचानना',
     es: 'Identificar datos personales',
@@ -39,6 +40,7 @@ export const identifyPersonalData_Skill_Data = defineSkill({
       'Recognize information that identifies a person directly or in combination: name with address, photograph, contact details, or location. Even a seemingly harmless fact may be personal in context.',
     frontend: {
       en: 'Recognize information that can identify a person, even when combined with other details.',
+      it: 'Riconosci le informazioni che possono identificare una persona, anche quando sono combinate con altri dettagli.',
       zh: '识别可直接或与其他线索结合后识别一个人的信息。',
       hi: 'ऐसी जानकारी पहचानें जो अकेले या दूसरी जानकारी के साथ किसी व्यक्ति की पहचान बता सके।',
       es: 'Reconoce información que puede identificar a una persona, incluso combinada con otros datos.',

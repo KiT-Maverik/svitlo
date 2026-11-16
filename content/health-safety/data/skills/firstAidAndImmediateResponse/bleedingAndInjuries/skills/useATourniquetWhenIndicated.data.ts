@@ -5,6 +5,7 @@ export const useATourniquetWhenIndicated_Skill_Data = defineSkill({
   id: '3a377396-32e6-441e-bb20-06b79b72a7ff',
   name: {
     en: 'Use a tourniquet when indicated',
+    it: 'Usare un laccio emostatico quando indicato',
     zh: '在适当情况下使用止血带',
     hi: 'आवश्यक होने पर टूर्निकेट का उपयोग',
     es: 'Usar un torniquete cuando esté indicado',
@@ -39,6 +40,7 @@ export const useATourniquetWhenIndicated_Skill_Data = defineSkill({
       'Recognize life-threatening limb bleeding and the need for a correctly applied tourniquet according to current training and guidance.',
     frontend: {
       en: 'Understand when severe limb bleeding may require a trained tourniquet response.',
+      it: "Comprendi quando una grave emorragia a un arto può richiedere l'uso di un laccio emostatico da parte di una persona formata.",
       zh: '理解严重肢体出血何时需要受过培训的止血带处理。',
       hi: 'समझो कि अंग से गंभीर रक्तस्राव में प्रशिक्षित व्यक्ति द्वारा टूर्निकेट कब आवश्यक हो सकता है।',
       es: 'Comprende cuándo una hemorragia grave de una extremidad requiere un torniquete usado por alguien capacitado.',

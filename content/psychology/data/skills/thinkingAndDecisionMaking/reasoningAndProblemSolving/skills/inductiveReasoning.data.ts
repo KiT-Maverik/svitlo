@@ -5,6 +5,7 @@ export const inductiveReasoning_Skill_Data = defineSkill({
   id: 'b03a66a9-ea5e-4270-916f-e1e96771cfb5',
   name: {
     en: 'Inductive Reasoning',
+    it: 'Ragionamento induttivo',
     zh: '归纳推理',
     hi: 'आगमनात्मक तर्क',
     es: 'Razonamiento inductivo',
@@ -38,6 +39,7 @@ export const inductiveReasoning_Skill_Data = defineSkill({
     methodological: 'Explain generalizing beyond observed cases and why resulting conclusions remain uncertain.',
     frontend: {
       en: 'Recognize how examples support tentative broader conclusions.',
+      it: 'Riconosci come gli esempi sostengano conclusioni più generali ma provvisorie.',
       zh: '认识具体例子如何支持暂时性的普遍结论。',
       hi: 'पहचानें कि उदाहरण व्यापक लेकिन अनिश्चित निष्कर्षों को कैसे समर्थन देते हैं।',
       es: 'Reconoce cómo los ejemplos apoyan conclusiones generales que siguen siendo provisionales.',

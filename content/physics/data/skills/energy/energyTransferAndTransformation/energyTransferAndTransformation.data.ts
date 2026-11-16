@@ -10,6 +10,7 @@ export const energyTransferAndTransformation_SkillGroup_Data = defineSkillGroup(
   id: 'b72e75f7-9188-4cc3-a5d7-caf2062217e5',
   name: {
     en: 'Energy Transfer and Transformation',
+    it: "Trasferimento e trasformazione dell'energia",
     zh: '能量传递与转化',
     hi: 'ऊर्जा स्थानांतरण और रूपांतरण',
     es: 'Transferencia y transformación de energía',
@@ -51,6 +52,7 @@ export const energyTransferAndTransformation_SkillGroup_Data = defineSkillGroup(
       'Energy can pass between objects and change form; the sequence of events matters more than the name of a particular device.',
     frontend: {
       en: 'Discover how energy moves between bodies and changes form.',
+      it: "Scopri come l'energia passa tra i corpi e cambia forma.",
       zh: '了解能量如何在物体间传递并改变形式。',
       hi: 'जानें कि ऊर्जा वस्तुओं के बीच कैसे जाती और अपना रूप बदलती है।',
       es: 'Descubre cómo la energía pasa entre cuerpos y cambia de forma.',

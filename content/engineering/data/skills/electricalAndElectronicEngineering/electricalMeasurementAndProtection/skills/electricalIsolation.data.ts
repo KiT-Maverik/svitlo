@@ -5,6 +5,7 @@ export const electricalIsolation_Skill_Data = defineSkill({
   id: '1a536e26-6ee4-4bfa-9060-967cfe17350e',
   name: {
     en: 'Electrical isolation',
+    it: 'Isolamento elettrico',
     zh: '电气隔离',
     hi: 'विद्युत पृथक्करण',
     es: 'Aislamiento eléctrico',
@@ -39,6 +40,7 @@ export const electricalIsolation_Skill_Data = defineSkill({
       'Describe how barriers or isolating components prevent unintended conductive paths between circuits, including hazardous interfaces.',
     frontend: {
       en: 'Recognize why electrical isolation protects separate circuits and users.',
+      it: "Riconosci perché l'isolamento elettrico protegge circuiti separati e utenti.",
       zh: '认识电气隔离为何能保护不同电路和使用者。',
       hi: 'जानें कि विद्युत पृथक्करण अलग-अलग परिपथों और उपयोगकर्ताओं को क्यों बचाता है।',
       es: 'Reconoce por qué el aislamiento eléctrico protege circuitos y usuarios separados.',

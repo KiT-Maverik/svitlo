@@ -5,6 +5,7 @@ export const skyMapsAndStarCharts_Skill_Data = defineSkill({
   id: 'f8b17444-6be3-448e-91b6-b92102202225',
   name: {
     en: 'Sky Maps and Star Charts',
+    it: 'Mappe celesti e atlanti stellari',
     qm: 'Kök haritaları ve yıldız cetvelleri',
     zh: '星空地图与星图',
     hi: 'आकाश के मानचित्र और तारा चार्ट',
@@ -39,6 +40,7 @@ export const skyMapsAndStarCharts_Skill_Data = defineSkill({
       'Use a chart or planetarium representation to identify celestial directions, objects and visibility for a specified place and time.',
     frontend: {
       en: 'Read a sky map for a particular location and date.',
+      it: 'Leggi una mappa del cielo riferita a una località e a una data specifiche.',
       qm: 'Belirli bir yer ve tarih içün kök haritasını oquñız.',
       zh: '学习阅读适用于特定地点和日期的星空地图。',
       hi: 'किसी विशेष स्थान और तारीख के लिए आकाश का मानचित्र पढ़ना सीखें।',

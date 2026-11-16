@@ -13,6 +13,7 @@ export const traditionsAndInterpretation_SkillGroup_Data = defineSkillGroup({
   id: '125a3506-b220-4e80-99af-c25ffb7118a2',
   name: {
     en: 'Traditions and Interpretation',
+    it: 'Tradizioni e interpretazione',
     zh: '传统与诠释',
     hi: 'परंपराएँ और व्याख्या',
     es: 'Tradiciones e interpretación',
@@ -63,6 +64,7 @@ export const traditionsAndInterpretation_SkillGroup_Data = defineSkillGroup({
       'Dance forms have social and historical purposes that must be understood on their own cultural terms.',
     frontend: {
       en: 'Explore the meaning and cultural context of different dance traditions.',
+      it: 'Esplora il significato e il contesto culturale delle diverse tradizioni di danza.',
       zh: '探索不同舞蹈传统的含义与文化背景。',
       hi: 'विभिन्न नृत्य परंपराओं के अर्थ और सांस्कृतिक संदर्भ का अन्वेषण करें।',
       es: 'Explora el significado y el contexto cultural de distintas tradiciones de danza.',

@@ -5,6 +5,7 @@ export const memoryRecall_Skill_Data = defineSkill({
   id: '54d61a45-db3e-4e76-9796-7415979208db',
   name: {
     en: 'Memory Recall',
+    it: 'Rievocazione dei ricordi',
     zh: '记忆回忆',
     hi: 'स्मृति पुनःस्मरण',
     es: 'Recuerdo de información',
@@ -39,6 +40,7 @@ export const memoryRecall_Skill_Data = defineSkill({
       'Explain retrieving information without the target being presented among answer options or other direct cues.',
     frontend: {
       en: 'Recall information without being shown the original answer.',
+      it: 'Richiama informazioni senza che ti venga mostrata la risposta originale.',
       zh: '在不看到原始答案的情况下回忆信息。',
       hi: 'मूल उत्तर दिखाए बिना जानकारी याद करने की कोशिश करें।',
       es: 'Recuerda información sin que se te muestre la respuesta original.',

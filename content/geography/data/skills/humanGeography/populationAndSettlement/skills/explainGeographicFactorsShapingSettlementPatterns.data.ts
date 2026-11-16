@@ -5,6 +5,7 @@ export const explainGeographicFactorsShapingSettlementPatterns_Skill_Data = defi
   id: '9ccfdf34-3bcd-4c25-896c-f2d32062b6fc',
   name: {
     en: 'Explain geographic factors shaping settlement patterns',
+    it: 'Spiegare i fattori geografici che modellano la distribuzione degli insediamenti',
     zh: '解释塑造聚落分布的地理因素',
     hi: 'बसावट के प्रतिरूप बनाने वाले भौगोलिक कारक समझाना',
     es: 'Explicar factores geográficos que moldean los asentamientos',
@@ -39,6 +40,7 @@ export const explainGeographicFactorsShapingSettlementPatterns_Skill_Data = defi
       'Relate available water, terrain, transport access, economic activities and other geographic constraints to clustered, linear or dispersed settlements; simple recognition of clustering belongs to the general Spatial Relationships competency.',
     frontend: {
       en: 'Explain how water, terrain and access influence where communities settle.',
+      it: 'Spiega come acqua, rilievo e accessibilità influenzano la scelta dei luoghi in cui le comunità si stabiliscono.',
       zh: '解释水源、地形和交通条件如何影响社区的选址。',
       hi: 'समझाएँ कि पानी, भूप्रदेश और पहुँच यह कैसे प्रभावित करते हैं कि समुदाय कहाँ बसते हैं।',
       es: 'Explica cómo el agua, el relieve y la accesibilidad influyen en dónde se establecen las comunidades.',

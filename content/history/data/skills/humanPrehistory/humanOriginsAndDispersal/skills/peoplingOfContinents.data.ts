@@ -5,6 +5,7 @@ export const peoplingOfContinents_Skill_Data = defineSkill({
   id: '13b67e91-2c21-4a49-a730-f413f54d7085',
   name: {
     en: 'Peopling of the Continents',
+    it: 'Popolamento dei continenti',
     zh: '各大洲的人类定居',
     hi: 'महाद्वीपों में मानव बसावट',
     es: 'Poblamiento de los continentes',
@@ -39,6 +40,7 @@ export const peoplingOfContinents_Skill_Data = defineSkill({
       'Reconstruct approximate routes and chronological sequences of dispersal into Eurasia, Australia, and the Americas.',
     frontend: {
       en: 'Trace how ancient humans reached different continents.',
+      it: 'Ricostruisci come gli esseri umani antichi raggiunsero i diversi continenti.',
       zh: '追踪古代人类如何到达不同大陆。',
       hi: 'पता लगाएँ कि प्राचीन मनुष्य विभिन्न महाद्वीपों तक कैसे पहुँचे।',
       es: 'Rastrea cómo los humanos antiguos llegaron a distintos continentes.',

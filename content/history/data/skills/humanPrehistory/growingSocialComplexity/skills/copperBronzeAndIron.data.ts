@@ -5,6 +5,7 @@ export const copperBronzeAndIron_Skill_Data = defineSkill({
   id: 'b0be1d1b-7236-46e7-b810-066f55bc499b',
   name: {
     en: 'Copper, Bronze, and Iron',
+    it: 'Rame, bronzo e ferro',
     zh: '铜、青铜与铁',
     hi: 'ताँबा, कांसा और लोहा',
     es: 'Cobre, bronce y hierro',
@@ -39,6 +40,7 @@ export const copperBronzeAndIron_Skill_Data = defineSkill({
       'Compare metallurgical techniques and local chronologies without assuming uniform metal ages across every society.',
     frontend: {
       en: 'Discover how metals changed tools at different times around the world.',
+      it: 'Scopri come i metalli cambiarono gli utensili in epoche diverse nelle varie parti del mondo.',
       zh: '了解金属如何在世界不同地区和时期改变工具。',
       hi: 'जानें कि दुनिया के विभिन्न भागों में अलग-अलग समय पर धातुओं ने औज़ार कैसे बदले।',
       es: 'Descubre cómo los metales transformaron las herramientas en distintos lugares y épocas del mundo.',

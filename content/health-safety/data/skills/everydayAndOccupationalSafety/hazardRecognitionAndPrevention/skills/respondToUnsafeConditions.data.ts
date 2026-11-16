@@ -5,6 +5,7 @@ export const respondToUnsafeConditions_Skill_Data = defineSkill({
   id: '7698247b-20c4-4b25-80a9-f8b854883a0e',
   name: {
     en: 'Respond to unsafe conditions',
+    it: 'Reagire a condizioni non sicure',
     zh: '应对不安全状况',
     hi: 'असुरक्षित परिस्थितियों में प्रतिक्रिया करना',
     es: 'Responder ante condiciones inseguras',
@@ -39,6 +40,7 @@ export const respondToUnsafeConditions_Skill_Data = defineSkill({
       "Pause hazardous activity, move to safety, notify a responsible person, and avoid attempting work beyond one's competence.",
     frontend: {
       en: 'Stop unsafe activity and contact someone qualified to help.',
+      it: 'Interrompi le attività pericolose e contatta una persona qualificata che possa aiutarti.',
       zh: '停止不安全的活动，并联系有资质的人寻求帮助。',
       hi: 'असुरक्षित काम रोकें और योग्य व्यक्ति से सहायता लें।',
       es: 'Detén la actividad peligrosa y pide ayuda a alguien capacitado.',

@@ -5,6 +5,7 @@ export const historicalMaps_Skill_Data = defineSkill({
   id: '998413be-fe59-4ffd-a154-649de752df36',
   name: {
     en: 'Historical Maps',
+    it: 'Carte storiche',
     zh: '历史地图',
     hi: 'ऐतिहासिक मानचित्र',
     es: 'Mapas históricos',
@@ -39,6 +40,7 @@ export const historicalMaps_Skill_Data = defineSkill({
       'Interpret maps by date, legend, scale, provisional boundaries, and the approximate nature of many ancient territorial claims.',
     frontend: {
       en: 'Read historical maps while accounting for uncertain ancient borders.',
+      it: "Leggi le carte storiche tenendo conto dell'incertezza sui confini antichi.",
       zh: '阅读历史地图时考虑古代边界的不确定性。',
       hi: 'प्राचीन सीमाओं की अनिश्चितता को ध्यान में रखते हुए ऐतिहासिक मानचित्र पढ़ें।',
       es: 'Interpreta mapas históricos teniendo en cuenta la incertidumbre de las antiguas fronteras.',

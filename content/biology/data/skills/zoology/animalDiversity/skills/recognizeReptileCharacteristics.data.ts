@@ -5,6 +5,7 @@ export const recognizeReptileCharacteristics_Skill_Data = defineSkill({
   id: '8aade40b-97db-4f89-aeb4-2454c27802c5',
   name: {
     en: 'Recognize Reptile Characteristics',
+    it: 'Riconoscere le caratteristiche dei rettili',
     zh: '识别爬行动物的特征',
     hi: 'सरीसृपों की विशेषताएँ पहचानना',
     es: 'Reconocer las características de los reptiles',
@@ -39,6 +40,7 @@ export const recognizeReptileCharacteristics_Skill_Data = defineSkill({
       'Identify members by characteristics of scaled skin and reproductive features of terrestrial amniotes.',
     frontend: {
       en: 'Identify reptile characteristics, including skin and reproduction.',
+      it: 'Identifica le caratteristiche dei rettili, comprese quelle della pelle e della riproduzione.',
       zh: '识别爬行动物的皮肤和繁殖等特征。',
       hi: 'सरीसृपों की त्वचा और प्रजनन सहित उनकी विशेषताएँ पहचानें।',
       es: 'Identifica las características de los reptiles, incluidas la piel y la reproducción.',

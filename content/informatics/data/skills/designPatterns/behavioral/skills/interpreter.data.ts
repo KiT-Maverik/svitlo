@@ -5,6 +5,7 @@ export const interpreter_Skill_Data = defineSkill({
   id: 'af456477-e1d7-411c-8864-f38ba3eb93ce',
   name: {
     en: 'Interpreter',
+    it: 'Interprete',
     zh: '解释器模式',
     hi: 'इंटरप्रेटर',
     es: 'Intérprete',
@@ -39,6 +40,7 @@ export const interpreter_Skill_Data = defineSkill({
       'Represent the rules of a small domain-specific language as an expression structure with defined interpretation behavior.',
     frontend: {
       en: 'Interpret a small language using rules represented as expressions.',
+      it: 'Interpreta un piccolo linguaggio usando regole rappresentate come espressioni.',
       zh: '使用表示为表达式的规则解释一种小型语言。',
       hi: 'अभिव्यक्तियों के रूप में लिखे नियमों से छोटी भाषा की व्याख्या करें।',
       es: 'Interpreta un lenguaje pequeño mediante reglas expresadas como expresiones.',

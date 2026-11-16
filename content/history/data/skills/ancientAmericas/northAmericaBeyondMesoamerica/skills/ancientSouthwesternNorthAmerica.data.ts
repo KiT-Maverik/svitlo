@@ -5,6 +5,7 @@ export const ancientSouthwesternNorthAmerica_Skill_Data = defineSkill({
   id: 'f7a1b0ab-03c6-444c-ae42-aa883de05a9b',
   name: {
     en: 'Ancient Societies of Southwestern North America',
+    it: "Società antiche dell'America settentrionale sudoccidentale",
     zh: '北美洲西南部古代社会',
     hi: 'उत्तरी अमेरिका के दक्षिण-पश्चिम के प्राचीन समाज',
     es: 'Sociedades antiguas del suroeste de Norteamérica',
@@ -39,6 +40,7 @@ export const ancientSouthwesternNorthAmerica_Skill_Data = defineSkill({
       'Describe dry-environment adaptations and early agriculture without projecting later cultures into ancient periods.',
     frontend: {
       en: 'Explore early settlements and farming in the American Southwest.',
+      it: "Esplora i primi insediamenti e l'agricoltura nel sudovest degli attuali Stati Uniti.",
       zh: '探索美洲西南部早期的定居点与农业。',
       hi: 'अमेरिकी दक्षिण-पश्चिम की शुरुआती बस्तियों और खेती को जानें।',
       es: 'Explora los primeros asentamientos y la agricultura en el suroeste norteamericano.',

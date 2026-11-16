@@ -11,6 +11,7 @@ export const withRemainder_Skill_Data = defineSkill({
     ka: 'გაყოფა — ნაშთით',
     kk: 'Бөлу — қалдықпен',
     en: 'Division — Division with remainder',
+    it: 'Divisione — Divisione con resto',
     qm: 'Bölüv — qaldıqlı bölüv',
     zh: '除法 — 有余数的除法',
     hi: 'भाग — शेषफल सहित भाग',
@@ -39,6 +40,7 @@ export const withRemainder_Skill_Data = defineSkill({
       'Integer division with positive divisor b yields quotient q and remainder r satisfying a = bq + r and 0 <= r < b. The quotient counts complete groups and the remainder is what cannot make another full group.',
     frontend: {
       en: 'You can find a whole-number quotient and remainder, where the remainder is smaller than the positive divisor and the two together reconstruct the dividend.',
+      it: 'Puoi trovare un quoziente intero e un resto minore del divisore positivo, che insieme permettono di ricostruire il dividendo.',
       qm: 'Tam bölüm neticesi ve qaldıqnı tapa bilesiñ. Qaldıq musbet bölüciden kiçik olmalı; bölüm neticesi ve qaldıq birlikte bölüngen sayını qayta bere.',
       zh: '你能求出整数商和余数，其中余数小于正除数，而除数乘商加余数等于被除数。',
       hi: 'तुम पूर्णांक भागफल और शेष निकाल सकते हो, जहाँ शेष धनात्मक भाजक से छोटा हो और भाजक × भागफल + शेष से मूल संख्या मिले।',

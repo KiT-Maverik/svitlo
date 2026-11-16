@@ -5,6 +5,7 @@ export const beams_Skill_Data = defineSkill({
   id: 'f95c60dc-7c3a-4512-a7da-0ad3d85ef6f0',
   name: {
     en: 'Beams',
+    it: 'Travi',
     zh: '梁',
     hi: 'बीम',
     es: 'Vigas',
@@ -38,6 +39,7 @@ export const beams_Skill_Data = defineSkill({
     methodological: 'Trace bending and load transfer from a span to its supports.',
     frontend: {
       en: 'Explain how a beam carries load between supports.',
+      it: 'Spiega come una trave sostiene un carico tra gli appoggi.',
       zh: '解释梁如何在支座之间承受荷载。',
       hi: 'समझाएँ कि बीम सहारों के बीच भार कैसे उठाती है।',
       es: 'Explica cómo una viga soporta cargas entre apoyos.',

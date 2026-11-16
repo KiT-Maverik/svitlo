@@ -5,6 +5,7 @@ export const analyzeAncientEgyptianFuneraryImagery_Skill_Data = defineSkill({
   id: '8586a1c7-1aa5-42cc-8050-f1b51fe331f9',
   name: {
     en: 'Analyze Ancient Egyptian Funerary Imagery',
+    it: "Analizzare le immagini funerarie dell'antico Egitto",
     zh: '分析古埃及葬仪图像',
     hi: 'प्राचीन मिस्री अंत्येष्टि चित्रों का विश्लेषण करें',
     es: 'Analizar la iconografía funeraria del antiguo Egipto',
@@ -39,6 +40,7 @@ export const analyzeAncientEgyptianFuneraryImagery_Skill_Data = defineSkill({
       'Explain how conventions of profile, scale, attributes and prescribed scenes relate to religious beliefs and burial contexts in a specified Egyptian period.',
     frontend: {
       en: 'See how ancient Egyptian burial images use symbols, figures and carefully chosen scenes.',
+      it: 'Osserva come le immagini funerarie egizie usano simboli, figure e scene scelte con cura.',
       zh: '了解古埃及墓葬图像如何运用象征、人物和精心安排的场景。',
       hi: 'जानें कि प्राचीन मिस्री समाधि-चित्रों में प्रतीकों, आकृतियों और सोच-समझकर चुने गए दृश्यों का उपयोग कैसे होता था।',
       es: 'Descubre cómo las imágenes funerarias del antiguo Egipto emplean símbolos, figuras y escenas cuidadosamente elegidas.',

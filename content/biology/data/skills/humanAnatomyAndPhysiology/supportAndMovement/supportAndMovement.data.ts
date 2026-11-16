@@ -11,6 +11,7 @@ export const supportAndMovement_SkillGroup_Data = defineSkillGroup({
   id: '42a106c2-cb21-46e3-b394-bbc199821b28',
   name: {
     en: 'Support and Movement',
+    it: 'Sostegno e movimento',
     zh: '支撑与运动',
     hi: 'सहारा और गति',
     es: 'Sostén y movimiento',
@@ -57,6 +58,7 @@ export const supportAndMovement_SkillGroup_Data = defineSkillGroup({
       'Bones provide support and levers, muscles exert force, and joints determine the possible directions of movement.',
     frontend: {
       en: 'Explore how bones, muscles and joints work together in movement.',
+      it: 'Scopri come ossa, muscoli e articolazioni collaborano per consentire il movimento.',
       zh: '探索骨骼、肌肉和关节如何协同完成运动。',
       hi: 'जानें कि हड्डियाँ, मांसपेशियाँ और जोड़ मिलकर गति कैसे उत्पन्न करते हैं।',
       es: 'Explora cómo huesos, músculos y articulaciones trabajan juntos para producir movimiento.',

@@ -7,6 +7,7 @@ export const quantities_SkillGroup_Data = defineSkillGroup({
   id: '08a71b06-f1c4-4596-aca4-ff7ec78cce31',
   name: {
     en: 'Quantity problems',
+    it: 'Problemi con grandezze',
     qm: 'Miqdar meseleleri',
     lt: 'Dydžių uždaviniai',
     lv: 'Lielumu uzdevumi',

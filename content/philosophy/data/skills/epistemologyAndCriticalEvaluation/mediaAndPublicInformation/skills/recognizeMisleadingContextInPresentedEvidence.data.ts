@@ -5,6 +5,7 @@ export const recognizeMisleadingContextInPresentedEvidence_Skill_Data = defineSk
   id: 'beba5f09-6641-4e77-bf42-e400297ce341',
   name: {
     en: 'Recognize misleading context in presented evidence',
+    it: 'Riconoscere un contesto fuorviante nelle prove presentate',
     zh: '识别证据呈现中的误导性背景',
     hi: 'प्रस्तुत साक्ष्य में भ्रामक संदर्भ पहचानें',
     es: 'Detectar contexto engañoso en las pruebas',
@@ -39,6 +40,7 @@ export const recognizeMisleadingContextInPresentedEvidence_Skill_Data = defineSk
       'Detect how cropping, omitted baselines, selective examples, or missing dates can alter the apparent meaning of otherwise genuine material.',
     frontend: {
       en: 'Recognize how omitted dates, cropped images or missing context can mislead.',
+      it: 'Riconosci come date omesse, immagini ritagliate o informazioni mancanti possano trarre in inganno.',
       zh: '认识到遗漏日期、裁剪图像或缺乏背景如何误导人。',
       hi: 'समझें कि तारीख हटाना, चित्र काटना या संदर्भ छिपाना कैसे गुमराह कर सकता है।',
       es: 'Reconoce cómo omitir fechas, recortar imágenes o quitar contexto puede engañar.',

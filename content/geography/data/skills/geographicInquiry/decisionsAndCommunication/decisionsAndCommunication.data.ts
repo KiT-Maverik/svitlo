@@ -11,6 +11,7 @@ export const decisionsAndCommunication_SkillGroup_Data = defineSkillGroup({
   id: 'aee7c7e7-a27d-469c-b3d8-6b4962023e52',
   name: {
     en: 'Decisions and Communication',
+    it: 'Decisioni e comunicazione',
     zh: '决策与交流',
     hi: 'निर्णय और संचार',
     es: 'Decisiones y comunicación',
@@ -57,6 +58,7 @@ export const decisionsAndCommunication_SkillGroup_Data = defineSkillGroup({
       'A geographic recommendation combines evidence about places with competing objectives and uncertainty. Maps can communicate reasoning, but they do not settle value judgments on their own.',
     frontend: {
       en: 'Learn to compare places and explain decisions using geographic evidence.',
+      it: 'Impara a confrontare i luoghi e a spiegare le decisioni utilizzando prove geografiche.',
       zh: '学习如何利用地理证据比较地点并解释决策。',
       hi: 'जानें कि भौगोलिक साक्ष्य से स्थानों की तुलना और निर्णयों की व्याख्या कैसे करें।',
       es: 'Aprende a comparar lugares y explicar decisiones mediante pruebas geográficas.',

@@ -5,6 +5,7 @@ export const classifyNaturalAndArtificialLightSources_Skill_Data = defineSkill({
   id: 'd5502e63-eed1-4226-ab3f-9d80e4d19f90',
   name: {
     en: 'Classify natural and artificial light sources',
+    it: 'Classificare le sorgenti luminose naturali e artificiali',
     zh: '区分自然光源和人造光源',
     hi: 'प्राकृतिक और कृत्रिम प्रकाश स्रोतों का वर्गीकरण',
     es: 'Clasificar fuentes de luz naturales y artificiales',
@@ -38,6 +39,7 @@ export const classifyNaturalAndArtificialLightSources_Skill_Data = defineSkill({
     methodological: 'Group light sources according to their origin.',
     frontend: {
       en: 'Recognize natural and human-made sources of light.',
+      it: "Riconosci le sorgenti luminose naturali e quelle create dall'essere umano.",
       zh: '识别自然界中的光源和人类制造的光源。',
       hi: 'प्राकृतिक तथा मनुष्य द्वारा बनाए गए प्रकाश स्रोतों को पहचानो।',
       es: 'Reconoce fuentes de luz naturales y creadas por las personas.',

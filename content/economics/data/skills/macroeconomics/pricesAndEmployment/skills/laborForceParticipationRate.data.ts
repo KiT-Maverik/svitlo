@@ -5,6 +5,7 @@ export const laborForceParticipationRate_Skill_Data = defineSkill({
   id: '06790974-77ba-40f6-aba5-3009da233979',
   name: {
     en: 'Рівень участі в робочій силі',
+    it: 'Tasso di partecipazione alla forza lavoro',
     zh: '劳动参与率',
     hi: 'श्रमबल सहभागिता दर',
     es: 'Tasa de participación laboral',
@@ -39,6 +40,7 @@ export const laborForceParticipationRate_Skill_Data = defineSkill({
       'Calculate and interpret the proportion of a specified age group that is employed or unemployed and seeking work, distinguishing it from the unemployment rate.',
     frontend: {
       en: 'Compare labor-force participation with the unemployment rate.',
+      it: 'Confronta il tasso di partecipazione alla forza lavoro con il tasso di disoccupazione.',
       zh: '比较劳动参与率与失业率。',
       hi: 'श्रमबल सहभागिता दर और बेरोज़गारी दर की तुलना करें।',
       es: 'Compara la participación laboral con la tasa de desempleo.',

@@ -5,6 +5,7 @@ export const interpretMaterialImplication_Skill_Data = defineSkill({
   id: 'e181747d-0f10-49b7-91f0-5f398290d2d8',
   name: {
     en: 'Interpret material implication',
+    it: "Interpretare l'implicazione materiale",
     zh: '理解实质蕴含',
     hi: 'भौतिक निहितार्थ की व्याख्या',
     es: 'Interpretar la implicación material',
@@ -39,6 +40,7 @@ export const interpretMaterialImplication_Skill_Data = defineSkill({
       'Determine when a conditional is true in classical propositional logic without confusing logical implication with causation.',
     frontend: {
       en: 'Understand when a conditional is true in classical propositional logic.',
+      it: 'Comprendi quando un condizionale è vero nella logica proposizionale classica.',
       zh: '了解经典命题逻辑中的条件陈述在什么情况下为真。',
       hi: 'समझें कि शास्त्रीय प्रस्तावनात्मक तर्क में शर्तवाला कथन कब सत्य होता है।',
       es: 'Comprende cuándo es verdadero un condicional en la lógica proposicional clásica.',

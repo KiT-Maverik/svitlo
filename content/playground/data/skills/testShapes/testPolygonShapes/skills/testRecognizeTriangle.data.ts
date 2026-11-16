@@ -6,6 +6,7 @@ export const testRecognizeTriangle_Skill_Data = defineSkill({
   id: '00000000-0000-4000-8000-000000000011',
   name: {
     en: '[TEST en] Recognize a triangle',
+    it: '[TEST it] Riconoscere un triangolo',
     zh: '[TEST zh] Recognize a triangle',
     hi: '[TEST hi] Recognize a triangle',
     es: '[TEST es] Recognize a triangle',
@@ -40,6 +41,7 @@ export const testRecognizeTriangle_Skill_Data = defineSkill({
       'Synthetic fixture skill for recognize a triangle; it exists solely to exercise the Playground Skill Data graph.',
     frontend: {
       en: '[TEST en] Recognize a triangle in a simple visual example.',
+      it: '[TEST it] Riconoscere un triangolo in un semplice esempio visivo.',
       zh: '[TEST zh] Recognize a triangle in a simple visual example.',
       hi: '[TEST hi] Recognize a triangle in a simple visual example.',
       es: '[TEST es] Recognize a triangle in a simple visual example.',

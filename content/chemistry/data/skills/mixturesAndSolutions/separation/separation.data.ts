@@ -15,6 +15,7 @@ export const separation_SkillGroup_Data = defineSkillGroup({
   id: '7b49641b-fcb5-4dd2-8deb-8cb2363604a7',
   name: {
     en: 'Separation',
+    it: 'Separazione',
     zh: '混合物的分离',
     hi: 'मिश्रणों का पृथक्करण',
     es: 'Separación de mezclas',
@@ -68,6 +69,7 @@ export const separation_SkillGroup_Data = defineSkillGroup({
     methodological: 'Choosing a technique requires identifying which physical property differs between the components.',
     frontend: {
       en: 'Discover how differences in physical properties help separate mixtures.',
+      it: 'Scopri come le differenze nelle proprietà fisiche permettono di separare le miscele.',
       zh: '了解如何利用物理性质的差异分离混合物。',
       hi: 'जानें कि भौतिक गुणों के अंतर से मिश्रणों को कैसे अलग किया जा सकता है।',
       es: 'Descubre cómo las diferencias de propiedades físicas permiten separar mezclas.',

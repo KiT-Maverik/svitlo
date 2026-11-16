@@ -5,6 +5,7 @@ export const distinguishVisibleFromInvisibleElectromagneticRadiation_Skill_Data 
   id: '5d01c89d-8ccf-4aa6-8988-eda2c331eeaa',
   name: {
     en: 'Distinguish visible from invisible electromagnetic radiation',
+    it: 'Distinguere le radiazioni elettromagnetiche visibili da quelle invisibili',
     zh: '区分可见和不可见的电磁辐射',
     hi: 'दृश्य और अदृश्य विद्युतचुंबकीय विकिरण में अंतर करना',
     es: 'Distinguir la radiación electromagnética visible de la invisible',
@@ -39,6 +40,7 @@ export const distinguishVisibleFromInvisibleElectromagneticRadiation_Skill_Data 
       'Use lamp light, infrared radiation, and radio waves to demonstrate that not all radiation can be detected by the eye.',
     frontend: {
       en: 'Recognize that radio and infrared waves are not visible to human eyes.',
+      it: 'Riconosci che le onde radio e infrarosse non sono visibili agli occhi umani.',
       zh: '认识到无线电波和红外线无法被人眼直接看见。',
       hi: 'समझो कि रेडियो तरंगें और अवरक्त विकिरण मानव आँख को नहीं दिखते।',
       es: 'Reconoce que las ondas de radio y la radiación infrarroja no son visibles para el ojo humano.',

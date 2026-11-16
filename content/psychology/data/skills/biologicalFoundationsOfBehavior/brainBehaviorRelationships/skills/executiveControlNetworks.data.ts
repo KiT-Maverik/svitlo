@@ -5,6 +5,7 @@ export const executiveControlNetworks_Skill_Data = defineSkill({
   id: 'a1228e65-6ca4-42c1-820b-003e49a314ca',
   name: {
     en: 'Executive-Control Networks',
+    it: 'Reti del controllo esecutivo',
     zh: '执行控制网络',
     hi: 'कार्यकारी नियंत्रण नेटवर्क',
     es: 'Redes de control ejecutivo',
@@ -39,6 +40,7 @@ export const executiveControlNetworks_Skill_Data = defineSkill({
       'Relate interacting brain systems to working-memory updating, flexible planning, and response inhibition.',
     frontend: {
       en: 'Explore how brain networks support planning, memory and self-control.',
+      it: 'Esplora come le reti cerebrali sostengano pianificazione, memoria e autocontrollo.',
       zh: '探索大脑网络如何支持计划、记忆和自我控制。',
       hi: 'जानें कि मस्तिष्क नेटवर्क योजना बनाने, स्मृति और आत्मनियंत्रण में कैसे मदद करते हैं।',
       es: 'Explora cómo las redes cerebrales apoyan la planificación, la memoria y el autocontrol.',

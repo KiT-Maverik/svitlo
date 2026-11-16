@@ -5,6 +5,7 @@ export const explainAnOSProcess_Skill_Data = defineSkill({
   id: 'b8101fdb-f626-4995-be7c-e05e25a8e3a2',
   name: {
     en: 'Explain an OS Process',
+    it: 'Spiegare un processo del sistema operativo',
     zh: '解释操作系统进程',
     hi: 'ऑपरेटिंग सिस्टम की प्रक्रिया समझाना',
     es: 'Explicar un proceso del sistema operativo',
@@ -39,6 +40,7 @@ export const explainAnOSProcess_Skill_Data = defineSkill({
       'A running program has current state and allocated resources; a program file on disk is not itself a process.',
     frontend: {
       en: 'Distinguish a running process from the program file stored on disk.',
+      it: 'Distingui un processo in esecuzione dal file del programma archiviato sul disco.',
       zh: '区分正在运行的进程与存储在磁盘上的程序文件。',
       hi: 'चल रही प्रक्रिया और डिस्क पर संग्रहीत प्रोग्राम फ़ाइल में अंतर करें।',
       es: 'Distingue un proceso en ejecución del archivo de programa almacenado en el disco.',

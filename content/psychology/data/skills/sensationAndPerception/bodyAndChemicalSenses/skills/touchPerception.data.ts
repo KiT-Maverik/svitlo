@@ -5,6 +5,7 @@ export const touchPerception_Skill_Data = defineSkill({
   id: 'b9a4fa54-171c-49fb-bee1-b6de53dd8888',
   name: {
     en: 'Touch Perception',
+    it: 'Percezione tattile',
     zh: '触觉知觉',
     hi: 'स्पर्श का प्रत्यक्षण',
     es: 'Percepción del tacto',
@@ -39,6 +40,7 @@ export const touchPerception_Skill_Data = defineSkill({
       'Explain how contact, pressure, vibration, and texture are discriminated through somatosensory processing, and why perceived touch depends on stimulus location and context.',
     frontend: {
       en: 'Understand how pressure and vibration become the experience of touch.',
+      it: 'Comprendi come pressione e vibrazioni diventino esperienza del tatto.',
       zh: '了解压力和振动如何形成触觉体验。',
       hi: 'समझें कि दबाव और कंपन स्पर्श के अनुभव में कैसे बदलते हैं।',
       es: 'Comprende cómo la presión y la vibración se convierten en la experiencia de tocar.',

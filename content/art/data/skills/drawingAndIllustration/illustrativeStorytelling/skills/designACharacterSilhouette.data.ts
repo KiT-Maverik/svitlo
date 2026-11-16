@@ -5,6 +5,7 @@ export const designACharacterSilhouette_Skill_Data = defineSkill({
   id: '6b827ecb-53e1-4c8b-b1c7-14d2e2b96d37',
   name: {
     en: 'Design a Character Silhouette',
+    it: 'Progettare la silhouette di un personaggio',
     zh: '设计角色剪影',
     hi: 'पात्र की रूपरेखा डिज़ाइन करें',
     es: 'Diseñar la silueta de un personaje',
@@ -38,6 +39,7 @@ export const designACharacterSilhouette_Skill_Data = defineSkill({
     methodological: 'Give a figure distinguishable shape characteristics that remain apparent without internal detail.',
     frontend: {
       en: 'Design a character you can recognize from its outline alone.',
+      it: 'Disegna un personaggio riconoscibile anche soltanto dalla sua sagoma.',
       zh: '设计一个仅凭轮廓就能辨认的角色。',
       hi: 'ऐसा पात्र बनाएँ जिसे केवल उसकी बाहरी आकृति से पहचाना जा सके।',
       es: 'Diseña un personaje reconocible solo por su contorno.',

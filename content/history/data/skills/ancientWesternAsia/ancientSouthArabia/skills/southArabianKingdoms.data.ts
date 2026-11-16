@@ -5,6 +5,7 @@ export const southArabianKingdoms_Skill_Data = defineSkill({
   id: 'be1342dd-4427-4001-807b-b84b9ec96135',
   name: {
     en: 'Ancient South Arabian Kingdoms',
+    it: "Antichi regni dell'Arabia meridionale",
     zh: '古代南阿拉伯王国',
     hi: 'प्राचीन दक्षिण अरब के राज्य',
     es: 'Reinos antiguos de Arabia meridional',
@@ -38,6 +39,7 @@ export const southArabianKingdoms_Skill_Data = defineSkill({
     methodological: 'Examine Saba and other kingdoms through local farming, social organization, and trade.',
     frontend: {
       en: 'Learn about the kingdoms of Saba and its neighbors.',
+      it: 'Scopri i regni di Saba e dei territori vicini.',
       zh: '了解示巴王国及其邻近王国。',
       hi: 'सबा और उसके पड़ोसी राज्यों के बारे में जानें।',
       es: 'Aprende sobre los reinos de Saba y sus vecinos.',

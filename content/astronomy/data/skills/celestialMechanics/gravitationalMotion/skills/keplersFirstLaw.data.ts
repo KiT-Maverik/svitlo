@@ -5,6 +5,7 @@ export const keplersFirstLaw_Skill_Data = defineSkill({
   id: 'cc6f72af-a96d-4e90-b569-cf1ca122e365',
   name: {
     en: "Kepler's First Law",
+    it: 'Prima legge di Keplero',
     zh: '开普勒第一定律',
     hi: 'केप्लर का प्रथम नियम',
     es: 'Primera ley de Kepler',
@@ -39,6 +40,7 @@ export const keplersFirstLaw_Skill_Data = defineSkill({
       'Apply the elliptical-orbit relation, with the central gravitating body at one focus in the idealized two-body model, to the geometry of bound orbits.',
     frontend: {
       en: 'Recognize how an ideal orbit can follow an ellipse with the central body at one focus.',
+      it: "Riconosci come un'orbita ideale possa seguire un'ellisse con il corpo centrale in uno dei fuochi.",
       zh: '认识理想轨道如何呈椭圆形，中心天体位于其中一个焦点。',
       hi: 'जानें कि आदर्श कक्षा दीर्घवृत्त हो सकती है और केंद्रीय पिंड उसके एक फोकस पर होता है।',
       es: 'Reconoce que una órbita ideal puede ser elíptica, con el cuerpo central en uno de sus focos.',

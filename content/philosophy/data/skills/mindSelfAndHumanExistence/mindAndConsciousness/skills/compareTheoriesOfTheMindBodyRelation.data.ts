@@ -5,6 +5,7 @@ export const compareTheoriesOfTheMindBodyRelation_Skill_Data = defineSkill({
   id: '44339755-c492-4dd3-b6e2-fd53e763b8dd',
   name: {
     en: 'Compare theories of the mind–body relation',
+    it: 'Confrontare le teorie sul rapporto mente-corpo',
     zh: '比较心身关系理论',
     hi: 'मन और शरीर के संबंध के सिद्धांतों की तुलना',
     es: 'Comparar teorías de la relación mente-cuerpo',
@@ -39,6 +40,7 @@ export const compareTheoriesOfTheMindBodyRelation_Skill_Data = defineSkill({
       'Contrast representative views such as physicalism and dualism by their commitments and explanatory challenges.',
     frontend: {
       en: 'Compare philosophical explanations of how mind and body are related.',
+      it: 'Confronta le spiegazioni filosofiche del rapporto tra mente e corpo.',
       zh: '比较哲学对心灵与身体如何相关的不同解释。',
       hi: 'मन और शरीर कैसे जुड़े हैं, इसकी दार्शनिक व्याख्याओं की तुलना करें।',
       es: 'Compara explicaciones filosóficas sobre cómo se relacionan mente y cuerpo.',

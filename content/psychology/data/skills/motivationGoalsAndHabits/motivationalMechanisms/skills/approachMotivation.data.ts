@@ -5,6 +5,7 @@ export const approachMotivation_Skill_Data = defineSkill({
   id: 'd0f363c3-cbad-423d-9b28-765ca8a8fd57',
   name: {
     en: 'Approach Motivation',
+    it: "Motivazione all'avvicinamento",
     zh: '趋近动机',
     hi: 'सकारात्मक परिणाम की ओर प्रेरणा',
     es: 'Motivación de aproximación',
@@ -38,6 +39,7 @@ export const approachMotivation_Skill_Data = defineSkill({
     methodological: 'Explain initiation of actions aimed at obtaining anticipated positive outcomes.',
     frontend: {
       en: 'Recognize motivation to move toward a desired outcome.',
+      it: 'Riconosci la motivazione a muoversi verso un risultato desiderato.',
       zh: '认识朝着想要的结果努力的动机。',
       hi: 'मनचाहे परिणाम की ओर बढ़ने की प्रेरणा पहचानें।',
       es: 'Reconoce la motivación para acercarse a un resultado deseado.',

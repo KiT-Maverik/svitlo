@@ -5,6 +5,7 @@ export const landUseEconomics_Skill_Data = defineSkill({
   id: 'ac43a260-4015-41b3-9142-ce599d9961b6',
   name: {
     en: 'Економіка землекористування',
+    it: "Economia dell'uso del suolo",
     zh: '土地利用经济学',
     hi: 'भूमि उपयोग का अर्थशास्त्र',
     es: 'Economía del uso del suelo',
@@ -39,6 +40,7 @@ export const landUseEconomics_Skill_Data = defineSkill({
       'Evaluate how zoning, development limits, and alternative uses of land affect rents, construction volumes, and the location of activity.',
     frontend: {
       en: 'Explore how land-use rules influence where and what people build.',
+      it: "Esplora come le norme sull'uso del suolo influenzano dove e che cosa viene costruito.",
       zh: '探索土地使用规则如何影响人们在何处建造以及建造什么。',
       hi: 'जानें कि भूमि उपयोग के नियम निर्माण के स्थान और प्रकार को कैसे प्रभावित करते हैं।',
       es: 'Explora cómo las normas del uso del suelo influyen en dónde y qué se construye.',

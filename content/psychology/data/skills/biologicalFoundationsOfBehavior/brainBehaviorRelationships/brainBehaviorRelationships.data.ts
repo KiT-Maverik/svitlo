@@ -13,6 +13,7 @@ export const brainBehaviorRelationships_SkillGroup_Data = defineSkillGroup({
   id: '5d9ee4a9-2c0c-4867-b332-50b66b112a7e',
   name: {
     en: 'Brain–Behavior Relationships',
+    it: 'Relazioni tra cervello e comportamento',
     zh: '大脑与行为的关系',
     hi: 'मस्तिष्क और व्यवहार के संबंध',
     es: 'Relaciones entre cerebro y conducta',
@@ -63,6 +64,7 @@ export const brainBehaviorRelationships_SkillGroup_Data = defineSkillGroup({
       'Distributed neural systems support specific psychological functions; brain scans and localized damage require cautious interpretation.',
     frontend: {
       en: 'Learn how interacting brain systems support different behaviors.',
+      it: 'Scopri come sistemi cerebrali interconnessi sostengono comportamenti diversi.',
       zh: '了解相互协作的大脑系统如何支持不同的行为。',
       hi: 'जानें कि मिलकर काम करने वाली मस्तिष्क प्रणालियाँ विभिन्न व्यवहारों को कैसे सहारा देती हैं।',
       es: 'Aprende cómo distintos sistemas cerebrales que interactúan apoyan diversas conductas.',

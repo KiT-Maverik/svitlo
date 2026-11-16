@@ -5,6 +5,7 @@ export const limitsOfCosmologicalKnowledge_Skill_Data = defineSkill({
   id: '79c13c4d-a386-43f4-a989-abaac31013f3',
   name: {
     en: 'Limits of Cosmological Knowledge',
+    it: 'Limiti della conoscenza cosmologica',
     qm: 'Kosmologik bilgilerniñ sıñırları',
     zh: '宇宙学知识的局限',
     hi: 'ब्रह्मांडीय ज्ञान की सीमाएँ',
@@ -39,6 +40,7 @@ export const limitsOfCosmologicalKnowledge_Skill_Data = defineSkill({
       'Distinguish empirical constraints from open problems concerning early conditions, dark components and the global extent of the Universe.',
     frontend: {
       en: 'Distinguish what observations establish about the Universe from major unanswered questions.',
+      it: "Distingui ciò che le osservazioni dimostrano sull'universo dalle principali domande ancora aperte.",
       qm: 'Kâinat aqqında közetüvler tasdiq etken şeylerni daa cevapsız qalğan müim suallerden ayırıñız.',
       zh: '区分观测已证实的宇宙事实与尚未解答的重要问题。',
       hi: 'अवलोकनों से स्थापित तथ्यों और अभी अनुत्तरित बड़े सवालों में अंतर करें।',

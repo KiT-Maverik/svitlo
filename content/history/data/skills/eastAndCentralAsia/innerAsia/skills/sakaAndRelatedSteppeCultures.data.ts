@@ -5,6 +5,7 @@ export const sakaAndRelatedSteppeCultures_Skill_Data = defineSkill({
   id: '67f6acee-6cef-4395-9dd9-097e54678d2f',
   name: {
     en: 'Saka and Related Steppe Cultures',
+    it: 'Saka e culture delle steppe affini',
     zh: '塞种及相关草原文化',
     hi: 'साका और संबंधित स्तेपी संस्कृतियाँ',
     es: 'Sakas y culturas esteparias relacionadas',
@@ -39,6 +40,7 @@ export const sakaAndRelatedSteppeCultures_Skill_Data = defineSkill({
       'Recognize diverse Iranian-speaking and other Inner Asian groups from archaeology and external ethnonyms.',
     frontend: {
       en: 'Explore what is known about the Saka and related cultures.',
+      it: 'Esplora ciò che sappiamo dei Saka e delle culture affini.',
       zh: '探索人们对塞种及相关文化的已有认识。',
       hi: 'साका और उनसे जुड़ी संस्कृतियों के बारे में उपलब्ध जानकारी का अध्ययन करें।',
       es: 'Explora lo que se conoce de los sakas y otras culturas relacionadas.',

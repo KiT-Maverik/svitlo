@@ -5,6 +5,7 @@ export const unknownFactor_Skill_Data = defineSkill({
   id: '86d61e77-3ad4-4d9c-bf1a-5646ffc15f24',
   name: {
     en: 'Finding an unknown factor',
+    it: 'Trovare un fattore incognito',
     qm: 'Belli olmağan arttırıcıyı tapmaq',
     lt: 'Nežinomo daugiklio radimas',
     lv: 'Nezināmā reizinātāja atrašana',
@@ -39,6 +40,7 @@ export const unknownFactor_Skill_Data = defineSkill({
       'Given a product and a known nonzero factor, determine the missing factor by division within the permitted number domain. Verify by reconstructing the original product.',
     frontend: {
       en: 'When a product and a nonzero factor are known, you can divide to find the other factor and check by multiplying.',
+      it: "Quando conosci un prodotto e un fattore diverso da zero, puoi dividere per trovare l'altro fattore e verificare con una moltiplicazione.",
       qm: 'Arttıruv neticesi ve sıfır olmağan bir arttırıcı belli olsa, bölüv yardımınen ekinci arttırıcıyı tapıp, arttıruvnen teşkere ete bilesiñ.',
       zh: '已知积和一个非零因数时，你能用除法求出另一个因数，再用乘法验算。',
       hi: 'गुणनफल और शून्य से अलग गुणनखंड ज्ञात हों, तो भाग से दूसरा गुणनखंड निकालकर गुणा से जाँच सकते हो।',

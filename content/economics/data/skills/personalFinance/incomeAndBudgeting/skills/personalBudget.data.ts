@@ -5,6 +5,7 @@ export const personalBudget_Skill_Data = defineSkill({
   id: 'a9b090f8-172e-4baf-b137-f445204ea25e',
   name: {
     en: 'Особистий бюджет',
+    it: 'Budget personale',
     zh: '个人预算',
     hi: 'व्यक्तिगत बजट',
     es: 'Presupuesto personal',
@@ -39,6 +40,7 @@ export const personalBudget_Skill_Data = defineSkill({
       'Plan income and spending over a specified period, prioritizing needs and allowing for unexpected expenses.',
     frontend: {
       en: 'Make a budget that balances expected income and spending.',
+      it: 'Prepara un budget che bilanci le entrate previste e le spese.',
       zh: '制定平衡预期收入与支出的预算。',
       hi: 'अनुमानित आय और खर्च का संतुलित बजट बनाएँ।',
       es: 'Elabora un presupuesto que equilibre ingresos y gastos previstos.',

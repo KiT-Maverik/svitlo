@@ -5,6 +5,7 @@ export const firstAidForThermalBurns_Skill_Data = defineSkill({
   id: '7c7f8ffc-6a0b-46ee-9f39-4368133f6d2e',
   name: {
     en: 'First aid for thermal burns',
+    it: 'Primo soccorso per le ustioni termiche',
     zh: '热烧伤的急救',
     hi: 'गर्मी से जले घावों का प्राथमिक उपचार',
     es: 'Primeros auxilios para quemaduras térmicas',
@@ -39,6 +40,7 @@ export const firstAidForThermalBurns_Skill_Data = defineSkill({
       'End thermal exposure when safe, cool a heat burn appropriately and recognize features that require urgent medical assessment; chemical injuries require different hazard-specific precautions.',
     frontend: {
       en: 'Understand initial cooling and escalation for thermal burns.',
+      it: 'Comprendi il raffreddamento iniziale delle ustioni termiche e quando è necessario richiedere assistenza.',
       zh: '了解热烧伤的初步冷却方法，以及何时需要进一步就医。',
       hi: 'जलने पर शुरुआती ठंडक और चिकित्सा मदद कब बढ़ानी है, समझो।',
       es: 'Comprende el enfriamiento inicial y cuándo solicitar atención más urgente por quemaduras.',

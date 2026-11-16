@@ -5,6 +5,7 @@ export const identifyStakeholdersInAnEthicalDilemma_Skill_Data = defineSkill({
   id: 'da71d340-94d9-4fd3-8d09-52b8dfd02e9a',
   name: {
     en: 'Identify stakeholders in an ethical dilemma',
+    it: 'Individuare le parti coinvolte in un dilemma etico',
     zh: '识别伦理困境中的利益相关者',
     hi: 'नैतिक दुविधा में हितधारकों की पहचान',
     es: 'Identificar las partes afectadas por un dilema ético',
@@ -39,6 +40,7 @@ export const identifyStakeholdersInAnEthicalDilemma_Skill_Data = defineSkill({
       'Recognize persons or other morally relevant parties affected directly or indirectly by a proposed choice.',
     frontend: {
       en: 'Identify all the people and other parties affected by a moral choice.',
+      it: 'Individua tutte le persone e le altre parti interessate da una scelta morale.',
       zh: '找出受到道德选择影响的所有人及其他相关方。',
       hi: 'नैतिक चुनाव से प्रभावित सभी लोगों और अन्य पक्षों की पहचान करें।',
       es: 'Identifica a todas las personas y demás partes afectadas por una decisión moral.',

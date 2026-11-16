@@ -5,6 +5,7 @@ export const catalysis_Skill_Data = defineSkill({
   id: '58506eb9-5209-4cce-a8ec-5822e1855cde',
   name: {
     en: 'Catalysis',
+    it: 'Catalisi',
     zh: '催化作用',
     hi: 'उत्प्रेरण',
     es: 'Catálisis',
@@ -39,6 +40,7 @@ export const catalysis_Skill_Data = defineSkill({
       'Explain alternate reaction pathways and activation barriers without treating a catalyst as a stoichiometric reactant consumed overall.',
     frontend: {
       en: 'Discover how catalysts speed reactions without being used up overall.',
+      it: 'Scopri come i catalizzatori accelerano le reazioni senza consumarsi nel bilancio complessivo.',
       zh: '了解催化剂如何加快反应而整体上不被消耗。',
       hi: 'जानें कि उत्प्रेरक कुल मिलाकर खर्च हुए बिना अभिक्रिया की गति कैसे बढ़ाते हैं।',
       es: 'Descubre cómo los catalizadores aceleran reacciones sin consumirse en conjunto.',

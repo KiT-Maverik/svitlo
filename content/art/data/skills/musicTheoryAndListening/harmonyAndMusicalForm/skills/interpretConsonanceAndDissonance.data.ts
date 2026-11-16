@@ -5,6 +5,7 @@ export const interpretConsonanceAndDissonance_Skill_Data = defineSkill({
   id: 'c7573cac-79ef-47f9-82d3-9c041c5dc954',
   name: {
     en: 'Interpret Consonance and Dissonance',
+    it: 'Interpretare consonanza e dissonanza',
     zh: '理解协和与不协和',
     hi: 'स्वर-संगति और विसंगति का अर्थ समझें',
     es: 'Interpretar consonancia y disonancia',
@@ -38,6 +39,7 @@ export const interpretConsonanceAndDissonance_Skill_Data = defineSkill({
     methodological: 'Explain perceived stability or tension with reference to style and musical context.',
     frontend: {
       en: 'Hear how musical tension and rest depend on the style and context.',
+      it: 'Ascolta come tensione e distensione musicali dipendono dallo stile e dal contesto.',
       zh: '聆听音乐中的紧张感与稳定感如何取决于风格和语境。',
       hi: 'सुनें कि संगीत का तनाव और विश्राम शैली तथा संदर्भ पर कैसे निर्भर करता है।',
       es: 'Escucha cómo la tensión y el reposo musicales dependen del estilo y el contexto.',

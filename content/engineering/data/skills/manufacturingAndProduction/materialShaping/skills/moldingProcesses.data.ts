@@ -5,6 +5,7 @@ export const moldingProcesses_Skill_Data = defineSkill({
   id: '70826312-f941-430b-9a3d-4aee5e300b66',
   name: {
     en: 'Molding processes',
+    it: 'Processi di stampaggio',
     zh: '模塑工艺',
     hi: 'साँचे में ढालने की प्रक्रियाएँ',
     es: 'Procesos de moldeo',
@@ -39,6 +40,7 @@ export const moldingProcesses_Skill_Data = defineSkill({
       'Describe shaping polymer or other moldable feedstock in a cavity under suitable temperature or pressure conditions.',
     frontend: {
       en: 'Explore how molds define the shape of manufactured parts.',
+      it: 'Esplora come gli stampi determinano la forma dei componenti prodotti.',
       zh: '探索模具如何决定制成零件的形状。',
       hi: 'जानें कि साँचे निर्मित भागों का आकार कैसे तय करते हैं।',
       es: 'Explora cómo los moldes determinan la forma de las piezas fabricadas.',

@@ -5,6 +5,7 @@ export const explainConcurrentExecution_Skill_Data = defineSkill({
   id: '71c6cbc7-f7a5-4cd5-b7ed-efe6e32f279b',
   name: {
     en: 'Explain Concurrent Execution',
+    it: "Spiegare l'esecuzione concorrente",
     zh: '解释并发执行',
     hi: 'समवर्ती निष्पादन समझाना',
     es: 'Explicar la ejecución concurrente',
@@ -39,6 +40,7 @@ export const explainConcurrentExecution_Skill_Data = defineSkill({
       'Explain how several tasks make progress through interleaved steps or waiting for events without requiring instructions to run simultaneously. Contrast this with completing each task fully before starting the next.',
     frontend: {
       en: 'Understand how several tasks can make progress without running at exactly the same moment.',
+      it: 'Comprendi come più compiti possono avanzare senza essere eseguiti esattamente nello stesso momento.',
       zh: '理解多个任务即使并非在完全相同的时刻运行，也能交替取得进展。',
       hi: 'समझें कि कई कार्य ठीक एक ही समय पर न चलकर भी कैसे आगे बढ़ सकते हैं।',
       es: 'Comprende cómo varias tareas pueden progresar sin ejecutarse exactamente al mismo tiempo.',

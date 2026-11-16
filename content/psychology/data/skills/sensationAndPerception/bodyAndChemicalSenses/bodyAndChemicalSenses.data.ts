@@ -14,6 +14,7 @@ export const bodyAndChemicalSenses_SkillGroup_Data = defineSkillGroup({
   id: 'ee083ba9-b013-4800-9ef2-bded6317d32b',
   name: {
     en: 'Body and Chemical Senses',
+    it: 'Sensibilità corporea e sensi chimici',
     zh: '身体感觉与化学感觉',
     hi: 'शारीरिक और रासायनिक इंद्रियाँ',
     es: 'Sentidos corporales y químicos',
@@ -66,6 +67,7 @@ export const bodyAndChemicalSenses_SkillGroup_Data = defineSkillGroup({
       'Touch, pain, balance, body position, smell, and taste rely on partly distinct receptor and processing pathways. Their psychological importance lies in how signals become conscious experiences and guide action, not in cataloguing anatomy alone.',
     frontend: {
       en: 'Explore how touch, pain, smell, taste and body senses guide experience.',
+      it: "Esplora come tatto, dolore, olfatto, gusto e sensibilità corporea guidino l'esperienza.",
       zh: '探索触觉、痛觉、嗅觉、味觉和身体感觉如何引导体验。',
       hi: 'जानें कि स्पर्श, दर्द, गंध, स्वाद और शरीर की संवेदनाएँ हमारे अनुभव को कैसे दिशा देती हैं।',
       es: 'Explora cómo el tacto, el dolor, el olfato, el gusto y los sentidos corporales orientan nuestras experiencias.',

@@ -5,6 +5,7 @@ export const elementFamilies_Skill_Data = defineSkill({
   id: 'ec107d8f-6f82-4f5b-958c-57d862ca971a',
   name: {
     en: 'Element Families',
+    it: 'Famiglie di elementi',
     zh: '元素族',
     hi: 'तत्व परिवार',
     es: 'Familias de elementos',
@@ -39,6 +40,7 @@ export const elementFamilies_Skill_Data = defineSkill({
       'Relate alkali metals, alkaline earth metals, halogens and noble gases to shared chemical tendencies.',
     frontend: {
       en: 'Recognize common tendencies of major periodic-table families.',
+      it: 'Riconosci le tendenze comuni delle principali famiglie della tavola periodica.',
       zh: '认识元素周期表中主要元素族的共同性质和变化趋势。',
       hi: 'आवर्त सारणी के प्रमुख तत्व परिवारों की सामान्य प्रवृत्तियाँ पहचानें।',
       es: 'Reconoce las tendencias comunes de las principales familias de la tabla periódica.',

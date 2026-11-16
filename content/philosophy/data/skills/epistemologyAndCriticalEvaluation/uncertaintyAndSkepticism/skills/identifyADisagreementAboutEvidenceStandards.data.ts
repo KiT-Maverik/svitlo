@@ -5,6 +5,7 @@ export const identifyADisagreementAboutEvidenceStandards_Skill_Data = defineSkil
   id: 'b947abcb-1e27-4ad6-a706-9e8bc08048ec',
   name: {
     en: 'Identify a disagreement about evidence standards',
+    it: 'Individuare un disaccordo sui criteri di prova',
     zh: '识别证据标准分歧',
     hi: 'साक्ष्य मानकों पर मतभेद पहचानें',
     es: 'Identificar desacuerdos sobre criterios de prueba',
@@ -39,6 +40,7 @@ export const identifyADisagreementAboutEvidenceStandards_Skill_Data = defineSkil
       'Distinguish people contesting a factual premise from people applying different thresholds for accepting the same evidence.',
     frontend: {
       en: 'Spot disagreements about the standard of evidence, not only the facts.',
+      it: 'Riconosci i disaccordi sui criteri per valutare le prove, non soltanto sui fatti.',
       zh: '发现人们争论的是证据门槛，而不只是事实。',
       hi: 'समझें कि कभी विवाद तथ्यों पर नहीं, बल्कि आवश्यक साक्ष्य के मानक पर होता है।',
       es: 'Detecta desacuerdos sobre el estándar de evidencia y no solo sobre los hechos.',

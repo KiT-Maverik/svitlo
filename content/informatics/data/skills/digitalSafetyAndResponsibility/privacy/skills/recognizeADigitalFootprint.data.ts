@@ -5,6 +5,7 @@ export const recognizeADigitalFootprint_Skill_Data = defineSkill({
   id: '6e338196-2341-44c3-878d-d4aa26b98b40',
   name: {
     en: 'Recognize a Digital Footprint',
+    it: "Riconoscere un'impronta digitale online",
     zh: '认识数字足迹',
     hi: 'डिजिटल पदचिह्न पहचानना',
     es: 'Reconocer una huella digital',
@@ -39,6 +40,7 @@ export const recognizeADigitalFootprint_Skill_Data = defineSkill({
       'Connect online actions with records retained by services or other people, such as posts, comments, and access history. Visibility only to friends does not ensure the consequences disappear.',
     frontend: {
       en: 'Understand how posts and online actions can leave records that persist.',
+      it: 'Comprendi come i post e le attività online possono lasciare tracce persistenti.',
       zh: '理解网络帖子和在线行为如何留下长期保存的记录。',
       hi: 'समझें कि ऑनलाइन पोस्ट और गतिविधियाँ लंबे समय तक रिकॉर्ड कैसे छोड़ सकती हैं।',
       es: 'Comprende cómo las publicaciones y acciones en internet pueden dejar registros duraderos.',

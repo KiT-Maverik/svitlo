@@ -5,6 +5,7 @@ export const modelDigitalThreeDimensionalForms_Skill_Data = defineSkill({
   id: '4ecb1014-c8ac-4cef-8a31-6ebabfdd23bf',
   name: {
     en: 'Model Digital Three-Dimensional Forms',
+    it: 'Modellare forme digitali tridimensionali',
     zh: '建模数字三维形体',
     hi: 'डिजिटल त्रि-आयामी रूपों का मॉडल बनाएँ',
     es: 'Modelar formas digitales tridimensionales',
@@ -39,6 +40,7 @@ export const modelDigitalThreeDimensionalForms_Skill_Data = defineSkill({
       'Construct and refine surfaces and volumes with deliberate proportions, contours and relationships appropriate to a digital sculptural or modeled artwork.',
     frontend: {
       en: 'Shape a three-dimensional digital object with intentional form and proportion.',
+      it: 'Modella un oggetto digitale tridimensionale scegliendo intenzionalmente forma e proporzioni.',
       zh: '以明确的形态和比例塑造三维数字对象。',
       hi: 'सोचे-समझे रूप और अनुपात के साथ त्रि-आयामी डिजिटल वस्तु गढ़ें।',
       es: 'Da forma a un objeto digital tridimensional con intención y proporción.',

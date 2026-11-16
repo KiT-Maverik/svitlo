@@ -10,6 +10,7 @@ export const internationalEconomics_SkillDomain_Data = defineSkillDomain({
   id: '0d701503-d2d5-4d69-8d8c-d8aebc5bff50',
   title: {
     en: 'Міжнародна економіка',
+    it: 'Economia internazionale',
     zh: '国际经济学',
     hi: 'अंतरराष्ट्रीय अर्थशास्त्र',
     es: 'Economía internacional',
@@ -53,6 +54,7 @@ export const internationalEconomics_SkillDomain_Data = defineSkillDomain({
       'Countries are connected by flows of goods, services, capital, and foreign-currency payments. International economic effects cannot be reduced to the geography of trade routes.',
     frontend: {
       en: 'Explore how trade, currencies, and investment connect different countries.',
+      it: 'Esplora come commercio, valute e investimenti collegano paesi diversi.',
       zh: '探索贸易、货币和投资如何连接不同国家。',
       hi: 'जानें कि व्यापार, मुद्राएँ और निवेश देशों को कैसे जोड़ते हैं।',
       es: 'Explora cómo el comercio, las monedas y la inversión conectan países.',

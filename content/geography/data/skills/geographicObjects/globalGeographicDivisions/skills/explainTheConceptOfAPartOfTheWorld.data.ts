@@ -5,6 +5,7 @@ export const explainTheConceptOfAPartOfTheWorld_Skill_Data = defineSkill({
   id: '071665ce-6b40-4369-8f92-0f85f7c26084',
   name: {
     en: 'Explain the concept of a part of the world',
+    it: 'Spiegare il concetto di parte del mondo',
     zh: '解释世界地区的概念',
     hi: 'विश्व के भाग की अवधारणा समझाना',
     es: 'Explicar el concepto de parte del mundo',
@@ -39,6 +40,7 @@ export const explainTheConceptOfAPartOfTheWorld_Skill_Data = defineSkill({
       "Describe a historically and geographically recognized world region such as Europe or Asia, distinguishing regional convention from purely continuous landmass without imposing one national schoolbook's definitions universally.",
     frontend: {
       en: 'Recognize that parts of the world are regions defined partly by convention.',
+      it: 'Riconosci che le parti del mondo sono regioni definite anche da convenzioni.',
       zh: '认识世界地区的边界部分取决于约定俗成的划分。',
       hi: 'जानें कि दुनिया के भाग आंशिक रूप से परंपरा के आधार पर तय किए गए क्षेत्र हैं।',
       es: 'Reconoce que las partes del mundo son regiones definidas en parte por convenciones.',

@@ -5,6 +5,7 @@ export const electronAffinity_Skill_Data = defineSkill({
   id: '8dc70854-2343-4d99-b1bb-a93cc39b6de6',
   name: {
     en: 'Electron Affinity',
+    it: 'Affinità elettronica',
     zh: '电子亲和能',
     hi: 'इलेक्ट्रॉन बंधुता',
     es: 'Afinidad electrónica',
@@ -38,6 +39,7 @@ export const electronAffinity_Skill_Data = defineSkill({
     methodological: 'Distinguish electron-addition energetics from electronegativity and ionization energy.',
     frontend: {
       en: 'Distinguish energy changes from electron attachment from other atomic trends.',
+      it: "Distingui la variazione energetica associata all'acquisto di un elettrone dalle altre tendenze atomiche.",
       zh: '区分电子附着时的能量变化与其他原子性质趋势。',
       hi: 'इलेक्ट्रॉन जुड़ने पर ऊर्जा परिवर्तन को अन्य परमाणु प्रवृत्तियों से अलग पहचानें।',
       es: 'Distingue el cambio de energía al añadir un electrón de otras tendencias atómicas.',

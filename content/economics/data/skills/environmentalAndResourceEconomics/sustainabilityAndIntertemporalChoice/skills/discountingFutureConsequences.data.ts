@@ -5,6 +5,7 @@ export const discountingFutureConsequences_Skill_Data = defineSkill({
   id: 'dba7c7e2-ea21-43bf-a154-8c2fed674716',
   name: {
     en: 'Дисконтування майбутніх наслідків',
+    it: 'Attualizzazione delle conseguenze future',
     zh: '未来影响的贴现',
     hi: 'भविष्य के परिणामों का छूटांकन',
     es: 'Descuento de consecuencias futuras',
@@ -39,6 +40,7 @@ export const discountingFutureConsequences_Skill_Data = defineSkill({
       'Compare economic consequences arising at different times and explain the ethical sensitivity of selecting a discount rate.',
     frontend: {
       en: 'Explore why the value assigned to future outcomes changes an evaluation.',
+      it: 'Esplora perché il valore attribuito ai risultati futuri cambia una valutazione.',
       zh: '探索为什么赋予未来结果的价值会改变项目评估。',
       hi: 'जानें कि भविष्य के परिणामों को दी गई कीमत किसी मूल्यांकन को क्यों बदलती है।',
       es: 'Explora por qué el valor asignado a resultados futuros cambia una evaluación.',

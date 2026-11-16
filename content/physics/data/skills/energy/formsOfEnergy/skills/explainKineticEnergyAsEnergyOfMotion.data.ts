@@ -5,6 +5,7 @@ export const explainKineticEnergyAsEnergyOfMotion_Skill_Data = defineSkill({
   id: '116459c6-85be-4f2f-a7be-2b171eaa9101',
   name: {
     en: 'Explain kinetic energy as energy of motion',
+    it: "Spiegare l'energia cinetica come energia del moto",
     zh: '将动能解释为运动的能量',
     hi: 'गतिज ऊर्जा को गति की ऊर्जा के रूप में समझाना',
     es: 'Explicar la energía cinética como energía del movimiento',
@@ -39,6 +40,7 @@ export const explainKineticEnergyAsEnergyOfMotion_Skill_Data = defineSkill({
       "Kinetic energy is associated with a body's motion relative to a reference frame and depends on mass and speed, but it is not the same as momentum.",
     frontend: {
       en: "Explain how a moving body's mass and speed affect its kinetic energy.",
+      it: 'Spiega come la massa e la velocità di un corpo in movimento influiscono sulla sua energia cinetica.',
       zh: '说明运动物体的质量和速度如何影响其动能。',
       hi: 'समझाएँ कि चलती वस्तु का द्रव्यमान और चाल उसकी गतिज ऊर्जा को कैसे प्रभावित करते हैं।',
       es: 'Explica cómo la masa y la rapidez de un cuerpo afectan su energía cinética.',

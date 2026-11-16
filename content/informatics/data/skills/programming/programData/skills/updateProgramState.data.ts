@@ -5,6 +5,7 @@ export const updateProgramState_Skill_Data = defineSkill({
   id: 'adf4ab00-71f5-4bfc-b2ea-0b2a81b39b59',
   name: {
     en: 'Update Program State',
+    it: 'Aggiornare lo stato di un programma',
     zh: '更新程序状态',
     hi: 'प्रोग्राम की स्थिति अपडेट करना',
     es: 'Actualizar el estado del programa',
@@ -39,6 +40,7 @@ export const updateProgramState_Skill_Data = defineSkill({
       'Compute and store a new state from the previous one, such as incrementing a counter after an event. Unlike simply reading a variable, changing state affects subsequent operations.',
     frontend: {
       en: "Change a program's stored state based on what happened before.",
+      it: 'Modifica lo stato memorizzato di un programma in base a ciò che è successo prima.',
       zh: '根据此前发生的情况改变程序保存的状态。',
       hi: 'पहले जो हुआ उसके आधार पर प्रोग्राम की सहेजी गई स्थिति बदलें।',
       es: 'Cambia el estado guardado de un programa según lo que ocurrió antes.',

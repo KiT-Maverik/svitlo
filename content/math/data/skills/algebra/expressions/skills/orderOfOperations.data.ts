@@ -5,6 +5,7 @@ export const orderOfOperations_Skill_Data = defineSkill({
   id: '87cd08bd-e276-4a36-88de-77dd23028abf',
   name: {
     en: 'Applying the order of operations',
+    it: "Applicare l'ordine delle operazioni",
     qm: 'Amellerniñ tertibine riayet etmek',
     lt: 'Veiksmų atlikimo tvarkos taikymas',
     lv: 'Darbību secības ievērošana',
@@ -39,6 +40,7 @@ export const orderOfOperations_Skill_Data = defineSkill({
       "An expression's value follows the agreed order of operations: parentheses, multiplication/division, then addition/subtraction, applying associativity or left-to-right rules where appropriate. Changing the order can change the result.",
     frontend: {
       en: 'You can evaluate expressions by following parentheses first, then multiplication and division, then addition and subtraction.',
+      it: 'Puoi calcolare il valore delle espressioni eseguendo prima le operazioni tra parentesi, poi moltiplicazioni e divisioni e infine addizioni e sottrazioni.',
       qm: 'İfadeniñ qıymetini tapqanda evelâ qavslardaki amellerni, soñra arttıruv ve bölüvni, eñ soñunda ise qoşuv ve çıqaruvnı yerine ketire bilesiñ.',
       zh: '你能按照先算括号内，再算乘除，最后算加减的顺序求出表达式的值。',
       hi: 'तुम व्यंजक में पहले कोष्ठक, फिर गुणा-भाग और फिर जोड़-घटाव करके मान निकाल सकते हो।',

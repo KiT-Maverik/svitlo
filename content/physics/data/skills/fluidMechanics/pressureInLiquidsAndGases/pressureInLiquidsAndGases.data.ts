@@ -12,6 +12,7 @@ export const pressureInLiquidsAndGases_SkillGroup_Data = defineSkillGroup({
   id: 'd9f21356-a542-4937-8c0d-47906d0e042a',
   name: {
     en: 'Pressure in Liquids and Gases',
+    it: 'Pressione nei liquidi e nei gas',
     zh: '液体和气体中的压强',
     hi: 'द्रव और गैस में दाब',
     es: 'Presión en líquidos y gases',
@@ -60,6 +61,7 @@ export const pressureInLiquidsAndGases_SkillGroup_Data = defineSkillGroup({
       'Pressure is transmitted through a medium and changes with depth in still water; container examples help distinguish pressure from the mere amount of water.',
     frontend: {
       en: 'Discover how liquid and gas pressure acts and changes with conditions.',
+      it: 'Scopri come agisce la pressione nei liquidi e nei gas e come varia secondo le condizioni.',
       zh: '了解液体和气体压强如何作用及随条件变化。',
       hi: 'देखें कि द्रव और गैस का दाब कैसे कार्य करता है और परिस्थितियों के साथ कैसे बदलता है।',
       es: 'Descubre cómo actúa la presión en líquidos y gases y cómo cambia según las condiciones.',

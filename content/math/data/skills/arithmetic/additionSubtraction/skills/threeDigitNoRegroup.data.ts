@@ -11,6 +11,7 @@ export const threeDigitNoRegroup_Skill_Data = defineSkill({
     ka: 'შეკრება და გამოკლება — სამნიშნა რიცხვები გადაჯგუფების გარეშე',
     kk: 'Қосу және азайту — үш таңбалы сандар қайта топтастырусыз',
     en: 'Addition and subtraction — 3-digit · Without regrouping',
+    it: 'Addizione e sottrazione — Tre cifre, senza cambio',
     qm: 'Qoşuv ve çıqaruv — üç raqamlı sayılar, razryad deñiştirmeden',
     zh: '加减法 — 三位数 · 不进位不退位',
     hi: 'जोड़ और घटाव — 3-अंकीय · बिना पुनर्समूहन',
@@ -39,6 +40,7 @@ export const threeDigitNoRegroup_Skill_Data = defineSkill({
       'Where no carrying or borrowing is required, corresponding hundreds, tens, and ones can be computed separately. Combining the place values produces the same sum or difference.',
     frontend: {
       en: 'You can add or subtract three-digit numbers by working with hundreds, tens, and ones separately when no regrouping is needed.',
+      it: 'Puoi sommare o sottrarre numeri di tre cifre lavorando separatamente con centinaia, decine e unità quando non sono necessari cambi.',
       qm: 'Razryadlarnı yañıdan toparlamaq kerek olmağanda yüzlük, onluq ve birliklerni ayrı-ayrı esaplap, üç raqamlı sayılarnı qoşa ya da çıqara bilesiñ.',
       zh: '不需要进位或退位时，你能分别计算三位数的百位、十位和个位来完成加减法。',
       hi: 'जब पुनर्गठन की ज़रूरत न हो, तुम तीन अंकों की संख्याओं में सैकड़े, दहाइयाँ और इकाइयाँ अलग-अलग जोड़ या घटा सकते हो।',

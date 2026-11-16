@@ -5,6 +5,7 @@ export const classifyAnimalsByDiet_Skill_Data = defineSkill({
   id: '556699c0-f7b9-4254-aa24-b157bbd4a28e',
   name: {
     en: 'Classify Animals by Diet',
+    it: 'Classificare gli animali in base alla dieta',
     zh: '根据食性分类动物',
     hi: 'आहार के अनुसार प्राणियों का वर्गीकरण करना',
     es: 'Clasificar los animales según su dieta',
@@ -39,6 +40,7 @@ export const classifyAnimalsByDiet_Skill_Data = defineSkill({
       'Classify examples as herbivores, carnivores, or omnivores according to actual diets rather than animal names.',
     frontend: {
       en: 'Classify animals by what they actually eat.',
+      it: 'Classifica gli animali in base a ciò di cui si nutrono effettivamente.',
       zh: '根据动物实际吃的食物对它们进行分类。',
       hi: 'प्राणियों को उनके वास्तविक भोजन के आधार पर वर्गीकृत करें।',
       es: 'Clasifica los animales según lo que realmente comen.',

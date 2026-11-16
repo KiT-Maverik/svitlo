@@ -5,6 +5,7 @@ export const compareDesignAlternatives_Skill_Data = defineSkill({
   id: '7683fb78-0931-43bb-b383-6ef672606333',
   name: {
     en: 'Compare design alternatives',
+    it: 'Confrontare alternative progettuali',
     zh: '比较设计备选方案',
     hi: 'वैकल्पिक डिज़ाइनों की तुलना',
     es: 'Comparar alternativas de diseño',
@@ -38,6 +39,7 @@ export const compareDesignAlternatives_Skill_Data = defineSkill({
     methodological: 'Use stated criteria to evaluate the advantages and limitations of candidate concepts.',
     frontend: {
       en: 'Compare candidate designs against clearly stated criteria.',
+      it: 'Confronta le soluzioni progettuali candidate rispetto a criteri chiaramente definiti.',
       zh: '根据明确规定的标准比较候选设计。',
       hi: 'स्पष्ट मानदंडों के आधार पर संभावित डिज़ाइनों की तुलना करें।',
       es: 'Compara diseños candidatos usando criterios claramente establecidos.',

@@ -11,6 +11,7 @@ export const organizationAndMembership_SkillGroup_Data = defineSkillGroup({
   id: 'e0ceb758-1b5a-4dd2-849e-aefca4bab31d',
   name: {
     en: 'Organization and Membership',
+    it: 'Organizzazione e appartenenza',
     zh: '天体系统与归属关系',
     hi: 'संगठन और सदस्यता',
     es: 'Organización y pertenencia',
@@ -53,6 +54,7 @@ export const organizationAndMembership_SkillGroup_Data = defineSkillGroup({
       "A body's membership in a system is a different property from its type; the same class of object can be gravitationally bound, ejected or found in a sparse galactic environment.",
     frontend: {
       en: 'Discover how objects belong to larger astronomical systems or travel independently.',
+      it: 'Scopri come gli oggetti fanno parte di sistemi astronomici più grandi oppure si muovono indipendentemente.',
       zh: '了解天体如何属于更大的天文系统，或独立存在和运动。',
       hi: 'जानें कि खगोलीय पिंड बड़े तंत्रों का हिस्सा कैसे होते हैं या स्वतंत्र रूप से कैसे चलते हैं।',
       es: 'Descubre cómo los objetos forman parte de sistemas astronómicos mayores o se desplazan de manera independiente.',

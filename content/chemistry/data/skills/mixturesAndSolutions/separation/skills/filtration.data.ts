@@ -5,6 +5,7 @@ export const filtration_Skill_Data = defineSkill({
   id: '4e78f7c2-1e81-48f6-8e9a-7ec398b93a14',
   name: {
     en: 'Filtration',
+    it: 'Filtrazione',
     zh: '过滤',
     hi: 'निस्यंदन',
     es: 'Filtración',
@@ -38,6 +39,7 @@ export const filtration_Skill_Data = defineSkill({
     methodological: 'Explain separation of suspended solids from fluids by passage through a suitable barrier.',
     frontend: {
       en: 'Explain how a filter traps suspended solids while a fluid passes through.',
+      it: 'Spiega come un filtro trattiene i solidi sospesi mentre lascia passare un fluido.',
       zh: '解释过滤器如何截留悬浮的固体颗粒，让流体通过。',
       hi: 'समझाएँ कि फिल्टर निलंबित ठोस कणों को कैसे रोकता है जबकि द्रव या गैस गुजर सकती है।',
       es: 'Explica cómo un filtro retiene sólidos suspendidos mientras deja pasar un fluido.',

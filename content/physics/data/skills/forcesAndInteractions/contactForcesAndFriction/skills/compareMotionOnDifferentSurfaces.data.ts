@@ -5,6 +5,7 @@ export const compareMotionOnDifferentSurfaces_Skill_Data = defineSkill({
   id: '2896b349-011b-4bb8-978a-c6d31a674a5a',
   name: {
     en: 'Compare motion on different surfaces',
+    it: 'Confrontare il moto su superfici diverse',
     zh: '比较物体在不同表面上的运动',
     hi: 'विभिन्न सतहों पर गति की तुलना करना',
     es: 'Comparar el movimiento sobre distintas superficies',
@@ -39,6 +40,7 @@ export const compareMotionOnDifferentSurfaces_Skill_Data = defineSkill({
       'Interactions between contacting surfaces affect friction and resistance to sliding or rolling, changing mechanical motion under otherwise similar conditions.',
     frontend: {
       en: 'Compare motion on different surfaces by considering friction.',
+      it: "Confronta il moto su superfici diverse considerando l'attrito.",
       zh: '考虑摩擦力，比较不同表面上的运动。',
       hi: 'घर्षण को ध्यान में रखकर अलग-अलग सतहों पर गति की तुलना करें।',
       es: 'Compara el movimiento sobre diferentes superficies teniendo en cuenta el rozamiento.',

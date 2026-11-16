@@ -5,6 +5,7 @@ export const dailySkyMotion_Skill_Data = defineSkill({
   id: '4be01b8b-7f4c-4a43-a45b-1df88ecc6eb9',
   name: {
     en: 'Daily Sky Motion',
+    it: 'Moto apparente diurno del cielo',
     qm: 'Kökniñ künlük areketi',
     zh: '天空的周日视运动',
     hi: 'आकाश की दैनिक प्रतीत गति',
@@ -39,6 +40,7 @@ export const dailySkyMotion_Skill_Data = defineSkill({
       'Describe the apparent east-to-west paths of celestial objects across the sky, including circumpolar paths.',
     frontend: {
       en: 'Describe how stars appear to travel across the sky during a day or night.',
+      it: 'Descrivi come sembrano spostarsi le stelle attraverso il cielo nel corso del giorno o della notte.',
       qm: 'Kün ya da gece devamında yıldızlarnıñ kökten nasıl areket etken kibi körüngenini añlatıñız.',
       zh: '描述恒星在一天或一夜里看起来如何穿过天空。',
       hi: 'बताएँ कि दिन या रात के दौरान तारे आकाश में चलते हुए कैसे दिखाई देते हैं।',

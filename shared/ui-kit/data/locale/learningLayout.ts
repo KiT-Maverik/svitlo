@@ -37,6 +37,41 @@ const en = {
 
 export type LearningLayout_Locale = typeof en;
 
+const it: LearningLayout_Locale = {
+  preparingLesson: 'Preparazione della lezione…',
+  preparingLessonError: 'Non è stato possibile preparare questa lezione.',
+  brand: 'Svitlo',
+  navigation: {
+    top: 'Navigazione superiore della lezione',
+    bottom: 'Navigazione inferiore della lezione',
+    topics: 'Elenco degli argomenti',
+    settings: 'Impostazioni rapide',
+  },
+  actions: {
+    openTopics: 'Apri elenco degli argomenti',
+    closeTopics: 'Chiudi elenco degli argomenti',
+    openSettings: 'Apri impostazioni',
+    closeSettings: 'Chiudi impostazioni',
+    closeSidebar: 'Chiudi barra laterale',
+    closeSettingsPanel: 'Chiudi pannello delle impostazioni',
+    previous: 'Indietro',
+    next: 'Avanti',
+    skip: 'Salta',
+    retry: 'Riprova',
+    switchProfile: 'Cambia profilo',
+    profileSettings: 'Impostazioni',
+    profile: 'Profilo',
+    logout: 'Esci',
+  },
+  tooltips: {
+    profile: 'Il profilo sarà disponibile quando verrà attivato l’accesso',
+    logout: 'La disconnessione sarà disponibile quando verrà attivato l’accesso',
+  },
+  topicsTitle: 'ARGOMENTI',
+  settingsTitle: 'Impostazioni rapide',
+  settingsDescription: 'Qui compariranno le impostazioni di apprendimento.',
+};
+
 const zh: LearningLayout_Locale = {
   preparingLesson: '正在准备您的课程…',
   preparingLessonError: '无法准备此课程。',
@@ -1021,6 +1056,7 @@ const qm: LearningLayout_Locale = {
 /** Complete authored LearningLayout messages. Build-time only. */
 export const learningLayout: UiKit_Component_Locale<LearningLayout_Locale> = {
   en,
+  it,
   zh,
   hi,
   es,

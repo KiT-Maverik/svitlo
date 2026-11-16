@@ -20,6 +20,7 @@ export const representation_SkillGroup_Data = defineSkillGroup({
   id: 'abd38d75-1cdc-40e0-8ed0-db15e4ea8d98',
   name: {
     en: 'Representing fractions',
+    it: 'Rappresentare le frazioni',
     qm: 'Kesirlerni tasvir etüv',
     lt: 'Trupmenų vaizdavimas',
     lv: 'Daļu attēlošana',
@@ -84,6 +85,7 @@ export const representation_SkillGroup_Data = defineSkillGroup({
       'Fractional representation relative to a specified whole: unit and nonunit parts, conventional fraction notation, equivalent fractions, geometric models, and values greater than one.',
     frontend: {
       en: 'Show parts of a chosen whole with fraction symbols, pictures, or a number line, including fractions equal to or greater than one.',
+      it: 'Rappresenta le parti di un intero scelto con simboli frazionari, disegni o una retta numerica, comprese le frazioni uguali o maggiori di uno.',
       qm: 'Saylanğan bütünniñ parçalarını kesir işaretleri, resimler ya da sayı sızığı yardımınen köster. Birge teñ ya da birden büyük kesirler de buña kire.',
       zh: '用分数符号、图形或数轴表示选定整体的部分，包括等于或大于1的分数。',
       hi: 'चुने हुए पूरे के भागों को भिन्न, चित्र या संख्या रेखा से दिखाएँ, जिनमें एक के बराबर या उससे बड़े भिन्न भी हों।',

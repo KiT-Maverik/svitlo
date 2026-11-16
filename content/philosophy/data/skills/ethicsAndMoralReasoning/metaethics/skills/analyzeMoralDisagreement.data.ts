@@ -5,6 +5,7 @@ export const analyzeMoralDisagreement_Skill_Data = defineSkill({
   id: 'c398f21a-1a8e-478f-bcc9-37fc13b88875',
   name: {
     en: 'Analyze moral disagreement',
+    it: 'Analizzare il disaccordo morale',
     zh: '分析道德分歧',
     hi: 'नैतिक असहमति का विश्लेषण',
     es: 'Analizar el desacuerdo moral',
@@ -39,6 +40,7 @@ export const analyzeMoralDisagreement_Skill_Data = defineSkill({
       'Identify whether disputants differ about facts, principles, or the status of moral claims, and what kinds of reasons could address those differences.',
     frontend: {
       en: 'Separate disagreements over facts from disagreements over moral standards.',
+      it: 'Distingui i disaccordi sui fatti dai disaccordi sui criteri morali.',
       zh: '区分关于事实的分歧与关于道德标准的分歧。',
       hi: 'तथ्यों पर असहमति और नैतिक मानदंडों पर असहमति में अंतर करें।',
       es: 'Distingue desacuerdos sobre hechos de desacuerdos sobre normas morales.',

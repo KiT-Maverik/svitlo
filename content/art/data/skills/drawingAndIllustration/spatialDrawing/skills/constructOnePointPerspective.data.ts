@@ -5,6 +5,7 @@ export const constructOnePointPerspective_Skill_Data = defineSkill({
   id: '3c48e48f-032b-47f6-9cb7-8d537e162837',
   name: {
     en: 'Construct One-Point Perspective',
+    it: 'Costruire la prospettiva a un punto di fuga',
     zh: '绘制一点透视图',
     hi: 'एक-बिंदु परिप्रेक्ष्य बनाएँ',
     es: 'Construir perspectiva de un punto',
@@ -38,6 +39,7 @@ export const constructOnePointPerspective_Skill_Data = defineSkill({
     methodological: 'Organize receding directions around one vanishing point in a consistent depicted space.',
     frontend: {
       en: 'Draw a scene in which parallel lines lead toward one vanishing point.',
+      it: 'Disegna una scena in cui le linee parallele convergono verso un unico punto di fuga.',
       zh: '画出平行线朝一个消失点汇聚的场景。',
       hi: 'ऐसा दृश्य बनाएँ जिसमें समानांतर रेखाएँ एक लुप्त बिंदु की ओर जाती हों।',
       es: 'Dibuja una escena donde las líneas paralelas convergen hacia un punto de fuga.',

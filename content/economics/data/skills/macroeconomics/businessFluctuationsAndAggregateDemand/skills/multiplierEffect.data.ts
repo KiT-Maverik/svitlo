@@ -5,6 +5,7 @@ export const multiplierEffect_Skill_Data = defineSkill({
   id: 'bbabc514-4014-461f-999a-86a4fdeec375',
   name: {
     en: 'Ефект мультиплікатора',
+    it: 'Effetto moltiplicatore',
     zh: '乘数效应',
     hi: 'गुणक प्रभाव',
     es: 'Efecto multiplicador',
@@ -39,6 +40,7 @@ export const multiplierEffect_Skill_Data = defineSkill({
       'Evaluate how an initial rise in autonomous spending may generate additional changes in income and consumption.',
     frontend: {
       en: 'Understand why one spending increase may trigger further increases.',
+      it: 'Comprendi perché un aumento della spesa può innescare ulteriori aumenti.',
       zh: '理解一次支出增加为何可能引发后续更多支出。',
       hi: 'समझें कि खर्च में एक वृद्धि से आगे और वृद्धि कैसे हो सकती है।',
       es: 'Comprende por qué un aumento del gasto puede generar incrementos posteriores.',

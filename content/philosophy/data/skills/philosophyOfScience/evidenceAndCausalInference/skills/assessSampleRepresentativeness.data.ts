@@ -5,6 +5,7 @@ export const assessSampleRepresentativeness_Skill_Data = defineSkill({
   id: 'fa387685-2126-4720-9804-9e3c995f529b',
   name: {
     en: 'Assess sample representativeness',
+    it: 'Valutare la rappresentatività di un campione',
     zh: '评估样本代表性',
     hi: 'नमूने की प्रतिनिधिकता का आकलन',
     es: 'Evaluar la representatividad de la muestra',
@@ -39,6 +40,7 @@ export const assessSampleRepresentativeness_Skill_Data = defineSkill({
       'Examine whether selection and coverage allow findings to extend to the population named in a conclusion.',
     frontend: {
       en: "Decide whether a study's selected participants represent the wider population.",
+      it: 'Stabilisci se i partecipanti selezionati per uno studio rappresentino la popolazione più ampia.',
       zh: '判断研究选取的参与者是否能代表更大的人群。',
       hi: 'जाँचें कि चुने गए प्रतिभागी बड़ी आबादी का प्रतिनिधित्व करते हैं या नहीं।',
       es: 'Decide si las personas seleccionadas representan a la población más amplia.',

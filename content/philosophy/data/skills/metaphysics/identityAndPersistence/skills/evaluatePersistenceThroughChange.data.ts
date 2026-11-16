@@ -5,6 +5,7 @@ export const evaluatePersistenceThroughChange_Skill_Data = defineSkill({
   id: 'c6ac857e-0267-4ffd-8de3-c11c598b7fb1',
   name: {
     en: 'Evaluate persistence through change',
+    it: 'Valutare la persistenza attraverso il cambiamento',
     zh: '评估变化中的持续同一性',
     hi: 'परिवर्तन के दौरान पहचान का मूल्यांकन',
     es: 'Evaluar la permanencia a través del cambio',
@@ -39,6 +40,7 @@ export const evaluatePersistenceThroughChange_Skill_Data = defineSkill({
       'Assess competing criteria for when an object remains the same despite replacement, growth, or alteration.',
     frontend: {
       en: 'Consider whether replacing parts changes the identity of an object.',
+      it: "Rifletti se la sostituzione delle parti cambi l'identità di un oggetto.",
       zh: '考虑更换零件是否会改变物体的同一性。',
       hi: 'विचार करें कि पुर्जे बदलने से वस्तु की पहचान बदलती है या नहीं।',
       es: 'Considera si reemplazar piezas cambia la identidad de un objeto.',

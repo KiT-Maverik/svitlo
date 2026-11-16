@@ -5,6 +5,7 @@ export const predictChangesInShadowSize_Skill_Data = defineSkill({
   id: '4c5e3985-c783-4884-9036-df82ddc5ce9a',
   name: {
     en: 'Predict changes in shadow size',
+    it: "Prevedere le variazioni delle dimensioni di un'ombra",
     zh: '预测阴影大小的变化',
     hi: 'छाया के आकार में परिवर्तन का अनुमान लगाना',
     es: 'Predecir cambios en el tamaño de una sombra',
@@ -38,6 +39,7 @@ export const predictChangesInShadowSize_Skill_Data = defineSkill({
     methodological: 'Determine how changing their relative positions affects shadow size.',
     frontend: {
       en: 'Understand how moving a light source or object changes shadow size.',
+      it: "Comprendi come lo spostamento di una sorgente luminosa o di un oggetto modifica le dimensioni dell'ombra.",
       zh: '理解移动光源或物体为什么会改变阴影的大小。',
       hi: 'समझो कि प्रकाश स्रोत या वस्तु को हिलाने से छाया का आकार कैसे बदलता है।',
       es: 'Comprende cómo mover una fuente de luz o un objeto cambia el tamaño de la sombra.',

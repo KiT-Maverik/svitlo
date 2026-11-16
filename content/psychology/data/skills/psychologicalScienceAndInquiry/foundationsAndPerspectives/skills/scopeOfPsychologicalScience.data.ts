@@ -5,6 +5,7 @@ export const scopeOfPsychologicalScience_Skill_Data = defineSkill({
   id: '44856b37-47e0-4e1c-be21-08446a68330a',
   name: {
     en: 'Scope of Psychological Science',
+    it: 'Ambito della scienza psicologica',
     zh: '心理科学的研究范围',
     hi: 'मनोवैज्ञानिक विज्ञान का दायरा',
     es: 'Alcance de la ciencia psicológica',
@@ -39,6 +40,7 @@ export const scopeOfPsychologicalScience_Skill_Data = defineSkill({
       'Distinguish the empirical study of behavior and experience from philosophical evaluation of arguments and from medical diagnosis or treatment.',
     frontend: {
       en: 'Distinguish psychological research from philosophy and clinical treatment.',
+      it: 'Distingui la ricerca psicologica dalla filosofia e dal trattamento clinico.',
       zh: '区分心理学研究、哲学与临床治疗。',
       hi: 'मनोवैज्ञानिक शोध, दर्शन और नैदानिक उपचार में अंतर पहचानें।',
       es: 'Distingue la investigación psicológica de la filosofía y el tratamiento clínico.',

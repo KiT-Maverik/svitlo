@@ -5,6 +5,7 @@ export const drawSegmentCentimeters_Skill_Data = defineSkill({
   id: 'b86b08f1-e24c-4d95-a98c-8d6c664ea915',
   name: {
     en: 'Drawing segments of a given length in centimeters',
+    it: 'Disegnare segmenti di lunghezza data in centimetri',
     qm: 'Santimetrlerde berilgen uzunlıqta kesik çizmek',
     lt: 'Nurodyto ilgio atkarpų braižymas centimetrais',
     lv: 'Noteikta garuma nogriežņu zīmēšana centimetros',
@@ -39,6 +40,7 @@ export const drawSegmentCentimeters_Skill_Data = defineSkill({
       'Construct a straight line segment of a specified length in centimeters: align a ruler at zero, mark the required endpoint, and draw the segment with the correct length. This is a construction competency distinct from reading the length of an existing segment.',
     frontend: {
       en: "You can draw a straight segment of a given length in centimeters by starting at the ruler's zero mark and marking the correct endpoint.",
+      it: "Puoi disegnare un segmento rettilineo di lunghezza data in centimetri partendo dalla tacca dello zero sul righello e segnando l'estremo corretto.",
       qm: 'Cetvelniñ sıfır belgisin başlangıç noqtasına qoyıp ve doğru soñ noqtanı belgilep, berilgen santimetr uzunlığında doğru kesik çize bilesiñ.',
       zh: '你能从直尺的零刻度开始，标出指定厘米长度的终点，再画出相应长度的直线段。',
       hi: 'तुम पैमाने के शून्य से शुरू करके सही अंतिम बिंदु पर निशान लगाते हुए सेंटीमीटर में दी गई लंबाई का सीधा रेखाखंड बना सकते हो।',

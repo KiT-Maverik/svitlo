@@ -5,6 +5,7 @@ export const distinguishAGlobeFromAFlatMapAsEarthModels_Skill_Data = defineSkill
   id: 'a221c089-c331-466f-83ef-99b8a8479458',
   name: {
     en: 'Distinguish a globe from a flat map as Earth models',
+    it: 'Distinguere un globo da una carta piana come modelli della Terra',
     zh: '区分作为地球模型的地球仪与平面地图',
     hi: 'पृथ्वी के मॉडल के रूप में ग्लोब और समतल मानचित्र में अंतर करना',
     es: 'Distinguir el globo terráqueo del mapa plano como modelos de la Tierra',
@@ -39,6 +40,7 @@ export const distinguishAGlobeFromAFlatMapAsEarthModels_Skill_Data = defineSkill
       'Explain why a globe represents the overall shape of Earth more directly while a flat map is easier to use for selected areas or purposes.',
     frontend: {
       en: 'Explain what a globe shows more directly than a flat map.',
+      it: 'Spiega che cosa un globo mostra più direttamente rispetto a una carta piana.',
       zh: '解释地球仪比平面地图更直接地展示了地球的哪些特征。',
       hi: 'समझाएँ कि ग्लोब पृथ्वी के किन पहलुओं को समतल मानचित्र से अधिक सीधे दिखाता है।',
       es: 'Explica qué representa un globo de forma más directa que un mapa plano.',

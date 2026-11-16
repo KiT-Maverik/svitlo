@@ -5,6 +5,7 @@ export const floodSafety_Skill_Data = defineSkill({
   id: 'c3642cfc-6b35-41bd-9d5d-6a94afd0567d',
   name: {
     en: 'Flood safety',
+    it: 'Sicurezza durante le alluvioni',
     zh: '洪水安全',
     hi: 'बाढ़ से सुरक्षा',
     es: 'Seguridad ante inundaciones',
@@ -39,6 +40,7 @@ export const floodSafety_Skill_Data = defineSkill({
       'Avoid floodwater and unstable crossings, recognize sudden changes in water levels, and follow verified evacuation guidance.',
     frontend: {
       en: 'Avoid floodwater and follow reliable instructions about dangerous rising water.',
+      it: "Evita l'acqua delle alluvioni e segui indicazioni affidabili sull'innalzamento pericoloso del livello dell'acqua.",
       zh: '远离洪水，遵循有关水位上涨危险的可靠指示。',
       hi: 'बाढ़ के पानी से दूर रहें और बढ़ते जलस्तर की विश्वसनीय चेतावनियाँ मानें।',
       es: 'Evita el agua de inundación y sigue indicaciones fiables sobre niveles peligrosos.',

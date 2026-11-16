@@ -5,6 +5,7 @@ export const explainThermalExpansionThroughParticleMotionAndInteractions_Skill_D
   id: '8f9fb656-8308-464f-82ac-885b2b690611',
   name: {
     en: 'Explain thermal expansion through particle motion and interactions',
+    it: 'Spiegare la dilatazione termica attraverso il moto e le interazioni delle particelle',
     qm: 'Termik keñleşüvni parçacıqlar areketinen añlatmaq',
     zh: '用粒子运动和相互作用解释热膨胀',
     hi: 'कणों की गति व अंतःक्रिया से तापीय प्रसार समझाना',
@@ -39,6 +40,7 @@ export const explainThermalExpansionThroughParticleMotionAndInteractions_Skill_D
       'Heating often changes the average distances between particles, not the sizes of the molecules themselves.',
     frontend: {
       en: 'Recognize why expansion usually changes particle spacing, not particle size.',
+      it: 'Riconosci perché la dilatazione modifica di solito la distanza tra le particelle e non le loro dimensioni.',
       qm: 'Qızdırğanda parçacıqlarnıñ öz ölçüsi degil, olarnıñ arasındaki mesafe neden deñişkenini añla.',
       zh: '理解为什么热膨胀通常改变的是粒子间距，而不是粒子的大小。',
       hi: 'समझें कि गर्म होने पर सामान्यतः कणों की दूरी बदलती है, उनका आकार नहीं।',

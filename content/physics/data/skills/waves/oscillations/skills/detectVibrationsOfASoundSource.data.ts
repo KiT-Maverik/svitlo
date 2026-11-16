@@ -5,6 +5,7 @@ export const detectVibrationsOfASoundSource_Skill_Data = defineSkill({
   id: '50ff0729-b6a4-42cd-8820-c0e3caba43e8',
   name: {
     en: 'Detect vibrations of a sound source',
+    it: 'Rilevare le vibrazioni di una sorgente sonora',
     zh: '检测声源的振动',
     hi: 'ध्वनि स्रोत के कंपन पहचानना',
     es: 'Detectar vibraciones de una fuente sonora',
@@ -39,6 +40,7 @@ export const detectVibrationsOfASoundSource_Skill_Data = defineSkill({
       'Identify the oscillating part of a system that generates a sound disturbance, as distinct from components that merely transmit vibration onward.',
     frontend: {
       en: 'Identify the part of an object that actually vibrates to create sound.',
+      it: 'Individua la parte di un oggetto che vibra effettivamente per produrre il suono.',
       zh: '找出物体中真正振动并产生声音的部分。',
       hi: 'वस्तु का वह भाग पहचानें जो सचमुच कंपन करके ध्वनि बनाता है।',
       es: 'Identifica la parte de un objeto que realmente vibra para producir sonido.',

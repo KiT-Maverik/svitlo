@@ -16,6 +16,7 @@ export const geometry_SkillDomain_Data = defineSkillDomain({
   id: '5586a9c0-8695-49c2-97b8-ea55899eab69',
   title: {
     en: 'Geometry',
+    it: 'Geometria',
     qm: 'Geometriya',
     lt: 'Geometrija',
     lv: 'Ģeometrija',
@@ -76,6 +77,7 @@ export const geometry_SkillDomain_Data = defineSkillDomain({
       'Spatial relationships, properties of plane figures and solids, lines and angles, geometric transformations, and measurement of perimeter and area.',
     frontend: {
       en: 'Explore positions, lines, flat and solid shapes, angles, movements, perimeter, and area.',
+      it: 'Esplora posizioni, linee, figure piane e solide, angoli, movimenti, perimetri e aree.',
       qm: 'Yerleşüvlerni, sızıqlarnı, tüz ve hacımlı şekillerni, köşelerni, areketlerni, perimetr ve meydannı araştır.',
       zh: '探索位置、直线和平面及立体图形、角、图形变换、周长和面积。',
       hi: 'स्थान, रेखाएँ, सपाट और ठोस आकृतियाँ, कोण, गति, परिमाप और क्षेत्रफल समझें।',

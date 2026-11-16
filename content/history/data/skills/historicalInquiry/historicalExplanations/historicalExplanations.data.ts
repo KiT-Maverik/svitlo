@@ -12,6 +12,7 @@ export const historicalExplanations_SkillGroup_Data = defineSkillGroup({
   id: 'dc762b63-609d-434b-9553-0acac99b583b',
   name: {
     en: 'Historical Explanations',
+    it: 'Spiegazioni storiche',
     zh: '历史解释',
     hi: 'ऐतिहासिक व्याख्याएँ',
     es: 'Explicaciones históricas',
@@ -55,6 +56,7 @@ export const historicalExplanations_SkillGroup_Data = defineSkillGroup({
       'Distinguish supported facts, explanatory models, values, uncertain reconstructions, and competing interpretations when reasoning about the past.',
     frontend: {
       en: 'Learn to build historical explanations from evidence.',
+      it: 'Impara a costruire spiegazioni storiche a partire dalle testimonianze.',
       zh: '学习依据证据构建历史解释。',
       hi: 'साक्ष्यों के आधार पर ऐतिहासिक व्याख्याएँ तैयार करना सीखें।',
       es: 'Aprende a elaborar explicaciones históricas a partir de pruebas.',

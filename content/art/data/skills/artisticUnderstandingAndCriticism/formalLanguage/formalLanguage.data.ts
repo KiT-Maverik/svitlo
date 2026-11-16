@@ -13,6 +13,7 @@ export const formalLanguage_SkillGroup_Data = defineSkillGroup({
   id: '9564d421-7e4d-47eb-a8b2-42da8f19c7e3',
   name: {
     en: 'Formal Language',
+    it: "Linguaggio formale dell'arte",
     zh: '形式语言',
     hi: 'रूपात्मक भाषा',
     es: 'Lenguaje formal',
@@ -63,6 +64,7 @@ export const formalLanguage_SkillGroup_Data = defineSkillGroup({
       'Formal choices direct perception and establish relationships within a work. Analysis here is cross-medium rather than the execution of a technical medium-specific method.',
     frontend: {
       en: 'Discover how lines, colors, shapes and other features guide our experience of art.',
+      it: "Scopri come linee, colori, forme e altri elementi guidano la nostra esperienza dell'arte.",
       zh: '了解线条、色彩、形状和其他形式元素如何引导我们欣赏艺术。',
       hi: 'जानें कि रेखाएँ, रंग, आकार और अन्य विशेषताएँ कला के हमारे अनुभव को कैसे दिशा देती हैं।',
       es: 'Descubre cómo las líneas, los colores, las formas y otros elementos guían nuestra experiencia del arte.',

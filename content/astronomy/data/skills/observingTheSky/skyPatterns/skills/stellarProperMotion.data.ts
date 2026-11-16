@@ -5,6 +5,7 @@ export const stellarProperMotion_Skill_Data = defineSkill({
   id: '71ca7ffc-0453-4e24-8935-785c977b708c',
   name: {
     en: 'Stellar Proper Motion',
+    it: 'Moto proprio stellare',
     qm: 'Yıldıznıñ hususiy areketi',
     zh: '恒星自行',
     hi: 'तारों की निज गति',
@@ -39,6 +40,7 @@ export const stellarProperMotion_Skill_Data = defineSkill({
       'Identify the slow positional motion of a star relative to distant background sources and distinguish this physical change from the daily apparent rotation of the sky.',
     frontend: {
       en: "Recognize a star's very slow movement against more distant stars.",
+      it: 'Riconosci il lentissimo spostamento di una stella rispetto ad altre stelle più lontane.',
       qm: 'Yıldıznıñ daa uzaqtaki yıldızlarğa nisbeten pek yavaş areketini tanıñız.',
       zh: '辨认恒星相对于更遥远恒星的极缓慢移动。',
       hi: 'अधिक दूर के तारों की तुलना में किसी तारे की बहुत धीमी गति पहचानें।',

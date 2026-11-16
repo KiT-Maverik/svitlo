@@ -5,6 +5,7 @@ export const activeListening_Skill_Data = defineSkill({
   id: '09659fa4-825c-4bfb-b3f6-1add5fc95dac',
   name: {
     en: 'Active Listening',
+    it: 'Ascolto attivo',
     zh: '积极倾听',
     hi: 'सक्रिय सुनना',
     es: 'Escucha activa',
@@ -39,6 +40,7 @@ export const activeListening_Skill_Data = defineSkill({
       "Distinguish checking understanding and attending to another person's meaning from merely waiting to reply.",
     frontend: {
       en: 'Practice attending to and clarifying what someone is communicating.',
+      it: 'Esercitati a prestare attenzione a ciò che una persona comunica e a chiedere chiarimenti.',
       zh: '练习专注聆听并澄清他人想表达的内容。',
       hi: 'ध्यान से सुनने और दूसरे की बात स्पष्ट करने का अभ्यास करें।',
       es: 'Practica prestar atención y aclarar lo que otra persona comunica.',

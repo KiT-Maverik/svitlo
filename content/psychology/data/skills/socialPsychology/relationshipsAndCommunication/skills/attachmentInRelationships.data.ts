@@ -5,6 +5,7 @@ export const attachmentInRelationships_Skill_Data = defineSkill({
   id: '05108cd9-0e07-4c7a-b304-aa4f862b6b8a',
   name: {
     en: 'Attachment in Relationships',
+    it: 'Attaccamento nelle relazioni',
     zh: '关系中的依恋',
     hi: 'संबंधों में लगाव',
     es: 'Apego en las relaciones',
@@ -39,6 +40,7 @@ export const attachmentInRelationships_Skill_Data = defineSkill({
       'Explain how expectations about availability and support can influence close relationships while avoiding rigid labeling of individuals.',
     frontend: {
       en: 'Explore how attachment patterns can influence relationships over time.',
+      it: 'Esplora come i modelli di attaccamento possano influenzare le relazioni nel tempo.',
       zh: '探索依恋模式如何随时间影响人际关系。',
       hi: 'जानें कि लगाव के तरीके समय के साथ संबंधों को कैसे प्रभावित कर सकते हैं।',
       es: 'Explora cómo los patrones de apego pueden influir en las relaciones con el tiempo.',

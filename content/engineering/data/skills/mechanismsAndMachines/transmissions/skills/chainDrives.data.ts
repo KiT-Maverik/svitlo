@@ -5,6 +5,7 @@ export const chainDrives_Skill_Data = defineSkill({
   id: '155ef6eb-6432-4eca-9275-e9d4df3d9558',
   name: {
     en: 'Chain drives',
+    it: 'Trasmissioni a catena',
     zh: '链传动',
     hi: 'चेन ड्राइव',
     es: 'Transmisiones por cadena',
@@ -39,6 +40,7 @@ export const chainDrives_Skill_Data = defineSkill({
       'Describe positive engagement between chain links and sprockets, including the need for alignment, tension and lubrication.',
     frontend: {
       en: 'Explore how a chain and sprockets transfer movement without ordinary slipping.',
+      it: 'Esplora come una catena e le ruote dentate trasmettono il movimento senza il normale slittamento.',
       zh: '探索链条与链轮如何在不发生普通打滑的情况下传递运动。',
       hi: 'जानें कि चेन और स्प्रॉकेट सामान्य फिसलन के बिना गति कैसे पहुँचाते हैं।',
       es: 'Explora cómo la cadena y los piñones transmiten movimiento sin deslizamiento habitual.',

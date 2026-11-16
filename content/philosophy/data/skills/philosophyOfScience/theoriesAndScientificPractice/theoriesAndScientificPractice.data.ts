@@ -14,6 +14,7 @@ export const theoriesAndScientificPractice_SkillGroup_Data = defineSkillGroup({
   id: '86bbfcd5-0ed7-428a-93de-1c61ec1ecf64',
   name: {
     en: 'Theories and Scientific Practice',
+    it: 'Teorie e pratica scientifica',
     zh: '科学理论与科学实践',
     hi: 'सिद्धांत और वैज्ञानिक अभ्यास',
     es: 'Teorías y práctica científica',
@@ -66,6 +67,7 @@ export const theoriesAndScientificPractice_SkillGroup_Data = defineSkillGroup({
       'Scientific conclusions are provisional but not arbitrary: shared procedures, criticism, reproducibility, and explanatory success distinguish responsible inquiry from mere assertion.',
     frontend: {
       en: 'Discover how scientific theories improve through criticism and new evidence.',
+      it: 'Scopri come le teorie scientifiche migliorino grazie alle critiche e alle nuove prove.',
       zh: '了解科学理论如何通过批评和新证据得到改进。',
       hi: 'जानें कि आलोचना और नए साक्ष्य से वैज्ञानिक सिद्धांत कैसे बेहतर होते हैं।',
       es: 'Descubre cómo las teorías científicas mejoran mediante la crítica y nuevas pruebas.',

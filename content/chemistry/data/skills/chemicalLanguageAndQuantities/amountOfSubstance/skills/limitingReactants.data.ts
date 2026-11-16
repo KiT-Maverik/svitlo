@@ -5,6 +5,7 @@ export const limitingReactants_Skill_Data = defineSkill({
   id: 'b9979ffb-d690-4ca5-97c2-3c0da01c2dab',
   name: {
     en: 'Limiting Reactants',
+    it: 'Reagenti limitanti',
     zh: '限制反应物',
     hi: 'सीमित अभिकारक',
     es: 'Reactivos limitantes',
@@ -38,6 +39,7 @@ export const limitingReactants_Skill_Data = defineSkill({
     methodological: 'Determine which available reactant sets the theoretical upper bound on product formation.',
     frontend: {
       en: 'Identify which reactant limits the maximum amount of product possible.',
+      it: 'Individua quale reagente limita la quantità massima di prodotto ottenibile.',
       zh: '找出决定最大可能生成物量的反应物。',
       hi: 'पहचानें कि कौन-सा अभिकारक उत्पाद की अधिकतम संभव मात्रा सीमित करता है।',
       es: 'Identifica qué reactivo limita la cantidad máxima posible de producto.',

@@ -5,6 +5,7 @@ export const applyDigitalThreeDimensionalMaterials_Skill_Data = defineSkill({
   id: '9e500a5b-1b92-4662-b708-bb6a99a8cf24',
   name: {
     en: 'Apply Digital Three-Dimensional Materials',
+    it: 'Applicare materiali a oggetti digitali tridimensionali',
     zh: '应用数字三维材质',
     hi: 'डिजिटल त्रि-आयामी सामग्री लागू करें',
     es: 'Aplicar materiales digitales tridimensionales',
@@ -39,6 +40,7 @@ export const applyDigitalThreeDimensionalMaterials_Skill_Data = defineSkill({
       'Define surface appearance through color, roughness, reflectivity and texture so that objects communicate a selected material or artistic style.',
     frontend: {
       en: 'Give a digital object a chosen surface through texture, shine and color.',
+      it: 'Definisci la superficie di un oggetto digitale attraverso texture, lucentezza e colore.',
       zh: '通过纹理、光泽和色彩为数字对象赋予所需的表面效果。',
       hi: 'टेक्सचर, चमक और रंग से डिजिटल वस्तु को मनचाही सतह दें।',
       es: 'Da a un objeto digital una superficie elegida mediante textura, brillo y color.',

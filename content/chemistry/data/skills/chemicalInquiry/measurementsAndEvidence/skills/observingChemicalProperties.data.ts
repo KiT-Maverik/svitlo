@@ -5,6 +5,7 @@ export const observingChemicalProperties_Skill_Data = defineSkill({
   id: '59018935-9c3c-4d12-a248-ccf21eca9cc7',
   name: {
     en: 'Observing Chemical Properties',
+    it: 'Osservare le proprietà chimiche',
     zh: '观察化学性质',
     hi: 'रासायनिक गुणों का अवलोकन',
     es: 'Observación de propiedades químicas',
@@ -39,6 +40,7 @@ export const observingChemicalProperties_Skill_Data = defineSkill({
       'Use age-appropriate, adult-led demonstrations or documented observations (for example, iron rusting or a cut apple browning) to identify visible evidence that a material can undergo a chemical change. Have learners describe what changed, distinguish observations from explanations, and connect the evidence to chemical behavior without expecting explanations of reaction mechanisms. Never ask children to taste, smell, heat, or mix unfamiliar substances.',
     frontend: {
       en: 'Spot signs of chemical change, like iron rusting or a cut apple turning brown.',
+      it: 'Osserva indizi di trasformazioni chimiche, come il ferro che arrugginisce o una mela tagliata che imbrunisce.',
       zh: '找找化学变化的迹象，比如铁生锈或切开的苹果变褐色。',
       hi: 'रासायनिक बदलाव के संकेत पहचानें, जैसे लोहे पर जंग लगना या कटे हुए सेब का भूरा पड़ना।',
       es: 'Fíjate en señales de un cambio químico, como cuando el hierro se oxida o una manzana cortada se vuelve marrón.',

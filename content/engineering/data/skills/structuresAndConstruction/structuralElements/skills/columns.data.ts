@@ -5,6 +5,7 @@ export const columns_Skill_Data = defineSkill({
   id: '00c507ae-1169-415b-88f9-6b03f17a2198',
   name: {
     en: 'Columns',
+    it: 'Pilastri',
     zh: '柱',
     hi: 'स्तंभ',
     es: 'Columnas',
@@ -39,6 +40,7 @@ export const columns_Skill_Data = defineSkill({
       'Recognize how primarily compression-loaded vertical members support loads and why slender members may become unstable.',
     frontend: {
       en: 'Recognize how columns support compression and why they may buckle.',
+      it: 'Riconosci come i pilastri sostengono carichi di compressione e perché possono instabilizzarsi.',
       zh: '认识柱如何承受压力以及为什么会屈曲。',
       hi: 'जानें कि स्तंभ संपीड़न सहते हैं और उनमें बकलिंग क्यों हो सकती है।',
       es: 'Reconoce cómo las columnas resisten compresión y por qué pueden pandearse.',

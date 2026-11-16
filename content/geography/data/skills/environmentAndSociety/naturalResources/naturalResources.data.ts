@@ -10,6 +10,7 @@ export const naturalResources_SkillGroup_Data = defineSkillGroup({
   id: '483835d0-db41-4528-b06a-05cb1953d915',
   name: {
     en: 'Natural Resources',
+    it: 'Risorse naturali',
     zh: '自然资源',
     hi: 'प्राकृतिक संसाधन',
     es: 'Recursos naturales',
@@ -51,6 +52,7 @@ export const naturalResources_SkillGroup_Data = defineSkillGroup({
       'A natural resource is a material, stock or flow valued for human use, and availability depends on formation, replenishment, accessibility and demand. Geographic classifications should not equate renewable with inexhaustible or any deposit with a commercially recoverable resource.',
     frontend: {
       en: 'Learn what makes materials and natural processes valuable resources for people.',
+      it: 'Scopri che cosa rende materiali e processi naturali risorse preziose per le persone.',
       zh: '了解哪些特征使自然物质和自然过程成为对人类有价值的资源。',
       hi: 'जानें कि प्राकृतिक पदार्थ और प्रक्रियाएँ लोगों के लिए उपयोगी संसाधन कैसे बनते हैं।',
       es: 'Aprende qué hace que los materiales y procesos naturales sean recursos valiosos para las personas.',

@@ -5,6 +5,7 @@ export const listOutcomes_Skill_Data = defineSkill({
   id: '97f45a5a-d5bb-4618-89e5-11be5fb4f02c',
   name: {
     en: 'Listing possible outcomes of a simple random experiment',
+    it: 'Elencare gli esiti possibili di un semplice esperimento casuale',
     qm: 'Sade tesadüfiy tecribeniñ mümkün neticelerini sıralav',
     lt: 'Paprasto atsitiktinio bandymo galimų baigčių išvardijimas',
     lv: 'Vienkārša nejauša eksperimenta iespējamo iznākumu uzskaitīšana',
@@ -39,6 +40,7 @@ export const listOutcomes_Skill_Data = defineSkill({
       'The sample space follows from a precisely specified random experiment. Listed elementary outcomes must be mutually exclusive and exhaustive at the chosen level of description; none may be added or omitted to favor a conclusion.',
     frontend: {
       en: 'You can list every possible outcome of a simple random experiment without missing an outcome or counting one twice.',
+      it: 'Puoi elencare tutti gli esiti possibili di un semplice esperimento casuale senza dimenticarne nessuno né contarne uno due volte.',
       qm: 'Sade tesadüfiy tecribeniñ bütün mümkün neticelerini, iç birini unutmay ve bir neticeni eki kere saymay, sıralay bilesiñ.',
       zh: '你能列出简单随机试验的所有可能结果，不遗漏任何结果，也不重复计算。',
       hi: 'आप सरल यादृच्छिक प्रयोग के सभी संभावित परिणाम गिना सकते हैं, बिना किसी को छोड़े या दो बार गिने।',

@@ -5,6 +5,7 @@ export const distillation_Skill_Data = defineSkill({
   id: '1e28e416-f5e6-405b-8333-ebd9b6a8eb7d',
   name: {
     en: 'Distillation',
+    it: 'Distillazione',
     zh: '蒸馏',
     hi: 'आसवन',
     es: 'Destilación',
@@ -38,6 +39,7 @@ export const distillation_Skill_Data = defineSkill({
     methodological: 'Explain selective vaporization and condensation using differences in volatility.',
     frontend: {
       en: 'Explore how different boiling behaviors allow distillation to separate substances.',
+      it: 'Esplora come le diverse caratteristiche di ebollizione permettono di separare le sostanze tramite distillazione.',
       zh: '探索如何利用不同的沸腾特性通过蒸馏分离物质。',
       hi: 'जानें कि उबलने के अलग-अलग व्यवहार से आसवन द्वारा पदार्थों को कैसे अलग किया जाता है।',
       es: 'Explora cómo las diferencias de ebullición permiten separar sustancias por destilación.',

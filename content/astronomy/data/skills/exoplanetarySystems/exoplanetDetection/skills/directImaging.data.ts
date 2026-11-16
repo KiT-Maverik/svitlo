@@ -5,6 +5,7 @@ export const directImaging_Skill_Data = defineSkill({
   id: 'efc5c6f9-3591-4c20-a199-4f573e335d69',
   name: {
     en: 'Direct Imaging',
+    it: 'Osservazione diretta degli esopianeti',
     zh: '直接成像',
     hi: 'प्रत्यक्ष चित्रण',
     es: 'Obtención de imágenes directas',
@@ -39,6 +40,7 @@ export const directImaging_Skill_Data = defineSkill({
       'Explain when a planet can be resolved separately from its host star and why brightness contrast is challenging.',
     frontend: {
       en: 'Explore why photographing a planet beside its bright host star is difficult.',
+      it: 'Esplora perché è difficile fotografare un pianeta accanto alla sua luminosa stella ospite.',
       zh: '探索为什么难以在明亮的宿主恒星旁直接拍摄行星。',
       hi: 'जानें कि चमकीले मूल तारे के बगल में ग्रह की तस्वीर लेना कठिन क्यों है।',
       es: 'Explora por qué es difícil fotografiar un planeta junto a su brillante estrella anfitriona.',

@@ -12,6 +12,7 @@ export const molecularAndExtendedStructure_SkillGroup_Data = defineSkillGroup({
   id: 'f680f310-7c99-406f-b347-6b8060e08cf2',
   name: {
     en: 'Molecular and Extended Structure',
+    it: 'Struttura molecolare e reticolare',
     zh: '分子与延展结构',
     hi: 'आणविक और विस्तृत संरचना',
     es: 'Estructura molecular y extendida',
@@ -55,6 +56,7 @@ export const molecularAndExtendedStructure_SkillGroup_Data = defineSkillGroup({
       'Spatial arrangement and connectedness influence substance behavior independently of a simple formula.',
     frontend: {
       en: 'Learn how the arrangement of particles influences the behavior of materials.',
+      it: 'Impara come la disposizione delle particelle influenza il comportamento dei materiali.',
       zh: '了解粒子的排列方式如何影响材料的性质和行为。',
       hi: 'जानें कि कणों की व्यवस्था पदार्थों के व्यवहार को कैसे प्रभावित करती है।',
       es: 'Aprende cómo la disposición de las partículas influye en el comportamiento de los materiales.',

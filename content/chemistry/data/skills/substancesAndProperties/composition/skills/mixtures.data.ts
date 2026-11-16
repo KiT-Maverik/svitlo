@@ -5,6 +5,7 @@ export const mixtures_Skill_Data = defineSkill({
   id: 'bc3e12df-d52e-4b92-bb8b-60018916fdee',
   name: {
     en: 'Mixtures',
+    it: 'Miscele',
     zh: '混合物',
     hi: 'मिश्रण',
     es: 'Mezclas',
@@ -38,6 +39,7 @@ export const mixtures_Skill_Data = defineSkill({
     methodological: 'Recognize combinations whose component proportions can vary without making a new substance.',
     frontend: {
       en: 'Recognize mixtures whose ingredients can be present in different proportions.',
+      it: 'Riconosci le miscele i cui componenti possono essere presenti in proporzioni diverse.',
       zh: '认识各成分比例可以变化的混合物。',
       hi: 'ऐसे मिश्रण पहचानें जिनके घटक अलग-अलग अनुपात में हो सकते हैं।',
       es: 'Reconoce mezclas cuyos componentes pueden estar en distintas proporciones.',

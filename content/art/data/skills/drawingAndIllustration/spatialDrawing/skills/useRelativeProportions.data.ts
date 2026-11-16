@@ -5,6 +5,7 @@ export const useRelativeProportions_Skill_Data = defineSkill({
   id: '1a266f16-e8c9-4033-baa0-d2260568223c',
   name: {
     en: 'Use Relative Proportions',
+    it: 'Usare le proporzioni relative',
     zh: '运用相对比例',
     hi: 'सापेक्ष अनुपात का उपयोग करें',
     es: 'Usar proporciones relativas',
@@ -38,6 +39,7 @@ export const useRelativeProportions_Skill_Data = defineSkill({
     methodological: 'Compare parts to a larger whole and correct visible scale relationships in a drawing.',
     frontend: {
       en: 'Compare the sizes of parts to draw a subject in proportion.',
+      it: 'Confronta le dimensioni delle diverse parti per disegnare un soggetto proporzionato.',
       zh: '比较各部分的大小，按比例绘制对象。',
       hi: 'भागों के आकार की तुलना करके विषय को सही अनुपात में बनाएँ।',
       es: 'Compara el tamaño de las partes para dibujar un sujeto proporcionado.',

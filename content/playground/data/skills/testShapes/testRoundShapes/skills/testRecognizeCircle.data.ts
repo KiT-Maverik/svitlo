@@ -6,6 +6,7 @@ export const testRecognizeCircle_Skill_Data = defineSkill({
   id: '00000000-0000-4000-8000-000000000008',
   name: {
     en: '[TEST en] Recognize a circle',
+    it: '[TEST it] Riconoscere un cerchio',
     zh: '[TEST zh] Recognize a circle',
     hi: '[TEST hi] Recognize a circle',
     es: '[TEST es] Recognize a circle',
@@ -40,6 +41,7 @@ export const testRecognizeCircle_Skill_Data = defineSkill({
       'Synthetic fixture skill for recognize a circle; it exists solely to exercise the Playground Skill Data graph.',
     frontend: {
       en: '[TEST en] Recognize a circle in a simple visual example.',
+      it: '[TEST it] Riconoscere un cerchio in un semplice esempio visivo.',
       zh: '[TEST zh] Recognize a circle in a simple visual example.',
       hi: '[TEST hi] Recognize a circle in a simple visual example.',
       es: '[TEST es] Recognize a circle in a simple visual example.',

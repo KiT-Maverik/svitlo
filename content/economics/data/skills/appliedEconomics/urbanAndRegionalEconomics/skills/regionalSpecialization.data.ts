@@ -5,6 +5,7 @@ export const regionalSpecialization_Skill_Data = defineSkill({
   id: 'b836e091-67ff-4adc-b44f-75283779669a',
   name: {
     en: 'Регіональна спеціалізація',
+    it: 'Specializzazione regionale',
     zh: '区域专业化分工',
     hi: 'क्षेत्रीय विशेषज्ञता',
     es: 'Especialización regional',
@@ -39,6 +40,7 @@ export const regionalSpecialization_Skill_Data = defineSkill({
       'Analyze why different territories concentrate particular activities because of resource access, markets, human capital, and institutions.',
     frontend: {
       en: 'Understand why different regions focus on different industries.',
+      it: 'Comprendi perché regioni diverse si concentrano su settori produttivi differenti.',
       zh: '理解不同地区为什么专注于不同的产业。',
       hi: 'समझें कि अलग-अलग क्षेत्र अलग उद्योगों में विशेषज्ञ क्यों बनते हैं।',
       es: 'Comprende por qué distintas regiones se concentran en industrias diferentes.',

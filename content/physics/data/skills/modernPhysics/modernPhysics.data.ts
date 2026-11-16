@@ -9,6 +9,7 @@ export const modernPhysics_SkillDomain_Data = defineSkillDomain({
   id: '36e539f1-2f2a-4874-b918-49cefddd6bac',
   title: {
     en: 'Modern Physics',
+    it: 'Fisica moderna',
     zh: '现代物理学',
     hi: 'आधुनिक भौतिकी',
     es: 'Física moderna',
@@ -51,6 +52,7 @@ export const modernPhysics_SkillDomain_Data = defineSkillDomain({
       'Models of atoms, quantum and nuclear phenomena, and spacetime explain observations not covered by classical physics alone. Younger children can encounter the concepts without mathematical formalism.',
     frontend: {
       en: 'Explore quantum phenomena, nuclear changes and the physics of spacetime.',
+      it: 'Esplora i fenomeni quantistici, le trasformazioni nucleari e la fisica dello spaziotempo.',
       zh: '探索量子现象、原子核的变化和时空物理学。',
       hi: 'क्वांटम घटनाओं, नाभिकीय परिवर्तनों और दिक्काल की भौतिकी को जानो।',
       es: 'Explora los fenómenos cuánticos, los cambios nucleares y la física del espacio-tiempo.',

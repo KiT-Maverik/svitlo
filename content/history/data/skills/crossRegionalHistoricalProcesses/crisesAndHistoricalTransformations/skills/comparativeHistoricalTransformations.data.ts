@@ -5,6 +5,7 @@ export const comparativeHistoricalTransformations_Skill_Data = defineSkill({
   id: '8b16de28-9ade-4814-bd2f-610cd9776f8a',
   name: {
     en: 'Comparative Historical Transformations',
+    it: 'Trasformazioni storiche a confronto',
     zh: '历史变迁的比较研究',
     hi: 'ऐतिहासिक परिवर्तनों की तुलना',
     es: 'Comparación de transformaciones históricas',
@@ -39,6 +40,7 @@ export const comparativeHistoricalTransformations_Skill_Data = defineSkill({
       'Compare the causes and consequences of major changes across regions without imposing one worldwide historical cycle.',
     frontend: {
       en: 'Compare transformations in different societies using historical evidence.',
+      it: 'Confronta le trasformazioni di società diverse usando testimonianze storiche.',
       zh: '运用历史证据比较不同社会发生的变迁。',
       hi: 'ऐतिहासिक प्रमाणों के आधार पर अलग-अलग समाजों के परिवर्तनों की तुलना करें।',
       es: 'Compara transformaciones de distintas sociedades mediante pruebas históricas.',

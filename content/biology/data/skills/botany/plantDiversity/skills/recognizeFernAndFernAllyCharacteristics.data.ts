@@ -5,6 +5,7 @@ export const recognizeFernAndFernAllyCharacteristics_Skill_Data = defineSkill({
   id: 'e4152db9-0fe9-48b1-9cda-bf5b92285e31',
   name: {
     en: 'Recognize Fern and Fern-Ally Characteristics',
+    it: 'Riconoscere le caratteristiche delle felci e delle piante affini',
     zh: '识别蕨类及相关植物的特征',
     hi: 'फर्न और संबंधित पौधों के लक्षण पहचानना',
     es: 'Reconocer las características de los helechos y afines',
@@ -39,6 +40,7 @@ export const recognizeFernAndFernAllyCharacteristics_Skill_Data = defineSkill({
       'Identify vascular spore-producing plants by the structure of their shoots and sporangia; distinguish them from bryophytes and seed plants.',
     frontend: {
       en: 'Recognize ferns and related vascular plants that reproduce using spores.',
+      it: 'Riconosci le felci e le piante vascolari affini che si riproducono tramite spore.',
       zh: '识别通过孢子繁殖的蕨类和相关维管植物。',
       hi: 'बीजाणुओं से प्रजनन करने वाले फर्न और संबंधित संवहनी पौधों को पहचानें।',
       es: 'Reconoce los helechos y otras plantas vasculares relacionadas que se reproducen mediante esporas.',

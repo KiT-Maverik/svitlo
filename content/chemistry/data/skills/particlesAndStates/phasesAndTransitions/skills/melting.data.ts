@@ -5,6 +5,7 @@ export const melting_Skill_Data = defineSkill({
   id: 'c0e165ac-b4fb-4fcd-b179-ca687614fa81',
   name: {
     en: 'Melting',
+    it: 'Fusione',
     zh: '熔化',
     hi: 'गलन',
     es: 'Fusión',
@@ -39,6 +40,7 @@ export const melting_Skill_Data = defineSkill({
       'Explain how a solid becomes liquid under appropriate temperature and pressure conditions, without requiring a change in chemical identity.',
     frontend: {
       en: 'Understand how a solid becomes a liquid without changing into a new substance.',
+      it: 'Comprendi come un solido diventa liquido senza trasformarsi in una nuova sostanza.',
       zh: '了解固体如何在不变成新物质的情况下转变为液体。',
       hi: 'समझें कि ठोस नई रासायनिक वस्तु बने बिना द्रव में कैसे बदलता है।',
       es: 'Comprende cómo un sólido se transforma en líquido sin convertirse en una sustancia nueva.',

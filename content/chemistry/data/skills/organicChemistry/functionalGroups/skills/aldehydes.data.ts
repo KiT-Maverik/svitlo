@@ -5,6 +5,7 @@ export const aldehydes_Skill_Data = defineSkill({
   id: 'afafd409-7fe5-46de-85da-b057936a5458',
   name: {
     en: 'Aldehydes',
+    it: 'Aldeidi',
     zh: '醛',
     hi: 'ऐल्डिहाइड',
     es: 'Aldehídos',
@@ -38,6 +39,7 @@ export const aldehydes_Skill_Data = defineSkill({
     methodological: 'Relate terminal carbonyl connectivity to characteristic structure and oxidation behavior.',
     frontend: {
       en: 'Recognize aldehydes by the position and behavior of their carbonyl group.',
+      it: 'Riconosci le aldeidi dalla posizione e dal comportamento del loro gruppo carbonilico.',
       zh: '通过羰基的位置和化学行为识别醛。',
       hi: 'कार्बोनिल समूह की स्थिति और व्यवहार से ऐल्डिहाइड पहचानें।',
       es: 'Reconoce los aldehídos por la posición y el comportamiento de su grupo carbonilo.',

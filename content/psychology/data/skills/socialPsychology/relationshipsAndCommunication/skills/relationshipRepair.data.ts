@@ -5,6 +5,7 @@ export const relationshipRepair_Skill_Data = defineSkill({
   id: '68bf258e-0acf-466b-abdb-ac59dd12c783',
   name: {
     en: 'Relationship Repair',
+    it: 'Riparazione delle relazioni',
     zh: '关系修复',
     hi: 'संबंधों में सुधार',
     es: 'Reparación de relaciones',
@@ -39,6 +40,7 @@ export const relationshipRepair_Skill_Data = defineSkill({
       'Explain how acknowledgment, apology, changed behavior, and negotiated expectations can help restore trust after interpersonal harm without assuming reconciliation is always safe or obligatory.',
     frontend: {
       en: 'Understand what helps restore trust after a disagreement.',
+      it: 'Comprendi che cosa aiuti a ristabilire la fiducia dopo un disaccordo.',
       zh: '理解争执之后哪些行为有助于恢复信任。',
       hi: 'समझें कि असहमति के बाद विश्वास बहाल करने में क्या मदद करता है।',
       es: 'Comprende qué ayuda a recuperar la confianza después de un desacuerdo.',

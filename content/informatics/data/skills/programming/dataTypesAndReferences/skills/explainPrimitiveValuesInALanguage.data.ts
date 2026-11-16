@@ -5,6 +5,7 @@ export const explainPrimitiveValuesInALanguage_Skill_Data = defineSkill({
   id: '2299b4ed-fd55-4147-b66e-2ea6c236bf02',
   name: {
     en: 'Explain Primitive Values in a Language',
+    it: 'Spiegare i valori primitivi di un linguaggio',
     zh: '解释编程语言中的基本值',
     hi: 'प्रोग्रामिंग भाषा के मूल मान समझाना',
     es: 'Explicar los valores primitivos de un lenguaje',
@@ -39,6 +40,7 @@ export const explainPrimitiveValuesInALanguage_Skill_Data = defineSkill({
       'Use a selected programming language to describe simple values such as numbers, Boolean values, or text and how that language classifies them; do not assume strings are primitive in every language.',
     frontend: {
       en: 'Identify simple value types as defined by a chosen programming language.',
+      it: 'Individua i tipi di valore semplici definiti da un linguaggio di programmazione specifico.',
       zh: '识别某种编程语言定义的简单数据类型。',
       hi: 'चुनी हुई प्रोग्रामिंग भाषा में परिभाषित सरल मान-प्रकार पहचानें।',
       es: 'Identifica los tipos de valores simples definidos por un lenguaje de programación.',

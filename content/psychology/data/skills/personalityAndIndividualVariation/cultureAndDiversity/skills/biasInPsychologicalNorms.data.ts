@@ -5,6 +5,7 @@ export const biasInPsychologicalNorms_Skill_Data = defineSkill({
   id: '037d82f3-35be-4574-9b86-8af6e7ace5b7',
   name: {
     en: 'Bias in Psychological Norms',
+    it: 'Distorsioni nelle norme psicometriche',
     zh: '心理测量常模中的偏差',
     hi: 'मनोवैज्ञानिक मानदंडों में पक्षपात',
     es: 'Sesgo en las normas psicológicas',
@@ -38,6 +39,7 @@ export const biasInPsychologicalNorms_Skill_Data = defineSkill({
     methodological: 'Identify how a reference sample can cause ordinary differences to be misclassified as deviations.',
     frontend: {
       en: 'Explore how assessment norms can disadvantage some people or groups.',
+      it: 'Esplora come le norme di valutazione possano svantaggiare alcune persone o gruppi.',
       zh: '探索评估常模如何使某些人或群体处于不利地位。',
       hi: 'जानें कि मूल्यांकन के मानदंड कुछ लोगों या समूहों के लिए नुकसानदेह कैसे हो सकते हैं।',
       es: 'Explora cómo las normas de evaluación pueden perjudicar a algunas personas o grupos.',

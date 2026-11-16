@@ -5,6 +5,7 @@ export const respondToSuspiciousDigitalContact_Skill_Data = defineSkill({
   id: 'cc1a4d92-ff93-4b1f-a32c-edbf5e4a34f6',
   name: {
     en: 'Respond to Suspicious Digital Contact',
+    it: 'Rispondere a contatti digitali sospetti',
     zh: '应对可疑的数字联系',
     hi: 'संदिग्ध ऑनलाइन संपर्क का सुरक्षित जवाब देना',
     es: 'Responder a un contacto digital sospechoso',
@@ -39,6 +40,7 @@ export const respondToSuspiciousDigitalContact_Skill_Data = defineSkill({
       'Choose an immediate safe response to an unclear request or online pressure: do not reveal secrets, stop engaging, verify identity through an independent channel, and contact a trusted adult or official support.',
     frontend: {
       en: 'Respond safely to suspicious contacts and verify requests independently.',
+      it: 'Reagisci in sicurezza ai contatti sospetti e verifica le richieste in modo indipendente.',
       zh: '对可疑联系人作出安全回应，并通过独立渠道核实请求。',
       hi: 'संदिग्ध संदेशों पर सुरक्षित कदम उठाएँ और अनुरोधों को अलग माध्यम से जाँचें।',
       es: 'Responde con seguridad a contactos sospechosos y verifica solicitudes por otro canal.',

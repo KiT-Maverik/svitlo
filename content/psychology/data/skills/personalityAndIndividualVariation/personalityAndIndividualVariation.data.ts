@@ -10,6 +10,7 @@ export const personalityAndIndividualVariation_SkillDomain_Data = defineSkillDom
   id: '67a62640-fd4a-41da-a481-0a564fcf70aa',
   title: {
     en: 'Personality and Individual Variation',
+    it: 'Personalità e differenze individuali',
     zh: '人格与个体差异',
     hi: 'व्यक्तित्व और व्यक्तिगत भिन्नताएँ',
     es: 'Personalidad y variación individual',
@@ -58,6 +59,7 @@ export const personalityAndIndividualVariation_SkillDomain_Data = defineSkillDom
       "People differ in characteristic patterns of thought, feeling, and behavior, but measurement requires caution about situations, cultural meaning, and fairness. Describing a tendency never fixes a person's worth or destiny.",
     frontend: {
       en: 'Explore how personalities and cognitive abilities vary across people and situations.',
+      it: 'Esplora come personalità e capacità cognitive varino tra persone e situazioni.',
       zh: '探索不同人及情境中的人格和认知能力差异。',
       hi: 'जानें कि लोगों और स्थितियों में व्यक्तित्व तथा संज्ञानात्मक क्षमताएँ कैसे अलग होती हैं।',
       es: 'Explora cómo varían las personalidades y las capacidades cognitivas entre personas y situaciones.',

@@ -5,6 +5,7 @@ export const calibrateConfidenceToEvidence_Skill_Data = defineSkill({
   id: '6d8ef31a-abed-4dd6-8862-425b867cd22b',
   name: {
     en: 'Calibrate confidence to evidence',
+    it: 'Adeguare il grado di certezza alle prove',
     zh: '根据证据调整确信程度',
     hi: 'साक्ष्य के अनुसार भरोसे का स्तर तय करें',
     es: 'Ajustar la confianza a las pruebas',
@@ -39,6 +40,7 @@ export const calibrateConfidenceToEvidence_Skill_Data = defineSkill({
       'Express degrees of certainty proportionate to the support available and identify what new information could change them.',
     frontend: {
       en: 'Adjust how certain you feel about a claim to match the available evidence.',
+      it: "Adatta il tuo grado di certezza su un'affermazione alle prove disponibili.",
       zh: '让你对一项主张的确信程度与现有证据相称。',
       hi: 'किसी दावे पर अपना भरोसा उपलब्ध साक्ष्यों के अनुपात में रखें।',
       es: 'Adapta tu grado de certeza sobre una afirmación a las pruebas disponibles.',

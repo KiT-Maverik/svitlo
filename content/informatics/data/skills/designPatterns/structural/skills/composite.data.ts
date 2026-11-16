@@ -5,6 +5,7 @@ export const composite_Skill_Data = defineSkill({
   id: '194dd959-d6ea-4049-82cd-f25a8c0faa45',
   name: {
     en: 'Composite',
+    it: 'Composite',
     zh: '组合模式',
     hi: 'कंपोज़िट',
     es: 'Compuesto',
@@ -39,6 +40,7 @@ export const composite_Skill_Data = defineSkill({
       'Provide a common contract for individual objects and nested groups, allowing leaves and branches in a tree-like structure to be treated uniformly.',
     frontend: {
       en: 'Treat individual objects and groups of objects through a common interface.',
+      it: "Gestisci singoli oggetti e gruppi di oggetti attraverso un'interfaccia comune.",
       zh: '通过统一接口对待单个对象和对象组。',
       hi: 'एक समान इंटरफ़ेस से एकल ऑब्जेक्ट और ऑब्जेक्ट समूह दोनों को संभालें।',
       es: 'Trata objetos individuales y grupos de objetos mediante una interfaz común.',

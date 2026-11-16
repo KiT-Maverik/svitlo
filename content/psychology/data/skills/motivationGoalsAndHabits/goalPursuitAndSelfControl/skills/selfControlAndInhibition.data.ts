@@ -5,6 +5,7 @@ export const selfControlAndInhibition_Skill_Data = defineSkill({
   id: '2deedead-6499-4095-8eac-47df33a991f7',
   name: {
     en: 'Self-Control and Inhibition',
+    it: 'Autocontrollo e inibizione',
     zh: '自我控制与抑制',
     hi: 'आत्म-नियंत्रण और आवेग रोकना',
     es: 'Autocontrol e inhibición',
@@ -39,6 +40,7 @@ export const selfControlAndInhibition_Skill_Data = defineSkill({
       'Describe delaying or redirecting an immediate impulse in service of a competing aim, including contextual limitations.',
     frontend: {
       en: 'Explore why resisting an impulse requires attentional and cognitive control.',
+      it: 'Esplora perché resistere a un impulso richieda controllo attentivo e cognitivo.',
       zh: '探索为何抵抗冲动需要注意力和认知控制。',
       hi: 'जानें कि आवेग रोकने में ध्यान और सोच का नियंत्रण क्यों ज़रूरी है।',
       es: 'Explora por qué resistir un impulso requiere control de la atención y del pensamiento.',

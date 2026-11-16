@@ -13,6 +13,7 @@ export const representationsAndPrototypes_SkillGroup_Data = defineSkillGroup({
   id: '97e9e61b-3066-4efa-a68f-fafcbcc59b39',
   name: {
     en: 'Representations and Prototypes',
+    it: 'Rappresentazioni e prototipi',
     zh: '技术表达与原型',
     hi: 'निरूपण और प्रोटोटाइप',
     es: 'Representaciones y prototipos',
@@ -63,6 +64,7 @@ export const representationsAndPrototypes_SkillGroup_Data = defineSkillGroup({
       'Technical representations communicate geometry, operation and interfaces. A model is useful when it preserves properties that matter to the question being investigated.',
     frontend: {
       en: 'Discover how drawings and prototypes communicate a technical concept.',
+      it: 'Scopri come disegni e prototipi comunicano un concetto tecnico.',
       zh: '了解图纸和原型如何传达技术方案。',
       hi: 'जानें कि चित्र और प्रोटोटाइप तकनीकी विचार कैसे दिखाते हैं।',
       es: 'Descubre cómo los planos y prototipos comunican un concepto técnico.',

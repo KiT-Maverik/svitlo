@@ -5,6 +5,7 @@ export const recognizeFungiAsADistinctGroupOfOrganisms_Skill_Data = defineSkill(
   id: 'dfb632e0-bfef-4c75-b3ee-a7f9f4de954e',
   name: {
     en: 'Recognize Fungi as a Distinct Group of Organisms',
+    it: 'Riconoscere i funghi come gruppo distinto di organismi',
     zh: '认识真菌是独立的生物类群',
     hi: 'कवकों को जीवों का अलग समूह मानकर पहचानना',
     es: 'Reconocer los hongos como un grupo distinto de organismos',
@@ -39,6 +40,7 @@ export const recognizeFungiAsADistinctGroupOfOrganisms_Skill_Data = defineSkill(
       'Distinguish fungi, plants, and animals by how they obtain organic substances and by structural characteristics.',
     frontend: {
       en: 'Distinguish fungi from plants and animals using how they feed and how they are built.',
+      it: 'Distingui i funghi dalle piante e dagli animali in base alla loro struttura e al modo in cui si nutrono.',
       zh: '根据真菌的营养获取方式和身体结构，将其与植物和动物区分开。',
       hi: 'कवकों को पोषण पाने के तरीके और शरीर की बनावट के आधार पर पौधों और जंतुओं से अलग पहचानें।',
       es: 'Distingue los hongos de plantas y animales por cómo se alimentan y cómo están constituidos.',

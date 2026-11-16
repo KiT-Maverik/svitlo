@@ -13,6 +13,7 @@ export const observationalDrawing_SkillGroup_Data = defineSkillGroup({
   id: '8c0aaf8a-035b-416c-bc06-7639233dde43',
   name: {
     en: 'Observational Drawing',
+    it: 'Disegno dal vero',
     zh: '观察绘画',
     hi: 'अवलोकन आधारित चित्रांकन',
     es: 'Dibujo de observación',
@@ -63,6 +64,7 @@ export const observationalDrawing_SkillGroup_Data = defineSkillGroup({
       'Close observation of proportions, edges, tonal values and surfaces offers a foundation for describing visible subjects rather than relying on schematic symbols.',
     frontend: {
       en: 'Build drawings by looking closely at shapes, edges, light and surfaces.',
+      it: 'Costruisci disegni osservando attentamente forme, contorni, luce e superfici.',
       zh: '通过仔细观察形状、边缘、光线和表面来构建绘画。',
       hi: 'आकारों, किनारों, प्रकाश और सतहों को ध्यान से देखकर चित्र बनाएँ।',
       es: 'Construye dibujos observando de cerca las formas, los bordes, la luz y las superficies.',

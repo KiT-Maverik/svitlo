@@ -5,6 +5,7 @@ export const explainHowAPulleyWorks_Skill_Data = defineSkill({
   id: '586f8ea3-c314-46e0-97fe-1efcb32645c8',
   name: {
     en: 'Explain how a pulley works',
+    it: 'Spiegare come funziona una carrucola',
     zh: '解释滑轮的工作原理',
     hi: 'घिरनी कैसे काम करती है, समझाना',
     es: 'Explicar cómo funciona una polea',
@@ -39,6 +40,7 @@ export const explainHowAPulleyWorks_Skill_Data = defineSkill({
       'A fixed pulley changes the direction of the applied force, whereas a movable pulley can reduce the force needed by distributing the load across rope segments.',
     frontend: {
       en: 'Compare how fixed and movable pulleys redirect or distribute a load.',
+      it: 'Confronta come carrucole fisse e mobili cambiano la direzione o distribuiscono un carico.',
       zh: '比较定滑轮和动滑轮如何改变用力方向或分担负载。',
       hi: 'तुलना करें कि स्थिर घिरनी बल की दिशा कैसे बदलती है और चल घिरनी रस्सी के हिस्सों में भार कैसे बाँटती है।',
       es: 'Compara cómo las poleas fijas y móviles cambian la dirección de la fuerza o distribuyen la carga.',

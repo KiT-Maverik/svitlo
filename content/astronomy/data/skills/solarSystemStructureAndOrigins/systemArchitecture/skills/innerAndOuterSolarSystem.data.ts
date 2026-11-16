@@ -5,6 +5,7 @@ export const innerAndOuterSolarSystem_Skill_Data = defineSkill({
   id: '53191efd-d642-4caa-a10e-4250297ddc29',
   name: {
     en: 'Inner and Outer Solar System',
+    it: 'Sistema solare interno ed esterno',
     zh: '内太阳系与外太阳系',
     hi: 'आंतरिक और बाहरी सौरमंडल',
     es: 'Sistema Solar interior y exterior',
@@ -39,6 +40,7 @@ export const innerAndOuterSolarSystem_Skill_Data = defineSkill({
       'Compare the compositions and environments characteristic of regions on opposite sides of the main asteroid belt, allowing for exceptions.',
     frontend: {
       en: 'Compare the inner and outer Solar System and their typical environments.',
+      it: 'Confronta le regioni interne ed esterne del Sistema solare e i loro ambienti caratteristici.',
       zh: '比较太阳系内侧和外侧区域及其典型环境。',
       hi: 'सौरमंडल के आंतरिक और बाहरी क्षेत्रों तथा उनके सामान्य परिवेशों की तुलना करें।',
       es: 'Compara las regiones interior y exterior del Sistema Solar y sus entornos habituales.',

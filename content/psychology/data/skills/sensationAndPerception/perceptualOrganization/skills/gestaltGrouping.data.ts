@@ -5,6 +5,7 @@ export const gestaltGrouping_Skill_Data = defineSkill({
   id: 'c42b7b29-544b-46fd-b360-cf288e263608',
   name: {
     en: 'Gestalt Grouping',
+    it: 'Raggruppamento secondo la Gestalt',
     zh: '格式塔分组',
     hi: 'गेस्टाल्ट समूहबद्धता',
     es: 'Agrupación gestáltica',
@@ -38,6 +39,7 @@ export const gestaltGrouping_Skill_Data = defineSkill({
     methodological: 'Apply similarity, proximity, closure, and continuity to explain grouping of visible elements.',
     frontend: {
       en: 'Use proximity, similarity and continuity to explain visual grouping.',
+      it: 'Usa prossimità, somiglianza e continuità per spiegare il raggruppamento visivo.',
       zh: '利用接近性、相似性和连续性解释视觉元素为何会被归为一组。',
       hi: 'निकटता, समानता और निरंतरता से समझाएँ कि दृश्य तत्व समूहों में क्यों दिखाई देते हैं।',
       es: 'Usa la proximidad, la similitud y la continuidad para explicar la agrupación visual.',

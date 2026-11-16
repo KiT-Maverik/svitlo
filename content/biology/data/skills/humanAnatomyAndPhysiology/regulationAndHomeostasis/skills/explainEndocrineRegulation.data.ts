@@ -5,6 +5,7 @@ export const explainEndocrineRegulation_Skill_Data = defineSkill({
   id: '8a171e67-c25f-4c83-9457-11e315d0b961',
   name: {
     en: 'Explain Endocrine Regulation',
+    it: 'Spiegare la regolazione endocrina',
     zh: '解释内分泌调节',
     hi: 'अंतःस्रावी नियमन समझाना',
     es: 'Explicar la regulación endocrina',
@@ -39,6 +40,7 @@ export const explainEndocrineRegulation_Skill_Data = defineSkill({
       'Explain how hormones secreted by endocrine glands affect cells and organs, including metabolism, growth, and responses to environmental changes; compare the duration of hormonal and neural signals without claiming that these always act independently.',
     frontend: {
       en: 'Explore how hormones send signals that affect growth and other body processes.',
+      it: 'Scopri come gli ormoni trasmettono segnali che influenzano la crescita e altri processi del corpo.',
       zh: '探索激素如何传递信号并影响生长和其他身体过程。',
       hi: 'जानें कि हार्मोन संकेत भेजकर वृद्धि और अन्य शारीरिक प्रक्रियाओं को कैसे प्रभावित करते हैं।',
       es: 'Explora cómo las hormonas transmiten señales que influyen en el crecimiento y otros procesos corporales.',

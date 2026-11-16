@@ -5,6 +5,7 @@ export const explainWaveLikeAndParticleLikeBehaviorOfQuantumObjects_Skill_Data =
   id: 'bb9cb815-5829-40d7-b661-74427d4a5b8c',
   name: {
     en: 'Explain wave-like and particle-like behavior of quantum objects',
+    it: 'Spiegare il comportamento ondulatorio e corpuscolare degli oggetti quantistici',
     zh: '解释量子物体的波动性与粒子性',
     hi: 'क्वांटम वस्तुओं के तरंग-जैसे और कण-जैसे व्यवहार को समझाना',
     es: 'Explicar el comportamiento ondulatorio y corpuscular de los objetos cuánticos',
@@ -39,6 +40,7 @@ export const explainWaveLikeAndParticleLikeBehaviorOfQuantumObjects_Skill_Data =
       'Light and matter exhibit phenomena that cannot be exhaustively described by only a classical wave or a classical particle picture.',
     frontend: {
       en: 'Explore why quantum objects show wave-like and particle-like behavior.',
+      it: 'Esplora perché gli oggetti quantistici manifestano sia comportamenti ondulatori sia corpuscolari.',
       zh: '探索量子物体为什么既表现出类似波的行为，也表现出类似粒子的行为。',
       hi: 'जानो कि क्वांटम वस्तुओं में तरंग-जैसे और कण-जैसे गुण दोनों क्यों दिखते हैं।',
       es: 'Explora por qué los objetos cuánticos muestran comportamiento tanto ondulatorio como corpuscular.',

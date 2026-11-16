@@ -11,6 +11,7 @@ export const numberLine20_Skill_Data = defineSkill({
     ka: 'რიცხვები რიცხვით წრფეზე 20-მდე',
     kk: '20-ға дейінгі сандар сан түзуінде',
     en: 'Numbers on a line to 20',
+    it: 'Numeri su una retta fino a 20',
     qm: '20-ge qadar sayı sızığı',
     zh: '在数轴上标出20以内的数',
     hi: '20 तक संख्या रेखा पर संख्याएँ',
@@ -39,6 +40,7 @@ export const numberLine20_Skill_Data = defineSkill({
       'A number line orders numbers by coordinate; equal numerical increments occupy equal lengths on its scale. The predecessor and successor lie one unit interval to the left and right.',
     frontend: {
       en: 'Find numbers up to 20 on an evenly spaced number line. Each move of one unit covers the same distance.',
+      it: "Trova i numeri fino a 20 su una retta numerica con intervalli uguali. Ogni spostamento di un'unità copre la stessa distanza.",
       qm: 'Teñ aralıqlı sayı sızığında 20-ge qadar sayılarnı tap. Bir birlikke er keçüv aynı mesafeni qaplay.',
       zh: '在刻度均匀的数轴上找到20以内的数，每相差1的距离都相等。',
       hi: 'समान अंतर वाली संख्या रेखा पर 20 तक संख्याएँ खोजें। एक-एक का कदम समान दूरी का होता है।',

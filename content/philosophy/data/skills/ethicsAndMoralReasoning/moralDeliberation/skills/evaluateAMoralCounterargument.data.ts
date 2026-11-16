@@ -5,6 +5,7 @@ export const evaluateAMoralCounterargument_Skill_Data = defineSkill({
   id: '665d7cbc-141c-42ce-be55-5a776c2f20fb',
   name: {
     en: 'Evaluate a moral counterargument',
+    it: 'Valutare un controargomento morale',
     zh: '评估道德反驳论证',
     hi: 'नैतिक प्रतितर्क का मूल्यांकन',
     es: 'Evaluar un contraargumento moral',
@@ -39,6 +40,7 @@ export const evaluateAMoralCounterargument_Skill_Data = defineSkill({
       'Test whether an objection exposes an overlooked harm, inconsistency, or relevant exception to a principle.',
     frontend: {
       en: 'Consider objections that reveal harms, exceptions or inconsistencies.',
+      it: 'Considera obiezioni che evidenziano danni, eccezioni o incoerenze.',
       zh: '考虑揭示伤害、例外情况或不一致之处的反对意见。',
       hi: 'हानि, अपवाद या असंगति उजागर करने वाली आपत्तियों पर विचार करें।',
       es: 'Considera objeciones que revelen daños, excepciones o incoherencias.',

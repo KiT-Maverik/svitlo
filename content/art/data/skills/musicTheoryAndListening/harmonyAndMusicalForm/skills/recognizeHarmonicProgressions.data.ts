@@ -5,6 +5,7 @@ export const recognizeHarmonicProgressions_Skill_Data = defineSkill({
   id: 'dc3f3fc2-2c63-45e5-b05e-3e60b762dd6d',
   name: {
     en: 'Recognize Harmonic Progressions',
+    it: 'Riconoscere le progressioni armoniche',
     zh: '识别和弦进行',
     hi: 'स्वर-संगति की प्रगति पहचानें',
     es: 'Reconocer progresiones armónicas',
@@ -38,6 +39,7 @@ export const recognizeHarmonicProgressions_Skill_Data = defineSkill({
     methodological: 'Trace changes of harmonic support and their contribution to musical direction.',
     frontend: {
       en: 'Follow how changing chords help music move forward.',
+      it: 'Segui come il cambiamento degli accordi fa procedere la musica.',
       zh: '跟随和弦的变化，了解它们如何推动音乐发展。',
       hi: 'समझें कि बदलते कॉर्ड संगीत को आगे बढ़ाने में कैसे मदद करते हैं।',
       es: 'Sigue cómo los cambios de acordes hacen avanzar la música.',

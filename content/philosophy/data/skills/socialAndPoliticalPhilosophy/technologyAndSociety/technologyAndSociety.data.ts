@@ -11,6 +11,7 @@ export const technologyAndSociety_SkillGroup_Data = defineSkillGroup({
   id: 'b62dd9d0-920a-4840-840d-876f73fc3903',
   name: {
     en: 'Technology and Society',
+    it: 'Tecnologia e società',
     zh: '技术与社会',
     hi: 'प्रौद्योगिकी और समाज',
     es: 'Tecnología y sociedad',
@@ -57,6 +58,7 @@ export const technologyAndSociety_SkillGroup_Data = defineSkillGroup({
       'Technological artifacts and institutions shape the practical conditions of action, social change, and control. Philosophical analysis evaluates these mediation and agency claims rather than measuring product usage or engineering device performance.',
     frontend: {
       en: 'Learn to analyze how technologies affect human action and society.',
+      it: 'Impara ad analizzare come le tecnologie influenzino le azioni umane e la società.',
       zh: '学习分析技术如何影响人的行动和社会。',
       hi: 'जानो कि तकनीक लोगों के कार्यों और समाज को कैसे प्रभावित करती है।',
       es: 'Aprende a analizar cómo las tecnologías influyen en la acción humana y la sociedad.',

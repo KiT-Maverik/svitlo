@@ -5,6 +5,7 @@ export const useOilPaintingTechniques_Skill_Data = defineSkill({
   id: 'e29b38e6-8c9d-44ac-bf22-29b115d68bf7',
   name: {
     en: 'Use Oil Painting Techniques',
+    it: 'Usare le tecniche della pittura a olio',
     zh: '运用油画技法',
     hi: 'तैलचित्रकारी की तकनीकों का उपयोग करें',
     es: 'Aplicar técnicas de pintura al óleo',
@@ -39,6 +40,7 @@ export const useOilPaintingTechniques_Skill_Data = defineSkill({
       'Exploit the slow drying and blending behavior of oil-bound pigment to build controlled passages, revise wet edges and manage successive paint layers with suitable materials and safe handling.',
     frontend: {
       en: 'Work with slowly drying oil paint to blend, layer and adjust painted areas safely.',
+      it: 'Lavora in sicurezza con colori a olio ad asciugatura lenta per sfumare, sovrapporre strati e modificare le zone dipinte.',
       zh: '利用油画颜料干燥较慢的特点进行调色、叠层和画面调整，并注意安全操作。',
       hi: 'धीरे सूखने वाले तैलरंगों से सुरक्षित रूप से रंगों को मिलाएँ, परतें बनाएँ और चित्रित हिस्सों में बदलाव करें।',
       es: 'Trabaja con pintura al óleo de secado lento para mezclar, superponer capas y ajustar las zonas pintadas de forma segura.',

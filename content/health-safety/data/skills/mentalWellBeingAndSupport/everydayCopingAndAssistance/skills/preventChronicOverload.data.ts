@@ -5,6 +5,7 @@ export const preventChronicOverload_Skill_Data = defineSkill({
   id: '6a7e398b-8497-4ec6-a618-bc72e23f638a',
   name: {
     en: 'Prevent chronic overload',
+    it: 'Prevenire il sovraccarico cronico',
     zh: '预防长期过度负担',
     hi: 'लगातार बढ़ते बोझ से बचें',
     es: 'Prevenir la sobrecarga prolongada',
@@ -39,6 +40,7 @@ export const preventChronicOverload_Skill_Data = defineSkill({
       'Notice sustained imbalance between demands and recovery and identify feasible changes or sources of support.',
     frontend: {
       en: 'Recognize when sustained demands require rest or practical changes.',
+      it: 'Riconosci quando richieste prolungate rendono necessari riposo o cambiamenti pratici.',
       zh: '识别持续的要求何时意味着需要休息或实际调整。',
       hi: 'पहचानें कि लंबे समय से दबाव होने पर आराम या व्यावहारिक बदलाव कब जरूरी हैं।',
       es: 'Reconoce cuándo las exigencias continuas requieren descanso o cambios prácticos.',

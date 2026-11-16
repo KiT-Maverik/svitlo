@@ -5,6 +5,7 @@ export const relateContrastToAttention_Skill_Data = defineSkill({
   id: '5c9fc599-02a5-4516-aeba-39119c1e5c64',
   name: {
     en: 'Relate Contrast to Attention',
+    it: "Collegare il contrasto all'attenzione",
     zh: '关联对比与注意力',
     hi: 'विपरीतता और ध्यान के संबंध को समझें',
     es: 'Relacionar el contraste con la atención',
@@ -38,6 +39,7 @@ export const relateContrastToAttention_Skill_Data = defineSkill({
     methodological: 'Explain how salient differences draw attention to parts of an artwork.',
     frontend: {
       en: 'See how strong differences in color, shape or sound attract attention.',
+      it: "Osserva come le differenze marcate di colore, forma o suono attirano l'attenzione.",
       zh: '观察颜色、形状或声音的强烈差异如何吸引注意力。',
       hi: 'देखें कि रंग, आकार या ध्वनि में स्पष्ट अंतर ध्यान कैसे आकर्षित करते हैं।',
       es: 'Observa cómo las diferencias marcadas de color, forma o sonido atraen la atención.',

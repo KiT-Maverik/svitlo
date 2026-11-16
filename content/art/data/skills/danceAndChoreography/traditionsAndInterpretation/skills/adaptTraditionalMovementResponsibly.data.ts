@@ -5,6 +5,7 @@ export const adaptTraditionalMovementResponsibly_Skill_Data = defineSkill({
   id: '7cc89b16-2533-4821-bc31-858c7c8d9ed8',
   name: {
     en: 'Adapt Traditional Movement Responsibly',
+    it: 'Adattare responsabilmente i movimenti tradizionali',
     zh: '负责任地改编传统动作',
     hi: 'पारंपरिक गतियों को जिम्मेदारी से अनुकूलित करें',
     es: 'Adaptar movimientos tradicionales con responsabilidad',
@@ -38,6 +39,7 @@ export const adaptTraditionalMovementResponsibly_Skill_Data = defineSkill({
     methodological: 'Transform source material with attention to permission, context and attribution.',
     frontend: {
       en: 'Rework traditional movements while respecting their sources and meanings.',
+      it: 'Rielabora i movimenti tradizionali rispettandone le origini e i significati.',
       zh: '在尊重传统动作来源与含义的前提下进行改编。',
       hi: 'पारंपरिक गतियों के स्रोत और अर्थ का सम्मान करते हुए उन्हें नया रूप दें।',
       es: 'Reelabora movimientos tradicionales respetando sus orígenes y significados.',

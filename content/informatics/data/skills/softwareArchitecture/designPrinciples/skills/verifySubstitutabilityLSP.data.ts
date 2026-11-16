@@ -5,6 +5,7 @@ export const verifySubstitutabilityLSP_Skill_Data = defineSkill({
   id: '31afe799-ad12-4cfa-98a0-1ed99d1a1c1a',
   name: {
     en: 'Verify Substitutability (LSP)',
+    it: 'Verificare la sostituibilità (LSP)',
     zh: '验证可替换性（LSP）',
     hi: 'प्रतिस्थापन क्षमता जाँचना (LSP)',
     es: 'Verificar la sustituibilidad (LSP)',
@@ -39,6 +40,7 @@ export const verifySubstitutabilityLSP_Skill_Data = defineSkill({
       'Identify where a subtype or new implementation violates the expected preconditions, outcomes, or invariants of a shared contract. For example, replacing ordinary storage with read-only storage can break a client legitimately attempting a write.',
     frontend: {
       en: 'Check whether an implementation respects the promises of a shared contract.',
+      it: "Verifica che un'implementazione rispetti le promesse di un contratto condiviso.",
       zh: '检查某个实现是否遵守共同契约的承诺。',
       hi: 'जाँचें कि कोई कार्यान्वयन साझा अनुबंध के वादों का पालन करता है या नहीं।',
       es: 'Comprueba que una implementación cumple las promesas de un contrato compartido.',

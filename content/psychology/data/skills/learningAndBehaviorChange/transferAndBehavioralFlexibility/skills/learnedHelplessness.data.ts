@@ -5,6 +5,7 @@ export const learnedHelplessness_Skill_Data = defineSkill({
   id: 'df34f675-b143-4330-9912-6eaf57e42ed5',
   name: {
     en: 'Learned Helplessness',
+    it: 'Impotenza appresa',
     zh: '习得性无助',
     hi: 'सीखी हुई असहायता',
     es: 'Indefensión aprendida',
@@ -39,6 +40,7 @@ export const learnedHelplessness_Skill_Data = defineSkill({
       'Explain how repeated experience of uncontrollable outcomes can affect perceived agency and effort without labeling a person.',
     frontend: {
       en: 'Explore why repeated lack of control can weaken future attempts to act.',
+      it: 'Esplora perché la ripetuta mancanza di controllo possa ridurre i tentativi successivi di agire.',
       zh: '探索为什么反复无法掌控结果会削弱以后采取行动的尝试。',
       hi: 'जानें कि परिणामों पर बार-बार नियंत्रण न होने से आगे कोशिश करने की इच्छा क्यों घट सकती है।',
       es: 'Explora por qué experimentar repetidamente falta de control puede reducir los intentos de actuar en el futuro.',

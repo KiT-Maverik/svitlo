@@ -5,6 +5,7 @@ export const identifyDigitalDevices_Skill_Data = defineSkill({
   id: '0000b5e9-fa19-45d0-8b8d-1367d82dc123',
   name: {
     en: 'Identify Digital Devices',
+    it: 'Individuare i dispositivi digitali',
     zh: '识别数字设备',
     hi: 'डिजिटल उपकरण पहचानना',
     es: 'Identificar dispositivos digitales',
@@ -39,6 +40,7 @@ export const identifyDigitalDevices_Skill_Data = defineSkill({
       'Determine whether a device uses digital representation and programmable information processing rather than purely mechanical or analog means. The appearance of a screen or buttons is insufficient by itself.',
     frontend: {
       en: 'Recognize devices that process programmable digital information.',
+      it: 'Riconosci i dispositivi che elaborano informazioni digitali programmabili.',
       zh: '识别能够处理可编程数字信息的设备。',
       hi: 'ऐसे उपकरण पहचानें जो प्रोग्राम योग्य डिजिटल जानकारी संसाधित करते हैं।',
       es: 'Reconoce dispositivos que procesan información digital programable.',

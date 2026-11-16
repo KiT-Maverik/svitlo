@@ -5,6 +5,7 @@ export const editADigitalArtifact_Skill_Data = defineSkill({
   id: 'c2daceb6-4f2c-4f3a-802c-8d8a26823589',
   name: {
     en: 'Edit a Digital Artifact',
+    it: 'Modificare un contenuto digitale',
     zh: '编辑数字作品',
     hi: 'डिजिटल रचना संपादित करना',
     es: 'Editar un artefacto digital',
@@ -39,6 +40,7 @@ export const editADigitalArtifact_Skill_Data = defineSkill({
       'Make purposeful changes to an existing file while preserving intended meaning: correct a caption, reorder elements, or resize an image. This is distinct from creating a new artifact.',
     frontend: {
       en: 'Improve an existing digital file without losing its intended meaning.',
+      it: 'Migliora un file digitale esistente senza alterarne il significato previsto.',
       zh: '改进现有数字文件，同时保持其原本含义。',
       hi: 'मौजूदा डिजिटल फ़ाइल को बेहतर बनाएँ, लेकिन उसका मूल अर्थ सुरक्षित रखें।',
       es: 'Mejora un archivo digital existente sin perder su significado original.',

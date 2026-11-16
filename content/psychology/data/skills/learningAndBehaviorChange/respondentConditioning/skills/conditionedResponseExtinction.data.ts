@@ -5,6 +5,7 @@ export const conditionedResponseExtinction_Skill_Data = defineSkill({
   id: '1518cba9-64d7-4a50-82bc-bd68d1d6ad90',
   name: {
     en: 'Conditioned Response Extinction',
+    it: 'Estinzione della risposta condizionata',
     zh: '条件反应的消退',
     hi: 'अनुबंधित प्रतिक्रिया का विलोपन',
     es: 'Extinción de la respuesta condicionada',
@@ -39,6 +40,7 @@ export const conditionedResponseExtinction_Skill_Data = defineSkill({
       'Explain reduced responding when a predictive cue no longer forecasts the expected event, without assuming the original association is erased.',
     frontend: {
       en: 'Explore why a learned response can weaken without continued pairing.',
+      it: 'Esplora perché una risposta appresa possa indebolirsi senza ulteriori associazioni.',
       zh: '探索如果刺激不再持续配对，习得性反应为何会减弱。',
       hi: 'जानें कि संकेतों का साथ प्रस्तुत होना बंद होने पर सीखी प्रतिक्रिया क्यों कमजोर पड़ सकती है।',
       es: 'Explora por qué una respuesta aprendida puede debilitarse si los estímulos dejan de emparejarse.',

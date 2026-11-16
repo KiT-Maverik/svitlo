@@ -5,6 +5,7 @@ export const dosingEquipment_Skill_Data = defineSkill({
   id: '41644b4b-22ac-4bcd-bcb9-09ee4d13219b',
   name: {
     en: 'Dosing equipment',
+    it: 'Apparecchiature di dosaggio',
     zh: '定量投料设备',
     hi: 'मात्रा नियंत्रित करने वाले उपकरण',
     es: 'Equipos de dosificación',
@@ -39,6 +40,7 @@ export const dosingEquipment_Skill_Data = defineSkill({
       'Describe metering mechanisms that deliver a measured quantity or rate of material into a process stream.',
     frontend: {
       en: 'Recognize systems that measure and deliver controlled quantities.',
+      it: 'Riconosci i sistemi che misurano ed erogano quantità controllate.',
       zh: '认识测量并输送受控数量物料的系统。',
       hi: 'उन प्रणालियों को पहचानें जो नियंत्रित मात्रा मापकर पहुँचाती हैं।',
       es: 'Reconoce sistemas que miden y suministran cantidades controladas.',

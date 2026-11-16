@@ -5,6 +5,7 @@ export const preventExerciseRelatedInjury_Skill_Data = defineSkill({
   id: '195ba4d7-c1ff-4d03-9af0-ec1f9dd1313c',
   name: {
     en: 'Prevent exercise-related injury',
+    it: "Prevenire le lesioni durante l'esercizio",
     zh: '预防运动损伤',
     hi: 'व्यायाम से जुड़ी चोटों से बचाव',
     es: 'Prevenir lesiones relacionadas con el ejercicio',
@@ -39,6 +40,7 @@ export const preventExerciseRelatedInjury_Skill_Data = defineSkill({
       'Adjust technique, load, recovery, and protective measures to the activity without assuming injury is unavoidable.',
     frontend: {
       en: 'Learn ways to reduce preventable injury during exercise.',
+      it: "Impara come ridurre le lesioni evitabili durante l'attività fisica.",
       zh: '了解如何减少运动中可以预防的损伤。',
       hi: 'जानें कि व्यायाम के दौरान रोकी जा सकने वाली चोटों का खतरा कैसे घटाएँ।',
       es: 'Aprende formas de reducir las lesiones evitables durante el ejercicio.',

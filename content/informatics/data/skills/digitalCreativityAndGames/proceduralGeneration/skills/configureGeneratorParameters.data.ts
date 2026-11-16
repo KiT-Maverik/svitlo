@@ -5,6 +5,7 @@ export const configureGeneratorParameters_Skill_Data = defineSkill({
   id: '6b88c529-d1d4-4148-808e-01ed7a8e035a',
   name: {
     en: 'Configure Generator Parameters',
+    it: 'Configurare i parametri di un generatore',
     zh: '配置生成器参数',
     hi: 'जनरेटर के पैरामीटर निर्धारित करना',
     es: 'Configurar parámetros del generador',
@@ -39,6 +40,7 @@ export const configureGeneratorParameters_Skill_Data = defineSkill({
       'Determine how changing object count, color palette, or another parameter alters generated results while the algorithm stays the same. Parameter adjustment is not rewriting the generation rules.',
     frontend: {
       en: 'Change generator settings to control the appearance or quantity of output.',
+      it: "Modifica le impostazioni del generatore per controllare l'aspetto o la quantità dei risultati.",
       zh: '调整生成器设置，控制输出的外观或数量。',
       hi: 'जनरेटर की सेटिंग बदलकर परिणाम का रूप या मात्रा नियंत्रित करें।',
       es: 'Cambia los ajustes del generador para controlar la apariencia o la cantidad del resultado.',

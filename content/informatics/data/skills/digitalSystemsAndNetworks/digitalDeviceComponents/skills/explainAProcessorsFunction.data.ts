@@ -5,6 +5,7 @@ export const explainAProcessorsFunction_Skill_Data = defineSkill({
   id: 'bd863da4-c5a5-4375-b683-b607d211fc42',
   name: {
     en: "Explain a Processor's Function",
+    it: 'Spiegare la funzione di un processore',
     zh: '解释处理器的功能',
     hi: 'प्रोसेसर का कार्य समझाना',
     es: 'Explicar la función de un procesador',
@@ -39,6 +40,7 @@ export const explainAProcessorsFunction_Skill_Data = defineSkill({
       'Relate the CPU to fetching, decoding, and executing instructions and coordinating operations on data; distinguish its computing role from permanent file storage.',
     frontend: {
       en: 'Explain how a processor runs instructions rather than permanently storing files.',
+      it: 'Spiega come un processore esegue istruzioni anziché conservare i file in modo permanente.',
       zh: '说明处理器如何执行指令，而不是永久存储文件。',
       hi: 'समझाएँ कि प्रोसेसर निर्देश चलाता है, फ़ाइलों को स्थायी रूप से नहीं रखता।',
       es: 'Explica cómo un procesador ejecuta instrucciones en vez de almacenar archivos permanentemente.',

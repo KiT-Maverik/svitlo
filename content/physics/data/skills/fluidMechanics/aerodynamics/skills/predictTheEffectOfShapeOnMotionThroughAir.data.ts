@@ -5,6 +5,7 @@ export const predictTheEffectOfShapeOnMotionThroughAir_Skill_Data = defineSkill(
   id: 'aef772dc-291b-47ef-a4eb-fbd4c350c27c',
   name: {
     en: 'Predict the effect of shape on motion through air',
+    it: "Prevedere l'effetto della forma sul moto nell'aria",
     zh: '预测形状对空气中运动的影响',
     hi: 'हवा में गति पर आकार के प्रभाव का अनुमान लगाना',
     es: 'Predecir el efecto de la forma en el movimiento por el aire',
@@ -39,6 +40,7 @@ export const predictTheEffectOfShapeOnMotionThroughAir_Skill_Data = defineSkill(
       "A body's shape and orientation affect airflow around it, drag, and, under certain conditions, lift.",
     frontend: {
       en: "Predict how an object's shape or angle changes drag and lift.",
+      it: "Prevedi come la forma o l'inclinazione di un oggetto modifica la resistenza aerodinamica e la portanza.",
       zh: '预测物体的形状和角度如何改变阻力与升力。',
       hi: 'अनुमान लगाएँ कि वस्तु का आकार और कोण प्रतिरोध तथा उत्थापन कैसे बदलते हैं।',
       es: 'Predice cómo la forma o el ángulo de un objeto modifican la resistencia y la sustentación.',

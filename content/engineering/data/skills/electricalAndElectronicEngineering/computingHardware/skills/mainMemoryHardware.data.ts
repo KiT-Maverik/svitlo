@@ -5,6 +5,7 @@ export const mainMemoryHardware_Skill_Data = defineSkill({
   id: '4e2f5104-5020-41b3-b8fd-660b68b2eab2',
   name: {
     en: 'Main memory hardware',
+    it: 'Hardware della memoria principale',
     zh: '主存储器硬件',
     hi: 'मुख्य स्मृति हार्डवेयर',
     es: 'Hardware de memoria principal',
@@ -39,6 +40,7 @@ export const mainMemoryHardware_Skill_Data = defineSkill({
       'Distinguish operational random-access memory from persistent storage using volatility, capacity, latency and connection to processing hardware.',
     frontend: {
       en: "Understand the hardware role of a computer's main working memory.",
+      it: 'Comprendi il ruolo hardware della memoria di lavoro principale di un computer.',
       zh: '了解主存储器如何暂时保存运行中的数据。',
       hi: 'जानें कि मुख्य स्मृति चल रहे कार्यों के डेटा को अस्थायी रूप से कैसे रखती है।',
       es: 'Aprende cómo la memoria principal guarda temporalmente datos en uso.',

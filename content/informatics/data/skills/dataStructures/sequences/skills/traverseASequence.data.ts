@@ -5,6 +5,7 @@ export const traverseASequence_Skill_Data = defineSkill({
   id: '874d4641-c959-4057-aa46-8662a72c31dd',
   name: {
     en: 'Traverse a Sequence',
+    it: 'Percorrere una sequenza',
     zh: '遍历序列',
     hi: 'अनुक्रम का परिभ्रमण करना',
     es: 'Recorrer una secuencia',
@@ -39,6 +40,7 @@ export const traverseASequence_Skill_Data = defineSkill({
       "Visit a collection's elements in order from beginning to end without skipping positions or performing unnecessary repetitions.",
     frontend: {
       en: 'Visit each element in a sequence in order.',
+      it: "Visita ogni elemento di una sequenza nell'ordine previsto.",
       zh: '按顺序访问序列中的每个元素。',
       hi: 'अनुक्रम के प्रत्येक तत्व को क्रम से देखें।',
       es: 'Visita cada elemento de una secuencia en orden.',

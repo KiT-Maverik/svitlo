@@ -11,6 +11,7 @@ export const meaningAndReference_SkillGroup_Data = defineSkillGroup({
   id: '5610de14-650b-49f6-bc2b-c9cca3484514',
   name: {
     en: 'Meaning and Reference',
+    it: 'Significato e riferimento',
     zh: '意义与指称',
     hi: 'अर्थ और संदर्भ',
     es: 'Significado y referencia',
@@ -53,6 +54,7 @@ export const meaningAndReference_SkillGroup_Data = defineSkillGroup({
       'Words and sentences can express meanings beyond identifying objects; context, concepts, and the distinction between expression and referent affect analysis.',
     frontend: {
       en: 'Discover the difference between a word, its meaning and what it refers to.',
+      it: 'Scopri la differenza tra una parola, il suo significato e ciò a cui si riferisce.',
       zh: '了解词语本身、它的意义与它所指的事物之间的区别。',
       hi: 'शब्द, उसके अर्थ और उसके द्वारा निर्देशित चीज़ में अंतर जानो।',
       es: 'Descubre la diferencia entre una palabra, su significado y aquello a lo que se refiere.',

@@ -11,6 +11,7 @@ export const by5_Skill_Data = defineSkill({
     ka: 'გაყოფა — ÷ 5',
     kk: 'Бөлу — ÷ 5',
     en: 'Division — ÷ 5',
+    it: 'Divisione — ÷ 5',
     qm: 'Bölüv — ÷ 5',
     zh: '除法 — ÷ 5',
     hi: 'भाग — ÷ 5',
@@ -39,6 +40,7 @@ export const by5_Skill_Data = defineSkill({
       'Division by five can be established through multiples of five and inverse multiplication facts. Whether five denotes the group size or group count is determined by context.',
     frontend: {
       en: 'You can divide by five using equal groups and known multiples of five.',
+      it: 'Puoi dividere per cinque usando gruppi uguali e multipli di cinque già noti.',
       qm: 'Teñ toparlar ve beşniñ belli eseleri yardımınen beşke böle bilesiñ.',
       zh: '你能利用相等的组和已知的五的倍数计算除以五。',
       hi: 'तुम बराबर समूहों और पाँच के ज्ञात गुणजों से पाँच से भाग कर सकते हो।',

@@ -5,6 +5,7 @@ export const acidBaseIndicators_Skill_Data = defineSkill({
   id: 'ad88b504-88e0-43c8-bcab-799519d63484',
   name: {
     en: 'Acid–Base Indicators',
+    it: 'Indicatori acido-base',
     zh: '酸碱指示剂',
     hi: 'अम्ल–क्षार सूचक',
     es: 'Indicadores ácido-base',
@@ -38,6 +39,7 @@ export const acidBaseIndicators_Skill_Data = defineSkill({
     methodological: 'Explain why some compounds change observable properties as solution acidity varies.',
     frontend: {
       en: 'Understand how indicators change appearance as acidity changes.',
+      it: "Comprendi come l'aspetto degli indicatori cambia al variare dell'acidità.",
       zh: '理解指示剂如何随酸度变化改变外观。',
       hi: 'समझें कि अम्लता बदलने पर सूचक का रूप कैसे बदलता है।',
       es: 'Comprende cómo los indicadores cambian de aspecto al variar la acidez.',

@@ -5,6 +5,7 @@ export const explainEventPossibility_Skill_Data = defineSkill({
   id: '150b86c1-484c-4d87-973e-c92438b6107e',
   name: {
     en: 'Explain Event Possibility',
+    it: 'Spiegare la possibilità di un evento',
     zh: '解释事件的可能性',
     hi: 'घटना की संभावना समझाना',
     es: 'Explicar la posibilidad de un suceso',
@@ -39,6 +40,7 @@ export const explainEventPossibility_Skill_Data = defineSkill({
       "Determine whether an outcome is allowed by a model's conditions, even if extremely unlikely. If a box contains only blue balls, drawing a red one is impossible under those conditions.",
     frontend: {
       en: 'Decide whether an outcome is allowed under a given set of conditions.',
+      it: 'Decidi se un risultato è possibile secondo un insieme di condizioni date.',
       zh: '判断给定条件是否允许某种结果出现。',
       hi: 'निर्णय करें कि दी गई शर्तों में कोई परिणाम संभव है या नहीं।',
       es: 'Decide si un resultado puede darse bajo unas condiciones dadas.',

@@ -11,6 +11,7 @@ export const ethicsAndMoralReasoning_SkillDomain_Data = defineSkillDomain({
   id: '76f912bd-d352-4db4-ae69-cccce4bf24fa',
   title: {
     en: 'Ethics and Moral Reasoning',
+    it: 'Etica e ragionamento morale',
     zh: '伦理学与道德推理',
     hi: 'नीतिशास्त्र और नैतिक तर्क',
     es: 'Ética y razonamiento moral',
@@ -55,6 +56,7 @@ export const ethicsAndMoralReasoning_SkillDomain_Data = defineSkillDomain({
       'Ethics studies what ought to be done, what makes actions right or wrong, and how moral reasons apply to individuals and institutions. It evaluates normative standards rather than describing the psychological development of moral feelings.',
     frontend: {
       en: 'Explore what makes actions right or wrong and how to justify moral judgments.',
+      it: 'Esplora che cosa rende giuste o sbagliate le azioni e come motivare i giudizi morali.',
       zh: '探索什么使行为正确或错误，以及如何为道德判断提供理由。',
       hi: 'जानें कि किसी कार्य को सही या गलत क्या बनाता है और नैतिक निर्णयों को तर्क से कैसे उचित ठहराया जाए।',
       es: 'Explora qué hace que una acción sea correcta o incorrecta y cómo justificar los juicios morales.',

@@ -5,6 +5,7 @@ export const calendarInterval_Skill_Data = defineSkill({
   id: '0fc1cfb2-dd71-439f-8518-09128e47642b',
   name: {
     en: 'Counting days between dates',
+    it: 'Contare i giorni tra due date',
     qm: 'Tarihler arasındaki künlerni saymaq',
     lt: 'Dienų tarp datų skaičiavimas',
     lv: 'Dienu skaitīšana starp datumiem',
@@ -39,6 +40,7 @@ export const calendarInterval_Skill_Data = defineSkill({
       'The number of days between two dates is the duration of the interval, accounting for month lengths and calendar boundaries. Elapsed days must be distinguished from an inclusive count of the named calendar dates.',
     frontend: {
       en: 'You can count how many days pass between two dates, taking month lengths into account and not confusing elapsed days with counting both dates.',
+      it: 'Puoi contare quanti giorni trascorrono tra due date, considerando la diversa durata dei mesi e senza confondere i giorni trascorsi con il conteggio di entrambe le date.',
       qm: 'Eki tarih arasında qaç kün keçkenini aylarnıñ uzunlığını esapqa alıp saya bilesiñ. Keçken künlerni sayuvnı eki tarihnı da sayuvnen qarıştırma.',
       zh: '你能考虑不同月份的天数，算出两个日期之间经过了多少天，不把经过的天数与包含首尾日期的计数混淆。',
       hi: 'आप महीनों के दिनों को ध्यान में रखकर दो तारीखों के बीच बीते दिन गिन सकते हैं और बीते दिनों को दोनों तारीखों सहित गिनती से अलग समझ सकते हैं।',

@@ -5,6 +5,7 @@ export const recognizeProjectionDistortionInAreaOrShape_Skill_Data = defineSkill
   id: '5cc92962-1d39-4c6f-94fe-22167bbfcd43',
   name: {
     en: 'Recognize projection distortion in area or shape',
+    it: 'Riconoscere le distorsioni di superficie o forma nelle proiezioni',
     zh: '识别地图投影造成的面积或形状失真',
     hi: 'मानचित्र प्रक्षेप में क्षेत्रफल या आकृति की विकृति पहचानना',
     es: 'Reconocer distorsiones de área o forma en las proyecciones',
@@ -39,6 +40,7 @@ export const recognizeProjectionDistortionInAreaOrShape_Skill_Data = defineSkill
       'Identify that apparent sizes and shapes can change when the curved surface is flattened, especially when comparing distant latitudes.',
     frontend: {
       en: 'Recognize how flattening Earth changes apparent sizes or shapes.',
+      it: 'Riconosci come rappresentare la Terra su un piano modifica le dimensioni e le forme apparenti.',
       zh: '认识将地球曲面展平时，面积和形状看起来会如何变化。',
       hi: 'जानें कि पृथ्वी को समतल रूप में दिखाने से आकार और क्षेत्रफल कैसे बदलते दिखाई देते हैं।',
       es: 'Reconoce cómo al aplanar la Tierra cambian los tamaños o formas aparentes.',

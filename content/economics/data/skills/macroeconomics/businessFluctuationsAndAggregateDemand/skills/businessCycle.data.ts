@@ -5,6 +5,7 @@ export const businessCycle_Skill_Data = defineSkill({
   id: '4bc2f9a1-d281-49f4-a6d1-d3b97790bb4a',
   name: {
     en: 'Економічний цикл',
+    it: 'Ciclo economico',
     zh: '经济周期',
     hi: 'व्यापार चक्र',
     es: 'Ciclo económico',
@@ -39,6 +40,7 @@ export const businessCycle_Skill_Data = defineSkill({
       'Identify phases of expansion and contraction and distinguish short-term fluctuations from long-run trends.',
     frontend: {
       en: 'Recognize the different phases of the business cycle.',
+      it: 'Riconosci le diverse fasi del ciclo economico.',
       zh: '认识经济周期的不同阶段。',
       hi: 'व्यापार चक्र के विभिन्न चरणों को पहचानें।',
       es: 'Reconoce las distintas fases del ciclo económico.',

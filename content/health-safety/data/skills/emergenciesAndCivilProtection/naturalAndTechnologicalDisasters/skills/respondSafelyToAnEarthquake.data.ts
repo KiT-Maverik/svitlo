@@ -5,6 +5,7 @@ export const respondSafelyToAnEarthquake_Skill_Data = defineSkill({
   id: 'f28a9f6d-9847-4bbd-ad4f-f09f6521e0e4',
   name: {
     en: 'Respond safely to an earthquake',
+    it: 'Reagire in sicurezza a un terremoto',
     zh: '地震时安全应对',
     hi: 'भूकंप में सुरक्षित प्रतिक्रिया',
     es: 'Responder con seguridad a un terremoto',
@@ -39,6 +40,7 @@ export const respondSafelyToAnEarthquake_Skill_Data = defineSkill({
       'Recognize immediate hazards from shaking and falling objects, use appropriate protective actions and consider aftershocks and structural damage before moving or re-entering unsafe spaces.',
     frontend: {
       en: 'Protect yourself during earthquake shaking and account for damaged structures afterward.',
+      it: 'Proteggiti durante le scosse e presta attenzione alle strutture danneggiate dopo il terremoto.',
       zh: '地震晃动时保护自己，震后留意受损建筑物的危险。',
       hi: 'भूकंप के झटकों में खुद को बचाएँ और बाद में क्षतिग्रस्त इमारतों से सावधान रहें।',
       es: 'Protégete durante el temblor y ten en cuenta los edificios dañados después.',

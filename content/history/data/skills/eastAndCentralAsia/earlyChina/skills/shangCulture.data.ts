@@ -5,6 +5,7 @@ export const shangCulture_Skill_Data = defineSkill({
   id: 'ffe80b18-849f-472b-b335-0545ce1fd08a',
   name: {
     en: 'Shang Culture',
+    it: 'Cultura Shang',
     zh: '商文化',
     hi: 'शांग संस्कृति',
     es: 'Cultura Shang',
@@ -39,6 +40,7 @@ export const shangCulture_Skill_Data = defineSkill({
       'Use bronze casting, royal institutions, and oracle-bone texts to interpret early documented Chinese history.',
     frontend: {
       en: 'Learn what Shang bronze objects and oracle texts reveal.',
+      it: 'Scopri che cosa rivelano gli oggetti in bronzo e i testi oracolari Shang.',
       zh: '了解商代青铜器与甲骨文向我们揭示了什么。',
       hi: 'जानें कि शांग काल की कांस्य वस्तुओं और भविष्यकथन के लेखों से क्या पता चलता है।',
       es: 'Descubre qué revelan los objetos de bronce Shang y los textos oraculares.',

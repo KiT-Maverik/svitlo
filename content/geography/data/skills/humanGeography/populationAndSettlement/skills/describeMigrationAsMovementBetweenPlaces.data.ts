@@ -5,6 +5,7 @@ export const describeMigrationAsMovementBetweenPlaces_Skill_Data = defineSkill({
   id: 'b03cb24d-52a1-4d2b-88ed-63b6c1c0f8ea',
   name: {
     en: 'Describe migration as movement between places',
+    it: 'Descrivere la migrazione come spostamento tra luoghi',
     zh: '将迁移描述为地点之间的移动',
     hi: 'प्रवास को स्थानों के बीच आवागमन के रूप में बताना',
     es: 'Describir la migración como desplazamiento entre lugares',
@@ -39,6 +40,7 @@ export const describeMigrationAsMovementBetweenPlaces_Skill_Data = defineSkill({
       'Identify origin, destination, and movement direction while distinguishing a migration flow from a static population count.',
     frontend: {
       en: 'Describe migration by tracing movement from an origin to a destination.',
+      it: "Descrivi una migrazione seguendo lo spostamento dal luogo d'origine a quello di destinazione.",
       zh: '追踪从出发地到目的地的移动过程来描述迁移。',
       hi: 'उद्गम स्थान से गंतव्य तक की आवाजाही का पता लगाकर प्रवास का वर्णन करें।',
       es: 'Describe la migración siguiendo el movimiento desde un origen hasta un destino.',

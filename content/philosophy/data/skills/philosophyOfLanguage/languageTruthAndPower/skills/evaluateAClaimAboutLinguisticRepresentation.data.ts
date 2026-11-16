@@ -5,6 +5,7 @@ export const evaluateAClaimAboutLinguisticRepresentation_Skill_Data = defineSkil
   id: '319a1143-b0fb-49f0-995d-768e4ce89db6',
   name: {
     en: 'Evaluate a claim about linguistic representation',
+    it: "Valutare un'affermazione sulla rappresentazione linguistica",
     zh: '评估语言表述的主张',
     hi: 'भाषाई प्रस्तुति के दावे का मूल्यांकन',
     es: 'Evaluar una afirmación sobre representación lingüística',
@@ -39,6 +40,7 @@ export const evaluateAClaimAboutLinguisticRepresentation_Skill_Data = defineSkil
       'Assess whether a label fairly describes people or phenomena without equating linguistic conventions with objective essences.',
     frontend: {
       en: 'Consider whether descriptions of people and things are fair and well supported.',
+      it: 'Considera se le descrizioni di persone e cose siano eque e ben sostenute.',
       zh: '思考对人和事物的描述是否公正且有充分依据。',
       hi: 'सोचो कि लोगों और चीजों के वर्णन निष्पक्ष तथा प्रमाण-समर्थित हैं या नहीं।',
       es: 'Considera si las descripciones de personas y cosas son justas y están bien fundamentadas.',

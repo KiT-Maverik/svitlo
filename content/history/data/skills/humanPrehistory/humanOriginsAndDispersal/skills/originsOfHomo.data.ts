@@ -5,6 +5,7 @@ export const originsOfHomo_Skill_Data = defineSkill({
   id: 'b74458c9-95a2-41e5-9a36-1f67923d4837',
   name: {
     en: 'Origins of the Genus Homo',
+    it: 'Origini del genere Homo',
     zh: '人属的起源',
     hi: 'होमो वंश की उत्पत्ति',
     es: 'Orígenes del género Homo',
@@ -39,6 +40,7 @@ export const originsOfHomo_Skill_Data = defineSkill({
       'Explain long evolutionary change and coexistence of human species without a linear ladder-of-progress model.',
     frontend: {
       en: 'Recognize that early human species coexisted during evolution.',
+      it: "Riconosci che diverse specie umane antiche coesistettero nel corso dell'evoluzione.",
       zh: '认识早期不同人类物种在进化过程中曾经共存。',
       hi: 'समझें कि विकास के दौरान शुरुआती मानव प्रजातियाँ साथ-साथ मौजूद थीं।',
       es: 'Reconoce que distintas especies humanas tempranas coexistieron durante la evolución.',

@@ -5,6 +5,7 @@ export const astronomicalLightCurves_Skill_Data = defineSkill({
   id: '6a45ace0-a769-4235-85fd-948dcd7361aa',
   name: {
     en: 'Astronomical Light Curves',
+    it: 'Curve di luce astronomiche',
     qm: 'Astronomik yarıq egri çizgileri',
     bn: 'জ্যোতির্বৈজ্ঞানিক আলোক বক্ররেখা',
     ur: 'فلکیاتی نوری منحنیات',
@@ -39,6 +40,7 @@ export const astronomicalLightCurves_Skill_Data = defineSkill({
       'Interpret changes in brightness over time as evidence for rotation, variability, eclipses or transiting objects.',
     frontend: {
       en: 'Read a brightness-over-time graph for clues to changes in a celestial object.',
+      it: 'Leggi un grafico della luminosità nel tempo per trovare indizi sui cambiamenti di un oggetto celeste.',
       qm: 'Kök cisminiñ vaqt boyunca parlaqlığını köstergen grafikni oqup, deñişmeler aqqında işaretler tapıñız.',
       bn: 'সময়ের সঙ্গে উজ্জ্বলতা বদলের লেখচিত্র পড়ে জ্যোতিষ্কের পরিবর্তনের সূত্র খোঁজো।',
       ur: 'وقت کے ساتھ روشنائی کے بدلنے کا گراف پڑھ کر آسمانی جسم میں تبدیلی کے اشارے تلاش کریں۔',

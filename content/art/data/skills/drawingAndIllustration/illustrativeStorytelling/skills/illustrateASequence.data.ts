@@ -5,6 +5,7 @@ export const illustrateASequence_Skill_Data = defineSkill({
   id: '563e160d-92c1-402f-bb7e-f8ec0025fbcf',
   name: {
     en: 'Illustrate a Sequence',
+    it: 'Illustrare una sequenza',
     zh: '绘制连续事件插画',
     hi: 'घटनाक्रम का चित्रण करें',
     es: 'Ilustrar una secuencia',
@@ -38,6 +39,7 @@ export const illustrateASequence_Skill_Data = defineSkill({
     methodological: 'Order images so that viewers can infer change, continuity and causal relationships.',
     frontend: {
       en: 'Use a series of images to show how events unfold.',
+      it: 'Usa una serie di immagini per mostrare come si svolgono gli eventi.',
       zh: '用一系列图画表现事件如何发展。',
       hi: 'चित्रों की शृंखला से दिखाएँ कि घटनाएँ कैसे आगे बढ़ती हैं।',
       es: 'Utiliza una serie de imágenes para mostrar cómo se desarrollan los acontecimientos.',

@@ -5,6 +5,7 @@ export const diffusion_Skill_Data = defineSkill({
   id: 'f7579864-e06b-4645-a231-f51e14c034af',
   name: {
     en: 'Diffusion',
+    it: 'Diffusione',
     zh: '扩散',
     hi: 'विसरण',
     es: 'Difusión',
@@ -38,6 +39,7 @@ export const diffusion_Skill_Data = defineSkill({
     methodological: 'Explain net spreading by random particle motion and concentration differences.',
     frontend: {
       en: 'Explain why particles spread from more concentrated to less concentrated regions.',
+      it: 'Spiega perché le particelle si spostano dalle zone più concentrate a quelle meno concentrate.',
       zh: '解释为什么粒子会从高浓度区域向低浓度区域净扩散。',
       hi: 'समझाएँ कि कण अधिक सांद्र क्षेत्र से कम सांद्र क्षेत्र की ओर कुल मिलाकर क्यों फैलते हैं।',
       es: 'Explica por qué las partículas se dispersan en conjunto desde regiones de mayor concentración a menor.',

@@ -5,6 +5,7 @@ export const explainTheConceptOfClimate_Skill_Data = defineSkill({
   id: '5037dd13-4326-4135-a02d-240ec008e5ea',
   name: {
     en: 'Explain the concept of climate',
+    it: 'Spiegare il concetto di clima',
     zh: '解释气候的概念',
     hi: 'जलवायु की अवधारणा समझाना',
     es: 'Explicar el concepto de clima',
@@ -39,6 +40,7 @@ export const explainTheConceptOfClimate_Skill_Data = defineSkill({
       'Describe climate through long-term patterns, variability and typical ranges of weather conditions in a region. A short cold spell is an event and does not by itself define climate or overturn a documented long-term trend.',
     frontend: {
       en: 'Distinguish long-term climate patterns from the weather on any particular day.',
+      it: 'Distingui gli andamenti climatici di lungo periodo dal tempo meteorologico di un singolo giorno.',
       zh: '区分长期气候规律与某一天的天气。',
       hi: 'दीर्घकालीन जलवायु और किसी एक दिन के मौसम में अंतर करें।',
       es: 'Distingue el clima de largo plazo del tiempo de un día concreto.',

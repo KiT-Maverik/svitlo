@@ -5,6 +5,7 @@ export const produceInstrumentalTone_Skill_Data = defineSkill({
   id: '5dc56c70-face-4a45-a481-ca99fcd8bf6b',
   name: {
     en: 'Produce Instrumental Tone',
+    it: 'Ottenere un timbro strumentale',
     zh: '产生乐器音色',
     hi: 'वाद्य का स्वर उत्पन्न करें',
     es: 'Producir un sonido instrumental',
@@ -38,6 +39,7 @@ export const produceInstrumentalTone_Skill_Data = defineSkill({
     methodological: 'Control instrument-appropriate technique to shape a chosen quality of sound.',
     frontend: {
       en: 'Shape the sound of an instrument to suit the music you want to play.',
+      it: 'Modella il suono di uno strumento in base alla musica che vuoi eseguire.',
       zh: '调整乐器的声音，使其适合你想演奏的音乐。',
       hi: 'जिस संगीत को आप बजाना चाहते हैं, उसके अनुसार वाद्य की ध्वनि को आकार दें।',
       es: 'Da forma al sonido del instrumento para adaptarlo a la música que quieres tocar.',

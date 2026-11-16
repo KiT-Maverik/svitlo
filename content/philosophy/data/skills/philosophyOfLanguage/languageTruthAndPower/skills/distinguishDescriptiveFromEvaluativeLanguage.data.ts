@@ -5,6 +5,7 @@ export const distinguishDescriptiveFromEvaluativeLanguage_Skill_Data = defineSki
   id: '3dc31a72-af38-4bbc-8da3-613a79900e8d',
   name: {
     en: 'Distinguish descriptive from evaluative language',
+    it: 'Distinguere linguaggio descrittivo e valutativo',
     zh: '区分描述性语言与评价性语言',
     hi: 'वर्णनात्मक और मूल्यांकनात्मक भाषा में भेद',
     es: 'Distinguir lenguaje descriptivo y valorativo',
@@ -39,6 +40,7 @@ export const distinguishDescriptiveFromEvaluativeLanguage_Skill_Data = defineSki
       'Identify how apparently factual wording can also express approval, disapproval, or a contested standard.',
     frontend: {
       en: 'Recognize when seemingly factual wording also expresses an evaluation.',
+      it: 'Riconosci quando una formulazione apparentemente fattuale esprime anche una valutazione.',
       zh: '识别看似陈述事实的措辞何时也表达评价。',
       hi: 'पहचानो कि तथ्य जैसे लगने वाले शब्द भी कब कोई मूल्यांकन व्यक्त करते हैं।',
       es: 'Reconoce cuándo unas palabras aparentemente objetivas también expresan una valoración.',

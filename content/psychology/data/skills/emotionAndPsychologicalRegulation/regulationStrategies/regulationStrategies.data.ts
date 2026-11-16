@@ -13,6 +13,7 @@ export const regulationStrategies_SkillGroup_Data = defineSkillGroup({
   id: '64452da3-8f8b-42e5-a746-8093742e330f',
   name: {
     en: 'Regulation Strategies',
+    it: 'Strategie di regolazione',
     zh: '情绪调节策略',
     hi: 'भावना नियमन की रणनीतियाँ',
     es: 'Estrategias de regulación',
@@ -63,6 +64,7 @@ export const regulationStrategies_SkillGroup_Data = defineSkillGroup({
       'People can influence attention, interpretation, expression, or behavior in response to emotion, with different strategies fitting different circumstances.',
     frontend: {
       en: 'Explore strategies for responding to difficult emotional experiences.',
+      it: 'Esplora strategie per affrontare esperienze emotive difficili.',
       zh: '探索如何应对难以处理的情绪体验。',
       hi: 'कठिन भावनात्मक अनुभवों से निपटने के तरीकों का अध्ययन करें।',
       es: 'Explora maneras de responder a experiencias emocionales difíciles.',

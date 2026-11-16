@@ -5,6 +5,7 @@ export const testableChemicalPredictions_Skill_Data = defineSkill({
   id: 'd95fcbfc-30d5-4118-bcc6-25a513f98d94',
   name: {
     en: 'Testable Chemical Predictions',
+    it: 'Previsioni chimiche verificabili',
     zh: '可检验的化学预测',
     hi: 'जाँच योग्य रासायनिक पूर्वानुमान',
     es: 'Predicciones químicas comprobables',
@@ -38,6 +39,7 @@ export const testableChemicalPredictions_Skill_Data = defineSkill({
     methodological: 'State a predicted chemical outcome and the evidence that could support or contradict it.',
     frontend: {
       en: 'Make a testable prediction about a chemical change and identify supporting evidence.',
+      it: 'Formula una previsione verificabile su un cambiamento chimico e individua le prove che potrebbero sostenerla.',
       zh: '针对化学变化提出可检验的预测，并指出支持它的证据。',
       hi: 'रासायनिक परिवर्तन के बारे में जाँच योग्य पूर्वानुमान दें और उसके समर्थन में प्रमाण पहचानें।',
       es: 'Formula una predicción comprobable sobre un cambio químico e identifica pruebas que la respalden.',

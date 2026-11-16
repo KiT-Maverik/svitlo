@@ -12,6 +12,7 @@ export const faithReasonAndExperience_SkillGroup_Data = defineSkillGroup({
   id: '806c62e3-16e1-4e2e-bbef-1f004f569713',
   name: {
     en: 'Faith, Reason, and Experience',
+    it: 'Fede, ragione ed esperienza',
     zh: '信仰、理性与经验',
     hi: 'आस्था, तर्क और अनुभव',
     es: 'Fe, razón y experiencia',
@@ -61,6 +62,7 @@ export const faithReasonAndExperience_SkillGroup_Data = defineSkillGroup({
       'Different accounts of religious knowledge appeal to reasoning, testimony, revelation, or experience. Philosophical examination weighs what these sources can justify and remains distinct from taking part in a religious practice.',
     frontend: {
       en: 'Learn how faith, reasoning and experience are used to justify religious claims.',
+      it: 'Impara come fede, ragionamento ed esperienza vengano utilizzati per giustificare le affermazioni religiose.',
       zh: '了解信仰、推理和经验如何被用于论证宗教主张。',
       hi: 'जानें कि धार्मिक दावों को उचित ठहराने के लिए आस्था, तर्क और अनुभव का उपयोग कैसे किया जाता है।',
       es: 'Aprende cómo se utilizan la fe, el razonamiento y la experiencia para justificar afirmaciones religiosas.',

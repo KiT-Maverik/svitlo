@@ -5,6 +5,7 @@ export const commercialRoleOfPackaging_Skill_Data = defineSkill({
   id: 'e3365b28-6f5e-4feb-ad3f-2816be8c00d1',
   name: {
     en: 'Комерційна роль пакування',
+    it: "Ruolo commerciale dell'imballaggio",
     zh: '包装的商业作用',
     hi: 'पैकेजिंग की व्यावसायिक भूमिका',
     es: 'Función comercial del envase',
@@ -39,6 +40,7 @@ export const commercialRoleOfPackaging_Skill_Data = defineSkill({
       'Assess how design, wording, size, labeling, and usability of packaging affect perceived value and costs; separate verifiable attributes from visual appeal, which Art analyzes independently.',
     frontend: {
       en: 'See how packaging influences expectations and the practical value of a product.',
+      it: 'Scopri come il confezionamento influenza le aspettative e il valore pratico di un prodotto.',
       zh: '了解包装如何影响顾客预期和产品的实用价值。',
       hi: 'देखें कि पैकेजिंग अपेक्षाओं और उत्पाद के व्यावहारिक मूल्य को कैसे प्रभावित करती है।',
       es: 'Observa cómo el envase influye en las expectativas y en la utilidad práctica del producto.',

@@ -5,6 +5,7 @@ export const analyzeAConflictBetweenRights_Skill_Data = defineSkill({
   id: 'a52b38dd-32d3-4c3e-a31c-7c9f93e70625',
   name: {
     en: 'Analyze a conflict between rights',
+    it: 'Analizzare un conflitto tra diritti',
     zh: '分析权利冲突',
     hi: 'अधिकारों के टकराव का विश्लेषण',
     es: 'Analizar un conflicto entre derechos',
@@ -39,6 +40,7 @@ export const analyzeAConflictBetweenRights_Skill_Data = defineSkill({
       'Identify whose claims compete and evaluate justified limits without assuming one right automatically cancels all others.',
     frontend: {
       en: 'Consider how conflicts between important rights might be resolved.',
+      it: 'Considera come si possano risolvere i conflitti tra diritti importanti.',
       zh: '考虑重要权利之间的冲突如何得到解决。',
       hi: 'विचार करो कि महत्त्वपूर्ण अधिकारों के बीच टकराव कैसे सुलझाया जा सकता है।',
       es: 'Considera cómo podrían resolverse conflictos entre derechos importantes.',

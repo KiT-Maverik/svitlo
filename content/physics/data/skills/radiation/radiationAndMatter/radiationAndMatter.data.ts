@@ -10,6 +10,7 @@ export const radiationAndMatter_SkillGroup_Data = defineSkillGroup({
   id: '1ea877ce-e5fb-4273-bf09-bfd1a7e880cd',
   name: {
     en: 'Radiation and Matter',
+    it: 'Radiazione e materia',
     zh: '辐射与物质',
     hi: 'विकिरण और पदार्थ',
     es: 'Radiación y materia',
@@ -52,6 +53,7 @@ export const radiationAndMatter_SkillGroup_Data = defineSkillGroup({
       'Materials can emit, reflect, transmit, or absorb energy; the outcomes depend on the type of radiation and the properties of matter.',
     frontend: {
       en: 'Explore how materials absorb, emit, reflect or transmit radiation.',
+      it: 'Esplora come i materiali assorbono, emettono, riflettono o trasmettono la radiazione.',
       zh: '探索物质如何吸收、发射、反射或透过辐射。',
       hi: 'जानो कि पदार्थ विकिरण को कैसे अवशोषित, उत्सर्जित, परावर्तित या पारित करते हैं।',
       es: 'Explora cómo los materiales absorben, emiten, reflejan o transmiten radiación.',

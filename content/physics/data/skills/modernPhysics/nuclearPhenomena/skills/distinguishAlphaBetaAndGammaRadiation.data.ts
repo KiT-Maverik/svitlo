@@ -5,6 +5,7 @@ export const distinguishAlphaBetaAndGammaRadiation_Skill_Data = defineSkill({
   id: '1501d7a7-b616-4bfb-b31c-997283414b2c',
   name: {
     en: 'Distinguish alpha, beta, and gamma radiation',
+    it: 'Distinguere le radiazioni alfa, beta e gamma',
     zh: '区分α、β和γ辐射',
     hi: 'अल्फा, बीटा और गामा विकिरण में अंतर करना',
     es: 'Distinguir radiación alfa, beta y gamma',
@@ -39,6 +40,7 @@ export const distinguishAlphaBetaAndGammaRadiation_Skill_Data = defineSkill({
       'Alpha radiation consists of helium nuclei, beta radiation of electrons or positrons, and gamma radiation of high-energy photons.',
     frontend: {
       en: 'Recognize alpha particles, beta particles and gamma photons.',
+      it: 'Riconosci le particelle alfa, le particelle beta e i fotoni gamma.',
       zh: '认识α粒子、β粒子和γ光子。',
       hi: 'अल्फा कण, बीटा कण और गामा फोटॉन पहचानो।',
       es: 'Reconoce partículas alfa, partículas beta y fotones gamma.',

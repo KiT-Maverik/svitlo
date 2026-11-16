@@ -5,6 +5,7 @@ export const distinguishBeautyAndArtisticValue_Skill_Data = defineSkill({
   id: 'bd0f1d89-6430-4d79-939f-0c92d0088e77',
   name: {
     en: 'Distinguish Beauty and Artistic Value',
+    it: 'Distinguere bellezza e valore artistico',
     zh: '区分美与艺术价值',
     hi: 'सुंदरता और कलात्मक मूल्य में अंतर करें',
     es: 'Distinguir la belleza del valor artístico',
@@ -38,6 +39,7 @@ export const distinguishBeautyAndArtisticValue_Skill_Data = defineSkill({
     methodological: 'Explain how significant art can challenge conventional ideals of visual attractiveness.',
     frontend: {
       en: 'Discover why an important artwork does not always aim to look beautiful.',
+      it: "Scopri perché un'opera d'arte importante non cerca sempre di essere bella.",
       zh: '了解为什么重要的艺术作品并不总是追求外表美。',
       hi: 'जानें कि महत्त्वपूर्ण कलाकृति का उद्देश्य हमेशा सुंदर दिखना क्यों नहीं होता।',
       es: 'Descubre por qué una obra importante no siempre pretende ser bella.',

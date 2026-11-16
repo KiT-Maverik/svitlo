@@ -5,6 +5,7 @@ export const daoistTraditions_Skill_Data = defineSkill({
   id: 'b3bc5a46-565a-4687-840d-e08277e2e2d9',
   name: {
     en: 'Daoist Traditions',
+    it: 'Tradizioni taoiste',
     zh: '道家传统',
     hi: 'दाओवादी परंपराएँ',
     es: 'Tradiciones taoístas',
@@ -38,6 +39,7 @@ export const daoistTraditions_Skill_Data = defineSkill({
     methodological: 'Interpret diverse early texts discussing the Dao, spontaneity, and nonaction.',
     frontend: {
       en: 'Discover Daoist ideas without treating every text as identical.',
+      it: 'Scopri le idee taoiste, senza considerare identici tutti i testi.',
       zh: '了解道家思想，同时注意不同典籍并不完全相同。',
       hi: 'दाओवादी विचारों का अध्ययन करें और अलग-अलग ग्रंथों को एक जैसा न मानें।',
       es: 'Descubre las ideas taoístas sin suponer que todos sus textos dicen lo mismo.',

@@ -11,6 +11,7 @@ export const moreLessEqual_Skill_Data = defineSkill({
     ka: 'მეტი, ნაკლები ან ტოლი რაოდენობები',
     kk: 'Көп, аз немесе тең мөлшерлер',
     en: 'Greater, less or equal quantities',
+    it: 'Quantità maggiori, minori o uguali',
     qm: 'Daa çoq, daa az ya da teñ miqdarlar',
     zh: '比较数量的多、少和相等',
     hi: 'मात्राओं में अधिक, कम या बराबर',
@@ -39,6 +40,7 @@ export const moreLessEqual_Skill_Data = defineSkill({
       'Order relations between quantities depend on set cardinalities, not the size, area, or mass of the objects. Compare by one-to-one matching or by the numbers corresponding to the sets.',
     frontend: {
       en: 'Match or count objects to tell which collection has more, fewer, or the same number. Larger objects do not always mean more objects.',
+      it: 'Abbina o conta gli oggetti per stabilire quale insieme ne contiene di più, di meno o lo stesso numero. Oggetti più grandi non significano sempre oggetti più numerosi.',
       qm: 'Eşyalarnı eşleştirip ya da sayıp, qaysı toplumda daa çoq, daa az ya da aynı sayıda eşya olğanını belgile. Büyük eşyalarnıñ oluvı er vaqıt daa çoq eşya olğanını bildirmey.',
       zh: '通过一一配对或计数判断哪组物品更多、更少或一样多。物品更大不代表数量更多。',
       hi: 'वस्तुएँ मिलाकर या गिनकर जानें किस समूह में अधिक, कम या बराबर हैं। बड़ी वस्तुओं का मतलब अधिक वस्तुएँ नहीं।',

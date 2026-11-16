@@ -5,6 +5,7 @@ export const detectContradictoryRules_Skill_Data = defineSkill({
   id: '088c6d02-54c7-4d35-ac1d-e4bbfacb1afe',
   name: {
     en: 'Detect Contradictory Rules',
+    it: 'Rilevare regole contraddittorie',
     zh: '发现相互矛盾的规则',
     hi: 'विरोधाभासी नियम पहचानना',
     es: 'Detectar reglas contradictorias',
@@ -39,6 +40,7 @@ export const detectContradictoryRules_Skill_Data = defineSkill({
       'Show when two or more requirements cannot hold under the same conditions: for example, an object cannot simultaneously be located exclusively in room A and exclusively in room B. The focus is rule consistency rather than program execution order.',
     frontend: {
       en: 'Recognize when two requirements cannot both be true.',
+      it: 'Riconosci quando due requisiti non possono essere entrambi veri.',
       zh: '识别两个要求不可能同时为真的情况。',
       hi: 'पहचानें कि कब दो शर्तें एक साथ सच नहीं हो सकतीं।',
       es: 'Reconoce cuándo dos requisitos no pueden ser verdaderos al mismo tiempo.',

@@ -5,6 +5,7 @@ export const persistentDataStorage_Skill_Data = defineSkill({
   id: '316811f4-297c-4dea-b17d-34dfe349a67e',
   name: {
     en: 'Persistent data storage',
+    it: 'Memorizzazione persistente dei dati',
     zh: '持久数据存储',
     hi: 'स्थायी डेटा भंडारण',
     es: 'Almacenamiento persistente de datos',
@@ -39,6 +40,7 @@ export const persistentDataStorage_Skill_Data = defineSkill({
       'Relate solid-state or magnetic storage media and controllers to retention, transfer, access performance and device reliability.',
     frontend: {
       en: 'Compare physical media that retain information without power.',
+      it: 'Confronta i supporti fisici che conservano le informazioni anche senza alimentazione.',
       zh: '比较断电后仍能保存信息的不同物理存储介质。',
       hi: 'समझें कि कुछ भंडारण उपकरण बिजली बंद होने पर भी डेटा क्यों बचाए रखते हैं।',
       es: 'Comprende por qué ciertos dispositivos conservan datos sin energía.',

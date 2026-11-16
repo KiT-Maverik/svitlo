@@ -12,6 +12,7 @@ export const collection_SkillGroup_Data = defineSkillGroup({
   id: 'fbff6de3-3855-4c1f-9ec6-025693e12adf',
   name: {
     en: 'Data collection',
+    it: 'Raccolta dei dati',
     qm: 'Malümat toplav',
     lt: 'Duomenų rinkimas',
     lv: 'Datu vākšana',

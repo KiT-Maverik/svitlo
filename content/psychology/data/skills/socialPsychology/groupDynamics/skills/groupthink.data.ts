@@ -5,6 +5,7 @@ export const groupthink_Skill_Data = defineSkill({
   id: 'faa6e12a-50c2-4d5f-b2e6-a98361335683',
   name: {
     en: 'Groupthink',
+    it: 'Pensiero di gruppo',
     zh: '群体迷思',
     hi: 'समूह-चिंतन',
     es: 'Pensamiento grupal',
@@ -39,6 +40,7 @@ export const groupthink_Skill_Data = defineSkill({
       'Identify pressures toward unanimity that discourage dissent and reduce the scrutiny of alternatives.',
     frontend: {
       en: 'Recognize when pressure for agreement prevents critical evaluation in a group.',
+      it: 'Riconosci quando la pressione a raggiungere un accordo impedisce una valutazione critica nel gruppo.',
       zh: '识别群体追求一致而阻碍批判性评估的情况。',
       hi: 'पहचानें कि सहमति का दबाव कब आलोचनात्मक मूल्यांकन रोक देता है।',
       es: 'Reconoce cuándo la presión por estar de acuerdo impide evaluar críticamente.',

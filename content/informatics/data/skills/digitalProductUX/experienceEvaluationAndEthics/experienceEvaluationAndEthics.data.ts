@@ -7,6 +7,7 @@ export const experienceEvaluationAndEthics_SkillGroup_Data = defineSkillGroup({
   id: '2537cfdc-7d55-4046-96ea-d024640d2a76',
   name: {
     en: 'Experience Evaluation and Ethics',
+    it: "Valutazione dell'esperienza ed etica",
     zh: '用户体验评估与伦理',
     hi: 'अनुभव का मूल्यांकन और नैतिकता',
     es: 'Evaluación de la experiencia y ética',
@@ -48,6 +49,7 @@ export const experienceEvaluationAndEthics_SkillGroup_Data = defineSkillGroup({
       "Test whether an interface supports real tasks and identify designs that covertly restrict users' informed choices.",
     frontend: {
       en: 'Explore how user testing and honest design improve digital products.',
+      it: 'Esplora come i test con gli utenti e una progettazione onesta migliorano i prodotti digitali.',
       zh: '探索用户测试与诚实的设计如何改善数字产品。',
       hi: 'जानें कि उपयोगकर्ता परीक्षण और ईमानदार डिज़ाइन डिजिटल उत्पादों को कैसे बेहतर बनाते हैं।',
       es: 'Explora cómo las pruebas con usuarios y el diseño honesto mejoran los productos digitales.',

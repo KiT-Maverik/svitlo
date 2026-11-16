@@ -5,6 +5,7 @@ export const explainABranch_Skill_Data = defineSkill({
   id: 'ab492aa2-5a99-48e2-a444-47a15abb3ccd',
   name: {
     en: 'Explain a Branch',
+    it: 'Spiegare un branch',
     zh: '解释分支',
     hi: 'ब्रांच समझाना',
     es: 'Explicar una rama',
@@ -39,6 +40,7 @@ export const explainABranch_Skill_Data = defineSkill({
       'A branch represents a line of development on which commits can be created without immediately changing the main history.',
     frontend: {
       en: 'Understand how branches let developers work on separate lines of change.',
+      it: 'Comprendi come i branch permettono agli sviluppatori di lavorare su linee di modifica separate.',
       zh: '理解分支如何让开发者沿不同修改路线独立工作。',
       hi: 'समझें कि ब्रांच डेवलपर को बदलावों की अलग शृंखला पर काम कैसे करने देती है।',
       es: 'Comprende cómo las ramas permiten trabajar en líneas separadas de cambios.',

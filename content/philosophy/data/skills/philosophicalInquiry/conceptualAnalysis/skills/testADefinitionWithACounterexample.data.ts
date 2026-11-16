@@ -5,6 +5,7 @@ export const testADefinitionWithACounterexample_Skill_Data = defineSkill({
   id: '7cc71512-7230-4b4c-8364-dd07dd74c900',
   name: {
     en: 'Test a definition with a counterexample',
+    it: 'Verificare una definizione con un controesempio',
     zh: '用反例检验定义',
     hi: 'प्रतिवाद उदाहरण से परिभाषा की जाँच करना',
     es: 'Poner a prueba una definición con un contraejemplo',
@@ -39,6 +40,7 @@ export const testADefinitionWithACounterexample_Skill_Data = defineSkill({
       'Find a case included or excluded incorrectly by a proposed definition and explain what the case reveals about its limits.',
     frontend: {
       en: 'Challenge a definition by finding a case it handles incorrectly.',
+      it: 'Metti alla prova una definizione trovando un caso che non riesce a descrivere correttamente.',
       zh: '找出定义无法正确处理的情况，从而质疑该定义。',
       hi: 'ऐसा उदाहरण खोजकर परिभाषा की जाँच करें जिसे वह गलत ढंग से वर्गीकृत करती है।',
       es: 'Cuestiona una definición buscando un caso que clasifique incorrectamente.',

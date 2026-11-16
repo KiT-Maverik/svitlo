@@ -5,6 +5,7 @@ export const distinguishArraysFromLinkedLists_Skill_Data = defineSkill({
   id: '853cb518-e5e5-4334-8b2b-d5cb56838b4b',
   name: {
     en: 'Distinguish Arrays from Linked Lists',
+    it: 'Distinguere array e liste concatenate',
     zh: '区分数组和链表',
     hi: 'सरणियों और लिंक्ड सूचियों में अंतर करना',
     es: 'Distinguir arreglos y listas enlazadas',
@@ -38,6 +39,7 @@ export const distinguishArraysFromLinkedLists_Skill_Data = defineSkill({
     methodological: 'Indexed arrays and chains of linked nodes offer different access methods and modification costs.',
     frontend: {
       en: 'Compare indexed arrays with chains of linked nodes.',
+      it: 'Confronta gli array indicizzati con le catene di nodi collegati.',
       zh: '比较按索引访问的数组与由节点链接形成的链表。',
       hi: 'सूचकांक वाली सरणियों की तुलना जुड़े हुए नोडों की शृंखला से करें।',
       es: 'Compara arreglos indexados con cadenas de nodos enlazados.',

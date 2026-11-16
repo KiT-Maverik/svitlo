@@ -5,6 +5,7 @@ export const planAnAssemblySequence_Skill_Data = defineSkill({
   id: '15f2a532-5f35-401c-9fbb-3bdfab4803c8',
   name: {
     en: 'Plan an assembly sequence',
+    it: 'Pianificare una sequenza di assemblaggio',
     zh: '规划装配顺序',
     hi: 'संयोजन क्रम की योजना बनाना',
     es: 'Planificar una secuencia de montaje',
@@ -38,6 +39,7 @@ export const planAnAssemblySequence_Skill_Data = defineSkill({
     methodological: 'Choose an order that provides access and establishes correct component alignment.',
     frontend: {
       en: 'Order assembly steps so later operations can be completed correctly.',
+      it: 'Ordina le fasi di assemblaggio in modo che le operazioni successive possano essere eseguite correttamente.',
       zh: '安排装配步骤，使后续操作能够正确完成。',
       hi: 'संयोजन के चरण इस तरह क्रमबद्ध करें कि आगे का काम सही हो सके।',
       es: 'Ordena los pasos de montaje para que las operaciones posteriores puedan realizarse correctamente.',

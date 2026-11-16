@@ -5,6 +5,7 @@ export const distinguishAnAtomFromItsPrincipalComponents_Skill_Data = defineSkil
   id: 'f66aadc5-7a28-466d-b7f9-318ef5ca1d1a',
   name: {
     en: 'Distinguish an atom from its principal components',
+    it: 'Distinguere un atomo dai suoi componenti principali',
     zh: '区分原子及其主要组成部分',
     hi: 'परमाणु और उसके मुख्य घटकों में अंतर करना',
     es: 'Distinguir un átomo de sus componentes principales',
@@ -39,6 +40,7 @@ export const distinguishAnAtomFromItsPrincipalComponents_Skill_Data = defineSkil
       "An atom consists of a nucleus and an electron cloud; electrons' motion and states do not correspond to literal planetary orbits.",
     frontend: {
       en: 'Recognize atoms as nuclei surrounded by electrons in quantum states.',
+      it: 'Riconosci gli atomi come nuclei circondati da elettroni in stati quantistici.',
       zh: '认识到原子由原子核和处于量子态的电子组成。',
       hi: 'पहचानो कि परमाणु में नाभिक होता है और उसके आसपास क्वांटम अवस्थाओं में इलेक्ट्रॉन होते हैं।',
       es: 'Reconoce que los átomos tienen un núcleo rodeado de electrones en estados cuánticos.',

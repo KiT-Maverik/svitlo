@@ -11,6 +11,7 @@ export const readWrite1000_Skill_Data = defineSkill({
     ka: 'სამნიშნა რიცხვების წაკითხვა და ჩაწერა',
     kk: 'Үш таңбалы сандарды оқу және жазу',
     en: 'Reading and writing three-digit numbers',
+    it: 'Leggere e scrivere numeri di tre cifre',
     qm: 'Üç raqamlı sayılarnı oqumaq ve yazmaq',
     zh: '读写三位数',
     hi: 'तीन अंकों की संख्याएँ पढ़ना और लिखना',
@@ -39,6 +40,7 @@ export const readWrite1000_Skill_Data = defineSkill({
       "A three-digit numeral encodes hundreds, tens, and ones. An internal zero indicates the absence of units at that place while retaining the places of following digits and the number's value.",
     frontend: {
       en: 'Read and write three-digit numbers using hundreds, tens, and ones. A zero can mark an empty place without changing the positions of other digits.',
+      it: 'Leggi e scrivi numeri di tre cifre usando centinaia, decine e unità. Uno zero può indicare una posizione vuota senza cambiare quella delle altre cifre.',
       qm: 'Yüzlük, onluq ve birliklerni qullanıp üç raqamlı sayılarnı oqu ve yaz. Sıfır boş razryadnı belgiley bilir, diger raqamlarnıñ yerlerini ise deñiştirmey.',
       zh: '用百位、十位和个位读写三位数。中间的零表示该数位没有相应单位，但其他数字的位置不变。',
       hi: 'सैकड़ा, दहाई और इकाई से तीन अंकों वाली संख्याएँ पढ़ें और लिखें। बीच का शून्य खाली स्थान दिखाता है, बाकी अंकों की जगह नहीं बदलता।',

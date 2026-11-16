@@ -5,6 +5,7 @@ export const recognizeTheConstancyOfTheSpeedOfLightInVacuumAsAPrincipleOfSpecial
   id: 'c1fb76fa-f2a0-425d-94ba-8a19af65444e',
   name: {
     en: 'Recognize the constancy of the speed of light in vacuum as a principle of special relativity',
+    it: 'Riconoscere la costanza della velocità della luce nel vuoto come principio della relatività ristretta',
     zh: '认识真空光速不变是狭义相对论的基本原理',
     hi: 'निर्वात में प्रकाश की चाल की स्थिरता को विशेष सापेक्षता का सिद्धांत मानना',
     es: 'Reconocer la constancia de la velocidad de la luz en el vacío como principio de la relatividad especial',
@@ -39,6 +40,7 @@ export const recognizeTheConstancyOfTheSpeedOfLightInVacuumAsAPrincipleOfSpecial
       'Using qualitative models, distinguish the invariant speed of light in vacuum for inertial observers from ordinary addition of speeds of everyday objects.',
     frontend: {
       en: 'Understand the invariant speed of light in vacuum in special relativity.',
+      it: 'Comprendi che la velocità della luce nel vuoto è invariante nella relatività ristretta.',
       zh: '理解狭义相对论中真空光速对所有惯性观察者保持不变的原理。',
       hi: 'समझो कि विशेष सापेक्षता में निर्वात में प्रकाश की चाल सभी जड़त्वीय प्रेक्षकों के लिए समान रहती है।',
       es: 'Comprende la velocidad invariante de la luz en el vacío para todos los observadores inerciales en la relatividad especial.',

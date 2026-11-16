@@ -5,6 +5,7 @@ export const density_Skill_Data = defineSkill({
   id: 'b424289a-219a-41c2-ac62-9d93ee8c60c1',
   name: {
     en: 'Density',
+    it: 'Densità',
     zh: '密度',
     hi: 'घनत्व',
     es: 'Densidad',
@@ -39,6 +40,7 @@ export const density_Skill_Data = defineSkill({
       'Relate sample mass and volume to an intensive property and use it to distinguish plausible materials.',
     frontend: {
       en: "Use mass and volume to reason about a material's density.",
+      it: 'Usa massa e volume per ragionare sulla densità di un materiale.',
       zh: '通过质量和体积分析材料的密度。',
       hi: 'द्रव्यमान और आयतन से किसी पदार्थ के घनत्व का विश्लेषण करें।',
       es: 'Usa masa y volumen para razonar sobre la densidad de un material.',

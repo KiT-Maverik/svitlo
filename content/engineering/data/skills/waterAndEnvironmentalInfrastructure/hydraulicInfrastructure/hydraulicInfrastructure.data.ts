@@ -7,6 +7,7 @@ export const hydraulicInfrastructure_SkillGroup_Data = defineSkillGroup({
   id: '2eecd113-1105-4b05-9538-76847e2ac730',
   name: {
     en: 'Hydraulic Infrastructure',
+    it: 'Infrastrutture idrauliche',
     zh: '水利基础设施',
     hi: 'जल-प्रवाह अवसंरचना',
     es: 'Infraestructura hidráulica',
@@ -49,6 +50,7 @@ export const hydraulicInfrastructure_SkillGroup_Data = defineSkillGroup({
       'Flow and water levels can be regulated by built chambers, gates and channels that connect transport or supply routes.',
     frontend: {
       en: 'Discover how canals, locks and valves manage moving water.',
+      it: "Scopri come canali, chiuse e valvole gestiscono l'acqua in movimento.",
       zh: '探索运河、船闸和阀门如何管理流动的水。',
       hi: 'जानें कि नहरें, जलपोत लॉक और वाल्व बहते पानी को कैसे नियंत्रित करते हैं।',
       es: 'Explora cómo canales, esclusas y válvulas gestionan el agua en movimiento.',

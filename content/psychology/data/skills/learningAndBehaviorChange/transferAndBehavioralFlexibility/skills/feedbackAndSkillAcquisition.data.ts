@@ -5,6 +5,7 @@ export const feedbackAndSkillAcquisition_Skill_Data = defineSkill({
   id: '8c0589d1-1865-4cc2-b914-356daae5bf17',
   name: {
     en: 'Feedback and Skill Acquisition',
+    it: 'Feedback e acquisizione delle abilità',
     zh: '反馈与技能习得',
     hi: 'प्रतिक्रिया और कौशल अर्जन',
     es: 'Retroalimentación y adquisición de habilidades',
@@ -39,6 +40,7 @@ export const feedbackAndSkillAcquisition_Skill_Data = defineSkill({
       'Explain how informative outcome feedback changes later performance differently from simple repetition.',
     frontend: {
       en: 'Understand how informative feedback helps people improve a skill.',
+      it: "Comprendi come riscontri informativi aiutino le persone a migliorare un'abilità.",
       zh: '理解有信息量的反馈如何帮助人改进技能。',
       hi: 'समझें कि जानकारीपूर्ण प्रतिक्रिया से कौशल बेहतर बनाने में कैसे मदद मिलती है।',
       es: 'Comprende cómo la retroalimentación informativa ayuda a mejorar una habilidad.',

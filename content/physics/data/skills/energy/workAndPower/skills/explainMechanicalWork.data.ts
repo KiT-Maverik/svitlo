@@ -5,6 +5,7 @@ export const explainMechanicalWork_Skill_Data = defineSkill({
   id: '33d608b0-3fe1-419c-bfa2-78890b1806e4',
   name: {
     en: 'Explain mechanical work',
+    it: 'Spiegare il lavoro meccanico',
     zh: '解释机械功',
     hi: 'यांत्रिक कार्य समझाना',
     es: 'Explicar el trabajo mecánico',
@@ -39,6 +40,7 @@ export const explainMechanicalWork_Skill_Data = defineSkill({
       'Mechanical work involves the component of force along displacement; exerting force without displacement does not perform mechanical work.',
     frontend: {
       en: 'Explain why a force transfers energy through displacement.',
+      it: 'Spiega perché una forza trasferisce energia attraverso uno spostamento.',
       zh: '解释为什么力使物体发生位移时会传递能量。',
       hi: 'समझाएँ कि बल के कारण विस्थापन होने पर ऊर्जा का स्थानांतरण क्यों होता है।',
       es: 'Explica por qué una fuerza transfiere energía al producir desplazamiento.',

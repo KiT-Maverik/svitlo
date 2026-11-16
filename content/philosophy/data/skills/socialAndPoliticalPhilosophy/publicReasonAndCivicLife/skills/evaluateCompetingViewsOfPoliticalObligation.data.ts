@@ -5,6 +5,7 @@ export const evaluateCompetingViewsOfPoliticalObligation_Skill_Data = defineSkil
   id: '86bf44b3-b2fb-461f-816a-e46de6798be6',
   name: {
     en: 'Evaluate competing views of political obligation',
+    it: "Valutare concezioni contrastanti dell'obbligo politico",
     zh: '评估政治义务的不同观点',
     hi: 'राजनीतिक दायित्व पर मतों का मूल्यांकन',
     es: 'Evaluar visiones del deber político',
@@ -39,6 +40,7 @@ export const evaluateCompetingViewsOfPoliticalObligation_Skill_Data = defineSkil
       'Consider when citizens may have moral reasons to obey, criticize, or resist laws irrespective of mere fear of punishment.',
     frontend: {
       en: 'Explore reasons people might follow, challenge or resist political laws.',
+      it: 'Esplora le ragioni per cui le persone potrebbero rispettare, contestare o opporsi alle leggi politiche.',
       zh: '探索人们遵守、质疑或抵制法律的理由。',
       hi: 'जानो कि लोग कानूनों को क्यों मानते, चुनौती देते या उनका विरोध करते हैं।',
       es: 'Explora por qué las personas pueden obedecer, cuestionar o resistirse a las leyes.',

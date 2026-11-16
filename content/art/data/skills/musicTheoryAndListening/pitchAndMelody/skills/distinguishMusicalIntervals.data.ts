@@ -5,6 +5,7 @@ export const distinguishMusicalIntervals_Skill_Data = defineSkill({
   id: '123d1dd3-4f21-4329-b515-38f5bd325e9e',
   name: {
     en: 'Distinguish Musical Intervals',
+    it: 'Distinguere gli intervalli musicali',
     zh: '辨别音程',
     hi: 'संगीत अंतराल पहचानें',
     es: 'Distinguir intervalos musicales',
@@ -38,6 +39,7 @@ export const distinguishMusicalIntervals_Skill_Data = defineSkill({
     methodological: 'Compare distances between pitches in melodic or simultaneous relationships.',
     frontend: {
       en: 'Compare how far apart two musical notes sound.',
+      it: 'Confronta la distanza percepita fra due note.',
       zh: '比较两个音符听起来相隔多远。',
       hi: 'दो संगीत स्वरों के बीच सुनाई देने वाली दूरी की तुलना करें।',
       es: 'Compara la distancia que se percibe entre dos notas musicales.',

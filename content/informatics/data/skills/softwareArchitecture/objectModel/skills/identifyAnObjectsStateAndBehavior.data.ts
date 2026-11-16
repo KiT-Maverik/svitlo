@@ -5,6 +5,7 @@ export const identifyAnObjectsStateAndBehavior_Skill_Data = defineSkill({
   id: '899e5b22-0a46-4637-ae18-54b1a7183195',
   name: {
     en: "Identify an Object's State and Behavior",
+    it: 'Individuare lo stato e il comportamento di un oggetto',
     zh: '识别对象的状态与行为',
     hi: 'ऑब्जेक्ट की अवस्था और व्यवहार पहचानना',
     es: 'Identificar el estado y comportamiento de un objeto',
@@ -39,6 +40,7 @@ export const identifyAnObjectsStateAndBehavior_Skill_Data = defineSkill({
       'Form a mental model of a real or imaginary object in terms of state (its characteristics and how they may change) and behavior (what it can do or what actions are possible). For example, a car has speed and fuel level and can accelerate or brake. This conceptual description does not require defining software properties and methods or writing code.',
     frontend: {
       en: "Describe an object's characteristics and the actions it can perform.",
+      it: 'Descrivi le caratteristiche di un oggetto e le azioni che può eseguire.',
       zh: '描述对象的特征及其能够执行的操作。',
       hi: 'ऑब्जेक्ट की विशेषताओं और उसके कार्यों का वर्णन करें।',
       es: 'Describe las características de un objeto y las acciones que puede realizar.',

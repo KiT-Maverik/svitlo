@@ -5,6 +5,7 @@ export const externalities_Skill_Data = defineSkill({
   id: '4a13810a-f8cb-41eb-a32b-0e700218a0ad',
   name: {
     en: 'Зовнішні ефекти',
+    it: 'Esternalità',
     zh: '外部性',
     hi: 'बाह्य प्रभाव',
     es: 'Externalidades',
@@ -39,6 +40,7 @@ export const externalities_Skill_Data = defineSkill({
       'Identify benefits or harms to third parties not reflected in a transaction and their significance for economic efficiency.',
     frontend: {
       en: 'Spot costs or benefits of economic activity that affect other people.',
+      it: "Individua costi o benefici di un'attività economica che ricadono su altre persone.",
       zh: '识别经济活动对其他人造成的成本或收益。',
       hi: 'आर्थिक गतिविधि से दूसरों को होने वाली लागत या लाभ पहचानें।',
       es: 'Identifica costes o beneficios de una actividad económica que afectan a terceros.',

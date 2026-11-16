@@ -5,6 +5,7 @@ export const constructTwoPointPerspective_Skill_Data = defineSkill({
   id: '76499fe4-e0e7-4b7b-9734-fbac24c27d7d',
   name: {
     en: 'Construct Two-Point Perspective',
+    it: 'Costruire la prospettiva a due punti di fuga',
     zh: '绘制两点透视图',
     hi: 'दो-बिंदु परिप्रेक्ष्य बनाएँ',
     es: 'Construir perspectiva de dos puntos',
@@ -38,6 +39,7 @@ export const constructTwoPointPerspective_Skill_Data = defineSkill({
     methodological: 'Organize two sets of horizontal receding directions around distinct vanishing points.',
     frontend: {
       en: 'Show the corners of a form using two different vanishing points.',
+      it: 'Rappresenta gli spigoli di un volume usando due diversi punti di fuga.',
       zh: '用两个不同的消失点来表现形体的转角。',
       hi: 'किसी आकृति के कोने दो अलग-अलग लुप्त बिंदुओं की मदद से दिखाएँ।',
       es: 'Muestra las esquinas de una forma usando dos puntos de fuga diferentes.',

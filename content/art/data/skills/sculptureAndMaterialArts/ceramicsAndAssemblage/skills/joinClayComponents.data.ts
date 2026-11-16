@@ -5,6 +5,7 @@ export const joinClayComponents_Skill_Data = defineSkill({
   id: 'c997dad9-559f-4c29-bec7-527fe1d91a64',
   name: {
     en: 'Join Clay Components',
+    it: 'Unire parti in argilla',
     zh: '连接陶土部件',
     hi: 'मिट्टी के हिस्सों को जोड़ें',
     es: 'Unir componentes de arcilla',
@@ -38,6 +39,7 @@ export const joinClayComponents_Skill_Data = defineSkill({
     methodological: 'Prepare and attach clay elements so that a composite form remains coherent and stable.',
     frontend: {
       en: 'Connect separate pieces of clay to make one stable form.',
+      it: 'Collega pezzi separati di argilla per ottenere una forma unica e stabile.',
       zh: '将分开的黏土部件连接起来，形成一个稳定的整体。',
       hi: 'मिट्टी के अलग-अलग टुकड़ों को जोड़कर एक स्थिर आकार बनाएँ।',
       es: 'Une piezas de arcilla separadas para formar una sola estructura estable.',

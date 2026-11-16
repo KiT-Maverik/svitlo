@@ -12,6 +12,7 @@ export const numberLine_SkillGroup_Data = defineSkillGroup({
   id: '4b431caf-b720-4669-8d48-f329c858bf94',
   name: {
     en: 'Number line',
+    it: 'Retta numerica',
     qm: 'Sayı sızığı',
     lt: 'Skaičių tiesė',
     lv: 'Skaitļu taisne',
@@ -55,6 +56,7 @@ export const numberLine_SkillGroup_Data = defineSkillGroup({
       'Numbers as points on an ordered scale with equal intervals; location, adjacency, and distance depend on the scale used.',
     frontend: {
       en: 'Place numbers on a line with even spacing; use their positions to see which comes first and how far apart they are.',
+      it: 'Colloca i numeri su una retta con intervalli uguali e usa le loro posizioni per vedere quale viene prima e quanto sono distanti.',
       qm: 'Sayıları teñ aralıqlarnen sızıqta yerleştir; olarnıñ yerlerine köre qaysısı evel kelgenini ve aralarındaki mesafeni köre bilesiñ.',
       zh: '把数放在间隔均匀的数轴上，通过位置判断顺序和距离。',
       hi: 'संख्याओं को समान अंतर वाली रेखा पर रखें; उनके स्थान से क्रम और दूरी समझें।',

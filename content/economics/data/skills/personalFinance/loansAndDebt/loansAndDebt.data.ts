@@ -12,6 +12,7 @@ export const loansAndDebt_SkillGroup_Data = defineSkillGroup({
   id: '608de14a-afdd-4e1c-b41b-39dc9fd2fbc6',
   name: {
     en: 'Позики та борги',
+    it: 'Prestiti e debiti',
     zh: '贷款与债务',
     hi: 'ऋण और कर्ज',
     es: 'Préstamos y deudas',
@@ -54,6 +55,7 @@ export const loansAndDebt_SkillGroup_Data = defineSkillGroup({
     methodological: 'Borrowing permits earlier spending but creates future payments and obligations.',
     frontend: {
       en: 'Understand the costs and commitments of borrowing money.',
+      it: 'Comprendi i costi e gli impegni legati al prendere denaro in prestito.',
       zh: '理解借款的成本与还款义务。',
       hi: 'पैसे उधार लेने की लागत और दायित्व समझें।',
       es: 'Comprende los costos y compromisos de pedir dinero prestado.',

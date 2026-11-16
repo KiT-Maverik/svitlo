@@ -5,6 +5,7 @@ export const dongSonCulture_Skill_Data = defineSkill({
   id: 'be9bfc99-02fd-4dec-95fe-66021608c863',
   name: {
     en: 'Dong Son Culture',
+    it: 'Cultura Đông Sơn',
     zh: '东山文化',
     hi: 'डोंग सोन संस्कृति',
     es: 'Cultura Dong Son',
@@ -38,6 +39,7 @@ export const dongSonCulture_Skill_Data = defineSkill({
     methodological: 'Study Bronze Age craft, rituals, and Red River exchanges, including decorated bronze drums.',
     frontend: {
       en: 'Learn what bronze drums reveal about Dong Son communities.',
+      it: 'Scopri che cosa rivelano i tamburi di bronzo sulle comunità Đông Sơn.',
       zh: '了解青铜鼓揭示了东山社群的哪些特点。',
       hi: 'जानें कि कांसे के ढोल डोंग सोन समुदायों के बारे में क्या बताते हैं।',
       es: 'Aprende qué revelan los tambores de bronce sobre las comunidades Dong Son.',

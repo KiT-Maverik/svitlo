@@ -5,6 +5,7 @@ export const developAFashionCollection_Skill_Data = defineSkill({
   id: 'b71d1336-c7bb-4dde-bad3-e983e414b968',
   name: {
     en: 'Develop a Fashion Collection',
+    it: 'Sviluppare una collezione di moda',
 
     zh: '开发时装系列',
     hi: 'फ़ैशन संग्रह विकसित करें',
@@ -40,6 +41,7 @@ export const developAFashionCollection_Skill_Data = defineSkill({
       'Create a coherent series of garment designs that explores a shared expressive concept through intentional variations of silhouette, material or detail.',
     frontend: {
       en: 'Design a related series of outfits with thoughtful differences.',
+      it: "Progetta una serie coordinata di proposte d'abbigliamento, con variazioni studiate.",
 
       zh: '设计一系列相互关联但各有差异的服装造型。',
       hi: 'सोच-समझकर अलग-अलग विशेषताओं वाले परस्पर संबंधित परिधानों की शृंखला डिज़ाइन करें।',

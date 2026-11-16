@@ -5,6 +5,7 @@ export const reactionEnthalpy_Skill_Data = defineSkill({
   id: '5df513d5-6670-430f-a3ee-01c546869409',
   name: {
     en: 'Reaction Enthalpy',
+    it: 'Entalpia di reazione',
     zh: '反应焓变',
     hi: 'अभिक्रिया की एन्थैल्पी',
     es: 'Entalpía de reacción',
@@ -38,6 +39,7 @@ export const reactionEnthalpy_Skill_Data = defineSkill({
     methodological: 'Relate heat at constant pressure to the difference in enthalpy between states.',
     frontend: {
       en: 'Compare the energy before and after a reaction using its enthalpy change.',
+      it: "Confronta l'energia prima e dopo una reazione attraverso la sua variazione di entalpia.",
       zh: '利用焓变比较反应前后的能量。',
       hi: 'एन्थैल्पी परिवर्तन से अभिक्रिया के पहले और बाद की ऊर्जा की तुलना करें।',
       es: 'Compara la energía antes y después de una reacción mediante el cambio de entalpía.',

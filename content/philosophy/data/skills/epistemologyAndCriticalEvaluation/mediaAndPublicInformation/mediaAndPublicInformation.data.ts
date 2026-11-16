@@ -13,6 +13,7 @@ export const mediaAndPublicInformation_SkillGroup_Data = defineSkillGroup({
   id: '0df95913-9aa6-4adc-94e1-4b2eeb91cab9',
   name: {
     en: 'Media and Public Information',
+    it: 'Media e informazione pubblica',
     zh: '媒体与公共信息',
     hi: 'मीडिया और सार्वजनिक सूचना',
     es: 'Medios e información pública',
@@ -64,6 +65,7 @@ export const mediaAndPublicInformation_SkillGroup_Data = defineSkillGroup({
       'Information environments combine reporting, interpretation, promotion, and falsehood. Epistemic evaluation concerns the warrant for public claims, not the psychological mechanics by which messages persuade audiences.',
     frontend: {
       en: 'Learn to investigate reporting, opinions and claims shared in public.',
+      it: 'Impara a esaminare notizie, opinioni e affermazioni diffuse pubblicamente.',
       zh: '学习调查公开传播的报道、意见和主张。',
       hi: 'जनता में प्रसारित खबरों, विचारों और दावों की जाँच करना सीखें।',
       es: 'Aprende a investigar noticias, opiniones y afirmaciones compartidas públicamente.',

@@ -5,6 +5,7 @@ export const identifyARobotController_Skill_Data = defineSkill({
   id: 'a3167d48-7eae-40a8-8a98-649512347f92',
   name: {
     en: 'Identify a Robot Controller',
+    it: 'Individuare il controllore di un robot',
     zh: '识别机器人控制器',
     hi: 'रोबोट नियंत्रक पहचानना',
     es: 'Identificar un controlador de robot',
@@ -39,6 +40,7 @@ export const identifyARobotController_Skill_Data = defineSkill({
       'Explain the component that reads inputs, executes programmed rules, and sends commands to actuators. The controller connects information with action and need not resemble a large standalone computer.',
     frontend: {
       en: 'Identify the controller that converts sensor inputs into programmed actions.',
+      it: 'Individua il controllore che trasforma i dati dei sensori in azioni programmate.',
       zh: '识别将传感器输入转换为预先编程动作的控制器。',
       hi: 'सेंसर इनपुट को प्रोग्राम किए गए कार्यों में बदलने वाला नियंत्रक पहचानें।',
       es: 'Identifica el controlador que convierte los datos de sensores en acciones programadas.',

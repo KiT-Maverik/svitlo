@@ -5,6 +5,7 @@ export const recognizeManifestationsOfInertiaInMotion_Skill_Data = defineSkill({
   id: '83f61d3b-a2a9-452d-9b9a-5a2235fa7dc0',
   name: {
     en: 'Recognize manifestations of inertia in motion',
+    it: "Riconoscere le manifestazioni dell'inerzia nel moto",
     zh: '识别运动中的惯性表现',
     hi: 'गति में जड़त्व के प्रभाव पहचानना',
     es: 'Reconocer manifestaciones de la inercia en el movimiento',
@@ -39,6 +40,7 @@ export const recognizeManifestationsOfInertiaInMotion_Skill_Data = defineSkill({
       'Explain why an object or passenger tends to maintain its previous state of motion during an abrupt change in speed.',
     frontend: {
       en: 'Explain why moving objects tend to keep moving when conditions suddenly change.',
+      it: 'Spiega perché gli oggetti in movimento tendono a continuare a muoversi quando le condizioni cambiano improvvisamente.',
       zh: '解释为什么条件突然变化时，运动物体往往会继续原来的运动。',
       hi: 'समझाएँ कि परिस्थितियाँ अचानक बदलने पर भी चलती वस्तुएँ चलती क्यों रहना चाहती हैं।',
       es: 'Explica por qué los objetos en movimiento tienden a seguir moviéndose cuando las condiciones cambian bruscamente.',

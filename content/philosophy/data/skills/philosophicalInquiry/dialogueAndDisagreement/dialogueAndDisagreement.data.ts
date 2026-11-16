@@ -12,6 +12,7 @@ export const dialogueAndDisagreement_SkillGroup_Data = defineSkillGroup({
   id: 'f31a534b-2d3e-4e34-86a0-068d5df37525',
   name: {
     en: 'Dialogue and Disagreement',
+    it: 'Dialogo e disaccordo',
     zh: '对话与分歧',
     hi: 'संवाद और असहमति',
     es: 'Diálogo y desacuerdo',
@@ -60,6 +61,7 @@ export const dialogueAndDisagreement_SkillGroup_Data = defineSkillGroup({
       'Reasoned dialogue seeks understanding and justified revision, not simply winning assent. Participants must fairly represent alternatives and keep interpersonal respect separate from agreement.',
     frontend: {
       en: 'Discover how respectful disagreement can help us reconsider ideas.',
+      it: 'Scopri come un disaccordo rispettoso possa aiutarci a riconsiderare le nostre idee.',
       zh: '了解尊重他人的不同意见如何帮助我们重新思考观点。',
       hi: 'जानें कि सम्मानजनक असहमति हमें अपने विचारों पर फिर से सोचने में कैसे मदद करती है।',
       es: 'Descubre cómo un desacuerdo respetuoso puede ayudarnos a reconsiderar nuestras ideas.',

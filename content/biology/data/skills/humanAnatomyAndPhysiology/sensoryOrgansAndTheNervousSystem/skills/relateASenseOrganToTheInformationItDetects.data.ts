@@ -5,6 +5,7 @@ export const relateASenseOrganToTheInformationItDetects_Skill_Data = defineSkill
   id: 'ae445054-70dd-41ce-a4e4-f3a877b5fa2d',
   name: {
     en: 'Relate a Sense Organ to the Information It Detects',
+    it: 'Collegare un organo di senso alle informazioni che rileva',
     zh: '将感觉器官与其检测的信息相联系',
     hi: 'इंद्रिय अंग को उसकी ग्रहण की जाने वाली जानकारी से जोड़ना',
     es: 'Relacionar cada órgano sensorial con la información que detecta',
@@ -38,6 +39,7 @@ export const relateASenseOrganToTheInformationItDetects_Skill_Data = defineSkill
     methodological: 'Relate light, sound, smell, taste, and touch to receptors capable of detecting those signals.',
     frontend: {
       en: 'Match each sense organ with the kinds of information it can detect.',
+      it: 'Associa ogni organo di senso ai tipi di informazioni che può rilevare.',
       zh: '将每种感觉器官与它所能检测的信息类型相匹配。',
       hi: 'हर इंद्रिय अंग को उस जानकारी से मिलाएँ जिसे वह ग्रहण कर सकता है।',
       es: 'Relaciona cada órgano sensorial con los tipos de información que puede detectar.',

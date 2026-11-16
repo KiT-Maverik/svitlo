@@ -5,6 +5,7 @@ export const sensorPlacement_Skill_Data = defineSkill({
   id: '13524912-c933-4b03-83ad-1ea18259c67a',
   name: {
     en: 'Sensor placement',
+    it: 'Posizionamento dei sensori',
     zh: '传感器布置',
     hi: 'संवेदक का स्थान निर्धारण',
     es: 'Colocación de sensores',
@@ -38,6 +39,7 @@ export const sensorPlacement_Skill_Data = defineSkill({
     methodological: 'Relate position and orientation to what a detector can and cannot observe.',
     frontend: {
       en: 'Find a sensor location that provides useful readings.',
+      it: 'Individua una posizione per il sensore che consenta di ottenere misurazioni utili.',
       zh: '选择传感器位置，以获得有用且可靠的测量值。',
       hi: 'उपयोगी और भरोसेमंद मापन के लिए संवेदक का सही स्थान चुनें।',
       es: 'Elige posiciones que permitan obtener medidas útiles y fiables.',

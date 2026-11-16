@@ -5,6 +5,7 @@ export const governmentFailure_Skill_Data = defineSkill({
   id: '34b64ecb-f650-40c7-b1ae-040c303d0b8f',
   name: {
     en: 'Недосконалість державного втручання',
+    it: "Fallimenti dell'intervento pubblico",
     zh: '政府失灵',
     hi: 'सरकारी विफलता',
     es: 'Fallos del gobierno',
@@ -39,6 +40,7 @@ export const governmentFailure_Skill_Data = defineSkill({
       'Evaluate risks from poor information, regulatory capture, distorted incentives, and administrative costs of intervention.',
     frontend: {
       en: 'Recognize ways government intervention can fall short of its goals.',
+      it: "Riconosci i modi in cui l'intervento pubblico può non raggiungere i propri obiettivi.",
       zh: '认识政府干预可能未实现目标的原因。',
       hi: 'पहचानें कि सरकारी हस्तक्षेप अपने लक्ष्य क्यों नहीं पूरा कर पाता।',
       es: 'Reconoce cómo la intervención estatal puede no cumplir sus objetivos.',

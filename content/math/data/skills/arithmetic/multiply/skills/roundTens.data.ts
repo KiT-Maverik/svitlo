@@ -11,6 +11,7 @@ export const roundTens_Skill_Data = defineSkill({
     ka: 'გამრავლება — სრული ათეულები',
     kk: 'Көбейту — толық ондықтар',
     en: 'Multiplication — Whole tens',
+    it: 'Moltiplicazione — Decine intere',
     qm: 'Arttıruv — tolu onluqlar',
     zh: '乘法 — 整十数',
     hi: 'गुणा — पूरी दहाइयाँ',
@@ -39,6 +40,7 @@ export const roundTens_Skill_Data = defineSkill({
       'A multiple of ten can be multiplied by a one-digit factor by multiplying its count of tens and restoring place-value weight. Exchanging tens for hundreds preserves the product.',
     frontend: {
       en: 'You can multiply whole tens by a one-digit number and regroup tens into hundreds when needed.',
+      it: 'Puoi moltiplicare decine intere per un numero di una cifra e trasformare le decine in centinaia quando necessario.',
       qm: 'Tolu onluqlarnı bir raqamlı sayığa arttıra, kerek olğanda on onluqnı bir yüzlükke birleştire bilesiñ.',
       zh: '你能用一位数乘整十数，必要时把十个十换成一个百。',
       hi: 'तुम पूरी दहाइयों को एक अंक से गुणा कर सकते हो और ज़रूरत पर दस दहाइयों को एक सैकड़े में बदल सकते हो।',

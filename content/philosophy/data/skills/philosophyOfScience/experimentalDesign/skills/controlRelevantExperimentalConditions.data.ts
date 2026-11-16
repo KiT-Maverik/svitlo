@@ -5,6 +5,7 @@ export const controlRelevantExperimentalConditions_Skill_Data = defineSkill({
   id: '9cd18a1a-c166-4db3-91b3-35e2d1618968',
   name: {
     en: 'Control relevant experimental conditions',
+    it: 'Controllare le condizioni sperimentali pertinenti',
     zh: '控制相关实验条件',
     hi: 'प्रासंगिक प्रायोगिक स्थितियों को नियंत्रित करें',
     es: 'Controlar las condiciones experimentales pertinentes',
@@ -39,6 +40,7 @@ export const controlRelevantExperimentalConditions_Skill_Data = defineSkill({
       'Hold relevant background conditions stable or account for them so comparisons are not undermined by extraneous differences.',
     frontend: {
       en: 'Keep relevant background conditions consistent for a fair comparison.',
+      it: 'Mantieni costanti le condizioni di contesto pertinenti per effettuare un confronto corretto.',
       zh: '保持重要的背景条件一致，以便公平比较。',
       hi: 'निष्पक्ष तुलना के लिए महत्वपूर्ण पृष्ठभूमि स्थितियाँ समान रखें।',
       es: 'Mantén constantes las condiciones de fondo relevantes para comparar con justicia.',

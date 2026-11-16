@@ -5,6 +5,7 @@ export const heatPumps_Skill_Data = defineSkill({
   id: '5175d1f0-2518-4025-9210-c67772d8b371',
   name: {
     en: 'Heat pumps',
+    it: 'Pompe di calore',
     zh: '热泵',
     hi: 'ऊष्मा पंप',
     es: 'Bombas de calor',
@@ -38,6 +39,7 @@ export const heatPumps_Skill_Data = defineSkill({
     methodological: 'Identify how heat is transferred from a source to a destination using external work.',
     frontend: {
       en: 'Understand how a heat pump moves heat using external work.',
+      it: 'Comprendi come una pompa di calore trasferisce calore grazie a un lavoro esterno.',
       zh: '理解热泵如何借助外部做功转移热量。',
       hi: 'समझें कि ऊष्मा पंप बाहरी कार्य की मदद से ऊष्मा कैसे स्थानांतरित करता है।',
       es: 'Comprende cómo una bomba de calor desplaza calor mediante trabajo externo.',

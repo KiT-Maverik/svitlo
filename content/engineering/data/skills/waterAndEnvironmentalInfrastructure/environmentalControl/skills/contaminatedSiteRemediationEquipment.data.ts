@@ -5,6 +5,7 @@ export const contaminatedSiteRemediationEquipment_Skill_Data = defineSkill({
   id: '69b27c2d-8fb9-4d09-bb28-e86f8e4166c4',
   name: {
     en: 'Contaminated-site remediation equipment',
+    it: 'Attrezzature per la bonifica dei siti contaminati',
     zh: '污染场地修复设备',
     hi: 'दूषित स्थल सुधार उपकरण',
     es: 'Equipos de recuperación de suelos contaminados',
@@ -39,6 +40,7 @@ export const contaminatedSiteRemediationEquipment_Skill_Data = defineSkill({
       'Identify how containment, extraction or treatment systems can address a specified contaminant without assuming one method works for every site.',
     frontend: {
       en: 'Understand how equipment helps remove or contain pollution from a site.',
+      it: "Comprendi come le attrezzature aiutano a rimuovere o contenere l'inquinamento di un sito.",
       zh: '理解设备如何从场地清除污染物或防止其扩散。',
       hi: 'समझें कि उपकरण प्रदूषण को हटाने या फैलने से रोकने में कैसे मदद करते हैं।',
       es: 'Comprende cómo los equipos eliminan o contienen contaminantes en un lugar.',

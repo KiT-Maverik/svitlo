@@ -5,6 +5,7 @@ export const directAndIndirectTaxes_Skill_Data = defineSkill({
   id: 'a6e29eb4-064f-41e7-8cd2-e37934fbc7dc',
   name: {
     en: 'Прямі та непрямі податки',
+    it: 'Imposte dirette e indirette',
     zh: '直接税与间接税',
     hi: 'प्रत्यक्ष और अप्रत्यक्ष कर',
     es: 'Impuestos directos e indirectos',
@@ -38,6 +39,7 @@ export const directAndIndirectTaxes_Skill_Data = defineSkill({
     methodological: 'Distinguish taxes on income or property from taxes on transactions and consumption.',
     frontend: {
       en: 'Tell the difference between taxes on earnings and taxes on purchases.',
+      it: 'Distingui le imposte sui redditi da quelle sugli acquisti.',
       zh: '区分针对收入的税与购买商品时缴纳的税。',
       hi: 'आय पर लगने वाले कर और खरीद पर लगने वाले कर में अंतर करें।',
       es: 'Distingue los impuestos sobre ingresos de los impuestos sobre compras.',

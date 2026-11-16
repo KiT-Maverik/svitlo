@@ -5,6 +5,7 @@ export const usabilityResearchMethods_Skill_Data = defineSkill({
   id: '1a3658d1-906e-42d8-8b1b-190fbac213b8',
   name: {
     en: 'Usability Research Methods',
+    it: "Metodi di ricerca sull'usabilità",
     zh: '可用性研究方法',
     hi: 'उपयोग-सुलभता शोध की विधियाँ',
     es: 'Métodos de investigación de usabilidad',
@@ -39,6 +40,7 @@ export const usabilityResearchMethods_Skill_Data = defineSkill({
       'Evaluate observation, task completion evidence, and user reports as complementary sources about interaction difficulty.',
     frontend: {
       en: 'Compare observations, task results and user reports when investigating usability.',
+      it: "Confronta osservazioni, risultati dei compiti e resoconti degli utenti quando studi l'usabilità.",
       zh: '在研究易用性时比较观察、任务结果和用户反馈。',
       hi: 'उपयोग में आसानी की जाँच के लिए अवलोकन, कार्य-परिणाम और उपयोगकर्ता की राय की तुलना करें।',
       es: 'Compara observaciones, resultados de tareas y relatos de usuarios al estudiar la usabilidad.',

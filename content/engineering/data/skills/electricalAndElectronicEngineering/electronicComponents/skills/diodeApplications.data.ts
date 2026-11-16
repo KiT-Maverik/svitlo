@@ -5,6 +5,7 @@ export const diodeApplications_Skill_Data = defineSkill({
   id: '2b05a1a8-48e6-470f-93e1-a7eb0c58d971',
   name: {
     en: 'Diode applications',
+    it: 'Applicazioni dei diodi',
     zh: '二极管的应用',
     hi: 'डायोड के उपयोग',
     es: 'Aplicaciones de diodos',
@@ -38,6 +39,7 @@ export const diodeApplications_Skill_Data = defineSkill({
     methodological: 'Relate directional conduction, rectification or light emission to practical circuits.',
     frontend: {
       en: 'Recognize why diodes allow current mainly in one direction.',
+      it: 'Riconosci perché i diodi consentono il passaggio della corrente principalmente in una direzione.',
       zh: '理解二极管主要允许电流沿一个方向流动的原因。',
       hi: 'समझें कि डायोड मुख्यतः एक ही दिशा में धारा क्यों जाने देता है।',
       es: 'Comprende por qué un diodo permite el paso de corriente principalmente en una dirección.',

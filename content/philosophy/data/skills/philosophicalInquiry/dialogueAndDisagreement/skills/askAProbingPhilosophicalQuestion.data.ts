@@ -5,6 +5,7 @@ export const askAProbingPhilosophicalQuestion_Skill_Data = defineSkill({
   id: '6e2d6e1f-f9cb-4eac-b6b7-0e5e5b08326a',
   name: {
     en: 'Ask a probing philosophical question',
+    it: 'Porre una domanda filosofica approfondita',
     zh: '提出深入探讨的哲学问题',
     hi: 'गहराई से जाँचने वाला दार्शनिक प्रश्न पूछना',
     es: 'Plantear una pregunta filosófica profunda',
@@ -39,6 +40,7 @@ export const askAProbingPhilosophicalQuestion_Skill_Data = defineSkill({
       'Request a reason, distinction, implication, or counterexample that can advance inquiry without demanding personal disclosure.',
     frontend: {
       en: "Ask a question that tests another person's reasons or clarifies their view.",
+      it: "Poni una domanda che metta alla prova le ragioni di un'altra persona o chiarisca il suo punto di vista.",
       zh: '提出问题以检验他人的理由或澄清其观点。',
       hi: 'ऐसा प्रश्न पूछें जो दूसरे के कारणों को परखे या उसके विचार को स्पष्ट करे।',
       es: 'Haz una pregunta que examine las razones de alguien o aclare su postura.',

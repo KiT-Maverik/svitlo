@@ -11,6 +11,7 @@ export const indigenousArtisticTraditionsOfTheAmericas_SkillGroup_Data = defineS
   id: '2b97c500-ae52-427f-9083-4152fa878e9d',
   name: {
     en: 'Indigenous Artistic Traditions of the Americas',
+    it: 'Tradizioni artistiche dei popoli indigeni delle Americhe',
     zh: '美洲原住民艺术传统',
     hi: 'अमेरिका के आदिवासी कलात्मक परंपराएँ',
     es: 'Tradiciones artísticas indígenas de las Américas',
@@ -53,6 +54,7 @@ export const indigenousArtisticTraditionsOfTheAmericas_SkillGroup_Data = defineS
       "Works are understood within named peoples' histories and living cultural continuities, with attention to provenance and the limits of outsider interpretation.",
     frontend: {
       en: 'Study artistic traditions of named Indigenous peoples of the Americas in their own contexts.',
+      it: 'Studia le tradizioni artistiche di specifici popoli indigeni delle Americhe nei rispettivi contesti.',
       zh: '在各自的历史与文化背景中研究美洲具体原住民族的艺术传统。',
       hi: 'अमेरिका के विशिष्ट आदिवासी समुदायों की कलात्मक परंपराओं का उनके अपने संदर्भों में अध्ययन करें।',
       es: 'Estudia las tradiciones artísticas de pueblos indígenas concretos de las Américas en sus propios contextos.',

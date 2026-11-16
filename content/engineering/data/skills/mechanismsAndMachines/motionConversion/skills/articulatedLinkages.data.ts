@@ -5,6 +5,7 @@ export const articulatedLinkages_Skill_Data = defineSkill({
   id: '34e9c19b-695f-4000-bb01-4a07991dd060',
   name: {
     en: 'Articulated linkages',
+    it: 'Meccanismi articolati',
     zh: '铰接连杆机构',
     hi: 'जुड़ी हुई कड़ियों के तंत्र',
     es: 'Mecanismos de barras articuladas',
@@ -39,6 +40,7 @@ export const articulatedLinkages_Skill_Data = defineSkill({
       'Trace how connected rigid bars and pivots restrict the trajectory of an output in tools or articulated machines.',
     frontend: {
       en: "Trace how jointed bars guide a machine's movement.",
+      it: 'Segui come le aste collegate da giunti guidano il movimento di una macchina.',
       zh: '追踪由铰链连接的杆件如何引导机器运动。',
       hi: 'समझें कि जोड़दार छड़ें मशीन की गति को कैसे दिशा देती हैं।',
       es: 'Sigue cómo las barras unidas por articulaciones guían el movimiento de una máquina.',

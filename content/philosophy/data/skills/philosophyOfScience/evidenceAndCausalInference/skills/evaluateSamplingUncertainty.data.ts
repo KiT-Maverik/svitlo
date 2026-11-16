@@ -5,6 +5,7 @@ export const evaluateSamplingUncertainty_Skill_Data = defineSkill({
   id: 'e66dc35b-8873-4711-bda0-79fc527b3d0d',
   name: {
     en: 'Evaluate sampling uncertainty',
+    it: "Valutare l'incertezza campionaria",
     zh: '评估抽样不确定性',
     hi: 'नमूना संबंधी अनिश्चितता का मूल्यांकन',
     es: 'Evaluar la incertidumbre del muestreo',
@@ -39,6 +40,7 @@ export const evaluateSamplingUncertainty_Skill_Data = defineSkill({
       'Assess how sample size, observed variation, and sampling processes affect the precision of an estimate, distinguishing imprecision from whether the sample represents its target population.',
     frontend: {
       en: "Explore how sampling choices and variation affect an estimate's precision.",
+      it: 'Esplora come la scelta del campione e la variabilità influenzino la precisione di una stima.',
       zh: '探索抽样方式和样本差异如何影响估计精度。',
       hi: 'समझें कि नमूना चयन और विविधता अनुमान की सटीकता को कैसे बदलते हैं।',
       es: 'Explora cómo la selección de la muestra y su variación afectan a la precisión de una estimación.',

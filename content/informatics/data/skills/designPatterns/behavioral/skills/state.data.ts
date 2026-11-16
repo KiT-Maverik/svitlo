@@ -5,6 +5,7 @@ export const state_Skill_Data = defineSkill({
   id: 'ce70dbb8-6b09-4580-9f2d-ff83597d5e4b',
   name: {
     en: 'State',
+    it: 'Stato',
     zh: '状态模式',
     hi: 'स्टेट',
     es: 'Estado',
@@ -39,6 +40,7 @@ export const state_Skill_Data = defineSkill({
       "Delegate an object's reaction to a given command to its current state object instead of using an extensive conditional tree.",
     frontend: {
       en: 'Change how an object reacts according to its current state.',
+      it: 'Modifica il modo in cui un oggetto reagisce in base al suo stato corrente.',
       zh: '根据对象当前的状态改变它的响应方式。',
       hi: 'ऑब्जेक्ट की वर्तमान अवस्था के अनुसार उसकी प्रतिक्रिया बदलें।',
       es: 'Cambia cómo responde un objeto según su estado actual.',

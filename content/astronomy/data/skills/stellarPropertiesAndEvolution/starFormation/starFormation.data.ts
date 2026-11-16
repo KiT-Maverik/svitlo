@@ -12,6 +12,7 @@ export const starFormation_SkillGroup_Data = defineSkillGroup({
   id: '08051b26-3082-4414-a63f-d7efe37c70de',
   name: {
     en: 'Star Formation',
+    it: 'Formazione stellare',
     zh: '恒星形成',
     hi: 'तारों का निर्माण',
     es: 'Formación estelar',
@@ -55,6 +56,7 @@ export const starFormation_SkillGroup_Data = defineSkillGroup({
       'Star birth occurs inside interstellar gas and dust and progresses through distinct gravitational and thermal stages.',
     frontend: {
       en: 'Investigate how stars begin inside large clouds of gas and dust.',
+      it: "Indaga come le stelle nascono all'interno di grandi nubi di gas e polveri.",
       zh: '研究恒星如何在巨大的气体和尘埃云中诞生。',
       hi: 'जानें कि गैस और धूल के विशाल बादलों के भीतर तारे कैसे जन्म लेते हैं।',
       es: 'Investiga cómo nacen las estrellas dentro de enormes nubes de gas y polvo.',

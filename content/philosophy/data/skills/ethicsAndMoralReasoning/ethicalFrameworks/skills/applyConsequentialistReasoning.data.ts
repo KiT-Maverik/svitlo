@@ -5,6 +5,7 @@ export const applyConsequentialistReasoning_Skill_Data = defineSkill({
   id: '713223b5-cc2a-4b25-a199-5ca225d92de1',
   name: {
     en: 'Apply consequentialist reasoning',
+    it: 'Applicare il ragionamento consequenzialista',
     zh: '运用后果主义推理',
     hi: 'परिणामवादी तर्क लागू करना',
     es: 'Aplicar razonamiento consecuencialista',
@@ -39,6 +40,7 @@ export const applyConsequentialistReasoning_Skill_Data = defineSkill({
       'Evaluate an action by outcomes and the welfare or values its consequences affect, accounting for affected parties.',
     frontend: {
       en: 'Consider likely outcomes and everyone affected when evaluating a choice.',
+      it: 'Considera i probabili risultati e tutte le persone coinvolte quando valuti una scelta.',
       zh: '评估选择时考虑可能的结果及所有受影响者。',
       hi: 'चुनाव का मूल्यांकन करते समय संभावित परिणामों और सभी प्रभावित लोगों पर विचार करें।',
       es: 'Considera los resultados probables y a todas las personas afectadas al evaluar una decisión.',

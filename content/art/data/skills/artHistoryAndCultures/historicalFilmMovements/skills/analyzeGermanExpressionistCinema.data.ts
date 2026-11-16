@@ -5,6 +5,7 @@ export const analyzeGermanExpressionistCinema_Skill_Data = defineSkill({
   id: '36e2eb06-5ce3-4ff3-827e-09a8ec3cf0f0',
   name: {
     en: 'Analyze German Expressionist Cinema',
+    it: 'Analizzare il cinema espressionista tedesco',
     zh: '分析德国表现主义电影',
     hi: 'जर्मन अभिव्यंजनावादी सिनेमा का विश्लेषण करें',
     es: 'Analizar el cine expresionista alemán',
@@ -39,6 +40,7 @@ export const analyzeGermanExpressionistCinema_Skill_Data = defineSkill({
       'Examine distorted sets, stylized light and performance in selected German silent-era films and explain their expressive aims.',
     frontend: {
       en: 'See how German Expressionist films used sets, light and acting to create atmosphere.',
+      it: 'Osserva come i film espressionisti tedeschi usavano scenografie, luci e recitazione per creare atmosfere.',
       zh: '了解德国表现主义电影如何运用布景、光线和表演营造氛围。',
       hi: 'जानें कि जर्मन अभिव्यंजनावादी फ़िल्मों ने वातावरण बनाने के लिए सेट, रोशनी और अभिनय का उपयोग कैसे किया।',
       es: 'Descubre cómo el cine expresionista alemán utilizó decorados, luz y actuación para crear atmósferas.',

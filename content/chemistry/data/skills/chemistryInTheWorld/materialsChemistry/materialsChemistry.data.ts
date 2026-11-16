@@ -15,6 +15,7 @@ export const materialsChemistry_SkillGroup_Data = defineSkillGroup({
   id: 'da922b08-51d3-43ca-b82f-2e49452bfeef',
   name: {
     en: 'Materials Chemistry',
+    it: 'Chimica dei materiali',
     zh: '材料化学',
     hi: 'पदार्थों का रसायन',
     es: 'Química de materiales',
@@ -61,6 +62,7 @@ export const materialsChemistry_SkillGroup_Data = defineSkillGroup({
       "A product's useful behavior depends on composition, microscopic structure and conditions of use, not merely its everyday material label.",
     frontend: {
       en: "Explore how chemical structure helps determine a material's useful properties.",
+      it: 'Esplora come la struttura chimica contribuisce a determinare le proprietà utili di un materiale.',
       zh: '探索化学结构如何决定材料的实用性质。',
       hi: 'जानें कि रासायनिक संरचना किसी पदार्थ के उपयोगी गुण कैसे तय करती है।',
       es: 'Explora cómo la estructura química contribuye a determinar las propiedades útiles de un material.',

@@ -5,6 +5,7 @@ export const explainTheDevelopmentOfProgrammableComputers_Skill_Data = defineSki
   id: '884e0255-0da5-4a7f-9097-c999bfa26e15',
   name: {
     en: 'Explain the Development of Programmable Computers',
+    it: 'Spiegare lo sviluppo dei computer programmabili',
     zh: '解释可编程计算机的发展',
     hi: 'प्रोग्राम करने योग्य कंप्यूटरों का विकास समझाना',
     es: 'Explicar el desarrollo de las computadoras programables',
@@ -39,6 +40,7 @@ export const explainTheDevelopmentOfProgrammableComputers_Skill_Data = defineSki
       'Compare how storage of instructions, selection of operations, and execution control evolved from mechanical concepts to electronic machines. This is the history of devices and their architecture, distinct from early hands-on programming techniques.',
     frontend: {
       en: 'Trace the development from mechanical computing concepts to programmable electronic machines.',
+      it: 'Ripercorri lo sviluppo dalle prime idee del calcolo meccanico alle macchine elettroniche programmabili.',
       zh: '追踪从机械计算概念到可编程电子机器的发展。',
       hi: 'यांत्रिक गणना की अवधारणाओं से प्रोग्राम योग्य इलेक्ट्रॉनिक मशीनों तक का विकास जानें।',
       es: 'Sigue la evolución desde conceptos mecánicos de cálculo hasta máquinas electrónicas programables.',

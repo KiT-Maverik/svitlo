@@ -5,6 +5,7 @@ export const darkEnergyEvidence_Skill_Data = defineSkill({
   id: '87ccea22-b18a-4e5c-a4fe-37d78299dfe2',
   name: {
     en: 'Dark Energy Evidence',
+    it: "Prove dell'energia oscura",
     qm: 'Qaranlıq energiya delilleri',
     zh: '暗能量的证据',
     hi: 'डार्क एनर्जी के प्रमाण',
@@ -39,6 +40,7 @@ export const darkEnergyEvidence_Skill_Data = defineSkill({
       'Explain why observations of accelerated expansion motivate a dark-energy component or changes to gravitational models.',
     frontend: {
       en: 'Examine the evidence that cosmic expansion is accelerating.',
+      it: "Esamina le prove che l'espansione dell'universo stia accelerando.",
       qm: 'Kâinatnıñ keñeyüvi tezleşkenini köstergen delillerni tetqiq etiñiz.',
       zh: '研究宇宙膨胀正在加速的证据。',
       hi: 'ब्रह्मांड के विस्तार के तेज़ होने के प्रमाणों की जाँच करें।',

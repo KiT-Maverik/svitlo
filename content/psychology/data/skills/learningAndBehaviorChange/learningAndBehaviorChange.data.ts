@@ -10,6 +10,7 @@ export const learningAndBehaviorChange_SkillDomain_Data = defineSkillDomain({
   id: 'ccaf830f-559a-4140-b1c0-5affd6741164',
   title: {
     en: 'Learning and Behavior Change',
+    it: 'Apprendimento e cambiamento del comportamento',
     zh: '学习与行为改变',
     hi: 'अधिगम और व्यवहार परिवर्तन',
     es: 'Aprendizaje y cambio de conducta',
@@ -53,6 +54,7 @@ export const learningAndBehaviorChange_SkillDomain_Data = defineSkillDomain({
       'Past experience modifies responding through predictive cues, consequences, and social observation. This domain explains mechanisms of behavioral acquisition and flexibility rather than memory storage or a teaching sequence.',
     frontend: {
       en: 'Explore how experience, consequences and observation change behavior over time.',
+      it: 'Esplora come esperienza, conseguenze e osservazione modifichino il comportamento nel tempo.',
       zh: '探索经验、行为后果和观察如何随时间改变行为。',
       hi: 'जानें कि अनुभव, व्यवहार के परिणाम और दूसरों को देखना समय के साथ व्यवहार कैसे बदलते हैं।',
       es: 'Explora cómo la experiencia, las consecuencias y la observación modifican la conducta con el tiempo.',

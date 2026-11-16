@@ -5,6 +5,7 @@ export const applyLogicalNOT_Skill_Data = defineSkill({
   id: 'e6713661-58c2-496b-90d3-37c4a3b6c7ce',
   name: {
     en: 'Apply Logical NOT',
+    it: "Applicare l'operatore logico NOT",
     zh: '应用逻辑非',
     hi: 'तार्किक NOT लागू करना',
     es: 'Aplicar el operador lógico NO',
@@ -39,6 +40,7 @@ export const applyLogicalNOT_Skill_Data = defineSkill({
       "Negate a condition's truth value: `NOT isLocked` is true when `isLocked` is false. Negation changes the truth value of the condition, not the underlying facts.",
     frontend: {
       en: 'Use NOT to reverse the truth value of a condition.',
+      it: 'Usa NOT per invertire il valore di verità di una condizione.',
       zh: '用“非”取反一个条件的真假值。',
       hi: 'NOT का उपयोग करके किसी शर्त का सत्य मान उलटें।',
       es: 'Usa NO para invertir el valor de verdad de una condición.',

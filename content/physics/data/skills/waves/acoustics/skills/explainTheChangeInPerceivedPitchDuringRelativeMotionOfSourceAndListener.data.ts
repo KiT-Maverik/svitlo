@@ -5,6 +5,7 @@ export const explainTheChangeInPerceivedPitchDuringRelativeMotionOfSourceAndList
   id: '4907a198-b1ee-4f08-aac3-f2af8443be7a',
   name: {
     en: 'Explain the change in perceived pitch during relative motion of source and listener',
+    it: "Spiegare la variazione dell'altezza percepita nel moto relativo tra sorgente e ascoltatore",
     zh: '解释声源与听者相对运动时听到的音高变化',
     hi: 'स्रोत और श्रोता की सापेक्ष गति से तारत्व में बदलाव समझाना',
     es: 'Explicar el cambio de tono por el movimiento relativo entre fuente y oyente',
@@ -39,6 +40,7 @@ export const explainTheChangeInPerceivedPitchDuringRelativeMotionOfSourceAndList
       'For an unchanged sound emitted by a source, explain the Doppler effect: the frequency heard by the observer is higher as the source approaches and lower as it moves away. Do not confuse this frequency change with loudness or engine revolutions.',
     frontend: {
       en: 'Explore why moving sound sources can change the pitch someone hears.',
+      it: "Esplora perché il movimento di una sorgente sonora può cambiare l'altezza del suono percepito.",
       zh: '解释声源与听者相对靠近时音调变高、相对远离时变低的多普勒效应。',
       hi: 'जानें कि चलती ध्वनि का स्रोत सुनाई देने वाला तारत्व कैसे बदलता है।',
       es: 'Explora por qué una fuente sonora en movimiento puede cambiar el tono que se escucha.',

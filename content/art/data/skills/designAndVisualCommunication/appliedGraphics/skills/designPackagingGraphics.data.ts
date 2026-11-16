@@ -5,6 +5,7 @@ export const designPackagingGraphics_Skill_Data = defineSkill({
   id: '2c3fd650-740d-4f4f-ab81-9579ce95f26b',
   name: {
     en: 'Design Packaging Graphics',
+    it: 'Progettare la grafica di una confezione',
 
     zh: '设计包装图形',
     hi: 'पैकेजिंग ग्राफ़िक्स डिज़ाइन करें',
@@ -39,6 +40,7 @@ export const designPackagingGraphics_Skill_Data = defineSkill({
     methodological: 'Arrange images and information on a package so visual hierarchy remains intelligible.',
     frontend: {
       en: 'Place graphics and information on packaging in a clear visual order.',
+      it: 'Organizza elementi grafici e informazioni sulla confezione secondo una gerarchia visiva chiara.',
 
       zh: '按照清晰的视觉顺序，在包装上放置图形和信息。',
       hi: 'स्पष्ट दृश्य क्रम में पैकेजिंग पर ग्राफ़िक्स और जानकारी रखें।',

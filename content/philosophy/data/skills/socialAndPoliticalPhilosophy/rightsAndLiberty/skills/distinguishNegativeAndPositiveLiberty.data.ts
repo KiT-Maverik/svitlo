@@ -5,6 +5,7 @@ export const distinguishNegativeAndPositiveLiberty_Skill_Data = defineSkill({
   id: '9e8a61a9-999e-4c41-a2f5-22d921008383',
   name: {
     en: 'Distinguish negative and positive liberty',
+    it: 'Distinguere libertà negativa e positiva',
     zh: '区分消极自由与积极自由',
     hi: 'नकारात्मक और सकारात्मक स्वतंत्रता में भेद',
     es: 'Distinguir libertad negativa y positiva',
@@ -39,6 +40,7 @@ export const distinguishNegativeAndPositiveLiberty_Skill_Data = defineSkill({
       'Contrast freedom from interference with capacities or opportunities to act, while recognizing debates about their relationship.',
     frontend: {
       en: 'Compare freedom from interference with the ability to act effectively.',
+      it: 'Confronta la libertà dalle interferenze con la capacità di agire efficacemente.',
       zh: '比较不受干涉的自由与有效采取行动的能力。',
       hi: 'बाहरी हस्तक्षेप से मुक्ति और प्रभावी रूप से कार्य करने की क्षमता की तुलना करो।',
       es: 'Compara la libertad frente a interferencias con la capacidad de actuar eficazmente.',

@@ -5,6 +5,7 @@ export const insightAndRestructuring_Skill_Data = defineSkill({
   id: 'd922cb7c-35a5-448a-8423-51dd384e341b',
   name: {
     en: 'Insight and Restructuring',
+    it: 'Intuizione e ristrutturazione',
     zh: '顿悟与重构',
     hi: 'अंतर्दृष्टि और पुनर्संरचना',
     es: 'Comprensión repentina y reestructuración',
@@ -39,6 +40,7 @@ export const insightAndRestructuring_Skill_Data = defineSkill({
       'Explain abrupt reinterpretation during problem solving without treating the feeling of insight as proof.',
     frontend: {
       en: "Understand how changing a problem's representation can produce an insight.",
+      it: "Comprendi come cambiare la rappresentazione di un problema possa portare a un'intuizione.",
       zh: '理解改变问题的心理表征如何带来顿悟。',
       hi: 'समझें कि समस्या की मानसिक प्रस्तुति बदलने से अचानक सूझ कैसे पैदा हो सकती है।',
       es: 'Comprende cómo cambiar la representación de un problema puede provocar una intuición repentina.',

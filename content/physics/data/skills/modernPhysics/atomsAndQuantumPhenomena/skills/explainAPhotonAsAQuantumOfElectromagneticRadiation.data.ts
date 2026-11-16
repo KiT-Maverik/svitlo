@@ -5,6 +5,7 @@ export const explainAPhotonAsAQuantumOfElectromagneticRadiation_Skill_Data = def
   id: '5cece8a1-d4c7-4af9-b760-72e4b7cf50ff',
   name: {
     en: 'Explain a photon as a quantum of electromagnetic radiation',
+    it: 'Spiegare il fotone come quanto di radiazione elettromagnetica',
     zh: '解释光子是电磁辐射的量子',
     hi: 'फोटॉन को विद्युतचुंबकीय विकिरण का क्वांटम समझाना',
     es: 'Explicar el fotón como cuanto de radiación electromagnética',
@@ -39,6 +40,7 @@ export const explainAPhotonAsAQuantumOfElectromagneticRadiation_Skill_Data = def
       'A photon is a quantum of the electromagnetic field whose energy is related to radiation frequency; it should not be interpreted as a tiny classical ball.',
     frontend: {
       en: 'Understand photons as energy quanta of electromagnetic radiation.',
+      it: 'Comprendi i fotoni come quanti di energia della radiazione elettromagnetica.',
       zh: '理解光子是电磁辐射的能量量子。',
       hi: 'समझो कि फोटॉन विद्युतचुंबकीय विकिरण की ऊर्जा का एक क्वांटम है।',
       es: 'Comprende los fotones como cuantos de energía de la radiación electromagnética.',

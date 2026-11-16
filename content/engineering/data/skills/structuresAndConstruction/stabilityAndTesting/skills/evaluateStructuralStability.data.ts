@@ -5,6 +5,7 @@ export const evaluateStructuralStability_Skill_Data = defineSkill({
   id: 'fecfa75b-0293-4619-b731-8b1326ec8847',
   name: {
     en: 'Evaluate structural stability',
+    it: 'Valutare la stabilità strutturale',
     zh: '评估结构稳定性',
     hi: 'संरचनात्मक स्थिरता का मूल्यांकन',
     es: 'Evaluar la estabilidad estructural',
@@ -38,6 +39,7 @@ export const evaluateStructuralStability_Skill_Data = defineSkill({
     methodological: 'Identify risks of overturning, sway or buckling in a given arrangement.',
     frontend: {
       en: 'Recognize conditions that may cause sway, tipping or buckling.',
+      it: 'Riconosci le condizioni che possono causare oscillazione laterale, ribaltamento o instabilità per carico di punta.',
       zh: '识别可能造成侧摆、倾覆或屈曲的条件。',
       hi: 'ऐसी स्थितियाँ पहचानें जो डोलने, पलटने या बकलिंग का कारण बनती हैं।',
       es: 'Reconoce condiciones que pueden causar balanceo, vuelco o pandeo.',

@@ -5,6 +5,7 @@ export const recognizeMedicineMisuse_Skill_Data = defineSkill({
   id: 'a2031607-e217-475c-832b-9d95884145f6',
   name: {
     en: 'Recognize medicine misuse',
+    it: "Riconoscere l'uso improprio dei medicinali",
     zh: '识别药物滥用',
     hi: 'दवाओं का गलत उपयोग पहचानें',
     es: 'Reconocer el uso indebido de medicamentos',
@@ -39,6 +40,7 @@ export const recognizeMedicineMisuse_Skill_Data = defineSkill({
       'Identify hazardous use outside prescribed or labelled purposes, including sharing medication and mixing substances.',
     frontend: {
       en: 'Recognize dangerous ways medicines may be shared or misused.',
+      it: 'Riconosci i modi pericolosi in cui i medicinali possono essere condivisi o usati impropriamente.',
       zh: '了解不当分享或使用药物可能造成的危险。',
       hi: 'दवाएँ बाँटने या गलत तरीके से इस्तेमाल करने के खतरनाक रूप पहचानें।',
       es: 'Identifica formas peligrosas de compartir o utilizar medicamentos incorrectamente.',

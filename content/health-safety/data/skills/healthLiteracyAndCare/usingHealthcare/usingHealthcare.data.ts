@@ -12,6 +12,7 @@ export const usingHealthcare_SkillGroup_Data = defineSkillGroup({
   id: '76948621-3b7c-45db-a90c-0b45995524cf',
   name: {
     en: 'Using Healthcare',
+    it: 'Utilizzo dei servizi sanitari',
     zh: '获得医疗服务',
     hi: 'स्वास्थ्य सेवा का उपयोग',
     es: 'Acceso a servicios de salud',
@@ -60,6 +61,7 @@ export const usingHealthcare_SkillGroup_Data = defineSkillGroup({
       'Seeking care effectively includes choosing an appropriate service, describing a concern, understanding an agreed plan, and knowing when assistance is urgent.',
     frontend: {
       en: 'Discover how to access care and work with healthcare professionals.',
+      it: 'Scopri come accedere alle cure e collaborare con i professionisti sanitari.',
       zh: '了解如何获得医疗服务并与医护人员合作。',
       hi: 'जानें कि देखभाल कैसे लें और स्वास्थ्यकर्मियों के साथ कैसे सहयोग करें।',
       es: 'Descubre cómo acceder a atención y colaborar con profesionales sanitarios.',

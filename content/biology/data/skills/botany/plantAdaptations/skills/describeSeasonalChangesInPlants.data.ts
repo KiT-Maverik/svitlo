@@ -5,6 +5,7 @@ export const describeSeasonalChangesInPlants_Skill_Data = defineSkill({
   id: 'fbaa45ee-17df-4037-8780-780b7c574c42',
   name: {
     en: 'Describe Seasonal Changes in Plants',
+    it: 'Descrivere i cambiamenti stagionali nelle piante',
     zh: '描述植物的季节性变化',
     hi: 'पौधों में मौसमी परिवर्तनों का वर्णन करना',
     es: 'Describir los cambios estacionales de las plantas',
@@ -39,6 +40,7 @@ export const describeSeasonalChangesInPlants_Skill_Data = defineSkill({
       'Establish the relationship between changes in day length or temperature and leaf fall, dormancy, or resumption of growth.',
     frontend: {
       en: 'Connect seasonal changes in plants with temperature and daylight.',
+      it: 'Collega i cambiamenti stagionali delle piante alla temperatura e alle ore di luce.',
       zh: '将植物随季节发生的变化与温度和日照时长联系起来。',
       hi: 'पौधों के मौसमी बदलावों को तापमान और दिन के प्रकाश की अवधि से जोड़ें।',
       es: 'Relaciona los cambios estacionales de las plantas con la temperatura y la duración del día.',

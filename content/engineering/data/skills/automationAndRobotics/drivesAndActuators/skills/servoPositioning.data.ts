@@ -5,6 +5,7 @@ export const servoPositioning_Skill_Data = defineSkill({
   id: '6d6cddc0-cddd-4ecd-9a30-0c32b692908f',
   name: {
     en: 'Servo positioning',
+    it: 'Posizionamento mediante servomeccanismo',
     zh: '伺服定位',
     hi: 'सर्वो से स्थिति नियंत्रण',
     es: 'Posicionamiento mediante servos',
@@ -38,6 +39,7 @@ export const servoPositioning_Skill_Data = defineSkill({
     methodological: "Identify the use of position feedback to command and maintain an actuator's location.",
     frontend: {
       en: 'Understand how a servo mechanism controls a position.',
+      it: 'Comprendi come un servomeccanismo controlla una posizione.',
       zh: '理解伺服机构如何控制位置。',
       hi: 'समझें कि सर्वो तंत्र किसी स्थिति को कैसे नियंत्रित करता है।',
       es: 'Comprende cómo un servomecanismo controla una posición.',

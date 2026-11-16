@@ -11,6 +11,7 @@ export const globesMapsAndProjection_SkillGroup_Data = defineSkillGroup({
   id: 'ff4e9a7d-282b-4e27-a446-b470dfd89cf0',
   name: {
     en: 'Globes, Maps, and Projection',
+    it: 'Globi, carte e proiezioni',
     zh: '地球仪、地图与投影',
     hi: 'ग्लोब, मानचित्र और प्रक्षेप',
     es: 'Globos, mapas y proyecciones',
@@ -57,6 +58,7 @@ export const globesMapsAndProjection_SkillGroup_Data = defineSkillGroup({
       'A spherical Earth cannot be shown on a flat sheet without some distortion, and different representations support different questions. Choosing one is a reasoning decision rather than a display preference.',
     frontend: {
       en: "Explore how maps and globes represent Earth's curved surface in different ways.",
+      it: 'Esplora come carte e globi rappresentano in modi diversi la superficie curva della Terra.',
       zh: '探索地图和地球仪如何以不同方式呈现地球弯曲的表面。',
       hi: 'जानें कि मानचित्र और ग्लोब पृथ्वी की घुमावदार सतह को अलग-अलग तरह से कैसे दिखाते हैं।',
       es: 'Explora cómo los mapas y globos representan de distintas maneras la superficie curva de la Tierra.',

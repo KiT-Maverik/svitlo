@@ -5,6 +5,7 @@ export const personalityAssessment_Skill_Data = defineSkill({
   id: '5ed9b7c2-6ab6-478f-8681-1169b944368f',
   name: {
     en: 'Personality Assessment',
+    it: 'Valutazione della personalità',
     zh: '人格评估',
     hi: 'व्यक्तित्व का आकलन',
     es: 'Evaluación de la personalidad',
@@ -38,6 +39,7 @@ export const personalityAssessment_Skill_Data = defineSkill({
     methodological: 'Evaluate self-report and informant measures for reliability, validity, and response distortion.',
     frontend: {
       en: 'Explore what personality tests can and cannot measure reliably.',
+      it: 'Esplora che cosa i test di personalità possano misurare in modo attendibile e quali siano i loro limiti.',
       zh: '探索人格测试能可靠测量什么、不能测量什么。',
       hi: 'जानें कि व्यक्तित्व परीक्षण विश्वसनीय रूप से क्या माप सकते हैं और क्या नहीं।',
       es: 'Explora qué pueden y qué no pueden medir con fiabilidad las pruebas de personalidad.',

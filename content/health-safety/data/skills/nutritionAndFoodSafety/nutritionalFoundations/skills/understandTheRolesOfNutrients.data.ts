@@ -5,6 +5,7 @@ export const understandTheRolesOfNutrients_Skill_Data = defineSkill({
   id: '0a510715-e601-4a5a-a637-bd09e12304e0',
   name: {
     en: 'Understand the roles of nutrients',
+    it: 'Comprendere il ruolo dei nutrienti',
     zh: '理解营养素的作用',
     hi: 'पोषक तत्वों की भूमिका समझना',
     es: 'Comprender las funciones de los nutrientes',
@@ -39,6 +40,7 @@ export const understandTheRolesOfNutrients_Skill_Data = defineSkill({
       'Relate macronutrients, vitamins, minerals and fibre to their major physiological roles and distinguish nutritional adequacy from the amount of food alone, without reproducing biochemical mechanisms.',
     frontend: {
       en: 'Recognize the different jobs of nutrients and fiber.',
+      it: 'Riconosci le diverse funzioni dei nutrienti e delle fibre alimentari.',
       zh: '识别不同营养素和膳食纤维在身体中的作用。',
       hi: 'विभिन्न पोषक तत्वों और रेशों के कार्य पहचानें।',
       es: 'Reconoce las distintas funciones de los nutrientes y la fibra.',

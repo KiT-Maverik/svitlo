@@ -12,6 +12,7 @@ export const soilsAndSurfaceSediments_SkillGroup_Data = defineSkillGroup({
   id: '95e86302-23ea-4f79-874c-682c2d9793f7',
   name: {
     en: 'Soils and Surface Sediments',
+    it: 'Suoli e sedimenti superficiali',
     zh: '土壤与地表沉积物',
     hi: 'मृदा और सतही अवसाद',
     es: 'Suelos y sedimentos superficiales',
@@ -61,6 +62,7 @@ export const soilsAndSurfaceSediments_SkillGroup_Data = defineSkillGroup({
       'Soil develops through alteration of parent material and accumulation of organic matter, while loose sediments vary in grain size and drainage. Their location and physical conditions influence water movement, vegetation and practical land use.',
     frontend: {
       en: 'Discover how soils and loose sediments form and affect land use.',
+      it: "Scopri come si formano i suoli e i sedimenti sciolti e come influenzano l'uso del territorio.",
       zh: '探索土壤和松散沉积物如何形成并影响土地利用。',
       hi: 'जानें कि मृदा और ढीले अवसाद कैसे बनते हैं तथा भूमि उपयोग को कैसे प्रभावित करते हैं।',
       es: 'Descubre cómo se forman los suelos y los sedimentos sueltos y cómo influyen en el uso del suelo.',

@@ -5,6 +5,7 @@ export const explainGeographicImpactsOfClimateChange_Skill_Data = defineSkill({
   id: '6354fc59-cfd7-4c74-8abc-cfd86c16470c',
   name: {
     en: 'Explain geographic impacts of climate change',
+    it: 'Spiegare gli effetti geografici del cambiamento climatico',
     zh: '解释气候变化的地理影响',
     hi: 'जलवायु परिवर्तन के भौगोलिक प्रभाव समझाना',
     es: 'Explicar impactos geográficos del cambio climático',
@@ -39,6 +40,7 @@ export const explainGeographicImpactsOfClimateChange_Skill_Data = defineSkill({
       'Connect documented climate changes with shifting regional water, temperature, ice, ecosystems or hazard patterns, noting that impacts vary by location and exposure and should not be inferred from one local weather event.',
     frontend: {
       en: 'Explore how climate change affects places differently around the world.',
+      it: 'Esplora come il cambiamento climatico influisce in modi diversi sui luoghi del mondo.',
       zh: '探索气候变化如何对世界不同地方产生不同影响。',
       hi: 'जानें कि जलवायु परिवर्तन दुनिया के अलग स्थानों को अलग तरह प्रभावित करता है।',
       es: 'Explora cómo el cambio climático afecta de forma distinta a lugares del mundo.',

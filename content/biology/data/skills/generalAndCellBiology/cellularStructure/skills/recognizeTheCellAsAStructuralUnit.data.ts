@@ -5,6 +5,7 @@ export const recognizeTheCellAsAStructuralUnit_Skill_Data = defineSkill({
   id: '7dea0683-c420-47f6-b3bf-1ebba2c990ca',
   name: {
     en: 'Recognize the Cell as a Structural Unit',
+    it: 'Riconoscere la cellula come unità strutturale',
     zh: '认识细胞是结构的基本单位',
     hi: 'कोशिका को संरचनात्मक इकाई के रूप में पहचानना',
     es: 'Reconocer la célula como unidad estructural',
@@ -39,6 +40,7 @@ export const recognizeTheCellAsAStructuralUnit_Skill_Data = defineSkill({
       'Understand that the tissues and bodies of cellular organisms consist of microscopic units, each with its own boundary.',
     frontend: {
       en: 'Understand why cells are the basic structural units of living organisms.',
+      it: 'Comprendi perché le cellule sono le unità strutturali fondamentali degli organismi viventi.',
       zh: '理解为什么细胞是生物体结构的基本单位。',
       hi: 'समझें कि कोशिकाएँ जीवों की मूल संरचनात्मक इकाइयाँ क्यों हैं।',
       es: 'Comprende por qué las células son las unidades estructurales básicas de los seres vivos.',

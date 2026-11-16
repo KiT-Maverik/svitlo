@@ -5,6 +5,7 @@ export const explainTheLossOfUsefulEnergy_Skill_Data = defineSkill({
   id: 'e8deae94-2616-4545-9346-28f8df3b5e3c',
   name: {
     en: 'Explain the loss of useful energy',
+    it: 'Spiegare la perdita di energia utile',
     zh: '解释有用能量的损失',
     hi: 'उपयोगी ऊर्जा की कमी समझाना',
     es: 'Explicar la pérdida de energía útil',
@@ -39,6 +40,7 @@ export const explainTheLossOfUsefulEnergy_Skill_Data = defineSkill({
       "Dissipation into forms of energy less suitable for a particular task reduces a process's usefulness but does not violate conservation of total energy.",
     frontend: {
       en: 'Recognize why energy spread into less useful forms has not disappeared.',
+      it: "Riconosci perché l'energia dispersa in forme meno utilizzabili non è scomparsa.",
       zh: '认识到能量变成较难利用的形式时并未消失。',
       hi: 'समझें कि कम उपयोगी रूपों में फैल गई ऊर्जा नष्ट नहीं हुई है।',
       es: 'Reconoce que la energía dispersada en formas menos útiles no ha desaparecido.',

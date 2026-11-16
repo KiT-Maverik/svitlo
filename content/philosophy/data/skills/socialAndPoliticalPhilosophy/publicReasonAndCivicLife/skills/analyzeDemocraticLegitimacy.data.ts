@@ -5,6 +5,7 @@ export const analyzeDemocraticLegitimacy_Skill_Data = defineSkill({
   id: '21de2823-4d94-406e-9f76-db10e087994f',
   name: {
     en: 'Analyze democratic legitimacy',
+    it: 'Analizzare la legittimità democratica',
     zh: '分析民主正当性',
     hi: 'लोकतांत्रिक वैधता का विश्लेषण',
     es: 'Analizar la legitimidad democrática',
@@ -39,6 +40,7 @@ export const analyzeDemocraticLegitimacy_Skill_Data = defineSkill({
       'Evaluate the roles of participation, representation, minority protections, and accountability in justifying collective decisions.',
     frontend: {
       en: 'Consider how participation, representation and accountability justify democracy.',
+      it: 'Considera come partecipazione, rappresentanza e responsabilità giustifichino la democrazia.',
       zh: '思考参与、代表和问责如何为民主提供正当性。',
       hi: 'सोचो कि भागीदारी, प्रतिनिधित्व और जवाबदेही लोकतंत्र को कैसे उचित ठहराते हैं।',
       es: 'Considera cómo participación, representación y rendición de cuentas justifican la democracia.',

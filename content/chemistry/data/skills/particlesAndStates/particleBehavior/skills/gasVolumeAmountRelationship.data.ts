@@ -5,6 +5,7 @@ export const gasVolumeAmountRelationship_Skill_Data = defineSkill({
   id: '78b28e57-f307-4f7a-a5dd-4d60eea4b27b',
   name: {
     en: 'Gas Volume–Amount Relationship',
+    it: 'Relazione tra volume e quantità di gas',
     zh: '气体体积与物质的量的关系',
     hi: 'गैस के आयतन और पदार्थ की मात्रा का संबंध',
     es: 'Relación volumen–cantidad de gas',
@@ -39,6 +40,7 @@ export const gasVolumeAmountRelationship_Skill_Data = defineSkill({
       'Relate the volume of a gas to its amount of substance at fixed temperature and pressure under appropriate conditions.',
     frontend: {
       en: 'Relate gas volume to the amount of gas at constant temperature and pressure.',
+      it: 'Collega il volume alla quantità di gas a temperatura e pressione costanti.',
       zh: '将恒温恒压下气体的体积与物质的量联系起来。',
       hi: 'तापमान और दाब स्थिर होने पर गैस के आयतन को उसकी पदार्थ की मात्रा से जोड़ें।',
       es: 'Relaciona el volumen de un gas con la cantidad de sustancia a temperatura y presión constantes.',

@@ -5,6 +5,7 @@ export const explainLinusTorvaldsRoleInLinux_Skill_Data = defineSkill({
   id: '43fd1150-c2b5-424f-ace6-2129606b0ad6',
   name: {
     en: "Explain Linus Torvalds' Role in Linux",
+    it: 'Spiegare il ruolo di Linus Torvalds in Linux',
     zh: '解释莱纳斯·托瓦兹在 Linux 中的作用',
     hi: 'लिनक्स में लिनुस टॉर्वाल्ड्स की भूमिका समझाना',
     es: 'Explicar el papel de Linus Torvalds en Linux',
@@ -39,6 +40,7 @@ export const explainLinusTorvaldsRoleInLinux_Skill_Data = defineSkill({
       'Torvalds initiated the Linux kernel; a complete operating system also includes other components, and collaborative development sustains its evolution.',
     frontend: {
       en: 'Learn how the Linux kernel began and why many contributors build operating systems.',
+      it: 'Scopri come è nato il kernel Linux e perché molti collaboratori contribuiscono ai sistemi operativi.',
       zh: '了解 Linux 内核如何起步，以及众多贡献者为何共同构建操作系统。',
       hi: 'जानें कि लिनक्स कर्नेल की शुरुआत कैसे हुई और अनेक योगदानकर्ता ऑपरेटिंग सिस्टम क्यों बनाते हैं।',
       es: 'Descubre cómo comenzó el núcleo Linux y por qué muchas personas contribuyen a construir sistemas operativos.',

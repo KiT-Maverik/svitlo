@@ -11,6 +11,7 @@ export const relationToMultiplication_Skill_Data = defineSkill({
     ka: 'გაყოფა — შებრუნებული მოქმედებები',
     kk: 'Бөлу — кері амалдар',
     en: 'Division — Inverse operations',
+    it: 'Divisione — Operazioni inverse',
     qm: 'Bölüv — ters ameller',
     zh: '除法 — 逆运算',
     hi: 'भाग — व्युत्क्रम संक्रियाएँ',
@@ -39,6 +40,7 @@ export const relationToMultiplication_Skill_Data = defineSkill({
       'Division is inverse to multiplication: knowing a product and a nonzero factor makes it possible to determine the other factor. This relationship supports checking a quotient by multiplication.',
     frontend: {
       en: 'You can use multiplication to find or check a division answer because the two operations are inverses.',
+      it: 'Puoi usare la moltiplicazione per trovare o verificare il risultato di una divisione perché le due operazioni sono inverse.',
       qm: 'Arttıruvnen bölüv bir-birine ters ameller olğanı içün arttıruv yardımınen bölüvniñ cevabını tapa ya da teşkere ete bilesiñ.',
       zh: '你能利用乘法求出或检查除法结果，因为乘法和除法互为逆运算。',
       hi: 'तुम गुणा का उपयोग कर भाग का उत्तर निकाल या जाँच सकते हो, क्योंकि ये दोनों एक-दूसरे की उलटी संक्रियाएँ हैं।',

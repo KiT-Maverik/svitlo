@@ -5,6 +5,7 @@ export const classicalConditioning_Skill_Data = defineSkill({
   id: 'fb781680-4ca2-4c0a-aa82-79ab36c0f85e',
   name: {
     en: 'Classical Conditioning',
+    it: 'Condizionamento classico',
     zh: '经典条件作用',
     hi: 'शास्त्रीय अनुबंधन',
     es: 'Condicionamiento clásico',
@@ -39,6 +40,7 @@ export const classicalConditioning_Skill_Data = defineSkill({
       'Identify conditioned and unconditioned stimuli and responses within a learned predictive association.',
     frontend: {
       en: 'Understand how a neutral signal can come to trigger a learned response.',
+      it: 'Comprendi come uno stimolo inizialmente neutro possa arrivare a provocare una risposta appresa.',
       zh: '理解中性信号如何逐渐引发习得性反应。',
       hi: 'समझें कि पहले तटस्थ संकेत से सीखी हुई प्रतिक्रिया कैसे उत्पन्न होने लगती है।',
       es: 'Comprende cómo una señal antes neutra llega a provocar una respuesta aprendida.',

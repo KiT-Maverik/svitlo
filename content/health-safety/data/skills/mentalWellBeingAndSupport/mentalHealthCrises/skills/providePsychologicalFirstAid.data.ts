@@ -5,6 +5,7 @@ export const providePsychologicalFirstAid_Skill_Data = defineSkill({
   id: 'eeb5f1a3-bf05-4fd5-92c5-dd0c57b743d7',
   name: {
     en: 'Provide psychological first aid',
+    it: 'Prestare primo soccorso psicologico',
     zh: '提供心理急救支持',
     hi: 'मनोवैज्ञानिक प्राथमिक सहायता दें',
     es: 'Prestar primeros auxilios psicológicos',
@@ -39,6 +40,7 @@ export const providePsychologicalFirstAid_Skill_Data = defineSkill({
       'Offer calm, practical, non-intrusive support, immediate needs assessment, and connection with services without forcing disclosure of traumatic experiences.',
     frontend: {
       en: 'Offer calm practical assistance without pressuring someone to recount trauma.',
+      it: 'Offri un aiuto pratico e calmo senza fare pressione perché la persona racconti il trauma.',
       zh: '提供冷静而实际的帮助，不强迫别人复述创伤经历。',
       hi: 'शांत और व्यावहारिक मदद दें, बिना किसी पर दुखद अनुभव दोहराने का दबाव डाले।',
       es: 'Ofrece ayuda práctica y serena sin presionar a nadie para que relate experiencias traumáticas.',

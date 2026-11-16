@@ -5,6 +5,7 @@ export const evaluateTheRoleOfMemoryInPersonalIdentity_Skill_Data = defineSkill(
   id: '61e09d7a-b381-4e8e-8ce7-b48136c47cc5',
   name: {
     en: 'Evaluate the role of memory in personal identity',
+    it: "Valutare il ruolo della memoria nell'identità personale",
     zh: '评估记忆在个人同一性中的作用',
     hi: 'व्यक्तिगत पहचान में स्मृति की भूमिका का मूल्यांकन',
     es: 'Evaluar el papel de la memoria en la identidad personal',
@@ -39,6 +40,7 @@ export const evaluateTheRoleOfMemoryInPersonalIdentity_Skill_Data = defineSkill(
       'Examine the philosophical significance and limitations of remembered experience as a criterion of persistence.',
     frontend: {
       en: 'Examine whether memories are enough to establish personal continuity.',
+      it: 'Esamina se i ricordi siano sufficienti a stabilire la continuità personale.',
       zh: '考察记忆是否足以建立一个人随时间延续的同一性。',
       hi: 'जाँचें कि क्या स्मृतियाँ व्यक्तिगत निरंतरता स्थापित करने के लिए पर्याप्त हैं।',
       es: 'Examina si los recuerdos bastan para establecer la continuidad personal.',

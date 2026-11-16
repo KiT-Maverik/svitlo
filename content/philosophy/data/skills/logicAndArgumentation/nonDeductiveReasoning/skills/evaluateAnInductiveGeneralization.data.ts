@@ -5,6 +5,7 @@ export const evaluateAnInductiveGeneralization_Skill_Data = defineSkill({
   id: '008ce0dc-bb6c-4eca-a2de-3e97a8f23b65',
   name: {
     en: 'Evaluate an inductive generalization',
+    it: 'Valutare una generalizzazione induttiva',
     zh: '评估归纳概括',
     hi: 'आगमनात्मक सामान्यीकरण का मूल्यांकन',
     es: 'Evaluar una generalización inductiva',
@@ -39,6 +40,7 @@ export const evaluateAnInductiveGeneralization_Skill_Data = defineSkill({
       'Judge how well observed cases support a claim about a broader population, including the relevance of selection and variation.',
     frontend: {
       en: 'Evaluate how well observed examples support a broader generalization.',
+      it: 'Valuta quanto gli esempi osservati sostengano una generalizzazione più ampia.',
       zh: '评估观察到的例子在多大程度上支持更广泛的概括。',
       hi: 'जाँचें कि देखे गए उदाहरण किसी व्यापक सामान्यीकरण का कितना समर्थन करते हैं।',
       es: 'Evalúa hasta qué punto los ejemplos observados respaldan una generalización más amplia.',

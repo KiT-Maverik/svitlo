@@ -5,6 +5,7 @@ export const protoplanetaryDisks_Skill_Data = defineSkill({
   id: '904fbbbd-cf0b-4ff1-87f9-bae6e40a034b',
   name: {
     en: 'Protoplanetary Disks',
+    it: 'Dischi protoplanetari',
     zh: '原行星盘',
     hi: 'आदिग्रहीय चक्रिकाएँ',
     es: 'Discos protoplanetarios',
@@ -38,6 +39,7 @@ export const protoplanetaryDisks_Skill_Data = defineSkill({
     methodological: 'Explain the role of rotating gas-and-dust disks in producing material for planet formation.',
     frontend: {
       en: 'See how disks of gas and dust provide the ingredients for forming planets.',
+      it: 'Scopri come i dischi di gas e polveri forniscono il materiale per formare i pianeti.',
       zh: '了解气体和尘埃组成的盘状结构如何提供形成行星的原料。',
       hi: 'जानें कि गैस और धूल की चक्रिकाएँ ग्रहों के निर्माण के लिए सामग्री कैसे उपलब्ध कराती हैं।',
       es: 'Observa cómo los discos de gas y polvo aportan los materiales necesarios para formar planetas.',

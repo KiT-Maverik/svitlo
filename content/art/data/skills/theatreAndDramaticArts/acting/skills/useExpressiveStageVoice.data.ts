@@ -5,6 +5,7 @@ export const useExpressiveStageVoice_Skill_Data = defineSkill({
   id: 'f02bb5c0-a3b0-4b6b-88f2-c0d7315973d5',
   name: {
     en: 'Use Expressive Stage Voice',
+    it: 'Usare una voce espressiva sul palco',
     zh: '使用富有表现力的舞台声音',
     hi: 'अभिव्यंजक मंचीय आवाज़ का उपयोग करें',
     es: 'Usar una voz escénica expresiva',
@@ -38,6 +39,7 @@ export const useExpressiveStageVoice_Skill_Data = defineSkill({
     methodological: 'Adjust articulation, projection and quality to communicate dramatic meaning.',
     frontend: {
       en: 'Speak on stage with clear, expressive projection and tone.',
+      it: 'Parla sul palco con voce chiara, proiezione adeguata e tono espressivo.',
       zh: '在舞台上以清晰、有表现力的音量和语调说话。',
       hi: 'मंच पर स्पष्ट और भावपूर्ण आवाज़ तथा स्वर के साथ बोलें।',
       es: 'Habla en escena con una proyección y un tono claros y expresivos.',

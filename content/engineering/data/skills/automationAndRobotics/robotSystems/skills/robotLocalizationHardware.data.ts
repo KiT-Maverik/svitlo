@@ -5,6 +5,7 @@ export const robotLocalizationHardware_Skill_Data = defineSkill({
   id: '9c3e78cd-f278-48f2-8266-e8442efb6aa3',
   name: {
     en: 'Robot localization hardware',
+    it: 'Dispositivi per la localizzazione dei robot',
     zh: '机器人定位硬件',
     hi: 'रोबोट की स्थिति निर्धारण हार्डवेयर',
     es: 'Hardware de localización de robots',
@@ -38,6 +39,7 @@ export const robotLocalizationHardware_Skill_Data = defineSkill({
     methodological: 'Describe how sensing surroundings or movement contributes to estimating physical position.',
     frontend: {
       en: "Recognize hardware used to estimate a robot's location.",
+      it: 'Riconosci i dispositivi utilizzati per stimare la posizione di un robot.',
       zh: '识别用于估计机器人位置的硬件。',
       hi: 'रोबोट की स्थिति का अनुमान लगाने वाले उपकरणों की पहचान करें।',
       es: 'Reconoce el hardware que se utiliza para estimar la posición de un robot.',

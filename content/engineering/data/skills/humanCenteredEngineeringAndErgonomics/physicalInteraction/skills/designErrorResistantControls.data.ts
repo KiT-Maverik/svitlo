@@ -5,6 +5,7 @@ export const designErrorResistantControls_Skill_Data = defineSkill({
   id: '08833b76-bc86-4fa6-b3f6-3fbf1f5d35f1',
   name: {
     en: 'Design error-resistant controls',
+    it: 'Progettare comandi resistenti agli errori',
     zh: '设计防误操作控制装置',
     hi: 'गलतियों से बचाने वाले नियंत्रण डिज़ाइन करना',
     es: 'Diseñar controles resistentes a errores',
@@ -38,6 +39,7 @@ export const designErrorResistantControls_Skill_Data = defineSkill({
     methodological: 'Reduce unintended activation or confusion through control geometry and spacing.',
     frontend: {
       en: 'Design controls that reduce predictable mistakes.',
+      it: 'Progetta comandi che riducano gli errori prevedibili.',
       zh: '设计能够减少可预见错误的控制装置。',
       hi: 'ऐसे नियंत्रण बनाएँ जो पहले से अनुमानित गलतियों को कम करें।',
       es: 'Diseña controles que reduzcan los errores previsibles.',

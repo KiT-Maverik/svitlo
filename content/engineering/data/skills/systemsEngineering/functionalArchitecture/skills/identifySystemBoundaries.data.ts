@@ -5,6 +5,7 @@ export const identifySystemBoundaries_Skill_Data = defineSkill({
   id: '27359aea-78ae-45c2-82b0-d10c598322ce',
   name: {
     en: 'Identify system boundaries',
+    it: 'Individuare i confini di un sistema',
     zh: '识别系统边界',
     hi: 'प्रणाली की सीमाएँ पहचानना',
     es: 'Identificar límites del sistema',
@@ -38,6 +39,7 @@ export const identifySystemBoundaries_Skill_Data = defineSkill({
     methodological: 'Separate the engineered assembly from its users, surroundings and connected external services.',
     frontend: {
       en: 'Distinguish the system being studied from its environment and users.',
+      it: "Distingui il sistema studiato dall'ambiente circostante e dai suoi utenti.",
       zh: '区分正在研究的系统及其环境和用户。',
       hi: 'अध्ययन की जा रही प्रणाली को उसके पर्यावरण और उपयोगकर्ताओं से अलग पहचानें।',
       es: 'Distingue el sistema estudiado de su entorno y sus usuarios.',

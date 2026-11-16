@@ -5,6 +5,7 @@ export const sensoryNeuralPathways_Skill_Data = defineSkill({
   id: '5c230f09-2698-4dda-a0d0-a679dbf7be34',
   name: {
     en: 'Sensory Neural Pathways',
+    it: 'Vie nervose sensoriali',
     zh: '感觉神经通路',
     hi: 'संवेदी तंत्रिका मार्ग',
     es: 'Vías nerviosas sensoriales',
@@ -38,6 +39,7 @@ export const sensoryNeuralPathways_Skill_Data = defineSkill({
     methodological: 'Relate incoming bodily signals to coordinated processing that supports detection and response.',
     frontend: {
       en: 'Trace how sensory signals are processed to support perception and action.',
+      it: 'Segui il percorso di elaborazione dei segnali sensoriali che sostiene percezione e azione.',
       zh: '追踪感觉信号如何经过处理以支持感知和行动。',
       hi: 'जानें कि संवेदन संकेतों को कैसे संसाधित किया जाता है ताकि हम अनुभव और प्रतिक्रिया कर सकें।',
       es: 'Sigue cómo se procesan las señales sensoriales para permitir la percepción y la acción.',

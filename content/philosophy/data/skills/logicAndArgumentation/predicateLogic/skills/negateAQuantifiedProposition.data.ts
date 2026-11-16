@@ -5,6 +5,7 @@ export const negateAQuantifiedProposition_Skill_Data = defineSkill({
   id: '6354dfd6-2d56-4952-adee-f562d5f81118',
   name: {
     en: 'Negate a quantified proposition',
+    it: 'Negare una proposizione quantificata',
     zh: '否定量化命题',
     hi: 'परिमाणित प्रस्ताव का निषेध करना',
     es: 'Negar una proposición cuantificada',
@@ -39,6 +40,7 @@ export const negateAQuantifiedProposition_Skill_Data = defineSkill({
       'Use the relationships between not-all and some-not, and between none and there-exists, to interpret negation accurately.',
     frontend: {
       en: "Negate statements involving 'all' or 'some' without changing their meaning incorrectly.",
+      it: 'Nega affermazioni che contengono «tutti» o «alcuni» senza alterarne erroneamente il significato.',
       zh: '正确否定包含“所有”或“某些”的陈述，不混淆其含义。',
       hi: "'सभी' या 'कुछ' वाले कथनों का अर्थ बिगाड़े बिना उनका निषेध करें।",
       es: "Niega afirmaciones con 'todos' o 'algunos' sin alterar incorrectamente su significado.",

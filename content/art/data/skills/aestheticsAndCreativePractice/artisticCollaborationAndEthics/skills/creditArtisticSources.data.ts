@@ -5,6 +5,7 @@ export const creditArtisticSources_Skill_Data = defineSkill({
   id: 'cafeb05e-b8d5-45d9-a52b-573692fdb3fd',
   name: {
     en: 'Credit Artistic Sources',
+    it: 'Citare le fonti artistiche',
     zh: '注明艺术来源',
     hi: 'कलात्मक स्रोतों को श्रेय दें',
     es: 'Dar crédito a las fuentes artísticas',
@@ -38,6 +39,7 @@ export const creditArtisticSources_Skill_Data = defineSkill({
     methodological: 'Identify the relevant original creators and materials incorporated into another work.',
     frontend: {
       en: 'Acknowledge the artists and materials that contribute to your work.',
+      it: 'Riconosci e cita gli artisti e le fonti dei materiali che contribuiscono alla tua opera.',
       zh: '注明对作品有所贡献的艺术家和素材来源。',
       hi: 'अपने काम में योगदान देने वाले कलाकारों और सामग्रियों को श्रेय दें।',
       es: 'Reconoce a los artistas y materiales que contribuyen a tu obra.',

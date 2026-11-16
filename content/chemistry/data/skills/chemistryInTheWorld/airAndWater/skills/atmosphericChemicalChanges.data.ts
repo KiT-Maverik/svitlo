@@ -5,6 +5,7 @@ export const atmosphericChemicalChanges_Skill_Data = defineSkill({
   id: 'c0fe2718-aa7e-44af-aa34-375189ae2dd4',
   name: {
     en: 'Atmospheric Chemical Changes',
+    it: 'Trasformazioni chimiche atmosferiche',
     zh: '大气中的化学变化',
     hi: 'वायुमंडलीय रासायनिक परिवर्तन',
     es: 'Cambios químicos atmosféricos',
@@ -39,6 +40,7 @@ export const atmosphericChemicalChanges_Skill_Data = defineSkill({
       'Relate pollutant reactions and transformations to phenomena such as acid deposition or photochemical smog.',
     frontend: {
       en: 'Connect atmospheric chemical reactions with smog and acid deposition.',
+      it: "Collega le reazioni chimiche nell'atmosfera allo smog e alle deposizioni acide.",
       zh: '联系大气化学反应与烟雾及酸沉降现象。',
       hi: 'वायुमंडल की रासायनिक अभिक्रियाओं को धूम-कोहरे और अम्लीय निक्षेपण से जोड़ें।',
       es: 'Relaciona las reacciones químicas atmosféricas con el esmog y la deposición ácida.',

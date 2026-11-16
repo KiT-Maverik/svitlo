@@ -5,6 +5,7 @@ export const explainTheRoleOfMusclesInMovement_Skill_Data = defineSkill({
   id: '2c2472d9-f288-4e66-8f13-a37b5ba1a58d',
   name: {
     en: 'Explain the Role of Muscles in Movement',
+    it: 'Spiegare il ruolo dei muscoli nel movimento',
     zh: '解释肌肉在运动中的作用',
     hi: 'गति में मांसपेशियों की भूमिका समझाना',
     es: 'Explicar el papel de los músculos en el movimiento',
@@ -39,6 +40,7 @@ export const explainTheRoleOfMusclesInMovement_Skill_Data = defineSkill({
       'Relate contraction of muscle tissue to the generation of force that changes the positions of body parts.',
     frontend: {
       en: 'Connect muscle contractions with the forces needed to move.',
+      it: 'Collega le contrazioni muscolari alle forze necessarie per il movimento.',
       zh: '将肌肉收缩与产生运动所需的力量联系起来。',
       hi: 'मांसपेशियों के संकुचन को गति के लिए आवश्यक बल से जोड़ें।',
       es: 'Relaciona las contracciones musculares con la fuerza necesaria para moverse.',

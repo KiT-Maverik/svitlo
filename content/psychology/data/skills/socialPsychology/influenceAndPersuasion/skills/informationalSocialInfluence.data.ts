@@ -5,6 +5,7 @@ export const informationalSocialInfluence_Skill_Data = defineSkill({
   id: 'c3bd6be9-e4eb-459e-91aa-e13aafd8477f',
   name: {
     en: 'Informational Social Influence',
+    it: 'Influenza sociale informativa',
     zh: '信息性社会影响',
     hi: 'सूचनात्मक सामाजिक प्रभाव',
     es: 'Influencia social informativa',
@@ -38,6 +39,7 @@ export const informationalSocialInfluence_Skill_Data = defineSkill({
     methodological: "Explain adopting others' judgments when they appear to provide useful evidence about uncertainty.",
     frontend: {
       en: 'Understand when others provide information we use to guide decisions.',
+      it: 'Comprendi quando gli altri ci forniscono informazioni che usiamo per guidare le decisioni.',
       zh: '理解何时会将他人提供的信息作为决策依据。',
       hi: 'समझें कि कब हम दूसरों की दी गई जानकारी से अपने निर्णय तय करते हैं।',
       es: 'Comprende cuándo usamos la información de otros para orientar nuestras decisiones.',

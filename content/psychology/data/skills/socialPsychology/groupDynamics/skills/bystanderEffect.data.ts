@@ -5,6 +5,7 @@ export const bystanderEffect_Skill_Data = defineSkill({
   id: 'd7b677b8-a37c-4d7e-9ebd-f6148a8e83a6',
   name: {
     en: 'Bystander Effect',
+    it: 'Effetto spettatore',
     zh: '旁观者效应',
     hi: 'दर्शक प्रभाव',
     es: 'Efecto del espectador',
@@ -39,6 +40,7 @@ export const bystanderEffect_Skill_Data = defineSkill({
       "Explain how others' presence can change perceived responsibility or interpretations of a situation.",
     frontend: {
       en: 'Explore why people may hesitate to help when many others are present.',
+      it: 'Esplora perché le persone possano esitare ad aiutare quando sono presenti molti altri.',
       zh: '探索为何在场的人越多，有时反而越少有人主动帮助。',
       hi: 'जानें कि कई लोगों के मौजूद होने पर सहायता करने में झिझक क्यों हो सकती है।',
       es: 'Explora por qué la presencia de muchas personas puede hacer que nadie ayude.',

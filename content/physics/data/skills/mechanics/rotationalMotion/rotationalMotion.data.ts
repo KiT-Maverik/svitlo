@@ -12,6 +12,7 @@ export const rotationalMotion_SkillGroup_Data = defineSkillGroup({
   id: 'a5d66a29-ba09-4f21-99af-091fee972aa9',
   name: {
     en: 'Rotational Motion',
+    it: 'Moto rotatorio',
     zh: '旋转运动',
     hi: 'घूर्णन गति',
     es: 'Movimiento de rotación',
@@ -61,6 +62,7 @@ export const rotationalMotion_SkillGroup_Data = defineSkillGroup({
       "Rotation involves torque, mass distribution, and inertial properties. Conservation of angular momentum describes a system's motion when there is no net external torque.",
     frontend: {
       en: 'Explore how turning forces and mass distribution affect rotational motion.',
+      it: 'Esplora come i momenti delle forze e la distribuzione della massa influenzano il moto rotatorio.',
       zh: '探索使物体转动的力和质量分布如何影响旋转运动。',
       hi: 'जानें कि घुमाने वाले बल और द्रव्यमान का वितरण घूर्णन को कैसे प्रभावित करते हैं।',
       es: 'Explora cómo las fuerzas que producen giros y la distribución de masa afectan el movimiento de rotación.',

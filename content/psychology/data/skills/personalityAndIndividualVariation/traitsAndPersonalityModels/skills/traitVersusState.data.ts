@@ -5,6 +5,7 @@ export const traitVersusState_Skill_Data = defineSkill({
   id: '19dc6992-f528-4c96-92dd-b5f06d3b47f6',
   name: {
     en: 'Trait versus State',
+    it: 'Tratto e stato',
     zh: '特质与状态的区别',
     hi: 'स्थायी गुण बनाम अस्थायी अवस्था',
     es: 'Rasgo frente a estado',
@@ -38,6 +39,7 @@ export const traitVersusState_Skill_Data = defineSkill({
     methodological: 'Distinguish relatively stable tendencies from temporary conditions affecting behavior.',
     frontend: {
       en: 'Distinguish a lasting personality tendency from a temporary state.',
+      it: 'Distingui una tendenza duratura della personalità da uno stato temporaneo.',
       zh: '区分持久的人格倾向和暂时的心理状态。',
       hi: 'लंबे समय तक रहने वाली व्यक्तित्व प्रवृत्ति और अस्थायी अवस्था में अंतर करें।',
       es: 'Distingue una tendencia duradera de personalidad de un estado temporal.',

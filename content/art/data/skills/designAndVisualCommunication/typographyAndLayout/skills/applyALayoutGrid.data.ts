@@ -5,6 +5,7 @@ export const applyALayoutGrid_Skill_Data = defineSkill({
   id: '6eed9ff1-a34a-457a-97d6-5cd517636ecc',
   name: {
     en: 'Apply a Layout Grid',
+    it: 'Applicare una griglia di impaginazione',
 
     zh: '应用版式网格',
     hi: 'लेआउट ग्रिड लागू करें',
@@ -39,6 +40,7 @@ export const applyALayoutGrid_Skill_Data = defineSkill({
     methodological: 'Organize content with deliberate alignments and a consistent spatial framework.',
     frontend: {
       en: 'Arrange text and images using a consistent grid.',
+      it: 'Disponi testi e immagini usando una griglia coerente.',
 
       zh: '使用一致的网格来排列文字和图像。',
       hi: 'एक सुसंगत ग्रिड का उपयोग करके पाठ और चित्र व्यवस्थित करें।',

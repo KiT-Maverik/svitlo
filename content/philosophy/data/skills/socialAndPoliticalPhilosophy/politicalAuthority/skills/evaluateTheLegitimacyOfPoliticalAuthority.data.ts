@@ -5,6 +5,7 @@ export const evaluateTheLegitimacyOfPoliticalAuthority_Skill_Data = defineSkill(
   id: 'd30c45bb-40b1-4398-b9ec-c3828d79fc0e',
   name: {
     en: 'Evaluate the legitimacy of political authority',
+    it: "Valutare la legittimità dell'autorità politica",
     zh: '评估政治权威的正当性',
     hi: 'राजनीतिक सत्ता की वैधता का मूल्यांकन',
     es: 'Evaluar la legitimidad de la autoridad política',
@@ -39,6 +40,7 @@ export const evaluateTheLegitimacyOfPoliticalAuthority_Skill_Data = defineSkill(
       'Examine reasons offered to justify the right to make binding public decisions, not merely whether an institution controls force.',
     frontend: {
       en: 'Compare arguments that justify government through consent, security or cooperation.',
+      it: 'Valuta le ragioni che possono giustificare il diritto delle istituzioni di prendere decisioni pubbliche vincolanti.',
       zh: '比较以同意、安全或合作为政府提供正当性的论证。',
       hi: 'सहमति, सुरक्षा या सहयोग से शासन को उचित ठहराने वाले तर्कों की तुलना करो।',
       es: 'Compara argumentos que justifican el gobierno mediante consentimiento, seguridad o cooperación.',

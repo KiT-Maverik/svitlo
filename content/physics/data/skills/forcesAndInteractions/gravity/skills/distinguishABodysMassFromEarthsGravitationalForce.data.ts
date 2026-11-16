@@ -5,6 +5,7 @@ export const distinguishABodysMassFromEarthsGravitationalForce_Skill_Data = defi
   id: '27cab56c-7d65-4934-9801-2509fc57eb25',
   name: {
     en: "Distinguish a body's mass from Earth's gravitational force",
+    it: 'Distinguere la massa di un corpo dalla forza gravitazionale terrestre',
     zh: '区分物体的质量与地球施加的引力',
     hi: 'वस्तु के द्रव्यमान और पृथ्वी के गुरुत्व बल में अंतर करना',
     es: 'Distinguir la masa de un cuerpo de la fuerza gravitatoria terrestre',
@@ -39,6 +40,7 @@ export const distinguishABodysMassFromEarthsGravitationalForce_Skill_Data = defi
       "Compare a body's unchanged mass with gravitational force, which depends on the gravitational field, using models. Do not equate these quantities or confuse gravitational force with the body's weight as the force it exerts on a support.",
     frontend: {
       en: "Distinguish an object's mass from the gravitational force acting on it.",
+      it: 'Distingui la massa di un oggetto dalla forza gravitazionale che agisce su di esso.',
       zh: '区分物体的质量与作用在它上面的重力。',
       hi: 'वस्तु के द्रव्यमान को उस पर लगने वाले गुरुत्व बल से अलग पहचानें।',
       es: 'Distingue la masa de un objeto de la fuerza gravitatoria que actúa sobre él.',

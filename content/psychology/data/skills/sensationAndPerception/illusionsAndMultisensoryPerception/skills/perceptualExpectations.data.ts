@@ -5,6 +5,7 @@ export const perceptualExpectations_Skill_Data = defineSkill({
   id: '58a2eaf6-03bc-4fa1-b142-c6057e890002',
   name: {
     en: 'Perceptual Expectations',
+    it: 'Aspettative percettive',
     zh: '知觉预期',
     hi: 'प्रत्यक्षण की अपेक्षाएँ',
     es: 'Expectativas perceptivas',
@@ -39,6 +40,7 @@ export const perceptualExpectations_Skill_Data = defineSkill({
       'Analyze the influence of prior knowledge or priming while distinguishing interpretation from the actual stimulus.',
     frontend: {
       en: 'Recognize when prior knowledge changes interpretation of an unchanged stimulus.',
+      it: "Riconosci quando le conoscenze precedenti cambino l'interpretazione di uno stimolo rimasto invariato.",
       zh: '识别先前知识何时改变了对不变刺激的解释。',
       hi: 'पहचानें कि पहले से मौजूद ज्ञान कब उसी उत्तेजना की व्याख्या बदल देता है।',
       es: 'Reconoce cuándo el conocimiento previo cambia la interpretación de un estímulo que no ha cambiado.',

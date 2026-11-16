@@ -5,6 +5,7 @@ export const prehistoricSymbolicCulture_Skill_Data = defineSkill({
   id: '7a6701aa-647b-413e-8517-31f253bfb0fd',
   name: {
     en: 'Prehistoric Symbolic Culture',
+    it: 'Cultura simbolica preistorica',
     zh: '史前象征文化',
     hi: 'प्रागैतिहासिक प्रतीकात्मक संस्कृति',
     es: 'Cultura simbólica prehistórica',
@@ -39,6 +40,7 @@ export const prehistoricSymbolicCulture_Skill_Data = defineSkill({
       'Interpret ornaments, images, burials, and ritual traces while acknowledging ambiguous archaeological evidence.',
     frontend: {
       en: 'Explore what ancient art and burials may reveal about beliefs.',
+      it: "Esplora che cosa possono rivelare l'arte e le sepolture antiche sulle credenze.",
       zh: '探索古代艺术和墓葬可能揭示的信仰观念。',
       hi: 'जानें कि प्राचीन कला और दफ़न स्थल विश्वासों के बारे में क्या बता सकते हैं।',
       es: 'Explora qué pueden revelar el arte y los enterramientos antiguos sobre las creencias.',

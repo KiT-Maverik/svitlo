@@ -11,6 +11,7 @@ export const beforeAfterBetween_Skill_Data = defineSkill({
     ka: 'წინა, მომდევნო და შუალედური რიცხვები',
     kk: 'Алдыңғы, келесі және аралық сандар',
     en: 'Previous, next and intermediate numbers',
+    it: 'Numeri precedenti, successivi e intermedi',
     qm: 'Öñki, soñraki ve aradaki sayılar',
     zh: '前一个、后一个与中间的数',
     hi: 'पिछली, अगली और बीच की संख्याएँ',
@@ -39,6 +40,7 @@ export const beforeAfterBetween_Skill_Data = defineSkill({
       'Where predecessor and successor exist in the relevant set, they differ from a natural number by one. Intermediate numbers are defined by numerical order and can be represented on a number line.',
     frontend: {
       en: 'Find the number immediately before or after another number, or numbers that lie between two given numbers.',
+      it: 'Trova il numero immediatamente precedente o successivo a un altro oppure i numeri compresi tra due numeri dati.',
       qm: 'Bir sayıdan tam evel ya da tam soñ kelgen sayını, yahut eki berilgen sayı arasındaki sayılarnı tap.',
       zh: '找到一个数前面紧挨着或后面紧挨着的数，以及两个数之间的数。',
       hi: 'किसी संख्या के ठीक पहले या बाद की संख्या और दो संख्याओं के बीच की संख्याएँ खोजें।',

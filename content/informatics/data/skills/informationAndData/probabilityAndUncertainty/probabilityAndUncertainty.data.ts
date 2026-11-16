@@ -15,6 +15,7 @@ export const probabilityAndUncertainty_SkillGroup_Data = defineSkillGroup({
   id: '8194d9fb-a38f-487b-b644-362535e13593',
   name: {
     en: 'Probability and Uncertainty',
+    it: 'Probabilità e incertezza',
     zh: '概率与不确定性',
     hi: 'प्रायिकता और अनिश्चितता',
     es: 'Probabilidad e incertidumbre',
@@ -69,6 +70,7 @@ export const probabilityAndUncertainty_SkillGroup_Data = defineSkillGroup({
       'Distinguishing possible and impossible outcomes, probabilistic models, comparisons of likelihoods, and limits of prediction. Randomness as a source of variation in a digital model is distinct from assessing a particular risk.',
     frontend: {
       en: 'Explore possible events, their chances and the limits of prediction.',
+      it: 'Esplora gli eventi possibili, le loro probabilità e i limiti delle previsioni.',
       zh: '探索可能发生的事件、其发生的概率以及预测的局限。',
       hi: 'संभावित घटनाओं, उनके होने के अवसर और पूर्वानुमान की सीमाएँ जानें।',
       es: 'Explora los sucesos posibles, sus probabilidades y los límites de la predicción.',

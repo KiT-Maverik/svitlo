@@ -5,6 +5,7 @@ export const explainCSMACD_Skill_Data = defineSkill({
   id: 'b8dd31c0-7aff-49d9-84d5-1a339f47e344',
   name: {
     en: 'Explain CSMA/CD',
+    it: 'Spiegare CSMA/CD',
     zh: '解释 CSMA/CD',
     hi: 'CSMA/CD समझाना',
     es: 'Explicar CSMA/CD',
@@ -39,6 +40,7 @@ export const explainCSMACD_Skill_Data = defineSkill({
       'Describe how classic shared-medium Ethernet senses channel activity, detects collisions, and retries after a delay. Modern switched full-duplex Ethernet normally does not need this mechanism.',
     frontend: {
       en: 'Learn why older shared Ethernet networks needed collision detection.',
+      it: 'Scopri perché nelle vecchie reti Ethernet condivise era necessario rilevare le collisioni.',
       zh: '了解为什么旧式共享以太网需要碰撞检测。',
       hi: 'जानें कि पुराने साझा ईथरनेट नेटवर्कों को टकराव पहचानने की आवश्यकता क्यों थी।',
       es: 'Aprende por qué las antiguas redes Ethernet compartidas necesitaban detectar colisiones.',

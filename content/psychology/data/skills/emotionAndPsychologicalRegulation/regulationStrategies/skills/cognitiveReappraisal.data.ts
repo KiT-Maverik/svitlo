@@ -5,6 +5,7 @@ export const cognitiveReappraisal_Skill_Data = defineSkill({
   id: '0bb60033-d6a1-4d5f-9bb3-4e65061ed810',
   name: {
     en: 'Cognitive Reappraisal',
+    it: 'Rivalutazione cognitiva',
     zh: '认知重评',
     hi: 'संज्ञानात्मक पुनर्मूल्यांकन',
     es: 'Reevaluación cognitiva',
@@ -39,6 +40,7 @@ export const cognitiveReappraisal_Skill_Data = defineSkill({
       "Explain how reconsidering an event's meaning can change the emotional response without denying the event.",
     frontend: {
       en: 'Reconsider the meaning of a situation to change an emotional response.',
+      it: 'Riconsidera il significato di una situazione per modificare la risposta emotiva.',
       zh: '重新理解情境的意义，以改变情绪反应。',
       hi: 'भावनात्मक प्रतिक्रिया बदलने के लिए परिस्थिति के अर्थ पर फिर सोचें।',
       es: 'Reconsidera el significado de una situación para modificar la respuesta emocional.',

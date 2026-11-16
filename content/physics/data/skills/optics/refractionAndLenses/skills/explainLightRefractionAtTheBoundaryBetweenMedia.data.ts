@@ -5,6 +5,7 @@ export const explainLightRefractionAtTheBoundaryBetweenMedia_Skill_Data = define
   id: '86f7cb9b-ae43-4cd8-91cf-f6d962b95039',
   name: {
     en: 'Explain light refraction at the boundary between media',
+    it: 'Spiegare la rifrazione della luce al confine tra mezzi',
     zh: '解释不同介质交界处的光折射',
     hi: 'दो माध्यमों की सीमा पर प्रकाश का अपवर्तन समझाना',
     es: 'Explicar la refracción en la frontera entre medios',
@@ -39,6 +40,7 @@ export const explainLightRefractionAtTheBoundaryBetweenMedia_Skill_Data = define
       'When light passes between media with different optical properties, its speed changes and, at oblique incidence, so does the direction of the light wave.',
     frontend: {
       en: 'Explain how light can change direction at the boundary between media.',
+      it: 'Spiega come la luce può cambiare direzione quando attraversa il confine tra due mezzi.',
       zh: '解释光线为什么可能在两种介质的分界面上改变方向。',
       hi: 'समझाओ कि दो माध्यमों की सीमा पर प्रकाश की दिशा कैसे बदल सकती है।',
       es: 'Explica cómo la luz puede cambiar de dirección al cruzar la frontera entre dos medios.',

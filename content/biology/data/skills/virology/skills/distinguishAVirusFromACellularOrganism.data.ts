@@ -5,6 +5,7 @@ export const distinguishAVirusFromACellularOrganism_Skill_Data = defineSkill({
   id: 'ee9b2f42-01af-4e9a-994e-94e5d85f8e45',
   name: {
     en: 'Distinguish a Virus from a Cellular Organism',
+    it: 'Distinguere un virus da un organismo cellulare',
     zh: '区分病毒与细胞生物',
     hi: 'विषाणु और कोशिकीय जीव में अंतर करना',
     es: 'Distinguir un virus de un organismo celular',
@@ -39,6 +40,7 @@ export const distinguishAVirusFromACellularOrganism_Skill_Data = defineSkill({
       "Compare cellular organisms' cell membranes, cytoplasm, and independent metabolism with the absence of this cellular organization in a virus particle.",
     frontend: {
       en: 'Understand how viruses differ from organisms made of cells.',
+      it: 'Comprendi come i virus differiscono dagli organismi costituiti da cellule.',
       zh: '了解病毒与由细胞构成的生物有何不同。',
       hi: 'समझें कि विषाणु कोशिकाओं से बने जीवों से कैसे अलग हैं।',
       es: 'Comprende en qué se diferencian los virus de los organismos formados por células.',

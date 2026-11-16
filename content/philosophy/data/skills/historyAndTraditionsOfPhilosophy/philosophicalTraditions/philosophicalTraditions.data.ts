@@ -16,6 +16,7 @@ export const philosophicalTraditions_SkillGroup_Data = defineSkillGroup({
   id: 'dedb2815-31f3-46c8-804b-9ebe83a7197e',
   name: {
     en: 'Philosophical Traditions',
+    it: 'Tradizioni filosofiche',
     zh: '哲学传统',
     hi: 'दार्शनिक परंपराएँ',
     es: 'Tradiciones filosóficas',
@@ -76,6 +77,7 @@ export const philosophicalTraditions_SkillGroup_Data = defineSkillGroup({
       'Intellectual traditions developed across many cultures through original arguments and sustained exchanges. Greek, Indian, Chinese, Islamic, African, Latin American, and particular Indigenous lineages are examined as philosophical sources in their own right, without treating a region as a single doctrine.',
     frontend: {
       en: 'Examine philosophical arguments developed in many distinct cultural traditions.',
+      it: 'Esamina le argomentazioni filosofiche sviluppate in tradizioni culturali diverse.',
       zh: '研究多种不同文化传统中形成的哲学论证。',
       hi: 'अलग-अलग सांस्कृतिक परंपराओं में विकसित दार्शनिक तर्कों का अध्ययन करो।',
       es: 'Examina argumentos filosóficos desarrollados en diversas tradiciones culturales.',

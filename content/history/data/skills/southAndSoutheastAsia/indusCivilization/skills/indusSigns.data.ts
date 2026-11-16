@@ -5,6 +5,7 @@ export const indusSigns_Skill_Data = defineSkill({
   id: '7cf46757-ae12-478d-ab10-48f2904563f2',
   name: {
     en: 'Indus Signs',
+    it: "Segni della civiltà dell'Indo",
     zh: '印度河文字和符号',
     hi: 'सिंधु चिह्न',
     es: 'Signos del Indo',
@@ -39,6 +40,7 @@ export const indusSigns_Skill_Data = defineSkill({
       'Distinguish surviving inscriptions from deciphered text, acknowledging that the script remains undeciphered.',
     frontend: {
       en: 'Understand why Indus signs are still difficult to read.',
+      it: "Comprendi perché i segni dell'Indo sono ancora difficili da decifrare.",
       zh: '理解为何印度河文字至今仍难以解读。',
       hi: 'समझें कि सिंधु लिपि के चिह्नों को आज भी पढ़ना क्यों कठिन है।',
       es: 'Comprende por qué los signos del Indo siguen sin poder leerse con certeza.',

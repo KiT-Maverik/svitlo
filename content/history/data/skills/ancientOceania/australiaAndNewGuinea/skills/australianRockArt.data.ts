@@ -5,6 +5,7 @@ export const australianRockArt_Skill_Data = defineSkill({
   id: 'b2942714-ec04-42a7-a0c0-c132fd798e96',
   name: {
     en: 'Australian Rock Art',
+    it: 'Arte rupestre australiana',
     zh: '澳大利亚岩画艺术',
     hi: 'ऑस्ट्रेलिया की शैलकला',
     es: 'Arte rupestre australiano',
@@ -38,6 +39,7 @@ export const australianRockArt_Skill_Data = defineSkill({
     methodological: 'Interpret rock images and dating limitations as evidence of practices over long timescales.',
     frontend: {
       en: 'Learn what ancient Australian rock art may reveal.',
+      it: "Scopri che cosa potrebbe rivelare l'antica arte rupestre australiana.",
       zh: '了解澳大利亚古老岩画可能揭示哪些历史信息。',
       hi: 'जानें कि ऑस्ट्रेलिया की प्राचीन शैलकला से क्या पता चल सकता है।',
       es: 'Descubre qué puede revelar el arte rupestre antiguo de Australia.',

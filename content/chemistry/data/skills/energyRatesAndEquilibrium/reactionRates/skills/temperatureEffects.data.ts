@@ -5,6 +5,7 @@ export const temperatureEffects_Skill_Data = defineSkill({
   id: '4cb029a8-9eed-43d7-841c-d9f82f02ff52',
   name: {
     en: 'Temperature Effects',
+    it: 'Effetti della temperatura',
     zh: '温度的影响',
     hi: 'तापमान का प्रभाव',
     es: 'Efectos de la temperatura',
@@ -38,6 +39,7 @@ export const temperatureEffects_Skill_Data = defineSkill({
     methodological: 'Connect temperature to the distribution of molecular energies and reaction rates.',
     frontend: {
       en: 'Understand how temperature affects the chances of successful particle interactions.',
+      it: 'Comprendi come la temperatura influisce sulla probabilità di interazioni efficaci tra particelle.',
       zh: '理解温度如何影响粒子有效相互作用的概率。',
       hi: 'समझें कि तापमान कणों के सफल टकराने की संभावना कैसे बदलता है।',
       es: 'Comprende cómo la temperatura afecta la probabilidad de interacciones eficaces entre partículas.',

@@ -5,6 +5,7 @@ export const orbitalResonances_Skill_Data = defineSkill({
   id: 'e1c3acbb-9ec2-4c46-a704-1c7621de2142',
   name: {
     en: 'Orbital Resonances',
+    it: 'Risonanze orbitali',
     zh: '轨道共振',
     hi: 'कक्षीय अनुनाद',
     es: 'Resonancias orbitales',
@@ -38,6 +39,7 @@ export const orbitalResonances_Skill_Data = defineSkill({
     methodological: 'Recognize recurring period relationships that can organize or destabilize orbital systems.',
     frontend: {
       en: 'Recognize when repeating orbital timing relationships affect a system.',
+      it: 'Riconosci quando rapporti periodici tra tempi orbitali influenzano un sistema.',
       zh: '识别重复出现的轨道周期关系何时会影响整个天体系统。',
       hi: 'पहचानें कि कक्षाओं के समय में बार-बार बनने वाले अनुपात किसी तंत्र को कब प्रभावित करते हैं।',
       es: 'Reconoce cuándo las relaciones periódicas que se repiten entre órbitas afectan a un sistema.',

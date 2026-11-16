@@ -5,6 +5,7 @@ export const distributeIndependentTasksAcrossExecutors_Skill_Data = defineSkill(
   id: 'fc6d08e8-022d-4e5a-b48f-3a90a047ca91',
   name: {
     en: 'Distribute Independent Tasks Across Executors',
+    it: 'Distribuire compiti indipendenti tra esecutori',
     zh: '将独立任务分配给多个执行单元',
     hi: 'स्वतंत्र कार्यों को कई निष्पादकों में बाँटना',
     es: 'Distribuir tareas independientes entre ejecutores',
@@ -39,6 +40,7 @@ export const distributeIndependentTasksAcrossExecutors_Skill_Data = defineSkill(
       'Plan which subtasks can run simultaneously and which must wait for dependent results in a model computing system. For example, process several images independently before combining their outputs.',
     frontend: {
       en: 'Plan which tasks can run together and which must wait for other results.',
+      it: 'Pianifica quali compiti possono essere svolti insieme e quali devono attendere altri risultati.',
       zh: '规划哪些任务可以同时运行，哪些需要等待其他任务的结果。',
       hi: 'योजना बनाएँ कि कौन-से कार्य साथ चल सकते हैं और किन्हें दूसरे परिणामों की प्रतीक्षा करनी होगी।',
       es: 'Planifica qué tareas pueden ejecutarse juntas y cuáles deben esperar los resultados de otras.',

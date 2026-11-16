@@ -12,6 +12,7 @@ export const argumentsAndInference_SkillGroup_Data = defineSkillGroup({
   id: 'e54cbf83-391d-4ce6-8a32-a4bd08930486',
   name: {
     en: 'Arguments and Inference',
+    it: 'Argomentazioni e inferenze',
     zh: '论证与推论',
     hi: 'तर्क और निष्कर्ष निकालना',
     es: 'Argumentos e inferencia',
@@ -60,6 +61,7 @@ export const argumentsAndInference_SkillGroup_Data = defineSkillGroup({
       'Arguments connect propositions through an inferential claim; assertions, explanations, and rhetorical appeals may occur nearby without playing the same role.',
     frontend: {
       en: 'Discover how premises and conclusions form an argument.',
+      it: "Scopri come premesse e conclusioni costituiscono un'argomentazione.",
       zh: '了解前提与结论如何构成一个论证。',
       hi: 'जानें कि आधार-वाक्य और निष्कर्ष मिलकर तर्क कैसे बनाते हैं।',
       es: 'Descubre cómo las premisas y las conclusiones forman un argumento.',

@@ -5,6 +5,7 @@ export const compareCollectionInsertionCosts_Skill_Data = defineSkill({
   id: '8cd40212-cd6f-436b-824b-01d8fc5df9a7',
   name: {
     en: 'Compare Collection Insertion Costs',
+    it: 'Confrontare i costi di inserimento nelle collezioni',
     zh: '比较集合插入操作的成本',
     hi: 'संग्रह में डालने की लागत की तुलना करना',
     es: 'Comparar costos de inserción en colecciones',
@@ -39,6 +40,7 @@ export const compareCollectionInsertionCosts_Skill_Data = defineSkill({
       'Explain why an array may require moving elements while a linked list may require changing links, although the insertion point still needs to be located.',
     frontend: {
       en: 'Explore why insertion can require shifting array elements or changing links.',
+      it: 'Esplora perché un inserimento può richiedere lo spostamento di elementi di un array o la modifica di collegamenti.',
       zh: '探索插入元素时为什么有时要移动数组元素，有时只需修改链接。',
       hi: 'जानें कि डालने के समय सरणी के तत्व खिसकाने या कड़ियाँ बदलने की जरूरत क्यों होती है।',
       es: 'Explora por qué insertar puede requerir desplazar elementos de un arreglo o cambiar enlaces.',

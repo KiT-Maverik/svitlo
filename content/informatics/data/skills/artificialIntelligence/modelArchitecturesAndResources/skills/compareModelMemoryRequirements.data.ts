@@ -5,6 +5,7 @@ export const compareModelMemoryRequirements_Skill_Data = defineSkill({
   id: '47fe7fe6-516d-4f52-aa11-4d49d3d2ae7e',
   name: {
     en: 'Compare Model Memory Requirements',
+    it: 'Confrontare i requisiti di memoria dei modelli',
     zh: '比较模型的内存需求',
     hi: 'मॉडल की मेमोरी ज़रूरतों की तुलना करना',
     es: 'Comparar requisitos de memoria de modelos',
@@ -39,6 +40,7 @@ export const compareModelMemoryRequirements_Skill_Data = defineSkill({
       'Estimate RAM or GPU memory needed for model weights and runtime working data at a specified numerical precision and context length. Disk file size is not the same as peak runtime memory use.',
     frontend: {
       en: 'Estimate the memory required to run a model rather than just store its files.',
+      it: 'Stima la memoria necessaria per eseguire un modello, non solo per conservarne i file.',
       zh: '估算运行模型所需的内存，而不只是保存模型文件的空间。',
       hi: 'मॉडल चलाने के लिए आवश्यक मेमोरी का अनुमान लगाएँ, केवल फ़ाइलें रखने की जगह नहीं।',
       es: 'Estima la memoria necesaria para ejecutar un modelo, no solo para guardar sus archivos.',

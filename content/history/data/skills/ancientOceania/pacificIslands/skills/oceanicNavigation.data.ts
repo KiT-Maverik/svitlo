@@ -5,6 +5,7 @@ export const oceanicNavigation_Skill_Data = defineSkill({
   id: '173980b8-49f7-49f1-89a4-b427e69514a9',
   name: {
     en: 'Oceanic Navigation',
+    it: 'Navigazione oceanica',
     zh: '大洋洲航海导航',
     hi: 'महासागरीय नौवहन',
     es: 'Navegación oceánica',
@@ -38,6 +39,7 @@ export const oceanicNavigation_Skill_Data = defineSkill({
     methodological: 'Explain how knowledge of winds, stars, waves, and islands supported ancient sea voyages.',
     frontend: {
       en: 'Explore how Pacific navigators crossed open water.',
+      it: 'Esplora come i navigatori del Pacifico attraversavano il mare aperto.',
       zh: '探索太平洋航海者如何穿越开阔海域。',
       hi: 'जानें कि प्रशांत महासागर के नाविक खुले समुद्र को कैसे पार करते थे।',
       es: 'Explora cómo los navegantes del Pacífico cruzaban el mar abierto.',

@@ -5,6 +5,7 @@ export const describeClusteredAndDispersedArrangements_Skill_Data = defineSkill(
   id: '0d811075-f2d9-4d15-9ee5-315c1d545d69',
   name: {
     en: 'Describe clustered and dispersed arrangements',
+    it: 'Descrivere distribuzioni raggruppate e disperse',
     zh: '描述聚集与分散的分布',
     hi: 'समूहित और बिखरे विन्यासों का वर्णन',
     es: 'Describir distribuciones agrupadas y dispersas',
@@ -39,6 +40,7 @@ export const describeClusteredAndDispersedArrangements_Skill_Data = defineSkill(
       'Compare objects gathered in a small area with objects spread across a larger one while considering the observation scale.',
     frontend: {
       en: 'Describe whether features are grouped together or spread apart.',
+      it: 'Descrivi se gli elementi sono raggruppati oppure distribuiti a distanza gli uni dagli altri.',
       zh: '描述地理要素是聚集在一起还是分散分布。',
       hi: 'बताएँ कि भौगोलिक चीज़ें एक साथ समूहित हैं या दूर-दूर फैली हैं।',
       es: 'Describe si los elementos están agrupados o repartidos.',

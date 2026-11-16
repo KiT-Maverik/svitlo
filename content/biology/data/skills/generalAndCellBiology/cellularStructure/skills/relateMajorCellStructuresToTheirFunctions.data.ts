@@ -5,6 +5,7 @@ export const relateMajorCellStructuresToTheirFunctions_Skill_Data = defineSkill(
   id: '7f753ce7-ba78-4861-880d-61f527010540',
   name: {
     en: 'Relate Major Cell Structures to Their Functions',
+    it: 'Collegare le principali strutture cellulari alle loro funzioni',
     zh: '将主要细胞结构与其功能联系起来',
     hi: 'मुख्य कोशिकीय संरचनाओं और उनके कार्यों का संबंध समझना',
     es: 'Relacionar las estructuras celulares principales con sus funciones',
@@ -39,6 +40,7 @@ export const relateMajorCellStructuresToTheirFunctions_Skill_Data = defineSkill(
       'Associate the membrane with selective exchange, the nucleus with genetic information, and other depicted organelles with their main cellular functions.',
     frontend: {
       en: 'Connect the structures inside cells with the jobs they perform.',
+      it: 'Collega le strutture interne delle cellule alle funzioni che svolgono.',
       zh: '了解细胞内部各结构及其所承担的功能。',
       hi: 'कोशिका के भीतर की संरचनाओं को उनके कार्यों से जोड़कर समझें।',
       es: 'Relaciona las estructuras internas de las células con las funciones que realizan.',

@@ -5,6 +5,7 @@ export const analyzeMexicanMuralism_Skill_Data = defineSkill({
   id: '71af0b98-5c3c-4925-a0d3-cdd5f3189b1e',
   name: {
     en: 'Analyze Mexican Muralism',
+    it: 'Analizzare il muralismo messicano',
     zh: '分析墨西哥壁画运动',
     hi: 'मैक्सिकन भित्तिचित्र कला का विश्लेषण करें',
     es: 'Analizar el muralismo mexicano',
@@ -39,6 +40,7 @@ export const analyzeMexicanMuralism_Skill_Data = defineSkill({
       'Explain how monumental public paintings connect form, political narrative and social aims in works by selected Mexican muralists.',
     frontend: {
       en: 'See how Mexican muralists connected public painting with history and social ideas.',
+      it: 'Osserva come i muralisti messicani collegavano la pittura pubblica alla storia e alle idee sociali.',
       zh: '了解墨西哥壁画家如何将公共绘画与历史和社会思想联系起来。',
       hi: 'जानें कि मैक्सिकन भित्तिचित्र कलाकारों ने सार्वजनिक चित्रकला को इतिहास और सामाजिक विचारों से कैसे जोड़ा।',
       es: 'Descubre cómo los muralistas mexicanos vincularon la pintura pública con la historia y las ideas sociales.',

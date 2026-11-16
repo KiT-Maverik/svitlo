@@ -12,6 +12,7 @@ export const recognitionAndExpression_SkillGroup_Data = defineSkillGroup({
   id: 'a201153b-7b45-4399-b561-8a6ced3c42a0',
   name: {
     en: 'Recognition and Expression',
+    it: 'Riconoscimento ed espressione',
     zh: '情绪识别与表达',
     hi: 'भावनाओं की पहचान और अभिव्यक्ति',
     es: 'Reconocimiento y expresión',
@@ -55,6 +56,7 @@ export const recognitionAndExpression_SkillGroup_Data = defineSkillGroup({
       'Emotional information is conveyed through multiple channels, but neither facial expression nor tone is an infallible window into another mind.',
     frontend: {
       en: 'Learn how emotions can be recognized and expressed in different contexts.',
+      it: 'Scopri come le emozioni possano essere riconosciute ed espresse in contesti differenti.',
       zh: '学习在不同情境下如何识别和表达情绪。',
       hi: 'जानें कि विभिन्न परिस्थितियों में भावनाएँ कैसे पहचानी और व्यक्त की जाती हैं।',
       es: 'Aprende a reconocer y expresar emociones en distintas situaciones.',

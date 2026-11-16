@@ -5,6 +5,7 @@ export const electricMotorConstruction_Skill_Data = defineSkill({
   id: '82e13252-c0ab-4621-bb10-8665c02c9dae',
   name: {
     en: 'Electric motor construction',
+    it: 'Struttura del motore elettrico',
     zh: '电动机结构',
     hi: 'विद्युत मोटर की संरचना',
     es: 'Construcción de motores eléctricos',
@@ -39,6 +40,7 @@ export const electricMotorConstruction_Skill_Data = defineSkill({
       'Identify rotor, stator, magnets or windings, bearings and commutation arrangements that produce rotation in an electrical machine. This differs from incorporating a finished motor into a controlled mechanism.',
     frontend: {
       en: 'Explore the internal parts that let an electric motor rotate.',
+      it: 'Esplora i componenti interni che consentono a un motore elettrico di ruotare.',
       zh: '探索使电动机旋转的内部部件。',
       hi: 'विद्युत मोटर को घुमाने वाले आंतरिक घटकों को जानें।',
       es: 'Explora las piezas internas que permiten girar a un motor eléctrico.',

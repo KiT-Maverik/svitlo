@@ -5,6 +5,7 @@ export const minimumWage_Skill_Data = defineSkill({
   id: '2ab249c1-6019-4ab2-934a-a060fd1d379f',
   name: {
     en: 'Мінімальна оплата праці',
+    it: 'Salario minimo',
     zh: '最低工资',
     hi: 'न्यूनतम वेतन',
     es: 'Salario mínimo',
@@ -39,6 +40,7 @@ export const minimumWage_Skill_Data = defineSkill({
       'Analyze potential consequences of a statutory wage floor in light of the relevant labor-market structure.',
     frontend: {
       en: 'Explore how a minimum wage may affect workers and businesses.',
+      it: 'Esplora come un salario minimo può influenzare lavoratori e imprese.',
       zh: '探索最低工资可能怎样影响劳动者和企业。',
       hi: 'जानें कि न्यूनतम वेतन श्रमिकों और व्यवसायों को कैसे प्रभावित कर सकता है।',
       es: 'Explora cómo un salario mínimo puede afectar a trabajadores y empresas.',

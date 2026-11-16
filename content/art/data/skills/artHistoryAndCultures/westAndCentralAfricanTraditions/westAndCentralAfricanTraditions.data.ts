@@ -11,6 +11,7 @@ export const westAndCentralAfricanTraditions_SkillGroup_Data = defineSkillGroup(
   id: '7e2da08a-9d4e-424c-a17e-995d111a6f19',
   name: {
     en: 'West and Central African Traditions',
+    it: "Tradizioni artistiche dell'Africa occidentale e centrale",
     zh: '西非与中非传统',
     hi: 'पश्चिम और मध्य अफ्रीकी परंपराएँ',
     es: 'Tradiciones de África occidental y central',
@@ -53,6 +54,7 @@ export const westAndCentralAfricanTraditions_SkillGroup_Data = defineSkillGroup(
       "These examples refer to particular peoples and court or community practices. They are not interchangeable illustrations of a supposedly uniform 'African art'.",
     frontend: {
       en: 'Study distinct artistic traditions connected to named West and Central African communities.',
+      it: "Studia tradizioni artistiche diverse, legate a specifiche comunità dell'Africa occidentale e centrale.",
       zh: '研究与西非和中非特定社群相关的不同艺术传统。',
       hi: 'पश्चिम और मध्य अफ्रीका के विशिष्ट समुदायों से जुड़ी अलग-अलग कलात्मक परंपराओं का अध्ययन करें।',
       es: 'Estudia tradiciones artísticas distintas vinculadas a comunidades concretas de África occidental y central.',

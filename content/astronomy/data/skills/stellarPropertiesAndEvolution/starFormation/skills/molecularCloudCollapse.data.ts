@@ -5,6 +5,7 @@ export const molecularCloudCollapse_Skill_Data = defineSkill({
   id: '448b5df6-04d3-4d3a-b52d-c70ae70137ef',
   name: {
     en: 'Molecular Cloud Collapse',
+    it: 'Collasso delle nubi molecolari',
     zh: '分子云坍缩',
     hi: 'आणविक बादल का संकुचन',
     es: 'Colapso de nubes moleculares',
@@ -39,6 +40,7 @@ export const molecularCloudCollapse_Skill_Data = defineSkill({
       'Explain how gravitational collapse of dense gas can initiate star formation against thermal and other support.',
     frontend: {
       en: 'Explain how dense regions of gas can collapse to begin forming stars.',
+      it: 'Spiega come regioni dense di gas possano collassare e dare inizio alla formazione stellare.',
       zh: '解释气体云中密度较高的区域如何因引力收缩，开始形成恒星。',
       hi: 'समझाएँ कि गैस के घने क्षेत्र संकुचित होकर तारों के बनने की शुरुआत कैसे करते हैं।',
       es: 'Explica cómo las regiones densas de gas pueden colapsar y comenzar a formar estrellas.',

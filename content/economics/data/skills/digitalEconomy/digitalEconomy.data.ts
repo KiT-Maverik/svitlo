@@ -9,6 +9,7 @@ export const digitalEconomy_SkillDomain_Data = defineSkillDomain({
   id: 'dc2cecdf-3aa0-48e5-82ff-f53bb7642345',
   title: {
     en: 'Цифрова економіка',
+    it: 'Economia digitale',
     zh: '数字经济',
     hi: 'डिजिटल अर्थव्यवस्था',
     es: 'Economía digital',
@@ -51,6 +52,7 @@ export const digitalEconomy_SkillDomain_Data = defineSkillDomain({
       'Digital products and platforms change reproduction costs, market access, competition, and demand for labor. The focus is their economic mechanisms, not software implementation.',
     frontend: {
       en: 'Explore how digital products and platforms change business and markets.',
+      it: 'Esplora come i prodotti e le piattaforme digitali trasformano le imprese e i mercati.',
       zh: '探索数字产品和平台如何改变企业与市场。',
       hi: 'जानें कि डिजिटल उत्पाद और प्लेटफ़ॉर्म व्यवसायों और बाज़ारों को कैसे बदलते हैं।',
       es: 'Explora cómo los productos y las plataformas digitales transforman las empresas y los mercados.',

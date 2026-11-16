@@ -5,6 +5,7 @@ export const habitFormation_Skill_Data = defineSkill({
   id: 'b88f3d8a-351d-467a-b6c2-14fe2efa9a17',
   name: {
     en: 'Habit Formation',
+    it: 'Formazione delle abitudini',
     zh: '习惯形成',
     hi: 'आदत बनना',
     es: 'Formación de hábitos',
@@ -38,6 +39,7 @@ export const habitFormation_Skill_Data = defineSkill({
     methodological: 'Relate repetition in stable contexts and reinforcing outcomes to increasing automaticity.',
     frontend: {
       en: 'Explore how repetition in stable conditions can make actions automatic.',
+      it: 'Esplora come la ripetizione in condizioni stabili possa rendere automatiche le azioni.',
       zh: '探索稳定环境中的重复如何使行为逐渐自动化。',
       hi: 'जानें कि स्थिर परिस्थितियों में दोहराव से कार्य कैसे अपने आप होने लगता है।',
       es: 'Explora cómo repetir acciones en condiciones estables puede automatizarlas.',

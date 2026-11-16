@@ -5,6 +5,7 @@ export const communityInterventionEvaluation_Skill_Data = defineSkill({
   id: '80710161-994d-4b72-9b07-98cd52e54bd0',
   name: {
     en: 'Community Intervention Evaluation',
+    it: 'Valutazione degli interventi comunitari',
     zh: '社区干预效果评估',
     hi: 'सामुदायिक हस्तक्षेप का मूल्यांकन',
     es: 'Evaluación de intervenciones comunitarias',
@@ -39,6 +40,7 @@ export const communityInterventionEvaluation_Skill_Data = defineSkill({
       'Assess whether a population-level behavior-change initiative demonstrates measurable effects without assuming a persuasive message caused them.',
     frontend: {
       en: 'Evaluate whether a community program measurably changed behavior.',
+      it: 'Valuta se un programma rivolto alla comunità ha prodotto cambiamenti misurabili nei comportamenti.',
       zh: '评估社区项目是否带来了可测量的行为变化。',
       hi: 'जाँचें कि किसी सामुदायिक कार्यक्रम से व्यवहार में मापने योग्य बदलाव आया या नहीं।',
       es: 'Evalúa si un programa comunitario produjo cambios de conducta medibles.',

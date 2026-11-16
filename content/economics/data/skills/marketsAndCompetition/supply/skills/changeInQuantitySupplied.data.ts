@@ -5,6 +5,7 @@ export const changeInQuantitySupplied_Skill_Data = defineSkill({
   id: 'c31d2b2a-f83c-4434-972a-4cec905c4506',
   name: {
     en: 'Change in Quantity Supplied',
+    it: 'Variazione della quantità offerta',
     zh: '供给量变化',
     hi: 'आपूर्ति की मात्रा में परिवर्तन',
     es: 'Cambio en la cantidad ofrecida',
@@ -39,6 +40,7 @@ export const changeInQuantitySupplied_Skill_Data = defineSkill({
       "Identify movement along an unchanged supply curve caused by the good's own price, other factors fixed; quantity supplied is what sellers are willing and able to offer, not necessarily actual sales.",
     frontend: {
       en: 'Distinguish willingness to supply from what is actually sold.',
+      it: 'Riconosci il movimento lungo la curva di offerta quando cambia il prezzo, distinguendo la quantità offerta dalle vendite effettive.',
       zh: '区分愿意供给的数量与实际售出的数量。',
       hi: 'आपूर्ति करने की इच्छा और वास्तव में बिकने वाली मात्रा में अंतर करें।',
       es: 'Distingue entre la disposición a ofrecer y lo que realmente se vende.',

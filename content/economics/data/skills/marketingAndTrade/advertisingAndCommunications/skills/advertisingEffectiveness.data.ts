@@ -5,6 +5,7 @@ export const advertisingEffectiveness_Skill_Data = defineSkill({
   id: 'd70f9048-ef45-4e57-a33d-2aadfa877510',
   name: {
     en: 'Оцінка результативності реклами',
+    it: "Valutazione dell'efficacia pubblicitaria",
     zh: '广告效果',
     hi: 'विज्ञापन की प्रभावशीलता',
     es: 'Eficacia publicitaria',
@@ -39,6 +40,7 @@ export const advertisingEffectiveness_Skill_Data = defineSkill({
       'Interpret reach, clicks, conversions, and costs without equating attention with a proven increase in sales.',
     frontend: {
       en: 'Use campaign results to judge performance without assuming clicks equal sales.',
+      it: "Usa i risultati di una campagna per valutarne l'efficacia senza supporre che i clic equivalgano a vendite.",
       zh: '根据活动结果评估表现，不把点击等同于销售。',
       hi: 'परिणामों से अभियान का आकलन करें, क्लिक को बिक्री न मानें।',
       es: 'Evalúa una campaña con sus resultados sin confundir clics con ventas.',

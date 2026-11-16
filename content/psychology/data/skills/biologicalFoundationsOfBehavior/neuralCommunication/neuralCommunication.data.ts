@@ -13,6 +13,7 @@ export const neuralCommunication_SkillGroup_Data = defineSkillGroup({
   id: '800a3236-68b7-4df2-81c8-07aeb4548713',
   name: {
     en: 'Neural Communication',
+    it: 'Comunicazione neurale',
     zh: '神经通讯',
     hi: 'तंत्रिका संचार',
     es: 'Comunicación neuronal',
@@ -57,6 +58,7 @@ export const neuralCommunication_SkillGroup_Data = defineSkillGroup({
       'Communication within nervous systems depends on electrical signals, chemical modulation, and changing connections that relate to behavioral functions.',
     frontend: {
       en: 'Discover how neurons send signals and change their connections.',
+      it: 'Scopri come i neuroni trasmettono segnali e modificano le proprie connessioni.',
       zh: '了解神经元如何传递信号并改变彼此的连接。',
       hi: 'जानें कि न्यूरॉन संकेत कैसे भेजते हैं और उनके आपसी संबंध कैसे बदलते हैं।',
       es: 'Descubre cómo las neuronas envían señales y modifican sus conexiones.',

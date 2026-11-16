@@ -5,6 +5,7 @@ export const ancientSilkRoads_Skill_Data = defineSkill({
   id: 'd0f45514-bb04-44ec-a47a-5a3238038ae4',
   name: {
     en: 'Ancient Silk Roads',
+    it: 'Antiche vie della seta',
     zh: '古代丝绸之路',
     hi: 'प्राचीन रेशम मार्ग',
     es: 'Rutas de la Seda antiguas',
@@ -38,6 +39,7 @@ export const ancientSilkRoads_Skill_Data = defineSkill({
     methodological: 'Trace early multiple overland Eurasian routes and the roles of oasis intermediaries.',
     frontend: {
       en: 'Explore ancient overland routes later known as the Silk Roads.',
+      it: 'Esplora le antiche rotte terrestri in seguito note come Vie della seta.',
       zh: '探索后来被称为丝绸之路的古代陆上商贸路线。',
       hi: 'बाद में रेशम मार्ग कहलाने वाले प्राचीन थल मार्गों को जानें।',
       es: 'Explora las rutas terrestres antiguas que después se llamaron Rutas de la Seda.',

@@ -5,6 +5,7 @@ export const neuralInhibition_Skill_Data = defineSkill({
   id: '81c10296-912e-433f-8d71-415bbf7271ab',
   name: {
     en: 'Neural Inhibition',
+    it: 'Inibizione neuronale',
     zh: '神经抑制',
     hi: 'तंत्रिका अवरोधन',
     es: 'Inhibición neuronal',
@@ -39,6 +40,7 @@ export const neuralInhibition_Skill_Data = defineSkill({
       'Explain how inhibitory signals reduce or regulate activation within a circuit without implying that inhibition means absence of information processing.',
     frontend: {
       en: 'Explain how inhibitory signals help regulate neural activity.',
+      it: "Spiega come i segnali inibitori contribuiscano a regolare l'attività neurale.",
       zh: '解释抑制性信号如何帮助调节神经活动。',
       hi: 'समझाएँ कि अवरोधक संकेत तंत्रिका गतिविधि को नियंत्रित करने में कैसे मदद करते हैं।',
       es: 'Explica cómo las señales inhibidoras ayudan a regular la actividad neuronal.',

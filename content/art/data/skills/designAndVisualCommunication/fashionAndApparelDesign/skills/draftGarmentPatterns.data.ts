@@ -5,6 +5,7 @@ export const draftGarmentPatterns_Skill_Data = defineSkill({
   id: 'a112c0da-49bb-4add-a5ec-8e4ad9753b6f',
   name: {
     en: 'Draft Garment Patterns',
+    it: 'Disegnare cartamodelli',
 
     zh: '绘制服装纸样',
     hi: 'परिधान के पैटर्न तैयार करें',
@@ -40,6 +41,7 @@ export const draftGarmentPatterns_Skill_Data = defineSkill({
       'Translate a proposed three-dimensional clothing form into two-dimensional pattern pieces whose shapes and joins produce the intended fit and volume.',
     frontend: {
       en: 'Turn a clothing concept into pattern pieces that can be assembled.',
+      it: "Trasforma un'idea di abbigliamento in pezzi di cartamodello che possano essere assemblati.",
 
       zh: '将服装概念转化为可组装的纸样部件。',
       hi: 'कपड़ों की अवधारणा को जोड़ने योग्य पैटर्न के टुकड़ों में बदलें।',

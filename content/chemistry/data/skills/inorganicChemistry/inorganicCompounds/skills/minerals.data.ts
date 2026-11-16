@@ -5,6 +5,7 @@ export const minerals_Skill_Data = defineSkill({
   id: '265a0456-608f-450b-9bf6-19029abfda76',
   name: {
     en: 'Minerals',
+    it: 'Minerali',
     zh: '矿物',
     hi: 'खनिज',
     es: 'Minerales',
@@ -38,6 +39,7 @@ export const minerals_Skill_Data = defineSkill({
     methodological: 'Explain how naturally occurring crystalline substances are classified by chemistry and structure.',
     frontend: {
       en: 'Connect mineral compositions and crystal structures with their classification.',
+      it: 'Collega composizione e struttura cristallina dei minerali alla loro classificazione.',
       zh: '联系矿物的化学组成、晶体结构及其分类方式。',
       hi: 'खनिजों की रासायनिक संरचना और क्रिस्टल व्यवस्था को उनके वर्गीकरण से जोड़ें।',
       es: 'Relaciona la composición y las estructuras cristalinas de los minerales con su clasificación.',

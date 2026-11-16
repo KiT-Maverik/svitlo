@@ -5,6 +5,7 @@ export const ceterisParibusAssumption_Skill_Data = defineSkill({
   id: '4065de45-f73c-42f2-a016-6e7e29f8183f',
   name: {
     en: 'Умовне припущення ceteris paribus',
+    it: 'Ipotesi ceteris paribus',
     zh: '其他条件不变假设',
     hi: 'अन्य बातें समान रहने की धारणा',
     es: 'Supuesto ceteris paribus',
@@ -38,6 +39,7 @@ export const ceterisParibusAssumption_Skill_Data = defineSkill({
     methodological: 'Separate the effect of one factor from others within an explicitly specified model.',
     frontend: {
       en: 'Understand what it means to hold other conditions constant.',
+      it: 'Comprendi che cosa significa mantenere costanti le altre condizioni.',
       zh: '理解保持其他条件不变意味着什么。',
       hi: 'समझें कि अन्य परिस्थितियाँ समान रखने का क्या अर्थ है।',
       es: 'Comprende qué significa mantener constantes las demás condiciones.',

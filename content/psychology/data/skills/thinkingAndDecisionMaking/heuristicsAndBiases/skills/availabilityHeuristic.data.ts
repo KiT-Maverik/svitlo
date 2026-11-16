@@ -5,6 +5,7 @@ export const availabilityHeuristic_Skill_Data = defineSkill({
   id: 'f3ce79aa-03b2-4dd4-95da-734d36dd62ea',
   name: {
     en: 'Availability Heuristic',
+    it: 'Euristica della disponibilità',
     zh: '可得性启发式',
     hi: 'उपलब्धता अनुमान-विधि',
     es: 'Heurística de disponibilidad',
@@ -38,6 +39,7 @@ export const availabilityHeuristic_Skill_Data = defineSkill({
     methodological: 'Explain using the ease of recalling examples as a substitute for estimating real frequency.',
     frontend: {
       en: 'Explain why easily recalled examples may seem more common.',
+      it: 'Spiega perché gli esempi facili da ricordare possano sembrare più frequenti.',
       zh: '解释为什么容易想起的例子会让人觉得它们更常见。',
       hi: 'समझाएँ कि आसानी से याद आने वाले उदाहरण अधिक आम क्यों लग सकते हैं।',
       es: 'Explica por qué los ejemplos fáciles de recordar pueden parecer más frecuentes.',

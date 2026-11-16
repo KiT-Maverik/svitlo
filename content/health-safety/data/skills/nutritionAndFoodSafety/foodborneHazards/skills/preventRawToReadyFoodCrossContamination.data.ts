@@ -5,6 +5,7 @@ export const preventRawToReadyFoodCrossContamination_Skill_Data = defineSkill({
   id: '1778aa27-11e6-4e53-b66e-1768f68bafef',
   name: {
     en: 'Prevent raw-to-ready food cross-contamination',
+    it: 'Prevenire la contaminazione incrociata tra alimenti crudi e pronti',
     zh: '防止生食污染即食食品',
     hi: 'कच्चे भोजन से तैयार खाने में संदूषण रोकना',
     es: 'Evitar contaminación cruzada entre alimentos crudos y listos para comer',
@@ -39,6 +40,7 @@ export const preventRawToReadyFoodCrossContamination_Skill_Data = defineSkill({
       'Keep raw animal products and their juices from contaminating ready-to-eat food through separate equipment, storage and handling; this concerns foodborne pathogens rather than allergen cross-contact.',
     frontend: {
       en: 'Keep raw animal products separate from ready-to-eat foods.',
+      it: 'Tieni separati i prodotti animali crudi dagli alimenti pronti al consumo.',
       zh: '把生的动物性食品与可直接食用的食品分开。',
       hi: 'कच्चे पशु उत्पादों को सीधे खाए जाने वाले भोजन से अलग रखें।',
       es: 'Mantén los alimentos crudos de origen animal separados de los listos para comer.',

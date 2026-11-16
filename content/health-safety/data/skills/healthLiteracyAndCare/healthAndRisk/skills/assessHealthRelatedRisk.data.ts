@@ -5,6 +5,7 @@ export const assessHealthRelatedRisk_Skill_Data = defineSkill({
   id: '7417324a-bd12-4bb4-b6ff-ab7a1da7bedc',
   name: {
     en: 'Assess health-related risk',
+    it: 'Valutare un rischio per la salute',
     zh: '评估健康风险',
     hi: 'स्वास्थ्य संबंधी जोखिम का आकलन',
     es: 'Evaluar riesgos para la salud',
@@ -39,6 +40,7 @@ export const assessHealthRelatedRisk_Skill_Data = defineSkill({
       'Evaluate the likelihood and potential consequences of longer-term health outcomes arising from exposures, behaviours or protective measures, accounting for uncertainty without converting population-level estimates into diagnoses.',
     frontend: {
       en: 'Consider the likelihood and possible effects of a health-related risk.',
+      it: 'Considera la probabilità e i possibili effetti di un rischio per la salute.',
       zh: '考虑健康风险发生的可能性和潜在后果。',
       hi: 'स्वास्थ्य जोखिम की संभावना और उसके संभावित परिणामों पर विचार करें।',
       es: 'Considera la probabilidad de un riesgo para la salud y sus posibles consecuencias.',

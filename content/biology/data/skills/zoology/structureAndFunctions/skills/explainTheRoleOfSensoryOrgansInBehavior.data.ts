@@ -5,6 +5,7 @@ export const explainTheRoleOfSensoryOrgansInBehavior_Skill_Data = defineSkill({
   id: 'd4a45b34-cffc-46cf-b36c-a32e6e70bfae',
   name: {
     en: 'Explain the Role of Sensory Organs in Behavior',
+    it: 'Spiegare il ruolo degli organi di senso nel comportamento',
     zh: '解释感觉器官在动物行为中的作用',
     hi: 'व्यवहार में ज्ञानेन्द्रियों की भूमिका समझाना',
     es: 'Explicar el papel de los órganos sensoriales en el comportamiento',
@@ -38,6 +39,7 @@ export const explainTheRoleOfSensoryOrgansInBehavior_Skill_Data = defineSkill({
     methodological: 'Connect perception of sounds, smells, light, or vibrations with orientation and finding food.',
     frontend: {
       en: 'See how sensory organs help animals find food and orient themselves.',
+      it: 'Scopri come gli organi di senso aiutano gli animali a trovare cibo e a orientarsi.',
       zh: '了解感觉器官如何帮助动物寻找食物和辨别方向。',
       hi: 'जानें कि संवेदी अंग जानवरों को भोजन खोजने और दिशा पहचानने में कैसे मदद करते हैं।',
       es: 'Observa cómo los órganos sensoriales ayudan a los animales a encontrar alimento y orientarse.',

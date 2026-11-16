@@ -5,6 +5,7 @@ export const electronShells_Skill_Data = defineSkill({
   id: 'ac347b3b-8f4f-4ecf-8103-fcb36b7b14ab',
   name: {
     en: 'Electron Shells',
+    it: 'Gusci elettronici',
     zh: '电子层',
     hi: 'इलेक्ट्रॉन कोश',
     es: 'Capas electrónicas',
@@ -39,6 +40,7 @@ export const electronShells_Skill_Data = defineSkill({
       'Use shell organization and principal energy levels to explain patterns of electron distribution without treating shells as literal paths of electrons.',
     frontend: {
       en: 'Use electron shells to explain patterns without imagining fixed planetary orbits.',
+      it: 'Usa i gusci elettronici per spiegare le regolarità senza immaginare orbite planetarie fisse.',
       zh: '用电子层解释规律，但不要把电子想象成沿固定行星轨道运动。',
       hi: 'इलेक्ट्रॉन कोशों से पैटर्न समझाएँ, लेकिन इलेक्ट्रॉनों को निश्चित ग्रह-जैसी कक्षाओं में न मानें।',
       es: 'Usa las capas electrónicas para explicar patrones sin imaginar órbitas planetarias fijas.',

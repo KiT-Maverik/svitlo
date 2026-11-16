@@ -5,6 +5,7 @@ export const explainPrimaryKeys_Skill_Data = defineSkill({
   id: '3ee1fbbd-57cb-4b0a-afed-70a992147fa9',
   name: {
     en: 'Explain Primary Keys',
+    it: 'Spiegare le chiavi primarie',
     zh: '解释主键',
     hi: 'प्राथमिक कुंजी समझाना',
     es: 'Explicar las claves primarias',
@@ -39,6 +40,7 @@ export const explainPrimaryKeys_Skill_Data = defineSkill({
       "Explain why a record needs a stable identifier unique within its table and why a person's name or a title is not always an appropriate key.",
     frontend: {
       en: 'Explain why a database needs a stable unique key for each record.',
+      it: 'Spiega perché un database necessita di una chiave univoca stabile per ogni record.',
       zh: '说明数据库为何需要为每条记录设置稳定而唯一的键。',
       hi: 'समझाएँ कि डेटाबेस को हर रिकॉर्ड के लिए स्थिर विशिष्ट कुंजी क्यों चाहिए।',
       es: 'Explica por qué una base de datos necesita una clave única y estable por registro.',

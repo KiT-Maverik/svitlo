@@ -5,6 +5,7 @@ export const explainTheProblemOfOtherMinds_Skill_Data = defineSkill({
   id: '94908af5-a81c-4f49-a532-4aec23aec540',
   name: {
     en: 'Explain the problem of other minds',
+    it: 'Spiegare il problema delle altre menti',
     zh: '解释他心问题',
     hi: 'अन्य मनों की समस्या की व्याख्या',
     es: 'Explicar el problema de las otras mentes',
@@ -39,6 +40,7 @@ export const explainTheProblemOfOtherMinds_Skill_Data = defineSkill({
       "Describe why another being's subjective experiences are not observed in the same way as one's own, and what kinds of inferences are used.",
     frontend: {
       en: 'Ask how we can know whether another being has subjective experiences.',
+      it: 'Domandati come possiamo sapere se un altro essere possieda esperienze soggettive.',
       zh: '思考我们如何知道另一个存在者是否具有主观体验。',
       hi: 'पूछें कि हम कैसे जान सकते हैं कि दूसरे जीव में व्यक्तिपरक अनुभव हैं या नहीं।',
       es: 'Pregunta cómo podemos saber si otro ser tiene experiencias subjetivas.',

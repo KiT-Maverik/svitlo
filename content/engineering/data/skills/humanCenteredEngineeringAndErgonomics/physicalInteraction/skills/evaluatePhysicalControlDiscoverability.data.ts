@@ -5,6 +5,7 @@ export const evaluatePhysicalControlDiscoverability_Skill_Data = defineSkill({
   id: 'ca6b7ef1-b5a8-4f01-9461-01e43454dfd6',
   name: {
     en: 'Evaluate physical control discoverability',
+    it: 'Valutare la riconoscibilità dei comandi fisici',
     zh: '评估实体控制装置的可发现性',
     hi: 'भौतिक नियंत्रण की पहचान में आसानी का मूल्यांकन',
     es: 'Evaluar la facilidad para encontrar controles físicos',
@@ -38,6 +39,7 @@ export const evaluatePhysicalControlDiscoverability_Skill_Data = defineSkill({
     methodological: 'Judge whether location, form and tactile cues make a function apparent.',
     frontend: {
       en: 'Recognize whether a person can find the right physical control.',
+      it: 'Verifica se una persona riesce a individuare il comando fisico corretto.',
       zh: '判断使用者能否找到正确的实体控制装置。',
       hi: 'जाँचें कि व्यक्ति सही भौतिक नियंत्रण ढूँढ़ पाता है या नहीं।',
       es: 'Reconoce si una persona puede localizar el control físico adecuado.',

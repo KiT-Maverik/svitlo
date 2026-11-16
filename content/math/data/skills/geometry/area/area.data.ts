@@ -12,6 +12,7 @@ export const area_SkillGroup_Data = defineSkillGroup({
   id: 'c7516022-048d-4c97-92ed-c4f10d254070',
   name: {
     en: 'Area',
+    it: 'Area',
     qm: 'Meydan',
     lt: 'Plotas',
     lv: 'Laukums',
@@ -55,6 +56,7 @@ export const area_SkillGroup_Data = defineSkillGroup({
       'The extent of a planar region occupied by a figure, modeled using unit squares, rectangles, and decomposition of composite shapes.',
     frontend: {
       en: 'Measure the inside of flat shapes in square units, including rectangles and shapes made of several pieces.',
+      it: 'Misura la superficie interna delle figure piane in unità quadrate, comprese le figure rettangolari e quelle composte da più parti.',
       qm: 'Tüz şekillerniñ iç meydanını kvadrat birliklernen ölç. Dik dörtkenarlar ve bir qaç parçadan tüzülgen şekiller de buña kire.',
       zh: '用平方单位测量平面图形内部的大小，包括长方形和拼合图形。',
       hi: 'आयत और कई हिस्सों की आकृतियों सहित सपाट आकृतियों का क्षेत्रफल वर्ग इकाइयों में नापें।',

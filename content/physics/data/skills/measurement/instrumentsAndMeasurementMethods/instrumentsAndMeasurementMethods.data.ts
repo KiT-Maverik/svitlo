@@ -11,6 +11,7 @@ export const instrumentsAndMeasurementMethods_SkillGroup_Data = defineSkillGroup
   id: '60dd799f-b290-4cf1-9f0c-b903d0949818',
   name: {
     en: 'Instruments and Measurement Methods',
+    it: 'Strumenti e metodi di misura',
     zh: '仪器与测量方法',
     hi: 'उपकरण और मापन विधियाँ',
     es: 'Instrumentos y métodos de medición',
@@ -57,6 +58,7 @@ export const instrumentsAndMeasurementMethods_SkillGroup_Data = defineSkillGroup
       "An instrument's reading depends on its scale, units, and correct use; the method of obtaining data matters as much as the number itself.",
     frontend: {
       en: 'Discover how instruments and careful methods make physical measurements useful.',
+      it: 'Scopri come gli strumenti e i metodi accurati rendono utili le misurazioni fisiche.',
       zh: '了解仪器和严谨的测量方法如何使物理测量具有意义。',
       hi: 'जानें कि उपकरण और सावधानीपूर्वक अपनाई गई विधियाँ भौतिक मापन को उपयोगी कैसे बनाती हैं।',
       es: 'Descubre cómo los instrumentos y los métodos cuidadosos hacen útiles las mediciones físicas.',

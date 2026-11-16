@@ -5,6 +5,7 @@ export const explainTheFormationOfMetamorphicRocks_Skill_Data = defineSkill({
   id: '98c6b4b6-68e7-439a-a0de-ad7dfe2e1369',
   name: {
     en: 'Explain the formation of metamorphic rocks',
+    it: 'Spiegare la formazione delle rocce metamorfiche',
     zh: '解释变质岩的形成',
     hi: 'कायांतरित चट्टानों का निर्माण समझाना',
     es: 'Explicar la formación de rocas metamórficas',
@@ -39,6 +40,7 @@ export const explainTheFormationOfMetamorphicRocks_Skill_Data = defineSkill({
       'Describe how heat, pressure and fluids can alter existing solid rock without it first melting into magma, producing new textures or minerals.',
     frontend: {
       en: 'Explain how heat and pressure change solid rock without fully melting it.',
+      it: 'Spiega come calore e pressione trasformano rocce solide senza fonderle completamente.',
       zh: '解释热和压力如何在岩石未完全熔化时改变它。',
       hi: 'समझाएँ कि पूरी तरह पिघले बिना गर्मी और दबाव ठोस चट्टान को कैसे बदलते हैं।',
       es: 'Explica cómo el calor y la presión transforman rocas sólidas sin fundirlas por completo.',

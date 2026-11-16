@@ -13,6 +13,7 @@ export const bleedingAndInjuries_SkillGroup_Data = defineSkillGroup({
   id: 'ff7d232f-f7fc-4e88-b254-f5474e11e8f4',
   name: {
     en: 'Bleeding and Injuries',
+    it: 'Emorragie e lesioni',
     zh: '出血与损伤',
     hi: 'रक्तस्राव और चोटें',
     es: 'Hemorragias y lesiones',
@@ -63,6 +64,7 @@ export const bleedingAndInjuries_SkillGroup_Data = defineSkillGroup({
       'First aid aims to prevent immediate deterioration while avoiding unnecessary manipulation or delay in definitive medical care.',
     frontend: {
       en: 'Learn ways to limit injury and external bleeding while awaiting professional care.',
+      it: 'Impara a limitare i danni e le emorragie esterne in attesa di assistenza sanitaria professionale.',
       zh: '学习在等待专业救治时减轻伤害和控制外部出血的方法。',
       hi: 'पेशेवर मदद आने तक चोट और बाहरी रक्तस्राव कम करने के तरीके सीखो।',
       es: 'Aprende a limitar el daño y el sangrado externo mientras esperas atención profesional.',

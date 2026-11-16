@@ -5,6 +5,7 @@ export const compareWaysToReduceWeatherHazardRisk_Skill_Data = defineSkill({
   id: '632463aa-6a3a-466c-9b5f-f78a286c50ee',
   name: {
     en: 'Compare ways to reduce weather-hazard risk',
+    it: 'Confrontare i modi per ridurre il rischio meteorologico',
     zh: '比较降低天气灾害风险的方法',
     hi: 'मौसमी आपदा जोखिम घटाने के तरीकों की तुलना',
     es: 'Comparar maneras de reducir los riesgos meteorológicos',
@@ -39,6 +40,7 @@ export const compareWaysToReduceWeatherHazardRisk_Skill_Data = defineSkill({
       'Evaluate options such as early warning, shelter, land-use planning, or water storage for the specific hazard and local context.',
     frontend: {
       en: 'Compare ways to reduce risks from weather hazards in a specific place.',
+      it: 'Confronta le misure per ridurre i rischi legati ai fenomeni meteorologici pericolosi in un luogo specifico.',
       zh: '比较在某一地点降低天气灾害风险的不同措施。',
       hi: 'किसी जगह मौसम के खतरों से जोखिम कम करने के उपायों की तुलना करें।',
       es: 'Compara medidas para reducir el riesgo de fenómenos peligrosos en un lugar.',

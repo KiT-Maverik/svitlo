@@ -5,6 +5,7 @@ export const elementsAndCompounds_Skill_Data = defineSkill({
   id: '9d1e54d3-3dd5-4bec-b4ab-ea6eb6586649',
   name: {
     en: 'Elements and Compounds',
+    it: 'Elementi e composti',
     zh: '元素与化合物',
     hi: 'तत्व और यौगिक',
     es: 'Elementos y compuestos',
@@ -39,6 +40,7 @@ export const elementsAndCompounds_Skill_Data = defineSkill({
       'Distinguish matter containing one element from substances whose constituent elements occur in fixed chemical proportions.',
     frontend: {
       en: 'Distinguish chemical elements from compounds made of different elements.',
+      it: 'Distingui gli elementi chimici dai composti formati da elementi diversi.',
       zh: '区分化学元素与由不同元素组成的化合物。',
       hi: 'रासायनिक तत्वों और विभिन्न तत्वों से बने यौगिकों में अंतर करें।',
       es: 'Distingue los elementos químicos de los compuestos formados por elementos distintos.',

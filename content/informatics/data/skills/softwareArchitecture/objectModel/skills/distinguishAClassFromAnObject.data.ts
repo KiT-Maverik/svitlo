@@ -5,6 +5,7 @@ export const distinguishAClassFromAnObject_Skill_Data = defineSkill({
   id: 'dbaf468a-1a17-4408-970a-fcc9327819b3',
   name: {
     en: 'Distinguish a Class from an Object',
+    it: 'Distinguere una classe da un oggetto',
     zh: '区分类和对象',
     hi: 'क्लास और ऑब्जेक्ट में अंतर करना',
     es: 'Distinguir una clase de un objeto',
@@ -39,6 +40,7 @@ export const distinguishAClassFromAnObject_Skill_Data = defineSkill({
       "Compare a type's template with particular instances holding their own values: one Robot class can produce several robots with different coordinates. A state change in one instance need not affect the others.",
     frontend: {
       en: 'Distinguish the blueprint of a class from objects with their own current values.',
+      it: 'Distingui la struttura definita da una classe dagli oggetti con i propri valori correnti.',
       zh: '区分类的蓝图与拥有各自当前属性值的对象。',
       hi: 'क्लास की रूपरेखा को अपने वर्तमान मान रखने वाले ऑब्जेक्ट से अलग समझें।',
       es: 'Distingue la plantilla de una clase de los objetos con sus valores actuales propios.',

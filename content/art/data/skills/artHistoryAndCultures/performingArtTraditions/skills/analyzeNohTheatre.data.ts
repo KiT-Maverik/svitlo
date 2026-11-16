@@ -5,6 +5,7 @@ export const analyzeNohTheatre_Skill_Data = defineSkill({
   id: '33e2b1f5-7494-472d-bd54-8c66a72671fb',
   name: {
     en: 'Analyze Noh Theatre',
+    it: 'Analizzare il teatro Nō',
     zh: '分析能乐',
     hi: 'जापानी नो रंगमंच का विश्लेषण करें',
     es: 'Analizar el teatro nō',
@@ -39,6 +40,7 @@ export const analyzeNohTheatre_Skill_Data = defineSkill({
       'Explain how masks, stylized movement, music and dramatic conventions operate within Japanese Noh performance contexts.',
     frontend: {
       en: 'Learn how movement, masks and music shape performances in Japanese Noh theatre.',
+      it: 'Scopri come movimento, maschere e musica danno forma agli spettacoli del teatro Nō giapponese.',
       zh: '了解动作、面具与音乐如何塑造日本能乐演出。',
       hi: 'जानें कि जापानी नोह थिएटर के प्रदर्शनों में गति, मुखौटे और संगीत की क्या भूमिका है।',
       es: 'Aprende cómo el movimiento, las máscaras y la música dan forma a las representaciones del teatro nō japonés.',

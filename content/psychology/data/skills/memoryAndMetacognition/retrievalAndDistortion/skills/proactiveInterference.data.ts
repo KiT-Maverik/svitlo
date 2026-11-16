@@ -5,6 +5,7 @@ export const proactiveInterference_Skill_Data = defineSkill({
   id: '649681b7-5fc4-4e59-8e40-d9d603e3706a',
   name: {
     en: 'Proactive Interference',
+    it: 'Interferenza proattiva',
     zh: '前摄干扰',
     hi: 'पूर्वप्रभावी हस्तक्षेप',
     es: 'Interferencia proactiva',
@@ -38,6 +39,7 @@ export const proactiveInterference_Skill_Data = defineSkill({
     methodological: 'Explain how previously learned information may obstruct retrieval of newer learning.',
     frontend: {
       en: 'Recognize how earlier learning can interfere with new learning.',
+      it: 'Riconosci come gli apprendimenti precedenti possano interferire con quelli nuovi.',
       zh: '识别以前学到的内容如何干扰新知识的学习与回忆。',
       hi: 'पहचानें कि पुरानी सीखी हुई बातें नई बातें सीखने या याद करने में कैसे बाधा डाल सकती हैं।',
       es: 'Reconoce cómo lo aprendido antes puede interferir con el aprendizaje nuevo.',

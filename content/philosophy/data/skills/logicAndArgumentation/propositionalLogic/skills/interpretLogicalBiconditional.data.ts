@@ -5,6 +5,7 @@ export const interpretLogicalBiconditional_Skill_Data = defineSkill({
   id: 'c419c18f-e9be-4a9b-82e7-2d50ba4f2a7c',
   name: {
     en: 'Interpret logical biconditional',
+    it: 'Interpretare il bicondizionale logico',
     zh: '理解逻辑双条件',
     hi: 'तार्किक द्विशर्तीय कथन की व्याख्या',
     es: 'Interpretar el bicondicional lógico',
@@ -39,6 +40,7 @@ export const interpretLogicalBiconditional_Skill_Data = defineSkill({
       "Assess 'if and only if' statements as two-way conditional relationships, rather than treating either one-way conditional as sufficient.",
     frontend: {
       en: "Recognize that 'if and only if' requires implications in both directions.",
+      it: "Riconosci che «se e solo se» richiede un'implicazione in entrambe le direzioni.",
       zh: '理解“当且仅当”要求两个方向的蕴含都成立。',
       hi: "समझें कि 'तभी और केवल तभी' के लिए दोनों दिशाओं में निहितार्थ आवश्यक है।",
       es: "Reconoce que 'si y solo si' exige implicaciones en ambas direcciones.",

@@ -5,6 +5,7 @@ export const hormonalInfluences_Skill_Data = defineSkill({
   id: 'facdba52-efa9-4177-8427-4234b7b8aef3',
   name: {
     en: 'Hormonal Influences',
+    it: 'Influenze ormonali',
     zh: '激素的影响',
     hi: 'हार्मोन का प्रभाव',
     es: 'Influencias hormonales',
@@ -39,6 +40,7 @@ export const hormonalInfluences_Skill_Data = defineSkill({
       'Explain how endocrine signals can change arousal or behavior without implying that their effects are universal or direct.',
     frontend: {
       en: 'Recognize how hormones can influence arousal and behavior in context.',
+      it: "Riconosci come gli ormoni possano influenzare l'attivazione fisiologica e il comportamento a seconda del contesto.",
       zh: '认识激素如何在不同情境中影响唤醒水平和行为。',
       hi: 'पहचानें कि हार्मोन परिस्थितियों के अनुसार सक्रियता और व्यवहार को कैसे प्रभावित कर सकते हैं।',
       es: 'Reconoce cómo las hormonas pueden influir en la activación y la conducta según el contexto.',

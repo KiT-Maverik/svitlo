@@ -5,6 +5,7 @@ export const usePositiveAndNegativeSpace_Skill_Data = defineSkill({
   id: '01c0f64f-96bd-49e8-9ea6-8988fa70a839',
   name: {
     en: 'Use Positive and Negative Space',
+    it: 'Usare lo spazio positivo e negativo',
     zh: '运用正负空间',
     hi: 'सकारात्मक और नकारात्मक स्थान का उपयोग करें',
     es: 'Utilizar el espacio positivo y negativo',
@@ -38,6 +39,7 @@ export const usePositiveAndNegativeSpace_Skill_Data = defineSkill({
     methodological: 'Coordinate solids with surrounding or enclosed voids as active sculptural relationships.',
     frontend: {
       en: 'Use solid forms and the spaces between them as parts of a sculpture.',
+      it: 'Usa le forme solide e gli spazi fra esse come parti di una scultura.',
       zh: '将实体形态及其周围或内部的空隙都作为雕塑的一部分。',
       hi: 'ठोस आकृतियों और उनके बीच की खाली जगह को मूर्तिकला के हिस्से के रूप में उपयोग करें।',
       es: 'Utiliza las formas sólidas y los espacios entre ellas como partes de la escultura.',

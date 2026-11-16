@@ -5,6 +5,7 @@ export const evaluateAnInferenceWithQuantifiers_Skill_Data = defineSkill({
   id: '2b656dd4-44b4-448c-b106-d77f5f611ee7',
   name: {
     en: 'Evaluate an inference with quantifiers',
+    it: "Valutare un'inferenza con quantificatori",
     zh: '评估含量词的推论',
     hi: 'परिमाणकों वाले अनुमान का मूल्यांकन',
     es: 'Evaluar una inferencia con cuantificadores',
@@ -39,6 +40,7 @@ export const evaluateAnInferenceWithQuantifiers_Skill_Data = defineSkill({
       'Check whether a conclusion about all or some members of a domain follows from quantified premises under a stated interpretation.',
     frontend: {
       en: 'Check whether quantified premises really imply a proposed conclusion.',
+      it: 'Verifica se le premesse quantificate implicano davvero la conclusione proposta.',
       zh: '检查包含量词的前提是否真的推出拟议的结论。',
       hi: 'जाँचें कि परिमाणक वाले आधार-वाक्यों से प्रस्तावित निष्कर्ष वास्तव में निकलता है या नहीं।',
       es: 'Comprueba si las premisas cuantificadas realmente implican la conclusión propuesta.',

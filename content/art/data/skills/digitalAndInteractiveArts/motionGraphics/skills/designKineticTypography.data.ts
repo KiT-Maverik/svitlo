@@ -5,6 +5,7 @@ export const designKineticTypography_Skill_Data = defineSkill({
   id: '5b04bfdb-9766-482f-8dd7-125a012fa600',
   name: {
     en: 'Design Kinetic Typography',
+    it: 'Progettare la tipografia cinetica',
     zh: '设计动态文字排版',
     hi: 'काइनेटिक टाइपोग्राफी डिज़ाइन करें',
     es: 'Diseñar tipografía cinética',
@@ -39,6 +40,7 @@ export const designKineticTypography_Skill_Data = defineSkill({
       'Use timing, position and transformation of letterforms or words to communicate meaning through their motion as well as their appearance.',
     frontend: {
       en: 'Make moving words communicate through their timing and transformations.',
+      it: 'Fai comunicare le parole in movimento attraverso il ritmo temporale e le trasformazioni.',
       zh: '通过文字的时间节奏和变形，让动态文字传达信息。',
       hi: 'समय और रूपांतरण के माध्यम से चलने वाले शब्दों से संदेश व्यक्त करें।',
       es: 'Haz que las palabras en movimiento comuniquen mediante su ritmo y sus transformaciones.',

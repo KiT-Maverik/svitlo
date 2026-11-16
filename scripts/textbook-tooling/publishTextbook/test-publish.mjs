@@ -16,6 +16,10 @@ import { tmpdir } from 'node:os';
 import { join, resolve, sep, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { spawnSync } from 'node:child_process';
+import { createRequire } from 'node:module';
+
+const require = createRequire(import.meta.url);
+const { getSupportedLanguages } = require('@svitlo/engine/runtime');
 
 const root = resolve(process.cwd());
 const pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8'));
@@ -56,7 +60,15 @@ test('isolated package publishes exactly the manifest resources', t => {
   );
   const skillFiles = manifest.files.filter(name => name.startsWith('data/skills/'));
   if (skillFiles.length) {
-    assert.equal(skillFiles.length, 30, 'Skills must publish one base and 29 locale files');
+    const expectedSkillFiles = [
+      'data/skills/base.json',
+      ...getSupportedLanguages().map(({ language }) => `data/skills/${language}.json`),
+    ];
+    assert.deepEqual(
+      [...skillFiles].sort(),
+      expectedSkillFiles.sort(),
+      'Skills must publish one base and one file per registered Engine language',
+    );
     assert(skillFiles.includes('data/skills/base.json'));
     assert(skillFiles.includes('data/skills/uk.json'));
     assert(skillFiles.includes('data/skills/en.json'));

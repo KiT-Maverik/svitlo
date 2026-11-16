@@ -5,6 +5,7 @@ export const explainCompositeDataStructures_Skill_Data = defineSkill({
   id: 'c0790de0-634b-4cd5-b3b6-a4551df323c5',
   name: {
     en: 'Explain Composite Data Structures',
+    it: 'Spiegare le strutture dati composite',
     zh: '解释复合数据结构',
     hi: 'संयुक्त डेटा संरचनाएँ समझाना',
     es: 'Explicar estructuras de datos compuestas',
@@ -39,6 +40,7 @@ export const explainCompositeDataStructures_Skill_Data = defineSkill({
       "Recognize arrays, lists, records, and dictionaries as organizations of several values and their relationships; separate a structure's form from its current contents.",
     frontend: {
       en: 'Recognize lists, arrays and records that organize multiple values.',
+      it: 'Riconosci liste, array e record che organizzano più valori.',
       zh: '识别用于组织多个值的列表、数组和记录。',
       hi: 'सूचियों, ऐरे और रिकॉर्ड को पहचानें जो कई मानों को व्यवस्थित करते हैं।',
       es: 'Reconoce listas, arreglos y registros que organizan varios valores.',

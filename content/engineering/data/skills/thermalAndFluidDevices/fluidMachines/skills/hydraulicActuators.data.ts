@@ -5,6 +5,7 @@ export const hydraulicActuators_Skill_Data = defineSkill({
   id: 'ef05afe2-a541-4db9-bc90-ea96a43108d8',
   name: {
     en: 'Hydraulic actuators',
+    it: 'Attuatori idraulici',
     zh: '液压执行器',
     hi: 'हाइड्रोलिक प्रवर्तक',
     es: 'Actuadores hidráulicos',
@@ -38,6 +39,7 @@ export const hydraulicActuators_Skill_Data = defineSkill({
     methodological: 'Trace pressurized liquid from a pump and valve to mechanical movement.',
     frontend: {
       en: 'Understand how pressurized liquid drives a hydraulic actuator.',
+      it: 'Comprendi come un liquido in pressione aziona un attuatore idraulico.',
       zh: '理解受压液体如何驱动液压执行器。',
       hi: 'समझें कि दबावयुक्त तरल हाइड्रोलिक प्रवर्तक को कैसे चलाता है।',
       es: 'Comprende cómo un líquido presurizado mueve un actuador hidráulico.',

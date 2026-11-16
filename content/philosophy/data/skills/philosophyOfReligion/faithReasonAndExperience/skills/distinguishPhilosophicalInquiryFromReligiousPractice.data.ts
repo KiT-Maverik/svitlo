@@ -5,6 +5,7 @@ export const distinguishPhilosophicalInquiryFromReligiousPractice_Skill_Data = d
   id: 'd8536cd6-61d3-4f89-ab90-b65cc5a66688',
   name: {
     en: 'Distinguish philosophical inquiry from religious practice',
+    it: 'Distinguere indagine filosofica e pratica religiosa',
     zh: '区分哲学探究与宗教实践',
     hi: 'दार्शनिक जाँच और धार्मिक आचरण में अंतर करें',
     es: 'Distinguir la investigación filosófica de la práctica religiosa',
@@ -39,6 +40,7 @@ export const distinguishPhilosophicalInquiryFromReligiousPractice_Skill_Data = d
       'Separate reasoning about religious claims from performing rituals, accepting revelation, or participating in a tradition.',
     frontend: {
       en: 'Distinguish discussing religious ideas from taking part in religious practices.',
+      it: 'Distingui la discussione di idee religiose dalla partecipazione a pratiche religiose.',
       zh: '区分讨论宗教思想与参加宗教活动这两种不同的行为。',
       hi: 'धार्मिक विचारों पर चर्चा करने और धार्मिक आचरण में भाग लेने के बीच अंतर समझें।',
       es: 'Distingue entre debatir ideas religiosas y participar en prácticas religiosas.',

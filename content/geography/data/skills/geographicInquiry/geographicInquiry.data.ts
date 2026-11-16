@@ -8,6 +8,7 @@ export const geographicInquiry_SkillDomain_Data = defineSkillDomain({
   id: '928c9bcd-2b25-4af0-8229-0e3329448c75',
   title: {
     en: 'Geographic Inquiry',
+    it: 'Indagine geografica',
     zh: '地理探究',
     hi: 'भौगोलिक अन्वेषण',
     es: 'Indagación geográfica',
@@ -49,6 +50,7 @@ export const geographicInquiry_SkillDomain_Data = defineSkillDomain({
       'Geographic investigation turns observations about places into reasoned evidence, maps, comparisons and decisions. It includes asking spatial questions, collecting and scrutinizing data, evaluating alternatives and communicating conclusions rather than memorizing a particular set of locations.',
     frontend: {
       en: 'Use geographic questions, observations and evidence to understand places and make decisions.',
+      it: 'Usa domande geografiche, osservazioni e prove per comprendere i luoghi e prendere decisioni.',
       zh: '利用地理问题、观察和证据理解地方并作出决策。',
       hi: 'स्थान समझने और निर्णय लेने के लिए भौगोलिक प्रश्नों, अवलोकनों और साक्ष्यों का उपयोग करें।',
       es: 'Usa preguntas, observaciones y pruebas geográficas para comprender los lugares y tomar decisiones.',

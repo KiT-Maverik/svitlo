@@ -11,6 +11,7 @@ export const partWhole_Skill_Data = defineSkill({
     ka: 'შეკრება და გამოკლება — ნაწილისა და მთელის კავშირი',
     kk: 'Қосу және азайту — бөлік пен бүтіннің байланысы',
     en: 'Addition and subtraction — Part–whole relationship',
+    it: 'Addizione e sottrazione — Relazione tra parti e tutto',
     qm: 'Qoşuv ve çıqaruv — parça ve bütün bağlılığı',
     zh: '加减法 — 部分与整体的关系',
     hi: 'जोड़ और घटाव — भाग और पूर्ण का संबंध',
@@ -39,6 +40,7 @@ export const partWhole_Skill_Data = defineSkill({
       "The additive part-whole model relates a whole to the sum of its components and permits finding an unknown component from the whole and known parts. Do not confuse the whole's total with a component's amount.",
     frontend: {
       en: 'You can find a whole from its parts or find a missing part when you know the whole and the other parts.',
+      it: 'Puoi trovare il tutto a partire dalle sue parti o una parte mancante quando conosci il tutto e le altre parti.',
       qm: 'Parçaları bilseñ bütüni, bütün ve diger parçaları bilseñ eksik parçanı tapa bilesiñ.',
       zh: '你能根据各部分求出整体，也能在知道整体和其他部分时求出缺少的部分。',
       hi: 'तुम हिस्सों से पूरा ज्ञात कर सकते हो या पूरा और बाकी हिस्से मालूम होने पर गायब हिस्सा निकाल सकते हो।',

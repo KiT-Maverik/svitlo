@@ -5,6 +5,7 @@ export const ketones_Skill_Data = defineSkill({
   id: '4ee5fca7-fd0d-4531-9fc1-a47fb07c2aa0',
   name: {
     en: 'Ketones',
+    it: 'Chetoni',
     zh: '酮',
     hi: 'कीटोन',
     es: 'Cetonas',
@@ -39,6 +40,7 @@ export const ketones_Skill_Data = defineSkill({
       'Relate internal carbonyl connectivity to characteristic reactions and distinctions from aldehydes.',
     frontend: {
       en: 'Distinguish ketones from aldehydes by their carbonyl-group structure.',
+      it: 'Distingui i chetoni dalle aldeidi in base alla struttura del gruppo carbonilico.',
       zh: '根据羰基的结构区分酮和醛。',
       hi: 'कार्बोनिल समूह की संरचना के आधार पर कीटोन को ऐल्डिहाइड से अलग करें।',
       es: 'Distingue las cetonas de los aldehídos por la estructura de su grupo carbonilo.',

@@ -5,6 +5,7 @@ export const consumerPriceIndex_Skill_Data = defineSkill({
   id: '397b469a-a595-4558-8512-cfad6d670dc7',
   name: {
     en: 'Індекс споживчих цін',
+    it: 'Indice dei prezzi al consumo',
     zh: '消费者价格指数',
     hi: 'उपभोक्ता मूल्य सूचकांक',
     es: 'Índice de precios al consumo',
@@ -39,6 +40,7 @@ export const consumerPriceIndex_Skill_Data = defineSkill({
       'Interpret changes in the cost of a defined consumption basket and its limitations for a particular household.',
     frontend: {
       en: 'Learn how a price index tracks changes in living costs.',
+      it: 'Scopri come un indice dei prezzi misura le variazioni del costo della vita.',
       zh: '了解价格指数如何追踪生活成本的变化。',
       hi: 'जानें कि मूल्य सूचकांक जीवन-यापन की लागत में बदलाव कैसे दिखाता है।',
       es: 'Aprende cómo un índice de precios sigue los cambios del coste de vida.',

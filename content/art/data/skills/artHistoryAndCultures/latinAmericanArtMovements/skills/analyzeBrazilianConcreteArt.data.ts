@@ -5,6 +5,7 @@ export const analyzeBrazilianConcreteArt_Skill_Data = defineSkill({
   id: 'f796f172-b23f-4e7a-9c9b-116b2c7a54f4',
   name: {
     en: 'Analyze Brazilian Concrete Art',
+    it: "Analizzare l'arte concreta brasiliana",
     zh: '分析巴西具体艺术',
     hi: 'ब्राज़ीलियाई कंक्रीट कला का विश्लेषण करें',
     es: 'Analizar el arte concreto brasileño',
@@ -39,6 +40,7 @@ export const analyzeBrazilianConcreteArt_Skill_Data = defineSkill({
       'Examine how Brazilian Concrete artists used precise geometric relationships and modern design debates to reconceive the visual work.',
     frontend: {
       en: 'Explore how Brazilian Concrete artists used precise geometric relationships.',
+      it: "Esplora come gli artisti dell'arte concreta brasiliana usavano relazioni geometriche precise.",
       zh: '了解巴西具体主义艺术家如何运用精确的几何关系。',
       hi: 'जानें कि ब्राज़ीलियाई कंक्रीट कलाकारों ने सटीक ज्यामितीय संबंधों का उपयोग कैसे किया।',
       es: 'Explora cómo los artistas concretos brasileños utilizaron relaciones geométricas precisas.',

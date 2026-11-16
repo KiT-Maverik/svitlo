@@ -10,6 +10,7 @@ const title = {
   bn: 'তত্ত্ব',
   de: 'Theorie',
   en: 'Theory',
+  it: 'Teoria',
   es: 'Teoría',
   et: 'Teooria',
   fr: 'Théorie',

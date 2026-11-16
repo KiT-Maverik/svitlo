@@ -5,6 +5,7 @@ export const safeDrivingDecisions_Skill_Data = defineSkill({
   id: '4a68b2ab-4e14-40b8-9940-1950ffbe25fe',
   name: {
     en: 'Safe driving decisions',
+    it: 'Decisioni di guida sicure',
     zh: '安全驾驶决策',
     hi: 'सुरक्षित ड्राइविंग निर्णय',
     es: 'Decisiones de conducción segura',
@@ -39,6 +40,7 @@ export const safeDrivingDecisions_Skill_Data = defineSkill({
       'Recognize how fatigue, impairment, speed, distraction, and environmental conditions affect driving risk and the duty not to drive unsafely.',
     frontend: {
       en: 'Recognize why distraction, speed and impairment make driving unsafe.',
+      it: 'Riconosci perché distrazioni, velocità e alterazioni delle capacità rendono la guida pericolosa.',
       zh: '识别分心、超速与能力受损为何让驾驶变得危险。',
       hi: 'समझें कि ध्यान भटकना, तेज गति और नशा या थकान वाहन चलाना असुरक्षित क्यों बनाते हैं।',
       es: 'Reconoce por qué la distracción, la velocidad y la incapacidad aumentan el peligro al conducir.',

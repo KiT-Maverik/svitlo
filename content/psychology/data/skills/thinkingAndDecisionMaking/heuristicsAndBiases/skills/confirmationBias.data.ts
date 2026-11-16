@@ -5,6 +5,7 @@ export const confirmationBias_Skill_Data = defineSkill({
   id: '02e8b562-f223-4201-9a7f-f4dbb9f6d345',
   name: {
     en: 'Confirmation Bias',
+    it: 'Bias di conferma',
     zh: '确认偏差',
     hi: 'पुष्टिकरण पूर्वाग्रह',
     es: 'Sesgo de confirmación',
@@ -38,6 +39,7 @@ export const confirmationBias_Skill_Data = defineSkill({
     methodological: 'Analyze selective search or interpretation of evidence that favors an existing belief.',
     frontend: {
       en: 'Identify the tendency to favor evidence supporting an existing belief.',
+      it: 'Individua la tendenza a privilegiare le prove che sostengono una convinzione già esistente.',
       zh: '识别偏好支持自己原有信念的证据的倾向。',
       hi: 'पहचानें कि लोग पहले से मौजूद विश्वास के समर्थन वाले प्रमाण को अधिक महत्व क्यों देते हैं।',
       es: 'Identifica la tendencia a favorecer pruebas que apoyan una creencia previa.',

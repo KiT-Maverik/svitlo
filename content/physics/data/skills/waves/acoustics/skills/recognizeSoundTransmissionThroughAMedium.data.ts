@@ -5,6 +5,7 @@ export const recognizeSoundTransmissionThroughAMedium_Skill_Data = defineSkill({
   id: '8e9085c2-9fc3-45fd-96d9-70db8599e17b',
   name: {
     en: 'Recognize sound transmission through a medium',
+    it: 'Riconoscere la trasmissione del suono attraverso un mezzo',
     zh: '认识声音通过介质传播',
     hi: 'माध्यम में ध्वनि का प्रसार पहचानना',
     es: 'Reconocer la transmisión del sonido por un medio',
@@ -39,6 +40,7 @@ export const recognizeSoundTransmissionThroughAMedium_Skill_Data = defineSkill({
       'Sound requires an elastic material medium, in which pressure or deformation oscillations pass between adjacent parts of matter; mechanical sound does not propagate in a vacuum.',
     frontend: {
       en: 'Explain why sound needs a medium through which vibrations can travel.',
+      it: 'Spiega perché il suono necessita di un mezzo in cui si propaghino le vibrazioni.',
       zh: '解释为什么声音需要振动能够传播的介质。',
       hi: 'समझाएँ कि ध्वनि को कंपन के प्रसार के लिए माध्यम क्यों चाहिए।',
       es: 'Explica por qué el sonido necesita un medio por el que viajen las vibraciones.',

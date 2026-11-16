@@ -12,6 +12,7 @@ export const foundationsAndPerspectives_SkillGroup_Data = defineSkillGroup({
   id: '4d62993c-1a1a-4abb-a66e-31e39bd7639a',
   name: {
     en: 'Foundations and Perspectives',
+    it: 'Fondamenti e prospettive',
     zh: '基础与视角',
     hi: 'मूलभूत सिद्धांत और दृष्टिकोण',
     es: 'Fundamentos y perspectivas',
@@ -60,6 +61,7 @@ export const foundationsAndPerspectives_SkillGroup_Data = defineSkillGroup({
       'Scientific accounts distinguish description, prediction, and causal explanation while combining cognitive, biological, behavioral, and sociocultural perspectives.',
     frontend: {
       en: 'Discover different perspectives and scientific goals in psychology.',
+      it: 'Scopri le diverse prospettive e gli obiettivi scientifici della psicologia.',
       zh: '了解心理学中的不同视角与科学目标。',
       hi: 'मनोविज्ञान के विभिन्न दृष्टिकोणों और वैज्ञानिक लक्ष्यों को जानें।',
       es: 'Descubre distintas perspectivas y objetivos científicos de la psicología.',

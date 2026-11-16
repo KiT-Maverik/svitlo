@@ -5,6 +5,7 @@ export const vicariousReinforcement_Skill_Data = defineSkill({
   id: '05da1b3f-e9f8-4785-bd8d-6f90fd9ebfcc',
   name: {
     en: 'Vicarious Reinforcement',
+    it: 'Rinforzo vicario',
     zh: '替代性强化',
     hi: 'प्रतिनिधिक प्रबलन',
     es: 'Refuerzo vicario',
@@ -39,6 +40,7 @@ export const vicariousReinforcement_Skill_Data = defineSkill({
       "Explain how observing consequences experienced by another person can shift expectations about one's own action.",
     frontend: {
       en: 'Recognize why seeing someone else rewarded can influence behavior.',
+      it: "Riconosci perché vedere un'altra persona ricevere una ricompensa possa influenzare il comportamento.",
       zh: '识别看到别人获得奖励为什么会影响自身的行为。',
       hi: 'समझें कि किसी और को पुरस्कार पाते देखकर अपना व्यवहार क्यों बदल सकता है।',
       es: 'Reconoce por qué ver a otra persona recibir una recompensa puede influir en tu conducta.',

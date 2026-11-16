@@ -11,6 +11,7 @@ export const roundHundreds_Skill_Data = defineSkill({
     ka: 'გამრავლება — სრული ასეულები',
     kk: 'Көбейту — толық жүздіктер',
     en: 'Multiplication — Whole hundreds',
+    it: 'Moltiplicazione — Centinaia intere',
     qm: 'Arttıruv — tolu yüzlükler',
     zh: '乘法 — 整百数',
     hi: 'गुणा — पूरे सैकड़े',
@@ -39,6 +40,7 @@ export const roundHundreds_Skill_Data = defineSkill({
       'A multiple of one hundred represents a count of complete hundreds. Multiplication by a one-digit factor changes that count while respecting the factor of one hundred, not merely manipulating digits.',
     frontend: {
       en: 'You can multiply whole hundreds by a one-digit number by working with the number of hundreds.',
+      it: 'Puoi moltiplicare centinaia intere per un numero di una cifra lavorando con il numero di centinaia.',
       qm: 'Yüzlükler sayısını qullanıp tolu yüzlüklerni bir raqamlı sayığa arttıra bilesiñ.',
       zh: '你能把整百数看成若干个百，再用一位数与百的个数相乘。',
       hi: 'तुम पूरे सैकड़ों को एक-अंकीय संख्या से गुणा करने के लिए सैकड़ों की संख्या का उपयोग कर सकते हो।',

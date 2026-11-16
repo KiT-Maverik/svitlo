@@ -12,6 +12,7 @@ export const mechanismsOfDevelopment_SkillGroup_Data = defineSkillGroup({
   id: 'b177bbfd-8b58-4c2b-9176-4d3967867187',
   name: {
     en: 'Mechanisms of Development',
+    it: 'Meccanismi dello sviluppo',
     zh: '发展机制',
     hi: 'विकास की प्रक्रियाएँ',
     es: 'Mecanismos del desarrollo',
@@ -60,6 +61,7 @@ export const mechanismsOfDevelopment_SkillGroup_Data = defineSkillGroup({
       'Research examines change over time, developmental diversity, and how environments interact with biological processes.',
     frontend: {
       en: 'Discover how biology, experience and context shape developmental changes.',
+      it: 'Scopri come biologia, esperienza e contesto influenzino i cambiamenti dello sviluppo.',
       zh: '了解生物因素、经历和环境如何共同塑造发展变化。',
       hi: 'जानें कि जीवविज्ञान, अनुभव और संदर्भ विकास में बदलावों को कैसे आकार देते हैं।',
       es: 'Descubre cómo la biología, la experiencia y el contexto moldean los cambios del desarrollo.',

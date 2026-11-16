@@ -5,6 +5,7 @@ export const recognizeBehaviouralDependenceRisks_Skill_Data = defineSkill({
   id: '535bd187-d1f8-43d4-a407-e4d1909c1063',
   name: {
     en: 'Recognize behavioural dependence risks',
+    it: 'Riconoscere i rischi delle dipendenze comportamentali',
     zh: '识别行为依赖风险',
     hi: 'व्यवहारगत निर्भरता के जोखिम पहचानें',
     es: 'Reconocer riesgos de dependencia conductual',
@@ -39,6 +40,7 @@ export const recognizeBehaviouralDependenceRisks_Skill_Data = defineSkill({
       'Identify patterns of gambling or digital engagement that cause persistent harm without assuming ordinary enjoyment is addiction.',
     frontend: {
       en: 'Notice when gambling or digital activity becomes persistently harmful.',
+      it: "Nota quando il gioco d'azzardo o le attività digitali diventano persistentemente dannosi.",
       zh: '留意赌博或数字活动何时持续造成伤害。',
       hi: 'पहचानें कि जुआ या डिजिटल गतिविधि कब लगातार नुकसान पहुँचाने लगती है।',
       es: 'Detecta cuándo el juego de azar o la actividad digital causan daños persistentes.',

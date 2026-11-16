@@ -5,6 +5,7 @@ export const testDigitalInteractionAccessibility_Skill_Data = defineSkill({
   id: '67fa1703-ab8d-4166-a6db-4549a5bcce56',
   name: {
     en: 'Test Digital Interaction Accessibility',
+    it: "Verificare l'accessibilità delle interazioni digitali",
     zh: '测试数字交互的无障碍性',
     hi: 'डिजिटल संवाद की सुगम्यता जाँचना',
     es: 'Probar la accesibilidad de una interacción digital',
@@ -39,6 +40,7 @@ export const testDigitalInteractionAccessibility_Skill_Data = defineSkill({
       'Test concrete interaction methods without a mouse, without sound, or with enlarged text and record barriers. No complaints or an attractive design do not prove accessibility.',
     frontend: {
       en: 'Test an interface without a mouse or sound and record obstacles.',
+      it: "Prova un'interfaccia senza mouse o suono e registra gli ostacoli.",
       zh: '在不使用鼠标或声音的情况下测试界面，并记录障碍。',
       hi: 'बिना माउस या आवाज़ के इंटरफ़ेस जाँचें और आने वाली बाधाएँ दर्ज करें।',
       es: 'Prueba una interfaz sin ratón ni sonido y registra las barreras encontradas.',

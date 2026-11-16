@@ -5,6 +5,7 @@ export const dayAndNight_Skill_Data = defineSkill({
   id: 'faa8f11a-cc06-42c9-8864-8151732e690a',
   name: {
     en: 'Day and Night',
+    it: 'Giorno e notte',
     zh: '昼与夜',
     hi: 'दिन और रात',
     es: 'Día y noche',
@@ -39,6 +40,7 @@ export const dayAndNight_Skill_Data = defineSkill({
       "Explain the alternation of illumination and darkness through Earth's rotation rather than the Sun physically circling Earth.",
     frontend: {
       en: "Explain why Earth's rotation brings alternating daylight and darkness.",
+      it: 'Spiega perché la rotazione terrestre alterna luce diurna e oscurità.',
       zh: '解释为什么地球自转会让昼夜交替出现。',
       hi: 'समझाएँ कि पृथ्वी के अपने अक्ष पर घूमने से दिन का उजाला और रात का अँधेरा बारी-बारी क्यों आते हैं।',
       es: 'Explica por qué la rotación de la Tierra hace que se alternen la luz del día y la oscuridad de la noche.',

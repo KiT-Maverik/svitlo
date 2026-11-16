@@ -5,6 +5,7 @@ export const explainSurfaceRunoffAsAWaterPathway_Skill_Data = defineSkill({
   id: 'ae88fb14-08f6-497f-a48b-c90cca23f9f4',
   name: {
     en: 'Explain surface runoff as a water pathway',
+    it: "Spiegare il deflusso superficiale come percorso dell'acqua",
     zh: '解释地表径流的流动途径',
     hi: 'सतही अपवाह समझाना',
     es: 'Explicar la escorrentía superficial',
@@ -39,6 +40,7 @@ export const explainSurfaceRunoffAsAWaterPathway_Skill_Data = defineSkill({
       'Describe water moving across land toward lower terrain and drainage networks when rainfall or melt exceeds infiltration and storage, distinguishing the process from water already stored underground.',
     frontend: {
       en: 'Describe how excess rainwater or meltwater flows over the land.',
+      it: "Descrivi come l'acqua piovana o di fusione in eccesso scorre sulla superficie terrestre.",
       zh: '描述多余雨水或融雪水如何沿地表流动。',
       hi: 'बताएँ कि अतिरिक्त वर्षा या पिघली बर्फ का पानी भूमि पर कैसे बहता है।',
       es: 'Describe cómo la lluvia o el deshielo sobrante fluye sobre el terreno.',

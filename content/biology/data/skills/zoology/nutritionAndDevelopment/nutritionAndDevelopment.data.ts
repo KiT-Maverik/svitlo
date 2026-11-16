@@ -12,6 +12,7 @@ export const nutritionAndDevelopment_SkillGroup_Data = defineSkillGroup({
   id: '3aec845c-956f-4dfd-9724-1d76bb243c6b',
   name: {
     en: 'Nutrition and Development',
+    it: 'Nutrizione e sviluppo',
     zh: '营养与发育',
     hi: 'पोषण और विकास',
     es: 'Nutrición y desarrollo',
@@ -60,6 +61,7 @@ export const nutritionAndDevelopment_SkillGroup_Data = defineSkillGroup({
       'Food sources differ among animal groups, while their life cycles may involve body transformations or development without a drastic change in form.',
     frontend: {
       en: 'Discover how diets and life cycles differ among animals.',
+      it: "Scopri come variano l'alimentazione e i cicli vitali degli animali.",
       zh: '了解不同动物的食性和生命周期有何差异。',
       hi: 'जानें कि जानवरों के भोजन और जीवन चक्र कैसे अलग होते हैं।',
       es: 'Descubre cómo varían las dietas y los ciclos de vida entre los animales.',

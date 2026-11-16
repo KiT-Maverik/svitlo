@@ -5,6 +5,7 @@ export const analyzePopArt_Skill_Data = defineSkill({
   id: '09c69eba-91a7-4111-bef2-e4df9a517acc',
   name: {
     en: 'Analyze Pop Art',
+    it: 'Analizzare la Pop Art',
     zh: '分析波普艺术',
     hi: 'पॉप कला का विश्लेषण करें',
     es: 'Analizar el arte pop',
@@ -39,6 +40,7 @@ export const analyzePopArt_Skill_Data = defineSkill({
       'Examine appropriation of advertising, mass-media imagery or consumer forms in specified Pop Art settings rather than equating all popular imagery with the movement.',
     frontend: {
       en: 'Find out how Pop artists used advertising, consumer products and mass media.',
+      it: 'Scopri come gli artisti pop hanno utilizzato la pubblicità, i prodotti di consumo e i mezzi di comunicazione di massa.',
       zh: '了解波普艺术家如何运用广告、消费品和大众媒体。',
       hi: 'जानें कि पॉप कलाकारों ने विज्ञापन, उपभोक्ता उत्पादों और जनसंचार माध्यमों का उपयोग कैसे किया।',
       es: 'Descubre cómo los artistas pop utilizaron la publicidad, los productos de consumo y los medios de masas.',

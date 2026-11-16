@@ -5,6 +5,7 @@ export const fiberOpticCommunicationSystems_Skill_Data = defineSkill({
   id: '3774e1b1-6bfe-4d40-8483-2b8308045ed6',
   name: {
     en: 'Fiber-optic communication systems',
+    it: 'Sistemi di comunicazione in fibra ottica',
     zh: '光纤通信系统',
     hi: 'फाइबर-ऑप्टिक संचार प्रणालियाँ',
     es: 'Sistemas de comunicación por fibra óptica',
@@ -38,6 +39,7 @@ export const fiberOpticCommunicationSystems_Skill_Data = defineSkill({
     methodological: 'Identify source, fiber path, connectors and receiver in an optical link.',
     frontend: {
       en: 'Recognize the role of optical fibers in transmitting information.',
+      it: 'Riconosci il ruolo delle fibre ottiche nella trasmissione delle informazioni.',
       zh: '认识光纤在传输信息中的作用。',
       hi: 'जानें कि जानकारी भेजने में प्रकाशीय फाइबर की क्या भूमिका होती है।',
       es: 'Reconoce la función de las fibras ópticas en la transmisión de información.',

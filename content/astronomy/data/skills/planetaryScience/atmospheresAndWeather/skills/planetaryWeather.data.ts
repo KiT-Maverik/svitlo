@@ -5,6 +5,7 @@ export const planetaryWeather_Skill_Data = defineSkill({
   id: 'ddbe1a3c-2ccd-4736-8927-b35e27c7902f',
   name: {
     en: 'Planetary Weather',
+    it: 'Meteorologia planetaria',
     zh: '行星天气',
     hi: 'ग्रहों का मौसम',
     es: 'Meteorología planetaria',
@@ -39,6 +40,7 @@ export const planetaryWeather_Skill_Data = defineSkill({
       'Identify and interpret weather phenomena such as storms, clouds and winds under non-Earth conditions.',
     frontend: {
       en: "Recognize storms, winds and clouds on worlds with conditions unlike Earth's.",
+      it: 'Riconosci tempeste, venti e nubi su mondi con condizioni diverse da quelle terrestri.',
       zh: '识别不同于地球环境的天体上出现的风暴、风和云。',
       hi: 'उन ग्रहों और चंद्रमाओं पर तूफ़ान, हवाएँ और बादल पहचानें जहाँ की परिस्थितियाँ पृथ्वी से अलग हैं।',
       es: 'Reconoce tormentas, vientos y nubes en mundos con condiciones distintas a las de la Tierra.',

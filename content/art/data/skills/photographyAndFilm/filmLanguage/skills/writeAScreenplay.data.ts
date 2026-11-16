@@ -5,6 +5,7 @@ export const writeAScreenplay_Skill_Data = defineSkill({
   id: 'e2f2e396-bad8-4d34-b9a8-fccea3bd096a',
   name: {
     en: 'Write a Screenplay',
+    it: 'Scrivere una sceneggiatura',
 
     zh: '编写电影剧本',
     hi: 'पटकथा लिखें',
@@ -40,6 +41,7 @@ export const writeAScreenplay_Skill_Data = defineSkill({
       'Develop scenes, dramatic action and spoken dialogue in a form that communicates an intended screen narrative while distinguishing story structure from shot-by-shot visual planning.',
     frontend: {
       en: 'Write scenes, actions and dialogue that tell a story for the screen.',
+      it: 'Scrivi scene, azioni e dialoghi per raccontare una storia sullo schermo.',
 
       zh: '编写适合银幕叙事的场景、动作和对白。',
       hi: 'स्क्रीन के लिए कहानी बताने वाले दृश्य, क्रियाएँ और संवाद लिखें।',

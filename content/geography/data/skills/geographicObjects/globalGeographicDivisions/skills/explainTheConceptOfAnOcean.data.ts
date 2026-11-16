@@ -5,6 +5,7 @@ export const explainTheConceptOfAnOcean_Skill_Data = defineSkill({
   id: '487f0ca2-ecd4-44a6-96b4-c1efb4595c80',
   name: {
     en: 'Explain the concept of an ocean',
+    it: 'Spiegare il concetto di oceano',
     zh: '解释大洋的概念',
     hi: 'महासागर की अवधारणा समझाना',
     es: 'Explicar el concepto de océano',
@@ -39,6 +40,7 @@ export const explainTheConceptOfAnOcean_Skill_Data = defineSkill({
       'Recognize a major interconnected body of saline water forming part of the world ocean and distinguish a named ocean basin from smaller marginal seas and land-bound inland waters.',
     frontend: {
       en: 'Explain what makes an ocean basin part of the connected world ocean.',
+      it: "Spiega che cosa rende un bacino oceanico parte dell'oceano mondiale interconnesso.",
       zh: '解释海洋盆地为何是彼此连通的世界大洋的一部分。',
       hi: 'समझाएँ कि महासागरीय बेसिन आपस में जुड़े विश्व महासागर का हिस्सा कैसे है।',
       es: 'Explica por qué una cuenca oceánica forma parte del océano mundial interconectado.',

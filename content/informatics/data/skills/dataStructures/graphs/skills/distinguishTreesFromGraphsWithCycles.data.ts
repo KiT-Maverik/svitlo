@@ -5,6 +5,7 @@ export const distinguishTreesFromGraphsWithCycles_Skill_Data = defineSkill({
   id: '8a4de3b6-ea03-4ee3-8c9c-307fa71ef78b',
   name: {
     en: 'Distinguish Trees from Graphs with Cycles',
+    it: 'Distinguere gli alberi dai grafi con cicli',
     zh: '区分树和含环的图',
     hi: 'वृक्ष और चक्र वाले ग्राफ़ में अंतर करना',
     es: 'Distinguir árboles de grafos con ciclos',
@@ -39,6 +40,7 @@ export const distinguishTreesFromGraphsWithCycles_Skill_Data = defineSkill({
       'A tree has no cycles, whereas a general graph may have cycles and multiple alternative paths between vertices.',
     frontend: {
       en: 'Understand why graphs may contain cycles but trees do not.',
+      it: 'Comprendi perché i grafi possono contenere cicli, mentre gli alberi no.',
       zh: '理解为什么一般图可能包含环，而树不包含环。',
       hi: 'समझें कि ग्राफ़ में चक्र क्यों हो सकते हैं, लेकिन वृक्ष में नहीं।',
       es: 'Comprende por qué los grafos pueden contener ciclos, pero los árboles no.',

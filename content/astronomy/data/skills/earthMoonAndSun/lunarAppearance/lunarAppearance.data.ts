@@ -12,6 +12,7 @@ export const lunarAppearance_SkillGroup_Data = defineSkillGroup({
   id: '48079b94-cef6-4aaa-9d94-80c5099520df',
   name: {
     en: 'Lunar Appearance',
+    it: 'Aspetto della Luna',
     zh: '月球的外观',
     hi: 'चंद्रमा का रूप',
     es: 'Aspecto de la Luna',
@@ -55,6 +56,7 @@ export const lunarAppearance_SkillGroup_Data = defineSkillGroup({
       "The Moon's changing appearance follows its illumination and orbital viewing geometry, not changes to its intrinsic light production.",
     frontend: {
       en: "Explore how the Moon's movement and sunlight change what we see from Earth.",
+      it: 'Esplora come il moto della Luna e la luce solare modificano ciò che vediamo dalla Terra.',
       zh: '探索月球的运动和阳光照射如何改变我们从地球上看到的月球模样。',
       hi: 'जानें कि चंद्रमा की गति और सूर्य का प्रकाश, पृथ्वी से दिखाई देने वाले चंद्रमा के रूप को कैसे बदलते हैं।',
       es: 'Explora cómo el movimiento de la Luna y la luz solar cambian lo que vemos desde la Tierra.',

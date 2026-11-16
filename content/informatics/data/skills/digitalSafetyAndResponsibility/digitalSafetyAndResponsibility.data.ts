@@ -10,6 +10,7 @@ export const digitalSafetyAndResponsibility_SkillDomain_Data = defineSkillDomain
   id: 'dc767f18-884a-4ab2-94ba-78444383a3fd',
   title: {
     en: 'Digital Safety and Responsibility',
+    it: 'Sicurezza e responsabilità digitale',
     zh: '数字安全与责任',
     hi: 'डिजिटल सुरक्षा और ज़िम्मेदारी',
     es: 'Seguridad y responsabilidad digital',
@@ -53,6 +54,7 @@ export const digitalSafetyAndResponsibility_SkillDomain_Data = defineSkillDomain
       'Protection of personal information and accounts, respect for others, and the consequences of digital technologies. Designing and testing digital interface UX belongs to a separate Informatics domain.',
     frontend: {
       en: "Learn to protect information, respect other people and understand digital technology's effects.",
+      it: 'Impara a proteggere le informazioni, rispettare gli altri e comprendere gli effetti delle tecnologie digitali.',
       zh: '学习保护信息、尊重他人并理解数字技术的影响。',
       hi: 'जानकारी की रक्षा, दूसरों का सम्मान और डिजिटल तकनीक के प्रभाव समझना सीखें।',
       es: 'Aprende a proteger la información, respetar a otras personas y comprender los efectos de la tecnología digital.',

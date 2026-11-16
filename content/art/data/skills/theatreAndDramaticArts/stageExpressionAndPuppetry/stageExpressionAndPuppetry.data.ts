@@ -12,6 +12,7 @@ export const stageExpressionAndPuppetry_SkillGroup_Data = defineSkillGroup({
   id: '9b487da8-357b-4b65-944d-c8ef50ae19d8',
   name: {
     en: 'Stage Expression and Puppetry',
+    it: 'Espressione scenica e teatro di figura',
     zh: '舞台表现与木偶戏',
     hi: 'मंचीय अभिव्यक्ति और कठपुतली कला',
     es: 'Expresión escénica y marionetas',
@@ -55,6 +56,7 @@ export const stageExpressionAndPuppetry_SkillGroup_Data = defineSkillGroup({
       'Scenery, costumes, light and animated objects carry expressive functions in a performance beyond decoration.',
     frontend: {
       en: 'Use sets, clothing, light and puppets to express meaning on stage.',
+      it: 'Usa scenografie, costumi, luci e pupazzi per esprimere significati sulla scena.',
       zh: '运用布景、服装、灯光和木偶在舞台上表达意义。',
       hi: 'मंच पर अर्थ व्यक्त करने के लिए दृश्य-सज्जा, वेशभूषा, प्रकाश और कठपुतलियों का उपयोग करें।',
       es: 'Usa decorados, vestuario, iluminación y marionetas para expresar significados en escena.',

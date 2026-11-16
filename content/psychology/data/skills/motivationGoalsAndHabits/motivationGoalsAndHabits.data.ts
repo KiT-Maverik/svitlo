@@ -9,6 +9,7 @@ export const motivationGoalsAndHabits_SkillDomain_Data = defineSkillDomain({
   id: '14003706-7eb5-4c06-b244-5ddcb6e450a7',
   title: {
     en: 'Motivation, Goals, and Habits',
+    it: 'Motivazione, obiettivi e abitudini',
     zh: '动机、目标与习惯',
     hi: 'प्रेरणा, लक्ष्य और आदतें',
     es: 'Motivación, metas y hábitos',
@@ -51,6 +52,7 @@ export const motivationGoalsAndHabits_SkillDomain_Data = defineSkillDomain({
       'Motivation concerns what initiates, directs, and sustains action. Goals and habits reflect interactions among needs, rewards, expectations, self-control, and environmental cues rather than an unchanging amount of willpower.',
     frontend: {
       en: 'Explore why people act, pursue goals and develop automatic routines.',
+      it: 'Esplora perché le persone agiscano, perseguano obiettivi e sviluppino routine automatiche.',
       zh: '探索人们为何行动、追求目标并形成自动化的日常行为。',
       hi: 'जानें कि लोग क्यों काम करते, लक्ष्य अपनाते और स्वतः होने वाली दिनचर्या बनाते हैं।',
       es: 'Explora por qué actuamos, perseguimos metas y desarrollamos rutinas automáticas.',

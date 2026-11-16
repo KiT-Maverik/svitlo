@@ -9,6 +9,7 @@ export const philosophyOfLanguage_SkillDomain_Data = defineSkillDomain({
   id: '0ef7acc7-3c7b-4063-aa38-12a3e8833329',
   title: {
     en: 'Philosophy of Language',
+    it: 'Filosofia del linguaggio',
     zh: '语言哲学',
     hi: 'भाषा का दर्शन',
     es: 'Filosofía del lenguaje',
@@ -51,6 +52,7 @@ export const philosophyOfLanguage_SkillDomain_Data = defineSkillDomain({
       'Language is examined as a system for conveying meaning, referring to the world, performing actions, and shaping interpretation. Grammar instruction and literary composition remain primarily in Language and Literature.',
     frontend: {
       en: 'Explore how words convey meaning, refer to things and shape understanding.',
+      it: 'Esplora come le parole comunicano significati, si riferiscono alle cose e contribuiscono alla comprensione.',
       zh: '探索词语如何传达意义、指称事物并影响理解。',
       hi: 'जानो कि शब्द अर्थ कैसे बताते हैं, वस्तुओं का उल्लेख कैसे करते हैं और समझ को कैसे आकार देते हैं।',
       es: 'Explora cómo las palabras transmiten significado, se refieren a cosas y moldean la comprensión.',

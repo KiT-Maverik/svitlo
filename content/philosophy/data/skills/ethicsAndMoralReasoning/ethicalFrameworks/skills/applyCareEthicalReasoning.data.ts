@@ -5,6 +5,7 @@ export const applyCareEthicalReasoning_Skill_Data = defineSkill({
   id: 'bd38ae59-cb42-4391-b43b-9bf665e4cf55',
   name: {
     en: 'Apply care-ethical reasoning',
+    it: "Applicare il ragionamento dell'etica della cura",
     zh: '运用关怀伦理推理',
     hi: 'देखभाल-आधारित नैतिक तर्क लागू करना',
     es: 'Aplicar razonamiento de ética del cuidado',
@@ -39,6 +40,7 @@ export const applyCareEthicalReasoning_Skill_Data = defineSkill({
       'Evaluate obligations arising from dependence, relationships, vulnerability, and context without treating care as the absence of principles.',
     frontend: {
       en: 'Consider vulnerability, relationships and care when evaluating obligations.',
+      it: 'Considera vulnerabilità, relazioni e cura quando valuti gli obblighi morali.',
       zh: '评估义务时考虑脆弱性、人际关系与关怀。',
       hi: 'दायित्वों का मूल्यांकन करते समय असुरक्षा, संबंधों और देखभाल पर विचार करें।',
       es: 'Considera vulnerabilidad, relaciones y cuidado al evaluar obligaciones.',

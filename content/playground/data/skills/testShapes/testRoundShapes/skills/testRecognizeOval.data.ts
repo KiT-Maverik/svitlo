@@ -6,6 +6,7 @@ export const testRecognizeOval_Skill_Data = defineSkill({
   id: '00000000-0000-4000-8000-000000000009',
   name: {
     en: '[TEST en] Recognize an oval',
+    it: '[TEST it] Riconoscere un ovale',
     zh: '[TEST zh] Recognize an oval',
     hi: '[TEST hi] Recognize an oval',
     es: '[TEST es] Recognize an oval',
@@ -40,6 +41,7 @@ export const testRecognizeOval_Skill_Data = defineSkill({
       'Synthetic fixture skill for recognize an oval; it exists solely to exercise the Playground Skill Data graph.',
     frontend: {
       en: '[TEST en] Recognize an oval in a simple visual example.',
+      it: '[TEST it] Riconoscere un ovale in un semplice esempio visivo.',
       zh: '[TEST zh] Recognize an oval in a simple visual example.',
       hi: '[TEST hi] Recognize an oval in a simple visual example.',
       es: '[TEST es] Recognize an oval in a simple visual example.',

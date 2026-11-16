@@ -5,6 +5,7 @@ export const floodControlStructures_Skill_Data = defineSkill({
   id: '63abe1a0-19d1-484f-b9ab-63bf136c1614',
   name: {
     en: 'Flood-control structures',
+    it: 'Opere di difesa dalle alluvioni',
     zh: '防洪设施',
     hi: 'बाढ़ नियंत्रण संरचनाएँ',
     es: 'Estructuras de control de inundaciones',
@@ -38,6 +39,7 @@ export const floodControlStructures_Skill_Data = defineSkill({
     methodological: 'Relate barriers, detention or controlled diversion to flood-risk reduction and its limits.',
     frontend: {
       en: 'Understand how barriers and storage works can reduce flood damage.',
+      it: 'Comprendi come barriere e opere di accumulo possono ridurre i danni delle inondazioni.',
       zh: '理解堤坝和蓄水设施如何减轻洪灾损失。',
       hi: 'समझें कि अवरोध और जल-संग्रह संरचनाएँ बाढ़ का नुकसान कैसे घटाती हैं।',
       es: 'Comprende cómo barreras y depósitos pueden reducir daños por inundación.',

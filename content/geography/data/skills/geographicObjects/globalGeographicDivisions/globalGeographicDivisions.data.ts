@@ -16,6 +16,7 @@ export const globalGeographicDivisions_SkillGroup_Data = defineSkillGroup({
   id: '004a7690-25f5-49d8-9e8f-b05f4a220638',
   name: {
     en: 'Global Geographic Divisions',
+    it: 'Grandi suddivisioni geografiche della Terra',
     zh: '全球地理区划',
     hi: 'वैश्विक भौगोलिक विभाजन',
     es: 'Divisiones geográficas mundiales',
@@ -72,6 +73,7 @@ export const globalGeographicDivisions_SkillGroup_Data = defineSkillGroup({
       'Different conventions divide Earth into continental landmasses, historically and culturally recognized parts of the world, ocean basins and hemispheres. These systems answer different geographic questions and should not be collapsed into one supposedly universal continent count.',
     frontend: {
       en: 'Explore continents, world regions, oceans and hemispheres using stated conventions.',
+      it: 'Esplora continenti, parti del mondo, oceani ed emisferi secondo convenzioni esplicite.',
       zh: '按照明确的分类惯例探索大陆、世界地区、大洋与半球。',
       hi: 'स्पष्ट परंपराओं के अनुसार महाद्वीपों, विश्व क्षेत्रों, महासागरों और गोलार्धों को समझें।',
       es: 'Explora continentes, regiones del mundo, océanos y hemisferios según criterios expresos.',

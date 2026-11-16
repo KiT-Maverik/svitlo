@@ -5,6 +5,7 @@ export const distinguishBacteriaAndArchaea_Skill_Data = defineSkill({
   id: 'a3ec9c81-141b-4595-ad58-e3dc6ee9409c',
   name: {
     en: 'Distinguish Bacteria and Archaea',
+    it: 'Distinguere batteri e archei',
     zh: '区分细菌与古菌',
     hi: 'जीवाणुओं और आर्किया में अंतर करना',
     es: 'Distinguir bacterias y arqueas',
@@ -39,6 +40,7 @@ export const distinguishBacteriaAndArchaea_Skill_Data = defineSkill({
       'Explain that bacteria and archaea are separate evolutionary lineages of cellular organisms without a membrane-bound nucleus; molecular structural differences, including membrane lipids and cell envelopes, cannot be reduced to external cell shape.',
     frontend: {
       en: 'Distinguish bacteria and archaea as different groups of cellular organisms.',
+      it: 'Distingui batteri e archei come gruppi diversi di organismi cellulari.',
       zh: '认识细菌和古菌是两类不同的细胞生物。',
       hi: 'जीवाणुओं और आर्किया को कोशिकीय जीवों के दो अलग समूहों के रूप में पहचानें।',
       es: 'Distingue bacterias y arqueas como dos grupos distintos de organismos celulares.',

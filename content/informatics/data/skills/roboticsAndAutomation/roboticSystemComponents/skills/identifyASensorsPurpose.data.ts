@@ -5,6 +5,7 @@ export const identifyASensorsPurpose_Skill_Data = defineSkill({
   id: 'aa2009f8-66f0-411e-b007-876b9360e813',
   name: {
     en: "Identify a Sensor's Purpose",
+    it: 'Individuare lo scopo di un sensore',
     zh: '识别传感器的用途',
     hi: 'सेंसर का उद्देश्य पहचानना',
     es: 'Identificar la función de un sensor',
@@ -39,6 +40,7 @@ export const identifyASensorsPurpose_Skill_Data = defineSkill({
       'Determine which physical quantity or environmental state a sensor converts into a signal for the controller, such as distance, light, or temperature. A sensor supplies information but does not itself make control decisions.',
     frontend: {
       en: 'Recognize sensors that measure light, distance, temperature or other conditions.',
+      it: 'Riconosci i sensori che misurano luce, distanza, temperatura o altre condizioni.',
       zh: '识别测量光线、距离、温度或其他条件的传感器。',
       hi: 'प्रकाश, दूरी, तापमान या अन्य स्थितियाँ मापने वाले सेंसर पहचानें।',
       es: 'Reconoce sensores que miden luz, distancia, temperatura u otras condiciones.',

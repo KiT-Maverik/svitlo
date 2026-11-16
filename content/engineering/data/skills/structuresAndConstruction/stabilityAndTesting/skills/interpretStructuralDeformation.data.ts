@@ -5,6 +5,7 @@ export const interpretStructuralDeformation_Skill_Data = defineSkill({
   id: '6995018e-85ea-4fe9-a15f-6ff65848a9e4',
   name: {
     en: 'Interpret structural deformation',
+    it: 'Interpretare le deformazioni strutturali',
     zh: '解读结构变形',
     hi: 'संरचनात्मक विकृति की व्याख्या',
     es: 'Interpretar deformaciones estructurales',
@@ -38,6 +39,7 @@ export const interpretStructuralDeformation_Skill_Data = defineSkill({
     methodological: 'Relate observed bending or settlement to serviceability and possible damage.',
     frontend: {
       en: 'Interpret bending and settlement as signs of structural deformation.',
+      it: 'Interpreta flessione e cedimento come segni di deformazione strutturale.',
       zh: '把弯曲和沉降理解为结构变形的迹象。',
       hi: 'झुकाव और धँसाव को संरचनात्मक विकृति के संकेतों के रूप में पहचानें।',
       es: 'Interpreta la flexión y el asentamiento como señales de deformación.',

@@ -5,6 +5,7 @@ export const explainWhatMakesSomethingANaturalResource_Skill_Data = defineSkill(
   id: '0d3c54b0-08d7-4f84-9175-769eec63045a',
   name: {
     en: 'Explain what makes something a natural resource',
+    it: 'Spiegare che cosa rende qualcosa una risorsa naturale',
     zh: '解释什么使某物成为自然资源',
     hi: 'किसी वस्तु को प्राकृतिक संसाधन बनाने वाली बात समझाना',
     es: 'Explicar qué convierte algo en un recurso natural',
@@ -39,6 +40,7 @@ export const explainWhatMakesSomethingANaturalResource_Skill_Data = defineSkill(
       'Identify when a natural material, living stock or environmental flow is usable to satisfy a human need, distinguishing the resource itself from a manufactured product and recognizing that usefulness can change with available technology or circumstances.',
     frontend: {
       en: 'Explain when a natural material or environmental flow can serve human needs.',
+      it: 'Spiega quando un materiale naturale o un flusso ambientale può soddisfare i bisogni umani.',
       zh: '说明自然物质或环境流动何时能够满足人类需要。',
       hi: 'समझाएँ कि प्राकृतिक पदार्थ या पर्यावरणीय प्रवाह कब मानव जरूरतों को पूरा कर सकता है।',
       es: 'Explica cuándo un material natural o un flujo ambiental puede satisfacer necesidades humanas.',

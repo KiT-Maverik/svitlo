@@ -5,6 +5,7 @@ export const measurementUncertainty_Skill_Data = defineSkill({
   id: '5e1d05c9-0b33-4d61-a204-cfd31edadf3a',
   name: {
     en: 'Measurement uncertainty',
+    it: 'Incertezza di misura',
     zh: '测量不确定度',
     hi: 'मापन अनिश्चितता',
     es: 'Incertidumbre de medición',
@@ -39,6 +40,7 @@ export const measurementUncertainty_Skill_Data = defineSkill({
       'Characterize the limits of numerical observations using resolution, calibration, repeatability and error sources, including consequences for a pass-or-fail engineering decision.',
     frontend: {
       en: 'Understand how measurement uncertainty can affect an engineering decision.',
+      it: "Comprendi come l'incertezza di misura può influire su una decisione ingegneristica.",
       zh: '了解测量的不确定度如何影响工程决策。',
       hi: 'समझें कि मापन की अनिश्चितता इंजीनियरिंग निर्णय पर कैसे असर डालती है।',
       es: 'Comprende cómo la incertidumbre de medición afecta a una decisión de ingeniería.',

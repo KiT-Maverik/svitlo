@@ -5,6 +5,7 @@ export const writtenHistoricalSources_Skill_Data = defineSkill({
   id: '501a22c0-e40c-42ca-a60d-47df8e52f613',
   name: {
     en: 'Written Historical Sources',
+    it: 'Fonti storiche scritte',
     zh: '文字史料',
     hi: 'लिखित ऐतिहासिक स्रोत',
     es: 'Fuentes históricas escritas',
@@ -39,6 +40,7 @@ export const writtenHistoricalSources_Skill_Data = defineSkill({
       'Interpret laws, chronicles, inscriptions, letters, and records in light of their authors, purposes, and intended audiences.',
     frontend: {
       en: 'Read old documents while considering who wrote them and why.',
+      it: 'Leggi documenti antichi considerando chi li scrisse e perché.',
       zh: '阅读古代文献时考虑作者是谁、为何写作。',
       hi: 'पुराने दस्तावेज़ पढ़ते समय विचार करें कि उन्हें किसने और क्यों लिखा।',
       es: 'Lee documentos antiguos teniendo en cuenta quién los escribió y con qué propósito.',

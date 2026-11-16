@@ -5,6 +5,7 @@ export const recognizeSignsOfStroke_Skill_Data = defineSkill({
   id: 'de6b59df-897a-4366-830e-3a00e9fd6ca6',
   name: {
     en: 'Recognize signs of stroke',
+    it: 'Riconoscere i segni di un ictus',
     zh: '识别中风迹象',
     hi: 'स्ट्रोक के संकेत पहचानना',
     es: 'Reconocer señales de accidente cerebrovascular',
@@ -39,6 +40,7 @@ export const recognizeSignsOfStroke_Skill_Data = defineSkill({
       'Use sudden neurological changes as reasons for urgent emergency response, even if symptoms appear to improve.',
     frontend: {
       en: 'Recognize sudden symptoms that may indicate a stroke.',
+      it: 'Riconosci i sintomi improvvisi che potrebbero indicare un ictus.',
       zh: '识别可能提示中风的突发症状。',
       hi: 'ऐसे अचानक लक्षण पहचानो जो स्ट्रोक का संकेत दे सकते हैं।',
       es: 'Reconoce síntomas repentinos que pueden indicar un ictus.',

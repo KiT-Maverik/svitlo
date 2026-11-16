@@ -11,6 +11,7 @@ export const readWrite100_Skill_Data = defineSkill({
     ka: '100-მდე რიცხვების წაკითხვა და ჩაწერა',
     kk: '100-ге дейінгі сандарды оқу және жазу',
     en: 'Reading and writing numbers to 100',
+    it: 'Leggere e scrivere i numeri fino a 100',
     qm: '100-ge qadar sayılarnı oqumaq ve yazmaq',
     zh: '读写100以内的数',
     hi: '100 तक की संख्याएँ पढ़ना और लिखना',
@@ -39,6 +40,7 @@ export const readWrite100_Skill_Data = defineSkill({
       'A two-digit decimal numeral represents tens and ones according to their positions. Reading, writing, and converting between spoken and written forms must preserve the same numerical value.',
     frontend: {
       en: 'Read and write numbers up to 100, using tens and ones to understand what each digit means.',
+      it: 'Leggi e scrivi i numeri fino a 100 usando decine e unità per comprendere il significato di ogni cifra.',
       qm: '100-ge qadar sayılarnı oqu ve yaz. Er raqamnıñ manasını añlamaq içün onluq ve birliklerni qullan.',
       zh: '读写100以内的数，理解十位和个位分别表示多少。',
       hi: '100 तक संख्याएँ पढ़ें और लिखें तथा दहाई और इकाई से उनके अंकों का अर्थ समझें।',

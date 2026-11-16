@@ -5,6 +5,7 @@ export const adaptAnErgonomicWorkspace_Skill_Data = defineSkill({
   id: '042ab0ed-b95f-464d-978f-4797509b0a3f',
   name: {
     en: 'Adapt an ergonomic workspace',
+    it: 'Adattare una postazione di lavoro ergonomica',
     zh: '调整符合人体工学的工作空间',
     hi: 'शरीर के अनुकूल कार्यस्थल बनाना',
     es: 'Adaptar un espacio de trabajo ergonómico',
@@ -39,6 +40,7 @@ export const adaptAnErgonomicWorkspace_Skill_Data = defineSkill({
       "Adjust screen, seat, reach, lighting, and variation of posture to a person's task and physical needs.",
     frontend: {
       en: 'Adjust work areas for comfortable reach, lighting and posture changes.',
+      it: 'Regola gli spazi di lavoro per raggiungere comodamente gli oggetti, avere una buona illuminazione e variare la postura.',
       zh: '调整工作区域的伸手距离、照明和姿势变化，使其更舒适。',
       hi: 'काम की जगह में पहुँच, रोशनी और मुद्रा बदलने की सुविधा सुधारें।',
       es: 'Ajusta el área de trabajo para alcanzar objetos, tener buena luz y cambiar de postura cómodamente.',

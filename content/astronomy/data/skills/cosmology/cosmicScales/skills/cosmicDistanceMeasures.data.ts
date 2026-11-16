@@ -5,6 +5,7 @@ export const cosmicDistanceMeasures_Skill_Data = defineSkill({
   id: 'dadc4d1c-41cb-4fb6-a4c8-a8d2807cc76a',
   name: {
     en: 'Cosmic Distance Measures',
+    it: 'Misure delle distanze cosmiche',
     qm: 'Kosmik mesafeni ölçüv usulları',
     zh: '宇宙距离度量',
     hi: 'ब्रह्मांडीय दूरी के माप',
@@ -39,6 +40,7 @@ export const cosmicDistanceMeasures_Skill_Data = defineSkill({
       'Distinguish common cosmological distance concepts when relating observed brightness, redshift and scale.',
     frontend: {
       en: 'Compare the different ways cosmologists define and measure distance.',
+      it: 'Confronta i diversi modi con cui i cosmologi definiscono e misurano le distanze.',
       qm: 'Kosmologlar mesafeni añlatmaq ve ölçmek içün qullanğan çeşit usullarnı teñeştiriñiz.',
       zh: '比较宇宙学家定义和测量距离的不同方法。',
       hi: 'ब्रह्मांड विज्ञानी दूरी को परिभाषित और मापने के विभिन्न तरीकों की तुलना करें।',

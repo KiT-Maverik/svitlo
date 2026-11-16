@@ -5,6 +5,7 @@ export const verifyDesignRequirements_Skill_Data = defineSkill({
   id: '0e1060e6-ff19-4133-808e-0cfb2f703927',
   name: {
     en: 'Verify design requirements',
+    it: 'Verificare i requisiti progettuali',
     zh: '验证设计要求',
     hi: 'डिज़ाइन आवश्यकताओं की पुष्टि',
     es: 'Verificar los requisitos de diseño',
@@ -39,6 +40,7 @@ export const verifyDesignRequirements_Skill_Data = defineSkill({
       'Use inspection, test, demonstration or analysis to determine whether stated technical requirements and their acceptance criteria have been met. Passing one test does not establish compliance with untested requirements.',
     frontend: {
       en: 'Check systematically whether a solution satisfies each technical requirement.',
+      it: 'Controlla sistematicamente se una soluzione soddisfa ciascun requisito tecnico.',
       zh: '有条理地检查解决方案是否满足各项技术要求。',
       hi: 'व्यवस्थित रूप से जाँचें कि समाधान हर तकनीकी आवश्यकता पूरी करता है या नहीं।',
       es: 'Comprueba de forma sistemática si la solución cumple cada requisito técnico.',

@@ -5,6 +5,7 @@ export const recognizeNaturalCommunitiesOfUkraine_Skill_Data = defineSkill({
   id: '0fcc05ba-075e-4019-9858-06bec9268fc2',
   name: {
     en: 'Recognize Natural Communities of Ukraine',
+    it: "Riconoscere le comunità naturali dell'Ucraina",
     zh: '认识乌克兰的自然群落',
     hi: 'यूक्रेन के प्राकृतिक समुदाय पहचानना',
     es: 'Reconocer comunidades naturales de Ucrania',
@@ -39,6 +40,7 @@ export const recognizeNaturalCommunitiesOfUkraine_Skill_Data = defineSkill({
       'Identify characteristic combinations of plants, animals, and conditions in Ukrainian forests, steppes, meadows, or bodies of water.',
     frontend: {
       en: 'Recognize characteristic living communities in Ukrainian forests, steppes and waters.',
+      it: "Riconosci le comunità di organismi caratteristiche delle foreste, delle steppe e delle acque dell'Ucraina.",
       zh: '辨认乌克兰森林、草原和水域中典型的生物群落。',
       hi: 'यूक्रेन के जंगलों, स्तेपी घासभूमियों और जलक्षेत्रों के विशिष्ट जीव समुदाय पहचानें।',
       es: 'Reconoce comunidades vivas características de bosques, estepas y aguas de Ucrania.',

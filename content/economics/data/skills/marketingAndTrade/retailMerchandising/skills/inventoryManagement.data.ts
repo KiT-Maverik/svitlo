@@ -5,6 +5,7 @@ export const inventoryManagement_Skill_Data = defineSkill({
   id: '1337e36f-3567-437d-9f8b-09a4aae6fa5f',
   name: {
     en: 'Керування товарними запасами',
+    it: 'Gestione delle scorte',
     zh: '库存管理',
     hi: 'भंडार प्रबंधन',
     es: 'Gestión del inventario',
@@ -38,6 +39,7 @@ export const inventoryManagement_Skill_Data = defineSkill({
     methodological: 'Balance product availability against storage costs, spoilage, and the risk of shortages.',
     frontend: {
       en: 'Learn why stores must balance having enough stock with keeping costs down.',
+      it: 'Scopri perché i negozi devono trovare un equilibrio tra scorte sufficienti e contenimento dei costi.',
       zh: '了解商店为何需要在备货充足与降低成本之间取得平衡。',
       hi: 'जानें कि दुकानों को पर्याप्त माल रखने और खर्च घटाने में संतुलन क्यों रखना पड़ता है।',
       es: 'Aprende por qué las tiendas deben equilibrar existencias suficientes y costos bajos.',

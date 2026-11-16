@@ -5,6 +5,7 @@ export const ionicEquations_Skill_Data = defineSkill({
   id: '39e1d86f-5440-4e08-a17d-0be82fa277ba',
   name: {
     en: 'Ionic Equations',
+    it: 'Equazioni ioniche',
     zh: '离子方程式',
     hi: 'आयनिक समीकरण',
     es: 'Ecuaciones iónicas',
@@ -38,6 +39,7 @@ export const ionicEquations_Skill_Data = defineSkill({
     methodological: 'Represent only the species participating in a net aqueous chemical change.',
     frontend: {
       en: 'Write equations that show which ions actually take part in an aqueous reaction.',
+      it: 'Scrivi equazioni che mostrino quali ioni partecipano effettivamente a una reazione in soluzione acquosa.',
       zh: '写出能表明哪些离子真正参与水溶液反应的方程式。',
       hi: 'ऐसे समीकरण लिखें जो दिखाएँ कि जलीय अभिक्रिया में वास्तव में कौन-से आयन भाग लेते हैं।',
       es: 'Escribe ecuaciones que muestren qué iones participan realmente en una reacción acuosa.',

@@ -5,6 +5,7 @@ export const chronicStress_Skill_Data = defineSkill({
   id: '310d77b6-f079-42e2-bb2b-afff9cbcbe97',
   name: {
     en: 'Chronic Stress',
+    it: 'Stress cronico',
     zh: '慢性压力',
     hi: 'दीर्घकालिक तनाव',
     es: 'Estrés crónico',
@@ -39,6 +40,7 @@ export const chronicStress_Skill_Data = defineSkill({
       'Explain sustained exposure to stressors and why duration and available resources affect psychological consequences.',
     frontend: {
       en: 'Recognize how ongoing stress differs from a brief stressful event.',
+      it: 'Riconosci come lo stress persistente differisca da un evento stressante di breve durata.',
       zh: '认识持续存在的压力与短暂压力事件的区别。',
       hi: 'लंबे समय तक रहने वाले तनाव को थोड़ी देर की तनावपूर्ण घटना से अलग पहचानें।',
       es: 'Distingue el estrés prolongado de un episodio estresante breve.',

@@ -5,6 +5,7 @@ export const distinguishLocalAndRemoteRepositories_Skill_Data = defineSkill({
   id: 'acd4b51c-984a-4310-b1da-5e6e75cbc3ff',
   name: {
     en: 'Distinguish Local and Remote Repositories',
+    it: 'Distinguere repository locali e remoti',
     zh: '区分本地仓库和远程仓库',
     hi: 'स्थानीय और दूरस्थ रिपॉजिटरी में अंतर करना',
     es: 'Distinguir repositorios locales y remotos',
@@ -39,6 +40,7 @@ export const distinguishLocalAndRemoteRepositories_Skill_Data = defineSkill({
       'A local repository supports independent committing, while a remote repository enables sharing between contributors.',
     frontend: {
       en: 'Distinguish work stored on your computer from copies shared through remotes.',
+      it: 'Distingui il lavoro salvato sul tuo computer dalle copie condivise tramite repository remoti.',
       zh: '区分计算机中存储的工作与通过远程仓库共享的副本。',
       hi: 'अपने कंप्यूटर पर मौजूद काम और रिमोट के जरिए साझा प्रतियों में अंतर समझें।',
       es: 'Distingue el trabajo guardado en tu equipo de las copias compartidas mediante repositorios remotos.',
