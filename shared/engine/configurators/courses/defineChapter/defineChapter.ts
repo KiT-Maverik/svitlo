@@ -246,13 +246,17 @@ export const defineChapter = <
     return { base, locale };
   };
 
-  const base: ChapterConfigBase = {
+  const readBase = (): ChapterConfigBase => {
+    const source = copyAuthored();
+    return {
     id,
     slug,
     type,
-    params: structuredClone(authored.params),
-    locale: onlyStrings(authored.locale),
+    params: structuredClone(source.params),
+    locale: onlyStrings(source.locale),
+    };
   };
+  let cachedBase: ChapterConfigBase | undefined;
 
   const props = (options: PublicationLanguageOptions<Languages>): ChapterPublication<ChapterPropsBase> => {
     const languages = resolvePublicationLanguages(options);
@@ -402,7 +406,7 @@ export const defineChapter = <
     validate,
     build: { props, overrides },
     config: {
-      base,
+      get base() { return cachedBase ??= readBase(); },
       locales: (): { locale: DeepPartial<Chapter_Locale<'config'>> } => ({
         locale: onlyLocales(copyAuthored().locale),
       }),

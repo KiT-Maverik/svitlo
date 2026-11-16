@@ -259,13 +259,17 @@ export const defineCourse = <
     return { base, locale };
   };
 
-  const base: CourseConfigBase = {
+  const readBase = (): CourseConfigBase => {
+    const source = copyAuthored();
+    return {
     id,
     slug,
     type,
-    params: structuredClone(authored.params),
-    locale: onlyStrings(authored.locale),
+    params: structuredClone(source.params),
+    locale: onlyStrings(source.locale),
+    };
   };
+  let cachedBase: CourseConfigBase | undefined;
 
   const props = (options: PublicationLanguageOptions<Languages>): CoursePublication<CoursePropsBase> => {
     const languages = resolvePublicationLanguages(options);
@@ -425,7 +429,7 @@ export const defineCourse = <
     validate,
     build: { props, overrides },
     config: {
-      base,
+      get base() { return cachedBase ??= readBase(); },
       locales: (): { locale: DeepPartial<Course_Locale<'config'>> } => ({
         locale: onlyLocales(copyAuthored().locale),
       }),

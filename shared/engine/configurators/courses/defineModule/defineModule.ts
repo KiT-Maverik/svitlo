@@ -252,13 +252,17 @@ export const defineModule = <
     return { base, locale };
   };
 
-  const base: ModuleConfigBase = {
+  const readBase = (): ModuleConfigBase => {
+    const source = copyAuthored();
+    return {
     id,
     slug,
     type,
-    params: structuredClone(authored.params),
-    locale: onlyStrings(authored.locale),
+    params: structuredClone(source.params),
+    locale: onlyStrings(source.locale),
+    };
   };
+  let cachedBase: ModuleConfigBase | undefined;
 
   const props = (options: PublicationLanguageOptions<Languages>): ModulePublication<ModulePropsBase> => {
     const languages = resolvePublicationLanguages(options);
@@ -408,7 +412,7 @@ export const defineModule = <
     validate,
     build: { props, overrides },
     config: {
-      base,
+      get base() { return cachedBase ??= readBase(); },
       locales: (): { locale: DeepPartial<Module_Locale<'config'>> } => ({
         locale: onlyLocales(copyAuthored().locale),
       }),
