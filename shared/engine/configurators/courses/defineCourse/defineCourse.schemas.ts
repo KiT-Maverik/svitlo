@@ -81,7 +81,7 @@ export type Course_Overrides<
   };
 };
 
-export const course_Props_Schema = identity.extend({
+export const course_Props_Schema = identity.omit({ slug: true }).extend({
   ...addUnifiedLocale(locale('props')),
   content: z.array(z.union([module_Props_Schema, chapter_Props_Schema, lesson_Props_Schema, episode_Props_Schema])),
 });

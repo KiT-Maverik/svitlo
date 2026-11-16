@@ -22,7 +22,7 @@ function createSkillSchema<Mode extends keyof typeof localizationSwitch>(mode: M
 export const skill_Config_Schema = createSkillSchema('config');
 export type Skill_Config = z.infer<typeof skill_Config_Schema>;
 
-export const skill_Props_Schema = createSkillSchema('props');
+export const skill_Props_Schema = createSkillSchema('props').omit({ slug: true });
 export type Skill_Props = z.infer<typeof skill_Props_Schema>;
 
 /** Override fields come directly from the authored schema; identity is excluded. */

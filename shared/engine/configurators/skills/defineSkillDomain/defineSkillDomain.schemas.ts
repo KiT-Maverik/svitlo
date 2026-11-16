@@ -61,7 +61,7 @@ export type SkillDomain_Overrides<
   };
 };
 
-export const skillDomain_Props_Schema = z.object(localized('props')).extend({
+export const skillDomain_Props_Schema = z.object(localized('props')).omit({ slug: true }).extend({
   skills: z.array(skill_Props_Schema).optional(),
   groups: z.array(skillGroup_Props_Schema).optional(),
 });

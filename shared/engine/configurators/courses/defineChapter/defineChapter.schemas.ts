@@ -59,7 +59,7 @@ export type Chapter_Overrides<
   };
 };
 
-export const chapter_Props_Schema = identity.extend({
+export const chapter_Props_Schema = identity.omit({ slug: true }).extend({
   ...addUnifiedLocale(locale('props')),
   content: z.array(z.union([lesson_Props_Schema, episode_Props_Schema])),
 });

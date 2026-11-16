@@ -89,7 +89,7 @@ export const flashcard_Config_Schema = identityBase_Schema.extend({
 export type Flashcard_Config = z.infer<typeof flashcard_Config_Schema>;
 
 const resolvedBlocks = z.array(contentBlockResolved_Schema);
-export const flashcard_Props_Schema = identityBase_Schema.extend({
+export const flashcard_Props_Schema = identityBase_Schema.omit({ slug: true }).extend({
   type: z.literal('flashcard'),
   parameters: paramsBase_Schema.shape.params.extend({
     tags: z.array(z.string()),
@@ -106,7 +106,7 @@ export type Flashcard_Props = Omit<z.infer<typeof flashcard_Props_Schema>, 'cont
   content: { front: ContentBlock_Props[]; back: ContentBlock_Props[]; hint?: ContentBlock_Props[] };
 };
 
-export type Flashcard_PropsBase = Pick<Flashcard_Props, 'id' | 'slug' | 'type'> & {
+export type Flashcard_PropsBase = Pick<Flashcard_Props, 'id' | 'type'> & {
   parameters: Omit<Flashcard_Props['parameters'], 'flags'> & {
     flags: DeepPartial<Flashcard_Flag_Props>[];
   };
