@@ -304,7 +304,7 @@ describe('Current Lesson Props → localized Markdown review projection', () => 
     assert.equal(lesson.id, lessonId);
     const markdown = await generate(
       {
-        package: 'content/engine-fixture',
+        package: packagePath,
         lesson: lessonId,
         locale: 'uk',
         stdout: true,
