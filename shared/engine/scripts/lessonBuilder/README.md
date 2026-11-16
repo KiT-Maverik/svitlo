@@ -65,8 +65,12 @@ metadata. `lesson.scaffold.schema.json` combines the two for editor guidance.
 `lesson.schema.json` remains an Engine Config-only guide.
 
 `production.documentLanguage` is source-language provenance, **not** Config.
-The script retains only its authored source-locale dictionaries; it does not
-change `params.languages` or invent translations.
+The YAML `config.params.languages` is the **complete planned language set**;
+the scaffolder never rewrites or truncates it. Generated `constants.ts` has
+a provisional, source-language-only active `languages` tuple derived directly
+from `production.documentLanguage`, and a commented-out declaration retaining
+the complete planned tuple in its original order. The script retains only
+authored source-locale dictionaries and never invents translations.
 
 **Independent editorial sidecars:** `questions.yaml` and `flashcards.yaml` may be authored directly next to `lesson.yaml` when their separate stages are approved. No `questions/` or `flashcards/` directory is required at YAML creation time. This builder never reads either sidecar, creates bank TS modules, or overwrites existing bank source directories. Embedded `config.questions` / `config.flashcards` cause an explicit error.
 
@@ -86,10 +90,30 @@ change `params.languages` or invent translations.
   Props, then confirm review evidence for that revision; this builder cannot
   hash an unfinished Lesson or fabricate sign-offs. A rerun never overwrites
   recorded reviews; `check` only requires the file to exist.
-- `constants.ts`: source YAML `params.languages` as an Engine-checked readonly tuple
-  and the shared `LessonLanguages` type. This is NOT an extra source of languages;
-  the generated `defineLesson` references the same tuple, and nested definitions
-  carry its derived type without synthesizing missing translations.
+- `constants.ts`: exactly one active, Engine-checked `languages` readonly tuple,
+  initially `[production.documentLanguage]`, plus `LessonLanguages = typeof languages`.
+  The original **full** YAML `config.params.languages` tuple is retained only as
+  a commented-out alternative `export const languages` declaration. For example,
+  planned `[en, uk, pl, qm]` with source language `uk` emits:
+
+  ```ts
+  import type { LanguageCode } from '@svitlo/engine/build';
+
+  // Restore the complete language set when translations are ready:
+  // export const languages = ["en","uk","pl","qm"] as const satisfies readonly [LanguageCode, ...LanguageCode[]];
+
+  export const languages = ["uk"] as const satisfies readonly [LanguageCode, ...LanguageCode[]];
+  export type LessonLanguages = typeof languages;
+  ```
+
+  The Lesson root `defineLesson` and all nested Configurator generics use this
+  **single active** tuple. After the planned translations are genuinely authored,
+  the editor can manually activate the commented full declaration and remove or
+  comment out the provisional declaration. Existing language type constraints
+  will then require complete coverage. Neither the YAML nor existing authored
+  TypeScript drafts are modified by subsequent scaffolder runs. Only the active
+  source language is available for source-draft preview/publication; this is
+  not a claim that the planned translations already exist.
 - Real Skill imports instead of hardcoded UUID string expressions, resolved
   strictly against the textbook's `data/skills/**/*.data.ts` exported `defineSkill`
   definitions; missing/ambiguous references are explicit diagnostics.

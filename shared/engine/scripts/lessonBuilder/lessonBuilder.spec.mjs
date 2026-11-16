@@ -195,6 +195,49 @@ test('one YAML produces a modular typed Lesson, no type-grouped folders and no i
     assertTypeScriptSyntax(files);
   }));
 
+test('Lesson constants use documentLanguage, preserving the full planned tuple for manual restoration', () =>
+  fixture(f => {
+    f.config.params.languages = ['en', 'uk', 'pl', 'qm'];
+    f.config.__production = { documentLanguage: 'uk' }; // Deliberately not the first planned language.
+    f.save();
+    const source = fs.readFileSync(f.generated('lesson.yaml'), 'utf8');
+    assert.deepEqual(yaml.parse(source).config.params.languages, ['en', 'uk', 'pl', 'qm']);
+
+    runOne(f.lesson, 'generate', f.root);
+    const constantsFile = f.generated('constants.ts');
+    const constants = fs.readFileSync(constantsFile, 'utf8');
+    assert.equal(constants, [
+      "import type { LanguageCode } from '@svitlo/engine/build';",
+      '',
+      '// Restore the complete language set when translations are ready:',
+      '// export const languages = ["en","uk","pl","qm"] as const satisfies readonly [LanguageCode, ...LanguageCode[]];',
+      '',
+      'export const languages = ["uk"] as const satisfies readonly [LanguageCode, ...LanguageCode[]];',
+      'export type LessonLanguages = typeof languages;',
+      '',
+    ].join('\n'));
+    assert.equal([...constants.matchAll(/^export const languages =/gm)].length, 1);
+    assert.equal(fs.readFileSync(f.generated('lesson.yaml'), 'utf8'), source, 'Never modify the planned YAML tuple');
+
+    const files = readAll(f.lesson);
+    assert.match(files.get('index.ts'), /import \{ languages \} from '\.\/constants'/);
+    assert.match(files.get('index.ts'), /defineLesson<"lightLesson", LessonLanguages, typeof section\.items>/);
+    assert.match(files.get('sections/intro/index.ts'), /defineContentSection<"intro", typeof content\.items, LessonLanguages>/);
+    assert.match(files.get('sections/intro/prompt/index.ts'), /defineText<"prompt", LessonLanguages>/);
+    assert.match(files.get('sections/intro/gallery/index.ts'), /defineCarousel<"gallery", typeof slides\.items, LessonLanguages>/);
+    assert.doesNotMatch([...files.values()].join('\n'), /Never emit translation|"Light"/);
+    assertTypeScriptSyntax(files);
+    assert.equal(runOne(f.lesson, 'check', f.root).changed, 0);
+
+    const manuallyEdited = constants.replace('export const languages = ["uk"]', 'export const languages = ["en"]');
+    assert.notEqual(manuallyEdited, constants);
+    fs.writeFileSync(constantsFile, manuallyEdited);
+    assert.equal(runOne(f.lesson, 'generate', f.root).skipped, true, 'Create-only must not overwrite constants');
+    assert.equal(fs.readFileSync(constantsFile, 'utf8'), manuallyEdited);
+    assert.throws(() => runOne(f.lesson, 'check', f.root), /stale or manually edited draft/);
+    assert.equal(fs.readFileSync(f.generated('lesson.yaml'), 'utf8'), source);
+  }));
+
 test('Carousel Image and Scene children are independently scaffolded below their authored slugs', () =>
   fixture(f => {
     const slides = f.config.section.items.intro.content.items.gallery.slides;
