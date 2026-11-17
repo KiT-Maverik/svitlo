@@ -53,7 +53,7 @@ export const explainThePrincipleOfGeneticModification = defineSkill({
       it: 'Spiega come la modificazione genetica cambia il DNA, mentre nella selezione artificiale si scelgono gli organismi da far riprodurre.',
       ja: '交配のために親を選ぶこととは異なり、遺伝子改変がどのようにDNAを変えるか説明しよう。',
       ka: 'ახსენი, როგორ ცვლის გენეტიკური მოდიფიკაცია დნმ-ს, განსხვავებით გამრავლებისთვის მშობელი ორგანიზმების შერჩევისგან.',
-      kk: 'Genetikalyq modifikatsia DNQ-ny qalai özgertetının jäne onyñ budandastyru üşın ata-analyq ağzalardy tañdaudan aiyrmasyn tüsındır.',
+      kk: 'Genetikalyq modifikatsia DNQ-ny qalai özgertetının jäne onyñ selektsialyq ösırude ata-analyq ağzalardy tañdaudan aiyrmasyn tüsındır.',
       ko: '교배할 부모 개체를 선택하는 것과 달리 유전자 변형이 DNA를 어떻게 바꾸는지 설명해 보세요.',
       lt: 'Paaiškink, kaip genetinė modifikacija keičia DNR, kitaip nei tėvinių organizmų atranka veisimui.',
       lv: 'Izskaidro, kā ģenētiskā modificēšana maina DNS, atšķirībā no vecākorganismu izvēles selekcijai.',
