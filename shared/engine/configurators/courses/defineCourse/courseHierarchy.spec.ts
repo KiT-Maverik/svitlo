@@ -307,6 +307,9 @@ test('Course publishes optional outcomes, EducationStandard references and learn
   assert.equal(course_Config_Schema.safeParse({
     ...input, params: { ...input.params, grade: { min: -1, max: 2 } },
   }).success, false);
+  assert.throws(() => course.build.overrides({
+    params: { age: { min: 11, max: 9 } },
+  }, { languages: ['uk'] }), /invalid|minimum|minimum must not exceed|greater/i);
   assert.equal(course_Config_Schema.safeParse({
     ...input, params: { ...input.params, educationStandards: [standardId, standardId] },
   }).success, false);

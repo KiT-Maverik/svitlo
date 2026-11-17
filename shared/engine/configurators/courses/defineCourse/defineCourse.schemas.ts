@@ -26,6 +26,9 @@ const audienceRange_Schema = (maximum: number) =>
     max: z.int().min(0).max(maximum),
   }).refine(range => range.min <= range.max, 'Minimum must not exceed maximum');
 
+const ageRange_Schema = audienceRange_Schema(125);
+const gradeRange_Schema = audienceRange_Schema(40);
+
 const uniqueIds_Schema = z.array(z.uuid()).refine(
   values => new Set(values.map(value => value.toLowerCase())).size === values.length,
   'IDs must be unique',
@@ -46,8 +49,8 @@ const params = paramsBase_Schema.shape.params.extend({
   /** Skills actually intended to be taught; distinct from entry requirements. */
   outcomes: targetSkills_Schema.optional(),
   /** Optional jurisdiction-dependent target learners; no assumed universal grade. */
-  age: audienceRange_Schema(125).optional(),
-  grade: audienceRange_Schema(40).optional(),
+  age: ageRange_Schema.optional(),
+  grade: gradeRange_Schema.optional(),
   /** References to reviewed EducationStandard UUIDs; no automatic compliance claim. */
   educationStandards: uniqueIds_Schema.optional(),
   prerequisites: z
@@ -88,10 +91,20 @@ export type Course_Metadata_Overrides = {
   params?: DeepPartial<Omit<Course_Config['params'], 'languages'>>;
   locale?: DeepPartial<Course_Config['locale']>;
 };
+/**
+ * Zod 4 deepPartial() cannot descend into refined object schemas. Reconstruct
+ * only the audience objects from the SAME Config fields before deriving sparse
+ * overrides; effective merged Course Config is still parsed against the
+ * original refined age/grade ranges by the Course Build validation lifecycle.
+ */
+const partializableParams_Schema = course_Config_Schema.shape.params.omit({ languages: true }).extend({
+  age: z.strictObject(ageRange_Schema.shape).optional(),
+  grade: z.strictObject(gradeRange_Schema.shape).optional(),
+});
 export const course_Override_Config_Schema: z.ZodType<Course_Metadata_Overrides> = z.deepPartial(
   deepStrict_Schema(
     z.object({
-      params: course_Config_Schema.shape.params.omit({ languages: true }),
+      params: partializableParams_Schema,
       locale: course_Config_Schema.shape.locale,
     }),
   ),
