@@ -31,7 +31,7 @@ export const solsticesAndEquinoxes_Skill_Data = defineSkill({
     et: 'Pööripäevad ja võrdpäevsused',
     be: 'Сонцастаяньні і раўнадзенствы',
     ka: 'მზებუდობები და ბუნიობები',
-    kk: 'Күн тоқырауы мен күн мен түн теңелуі',
+    kk: 'Kün toqyrauy men kün men tün teñeluı',
     qm: 'Küneş turuvları ve gece-kündüz teñleşüvleri',
   },
   description: {
@@ -65,7 +65,7 @@ export const solsticesAndEquinoxes_Skill_Data = defineSkill({
       et: 'Mõista, miks pööripäevad ja võrdpäevsused on aasta erilised hetked.',
       be: 'Зразумейце, чаму сонцастаяньні і раўнадзенствы — асаблівыя моманты году.',
       ka: 'გაიგეთ, რატომ არის მზებუდობები და ბუნიობები წლის განსაკუთრებული მომენტები.',
-      kk: 'Күн тоқырауы мен күн мен түн теңелуі неліктен жылдың ерекше кезеңдері екенін түсініңіз.',
+      kk: 'Kün toqyrauy men kün men tün teñeluı nelıkten jyldyñ erekşe kezeñderı ekenın tüsınıñız.',
       qm: 'Küneş turuvları ve gece-kündüz teñleşüvleri yıl içinde ne içün mahsus vaqıtlar olğanını añlañız.',
     },
   },

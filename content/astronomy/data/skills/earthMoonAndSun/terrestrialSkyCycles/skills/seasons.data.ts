@@ -31,7 +31,7 @@ export const seasons_Skill_Data = defineSkill({
     et: 'Aastaajad',
     be: 'Поры году',
     ka: 'წელიწადის დროები',
-    kk: 'Жыл мезгілдері',
+    kk: 'Jyl mezgılderı',
     qm: 'Yıl mevsimleri',
   },
   description: {
@@ -65,7 +65,7 @@ export const seasons_Skill_Data = defineSkill({
       et: 'Avasta, kuidas Maa telje kalle põhjustab aastaaegade vaheldumise.',
       be: 'Даведайцеся, як нахіл зямной восі спрычыняе зьмену пораў году.',
       ka: 'გაიგეთ, როგორ განაპირობებს დედამიწის ღერძის დახრილობა წელიწადის დროების ცვლას.',
-      kk: 'Жер осінің еңістігі жыл мезгілдерінің ауысуына қалай себеп болатынын біліңіз.',
+      kk: 'Jer osınıñ eñıstıgı jyl mezgılderınıñ auysuyna qalai sebep bolatynyn bılıñız.',
       qm: 'Yer mihveriniñ egikligi yıl mevsimleriniñ deñişüvine nasıl sebep olğanını ögreniñiz.',
     },
   },

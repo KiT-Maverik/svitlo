@@ -31,7 +31,7 @@ export const lunarPhases_Skill_Data = defineSkill({
     et: 'Kuu faasid',
     be: 'Фазы Месяца',
     ka: 'მთვარის ფაზები',
-    kk: 'Ай фазалары',
+    kk: 'Ai fazalary',
     qm: 'Aynıñ fazaları',
   },
   description: {
@@ -65,7 +65,7 @@ export const lunarPhases_Skill_Data = defineSkill({
       et: 'Selgita, miks Päikese valgustatud Kuu osa näib faaside jooksul kuju muutvat.',
       be: 'Растлумачце, чаму асьветленая Сонцам частка Месяца ў розных фазах здаецца рознай формы.',
       ka: 'ახსენით, რატომ ჩანს მზით განათებული მთვარის ნაწილი სხვადასხვა ფორმის მისი ფაზების განმავლობაში.',
-      kk: 'Ай фазалары ауысқан сайын оның Күн жарық түсіретін бөлігі неліктен әртүрлі пішінде көрінетінін түсіндіріңіз.',
+      kk: 'Ai fazalary auysqan saiyn onyñ Kün jaryq tüsıretın bölıgı nelıkten ärtürlı pışınde körınetının tüsındırıñız.',
       qm: 'Aynıñ Küneşnen yarıqlatılğan qısmı türlü fazalarda ne içün başqa şekilde körüngenini añlatıñız.',
     },
   },

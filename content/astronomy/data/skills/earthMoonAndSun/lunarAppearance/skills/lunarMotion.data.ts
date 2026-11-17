@@ -31,7 +31,7 @@ export const lunarMotion_Skill_Data = defineSkill({
     et: 'Kuu liikumine',
     be: 'Рух Месяца',
     ka: 'მთვარის მოძრაობა',
-    kk: 'Айдың қозғалысы',
+    kk: 'Aidyñ qozğalysy',
     qm: 'Aynıñ areketi',
   },
   description: {
@@ -64,7 +64,7 @@ export const lunarMotion_Skill_Data = defineSkill({
       et: 'Jälgi, kuidas Kuu asukoht tähtede suhtes ööst öösse muutub.',
       be: 'Прасачыце, як ад ночы да ночы зьмяняецца становішча Месяца адносна зорак.',
       ka: 'დააკვირდით, როგორ იცვლება მთვარის მდებარეობა ვარსკვლავების მიმართ ღამიდან ღამემდე.',
-      kk: 'Айдың жұлдыздарға қатысты орны түн сайын қалай өзгеретінін бақылаңыз.',
+      kk: 'Aidyñ jūldyzdarğa qatysty orny tün saiyn qalai özgeretının baqylañyz.',
       qm: 'Aynıñ yıldızlarğa nisbeten yeriniñ geceden gecege nasıl deñişkenini baqıñız.',
     },
   },

@@ -31,7 +31,7 @@ export const exoplanetMass_Skill_Data = defineSkill({
     et: 'Eksoplaneedi mass',
     be: 'Маса экзаплянэты',
     ka: 'ეგზოპლანეტის მასა',
-    kk: 'Экзопланетаның массасы',
+    kk: 'Ekzoplanetanyñ massasy',
     qm: 'Ekzoseyyareniñ kütlesi',
   },
   description: {
@@ -64,7 +64,7 @@ export const exoplanetMass_Skill_Data = defineSkill({
       et: 'Uuri, kuidas planeedi gravitatsiooniline mõju aitab hinnata selle massi.',
       be: 'Дасьледуйце, як гравітацыйны ўплыў плянэты дапамагае ацаніць яе масу.',
       ka: 'გაიგეთ, როგორ გვეხმარება პლანეტის გრავიტაციული გავლენა მისი მასის შეფასებაში.',
-      kk: 'Ғаламшардың тартылыс әсері оның массасын бағалауға қалай көмектесетінін зерттеңіз.',
+      kk: 'Ğalamşardyñ tartylys äserı onyñ massasyn bağalauğa qalai kömektesetının zertteñız.',
       qm: 'Seyyareniñ cazibe quveti tesirleri onıñ kütlesini tahmin etmege nasıl yardım etkenini ögreniñiz.',
     },
   },

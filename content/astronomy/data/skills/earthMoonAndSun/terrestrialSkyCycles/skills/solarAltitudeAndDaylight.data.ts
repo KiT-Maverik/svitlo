@@ -31,7 +31,7 @@ export const solarAltitudeAndDaylight_Skill_Data = defineSkill({
     et: 'Päikese kõrgus ja päevavalguse kestus',
     be: 'Вышыня Сонца і працягласьць сьветлавога дня',
     ka: 'მზის სიმაღლე და დღის სინათლის ხანგრძლივობა',
-    kk: 'Күннің биіктігі және күндізгі жарықтың ұзақтығы',
+    kk: 'Künnıñ biıktıgı jäne kündızgı jaryqtyñ ūzaqtyğy',
     qm: 'Küneşniñ ufq üstündeki yüksekligi ve kündüzniñ devamlılığı',
   },
   description: {
@@ -64,7 +64,7 @@ export const solarAltitudeAndDaylight_Skill_Data = defineSkill({
       et: 'Vaata, kuidas Päikese näiv kõrgus taevas ja päevavalguse kestus olenevad asukohast ning aastaajast.',
       be: 'Прасачыце, як бачная вышыня Сонца над даляглядам і працягласьць сьветлавога дня зьмяняюцца ў залежнасьці ад месца і пары году.',
       ka: 'დააკვირდით, როგორ იცვლება მზის მოჩვენებითი სიმაღლე ცაზე და დღის სინათლის ხანგრძლივობა ადგილმდებარეობისა და სეზონის მიხედვით.',
-      kk: 'Күннің аспандағы көрінерлік биіктігі мен күндізгі жарықтың ұзақтығы орын мен жыл мезгіліне қарай қалай өзгеретінін бақылаңыз.',
+      kk: 'Künnıñ aspandağy körınerlık biıktıgı men kündızgı jaryqtyñ ūzaqtyğy oryn men jyl mezgılıne qarai qalai özgeretının baqylañyz.',
       qm: 'Küneşniñ kökte körüngen yüksekligi ve kündüzniñ uzunlığı yerge ve mevsimge köre nasıl deñişkenini baqıp ögreniñiz.',
     },
   },

@@ -38,7 +38,7 @@ export const terrestrialSkyCycles_SkillGroup_Data = defineSkillGroup({
     et: 'Maalt nähtavad taevatsüklid',
     be: 'Нябесныя цыклі, бачныя зь Зямлі',
     ka: 'დედამიწიდან ხილული ცის ციკლები',
-    kk: 'Жерден байқалатын аспан циклдері',
+    kk: 'Jerden baiqalatyn aspan tsiklderı',
     qm: 'Yerden körülgen kök devirleri',
   },
   skills: [
@@ -78,7 +78,7 @@ export const terrestrialSkyCycles_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri, kuidas Maa pöörlemine ja telje kalle mõjutavad päevavalguse kestust ning aastaaegade vaheldumist.',
       be: 'Дасьледуйце, як кручэньне Зямлі вакол восі і нахіл гэтай восі ўплываюць на працягласьць сьветлавога дня і зьмену пораў году.',
       ka: 'შეისწავლეთ, როგორ მოქმედებს დედამიწის ბრუნვა და ღერძის დახრილობა დღის სინათლის ხანგრძლივობასა და სეზონურ ცვლილებებზე.',
-      kk: 'Жердің өз осінен айналуы мен осінің еңістігі күндізгі жарықтың ұзақтығына және маусымдық өзгерістерге қалай әсер ететінін зерттеңіз.',
+      kk: 'Jerdıñ öz osınen ainaluy men osınıñ eñıstıgı kündızgı jaryqtyñ ūzaqtyğyna jäne mausymdyq özgerısterge qalai äser etetının zertteñız.',
       qm: 'Yerniñ öz etrafında aylanması ve onıñ mihveriniñ egikligi kündüzniñ devamlılığına ve mevsim deñişmelerine nasıl tesir etkenini ögreniñiz.',
     },
   },

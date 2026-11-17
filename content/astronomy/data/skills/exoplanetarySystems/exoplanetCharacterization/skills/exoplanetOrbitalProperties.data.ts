@@ -31,7 +31,7 @@ export const exoplanetOrbitalProperties_Skill_Data = defineSkill({
     et: 'Eksoplaneetide orbiidiomadused',
     be: 'Арбітальныя ўласьцівасьці экзаплянэт',
     ka: 'ეგზოპლანეტების ორბიტული თვისებები',
-    kk: 'Экзопланеталардың орбиталық қасиеттері',
+    kk: 'Ekzoplanetalardyñ orbitalyq qasietterı',
     qm: 'Ekzoseyyarelerniñ orbita hususiyetleri',
   },
   description: {
@@ -64,7 +64,7 @@ export const exoplanetOrbitalProperties_Skill_Data = defineSkill({
       et: 'Võrdle eksoplaneetide orbiitide perioode, kujusid ja suurusi.',
       be: 'Параўноўвайце пэрыяды, формы і памеры арбітаў экзаплянэт.',
       ka: 'შეადარეთ ეგზოპლანეტების ორბიტების პერიოდები, ფორმები და ზომები.',
-      kk: 'Экзопланета орбиталарының периодтарын, пішіндерін және өлшемдерін салыстырыңыз.',
+      kk: 'Ekzoplaneta orbitalarynyñ periodtaryn, pışınderın jäne ölşemderın salystyryñyz.',
       qm: 'Ekzoseyyare orbitalarınıñ devirlerini, şekillerini ve büyükligini qıyaslañız.',
     },
   },

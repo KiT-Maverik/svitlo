@@ -31,7 +31,7 @@ export const dayAndNight_Skill_Data = defineSkill({
     et: 'Päev ja öö',
     be: 'Дзень і ноч',
     ka: 'დღე და ღამე',
-    kk: 'Күн мен түн',
+    kk: 'Kün men tün',
     qm: 'Kündüz ve gece',
   },
   description: {
@@ -65,7 +65,7 @@ export const dayAndNight_Skill_Data = defineSkill({
       et: 'Selgita, miks Maa pöörlemine ümber oma telje põhjustab päeva ja öö vaheldumise.',
       be: 'Растлумачце, чаму праз кручэньне Зямлі вакол сваёй восі дзень і ноч чаргуюцца.',
       ka: 'ახსენით, რატომ იწვევს დედამიწის საკუთარი ღერძის გარშემო ბრუნვა დღისა და ღამის მონაცვლეობას.',
-      kk: 'Жердің өз осінен айналуы күндізгі жарық пен түнгі қараңғылықтың неліктен алмасуына әкелетінін түсіндіріңіз.',
+      kk: 'Jerdıñ öz osınen ainaluy kündızgı jaryq pen tüngı qarañğylyqtyñ nelıkten almasuyna äkeletının tüsındırıñız.',
       qm: 'Yerniñ öz mihveri etrafında aylanması sebebinden kündüz ve geceniñ nevbetnen kelgenini añlatıñız.',
     },
   },

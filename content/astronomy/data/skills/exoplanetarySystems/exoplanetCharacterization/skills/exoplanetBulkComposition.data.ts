@@ -31,7 +31,7 @@ export const exoplanetBulkComposition_Skill_Data = defineSkill({
     et: 'Eksoplaneetide üldkoostis',
     be: 'Агульны склад экзаплянэт',
     ka: 'ეგზოპლანეტების მთლიანი შემადგენლობა',
-    kk: 'Экзопланеталардың жалпы құрамы',
+    kk: 'Ekzoplanetalardyñ jalpy qūramy',
     qm: 'Ekzoseyyarelerniñ umumiy terkibi',
   },
   description: {
@@ -65,7 +65,7 @@ export const exoplanetBulkComposition_Skill_Data = defineSkill({
       et: 'Uuri massi ja raadiuse abil planeedi võimalikku koostist, eeldamata üht kindlat vastust.',
       be: 'Паводле масы і радыюсу дасьледуйце магчымы склад плянэты, не дапускаючы адзінага адказу.',
       ka: 'გამოიყენეთ მასა და რადიუსი პლანეტის შესაძლო შემადგენლობის შესასწავლად, ერთი პასუხის წინასწარ დაშვების გარეშე.',
-      kk: 'Ғаламшардың массасы мен радиусына сүйеніп, ықтимал құрамын зерттеңіз, бірақ бір ғана жауап бар деп ойламаңыз.',
+      kk: 'Ğalamşardyñ massasy men radiusyna süienıp, yqtimal qūramyn zertteñız, bıraq bır ğana jauap bar dep oilamañyz.',
       qm: 'Seyyareniñ kütlesi ve radiusı yardımınen onıñ mümkün içki terkibini tetqiq etiñiz, tek bir cevap olğanını farz etmeñiz.',
     },
   },

@@ -31,7 +31,7 @@ export const exoplanetAtmosphericSpectra_Skill_Data = defineSkill({
     et: 'Eksoplaneetide atmosfäärispektrid',
     be: 'Атмасфэрныя спэктры экзаплянэт',
     ka: 'ეგზოპლანეტების ატმოსფერული სპექტრები',
-    kk: 'Экзопланеталар атмосферасының спектрлері',
+    kk: 'Ekzoplanetalar atmosferasynyñ spektrlerı',
     qm: 'Ekzoseyyarelerniñ atmosfera spektrleri',
   },
   description: {
@@ -64,7 +64,7 @@ export const exoplanetAtmosphericSpectra_Skill_Data = defineSkill({
       et: 'Uuri, kuidas planeedi spekter annab vihjeid selle atmosfääri kohta.',
       be: 'Дасьледуйце, як спэктар плянэты дае падказкі пра яе атмасфэру.',
       ka: 'გაიგეთ, როგორ გვაწვდის პლანეტის სპექტრი მინიშნებებს მისი ატმოსფეროს შესახებ.',
-      kk: 'Ғаламшар спектрі оның атмосферасы туралы қандай дерек беретінін біліңіз.',
+      kk: 'Ğalamşar spektrı onyñ atmosferasy turaly qandai derek beretının bılıñız.',
       qm: 'Seyyareniñ spektri onıñ atmosferası aqqında nasıl işaretler bergenini ögreniñiz.',
     },
   },

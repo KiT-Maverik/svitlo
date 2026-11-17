@@ -31,7 +31,7 @@ export const nearAndFarLunarHemispheres_Skill_Data = defineSkill({
     et: 'Kuu Maa-poolne ja kaugem poolkera',
     be: "Блізкае і далёкае паўшар'і Месяца",
     ka: 'მთვარის ახლო და შორი ნახევარსფეროები',
-    kk: 'Айдың бергі және арғы жарты шарлары',
+    kk: 'Aidyñ bergı jäne arğy jarty şarlary',
     qm: 'Aynıñ Yerge baqqan ve uzaq yarımküreleri',
   },
   description: {
@@ -65,7 +65,7 @@ export const nearAndFarLunarHemispheres_Skill_Data = defineSkill({
       et: 'Mõista, miks Kuu Maast kaugem külg ei ole alati pime.',
       be: 'Зразумейце, чаму адваротны бок Месяца не заўсёды знаходзіцца ў цемры.',
       ka: 'გაიგეთ, რატომ არ არის მთვარის შორეული მხარე ყოველთვის ბნელი.',
-      kk: 'Айдың арғы беті неге үнемі қараңғы болмайтынын түсініңіз.',
+      kk: 'Aidyñ arğy betı nege ünemı qarañğy bolmaitynyn tüsınıñız.',
       qm: 'Aynıñ Yerden körünmegen tarafı ne içün er vaqıt qaranlıq olmağanını añlañız.',
     },
   },

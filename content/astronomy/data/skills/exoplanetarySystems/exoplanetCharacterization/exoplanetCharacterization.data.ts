@@ -39,7 +39,7 @@ export const exoplanetCharacterization_SkillGroup_Data = defineSkillGroup({
     et: 'Eksoplaneetide omaduste määramine',
     be: 'Вызначэньне ўласьцівасьцяў экзаплянэт',
     ka: 'ეგზოპლანეტების მახასიათებლების დადგენა',
-    kk: 'Экзопланеталардың сипаттарын анықтау',
+    kk: 'Ekzoplanetalardyñ sipattaryn anyqtau',
     qm: 'Ekzoseyyarelerniñ hususiyetlerini belgilev',
   },
   skills: [
@@ -80,7 +80,7 @@ export const exoplanetCharacterization_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri, kuidas teadlased järeldavad eksoplaneetide omadusi kaudsete vaatluste põhjal.',
       be: 'Даведайцеся, як дасьледчыкі вызначаюць уласьцівасьці экзаплянэт паводле ўскосных назіраньняў.',
       ka: 'გაიგეთ, როგორ ადგენენ მკვლევრები ეგზოპლანეტების თვისებებს არაპირდაპირი დაკვირვებებით.',
-      kk: 'Зерттеушілер жанама бақылаулар арқылы экзопланеталардың қасиеттерін қалай анықтайтынын біліңіз.',
+      kk: 'Zertteuşıler janama baqylaular arqyly ekzoplanetalardyñ qasietterın qalai anyqtaitynyn bılıñız.',
       qm: 'Araştırıcılar dolaylı közetüvlerden ekzoseyyarelerniñ hususiyetlerini nasıl añlağanını ögreniñiz.',
     },
   },
