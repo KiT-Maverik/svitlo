@@ -11,9 +11,7 @@ import {
 import {
   skill_Config_Schema,
   skill_Props_Schema,
-  skill_Override_Config_Schema,
   type Skill_Config,
-  type Skill_Overrides,
   type Skill_Props,
 } from './defineSkill.schemas';
 
@@ -49,10 +47,6 @@ export type Skill_Configurator<
     props(
       options: PublicationLanguageOptions<Languages>,
     ): SkillPublication<DeepPartial<Skill_Props> & { id: Skill_Config['id']; slug: string }>;
-    overrides(
-      patch: Skill_Overrides,
-      options: PublicationLanguageOptions<Languages>,
-    ): SkillPublication<DeepPartial<Skill_Props>>;
   };
   readonly config: {
     base: DeepPartial<Skill_Props> & { id: Skill_Config['id']; slug: string };
@@ -88,40 +82,12 @@ export function defineSkill<
     return result;
   };
 
-  const overrides = (
-    patch: Skill_Overrides,
-    options: PublicationLanguageOptions<Languages>,
-  ): SkillPublication<DeepPartial<Skill_Props>> => {
-    try {
-      const languages = resolvePublicationLanguages(options);
-      const sparse = skill_Override_Config_Schema.parse(patch);
-      validate(skill_Config_Schema.parse(mergeForValidation(copyAuthored(), sparse)));
-      const own = project(sparse);
-      const result: SkillPublication<DeepPartial<Skill_Props>> = {
-        base: own.base,
-        locale: selectPublicationLocales(own.locale as SkillPublication<DeepPartial<Skill_Props>>['locale'], languages),
-      };
-      const resource = props(options);
-      for (const language of languages) {
-        const original = mergeForValidation(resource.base, resource.locale?.[language] ?? {});
-        const patched = mergeForValidation(original, result.base);
-        skill_Props_Schema.parse(mergeForValidation(patched, result.locale?.[language] ?? {}));
-      }
-      return result;
-    } catch (error) {
-      throw new Error(
-        'Invalid Skill overrides for ' + id + ': ' + (error instanceof Error ? error.message : String(error)),
-        { cause: error },
-      );
-    }
-  };
-
   const result = {
     id,
     slug,
     type: 'skill' as const,
     validate,
-    build: { props, overrides },
+    build: { props },
     config: {
       base: {
         id: id as Skill_Config['id'],
