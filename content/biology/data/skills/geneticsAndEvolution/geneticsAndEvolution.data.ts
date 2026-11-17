@@ -38,7 +38,14 @@ export const geneticsAndEvolution_SkillDomain_Data = defineSkillDomain({
     ka: 'გენეტიკა და ევოლუცია',
     kk: 'Genetika jäne evoliutsia',
   },
-  groups: [evolutionaryChanges_SkillGroup_Data, genetics_SkillGroup_Data, reproductionAndTraits_SkillGroup_Data],
+  groups: {
+    items: {
+      evolutionaryChanges: evolutionaryChanges_SkillGroup_Data,
+      genetics: genetics_SkillGroup_Data,
+      reproductionAndTraits: reproductionAndTraits_SkillGroup_Data,
+    },
+    order: ['evolutionaryChanges', 'genetics', 'reproductionAndTraits'],
+  },
   description: {
     methodological:
       "Transmission of hereditary information, reasons for similarities and differences among offspring, and changes in inherited traits within populations across generations. An individual's growth is not an evolutionary process.",

@@ -45,16 +45,29 @@ export const evolutionaryChanges_SkillGroup_Data = defineSkillGroup({
     ka: 'ევოლუციური ცვლილებები',
     kk: 'Evoliutsialyq özgerıster',
   },
-  skills: [
-    distinguishIndividualChangesDuringLifeFromPopulationChanges_Skill_Data,
-    explainCommonAncestryOfSpecies_Skill_Data,
-    explainHereditaryVariationAmongIndividuals_Skill_Data,
-    explainMechanismsOfEvolutionaryChange_Skill_Data,
-    explainNaturalSelection_Skill_Data,
-    explainSpeciation_Skill_Data,
-    explainTheTheoryOfEvolution_Skill_Data,
-    interpretEvidenceOfEvolution_Skill_Data,
-  ],
+  skills: {
+    items: {
+      distinguishIndividualChangesDuringLifeFromPopulationChanges:
+        distinguishIndividualChangesDuringLifeFromPopulationChanges_Skill_Data,
+      explainCommonAncestryOfSpecies: explainCommonAncestryOfSpecies_Skill_Data,
+      explainHereditaryVariationAmongIndividuals: explainHereditaryVariationAmongIndividuals_Skill_Data,
+      explainMechanismsOfEvolutionaryChange: explainMechanismsOfEvolutionaryChange_Skill_Data,
+      explainNaturalSelection: explainNaturalSelection_Skill_Data,
+      explainSpeciation: explainSpeciation_Skill_Data,
+      explainTheTheoryOfEvolution: explainTheTheoryOfEvolution_Skill_Data,
+      interpretEvidenceOfEvolution: interpretEvidenceOfEvolution_Skill_Data,
+    },
+    order: [
+      'distinguishIndividualChangesDuringLifeFromPopulationChanges',
+      'explainCommonAncestryOfSpecies',
+      'explainHereditaryVariationAmongIndividuals',
+      'explainMechanismsOfEvolutionaryChange',
+      'explainNaturalSelection',
+      'explainSpeciation',
+      'explainTheTheoryOfEvolution',
+      'interpretEvidenceOfEvolution',
+    ],
+  },
   description: {
     methodological:
       'Hereditary variation and differences in reproductive success alter the prevalence of traits in populations across generations; this is not the same as development of an individual organism.',

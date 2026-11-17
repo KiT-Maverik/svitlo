@@ -41,12 +41,21 @@ export const levelsOfOrganization_SkillGroup_Data = defineSkillGroup({
     kk: 'Ūiymdasu deñgeilerı',
     qm: 'Teşkilâtlanma seviyeleri',
   },
-  skills: [
-    distinguishAPartOfAnOrganismFromAWholeOrganism_Skill_Data,
-    explainAnOrgansFunctionInAnOrganism_Skill_Data,
-    explainTheInterdependenceOfOrgans_Skill_Data,
-    orderTheLevelsCellTissueOrganSystem_Skill_Data,
-  ],
+  skills: {
+    items: {
+      distinguishAPartOfAnOrganismFromAWholeOrganism:
+        distinguishAPartOfAnOrganismFromAWholeOrganism_Skill_Data,
+      explainAnOrgansFunctionInAnOrganism: explainAnOrgansFunctionInAnOrganism_Skill_Data,
+      explainTheInterdependenceOfOrgans: explainTheInterdependenceOfOrgans_Skill_Data,
+      orderTheLevelsCellTissueOrganSystem: orderTheLevelsCellTissueOrganSystem_Skill_Data,
+    },
+    order: [
+      'distinguishAPartOfAnOrganismFromAWholeOrganism',
+      'explainAnOrgansFunctionInAnOrganism',
+      'explainTheInterdependenceOfOrgans',
+      'orderTheLevelsCellTissueOrganSystem',
+    ],
+  },
   description: {
     methodological:
       'Parts of cellular organisms form nested levels; the functioning of a whole depends on the coordinated work of its structures.',

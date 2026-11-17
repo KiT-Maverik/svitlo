@@ -43,14 +43,24 @@ export const plantDiversity_SkillGroup_Data = defineSkillGroup({
     kk: 'Ösımdıkterdıñ aluantürlılıgı',
     qm: 'Ösümlikler çeşitliligi',
   },
-  skills: [
-    distinguishDeciduousAndEvergreenPlants_Skill_Data,
-    distinguishGymnospermsAndAngiosperms_Skill_Data,
-    distinguishTreesShrubsAndHerbaceousPlants_Skill_Data,
-    recognizeBryophyteCharacteristics_Skill_Data,
-    recognizeCommonLocalPlants_Skill_Data,
-    recognizeFernAndFernAllyCharacteristics_Skill_Data,
-  ],
+  skills: {
+    items: {
+      distinguishDeciduousAndEvergreenPlants: distinguishDeciduousAndEvergreenPlants_Skill_Data,
+      distinguishGymnospermsAndAngiosperms: distinguishGymnospermsAndAngiosperms_Skill_Data,
+      distinguishTreesShrubsAndHerbaceousPlants: distinguishTreesShrubsAndHerbaceousPlants_Skill_Data,
+      recognizeBryophyteCharacteristics: recognizeBryophyteCharacteristics_Skill_Data,
+      recognizeCommonLocalPlants: recognizeCommonLocalPlants_Skill_Data,
+      recognizeFernAndFernAllyCharacteristics: recognizeFernAndFernAllyCharacteristics_Skill_Data,
+    },
+    order: [
+      'distinguishDeciduousAndEvergreenPlants',
+      'distinguishGymnospermsAndAngiosperms',
+      'distinguishTreesShrubsAndHerbaceousPlants',
+      'recognizeBryophyteCharacteristics',
+      'recognizeCommonLocalPlants',
+      'recognizeFernAndFernAllyCharacteristics',
+    ],
+  },
   description: {
     methodological:
       'External structure, branching patterns, and seasonality provide grounds for comparing familiar species without equating growth form with biological relatedness.',

@@ -41,12 +41,21 @@ export const reproductionAndTraits_SkillGroup_Data = defineSkillGroup({
     ka: 'გამრავლება და ნიშან-თვისებები',
     kk: 'Köbeiu jäne belgıler',
   },
-  skills: [
-    distinguishHereditaryAndAcquiredTraits_Skill_Data,
-    distinguishSexualAndAsexualReproduction_Skill_Data,
-    explainDifferencesAmongOffspringOfTheSameSpecies_Skill_Data,
-    identifyHereditaryTraitsInExamples_Skill_Data,
-  ],
+  skills: {
+    items: {
+      distinguishHereditaryAndAcquiredTraits: distinguishHereditaryAndAcquiredTraits_Skill_Data,
+      distinguishSexualAndAsexualReproduction: distinguishSexualAndAsexualReproduction_Skill_Data,
+      explainDifferencesAmongOffspringOfTheSameSpecies:
+        explainDifferencesAmongOffspringOfTheSameSpecies_Skill_Data,
+      identifyHereditaryTraitsInExamples: identifyHereditaryTraitsInExamples_Skill_Data,
+    },
+    order: [
+      'distinguishHereditaryAndAcquiredTraits',
+      'distinguishSexualAndAsexualReproduction',
+      'explainDifferencesAmongOffspringOfTheSameSpecies',
+      'identifyHereditaryTraitsInExamples',
+    ],
+  },
   description: {
     methodological:
       'Inherited characteristics can recur in offspring, but individuals of one species are not exact copies; reproductive mode affects variation.',

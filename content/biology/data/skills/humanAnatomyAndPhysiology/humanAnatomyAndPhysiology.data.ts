@@ -41,14 +41,24 @@ export const humanAnatomyAndPhysiology_SkillDomain_Data = defineSkillDomain({
     kk: 'Adam anatomiasy men fiziologiasy',
     qm: 'İnsannıñ anatomiyası ve fiziologiyası',
   },
-  groups: [
-    bodyStructure_SkillGroup_Data,
-    developmentAndProtectionOfTheOrganism_SkillGroup_Data,
-    maintainingLifeProcesses_SkillGroup_Data,
-    regulationAndHomeostasis_SkillGroup_Data,
-    sensoryOrgansAndTheNervousSystem_SkillGroup_Data,
-    supportAndMovement_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      bodyStructure: bodyStructure_SkillGroup_Data,
+      developmentAndProtectionOfTheOrganism: developmentAndProtectionOfTheOrganism_SkillGroup_Data,
+      maintainingLifeProcesses: maintainingLifeProcesses_SkillGroup_Data,
+      regulationAndHomeostasis: regulationAndHomeostasis_SkillGroup_Data,
+      sensoryOrgansAndTheNervousSystem: sensoryOrgansAndTheNervousSystem_SkillGroup_Data,
+      supportAndMovement: supportAndMovement_SkillGroup_Data,
+    },
+    order: [
+      'bodyStructure',
+      'developmentAndProtectionOfTheOrganism',
+      'maintainingLifeProcesses',
+      'regulationAndHomeostasis',
+      'sensoryOrgansAndTheNervousSystem',
+      'supportAndMovement',
+    ],
+  },
   description: {
     methodological:
       'The structure of the body, organ functions, and interactions among systems that allow humans to move, perceive, breathe, and sustain life. Rules of hygiene, first aid, and safe behavior belong to a separate textbook.',

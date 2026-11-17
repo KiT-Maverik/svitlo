@@ -41,12 +41,22 @@ export const cellularStructure_SkillGroup_Data = defineSkillGroup({
     kk: 'Jasuşa qūrylysy',
     qm: 'Üceyre quruluşu',
   },
-  skills: [
-    distinguishPlantAndAnimalCellsByStructuralFeatures_Skill_Data,
-    distinguishUnicellularAndMulticellularOrganisms_Skill_Data,
-    recognizeTheCellAsAStructuralUnit_Skill_Data,
-    relateMajorCellStructuresToTheirFunctions_Skill_Data,
-  ],
+  skills: {
+    items: {
+      distinguishPlantAndAnimalCellsByStructuralFeatures:
+        distinguishPlantAndAnimalCellsByStructuralFeatures_Skill_Data,
+      distinguishUnicellularAndMulticellularOrganisms:
+        distinguishUnicellularAndMulticellularOrganisms_Skill_Data,
+      recognizeTheCellAsAStructuralUnit: recognizeTheCellAsAStructuralUnit_Skill_Data,
+      relateMajorCellStructuresToTheirFunctions: relateMajorCellStructuresToTheirFunctions_Skill_Data,
+    },
+    order: [
+      'distinguishPlantAndAnimalCellsByStructuralFeatures',
+      'distinguishUnicellularAndMulticellularOrganisms',
+      'recognizeTheCellAsAStructuralUnit',
+      'relateMajorCellStructuresToTheirFunctions',
+    ],
+  },
   description: {
     methodological:
       'Cells have membranes and internal components that sustain life processes; diagrams help reveal commonalities and differences among different cells.',

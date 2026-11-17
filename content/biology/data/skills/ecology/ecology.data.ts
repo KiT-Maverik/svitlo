@@ -39,12 +39,15 @@ export const ecology_SkillDomain_Data = defineSkillDomain({
     ka: 'ეკოლოგია',
     kk: 'Ekologia',
   },
-  groups: [
-    ecosystemsAndBiodiversity_SkillGroup_Data,
-    feedingRelationships_SkillGroup_Data,
-    habitats_SkillGroup_Data,
-    interactionsAmongOrganisms_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      ecosystemsAndBiodiversity: ecosystemsAndBiodiversity_SkillGroup_Data,
+      feedingRelationships: feedingRelationships_SkillGroup_Data,
+      habitats: habitats_SkillGroup_Data,
+      interactionsAmongOrganisms: interactionsAmongOrganisms_SkillGroup_Data,
+    },
+    order: ['ecosystemsAndBiodiversity', 'feedingRelationships', 'habitats', 'interactionsAmongOrganisms'],
+  },
   description: {
     methodological:
       'Dependencies among organisms, populations, nonliving factors, and flows of matter and energy, together with the consequences of disrupted relationships. The geographical distribution of natural zones and climate processes belongs to Geography.',

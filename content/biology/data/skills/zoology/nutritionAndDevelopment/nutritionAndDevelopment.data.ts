@@ -41,12 +41,20 @@ export const nutritionAndDevelopment_SkillGroup_Data = defineSkillGroup({
     kk: 'Qorektenu jäne damu',
     qm: 'Beslenüv ve inkişaf',
   },
-  skills: [
-    classifyAnimalsByDiet_Skill_Data,
-    compareDevelopmentWithAndWithoutMetamorphosis_Skill_Data,
-    distinguishJuvenilesAndAdults_Skill_Data,
-    explainCompleteMetamorphosisInInsects_Skill_Data,
-  ],
+  skills: {
+    items: {
+      classifyAnimalsByDiet: classifyAnimalsByDiet_Skill_Data,
+      compareDevelopmentWithAndWithoutMetamorphosis: compareDevelopmentWithAndWithoutMetamorphosis_Skill_Data,
+      distinguishJuvenilesAndAdults: distinguishJuvenilesAndAdults_Skill_Data,
+      explainCompleteMetamorphosisInInsects: explainCompleteMetamorphosisInInsects_Skill_Data,
+    },
+    order: [
+      'classifyAnimalsByDiet',
+      'compareDevelopmentWithAndWithoutMetamorphosis',
+      'distinguishJuvenilesAndAdults',
+      'explainCompleteMetamorphosisInInsects',
+    ],
+  },
   description: {
     methodological:
       'Food sources differ among animal groups, while their life cycles may involve body transformations or development without a drastic change in form.',

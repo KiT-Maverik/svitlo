@@ -42,13 +42,22 @@ export const lifeProcesses_SkillGroup_Data = defineSkillGroup({
     kk: 'Tırşılık üderısterı',
     qm: 'Yaşayış süreçleri',
   },
-  skills: [
-    explainCellularRespiration_Skill_Data,
-    explainPhotosynthesis_Skill_Data,
-    identifyExamplesOfNutrition_Skill_Data,
-    recognizeGrowthAndDevelopment_Skill_Data,
-    recognizeResponsesToStimuli_Skill_Data,
-  ],
+  skills: {
+    items: {
+      explainCellularRespiration: explainCellularRespiration_Skill_Data,
+      explainPhotosynthesis: explainPhotosynthesis_Skill_Data,
+      identifyExamplesOfNutrition: identifyExamplesOfNutrition_Skill_Data,
+      recognizeGrowthAndDevelopment: recognizeGrowthAndDevelopment_Skill_Data,
+      recognizeResponsesToStimuli: recognizeResponsesToStimuli_Skill_Data,
+    },
+    order: [
+      'explainCellularRespiration',
+      'explainPhotosynthesis',
+      'identifyExamplesOfNutrition',
+      'recognizeGrowthAndDevelopment',
+      'recognizeResponsesToStimuli',
+    ],
+  },
   description: {
     methodological:
       'Exchange of matter and energy, increases in size, changes in form, and responses to conditions are manifestations of life that can be observed or modeled.',

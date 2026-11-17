@@ -36,7 +36,13 @@ export const cellDivision_SkillGroup_Data = defineSkillGroup({
     kk: 'Jasuşanyñ bölınuı',
     qm: 'Üceyre bölünüvi',
   },
-  skills: [explainMeiosis_Skill_Data, explainMitosis_Skill_Data],
+  skills: {
+    items: {
+      explainMeiosis: explainMeiosis_Skill_Data,
+      explainMitosis: explainMitosis_Skill_Data,
+    },
+    order: ['explainMeiosis', 'explainMitosis'],
+  },
   description: {
     methodological:
       'The cell cycle involves division of genetic material and cytoplasm; mitosis supports growth and tissue renewal, while meiosis is associated with sexual reproduction and inherited variation.',

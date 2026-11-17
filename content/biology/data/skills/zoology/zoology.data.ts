@@ -39,12 +39,15 @@ export const zoology_SkillDomain_Data = defineSkillDomain({
     kk: 'Zoologia',
     qm: 'Zoologiya',
   },
-  groups: [
-    animalDiversity_SkillGroup_Data,
-    behavior_SkillGroup_Data,
-    nutritionAndDevelopment_SkillGroup_Data,
-    structureAndFunctions_SkillGroup_Data,
-  ],
+  groups: {
+    items: {
+      animalDiversity: animalDiversity_SkillGroup_Data,
+      behavior: behavior_SkillGroup_Data,
+      nutritionAndDevelopment: nutritionAndDevelopment_SkillGroup_Data,
+      structureAndFunctions: structureAndFunctions_SkillGroup_Data,
+    },
+    order: ['animalDiversity', 'behavior', 'nutritionAndDevelopment', 'structureAndFunctions'],
+  },
   description: {
     methodological:
       'Comparison of major animal groups, relationships between structure and function, feeding patterns, development, and behavior. Food chains and interspecies networks as whole systems belong to Ecology.',

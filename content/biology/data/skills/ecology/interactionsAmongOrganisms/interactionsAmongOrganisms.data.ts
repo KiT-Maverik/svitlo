@@ -41,12 +41,21 @@ export const interactionsAmongOrganisms_SkillGroup_Data = defineSkillGroup({
     ka: 'ორგანიზმებს შორის ურთიერთქმედებები',
     kk: 'Ağzalardyñ özara ärekettesuı',
   },
-  skills: [
-    explainTheRoleOfPollinatorsInSpeciesInteractions_Skill_Data,
-    recognizeCompetition_Skill_Data,
-    recognizeMutuallyBeneficialRelationships_Skill_Data,
-    recognizePredation_Skill_Data,
-  ],
+  skills: {
+    items: {
+      explainTheRoleOfPollinatorsInSpeciesInteractions:
+        explainTheRoleOfPollinatorsInSpeciesInteractions_Skill_Data,
+      recognizeCompetition: recognizeCompetition_Skill_Data,
+      recognizeMutuallyBeneficialRelationships: recognizeMutuallyBeneficialRelationships_Skill_Data,
+      recognizePredation: recognizePredation_Skill_Data,
+    },
+    order: [
+      'explainTheRoleOfPollinatorsInSpeciesInteractions',
+      'recognizeCompetition',
+      'recognizeMutuallyBeneficialRelationships',
+      'recognizePredation',
+    ],
+  },
   description: {
     methodological:
       'Organisms may use one another as resources, compete, or benefit one another; the nature of an interaction is determined by its consequences for those involved.',
