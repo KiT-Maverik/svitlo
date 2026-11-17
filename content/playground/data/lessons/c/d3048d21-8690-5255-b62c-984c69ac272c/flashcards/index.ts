@@ -6,7 +6,6 @@ import { opaqueObjectShadow } from '../questions/opaqueObjectShadow';
 const lightTravelsStraightFlashcard = defineFlashcard({
   id: '860102db-5184-5249-88dd-7acea86ff5b4',
   slug: 'lightTravelsStraightFlashcard',
-  type: 'flashcard',
   parameters: {
     tags: ['lightPropagation'],
     flags: { items: {}, order: [] },
@@ -28,7 +27,6 @@ const lightTravelsStraightFlashcard = defineFlashcard({
 const fastestMediumFlashcard = defineFlashcard({
   id: 'a7a04904-ed6b-515e-bdd7-040458b53fad',
   slug: 'fastestMediumFlashcard',
-  type: 'flashcard',
   parameters: {
     tags: ['lightSpeed'],
     flags: { items: {}, order: [] },
@@ -50,7 +48,6 @@ const fastestMediumFlashcard = defineFlashcard({
 const opaqueObjectShadowFlashcard = defineFlashcard({
   id: '715383c3-ea22-5043-9213-555180837358',
   slug: 'opaqueObjectShadowFlashcard',
-  type: 'flashcard',
   parameters: {
     tags: ['shadow'],
     flags: { items: {}, order: [] },
