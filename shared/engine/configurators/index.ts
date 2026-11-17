@@ -6,6 +6,7 @@ export * from './episodes';
 export * from './courses';
 export * from './skills';
 export * from './assessmentMethods';
+export * from './educationStandards';
 export * from './flashcards';
 export * from './yaml';
 
