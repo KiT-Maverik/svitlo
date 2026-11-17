@@ -37,7 +37,7 @@ export const polandPrimary2026 = defineEducationStandard({
       mr: 'पोलंडच्या आठ वर्षांच्या शाळांतील (इयत्ता 1–8) 2026 पासून टप्प्याटप्प्याने लागू होणाऱ्या अभ्यासक्रमातील विषय व कौशल्ये स्पष्ट करते.',
       ms: 'Menghuraikan kandungan dan kompetensi kurikulum 2026 yang dilaksanakan secara berperingkat bagi sekolah lapan tahun di Poland (gred 1–8).',
       pl: 'Opisuje treści i kompetencje podstawy programowej z 2026 r. dla klas I–VIII polskiej ośmioletniej szkoły podstawowej, wdrażanej etapami.',
-      pt: 'Descreve conteúdos e competências do currículo polaco de 2026 para a escola de oito anos (1.º–8.º ano), introduzido gradualmente.',
+      pt: 'Descreve o conteúdo e as competências do currículo polonês de 2026 para o ensino do 1º ao 8º ano, implantado gradualmente.',
       qm: 'Polşada 1–8-nci sınıflar içün 2026-ncı yıl mektep programmasınıñ ders mevzularını ve becerilerini tasvirley.',
       ta: 'போலந்தின் எட்டு ஆண்டுப் பள்ளிக் கல்விக்கான (1–8 ஆம் வகுப்புகள்) 2026 ஆம் ஆண்டு படிப்படியாக அறிமுகமாகும் பாடத்திட்டத்தின் உள்ளடக்கத்தையும் திறன்களையும் விளக்குகிறது.',
       te: 'పోలాండ్‌లో ఎనిమిదేళ్ల పాఠశాల విద్యకు (1–8 తరగతులు) 2026 నుంచి దశలవారీగా అమలయ్యే పాఠ్యప్రణాళికలోని విషయాలు, నైపుణ్యాలను వివరిస్తుంది.',
