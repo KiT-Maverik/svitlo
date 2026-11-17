@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { test } from 'node:test';
-import { chooseChecks, requiresWebBuild } from './run-fast-gate.mjs';
+import { chooseChecks, requiresWebBuild, requiresCourseStatusTests } from './run-fast-gate.mjs';
 
 const packages = [
   { path: 'shared/engine', name: '@svitlo/engine' },
@@ -101,4 +101,11 @@ test('content builds have one dedicated workflow with scoped triggers', () => {
   assert.match(workflow, /name: Content packages build/);
   assert.match(workflow, /- 'content\/\*\*'/);
   assert.doesNotMatch(workflow, /- 'shared\/\*\*'/);
+});
+
+test('Course status changes invoke the complete synchronizer test suite', () => {
+  assert.equal(requiresCourseStatusTests(['scripts/syncCourseLessonStatus/synchronizer.mjs']), true);
+  assert.equal(requiresCourseStatusTests(['scripts/syncCourseLessonStatus/workflow.spec.mjs']), true);
+  assert.equal(requiresCourseStatusTests(['.github/workflows/sync-course-lessons.yml']), true);
+  assert.equal(requiresCourseStatusTests(['content/astronomy/data/courses/sample/course.yaml']), false);
 });
