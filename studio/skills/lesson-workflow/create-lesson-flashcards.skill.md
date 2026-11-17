@@ -8,9 +8,9 @@ For each authorized Lesson, write or revise exactly one source-language editoria
 
 `content/<textbook>/data/lessons/<last-hex-digit>/<lesson-uuid>/flashcards.yaml`
 
-Use the actual resolved Lesson UUID path, not a guessed slug. The YAML describes cards and upstream references; it is **not** published runtime JSON or actual TypeScript. Validate it against [Lesson Flashcards schema](./lesson-flashcards.schema.json) and additional semantic gates. Do not overwrite existing Questions, methodology, Screenwriter content, or generated data.
+Use the actual resolved Lesson UUID path, not a guessed slug. This is a **single complete Engine-shaped technical bank YAML**, not a second editorial-only format or published Props. Validate each card with `yamlFlashcard_Schema`, based directly on Engine `flashcard_Config_Schema`; use the [Create Flashcards Flow](./create-flashcards-flow.skill.md) PR stage tracker and [Flashcard converter](../../../shared/engine/scripts/flashcardBuilder/README.md). Do not overwrite existing Questions, methodology, Screenwriter content or generated data.
 
-**HARD QUESTION-FIRST BLOCKER:** This skill must not run as an independent authoring stage until the **approved Question bank has been completed for this exact Lesson**. Verify `questions.yaml` or the corresponding approved canonical Question artifact and its stable slugs, version and source-language alignment. “We intend to write questions”, an unreviewed draft, a list of Quiz briefs, or an empty placeholder do not satisfy this prerequisite. Even when `assessmentPlan.quizRequired: false`, the Question bank remains required by this workflow; stop and escalate if the upstream plan contradicts that requirement. Continue other independently ready Lessons rather than bypassing the gate.
+**HARD QUESTION-FIRST BLOCKER:** Before authoring, verify the completed and independently approved full Question bank for this exact Lesson (source revision, identities and language alignment). **Only exception:** the owning Lesson PR explicitly records `Questions = Not Applicable` with verified Methodologist rationale; then design from approved Lesson content without Question references. Pending, missing, unreviewed, empty and blocked Questions do not qualify, and the absence of a built-in Quiz does not imply `Not Applicable`. Continue independently ready Lessons instead of bypassing this gate.
 
 **Code-generation gate:** if a card references Question fields, actual typed `*_Question_Data` exports must exist before creating the card's final TypeScript. The YAML can describe verified approved Question bank references before those exports exist, but generator work stays blocked until the imports can be resolved.
 
@@ -96,101 +96,71 @@ This shows shape only: an actual acronym's complete `parts` MUST concatenate to 
 
 The four flag variants are **serialized data**, not ad hoc Storybook `labels`. The UI Kit's Flashcard flag adapter renders their icons, fixed colors and labels. Do not duplicate generated flag metadata or alter the Card's actual answer to show a flag.
 
-## Step 5 — Author canonical typed card relationships
+## Step 5 — Author one canonical typed relationship graph
 
-Write each relationship **only once** at the YAML bank root. Its `type` must be exactly one of the nine canonical `FlashcardRelationType` values from `flashcardRelationshipTypes` in [Engine Flashcard schemas](../../../shared/engine/configurators/flashcards/defineFlashcard/defineFlashcard.schemas.ts):
+The bank has exactly one named `relationships: { items, order }` collection. Each entry is `{ relationshipId, type, source, target }`, where source and target are real Flashcard **slugs** in `flashcards.items`, and type is one of the nine current Engine `flashcardRelationshipTypes` values. The deterministic builder materializes the same `relationshipId` on each endpoint, with the other Flashcard's **UUID** in `relatedFlashcardId` and the proper `position`: `peer` for symmetric `reverse/equivalent/contrast/complementary`, `source` → `target` for directed `prerequisite/partOf/exampleOf/causes/precedes`. Never author duplicate or self-referential edges. Do not assume this changes learner mastery or scheduling.
 
-- **Symmetric**: `reverse`, `equivalent`, `contrast`, `complementary`.
-- **Directed**: `prerequisite` (prerequisite → dependent), `partOf` (part → whole), `exampleOf` (example → category), `causes` (cause → effect), `precedes` (earlier → later).
+The graph is a property of the bank, not a second copy of each card's `parameters.relationships`. The [Flashcard builder](../../../shared/engine/scripts/flashcardBuilder/README.md) projects these canonical edges to complete authored Configs. Link the same source media UUID only when meaningful for the retrieval objective, but give **each Flashcard ContentBlock a new UUID**.
 
-Example:
+## Step 6 — One Engine-shaped source-language bank
 
-```yaml
-relationships:
-  - key: reciprocal-retrieval
-    source: prompt-to-answer
-    target: answer-to-prompt
-    type: reverse
-    rationale: Independently practice both retrieval directions
-  - key: meaningful-sequence
-    source: step-one
-    target: step-two
-    type: precedes
-    rationale: Distinguish process order
-```
-
-**Do not author `directed`, arbitrary `kind`, or duplicate reverse edges.** Directionality is determined by the canonical type. For symmetric relations, source and target order has no effect. Each card may participate in any number of distinct relationships and may have several **different relation types with the same partner**. Use a relationship only when the educational semantics are real and defensible.
-
-**Generated dual-sided links:** for each editorial edge, the builder must resolve both card slugs to their **actual stable Flashcard IDs** and create one `FlashcardLink` with a stable `relationshipId` derived from `key`. It then calls `linkFlashcards(flashcards, links)` from `@svitlo/engine/builders` **exactly once**, before Lesson serialization. This helper attaches an adjacency entry on _both cards_, with the same `relationshipId` and `type`, the other card's ID in `relatedFlashcardId`, and a position:
-
-- `peer` / `peer` for symmetric types.
-- `source` / `target` for directed types.
-
-The actual Flashcard data/response contracts include the optional `relationships` property for compatibility with older cards. The builder helper rejects self-links, unknown IDs, duplicate links and already populated adjacency. **No requirement to author both sides manually**, and no redundancy inside editorial YAML. Generated links are structural/invariant: they do not need locale translations.
-
-Do not interpret `reverse` as shared mastery or adjust spaced repetition automatically. Relation metadata is supported as stored data; UI behaviors and scheduler semantics remain separate implementations.
-
-## Step 6 — One source language and approvals
-
-Write only `documentLanguage` (normally `en`), included in the Lesson's original `supportedLanguages` list. Copy that list for planned localization without creating any translated strings or making up unsupported locale values. Reference Questions whenever localizable wording can be inherited. Do not overwrite the upstream Question YAML or generated Question source.
-
-The YAML's required groups are `schemaVersion`, `kind`, `status`, `lessonId`, `documentLanguage`, `supportedLanguages`, `sources`, `flashcards`, `relationships`, and `unresolvedDependencies`. See [schema](./lesson-flashcards.schema.json).
-
-**Minimal illustrative fragment (not production-ready IDs/approval):**
+Write **one** `content/<textbook>/data/lessons/<bucket>/<lesson-uuid>/flashcards.yaml`. The following is a shape example, **not** an editorial approval, complete Lesson, or publishable translation:
 
 ```yaml
-schemaVersion: 1
-kind: lesson-flashcard-bank
-status: draft
-lessonId: '00000000-0000-0000-0000-000000000000'
+lessonId: d3048d21-8690-5255-b62c-984c69ac272c
 documentLanguage: en
 supportedLanguages: [en, uk]
-sources:
-  methodology: { path: ../methodology.md }
-  content: { path: ../content.yaml }
-  questions: { path: questions.yaml, revision: verified-commit-or-blob }
 flashcards:
-  - slug: light-recall
-    isDefault: true
-    front:
-      - type: text
-        value:
-          kind: questionField
-          questionSlug: light-travels-straight
-          fieldPath: [question, 0, value]
-    back:
-      - type: text
-        value:
-          kind: questionField
-          questionSlug: light-travels-straight
-          fieldPath: [answers, correct, straightLine, value]
-    hint: []
-    tags: [light]
-    flags:
-      - { type: custom, value: 'Practice', color: success, icon: check }
-relationships: []
-unresolvedDependencies: []
+  items:
+    identifyOrbit:
+      id: 00000000-0000-4000-8000-000000000001
+      slug: identifyOrbit
+      parameters:
+        tags: [astronomy]
+        disabilities: []
+        flags: { items: {}, order: [] }
+      content:
+        front:
+          items:
+            prompt:
+              id: 00000000-0000-4000-8000-000000000011
+              slug: prompt
+              type: text
+              params: {}
+              locale: { value: { en: 'What is an orbit?' } }
+          order: [prompt]
+        back:
+          items:
+            answer:
+              id: 00000000-0000-4000-8000-000000000012
+              slug: answer
+              type: text
+              params: {}
+              locale: { value: { en: 'The path an object follows around another body.' } }
+          order: [answer]
+  order: [identifyOrbit]
+relationships: { items: {}, order: [] }
 ```
 
-The UUID and source revision are **placeholders**, not approved identifiers. The `questionSlug` and paths must be verified against the real approved bank and Question TS exports before generation.
+This example uses placeholder UUIDs and **must not be placed into a real Lesson** without verified unique IDs and meaningful content. Real authors add only the source language's actual translations while retaining the Lesson's planned language scope. The top-level `type: flashcard` is not authored; `defineFlashcard` derives it internally for published Props. **Other ContentBlock/flag/relation discriminators remain required.** `status`, `approved`, `draft`, `kind`, `schemaVersion`, speculative media and redundant editorial `sources` objects do not belong in bank Config/YAML; the PR description holds the process/evidence.
 
-## Projection to the Engine Flashcard Config (separate technical stage)
+**Reference source:** read the purpose-`flashcards` Lesson Markdown output from #645 at the exact Lesson SHA. Its curated media references are the **only** broad media candidate index. Verify a specific referenced source file if needed; do not inventory arbitrary assets. Source language, supported languages, verified Questions/Methodologist N/A and media review belong in the PR production record.
 
-The bank above follows `lesson-flashcards.schema.json`, an **editorial** schema. After independent approval, a technical editor projects the cards into the Engine Lesson `flashcards: { items, order }` collection. Every Flashcard needs `type: flashcard`, stable UUID/camelCase slug, `parameters.tags`, named `parameters.flags: { items, order }` (typed `list`/`warning`/`acronym`/`custom`), optional named relationships, and named `content.front/back/hint: { items, order }` with nested, explicitly typed ContentBlock Configs. `documentLanguage` remains outside the Config and only source-locale `locale` values are populated. Question-field references and relationship IDs must be **resolved from real approved sources**; do not pretend the generic `define*` draft scaffolder performs editorial matching or invents imports. See [Engine YAML handoff and example](../../docs/architecture/yaml-config-scaffolding.md).
+**Typed Question references:** never copy localized Question facts into literal Flashcard strings. Read the actual typed Question exports and source SHA, validate exact existing properties, then emit imports and direct type-safe references. The currently implemented Flashcard builder deliberately **rejects** Question/media-driven fields until verified integration, rather than generating broken placeholders or fabricated values; keep such authoring cases blocked until the converter supports them. Source-only TS is not final translation or approval.
 
-## Semantic validation and handoff
+## Semantic validation and review handoff
 
-Validate schema and additionally verify:
+Validate every actual card and its engine-derived YAML source against:
 
-1. Approved nonempty upstream Question bank, accurate provenance and stable IDs/slugs. **No Question source = no Flashcard authoring**.
-2. Every Question reference resolves to a genuine, correct field in the **actual bank**; for typed code generation, a real export exists, has compatible locales and matches generated TypeScript property access.
-3. Atomized content, concise independent prompts/answers, explicit punctuation/conjunction audit, zero meaningless duplicate cards.
-4. For list answers, a single typed `flags: [{type: list, count: N}]` matches actual elements; no numeral is redundantly authored into the front, hints or another metadata field. For `custom`, verify its required value/color and optional allowed icon token.
-5. Variables use meaningful names and correct TextBlock/CodeBlock marker conventions. No claim that styling generates randomized values.
-6. Acronym source letters and connectors match uppercase/lowercase rules and the original items, and any locale-specific mnemonic translations are pending until independently verified.
-7. Relationship slugs exist; types belong to the canonical nine-value enum, both endpoints receive mirrored links with the other card's actual ID and correct `position`, and no self-links or duplicate edges survive. Runtime graph storage is described by Engine; UI and scheduling actions are **not** implied.
-8. ContentBlock descriptions can actually be implemented or have precise recorded dependencies; no invented assets.
-9. One authored source language; no duplicated Question localizations, invented locales or hidden publication blockers.
-10. A changed Question bank invalidates dependent cards until rechecked; editorial reviewer pass is not approval.
+1. Approved Lesson Markdown/methodology and either approved complete Question bank or verified `Not Applicable` rationale.
+2. One assessable fact/concept per card, short independent front/back, justified retrieval variations, no same-direction duplicates.
+3. Question field reference integrity and localized value reuse; verified IDs, slugs, locale coverage and correct type.
+4. List counts, acronym letter/connector proof, invariant vs translated mnemonics, flag/color/icon enums.
+5. Valid ordered ContentBlock sides, clean media purpose and no answer leakage; accessibility equivalents considered before restriction metadata.
+6. Exact `parameters.disabilities` from the existing Engine union; unique values chosen **per retrieval direction**, including optional empty array.
+7. Canonical unique relationship edges, correct direction, real endpoint IDs and both mirrored materialized entries.
+8. Accurate original Lesson planned language set and separately required translation/review evidence; no fabricated locale copies.
+9. Nonoverwriting TS scaffold, existing authored source preservation, no missing referenced asset/Question, no silent YAML deletion.
+10. Independent Memory Design Review on the exact source SHA; syntactic validation, checked box or author's own review is not approval.
 
-Use a Draft PR and the existing fixed-scope Lesson Production Issue when doing authorized content production. A later Coding Agent consumes the **approved editorial bank plus its reviewed Config-shaped projection**, resolves actual Question imports, and completes TypeScript Flashcards. The generic scaffolder only emits a draft; it does not certify complete, compiling or publishable Flashcards.
+Use the **existing Lesson-owned child Draft Flashcards PR** under [Create Flashcards Flow](./create-flashcards-flow.skill.md) for the six-stage checklist, findings and final QA. Keep `flashcards.yaml` until materialization and independent approval can actually be verified; no duplicate editorial schema or new Lesson Production Issue is created merely for this bank workflow.
