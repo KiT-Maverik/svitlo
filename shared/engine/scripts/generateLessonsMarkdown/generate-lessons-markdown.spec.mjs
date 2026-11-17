@@ -438,6 +438,7 @@ describe('Opt-in flashcard reference (independent of the existing review consume
       const props = {
         lesson, locale: 'uk', packagePath, root: tmp.root, lessonDirectory: tmp.lessonDir,
         sourceRef: sha, sourceBranch: 'tooling/lesson-markdown-flashcard-reference', sourceFiles: sources,
+        verifyAtSha: relative => relative.endsWith(audioId + '.ogg') || relative.endsWith(imgId + '.png'),
       };
       const output = renderFlashcardReference(props);
       assert.equal(output, renderFlashcardReference(props), 'Source-pinned output must be deterministic');
@@ -447,6 +448,8 @@ describe('Opt-in flashcard reference (independent of the existing review consume
       assert.match(output, /20202020-2020-4020-8020-202020202020/);
       assert.match(output, /10101010-1010-4010-8010-101010101010/);
       assert.match(output, /Referenced file missing/);
+      assert.match(output, /File on disk and present at source SHA/);
+      assert.match(output, new RegExp('blob/' + sha + '/content/engine-fixture/assets/audio/' + audioId));
       assert.match(output, /30303030-3030-4030-8030-303030303030/);
       assert.match(output, /Section:.*theory/);
       assert.match(output, /Owning block:.*narration/);
