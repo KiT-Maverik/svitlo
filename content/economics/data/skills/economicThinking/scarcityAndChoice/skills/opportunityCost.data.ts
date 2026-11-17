@@ -31,7 +31,7 @@ export const opportunityCost_Skill_Data = defineSkill({
     et: 'Alternatiivkulu',
     be: 'Альтэрнатыўны кошт',
     ka: 'ალტერნატიული დანახარჯი',
-    kk: 'Балама құн',
+    kk: 'Balama qūn',
     qm: 'İmkân masrafı',
   },
   description: {
@@ -65,7 +65,7 @@ export const opportunityCost_Skill_Data = defineSkill({
       et: 'Leia kõige väärtuslikum võimalus, millest valikut tehes loobud.',
       be: 'Вызначай найкаштоўнейшы варыянт, ад якога адмаўляесься пры выбары.',
       ka: 'ამოიცანი ყველაზე ღირებული ალტერნატივა, რომელზეც არჩევანისას უარს ამბობ.',
-      kk: 'Таңдау кезінде бас тартқан ең құнды баламаны анықта.',
+      kk: 'Tañdau jasağanda bas tartatyn eñ qūndy balamany anıqta.',
       qm: 'Saylav yapqanda vazgeçken eñ qıymetli başqa imkânnı tanı.',
     },
   },

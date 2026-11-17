@@ -31,7 +31,7 @@ export const economicIncentives_Skill_Data = defineSkill({
     et: 'Majanduslikud stiimulid',
     be: 'Эканамічныя стымулы',
     ka: 'ეკონომიკური სტიმულები',
-    kk: 'Экономикалық ынталандырулар',
+    kk: 'Ekonomikalyq yntalandyru faktorlary',
     qm: 'İqtisadiy teşviqler',
   },
   description: {
@@ -65,7 +65,7 @@ export const economicIncentives_Skill_Data = defineSkill({
       et: 'Selgita, kuidas preemiad ja karistused mõjutavad majanduslikke valikuid.',
       be: 'Растлумач, як узнагароды й пакараньні ўплываюць на эканамічны выбар.',
       ka: 'ახსენი, როგორ მოქმედებს ჯილდოები და სასჯელები ეკონომიკურ არჩევანზე.',
-      kk: 'Сыйақы мен жаза экономикалық таңдауымызға қалай әсер ететінін түсіндір.',
+      kk: 'Syiaqy men jaza ekonomikalyq tañdauğa qalai äser etetının tüsındır.',
       qm: 'Mukâfatlar ve cezalar iqtisadiy saylavğa nasıl tesir etkenini añlat.',
     },
   },

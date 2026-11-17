@@ -31,7 +31,7 @@ export const choiceUnderUncertainty_Skill_Data = defineSkill({
     et: 'Valik ebakindluses',
     be: 'Выбар ва ўмовах нявызначанасьці',
     ka: 'არჩევანი გაურკვევლობაში',
-    kk: 'Белгісіздік жағдайындағы таңдау',
+    kk: 'Belgısızdık jağdaiyndağy tañdau',
     qm: 'Belgisizlikte saylav',
   },
   description: {
@@ -65,7 +65,7 @@ export const choiceUnderUncertainty_Skill_Data = defineSkill({
       et: 'Võrdle otsuseid, mille tulemus on kindel, riskantne või teadmata.',
       be: 'Параўноўвай рашэньні з пэўным, рызыкоўным ці невядомым вынікам.',
       ka: 'შეადარე არჩევანი, როცა შედეგი გარკვეულია, სარისკოა ან უცნობია.',
-      kk: 'Нәтижесі белгілі, тәуекелді немесе белгісіз таңдауларды салыстыр.',
+      kk: 'Nätijesı anıq, täuekeldı nemese belgısız bolğan jağdailardağy tañdaulardy salystyr.',
       qm: 'Netice kesin, riskli ya da belgisiz olğanda saylavlarnı qıyasla.',
     },
   },

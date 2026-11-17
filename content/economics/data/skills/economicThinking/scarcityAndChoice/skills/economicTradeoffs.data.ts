@@ -31,7 +31,7 @@ export const economicTradeoffs_Skill_Data = defineSkill({
     et: 'Majanduslikud kompromissid',
     be: 'Кампрамісы эканамічнага выбару',
     ka: 'ეკონომიკური კომპრომისები',
-    kk: 'Экономикалық ымыралар',
+    kk: 'Maqsattar arasyndağy ymyra',
     qm: 'İqtisadiy kelişmeler',
   },
   description: {
@@ -65,7 +65,7 @@ export const economicTradeoffs_Skill_Data = defineSkill({
       et: 'Märka, kuidas ühe eesmärgi taotlemine võib tähendada teisest osaliselt loobumist.',
       be: 'Заўважай, як дзеля адной мэты даводзіцца часткова адмовіцца ад іншай.',
       ka: 'ნახე, როგორ შეიძლება ერთი მიზნის მიღწევამ მეორის ნაწილობრივ დათმობა მოითხოვოს.',
-      kk: 'Бір мақсатқа жету басқа мақсаттан ішінара бас тартуды талап етуі мүмкін екенін байқа.',
+      kk: 'Bır maqsatqa jetu üşın ekınşı bır maqsattan ışınara bas tartu qajet boluy mümkın ekenın bayqa.',
       qm: 'Bir maqsatqa yetişmek içün başqa maqsattan bir qadar vazgeçmek kerek olabilgenini gör.',
     },
   },

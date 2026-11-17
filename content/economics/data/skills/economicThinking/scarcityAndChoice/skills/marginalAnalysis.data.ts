@@ -31,7 +31,7 @@ export const marginalAnalysis_Skill_Data = defineSkill({
     et: 'Piiranalüüs',
     be: 'Гранічны аналіз',
     ka: 'ზღვრული ანალიზი',
-    kk: 'Шекті талдау',
+    kk: 'Şektı taldau',
     qm: 'Çegara analizi',
   },
   description: {
@@ -65,7 +65,7 @@ export const marginalAnalysis_Skill_Data = defineSkill({
       et: 'Otsusta, kas üks täiendav tegevusühik on oma lisakulu väärt.',
       be: 'Вызначай, ці вартая яшчэ адна адзінка дзейнасьці сваіх дадатковых выдаткаў.',
       ka: 'გადაწყვიტე, ღირს თუ არა საქმიანობის კიდევ ერთი ერთეული მის დამატებით ხარჯად.',
-      kk: 'Іс-әрекетті тағы бір бірлікке арттыру қосымша шығынға тұра ма, анықта.',
+      kk: 'Is-äreketke tağy bır bırlık qosudyñ paydasy qosymşa şyğynğa tūra ma, sony bağala.',
       qm: 'Bir faaliyetten bir dane daa yapuvnıñ artqa masrafına degerli olğanını belgile.',
     },
   },
