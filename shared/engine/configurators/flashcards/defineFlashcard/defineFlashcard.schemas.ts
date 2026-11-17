@@ -92,7 +92,7 @@ export const flashcard_Config_Schema = identityBase_Schema.extend({
     back: z.object(flashcardSide_Config_Schema.shape),
     hint: z.object(flashcardSide_Config_Schema.shape).optional(),
   }),
-});
+}).strict();
 export type Flashcard_Config = z.infer<typeof flashcard_Config_Schema>;
 
 const resolvedBlocks = z.array(contentBlockResolved_Schema);
