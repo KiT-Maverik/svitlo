@@ -1,6 +1,6 @@
 import { defineLesson } from '@svitlo/engine/build';
 import { howLightMoves_languages } from './constants';
-import { testExplainLightTravel_Skill_Data } from '../../../skills/testLight/testLightPropagation/skills';
+import { testExplainLightTravel } from '../../../skills/testLight/testLightPropagation/testExplainLightTravel';
 import { contentSection } from './sections/content';
 import { practiceSection } from './sections/practice';
 import { quizSection } from './sections/quiz';
@@ -42,7 +42,7 @@ export const howLightMoves = defineLesson({
   id: 'd3048d21-8690-5255-b62c-984c69ac272c',
   slug: 'howLightMoves',
   type: 'lesson',
-  skills: [testExplainLightTravel_Skill_Data.id],
+  skills: [testExplainLightTravel.id],
   params: {
     requireQuiz: true,
     languages: howLightMoves_languages,
