@@ -1,5 +1,7 @@
 # Create Lesson Flashcards — Question-first memory authoring
 
+> **New parent handoff:** [Create Lesson Flow](./create-lesson-flow.skill.md) records Flashcard bank status separately from its eight Lesson stages and uses an independently authorized child Draft PR targeting the Lesson branch. Old mandatory Lesson Production Issue or `content.yaml` dependencies below are historical **parent coordination** rules. Actual approved Question-field dependencies and the full Flashcards workflow remain separate future design tasks; preserve existing bank inputs and approvals.
+
 **Persona:** [Flashcard Learning Architect](../../personas/flashcard-learning-architect.persona.md). Read it fully, the [Methodologist Persona](../../personas/methodist.persona.md), root/applicable `AGENTS.md`, current Lesson/ContentBlock/Flashcard contracts, actual Text and Code renderers, [Lesson Workflow](./README.md), and [Lesson production coordinator](./manage-lesson-production.skill.md) when working in an authorized production scope.
 
 ## Purpose, ownership and storage
