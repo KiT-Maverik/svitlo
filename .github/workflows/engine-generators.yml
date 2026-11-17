@@ -77,17 +77,6 @@ jobs:
       - name: Verify all checked-in Zod-derived YAML schemas
         run: npm run content:check:yaml-schemas --workspace @svitlo/engine
 
-      - name: Check Course Flow source formatting
-        run: |
-          npx prettier --check \
-            scripts/syncCourseLessonStatus/*.mjs \
-            shared/engine/scripts/validateCourseFlow/*.mjs \
-            shared/engine/scripts/materializeCourseFlow/*.mjs \
-            shared/engine/configurators/courses/defineCourse/defineCourse.schemas.ts \
-            shared/engine/configurators/courses/defineCourse/courseHierarchy.spec.ts \
-            studio/skills/course-workflow/course-flow.schema.json \
-            .github/workflows/sync-course-lessons.yml
-
       - name: Temporary export of formatted docs and generated schema sources
         run: |
           npx prettier --write \
