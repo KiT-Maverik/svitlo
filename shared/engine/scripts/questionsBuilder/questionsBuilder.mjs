@@ -113,7 +113,7 @@ export function inspectQuestions(document) {
 function verifyLocation(source, root) {
   const file = path.resolve(source);
   assertNoSymlinks(file);
-  if (path.basename(file) !== 'questions.yaml')
+  if (path.basename(file) !== 'questions.yaml' || path.basename(path.dirname(file)) === 'questions')
     throw new Error('Expected Lesson-root questions.yaml (not questions/questions.yaml)');
   const folder = path.dirname(file);
   const relative = path.relative(path.resolve(root), folder).split(path.sep).join('/');
