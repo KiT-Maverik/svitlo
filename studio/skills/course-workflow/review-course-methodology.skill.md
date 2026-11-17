@@ -18,6 +18,8 @@ For the specified Course UUID, read the entire current:
 - Approved scenario/episode materials if present, with the Scenario Review result and current revision-specific sign-off, or documented reason why the Course has no scenario layer.
 - Course production limitations and the Engine Config-shaped YAML handoff; the generic draft scaffolder checks **neither** approval status nor editorial review reports.
 
+**Specification-completeness gate:** Apply the [Course methodology quality contract](../../docs/entities/course.md#methodology-quality-contract--implementation-ready-course-specification) to the **actual approved Course methodology**. If intended outcomes, Skill coverage, conceptual dependencies, intended depth, audience, standards claims or assessment evidence are too vague to substantiate the Course design, return `changes-requested` or `blocked` and ask for a Methodologist-owned amendment. A structurally valid YAML or passing TypeScript check does not compensate for an incomplete educational specification. This is a requirement of this existing post-assembly review; the separate proposed pre-generation Course-plan review is **not** implemented by this skill.
+
 ## Methodological audit
 
 1. Check actual Course coverage, competency prerequisites, depth, repetition, pacing and progression against verified Skill dependencies and approved outcomes; identify unaddressed gaps and misleading Lesson reuse.
