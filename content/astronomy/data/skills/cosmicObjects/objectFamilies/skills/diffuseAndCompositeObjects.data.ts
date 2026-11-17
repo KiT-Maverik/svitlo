@@ -31,7 +31,7 @@ export const diffuseAndCompositeObjects_Skill_Data = defineSkill({
     et: 'Hajusad ja liitobjektid',
     be: 'Дыфузныя і складаныя аб’екты',
     ka: 'დიფუზური და შედგენილი ობიექტები',
-    kk: 'Шашыраңқы және құрама нысандар',
+    kk: 'Şaşyrañqy jäne qūrama nysandar',
     qm: 'Dağınıq ve mürekkep kök cisimleri',
   },
   description: {
@@ -65,7 +65,7 @@ export const diffuseAndCompositeObjects_Skill_Data = defineSkill({
       et: 'Erista gaasipilvi, täherühmi ja galaktikaid nende koostise ning ülesehituse järgi.',
       be: 'Адрозьнівайце газавыя аблокі, групы зорак і галяктыкі паводле складу і будовы.',
       ka: 'განასხვავეთ აირის ღრუბლები, ვარსკვლავთა ჯგუფები და გალაქტიკები მათი შემადგენლობითა და აგებულებით.',
-      kk: 'Газ бұлттарын, жұлдыз топтарын және галактикаларды құрамы мен құрылысына қарай ажыратыңыз.',
+      kk: 'Gaz būlttaryn, jūldyz toptaryn jäne galaktikalardy qūramy men qūrylysyna qarai ajyratyñyz.',
       qm: 'Gaz bulutlarını, yıldız toplulıqlarını ve galaktikalarnı terkibine ve quruluşuna köre ayırıñız.',
     },
   },

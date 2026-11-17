@@ -31,7 +31,7 @@ export const axialRotation_Skill_Data = defineSkill({
     et: 'Pöörlemine ümber telje',
     be: 'Вярчэньне вакол восі',
     ka: 'ბრუნვა საკუთარი ღერძის გარშემო',
-    kk: 'Осьтік айналу',
+    kk: 'Ostık ainalu',
     qm: 'Öz oqu etrafında aylanuv',
   },
   description: {
@@ -65,7 +65,7 @@ export const axialRotation_Skill_Data = defineSkill({
       et: 'Kirjelda, kuidas taevakeha pöörleb ümber oma telje.',
       be: 'Апісвайце, як нябеснае цела круціцца вакол уласнай восі.',
       ka: 'აღწერეთ, როგორ ბრუნავს ციური სხეული საკუთარი ღერძის გარშემო.',
-      kk: 'Аспан денесінің өз осінің айналасында қалай айналатынын сипаттаңыз.',
+      kk: 'Aspan denesınıñ öz osınıñ ainalasynda qalai ainalatynyn sipattañyz.',
       qm: 'Bir kök cisminiñ öz oqu etrafında nasıl aylanğanını tarif etiñiz.',
     },
   },

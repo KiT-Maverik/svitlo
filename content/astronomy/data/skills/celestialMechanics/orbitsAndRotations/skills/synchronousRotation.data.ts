@@ -31,7 +31,7 @@ export const synchronousRotation_Skill_Data = defineSkill({
     et: 'Sünkroonne pöörlemine',
     be: 'Сынхроннае вярчэньне',
     ka: 'სინქრონული ბრუნვა',
-    kk: 'Синхронды айналу',
+    kk: 'Sinhrondy ainalu',
     qm: 'Sinhron aylanuv',
   },
   description: {
@@ -64,7 +64,7 @@ export const synchronousRotation_Skill_Data = defineSkill({
       et: 'Selgita, miks mõned taevakehad näitavad oma orbiidipartnerile peaaegu alati sama külge.',
       be: 'Растлумачце, чаму некаторыя нябесныя целы амаль заўсёды павернутыя адным і тым самым бокам да цела, вакол якога абарачаюцца.',
       ka: 'ახსენით, რატომ არის ზოგი ციური სხეული თავისი ორბიტული პარტნიორისკენ თითქმის ყოველთვის ერთი და იმავე მხარით მიბრუნებული.',
-      kk: 'Кейбір аспан денелері неліктен орбиталық серігіне үнемі дерлік бір жағымен қарап тұратынын түсіндіріңіз.',
+      kk: 'Keibır aspan denelerı nelıkten orbitalyq serıgıne ünemı derlık bır jağymen qarap tūratynyn tüsındırıñız.',
       qm: 'Bazı kök cisimleriniñ dolanğan ortağına ne içün er vaqıtqa yaqın aynı yüzüni çevirdigini añlatıñız.',
     },
   },

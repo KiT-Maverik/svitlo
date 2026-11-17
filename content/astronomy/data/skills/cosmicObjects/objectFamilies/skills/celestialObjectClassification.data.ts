@@ -31,7 +31,7 @@ export const celestialObjectClassification_Skill_Data = defineSkill({
     et: 'Taevakehade liigitamine',
     be: 'Клясыфікацыя нябесных аб’ектаў',
     ka: 'ციური ობიექტების კლასიფიკაცია',
-    kk: 'Аспан денелерін жіктеу',
+    kk: 'Aspan denelerın jıkteu',
     qm: 'Kök cisimlerini sınıflandırma',
   },
   description: {
@@ -65,7 +65,7 @@ export const celestialObjectClassification_Skill_Data = defineSkill({
       et: 'Tunne taevakehade peamised liigid ära nende füüsikaliste omaduste järgi.',
       be: 'Распазнавайце асноўныя катэгорыі нябесных аб’ектаў паводле іх фізычных уласьцівасьцяў.',
       ka: 'ამოიცანით ციური ობიექტების ძირითადი კატეგორიები მათი ფიზიკური თვისებებით.',
-      kk: 'Аспан денелерінің негізгі санаттарын физикалық қасиеттеріне қарай ажыратыңыз.',
+      kk: 'Aspan denelerınıñ negızgı sanattaryn fizikalyq qasietterıne qarai ajyratyñyz.',
       qm: 'Kök cisimleriniñ esas çeşitlerini olarnıñ fizikiy hususiyetlerine köre tanıñız.',
     },
   },

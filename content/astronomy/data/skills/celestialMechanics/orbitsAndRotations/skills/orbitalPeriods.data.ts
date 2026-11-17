@@ -31,7 +31,7 @@ export const orbitalPeriods_Skill_Data = defineSkill({
     et: 'Tiirlemisperioodid',
     be: 'Арбітальныя пэрыяды',
     ka: 'ორბიტული პერიოდები',
-    kk: 'Орбиталық периодтар',
+    kk: 'Orbitalyq periodtar',
     qm: 'Orbita devirleri',
   },
   description: {
@@ -65,7 +65,7 @@ export const orbitalPeriods_Skill_Data = defineSkill({
       et: 'Erista teise keha ümber tiirlemise aega keha oma telje ümber pöörlemise ajast.',
       be: 'Адрозьнівайце час абароту вакол іншага цела ад часу вярчэньня вакол уласнай восі.',
       ka: 'განასხვავეთ სხვა სხეულის გარშემო ერთი შემოვლის დრო საკუთარი ღერძის გარშემო ერთი ბრუნვის დროისგან.',
-      kk: 'Басқа денені толық айналып шығуға кететін уақыт пен өз осінен айналу уақытын ажыратыңыз.',
+      kk: 'Basqa denenı tolyq ainalyp şyğuğa ketetın uaqyt pen öz osınen ainalu uaqytyn ajyratyñyz.',
       qm: 'Başqa bir cisim etrafında dolanmağa ketken vaqıtnı öz oqu etrafında aylanmağa ketken vaqıttan ayırıñız.',
     },
   },

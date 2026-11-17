@@ -31,7 +31,7 @@ export const axialTilt_Skill_Data = defineSkill({
     et: 'Telje kalle',
     be: 'Нахіл восі вярчэньня',
     ka: 'ბრუნვის ღერძის დახრილობა',
-    kk: 'Айналу осінің көлбеулігі',
+    kk: 'Ainalu osınıñ kölbeulıgı',
     qm: 'Aylanuv oqunıñ egilmesi',
   },
   description: {
@@ -65,7 +65,7 @@ export const axialTilt_Skill_Data = defineSkill({
       et: 'Uuri, kuidas planeedi pöörlemistelje kalle muudab selle valgustatust.',
       be: 'Дасьледуйце, як нахіл восі нябеснага цела зьмяняе характар яго асьвятленьня.',
       ka: 'გაიგეთ, როგორ ცვლის პლანეტის ღერძის დახრილობა მის განათებას.',
-      kk: 'Ғаламшар осінің көлбеулігі оның жарықтану сипатын қалай өзгертетінін зерттеңіз.',
+      kk: 'Ğalamşar osınıñ kölbeulıgı onyñ jaryqtanu sipatyn qalai özgertetının zertteñız.',
       qm: 'Seyyare oqunıñ egilmesi onıñ yarıqlanmasını nasıl deñiştirgenini ögreniñiz.',
     },
   },

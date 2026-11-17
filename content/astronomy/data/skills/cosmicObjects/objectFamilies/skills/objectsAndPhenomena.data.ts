@@ -31,7 +31,7 @@ export const objectsAndPhenomena_Skill_Data = defineSkill({
     et: 'Objektid ja nähtused',
     be: 'Аб’екты і зьявы',
     ka: 'ობიექტები და მოვლენები',
-    kk: 'Нысандар мен құбылыстар',
+    kk: 'Nysandar men qūbylystar',
     qm: 'Cisimler ve adiseler',
   },
   description: {
@@ -65,7 +65,7 @@ export const objectsAndPhenomena_Skill_Data = defineSkill({
       et: 'Erista püsivat taevakeha sündmusest, näiteks varjutusest või purskest.',
       be: 'Адрозьнівайце нябесны аб’ект, што існуе доўга, ад падзеі, напрыклад зацьменьня ці ўспышкі.',
       ka: 'განასხვავეთ ხანგრძლივად არსებული ციური ობიექტი ისეთი მოვლენისგან, როგორიცაა დაბნელება ან ანთება.',
-      kk: 'Ұзақ уақыт өмір сүретін аспан денесін тұтылу не жарқыл сияқты оқиғадан ажыратыңыз.',
+      kk: 'Ūzaq uaqyt ömır süretın aspan denesın tūtylu ne jarqyl siiaqty oqiğadan ajyratyñyz.',
       qm: 'Devamlı mevcut olğan kök cismini tutulma ya da parlama kibi bir adiseden ayırıñız.',
     },
   },

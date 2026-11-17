@@ -39,7 +39,7 @@ export const orbitsAndRotations_SkillGroup_Data = defineSkillGroup({
     et: 'Orbiidid ja pöörlemine',
     be: 'Арбіты і вярчэньне',
     ka: 'ორბიტები და ბრუნვა',
-    kk: 'Орбиталар мен айналу',
+    kk: 'Orbitalar men ainalu',
     qm: 'Orbitalar ve aylanmalar',
   },
   skills: [
@@ -80,7 +80,7 @@ export const orbitsAndRotations_SkillGroup_Data = defineSkillGroup({
       et: 'Kirjelda ja võrdle taevakehade liikumise kujusid, perioode ning suundi.',
       be: 'Апісвайце і параўноўвайце формы, пэрыяды і арыентацыі рухаў нябесных целаў.',
       ka: 'აღწერეთ და შეადარეთ ციური სხეულების მოძრაობის ფორმები, პერიოდები და ორიენტაციები.',
-      kk: 'Аспан денелерінің қозғалыс пішіндерін, периодтарын және бағдарларын сипаттап, салыстырыңыз.',
+      kk: 'Aspan denelerınıñ qozğalys pışınderın, periodtaryn jäne bağdarlaryn sipattap, salystyryñyz.',
       qm: 'Kök cisimleriniñ areket yollarınıñ şekillerini, devirlerini ve yönelişlerini tarif etip qıyaslañız.',
     },
   },

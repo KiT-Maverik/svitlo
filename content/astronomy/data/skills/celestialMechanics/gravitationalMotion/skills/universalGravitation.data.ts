@@ -31,7 +31,7 @@ export const universalGravitation_Skill_Data = defineSkill({
     et: 'Universaalne gravitatsioon',
     be: 'Сусьветнае прыцягненьне',
     ka: 'მსოფლიო მიზიდულობა',
-    kk: 'Бүкіләлемдік тартылыс',
+    kk: 'Bükılälemdık tartylys',
     qm: 'Umumiy cazibe quveti',
   },
   description: {
@@ -65,7 +65,7 @@ export const universalGravitation_Skill_Data = defineSkill({
       et: 'Kasuta kehade masse ja nendevahelisi kaugusi gravitatsioonilise tõmbejõu selgitamiseks.',
       be: 'Выкарыстоўвайце масы целаў і адлегласьці паміж імі, каб тлумачыць гравітацыйнае прыцягненьне.',
       ka: 'გამოიყენეთ სხეულების მასები და მათ შორის მანძილები გრავიტაციული მიზიდულობის ასახსნელად.',
-      kk: 'Денелердің массалары мен арақашықтығын пайдаланып, гравитациялық тартылысты түсіндіріңіз.',
+      kk: 'Denelerdıñ massalary men araqaşyqtyğyn paidalanyp, gravitatsiialyq tartylysty tüsındırıñız.',
       qm: 'Cisimlerniñ kütlelerini ve aralarındaki mesafeni qullanıp, cazibe quvetini añlatıñız.',
     },
   },

@@ -38,7 +38,7 @@ export const objectFamilies_SkillGroup_Data = defineSkillGroup({
     et: 'Objektide rühmad',
     be: 'Групы аб’ектаў',
     ka: 'ობიექტების ჯგუფები',
-    kk: 'Нысандар топтары',
+    kk: 'Nysandar toptary',
     qm: 'Cisimlerniñ çeşitleri',
   },
   skills: [
@@ -78,7 +78,7 @@ export const objectFamilies_SkillGroup_Data = defineSkillGroup({
       et: 'Õpi, kuidas astronoomid eristavad objektide liike füüsikaliste tõendite, mitte ainult välimuse järgi.',
       be: 'Даведайцеся, як астраномы адрозьніваюць віды аб’ектаў паводле фізычных сьведчаньняў, а ня толькі выгляду.',
       ka: 'გაიგეთ, როგორ ცნობენ ასტრონომები სხვადასხვა ტიპის ობიექტებს ფიზიკური მტკიცებულებებით და არა მხოლოდ გარეგნული იერით.',
-      kk: 'Астрономдардың нысандарды тек сыртқы түріне емес, физикалық деректеріне сүйеніп қалай ажырататынын біліңіз.',
+      kk: 'Astronomdardyñ nysandardy tek syrtqy türıne emes, fizikalyq derekterıne süienıp qalai ajyratatynyn bılıñız.',
       qm: 'Astronomlarnıñ cisimlerni tek körünişlerine degil, fizikiy delillerine köre nasıl ayırğanını ögreniñiz.',
     },
   },

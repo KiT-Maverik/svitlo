@@ -31,7 +31,7 @@ export const orbitalElements_Skill_Data = defineSkill({
     et: 'Orbiidielemendid',
     be: 'Элемэнты арбіты',
     ka: 'ორბიტის ელემენტები',
-    kk: 'Орбита элементтері',
+    kk: 'Orbita elementterı',
     qm: 'Orbita elementleri',
   },
   description: {
@@ -65,7 +65,7 @@ export const orbitalElements_Skill_Data = defineSkill({
       et: 'Tõlgenda parameetreid, mis kirjeldavad orbiidi kuju ja asendit ruumis.',
       be: 'Тлумачце парамэтры, якія апісваюць форму і арыентацыю арбіты ў прасторы.',
       ka: 'განმარტეთ პარამეტრები, რომლებიც ორბიტის ფორმასა და სივრცულ ორიენტაციას აღწერს.',
-      kk: 'Орбитаның пішіні мен кеңістіктегі бағдарын сипаттайтын параметрлерді түсіндіріңіз.',
+      kk: 'Orbitanyñ pışını men keñıstıktegı bağdaryn sipattaityn parametrlerdı tüsındırıñız.',
       qm: 'Orbitanıñ şeklini ve feza içindeki yönelişini tarif etken parametrlerni añlañız.',
     },
   },
