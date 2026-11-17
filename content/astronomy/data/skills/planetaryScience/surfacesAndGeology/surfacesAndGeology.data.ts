@@ -38,7 +38,7 @@ export const surfacesAndGeology_SkillGroup_Data = defineSkillGroup({
     et: 'Pinnad ja geoloogia',
     be: 'Паверхні і геалёгія',
     ka: 'ზედაპირები და გეოლოგია',
-    kk: 'Беттер мен геология',
+    kk: 'Better men geologiia',
     qm: 'Yüzler ve geologiya',
   },
   skills: [
@@ -78,7 +78,7 @@ export const surfacesAndGeology_SkillGroup_Data = defineSkillGroup({
       et: 'Tõlgenda jälgi, mida kokkupõrked ja geoloogilised muutused jätavad planeetide pinnale.',
       be: 'Чытайце сьляды сутыкненьняў і геалягічных зьменаў на паверхнях плянэт.',
       ka: 'ამოიკითხეთ კვალი, რომელსაც შეჯახებები და გეოლოგიური ცვლილებები პლანეტების ზედაპირზე ტოვებს.',
-      kk: 'Соқтығысулар мен геологиялық өзгерістер ғаламшарлардың бетінде қалдыратын белгілерді түсіндіріңіз.',
+      kk: 'Soqtyğysular men geologiialyq özgerıster ğalamşarlardyñ betınde qaldyratyn belgılerdı tüsındırıñız.',
       qm: 'Çarpışuvlar ve geologik deñişmeler seyyare yüzlerinde qaldırğan izlerni añlañız.',
     },
   },

@@ -31,7 +31,7 @@ export const surfaceAgeEstimation_Skill_Data = defineSkill({
     et: 'Pinna vanuse hindamine',
     be: 'Ацэньваньне веку паверхні',
     ka: 'ზედაპირის ასაკის შეფასება',
-    kk: 'Беткі қабаттың жасын бағалау',
+    kk: 'Betkı qabattyñ jasyn bağalau',
     qm: 'Yüzniñ yaşını tahmin etüv',
   },
   description: {
@@ -65,7 +65,7 @@ export const surfaceAgeEstimation_Skill_Data = defineSkill({
       et: 'Hinda geoloogiliste seoste ja löögikraatrite põhjal, millal pinnad tekkisid.',
       be: 'Ацэньвайце час утварэньня паверхняў паводле геалягічных суадносінаў і ўдарных кратэраў.',
       ka: 'შეაფასეთ ზედაპირის წარმოქმნის დრო გეოლოგიური ურთიერთმიმართებებითა და დარტყმითი კრატერებით.',
-      kk: 'Геологиялық арақатынастар мен соққы кратерлеріне сүйеніп, беттің қашан қалыптасқанын бағалаңыз.',
+      kk: 'Geologiialyq araqatynastar men soqqy kraterlerıne süienıp, bettıñ qaşan qalyptasqanyn bağalañyz.',
       qm: 'Geologik alâqalar ve çarpma kraterleri yardımınen yüzlerniñ ne zaman peyda olğanını tahmin etiñiz.',
     },
   },
