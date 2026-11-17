@@ -31,7 +31,7 @@ export const storeAssortment_Skill_Data = defineSkill({
     et: 'Poe sortiment',
     be: 'Асартымэнт крамы',
     ka: 'მაღაზიის ასორტიმენტი',
-    kk: 'Дүкен ассортименті',
+    kk: 'Düken assortimentı',
     qm: 'Dükân assortimentı',
   },
   description: {
@@ -65,7 +65,7 @@ export const storeAssortment_Skill_Data = defineSkill({
       et: 'Mõista, kuidas poed otsustavad, milliseid tooteid pakkuda.',
       be: 'Зразумей, як крамы выбіраюць тавары для продажу.',
       ka: 'გაიგე, როგორ ირჩევენ მაღაზიები გასაყიდ პროდუქტებს.',
-      kk: 'Дүкен қандай тауарды ұсынатынын қалай таңдайтынын түсін.',
+      kk: 'Düken qandai tauardy ūsynatynyn qalai tañdaitynyn tüsın.',
       qm: 'Dükânlar qaysı mallarnı satacağını nasıl saylağanını ögren.',
     },
   },

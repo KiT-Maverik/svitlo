@@ -31,7 +31,7 @@ export const distributionCosts_Skill_Data = defineSkill({
     et: 'Turustuskulud',
     be: 'Выдаткі разьмеркаваньня',
     ka: 'დისტრიბუციის ხარჯები',
-    kk: 'Тарату шығындары',
+    kk: 'Taratu şyğyndary',
     qm: 'Tarqatma masrafları',
   },
   description: {
@@ -65,7 +65,7 @@ export const distributionCosts_Skill_Data = defineSkill({
       et: 'Mõista, miks transport ja ladustamine mõjutavad toote hinda.',
       be: 'Зразумей, чаму перавозкі й захоўваньне ўплываюць на кошт тавару.',
       ka: 'გაიგე, რატომ მოქმედებს ტრანსპორტი და შენახვა პროდუქტის ღირებულებაზე.',
-      kk: 'Тасымалдау мен сақтау өнім шығынына неге әсер ететінін түсін.',
+      kk: 'Tasymaldau men saqtau önım şyğynyna nege äser etetının tüsın.',
       qm: 'Taşıma ve saqlama malnıñ fiyatına ne içün tesir etkenini añla.',
     },
   },

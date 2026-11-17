@@ -31,7 +31,7 @@ export const distributionChannels_Skill_Data = defineSkill({
     et: 'Turustuskanalid',
     be: 'Каналы разьмеркаваньня',
     ka: 'დისტრიბუციის არხები',
-    kk: 'Тарату арналары',
+    kk: 'Taratu arnalary',
     qm: 'Tarqatma kanalları',
   },
   description: {
@@ -64,7 +64,7 @@ export const distributionChannels_Skill_Data = defineSkill({
       et: 'Võrdle viise, kuidas ettevõtted kaupu klientidele tarnivad.',
       be: 'Параўнай спосабы дастаўкі тавараў да кліентаў.',
       ka: 'შეადარე პროდუქტის მომხმარებლამდე მიწოდების გზები.',
-      kk: 'Кәсіпорындардың өнімді клиентке жеткізу жолдарын салыстыр.',
+      kk: 'Käsıporyndardyñ önımdı klientke jetkızu joldaryn salystyr.',
       qm: 'Şirketler mallarnı müşterilerge nasıl yetiştirgenini qıyasla.',
     },
   },

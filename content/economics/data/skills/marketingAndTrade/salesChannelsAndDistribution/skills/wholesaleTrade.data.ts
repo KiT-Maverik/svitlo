@@ -31,7 +31,7 @@ export const wholesaleTrade_Skill_Data = defineSkill({
     et: 'Hulgikaubandus',
     be: 'Аптовы гандаль',
     ka: 'საბითუმო ვაჭრობა',
-    kk: 'Көтерме сауда',
+    kk: 'Köterme sauda',
     qm: 'Toptan ticaret',
   },
   description: {
@@ -65,7 +65,7 @@ export const wholesaleTrade_Skill_Data = defineSkill({
       et: 'Mõista hulgi- ja otse tarbijale müügi erinevust.',
       be: 'Адрозьнівай аптовы гандаль ад наўпроставага продажу спажыўцам.',
       ka: 'გაიგე, რით განსხვავდება საბითუმო ვაჭრობა მომხმარებელზე პირდაპირი გაყიდვისგან.',
-      kk: 'Көтерме сауданың тұтынушыға тікелей сатудан айырмасын түсін.',
+      kk: 'Köterme saudanyñ tūtynuşyğa tıkelei satudan aiyrmasyn tüsın.',
       qm: 'Toptan satışnı müşterilerge doğrudan satıştan ayır.',
     },
   },

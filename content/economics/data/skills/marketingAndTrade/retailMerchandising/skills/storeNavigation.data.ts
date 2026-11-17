@@ -31,7 +31,7 @@ export const storeNavigation_Skill_Data = defineSkill({
     et: 'Poes orienteerumine',
     be: 'Навігацыя ў краме',
     ka: 'მაღაზიაში ორიენტირება',
-    kk: 'Дүкендегі бағдар',
+    kk: 'Dükendegı bağdar',
     qm: 'Dükânda yol tapmaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const storeNavigation_Skill_Data = defineSkill({
       et: 'Vaata, kuidas sildid ja paigutus ostlemist lihtsustavad või raskendavad.',
       be: 'Паглядзі, як паказальнікі й пляніроўка палягчаюць або ўскладняюць пакупкі.',
       ka: 'ნახე, როგორ ეხმარება ან უშლის ხელს ნიშნები და განლაგება ყიდვას.',
-      kk: 'Белгілер мен орналасу сауданы қалай жеңілдетіп не қиындататынын көр.',
+      kk: 'Belgıler men ornalasu saudany qalai jeñıldetıp ne qiyndatatynyn kör.',
       qm: 'Levhalar ve tertip alışverişni nasıl qolaylaştırğanını ya da qıyınlaştırğanını gör.',
     },
   },
