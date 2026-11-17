@@ -18,7 +18,7 @@ export const yayoiCulture = defineSkill({
     it: 'Cultura Yayoi',
     ja: '弥生文化',
     ka: 'იაიოის კულტურა',
-    kk: 'Iaioi mädenietı',
+    kk: 'İaioi mädenietı',
     ko: '야요이 문화',
     lt: 'Jajojaus kultūra',
     lv: 'Jajoja kultūra',
