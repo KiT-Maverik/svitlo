@@ -31,7 +31,7 @@ export const needsAndWants_Skill_Data = defineSkill({
     et: 'Vajadused ja soovid',
     be: 'Патрэбы й жаданьні',
     ka: 'საჭიროებები და სურვილები',
-    kk: 'Қажеттіліктер мен тілектер',
+    kk: 'Qajettılıkter men tılekter',
     qm: 'İhtiyaclar ve istekler',
   },
   description: {
@@ -65,7 +65,7 @@ export const needsAndWants_Skill_Data = defineSkill({
       et: 'Erista konkreetses olukorras vajadusi ja soove.',
       be: 'Адрозьнівай патрэбы ад жаданьняў у пэўнай сытуацыі.',
       ka: 'გაარჩიე საჭიროება და სურვილი კონკრეტულ სიტუაციაში.',
-      kk: 'Нақты жағдайда қажеттілік пен тілек арасын ажырат.',
+      kk: 'Naqty jağdaida qajettılık pen tılektıñ aiyrmaşylyğyn ajyrat.',
       qm: 'Belli vaziyette ihtiyac ile istegni ayır.',
     },
   },

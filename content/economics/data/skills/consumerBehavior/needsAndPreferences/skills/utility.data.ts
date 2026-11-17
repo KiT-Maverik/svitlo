@@ -31,7 +31,7 @@ export const utility_Skill_Data = defineSkill({
     et: 'Kasulikkus',
     be: 'Карыснасьць',
     ka: 'სარგებლიანობა',
-    kk: 'Пайдалылық',
+    kk: 'Paidalylyq',
     qm: 'Fayda',
   },
   description: {
@@ -65,7 +65,7 @@ export const utility_Skill_Data = defineSkill({
       et: 'Mõista kasulikkust kui viisi kirjeldada, mida inimene väärtustab.',
       be: 'Разумей карыснасьць як спосаб апісаць тое, што чалавек цэніць.',
       ka: 'გაიგე სარგებლიანობა როგორც იმის აღწერის გზა, რასაც ადამიანი აფასებს.',
-      kk: 'Пайдалылықты адамның нені бағалайтынын сипаттау тәсілі ретінде түсін.',
+      kk: 'Paidalylyqty adam nenı bağalaitynyn sipattau täsılı retınde tüsın.',
       qm: 'Faydanı bir insannıñ neni qıymetli sayğanını añlatqan usul olaraq añla.',
     },
   },
