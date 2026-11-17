@@ -31,7 +31,7 @@ export const quotasAndNonTariffBarriers_Skill_Data = defineSkill({
     et: 'Kvoodid ja mittetariifsed tõkked',
     be: 'Квоты і нетарыфныя бар’еры',
     ka: 'კვოტები და არასატარიფო ბარიერები',
-    kk: 'Квоталар және тарифтік емес кедергілер',
+    kk: 'Kvotalar jäne tariftık emes kedergıler',
     qm: 'Kvotalar ve vergiden tış sıñırlavlar',
   },
   description: {
@@ -65,7 +65,7 @@ export const quotasAndNonTariffBarriers_Skill_Data = defineSkill({
       et: 'Tunne ära, kuidas kvoodid ja reeglid piiravad rahvusvahelist kaubandust.',
       be: 'Распазнавай, як квоты й правілы абмяжоўваюць міжнародны гандаль.',
       ka: 'ამოიცანით, როგორ ზღუდავს კვოტები და წესები საერთაშორისო ვაჭრობას.',
-      kk: 'Квоталар мен ережелер халықаралық сауданы қалай шектейтінін анықтаңыз.',
+      kk: 'Kvotalar men erejeler halyqaralyq saudany qalai şekteitının anyqtañyz.',
       qm: 'Kvotalar ve qaydalar halqlarara ticaretni nasıl sıñırlağanını belgile.',
     },
   },

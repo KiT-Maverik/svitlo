@@ -38,7 +38,7 @@ export const employmentAndMobility_SkillGroup_Data = defineSkillGroup({
     et: 'Tööhõive ja liikuvus',
     be: 'Працаўладкаваньне й мабільнасьць',
     ka: 'დასაქმება და მობილობა',
-    kk: 'Жұмыспен қамту және мобильдік',
+    kk: 'Jūmyspen qamtu jäne mobildık',
     qm: 'İşnen temin ve areketlilik',
   },
   skills: [
@@ -78,7 +78,7 @@ export const employmentAndMobility_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri, mis aitab või takistab töö leidmist või vahetamist.',
       be: 'Даведайся, што дапамагае або замінае знайсьці ці зьмяніць працу.',
       ka: 'გაიგე, რა ეხმარება ან უშლის ხელს სამუშაოს პოვნასა და შეცვლას.',
-      kk: 'Жұмыс табу не ауыстыруға не көмектесіп, не кедергі болатынын біл.',
+      kk: 'Jūmys tabu ne auystyruğa ne kömektesıp, ne kedergı bolatynyn bıl.',
       qm: 'İş tapmağa ya da deñiştirmege ne yardım ya da mani olğanını ögren.',
     },
   },

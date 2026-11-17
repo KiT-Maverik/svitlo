@@ -31,7 +31,7 @@ export const importTariffs_Skill_Data = defineSkill({
     et: 'Imporditollid',
     be: 'Імпартныя мыты',
     ka: 'იმპორტის ტარიფები',
-    kk: 'Импорттық баждар',
+    kk: 'İmporttyq bajdar',
     qm: 'İthalât vergileri',
   },
   description: {
@@ -65,7 +65,7 @@ export const importTariffs_Skill_Data = defineSkill({
       et: 'Mõista, kes võib imporditollist võita või kaotada.',
       be: 'Зразумей, хто можа выйграць або прайграць ад мытаў на імпарт.',
       ka: 'გაიაზრეთ, ვინ შეიძლება მოიგოს ან წააგოს იმპორტზე ტარიფის დაწესებით.',
-      kk: 'Импортқа баж салынғанда кім ұтып, кім ұтылуы мүмкін екенін түсініңіз.',
+      kk: 'İmportqa baj salynğanda kım ūtyp, kım ūtyluy mümkın ekenın tüsınıñız.',
       qm: 'İthal mallarğa vergi qoyulğanda kim fayda ya da zarar körgenini añla.',
     },
   },

@@ -31,7 +31,7 @@ export const tradeAgreements_Skill_Data = defineSkill({
     et: 'Kaubanduslepped',
     be: 'Гандлёвыя пагадненьні',
     ka: 'სავაჭრო შეთანხმებები',
-    kk: 'Сауда келісімдері',
+    kk: 'Sauda kelısımderı',
     qm: 'Ticaret añlaşmaları',
   },
   description: {
@@ -65,7 +65,7 @@ export const tradeAgreements_Skill_Data = defineSkill({
       et: 'Uuri, miks riigid kaubanduslepingute üle läbirääkimisi peavad.',
       be: 'Даведайся, чаму краіны вядуць перамовы аб гандлёвых пагадненьнях.',
       ka: 'გაიგეთ, რატომ აწარმოებენ ქვეყნები მოლაპარაკებებს სავაჭრო შეთანხმებებზე.',
-      kk: 'Елдердің сауда келісімдері бойынша неге келіссөз жүргізетінін біліңіз.',
+      kk: 'Elderdıñ sauda kelısımderı boiynşa nege kelıssöz jürgızetının bılıñız.',
       qm: 'Memleketler ne içün ticaret añlaşmaları aqqında muzakereler yapqanını ögren.',
     },
   },

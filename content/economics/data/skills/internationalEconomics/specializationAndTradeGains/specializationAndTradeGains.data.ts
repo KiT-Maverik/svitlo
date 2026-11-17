@@ -38,7 +38,7 @@ export const specializationAndTradeGains_SkillGroup_Data = defineSkillGroup({
     et: 'Spetsialiseerumine ja kaubanduskasud',
     be: 'Спэцыялізацыя і выгады гандлю',
     ka: 'სპეციალიზაცია და ვაჭრობის სარგებელი',
-    kk: 'Мамандану және сауда пайдасы',
+    kk: 'Mamandanu jäne sauda paidasy',
     qm: 'İhtisaslaşuv ve ticaret faydaları',
   },
   skills: [
@@ -78,7 +78,7 @@ export const specializationAndTradeGains_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri, miks riigid spetsialiseeruvad ja mida nad kaubandusest võidavad.',
       be: 'Даведайся, чаму краіны спэцыялізуюцца і што атрымліваюць ад гандлю.',
       ka: 'გაიგეთ, რატომ სპეციალიზდებიან ქვეყნები და რას იღებენ ვაჭრობიდან.',
-      kk: 'Елдер неге маманданатынын және саудадан не алатынын біліңіз.',
+      kk: 'Elder nege mamandanatynyn jäne saudadan ne alatynyn bılıñız.',
       qm: 'Memleketler ne içün ihtisaslaşqanını ve ticaretten ne qazanğanını ögren.',
     },
   },
