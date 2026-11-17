@@ -31,7 +31,7 @@ export const ionicBonding_Skill_Data = defineSkill({
     et: 'Iooniline side',
     be: 'Іённая сувязь',
     ka: 'იონური ბმა',
-    kk: 'Иондық байланыс',
+    kk: 'İondyq bailanys',
     qm: 'İon bağı',
   },
   description: {
@@ -65,7 +65,7 @@ export const ionicBonding_Skill_Data = defineSkill({
       et: 'Selgita, kuidas vastasmärgilised laengud hoiavad ioone ioonstruktuuris koos.',
       be: 'Растлумач, як супрацьлеглыя зарады ўтрымліваюць іёны разам у іённых структурах.',
       ka: 'ახსენი, როგორ აერთიანებს საპირისპირო მუხტების მიზიდულობა იონებს იონურ სტრუქტურებში.',
-      kk: 'Қарама-қарсы зарядтар иондарды иондық құрылымда қалай ұстап тұратынын түсіндір.',
+      kk: 'Qarama-qarsy zariadtar iondardy iondyq qūrylymda qalai ūstap tūratynyn tüsındır.',
       qm: 'Qarşılıq elektrik yükleriniñ ionlarnı ion qurulışlarında nasıl bir yerde tutqanını añlat.',
     },
   },

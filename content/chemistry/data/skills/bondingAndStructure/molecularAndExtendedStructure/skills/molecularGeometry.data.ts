@@ -31,7 +31,7 @@ export const molecularGeometry_Skill_Data = defineSkill({
     et: 'Molekulide geomeetria',
     be: 'Геамэтрыя малекулаў',
     ka: 'მოლეკულების გეომეტრია',
-    kk: 'Молекулалардың геометриясы',
+    kk: 'Molekulalardyñ geometriiasy',
     qm: 'Molekula geometrisi',
   },
   description: {
@@ -64,7 +64,7 @@ export const molecularGeometry_Skill_Data = defineSkill({
       et: 'Kasuta elektronide paigutust molekulide kuju selgitamiseks.',
       be: 'Выкарыстоўвай разьмяшчэньне электронаў, каб растлумачыць формы малекулаў.',
       ka: 'ელექტრონების განლაგებით ახსენი მოლეკულების ფორმები.',
-      kk: 'Электрондардың орналасуы арқылы молекулалардың пішінін түсіндір.',
+      kk: 'Elektrondardyñ ornalasuy arqyly molekulalardyñ pışının tüsındır.',
       qm: 'Elektronlarnıñ yerleşüvine köre molekulalarnıñ şekillerini añlat.',
     },
   },

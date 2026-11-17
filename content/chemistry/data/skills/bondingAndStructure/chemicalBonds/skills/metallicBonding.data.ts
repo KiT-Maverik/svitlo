@@ -31,7 +31,7 @@ export const metallicBonding_Skill_Data = defineSkill({
     et: 'Metalliline side',
     be: 'Мэталічная сувязь',
     ka: 'მეტალური ბმა',
-    kk: 'Металдық байланыс',
+    kk: 'Metaldyq bailanys',
     qm: 'Metal bağı',
   },
   description: {
@@ -64,7 +64,7 @@ export const metallicBonding_Skill_Data = defineSkill({
       et: 'Seosta metallides liikuvad elektronid nende iseloomulike omadustega.',
       be: 'Зьвяжы рухомыя электроны ў мэталах зь іх характэрнымі ўласьцівасьцямі.',
       ka: 'დააკავშირე ლითონებში მოძრავი ელექტრონები მათ დამახასიათებელ თვისებებთან.',
-      kk: 'Металдардағы қозғалмалы электрондарды олардың тән қасиеттерімен байланыстыр.',
+      kk: 'Metaldardağy qozğalmaly elektrondardy olardyñ tän qasietterımen bailanystyr.',
       qm: 'Metallardaki areketli elektronlarnı olarnıñ özüne has hususiyetlerinen bağla.',
     },
   },

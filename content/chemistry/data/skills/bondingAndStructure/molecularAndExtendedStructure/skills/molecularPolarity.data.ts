@@ -31,7 +31,7 @@ export const molecularPolarity_Skill_Data = defineSkill({
     et: 'Molekuli polaarsus',
     be: 'Палярнасьць малекулы',
     ka: 'მოლეკულის პოლარობა',
-    kk: 'Молекуланың полярлығы',
+    kk: 'Molekulanyñ poliarlyğy',
     qm: 'Molekula kutuplılığı',
   },
   description: {
@@ -64,7 +64,7 @@ export const molecularPolarity_Skill_Data = defineSkill({
       et: 'Ühenda sidemete polaarsus ja molekuli kuju, et mõista kogu molekuli polaarsust.',
       be: 'Спалучай палярнасьць сувязяў і форму малекулы, каб зразумець яе агульную палярнасьць.',
       ka: 'გაითვალისწინე ბმების პოლარობა და მოლეკულის ფორმა მისი საერთო პოლარობის გასაგებად.',
-      kk: 'Байланыстар полярлығы мен молекула пішінін біріктіріп, жалпы полярлықты түсін.',
+      kk: 'Bailanystar poliarlyğy men molekula pışının bırıktırıp, jalpy poliarlyqty tüsın.',
       qm: 'Bağlarnıñ kutuplılığınen molekula şeklini birleştirip, umumiy kutuplılıqnı añla.',
     },
   },

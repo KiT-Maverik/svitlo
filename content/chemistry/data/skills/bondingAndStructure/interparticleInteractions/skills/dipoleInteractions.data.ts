@@ -31,7 +31,7 @@ export const dipoleInteractions_Skill_Data = defineSkill({
     et: 'Dipoolsed vastastikmõjud',
     be: 'Дыпольныя ўзаемадзеяньні',
     ka: 'დიპოლური ურთიერთქმედებები',
-    kk: 'Дипольдік әрекеттесулер',
+    kk: 'Dipoldık ärekettesuler',
     qm: 'Dipol tesirleşmeleri',
   },
   description: {
@@ -64,7 +64,7 @@ export const dipoleInteractions_Skill_Data = defineSkill({
       et: 'Mõista, kuidas polaarsed molekulid üksteist olenevalt orientatsioonist tõmbavad.',
       be: 'Зразумей, як палярныя малекулы прыцягваюцца залежна ад узаемнай арыентацыі.',
       ka: 'გაიგე, როგორ იზიდავენ პოლარული მოლეკულები ერთმანეთს მათი ორიენტაციის მიხედვით.',
-      kk: 'Полярлы молекулалардың бағытына қарай бірін-бірі қалай тартатынын түсін.',
+      kk: 'Poliarly molekulalardyñ bağytyna qarai bırın-bırı qalai tartatynyn tüsın.',
       qm: 'Kutuplı molekulalar öz yönelişine köre bir-birini nasıl çekkenini añla.',
     },
   },

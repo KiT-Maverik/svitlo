@@ -31,7 +31,7 @@ export const ionicLattices_Skill_Data = defineSkill({
     et: 'Ioonvõred',
     be: 'Іённыя крышталічныя рашоткі',
     ka: 'იონური კრისტალური მესრები',
-    kk: 'Иондық кристалл торлары',
+    kk: 'İondyq kristall torlary',
     qm: 'İon kristal şebekeleri',
   },
   description: {
@@ -64,7 +64,7 @@ export const ionicLattices_Skill_Data = defineSkill({
       et: 'Seosta korduvad ioonstruktuurid hapruse, sulamise ja elektrijuhtivusega.',
       be: 'Зьвяжы паўтаральныя іённыя структуры з крохкасьцю, плаўленьнем і электраправоднасьцю.',
       ka: 'დაუკავშირე განმეორებადი იონური სტრუქტურები მტვრევადობას, დნობასა და ელექტროგამტარობას.',
-      kk: 'Қайталанатын иондық құрылымды морттықпен, балқумен және электр өткізгіштікпен байланыстыр.',
+      kk: 'Qaitalanatyn iondyq qūrylymdy morttyqpen, balqumen jäne elektr ötkızgıştıkpen bailanystyr.',
       qm: 'Tekrarlanğan ion qurulışlarını sınuqlıq, irüv ve elektrik keçiriciliginen bağla.',
     },
   },

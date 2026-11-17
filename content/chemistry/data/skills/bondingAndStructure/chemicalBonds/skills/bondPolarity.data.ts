@@ -31,7 +31,7 @@ export const bondPolarity_Skill_Data = defineSkill({
     et: 'Sideme polaarsus',
     be: 'Палярнасьць сувязі',
     ka: 'ბმის პოლარობა',
-    kk: 'Байланыстың полярлығы',
+    kk: 'Bailanystyñ poliarlyğy',
     qm: 'Bağnıñ kutuplılığı',
   },
   description: {
@@ -65,7 +65,7 @@ export const bondPolarity_Skill_Data = defineSkill({
       et: 'Uuri, miks elektronid võivad keemilises sidemes ebaühtlaselt jaguneda.',
       be: 'Дасьледуй, чаму электроны ў хімічнай сувязі могуць разьмяркоўвацца нераўнамерна.',
       ka: 'გაიგე, რატომ შეიძლება ელექტრონები ქიმიურ ბმაში არათანაბრად ნაწილდებოდეს.',
-      kk: 'Химиялық байланыста электрондар неге біркелкі бөлінбеуі мүмкін екенін зертте.',
+      kk: 'Himiialyq bailanysta elektrondar nege bırkelkı bölınbeuı mümkın ekenın zertte.',
       qm: 'Kimyeviy bağda elektronlar ne içün bir tegiz paylaşılmağanını ögren.',
     },
   },

@@ -31,7 +31,7 @@ export const hydrogenBonding_Skill_Data = defineSkill({
     et: 'Vesiniksidemed',
     be: 'Вадародныя сувязі',
     ka: 'წყალბადური ბმები',
-    kk: 'Сутектік байланыстар',
+    kk: 'Sutektık bailanystar',
     qm: 'Vodorod bağları',
   },
   description: {
@@ -65,7 +65,7 @@ export const hydrogenBonding_Skill_Data = defineSkill({
       et: 'Tunne ära molekulistruktuurid, mis võivad moodustada vesiniksidemeid.',
       be: 'Распазнавай малекулярныя структуры, здольныя ўтвараць вадародныя сувязі.',
       ka: 'ამოიცანი მოლეკულური სტრუქტურები, რომლებსაც წყალბადური ბმების წარმოქმნა შეუძლიათ.',
-      kk: 'Сутектік байланыс түзе алатын молекулалық құрылымдарды анықта.',
+      kk: 'Sutektık bailanys tüze alatyn molekulalyq qūrylymdardy anyqta.',
       qm: 'Vodorod bağlarını peyda ete bilgen molekula qurulışlarını tanı.',
     },
   },

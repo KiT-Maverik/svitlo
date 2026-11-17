@@ -38,7 +38,7 @@ export const molecularAndExtendedStructure_SkillGroup_Data = defineSkillGroup({
     et: 'Molekulaarsed ja võrestruktuurid',
     be: 'Малекулярная й працяглая будова',
     ka: 'მოლეკულური და განვრცობილი სტრუქტურები',
-    kk: 'Молекулалық және кеңейтілген құрылым',
+    kk: 'Molekulalyq jäne keñeitılgen qūrylym',
     qm: 'Molekulalı ve şebekeli qurulışlar',
   },
   skills: [
@@ -78,7 +78,7 @@ export const molecularAndExtendedStructure_SkillGroup_Data = defineSkillGroup({
       et: 'Õpi, kuidas osakeste paigutus mõjutab materjalide omadusi.',
       be: 'Даведайся, як разьмяшчэньне часьціцаў уплывае на ўласьцівасьці матэрыялаў.',
       ka: 'გაიგე, როგორ მოქმედებს ნაწილაკების განლაგება მასალების თვისებებზე.',
-      kk: 'Бөлшектердің орналасуы материал қасиеттеріне қалай әсер ететінін біл.',
+      kk: 'Bölşekterdıñ ornalasuy material qasietterıne qalai äser etetının bıl.',
       qm: 'Zerrelerniñ yerleşüvi materiallarnıñ hususiyetlerine nasıl tesir etkenini ögren.',
     },
   },

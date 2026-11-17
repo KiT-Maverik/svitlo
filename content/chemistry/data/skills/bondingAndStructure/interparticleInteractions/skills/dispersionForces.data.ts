@@ -31,7 +31,7 @@ export const dispersionForces_Skill_Data = defineSkill({
     et: 'Dispersioonijõud',
     be: 'Дыспэрсійныя сілы',
     ka: 'დისპერსიული ძალები',
-    kk: 'Дисперсиялық күштер',
+    kk: 'Dispersiialyq küşter',
     qm: 'Dispersiya quvetleri',
   },
   description: {
@@ -65,7 +65,7 @@ export const dispersionForces_Skill_Data = defineSkill({
       et: 'Uuri nõrka tõmmet, mida põhjustab pidevalt muutuv elektronide jaotus.',
       be: 'Дасьледуй слабое прыцягненьне, якое ўзьнікае праз пастаянныя зьмены разьмеркаваньня электронаў.',
       ka: 'შეისწავლე სუსტი მიზიდულობა, რომელსაც ელექტრონების განაწილების მუდმივი ცვლილება იწვევს.',
-      kk: 'Электрондардың таралуы үнемі өзгергенде пайда болатын әлсіз тартылысты зертте.',
+      kk: 'Elektrondardyñ taraluy ünemı özgergende paida bolatyn älsız tartylysty zertte.',
       qm: 'Elektronlarnıñ dağılışı daima deñişkeni içün peyda olğan zayıf çekilüvni ögren.',
     },
   },

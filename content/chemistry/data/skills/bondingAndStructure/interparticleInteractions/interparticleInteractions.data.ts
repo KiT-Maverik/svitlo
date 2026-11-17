@@ -38,7 +38,7 @@ export const interparticleInteractions_SkillGroup_Data = defineSkillGroup({
     et: 'Osakestevahelised vastastikmõjud',
     be: 'Узаемадзеяньні паміж часьціцамі',
     ka: 'ნაწილაკთაშორისი ურთიერთქმედებები',
-    kk: 'Бөлшектер арасындағы әрекеттесулер',
+    kk: 'Bölşekter arasyndağy ärekettesuler',
     qm: 'Zerreler arası tesirleşmeler',
   },
   skills: [
@@ -78,7 +78,7 @@ export const interparticleInteractions_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri, kuidas osakesed tõmbuvad üksteise poole uusi keemilisi sidemeid moodustamata.',
       be: 'Дасьледуй, як часьціцы прыцягваюцца адна да адной, не ўтвараючы новых хімічных сувязяў.',
       ka: 'გაიგე, როგორ იზიდავს ნაწილაკები ერთმანეთს ახალი ქიმიური ბმების წარმოქმნის გარეშე.',
-      kk: 'Жаңа химиялық байланыс түзбей-ақ бөлшектер бірін-бірі қалай тартатынын зертте.',
+      kk: 'Jaña himiialyq bailanys tüzbei-aq bölşekter bırın-bırı qalai tartatynyn zertte.',
       qm: 'Zerreler yañı kimyeviy bağlar peyda etmeden bir-birini nasıl çekkenini ögren.',
     },
   },

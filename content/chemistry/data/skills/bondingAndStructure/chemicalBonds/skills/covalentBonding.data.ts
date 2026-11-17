@@ -31,7 +31,7 @@ export const covalentBonding_Skill_Data = defineSkill({
     et: 'Kovalentne side',
     be: 'Кавалентная сувязь',
     ka: 'კოვალენტური ბმა',
-    kk: 'Коваленттік байланыс',
+    kk: 'Kovalenttık bailanys',
     qm: 'Kovalent bağ',
   },
   description: {
@@ -65,7 +65,7 @@ export const covalentBonding_Skill_Data = defineSkill({
       et: 'Mõista, kuidas aatomid jagavad elektrone üksik- ja kordsetes kovalentsetes sidemetes.',
       be: 'Зразумей, як атамы супольна выкарыстоўваюць электроны ў адзінарных і кратных кавалентных сувязях.',
       ka: 'გაიგე, როგორ იზიარებენ ატომები ელექტრონებს ერთმაგ და მრავალმაგ კოვალენტურ ბმებში.',
-      kk: 'Атомдар бірлік және еселік коваленттік байланыстарда электрондарды қалай ортақтасатынын түсін.',
+      kk: 'Atomdar bırlık jäne eselık kovalenttık bailanystarda elektrondardy qalai ortaqtasatynyn tüsın.',
       qm: 'Atomlarnıñ birli ve çoq qatlı kovalent bağlarda elektronlarnı nasıl paylaşqanını añla.',
     },
   },

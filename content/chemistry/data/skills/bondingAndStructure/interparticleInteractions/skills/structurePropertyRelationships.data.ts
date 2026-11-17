@@ -31,7 +31,7 @@ export const structurePropertyRelationships_Skill_Data = defineSkill({
     et: 'Struktuuri ja omaduste seosed',
     be: 'Сувязі будовы й уласьцівасьцяў',
     ka: 'სტრუქტურისა და თვისებების კავშირი',
-    kk: 'Құрылым мен қасиеттер байланысы',
+    kk: 'Qūrylym men qasietter bailanysy',
     qm: 'Qurulış ve hususiyetlerniñ bağlılığı',
   },
   description: {
@@ -65,7 +65,7 @@ export const structurePropertyRelationships_Skill_Data = defineSkill({
       et: 'Selgita materjalide erinevusi sidemete ja osakestevaheliste vastastikmõjude abil.',
       be: 'Тлумач адрозьненьні паміж матэрыяламі праз сувязі й узаемадзеяньні часьціцаў.',
       ka: 'ახსენი მასალების განსხვავებები ბმებისა და ნაწილაკთაშორისი ურთიერთქმედებების მიხედვით.',
-      kk: 'Байланыстар мен бөлшектер әрекеттесуі арқылы материалдар арасындағы айырмашылықтарды түсіндір.',
+      kk: 'Bailanystar men bölşekter ärekettesuı arqyly materialdar arasyndağy aiyrmaşylyqtardy tüsındır.',
       qm: 'Bağlar ve zerreler arası tesirleşmeler yardımınen materiallarnıñ farqlarını añlat.',
     },
   },
