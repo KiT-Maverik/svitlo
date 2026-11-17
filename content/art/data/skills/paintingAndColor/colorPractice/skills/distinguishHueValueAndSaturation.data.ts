@@ -31,7 +31,7 @@ export const distinguishHueValueAndSaturation_Skill_Data = defineSkill({
     et: 'Tooni, heledust ja küllastust eristama',
     be: 'Адрозніваць каляровы тон, светласць і насычанасць',
     ka: 'ტონის, სინათლისა და გაჯერებულობის გარჩევა',
-    kk: 'Түс реңкін, ашықтығын және қанықтылығын ажырату',
+    kk: 'Tüs reñkın, aşyqtyğyn jäne qanyqtylyğyn ajyratu',
     qm: 'Tüs tonunı, açıq-qaranqlığını ve doyunğanlığını ayırmaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const distinguishHueValueAndSaturation_Skill_Data = defineSkill({
       et: 'Pane tähele värvitooni, heleduse ja erksuse erinevust.',
       be: 'Звяртайце ўвагу на розніцу паміж каляровым тонам, светласцю і яркасцю.',
       ka: 'დააკვირდით განსხვავებას ფერის ტონს, სინათლესა და მკვეთრობას შორის.',
-      kk: 'Түстің реңкі, ашықтығы және қанық көрінуі арасындағы айырмашылықты байқаңыз.',
+      kk: 'Tüstıñ reñkı, aşyqtyğy jäne qanyq körınuı arasyndağy aiyrmaşylyqty baiqañyz.',
       qm: 'Bir tüsniñ tonı, açıq-qaranqlığı ve canlılığı arasındaki farqnı añlañız.',
     },
   },

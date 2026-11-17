@@ -31,7 +31,7 @@ export const interpretMusicalMeter_Skill_Data = defineSkill({
     et: 'Mõista muusikalist meetrumit',
     be: 'Разумець музычны метр',
     ka: 'მუსიკალური მეტრის გაგება',
-    kk: 'Музыкалық өлшемді түсіну',
+    kk: 'Muzykalyq ölşemdı tüsınu',
     qm: 'Muzikanıñ ölçüsini añla',
   },
   description: {
@@ -64,7 +64,7 @@ export const interpretMusicalMeter_Skill_Data = defineSkill({
       et: 'Kuula, kuidas korduvad tugevad ja nõrgad löögid kujundavad muusikalist mustrit.',
       be: 'Паслухайце, як паўтаральныя моцныя і слабыя долі арганізуюць музычны малюнак.',
       ka: 'მოუსმინეთ, როგორ აყალიბებს განმეორებადი ძლიერი და სუსტი დარტყმები მუსიკალურ ნიმუშს.',
-      kk: 'Қайталанатын күшті және әлсіз үлестердің музыкалық өрнекті қалай ұйымдастыратынын тыңдаңыз.',
+      kk: 'Qaitalanatyn küştı jäne älsız ülesterdıñ muzykalyq örnektı qalai ūiymdastyratynyn tyñdañyz.',
       qm: 'Qaytalanğan küçlü ve zayıf urğularnıñ muzika nağışını nasıl teşkil etkenini diñle.',
     },
   },

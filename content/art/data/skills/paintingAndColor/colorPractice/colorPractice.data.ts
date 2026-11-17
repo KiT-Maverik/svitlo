@@ -39,7 +39,7 @@ export const colorPractice_SkillGroup_Data = defineSkillGroup({
     et: 'Värvipraktika',
     be: 'Практыка працы з колерам',
     ka: 'ფერთა პრაქტიკა',
-    kk: 'Түспен жұмыс тәжірибесі',
+    kk: 'Tüspen jūmys täjıribesı',
     qm: 'Tüsler üzerinde çalışma',
   },
   skills: [
@@ -80,7 +80,7 @@ export const colorPractice_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri, kuidas heledus, intensiivsus ja pigmentide segamine muudavad värvide omavahelisi suhteid.',
       be: 'Даведайцеся, як святлата, інтэнсіўнасць і змешванне пігментаў змяняюць суадносіны колераў.',
       ka: 'გაიგეთ, როგორ ცვლის ფერებს შორის ურთიერთობას სიმსუბუქე, ინტენსივობა და პიგმენტების შერევა.',
-      kk: 'Ашықтық, қанықтық және пигменттерді араластыру түстердің өзара қатынасын қалай өзгертетінін үйреніңіз.',
+      kk: 'Aşyqtyq, qanyqtyq jäne pigmentterdı aralastyru tüsterdıñ özara qatynasyn qalai özgertetının üirenıñız.',
       qm: 'Açıq-qaranqlıq, tüs quveti ve pigmentlerni qarıştırmaq tüsler arasındaki munasebetlerni nasıl deñiştirgenini ögrenüñiz.',
     },
   },

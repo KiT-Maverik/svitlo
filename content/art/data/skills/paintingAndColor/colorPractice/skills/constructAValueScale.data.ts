@@ -31,7 +31,7 @@ export const constructAValueScale_Skill_Data = defineSkill({
     et: 'Heletumeduse astmiku loomine',
     be: 'Стварыць шкалу танальных значэнняў',
     ka: 'ტონალური მნიშვნელობების სკალის შექმნა',
-    kk: 'Реңк мәндерінің шкаласын құрастыру',
+    kk: 'Reñk mänderınıñ şkalasyn qūrastyru',
     qm: 'Açıq-qaranqlıq derecesi cedvelini qurmaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const constructAValueScale_Skill_Data = defineSkill({
       et: 'Loo ühtlane toonide üleminek heledast tumedani.',
       be: 'Стварыце раўнамерны пераход тонаў ад светлага да цёмнага.',
       ka: 'შექმენით ტონების თანაბარი გადასვლა ღიადან მუქისკენ.',
-      kk: 'Ашық түстен қою түске дейін біркелкі реңк ауысуын жасаңыз.',
+      kk: 'Aşyq tüsten qoiu tüske deiın bırkelkı reñk auysuyn jasañyz.',
       qm: 'Açıqtan qaranlıqqa doğru tonlarnıñ bir-birine teñ keçişini yapıñız.',
     },
   },

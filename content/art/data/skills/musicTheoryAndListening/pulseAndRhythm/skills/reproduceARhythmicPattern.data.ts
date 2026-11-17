@@ -31,7 +31,7 @@ export const reproduceARhythmicPattern_Skill_Data = defineSkill({
     et: 'Taasesitada rütmimustrit',
     be: 'Паўтараць рытмічны ўзор',
     ka: 'რიტმული ნიმუშის გამეორება',
-    kk: 'Ырғақ үлгісін қайталау',
+    kk: 'Yrğaq ülgısın qaitalau',
     qm: 'Ritm nağışını tekrarlamaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const reproduceARhythmicPattern_Skill_Data = defineSkill({
       et: 'Taasesita nootide kestuste ja pauside jada plaksutades, koputades või mängides.',
       be: 'Паўтарыце паслядоўнасць працягласці нот і паўз плясканнем, пастукваннем або выкананнем.',
       ka: 'გაიმეორეთ ნოტებისა და პაუზების ხანგრძლივობის მიმდევრობა ტაშით, დაკაკუნებით ან დაკვრით.',
-      kk: 'Шапалақтау, тықылдату немесе ойнау арқылы ноталар мен үзілістер тізбегін қайталаңыз.',
+      kk: 'Şapalaqtau, tyqyldatu nemese oinau arqyly notalar men üzılıster tızbegın qaitalañyz.',
       qm: 'Notalarnıñ uzunlığı ve suslardan ibaret dizilimini el çırparaq, tıqıldatıp ya da çalıp tekrarlañız.',
     },
   },

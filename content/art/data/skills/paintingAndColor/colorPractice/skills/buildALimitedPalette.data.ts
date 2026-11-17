@@ -31,7 +31,7 @@ export const buildALimitedPalette_Skill_Data = defineSkill({
     et: 'Piiratud värvipaleti loomine',
     be: 'Стварыць абмежаваную палітру',
     ka: 'შეზღუდული ფერთა პალიტრის შექმნა',
-    kk: 'Шектеулі түстер палитрасын құрастыру',
+    kk: 'Şekteulı tüster palitrasyn qūrastyru',
     qm: 'Sınırlı tüs palitrasını qurmaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const buildALimitedPalette_Skill_Data = defineSkill({
       et: 'Loo harmooniline maal hoolikalt valitud väikese värvivalikuga.',
       be: 'Стварыце гарманічны жывапісны твор з дапамогай невялікай колькасці старанна падабраных колераў.',
       ka: 'შექმენით ჰარმონიული ნახატი საგულდაგულოდ შერჩეული რამდენიმე ფერით.',
-      kk: 'Мұқият таңдалған аз ғана түспен үйлесімді картина жасаңыз.',
+      kk: 'Mūqiiat tañdalğan az ğana tüspen üilesımdı kartina jasañyz.',
       qm: 'Dikkatnen saylanğan az sayıda boya ile ahenkli bir resim yaratıñız.',
     },
   },

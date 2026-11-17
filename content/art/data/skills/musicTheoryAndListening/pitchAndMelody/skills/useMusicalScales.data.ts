@@ -31,7 +31,7 @@ export const useMusicalScales_Skill_Data = defineSkill({
     et: 'Kasutada muusikalisi heliridu',
     be: 'Выкарыстоўваць музычныя гамы',
     ka: 'მუსიკალური გამების გამოყენება',
-    kk: 'Музыкалық гаммаларды қолдану',
+    kk: 'Muzykalyq gammalardy qoldanu',
     qm: 'Musiki maqamlarnı qullanmaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const useMusicalScales_Skill_Data = defineSkill({
       et: 'Kasuta valitud nootide kogumit muusikaliste mustrite loomiseks.',
       be: 'Выкарыстоўвайце абраны набор нот для стварэння музычных узораў.',
       ka: 'გამოიყენეთ შერჩეული ნოტების ნაკრები მუსიკალური ნიმუშების შესაქმნელად.',
-      kk: 'Таңдалған ноталар жиынтығын пайдаланып, музыкалық өрнектер жасаңыз.',
+      kk: 'Tañdalğan notalar jiyntyğyn paidalanyp, muzykalyq örnekter jasañyz.',
       qm: 'Saylanğan notalar topluğını qullanıp musiki nağışları yaratığız.',
     },
   },

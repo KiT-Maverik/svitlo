@@ -31,7 +31,7 @@ export const recognizeMelodicContour_Skill_Data = defineSkill({
     et: 'Tuvastada meloodia kulgu',
     be: 'Распазнаваць абрыс мелодыі',
     ka: 'მელოდიის კონტურის ამოცნობა',
-    kk: 'Әуеннің әуездік бағытын тану',
+    kk: 'Äuennıñ äuezdık bağytyn tanu',
     qm: 'Ezgi çizgisini tanımaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const recognizeMelodicContour_Skill_Data = defineSkill({
       et: 'Kuula, kas meloodia tõuseb, langeb või püsib samal noodil.',
       be: 'Паслухайце, ці мелодыя падымаецца, апускаецца або застаецца на той самай ноце.',
       ka: 'მოუსმინეთ, მელოდია მაღლა მიდის, დაბლა ეშვება თუ იმავე ბგერაზე რჩება.',
-      kk: 'Тыңдап, әуеннің жоғарылайтынын, төмендейтінін немесе бір дыбыста қалатынын анықтаңыз.',
+      kk: 'Tyñdap, äuennıñ joğarylaitynyn, tömendeitının nemese bır dybysta qalatynyn anyqtañyz.',
       qm: 'Ezginin yükselip alçaldığını ya da aynı notada qalıp-qalmadığını dinleyerek ayırt etiñiz.',
     },
   },

@@ -31,7 +31,7 @@ export const performSyncopation_Skill_Data = defineSkill({
     et: 'Esitada sünkoopi',
     be: 'Выконваць сінкопу',
     ka: 'სინკოპის შესრულება',
-    kk: 'Синкопаны орындау',
+    kk: 'Sinkopany oryndau',
     qm: 'Senkop icra etmek',
   },
   description: {
@@ -64,7 +64,7 @@ export const performSyncopation_Skill_Data = defineSkill({
       et: 'Rõhuta ootamatuid lööke, säilitades samal ajal põhipulsi.',
       be: 'Падкрэслівайце нечаканыя долі, захоўваючы асноўны пульс.',
       ka: 'შეასრულეთ მოულოდნელი აქცენტები ძირითადი პულსის შენარჩუნებით.',
-      kk: 'Негізгі пульсті сақтай отырып, күтпеген үлестерге екпін түсіріңіз.',
+      kk: 'Negızgı pulstı saqtai otyryp, kütpegen ülesterge ekpın tüsırıñız.',
       qm: 'Temel nabıznı saqlap, beklenmegen vuruşlarnı vurgulañız.',
     },
   },

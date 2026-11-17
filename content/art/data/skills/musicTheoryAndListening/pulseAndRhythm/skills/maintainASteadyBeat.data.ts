@@ -31,7 +31,7 @@ export const maintainASteadyBeat_Skill_Data = defineSkill({
     et: 'Hoida ühtlast pulssi',
     be: 'Захоўваць раўнамерны пульс',
     ka: 'შეინარჩუნეთ თანაბარი პულსი',
-    kk: 'Бірқалыпты ырғақты сақтау',
+    kk: 'Bırqalypty yrğaqty saqtau',
     qm: 'Birqalıp urğını saqla',
   },
   description: {
@@ -64,7 +64,7 @@ export const maintainASteadyBeat_Skill_Data = defineSkill({
       et: 'Hoia ühtlast pulssi ka siis, kui muusika rütm muutub.',
       be: 'Захоўвайце раўнамерны пульс, нават калі рытм музыкі змяняецца.',
       ka: 'შეინარჩუნეთ თანაბარი პულსი მაშინაც, როცა მუსიკის რიტმი იცვლება.',
-      kk: 'Музыка ырғағы өзгерсе де, бірқалыпты ырғақты сақтаңыз.',
+      kk: 'Muzyka yrğağy özgerse de, bırqalypty yrğaqty saqtañyz.',
       qm: 'Muzikanıñ ritmi deñişse de, birqalıp urğını saqla.',
     },
   },

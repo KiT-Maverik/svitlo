@@ -39,7 +39,7 @@ export const pulseAndRhythm_SkillGroup_Data = defineSkillGroup({
     et: 'Pulss ja rütm',
     be: 'Пульс і рытм',
     ka: 'პულსი და რიტმი',
-    kk: 'Пульс пен ырғақ',
+    kk: 'Puls pen yrğaq',
     qm: 'Nabız ve ritim',
   },
   skills: [
@@ -80,7 +80,7 @@ export const pulseAndRhythm_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri, kuidas ühtlane pulss toetab erinevaid rütmimustreid.',
       be: 'Даследуйце, як раўнамерны пульс падтрымлівае розныя рытмічныя ўзоры.',
       ka: 'შეისწავლეთ, როგორ ეხმარება თანაბარი პულსი სხვადასხვა რიტმულ ნიმუშს.',
-      kk: 'Зерттеңіз: бірқалыпты пульс әртүрлі ырғақ үлгілерін қалай қолдайды.',
+      kk: 'Zertteñız: bırqalypty puls ärtürlı yrğaq ülgılerın qalai qoldaidy.',
       qm: 'Daimiy nabıznıñ çeşit ritm nağışlarına nasıl dayaq olğanını keşf etiñiz.',
     },
   },

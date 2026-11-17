@@ -31,7 +31,7 @@ export const mixPigmentColors_Skill_Data = defineSkill({
     et: 'Pigmendivärvide segamine',
     be: 'Змешваць пігментныя фарбы',
     ka: 'პიგმენტების ფერების შერევა',
-    kk: 'Пигмент түстерін араластыру',
+    kk: 'Pigment tüsterın aralastyru',
     qm: 'Pigment boyalarını qarıştırmaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const mixPigmentColors_Skill_Data = defineSkill({
       et: 'Sega värve, et luua soovitud toon või värvide omavaheline suhe.',
       be: 'Змешвайце фарбы, каб атрымаць патрэбны колер або жаданае суаднясенне колераў.',
       ka: 'შეურიეთ საღებავები სასურველი ფერის ან ფერთა ურთიერთმიმართების მისაღებად.',
-      kk: 'Қалаған түсті немесе түстердің үйлесімін алу үшін бояуларды араластырыңыз.',
+      kk: 'Qalağan tüstı nemese tüsterdıñ üilesımın alu üşın boiaulardy aralastyryñyz.',
       qm: 'İstegen tüsni ya da tüsler arasındaki munasebetni yaratmaq içün boyalarnı qarıştırıñız.',
     },
   },

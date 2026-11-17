@@ -31,7 +31,7 @@ export const useComplementaryColors_Skill_Data = defineSkill({
     et: 'Täiendvärvide kasutamine',
     be: 'Выкарыстоўваць дадатковыя колеры',
     ka: 'დამატებითი ფერების გამოყენება',
-    kk: 'Қосымша түстерді пайдалану',
+    kk: 'Qosymşa tüsterdı paidalanu',
     qm: 'Bir-birine qarşı turgan tüslerni qullanmaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const useComplementaryColors_Skill_Data = defineSkill({
       et: 'Kasuta värviringis vastakuti asuvaid värve kontrasti ja rõhuasetuse loomiseks.',
       be: 'Выкарыстоўвайце колеры, размешчаныя насупраць адзін аднаго на каляровым крузе, каб стварыць кантраст і акцэнт.',
       ka: 'კონტრასტისა და აქცენტის შესაქმნელად გამოიყენეთ ფერთა წრეზე ერთმანეთის საპირისპიროდ განლაგებული ფერები.',
-      kk: 'Контраст пен екпін жасау үшін түс шеңберінде бір-біріне қарама-қарсы түстерді қолданыңыз.',
+      kk: 'Kontrast pen ekpın jasau üşın tüs şeñberınde bır-bırıne qarama-qarsy tüsterdı qoldanyñyz.',
       qm: 'Kontrast ve vurğulama yaratmaq içün tüs çemberinde bir-birine qarşı turgan tüslerni qullanıñız.',
     },
   },

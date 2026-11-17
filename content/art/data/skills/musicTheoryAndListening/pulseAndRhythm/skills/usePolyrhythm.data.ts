@@ -31,7 +31,7 @@ export const usePolyrhythm_Skill_Data = defineSkill({
     et: 'Kasutada polürütmiat',
     be: 'Выкарыстоўваць палірытмію',
     ka: 'პოლირიტმის გამოყენება',
-    kk: 'Полиритмді қолдану',
+    kk: 'Poliritmdı qoldanu',
     qm: 'Poliritm qullanmaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const usePolyrhythm_Skill_Data = defineSkill({
       et: 'Ühenda erinevad rütmimustrid, mis kõlavad samal ajal.',
       be: 'Спалучайце розныя рытмічныя ўзоры, якія гучаць адначасова.',
       ka: 'შეაერთეთ სხვადასხვა რიტმული ნიმუში, რომლებიც ერთდროულად სრულდება.',
-      kk: 'Бір уақытта орындалатын әртүрлі ырғақ үлгілерін біріктіріңіз.',
+      kk: 'Bır uaqytta oryndalatyn ärtürlı yrğaq ülgılerın bırıktırıñız.',
       qm: 'Aynı vaqıtta icra etilgen çeşit ritm nağışlarını birleştiriñiz.',
     },
   },
