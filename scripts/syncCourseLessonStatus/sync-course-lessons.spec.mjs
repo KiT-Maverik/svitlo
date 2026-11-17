@@ -136,11 +136,18 @@ test('Stage 1 ignores unrelated marker examples but fails closed for associated 
   const marker = '<!-- svitlo-course-lesson:v1 -->';
   const parentBody =
     '<!-- svitlo-course-flow:v1 -->\n' +
-    '- Course UUID: ' + courseId + '\n' +
+    '- Course UUID: ' +
+    courseId +
+    '\n' +
     '- Textbook: content/astronomy\n' +
-    '- Source plan: content/astronomy/data/courses/b/' + courseId + '/course.yaml\n' +
+    '- Source plan: content/astronomy/data/courses/b/' +
+    courseId +
+    '/course.yaml\n' +
     '\n## Human-authored Stage 1\n- [ ] Methodology approval pending\n\n' +
-    START + '\nold\n' + END + '\n';
+    START +
+    '\nold\n' +
+    END +
+    '\n';
   const unrelated = [
     {
       number: 639,
@@ -151,8 +158,7 @@ test('Stage 1 ignores unrelated marker examples but fails closed for associated 
     { number: 640, body: marker + '\nCourse: invalid\nParent PR: #999\n', state: 'closed' },
     {
       number: 641,
-      body: marker + '\nCourse: 00000000-0000-0000-0000-000000000000\n' +
-        'Lesson: ' + lessonId + '\nParent PR: #999\n',
+      body: marker + '\nCourse: 00000000-0000-0000-0000-000000000000\n' + 'Lesson: ' + lessonId + '\nParent PR: #999\n',
       state: 'open',
     },
   ];
@@ -165,16 +171,19 @@ test('Stage 1 ignores unrelated marker examples but fails closed for associated 
   const previousToken = process.env.GH_TOKEN;
   try {
     fs.mkdirSync(courseFolder, { recursive: true });
-    fs.writeFileSync(path.join(courseFolder, 'course.yaml'), [
-      'id: ' + courseId,
-      'type: course',
-      'supportedLanguages: [uk]',
-      'methodology:',
-      '  purpose: First observations',
-      'outcomes:',
-      '  skills: []',
-      '',
-    ].join('\n'));
+    fs.writeFileSync(
+      path.join(courseFolder, 'course.yaml'),
+      [
+        'id: ' + courseId,
+        'type: course',
+        'supportedLanguages: [uk]',
+        'methodology:',
+        '  purpose: First observations',
+        'outcomes:',
+        '  skills: []',
+        '',
+      ].join('\n'),
+    );
     process.env.GH_TOKEN = 'fixture-token';
     globalThis.fetch = async (url, options = {}) => {
       const suffix = String(url).split('/repos/' + repo + '/')[1];
@@ -185,7 +194,8 @@ test('Stage 1 ignores unrelated marker examples but fails closed for associated 
         result = { updated: true };
       } else if (suffix === 'pulls/653') {
         result = {
-          state: 'open', body,
+          state: 'open',
+          body,
           head: { sha, ref: 'course/astronomy-grade-one', repo: { full_name: repo } },
         };
       } else if (suffix === 'pulls?state=all&per_page=100&page=1') {
@@ -212,34 +222,49 @@ test('Stage 1 ignores unrelated marker examples but fails closed for associated 
     assert.match(body, /Human-authored Stage 1/);
     assert.doesNotMatch(body, /Invalid Lesson PR marker in/);
 
-    prs = [...unrelated, {
-      number: 700,
-      body: marker + '\nLesson: ' + lessonId + '\nParent PR: #653\n',
-      head: { repo: { full_name: repo } },
-      base: { ref: 'course/astronomy-grade-one', repo: { full_name: repo } },
-    }];
+    prs = [
+      ...unrelated,
+      {
+        number: 700,
+        body: marker + '\nLesson: ' + lessonId + '\nParent PR: #653\n',
+        head: { repo: { full_name: repo } },
+        base: { ref: 'course/astronomy-grade-one', repo: { full_name: repo } },
+      },
+    ];
     const malformed = await analyze(options);
     assert.equal(malformed.complete, false);
     assert.match(malformed.diagnostics.map(x => x.reason).join('\n'), /#700: Expected exactly one Lesson PR Course/);
     assert.match(renderLessonsBlock(malformed), /INCOMPLETE/);
 
-    prs = [...unrelated, {
-      number: 701,
-      body: marker + '\nCourse: ' + courseId + '\nLesson: ' + lessonId + '\nParent PR: #999\n',
-      head: { repo: { full_name: repo } },
-      base: { ref: 'course/astronomy-grade-one', repo: { full_name: repo } },
-    }];
+    prs = [
+      ...unrelated,
+      {
+        number: 701,
+        body: marker + '\nCourse: ' + courseId + '\nLesson: ' + lessonId + '\nParent PR: #999\n',
+        head: { repo: { full_name: repo } },
+        base: { ref: 'course/astronomy-grade-one', repo: { full_name: repo } },
+      },
+    ];
     const conflict = await analyze(options);
-    assert.match(conflict.diagnostics.map(x => x.reason).join('\n'), /#701: Lesson PR Course\/parent identity mismatch/);
+    assert.match(
+      conflict.diagnostics.map(x => x.reason).join('\n'),
+      /#701: Lesson PR Course\/parent identity mismatch/,
+    );
 
-    prs = [...unrelated, {
-      number: 702,
-      body: marker + '\nCourse: ' + courseId + '\nLesson: ' + lessonId + '\nParent PR: #653\n',
-      head: { repo: { full_name: repo } },
-      base: { ref: 'main', repo: { full_name: repo } },
-    }];
+    prs = [
+      ...unrelated,
+      {
+        number: 702,
+        body: marker + '\nCourse: ' + courseId + '\nLesson: ' + lessonId + '\nParent PR: #653\n',
+        head: { repo: { full_name: repo } },
+        base: { ref: 'main', repo: { full_name: repo } },
+      },
+    ];
     const wrongBranch = await analyze(options);
-    assert.match(wrongBranch.diagnostics.map(x => x.reason).join('\n'), /#702: Lesson PR must target its Course parent branch/);
+    assert.match(
+      wrongBranch.diagnostics.map(x => x.reason).join('\n'),
+      /#702: Lesson PR must target its Course parent branch/,
+    );
     assert.equal(patchCount, 1); // Analysis never updates the PR body.
   } finally {
     globalThis.fetch = previousFetch;

@@ -79,9 +79,7 @@ export function targetsCourseLessonClaim(body, courseId, parentPr) {
   const id = canonicalUUID(courseId);
   if (!Number.isSafeInteger(parentPr) || parentPr < 1) throw new Error('Invalid Course parent PR number');
   return (
-    [...body.matchAll(/^Course:[ \t]*([^\r\n]*)/gim)].some(([, value]) =>
-      value.toLowerCase().includes(id),
-    ) ||
+    [...body.matchAll(/^Course:[ \t]*([^\r\n]*)/gim)].some(([, value]) => value.toLowerCase().includes(id)) ||
     [...body.matchAll(/^Parent PR:[ \t]*#?([0-9]+)/gim)].some(([, value]) => Number(value) === parentPr)
   );
 }
@@ -369,10 +367,7 @@ export function renderLessonsBlock(report) {
     'Inventory SHA: ' + report.sha,
     '',
     'Coverage: **' +
-      (!report.allocated &&
-      !report.lessons.length &&
-      !report.unresolved.length &&
-      !report.diagnostics.length
+      (!report.allocated && !report.lessons.length && !report.unresolved.length && !report.diagnostics.length
         ? 'NOT ALLOCATED'
         : report.complete
           ? 'complete'
