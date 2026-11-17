@@ -31,7 +31,7 @@ export const controlAndExperimentalGroups_Skill_Data = defineSkill({
     et: 'Kontroll- ja katserühmad',
     be: 'Кантрольныя і экспэрымэнтальныя групы',
     ka: 'საკონტროლო და ექსპერიმენტული ჯგუფები',
-    kk: 'Бақылау және тәжірибелік топтар',
+    kk: 'Baqylau jäne täjıribelık toptar',
     qm: 'Kontrol ve tecribe gruppaları',
   },
   description: {
@@ -64,7 +64,7 @@ export const controlAndExperimentalGroups_Skill_Data = defineSkill({
       et: 'Mõista, miks õiglane võrdlus vajab sobivaid kontrollrühmi.',
       be: 'Зразумей, чаму для сумленнага параўнаньня патрэбныя адпаведныя кантрольныя групы.',
       ka: 'გაიგე, რატომ სჭირდება სამართლიან შედარებას შესაფერისი საკონტროლო ჯგუფი.',
-      kk: 'Әділ салыстыру үшін тиісті бақылау тобы неге қажет екенін түсін.',
+      kk: 'Ädıl salystyru üşın laiyqty baqylau tobynyñ nege qajet ekenın tüsın.',
       qm: 'Adil teñeştirmede münasip kontrol gruppası ne içün kerek olğanını añla.',
     },
   },

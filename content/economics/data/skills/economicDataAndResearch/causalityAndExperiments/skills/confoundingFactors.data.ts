@@ -31,7 +31,7 @@ export const confoundingFactors_Skill_Data = defineSkill({
     et: 'Segavad tegurid',
     be: 'Зьмешвальныя фактары',
     ka: 'შემრევი ფაქტორები',
-    kk: 'Шатастырушы факторлар',
+    kk: 'Şatastyruşy faktorlar',
     qm: 'Qarıştırıcı amiller',
   },
   description: {
@@ -65,7 +65,7 @@ export const confoundingFactors_Skill_Data = defineSkill({
       et: 'Leia varjatud tegurid, mis võivad selgitada näilist majanduslikku seost.',
       be: 'Знайдзі схаваныя чыньнікі, што могуць тлумачыць уяўную эканамічную сувязь.',
       ka: 'იპოვე ფარული ფაქტორები, რომლებიც მოჩვენებით ეკონომიკურ კავშირს ხსნის.',
-      kk: 'Көрінетін экономикалық байланысты түсіндіретін жасырын факторларды тап.',
+      kk: 'Körınetın ekonomikalyq bailanysty tüsındıruı mümkın jasyryn faktorlardy tap.',
       qm: 'Körüngen iqtisadiy alâqanı añlata bilgen gizli amillerni tap.',
     },
   },

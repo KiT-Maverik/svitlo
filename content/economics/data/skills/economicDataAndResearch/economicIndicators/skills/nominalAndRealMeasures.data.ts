@@ -31,7 +31,7 @@ export const nominalAndRealMeasures_Skill_Data = defineSkill({
     et: 'Nominaalsed ja reaalsed näitajad',
     be: 'Намінальныя і рэальныя велічыні',
     ka: 'ნომინალური და რეალური მაჩვენებლები',
-    kk: 'Атаулы және нақты өлшемдер',
+    kk: 'Atauly jäne naqty ölşemder',
     qm: 'Nominal ve real ölçüler',
   },
   description: {
@@ -65,7 +65,7 @@ export const nominalAndRealMeasures_Skill_Data = defineSkill({
       et: 'Korrigeeri rahasummasid hinnamuutustega, et võrrelda tegelikku väärtust.',
       be: 'Скарэктуй грашовыя сумы з улікам зьменаў цэнаў, каб параўнаць рэальную вартасьць.',
       ka: 'ფასების ცვლილებით შეასწორე ფულადი თანხები რეალური ღირებულების შესადარებლად.',
-      kk: 'Ақша сомаларын баға өзгерісіне түзетіп, нақты құнын салыстыр.',
+      kk: 'Aqşa somalaryn bağa özgerısıne tüzetıp, olardyñ naqty qūnyn salystyr.',
       qm: 'Aqça miqdarlarını fiyat deñişmelerine köre tüzeltip real qıymetlerini teñeştir.',
     },
   },

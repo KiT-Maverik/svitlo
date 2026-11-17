@@ -31,7 +31,7 @@ export const perCapitaMeasuresAndShares_Skill_Data = defineSkill({
     et: 'Näitajad elaniku kohta ja osakaalud',
     be: 'Паказьнікі на адну асобу і долі',
     ka: 'მაჩვენებლები ერთ სულ მოსახლეზე და წილები',
-    kk: 'Жан басына шаққандағы көрсеткіштер мен үлестер',
+    kk: 'Jan basyna şaqqandağy körsetkışter men ülester',
     qm: 'Adam başına köstergiçler ve paylar',
   },
   description: {
@@ -64,7 +64,7 @@ export const perCapitaMeasuresAndShares_Skill_Data = defineSkill({
       et: 'Võrdle eri rahvastike näitajaid inimese kohta ja protsente.',
       be: 'Параўнай паказьнікі на асобу і адсоткі паміж групамі насельніцтва.',
       ka: 'შეადარე ერთ სულ მოსახლეზე მაჩვენებლები და პროცენტები სხვადასხვა ჯგუფში.',
-      kk: 'Әртүрлі халық топтарындағы жан басына шаққандағы сандар мен пайыздарды салыстыр.',
+      kk: 'Ärtürlı halyq toptarynda bır adamğa şaqqandağy sandar men paiyzdardy salystyr.',
       qm: 'Çeşit nüfuslarda adam başına raqamlar ve faizlerni teñeştir.',
     },
   },

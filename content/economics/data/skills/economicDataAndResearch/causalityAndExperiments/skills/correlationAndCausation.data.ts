@@ -31,7 +31,7 @@ export const correlationAndCausation_Skill_Data = defineSkill({
     et: 'Korrelatsioon ja põhjuslikkus',
     be: 'Карэляцыя і прычыннасьць',
     ka: 'კორელაცია და მიზეზობრიობა',
-    kk: 'Корреляция және себептілік',
+    kk: 'Korreliatsia jäne sebeptılık',
     qm: 'Korrelyatsiya ve sebep-netice bağı',
   },
   description: {
@@ -65,7 +65,7 @@ export const correlationAndCausation_Skill_Data = defineSkill({
       et: 'Selgita, miks kahe suundumuse koos muutumine ei tõesta põhjuslikku seost.',
       be: 'Растлумач, чаму адначасовыя зьмены двух тэндэнцыяў не даказваюць прычыннасьці.',
       ka: 'ახსენი, რატომ არ ამტკიცებს ორი ტენდენციის ერთად ცვლილება მიზეზობრივ კავშირს.',
-      kk: 'Екі үрдістің қатар өзгеруі бірінің екіншісіне себеп екенін неге дәлелдемейтінін түсіндір.',
+      kk: 'Ekı üderıstıñ bırge özgeruı bıreuı ekınşısıne sebep bolğanyn nege däleldemeıtının tüsındır.',
       qm: 'Eki mayıl bir vaqıtta deñişse de, biri digeriniñ sebebi olğanını niçün isbat etmegenini añlat.',
     },
   },
