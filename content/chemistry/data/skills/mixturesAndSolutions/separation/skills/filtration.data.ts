@@ -31,7 +31,7 @@ export const filtration_Skill_Data = defineSkill({
     et: 'Filtreerimine',
     be: 'Фільтраваньне',
     ka: 'ფილტრაცია',
-    kk: 'Сүзу',
+    kk: 'Süzu',
     qm: 'Süzüv',
   },
   description: {
@@ -64,7 +64,7 @@ export const filtration_Skill_Data = defineSkill({
       et: 'Selgita, kuidas filter peab kinni hõljuvaid tahkeid osakesi, lastes vedelikul või gaasil läbi liikuda.',
       be: 'Растлумач, як фільтар затрымлівае завіслыя цьвёрдыя часьціцы, прапускаючы вадкасьць ці газ.',
       ka: 'ახსენი, როგორ აკავებს ფილტრი შეწონილ მყარ ნაწილაკებს, ხოლო სითხეს ან აირს ატარებს.',
-      kk: 'Сүзгі қалқып жүрген қатты бөлшектерді ұстап, сұйықтық не газды қалай өткізетінін түсіндір.',
+      kk: 'Süzgı qalqyp jürgen qatty bölşekterdı ūstap, sūiyqtyq ne gazdy qalai ötkızetının tüsındır.',
       qm: 'Süzgü asılı qattı zerrelerni tutıp, sıyıqlıq ya da gaznı nasıl keçirgenini añlat.',
     },
   },

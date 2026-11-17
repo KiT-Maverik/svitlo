@@ -31,7 +31,7 @@ export const structuralIsomerism_Skill_Data = defineSkill({
     et: 'Struktuuriisomeeria',
     be: 'Структурная ізамэрыя',
     ka: 'სტრუქტურული იზომერია',
-    kk: 'Құрылымдық изомерия',
+    kk: 'Qūrylymdyq izomeriia',
     qm: 'Qurulış izomeriyası',
   },
   description: {
@@ -64,7 +64,7 @@ export const structuralIsomerism_Skill_Data = defineSkill({
       et: 'Mõista, kuidas sama molekulivalemiga ühendites võivad aatomid olla eri viisil seotud.',
       be: 'Зразумей, як злучэньні з аднолькавай малекулярнай формулай могуць мець розныя сувязі паміж атамамі.',
       ka: 'გაიგე, როგორ შეიძლება ერთი და იმავე მოლეკულური ფორმულის ნაერთებს ატომების განსხვავებული კავშირები ჰქონდეთ.',
-      kk: 'Молекулалық формуласы бірдей қосылыстарда атомдар байланысы қалай өзгеше болатынын түсін.',
+      kk: 'Molekulalyq formulasy bırdei qosylystarda atomdar bailanysy qalai özgeşe bolatynyn tüsın.',
       qm: 'Bir molekula formulası olğan birleşmelerde atomlar nasıl başqa türlü bağlanğanını añla.',
     },
   },

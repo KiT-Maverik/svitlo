@@ -31,7 +31,7 @@ export const alcohols_Skill_Data = defineSkill({
     et: 'Alkoholid',
     be: 'Сьпірты',
     ka: 'სპირტები',
-    kk: 'Спирттер',
+    kk: 'Spirtter',
     qm: 'Spirtler',
   },
   description: {
@@ -65,7 +65,7 @@ export const alcohols_Skill_Data = defineSkill({
       et: 'Tunne ära alkoholide struktuur ja nende hüdroksüülrühmaga seotud reaktsioonid.',
       be: 'Распазнавай будову сьпіртоў і рэакцыі, зьвязаныя зь іхнай гідраксільнай групай.',
       ka: 'ამოიცანი სპირტების სტრუქტურა და მათ ჰიდროქსილის ჯგუფთან დაკავშირებული რეაქციები.',
-      kk: 'Спирттердің құрылысын және гидроксил тобына байланысты реакцияларын таны.',
+      kk: 'Spirtterdıñ qūrylysyn jäne gidroksil tobyna bailanysty reaktsiialaryn tany.',
       qm: 'Spirtlerniñ qurulışını ve olarnıñ gidroksil toparınen bağlı reaktsiyalarnı tanı.',
     },
   },

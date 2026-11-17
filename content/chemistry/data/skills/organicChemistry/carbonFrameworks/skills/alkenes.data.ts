@@ -31,7 +31,7 @@ export const alkenes_Skill_Data = defineSkill({
     et: 'Alkeenid',
     be: 'Алкены',
     ka: 'ალკენები',
-    kk: 'Алкендер',
+    kk: 'Alkender',
     qm: 'Alkenler',
   },
   description: {
@@ -64,7 +64,7 @@ export const alkenes_Skill_Data = defineSkill({
       et: 'Uuri, kuidas süsinik–süsinik kaksiksidemed mõjutavad alkeenide reaktsioone.',
       be: 'Дасьледуй, як падвойныя сувязі вуглярод–вуглярод уплываюць на рэакцыі алкенаў.',
       ka: 'შეისწავლე, როგორ მოქმედებს ნახშირბად–ნახშირბადის ორმაგი ბმები ალკენების რეაქციებზე.',
-      kk: 'Көміртек–көміртек қос байланыстары алкендердің реакцияларына қалай әсер ететінін зертте.',
+      kk: 'Kömırtek–kömırtek qos bailanystary alkenderdıñ reaktsiialaryna qalai äser etetının zertte.',
       qm: 'Karbon–karbon eki qat bağları alkenlerniñ reaktsiyalarına nasıl tesir etkenini ögren.',
     },
   },

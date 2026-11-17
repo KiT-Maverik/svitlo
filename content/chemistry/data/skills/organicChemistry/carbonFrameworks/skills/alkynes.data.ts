@@ -31,7 +31,7 @@ export const alkynes_Skill_Data = defineSkill({
     et: 'Alküünid',
     be: 'Алкіны',
     ka: 'ალკინები',
-    kk: 'Алкиндер',
+    kk: 'Alkinder',
     qm: 'Alkinler',
   },
   description: {
@@ -64,7 +64,7 @@ export const alkynes_Skill_Data = defineSkill({
       et: 'Tunne ära alküünid süsinik–süsinik kolmiksideme järgi.',
       be: 'Распазнавай алкіны паводле патройных сувязяў вуглярод–вуглярод.',
       ka: 'ამოიცანი ალკინები ნახშირბად–ნახშირბადის სამმაგი ბმებით.',
-      kk: 'Алкиндерді көміртек–көміртек үштік байланыстары бойынша таны.',
+      kk: 'Alkinderdı kömırtek–kömırtek üştık bailanystary boiynşa tany.',
       qm: 'Alkinlerni karbon–karbon üç qat bağlarından tanı.',
     },
   },

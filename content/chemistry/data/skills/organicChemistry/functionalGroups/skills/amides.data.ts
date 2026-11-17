@@ -31,7 +31,7 @@ export const amides_Skill_Data = defineSkill({
     et: 'Amiidid',
     be: 'Аміды',
     ka: 'ამიდები',
-    kk: 'Амидтер',
+    kk: 'Amidter',
     qm: 'Amidler',
   },
   description: {
@@ -64,7 +64,7 @@ export const amides_Skill_Data = defineSkill({
       et: 'Tunne ära amiidid ning erista nende karbonüül–lämmastik sidet amiinidest.',
       be: 'Распазнавай аміды й адрозьнівай іхную сувязь карбаніл–азот ад амінаў.',
       ka: 'ამოიცანი ამიდები და განასხვავე მათი კარბონილ–აზოტის კავშირი ამინებისგან.',
-      kk: 'Амидтерді танып, карбонил–азот байланысын аминдерден ажырат.',
+      kk: 'Amidterdı tanyp, karbonil–azot bailanysyn aminderden ajyrat.',
       qm: 'Amidlerni tanı ve olarnıñ karbonil–azot bağını aminlerden ayır.',
     },
   },

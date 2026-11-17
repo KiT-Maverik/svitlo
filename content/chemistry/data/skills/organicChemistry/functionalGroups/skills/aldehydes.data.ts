@@ -31,7 +31,7 @@ export const aldehydes_Skill_Data = defineSkill({
     et: 'Aldehüüdid',
     be: 'Альдэгіды',
     ka: 'ალდეჰიდები',
-    kk: 'Альдегидтер',
+    kk: 'Aldegidter',
     qm: 'Aldegidler',
   },
   description: {
@@ -64,7 +64,7 @@ export const aldehydes_Skill_Data = defineSkill({
       et: 'Tunne aldehüüdid ära karbonüülrühma asukoha ja käitumise järgi.',
       be: 'Распазнавай альдэгіды паводле становішча й паводзінаў карбанільнай групы.',
       ka: 'ამოიცანი ალდეჰიდები კარბონილის ჯგუფის მდებარეობითა და ქცევით.',
-      kk: 'Альдегидтерді карбонил тобының орны мен қасиеттері арқылы таны.',
+      kk: 'Aldegidterdı karbonil tobynyñ orny men qasietterı arqyly tany.',
       qm: 'Aldegidlerni karbonil toparınıñ yeri ve tesirleşüvine köre tanı.',
     },
   },

@@ -41,7 +41,7 @@ export const functionalGroups_SkillGroup_Data = defineSkillGroup({
     et: 'Funktsionaalrühmad',
     be: 'Функцыянальныя групы',
     ka: 'ფუნქციური ჯგუფები',
-    kk: 'Функционалдық топтар',
+    kk: 'Funktsionaldyq toptar',
     qm: 'Funktsional toparlar',
   },
   skills: [
@@ -84,7 +84,7 @@ export const functionalGroups_SkillGroup_Data = defineSkillGroup({
       et: 'Tunne ära funktsionaalrühmad, mis mõjutavad orgaaniliste ühendite omadusi.',
       be: 'Распазнавай функцыянальныя групы, якія вызначаюць уласьцівасьці арганічных злучэньняў.',
       ka: 'ამოიცანი ფუნქციური ჯგუფები, რომლებიც ორგანული ნაერთების თვისებებს განსაზღვრავს.',
-      kk: 'Органикалық қосылыстардың қасиеттерін анықтайтын функционалдық топтарды таны.',
+      kk: 'Organikalyq qosylystardyñ qasietterın anyqtaityn funktsionaldyq toptardy tany.',
       qm: 'Organik birleşmelerniñ hususiyetlerini belgilegen funktsional toparlarnı tanı.',
     },
   },

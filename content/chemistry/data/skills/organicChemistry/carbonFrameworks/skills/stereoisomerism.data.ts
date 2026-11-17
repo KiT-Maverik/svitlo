@@ -31,7 +31,7 @@ export const stereoisomerism_Skill_Data = defineSkill({
     et: 'Stereoisomeeria',
     be: 'Стэрэаізамэрыя',
     ka: 'სტერეოიზომერია',
-    kk: 'Стереоизомерия',
+    kk: 'Stereoizomeriia',
     qm: 'Stereoizomeriya',
   },
   description: {
@@ -64,7 +64,7 @@ export const stereoisomerism_Skill_Data = defineSkill({
       et: 'Uuri, kuidas molekulid võivad erineda kolmemõõtmelise paigutuse poolest.',
       be: 'Дасьледуй, як малекулы могуць адрозьнівацца прасторавым разьмяшчэньнем атамаў.',
       ka: 'გამოიკვლიე, როგორ შეიძლება მოლეკულები განსხვავდებოდეს სამგანზომილებიანი განლაგებით.',
-      kk: 'Молекулалар үшөлшемді кеңістіктегі орналасуымен қалай ерекшеленетінін зертте.',
+      kk: 'Molekulalar üşölşemdı keñıstıktegı ornalasuymen qalai erekşelenetının zertte.',
       qm: 'Molekulalar üç ölçüvli boşluqta nasıl başqa türlü tizilgenini araştır.',
     },
   },

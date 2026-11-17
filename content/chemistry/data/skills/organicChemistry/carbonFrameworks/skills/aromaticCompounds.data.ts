@@ -31,7 +31,7 @@ export const aromaticCompounds_Skill_Data = defineSkill({
     et: 'Aromaatsed ühendid',
     be: 'Араматычныя злучэньні',
     ka: 'არომატული ნაერთები',
-    kk: 'Ароматты қосылыстар',
+    kk: 'Aromatty qosylystar',
     qm: 'Aromatik birleşmeler',
   },
   description: {
@@ -64,7 +64,7 @@ export const aromaticCompounds_Skill_Data = defineSkill({
       et: 'Erista aromaatseid molekulaarstruktuure tavalistest süsinikuringidest.',
       be: 'Адрозьнівай араматычныя малекулярныя структуры ад звычайных вугляродных кольцаў.',
       ka: 'განასხვავე არომატული მოლეკულური სტრუქტურები ჩვეულებრივი ნახშირბადის რგოლებისგან.',
-      kk: 'Ароматты молекулалық құрылымдарды кәдімгі көміртек сақиналарынан ажырат.',
+      kk: 'Aromatty molekulalyq qūrylymdardy kädımgı kömırtek saqinalarynan ajyrat.',
       qm: 'Aromatik molekula qurulışlarını adiy karbon alqalarından ayır.',
     },
   },

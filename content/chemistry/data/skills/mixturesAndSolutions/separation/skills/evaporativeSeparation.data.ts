@@ -31,7 +31,7 @@ export const evaporativeSeparation_Skill_Data = defineSkill({
     et: 'Eraldamine aurustamisega',
     be: 'Разьдзяленьне выпарваньнем',
     ka: 'აორთქლებით განცალკევება',
-    kk: 'Буландыру арқылы бөлу',
+    kk: 'Bulandyru arqyly bölu',
     qm: 'Buğlaştırıp ayırma',
   },
   description: {
@@ -65,7 +65,7 @@ export const evaporativeSeparation_Skill_Data = defineSkill({
       et: 'Taasta lahustunud tahke aine, aurustades lahusti.',
       be: 'Атрымай назад растворанае цьвёрдае рэчыва, выдаляючы растваральнік выпарваньнем.',
       ka: 'გამხსნელის აორთქლებით გამოყავი ხსნარში გახსნილი მყარი ნივთიერება.',
-      kk: 'Еріткішті буландырып, еріген қатты затты қайта ал.',
+      kk: 'Erıtkıştı bulandyryp, erıgen qatty zatty qaita al.',
       qm: 'Eriticini buğlaştırıp, erigen qattı maddeni yañıdan elde et.',
     },
   },

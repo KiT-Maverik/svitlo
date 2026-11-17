@@ -41,7 +41,7 @@ export const carbonFrameworks_SkillGroup_Data = defineSkillGroup({
     et: 'Süsinikskeletid',
     be: 'Вугляродныя шкілеты',
     ka: 'ნახშირბადის ჩონჩხები',
-    kk: 'Көміртек қаңқалары',
+    kk: 'Kömırtek qañqalary',
     qm: 'Karbon iskeletleri',
   },
   skills: [
@@ -84,7 +84,7 @@ export const carbonFrameworks_SkillGroup_Data = defineSkillGroup({
       et: 'Mõista, kuidas süsinik moodustab ahelaid, tsükleid ja eri molekulaarstruktuure.',
       be: 'Зразумей, як вуглярод утварае ланцугі, кольцы й разнастайныя малекулярныя структуры.',
       ka: 'გაიგე, როგორ წარმოქმნის ნახშირბადი ჯაჭვებს, რგოლებსა და მრავალფეროვან მოლეკულურ სტრუქტურებს.',
-      kk: 'Көміртек тізбектерді, сақиналарды және түрлі молекулалық құрылымдарды қалай түзетінін түсін.',
+      kk: 'Kömırtek tızbekterdı, saqinalardy jäne türlı molekulalyq qūrylymdardy qalai tüzetının tüsın.',
       qm: 'Karbonnıñ zıncırlar, alqalar ve türlü molekula qurulışlarını nasıl peyda etkenini añla.',
     },
   },

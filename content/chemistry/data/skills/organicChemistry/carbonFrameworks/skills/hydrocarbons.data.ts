@@ -31,7 +31,7 @@ export const hydrocarbons_Skill_Data = defineSkill({
     et: 'Süsivesinikud',
     be: 'Вуглевадароды',
     ka: 'ნახშირწყალბადები',
-    kk: 'Көмірсутектер',
+    kk: 'Kömırsutekter',
     qm: 'Karbon-vodorod birleşmeleri',
   },
   description: {
@@ -65,7 +65,7 @@ export const hydrocarbons_Skill_Data = defineSkill({
       et: 'Tunne ära ainult süsinikust ja vesinikust koosnevad ühendid.',
       be: 'Распазнавай злучэньні, утвораныя толькі вугляродам і вадародам.',
       ka: 'ამოიცანი ნაერთები, რომლებიც მხოლოდ ნახშირბადისა და წყალბადისგან შედგება.',
-      kk: 'Тек көміртек пен сутектен тұратын қосылыстарды таны.',
+      kk: 'Tek kömırtek pen sutekten tūratyn qosylystardy tany.',
       qm: 'Yalñız karbon ve vodoroddan qurulğan birleşmelerni tanı.',
     },
   },

@@ -31,7 +31,7 @@ export const alkanes_Skill_Data = defineSkill({
     et: 'Alkaanid',
     be: 'Алканы',
     ka: 'ალკანები',
-    kk: 'Алкандар',
+    kk: 'Alkandar',
     qm: 'Alkanlar',
   },
   description: {
@@ -65,7 +65,7 @@ export const alkanes_Skill_Data = defineSkill({
       et: 'Tunne ära alkaanid ja nende iseloomulikud küllastunud süsinikskeletid.',
       be: 'Распазнавай алканы й характэрныя для іх насычаныя вугляродныя шкілеты.',
       ka: 'ამოიცანი ალკანები და მათთვის დამახასიათებელი ნაჯერი ნახშირბადის ჩონჩხები.',
-      kk: 'Алкандарды және оларға тән қаныққан көміртек қаңқаларын таны.',
+      kk: 'Alkandardy jäne olarğa tän qanyqqan kömırtek qañqalaryn tany.',
       qm: 'Alkanlarnı ve olarğa has toyğan karbon iskeletlerini tanı.',
     },
   },
