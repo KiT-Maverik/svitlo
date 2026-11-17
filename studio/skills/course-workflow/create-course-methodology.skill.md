@@ -8,6 +8,8 @@ Create or revise the **permanent methodological specification for exactly one Co
 
 **Do not create a Table of Contents, Module/Chapter plan, Lesson brief, story, scenario, assessment questions, UX, code, or a Course runtime data file.** Course Methodology is an editorial artifact for future specialists and maintainers, not a generated frontend resource. An existing course may use this skill to document or revise its rationale.
 
+**Mandatory completeness standard:** Apply the [Course methodology quality contract](../../docs/entities/course.md#methodology-quality-contract--implementation-ready-course-specification). The permanent Course methodology is a detailed educational technical specification, not a short course description. Do not approve or hand off a document that merely repeats template headings or promises generic 'engaging' teaching without verified coverage, scope, progression, prerequisites, evidence intent and substantive justification. Do not impose a token/word quota: completeness must be judged against the specific subject and audience.
+
 ## Inputs
 
 Establish the following from the editorial request and repository; ask only for materially missing information rather than guessing:
