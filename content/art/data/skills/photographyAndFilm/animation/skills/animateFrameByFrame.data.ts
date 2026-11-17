@@ -32,7 +32,7 @@ export const animateFrameByFrame_Skill_Data = defineSkill({
     et: 'Animeerimine kaaderhaaval',
     be: 'Ствараць анімацыю кадр за кадрам',
     ka: 'კადრ-კადრ ანიმაციის შექმნა',
-    kk: 'Кадр сайын анимация жасау',
+    kk: 'Kadr saiyn animatsiia jasau',
     qm: 'Kadr-kadr canlandırma yaratmaq',
   },
   description: {
@@ -66,7 +66,7 @@ export const animateFrameByFrame_Skill_Data = defineSkill({
       et: 'Loo liikumine järjestikuste, veidi erinevate piltide abil.',
       be: 'Стварайце рух з дапамогай паслядоўнасці крыху розных выяў.',
       ka: 'შექმენით მოძრაობა ოდნავ განსხვავებული გამოსახულებების მიმდევრობით.',
-      kk: 'Бір-бірінен сәл өзгеше суреттер тізбегі арқылы қозғалыс жасаңыз.',
+      kk: 'Bır-bırınen säl özgeşe suretter tızbegı arqyly qozğalys jasañyz.',
       qm: 'Az-azdan farqlı suretler sırasını yaratıp areketni añlatıñız.',
     },
   },

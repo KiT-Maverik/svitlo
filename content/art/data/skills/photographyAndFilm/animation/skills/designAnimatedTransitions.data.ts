@@ -32,7 +32,7 @@ export const designAnimatedTransitions_Skill_Data = defineSkill({
     et: 'Animeeritud üleminekute kujundamine',
     be: 'Праектаваць аніміраваныя пераходы',
     ka: 'ანიმაციური გადასვლების დიზაინი',
-    kk: 'Анимациялық ауысуларды жобалау',
+    kk: 'Animatsiialyq auysulardy jobalau',
     qm: 'Canlandırılğan keçişlerni tasarlamaq',
   },
   description: {
@@ -66,7 +66,7 @@ export const designAnimatedTransitions_Skill_Data = defineSkill({
       et: 'Kavanda sujuv või ilmekas üleminek ühest animeeritud olekust teise.',
       be: 'Стварыце плаўны або выразны пераход з аднаго аніміраванага стану ў іншы.',
       ka: 'შექმენით გლუვი ან გამომსახველი გადასვლა ერთი ანიმაციური მდგომარეობიდან მეორეში.',
-      kk: 'Бір анимациялық күйден екіншісіне бірқалыпты не әсерлі ауысуды жобалаңыз.',
+      kk: 'Bır animatsiialyq küiden ekınşısıne bırqalypty ne äserlı auysudy jobalañyz.',
       qm: 'Bir canlandırılğan vaziyetten digerine yumşaq ya da ifadeleyici keçiş tasarlap yapıñız.',
     },
   },

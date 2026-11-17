@@ -39,7 +39,7 @@ export const animation_SkillGroup_Data = defineSkillGroup({
     et: 'Animatsioon',
     be: 'Анімацыя',
     ka: 'ანიმაცია',
-    kk: 'Анимация',
+    kk: 'Animatsiia',
     qm: 'Canlandırma',
   },
   skills: [
@@ -80,7 +80,7 @@ export const animation_SkillGroup_Data = defineSkillGroup({
       et: 'Anna joonistustele või esemetele elu, kavandades nende muutumist ajas.',
       be: 'Ажыўляйце малюнкі або прадметы, плануючы іх змены з цягам часу.',
       ka: 'გააცოცხლეთ ნახატები ან საგნები დროში ცვლილებების დაგეგმვით.',
-      kk: 'Уақыт ішіндегі өзгерістерді жоспарлап, суреттер мен заттарға жан бітіріңіз.',
+      kk: 'Uaqyt ışındegı özgerısterdı josparlap, suretter men zattarğa jan bıtırıñız.',
       qm: 'Zaman içinde deñişmelerini planlap, resimlerge ve eşyalarga can beriñiz.',
     },
   },

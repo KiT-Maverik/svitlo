@@ -32,7 +32,7 @@ export const editFilmContinuity_Skill_Data = defineSkill({
     et: 'Filmi järjepidevuse monteerimine',
     be: 'Манціраваць бесперапыннасць фільма',
     ka: 'ფილმის უწყვეტობის მონტაჟი',
-    kk: 'Фильм сабақтастығын монтаждау',
+    kk: 'Film sabaqtastyğyn montajdau',
     qm: 'Filmniñ devamlılığını montaj etmek',
   },
   description: {
@@ -66,7 +66,7 @@ export const editFilmContinuity_Skill_Data = defineSkill({
       et: 'Ühenda kaadrid nii, et vaataja saaks jälgida sündmuste kohta ja aega.',
       be: 'Злучайце планы так, каб гледачы разумелі, дзе і калі адбываюцца падзеі.',
       ka: 'დააკავშირეთ კადრები ისე, რომ მაყურებელმა მოვლენების ადგილი და დრო გაარჩიოს.',
-      kk: 'Көрермен оқиғаның орны мен уақытын түсінуі үшін кадрларды байланыстырыңыз.',
+      kk: 'Körermen oqiğanyñ orny men uaqytyn tüsınuı üşın kadrlardy bailanystyryñyz.',
       qm: 'Seyirci vaqialarnıñ qayerde ve qaçan olğanını añlasın dep planlarnı birleştiriñiz.',
     },
   },

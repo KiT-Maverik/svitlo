@@ -32,7 +32,7 @@ export const createMeaningThroughMontage_Skill_Data = defineSkill({
     et: 'Tähenduse loomine montaaži abil',
     be: 'Ствараць сэнс з дапамогай мантажу',
     ka: 'მონტაჟით მნიშვნელობის შექმნა',
-    kk: 'Монтаж арқылы мағына жасау',
+    kk: 'Montaj arqyly mağyna jasau',
     qm: 'Montaj vasıtası ile mana yaratmaq',
   },
   description: {
@@ -66,7 +66,7 @@ export const createMeaningThroughMontage_Skill_Data = defineSkill({
       et: 'Ühenda kaadrid, et luua mõte, mida ükski kaader üksi ei väljenda.',
       be: 'Спалучайце планы, каб стварыць ідэю, якую ніводны план не перадае асобна.',
       ka: 'შეაერთეთ კადრები ისეთი აზრის შესაქმნელად, რომელსაც ვერც ერთი კადრი ცალკე ვერ გამოხატავს.',
-      kk: 'Жеке кадр бере алмайтын ойды жасау үшін кадрларды біріктіріңіз.',
+      kk: 'Jeke kadr bere almaityn oidy jasau üşın kadrlardy bırıktırıñız.',
       qm: 'Tek başına bir plan ifade ete almağan fikirni yaratmaq içün planlarnı birleştiriñiz.',
     },
   },

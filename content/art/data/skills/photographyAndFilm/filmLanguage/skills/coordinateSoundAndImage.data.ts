@@ -32,7 +32,7 @@ export const coordinateSoundAndImage_Skill_Data = defineSkill({
     et: 'Heli ja pildi kooskõlastamine',
     be: 'Каардынаваць гук і выяву',
     ka: 'ხმისა და გამოსახულების შეხამება',
-    kk: 'Дыбыс пен бейнені үйлестіру',
+    kk: 'Dybys pen beinenı üilestıru',
     qm: 'Ses ve suretni uyğunlaştırmaq',
   },
   description: {
@@ -66,7 +66,7 @@ export const coordinateSoundAndImage_Skill_Data = defineSkill({
       et: 'Kasuta heli ja pilti koos, et stseeni tähendust toetada või vaidlustada.',
       be: 'Выкарыстоўвайце гук і выяву разам, каб падтрымаць або аспрэчыць сэнс сцэны.',
       ka: 'გამოიყენეთ ხმა და გამოსახულება ერთად, რათა გააძლიეროთ ან ეჭვქვეშ დააყენოთ სცენის მნიშვნელობა.',
-      kk: 'Көрініс мағынасын қолдау немесе оған күмән келтіру үшін дыбыс пен бейнені бірге қолданыңыз.',
+      kk: 'Körınıs mağynasyn qoldau nemese oğan kümän keltıru üşın dybys pen beinenı bırge qoldanyñyz.',
       qm: 'Sahneniñ manasını desteklemek ya da onı sorgulamaq içün ses ve suretni beraber qullanıñız.',
     },
   },

@@ -32,7 +32,7 @@ export const analyzeFilmShots_Skill_Data = defineSkill({
     et: 'Filmikaadrite analüüsimine',
     be: 'Аналізаваць кінакадры',
     ka: 'კინოკადრების ანალიზი',
-    kk: 'Кино кадрларын талдау',
+    kk: 'Kino kadrlaryn taldau',
     qm: 'Film planlarını tahlil etmek',
   },
   description: {
@@ -66,7 +66,7 @@ export const analyzeFilmShots_Skill_Data = defineSkill({
       et: 'Vaata, kuidas lähivõtted ja kaameranurgad muudavad stseeni sõnumit.',
       be: 'Паглядзіце, як буйныя планы і ракурсы камеры змяняюць сэнс сцэны.',
       ka: 'ნახეთ, როგორ ცვლის ახლო ხედი და კამერის კუთხე სცენის სათქმელს.',
-      kk: 'Жақын пландар мен камера бұрыштары көріністің ойын қалай өзгертетінін байқаңыз.',
+      kk: 'Jaqyn plandar men kamera būryştary körınıstıñ oiyn qalai özgertetının baiqañyz.',
       qm: 'Yakın çeküvler ve kamera açıları bir sahneniñ añlatqan manasını nasıl deñiştirgenini körüñiz.',
     },
   },

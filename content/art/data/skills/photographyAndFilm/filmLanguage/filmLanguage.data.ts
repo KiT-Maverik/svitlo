@@ -42,7 +42,7 @@ export const filmLanguage_SkillGroup_Data = defineSkillGroup({
     et: 'Filmikeel',
     be: 'Мова кіно',
     ka: 'კინოს ენა',
-    kk: 'Кино тілі',
+    kk: 'Kino tılı',
     qm: 'Film tili',
   },
   skills: [
@@ -85,7 +85,7 @@ export const filmLanguage_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri, kuidas üksikud kaadrid, montaaž ja helid filmis koos toimivad.',
       be: 'Даследуйце, як асобныя планы, мантаж і гукі ўзаемадзейнічаюць у фільме.',
       ka: 'შეისწავლეთ, როგორ მუშაობს ფილმში ცალკეული კადრები, მონტაჟი და ხმები ერთად.',
-      kk: 'Фильмде жеке кадрлар, монтаж және дыбыс қалай бірге жұмыс істейтінін зерттеңіз.',
+      kk: 'Filmde jeke kadrlar, montaj jäne dybys qalai bırge jūmys ısteitının zertteñız.',
       qm: 'Filmde ayrı planlar, montaj ve seslerniñ nasıl beraber çalışqanını keşf etiñiz.',
     },
   },

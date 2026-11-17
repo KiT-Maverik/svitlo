@@ -32,7 +32,7 @@ export const createStopMotionAnimation_Skill_Data = defineSkill({
     et: 'Stop-motion-animatsiooni loomine',
     be: 'Ствараць стоп-моушн-анімацыю',
     ka: 'სტოპ-მოუშენის ანიმაციის შექმნა',
-    kk: 'Стоп-моушн анимациясын жасау',
+    kk: 'Stop-mouşn animatsiiasyn jasau',
     qm: 'Stop-kadr canlandırması yaratmaq',
   },
   description: {
@@ -66,7 +66,7 @@ export const createStopMotionAnimation_Skill_Data = defineSkill({
       et: 'Liiguta esemeid fotode vahel, et luua liikumise illusioon.',
       be: 'Перамяшчайце прадметы паміж здымкамі, каб стварыць ілюзію руху.',
       ka: 'ფოტოებს შორის საგნები გადაადგილეთ, რათა მოძრაობის ილუზია შექმნათ.',
-      kk: 'Қозғалыс елесін жасау үшін суреттер арасында заттарды жылжытыңыз.',
+      kk: 'Qozğalys elesın jasau üşın suretter arasynda zattardy jyljytyñyz.',
       qm: 'Areket illüziyasını yaratmaq içün foto çeküvleri arasında eşyalarnı yerinden oynatıñız.',
     },
   },

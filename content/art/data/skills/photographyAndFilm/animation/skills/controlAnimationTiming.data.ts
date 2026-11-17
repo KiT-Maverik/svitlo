@@ -32,7 +32,7 @@ export const controlAnimationTiming_Skill_Data = defineSkill({
     et: 'Animatsiooni ajastuse juhtimine',
     be: 'Кіраваць часам анімацыі',
     ka: 'ანიმაციის დროის კონტროლი',
-    kk: 'Анимация уақытын басқару',
+    kk: 'Animatsiia uaqytyn basqaru',
     qm: 'Canlandırmanıñ zamanlamasını idare etmek',
   },
   description: {
@@ -66,7 +66,7 @@ export const controlAnimationTiming_Skill_Data = defineSkill({
       et: 'Muuda pooside vahelisi ajavahemikke, et väljendada kiirust, raskust või dramaatilist rõhuasetust.',
       be: 'Змяняйце інтэрвалы паміж позамі, каб перадаць хуткасць, вагу або драматычны акцэнт.',
       ka: 'შეცვალეთ ინტერვალები პოზებს შორის, რათა გამოხატოთ სიჩქარე, სიმძიმე ან დრამატული აქცენტი.',
-      kk: 'Жылдамдықты, салмақты не драмалық екпінді білдіру үшін позалар арасындағы уақытты өзгертіңіз.',
+      kk: 'Jyldamdyqty, salmaqty ne dramalyq ekpındı bıldıru üşın pozalar arasyndağy uaqytty özgertıñız.',
       qm: 'Tezlik, ağırlıq ya da dramatik vurğunu añlatmaq içün pozalar arasındaki vaqt aralıqlarını deñiştiriñiz.',
     },
   },

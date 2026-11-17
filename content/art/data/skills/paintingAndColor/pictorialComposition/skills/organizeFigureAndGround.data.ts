@@ -31,7 +31,7 @@ export const organizeFigureAndGround_Skill_Data = defineSkill({
     et: 'Vormi ja tausta korraldamine',
     be: 'Арганізоўваць фігуру і фон',
     ka: 'ფიგურისა და ფონის ორგანიზება',
-    kk: 'Пішін мен фонды ұйымдастыру',
+    kk: 'Pışın men fondy ūiymdastyru',
     qm: 'Şekil ve fon munasebetini tertip etmek',
   },
   description: {
@@ -64,7 +64,7 @@ export const organizeFigureAndGround_Skill_Data = defineSkill({
       et: 'Kasuta põhivormi ja selle tausta omavahelist suhet.',
       be: 'Выкарыстоўвайце суадносіны асноўнай формы і яе фону.',
       ka: 'გამოიყენეთ ძირითადი ფორმისა და მისი ფონის ურთიერთკავშირი.',
-      kk: 'Негізгі пішін мен оның фонының арақатынасын пайдаланыңыз.',
+      kk: 'Negızgı pışın men onyñ fonynyñ araqatynasyn paidalanyñyz.',
       qm: 'Esas şekil ile onıñ fonı arasındaki munasebetten faydalaniñız.',
     },
   },

@@ -32,7 +32,7 @@ export const storyboardAFilmSequence_Skill_Data = defineSkill({
     et: 'Filmijada süžeeskeemi koostamine',
     be: 'Ствараць раскадроўку кінасцэны',
     ka: 'ფილმის ეპიზოდის სტორიბორდის შექმნა',
-    kk: 'Фильм көрінісінің сторибордын жасау',
+    kk: 'Film körınısınıñ storibordyn jasau',
     qm: 'Film sekansı içün taslak kareler hazırlamak',
   },
   description: {
@@ -67,7 +67,7 @@ export const storyboardAFilmSequence_Skill_Data = defineSkill({
       et: 'Kavanda filmistseen piltide jadana, mis näitab olulisi kaameravaateid.',
       be: 'Плануйце сцэну з дапамогай паслядоўнасці малюнкаў з ключавымі ракурсамі камеры.',
       ka: 'დაგეგმეთ კინოსცენა სურათების მიმდევრობით, რომელიც კამერის ძირითად ხედებს აჩვენებს.',
-      kk: 'Камераның негізгі көріністерін көрсететін суреттер тізбегі арқылы фильм көрінісін жоспарлаңыз.',
+      kk: 'Kameranyñ negızgı körınısterın körsetetın suretter tızbegı arqyly film körınısın josparlañyz.',
       qm: 'Esas kamera açılarını gösteren suretler sırası ile film sahnesini planlañız.',
     },
   },

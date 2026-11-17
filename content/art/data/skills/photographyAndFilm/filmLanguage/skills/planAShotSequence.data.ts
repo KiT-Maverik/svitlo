@@ -32,7 +32,7 @@ export const planAShotSequence_Skill_Data = defineSkill({
     et: 'Võtteplaani järjestuse kavandamine',
     be: 'Планаваць паслядоўнасць планаў',
     ka: 'კადრების თანმიმდევრობის დაგეგმვა',
-    kk: 'Кадрлар ретін жоспарлау',
+    kk: 'Kadrlar retın josparlau',
     qm: 'Plan sırasını planlama',
   },
   description: {
@@ -66,7 +66,7 @@ export const planAShotSequence_Skill_Data = defineSkill({
       et: 'Vali ja järjesta kaameravaated, et tegevus või fookuse muutus oleks selge.',
       be: 'Выбірайце і ўпарадкоўвайце ракурсы камеры, каб выразна паказаць дзеянне або змену фокусу.',
       ka: 'აირჩიეთ და დაალაგეთ კამერის ხედები, რათა მოქმედება ან ფოკუსის ცვლილება მკაფიო იყოს.',
-      kk: 'Әрекетті не назардың ауысуын анық көрсету үшін камера көріністерін таңдап, реттеңіз.',
+      kk: 'Ärekettı ne nazardyñ auysuyn anyq körsetu üşın kamera körınısterın tañdap, retteñız.',
       qm: 'Hareketni ya da diqqat deñişmesini açıq körsetmek içün kamera körünişlerini saylañız ve sıralañız.',
     },
   },

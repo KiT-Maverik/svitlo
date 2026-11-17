@@ -32,7 +32,7 @@ export const writeAScreenplay_Skill_Data = defineSkill({
     et: 'Stsenaariumi kirjutamine',
     be: 'Пісаць сцэнар',
     ka: 'სცენარის დაწერა',
-    kk: 'Сценарий жазу',
+    kk: 'Stsenarii jazu',
     qm: 'Senaryo yazmaq',
   },
   description: {
@@ -67,7 +67,7 @@ export const writeAScreenplay_Skill_Data = defineSkill({
       et: 'Kirjuta stseene, tegevusi ja dialoogi, mis jutustavad ekraanil loo.',
       be: 'Пішыце сцэны, дзеянні і дыялогі, якія расказваюць гісторыю на экране.',
       ka: 'დაწერეთ სცენები, მოქმედებები და დიალოგები ეკრანისთვის ამბის მოსაყოლად.',
-      kk: 'Экранға арналған оқиғаны баяндайтын көріністерді, әрекеттер мен диалогтерді жазыңыз.',
+      kk: 'Ekranğa arnalğan oqiğany baiandaityn körınısterdı, äreketter men dialogterdı jazyñyz.',
       qm: 'Ekran içün hikâye añlatqan sahneler, areketler ve dialoglar yazıñız.',
     },
   },
