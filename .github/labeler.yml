@@ -72,6 +72,9 @@
 'shared: adapters':
   - changed-files:
       - any-glob-to-any-file: 'shared/adapters/**'
+'shared: education-standards':
+  - changed-files:
+      - any-glob-to-any-file: 'shared/education-standards/**'
 'shared: engine':
   - changed-files:
       - any-glob-to-any-file: 'shared/engine/**'
