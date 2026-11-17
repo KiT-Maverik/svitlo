@@ -12,122 +12,85 @@ function fixture() {
     fs.mkdirSync(path.dirname(file), { recursive: true });
     fs.writeFileSync(file, content);
   };
-  write('index.ts', "export { geometry_SkillDomain_Data } from './geometry/geometry.data';\n");
+  write('index.ts', "export { geometry } from './geometry';\n");
   write(
-    'geometry/geometry.data.ts',
+    'geometry/index.ts',
     [
-      "import { defineSkillDomain } from '@svitlo/engine';",
-      "import { angles_SkillGroup_Data } from './angles/angles.data';",
-      "export const geometry_SkillDomain_Data = defineSkillDomain({ slug: 'geometry', id: '11111111-1111-4111-8111-111111111111', title: {}, groups: { items: { angles: angles_SkillGroup_Data }, order: ['angles'] } });",
+      "import { defineSkillDomain } from '@svitlo/engine/build';",
+      "import { angles } from './angles';",
+      "export const geometry = defineSkillDomain({ slug: 'geometry', id: '11111111-1111-4111-8111-111111111111', title: {}, groups: { angles } });",
     ].join('\n'),
   );
   write(
-    'geometry/angles/angles.data.ts',
+    'geometry/angles/index.ts',
     [
-      "import { defineSkillGroup } from '@svitlo/engine';",
-      "import { rightAngle_Skill_Data } from './skills';",
-      "export const angles_SkillGroup_Data = defineSkillGroup({ slug: 'angles', id: '22222222-2222-4222-8222-222222222222', name: {}, skills: { items: { rightAngle: rightAngle_Skill_Data }, order: ['rightAngle'] } });",
+      "import { defineSkillGroup } from '@svitlo/engine/build';",
+      "import { rightAngle } from './rightAngle';",
+      "export const angles = defineSkillGroup({ slug: 'angles', id: '22222222-2222-4222-8222-222222222222', name: {}, skills: { rightAngle } });",
     ].join('\n'),
   );
-  write('geometry/angles/skills/index.ts', "export { rightAngle_Skill_Data } from './rightAngle.data';\n");
   write(
-    'geometry/angles/skills/rightAngle.data.ts',
-    "import { defineSkill } from '@svitlo/engine';\nexport const rightAngle_Skill_Data = defineSkill({ slug: 'rightAngle', id: '33333333-3333-4333-8333-333333333333', name: {} });\n",
+    'geometry/angles/rightAngle.ts',
+    "import { defineSkill } from '@svitlo/engine/build';\nexport const rightAngle = defineSkill({ slug: 'rightAngle', id: '33333333-3333-4333-8333-333333333333', name: {} });\n",
   );
   return { root, write };
 }
-test('valid direct composition with full child entities', t => {
+test('accepts canonical Domain/Group index.ts and direct Skill files', t => {
   const { root } = fixture();
   t.after(() => fs.rmSync(root, { recursive: true, force: true }));
   assert.deepEqual(checkTaxonomy(root), { domains: 1, groups: 1, skills: 1 });
 });
-test('allows a separate root review file while rejecting other root files', t => {
+test('allows a separate root review file, but rejects unknown root files', t => {
   const { root, write } = fixture();
   t.after(() => fs.rmSync(root, { recursive: true, force: true }));
   write('review.ts', 'export const skillsReview = {};\n');
-  assert.deepEqual(checkTaxonomy(root), { domains: 1, groups: 1, skills: 1 });
   write('_review.ts', 'export const skillsReview = {};\n');
   assert.deepEqual(checkTaxonomy(root), { domains: 1, groups: 1, skills: 1 });
   write('unexpected.ts', 'export {};\n');
   assert.throws(() => checkTaxonomy(root), /Root index surface/);
 });
-test('reject removed Domain barrel imports', t => {
+test('rejects missing or stale child imports and orphan Skill files', t => {
   const { root, write } = fixture();
   t.after(() => fs.rmSync(root, { recursive: true, force: true }));
-  const file = path.join(root, 'geometry/geometry.data.ts');
-  write('geometry/geometry.data.ts', fs.readFileSync(file, 'utf8').replace("'./angles/angles.data'", "'./index'"));
+  const file = path.join(root, 'geometry/index.ts');
+  const original = fs.readFileSync(file, 'utf8');
+  write('geometry/index.ts', original.replace("'./angles'", "'./other'"));
   assert.throws(() => checkTaxonomy(root), /Missing direct Group reference/);
+  write('geometry/index.ts', original);
+  write('geometry/angles/unused.ts', 'export const unused = true;\n');
+  assert.throws(() => checkTaxonomy(root), /Group files|Skill files/);
 });
-test('reject missing Skills in barrel and duplicate UUID literals', t => {
+test('rejects duplicate UUID identities without disallowing identical slugs in separate parents', t => {
   const { root, write } = fixture();
   t.after(() => fs.rmSync(root, { recursive: true, force: true }));
-  write('geometry/angles/skills/index.ts', "export { unrelated_Skill_Data } from './unrelated.data';\n");
-  assert.throws(() => checkTaxonomy(root), /Skill barrel/);
-  write('geometry/angles/skills/index.ts', "export { rightAngle_Skill_Data } from './rightAngle.data';\n");
-  const file = path.join(root, 'geometry/angles/skills/rightAngle.data.ts');
-  write(
-    'geometry/angles/skills/rightAngle.data.ts',
-    fs
-      .readFileSync(file, 'utf8')
-      .replace('33333333-3333-4333-8333-333333333333', '22222222-2222-4222-8222-222222222222'),
-  );
+  write('geometry/angles/rightAngle.ts',
+    "export const rightAngle = defineSkill({ slug: 'rightAngle', id: '22222222-2222-4222-8222-222222222222', name: {} });\n");
   assert.throws(() => checkTaxonomy(root), /Duplicate UUID/);
 });
-test('mixed Domain with Groups and direct Skills is structurally valid', t => {
+test('mixed Domain composes direct Skills and Groups; shorthand and exact named entries work', t => {
   const { root, write } = fixture();
   t.after(() => fs.rmSync(root, { recursive: true, force: true }));
-  write('geometry/skills/index.ts', "export { rectangle_Skill_Data } from './rectangle.data';\n");
-  write(
-    'geometry/skills/rectangle.data.ts',
-    "import { defineSkill } from '@svitlo/engine';\n" +
-      "export const rectangle_Skill_Data = defineSkill({ slug: 'rectangle', id: '44444444-4444-4444-8444-444444444444', name: {} });\n",
-  );
-  const file = path.join(root, 'geometry/geometry.data.ts');
-  write(
-    'geometry/geometry.data.ts',
-    fs
-      .readFileSync(file, 'utf8')
-      .replace(
-        'import { angles_SkillGroup_Data }',
-        "import { rectangle_Skill_Data } from './skills';\nimport { angles_SkillGroup_Data }",
-      )
-      .replace(
-        "groups: { items: { angles: angles_SkillGroup_Data }, order: ['angles'] }",
-        "groups: { items: { angles: angles_SkillGroup_Data }, order: ['angles'] }, skills: { items: { rectangle: rectangle_Skill_Data }, order: ['rectangle'] }",
-      ),
+  write('geometry/rectangle.ts',
+    "export const rectangle = defineSkill({ slug: 'rectangle', id: '44444444-4444-4444-8444-444444444444', name: {} });\n");
+  const file = path.join(root, 'geometry/index.ts');
+  const original = fs.readFileSync(file, 'utf8');
+  write('geometry/index.ts',
+    original.replace("import { angles }", "import { rectangle } from './rectangle';\nimport { angles }")
+      .replace('groups: { angles }', 'groups: { angles }, skills: { rectangle }'),
   );
   assert.deepEqual(checkTaxonomy(root), { domains: 1, groups: 1, skills: 2 });
-  const source = fs.readFileSync(file, 'utf8');
-  write(
-    'geometry/geometry.data.ts',
-    source.replace(
-      "skills: { items: { rectangle: rectangle_Skill_Data }, order: ['rectangle'] }",
-      "skills: { items: { rectangle: rectangle_Skill_Data.config.base.id }, order: ['rectangle'] }",
-    ),
-  );
+  const current = fs.readFileSync(file, 'utf8');
+  write('geometry/index.ts', current.replace('skills: { rectangle }', 'skills: { rectangle: rectangle.id }'));
   assert.throws(() => checkTaxonomy(root), /Invalid child configurator entry/);
 });
-
-test('rejects inconsistent ordered collection keys and order', t => {
+test('rejects old ordered collection format and mismatched child slugs', t => {
   const { root, write } = fixture();
   t.after(() => fs.rmSync(root, { recursive: true, force: true }));
-  const file = path.join(root, 'geometry/geometry.data.ts');
+  const file = path.join(root, 'geometry/index.ts');
   const original = fs.readFileSync(file, 'utf8');
-  write('geometry/geometry.data.ts', original.replace("order: ['angles']", "order: ['missing']"));
-  assert.throws(() => checkTaxonomy(root), /Child order must include every item/);
-  write(
-    'geometry/geometry.data.ts',
-    original.replace('angles: angles_SkillGroup_Data', 'wrong: angles_SkillGroup_Data'),
-  );
+  write('geometry/index.ts', original.replace('groups: { angles }',
+    "groups: { items: { angles }, order: ['angles'] }"));
+  assert.throws(() => checkTaxonomy(root), /Invalid child configurator entry|Group membership/);
+  write('geometry/index.ts', original.replace('groups: { angles }', 'groups: { wrong: angles }'));
   assert.throws(() => checkTaxonomy(root), /Child slug\/symbol mismatch/);
-  write('geometry/geometry.data.ts', original.replace("order: ['angles']", "order: ['angles', 'angles']"));
-  assert.throws(() => checkTaxonomy(root), /Duplicate child order/);
-  write(
-    'geometry/geometry.data.ts',
-    original.replace(
-      "groups: { items: { angles: angles_SkillGroup_Data }, order: ['angles'] }",
-      'groups: [angles_SkillGroup_Data]',
-    ),
-  );
-  assert.throws(() => checkTaxonomy(root), /Expected ordered child collection/);
 });

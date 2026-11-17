@@ -229,7 +229,7 @@ describe('Configurators', () => {
         assert.equal(JSON.stringify(course.build.props(uk)).includes('Відповідь'), false);
       });
 
-      test('SkillDomain → SkillGroup → Skill validates resolved multilingual nested overrides', () => {
+      test('SkillDomain → SkillGroup → Skill publishes stable multilingual classification', () => {
         const balance = defineSkill<'balance', ['uk', 'en']>({
           id: id('12'),
           slug: 'balance',
@@ -241,31 +241,21 @@ describe('Configurators', () => {
           slug: 'mechanics',
           name: { uk: 'Механіка', en: 'Mechanics' },
           description: { methodological: 'Mechanics' },
-          skills: { items: { balance }, order: ['balance'] },
+          skills: { balance },
         });
         const domain = defineSkillDomain<'physics', { mechanics: typeof mechanics }, {}, ['uk']>({
           id: id('14'),
           slug: 'physics',
           title: { uk: 'Фізика', en: 'Physics' },
           description: { methodological: 'Physics overview' },
-          groups: { items: { mechanics }, order: ['mechanics'] },
+          groups: { mechanics },
         });
         const resource = domain.build.props(uk);
-        const patch = domain.build.overrides(
-          {
-            groups: { items: { mechanics: { skills: { items: { balance: { name: { uk: 'Баланс' } } } } } } },
-          },
-          uk,
-        );
-        const effective = mergeObjects(
-          mergeObjects(mergeObjects(resource.base, resource.locale?.uk ?? {}), patch.base),
-          patch.locale?.uk ?? {},
-        );
+        const effective = mergeObjects(resource.base, resource.locale?.uk ?? {});
         assert.doesNotThrow(() => skillDomain_Props_Schema.parse(effective));
-        assert.ok(JSON.stringify(effective).includes('Баланс'));
-        assert.deepEqual(Object.keys(patch.locale ?? {}), ['uk']);
-        assert.equal(JSON.stringify(domain.build.props(uk)).includes('Баланс'), false);
+        assert.ok(JSON.stringify(effective).includes('Рівновага'));
         assert.equal(JSON.stringify(resource).includes('Balance'), false);
+        assert.equal('overrides' in domain.build, false);
       });
     });
   });

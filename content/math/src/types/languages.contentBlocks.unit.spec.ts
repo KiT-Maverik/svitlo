@@ -31,7 +31,7 @@ describe('Extended locale contentBlock coverage', () => {
 
   it('includes six translations in every authored math taxonomy config', () => {
     const files = collectFiles(join(root, 'data/skills')).filter(
-      file => file.endsWith('.data.ts') && !file.endsWith('index.data.ts'),
+      file => file.endsWith('.ts') && file !== join(root, 'data/skills/index.ts') && !file.endsWith('/review.ts') && !file.endsWith('/_review.ts'),
     );
     // Locale coverage follows the authored Code inventory. The number of Skills
     // changes during approved taxonomy reviews, so a fixed total is not a

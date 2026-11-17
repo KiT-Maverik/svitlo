@@ -33,9 +33,7 @@ function entity(kind, slug, name, membership, withFrontend = kind === 'Skill') {
   return (
     'export const ' +
     slug +
-    '_' +
-    kind +
-    '_Data = define' +
+    ' = define' +
     kind +
     '({' +
     'slug: ' +
@@ -54,8 +52,8 @@ function entity(kind, slug, name, membership, withFrontend = kind === 'Skill') {
     '});\n'
   );
 }
-const groupedSkill = path.join(taxonomy, 'd/g/skills/s.data.ts');
-const directSkill = path.join(taxonomy, 'direct/skills/t.data.ts');
+const groupedSkill = path.join(taxonomy, 'd/g/s.ts');
+const directSkill = path.join(taxonomy, 'direct/t.ts');
 const output = locale => path.join(fixture, 'docs/generated/skills/taxonomy.' + locale + '.md');
 const run = (locale = 'en', ...flags) =>
   spawnSync(process.execPath, [generator, '--package', path.relative(root, fixture), '--locale', locale, ...flags], {
@@ -67,26 +65,24 @@ const run = (locale = 'en', ...flags) =>
 before(() => {
   write(
     path.join(taxonomy, 'index.ts'),
-    "export { d_SkillDomain_Data } from './d/d.data';\n" +
-      "export { direct_SkillDomain_Data } from './direct/direct.data';\n",
+    "export { d } from './d';\n" +
+      "export { direct } from './direct';\n",
   );
   write(
-    path.join(taxonomy, 'd/d.data.ts'),
-    "import { g_SkillGroup_Data } from './g/g.data';\n" +
-      entity('SkillDomain', 'd', 'Grouped Domain', "groups: { items: { g: g_SkillGroup_Data }, order: ['g'] }"),
+    path.join(taxonomy, 'd/index.ts'),
+    "import { g } from './g';\n" +
+      entity('SkillDomain', 'd', 'Grouped Domain', "groups: { g }"),
   );
   write(
-    path.join(taxonomy, 'd/g/g.data.ts'),
-    "import { s_Skill_Data } from './skills';\n" + entity('SkillGroup', 'g', 'Group', "skills: { items: { s: s_Skill_Data }, order: ['s'] }"),
+    path.join(taxonomy, 'd/g/index.ts'),
+    "import { s } from './s';\n" + entity('SkillGroup', 'g', 'Group', "skills: { s }"),
   );
-  write(path.join(taxonomy, 'd/g/skills/index.ts'), "export { s_Skill_Data } from './s.data';\n");
   write(groupedSkill, entity('Skill', 's', 'Grouped Skill'));
   write(
-    path.join(taxonomy, 'direct/direct.data.ts'),
-    "import { t_Skill_Data } from './skills';\n" +
-      entity('SkillDomain', 'direct', 'Direct Domain', "groups: { items: {}, order: [] }, skills: { items: { t: t_Skill_Data }, order: ['t'] }", true),
+    path.join(taxonomy, 'direct/index.ts'),
+    "import { t } from './t';\n" +
+      entity('SkillDomain', 'direct', 'Direct Domain', "skills: { t }", true),
   );
-  write(path.join(taxonomy, 'direct/skills/index.ts'), "export { t_Skill_Data } from './t.data';\n");
   write(directSkill, entity('Skill', 't', 'Direct Skill'));
 });
 after(() => fs.rmSync(fixture, { recursive: true, force: true }));
@@ -132,7 +128,7 @@ test('canonical lowercase data/skills renders grouped and direct Skill hierarchi
     ]) {
       assert.match(a.stdout, new RegExp('^' + level + ' ' + label + ' ' + locale + '$', 'm'));
     }
-    assert.equal([...a.stdout.matchAll(/^\[([^\]]+\.data\.ts)\]\(([^)]+)\)$/gm)].length, 5);
+    assert.equal([...a.stdout.matchAll(/^\[([^\]]+\.ts)\]\(([^)]+)\)$/gm)].length, 5);
     assert.match(a.stdout, new RegExp('Frontend Grouped Skill ' + locale));
     assert.doesNotMatch(a.stdout, /^(Slug|Action|Status):/m);
     assert.equal(fs.existsSync(output(locale)), false, '--stdout never writes files');

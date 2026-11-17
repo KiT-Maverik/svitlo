@@ -147,13 +147,6 @@ function runGate(changed) {
     ]);
   }
 
-  // Run the complete Art preview only when the migration utility changes.
-  // It writes to an isolated temporary directory; authored Skills stay untouched.
-  if (
-    changed.some(f => f.startsWith('shared/engine/scripts/migrateSkillsConfigurators/migrate-skills-configurators.'))
-  ) {
-    exec('node', ['--test', 'shared/engine/scripts/migrateSkillsConfigurators/migrate-skills-configurators.spec.mjs']);
-  }
   if (
     changed.some(
       f =>

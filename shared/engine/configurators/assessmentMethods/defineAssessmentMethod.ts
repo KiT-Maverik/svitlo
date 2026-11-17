@@ -3,7 +3,6 @@ import type { DeepPartial, LanguageScope, PublicationLanguageOptions, RequireLan
 
 import {
   mergeForValidation,
-  onlyLocales,
   resolvePublicationLanguages,
   selectPublicationLocales,
   splitLocalizedFields,
@@ -11,19 +10,13 @@ import {
 import {
   assessmentMethod_Config_Schema,
   assessmentMethod_Props_Schema,
-  assessmentMethod_Override_Config_Schema,
   type AssessmentMethod_Config,
-  type AssessmentMethod_Overrides,
   type AssessmentMethod_Props,
 } from './defineAssessmentMethod.schemas';
 
 type AssessmentMethodPublication<Base> = {
   base: Base;
   locale: Partial<Record<LanguageCode, DeepPartial<AssessmentMethod_Props>>> | undefined;
-};
-
-const validate = (config: AssessmentMethod_Config): void => {
-  assessmentMethod_Config_Schema.parse(config);
 };
 
 /** The locale splitter projects authored dictionaries into Props strings. */
@@ -35,7 +28,7 @@ const project = (source: DeepPartial<Pick<AssessmentMethod_Config, 'title' | 'de
   };
 };
 
-/** Explicit Props/Override return types keep declaration output compact. */
+/** One canonical Props publication method; no contextual overrides. */
 export type AssessmentMethod_Configurator<
   Slug extends string = string,
   Languages extends readonly LanguageCode[] = readonly LanguageCode[],
@@ -43,20 +36,10 @@ export type AssessmentMethod_Configurator<
   readonly id: string;
   readonly slug: Slug;
   readonly type: 'assessmentMethod';
-  readonly validate: typeof validate;
   readonly build: {
     props(
       options: PublicationLanguageOptions<Languages>,
     ): AssessmentMethodPublication<DeepPartial<AssessmentMethod_Props> & { id: string; slug: string }>;
-    overrides(
-      patch: AssessmentMethod_Overrides,
-      options: PublicationLanguageOptions<Languages>,
-    ): AssessmentMethodPublication<DeepPartial<AssessmentMethod_Props>>;
-  };
-  readonly config: {
-    base: DeepPartial<AssessmentMethod_Props> & { id: string; slug: string };
-    validate: typeof validate;
-    locales: () => DeepPartial<AssessmentMethod_Config>;
   };
 } & LanguageScope<Languages>;
 
@@ -88,54 +71,11 @@ export function defineAssessmentMethod<const Slug extends string, const Language
     return result;
   };
 
-  const overrides = (
-    patch: AssessmentMethod_Overrides,
-    options: PublicationLanguageOptions<Languages>,
-  ): AssessmentMethodPublication<DeepPartial<AssessmentMethod_Props>> => {
-    try {
-      const languages = resolvePublicationLanguages(options);
-      const sparse = assessmentMethod_Override_Config_Schema.parse(patch);
-      validate(assessmentMethod_Config_Schema.parse(mergeForValidation(copyAuthored(), sparse)));
-      const own = project(sparse);
-      const result: AssessmentMethodPublication<DeepPartial<AssessmentMethod_Props>> = {
-        base: own.base,
-        locale: selectPublicationLocales(
-          own.locale as AssessmentMethodPublication<DeepPartial<AssessmentMethod_Props>>['locale'],
-          languages,
-        ),
-      };
-      const resource = props(options);
-      for (const language of languages) {
-        const original = mergeForValidation(resource.base, resource.locale?.[language] ?? {});
-        const patched = mergeForValidation(original, result.base);
-        assessmentMethod_Props_Schema.parse(mergeForValidation(patched, result.locale?.[language] ?? {}));
-      }
-      return result;
-    } catch (error) {
-      throw new Error(
-        'Invalid Assessment Method overrides for ' +
-          id +
-          ': ' +
-          (error instanceof Error ? error.message : String(error)),
-        { cause: error },
-      );
-    }
-  };
-
   const result = {
     id,
     slug,
     type: 'assessmentMethod' as const,
-    validate,
-    build: { props, overrides },
-    config: {
-      base: { id, slug, ...project({ title: authored.title, description: authored.description }).base },
-      validate,
-      locales: (): DeepPartial<AssessmentMethod_Config> => {
-        const current = copyAuthored();
-        return onlyLocales({ title: current.title, description: current.description });
-      },
-    },
+    build: { props },
   } as const;
   return result as typeof result & LanguageScope<Languages>;
 }

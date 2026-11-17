@@ -25,7 +25,7 @@ function sourceFiles(dir) {
   return fs.readdirSync(dir, { withFileTypes: true }).flatMap(entry => {
     const file = path.join(dir, entry.name);
     if (entry.isDirectory()) return entry.name === '__tests__' ? [] : sourceFiles(file);
-    return entry.isFile() && entry.name.endsWith('.data.ts') ? [file] : [];
+    return entry.isFile() && entry.name.endsWith('.ts') && !['review.ts','_review.ts'].includes(entry.name) && path.relative(taxonomyRoot, file) !== 'index.ts' ? [file] : [];
   });
 }
 
@@ -82,10 +82,10 @@ function readEntity(file) {
 }
 function expectedLevel(file) {
   const parts = path.relative(taxonomyRoot, file).split(path.sep);
-  if (parts.length === 2) return 3; // Domain
-  if (parts.length === 3 && parts[1] === 'skills') return 4; // direct Skill
-  if (parts.length === 3 && parts[2].endsWith('.data.ts')) return 4; // Group
-  if (parts.length === 4 && parts[2] === 'skills') return 5; // grouped Skill
+  if (parts.length === 2 && parts[1] === 'index.ts') return 3; // Domain
+  if (parts.length === 2 && parts[1].endsWith('.ts')) return 4; // direct Skill
+  if (parts.length === 3 && parts[2] === 'index.ts') return 4; // Group
+  if (parts.length === 3 && parts[2].endsWith('.ts')) return 5; // Group Skill
   throw new Error('Unsupported entity source path: ' + file);
 }
 function generate(locale) {
@@ -112,9 +112,12 @@ const expectedCounts = {
   domains: entities.filter(e => expectedLevel(e.file) === 3).length,
   groups: entities.filter(e => {
     const x = path.relative(taxonomyRoot, e.file).split(path.sep);
-    return x.length === 3 && x[1] !== 'skills';
+    return x.length === 3 && x[2] === 'index.ts';
   }).length,
-  skills: entities.filter(e => path.relative(taxonomyRoot, e.file).split(path.sep).includes('skills')).length,
+  skills: entities.filter(e => {
+    const x = path.relative(taxonomyRoot, e.file).split(path.sep);
+    return x.at(-1) !== 'index.ts';
+  }).length,
 };
 assert.equal(expectedCounts.domains + expectedCounts.groups + expectedCounts.skills, entities.length);
 
@@ -136,7 +139,7 @@ function parseMarkdown(view, locale) {
   for (let i = 0; i < headings.length; i++) {
     const heading = headings[i];
     const block = view.slice(heading.index + heading[0].length, headings[i + 1]?.index ?? view.length);
-    const match = block.match(/^\[([^\]]+\.data\.ts)\]\(([^)]+)\)$/m);
+    const match = block.match(/^\[([^\]]+\.ts)\]\(([^)]+)\)$/m);
     assert.ok(match, 'Missing Code link in generated block ' + heading[2]);
     const file = path.resolve(path.dirname(outputPath), decodeURI(match[2]));
     assert.equal(path.basename(file), match[1]);

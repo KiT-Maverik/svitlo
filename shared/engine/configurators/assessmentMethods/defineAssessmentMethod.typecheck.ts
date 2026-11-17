@@ -9,12 +9,11 @@ const method = defineAssessmentMethod<'oralExamination', ['en', 'uk']>({
 
 method.build.props({ languages: ['en', 'uk'] });
 method.build.props({ languages: ['uk'] });
-method.build.overrides({ title: { en: 'Changed' } }, { languages: ['uk'] });
 // @ts-expect-error A requested language must be in the authored generic scope.
 method.build.props({ languages: ['pl'] });
-// @ts-expect-error Override publication has the same language constraint.
-method.build.overrides({}, { languages: ['de'] });
+// @ts-expect-error No contextual Assessment Method overrides are available.
+method.build.overrides({});
 // @ts-expect-error Publication scope is mandatory.
 method.build.props();
-// @ts-expect-error Publication scope is mandatory for overrides.
-method.build.overrides({});
+// @ts-expect-error Internal config/locales API is not exposed.
+void method.config;

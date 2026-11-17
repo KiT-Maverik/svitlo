@@ -14,95 +14,50 @@ describe('Configurators', () => {
         LanguageCode,
         string
       >;
-
       const description = { methodological: 'Methodological notes', frontend: localized };
-      const fields = {
-        id: 'dbe68255-2f03-4ac9-b1e7-277dca1cd160',
-        name: localized,
-        description,
-      };
+      const fields = { id: 'dbe68255-2f03-4ac9-b1e7-277dca1cd160', name: localized, description };
 
-      test('SkillGroup and SkillDomain index actual child configurators by their slug', () => {
+      test('Group and Domain expose only their literal slug-keyed child maps', () => {
         const reading = defineSkill({ ...fields, slug: 'reading' });
         const writing = defineSkill({ ...fields, id: 'dbe68255-2f03-4ac9-b1e7-277dca1cd161', slug: 'writing' });
         const numeracy = defineSkill({ ...fields, id: 'dbe68255-2f03-4ac9-b1e7-277dca1cd162', slug: 'numeracy' });
         const group = defineSkillGroup({
-          ...fields,
-          id: 'dbe68255-2f03-4ac9-b1e7-277dca1cd163',
-          slug: 'literacy',
-          skills: { items: { reading, writing }, order: ['reading', 'writing'] },
+          ...fields, id: 'dbe68255-2f03-4ac9-b1e7-277dca1cd163', slug: 'literacy',
+          skills: { writing, reading },
         });
         const domain = defineSkillDomain({
           id: 'dbe68255-2f03-4ac9-b1e7-277dca1cd164',
-          slug: 'language',
-          title: localized,
-          description,
-          groups: { items: { literacy: group }, order: ['literacy'] },
-          skills: { items: { numeracy }, order: ['numeracy'] },
+          slug: 'language', title: localized, description,
+          groups: { literacy: group }, skills: { numeracy },
         });
-
-        assert.equal(reading.config.base.slug, 'reading');
-        assert.equal(group.config.base.slug, 'literacy');
-        assert.equal(domain.config.base.slug, 'language');
-        assert.deepEqual(Object.keys(group.skill), ['reading', 'writing']);
-        assert.equal(group.skill.reading, reading);
-        assert.equal(group.skill.writing, writing);
-        assert.deepEqual(Object.keys(domain.group), ['literacy']);
-        assert.equal(domain.group.literacy, group);
-        assert.equal(domain.group.literacy.skill.reading, reading);
-        assert.deepEqual(Object.keys(domain.skill), ['numeracy']);
-        assert.equal(domain.skill.numeracy, numeracy);
+        assert.equal(group.skills.reading, reading);
+        assert.equal(group.skills.writing, writing);
+        assert.equal(domain.groups?.literacy, group);
+        assert.equal(domain.groups?.literacy.skills.reading, reading);
+        assert.equal(domain.skills?.numeracy, numeracy);
+        assert.equal('skill' in group, false);
+        assert.equal('group' in domain, false);
+        assert.equal('skill' in domain, false);
+        assert.equal('overrides' in group.build, false);
+        assert.deepEqual(group.build.props({ languages: ['en'] }).base.skills?.map(item => item!.slug),
+          ['reading', 'writing']);
       });
 
-      test('missing optional SkillDomain children produce empty maps', () => {
-        const domain = defineSkillDomain({
-          id: fields.id,
-          slug: 'empty',
-          title: localized,
-          description,
-        });
-        assert.deepEqual(domain.group, {});
-        assert.deepEqual(domain.skill, {});
+      test('empty Domain is an invalid published classification', () => {
+        const empty = defineSkillDomain({ id: fields.id, slug: 'empty', title: localized, description });
+        assert.equal(empty.groups, undefined);
+        assert.equal(empty.skills, undefined);
+        assert.throws(() => empty.build.props({ languages: ['en'] }), /At least one Skill or SkillGroup/);
       });
 
-      test('nested Skill and SkillGroup collections still reject duplicate slugs', () => {
+      test('rejects duplicated child identity and mismatched authoring keys', () => {
         const reading = defineSkill({ ...fields, slug: 'reading' });
-        const group = defineSkillGroup({
-          ...fields,
-          slug: 'literacy',
-          skills: { items: { reading }, order: ['reading'] },
-        });
-        assert.throws(
-          () =>
-            defineSkillGroup({
-              ...fields,
-              slug: 'duplicateGroup',
-              skills: { items: { reading }, order: ['reading', 'reading'] },
-            }).build.props({ languages: ['en'] }),
-          /duplicate|appears|order/i,
-        );
-        assert.throws(
-          () =>
-            defineSkillDomain({
-              id: fields.id,
-              slug: 'duplicates',
-              title: localized,
-              description,
-              groups: { items: { literacy: group }, order: ['literacy', 'literacy'] },
-            }).build.props({ languages: ['en'] }),
-          /duplicate|appears|order/i,
-        );
-        assert.throws(
-          () =>
-            defineSkillDomain({
-              id: fields.id,
-              slug: 'duplicates',
-              title: localized,
-              description,
-              skills: { items: { reading }, order: ['reading', 'reading'] },
-            }).build.props({ languages: ['en'] }),
-          /duplicate|appears|order/i,
-        );
+        const writing = defineSkill({ ...fields, slug: 'writing' }); // Same UUID: invalid.
+        const group = defineSkillGroup({ ...fields, slug: 'literacy', skills: { reading, writing } });
+        assert.throws(() => group.build.props({ languages: ['en'] }), /Duplicate Skill ID/);
+
+        const invalidKey = defineSkillGroup({ ...fields, slug: 'invalid', skills: { wrong: reading } });
+        assert.throws(() => invalidKey.build.props({ languages: ['en'] }), /slug|matching/i);
       });
     });
   });
