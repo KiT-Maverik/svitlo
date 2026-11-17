@@ -1,4 +1,6 @@
 import { defineAssessmentMethod } from './defineAssessmentMethod';
+import type { AllLanguageCodes } from '#schemas';
+import type { LanguageScope } from '#types';
 
 const method = defineAssessmentMethod<'oralExamination', ['en', 'uk']>({
   id: 'b775647f-203d-481a-a1c7-4d331c779d06',
@@ -17,3 +19,13 @@ method.build.overrides({});
 method.build.props();
 // @ts-expect-error Internal config/locales API is not exposed.
 void method.config;
+
+const defaultScope = defineAssessmentMethod({
+  id: '42f0a875-fcba-40c8-8960-4fd5666dfb46',
+  slug: 'defaultScope',
+  title: 'Uniform method',
+  description: 'The default authoring scope covers all canonical languages.',
+});
+const fullScope: LanguageScope<AllLanguageCodes> = defaultScope;
+defaultScope.build.props({ languages: ['en', 'uk'] });
+void fullScope;
