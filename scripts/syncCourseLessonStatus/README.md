@@ -49,3 +49,11 @@ must be independently reviewed before claiming support. Historical Lesson PRs
 without explicit marker cannot be matched by title or branch. Existing
 implemented standalone Lessons need no new implementation PR and appear as
 `Reused / existing` once verified from their canonical UUID directory.
+
+A Stage 1/2 Course that has not allocated Lesson slots displays `NOT ALLOCATED`
+instead of the misleading `INCOMPLETE` when its source inventory is readable and
+has no diagnostics; this is **not** a claim of completed Lesson production.
+Malformed Lesson markers from unrelated PRs, including illustrative snippets,
+are excluded from the global inventory. A marker explicitly referencing the
+current Course UUID **or** parent PR must pass full identity and Course-branch
+checks; malformed or conflicting associated claims are reported and fail closed.

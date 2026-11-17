@@ -68,6 +68,22 @@ export function parseParent(body) {
   return { courseId, textbook, courseDirectory: textbook + '/data/courses/' + courseId.slice(-1) + '/' + courseId };
 }
 
+/**
+ * Scope untrusted global PR search results before strict claim parsing.
+ * A marker-only example is not evidence of membership. Either an explicit
+ * Course UUID or the parent PR number links a malformed claim to this Course,
+ * including conflicting identity fields that must fail closed.
+ */
+export function targetsCourseLessonClaim(body, courseId, parentPr) {
+  if (typeof body !== 'string' || !body.includes('<!-- svitlo-course-lesson:v1 -->')) return false;
+  const id = canonicalUUID(courseId);
+  if (!Number.isSafeInteger(parentPr) || parentPr < 1) throw new Error('Invalid Course parent PR number');
+  return (
+    [...body.matchAll(/^Course:[ \t]*([^\r\n]*)/gim)].some(([, value]) => value.toLowerCase().includes(id)) ||
+    [...body.matchAll(/^Parent PR:[ \t]*#?([0-9]+)/gim)].some(([, value]) => Number(value) === parentPr)
+  );
+}
+
 export function parseLessonClaim(body) {
   if (typeof body !== 'string' || !body.includes('<!-- svitlo-course-lesson:v1 -->')) return null;
   if (body.split('<!-- svitlo-course-lesson:v1 -->').length !== 2)
@@ -351,7 +367,11 @@ export function renderLessonsBlock(report) {
     'Inventory SHA: ' + report.sha,
     '',
     'Coverage: **' +
-      (report.complete ? 'complete' : 'INCOMPLETE') +
+      (!report.allocated && !report.lessons.length && !report.unresolved.length && !report.diagnostics.length
+        ? 'NOT ALLOCATED'
+        : report.complete
+          ? 'complete'
+          : 'INCOMPLETE') +
       '** · ' +
       'Unique Lessons: **' +
       report.lessons.length +
