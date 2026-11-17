@@ -216,7 +216,7 @@ describe('Engine Props Lesson Controller', () => {
       id: uuid(90),
       slug: 'lightCard',
       type: 'flashcard',
-      parameters: { tags: [], flags: [] },
+      parameters: { tags: [], disabilities: [], flags: [] },
       content: {
         front: [text(91, 'What travels in a straight line?')],
         back: [text(92, 'Light does.')],
