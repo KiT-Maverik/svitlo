@@ -31,7 +31,7 @@ export const constructAMusicalChord_Skill_Data = defineSkill({
     et: 'Moodustada muusikaline akord',
     be: 'Стварыць музычны акорд',
     ka: 'მუსიკალური აკორდის შექმნა',
-    kk: 'Музыкалық аккорд құрастыру',
+    kk: 'Muzykalyq akkord qūrastyru',
     qm: 'Musiqiy akkord qurmaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const constructAMusicalChord_Skill_Data = defineSkill({
       et: 'Ühenda noodid, et luua soovitud kõlaga akord.',
       be: "Аб'яднайце ноты, каб стварыць акорд з абраным музычным гучаннем.",
       ka: 'შეაერთეთ ნოტები სასურველი ჟღერადობის აკორდის შესაქმნელად.',
-      kk: 'Ноталарды біріктіріп, таңдалған музыкалық дыбысталуы бар аккорд құрастырыңыз.',
+      kk: 'Notalardy bırıktırıp, tañdalğan muzykalyq dybystaluy bar akkord qūrastyryñyz.',
       qm: 'Saylanğan musiqiy seske sahip akkord yaratmaq içün notalarnı birleştiriñiz.',
     },
   },

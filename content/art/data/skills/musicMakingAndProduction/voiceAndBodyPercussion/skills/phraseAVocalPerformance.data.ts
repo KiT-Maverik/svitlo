@@ -31,7 +31,7 @@ export const phraseAVocalPerformance_Skill_Data = defineSkill({
     et: 'Kujundada lauldud fraasi',
     be: 'Фарміраваць вакальную фразу',
     ka: 'ვოკალური ფრაზის ჩამოყალიბება',
-    kk: 'Ән фразасын қалыптастыру',
+    kk: 'Än frazasyn qalyptastyru',
     qm: 'Yırlav frazasını şekillendirmek',
   },
   description: {
@@ -64,7 +64,7 @@ export const phraseAVocalPerformance_Skill_Data = defineSkill({
       et: 'Kujunda lauldud fraasi hingamise, selge diktsiooni ja ajastusega.',
       be: 'Фарміруйце вакальную фразу з дапамогай дыхання, выразнай дыкцыі і рытму.',
       ka: 'სასიმღერო ფრაზა ჩამოაყალიბეთ სუნთქვით, მკაფიო სიტყვებითა და დროის შეგრძნებით.',
-      kk: 'Ән фразасын тыныс, анық сөздер және уақытты дәл сақтау арқылы қалыптастырыңыз.',
+      kk: 'Än frazasyn tynys, anyq sözder jäne uaqytty däl saqtau arqyly qalyptastyryñyz.',
       qm: 'Yırlanğan frazanı nefes, añlaşıqlı sözler ve ritm yardımınen şekillendiriñiz.',
     },
   },

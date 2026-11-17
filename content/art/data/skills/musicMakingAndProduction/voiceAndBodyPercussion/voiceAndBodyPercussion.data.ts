@@ -39,7 +39,7 @@ export const voiceAndBodyPercussion_SkillGroup_Data = defineSkillGroup({
     et: 'Hääl ja kehaperkussioon',
     be: 'Голас і перкусія цела',
     ka: 'ხმა და სხეულის პერკუსია',
-    kk: 'Дауыс және дене перкуссиясы',
+    kk: 'Dauys jäne dene perkussiiasy',
     qm: 'Ses ve beden perkussiyası',
   },
   skills: [
@@ -80,7 +80,7 @@ export const voiceAndBodyPercussion_SkillGroup_Data = defineSkillGroup({
       et: 'Loo meloodiaid ja rütme laulmise ning kehaga tekitatud helide abil.',
       be: 'Стварайце мелодыі і рытмы з дапамогай спеваў і гукаў, якія стварае цела.',
       ka: 'შექმენით მელოდიები და რიტმები სიმღერითა და სხეულით წარმოქმნილი ხმებით.',
-      kk: 'Ән айту және денеден шығатын дыбыстар арқылы әуен мен ырғақ жасаңыз.',
+      kk: 'Än aitu jäne deneden şyğatyn dybystar arqyly äuen men yrğaq jasañyz.',
       qm: 'Yırlav ve beden seslerinden faydalanıp melodiyalar ve ritmler yaratıñız.',
     },
   },

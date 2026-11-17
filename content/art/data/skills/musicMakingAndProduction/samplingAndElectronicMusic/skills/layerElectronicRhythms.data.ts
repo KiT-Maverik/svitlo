@@ -31,7 +31,7 @@ export const layerElectronicRhythms_Skill_Data = defineSkill({
     et: 'Kihista elektroonilisi rütme',
     be: 'Стварайце пласты электронных рытмаў',
     ka: 'ელექტრონული რიტმების ფენებად დალაგება',
-    kk: 'Электрондық ырғақтарды қабаттастырыңыз',
+    kk: 'Elektrondyq yrğaqtardy qabattastyryñyz',
     qm: 'Elektron ritmlerni qatlamlaştırıñız',
   },
   description: {
@@ -64,7 +64,7 @@ export const layerElectronicRhythms_Skill_Data = defineSkill({
       et: 'Ühenda erinevad elektroonilised löökpillipartiid üheks groove’iks.',
       be: "Аб'ядноўвайце розныя партыі электронных ударных у адзін груў.",
       ka: 'გააერთიანეთ სხვადასხვა ელექტრონული დასარტყამი ნაწილი ერთ გროუვში.',
-      kk: 'Әртүрлі электрондық соқпалы аспап партияларын бір грувке біріктіріңіз.',
+      kk: 'Ärtürlı elektrondyq soqpaly aspap partiialaryn bır gruvke bırıktırıñız.',
       qm: 'Farklı elektron perküsyon partiyalarını bir groove içinde birleştiriñiz',
     },
   },

@@ -31,7 +31,7 @@ export const performBodyPercussion_Skill_Data = defineSkill({
     et: 'Esita kehapillimuusikat',
     be: 'Выконвайце бодзі-перкусію',
     ka: 'შეასრულეთ სხეულის პერკუსია',
-    kk: 'Дене перкуссиясын орындаңыз',
+    kk: 'Dene perkussiiasyn oryndañyz',
     qm: 'Beden perküsyonu icra etiñiz',
   },
   description: {
@@ -64,7 +64,7 @@ export const performBodyPercussion_Skill_Data = defineSkill({
       et: 'Loo rütme plaksutades, samme astudes, keha patsutades või muid kehalisi helisid kasutades.',
       be: 'Стварайце рытмы плясканнем, крокамі, пастукваннем па целе або іншымі гукамі цела.',
       ka: 'შექმენით რიტმები ტაშით, ნაბიჯებით, სხეულზე დაკვრით ან სხეულის სხვა ხმებით.',
-      kk: 'Шапалақтау, аяқ басу, денені соғу және басқа дене дыбыстары арқылы ырғақ жасаңыз.',
+      kk: 'Şapalaqtau, aiaq basu, denenı soğu jäne basqa dene dybystary arqyly yrğaq jasañyz.',
       qm: 'Alqış çalaraq, adım ataraq, bedenni tıqıldataraq yaki başqa beden seslerinen ritm yaratıñız',
     },
   },

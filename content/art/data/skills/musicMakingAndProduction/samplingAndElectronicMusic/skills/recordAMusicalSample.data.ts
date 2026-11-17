@@ -31,7 +31,7 @@ export const recordAMusicalSample_Skill_Data = defineSkill({
     et: 'Salvesta muusikanäidis',
     be: 'Запісвайце музычны ўзор',
     ka: 'ჩაწერეთ მუსიკალური სემპლი',
-    kk: 'Музыкалық үлгіні жазып алыңыз',
+    kk: 'Muzykalyq ülgını jazyp alyñyz',
     qm: 'Muzika numunesini qayd etiñiz',
   },
   description: {
@@ -65,7 +65,7 @@ export const recordAMusicalSample_Skill_Data = defineSkill({
       et: 'Salvesta heli, mida saad oma muusikas loominguliselt kasutada.',
       be: 'Запішыце гук, які зможаце творча выкарыстаць у сваёй музыцы.',
       ka: 'ჩაწერეთ ხმა, რომელსაც თქვენს მუსიკაში შემოქმედებითად გამოიყენებთ.',
-      kk: 'Музыкаңызда шығармашылықпен қолдана алатын дыбысты жазып алыңыз.',
+      kk: 'Muzykañyzda şyğarmaşylyqpen qoldana alatyn dybysty jazyp alyñyz.',
       qm: 'Muzikañızda yaratıcılıqnen qullana bilecek sesni qayd etiñiz',
     },
   },

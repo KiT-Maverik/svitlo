@@ -31,7 +31,7 @@ export const editAMusicalSample_Skill_Data = defineSkill({
     et: 'Redigeeri muusikanäidist',
     be: 'Рэдагуйце музычны ўзор',
     ka: 'დაარედაქტირეთ მუსიკალური სემპლი',
-    kk: 'Музыкалық үлгіні өңдеңіз',
+    kk: 'Muzykalyq ülgını öñdeñız',
     qm: 'Muzika numunesini redaktir etiñiz',
   },
   description: {
@@ -64,7 +64,7 @@ export const editAMusicalSample_Skill_Data = defineSkill({
       et: 'Lõika või kujunda salvestatud heli ümber, et see sobiks sinu muusikalise ideega.',
       be: 'Абрэжце або змяніце запісаны гук, каб ён адпавядаў вашай музычнай ідэі.',
       ka: 'მოჭერით ან შეცვალეთ ჩაწერილი ხმა თქვენი მუსიკალური იდეის შესაბამისად.',
-      kk: 'Кесіңіз немесе жазылған дыбысты музыкалық идеяңызға сай өзгертіңіз.',
+      kk: 'Kesıñız nemese jazylğan dybysty muzykalyq ideiañyzğa sai özgertıñız.',
       qm: 'Qayd etilgen sesni muzika fikiriñizge uyğun kesiñiz yaki şekillendiriñiz',
     },
   },

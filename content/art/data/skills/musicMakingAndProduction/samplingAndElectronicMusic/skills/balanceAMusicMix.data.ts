@@ -31,7 +31,7 @@ export const balanceAMusicMix_Skill_Data = defineSkill({
     et: 'Tasakaalusta muusikamiksi',
     be: 'Збалансуйце музычны мікс',
     ka: 'დააბალანსეთ მუსიკალური მიქსი',
-    kk: 'Музыкалық миксті теңгеріңіз',
+    kk: 'Muzykalyq mikstı teñgerıñız',
     qm: 'Muzika miksini teñleñiz',
   },
   description: {
@@ -64,7 +64,7 @@ export const balanceAMusicMix_Skill_Data = defineSkill({
       et: 'Reguleeri helide tasakaalu, et olulised muusikapartiid oleksid kuulda.',
       be: 'Наладжвайце баланс гукаў, каб важныя музычныя партыі былі чутныя.',
       ka: 'დაარეგულირეთ ხმების ბალანსი, რათა მნიშვნელოვანი მუსიკალური ნაწილები ისმოდეს.',
-      kk: 'Дыбыстардың теңгерімін реттеп, маңызды музыкалық бөліктердің естілуін қамтамасыз етіңіз.',
+      kk: 'Dybystardyñ teñgerımın rettep, mañyzdy muzykalyq bölıkterdıñ estıluın qamtamasyz etıñız.',
       qm: 'Mühim muzika partiyaları eşitilmesi içün seslerni teñleñiz',
     },
   },

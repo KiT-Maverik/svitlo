@@ -31,7 +31,7 @@ export const programDrumMachinePatterns_Skill_Data = defineSkill({
     et: 'Programmi trummimasina rütmimustreid',
     be: 'Праграмуйце рытмічныя ўзоры драм-машыны',
     ka: 'დრამ-მანქანის რიტმული ნიმუშების პროგრამირება',
-    kk: 'Драм-машина ырғақтарын бағдарламалаңыз',
+    kk: 'Dram-maşina yrğaqtaryn bağdarlamalañyz',
     qm: 'Davul maşını ritm naqışlarını programlañız',
   },
   description: {
@@ -64,7 +64,7 @@ export const programDrumMachinePatterns_Skill_Data = defineSkill({
       et: 'Paiguta trummihelid ajavõrgustikule, et luua korduv rütm.',
       be: 'Размяшчайце гукі ўдарных на часовай сетцы, каб стварыць паўтаральны рытм.',
       ka: 'განათავსეთ დასარტყამი ხმები დროის ბადეზე განმეორებადი ბიტის შესაქმნელად.',
-      kk: 'Қайталанатын ырғақ жасау үшін барабан дыбыстарын уақыт торына орналастырыңыз.',
+      kk: 'Qaitalanatyn yrğaq jasau üşın baraban dybystaryn uaqyt toryna ornalastyryñyz.',
       qm: 'Tekrarlanağan ritm yaratmaq içün davul seslerini vaqt şebkesine yerleştiriñiz',
     },
   },

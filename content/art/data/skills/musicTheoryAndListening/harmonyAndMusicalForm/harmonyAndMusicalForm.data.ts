@@ -39,7 +39,7 @@ export const harmonyAndMusicalForm_SkillGroup_Data = defineSkillGroup({
     et: 'Harmoonia ja muusikaline vorm',
     be: 'Гармонія і музычная форма',
     ka: 'ჰარმონია და მუსიკალური ფორმა',
-    kk: 'Гармония және музыкалық форма',
+    kk: 'Garmoniia jäne muzykalyq forma',
     qm: 'Armoniya ve musiqiy şekil',
   },
   skills: [
@@ -80,7 +80,7 @@ export const harmonyAndMusicalForm_SkillGroup_Data = defineSkillGroup({
       et: 'Avasta, kuidas noodirühmad ja korduvad osad kujundavad muusikapala.',
       be: 'Даведайцеся, як групы нот і паўтаральныя часткі фарміруюць музычны твор.',
       ka: 'აღმოაჩინეთ, როგორ აყალიბებს ნოტების ჯგუფები და განმეორებადი მონაკვეთები მუსიკალურ ნაწარმოებს.',
-      kk: 'Ноталар топтары мен қайталанатын бөлімдер музыкалық шығарманы қалай қалыптастыратынын біліңіз.',
+      kk: 'Notalar toptary men qaitalanatyn bölımder muzykalyq şyğarmany qalai qalyptastyratynyn bılıñız.',
       qm: 'Nota toplulıqları ve tekrarlanğan bölükler musiqiy eserini nasıl şekillendirgenini keşf etiñiz.',
     },
   },

@@ -31,7 +31,7 @@ export const controlSungPitch_Skill_Data = defineSkill({
     et: 'Kontrolli laulmise helikõrgust',
     be: 'Кантралюйце вышыню гуку падчас спеваў',
     ka: 'აკონტროლეთ სიმღერის ბგერის სიმაღლე',
-    kk: 'Ән айтқандағы дыбыс биіктігін бақылаңыз',
+    kk: 'Än aitqandağy dybys biıktıgın baqylañyz',
     qm: 'Yırlağanda ses yüksekligini kontrol etiñiz',
   },
   description: {
@@ -64,7 +64,7 @@ export const controlSungPitch_Skill_Data = defineSkill({
       et: 'Laula noote ettenähtud kõrgusel ja liigu nende vahel teadlikult.',
       be: 'Спявайце ноты на патрэбнай вышыні і свядома пераходзьце паміж імі.',
       ka: 'იმღერეთ ნოტები სასურველ სიმაღლეზე და გააზრებულად გადადით მათ შორის.',
-      kk: 'Ноталарды қажетті биіктікте айтып, олардың арасында саналы түрде ауысыңыз.',
+      kk: 'Notalardy qajettı biıktıkte aityp, olardyñ arasynda sanaly türde auysyñyz.',
       qm: 'Notalarnı kerekli ses yüksekliginde yırlañız ve aralarında añlıqlı keçiş etiñiz',
     },
   },

@@ -31,7 +31,7 @@ export const singVocalHarmony_Skill_Data = defineSkill({
     et: 'Laulda vokaalharmooniat',
     be: 'Спяваць вакальную гармонію',
     ka: 'ვოკალური ჰარმონიის შესრულება',
-    kk: 'Вокалдық үйлесімділікті айту',
+    kk: 'Vokaldyq üilesımdılıktı aitu',
     qm: 'Vokal armoniyanı yırlamaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const singVocalHarmony_Skill_Data = defineSkill({
       et: 'Laula oma harmooniahäält samal ajal, kui kõlavad teised hääled.',
       be: 'Спявайце сваю гарманічную партыю, пакуль іншыя галасы гучаць адначасова.',
       ka: 'საკუთარი ჰარმონიული პარტია იმღერეთ, სანამ სხვა ხმებიც ერთდროულად ჟღერს.',
-      kk: 'Басқа дауыстар қатар естілгенде, өзіңіздің гармониялық партияңызды айтыңыз.',
+      kk: 'Basqa dauystar qatar estılgende, özıñızdıñ garmoniialyq partiiañyzdy aityñyz.',
       qm: 'Başqa sesler aynı vaqıtta eşitilgende, öz armoniya partiyañıznı yırlañız.',
     },
   },

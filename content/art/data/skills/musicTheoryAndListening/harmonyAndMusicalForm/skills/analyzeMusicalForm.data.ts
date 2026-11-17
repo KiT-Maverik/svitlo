@@ -31,7 +31,7 @@ export const analyzeMusicalForm_Skill_Data = defineSkill({
     et: 'Analüüsida muusikalist vormi',
     be: 'Аналізаваць музычную форму',
     ka: 'მუსიკალური ფორმის ანალიზი',
-    kk: 'Музыкалық форманы талдау',
+    kk: 'Muzykalyq formany taldau',
     qm: 'Musiqiy formanı tahlil etmek',
   },
   description: {
@@ -64,7 +64,7 @@ export const analyzeMusicalForm_Skill_Data = defineSkill({
       et: 'Leia teose struktuuris kordused, kontrastid ja areng.',
       be: 'Знайдзіце паўторы, кантраст і развіццё ў структуры музычнага твора.',
       ka: 'მუსიკალური ნაწარმოების სტრუქტურაში იპოვეთ გამეორება, კონტრასტი და განვითარება.',
-      kk: 'Музыкалық шығарма құрылымындағы қайталауды, қарама-қарсылықты және дамуды анықтаңыз.',
+      kk: 'Muzykalyq şyğarma qūrylymyndağy qaitalaudy, qarama-qarsylyqty jäne damudy anyqtañyz.',
       qm: 'Musiqiy eseriniñ quruluşında tekrarlav, qarşıtlıq ve inkişafnı tapıñız.',
     },
   },

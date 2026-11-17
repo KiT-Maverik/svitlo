@@ -31,7 +31,7 @@ export const performBeatboxing_Skill_Data = defineSkill({
     et: 'Esita biitboksimist',
     be: 'Выконвайце бітбокс',
     ka: 'შეასრულეთ ბითბოქსი',
-    kk: 'Битбокс орындаңыз',
+    kk: 'Bitboks oryndañyz',
     qm: 'Bitboks icra etiñiz',
   },
   description: {
@@ -64,7 +64,7 @@ export const performBeatboxing_Skill_Data = defineSkill({
       et: 'Loo rütmiline groove kontrollitud vokaalsete löökpillide helidega.',
       be: 'Стварайце рытмічны груў з дапамогай кантраляваных вакальных ударных гукаў.',
       ka: 'შექმენით რიტმული გროუვი კონტროლირებული ვოკალური პერკუსიის ხმებით.',
-      kk: 'Бақылдаған дыбыстарды бақылап, ырғақты грув жасаңыз.',
+      kk: 'Baqyldağan dybystardy baqylap, yrğaqty gruv jasañyz.',
       qm: 'Kontrollu vokal perküsyon seslerinen ritmli groove yaratıñız',
     },
   },
