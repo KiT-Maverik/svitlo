@@ -235,7 +235,8 @@ export function defineFlashcard<
   const { content: _content, ...metadataInput } = config;
   const authored = structuredClone(metadataInput);
   const copyAuthored = () => metadataSchema.parse(structuredClone(authored));
-  const { id, type, slug } = authored;
+  const { id, slug } = authored;
+  const type = 'flashcard' as const;
   const initialContent = {
     front: config.content.front,
     back: config.content.back,
@@ -257,7 +258,7 @@ export function defineFlashcard<
         ),
       },
     },
-  } satisfies DeepPartial<Flashcard_Config>;
+  } satisfies DeepPartial<Flashcard_Config> & { type: 'flashcard' };
 
   const buildSide = <Items extends Record<string, Block>>(
     side: FlashcardSide_Configurator<Items, Languages>,
