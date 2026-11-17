@@ -141,6 +141,30 @@ test('sha-pinned links and Markdown escaping do not expose raw repository text',
   assert.equal(sourceLink(SHA, 'content/math/../private/file.ts'), null);
 });
 
+test('rejects an imported Skill name missing from the referenced module', () =>
+  fixture(({ root, put }) => {
+    put('content/math/data/skills/other.ts',
+      "export const unrelated = defineSkill({ id: '" + S1 + "', name: { en: 'Unrelated' } });");
+    put('content/math/data/lessons/c/' + A + '/index.ts',
+      "import { one } from '../../../skills/other';\n" +
+      "export const lesson = defineLesson({ id: '" + A + "', skills: [one.id] });");
+    const result = buildLessonIndex(root);
+    assert.equal(result.complete, false);
+    assert.match(result.diagnostics.map(x => x.reason).join('; '),
+      /Imported module does not export the requested Skill/);
+  }));
+
+test('discovers the checked-in Playground Lesson using modern Skill.id imports', () => {
+  const repository = path.resolve(import.meta.dirname, '../../../..');
+  const result = searchLessons(repository,
+    { by: 'id', lessonId: A, package: 'content/playground' }, SHA);
+  const lesson = result.matches.find(x => x.lessonId === A);
+  assert.ok(lesson, JSON.stringify(result.diagnostics.slice(0, 10)));
+  assert.equal(lesson.status, 'implemented');
+  assert.equal(lesson.title, 'How Light Travels');
+  assert.ok(lesson.skills.includes('00000000-0000-4000-8000-000000000015'));
+});
+
 test('GitHub workflow retains split trust boundaries and read-only analysis', () => {
   const file = path.resolve(import.meta.dirname, '../../../../.github/workflows/get-lesson.yml');
   assert.ok(fs.existsSync(file));
