@@ -32,7 +32,7 @@ export const supermassiveBlackHoles_Skill_Data = defineSkill({
     et: 'Ülimassiivsed mustad augud',
     be: 'Звышмасіўныя чорныя дзіркі',
     ka: 'ზემასიური შავი ხვრელები',
-    kk: 'Аса үлкен массалы қара құрдымдар',
+    kk: 'Asa ülken massaly qara qūrdymdar',
   },
   description: {
     methodological:
@@ -66,7 +66,7 @@ export const supermassiveBlackHoles_Skill_Data = defineSkill({
       et: 'Uuri tõendeid tohutute mustade aukude kohta galaktikate keskmetes.',
       be: 'Дасьледуй доказы існаваньня велізарных чорных дзірак у цэнтрах галяктык.',
       ka: 'გამოიკვლიე გალაქტიკათა ცენტრებში უზარმაზარი შავი ხვრელების არსებობის მტკიცებულებები.',
-      kk: 'Галактикалардың ортасында орасан қара құрдымдар бар екенін көрсететін дәлелдерді зертте.',
+      kk: 'Galaktikalardyñ ortasynda orasan qara qūrdymdar bar ekenın körsetetın dälelderdı zertte.',
     },
   },
 });

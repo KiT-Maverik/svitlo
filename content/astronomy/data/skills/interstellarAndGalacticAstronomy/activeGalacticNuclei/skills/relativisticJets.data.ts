@@ -32,7 +32,7 @@ export const relativisticJets_Skill_Data = defineSkill({
     et: 'Relativistlikud joad',
     be: 'Рэлятывісцкія струмені',
     ka: 'რელატივისტური ჭავლები',
-    kk: 'Релятивистік ағындар',
+    kk: 'Reliativistık ağyndar',
   },
   description: {
     methodological:
@@ -66,7 +66,7 @@ export const relativisticJets_Skill_Data = defineSkill({
       et: 'Uuri kitsaid ja kiireid ainejugasid, mida mõned aktiivsed galaktikad tekitavad.',
       be: 'Дасьледуй вузкія й хуткія струмені рэчыва, якія ўтвараюць некаторыя актыўныя галяктыкі.',
       ka: 'შეისწავლე ზოგიერთი აქტიური გალაქტიკის მიერ წარმოქმნილი ვიწრო და სწრაფი ჭავლები.',
-      kk: 'Кейбір белсенді галактикалар шығаратын тар әрі өте жылдам ағындарды зертте.',
+      kk: 'Keibır belsendı galaktikalar şyğaratyn tar ärı öte jyldam ağyndardy zertte.',
     },
   },
 });

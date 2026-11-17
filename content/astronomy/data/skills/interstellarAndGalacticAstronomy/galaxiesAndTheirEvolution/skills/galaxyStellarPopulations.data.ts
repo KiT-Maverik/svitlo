@@ -32,7 +32,7 @@ export const galaxyStellarPopulations_Skill_Data = defineSkill({
     et: 'Galaktikate tähepopulatsioonid',
     be: 'Зорныя папуляцыі галяктык',
     ka: 'გალაქტიკათა ვარსკვლავური პოპულაციები',
-    kk: 'Галактикалардың жұлдыздық популяциялары',
+    kk: 'Galaktikalardyñ jūldyzdyq populiatsiialary',
   },
   description: {
     methodological:
@@ -66,7 +66,7 @@ export const galaxyStellarPopulations_Skill_Data = defineSkill({
       et: 'Kasuta galaktika valgust, et järeldada erinevusi selle tähtedes ja tähtede tekkimise ajaloos.',
       be: 'Паводле сьвятла галяктыкі вызначай адрозьненьні яе зорак і гісторыі зораўтварэньня.',
       ka: 'გალაქტიკის სინათლით გამოიტანე დასკვნა მის ვარსკვლავებსა და ვარსკვლავთწარმოქმნის ისტორიაში განსხვავებებზე.',
-      kk: 'Галактика жарығынан оның жұлдыздары мен жұлдыз түзілу тарихындағы айырмашылықтарды анықта.',
+      kk: 'Galaktika jaryğynan onyñ jūldyzdary men jūldyz tüzılu tarihyndağy aiyrmaşylyqtardy anyqta.',
     },
   },
 });

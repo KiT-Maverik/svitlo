@@ -32,7 +32,7 @@ export const quasars_Skill_Data = defineSkill({
     et: 'Kvasarid',
     be: 'Квазары',
     ka: 'კვაზარები',
-    kk: 'Квазарлар',
+    kk: 'Kvazarlar',
   },
   description: {
     methodological:
@@ -66,7 +66,7 @@ export const quasars_Skill_Data = defineSkill({
       et: 'Tunne kvasarid ära eriti heledate aktiivsete galaktikatuumade näidetena.',
       be: 'Распазнавай квазары як надзвычай яркія прыклады актыўных ядраў галяктык.',
       ka: 'ამოიცანი კვაზარები, როგორც აქტიური გალაქტიკური ბირთვების უაღრესად კაშკაშა მაგალითები.',
-      kk: 'Квазарларды белсенді галактикалық ядролардың аса жарық мысалдары ретінде таны.',
+      kk: 'Kvazarlardy belsendı galaktikalyq iadrolardyñ asa jaryq mysaldary retınde tany.',
     },
   },
 });

@@ -32,7 +32,7 @@ export const galaxyGroupsAndClusters_Skill_Data = defineSkill({
     et: 'Galaktikarühmad ja -parved',
     be: 'Групы і скопішчы галяктык',
     ka: 'გალაქტიკათა ჯგუფები და გროვები',
-    kk: 'Галактика топтары мен шоғырлары',
+    kk: 'Galaktika toptary men şoğyrlary',
   },
   description: {
     methodological: 'Interpret gravitationally associated galaxy populations and their larger-scale environments.',
@@ -65,7 +65,7 @@ export const galaxyGroupsAndClusters_Skill_Data = defineSkill({
       et: 'Uuri, kuidas gravitatsioon koondab galaktikaid rühmadeks ja parvedeks.',
       be: 'Даведайся, як гравітацыя аб’ядноўвае галяктыкі ў групы і скопішчы.',
       ka: 'გაიგე, როგორ აერთიანებს გრავიტაცია გალაქტიკებს ჯგუფებად და გროვებად.',
-      kk: 'Тартылыс күшінің галактикаларды топтар мен шоғырларға қалай жинайтынын біл.',
+      kk: 'Tartylys küşınıñ galaktikalardy toptar men şoğyrlarğa qalai jinaitynyn bıl.',
     },
   },
 });

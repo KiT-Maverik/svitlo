@@ -32,7 +32,7 @@ export const interstellarChemicalCycling_Skill_Data = defineSkill({
     et: 'Tähtedevaheline keemiline ringlus',
     be: 'Міжзорны хімічны кругазварот',
     ka: 'ვარსკვლავთშორისი ქიმიური ციკლი',
-    kk: 'Жұлдызаралық химиялық айналым',
+    kk: 'Jūldyzaralyq himiialyq ainalym',
   },
   description: {
     methodological:
@@ -66,7 +66,7 @@ export const interstellarChemicalCycling_Skill_Data = defineSkill({
       et: 'Uuri, kuidas hääbuvad tähed annavad ainet kosmosesse tagasi uute tähepõlvkondade jaoks.',
       be: 'Даведайся, як зоркі напрыканцы жыцьця вяртаюць рэчыва ў космас для новых пакаленьняў зорак.',
       ka: 'გაიგე, როგორ აბრუნებენ მომაკვდავი ვარსკვლავები ნივთიერებას კოსმოსში ახალი თაობის ვარსკვლავებისთვის.',
-      kk: 'Өмірінің соңындағы жұлдыздар жаңа жұлдыз ұрпақтары үшін затты ғарышқа қалай қайтаратынын біл.',
+      kk: 'Ömırınıñ soñyndağy jūldyzdar jaña jūldyz ūrpaqtary üşın zatty ğaryşqa qalai qaitaratynyn bıl.',
     },
   },
 });

@@ -37,7 +37,7 @@ export const interstellarAndGalacticAstronomy_SkillDomain_Data = defineSkillDoma
     et: 'Tähtedevaheline ja galaktiline astronoomia',
     be: 'Міжзорная і галяктычная астраномія',
     ka: 'ვარსკვლავთშორისი და გალაქტიკური ასტრონომია',
-    kk: 'Жұлдызаралық және галактикалық астрономия',
+    kk: 'Jūldyzaralyq jäne galaktikalyq astronomiia',
   },
   groups: [
     activeGalacticNuclei_SkillGroup_Data,
@@ -77,7 +77,7 @@ export const interstellarAndGalacticAstronomy_SkillDomain_Data = defineSkillDoma
       et: 'Uuri tähtedevahelist ainet ning galaktikate tekkimist ja arengut.',
       be: 'Дасьледуй рэчыва паміж зоркамі і тое, як галяктыкі ўтвараюцца і разьвіваюцца.',
       ka: 'შეისწავლე ვარსკვლავებს შორის ნივთიერება და გალაქტიკების წარმოქმნა და ევოლუცია.',
-      kk: 'Жұлдыздар арасындағы затты, галактикалардың пайда болуы мен дамуын зертте.',
+      kk: 'Jūldyzdar arasyndağy zatty, galaktikalardyñ paida boluy men damuyn zertte.',
     },
   },
 });

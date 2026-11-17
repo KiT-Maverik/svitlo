@@ -32,7 +32,7 @@ export const interstellarDust_Skill_Data = defineSkill({
     et: 'Tähtedevaheline tolm',
     be: 'Міжзорны пыл',
     ka: 'ვარსკვლავთშორისი მტვერი',
-    kk: 'Жұлдызаралық шаң',
+    kk: 'Jūldyzaralyq şañ',
   },
   description: {
     methodological: 'Explain extinction, reddening and infrared emission caused by dust along astronomical sightlines.',
@@ -65,7 +65,7 @@ export const interstellarDust_Skill_Data = defineSkill({
       et: 'Uuri, kuidas tähtedevaheline tolm nõrgendab tähevalgust, muudab selle punasemaks ja kiirgab infrapunakiirgust.',
       be: 'Дасьледуй, як пыл аслабляе, чырваніць і паўторна выпраменьвае сьвятло зорак.',
       ka: 'ნახე, როგორ ასუსტებს და აწითლებს ვარსკვლავთშორისი მტვერი ვარსკვლავურ სინათლეს, ხოლო შთანთქმულ ენერგიას ინფრაწითელი გამოსხივების სახით გამოყოფს.',
-      kk: 'Шаң жұлдыз жарығын қалай бәсеңдетіп, қызартып және қайта сәуле шығаратынын түсін.',
+      kk: 'Şañ jūldyz jaryğyn qalai bäseñdetıp, qyzartyp jäne qaita säule şyğaratynyn tüsın.',
     },
   },
 });

@@ -32,7 +32,7 @@ export const galaxyMorphology_Skill_Data = defineSkill({
     et: 'Galaktikate morfoloogia',
     be: 'Марфалёгія галяктык',
     ka: 'გალაქტიკათა მორფოლოგია',
-    kk: 'Галактикалардың морфологиясы',
+    kk: 'Galaktikalardyñ morfologiiasy',
   },
   description: {
     methodological:
@@ -66,7 +66,7 @@ export const galaxyMorphology_Skill_Data = defineSkill({
       et: 'Erista spiraal-, elliptilisi ja ebakorrapäraseid galaktikaid, pidamata kuju nende täielikuks ajalooks.',
       be: 'Адрозьнівай сьпіральныя, эліптычныя й няправільныя галяктыкі, не ўважаючы форму за ўсю іхную гісторыю.',
       ka: 'ამოიცანი სპირალური, ელიფსური და არარეგულარული გალაქტიკები, მაგრამ ფორმა მათ სრულ ისტორიად არ მიიჩნიო.',
-      kk: 'Спираль, эллипстік және дұрыс емес галактикаларды таны, бірақ пішінін олардың бүкіл тарихы деп ойлама.',
+      kk: 'Spiral, ellipstık jäne dūrys emes galaktikalardy tany, bıraq pışının olardyñ bükıl tarihy dep oilama.',
     },
   },
 });

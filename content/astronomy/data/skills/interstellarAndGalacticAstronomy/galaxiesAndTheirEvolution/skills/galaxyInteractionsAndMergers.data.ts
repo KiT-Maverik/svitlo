@@ -32,7 +32,7 @@ export const galaxyInteractionsAndMergers_Skill_Data = defineSkill({
     et: 'Galaktikate vastastikmõjud ja ühinemised',
     be: 'Узаемадзеяньні і зьліцьці галяктык',
     ka: 'გალაქტიკათა ურთიერთქმედება და შერწყმა',
-    kk: 'Галактикалардың өзара әсері мен бірігуі',
+    kk: 'Galaktikalardyñ özara äserı men bırıguı',
   },
   description: {
     methodological: 'Explain how gravitational encounters alter galaxy structures, gas and star formation.',
@@ -65,7 +65,7 @@ export const galaxyInteractionsAndMergers_Skill_Data = defineSkill({
       et: 'Uuri, kuidas galaktikate vastastikmõjud ja ühinemised muudavad nende struktuuri, gaasi ja tähtede teket.',
       be: 'Паглядзі, як сустрэчы й зьліцьці зьмяняюць галяктыкі ды выклікаюць утварэньне новых зорак.',
       ka: 'ნახე, როგორ ცვლის შეხვედრები და შერწყმები გალაქტიკათა ფორმებს და ხელს უწყობს ახალი ვარსკვლავების წარმოქმნას.',
-      kk: 'Кездесулер мен бірігулер галактикалардың пішінін қалай өзгертіп, жаңа жұлдыздардың түзілуін қалай қозғайтынын көр.',
+      kk: 'Kezdesuler men bırıguler galaktikalardyñ pışının qalai özgertıp, jaña jūldyzdardyñ tüzıluın qalai qozğaitynyn kör.',
     },
   },
 });

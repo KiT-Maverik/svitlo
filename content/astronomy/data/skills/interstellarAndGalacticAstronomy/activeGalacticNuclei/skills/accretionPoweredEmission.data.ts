@@ -32,7 +32,7 @@ export const accretionPoweredEmission_Skill_Data = defineSkill({
     et: 'Akretsioonist tulenev kiirgus',
     be: 'Выпраменьваньне ад акрэцыі',
     ka: 'აკრეციით გამოწვეული გამოსხივება',
-    kk: 'Аккрециядан туатын сәулелену',
+    kk: 'Akkretsiiadan tuatyn säulelenu',
   },
   description: {
     methodological:
@@ -66,7 +66,7 @@ export const accretionPoweredEmission_Skill_Data = defineSkill({
       et: 'Õpi, kuidas musta augu poole langev aine võib tekitada tugevat kiirgust.',
       be: 'Даведайся, як рэчыва, што падае да чорнай дзіркі, можа ствараць магутнае выпраменьваньне.',
       ka: 'გაიგე, როგორ შეიძლება შავი ხვრელისკენ ვარდნილმა ნივთიერებამ ძლიერი გამოსხივება წარმოქმნას.',
-      kk: 'Қара құрдымға құлаған заттың күшті сәуле шығаруын түсін.',
+      kk: 'Qara qūrdymğa qūlağan zattyñ küştı säule şyğaruyn tüsın.',
     },
   },
 });

@@ -39,7 +39,7 @@ export const interstellarMatter_SkillGroup_Data = defineSkillGroup({
     et: 'Tähtedevaheline aine',
     be: 'Міжзорнае рэчыва',
     ka: 'ვარსკვლავთშორისი ნივთიერება',
-    kk: 'Жұлдызаралық зат',
+    kk: 'Jūldyzaralyq zat',
   },
   skills: [
     interstellarChemicalCycling_Skill_Data,
@@ -79,7 +79,7 @@ export const interstellarMatter_SkillGroup_Data = defineSkillGroup({
       et: 'Avasta, kuidas gaas, tolm ja magnetväljad mõjutavad tähtedevahelist ruumi.',
       be: 'Даведайся, як газ, пыл і магнітныя палі ўплываюць на прастору паміж зоркамі.',
       ka: 'გაიგე, როგორ მოქმედებს აირი, მტვერი და მაგნიტური ველები ვარსკვლავებს შორის სივრცეზე.',
-      kk: 'Газ, шаң мен магнит өрістерінің жұлдыздар арасындағы кеңістікке әсерін біл.',
+      kk: 'Gaz, şañ men magnit örısterınıñ jūldyzdar arasyndağy keñıstıkke äserın bıl.',
     },
   },
 });

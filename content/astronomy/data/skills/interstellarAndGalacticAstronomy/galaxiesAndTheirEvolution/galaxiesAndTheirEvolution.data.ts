@@ -39,7 +39,7 @@ export const galaxiesAndTheirEvolution_SkillGroup_Data = defineSkillGroup({
     et: 'Galaktikad ja nende areng',
     be: 'Галяктыкі і іхная эвалюцыя',
     ka: 'გალაქტიკები და მათი ევოლუცია',
-    kk: 'Галактикалар және олардың эволюциясы',
+    kk: 'Galaktikalar jäne olardyñ evoliutsiiasy',
   },
   skills: [
     galaxyGroupsAndClusters_Skill_Data,
@@ -79,7 +79,7 @@ export const galaxiesAndTheirEvolution_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri galaktikate erinevaid kujusid ning nende muutumist ajas.',
       be: 'Дасьледуй розныя формы галяктык і іхныя зьмены з часам.',
       ka: 'გამოიკვლიე გალაქტიკების სხვადასხვა ფორმა და მათი ცვლილება დროთა განმავლობაში.',
-      kk: 'Галактикалардың әртүрлі пішіндерін және уақыт өте қалай өзгеретінін зертте.',
+      kk: 'Galaktikalardyñ ärtürlı pışınderın jäne uaqyt öte qalai özgeretının zertte.',
     },
   },
 });
