@@ -128,7 +128,7 @@ test('canonical lowercase data/skills renders grouped and direct Skill hierarchi
     ]) {
       assert.match(a.stdout, new RegExp('^' + level + ' ' + label + ' ' + locale + '$', 'm'));
     }
-    assert.equal([...a.stdout.matchAll(/^\[([^\]]+\\.ts)\]\(([^)]+)\)$/gm)].length, 5);
+    assert.equal([...a.stdout.matchAll(/^\[([^\]]+\.ts)\]\(([^)]+)\)$/gm)].length, 5);
     assert.match(a.stdout, new RegExp('Frontend Grouped Skill ' + locale));
     assert.doesNotMatch(a.stdout, /^(Slug|Action|Status):/m);
     assert.equal(fs.existsSync(output(locale)), false, '--stdout never writes files');
