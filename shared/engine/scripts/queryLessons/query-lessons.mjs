@@ -123,7 +123,7 @@ function parseOutputOptions(args, existing = null) {
 }
 
 const safeText = value => String(value ?? '').slice(0, 180).replace(/[\x00-\x1f\x7f]/g, ' ')
-  .replace(/\\/g, '\\\\').replace(/([*_[\]()#+!|<>])/g, '\\$1');
+  .replace(/\\/g, '\\\\').replace(/([*_[\]()#+!|<>\x60])/g, '\\$1');
 export function sourceLink(sha, file) {
   if (!/^[a-f0-9]{40}$/.test(sha ?? '') || !/^content\/[a-z][a-z0-9-]*\/data\/lessons\/[0-9a-f]\/[a-f0-9-]{36}\//.test(file || '') ||
     file.split('/').some(x => x === '.' || x === '..' || !/^[a-zA-Z0-9._-]+$/.test(x))) return null;
