@@ -249,6 +249,7 @@ export function defineFlashcard<
     type,
     parameters: {
       ...structuredClone(authored.parameters),
+      disabilities: authored.parameters.disabilities ?? [],
       flags: {
         order: [...authored.parameters.flags.order],
         items: Object.fromEntries(
@@ -313,6 +314,7 @@ export function defineFlashcard<
         type,
         parameters: {
           ...publishedParameters,
+          disabilities: publishedParameters.disabilities ?? [],
           flags: flags.bases,
           ...(source.parameters.relationships
             ? {
@@ -369,7 +371,7 @@ export function defineFlashcard<
       if (patch.parameters !== undefined && !isRecord(patch.parameters))
         throw new Error('parameters must be an object');
       for (const key of Object.keys(patch.parameters ?? {})) {
-        if (!['disabled', 'tags', 'flags', 'relationships'].includes(key)) {
+        if (!['disabled', 'tags', 'disabilities', 'flags', 'relationships'].includes(key)) {
           throw new Error('Unknown Flashcard parameter override field: ' + key);
         }
       }
