@@ -118,7 +118,29 @@ describe('Configurators', () => {
         });
         const resource = card.build.props({ languages: ['en', 'uk'] });
         assert.deepEqual(resource.base.parameters.flags, []);
+        assert.deepEqual(resource.base.parameters.disabilities, []);
         assert.equal(resource.locale, undefined);
+      });
+
+      test('Flashcard validates disability restrictions and publishes safe overrides', () => {
+        const card = defineFlashcard({
+          ...source,
+          parameters: { ...source.parameters, disabilities: ['deafness'] },
+        });
+        assert.deepEqual(card.build.props({ languages: ['en'] }).base.parameters.disabilities, ['deafness']);
+        const patch = card.build.overrides(
+          { parameters: { disabilities: ['blindness'] } },
+          { languages: ['en'] },
+        );
+        assert.deepEqual(patch.base.parameters?.disabilities, ['blindness']);
+        assert.deepEqual(card.build.props({ languages: ['en'] }).base.parameters.disabilities, ['deafness']);
+        assert.equal(
+          flashcard_Config_Schema.safeParse({
+            ...source,
+            parameters: { ...source.parameters, disabilities: ['blindness', 'blindness'] },
+          }).success,
+          false,
+        );
       });
 
       test('Flashcard composes ordered sides and named flags as JSON-only published Props', () => {
