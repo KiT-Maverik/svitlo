@@ -157,8 +157,8 @@ export function defineSkillDomain<
         locale[language] = entries.map(resource =>
           parse(
             mergeForValidation(
-              resource.base as DeepPartial<Props>,
-              (resource.locale?.[language] ?? {}) as DeepPartial<Props>,
+              resource.base,
+              (resource.locale?.[language] ?? {}) as DeepPartial<typeof resource.base>,
             ),
           ),
         );

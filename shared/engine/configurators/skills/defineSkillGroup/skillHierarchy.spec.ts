@@ -81,7 +81,7 @@ describe('Configurators', () => {
         name: { en: 'Duplicate', uk: 'Дублікат' },
         description: { methodological: 'Duplicate', frontend: { en: 'Duplicate', uk: 'Дублікат' } },
       });
-      const duplicates = defineSkillGroup({
+      const duplicates = defineSkillGroup<'duplicates', { balance: typeof balance; duplicate: typeof duplicateId }, ['uk']>({
         id: id('05'),
         slug: 'duplicates',
         name: { en: 'Duplicates', uk: 'Дублікати' },
@@ -89,7 +89,7 @@ describe('Configurators', () => {
         skills: { balance, duplicate: duplicateId },
       });
       assert.throws(() => duplicates.build.props({ languages: ['uk'] }), /Duplicate Skill ID/);
-      const mismatch = defineSkillGroup({
+      const mismatch = defineSkillGroup<'mismatch', { wrongKey: typeof balance }, ['uk']>({
         id: id('06'),
         slug: 'mismatch',
         name: { en: 'Mismatch', uk: 'Невідповідність' },
@@ -124,7 +124,7 @@ describe('Configurators', () => {
       assert.deepEqual(published.base.groups?.map(x => x!.slug), ['mechanics']);
       assert.deepEqual(published.locale?.uk?.groups?.[0]?.skills?.map(x => x!.name), ['Рівновага', 'Motion']);
       assert.equal(JSON.stringify(published).includes('"order"'), false);
-      const standalone = defineSkillDomain({
+      const standalone = defineSkillDomain<'standalone', {}, { direct: typeof direct }, ['uk']>({
         id: id('09'),
         slug: 'standalone',
         title: { en: 'Standalone', uk: 'Окремий' },
@@ -142,7 +142,7 @@ describe('Configurators', () => {
         name: { en: 'Mechanics', uk: 'Механіка' },
         description: { methodological: 'Collision' },
       });
-      const collisions = defineSkillDomain({
+      const collisions = defineSkillDomain<'collisions', { mechanics: typeof group }, { mechanics: typeof collidingSkill }, ['uk']>({
         id: id('11'),
         slug: 'collisions',
         title: { en: 'Collisions', uk: 'Колізії' },
