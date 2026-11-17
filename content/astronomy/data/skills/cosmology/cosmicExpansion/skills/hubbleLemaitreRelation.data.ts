@@ -32,7 +32,7 @@ export const hubbleLemaitreRelation_Skill_Data = defineSkill({
     et: 'Hubble’i–Lemaître’i seos',
     be: 'Залежнасьць Габла–Лемэтра',
     ka: 'ჰაბლ–ლემეტრის თანაფარდობა',
-    kk: 'Хаббл–Леметр қатынасы',
+    kk: 'Habbl–Lemetr qatynasy',
   },
   description: {
     methodological:
@@ -66,7 +66,7 @@ export const hubbleLemaitreRelation_Skill_Data = defineSkill({
       et: 'Seosta galaktikate mõõdetud kaugused ja punanihked Universumi paisumise tõenditega.',
       be: 'Зьвяжы вымераныя адлегласьці да галяктык і чырвоныя зрухі са сьведчаньнямі пашырэньня Сусьвету.',
       ka: 'დააკავშირე გაზომილი გალაქტიკური მანძილები და წითელი წანაცვლებები სამყაროს გაფართოების მტკიცებულებებთან.',
-      kk: 'Өлшенген галактика қашықтықтары мен қызыл ығысуды Ғаламның кеңею дәлелдерімен байланыстыр.',
+      kk: 'Ölşengen galaktika qaşyqtyqtary men qyzyl yğysudy Ğalamnyñ keñeiu dälelderımen bailanystyr.',
     },
   },
 });

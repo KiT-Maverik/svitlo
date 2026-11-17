@@ -34,7 +34,7 @@ export const cosmicStructureAndEvolution_SkillGroup_Data = defineSkillGroup({
     et: 'Kosmiline struktuur ja areng',
     be: 'Структура й эвалюцыя Сусьвету',
     ka: 'კოსმოსური სტრუქტურა და ევოლუცია',
-    kk: 'Ғарыштық құрылым және эволюция',
+    kk: 'Ğaryştyq qūrylym jäne evoliutsiia',
   },
   skills: [cosmicStructureFormation_Skill_Data, cosmicWeb_Skill_Data],
   description: {
@@ -69,7 +69,7 @@ export const cosmicStructureAndEvolution_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri, kuidas gravitatsioon kujundab kosmilise ajaloo jooksul ainest suuri struktuure.',
       be: 'Дасьледуй, як гравітацыя ўтварае з рэчыва вялікія структуры цягам гісторыі Сусьвету.',
       ka: 'გამოიკვლიე, როგორ აყალიბებს გრავიტაცია ნივთიერების დიდ სტრუქტურებს სამყაროს ისტორიის განმავლობაში.',
-      kk: 'Гравитация Ғалам тарихында заттан ірі құрылымдарды қалай жасайтынын зертте.',
+      kk: 'Gravitatsiia Ğalam tarihynda zattan ırı qūrylymdardy qalai jasaitynyn zertte.',
     },
   },
 });

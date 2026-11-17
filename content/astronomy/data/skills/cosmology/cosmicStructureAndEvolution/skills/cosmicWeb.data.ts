@@ -32,7 +32,7 @@ export const cosmicWeb_Skill_Data = defineSkill({
     et: 'Kosmiline võrgustik',
     be: 'Касьмічнае павуціньне',
     ka: 'კოსმოსური ქსელი',
-    kk: 'Ғарыштық тор',
+    kk: 'Ğaryştyq tor',
   },
   description: {
     methodological: 'Describe how filaments, clusters and voids trace the large-scale distribution of matter.',
@@ -65,7 +65,7 @@ export const cosmicWeb_Skill_Data = defineSkill({
       et: 'Uuri tohutut galaktikafilamentide, parvede ja tühjade piirkondade võrgustikku.',
       be: 'Дасьледуй велізарную сетку галяктычных нітак, скопішчаў і пустых абласьцей.',
       ka: 'გამოიკვლიე გალაქტიკური ძაფების, გროვებისა და ცარიელი უბნების უზარმაზარი ქსელი.',
-      kk: 'Галактика талшықтары, шоғырлары мен бос аймақтардан тұратын алып торды зертте.',
+      kk: 'Galaktika talşyqtary, şoğyrlary men bos aimaqtardan tūratyn alyp tordy zertte.',
     },
   },
 });

@@ -32,7 +32,7 @@ export const cosmicStructureFormation_Skill_Data = defineSkill({
     et: 'Kosmiliste struktuuride teke',
     be: 'Фармаваньне касьмічных структур',
     ka: 'კოსმოსური სტრუქტურების ჩამოყალიბება',
-    kk: 'Ғарыштық құрылымның қалыптасуы',
+    kk: 'Ğaryştyq qūrylymnyñ qalyptasuy',
   },
   description: {
     methodological:
@@ -66,7 +66,7 @@ export const cosmicStructureFormation_Skill_Data = defineSkill({
       et: 'Uuri, kuidas väikesed varased aine tiheduse erinevused arenesid kosmilisteks struktuurideks.',
       be: 'Даведайся, як невялікія пачатковыя адрозьненьні шчыльнасьці рэчыва вырасьлі ў касьмічныя структуры.',
       ka: 'გაიგე, როგორ გადაიქცა ნივთიერების ადრეული სიმკვრივის მცირე განსხვავებები კოსმოსურ სტრუქტურებად.',
-      kk: 'Ерте кездегі зат тығыздығының шағын айырмашылықтары ғарыштық құрылымдарға қалай айналғанын біл.',
+      kk: 'Erte kezdegı zat tyğyzdyğynyñ şağyn aiyrmaşylyqtary ğaryştyq qūrylymdarğa qalai ainalğanyn bıl.',
     },
   },
 });

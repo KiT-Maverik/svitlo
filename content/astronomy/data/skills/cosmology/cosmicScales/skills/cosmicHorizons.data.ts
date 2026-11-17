@@ -32,7 +32,7 @@ export const cosmicHorizons_Skill_Data = defineSkill({
     et: 'Kosmilised horisondid',
     be: 'Касьмічныя гарызонты',
     ka: 'კოსმოსური ჰორიზონტები',
-    kk: 'Ғарыштық көкжиектер',
+    kk: 'Ğaryştyq kökjiekter',
   },
   description: {
     methodological:
@@ -66,7 +66,7 @@ export const cosmicHorizons_Skill_Data = defineSkill({
       et: 'Uuri piire, kui kaugelt signaalid saavad meieni jõuda või teisi piirkondi mõjutada.',
       be: 'Дасьледуй межы, да якіх сыгналы могуць дасягнуць нас ці паўплываць на іншыя вобласьці.',
       ka: 'გამოიკვლიე საზღვრები, საიდანაც სიგნალები ჩვენამდე მოდის ან სხვა უბნებზე ახდენს გავლენას.',
-      kk: 'Сигналдардың бізге жету немесе басқа аймақтарға әсер ету мүмкіндігінің шектерін зертте.',
+      kk: 'Signaldardyñ bızge jetu nemese basqa aimaqtarğa äser etu mümkındıgınıñ şekterın zertte.',
     },
   },
 });

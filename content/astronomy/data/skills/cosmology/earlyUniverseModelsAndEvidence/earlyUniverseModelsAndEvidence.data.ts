@@ -39,7 +39,7 @@ export const earlyUniverseModelsAndEvidence_SkillGroup_Data = defineSkillGroup({
     et: 'Varase Universumi mudelid ja tõendid',
     be: 'Мадэлі й сьведчаньні раньняга Сусьвету',
     ka: 'ადრეული სამყაროს მოდელები და მტკიცებულებები',
-    kk: 'Ерте Ғаламның модельдері мен дәлелдері',
+    kk: 'Erte Ğalamnyñ modelderı men dälelderı',
   },
   skills: [
     cosmicInflation_Skill_Data,
@@ -79,7 +79,7 @@ export const earlyUniverseModelsAndEvidence_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri tõendeid, mille abil taastatakse varase kuuma Universumi ajalugu.',
       be: 'Дасьледуй сьведчаньні, па якіх аднаўляюць стан раньняга гарачага Сусьвету.',
       ka: 'გამოიკვლიე მტკიცებულებები, რომლებითაც ადრეულ ცხელ სამყაროს აღადგენენ.',
-      kk: 'Ерте ыстық Ғаламды қалпына келтіруге қолданылатын деректерді зертте.',
+      kk: 'Erte ystyq Ğalamdy qalpyna keltıruge qoldanylatyn derekterdı zertte.',
     },
   },
 });

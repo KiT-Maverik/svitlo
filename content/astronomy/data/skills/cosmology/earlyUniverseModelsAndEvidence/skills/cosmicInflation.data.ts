@@ -32,7 +32,7 @@ export const cosmicInflation_Skill_Data = defineSkill({
     et: 'Kosmiline inflatsioon',
     be: 'Касьмічная інфляцыя',
     ka: 'კოსმოსური ინფლაცია',
-    kk: 'Ғарыштық инфляция',
+    kk: 'Ğaryştyq infliatsiia',
   },
   description: {
     methodological:
@@ -66,7 +66,7 @@ export const cosmicInflation_Skill_Data = defineSkill({
       et: 'Uuri kosmilise inflatsiooni ideed ning erista ennustusi kinnitatud tõenditest.',
       be: 'Дасьледуй ідэю касьмічнай інфляцыі й адрозьнівай прадказаньні ад пацьверджаных сьведчаньняў.',
       ka: 'გამოიკვლიე კოსმოსური ინფლაციის იდეა და განასხვავე წინასწარმეტყველებები დადასტურებული მტკიცებულებებისგან.',
-      kk: 'Ғарыштық инфляция идеясын зерттеп, болжамдар мен расталған дәлелдерді ажырат.',
+      kk: 'Ğaryştyq infliatsiia ideiasyn zerttep, boljamdar men rastalğan dälelderdı ajyrat.',
     },
   },
 });

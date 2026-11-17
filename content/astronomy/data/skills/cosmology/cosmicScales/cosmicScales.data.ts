@@ -39,7 +39,7 @@ export const cosmicScales_SkillGroup_Data = defineSkillGroup({
     et: 'Kosmilised mastaabid',
     be: 'Касьмічныя маштабы',
     ka: 'კოსმოსური მასშტაბები',
-    kk: 'Ғарыштық ауқымдар',
+    kk: 'Ğaryştyq auqymdar',
   },
   skills: [
     cosmicDistanceMeasures_Skill_Data,
@@ -79,7 +79,7 @@ export const cosmicScales_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri tohutuid kaugusi ja ajavahemikke, mis kaasnevad kosmose vaatlemisega.',
       be: 'Дасьледуй велізарныя адлегласьці й прамежкі часу, зьвязаныя з назіраньнем космасу.',
       ka: 'შეისწავლე კოსმოსის დაკვირვებასთან დაკავშირებული უზარმაზარი მანძილები და დრო.',
-      kk: 'Ғарышты бақылауға қатысты орасан қашықтықтар мен уақыт аралықтарын зертте.',
+      kk: 'Ğaryşty baqylauğa qatysty orasan qaşyqtyqtar men uaqyt aralyqtaryn zertte.',
     },
   },
 });

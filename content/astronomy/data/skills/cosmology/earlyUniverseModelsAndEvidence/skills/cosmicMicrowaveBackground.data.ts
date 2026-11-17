@@ -32,7 +32,7 @@ export const cosmicMicrowaveBackground_Skill_Data = defineSkill({
     et: 'Kosmiline mikrolainetaustkiirgus',
     be: 'Касьмічнае мікрахвалевае фонавае выпраменьваньне',
     ka: 'კოსმოსური მიკროტალღური ფონი',
-    kk: 'Ғарыштық микротолқынды фон',
+    kk: 'Ğaryştyq mikrotolqyndy fon',
   },
   description: {
     methodological:
@@ -66,7 +66,7 @@ export const cosmicMicrowaveBackground_Skill_Data = defineSkill({
       et: 'Uuri varasest Universumist jäänud nõrka mikrolainekiirgust.',
       be: 'Дасьледуй слабае мікрахвалевае выпраменьваньне, што засталося ад раньняга Сусьвету.',
       ka: 'შეისწავლე ადრეული სამყაროდან შემორჩენილი სუსტი მიკროტალღური გამოსხივება.',
-      kk: 'Ерте Ғаламнан қалған әлсіз микротолқынды сәулеленуді зертте.',
+      kk: 'Erte Ğalamnan qalğan älsız mikrotolqyndy säulelenudı zertte.',
     },
   },
 });

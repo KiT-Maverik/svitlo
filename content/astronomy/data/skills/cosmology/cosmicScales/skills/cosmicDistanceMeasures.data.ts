@@ -32,7 +32,7 @@ export const cosmicDistanceMeasures_Skill_Data = defineSkill({
     et: 'Kosmilised kaugusmõõdud',
     be: 'Касьмічныя меры адлегласьці',
     ka: 'კოსმოსური მანძილის საზომები',
-    kk: 'Ғарыштық қашықтық өлшемдері',
+    kk: 'Ğaryştyq qaşyqtyq ölşemderı',
   },
   description: {
     methodological:
@@ -66,7 +66,7 @@ export const cosmicDistanceMeasures_Skill_Data = defineSkill({
       et: 'Võrdle erinevaid viise, kuidas kosmoloogid kaugust määratlevad ja mõõdavad.',
       be: 'Параўноўвай розныя спосабы вызначэньня й вымярэньня адлегласьцяў у касмалёгіі.',
       ka: 'შეადარე, როგორ განსაზღვრავენ და ზომავენ კოსმოლოგები მანძილს სხვადასხვა გზით.',
-      kk: 'Космологтардың қашықтықты анықтау мен өлшеудің әртүрлі жолдарын салыстыр.',
+      kk: 'Kosmologtardyñ qaşyqtyqty anyqtau men ölşeudıñ ärtürlı joldaryn salystyr.',
     },
   },
 });

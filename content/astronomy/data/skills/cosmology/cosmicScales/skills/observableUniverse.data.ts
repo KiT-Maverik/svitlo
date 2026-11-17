@@ -32,7 +32,7 @@ export const observableUniverse_Skill_Data = defineSkill({
     et: 'Vaadeldav Universum',
     be: 'Назіраны Сусьвет',
     ka: 'დაკვირვებადი სამყარო',
-    kk: 'Бақыланатын Ғалам',
+    kk: 'Baqylanatyn Ğalam',
   },
   description: {
     methodological:
@@ -66,7 +66,7 @@ export const observableUniverse_Skill_Data = defineSkill({
       et: 'Mõista, miks vaadeldav Universum ei pruugi olla kogu Universum.',
       be: 'Зразумей, чаму назіраны Сусьвет не абавязкова зьяўляецца ўсім Сусьветам.',
       ka: 'გაიგე, რატომ არ არის დაკვირვებადი სამყარო აუცილებლად მთელი სამყარო.',
-      kk: 'Бақыланатын Ғалам міндетті түрде бүкіл Ғалам емес екенін түсін.',
+      kk: 'Baqylanatyn Ğalam mındettı türde bükıl Ğalam emes ekenın tüsın.',
     },
   },
 });

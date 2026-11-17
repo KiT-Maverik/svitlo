@@ -32,7 +32,7 @@ export const lookbackTime_Skill_Data = defineSkill({
     et: 'Tagasivaateaeg',
     be: 'Час погляду ў мінулае',
     ka: 'წარსულში ხედვის დრო',
-    kk: 'Өткенге көз жіберу уақыты',
+    kk: 'Ötkenge köz jıberu uaqyty',
   },
   description: {
     methodological: 'Explain why distant observations show objects at earlier cosmic epochs.',
@@ -65,7 +65,7 @@ export const lookbackTime_Skill_Data = defineSkill({
       et: 'Uuri, miks kaugemale kosmosesse vaatamine tähendab ka kaugemale minevikku vaatamist.',
       be: 'Даведайся, чаму назіраць далейшыя аб’екты ў космасе азначае таксама глядзець у мінулае.',
       ka: 'გაიგე, რატომ ნიშნავს კოსმოსში უფრო შორს გახედვა წარსულში უფრო შორს გახედვასაც.',
-      kk: 'Ғарышта алысырақ қарау неге өткенге қарау да болатынын біл.',
+      kk: 'Ğaryşta alysyraq qarau nege ötkenge qarau da bolatynyn bıl.',
     },
   },
 });

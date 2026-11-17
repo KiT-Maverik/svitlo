@@ -38,7 +38,7 @@ export const cosmology_SkillDomain_Data = defineSkillDomain({
     et: 'Kosmoloogia',
     be: 'Касмалёгія',
     ka: 'კოსმოლოგია',
-    kk: 'Космология',
+    kk: 'Kosmologiia',
   },
   groups: [
     cosmicComponentsAndConstraints_SkillGroup_Data,
@@ -79,7 +79,7 @@ export const cosmology_SkillDomain_Data = defineSkillDomain({
       et: 'Uuri Universumi paisumist, ajalugu ja suuremõõtmelist struktuuri astronoomiliste tõendite abil.',
       be: 'Дасьледуй пашырэньне, гісторыю й буйнамаштабную структуру Сусьвету паводле астранамічных сьведчаньняў.',
       ka: 'ასტრონომიული მტკიცებულებებით შეისწავლე სამყაროს გაფართოება, ისტორია და დიდი მასშტაბის სტრუქტურა.',
-      kk: 'Астрономиялық деректер арқылы Ғаламның кеңеюін, тарихын және ірі ауқымды құрылымын зертте.',
+      kk: 'Astronomiialyq derekter arqyly Ğalamnyñ keñeiuın, tarihyn jäne ırı auqymdy qūrylymyn zertte.',
     },
   },
 });
