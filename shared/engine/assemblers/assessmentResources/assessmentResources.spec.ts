@@ -4,6 +4,7 @@ import test from 'node:test';
 import {
   assessmentResourcePath,
   selectQuizQuestionIds,
+  selectAccessibleFlashcardIds,
   validateAssessmentReferences,
   type AssessmentResourceManifest,
 } from './assessmentResources';
