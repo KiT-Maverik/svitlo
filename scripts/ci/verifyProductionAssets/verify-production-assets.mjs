@@ -49,34 +49,71 @@ function inspect(root, relative, findings) {
   }
 }
 
+/**
+ * Question/Flashcard child PRs can be Ready before their parent Lesson is.
+ * Check each touched bank and its changed Quiz/Flashcards Section source without
+ * requiring unrelated parent Lesson media or the sibling bank to be complete.
+ * A parent Lesson change still checks the entire Lesson and both banks.
+ */
+export function affectedProductionScopes(changedPaths) {
+  return affectedEntities(changedPaths).map(entity => {
+    const changes = changedPaths.map(name => name.startsWith(entity + '/') ? name.slice(entity.length + 1) : null)
+      .filter(Boolean);
+    if (entity.includes('/data/courses/')) return { entity, mode: 'whole', banks: [], sections: [] };
+    const banks = ['questions', 'flashcards'].filter(bank =>
+      changes.some(name => name === bank + '.yaml' || name.startsWith(bank + '/')));
+    const sections = changes.filter(name => name.startsWith('sections/') && sourceExtension.test(name));
+    const unrelated = changes.some(name =>
+      !name.startsWith('sections/') &&
+      !['questions', 'flashcards'].some(bank => name === bank + '.yaml' || name.startsWith(bank + '/')));
+    return banks.length && !unrelated
+      ? { entity, mode: 'banks', banks, sections }
+      : { entity, mode: 'whole', banks: [], sections: [] };
+  });
+}
+
 export function verifyChangedEntities(root, changedPaths) {
   const findings = [];
-  for (const relative of affectedEntities(changedPaths)) {
-    const full = path.join(root, relative);
-    if (!fs.existsSync(full)) continue; // The whole entity was removed in this PR.
+  for (const { entity, mode, banks, sections } of affectedProductionScopes(changedPaths)) {
+    const full = path.join(root, entity);
+    if (!fs.existsSync(full)) continue; // An entity genuinely deleted by this PR.
     if (fs.lstatSync(full).isSymbolicLink()) {
-      findings.push(relative + ': symlink entity root');
+      findings.push(entity + ': symlink entity root');
       continue;
     }
     if (!fs.statSync(full).isDirectory()) {
-      findings.push(relative + ': expected directory');
+      findings.push(entity + ': expected directory');
       continue;
     }
-    const isLesson = relative.includes('/data/lessons/');
+    if (mode === 'banks') {
+      for (const bank of banks) {
+        const bankEntry = path.join(full, bank, 'index.ts');
+        if (!fs.existsSync(bankEntry)) {
+          findings.push(entity + '/' + bank + '/index.ts: missing authored ' + bank + ' bank entrypoint');
+        }
+        if (fs.existsSync(path.join(full, bank + '.yaml'))) {
+          findings.push(entity + '/' + bank + '.yaml: unfinished temporary bank YAML');
+        }
+        inspect(root, entity + '/' + bank, findings);
+      }
+      for (const section of sections) inspect(root, entity + '/' + section, findings);
+      continue;
+    }
+    const isLesson = entity.includes('/data/lessons/');
     const hasRoot = fs.existsSync(path.join(full, 'index.ts')) ||
       fs.readdirSync(full).some(name => name.endsWith('.data.ts'));
     if (!hasRoot) {
-      findings.push(relative + ': missing authored ' + (isLesson ? 'Lesson' : 'Course') + ' TypeScript entrypoint');
+      findings.push(entity + ': missing authored ' + (isLesson ? 'Lesson' : 'Course') + ' TypeScript entrypoint');
     }
     const temporary = isLesson
       ? ['lesson.yaml', 'questions.yaml', 'flashcards.yaml']
       : ['course.yaml', 'config.yaml'];
     for (const name of temporary) {
       if (fs.existsSync(path.join(full, name))) {
-        findings.push(relative + '/' + name + ': unfinished temporary authoring YAML');
+        findings.push(entity + '/' + name + ': unfinished temporary authoring YAML');
       }
     }
-    inspect(root, relative, findings);
+    inspect(root, entity, findings);
   }
   return findings;
 }
@@ -85,7 +122,7 @@ export function changedPaths(base, head, repoRoot) {
   if (![base, head].every(value => /^[0-9a-f]{40}$/.test(value))) {
     throw new Error('Expected two full Git commit SHAs');
   }
-  return execFileSync('git', ['diff', '--name-only', '--diff-filter=ACMR', base, head, '--', 'content'], {
+  return execFileSync('git', ['diff', '--name-only', '--diff-filter=ACMRD', base, head, '--', 'content'], {
     cwd: repoRoot,
     encoding: 'utf8',
   }).split('\n').map(value => value.trim()).filter(Boolean);
