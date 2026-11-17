@@ -26,7 +26,7 @@ Every stage uses five statuses: **not started** (no verified work), **in progres
 
 **Owner:** [Methodologist](../../personas/methodist.persona.md). **Skills:** [Create Course Methodology](./create-course-methodology.skill.md), [Skill Taxonomy Workflow](../skill-taxonomy-workflow/README.md). **Prerequisites:** approved Course intent; real target textbook/package; verified Course identity or authorization to create one.
 
-Interview the owner about identity, target audience (preschool through adult), level, entry knowledge, outcomes, scope/depth, teaching approach, accessibility, source language, target languages and *specific* standards versions where relevant. Do **not** ask about `scenarioMode` or choose a story. Keep legacy technical scenario fields untouched if editing an existing Course.
+Interview the owner about identity, target audience (preschool through adult), level, entry knowledge, outcomes, scope/depth, teaching approach, accessibility, source language, target languages and _specific_ standards versions where relevant. Do **not** ask about `scenarioMode` or choose a story. Keep legacy technical scenario fields untouched if editing an existing Course.
 
 Use `resolveEntityPath` for Course UUID location; initialize the parent Draft PR with the tracker below and correct GitHub labels. Generate an English taxonomy view read-only with:
 `node shared/engine/scripts/generateSkillsTaxonomy/generate-skills-taxonomy.mjs --package content/<book> --locale en --stdout`.
@@ -38,7 +38,7 @@ Verify exact Skill/Group/Domain UUIDs against source. Distinguish **entry prereq
 
 **Owner:** [Methodologist](../../personas/methodist.persona.md). **Skill:** [Create Course TOC](./create-course-toc.skill.md) in its **macrostructure-only** mode. **Prerequisite:** accepted Stage 1 methodological scope.
 
-In the *same* `course.yaml`, author ordered Course/Module/Chapter groups, stable keys/slugs, measurable outcomes, rationale, prerequisites, scope distribution and depth. Course may have direct Chapters or Lessons; Modules may have Chapters and/or Lessons; Chapters may have Lessons. Do not add wrapper Modules solely for bookkeeping. **No Lesson slots, Lesson queries, Episodes, scenario decisions or Screenwriter here.** Module/Chapter methodology is editorial, not an extra Runtime Props field.
+In the _same_ `course.yaml`, author ordered Course/Module/Chapter groups, stable keys/slugs, measurable outcomes, rationale, prerequisites, scope distribution and depth. Course may have direct Chapters or Lessons; Modules may have Chapters and/or Lessons; Chapters may have Lessons. Do not add wrapper Modules solely for bookkeeping. **No Lesson slots, Lesson queries, Episodes, scenario decisions or Screenwriter here.** Module/Chapter methodology is editorial, not an extra Runtime Props field.
 
 **Complete:** accepted entire macrostructure with no unresolved ordering/coverage decision. **Handoff:** bounded Module-specific Lesson design; if no Modules, use bounded Course/Chapter units.
 
@@ -50,6 +50,7 @@ For the temporary editorial source, run the **read-only stage validator**:
 **Owner:** [Methodologist](../../personas/methodist.persona.md); [Assessment Architect](../../personas/learning-assessment-architect.persona.md) reviews assessment intent. **Skills:** [Create Course TOC](./create-course-toc.skill.md) for slots, [Match Course TOC Lessons](./match-course-toc-lessons.skill.md), [Create Lesson Brief](../lesson-workflow/create-lesson-brief.skill.md), [Manage Lesson Production](../lesson-workflow/manage-lesson-production.skill.md). **Prerequisite:** accepted Stage 2 unit structure.
 
 For **each** Module/selected bounded unit, perform these three tasks **in order**:
+
 1. **Design Lesson slots.** Choose stable slot keys, observable learner outcomes, depth, sequence rationale, exact verified Skill IDs and prerequisites. This is the first stage where slots exist.
 2. **Match existing Lessons.** Use read-only `/get lesson by skill <uuid> --package content/<book>` on an authorized open PR. The default-branch feature from merged PR #638 also supports `/get lesson by id <uuid>` and multi-Skill `--match all`. If the workflow is unavailable or not operational, use `node shared/engine/scripts/queryLessons/query-lessons.mjs --by skill --skill <uuid> --package content/<book> --format json --stdout` and report completeness diagnostics. Compare candidate methodology, implementation vs draft status, real supported languages, prerequisite fit and assessment coverage. `complete: false` is not evidence of absence. Reuse the existing Lesson UUID; absent target translation is a Lesson Translation Production dependency, not a duplicate Lesson.
 3. **Prepare missing Lesson methodologies only.** For genuinely missing Lessons, authorize separate standalone UUIDs and detailed Methodologist briefs with verified Skills, independent prerequisites, educational plan and `assessmentPlan` (possibly several Quizzes). Coordinate one Lesson Production Issue for an explicit batch, not a redundant Issue per Lesson. Do not implement Lesson data in Course files.
@@ -70,7 +71,7 @@ Review outcome coverage, sequencing, cognitive progression, Domain/Group/Skill g
 
 **Owner:** [Coding Agent](../../personas/coding-agent.persona.md). **References:** [technical YAML handoff](../../docs/architecture/yaml-config-scaffolding.md), Engine `courseBuilder` and `generateYamlSchemas` entrypoints and adjacent tests. **Prerequisite:** Stage 4 source-SHA approval.
 
-Map approved editorial `course.yaml` **explicitly** into technical `config.yaml` (`config` + optional `production` + direct sparse `overrides`). The former is a stage-aware methodological plan, *not* the builder's Engine Config schema. Do not guess missing UUIDs, Lesson imports, language copies or generated assets. Use current Course/Module/Chapter Config Zod and Zod-derived editor schemas. Preserve stable `items/order` keys and single UUID Course identity.
+Map approved editorial `course.yaml` **explicitly** into technical `config.yaml` (`config` + optional `production` + direct sparse `overrides`). The former is a stage-aware methodological plan, _not_ the builder's Engine Config schema. Do not guess missing UUIDs, Lesson imports, language copies or generated assets. Use current Course/Module/Chapter Config Zod and Zod-derived editor schemas. Preserve stable `items/order` keys and single UUID Course identity.
 
 Materialize the independently approved editorial plan with `node shared/engine/scripts/materializeCourseFlow/materialize-course-flow.mjs --package content/<book> --course <uuid> --write`; use `--check` for reproducible verification, and after an independently inspected handoff in a subsequent commit use `--finalize` to delete the temporary `course.yaml`. The existing generic `courseBuilder` remains for other technical Config-shaped drafts, not for producing the modular layout. Target Course-owned `index.ts`, optional `constants.ts`, `modules/index.ts` + `modules/<slug>.ts`, `chapters/index.ts` + `chapters/<slug>.ts` and durable `methodology.md`. **Do not** generate Episodes automatically or create Lesson TypeScript or copy their methodology. Respect no-clobber; if files already exist, reconcile explicitly rather than overwriting. Generation may produce intentionally incomplete TypeScript, which is not automatically a generator defect. Validate correct sources/identities/imports and run scoped checks.
 
@@ -111,7 +112,9 @@ Copy and initialize the following **once** when creating a new Course parent int
 
 ```md
 <!-- svitlo-course-flow:v1 -->
+
 ## Course identity
+
 - Course UUID: <uuid>
 - Textbook: content/<book>
 - Source plan: content/<book>/data/courses/<bucket>/<uuid>/course.yaml
@@ -122,6 +125,7 @@ Copy and initialize the following **once** when creating a new Course parent int
 - Active subtask/PR: <link or none>
 
 ## Workflow
+
 - [ ] 1. Create Course Methodology
 - [ ] 2. Design Course Structure
 - [ ] 3. Design & Match Lessons
@@ -137,9 +141,11 @@ Copy and initialize the following **once** when creating a new Course parent int
   - [ ] <target locale>
 
 ## Handoffs / blockers
+
 - <stage, Module or locale, source SHA, evidence link, issue, precise next action>
 
 <!-- svitlo-course-lessons:start -->
+
 ## Lessons
 
 Inventory SHA: <parent-course-head-sha>
@@ -156,6 +162,7 @@ Lesson inventory not allocated yet.
 
 ```md
 <!-- svitlo-course-lesson:v1 -->
+
 Course: <course-uuid>
 Lesson: <lesson-uuid>
 Parent PR: #<parent-pr-number>
@@ -165,4 +172,4 @@ Match **only** exact validated UUIDs/parent/repository and Course membership. Pr
 
 Only a trusted synchronizer updates the managed Lessons sentinel block, under serialized PR updates and with an exact PR head SHA. The manual stages, Module tasks, locales, editorial approvals and blockers must remain byte-identical. Do not assume a GitHub PR description PATCH is atomic: compare latest body and reject concurrent non-managed edits. API errors/ambiguous inventory must show **incomplete**, not a green Lesson count; preserve the previous good manual PR body. The sync is idempotent, reports orphaned PR claims, and never executes PR-head code with a write-permission token.
 
-**Verification:** test stage 3/5 inventory, direct/Chapter/Module references, reused Lesson, draft YAML versus typed source, duplicate placements and claims, all PR states, sentinels/idempotence, stale SHA, bounded pagination and safe GitHub permission boundaries. Check workflow availability on **default branch** before relying on `/course-status sync` as a live command. 
+**Verification:** test stage 3/5 inventory, direct/Chapter/Module references, reused Lesson, draft YAML versus typed source, duplicate placements and claims, all PR states, sentinels/idempotence, stale SHA, bounded pagination and safe GitHub permission boundaries. Check workflow availability on **default branch** before relying on `/course-status sync` as a live command.

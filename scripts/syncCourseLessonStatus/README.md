@@ -6,6 +6,7 @@ Course Flow checklist is manually and independently verified; the automatic
 Lesson inventory is **not** a replacement for Stage 3 approval or Lesson production.
 
 The trusted GitHub Actions workflow (after it reaches the default branch) accepts:
+
 - Manual PR comment `/course-status sync` on an open Course parent PR from an
   actor with verified repository write/maintain/admin permission.
 - `workflow_dispatch` with the exact parent PR number (same permission gate).
@@ -20,6 +21,7 @@ from verified Lesson source readiness. The analyzer reuses the static `buildLess
 
 ```md
 <!-- svitlo-course-lesson:v1 -->
+
 Course: <course-uuid>
 Lesson: <lesson-uuid>
 Parent PR: #<number>

@@ -28,11 +28,20 @@ test('end-to-end Course status analysis and trusted updates preserve manual desc
   const sha = 'a'.repeat(40);
   const courseId = '30ecbde1-97fd-5fe7-a353-ea89b9ef4a67';
   const lessonId = 'd3048d21-8690-5255-b62c-984c69ac272c';
-  const parentBody = '<!-- svitlo-course-flow:v1 -->\n' +
-    '- Course UUID: ' + courseId + '\n' +
+  const parentBody =
+    '<!-- svitlo-course-flow:v1 -->\n' +
+    '- Course UUID: ' +
+    courseId +
+    '\n' +
     '- Textbook: content/math\n' +
-    '- Source plan: content/math/data/courses/7/' + courseId + '/course.yaml\n' +
-    '\n## Human-approved checklist\n- [ ] Independent review\n\n' + START + '\nold\n' + END + '\n';
+    '- Source plan: content/math/data/courses/7/' +
+    courseId +
+    '/course.yaml\n' +
+    '\n## Human-approved checklist\n- [ ] Independent review\n\n' +
+    START +
+    '\nold\n' +
+    END +
+    '\n';
   let body = parentBody;
   let patchCount = 0;
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'course-status-integration-'));
@@ -41,14 +50,26 @@ test('end-to-end Course status analysis and trusted updates preserve manual desc
   const previousToken = process.env.GH_TOKEN;
   try {
     fs.mkdirSync(courseFolder, { recursive: true });
-    fs.writeFileSync(path.join(courseFolder, 'course.yaml'), yaml.stringify({
-      id: courseId, type: 'course', supportedLanguages: ['en'],
-      content: { items: { introduction: {
-        type: 'lesson', lessonId, title: 'Foundations',
-      } }, order: ['introduction'] },
-    }));
-    const claim = '<!-- svitlo-course-lesson:v1 -->\nCourse: ' + courseId +
-      '\nLesson: ' + lessonId + '\nParent PR: #639\n';
+    fs.writeFileSync(
+      path.join(courseFolder, 'course.yaml'),
+      yaml.stringify({
+        id: courseId,
+        type: 'course',
+        supportedLanguages: ['en'],
+        content: {
+          items: {
+            introduction: {
+              type: 'lesson',
+              lessonId,
+              title: 'Foundations',
+            },
+          },
+          order: ['introduction'],
+        },
+      }),
+    );
+    const claim =
+      '<!-- svitlo-course-lesson:v1 -->\nCourse: ' + courseId + '\nLesson: ' + lessonId + '\nParent PR: #639\n';
     process.env.GH_TOKEN = 'fixture-token';
     globalThis.fetch = async (url, options = {}) => {
       const suffix = String(url).split('/repos/' + repo + '/')[1];
@@ -60,8 +81,16 @@ test('end-to-end Course status analysis and trusted updates preserve manual desc
       } else if (suffix === 'pulls/639') {
         result = { state: 'open', body, head: { sha, repo: { full_name: repo } } };
       } else if (suffix === 'pulls?state=all&per_page=100&page=1') {
-        result = [{ number: 710, body: claim, state: 'open', draft: true,
-          merged_at: null, head: { repo: { full_name: repo } } }];
+        result = [
+          {
+            number: 710,
+            body: claim,
+            state: 'open',
+            draft: true,
+            merged_at: null,
+            head: { repo: { full_name: repo } },
+          },
+        ];
       } else {
         throw new Error('Unexpected GitHub request: ' + suffix);
       }
