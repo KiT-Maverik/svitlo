@@ -31,7 +31,7 @@ export const minimumWage_Skill_Data = defineSkill({
     et: 'Miinimumpalk',
     be: 'Мінімальны заробак',
     ka: 'მინიმალური ხელფასი',
-    kk: 'Ең төменгі жалақы',
+    kk: 'Eñ tömengı jalaqy',
     qm: 'Eñ az maaş',
   },
   description: {
@@ -65,7 +65,7 @@ export const minimumWage_Skill_Data = defineSkill({
       et: 'Uuri, kuidas miinimumpalk võib mõjutada töötajaid ja ettevõtteid.',
       be: 'Дасьледуй, як мінімальны заробак можа ўплываць на работнікаў і фірмы.',
       ka: 'შეისწავლე, როგორ შეიძლება მინიმალურმა ხელფასმა გავლენა მოახდინოს დასაქმებულებსა და ბიზნესზე.',
-      kk: 'Ең төменгі жалақы жұмыскерлер мен кәсіпорындарға қалай әсер етуі мүмкін екенін зертте.',
+      kk: 'Eñ tömengı jalaqy jūmyskerler men käsıporyndarğa qalai äser etuı mümkın ekenın zertte.',
       qm: 'Eñ az maaş işçilernen şirketlerge nasıl tesir ete bilgenini araştır.',
     },
   },

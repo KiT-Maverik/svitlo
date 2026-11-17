@@ -31,7 +31,7 @@ export const humanCapital_Skill_Data = defineSkill({
     et: 'Inimkapital',
     be: 'Чалавечы капітал',
     ka: 'ადამიანური კაპიტალი',
-    kk: 'Адам капиталы',
+    kk: 'Adam kapitaly',
     qm: 'İnsan kapitalı',
   },
   description: {
@@ -65,7 +65,7 @@ export const humanCapital_Skill_Data = defineSkill({
       et: 'Uuri, kuidas haridus ja oskused mõjutavad teenimisvõimalusi.',
       be: 'Дасьледуй, як адукацыя й навыкі ўплываюць на магчымасьці заробку.',
       ka: 'შეისწავლე, როგორ მოქმედებს განათლება და უნარები შემოსავლის შესაძლებლობებზე.',
-      kk: 'Білім мен дағды табыс табу мүмкіндігіне қалай әсер ететінін біл.',
+      kk: 'Bılım men dağdy tabys tabu mümkındıgıne qalai äser etetının bıl.',
       qm: 'Tasil ve maharetler qazanç imkânlarına nasıl tesir etkenini ögren.',
     },
   },

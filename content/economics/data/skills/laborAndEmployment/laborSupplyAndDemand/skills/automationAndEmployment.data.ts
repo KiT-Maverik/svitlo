@@ -31,7 +31,7 @@ export const automationAndEmployment_Skill_Data = defineSkill({
     et: 'Automatiseerimine ja tööhõive',
     be: 'Аўтаматызацыя й занятасьць',
     ka: 'ავტომატიზაცია და დასაქმება',
-    kk: 'Автоматтандыру және жұмыспен қамту',
+    kk: 'Avtomattandyru jäne jūmyspen qamtu',
     qm: 'Avtomatlaştırma ve işnen temin',
   },
   description: {
@@ -65,7 +65,7 @@ export const automationAndEmployment_Skill_Data = defineSkill({
       et: 'Uuri, kuidas automatiseerimine mõne ülesande asendab ja teiste järele nõudlust tekitab.',
       be: 'Дасьледуй, як аўтаматызацыя замяняе адны задачы й стварае попыт на іншыя.',
       ka: 'შეისწავლე, როგორ ანაცვლებს ავტომატიზაცია ზოგ ამოცანას და სხვებზე მოთხოვნას ქმნის.',
-      kk: 'Автоматтандыру кей міндеттерді алмастырып, басқаларына сұранысты қалай арттыратынын зертте.',
+      kk: 'Avtomattandyru kei mındetterdı almastyryp, basqalaryna sūranysty qalai arttyratynyn zertte.',
       qm: 'Avtomatlaştırma bazı vazifelerni alıp, başqalarına talap nasıl yaratqanını ögren.',
     },
   },

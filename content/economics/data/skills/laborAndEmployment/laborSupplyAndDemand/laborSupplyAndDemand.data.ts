@@ -40,7 +40,7 @@ export const laborSupplyAndDemand_SkillGroup_Data = defineSkillGroup({
     et: 'Tööjõu pakkumine ja nõudlus',
     be: 'Прапанова й попыт на працу',
     ka: 'შრომის მიწოდება და მოთხოვნა',
-    kk: 'Еңбек ұсынысы мен сұранысы',
+    kk: 'Eñbek ūsynysy men sūranysy',
     qm: 'Emek teklifi ve talap',
   },
   skills: [
@@ -82,7 +82,7 @@ export const laborSupplyAndDemand_SkillGroup_Data = defineSkillGroup({
       et: 'Mõista, kuidas töötajad ja ettevõtted kujundavad tööturgu.',
       be: 'Зразумей, як працаўнікі й прадпрыемствы фармуюць рынак працы.',
       ka: 'გაიგე, როგორ ქმნიან მუშაკები და კომპანიები შრომის ბაზარს.',
-      kk: 'Жұмыскерлер мен кәсіпорындардың еңбек нарығын қалай қалыптастыратынын түсін.',
+      kk: 'Jūmyskerler men käsıporyndardyñ eñbek naryğyn qalai qalyptastyratynyn tüsın.',
       qm: 'İşçiler ve şirketler emek bazarını nasıl şekillendirgenini añla.',
     },
   },

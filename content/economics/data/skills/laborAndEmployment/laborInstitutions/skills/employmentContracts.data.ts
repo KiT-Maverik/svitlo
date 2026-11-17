@@ -31,7 +31,7 @@ export const employmentContracts_Skill_Data = defineSkill({
     et: 'Töölepingud',
     be: 'Працоўныя дамовы',
     ka: 'შრომითი ხელშეკრულებები',
-    kk: 'Еңбек шарттары',
+    kk: 'Eñbek şarttary',
     qm: 'İş mukaveleleri',
   },
   description: {
@@ -65,7 +65,7 @@ export const employmentContracts_Skill_Data = defineSkill({
       et: 'Mõista töölepingu peamisi majanduslikke tingimusi.',
       be: 'Зразумей асноўныя эканамічныя ўмовы працоўнай дамовы.',
       ka: 'გაიგე შრომითი ხელშეკრულების მთავარი ეკონომიკური პირობები.',
-      kk: 'Еңбек шартының негізгі экономикалық талаптарын түсін.',
+      kk: 'Eñbek şartynyñ negızgı ekonomikalyq talaptaryn tüsın.',
       qm: 'İş mukavelesiniñ esas iqtisadiy şartlarını añla.',
     },
   },

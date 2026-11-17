@@ -31,7 +31,7 @@ export const collectiveBargaining_Skill_Data = defineSkill({
     et: 'Kollektiivläbirääkimised',
     be: 'Калектыўныя перамовы',
     ka: 'კოლექტიური მოლაპარაკებები',
-    kk: 'Ұжымдық келіссөздер',
+    kk: 'Ūjymdyq kelıssözder',
     qm: 'Toplu muzakereler',
   },
   description: {
@@ -65,7 +65,7 @@ export const collectiveBargaining_Skill_Data = defineSkill({
       et: 'Uuri, kuidas töötajate rühmad ja tööandjad töötingimustes kokku lepivad.',
       be: 'Даведайся, як групы працаўнікоў і наймальнікі дамаўляюцца пра ўмовы працы.',
       ka: 'გაიგე, როგორ ათანხმებენ მუშაკთა ჯგუფები და დამსაქმებლები სამუშაო პირობებს.',
-      kk: 'Жұмыскерлер топтары мен жұмыс берушілер еңбек шарттарын қалай келісетінін біл.',
+      kk: 'Jūmyskerler toptary men jūmys beruşıler eñbek şarttaryn qalai kelısetının bıl.',
       qm: 'İşçi gruppaları ve iş bericiler iş şartları aqqında nasıl añlaşqanını ögren.',
     },
   },
