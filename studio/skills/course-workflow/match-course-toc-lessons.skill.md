@@ -1,5 +1,9 @@
 # Match Course TOC Lessons
 
+> **Current Lesson production handoff:** [Create Lesson Flow](../lesson-workflow/create-lesson-flow.skill.md) uses one verified UUID-linked Draft Lesson PR and #639's Course–Lesson marker. New Lesson Production Issues are retired; historical Issue evidence is preserved. The current Course Flow governs Course inventory; old Issue requirements further below are legacy-only.
+
+> **New Course production:** [Create Course Flow](./create-course-flow.skill.md) is the authoritative seven-stage coordinator. For a new Course, Stage 1–2 use the temporary editorial `course.yaml`, Stage 3 introduces Lesson slots, and Stage 5 materializes durable `methodology.md` and technical Course sources. The legacy paths and prerequisites described below remain for independent maintenance of previously authored Courses; they do not override the new flow.
+
 **Mandatory first action:** Read the [Methodologist Persona](../../personas/methodist.persona.md) in full, [Course TOC](./create-course-toc.skill.md), [Create Lesson Brief](../lesson-workflow/create-lesson-brief.skill.md), [Lesson editorial ownership](../../docs/architecture/lesson-editorial-document.md) and [UUID addressing](../../docs/architecture/entity-uuid-addressing.md) and [Manage Lesson Production](../lesson-workflow/manage-lesson-production.skill.md).
 
 ## Purpose, inputs and outputs

@@ -1,3 +1,5 @@
+> **Workflow update:** [Create Lesson Flow](../../skills/lesson-workflow/create-lesson-flow.skill.md) uses the Lesson Draft PR, not a mandatory new Lesson Production Issue, for stage/status evidence. Earlier Issue-based recommendations below are historical analysis, not a new Engine status-field requirement.
+
 # Lesson resource readiness is not Config validity
 
 **Status:** observed validation boundaries and proposed, **not implemented**, publication-readiness contract. Investigation for [Issue #591](https://github.com/KiT-Maverik/svitlo/issues/591), against the current Engine. Do not infer that a green Config validator, scoped Props Build, draft scaffolder or Props serializer certifies a completed Lesson.
