@@ -14,6 +14,28 @@ A **Course** is an ordered learning journey, distinct from a Curriculum. Its aut
 
 A TOC creator receives only `{ language }`. It reads localized Lesson titles from the already imported Lesson Data and emits compact TOC leaves with `type`, `id`, and localized `title`.
 
+## Course teaching outcomes and referenced educational standards
+
+Current Engine Course Config/Props support optional `params.outcomes` with
+`skills`, `skillGroups`, `skillDomains` UUID arrays. This describes
+**intended competencies to teach**; existing `params.prerequisites`
+describes **entry conditions** and remains separate. Referencing a Domain or
+Group defines scope, not mastery of every descendant Skill. The optional
+`locale.outcomesText` supplies short learner-facing copy, while substantive
+methodological rationale stays in the Course editorial plan and later
+`methodology.md`. Optional audience ranges are `params.age` (0–125) and
+`params.grade` (0–40), each `{ min, max }` with `min <= max`, and must be
+interpreted within the specified jurisdiction/learner context.
+
+Optional `params.educationStandards` stores immutable EducationStandard UUID
+references. It is **not** proof of accreditation, certification, compliance,
+or real coverage; alignment sources/versions and scoped evidence require
+separate Course methodology and independent review. The Engine does not
+silently create standards, translate their separately owned frontend text,
+or automatically check educational alignment. For complete Course editing,
+regenerate the derived YAML JSON schemas using `generateYamlSchemas` after
+the Zod Config change; the independent generator is authoritative.
+
 ## Current Build API and Course-owned overrides
 
 `defineCourse` composes independently authored `defineModule`, `defineChapter`,

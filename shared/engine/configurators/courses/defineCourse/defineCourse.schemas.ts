@@ -19,12 +19,37 @@ import { episode_Props_Schema } from '../../episodes/defineEpisode/defineEpisode
 import type { Episode_Configurator } from '../../episodes/defineEpisode/defineEpisode';
 import type { Episode_Props } from '../../episodes/defineEpisode/defineEpisode.schemas';
 
+/** Course audience and educational-standard references describe scope, never certification. */
+const audienceRange_Schema = (maximum: number) =>
+  z.strictObject({
+    min: z.int().min(0).max(maximum),
+    max: z.int().min(0).max(maximum),
+  }).refine(range => range.min <= range.max, 'Minimum must not exceed maximum');
+
+const uniqueIds_Schema = z.array(z.uuid()).refine(
+  values => new Set(values.map(value => value.toLowerCase())).size === values.length,
+  'IDs must be unique',
+);
+
+const targetSkills_Schema = z.strictObject({
+  skills: uniqueIds_Schema.optional(),
+  skillGroups: uniqueIds_Schema.optional(),
+  skillDomains: uniqueIds_Schema.optional(),
+});
+
 const params = paramsBase_Schema.shape.params.extend({
   languages: z
     .array(languageCode_Schema)
     .nonempty()
     .refine(values => new Set(values).size === values.length, 'Course languages must be unique'),
   scenarioMode: z.enum(['none', 'story']).optional(),
+  /** Skills actually intended to be taught; distinct from entry requirements. */
+  outcomes: targetSkills_Schema.optional(),
+  /** Optional jurisdiction-dependent target learners; no assumed universal grade. */
+  age: audienceRange_Schema(125).optional(),
+  grade: audienceRange_Schema(40).optional(),
+  /** References to reviewed EducationStandard UUIDs; no automatic compliance claim. */
+  educationStandards: uniqueIds_Schema.optional(),
   prerequisites: z
     .object({
       skills: z.array(z.uuid()).optional(),
@@ -42,6 +67,7 @@ const locale = <Mode extends Configurator_Mode>(mode: Mode) => ({
   title: localizationSwitch[mode],
   description: localizationSwitch[mode],
   prerequisitesText: localizationSwitch[mode].optional(),
+  outcomesText: localizationSwitch[mode].optional(),
 });
 export type Course_Locale<Mode extends Configurator_Mode> = z.infer<z.ZodObject<ReturnType<typeof locale<Mode>>>>;
 export type Course_Child = ConfiguratorChild<
