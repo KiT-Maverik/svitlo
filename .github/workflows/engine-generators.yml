@@ -63,9 +63,8 @@ jobs:
             scripts/textbook-tooling/buildTextbook/stageTextbookAssets.spec.mjs
 
 
-      - name: Verify Course schemas and Course Flow regressions
+      - name: Test Course Flow regression suites
         run: |
-          npm run content:check:yaml-schemas --workspace @svitlo/engine
           node --test \
             shared/engine/scripts/materializeCourseFlow/materialize-course-flow.spec.mjs \
             shared/engine/scripts/validateCourseFlow/validate-course-flow.spec.mjs \
@@ -73,3 +72,10 @@ jobs:
             scripts/syncCourseLessonStatus/synchronizer.spec.mjs \
             scripts/syncCourseLessonStatus/sync-course-lessons.spec.mjs \
             scripts/syncCourseLessonStatus/workflow.spec.mjs
+
+      - name: Inspect generated YAML schema parity
+        run: |
+          npm run content:generate:yaml-schemas --workspace @svitlo/engine
+          git diff --stat -- shared/engine/yaml-schemas
+          git diff --name-only -- shared/engine/yaml-schemas
+          npm run content:check:yaml-schemas --workspace @svitlo/engine
