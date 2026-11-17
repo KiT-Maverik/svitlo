@@ -37,7 +37,7 @@ export const personalFinance_SkillDomain_Data = defineSkillDomain({
     et: 'Isiklik rahandus',
     be: 'Асабістыя фінансы',
     ka: 'პირადი ფინანსები',
-    kk: 'Жеке қаржы',
+    kk: 'Jeke qarjy',
     qm: 'Şahsiy maliye',
   },
   groups: [
@@ -78,7 +78,7 @@ export const personalFinance_SkillDomain_Data = defineSkillDomain({
       et: 'Õpi oma rahaasju planeerima, laenamist mõistma ja igapäevaseid finantsotsuseid tegema.',
       be: 'Вучыся плянаваць бюджэт, разумець пазыкі й прымаць штодзённыя фінансавыя рашэньні.',
       ka: 'ისწავლე ბიუჯეტის დაგეგმვა, სესხების პირობების გაგება და ყოველდღიური ფინანსური გადაწყვეტილებების მიღება.',
-      kk: 'Бюджетті жоспарлауды, қарыз шарттарын түсінуді және күнделікті қаржылық шешім қабылдауды үйрен.',
+      kk: 'Biudjettı josparlaudy, qaryz şarttaryn tüsınudı jäne kündelıktı qarjylyq şeşım qabyldaudy üiren.',
       qm: 'Aqçanı planlamaqnı, borç almaqnı ve kündelik maliy qararlarnı ögren.',
     },
   },

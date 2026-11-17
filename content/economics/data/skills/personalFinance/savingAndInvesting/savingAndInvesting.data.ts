@@ -39,7 +39,7 @@ export const savingAndInvesting_SkillGroup_Data = defineSkillGroup({
     et: 'Säästmine ja investeerimine',
     be: 'Ашчаджэньні й інвэстыцыі',
     ka: 'დანაზოგი და ინვესტიცია',
-    kk: 'Жинақтау және инвестициялау',
+    kk: 'Jinaqtau jäne investitsiialau',
     qm: 'Aqça toplav ve yatırım',
   },
   skills: [
@@ -79,7 +79,7 @@ export const savingAndInvesting_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri, miks säästmisel ja investeerimisel on erinevad riskid ning eelised.',
       be: 'Дасьледуй, чаму ашчаджэньні й інвэстыцыі маюць розныя рызыкі й выгоды.',
       ka: 'შეისწავლე, რატომ განსხვავდება დაზოგვისა და ინვესტირების რისკები და სარგებელი.',
-      kk: 'Жинақ пен инвестицияның қауіптері мен пайдасы неге әртүрлі екенін зертте.',
+      kk: 'Jinaq pen investitsiianyñ qauıpterı men paidasy nege ärtürlı ekenın zertte.',
       qm: 'Aqça toplav ve yatırımdan kelgen fayda ve havflarnıñ niçün farqlı olğanını ögren.',
     },
   },

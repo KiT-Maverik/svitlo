@@ -31,7 +31,7 @@ export const paymentFeesAndTerms_Skill_Data = defineSkill({
     et: 'Maksetasud ja tingimused',
     be: 'Плацежныя камісіі й умовы',
     ka: 'გადახდის საკომისიოები და პირობები',
-    kk: 'Төлем алымдары мен шарттары',
+    kk: 'Tölem alymdary men şarttary',
     qm: 'Ödeme aqçası ve şartları',
   },
   description: {
@@ -64,7 +64,7 @@ export const paymentFeesAndTerms_Skill_Data = defineSkill({
       et: 'Otsi lisatasusid, valuutavahetuskulusid ja tehingutingimusi.',
       be: 'Шукай дадатковыя камісіі, выдаткі канвэртацыі валют і ўмовы апэрацыі.',
       ka: 'შეამოწმე დამატებითი საკომისიო, ვალუტის გადაცვლის ხარჯი და ტრანზაქციის პირობები.',
-      kk: 'Қосымша комиссия, валюта айырбастау шығыны және операция шарттарын қара.',
+      kk: 'Qosymşa komissiia, valiuta aiyrbastau şyğyny jäne operatsiia şarttaryn qara.',
       qm: 'Qoşma ödemelerni, valutani deñiştirüv masrafını ve ameliyat şartlarını kör.',
     },
   },

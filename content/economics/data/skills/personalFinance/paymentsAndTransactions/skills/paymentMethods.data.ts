@@ -31,7 +31,7 @@ export const paymentMethods_Skill_Data = defineSkill({
     et: 'Makseviisid',
     be: 'Спосабы аплаты',
     ka: 'გადახდის მეთოდები',
-    kk: 'Төлем әдістері',
+    kk: 'Tölem ädısterı',
     qm: 'Ödeme usulları',
   },
   description: {
@@ -65,7 +65,7 @@ export const paymentMethods_Skill_Data = defineSkill({
       et: 'Võrdle sularaha, kaardi ja digitaalse ülekandega maksmist.',
       be: 'Параўнай аплату наяўнымі, карткай і электронным пераводам.',
       ka: 'შეადარე ნაღდით, ბარათითა და ციფრული გადარიცხვით გადახდა.',
-      kk: 'Қолма-қол, карта және цифрлық аударыммен төлеуді салыстыр.',
+      kk: 'Qolma-qol, karta jäne tsifrlyq audarymmen töleudı salystyr.',
       qm: 'Naqit, kart ve elektronik aqça köçürüvni qıyasla.',
     },
   },

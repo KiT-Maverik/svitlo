@@ -31,7 +31,7 @@ export const compoundInterest_Skill_Data = defineSkill({
     et: 'Liitintress',
     be: 'Складаныя працэнты',
     ka: 'რთული პროცენტი',
-    kk: 'Күрделі пайыз',
+    kk: 'Kürdelı paiyz',
     qm: 'Murakkep faiz',
   },
   description: {
@@ -65,7 +65,7 @@ export const compoundInterest_Skill_Data = defineSkill({
       et: 'Uuri, kuidas intressilt teenitav intress kasvatab sääste või võlga.',
       be: 'Зразумей, як працэнты на працэнты павялічваюць ашчаджэньні ці пазыку.',
       ka: 'გაიგე, როგორ ზრდის პროცენტზე პროცენტი დანაზოგს ან ვალს.',
-      kk: 'Пайызға қосылған пайыз жинақ пен қарызды қалай көбейтетінін біл.',
+      kk: 'Paiyzğa qosylğan paiyz jinaq pen qaryzdy qalai köbeitetının bıl.',
       qm: 'Faiz üstüne faiz toplama ya da borçnı nasıl arttırğanını ögren.',
     },
   },

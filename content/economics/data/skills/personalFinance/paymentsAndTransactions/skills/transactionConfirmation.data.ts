@@ -31,7 +31,7 @@ export const transactionConfirmation_Skill_Data = defineSkill({
     et: 'Tehingu kinnitus',
     be: 'Пацьверджаньне апэрацыі',
     ka: 'ტრანზაქციის დადასტურება',
-    kk: 'Операцияны растау',
+    kk: 'Operatsiiany rastau',
     qm: 'Ödemeniñ tasdıqı',
   },
   description: {
@@ -65,7 +65,7 @@ export const transactionConfirmation_Skill_Data = defineSkill({
       et: 'Loe kviitungit või väljavõtet, et kinnitada makse tulemus.',
       be: 'Прачытай квітанцыю ці выпіску, каб пацьвердзіць вынік плацяжу.',
       ka: 'წაიკითხე ქვითარი ან ამონაწერი გადახდის შედეგის დასადასტურებლად.',
-      kk: 'Түбіртек не үзінді көшірме арқылы төлемнің нәтижесін тексер.',
+      kk: 'Tübırtek ne üzındı köşırme arqyly tölemnıñ nätijesın tekser.',
       qm: 'Ödeme neticesini tasdıqlamaq içün çek ya da esap çıqarışını oqu.',
     },
   },
