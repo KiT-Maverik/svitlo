@@ -31,7 +31,7 @@ export const minerals_Skill_Data = defineSkill({
     et: 'Mineraalid',
     be: 'Мінэралы',
     ka: 'მინერალები',
-    kk: 'Минералдар',
+    kk: 'Mineraldar',
     qm: 'Minerallar',
   },
   description: {
@@ -64,7 +64,7 @@ export const minerals_Skill_Data = defineSkill({
       et: 'Seosta mineraalide koostis ja kristallstruktuur nende liigitusega.',
       be: 'Зьвязвай хімічны склад і крышталічную будову мінэралаў зь іх клясыфікацыяй.',
       ka: 'დააკავშირე მინერალების შემადგენლობა და კრისტალური სტრუქტურა მათ კლასიფიკაციასთან.',
-      kk: 'Минералдардың химиялық құрамы мен кристалдық құрылысын жіктелуімен байланыстыр.',
+      kk: 'Mineraldardyñ himiialyq qūramy men kristaldyq qūrylysyn jıkteluımen bailanystyr.',
       qm: 'Minerallarnıñ kimyeviy terkibi ve kristall qurulışını olarnıñ sınıflandırıluvınen bağla.',
     },
   },

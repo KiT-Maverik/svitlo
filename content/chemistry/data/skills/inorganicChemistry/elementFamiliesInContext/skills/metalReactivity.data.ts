@@ -31,7 +31,7 @@ export const metalReactivity_Skill_Data = defineSkill({
     et: 'Metallide reaktsioonivõime',
     be: 'Хімічная актыўнасьць мэталаў',
     ka: 'ლითონების რეაქტიულობა',
-    kk: 'Металдардың химиялық белсенділігі',
+    kk: 'Metaldardyñ himiialyq belsendılıgı',
     qm: 'Metallarnıñ kimyeviy faallığı',
   },
   description: {
@@ -65,7 +65,7 @@ export const metalReactivity_Skill_Data = defineSkill({
       et: 'Selgita, miks eri metallid võrreldavates tingimustes erinevalt reageerivad.',
       be: 'Растлумач, чаму розныя мэталы па-рознаму рэагуюць у падобных умовах.',
       ka: 'ახსენი, რატომ რეაგირებენ სხვადასხვა ლითონები განსხვავებულად მსგავს პირობებში.',
-      kk: 'Ұқсас жағдайда әртүрлі металдар неліктен әрқалай әрекеттесетінін түсіндір.',
+      kk: 'Ūqsas jağdaida ärtürlı metaldar nelıkten ärqalai ärekettesetının tüsındır.',
       qm: 'Benzeygen şartlarda türlü metallar niçün ayrı-ayrı kimyeviy tesirleşkenini añlat.',
     },
   },

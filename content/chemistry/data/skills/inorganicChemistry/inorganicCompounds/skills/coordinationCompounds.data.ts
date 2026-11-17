@@ -31,7 +31,7 @@ export const coordinationCompounds_Skill_Data = defineSkill({
     et: 'Kompleksühendid',
     be: 'Каардынацыйныя злучэньні',
     ka: 'კოორდინაციული ნაერთები',
-    kk: 'Координациялық қосылыстар',
+    kk: 'Koordinatsiialyq qosylystar',
     qm: 'Koordinatsiya birleşmeleri',
   },
   description: {
@@ -65,7 +65,7 @@ export const coordinationCompounds_Skill_Data = defineSkill({
       et: 'Mõista, kuidas ligandid ümbritsevad kompleksühendis keskset metalliaatomit või -iooni.',
       be: 'Зразумей, як ліганды атачаюць цэнтральны атам або іён мэталу ў каардынацыйных злучэньнях.',
       ka: 'გაიგე, როგორ არის ლიგანდები განლაგებული ცენტრალური ლითონის ატომის ან იონის გარშემო.',
-      kk: 'Координациялық қосылыста лигандтар орталық металл атомын не ионын қалай қоршайтынын түсін.',
+      kk: 'Koordinatsiialyq qosylysta ligandtar ortalyq metall atomyn ne ionyn qalai qorşaitynyn tüsın.',
       qm: 'Koordinatsiya birleşmelerinde ligandlar merkezdeki metal atomı ya da ionı etrafında nasıl tizilgenini añla.',
     },
   },

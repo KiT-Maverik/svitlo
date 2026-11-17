@@ -31,7 +31,7 @@ export const nobleGases_Skill_Data = defineSkill({
     et: 'Väärisgaasid',
     be: 'Высакародныя газы',
     ka: 'კეთილშობილი აირები',
-    kk: 'Асыл газдар',
+    kk: 'Asyl gazdar',
     qm: 'Asıl gazlar',
   },
   description: {
@@ -65,7 +65,7 @@ export const nobleGases_Skill_Data = defineSkill({
       et: 'Mõista, miks väärisgaasid on tavaliselt väheaktiivsed, kuid mõned võivad siiski moodustada sidemeid.',
       be: 'Зразумей, чаму высакародныя газы звычайна малаактыўныя, але некаторыя могуць утвараць сувязі.',
       ka: 'გაიგე, რატომ არიან კეთილშობილი აირები ჩვეულებრივ ნაკლებად რეაქტიული, თუმცა ზოგიერთს ბმების წარმოქმნა შეუძლია.',
-      kk: 'Асыл газдардың әдетте белсенділігі төмен болғанымен, кейбірі байланыс түзе алатынын түсін.',
+      kk: 'Asyl gazdardyñ ädette belsendılıgı tömen bolğanymen, keibırı bailanys tüze alatynyn tüsın.',
       qm: 'Asıl gazlar adette az tesirleşse de, bazıları kimyeviy bağlar qura bilgenini añla.',
     },
   },

@@ -31,7 +31,7 @@ export const nonmetals_Skill_Data = defineSkill({
     et: 'Mittemetallid',
     be: 'Немэталы',
     ka: 'არალითონები',
-    kk: 'Бейметалдар',
+    kk: 'Beimetaldar',
     qm: 'Nometallar',
   },
   description: {
@@ -65,7 +65,7 @@ export const nonmetals_Skill_Data = defineSkill({
       et: 'Uuri hapniku, lämmastiku, väävli ja teiste mittemetallide keemilist käitumist.',
       be: 'Дасьледуй хімічныя паводзіны кіслароду, азоту, серы й іншых немэталаў.',
       ka: 'შეისწავლე ჟანგბადის, აზოტის, გოგირდისა და სხვა არალითონების ქიმიური ქცევა.',
-      kk: 'Оттек, азот, күкірт және басқа бейметалдардың химиялық қасиеттерін зертте.',
+      kk: 'Ottek, azot, kükırt jäne basqa beimetaldardyñ himiialyq qasietterın zertte.',
       qm: 'Oksigen, azot, kükürt ve başqa nometallarnıñ kimyeviy hususiyetlerini araştır.',
     },
   },

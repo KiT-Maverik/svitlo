@@ -31,7 +31,7 @@ export const salts_Skill_Data = defineSkill({
     et: 'Soolad',
     be: 'Солі',
     ka: 'მარილები',
-    kk: 'Тұздар',
+    kk: 'Tūzdar',
     qm: 'Tuzlar',
   },
   description: {
@@ -64,7 +64,7 @@ export const salts_Skill_Data = defineSkill({
       et: 'Tunne ära soolad kui positiivsetest ja negatiivsetest ioonidest koosnevad ühendid.',
       be: 'Распазнавай солі як злучэньні з дадатна й адмоўна зараджаных іёнаў.',
       ka: 'ამოიცანი მარილები როგორც დადებითად და უარყოფითად დამუხტული იონებისგან შემდგარი ნაერთები.',
-      kk: 'Тұздарды оң және теріс зарядталған иондардан құралған қосылыстар ретінде таны.',
+      kk: 'Tūzdardy oñ jäne terıs zariadtalğan iondardan qūralğan qosylystar retınde tany.',
       qm: 'Tuzlarnı musbet ve menfiy yüklü ionlardan qurulğan birleşmeler olaraq tanı.',
     },
   },

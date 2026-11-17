@@ -31,7 +31,7 @@ export const hydroxides_Skill_Data = defineSkill({
     et: 'Hüdroksiidid',
     be: 'Гідраксіды',
     ka: 'ჰიდროქსიდები',
-    kk: 'Гидроксидтер',
+    kk: 'Gidroksidter',
     qm: 'Gidroksidler',
   },
   description: {
@@ -64,7 +64,7 @@ export const hydroxides_Skill_Data = defineSkill({
       et: 'Tunne ära hüdroksiidühendid ja nende käitumine keemilistes reaktsioonides.',
       be: 'Распазнавай гідраксіды й іхныя паводзіны ў хімічных рэакцыях.',
       ka: 'ამოიცანი ჰიდროქსიდები და მათი ქცევა ქიმიურ რეაქციებში.',
-      kk: 'Гидроксид қосылыстарын және олардың химиялық реакциялардағы әрекетін таны.',
+      kk: 'Gidroksid qosylystaryn jäne olardyñ himiialyq reaktsiialardağy äreketın tany.',
       qm: 'Gidroksid birleşmelerini ve olarnıñ kimyeviy reaktsiyalarda nasıl tesirleşkenini tanı.',
     },
   },

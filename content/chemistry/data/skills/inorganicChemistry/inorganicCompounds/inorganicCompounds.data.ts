@@ -39,7 +39,7 @@ export const inorganicCompounds_SkillGroup_Data = defineSkillGroup({
     et: 'Anorgaanilised ühendid',
     be: 'Неарганічныя злучэньні',
     ka: 'არაორგანული ნაერთები',
-    kk: 'Бейорганикалық қосылыстар',
+    kk: 'Beiorganikalyq qosylystar',
     qm: 'Neorganik birleşmeler',
   },
   skills: [
@@ -80,7 +80,7 @@ export const inorganicCompounds_SkillGroup_Data = defineSkillGroup({
       et: 'Tunne ära anorgaaniliste ühendite põhirühmad, eeldamata, et kõik nende liikmed käituvad samamoodi.',
       be: 'Распазнавай асноўныя клясы неарганічных злучэньняў, не мяркуючы, што ўсе іх прадстаўнікі паводзяцца аднолькава.',
       ka: 'ამოიცანი არაორგანული ნაერთების ძირითადი კლასები ისე, რომ არ იფიქრო, თითქოს ყველა წევრს ერთნაირი თვისებები აქვს.',
-      kk: 'Бейорганикалық қосылыстардың негізгі топтарын таны, бірақ олардың бәрі бірдей әрекет етеді деп ойлама.',
+      kk: 'Beiorganikalyq qosylystardyñ negızgı toptaryn tany, bıraq olardyñ bärı bırdei äreket etedı dep oilama.',
       qm: 'Neorganik birleşmelerniñ esas sınıflarını tanı, amma er sınıftaki maddelerniñ bir türlü tesirleşkenini sanma.',
     },
   },

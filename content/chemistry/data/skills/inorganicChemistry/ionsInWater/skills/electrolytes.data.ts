@@ -31,7 +31,7 @@ export const electrolytes_Skill_Data = defineSkill({
     et: 'Elektrolüüdid',
     be: 'Электраліты',
     ka: 'ელექტროლიტები',
-    kk: 'Электролиттер',
+    kk: 'Elektrolitter',
     qm: 'Elektrolitler',
   },
   description: {
@@ -64,7 +64,7 @@ export const electrolytes_Skill_Data = defineSkill({
       et: 'Erista lahuses käitumise alusel tugevaid, nõrku ja mitteelektrolüüte.',
       be: 'Адрозьнівай моцныя, слабыя электраліты й неэлектраліты паводле іхных паводзінаў у растворы.',
       ka: 'განასხვავე ძლიერი, სუსტი და არაელექტროლიტები ხსნარში მათი ქცევის მიხედვით.',
-      kk: 'Ерітіндідегі әрекеті бойынша күшті, әлсіз электролиттер мен бейэлектролиттерді ажырат.',
+      kk: 'Erıtındıdegı äreketı boiynşa küştı, älsız elektrolitter men beielektrolitterdı ajyrat.',
       qm: 'İrintideki areketine köre küçlü, zayıf elektrolitlerni ve elektrolit olmağan maddelerni ayır.',
     },
   },

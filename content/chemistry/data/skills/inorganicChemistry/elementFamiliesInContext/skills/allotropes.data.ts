@@ -31,7 +31,7 @@ export const allotropes_Skill_Data = defineSkill({
     et: 'Allotroobid',
     be: 'Алатропныя формы',
     ka: 'ალოტროპები',
-    kk: 'Аллотропиялық түрлер',
+    kk: 'Allotropiialyq türler',
     qm: 'Allotroplar',
   },
   description: {
@@ -65,7 +65,7 @@ export const allotropes_Skill_Data = defineSkill({
       et: 'Avasta, kuidas üks element võib erineva aatomite paigutusega moodustada eri aineid.',
       be: 'Даведайся, як адзін элемэнт утварае розныя рэчывы праз адрознае разьмяшчэньне атамаў.',
       ka: 'გაიგე, როგორ წარმოქმნის ერთი ელემენტი სხვადასხვა მასალას ატომების განსხვავებული განლაგებით.',
-      kk: 'Бір элемент атомдарының әртүрлі орналасуы арқылы қалай түрлі зат түзетінін біл.',
+      kk: 'Bır element atomdarynyñ ärtürlı ornalasuy arqyly qalai türlı zat tüzetının bıl.',
       qm: 'Bir element atomlarınıñ türlü tizilişinen nasıl başqa-başqa maddeler peyda etkenini ögren.',
     },
   },

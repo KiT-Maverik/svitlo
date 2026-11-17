@@ -31,7 +31,7 @@ export const oxides_Skill_Data = defineSkill({
     et: 'Oksiidid',
     be: 'Аксіды',
     ka: 'ოქსიდები',
-    kk: 'Оксидтер',
+    kk: 'Oksidter',
     qm: 'Oksidler',
   },
   description: {
@@ -64,7 +64,7 @@ export const oxides_Skill_Data = defineSkill({
       et: 'Uuri eri tüüpi oksiide ja nende keemilist käitumist.',
       be: 'Дасьледуй розныя тыпы аксідаў і іхныя хімічныя ўласьцівасьці.',
       ka: 'შეისწავლე ოქსიდების სხვადასხვა ტიპი და მათი ქიმიური თვისებები.',
-      kk: 'Оксидтердің әртүрлі түрлері мен химиялық қасиеттерін зертте.',
+      kk: 'Oksidterdıñ ärtürlı türlerı men himiialyq qasietterın zertte.',
       qm: 'Oksidlerniñ türlü çeşitlerini ve kimyeviy hususiyetlerini araştır.',
     },
   },
