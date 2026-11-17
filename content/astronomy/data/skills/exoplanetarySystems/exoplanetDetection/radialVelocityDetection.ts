@@ -53,7 +53,7 @@ export const radialVelocityDetection = defineSkill({
       it: "Usa le variazioni dello spettro di una stella per dedurre l'attrazione esercitata da un pianeta in orbita.",
       ja: '恒星のスペクトルに現れる速度の変化から、公転する惑星の引力を推測します。',
       ka: 'ვარსკვლავის სპექტრული ხაზების პერიოდული წანაცვლებით გამოიკვლიეთ მის გარშემო მოძრავი პლანეტის გრავიტაციული გავლენა.',
-      kk: 'Jūldyz spektrındegı qozğalys özgerısterınen ony ainalatyn ğalamşardyñ tartylys äserın anyqtañyz.',
+      kk: 'Jūldyz spektrındegı syzyqtardyñ yğysuyn baqylap, ony ainalatyn ğalamşardyñ tartylys äserın anyqta.',
       ko: '별의 스펙트럼에 나타나는 운동 변화를 통해 공전 행성의 중력 영향을 추론합니다.',
       lt: 'Pagal žvaigždės spektro poslinkius spręskite apie aplink ją skriejančios planetos trauką.',
       lv: 'Izmantojiet zvaigznes spektra izmaiņas, lai secinātu par planētas gravitācijas ietekmi.',

@@ -18,7 +18,7 @@ export const solarLuminosity = defineSkill({
     it: 'Luminosità solare',
     ja: '太陽光度',
     ka: 'მზის ნათობა',
-    kk: 'Künnıñ jarqyrauy',
+    kk: 'Künnıñ jarqyrau quaty',
     ko: '태양 광도',
     lt: 'Saulės šviesis',
     lv: 'Saules starjauda',

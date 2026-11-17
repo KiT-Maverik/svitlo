@@ -53,7 +53,7 @@ export const accretionPoweredEmission = defineSkill({
       it: 'Scopri come la materia che cade verso un buco nero può produrre radiazioni intense.',
       ja: 'ブラックホールへ落ち込む物質が強い放射を生むしくみを学ぼう。',
       ka: 'გაიგე, როგორ შეიძლება შავი ხვრელისკენ ვარდნილმა ნივთიერებამ ძლიერი გამოსხივება წარმოქმნას.',
-      kk: 'Qara qūrdymğa qūlağan zattyñ küştı säule şyğaruyn tüsın.',
+      kk: 'Qara qūrdymğa qarai tartylğan zattyñ qalai quatty säule şyğara alatynyn tüsın.',
       ko: '블랙홀로 떨어지는 물질이 어떻게 강한 복사를 만들어 내는지 알아보세요.',
       lt: 'Sužinok, kaip į juodąją skylę krintanti medžiaga gali skleisti stiprią spinduliuotę.',
       lv: 'Uzzini, kā matērija, krītot melnā cauruma virzienā, var radīt spēcīgu starojumu.',
