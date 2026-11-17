@@ -74,7 +74,15 @@ function registered(sectionIndex, sectionSlug) {
     ts.isVariableStatement(statement) &&
     statement.declarationList.declarations.some(item =>
       ts.isIdentifier(item.name) && item.name.text === 'section' &&
-      (stringArray(property(item.initializer, 'order')) ?? []).includes(sectionSlug),
+      (stringArray(property(item.initializer, 'order')) ?? []).includes(sectionSlug) &&
+      (() => {
+        const items = property(item.initializer, 'items');
+        return ts.isObjectLiteralExpression(items) && items.properties.some(entry =>
+          (ts.isPropertyAssignment(entry) || ts.isShorthandPropertyAssignment(entry)) &&
+          (ts.isIdentifier(entry.name) || ts.isStringLiteral(entry.name)) &&
+          entry.name.text === sectionSlug,
+        );
+      })(),
     ),
   );
   return hasOrder;
