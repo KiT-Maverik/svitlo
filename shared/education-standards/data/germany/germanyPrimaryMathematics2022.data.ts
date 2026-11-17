@@ -10,7 +10,8 @@ export const germanyPrimaryMathematics2022 = defineEducationStandard({
     grade: { min: 1, max: 4 },
     nameLanguage: 'de',
     version: 'KMK decision 15 October 2004; revision 23 June 2022',
-    sourceUrl: 'https://www.kmk.org/fileadmin/Dateien/veroeffentlichungen_beschluesse/2022/2022_06_23-Bista-Primarbereich-Mathe.pdf',
+    sourceUrl:
+      'https://www.kmk.org/fileadmin/Dateien/veroeffentlichungen_beschluesse/2022/2022_06_23-Bista-Primarbereich-Mathe.pdf',
   },
   description: {
     methodological:
