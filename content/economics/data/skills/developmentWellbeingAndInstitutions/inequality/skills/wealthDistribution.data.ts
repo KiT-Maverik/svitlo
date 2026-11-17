@@ -31,7 +31,7 @@ export const wealthDistribution_Skill_Data = defineSkill({
     et: 'Varade jaotus',
     be: 'Разьмеркаваньне багацьця',
     ka: 'სიმდიდრის განაწილება',
-    kk: 'Байлықты бөлу',
+    kk: 'Bailyqtyñ bölınısı',
     qm: 'Baylıqnıñ bölünüvi',
   },
   description: {
@@ -65,7 +65,7 @@ export const wealthDistribution_Skill_Data = defineSkill({
       et: 'Erista varalist ebavõrdsust sissetulekute ebavõrdsusest.',
       be: 'Адрозьнівай няроўнасьць багацьця ад няроўнасьці даходаў.',
       ka: 'განასხვავეთ ქონებრივი და შემოსავლების უთანასწორობა.',
-      kk: 'Байлық теңсіздігін табыс теңсіздігінен ажыратыңыз.',
+      kk: 'Bailyq teñsızdıgın tabys teñsızdıgınen ajyrat.',
       qm: 'Baylıq teñsizliginen kelir teñsizligini ayır.',
     },
   },

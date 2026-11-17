@@ -31,7 +31,7 @@ export const giniCoefficient_Skill_Data = defineSkill({
     et: 'Gini koefitsient',
     be: 'Каэфіцыент Джыні',
     ka: 'ჯინის კოეფიციენტი',
-    kk: 'Джини коэффициенті',
+    kk: 'Jini koeffitsientı',
     qm: 'Cini koeffitsiyenti',
   },
   description: {
@@ -64,7 +64,7 @@ export const giniCoefficient_Skill_Data = defineSkill({
       et: 'Tõlgenda Gini koefitsienti, pidamata seda kogu pildiks.',
       be: 'Тлумач каэфіцыент Джыні, не лічачы яго ўсёй карцінай.',
       ka: 'განმარტეთ ჯინის კოეფიციენტი ისე, რომ სრული სურათი არ ეგონოთ.',
-      kk: 'Джини коэффициентін түсіндіріңіз, бірақ оны толық көрініс деп санамаңыз.',
+      kk: 'Jini koeffitsientın taldap, onyn teñsızdık turaly tolyq aqparat bermeıtının esker.',
       qm: 'Cini koeffitsiyentini añla, amma onı bütün vaziyet dep sayma.',
     },
   },

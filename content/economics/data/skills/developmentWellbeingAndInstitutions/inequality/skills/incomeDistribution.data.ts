@@ -31,7 +31,7 @@ export const incomeDistribution_Skill_Data = defineSkill({
     et: 'Sissetulekute jaotus',
     be: 'Разьмеркаваньне даходаў',
     ka: 'შემოსავლების განაწილება',
-    kk: 'Табыстарды бөлу',
+    kk: 'Tabystyñ bölınısı',
     qm: 'Kelirlerniñ bölünüvi',
   },
   description: {
@@ -64,7 +64,7 @@ export const incomeDistribution_Skill_Data = defineSkill({
       et: 'Võrdle, kuidas sissetulekud eri rühmade vahel jagunevad.',
       be: 'Параўнай, як даходы разьмяркоўваюцца паміж групамі.',
       ka: 'შეადარეთ, როგორ ნაწილდება შემოსავლები ჯგუფებს შორის.',
-      kk: 'Табыстың әртүрлі топтар арасында қалай бөлінетінін салыстырыңыз.',
+      kk: 'Tabystyñ ärtürlı toptar arasynda qalai bölınetının salystyr.',
       qm: 'Çeşit gruppalar arasında kelir nasıl bölüngenini teñeştir.',
     },
   },

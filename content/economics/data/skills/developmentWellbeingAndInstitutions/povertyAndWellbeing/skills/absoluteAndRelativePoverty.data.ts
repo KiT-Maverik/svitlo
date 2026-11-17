@@ -31,7 +31,7 @@ export const absoluteAndRelativePoverty_Skill_Data = defineSkill({
     et: 'Absoluutne ja suhteline vaesus',
     be: 'Абсалютная і адносная беднасьць',
     ka: 'აბსოლუტური და ფარდობითი სიღარიბე',
-    kk: 'Абсолютті және салыстырмалы кедейлік',
+    kk: 'Absoliuttı jäne salystyrmaly kedeılık',
     qm: 'Mutlaq ve nisbi faqırlıq',
   },
   description: {
@@ -65,7 +65,7 @@ export const absoluteAndRelativePoverty_Skill_Data = defineSkill({
       et: 'Erista esmavajaduste puudust vaesusest teistega võrreldes.',
       be: 'Адрозьнівай недахоп неабходнага ад беднасьці ў параўнаньні зь іншымі.',
       ka: 'განასხვავეთ აუცილებელი საჭიროებების ნაკლებობა და სხვებთან შედარებით სიღარიბე.',
-      kk: 'Негізгі қажеттіліктердің жетіспеуін басқалармен салыстырғандағы кедейліктен ажыратыңыз.',
+      kk: 'Negızgı qajettılıkterdıñ jetıspeuın basqalarmen salystyrğandağy kedeılıkten ajyrat.',
       qm: 'Esas ihtiyaçlar yetmegeninen başqa adamlarğa nisbeten faqır oluvnı ayır.',
     },
   },

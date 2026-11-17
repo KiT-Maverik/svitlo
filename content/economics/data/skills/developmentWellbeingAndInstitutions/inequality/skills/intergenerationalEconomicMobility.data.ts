@@ -31,7 +31,7 @@ export const intergenerationalEconomicMobility_Skill_Data = defineSkill({
     et: 'Põlvkondadevaheline majanduslik liikuvus',
     be: 'Міжпакаленная эканамічная мабільнасьць',
     ka: 'თაობათაშორისი ეკონომიკური მობილობა',
-    kk: 'Ұрпақаралық экономикалық ұтқырлық',
+    kk: 'Ūrpaqaralyq ekonomikalyq ūtqyrlyq',
     qm: 'Nesiller arası iqtisadiy areket',
   },
   description: {
@@ -65,7 +65,7 @@ export const intergenerationalEconomicMobility_Skill_Data = defineSkill({
       et: 'Uuri, kuidas pereolud võivad mõjutada tulevasi võimalusi.',
       be: 'Дасьледуй, як сямейныя абставіны ўплываюць на будучыя магчымасьці.',
       ka: 'გამოიკვლიეთ, როგორ მოქმედებს ოჯახური გარემო მომავალ შესაძლებლობებზე.',
-      kk: 'Отбасы жағдайы болашақ мүмкіндіктерге қалай әсер ететінін зерттеңіз.',
+      kk: 'Otbasy jağdaiynyñ bolaşaq mümkındıkterge qalai äser etetının zertte.',
       qm: 'Aile vaziyeti kelecekteki imkânlarğa nasıl tesir etkenini araştır.',
     },
   },
