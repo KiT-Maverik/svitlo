@@ -48,6 +48,26 @@ function ordered(value, label, min = 0) {
   for (const key of keys) ensure(slug.test(key), label + ' has an unsafe slug ' + key);
 }
 
+/** Check only actually authored locale dictionaries, not the Lesson's planned language tuple. */
+function validateSourceLocales(value, sourceLanguage, context) {
+  if (Array.isArray(value)) {
+    value.forEach((entry, index) => validateSourceLocales(entry, sourceLanguage, context + '[' + index + ']'));
+    return;
+  }
+  if (!isRecord(value)) return;
+  const keys = Object.keys(value);
+  if (keys.length > 0 && keys.every(key => languageCode_Schema.safeParse(key).success)) {
+    ensure(
+      keys.length === 1 && keys[0] === sourceLanguage,
+      context + ' must author only documentLanguage ' + sourceLanguage + '; other locales belong to translation',
+    );
+    return;
+  }
+  for (const [key, item] of Object.entries(value)) {
+    validateSourceLocales(item, sourceLanguage, context + '.' + key);
+  }
+}
+
 function safeFilesystemPath(location) {
   let current = path.parse(path.resolve(location)).root;
   for (const part of path.resolve(location).slice(current.length).split(path.sep).filter(Boolean)) {
@@ -151,6 +171,9 @@ export function renderFlashcardBank(bank) {
   for (const name of bank.flashcards.order) {
     const parsed = yamlFlashcard_Schema.parse(bank.flashcards.items[name]);
     ensure(parsed.slug === name, 'Flashcard slug/map mismatch: ' + name);
+    for (const [key, flag] of Object.entries(parsed.parameters.flags.items)) {
+      if ('value' in flag) validateSourceLocales(flag.value, sourceLanguage, name + '.flags.' + key);
+    }
     ensure(!ids.has(parsed.id), 'duplicate Flashcard UUID: ' + parsed.id);
     ids.add(parsed.id);
     ensure(
@@ -164,6 +187,10 @@ export function renderFlashcardBank(bank) {
       for (const key of side.order) {
         const block = side.items[key];
         ensure(block.slug === key, name + '.' + sideName + ' slug/map mismatch');
+        validateSourceLocales(block.locale, sourceLanguage, name + '.' + sideName + '.' + key + '.locale');
+        if (block.params?.variables) {
+          validateSourceLocales(block.params.variables, sourceLanguage, name + '.' + sideName + '.' + key + '.variables');
+        }
         ensure(!nestedIds.has(block.id) && !ids.has(block.id), 'duplicate ContentBlock UUID ' + block.id);
         nestedIds.add(block.id);
         ensure(

@@ -178,3 +178,27 @@ test('media Config drafts retain independently owned block UUIDs without inventi
   );
   assert.equal(bank.flashcards.items.first.content.front.items.stimulusAudio.locale.fileName, undefined);
 });
+
+test('source-language drafts reject mixed or foreign locale values without reducing planned Lesson languages', () => {
+  const bank = createBank();
+  const mixed = structuredClone(bank);
+  mixed.flashcards.items.first.content.front.items.front.locale.value.uk = 'Що таке A?';
+  assert.throws(() => renderFlashcardBank(mixed), /must author only documentLanguage en/);
+
+  const foreignOnly = structuredClone(bank);
+  foreignOnly.flashcards.items.first.content.front.items.front.locale.value = { uk: 'Що таке A?' };
+  assert.throws(() => renderFlashcardBank(foreignOnly), /must author only documentLanguage en/);
+
+  const uk = structuredClone(bank);
+  uk.documentLanguage = 'uk';
+  for (const card of Object.values(uk.flashcards.items)) {
+    for (const side of [card.content.front, card.content.back]) {
+      for (const item of Object.values(side.items)) {
+        item.locale.value.uk = item.locale.value.en;
+        delete item.locale.value.en;
+      }
+    }
+  }
+  assert.match(renderFlashcardBank(uk), /documentLanguage: uk/);
+  assert.match(renderFlashcardBank(bank), /Planned Lesson languages: en, uk/);
+});
