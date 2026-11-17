@@ -31,7 +31,7 @@ export const changeInQuantitySupplied_Skill_Data = defineSkill({
     et: 'Pakutava koguse muutus',
     be: 'Зьмена велічыні прапановы',
     ka: 'შეთავაზებული რაოდენობის ცვლილება',
-    kk: 'Ұсынылған көлемнің өзгерісі',
+    kk: 'Ūsynylğan kölemnıñ özgerısı',
     qm: 'Teklif etilgen miqdarnıñ deñişüvi',
   },
   description: {
@@ -65,7 +65,7 @@ export const changeInQuantitySupplied_Skill_Data = defineSkill({
       et: 'Erista pakkumisvalmidust tegelikult müüdud kogusest.',
       be: 'Адрозьнівай гатоўнасьць пастаўляць тавар ад сапраўды прададзенай колькасьці.',
       ka: 'გაარჩიე მიწოდებისთვის მზადყოფნა რეალურად გაყიდული რაოდენობისგან.',
-      kk: 'Ұсынуға дайын көлемді нақты сатылған көлемнен ажырат.',
+      kk: 'Ūsynuğa daiyn kölemdı naqty satylğan kölemnen ajyrat.',
       qm: 'Teklif etmege razılıqnen aqiqaten satılğan miqdarnı ayır.',
     },
   },

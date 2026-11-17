@@ -31,7 +31,7 @@ export const producerSurplus_Skill_Data = defineSkill({
     et: 'Tootja hinnavõit',
     be: 'Лішак вытворцы',
     ka: 'მწარმოებლის ნამეტი',
-    kk: 'Өндіруші ұтысы',
+    kk: 'Öndıruşı ūtysy',
     qm: 'İstisalci artığı',
   },
   description: {
@@ -65,7 +65,7 @@ export const producerSurplus_Skill_Data = defineSkill({
       et: 'Uuri, millist kasu saab müüja, kui müügihind ületab tema madalaimat vastuvõetavat hinda.',
       be: 'Дасьледуй выгаду прадаўца звыш найменшай прымальнай для яго цаны.',
       ka: 'გაიგე, რა სარგებელს იღებს გამყიდველი თავის მინიმალურ მისაღებ ფასზე მეტის მიღებით.',
-      kk: 'Сатушының ең төменгі қабылдайтын бағасынан артық алатын пайдасын зертте.',
+      kk: 'Satuşynyñ eñ tömengı qabyldaityn bağasynan artyq alatyn paidasyn zertte.',
       qm: 'Satıcınıñ qabul etken eñ az fiyatından yuqarı alğan faydasını ögren.',
     },
   },

@@ -38,7 +38,7 @@ export const marketsAndCompetition_SkillDomain_Data = defineSkillDomain({
     et: 'Turud ja konkurents',
     be: 'Рынкі і канкурэнцыя',
     ka: 'ბაზრები და კონკურენცია',
-    kk: 'Нарықтар және бәсеке',
+    kk: 'Naryqtar jäne bäseke',
     qm: 'Bazarlar ve raqiplik',
   },
   groups: [
@@ -80,7 +80,7 @@ export const marketsAndCompetition_SkillDomain_Data = defineSkillDomain({
       et: 'Mõista, kuidas ostjad, müüjad ja konkurents kujundavad turge.',
       be: 'Зразумей, як пакупнікі, прадаўцы й канкурэнцыя фармуюць рынкі.',
       ka: 'გაიგე, როგორ აყალიბებენ მყიდველები, გამყიდველები და კონკურენცია ბაზრებს.',
-      kk: 'Сатып алушылар, сатушылар мен бәсеке нарықтарды қалай қалыптастыратынын түсін.',
+      kk: 'Satyp aluşylar, satuşylar men bäseke naryqtardy qalai qalyptastyratynyn tüsın.',
       qm: 'Alıcılar, satıcılar ve raqiplik bazarlarnı nasıl şekillendirgenini añla.',
     },
   },

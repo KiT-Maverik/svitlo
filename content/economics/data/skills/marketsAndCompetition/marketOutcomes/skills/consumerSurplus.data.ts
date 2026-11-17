@@ -31,7 +31,7 @@ export const consumerSurplus_Skill_Data = defineSkill({
     et: 'Tarbija hinnavõit',
     be: 'Спажывецкі лішак',
     ka: 'მომხმარებლის ნამეტი',
-    kk: 'Тұтынушы ұтысы',
+    kk: 'Tūtynuşy ūtysy',
     qm: 'İstimalci artığı',
   },
   description: {
@@ -65,7 +65,7 @@ export const consumerSurplus_Skill_Data = defineSkill({
       et: 'Märka kasu, mis tekib, kui maksad vähem, kui oleksid valmis maksma.',
       be: 'Заўважай выгаду, калі плаціш менш за цану, якую быў гатовы заплаціць.',
       ka: 'ნახე, რა სარგებელს იღებ, როცა მზადყოფნის ფასზე ნაკლებს იხდი.',
-      kk: 'Төлеуге дайын бағадан арзан сатып алудың пайдасын байқа.',
+      kk: 'Töleuge daiyn bağadan arzan satyp aludyñ paidasyn baiqa.',
       qm: 'Ödemege razı olğan fiyatıñdan az ödev saña ne fayda bergenini gör.',
     },
   },

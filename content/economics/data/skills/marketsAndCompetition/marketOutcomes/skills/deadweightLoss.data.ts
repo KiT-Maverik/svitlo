@@ -31,7 +31,7 @@ export const deadweightLoss_Skill_Data = defineSkill({
     et: 'Tühikulu',
     be: 'Незваротныя страты дабрабыту',
     ka: 'წმინდა კეთილდღეობის დანაკარგი',
-    kk: 'Қоғамдық әл-ауқаттың қайтымсыз шығыны',
+    kk: 'Qoğamdyq äl-auqattyñ qaitymsyz şyğyny',
     qm: 'Qaytmayğan fayda coyuqlığı',
   },
   description: {
@@ -65,7 +65,7 @@ export const deadweightLoss_Skill_Data = defineSkill({
       et: 'Tunne ära, millal turutingimused takistavad mõlemale kasulikke tehinguid.',
       be: 'Распазнавай, калі рынак перашкаджае ўзаемавыгадным пагадненьням.',
       ka: 'ამოიცანი, როდის უშლის ბაზრის პირობები ხელს ორივე მხარისთვის სასარგებლო გარიგებებს.',
-      kk: 'Нарық жағдайы екі жаққа да пайдалы мәмілелерге қашан кедергі болатынын таны.',
+      kk: 'Naryq jağdaiy ekı jaqqa da paidaly mämılelerge qaşan kedergı bolatynyn tany.',
       qm: 'Bazar şartları eki tarafqa faydalı alış-verişni ne vaqıt tosqanını tanı.',
     },
   },
