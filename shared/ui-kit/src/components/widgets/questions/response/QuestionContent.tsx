@@ -1,6 +1,6 @@
 import type { UiKitMessages } from '#types/uiKitMessages';
 import type { ContentBlock_Props, LanguageCode } from '@svitlo/engine/runtime';
-import { resolveLocalizedText, type LocalizedText } from '../../ContentBlockRenderer/utils';
+import { resolveLocalizedText, subtitlesResourceLabel, type LocalizedText } from '../../ContentBlockRenderer/utils';
 import { ContentBlockRenderer } from '../../ContentBlockRenderer';
 import type { SceneRegistry } from '../../ContentBlockRenderer';
 
@@ -49,6 +49,8 @@ export function questionBlockLabel(block: QuestionBlock, language?: LanguageCode
       );
     case 'audio':
       return labelText(block.locale.title, language, 'audio.title');
+    case 'subtitles':
+      return subtitlesResourceLabel(block.locale.fileLocation);
     case 'video':
     case 'youtube':
       return optionalLabelText(block.locale.title, language, block.type + '.title') ?? block.locale.label;

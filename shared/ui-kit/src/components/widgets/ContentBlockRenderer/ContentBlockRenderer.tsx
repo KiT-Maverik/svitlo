@@ -11,6 +11,7 @@ import { Scene } from './blocks/Scene/Scene';
 import { ContentBlock_Text } from './blocks/Text/Text';
 import { Video } from './blocks/Video/Video';
 import { Youtube } from './blocks/Youtube/Youtube';
+import { Subtitles } from './blocks/Subtitles/Subtitles';
 import type { ContentBlockRendererProps, ContentBlockResponse, SceneRegistry } from '#types/content-blocks';
 import { assertNever, requireTaggedResponse } from './utils';
 import { ContentLanguageContext, useContentLanguage } from './ContentLanguageContext';
@@ -60,6 +61,8 @@ function renderBlock(
       return <Video {...response} messages={messages.video} />;
     case 'youtube':
       return <Youtube {...response} messages={messages.youtube} />;
+    case 'subtitles':
+      return <Subtitles {...response} />;
     case 'image':
       return <Image {...response} messages={messages.image} />;
     case 'carousel':
