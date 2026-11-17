@@ -62,6 +62,7 @@ function sourceDocument(source) {
 function materializeRelationships(cards, graph) {
   ordered(graph, 'relationships');
   const keys = new Set();
+  const relationshipIds = new Set();
   const symmetric = new Set(['reverse', 'equivalent', 'contrast', 'complementary']);
   const result = new Map(Object.keys(cards).map(name => [name, { items: {}, order: [] }]));
   const append = (cardName, linkName, type, relatedId, position, id) => {
@@ -76,6 +77,8 @@ function materializeRelationships(cards, graph) {
       'invalid canonical relationship ' + linkName);
     ensure(typeof link.relationshipId === 'string' && link.relationshipId.length > 0,
       'missing relationshipId at ' + linkName);
+    ensure(!relationshipIds.has(link.relationshipId), 'duplicate Flashcard relationship ID: ' + link.relationshipId);
+    relationshipIds.add(link.relationshipId);
     ensure(flashcardRelationshipTypes.includes(link.type), 'invalid relation type at ' + linkName);
     ensure(Object.hasOwn(cards, link.source) && Object.hasOwn(cards, link.target),
       'relation references a missing card: ' + linkName);
@@ -153,7 +156,7 @@ export function renderFlashcardBank(bank) {
       side.order.map(name => JSON.stringify(name) + ': ' + blockExpression(side.items[name])).join(', ') +
       '}, order: ' + literal(side.order) + ' })';
 
-  const declarations = bank.flashcards.order.map(name => {
+  const declarations = bank.flashcards.order.map((name, index) => {
     const card = cards[name];
     const { content, ...metadata } = card;
     metadata.parameters.disabilities ??= [];
@@ -161,7 +164,7 @@ export function renderFlashcardBank(bank) {
     if (relations.order.length) metadata.parameters.relationships = relations;
     const sides = ['front', 'back', 'hint'].filter(key => content[key]).map(key =>
       key + ': ' + sideExpression(content[key])).join(',\n    ');
-    return 'const ' + name + ' = defineFlashcard({\n' +
+    return 'const flashcard_' + index + ' = defineFlashcard({\n' +
       '  ...' + literal(metadata) + ',\n' +
       '  content: {\n    ' + sides + '\n  },\n});';
   });
@@ -173,7 +176,7 @@ export function renderFlashcardBank(bank) {
     '',
     ...declarations,
     '',
-    'export const flashcards = { items: { ' + bank.flashcards.order.join(', ') + ' } };',
+    'export const flashcards = { items: { ' + bank.flashcards.order.map((name, index) => JSON.stringify(name) + ': flashcard_' + index).join(', ') + ' } };',
     '',
   ].join('\n');
 }
