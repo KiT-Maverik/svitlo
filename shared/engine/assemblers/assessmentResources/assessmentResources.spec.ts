@@ -63,3 +63,24 @@ test('Quiz selects only explicit UUID candidates with stable sampling and never 
   assert.throws(() => selectQuizQuestionIds({ ...base, mode: 'sample', count: 3 }, sectionId), /sample count/);
   assert.throws(() => selectQuizQuestionIds({ ...base, count: 1 }, sectionId), /sample mode/);
 });
+
+test('Flashcard selection keeps candidate order and excludes incompatible cards before body loading', () => {
+  const audio = { lessonId, kind: 'flashcard' as const, languages: ['en'], contentHash: hash, disabilities: ['deafness' as const] };
+  const accessible = { lessonId, kind: 'flashcard' as const, languages: ['en'], contentHash: hash, disabilities: [] };
+  const image = { lessonId, kind: 'flashcard' as const, languages: ['en'], contentHash: hash, disabilities: ['blindness' as const] };
+  const ids = [firstId, secondId, cardId];
+  const entries = [audio, accessible, image];
+  assert.deepEqual(selectAccessibleFlashcardIds(entries, ids, ['deafness']), [secondId, cardId]);
+  assert.deepEqual(selectAccessibleFlashcardIds(entries, ids, ['blindness']), [firstId, secondId]);
+  assert.deepEqual(selectAccessibleFlashcardIds(entries, ids, ['deafness', 'blindness']), [secondId]);
+  assert.deepEqual(selectAccessibleFlashcardIds(entries, ids, []), ids);
+  assert.deepEqual(selectAccessibleFlashcardIds([audio], [firstId], ['deafness']), []);
+  assert.throws(
+    () => selectAccessibleFlashcardIds([{ ...audio, disabilities: undefined }], [firstId], ['deafness']),
+    /Missing accessibility metadata/,
+  );
+  assert.throws(
+    () => selectAccessibleFlashcardIds(entries, ids, ['deafness', 'deafness']),
+    /Duplicate voluntarily selected/,
+  );
+});
