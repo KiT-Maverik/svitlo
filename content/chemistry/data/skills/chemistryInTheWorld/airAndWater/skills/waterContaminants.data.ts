@@ -31,7 +31,7 @@ export const waterContaminants_Skill_Data = defineSkill({
     et: 'Vee saasteained',
     be: 'Забруджвальнікі вады',
     ka: 'წყლის დამაბინძურებლები',
-    kk: 'Судың ластағыштары',
+    kk: 'Sudyñ lastağyştary',
     qm: 'Suv kirleticileri',
   },
   description: {
@@ -65,7 +65,7 @@ export const waterContaminants_Skill_Data = defineSkill({
       et: 'Tunne ära eri vee saasteained ega eelda, et läbipaistev vesi on alati ohutu.',
       be: 'Распазнавай розныя забруджвальнікі вады й ня лічы, што празрыстая вада абавязкова бясьпечная.',
       ka: 'ამოიცანი წყლის სხვადასხვა დამაბინძურებელი და ნუ იფიქრებ, რომ გამჭვირვალე წყალი აუცილებლად უსაფრთხოა.',
-      kk: 'Судағы әртүрлі ластағыштарды таны және мөлдір суды міндетті түрде қауіпсіз деп санама.',
+      kk: 'Sudağy ärtürlı lastağyştardy tany jäne möldır sudy mındettı türde qauıpsız dep sanama.',
       qm: 'Suvda türlü kirleticilerni tanı ve şeffaf suvnı er vaqıt emin sayma.',
     },
   },

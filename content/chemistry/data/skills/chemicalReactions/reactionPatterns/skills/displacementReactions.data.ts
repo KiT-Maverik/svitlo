@@ -31,7 +31,7 @@ export const displacementReactions_Skill_Data = defineSkill({
     et: 'Asendusreaktsioonid',
     be: 'Рэакцыі замяшчэньня',
     ka: 'ჩანაცვლების რეაქციები',
-    kk: 'Орынбасу реакциялары',
+    kk: 'Orynbasu reaktsiialary',
     qm: 'Almaştıruv reaktsiyaları',
   },
   description: {
@@ -64,7 +64,7 @@ export const displacementReactions_Skill_Data = defineSkill({
       et: 'Uuri, millal üks element saab ühendis teist asendada.',
       be: 'Дасьледуй, калі адзін хімічны элемэнт можа замяніць іншы ў злучэньні.',
       ka: 'გამოიკვლიე, როდის შეუძლია ერთ ელემენტს ნაერთში მეორის ჩანაცვლება.',
-      kk: 'Бір элемент қосылыста басқасын қашан алмастыра алатынын зертте.',
+      kk: 'Bır element qosylysta basqasyn qaşan almastyra alatynyn zertte.',
       qm: 'Bir element birikmedeki başqa elementni ne vaqıt almaştırğanını araştır.',
     },
   },

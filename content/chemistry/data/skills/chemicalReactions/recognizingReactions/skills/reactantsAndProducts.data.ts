@@ -31,7 +31,7 @@ export const reactantsAndProducts_Skill_Data = defineSkill({
     et: 'Lähteained ja saadused',
     be: 'Рэагенты і прадукты',
     ka: 'რეაგენტები და პროდუქტები',
-    kk: 'Реагенттер мен өнімдер',
+    kk: 'Reagentter men önımder',
     qm: 'Reaktsiya maddeleri ve mahsuller',
   },
   description: {
@@ -65,7 +65,7 @@ export const reactantsAndProducts_Skill_Data = defineSkill({
       et: 'Erista lähteaineid ja saadusi katalüsaatoritest või lahustitest.',
       be: 'Адрозьнівай зыходныя рэагенты й прадукты ад каталізатараў або растваральнікаў.',
       ka: 'განასხვავე საწყისი რეაგენტები და პროდუქტები კატალიზატორებისა და გამხსნელებისგან.',
-      kk: 'Бастапқы реагенттер мен өнімдерді катализаторлар мен еріткіштерден ажырат.',
+      kk: 'Bastapqy reagentter men önımderdı katalizatorlar men erıtkışterden ajyrat.',
       qm: 'Başlanğıç maddeler ve mahsullerni katalizator ya da eritkicilerden ayır.',
     },
   },

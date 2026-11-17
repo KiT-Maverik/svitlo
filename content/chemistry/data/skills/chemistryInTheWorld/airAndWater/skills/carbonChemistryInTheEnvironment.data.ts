@@ -31,7 +31,7 @@ export const carbonChemistryInTheEnvironment_Skill_Data = defineSkill({
     et: 'Süsinikukeemia keskkonnas',
     be: 'Хімія вугляроду ў навакольлі',
     ka: 'ნახშირბადის ქიმია გარემოში',
-    kk: 'Қоршаған ортадағы көміртек химиясы',
+    kk: 'Qorşağan ortadağy kömırtek himiiasy',
     qm: 'Çevrede karbon kimyası',
   },
   description: {
@@ -65,7 +65,7 @@ export const carbonChemistryInTheEnvironment_Skill_Data = defineSkill({
       et: 'Jälgi süsinikku süsinikdioksiidis, lahustunud süsinikuühendites ja orgaanilises aines.',
       be: 'Прасачы вуглярод у вуглякіслым газе, раствораных злучэньнях вугляроду й арганічным рэчыве.',
       ka: 'თვალი ადევნე ნახშირბადს ნახშირორჟანგში, გახსნილ ნაერთებსა და ორგანულ მასალაში.',
-      kk: 'Көміртекті көмірқышқыл газында, еріген қосылыстарда және органикалық затта қадағала.',
+      kk: 'Kömırtektı kömırqyşqyl gazynda, erıgen qosylystarda jäne organikalyq zatta qadağala.',
       qm: 'Karbondı karbon dioksid, irigen karbon birleşmeleri ve organik maddelerde izle.',
     },
   },

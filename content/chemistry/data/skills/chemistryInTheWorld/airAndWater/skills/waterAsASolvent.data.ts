@@ -31,7 +31,7 @@ export const waterAsASolvent_Skill_Data = defineSkill({
     et: 'Vesi kui lahusti',
     be: 'Вада як растваральнік',
     ka: 'წყალი როგორც გამხსნელი',
-    kk: 'Су еріткіш ретінде',
+    kk: 'Su erıtkış retınde',
     qm: 'İritici olaraq suv',
   },
   description: {
@@ -64,7 +64,7 @@ export const waterAsASolvent_Skill_Data = defineSkill({
       et: 'Uuri, miks molekulidevahelised vastasmõjud võimaldavad veel paljusid aineid lahustada.',
       be: 'Дасьледуй, чаму дзякуючы міжмалекулярным узаемадзеяньням вада растварае шмат рэчываў.',
       ka: 'შეისწავლე, რატომ ხსნის წყალი ბევრ ნივთიერებას მოლეკულური ურთიერთქმედებების წყალობით.',
-      kk: 'Молекулааралық әрекеттесулер судың көптеген заттарды ерітуіне қалай мүмкіндік беретінін зертте.',
+      kk: 'Molekulaaralyq ärekettesuler sudyñ köptegen zattardy erıtuıne qalai mümkındık beretının zertte.',
       qm: 'Molekulalarnıñ tesirleşüvi sayesinde suv birçok maddeni niçün irite bilgenini araştır.',
     },
   },

@@ -31,7 +31,7 @@ export const decompositionReactions_Skill_Data = defineSkill({
     et: 'Lagunemisreaktsioonid',
     be: 'Рэакцыі раскладу',
     ka: 'დაშლის რეაქციები',
-    kk: 'Ыдырау реакциялары',
+    kk: 'Ydyrau reaktsiialary',
     qm: 'Parçalanuv reaktsiyaları',
   },
   description: {
@@ -64,7 +64,7 @@ export const decompositionReactions_Skill_Data = defineSkill({
       et: 'Tunne ära, millal üks aine laguneb mitmeks saaduseks.',
       be: 'Распазнавай, калі адно рэчыва раскладаецца на некалькі прадуктаў.',
       ka: 'ამოიცანი, როდის იშლება ერთი ნივთიერება რამდენიმე პროდუქტად.',
-      kk: 'Бір химиялық зат бірнеше өнімге ыдырайтын жағдайды таны.',
+      kk: 'Bır himiialyq zat bırneşe önımge ydyraityn jağdaidy tany.',
       qm: 'Bir kimyeviy madde birqaç mahsulge ayırılğanını tanı.',
     },
   },

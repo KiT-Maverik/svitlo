@@ -31,7 +31,7 @@ export const precipitationReactions_Skill_Data = defineSkill({
     et: 'Sadestumisreaktsioonid',
     be: 'Рэакцыі асаджэньня',
     ka: 'დალექვის რეაქციები',
-    kk: 'Тұнба түзілу реакциялары',
+    kk: 'Tūnba tüzılu reaktsiialary',
     qm: 'Çökünti reaktsiyaları',
   },
   description: {
@@ -64,7 +64,7 @@ export const precipitationReactions_Skill_Data = defineSkill({
       et: 'Selgita, miks lahustunud ainetest võib reaktsiooni käigus tekkida lahustumatu tahke aine.',
       be: 'Патлумач, чаму з раствораных рэчываў можа ўтварыцца нерастваральнае цьвёрдае рэчыва.',
       ka: 'ახსენი, რატომ წარმოიქმნება ხსნადი ნივთიერებების რეაქციით უხსნადი მყარი ფაზა.',
-      kk: 'Еріген заттар әрекеттескенде ерімейтін қатты зат неге түзілетінін түсіндір.',
+      kk: 'Erıgen zattar äreketteskende erımeitın qatty zat nege tüzıletının tüsındır.',
       qm: 'Erigen maddeler reaktsiyasından erimegen qattı madde ne içün peyda olğanını añlat.',
     },
   },

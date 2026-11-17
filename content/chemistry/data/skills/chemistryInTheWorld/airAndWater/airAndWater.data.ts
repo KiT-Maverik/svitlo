@@ -39,7 +39,7 @@ export const airAndWater_SkillGroup_Data = defineSkillGroup({
     et: 'Õhk ja vesi',
     be: 'Паветра й вада',
     ka: 'ჰაერი და წყალი',
-    kk: 'Ауа және су',
+    kk: 'Aua jäne su',
     qm: 'Ava ve suv',
   },
   skills: [
@@ -80,7 +80,7 @@ export const airAndWater_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri õhu ja vee keemiat, sealhulgas saasteaineid ja lahustunud ühendeid.',
       be: 'Дасьледуй хімію паветра й вады, у тым ліку забруджвальнікі й раствораныя рэчывы.',
       ka: 'შეისწავლე ჰაერისა და წყლის ქიმია, მათ შორის დამაბინძურებლები და გახსნილი ნივთიერებები.',
-      kk: 'Ауа мен судың химиясын, соның ішінде ластағыштар мен еріген заттарды зертте.',
+      kk: 'Aua men sudyñ himiiasyn, sonyñ ışınde lastağyştar men erıgen zattardy zertte.',
       qm: 'Ava ve suvnıñ kimyasını, kirletici ve irigen maddelerni de araştır.',
     },
   },

@@ -31,7 +31,7 @@ export const hydrolysis_Skill_Data = defineSkill({
     et: 'Hüdrolüüs',
     be: 'Гідроліз',
     ka: 'ჰიდროლიზი',
-    kk: 'Гидролиз',
+    kk: 'Gidroliz',
     qm: 'Gidroliz',
   },
   description: {
@@ -64,7 +64,7 @@ export const hydrolysis_Skill_Data = defineSkill({
       et: 'Tunne ära reaktsioonid, kus vesi osaleb keemiliste sidemete lõhkumises või muutmises.',
       be: 'Распазнавай рэакцыі, у якіх вада ўдзельнічае ў разрыве або зьмене хімічных сувязяў.',
       ka: 'ამოიცანი რეაქციები, რომლებშიც წყალი ქიმიური ბმების გაწყვეტაში ან შეცვლაში მონაწილეობს.',
-      kk: 'Су химиялық байланыстарды үзуге немесе өзгертуге қатысатын реакцияларды таны.',
+      kk: 'Su himiialyq bailanystardy üzuge nemese özgertuge qatysatyn reaktsiialardy tany.',
       qm: 'Suv kimyeviy bağlarnı üzmek ya da deñiştirmek içün qatnaşqan reaktsiyalarnı tanı.',
     },
   },

@@ -31,7 +31,7 @@ export const synthesisReactions_Skill_Data = defineSkill({
     et: 'Ühinemisreaktsioonid',
     be: 'Рэакцыі злучэньня',
     ka: 'სინთეზის რეაქციები',
-    kk: 'Қосылу реакциялары',
+    kk: 'Qosylu reaktsiialary',
     qm: 'Sintez reaktsiyaları',
   },
   description: {
@@ -64,7 +64,7 @@ export const synthesisReactions_Skill_Data = defineSkill({
       et: 'Tunne ära, millal lihtsamad ained ühinevad uueks ühendiks.',
       be: 'Распазнавай, калі прасьцейшыя рэчывы злучаюцца ў новае злучэньне.',
       ka: 'ამოიცანი, როდის ერთიანდება მარტივი ნივთიერებები ახალი ნაერთის წარმოსაქმნელად.',
-      kk: 'Қарапайым заттар бірігіп жаңа қосылыс түзетін жағдайды таны.',
+      kk: 'Qarapaiym zattar bırıgıp jaña qosylys tüzetın jağdaidy tany.',
       qm: 'Sade maddeler birikip yañı birikme peyda etkenini tanı.',
     },
   },

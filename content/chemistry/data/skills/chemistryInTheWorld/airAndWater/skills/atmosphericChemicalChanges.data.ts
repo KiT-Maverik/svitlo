@@ -31,7 +31,7 @@ export const atmosphericChemicalChanges_Skill_Data = defineSkill({
     et: 'Keemilised muutused atmosfääris',
     be: 'Хімічныя зьмены ў атмасфэры',
     ka: 'ატმოსფეროს ქიმიური ცვლილებები',
-    kk: 'Атмосферадағы химиялық өзгерістер',
+    kk: 'Atmosferadağy himiialyq özgerıster',
     qm: 'Atmosferada kimyeviy deñişmeler',
   },
   description: {
@@ -65,7 +65,7 @@ export const atmosphericChemicalChanges_Skill_Data = defineSkill({
       et: 'Seosta atmosfääri reaktsioonid sudu ja happelise sadestumisega.',
       be: 'Зьвязвай атмасфэрныя хімічныя рэакцыі са смогам і кіслотнымі ападкамі.',
       ka: 'დააკავშირე ატმოსფერული ქიმიური რეაქციები სმოგსა და მჟავურ დალექვასთან.',
-      kk: 'Атмосфералық реакцияларды смогпен және қышқылдық шөгінділермен байланыстыр.',
+      kk: 'Atmosferalyq reaktsiialardy smogpen jäne qyşqyldyq şögındılermen bailanystyr.',
       qm: 'Atmosferadaki kimyeviy reaktsiyalarnı smog ve asitli çökmelernen bağla.',
     },
   },

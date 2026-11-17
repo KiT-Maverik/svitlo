@@ -31,7 +31,7 @@ export const reactionEvidence_Skill_Data = defineSkill({
     et: 'Reaktsiooni tunnused',
     be: 'Прыкметы рэакцыі',
     ka: 'რეაქციის ნიშნები',
-    kk: 'Реакция белгілері',
+    kk: 'Reaktsiia belgılerı',
     qm: 'Reaktsiya delilleri',
   },
   description: {
@@ -65,7 +65,7 @@ export const reactionEvidence_Skill_Data = defineSkill({
       et: 'Hinda, kas mullid, värvimuutus või temperatuuri muutus viitavad keemilisele reaktsioonile.',
       be: 'Ацані, ці сьведчаць бурбалкі, зьмены колеру або тэмпэратуры пра хімічную рэакцыю.',
       ka: 'შეაფასე, მიუთითებს თუ არა ბუშტები, ფერის ან ტემპერატურის ცვლილება ქიმიურ რეაქციაზე.',
-      kk: 'Көпіршіктер, түс не температура өзгерісі химиялық реакцияны көрсете ме, бағала.',
+      kk: 'Köpırşıkter, tüs ne temperatura özgerısı himiialyq reaktsiiany körsete me, bağala.',
       qm: 'Qabarçıqlar, renk ya da sıcaqlıq deñişüvi reaktsiyağa işaret ete mi, baala.',
     },
   },

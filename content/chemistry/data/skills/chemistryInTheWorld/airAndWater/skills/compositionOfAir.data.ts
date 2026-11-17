@@ -31,7 +31,7 @@ export const compositionOfAir_Skill_Data = defineSkill({
     et: 'Õhu koostis',
     be: 'Склад паветра',
     ka: 'ჰაერის შემადგენლობა',
-    kk: 'Ауаның құрамы',
+    kk: 'Auanyñ qūramy',
     qm: 'Avanıñ terkibi',
   },
   description: {
@@ -64,7 +64,7 @@ export const compositionOfAir_Skill_Data = defineSkill({
       et: 'Tunne ära õhu peamised gaasid ja erista neid jälgedena esinevatest saasteainetest.',
       be: 'Распазнавай асноўныя газы паветра й адрозьнівай іх ад прымесяў-забруджвальнікаў.',
       ka: 'ამოიცანი ჰაერის ძირითადი აირები და განასხვავე ისინი მცირე რაოდენობის დამაბინძურებლებისგან.',
-      kk: 'Ауаның негізгі газдарын таны және оларды аз мөлшердегі ластағыштардан ажырат.',
+      kk: 'Auanyñ negızgı gazdaryn tany jäne olardy az mölşerdegı lastağyştardan ajyrat.',
       qm: 'Avadaki esas gazlarnı tanı ve az miqdardaki kirleticilerden ayır.',
     },
   },
