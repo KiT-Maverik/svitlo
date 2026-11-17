@@ -1,5 +1,5 @@
 # Temporary editorial Course Flow plan; not Engine config.yaml.
-# Stage 1 draft: methodology scope pending editorial acceptance.
+# Stage 2 editorial macrostructure draft; Stage 1 scope and four-locale pilot accepted by the owner on 2026-11-17.
 id: 1e79d8fc-2223-4fa7-bc64-70d8172d3e8b
 type: course
 slug: astronomyGradeOne
@@ -9,6 +9,8 @@ documentLanguage: uk
 supportedLanguages:
   - uk
   - en
+  - pl
+  - qm
 grade:
   min: 1
   max: 1
@@ -52,17 +54,20 @@ methodology:
   sourceNotes: >-
     Робочий пілот нового Create Course Flow.
     Таксономічні UUID звірені з content/astronomy/data/skills.
-    Прив'язка до конкретних освітніх стандартів і повний
-    методичний обсяг потребують редакторського рішення.
+    Власник погодив вступну глибину, чотиримовний пілот і
+    відсутність заяв про відповідність освітнім стандартам
+    2026-11-17. Stage 2 макроструктура очікує редакторської перевірки.
 outcomes:
   skillGroups:
     - 6b5700fb-8ba9-4483-9b1b-5c6a28347e12 # observationPractice
     - c8f35ba8-a7b9-4e99-83bc-1f21326aafc7 # terrestrialSkyCycles
+    - 48079b94-cef6-4aaa-9d94-80c5099520df # lunarAppearance
   skills:
     - b4b9b469-391d-40f8-b11d-6884c76ed106 # safeSolarObservation
     - faa8f11a-cc06-42c9-8864-8151732e690a # dayAndNight
     - 05f79f1d-da4d-4c52-a2d1-332cfd48867c # astronomicalObservationRecords
     - 2c404b38-fbad-47f6-a70c-fe12218ac240 # solarSystemComponents
+    - 53bba831-1f84-4b25-8e05-33f54167cc98 # lunarPhases (introductory observation, not full mastery)
   explanation: >-
     Заплановані навчальні цілі охоплюють безпечне спостереження,
     фіксацію простих спостережень, розуміння зміни дня й ночі
@@ -77,14 +82,149 @@ prerequisites:
   explanation: Спеціалізованих попередніх астрономічних компетентностей не вимагається.
 standardsAlignment: []
 openDecisions:
-  plannedLanguages: >-
-    Пілот пропонує uk як мову оригіналу й en як цільовий переклад.
-    Редактор має підтвердити або змінити перелік до прийняття Stage 1;
-    жоден переклад ще не створено.
-  standards: >-
-    Країна, нормативний документ, рік і версія стандартів не задані;
-    не стверджувати відповідність до їх перевірки.
-  courseBreadth: >-
-    Погодити вступний рівень і обсяг (зокрема чи видимі зміни
-    Місяця є окремою навчальною темою). Після цього
-    Stage 2 визначить Modules/Chapters без Lesson slots.
+  macrostructureReview: >-
+    Потрібно редакторськи погодити Stage 2: один прямий Chapter курсу,
+    два Modules (кожен із принаймні одним Chapter), усього чотири
+    тематичні Chapters. Жодні Lessons або Episodes ще не створені.
+  lessonPlacementPilot: >-
+    TODO(Stage 3): спроєктувати чотири окремі reusable Lesson slots:
+    Course/firstLookAtSky (вступ і безпека), Module skyCycles/skyChangesOverview
+    (зміни неба), Chapter safeObservation/observationJournal
+    (щоденник спостережень), Chapter solarSystemBasics/sunEarthMoonRoles
+    (роль Сонця, Землі й Місяця). Це покриває пряме вкладення в Course,
+    Module, прямий Chapter курсу і Chapter усередині Module.
+    TODO(editorial): перевірити, чи вступні slots не дублюють Chapters,
+    і за потреби реорганізувати їх без зміни незалежних Lesson UUID.
+  episodePlacementPilot: >-
+    TODO(Screenwriter, після погодження плану): передбачити один Course
+    Episode (welcomeToSky), один Module Episode (skyCyclesStory) у
+    skyCycles і один Chapter Episode (solarSystemStory) у solarSystemBasics.
+    Episodes не належать до Stage 2/3 методичного YAML, мають самостійні
+    авторські обґрунтування, Sections і ресурси. TODO(editorial):
+    перенести або прибрати суто тестовий Episode, якщо він не додає
+    окремої педагогічної цінності; не робити його умовою Stage 4 review.
+content:
+  items:
+    safeObservation:
+      type: chapter
+      slug: safeObservation
+      title: Спостерігаємо за небом безпечно
+      methodology: >-
+        Почати з життєвого досвіду дітей: що видно на небі вдень і
+        ввечері, які спостереження безпечні, як записати побачене
+        малюнком, піктограмою або коротким усним описом. Спершу
+        пояснити заборону прямого спостереження Сонця без захисту.
+        Не вимагати читання, нічних виходів або фізичного доступу
+        до відкритого неба.
+      outcomes:
+        skillGroups:
+          - 6b5700fb-8ba9-4483-9b1b-5c6a28347e12 # observationPractice
+        skills:
+          - b4b9b469-391d-40f8-b11d-6884c76ed106 # safeSolarObservation
+          - 05f79f1d-da4d-4c52-a2d1-332cfd48867c # astronomicalObservationRecords
+        explanation: >-
+          Дитина розрізняє приклади безпечної й небезпечної поведінки
+          та фіксує просте спостереження за допомогою доступного
+          їй формату; повного володіння професійним протоколом
+          спостереження не вимагаємо.
+    skyCycles:
+      type: module
+      slug: skyCycles
+      title: Як змінюється небо
+      methodology: >-
+        Після безпечних спостережень порівняти регулярні видимі зміни:
+        день і ніч, освітлений вигляд Місяця в різні дні. Йти від
+        впізнаваного досвіду до простих моделей і залишати
+        геометричні пояснення фаз та складну механіку поза
+        обов'язковими результатами першого класу.
+      outcomes:
+        skillGroups:
+          - c8f35ba8-a7b9-4e99-83bc-1f21326aafc7 # terrestrialSkyCycles
+          - 48079b94-cef6-4aaa-9d94-80c5099520df # lunarAppearance
+        skills:
+          - faa8f11a-cc06-42c9-8864-8151732e690a # dayAndNight
+          - 53bba831-1f84-4b25-8e05-33f54167cc98 # lunarPhases
+        explanation: >-
+          Учень порівнює денне і нічне небо, помічає повторювані
+          зміни та описує відмінності видимого Місяця; це вступне
+          знайомство з двома Skill, а не сертифікація повного їх обсягу.
+      content:
+        items:
+          dayAndNight:
+            type: chapter
+            slug: dayAndNight
+            title: Чому бувають день і ніч
+            methodology: >-
+              Зіставити світло й темряву на знайомих прикладах,
+              використати доступну просту модель Землі, що обертається,
+              і показати, чому на одному боці є день, а на іншому ніч.
+              Не вимагати пояснень астрономічних координат або
+              самостійного складного просторового моделювання.
+            outcomes:
+              skills:
+                - faa8f11a-cc06-42c9-8864-8151732e690a # dayAndNight
+              explanation: >-
+                Дитина розрізняє день і ніч та на доступному рівні
+                пов'язує їх чергування з обертанням Землі.
+          moonAppearance:
+            type: chapter
+            slug: moonAppearance
+            title: Місяць змінює свій вигляд
+            methodology: >-
+              За зіставленням безпечних зображень і спостережень
+              помічати різні видимі освітлені частини Місяця;
+              обговорювати, що Місяць не стає іншою фізичною формою.
+              Повна геометрична теорія фаз не входить у вимоги;
+              пропонувати альтернативу особистим нічним спостереженням.
+            outcomes:
+              skills:
+                - 53bba831-1f84-4b25-8e05-33f54167cc98 # lunarPhases
+              explanation: >-
+                Дитина впізнає і порівнює видимі форми освітленої
+                частини Місяця, не претендуючи на повне пояснення
+                орбітальної геометрії.
+        order:
+          - dayAndNight
+          - moonAppearance
+    solarSystem:
+      type: module
+      slug: solarSystem
+      title: Наші космічні сусіди
+      methodology: >-
+        Перейти від знайомих об'єктів до початкової класифікації:
+        Сонце як зоря, Земля як планета, Місяць як її природний
+        супутник. Інші планети знайомлять із системою на прикладах,
+        без запам'ятовування великих переліків, масштабів і
+        механічних деталей руху.
+      outcomes:
+        skillGroups:
+          - abfb0627-a4a5-410e-9881-04d22158a297 # systemArchitecture
+        skills:
+          - 2c404b38-fbad-47f6-a70c-fe12218ac240 # solarSystemComponents
+        explanation: >-
+          Дитина наводить прості приклади зорі, планети й супутника
+          та розрізняє їхні ролі в Сонячній системі.
+      content:
+        items:
+          solarSystemBasics:
+            type: chapter
+            slug: solarSystemBasics
+            title: Сонце, Земля та їхні сусіди
+            methodology: >-
+              На прикладі Сонця, Землі й Місяця з'ясувати відмінності
+              ролей зорі, планети й природного супутника. Поступово
+              показати інші планети як членів Сонячної системи,
+              не перетворюючи знайомство на вимогу складної
+              класифікації або розрахунків.
+            outcomes:
+              skills:
+                - 2c404b38-fbad-47f6-a70c-fe12218ac240 # solarSystemComponents
+              explanation: >-
+                Дитина пояснює простими словами, що Сонце є зорею,
+                Земля планетою, а Місяць її природним супутником.
+        order:
+          - solarSystemBasics
+  order:
+    - safeObservation
+    - skyCycles
+    - solarSystem
