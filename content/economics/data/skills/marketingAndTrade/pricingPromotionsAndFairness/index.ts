@@ -1,0 +1,91 @@
+import { defineSkillGroup } from '@svitlo/engine/build';
+
+import { discountsAndPromotions } from './discountsAndPromotions';
+import { ethicalMarketing } from './ethicalMarketing';
+import { hiddenChargesAndForcedExtras } from './hiddenChargesAndForcedExtras';
+import { manipulativeCommercialTactics } from './manipulativeCommercialTactics';
+import { psychologicalPricing } from './psychologicalPricing';
+import { retailPricingStrategies } from './retailPricingStrategies';
+import { subscriptionCancellationBarriers } from './subscriptionCancellationBarriers';
+
+export const pricingPromotionsAndFairness = defineSkillGroup({
+  slug: 'pricingPromotionsAndFairness',
+  id: '3abaa57c-0495-4bba-9b46-22652eec60a7',
+  name: {
+    ar: 'الأسعار والعروض والإنصاف',
+    be: 'Цэны, акцыі й сумленнасьць',
+    bn: 'দাম, প্রচার ও ন্যায্যতা',
+    de: 'Preise, Aktionen und Fairness',
+    en: 'Ціни, акції та добросовісність',
+    es: 'Precios, promociones y prácticas justas',
+    et: 'Hinnad, soodustused ja ausus',
+    fr: 'Prix, promotions et équité',
+    he: 'מחירים, מבצעים והגינות',
+    hi: 'मूल्य, प्रचार और निष्पक्षता',
+    id: 'Harga, promosi, dan keadilan',
+    it: 'Prezzi, promozioni e correttezza commerciale',
+    ja: '価格、販促、公正さ',
+    ka: 'ფასები, აქციები და სამართლიანობა',
+    kk: 'Бағалар, акциялар және адалдық',
+    ko: '가격, 판촉, 공정성',
+    lt: 'Kainos, akcijos ir sąžiningumas',
+    lv: 'Cenas, akcijas un godīgums',
+    mr: 'किंमती, जाहिराती आणि न्याय्यता',
+    ms: 'Harga, Promosi dan Keadilan',
+    pl: 'Ceny, promocje i uczciwość',
+    pt: 'Preços, promoções e justiça',
+    qm: 'Fiyatlar, aktsiyalar ve insaf',
+    ta: 'விலைகள், சலுகைகள் மற்றும் நேர்மை',
+    te: 'ధరలు, ఆఫర్లు, న్యాయం',
+    tr: 'Fiyatlar, Kampanyalar ve Adalet',
+    uk: 'Ціни, акції та добросовісність',
+    ur: 'قیمتیں، تشہیر اور انصاف',
+    vi: 'Giá cả, khuyến mãi và công bằng',
+    zh: '定价、促销与公平交易',
+  },
+  skills: {
+    discountsAndPromotions,
+    ethicalMarketing,
+    hiddenChargesAndForcedExtras,
+    manipulativeCommercialTactics,
+    psychologicalPricing,
+    retailPricingStrategies,
+    subscriptionCancellationBarriers,
+  },
+  description: {
+    methodological:
+      'Price offers have commercial effects, but judging them requires verifying actual savings and methods of influencing buyers.',
+    frontend: {
+      ar: 'تعلّم تقييم أسعار التخفيضات والخصومات وممارسات البيع العادلة.',
+      be: 'Вучыся ацэньваць акцыйныя цэны, зьніжкі й сумленныя прыёмы продажу.',
+      bn: 'বিক্রয়মূল্য, ছাড় ও ন্যায্য বিক্রির পদ্ধতি যাচাই করতে শেখো।',
+      de: 'Lerne, Sonderpreise, Rabatte und faire Verkaufspraktiken zu beurteilen.',
+      en: 'Learn to evaluate sale prices, discounts, and fair selling practices.',
+      es: 'Aprende a evaluar precios de oferta, descuentos y prácticas de venta justas.',
+      et: 'Õpi hindama müügihindu, allahindlusi ja ausaid müügiviise.',
+      fr: 'Apprends à évaluer les prix soldés, les remises et les pratiques de vente équitables.',
+      he: 'למדו להעריך מחירי מבצע, הנחות ושיטות מכירה הוגנות.',
+      hi: 'बिक्री मूल्य, छूट और निष्पक्ष बिक्री व्यवहार का आकलन करना सीखें।',
+      id: 'Belajarlah menilai harga diskon, potongan harga, dan praktik penjualan yang adil.',
+      it: 'Impara a valutare prezzi in offerta, sconti e pratiche di vendita corrette.',
+      ja: 'セール価格や割引、公正な販売方法を評価しよう。',
+      ka: 'ისწავლე ფასდაკლების ფასებისა და პატიოსანი გაყიდვის შეფასება.',
+      kk: 'Жеңілдік бағасын, науқандарды және әділ сатуды бағалауды үйрен.',
+      ko: '할인 판매가와 할인율, 공정한 판매 관행을 평가해 보세요.',
+      lt: 'Mokykis vertinti išpardavimo kainas, nuolaidas ir sąžiningą pardavimo praktiką.',
+      lv: 'Mācies novērtēt izpārdošanas cenas, atlaides un godīgu pārdošanu.',
+      mr: 'सेलच्या किंमती, सूट आणि न्याय्य विक्री पद्धती तपासायला शिका.',
+      ms: 'Belajar menilai harga jualan, diskaun dan amalan jualan yang adil.',
+      pl: 'Naucz się oceniać ceny promocyjne, rabaty i uczciwe praktyki sprzedaży.',
+      pt: 'Aprenda a avaliar preços promocionais, descontos e práticas justas de venda.',
+      qm: 'Ucuzlatılğan fiyatlarnı, indirimlerni ve insaflı satış usullarını qıymetle.',
+      ta: 'சலுகை விலைகள், தள்ளுபடிகள், நியாயமான விற்பனை முறைகளை மதிப்பிடக் கற்றுக்கொள்.',
+      te: 'అమ్మకపు ధరలు, తగ్గింపులు, న్యాయమైన విక్రయ పద్ధతులను అంచనా వేయండి.',
+      tr: 'İndirimli fiyatları, promosyonları ve adil satış uygulamalarını değerlendirmeyi öğren.',
+      uk: 'Навчися оцінювати акційні ціни, знижки й чесні способи продажу.',
+      ur: 'سیل کی قیمتوں، رعایتوں اور منصفانہ فروخت کا جائزہ لینا سیکھیں۔',
+      vi: 'Học cách đánh giá giá giảm, ưu đãi và cách bán hàng công bằng.',
+      zh: '学会评估促销价、折扣和公平的销售行为。',
+    },
+  },
+});

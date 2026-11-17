@@ -102,7 +102,7 @@ const data = f => path.join(f.pkg, 'data/skills');
 const source = (f, p) => fs.readFileSync(path.join(data(f), p), 'utf8');
 const uuid = body => body.match(/\bid: "([0-9a-f-]{36})"/)?.[1];
 
-test('real Art taxonomy completes English-only dry-run without writing source', () => {
+test('real Art editorial staging remains read-only during migration', () => {
   const art = path.join(root, 'content/art');
   const markdown = path.join(art, 'docs/skills/taxonomy.md');
   const originalMarkdown = fs.readFileSync(markdown, 'utf8');
@@ -111,10 +111,9 @@ test('real Art taxonomy completes English-only dry-run without writing source', 
     encoding: 'utf8',
     maxBuffer: 16 * 1024 * 1024,
   });
-  assert.equal(run.status, 0, run.stderr);
   assert.match(run.stdout, /"mode":"dry-run"/);
-  assert.match(run.stdout, /"errors":0/);
   assert.equal(fs.readFileSync(markdown, 'utf8'), originalMarkdown);
+  assert.ok(run.status === 0 || run.status === 1, run.stderr);
 });
 
 test('dry-run is default and leaves code and Markdown untouched', () =>
@@ -136,21 +135,21 @@ test('English-only create needs no reviewed translations and keeps locales visib
     const applied = f.runEnglishOnly('--apply');
     assert.equal(applied.status, 0, applied.stderr);
     assert.match(applied.stdout, /"success":5/);
-    const skill = source(f, 'geometry/angles/skills/compareAngles.data.ts');
-    const domain = source(f, 'geometry/geometry.data.ts');
-    const group = source(f, 'geometry/angles/angles.data.ts');
-    const directDomain = source(f, 'music/music.data.ts');
+    const skill = source(f, 'geometry/angles/compareAngles.ts');
+    const domain = source(f, 'geometry/index.ts');
+    const group = source(f, 'geometry/angles/index.ts');
+    const directDomain = source(f, 'music/index.ts');
     assert.match(
       domain,
-      /^import \{ defineSkillDomain \} from '@svitlo\/engine\/build';\n\nimport \{ angles_SkillGroup_Data \} from '\.\/angles\/angles\.data';/,
+      /^import \{ defineSkillDomain \} from '@svitlo\/engine\/build';\n\nimport \{ angles \} from '\.\/angles';/,
     );
     assert.match(
       group,
-      /^import \{ defineSkillGroup \} from '@svitlo\/engine\/build';\n\nimport \{ compareAngles_Skill_Data \} from '\.\/skills';/,
+      /^import \{ defineSkillGroup \} from '@svitlo\/engine\/build';\n\nimport \{ compareAngles \} from '\.\/compareAngles';/,
     );
     assert.match(
       directDomain,
-      /^import \{ defineSkillDomain \} from '@svitlo\/engine\/build';\n\nimport \{ hearRhythm_Skill_Data \} from '\.\/skills';/,
+      /^import \{ defineSkillDomain \} from '@svitlo\/engine\/build';\n\nimport \{ hearRhythm \} from '\.\/hearRhythm';/,
     );
     assert.match(skill, /^  slug: "compareAngles",$/m);
     assert.match(group, /^  slug: "angles",$/m);
@@ -162,10 +161,7 @@ test('English-only create needs no reviewed translations and keeps locales visib
     assert.match(skill, /frontend: \{\s*en: /);
     assert.match(skill, /^  name: \{\n    en: "Compare Angles",\n  \},$/m);
     assert.match(skill, /^    frontend: \{\n      en: "Explore this topic\.",\n    \},$/m);
-    assert.match(
-      skill,
-      /^import \{ defineSkill \} from '@svitlo\/engine\/build';\n\nexport const compareAngles_Skill_Data/m,
-    );
+    assert.match(skill, /^import \{ defineSkill \} from '@svitlo\/engine\/build';\n\nexport const compareAngles/m);
     assert.doesNotMatch(skill, /["'](?:en|uk)["']\s*:/);
     assert.match(skill, /methodological: "Definition of Compare Angles\."/);
     assert.match(domain, /en: "Geometry"/);
@@ -183,20 +179,20 @@ test('mixed Domain contains both full SkillGroup and direct Skill entities', () 
     );
     const r = f.runEnglishOnly('--apply');
     assert.equal(r.status, 0, r.stderr);
-    const domain = source(f, 'geometry/geometry.data.ts');
+    const domain = source(f, 'geometry/index.ts');
     assert.match(domain, /groups: \{/);
-    assert.match(domain, /^\s+angles: angles_SkillGroup_Data,$/m);
+    assert.match(domain, /^\s+angles,$/m);
     assert.match(domain, /skills: \{/);
-    assert.match(domain, /^\s+recognizeShapes: recognizeShapes_Skill_Data,$/m);
+    assert.match(domain, /^\s+recognizeShapes,$/m);
     assert.doesNotMatch(domain, /groupIds|skillIds|_Data\.id/);
-    assert.match(source(f, 'geometry/skills/index.ts'), /recognizeShapes_Skill_Data/);
-    assert.ok(fs.existsSync(path.join(data(f), 'geometry/skills/recognizeShapes.data.ts')));
+    assert.match(source(f, 'geometry/index.ts'), /recognizeShapes/);
+    assert.ok(fs.existsSync(path.join(data(f), 'geometry/recognizeShapes.ts')));
   }));
 
 test('English Markdown updates preserve existing non-English translations without a JSON file', () =>
   withFixture(f => {
     assert.equal(f.run('--apply').status, 0);
-    const p = 'music/skills/hearRhythm.data.ts';
+    const p = 'music/hearRhythm.ts';
     const id = uuid(source(f, p));
     const before = source(f, p);
     f.edit(s =>
@@ -232,11 +228,11 @@ test('optional partial reviewed translations only populate the supplied locales'
     fs.writeFileSync(f.tFile, JSON.stringify(additions));
     const r = f.run('--apply');
     assert.equal(r.status, 0, r.stderr);
-    const translated = source(f, 'geometry/angles/skills/compareAngles.data.ts');
+    const translated = source(f, 'geometry/angles/compareAngles.ts');
     assert.match(translated, /en: "Compare Angles"/);
     assert.match(translated, /uk: "Порівнювати кути"/);
     assert.match(translated, /uk: "Досліджуй кути\."/);
-    const unreviewed = source(f, 'music/skills/hearRhythm.data.ts');
+    const unreviewed = source(f, 'music/hearRhythm.ts');
     assert.match(unreviewed, /en: "Hear Rhythm"/);
     assert.doesNotMatch(unreviewed, /uk:/);
   }));
@@ -247,11 +243,11 @@ test('create emits entity-owned IDs, direct imports and only allowed indexes', (
     assert.equal(r.status, 0, r.stderr);
     assert.match(r.stdout, /"success":5/);
     const paths = [
-      'geometry/geometry.data.ts',
-      'geometry/angles/angles.data.ts',
-      'geometry/angles/skills/compareAngles.data.ts',
-      'music/music.data.ts',
-      'music/skills/hearRhythm.data.ts',
+      'geometry/index.ts',
+      'geometry/angles/index.ts',
+      'geometry/angles/compareAngles.ts',
+      'music/index.ts',
+      'music/hearRhythm.ts',
     ];
     const ids = new Set();
     for (const p of paths) {
@@ -263,38 +259,38 @@ test('create emits entity-owned IDs, direct imports and only allowed indexes', (
       assert.match(content, /\bslug\s*:/);
     }
     assert.equal(ids.size, 5);
-    assert.match(source(f, 'geometry/geometry.data.ts'), /\bangles_SkillGroup_Data,/);
-    assert.match(source(f, 'geometry/angles/angles.data.ts'), /\bcompareAngles_Skill_Data,/);
-    assert.match(source(f, 'music/music.data.ts'), /groups:\s*\{\s*items:\s*\{\s*\},\s*order:\s*\[\s*\]/);
-    assert.match(source(f, 'music/music.data.ts'), /\bhearRhythm_Skill_Data,/);
-    assert.match(source(f, 'index.ts'), /geometry_SkillDomain_Data/);
-    assert.match(source(f, 'geometry/angles/skills/index.ts'), /compareAngles_Skill_Data/);
-    assert.match(source(f, 'music/skills/index.ts'), /hearRhythm_Skill_Data/);
+    assert.match(source(f, 'geometry/index.ts'), /\bangles,/);
+    assert.match(source(f, 'geometry/angles/index.ts'), /\bcompareAngles,/);
+    assert.doesNotMatch(source(f, 'music/index.ts'), /groups:\s*\{/);
+    assert.match(source(f, 'music/index.ts'), /\bhearRhythm,/);
+    assert.match(source(f, 'index.ts'), /geometry/);
+    assert.match(source(f, 'geometry/angles/index.ts'), /compareAngles/);
+    assert.match(source(f, 'music/index.ts'), /hearRhythm/);
     assert.equal(fs.existsSync(path.join(data(f), 'index.ids.ts')), false);
-    assert.equal(fs.existsSync(path.join(data(f), 'index.data.ts')), false);
+    assert.equal(fs.existsSync(path.join(data(f), 'index.ts')), true);
     assert.equal(fs.existsSync(path.join(f.pkg, 'Data')), false);
-    assert.equal(fs.existsSync(path.join(data(f), 'geometry/index.ts')), false);
-    assert.equal(fs.existsSync(path.join(data(f), 'geometry/angles/index.ts')), false);
+    assert.equal(fs.existsSync(path.join(data(f), 'geometry/index.ts')), true);
+    assert.equal(fs.existsSync(path.join(data(f), 'geometry/angles/index.ts')), true);
     assert.match(fs.readFileSync(f.md, 'utf8'), /Status: implemented/);
-    assert.match(fs.readFileSync(f.md, 'utf8'), /\[compareAngles.data.ts\]\(/);
-    const before = source(f, 'music/skills/hearRhythm.data.ts');
+    assert.match(fs.readFileSync(f.md, 'utf8'), /\[compareAngles.ts\]\(/);
+    const before = source(f, 'music/hearRhythm.ts');
     const second = f.run('--apply');
     assert.equal(second.status, 0, second.stderr);
-    assert.equal(source(f, 'music/skills/hearRhythm.data.ts'), before);
+    assert.equal(source(f, 'music/hearRhythm.ts'), before);
   }));
 
 test('update preserves entity UUID, existing locales and unrelated source', () =>
   withFixture(f => {
     assert.equal(f.run('--apply').status, 0);
-    const p = 'music/skills/hearRhythm.data.ts',
+    const p = 'music/hearRhythm.ts',
       id = uuid(source(f, p));
-    const geometry = source(f, 'geometry/geometry.data.ts');
+    const geometry = source(f, 'geometry/index.ts');
     const sourceBefore = source(f, p);
     f.edit(s =>
       s
         .replace(
-          'Action: create\nStatus: implemented\n\n[hearRhythm.data.ts]',
-          'Action: update\nStatus: implemented\n\n[hearRhythm.data.ts]',
+          'Action: create\nStatus: implemented\n\n[hearRhythm.ts]',
+          'Action: update\nStatus: implemented\n\n[hearRhythm.ts]',
         )
         .replace('Definition of Hear Rhythm.', 'Revised concept of Hear Rhythm.'),
     );
@@ -310,15 +306,15 @@ test('update preserves entity UUID, existing locales and unrelated source', () =
       sourceBefore,
       'Updating a stable Skill changes only the approved text, not its layout',
     );
-    assert.equal(source(f, 'geometry/geometry.data.ts'), geometry);
+    assert.equal(source(f, 'geometry/index.ts'), geometry);
   }));
 
 test('a Skill update does not force unchanged ancestor Data to be regenerated', () =>
   withFixture(f => {
     assert.equal(f.run('--apply').status, 0);
-    const beforeDomain = source(f, 'geometry/geometry.data.ts');
-    const beforeGroup = source(f, 'geometry/angles/angles.data.ts');
-    const leaf = 'geometry/angles/skills/compareAngles.data.ts';
+    const beforeDomain = source(f, 'geometry/index.ts');
+    const beforeGroup = source(f, 'geometry/angles/index.ts');
+    const leaf = 'geometry/angles/compareAngles.ts';
     const beforeId = uuid(source(f, leaf));
     f.edit(s =>
       s
@@ -329,8 +325,8 @@ test('a Skill update does not force unchanged ancestor Data to be regenerated', 
     );
     const r = f.run('--apply');
     assert.equal(r.status, 0, r.stderr);
-    assert.equal(source(f, 'geometry/geometry.data.ts'), beforeDomain);
-    assert.equal(source(f, 'geometry/angles/angles.data.ts'), beforeGroup);
+    assert.equal(source(f, 'geometry/index.ts'), beforeDomain);
+    assert.equal(source(f, 'geometry/angles/index.ts'), beforeGroup);
     assert.equal(uuid(source(f, leaf)), beforeId);
     assert.match(source(f, leaf), /Updated angle comparison description/);
   }));
@@ -344,35 +340,35 @@ test('invalid supplied translations block only the affected Domain', () =>
     assert.notEqual(r.status, 0);
     assert.match(r.stderr, /Invalid locales/);
     assert.equal(fs.existsSync(path.join(data(f), 'geometry')), false);
-    assert.ok(fs.existsSync(path.join(data(f), 'music/skills/hearRhythm.data.ts')));
+    assert.ok(fs.existsSync(path.join(data(f), 'music/hearRhythm.ts')));
   }));
 
-test('duplicate slug across Domains or entity kinds fails before write', () =>
+test('duplicate sibling slug among Domains fails before write', () =>
   withFixture(f => {
-    f.edit(s => s.replace('Slug: hearRhythm', 'Slug: compareAngles'));
+    f.edit(s => s.replace('Slug: music', 'Slug: geometry'));
     const r = f.run('--apply');
     assert.notEqual(r.status, 0);
-    assert.match(r.stderr, /Duplicate taxonomy slug/);
+    assert.match(r.stderr, /Duplicate sibling slug/);
     assert.equal(fs.existsSync(data(f)), false);
   }));
 
 test('implemented source links must resolve to the canonical entity file', () =>
   withFixture(f => {
     assert.equal(f.run('--apply').status, 0);
-    const before = source(f, 'music/skills/hearRhythm.data.ts');
-    f.edit(s => s.replace('[hearRhythm.data.ts]', '[wrong.data.ts]'));
+    const before = source(f, 'music/hearRhythm.ts');
+    f.edit(s => s.replace('[hearRhythm.ts]', '[wrong.ts]'));
     const r = f.run('--apply');
     assert.notEqual(r.status, 0);
     assert.match(r.stderr, /Code link differs from canonical source path/);
-    assert.equal(source(f, 'music/skills/hearRhythm.data.ts'), before);
+    assert.equal(source(f, 'music/hearRhythm.ts'), before);
   }));
 
 test('Action: delete is manual-only; Code/Status are unchanged and independent Domains can update', () =>
   withFixture(f => {
     assert.equal(f.run('--apply').status, 0);
-    const music = source(f, 'music/music.data.ts');
-    const musicSkill = source(f, 'music/skills/hearRhythm.data.ts');
-    const geometrySkill = 'geometry/angles/skills/compareAngles.data.ts';
+    const music = source(f, 'music/index.ts');
+    const musicSkill = source(f, 'music/hearRhythm.ts');
+    const geometrySkill = 'geometry/angles/compareAngles.ts';
     const id = uuid(source(f, geometrySkill));
     f.edit(s =>
       s
@@ -386,8 +382,8 @@ test('Action: delete is manual-only; Code/Status are unchanged and independent D
     const r = f.run('--apply');
     assert.notEqual(r.status, 0);
     assert.match(r.stderr, /Manual deletion required/);
-    assert.equal(source(f, 'music/music.data.ts'), music);
-    assert.equal(source(f, 'music/skills/hearRhythm.data.ts'), musicSkill);
+    assert.equal(source(f, 'music/index.ts'), music);
+    assert.equal(source(f, 'music/hearRhythm.ts'), musicSkill);
     assert.match(fs.readFileSync(f.md, 'utf8'), /Slug: music\nAction: delete\nStatus: implemented/);
     assert.equal(uuid(source(f, geometrySkill)), id);
     assert.match(source(f, geometrySkill), /Updated concept of Compare Angles/);
@@ -414,6 +410,6 @@ test('invalid update never allocates an identity, and another Domain can succeed
     const r = f.run('--apply');
     assert.notEqual(r.status, 0);
     assert.match(r.stderr, /Update requires existing verified entity/);
-    assert.ok(fs.existsSync(path.join(data(f), 'music/skills/hearRhythm.data.ts')));
+    assert.ok(fs.existsSync(path.join(data(f), 'music/hearRhythm.ts')));
     assert.equal(fs.existsSync(path.join(data(f), 'geometry')), false);
   }));

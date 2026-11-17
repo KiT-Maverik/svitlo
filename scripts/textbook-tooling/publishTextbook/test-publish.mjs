@@ -32,6 +32,7 @@ const manifestSource = join(root, 'dist/manifest.json');
 const manifest = JSON.parse(readFileSync(manifestSource, 'utf8'));
 assert.equal(manifest.textbook, id);
 const required = id === 'playground';
+const hasAuthoredSkills = existsSync(join(root, 'data/skills/index.ts'));
 
 function fixture(t, built = true) {
   const temp = mkdtempSync(join(realpathSync(tmpdir()), 'svitlo-' + id + '-publish-'));
@@ -59,7 +60,12 @@ test('isolated package publishes exactly the manifest resources', t => {
     manifest.files,
   );
   const skillFiles = manifest.files.filter(name => name.startsWith('data/skills/'));
-  if (skillFiles.length) {
+  assert.equal(
+    skillFiles.length > 0,
+    hasAuthoredSkills,
+    'Only textbooks with an authored Skills taxonomy must publish Skills JSON',
+  );
+  if (hasAuthoredSkills) {
     const expectedSkillFiles = [
       'data/skills/base.json',
       ...getSupportedLanguages().map(({ language }) => `data/skills/${language}.json`),
@@ -135,7 +141,11 @@ test('repeat publication cleans only owned stale files and preserves foreign ass
   const migrated = run('publish', '--output', output);
   assert.equal(migrated.status, 0, migrated.stderr);
   assert(!existsSync(join(output, oldSkills)), 'retired Skills file must be removed');
-  assert(existsSync(join(output, 'data/skills/base.json')), 'new Skills directory must be published');
+  assert.equal(
+    existsSync(join(output, 'data/skills/base.json')),
+    hasAuthoredSkills,
+    hasAuthoredSkills ? 'authored Skills must be published' : 'metadata-only textbooks must not synthesize Skills',
+  );
   assert.equal(readFileSync(join(output, 'flags/uk.svg'), 'utf8'), 'host flag');
   assert.equal(readFileSync(join(output, 'textbooks/other/keep.txt'), 'utf8'), 'other book');
 });

@@ -1,3 +1,0 @@
-export { distinguishVisibleFromInvisibleElectromagneticRadiation_Skill_Data } from './distinguishVisibleFromInvisibleElectromagneticRadiation.data';
-export { explainThePropagationOfElectromagneticWavesWithoutAir_Skill_Data } from './explainThePropagationOfElectromagneticWavesWithoutAir.data';
-export { relateFamiliarTypesOfRadiationToTheElectromagneticSpectrum_Skill_Data } from './relateFamiliarTypesOfRadiationToTheElectromagneticSpectrum.data';

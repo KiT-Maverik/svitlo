@@ -32,7 +32,9 @@ function options(args) {
       continue;
     }
     if (!['--package', '--locale'].includes(arg) || !args[i + 1] || args[i + 1].startsWith('--')) {
-      fail('Usage: --package <textbook-directory> [--locale <language-code>] [--check | --stdout] [--source-only | --allow-missing]');
+      fail(
+        'Usage: --package <textbook-directory> [--locale <language-code>] [--check | --stdout] [--source-only | --allow-missing]',
+      );
     }
     const key = arg.slice(2);
     if (result[key] !== undefined && (key !== 'locale' || result.locale !== 'en')) fail('Duplicate argument ' + arg);
@@ -92,7 +94,13 @@ function dictionary(object, field, file) {
     const code = key(p.name);
     if (Object.hasOwn(pairs, code)) fail('Duplicate locale ' + code + ': ' + file);
     const literal = unwrap(p.initializer);
-    if (opts.allowMissing && code !== 'en' && (ts.isStringLiteral(literal) || ts.isNoSubstitutionTemplateLiteral(literal)) && !literal.text.trim()) continue;
+    if (
+      opts.allowMissing &&
+      code !== 'en' &&
+      (ts.isStringLiteral(literal) || ts.isNoSubstitutionTemplateLiteral(literal)) &&
+      !literal.text.trim()
+    )
+      continue;
     pairs[code] = stringValue(p.initializer, file + ':' + field + ':' + code);
   }
   return pairs;
@@ -186,7 +194,7 @@ function subdirs(dir) {
   if (!fs.existsSync(dir)) return [];
   return fs
     .readdirSync(dir, { withFileTypes: true })
-    .filter(x => x.isDirectory() && x.name !== '__tests__' && x.name !== 'skills')
+    .filter(x => x.isDirectory() && x.name !== '__tests__')
     .map(x => x.name)
     .sort();
 }
@@ -194,12 +202,12 @@ function fileNames(dir) {
   if (!fs.existsSync(dir)) return [];
   return fs
     .readdirSync(dir)
-    .filter(x => x.endsWith('.data.ts'))
+    .filter(x => x.endsWith('.ts') && x !== 'index.ts')
     .sort();
 }
 
 function readSkills(folder) {
-  const d = path.join(folder, 'skills');
+  const d = folder;
   const names = fileNames(d);
   return names.map(name => readEntity(path.join(d, name), 'Skill'));
 }
@@ -217,7 +225,7 @@ function markdownLine(entity, level, output, details = '') {
 const domains = [];
 for (const folder of subdirs(taxonomyRoot)) {
   const domainFolder = path.join(taxonomyRoot, folder);
-  const domainFile = path.join(domainFolder, folder + '.data.ts');
+  const domainFile = path.join(domainFolder, 'index.ts');
   if (!fs.existsSync(domainFile)) fail('Missing Domain source: ' + domainFile);
   const domain = readEntity(domainFile, 'SkillDomain');
   const groups = subdirs(domainFolder);
@@ -225,7 +233,7 @@ for (const folder of subdirs(taxonomyRoot)) {
   if (groups.length === 0 && directSkills.length === 0) fail('Domain has no Groups or Skills: ' + domainFile);
   const content = groups.map(group => {
     const groupFolder = path.join(domainFolder, group);
-    const groupFile = path.join(groupFolder, group + '.data.ts');
+    const groupFile = path.join(groupFolder, 'index.ts');
     if (!fs.existsSync(groupFile)) fail('Missing Group source: ' + groupFile);
     const skills = readSkills(groupFolder);
     if (!skills.length) fail('Empty Group: ' + groupFile);
@@ -251,7 +259,9 @@ let markdown =
   (opts.sourceOnly
     ? '> TRANSLATION SOURCE PREVIEW ONLY: Other registered languages were not checked for completeness. Not a publication or linguistic-review artifact.\n\n'
     : '') +
-  (opts.allowMissing && missingCount > 0 ? '> DRAFT REFERENCE: missing localized fields; not approved for independent review.\n\n' : '') +
+  (opts.allowMissing && missingCount > 0
+    ? '> DRAFT REFERENCE: missing localized fields; not approved for independent review.\n\n'
+    : '') +
   '## SUMMARY\n\n' +
   'Domains: ' +
   domains.length +

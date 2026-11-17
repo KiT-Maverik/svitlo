@@ -15,46 +15,44 @@ const fields = {
   name: localized,
 };
 
-// No `as const` or explicit type arguments are needed for ordinary inline slugs and arrays.
 const reading = defineSkill({ ...fields, slug: 'reading' });
 const writing = defineSkill({ ...fields, slug: 'writing' });
 const numeracy = defineSkill({ ...fields, slug: 'numeracy' });
-
 type ReadingSlug = Expect<Equal<typeof reading.slug, 'reading'>>;
 
-const group = defineSkillGroup({
-  ...fields,
-  slug: 'literacy',
-  skills: { items: { reading, writing }, order: ['reading', 'writing'] },
-});
+const group = defineSkillGroup({ ...fields, slug: 'literacy', skills: { reading, writing } });
 type GroupSlug = Expect<Equal<typeof group.slug, 'literacy'>>;
-type GroupKeys = Expect<Equal<keyof typeof group.skill, 'reading' | 'writing'>>;
-type ReadingValue = Expect<Equal<typeof group.skill.reading, typeof reading>>;
-type WritingValue = Expect<Equal<typeof group.skill.writing, typeof writing>>;
+type GroupKeys = Expect<Equal<keyof typeof group.skills, 'reading' | 'writing'>>;
+type ReadingValue = Expect<Equal<typeof group.skills.reading, typeof reading>>;
+type WritingValue = Expect<Equal<typeof group.skills.writing, typeof writing>>;
 // @ts-expect-error Unknown literal slugs must not be accepted.
-void group.skill.nonexistent;
+void group.skills.nonexistent;
+// @ts-expect-error There is no duplicate singular accessor.
+void group.skill;
 
 const domain = defineSkillDomain({
   id: fields.id,
   slug: 'language',
   title: localized,
   description: fields.description,
-  groups: { items: { literacy: group }, order: ['literacy'] },
-  skills: { items: { numeracy }, order: ['numeracy'] },
+  groups: { literacy: group },
+  skills: { numeracy },
 });
 type DomainSlug = Expect<Equal<typeof domain.slug, 'language'>>;
-type DomainGroupKeys = Expect<Equal<keyof typeof domain.group, 'literacy'>>;
-type DomainSkillKeys = Expect<Equal<keyof typeof domain.skill, 'numeracy'>>;
-type DomainGroupValue = Expect<Equal<typeof domain.group.literacy, typeof group>>;
-type DomainSkillValue = Expect<Equal<typeof domain.skill.numeracy, typeof numeracy>>;
-type NestedKeys = Expect<Equal<keyof typeof domain.group.literacy.skill, 'reading' | 'writing'>>;
-type NestedValue = Expect<Equal<typeof domain.group.literacy.skill.reading, typeof reading>>;
+type DomainGroupKeys = Expect<Equal<keyof NonNullable<typeof domain.groups>, 'literacy'>>;
+type DomainSkillKeys = Expect<Equal<keyof NonNullable<typeof domain.skills>, 'numeracy'>>;
+type DomainGroupValue = Expect<Equal<NonNullable<typeof domain.groups>['literacy'], typeof group>>;
+type DomainSkillValue = Expect<Equal<NonNullable<typeof domain.skills>['numeracy'], typeof numeracy>>;
+type NestedKeys = Expect<Equal<keyof NonNullable<typeof domain.groups>['literacy']['skills'], 'reading' | 'writing'>>;
+type NestedValue = Expect<Equal<NonNullable<typeof domain.groups>['literacy']['skills']['reading'], typeof reading>>;
 // @ts-expect-error An unknown group slug is not a valid property.
-void domain.group.nonexistent;
+void domain.groups?.nonexistent;
 // @ts-expect-error An unknown top-level skill slug is not a valid property.
-void domain.skill.nonexistent;
+void domain.skills?.nonexistent;
 // @ts-expect-error An unknown nested skill slug is not a valid property.
-void domain.group.literacy.skill.nonexistent;
+void domain.groups?.literacy.skills.nonexistent;
+// @ts-expect-error Domain has no singular group accessor.
+void domain.group;
 
 const emptyDomain = defineSkillDomain({
   id: fields.id,
@@ -62,27 +60,26 @@ const emptyDomain = defineSkillDomain({
   title: localized,
   description: fields.description,
 });
-type EmptyGroupKeys = Expect<Equal<keyof typeof emptyDomain.group, never>>;
-type EmptySkillKeys = Expect<Equal<keyof typeof emptyDomain.skill, never>>;
+type EmptyGroupKeys = Expect<Equal<keyof NonNullable<typeof emptyDomain.groups>, never>>;
+type EmptySkillKeys = Expect<Equal<keyof NonNullable<typeof emptyDomain.skills>, never>>;
 
 const readonlySkills = [reading, writing] as const;
 const readonlyGroup = defineSkillGroup({
   ...fields,
   slug: 'readonly',
-  skills: { items: configuratorArrayToSlugMap(readonlySkills), order: ['reading', 'writing'] },
+  skills: configuratorArrayToSlugMap(readonlySkills),
 });
-type ReadonlyKeys = Expect<Equal<keyof typeof readonlyGroup.skill, 'reading' | 'writing'>>;
-
+type ReadonlyKeys = Expect<Equal<keyof typeof readonlyGroup.skills, 'reading' | 'writing'>>;
 const readonlyDomain = defineSkillDomain({
   id: fields.id,
   slug: 'readonly-domain',
   title: localized,
   description: fields.description,
-  groups: { items: { literacy: group }, order: ['literacy'] },
-  skills: { items: configuratorArrayToSlugMap(readonlySkills), order: ['reading', 'writing'] },
+  groups: { literacy: group },
+  skills: configuratorArrayToSlugMap(readonlySkills),
 });
-type ReadonlyDomainGroupKeys = Expect<Equal<keyof typeof readonlyDomain.group, 'literacy'>>;
-type ReadonlyDomainSkillKeys = Expect<Equal<keyof typeof readonlyDomain.skill, 'reading' | 'writing'>>;
+type ReadonlyDomainGroupKeys = Expect<Equal<keyof NonNullable<typeof readonlyDomain.groups>, 'literacy'>>;
+type ReadonlyDomainSkillKeys = Expect<Equal<keyof NonNullable<typeof readonlyDomain.skills>, 'reading' | 'writing'>>;
 
 const inline = configuratorArrayToSlugMap([
   { slug: 'first' as const, onlyFirst: true },
@@ -94,13 +91,11 @@ void inline.first.onlySecond;
 // @ts-expect-error There is no third slug.
 void inline.third;
 
-// Arbitrary string slugs have a partial index signature, never a guaranteed value.
 const dynamicSkill = defineSkill({ ...fields, slug: dynamicSlug });
 const dynamicMap = configuratorArrayToSlugMap([dynamicSkill]);
 const maybeDynamic: Skill_Configurator | undefined = dynamicMap.anything;
 // @ts-expect-error A dynamic string slug cannot guarantee this key exists.
 const guaranteedDynamic: Skill_Configurator = dynamicMap.anything;
-
 const mixedMap = configuratorArrayToSlugMap([reading, dynamicSkill]);
 type KnownMixedValue = Expect<Equal<typeof mixedMap.reading, typeof reading>>;
 const maybeMixed: Skill_Configurator | undefined = mixedMap.unknown;

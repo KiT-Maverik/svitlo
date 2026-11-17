@@ -1,0 +1,91 @@
+import { defineSkillGroup } from '@svitlo/engine/build';
+
+import { alloysInUse } from './alloysInUse';
+import { ceramics } from './ceramics';
+import { corrosion } from './corrosion';
+import { elastomers } from './elastomers';
+import { glass } from './glass';
+import { metalsInUse } from './metalsInUse';
+import { plastics } from './plastics';
+
+export const materialsChemistry = defineSkillGroup({
+  slug: 'materialsChemistry',
+  id: 'da922b08-51d3-43ca-b82f-2e49452bfeef',
+  name: {
+    ar: 'كيمياء المواد',
+    be: 'Хімія матэрыялаў',
+    bn: 'উপাদান রসায়ন',
+    de: 'Materialchemie',
+    en: 'Materials Chemistry',
+    es: 'Química de materiales',
+    et: 'Materjalikeemia',
+    fr: 'Chimie des matériaux',
+    he: 'כימיה של חומרים',
+    hi: 'पदार्थों का रसायन',
+    id: 'Kimia Material',
+    it: 'Chimica dei materiali',
+    ja: '材料化学',
+    ka: 'მასალების ქიმია',
+    kk: 'Материалдар химиясы',
+    ko: '재료 화학',
+    lt: 'Medžiagų chemija',
+    lv: 'Materiālu ķīmija',
+    mr: 'पदार्थांचे रसायनशास्त्र',
+    ms: 'Kimia Bahan',
+    pl: 'Chemia materiałów',
+    pt: 'Química dos materiais',
+    qm: 'Materiallar kimyası',
+    ta: 'பொருட்களின் வேதியியல்',
+    te: 'పదార్థాల రసాయన శాస్త్రం',
+    tr: 'Malzeme Kimyası',
+    uk: 'Хімія матеріалів',
+    ur: 'مواد کی کیمیا',
+    vi: 'Hóa học vật liệu',
+    zh: '材料化学',
+  },
+  skills: {
+    alloysInUse,
+    ceramics,
+    corrosion,
+    elastomers,
+    glass,
+    metalsInUse,
+    plastics,
+  },
+  description: {
+    methodological:
+      "A product's useful behavior depends on composition, microscopic structure and conditions of use, not merely its everyday material label.",
+    frontend: {
+      ar: 'استكشف كيف تساعد البنية الكيميائية على تحديد خصائص المادة المفيدة.',
+      be: 'Дасьледуй, як хімічная будова вызначае карысныя ўласьцівасьці матэрыялу.',
+      bn: 'রাসায়নিক গঠন কীভাবে কোনো উপাদানের দরকারি ধর্ম নির্ধারণে সাহায্য করে তা জানো।',
+      de: 'Erkunde, wie die chemische Struktur nützliche Eigenschaften von Materialien beeinflusst.',
+      en: "Explore how chemical structure helps determine a material's useful properties.",
+      es: 'Explora cómo la estructura química contribuye a determinar las propiedades útiles de un material.',
+      et: 'Uuri, kuidas keemiline struktuur määrab materjali kasulikke omadusi.',
+      fr: 'Explore comment la structure chimique détermine certaines propriétés utiles des matériaux.',
+      he: 'גלו כיצד המבנה הכימי תורם לקביעת התכונות השימושיות של חומר.',
+      hi: 'जानें कि रासायनिक संरचना किसी पदार्थ के उपयोगी गुण कैसे तय करती है।',
+      id: 'Jelajahi bagaimana struktur kimia membantu menentukan sifat bahan yang berguna.',
+      it: 'Esplora come la struttura chimica contribuisce a determinare le proprietà utili di un materiale.',
+      ja: '化学構造が材料の役立つ性質をどう左右するか探ろう。',
+      ka: 'შეისწავლე, როგორ განსაზღვრავს ქიმიური სტრუქტურა მასალის სასარგებლო თვისებებს.',
+      kk: 'Химиялық құрылым материалдың пайдалы қасиеттерін қалай анықтайтынын зертте.',
+      ko: '화학 구조가 재료의 유용한 성질을 어떻게 결정하는지 알아보세요.',
+      lt: 'Tyrinėk, kaip cheminė sandara lemia naudingas medžiagos savybes.',
+      lv: 'Izpēti, kā ķīmiskā struktūra nosaka materiālu noderīgās īpašības.',
+      mr: 'रासायनिक रचनेमुळे पदार्थांचे उपयुक्त गुणधर्म कसे ठरतात ते शोधा.',
+      ms: 'Terokai bagaimana struktur kimia menentukan sifat berguna sesuatu bahan.',
+      pl: 'Odkrywaj, jak struktura chemiczna współdecyduje o użytecznych właściwościach materiałów.',
+      pt: 'Explore como a estrutura química ajuda a determinar as propriedades úteis de um material.',
+      qm: 'Kimyeviy qurulış materialnıñ faydalı hususiyetlerini nasıl belgilegenini araştır.',
+      ta: 'வேதியியல் அமைப்பு ஒரு பொருளின் பயனுள்ள பண்புகளை எவ்வாறு தீர்மானிக்கிறது என்பதை ஆராயுங்கள்.',
+      te: 'రసాయన నిర్మాణం ఒక పదార్థం ఉపయోగకరమైన లక్షణాలను ఎలా నిర్ణయిస్తుందో తెలుసుకోండి.',
+      tr: 'Kimyasal yapının malzemelerin kullanışlı özelliklerini nasıl belirlediğini keşfet.',
+      uk: 'Досліджуй, як хімічна будова визначає корисні властивості матеріалу.',
+      ur: 'جانئے کہ کیمیائی ساخت مادے کی مفید خصوصیات کے تعین میں کیسے مدد دیتی ہے۔',
+      vi: 'Khám phá cấu trúc hóa học góp phần quyết định tính chất hữu ích của vật liệu như thế nào.',
+      zh: '探索化学结构如何决定材料的实用性质。',
+    },
+  },
+});
