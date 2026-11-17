@@ -31,7 +31,7 @@ export const strategicEquilibrium_Skill_Data = defineSkill({
     et: 'Strateegiline tasakaal',
     be: 'Стратэгічная раўнавага',
     ka: 'სტრატეგიული წონასწორობა',
-    kk: 'Стратегиялық тепе-теңдік',
+    kk: 'Strategialyq tepe-teñdık',
     qm: 'Strategik muvastıq',
   },
   description: {
@@ -65,7 +65,7 @@ export const strategicEquilibrium_Skill_Data = defineSkill({
       et: 'Tunne ära olukord, kus keegi ei saa üksi strateegiat muutes tulemust parandada.',
       be: 'Распазнавай, калі ніхто ня можа палепшыць вынік, зьмяніўшы стратэгію самастойна.',
       ka: 'ამოიცანი მდგომარეობა, როცა ვერავინ აუმჯობესებს შედეგს მხოლოდ საკუთარი სტრატეგიის შეცვლით.',
-      kk: 'Ешкім өз стратегиясын ғана өзгертіп нәтижесін жақсарта алмайтын жағдайды таны.',
+      kk: 'Eşkım öz strategiasyn jalğyz özgertıp, nätijesın jaqsarta almaityn jağdaidy tany.',
       qm: 'İç kimse yalñız öz strategiyasını deñiştirip neticesini yahşılaştıramaycaq vaziyetni tanı.',
     },
   },

@@ -31,7 +31,7 @@ export const resourceScarcity_Skill_Data = defineSkill({
     et: 'Ressursside nappus',
     be: 'Абмежаванасьць рэсурсаў',
     ka: 'რესურსების სიმწირე',
-    kk: 'Ресурстар тапшылығы',
+    kk: 'Resurstar tapşylyğy',
     qm: 'Kaynak azlığı',
   },
   description: {
@@ -65,7 +65,7 @@ export const resourceScarcity_Skill_Data = defineSkill({
       et: 'Mõista, et nappus ei tähenda üksnes rahapuudust.',
       be: 'Зразумей, што абмежаванасьць — ня толькі нястача грошай.',
       ka: 'გაიგე, რომ სიმწირე მხოლოდ ფულის ნაკლებობას არ ნიშნავს.',
-      kk: 'Тапшылық тек ақшаның аздығын білдірмейтінін түсін.',
+      kk: 'Tapşylyq tek aqşanyñ jetıspeuımen şektelemeıtının tüsın.',
       qm: 'Azlıq faqat aqçanıñ yetişmegeni olmağanını añla.',
     },
   },

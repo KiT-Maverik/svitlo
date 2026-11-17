@@ -31,7 +31,7 @@ export const collectiveActionProblem_Skill_Data = defineSkill({
     et: 'Ühistegevuse probleem',
     be: 'Праблема калектыўнага дзеяньня',
     ka: 'კოლექტიური მოქმედების პრობლემა',
-    kk: 'Ұжымдық әрекет мәселесі',
+    kk: 'Ūjymdyq äreket mäselesı',
     qm: 'Umumiy areket meselesi',
   },
   description: {
@@ -65,7 +65,7 @@ export const collectiveActionProblem_Skill_Data = defineSkill({
       et: 'Mõista, kuidas igaühe jaoks mõistlik otsus võib kõigile probleeme tekitada.',
       be: 'Зразумей, чаму разумныя для кожнага рашэньні могуць стварыць праблемы для ўсіх.',
       ka: 'გაიგე, როგორ შეიძლება ინდივიდუალურად გონივრულმა გადაწყვეტილებებმა ყველას პრობლემები შეუქმნას.',
-      kk: 'Әркім үшін дұрыс көрінетін шешімдер бәріне қалай қиындық әкелетінін түсін.',
+      kk: 'Jeke adam üşın oryndy körınetın şeşımder nege bärıne ortaq qiyndyq tuğyzatynyn tüsın.',
       qm: 'Er kes içün aqıllı olğan qararlar ne içün er keske mesele doğurabilgenini añla.',
     },
   },

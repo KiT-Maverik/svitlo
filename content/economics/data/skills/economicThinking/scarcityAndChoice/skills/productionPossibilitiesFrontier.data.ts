@@ -31,7 +31,7 @@ export const productionPossibilitiesFrontier_Skill_Data = defineSkill({
     et: 'Tootmisvõimaluste piir',
     be: 'Мяжа вытворчых магчымасьцяў',
     ka: 'წარმოების შესაძლებლობათა ზღვარი',
-    kk: 'Өндірістік мүмкіндіктер шекарасы',
+    kk: 'Öndırıs mümkındıkterınıñ şekarasy',
     qm: 'İstisal imkânlarınıñ çegarası',
   },
   description: {
@@ -65,7 +65,7 @@ export const productionPossibilitiesFrontier_Skill_Data = defineSkill({
       et: 'Uuri, milliseid kaupade kombinatsioone saab majandus olemasolevate ressurssidega toota.',
       be: 'Дасьледуй, якія спалучэньні прадукцыі эканоміка можа вырабіць з наяўных рэсурсаў.',
       ka: 'გაიგე, რა პროდუქტების კომბინაციების წარმოება შეუძლია ეკონომიკას არსებული რესურსებით.',
-      kk: 'Экономика қолда бар ресурстармен өнімдердің қандай үйлесімдерін өндіре алатынын зертте.',
+      kk: 'Ekonomika qol jetımdı resurstar arqyly öndıre alatyn önım türlerınıñ ärtürlı üilesımderın zertte.',
       qm: 'İqtisad mevcut kaynaklarnen qanday mahsul birleşmelerini istisal ete bilgenini ögren.',
     },
   },

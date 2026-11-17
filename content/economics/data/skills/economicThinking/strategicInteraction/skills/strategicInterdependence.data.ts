@@ -31,7 +31,7 @@ export const strategicInterdependence_Skill_Data = defineSkill({
     et: 'Strateegiline vastastikune sõltuvus',
     be: 'Стратэгічная ўзаемазалежнасьць',
     ka: 'სტრატეგიული ურთიერთდამოკიდებულება',
-    kk: 'Стратегиялық өзара тәуелділік',
+    kk: 'Strategialyq özara täueldılık',
     qm: 'Strategik qarşılıqlı bağlılıq',
   },
   description: {
@@ -65,7 +65,7 @@ export const strategicInterdependence_Skill_Data = defineSkill({
       et: 'Uuri otsuseid, mille tulemus sõltub teiste inimeste tegevusest.',
       be: 'Дасьледуй рашэньні, вынік якіх залежыць ад дзеяньняў іншых.',
       ka: 'გამოიკვლიე გადაწყვეტილებები, რომელთა შედეგი სხვების ქმედებებზეა დამოკიდებული.',
-      kk: 'Нәтижесі өзге адамдардың әрекетіне тәуелді шешімдерді зертте.',
+      kk: 'Nätijesı basqa adamdardyñ ıs-äreketıne täueldı bolatyn şeşımderdı zertte.',
       qm: 'Neticeleri başqa insanlarnıñ areketlerine bağlı olğan qararlarnı ögren.',
     },
   },
