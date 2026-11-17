@@ -207,6 +207,16 @@ export async function generate(options, { root = repositoryRoot, loader = loadLe
       const branch = spawnSync('git', ['symbolic-ref', '--quiet', '--short', 'HEAD'], {
         cwd: root, encoding: 'utf8',
       });
+      const verifiedMedia = new Map();
+      const verifyAtSha = relative => {
+        if (!verifiedMedia.has(relative)) {
+          const tracked = spawnSync('git', ['cat-file', '-e', sourceRef + ':' + relative], {
+            cwd: root, encoding: 'utf8', timeout: 5000,
+          });
+          verifiedMedia.set(relative, tracked.status === 0);
+        }
+        return verifiedMedia.get(relative);
+      };
       markdown += '\n' + renderFlashcardReference({
         lesson: resolved,
         locale: options.locale,
@@ -216,6 +226,7 @@ export async function generate(options, { root = repositoryRoot, loader = loadLe
         sourceBranch: branch.status === 0 ? branch.stdout.trim() : null,
         root,
         lessonDirectory: item.directory,
+        verifyAtSha,
       });
       if (Buffer.byteLength(markdown, 'utf8') > 2 * 1024 * 1024)
         throw new Error('Flashcard Lesson Markdown exceeds the maximum output size');
