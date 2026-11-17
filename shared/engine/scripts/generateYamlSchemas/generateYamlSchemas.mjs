@@ -283,6 +283,8 @@ export function generateYamlSchemas(mode, outputRoot = yamlSchemaOutputRoot) {
     const target = path.join(outputRoot, filename);
     if (mode === '--check') {
       if (!schemaMatches(target, contents)) {
+        // TEMPORARY DIAGNOSTIC for #646; remove after capturing canonical output.
+        if (filename === 'flashcard.schema.json') process.stderr.write('SVITLO_FLASHCARD_SCHEMA_HEX:' + Buffer.from(contents, 'utf8').toString('hex') + '\n');
         throw new Error('Outdated YAML JSON Schema: ' + target + '. Run with --write.');
       }
     } else if (!schemaMatches(target, contents)) {
