@@ -279,10 +279,11 @@ function skillIndex(bookRoot) {
 export function renderLessonModules(lesson, language, options = {}) {
   const factories = options.factories ?? loadFactoryRegistry();
   const filtered = sourceAuthoringCopy(lesson, language);
+  const questionBankOnly = options.questionBankOnly === true;
   if (!record(filtered) || filtered.type !== 'lesson')
     throw new Error('lesson.yaml:config.type: expected lesson type for the Lesson entrypoint');
   for (const field of ['questions', 'flashcards']) {
-    if (Object.hasOwn(filtered, field))
+    if (Object.hasOwn(filtered, field) && !(questionBankOnly && field === 'questions'))
       throw new Error(
         'lesson.yaml:config.' +
           field +
@@ -368,7 +369,7 @@ export function renderLessonModules(lesson, language, options = {}) {
     languageValues.every(value => typeof value === 'string');
   const languagesType = hasLanguages ? 'LessonLanguages' : null;
   const constantsSpecifier = '#lessonsData/' + filtered.id?.at(-1) + '/' + filtered.id + '/constants';
-  if (hasLanguages) {
+  if (hasLanguages && !questionBankOnly) {
     files.set(
       'constants.ts',
       "import type { LanguageCode } from '@svitlo/engine/build';\n\n" +
@@ -729,6 +730,15 @@ export function renderLessonModules(lesson, language, options = {}) {
       join(directory, 'index.ts'),
       (lines.length ? lines.join('\n') + '\n\n' : '') + 'export const ' + field + ' = ' + collection + ';\n',
     );
+  }
+
+  if (questionBankOnly) {
+    if (!record(filtered.questions) || !Object.keys(filtered.questions).length)
+      throw new Error('questions.yaml:questions: expected nonempty Question type groups');
+    emitCollection('questions', 'questionBank', 'questions');
+    return new Map([...files.entries()].sort((a, b) =>
+      a[0] === 'questions/index.ts' ? 1 : b[0] === 'questions/index.ts' ? -1 : a[0].localeCompare(b[0]),
+    ));
   }
 
   emitCollection('section', 'sectionCollection', 'sections');
