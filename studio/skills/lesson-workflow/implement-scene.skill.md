@@ -35,7 +35,7 @@
 Read these actual sources in the target branch:
 
 - [Engine Scene schemas](../../../shared/engine/configurators/contentBlocks/defineScene/defineScene.schemas.ts) define `scene_Config_Schema` and `scene_Props_Schema`. Scene values use field-level localization; published Props retain the stable block identity and `type: 'scene'` discriminator.
-- `shared/engine/src/lessons/createContentBlock.ts`, `createSection.ts` and `createLesson.ts`: typed build-time creator boundaries and sparse locale projection; preserve existing scaffold identity and order. Do not make runtime packages import authored `*.data.ts` unnecessarily.
+- Use the **current** `@svitlo/engine/build` configurators and Zod Config/Build contracts for Lessons, Sections and ContentBlocks; the removed `shared/engine/src/lessons/create*` creators are not supported APIs. Inspect actual source/tests and keep authored Config outside runtime imports.
 - `content/playground/scenes/5/72d22bea-d787-4c6d-9a83-144830c6d325/LightRayDiagram.tsx` and `content/playground/scenes/3/968926d3-7b15-4575-8f57-a5a2a5054783/LightPropagationSimulation.tsx`: examples of **current typed `locales` props** and UI interactions. Treat as references, not a mandatory architecture for every textbook.
 - `content/playground/scenes/createSceneRegistry.ts` and `scripts/textbook-tooling/generate-scenes.mjs`: current lazy Scene registration; use the equivalent existing package setup.
 - Actual UI Kit Scene renderer/registry integration, current unit-test fixtures, package dependencies and accessibility APIs.

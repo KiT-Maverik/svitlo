@@ -43,7 +43,7 @@ change is justified and approved; approval is distinct from technical
 scaffolding and from the final Engine Config/Props validation. Override patches
 must not mutate any reusable standalone Lesson.
 
-## Engine YAML draft handoff
+## Historical/technical Engine YAML draft handoff (separate from new Course Flow Stage 5)
 
 The editorial `toc.yaml` uses ordered arrays of skill-based slots; it is **not** a Config-shaped `defineCourse` YAML input. After Lesson matching and applicable approvals, a separate handoff converts verified Course/Module/Chapter/Episode nodes to typed `content: { items, order }` collections with explicit nested `type`, and each `type: lesson` item to an existing standalone `lessonId` reference. This handoff uses [the composed Course scaffold editor schema](../../../shared/engine/yaml-schemas/course.scaffold.schema.json) plus the manually defined [Production schema](../../../shared/engine/yaml-schemas/production.schema.json). It does not automatically approve or replace editorial Methodology/TOC; for new technical sources, the sparse Build patch is embedded as root `overrides` in `config.yaml`.
 
