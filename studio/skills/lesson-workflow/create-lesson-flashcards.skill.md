@@ -1,5 +1,7 @@
 # Create Lesson Flashcards — Question-first memory authoring
 
+> **Current precedence:** [Create Lesson Flow](./create-lesson-flow.skill.md) is the owning Lesson coordinator; the separate seven-stage [Create Flashcards Flow](./create-flashcards-flow.skill.md) owns the child Draft PR, independent bank, reviewed small Section selection, production and translation reviews. A complete approved Question bank is required unless the owning Lesson PR explicitly records **Questions: Not Applicable** with Methodologist rationale. Do not require a new Lesson Production Issue or a separate `content.yaml` for new work; historical sources remain evidence, not duplicate authority.
+
 **Persona:** [Flashcard Learning Architect](../../personas/flashcard-learning-architect.persona.md). Read it fully, the [Methodologist Persona](../../personas/methodist.persona.md), root/applicable `AGENTS.md`, current Lesson/ContentBlock/Flashcard contracts, actual Text and Code renderers, [Lesson Workflow](./README.md), and [Lesson production coordinator](./manage-lesson-production.skill.md) when working in an authorized production scope.
 
 ## Purpose, ownership and storage

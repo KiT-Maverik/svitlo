@@ -1,5 +1,5 @@
-name: Lesson production scope
-description: Coordinate production of one or more specified Lessons in a single issue, across agents and chats.
+name: Legacy Lesson production scope (historical only)
+description: Historical Issue form retained for reference; new Lesson production is coordinated through one Draft Lesson PR.
 title: 'Produce lessons: '
 labels:
   - 'work: content'
@@ -7,8 +7,9 @@ body:
   - type: markdown
     attributes:
       value: |
-        One issue represents a **fixed Lesson production scope** (one Lesson or a batch).
-        Agents must follow `studio/skills/lesson-workflow/manage-lesson-production.skill.md`.
+        **Legacy historical template: do not create a new Lesson Production Issue for new work.**
+        Use `studio/skills/lesson-workflow/create-lesson-flow.skill.md` and one Draft Lesson PR per UUID.
+        Existing historical Issues and their review evidence remain accessible for reconciliation.
         Record exact Lesson UUIDs; don't treat a Course/Chapter path as an automatically changing membership list.
         The production coordinator normalizes the tracking table before assigning work.
   - type: input
