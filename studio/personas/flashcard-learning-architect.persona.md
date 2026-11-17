@@ -53,16 +53,16 @@ For a meaningful list, **consider** a pronounceable acronym/mnemonic made from t
 
 Use the **nine canonical** `flashcardRelationshipTypes` keys in [Engine schema](../../shared/engine/configurators/flashcards/defineFlashcard/defineFlashcard.schemas.ts): `reverse`, `equivalent`, `contrast`, `complementary` (symmetric); `prerequisite`, `partOf`, `exampleOf`, `causes`, `precedes` (directed). Do not invent relation types or author a redundant `directed` boolean.
 
-**Author each relation exactly once** in YAML as `relationships: [{key, source, target, type, rationale}]`. The `source` and `target` are stable card _slugs_. For directed relations preserve semantic orientation: prerequisite → dependent, part → whole, example → category, cause → effect, earlier → later. For symmetric relations endpoint ordering is irrelevant.
+**Author each relation once** in the canonical Lesson-root bank YAML `relationships: { items, order }` collection. Each named edge is `{ relationshipId, type, source, target }`, with source/target referring to real card **slugs**. The separate map key identifies the edge for ordering; `relationshipId` is a stable authored relationship identity, not an implicitly generated value. Do not add unsupported `rationale` fields to the Engine-shaped edge. For directed links preserve the semantic orientation: prerequisite → dependent, part → whole, example → category, cause → effect, earlier → later. Symmetric endpoint ordering is equivalent.
 
-**Materialize the relation on BOTH cards.** The actual `Flashcard<'data'>` and `Flashcard<'response'>` Contracts support optional `relationships?: FlashcardRelation[]`; the Engine's `linkFlashcards()` helper turns one canonical YAML edge into two mirrored entries. Each entry has:
+**The current [Flashcard Builder](../../shared/engine/scripts/flashcardBuilder/README.md) materializes relations on both cards.** The source YAML contains one edge only; the builder emits typed entries into each endpoint's `parameters.relationships: { items, order }` using:
 
-- `relationshipId`: the same stable link identity on both endpoint cards (the generator derives this from the authored edge key).
-- `type`: the same canonical relation type on both sides.
-- `relatedFlashcardId`: the actual **ID of the other card**, never its slug or array index.
-- `position`: `peer` on both sides for symmetric relations; `source` on the source card and `target` on the target card for directed relations.
+- `relationshipId`: the same authored ID on each endpoint.
+- `type`: the canonical relation type on both sides.
+- `relatedFlashcardId`: the **UUID of the other card**, never a slug or index.
+- `position`: `peer` on both cards for symmetric relations; `source` and `target` on their respective sides for directional links.
 
-**Many-to-many is allowed.** A card may have multiple relations of distinct types, including multiple types to the same partner. A relation is not automatically created for every pair of related facts. Do not duplicate the same type and endpoints (including reversed ordering for symmetric types), create self-links, or reference missing cards. The helper validates these invariants. `reverse` does not merge the two cards' progress; distinct recall prompts retain independent learner evidence. Neither the relation `type` nor `position` automatically controls scheduling or mastered status.
+**Many-to-many is allowed.** A card may have multiple relations of distinct types, including multiple types to the same partner. A relation is not automatically created for every pair of related facts. Do not duplicate the same type and endpoints (including reversed ordering for symmetric types), create self-links, or reference missing cards. The real Flashcard Builder validates these invariants. `reverse` does not merge the two cards' progress; distinct recall prompts retain independent learner evidence. Neither the relation `type` nor `position` automatically controls scheduling or mastered status.
 
 The **source of truth remains the one canonical edge** in YAML: do not write mirrored links twice in editorial files or mutate both cards manually. The current `flashcardBuilder` resolves named card slugs and directly emits two typed endpoint relations using their existing UUIDs, with consistent `relationshipId` and directed/symmetric positions. This is an independent bank source stage; it does not embed Flashcards in Lesson serialization or implement graph navigation/scheduling.
 
