@@ -31,7 +31,7 @@ export const macroeconomicShocks_Skill_Data = defineSkill({
     et: 'Makromajanduslikud šokid',
     be: 'Макраэканамічныя шокі',
     ka: 'მაკროეკონომიკური შოკები',
-    kk: 'Макроэкономикалық күйзелістер',
+    kk: 'Makroekonomikalyq küizelıster',
     qm: 'Makroiqtisadiy sarsıntılar',
   },
   description: {
@@ -65,7 +65,7 @@ export const macroeconomicShocks_Skill_Data = defineSkill({
       et: 'Võrdle eri tüüpi šokkide mõju majandusele.',
       be: 'Параўнай, як розныя шокі ўплываюць на эканоміку.',
       ka: 'შეადარეთ, როგორ მოქმედებს სხვადასხვა სახის შოკი ეკონომიკაზე.',
-      kk: 'Әртүрлі күйзелістердің экономикаға әсерін салыстырыңыз.',
+      kk: 'Ärtürlı küizelısterdıñ ekonomikağa äserın salystyryñyz.',
       qm: 'Çeşit sarsıntılar iqtisatqa nasıl tesir etkenini teñeştir.',
     },
   },

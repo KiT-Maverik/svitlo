@@ -31,7 +31,7 @@ export const aggregateSupply_Skill_Data = defineSkill({
     et: 'Kogupakkumine',
     be: 'Сукупная прапанова',
     ka: 'ერთობლივი მიწოდება',
-    kk: 'Жиынтық ұсыныс',
+    kk: 'Jiyntyq ūsynys',
     qm: 'Umumiy teklif',
   },
   description: {
@@ -65,7 +65,7 @@ export const aggregateSupply_Skill_Data = defineSkill({
       et: 'Uuri, mis piirab majanduse võimalikku kogutoodangut.',
       be: 'Даведайся, што абмяжоўвае агульны абсяг вытворчасьці ў эканоміцы.',
       ka: 'გაიგეთ, რა ზღუდავს ეკონომიკის მთლიან წარმოებას.',
-      kk: 'Экономиканың жалпы өндіре алатын көлемін не шектейтінін біліңіз.',
+      kk: 'Ekonomikanyñ jalpy öndıre alatyn kölemın ne şekteitının bılıñız.',
       qm: 'İqtisatnıñ umumiy istisalını neler sıñırlağanını ögren.',
     },
   },

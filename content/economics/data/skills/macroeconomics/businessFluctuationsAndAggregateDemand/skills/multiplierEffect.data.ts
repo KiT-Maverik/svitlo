@@ -31,7 +31,7 @@ export const multiplierEffect_Skill_Data = defineSkill({
     et: 'Kordajaefekt',
     be: 'Эфэкт мультыплікатара',
     ka: 'მულტიპლიკატორის ეფექტი',
-    kk: 'Мультипликатор әсері',
+    kk: 'Multiplikator äserı',
     qm: 'Çoqlama tesiri',
   },
   description: {
@@ -65,7 +65,7 @@ export const multiplierEffect_Skill_Data = defineSkill({
       et: 'Mõista, miks üks kulutuste suurenemine võib käivitada järgmisi.',
       be: 'Зразумей, чаму першае павелічэньне выдаткаў можа выклікаць наступныя.',
       ka: 'გაიაზრეთ, რატომ შეიძლება ხარჯების ერთმა ზრდამ შემდგომი ზრდა გამოიწვიოს.',
-      kk: 'Шығындардың алғашқы өсуі одан әрі өсуді неге тудыруы мүмкін екенін түсініңіз.',
+      kk: 'Şyğyndardyñ alğaşqy ösuı odan ärı ösudı nege tudyruy mümkın ekenın tüsınıñız.',
       qm: 'Bir kere sarf artuvı soñra daa artuvğa nasıl sebep olabilgenini añla.',
     },
   },

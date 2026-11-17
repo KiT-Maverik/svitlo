@@ -31,7 +31,7 @@ export const driversOfLongTermGrowth_Skill_Data = defineSkill({
     et: 'Pikaajalise kasvu tegurid',
     be: 'Чыньнікі доўгатэрміновага росту',
     ka: 'გრძელვადიანი ზრდის ფაქტორები',
-    kk: 'Ұзақ мерзімді өсім факторлары',
+    kk: 'Ūzaq merzımdı ösım faktorlary',
     qm: 'Uzun müddetli ösüvniñ sebepleri',
   },
   description: {
@@ -65,7 +65,7 @@ export const driversOfLongTermGrowth_Skill_Data = defineSkill({
       et: 'Uuri, kuidas oskused, tehnoloogia, investeeringud ja institutsioonid kasvu toetavad.',
       be: 'Дасьледуй, як навыкі, тэхналёгіі, інвэстыцыі й інстытуцыі падтрымліваюць рост.',
       ka: 'გამოიკვლიეთ, როგორ უწყობს ხელს უნარები, ტექნოლოგია, ინვესტიციები და ინსტიტუტები ზრდას.',
-      kk: 'Білім, технология, инвестициялар мен институттар өсімді қалай қолдайтынын зерттеңіз.',
+      kk: 'Bılım, tehnologiia, investitsiialar men instituttar ösımdı qalai qoldaitynyn zertteñız.',
       qm: 'Beceri, tehnologiya, sermaye qoyuluvı ve müesseseler ösüvge nasıl yardım etkenini araştır.',
     },
   },

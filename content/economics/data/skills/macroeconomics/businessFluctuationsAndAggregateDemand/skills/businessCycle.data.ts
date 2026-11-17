@@ -31,7 +31,7 @@ export const businessCycle_Skill_Data = defineSkill({
     et: 'Majandustsükkel',
     be: 'Эканамічны цыкль',
     ka: 'ბიზნესციკლი',
-    kk: 'Іскерлік цикл',
+    kk: 'Iskerlık tsikl',
     qm: 'İqtisadiy devr',
   },
   description: {
@@ -65,7 +65,7 @@ export const businessCycle_Skill_Data = defineSkill({
       et: 'Tunne ära majandustsükli erinevad etapid.',
       be: 'Распазнавай розныя фазы эканамічнага цыклю.',
       ka: 'ამოიცანით ბიზნესციკლის სხვადასხვა ეტაპი.',
-      kk: 'Іскерлік циклдің әртүрлі кезеңдерін анықтаңыз.',
+      kk: 'Iskerlık tsikldıñ ärtürlı kezeñderın anyqtañyz.',
       qm: 'İqtisadiy devrniñ çeşit basqıçlarını tanı.',
     },
   },
