@@ -31,7 +31,7 @@ export const entrepreneurialOpportunity_Skill_Data = defineSkill({
     et: 'Ettevõtlusvõimalus',
     be: 'Прадпрымальніцкая магчымасьць',
     ka: 'სამეწარმეო შესაძლებლობა',
-    kk: 'Кәсіпкерлік мүмкіндік',
+    kk: 'Käsıpkerlık mümkındık',
     qm: 'İşadamlıq imkânı',
   },
   description: {
@@ -65,7 +65,7 @@ export const entrepreneurialOpportunity_Skill_Data = defineSkill({
       et: 'Selgita, mis muudab ärivõimaluse paljulubavaks või riskantseks.',
       be: 'Вызначай, што робіць бізнэс-магчымасьць пэрспэктыўнай ці рызыкоўнай.',
       ka: 'განსაზღვრე, რა ხდის ბიზნესშესაძლებლობას პერსპექტიულს ან სარისკოს.',
-      kk: 'Бизнес мүмкіндіктің келешегі бар ма, әлде тәуекелді ме, анықта.',
+      kk: 'Biznes mümkındıktıñ keleşegı bar ma, älde täuekeldı me, anyqta.',
       qm: 'Bir iş imkânını ümitli ya da riskli etken sebeplerni belgile.',
     },
   },

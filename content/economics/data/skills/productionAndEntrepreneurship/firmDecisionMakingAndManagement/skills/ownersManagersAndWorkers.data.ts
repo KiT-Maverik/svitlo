@@ -31,7 +31,7 @@ export const ownersManagersAndWorkers_Skill_Data = defineSkill({
     et: 'Omanikud, juhid ja töötajad',
     be: 'Уласьнікі, кіраўнікі й працаўнікі',
     ka: 'მფლობელები, მენეჯერები და მუშაკები',
-    kk: 'Иелер, менеджерлер және қызметкерлер',
+    kk: 'İeler, menedjerler jäne qyzmetkerler',
     qm: 'Sahipler, müdürler ve işçiler',
   },
   description: {
@@ -65,7 +65,7 @@ export const ownersManagersAndWorkers_Skill_Data = defineSkill({
       et: 'Mõista, et neil rühmadel võivad olla erinevad prioriteedid.',
       be: 'Распазнавай, што гэтыя групы могуць мець розныя прыярытэты.',
       ka: 'ამოიცანი, რომ ამ ჯგუფებს შეიძლება განსხვავებული პრიორიტეტები ჰქონდეთ.',
-      kk: 'Бұл топтардың басымдықтары әртүрлі болуы мүмкін екенін таны.',
+      kk: 'Būl toptardyñ basymdyqtary ärtürlı boluy mümkın ekenın tany.',
       qm: 'Bu gruppalarnıñ farqlı öñcelikleri olabilgenini tanı.',
     },
   },

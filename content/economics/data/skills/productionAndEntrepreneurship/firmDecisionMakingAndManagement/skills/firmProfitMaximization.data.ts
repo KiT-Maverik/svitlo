@@ -31,7 +31,7 @@ export const firmProfitMaximization_Skill_Data = defineSkill({
     et: 'Ettevõtte kasumi maksimeerimine',
     be: 'Максымізацыя прыбытку фірмы',
     ka: 'ფირმის მოგების მაქსიმიზაცია',
-    kk: 'Фирма пайдасын барынша арттыру',
+    kk: 'Firma paidasyn barynşa arttyru',
     qm: 'Firmanıñ faydasını eñ çoqqa yetkirüv',
   },
   description: {
@@ -65,7 +65,7 @@ export const firmProfitMaximization_Skill_Data = defineSkill({
       et: 'Uuri, kuidas ettevõte valib kasumi kasvatamiseks tootmiskoguse.',
       be: 'Дасьледуй, як фірма выбірае абсяг вытворчасьці дзеля большага прыбытку.',
       ka: 'გამოიკვლიე, როგორ ირჩევს კომპანია წარმოების მოცულობას მოგების გასაზრდელად.',
-      kk: 'Фирма пайдасын өсіру үшін өндіріс көлемін қалай таңдайтынын біл.',
+      kk: 'Firma paidasyn ösıru üşın öndırıs kölemın qalai tañdaitynyn bıl.',
       qm: 'Firma faydasını artırmaq içün istisal miqdarını nasıl saylağanını ögren.',
     },
   },

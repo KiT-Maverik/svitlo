@@ -31,7 +31,7 @@ export const businessModel_Skill_Data = defineSkill({
     et: 'Ärimudel',
     be: 'Бізнэс-мадэль',
     ka: 'ბიზნესმოდელი',
-    kk: 'Бизнес-модель',
+    kk: 'Biznes-model',
     qm: 'İş modeli',
   },
   description: {
@@ -65,7 +65,7 @@ export const businessModel_Skill_Data = defineSkill({
       et: 'Selgita, kuidas ettevõte loob väärtust ja teenib tulu.',
       be: 'Растлумач, як бізнэс стварае каштоўнасьць і атрымлівае даход.',
       ka: 'ახსენი, როგორ ქმნის ბიზნესი ღირებულებას და იღებს შემოსავალს.',
-      kk: 'Бизнестің қалай құндылық жасап, кіріс табатынын түсіндір.',
+      kk: 'Biznestıñ qalai qūndylyq jasap, kırıs tabatynyn tüsındır.',
       qm: 'Bir işletme nasıl qıymet yaratqanını ve kirim tapqanını añlat.',
     },
   },

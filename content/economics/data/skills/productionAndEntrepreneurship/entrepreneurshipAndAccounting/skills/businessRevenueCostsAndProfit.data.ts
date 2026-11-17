@@ -31,7 +31,7 @@ export const businessRevenueCostsAndProfit_Skill_Data = defineSkill({
     et: 'Ettevõtte tulu, kulud ja kasum',
     be: 'Даходы, выдаткі й прыбытак прадпрыемства',
     ka: 'ბიზნესის შემოსავალი, ხარჯები და მოგება',
-    kk: 'Кәсіпорын кірісі, шығыны және пайдасы',
+    kk: 'Käsıporyn kırısı, şyğyny jäne paidasy',
     qm: 'İşletmeniñ kirimi, masrafı ve faydası',
   },
   description: {
@@ -65,7 +65,7 @@ export const businessRevenueCostsAndProfit_Skill_Data = defineSkill({
       et: 'Erista käivet, kulusid, kasumit ja olemasolevat raha.',
       be: 'Адрозьнівай выручку, выдаткі, прыбытак і наяўныя грошы.',
       ka: 'გაარჩიე შემოსავალი, ხარჯები, მოგება და ხელმისაწვდომი ნაღდი ფული.',
-      kk: 'Түсімді, шығынды, пайданы және қолдағы ақшаны ажырат.',
+      kk: 'Tüsımdı, şyğyndy, paidany jäne qoldağy aqşany ajyrat.',
       qm: 'Kirim, masraf, fayda ve eldeki naqt aqçanı bir-birinden ayır.',
     },
   },
