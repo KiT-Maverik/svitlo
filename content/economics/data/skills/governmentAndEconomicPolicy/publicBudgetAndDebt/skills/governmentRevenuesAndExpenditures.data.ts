@@ -31,7 +31,7 @@ export const governmentRevenuesAndExpenditures_Skill_Data = defineSkill({
     et: 'Riigi tulud ja kulud',
     be: 'Даходы і выдаткі бюджэту',
     ka: 'სახელმწიფო შემოსავლები და ხარჯები',
-    kk: 'Мемлекеттік кірістер мен шығыстар',
+    kk: 'Memlekettık kırıster men şyğystar',
     qm: 'Devlet kelirleri ve sarfları',
   },
   description: {
@@ -64,7 +64,7 @@ export const governmentRevenuesAndExpenditures_Skill_Data = defineSkill({
       et: 'Tunne ära, kust riigi raha tuleb ja kuhu seda kasutatakse.',
       be: 'Зразумей, адкуль дзяржава бярэ грошы і куды іх выдаткоўвае.',
       ka: 'ამოიცანით, საიდან მოდის სახელმწიფო თანხები და რაში იხარჯება.',
-      kk: 'Мемлекет қаражаты қайдан келіп, қайда жұмсалатынын анықтаңыз.',
+      kk: 'Memleket qarajaty qaidan kelıp, qaida jūmsalatynyn anyqtañyz.',
       qm: 'Devletniñ aqçası qaydan kelip qayda sarf etilgenini belgile.',
     },
   },

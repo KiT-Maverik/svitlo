@@ -31,7 +31,7 @@ export const governmentFailure_Skill_Data = defineSkill({
     et: 'Riigi sekkumise ebaõnnestumine',
     be: 'Няўдачы дзяржаўнага ўмяшаньня',
     ka: 'სახელმწიფო ჩარევის წარუმატებლობა',
-    kk: 'Мемлекеттік араласудың сәтсіздігі',
+    kk: 'Memlekettık aralasudyñ sätsızdıgı',
     qm: 'Devletniñ muvafaqiyetsizligi',
   },
   description: {
@@ -65,7 +65,7 @@ export const governmentFailure_Skill_Data = defineSkill({
       et: 'Tunne ära põhjused, miks riigi sekkumine võib eesmärkidest mööda minna.',
       be: 'Распазнавай, калі дзяржаўнае ўмяшаньне не дасягае мэтаў.',
       ka: 'გაიგეთ, რატომ შეიძლება სახელმწიფო ჩარევამ ვერ მიაღწიოს მიზანს.',
-      kk: 'Мемлекеттің араласуы қандай жағдайда мақсатына жетпеуі мүмкін екенін зерттеңіз.',
+      kk: 'Memlekettıñ aralasuy qandai jağdaida maqsatyna jetpeuı mümkın ekenın zertteñız.',
       qm: 'Devletniñ qarışuvı maqsadına nasıl yetişmegenini ögren.',
     },
   },

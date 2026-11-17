@@ -31,7 +31,7 @@ export const competitionPolicy_Skill_Data = defineSkill({
     et: 'Konkurentsipoliitika',
     be: 'Палітыка канкурэнцыі',
     ka: 'კონკურენციის პოლიტიკა',
-    kk: 'Бәсекелестік саясаты',
+    kk: 'Bäsekelestık saiasaty',
     qm: 'Raqabet siyaseti',
   },
   description: {
@@ -65,7 +65,7 @@ export const competitionPolicy_Skill_Data = defineSkill({
       et: 'Uuri, kuidas konkurentsipoliitika tegeleb kartellide ja turujõu kuritarvitamisega.',
       be: 'Дасьледуй, як палітыка канкурэнцыі змагаецца з картэлямі і злоўжываньнем рынкавай уладай.',
       ka: 'გამოიკვლიეთ, როგორ უპირისპირდება კონკურენციის პოლიტიკა კარტელებსა და საბაზრო ძალის ბოროტად გამოყენებას.',
-      kk: 'Бәсекелестік саясаты картельдер мен нарықтық билікті теріс пайдалануға қалай қарсы тұратынын біліңіз.',
+      kk: 'Bäsekelestık saiasaty kartelder men naryqtyq bilıktı terıs paidalanuğa qalai qarsy tūratynyn bılıñız.',
       qm: 'Raqabet siyaseti karteller ve bazar quvetiniñ suiistimaline nasıl qarşı turğanını araştır.',
     },
   },

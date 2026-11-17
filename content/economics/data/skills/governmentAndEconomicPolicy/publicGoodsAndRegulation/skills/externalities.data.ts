@@ -31,7 +31,7 @@ export const externalities_Skill_Data = defineSkill({
     et: 'Välismõjud',
     be: 'Вонкавыя эфэкты',
     ka: 'გარე ეფექტები',
-    kk: 'Сыртқы әсерлер',
+    kk: 'Syrtqy äserler',
     qm: 'Tışqı tesirler',
   },
   description: {
@@ -65,7 +65,7 @@ export const externalities_Skill_Data = defineSkill({
       et: 'Märka majandustegevuse kulusid või eeliseid teistele inimestele.',
       be: 'Заўважай выдаткі й выгады эканамічнай дзейнасьці для іншых людзей.',
       ka: 'ამოიცანით ეკონომიკური საქმიანობის ხარჯები ან სარგებელი სხვა ადამიანებისთვის.',
-      kk: 'Экономикалық іс-әрекеттің өзгелерге тигізетін шығындары мен пайдаларын анықтаңыз.',
+      kk: 'Ekonomikalyq ıs-ärekettıñ özgelerge tigızetın şyğyndary men paidalaryn anyqtañyz.',
       qm: 'İqtisadiy faaliyetniñ başqa adamlarğa masraf ya da faydasını tap.',
     },
   },

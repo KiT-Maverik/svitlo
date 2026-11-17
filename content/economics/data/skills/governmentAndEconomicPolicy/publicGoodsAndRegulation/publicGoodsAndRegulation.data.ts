@@ -38,7 +38,7 @@ export const publicGoodsAndRegulation_SkillGroup_Data = defineSkillGroup({
     et: 'Avalikud hüved ja reguleerimine',
     be: 'Грамадзкія даброты і рэгуляваньне',
     ka: 'საზოგადოებრივი სიკეთეები და რეგულირება',
-    kk: 'Қоғамдық игіліктер және реттеу',
+    kk: 'Qoğamdyq igılıkter jäne retteu',
     qm: 'Cemaat malları ve tertip-qaydalar',
   },
   skills: [
@@ -78,7 +78,7 @@ export const publicGoodsAndRegulation_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri, miks mõned vajadused nõuavad ühist pakkumist või reguleerimist.',
       be: 'Даведайся, чаму некаторыя патрэбы патрабуюць супольнага забесьпячэньня або рэгуляваньня.',
       ka: 'გაიგეთ, რატომ მოითხოვს ზოგი საჭიროება ერთობლივ უზრუნველყოფას ან რეგულირებას.',
-      kk: 'Кей қажеттіліктерге неге ортақ қамтамасыз ету немесе реттеу керек екенін біліңіз.',
+      kk: 'Kei qajettılıkterge nege ortaq qamtamasyz etu nemese retteu kerek ekenın bılıñız.',
       qm: 'Bazı ihtiyaçlar ne içün ortaq temin ya da tertip istegenini ögren.',
     },
   },

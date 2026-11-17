@@ -31,7 +31,7 @@ export const publicDebtSustainability_Skill_Data = defineSkill({
     et: 'Riigivõla jätkusuutlikkus',
     be: 'Устойлівасьць дзяржаўнага доўгу',
     ka: 'სახელმწიფო ვალის მდგრადობა',
-    kk: 'Мемлекеттік қарыздың тұрақтылығы',
+    kk: 'Memlekettık qaryzdyñ tūraqtylyğy',
     qm: 'Devlet borcunuñ devamlılığı',
   },
   description: {
@@ -64,7 +64,7 @@ export const publicDebtSustainability_Skill_Data = defineSkill({
       et: 'Uuri, millest sõltub valitsuse suutlikkus oma võlga hallata.',
       be: 'Дасьледуй, ад чаго залежыць здольнасьць дзяржавы кіраваць доўгам.',
       ka: 'გამოიკვლიეთ, რა მოქმედებს მთავრობის მიერ ვალის მართვის უნარზე.',
-      kk: 'Үкіметтің қарызын басқару қабілетіне не әсер ететінін зерттеңіз.',
+      kk: 'Ükımettıñ qaryzyn basqaru qabıletıne ne äser etetının zertteñız.',
       qm: 'Devlet öz borcunu idare etmek içün nelerge bağlı olğanını araştır.',
     },
   },
