@@ -16,6 +16,7 @@ import yaml from 'yaml';
 
 import { renderLessonModules } from '../lessonBuilder/lessonModules.mjs';
 import { loadFactoryRegistry } from '../yamlScaffolding/yamlScaffolding.mjs';
+import { verifyQuizSelections } from './verifyQuizSelections.mjs';
 
 const require = createRequire(import.meta.url);
 const { questionTypes, yamlQuestion_Schema } = require('../../dist/build.js');
@@ -213,9 +214,24 @@ export function runOne(source, mode = '--check', root = repoRoot) {
 }
 
 export function main(argv = process.argv.slice(2), root = repoRoot) {
-  if (argv.length !== 3 || !['--write', '--check', '--preflight'].includes(argv[0]) || argv[1] !== '--source')
-    throw new Error('Usage: questionsBuilder.mjs --write|--check|--preflight --source content/<book>/data/lessons/<bucket>/<uuid>/questions.yaml');
-  const result = runOne(path.resolve(root, argv[2]), argv[0], root);
+  if (argv.length !== 3 ||
+      !['--write', '--check', '--preflight', '--verify-sections'].includes(argv[0]) ||
+      argv[1] !== '--source')
+    throw new Error('Usage: questionsBuilder.mjs --write|--check|--preflight|--verify-sections --source content/<book>/data/lessons/<bucket>/<uuid>/questions.yaml');
+  const source = path.resolve(root, argv[2]);
+  if (argv[0] === '--verify-sections') {
+    const { folder, output } = verifyLocation(source, root);
+    const document = readQuestionsYaml(source);
+    const { files, selections } = renderQuestions(document, path.basename(folder));
+    for (const relative of files.keys()) {
+      const target = path.join(path.dirname(output), relative);
+      assertNoSymlinks(target);
+      if (!fs.existsSync(target)) throw new Error('Missing generated Question module: ' + target);
+    }
+    console.log(JSON.stringify(verifyQuizSelections(folder, selections), null, 2));
+    return;
+  }
+  const result = runOne(source, argv[0], root);
   console.log(JSON.stringify(result, null, 2));
 }
 
