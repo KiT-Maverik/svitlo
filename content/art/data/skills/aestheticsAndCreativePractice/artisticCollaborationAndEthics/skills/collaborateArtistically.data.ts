@@ -31,7 +31,7 @@ export const collaborateArtistically_Skill_Data = defineSkill({
     et: 'Kunstiline koostöö',
     be: 'Мастацкае супрацоўніцтва',
     ka: 'მხატვრული თანამშრომლობა',
-    kk: 'Өнерде бірлесіп жұмыс істеу',
+    kk: 'Önerde bırlesıp jūmys ısteu',
     qm: 'Sanat yolunda işbirlik etmek',
   },
   description: {
@@ -64,7 +64,7 @@ export const collaborateArtistically_Skill_Data = defineSkill({
       et: 'Ühenda eri inimeste loominguline panus ühiseks kunstiteoseks.',
       be: 'Аб’ядноўвайце творчы ўклад розных людзей у супольны мастацкі твор.',
       ka: 'გააერთიანეთ სხვადასხვა ადამიანის შემოქმედებითი წვლილი ერთობლივ ნამუშევარში.',
-      kk: 'Әртүрлі адамдардың шығармашылық үлестерін біріктіріп, ортақ өнер туындысын жасаңыз.',
+      kk: 'Ärtürlı adamdardyñ şyğarmaşylyq ülesterın bırıktırıp, ortaq öner tuyndysyn jasañyz.',
 
       qm: 'Ayrı insanlarnıñ yaratıcılıq qatqılarını bir ortaq sanat eserinde birleştiriñiz.',
     },

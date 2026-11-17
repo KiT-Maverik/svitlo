@@ -31,7 +31,7 @@ export const distinguishBeautyAndArtisticValue_Skill_Data = defineSkill({
     et: 'Ilu ja kunstilise väärtuse eristamine',
     be: 'Адрозніваць прыгажосць і мастацкую каштоўнасць',
     ka: 'სილამაზისა და მხატვრული ღირებულების გარჩევა',
-    kk: 'Сұлулық пен көркемдік құндылықты ажырату',
+    kk: 'Sūlulyq pen körkemdık qūndylyqty ajyratu',
     qm: 'Güzellik ve sanat qıymetini ayırmaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const distinguishBeautyAndArtisticValue_Skill_Data = defineSkill({
       et: 'Avasta, miks oluline kunstiteos ei püüa alati ilus välja näha.',
       be: 'Даведайцеся, чаму важны мастацкі твор не заўсёды імкнецца выглядаць прыгожа.',
       ka: 'გაიგეთ, რატომ არ ცდილობს მნიშვნელოვანი ნამუშევარი ყოველთვის ლამაზად გამოიყურებოდეს.',
-      kk: 'Маңызды өнер туындысы әрдайым әдемі көрінуді мақсат етпейтінінің себебін зерттеңіз.',
+      kk: 'Mañyzdy öner tuyndysy ärdaiym ädemı körınudı maqsat etpeitınınıñ sebebın zertteñız.',
 
       qm: 'Mühim sanat eseriniñ daaima güzel körünmek istegeniniñ sebep degil ekenini añlañız.',
     },

@@ -40,7 +40,7 @@ export const artisticCollaborationAndEthics_SkillGroup_Data = defineSkillGroup({
     et: 'Kunstiline koostöö ja eetika',
     be: 'Мастацкае супрацоўніцтва і этыка',
     ka: 'მხატვრული თანამშრომლობა და ეთიკა',
-    kk: 'Өнердегі ынтымақтастық және этика',
+    kk: 'Önerdegı yntymaqtastyq jäne etika',
     qm: 'Sanat işbirligi ve etika',
   },
   skills: [
@@ -82,7 +82,7 @@ export const artisticCollaborationAndEthics_SkillGroup_Data = defineSkillGroup({
       et: 'Loo ja jaga kunsti läbimõeldult, austades koostööpartnereid, loojaid ja kogukondi.',
       be: 'Стварайце і дзяліцеся мастацтвам удумліва, паважаючы супрацоўнікаў, аўтараў і супольнасці.',
       ka: 'შექმენით და გააზიარეთ ხელოვნება თანამშრომლების, შემქმნელებისა და საზოგადოებების პატივისცემით.',
-      kk: 'Өнерді ойланып жасап, бөлісіңіз; бірге жұмыс істейтін авторларды, суретшілерді және қауымдастықтарды құрметтеңіз.',
+      kk: 'Öner tuyndysyn oilanyp jasap, bölıskende serıktesterdı, avtorlardy jäne qauymdastyqtardy qūrmetteñız.',
 
       qm: 'Birlikte sanat yaratıp paylaşqanda, iştirakçılarnı, yaratıcılarnı ve cemaatlerni sayıp, ehtiyatnen davranıñız.',
     },

@@ -31,7 +31,7 @@ export const assessCulturalAppropriation_Skill_Data = defineSkill({
     et: 'Kultuurilise omastamise hindamine',
     be: 'Ацэньваць культурнае прысваенне',
     ka: 'კულტურული მითვისების შეფასება',
-    kk: 'Мәдени иемденуді бағалау',
+    kk: 'Mädeni iemdenudı bağalau',
     qm: 'Medeniy özgeçirmecilikni baqıv',
   },
   description: {
@@ -64,7 +64,7 @@ export const assessCulturalAppropriation_Skill_Data = defineSkill({
       et: 'Arvesta teiste traditsioonide kasutamisel kultuurilise tähenduse, loa ja võimuerinevustega.',
       be: 'Выкарыстоўваючы чужыя традыцыі, улічвайце культурнае значэнне, дазвол і няроўнасць улады.',
       ka: 'სხვების ტრადიციების გამოყენებისას გაითვალისწინეთ კულტურული მნიშვნელობა, ნებართვა და ძალაუფლების უთანასწორობა.',
-      kk: 'Өзге мәдени дәстүрлерді қолданғанда олардың мәнін, рұқсатты және билік теңсіздігін ескеріңіз.',
+      kk: 'Özge mädenietterdıñ dästürlerın qoldanğanda olardyñ mağynasyn, rūqsat mäselesın jäne küş teñsızdıgın eskerıñız.',
 
       qm: 'Başqa cemaatlerniñ ananelerini qullanğanda, medeniy mananı, izin ve quvet farqlarını köz ögüne alıñız.',
     },

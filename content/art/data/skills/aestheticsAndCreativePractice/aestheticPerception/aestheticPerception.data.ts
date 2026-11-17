@@ -39,7 +39,7 @@ export const aestheticPerception_SkillGroup_Data = defineSkillGroup({
     et: 'Esteetiline taju',
     be: 'Эстэтычнае ўспрыманне',
     ka: 'ესთეტიკური აღქმა',
-    kk: 'Эстетикалық қабылдау',
+    kk: 'Estetikalyq qabyldau',
     qm: 'Estetik idrak',
   },
   skills: [
@@ -80,7 +80,7 @@ export const aestheticPerception_SkillGroup_Data = defineSkillGroup({
       et: 'Pane tähele, kuidas erinevad kogemused ja ootused kujundavad meie reaktsiooni kunstile.',
       be: 'Звяртайце ўвагу, як розны досвед і чаканні фарміруюць нашу рэакцыю на мастацтва.',
       ka: 'დააკვირდით, როგორ აყალიბებს განსხვავებული გამოცდილება და მოლოდინები ჩვენს რეაქციას ხელოვნებაზე.',
-      kk: 'Әртүрлі тәжірибе мен күту өнерге деген көзқарасымызды қалай қалыптастыратынын байқаңыз.',
+      kk: 'Ärtürlı täjıribe men kütudıñ önerdı qabyldauymyzğa qalai äser etetının baiqañyz.',
 
       qm: 'Sanatqa bergen cevaplarımızğa tecribemiz ve beklentilerimiz tesir ete.',
     },

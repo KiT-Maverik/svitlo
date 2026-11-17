@@ -31,7 +31,7 @@ export const creditArtisticSources_Skill_Data = defineSkill({
     et: 'Kunstiallikatele viitamine',
     be: 'Пазначаць мастацкія крыніцы',
     ka: 'მხატვრული წყაროების მითითება',
-    kk: 'Өнер дереккөздерін көрсету',
+    kk: 'Öner derekközderın körsetu',
     qm: 'Sanat menbalarına atıf etüv',
   },
   description: {
@@ -64,7 +64,7 @@ export const creditArtisticSources_Skill_Data = defineSkill({
       et: 'Tunnusta kunstnikke ja materjale, mis on sinu teose loomisse panustanud.',
       be: 'Адзначайце мастакоў і матэрыялы, якія паўплывалі на вашу працу.',
       ka: 'მიუთითეთ მხატვრები და მასალები, რომლებმაც წვლილი შეიტანეს თქვენს ნამუშევარში.',
-      kk: 'Өз туындыңызға үлес қосқан суретшілер мен материалдардың авторларын көрсетіңіз.',
+      kk: 'Tuyndyny jasauğa yqpal etken suretşılerdı jäne paidalanylğan materialdardyñ derekközderın atañyz.',
 
       qm: 'Eseriñizge qatqı qoşqan sanatkârlarnı ve materiallarnı tanıñız.',
     },

@@ -36,7 +36,7 @@ export const aestheticsAndCreativePractice_SkillDomain_Data = defineSkillDomain(
     et: 'Esteetika ja loovpraktika',
     be: 'Эстэтыка і творчая практыка',
     ka: 'ესთეტიკა და შემოქმედებითი პრაქტიკა',
-    kk: 'Эстетика және шығармашылық тәжірибе',
+    kk: 'Estetika jäne şyğarmaşylyq täjıribe',
     qm: 'Estetika ve icadiy faaliyet',
   },
   groups: [
@@ -76,7 +76,7 @@ export const aestheticsAndCreativePractice_SkillDomain_Data = defineSkillDomain(
       et: 'Uuri, kuidas kunst meid mõjutab, tähendust edastab ja loominguliste valikute kaudu areneb.',
       be: 'Даследуйце, як мастацтва ўплывае на нас, перадае сэнс і развіваецца дзякуючы творчым выбарам.',
       ka: 'შეისწავლეთ, როგორ მოქმედებს ხელოვნება ჩვენზე, გადმოსცემს მნიშვნელობას და ვითარდება შემოქმედებითი არჩევანით.',
-      kk: 'Зерде өнердің бізге қалай әсер ететінін, мағынаны қалай жеткізетінін және шығармашылық таңдаулар арқылы қалай дамитынын зерттеңіз。',
+      kk: 'Önerdıñ bızge qalai äser etetının, mağynany qalai jetkızetının jäne şyğarmaşylyq şeşımder arqyly qalai damitynyn zertteñız.',
 
       qm: 'Sanat bizge nasıl tesir etkenini, mana bildirgenini ve yaratıcılıq seçimlerinen öskenini keşf etiñiz.',
     },

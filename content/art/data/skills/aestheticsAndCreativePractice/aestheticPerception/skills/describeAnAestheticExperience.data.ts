@@ -31,7 +31,7 @@ export const describeAnAestheticExperience_Skill_Data = defineSkill({
     et: 'Esteetilise kogemuse kirjeldamine',
     be: 'Апісваць эстэтычны досвед',
     ka: 'ესთეტიკური გამოცდილების აღწერა',
-    kk: 'Эстетикалық тәжірибені сипаттау',
+    kk: 'Estetikalyq täjıribenı sipattau',
     qm: 'Estetik tecribeni tasvir etüv',
   },
   description: {
@@ -64,7 +64,7 @@ export const describeAnAestheticExperience_Skill_Data = defineSkill({
       et: 'Kirjelda, milliseid tundeid kunstiteos sinus tekitab, eristades tundeid tähelepanekutest.',
       be: 'Апішыце, якія пачуцці выклікае твор, адрозніваючы эмоцыі ад назіранняў.',
       ka: 'აღწერეთ, რა განცდებს იწვევს ნამუშევარი თქვენში და განასხვავეთ გრძნობები დაკვირვებებისგან.',
-      kk: 'Өнер туындысы тудыратын сезімдерді бақылаулардан ажыратып, сипаттаңыз.',
+      kk: 'Öner tuyndysynan alğan äserıñızdı sipattap, sezımıñızdı naqty baiqağan belgılerıñızden ajyratyñyz.',
 
       qm: 'Bir sanat eseriniñ sizde uyandırğan duyğularını tasvir etiñiz, duyğularnı közlemden ayırıñız.',
     },

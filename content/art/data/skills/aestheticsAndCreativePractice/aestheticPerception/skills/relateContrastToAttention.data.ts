@@ -31,7 +31,7 @@ export const relateContrastToAttention_Skill_Data = defineSkill({
     et: 'Kontrasti ja tähelepanu seostamine',
     be: 'Звязваць кантраст з увагай',
     ka: 'კონტრასტის ყურადღებასთან დაკავშირება',
-    kk: 'Контраст пен зейінді байланыстыру',
+    kk: 'Kontrast pen zeiındı bailanystyru',
     qm: 'Qarşıtlıqnı diqqetnen bağlamaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const relateContrastToAttention_Skill_Data = defineSkill({
       et: 'Vaata, kuidas tugevad värvi-, kuju- või helierinevused tähelepanu köidavad.',
       be: 'Паглядзіце, як выразныя адрозненні колеру, формы ці гуку прыцягваюць увагу.',
       ka: 'ნახეთ, როგორ იპყრობს ყურადღებას ფერის, ფორმისა თუ ხმის მკვეთრი განსხვავება.',
-      kk: 'Түс, пішін немесе дыбыстағы айқын айырмашылықтар назарды қалай аударатынын байқаңыз.',
+      kk: 'Tüs, pışın nemese dybystağy aiqyn aiyrmaşylyqtar nazardy qalai audaratynyn baiqañyz.',
 
       qm: 'Tüs, şekil ya da ses arasındaki küçlü farqlarniñ diqqetni nasıl çekkenini körüñiz.',
     },

@@ -31,7 +31,7 @@ export const giveArtisticFeedback_Skill_Data = defineSkill({
     et: 'Kunstialase tagasiside andmine',
     be: 'Даваць мастацкую зваротную сувязь',
     ka: 'მხატვრული უკუკავშირის მიცემა',
-    kk: 'Өнер туралы кері байланыс беру',
+    kk: 'Öner turaly kerı bailanys beru',
     qm: 'Sanat aqqında faydalı fikir bildirmek',
   },
   description: {
@@ -64,7 +64,7 @@ export const giveArtisticFeedback_Skill_Data = defineSkill({
       et: 'Anna kasulikke ja konkreetseid soovitusi, mis toetavad teise kunstniku eesmärke.',
       be: 'Давайце карысныя і канкрэтныя парады, якія дапамагаюць іншаму мастаку дасягнуць мэт.',
       ka: 'მიეცით სასარგებლო და კონკრეტული რჩევები, რომლებიც სხვა ხელოვანის მიზნებს ეხმარება.',
-      kk: 'Басқа суретшінің мақсатын қолдайтын пайдалы әрі нақты ұсыныстар беріңіз.',
+      kk: 'Basqa suretşınıñ maqsatyn qoldaityn paidaly ärı naqty ūsynystar berıñız.',
 
       qm: 'Başqa sanatkârnıñ maqsatlarına yardım etken faydalı ve belli tekliflerde bulunuñız.',
     },
