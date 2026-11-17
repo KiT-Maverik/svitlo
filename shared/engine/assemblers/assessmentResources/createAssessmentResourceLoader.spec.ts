@@ -87,7 +87,7 @@ test('loader resolves a complete published Flashcard in one scoped batch and cac
         id: cardId,
         slug: 'sampleCard',
         type: 'flashcard',
-        parameters: { tags: [], flags: [] },
+        parameters: { tags: [], disabilities: [], flags: [] },
         content: {
           front: [{ id: frontId, slug: 'front', type: 'text', params: {}, locale: { value: 'Front' } }],
           back: [{ id: backId, slug: 'back', type: 'text', params: {} }],
