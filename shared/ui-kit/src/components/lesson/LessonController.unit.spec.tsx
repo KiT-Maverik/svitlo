@@ -284,7 +284,7 @@ describe('Engine Props Lesson Controller', () => {
     showLesson(response, [], loader, ['deafness']);
     expect(await screen.findByText('Which object rings?')).toBeVisible();
     expect(screen.queryByText('Listen to a bell')).toBeNull();
-    expect(screen.getByRole('status', { name: '' }).textContent).toContain('1 / 1');
+    expect(screen.getByText('1 / 1')).toBeVisible();
   });
 
   it('announces an explicit localized empty eligible Flashcard pool', async () => {
