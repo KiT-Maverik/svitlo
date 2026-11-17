@@ -108,3 +108,7 @@ nothing. Files are created exclusively and never overwritten. Divergent
 pre-existing `specification.md` / `methodology.md` handoffs are protected.
 `--check` remains strict and read-only; no Zod, AJV, full TS validation,
 content approvals, localization or Props publishing is performed.
+
+## Separate approved editorial Course Flow
+
+The seven-stage Course methodology workflow has a dedicated, deterministic [modular materializer](../materializeCourseFlow/README.md). Run it for independently approved temporary editorial `course.yaml` plans; this general builder preserves its existing single-file technical `config.yaml` scaffolding contract and its non-destructive legacy behavior.

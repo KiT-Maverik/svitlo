@@ -1,5 +1,7 @@
 # Create Course Methodology
 
+> **New Course production:** [Create Course Flow](./create-course-flow.skill.md) is the authoritative seven-stage coordinator. For a new Course, Stage 1–2 use the temporary editorial `course.yaml`, Stage 3 introduces Lesson slots, and Stage 5 materializes durable `methodology.md` and technical Course sources. The legacy paths and prerequisites described below remain for independent maintenance of previously authored Courses; they do not override the new flow.
+
 **Mandatory first action:** Read and apply the [Methodologist Persona](../../personas/methodist.persona.md) in full. Read the [Course entity](../../docs/entities/course.md), [Skill](../../docs/entities/skill.md), [SkillGroup](../../docs/entities/skill-group.md), [SkillDomain](../../docs/entities/skill-domain.md), and [UUID-based entity addressing](../../docs/architecture/entity-uuid-addressing.md). The persona defines professional judgment; this skill defines the specific task.
 
 ## Purpose and scope
