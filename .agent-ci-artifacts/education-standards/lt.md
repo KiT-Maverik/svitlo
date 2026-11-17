@@ -1,7 +1,7 @@
 <!-- GENERATED FROM CODE; DO NOT EDIT. -->
 # EducationStandard review reference — lt
 
-Source commit: 5c64be3e8947b2ab3b26ba6f663244cc1fd5339c
+Source commit: 9c63799dd423674104dd5098b97d7653fcdf9125
 Standards: 14
 Missing translations: 0
 
@@ -151,7 +151,7 @@ This primary-school core curriculum is an independent annex to the Polish Minist
 
 **Frontend description (lt)**
 
-Aprašo Lenkijos pradinių mokyklų ugdymo turinį ir kompetencijas pagal 2026 m. programą.
+Aprašo nuo 2026 m. palaipsniui diegiamos Lenkijos aštuonmetės mokyklos (1–8 klasių) programos turinį ir kompetencijas.
 
 ## Bildungsstandards für das Fach Deutsch Primarbereich
 

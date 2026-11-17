@@ -1,7 +1,7 @@
 <!-- GENERATED FROM CODE; DO NOT EDIT. -->
 # EducationStandard review reference — kk
 
-Source commit: 5c64be3e8947b2ab3b26ba6f663244cc1fd5339c
+Source commit: 9c63799dd423674104dd5098b97d7653fcdf9125
 Standards: 14
 Missing translations: 0
 
@@ -151,7 +151,7 @@ This primary-school core curriculum is an independent annex to the Polish Minist
 
 **Frontend description (kk)**
 
-Польшадағы 2026 жылғы бастауыш мектеп бағдарламасының мазмұны мен құзыреттерін сипаттайды.
+Польшаның сегіз жылдық мектебінің (1–8-сыныптар) 2026 жылдан кезең-кезеңімен енгізілетін оқу бағдарламасының мазмұны мен құзыреттерін сипаттайды.
 
 ## Bildungsstandards für das Fach Deutsch Primarbereich
 

@@ -1,7 +1,7 @@
 <!-- GENERATED FROM CODE; DO NOT EDIT. -->
 # EducationStandard review reference — vi
 
-Source commit: 5c64be3e8947b2ab3b26ba6f663244cc1fd5339c
+Source commit: 9c63799dd423674104dd5098b97d7653fcdf9125
 Standards: 14
 Missing translations: 0
 
@@ -151,7 +151,7 @@ This primary-school core curriculum is an independent annex to the Polish Minist
 
 **Frontend description (vi)**
 
-Mô tả nội dung môn học và năng lực ở trường tiểu học Ba Lan theo chương trình 2026.
+Mô tả nội dung và năng lực của chương trình 2026 được triển khai theo từng giai đoạn cho trường học 8 năm ở Ba Lan (lớp 1–8).
 
 ## Bildungsstandards für das Fach Deutsch Primarbereich
 

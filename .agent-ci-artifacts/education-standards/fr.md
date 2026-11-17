@@ -1,7 +1,7 @@
 <!-- GENERATED FROM CODE; DO NOT EDIT. -->
 # EducationStandard review reference — fr
 
-Source commit: 5c64be3e8947b2ab3b26ba6f663244cc1fd5339c
+Source commit: 9c63799dd423674104dd5098b97d7653fcdf9125
 Standards: 14
 Missing translations: 0
 
@@ -78,7 +78,7 @@ The Common Core State Standards Initiative's 2010 mathematics framework describe
 
 **Frontend description (fr)**
 
-Présente les attentes en mathématiques aux États-Unis, de la maternelle à la terminale.
+Présente les attentes en mathématiques aux États-Unis de la classe K (kindergarten) à la 12e année.
 
 ## Common Core State Standards for English Language Arts & Literacy in History/Social Studies, Science, and Technical Subjects
 
@@ -151,7 +151,7 @@ This primary-school core curriculum is an independent annex to the Polish Minist
 
 **Frontend description (fr)**
 
-Présente les contenus et compétences de l'école primaire polonaise selon le programme de 2026.
+Présente les contenus et compétences du programme polonais de 2026, introduit progressivement dans les classes 1 à 8.
 
 ## Bildungsstandards für das Fach Deutsch Primarbereich
 

@@ -1,7 +1,7 @@
 <!-- GENERATED FROM CODE; DO NOT EDIT. -->
 # EducationStandard review reference — id
 
-Source commit: 5c64be3e8947b2ab3b26ba6f663244cc1fd5339c
+Source commit: 9c63799dd423674104dd5098b97d7653fcdf9125
 Standards: 14
 Missing translations: 0
 
@@ -151,7 +151,7 @@ This primary-school core curriculum is an independent annex to the Polish Minist
 
 **Frontend description (id)**
 
-Menjelaskan materi pelajaran dan kompetensi sekolah dasar Polandia menurut kurikulum 2026.
+Menguraikan isi dan kompetensi kurikulum 2026 yang diterapkan bertahap untuk sekolah delapan tahun di Polandia (kelas 1–8).
 
 ## Bildungsstandards für das Fach Deutsch Primarbereich
 
@@ -263,4 +263,4 @@ Estonia's Government Regulation No. 1 of 6 January 2011 establishes the national
 
 **Frontend description (id)**
 
-Menetapkan kurikulum nasional sekolah dasar Estonia untuk kelas 1–9.
+Menetapkan kurikulum nasional pendidikan dasar Estonia untuk kelas 1–9 beserta hasil belajar yang dituju.

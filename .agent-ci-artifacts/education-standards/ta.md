@@ -1,7 +1,7 @@
 <!-- GENERATED FROM CODE; DO NOT EDIT. -->
 # EducationStandard review reference — ta
 
-Source commit: 5c64be3e8947b2ab3b26ba6f663244cc1fd5339c
+Source commit: 9c63799dd423674104dd5098b97d7653fcdf9125
 Standards: 14
 Missing translations: 0
 
@@ -151,7 +151,7 @@ This primary-school core curriculum is an independent annex to the Polish Minist
 
 **Frontend description (ta)**
 
-2026 பாடத்திட்டத்தின்படி போலந்து தொடக்கப் பள்ளிகளின் பாட உள்ளடக்கங்களையும் திறன்களையும் விளக்குகிறது.
+போலந்தின் எட்டு ஆண்டுப் பள்ளிக் கல்விக்கான (1–8 ஆம் வகுப்புகள்) 2026 ஆம் ஆண்டு படிப்படியாக அறிமுகமாகும் பாடத்திட்டத்தின் உள்ளடக்கத்தையும் திறன்களையும் விளக்குகிறது.
 
 ## Bildungsstandards für das Fach Deutsch Primarbereich
 

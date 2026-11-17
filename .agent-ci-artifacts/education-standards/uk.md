@@ -1,7 +1,7 @@
 <!-- GENERATED FROM CODE; DO NOT EDIT. -->
 # EducationStandard review reference — uk
 
-Source commit: 5c64be3e8947b2ab3b26ba6f663244cc1fd5339c
+Source commit: 9c63799dd423674104dd5098b97d7653fcdf9125
 Standards: 14
 Missing translations: 0
 
@@ -78,7 +78,7 @@ The Common Core State Standards Initiative's 2010 mathematics framework describe
 
 **Frontend description (uk)**
 
-Описує очікувані результати вивчення математики у США від дитсадка до 12 класу.
+Описує очікувані результати вивчення математики у США від підготовчого класу (kindergarten) до 12-го класу.
 
 ## Common Core State Standards for English Language Arts & Literacy in History/Social Studies, Science, and Technical Subjects
 
@@ -151,7 +151,7 @@ This primary-school core curriculum is an independent annex to the Polish Minist
 
 **Frontend description (uk)**
 
-Описує навчальний зміст і компетентності польської початкової школи за програмою 2026 року.
+Описує зміст і компетентності програми 2026 року для 1–8 класів восьмирічної школи Польщі, яку впроваджують поетапно.
 
 ## Bildungsstandards für das Fach Deutsch Primarbereich
 
@@ -208,7 +208,7 @@ The Finnish National Agency for Education adopted the National Core Curriculum f
 
 **Frontend description (uk)**
 
-Є національною основою місцевих програм і навчальних цілей базової освіти Фінляндії.
+Є національною основою місцевих програм і навчальних цілей дев’ятирічної базової освіти Фінляндії (1–9 класи).
 
 ## Varhaiskasvatussuunnitelman perusteet 2022
 

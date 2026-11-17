@@ -1,7 +1,7 @@
 <!-- GENERATED FROM CODE; DO NOT EDIT. -->
 # EducationStandard review reference — mr
 
-Source commit: 5c64be3e8947b2ab3b26ba6f663244cc1fd5339c
+Source commit: 9c63799dd423674104dd5098b97d7653fcdf9125
 Standards: 14
 Missing translations: 0
 
@@ -151,7 +151,7 @@ This primary-school core curriculum is an independent annex to the Polish Minist
 
 **Frontend description (mr)**
 
-पोलंडच्या 2026 च्या प्राथमिक शालेय अभ्यासक्रमातील विषय आणि कौशल्ये स्पष्ट करते.
+पोलंडच्या आठ वर्षांच्या शाळांतील (इयत्ता 1–8) 2026 पासून टप्प्याटप्प्याने लागू होणाऱ्या अभ्यासक्रमातील विषय व कौशल्ये स्पष्ट करते.
 
 ## Bildungsstandards für das Fach Deutsch Primarbereich
 

@@ -1,7 +1,7 @@
 <!-- GENERATED FROM CODE; DO NOT EDIT. -->
 # EducationStandard review reference — ar
 
-Source commit: 5c64be3e8947b2ab3b26ba6f663244cc1fd5339c
+Source commit: 9c63799dd423674104dd5098b97d7653fcdf9125
 Standards: 14
 Missing translations: 0
 
@@ -151,7 +151,7 @@ This primary-school core curriculum is an independent annex to the Polish Minist
 
 **Frontend description (ar)**
 
-يصف محتوى التعلم والمهارات في المدارس الابتدائية البولندية وفق منهج 2026.
+يصف محتوى المنهج والكفايات للمدرسة البولندية ذات السنوات الثماني (الصفوف 1–8) وفق برنامج 2026 الذي يُطبّق تدريجيًا.
 
 ## Bildungsstandards für das Fach Deutsch Primarbereich
 

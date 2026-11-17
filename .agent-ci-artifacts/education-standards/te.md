@@ -1,7 +1,7 @@
 <!-- GENERATED FROM CODE; DO NOT EDIT. -->
 # EducationStandard review reference — te
 
-Source commit: 5c64be3e8947b2ab3b26ba6f663244cc1fd5339c
+Source commit: 9c63799dd423674104dd5098b97d7653fcdf9125
 Standards: 14
 Missing translations: 0
 
@@ -151,7 +151,7 @@ This primary-school core curriculum is an independent annex to the Polish Minist
 
 **Frontend description (te)**
 
-2026 పాఠ్యప్రణాళికలో పోలాండ్ ప్రాథమిక పాఠశాలల విషయాలు, నైపుణ్యాలను వివరిస్తుంది.
+పోలాండ్‌లో ఎనిమిదేళ్ల పాఠశాల విద్యకు (1–8 తరగతులు) 2026 నుంచి దశలవారీగా అమలయ్యే పాఠ్యప్రణాళికలోని విషయాలు, నైపుణ్యాలను వివరిస్తుంది.
 
 ## Bildungsstandards für das Fach Deutsch Primarbereich
 
@@ -208,7 +208,7 @@ The Finnish National Agency for Education adopted the National Core Curriculum f
 
 **Frontend description (te)**
 
-ఫిన్లాండ్ ప్రాథమిక స్థాయి విద్యలో స్థానిక పాఠ్యప్రణాళికలు, అభ్యసన లక్ష్యాలకు జాతీయ పునాదిని అందిస్తుంది.
+ఫిన్లాండ్‌లో 1–9 తరగతుల ప్రాథమిక, దిగువ మాధ్యమిక విద్యలో స్థానిక పాఠ్యప్రణాళికలు, అభ్యసన లక్ష్యాలకు జాతీయ పునాదిని అందిస్తుంది.
 
 ## Varhaiskasvatussuunnitelman perusteet 2022
 
@@ -263,4 +263,4 @@ Estonia's Government Regulation No. 1 of 6 January 2011 establishes the national
 
 **Frontend description (te)**
 
-ఎస్టోనియాలో 1–9 తరగతుల జాతీయ ప్రాథమిక పాఠశాల పాఠ్యప్రణాళిక, అభ్యసన ఫలితాలను నిర్దేశిస్తుంది.
+ఎస్టోనియాలో 1–9 తరగతులకు వర్తించే జాతీయ విద్యా పాఠ్యప్రణాళిక, అభ్యసన ఫలితాలను నిర్దేశిస్తుంది.

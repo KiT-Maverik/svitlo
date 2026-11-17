@@ -1,7 +1,7 @@
 <!-- GENERATED FROM CODE; DO NOT EDIT. -->
 # EducationStandard review reference — ko
 
-Source commit: 5c64be3e8947b2ab3b26ba6f663244cc1fd5339c
+Source commit: 9c63799dd423674104dd5098b97d7653fcdf9125
 Standards: 14
 Missing translations: 0
 
@@ -151,7 +151,7 @@ This primary-school core curriculum is an independent annex to the Polish Minist
 
 **Frontend description (ko)**
 
-2026년 교육과정에 따른 폴란드 초등학교의 학습 내용과 역량을 제시합니다.
+폴란드의 8년제 학교(1~8학년)에 2026년부터 단계적으로 도입되는 교육과정의 내용과 역량을 설명합니다.
 
 ## Bildungsstandards für das Fach Deutsch Primarbereich
 

@@ -1,7 +1,7 @@
 <!-- GENERATED FROM CODE; DO NOT EDIT. -->
 # EducationStandard review reference — et
 
-Source commit: 5c64be3e8947b2ab3b26ba6f663244cc1fd5339c
+Source commit: 9c63799dd423674104dd5098b97d7653fcdf9125
 Standards: 14
 Missing translations: 0
 
@@ -151,7 +151,7 @@ This primary-school core curriculum is an independent annex to the Polish Minist
 
 **Frontend description (et)**
 
-Kirjeldab Poola põhikooli õppeainete sisu ja pädevusi 2026. aasta õppekavas.
+Kirjeldab Poola kaheksa-aastase põhikooli (1.–8. klass) 2026. aasta järk-järgult rakendatava õppekava sisu ja pädevusi.
 
 ## Bildungsstandards für das Fach Deutsch Primarbereich
 

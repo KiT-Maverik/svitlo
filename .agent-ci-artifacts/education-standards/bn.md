@@ -1,7 +1,7 @@
 <!-- GENERATED FROM CODE; DO NOT EDIT. -->
 # EducationStandard review reference — bn
 
-Source commit: 5c64be3e8947b2ab3b26ba6f663244cc1fd5339c
+Source commit: 9c63799dd423674104dd5098b97d7653fcdf9125
 Standards: 14
 Missing translations: 0
 
@@ -151,7 +151,7 @@ This primary-school core curriculum is an independent annex to the Polish Minist
 
 **Frontend description (bn)**
 
-পোল্যান্ডের ২০২৬ সালের প্রাথমিক বিদ্যালয়ের শিক্ষাক্রমে বিষয়বস্তু ও দক্ষতার লক্ষ্য তুলে ধরে।
+পোল্যান্ডের আট বছরের বিদ্যালয়ের (১–৮ শ্রেণি) ২০২৬ সালের ধাপে ধাপে চালু হওয়া শিক্ষাক্রমের বিষয়বস্তু ও দক্ষতা তুলে ধরে।
 
 ## Bildungsstandards für das Fach Deutsch Primarbereich
 

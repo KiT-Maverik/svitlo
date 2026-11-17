@@ -1,7 +1,7 @@
 {
   "schemaVersion": 3,
   "kind": "pr-scoped-agent-ci-artifacts",
-  "sourceCommit": "5c64be3e8947b2ab3b26ba6f663244cc1fd5339c",
+  "sourceCommit": "9c63799dd423674104dd5098b97d7653fcdf9125",
   "scope": {
     "kind": "education-standards",
     "package": null,

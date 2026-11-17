@@ -1,7 +1,7 @@
 <!-- GENERATED FROM CODE; DO NOT EDIT. -->
 # EducationStandard review reference — ms
 
-Source commit: 5c64be3e8947b2ab3b26ba6f663244cc1fd5339c
+Source commit: 9c63799dd423674104dd5098b97d7653fcdf9125
 Standards: 14
 Missing translations: 0
 
@@ -151,7 +151,7 @@ This primary-school core curriculum is an independent annex to the Polish Minist
 
 **Frontend description (ms)**
 
-Menghuraikan kandungan pelajaran dan kompetensi sekolah rendah Poland dalam kurikulum 2026.
+Menghuraikan kandungan dan kompetensi kurikulum 2026 yang dilaksanakan secara berperingkat bagi sekolah lapan tahun di Poland (gred 1–8).
 
 ## Bildungsstandards für das Fach Deutsch Primarbereich
 

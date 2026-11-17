@@ -1,7 +1,7 @@
 <!-- GENERATED FROM CODE; DO NOT EDIT. -->
 # EducationStandard review reference — pl
 
-Source commit: 5c64be3e8947b2ab3b26ba6f663244cc1fd5339c
+Source commit: 9c63799dd423674104dd5098b97d7653fcdf9125
 Standards: 14
 Missing translations: 0
 
@@ -78,7 +78,7 @@ The Common Core State Standards Initiative's 2010 mathematics framework describe
 
 **Frontend description (pl)**
 
-Przedstawia wymagania z matematyki w USA od przedszkola do klasy 12.
+Przedstawia wymagania z matematyki w USA od klasy K (kindergarten) do klasy 12.
 
 ## Common Core State Standards for English Language Arts & Literacy in History/Social Studies, Science, and Technical Subjects
 
@@ -151,7 +151,7 @@ This primary-school core curriculum is an independent annex to the Polish Minist
 
 **Frontend description (pl)**
 
-Opisuje treści i kompetencje w polskiej szkole podstawowej według podstawy z 2026 roku.
+Opisuje treści i kompetencje podstawy programowej z 2026 r. dla klas I–VIII polskiej ośmioletniej szkoły podstawowej, wdrażanej etapami.
 
 ## Bildungsstandards für das Fach Deutsch Primarbereich
 
@@ -170,7 +170,7 @@ The Standing Conference of the Ministers of Education and Cultural Affairs of th
 
 **Frontend description (pl)**
 
-Określa oczekiwane kompetencje języka niemieckiego na zakończenie szkoły podstawowej w Niemczech.
+Określa kompetencje z języka niemieckiego oczekiwane pod koniec 4. klasy niemieckiej szkoły podstawowej.
 
 ## Bildungsstandards für das Fach Mathematik Primarbereich
 
@@ -189,7 +189,7 @@ The KMK adopted a revised set of mathematics educational standards for the Germa
 
 **Frontend description (pl)**
 
-Określa oczekiwane kompetencje matematyczne na zakończenie szkoły podstawowej w Niemczech.
+Określa kompetencje matematyczne oczekiwane pod koniec 4. klasy niemieckiej szkoły podstawowej.
 
 ## Perusopetuksen opetussuunnitelman perusteet 2014
 

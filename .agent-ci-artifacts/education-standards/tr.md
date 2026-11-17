@@ -1,7 +1,7 @@
 <!-- GENERATED FROM CODE; DO NOT EDIT. -->
 # EducationStandard review reference — tr
 
-Source commit: 5c64be3e8947b2ab3b26ba6f663244cc1fd5339c
+Source commit: 9c63799dd423674104dd5098b97d7653fcdf9125
 Standards: 14
 Missing translations: 0
 
@@ -78,7 +78,7 @@ The Common Core State Standards Initiative's 2010 mathematics framework describe
 
 **Frontend description (tr)**
 
-ABD'de anaokulundan 12. sınıfa kadar matematik öğrenme beklentilerini açıklar.
+ABD'de K sınıfından (kindergarten) 12. sınıfa kadar matematik öğrenme beklentilerini açıklar.
 
 ## Common Core State Standards for English Language Arts & Literacy in History/Social Studies, Science, and Technical Subjects
 
@@ -151,7 +151,7 @@ This primary-school core curriculum is an independent annex to the Polish Minist
 
 **Frontend description (tr)**
 
-Polonya'da 2026 ilkokul programının ders içeriklerini ve yetkinliklerini açıklar.
+Polonya’nın sekiz yıllık okulunda (1–8. sınıflar) 2026’dan itibaren aşamalı uygulanan müfredatın içerik ve yeterliklerini açıklar.
 
 ## Bildungsstandards für das Fach Deutsch Primarbereich
 

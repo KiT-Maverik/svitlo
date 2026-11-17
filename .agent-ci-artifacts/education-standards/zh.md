@@ -1,7 +1,7 @@
 <!-- GENERATED FROM CODE; DO NOT EDIT. -->
 # EducationStandard review reference — zh
 
-Source commit: 5c64be3e8947b2ab3b26ba6f663244cc1fd5339c
+Source commit: 9c63799dd423674104dd5098b97d7653fcdf9125
 Standards: 14
 Missing translations: 0
 
@@ -151,7 +151,7 @@ This primary-school core curriculum is an independent annex to the Polish Minist
 
 **Frontend description (zh)**
 
-概述波兰2026年小学课程的教学内容与能力目标。
+概述波兰八年制学校（1至8年级）自2026年起分阶段实施的课程内容与能力要求。
 
 ## Bildungsstandards für das Fach Deutsch Primarbereich
 

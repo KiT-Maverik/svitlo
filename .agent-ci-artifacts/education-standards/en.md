@@ -1,7 +1,7 @@
 <!-- GENERATED FROM CODE; DO NOT EDIT. -->
 # EducationStandard review reference — en
 
-Source commit: 5c64be3e8947b2ab3b26ba6f663244cc1fd5339c
+Source commit: 9c63799dd423674104dd5098b97d7653fcdf9125
 Standards: 14
 Missing translations: 0
 
@@ -151,7 +151,7 @@ This primary-school core curriculum is an independent annex to the Polish Minist
 
 **Frontend description (en)**
 
-Outlines subjects and learning competencies for Polish primary schools under the 2026 curriculum.
+Outlines the 2026 curriculum for Poland’s eight-year basic school (grades 1–8), being introduced in phases.
 
 ## Bildungsstandards für das Fach Deutsch Primarbereich
 
