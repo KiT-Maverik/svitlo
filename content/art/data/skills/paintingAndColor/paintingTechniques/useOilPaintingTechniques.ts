@@ -53,7 +53,7 @@ export const useOilPaintingTechniques = defineSkill({
       it: 'Lavora in sicurezza con colori a olio ad asciugatura lenta per sfumare, sovrapporre strati e modificare le zone dipinte.',
       ja: '乾燥の遅い油絵の具を使い、安全に色を混ぜ、層を重ね、描いた部分を調整しましょう。',
       ka: 'იმუშავეთ ნელა შრობადი ზეთის საღებავებით: შეურიეთ ფერები, შექმენით ფენები და უსაფრთხოდ შეცვალეთ მოხატული მონაკვეთები.',
-      kk: 'Baiaudy qauıpsız paidalana otyryp, baiau kebetın maily boiaumen tüsterdı aralastyryñyz, qabattar jasañyz jäne boialğan tūstardy tüzetıñız.',
+      kk: 'Qauıpsızdık erejelerın saqtap, baiau kebetın maily boiaumen tüsterdı aralastyryp, qabattar jasañyz jäne boialğan jerlerdı tüzetıñız.',
       ko: '천천히 마르는 유화를 사용해 안전하게 색을 섞고 층을 쌓으며 칠한 부분을 조정하세요.',
       lt: 'Dirbkite su lėtai džiūstančiais aliejiniais dažais: maišykite spalvas, sluoksniuokite ir saugiai koreguokite nutapytas vietas.',
       lv: 'Strādājiet ar lēni žūstošām eļļas krāsām, lai jauktu krāsas, veidotu slāņus un droši pielāgotu apgleznotās vietas.',

@@ -52,7 +52,7 @@ export const analyzeArtisticPatronage = defineSkill({
       it: 'Esplora come i mecenati e le commissioni influenzano le opere che vengono realizzate.',
       ja: 'パトロンや制作依頼が、どのような作品が生み出されるかにどう影響するかを探ります。',
       ka: 'გაიგეთ, როგორ მოქმედებენ მფარველები და შეკვეთები იმაზე, თუ რა ხელოვნების ნიმუშები იქმნება.',
-      kk: 'Zertteuşıler men tapsyrystardyñ qandai öner tuyndylary jasalatynyna qalai äser etetının bılıñız.',
+      kk: 'Tapsyrys beruşıler men önerdı qoldaityn mekemeler tuyndylardyñ jasaluyna jäne körermenge ūsynyluyna qalai äser etetının zertteñız.',
       ko: '후원자와 제작 의뢰가 어떤 예술 작품이 만들어지는지에 어떤 영향을 주는지 살펴보세요.',
       lt: 'Sužinokite, kaip mecenatai ir užsakymai veikia kuriamus meno kūrinius.',
       lv: 'Uzziniet, kā mecenāti un pasūtījumi ietekmē mākslas darbu tapšanu.',

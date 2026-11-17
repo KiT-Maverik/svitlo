@@ -52,7 +52,7 @@ export const performBeatboxing = defineSkill({
       it: 'Crea un groove ritmico con suoni di percussione vocale controllati.',
       ja: 'コントロールした声のパーカッションでリズムのグルーヴを作りましょう。',
       ka: 'შექმენით რიტმული გროუვი კონტროლირებული ვოკალური პერკუსიის ხმებით.',
-      kk: 'Baqyldağan dybystardy baqylap, yrğaqty gruv jasañyz.',
+      kk: 'Dauyspen şyğarylatyn soqpaly dybystardy üilestırıp, anyq yrğaqtyq örnek jasañyz.',
       ko: '조절된 보컬 퍼커션 소리로 리듬감 있는 그루브를 만드세요.',
       lt: 'Kurkite ritminį groove naudodami valdomus vokalinės perkusijos garsus.',
       lv: 'Veidojiet ritmisku grūvu, izmantojot kontrolētas vokālās perkusijas skaņas.',
