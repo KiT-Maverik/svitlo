@@ -31,7 +31,7 @@ export const produceArtisticStudies_Skill_Data = defineSkill({
     et: 'Kunstiliste uurimuste loomine',
     be: 'Ствараць мастацкія эцюды',
     ka: 'მხატვრული ესკიზების შექმნა',
-    kk: 'Өнерлік этюдтер жасау',
+    kk: 'Körkemdık etiudter jasau',
     qm: 'Sanat tecribelerini yaratmaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const produceArtisticStudies_Skill_Data = defineSkill({
       et: 'Katseta visandeid või helikatsetusi, et avastada, milleks loominguline idee võib kujuneda.',
       be: 'Паспрабуйце эскізы або гукавыя эксперыменты, каб даведацца, у што можа ператварыцца творчая ідэя.',
       ka: 'სცადეთ ესკიზები ან ხმოვანი ექსპერიმენტები, რათა აღმოაჩინოთ, რად შეიძლება იქცეს შემოქმედებითი იდეა.',
-      kk: 'Шығармашылық идеяның қалай дамуы мүмкін екенін зерттеу үшін нобайлар немесе дыбыс тәжірибелерін жасаңыз.',
+      kk: 'Şyğarmaşylyq ideianyñ qalai damuy mümkın ekenın zertteu üşın nobailar nemese dybys täjıribelerın jasañyz.',
 
       qm: 'Qaralama ya da ses tecribelerini yapıp, yaratıcılıq fikriniñ nelerge dönüşebilecegini keşf etiñiz.',
     },

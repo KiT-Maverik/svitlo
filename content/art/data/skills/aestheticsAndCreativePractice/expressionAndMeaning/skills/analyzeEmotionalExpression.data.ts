@@ -31,7 +31,7 @@ export const analyzeEmotionalExpression_Skill_Data = defineSkill({
     et: 'Emotsionaalse väljenduse analüüsimine',
     be: 'Аналізаваць эмацыйнае выяўленне',
     ka: 'ემოციური გამოხატვის ანალიზი',
-    kk: 'Эмоциялық көріністі талдау',
+    kk: 'Emotsiialyq körınıstı taldau',
     qm: 'Duyğusal ifadeni tahlil etüv',
   },
   description: {
@@ -64,7 +64,7 @@ export const analyzeEmotionalExpression_Skill_Data = defineSkill({
       et: 'Seosta kunstiteose väljenduslikud omadused tunnetega, mida see võib esile kutsuda.',
       be: 'Звяжыце выразныя асаблівасці твора з пачуццямі, якія ён можа выклікаць.',
       ka: 'დააკავშირეთ ნამუშევრის გამომსახველობითი ნიშნები იმ გრძნობებთან, რომლებსაც ის შეიძლება აღძრავდეს.',
-      kk: 'Өнер туындысының мәнерлі белгілерін ол білдіретін сезімдермен байланыстырыңыз.',
+      kk: 'Öner tuyndysynyñ mänerlı belgılerın onyñ tudyruy mümkın sezımdermen bailanystyryñyz.',
 
       qm: 'Sanat eseriniñ ifade hususiyetlerini onıñ bildire bilecek duyğularınen bağlañız.',
     },

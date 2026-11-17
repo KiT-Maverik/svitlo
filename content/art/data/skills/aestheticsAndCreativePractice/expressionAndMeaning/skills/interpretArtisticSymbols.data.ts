@@ -31,7 +31,7 @@ export const interpretArtisticSymbols_Skill_Data = defineSkill({
     et: 'Kunstisümbolite tõlgendamine',
     be: 'Інтэрпрэтаваць мастацкія сімвалы',
     ka: 'მხატვრული სიმბოლოების ინტერპრეტაცია',
-    kk: 'Көркем таңбаларды түсіндіру',
+    kk: 'Körkem tañbalardy tüsındıru',
     qm: 'Sanat remizlerini tefsir etüv',
   },
   description: {
@@ -64,7 +64,7 @@ export const interpretArtisticSymbols_Skill_Data = defineSkill({
       et: 'Otsi vihjeid, mis aitavad selgitada kunstilise sümboli võimalikku tähendust.',
       be: 'Шукайце падказкі, якія дапамагаюць растлумачыць магчымы сэнс мастацкага сімвала.',
       ka: 'მოძებნეთ მინიშნებები, რომლებიც მხატვრული სიმბოლოს შესაძლო მნიშვნელობის ახსნაში დაგეხმარებათ.',
-      kk: 'Көркемдік нышанның ықтимал мағынасын түсіндіруге көмектесетін белгілерді іздеңіз.',
+      kk: 'Körkemdık nyşannyñ yqtimal mağynasyn tüsındıruge kömektesetın belgılerdı ızdeñız.',
 
       qm: 'Sanat remiziniñ ne mananı bildire bilecegini añlatmağa yardım etken işaretlerni izleştiñiz.',
     },

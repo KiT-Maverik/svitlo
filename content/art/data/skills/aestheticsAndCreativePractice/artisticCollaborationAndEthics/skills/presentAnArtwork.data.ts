@@ -31,7 +31,7 @@ export const presentAnArtwork_Skill_Data = defineSkill({
     et: 'Kunstiteose esitlemine',
     be: 'Прадстаўляць мастацкі твор',
     ka: 'ხელოვნების ნიმუშის წარდგენა',
-    kk: 'Өнер туындысын таныстыру',
+    kk: 'Öner tuyndysyn tanystyru',
     qm: 'Bir sanat eserini tanıştırmaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const presentAnArtwork_Skill_Data = defineSkill({
       et: 'Vali, kuidas ja kus oma kunstiteost sihtrühmale tutvustada.',
       be: 'Выберыце, як і дзе прадставіць твор мэтавай аўдыторыі.',
       ka: 'აირჩიეთ, როგორ და სად გაუზიაროთ ნამუშევარი მის სამიზნე აუდიტორიას.',
-      kk: 'Көрерменге сай өнер туындысын қалай және қайда ұсынатыныңызды таңдаңыз.',
+      kk: 'Körermenge sai öner tuyndysyn qalai jäne qaida ūsynatynyñyzdy tañdañyz.',
 
       qm: 'Sanat eserini közde tutulğan seyircige nasıl ve qayda paylaşacağını saylañız.',
     },

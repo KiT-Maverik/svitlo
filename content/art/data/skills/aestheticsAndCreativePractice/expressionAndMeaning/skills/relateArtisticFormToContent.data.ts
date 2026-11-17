@@ -31,7 +31,7 @@ export const relateArtisticFormToContent_Skill_Data = defineSkill({
     et: 'Kunstilise vormi ja sisu seostamine',
     be: 'Звязваць мастацкую форму са зместам',
     ka: 'მხატვრული ფორმის შინაარსთან დაკავშირება',
-    kk: 'Көркем пішінді мазмұнмен байланыстыру',
+    kk: 'Körkem pışındı mazmūnmen bailanystyru',
     qm: 'Sanat şeklini mana ile bağlamaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const relateArtisticFormToContent_Skill_Data = defineSkill({
       et: 'Vaata, kuidas teose valmistamise viis muudab selle edastatavat tähendust.',
       be: 'Паглядзіце, як спосаб стварэння змяняе сэнс, які перадае твор.',
       ka: 'ნახეთ, როგორ ცვლის შექმნის გზა იმ მნიშვნელობას, რომელსაც ნამუშევარი გადმოსცემს.',
-      kk: 'Туындының жасалу тәсілі жеткізілетін мағынаны қалай өзгертетінін байқаңыз.',
+      kk: 'Tuyndynyñ jasalu täsılı jetkızıletın mağynany qalai özgertetının baiqañyz.',
 
       qm: 'Bir şeyniñ nasıl yapılğanınıñ onıñ bildirdigi mananı nasıl deñiştirgenini körüñiz.',
     },

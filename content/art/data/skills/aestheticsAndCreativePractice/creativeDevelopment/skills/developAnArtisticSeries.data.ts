@@ -31,7 +31,7 @@ export const developAnArtisticSeries_Skill_Data = defineSkill({
     et: 'Kunstiseeria arendamine',
     be: 'Развіваць мастацкую серыю',
     ka: 'მხატვრული სერიის განვითარება',
-    kk: 'Өнер топтамасын дамыту',
+    kk: 'Öner toptamasyn damytu',
     qm: 'Sanat eserleriniñ bir seriyasını inkişaf ettirmek',
   },
   description: {
@@ -64,7 +64,7 @@ export const developAnArtisticSeries_Skill_Data = defineSkill({
       et: 'Loo seotud kunstiteoste sari, mis uurib üht ideed eri viisidel.',
       be: 'Стварыце серыю звязаных твораў, якія па-рознаму даследуюць адну ідэю.',
       ka: 'შექმენით ერთმანეთთან დაკავშირებული ნამუშევრების სერია, რომელიც ერთ იდეას სხვადასხვა გზით იკვლევს.',
-      kk: 'Бір идеяны әр қырынан зерттейтін өзара байланысты өнер туындыларының топтамасын жасаңыз.',
+      kk: 'Bır ideiany är qyrynan zertteitın özara bailanysty öner tuyndylarynyñ toptamasyn jasañyz.',
 
       qm: 'Bir fikirni çeşit türlü yollar ile araştırğan, bir-birine bağlı sanat eserleri toplamasını yaratıñız.',
     },

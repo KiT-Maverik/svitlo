@@ -31,7 +31,7 @@ export const reviseAnArtwork_Skill_Data = defineSkill({
     et: 'Kunstiteose täiendamine',
     be: 'Пераглядаць мастацкі твор',
     ka: 'ხელოვნების ნიმუშის გადამუშავება',
-    kk: 'Өнер туындысын қайта қарау',
+    kk: 'Öner tuyndysyn qaita qarau',
     qm: 'Sanat eserini qayta işlemek',
   },
   description: {
@@ -64,7 +64,7 @@ export const reviseAnArtwork_Skill_Data = defineSkill({
       et: 'Täienda kunstiteost, võrreldes selle mõju kavandatud tulemusega.',
       be: 'Удасканальвайце твор, параўноўваючы яго ўздзеянне з задуманым вынікам.',
       ka: 'გააუმჯობესეთ ნამუშევარი მისი ეფექტის თქვენს განზრახვასთან შედარებით.',
-      kk: 'Өнер туындысының әсерін көздеген нәтижемен салыстырып, оны жетілдіріңіз.',
+      kk: 'Öner tuyndysynyñ äserın közdegen nätijemen salystyryp, ony jetıldırıñız.',
 
       qm: 'Eserniñ tesirini öz maqsadıñıznen qarşılaştırıp, sanat eserini yahşılañız.',
     },

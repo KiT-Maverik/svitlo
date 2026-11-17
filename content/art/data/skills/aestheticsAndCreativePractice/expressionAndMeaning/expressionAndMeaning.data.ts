@@ -38,7 +38,7 @@ export const expressionAndMeaning_SkillGroup_Data = defineSkillGroup({
     et: 'Väljendus ja tähendus',
     be: 'Выяўленне і значэнне',
     ka: 'გამოხატვა და მნიშვნელობა',
-    kk: 'Бейнелеу және мағына',
+    kk: 'Körkemdık mäner men mağyna',
     qm: 'İfade ve mana',
   },
   skills: [
@@ -78,7 +78,7 @@ export const expressionAndMeaning_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri, kuidas kunst vahendab tähendust metafooride, emotsioonide ja vormi kaudu.',
       be: 'Даследуйце, як мастацтва перадае сэнс праз метафару, эмоцыі і форму.',
       ka: 'შეისწავლეთ, როგორ გადმოსცემს ხელოვნება მნიშვნელობას მეტაფორის, ემოციისა და ფორმის საშუალებით.',
-      kk: 'Өнердің метафора, эмоция және пішін арқылы мағынаны қалай жеткізетінін зерттеңіз.',
+      kk: 'Önerdıñ metafora, emotsiia jäne pışın arqyly mağynany qalai jetkızetının zertteñız.',
 
       qm: 'Sanatnıñ mecaz, duyğu ve şekil vastasınen mananı nasıl bildirdigini keşf etiñiz.',
     },

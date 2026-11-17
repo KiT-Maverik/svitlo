@@ -31,7 +31,7 @@ export const analyzeArtisticMetaphor_Skill_Data = defineSkill({
     et: 'Kunstilise metafoori analüüsimine',
     be: 'Аналізаваць мастацкую метафару',
     ka: 'მხატვრული მეტაფორის ანალიზი',
-    kk: 'Көркем метафораны талдау',
+    kk: 'Körkem metaforany taldau',
     qm: 'Sanat mecazını tahlil etüv',
   },
   description: {
@@ -64,7 +64,7 @@ export const analyzeArtisticMetaphor_Skill_Data = defineSkill({
       et: 'Uuri, kuidas kunstiteos võib metafoori abil ideed edasi anda.',
       be: 'Даследуйце, як мастацкі твор можа перадаваць ідэю праз метафару.',
       ka: 'შეისწავლეთ, როგორ შეუძლია ნამუშევარს მეტაფორის საშუალებით იდეის გადმოცემა.',
-      kk: 'Өнер туындысының метафора арқылы идеяны қалай жеткізе алатынын зерттеңіз.',
+      kk: 'Öner tuyndysynyñ metafora arqyly ideiany qalai jetkıze alatynyn zertteñız.',
 
       qm: 'Sanat eseriniñ bir fikirni mecaz vastasınen nasıl bildirebildigini keşf etiñiz.',
     },

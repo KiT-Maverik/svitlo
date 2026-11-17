@@ -31,7 +31,7 @@ export const explainArtisticDecisions_Skill_Data = defineSkill({
     et: 'Kunstiliste valikute selgitamine',
     be: 'Тлумачыць мастацкія рашэнні',
     ka: 'მხატვრული გადაწყვეტილებების ახსნა',
-    kk: 'Өнерлік шешімдерді түсіндіру',
+    kk: 'Körkemdık şeşımderdı tüsındıru',
     qm: 'Sanatqa mahsus material, şekil ya da usullarnı ne içün saylağanıñıznı añlatıñız',
   },
   description: {
@@ -64,7 +64,7 @@ export const explainArtisticDecisions_Skill_Data = defineSkill({
       et: 'Selgita, miks valisid kindlad materjalid, vormid või kunstilised lähenemisviisid.',
       be: 'Растлумачце, чаму вы выбралі пэўныя матэрыялы, формы або мастацкія падыходы.',
       ka: 'განმარტეთ, რატომ აირჩიეთ კონკრეტული მასალები, ფორმები ან მხატვრული მიდგომები.',
-      kk: 'Неліктен белгілі бір материалдарды, пішіндерді немесе көркемдік тәсілдерді таңдағаныңызды түсіндіріңіз.',
+      kk: 'Nelıkten belgılı bır materialdardy, pışınderdı nemese körkemdık täsılderdı tañdağanyñyzdy tüsındırıñız.',
 
       qm: 'Sanatqa mahsus material, şekil ya da usullarnı ne içün saylağanıñıznı añlatıñız.',
     },

@@ -31,7 +31,7 @@ export const generateArtisticIdeas_Skill_Data = defineSkill({
     et: 'Kunstiliste ideede loomine',
     be: 'Ствараць мастацкія ідэі',
     ka: 'მხატვრული იდეების გენერირება',
-    kk: 'Өнер идеяларын қалыптастыру',
+    kk: 'Öner ideialaryn qalyptastyru',
     qm: 'Sanat fikirlerini yaratmaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const generateArtisticIdeas_Skill_Data = defineSkill({
       et: 'Arenda ühest lähteideest mitu erinevat kunstilist võimalust.',
       be: 'Развівайце некалькі розных мастацкіх магчымасцей на аснове адной пачатковай ідэі.',
       ka: 'განავითარეთ რამდენიმე განსხვავებული მხატვრული შესაძლებლობა ერთი საწყისი იდეიდან.',
-      kk: 'Бастапқы идеядан бірнеше түрлі көркемдік мүмкіндікті дамытыңыз.',
+      kk: 'Bır bastapqy ideiadan bırneşe türlı körkemdık şeşım oilastyryñyz.',
 
       qm: 'Bir başlangıç fikrinden bir-birinden farqlı bir qaç sanat imkânını inkişaf ettiñiz.',
     },

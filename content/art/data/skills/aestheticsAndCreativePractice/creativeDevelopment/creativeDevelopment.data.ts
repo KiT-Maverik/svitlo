@@ -39,7 +39,7 @@ export const creativeDevelopment_SkillGroup_Data = defineSkillGroup({
     et: 'Loov areng',
     be: 'Творчае развіццё',
     ka: 'შემოქმედებითი განვითარება',
-    kk: 'Шығармашылық даму',
+    kk: 'Şyğarmaşylyq damu',
     qm: 'Yaratıcılıq inkişafı',
   },
   skills: [
@@ -80,7 +80,7 @@ export const creativeDevelopment_SkillGroup_Data = defineSkillGroup({
       et: 'Muuda loomingulised võimalused kunstiteosteks katsetamise ja läbimõeldud parandamise abil.',
       be: 'Ператварайце творчыя магчымасці ў мастацкія творы праз эксперыменты і прадуманае дапрацоўванне.',
       ka: 'ექსპერიმენტითა და გააზრებული გადამუშავებით აქციეთ შემოქმედებითი შესაძლებლობები ნამუშევრებად.',
-      kk: 'Тәжірибе жасап, ойластыра қайта өңдеу арқылы шығармашылық мүмкіндіктерді өнер туындыларына айналдырыңыз.',
+      kk: 'Täjıribe jasap, oilastyra qaita öñdeu arqyly şyğarmaşylyq mümkındıkterdı öner tuyndylaryna ainaldyryñyz.',
 
       qm: 'Yaratıcılıq imkânlarını tecribe ve düşünceli qayta işlevnen sanat eserlerine çevriñiz.',
     },
