@@ -19,3 +19,13 @@ Assess every Section against the verified Stage 1 methodology and verified refer
 7. **Production gaps:** missing media and scenes may remain explicit production dependencies when the educational specification is complete. Do not reject a draft merely because the asset does not exist yet. Do flag assets whose educational meaning, accuracy or acceptance criteria are too vague to implement.
 
 Review actual `AssessmentMethodKey` definitions in Engine and the generated `.agent-ci-artifacts/assessment-methods/en.md` reference if it exists; the reference is **optional and derived**, never an authority that overrides canonical source. Do not invent unsupported Assessment Method IDs.
+
+## Coverage and evidence requirements
+
+The compliance report must identify each target **Skill and observable outcome** and where the latest authored Sections/blocks teach it, support appropriate practice, and, where justified, propose independent assessment evidence. Keep *exposure*, *active learning* and *verified mastery* distinct; do not assert that the learner has mastered something merely because a Section exists.
+
+Check the scientific and academic truth of examples, demonstrations, analogies, diagrams and Scene invariants within explicitly approved simplifications. Confirm coherent progression and manageable depth for the intended audience, accurate prerequisite assumptions, misconceptions and feedback. Identify unauthorized objectives, missing essential examples, conceptual jumps, duplicate filler and incorrect terminology. Where a fact depends on an external reference, identify what was actually verified.
+
+For each Methodologist `assessmentPlan` Quiz key, confirm exactly one intended Quiz Section maps to it, covering the relevant target Skills and **all** required `AssessmentMethodKey` cognitive operations. A Checkpoint is not a Quiz. Selection and validity of real Questions, correct answers, distractors, scoring, retry policies and mastery thresholds belong to #647's Question workflow, not this methodological review. An absent scored Quiz is acceptable only if the accepted Methodology explicitly justifies it.
+
+The reviewer must distinguish a production-stage dependency (for example, a not-yet-built Scene with a complete verifiable specification) from a pedagogical deficiency (such as unspecified intended feedback, unteachable sequence or mathematically incorrect invariant). Report exact source SHA, affected entity path, severity, outcome coverage, required correction and independent verdict; never silently edit the Screenwriter's source. If content changes, re-evaluate changed evidence instead of carrying forward stale review approval.
