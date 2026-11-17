@@ -31,7 +31,7 @@ export const acidBaseModels_Skill_Data = defineSkill({
     et: 'Happe-aluse mudelid',
     be: 'Кіслотна-асноўныя мадэлі',
     ka: 'მჟავა-ფუძის მოდელები',
-    kk: 'Қышқыл-негіз модельдері',
+    kk: 'Qyşqyl-negız modelderı',
     qm: 'Asit-baza modelleri',
   },
   description: {
@@ -65,7 +65,7 @@ export const acidBaseModels_Skill_Data = defineSkill({
       et: 'Võrdle, kuidas levinud mudelid määratlevad hapet ja alust.',
       be: 'Параўнай, як распаўсюджаныя мадэлі вызначаюць кісьлю й аснову.',
       ka: 'შეადარე, როგორ განსაზღვრავენ გავრცელებული მოდელები მჟავასა და ფუძეს.',
-      kk: 'Кең тараған химиялық модельдердің қышқыл мен негізді қалай анықтайтынын салыстыр.',
+      kk: 'Keñ tarağan himiialyq modelderdıñ qyşqyl men negızdı qalai anyqtaitynyn salystyr.',
       qm: 'Yayğın kimyeviy modeller asitnen bazanı nasıl tarif etkenini teñeştir.',
     },
   },

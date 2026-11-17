@@ -38,7 +38,7 @@ export const acidBaseSystems_SkillGroup_Data = defineSkillGroup({
     et: 'Happe-aluse süsteemid',
     be: 'Кіслотна-асноўныя сыстэмы',
     ka: 'მჟავა-ფუძის სისტემები',
-    kk: 'Қышқыл-негіз жүйелері',
+    kk: 'Qyşqyl-negız jüielerı',
     qm: 'Asit-baza sistemaları',
   },
   skills: [
@@ -78,7 +78,7 @@ export const acidBaseSystems_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri, kuidas happed ja alused reageerivad ning kuidas nende mõju mõõta.',
       be: 'Даведайся, як рэагуюць кісьлі й асновы і як вымяраюць іх узьдзеяньне.',
       ka: 'გაიგე, როგორ რეაგირებენ მჟავები და ფუძეები და როგორ იზომება მათი გავლენა.',
-      kk: 'Қышқылдар мен негіздердің қалай әрекеттесетінін және әсері қалай өлшенетінін біл.',
+      kk: 'Qyşqyldar men negızderdıñ qalai ärekettesetının jäne äserı qalai ölşenetının bıl.',
       qm: 'Asitler ve bazalar nasıl reaktsiya bergenini ve tesirleri nasıl ölçülgenini ögren.',
     },
   },

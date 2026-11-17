@@ -31,7 +31,7 @@ export const acidBaseIndicators_Skill_Data = defineSkill({
     et: 'Happe-aluse indikaatorid',
     be: 'Кіслотна-асноўныя індыкатары',
     ka: 'მჟავა-ფუძის ინდიკატორები',
-    kk: 'Қышқыл-негіз индикаторлары',
+    kk: 'Qyşqyl-negız indikatorlary',
     qm: 'Asit-baza indikatorları',
   },
   description: {
@@ -64,7 +64,7 @@ export const acidBaseIndicators_Skill_Data = defineSkill({
       et: 'Mõista, kuidas indikaatorite välimus muutub happesuse muutudes.',
       be: 'Зразумей, як індыкатары зьмяняюць выгляд пры зьмене кіслотнасьці.',
       ka: 'გაიგე, როგორ იცვლება ინდიკატორის გარეგნობა მჟავიანობის შეცვლით.',
-      kk: 'Қышқылдық өзгергенде индикатордың түрі неге өзгеретінін түсін.',
+      kk: 'Qyşqyldyq özgergende indikatordyñ türı nege özgeretının tüsın.',
       qm: 'Asitlilik deñişkende indikatorlarnıñ körünişi nasıl deñişkenini añla.',
     },
   },

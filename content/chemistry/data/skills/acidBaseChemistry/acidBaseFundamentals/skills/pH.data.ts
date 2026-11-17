@@ -65,7 +65,7 @@ export const pH_Skill_Data = defineSkill({
       et: 'Loe pH-d kui lahuse happesuse logaritmilist mõõtu.',
       be: 'Чытай pH як лягарытмічную меру кіслотнасьці раствору.',
       ka: 'გაიგე pH, როგორც ხსნარის მჟავიანობის ლოგარითმული საზომი.',
-      kk: 'pH-ты ерітінді қышқылдығының логарифмдік өлшемі ретінде оқы.',
+      kk: 'pH-ty erıtındı qyşqyldyğynyñ logarifmdık ölşemı retınde oqy.',
       qm: 'pH-nı erintiniñ asitliligini bildiren logarifmik ölçü olaraq oqu.',
     },
   },

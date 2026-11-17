@@ -31,7 +31,7 @@ export const acidBaseTitration_Skill_Data = defineSkill({
     et: 'Happe-aluse tiitrimine',
     be: 'Кіслотна-асноўнае тытраваньне',
     ka: 'მჟავა-ფუძის ტიტრირება',
-    kk: 'Қышқыл-негіз титрлеуі',
+    kk: 'Qyşqyl-negız titrleuı',
     qm: 'Asit-baza titrlevi',
   },
   description: {
@@ -64,7 +64,7 @@ export const acidBaseTitration_Skill_Data = defineSkill({
       et: 'Kasuta tiitrimismõõtmisi tundmatu ainehulga leidmiseks.',
       be: 'Выкарыстоўвай вынікі тытраваньня для вызначэньня невядомай колькасьці.',
       ka: 'ტიტრირების გაზომვებით განსაზღვრე უცნობი რაოდენობა.',
-      kk: 'Белгісіз мөлшерді анықтау үшін титрлеу өлшемдерін қолдан.',
+      kk: 'Belgısız mölşerdı anyqtau üşın titrleu ölşemderın qoldan.',
       qm: 'Bilinmegen miqdarnı belgilemek içün titrlev ölçülerini qullan.',
     },
   },

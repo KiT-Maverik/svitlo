@@ -31,7 +31,7 @@ export const bufferSolutions_Skill_Data = defineSkill({
     et: 'Puhverlahused',
     be: 'Буфэрныя растворы',
     ka: 'ბუფერული ხსნარები',
-    kk: 'Буферлік ерітінділер',
+    kk: 'Buferlık erıtındıler',
     qm: 'Bufer erintiler',
   },
   description: {
@@ -64,7 +64,7 @@ export const bufferSolutions_Skill_Data = defineSkill({
       et: 'Vaata, kuidas puhversegud takistavad pH muutusi.',
       be: 'Даведайся, як буфэрныя сумесі супрацьстаяць зьменам pH.',
       ka: 'ნახე, როგორ უძლებენ ბუფერული ნარევები pH-ის ცვლილებას.',
-      kk: 'Буфер қоспалары pH өзгерісіне қалай қарсы тұратынын біл.',
+      kk: 'Bufer qospalary pH özgerısıne qalai qarsy tūratynyn bıl.',
       qm: 'Bufer qarışıqları pH deñişüvine nasıl qarşı turğanını ögren.',
     },
   },

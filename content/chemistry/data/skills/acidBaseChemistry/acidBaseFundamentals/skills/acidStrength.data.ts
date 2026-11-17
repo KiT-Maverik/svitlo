@@ -31,7 +31,7 @@ export const acidStrength_Skill_Data = defineSkill({
     et: 'Happe tugevus',
     be: 'Сіла кісьлі',
     ka: 'მჟავის სიძლიერე',
-    kk: 'Қышқыл күші',
+    kk: 'Qyşqyl küşı',
     qm: 'Asitniñ küçü',
   },
   description: {
@@ -65,7 +65,7 @@ export const acidStrength_Skill_Data = defineSkill({
       et: 'Erista happe tugevust lahuse kontsentratsioonist või ohtlikkusest.',
       be: 'Адрозьнівай сілу кісьлі ад канцэнтрацыі ці небясьпечнасьці раствору.',
       ka: 'განასხვავე მჟავის სიძლიერე ხსნარის კონცენტრაციისა და საშიშროებისგან.',
-      kk: 'Қышқыл күшін ерітіндінің концентрациясы не қауіптілігімен шатастырма.',
+      kk: 'Qyşqyl küşın erıtındınıñ kontsentratsiiasy ne qauıptılıgımen şatastyrma.',
       qm: 'Asitniñ küçüni erintiniñ konsentratsiyası ya da havfından ayır.',
     },
   },

@@ -31,7 +31,7 @@ export const neutralization_Skill_Data = defineSkill({
     et: 'Neutraliseerimine',
     be: 'Нэўтралізацыя',
     ka: 'ნეიტრალიზაცია',
-    kk: 'Бейтараптану',
+    kk: 'Beitaraptanu',
     qm: 'Neytralleşüv',
   },
   description: {
@@ -65,7 +65,7 @@ export const neutralization_Skill_Data = defineSkill({
       et: 'Uuri, miks happe ja aluse reaktsioon ei anna alati neutraalset pH-d.',
       be: 'Дасьледуй, чаму рэакцыя кісьлі з асновай не заўсёды дае нэўтральны pH.',
       ka: 'გამოიკვლიე, რატომ არ იძლევა მჟავისა და ფუძის რეაქცია ყოველთვის ნეიტრალურ pH-ს.',
-      kk: 'Қышқыл мен негіз реакциясы неге әрқашан бейтарап pH бермейтінін зертте.',
+      kk: 'Qyşqyl men negız reaktsiiasy nege ärqaşan beitarap pH bermeitının zertte.',
       qm: 'Asitnen bazanıñ reaktsiyası ne içün er vaqıt neytral pH bermey, bunı araştır.',
     },
   },
