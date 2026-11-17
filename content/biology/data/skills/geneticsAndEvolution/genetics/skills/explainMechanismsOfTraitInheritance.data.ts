@@ -31,7 +31,7 @@ export const explainMechanismsOfTraitInheritance_Skill_Data = defineSkill({
     et: 'Selgitada tunnuste pärandumise mehhanisme',
     be: 'Тлумачыць мэханізмы ўспадкоўваньня прыкметаў',
     ka: 'ნიშან-თვისებების მემკვიდრეობით გადაცემის მექანიზმების ახსნა',
-    kk: 'Белгілердің тұқымқуалау механизмдерін түсіндіру',
+    kk: 'Belgılerdıñ tūqymqualau mehanizmderın tüsındıru',
     qm: 'Belgilerniñ irsiy keçüv mehanizmlerini añlatmaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const explainMechanismsOfTraitInheritance_Skill_Data = defineSkill({
       et: 'Uuri, kuidas geenid ja nende variandid kanduvad pärilikult põlvest põlve.',
       be: 'Дасьледуй, як гены і іхныя варыянты перадаюцца ў спадчыну паміж пакаленьнямі.',
       ka: 'გამოიკვლიე, როგორ გადაეცემა გენები და მათი ვარიანტები თაობებს შორის.',
-      kk: 'Гендер мен олардың нұсқалары ұрпақтан ұрпаққа қалай берілетінін зертте.',
+      kk: 'Gender men olardyñ nūsqalary ūrpaqtan ūrpaqqa qalai berıletının zertte.',
       qm: 'Genler ve olarnıñ çeşit variantları nesilden nesilge nasıl keçkenini ögreniñiz.',
     },
   },

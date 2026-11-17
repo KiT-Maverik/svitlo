@@ -31,7 +31,7 @@ export const recognizeNematodeCharacteristics_Skill_Data = defineSkill({
     et: 'Ümarusside tunnuste äratundmine',
     be: 'Распазнаваць прыкметы круглых чарвякоў',
     ka: 'მრგვალი ჭიების ნიშნების ამოცნობა',
-    kk: 'Жұмыр құрттардың белгілерін тану',
+    kk: 'Jūmyr qūrttardyñ belgılerın tanu',
     qm: 'Nematodlarnıñ belgilerini tanımaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const recognizeNematodeCharacteristics_Skill_Data = defineSkill({
       et: 'Tunne ümarussid ära lülistumata keha ja muude tunnuste järgi.',
       be: 'Распазнавай круглых чарвякоў паводле нясэгмэнтаванага цела ды іншых прыкметаў.',
       ka: 'ამოიცანი მრგვალი ჭიები დაუნაწევრებელი სხეულითა და სხვა ნიშნებით.',
-      kk: 'Жұмыр құрттарды буылтықтарға бөлінбеген денесі мен басқа белгілері арқылы таны.',
+      kk: 'Jūmyr qūrttardy buyltyqtarğa bölınbegen denesı men basqa belgılerı arqyly tany.',
       qm: 'Nematodlarnıñ alqalarğa bölünmegen bedenine ve başqa belgilerine köre olarnı tanıñız.',
     },
   },

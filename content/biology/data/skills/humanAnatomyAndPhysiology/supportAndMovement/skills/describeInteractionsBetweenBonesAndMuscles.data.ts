@@ -31,7 +31,7 @@ export const describeInteractionsBetweenBonesAndMuscles_Skill_Data = defineSkill
     et: 'Luude ja lihaste koostöö kirjeldamine',
     be: 'Апісваць узаемадзеяньне касьцей і мышцаў',
     ka: 'ძვლებისა და კუნთების ურთიერთქმედების აღწერა',
-    kk: 'Сүйектер мен бұлшықеттердің өзара әрекетін сипаттау',
+    kk: 'Süiekter men būlşyqetterdıñ özara äreketın sipattau',
     qm: 'Kemikler ve adalelerniñ qarşılıqlı tesirini tasvir etmek',
   },
   description: {
@@ -65,7 +65,7 @@ export const describeInteractionsBetweenBonesAndMuscles_Skill_Data = defineSkill
       et: 'Mõista, kuidas lihased tõmbavad luid ja liigutavad liigeseid.',
       be: 'Зразумейце, як мышцы цягнуць косьці й выклікаюць рух у суставах.',
       ka: 'გაიგეთ, როგორ ქაჩავენ კუნთები ძვლებს სახსრების ასამოძრავებლად.',
-      kk: 'Бұлшықеттер сүйектерді тартып, буындарды қалай қозғайтынын түсініңіз.',
+      kk: 'Būlşyqetter süiekterdı tartyp, buyndardy qalai qozğaitynyn tüsınıñız.',
       qm: 'Adaleler kemiklerni çekip boğumlarnı nasıl areket ettirgenini añlañız.',
     },
   },

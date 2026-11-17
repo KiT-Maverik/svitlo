@@ -31,7 +31,7 @@ export const recognizeFlatwormCharacteristics_Skill_Data = defineSkill({
     et: 'Lameusside tunnuste äratundmine',
     be: 'Распазнаваць прыкметы плоскіх чарвякоў',
     ka: 'ბრტყელი ჭიების ნიშნების ამოცნობა',
-    kk: 'Жалпақ құрттардың белгілерін тану',
+    kk: 'Jalpaq qūrttardyñ belgılerın tanu',
     qm: 'Yassı qurtlarnıñ belgilerini tanımaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const recognizeFlatwormCharacteristics_Skill_Data = defineSkill({
       et: 'Tunne lameussid ära ja erista neid lülilise kehaga ussidest.',
       be: 'Распазнавай плоскіх чарвякоў і адрозьнівай іх ад кольчатых.',
       ka: 'ამოიცანი ბრტყელი ჭიები და განასხვავე ისინი სეგმენტირებული ჭიებისგან.',
-      kk: 'Жалпақ құрттарды танып, оларды буылтық құрттардан ажырат.',
+      kk: 'Jalpaq qūrttardy tanyp, olardy buyltyq qūrttardan ajyrat.',
       qm: 'Yassı qurtlarnı tanıñız ve olarnı bedeni alqalarğa bölüngen qurtlardan farq etiñiz.',
     },
   },

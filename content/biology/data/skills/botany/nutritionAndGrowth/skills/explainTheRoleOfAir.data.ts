@@ -31,7 +31,7 @@ export const explainTheRoleOfAir_Skill_Data = defineSkill({
     et: 'Õhu rolli selgitamine',
     be: 'Тлумачыць ролю паветра',
     ka: 'ჰაერის როლის ახსნა',
-    kk: 'Ауаның рөлін түсіндіру',
+    kk: 'Auanyñ rölın tüsındıru',
     qm: 'Avanıñ rolüni añlatmaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const explainTheRoleOfAir_Skill_Data = defineSkill({
       et: 'Erista, kuidas taimed kasutavad süsihappegaasi ja hapnikku eri protsessides.',
       be: 'Адрозьнівай выкарыстаньне расьлінамі вуглякіслага газу й кіслароду ў розных працэсах.',
       ka: 'განასხვავე მცენარეთა მიერ ნახშირორჟანგისა და ჟანგბადის გამოყენება სხვადასხვა პროცესში.',
-      kk: 'Өсімдіктердің әртүрлі үдерістерде көмірқышқыл газы мен оттегін пайдалануын ажырат.',
+      kk: 'Ösımdıkterdıñ ärtürlı üderısterde kömırqyşqyl gazy men ottegın paidalanuyn ajyrat.',
       qm: 'Ösümlikler karbon dioksid ve oksigenden çeşit biologik süreçlerde nasıl faydalanğanını farq etiñiz.',
     },
   },

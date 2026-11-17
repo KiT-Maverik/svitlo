@@ -31,7 +31,7 @@ export const recognizeAdaptationsToTheEnvironment_Skill_Data = defineSkill({
     et: 'Keskkonnaga kohastumuste tundmine',
     be: 'Распазнаваць прыстасаваньні да асяродзьдзя',
     ka: 'გარემოსადმი შეგუებების ამოცნობა',
-    kk: 'Ортаға бейімделуді тану',
+    kk: 'Ortağa beiımdeludı tanu',
     qm: 'Müitke uyğunlaşuv belgilerini tanımaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const recognizeAdaptationsToTheEnvironment_Skill_Data = defineSkill({
       et: 'Tunne ära tunnused, mis aitavad taimedel ümbritsevas keskkonnas ellu jääda.',
       be: 'Распазнавай асаблівасьці, якія дапамагаюць расьлінам выжываць у навакольлі.',
       ka: 'ამოიცანი განსაკუთრებული ნიშნები, რომლებიც მცენარეებს გარემოში გადარჩენაში ეხმარება.',
-      kk: 'Өсімдіктердің айналадағы ортада тіршілік етуіне көмектесетін ерекше белгілерді таны.',
+      kk: 'Ösımdıkterdıñ ainaladağy ortada tırşılık etuıne kömektesetın erekşe belgılerdı tany.',
       qm: 'Ösümliklerniñ yaşağan müitinde sağ qalmasına yardım etken mahsus belgilerini tanıñız.',
     },
   },

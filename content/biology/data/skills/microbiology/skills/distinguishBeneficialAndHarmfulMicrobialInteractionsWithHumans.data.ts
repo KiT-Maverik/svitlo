@@ -31,7 +31,7 @@ export const distinguishBeneficialAndHarmfulMicrobialInteractionsWithHumans_Skil
     et: 'Mikroobide ja inimeste kasulike ning kahjulike vastastikmõjude eristamine',
     be: 'Адрозьніваць карысныя і шкодныя ўзаемадзеяньні мікраарганізмаў з чалавекам',
     ka: 'მიკროორგანიზმებისა და ადამიანის სასარგებლო და საზიანო ურთიერთქმედებების გარჩევა',
-    kk: 'Микроорганизмдердің адаммен пайдалы және зиянды өзара әрекеттесуін ажырату',
+    kk: 'Mikroorganizmderdıñ adammen paidaly jäne ziandy özara ärekettesuın ajyratu',
     qm: 'Mikroorganizmler ve insanlar arasında faydalı ve zararlı qarşılıqlı tesirlerni ayırmaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const distinguishBeneficialAndHarmfulMicrobialInteractionsWithHumans_Skil
       et: 'Erista mikroobide ja inimeste kasulikke, kahjutuid ning kahjulikke vastastikmõjusid.',
       be: 'Адрозьнівайце карысныя, бяскрыўдныя і шкодныя ўзаемадзеяньні мікраарганізмаў зь людзьмі.',
       ka: 'განასხვავეთ მიკროორგანიზმებსა და ადამიანებს შორის სასარგებლო, უვნებელი და საზიანო ურთიერთქმედებები.',
-      kk: 'Микроорганизмдер мен адамдар арасындағы пайдалы, зиянсыз және зиянды өзара әрекеттесулерді ажыратыңыз.',
+      kk: 'Mikroorganizmder men adamdar arasyndağy paidaly, ziansyz jäne ziandy özara ärekettesulerdı ajyratyñyz.',
       qm: 'Mikroblar ve insanlar arasında faydalı, zararsız ve zararlı qarşılıqlı tesirlerni bir-birinden ayırıñız.',
     },
   },

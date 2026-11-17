@@ -37,7 +37,7 @@ export const plantAdaptations_SkillGroup_Data = defineSkillGroup({
     et: 'Taimede kohastumused',
     be: 'Прыстасаваньні расьлінаў',
     ka: 'მცენარეთა შეგუებები',
-    kk: 'Өсімдіктердің бейімделуі',
+    kk: 'Ösımdıkterdıñ beiımdeluı',
     qm: 'Ösümliklerniñ müitke uyğunlaşuvı',
   },
   skills: [
@@ -76,7 +76,7 @@ export const plantAdaptations_SkillGroup_Data = defineSkillGroup({
       et: 'Vaata, kuidas taimede omadused aitavad neil eri keskkondades ellu jääda.',
       be: 'Дасьледуй, як асаблівасьці расьлінаў дапамагаюць ім выжываць у розных умовах.',
       ka: 'ნახე, როგორ ეხმარება მცენარეთა თვისებები მათ სხვადასხვა გარემოში გადარჩენაში.',
-      kk: 'Өсімдіктердің ерекшеліктері әртүрлі ортада тіршілік етуге қалай көмектесетінін көр.',
+      kk: 'Ösımdıkterdıñ erekşelıkterı ärtürlı ortada tırşılık etuge qalai kömektesetının kör.',
       qm: 'Ösümliklerniñ hususiyetleri çeşit müitlerde sağ qalmağa nasıl yardım etkenini ögreniñiz.',
     },
   },

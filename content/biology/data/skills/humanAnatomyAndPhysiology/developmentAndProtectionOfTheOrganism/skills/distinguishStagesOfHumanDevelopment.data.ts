@@ -31,7 +31,7 @@ export const distinguishStagesOfHumanDevelopment_Skill_Data = defineSkill({
     et: 'Inimese arenguetappide eristamine',
     be: 'Адрозьніваць этапы разьвіцьця чалавека',
     ka: 'ადამიანის განვითარების ეტაპების გარჩევა',
-    kk: 'Адам дамуының кезеңдерін ажырату',
+    kk: 'Adam damuynyñ kezeñderın ajyratu',
     qm: 'İnsan inkişafınıñ devrilerini ayırmaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const distinguishStagesOfHumanDevelopment_Skill_Data = defineSkill({
       et: 'Tunne inimese arenguetappe, eeldamata, et kõik arenevad sama kiirusega.',
       be: 'Распазнавайце этапы разьвіцьця чалавека, не мяркуючы, што ўсе разьвіваюцца аднолькава хутка.',
       ka: 'ამოიცანით ადამიანის განვითარების ეტაპები ისე, რომ არ ივარაუდოთ ყველას ერთნაირი ტემპით განვითარება.',
-      kk: 'Әркім бірдей қарқынмен дамиды деп ойламай, адам дамуының кезеңдерін таныңыз.',
+      kk: 'Ärkım bırdei qarqynmen damidy dep oilamai, adam damuynyñ kezeñderın tanyñyz.',
       qm: 'Er kes bir hıznen inkişaf etkenini faraz etmeden insan inkişafınıñ devrilerini tanıñız.',
     },
   },

@@ -31,7 +31,7 @@ export const recognizeCnidarianCharacteristics_Skill_Data = defineSkill({
     et: 'Ainuõõssete tunnuste äratundmine',
     be: 'Распазнаваць прыкметы кішачнаполасьцевых',
     ka: 'ნაწლავღრუიანების ნიშნების ამოცნობა',
-    kk: 'Ішекқуыстылардың белгілерін тану',
+    kk: 'Işekquystylardyñ belgılerın tanu',
     qm: 'Knidariyalarnıñ belgilerini tanımaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const recognizeCnidarianCharacteristics_Skill_Data = defineSkill({
       et: 'Tunne meduusid ja korallid ära nende kõrverakkude järgi.',
       be: 'Распазнавай мэдузаў і каралы паводле іх жыгучых клетак.',
       ka: 'ამოიცანი მედუზები და მარჯნები მათი მსუსხავი უჯრედებით.',
-      kk: 'Медузалар мен маржандарды олардың атпа жасушалары арқылы таны.',
+      kk: 'Meduzalar men marjandardy olardyñ atpa jasuşalary arqyly tany.',
       qm: 'Meduzalar ve mercanlar kibi ayvanlarnı olarnıñ çaqqıcı üceyrelerine köre tanıñız.',
     },
   },

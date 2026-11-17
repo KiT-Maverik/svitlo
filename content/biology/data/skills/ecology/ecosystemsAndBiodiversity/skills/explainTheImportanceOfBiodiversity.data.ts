@@ -31,7 +31,7 @@ export const explainTheImportanceOfBiodiversity_Skill_Data = defineSkill({
     et: 'Selgitada elurikkuse tähtsust',
     be: 'Тлумачыць важнасьць біяразнастайнасьці',
     ka: 'ბიომრავალფეროვნების მნიშვნელობის ახსნა',
-    kk: 'Биоалуантүрліліктің маңызын түсіндіру',
+    kk: 'Bioaluantürlılıktıñ mañyzyn tüsındıru',
     qm: 'Biologik çeşitlikniñ emiyetini añlatmaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const explainTheImportanceOfBiodiversity_Skill_Data = defineSkill({
       et: 'Selgita, kuidas elurikkus võib aidata ökosüsteemidel muutustega toime tulla.',
       be: 'Патлумач, як біяразнастайнасьць можа дапамагаць экасыстэмам рэагаваць на зьмены.',
       ka: 'ახსენი, როგორ ეხმარება ბიომრავალფეროვნება ეკოსისტემებს ცვლილებებზე რეაგირებაში.',
-      kk: 'Биоалуантүрлілік экожүйелерге өзгерістерге төтеп беруге қалай көмектесетінін түсіндір.',
+      kk: 'Bioaluantürlılık ekojüielerge özgerısterge tötep beruge qalai kömektesetının tüsındır.',
       qm: 'Biologik çeşitlik ekosistemalarğa deñişüvlerge uyğunlaşmağa nasıl yardım ete bilgenini añlatıñız.',
     },
   },

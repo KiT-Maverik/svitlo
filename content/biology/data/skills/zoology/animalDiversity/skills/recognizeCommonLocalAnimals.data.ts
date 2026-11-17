@@ -31,7 +31,7 @@ export const recognizeCommonLocalAnimals_Skill_Data = defineSkill({
     et: 'Levinud kohalike loomade äratundmine',
     be: 'Распазнаваць звычайных мясцовых жывёлаў',
     ka: 'გავრცელებული ადგილობრივი ცხოველების ამოცნობა',
-    kk: 'Жергілікті кең таралған жануарларды тану',
+    kk: 'Jergılıktı keñ taralğan januarlardy tanu',
     qm: 'Yerli yayğın ayvanlarnı tanımaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const recognizeCommonLocalAnimals_Skill_Data = defineSkill({
       et: 'Tunne tuttavad loomad ära iseloomuliku kehaehituse ja kehakatte järgi.',
       be: 'Вызначай знаёмых жывёлаў паводле характэрнай будовы і покрыва цела.',
       ka: 'ამოიცანი ნაცნობი ცხოველები მათი სხეულის დამახასიათებელი აგებულებისა და საფარვლის მიხედვით.',
-      kk: 'Таныс жануарларды дене құрылысы мен дене жабынының ерекше белгілері арқылы анықта.',
+      kk: 'Tanys januarlardy dene qūrylysy men dene jabynynyñ erekşe belgılerı arqyly anyqta.',
       qm: 'Yaşığan yeriñizdeki ayvanlarnı olarnıñ beden quruluşu ve beden örtüsine köre tanıñız.',
     },
   },

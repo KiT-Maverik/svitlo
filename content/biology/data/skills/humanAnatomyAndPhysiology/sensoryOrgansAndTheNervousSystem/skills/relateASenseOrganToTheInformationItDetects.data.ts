@@ -31,7 +31,7 @@ export const relateASenseOrganToTheInformationItDetects_Skill_Data = defineSkill
     et: 'Meeleelundi seostamine tuvastatava teabega',
     be: 'Суадносіць орган пачуцьцяў зь інфармацыяй, якую ён успрымае',
     ka: 'გრძნობის ორგანოს დაკავშირება მის მიერ აღქმულ ინფორმაციასთან',
-    kk: 'Сезім мүшесін қабылдайтын ақпаратымен байланыстыру',
+    kk: 'Sezım müşesın qabyldaityn aqparatymen bailanystyru',
     qm: 'Sezgi organını qabul etken malümatınen bağlamaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const relateASenseOrganToTheInformationItDetects_Skill_Data = defineSkill
       et: 'Seosta iga meeleelund teabe liikidega, mida see suudab tajuda.',
       be: 'Суаднясіце кожны орган пачуцьцяў зь відамі інфармацыі, якія ён можа ўспрымаць.',
       ka: 'შეუსაბამეთ თითოეულ გრძნობის ორგანოს ინფორმაციის სახეები, რომელთა აღქმაც შეუძლია.',
-      kk: 'Әр сезім мүшесін өзі қабылдай алатын ақпарат түрлерімен сәйкестендіріңіз.',
+      kk: 'Är sezım müşesın özı qabyldai alatyn aqparat türlerımen säikestendırıñız.',
       qm: 'Er bir sezgi organını o qabul ete bilgen malümat çeşitlerinen eşleştiriñiz.',
     },
   },

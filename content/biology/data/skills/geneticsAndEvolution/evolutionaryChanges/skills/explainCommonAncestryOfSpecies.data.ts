@@ -31,7 +31,7 @@ export const explainCommonAncestryOfSpecies_Skill_Data = defineSkill({
     et: 'Selgitada liikide ühist põlvnemist',
     be: 'Тлумачыць агульнае паходжаньне відаў',
     ka: 'სახეობათა საერთო წინაპრების ახსნა',
-    kk: 'Түрлердің ортақ ата-тегін түсіндіру',
+    kk: 'Türlerdıñ ortaq ata-tegın tüsındıru',
     qm: 'Türlerniñ ortaq ecdadını añlatmaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const explainCommonAncestryOfSpecies_Skill_Data = defineSkill({
       et: 'Selgita, kuidas erinevatel liikidel võivad olla ühised esivanemad hargnevas evolutsiooniloos.',
       be: 'Тлумач, як розныя віды могуць мець агульных продкаў у разгалінаванай эвалюцыйнай гісторыі.',
       ka: 'ახსენი, როგორ შეიძლება სხვადასხვა სახეობას ჰყავდეს საერთო წინაპრები განშტოებულ ევოლუციურ ისტორიაში.',
-      kk: 'Әртүрлі түрлердің тармақталған эволюциялық тарихта ортақ ата-тегі қалай болуы мүмкін екенін түсіндір.',
+      kk: 'Ärtürlı türlerdıñ tarmaqtalğan evoliutsialyq tarihta ortaq ata-tegı qalai boluy mümkın ekenın tüsındır.',
       qm: 'Çeşit türlerniñ ortaq ecdadları olğanını ve evolütsiya tarihınıñ nasıl dallanğanını añlatıñız.',
     },
   },

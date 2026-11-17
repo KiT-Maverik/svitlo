@@ -31,7 +31,7 @@ export const distinguishUnicellularAndMulticellularOrganisms_Skill_Data = define
     et: 'Ühe- ja hulkraksete organismide eristamine',
     be: 'Адрозьніваць аднаклетачныя і шматклетачныя арганізмы',
     ka: 'ერთუჯრედიანი და მრავალუჯრედიანი ორგანიზმების გარჩევა',
-    kk: 'Біржасушалы және көпжасушалы ағзаларды ажырату',
+    kk: 'Bırjasuşaly jäne köpjasuşaly ağzalardy ajyratu',
     qm: 'Bir üceyreli ve çoq üceyreli canlılarnı farqlamaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const distinguishUnicellularAndMulticellularOrganisms_Skill_Data = define
       et: 'Erista ühest rakust koosnevaid organisme paljudest spetsialiseerunud rakkudest koosnevatest organismidest.',
       be: 'Адрозьнівай арганізмы з адной клеткі ад арганізмаў з мноства спэцыялізаваных клетак.',
       ka: 'განასხვავე ერთი უჯრედისგან შემდგარი ორგანიზმები მრავალი სპეციალიზებული უჯრედისგან შემდგარი ორგანიზმებისგან.',
-      kk: 'Бір жасушадан тұратын ағзаларды көптеген маманданған жасушалардан тұратын ағзалардан ажырат.',
+      kk: 'Bır jasuşadan tūratyn ağzalardy köptegen mamandanğan jasuşalardan tūratyn ağzalardan ajyrat.',
       qm: 'Tek üceyreden teşkil olğan canlılarnı çoq sayıda ihtisaslaşqan üceyresi olğan canlılardan farq etiñiz.',
     },
   },

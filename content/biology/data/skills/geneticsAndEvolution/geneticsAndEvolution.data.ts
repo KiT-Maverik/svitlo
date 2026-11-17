@@ -36,7 +36,7 @@ export const geneticsAndEvolution_SkillDomain_Data = defineSkillDomain({
     et: 'Geneetika ja evolutsioon',
     be: 'Генэтыка і эвалюцыя',
     ka: 'გენეტიკა და ევოლუცია',
-    kk: 'Генетика және эволюция',
+    kk: 'Genetika jäne evoliutsia',
   },
   groups: [evolutionaryChanges_SkillGroup_Data, genetics_SkillGroup_Data, reproductionAndTraits_SkillGroup_Data],
   description: {
@@ -71,7 +71,7 @@ export const geneticsAndEvolution_SkillDomain_Data = defineSkillDomain({
       et: 'Uuri, kuidas pärilik teave põlvest põlve edasi kandub ja kuidas populatsioonid evolutsiooni käigus muutuvad.',
       be: 'Дасьледуй, як спадчынная інфармацыя перадаецца паміж пакаленьнямі і як эвалюцыянуюць папуляцыі.',
       ka: 'გამოიკვლიე, როგორ გადაეცემა მემკვიდრეობითი ინფორმაცია თაობებს შორის და როგორ ვითარდებიან პოპულაციები ევოლუციის გზით.',
-      kk: 'Тұқымқуалаушылық ақпарат ұрпақтан ұрпаққа қалай берілетінін және популяциялар қалай эволюцияланатынын зертте.',
+      kk: 'Tūqymqualauşylyq aqparat ūrpaqtan ūrpaqqa qalai berıletının jäne populiatsialar qalai evoliutsialanatynyn zertte.',
     },
   },
 });

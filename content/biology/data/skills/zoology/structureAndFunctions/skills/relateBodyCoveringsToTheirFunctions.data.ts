@@ -31,7 +31,7 @@ export const relateBodyCoveringsToTheirFunctions_Skill_Data = defineSkill({
     et: 'Kehakatete seostamine nende ülesannetega',
     be: 'Зьвязваць покрывы цела зь іх функцыямі',
     ka: 'სხეულის საფარვლის ფუნქციებთან დაკავშირება',
-    kk: 'Дене жабындарын олардың қызметімен байланыстыру',
+    kk: 'Dene jabyndaryn olardyñ qyzmetımen bailanystyru',
     qm: 'Beden örtüsini vazifelerinen bağlaştırmaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const relateBodyCoveringsToTheirFunctions_Skill_Data = defineSkill({
       et: 'Selgita, kuidas karvkate, suled, soomused ja nahk kaitsevad loomade keha.',
       be: "Растлумач, як поўсьць, пер'е, луска і скура абараняюць цела жывёлаў.",
       ka: 'ახსენი, როგორ იცავს ბეწვი, ბუმბული, ქერცლი და კანი ცხოველების სხეულს.',
-      kk: 'Жүн, қауырсын, қабыршақ және тері жануарлардың денесін қалай қорғайтынын түсіндір.',
+      kk: 'Jün, qauyrsyn, qabyrşaq jäne terı januarlardyñ denesın qalai qorğaitynyn tüsındır.',
       qm: 'Tük, quş tüyü, pul ve deri ayvanlarnıñ bedenini nasıl qorçalağanını añlatıñız.',
     },
   },

@@ -31,7 +31,7 @@ export const distinguishHereditaryAndAcquiredTraits_Skill_Data = defineSkill({
     et: 'Eristada pärilikke ja omandatud tunnuseid',
     be: 'Адрозьніваць спадчынныя і набытыя прыкметы',
     ka: 'მემკვიდრეობითი და შეძენილი ნიშნების გარჩევა',
-    kk: 'Тұқым қуалайтын және жүре пайда болған белгілерді ажырату',
+    kk: 'Tūqym qualaityn jäne jüre paida bolğan belgılerdı ajyratu',
     qm: 'İrsiy ve ömür devamında qazanılğan belgilerni farqlamaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const distinguishHereditaryAndAcquiredTraits_Skill_Data = defineSkill({
       et: 'Uuri, kuidas geenid ja keskkond koos tunnuseid mõjutavad, jagamata neid jäigalt kahte rühma.',
       be: 'Дасьледуй, як гены і асяродзьдзе разам уплываюць на прыкметы, не падзяляючы іх жорстка на два тыпы.',
       ka: 'გამოიკვლიე, როგორ მოქმედებს გენები და გარემო ნიშნებზე ერთად, მკაცრი ორად გაყოფის გარეშე.',
-      kk: 'Гендер мен орта белгілерге қалай бірлесіп әсер ететінін зертте, оларды қатаң екіге бөлме.',
+      kk: 'Gender men orta belgılerge qalai bırlesıp äser etetının zertte, olardy qatañ ekıge bölme.',
       qm: 'Genler ve müit belgilerge beraber tesir etkenini ögreniñiz; olarnı er vaqıt eki qattiy grupağa ayırmañız.',
     },
   },

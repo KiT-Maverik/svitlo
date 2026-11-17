@@ -31,7 +31,7 @@ export const identifyTheSkinsProtectiveFunction_Skill_Data = defineSkill({
     et: 'Naha kaitsefunktsiooni tuvastamine',
     be: 'Вызначаць ахоўную функцыю скуры',
     ka: 'კანის დამცავი ფუნქციის ამოცნობა',
-    kk: 'Терінің қорғаныс қызметін анықтау',
+    kk: 'Terınıñ qorğanys qyzmetın anyqtau',
     qm: 'Teriniñ qoruyıcı vazifesini belgilemek',
   },
   description: {
@@ -64,7 +64,7 @@ export const identifyTheSkinsProtectiveFunction_Skill_Data = defineSkill({
       et: 'Uuri, kuidas terve, kahjustamata nahk kaitseb keha ja vähendab veekadu.',
       be: 'Даведайцеся, як здаровая непашкоджаная скура абараняе цела й памяншае страту вады.',
       ka: 'გაიგეთ, როგორ იცავს ჯანმრთელი, დაუზიანებელი კანი სხეულს და ამცირებს წყლის დაკარგვას.',
-      kk: 'Сау, зақымданбаған тері денені қалай қорғап, судың жоғалуын азайтатынын біліңіз.',
+      kk: 'Sau, zaqymdanbağan terı denenı qalai qorğap, sudyñ joğaluyn azaitatynyn bılıñız.',
       qm: 'Sağlam ve zedelenmegen deri bedenni nasıl qorup, su coyuluvını nasıl azaytqanını ögreniñiz.',
     },
   },

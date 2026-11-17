@@ -31,7 +31,7 @@ export const explainExpressionOfGeneticInformation_Skill_Data = defineSkill({
     et: 'Selgitada geneetilise info avaldumist',
     be: 'Тлумачыць экспрэсію генэтычнай інфармацыі',
     ka: 'გენეტიკური ინფორმაციის ექსპრესიის ახსნა',
-    kk: 'Генетикалық ақпараттың экспрессиясын түсіндіру',
+    kk: 'Genetikalyq aqparattyñ ekspressiasyn tüsındıru',
     qm: 'Genetik malümatnıñ faal oluvını añlatmaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const explainExpressionOfGeneticInformation_Skill_Data = defineSkill({
       et: 'Uuri, kuidas rakud kasutavad DNA infot ja reguleerivad selle avaldumist.',
       be: 'Даведайся, як клеткі выкарыстоўваюць інфармацыю ДНК і рэгулююць яе рэалізацыю.',
       ka: 'გაიგე, როგორ იყენებენ უჯრედები დნმ-ის ინფორმაციას და როგორ არეგულირებენ მის მოქმედებას.',
-      kk: 'Жасушалар ДНҚ ақпаратын қалай қолданып, оның іске асуын қалай реттейтінін біл.',
+      kk: 'Jasuşalar DNQ aqparatyn qalai qoldanyp, onyñ ıske asuyn qalai retteitının bıl.',
       qm: 'Üceyreler DNKda saqlanğan malümatnı nasıl qullanğanını ve bu süreçni nasıl idare etkenini ögreniñiz.',
     },
   },

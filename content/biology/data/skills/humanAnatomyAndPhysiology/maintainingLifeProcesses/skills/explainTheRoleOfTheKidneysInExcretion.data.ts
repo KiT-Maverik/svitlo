@@ -31,7 +31,7 @@ export const explainTheRoleOfTheKidneysInExcretion_Skill_Data = defineSkill({
     et: 'Neerude rolli selgitamine eritamises',
     be: 'Тлумачыць ролю нырак у выдзяленьні',
     ka: 'თირკმელების როლის ახსნა გამოყოფაში',
-    kk: 'Бүйректің бөліп шығарудағы рөлін түсіндіру',
+    kk: 'Büirektıñ bölıp şyğarudağy rölın tüsındıru',
     qm: 'Böbreklerniñ ifraz etüvdeki rolüni añlatmaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const explainTheRoleOfTheKidneysInExcretion_Skill_Data = defineSkill({
       et: 'Selgita, kuidas neerud filtreerivad verd ja aitavad hoida keha sisekeskkonna tasakaalu.',
       be: 'Растлумачце, як ныркі фільтруюць кроў і дапамагаюць падтрымліваць унутраную раўнавагу арганізму.',
       ka: 'ახსენით, როგორ ფილტრავენ თირკმელები სისხლს და ინარჩუნებენ ორგანიზმის შინაგან წონასწორობას.',
-      kk: 'Бүйрек қанды қалай сүзіп, ағзаның ішкі тепе-теңдігін сақтауға көмектесетінін түсіндіріңіз.',
+      kk: 'Büirek qandy qalai süzıp, ağzanyñ ışkı tepe-teñdıgın saqtauğa kömektesetının tüsındırıñız.',
       qm: 'Böbrekler qannı nasıl süzgenini ve bedenniñ içki muvanazatını saqlamağa nasıl yardım etkenini añlatıñız.',
     },
   },

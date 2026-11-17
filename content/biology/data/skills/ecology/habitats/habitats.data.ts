@@ -39,7 +39,7 @@ export const habitats_SkillGroup_Data = defineSkillGroup({
     et: 'Elupaigad',
     be: 'Асяродзьдзі існаваньня',
     ka: 'საარსებო გარემოები',
-    kk: 'Тіршілік орталары',
+    kk: 'Tırşılık ortalary',
   },
   skills: [
     identifyAnOrganismsHabitat_Skill_Data,
@@ -79,7 +79,7 @@ export const habitats_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri, kuidas keskkonnatingimused mõjutavad organismide elu.',
       be: 'Даведайся, як умовы асяродзьдзя ўплываюць на жыцьцё арганізмаў.',
       ka: 'გაიგე, როგორ მოქმედებს გარემო პირობები ორგანიზმების ცხოვრებაზე.',
-      kk: 'Орта жағдайлары ағзалардың тіршілігіне қалай әсер ететінін біл.',
+      kk: 'Orta jağdailary ağzalardyñ tırşılıgıne qalai äser etetının bıl.',
     },
   },
 });

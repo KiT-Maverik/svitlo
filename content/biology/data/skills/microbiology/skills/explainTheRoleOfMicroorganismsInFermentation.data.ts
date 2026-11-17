@@ -31,7 +31,7 @@ export const explainTheRoleOfMicroorganismsInFermentation_Skill_Data = defineSki
     et: 'Mikroorganismide rolli selgitamine kääritamisel',
     be: 'Тлумачыць ролю мікраарганізмаў у фэрмэнтацыі',
     ka: 'მიკროორგანიზმების როლის ახსნა ფერმენტაციაში',
-    kk: 'Микроорганизмдердің ашытудағы рөлін түсіндіру',
+    kk: 'Mikroorganizmderdıñ aşytudağy rölın tüsındıru',
     qm: 'Fermentatsiyada mikroorganizmlerniñ rolüni añlatmaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const explainTheRoleOfMicroorganismsInFermentation_Skill_Data = defineSki
       et: 'Selgita, kuidas mikroorganismid kääritamisel toidu koostisosi muudavad.',
       be: 'Растлумачце, як мікраарганізмы зьмяняюць інгрэдыенты падчас фэрмэнтацыі.',
       ka: 'ახსენით, როგორ გარდაქმნიან მიკროორგანიზმები საკვების ინგრედიენტებს ფერმენტაციისას.',
-      kk: 'Микроорганизмдердің ашыту кезінде тағам құрамын қалай өзгертетінін түсіндіріңіз.',
+      kk: 'Mikroorganizmderdıñ aşytu kezınde tağam qūramyn qalai özgertetının tüsındırıñız.',
       qm: 'Mikroorganizmler fermentatsiya devamında azıq maddelerini nasıl deñiştirgenini añlatıñız.',
     },
   },

@@ -31,7 +31,7 @@ export const predictEffectsOfChangingConditionsOnPlantGrowth_Skill_Data = define
     et: 'Tingimuste muutuste mõju taimekasvule ennustamine',
     be: 'Прадказваць уплыў зьмены ўмоваў на рост расьлінаў',
     ka: 'პირობების ცვლილების გავლენის წინასწარმეტყველება',
-    kk: 'Өсуге жағдай өзгерісінің әсерін болжау',
+    kk: 'Ösuge jağdai özgerısınıñ äserın boljau',
     qm: 'Şartlar deñişkende ösümlikniñ ösüvini ögünden aytmaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const predictEffectsOfChangingConditionsOnPlantGrowth_Skill_Data = define
       et: 'Ennusta, kuidas ressursside muutused mõjutavad taime kasvu.',
       be: 'Прадказвай, як зьмены даступных рэсурсаў паўплываюць на рост расьліны.',
       ka: 'ივარაუდე, როგორ იმოქმედებს რესურსების ცვლილება მცენარის ზრდაზე.',
-      kk: 'Ресурстар өзгерісі өсімдіктің өсуіне қалай әсер ететінін болжа.',
+      kk: 'Resurstar özgerısı ösımdıktıñ ösuıne qalai äser etetının bolja.',
       qm: 'Suv, yarıq ve başqa kaynaklar deñişkende ösümlikniñ ösüvine nasıl tesir etecegini tahmin etiñiz.',
     },
   },

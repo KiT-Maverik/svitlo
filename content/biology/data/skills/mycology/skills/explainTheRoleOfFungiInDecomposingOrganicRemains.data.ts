@@ -31,7 +31,7 @@ export const explainTheRoleOfFungiInDecomposingOrganicRemains_Skill_Data = defin
     et: 'Seente rolli selgitamine orgaaniliste jäänuste lagundamisel',
     be: 'Тлумачыць ролю грыбоў у раскладаньні арганічных рэшткаў',
     ka: 'სოკოების როლის ახსნა ორგანული ნარჩენების დაშლაში',
-    kk: 'Саңырауқұлақтардың органикалық қалдықтарды ыдыратудағы рөлін түсіндіру',
+    kk: 'Sañyrauqūlaqtardyñ organikalyq qaldyqtardy ydyratudağy rölın tüsındıru',
     qm: 'Mantarlar organik qaldıqlarnıñ çürüvinde ne rol oynağanını añlatmaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const explainTheRoleOfFungiInDecomposingOrganicRemains_Skill_Data = defin
       et: 'Selgita, kuidas seened lagundavad orgaanilisi jäänuseid ja viivad ained tagasi ökosüsteemi.',
       be: 'Растлумачце, як грыбы раскладаюць арганічныя рэшткі й вяртаюць рэчывы ў экасыстэмы.',
       ka: 'ახსენით, როგორ შლიან სოკოები ორგანულ ნარჩენებს და აბრუნებენ ნივთიერებებს ეკოსისტემებში.',
-      kk: 'Саңырауқұлақтар органикалық қалдықтарды ыдыратып, заттарды экожүйелерге қалай қайтаратынын түсіндіріңіз.',
+      kk: 'Sañyrauqūlaqtar organikalyq qaldyqtardy ydyratyp, zattardy ekojüielerge qalai qaitaratynyn tüsındırıñız.',
       qm: 'Mantarlar organik qaldıqlarnı parçalağanda maddelerni ekosistemağa nasıl qaytarğanını añlatıñız.',
     },
   },

@@ -31,7 +31,7 @@ export const identifyTheRoleOfASeed_Skill_Data = defineSkill({
     et: 'Seemne rolli tundmine',
     be: 'Вызначаць ролю насеньня',
     ka: 'თესლის როლის ამოცნობა',
-    kk: 'Тұқымның рөлін анықтау',
+    kk: 'Tūqymnyñ rölın anyqtau',
     qm: 'Tohumnıñ rolüni belgilemek',
   },
   description: {
@@ -64,7 +64,7 @@ export const identifyTheRoleOfASeed_Skill_Data = defineSkill({
       et: 'Uuri, kuidas seeme toetab uue taime esimest kasvujärku.',
       be: 'Дасьледуй, як насеньне падтрымлівае пачатковы рост новай расьліны.',
       ka: 'გაიგე, როგორ უწყობს თესლი ხელს ახალი მცენარის საწყის ზრდას.',
-      kk: 'Тұқым жаңа өсімдіктің бастапқы өсуіне қалай көмектесетінін біл.',
+      kk: 'Tūqym jaña ösımdıktıñ bastapqy ösuıne qalai kömektesetının bıl.',
       qm: 'Tohum yañı ösümlikniñ ilk ösüv devrini nasıl temin etkenini ögreniñiz.',
     },
   },

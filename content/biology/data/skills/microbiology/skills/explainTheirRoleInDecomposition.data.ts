@@ -31,7 +31,7 @@ export const explainTheirRoleInDecomposition_Skill_Data = defineSkill({
     et: 'Mikroorganismide rolli selgitamine lagundamises',
     be: 'Тлумачыць ролю мікраарганізмаў у раскладаньні',
     ka: 'მიკროორგანიზმების როლის ახსნა დაშლაში',
-    kk: 'Микроорганизмдердің ыдыратудағы рөлін түсіндіру',
+    kk: 'Mikroorganizmderdıñ ydyratudağy rölın tüsındıru',
     qm: 'Mikroorganizmlerniñ çürüvdeki rolüni añlatmaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const explainTheirRoleInDecomposition_Skill_Data = defineSkill({
       et: 'Uuri, kuidas mikroskoopilised organismid lagundavad surnud orgaanilist ainet.',
       be: 'Дасьледуйце, як мікраскапічныя арганізмы раскладаюць адмерлае арганічнае рэчыва.',
       ka: 'შეისწავლეთ, როგორ შლიან მიკროსკოპული ორგანიზმები მკვდარ ორგანულ ნივთიერებას.',
-      kk: 'Микроскопиялық ағзалардың өлі органикалық заттарды қалай ыдырататынын зерттеңіз.',
+      kk: 'Mikroskopialyq ağzalardyñ ölı organikalyq zattardy qalai ydyratatynyn zertteñız.',
       qm: 'Mikroskopik canlılar ölgen organik maddelerni nasıl parçalağanını ögreniñiz.',
     },
   },

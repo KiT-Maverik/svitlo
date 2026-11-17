@@ -31,7 +31,7 @@ export const describeSeasonalChangesInPlants_Skill_Data = defineSkill({
     et: 'Taimede hooajaliste muutuste kirjeldamine',
     be: 'Апісваць сэзонныя зьмены расьлінаў',
     ka: 'მცენარეთა სეზონური ცვლილებების აღწერა',
-    kk: 'Өсімдіктердің маусымдық өзгерістерін сипаттау',
+    kk: 'Ösımdıkterdıñ mausymdyq özgerısterın sipattau',
     qm: 'Ösümliklerniñ mevsimlik deñişüvlerini tasvir etmek',
   },
   description: {
@@ -65,7 +65,7 @@ export const describeSeasonalChangesInPlants_Skill_Data = defineSkill({
       et: 'Seosta taimede hooajalisi muutusi temperatuuri ja päevapikkusega.',
       be: 'Сувязвай сэзонныя зьмены расьлінаў з тэмпэратурай і працягласьцю сьветлавога дня.',
       ka: 'დააკავშირე მცენარეთა სეზონური ცვლილებები ტემპერატურასა და დღის ხანგრძლივობასთან.',
-      kk: 'Өсімдіктердің маусымдық өзгерістерін температура мен күн ұзақтығымен байланыстыр.',
+      kk: 'Ösımdıkterdıñ mausymdyq özgerısterın temperatura men kün ūzaqtyğymen bailanystyr.',
       qm: 'Ösümliklerniñ mevsimlik deñişüvlerini ava arareti ve künniñ uzunlığınen bağlaştırıñız.',
     },
   },

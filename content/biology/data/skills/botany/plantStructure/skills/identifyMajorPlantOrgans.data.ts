@@ -31,7 +31,7 @@ export const identifyMajorPlantOrgans_Skill_Data = defineSkill({
     et: 'Taime peamiste elundite äratundmine',
     be: 'Распазнаваць асноўныя органы расьлінаў',
     ka: 'მცენარის ძირითადი ორგანოების ამოცნობა',
-    kk: 'Өсімдіктің негізгі мүшелерін анықтау',
+    kk: 'Ösımdıktıñ negızgı müşelerın anyqtau',
     qm: 'Ösümlikniñ esas organlarını tanımaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const identifyMajorPlantOrgans_Skill_Data = defineSkill({
       et: 'Tunne ära taime peamised osad ja nende asukohad.',
       be: 'Вызначай асноўныя органы расьліны й іхнае разьмяшчэньне.',
       ka: 'ამოიცანი მცენარის ძირითადი სტრუქტურები და მათი მდებარეობა.',
-      kk: 'Өсімдіктің негізгі құрылымдарын және олардың орналасуын анықта.',
+      kk: 'Ösımdıktıñ negızgı qūrylymdaryn jäne olardyñ ornalasuyn anyqta.',
       qm: 'Ösümlikniñ esas organlarını ve olarnıñ qayerde bulunğanını belgileñiz.',
     },
   },

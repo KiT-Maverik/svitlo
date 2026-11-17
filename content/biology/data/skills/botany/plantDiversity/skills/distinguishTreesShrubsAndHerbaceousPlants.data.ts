@@ -31,7 +31,7 @@ export const distinguishTreesShrubsAndHerbaceousPlants_Skill_Data = defineSkill(
     et: 'Puude, põõsaste ja rohttaimede eristamine',
     be: 'Адрозьніваць дрэвы, кусты й травяністыя расьліны',
     ka: 'ხეების, ბუჩქებისა და ბალახოვანი მცენარეების გარჩევა',
-    kk: 'Ағаш, бұта және шөптесін өсімдіктерді ажырату',
+    kk: 'Ağaş, būta jäne şöptesın ösımdıkterdı ajyratu',
     qm: 'Ağaçlar, çalılar ve ot ösümliklerini farqlamaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const distinguishTreesShrubsAndHerbaceousPlants_Skill_Data = defineSkill(
       et: 'Erista puid, põõsaid ja rohttaimi varte kasvamise järgi.',
       be: 'Адрозьнівай дрэвы, кусты й травяністыя расьліны паводле росту іхных сьцёблаў.',
       ka: 'ღეროების ზრდის მიხედვით განასხვავე ხეები, ბუჩქები და ბალახოვანი მცენარეები.',
-      kk: 'Сабақтарының өсуіне қарай ағаш, бұта және шөптесін өсімдіктерді ажырат.',
+      kk: 'Sabaqtarynyñ ösuıne qarai ağaş, būta jäne şöptesın ösımdıkterdı ajyrat.',
       qm: 'Saplarınıñ ösüvine ve quruluşuna köre ağaçlarnı, çalılarnı ve ot ösümliklerini farq etiñiz.',
     },
   },

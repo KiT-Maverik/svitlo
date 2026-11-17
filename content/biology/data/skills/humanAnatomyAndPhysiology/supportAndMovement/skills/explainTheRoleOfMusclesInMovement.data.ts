@@ -31,7 +31,7 @@ export const explainTheRoleOfMusclesInMovement_Skill_Data = defineSkill({
     et: 'Lihaste rolli selgitamine liikumisel',
     be: 'Тлумачыць ролю мышцаў у руху',
     ka: 'კუნთების როლის ახსნა მოძრაობაში',
-    kk: 'Бұлшықеттердің қозғалыстағы рөлін түсіндіру',
+    kk: 'Būlşyqetterdıñ qozğalystağy rölın tüsındıru',
     qm: 'Adalelerniñ areketteki rolüni añlatmaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const explainTheRoleOfMusclesInMovement_Skill_Data = defineSkill({
       et: 'Seosta lihaste kokkutõmbumine liikumiseks vajaliku jõuga.',
       be: 'Суадносіце скарачэньне мышцаў з сілай, патрэбнай для руху.',
       ka: 'დააკავშირეთ კუნთების შეკუმშვა მოძრაობისთვის საჭირო ძალასთან.',
-      kk: 'Бұлшықеттердің жиырылуын қозғалысқа қажетті күшпен байланыстырыңыз.',
+      kk: 'Būlşyqetterdıñ jiyryluyn qozğalysqa qajettı küşpen bailanystyryñyz.',
       qm: 'Adalelerniñ sıqıluvını areket içün kerekli quvetnen bağlañız.',
     },
   },

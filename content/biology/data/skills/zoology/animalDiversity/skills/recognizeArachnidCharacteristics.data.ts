@@ -31,7 +31,7 @@ export const recognizeArachnidCharacteristics_Skill_Data = defineSkill({
     et: 'Ämblikulaadsete tunnuste äratundmine',
     be: 'Распазнаваць прыкметы павукападобных',
     ka: 'ობობასნაირების ნიშნების ამოცნობა',
-    kk: 'Өрмекшітәрізділердің белгілерін тану',
+    kk: 'Örmekşıtärızdılerdıñ belgılerın tanu',
     qm: 'Örümçeksimilerniñ belgilerini tanımaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const recognizeArachnidCharacteristics_Skill_Data = defineSkill({
       et: 'Tunne ämblikud ja teised ämblikulaadsed ära nende iseloomulike kehatunnuste järgi.',
       be: 'Распазнавай павукоў ды іншых павукападобных паводле характэрных асаблівасьцяў цела.',
       ka: 'ამოიცანი ობობები და სხვა ობობასნაირები მათი დამახასიათებელი სხეულის ნიშნებით.',
-      kk: 'Өрмекшілер мен басқа өрмекшітәрізділерді дене құрылысының ерекше белгілері арқылы таны.',
+      kk: 'Örmekşıler men basqa örmekşıtärızdılerdı dene qūrylysynyñ erekşe belgılerı arqyly tany.',
       qm: 'Örümçeklerni ve başqa örümçeksimilerni beden quruluşunıñ mahsus belgilerine köre tanıñız.',
     },
   },

@@ -31,7 +31,7 @@ export const recognizeCompetition_Skill_Data = defineSkill({
     et: 'Tunda ära konkurentsi',
     be: 'Распазнаваць канкурэнцыю',
     ka: 'კონკურენციის ამოცნობა',
-    kk: 'Бәсекелестікті тану',
+    kk: 'Bäsekelestıktı tanu',
     qm: 'Yarışuvnı tanımaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const recognizeCompetition_Skill_Data = defineSkill({
       et: 'Tunne ära näited, kus organismid konkureerivad piiratud ressursside pärast.',
       be: 'Знаходзь прыклады канкурэнцыі арганізмаў за абмежаваныя рэсурсы.',
       ka: 'ამოიცანი მაგალითები, როდესაც ორგანიზმები შეზღუდული რესურსებისთვის კონკურირებენ.',
-      kk: 'Ағзалардың шектеулі ресурстар үшін бәсекелесу мысалдарын анықта.',
+      kk: 'Ağzalardyñ şekteulı resurstar üşın bäsekelesu mysaldaryn anyqta.',
       qm: 'Çekli kaynaklar içün yarışqan canlılarğa misaller tapıñız.',
     },
   },

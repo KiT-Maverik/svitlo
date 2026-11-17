@@ -37,7 +37,7 @@ export const bodyStructure_SkillGroup_Data = defineSkillGroup({
     et: 'Keha ehitus',
     be: 'Будова цела',
     ka: 'სხეულის აგებულება',
-    kk: 'Дене құрылысы',
+    kk: 'Dene qūrylysy',
     qm: 'Beden quruluşu',
   },
   skills: [
@@ -76,7 +76,7 @@ export const bodyStructure_SkillGroup_Data = defineSkillGroup({
       et: 'Õpi, kuidas kehaosad, elundid ja elundkonnad omavahel kokku sobivad.',
       be: 'Даведайцеся, як часткі цела, органы і сыстэмы органаў складаюць адно цэлае.',
       ka: 'გაიგეთ, როგორ ერთიანდება სხეულის ნაწილები, ორგანოები და ორგანოთა სისტემები.',
-      kk: 'Дене бөліктері, мүшелер мен мүшелер жүйелері қалай бірігетінін біліңіз.',
+      kk: 'Dene bölıkterı, müşeler men müşeler jüielerı qalai bırıgetının bılıñız.',
       qm: 'Beden qısımları, organlar ve organ sistemaları nasıl bir bütün teşkil etkenini ögreniñiz.',
     },
   },

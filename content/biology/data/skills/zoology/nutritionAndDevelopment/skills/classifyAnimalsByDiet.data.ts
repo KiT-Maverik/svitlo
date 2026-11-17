@@ -31,7 +31,7 @@ export const classifyAnimalsByDiet_Skill_Data = defineSkill({
     et: 'Loomade liigitamine toitumise järgi',
     be: 'Клясыфікаваць жывёлаў паводле рацыёну',
     ka: 'ცხოველების კვების მიხედვით კლასიფიცირება',
-    kk: 'Жануарларды қоректенуіне қарай жіктеу',
+    kk: 'Januarlardy qorektenuıne qarai jıkteu',
     qm: 'Ayvanlarnı aşayğan azığına köre sınıflandırmaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const classifyAnimalsByDiet_Skill_Data = defineSkill({
       et: 'Liigita loomi selle põhjal, mida nad tegelikult söövad.',
       be: 'Клясыфікуй жывёлаў паводле таго, чым яны насамрэч харчуюцца.',
       ka: 'დააჯგუფე ცხოველები იმის მიხედვით, თუ რას ჭამენ სინამდვილეში.',
-      kk: 'Жануарларды шын мәнінде жейтін қорегіне қарай жікте.',
+      kk: 'Januarlardy şyn mänınde jeitın qoregıne qarai jıkte.',
       qm: 'Ayvanlarnı kerçekten ne aşayğanına köre gruplarğa ayırıñız.',
     },
   },

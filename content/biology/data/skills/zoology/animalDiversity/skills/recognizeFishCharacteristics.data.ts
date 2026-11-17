@@ -31,7 +31,7 @@ export const recognizeFishCharacteristics_Skill_Data = defineSkill({
     et: 'Kalade tunnuste äratundmine',
     be: 'Распазнаваць прыкметы рыб',
     ka: 'თევზების ნიშნების ამოცნობა',
-    kk: 'Балықтардың белгілерін тану',
+    kk: 'Balyqtardyñ belgılerın tanu',
     qm: 'Balıqlarnıñ belgilerini tanımaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const recognizeFishCharacteristics_Skill_Data = defineSkill({
       et: 'Tunne ära kalade tüüpilised tunnused, arvestades nende mitmekesisust.',
       be: 'Вызначай тыповыя прыкметы рыб, улічваючы іх разнастайнасьць.',
       ka: 'ამოიცანი თევზების ტიპური ნიშნები მათი მრავალფეროვნების გათვალისწინებით.',
-      kk: 'Балықтардың алуандығын ескере отырып, олардың тән белгілерін анықта.',
+      kk: 'Balyqtardyñ aluandyğyn eskere otyryp, olardyñ tän belgılerın anyqta.',
       qm: 'Balıqlarnıñ çeşitliligini de köz ögüne alıp, olarğa has esas belgilerini tanıñız.',
     },
   },

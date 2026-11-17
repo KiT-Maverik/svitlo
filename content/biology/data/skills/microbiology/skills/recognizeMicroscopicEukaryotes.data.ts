@@ -31,7 +31,7 @@ export const recognizeMicroscopicEukaryotes_Skill_Data = defineSkill({
     et: 'Mikroskoopiliste eukarüootide äratundmine',
     be: 'Распазнаваць мікраскапічных эўкарыётаў',
     ka: 'მიკროსკოპული ეუკარიოტების ამოცნობა',
-    kk: 'Микроскопиялық эукариоттарды тану',
+    kk: 'Mikroskopialyq eukariottardy tanu',
     qm: 'Mikroskopik eukariotlarnı tanımaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const recognizeMicroscopicEukaryotes_Skill_Data = defineSkill({
       et: 'Õpi ära tundma mikroskoopilisi organisme, kelle rakkudes on tuum.',
       be: 'Распазнавайце мікраскапічныя арганізмы, клеткі якіх маюць ядро.',
       ka: 'ამოიცანით მიკროსკოპული ორგანიზმები, რომელთა უჯრედებს ბირთვი აქვთ.',
-      kk: 'Жасушасында ядросы бар микроскопиялық ағзаларды таныңыз.',
+      kk: 'Jasuşasynda iadrosy bar mikroskopialyq ağzalardy tanyñyz.',
       qm: 'Üceyrelerinde yadro olğan mikroskopik canlılarnı tanıñız.',
     },
   },

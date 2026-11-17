@@ -31,7 +31,7 @@ export const explainThePrincipleOfGeneticModification_Skill_Data = defineSkill({
     et: 'Geneetilise muundamise põhimõtte selgitamine',
     be: 'Тлумачыць прынцып генэтычнай мадыфікацыі',
     ka: 'გენეტიკური მოდიფიკაციის პრინციპის ახსნა',
-    kk: 'Генетикалық модификациялау қағидатын түсіндіру',
+    kk: 'Genetikalyq modifikatsialau qağidatyn tüsındıru',
     qm: 'Genetik deñiştirüv printsipini añlatmaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const explainThePrincipleOfGeneticModification_Skill_Data = defineSkill({
       et: 'Selgita, kuidas geneetiline muundamine muudab DNA-d, erinevalt vanemorganismide valimisest aretuseks.',
       be: 'Растлумач, як генэтычная мадыфікацыя зьмяняе ДНК, у адрозьненьне ад выбару бацькоўскіх арганізмаў для разьвядзеньня.',
       ka: 'ახსენი, როგორ ცვლის გენეტიკური მოდიფიკაცია დნმ-ს, განსხვავებით გამრავლებისთვის მშობელი ორგანიზმების შერჩევისგან.',
-      kk: 'Генетикалық модификация ДНҚ-ны қалай өзгертетінін және оның будандастыру үшін ата-аналық ағзаларды таңдаудан айырмасын түсіндір.',
+      kk: 'Genetikalyq modifikatsia DNQ-ny qalai özgertetının jäne onyñ budandastyru üşın ata-analyq ağzalardy tañdaudan aiyrmasyn tüsındır.',
       qm: 'Genetik deñiştirüv DNKnı nasıl deñiştirgenini ve bunun yetiştirüv içün ana-baba canlılarnı saylavdan farqlı olğanını añlatıñız.',
     },
   },

@@ -31,7 +31,7 @@ export const distinguishAVirusFromACellularOrganism_Skill_Data = defineSkill({
     et: 'Viiruse eristamine rakulise ehitusega organismist',
     be: 'Адрозьніваць вірус ад клеткавага арганізму',
     ka: 'ვირუსის განსხვავება უჯრედული ორგანიზმისგან',
-    kk: 'Вирусты жасушалы ағзадан ажырату',
+    kk: 'Virusty jasuşaly ağzadan ajyratu',
     qm: 'Virusnı üceyreli canlıdan farqlamaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const distinguishAVirusFromACellularOrganism_Skill_Data = defineSkill({
       et: 'Mõista, mille poolest viirused erinevad rakkudest koosnevatest organismidest.',
       be: 'Зразумей, чым вірусы адрозьніваюцца ад арганізмаў, пабудаваных з клетак.',
       ka: 'გაიგე, რით განსხვავდებიან ვირუსები უჯრედებისგან შედგენილი ორგანიზმებისგან.',
-      kk: 'Вирустардың жасушалардан тұратын ағзалардан қалай ерекшеленетінін түсін.',
+      kk: 'Virustardyñ jasuşalardan tūratyn ağzalardan qalai erekşelenetının tüsın.',
       qm: 'Viruslar üceyrelerden teşkil olğan canlılardan ne içün farqlı olğanını ögreniñiz.',
     },
   },

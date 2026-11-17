@@ -31,7 +31,7 @@ export const relateMajorCellStructuresToTheirFunctions_Skill_Data = defineSkill(
     et: 'Raku põhistruktuuride seostamine nende ülesannetega',
     be: 'Сувязь асноўных структураў клеткі зь іхнымі функцыямі',
     ka: 'უჯრედის ძირითადი სტრუქტურების დაკავშირება მათ ფუნქციებთან',
-    kk: 'Жасушаның негізгі құрылымдарын олардың қызметтерімен байланыстыру',
+    kk: 'Jasuşanyñ negızgı qūrylymdaryn olardyñ qyzmetterımen bailanystyru',
     qm: 'Üceyreniñ esas quruluşlarını vazifelerinen bağlaştırmaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const relateMajorCellStructuresToTheirFunctions_Skill_Data = defineSkill(
       et: 'Seosta raku sees olevad struktuurid ülesannetega, mida need täidavad.',
       be: 'Сувязвай структуры ўнутры клеткі з функцыямі, якія яны выконваюць.',
       ka: 'დააკავშირე უჯრედის შიგნით არსებული სტრუქტურები იმ ფუნქციებთან, რომლებსაც ისინი ასრულებენ.',
-      kk: 'Жасуша ішіндегі құрылымдарды олардың атқаратын қызметтерімен байланыстыр.',
+      kk: 'Jasuşa ışındegı qūrylymdardy olardyñ atqaratyn qyzmetterımen bailanystyr.',
       qm: 'Üceyre içindeki esas quruluşlarnı olar yerine ketirgen vazifelerinen bağlaştırıñız.',
     },
   },

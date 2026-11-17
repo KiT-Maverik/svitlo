@@ -37,7 +37,7 @@ export const behavior_SkillGroup_Data = defineSkillGroup({
     et: 'Loomade käitumine',
     be: 'Паводзіны жывёлаў',
     ka: 'ცხოველთა ქცევა',
-    kk: 'Жануарлардың мінез-құлқы',
+    kk: 'Januarlardyñ mınez-qūlqy',
     qm: 'Ayvanlarnıñ areketleri ve davranışı',
   },
   skills: [
@@ -76,7 +76,7 @@ export const behavior_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri, kuidas loomade käitumine toetab suhtlemist, kaitset ja rühmas elamist.',
       be: 'Дасьледуй, як паводзіны жывёлаў дапамагаюць мець зносіны, абараняцца і жыць у групах.',
       ka: 'გაიგე, როგორ ეხმარება ცხოველებს ქცევა ურთიერთობაში, თავდაცვასა და ჯგუფურ ცხოვრებაში.',
-      kk: 'Жануарлардың мінез-құлқы қарым-қатынасқа, қорғануға және топ болып өмір сүруге қалай көмектесетінін біл.',
+      kk: 'Januarlardyñ mınez-qūlqy qarym-qatynasqa, qorğanuğa jäne top bolyp ömır süruge qalai kömektesetının bıl.',
       qm: 'Ayvanlarnıñ davranışı alâqa qurmağa, qorçalanuvğa ve topar olıp yaşamağa nasıl yardım etkenini ögreniñiz.',
     },
   },

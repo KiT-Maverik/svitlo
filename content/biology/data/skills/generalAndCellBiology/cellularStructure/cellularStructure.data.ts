@@ -38,7 +38,7 @@ export const cellularStructure_SkillGroup_Data = defineSkillGroup({
     et: 'Raku ehitus',
     be: 'Будова клеткі',
     ka: 'უჯრედის აგებულება',
-    kk: 'Жасуша құрылысы',
+    kk: 'Jasuşa qūrylysy',
     qm: 'Üceyre quruluşu',
   },
   skills: [
@@ -78,7 +78,7 @@ export const cellularStructure_SkillGroup_Data = defineSkillGroup({
       et: 'Õpi, millest rakud koosnevad ja kuidas nende struktuurid talitleda aitavad.',
       be: 'Даведайся, з чаго складаюцца клеткі і як іхныя структуры дапамагаюць ім выконваць функцыі.',
       ka: 'გაიგე, რისგან შედგება უჯრედები და როგორ ეხმარება მათი სტრუქტურები ფუნქციების შესრულებაში.',
-      kk: 'Жасушалардың неден тұратынын және олардың құрылымдары қалай жұмыс істеуге көмектесетінін біл.',
+      kk: 'Jasuşalardyñ neden tūratynyn jäne olardyñ qūrylymdary qalai jūmys ısteuge kömektesetının bıl.',
       qm: 'Üceyreler nelerden teşkil olğanını ve olarnıñ bölümleri ne iş yapqanını ögreniñiz.',
     },
   },

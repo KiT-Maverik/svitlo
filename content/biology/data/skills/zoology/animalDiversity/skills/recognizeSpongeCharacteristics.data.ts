@@ -31,7 +31,7 @@ export const recognizeSpongeCharacteristics_Skill_Data = defineSkill({
     et: 'Käsnade tunnuste äratundmine',
     be: 'Распазнаваць прыкметы губак',
     ka: 'ღრუბლების ნიშნების ამოცნობა',
-    kk: 'Губкалардың белгілерін тану',
+    kk: 'Gubkalardyñ belgılerın tanu',
     qm: 'Deñiz süngerleriniñ belgilerini tanımaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const recognizeSpongeCharacteristics_Skill_Data = defineSkill({
       et: 'Tunne käsnad ära poorse keha ja filtreeriva toitumisviisi järgi.',
       be: 'Распазнавай губак паводле порыстага цела і фільтрацыйнага спосабу харчаваньня.',
       ka: 'ამოიცანი ღრუბლები ფოროვანი სხეულითა და წყლის გაფილტვრით კვების წესით.',
-      kk: 'Губкаларды кеуекті денесі мен суды сүзу арқылы қоректену тәсіліне қарап таны.',
+      kk: 'Gubkalardy keuektı denesı men sudy süzu arqyly qorektenu täsılıne qarap tany.',
       qm: 'Süngerlerni delikli bedenlerine ve suvnı süzüp azıq aluvına köre tanıñız.',
     },
   },

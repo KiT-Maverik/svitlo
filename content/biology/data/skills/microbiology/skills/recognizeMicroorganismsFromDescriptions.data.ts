@@ -31,7 +31,7 @@ export const recognizeMicroorganismsFromDescriptions_Skill_Data = defineSkill({
     et: 'Mikroorganismide äratundmine kirjelduste järgi',
     be: 'Распазнаваць мікраарганізмы паводле апісаньняў',
     ka: 'მიკროორგანიზმების ამოცნობა აღწერილობებით',
-    kk: 'Микроорганизмдерді сипаттамасы бойынша тану',
+    kk: 'Mikroorganizmderdı sipattamasy boiynşa tanu',
     qm: 'Mikroorganizmlerni tasvirlerine köre tanımaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const recognizeMicroorganismsFromDescriptions_Skill_Data = defineSkill({
       et: 'Mõista, et paljud eri liiki elusolendid võivad olla mikroskoopilised.',
       be: 'Зразумейце, што мікраскапічнымі могуць быць жывыя істоты з розных груп.',
       ka: 'გაიაზრეთ, რომ მრავალი განსხვავებული სახეობის ცოცხალი ორგანიზმი შეიძლება მიკროსკოპული იყოს.',
-      kk: 'Түрлі топтағы көптеген ағзалар микроскопиялық болуы мүмкін екенін түсініңіз.',
+      kk: 'Türlı toptağy köptegen ağzalar mikroskopialyq boluy mümkın ekenın tüsınıñız.',
       qm: 'Çeşit-çeşit canlılarnıñ pek kiçik, mikroskopik olabilgenini añlañız.',
     },
   },

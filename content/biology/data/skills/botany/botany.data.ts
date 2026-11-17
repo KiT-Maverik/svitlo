@@ -37,7 +37,7 @@ export const botany_SkillDomain_Data = defineSkillDomain({
     et: 'Botaanika',
     be: 'Батаніка',
     ka: 'ბოტანიკა',
-    kk: 'Ботаника',
+    kk: 'Botanika',
     qm: 'Botanika',
   },
   groups: [
@@ -78,7 +78,7 @@ export const botany_SkillDomain_Data = defineSkillDomain({
       et: 'Uuri taimede ehitust, kasvu, paljunemist ja reageerimist keskkonnale.',
       be: 'Дасьледуй будову расьлінаў, іхны рост, размнажэньне й рэакцыі на навакольле.',
       ka: 'შეისწავლე მცენარეთა აგებულება, ზრდა, გამრავლება და გარემოზე რეაგირება.',
-      kk: 'Өсімдіктердің құрылысын, өсуін, көбеюін және ортаға жауап беруін зертте.',
+      kk: 'Ösımdıkterdıñ qūrylysyn, ösuın, köbeiuın jäne ortağa jauap beruın zertte.',
       qm: 'Ösümliklerniñ quruluşunı, ösüvini, çoğaluvını ve müitke nasıl cevap bergenini ögreniñiz.',
     },
   },

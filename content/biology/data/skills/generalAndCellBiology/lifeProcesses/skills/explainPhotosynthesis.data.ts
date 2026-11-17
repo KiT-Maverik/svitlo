@@ -31,7 +31,7 @@ export const explainPhotosynthesis_Skill_Data = defineSkill({
     et: 'Fotosünteesi selgitamine',
     be: 'Тлумачыць фотасынтэз',
     ka: 'ფოტოსინთეზის ახსნა',
-    kk: 'Фотосинтезді түсіндіру',
+    kk: 'Fotosintezdı tüsındıru',
     qm: 'Fotosintezni añlatmaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const explainPhotosynthesis_Skill_Data = defineSkill({
       et: 'Selgita, kuidas fotosünteesivad organismid kasutavad valgust orgaaniliste ainete tootmiseks.',
       be: 'Тлумач, як фотасынтэзавальныя арганізмы выкарыстоўваюць сьвятло для ўтварэньня арганічных рэчываў.',
       ka: 'ახსენი, როგორ იყენებენ ფოტოსინთეზის უნარის მქონე ორგანიზმები სინათლეს ორგანული ნივთიერებების შესაქმნელად.',
-      kk: 'Фотосинтез жасайтын ағзалардың жарық арқылы органикалық заттарды қалай түзетінін түсіндір.',
+      kk: 'Fotosintez jasaityn ağzalardyñ jaryq arqyly organikalyq zattardy qalai tüzetının tüsındır.',
       qm: 'Fotosintez yapqan canlılar yarıqtan faydalanıp organik maddelerni nasıl meydana ketirgenini añlatıñız.',
     },
   },

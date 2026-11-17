@@ -42,7 +42,7 @@ export const ecosystemsAndBiodiversity_SkillGroup_Data = defineSkillGroup({
     et: 'Ökosüsteemid ja elurikkus',
     be: 'Экасыстэмы і біяразнастайнасьць',
     ka: 'ეკოსისტემები და ბიომრავალფეროვნება',
-    kk: 'Экожүйелер мен биоалуантүрлілік',
+    kk: 'Ekojüieler men bioaluantürlılık',
   },
   skills: [
     distinguishAnOrganismPopulationAndCommunity_Skill_Data,
@@ -85,7 +85,7 @@ export const ecosystemsAndBiodiversity_SkillGroup_Data = defineSkillGroup({
       et: 'Mõista, kuidas populatsioonid, kooslused ja keskkonnategurid moodustavad ökosüsteeme.',
       be: 'Зразумей, як папуляцыі, супольнасьці і чыньнікі асяродзьдзя ўтвараюць экасыстэмы.',
       ka: 'გაიგე, როგორ ქმნიან პოპულაციები, თანასაზოგადოებები და გარემო ფაქტორები ეკოსისტემებს.',
-      kk: 'Популяциялар, қауымдастықтар және орта факторлары экожүйелерді қалай құрайтынын түсін.',
+      kk: 'Populiatsialar, qauymdastyqtar jäne orta faktorlary ekojüielerdı qalai qūraitynyn tüsın.',
     },
   },
 });

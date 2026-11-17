@@ -31,7 +31,7 @@ export const recognizeInsectCharacteristics_Skill_Data = defineSkill({
     et: 'Putukate tunnuste äratundmine',
     be: 'Распазнаваць прыкметы вусякоў',
     ka: 'მწერების ნიშნების ამოცნობა',
-    kk: 'Бунақденелілердің белгілерін тану',
+    kk: 'Bunaqdenelılerdıñ belgılerın tanu',
     qm: 'İnsektlerniñ belgilerini tanımaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const recognizeInsectCharacteristics_Skill_Data = defineSkill({
       et: 'Tunne putukad ära nende kuue jala ja kolme peamise kehaosa järgi.',
       be: 'Распазнавай вусякоў паводле шасьці ног і трох асноўных аддзелаў цела.',
       ka: 'ამოიცანი მწერები მათი ექვსი ფეხისა და სხეულის სამი ძირითადი ნაწილის მიხედვით.',
-      kk: 'Бунақденелілерді алты аяғы мен денесінің үш негізгі бөлімі бойынша таны.',
+      kk: 'Bunaqdenelılerdı alty aiağy men denesınıñ üş negızgı bölımı boiynşa tany.',
       qm: 'İnsektlerni altı ayağına ve bedeniniñ üç esas qısmına köre tanıñız.',
     },
   },

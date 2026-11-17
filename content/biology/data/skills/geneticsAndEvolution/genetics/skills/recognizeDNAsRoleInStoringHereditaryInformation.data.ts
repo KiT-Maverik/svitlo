@@ -31,7 +31,7 @@ export const recognizeDNAsRoleInStoringHereditaryInformation_Skill_Data = define
     et: 'Mõista DNA rolli päriliku info säilitamisel',
     be: 'Распазнаваць ролю ДНК у захаваньні спадчыннай інфармацыі',
     ka: 'მემკვიდრეობითი ინფორმაციის შენახვაში დნმ-ის როლის ამოცნობა',
-    kk: 'Тұқымқуалаушылық ақпаратты сақтаудағы ДНҚ рөлін тану',
+    kk: 'Tūqymqualauşylyq aqparatty saqtaudağy DNQ rölın tanu',
     qm: 'İrsiy malümatnı saqlavda DNKnıñ rolüni tanımaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const recognizeDNAsRoleInStoringHereditaryInformation_Skill_Data = define
       et: 'Selgita, kuidas DNA talletab elusrakkudes kasutatavat infot.',
       be: 'Тлумач, як ДНК захоўвае інфармацыю, якую выкарыстоўваюць жывыя клеткі.',
       ka: 'ახსენი, როგორ ინახავს დნმ ინფორმაციას, რომელსაც ცოცხალი უჯრედები იყენებენ.',
-      kk: 'ДНҚ тірі жасушалар қолданатын ақпаратты қалай сақтайтынын түсіндір.',
+      kk: 'DNQ tırı jasuşalar qoldanatyn aqparatty qalai saqtaitynyn tüsındır.',
       qm: 'DNK canlı üceyreler qullanğan malümatnı nasıl saqlağanını añlatıñız.',
     },
   },

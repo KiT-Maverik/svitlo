@@ -31,7 +31,7 @@ export const identifyAnOrganismsHabitat_Skill_Data = defineSkill({
     et: 'Määrata organismi elupaik',
     be: 'Вызначаць асяродзьдзе існаваньня арганізму',
     ka: 'ორგანიზმის საარსებო გარემოს ამოცნობა',
-    kk: 'Ағзаның тіршілік ортасын анықтау',
+    kk: 'Ağzanyñ tırşılık ortasyn anyqtau',
     qm: 'Canlınıñ yaşayış yerini belgilemek',
   },
   description: {
@@ -64,7 +64,7 @@ export const identifyAnOrganismsHabitat_Skill_Data = defineSkill({
       et: 'Tunne ära tingimused ja ressursid, mida liik oma elupaigas vajab.',
       be: 'Распазнавай умовы і рэсурсы, патрэбныя віду ў ягоным асяродзьдзі існаваньня.',
       ka: 'ამოიცანი პირობები და რესურსები, რომლებიც სახეობას თავის გარემოში სჭირდება.',
-      kk: 'Түрге тіршілік ортасында қажет жағдайлар мен ресурстарды анықта.',
+      kk: 'Türge tırşılık ortasynda qajet jağdailar men resurstardy anyqta.',
       qm: 'Bir türge öz yaşayış yerinde qaysı şartlar ve kaynaklar kerek olğanını belgileñiz.',
     },
   },

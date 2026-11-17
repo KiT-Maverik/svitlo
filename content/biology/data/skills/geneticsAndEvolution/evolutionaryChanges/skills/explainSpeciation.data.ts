@@ -31,7 +31,7 @@ export const explainSpeciation_Skill_Data = defineSkill({
     et: 'Selgitada uute liikide teket',
     be: 'Тлумачыць утварэньне новых відаў',
     ka: 'სახეობათა წარმოქმნის ახსნა',
-    kk: 'Жаңа түрлердің қалыптасуын түсіндіру',
+    kk: 'Jaña türlerdıñ qalyptasuyn tüsındıru',
     qm: 'Yañı türlerniñ meydanğa kelüvini añlatmaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const explainSpeciation_Skill_Data = defineSkill({
       et: 'Uuri, kuidas populatsioonid võivad üksteisest eristuda ja uusi liike moodustada.',
       be: 'Даведайся, як папуляцыі могуць паступова разыходзіцца і ўтвараць новыя віды.',
       ka: 'გაიგე, როგორ შეიძლება პოპულაციები თანდათან განსხვავდებოდნენ და ახალი სახეობები წარმოქმნან.',
-      kk: 'Популяциялар біртіндеп алшақтап, жаңа түрлерді қалай түзе алатынын біл.',
+      kk: 'Populiatsialar bırtındep alşaqtap, jaña türlerdı qalai tüze alatynyn bıl.',
       qm: 'Populyatsiyalar vaqt keçken sayın nasıl bir-birinden farqlanıp yañı türler meydanğa ketire bilgenini ögreniñiz.',
     },
   },

@@ -31,7 +31,7 @@ export const explainResponsesToStimuli_Skill_Data = defineSkill({
     et: 'Ärritustele reageerimise selgitamine',
     be: 'Тлумачыць рэакцыі на раздражняльнікі',
     ka: 'გამღიზიანებლებზე რეაქციების ახსნა',
-    kk: 'Тітіркендіргіштерге жауапты түсіндіру',
+    kk: 'Tıtırkendırgışterge jauapty tüsındıru',
     qm: 'Taşqı tesirlerge cevapnı añlatmaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const explainResponsesToStimuli_Skill_Data = defineSkill({
       et: 'Uuri, kuidas tajutud teave võib põhjustada liikumist või käitumise muutusi.',
       be: 'Дасьледуйце, як успрынятая інфармацыя можа выклікаць рух ці зьмены паводзінаў.',
       ka: 'შეისწავლეთ, როგორ შეიძლება აღქმულმა ინფორმაციამ გამოიწვიოს მოძრაობა ან ქცევის ცვლილება.',
-      kk: 'Қабылданған ақпараттың қозғалыс не мінез-құлық өзгерісін қалай тудыратынын зерттеңіз.',
+      kk: 'Qabyldanğan aqparattyñ qozğalys ne mınez-qūlyq özgerısın qalai tudyratynyn zertteñız.',
       qm: 'Duyulğan malümat areketni ya da davranışnıñ deñişüvini nasıl başlatqanını ögreniñiz.',
     },
   },

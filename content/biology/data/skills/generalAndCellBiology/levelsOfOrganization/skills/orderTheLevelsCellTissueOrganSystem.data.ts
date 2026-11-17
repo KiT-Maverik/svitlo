@@ -31,7 +31,7 @@ export const orderTheLevelsCellTissueOrganSystem_Skill_Data = defineSkill({
     et: 'Raku, koe, elundi ja elundkonna tasemete järjestamine',
     be: 'Упарадкаваць узроўні «клетка → тканка → орган → сыстэма»',
     ka: 'უჯრედის, ქსოვილის, ორგანოსა და სისტემის დონეების დალაგება',
-    kk: 'Жасуша, ұлпа, мүше және жүйе деңгейлерін реттеу',
+    kk: 'Jasuşa, ūlpa, müşe jäne jüie deñgeilerın retteu',
     qm: 'Üceyre, toqu, organ ve sistema seviyelerini sıralamaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const orderTheLevelsCellTissueOrganSystem_Skill_Data = defineSkill({
       et: 'Järjesta rakud, koed, elundid ja elundkonnad ehituslike tasemete järgi.',
       be: 'Разьмяшчай клеткі, тканкі, органы й сыстэмы органаў паводле ўзроўняў арганізацыі.',
       ka: 'დაალაგე უჯრედები, ქსოვილები, ორგანოები და ორგანოთა სისტემები ორგანიზაციის დონეების მიხედვით.',
-      kk: 'Жасушаларды, ұлпаларды, мүшелерді және мүшелер жүйелерін ұйымдасу деңгейлері бойынша ретте.',
+      kk: 'Jasuşalardy, ūlpalardy, müşelerdı jäne müşeler jüielerın ūiymdasu deñgeilerı boiynşa rette.',
       qm: 'Üceyre, toqu, organ ve organ sistemalarınıñ teşkilâtlanma seviyelerini doğru sıraya qoyuñız.',
     },
   },

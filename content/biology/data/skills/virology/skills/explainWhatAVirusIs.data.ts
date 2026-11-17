@@ -31,7 +31,7 @@ export const explainWhatAVirusIs_Skill_Data = defineSkill({
     et: 'Selgitada, mis on viirus',
     be: 'Тлумачыць, што такое вірус',
     ka: 'იმის ახსნა, თუ რა არის ვირუსი',
-    kk: 'Вирустың не екенін түсіндіру',
+    kk: 'Virustyñ ne ekenın tüsındıru',
     qm: 'Virus ne olğanını añlatmaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const explainWhatAVirusIs_Skill_Data = defineSkill({
       et: 'Selgita, miks viirused vajavad uute viiruste tootmiseks elusrakke.',
       be: 'Растлумач, чаму вірусам патрэбныя жывыя клеткі, каб ствараць новыя вірусы.',
       ka: 'ახსენი, რატომ სჭირდებათ ვირუსებს ცოცხალი უჯრედები ახალი ვირუსების წარმოსაქმნელად.',
-      kk: 'Неліктен вирустарға жаңа вирустар түзу үшін тірі жасушалар қажет екенін түсіндір.',
+      kk: 'Nelıkten virustarğa jaña virustar tüzu üşın tırı jasuşalar qajet ekenın tüsındır.',
       qm: 'Viruslar yañı viruslar meydana ketirmek içün nege canlı üceyrelere muhtac olğanını añlatıñız.',
     },
   },

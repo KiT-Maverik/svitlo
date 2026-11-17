@@ -39,7 +39,7 @@ export const reproductionAndDevelopment_SkillGroup_Data = defineSkillGroup({
     et: 'Paljunemine ja areng',
     be: 'Размнажэньне і разьвіцьцё',
     ka: 'გამრავლება და განვითარება',
-    kk: 'Көбею және даму',
+    kk: 'Köbeiu jäne damu',
     qm: 'Çoğaluv ve inkişaf',
   },
   skills: [
@@ -80,7 +80,7 @@ export const reproductionAndDevelopment_SkillGroup_Data = defineSkillGroup({
       et: 'Jälgi, kuidas taimed oma elutsüklis paljunevad ja arenevad.',
       be: 'Прасачы, як расьліны размнажаюцца й разьвіваюцца цягам жыцьцёвага цыклю.',
       ka: 'მიადევნე თვალი, როგორ მრავლდებიან და ვითარდებიან მცენარეები სასიცოცხლო ციკლის განმავლობაში.',
-      kk: 'Өсімдіктердің тіршілік циклінде қалай көбейіп, дамитынын бақыла.',
+      kk: 'Ösımdıkterdıñ tırşılık tsiklınde qalai köbeiıp, damitynyn baqyla.',
       qm: 'Ösümliklerniñ yaşayış devri devamında nasıl çoğalğanını ve inkişaf etkenini ögreniñiz.',
     },
   },

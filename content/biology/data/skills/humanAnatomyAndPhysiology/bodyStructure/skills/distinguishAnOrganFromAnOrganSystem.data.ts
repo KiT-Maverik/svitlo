@@ -31,7 +31,7 @@ export const distinguishAnOrganFromAnOrganSystem_Skill_Data = defineSkill({
     et: 'Elundi ja elundkonna eristamine',
     be: 'Адрозьніваць орган ад сыстэмы органаў',
     ka: 'ორგანოსა და ორგანოთა სისტემის გარჩევა',
-    kk: 'Мүше мен мүшелер жүйесін ажырату',
+    kk: 'Müşe men müşeler jüiesın ajyratu',
     qm: 'Organ ile organ sistemasını ayırmaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const distinguishAnOrganFromAnOrganSystem_Skill_Data = defineSkill({
       et: 'Erista üksikut elundit koos töötavate elundite süsteemist.',
       be: 'Адрозьнівайце асобны орган ад сыстэмы органаў, якія працуюць разам.',
       ka: 'განასხვავეთ ცალკეული ორგანო ერთმანეთთან თანამშრომელი ორგანოების სისტემისგან.',
-      kk: 'Жеке мүшені бірігіп жұмыс істейтін мүшелер жүйесінен ажыратыңыз.',
+      kk: 'Jeke müşenı bırıgıp jūmys ısteitın müşeler jüiesınen ajyratyñyz.',
       qm: 'Bir organnı beraber çalışqan bir qaç organdan ibaret sistemadan ayırıñız.',
     },
   },

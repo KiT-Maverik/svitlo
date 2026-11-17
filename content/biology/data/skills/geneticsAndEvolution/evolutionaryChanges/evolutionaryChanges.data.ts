@@ -43,7 +43,7 @@ export const evolutionaryChanges_SkillGroup_Data = defineSkillGroup({
     et: 'Evolutsioonilised muutused',
     be: 'Эвалюцыйныя зьмены',
     ka: 'ევოლუციური ცვლილებები',
-    kk: 'Эволюциялық өзгерістер',
+    kk: 'Evoliutsialyq özgerıster',
   },
   skills: [
     distinguishIndividualChangesDuringLifeFromPopulationChanges_Skill_Data,
@@ -87,7 +87,7 @@ export const evolutionaryChanges_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri, kuidas populatsioonide pärilik varieeruvus põlvkondade jooksul muutub.',
       be: 'Даведайся, як спадчынная зьменлівасьць у папуляцыях мяняецца на працягу пакаленьняў.',
       ka: 'გაიგე, როგორ იცვლება პოპულაციებში მემკვიდრეობითი მრავალფეროვნება თაობების განმავლობაში.',
-      kk: 'Популяциялардағы тұқым қуалайтын өзгергіштік ұрпақтар бойы қалай өзгеретінін біл.',
+      kk: 'Populiatsialardağy tūqym qualaityn özgergıştık ūrpaqtar boiy qalai özgeretının bıl.',
     },
   },
 });

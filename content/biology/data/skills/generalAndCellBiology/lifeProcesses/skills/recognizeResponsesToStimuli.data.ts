@@ -31,7 +31,7 @@ export const recognizeResponsesToStimuli_Skill_Data = defineSkill({
     et: 'Ärritajatele reageerimise äratundmine',
     be: 'Распазнаваць рэакцыі на раздражняльнікі',
     ka: 'გამღიზიანებლებზე რეაქციების ამოცნობა',
-    kk: 'Тітіркендіргіштерге жауаптарды тану',
+    kk: 'Tıtırkendırgışterge jauaptardy tanu',
     qm: 'Tesirlerge cevapnı tanımaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const recognizeResponsesToStimuli_Skill_Data = defineSkill({
       et: 'Tunne ära, kuidas elusorganismid reageerivad valgusele, puudutusele ja teistele signaalidele.',
       be: 'Распазнавай, як жывыя арганізмы рэагуюць на сьвятло, дотык і іншыя сыгналы.',
       ka: 'ამოიცანი, როგორ რეაგირებენ ცოცხალი ორგანიზმები სინათლეზე, შეხებასა და სხვა სიგნალებზე.',
-      kk: 'Тірі ағзалардың жарыққа, жанасуға және басқа сигналдарға қалай жауап беретінін таны.',
+      kk: 'Tırı ağzalardyñ jaryqqa, janasuğa jäne basqa signaldarğa qalai jauap beretının tany.',
       qm: 'Canlılar yarıq, tiyiş ve başqa signallarğa nasıl cevap bergenini tanıñız.',
     },
   },

@@ -31,7 +31,7 @@ export const recognizeAmphibianCharacteristics_Skill_Data = defineSkill({
     et: 'Kahepaiksete tunnuste äratundmine',
     be: 'Распазнаваць прыкметы земнаводных',
     ka: 'ამფიბიების ნიშნების ამოცნობა',
-    kk: 'Қосмекенділердің белгілерін тану',
+    kk: 'Qosmekendılerdıñ belgılerın tanu',
     qm: 'Amfibiyalarnıñ belgilerini tanımaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const recognizeAmphibianCharacteristics_Skill_Data = defineSkill({
       et: 'Tunne ära kahepaiksete ja nende arengu ühised tunnused.',
       be: 'Распазнавай агульныя прыкметы земнаводных і асаблівасьці іх разьвіцьця.',
       ka: 'ამოიცანი ამფიბიებისა და მათი განვითარების საერთო ნიშნები.',
-      kk: 'Қосмекенділер мен олардың дамуына тән ортақ белгілерді таны.',
+      kk: 'Qosmekendıler men olardyñ damuyna tän ortaq belgılerdı tany.',
       qm: 'Amfibiyalarnıñ beden quruluşuna ve inkişafına has umumiy belgilerini tanıñız.',
     },
   },

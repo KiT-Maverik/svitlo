@@ -31,7 +31,7 @@ export const recognizeFungiAsADistinctGroupOfOrganisms_Skill_Data = defineSkill(
     et: 'Seente äratundmine eraldi organismirühmana',
     be: 'Распазнаваць грыбы як асобную групу арганізмаў',
     ka: 'სოკოების ცალკე ორგანიზმთა ჯგუფად ამოცნობა',
-    kk: 'Саңырауқұлақтарды ағзалардың бөлек тобы ретінде тану',
+    kk: 'Sañyrauqūlaqtardy ağzalardyñ bölek toby retınde tanu',
     qm: 'Mantarlarnı canlılarnıñ ayrı gruppası olaraq tanımaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const recognizeFungiAsADistinctGroupOfOrganisms_Skill_Data = defineSkill(
       et: 'Erista seeni taimedest ja loomadest toitumisviisi ning ehituse järgi.',
       be: 'Адрозьнівайце грыбы ад расьлін і жывёлаў паводле спосабу харчаваньня і будовы.',
       ka: 'განასხვავეთ სოკოები მცენარეებისა და ცხოველებისგან კვების წესისა და აგებულების მიხედვით.',
-      kk: 'Саңырауқұлақтарды өсімдіктер мен жануарлардан қоректену тәсілі және құрылысы бойынша ажыратыңыз.',
+      kk: 'Sañyrauqūlaqtardy ösımdıkter men januarlardan qorektenu täsılı jäne qūrylysy boiynşa ajyratyñyz.',
       qm: 'Mantarlarnı azıqlanuv usulı ve quruluşına köre ösümlikler ve ayvanlardan ayırıñız.',
     },
   },

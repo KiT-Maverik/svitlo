@@ -31,7 +31,7 @@ export const explainMatterCyclingInEcosystems_Skill_Data = defineSkill({
     et: 'Selgitada aineringet ökosüsteemides',
     be: 'Тлумачыць кругаварот рэчываў у экасыстэмах',
     ka: 'ეკოსისტემებში ნივთიერებათა წრებრუნვის ახსნა',
-    kk: 'Экожүйелердегі зат айналымын түсіндіру',
+    kk: 'Ekojüielerdegı zat ainalymyn tüsındıru',
     qm: 'Ekosistemalarda madde devridaimini añlatmaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const explainMatterCyclingInEcosystems_Skill_Data = defineSkill({
       et: 'Uuri, kuidas ained ringlevad organismide ja eluta keskkonna vahel.',
       be: 'Даведайся, як рэчывы цыркулююць паміж арганізмамі і нежывым асяродзьдзем.',
       ka: 'გაიგე, როგორ ბრუნავს ნივთიერება ორგანიზმებსა და არაცოცხალ გარემოს შორის.',
-      kk: 'Заттың ағзалар мен жансыз орта арасында қалай айналатынын біл.',
+      kk: 'Zattyñ ağzalar men jansyz orta arasynda qalai ainalatynyn bıl.',
       qm: 'Maddeler canlılar ve cansız müit arasında nasıl dolaşqanını ögreniñiz.',
     },
   },

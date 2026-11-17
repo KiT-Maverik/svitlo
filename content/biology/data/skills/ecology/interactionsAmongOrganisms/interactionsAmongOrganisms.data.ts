@@ -39,7 +39,7 @@ export const interactionsAmongOrganisms_SkillGroup_Data = defineSkillGroup({
     et: 'Organismidevahelised suhted',
     be: 'Узаемадзеяньні паміж арганізмамі',
     ka: 'ორგანიზმებს შორის ურთიერთქმედებები',
-    kk: 'Ағзалардың өзара әрекеттесуі',
+    kk: 'Ağzalardyñ özara ärekettesuı',
   },
   skills: [
     explainTheRoleOfPollinatorsInSpeciesInteractions_Skill_Data,
@@ -79,7 +79,7 @@ export const interactionsAmongOrganisms_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri, kuidas organismid võistlevad, üksteisest toituvad või teevad koostööd.',
       be: 'Дасьледуй, як арганізмы канкуруюць, харчуюцца іншымі або супрацоўнічаюць.',
       ka: 'გამოიკვლიე, როგორ ეჯიბრებიან ორგანიზმები ერთმანეთს, იკვებებიან სხვა ორგანიზმებით ან ურთიერთსასარგებლოდ თანამშრომლობენ.',
-      kk: 'Ағзалар қалай бәсекелесетінін, бір-бірімен қоректенетінін немесе ынтымақтасатынын зертте.',
+      kk: 'Ağzalar qalai bäsekelesetının, bır-bırımen qorektenetının nemese yntymaqtasatynyn zertte.',
     },
   },
 });

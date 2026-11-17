@@ -37,7 +37,7 @@ export const ecology_SkillDomain_Data = defineSkillDomain({
     et: 'Ökoloogia',
     be: 'Экалёгія',
     ka: 'ეკოლოგია',
-    kk: 'Экология',
+    kk: 'Ekologia',
   },
   groups: [
     ecosystemsAndBiodiversity_SkillGroup_Data,
@@ -77,7 +77,7 @@ export const ecology_SkillDomain_Data = defineSkillDomain({
       et: 'Uuri, kuidas organismid sõltuvad üksteisest ja oma keskkonnast.',
       be: 'Дасьледуй, як арганізмы залежаць адзін ад аднаго і ад свайго асяродзьдзя.',
       ka: 'გამოიკვლიე, როგორ არიან ორგანიზმები ერთმანეთზე და გარემოზე დამოკიდებული.',
-      kk: 'Ағзалар бір-біріне және қоршаған ортаға қалай тәуелді екенін зертте.',
+      kk: 'Ağzalar bır-bırıne jäne qorşağan ortağa qalai täueldı ekenın zertte.',
     },
   },
 });

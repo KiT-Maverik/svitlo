@@ -31,7 +31,7 @@ export const explainTransmissionOfHereditaryInformation_Skill_Data = defineSkill
     et: 'Selgitada päriliku info edasikandumist',
     be: 'Тлумачыць перадачу спадчыннай інфармацыі',
     ka: 'მემკვიდრეობითი ინფორმაციის გადაცემის ახსნა',
-    kk: 'Тұқымқуалаушылық ақпараттың берілуін түсіндіру',
+    kk: 'Tūqymqualauşylyq aqparattyñ berıluın tüsındıru',
     qm: 'İrsiy malümatnıñ berilüvini añlatmaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const explainTransmissionOfHereditaryInformation_Skill_Data = defineSkill
       et: 'Mõista, kuidas pärilikku infot kopeeritakse ja edasi antakse.',
       be: 'Зразумей, як спадчынная інфармацыя капіюецца і перадаецца далей.',
       ka: 'გაიგე, როგორ კოპირდება და გადაეცემა მემკვიდრეობითი ინფორმაცია.',
-      kk: 'Тұқымқуалаушылық ақпарат қалай көшіріліп, кейін берілетінін түсін.',
+      kk: 'Tūqymqualauşylyq aqparat qalai köşırılıp, keiın berıletının tüsın.',
       qm: 'İrsiy malümatnıñ nusqası nasıl yapılğanını ve soñra nesillerge nasıl berilgenini ögreniñiz.',
     },
   },

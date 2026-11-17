@@ -31,7 +31,7 @@ export const identifyHereditaryTraitsInExamples_Skill_Data = defineSkill({
     et: 'Tunda näidetes ära pärilikke tunnuseid',
     be: 'Вызначаць спадчынныя прыкметы на прыкладах',
     ka: 'მემკვიდრეობითი ნიშნების ამოცნობა მაგალითებში',
-    kk: 'Мысалдардан тұқым қуалайтын белгілерді тану',
+    kk: 'Mysaldardan tūqym qualaityn belgılerdı tanu',
     qm: 'Misallerde irsiy belgilerni tanımaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const identifyHereditaryTraitsInExamples_Skill_Data = defineSkill({
       et: 'Tunne vanemate ja järglaste näidetes ära pärilikud tunnused.',
       be: 'Распазнавай спадчынныя прыкметы на прыкладах бацькоў і нашчадкаў.',
       ka: 'ამოიცანი მემკვიდრეობითი ნიშნები მშობლებისა და შთამომავლების მაგალითებში.',
-      kk: 'Ата-аналар мен ұрпақтар мысалынан тұқым қуалайтын белгілерді анықта.',
+      kk: 'Ata-analar men ūrpaqtar mysalynan tūqym qualaityn belgılerdı anyqta.',
       qm: 'Ana-baba canlılar ve olarnıñ balaları aqqındaki misallerde irsiy belgilerni tanıñız.',
     },
   },

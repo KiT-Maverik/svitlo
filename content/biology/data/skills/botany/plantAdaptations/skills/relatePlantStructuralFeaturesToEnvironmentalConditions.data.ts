@@ -31,7 +31,7 @@ export const relatePlantStructuralFeaturesToEnvironmentalConditions_Skill_Data =
     et: 'Taime ehituse seostamine keskkonnatingimustega',
     be: 'Сувязваць будову расьлінаў з умовамі асяродзьдзя',
     ka: 'მცენარის აგებულების დაკავშირება გარემოს პირობებთან',
-    kk: 'Өсімдік құрылысының белгілерін орта жағдайымен байланыстыру',
+    kk: 'Ösımdık qūrylysynyñ belgılerın orta jağdaiymen bailanystyru',
     qm: 'Ösümlikniñ quruluş belgilerini müit şartlarınen bağlaştırmaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const relatePlantStructuralFeaturesToEnvironmentalConditions_Skill_Data =
       et: 'Selgita, miks juured, lehed ja võrsed on eri tingimustele sobiva kujuga.',
       be: 'Тлумач, чаму карані, лісты й парасткі маюць формы, прыстасаваныя да розных умоваў.',
       ka: 'ახსენი, რატომ აქვთ ფესვებს, ფოთლებსა და ყლორტებს სხვადასხვა პირობებისთვის შესაფერისი ფორმები.',
-      kk: 'Тамыр, жапырақ және өркендердің пішіні әртүрлі жағдайға неге сәйкес келетінін түсіндір.',
+      kk: 'Tamyr, japyraq jäne örkenderdıñ pışını ärtürlı jağdaiğa nege säikes keletının tüsındır.',
       qm: 'Tamırlar, yapraqlar ve sürgünlerniñ çeşit müit şartlarında ne içün farqlı şekilde olğanını añlatıñız.',
     },
   },

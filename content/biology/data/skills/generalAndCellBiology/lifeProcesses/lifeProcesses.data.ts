@@ -39,7 +39,7 @@ export const lifeProcesses_SkillGroup_Data = defineSkillGroup({
     et: 'Eluprotsessid',
     be: 'Жыцьцёвыя працэсы',
     ka: 'სასიცოცხლო პროცესები',
-    kk: 'Тіршілік үдерістері',
+    kk: 'Tırşılık üderısterı',
     qm: 'Yaşayış süreçleri',
   },
   skills: [
@@ -80,7 +80,7 @@ export const lifeProcesses_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri, kuidas organismid saavad vajalikke aineid, kasvavad ja reageerivad ümbrusele.',
       be: 'Даведайся, як арганізмы атрымліваюць рэсурсы, растуць і рэагуюць на навакольле.',
       ka: 'გაიგე, როგორ იღებენ ორგანიზმები რესურსებს, იზრდებიან და რეაგირებენ გარემოზე.',
-      kk: 'Ағзалардың ресурстарды қалай алатынын, өсетінін және қоршаған ортаға жауап беретінін біл.',
+      kk: 'Ağzalardyñ resurstardy qalai alatynyn, ösetının jäne qorşağan ortağa jauap beretının bıl.',
       qm: 'Canlılar azıq ve başqa kaynaklarnı nasıl alğanını, öskenini ve müitke nasıl cevap bergenini ögreniñiz.',
     },
   },

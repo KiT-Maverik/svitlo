@@ -31,7 +31,7 @@ export const identifyBioticAndAbioticFactors_Skill_Data = defineSkill({
     et: 'Tunda ära biootilisi ja abiootilisi tegureid',
     be: 'Вызначаць біятычныя і абіятычныя чыньнікі',
     ka: 'ბიოტური და აბიოტური ფაქტორების ამოცნობა',
-    kk: 'Биотикалық және абиотикалық факторларды тану',
+    kk: 'Biotikalyq jäne abiotikalyq faktorlardy tanu',
     qm: 'Biotik ve abiotik faktorlarnı belgilemek',
   },
   description: {
@@ -65,7 +65,7 @@ export const identifyBioticAndAbioticFactors_Skill_Data = defineSkill({
       et: 'Erista elusorganismide mõju eluta keskkonnateguritest.',
       be: 'Адрозьнівай уплыў жывых арганізмаў ад чыньнікаў нежывога асяродзьдзя.',
       ka: 'განასხვავე ცოცხალი ორგანიზმების გავლენა არაცოცხალი გარემოს ფაქტორებისგან.',
-      kk: 'Тірі ағзалардың әсерін жансыз орта факторларынан ажырат.',
+      kk: 'Tırı ağzalardyñ äserın jansyz orta faktorlarynan ajyrat.',
       qm: 'Canlılarnıñ tesirini müitniñ cansız faktorlardan farq etiñiz.',
     },
   },

@@ -31,7 +31,7 @@ export const recognizeMammalCharacteristics_Skill_Data = defineSkill({
     et: 'Imetajate tunnuste äratundmine',
     be: 'Распазнаваць прыкметы сысуноў',
     ka: 'ძუძუმწოვრების ნიშნების ამოცნობა',
-    kk: 'Сүтқоректілердің белгілерін тану',
+    kk: 'Sütqorektılerdıñ belgılerın tanu',
     qm: 'Süt emizici ayvanlarnıñ belgilerini tanımaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const recognizeMammalCharacteristics_Skill_Data = defineSkill({
       et: 'Tunne imetajad ära nende põhitunnuste järgi, eeldamata, et nad kõik sünnitavad elusaid poegi.',
       be: 'Вызначай сысуноў паводле галоўных прыкметаў, ня думаючы, што ўсе яны нараджаюць жывых дзіцянятаў.',
       ka: 'ამოიცანი ძუძუმწოვრები მათი განმსაზღვრელი ნიშნებით და ნუ იფიქრებ, რომ ყველა ცოცხალ ნაშიერს შობს.',
-      kk: 'Барлық сүтқоректілер тірі төл туады деп ойламай, оларды айқындайтын белгілері арқылы таны.',
+      kk: 'Barlyq sütqorektıler tırı töl tuady dep oilamai, olardy aiqyndaityn belgılerı arqyly tany.',
       qm: 'Süt emizici ayvanlarnı olarnıñ esas belgilerine köre tanıñız; episi canlı bala doğura dep tüşünmeñiz.',
     },
   },

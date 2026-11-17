@@ -31,7 +31,7 @@ export const explainCompleteMetamorphosisInInsects_Skill_Data = defineSkill({
     et: 'Putukate täismoondumise selgitamine',
     be: 'Тлумачыць поўнае ператварэньне ў вусякоў',
     ka: 'მწერებში სრული მეტამორფოზის ახსნა',
-    kk: 'Бунақденелілердің толық түрленуін түсіндіру',
+    kk: 'Bunaqdenelılerdıñ tolyq türlenuın tüsındıru',
     qm: 'İnsektlerde tam metamorfoznı añlatmaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const explainCompleteMetamorphosisInInsects_Skill_Data = defineSkill({
       et: 'Jälgi putukate täismoondumise etappe: muna, vastne, nukk ja valmik.',
       be: 'Прасачы стадыі яйка, лічынкі, кукалкі й дарослага вусяка пры поўным ператварэньні.',
       ka: 'გაეცანი მწერების სრული მეტამორფოზის ეტაპებს: კვერცხი, მატლი, ჭუპრი და ზრდასრული მწერი.',
-      kk: 'Бунақденелілердің толық түрленуіндегі жұмыртқа, дернәсіл, қуыршақ және ересек кезеңдерін бақыла.',
+      kk: 'Bunaqdenelılerdıñ tolyq türlenuındegı jūmyrtqa, dernäsıl, quyrşaq jäne eresek kezeñderın baqyla.',
       qm: 'İnsektlerniñ tam metamorfozında yumurta, larva, pupa ve yetişken basamaqlarını sırasına köre ögreniñiz.',
     },
   },

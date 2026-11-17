@@ -31,7 +31,7 @@ export const relatePlantOrgansToTheirFunctions_Skill_Data = defineSkill({
     et: 'Taime elundite seostamine nende ülesannetega',
     be: 'Сувязваць органы расьлінаў зь іхнымі функцыямі',
     ka: 'მცენარის ორგანოების დაკავშირება მათ ფუნქციებთან',
-    kk: 'Өсімдік мүшелерін қызметтерімен байланыстыру',
+    kk: 'Ösımdık müşelerın qyzmetterımen bailanystyru',
     qm: 'Ösümlik organlarını vazifelerinen bağlaştırmaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const relatePlantOrgansToTheirFunctions_Skill_Data = defineSkill({
       et: 'Seosta iga taime elund selle ülesannetega.',
       be: 'Сувязвай кожны орган расьліны з функцыямі, якія ён выконвае.',
       ka: 'დააკავშირე მცენარის თითოეული ორგანო მის ფუნქციებთან.',
-      kk: 'Өсімдіктің әр мүшесін оның атқаратын қызметімен байланыстыр.',
+      kk: 'Ösımdıktıñ är müşesın onyñ atqaratyn qyzmetımen bailanystyr.',
       qm: 'Er bir ösümlik organını yerine ketirgen vazifesinen bağlaştırıñız.',
     },
   },

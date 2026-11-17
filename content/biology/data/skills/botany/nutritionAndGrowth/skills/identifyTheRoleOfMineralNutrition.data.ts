@@ -31,7 +31,7 @@ export const identifyTheRoleOfMineralNutrition_Skill_Data = defineSkill({
     et: 'Mineraaltoitumise rolli tundmine',
     be: 'Вызначаць ролю мінэральнага жыўленьня',
     ka: 'მინერალური კვების როლის ამოცნობა',
-    kk: 'Минералдық қоректенудің рөлін анықтау',
+    kk: 'Mineraldyq qorektenudıñ rölın anyqtau',
     qm: 'Mineral beslenüvniñ rolüni belgilemek',
   },
   description: {
@@ -65,7 +65,7 @@ export const identifyTheRoleOfMineralNutrition_Skill_Data = defineSkill({
       et: 'Mõista, kuidas mineraaltoitained aitavad taimedel terveid kudesid ehitada.',
       be: 'Зразумей, як мінэральныя пажыўныя рэчывы дапамагаюць фармаваць здаровыя тканкі расьлінаў.',
       ka: 'გაიგე, როგორ ეხმარება მინერალური საკვები ნივთიერებები მცენარეებს ჯანსაღი ქსოვილების შექმნაში.',
-      kk: 'Минералдық қоректік заттар сау өсімдік ұлпаларын қалыптастыруға қалай көмектесетінін біл.',
+      kk: 'Mineraldyq qorektık zattar sau ösımdık ūlpalaryn qalyptastyruğa qalai kömektesetının bıl.',
       qm: 'Mineral maddeler ösümlikniñ sağlam toqularınıñ teşkil olmasına ne içün yardım etkenini ögreniñiz.',
     },
   },

@@ -31,7 +31,7 @@ export const recognizeDefensiveBehavior_Skill_Data = defineSkill({
     et: 'Kaitsekäitumise äratundmine',
     be: 'Распазнаваць абарончыя паводзіны',
     ka: 'თავდაცვითი ქცევის ამოცნობა',
-    kk: 'Қорғану мінез-құлқын тану',
+    kk: 'Qorğanu mınez-qūlqyn tanu',
     qm: 'Qorçalanuv davranışını tanımaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const recognizeDefensiveBehavior_Skill_Data = defineSkill({
       et: 'Tunne ära käitumisviisid, mida loomad kasutavad ohu korral.',
       be: 'Распазнавай паводзіны жывёлаў, калі ім пагражае небясьпека.',
       ka: 'ამოიცანი ცხოველების ქცევა საფრთხის დროს.',
-      kk: 'Қауіп төнген кезде жануарлар көрсететін мінез-құлықты таны.',
+      kk: 'Qauıp töngen kezde januarlar körsetetın mınez-qūlyqty tany.',
       qm: 'Telüke peyda olğanda ayvanlar qullanğan qorçalanuv davranışlarını tanıñız.',
     },
   },

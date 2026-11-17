@@ -39,7 +39,7 @@ export const reproductionAndTraits_SkillGroup_Data = defineSkillGroup({
     et: 'Paljunemine ja tunnused',
     be: 'Размнажэньне і прыкметы',
     ka: 'გამრავლება და ნიშან-თვისებები',
-    kk: 'Көбею және белгілер',
+    kk: 'Köbeiu jäne belgıler',
   },
   skills: [
     distinguishHereditaryAndAcquiredTraits_Skill_Data,
@@ -79,7 +79,7 @@ export const reproductionAndTraits_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri, miks järglased sarnanevad sugulastega, kuid pole alati ühesugused.',
       be: 'Даведайся, чаму нашчадкі падобныя да сваіх сваякоў, але не заўсёды аднолькавыя.',
       ka: 'გაიგე, რატომ ჰგვანან შთამომავლები ნათესავებს, მაგრამ ყოველთვის ერთნაირები არ არიან.',
-      kk: 'Ұрпақтары туыстарына неге ұқсайтынын, бірақ әрдайым бірдей болмайтынын біл.',
+      kk: 'Ūrpaqtary tuystaryna nege ūqsaitynyn, bıraq ärdaiym bırdei bolmaitynyn bıl.',
     },
   },
 });

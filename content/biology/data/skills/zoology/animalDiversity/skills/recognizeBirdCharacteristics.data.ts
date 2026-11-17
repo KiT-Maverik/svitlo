@@ -31,7 +31,7 @@ export const recognizeBirdCharacteristics_Skill_Data = defineSkill({
     et: 'Lindude tunnuste äratundmine',
     be: 'Распазнаваць прыкметы птушак',
     ka: 'ფრინველების ნიშნების ამოცნობა',
-    kk: 'Құстардың белгілерін тану',
+    kk: 'Qūstardyñ belgılerın tanu',
     qm: 'Quşlarnıñ belgilerini tanımaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const recognizeBirdCharacteristics_Skill_Data = defineSkill({
       et: 'Tunne linnud sulgede järgi ära ka siis, kui nad ei suuda lennata.',
       be: "Распазнавай птушак па пер'і, нават калі яны ня ўмеюць лётаць.",
       ka: 'ამოიცანი ფრინველები ბუმბულით, მაშინაც კი, თუ მათ ფრენა არ შეუძლიათ.',
-      kk: 'Құстарды ұша алмаса да қауырсындары арқылы таны.',
+      kk: 'Qūstardy ūşa almasa da qauyrsyndary arqyly tany.',
       qm: 'Uçalmağan quşlar da dahil, quşlarnı bedenlerindeki tüylerge köre tanıñız.',
     },
   },

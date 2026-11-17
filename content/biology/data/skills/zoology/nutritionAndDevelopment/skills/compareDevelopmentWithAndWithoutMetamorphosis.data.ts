@@ -31,7 +31,7 @@ export const compareDevelopmentWithAndWithoutMetamorphosis_Skill_Data = defineSk
     et: 'Moondumisega ja moondumiseta arengu võrdlemine',
     be: 'Параўноўваць разьвіцьцё з мэтамарфозам і бязь яго',
     ka: 'მეტამორფოზით და მის გარეშე განვითარების შედარება',
-    kk: 'Метаморфозбен және онсыз дамуды салыстыру',
+    kk: 'Metamorfozben jäne onsyz damudy salystyru',
     qm: 'Metamorfoznen ve metamorfozsız inkişafnı teñeştirmek',
   },
   description: {
@@ -65,7 +65,7 @@ export const compareDevelopmentWithAndWithoutMetamorphosis_Skill_Data = defineSk
       et: 'Võrdle loomi, kelle kehakuju arengu jooksul muutub, nendega, kellel see ei muutu.',
       be: 'Параўноўвай жывёлаў, у якіх падчас разьвіцьця істотна зьмяняецца будова цела, з тымі, у якіх такіх рэзкіх зьменаў няма.',
       ka: 'შეადარე ცხოველები, რომელთა სხეულის აგებულება განვითარებისას მკვეთრად იცვლება, იმათ, რომელთა აგებულება ასეთ მკვეთრ ცვლილებას არ განიცდის.',
-      kk: 'Даму барысында дене құрылысы күрт өзгеретін жануарларды мұндай күрт өзгеріске ұшырамайтындармен салыстыр.',
+      kk: 'Damu barysynda dene qūrylysy kürt özgeretın januarlardy mūndai kürt özgerıske ūşyramaityndarmen salystyr.',
       qm: 'İnkişaf devamında beden şekli deñişken ayvanlarnı böyle deñişüv olmağan ayvanlar ile teñeştiriñiz.',
     },
   },

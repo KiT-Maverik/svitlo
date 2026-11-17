@@ -31,7 +31,7 @@ export const recognizeMutuallyBeneficialRelationships_Skill_Data = defineSkill({
     et: 'Tunda ära vastastikku kasulikke suhteid',
     be: 'Распазнаваць узаемавыгадныя сувязі',
     ka: 'ურთიერთსასარგებლო ურთიერთობების ამოცნობა',
-    kk: 'Өзара пайдалы қатынастарды тану',
+    kk: 'Özara paidaly qatynastardy tanu',
     qm: 'İki tarafqa da faydalı alâqalarnı tanımaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const recognizeMutuallyBeneficialRelationships_Skill_Data = defineSkill({
       et: 'Tunne ära suhted, mis on kasulikud mõlemale osalevale liigile.',
       be: 'Вызначай узаемадзеяньні, карысныя для абодвух відаў.',
       ka: 'ამოიცანი ურთიერთობები, რომლებიც ორივე მონაწილე სახეობას სარგებელს აძლევს.',
-      kk: 'Қатысушы екі түрге де пайда әкелетін қатынастарды анықта.',
+      kk: 'Qatysuşy ekı türge de paida äkeletın qatynastardy anyqta.',
       qm: 'Eki türge de fayda ketirgen qarşılıqlı alâqalarnı tanıñız.',
     },
   },

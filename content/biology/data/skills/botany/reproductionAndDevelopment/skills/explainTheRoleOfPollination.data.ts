@@ -31,7 +31,7 @@ export const explainTheRoleOfPollination_Skill_Data = defineSkill({
     et: 'Tolmeldamise rolli selgitamine',
     be: 'Тлумачыць ролю апыленьня',
     ka: 'დამტვერვის როლის ახსნა',
-    kk: 'Тозаңданудың рөлін түсіндіру',
+    kk: 'Tozañdanudyñ rölın tüsındıru',
     qm: 'Tozlanmanıñ rolüni añlatmaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const explainTheRoleOfPollination_Skill_Data = defineSkill({
       et: 'Selgita tolmeldamise tähtsust enne viljastumist.',
       be: 'Тлумач, якую ролю апыленьне выконвае перад апладненьнем.',
       ka: 'ახსენი დამტვერვის როლი განაყოფიერებამდე.',
-      kk: 'Ұрықтануға дейін тозаңданудың қандай рөл атқаратынын түсіндір.',
+      kk: 'Ūryqtanuğa deiın tozañdanudyñ qandai röl atqaratynyn tüsındır.',
       qm: 'Tozlanma uruqlandırmadan evel nasıl rol oynağanını añlatıñız.',
     },
   },

@@ -31,7 +31,7 @@ export const distinguishBacteriaAndArchaea_Skill_Data = defineSkill({
     et: 'Bakterite ja arhede eristamine',
     be: 'Адрозьніваць бактэрыі і археі',
     ka: 'ბაქტერიებისა და არქეების გარჩევა',
-    kk: 'Бактериялар мен археяларды ажырату',
+    kk: 'Bakterialar men arheialardy ajyratu',
     qm: 'Bakteriyalar ve arheyalarnı bir-birinden ayırmaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const distinguishBacteriaAndArchaea_Skill_Data = defineSkill({
       et: 'Erista baktereid ja arhesid kui kaht eraldi rakuliste organismide rühma.',
       be: 'Адрозьнівайце бактэрыі й археі як дзьве асобныя групы клеткавых арганізмаў.',
       ka: 'განასხვავეთ ბაქტერიები და არქეები, როგორც უჯრედული ორგანიზმების ორი განსხვავებული ჯგუფი.',
-      kk: 'Бактериялар мен археяларды жасушалы ағзалардың екі бөлек тобы ретінде ажыратыңыз.',
+      kk: 'Bakterialar men arheialardy jasuşaly ağzalardyñ ekı bölek toby retınde ajyratyñyz.',
       qm: 'Bakteriyalar ve arheyalar üceyreli canlılarnıñ eki ayrı gruppası olğanını añlap, olarnı ayırıñız.',
     },
   },

@@ -31,7 +31,7 @@ export const explainTheRoleOfTheSkeleton_Skill_Data = defineSkill({
     et: 'Luustiku rolli selgitamine',
     be: 'Тлумачыць ролю шкілета',
     ka: 'ჩონჩხის როლის ახსნა',
-    kk: 'Қаңқаның рөлін түсіндіру',
+    kk: 'Qañqanyñ rölın tüsındıru',
     qm: 'İskeletniñ rolüni añlatmaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const explainTheRoleOfTheSkeleton_Skill_Data = defineSkill({
       et: 'Selgita, kuidas luustik toetab keha ja kaitseb mõningaid elundeid.',
       be: 'Растлумачце, як шкілет падтрымлівае цела й абараняе некаторыя органы.',
       ka: 'ახსენით, როგორ ამაგრებს ჩონჩხი სხეულს და იცავს ზოგიერთ ორგანოს.',
-      kk: 'Қаңқа денені қалай тіреп, кейбір мүшелерді қорғайтынын түсіндіріңіз.',
+      kk: 'Qañqa denenı qalai tırep, keibır müşelerdı qorğaitynyn tüsındırıñız.',
       qm: 'İskelet bedenni nasıl dayap, bazı organlarnı nasıl qorğanını añlatıñız.',
     },
   },

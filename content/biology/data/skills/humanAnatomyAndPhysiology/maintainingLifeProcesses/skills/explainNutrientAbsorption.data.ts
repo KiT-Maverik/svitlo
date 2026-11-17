@@ -31,7 +31,7 @@ export const explainNutrientAbsorption_Skill_Data = defineSkill({
     et: 'Toitainete imendumise selgitamine',
     be: 'Тлумачыць усмоктваньне пажыўных рэчываў',
     ka: 'საკვები ნივთიერებების შეწოვის ახსნა',
-    kk: 'Қоректік заттардың сіңуін түсіндіру',
+    kk: 'Qorektık zattardyñ sıñuın tüsındıru',
     qm: 'Azıq maddeleriniñ emilüvini añlatmaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const explainNutrientAbsorption_Skill_Data = defineSkill({
       et: 'Õpi, kuidas seeditud toitained imenduvad soolestikust kehasse.',
       be: 'Даведайцеся, як ператраўленыя пажыўныя рэчывы ўсмоктваюцца з кішэчніка ў арганізм.',
       ka: 'გაიგეთ, როგორ შეიწოვება მონელებული საკვები ნივთიერებები ნაწლავებიდან სხეულში.',
-      kk: 'Қорытылған қоректік заттардың ішектен ағзаға қалай сіңетінін біліңіз.',
+      kk: 'Qorytylğan qorektık zattardyñ ışekten ağzağa qalai sıñetının bılıñız.',
       qm: 'Siñdirilgen azıq maddeleri içekten bedenge nasıl emilgenini ögreniñiz.',
     },
   },

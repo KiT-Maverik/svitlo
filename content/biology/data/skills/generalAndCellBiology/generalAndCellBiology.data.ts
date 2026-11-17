@@ -36,7 +36,7 @@ export const generalAndCellBiology_SkillDomain_Data = defineSkillDomain({
     et: 'Üld- ja rakubioloogia',
     be: 'Агульная і клетачная біялёгія',
     ka: 'ზოგადი და უჯრედული ბიოლოგია',
-    kk: 'Жалпы және жасуша биологиясы',
+    kk: 'Jalpy jäne jasuşa biologiasy',
     qm: 'Umumiy ve üceyre biologiyası',
   },
   groups: [
@@ -76,7 +76,7 @@ export const generalAndCellBiology_SkillDomain_Data = defineSkillDomain({
       et: 'Uuri, kuidas rakud ja organismi struktuurid teevad koostööd, et eluprotsessid toimiksid.',
       be: 'Дасьледуй, як клеткі й структуры арганізму працуюць разам, падтрымліваючы жыцьцёвыя працэсы.',
       ka: 'შეისწავლე, როგორ მუშაობენ უჯრედები და ორგანიზმის სტრუქტურები ერთად სასიცოცხლო პროცესების შესანარჩუნებლად.',
-      kk: 'Жасушалар мен ағза құрылымдарының тіршілік үдерістерін қолдау үшін қалай бірлесіп жұмыс істейтінін зертте.',
+      kk: 'Jasuşalar men ağza qūrylymdarynyñ tırşılık üderısterın qoldau üşın qalai bırlesıp jūmys ısteitının zertte.',
       qm: 'Üceyreler ve beden quruluşları bir-birinen çalışıp yaşayış süreçlerini nasıl devam ettirgenini ögreniñiz.',
     },
   },

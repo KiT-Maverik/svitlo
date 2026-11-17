@@ -31,7 +31,7 @@ export const explainGasExchangeInTheLungs_Skill_Data = defineSkill({
     et: 'Kopsude gaasivahetuse selgitamine',
     be: 'Тлумачыць газаабмен у лёгкіх',
     ka: 'ფილტვებში აირთა ცვლის ახსნა',
-    kk: 'Өкпедегі газ алмасуды түсіндіру',
+    kk: 'Ökpedegı gaz almasudy tüsındıru',
     qm: 'Aqciğerlerde gaz alıp berüvni añlatmaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const explainGasExchangeInTheLungs_Skill_Data = defineSkill({
       et: 'Mõista, kuidas hapnik ja süsihappegaas liiguvad kopsualveoolide õhu ning vere vahel.',
       be: 'Зразумейце, як кісларод і вуглякіслы газ пераходзяць паміж паветрам у альвэолах і крывёю.',
       ka: 'გაიგეთ, როგორ გადადის ჟანგბადი და ნახშირორჟანგი ფილტვების ალვეოლებში არსებული ჰაერიდან სისხლში და პირიქით.',
-      kk: 'Өкпе альвеолаларындағы ауа мен қан арасында оттегі мен көмірқышқыл газы қалай алмасатынын түсініңіз.',
+      kk: 'Ökpe alveolalaryndağy aua men qan arasynda ottegı men kömırqyşqyl gazy qalai almasatynyn tüsınıñız.',
       qm: 'Aqciğer alveollarındaki ava ve qan arasında oksigen ve karbon dioksid nasıl alınıp berilgenini añlañız.',
     },
   },

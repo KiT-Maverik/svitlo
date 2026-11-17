@@ -51,7 +51,7 @@ export const animalDiversity_SkillGroup_Data = defineSkillGroup({
     et: 'Loomade mitmekesisus',
     be: 'Разнастайнасьць жывёлаў',
     ka: 'ცხოველთა მრავალფეროვნება',
-    kk: 'Жануарлар алуандығы',
+    kk: 'Januarlar aluandyğy',
     qm: 'Ayvanlar çeşitliligi',
   },
   skills: [
@@ -104,7 +104,7 @@ export const animalDiversity_SkillGroup_Data = defineSkillGroup({
       et: 'Avasta peamiste loomarühmade erinevaid tunnuseid.',
       be: 'Дасьледуй розныя прыкметы асноўных групаў жывёлаў.',
       ka: 'შეისწავლე ცხოველთა ძირითადი ჯგუფების განსხვავებული ნიშნები.',
-      kk: 'Жануарлардың негізгі топтарының әртүрлі белгілерін зертте.',
+      kk: 'Januarlardyñ negızgı toptaryn syrtqy ūqsastyğyna ğana emes, dene qūrylysynyñ senımdı belgılerıne qarap tany.',
       qm: 'Ayvanlarnıñ esas gruplarını sadece tışqı beñzerlikke degil, beden quruluşunıñ belgilerine köre tanıñız.',
     },
   },

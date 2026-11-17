@@ -31,7 +31,7 @@ export const explainMechanismsOfViralTransmission_Skill_Data = defineSkill({
     et: 'Viiruste levikumehhanismide selgitamine',
     be: 'Тлумачыць мэханізмы перадачы вірусаў',
     ka: 'ვირუსების გადაცემის მექანიზმების ახსნა',
-    kk: 'Вирустың берілу жолдарын түсіндіру',
+    kk: 'Virustyñ berılu joldaryn tüsındıru',
     qm: 'Viruslarnıñ yuqma yollarını añlatmaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const explainMechanismsOfViralTransmission_Skill_Data = defineSkill({
       et: 'Võrdle erinevaid viise, kuidas viirused levivad ühelt peremehelt teisele.',
       be: 'Параўнай розныя шляхі, якімі вірусы перадаюцца ад аднаго гаспадара да іншага.',
       ka: 'შეადარე სხვადასხვა გზა, რომლითაც ვირუსები ერთი მასპინძლიდან მეორეზე გადადის.',
-      kk: 'Вирустардың бір иесінен екінші иесіне берілуінің әртүрлі жолдарын салыстыр.',
+      kk: 'Virustardyñ bır iesınen ekınşı iesıne berıluınıñ ärtürlı joldaryn salystyr.',
       qm: 'Viruslarnıñ bir saipten başqasına qanday yollar vastasınen keçkenini teñeştiriñiz.',
     },
   },

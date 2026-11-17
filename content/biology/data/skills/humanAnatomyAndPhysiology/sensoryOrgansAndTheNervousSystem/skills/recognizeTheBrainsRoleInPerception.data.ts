@@ -31,7 +31,7 @@ export const recognizeTheBrainsRoleInPerception_Skill_Data = defineSkill({
     et: 'Aju rolli äratundmine tajumisel',
     be: 'Распазнаваць ролю мозгу ва ўспрыманьні',
     ka: 'ტვინის როლის ამოცნობა აღქმაში',
-    kk: 'Мидың қабылдаудағы рөлін тану',
+    kk: 'Midyñ qabyldaudağy rölın tanu',
     qm: 'Miy sezgilerni añlavda ne rol oynağanını tanımaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const recognizeTheBrainsRoleInPerception_Skill_Data = defineSkill({
       et: 'Selgita, miks ajul on keskne roll meeleelunditest saadud teabe tõlgendamisel.',
       be: 'Растлумачце, чаму мозг адыгрывае галоўную ролю ў тлумачэньні сэнсарнай інфармацыі.',
       ka: 'ახსენით, რატომ აქვს ტვინს მთავარი როლი შეგრძნებითი ინფორმაციის ინტერპრეტაციაში.',
-      kk: 'Сезімдік ақпаратты түсіндіруде мидың неге негізгі рөл атқаратынын түсіндіріңіз.',
+      kk: 'Sezımdık aqparatty tüsındırude midyñ nege negızgı röl atqaratynyn tüsındırıñız.',
       qm: 'Sezgi malümatını añlatıp berüvde miyniñ ne içün esas rolü olğanını añlatıñız.',
     },
   },

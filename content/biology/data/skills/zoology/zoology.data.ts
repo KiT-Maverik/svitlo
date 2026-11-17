@@ -36,7 +36,7 @@ export const zoology_SkillDomain_Data = defineSkillDomain({
     et: 'Zooloogia',
     be: 'Заалёгія',
     ka: 'ზოოლოგია',
-    kk: 'Зоология',
+    kk: 'Zoologia',
     qm: 'Zoologiya',
   },
   groups: [
@@ -76,7 +76,7 @@ export const zoology_SkillDomain_Data = defineSkillDomain({
       et: 'Avasta, kuidas loomad erinevad ehituse, liikumise, kasvamise ja käitumise poolest.',
       be: 'Даведайся, чым жывёлы адрозьніваюцца паводле будовы, руху, росту і паводзінаў.',
       ka: 'გაიგე, რით განსხვავდებიან ცხოველები აგებულებით, მოძრაობით, ზრდითა და ქცევით.',
-      kk: 'Жануарлардың құрылысы, қозғалысы, өсуі және мінез-құлқы жағынан қалай ерекшеленетінін біл.',
+      kk: 'Januarlardyñ qūrylysy, qozğalysy, ösuı jäne mınez-qūlqy jağynan qalai erekşelenetının bıl.',
       qm: 'Ayvanlarnıñ beden quruluşu, areketi, ösüvi ve davranışlarında qanday farqlar olğanını ögreniñiz.',
     },
   },

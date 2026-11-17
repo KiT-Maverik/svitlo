@@ -31,7 +31,7 @@ export const distinguishSexualAndAsexualReproduction_Skill_Data = defineSkill({
     et: 'Eristada sugulist ja mittesugulist paljunemist',
     be: 'Адрозьніваць палавое і бясполае размнажэньне',
     ka: 'სქესობრივი და უსქესო გამრავლების გარჩევა',
-    kk: 'Жынысты және жыныссыз көбеюді ажырату',
+    kk: 'Jynysty jäne jynyssyz köbeiudı ajyratu',
     qm: 'Cinsiy ve cinsiy olmağan çoğaluvnı farqlamaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const distinguishSexualAndAsexualReproduction_Skill_Data = defineSkill({
       et: 'Erista sugurakkude ühinemisega paljunemist paljunemisest, kus need ei ühine.',
       be: 'Адрозьнівай размнажэньне са зьліцьцём палавых клетак ад размнажэньня бязь іх зьліцьця.',
       ka: 'განასხვავე გამრავლება სასქესო უჯრედების შერწყმით და შერწყმის გარეშე.',
-      kk: 'Жыныс жасушалары қосылатын және қосылмайтын көбеюді ажырат.',
+      kk: 'Jynys jasuşalary qosylatyn jäne qosylmaityn köbeiudı ajyrat.',
       qm: 'Cinsiy üceyrelerniñ birleşüvi ile olğan çoğaluvnı olarnıñ birleşüvi olmadan olğan çoğaluvdan farq etiñiz.',
     },
   },

@@ -40,7 +40,7 @@ export const genetics_SkillGroup_Data = defineSkillGroup({
     et: 'Geneetika',
     be: 'Генэтыка',
     ka: 'გენეტიკა',
-    kk: 'Генетика',
+    kk: 'Genetika',
   },
   skills: [
     distinguishAGeneFromATrait_Skill_Data,
@@ -81,7 +81,7 @@ export const genetics_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri, kuidas DNA, geenid ja nende aktiivsus mõjutavad pärilikke tunnuseid.',
       be: 'Даведайся, як ДНК, гены і іхная актыўнасьць уплываюць на спадчынныя прыкметы.',
       ka: 'გაიგე, როგორ მოქმედებს დნმ, გენები და მათი აქტივობა მემკვიდრეობით ნიშნებზე.',
-      kk: 'ДНҚ, гендер және олардың белсенділігі тұқым қуалайтын белгілерге қалай әсер ететінін біл.',
+      kk: 'DNQ, gender jäne olardyñ belsendılıgı tūqym qualaityn belgılerge qalai äser etetının bıl.',
     },
   },
 });

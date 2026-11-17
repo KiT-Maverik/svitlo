@@ -31,7 +31,7 @@ export const explainFoodWebs_Skill_Data = defineSkill({
     et: 'Selgitada toiduvõrgustikke',
     be: 'Тлумачыць харчовыя сеткі',
     ka: 'კვებითი ქსელების ახსნა',
-    kk: 'Қоректік торларды түсіндіру',
+    kk: 'Qorektık torlardy tüsındıru',
     qm: 'Azıq ağlarını añlatmaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const explainFoodWebs_Skill_Data = defineSkill({
       et: 'Mõista, kuidas omavahel seotud toiduahelad moodustavad toiduvõrgustiku.',
       be: 'Зразумей, як зьвязаныя харчовыя ланцугі ўтвараюць харчовую сетку.',
       ka: 'გაიგე, როგორ ქმნიან ურთიერთდაკავშირებული კვებითი ჯაჭვები კვებით ქსელს.',
-      kk: 'Өзара байланысқан қоректік тізбектер қоректік торды қалай құрайтынын түсіндір.',
+      kk: 'Özara bailanysqan qorektık tızbekter qorektık tordy qalai qūraitynyn tüsındır.',
       qm: 'Bir-birinen bağlı azıq zıncırları nasıl azıq ağını teşkil etkenini ögreniñiz.',
     },
   },

@@ -31,7 +31,7 @@ export const justifyProtectionOfSpeciesListedInRedDataBooks_Skill_Data = defineS
     et: 'Põhjendada punastesse raamatutesse kantud liikide kaitset',
     be: 'Абгрунтоўваць ахову відаў з Чырвоных кніг',
     ka: 'წითელ წიგნებში შეტანილი სახეობების დაცვის დასაბუთება',
-    kk: 'Қызыл кітаптардағы түрлерді қорғауды негіздеу',
+    kk: 'Qyzyl kıtaptardağy türlerdı qorğaudy negızdeu',
     qm: 'Qırmızı kitaplardaki türlerni qorçalamaqnı esaslandırmaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const justifyProtectionOfSpeciesListedInRedDataBooks_Skill_Data = defineS
       et: 'Selgita, miks punastesse raamatutesse kantud ohustatud liigid vajavad kaitset.',
       be: 'Патлумач, чаму віды пад пагрозай, занесеныя ў Чырвоныя кнігі, патрабуюць аховы.',
       ka: 'ახსენი, რატომ საჭიროებენ დაცვას წითელ წიგნებში შეტანილი საფრთხის ქვეშ მყოფი სახეობები.',
-      kk: 'Қызыл кітаптарға енген жойылу қаупі бар түрлерді неге қорғау қажет екенін түсіндір.',
+      kk: 'Qyzyl kıtaptarğa engen joiylu qaupı bar türlerdı nege qorğau qajet ekenın tüsındır.',
       qm: 'Qırmızı kitaplarga kirsetilgen telüke astındaki türler ne içün hususiy qorçalavğa muhtac olğanını añlatıñız.',
     },
   },

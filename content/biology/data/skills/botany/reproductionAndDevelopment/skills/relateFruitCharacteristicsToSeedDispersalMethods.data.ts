@@ -31,7 +31,7 @@ export const relateFruitCharacteristicsToSeedDispersalMethods_Skill_Data = defin
     et: 'Vilja omaduste seostamine seemnete levikuga',
     be: 'Сувязваць прыкметы пладоў са спосабамі распаўсюду насеньня',
     ka: 'ნაყოფის ნიშნების დაკავშირება თესლის გავრცელებასთან',
-    kk: 'Жеміс белгілерін тұқым таралуымен байланыстыру',
+    kk: 'Jemıs belgılerın tūqym taraluymen bailanystyru',
     qm: 'Meyva belgilerini tohum yayılmasınıñ usullarınen bağlaştırmaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const relateFruitCharacteristicsToSeedDispersalMethods_Skill_Data = defin
       et: 'Seosta viljade ja seemnete kuju nende levimise viisidega.',
       be: 'Сувязвай формы пладоў і насеньня са спосабамі іхнага распаўсюду.',
       ka: 'დააკავშირე ნაყოფისა და თესლის ფორმები მათი გავრცელების გზებთან.',
-      kk: 'Жеміс пен тұқым пішіндерін олардың таралу тәсілдерімен байланыстыр.',
+      kk: 'Jemıs pen tūqym pışınderın olardyñ taralu täsılderımen bailanystyr.',
       qm: 'Meyva ve tohumlarnıñ şekillerini olarnıñ etrafqa yayılma usullarınen bağlaştırıñız.',
     },
   },

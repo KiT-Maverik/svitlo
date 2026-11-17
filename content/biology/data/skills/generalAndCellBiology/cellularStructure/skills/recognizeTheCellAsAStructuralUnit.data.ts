@@ -31,7 +31,7 @@ export const recognizeTheCellAsAStructuralUnit_Skill_Data = defineSkill({
     et: 'Raku kui ehitusliku põhiüksuse tundmine',
     be: 'Разумець клетку як структурную адзінку',
     ka: 'უჯრედის, როგორც სტრუქტურული ერთეულის, ამოცნობა',
-    kk: 'Жасушаны құрылымдық бірлік ретінде тану',
+    kk: 'Jasuşany qūrylymdyq bırlık retınde tanu',
     qm: 'Üceyreni esas quruluş birlemi olaraq tanımaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const recognizeTheCellAsAStructuralUnit_Skill_Data = defineSkill({
       et: 'Mõista, miks rakud on elusorganismide ehituse põhiüksused.',
       be: 'Зразумей, чаму клеткі зьяўляюцца асноўнымі структурнымі адзінкамі жывых арганізмаў.',
       ka: 'გაიგე, რატომ არის უჯრედი ცოცხალი ორგანიზმების აგებულების ძირითადი ერთეული.',
-      kk: 'Жасушалардың тірі ағзалардың негізгі құрылымдық бірліктері екенін түсін.',
+      kk: 'Jasuşalardyñ tırı ağzalardyñ negızgı qūrylymdyq bırlıkterı ekenın tüsın.',
       qm: 'Üceyreler canlılarnıñ esas quruluş birlemleri olğanını ne içün aytqanımıznı ögreniñiz.',
     },
   },

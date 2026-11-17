@@ -31,7 +31,7 @@ export const explainFunctionsOfTheHumanReproductiveSystem_Skill_Data = defineSki
     et: 'Inimese suguelundkonna ülesannete selgitamine',
     be: 'Тлумачыць функцыі рэпрадуктыўнай сыстэмы чалавека',
     ka: 'ადამიანის რეპროდუქციული სისტემის ფუნქციების ახსნა',
-    kk: 'Адамның көбею жүйесінің қызметтерін түсіндіру',
+    kk: 'Adamnyñ köbeiu jüiesınıñ qyzmetterın tüsındıru',
     qm: 'İnsannıñ üreme sistemasınıñ vazifelerini añlatmaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const explainFunctionsOfTheHumanReproductiveSystem_Skill_Data = defineSki
       et: 'Mõista inimese suguelundite ja paljunemisprotsesside bioloogilisi ülesandeid.',
       be: 'Зразумейце біялягічныя функцыі рэпрадуктыўных органаў і працэсаў чалавека.',
       ka: 'გაიგეთ ადამიანის რეპროდუქციული ორგანოებისა და პროცესების ბიოლოგიური ფუნქციები.',
-      kk: 'Адамның көбею мүшелері мен үдерістерінің биологиялық қызметтерін түсініңіз.',
+      kk: 'Adamnyñ köbeiu müşelerı men üderısterınıñ biologialyq qyzmetterın tüsınıñız.',
       qm: 'İnsannıñ üreme organları ve protsessleriniñ biologik vazifelerini añlañız.',
     },
   },

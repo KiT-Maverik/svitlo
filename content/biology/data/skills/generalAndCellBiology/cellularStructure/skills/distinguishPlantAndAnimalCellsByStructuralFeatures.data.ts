@@ -31,7 +31,7 @@ export const distinguishPlantAndAnimalCellsByStructuralFeatures_Skill_Data = def
     et: 'Taime- ja loomarakkude eristamine ehituse järgi',
     be: 'Адрозьніваць расьлінныя і жывёльныя клеткі паводле будовы',
     ka: 'მცენარეული და ცხოველური უჯრედების სტრუქტურით გარჩევა',
-    kk: 'Құрылымына қарай өсімдік және жануар жасушаларын ажырату',
+    kk: 'Qūrylymyna qarai ösımdık jäne januar jasuşalaryn ajyratu',
     qm: 'Ösümlik ve ayvan üceyrelerini quruluşuna köre farqlamaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const distinguishPlantAndAnimalCellsByStructuralFeatures_Skill_Data = def
       et: 'Tunne ära taime- ja loomarakkude põhitunnused, eeldamata, et kõik rakud näevad ühesugused välja.',
       be: 'Распазнавай асноўныя прыкметы расьлінных і жывёльных клетак, не мяркуючы, што ўсе клеткі выглядаюць аднолькава.',
       ka: 'ამოიცანი მცენარეული და ცხოველური უჯრედების ძირითადი ნიშნები ისე, რომ არ ჩათვალო ყველა უჯრედი ერთნაირად.',
-      kk: 'Барлық жасуша бірдей көрінеді деп ойламай, өсімдік пен жануар жасушаларының негізгі белгілерін таны.',
+      kk: 'Barlyq jasuşa bırdei körınedı dep oilamai, ösımdık pen januar jasuşalarynyñ negızgı belgılerın tany.',
       qm: 'Ösümlik ve ayvan üceyreleriniñ esas belgilerini tanıñız; bütün üceyreler bir türlü körüne dep tüşünmeñiz.',
     },
   },

@@ -31,7 +31,7 @@ export const distinguishAPartOfAnOrganismFromAWholeOrganism_Skill_Data = defineS
     et: 'Organismi osa eristamine tervest organismist',
     be: 'Адрозьніваць частку арганізму ад цэлага арганізму',
     ka: 'ორგანიზმის ნაწილისა და მთელი ორგანიზმის გარჩევა',
-    kk: 'Ағзаның бөлігін тұтас ағзадан ажырату',
+    kk: 'Ağzanyñ bölıgın tūtas ağzadan ajyratu',
     qm: 'Canlınıñ bir qısmını bütün canlıdan farqlamaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const distinguishAPartOfAnOrganismFromAWholeOrganism_Skill_Data = defineS
       et: 'Erista üksikut elundit või kehaosa terviklikust elusorganismist.',
       be: 'Адрозьнівай асобны орган або частку цела ад цэлага жывога арганізму.',
       ka: 'განასხვავე ცალკეული ორგანო ან სხეულის ნაწილი მთლიანი ცოცხალი ორგანიზმისგან.',
-      kk: 'Жеке мүшені немесе дене бөлігін тұтас тірі ағзадан ажырат.',
+      kk: 'Jeke müşenı nemese dene bölıgın tūtas tırı ağzadan ajyrat.',
       qm: 'Bir organ ya da beden qısmını tam, müstaqil canlı organizmden farq etiñiz.',
     },
   },

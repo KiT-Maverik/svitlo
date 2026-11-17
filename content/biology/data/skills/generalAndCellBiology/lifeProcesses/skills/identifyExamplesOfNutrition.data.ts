@@ -31,7 +31,7 @@ export const identifyExamplesOfNutrition_Skill_Data = defineSkill({
     et: 'Toitumise näidete äratundmine',
     be: 'Распазнаваць прыклады жыўленьня',
     ka: 'კვების მაგალითების ამოცნობა',
-    kk: 'Қоректену мысалдарын тану',
+    kk: 'Qorektenu mysaldaryn tanu',
     qm: 'Beslenüv misallerini tanımaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const identifyExamplesOfNutrition_Skill_Data = defineSkill({
       et: 'Tunne ära erinevad viisid, kuidas organismid saavad ja kasutavad toitaineid.',
       be: 'Распазнавай розныя спосабы, якімі арганізмы атрымліваюць і выкарыстоўваюць пажыўныя рэчывы.',
       ka: 'ამოიცანი, როგორ მოიპოვებენ და იყენებენ ორგანიზმები საკვებ ნივთიერებებს სხვადასხვა გზით.',
-      kk: 'Ағзалардың қоректік заттарды алуы мен пайдалануының әртүрлі жолдарын таны.',
+      kk: 'Ağzalardyñ qorektık zattardy aluy men paidalanuynyñ ärtürlı joldaryn tany.',
       qm: 'Canlılar azıq maddelerini qanday yollar ile alğanını ve qullanğanını tanıñız.',
     },
   },

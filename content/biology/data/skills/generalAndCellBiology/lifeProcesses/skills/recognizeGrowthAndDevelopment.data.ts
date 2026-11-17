@@ -31,7 +31,7 @@ export const recognizeGrowthAndDevelopment_Skill_Data = defineSkill({
     et: 'Kasvamise ja arengu eristamine',
     be: 'Распазнаваць рост і разьвіцьцё',
     ka: 'ზრდისა და განვითარების ამოცნობა',
-    kk: 'Өсу мен дамуды тану',
+    kk: 'Ösu men damudy tanu',
     qm: 'Ösüv ve inkişafnı farqlamaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const recognizeGrowthAndDevelopment_Skill_Data = defineSkill({
       et: 'Erista suuruse suurenemist organismi ehituse ja ülesannete muutumisest.',
       be: 'Адрозьнівай павелічэньне памераў ад зьменаў будовы й функцыяў арганізму.',
       ka: 'განასხვავე ზომის მატება ორგანიზმის აგებულებისა და ფუნქციების ცვლილებებისგან.',
-      kk: 'Көлемінің ұлғаюын ағзаның құрылысы мен қызметінің өзгеруінен ажырат.',
+      kk: 'Kölemınıñ ūlğaiuyn ağzanyñ qūrylysy men qyzmetınıñ özgeruınen ajyrat.',
       qm: 'Canlınıñ boyu ya da kütlesi artuvını quruluş ve vazifelerindeki deñişüvlerden farq etiñiz.',
     },
   },

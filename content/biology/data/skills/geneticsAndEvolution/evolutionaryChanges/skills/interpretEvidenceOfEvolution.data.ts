@@ -31,7 +31,7 @@ export const interpretEvidenceOfEvolution_Skill_Data = defineSkill({
     et: 'Tõlgendada evolutsiooni tõendeid',
     be: 'Інтэрпрэтаваць доказы эвалюцыі',
     ka: 'ევოლუციის მტკიცებულებების განმარტება',
-    kk: 'Эволюция дәлелдерін түсіндіру',
+    kk: 'Evoliutsia dälelderın tüsındıru',
     qm: 'Evolütsiyanıñ delillerini talil etmek',
   },
   description: {
@@ -65,7 +65,7 @@ export const interpretEvidenceOfEvolution_Skill_Data = defineSkill({
       et: 'Uuri, kuidas fossiilid, anatoomia ja DNA annavad tõendeid evolutsiooni kohta.',
       be: 'Дасьледуй, як выкапні, анатомія і ДНК даюць доказы эвалюцыі.',
       ka: 'გამოიკვლიე, როგორ გვაწვდიან ნამარხები, ანატომია და დნმ ევოლუციის მტკიცებულებებს.',
-      kk: 'Қазба қалдықтар, анатомия және ДНҚ эволюцияның дәлелдерін қалай беретінін зертте.',
+      kk: 'Qazba qaldyqtar, anatomia jäne DNQ evoliutsianyñ dälelderın qalai beretının zertte.',
       qm: 'Qazılma qalıntılar, anatomiya ve DNK evolütsiya aqqında nasıl deliller bergenini araştırıñız.',
     },
   },

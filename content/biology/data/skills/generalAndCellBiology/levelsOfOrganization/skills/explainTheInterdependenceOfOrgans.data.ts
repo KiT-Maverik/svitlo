@@ -31,7 +31,7 @@ export const explainTheInterdependenceOfOrgans_Skill_Data = defineSkill({
     et: 'Elundite vastastikuse sõltuvuse selgitamine',
     be: 'Тлумачыць узаемазалежнасьць органаў',
     ka: 'ორგანოების ურთიერთდამოკიდებულების ახსნა',
-    kk: 'Мүшелердің өзара тәуелділігін түсіндіру',
+    kk: 'Müşelerdıñ özara täueldılıgın tüsındıru',
     qm: 'Organlarnıñ qarşılıqlı bağlılığını añlatmaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const explainTheInterdependenceOfOrgans_Skill_Data = defineSkill({
       et: 'Uuri, miks erinevad elundid üksteisest sõltuvad.',
       be: 'Дасьледуй, чаму розныя органы залежаць адзін ад аднаго.',
       ka: 'გამოიკვლიე, რატომ არის სხვადასხვა ორგანო ერთმანეთზე დამოკიდებული.',
-      kk: 'Әртүрлі мүшелердің бір-біріне неге тәуелді екенін зертте.',
+      kk: 'Ärtürlı müşelerdıñ bır-bırıne nege täueldı ekenın zertte.',
       qm: 'Çeşit organlar ne içün bir-birine bağlı olğanını ögreniñiz.',
     },
   },

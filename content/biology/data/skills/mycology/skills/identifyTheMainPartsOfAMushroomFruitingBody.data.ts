@@ -31,7 +31,7 @@ export const identifyTheMainPartsOfAMushroomFruitingBody_Skill_Data = defineSkil
     et: 'Seenekübara viljakeha põhiosade äratundmine',
     be: 'Вызначаць асноўныя часткі пладовага цела шапачкавага грыба',
     ka: 'სოკოს ნაყოფსხეულის ძირითადი ნაწილების ამოცნობა',
-    kk: 'Саңырауқұлақ жемісті денесінің негізгі бөліктерін анықтау',
+    kk: 'Sañyrauqūlaq jemıstı denesınıñ negızgı bölıkterın anyqtau',
     qm: 'Şapkalı mantarnıñ meyve cisminiñ esas qısımlarını belgilemek',
   },
   description: {
@@ -65,7 +65,7 @@ export const identifyTheMainPartsOfAMushroomFruitingBody_Skill_Data = defineSkil
       et: 'Õpi tundma tavalise kübarseene kübarat, jalga ja eoseid tootvaid osi.',
       be: 'Вызначайце шапачку, ножку і структуры, што ўтвараюць споры, у звычайнага грыба.',
       ka: 'ამოიცანით ჩვეულებრივი სოკოს ქუდი, ფეხი და სპორების წარმომქმნელი სტრუქტურები.',
-      kk: 'Кәдімгі саңырауқұлақтың қалпағын, сабағын және спора түзетін бөліктерін анықтаңыз.',
+      kk: 'Kädımgı sañyrauqūlaqtyñ qalpağyn, sabağyn jäne spora tüzetın bölıkterın anyqtañyz.',
       qm: 'Adiy mantarnıñ şapkasını, ayağını ve sporalar peyda etken qısımlarını tanıñız.',
     },
   },

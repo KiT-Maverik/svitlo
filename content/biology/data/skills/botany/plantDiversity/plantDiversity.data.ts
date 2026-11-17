@@ -40,7 +40,7 @@ export const plantDiversity_SkillGroup_Data = defineSkillGroup({
     et: 'Taimede mitmekesisus',
     be: 'Разнастайнасьць расьлінаў',
     ka: 'მცენარეთა მრავალფეროვნება',
-    kk: 'Өсімдіктердің алуантүрлілігі',
+    kk: 'Ösımdıkterdıñ aluantürlılıgı',
     qm: 'Ösümlikler çeşitliligi',
   },
   skills: [
@@ -82,7 +82,7 @@ export const plantDiversity_SkillGroup_Data = defineSkillGroup({
       et: 'Tunne eri taimed ära nende iseloomulike tunnuste järgi.',
       be: 'Распазнавай розныя расьліны паводле іхных характэрных прыкметаў.',
       ka: 'ამოიცანი მრავალგვარი მცენარე მათი გამორჩეული ნიშნებით.',
-      kk: 'Өсімдіктердің сан алуандығын ерекше белгілері арқылы таны.',
+      kk: 'Ösımdıkterdıñ san aluandyğyn erekşe belgılerı arqyly tany.',
       qm: 'Ösümliklerni olarnıñ özüne has belgilerine köre tanıp, çeşitliligini ögreniñiz.',
     },
   },

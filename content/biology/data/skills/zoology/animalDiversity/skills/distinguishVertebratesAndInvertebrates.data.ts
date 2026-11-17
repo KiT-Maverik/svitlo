@@ -31,7 +31,7 @@ export const distinguishVertebratesAndInvertebrates_Skill_Data = defineSkill({
     et: 'Selgroogsete ja selgrootute eristamine',
     be: 'Адрозьніваць хрыбетных ад бязхрыбетных',
     ka: 'ხერხემლიანებისა და უხერხემლოების გარჩევა',
-    kk: 'Омыртқалылар мен омыртқасыздарды ажырату',
+    kk: 'Omyrtqalylar men omyrtqasyzdardy ajyratu',
     qm: 'Omurtqalı ve omurtqasız ayvanlarnı farqlamaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const distinguishVertebratesAndInvertebrates_Skill_Data = defineSkill({
       et: 'Erista selgrooga loomi nendest, kellel selgroogu ei ole.',
       be: 'Адрозьнівай жывёлаў з хрыбетнікам ад тых, у каго яго няма.',
       ka: 'განასხვავე ხერხემლის მქონე ცხოველები ხერხემლის არმქონეთაგან.',
-      kk: 'Омыртқа жотасы бар жануарларды омыртқасы жоқ жануарлардан ажырат.',
+      kk: 'Omyrtqa jotasy bar januarlardy omyrtqasy joq januarlardan ajyrat.',
       qm: 'Omurtqa sütüni olğan ayvanlarnı omurtqası olmağan ayvanlardan farq etiñiz.',
     },
   },

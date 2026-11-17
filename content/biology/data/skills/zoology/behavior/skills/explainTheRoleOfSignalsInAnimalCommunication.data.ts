@@ -31,7 +31,7 @@ export const explainTheRoleOfSignalsInAnimalCommunication_Skill_Data = defineSki
     et: 'Signaalide rolli selgitamine loomade suhtluses',
     be: 'Тлумачыць ролю сыгналаў у камунікацыі жывёлаў',
     ka: 'ცხოველთა კომუნიკაციაში სიგნალების როლის ახსნა',
-    kk: 'Жануарлар қарым-қатынасындағы сигналдардың рөлін түсіндіру',
+    kk: 'Januarlar qarym-qatynasyndağy signaldardyñ rölın tüsındıru',
     qm: 'Ayvanlarnıñ haberleşüvinde signallarnıñ rolüni añlatmaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const explainTheRoleOfSignalsInAnimalCommunication_Skill_Data = defineSki
       et: 'Selgita, kuidas loomad suhtlevad häälte, liigutuste ja muude signaalide abil.',
       be: 'Растлумач, як жывёлы перадаюць інфармацыю гукамі, рухамі ды іншымі сыгналамі.',
       ka: 'ახსენი, როგორ ურთიერთობენ ცხოველები ბგერებით, მოძრაობითა და სხვა სიგნალებით.',
-      kk: 'Жануарлардың дыбыстар, қимылдар және басқа сигналдар арқылы қалай байланысатынын түсіндір.',
+      kk: 'Januarlardyñ dybystar, qimyldar jäne basqa signaldar arqyly qalai bailanysatynyn tüsındır.',
       qm: 'Ayvanlar ses, areket ve başqa signallar vastasınen nasıl haberleşkenini añlatıñız.',
     },
   },

@@ -31,7 +31,7 @@ export const distinguishGymnospermsAndAngiosperms_Skill_Data = defineSkill({
     et: 'Paljasseemnetaimede ja katteseemnetaimede eristamine',
     be: 'Адрозьніваць голанасенныя й пакрытанасенныя расьліны',
     ka: 'შიშველთესლოვნებისა და ფარულთესლოვნების გარჩევა',
-    kk: 'Ашықтұқымды және жабықтұқымды өсімдіктерді ажырату',
+    kk: 'Aşyqtūqymdy jäne jabyqtūqymdy ösımdıkterdı ajyratu',
     qm: 'Açıq tohumlı ve qapalı tohumlı ösümliklerni farqlamaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const distinguishGymnospermsAndAngiosperms_Skill_Data = defineSkill({
       et: 'Erista paljasseemnetaimi õistaimedest seemnete ehituse järgi.',
       be: 'Адрозьнівай голанасенныя ад кветкавых расьлінаў паводле будовы насеньня.',
       ka: 'თესლის სტრუქტურის მიხედვით განასხვავე შიშველთესლოვნები ყვავილოვანი მცენარეებისგან.',
-      kk: 'Тұқым құрылысына қарап, ашықтұқымды өсімдіктерді гүлді жабықтұқымдылардан ажырат.',
+      kk: 'Tūqym qūrylysyna qarap, aşyqtūqymdy ösımdıkterdı güldı jabyqtūqymdylardan ajyrat.',
       qm: 'Tohumlarınıñ quruluşuna köre gimnospermalarnı çeçekli, qapalı tohumlı ösümliklerden farq etiñiz.',
     },
   },

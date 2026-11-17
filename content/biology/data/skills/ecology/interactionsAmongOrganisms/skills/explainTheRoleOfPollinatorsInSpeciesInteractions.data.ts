@@ -31,7 +31,7 @@ export const explainTheRoleOfPollinatorsInSpeciesInteractions_Skill_Data = defin
     et: 'Selgitada tolmeldajate rolli liikidevahelistes suhetes',
     be: 'Тлумачыць ролю апыляльнікаў ва ўзаемадзеяньнях відаў',
     ka: 'დამმტვერავების როლის ახსნა სახეობათა ურთიერთქმედებებში',
-    kk: 'Түрлер әрекеттесуіндегі тозаңдандырғыштардың рөлін түсіндіру',
+    kk: 'Türler ärekettesuındegı tozañdandyrğyştardyñ rölın tüsındıru',
     qm: 'Türler arasındaki alâqalarda tozlandırıcılarnıñ rolüni añlatmaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const explainTheRoleOfPollinatorsInSpeciesInteractions_Skill_Data = defin
       et: 'Selgita, kuidas tolmeldajad aitavad õistaimedel paljuneda ja võivad õitest toitu saada.',
       be: 'Патлумач, як апыляльнікі і кветкавыя расьліны залежаць адно ад аднаго.',
       ka: 'ახსენი, როგორ არიან დამმტვერავები და ყვავილოვანი მცენარეები ერთმანეთზე დამოკიდებული.',
-      kk: 'Тозаңдандырғыштар мен гүлді өсімдіктер бір-біріне қалай тәуелді екенін түсіндір.',
+      kk: 'Tozañdandyrğyştar men güldı ösımdıkter bır-bırıne qalai täueldı ekenın tüsındır.',
       qm: 'Tozlandırıcı canlılar ve çeçekli ösümlikler nasıl bir-birine bağlı olğanını añlatıñız.',
     },
   },

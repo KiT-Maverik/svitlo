@@ -40,7 +40,7 @@ export const feedingRelationships_SkillGroup_Data = defineSkillGroup({
     et: 'Toitumissuhted',
     be: 'Харчовыя сувязі',
     ka: 'კვებითი კავშირები',
-    kk: 'Қоректік байланыстар',
+    kk: 'Qorektık bailanystar',
   },
   skills: [
     constructASimpleFoodChain_Skill_Data,
@@ -81,7 +81,7 @@ export const feedingRelationships_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri, kuidas toitumissuhted kannavad ökosüsteemides üle ainet ja energiat.',
       be: 'Дасьледуй, як харчовыя сувязі перадаюць рэчывы і энэргію ў экасыстэмах.',
       ka: 'გამოიკვლიე, როგორ გადადის ნივთიერება და ენერგია ეკოსისტემებში კვებითი კავშირებით.',
-      kk: 'Қоректік байланыстар арқылы экожүйелерде зат пен энергия қалай тасымалданатынын зертте.',
+      kk: 'Qorektık bailanystar arqyly ekojüielerde zat pen energia qalai tasymaldanatynyn zertte.',
     },
   },
 });

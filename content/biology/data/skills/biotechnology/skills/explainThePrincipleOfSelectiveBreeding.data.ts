@@ -31,7 +31,7 @@ export const explainThePrincipleOfSelectiveBreeding_Skill_Data = defineSkill({
     et: 'Valikulise aretuse põhimõtte selgitamine',
     be: 'Тлумачыць прынцып сэлекцыйнага разьвядзеньня',
     ka: 'სელექციური გამრავლების პრინციპის ახსნა',
-    kk: 'Селекциялық өсіру қағидатын түсіндіру',
+    kk: 'Selektsialyq ösıru qağidatyn tüsındıru',
     qm: 'İrsiy belgilerge köre saylap yetiştirüv printsipini añlatmaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const explainThePrincipleOfSelectiveBreeding_Skill_Data = defineSkill({
       et: 'Mõista, kuidas valikuline aretus kujundab pärilikke tunnuseid põlvkondade vältel.',
       be: 'Зразумей, як сэлекцыйнае разьвядзеньне разьвівае спадчынныя прыкметы цягам пакаленьняў.',
       ka: 'გაიგე, როგორ ვითარდება მემკვიდრეობითი ნიშნები სელექციური გამრავლებით თაობების განმავლობაში.',
-      kk: 'Селекциялық өсіру тұқым қуалайтын белгілерді ұрпақтан ұрпаққа қалай дамытатынын түсін.',
+      kk: 'Selektsialyq ösıru tūqym qualaityn belgılerdı ūrpaqtan ūrpaqqa qalai damytatynyn tüsın.',
       qm: 'İstenilgen irsiy belgileri olğan canlılarnı saylap çoğaltuv nesiller devamında bu belgilerge nasıl tesir etkenini ögreniñiz.',
     },
   },

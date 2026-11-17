@@ -31,7 +31,7 @@ export const explainProkaryoticCellStructure_Skill_Data = defineSkill({
     et: 'Prokarüootse raku ehituse selgitamine',
     be: 'Тлумачыць будову пракарыятычнай клеткі',
     ka: 'პროკარიოტული უჯრედის აგებულების ახსნა',
-    kk: 'Прокариот жасушасының құрылысын түсіндіру',
+    kk: 'Prokariot jasuşasynyñ qūrylysyn tüsındıru',
     qm: 'Prokariot üceyresiniñ quruluşunı añlatmaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const explainProkaryoticCellStructure_Skill_Data = defineSkill({
       et: 'Uuri, kuidas bakterite ja arhede rakud toimivad ilma membraaniga ümbritsetud rakutuumata.',
       be: 'Дасьледуйце, як клеткі бактэрыяў і археяў працуюць бяз ядра, абмежаванага мэмбранай.',
       ka: 'შეისწავლეთ, როგორ ფუნქციონირებენ ბაქტერიებისა და არქეების უჯრედები მემბრანით შემოსაზღვრული ბირთვის გარეშე.',
-      kk: 'Бактериялар мен археялардың жасушалары мембранамен қоршалған ядросыз қалай жұмыс істейтінін зерттеңіз.',
+      kk: 'Bakterialar men arheialardyñ jasuşalary membranamen qorşalğan iadrosyz qalai jūmys ısteitının zertteñız.',
       qm: 'Bakteriya ve arheya üceyreleri zar ile sarılğan yadro olmadan nasıl çalışqanını ögreniñiz.',
     },
   },

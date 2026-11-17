@@ -31,7 +31,7 @@ export const relateOrgansToTheirFunctions_Skill_Data = defineSkill({
     et: 'Elundite seostamine nende ülesannetega',
     be: 'Суадносіць органы зь іхнымі функцыямі',
     ka: 'ორგანოების დაკავშირება მათ ფუნქციებთან',
-    kk: 'Мүшелерді қызметтерімен байланыстыру',
+    kk: 'Müşelerdı qyzmetterımen bailanystyru',
     qm: 'Organlarnı vazifelerinen bağlamaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const relateOrgansToTheirFunctions_Skill_Data = defineSkill({
       et: 'Seosta kopsude, südame ja soolestiku ülesanded vastavate elunditega.',
       be: 'Суадносіце лёгкія, сэрца й кішэчнік зь іхнымі функцыямі.',
       ka: 'დააკავშირეთ ფილტვები, გული და ნაწლავები მათ ფუნქციებთან.',
-      kk: 'Өкпе, жүрек және ішек сияқты мүшелерді қызметтерімен сәйкестендіріңіз.',
+      kk: 'Ökpe, jürek jäne ışek siaqty müşelerdı qyzmetterımen säikestendırıñız.',
       qm: 'Aqciğer, yürek ve içek kibi organlarnı olarnıñ vazifelerinen bağlañız.',
     },
   },

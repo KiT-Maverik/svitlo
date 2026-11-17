@@ -31,7 +31,7 @@ export const explainMaintenanceOfHomeostasis_Skill_Data = defineSkill({
     et: 'Homöostaasi säilitamise selgitamine',
     be: 'Тлумачыць падтрыманьне гамеастазу',
     ka: 'ჰომეოსტაზის შენარჩუნების ახსნა',
-    kk: 'Гомеостазды сақтауды түсіндіру',
+    kk: 'Gomeostazdy saqtaudy tüsındıru',
     qm: 'Gomeostaznıñ saqlanuvını añlatmaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const explainMaintenanceOfHomeostasis_Skill_Data = defineSkill({
       et: 'Mõista, kuidas keha hoiab sisetingimused sobivates piirides.',
       be: 'Зразумейце, як арганізм падтрымлівае ўнутраныя ўмовы ў прыдатных межах.',
       ka: 'გაიგეთ, როგორ ინარჩუნებს ორგანიზმი შინაგან პირობებს სათანადო საზღვრებში.',
-      kk: 'Ағза ішкі жағдайларын қолайлы аралықта қалай сақтайтынын түсініңіз.',
+      kk: 'Ağza ışkı jağdailaryn qolaily aralyqta qalai saqtaitynyn tüsınıñız.',
       qm: 'Beden içki şartlarnı nasıl uygun sıñırlar içinde saqlağanını añlañız.',
     },
   },

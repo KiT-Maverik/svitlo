@@ -31,7 +31,7 @@ export const explainMechanismsOfEvolutionaryChange_Skill_Data = defineSkill({
     et: 'Selgitada evolutsiooniliste muutuste mehhanisme',
     be: 'Тлумачыць мэханізмы эвалюцыйных зьменаў',
     ka: 'ევოლუციური ცვლილებების მექანიზმების ახსნა',
-    kk: 'Эволюциялық өзгеріс механизмдерін түсіндіру',
+    kk: 'Evoliutsialyq özgerıs mehanizmderın tüsındıru',
     qm: 'Evolütsion deñişüv mehanizmlerini añlatmaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const explainMechanismsOfEvolutionaryChange_Skill_Data = defineSkill({
       et: 'Võrdle mutatsiooni, looduslikku valikut, geneetilist triivi ja geenivoogu kui evolutsiooni põhjuseid.',
       be: 'Параўнай мутацыі, натуральны адбор, генэтычны дрэйф і паток генаў як прычыны эвалюцыі.',
       ka: 'შეადარე მუტაცია, ბუნებრივი გადარჩევა, გენეტიკური დრიფტი და გენთა ნაკადი, როგორც ევოლუციის გამომწვევი პროცესები.',
-      kk: 'Мутацияны, табиғи сұрыпталуды, генетикалық дрейфті және ген ағынын эволюцияның себептері ретінде салыстыр.',
+      kk: 'Mutatsiany, tabiği sūryptaludy, genetikalyq dreiftı jäne gen ağynyn evoliutsianyñ sebepterı retınde salystyr.',
       qm: 'Mutatsiya, tabiiy saylav, genetik drift ve gen aqımını evolütsion deñişüvniñ farqlı sebepleri olaraq teñeştiriñiz.',
     },
   },

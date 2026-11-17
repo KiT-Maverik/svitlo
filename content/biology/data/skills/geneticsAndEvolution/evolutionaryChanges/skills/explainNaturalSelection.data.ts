@@ -31,7 +31,7 @@ export const explainNaturalSelection_Skill_Data = defineSkill({
     et: 'Selgitada looduslikku valikut',
     be: 'Тлумачыць натуральны адбор',
     ka: 'ბუნებრივი გადარჩევის ახსნა',
-    kk: 'Табиғи сұрыпталуды түсіндіру',
+    kk: 'Tabiği sūryptaludy tüsındıru',
     qm: 'Tabiiy saylavnı añlatmaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const explainNaturalSelection_Skill_Data = defineSkill({
       et: 'Mõista, kuidas looduslik valik võib põlvkondade jooksul muuta pärilike tunnuste sagedust populatsioonis.',
       be: 'Зразумей, як натуральны адбор можа зьмяняць частату спадчынных прыкметаў у папуляцыі на працягу пакаленьняў.',
       ka: 'გაიგე, როგორ შეიძლება ბუნებრივმა გადარჩევამ თაობების განმავლობაში პოპულაციაში მემკვიდრეობითი ნიშნების სიხშირე შეცვალოს.',
-      kk: 'Табиғи сұрыпталу ұрпақтар бойы популяциядағы тұқым қуалайтын белгілердің жиілігін қалай өзгерте алатынын түсін.',
+      kk: 'Tabiği sūryptalu ūrpaqtar boiy populiatsiadağy tūqym qualaityn belgılerdıñ jiılıgın qalai özgerte alatynyn tüsın.',
       qm: 'Tabiiy saylav nesiller devamında populyatsiyada irsiy belgiler qanadar yayğın olğanını nasıl deñiştire bilgenini ögreniñiz.',
     },
   },

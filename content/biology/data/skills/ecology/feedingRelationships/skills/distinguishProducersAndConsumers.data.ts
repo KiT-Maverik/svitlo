@@ -31,7 +31,7 @@ export const distinguishProducersAndConsumers_Skill_Data = defineSkill({
     et: 'Eristada tootjaid ja tarbijaid',
     be: 'Адрозьніваць прадуцэнтаў і кансумэнтаў',
     ka: 'პროდუცენტებისა და კონსუმენტების გარჩევა',
-    kk: 'Продуценттер мен консументтерді ажырату',
+    kk: 'Produtsentter men konsumentterdı ajyratu',
     qm: 'Produtsentler ve konsumentlerni farqlamaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const distinguishProducersAndConsumers_Skill_Data = defineSkill({
       et: 'Tunne tootjad ja tarbijad ära selle järgi, kuidas nad orgaanilisi aineid saavad.',
       be: 'Распазнавай прадуцэнтаў і кансумэнтаў паводле спосабу атрыманьня арганічных рэчываў.',
       ka: 'განასხვავე პროდუცენტები და კონსუმენტები იმის მიხედვით, როგორ იღებენ ორგანულ ნივთიერებებს.',
-      kk: 'Ағзаларды органикалық затты алу жолына қарай продуценттер мен консументтерге ажырат.',
+      kk: 'Ağzalardy organikalyq zatty alu jolyna qarai produtsentter men konsumentterge ajyrat.',
       qm: 'Organik maddelerni nasıl elde etkenine köre produtsentlerni ve konsumentlerni farq etiñiz.',
     },
   },

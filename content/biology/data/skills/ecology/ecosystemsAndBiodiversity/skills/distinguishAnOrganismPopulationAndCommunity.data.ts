@@ -31,7 +31,7 @@ export const distinguishAnOrganismPopulationAndCommunity_Skill_Data = defineSkil
     et: 'Eristada organismi, populatsiooni ja kooslust',
     be: 'Адрозьніваць арганізм, папуляцыю і супольнасьць',
     ka: 'ორგანიზმის, პოპულაციისა და თანასაზოგადოების გარჩევა',
-    kk: 'Ағза, популяция және қауымдастықты ажырату',
+    kk: 'Ağza, populiatsia jäne qauymdastyqty ajyratu',
     qm: 'Canlı organizm, populyatsiya ve toplulıqnı farqlamaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const distinguishAnOrganismPopulationAndCommunity_Skill_Data = defineSkil
       et: 'Erista üksikut organismi, ühe liigi populatsiooni ja eri liikide kooslust.',
       be: 'Адрозьнівай асобны арганізм, папуляцыю аднаго віду і супольнасьць розных відаў.',
       ka: 'განასხვავე ერთი ორგანიზმი, ერთი სახეობის პოპულაცია და სხვადასხვა სახეობის თანასაზოგადოება.',
-      kk: 'Жеке ағзаны, бір түр популяциясын және әртүрлі түрлер қауымдастығын ажырат.',
+      kk: 'Jeke ağzany, bır tür populiatsiasyn jäne ärtürlı türler qauymdastyğyn ajyrat.',
       qm: 'Bir canlı organizmni, bir türniñ populyatsiyasını ve çeşit türlerden teşkil olğan toplulıqnı farq etiñiz.',
     },
   },

@@ -31,7 +31,7 @@ export const explainTheInterdependenceOfEcosystemComponents_Skill_Data = defineS
     et: 'Selgitada ökosüsteemi osade vastastikust sõltuvust',
     be: 'Тлумачыць узаемазалежнасьць частак экасыстэмы',
     ka: 'ეკოსისტემის კომპონენტების ურთიერთდამოკიდებულების ახსნა',
-    kk: 'Экожүйе құрамдастарының өзара тәуелділігін түсіндіру',
+    kk: 'Ekojüie qūramdastarynyñ özara täueldılıgın tüsındıru',
     qm: 'Ekosistema qısımlarınıñ karşılıqlı bağlılığını añlatmaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const explainTheInterdependenceOfEcosystemComponents_Skill_Data = defineS
       et: 'Uuri, kuidas ökosüsteemi ühe osa muutus võib mõjutada paljusid teisi.',
       be: 'Дасьледуй, як зьмена адной часткі экасыстэмы можа паўплываць на многія іншыя.',
       ka: 'გამოიკვლიე, როგორ მოქმედებს ეკოსისტემის ერთი ნაწილის ცვლილება სხვა მრავალ ნაწილზე.',
-      kk: 'Экожүйенің бір бөлігіндегі өзгеріс басқа көптеген бөлігіне қалай әсер ететінін зертте.',
+      kk: 'Ekojüienıñ bır bölıgındegı özgerıs basqa köptegen bölıgıne qalai äser etetının zertte.',
       qm: 'Ekosistemanıñ bir qısmında olğan deñişüv başka qısımlarğa nasıl tesir ete bilgenini ögreniñiz.',
     },
   },

@@ -38,7 +38,7 @@ export const developmentAndProtectionOfTheOrganism_SkillGroup_Data = defineSkill
     et: 'Organismi areng ja kaitse',
     be: 'Разьвіцьцё і абарона арганізму',
     ka: 'ორგანიზმის განვითარება და დაცვა',
-    kk: 'Ағзаның дамуы мен қорғанысы',
+    kk: 'Ağzanyñ damuy men qorğanysy',
     qm: 'Organizmnıñ inkişafı ve qorunuvı',
   },
   skills: [
@@ -78,7 +78,7 @@ export const developmentAndProtectionOfTheOrganism_SkillGroup_Data = defineSkill
       et: 'Uuri, kuidas areng, immuunkaitse ja taastumine toetavad organismi talitlust.',
       be: 'Дасьледуйце, як разьвіцьцё, імунная абарона й аднаўленьне падтрымліваюць працу арганізму.',
       ka: 'შეისწავლეთ, როგორ უწყობს ხელს განვითარება, იმუნური დაცვა და აღდგენა სხეულის ფუნქციონირებას.',
-      kk: 'Даму, иммундық қорғаныс пен қалпына келу ағза қызметін қалай сақтайтынын зерттеңіз.',
+      kk: 'Damu, immundyq qorğanys pen qalpyna kelu ağza qyzmetın qalai saqtaitynyn zertteñız.',
       qm: 'İnkişaf, immun qorunuv ve tiklenüv bedenniñ çalışuvını nasıl desteklegenini ögreniñiz.',
     },
   },

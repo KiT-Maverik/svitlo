@@ -31,7 +31,7 @@ export const explainCellularRespiration_Skill_Data = defineSkill({
     et: 'Rakuhingamise selgitamine',
     be: 'Тлумачыць клетачнае дыханьне',
     ka: 'უჯრედული სუნთქვის ახსნა',
-    kk: 'Жасушалық тыныс алуды түсіндіру',
+    kk: 'Jasuşalyq tynys aludy tüsındıru',
     qm: 'Üceyrevi teneffüsni añlatmaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const explainCellularRespiration_Skill_Data = defineSkill({
       et: 'Õpi, kuidas rakud vabastavad orgaanilistest ainetest kasutatavat energiat.',
       be: 'Даведайся, як клеткі вызваляюць прыдатную да выкарыстаньня энэргію з арганічных рэчываў.',
       ka: 'გაიგე, როგორ გამოათავისუფლებენ უჯრედები გამოსაყენებელ ენერგიას ორგანული ნივთიერებებიდან.',
-      kk: 'Жасушалардың органикалық заттардан қолдануға болатын энергияны қалай бөлетінін біл.',
+      kk: 'Jasuşalardyñ organikalyq zattardan qoldanuğa bolatyn energiany qalai böletının bıl.',
       qm: 'Üceyreler organik maddelerden qullanılabilir energiyanı nasıl elde etkenini ögreniñiz.',
     },
   },

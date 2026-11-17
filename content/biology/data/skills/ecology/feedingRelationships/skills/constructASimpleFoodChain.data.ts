@@ -31,7 +31,7 @@ export const constructASimpleFoodChain_Skill_Data = defineSkill({
     et: 'Koostada lihtne toiduahel',
     be: 'Будаваць просты харчовы ланцуг',
     ka: 'მარტივი კვებითი ჯაჭვის აგება',
-    kk: 'Қарапайым қоректік тізбек құру',
+    kk: 'Qarapaiym qorektık tızbek qūru',
     qm: 'Adiy azıq zıncırı qurmaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const constructASimpleFoodChain_Skill_Data = defineSkill({
       et: 'Koosta toiduahel, mis näitab, kes kellelt saab ainet ja energiat.',
       be: 'Пабудуй харчовы ланцуг, які паказвае, хто ад каго атрымлівае рэчывы і энэргію.',
       ka: 'ააგე კვებითი ჯაჭვი, რომელიც აჩვენებს, ვინ ვისგან იღებს ნივთიერებასა და ენერგიას.',
-      kk: 'Қандай ағза қандай ағзадан зат пен энергия алатынын көрсететін қоректік тізбек құрастыр.',
+      kk: 'Qandai ağza qandai ağzadan zat pen energia alatynyn körsetetın qorektık tızbek qūrastyr.',
       qm: 'Qaysı canlı qaysısından madde ve energiya alğanını köstergen azıq zıncırı qurıñız.',
     },
   },

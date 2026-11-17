@@ -31,7 +31,7 @@ export const explainTheTheoryOfEvolution_Skill_Data = defineSkill({
     et: 'Selgitada evolutsiooniteooriat',
     be: 'Тлумачыць тэорыю эвалюцыі',
     ka: 'ევოლუციის თეორიის ახსნა',
-    kk: 'Эволюция теориясын түсіндіру',
+    kk: 'Evoliutsia teoriasyn tüsındıru',
     qm: 'Evolütsiya nazariyesini añlatmaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const explainTheTheoryOfEvolution_Skill_Data = defineSkill({
       et: 'Mõista evolutsiooni kui teaduslikku selgitust, mida toetavad eri liiki tõendid.',
       be: 'Зразумей эвалюцыю як навуковае тлумачэньне, пацьверджанае рознымі відамі доказаў.',
       ka: 'გაიგე, რომ ევოლუცია მეცნიერული ახსნაა, რომელსაც სხვადასხვა სახის მტკიცებულება ამყარებს.',
-      kk: 'Эволюцияны әртүрлі дәлелдермен расталған ғылыми түсіндірме ретінде түсін.',
+      kk: 'Evoliutsiany ärtürlı däleldermen rastalğan ğylymi tüsındırme retınde tüsın.',
       qm: 'Evolütsiya çeşit delillerge esaslanğan ilmiy añlatma olğanını ögreniñiz.',
     },
   },

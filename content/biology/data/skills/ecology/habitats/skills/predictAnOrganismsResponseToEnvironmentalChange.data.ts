@@ -31,7 +31,7 @@ export const predictAnOrganismsResponseToEnvironmentalChange_Skill_Data = define
     et: 'Ennustada organismi reaktsiooni keskkonnamuutustele',
     be: 'Прагназаваць рэакцыю арганізму на зьмены асяродзьдзя',
     ka: 'გარემოს ცვლილებაზე ორგანიზმის რეაქციის პროგნოზირება',
-    kk: 'Ағзаның орта өзгерісіне жауабын болжау',
+    kk: 'Ağzanyñ orta özgerısıne jauabyn boljau',
     qm: 'Canlınıñ müit deñişüvine cevabını tahmin etmek',
   },
   description: {
@@ -65,7 +65,7 @@ export const predictAnOrganismsResponseToEnvironmentalChange_Skill_Data = define
       et: 'Ennusta, kuidas ressursside või temperatuuri muutus võib liiki mõjutada.',
       be: 'Прадбач, як зьмены рэсурсаў або тэмпэратуры могуць паўплываць на від.',
       ka: 'ივარაუდე, როგორ იმოქმედებს რესურსების ან ტემპერატურის ცვლილება სახეობაზე.',
-      kk: 'Ресурстар не температура өзгерсе, түрге қалай әсер етуі мүмкін екенін болжа.',
+      kk: 'Resurstar ne temperatura özgerse, türge qalai äser etuı mümkın ekenın bolja.',
       qm: 'Kaynaklar ya da araret deñişkende bir türge qanday tesir ola bilecegini tahmin etiñiz.',
     },
   },

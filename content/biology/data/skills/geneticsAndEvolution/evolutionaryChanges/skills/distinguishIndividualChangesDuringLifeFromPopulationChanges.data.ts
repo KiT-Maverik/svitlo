@@ -31,7 +31,7 @@ export const distinguishIndividualChangesDuringLifeFromPopulationChanges_Skill_D
     et: 'Eristada indiviidi elu jooksul toimuvaid muutusi populatsiooni muutustest',
     be: 'Адрозьніваць зьмены на працягу жыцьця асобіны ад зьменаў у папуляцыі',
     ka: 'ინდივიდის სიცოცხლის განმავლობაში ცვლილებებისა და პოპულაციის ცვლილებების გარჩევა',
-    kk: 'Жеке ағзаның өміріндегі өзгерістерді популяция өзгерістерінен ажырату',
+    kk: 'Jeke ağzanyñ ömırındegı özgerısterdı populiatsia özgerısterınen ajyratu',
     qm: 'Şahısnıñ ömründeki deñişüvlerni populyatsiya deñişüvlerinden farqlamaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const distinguishIndividualChangesDuringLifeFromPopulationChanges_Skill_D
       et: 'Erista ühe organismi elu jooksul toimuvaid muutusi populatsiooni evolutsioonist läbi põlvkondade.',
       be: 'Адрозьнівай зьмены на працягу жыцьця аднаго арганізму ад эвалюцыі папуляцыяў на працягу пакаленьняў.',
       ka: 'განასხვავე ერთი ორგანიზმის სიცოცხლეში მომხდარი ცვლილებები და პოპულაციების ევოლუცია თაობების განმავლობაში.',
-      kk: 'Бір ағзаның өміріндегі өзгерістерді популяциялардың бірнеше ұрпақ бойындағы эволюциясынан ажырат.',
+      kk: 'Bır ağzanyñ ömırındegı özgerısterdı populiatsialardyñ bırneşe ūrpaq boiyndağy evoliutsiasynan ajyrat.',
       qm: 'Bir canlınıñ ömri devamında olğan deñişüvlerni nesiller boyunca populyatsiyada olğan evolütsion deñişüvlerden farq etiñiz.',
     },
   },

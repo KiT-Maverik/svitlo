@@ -31,7 +31,7 @@ export const relateLimbStructureToLocomotion_Skill_Data = defineSkill({
     et: 'Jäsemete ehituse seostamine liikumisega',
     be: 'Зьвязваць будову канечнасьцяў са спосабам перамяшчэньня',
     ka: 'კიდურების აგებულების მოძრაობასთან დაკავშირება',
-    kk: 'Аяқ-қол құрылысының қозғалыспен байланысын анықтау',
+    kk: 'Aiaq-qol qūrylysynyñ qozğalyspen bailanysyn anyqtau',
     qm: 'Ayaq ve qanat quruluşunı areket usullarınen bağlaştırmaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const relateLimbStructureToLocomotion_Skill_Data = defineSkill({
       et: 'Seosta jäsemete kuju kõndimise, ujumise, kaevamise või lendamisega.',
       be: 'Зьвяжы форму канечнасьцяў з хадзьбой, плаваньнем, капаньнем або палётам.',
       ka: 'დააკავშირე კიდურების ფორმა სიარულთან, ცურვასთან, თხრასთან ან ფრენასთან.',
-      kk: 'Аяқ-қол пішінін жүру, жүзу, қазу немесе ұшумен байланыстыр.',
+      kk: 'Aiaq-qol pışının jüru, jüzu, qazu nemese ūşumen bailanystyr.',
       qm: 'Ayaq, qanat ve başqa areket organlarınıñ şekillerini yürümek, yüzmek, qazmaq ya da uçmaqnen bağlaştırıñız.',
     },
   },

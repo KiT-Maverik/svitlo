@@ -31,7 +31,7 @@ export const recognizeMolluscCharacteristics_Skill_Data = defineSkill({
     et: 'Limuste tunnuste äratundmine',
     be: 'Распазнаваць прыкметы малюскаў',
     ka: 'მოლუსკების ნიშნების ამოცნობა',
-    kk: 'Былқылдақденелілердің белгілерін тану',
+    kk: 'Bylqyldaqdenelılerdıñ belgılerın tanu',
     qm: 'Mollüskalarnıñ belgilerini tanımaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const recognizeMolluscCharacteristics_Skill_Data = defineSkill({
       et: 'Tunne limused ära pehme keha ja muude iseloomulike ehitusjoonte järgi.',
       be: 'Вызначай малюскаў паводле мяккага цела ды іншых характэрных асаблівасьцяў будовы.',
       ka: 'ამოიცანი მოლუსკები რბილი სხეულითა და სხვა დამახასიათებელი სტრუქტურებით.',
-      kk: 'Былқылдақденелілерді жұмсақ денесі мен басқа тән құрылымдары арқылы анықта.',
+      kk: 'Bylqyldaqdenelılerdı jūmsaq denesı men basqa tän qūrylymdary arqyly anyqta.',
       qm: 'Mollüskalarnıñ yumşaq bedeni ve başqa mahsus quruluşlarına köre olarnı tanıñız.',
     },
   },

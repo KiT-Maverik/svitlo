@@ -31,7 +31,7 @@ export const explainEnergyFlowInAnEcosystem_Skill_Data = defineSkill({
     et: 'Selgitada energiavoogu ökosüsteemis',
     be: 'Тлумачыць паток энэргіі ў экасыстэме',
     ka: 'ეკოსისტემაში ენერგიის ნაკადის ახსნა',
-    kk: 'Экожүйедегі энергия ағынын түсіндіру',
+    kk: 'Ekojüiedegı energia ağynyn tüsındıru',
     qm: 'Ekosistemada energiya aqımını añlatmaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const explainEnergyFlowInAnEcosystem_Skill_Data = defineSkill({
       et: 'Selgita, miks energia liigub ökosüsteemis ühes suunas, aga ained lähevad uuesti ringlusse.',
       be: 'Патлумач, чаму энэргія праходзіць праз экасыстэму ў адным кірунку, а рэчывы выкарыстоўваюцца паўторна.',
       ka: 'ახსენი, რატომ მიედინება ენერგია ერთი მიმართულებით, ხოლო ნივთიერება კვლავ გამოიყენება.',
-      kk: 'Энергия неге бір бағытта ағып, зат қайта пайдаланылатынын түсіндір.',
+      kk: 'Energia nege bır bağytta ağyp, zat qaita paidalanylatynyn tüsındır.',
       qm: 'Madde qaytadan qullanılğanda energiyanıñ ekosistemadan bir yoñelişte keçkenini ne içün olğanını añlatıñız.',
     },
   },

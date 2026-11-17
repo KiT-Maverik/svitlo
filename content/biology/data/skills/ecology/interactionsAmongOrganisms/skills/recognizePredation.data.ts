@@ -31,7 +31,7 @@ export const recognizePredation_Skill_Data = defineSkill({
     et: 'Tunda ära kisklust',
     be: 'Распазнаваць драпежніцтва',
     ka: 'მტაცებლობის ამოცნობა',
-    kk: 'Жыртқыштықты тану',
+    kk: 'Jyrtqyştyqty tanu',
     qm: 'Yırtıcılıqnı tanımaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const recognizePredation_Skill_Data = defineSkill({
       et: 'Tunne ära olukorrad, kus üks organism püüab teise kinni ja toitub temast.',
       be: 'Вызначай, калі адзін арганізм ловіць іншы і харчуецца ім.',
       ka: 'ამოიცანი, როდის იჭერს ერთი ორგანიზმი მეორეს და მისით იკვებება.',
-      kk: 'Бір ағза басқа ағзаны ұстап, онымен қоректенетін жағдайларды анықта.',
+      kk: 'Bır ağza basqa ağzany ūstap, onymen qorektenetın jağdailardy anyqta.',
       qm: 'Bir canlı başqa canlını tutıp aşağan vaziyetlerni tanıñız.',
     },
   },

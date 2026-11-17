@@ -31,7 +31,7 @@ export const identifyMajorBodyParts_Skill_Data = defineSkill({
     et: 'Peamiste kehaosade tuvastamine',
     be: 'Вызначаць асноўныя часткі цела',
     ka: 'სხეულის ძირითადი ნაწილების ამოცნობა',
-    kk: 'Дененің негізгі бөліктерін анықтау',
+    kk: 'Denenıñ negızgı bölıkterın anyqtau',
     qm: 'Bedenniñ esas qısımlarını belgilemek',
   },
   description: {
@@ -64,7 +64,7 @@ export const identifyMajorBodyParts_Skill_Data = defineSkill({
       et: 'Õpi tundma inimkeha peamisi väliseid osi.',
       be: 'Распазнавайце асноўныя зьнешнія часткі чалавечага цела.',
       ka: 'ამოიცანით ადამიანის სხეულის ძირითადი გარეგანი ნაწილები.',
-      kk: 'Адам денесінің негізгі сыртқы бөліктерін таныңыз.',
+      kk: 'Adam denesınıñ negızgı syrtqy bölıkterın tanyñyz.',
       qm: 'İnsan bedeniniñ esas tışqı qısımlarını tanıñız.',
     },
   },

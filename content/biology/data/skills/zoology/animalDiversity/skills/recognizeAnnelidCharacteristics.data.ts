@@ -31,7 +31,7 @@ export const recognizeAnnelidCharacteristics_Skill_Data = defineSkill({
     et: 'Rõngusside tunnuste äratundmine',
     be: 'Распазнаваць прыкметы кольчатых чарвякоў',
     ka: 'რგოლოვანი ჭიების ნიშნების ამოცნობა',
-    kk: 'Буылтық құрттардың белгілерін тану',
+    kk: 'Buyltyq qūrttardyñ belgılerın tanu',
     qm: 'Alqalı qurtlarnıñ belgilerini tanımaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const recognizeAnnelidCharacteristics_Skill_Data = defineSkill({
       et: 'Tunne ära lülilise kehaga ussid ja erista neid teistest ussilaadsetest loomadest.',
       be: 'Распазнавай чарвякоў з сэгмэнтаваным целам і адрозьнівай іх ад іншых чарвякападобных жывёлаў.',
       ka: 'ამოიცანი სეგმენტირებული სხეულის მქონე ჭიები და განასხვავე სხვა ჭიისებრი ცხოველებისგან.',
-      kk: 'Денесі буылтықтарға бөлінген құрттарды танып, оларды басқа құрттәрізді жануарлардан ажырат.',
+      kk: 'Denesı buyltyqtarğa bölıngen qūrttardy tanyp, olardy basqa qūrttärızdı januarlardan ajyrat.',
       qm: 'Bedeni parçalarğa bölüngen alqalı qurtlarnı tanıp, olarnı başqa qurt şeklindeki ayvanlardan farq etiñiz.',
     },
   },

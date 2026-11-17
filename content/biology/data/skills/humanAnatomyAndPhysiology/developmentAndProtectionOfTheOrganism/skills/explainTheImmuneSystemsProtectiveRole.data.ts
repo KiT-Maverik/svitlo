@@ -31,7 +31,7 @@ export const explainTheImmuneSystemsProtectiveRole_Skill_Data = defineSkill({
     et: 'Immuunsüsteemi kaitseülesande selgitamine',
     be: 'Тлумачыць ахоўную ролю імуннай сыстэмы',
     ka: 'იმუნური სისტემის დამცავი როლის ახსნა',
-    kk: 'Иммундық жүйенің қорғаныс рөлін түсіндіру',
+    kk: 'İmmundyq jüienıñ qorğanys rölın tüsındıru',
     qm: 'İmmun sistemasınıñ qoruyıcı rolüni añlatmaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const explainTheImmuneSystemsProtectiveRole_Skill_Data = defineSkill({
       et: 'Selgita, kuidas immuunsüsteem tunneb ära võimalikud kahjulikud tegurid ja neile reageerib.',
       be: 'Растлумачце, як імунная сыстэма выяўляе патэнцыйна шкодныя чыньнікі й рэагуе на іх.',
       ka: 'ახსენით, როგორ ამოიცნობს იმუნური სისტემა პოტენციურად საზიანო ფაქტორებს და რეაგირებს მათზე.',
-      kk: 'Иммундық жүйенің ықтимал зиянды факторларды қалай танып, оларға жауап беретінін түсіндіріңіз.',
+      kk: 'İmmundyq jüienıñ yqtimal ziandy faktorlardy qalai tanyp, olarğa jauap beretının tüsındırıñız.',
       qm: 'İmmun sistemasınıñ zarar ketire bilecek faktorlarını nasıl tanıp, olarğa nasıl cevap bergenini añlatıñız.',
     },
   },

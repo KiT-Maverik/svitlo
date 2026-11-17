@@ -39,7 +39,7 @@ export const nutritionAndGrowth_SkillGroup_Data = defineSkillGroup({
     et: 'Toitumine ja kasvamine',
     be: 'Жыўленьне і рост',
     ka: 'კვება და ზრდა',
-    kk: 'Қоректену және өсу',
+    kk: 'Qorektenu jäne ösu',
     qm: 'Beslenüv ve ösüv',
   },
   skills: [
@@ -80,7 +80,7 @@ export const nutritionAndGrowth_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri, kuidas vesi, valgus, õhk ja mineraalained toetavad taimede kasvu.',
       be: 'Даведайся, як вада, сьвятло, паветра й мінэральныя рэчывы падтрымліваюць рост расьлінаў.',
       ka: 'გაიგე, როგორ ეხმარება წყალი, სინათლე, ჰაერი და მინერალები მცენარეთა ზრდას.',
-      kk: 'Су, жарық, ауа мен минералдардың өсімдіктің өсуіне қалай көмектесетінін біл.',
+      kk: 'Su, jaryq, aua men mineraldardyñ ösımdıktıñ ösuıne qalai kömektesetının bıl.',
       qm: 'Suv, yarıq, ava ve mineral maddeler ösümliklerniñ ösüvine nasıl yardım etkenini ögreniñiz.',
     },
   },

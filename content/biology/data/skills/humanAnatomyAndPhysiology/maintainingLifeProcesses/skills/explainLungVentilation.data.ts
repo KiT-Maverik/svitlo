@@ -31,7 +31,7 @@ export const explainLungVentilation_Skill_Data = defineSkill({
     et: 'Kopsude ventilatsiooni selgitamine',
     be: 'Тлумачыць вэнтыляцыю лёгкіх',
     ka: 'ფილტვების ვენტილაციის ახსნა',
-    kk: 'Өкпе желдетілуін түсіндіру',
+    kk: 'Ökpe jeldetıluın tüsındıru',
     qm: 'Aqciğerlerniñ ava alış-verişini añlatmaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const explainLungVentilation_Skill_Data = defineSkill({
       et: 'Selgita, kuidas hingamislihased liigutavad õhku kopsudesse ja sealt välja.',
       be: 'Растлумачце, як дыхальныя мышцы забясьпечваюць паступленьне паветра ў лёгкія і выхад зь іх.',
       ka: 'ახსენით, როგორ მოძრაობს ჰაერი ფილტვებში და მათ გარეთ სასუნთქი კუნთების მოქმედებით.',
-      kk: 'Тыныс алу бұлшықеттері ауаны өкпеге қалай енгізіп, қайта шығаратынын түсіндіріңіз.',
+      kk: 'Tynys alu būlşyqetterı auany ökpege qalai engızıp, qaita şyğaratynyn tüsındırıñız.',
       qm: 'Nefes aluv adaleleri avanın aqciğerlerge kirip çıquvını nasıl temin etkenini añlatıñız.',
     },
   },

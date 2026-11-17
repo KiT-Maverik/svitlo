@@ -31,7 +31,7 @@ export const explainTheRoleOfSensoryOrgansInBehavior_Skill_Data = defineSkill({
     et: 'Meeleelundite rolli selgitamine käitumises',
     be: 'Тлумачыць ролю органаў пачуцьцяў у паводзінах',
     ka: 'ქცევაში გრძნობის ორგანოების როლის ახსნა',
-    kk: 'Мінез-құлықтағы сезім мүшелерінің рөлін түсіндіру',
+    kk: 'Mınez-qūlyqtağy sezım müşelerınıñ rölın tüsındıru',
     qm: 'Duyğu organlarınıñ davranıştaki rolüni añlatmaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const explainTheRoleOfSensoryOrgansInBehavior_Skill_Data = defineSkill({
       et: 'Uuri, kuidas meeleelundid aitavad loomadel toitu leida ja orienteeruda.',
       be: 'Даведайся, як органы пачуцьцяў дапамагаюць жывёлам знаходзіць ежу й арыентавацца.',
       ka: 'გაიგე, როგორ ეხმარება გრძნობის ორგანოები ცხოველებს საკვების პოვნასა და ორიენტაციაში.',
-      kk: 'Сезім мүшелері жануарларға қорек табуға және бағдарлануға қалай көмектесетінін біл.',
+      kk: 'Sezım müşelerı januarlarğa qorek tabuğa jäne bağdarlanuğa qalai kömektesetının bıl.',
       qm: 'Duyğu organları ayvanlarğa azıq tapmağa ve etrafta yolunı tapmağa nasıl yardım etkenini ögreniñiz.',
     },
   },

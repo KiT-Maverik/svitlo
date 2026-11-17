@@ -31,7 +31,7 @@ export const explainEndocrineRegulation_Skill_Data = defineSkill({
     et: 'Endokriinse regulatsiooni selgitamine',
     be: 'Тлумачыць эндакрынную рэгуляцыю',
     ka: 'ენდოკრინული რეგულაციის ახსნა',
-    kk: 'Эндокриндік реттелуді түсіндіру',
+    kk: 'Endokrindık retteludı tüsındıru',
     qm: 'Endokrin idare etüvni añlatmaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const explainEndocrineRegulation_Skill_Data = defineSkill({
       et: 'Uuri, kuidas hormoonid edastavad signaale, mis mõjutavad kasvu ja muid kehaprotsesse.',
       be: 'Дасьледуйце, як гармоны перадаюць сыгналы, што ўплываюць на рост і іншыя працэсы ў арганізьме.',
       ka: 'შეისწავლეთ, როგორ გადასცემენ ჰორმონები სიგნალებს, რომლებიც ზრდასა და სხეულის სხვა პროცესებზე მოქმედებს.',
-      kk: 'Гормондардың өсу мен ағзаның өзге үдерістеріне әсер ететін сигналдарды қалай жеткізетінін зерттеңіз.',
+      kk: 'Gormondardyñ ösu men ağzanyñ özge üderısterıne äser etetın signaldardy qalai jetkızetının zertteñız.',
       qm: 'Gormonlar ösüvge ve bedenniñ başqa protsesslerine tesir etken işaretlerni nasıl yetkizgenini ögreniñiz.',
     },
   },

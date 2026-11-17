@@ -31,7 +31,7 @@ export const recognizeCrustaceanCharacteristics_Skill_Data = defineSkill({
     et: 'Vähilaadsete tunnuste äratundmine',
     be: 'Распазнаваць прыкметы ракападобных',
     ka: 'კიბოსნაირების ნიშნების ამოცნობა',
-    kk: 'Шаянтәрізділердің белгілерін тану',
+    kk: 'Şaiantärızdılerdıñ belgılerın tanu',
     qm: 'Krustatseyalarnıñ belgilerini tanımaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const recognizeCrustaceanCharacteristics_Skill_Data = defineSkill({
       et: 'Tunne ära vähilaadsete mitmekesine kehaehitus, eeldamata, et neil kõigil on kümme jalga.',
       be: 'Распазнавай разнастайную будову ракападобных, ня думаючы, што ва ўсіх іх дзесяць ног.',
       ka: 'ამოიცანი კიბოსნაირთა მრავალფეროვანი აგებულება და ნუ იფიქრებ, რომ ყველას ათი ფეხი აქვს.',
-      kk: 'Барлық шаянтәрізділердің он аяғы болады деп есептемей, олардың алуан түрлі дене құрылысын таны.',
+      kk: 'Barlyq şaiantärızdılerdıñ on aiağy bolady dep eseptemei, olardyñ aluan türlı dene qūrylysyn tany.',
       qm: 'Krustatseyalarnıñ çeşit beden quruluşlarını tanıñız; episi on ayaqlı dep tüşünmeñiz.',
     },
   },

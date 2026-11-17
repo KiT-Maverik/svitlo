@@ -42,7 +42,7 @@ export const maintainingLifeProcesses_SkillGroup_Data = defineSkillGroup({
     et: 'Eluprotsesside säilitamine',
     be: 'Падтрыманьне жыцьцёвых працэсаў',
     ka: 'სიცოცხლის პროცესების შენარჩუნება',
-    kk: 'Тіршілік үдерістерін қамтамасыз ету',
+    kk: 'Tırşılık üderısterın qamtamasyz etu',
     qm: 'Yaşayış protsessleriniñ devamını temin etmek',
   },
   skills: [
@@ -86,7 +86,7 @@ export const maintainingLifeProcesses_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri, kuidas seedimine, hingamine ja vereringe varustavad keharakke vajalike ainetega.',
       be: 'Дасьледуйце, як страваваньне, дыханьне й кровазварот забясьпечваюць клеткі арганізму.',
       ka: 'შეისწავლეთ, როგორ ამარაგებს საჭმლის მონელება, სუნთქვა და სისხლის მიმოქცევა სხეულის უჯრედებს.',
-      kk: 'Ас қорыту, тыныс алу және қан айналымы дене жасушаларын қалай қамтамасыз ететінін зерттеңіз.',
+      kk: 'As qorytu, tynys alu jäne qan ainalymy dene jasuşalaryn qalai qamtamasyz etetının zertteñız.',
       qm: 'Azıqnı siñdirüv, nefes aluv ve qan aylanuvı beden üceyrelerine kerekli maddelerni nasıl yetkizgenini ögreniñiz.',
     },
   },

@@ -31,7 +31,7 @@ export const recognizeCommonLocalPlants_Skill_Data = defineSkill({
     et: 'Levinud kohalike taimede tundmine',
     be: 'Распазнаваць пашыраныя мясцовыя расьліны',
     ka: 'გავრცელებული ადგილობრივი მცენარეების ამოცნობა',
-    kk: 'Кең таралған жергілікті өсімдіктерді тану',
+    kk: 'Keñ taralğan jergılıktı ösımdıkterdı tanu',
     qm: 'Yerli yayğın ösümliklerni tanımaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const recognizeCommonLocalPlants_Skill_Data = defineSkill({
       et: 'Tunne oma ümbruse taimi ära lehtede, varte ja muude tunnuste koosluse järgi.',
       be: 'Вызначай знаёмыя мясцовыя расьліны паводле спалучэньня прыкметаў лістоў, сьцёблаў ды іншых частак.',
       ka: 'ამოიცანი შენს მხარეში ნაცნობი მცენარეები ფოთლების, ღეროებისა და სხვა ნიშნების ერთობლიობით.',
-      kk: 'Өзің тұратын жердегі таныс өсімдіктерді жапырақ, сабақ және басқа белгілерінің жиынтығынан анықта.',
+      kk: 'Özıñ tūratyn jerdegı tanys ösımdıkterdı japyraq, sabaq jäne basqa belgılerınıñ jiyntyğynan anyqta.',
       qm: 'Yaşığan yeriñizdeki tanış ösümliklerni yapraq, sap ve başqa belgilerge köre tanıñız.',
     },
   },

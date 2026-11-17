@@ -31,7 +31,7 @@ export const sequenceStagesOfAFloweringPlantsLifeCycle_Skill_Data = defineSkill(
     et: 'Õistaime elutsükli etappide järjestamine',
     be: 'Упарадкаваць этапы жыцьцёвага цыклю кветкавай расьліны',
     ka: 'ყვავილოვანი მცენარის სასიცოცხლო ციკლის დალაგება',
-    kk: 'Гүлді өсімдік өмірлік циклінің кезеңдерін реттеу',
+    kk: 'Güldı ösımdık ömırlık tsiklınıñ kezeñderın retteu',
     qm: 'Çeçekli ösümlikniñ yaşayış devri basamaqlarını sıralamaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const sequenceStagesOfAFloweringPlantsLifeCycle_Skill_Data = defineSkill(
       et: 'Jälgi etappe seemnest täiskasvanud õistaime ja uute seemneteni.',
       be: 'Прасачы этапы ад насеньня да дарослай квітнеючай расьліны й новага насеньня.',
       ka: 'მიჰყევი ეტაპებს თესლიდან მომწიფებულ ყვავილოვან მცენარემდე და ახალ თესლებამდე.',
-      kk: 'Тұқымнан жетілген гүлді өсімдікке және жаңа тұқымдарға дейінгі кезеңдерді бақыла.',
+      kk: 'Tūqymnan jetılgen güldı ösımdıkke jäne jaña tūqymdarğa deiıngı kezeñderdı baqyla.',
       qm: 'Tohumdan yetişken çeçekli ösümlikke ve yañı tohumlarğa qadar olğan basamaqlarnı doğru sıraya qoyuñız.',
     },
   },

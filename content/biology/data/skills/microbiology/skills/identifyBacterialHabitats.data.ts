@@ -31,7 +31,7 @@ export const identifyBacterialHabitats_Skill_Data = defineSkill({
     et: 'Bakterite elupaikade tuvastamine',
     be: 'Вызначаць асяродзьдзі пражываньня бактэрыяў',
     ka: 'ბაქტერიების საარსებო გარემოს ამოცნობა',
-    kk: 'Бактериялардың мекендеу ортасын анықтау',
+    kk: 'Bakterialardyñ mekendeu ortasyn anyqtau',
     qm: 'Bakteriyalarnıñ yaşağan yerlerini belgilemek',
   },
   description: {
@@ -65,7 +65,7 @@ export const identifyBacterialHabitats_Skill_Data = defineSkill({
       et: 'Uuri, miks bakterid suudavad elada paljudes eri keskkondades.',
       be: 'Даведайцеся, чаму бактэрыі могуць жыць у самых розных асяродзьдзях.',
       ka: 'გაიგეთ, რატომ შეუძლიათ ბაქტერიებს მრავალ განსხვავებულ გარემოში ცხოვრება.',
-      kk: 'Бактериялар неліктен сан алуан ортада өмір сүре алатынын біліңіз.',
+      kk: 'Bakterialar nelıkten san aluan ortada ömır süre alatynyn bılıñız.',
       qm: 'Bakteriyalar çoq çeşit müitte ne içün yaşay bilgenini ögreniñiz.',
     },
   },

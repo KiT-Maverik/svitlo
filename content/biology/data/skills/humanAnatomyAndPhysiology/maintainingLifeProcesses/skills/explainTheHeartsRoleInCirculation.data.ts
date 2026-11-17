@@ -31,7 +31,7 @@ export const explainTheHeartsRoleInCirculation_Skill_Data = defineSkill({
     et: 'Südame rolli selgitamine vereringes',
     be: 'Тлумачыць ролю сэрца ў кровазвароце',
     ka: 'გულის როლის ახსნა სისხლის მიმოქცევაში',
-    kk: 'Жүректің қан айналымындағы рөлін түсіндіру',
+    kk: 'Jürektıñ qan ainalymyndağy rölın tüsındıru',
     qm: 'Yürekniñ qan aylanuvındaki rolüni añlatmaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const explainTheHeartsRoleInCirculation_Skill_Data = defineSkill({
       et: 'Uuri, kuidas süda pumpab verd kogu kehasse.',
       be: 'Дасьледуйце, як сэрца перапампоўвае кроў па ўсім целе.',
       ka: 'შეისწავლეთ, როგორ ტუმბავს გული სისხლს მთელ სხეულში.',
-      kk: 'Жүрек қанды бүкіл денеге қалай айдайтынын зерттеңіз.',
+      kk: 'Jürek qandy bükıl denege qalai aidaitynyn zertteñız.',
       qm: 'Yürek qannı bütün bedenge nasıl pompalap yetkizgenini ögreniñiz.',
     },
   },

@@ -31,7 +31,7 @@ export const explainDigestionOfNutrients_Skill_Data = defineSkill({
     et: 'Toitainete seedimise selgitamine',
     be: 'Тлумачыць страваваньне пажыўных рэчываў',
     ka: 'საკვები ნივთიერებების მონელების ახსნა',
-    kk: 'Қоректік заттардың қорытылуын түсіндіру',
+    kk: 'Qorektık zattardyñ qorytyluyn tüsındıru',
     qm: 'Azıq maddeleriniñ siñdirilüvini añlatmaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const explainDigestionOfNutrients_Skill_Data = defineSkill({
       et: 'Uuri, kuidas seedimine lagundab toidu väiksemateks aineteks, mida keha saab kasutada.',
       be: 'Даведайцеся, як страваваньне расшчапляе ежу на драбнейшыя рэчывы, якія арганізм можа скарыстаць.',
       ka: 'გაიგეთ, როგორ შლის მონელება საკვებს მცირე ნივთიერებებად, რომელთა გამოყენებაც სხეულს შეუძლია.',
-      kk: 'Ас қорыту тағамды ағза пайдалана алатын ұсақ заттарға қалай ыдырататынын біліңіз.',
+      kk: 'As qorytu tağamdy ağza paidalana alatyn ūsaq zattarğa qalai ydyratatynyn bılıñız.',
       qm: 'Azıqnı siñdirüv yemekni beden qullana bilgen daa ufak maddelerge nasıl ayırğanını ögreniñiz.',
     },
   },

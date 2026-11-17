@@ -31,7 +31,7 @@ export const explainBenefitsOfGroupBehavior_Skill_Data = defineSkill({
     et: 'Rühmakäitumise eeliste selgitamine',
     be: 'Тлумачыць перавагі групавых паводзінаў',
     ka: 'ჯგუფური ქცევის სარგებლის ახსნა',
-    kk: 'Топтық мінез-құлықтың пайдасын түсіндіру',
+    kk: 'Toptyq mınez-qūlyqtyñ paidasyn tüsındıru',
     qm: 'Topar davranışınıñ faydalarını añlatmaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const explainBenefitsOfGroupBehavior_Skill_Data = defineSkill({
       et: 'Uuri, kuidas rühmakäitumine võib aidata loomadel toitu hankida, end kaitsta ja poegade eest hoolitseda.',
       be: 'Даведайся, як групавыя паводзіны могуць дапамагаць жывёлам здабываць ежу, абараняцца і клапаціцца пра нашчадкаў.',
       ka: 'გაიგე, როგორ შეიძლება ჯგუფური ქცევა ეხმარებოდეს ცხოველებს საკვების მოპოვებაში, თავდაცვასა და ნაშიერებზე ზრუნვაში.',
-      kk: 'Топтық мінез-құлық жануарларға қорек табуға, қорғануға және төлдерін күтуге қалай көмектесетінін біл.',
+      kk: 'Toptyq mınez-qūlyq januarlarğa qorek tabuğa, qorğanuğa jäne tölderın kütuge qalai kömektesetının bıl.',
       qm: 'Topar olıp areket etmek ayvanlarğa azıq tapmağa, qorçalanmağa ve balalarını baqmağa nasıl yardım ete bilgenini ögreniñiz.',
     },
   },

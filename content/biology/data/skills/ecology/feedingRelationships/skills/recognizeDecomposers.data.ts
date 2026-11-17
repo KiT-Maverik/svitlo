@@ -31,7 +31,7 @@ export const recognizeDecomposers_Skill_Data = defineSkill({
     et: 'Tunda ära lagundajaid',
     be: 'Распазнаваць рэдуцэнтаў',
     ka: 'დამშლელების ამოცნობა',
-    kk: 'Редуценттерді тану',
+    kk: 'Redutsentterdı tanu',
     qm: 'Çürüticilerni tanımaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const recognizeDecomposers_Skill_Data = defineSkill({
       et: 'Uuri, kuidas lagundajad lagundavad orgaanilist ainet.',
       be: 'Вызначай, як рэдуцэнты раскладаюць арганічныя рэчывы.',
       ka: 'გაიგე, როგორ შლიან დამშლელები ორგანულ ნივთიერებას.',
-      kk: 'Редуценттердің органикалық затты қалай ыдырататынын анықта.',
+      kk: 'Redutsentterdıñ organikalyq zatty qalai ydyratatynyn anyqta.',
       qm: 'Çürütici canlılar organik maddelerni nasıl parçalağanını tanıñız.',
     },
   },

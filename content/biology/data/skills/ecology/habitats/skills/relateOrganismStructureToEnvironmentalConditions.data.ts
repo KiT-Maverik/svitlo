@@ -31,7 +31,7 @@ export const relateOrganismStructureToEnvironmentalConditions_Skill_Data = defin
     et: 'Seostada organismi ehitust keskkonnatingimustega',
     be: 'Зьвязваць будову арганізму з умовамі асяродзьдзя',
     ka: 'ორგანიზმის აგებულების გარემო პირობებთან დაკავშირება',
-    kk: 'Ағзаның құрылысын орта жағдайларымен байланыстыру',
+    kk: 'Ağzanyñ qūrylysyn orta jağdailarymen bailanystyru',
     qm: 'Canlınıñ quruluşunı müit şartlarınen bağlaştırmaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const relateOrganismStructureToEnvironmentalConditions_Skill_Data = defin
       et: 'Selgita, kuidas organismi ehitus aitab tal keskkonnas ellu jääda ja ressursse kasutada.',
       be: 'Патлумач, як будова арганізму дапамагае яму выжываць і выкарыстоўваць рэсурсы асяродзьдзя.',
       ka: 'ახსენი, როგორ ეხმარება აგებულება ორგანიზმს გარემოში გადარჩენასა და რესურსების გამოყენებაში.',
-      kk: 'Ағзаның құрылысы ортада тірі қалып, ресурстарды пайдалануға қалай көмектесетінін түсіндір.',
+      kk: 'Ağzanyñ qūrylysy ortada tırı qalyp, resurstardy paidalanuğa qalai kömektesetının tüsındır.',
       qm: 'Canlınıñ quruluşu öz müitinde sağ qalmağa ve kaynaklardan faydalanmağa nasıl yardım etkenini añlatıñız.',
     },
   },

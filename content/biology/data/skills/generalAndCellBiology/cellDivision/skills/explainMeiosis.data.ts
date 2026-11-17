@@ -31,7 +31,7 @@ export const explainMeiosis_Skill_Data = defineSkill({
     et: 'Meioosi selgitamine',
     be: 'Тлумачыць мэёз',
     ka: 'მეიოზის ახსნა',
-    kk: 'Мейозды түсіндіру',
+    kk: 'Meiozdy tüsındıru',
     qm: 'Meyoznı añlatmaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const explainMeiosis_Skill_Data = defineSkill({
       et: 'Uuri, kuidas meioos tekitab väiksema kromosoomiarvuga rakke ja geneetilist mitmekesisust.',
       be: 'Даведайся, як мэёз утварае клеткі зь меншай колькасьцю храмасом і стварае генэтычную разнастайнасьць.',
       ka: 'გაიგე, როგორ წარმოქმნის მეიოზი უჯრედებს ნაკლები ქრომოსომით და როგორ ქმნის გენეტიკურ მრავალფეროვნებას.',
-      kk: 'Мейоз хромосома саны аз жасушаларды қалай түзетінін және генетикалық өзгергіштікке қалай әкелетінін біл.',
+      kk: 'Meioz hromosoma sany az jasuşalardy qalai tüzetının jäne genetikalyq özgergıştıkke qalai äkeletının bıl.',
       qm: 'Meyoz neticesinde hromosoma sayısı az olğan üceyreler ve irsiy çeşitlik nasıl meydana kelgenini ögreniñiz.',
     },
   },

@@ -31,7 +31,7 @@ export const identifyProtectiveAdaptationsInAnimals_Skill_Data = defineSkill({
     et: 'Loomade kaitsekohastumuste tuvastamine',
     be: 'Вызначаць ахоўныя прыстасаваньні жывёлаў',
     ka: 'ცხოველთა დამცავი შეგუებების გამოვლენა',
-    kk: 'Жануарлардың қорғаныш бейімделулерін анықтау',
+    kk: 'Januarlardyñ qorğanyş beiımdelulerın anyqtau',
     qm: 'Ayvanlarnıñ qorçalayıcı uyğunlaşuvlarını tanımaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const identifyProtectiveAdaptationsInAnimals_Skill_Data = defineSkill({
       et: 'Tunne ära kehaehituse omadused, mis aitavad loomadel end kaitsta.',
       be: 'Распазнавай асаблівасьці будовы, якія дапамагаюць жывёлам абараняцца.',
       ka: 'ამოიცანი სხეულის აგებულების თავისებურებები, რომლებიც ცხოველებს თავდაცვაში ეხმარება.',
-      kk: 'Жануарлардың қорғануына көмектесетін дене құрылымдарын таны.',
+      kk: 'Januarlardyñ qorğanuyna kömektesetın dene qūrylymdaryn tany.',
       qm: 'Ayvanlarğa özüni qorçalamağa yardım etken beden quruluşlarını tanıñız.',
     },
   },

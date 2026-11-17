@@ -31,7 +31,7 @@ export const recognizeEchinodermCharacteristics_Skill_Data = defineSkill({
     et: 'Okasnahksete tunnuste äratundmine',
     be: 'Распазнаваць прыкметы ігласкурых',
     ka: 'კანეკლიანების ნიშნების ამოცნობა',
-    kk: 'Тікентерілілердің белгілерін тану',
+    kk: 'Tıkenterılılerdıñ belgılerın tanu',
     qm: 'İynederililerniñ belgilerini tanımaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const recognizeEchinodermCharacteristics_Skill_Data = defineSkill({
       et: 'Tunne meritähed ja teised okasnahksed ära iseloomuliku kehaehituse järgi.',
       be: 'Вызначай марскіх зорак ды іншых ігласкурых паводле характэрных асаблівасьцяў будовы.',
       ka: 'ამოიცანი ზღვის ვარსკვლავები და სხვა კანეკლიანები მათი განსაკუთრებული აგებულებით.',
-      kk: 'Теңіз жұлдыздары мен басқа тікентерілілерді ерекше дене құрылысы арқылы анықта.',
+      kk: 'Teñız jūldyzdary men basqa tıkenterılılerdı erekşe dene qūrylysy arqyly anyqta.',
       qm: 'Deñiz yıldızları ve başqa iynederililerni olarnıñ özüne has beden quruluşuna köre tanıñız.',
     },
   },

@@ -31,7 +31,7 @@ export const explainTheImportanceOfSleepForRecovery_Skill_Data = defineSkill({
     et: 'Une tähtsuse selgitamine taastumisel',
     be: 'Тлумачыць значэньне сну для аднаўленьня',
     ka: 'ძილის მნიშვნელობის ახსნა აღდგენისთვის',
-    kk: 'Ұйқының қалпына келудегі маңызын түсіндіру',
+    kk: 'Ūiqynyñ qalpyna keludegı mañyzyn tüsındıru',
     qm: 'Uyqunıñ tiklenüv içün emiyetini añlatmaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const explainTheImportanceOfSleepForRecovery_Skill_Data = defineSkill({
       et: 'Uuri, kuidas uni toetab aju tööd, mälu ja taastumist.',
       be: 'Даведайцеся, як сон падтрымлівае працу мозгу, памяць і аднаўленьне.',
       ka: 'გაიგეთ, როგორ უწყობს ხელს ძილი ტვინის ფუნქციას, მეხსიერებასა და აღდგენას.',
-      kk: 'Ұйқы ми қызметін, есте сақтауды және қалпына келуді қалай қолдайтынын біліңіз.',
+      kk: 'Ūiqy mi qyzmetın, este saqtaudy jäne qalpyna keludı qalai qoldaitynyn bılıñız.',
       qm: 'Uyqu miy çalışuvını, afızanı ve tiklenüvni nasıl desteklegenini ögreniñiz.',
     },
   },

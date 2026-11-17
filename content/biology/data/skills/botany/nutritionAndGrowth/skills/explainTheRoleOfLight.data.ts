@@ -31,7 +31,7 @@ export const explainTheRoleOfLight_Skill_Data = defineSkill({
     et: 'Valguse rolli selgitamine',
     be: 'Тлумачыць ролю сьвятла',
     ka: 'სინათლის როლის ახსნა',
-    kk: 'Жарықтың рөлін түсіндіру',
+    kk: 'Jaryqtyñ rölın tüsındıru',
     qm: 'Yarıqnıñ rolüni añlatmaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const explainTheRoleOfLight_Skill_Data = defineSkill({
       et: 'Selgita, miks valgus on fotosünteesi käigus orgaaniliste ainete moodustumiseks vajalik.',
       be: 'Тлумач, чаму сьвятло неабходнае для ўтварэньня арганічных рэчываў праз фотасынтэз.',
       ka: 'ახსენი, რატომ არის სინათლე აუცილებელი ფოტოსინთეზით ორგანული ნივთიერებების შესაქმნელად.',
-      kk: 'Фотосинтез арқылы қорек жасауға жарық неге қажет екенін түсіндір.',
+      kk: 'Fotosintez arqyly qorek jasauğa jaryq nege qajet ekenın tüsındır.',
       qm: 'Fotosintez vastasınen organik maddeler meydanğa ketirmek içün yarıq nege kerek olğanını añlatıñız.',
     },
   },

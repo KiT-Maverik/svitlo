@@ -31,7 +31,7 @@ export const recognizeNaturalCommunitiesOfUkraine_Skill_Data = defineSkill({
     et: 'Tunda ära Ukraina looduslikke kooslusi',
     be: 'Распазнаваць прыродныя супольнасьці Ўкраіны',
     ka: 'უკრაინის ბუნებრივი თანასაზოგადოებების ამოცნობა',
-    kk: 'Украинаның табиғи қауымдастықтарын тану',
+    kk: 'Ukrainanyñ tabiği qauymdastyqtaryn tanu',
     qm: 'Ukrainanıñ tabiiy canlı toplulıqlarını tanımaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const recognizeNaturalCommunitiesOfUkraine_Skill_Data = defineSkill({
       et: 'Tunne ära Ukraina metsade, steppide ja veekogude iseloomulikud elukooslused.',
       be: 'Распазнавай характэрныя супольнасьці арганізмаў у лясах, стэпах і вадаёмах Украіны.',
       ka: 'ამოიცანი უკრაინის ტყეებისთვის, სტეპებისა და წყალსატევებისთვის დამახასიათებელი ცოცხალი თანასაზოგადოებები.',
-      kk: 'Украинаның ормандары, далалары мен су айдындарына тән тірі ағзалар қауымдастықтарын таны.',
+      kk: 'Ukrainanyñ ormandary, dalalary men su aidyndaryna tän tırı ağzalar qauymdastyqtaryn tany.',
       qm: 'Ukrainanıñ ormanlarında, steplerinde ve suvlarında rastkelgen tipik canlı toplulıqlarını tanıñız.',
     },
   },

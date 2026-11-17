@@ -31,7 +31,7 @@ export const identifyBreathingChangesDuringPhysicalActivity_Skill_Data = defineS
     et: 'Hingamismuutuste tuvastamine kehalise tegevuse ajal',
     be: 'Вызначаць зьмены дыханьня падчас фізычнай актыўнасьці',
     ka: 'სუნთქვის ცვლილებების ამოცნობა ფიზიკური აქტივობისას',
-    kk: 'Дене белсенділігі кезіндегі тыныс алу өзгерістерін анықтау',
+    kk: 'Dene belsendılıgı kezındegı tynys alu özgerısterın anyqtau',
     qm: 'Fizik faallik vaqtında nefes aluv deñişmelerini belgilemek',
   },
   description: {
@@ -65,7 +65,7 @@ export const identifyBreathingChangesDuringPhysicalActivity_Skill_Data = defineS
       et: 'Selgita, miks hingamine kehalise tegevuse ajal muutub.',
       be: 'Растлумачце, чаму дыханьне зьмяняецца падчас фізычнай актыўнасьці.',
       ka: 'ახსენით, რატომ იცვლება სუნთქვა ფიზიკური აქტივობის დროს.',
-      kk: 'Дене белсенділігі кезінде тыныс алу неге өзгеретінін түсіндіріңіз.',
+      kk: 'Dene belsendılıgı kezınde tynys alu nege özgeretının tüsındırıñız.',
       qm: 'Fizik faallik vaqtında nefes aluv ne içün deñişkenini añlatıñız.',
     },
   },

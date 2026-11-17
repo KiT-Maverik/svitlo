@@ -31,7 +31,7 @@ export const explainAnOrgansFunctionInAnOrganism_Skill_Data = defineSkill({
     et: 'Elundi ülesande selgitamine organismis',
     be: 'Тлумачыць функцыю органа ў арганізьме',
     ka: 'ორგანოს ფუნქციის ახსნა ორგანიზმში',
-    kk: 'Ағзадағы мүшенің қызметін түсіндіру',
+    kk: 'Ağzadağy müşenıñ qyzmetın tüsındıru',
     qm: 'Organnıñ canlı bedenindeki vazifesini añlatmaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const explainAnOrgansFunctionInAnOrganism_Skill_Data = defineSkill({
       et: 'Selgita, kuidas kindel elund aitab kogu organismil toimida.',
       be: 'Тлумач, як пэўны орган дапамагае працаваць цэламу арганізму.',
       ka: 'ახსენი, როგორ უწყობს კონკრეტული ორგანო ხელს მთელი ორგანიზმის მუშაობას.',
-      kk: 'Белгілі бір мүше бүкіл ағзаның жұмысына қалай көмектесетінін түсіндір.',
+      kk: 'Belgılı bır müşe bükıl ağzanyñ jūmysyna qalai kömektesetının tüsındır.',
       qm: 'Belgili bir organ bütün canlı organizmniñ faaliyetini nasıl temin etkenini añlatıñız.',
     },
   },

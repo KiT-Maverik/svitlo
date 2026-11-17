@@ -31,7 +31,7 @@ export const recognizeReptileCharacteristics_Skill_Data = defineSkill({
     et: 'Roomajate tunnuste äratundmine',
     be: 'Распазнаваць прыкметы паўзуноў',
     ka: 'ქვეწარმავლების ნიშნების ამოცნობა',
-    kk: 'Бауырымен жорғалаушылардың белгілерін тану',
+    kk: 'Bauyrymen jorğalauşylardyñ belgılerın tanu',
     qm: 'Sürüngenlerniñ belgilerini tanımaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const recognizeReptileCharacteristics_Skill_Data = defineSkill({
       et: 'Tunne ära roomajate tunnused, sealhulgas nahk ja paljunemine.',
       be: 'Вызначай прыкметы паўзуноў, у тым ліку асаблівасьці скуры і размнажэньня.',
       ka: 'ამოიცანი ქვეწარმავლების ნიშნები, მათ შორის კანისა და გამრავლების თავისებურებები.',
-      kk: 'Бауырымен жорғалаушылардың терісі мен көбеюіне қатысты белгілерін анықта.',
+      kk: 'Bauyrymen jorğalauşylardyñ terısı men köbeiuıne qatysty belgılerın anyqta.',
       qm: 'Sürüngenlerniñ deri quruluşu ve çoğaluvı da dahil, olarnıñ esas belgilerini tanıñız.',
     },
   },

@@ -31,7 +31,7 @@ export const recognizeFernAndFernAllyCharacteristics_Skill_Data = defineSkill({
     et: 'Sõnajalgade ja sugulastaimede tunnuste tundmine',
     be: 'Распазнаваць прыкметы папарацяў і роднасных расьлінаў',
     ka: 'გვიმრებისა და მონათესავე მცენარეების ნიშნების ამოცნობა',
-    kk: 'Қырықжапырақтар мен туыстас өсімдіктердің белгілерін тану',
+    kk: 'Qyryqjapyraqtar men tuystas ösımdıkterdıñ belgılerın tanu',
     qm: 'Pteridofitlerniñ ve olarğa yaqın ösümliklerniñ belgilerini tanımaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const recognizeFernAndFernAllyCharacteristics_Skill_Data = defineSkill({
       et: 'Tunne ära eostega paljunevad sõnajalad ja sugulastest soontaimed.',
       be: 'Распазнавай папараці й роднасныя судзінкавыя расьліны, што размнажаюцца спорамі.',
       ka: 'ამოიცანი სპორებით გამრავლებადი გვიმრები და მონათესავე გამტარი ქსოვილების მქონე მცენარეები.',
-      kk: 'Спора арқылы көбейетін қырықжапырақтар мен туыстас өткізгіш ұлпалы өсімдіктерді таны.',
+      kk: 'Spora arqyly köbeietın qyryqjapyraqtar men tuystas ötkızgış ūlpaly ösımdıkterdı tany.',
       qm: 'Sporalar vastasınen çoğalğan pteridofitlerni ve olarğa yaqın damarlı ösümliklerni tanıñız.',
     },
   },

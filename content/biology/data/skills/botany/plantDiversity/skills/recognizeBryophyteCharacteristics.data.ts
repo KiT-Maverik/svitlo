@@ -31,7 +31,7 @@ export const recognizeBryophyteCharacteristics_Skill_Data = defineSkill({
     et: 'Sammaltaimede tunnuste tundmine',
     be: 'Распазнаваць прыкметы мохападобных',
     ka: 'ხავსებისა და მონათესავე მცენარეების ნიშნების ამოცნობა',
-    kk: 'Мүктәрізділердің белгілерін тану',
+    kk: 'Müktärızdılerdıñ belgılerın tanu',
     qm: 'Briofitlerniñ hususiyetlerini tanımaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const recognizeBryophyteCharacteristics_Skill_Data = defineSkill({
       et: 'Õpi tundma sammalde ja sugulastaimede tunnuseid ning elutsükleid.',
       be: 'Даведайся пра характэрныя прыкметы й жыцьцёвыя цыклі імхоў і роднасных расьлінаў.',
       ka: 'გაიგე ხავსებისა და მონათესავე მცენარეების დამახასიათებელი ნიშნები და სასიცოცხლო ციკლები.',
-      kk: 'Мүктер мен туыстас өсімдіктердің ерекше белгілері мен өмірлік циклдерін біл.',
+      kk: 'Mükter men tuystas ösımdıkterdıñ erekşe belgılerı men ömırlık tsiklderın bıl.',
       qm: 'Mohlar ve olarğa yaqın ösümliklerniñ esas belgilerini ve yaşayış devirlerini ögreniñiz.',
     },
   },

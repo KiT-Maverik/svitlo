@@ -31,7 +31,7 @@ export const explainThePassageOfFoodThroughTheDigestiveSystem_Skill_Data = defin
     et: 'Toidu liikumise selgitamine seedekulglas',
     be: 'Тлумачыць праходжаньне ежы праз стрававальную сыстэму',
     ka: 'საკვების გავლის ახსნა საჭმლის მომნელებელ სისტემაში',
-    kk: 'Тағамның ас қорыту жүйесі арқылы өтуін түсіндіру',
+    kk: 'Tağamnyñ as qorytu jüiesı arqyly ötuın tüsındıru',
     qm: 'Yemekniñ azıq siñdirüv sistemasından keçüvini añlatmaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const explainThePassageOfFoodThroughTheDigestiveSystem_Skill_Data = defin
       et: 'Jälgi toidu teekonda seedekulglas ja erista selle eri ülesandeid.',
       be: 'Прасачыце шлях ежы праз стрававальны тракт і адрозьнівайце яго розныя функцыі.',
       ka: 'თვალი ადევნეთ საკვების გზას საჭმლის მომნელებელ ტრაქტში და განასხვავეთ მისი ფუნქციები.',
-      kk: 'Тағамның ас қорыту жолындағы бағытын бақылап, түрлі қызметтерін ажыратыңыз.',
+      kk: 'Tağamnyñ as qorytu jolyndağy bağytyn baqylap, türlı qyzmetterın ajyratyñyz.',
       qm: 'Yemekniñ azıq siñdirüv yolundaki areketini taqip etip, türlü vazifelerini ayırıñız.',
     },
   },

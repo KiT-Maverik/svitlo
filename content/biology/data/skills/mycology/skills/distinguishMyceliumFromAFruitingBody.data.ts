@@ -31,7 +31,7 @@ export const distinguishMyceliumFromAFruitingBody_Skill_Data = defineSkill({
     et: 'Seeneniidistiku ja viljakeha eristamine',
     be: 'Адрозьніваць міцэлій і пладовае цела',
     ka: 'მიცელიუმისა და ნაყოფსხეულის გარჩევა',
-    kk: 'Мицелий мен жемісті денені ажырату',
+    kk: 'Mitselii men jemıstı denenı ajyratu',
     qm: 'Miseliy ve meyve cismini ayırmaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const distinguishMyceliumFromAFruitingBody_Skill_Data = defineSkill({
       et: 'Uuri, mille poolest seene varjatud niidistik erineb nähtavast viljakehast.',
       be: 'Даведайцеся, чым схаваны міцэлій грыба адрозьніваецца ад бачнага пладовага цела.',
       ka: 'გაიგეთ, როგორ განსხვავდება სოკოს დაფარული მიცელიუმი ხილული ნაყოფსხეულისგან.',
-      kk: 'Саңырауқұлақтың жасырын мицелийі көрінетін жемісті денеден қалай ерекшеленетінін біліңіз.',
+      kk: 'Sañyrauqūlaqtyñ jasyryn mitseliiı körınetın jemıstı deneden qalai erekşelenetının bılıñız.',
       qm: 'Mantarnıñ gizli miseliyi körüngen meyve cisminden nasıl farqlı olğanını ögreniñiz.',
     },
   },

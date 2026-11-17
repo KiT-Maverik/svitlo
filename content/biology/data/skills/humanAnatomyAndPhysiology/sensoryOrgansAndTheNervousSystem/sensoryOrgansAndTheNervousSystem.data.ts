@@ -38,7 +38,7 @@ export const sensoryOrgansAndTheNervousSystem_SkillGroup_Data = defineSkillGroup
     et: 'Meeleelundid ja närvisüsteem',
     be: 'Органы пачуцьцяў і нэрвовая сыстэма',
     ka: 'გრძნობის ორგანოები და ნერვული სისტემა',
-    kk: 'Сезім мүшелері мен жүйке жүйесі',
+    kk: 'Sezım müşelerı men jüike jüiesı',
     qm: 'Sezgi organları ve sinir sisteması',
   },
   skills: [
@@ -78,7 +78,7 @@ export const sensoryOrgansAndTheNervousSystem_SkillGroup_Data = defineSkillGroup
       et: 'Uuri, kuidas meeled ja närvid tajuvad teavet ning sellele reageerivad.',
       be: 'Дасьледуйце, як органы пачуцьцяў і нэрвы ўспрымаюць інфармацыю й рэагуюць на яе.',
       ka: 'შეისწავლეთ, როგორ აღიქვამენ გრძნობის ორგანოები და ნერვები ინფორმაციას და რეაგირებენ მასზე.',
-      kk: 'Сезім мүшелері мен жүйкелер ақпаратты қалай қабылдап, жауап беретінін зерттеңіз.',
+      kk: 'Sezım müşelerı men jüikeler aqparatty qalai qabyldap, jauap beretının zertteñız.',
       qm: 'Sezgiler ve sinirler malümatnı nasıl qabul etip, oña nasıl cevap bergenini ögreniñiz.',
     },
   },

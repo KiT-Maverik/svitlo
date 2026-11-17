@@ -31,7 +31,7 @@ export const explainPlantsNeedForWater_Skill_Data = defineSkill({
     et: 'Taimede veevajaduse selgitamine',
     be: 'Тлумачыць патрэбу расьлінаў у вадзе',
     ka: 'მცენარეებისთვის წყლის საჭიროების ახსნა',
-    kk: 'Өсімдіктердің суға мұқтаждығын түсіндіру',
+    kk: 'Ösımdıkterdıñ suğa mūqtajdyğyn tüsındıru',
     qm: 'Ösümliklerge suv ne içün kerek olğanını añlatmaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const explainPlantsNeedForWater_Skill_Data = defineSkill({
       et: 'Mõista, miks taimed vajavad vett ainete transpordiks, rakkude tööks ja fotosünteesiks.',
       be: 'Зразумей, чаму вада патрэбная расьлінам для пераносу рэчываў, працы клетак і фотасынтэзу.',
       ka: 'გაიგე, რატომ სჭირდებათ მცენარეებს წყალი ნივთიერებების გადასატანად, უჯრედების მუშაობისა და ფოტოსინთეზისთვის.',
-      kk: 'Су өсімдікке зат тасымалдау, жасуша жұмысы және фотосинтез үшін неге қажет екенін түсін.',
+      kk: 'Su ösımdıkke zat tasymaldau, jasuşa jūmysy jäne fotosintez üşın nege qajet ekenın tüsın.',
       qm: 'Ösümliklerge maddelerni taşımaq, üceyrelerniñ faaliyetini saqlamaq ve fotosintez içün suv nege kerek olğanını añlatıñız.',
     },
   },

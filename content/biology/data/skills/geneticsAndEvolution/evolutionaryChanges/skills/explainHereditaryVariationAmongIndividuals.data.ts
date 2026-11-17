@@ -31,7 +31,7 @@ export const explainHereditaryVariationAmongIndividuals_Skill_Data = defineSkill
     et: 'Selgitada pärilikku varieeruvust isendite vahel',
     be: 'Тлумачыць спадчынную зьменлівасьць асобінаў',
     ka: 'ინდივიდებს შორის მემკვიდრეობითი ცვალებადობის ახსნა',
-    kk: 'Даралар арасындағы тұқымқуалайтын өзгергіштікті түсіндіру',
+    kk: 'Daralar arasyndağy tūqymqualaityn özgergıştıktı tüsındıru',
     qm: 'Şahıslar arasındaki irsiy çeşitlikni añlatmaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const explainHereditaryVariationAmongIndividuals_Skill_Data = defineSkill
       et: 'Selgita, miks isendite vahel esineb pärilikke erinevusi.',
       be: 'Растлумач, чаму паміж асобінамі існуюць спадчынныя адрозьненьні.',
       ka: 'ახსენი, რატომ არსებობს ინდივიდებს შორის მემკვიდრეობითი განსხვავებები.',
-      kk: 'Даралар арасында тұқым қуалайтын айырмашылықтар неге болатынын түсіндір.',
+      kk: 'Daralar arasynda tūqym qualaityn aiyrmaşylyqtar nege bolatynyn tüsındır.',
       qm: 'Bir türge ait ayrı canlılarda nesilden nesilge keçken farqlar ne içün olğanını añlatıñız.',
     },
   },

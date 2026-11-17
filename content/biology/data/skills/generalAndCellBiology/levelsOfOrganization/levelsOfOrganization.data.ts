@@ -38,7 +38,7 @@ export const levelsOfOrganization_SkillGroup_Data = defineSkillGroup({
     et: 'Organiseerituse tasemed',
     be: 'Узроўні арганізацыі',
     ka: 'ორგანიზაციის დონეები',
-    kk: 'Ұйымдасу деңгейлері',
+    kk: 'Ūiymdasu deñgeilerı',
     qm: 'Teşkilâtlanma seviyeleri',
   },
   skills: [
@@ -78,7 +78,7 @@ export const levelsOfOrganization_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri, kuidas rakud, koed, elundid ja elundkonnad elusorganismides koos toimivad.',
       be: 'Дасьледуй, як клеткі, тканкі, органы й сыстэмы органаў спалучаюцца ў жывых арганізмах.',
       ka: 'გამოიკვლიე, როგორ ერთიანდება უჯრედები, ქსოვილები, ორგანოები და ორგანოთა სისტემები ცოცხალ ორგანიზმებში.',
-      kk: 'Жасушалар, ұлпалар, мүшелер және мүшелер жүйелері тірі ағзаларда қалай байланысатынын зертте.',
+      kk: 'Jasuşalar, ūlpalar, müşeler jäne müşeler jüielerı tırı ağzalarda qalai bailanysatynyn zertte.',
       qm: 'Üceyreler, toqular, organlar ve organ sistemaları canlı bedeninde nasıl birleşkenini ögreniñiz.',
     },
   },

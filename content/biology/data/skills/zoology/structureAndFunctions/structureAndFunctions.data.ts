@@ -38,7 +38,7 @@ export const structureAndFunctions_SkillGroup_Data = defineSkillGroup({
     et: 'Ehitus ja talitlused',
     be: 'Будова і функцыі',
     ka: 'აგებულება და ფუნქციები',
-    kk: 'Құрылысы мен қызметтері',
+    kk: 'Qūrylysy men qyzmetterı',
     qm: 'Quruluş ve vazifeler',
   },
   skills: [
@@ -78,7 +78,7 @@ export const structureAndFunctions_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri, kuidas kehaehitus aitab loomadel liikuda, ümbrust tajuda ja end kaitsta.',
       be: 'Дасьледуй, як будова цела дапамагае жывёлам рухацца, адчуваць навакольле і абараняцца.',
       ka: 'გაიგე, როგორ ეხმარება სხეულის აგებულება ცხოველებს მოძრაობაში, გარემოს აღქმასა და თავდაცვაში.',
-      kk: 'Дене құрылысы жануарлардың қозғалуына, айналаны сезінуіне және қорғануына қалай көмектесетінін зертте.',
+      kk: 'Dene qūrylysy januarlardyñ qozğaluyna, ainalany sezınuıne jäne qorğanuyna qalai kömektesetının zertte.',
       qm: 'Ayvanlarnıñ beden quruluşları areket etmege, etrafnı sezmege ve özüni qorçalamağa nasıl yardım etkenini ögreniñiz.',
     },
   },

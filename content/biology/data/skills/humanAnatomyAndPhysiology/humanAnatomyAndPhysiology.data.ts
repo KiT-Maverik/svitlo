@@ -38,7 +38,7 @@ export const humanAnatomyAndPhysiology_SkillDomain_Data = defineSkillDomain({
     et: 'Inimese anatoomia ja füsioloogia',
     be: 'Анатомія і фізіялёгія чалавека',
     ka: 'ადამიანის ანატომია და ფიზიოლოგია',
-    kk: 'Адам анатомиясы мен физиологиясы',
+    kk: 'Adam anatomiasy men fiziologiasy',
     qm: 'İnsannıñ anatomiyası ve fiziologiyası',
   },
   groups: [
@@ -80,7 +80,7 @@ export const humanAnatomyAndPhysiology_SkillDomain_Data = defineSkillDomain({
       et: 'Uuri, kuidas inimkeha ehitus ja elundkonnad teevad elu säilitamiseks koostööd.',
       be: 'Дасьледуйце, як структуры й сыстэмы органаў чалавечага цела разам падтрымліваюць жыцьцё.',
       ka: 'შეისწავლეთ, როგორ თანამშრომლობენ ადამიანის სხეულის სტრუქტურები და ორგანოთა სისტემები სიცოცხლის შესანარჩუნებლად.',
-      kk: 'Адам денесінің құрылымдары мен мүшелер жүйелері тіршілікті сақтау үшін қалай бірлесіп жұмыс істейтінін зерттеңіз.',
+      kk: 'Adam denesınıñ qūrylymdary men müşeler jüielerı tırşılıktı saqtau üşın qalai bırlesıp jūmys ısteitının zertteñız.',
       qm: 'İnsan bedeniniñ quruluşları ve organ sistemaları yaşayışnı saqlamaq içün nasıl beraber çalışqanını ögreniñiz.',
     },
   },

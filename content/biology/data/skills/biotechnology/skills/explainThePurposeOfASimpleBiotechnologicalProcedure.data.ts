@@ -31,7 +31,7 @@ export const explainThePurposeOfASimpleBiotechnologicalProcedure_Skill_Data = de
     et: 'Lihtsa biotehnoloogilise protseduuri eesmärgi selgitamine',
     be: 'Тлумачыць мэту простай біятэхналягічнай працэдуры',
     ka: 'მარტივი ბიოტექნოლოგიური პროცედურის მიზნის ახსნა',
-    kk: 'Қарапайым биотехнологиялық үдерістің мақсатын түсіндіру',
+    kk: 'Qarapaiym biotehnologialyq üderıstıñ maqsatyn tüsındıru',
     qm: 'Adiy biotehnologik usulnıñ maqsadını añlatmaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const explainThePurposeOfASimpleBiotechnologicalProcedure_Skill_Data = de
       et: 'Seosta protseduuris kasutatavad organismid või ensüümid soovitud tootega.',
       be: 'Зьвяжы арганізмы або фэрмэнты, якія выкарыстоўваюць у працэдуры, з прадуктам, які жадаюць атрымаць.',
       ka: 'დააკავშირე პროცედურაში გამოყენებული ორგანიზმები ან ფერმენტები სასურველ პროდუქტთან.',
-      kk: 'Үдерісте қолданылатын ағзалар немесе ферменттер мен алынуы көзделген өнім арасындағы байланысты түсіндір.',
+      kk: 'Üderıste qoldanylatyn ağzalar nemese fermentter men alynuy közdelgen önım arasyndağy bailanysty tüsındır.',
       qm: 'Bir biotehnologik usulda qullanılğan canlılar ya da fermentlerni alınması közde tutulğan mahsulatnen bağlaştırıñız.',
     },
   },

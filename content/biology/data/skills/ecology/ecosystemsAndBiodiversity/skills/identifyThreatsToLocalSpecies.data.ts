@@ -31,7 +31,7 @@ export const identifyThreatsToLocalSpecies_Skill_Data = defineSkill({
     et: 'Tunda ära kohalikke liike ohustavad tegurid',
     be: 'Вызначаць пагрозы мясцовым відам',
     ka: 'ადგილობრივი სახეობებისთვის საფრთხეების ამოცნობა',
-    kk: 'Жергілікті түрлерге қауіптерді анықтау',
+    kk: 'Jergılıktı türlerge qauıpterdı anyqtau',
     qm: 'Yerli türlerge olğan telükelerni tanımaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const identifyThreatsToLocalSpecies_Skill_Data = defineSkill({
       et: 'Tunne ära tegevused ja keskkonnamuutused, mis ohustavad kohalikke liike.',
       be: 'Вызначай дзейнасьць і зьмены асяродзьдзя, якія пагражаюць мясцовым відам.',
       ka: 'ამოიცანი საქმიანობები და გარემოს ცვლილებები, რომლებიც ადგილობრივ სახეობებს საფრთხეს უქმნის.',
-      kk: 'Жергілікті түрлерге қауіп төндіретін әрекеттер мен орта өзгерістерін анықта.',
+      kk: 'Jergılıktı türlerge qauıp töndıretın äreketter men orta özgerısterın anyqta.',
       qm: 'Yerli türlerge telüke doğurğan insan faaliyetini ve müit deñişüvlerini belgileñiz.',
     },
   },

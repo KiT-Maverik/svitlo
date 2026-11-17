@@ -31,7 +31,7 @@ export const evaluateEcologicalRisksOfBiotechnologyUse_Skill_Data = defineSkill(
     et: 'Biotehnoloogia kasutamise ökoloogiliste riskide hindamine',
     be: 'Ацэньваць экалягічныя рызыкі выкарыстаньня біятэхналёгіі',
     ka: 'ბიოტექნოლოგიის გამოყენების ეკოლოგიური რისკების შეფასება',
-    kk: 'Биотехнологияны қолданудың экологиялық тәуекелдерін бағалау',
+    kk: 'Biotehnologiany qoldanudyñ ekologialyq täuekelderın bağalau',
     qm: 'Biotehnologiyanı qullanmağa bağlı ekologik risklerni baalamaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const evaluateEcologicalRisksOfBiotechnologyUse_Skill_Data = defineSkill(
       et: 'Uuri biotehnoloogia võimalikke ökoloogilisi riske, eeldamata, et iga risk põhjustab kindlasti kahju.',
       be: 'Дасьледуй магчымыя экалягічныя рызыкі біятэхналёгіі, не мяркуючы, што кожная рызыка абавязкова прычыняе шкоду.',
       ka: 'შეისწავლე ბიოტექნოლოგიის შესაძლო ეკოლოგიური რისკები ისე, რომ არ ივარაუდო, თითქოს ყველა რისკი აუცილებლად იწვევს ზიანს.',
-      kk: 'Биотехнологияның ықтимал экологиялық тәуекелдерін зертте, бірақ әр тәуекел міндетті түрде зиян келтіреді деп ойлама.',
+      kk: 'Biotehnologianyñ yqtimal ekologialyq täuekelderın zertte, bıraq är täuekel mındettı türde zian keltıredı dep oilama.',
       qm: 'Biotehnologiyanı qullanğan vaqıtta ortaya çıqa bilecek ekologik risklerni araştırıñız; her risk mutlâq zarar ketirecek dep faraz etmeñiz.',
     },
   },

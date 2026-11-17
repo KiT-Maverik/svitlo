@@ -37,7 +37,7 @@ export const supportAndMovement_SkillGroup_Data = defineSkillGroup({
     et: 'Tugi ja liikumine',
     be: 'Апора і рух',
     ka: 'საყრდენი და მოძრაობა',
-    kk: 'Тірек және қозғалыс',
+    kk: 'Tırek jäne qozğalys',
     qm: 'Dayanç ve areket',
   },
   skills: [
@@ -76,7 +76,7 @@ export const supportAndMovement_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri, kuidas luud, lihased ja liigesed koos liikumist võimaldavad.',
       be: 'Дасьледуйце, як косьці, мышцы й суставы разам забясьпечваюць рух.',
       ka: 'შეისწავლეთ, როგორ თანამშრომლობენ ძვლები, კუნთები და სახსრები მოძრაობის შესაქმნელად.',
-      kk: 'Сүйектер, бұлшықеттер мен буындар бірігіп қозғалысты қалай қамтамасыз ететінін зерттеңіз.',
+      kk: 'Süiekter, būlşyqetter men buyndar bırıgıp qozğalysty qalai qamtamasyz etetının zertteñız.',
       qm: 'Kemikler, adaleler ve boğumlar beraber çalışıp areketni nasıl temin etkenini ögreniñiz.',
     },
   },

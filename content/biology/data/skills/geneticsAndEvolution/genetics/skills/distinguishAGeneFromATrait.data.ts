@@ -31,7 +31,7 @@ export const distinguishAGeneFromATrait_Skill_Data = defineSkill({
     et: 'Eristada geeni tunnusest',
     be: 'Адрозьніваць ген ад прыкметы',
     ka: 'გენისა და ნიშან-თვისების განსხვავება',
-    kk: 'Генді белгіден ажырату',
+    kk: 'Gendı belgıden ajyratu',
     qm: 'Genni belgiden farqlamaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const distinguishAGeneFromATrait_Skill_Data = defineSkill({
       et: 'Erista geeni nähtavast tunnusest, mida see võib mõjutada.',
       be: 'Адрозьнівай ген ад бачнай прыкметы, на якую ён можа ўплываць.',
       ka: 'განასხვავე გენი იმ ხილული ნიშან-თვისებისგან, რომელზეც მას შეუძლია გავლენის მოხდენა.',
-      kk: 'Генді ол әсер етуі мүмкін көрінетін белгіден ажырат.',
+      kk: 'Gendı ol äser etuı mümkın körınetın belgıden ajyrat.',
       qm: 'Genni o tesir ete bilgen közge körüngen hususiyetten farq etiñiz.',
     },
   },

@@ -38,7 +38,7 @@ export const nutritionAndDevelopment_SkillGroup_Data = defineSkillGroup({
     et: 'Toitumine ja areng',
     be: 'Харчаваньне і разьвіцьцё',
     ka: 'კვება და განვითარება',
-    kk: 'Қоректену және даму',
+    kk: 'Qorektenu jäne damu',
     qm: 'Beslenüv ve inkişaf',
   },
   skills: [
@@ -78,7 +78,7 @@ export const nutritionAndDevelopment_SkillGroup_Data = defineSkillGroup({
       et: 'Avasta, kuidas loomade toitumine ja elutsüklid erinevad.',
       be: 'Даведайся, чым адрозьніваюцца рацыёны і жыцьцёвыя цыклі розных жывёлаў.',
       ka: 'გაიგე, როგორ განსხვავდება ცხოველთა კვება და სასიცოცხლო ციკლები.',
-      kk: 'Жануарлардың қоректенуі мен тіршілік циклдерінің қалай ерекшеленетінін біл.',
+      kk: 'Januarlardyñ qorektenuı men tırşılık tsiklderınıñ qalai erekşelenetının bıl.',
       qm: 'Çeşit ayvanlarnıñ azıqları ve yaşayış devirleri nasıl farqlanğanını ögreniñiz.',
     },
   },

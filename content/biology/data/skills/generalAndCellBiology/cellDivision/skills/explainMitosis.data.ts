@@ -31,7 +31,7 @@ export const explainMitosis_Skill_Data = defineSkill({
     et: 'Mitoosi selgitamine',
     be: 'Тлумачыць мітоз',
     ka: 'მიტოზის ახსნა',
-    kk: 'Митозды түсіндіру',
+    kk: 'Mitozdy tüsındıru',
     qm: 'Mitoznı añlatmaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const explainMitosis_Skill_Data = defineSkill({
       et: 'Uuri, kuidas mitoos jaotab pärilikkusaine tütartuumade vahel.',
       be: 'Дасьледуй, як падчас мітозу генэтычны матэрыял разьмяркоўваецца паміж даччынымі ядрамі.',
       ka: 'გამოიკვლიე, როგორ ნაწილდება მიტოზის დროს გენეტიკური მასალა შვილეულ ბირთვებს შორის.',
-      kk: 'Митоз кезінде генетикалық материалдың еншілес ядролар арасында қалай бөлінетінін зертте.',
+      kk: 'Mitoz kezınde genetikalyq materialdyñ enşıles iadrolar arasynda qalai bölınetının zertte.',
       qm: 'Mitoz devamında irsiy material qız üceyrelerniñ çekirdekleri arasında nasıl bölüngenini ögreniñiz.',
     },
   },

@@ -31,7 +31,7 @@ export const distinguishJuvenilesAndAdults_Skill_Data = defineSkill({
     et: 'Noorloomade ja täiskasvanute eristamine',
     be: 'Адрозьніваць маладых і дарослых жывёлаў',
     ka: 'ახალგაზრდა და ზრდასრული ცხოველების გარჩევა',
-    kk: 'Жас және ересек жануарларды ажырату',
+    kk: 'Jas jäne eresek januarlardy ajyratu',
     qm: 'Yaş ve yetişken ayvanlarnı farqlamaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const distinguishJuvenilesAndAdults_Skill_Data = defineSkill({
       et: 'Tunne ära noorte ja täiskasvanud loomade erinevused.',
       be: 'Распазнавай адрозьненьні паміж маладымі й дарослымі жывёламі.',
       ka: 'ამოიცანი განსხვავებები ახალგაზრდა და ზრდასრულ ცხოველებს შორის.',
-      kk: 'Жас және ересек жануарлардың айырмашылықтарын таны.',
+      kk: 'Jas jäne eresek januarlardyñ aiyrmaşylyqtaryn tany.',
       qm: 'Yaş ayvanlar ile yetişken ayvanlar arasındaki farqlarnı tanıñız.',
     },
   },

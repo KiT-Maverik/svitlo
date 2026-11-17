@@ -31,7 +31,7 @@ export const recognizeHumanUsesOfMicroorganisms_Skill_Data = defineSkill({
     et: 'Mikroorganismide kasutusviiside tundmine',
     be: 'Распазнаваць выкарыстаньне мікраарганізмаў чалавекам',
     ka: 'ადამიანების მიერ მიკროორგანიზმების გამოყენების ამოცნობა',
-    kk: 'Адамдардың микроағзаларды пайдалану жолдарын тану',
+    kk: 'Adamdardyñ mikroağzalardy paidalanu joldaryn tanu',
     qm: 'Mikroorganizmalarnıñ insanlar tarafından qullanıluvını tanımaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const recognizeHumanUsesOfMicroorganisms_Skill_Data = defineSkill({
       et: 'Tunne ära, kuidas baktereid ja pärmseeni kasutatakse toidu ning muude materjalide tootmiseks.',
       be: 'Даведайся, як бактэрыі і дрожджы выкарыстоўваюць для вытворчасьці ежы ды іншых матэрыялаў.',
       ka: 'გაიგე, როგორ იყენებენ ბაქტერიებსა და საფუვრებს საკვებისა და სხვა მასალების მისაღებად.',
-      kk: 'Бактериялар мен ашытқылардың тағам және басқа материалдар өндіру үшін қалай қолданылатынын таны.',
+      kk: 'Bakterialar men aşytqylardyñ tağam jäne basqa materialdar öndıru üşın qalai qoldanylatynyn tany.',
       qm: 'Bakteriyalar ve mayalar aş mahsulatlarınen başqa faydalı şeylerni azırlamaq içün nasıl qullanılğanını tanıñız.',
     },
   },

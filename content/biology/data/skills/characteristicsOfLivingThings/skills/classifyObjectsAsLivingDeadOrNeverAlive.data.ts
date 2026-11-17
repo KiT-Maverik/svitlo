@@ -31,7 +31,7 @@ export const classifyObjectsAsLivingDeadOrNeverAlive_Skill_Data = defineSkill({
     et: 'Objektide liigitamine elusateks, surnuteks või mitte kunagi elus olnuteks',
     be: 'Клясыфікаваць аб’екты як жывыя, мёртвыя або тыя, што ніколі не былі жывымі',
     ka: 'ობიექტების დაყოფა ცოცხალ, მკვდარ და არასოდეს ცოცხალ კატეგორიებად',
-    kk: 'Нысандарды тірі, өлі немесе ешқашан тірі болмаған деп жіктеу',
+    kk: 'Nysandardy tırı, ölı nemese eşqaşan tırı bolmağan dep jıkteu',
     qm: 'Nesnelerni canlı, ölü ya da iç bir vaqıt canlı olmağan olaraq sınıflandırmaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const classifyObjectsAsLivingDeadOrNeverAlive_Skill_Data = defineSkill({
       et: 'Otsusta tõendite põhjal, kas miski on elus, surnud või pole kunagi elus olnud.',
       be: 'Выкарыстоўвай доказы, каб вызначыць, ці нешта жывое, мёртвае або ніколі не было жывым.',
       ka: 'მტკიცებულებებით განსაზღვრე, რაიმე ცოცხალია, მკვდარია თუ არასოდეს ყოფილა ცოცხალი.',
-      kk: 'Дәлелдерге сүйеніп, бір нәрсенің тірі, өлі немесе ешқашан тірі болмағанын анықта.',
+      kk: 'Dälelderge süienıp, bır närsenıñ tırı, ölı nemese eşqaşan tırı bolmağanyn anyqta.',
       qm: 'Yaşayış belirtilerine ve nesneniñ kelip çıquvına baqıp, o canlımı, ölgenmi ya da iç bir vaqıt canlı olmağanmı — delillerge esaslanıp belgileñiz.',
     },
   },

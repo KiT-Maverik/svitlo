@@ -31,7 +31,7 @@ export const explainDifferencesAmongOffspringOfTheSameSpecies_Skill_Data = defin
     et: 'Selgitada sama liigi järglaste erinevusi',
     be: 'Тлумачыць адрозьненьні паміж нашчадкамі аднаго віду',
     ka: 'ერთი სახეობის შთამომავლებს შორის განსხვავებების ახსნა',
-    kk: 'Бір түр ұрпақтарының айырмашылығын түсіндіру',
+    kk: 'Bır tür ūrpaqtarynyñ aiyrmaşylyğyn tüsındıru',
     qm: 'Bir türniñ balaları arasındaki farqlarnı añlatmaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const explainDifferencesAmongOffspringOfTheSameSpecies_Skill_Data = defin
       et: 'Selgita, miks sama liigi isenditel võivad kujuneda erinevad tunnused.',
       be: 'Патлумач, чаму ў асобінаў аднаго віду могуць узьнікаць розныя прыкметы.',
       ka: 'ახსენი, რატომ შეიძლება ერთი სახეობის ინდივიდებს განსხვავებული ნიშნები განუვითარდეთ.',
-      kk: 'Бір түрге жататын дараларда неге әртүрлі белгілер қалыптасуы мүмкін екенін түсіндір.',
+      kk: 'Bır türge jatatyn daralarda nege ärtürlı belgıler qalyptasuy mümkın ekenın tüsındır.',
       qm: 'Aynı türge ait canlılarnıñ balalarında ne içün farqlı belgiler inkişaf ete bilgenini añlatıñız.',
     },
   },

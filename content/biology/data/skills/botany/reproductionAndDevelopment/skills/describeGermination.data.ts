@@ -31,7 +31,7 @@ export const describeGermination_Skill_Data = defineSkill({
     et: 'Idanemise kirjeldamine',
     be: 'Апісваць прарастаньне',
     ka: 'აღმოცენების აღწერა',
-    kk: 'Тұқымның өнуін сипаттау',
+    kk: 'Tūqymnyñ önuın sipattau',
     qm: 'Tohumnıñ çimlenüvini tasvir etmek',
   },
   description: {
@@ -65,7 +65,7 @@ export const describeGermination_Skill_Data = defineSkill({
       et: 'Kirjelda, kuidas seemnest hakkavad kasvama juured ja võrsed.',
       be: 'Апішы, як насеньне пачынае ўтвараць карані й парасткі.',
       ka: 'აღწერე, როგორ იწყებს თესლი ფესვებისა და ყლორტების განვითარებას.',
-      kk: 'Тұқымнан тамыр мен өркеннің қалай өсе бастайтынын сипатта.',
+      kk: 'Tūqymnan tamyr men örkennıñ qalai öse bastaitynyn sipatta.',
       qm: 'Tohumdan tamır ve sürgün nasıl çıqa başlağanını tasvir etiñiz.',
     },
   },

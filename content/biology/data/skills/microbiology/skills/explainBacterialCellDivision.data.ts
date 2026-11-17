@@ -31,7 +31,7 @@ export const explainBacterialCellDivision_Skill_Data = defineSkill({
     et: 'Bakteriraku jagunemise selgitamine',
     be: 'Тлумачыць дзяленьне бактэрыяльных клетак',
     ka: 'ბაქტერიული უჯრედების გაყოფის ახსნა',
-    kk: 'Бактерия жасушасының бөлінуін түсіндіру',
+    kk: 'Bakteria jasuşasynyñ bölınuın tüsındıru',
     qm: 'Bakteriya üceyresiniñ bölünüvini añlatmaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const explainBacterialCellDivision_Skill_Data = defineSkill({
       et: 'Selgita, kuidas bakterirakud paljunevad kaheks jagunedes.',
       be: 'Растлумачце, як бактэрыяльныя клеткі размнажаюцца праз дзяленьне надвое.',
       ka: 'ახსენით, როგორ მრავლდებიან ბაქტერიული უჯრედები ორად გაყოფით.',
-      kk: 'Бактерия жасушаларының екіге бөліну арқылы қалай көбейетінін түсіндіріңіз.',
+      kk: 'Bakteria jasuşalarynyñ ekıge bölınu arqyly qalai köbeietının tüsındırıñız.',
       qm: 'Bakteriya üceyreleri ekige bölünip nasıl çoğalğanını añlatıñız.',
     },
   },
