@@ -31,7 +31,7 @@ export const expenseTracking_Skill_Data = defineSkill({
     et: 'Kulude jälgimine',
     be: 'Улік выдаткаў',
     ka: 'ხარჯების აღრიცხვა',
-    kk: 'Шығыстарды есепке алу',
+    kk: 'Şyğystardy esepke alu',
     qm: 'Masraflarnı qayd etüv',
   },
   description: {
@@ -64,7 +64,7 @@ export const expenseTracking_Skill_Data = defineSkill({
       et: 'Pane kirja, kuhu raha kulub, ja võrdle eelarvega.',
       be: 'Адсочвай, куды ідуць грошы, і параўноўвай з бюджэтам.',
       ka: 'აღრიცხე, სად იხარჯება ფული, და შეადარე ბიუჯეტს.',
-      kk: 'Ақша қайда жұмсалатынын жазып, бюджетпен салыстыр.',
+      kk: 'Aqşa qaida jūmsalatynyn jazyp, biudjetpen salystyr.',
       qm: 'Aqçanıñ qayda sarf etilgenini yazıp, bücetnen qıyasla.',
     },
   },

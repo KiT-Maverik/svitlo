@@ -31,7 +31,7 @@ export const personalBudget_Skill_Data = defineSkill({
     et: 'Isiklik eelarve',
     be: 'Асабісты бюджэт',
     ka: 'პირადი ბიუჯეტი',
-    kk: 'Жеке бюджет',
+    kk: 'Jeke biudjet',
     qm: 'Şahsiy bücet',
   },
   description: {
@@ -65,7 +65,7 @@ export const personalBudget_Skill_Data = defineSkill({
       et: 'Koosta eelarve, mis tasakaalustab oodatava tulu ja kulud.',
       be: 'Складай бюджэт, ураўнаважваючы чаканыя даходы й выдаткі.',
       ka: 'შეადგინე მოსალოდნელი შემოსავლისა და ხარჯების დაბალანსებული ბიუჯეტი.',
-      kk: 'Күтілетін кіріс пен шығысты теңестіретін бюджет құр.',
+      kk: 'Kütıletın kırıs pen şyğysty teñestıretın biudjet qūr.',
       qm: 'Beklenilgen kirset ve sarfnı teñleştirgen bücet tertiple.',
     },
   },

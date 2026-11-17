@@ -31,7 +31,7 @@ export const financialGoals_Skill_Data = defineSkill({
     et: 'Rahalised eesmärgid',
     be: 'Фінансавыя мэты',
     ka: 'ფინანსური მიზნები',
-    kk: 'Қаржылық мақсаттар',
+    kk: 'Qarjylyq maqsattar',
     qm: 'Maliy maqsatlar',
   },
   description: {
@@ -65,7 +65,7 @@ export const financialGoals_Skill_Data = defineSkill({
       et: 'Planeeri, kui palju ja mis ajaks eesmärgi jaoks säästa.',
       be: 'Плянуй, колькі ашчадзіць і калі дасягнуць мэты.',
       ka: 'დაგეგმე, რამდენი უნდა დაზოგო და როდის მიაღწიო მიზანს.',
-      kk: 'Мақсатқа қанша және қашанға дейін жинау керегін жоспарла.',
+      kk: 'Maqsatqa qanşa jäne qaşanğa deiın jinau keregın josparla.',
       qm: 'Maqsat içün ne qadar ve qaçanğa qadar aqça toplamaq kerek, planla.',
     },
   },

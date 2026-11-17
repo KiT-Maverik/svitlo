@@ -38,7 +38,7 @@ export const incomeAndBudgeting_SkillGroup_Data = defineSkillGroup({
     et: 'Sissetulek ja eelarve',
     be: 'Даходы й бюджэт',
     ka: 'შემოსავალი და ბიუჯეტი',
-    kk: 'Кіріс және бюджет',
+    kk: 'Kırıs jäne biudjet',
     qm: 'Kirset ve bücet',
   },
   skills: [
@@ -78,7 +78,7 @@ export const incomeAndBudgeting_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri, kuidas sissetulek ja kulud kujundavad leibkonna eelarvet.',
       be: 'Дасьледуй, як даходы й выдаткі фармуюць сямейны бюджэт.',
       ka: 'შეისწავლე, როგორ ქმნის შემოსავალი და ხარჯი ოჯახის ბიუჯეტს.',
-      kk: 'Кіріс пен шығыс отбасы бюджетін қалай қалыптастыратынын зертте.',
+      kk: 'Kırıs pen şyğys otbasy biudjetın qalai qalyptastyratynyn zertte.',
       qm: 'Kirset ve masraflar aile bücetini nasıl şekillendirgenini araştır.',
     },
   },

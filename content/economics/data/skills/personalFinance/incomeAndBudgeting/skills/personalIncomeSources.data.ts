@@ -31,7 +31,7 @@ export const personalIncomeSources_Skill_Data = defineSkill({
     et: 'Isiklikud tuluallikad',
     be: 'Крыніцы асабістага даходу',
     ka: 'პირადი შემოსავლის წყაროები',
-    kk: 'Жеке кіріс көздері',
+    kk: 'Jeke kırıs közderı',
     qm: 'Şahsiy kirset menbaları',
   },
   description: {
@@ -65,7 +65,7 @@ export const personalIncomeSources_Skill_Data = defineSkill({
       et: 'Tunne ära erinevad viisid tulu saamiseks.',
       be: 'Распазнавай розныя спосабы атрыманьня даходу.',
       ka: 'ამოიცანი შემოსავლის მიღების სხვადასხვა გზა.',
-      kk: 'Табыс табудың әртүрлі жолдарын таны.',
+      kk: 'Tabys tabudyñ ärtürlı joldaryn tany.',
       qm: 'İnsanlar kirsetni türlü yollarnen nasıl alğanını ögren.',
     },
   },

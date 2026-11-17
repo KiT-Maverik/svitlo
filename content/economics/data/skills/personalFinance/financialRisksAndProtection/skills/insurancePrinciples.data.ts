@@ -31,7 +31,7 @@ export const insurancePrinciples_Skill_Data = defineSkill({
     et: 'Kindlustuse põhimõtted',
     be: 'Прынцыпы страхаваньня',
     ka: 'დაზღვევის პრინციპები',
-    kk: 'Сақтандыру қағидалары',
+    kk: 'Saqtandyru qağidalary',
     qm: 'Sigorta esasları',
   },
   description: {
@@ -65,7 +65,7 @@ export const insurancePrinciples_Skill_Data = defineSkill({
       et: 'Mõista, mida kindlustus katab ja miks erandid on olulised.',
       be: 'Зразумей, што пакрывае страхаваньне й чаму выключэньні важныя.',
       ka: 'გაიგე, რას ფარავს დაზღვევა და რატომაა გამონაკლისები მნიშვნელოვანი.',
-      kk: 'Сақтандыру нені қамтитынын және ерекшеліктер неге маңызды екенін түсін.',
+      kk: 'Saqtandyru nenı qamtitynyn jäne erekşelıkter nege mañyzdy ekenın tüsın.',
       qm: 'Sigorta neni qaplağanını ve istisnalar niçün müim olğanını añla.',
     },
   },
