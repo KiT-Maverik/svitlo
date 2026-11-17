@@ -31,7 +31,7 @@ export const analyzeDisplayContext_Skill_Data = defineSkill({
     et: 'Analüüsida eksponeerimise konteksti',
     be: 'Аналізаваць кантэкст экспанавання',
     ka: 'ექსპონირების კონტექსტის გაანალიზება',
-    kk: 'Көрсету мәнмәтінін талдау',
+    kk: 'Körsetu mänmätının taldau',
     qm: 'Sergilev kontekstini talil etüv',
   },
   description: {
@@ -64,7 +64,7 @@ export const analyzeDisplayContext_Skill_Data = defineSkill({
       et: 'Uuri, kuidas valgus, mõõtkava, paigutus ja sildid mõjutavad kunstiteose esitlemist.',
       be: 'Даследуй, як святло, маштаб, размяшчэнне й подпісы ўплываюць на прэзентацыю твора.',
       ka: 'შეისწავლეთ, როგორ მოქმედებს განათება, მასშტაბი, განლაგება და წარწერები ნამუშევრის წარდგენაზე.',
-      kk: 'Жарық, ауқым, орналасу және жазулар өнер туындысының ұсынылуына қалай әсер ететінін зерттеңіз.',
+      kk: 'Jaryq, auqym, ornalasu jäne jazular öner tuyndysynyñ ūsynyluyna qalai äser etetının zertteñız.',
       qm: 'Yarıq, ölçü, yerleşüv ve izalı yazılar sanat eseriniñ sergide nasıl körsetilgenine tesir ete.',
     },
   },

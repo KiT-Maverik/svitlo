@@ -37,7 +37,7 @@ export const ukrainianArtisticTraditions_SkillGroup_Data = defineSkillGroup({
     et: 'Ukraina kunstilised traditsioonid',
     be: 'Украінскія мастацкія традыцыі',
     ka: 'უკრაინული მხატვრული ტრადიციები',
-    kk: 'Украинаның өнер дәстүрлері',
+    kk: 'Ukrainanyñ öner dästürlerı',
     qm: 'Ukraina sanat adetleri',
   },
   skills: [
@@ -76,7 +76,7 @@ export const ukrainianArtisticTraditions_SkillGroup_Data = defineSkillGroup({
       et: 'Avasta Ukraina maalikunsti ja monumentaalkunsti eristavaid traditsioone nende ajaloo kaudu.',
       be: 'Пазнаёмцеся з самабытнымі ўкраінскімі традыцыямі жывапісу і манументальнага мастацтва праз іх гісторыю.',
       ka: 'შეისწავლეთ უკრაინული ფერწერისა და მონუმენტური ხელოვნების განსხვავებული ტრადიციები მათი ისტორიის მეშვეობით.',
-      kk: 'Украинаның кескіндеме және монументалды өнер дәстүрлерін тарихы арқылы зерттеңіз.',
+      kk: 'Ukrainanyñ keskındeme jäne monumentaldy öner dästürlerın tarihy arqyly zertteñız.',
       qm: "Ukrayna'nın kendine mahsus resim ve anıtsal sanat adetlerini tarihleri üzerinden keşfediñiz.",
     },
   },

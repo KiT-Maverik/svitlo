@@ -31,7 +31,7 @@ export const traceArtisticExchange_Skill_Data = defineSkill({
     et: 'Jälgida kunstivahetust',
     be: 'Адсочваць мастацкі абмен',
     ka: 'ხელოვნების გაცვლის კვალის მიდევნება',
-    kk: 'Өнер алмасуын бақылау',
+    kk: 'Öner almasuyn baqylau',
     qm: 'Sanat alâqasınıñ izini sürmek',
   },
   description: {
@@ -64,7 +64,7 @@ export const traceArtisticExchange_Skill_Data = defineSkill({
       et: 'Jälgi, kuidas kultuuride kokkupuuted muudavad kunstitehnikaid ja ideid.',
       be: 'Адсочвайце, як кантакты паміж культурамі змяняюць мастацкія тэхнікі і ідэі.',
       ka: 'დააკვირდით, როგორ ცვლის კულტურათა კონტაქტი ხელოვნების ტექნიკასა და იდეებს.',
-      kk: 'Мәдениеттер байланысы өнер тәсілдері мен идеяларын қалай өзгертетінін бақылаңыз.',
+      kk: 'Mädenietter bailanysy öner täsılderı men ideialaryn qalai özgertetının baqylañyz.',
       qm: 'Medeniyetler arasında temasnıñ sanat usullarını ve fikirlerini nasıl deñiştirgenini izleyiñiz.',
     },
   },

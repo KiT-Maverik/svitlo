@@ -36,7 +36,7 @@ export const artisticUnderstandingAndCriticism_SkillDomain_Data = defineSkillDom
     et: 'Kunsti mõistmine ja kriitika',
     be: 'Мастацкае разуменне і крытыка',
     ka: 'ხელოვნების გააზრება და კრიტიკა',
-    kk: 'Өнерді түсіну және сын',
+    kk: 'Önerdı tüsınu jäne syn',
     qm: 'Sanatnı añlav ve tenqit',
   },
   groups: [
@@ -76,7 +76,7 @@ export const artisticUnderstandingAndCriticism_SkillDomain_Data = defineSkillDom
       et: 'Avasta, kuidas kunstilised valikud ja kultuurikontekst aitavad meil kunstiteoseid mõista ja nende üle arutleda.',
       be: 'Даследуй, як мастацкія рашэнні й культурны кантэкст дапамагаюць разумець і абмяркоўваць творы.',
       ka: 'შეისწავლეთ, როგორ გვეხმარება მხატვრული არჩევანი და კულტურული კონტექსტი ნამუშევრების გაგებასა და განხილვაში.',
-      kk: 'Көркемдік таңдаулар мен мәдени контекст өнер туындыларын түсінуге және талқылауға қалай көмектесетінін зерттеңіз.',
+      kk: 'Körkemdık tañdaular men mädeni kontekst öner tuyndylaryn tüsınuge jäne talqylauğa qalai kömektesetının zertteñız.',
       qm: 'Sanatçınıñ saylavları ve medeniy bağlamnıñ sanat eserlerini añlamağa ve olarnı müzakere etmege nasıl yardım etkenini keşf etiñiz.',
     },
   },

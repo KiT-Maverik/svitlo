@@ -37,7 +37,7 @@ export const westAndCentralAfricanTraditions_SkillGroup_Data = defineSkillGroup(
     et: 'Lääne- ja Kesk-Aafrika traditsioonid',
     be: 'Традыцыі Заходняй і Цэнтральнай Афрыкі',
     ka: 'დასავლეთ და ცენტრალური აფრიკის ტრადიციები',
-    kk: 'Батыс және Орталық Африка дәстүрлері',
+    kk: 'Batys jäne Ortalyq Afrika dästürlerı',
     qm: 'Batı ve Orta Afrika adetleri',
   },
   skills: [
@@ -76,7 +76,7 @@ export const westAndCentralAfricanTraditions_SkillGroup_Data = defineSkillGroup(
       et: 'Uuri Lääne- ja Kesk-Aafrika kindlate kogukondadega seotud eripäraseid kunstilisi traditsioone.',
       be: 'Вывучайце асобныя мастацкія традыцыі, звязаныя з канкрэтнымі супольнасцямі Заходняй і Цэнтральнай Афрыкі.',
       ka: 'შეისწავლეთ დასავლეთ და ცენტრალური აფრიკის კონკრეტულ თემებთან დაკავშირებული განსხვავებული მხატვრული ტრადიციები.',
-      kk: 'Батыс және Орталық Африканың нақты қауымдастықтарымен байланысты ерекше өнер дәстүрлерін зерттеңіз.',
+      kk: 'Batys jäne Ortalyq Afrikanyñ naqty qauymdastyqtarymen bailanysty erekşe öner dästürlerın zertteñız.',
       qm: "Batı ve Orta Afrika'daki belirli topluluklarla bağlantılı farklı sanat adetlerini inceleñiz.",
     },
   },

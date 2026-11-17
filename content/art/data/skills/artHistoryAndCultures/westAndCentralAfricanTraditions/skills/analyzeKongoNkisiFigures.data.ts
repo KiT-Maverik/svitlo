@@ -31,7 +31,7 @@ export const analyzeKongoNkisiFigures_Skill_Data = defineSkill({
     et: 'Analüüsida Kongo nkisi kujukesi',
     be: 'Аналізаваць фігуры нкісі народа конга',
     ka: 'კონგოს ნკისის ფიგურების გაანალიზება',
-    kk: 'Конго халқының nkisi мүсіндерін талдау',
+    kk: 'Kongo halqynyñ nkisi müsınderın taldau',
     qm: 'Kongo xalqınıñ nkisi suretlerini tahlil etmek',
   },
   description: {
@@ -65,7 +65,7 @@ export const analyzeKongoNkisiFigures_Skill_Data = defineSkill({
       et: 'Tutvu Kongo nkisi kujukeste materjalide ja kultuuriliste rollidega.',
       be: 'Даследуйце матэрыялы і культурныя ролі фігур нкісі народа конга.',
       ka: 'შეისწავლეთ კონგოს ნკისის ფიგურების მასალები და კულტურული დანიშნულება.',
-      kk: 'Конго халқының nkisi мүсіндерінің материалдары мен мәдени рөлдерін зерттеңіз.',
+      kk: 'Kongo halqynyñ nkisi müsınderınıñ materialdary men mädeni rölderın zertteñız.',
       qm: 'Kongo nkisi suretleriniñ materiallarını ve medeniy rollerini ögrenip baqıñız.',
     },
   },

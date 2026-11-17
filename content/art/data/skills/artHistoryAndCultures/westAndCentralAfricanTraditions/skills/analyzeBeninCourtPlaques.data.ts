@@ -31,7 +31,7 @@ export const analyzeBeninCourtPlaques_Skill_Data = defineSkill({
     et: 'Analüüsida Benini õukonna reljeefplaate',
     be: 'Аналізаваць рэльефныя пласціны двара Беніну',
     ka: 'ბენინის სამეფო კარის რელიეფური დაფების გაანალიზება',
-    kk: 'Бенин сарайының бедерлі тақталарын талдау',
+    kk: 'Benin saraiynyñ bederlı taqtalaryn taldau',
     qm: 'Benin sarayınıñ kabartma levhalarını tahlil etmek',
   },
   description: {
@@ -65,7 +65,7 @@ export const analyzeBeninCourtPlaques_Skill_Data = defineSkill({
       et: 'Uuri, kuidas Benini õukonna reljeefplaatidel kujutatakse võimu, inimesi ja ajaloosündmusi.',
       be: 'Даследуйце, як на рэльефных пласцінах двара Беніну адлюстраваны ўлада, людзі і гістарычныя падзеі.',
       ka: 'შეისწავლეთ, როგორ ასახავს ბენინის სამეფო კარის რელიეფური დაფები ძალაუფლებას, ადამიანებსა და ისტორიულ მოვლენებს.',
-      kk: 'Зерттеңіз: Бенин сарайының бедерлі тақталарында билік, адамдар мен тарихи оқиғалар қалай бейнеленген.',
+      kk: 'Zertteñız: Benin saraiynyñ bederlı taqtalarynda bilık, adamdar men tarihi oqiğalar qalai beinelengen.',
       qm: 'Benin saray levhalarınıñ qudretni, adamlarnı ve tarihiy vaqialarnı nasıl tasvir etkenini inceleyiñiz.',
     },
   },

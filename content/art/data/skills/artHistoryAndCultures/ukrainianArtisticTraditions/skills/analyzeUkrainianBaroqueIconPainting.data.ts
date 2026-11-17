@@ -31,7 +31,7 @@ export const analyzeUkrainianBaroqueIconPainting_Skill_Data = defineSkill({
     et: 'Analüüsida Ukraina baroki ikoonimaali',
     be: 'Аналізаваць украінскі барочны іканапіс',
     ka: 'უკრაინული ბაროკოს ხატწერის გაანალიზება',
-    kk: 'Украин барокко иконаларын талдау',
+    kk: 'Ukrain barokko ikonalaryn taldau',
     qm: 'Ukraina barok ikon resmini tahlil etmek',
   },
   description: {
@@ -65,7 +65,7 @@ export const analyzeUkrainianBaroqueIconPainting_Skill_Data = defineSkill({
       et: 'Uuri, kuidas Ukraina baroki ikoonimaal arendas figuuride kujutamist ja kaunistusi.',
       be: 'Даследуйце, як ва ўкраінскім барочным іканапісе развіваліся выявы постацей і дэкор.',
       ka: 'შეისწავლეთ, როგორ განვითარდა ფიგურებისა და დეკორის გამოსახვა უკრაინულ ბაროკოს ხატწერაში.',
-      kk: 'Зерттеңіз: украин барокко иконаларында адам бейнесі мен әшекейлеу қалай дамыды.',
+      kk: 'Zertteñız: ukrain barokko ikonalarynda adam beinesı men äşekeileu qalai damydy.',
       qm: 'Ukraina barok ikon resminde suretler ve bezekler nasıl inkişaf etkenini keşf etiñiz.',
     },
   },

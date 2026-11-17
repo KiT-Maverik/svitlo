@@ -31,7 +31,7 @@ export const interpretArtAsHistoricalEvidence_Skill_Data = defineSkill({
     et: 'Tõlgendada kunsti ajaloolise tõendusmaterjalina',
     be: 'Інтэрпрэтаваць мастацтва як гістарычнае сведчанне',
     ka: 'ხელოვნების ისტორიულ მტკიცებულებად ინტერპრეტაცია',
-    kk: 'Өнерді тарихи айғақ ретінде түсіндіру',
+    kk: 'Önerdı tarihi aiğaq retınde tüsındıru',
     qm: 'Sanatnı tarihiy delil olaraq talil etmek',
   },
   description: {
@@ -64,7 +64,7 @@ export const interpretArtAsHistoricalEvidence_Skill_Data = defineSkill({
       et: 'Kasuta kunstiteoseid ajalooliste vihjetena ja kontrolli, milliseid muid tõendeid on vaja.',
       be: 'Выкарыстоўвайце творы мастацтва як гістарычныя падказкі і правярайце, якія іншыя доказы патрэбныя.',
       ka: 'გამოიყენეთ ხელოვნების ნიმუშები ისტორიულ მინიშნებებად და შეამოწმეთ, კიდევ რა მტკიცებულებებია საჭირო.',
-      kk: 'Өнер туындыларын тарихи дерек ретінде пайдаланып, тағы қандай дәлелдер қажет екенін тексеріңіз.',
+      kk: 'Öner tuyndylaryn tarihi derek retınde paidalanyp, tağy qandai dälelder qajet ekenın tekserıñız.',
       qm: 'Sanat eserlerini tarihiy işaretler olaraq qullanıp, daa başqa deliller kerek olıp-olmağanını tekşiriñiz.',
     },
   },

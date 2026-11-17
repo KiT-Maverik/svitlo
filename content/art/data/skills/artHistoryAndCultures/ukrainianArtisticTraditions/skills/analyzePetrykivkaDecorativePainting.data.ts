@@ -31,7 +31,7 @@ export const analyzePetrykivkaDecorativePainting_Skill_Data = defineSkill({
     et: 'Analüüsida Petõrkivka dekoratiivmaali',
     be: 'Аналізаваць петрыкаўскі дэкаратыўны роспіс',
     ka: 'პეტრიკივკის დეკორატიული მხატვრობის გაანალიზება',
-    kk: 'Петриковка сәндік кескіндемесін талдау',
+    kk: 'Petrikovka sändık keskındemesın taldau',
     qm: 'Petrıkivka bezek resmini tahlil etmek',
   },
   description: {
@@ -65,7 +65,7 @@ export const analyzePetrykivkaDecorativePainting_Skill_Data = defineSkill({
       et: 'Tutvu Petõrkivka maalikunsti lillemotiivide ja pintslitehnikatega.',
       be: 'Пазнаёмцеся з кветкавымі матывамі і тэхнікамі пэндзля ў традыцыі петрыкаўскага роспісу.',
       ka: 'გაეცანით პეტრიკივკის მხატვრობის ტრადიციის ყვავილოვან მოტივებსა და ფუნჯის ტექნიკას.',
-      kk: 'Петриковка кескіндеме дәстүріндегі гүл өрнектері мен қылқалам тәсілдерін біліңіз.',
+      kk: 'Petrikovka keskındeme dästürındegı gül örnekterı men qylqalam täsılderın bılıñız.',
       qm: 'Petrıkivka resim ananesiniñ çiçek naqışları ve fırça usullarını ögreniñiz.',
     },
   },

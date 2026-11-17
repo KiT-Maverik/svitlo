@@ -31,7 +31,7 @@ export const analyzeBoychukism_Skill_Data = defineSkill({
     et: 'Analüüsida boitšukismi',
     be: 'Аналізаваць бойчукізм',
     ka: 'ბოიჩუკიზმის გაანალიზება',
-    kk: 'Бойчукшылдықты талдау',
+    kk: 'Boichukşyldyqty taldau',
     qm: 'Boyçukçılıqnı tahlil etmek',
   },
   description: {
@@ -65,7 +65,7 @@ export const analyzeBoychukism_Skill_Data = defineSkill({
       et: 'Tutvu boitšukismi monumentaalse kunstiga ja selle kunstnike ajalooga.',
       be: 'Пазнаёмцеся з манументальным мастацтвам бойчукізму і гісторыяй яго мастакоў.',
       ka: 'გაეცანით ბოიჩუკიზმის მონუმენტურ ხელოვნებას და მისი მხატვრების ისტორიას.',
-      kk: 'Таныңыз: бойчукшылдықтың монументалды өнері мен оның суретшілерінің тарихын.',
+      kk: 'Tanyñyz: boichukşyldyqtyñ monumentaldy önerı men onyñ suretşılerınıñ tarihyn.',
       qm: 'Boyçukçılıqnıñ abidiy sanatını ve bu sanatçılarnıñ tarihını ögreniniz.',
     },
   },

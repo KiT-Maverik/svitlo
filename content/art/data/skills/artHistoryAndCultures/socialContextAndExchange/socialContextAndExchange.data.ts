@@ -38,7 +38,7 @@ export const socialContextAndExchange_SkillGroup_Data = defineSkillGroup({
     et: 'Sotsiaalne kontekst ja vahetus',
     be: 'Сацыяльны кантэкст і ўзаемадзеянне',
     ka: 'სოციალური კონტექსტი და გაცვლა',
-    kk: 'Әлеуметтік контекст және алмасу',
+    kk: 'Äleumettık kontekst jäne almasu',
     qm: 'Sosial bağlam ve alışveriş',
   },
   skills: [
@@ -78,7 +78,7 @@ export const socialContextAndExchange_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri, kuidas inimesed, institutsioonid ja tehnoloogiad kujundavad kunstivahetust aja jooksul.',
       be: 'Даследуйце, як людзі, установы і тэхналогіі з цягам часу фарміруюць мастацкі абмен.',
       ka: 'შეისწავლეთ, როგორ აყალიბებენ ადამიანები, ინსტიტუტები და ტექნოლოგიები მხატვრულ გაცვლას დროთა განმავლობაში.',
-      kk: 'Уақыт өте келе адамдар, мекемелер мен технологиялар көркемдік алмасуды қалай қалыптастыратынын зерттеңіз.',
+      kk: 'Uaqyt öte kele adamdar, mekemeler men tehnologiialar körkemdık almasudy qalai qalyptastyratynyn zertteñız.',
       qm: 'İnsanlar, müesseseler ve teknolojiler zaman içinde sanat alışverişini nasıl şekillendirdiğini inceleñiz.',
     },
   },

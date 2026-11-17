@@ -38,7 +38,7 @@ export const curationAndPresentation_SkillGroup_Data = defineSkillGroup({
     et: 'Kureerimine ja esitlemine',
     be: 'Куратарства і прэзентацыя',
     ka: 'კურატორობა და პრეზენტაცია',
-    kk: 'Кураторлық және таныстыру',
+    kk: 'Kuratorlyq jäne tanystyru',
     qm: 'Kuratorlıq ve taqdim etüv',
   },
   skills: [
@@ -78,7 +78,7 @@ export const curationAndPresentation_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri, kuidas kunstiteoste valimine ja eksponeerimine muudab publiku kogemust.',
       be: 'Даведайцеся, як адбор і экспанаванне твораў мастацтва змяняюць досвед гледачоў.',
       ka: 'გაეცანით, როგორ ცვლის ხელოვნების ნიმუშების შერჩევა და გამოფენა მაყურებლის გამოცდილებას.',
-      kk: 'Өнер туындыларын таңдау мен көрмеге қою көрермендердің тәжірибесін қалай өзгертетінін зерттеңіз.',
+      kk: 'Öner tuyndylaryn tañdau men körmege qoiu körermenderdıñ täjıribesın qalai özgertetının zertteñız.',
       qm: 'Bir-birine bağlı eserlerni saylav ve sergide taqdim etüv ziyaretçilerniñ olarnı nasıl tecribe etkenini deñiştire.',
     },
   },

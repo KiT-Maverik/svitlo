@@ -31,7 +31,7 @@ export const analyzeGeledeMasqueradeTraditions_Skill_Data = defineSkill({
     et: 'Analüüsida Gelede maskeraaditraditsioone',
     be: 'Аналізаваць традыцыі маскараду Геледэ',
     ka: 'გელედეს ნიღბების ტრადიციების გაანალიზება',
-    kk: 'Gelede маскарад дәстүрлерін талдау',
+    kk: 'Gelede maskarad dästürlerın taldau',
     qm: 'Gelede maskarad adetlerini tahlil etmek',
   },
   description: {
@@ -65,7 +65,7 @@ export const analyzeGeledeMasqueradeTraditions_Skill_Data = defineSkill({
       et: 'Uuri, kuidas jorubade Gelede maskid, kostüümid ja etendused toimivad kogukonnaelus koos.',
       be: 'Даследуйце, як маскі, касцюмы і выступленні Геледэ народа ёруба ўзаемадзейнічаюць у жыцці супольнасці.',
       ka: 'შეისწავლეთ, როგორ ერთიანდება იორუბას გელედეს ნიღბები, კოსტიუმები და წარმოდგენები საზოგადოებრივ ცხოვრებაში.',
-      kk: 'Йоруба қауымының өмірінде Gelede маскалары, киімдері мен қойылымдары қалай үйлесетінін зерттеңіз.',
+      kk: 'İoruba qauymynyñ ömırınde Gelede maskalary, kiımderı men qoiylymdary qalai üilesetının zertteñız.',
       qm: 'Yoruba cemaatinde Gelede maskaları, kiyimleri ve oyunlarıñ cemaat hayatında nasıl birleşkenini ögrenip baqıñız.',
     },
   },
