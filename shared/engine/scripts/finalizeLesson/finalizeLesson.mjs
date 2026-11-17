@@ -126,7 +126,21 @@ function verifyEntities(value, seen = new Set(), location = '$') {
  * producing no source-language content at all. Reject it before deleting YAML.
  * Entirely omitted optional locale fields remain legitimate draft inputs.
  */
-function verifyNonemptyLocaleFields(value, location = '
+function verifyNonemptyLocaleFields(value, location = '$') {
+  if (Array.isArray(value))
+    return value.forEach((child, index) => verifyNonemptyLocaleFields(child, location + '[' + index + ']'));
+  if (!record(value)) return;
+  if (record(value.config) && record(value.config.locale)) {
+    for (const [field, localized] of Object.entries(value.config.locale)) {
+      if (record(localized) && Object.keys(localized).length === 0)
+        fail(location + '.config.locale.' + field, 'empty locale dictionary would emit no authored content');
+    }
+  }
+  for (const [key, child] of Object.entries(value))
+    verifyNonemptyLocaleFields(child, location + '.' + key);
+}
+
+/** All authored production fields survive in a deterministic persistent handoff. */
 export function productionHandoff(document) {
   const nodes = [];
   function visit(value, location) {
