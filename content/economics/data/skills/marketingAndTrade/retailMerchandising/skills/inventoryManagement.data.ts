@@ -31,7 +31,7 @@ export const inventoryManagement_Skill_Data = defineSkill({
     et: 'Laohaldus',
     be: 'Кіраваньне запасамі',
     ka: 'მარაგების მართვა',
-    kk: 'Қорларды басқару',
+    kk: 'Qorlardy basqaru',
     qm: 'Stoklarnı idare etüv',
   },
   description: {
@@ -64,7 +64,7 @@ export const inventoryManagement_Skill_Data = defineSkill({
       et: 'Mõista, miks poed peavad tasakaalustama piisava varu ja madalad kulud.',
       be: 'Зразумей, чаму крамы мусяць мець дастатковы запас і зьмяншаць выдаткі.',
       ka: 'გაიგე, რატომ უნდა შეათავსონ მაღაზიებმა საკმარისი მარაგი და დაბალი ხარჯები.',
-      kk: 'Дүкен неге жеткілікті қор мен аз шығынды тең ұстауы керегін біл.',
+      kk: 'Düken nege jetkılıktı qor men az şyğyndy teñ ūstauy keregın bıl.',
       qm: 'Dükânlar yeterli mal ve az masraf arasında niçün muazene tutqanını añla.',
     },
   },

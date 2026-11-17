@@ -38,7 +38,7 @@ export const retailMerchandising_SkillGroup_Data = defineSkillGroup({
     et: 'Kaubapaigutus jaekaubanduses',
     be: 'Разьмяшчэньне тавараў у краме',
     ka: 'პროდუქტების განლაგება საცალო ვაჭრობაში',
-    kk: 'Бөлшек саудадағы тауарларды орналастыру',
+    kk: 'Bölşek saudadağy tauarlardy ornalastyru',
     qm: 'Dükânda mallarnı yerleştirmek',
   },
   skills: [
@@ -78,7 +78,7 @@ export const retailMerchandising_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri, kuidas kaupluse plaan ja toodete väljapanek mõjutavad ostlemist.',
       be: 'Дасьледуй, як пляніроўка крамы й выкладка тавараў уплываюць на пакупкі.',
       ka: 'შეისწავლე, როგორ მოქმედებს მაღაზიის განლაგება და პროდუქტის ჩვენება ყიდვაზე.',
-      kk: 'Дүкен құрылысы мен тауар көрмесі сатып алуға қалай әсер ететінін зертте.',
+      kk: 'Düken qūrylysy men tauar körmesı satyp aluğa qalai äser etetının zertte.',
       qm: 'Dükân tertibi ve mallarnı köstermek alışverişke nasıl tesir etkenini araştır.',
     },
   },

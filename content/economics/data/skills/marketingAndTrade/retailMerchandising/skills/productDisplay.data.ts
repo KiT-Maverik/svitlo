@@ -31,7 +31,7 @@ export const productDisplay_Skill_Data = defineSkill({
     et: 'Toodete väljapanek',
     be: 'Выкладка тавараў',
     ka: 'პროდუქტის გამოფენა',
-    kk: 'Тауар көрмесі',
+    kk: 'Tauar körmesı',
     qm: 'Malnı köstermek',
   },
   description: {
@@ -65,7 +65,7 @@ export const productDisplay_Skill_Data = defineSkill({
       et: 'Uuri, kuidas toote asukoht poes mõjutab ostjate tähelepanu.',
       be: 'Дасьледуй, як месца тавару ў краме ўплывае на ўвагу пакупнікоў.',
       ka: 'შეისწავლე, როგორ მოქმედებს პროდუქტის ადგილი მომხმარებლის ყურადღებაზე.',
-      kk: 'Дүкендегі өнім орны сатып алушы назарын қалай өзгертетінін зертте.',
+      kk: 'Dükendegı önım orny satyp aluşy nazaryn qalai özgertetının zertte.',
       qm: 'Dükânda malnıñ yeri alıcılarnıñ diqqatına nasıl tesir etkenini ögren.',
     },
   },

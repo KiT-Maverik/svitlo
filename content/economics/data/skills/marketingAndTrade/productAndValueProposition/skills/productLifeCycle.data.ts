@@ -31,7 +31,7 @@ export const productLifeCycle_Skill_Data = defineSkill({
     et: 'Toote elutsükkel',
     be: 'Жыцьцёвы цыкль прадукту',
     ka: 'პროდუქტის სასიცოცხლო ციკლი',
-    kk: 'Өнімнің өмірлік циклі',
+    kk: 'Önımnıñ ömırlık tsiklı',
     qm: 'Malnıñ ayat devri',
   },
   description: {
@@ -65,7 +65,7 @@ export const productLifeCycle_Skill_Data = defineSkill({
       et: 'Uuri, kuidas toote turg ajas muutub.',
       be: 'Дасьледуй, як рынак прадукту зьмяняецца з часам.',
       ka: 'შეისწავლე, როგორ იცვლება პროდუქტის ბაზარი დროთა განმავლობაში.',
-      kk: 'Өнім нарығы уақыт өте қалай өзгеретінін зертте.',
+      kk: 'Önım naryğy uaqyt öte qalai özgeretının zertte.',
       qm: 'Mal bazarı vaqtnen nasıl deñişkenini araştır.',
     },
   },

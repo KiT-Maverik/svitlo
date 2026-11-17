@@ -31,7 +31,7 @@ export const productPositioning_Skill_Data = defineSkill({
     et: 'Toote positsioneerimine',
     be: 'Пазыцыянаваньне прадукту',
     ka: 'პროდუქტის პოზიციონირება',
-    kk: 'Өнімді позициялау',
+    kk: 'Önımdı pozitsiialau',
     qm: 'Malnıñ bazarda mevqisi',
   },
   description: {
@@ -64,7 +64,7 @@ export const productPositioning_Skill_Data = defineSkill({
       et: 'Selgita, kuidas toode eristub kindla sihtrühma jaoks.',
       be: 'Патлумач, як тавар вылучаецца для пэўнай аўдыторыі.',
       ka: 'ახსენი, რით გამოირჩევა პროდუქტი კონკრეტული აუდიტორიისთვის.',
-      kk: 'Өнімнің белгілі аудиторияға қалай ерекшеленетінін түсіндір.',
+      kk: 'Önımnıñ belgılı auditoriiağa qalai erekşelenetının tüsındır.',
       qm: 'Mal belgili müşteriler içün nasıl ayrılıp turğanını añlat.',
     },
   },

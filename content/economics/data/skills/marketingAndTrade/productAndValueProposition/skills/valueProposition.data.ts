@@ -31,7 +31,7 @@ export const valueProposition_Skill_Data = defineSkill({
     et: 'Väärtuspakkumine',
     be: 'Каштоўнасная прапанова',
     ka: 'ღირებულების შეთავაზება',
-    kk: 'Құндылық ұсынысы',
+    kk: 'Qūndylyq ūsynysy',
     qm: 'Qıymet teklifi',
   },
   description: {
@@ -65,7 +65,7 @@ export const valueProposition_Skill_Data = defineSkill({
       et: 'Kirjelda toote lahendatavat probleemi ja tõendeid selle kasulikkuse kohta.',
       be: 'Апішы праблему, якую разьвязвае прадукт, і доказы яго карысьці.',
       ka: 'აღწერე პროდუქტის მიერ გადაჭრილი პრობლემა და მისი სარგებლის მტკიცებულებები.',
-      kk: 'Өнім шешетін мәселені және оның пайдасына дәлелді сипатта.',
+      kk: 'Önım şeşetın mäselenı jäne onyñ paidasyna däleldı sipatta.',
       qm: 'Mal qaysı meseleni çezgenini ve faydasınıñ delillerini añlat.',
     },
   },
