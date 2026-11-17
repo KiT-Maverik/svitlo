@@ -4,14 +4,14 @@
 
 **Entity category:** self-contained, Course-neutral educational material. Can be standalone, reused across Courses, or authored under one Course without acquiring narrative responsibilities.
 
-A **Lesson** independently teaches **one or more approved Skills**. It must make sense without a Program, Curriculum, mascot, quest, reward system, external plot or special learner history. The Lesson owns the actual instructional material and its purposeful order of learning experiences; a Program can place it into a larger journey but does not own its pedagogical content.
+A **Lesson** independently teaches **one or more approved Skills**. It must make sense without a Course, Curriculum, mascot, quest, reward system, external plot or special learner history. The Lesson owns the actual instructional material and its purposeful order of learning experiences; a Program can place it into a larger journey but does not own its pedagogical content.
 
 ## PEDAGOGICAL RESPONSIBILITIES
 
 - Present accurate content through appropriate explanations, demonstrations, interactions, guided practice and reflection. No fixed Section count, fixed `theory → practice → quiz` recipe or one-Skill-per-Lesson rule.
 - Link each Lesson's intended learning to the Methodologist's approved outcomes and Skill definitions; teaching, completing a Lesson, marking a checkpoint and demonstrating mastery are **different** concepts.
-- A Lesson can have an **instructional sequence** and staged revelation. It has **no Program narrative** (characters, missions, external story, points/rewards or quest progression). See [Program](./program.md).
-- Lesson content is assembled from ordered [Sections](./section.md) with typed resources. Its educational design is documented in the separate [Lesson Content](./lesson-content.md), authored by the Educational Screenwriter.
+- A Lesson can have an **instructional sequence** and staged revelation. It has **no Course-owned narrative** (characters, missions, external story, points/rewards or quest progression). See [Course](./course.md) for Course-owned narrative and ordering.
+- Lesson content is assembled from ordered [Sections](./section.md) with typed resources. Its educational design is authored by the Screenwriter in the Lesson's single `lesson.yaml` `production`/`config` tree; the separate [Lesson Content](./lesson-content.md) document is historical migration context.
 
 ## Lesson methodology completeness — pedagogical technical specification
 
@@ -42,7 +42,7 @@ Reusable/standalone Lesson files live under `<PackageRoot>/data/lessons/<last-he
 
 **Implemented independent-bank contract (PR #606 merged):** [Engine Lesson Config and Props](../../../shared/engine/configurators/lessons/defineLesson/defineLesson.schemas.ts) contain stable Lesson identity, supported languages and ordered Sections, **not** embedded Questions or Flashcards. Quiz and Flashcards Sections refer to separately published resources by explicit UUID; an independent manifest records their owning Lesson and available languages. Folder addressing follows permanent UUIDs, not slugs. The full YAML production and cross-lesson migration are still pending; do not infer release readiness from these partial contracts.
 
-Related: [Lesson Content](./lesson-content.md), [Section](./section.md), [Program](./program.md), [Skill](./skill.md).
+Related: [historical Lesson Content](./lesson-content.md), [Section](./section.md), [Course](./course.md), [Skill](./skill.md).
 
 ## Typed authoring and publication boundary
 

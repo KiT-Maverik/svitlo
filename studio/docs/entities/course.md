@@ -14,6 +14,10 @@ A **Course** is an ordered learning journey, distinct from a Curriculum. Its aut
 
 A TOC creator receives only `{ language }`. It reads localized Lesson titles from the already imported Lesson Data and emits compact TOC leaves with `type`, `id`, and localized `title`.
 
+## Reusable Lesson and Course narrative boundary
+
+A Course selects and orders independently valid Lessons, and may add **Course-owned** Episodes, storyline, characters, missions, rewards and contextual transitions without rewriting Lesson content, target Skills, assessment meaning or scientific facts. Internal Lesson teaching order remains its own; broader curricular progression belongs to the Course. A Curriculum is an editorial learning plan, not automatically a runtime Course. Narrative events/rewards and cross-Course state are only supported where **current implementation and tests** prove they exist; an intended flow must not be reported as implemented. This consolidates the historical Program terminology; the active entity name and API are **Course**.
+
 ## Course teaching outcomes and referenced educational standards
 
 Current Engine Course Config/Props support optional `params.outcomes` with
