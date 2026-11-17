@@ -25,6 +25,7 @@ test('flag synchronization still works from a target workspace', () => {
     const command = spawnSync(process.execPath, [script], { cwd: target, encoding: 'utf8' });
     assert.equal(command.status, 0, command.stderr);
     assert(existsSync(join(target, 'public/flags')));
+    assert(existsSync(join(target, 'public/flags/it.svg')), 'Italian flag must be published');
     assert(readdirSync(join(target, 'public/flags')).some(file => file.endsWith('.svg')));
     assert(!existsSync(join(target, 'public/flags/stale.svg')), 'stale UI Kit flags must be removed');
     assert.equal(readFileSync(join(target, 'public/robots.txt'), 'utf8'), 'host-owned');

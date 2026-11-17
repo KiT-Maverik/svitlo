@@ -40,5 +40,8 @@
       "types": "./dist/scenes/index.d.ts",
       "default": "./dist/scenes/index.js"
     }
+  },
+  "imports": {
+    "#lessonsData/*": "./data/lessons/*.ts"
   }
 }

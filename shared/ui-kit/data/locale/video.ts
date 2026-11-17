@@ -9,6 +9,13 @@ const en = {
 
 export type Video_Locale = typeof en;
 
+const it: Video_Locale = {
+  offline: 'Questo video non è disponibile offline.',
+  unavailable: 'Questo video non è disponibile.',
+  playbackError: 'Impossibile riprodurre il video.',
+  retry: 'Riprova',
+};
+
 const uk: Video_Locale = {
   offline: 'Це відео недоступне без інтернету.',
   unavailable: 'Це відео недоступне.',
@@ -207,6 +214,7 @@ const qm: Video_Locale = {
 
 export const video: UiKit_Component_Locale<Video_Locale> = {
   en,
+  it,
   uk,
   zh,
   hi,

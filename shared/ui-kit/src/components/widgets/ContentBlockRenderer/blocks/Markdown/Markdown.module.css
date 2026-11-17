@@ -1,3 +1,5 @@
+@import 'katex/dist/katex.min.css';
+
 .content {
   color: var(--mui-palette-text-primary);
   font-size: 1.1rem;
@@ -65,4 +67,13 @@
   padding: 1rem;
   background: var(--mui-palette-action-hover);
   border-radius: 12px;
+}
+.content :global(.katex) {
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+.content :global(.katex-display) {
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
 }

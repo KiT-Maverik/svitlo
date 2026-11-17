@@ -1,0 +1,91 @@
+import { defineSkillGroup } from '@svitlo/engine/build';
+
+import { accessASequenceElementByIndex } from './accessASequenceElementByIndex';
+import { distinguishArraysFromLinkedLists } from './distinguishArraysFromLinkedLists';
+import { explainArrayStructure } from './explainArrayStructure';
+import { explainListStructure } from './explainListStructure';
+import { insertAnElementIntoASequence } from './insertAnElementIntoASequence';
+import { removeAnElementFromASequence } from './removeAnElementFromASequence';
+import { traverseASequence } from './traverseASequence';
+
+export const sequences = defineSkillGroup({
+  slug: 'sequences',
+  id: 'd5b263c3-3b43-4643-8655-3541acac0461',
+  name: {
+    ar: 'التسلسلات',
+    be: 'Пасьлядоўнасьці',
+    bn: 'ক্রম',
+    de: 'Sequenzen',
+    en: 'Sequences',
+    es: 'Secuencias',
+    et: 'Jadad',
+    fr: 'Séquences',
+    he: 'רצפים',
+    hi: 'अनुक्रम',
+    id: 'Urutan',
+    it: 'Sequenze',
+    ja: 'シーケンス',
+    ka: 'მიმდევრობები',
+    kk: 'Тізбектер',
+    ko: '시퀀스',
+    lt: 'Sekos',
+    lv: 'Secības',
+    mr: 'अनुक्रम',
+    ms: 'Jujukan',
+    pl: 'Sekwencje',
+    pt: 'Sequências',
+    qm: 'Sıralamalar',
+    ta: 'வரிசைத்தொடர்கள்',
+    te: 'అనుక్రమాలు',
+    tr: 'Diziler',
+    uk: 'Послідовності',
+    ur: 'تسلسل',
+    vi: 'Dãy',
+    zh: '序列',
+  },
+  skills: {
+    accessASequenceElementByIndex,
+    distinguishArraysFromLinkedLists,
+    explainArrayStructure,
+    explainListStructure,
+    insertAnElementIntoASequence,
+    removeAnElementFromASequence,
+    traverseASequence,
+  },
+  description: {
+    methodological:
+      'Ordered collections including arrays, lists, and linked representations. Indexing, insertion, removal, and traversal have different requirements and costs.',
+    frontend: {
+      ar: 'استكشف المجموعات المرتبة وكيفية الوصول إلى عناصرها وإضافتها وإزالتها.',
+      be: 'Дасьледуй упарадкаваныя калекцыі і спосабы доступу, даданьня і выдаленьня іх элемэнтаў.',
+      bn: 'সুশৃঙ্খল সংগ্রহে কীভাবে উপাদান খোঁজা, যোগ করা ও সরানো যায় তা জানো।',
+      de: 'Entdecke geordnete Sammlungen und wie du Elemente darin abrufst, hinzufügst und entfernst.',
+      en: 'Explore ordered collections and how to access, add and remove their elements.',
+      es: 'Explora las colecciones ordenadas y cómo acceder, añadir y quitar sus elementos.',
+      et: 'Uuri järjestatud kogumeid ning elementide lugemist, lisamist ja eemaldamist.',
+      fr: "Explore les collections ordonnées et la manière d'accéder à leurs éléments, d'en ajouter et d'en retirer.",
+      he: 'גלו אוספים מסודרים וכיצד לגשת לאיברים שלהם, להוסיף ולהסיר אותם.',
+      hi: 'क्रमबद्ध संग्रहों और उनके तत्वों को पाने, जोड़ने और हटाने के तरीकों को जानें।',
+      id: 'Jelajahi koleksi berurutan serta cara mengakses, menambah, dan menghapus elemennya.',
+      it: 'Esplora le collezioni ordinate e come accedere ai loro elementi, aggiungerli e rimuoverli.',
+      ja: '順序のあるコレクションで要素を参照・追加・削除する方法を学びましょう。',
+      ka: 'შეისწავლე დალაგებული კოლექციები და მათში ელემენტების მოძიება, დამატება და წაშლა.',
+      kk: 'Реттелген жинақтардағы элементтерге қатынауды, қосуды және жоюды үйрен.',
+      ko: '순서가 있는 모음에서 요소를 조회하고 추가하고 삭제하는 방법을 살펴보세요.',
+      lt: 'Tyrinėk rinkinius, kuriuose svarbi elementų tvarka, ir kaip pasiekti, pridėti bei pašalinti jų elementus.',
+      lv: 'Izpēti sakārtotas kolekcijas un to elementu piekļuvi, pievienošanu un izņemšanu.',
+      mr: 'क्रमबद्ध संग्रहातील घटक मिळवणे, जोडणे आणि काढणे शिक.',
+      ms: 'Terokai koleksi tersusun dan cara mengakses, menambah serta membuang elemennya.',
+      pl: 'Poznaj uporządkowane kolekcje oraz sposoby odczytywania, dodawania i usuwania ich elementów.',
+      pt: 'Explore coleções ordenadas e como acessar, adicionar e remover seus elementos.',
+      qm: 'Tertipli toplamlarğa erişmekni, unsur qoşmaqnı ve çıqarmaqnı ögren.',
+      ta: 'வரிசைப்படுத்தப்பட்ட தொகுப்புகளில் உறுப்புகளை அணுகவும் சேர்க்கவும் நீக்கவும் கற்றுக்கொள்.',
+      te: 'క్రమబద్ధమైన సేకరణల్లో అంశాలను పొందడం, జోడించడం, తొలగించడం ఎలాగో తెలుసుకోండి.',
+      tr: 'Sıralı koleksiyonlarda öğelere erişmeyi, eklemeyi ve kaldırmayı keşfet.',
+      uk: 'Досліди впорядковані колекції та способи доступу, додавання й вилучення їхніх елементів.',
+      ur: 'ترتیب وار مجموعوں میں عناصر تک رسائی، اضافے اور اخراج کے طریقے جانیں۔',
+      vi: 'Khám phá các tập hợp có thứ tự và cách truy cập, thêm, xóa phần tử.',
+      zh: '探索有序集合，以及如何访问、添加和移除其中的元素。',
+    },
+  },
+});

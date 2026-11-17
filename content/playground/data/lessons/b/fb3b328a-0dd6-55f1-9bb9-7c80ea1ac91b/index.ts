@@ -46,8 +46,6 @@ export const courseHowLightMoves = defineLesson({
     },
   },
   locale: { title: howLightMovesTitle },
-  flashcards: howLightMoves.flashcards,
-  questions: howLightMoves.questions,
   section: {
     items: {
       practice: howLightMoves.section.items.practice,

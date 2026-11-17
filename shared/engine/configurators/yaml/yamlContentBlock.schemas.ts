@@ -2,8 +2,8 @@ import { z } from 'zod';
 
 import { audio_Config_Schema } from '../contentBlocks/defineAudio/defineAudio.schemas';
 import { carousel_Config_Schema } from '../contentBlocks/defineCarousel/defineCarousel.schemas';
-import { carouselSlide_Config_Schema } from '../contentBlocks/defineCarousel/defineCarouselSlide/defineCarouselSlide.schemas';
 import { checkpoint_Config_Schema } from '../contentBlocks/defineCheckpoint/defineCheckpoint.schemas';
+import { checkpointAnswer_Config_Schema } from '../contentBlocks/defineCheckpoint/defineCheckpointAnswer/defineCheckpointAnswer.schemas';
 import { checkpointItem_Config_Schema } from '../contentBlocks/defineCheckpoint/defineCheckpointItem/defineCheckpointItem.schemas';
 import { code_Config_Schema } from '../contentBlocks/defineCode/defineCode.schemas';
 import { image_Config_Schema } from '../contentBlocks/defineImage/defineImage.schemas';
@@ -26,37 +26,37 @@ import { youtube_Config_Schema } from '../contentBlocks/defineYoutube/defineYout
  * Each variant retains the concrete Engine Config schema's params, locale,
  * identity and discriminating type; only the opaque child fields are replaced.
  */
-/** YAML only: required pending local assets are explicit null until produced. */
+/** Draft YAML intentionally excludes physical media references.
+ * Complete TypeScript Engine Config still requires validated filenames.
+ */
 export const yamlAudio_Schema = audio_Config_Schema.extend({
-  locale: audio_Config_Schema.shape.locale.extend({ fileLocation: z.literal(null) }),
+  locale: audio_Config_Schema.shape.locale.omit({ fileName: true }).strict(),
 });
-
-// Image Config has a cross-field refinement: project the existing structural
-// shape without redefining or weakening the real Config schema.
-export const yamlImage_Schema = z.object({
-  ...image_Config_Schema.shape,
-  locale: image_Config_Schema.shape.locale.extend({ src: z.literal(null) }),
-});
-
+// Image Config has a cross-field dimension refinement. Reapply that invariant
+// after replacing its required locale schema; safeExtend rejects omission of
+// an originally required property.
+export const yamlImage_Schema = z
+  .strictObject({
+    ...image_Config_Schema.shape,
+    locale: image_Config_Schema.shape.locale.omit({ fileName: true }).strict(),
+  })
+  .refine(
+    value =>
+      value.params.fill
+        ? value.params.aspectRatio !== undefined
+        : value.params.width !== undefined && value.params.height !== undefined,
+    { message: 'Image requires either fill/aspectRatio or width/height' },
+  );
 export const yamlVideo_Schema = video_Config_Schema.extend({
-  locale: video_Config_Schema.shape.locale.extend({
-    fileLocation: z.literal(null),
-    poster: z.literal(null),
-  }),
+  locale: video_Config_Schema.shape.locale.omit({ fileName: true, posterFileName: true }).strict(),
 });
-
-/** Pending localized WebVTT files are explicit nulls, not invented paths. */
 export const yamlSubtitles_Schema = subtitles_Config_Schema.extend({
-  locale: subtitles_Config_Schema.shape.locale.extend({ fileLocation: z.literal(null) }),
-});
-
-export const yamlCarouselSlide_Schema = carouselSlide_Config_Schema.extend({
-  locale: carouselSlide_Config_Schema.shape.locale.extend({ src: z.literal(null) }),
+  locale: subtitles_Config_Schema.shape.locale.omit({ fileName: true }).strict(),
 });
 
 export const yamlCarousel_Schema = carousel_Config_Schema.extend({
   slides: carousel_Config_Schema.shape.slides.extend({
-    items: z.record(z.string(), yamlCarouselSlide_Schema),
+    items: z.record(z.string(), z.discriminatedUnion('type', [yamlImage_Schema, scene_Config_Schema])),
   }),
 });
 
@@ -74,11 +74,15 @@ export const yamlCheckpointAnswer_Schema = z.discriminatedUnion('type', [
   youtube_Config_Schema,
 ]);
 
-export const yamlCheckpointItem_Schema = checkpointItem_Config_Schema.extend({
-  question: text_Config_Schema,
-  answer: checkpointItem_Config_Schema.shape.answer.extend({
+export const yamlCheckpointAnswerConfigurator_Schema = checkpointAnswer_Config_Schema.extend({
+  content: checkpointAnswer_Config_Schema.shape.content.extend({
     items: z.record(z.string(), yamlCheckpointAnswer_Schema),
   }),
+});
+
+export const yamlCheckpointItem_Schema = checkpointItem_Config_Schema.extend({
+  question: text_Config_Schema,
+  answer: yamlCheckpointAnswerConfigurator_Schema,
 });
 
 export const yamlCheckpoint_Schema = checkpoint_Config_Schema.extend({

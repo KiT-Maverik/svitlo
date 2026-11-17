@@ -88,3 +88,7 @@ following [Create Lesson Flashcards](../skills/lesson-workflow/create-lesson-fla
 The **Methodologist** owns approved outcomes; the **Assessment Architect** owns Questions; the **Flashcard Learning Architect** owns concise recall materials and links, but must not change Question objects or Lesson pedagogy unilaterally; the **Coding Agent** owns YAML validation, typed imports, generated code and eventual graph/index support; translation specialists own missing locales.
 
 Never mark a card/reference/acronym approved solely because its YAML parses. Verify factual correctness, atomicity, list counts, acronym casing/mapping, reference resolution, scope, accessibility and actual editorial approval.
+
+## LaTeX in Markdown ContentBlocks
+
+Markdown ContentBlocks in Flashcard fronts, backs and hints support inline `$...$` and display `$$...$$` LaTeX. Follow [Markdown formulas](../docs/entities/markdown-content-block.md), keeping each card concise, focused and accessible. Do not assume plain `text` blocks parse LaTeX.

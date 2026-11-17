@@ -134,7 +134,11 @@ test('Studio editorial YAML remains intact while both builders emit nested TS dr
               id: id(3),
               type: 'carousel',
               slug: 'gallery',
-              slides: group({ slide: { id: id(4), type: 'carouselSlide', slug: 'slide' } }),
+              slides: group({ slide: {
+                id: id(4), type: 'image', slug: 'slide',
+                params: { fill: true, aspectRatio: 1.5 },
+                locale: { src: null, alt: { uk: 'Діаграма' } },
+              } }),
             },
             checkpoint: {
               id: id(5),
@@ -146,7 +150,12 @@ test('Studio editorial YAML remains intact while both builders emit nested TS dr
                   type: 'checkpointItem',
                   slug: 'item',
                   question: structuredClone(sourceBlock),
-                  answer: group({ correct: structuredClone(sourceBlock) }),
+                  answer: {
+                    id: id(13),
+                    type: 'checkpointAnswer',
+                    slug: 'answer',
+                    content: group({ correct: structuredClone(sourceBlock) }),
+                  },
                 },
               }),
             },
@@ -158,7 +167,7 @@ test('Studio editorial YAML remains intact while both builders emit nested TS dr
     lesson.section.order.push('guided');
     const { documentLanguage: lessonLanguage, ...lessonConfig } = lesson;
     fs.writeFileSync(
-      path.join(lessonDir, 'config.yaml'),
+      path.join(lessonDir, 'lesson.yaml'),
       yaml.stringify({
         ...wrapNode(lessonConfig),
         production: { documentLanguage: lessonLanguage },
@@ -166,18 +175,39 @@ test('Studio editorial YAML remains intact while both builders emit nested TS dr
     );
     const editorial = 'kind: lesson-content-plan\nstatus: draft\nsections: []\n';
     fs.writeFileSync(path.join(lessonDir, 'content.yaml'), editorial);
-    assert.equal(runOne(lessonDir, 'generate', root).changed, 1);
+    fs.writeFileSync(path.join(lessonDir, 'questions.yaml'), '# independent question source\n');
+    fs.writeFileSync(path.join(lessonDir, 'flashcards.yaml'), '# independent flashcard source\n');
+    const lessonDraft = runOne(lessonDir, 'generate', root);
+    const sourceFiles = lessonDraft.files.filter(file => file.endsWith('.ts'));
+    assert(sourceFiles.length > 1, 'Lesson Builder must emit multiple named draft modules');
+    assert.equal(lessonDraft.changed, sourceFiles.length);
     assert.equal(fs.readFileSync(path.join(lessonDir, 'content.yaml'), 'utf8'), editorial);
-    const lessonCode = fs.readFileSync(path.join(lessonDir, 'lightLesson.data.ts'), 'utf8');
-    const lessonCalls = calls(lessonCode);
+    assert.equal(fs.readFileSync(path.join(lessonDir, 'questions.yaml'), 'utf8'), '# independent question source\n');
+    assert.equal(fs.readFileSync(path.join(lessonDir, 'flashcards.yaml'), 'utf8'), '# independent flashcard source\n');
+    assert.equal(fs.existsSync(path.join(lessonDir, 'questions')), false);
+    assert.equal(fs.existsSync(path.join(lessonDir, 'flashcards')), false);
+    // The Review register is an intentionally invalid, human-completed TypeScript draft.
+    // Test its unfinished shape separately; every actual configurator module must parse.
+    assert(sourceFiles.includes('review.ts'), 'Lesson Builder must scaffold the Review register');
+    const reviewDraft = fs.readFileSync(path.join(lessonDir, 'review.ts'), 'utf8');
+    assert(
+      ts.createSourceFile('review.ts', reviewDraft, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS)
+        .parseDiagnostics.length > 0,
+      'Review draft must retain unresolved TypeScript syntax until review evidence is verified',
+    );
+    const modules = sourceFiles
+      .filter(file => file !== 'review.ts')
+      .map(file => fs.readFileSync(path.join(lessonDir, file), 'utf8'));
+    const lessonCode = modules.join('\n');
+    const lessonCalls = modules.flatMap(calls);
     for (const name of [
       'defineLesson',
       'defineContentSection',
       'defineText',
       'defineCarousel',
-      'defineCarouselSlide',
       'defineCheckpoint',
       'defineCheckpointItem',
+      'defineCheckpointAnswer',
       'defineQuestSection',
       'defineStage',
       'defineTask',
@@ -193,7 +223,7 @@ test('Studio editorial YAML remains intact while both builders emit nested TS dr
     assert(lessonCode.includes('import { '));
     assert(lessonCode.includes("from '@svitlo/engine/build'"));
 
-    const lessonImport = '../../../lessons/c/' + lessonId + '/lightLesson.data.ts';
+    const lessonImport = '../../../lessons/c/' + lessonId + '/index.ts';
     assert(fs.existsSync(path.resolve(courseDir, lessonImport)));
     const course = {
       documentLanguage: 'uk',
@@ -227,7 +257,11 @@ test('Studio editorial YAML remains intact while both builders emit nested TS dr
                           id: id(11),
                           slug: 'gallery',
                           type: 'carousel',
-                          slides: group({ slide: { id: id(12), slug: 'slide', type: 'carouselSlide' } }),
+                          slides: group({ slide: {
+                             id: id(12), slug: 'slide', type: 'image',
+                             params: { fill: true, aspectRatio: 1.5 },
+                             locale: { src: null, alt: { uk: 'Діаграма' } },
+                           } }),
                         },
                       }),
                     },
@@ -262,7 +296,6 @@ test('Studio editorial YAML remains intact while both builders emit nested TS dr
       'defineEpisode',
       'defineContentSection',
       'defineCarousel',
-      'defineCarouselSlide',
       'defineQuestSection',
       'defineStage',
       'defineTask',

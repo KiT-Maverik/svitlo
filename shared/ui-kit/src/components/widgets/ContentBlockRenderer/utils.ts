@@ -9,11 +9,11 @@ export const supportedTypes = new Set<string>([
   'scene',
   'code',
   'audio',
-  'subtitles',
   'video',
   'youtube',
   'image',
   'carousel',
+  'subtitles',
 ]);
 
 export function assertNever(value: never): never {

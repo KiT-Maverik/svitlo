@@ -1,0 +1,91 @@
+import { defineSkillGroup } from '@svitlo/engine/build';
+
+import { approachMotivation } from './approachMotivation';
+import { avoidanceMotivation } from './avoidanceMotivation';
+import { expectancyAndValue } from './expectancyAndValue';
+import { extrinsicMotivation } from './extrinsicMotivation';
+import { intrinsicMotivation } from './intrinsicMotivation';
+import { motivationalCrowding } from './motivationalCrowding';
+import { needsAndDrives } from './needsAndDrives';
+
+export const motivationalMechanisms = defineSkillGroup({
+  slug: 'motivationalMechanisms',
+  id: 'c27e6e57-c3af-46a3-9735-cc51591db37c',
+  name: {
+    ar: 'آليات الدافعية',
+    be: 'Мэханізмы матывацыі',
+    bn: 'প্রেরণার প্রক্রিয়া',
+    de: 'Motivationsmechanismen',
+    en: 'Motivational Mechanisms',
+    es: 'Mecanismos de motivación',
+    et: 'Motivatsiooni mehhanismid',
+    fr: 'Mécanismes motivationnels',
+    he: 'מנגנוני מוטיבציה',
+    hi: 'प्रेरक तंत्र',
+    id: 'Mekanisme motivasi',
+    it: 'Meccanismi motivazionali',
+    ja: '動機づけの仕組み',
+    ka: 'მოტივაციის მექანიზმები',
+    kk: 'Мотивация тетіктері',
+    ko: '동기 기제',
+    lt: 'Motyvacijos mechanizmai',
+    lv: 'Motivācijas mehānismi',
+    mr: 'प्रेरणेची यंत्रणा',
+    ms: 'Mekanisme motivasi',
+    pl: 'Mechanizmy motywacji',
+    pt: 'Mecanismos de motivação',
+    qm: 'Motivatsiya mekanizmleri',
+    ta: 'உந்துதல் இயங்குமுறைகள்',
+    te: 'ప్రేరణ యంత్రాంగాలు',
+    tr: 'Motivasyon mekanizmaları',
+    uk: 'Механізми мотивації',
+    ur: 'تحریک کے طریقۂ کار',
+    vi: 'Cơ chế động lực',
+    zh: '动机机制',
+  },
+  skills: {
+    approachMotivation,
+    avoidanceMotivation,
+    expectancyAndValue,
+    extrinsicMotivation,
+    intrinsicMotivation,
+    motivationalCrowding,
+    needsAndDrives,
+  },
+  description: {
+    methodological:
+      'Behavior is influenced by internal states and external incentives, with competing explanations and substantial individual variation.',
+    frontend: {
+      ar: 'تعرّف المصادر المختلفة للدافعية وراء السلوك البشري.',
+      be: 'Даведайся пра розныя крыніцы матывацыі чалавечых дзеяньняў.',
+      bn: 'মানুষের কাজের পেছনে প্রেরণার বিভিন্ন উৎস জানো।',
+      de: 'Entdecke verschiedene Quellen der Motivation für menschliches Handeln.',
+      en: 'Discover different sources of motivation behind human action.',
+      es: 'Descubre distintas fuentes de motivación que impulsan las acciones humanas.',
+      et: 'Tutvu erinevate inimese tegevust suunavate motiividega.',
+      fr: 'Découvre les différentes sources de motivation derrière les actions humaines.',
+      he: 'למדו על מקורות שונים של מוטיבציה מאחורי פעולות האדם.',
+      hi: 'मानवीय क्रिया के पीछे प्रेरणा के विभिन्न स्रोत जानें।',
+      id: 'Kenali berbagai sumber motivasi di balik tindakan manusia.',
+      it: 'Scopri le diverse fonti di motivazione che sostengono le azioni umane.',
+      ja: '人の行動を促すさまざまな動機を学ぼう。',
+      ka: 'გაიგე ადამიანის ქმედებების უკან არსებული მოტივაციის სხვადასხვა წყარო.',
+      kk: 'Адам әрекетінің артындағы әртүрлі ынта көздерін біл.',
+      ko: '행동의 바탕이 되는 다양한 동기의 원천을 살펴보세요.',
+      lt: 'Sužinok apie įvairius žmonių veiksmus skatinančius motyvus.',
+      lv: 'Uzzini par dažādiem motivācijas avotiem cilvēku rīcībai.',
+      mr: 'मानवी कृतीमागील प्रेरणेचे वेगवेगळे स्रोत जाणून घ्या.',
+      ms: 'Ketahui pelbagai punca motivasi di sebalik tindakan manusia.',
+      pl: 'Poznaj różne źródła motywacji ludzkiego działania.',
+      pt: 'Conheça diferentes fontes de motivação por trás das ações humanas.',
+      qm: 'İnsan areketiniñ artındaki çeşit motivatsiya qaynaqlarını ögren.',
+      ta: 'மனிதச் செயலுக்குப் பின்னுள்ள பல்வேறு உந்துதல்களை அறியுங்கள்.',
+      te: 'మనిషి చర్యల వెనుక ఉన్న వివిధ ప్రేరణ మూలాలను తెలుసుకోండి.',
+      tr: 'İnsan davranışlarının ardındaki farklı motivasyon kaynaklarını öğren.',
+      uk: 'Дізнайся про різні джерела мотивації людської поведінки.',
+      ur: 'انسانی عمل کے پیچھے تحریک کے مختلف ذرائع جانیں۔',
+      vi: 'Tìm hiểu nhiều nguồn động lực thúc đẩy hành vi con người.',
+      zh: '了解推动人类行动的不同动机来源。',
+    },
+  },
+});

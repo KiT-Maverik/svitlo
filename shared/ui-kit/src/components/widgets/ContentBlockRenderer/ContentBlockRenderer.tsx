@@ -61,12 +61,12 @@ function renderBlock(
       return <Video {...response} messages={messages.video} />;
     case 'youtube':
       return <Youtube {...response} messages={messages.youtube} />;
-    case 'subtitles':
-      return <Subtitles {...response} />;
     case 'image':
       return <Image {...response} messages={messages.image} />;
     case 'carousel':
-      return <Carousel {...response} messages={messages} />;
+      return <Carousel {...response} messages={messages} sceneRegistry={sceneRegistry} />;
+    case 'subtitles':
+      return <Subtitles {...response} />;
     default:
       return assertNever(response);
   }

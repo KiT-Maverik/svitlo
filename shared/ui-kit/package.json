@@ -64,11 +64,14 @@
     "@emotion/styled": "^11.14.0",
     "@mui/icons-material": "^9.5.0",
     "@mui/material": "^9.5.0",
+    "katex": "^0.16.45",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
     "react-markdown": "^10.1.0",
+    "rehype-katex": "^7.0.1",
     "rehype-raw": "^7.0.0",
-    "rehype-sanitize": "^6.0.0"
+    "rehype-sanitize": "^6.0.0",
+    "remark-math": "^6.0.0"
   },
   "bin": {
     "svitlo-sync-flags": "./scripts/syncFlags/syncFlags.mjs"

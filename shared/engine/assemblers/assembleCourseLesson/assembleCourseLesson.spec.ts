@@ -28,7 +28,6 @@ const createInput = (): AssembleCourseLessonInput =>
         },
         locale: { title: 'Invariant lesson title' },
         section: [sectionA, sectionB],
-        flashcards: [],
       },
       locale: {
         uk: { locale: { title: 'Український урок' }, section: [sectionA, sectionB] },

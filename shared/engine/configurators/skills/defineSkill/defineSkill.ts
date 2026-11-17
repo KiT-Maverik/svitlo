@@ -8,14 +8,7 @@ import {
   selectPublicationLocales,
   splitLocalizedFields,
 } from '../../_shared__configurators';
-import {
-  skill_Config_Schema,
-  skill_Props_Schema,
-  skill_Override_Config_Schema,
-  type Skill_Config,
-  type Skill_Overrides,
-  type Skill_Props,
-} from './defineSkill.schemas';
+import { skill_Config_Schema, skill_Props_Schema, type Skill_Config, type Skill_Props } from './defineSkill.schemas';
 
 type SkillPublication<Base> = {
   base: Base;
@@ -49,10 +42,6 @@ export type Skill_Configurator<
     props(
       options: PublicationLanguageOptions<Languages>,
     ): SkillPublication<DeepPartial<Skill_Props> & { id: Skill_Config['id']; slug: string }>;
-    overrides(
-      patch: Skill_Overrides,
-      options: PublicationLanguageOptions<Languages>,
-    ): SkillPublication<DeepPartial<Skill_Props>>;
   };
   readonly config: {
     base: DeepPartial<Skill_Props> & { id: Skill_Config['id']; slug: string };
@@ -67,7 +56,7 @@ export function defineSkill<
 >(
   config: Omit<Skill_Config, 'slug'> & { slug: Slug } & RequireLanguages<Skill_Config, Languages>,
 ): Skill_Configurator<Slug, Languages> {
-  const authored = structuredClone(skill_Config_Schema.parse(config));
+  const authored = structuredClone(config);
   const { id } = authored;
   const slug = config.slug;
   const copyAuthored = () => skill_Config_Schema.parse(structuredClone(authored));
@@ -88,42 +77,18 @@ export function defineSkill<
     return result;
   };
 
-  const overrides = (
-    patch: Skill_Overrides,
-    options: PublicationLanguageOptions<Languages>,
-  ): SkillPublication<DeepPartial<Skill_Props>> => {
-    try {
-      const languages = resolvePublicationLanguages(options);
-      const sparse = skill_Override_Config_Schema.parse(patch);
-      validate(skill_Config_Schema.parse(mergeForValidation(copyAuthored(), sparse)));
-      const own = project(sparse);
-      const result: SkillPublication<DeepPartial<Skill_Props>> = {
-        base: own.base,
-        locale: selectPublicationLocales(own.locale as SkillPublication<DeepPartial<Skill_Props>>['locale'], languages),
-      };
-      const resource = props(options);
-      for (const language of languages) {
-        const original = mergeForValidation(resource.base, resource.locale?.[language] ?? {});
-        const patched = mergeForValidation(original, result.base);
-        skill_Props_Schema.parse(mergeForValidation(patched, result.locale?.[language] ?? {}));
-      }
-      return result;
-    } catch (error) {
-      throw new Error(
-        'Invalid Skill overrides for ' + id + ': ' + (error instanceof Error ? error.message : String(error)),
-        { cause: error },
-      );
-    }
-  };
-
   const result = {
     id,
     slug,
     type: 'skill' as const,
     validate,
-    build: { props, overrides },
+    build: { props },
     config: {
-      base: { id: id as Skill_Config['id'], slug, ...project({ name: authored.name, description: authored.description }).base },
+      base: {
+        id: id as Skill_Config['id'],
+        slug,
+        ...project({ name: authored.name, description: authored.description }).base,
+      },
       validate,
       locales: (): DeepPartial<Skill_Config> => {
         const current = copyAuthored();

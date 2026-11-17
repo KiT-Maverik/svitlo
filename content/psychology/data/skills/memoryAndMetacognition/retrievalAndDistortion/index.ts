@@ -1,0 +1,91 @@
+import { defineSkillGroup } from '@svitlo/engine/build';
+
+import { memoryConfidenceAndAccuracy } from './memoryConfidenceAndAccuracy';
+import { memoryRecall } from './memoryRecall';
+import { memoryRecognition } from './memoryRecognition';
+import { misinformationEffects } from './misinformationEffects';
+import { proactiveInterference } from './proactiveInterference';
+import { retrievalCues } from './retrievalCues';
+import { retroactiveInterference } from './retroactiveInterference';
+
+export const retrievalAndDistortion = defineSkillGroup({
+  slug: 'retrievalAndDistortion',
+  id: 'c9433305-42d1-413e-ac6a-481662936b44',
+  name: {
+    ar: 'استرجاع الذاكرة وتشوهها',
+    be: 'Узнаўленьне й скажэньне ўспамінаў',
+    bn: 'স্মৃতি পুনরুদ্ধার ও বিকৃতি',
+    de: 'Abruf und Verzerrung von Erinnerungen',
+    en: 'Retrieval and Distortion',
+    es: 'Recuperación y distorsión de la memoria',
+    et: 'Meenutamine ja mälumoonutused',
+    fr: 'Récupération et déformation des souvenirs',
+    he: 'שליפה ועיוות הזיכרון',
+    hi: 'स्मृति पुनर्प्राप्ति और विकृति',
+    id: 'Pemanggilan dan Distorsi Memori',
+    it: 'Recupero e distorsione dei ricordi',
+    ja: '記憶の検索と変容',
+    ka: 'მოგონებების გახსენება და დამახინჯება',
+    kk: 'Еске түсіру және жадының бұрмалануы',
+    ko: '기억 인출과 왜곡',
+    lt: 'Atminties atkūrimas ir iškraipymai',
+    lv: 'Atmiņas atsaukšana un izkropļojumi',
+    mr: 'स्मृतीचे पुनःस्मरण आणि विकृती',
+    ms: 'Ingatan Semula dan Herotan Memori',
+    pl: 'Wydobywanie i zniekształcenia wspomnień',
+    pt: 'Recuperação e distorção da memória',
+    qm: 'Hatırlav ve hafızanıñ bozuluvı',
+    ta: 'நினைவு மீட்டெடுப்பும் திரிபும்',
+    te: 'జ్ఞాపకాల పునఃప్రాప్తి మరియు వక్రీకరణ',
+    tr: 'Hatırlama ve Bellek Çarpıtmaları',
+    uk: 'Відтворення та спотворення спогадів',
+    ur: 'یادداشت کی بازیافت اور بگاڑ',
+    vi: 'Truy xuất và sai lệch ký ức',
+    zh: '提取与记忆失真',
+  },
+  skills: {
+    memoryConfidenceAndAccuracy,
+    memoryRecall,
+    memoryRecognition,
+    misinformationEffects,
+    proactiveInterference,
+    retrievalCues,
+    retroactiveInterference,
+  },
+  description: {
+    methodological:
+      'Access is cue-dependent and reconstructive; incorrect recollection does not automatically imply deliberate deception.',
+    frontend: {
+      ar: 'اكتشف لماذا يتطلب التذكر استرجاع المعلومات ولماذا قد تتشوه أحياناً.',
+      be: 'Дасьледуй, чаму прыгадваньне патрабуе ўзнаўленьня інфармацыі й часам яе скажае.',
+      bn: 'মনে করতে তথ্য পুনরুদ্ধার করতে হয় এবং তাতে কখনো বিকৃতি কেন ঘটে তা জানো।',
+      de: 'Erkunde, warum Erinnern den Abruf von Informationen erfordert und sie dabei manchmal verzerrt werden.',
+      en: 'Explore why remembering involves retrieval and sometimes distortion.',
+      es: 'Explora por qué recordar exige recuperar información y a veces genera distorsiones.',
+      et: 'Uuri, miks meenutamine nõuab teabe esiletoomist ja võib seda vahel moonutada.',
+      fr: "Découvre pourquoi se souvenir implique de récupérer l'information et peut parfois la déformer.",
+      he: 'גלו מדוע זכירה דורשת שליפת מידע ולמה לפעמים נוצרים עיוותים.',
+      hi: 'जानें कि याद करने में जानकारी पुनः प्राप्त करना क्यों ज़रूरी है और उसमें विकृति कैसे आ सकती है।',
+      id: 'Jelajahi mengapa mengingat melibatkan pemanggilan informasi dan terkadang distorsi.',
+      it: 'Esplora perché ricordare comporti il recupero delle informazioni e, talvolta, la loro distorsione.',
+      ja: '思い出すには情報を取り出す必要があり、ときに記憶が変わる理由を探ろう。',
+      ka: 'გამოიკვლიე, რატომ მოითხოვს გახსენება ინფორმაციის ამოღებას და რატომ შეიძლება ის ზოგჯერ დამახინჯდეს.',
+      kk: 'Еске түсіру неге ақпаратты қайта алуды қажет ететінін және кейде оны бұрмалайтынын зертте.',
+      ko: '기억을 떠올릴 때 정보를 인출하며 때로는 기억이 왜곡되는 이유를 알아보세요.',
+      lt: 'Sužinok, kodėl prisimenant reikia atkurti informaciją ir kodėl ji kartais iškraipoma.',
+      lv: 'Izpēti, kāpēc atcerēšanās prasa informācijas atsaukšanu un dažreiz to izkropļo.',
+      mr: 'आठवणीसाठी माहिती पुन्हा मिळवावी का लागते आणि कधी ती का बदलते ते जाणून घ्या.',
+      ms: 'Terokai mengapa mengingat memerlukan pemanggilan maklumat dan kadangkala mengubahnya.',
+      pl: 'Odkryj, dlaczego pamiętanie wymaga wydobycia informacji i czasem ją zniekształca.',
+      pt: 'Explore por que lembrar envolve recuperar informações e às vezes distorcê-las.',
+      qm: 'Hatırlav neden malümatnı qaytadan aluvnı talap etkenini ve bazen neden bozulğanını ögren.',
+      ta: 'நினைவுகூரும்போது தகவலை மீட்டெடுப்பதும் சில நேரங்களில் நினைவு திரிவதும் ஏன் நிகழ்கின்றன என்பதை அறியுங்கள்.',
+      te: 'గుర్తుచేసుకోవడంలో సమాచారాన్ని తిరిగి తెచ్చుకోవడం ఎందుకు అవసరమో, కొన్నిసార్లు అది ఎలా వక్రీకృతమవుతుందో తెలుసుకోండి.',
+      tr: 'Hatırlamanın neden bilgiye erişmeyi gerektirdiğini ve bazen onu nasıl çarpıtabildiğini keşfet.',
+      uk: 'Досліджуй, чому пригадування потребує відтворення інформації та іноді спотворює її.',
+      ur: 'جانیں کہ یاد کرنے میں معلومات واپس لانا کیوں ضروری ہے اور وہ کبھی کیوں بگڑ جاتی ہیں۔',
+      vi: 'Tìm hiểu vì sao nhớ lại cần truy xuất thông tin và đôi khi làm ký ức sai lệch.',
+      zh: '探索为什么回忆需要提取信息，而且有时会产生失真。',
+    },
+  },
+});
