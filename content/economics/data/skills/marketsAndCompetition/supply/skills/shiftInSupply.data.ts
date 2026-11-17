@@ -31,7 +31,7 @@ export const shiftInSupply_Skill_Data = defineSkill({
     et: 'Pakkumise nihe',
     be: 'Зрушэньне прапановы',
     ka: 'მიწოდების მრუდის გადაადგილება',
-    kk: 'Ұсыныстың ығысуы',
+    kk: 'Ūsynystyñ yğysuy',
     qm: 'Teklifniñ köçüvi',
   },
   description: {
@@ -65,7 +65,7 @@ export const shiftInSupply_Skill_Data = defineSkill({
       et: 'Tunne ära sündmused, mis nihutavad pakkumiskõverat.',
       be: 'Вызначай падзеі, якія зрушваюць крывую прапановы.',
       ka: 'ამოიცანი მოვლენები, რომლებიც მიწოდების მრუდს გადაადგილებს.',
-      kk: 'Ұсыныс қисығын ығыстыратын оқиғаларды анықта.',
+      kk: 'Ūsynys qisyğyn yğystyratyn oqiğalardy anyqta.',
       qm: 'Teklif egrisini köçürgen vaqialarnı belgile.',
     },
   },

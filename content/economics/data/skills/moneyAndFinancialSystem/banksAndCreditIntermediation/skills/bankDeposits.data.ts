@@ -31,7 +31,7 @@ export const bankDeposits_Skill_Data = defineSkill({
     et: 'Pangahoiused',
     be: 'Банкаўскія ўклады',
     ka: 'საბანკო დეპოზიტები',
-    kk: 'Банк депозиттері',
+    kk: 'Bank depozitterı',
     qm: 'Bank depozitleri',
   },
   description: {
@@ -65,7 +65,7 @@ export const bankDeposits_Skill_Data = defineSkill({
       et: 'Õpi, kuidas pangahoiused töötavad ja mida nende tingimused tähendavad.',
       be: 'Даведайся, як працуюць уклады й што значаць іхныя ўмовы.',
       ka: 'ისწავლე, როგორ მუშაობს დეპოზიტები და რას ნიშნავს მათი პირობები.',
-      kk: 'Депозиттердің қалай жұмыс істейтінін және шарттарының мәнін біл.',
+      kk: 'Depozitterdıñ qalai jūmys ısteitının jäne şarttarynyñ mänın bıl.',
       qm: 'Bank depozitleri nasıl çalışqanını ve şartlarınıñ manasını ögren.',
     },
   },

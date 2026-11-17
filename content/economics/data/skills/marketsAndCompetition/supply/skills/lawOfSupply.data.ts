@@ -31,7 +31,7 @@ export const lawOfSupply_Skill_Data = defineSkill({
     et: 'Pakkumisseadus',
     be: 'Закон прапановы',
     ka: 'მიწოდების კანონი',
-    kk: 'Ұсыныс заңы',
+    kk: 'Ūsynys zañy',
     qm: 'Teklif qanunı',
   },
   description: {
@@ -65,7 +65,7 @@ export const lawOfSupply_Skill_Data = defineSkill({
       et: 'Mõista, miks tootjad pakuvad kõrgema hinnaga tavaliselt rohkem.',
       be: 'Зразумей, чаму вытворцы звычайна прапануюць больш пры вышэйшых цэнах.',
       ka: 'გაიგე, რატომ სთავაზობენ მწარმოებლები ჩვეულებრივ მეტს მაღალ ფასად.',
-      kk: 'Өндірушілер неге жоғары бағада көбірек ұсынатынын түсін.',
+      kk: 'Öndıruşıler nege joğary bağada köbırek ūsynatynyn tüsın.',
       qm: 'İstisalciler yuqarı fiyatlarda ne içün adette daa çoq teklif etkenini añla.',
     },
   },

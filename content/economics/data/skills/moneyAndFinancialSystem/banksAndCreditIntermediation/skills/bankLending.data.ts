@@ -31,7 +31,7 @@ export const bankLending_Skill_Data = defineSkill({
     et: 'Pangalaenud',
     be: 'Банкаўскае крэдытаваньне',
     ka: 'საბანკო დაკრედიტება',
-    kk: 'Банктік несиелеу',
+    kk: 'Banktık nesieleu',
     qm: 'Bank kreditleri',
   },
   description: {
@@ -65,7 +65,7 @@ export const bankLending_Skill_Data = defineSkill({
       et: 'Uuri, kuidas pangad laenu annavad ja kuidas see mõjutab pangaraha.',
       be: 'Дасьледуй, як банкі выдаюць крэдыты й як гэта ўплывае на банкаўскія грошы.',
       ka: 'შეისწავლე, როგორ გასცემენ ბანკები სესხს და როგორ მოქმედებს ეს საბანკო ფულზე.',
-      kk: 'Банктер қалай несие беретінін және оның банктік ақшаға әсерін зертте.',
+      kk: 'Bankter qalai nesie beretının jäne onyñ banktık aqşağa äserın zertte.',
       qm: 'Banklar nasıl borç bergenini ve onıñ bank aqçasına nasıl tesir etkenini araştır.',
     },
   },
