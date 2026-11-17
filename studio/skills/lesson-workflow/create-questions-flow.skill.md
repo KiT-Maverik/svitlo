@@ -199,7 +199,9 @@ production publisher without `--draft`; verify that **every bank Question**
 staged textbook manifest. Inspect the entire changed Lesson UUID root for any
 `TODO(asset)`, reserved Nil media filename, temporary `questions.yaml` or
 missing referenced media, captions and accessible alternative. The strict
-textbook `package:build` must succeed for the full required language scope.
+textbook `package:build` must succeed for the full required language scope,
+including the post-generation check that every explicitly selected Quiz
+candidate resolves to the correct published Question, body and locale file.
 Passing the Questions YAML→TS builder alone is not resource completion; do not
 mark the Questions child PR complete until the real generated resources exist.
 A missing or unfinished
