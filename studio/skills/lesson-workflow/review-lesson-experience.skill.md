@@ -21,3 +21,11 @@ Evaluate **every** Section and its ContentBlocks, not only the introduction:
 ## Quest plan review (draft-only runtime boundary)
 
 For proposed `type: quest` Sections, consult [Quest](../../docs/entities/quest.md) and inspect each Stage/Task branch, retry and completion path. Verify learning value of interventions, understandable failure feedback, no trap/loop without recovery, meaningful engagement without forced entertainment, and parity for captions, transcripts, narration, nonvisual Task controls, touch/keyboard, RTL, cognitive load, reduced motion and offline. Review Quest proposed media and Scenes as _planned_ resources, not working renderer behavior. Flag missing Quest runtime integration as a production dependency; do not conflate Task completion with a graded Quiz.
+
+## Independent review matrix
+
+For each actual Section and its nested blocks, assess: (1) fit to learner readiness and explicit outcomes; (2) effectiveness of worked examples, prediction/exploration, feedback, retrieval, application and transfer **when pedagogically justified**, without imposing a universal interaction formula; (3) appropriate navigation, autonomy, cognitive load and pacing; (4) coherence with the surrounding Section and neutral standalone Lesson; (5) feasibility of **all** authored Scene/Quest/media scripts, required assets and feedback states; (6) accessible keyboard, touch, screen-reader, semantic RTL/LTR, reduced-motion, captions/transcripts and offline/low-powered equivalents.
+
+A well-specified pending Scene is permitted during editorial review if clearly labelled **not yet implemented**; an inaccessible or contradictory planned learning path is not. Review every entry point, failure/retry/recovery path, and any proposed Quiz/assessment dependency without claiming unverified runtime availability. Reports distinguish **blocked design**, **approved design awaiting production**, and **actual implementation**. Do not treat asset absence alone as proof that the learning experience is poorly designed.
+
+For a batch of independently ready Lessons, evaluate each separately and preserve source-revision-specific evidence; a blocked Lesson must not silently prevent evaluating another ready Lesson. This is an independent review role, not authority to rewrite Screenwriter-owned YAML or approve one's own revisions.
