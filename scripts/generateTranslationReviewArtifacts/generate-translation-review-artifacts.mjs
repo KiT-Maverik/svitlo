@@ -116,9 +116,24 @@ export async function generate(options) {
     generated: [],
     failures: [],
   };
-  // A new request replaces the previous disposable reference library. Never change authored files.
-  fs.rmSync(output, { recursive: true, force: true });
-  fs.mkdirSync(output, { recursive: true });
+  // Replace only reference documents; Lesson lookup and coverage diagnostics have separate owners.
+  // Do not let a local generator invocation destroy their PR-scoped handoffs.
+  if (fs.existsSync(output)) {
+    if (fs.lstatSync(output).isSymbolicLink() || !fs.lstatSync(output).isDirectory()) {
+      throw new Error('Unsafe Agent CI Artifacts root');
+    }
+    for (const entry of fs.readdirSync(output, { withFileTypes: true })) {
+      if (['lesson-lookup', 'engine-coverage'].includes(entry.name)) {
+        if (!entry.isDirectory() || entry.isSymbolicLink()) {
+          throw new Error('Unsafe diagnostic artifact directory: ' + entry.name);
+        }
+        continue;
+      }
+      fs.rmSync(path.join(output, entry.name), { recursive: true, force: true });
+    }
+  } else {
+    fs.mkdirSync(output, { recursive: true });
+  }
   const saveManifest = () =>
     fs.writeFileSync(path.join(output, 'manifest.json'), JSON.stringify(manifest, null, 2) + '\n');
   saveManifest();
