@@ -38,7 +38,7 @@ export const exchangeAndInstitutions_SkillGroup_Data = defineSkillGroup({
     et: 'Vahetus ja institutsioonid',
     be: 'Абмен і інстытуцыі',
     ka: 'გაცვლა და ინსტიტუტები',
-    kk: 'Айырбас пен институттар',
+    kk: 'Aiyrbas pen instituttar',
     qm: 'Alış-veriş ve müessiseler',
   },
   skills: [
@@ -78,7 +78,7 @@ export const exchangeAndInstitutions_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri, kuidas kokkulepped ja reeglid aitavad koostööd teha ja kaupu vahetada.',
       be: 'Дасьледуй, як дамоўленасьці й правілы дапамагаюць супрацоўнічаць і абменьвацца.',
       ka: 'გაიგე, როგორ უწყობს შეთანხმებები და წესები ხელს თანამშრომლობასა და გაცვლას.',
-      kk: 'Келісімдер мен ережелер ынтымақтастық пен айырбасқа қалай көмектесетінін зертте.',
+      kk: 'Kelısımder men erejeler adamdarğa yntymaqtasyp, aiyrbas jasauğa qalai kömektesetının zertte.',
       qm: 'Kelişüvler ve qaideler insanlarnıñ beraber çalışuvına ve alış-verişine nasıl yardım etkenini ögren.',
     },
   },

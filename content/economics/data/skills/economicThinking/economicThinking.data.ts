@@ -36,7 +36,7 @@ export const economicThinking_SkillDomain_Data = defineSkillDomain({
     et: 'Majanduslik mõtlemine',
     be: 'Эканамічнае мысьленьне',
     ka: 'ეკონომიკური აზროვნება',
-    kk: 'Экономикалық ойлау',
+    kk: 'Ekonomikalyq oilau',
     qm: 'İqtisadiy fikirlev',
   },
   groups: [
@@ -76,7 +76,7 @@ export const economicThinking_SkillDomain_Data = defineSkillDomain({
       et: 'Mõista, kuidas inimesed valivad, reageerivad stiimulitele ja jagavad nappe ressursse.',
       be: 'Зразумей, як людзі робяць выбар, рэагуюць на стымулы й дзеляць абмежаваныя рэсурсы.',
       ka: 'გაიგე, როგორ აკეთებენ ადამიანები არჩევანს, რეაგირებენ სტიმულებზე და ანაწილებენ შეზღუდულ რესურსებს.',
-      kk: 'Адамдардың қалай таңдау жасап, ынталандыруға жауап беріп, шектеулі ресурстарды бөлетінін түсін.',
+      kk: 'Adamdardyñ qalai tañdau jasaitynyn, yntalandyruğa jauap beretının jäne şekteulı resurstarty böletının tüsın.',
       qm: 'İnsanlar nasıl saylav yapqanını, teşviqlerge cevap bergenini ve sınırlı kaynaklarnı bölüşkenini añla.',
     },
   },

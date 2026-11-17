@@ -39,7 +39,7 @@ export const scarcityAndChoice_SkillGroup_Data = defineSkillGroup({
     et: 'Nappus ja valik',
     be: 'Абмежаванасьць і выбар',
     ka: 'სიმწირე და არჩევანი',
-    kk: 'Тапшылық пен таңдау',
+    kk: 'Tapşylyq pen tañdau',
     qm: 'Azlıq ve saylav',
   },
   skills: [
@@ -80,7 +80,7 @@ export const scarcityAndChoice_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri, miks piiratud ressursid sunnivad meid valima.',
       be: 'Дасьледуй, чаму абмежаваныя рэсурсы вымушаюць нас выбіраць.',
       ka: 'გაიგე, რატომ გვაიძულებს შეზღუდული რესურსები არჩევანის გაკეთებას.',
-      kk: 'Шектеулі ресурстар неге таңдау жасауға мәжбүрлейтінін зертте.',
+      kk: 'Resurstar şekteulı bolğandyqtan, ne üşın tañdau jasau qajet ekenın zertte.',
       qm: 'Sınırlı kaynaklar ne içün bizni saylav yapmağa mecbur etkenini ögren.',
     },
   },
