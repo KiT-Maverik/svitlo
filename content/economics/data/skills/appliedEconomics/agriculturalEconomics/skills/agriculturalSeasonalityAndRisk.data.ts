@@ -31,7 +31,7 @@ export const agriculturalSeasonalityAndRisk_Skill_Data = defineSkill({
     et: 'Hooajalisus ja riskid põllumajanduses',
     be: 'Сэзоннасьць і рызыкі ў сельскай гаспадарцы',
     ka: 'სეზონურობა და რისკები სოფლის მეურნეობაში',
-    kk: 'Ауыл шаруашылығындағы маусымдылық пен тәуекел',
+    kk: 'Auyl şaruaşylyğyndağy mausymdylyq pen täuekel',
     qm: 'Ziraatta mevsimlilik ve riskler',
   },
   description: {
@@ -65,7 +65,7 @@ export const agriculturalSeasonalityAndRisk_Skill_Data = defineSkill({
       et: 'Mõista, kuidas põllumehed juhivad hooajalist ebakindlust ja ilmariske.',
       be: 'Зразумей, як фэрмэры даюць рады сэзоннай нявызначанасьці і рызыкам надвор’я.',
       ka: 'გაიგე, როგორ მართავენ ფერმერები სეზონურ გაურკვევლობასა და ამინდის რისკებს.',
-      kk: 'Фермерлер маусымдық белгісіздік пен ауа райы тәуекелдерін қалай басқаратынын түсін.',
+      kk: 'Fermerler mausymdyq belgısızdık pen aua raiy täuekelderın qalai basqaratynyn tüsın.',
       qm: 'Fermerler mevsimlik belirsizlikni ve ava risklerini nasıl idare etkenini añla.',
     },
   },

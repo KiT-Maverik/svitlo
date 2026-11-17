@@ -37,7 +37,7 @@ export const agriculturalEconomics_SkillGroup_Data = defineSkillGroup({
     et: 'Põllumajandusökonoomika',
     be: 'Эканоміка сельскай гаспадаркі',
     ka: 'სოფლის მეურნეობის ეკონომიკა',
-    kk: 'Ауыл шаруашылығы экономикасы',
+    kk: 'Auyl şaruaşylyğy ekonomikasy',
     qm: 'Ziraat iqtisadı',
   },
   skills: [
@@ -76,7 +76,7 @@ export const agriculturalEconomics_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri, miks põllumajandusel on erilised kulud ja riskid.',
       be: 'Даведайся, чаму сельская гаспадарка мае адметныя выдаткі і рызыкі.',
       ka: 'გაიგე, რატომ აქვს სოფლის მეურნეობას განსაკუთრებული ხარჯები და რისკები.',
-      kk: 'Ауыл шаруашылығында ерекше шығындар мен тәуекелдер неге бар екенін біл.',
+      kk: 'Auyl şaruaşylyğynda erekşe şyğyndar men täuekelder nege bar ekenın bıl.',
       qm: 'Ziraatta mahsus masraflar ve riskler niçün olğanını ögren.',
     },
   },

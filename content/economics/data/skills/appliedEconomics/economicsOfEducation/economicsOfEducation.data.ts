@@ -37,7 +37,7 @@ export const economicsOfEducation_SkillGroup_Data = defineSkillGroup({
     et: 'Haridusökonoomika',
     be: 'Эканоміка адукацыі',
     ka: 'განათლების ეკონომიკა',
-    kk: 'Білім беру экономикасы',
+    kk: 'Bılım beru ekonomikasy',
     qm: 'Tasil iqtisadı',
   },
   skills: [
@@ -76,7 +76,7 @@ export const economicsOfEducation_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri hariduse kasu, kulusid ja rahastamist.',
       be: 'Дасьледуй выгады, выдаткі і фінансаваньне адукацыі.',
       ka: 'შეისწავლე განათლების სარგებელი, ხარჯები და დაფინანსება.',
-      kk: 'Білімнің пайдасы, шығындары мен қаржыландырылуын зертте.',
+      kk: 'Bılımnıñ paidasy, şyğyndary men qarjylandyryluyn zertte.',
       qm: 'Tasilniñ faydaları, masrafları ve maliyeleştirilüvini ögren.',
     },
   },

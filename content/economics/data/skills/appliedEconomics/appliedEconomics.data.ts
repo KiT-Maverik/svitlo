@@ -38,7 +38,7 @@ export const appliedEconomics_SkillDomain_Data = defineSkillDomain({
     et: 'Rakendusökonoomika',
     be: 'Прыкладная эканоміка',
     ka: 'გამოყენებითი ეკონომიკა',
-    kk: 'Қолданбалы экономика',
+    kk: 'Qoldanbaly ekonomika',
     qm: 'Ameliy iqtisat',
   },
   groups: [
@@ -80,7 +80,7 @@ export const appliedEconomics_SkillDomain_Data = defineSkillDomain({
       et: 'Uuri majanduspõhimõtete rakendamist linnades, elamumajanduses, transpordis, hariduses, tervishoius ja põllumajanduses.',
       be: 'Дасьледуй, як эканамічныя прынцыпы ўжываюць у гарадах, жыльлі, транспарце, адукацыі, мэдыцыне і сельскай гаспадарцы.',
       ka: 'შეისწავლე ეკონომიკური პრინციპების გამოყენება ქალაქებში, საცხოვრებელში, ტრანსპორტში, განათლებაში, ჯანდაცვასა და სოფლის მეურნეობაში.',
-      kk: 'Экономикалық қағидалардың қала, тұрғын үй, көлік, білім, денсаулық және ауыл шаруашылығында қолданылуын зертте.',
+      kk: 'Ekonomikalyq qağidalardyñ qala, tūrğyn üi, kölık, bılım, densaulyq jäne auyl şaruaşylyğynda qoldanyluyn zertte.',
       qm: 'İqtisadiy qaydeler şehirler, evler, naqliyat, tasıl, sağlıq ve ziraatta nasıl qullanılğanını ögren.',
     },
   },

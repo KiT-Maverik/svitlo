@@ -31,7 +31,7 @@ export const foodSecurityAsAnEconomicIssue_Skill_Data = defineSkill({
     et: 'Toiduga kindlustatus kui majandusprobleem',
     be: 'Харчовая бясьпека як эканамічная праблема',
     ka: 'სურსათის უსაფრთხოება როგორც ეკონომიკური პრობლემა',
-    kk: 'Азық-түлік қауіпсіздігі экономикалық мәселе ретінде',
+    kk: 'Azyq-tülık qauıpsızdıgı ekonomikalyq mäsele retınde',
     qm: 'Aşayış teminatı iqtisadiy mesele olaraq',
   },
   description: {
@@ -65,7 +65,7 @@ export const foodSecurityAsAnEconomicIssue_Skill_Data = defineSkill({
       et: 'Uuri, miks piisav toidutootmine ei tähenda, et kõik saavad toitu osta või kätte.',
       be: 'Дасьледуй, чаму дастатковая вытворчасьць ежы не гарантуе, што кожны можа яе набыць або атрымаць.',
       ka: 'შეისწავლე, რატომ არ ნიშნავს საკმარისი საკვების წარმოება, რომ ყველას შეუძლია მისი ყიდვა ან მიღება.',
-      kk: 'Жеткілікті азық-түлік өндірілсе де, оның барлығына қолжетімді болатынына неге кепілдік жоқ екенін зертте.',
+      kk: 'Jetkılıktı azyq-tülık öndırılse de, onyñ barlyğyna qoljetımdı bolatynyna nege kepıldık joq ekenın zertte.',
       qm: 'Yeterli aşayış istisal olunsa da er kes onı satın alıp tapabilmegenini niçün olğanını ögren.',
     },
   },

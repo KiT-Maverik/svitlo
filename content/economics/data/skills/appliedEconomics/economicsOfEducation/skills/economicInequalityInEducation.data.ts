@@ -31,7 +31,7 @@ export const economicInequalityInEducation_Skill_Data = defineSkill({
     et: 'Majanduslik ebavõrdsus hariduses',
     be: 'Эканамічная няроўнасьць у адукацыі',
     ka: 'ეკონომიკური უთანასწორობა განათლებაში',
-    kk: 'Білім берудегі экономикалық теңсіздік',
+    kk: 'Bılım berudegı ekonomikalyq teñsızdık',
     qm: 'Tasilde iqtisadiy eşitsizlik',
   },
   description: {
@@ -65,7 +65,7 @@ export const economicInequalityInEducation_Skill_Data = defineSkill({
       et: 'Mõista, miks peredel ja kogukondadel on ebavõrdsed haridusvõimalused.',
       be: 'Зразумей, чаму сем’і і супольнасьці маюць няроўныя адукацыйныя магчымасьці.',
       ka: 'გაიგე, რატომ აქვთ ოჯახებსა და თემებს არათანაბარი საგანმანათლებლო შესაძლებლობები.',
-      kk: 'Отбасылар мен қауымдардың білім алу мүмкіндіктері неге тең емес екенін түсін.',
+      kk: 'Otbasylar men qauymdardyñ bılım alu mümkındıkterı nege teñ emes ekenın tüsın.',
       qm: 'Aileler ve toplulıqlarnıñ tasil imkânları niçün eşit olmağanını añla.',
     },
   },

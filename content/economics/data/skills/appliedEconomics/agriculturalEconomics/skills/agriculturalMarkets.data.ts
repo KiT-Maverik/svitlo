@@ -31,7 +31,7 @@ export const agriculturalMarkets_Skill_Data = defineSkill({
     et: 'Põllumajandusturud',
     be: 'Аграрныя рынкі',
     ka: 'სასოფლო-სამეურნეო ბაზრები',
-    kk: 'Аграрлық нарықтар',
+    kk: 'Agrarlyq naryqtar',
     qm: 'Ziraat bazarları',
   },
   description: {
@@ -65,7 +65,7 @@ export const agriculturalMarkets_Skill_Data = defineSkill({
       et: 'Uuri, miks toiduhinnad muutuvad aastaaegade, saagi ja kaubanduse tõttu.',
       be: 'Дасьледуй, чаму цэны на харчаваньне зьмяняюцца праз сэзоны, ураджаі і гандаль.',
       ka: 'შეისწავლე, რატომ იცვლება საკვების ფასები სეზონების, მოსავლისა და ვაჭრობის მიხედვით.',
-      kk: 'Азық-түлік бағасы маусым, өнім және саудаға қарай неге өзгеретінін зертте.',
+      kk: 'Azyq-tülık bağasy mausym, önım jäne saudağa qarai nege özgeretının zertte.',
       qm: 'Aşayış fiyatları mevsim, bereket ve ticaret sebebinden niçün deñişkenini ögren.',
     },
   },
