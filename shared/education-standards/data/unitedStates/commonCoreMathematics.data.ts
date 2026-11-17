@@ -12,7 +12,8 @@ export const commonCoreMathematics = defineEducationStandard({
     version: '2010 original framework',
   },
   description: {
-    methodological: 'The Common Core State Standards Initiative\'s 2010 mathematics framework describes grade-specific mathematics content and cross-grade Standards for Mathematical Practice for US kindergarten through high school. It emphasises conceptual understanding, procedural fluency, reasoning and modelling. These are state-led standards; states and districts decide adoption, revision and implementation, so the framework does not constitute a universal federal requirement. Local implementation may deviate from the original 2010 document and alignment must be evaluated against the applicable state\'s adopted version.',
+    methodological:
+      "The Common Core State Standards Initiative's 2010 mathematics framework describes grade-specific mathematics content and cross-grade Standards for Mathematical Practice for US kindergarten through high school. It emphasises conceptual understanding, procedural fluency, reasoning and modelling. These are state-led standards; states and districts decide adoption, revision and implementation, so the framework does not constitute a universal federal requirement. Local implementation may deviate from the original 2010 document and alignment must be evaluated against the applicable state's adopted version.",
     frontend: {
       ar: 'يصف توقعات تعلم الرياضيات في المدارس الأمريكية من الروضة حتى الصف الثاني عشر.',
       be: 'Апісвае патрабаваньні да матэматычнай адукацыі ў ЗША ад садка да 12 клясы.',
@@ -25,7 +26,7 @@ export const commonCoreMathematics = defineEducationStandard({
       he: 'מתאר ציפיות ללמידת מתמטיקה בארה״ב מהגן ועד כיתה י״ב.',
       hi: 'अमेरिका में किंडरगार्टन से कक्षा 12 तक गणित सीखने की अपेक्षाएँ बताता है।',
       id: 'Merinci harapan pembelajaran matematika di AS dari taman kanak-kanak sampai kelas 12.',
-      it: 'Descrive gli obiettivi di matematica negli USA dalla scuola dell\'infanzia al 12º anno.',
+      it: "Descrive gli obiettivi di matematica negli USA dalla scuola dell'infanzia al 12º anno.",
       ja: '米国の幼稚園から高校最終学年までの数学の学習目標を示します。',
       ka: 'აღწერს აშშ-ში მათემატიკის სწავლის მოლოდინებს საბავშვო ბაღიდან მე-12 კლასამდე.',
       kk: 'АҚШ-та балабақшадан 12-сыныпқа дейінгі математикадан күтілетін нәтижелерді сипаттайды.',
@@ -39,7 +40,7 @@ export const commonCoreMathematics = defineEducationStandard({
       qm: 'AQŞ mekteplerinde balalar bağçasından 12-nci sınıfqa qadar matematika ögrenüv maqsatlarını tasvirley.',
       ta: 'அமெரிக்காவில் மழலையர் வகுப்பு முதல் 12 ஆம் வகுப்பு வரை கணிதக் கற்றல் எதிர்பார்ப்புகளை விளக்குகிறது.',
       te: 'అమెరికాలో కిండర్‌గార్టెన్ నుంచి 12వ తరగతి వరకు గణిత అభ్యసన అంచనాలను వివరిస్తుంది.',
-      tr: 'ABD\'de anaokulundan 12. sınıfa kadar matematik öğrenme beklentilerini açıklar.',
+      tr: "ABD'de anaokulundan 12. sınıfa kadar matematik öğrenme beklentilerini açıklar.",
       uk: 'Описує очікувані результати вивчення математики у США від дитсадка до 12 класу.',
       ur: 'امریکہ میں کنڈرگارٹن سے جماعت 12 تک ریاضی سیکھنے کی توقعات بیان کرتا ہے۔',
       vi: 'Mô tả yêu cầu học toán tại Hoa Kỳ từ mẫu giáo đến lớp 12.',

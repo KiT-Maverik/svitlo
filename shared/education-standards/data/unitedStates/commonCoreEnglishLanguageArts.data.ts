@@ -12,7 +12,8 @@ export const commonCoreEnglishLanguageArts = defineEducationStandard({
     version: '2010 original framework',
   },
   description: {
-    methodological: 'This 2010 state-led Common Core framework sets grade-banded expectations for reading, writing, speaking, listening and language across US K–12 schooling, with history/social studies, science and technical-subject literacy addressed specifically in secondary grades. The standards emphasise evidence from texts and disciplinary literacy; they do not replace the full curricula of the named subjects. Adoption and later modifications vary among US states. Neither the original initiative nor the presence of this reference establishes a nationally mandated syllabus or evidence of alignment for any course.',
+    methodological:
+      'This 2010 state-led Common Core framework sets grade-banded expectations for reading, writing, speaking, listening and language across US K–12 schooling, with history/social studies, science and technical-subject literacy addressed specifically in secondary grades. The standards emphasise evidence from texts and disciplinary literacy; they do not replace the full curricula of the named subjects. Adoption and later modifications vary among US states. Neither the original initiative nor the presence of this reference establishes a nationally mandated syllabus or evidence of alignment for any course.',
     frontend: {
       ar: 'يحدد أهداف القراءة والكتابة والتواصل ومهارات التعامل مع النصوص في المدارس الأمريكية.',
       be: 'Вызначае чаканыя ўменьні чытаць, пісаць і працаваць з тэкстамі ў школах ЗША.',

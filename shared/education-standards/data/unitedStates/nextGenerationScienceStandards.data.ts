@@ -12,7 +12,8 @@ export const nextGenerationScienceStandards = defineEducationStandard({
     version: '2013 (released April)',
   },
   description: {
-    methodological: 'The Next Generation Science Standards (NGSS), released in April 2013, define K–12 science performance expectations integrating disciplinary core ideas, crosscutting concepts, and science and engineering practices. They provide a three-dimensional approach to learning and assessment in life, physical, and Earth/space sciences and engineering. NGSS were developed through a state-led process, and states adopt, adapt or decline them independently; they are not a US federal mandate. A Course\'s use of experiments or related vocabulary is not in itself evidence that all performance expectations are covered.',
+    methodological:
+      "The Next Generation Science Standards (NGSS), released in April 2013, define K–12 science performance expectations integrating disciplinary core ideas, crosscutting concepts, and science and engineering practices. They provide a three-dimensional approach to learning and assessment in life, physical, and Earth/space sciences and engineering. NGSS were developed through a state-led process, and states adopt, adapt or decline them independently; they are not a US federal mandate. A Course's use of experiments or related vocabulary is not in itself evidence that all performance expectations are covered.",
     frontend: {
       ar: 'يعرض أهداف تعلم العلوم التي تجمع المفاهيم العلمية بالبحث والتصميم الهندسي في المدارس الأمريكية.',
       be: 'Апісвае навуковыя кампэтэнцыі ў школах ЗША: веды, дасьледаваньне і інжынэрныя практыкі.',

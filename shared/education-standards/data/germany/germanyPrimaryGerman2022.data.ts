@@ -13,7 +13,8 @@ export const germanyPrimaryGerman2022 = defineEducationStandard({
     sourceUrl: 'https://www.kmk.org/bildungsministerkonferenz/bildungsthemen/bildungsstandards.html',
   },
   description: {
-    methodological: 'The Standing Conference of the Ministers of Education and Cultural Affairs of the Länder (KMK) updated the primary German-language educational standards by resolution of 23 June 2022, building on the earlier 2004 set. They articulate competence expectations at the end of the primary stage (grade 4), including speaking and listening, writing, reading, and the study of language and language use. They are common Länder agreements for school quality and curriculum development, not one federal German school syllabus. Länder determine curriculum implementation and assessments; they should be compared to the specific state curriculum when mapping a course.',
+    methodological:
+      'The Standing Conference of the Ministers of Education and Cultural Affairs of the Länder (KMK) updated the primary German-language educational standards by resolution of 23 June 2022, building on the earlier 2004 set. They articulate competence expectations at the end of the primary stage (grade 4), including speaking and listening, writing, reading, and the study of language and language use. They are common Länder agreements for school quality and curriculum development, not one federal German school syllabus. Länder determine curriculum implementation and assessments; they should be compared to the specific state curriculum when mapping a course.',
     frontend: {
       ar: 'يحدد مهارات اللغة الألمانية المتوقعة عند نهاية المرحلة الابتدائية في ألمانيا.',
       be: 'Вызначае чаканыя моўныя ўменьні па нямецкай мове напрыканцы пачатковай школы Нямеччыны.',
@@ -40,7 +41,7 @@ export const germanyPrimaryGerman2022 = defineEducationStandard({
       qm: 'Almaniyada başlanğıç mektepni bitirgende beklenilgen alman tili becerilerini belgiley.',
       ta: 'ஜெர்மனியில் தொடக்கப் பள்ளி முடிவில் எதிர்பார்க்கப்படும் ஜெர்மன் மொழித் திறன்களை வரையறுக்கிறது.',
       te: 'జర్మనీలో ప్రాథమిక విద్య చివరికి ఆశించే జర్మన్ భాషా నైపుణ్యాలను నిర్దేశిస్తుంది.',
-      tr: 'Almanya\'da ilkokul sonunda beklenen Almanca dil becerilerini belirler.',
+      tr: "Almanya'da ilkokul sonunda beklenen Almanca dil becerilerini belirler.",
       uk: 'Визначає очікувані компетентності з німецької мови наприкінці початкової школи Німеччини.',
       ur: 'جرمنی میں ابتدائی تعلیم کے اختتام پر جرمن زبان کی متوقع مہارتیں طے کرتا ہے۔',
       vi: 'Quy định năng lực tiếng Đức cần đạt khi kết thúc bậc tiểu học ở Đức.',

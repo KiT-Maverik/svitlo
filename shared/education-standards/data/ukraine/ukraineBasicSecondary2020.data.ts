@@ -13,7 +13,8 @@ export const ukraineBasicSecondary2020 = defineEducationStandard({
     version: '2020 (Resolution No. 898; as amended)',
   },
   description: {
-    methodological: 'Adopted by Ukraine\'s Cabinet of Ministers in Resolution No. 898 of 30 September 2020, this binding basic secondary education standard describes competency-based expected results across educational fields and the framework for grades 5–9. It informs model curricula and school educational programmes, including progression toward upper secondary choices. Amendments in 2026 affect terminology and accessibility as well as other provisions; practitioners must consult the currently effective consolidated act and transitional dates. It is neither a subject-by-subject course catalogue nor proof of compliance by any Svitlo Course.',
+    methodological:
+      "Adopted by Ukraine's Cabinet of Ministers in Resolution No. 898 of 30 September 2020, this binding basic secondary education standard describes competency-based expected results across educational fields and the framework for grades 5–9. It informs model curricula and school educational programmes, including progression toward upper secondary choices. Amendments in 2026 affect terminology and accessibility as well as other provisions; practitioners must consult the currently effective consolidated act and transitional dates. It is neither a subject-by-subject course catalogue nor proof of compliance by any Svitlo Course.",
     frontend: {
       ar: 'يحدد نواتج التعلم للتعليم الثانوي الأساسي في أوكرانيا، من الصف الخامس إلى التاسع.',
       be: 'Вызначае вынікі навучаньня для 5–9 клясаў ва Ўкраіне.',
@@ -40,7 +41,7 @@ export const ukraineBasicSecondary2020 = defineEducationStandard({
       qm: 'Ukrainada 5–9-ncı sınıflarnıñ beklenilgen ögrenüv neticelerini belgiley.',
       ta: 'உக்ரைனில் 5 முதல் 9 ஆம் வகுப்பு வரையிலான கற்றல் விளைவுகளை வரையறுக்கிறது.',
       te: 'ఉక్రెయిన్‌లో 5–9 తరగతుల విద్యార్థుల ఆశించిన అభ్యసన ఫలితాలను నిర్దేశిస్తుంది.',
-      tr: 'Ukrayna\'da 5–9. sınıfların beklenen öğrenme çıktılarını belirler.',
+      tr: "Ukrayna'da 5–9. sınıfların beklenen öğrenme çıktılarını belirler.",
       uk: 'Визначає очікувані результати навчання в 5–9 класах України.',
       ur: 'یوکرین میں جماعت 5 سے 9 تک کے متوقع تعلیمی نتائج طے کرتا ہے۔',
       vi: 'Quy định kết quả học tập dự kiến cho lớp 5–9 tại Ukraina.',

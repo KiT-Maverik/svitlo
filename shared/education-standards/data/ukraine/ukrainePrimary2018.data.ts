@@ -13,7 +13,8 @@ export const ukrainePrimary2018 = defineEducationStandard({
     version: '2018 (Resolution No. 87; as amended)',
   },
   description: {
-    methodological: 'Ukraine\'s Cabinet of Ministers approved this state primary education standard by Resolution No. 87 of 21 February 2018. It sets compulsory learning outcomes and competency requirements for grades 1–4 across integrated educational fields and informs school-level educational programmes. It must be applied according to the legally effective consolidated text and the cohort transition rules: Resolution No. 1810 of 26 December 2025 introduces a replacement for learners beginning primary education from 1 September 2028. This record identifies the 2018 standard for applicable cohorts, not a timeless or cross-national equivalent.',
+    methodological:
+      "Ukraine's Cabinet of Ministers approved this state primary education standard by Resolution No. 87 of 21 February 2018. It sets compulsory learning outcomes and competency requirements for grades 1–4 across integrated educational fields and informs school-level educational programmes. It must be applied according to the legally effective consolidated text and the cohort transition rules: Resolution No. 1810 of 26 December 2025 introduces a replacement for learners beginning primary education from 1 September 2028. This record identifies the 2018 standard for applicable cohorts, not a timeless or cross-national equivalent.",
     frontend: {
       ar: 'يحدد نواتج التعلم المتوقعة للتعليم الابتدائي في أوكرانيا.',
       be: 'Вызначае вынікі навучаньня ў пачатковай школе Ўкраіны.',
@@ -26,7 +27,7 @@ export const ukrainePrimary2018 = defineEducationStandard({
       he: 'מגדיר את תוצרי הלמידה המצופים בחינוך היסודי באוקראינה.',
       hi: 'यूक्रेन की प्राथमिक शिक्षा के अपेक्षित अधिगम परिणाम तय करता है।',
       id: 'Menetapkan capaian pembelajaran yang diharapkan pada pendidikan dasar di Ukraina.',
-      it: 'Definisce i risultati attesi dell\'istruzione primaria in Ucraina.',
+      it: "Definisce i risultati attesi dell'istruzione primaria in Ucraina.",
       ja: 'ウクライナの初等教育で期待される学習成果を定めます。',
       ka: 'განსაზღვრავს უკრაინის დაწყებითი განათლების მოსალოდნელ სასწავლო შედეგებს.',
       kk: 'Украинадағы бастауыш білім берудің күтілетін оқу нәтижелерін айқындайды.',
@@ -40,7 +41,7 @@ export const ukrainePrimary2018 = defineEducationStandard({
       qm: 'Ukrainada başlanğıç talimniñ beklenilgen ögrenüv neticelerini belgiley.',
       ta: 'உக்ரைனின் தொடக்கக் கல்விக்கான எதிர்பார்க்கப்படும் கற்றல் விளைவுகளை வரையறுக்கிறது.',
       te: 'ఉక్రెయిన్ ప్రాథమిక విద్యలో ఆశించే అభ్యసన ఫలితాలను నిర్దేశిస్తుంది.',
-      tr: 'Ukrayna\'da ilkokul eğitiminin beklenen öğrenme çıktılarını belirler.',
+      tr: "Ukrayna'da ilkokul eğitiminin beklenen öğrenme çıktılarını belirler.",
       uk: 'Визначає очікувані результати навчання в початковій школі України.',
       ur: 'یوکرین کی ابتدائی تعلیم کے متوقع تعلیمی نتائج طے کرتا ہے۔',
       vi: 'Quy định kết quả học tập dự kiến ở bậc tiểu học tại Ukraina.',

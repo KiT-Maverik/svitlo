@@ -12,7 +12,8 @@ export const franceCommonCore2015 = defineEducationStandard({
     sourceUrl: 'https://www.education.gouv.fr/le-socle-commun-de-connaissances-de-competences-et-de-culture-12512',
   },
   description: {
-    methodological: 'France\'s common foundation of knowledge, skills and culture is defined by the decree of 31 March 2015 and remains in force according to the Ministry of National Education while a proposed revision is being discussed. It specifies knowledge and competencies every pupil should acquire during compulsory schooling, grouped into broad domains such as language, learning methods, civic formation, natural and technical systems, and representations of the world. It frames national teaching programmes and cycle-based assessment; it is not itself a complete school curriculum or evidence of a course\'s accreditation. The 2025 draft revision must not be mistaken for enacted law.',
+    methodological:
+      "France's common foundation of knowledge, skills and culture is defined by the decree of 31 March 2015 and remains in force according to the Ministry of National Education while a proposed revision is being discussed. It specifies knowledge and competencies every pupil should acquire during compulsory schooling, grouped into broad domains such as language, learning methods, civic formation, natural and technical systems, and representations of the world. It frames national teaching programmes and cycle-based assessment; it is not itself a complete school curriculum or evidence of a course's accreditation. The 2025 draft revision must not be mistaken for enacted law.",
     frontend: {
       ar: 'يحدد المعارف والمهارات والثقافة المشتركة المتوقعة خلال التعليم الإلزامي في فرنسا.',
       be: 'Вызначае супольныя веды і кампэтэнцыі, патрэбныя вучням у час абавязковай адукацыі ў Францыі.',
@@ -25,7 +26,7 @@ export const franceCommonCore2015 = defineEducationStandard({
       he: 'מגדיר ידע ומיומנויות משותפים הנדרשים במהלך לימודי החובה בצרפת.',
       hi: 'फ़्रांस की अनिवार्य स्कूली शिक्षा के दौरान अपेक्षित साझा ज्ञान और दक्षताएँ तय करता है।',
       id: 'Menetapkan pengetahuan dan kompetensi bersama selama wajib sekolah di Prancis.',
-      it: 'Definisce conoscenze e competenze comuni nell\'istruzione obbligatoria in Francia.',
+      it: "Definisce conoscenze e competenze comuni nell'istruzione obbligatoria in Francia.",
       ja: 'フランスの義務教育で身に付ける共通の知識と能力を定めます。',
       ka: 'განსაზღვრავს საფრანგეთის სავალდებულო სასკოლო განათლების საერთო ცოდნასა და კომპეტენციებს.',
       kk: 'Франциядағы міндетті мектеп білімінде игерілуге тиіс ортақ білім мен құзыреттерді айқындайды.',
@@ -39,7 +40,7 @@ export const franceCommonCore2015 = defineEducationStandard({
       qm: 'Fransiyada mecburiy mektep taliminde ögrenilmeli ortaq bilgi ve becerilerni belgiley.',
       ta: 'பிரான்சின் கட்டாயப் பள்ளிக் கல்வியில் பெற வேண்டிய பொதுவான அறிவையும் திறன்களையும் வரையறுக்கிறது.',
       te: 'ఫ్రాన్స్ తప్పనిసరి పాఠశాల విద్యలో పొందాల్సిన ఉమ్మడి జ్ఞానం, నైపుణ్యాలను నిర్దేశిస్తుంది.',
-      tr: 'Fransa\'da zorunlu eğitimde edinilmesi beklenen ortak bilgi ve yeterlikleri belirler.',
+      tr: "Fransa'da zorunlu eğitimde edinilmesi beklenen ortak bilgi ve yeterlikleri belirler.",
       uk: 'Визначає спільні знання й компетентності, яких мають набути учні під час обов’язкового навчання у Франції.',
       ur: 'فرانس میں لازمی اسکولی تعلیم کے دوران مطلوب مشترکہ علم اور صلاحیتیں طے کرتا ہے۔',
       vi: 'Quy định kiến thức và năng lực chung cần đạt trong giáo dục bắt buộc ở Pháp.',

@@ -13,7 +13,8 @@ export const ukraineUpperSecondary2024 = defineEducationStandard({
     version: '2024 (Resolution No. 851; amended 2026)',
   },
   description: {
-    methodological: 'The Cabinet of Ministers of Ukraine adopted the specialised upper secondary education standard under Resolution No. 851 of 25 July 2024. It specifies common and profile-dependent learning outcomes, content areas and organisational requirements for the upper secondary pathway, including academic and vocational directions. Its implementation is phased, with broad rollout planned from September 2027 and some experimental provisions earlier; Resolution No. 1000 of August 2026 changed parts of the text. The record describes the statutory framework, not a claim that it is already uniformly delivered in every grade or school.',
+    methodological:
+      'The Cabinet of Ministers of Ukraine adopted the specialised upper secondary education standard under Resolution No. 851 of 25 July 2024. It specifies common and profile-dependent learning outcomes, content areas and organisational requirements for the upper secondary pathway, including academic and vocational directions. Its implementation is phased, with broad rollout planned from September 2027 and some experimental provisions earlier; Resolution No. 1000 of August 2026 changed parts of the text. The record describes the statutory framework, not a claim that it is already uniformly delivered in every grade or school.',
     frontend: {
       ar: 'يصف متطلبات التعليم الثانوي المتخصص في أوكرانيا للصفوف 10–12.',
       be: 'Апісвае патрабаваньні да профільнай сярэдняй адукацыі ва Ўкраіне для 10–12 клясаў.',
@@ -40,7 +41,7 @@ export const ukraineUpperSecondary2024 = defineEducationStandard({
       qm: 'Ukrainada 10–12-nci sınıflarnıñ ihtisaslaşqan orta talimine qoyulğan talaplarnı belgiley.',
       ta: 'உக்ரைனில் 10–12 ஆம் வகுப்புகளுக்கான சிறப்புப் பிரிவு மேல்நிலைக் கல்வித் தேவைகளை வரையறுக்கிறது.',
       te: 'ఉక్రెయిన్‌లో 10–12 తరగతుల ప్రత్యేక ఉన్నత మాధ్యమిక విద్యకు అవసరమైన ప్రమాణాలను నిర్దేశిస్తుంది.',
-      tr: 'Ukrayna\'da 10–12. sınıflardaki alan odaklı lise eğitiminin gereklerini belirler.',
+      tr: "Ukrayna'da 10–12. sınıflardaki alan odaklı lise eğitiminin gereklerini belirler.",
       uk: 'Визначає вимоги до профільної середньої освіти в 10–12 класах України.',
       ur: 'یوکرین میں جماعت 10–12 کی خصوصی اعلیٰ ثانوی تعلیم کے تقاضے بیان کرتا ہے۔',
       vi: 'Quy định yêu cầu đối với giáo dục trung học phổ thông định hướng chuyên sâu ở lớp 10–12 tại Ukraina.',

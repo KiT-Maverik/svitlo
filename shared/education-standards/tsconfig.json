@@ -1,9 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES2022",
-    "lib": [
-      "es2022"
-    ],
+    "lib": ["es2022"],
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
     "strict": true,
@@ -16,13 +14,6 @@
     "declaration": true,
     "noEmitOnError": true
   },
-  "include": [
-    "index.ts",
-    "data/**/*.ts",
-    "catalog.spec.ts"
-  ],
-  "exclude": [
-    "node_modules",
-    "dist"
-  ]
+  "include": ["index.ts", "data/**/*.ts", "catalog.spec.ts"],
+  "exclude": ["node_modules", "dist"]
 }

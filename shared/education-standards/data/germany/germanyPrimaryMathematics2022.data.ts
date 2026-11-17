@@ -13,7 +13,8 @@ export const germanyPrimaryMathematics2022 = defineEducationStandard({
     sourceUrl: 'https://www.kmk.org/bildungsministerkonferenz/bildungsthemen/bildungsstandards.html',
   },
   description: {
-    methodological: 'The KMK adopted a revised set of mathematics educational standards for the German primary stage on 23 June 2022, superseding the earlier 2004 primary standards. These articulate mathematical content domains and process-related competencies, including problem solving, reasoning, modelling, representation and communication, expected by the end of grade 4. They serve the Länder as shared reference criteria for curricula and evaluation; curriculum sequencing and legal implementation remain responsibilities of individual German states. The framework should not be represented as a separate subject curriculum or compulsory nationwide textbook.',
+    methodological:
+      'The KMK adopted a revised set of mathematics educational standards for the German primary stage on 23 June 2022, superseding the earlier 2004 primary standards. These articulate mathematical content domains and process-related competencies, including problem solving, reasoning, modelling, representation and communication, expected by the end of grade 4. They serve the Länder as shared reference criteria for curricula and evaluation; curriculum sequencing and legal implementation remain responsibilities of individual German states. The framework should not be represented as a separate subject curriculum or compulsory nationwide textbook.',
     frontend: {
       ar: 'يحدد كفاءات الرياضيات المتوقعة عند نهاية التعليم الابتدائي في ألمانيا.',
       be: 'Вызначае матэматычныя кампэтэнцыі напрыканцы пачатковай школы ў Нямеччыне.',
@@ -40,7 +41,7 @@ export const germanyPrimaryMathematics2022 = defineEducationStandard({
       qm: 'Almaniyada başlanğıç mektepniñ soñunda beklenilgen matematika becerilerini belgiley.',
       ta: 'ஜெர்மனியில் தொடக்கப் பள்ளி முடிவில் எதிர்பார்க்கப்படும் கணிதத் திறன்களை வரையறுக்கிறது.',
       te: 'జర్మనీలో ప్రాథమిక విద్య చివరికి ఆశించే గణిత నైపుణ్యాలను నిర్దేశిస్తుంది.',
-      tr: 'Almanya\'da ilkokul sonunda beklenen matematik yeterliklerini belirler.',
+      tr: "Almanya'da ilkokul sonunda beklenen matematik yeterliklerini belirler.",
       uk: 'Визначає очікувані математичні компетентності наприкінці початкової школи Німеччини.',
       ur: 'جرمنی میں ابتدائی تعلیم کے اختتام پر متوقع ریاضی کی مہارتیں طے کرتا ہے۔',
       vi: 'Quy định năng lực toán học cần đạt khi kết thúc tiểu học ở Đức.',

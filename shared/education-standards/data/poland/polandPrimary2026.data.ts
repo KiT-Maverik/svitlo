@@ -13,7 +13,8 @@ export const polandPrimary2026 = defineEducationStandard({
     version: '2026 (Dz.U. poz. 378; amended by poz. 958)',
   },
   description: {
-    methodological: 'This primary-school core curriculum is an independent annex to the Polish Minister of Education\'s regulation of 11 March 2026 (Dziennik Ustaw item 378, amended by item 958). It defines general education content, learning outcomes and transversal competencies for the eight-year Polish primary-school structure. The 2026 curriculum is introduced progressively from 1 September 2026 in grades I and IV, with later cohorts transitioning in following years and some subject-specific exceptions. Therefore, it must not be described as immediately replacing every older-grade curriculum or as equivalent to the preschool annex.',
+    methodological:
+      "This primary-school core curriculum is an independent annex to the Polish Minister of Education's regulation of 11 March 2026 (Dziennik Ustaw item 378, amended by item 958). It defines general education content, learning outcomes and transversal competencies for the eight-year Polish primary-school structure. The 2026 curriculum is introduced progressively from 1 September 2026 in grades I and IV, with later cohorts transitioning in following years and some subject-specific exceptions. Therefore, it must not be described as immediately replacing every older-grade curriculum or as equivalent to the preschool annex.",
     frontend: {
       ar: 'يصف محتوى التعلم والمهارات في المدارس الابتدائية البولندية وفق منهج 2026.',
       be: 'Апісвае зьмест навучаньня і кампэтэнцыі ў пачатковай школе Польшчы паводле праграмы 2026 году.',
@@ -22,7 +23,7 @@ export const polandPrimary2026 = defineEducationStandard({
       en: 'Outlines subjects and learning competencies for Polish primary schools under the 2026 curriculum.',
       es: 'Presenta contenidos y competencias de primaria en Polonia según el currículo de 2026.',
       et: 'Kirjeldab Poola põhikooli õppeainete sisu ja pädevusi 2026. aasta õppekavas.',
-      fr: 'Présente les contenus et compétences de l\'école primaire polonaise selon le programme de 2026.',
+      fr: "Présente les contenus et compétences de l'école primaire polonaise selon le programme de 2026.",
       he: 'מתאר תכנים ומיומנויות בבתי ספר יסודיים בפולין לפי תוכנית 2026.',
       hi: 'पोलैंड के 2026 के प्राथमिक विद्यालय पाठ्यक्रम की विषयवस्तु और दक्षताएँ बताता है।',
       id: 'Menjelaskan materi pelajaran dan kompetensi sekolah dasar Polandia menurut kurikulum 2026.',
@@ -40,7 +41,7 @@ export const polandPrimary2026 = defineEducationStandard({
       qm: 'Polşada 2026-ncı yıl başlanğıç mektep programmasınıñ ders mevzularını ve becerilerini tasvirley.',
       ta: '2026 பாடத்திட்டத்தின்படி போலந்து தொடக்கப் பள்ளிகளின் பாட உள்ளடக்கங்களையும் திறன்களையும் விளக்குகிறது.',
       te: '2026 పాఠ్యప్రణాళికలో పోలాండ్ ప్రాథమిక పాఠశాలల విషయాలు, నైపుణ్యాలను వివరిస్తుంది.',
-      tr: 'Polonya\'da 2026 ilkokul programının ders içeriklerini ve yetkinliklerini açıklar.',
+      tr: "Polonya'da 2026 ilkokul programının ders içeriklerini ve yetkinliklerini açıklar.",
       uk: 'Описує навчальний зміст і компетентності польської початкової школи за програмою 2026 року.',
       ur: 'پولینڈ کے 2026 کے ابتدائی اسکول نصاب کے مضامین اور صلاحیتیں بیان کرتا ہے۔',
       vi: 'Mô tả nội dung môn học và năng lực ở trường tiểu học Ba Lan theo chương trình 2026.',

@@ -12,7 +12,8 @@ export const polandPreschool2026 = defineEducationStandard({
     version: '2026 (Dz.U. poz. 378; amended by poz. 958)',
   },
   description: {
-    methodological: 'Poland\'s Minister of Education issued a new preschool core curriculum through the regulation of 11 March 2026, published in Dziennik Ustaw 2026 item 378 and later amended by item 958 of July 2026. Its preschool annex defines developmental and educational tasks, expected preparation for schooling, and cross-domain learning in early childhood settings. It applies from the 2026/2027 school year according to legal transition rules. This record covers preschool only and is not a duplicate of the separate primary-school curriculum in the same regulation. Always check the amending act for the effective consolidated wording.',
+    methodological:
+      "Poland's Minister of Education issued a new preschool core curriculum through the regulation of 11 March 2026, published in Dziennik Ustaw 2026 item 378 and later amended by item 958 of July 2026. Its preschool annex defines developmental and educational tasks, expected preparation for schooling, and cross-domain learning in early childhood settings. It applies from the 2026/2027 school year according to legal transition rules. This record covers preschool only and is not a duplicate of the separate primary-school curriculum in the same regulation. Always check the amending act for the effective consolidated wording.",
     frontend: {
       ar: 'يحدد أهداف التعلم والنمو في رياض الأطفال ببولندا وفق منهج 2026.',
       be: 'Вызначае мэты разьвіцьця і навучаньня дашкольнікаў у Польшчы паводле праграмы 2026 году.',
@@ -21,7 +22,7 @@ export const polandPreschool2026 = defineEducationStandard({
       en: 'Defines preschool development and learning goals in Poland under the 2026 curriculum.',
       es: 'Define metas de desarrollo y aprendizaje preescolar en Polonia según el currículo de 2026.',
       et: 'Määrab Poola alushariduse arengu- ja õpieesmärgid 2026. aasta õppekava järgi.',
-      fr: 'Définit les objectifs de développement et d\'apprentissage préscolaire en Pologne selon le programme de 2026.',
+      fr: "Définit les objectifs de développement et d'apprentissage préscolaire en Pologne selon le programme de 2026.",
       he: 'מגדיר יעדי התפתחות ולמידה בגני ילדים בפולין לפי תוכנית 2026.',
       hi: 'पोलैंड में 2026 के पाठ्यक्रम के अनुसार पूर्व-प्राथमिक विकास और सीखने के लक्ष्य तय करता है।',
       id: 'Menetapkan tujuan perkembangan dan belajar prasekolah di Polandia menurut kurikulum 2026.',
@@ -39,7 +40,7 @@ export const polandPreschool2026 = defineEducationStandard({
       qm: 'Polşada 2026-ncı yıl programmasına köre mektepke qadar balalarnıñ inkişaf ve ögrenüv maqsatlarını belgiley.',
       ta: '2026 பாடத்திட்டத்தின்படி போலந்தில் முன்பள்ளி வளர்ச்சி மற்றும் கற்றல் இலக்குகளை வரையறுக்கிறது.',
       te: '2026 పాఠ్యప్రణాళిక ప్రకారం పోలాండ్‌లో పూర్వప్రాథమిక వికాసం, అభ్యసన లక్ష్యాలను నిర్దేశిస్తుంది.',
-      tr: 'Polonya\'da 2026 programına göre okul öncesi gelişim ve öğrenme hedeflerini belirler.',
+      tr: "Polonya'da 2026 programına göre okul öncesi gelişim ve öğrenme hedeflerini belirler.",
       uk: 'Визначає цілі розвитку й навчання дошкільнят у Польщі за програмою 2026 року.',
       ur: 'پولینڈ میں 2026 کے نصاب کے مطابق قبل از اسکول نشوونما اور سیکھنے کے اہداف طے کرتا ہے۔',
       vi: 'Quy định mục tiêu phát triển và học tập mầm non ở Ba Lan theo chương trình 2026.',
