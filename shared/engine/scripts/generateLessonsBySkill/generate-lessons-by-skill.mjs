@@ -24,7 +24,7 @@ export function buildIndex(root = repoRoot, selectedPackage) {
   const index = new Map();
   for (const item of result.candidates.filter(x => x.status === 'implemented')) {
     for (const skill of item.skills) {
-      if (!index.has(skill)) index.set(skill, { skill: null, lessons: [] });
+      if (!index.has(skill)) index.set(skill, { skill: result.skillDefinitions.get(item.package + ':' + skill) ?? null, lessons: [] });
       index.get(skill).lessons.push(item);
     }
   }
