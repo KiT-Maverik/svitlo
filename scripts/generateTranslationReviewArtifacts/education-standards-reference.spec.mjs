@@ -24,9 +24,10 @@ function setup(records) {
   const index = [];
   for (const record of records) {
     const filename = record.slug + '.data.ts';
-    index.push("export { " + record.slug + " } from './example/" + record.slug + ".data';");
-    const frontend = Object.entries(record.frontend).map(([language, value]) =>
-      language + ': ' + JSON.stringify(value) + ',').join('\n      ');
+    index.push('export { ' + record.slug + " } from './example/" + record.slug + ".data';");
+    const frontend = Object.entries(record.frontend)
+      .map(([language, value]) => language + ': ' + JSON.stringify(value) + ',')
+      .join('\n      ');
     const source = [
       "import { defineEducationStandard } from '@svitlo/engine/build';",
       'export const ' + record.slug + ' = defineEducationStandard({',
@@ -54,19 +55,29 @@ function record(slug = 'sampleOne', id = UUID_A, frontend = { en: 'Learning outc
 
 function built(records) {
   return records.map(({ slug, id, frontend }) => ({
-    type: 'educationStandard', slug, id,
+    type: 'educationStandard',
+    slug,
+    id,
     build: {
       props: ({ languages }) => ({
         base: {
-          id, slug, name: 'Original title',
+          id,
+          slug,
+          name: 'Original title',
           params: {
-            countries: ['UA'], nameLanguage: 'uk', version: '2026',
-            sourceUrl: 'https://example.org/standards/2026', grade: { min: 1, max: 4 },
+            countries: ['UA'],
+            nameLanguage: 'uk',
+            version: '2026',
+            sourceUrl: 'https://example.org/standards/2026',
+            grade: { min: 1, max: 4 },
           },
-          description: { methodological: 'Official learning outcomes and expectations for a fictional test curriculum.' },
+          description: {
+            methodological: 'Official learning outcomes and expectations for a fictional test curriculum.',
+          },
         },
-        locale: Object.fromEntries(languages.map(language =>
-          [language, { description: { frontend: frontend[language] } }])),
+        locale: Object.fromEntries(
+          languages.map(language => [language, { description: { frontend: frontend[language] } }]),
+        ),
       }),
     },
   }));
@@ -74,7 +85,8 @@ function built(records) {
 
 test('validates EducationStandard CLI scope and rejects unrelated parameters', () => {
   assert.deepEqual(parseArguments(['--kind', 'education-standards', '--locale', 'uk']), {
-    kind: 'education-standards', locale: 'uk',
+    kind: 'education-standards',
+    locale: 'uk',
   });
   assert.deepEqual(parseArguments(['--kind', 'education-standards']), { kind: 'education-standards' });
   for (const args of [
@@ -84,7 +96,8 @@ test('validates EducationStandard CLI scope and rejects unrelated parameters', (
     ['--kind', 'education-standards', '--locale', 'uk-UA'],
     ['--kind', 'education-standards', '--locale', 'uk', '--locale', 'en'],
     ['--kind', 'not-a-real-family'],
-  ]) assert.throws(() => parseArguments(args), 'accepted unsafe input: ' + args.join(' '));
+  ])
+    assert.throws(() => parseArguments(args), 'accepted unsafe input: ' + args.join(' '));
 });
 
 test('generates deterministic source-linked Markdown for one requested language', () => {
@@ -119,23 +132,34 @@ test('one locale produces one document; omitted locale produces both with no cro
   const manifest = { sourceCommit: SOURCE_SHA, generated: [], failures: [] };
   let saves = 0;
   const options = {
-    root, output, registered: LANGUAGES, manifest, loadCatalog: () => built([value]),
+    root,
+    output,
+    registered: LANGUAGES,
+    manifest,
+    loadCatalog: () => built([value]),
     saveManifest: () => saves++,
   };
   try {
     generateEducationStandardReviewArtifacts({ ...options, languages: ['uk'] });
     assert.equal(saves, 1);
-    assert.deepEqual(manifest.generated.map(item => item.locale), ['uk']);
-    assert.deepEqual(manifest.generated.map(item => item.path), [
-      '.agent-ci-artifacts/education-standards/uk.md',
-    ]);
+    assert.deepEqual(
+      manifest.generated.map(item => item.locale),
+      ['uk'],
+    );
+    assert.deepEqual(
+      manifest.generated.map(item => item.path),
+      ['.agent-ci-artifacts/education-standards/uk.md'],
+    );
     assert.deepEqual(manifest.failures, []);
     assert.equal(fs.existsSync(path.join(output, 'education-standards/en.md')), false);
     assert.equal(fs.existsSync(path.join(output, 'taxonomies')), false);
     manifest.generated = [];
     generateEducationStandardReviewArtifacts({ ...options, languages: LANGUAGES });
     assert.equal(saves, 3);
-    assert.deepEqual(manifest.generated.map(item => item.locale), LANGUAGES);
+    assert.deepEqual(
+      manifest.generated.map(item => item.locale),
+      LANGUAGES,
+    );
     assert.ok(manifest.generated.every(item => item.standards === 1 && item.reviewReady));
   } finally {
     fs.rmSync(root, { recursive: true, force: true });
@@ -154,10 +178,23 @@ test('missing target translation is visible only in disposable Markdown and not 
     assert.match(notReady.markdown, /%%MISSING%%/);
     // The real strict Build API cannot publish an incomplete source dictionary.
     let called = false;
-    verifyBuiltStandards(entries, [{
-      type: 'educationStandard', id: UUID_A, slug: 'sampleOne',
-      build: { props: () => { called = true; throw Error('Strict build rejected draft'); } },
-    }], LANGUAGES);
+    verifyBuiltStandards(
+      entries,
+      [
+        {
+          type: 'educationStandard',
+          id: UUID_A,
+          slug: 'sampleOne',
+          build: {
+            props: () => {
+              called = true;
+              throw Error('Strict build rejected draft');
+            },
+          },
+        },
+      ],
+      LANGUAGES,
+    );
     assert.equal(called, false);
   } finally {
     fs.rmSync(root, { recursive: true, force: true });
@@ -175,8 +212,10 @@ test('duplicate IDs, missing index entries and invalid built references fail clo
     const entries = readEducationStandardSources(root, LANGUAGES);
     assert.throws(() => verifyBuiltStandards(entries, built([a]), LANGUAGES), /size mismatch/);
     assert.throws(() => verifyBuiltStandards(entries, built([a, a]), LANGUAGES), /duplicated/);
-    fs.writeFileSync(path.join(root, 'shared/education-standards/data/index.ts'),
-      "export { sampleOne } from './example/sampleOne.data';\n");
+    fs.writeFileSync(
+      path.join(root, 'shared/education-standards/data/index.ts'),
+      "export { sampleOne } from './example/sampleOne.data';\n",
+    );
     assert.throws(() => readEducationStandardSources(root, LANGUAGES), /omits authored data files/);
   } finally {
     fs.rmSync(root, { recursive: true, force: true });
@@ -190,11 +229,19 @@ test('invalid source metadata causes a per-locale manifest failure, not a review
   fs.mkdirSync(output);
   try {
     const filename = path.join(root, 'shared/education-standards/data/example/sampleOne.data.ts');
-    fs.writeFileSync(filename, fs.readFileSync(filename, 'utf8').replace('https://example.org/standards/2026', 'javascript:invalid'));
+    fs.writeFileSync(
+      filename,
+      fs.readFileSync(filename, 'utf8').replace('https://example.org/standards/2026', 'javascript:invalid'),
+    );
     const manifest = { sourceCommit: SOURCE_SHA, generated: [], failures: [] };
     generateEducationStandardReviewArtifacts({
-      root, output, languages: ['uk'], registered: LANGUAGES, manifest,
-      saveManifest: () => {}, loadCatalog: () => built([value]),
+      root,
+      output,
+      languages: ['uk'],
+      registered: LANGUAGES,
+      manifest,
+      saveManifest: () => {},
+      loadCatalog: () => built([value]),
     });
     assert.equal(manifest.generated.length, 0);
     assert.equal(manifest.failures.length, 1);

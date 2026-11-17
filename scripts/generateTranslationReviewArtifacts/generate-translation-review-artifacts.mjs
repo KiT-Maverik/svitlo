@@ -14,7 +14,14 @@ import { readSupportedLanguageCodes } from '../../shared/engine/scripts/readSupp
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const output = path.join(root, '.agent-ci-artifacts');
-const families = new Set(['skills', 'lessons', 'assessment-methods', 'ui-kit', 'geography-home-copy', 'education-standards']);
+const families = new Set([
+  'skills',
+  'lessons',
+  'assessment-methods',
+  'ui-kit',
+  'geography-home-copy',
+  'education-standards',
+]);
 const uuidPattern = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i;
 
 export function parseArguments(args) {
@@ -195,10 +202,14 @@ export async function generate(options) {
       components,
     });
   } else if (options.kind === 'education-standards') {
-    const { generateEducationStandardReviewArtifacts } =
-      await import('./education-standards-reference.mjs');
+    const { generateEducationStandardReviewArtifacts } = await import('./education-standards-reference.mjs');
     generateEducationStandardReviewArtifacts({
-      root, output, languages, registered, manifest, saveManifest,
+      root,
+      output,
+      languages,
+      registered,
+      manifest,
+      saveManifest,
     });
   } else if (options.kind === 'geography-home-copy') {
     const { generateHomeCopyReviewArtifacts } =

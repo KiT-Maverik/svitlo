@@ -23,8 +23,10 @@ function readLiteral(node, context) {
   if (ts.isObjectLiteralExpression(node)) {
     const result = Object.create(null);
     for (const property of node.properties) {
-      if (!ts.isPropertyAssignment(property) ||
-          !(ts.isIdentifier(property.name) || ts.isStringLiteral(property.name))) {
+      if (
+        !ts.isPropertyAssignment(property) ||
+        !(ts.isIdentifier(property.name) || ts.isStringLiteral(property.name))
+      ) {
         throw Error('Non-static EducationStandard property: ' + context);
       }
       const key = property.name.text;
@@ -41,14 +43,22 @@ function parseFile(file, exportName) {
   if (source.parseDiagnostics.length) throw Error('Invalid authored TypeScript: ' + file);
   let config;
   for (const statement of source.statements) {
-    if (!ts.isVariableStatement(statement) ||
-        !statement.modifiers?.some(mod => mod.kind === ts.SyntaxKind.ExportKeyword)) continue;
+    if (
+      !ts.isVariableStatement(statement) ||
+      !statement.modifiers?.some(mod => mod.kind === ts.SyntaxKind.ExportKeyword)
+    )
+      continue;
     for (const variable of statement.declarationList.declarations) {
       if (!ts.isIdentifier(variable.name) || variable.name.text !== exportName) continue;
       if (config) throw Error('Duplicate authored export ' + exportName);
       const node = variable.initializer;
-      if (!node || !ts.isCallExpression(node) || !ts.isIdentifier(node.expression) ||
-          node.expression.text !== 'defineEducationStandard' || node.arguments.length !== 1) {
+      if (
+        !node ||
+        !ts.isCallExpression(node) ||
+        !ts.isIdentifier(node.expression) ||
+        node.expression.text !== 'defineEducationStandard' ||
+        node.arguments.length !== 1
+      ) {
         throw Error('Expected defineEducationStandard() in ' + file);
       }
       config = readLiteral(node.arguments[0], exportName);
@@ -64,16 +74,24 @@ function sourceIndex(root) {
   if (source.parseDiagnostics.length) throw Error('Invalid EducationStandard source index');
   const map = new Map();
   for (const statement of source.statements) {
-    if (!ts.isExportDeclaration(statement) || !ts.isNamedExports(statement.exportClause) ||
-        !statement.moduleSpecifier || !ts.isStringLiteral(statement.moduleSpecifier) ||
-        statement.exportClause.elements.length !== 1) {
+    if (
+      !ts.isExportDeclaration(statement) ||
+      !ts.isNamedExports(statement.exportClause) ||
+      !statement.moduleSpecifier ||
+      !ts.isStringLiteral(statement.moduleSpecifier) ||
+      statement.exportClause.elements.length !== 1
+    ) {
       throw Error('Unsupported source index export');
     }
     const target = statement.moduleSpecifier.text;
     const exported = statement.exportClause.elements[0];
     const slug = exported.name.text;
-    if (exported.propertyName || !/^\.\/[a-z][A-Za-z0-9]*\/[a-z][A-Za-z0-9]*\.data$/.test(target) ||
-        path.posix.basename(target, '.data') !== slug || map.has(slug)) {
+    if (
+      exported.propertyName ||
+      !/^\.\/[a-z][A-Za-z0-9]*\/[a-z][A-Za-z0-9]*\.data$/.test(target) ||
+      path.posix.basename(target, '.data') !== slug ||
+      map.has(slug)
+    ) {
       throw Error('Unsafe or duplicated source index entry: ' + target);
     }
     const relative = dataDirectory + '/' + target.slice(2) + '.ts';
@@ -117,8 +135,12 @@ export function readEducationStandardSources(root, registered) {
     required(config.name, slug + '.name');
     required(config.description?.methodological, slug + '.description.methodological');
     const params = config.params;
-    if (!params || !Array.isArray(params.countries) || !params.countries.length ||
-        params.countries.some(country => !/^[A-Z]{2}$/.test(country))) {
+    if (
+      !params ||
+      !Array.isArray(params.countries) ||
+      !params.countries.length ||
+      params.countries.some(country => !/^[A-Z]{2}$/.test(country))
+    ) {
       throw Error('Invalid jurisdiction metadata: ' + slug);
     }
     required(params.nameLanguage, slug + '.nameLanguage');
@@ -142,8 +164,12 @@ export function verifyBuiltStandards(entries, built, registered) {
   if (!Array.isArray(built) || built.length !== entries.length) throw Error('Build/source catalog size mismatch');
   const byId = new Map();
   for (const item of built) {
-    if (item?.type !== 'educationStandard' || !UUID.test(item.id) ||
-        byId.has(item.id.toLowerCase()) || typeof item.build?.props !== 'function') {
+    if (
+      item?.type !== 'educationStandard' ||
+      !UUID.test(item.id) ||
+      byId.has(item.id.toLowerCase()) ||
+      typeof item.build?.props !== 'function'
+    ) {
       throw Error('Invalid or duplicated EducationStandard build record');
     }
     byId.set(item.id.toLowerCase(), item);
@@ -152,14 +178,18 @@ export function verifyBuiltStandards(entries, built, registered) {
     const item = byId.get(config.id.toLowerCase());
     if (!item || item.slug !== config.slug) throw Error('Build/source identity mismatch: ' + config.slug);
     const frontend = config.description.frontend;
-    const complete = registered.every(language =>
-      typeof frontend[language] === 'string' && frontend[language].trim() && frontend[language] !== MISSING);
+    const complete = registered.every(
+      language => typeof frontend[language] === 'string' && frontend[language].trim() && frontend[language] !== MISSING,
+    );
     if (!complete) continue; // Partial Code is previewed statically, never published.
     const props = item.build.props({ languages: [...registered] });
-    if (props.base.id !== config.id || props.base.slug !== config.slug ||
-        props.base.name !== config.name ||
-        props.base.description.methodological !== config.description.methodological ||
-        JSON.stringify(props.base.params) !== JSON.stringify(config.params)) {
+    if (
+      props.base.id !== config.id ||
+      props.base.slug !== config.slug ||
+      props.base.name !== config.name ||
+      props.base.description.methodological !== config.description.methodological ||
+      JSON.stringify(props.base.params) !== JSON.stringify(config.params)
+    ) {
       throw Error('Build/source invariant mismatch: ' + config.slug);
     }
     for (const language of registered) {
@@ -171,7 +201,9 @@ export function verifyBuiltStandards(entries, built, registered) {
 }
 
 function escapeMarkdown(value) {
-  return String(value).replaceAll('\r', '').replace(/[\x60\\*_{}[\]<>|]/g, '\\$&');
+  return String(value)
+    .replaceAll('\r', '')
+    .replace(/[\x60\\*_{}[\]<>|]/g, '\\$&');
 }
 
 export function renderEducationStandardMarkdown(entries, locale, sourceCommit) {
@@ -189,19 +221,27 @@ export function renderEducationStandardMarkdown(entries, locale, sourceCommit) {
     const hasTranslation = typeof translation === 'string' && translation.trim() && translation !== MISSING;
     if (!hasTranslation) missing++;
     lines.push(
-      '', '## ' + escapeMarkdown(config.name), '',
+      '',
+      '## ' + escapeMarkdown(config.name),
+      '',
       '- UUID: ' + tick + config.id + tick,
       '- Slug: ' + tick + config.slug + tick,
       '- Original name language: ' + tick + config.params.nameLanguage + tick,
       '- Countries: ' + config.params.countries.map(country => tick + country + tick).join(', '),
       '- Version: ' + escapeMarkdown(config.params.version),
-      ...(config.params.grade ? ['- Grades (jurisdiction-specific): ' + config.params.grade.min + '–' + config.params.grade.max] : []),
+      ...(config.params.grade
+        ? ['- Grades (jurisdiction-specific): ' + config.params.grade.min + '–' + config.params.grade.max]
+        : []),
       ...(config.params.age ? ['- Ages: ' + config.params.age.min + '–' + config.params.age.max] : []),
       '- Official source: ' + config.params.sourceUrl,
       '- Canonical Code: [' + path.posix.basename(sourcePath) + '](../../' + sourcePath + ')',
-      '', '**English methodological description (not translated)**', '',
+      '',
+      '**English methodological description (not translated)**',
+      '',
       escapeMarkdown(config.description.methodological),
-      '', '**Frontend description (' + locale + ')**', '',
+      '',
+      '**Frontend description (' + locale + ')**',
+      '',
       hasTranslation ? escapeMarkdown(translation) : MISSING,
     );
   }
@@ -216,7 +256,13 @@ export function loadBuildCatalog() {
 }
 
 export function generateEducationStandardReviewArtifacts({
-  root, output, languages, registered, manifest, saveManifest, loadCatalog = loadBuildCatalog,
+  root,
+  output,
+  languages,
+  registered,
+  manifest,
+  saveManifest,
+  loadCatalog = loadBuildCatalog,
 }) {
   for (const locale of languages) {
     try {
@@ -227,7 +273,8 @@ export function generateEducationStandardReviewArtifacts({
       fs.mkdirSync(path.join(output, 'education-standards'), { recursive: true });
       fs.writeFileSync(path.join(output, relative), result.markdown);
       manifest.generated.push({
-        kind: 'education-standard', locale,
+        kind: 'education-standard',
+        locale,
         path: '.agent-ci-artifacts/' + relative,
         standards: result.standards,
         missing: result.missing,
