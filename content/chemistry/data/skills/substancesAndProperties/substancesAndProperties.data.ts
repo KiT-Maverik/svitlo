@@ -35,7 +35,7 @@ export const substancesAndProperties_SkillDomain_Data = defineSkillDomain({
     et: 'Ained ja nende omadused',
     be: 'Рэчывы і іхныя ўласьцівасьці',
     ka: 'ნივთიერებები და მათი თვისებები',
-    kk: 'Заттар және олардың қасиеттері',
+    kk: 'Zattar jäne olardyñ qasietterı',
     qm: 'Maddeler ve olarnıñ hususiyetleri',
   },
   groups: [
@@ -74,7 +74,7 @@ export const substancesAndProperties_SkillDomain_Data = defineSkillDomain({
       et: 'Uuri, kuidas keemikud aineid koostise, omaduste ja muutuste järgi eristavad.',
       be: 'Даведайся, як хімікі пазнаюць рэчывы паводле складу, уласьцівасьцяў і зьменаў.',
       ka: 'გაიგე, როგორ ცნობენ ქიმიკოსები ნივთიერებებს შემადგენლობით, თვისებებითა და ცვლილებებით.',
-      kk: 'Химиктердің заттарды құрамы, қасиеттері және өзгерістері арқылы қалай танитынын біл.',
+      kk: 'Himikterdıñ zattardy qūramy, qasietterı jäne özgerısterı arqyly qalai tanitynyn bıl.',
       qm: 'Himikler maddelerni terkibi, hususiyetleri ve deñişüvleri vastasınen nasıl tanığanını ögren.',
     },
   },

@@ -31,7 +31,7 @@ export const elementsAndCompounds_Skill_Data = defineSkill({
     et: 'Elemendid ja ühendid',
     be: 'Элемэнты і злучэньні',
     ka: 'ელემენტები და ნაერთები',
-    kk: 'Элементтер мен қосылыстар',
+    kk: 'Elementter men qosylystar',
     qm: 'Elementler ve bileşikler',
   },
   description: {
@@ -65,7 +65,7 @@ export const elementsAndCompounds_Skill_Data = defineSkill({
       et: 'Erista keemilisi elemente eri elementidest koosnevatest ühenditest.',
       be: 'Адрозьнівай хімічныя элемэнты ад злучэньняў, утвораных рознымі элемэнтамі.',
       ka: 'განასხვავე ქიმიური ელემენტები სხვადასხვა ელემენტისგან შედგენილი ნაერთებისგან.',
-      kk: 'Химиялық элементтерді әртүрлі элементтерден тұратын қосылыстардан ажырат.',
+      kk: 'Himiialyq elementterdı ärtürlı elementterden tūratyn qosylystardan ajyrat.',
       qm: 'Himiyeviy elementlerni çeşit elementlerden ibaret bileşiklerden ayır.',
     },
   },

@@ -31,7 +31,7 @@ export const propertyBasedIdentification_Skill_Data = defineSkill({
     et: 'Omadustel põhinev tuvastamine',
     be: 'Вызначэньне паводле ўласьцівасьцяў',
     ka: 'თვისებებით იდენტიფიკაცია',
-    kk: 'Қасиеттер бойынша анықтау',
+    kk: 'Qasietter boiynşa anyqtau',
     qm: 'Hususiyetlerge köre tanıluv',
   },
   description: {
@@ -65,7 +65,7 @@ export const propertyBasedIdentification_Skill_Data = defineSkill({
       et: 'Võrdle mitut mõõdetud omadust tõenäolise aine tuvastamiseks.',
       be: 'Параўноўвай некалькі вымераных уласьцівасьцяў, каб вызначыць імавернае рэчыва.',
       ka: 'შეადარე რამდენიმე გაზომილი თვისება სავარაუდო ნივთიერების დასადგენად.',
-      kk: 'Ықтимал затты табу үшін бірнеше өлшенген қасиетті салыстыр.',
+      kk: 'Yqtimal zatty tabu üşın bırneşe ölşengen qasiettı salystyr.',
       qm: 'Mümkün maddeyi tanımaq içün bir qaç ölçülgen hususiyetni qıyasla.',
     },
   },

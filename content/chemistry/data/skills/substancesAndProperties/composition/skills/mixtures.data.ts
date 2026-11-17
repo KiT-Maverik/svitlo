@@ -31,7 +31,7 @@ export const mixtures_Skill_Data = defineSkill({
     et: 'Segud',
     be: 'Сумесі',
     ka: 'ნარევები',
-    kk: 'Қоспалар',
+    kk: 'Qospalar',
     qm: 'Qarışıqlar',
   },
   description: {
@@ -64,7 +64,7 @@ export const mixtures_Skill_Data = defineSkill({
       et: 'Tunne ära segud, mille koostisosade osakaal võib varieeruda.',
       be: 'Распазнавай сумесі, у якіх суадносіны складнікаў могуць зьмяняцца.',
       ka: 'ამოიცანი ნარევები, რომელთა კომპონენტების თანაფარდობა შეიძლება იცვლებოდეს.',
-      kk: 'Құрамдас бөліктерінің арақатынасы өзгеруі мүмкін қоспаларды таны.',
+      kk: 'Qūramdas bölıkterınıñ araqatynasy özgeruı mümkın qospalardy tany.',
       qm: 'İçindeki parçalarınıñ nisbeti deñişe bilgen qarışıqlarnı tanı.',
     },
   },

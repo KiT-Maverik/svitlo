@@ -31,7 +31,7 @@ export const density_Skill_Data = defineSkill({
     et: 'Tihedus',
     be: 'Гушчыня',
     ka: 'სიმკვრივე',
-    kk: 'Тығыздық',
+    kk: 'Tyğyzdyq',
     qm: 'Sıqlıq',
   },
   description: {
@@ -65,7 +65,7 @@ export const density_Skill_Data = defineSkill({
       et: 'Kasuta massi ja ruumala materjali tiheduse mõistmiseks.',
       be: 'Выкарыстоўвай масу і аб’ём для разуменьня гушчыні матэрыялу.',
       ka: 'მასითა და მოცულობით განსაზღვრე მასალის სიმკვრივე.',
-      kk: 'Масса мен көлем арқылы материал тығыздығын түсін.',
+      kk: 'Massa men kölem arqyly material tyğyzdyğyn tüsın.',
       qm: 'Kütle ve acim vastasınen maddeniñ sıqlığını añla.',
     },
   },

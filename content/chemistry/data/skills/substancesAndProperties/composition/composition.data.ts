@@ -38,7 +38,7 @@ export const composition_SkillGroup_Data = defineSkillGroup({
     et: 'Koostis',
     be: 'Склад',
     ka: 'შემადგენლობა',
-    kk: 'Құрам',
+    kk: 'Qūram',
     qm: 'Terkip',
   },
   skills: [
@@ -78,7 +78,7 @@ export const composition_SkillGroup_Data = defineSkillGroup({
       et: 'Õpi eristama üht ainet eri ainete segust.',
       be: 'Навучыся адрозьніваць адно рэчыва ад спалучэньня розных рэчываў.',
       ka: 'ისწავლე ერთი ნივთიერების განსხვავება სხვადასხვა ნივთიერების კომბინაციისგან.',
-      kk: 'Бір затты әртүрлі заттардың қосындысынан ажыратуды үйрен.',
+      kk: 'Bır zatty ärtürlı zattardyñ qosyndysynan ajyratudy üiren.',
       qm: 'Bir tek maddeyi çeşit maddelerniñ qarışığından ayırmaqnı ögren.',
     },
   },

@@ -31,7 +31,7 @@ export const physicalProperties_Skill_Data = defineSkill({
     et: 'Füüsikalised omadused',
     be: 'Фізычныя ўласьцівасьці',
     ka: 'ფიზიკური თვისებები',
-    kk: 'Физикалық қасиеттер',
+    kk: 'Fizikalyq qasietter',
     qm: 'Fizikiy hususiyetler',
   },
   description: {
@@ -65,7 +65,7 @@ export const physicalProperties_Skill_Data = defineSkill({
       et: 'Leia omadused, mida saab mõõta aine keemilist olemust muutmata.',
       be: 'Вызначай уласьцівасьці, якія можна вымераць без зьмены хімічнай тоеснасьці рэчыва.',
       ka: 'ამოიცანი თვისებები, რომელთა გაზომვა ნივთიერების ქიმიური იდენტობის შეცვლის გარეშე შეიძლება.',
-      kk: 'Заттың химиялық табиғатын өзгертпей өлшеуге болатын қасиеттерді анықта.',
+      kk: 'Zattyñ himiialyq tabiğatyn özgertpei ölşeuge bolatyn qasietterdı anyqta.',
       qm: 'Maddeniñ himiyeviy kimligini deñiştirmeden ölçülgen hususiyetlerni tap.',
     },
   },

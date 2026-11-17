@@ -31,7 +31,7 @@ export const homogeneousAndHeterogeneousSamples_Skill_Data = defineSkill({
     et: 'Homogeensed ja heterogeensed proovid',
     be: 'Аднастайныя і неаднастайныя ўзоры',
     ka: 'ერთგვაროვანი და არაერთგვაროვანი ნიმუშები',
-    kk: 'Біртекті және әртекті үлгілер',
+    kk: 'Bırtektı jäne ärtektı ülgıler',
     qm: 'Bir türlü ve çeşit türlü numuneler',
   },
   description: {
@@ -64,7 +64,7 @@ export const homogeneousAndHeterogeneousSamples_Skill_Data = defineSkill({
       et: 'Otsusta, kas proov on ühtlane või sisaldab erinevaid osi või faase.',
       be: 'Вызначай, ці ўзор аднастайны, ці мае розныя часткі або фазы.',
       ka: 'დაადგინე, ნიმუში ერთგვაროვანია თუ სხვადასხვა ნაწილსა ან ფაზას შეიცავს.',
-      kk: 'Үлгінің біркелкі екенін немесе түрлі бөліктері мен фазалары барын анықта.',
+      kk: 'Ülgınıñ bırkelkı ekenın nemese türlı bölıkterı men fazalary baryn anyqta.',
       qm: 'Numune bir türlü mü, yoqsa ayrı parçalar ya da fazalar bar mı olğanını tanı.',
     },
   },

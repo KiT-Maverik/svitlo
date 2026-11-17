@@ -31,7 +31,7 @@ export const pureSubstances_Skill_Data = defineSkill({
     et: 'Puhtad ained',
     be: 'Чыстыя рэчывы',
     ka: 'სუფთა ნივთიერებები',
-    kk: 'Таза заттар',
+    kk: 'Taza zattar',
     qm: 'Saf maddeler',
   },
   description: {
@@ -65,7 +65,7 @@ export const pureSubstances_Skill_Data = defineSkill({
       et: 'Tunne ära, kas proov on üks puhas aine või segu.',
       be: 'Вызначай, ці ўзор ёсьць адным чыстым рэчывам, а не сумесьсю.',
       ka: 'განსაზღვრე, ნიმუში ერთი სუფთა ნივთიერებაა თუ ნარევი.',
-      kk: 'Үлгінің бір таза зат па, әлде қоспа ма екенін анықта.',
+      kk: 'Ülgınıñ bır taza zat pa, älde qospa ma ekenın anyqta.',
       qm: 'Numune bir saf madde mi, yoqsa qarışıq mı olğanını tap.',
     },
   },
