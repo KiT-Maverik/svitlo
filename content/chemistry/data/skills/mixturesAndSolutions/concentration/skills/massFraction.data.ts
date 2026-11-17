@@ -31,7 +31,7 @@ export const massFraction_Skill_Data = defineSkill({
     et: 'Massiosa',
     be: 'Масавая доля',
     ka: 'მასური წილი',
-    kk: 'Массалық үлес',
+    kk: 'Massalyq üles',
     qm: 'Kütle payı',
   },
   description: {
@@ -64,7 +64,7 @@ export const massFraction_Skill_Data = defineSkill({
       et: 'Mõista massiosa lahustunud aine massi osana kogu lahuse massist.',
       be: 'Зразумей масавую долю як адносіны масы растворанага рэчыва да масы ўсяго раствору.',
       ka: 'გაიგე მასური წილი როგორც გახსნილი ნივთიერების მასის შეფარდება მთელი ხსნარის მასასთან.',
-      kk: 'Массалық үлесті еріген зат массасының барлық ерітінді массасына қатынасы деп түсін.',
+      kk: 'Massalyq ülestı erıgen zat massasynyñ barlyq erıtındı massasyna qatynasy dep tüsın.',
       qm: 'Kütle payını erigen maddeniñ kütlesiniñ bütün çezinti kütlesine nisbeti olaraq añla.',
     },
   },

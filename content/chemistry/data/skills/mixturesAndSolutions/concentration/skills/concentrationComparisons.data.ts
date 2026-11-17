@@ -31,7 +31,7 @@ export const concentrationComparisons_Skill_Data = defineSkill({
     et: 'Kontsentratsioonide võrdlus',
     be: 'Параўнаньне канцэнтрацыяў',
     ka: 'კონცენტრაციების შედარება',
-    kk: 'Концентрацияларды салыстыру',
+    kk: 'Kontsentratsiialardy salystyru',
     qm: 'Konsentratsiyalarnı qıyaslav',
   },
   description: {
@@ -65,7 +65,7 @@ export const concentrationComparisons_Skill_Data = defineSkill({
       et: 'Võrdle kontsentratsioone, samastamata neid ohutuse või lahustuvusega.',
       be: 'Параўноўвай канцэнтрацыі, не атаясамліваючы іх зь бясьпечнасьцю ці растваральнасьцю.',
       ka: 'შეადარე კონცენტრაციები, მაგრამ ნუ გააიგივებ მათ უსაფრთხოებასთან ან ხსნადობასთან.',
-      kk: 'Концентрацияларды салыстыр, бірақ оларды қауіпсіздікпен немесе ерігіштікпен теңестірме.',
+      kk: 'Kontsentratsiialardy salystyr, bıraq olardy qauıpsızdıkpen nemese erıgıştıkpen teñestırme.',
       qm: 'Konsentratsiyalarnı qıyasla, amma olarnı telükesizlik ya da eriyiciliknen bir şey sayma.',
     },
   },

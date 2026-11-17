@@ -31,7 +31,7 @@ export const gasSolubilityAndPressure_Skill_Data = defineSkill({
     et: 'Gaaside lahustuvus ja rõhk',
     be: 'Растваральнасьць газаў і ціск',
     ka: 'აირების ხსნადობა და წნევა',
-    kk: 'Газдардың ерігіштігі және қысым',
+    kk: 'Gazdardyñ erıgıştıgı jäne qysym',
     qm: 'Gaz eriyiciligi ve basım',
   },
   description: {
@@ -64,7 +64,7 @@ export const gasSolubilityAndPressure_Skill_Data = defineSkill({
       et: 'Selgita, kuidas gaasirõhk mõjutab vedelikus lahustunud gaasi kogust.',
       be: 'Растлумач, як ціск газу ўплывае на колькасьць газу, растворанага ў вадкасьці.',
       ka: 'ახსენი, როგორ მოქმედებს აირის წნევა სითხეში გახსნილი აირის რაოდენობაზე.',
-      kk: 'Газ қысымы сұйықтықта еріген газ мөлшеріне қалай әсер ететінін түсіндір.',
+      kk: 'Gaz qysymy sūiyqtyqta erıgen gaz mölşerıne qalai äser etetının tüsındır.',
       qm: 'Gaz basımı sıyıqlıqta erigen gaz miqdarına nasıl tesir etkenini añlat.',
     },
   },

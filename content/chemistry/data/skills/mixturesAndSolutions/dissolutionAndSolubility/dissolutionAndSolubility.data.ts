@@ -40,7 +40,7 @@ export const dissolutionAndSolubility_SkillGroup_Data = defineSkillGroup({
     et: 'Lahustumine ja lahustuvus',
     be: 'Раствараньне й растваральнасьць',
     ka: 'გახსნა და ხსნადობა',
-    kk: 'Еру және ерігіштік',
+    kk: 'Eru jäne erıgıştık',
     qm: 'Erime ve eriyicilik',
   },
   skills: [
@@ -81,7 +81,7 @@ export const dissolutionAndSolubility_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri, millest sõltub, kas aine lahustub ja kui palju seda lahustub.',
       be: 'Дасьледуй, ад чаго залежыць, ці раствараецца рэчыва і колькі яго можа растварыцца.',
       ka: 'გამოიკვლიე, რა განსაზღვრავს ნივთიერების გახსნასა და გახსნილ რაოდენობას.',
-      kk: 'Заттың еру-ерімеуін және қанша мөлшері еритінін не анықтайтынын зертте.',
+      kk: 'Zattyñ eru-erımeuın jäne qanşa mölşerı eritının ne anyqtaitynyn zertte.',
       qm: 'Maddeniñ erip erimegenini ve ne qadar erigenini ne belgilegenini ögren.',
     },
   },

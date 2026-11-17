@@ -39,7 +39,7 @@ export const concentration_SkillGroup_Data = defineSkillGroup({
     et: 'Kontsentratsioon',
     be: 'Канцэнтрацыя',
     ka: 'კონცენტრაცია',
-    kk: 'Концентрация',
+    kk: 'Kontsentratsiia',
     qm: 'Konsentratsiya',
   },
   skills: [
@@ -80,7 +80,7 @@ export const concentration_SkillGroup_Data = defineSkillGroup({
       et: 'Õpi eri viise, kuidas kirjeldada aine hulka lahuses.',
       be: 'Даведайся пра розныя спосабы апісаць, колькі рэчыва ўтрымлівае раствор.',
       ka: 'გაიგე, როგორ შეიძლება სხვადასხვა გზით აღიწეროს ნივთიერების რაოდენობა ხსნარში.',
-      kk: 'Ерітіндідегі зат мөлшерін сипаттаудың түрлі тәсілдерін біл.',
+      kk: 'Erıtındıdegı zat mölşerın sipattaudyñ türlı täsılderın bıl.',
       qm: 'Çezintide ne qadar madde olğanını tarif etüvniñ türlü yollarını ögren.',
     },
   },

@@ -31,7 +31,7 @@ export const ionicEquations_Skill_Data = defineSkill({
     et: 'Ioonvõrrandid',
     be: 'Іённыя раўнаньні',
     ka: 'იონური განტოლებები',
-    kk: 'Иондық теңдеулер',
+    kk: 'İondyq teñdeuler',
     qm: 'İon tenklemleri',
   },
   description: {
@@ -64,7 +64,7 @@ export const ionicEquations_Skill_Data = defineSkill({
       et: 'Koosta võrrandeid, mis näitavad, millised ioonid vesilahuses tegelikult reageerivad.',
       be: 'Запісвай раўнаньні, што паказваюць, якія іёны сапраўды ўдзельнічаюць у рэакцыі ў водным растворы.',
       ka: 'დაწერე განტოლებები, რომლებიც აჩვენებს, რომელი იონები მონაწილეობენ რეალურად წყალხსნარის რეაქციაში.',
-      kk: 'Сулы ерітіндідегі реакцияға нақты қай иондар қатысатынын көрсететін теңдеулерді жаз.',
+      kk: 'Suly erıtındıdegı reaktsiiağa naqty qai iondar qatysatynyn körsetetın teñdeulerdı jaz.',
       qm: 'Suvlı irintideki reaktsiyada angi ionlar aqiqaten iştirak etkenini köstergen tenklemlerni yaz.',
     },
   },

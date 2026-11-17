@@ -31,7 +31,7 @@ export const dissolving_Skill_Data = defineSkill({
     et: 'Lahustumine',
     be: 'Раствараньне',
     ka: 'გახსნის პროცესი',
-    kk: 'Еру процесі',
+    kk: 'Eru protsesı',
     qm: 'Erime süreci',
   },
   description: {
@@ -65,7 +65,7 @@ export const dissolving_Skill_Data = defineSkill({
       et: 'Selgita, kuidas lahustuva aine osakesed levivad lahusti osakeste vahele.',
       be: 'Растлумач, як часьціцы растворанага рэчыва разьмяркоўваюцца паміж часьціцамі растваральніка.',
       ka: 'ახსენი, როგორ ნაწილდება გახსნილი ნივთიერების ნაწილაკები გამხსნელის ნაწილაკებს შორის.',
-      kk: 'Еріген заттың бөлшектері еріткіш бөлшектерінің арасына қалай таралатынын түсіндір.',
+      kk: 'Erıgen zattyñ bölşekterı erıtkış bölşekterınıñ arasyna qalai taralatynyn tüsındır.',
       qm: 'Erigen maddeniñ zerreleri eritici zerreleri arasına nasıl dağılğanını añlat.',
     },
   },

@@ -31,7 +31,7 @@ export const colligativeProperties_Skill_Data = defineSkill({
     et: 'Kolligatiivsed omadused',
     be: 'Калігатыўныя ўласьцівасьці',
     ka: 'კოლიგატიური თვისებები',
-    kk: 'Коллигативтік қасиеттер',
+    kk: 'Kolligativtık qasietter',
     qm: 'Kolligativ hususiyetler',
   },
   description: {
@@ -65,7 +65,7 @@ export const colligativeProperties_Skill_Data = defineSkill({
       et: 'Uuri, miks lahustunud osakesed võivad muuta külmumist ja keemist.',
       be: 'Дасьледуй, чаму раствораныя часьціцы могуць зьмяняць замярзаньне й кіпеньне.',
       ka: 'გაიგე, რატომ შეიძლება გახსნილმა ნაწილაკებმა შეცვალონ გაყინვისა და დუღილის მიმდინარეობა.',
-      kk: 'Еріген бөлшектердің қату мен қайнауға неге әсер ететінін зертте.',
+      kk: 'Erıgen bölşekterdıñ qatu men qainauğa nege äser etetının zertte.',
       qm: 'Erigen zerreler ne içün donuv ve qaynav hususiyetlerini deñiştire bilgenini ögren.',
     },
   },

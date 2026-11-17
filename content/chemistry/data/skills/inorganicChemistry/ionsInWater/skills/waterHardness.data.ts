@@ -31,7 +31,7 @@ export const waterHardness_Skill_Data = defineSkill({
     et: 'Vee karedus',
     be: 'Жорсткасьць вады',
     ka: 'წყლის სიხისტე',
-    kk: 'Судың кермектігі',
+    kk: 'Sudyñ kermektıgı',
     qm: 'Suvnıñ qattılığı',
   },
   description: {
@@ -64,7 +64,7 @@ export const waterHardness_Skill_Data = defineSkill({
       et: 'Selgita, kuidas lahustunud kaltsium ja magneesium muudavad vee karedaks.',
       be: 'Растлумач, як раствораныя кальцый і магній уплываюць на жорсткасьць вады.',
       ka: 'ახსენი, როგორ იწვევს წყალში გახსნილი კალციუმი და მაგნიუმი წყლის სიხისტეს.',
-      kk: 'Еріген кальций мен магний судың кермектігіне қалай әсер ететінін түсіндір.',
+      kk: 'Erıgen kaltsii men magnii sudyñ kermektıgıne qalai äser etetının tüsındır.',
       qm: 'Suvda irigen kaltsiy ve magniy suvnıñ qattılığına nasıl tesir etkenini añlat.',
     },
   },

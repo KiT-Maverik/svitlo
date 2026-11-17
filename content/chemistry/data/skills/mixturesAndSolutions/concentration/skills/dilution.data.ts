@@ -31,7 +31,7 @@ export const dilution_Skill_Data = defineSkill({
     et: 'Lahjendamine',
     be: 'Разбаўленьне',
     ka: 'განზავება',
-    kk: 'Сұйылту',
+    kk: 'Sūiyltu',
     qm: 'Seyreltme',
   },
   description: {
@@ -65,7 +65,7 @@ export const dilution_Skill_Data = defineSkill({
       et: 'Arvuta, kuidas lahusti lisamine muudab kontsentratsiooni, ilma et lahustunud aine kogus muutuks.',
       be: 'Вылічы, як даданьне растваральніка зьмяняе канцэнтрацыю безь зьмены колькасьці растворанага рэчыва.',
       ka: 'გამოთვალე, როგორ იცვლება კონცენტრაცია გამხსნელის დამატებისას, როცა გახსნილი ნივთიერების რაოდენობა უცვლელია.',
-      kk: 'Еріген зат мөлшері өзгермей, еріткіш қосылғанда концентрацияның қалай өзгеретінін есепте.',
+      kk: 'Erıgen zat mölşerı özgermei, erıtkış qosylğanda kontsentratsiianyñ qalai özgeretının esepte.',
       qm: 'Erigen madde miqdarı deñişmeden eritici qoşulğanda konsentratsiya nasıl deñişkenini esapla.',
     },
   },

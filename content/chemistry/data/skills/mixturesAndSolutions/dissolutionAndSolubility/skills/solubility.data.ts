@@ -31,7 +31,7 @@ export const solubility_Skill_Data = defineSkill({
     et: 'Lahustuvus',
     be: 'Растваральнасьць',
     ka: 'ხსნადობა',
-    kk: 'Ерігіштік',
+    kk: 'Erıgıştık',
     qm: 'Eriyicilik',
   },
   description: {
@@ -64,7 +64,7 @@ export const solubility_Skill_Data = defineSkill({
       et: 'Mõista, kuidas lahustuvus piirab aine kogust, mis kindlates tingimustes lahustub.',
       be: 'Зразумей, як растваральнасьць абмяжоўвае колькасьць рэчыва, што можа растварыцца ў пэўных умовах.',
       ka: 'გაიგე, როგორ ზღუდავს ხსნადობა ნივთიერების რაოდენობას, რომელსაც კონკრეტულ პირობებში გახსნა შეუძლია.',
-      kk: 'Белгілі жағдайда ери алатын зат мөлшерін ерігіштік қалай шектейтінін түсін.',
+      kk: 'Belgılı jağdaida eri alatyn zat mölşerın erıgıştık qalai şekteitının tüsın.',
       qm: 'Belgili şartlarda ne qadar madde eriy bilgenini eriyicilik nasıl sıñırlağanını añla.',
     },
   },

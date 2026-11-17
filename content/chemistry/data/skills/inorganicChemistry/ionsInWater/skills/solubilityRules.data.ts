@@ -31,7 +31,7 @@ export const solubilityRules_Skill_Data = defineSkill({
     et: 'Lahustuvusreeglid',
     be: 'Правілы растваральнасьці',
     ka: 'ხსნადობის წესები',
-    kk: 'Ерігіштік ережелері',
+    kk: 'Erıgıştık erejelerı',
     qm: 'İrigilik qaydeleri',
   },
   description: {
@@ -64,7 +64,7 @@ export const solubilityRules_Skill_Data = defineSkill({
       et: 'Kasuta lahustuvuse seaduspärasusi sademete ennustamiseks ja kontrolli erandeid.',
       be: 'Выкарыстоўвай заканамернасьці растваральнасьці, каб прадбачыць асадак, правяраючы выключэньні.',
       ka: 'გამოიყენე ხსნადობის კანონზომიერებები ნალექის წინასწარმეტყველებისთვის და შეამოწმე გამონაკლისები.',
-      kk: 'Ерігіштік заңдылықтарымен тұнба түзілуін болжа, бірақ ерекшеліктерді де тексер.',
+      kk: 'Erıgıştık zañdylyqtarymen tūnba tüzıluın bolja, bıraq erekşelıkterdı de tekser.',
       qm: 'Çökelmeni ögden bilmek içün irigilik qanunlılıqlarını qullan ve istisnalarnı da teşker.',
     },
   },

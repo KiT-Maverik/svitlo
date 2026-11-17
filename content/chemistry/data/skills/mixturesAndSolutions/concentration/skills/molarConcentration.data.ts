@@ -31,7 +31,7 @@ export const molarConcentration_Skill_Data = defineSkill({
     et: 'Molaarne kontsentratsioon',
     be: 'Малярная канцэнтрацыя',
     ka: 'მოლური კონცენტრაცია',
-    kk: 'Молярлық концентрация',
+    kk: 'Moliarlyq kontsentratsiia',
     qm: 'Molyar konsentratsiya',
   },
   description: {
@@ -64,7 +64,7 @@ export const molarConcentration_Skill_Data = defineSkill({
       et: 'Kirjelda lahustunud aine kontsentratsiooni moolides ruumalaühiku kohta.',
       be: 'Апісвай канцэнтрацыю растворанага рэчыва колькасьцю моляў на адзінку аб’ёму.',
       ka: 'გამოხატე გახსნილი ნივთიერების კონცენტრაცია მოლების რაოდენობით მოცულობის ერთეულზე.',
-      kk: 'Еріген зат концентрациясын көлем бірлігіндегі моль санымен сипатта.',
+      kk: 'Erıgen zat kontsentratsiiasyn kölem bırlıgındegı mol sanymen sipatta.',
       qm: 'Erigen maddeniñ konsentratsiyasını acım birligine düşken mol sayısınen tarif et.',
     },
   },

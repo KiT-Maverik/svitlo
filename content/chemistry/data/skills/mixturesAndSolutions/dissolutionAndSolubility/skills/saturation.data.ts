@@ -31,7 +31,7 @@ export const saturation_Skill_Data = defineSkill({
     et: 'Küllastumine',
     be: 'Насычэньне',
     ka: 'გაჯერება',
-    kk: 'Қанығу',
+    kk: 'Qanyğu',
     qm: 'Toyğunlıq',
   },
   description: {
@@ -64,7 +64,7 @@ export const saturation_Skill_Data = defineSkill({
       et: 'Erista küllastumata, küllastunud ja üleküllastunud lahuseid.',
       be: 'Адрозьнівай ненасычаныя, насычаныя й перанасычаныя растворы.',
       ka: 'განასხვავე უჯერი, გაჯერებული და ზეგაჯერებული ხსნარები.',
-      kk: 'Қанықпаған, қаныққан және аса қаныққан ерітінділерді ажырат.',
+      kk: 'Qanyqpağan, qanyqqan jäne asa qanyqqan erıtındılerdı ajyrat.',
       qm: 'Toymağan, toyğan ve aşırı toyğan çezintilerni ayır.',
     },
   },
