@@ -15,6 +15,6 @@ npm test --workspace @svitlo/education-standards
 npm run code:format:check
 ```
 
-**Review blocker:** Svitlo's current Agent CI Artifacts workflow does not include an EducationStandard Code-derived Markdown adapter. Independent translation review must not proceed until one is implemented, and until the generated documents and manifest are verified against the exact source SHA. A source URL, a valid TypeScript build or a Course UUID reference does not establish alignment, compliance or accreditation.
+**Review gate:** The Code-derived EducationStandard Markdown adapter is included in the catalog's combined review branch, but its on-demand PR-comment dispatcher requires the corresponding workflow from PR #644 to reach the default branch. For every independent review, generate `.agent-ci-artifacts/education-standards/<language>.md` from the exact current PR head and verify `manifest.json` (`sourceCommit`, 14 distinct IDs per selected language, missing=0, reviewReady=true). A successful generator smoke test does not constitute independent linguistic approval. A source URL, a valid TypeScript build or a Course UUID reference does not establish alignment, compliance or accreditation.
 
 Sources and jurisdiction-specific transition notes are recorded in PR #640's evidence comment.
