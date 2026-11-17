@@ -110,6 +110,7 @@ test('conflicts, orphan trees and unsafe filesystem destinations are rejected be
     assert.throws(() => runOne(f.source, '--write', f.root), /Partial Question Bank tree/);
     assert.equal(fs.readFileSync(path.join(f.lesson, 'questions', 'draft.txt'), 'utf8'), 'Do not delete');
     fs.rmSync(path.join(f.lesson, 'questions'), { recursive: true });
+    fs.mkdirSync(path.join(f.lesson, 'questions'));
     fs.symlinkSync(f.source, path.join(f.lesson, 'questions', 'index.ts'));
     assert.throws(() => runOne(f.source, '--write', f.root), /symlink/i);
   } finally {
