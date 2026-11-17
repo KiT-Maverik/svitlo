@@ -208,3 +208,35 @@ test('a completed Question is published and resolved separately with the request
   assert.equal(textValue(en[0].content.answers.incorrect.incorrect), 'Three');
   assert.equal(requests.length, 3, 'Only requested locale is loaded after shared manifest');
 });
+
+test('incompatible Flashcard UUIDs are excluded from batched reads before fetching content', async () => {
+  const deniedId = '715383c3-ea22-5043-9213-555180837358';
+  const ownedManifest = {
+    lessonId,
+    entries: {
+      [deniedId]: {
+        lessonId,
+        kind: 'flashcard',
+        languages: ['en'],
+        localeFiles: [],
+        contentHash: 'a'.repeat(64),
+        disabilities: ['deafness'],
+      },
+    },
+  };
+  const batches: string[][] = [];
+  const reader: ReadAssessmentFiles = async paths => {
+    batches.push([...paths]);
+    return new Map(paths.map(path => [path, ownedManifest]));
+  };
+  const loader = createAssessmentResourceLoader(reader);
+  const cards = await loader.loadFlashcards({
+    lessonId, language: 'en', ids: [deniedId], accessNeeds: ['deafness'],
+  });
+  assert.deepEqual(cards, []);
+  assert.deepEqual(batches, [[prefix + '/assessment-manifest.json']]);
+  await assert.rejects(
+    () => loader.loadFlashcards({ lessonId, language: 'en', ids: [deniedId], accessNeeds: ['deafness', 'deafness'] }),
+    /Duplicate voluntarily selected access need/,
+  );
+});
