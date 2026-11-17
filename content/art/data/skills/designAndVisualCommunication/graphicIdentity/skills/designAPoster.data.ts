@@ -32,7 +32,7 @@ export const designAPoster_Skill_Data = defineSkill({
     et: 'Plakati kujundamine',
     be: 'Праектаваць плакат',
     ka: 'პოსტერის დიზაინი',
-    kk: 'Постер жобалау',
+    kk: 'Poster jobalau',
     qm: 'Afiş tasarlamaq',
   },
   description: {
@@ -66,7 +66,7 @@ export const designAPoster_Skill_Data = defineSkill({
       et: 'Kujunda plakat, mille põhisõnum on kohe arusaadav.',
       be: 'Стварыце плакат, галоўнае паведамленне якога зразумелае з першага погляду.',
       ka: 'შექმენით პოსტერი, რომლის მთავარი გზავნილი ერთი შეხედვით გასაგებია.',
-      kk: 'Басты хабарын бірден түсінуге болатын постер жасаңыз.',
+      kk: 'Basty habaryn bırden tüsınuge bolatyn poster jasañyz.',
       qm: 'Esas mesajı bir baqışta añlaşılğan afiş tasarlañız.',
     },
   },

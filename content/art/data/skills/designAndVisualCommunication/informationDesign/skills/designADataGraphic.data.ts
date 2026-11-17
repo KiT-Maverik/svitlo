@@ -32,7 +32,7 @@ export const designADataGraphic_Skill_Data = defineSkill({
     et: 'Andmegraafika kujundamine',
     be: 'Праектаваць графіку даных',
     ka: 'მონაცემთა გრაფიკის დიზაინი',
-    kk: 'Деректер графикасын жобалау',
+    kk: 'Derekter grafikasyn jobalau',
     qm: 'Veri grafiği tasarlamaq',
   },
   description: {
@@ -66,7 +66,7 @@ export const designADataGraphic_Skill_Data = defineSkill({
       et: 'Esita arvandmeid selgelt, moonutamata võrdlusi.',
       be: 'Выразна паказвайце лікавыя звесткі, не скажаючы параўнанняў.',
       ka: 'აჩვენეთ რიცხვითი ინფორმაცია მკაფიოდ, შედარებების დამახინჯების გარეშე.',
-      kk: 'Салыстыруды бұрмаламай, сандық ақпаратты анық көрсетіңіз.',
+      kk: 'Salystyrudy būrmalamai, sandyq aqparatty anyq körsetıñız.',
       qm: 'Sayısal malümatnı muqayeselerni bozmayıp açıq kösteriñiz.',
     },
   },

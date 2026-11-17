@@ -32,7 +32,7 @@ export const designReadableText_Skill_Data = defineSkill({
     et: 'Loetava teksti kujundamine',
     be: 'Праектаваць чытэльны тэкст',
     ka: 'წაკითხვადი ტექსტის დიზაინი',
-    kk: 'Оқуға ыңғайлы мәтін жобалау',
+    kk: 'Oquğa yñğaily mätın jobalau',
     qm: 'Oqulı metin tasarlamaq',
   },
   description: {
@@ -66,7 +66,7 @@ export const designReadableText_Skill_Data = defineSkill({
       et: 'Muuda tekst loetavaks sobiva kontrasti, vahede ja reapikkusega.',
       be: 'Зрабіце тэкст чытэльным дзякуючы належнаму кантрасту, інтэрвалам і даўжыні радкоў.',
       ka: 'გახადეთ ტექსტი ადვილად წასაკითხი შესაბამისი კონტრასტით, დაშორებითა და სტრიქონის სიგრძით.',
-      kk: 'Тиісті контраст, аралық және жол ұзындығы арқылы мәтінді оқуға ыңғайлы етіңіз.',
+      kk: 'Tiıstı kontrast, aralyq jäne jol ūzyndyğy arqyly mätındı oquğa yñğaily etıñız.',
       qm: 'Uygun kontrast, aralıq ve satır uzunlığı ile metinni oqulı yapıñız.',
     },
   },

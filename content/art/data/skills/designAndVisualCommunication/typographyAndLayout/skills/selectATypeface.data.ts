@@ -32,7 +32,7 @@ export const selectATypeface_Skill_Data = defineSkill({
     et: 'Kirjatüübi valimine',
     be: 'Выбіраць шрыфт',
     ka: 'შრიფტის არჩევა',
-    kk: 'Қаріп таңдау',
+    kk: 'Qarıp tañdau',
     qm: 'Yazı şeklini saylamaq',
   },
   description: {
@@ -66,7 +66,7 @@ export const selectATypeface_Skill_Data = defineSkill({
       et: 'Vali sõnumi ja sihtrühma lugejatele sobiv kirjatüüp.',
       be: 'Выбірайце стылі шрыфтоў, якія адпавядаюць паведамленню і мэтавым чытачам.',
       ka: 'აირჩიეთ შეტყობინებისა და სამიზნე მკითხველისთვის შესაფერისი შრიფტის სტილი.',
-      kk: 'Хабар мен мақсатты оқырманға сай қаріп мәнерін таңдаңыз.',
+      kk: 'Habar men maqsatty oqyrmanğa sai qarıp mänerın tañdañyz.',
       qm: 'Mesaj ve nişanlanğan oquyıcılarga uyğun yazı şekillerini saylañız.',
     },
   },

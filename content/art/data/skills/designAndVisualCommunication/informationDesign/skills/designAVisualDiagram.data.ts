@@ -32,7 +32,7 @@ export const designAVisualDiagram_Skill_Data = defineSkill({
     et: 'Visuaalse diagrammi kujundamine',
     be: 'Праектаваць візуальную дыяграму',
     ka: 'ვიზუალური დიაგრამის დიზაინი',
-    kk: 'Көрнекі диаграмма жобалау',
+    kk: 'Körnekı diagramma jobalau',
     qm: 'Vizual diagram tasarlamaq',
   },
   description: {
@@ -66,7 +66,7 @@ export const designAVisualDiagram_Skill_Data = defineSkill({
       et: 'Korralda sildid, kujundid ja ühendused, et selgitada, kuidas miski toimib.',
       be: 'Упарадкоўвайце подпісы, формы і сувязі, каб растлумачыць, як нешта працуе.',
       ka: 'დაალაგეთ წარწერები, ფორმები და კავშირები, რათა ახსნათ, როგორ მუშაობს რამე.',
-      kk: 'Белгілерді, пішіндерді және байланыстарды реттеп, бір нәрсенің қалай жұмыс істейтінін түсіндіріңіз.',
+      kk: 'Belgılerdı, pışınderdı jäne bailanystardy rettep, bır närsenıñ qalai jūmys ısteitının tüsındırıñız.',
       qm: 'Etiketlerni, şekiller ve bağlantılarnı tertip etip, bir şeyniñ nasıl çalışqanını añlatıñız.',
     },
   },

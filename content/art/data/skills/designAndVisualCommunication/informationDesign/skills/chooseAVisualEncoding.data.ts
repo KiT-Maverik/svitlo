@@ -32,7 +32,7 @@ export const chooseAVisualEncoding_Skill_Data = defineSkill({
     et: 'Visuaalse kodeeringu valimine',
     be: 'Выбіраць візуальнае кадаванне',
     ka: 'ვიზუალური კოდირების არჩევა',
-    kk: 'Визуалды кодтауды таңдау',
+    kk: 'Vizualdy kodtaudy tañdau',
     qm: 'Vizual kodlama saylamaq',
   },
   description: {
@@ -66,7 +66,7 @@ export const chooseAVisualEncoding_Skill_Data = defineSkill({
       et: 'Vali visuaalne esitusviis, mis sobib kuvatava teabe liigiga.',
       be: 'Выбірайце візуальную форму, якая адпавядае тыпу інфармацыі для паказу.',
       ka: 'აირჩიეთ ვიზუალური ფორმა, რომელიც საჩვენებელი ინფორმაციის ტიპს შეესაბამება.',
-      kk: 'Көрсеткіңіз келетін ақпарат түріне сәйкес визуалды пішінді таңдаңыз.',
+      kk: 'Körsetkıñız keletın aqparat türıne säikes vizualdy pışındı tañdañyz.',
       qm: 'Körsetmek istegen malümat türüne uyğun vizual şekilni saylañız.',
     },
   },

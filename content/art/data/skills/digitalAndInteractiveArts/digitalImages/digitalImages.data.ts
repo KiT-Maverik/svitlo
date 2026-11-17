@@ -38,7 +38,7 @@ export const digitalImages_SkillGroup_Data = defineSkillGroup({
     et: 'Digipiltide loomine pikslite, kujundite, kihtide ja valikulise töötlusega.',
     be: 'Лічбавыя выявы',
     ka: 'ციფრული გამოსახულებები',
-    kk: 'Цифрлық кескіндер',
+    kk: 'Tsifrlyq keskınder',
     qm: 'Pikseller, şekiller, qatlar ve saylanğan deñiştirmeler ile raqemiy suretler yaratmaq',
   },
   skills: [
@@ -77,7 +77,7 @@ export const digitalImages_SkillGroup_Data = defineSkillGroup({
       et: 'Loo digipilte pikslite, kujundite, kihtide ja valikuliste muudatuste abil.',
       be: 'Стварайце лічбавыя выявы з дапамогай пікселяў, фігур, слаёў і выбарачных змен.',
       ka: 'შექმენით ციფრული გამოსახულებები პიქსელების, ფორმების, ფენებისა და შერჩევითი ცვლილებების გამოყენებით.',
-      kk: 'Пиксельдер, пішіндер, қабаттар және ішінара өңдеу арқылы цифрлық кескіндер жасаңыз.',
+      kk: 'Pikselder, pışınder, qabattar jäne ışınara öñdeu arqyly tsifrlyq keskınder jasañyz.',
 
       qm: 'Pikseller, şekiller, qatlar ve saylanğan deñiştirmeler ile raqemiy suretler yaratmaq.',
     },

@@ -37,7 +37,7 @@ export const digitalAndInteractiveArts_SkillDomain_Data = defineSkillDomain({
     et: 'Digitaalne ja interaktiivne kunst',
     be: 'Лічбавае і інтэрактыўнае мастацтва',
     ka: 'ციფრული და ინტერაქტიული ხელოვნება',
-    kk: 'Цифрлық және интерактивті өнер',
+    kk: 'Tsifrlyq jäne interaktivtı öner',
     qm: 'Sanat-i raqemiy ve interaktiv',
   },
   groups: [
@@ -78,7 +78,7 @@ export const digitalAndInteractiveArts_SkillDomain_Data = defineSkillDomain({
       et: 'Loo väljendusrikkaid digipilte, interaktiivseid kogemusi ja reeglite ning varieeruvuse kujundatud kunsti.',
       be: 'Стварайце выразныя лічбавыя выявы, інтэрактыўныя ўражанні і мастацтва, сфарміраванае правіламі і разнастайнасцю.',
       ka: 'შექმენით გამომსახველობითი ციფრული გამოსახულებები, ინტერაქტიული გამოცდილებები და წესებითა და ვარიაციით ფორმირებული ხელოვნება.',
-      kk: 'Ережелер мен өзгерістер арқылы қалыптасатын әсерлі цифрлық кескіндер, интерактивті тәжірибелер және өнер жасаңыз。',
+      kk: 'Erejeler men özgerıster arqyly qalyptasatyn äserlı tsifrlyq keskınder, interaktivtı täjıribeler jäne öner jasañyz.',
 
       qm: 'İfadeleyici raqemiy suretler, interaktiv tecribeler ve qaide-çeşitliknen şekillengen sanat yaratıñız.',
     },

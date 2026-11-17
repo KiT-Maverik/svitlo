@@ -39,7 +39,7 @@ export const typographyAndLayout_SkillGroup_Data = defineSkillGroup({
     et: 'Tüpograafia ja küljendus',
     be: 'Тыпаграфіка і макетаванне',
     ka: 'ტიპოგრაფია და განლაგება',
-    kk: 'Типография және беттеу',
+    kk: 'Tipografiia jäne betteu',
     qm: 'Tipografiya ve yerleşim',
   },
   skills: [
@@ -80,7 +80,7 @@ export const typographyAndLayout_SkillGroup_Data = defineSkillGroup({
       et: 'Muuda kirjalik teave tüpograafia ja küljenduse abil selgeks ning ilmekaks.',
       be: 'Рабіце пісьмовую інфармацыю зразумелай і выразнай дзякуючы тыпаграфіцы і макету.',
       ka: 'ტიპოგრაფიისა და განლაგების მეშვეობით წერილობითი ინფორმაცია გახადეთ მკაფიო და გამომსახველი.',
-      kk: 'Типография мен беттеу арқылы жазбаша ақпаратты анық әрі әсерлі етіңіз.',
+      kk: 'Tipografiia men betteu arqyly jazbaşa aqparatty anyq ärı äserlı etıñız.',
       qm: 'Yazılı malümatnı tipografiya ve yerleşim vasıtası ile açıq ve ifadeleyici yapıñız.',
     },
   },

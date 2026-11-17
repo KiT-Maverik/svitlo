@@ -32,7 +32,7 @@ export const establishTypographicHierarchy_Skill_Data = defineSkill({
     et: 'Tüpograafilise hierarhia loomine',
     be: 'Ствараць тыпаграфічную іерархію',
     ka: 'ტიპოგრაფიული იერარქიის შექმნა',
-    kk: 'Типографиялық иерархия орнату',
+    kk: 'Tipografiialyq ierarhiia ornatu',
     qm: 'Tipografik iyerarhiya qurmaq',
   },
   description: {
@@ -66,7 +66,7 @@ export const establishTypographicHierarchy_Skill_Data = defineSkill({
       et: 'Kasuta suurust, paksust ja vahesid, et näidata teabe olulisust.',
       be: 'Выкарыстоўвайце памер, насычанасць і інтэрвалы, каб паказаць найважнейшую інфармацыю.',
       ka: 'გამოიყენეთ ზომა, სისქე და დაშორება ყველაზე მნიშვნელოვანი ინფორმაციის გამოსაკვეთად.',
-      kk: 'Өлшем, қалыңдық және аралық арқылы ең маңызды ақпаратты көрсетіңіз.',
+      kk: 'Ölşem, qalyñdyq jäne aralyq arqyly eñ mañyzdy aqparatty körsetıñız.',
       qm: 'Eñ müim malümatnı köstermek içün ölçü, qalınlıq ve aralıqlardan faydalaniñız.',
     },
   },

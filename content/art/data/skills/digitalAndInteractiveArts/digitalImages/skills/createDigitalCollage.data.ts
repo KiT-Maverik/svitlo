@@ -31,7 +31,7 @@ export const createDigitalCollage_Skill_Data = defineSkill({
     et: 'Digitaalse kollaaži loomine',
     be: 'Ствараць лічбавы калаж',
     ka: 'ციფრული კოლაჟის შექმნა',
-    kk: 'Цифрлық коллаж жасау',
+    kk: 'Tsifrlyq kollaj jasau',
     qm: 'Raqemiy kollaj yaratmaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const createDigitalCollage_Skill_Data = defineSkill({
       et: 'Ühenda digipilte, et luua uusi seoseid ja tähendusi.',
       be: 'Спалучайце лічбавыя выявы, каб ствараць новыя сувязі і значэнні.',
       ka: 'შეაერთეთ ციფრული გამოსახულებები ახალი კავშირებისა და მნიშვნელობების შესაქმნელად.',
-      kk: 'Жаңа байланыстар мен мағыналар жасау үшін цифрлық кескіндерді біріктіріңіз。',
+      kk: 'Jaña bailanystar men mağynalar jasau üşın tsifrlyq keskınderdı bırıktırıñız.',
 
       qm: 'Raqemiy suretlerni birleştirip, yañı bağlar ve manalar yaratmaq.',
     },

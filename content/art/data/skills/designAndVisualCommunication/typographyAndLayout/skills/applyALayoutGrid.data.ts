@@ -32,7 +32,7 @@ export const applyALayoutGrid_Skill_Data = defineSkill({
     et: 'Küljendusvõrgu rakendamine',
     be: 'Ужываць сетку макета',
     ka: 'განლაგების ბადის გამოყენება',
-    kk: 'Орналасу торын қолдану',
+    kk: 'Ornalasu toryn qoldanu',
     qm: 'Yerleşim ızgarasını qullanmaq',
   },
   description: {
@@ -66,7 +66,7 @@ export const applyALayoutGrid_Skill_Data = defineSkill({
       et: 'Paiguta tekst ja pildid ühtse ruudustiku abil.',
       be: 'Размяшчайце тэкст і выявы з дапамогай узгодненай сеткі.',
       ka: 'განათავსეთ ტექსტი და გამოსახულებები თანმიმდევრული ბადის გამოყენებით.',
-      kk: 'Мәтін мен суреттерді бірізді тор арқылы орналастырыңыз.',
+      kk: 'Mätın men suretterdı bırızdı tor arqyly ornalastyryñyz.',
       qm: 'Metin ve suretlerni tutarlı tor qullanıp tertip etiñiz.',
     },
   },

@@ -39,7 +39,7 @@ export const informationDesign_SkillGroup_Data = defineSkillGroup({
     et: 'Teabedisain',
     be: 'Інфармацыйны дызайн',
     ka: 'ინფორმაციის დიზაინი',
-    kk: 'Ақпарат дизайны',
+    kk: 'Aqparat dizainy',
     qm: 'Malümat dizaynı',
   },
   skills: [
@@ -80,7 +80,7 @@ export const informationDesign_SkillGroup_Data = defineSkillGroup({
       et: 'Muuda keeruline teave arusaadavateks visuaalseteks seosteks.',
       be: 'Ператварайце складаную інфармацыю ў зразумелыя візуальныя сувязі.',
       ka: 'რთული ინფორმაცია გასაგებ ვიზუალურ კავშირებად აქციეთ.',
-      kk: 'Күрделі ақпаратты түсінікті визуалды байланыстарға айналдырыңыз.',
+      kk: 'Kürdelı aqparatty tüsınıktı vizualdy bailanystarğa ainaldyryñyz.',
       qm: 'Qarışıq malümatnı añlaşılır vizual munasebetlerge çevirñiz.',
     },
   },

@@ -32,7 +32,7 @@ export const detectMisleadingGraphics_Skill_Data = defineSkill({
     et: 'Eksitava graafika tuvastamine',
     be: 'Выяўляць зманлівую графіку',
     ka: 'შეცდომაში შემყვანი გრაფიკის ამოცნობა',
-    kk: 'Жаңылыстыратын графиканы анықтау',
+    kk: 'Jañylystyratyn grafikany anyqtau',
     qm: 'Yanıltıcı grafikleri tapmaq',
   },
   description: {
@@ -66,7 +66,7 @@ export const detectMisleadingGraphics_Skill_Data = defineSkill({
       et: 'Tuvasta, millal graafiku skaala või kujundus loob eksitava mulje.',
       be: 'Вызначайце, калі маштаб або дызайн графіка стварае зманлівае ўражанне.',
       ka: 'ამოიცანით, როდის ქმნის გრაფიკის მასშტაბი ან დიზაინი შეცდომაში შემყვან შთაბეჭდილებას.',
-      kk: 'График масштабы не дизайны қашан жаңылыстыратын әсер беретінін анықтаңыз.',
+      kk: 'Grafik masştaby ne dizainy qaşan jañylystyratyn äser beretının anyqtañyz.',
       qm: 'Grafik ölçeği ya da tasarımı ne zaman yanıltıcı tesir yaratqanını añlañız.',
     },
   },
