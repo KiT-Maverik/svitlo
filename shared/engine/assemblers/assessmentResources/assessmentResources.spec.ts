@@ -65,9 +65,9 @@ test('Quiz selects only explicit UUID candidates with stable sampling and never 
 });
 
 test('Flashcard selection keeps candidate order and excludes incompatible cards before body loading', () => {
-  const audio = { lessonId, kind: 'flashcard' as const, languages: ['en'], contentHash: hash, disabilities: ['deafness' as const] };
-  const accessible = { lessonId, kind: 'flashcard' as const, languages: ['en'], contentHash: hash, disabilities: [] };
-  const image = { lessonId, kind: 'flashcard' as const, languages: ['en'], contentHash: hash, disabilities: ['blindness' as const] };
+  const audio = { lessonId, kind: 'flashcard' as const, languages: ['en' as const], contentHash: hash, disabilities: ['deafness' as const] };
+  const accessible = { lessonId, kind: 'flashcard' as const, languages: ['en' as const], contentHash: hash, disabilities: [] };
+  const image = { lessonId, kind: 'flashcard' as const, languages: ['en' as const], contentHash: hash, disabilities: ['blindness' as const] };
   const ids = [firstId, secondId, cardId];
   const entries = [audio, accessible, image];
   assert.deepEqual(selectAccessibleFlashcardIds(entries, ids, ['deafness']), [secondId, cardId]);
