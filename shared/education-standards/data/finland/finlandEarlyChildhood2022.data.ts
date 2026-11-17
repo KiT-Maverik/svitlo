@@ -13,7 +13,7 @@ export const finlandEarlyChildhood2022 = defineEducationStandard({
   },
   description: {
     methodological:
-      "The Finnish National Agency for Education's National Core Curriculum for Early Childhood Education and Care (2022) is a nationally normative basis for municipalities, private providers and childcare settings preparing their own local ECEC curricula. It describes pedagogical values, child participation, learning areas, assessment and cooperation with guardians, rather than subject-specific grade standards. Official amendments were adopted in 2025 and 2026 and took effect on specified dates in 2026; this record refers to the living 2022 national core, not an unamended edition or to compulsory preschool (esiopetus), which has its own separate curriculum.",
+      "The Finnish National Agency for Education's National Core Curriculum for Early Childhood Education and Care (2022) is a nationally binding framework for ECEC providers and settings. It describes pedagogical values, child participation, learning areas, assessment and cooperation with guardians, rather than subject-specific grade standards. Since 1 January 2025, providers have no legal duty to prepare a separate local ECEC curriculum, but they must implement the national core and prepare individual child ECEC plans. Amendments to the 2022 core took effect on 1 January and 1 August 2026. This record does not cover pre-primary education (esiopetus), which has its own core curriculum.",
     frontend: {
       ar: 'يضع الإطار الوطني للتعلم والرعاية في الطفولة المبكرة في فنلندا.',
       be: 'Вызначае нацыянальную аснову выхаваньня, догляду і навучаньня дзяцей раньняга ўзросту ў Фінляндыі.',
