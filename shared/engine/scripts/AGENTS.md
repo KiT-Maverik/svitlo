@@ -11,7 +11,7 @@ These instructions apply to permanent scripts under `shared/engine/scripts/`. Re
 
 ## Independent assessment resource publication
 
-The new `generateAssessmentResources/` command compiles already-authored typed Question/Flashcard banks into separate generated resources and metadata manifests. It does not consume or generate `questions.yaml` or `flashcards.yaml`; those are approved editorial sources requiring separate, not-yet-implemented conversion. Its output is staged by textbook tooling, **not** inserted into Lesson Build Props. The Lesson Builder now consumes `lesson.yaml` exclusively. Both editorial bank YAML files are siblings at the Lesson UUID root; neither is created or consumed by Stage A. Do not silently rewrite or migrate the user-edited #557 prototype.
+The new `generateAssessmentResources/` command compiles already-authored typed Question/Flashcard banks into separate generated resources and metadata manifests. It does not consume or generate `questions.yaml` or `flashcards.yaml`; those are approved editorial sources requiring separate conversion. The named `flashcardBuilder/` now supports a narrowly scoped create-only typed TS scaffold for reviewed, Engine-shaped source-language Flashcard YAML (initially Text/Markdown/Code). It is NOT an assessment publisher, media/Question-reference resolver, translator or approval system. Its output is staged by textbook tooling, **not** inserted into Lesson Build Props. The Lesson Builder now consumes `lesson.yaml` exclusively. Both editorial bank YAML files are siblings at the Lesson UUID root; neither is created or consumed by Stage A. Do not silently rewrite or migrate the user-edited #557 prototype.
 
 ## Three distinct kinds of generator
 
