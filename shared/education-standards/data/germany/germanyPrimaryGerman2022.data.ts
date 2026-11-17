@@ -37,7 +37,7 @@ export const germanyPrimaryGerman2022 = defineEducationStandard({
       lv: 'Nosaka vācu valodas prasmes, kas sagaidāmas Vācijas sākumskolas beigās.',
       mr: 'जर्मनीतील प्राथमिक शाळा संपताना अपेक्षित जर्मन भाषिक कौशल्ये ठरवते.',
       ms: 'Menetapkan kemahiran bahasa Jerman yang dijangka pada akhir sekolah rendah di Jerman.',
-      pl: 'Określa oczekiwane kompetencje języka niemieckiego na zakończenie szkoły podstawowej w Niemczech.',
+      pl: 'Określa kompetencje z języka niemieckiego oczekiwane pod koniec 4. klasy niemieckiej szkoły podstawowej.',
       pt: 'Define competências de alemão esperadas ao final do ensino primário na Alemanha.',
       qm: 'Almaniyada başlanğıç mektepni bitirgende beklenilgen alman tili becerilerini belgiley.',
       ta: 'ஜெர்மனியில் தொடக்கப் பள்ளி முடிவில் எதிர்பார்க்கப்படும் ஜெர்மன் மொழித் திறன்களை வரையறுக்கிறது.',
