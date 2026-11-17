@@ -31,7 +31,7 @@ export const functionsOfMoney_Skill_Data = defineSkill({
     et: 'Raha ülesanded',
     be: 'Функцыі грошай',
     ka: 'ფულის ფუნქციები',
-    kk: 'Ақшаның қызметтері',
+    kk: 'Aqşanyñ qyzmetterı',
     qm: 'Aqçanıñ vazifeleri',
   },
   description: {
@@ -65,7 +65,7 @@ export const functionsOfMoney_Skill_Data = defineSkill({
       et: 'Tunne ära raha eri funktsioonid.',
       be: 'Распазнавай розныя задачы, якія выконваюць грошы.',
       ka: 'ამოიცანი სხვადასხვა როლი, რომელსაც ფული ასრულებს.',
-      kk: 'Ақшаның әртүрлі қызметін таны.',
+      kk: 'Aqşanyñ ärtürlı qyzmetın tany.',
       qm: 'Aqçanıñ türlü vazifelerini tanı.',
     },
   },

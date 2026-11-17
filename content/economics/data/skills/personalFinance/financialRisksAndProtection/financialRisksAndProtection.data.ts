@@ -37,7 +37,7 @@ export const financialRisksAndProtection_SkillGroup_Data = defineSkillGroup({
     et: 'Finantsriskid ja kaitse',
     be: 'Фінансавыя рызыкі й абарона',
     ka: 'ფინანსური რისკები და დაცვა',
-    kk: 'Қаржылық тәуекелдер және қорғаныс',
+    kk: 'Qarjylyq täuekelder jäne qorğanys',
     qm: 'Maliy havflar ve qorunuv',
   },
   skills: [
@@ -76,7 +76,7 @@ export const financialRisksAndProtection_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri, kuidas finantsriske märgata ja end kaitsta.',
       be: 'Дасьледуй спосабы распазнаваць фінансавыя рызыкі й абараняцца ад іх.',
       ka: 'შეისწავლე ფინანსური რისკების ამოცნობისა და თავის დაცვის გზები.',
-      kk: 'Қаржылық қатерді танып, қорғану жолдарын зертте.',
+      kk: 'Qarjylyq qaterdı tanyp, qorğanu joldaryn zertte.',
       qm: 'Maliy havflarnı tanımaq ve özüni qorumaq yollarını araştır.',
     },
   },

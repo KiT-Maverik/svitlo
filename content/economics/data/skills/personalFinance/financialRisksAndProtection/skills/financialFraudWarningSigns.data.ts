@@ -31,7 +31,7 @@ export const financialFraudWarningSigns_Skill_Data = defineSkill({
     et: 'Finantspettuse ohumärgid',
     be: 'Прыкметы фінансавага махлярства',
     ka: 'ფინანსური თაღლითობის გამაფრთხილებელი ნიშნები',
-    kk: 'Қаржылық алаяқтықтың ескерту белгілері',
+    kk: 'Qarjylyq alaiaqtyqtyñ eskertu belgılerı',
     qm: 'Maliy aldatuvnıñ alâmetleri',
   },
   description: {
@@ -65,7 +65,7 @@ export const financialFraudWarningSigns_Skill_Data = defineSkill({
       et: 'Tunne ära kahtlaste või eksitavate finantspakkumiste märgid.',
       be: 'Заўважай прыкметы падазроных або падманных фінансавых прапановаў.',
       ka: 'ამოიცანი საეჭვო ან მატყუარა ფინანსური შეთავაზებების ნიშნები.',
-      kk: 'Күмәнді не алдамшы қаржы ұсыныстарының белгілерін таны.',
+      kk: 'Kümändı ne aldamşy qarjy ūsynystarynyñ belgılerın tany.',
       qm: 'Şübeli ya da aldatıcı maliy tekliflerniñ tenbih işaretlerini tanı.',
     },
   },

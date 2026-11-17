@@ -31,7 +31,7 @@ export const financialRiskAndExpectedReward_Skill_Data = defineSkill({
     et: 'Finantsrisk ja oodatav tulu',
     be: 'Фінансавая рызыка й чаканая выгода',
     ka: 'ფინანსური რისკი და მოსალოდნელი სარგებელი',
-    kk: 'Қаржылық тәуекел және күтілетін пайда',
+    kk: 'Qarjylyq täuekel jäne kütıletın paida',
     qm: 'Maliy havf ve beklenilgen fayda',
   },
   description: {
@@ -65,7 +65,7 @@ export const financialRiskAndExpectedReward_Skill_Data = defineSkill({
       et: 'Võrdle võimalikku kasu raha kaotamise riskiga.',
       be: 'Параўнай магчымую выгоду з рызыкай страціць грошы.',
       ka: 'შეადარე შესაძლო სარგებელი ფულის დაკარგვის საფრთხეს.',
-      kk: 'Ықтимал пайданы ақша жоғалту қаупімен салыстыр.',
+      kk: 'Yqtimal paidany aqşa joğaltu qaupımen salystyr.',
       qm: 'Mümkün qazançnı aqça coyuv havfınen qıyasla.',
     },
   },

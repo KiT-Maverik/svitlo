@@ -31,7 +31,7 @@ export const purchasingPowerOfMoney_Skill_Data = defineSkill({
     et: 'Raha ostujõud',
     be: 'Пакупніцкая здольнасьць грошай',
     ka: 'ფულის მსყიდველობითი უნარი',
-    kk: 'Ақшаның сатып алу қабілеті',
+    kk: 'Aqşanyñ satyp alu qabıletı',
     qm: 'Aqçanıñ satın aluv qudretı',
   },
   description: {
@@ -64,7 +64,7 @@ export const purchasingPowerOfMoney_Skill_Data = defineSkill({
       et: 'Vaata, kuidas hinnatõus muudab seda, mida saad oma raha eest osta.',
       be: 'Пабач, як рост цэнаў мяняе тое, што можна набыць за грошы.',
       ka: 'ნახე, როგორ ცვლის ფასების ზრდა იმას, რისი ყიდვაც შეგიძლია.',
-      kk: 'Бағаның өсуі ақшаңа не сатып алуға болатынын қалай өзгертетінін көр.',
+      kk: 'Bağanyñ ösuı aqşaña ne satyp aluğa bolatynyn qalai özgertetının kör.',
       qm: 'Fiyatlar artqanda aqçañnen ne satın ala bilgeniñ nasıl deñişkenini kör.',
     },
   },

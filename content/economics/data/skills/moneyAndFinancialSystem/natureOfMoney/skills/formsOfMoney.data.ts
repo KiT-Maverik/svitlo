@@ -31,7 +31,7 @@ export const formsOfMoney_Skill_Data = defineSkill({
     et: 'Raha vormid',
     be: 'Формы грошай',
     ka: 'ფულის ფორმები',
-    kk: 'Ақша нысандары',
+    kk: 'Aqşa nysandary',
     qm: 'Aqçanıñ şekilleri',
   },
   description: {
@@ -65,7 +65,7 @@ export const formsOfMoney_Skill_Data = defineSkill({
       et: 'Võrdle sularaha, pangahoiuseid ja digitaalset raha.',
       be: 'Параўнай наяўныя грошы, банкаўскія ўклады й лічбавыя грошы.',
       ka: 'შეადარე ნაღდი ფული, საბანკო დეპოზიტები და ციფრული ფული.',
-      kk: 'Қолма-қол ақшаны, депозитті және цифрлық ақшаны салыстыр.',
+      kk: 'Qolma-qol aqşany, depozittı jäne tsifrlyq aqşany salystyr.',
       qm: 'Naqit, bank depozitleri ve elektronik aqçanı qıyasla.',
     },
   },
