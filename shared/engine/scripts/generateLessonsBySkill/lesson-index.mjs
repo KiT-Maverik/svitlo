@@ -13,7 +13,7 @@ export const uuid = value => typeof value === 'string' && UUID.test(value);
 export const normalized = value => value.toLowerCase();
 const sort = values => [...values].sort((a, b) => a.localeCompare(b, 'en'));
 const slash = value => value.split(path.sep).join('/');
-const exists = file => fs.existsSync(file) && fs.statSync(file).isFile();
+const exists = file => fs.existsSync(file) && fs.lstatSync(file).isFile();
 const relative = (root, file) => slash(path.relative(root, file));
 const isRecord = value => value && typeof value === 'object' && !Array.isArray(value);
 
@@ -309,6 +309,11 @@ export function buildLessonIndex(root, selectedPackage) {
   let implemented = 0, drafts = 0;
   for (const book of packages) {
     const pkg = 'content/' + book;
+    if (selectedPackage && !fs.existsSync(path.join(packagesDir, book, 'package.json'))) {
+      diagnostics.push({ file: pkg, package: pkg, entityId: null,
+        reason: 'Unknown textbook package', incomplete: true });
+      continue;
+    }
     const catalogue = skillCatalogue(root, book, diagnostics);
     for (const [id, skill] of catalogue.byId) skillDefinitions.set(pkg + ':' + id, skill);
     const dir = path.join(packagesDir, book, 'data/lessons');
@@ -328,6 +333,10 @@ export function buildLessonIndex(root, selectedPackage) {
         const legacy = fs.readdirSync(folder).filter(n => n.endsWith('.data.ts')).sort();
         const typed = exists(indexFile) ? indexFile : legacy.length === 1 ? path.join(folder, legacy[0]) : null;
         const draft = path.join(folder, 'lesson.yaml');
+        if ((fs.existsSync(indexFile) && fs.lstatSync(indexFile).isSymbolicLink()) ||
+          (fs.existsSync(draft) && fs.lstatSync(draft).isSymbolicLink())) {
+          diagnostic(folder, 'Lesson source symlink refused'); continue;
+        }
         if (!typed && !exists(draft)) continue;
         if (legacy.length > 1 && !exists(indexFile)) { diagnostic(folder, 'Ambiguous Lesson *.data.ts'); continue; }
         let compiled = null, editorial = null;
@@ -349,7 +358,8 @@ export function buildLessonIndex(root, selectedPackage) {
             }
           } catch (error) { diagnostic(draft, error.message); editorial = null; }
         }
-        if (compiled && editorial && compiled.skills.join(',') !== editorial.skills.join(',')) {
+        if (compiled && editorial && (compiled.skills.length !== editorial.skills.length ||
+          compiled.skills.some(id => !editorial.skills.includes(id)))) {
           diagnostic(draft, 'Typed Lesson and YAML draft disagree on Skill IDs');
         }
         const values = compiled ?? (typed ? null : editorial);
