@@ -31,7 +31,7 @@ export const simpleInterest_Skill_Data = defineSkill({
     et: 'Lihtintress',
     be: 'Простыя працэнты',
     ka: 'მარტივი პროცენტი',
-    kk: 'Жай пайыз',
+    kk: 'Jai paiyz',
     qm: 'Sade faiz',
   },
   description: {
@@ -64,7 +64,7 @@ export const simpleInterest_Skill_Data = defineSkill({
       et: 'Arvuta intress, mida teenitakse ainult algselt summalt.',
       be: 'Вылічы працэнты толькі ад першапачатковай сумы.',
       ka: 'გამოთვალე მხოლოდ საწყის თანხაზე დარიცხული პროცენტი.',
-      kk: 'Тек бастапқы сомаға есептелетін пайызды есепте.',
+      kk: 'Tek bastapqy somağa esepteletın paiyzdy esepte.',
       qm: 'Faqat başta qoyulğan aqçadan esaplanğan faizni esapla.',
     },
   },

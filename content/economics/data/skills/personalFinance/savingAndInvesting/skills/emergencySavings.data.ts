@@ -31,7 +31,7 @@ export const emergencySavings_Skill_Data = defineSkill({
     et: 'Rahaline hädaabifond',
     be: 'Запас на непрадбачаныя выдаткі',
     ka: 'საგანგებო დანაზოგი',
-    kk: 'Төтенше жағдайға жинақ',
+    kk: 'Tötenşe jağdaiğa jinaq',
     qm: 'Kutilmegen masraflar içün toplama',
   },
   description: {
@@ -65,7 +65,7 @@ export const emergencySavings_Skill_Data = defineSkill({
       et: 'Mõista, miks kiiresti kättesaadav sääst aitab ootamatute kulude puhul.',
       be: 'Даведайся, як даступныя ашчаджэньні дапамагаюць з раптоўнымі выдаткамі.',
       ka: 'გაიგე, როგორ ეხმარება ხელმისაწვდომი დანაზოგი მოულოდნელ ხარჯებს.',
-      kk: 'Қолжетімді жинақ күтпеген шығындарға қалай көмектесетінін түсін.',
+      kk: 'Qoljetımdı jinaq kütpegen şyğyndarğa qalai kömektesetının tüsın.',
       qm: 'Qol astındaki toplama kutilmegen masraflarğa nasıl yardım etkenini añla.',
     },
   },

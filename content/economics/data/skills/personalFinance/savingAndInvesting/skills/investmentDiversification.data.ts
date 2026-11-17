@@ -31,7 +31,7 @@ export const investmentDiversification_Skill_Data = defineSkill({
     et: 'Investeeringute hajutamine',
     be: 'Дывэрсыфікацыя інвэстыцыяў',
     ka: 'ინვესტიციის დივერსიფიკაცია',
-    kk: 'Инвестицияны әртараптандыру',
+    kk: 'İnvestitsiiany ärtaraptandyru',
     qm: 'Yatırımlarnı türlüleştirüv',
   },
   description: {
@@ -65,7 +65,7 @@ export const investmentDiversification_Skill_Data = defineSkill({
       et: 'Õpi, miks investeeringute hajutamine vähendab osa riske, kuid ei välista kahju.',
       be: 'Зразумей, чаму разьмеркаваньне інвэстыцыяў зьніжае частку рызыкаў, але не выключае страт.',
       ka: 'ისწავლე, როგორ ამცირებს ინვესტიციის განაწილება ზოგ რისკს, თუმცა დანაკარგს არ გამორიცხავს.',
-      kk: 'Инвестицияны бөлу кей тәуекелді азайтса да шығынды жоймайтынын біл.',
+      kk: 'İnvestitsiiany bölu kei täuekeldı azaitsa da şyğyndy joimaitynyn bıl.',
       qm: 'Yatırımlarnı bölüv bazı havflarnı azaytsa da zarar ihtimalını yoq etmegenini ögren.',
     },
   },

@@ -31,7 +31,7 @@ export const businessCashFlow_Skill_Data = defineSkill({
     et: 'Ettevõtte rahavoog',
     be: 'Грашовыя плыні прадпрыемства',
     ka: 'ბიზნესის ფულადი ნაკადები',
-    kk: 'Кәсіпорынның ақша ағыны',
+    kk: 'Käsıporynnyñ aqşa ağyny',
     qm: 'İşletmeniñ aqça aqımı',
   },
   description: {
@@ -65,7 +65,7 @@ export const businessCashFlow_Skill_Data = defineSkill({
       et: 'Mõista, miks kasumlikul ettevõttel võib siiski sularaha nappida.',
       be: 'Зразумей, чаму нават прыбытковаму бізнэсу можа бракаваць грошай.',
       ka: 'გაიგე, რატომ შეიძლება მოგებიან ბიზნესსაც აკლდეს ნაღდი ფული.',
-      kk: 'Табысты бизнеске де неге қолма-қол ақша жетпеуі мүмкін екенін түсін.',
+      kk: 'Tabysty bizneske de nege qolma-qol aqşa jetpeuı mümkın ekenın tüsın.',
       qm: 'Fayda tapqan işletmeniñ bile ne içün naqt aqçası az olabilgenini añla.',
     },
   },

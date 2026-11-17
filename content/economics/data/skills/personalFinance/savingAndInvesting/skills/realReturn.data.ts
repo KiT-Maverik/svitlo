@@ -31,7 +31,7 @@ export const realReturn_Skill_Data = defineSkill({
     et: 'Reaaltootlus',
     be: 'Рэальная даходнасьць',
     ka: 'რეალური შემოსავლიანობა',
-    kk: 'Нақты табыстылық',
+    kk: 'Naqty tabystylyq',
     qm: 'Aqiqiy kelir',
   },
   description: {
@@ -64,7 +64,7 @@ export const realReturn_Skill_Data = defineSkill({
       et: 'Uuri, kas finantstootlus peab inflatsiooniga tegelikult sammu.',
       be: 'Правер, ці фінансавая даходнасьць сапраўды пакрывае інфляцыю.',
       ka: 'შეამოწმე, ფინანსური მოგება ნამდვილად ეწევა თუ არა ინფლაციას.',
-      kk: 'Қаржылық қайтарым инфляцияны шынымен өтей ме, тексер.',
+      kk: 'Qarjylyq qaitarym infliatsiiany şynymen ötei me, tekser.',
       qm: 'Maliy kelir inflâtsiyanı aqiqaten qarşılaymı, tekşir.',
     },
   },

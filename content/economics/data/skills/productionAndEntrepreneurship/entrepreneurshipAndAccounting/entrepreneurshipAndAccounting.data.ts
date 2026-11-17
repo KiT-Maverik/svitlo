@@ -38,7 +38,7 @@ export const entrepreneurshipAndAccounting_SkillGroup_Data = defineSkillGroup({
     et: 'Ettevõtlus ja raamatupidamine',
     be: 'Прадпрымальніцтва і бухгальтэрыя',
     ka: 'მეწარმეობა და აღრიცხვა',
-    kk: 'Кәсіпкерлік пен бухгалтерлік есеп',
+    kk: 'Käsıpkerlık pen buhgalterlık esep',
     qm: 'İşadamlıq ve muasebe',
   },
   skills: [
@@ -78,7 +78,7 @@ export const entrepreneurshipAndAccounting_SkillGroup_Data = defineSkillGroup({
       et: 'Õpi, mis muudab äriidee majanduslikult teostatavaks.',
       be: 'Даведайся, што робіць бізнэс-ідэю эканамічна жыцьцяздольнай.',
       ka: 'ისწავლე, რა ხდის ბიზნესიდეას ეკონომიკურად განხორციელებადს.',
-      kk: 'Бизнес идеяны экономикалық тұрғыдан өміршең ететін нәрсені біл.',
+      kk: 'Biznes ideiany ekonomikalyq tūrğydan ömırşeñ etetın närsenı bıl.',
       qm: 'Bir iş fikrini iqtisadiy baqımdan mümkün etken şeylerni bil.',
     },
   },
