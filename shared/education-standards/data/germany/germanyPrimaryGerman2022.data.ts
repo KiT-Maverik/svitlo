@@ -4,13 +4,13 @@ import { defineEducationStandard } from '@svitlo/engine/build';
 export const germanyPrimaryGerman2022 = defineEducationStandard({
   id: 'be5c6107-6e50-4feb-bae7-d8e2d50dbc84',
   slug: 'germanyPrimaryGerman2022',
-  name: 'Bildungsstandards im Fach Deutsch für den Primarbereich',
+  name: 'Bildungsstandards für das Fach Deutsch – Primarbereich',
   params: {
     countries: ['DE'],
     grade: { min: 1, max: 4 },
     nameLanguage: 'de',
-    version: 'KMK revision adopted 23 June 2022',
-    sourceUrl: 'https://www.kmk.org/bildungsministerkonferenz/bildungsthemen/bildungsstandards.html',
+    version: 'KMK decision 15 October 2004; revision 23 June 2022',
+    sourceUrl: 'https://www.kmk.org/fileadmin/Dateien/veroeffentlichungen_beschluesse/2022/2022_06_23-Bista-Primarbereich-Deutsch.pdf',
   },
   description: {
     methodological:
