@@ -101,7 +101,11 @@ function TestLayout({ messages, ...props }: LessonLearningLayoutProps) {
     </>
   );
 }
-function showLesson(response = fixture(true), editableSectionParams: readonly 'allowNavigation'[] = [], assessmentLoader?: AssessmentResourceLoader) {
+function showLesson(
+  response = fixture(true),
+  editableSectionParams: readonly 'allowNavigation'[] = [],
+  assessmentLoader?: AssessmentResourceLoader,
+) {
   observed.length = 0;
   received.length = 0;
   releaseBlocker = undefined;

@@ -5,9 +5,15 @@ import { deepStrict_Schema } from '#schemas';
 
 import { identityBase_Schema, paramsBase_Schema } from '../../_shared__configurators/common.schemas';
 import type { Configurator_Mode } from '../../configurator.schemas';
-import { localizationSwitch as contentBlockLocalizationSwitch, contentBlockResolved_Schema } from '../../contentBlocks/contentBlock.schemas';
+import {
+  localizationSwitch as contentBlockLocalizationSwitch,
+  contentBlockResolved_Schema,
+} from '../../contentBlocks/contentBlock.schemas';
 import type { ContentBlock_Configurator, ContentBlock_Props } from '../../contentBlocks/contentBlock.types';
-import { flashcardSide_Config_Schema, type FlashcardSide_Overrides } from '../defineFlashcardSide/defineFlashcardSide.schemas';
+import {
+  flashcardSide_Config_Schema,
+  type FlashcardSide_Overrides,
+} from '../defineFlashcardSide/defineFlashcardSide.schemas';
 
 export const flashcardRelationshipTypes = [
   'reverse',
@@ -65,34 +71,35 @@ export type Flashcard_Flag_Config = z.infer<typeof flashcardFlag_Config_Schema>;
 export type Flashcard_Flag_Props = z.infer<ReturnType<typeof flagSchema<'props'>>>;
 
 /** Restrict retrieval modes, not learners. */
-export const flashcardDisabilities_Schema = z.array(disability_Schema).refine(
-  values => new Set(values).size === values.length,
-  'Duplicate Flashcard disability restriction',
-);
+export const flashcardDisabilities_Schema = z
+  .array(disability_Schema)
+  .refine(values => new Set(values).size === values.length, 'Duplicate Flashcard disability restriction');
 
-export const flashcard_Config_Schema = identityBase_Schema.extend({
-  parameters: paramsBase_Schema.shape.params.extend({
-    tags: z.array(z.string()),
-    disabilities: flashcardDisabilities_Schema.optional(),
-    flags: z.strictObject({
-      items: z.record(z.string(), flashcardFlag_Config_Schema),
-      order: z.array(z.string()),
-    }),
-    relationships: z
-      .strictObject({
-        items: z.record(z.string(), flashcardRelationship_Schema),
+export const flashcard_Config_Schema = identityBase_Schema
+  .extend({
+    parameters: paramsBase_Schema.shape.params.extend({
+      tags: z.array(z.string()),
+      disabilities: flashcardDisabilities_Schema.optional(),
+      flags: z.strictObject({
+        items: z.record(z.string(), flashcardFlag_Config_Schema),
         order: z.array(z.string()),
-      })
-      .optional(),
-  }),
-  // Preserve the structural Config shape for YAML/editor schema generation.
-  // defineFlashcard validates that these values are built side configurators.
-  content: z.strictObject({
-    front: z.object(flashcardSide_Config_Schema.shape),
-    back: z.object(flashcardSide_Config_Schema.shape),
-    hint: z.object(flashcardSide_Config_Schema.shape).optional(),
-  }),
-}).strict();
+      }),
+      relationships: z
+        .strictObject({
+          items: z.record(z.string(), flashcardRelationship_Schema),
+          order: z.array(z.string()),
+        })
+        .optional(),
+    }),
+    // Preserve the structural Config shape for YAML/editor schema generation.
+    // defineFlashcard validates that these values are built side configurators.
+    content: z.strictObject({
+      front: z.object(flashcardSide_Config_Schema.shape),
+      back: z.object(flashcardSide_Config_Schema.shape),
+      hint: z.object(flashcardSide_Config_Schema.shape).optional(),
+    }),
+  })
+  .strict();
 export type Flashcard_Config = z.infer<typeof flashcard_Config_Schema>;
 
 const resolvedBlocks = z.array(contentBlockResolved_Schema);
@@ -126,7 +133,9 @@ export type Flashcard_PropsBase = Pick<Flashcard_Props, 'id' | 'slug' | 'type'> 
 };
 
 /** Strictly derive ordinary metadata patch validation from the Config schema. */
-export type Flashcard_Metadata_Overrides = DeepPartial<Pick<Flashcard_Config['parameters'], 'disabled' | 'tags' | 'disabilities'>>;
+export type Flashcard_Metadata_Overrides = DeepPartial<
+  Pick<Flashcard_Config['parameters'], 'disabled' | 'tags' | 'disabilities'>
+>;
 export const flashcard_Override_Metadata_Schema: z.ZodType<{ parameters?: Flashcard_Metadata_Overrides }> =
   z.deepPartial(
     deepStrict_Schema(

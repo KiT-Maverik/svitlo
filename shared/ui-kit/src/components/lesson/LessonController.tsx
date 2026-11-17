@@ -618,7 +618,14 @@ function LessonControllerRuntime({
                     </StepperContext.Provider>
                     <SectionContext.Provider value={section}>
                       <ContentLanguageContext.Provider value={language}>
-                        <MemoSection response={response} language={language} assessmentLoader={assessmentLoader} accessNeeds={accessNeeds} messages={messages} sceneRegistry={sceneRegistry} />
+                        <MemoSection
+                          response={response}
+                          language={language}
+                          assessmentLoader={assessmentLoader}
+                          accessNeeds={accessNeeds}
+                          messages={messages}
+                          sceneRegistry={sceneRegistry}
+                        />
                       </ContentLanguageContext.Provider>
                     </SectionContext.Provider>
                   </>

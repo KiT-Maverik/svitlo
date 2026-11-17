@@ -18,8 +18,12 @@ import { fileURLToPath } from 'node:url';
 import yaml from 'yaml';
 
 const require = createRequire(import.meta.url);
-const { yamlFlashcard_Schema, languageCode_Schema, flashcardRelationshipTypes, yamlFactoryByType } =
-  require('../../dist/build.js');
+const {
+  yamlFlashcard_Schema,
+  languageCode_Schema,
+  flashcardRelationshipTypes,
+  yamlFactoryByType,
+} = require('../../dist/build.js');
 const root = path.resolve(fileURLToPath(new URL('../../../..', import.meta.url)));
 const uuid = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/;
 const slug = /^[a-z][A-Za-z0-9]*$/;
@@ -34,8 +38,10 @@ function ordered(value, label, min = 0) {
   const keys = Object.keys(value.items);
   ensure(keys.length >= min, label + ' needs at least ' + min + ' item(s)');
   ensure(new Set(value.order).size === value.order.length, label + ' contains duplicate order keys');
-  ensure(keys.length === value.order.length && value.order.every(key => keys.includes(key)),
-    label + '.order must contain every item exactly once');
+  ensure(
+    keys.length === value.order.length && value.order.every(key => keys.includes(key)),
+    label + '.order must contain every item exactly once',
+  );
   for (const key of keys) ensure(slug.test(key), label + ' has an unsafe slug ' + key);
 }
 
@@ -50,7 +56,9 @@ function safeFilesystemPath(location) {
 function sourceDocument(source) {
   safeFilesystemPath(source);
   const parsed = yaml.parseDocument(fs.readFileSync(source, 'utf8'), {
-    strict: true, uniqueKeys: true, version: '1.2',
+    strict: true,
+    uniqueKeys: true,
+    version: '1.2',
   });
   ensure(parsed.errors.length === 0, parsed.errors.map(error => error.message).join('; '));
   const value = parsed.toJS({ maxAliasCount: 0 });
@@ -73,15 +81,21 @@ function materializeRelationships(cards, graph) {
   };
   for (const linkName of graph.order) {
     const link = graph.items[linkName];
-    ensure(isRecord(link) && Object.keys(link).every(key => ['relationshipId', 'type', 'source', 'target'].includes(key)),
-      'invalid canonical relationship ' + linkName);
-    ensure(typeof link.relationshipId === 'string' && link.relationshipId.length > 0,
-      'missing relationshipId at ' + linkName);
+    ensure(
+      isRecord(link) && Object.keys(link).every(key => ['relationshipId', 'type', 'source', 'target'].includes(key)),
+      'invalid canonical relationship ' + linkName,
+    );
+    ensure(
+      typeof link.relationshipId === 'string' && link.relationshipId.length > 0,
+      'missing relationshipId at ' + linkName,
+    );
     ensure(!relationshipIds.has(link.relationshipId), 'duplicate Flashcard relationship ID: ' + link.relationshipId);
     relationshipIds.add(link.relationshipId);
     ensure(flashcardRelationshipTypes.includes(link.type), 'invalid relation type at ' + linkName);
-    ensure(Object.hasOwn(cards, link.source) && Object.hasOwn(cards, link.target),
-      'relation references a missing card: ' + linkName);
+    ensure(
+      Object.hasOwn(cards, link.source) && Object.hasOwn(cards, link.target),
+      'relation references a missing card: ' + linkName,
+    );
     ensure(link.source !== link.target, 'self-linked Flashcard ' + linkName);
     const pair = symmetric.has(link.type)
       ? [link.source, link.target].sort().join(':')
@@ -91,8 +105,14 @@ function materializeRelationships(cards, graph) {
     keys.add(key);
     const position = symmetric.has(link.type) ? 'peer' : 'source';
     append(link.source, linkName, link.type, cards[link.target].id, position, link.relationshipId);
-    append(link.target, linkName, link.type, cards[link.source].id,
-      symmetric.has(link.type) ? 'peer' : 'target', link.relationshipId);
+    append(
+      link.target,
+      linkName,
+      link.type,
+      cards[link.source].id,
+      symmetric.has(link.type) ? 'peer' : 'target',
+      link.relationshipId,
+    );
   }
   return result;
 }
@@ -104,18 +124,21 @@ function materializeRelationships(cards, graph) {
  */
 export function renderFlashcardBank(bank) {
   ensure(isRecord(bank), 'bank is not a mapping');
-  ensure(Object.keys(bank).every(key =>
-    ['lessonId', 'documentLanguage', 'supportedLanguages', 'flashcards', 'relationships'].includes(key)),
-    'unknown top-level field');
+  ensure(
+    Object.keys(bank).every(key =>
+      ['lessonId', 'documentLanguage', 'supportedLanguages', 'flashcards', 'relationships'].includes(key),
+    ),
+    'unknown top-level field',
+  );
   ensure(uuid.test(bank.lessonId), 'invalid existing Lesson UUID');
   const sourceLanguage = languageCode_Schema.parse(bank.documentLanguage);
-  ensure(Array.isArray(bank.supportedLanguages) && bank.supportedLanguages.length > 0,
-    'supportedLanguages must not be empty');
+  ensure(
+    Array.isArray(bank.supportedLanguages) && bank.supportedLanguages.length > 0,
+    'supportedLanguages must not be empty',
+  );
   bank.supportedLanguages.forEach(language => languageCode_Schema.parse(language));
-  ensure(new Set(bank.supportedLanguages).size === bank.supportedLanguages.length,
-    'duplicate supported language');
-  ensure(bank.supportedLanguages.includes(sourceLanguage),
-    'documentLanguage must be a Lesson-supported language');
+  ensure(new Set(bank.supportedLanguages).size === bank.supportedLanguages.length, 'duplicate supported language');
+  ensure(bank.supportedLanguages.includes(sourceLanguage), 'documentLanguage must be a Lesson-supported language');
   ordered(bank.flashcards, 'flashcards', 1);
   const cards = {};
   const ids = new Set();
@@ -127,8 +150,10 @@ export function renderFlashcardBank(bank) {
     ensure(parsed.slug === name, 'Flashcard slug/map mismatch: ' + name);
     ensure(!ids.has(parsed.id), 'duplicate Flashcard UUID: ' + parsed.id);
     ids.add(parsed.id);
-    ensure(!parsed.parameters.relationships || parsed.parameters.relationships.order.length === 0,
-      'author relations once in the canonical bank relationships collection');
+    ensure(
+      !parsed.parameters.relationships || parsed.parameters.relationships.order.length === 0,
+      'author relations once in the canonical bank relationships collection',
+    );
     for (const sideName of ['front', 'back', 'hint']) {
       const side = parsed.content[sideName];
       if (!side) continue;
@@ -138,8 +163,12 @@ export function renderFlashcardBank(bank) {
         ensure(block.slug === key, name + '.' + sideName + ' slug/map mismatch');
         ensure(!nestedIds.has(block.id) && !ids.has(block.id), 'duplicate ContentBlock UUID ' + block.id);
         nestedIds.add(block.id);
-        ensure(supportedBlocks.has(block.type),
-          'block type ' + block.type + ' requires verified media/Question source integration (#645); refusing an invented fallback');
+        ensure(
+          supportedBlocks.has(block.type),
+          'block type ' +
+            block.type +
+            ' requires verified media/Question source integration (#645); refusing an invented fallback',
+        );
         factories.add(yamlFactoryByType[block.type]);
       }
     }
@@ -151,10 +180,12 @@ export function renderFlashcardBank(bank) {
   const edges = materializeRelationships(cards, bank.relationships ?? { items: {}, order: [] });
   const literal = value => JSON.stringify(value, null, 2);
   const blockExpression = block => yamlFactoryByType[block.type] + '(' + literal(block) + ')';
-  const sideExpression = (side) =>
+  const sideExpression = side =>
     'defineFlashcardSide({ items: {' +
-      side.order.map(name => JSON.stringify(name) + ': ' + blockExpression(side.items[name])).join(', ') +
-      '}, order: ' + literal(side.order) + ' })';
+    side.order.map(name => JSON.stringify(name) + ': ' + blockExpression(side.items[name])).join(', ') +
+    '}, order: ' +
+    literal(side.order) +
+    ' })';
 
   const declarations = bank.flashcards.order.map((name, index) => {
     const card = cards[name];
@@ -162,21 +193,33 @@ export function renderFlashcardBank(bank) {
     metadata.parameters.disabilities ??= [];
     const relations = edges.get(name);
     if (relations.order.length) metadata.parameters.relationships = relations;
-    const sides = ['front', 'back', 'hint'].filter(key => content[key]).map(key =>
-      key + ': ' + sideExpression(content[key])).join(',\n    ');
-    return 'const flashcard_' + index + ' = defineFlashcard({\n' +
-      '  ...' + literal(metadata) + ',\n' +
-      '  content: {\n    ' + sides + '\n  },\n});';
+    const sides = ['front', 'back', 'hint']
+      .filter(key => content[key])
+      .map(key => key + ': ' + sideExpression(content[key]))
+      .join(',\n    ');
+    return (
+      'const flashcard_' +
+      index +
+      ' = defineFlashcard({\n' +
+      '  ...' +
+      literal(metadata) +
+      ',\n' +
+      '  content: {\n    ' +
+      sides +
+      '\n  },\n});'
+    );
   });
   return [
     '// Generated source-language scaffold. Do not mistake this for editorial approval or final translation.',
     '// Lesson UUID: ' + bank.lessonId + '; documentLanguage: ' + sourceLanguage,
     '// Planned Lesson languages: ' + bank.supportedLanguages.join(', '),
-    "import { " + [...factories].sort().join(', ') + " } from '@svitlo/engine/build';",
+    'import { ' + [...factories].sort().join(', ') + " } from '@svitlo/engine/build';",
     '',
     ...declarations,
     '',
-    'export const flashcards = { items: { ' + bank.flashcards.order.map((name, index) => JSON.stringify(name) + ': flashcard_' + index).join(', ') + ' } };',
+    'export const flashcards = { items: { ' +
+      bank.flashcards.order.map((name, index) => JSON.stringify(name) + ': flashcard_' + index).join(', ') +
+      ' } };',
     '',
   ].join('\n');
 }
@@ -186,8 +229,10 @@ export function runOne(packageRoot, lessonId, mode, repositoryRoot = root) {
   ensure(uuid.test(lessonId), 'invalid Lesson UUID');
   const textbook = path.resolve(packageRoot);
   const contentRoot = path.resolve(repositoryRoot, 'content') + path.sep;
-  ensure(textbook.startsWith(contentRoot) && fs.existsSync(path.join(textbook, 'package.json')),
-    'not a textbook workspace');
+  ensure(
+    textbook.startsWith(contentRoot) && fs.existsSync(path.join(textbook, 'package.json')),
+    'not a textbook workspace',
+  );
   const lesson = path.join(textbook, 'data', 'lessons', lessonId.at(-1), lessonId);
   const source = path.join(lesson, 'flashcards.yaml');
   const target = path.join(lesson, 'flashcards', 'index.ts');
@@ -199,8 +244,10 @@ export function runOne(packageRoot, lessonId, mode, repositoryRoot = root) {
   const code = renderFlashcardBank(bank);
   if (mode === '--preflight') return { created: false, bytes: code.length };
   if (fs.existsSync(target)) {
-    ensure(fs.readFileSync(target, 'utf8') === code,
-      'existing TypeScript differs from flashcards.yaml; refusing overwrite/deletion');
+    ensure(
+      fs.readFileSync(target, 'utf8') === code,
+      'existing TypeScript differs from flashcards.yaml; refusing overwrite/deletion',
+    );
     return { created: false, bytes: code.length };
   }
   if (mode === '--check') throw new Error('missing Flashcard TS scaffold: ' + target);

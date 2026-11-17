@@ -18,7 +18,13 @@ const hash = 'a'.repeat(64);
 const manifest: AssessmentResourceManifest = {
   lessonId,
   entries: {
-    [firstId]: { lessonId, kind: 'question', questionType: 'selectOneAnswer', languages: ['en', 'uk'], contentHash: hash },
+    [firstId]: {
+      lessonId,
+      kind: 'question',
+      questionType: 'selectOneAnswer',
+      languages: ['en', 'uk'],
+      contentHash: hash,
+    },
     [secondId]: { lessonId, kind: 'question', questionType: 'answerWithText', languages: ['en'], contentHash: hash },
     [cardId]: { lessonId, kind: 'flashcard', languages: ['en'], contentHash: hash },
   },
@@ -44,9 +50,19 @@ test('reference validation requires explicit selected, correctly owned, localize
   assert.throws(() => validateAssessmentReferences(manifest, { ...valid, ids: [cardId] }), /wrong resource type/);
   assert.throws(() => validateAssessmentReferences(manifest, { ...valid, ids: [secondId] }), /unavailable in uk/);
   assert.throws(() => validateAssessmentReferences(manifest, { ...valid, lessonId: secondId }), /different Lesson/);
-  assert.throws(() => validateAssessmentReferences(manifest, { ...valid, ids: ['1e125b21-9af0-4000-8000-000000000005'] }), /Missing assessment/);
   assert.throws(
-    () => validateAssessmentReferences({ ...manifest, entries: { ...manifest.entries, [firstId]: { ...manifest.entries[firstId], lessonId: sectionId } } }, valid),
+    () => validateAssessmentReferences(manifest, { ...valid, ids: ['1e125b21-9af0-4000-8000-000000000005'] }),
+    /Missing assessment/,
+  );
+  assert.throws(
+    () =>
+      validateAssessmentReferences(
+        {
+          ...manifest,
+          entries: { ...manifest.entries, [firstId]: { ...manifest.entries[firstId], lessonId: sectionId } },
+        },
+        valid,
+      ),
     /different Lesson/,
   );
 });
@@ -65,9 +81,27 @@ test('Quiz selects only explicit UUID candidates with stable sampling and never 
 });
 
 test('Flashcard selection keeps candidate order and excludes incompatible cards before body loading', () => {
-  const audio = { lessonId, kind: 'flashcard' as const, languages: ['en' as const], contentHash: hash, disabilities: ['deafness' as const] };
-  const accessible = { lessonId, kind: 'flashcard' as const, languages: ['en' as const], contentHash: hash, disabilities: [] };
-  const image = { lessonId, kind: 'flashcard' as const, languages: ['en' as const], contentHash: hash, disabilities: ['blindness' as const] };
+  const audio = {
+    lessonId,
+    kind: 'flashcard' as const,
+    languages: ['en' as const],
+    contentHash: hash,
+    disabilities: ['deafness' as const],
+  };
+  const accessible = {
+    lessonId,
+    kind: 'flashcard' as const,
+    languages: ['en' as const],
+    contentHash: hash,
+    disabilities: [],
+  };
+  const image = {
+    lessonId,
+    kind: 'flashcard' as const,
+    languages: ['en' as const],
+    contentHash: hash,
+    disabilities: ['blindness' as const],
+  };
   const ids = [firstId, secondId, cardId];
   const entries = [audio, accessible, image];
   assert.deepEqual(selectAccessibleFlashcardIds(entries, ids, ['deafness']), [secondId, cardId]);

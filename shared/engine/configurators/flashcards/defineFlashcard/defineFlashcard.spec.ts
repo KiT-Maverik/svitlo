@@ -126,10 +126,7 @@ describe('Configurators', () => {
           parameters: { ...source.parameters, disabilities: ['deafness'] },
         });
         assert.deepEqual(card.build.props({ languages: ['en'] }).base.parameters.disabilities, ['deafness']);
-        const patch = card.build.overrides(
-          { parameters: { disabilities: ['blindness'] } },
-          { languages: ['en'] },
-        );
+        const patch = card.build.overrides({ parameters: { disabilities: ['blindness'] } }, { languages: ['en'] });
         assert.deepEqual(patch.base.parameters?.disabilities, ['blindness']);
         assert.deepEqual(card.build.props({ languages: ['en'] }).base.parameters.disabilities, ['deafness']);
         assert.equal(

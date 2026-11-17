@@ -16,10 +16,10 @@ export const assessmentResourceEntry_Schema = z.strictObject({
   kind: z.enum(['question', 'flashcard']),
   questionType: z.enum(questionTypes).optional(),
   /** Eligibility metadata only; card content stays in the independent resource. */
-  disabilities: z.array(disability_Schema).refine(
-    values => new Set(values).size === values.length,
-    'Duplicate Flashcard disability restriction',
-  ).optional(),
+  disabilities: z
+    .array(disability_Schema)
+    .refine(values => new Set(values).size === values.length, 'Duplicate Flashcard disability restriction')
+    .optional(),
   languages: z.array(languageCode_Schema).nonempty(),
   /** Only the published locale fragments; invariant-only entries need no locale file. */
   localeFiles: z.array(languageCode_Schema).optional(),

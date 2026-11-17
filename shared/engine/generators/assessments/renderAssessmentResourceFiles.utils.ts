@@ -1,6 +1,10 @@
 import { createHash } from 'node:crypto';
 
-import { assessmentResourceManifest_Schema, type AssessmentResourceEntry, type AssessmentResourceKind } from '../../assemblers/assessmentResources/assessmentResources';
+import {
+  assessmentResourceManifest_Schema,
+  type AssessmentResourceEntry,
+  type AssessmentResourceKind,
+} from '../../assemblers/assessmentResources/assessmentResources';
 import { questionTypes } from '../../configurators/questions/question.constants';
 import { languageCode_Schema, type LanguageCode } from '../../schemas/languages.schemas';
 import { resolveEntityPath } from '../../utils/entityPath/resolveEntityPath.utils';
@@ -34,8 +38,7 @@ function canonical(value: unknown, at: string, ancestors = new Set<object>()): s
   if (Object.getOwnPropertySymbols(value).length > 0) throw new Error('Symbol-keyed Assessment Props at ' + at);
   if (!Array.isArray(value)) {
     const prototype: unknown = Object.getPrototypeOf(value);
-    if (prototype !== Object.prototype && prototype !== null)
-      throw new Error('Non-plain Assessment Props at ' + at);
+    if (prototype !== Object.prototype && prototype !== null) throw new Error('Non-plain Assessment Props at ' + at);
   }
   ancestors.add(value);
   try {
@@ -57,7 +60,9 @@ function canonical(value: unknown, at: string, ancestors = new Set<object>()): s
         .sort(compare)
         .map(key => {
           if (forbiddenKeys.has(key)) throw new Error('Unsafe Assessment Props key at ' + at + '/' + key);
-          return JSON.stringify(key) + ':' + canonical((value as Record<string, unknown>)[key], at + '/' + key, ancestors);
+          return (
+            JSON.stringify(key) + ':' + canonical((value as Record<string, unknown>)[key], at + '/' + key, ancestors)
+          );
         })
         .join(',') +
       '}'
@@ -74,13 +79,15 @@ function canonical(value: unknown, at: string, ancestors = new Set<object>()): s
  *
  * Paths are relative to the publisher's data/lessons root.
  */
-export function renderAssessmentResourceFiles(entries: readonly AssessmentPublicationEntry[]): AssessmentPublicationFiles {
+export function renderAssessmentResourceFiles(
+  entries: readonly AssessmentPublicationEntry[],
+): AssessmentPublicationFiles {
   const files: AssessmentPublicationFiles = new Map();
   const owners = new Map<string, string>();
   const manifests = new Map<string, Record<string, AssessmentResourceEntry>>();
 
-  for (const entry of [...entries].sort((a, b) =>
-    compare(a.lessonId, b.lessonId) || compare(a.publication.base?.id ?? '', b.publication.base?.id ?? ''),
+  for (const entry of [...entries].sort(
+    (a, b) => compare(a.lessonId, b.lessonId) || compare(a.publication.base?.id ?? '', b.publication.base?.id ?? ''),
   )) {
     const { source, lessonId, kind, publication } = entry;
     const lessonPath = resolveEntityPath(lessonId);
@@ -95,8 +102,7 @@ export function renderAssessmentResourceFiles(entries: readonly AssessmentPublic
     const type = publication.base.type;
     if (kind === 'question' && !questionTypes.some(candidate => candidate === type))
       throw new Error('Invalid Question kind at ' + source + ': ' + type);
-    if (kind === 'flashcard' && type !== 'flashcard')
-      throw new Error('Expected Flashcard Props at ' + source);
+    if (kind === 'flashcard' && type !== 'flashcard') throw new Error('Expected Flashcard Props at ' + source);
 
     const languages = [...entry.languages];
     for (const language of languages) languageCode_Schema.parse(language);
@@ -120,15 +126,18 @@ export function renderAssessmentResourceFiles(entries: readonly AssessmentPublic
       files.set(prefix + '/' + language + '.json', JSON.stringify(locale[language], null, 2) + '\n');
     }
 
-    const hash = createHash('sha256').update(canonical({ base: JSON.parse(baseString), locale }, source)).digest('hex');
+    const hash = createHash('sha256')
+      .update(canonical({ base: JSON.parse(baseString), locale }, source))
+      .digest('hex');
     const item: AssessmentResourceEntry = {
       lessonId,
       kind,
       ...(kind === 'question' ? { questionType: type as AssessmentResourceEntry['questionType'] } : {}),
       ...(kind === 'flashcard'
         ? {
-            disabilities: (publication.base as { parameters?: { disabilities?: AssessmentResourceEntry['disabilities'] } })
-              .parameters?.disabilities ?? [],
+            disabilities:
+              (publication.base as { parameters?: { disabilities?: AssessmentResourceEntry['disabilities'] } })
+                .parameters?.disabilities ?? [],
           }
         : {}),
       languages,
@@ -145,7 +154,6 @@ export function renderAssessmentResourceFiles(entries: readonly AssessmentPublic
   return files;
 }
 
-
 /**
  * Compose separately generated Question and Flashcard batches without touching
  * their source files. A bank stage may emit only its own kind; the final static
@@ -161,7 +169,8 @@ export function mergeAssessmentResourceFiles(
   const merged = new Map<string, string>();
   const owners = new Map<string, Record<string, AssessmentResourceEntry>>();
   const globallyOwned = new Map<string, string>();
-  const assets: { filename: string; lessonId: string; itemId: string; kind: AssessmentResourceKind; locale: string }[] = [];
+  const assets: { filename: string; lessonId: string; itemId: string; kind: AssessmentResourceKind; locale: string }[] =
+    [];
 
   for (const batch of batches) {
     for (const [filename, body] of batch) {
@@ -187,12 +196,13 @@ export function mergeAssessmentResourceFiles(
         continue;
       }
       const assetMatch =
-        /^([a-f0-9])\/([a-f0-9-]{36})\/(questions|flashcards)\/([a-f0-9-]{36})\/(base|[a-z]{2})\.json$/.exec(
-          filename,
-        );
+        /^([a-f0-9])\/([a-f0-9-]{36})\/(questions|flashcards)\/([a-f0-9-]{36})\/(base|[a-z]{2})\.json$/.exec(filename);
       if (!assetMatch) throw new Error('Invalid Assessment resource path: ' + filename);
       const [, bucket, lessonId, collection, itemId, locale] = assetMatch;
-      if (resolveEntityPath(lessonId) !== bucket + '/' + lessonId || resolveEntityPath(itemId).split('/')[1] !== itemId) {
+      if (
+        resolveEntityPath(lessonId) !== bucket + '/' + lessonId ||
+        resolveEntityPath(itemId).split('/')[1] !== itemId
+      ) {
         throw new Error('Invalid Assessment UUID path: ' + filename);
       }
       if (merged.has(filename)) throw new Error('Duplicate Assessment resource file: ' + filename);

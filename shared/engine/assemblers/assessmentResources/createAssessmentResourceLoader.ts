@@ -1,4 +1,7 @@
-import { flashcard_Props_Schema, type Flashcard_Props } from '../../configurators/flashcards/defineFlashcard/defineFlashcard.schemas';
+import {
+  flashcard_Props_Schema,
+  type Flashcard_Props,
+} from '../../configurators/flashcards/defineFlashcard/defineFlashcard.schemas';
 import { selectOneAnswer_Props_Schema } from '../../configurators/questions/defineSelectOneAnswer/defineSelectOneAnswer.schemas';
 import { selectMultipleAnswers_Props_Schema } from '../../configurators/questions/defineSelectMultipleAnswers/defineSelectMultipleAnswers.schemas';
 import { matchBlocks_Props_Schema } from '../../configurators/questions/defineMatchBlocks/defineMatchBlocks.schemas';
@@ -120,7 +123,8 @@ export function createAssessmentResourceLoader(read: ReadAssessmentFiles): Asses
       const cacheKey = kind + ':' + lessonId + ':' + id + ':' + language;
       if (items.has(cacheKey)) continue;
       paths.add(assessmentResourcePath(lessonId, kind, id));
-      if (selectedEntries[index].localeFiles?.includes(language)) paths.add(assessmentResourcePath(lessonId, kind, id, language));
+      if (selectedEntries[index].localeFiles?.includes(language))
+        paths.add(assessmentResourcePath(lessonId, kind, id, language));
     }
     const resources = paths.size ? await readFiles([...paths], signal) : new Map<string, unknown>();
     if (signal?.aborted) throw new Error('Assessment resource load aborted');

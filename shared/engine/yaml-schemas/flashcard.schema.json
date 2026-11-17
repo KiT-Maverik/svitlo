@@ -89,29 +89,11 @@
                       },
                       "color": {
                         "type": "string",
-                        "enum": [
-                          "default",
-                          "primary",
-                          "secondary",
-                          "error",
-                          "info",
-                          "success",
-                          "warning"
-                        ]
+                        "enum": ["default", "primary", "secondary", "error", "info", "success", "warning"]
                       },
                       "icon": {
                         "type": "string",
-                        "enum": [
-                          "list",
-                          "warning",
-                          "acronym",
-                          "info",
-                          "star",
-                          "bookmark",
-                          "lightbulb",
-                          "code",
-                          "check"
-                        ]
+                        "enum": ["list", "warning", "acronym", "info", "star", "bookmark", "lightbulb", "code", "check"]
                       }
                     },
                     "required": ["type", "value", "color"],
@@ -169,12 +151,7 @@
                     "enum": ["peer", "source", "target"]
                   }
                 },
-                "required": [
-                  "relationshipId",
-                  "type",
-                  "relatedFlashcardId",
-                  "position"
-                ],
+                "required": ["relationshipId", "type", "relatedFlashcardId", "position"],
                 "additionalProperties": false
               }
             },
@@ -487,13 +464,7 @@
                               "additionalProperties": false
                             }
                           },
-                          "required": [
-                            "id",
-                            "slug",
-                            "type",
-                            "question",
-                            "answer"
-                          ],
+                          "required": ["id", "slug", "type", "question", "answer"],
                           "additionalProperties": false
                         }
                       },
@@ -508,14 +479,7 @@
                     "additionalProperties": false
                   }
                 },
-                "required": [
-                  "id",
-                  "slug",
-                  "type",
-                  "params",
-                  "locale",
-                  "content"
-                ],
+                "required": ["id", "slug", "type", "params", "locale", "content"],
                 "additionalProperties": false
               },
               {
@@ -953,14 +917,7 @@
     },
     "__schema17": {
       "type": "string",
-      "enum": [
-        "highlight",
-        "bold",
-        "cursive",
-        "underscore",
-        "crossed",
-        "variable"
-      ]
+      "enum": ["highlight", "bold", "cursive", "underscore", "crossed", "variable"]
     },
     "__schema18": {
       "type": "string"

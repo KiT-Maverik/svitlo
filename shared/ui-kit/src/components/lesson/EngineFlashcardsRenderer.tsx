@@ -48,7 +48,8 @@ export function EngineFlashcardsRenderer({
     if (!assessmentLoader) {
       setLoad({ identity, status: 'error', cards: [] });
     } else {
-      assessmentLoader.loadFlashcards({ lessonId, language, ids, accessNeeds, signal: controller.signal })
+      assessmentLoader
+        .loadFlashcards({ lessonId, language, ids, accessNeeds, signal: controller.signal })
         .then(cards => {
           let previous = -1;
           for (const card of cards) {
@@ -73,7 +74,8 @@ export function EngineFlashcardsRenderer({
   }, [assessmentLoader, lessonId, language, identity, attempt]);
 
   const current = load.identity === identity ? load : { status: 'loading' as const, cards: [] };
-  if (current.status === 'loading') return <Typography role="status">{messages.learningLayout.preparingLesson}</Typography>;
+  if (current.status === 'loading')
+    return <Typography role="status">{messages.learningLayout.preparingLesson}</Typography>;
   if (current.status === 'error')
     return (
       <Stack spacing={2}>
@@ -81,7 +83,8 @@ export function EngineFlashcardsRenderer({
         <Button onClick={() => setAttempt(value => value + 1)}>{messages.learningLayout.actions.retry}</Button>
       </Stack>
     );
-  if (!current.cards.length) return <Typography role="alert">{messages.learningLayout.preparingLessonError}</Typography>;
+  if (!current.cards.length)
+    return <Typography role="alert">{messages.learningLayout.preparingLessonError}</Typography>;
   return (
     <ResolvedFlashcards
       key={identity}
@@ -118,8 +121,12 @@ function ResolvedFlashcards({
   );
   return (
     <Stack spacing={3}>
-      {content.length > 0 && <EngineContentBlockRenderer blocks={content} messages={messages} sceneRegistry={sceneRegistry} />}
-      <Typography role="status">{index + 1} / {cards.length}</Typography>
+      {content.length > 0 && (
+        <EngineContentBlockRenderer blocks={content} messages={messages} sceneRegistry={sceneRegistry} />
+      )}
+      <Typography role="status">
+        {index + 1} / {cards.length}
+      </Typography>
       <Flashcard
         key={card.id}
         messages={messages.flashcard}
@@ -128,11 +135,17 @@ function ResolvedFlashcards({
         flags={card.parameters.flags}
         revealed={revealed}
         onReveal={() => setRevealed(true)}
-        onRate={() => { if (index < cards.length - 1) select(index + 1); }}
+        onRate={() => {
+          if (index < cards.length - 1) select(index + 1);
+        }}
       />
-      <Stack direction="row" sx={{ justifyContent: "space-between" }}>
-        <Button disabled={index === 0} onClick={() => select(index - 1)}>{messages.learningLayout.actions.previous}</Button>
-        <Button disabled={index >= cards.length - 1} onClick={() => select(index + 1)}>{messages.learningLayout.actions.next}</Button>
+      <Stack direction="row" sx={{ justifyContent: 'space-between' }}>
+        <Button disabled={index === 0} onClick={() => select(index - 1)}>
+          {messages.learningLayout.actions.previous}
+        </Button>
+        <Button disabled={index >= cards.length - 1} onClick={() => select(index + 1)}>
+          {messages.learningLayout.actions.next}
+        </Button>
       </Stack>
     </Stack>
   );
