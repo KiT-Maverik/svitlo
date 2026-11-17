@@ -14,6 +14,7 @@ import {
   assessmentResourceManifest_Schema,
   assessmentResourcePath,
   validateAssessmentReferences,
+  selectAccessibleFlashcardIds,
   type AssessmentResourceEntry,
   type AssessmentResourceKind,
   type AssessmentResourceLoader,
@@ -102,27 +103,30 @@ export function createAssessmentResourceLoader(read: ReadAssessmentFiles): Asses
     ids: readonly string[],
     kind: AssessmentResourceKind,
     signal?: AbortSignal,
+    accessNeeds: Parameters<AssessmentResourceLoader['loadFlashcards']>[0]['accessNeeds'] = [],
   ): Promise<readonly (Question_Props | Flashcard_Props)[]> {
     const manifest = await getManifest(lessonId, signal);
     const entries = validateAssessmentReferences(manifest, { lessonId, kind, ids, language });
+    const selectedIds = kind === 'flashcard' ? selectAccessibleFlashcardIds(entries, ids, accessNeeds ?? []) : [...ids];
+    const selectedEntries = selectedIds.map(id => entries[ids.indexOf(id)]);
     const paths = new Set<string>();
-    for (const [index, id] of ids.entries()) {
+    for (const [index, id] of selectedIds.entries()) {
       const cacheKey = kind + ':' + lessonId + ':' + id + ':' + language;
       if (items.has(cacheKey)) continue;
       paths.add(assessmentResourcePath(lessonId, kind, id));
-      if (entries[index].localeFiles?.includes(language)) paths.add(assessmentResourcePath(lessonId, kind, id, language));
+      if (selectedEntries[index].localeFiles?.includes(language)) paths.add(assessmentResourcePath(lessonId, kind, id, language));
     }
     const resources = paths.size ? await readFiles([...paths], signal) : new Map<string, unknown>();
     if (signal?.aborted) throw new Error('Assessment resource load aborted');
-    const response = ids.map((id, index) => {
+    const response = selectedIds.map((id, index) => {
       const cacheKey = kind + ':' + lessonId + ':' + id + ':' + language;
       const existing = items.get(cacheKey);
       if (existing) return structuredClone(existing);
       const base = resources.get(assessmentResourcePath(lessonId, kind, id));
-      const patch = entries[index].localeFiles?.includes(language)
+      const patch = selectedEntries[index].localeFiles?.includes(language)
         ? resources.get(assessmentResourcePath(lessonId, kind, id, language))
         : undefined;
-      const resolved = parseResolved(kind, id, entries[index], merge(base, patch));
+      const resolved = parseResolved(kind, id, selectedEntries[index], merge(base, patch));
       items.set(cacheKey, resolved);
       return structuredClone(resolved);
     });
@@ -132,7 +136,7 @@ export function createAssessmentResourceLoader(read: ReadAssessmentFiles): Asses
   return {
     loadQuestions: async ({ lessonId, language, ids, signal }) =>
       (await load(lessonId, language, ids, 'question', signal)) as Question_Props[],
-    loadFlashcards: async ({ lessonId, language, ids, signal }) =>
-      (await load(lessonId, language, ids, 'flashcard', signal)) as Flashcard_Props[],
+    loadFlashcards: async ({ lessonId, language, ids, signal, accessNeeds }) =>
+      (await load(lessonId, language, ids, 'flashcard', signal, accessNeeds)) as Flashcard_Props[],
   };
 }
