@@ -7,7 +7,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import ts from 'typescript';
 
-function property(node, key) {
+export function property(node, key) {
   if (!node || !ts.isObjectLiteralExpression(node)) return undefined;
   const entry = node.properties.find(
     item =>
@@ -18,17 +18,17 @@ function property(node, key) {
   return entry?.initializer;
 }
 
-function literal(node) {
+export function literal(node) {
   return node && (ts.isStringLiteral(node) || ts.isNoSubstitutionTemplateLiteral(node)) ? node.text : undefined;
 }
 
-function stringArray(node) {
+export function stringArray(node) {
   if (!node || !ts.isArrayLiteralExpression(node)) return undefined;
   const values = node.elements.map(literal);
   return values.every(value => value !== undefined) ? values : undefined;
 }
 
-function parse(file) {
+export function parse(file) {
   if (fs.lstatSync(file).isSymbolicLink()) throw new Error('Refusing symlink: ' + file);
   const source = ts.createSourceFile(file, fs.readFileSync(file, 'utf8'), ts.ScriptTarget.Latest, true);
   if (source.parseDiagnostics.length) throw new Error('Invalid TypeScript: ' + file);
@@ -60,7 +60,7 @@ function questionSelection(file) {
   return matches[0];
 }
 
-function registered(sectionIndex, sectionSlug) {
+export function registered(sectionIndex, sectionSlug) {
   const source = parse(sectionIndex);
   const imported = source.statements.some(
     statement => ts.isImportDeclaration(statement) && literal(statement.moduleSpecifier) === './' + sectionSlug,
