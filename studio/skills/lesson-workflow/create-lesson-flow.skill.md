@@ -26,7 +26,7 @@ Stages 1–5 progressively author exactly one temporary `lesson.yaml` with root/
 
 **Persona:** [Methodologist](../../personas/methodist.persona.md). **Skill:** [Create Lesson Brief](./create-lesson-brief.skill.md). Verify real Skill UUID/source links, learner audience/entry knowledge, prerequisites, aims, conceptual scope, source references, misconceptions, accuracy, desired depth, supported locales/accessibility and `assessmentPlan` including whether and why zero/one/multiple Quiz Sections are needed and required cognitive `AssessmentMethodKey` values.
 
-For a **Course-originated** Lesson, first inspect its *already-authored* methodology (Lesson YAML and proven Course handoff). Evaluate **completeness and adequacy**; reuse if sufficient, repair real gaps in the same `production.methodology`, and record the updated SHA. For a **standalone** Lesson with no existing Methodology, author it substantively from scratch; if it exists, review/improve it just as for Course work. Do not require a storyboard or a literal `Methodologist status: Approved` frontmatter. Missing actual pedagogical substance or unverified Skills block stage; no extra progress property belongs in YAML. **Output:** complete pedagogical method and stage evidence in Lesson PR.
+For a **Course-originated** Lesson, first inspect its _already-authored_ methodology (Lesson YAML and proven Course handoff). Evaluate **completeness and adequacy**; reuse if sufficient, repair real gaps in the same `production.methodology`, and record the updated SHA. For a **standalone** Lesson with no existing Methodology, author it substantively from scratch; if it exists, review/improve it just as for Course work. Do not require a storyboard or a literal `Methodologist status: Approved` frontmatter. Missing actual pedagogical substance or unverified Skills block stage; no extra progress property belongs in YAML. **Output:** complete pedagogical method and stage evidence in Lesson PR.
 
 ### 2. Content Creation
 
@@ -38,7 +38,7 @@ For a **Course-originated** Lesson, first inspect its *already-authored* methodo
 
 ### 4. Experience Review
 
-**Persona:** independent [Learning Experience Expert](../../personas/learning-experience-expert.persona.md). **Skill:** [Review Lesson Experience](./review-lesson-experience.skill.md). Examine latest full `lesson.yaml` *and complete production specifications* for pedagogically useful interaction, pacing/cognitive load, feedback, keyboard/touch/screen reader/semantic RTL/reduced motion, captions/nonvisual alternatives, offline and low-end devices. Identify pointless interactive theatre or infeasible Scene/Quest features. A planned interaction does not prove a functioning renderer. Record node-specific findings and exact reviewed SHA in Lesson PR. Author makes corrections; refresh affected review evidence. **Output:** independently verified experience verdict; blocked if requirements are vague, inaccessible or technologically unsupported with no suitable alternative.
+**Persona:** independent [Learning Experience Expert](../../personas/learning-experience-expert.persona.md). **Skill:** [Review Lesson Experience](./review-lesson-experience.skill.md). Examine latest full `lesson.yaml` _and complete production specifications_ for pedagogically useful interaction, pacing/cognitive load, feedback, keyboard/touch/screen reader/semantic RTL/reduced motion, captions/nonvisual alternatives, offline and low-end devices. Identify pointless interactive theatre or infeasible Scene/Quest features. A planned interaction does not prove a functioning renderer. Record node-specific findings and exact reviewed SHA in Lesson PR. Author makes corrections; refresh affected review evidence. **Output:** independently verified experience verdict; blocked if requirements are vague, inaccessible or technologically unsupported with no suitable alternative.
 
 ### 5. Methodology Compliance
 
@@ -58,7 +58,7 @@ Run `node shared/engine/scripts/finalizeLesson/finalizeLesson.mjs preflight --so
 
 ### 8. Translation Review
 
-**Persona:** an independent Technical Translator reviewer. **Skill:** [Review Translation](../translation-workflow/review-translation.skill.md). Review correct **Lesson-family Code-derived** per-locale Markdown and manifest, pinned source SHA, exact entity coverage, terminology, fidelity, scientific meaning, RTL, accessibility and captions. A Skills Markdown artifact does *not* review a Lesson. Missing/stale/incomplete artifact blocks affected locale; owner controls reviewer start and chosen source PR/SHA. Remove tracked temporary `.agent-ci-artifacts` before merge. **Output:** independent per-locale verdict/sign-off tied to source revisions.
+**Persona:** an independent Technical Translator reviewer. **Skill:** [Review Translation](../translation-workflow/review-translation.skill.md). Review correct **Lesson-family Code-derived** per-locale Markdown and manifest, pinned source SHA, exact entity coverage, terminology, fidelity, scientific meaning, RTL, accessibility and captions. A Skills Markdown artifact does _not_ review a Lesson. Missing/stale/incomplete artifact blocks affected locale; owner controls reviewer start and chosen source PR/SHA. Remove tracked temporary `.agent-ci-artifacts` before merge. **Output:** independent per-locale verdict/sign-off tied to source revisions.
 
 ## Independent Questions and Flashcards
 
@@ -68,9 +68,11 @@ Record **separate** Questions/Flashcards states in the Lesson PR (`Not Started` 
 
 Place a stable section in each Lesson PR (preserving existing unrelated body), for example:
 
-~~~md
+```md
 <!-- svitlo-create-lesson-flow:v1 -->
+
 ## Lesson identity
+
 - Lesson UUID / textbook / slug: <verified values>
 - Parent Course PR, Course UUID and slot: <verified | none>
 - Source path: content/<book>/data/lessons/<bucket>/<uuid>/lesson.yaml
@@ -78,6 +80,7 @@ Place a stable section in each Lesson PR (preserving existing unrelated body), f
 - Current stage / active child PR / next authorized action: <values>
 
 ## Lesson stages
+
 - [ ] 1. Methodology
 - [ ] 2. Content Creation
 - [ ] 3. Content Review
@@ -88,10 +91,12 @@ Place a stable section in each Lesson PR (preserving existing unrelated body), f
 - [ ] 8. Translation Review (record per locale)
 
 ## Independent banks
+
 - Questions: <state; PR; SHA; blocker or N/A reason>
 - Flashcards: <state; PR; SHA; blocker or N/A reason>
 
 ## Final QA / Development Review — NOT a ninth stage
+
 - [ ] Verified YAML source materialization; no stale temporary YAML
 - [ ] Questions completed before Flashcards (or verified Questions N/A); bank acceptance/PR SHAs reconciled
 - [ ] Independent Content/Experience/Compliance evidence current
@@ -102,9 +107,10 @@ Place a stable section in each Lesson PR (preserving existing unrelated body), f
 - [ ] Independent QA/Development Review and owner acceptance
 
 ## Evidence, blockers, next action
+
 - <stage; source SHA; author/reviewer; verdict; evidence URL; unresolved fix; next actor>
 - <locale; entity; source SHA; translator/reviewer PR; verdict>
-~~~
+```
 
 A Course-originated Lesson PR must also carry the `svitlo-course-lesson:v1` link marker and fields exactly as prescribed by #639. Before updating, refetch PR and reconcile independent agents' concurrent changes; GitHub body PATCH is not an atomic compare-and-swap. Never drop another review or status region. Completion is based on actual files, independent reviews and SHAs, not the checkbox itself. Material changes invalidate affected prior evidence. Existing `review.ts` and Engine `LessonReviewStage` are a **separate typed Props-digest review register**, not an eight-stage operational status machine. Reconcile actual consumers before editing their contract, and never fabricate an accepted review PR or digest.
 

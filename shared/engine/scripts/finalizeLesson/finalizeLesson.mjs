@@ -50,13 +50,15 @@ function sourceLocation(source, repo) {
   const filename = path.resolve(source);
   noSymlinks(filename);
   const relative = path.relative(path.resolve(repo), filename).split(path.sep).join('/');
-  const match = /^content\/((?:languages\/)?[a-z][a-z-]*)\/data\/lessons\/([0-9a-f])\/([0-9a-f-]{36})\/lesson\.yaml$/.exec(relative);
+  const match =
+    /^content\/((?:languages\/)?[a-z][a-z-]*)\/data\/lessons\/([0-9a-f])\/([0-9a-f-]{36})\/lesson\.yaml$/.exec(
+      relative,
+    );
   if (!match) fail('$', 'finalization requires canonical content/<book>/data/lessons/<bucket>/<uuid>/lesson.yaml');
   if (!uuid.test(match[3]) || match[3].at(-1) !== match[2])
     fail('config.id', 'canonical source path must use the full immutable Lesson UUID and its last-hex bucket');
   const bookRoot = path.join(repo, 'content', match[1]);
-  if (!fs.existsSync(path.join(bookRoot, 'package.json')))
-    fail('$', 'not a textbook workspace: ' + match[1]);
+  if (!fs.existsSync(path.join(bookRoot, 'package.json'))) fail('$', 'not a textbook workspace: ' + match[1]);
   return { filename, directory: path.dirname(filename), lessonId: match[3], bookRoot };
 }
 
@@ -78,10 +80,18 @@ function parseSource(filename) {
   }
 }
 
-function validateSchema(document, repo, filename = path.join(repo, 'shared/engine/yaml-schemas/lesson.scaffold.schema.json')) {
+function validateSchema(
+  document,
+  repo,
+  filename = path.join(repo, 'shared/engine/yaml-schemas/lesson.scaffold.schema.json'),
+) {
   const schema = JSON.parse(fs.readFileSync(filename, 'utf8'));
   const ajv = new Ajv2020({ allErrors: true, strict: false });
-  ajv.addFormat('uuid', { type: 'string', validate: v => uuid.test(v) || v === '00000000-0000-0000-0000-000000000000' || v === 'ffffffff-ffff-ffff-ffff-ffffffffffff' });
+  ajv.addFormat('uuid', {
+    type: 'string',
+    validate: v =>
+      uuid.test(v) || v === '00000000-0000-0000-0000-000000000000' || v === 'ffffffff-ffff-ffff-ffff-ffffffffffff',
+  });
   const valid = ajv.compile(schema);
   if (!valid(document)) {
     const errors = valid.errors.map(error => {
@@ -89,7 +99,10 @@ function validateSchema(document, repo, filename = path.join(repo, 'shared/engin
       const missing = error.params?.missingProperty ? '/' + error.params.missingProperty : '';
       return at + missing + ' ' + error.message;
     });
-    fail('schema', errors.slice(0, 30).join('; ') + (errors.length > 30 ? '; ... ' + errors.length + ' errors total' : ''));
+    fail(
+      'schema',
+      errors.slice(0, 30).join('; ') + (errors.length > 30 ? '; ... ' + errors.length + ' errors total' : ''),
+    );
   }
 }
 
@@ -100,7 +113,9 @@ function verifyCollections(value, location = '$') {
     const entries = Object.keys(value.items);
     const ordered = value.order;
     if (ordered.length !== new Set(ordered).size) fail(location + '.order', 'duplicate collection keys');
-    for (const name of ordered) if (!Object.hasOwn(value.items, name)) fail(location + '.order', 'unknown collection key ' + JSON.stringify(name));
+    for (const name of ordered)
+      if (!Object.hasOwn(value.items, name))
+        fail(location + '.order', 'unknown collection key ' + JSON.stringify(name));
     for (const name of entries) {
       if (value.items[name]?.config?.params?.disabled === true) continue;
       if (!ordered.includes(name)) fail(location + '.order', 'missing enabled item ' + JSON.stringify(name));
@@ -136,8 +151,7 @@ function verifyNonemptyLocaleFields(value, location = '$') {
         fail(location + '.config.locale.' + field, 'empty locale dictionary would emit no authored content');
     }
   }
-  for (const [key, child] of Object.entries(value))
-    verifyNonemptyLocaleFields(child, location + '.' + key);
+  for (const [key, child] of Object.entries(value)) verifyNonemptyLocaleFields(child, location + '.' + key);
 }
 
 /** All authored production fields survive in a deterministic persistent handoff. */
@@ -147,17 +161,24 @@ export function productionHandoff(document) {
     if (Array.isArray(value)) return value.forEach((item, i) => visit(item, location + '[' + i + ']'));
     if (!record(value)) return;
     if (record(value.config) && typeof value.config.type === 'string') {
-      if (record(value.production)) nodes.push({
-        path: location,
-        id: value.config.id,
-        type: value.config.type,
-        production: value.production,
-      });
+      if (record(value.production))
+        nodes.push({
+          path: location,
+          id: value.config.id,
+          type: value.config.type,
+          production: value.production,
+        });
     }
     for (const [key, child] of Object.entries(value)) if (key !== 'production') visit(child, location + '.' + key);
   }
   visit(document, '$');
-  return JSON.stringify({ kind: 'svitlo-lesson-production-handoff', version: 1, lessonId: document.config.id, nodes }, null, 2) + '\n';
+  return (
+    JSON.stringify(
+      { kind: 'svitlo-lesson-production-handoff', version: 1, lessonId: document.config.id, nodes },
+      null,
+      2,
+    ) + '\n'
+  );
 }
 
 /** Read-only, complete validation at the Resource Production boundary only. */
@@ -175,7 +196,10 @@ export function preflightLesson(source, repo = repoRoot) {
   verifyEntities(document);
   verifyNonemptyLocaleFields(document);
   if (JSON.stringify(sourceAuthoringCopy(document.config, language)) !== JSON.stringify(document.config))
-    fail('config.locale', 'non-source localized data would be dropped by Lesson Builder; reconcile those translations before finalization');
+    fail(
+      'config.locale',
+      'non-source localized data would be dropped by Lesson Builder; reconcile those translations before finalization',
+    );
   return { ...location, document, handoff: productionHandoff(document) };
 }
 
@@ -184,7 +208,10 @@ export function preflightLesson(source, repo = repoRoot) {
  * interrupted write; in that case recovery is manual and YAML is retained.
  * Injecting validate/generate is for deterministic failure-path regression tests.
  */
-export function finalizeLesson(source, { repo = repoRoot, validate = preflightLesson, generate = runOne, afterGenerate } = {}) {
+export function finalizeLesson(
+  source,
+  { repo = repoRoot, validate = preflightLesson, generate = runOne, afterGenerate } = {},
+) {
   const original = fs.readFileSync(source);
   const item = validate(source, repo);
   if (!item || !item.directory || !item.lessonId || typeof item.handoff !== 'string')
@@ -193,12 +220,18 @@ export function finalizeLesson(source, { repo = repoRoot, validate = preflightLe
   const handoffFile = path.join(item.directory, 'production-handoff.json');
   noSymlinks(index);
   noSymlinks(handoffFile);
-  if (fs.existsSync(index)) fail('index.ts', 'Lesson already scaffolded; create-only skip cannot authorize deleting YAML');
+  if (fs.existsSync(index))
+    fail('index.ts', 'Lesson already scaffolded; create-only skip cannot authorize deleting YAML');
   if (fs.existsSync(handoffFile) && fs.readFileSync(handoffFile, 'utf8') !== item.handoff)
     fail('production', 'existing handoff differs; manual recovery required');
   if (!fs.readFileSync(source).equals(original)) fail('$', 'source changed during preflight');
   const generated = generate(source, 'generate', repo);
-  if (generated?.skipped || generated?.lessonId !== item.lessonId || !Array.isArray(generated.files) || !generated.files.length)
+  if (
+    generated?.skipped ||
+    generated?.lessonId !== item.lessonId ||
+    !Array.isArray(generated.files) ||
+    !generated.files.length
+  )
     fail('$', 'builder skipped or returned an incomplete Lesson inventory; preserving YAML');
   if (afterGenerate) afterGenerate(item);
   const checked = generate(source, 'check', repo);
@@ -213,15 +246,13 @@ export function finalizeLesson(source, { repo = repoRoot, validate = preflightLe
   const methodFile = path.join(item.directory, 'methodology.md');
   if (!fs.existsSync(methodFile) || !fs.statSync(methodFile).isFile())
     fail('production.methodology', 'Methodology not transferred into persistent methodology.md');
-  if (!fs.readFileSync(source).equals(original))
-    fail('$', 'source changed during scaffold/check; preserving YAML');
+  if (!fs.readFileSync(source).equals(original)) fail('$', 'source changed during scaffold/check; preserving YAML');
   if (!fs.existsSync(handoffFile)) {
     fs.writeFileSync(handoffFile, item.handoff, { flag: 'wx' });
   }
   if (fs.readFileSync(handoffFile, 'utf8') !== item.handoff)
     fail('production', 'persistent production handoff verification failed; preserving YAML');
-  if (!fs.readFileSync(source).equals(original))
-    fail('$', 'source changed before final deletion; preserving YAML');
+  if (!fs.readFileSync(source).equals(original)) fail('$', 'source changed before final deletion; preserving YAML');
   fs.unlinkSync(source);
   return { lessonId: item.lessonId, files: [...generated.files, 'production-handoff.json'], removed: source };
 }
@@ -229,14 +260,23 @@ export function finalizeLesson(source, { repo = repoRoot, validate = preflightLe
 export function main(args = process.argv.slice(2), repo = repoRoot) {
   const [mode, flag, source] = args;
   if (!['preflight', 'finalize'].includes(mode) || flag !== '--source' || !source || args.length !== 3)
-    throw new Error('Usage: node shared/engine/scripts/finalizeLesson/finalizeLesson.mjs preflight|finalize --source content/<book>/data/lessons/<bucket>/<uuid>/lesson.yaml');
+    throw new Error(
+      'Usage: node shared/engine/scripts/finalizeLesson/finalizeLesson.mjs preflight|finalize --source content/<book>/data/lessons/<bucket>/<uuid>/lesson.yaml',
+    );
   const filename = path.resolve(repo, source);
   const result = mode === 'preflight' ? preflightLesson(filename, repo) : finalizeLesson(filename, { repo });
-  console.log(mode === 'preflight'
-    ? 'Lesson ' + result.lessonId + ': complete YAML preflight valid (read-only)'
-    : 'Lesson ' + result.lessonId + ': ' + result.files.length + ' persistent outputs verified; lesson.yaml removed');
+  console.log(
+    mode === 'preflight'
+      ? 'Lesson ' + result.lessonId + ': complete YAML preflight valid (read-only)'
+      : 'Lesson ' + result.lessonId + ': ' + result.files.length + ' persistent outputs verified; lesson.yaml removed',
+  );
   return result;
 }
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
-  try { main(); } catch (error) { console.error(error.message); process.exitCode = 1; }
+  try {
+    main();
+  } catch (error) {
+    console.error(error.message);
+    process.exitCode = 1;
+  }
 }

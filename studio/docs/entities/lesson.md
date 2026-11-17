@@ -42,13 +42,12 @@ At runtime, [`assembleLessonProps`](../../../shared/engine/assemblers/assembleLe
 
 The Screenwriter-owned `content.yaml` is an editorial plan; the technical `lesson.yaml` draft carries the authored Engine `defineLesson` Config tree, plus a removable source-language `documentLanguage` provenance field. The Engine YAML draft scaffolder converts it to incomplete named `*.data.ts` source using `@svitlo/engine/build` factories without validating, translating, typechecking or publishing. See [Config-shaped YAML handoff](../architecture/yaml-config-scaffolding.md). The Lesson Builder reads only `lesson.yaml`, excluding assessment banks; Course `config.yaml` stays unchanged. The published Props pipeline remains separate.
 
-
 ## Quest in standalone Lessons (planned runtime)
 
 The [Quest Section](./quest.md) is designed for independently useful, accessible interactive demonstration and guided practice (e.g. manipulating a quadratic equation) without requiring characters or Course plot. It is not a Lesson subtype or a Quiz replacement. Quest Build contracts exist, but Lesson Section union, YAML and player integration are deferred. Do not publish a Quest as if supported; retain the approved Methodologist assessment and Skill boundaries.
 
 ### Independently authored Flashcards and Questions
 
-The completed `defineFlashcard` Configurator retains typed flags, relationships and three structural sides; the front, back and optional hint use `defineFlashcardSide({ items, order })`. A side is *not* independently identified and must not receive an invented UUID. The separate `flashcards/index.ts` TypeScript bank (when present) is compiled into individual UUID-addressed JSON objects, not a `Lesson.flashcards` collection. The Section's explicit `flashcardIds` determines order.
+The completed `defineFlashcard` Configurator retains typed flags, relationships and three structural sides; the front, back and optional hint use `defineFlashcardSide({ items, order })`. A side is _not_ independently identified and must not receive an invented UUID. The separate `flashcards/index.ts` TypeScript bank (when present) is compiled into individual UUID-addressed JSON objects, not a `Lesson.flashcards` collection. The Section's explicit `flashcardIds` determines order.
 
 The separately authored editorial YAML sources are `questions.yaml` and `flashcards.yaml` with independent authoring and review stages. The current typed-bank publisher does not yet implement YAML-to-TypeScript conversion. Refer to [the approved separation specification](../architecture/lesson-assessment-bank-separation.md) for the remaining work.

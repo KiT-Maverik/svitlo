@@ -78,8 +78,19 @@ function fixture(callback) {
   let document = validDocument();
   const save = () => fs.writeFileSync(source, yaml.stringify(document));
   save();
-  try { return callback({ root, folder, source, get document() { return document; }, save }); }
-  finally { fs.rmSync(root, { recursive: true, force: true }); }
+  try {
+    return callback({
+      root,
+      folder,
+      source,
+      get document() {
+        return document;
+      },
+      save,
+    });
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
 }
 
 test('preflight validates full Zod-derived Lesson schema, source locale, and canonical path', () =>
@@ -128,7 +139,10 @@ test('production handoff retains root, Section, and Text production instructions
   const handoff = JSON.parse(productionHandoff(validDocument()));
   assert.equal(handoff.kind, 'svitlo-lesson-production-handoff');
   assert.equal(handoff.lessonId, lessonId);
-  assert.deepEqual(handoff.nodes.map(n => n.type), ['lesson', 'content', 'text']);
+  assert.deepEqual(
+    handoff.nodes.map(n => n.type),
+    ['lesson', 'content', 'text'],
+  );
   assert.equal(handoff.nodes[1].production.pedagogicalIntent, 'Use a familiar example.');
   assert.equal(handoff.nodes[2].production.purpose, 'Ground a difficult idea in experience.');
   assert.equal(handoff.nodes[0].production.methodology.startsWith('# Objectives'), true);
@@ -185,16 +199,21 @@ for (const [behavior, expected] of [
     fixture(f => {
       assert.throws(() => finalizeLesson(f.source, { repo: f.root, generate: fakeGenerator(f, behavior) }), expected);
       assert.equal(fs.existsSync(f.source), true, 'recoverable YAML source must survive');
-    }));
+    }),
+  );
 }
 
 test('finalize retains YAML when source changes after scaffold', () =>
   fixture(f => {
-    assert.throws(() => finalizeLesson(f.source, {
-      repo: f.root,
-      generate: fakeGenerator(f, 'complete'),
-      afterGenerate: () => fs.appendFileSync(f.source, '\n# revised during generation\n'),
-    }), /source changed/);
+    assert.throws(
+      () =>
+        finalizeLesson(f.source, {
+          repo: f.root,
+          generate: fakeGenerator(f, 'complete'),
+          afterGenerate: () => fs.appendFileSync(f.source, '\n# revised during generation\n'),
+        }),
+      /source changed/,
+    );
     assert.equal(fs.existsSync(f.source), true);
     assert.equal(fs.existsSync(path.join(f.folder, 'production-handoff.json')), false);
   }));
@@ -202,7 +221,10 @@ test('finalize retains YAML when source changes after scaffold', () =>
 test('finalize refuses divergent existing production handoff, before generating', () =>
   fixture(f => {
     fs.writeFileSync(path.join(f.folder, 'production-handoff.json'), '{"unexpected":"content"}\n');
-    assert.throws(() => finalizeLesson(f.source, { repo: f.root, generate: fakeGenerator(f, 'complete') }), /existing handoff differs/);
+    assert.throws(
+      () => finalizeLesson(f.source, { repo: f.root, generate: fakeGenerator(f, 'complete') }),
+      /existing handoff differs/,
+    );
     assert.equal(fs.existsSync(f.source), true);
     assert.equal(fs.existsSync(path.join(f.folder, 'index.ts')), false);
   }));

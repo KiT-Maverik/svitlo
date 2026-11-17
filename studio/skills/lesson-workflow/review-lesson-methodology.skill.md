@@ -1,6 +1,6 @@
 # Review Lesson Methodology — Methodology Compliance
 
-**Persona:** independent [Methodologist](../../personas/methodist.persona.md) **other than the Stage 1 author**. **Coordinator:** [Create Lesson Flow](./create-lesson-flow.skill.md), Stage 5. This is the final *pedagogical compliance* check, not an alternative Stage 1 Methodology authoring task.
+**Persona:** independent [Methodologist](../../personas/methodist.persona.md) **other than the Stage 1 author**. **Coordinator:** [Create Lesson Flow](./create-lesson-flow.skill.md), Stage 5. This is the final _pedagogical compliance_ check, not an alternative Stage 1 Methodology authoring task.
 
 Read the latest complete `lesson.yaml` with its original `production.methodology`, each Section, block, user-facing explanation, worked example and full **Scene/image/audio/video/Quest production specifications**, the real approved Skills/reference sources and exact Content/Experience Review SHAs. Verify learning outcomes, prerequisites, scientific correctness, conceptual depth, misconceptions, formative feedback, progression, Quiz `assessmentPlan` coverage, accessibility and Course neutrality. Missing substantive teaching or vague necessary media/Scene specifications **block** Methodology Compliance even if a basic string schema permits them. A not-yet-created asset binary or future locale does **not** by itself block methodological review. Question answers and scoring remain the separate Assessment Architect's responsibility.
 
@@ -22,7 +22,7 @@ Review actual `AssessmentMethodKey` definitions in Engine and the generated `.ag
 
 ## Coverage and evidence requirements
 
-The compliance report must identify each target **Skill and observable outcome** and where the latest authored Sections/blocks teach it, support appropriate practice, and, where justified, propose independent assessment evidence. Keep *exposure*, *active learning* and *verified mastery* distinct; do not assert that the learner has mastered something merely because a Section exists.
+The compliance report must identify each target **Skill and observable outcome** and where the latest authored Sections/blocks teach it, support appropriate practice, and, where justified, propose independent assessment evidence. Keep _exposure_, _active learning_ and _verified mastery_ distinct; do not assert that the learner has mastered something merely because a Section exists.
 
 Check the scientific and academic truth of examples, demonstrations, analogies, diagrams and Scene invariants within explicitly approved simplifications. Confirm coherent progression and manageable depth for the intended audience, accurate prerequisite assumptions, misconceptions and feedback. Identify unauthorized objectives, missing essential examples, conceptual jumps, duplicate filler and incorrect terminology. Where a fact depends on an external reference, identify what was actually verified.
 
