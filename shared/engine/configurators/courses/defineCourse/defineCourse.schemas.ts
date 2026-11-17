@@ -21,18 +21,19 @@ import type { Episode_Props } from '../../episodes/defineEpisode/defineEpisode.s
 
 /** Course audience and educational-standard references describe scope, never certification. */
 const audienceRange_Schema = (maximum: number) =>
-  z.strictObject({
-    min: z.int().min(0).max(maximum),
-    max: z.int().min(0).max(maximum),
-  }).refine(range => range.min <= range.max, 'Minimum must not exceed maximum');
+  z
+    .strictObject({
+      min: z.int().min(0).max(maximum),
+      max: z.int().min(0).max(maximum),
+    })
+    .refine(range => range.min <= range.max, 'Minimum must not exceed maximum');
 
 const ageRange_Schema = audienceRange_Schema(125);
 const gradeRange_Schema = audienceRange_Schema(40);
 
-const uniqueIds_Schema = z.array(z.uuid()).refine(
-  values => new Set(values.map(value => value.toLowerCase())).size === values.length,
-  'IDs must be unique',
-);
+const uniqueIds_Schema = z
+  .array(z.uuid())
+  .refine(values => new Set(values.map(value => value.toLowerCase())).size === values.length, 'IDs must be unique');
 
 const targetSkills_Schema = z.strictObject({
   skills: uniqueIds_Schema.optional(),

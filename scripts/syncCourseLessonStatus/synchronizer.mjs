@@ -8,7 +8,8 @@ export const TEXTBOOK = /^content\/[a-z][a-z0-9-]*$/;
 const SHA = /^[a-f0-9]{40}$/;
 
 export function canonicalUUID(value) {
-  if (typeof value !== 'string' || !UUID.test(value)) throw new Error('Invalid canonical UUID: ' + String(value).slice(0, 80));
+  if (typeof value !== 'string' || !UUID.test(value))
+    throw new Error('Invalid canonical UUID: ' + String(value).slice(0, 80));
   return value.toLowerCase();
 }
 
@@ -31,9 +32,14 @@ export function managedBounds(body) {
 
 export function replaceManagedBlock(body, newBlock) {
   const { start, end } = managedBounds(body);
-  if (typeof newBlock !== 'string' || !newBlock.startsWith(START + '\n') ||
-      !newBlock.trimEnd().endsWith(END) || newBlock.length > 64000 ||
-      newBlock.split(START).length !== 2 || newBlock.split(END).length !== 2) {
+  if (
+    typeof newBlock !== 'string' ||
+    !newBlock.startsWith(START + '\n') ||
+    !newBlock.trimEnd().endsWith(END) ||
+    newBlock.length > 64000 ||
+    newBlock.split(START).length !== 2 ||
+    newBlock.split(END).length !== 2
+  ) {
     throw new Error('Invalid replacement Lessons block');
   }
   return body.slice(0, start) + newBlock.trimEnd() + body.slice(end);
@@ -41,7 +47,9 @@ export function replaceManagedBlock(body, newBlock) {
 
 export function outsideHash(body) {
   const { start, end } = managedBounds(body);
-  return createHash('sha256').update(body.slice(0, start) + body.slice(end)).digest('hex');
+  return createHash('sha256')
+    .update(body.slice(0, start) + body.slice(end))
+    .digest('hex');
 }
 
 export function parseParent(body) {
@@ -62,7 +70,8 @@ export function parseParent(body) {
 
 export function parseLessonClaim(body) {
   if (typeof body !== 'string' || !body.includes('<!-- svitlo-course-lesson:v1 -->')) return null;
-  if (body.split('<!-- svitlo-course-lesson:v1 -->').length !== 2) throw new Error('Duplicated Lesson PR identity marker');
+  if (body.split('<!-- svitlo-course-lesson:v1 -->').length !== 2)
+    throw new Error('Duplicated Lesson PR identity marker');
   return {
     courseId: canonicalUUID(matchUnique(body, /^Course:\s*([0-9a-f-]+)\s*$/gim, 'Lesson PR Course')),
     lessonId: canonicalUUID(matchUnique(body, /^Lesson:\s*([0-9a-f-]+)\s*$/gim, 'Lesson PR Lesson')),
@@ -70,12 +79,18 @@ export function parseLessonClaim(body) {
   };
 }
 
-const stringValue = v => typeof v === 'string' ? v : null;
+const stringValue = v => (typeof v === 'string' ? v : null);
 const plainObject = v => v !== null && typeof v === 'object' && !Array.isArray(v);
 function displayName(node, key) {
   const locale = node.locale?.title;
-  return (stringValue(node.title) || stringValue(locale) || stringValue(locale?.en) ||
-    stringValue(node.slug) || stringValue(node.key) || key).slice(0, 180);
+  return (
+    stringValue(node.title) ||
+    stringValue(locale) ||
+    stringValue(locale?.en) ||
+    stringValue(node.slug) ||
+    stringValue(node.key) ||
+    key
+  ).slice(0, 180);
 }
 
 /**
@@ -98,9 +113,13 @@ export function collectInventory(document, mode, expectedId) {
       throw new Error('Invalid Course items/order collection');
     }
     const keys = Object.keys(collection.items);
-    if (keys.length > 10000 || new Set(collection.order).size !== collection.order.length ||
-        keys.length !== collection.order.length ||
-        keys.some(k => !collection.order.includes(k))) throw new Error('Course items/order mismatch');
+    if (
+      keys.length > 10000 ||
+      new Set(collection.order).size !== collection.order.length ||
+      keys.length !== collection.order.length ||
+      keys.some(k => !collection.order.includes(k))
+    )
+      throw new Error('Course items/order mismatch');
     for (const key of collection.order) {
       if (!/^[a-zA-Z][a-zA-Z0-9_-]{0,99}$/.test(key)) throw new Error('Unsafe Course placement key');
       const wrapper = collection.items[key];
@@ -127,61 +146,108 @@ export function collectInventory(document, mode, expectedId) {
     }
   }
   visit(root.content, [], 0);
-  return { lessons: [...lessons.values()].map(x => ({ ...x, placements: x.placements.sort() }))
-    .sort((a, b) => a.lessonId.localeCompare(b.lessonId)), unresolved, allocated };
+  return {
+    lessons: [...lessons.values()]
+      .map(x => ({ ...x, placements: x.placements.sort() }))
+      .sort((a, b) => a.lessonId.localeCompare(b.lessonId)),
+    unresolved,
+    allocated,
+  };
 }
 
 export function sameInventory(a, b) {
-  return JSON.stringify(a.lessons.map(x => [x.lessonId, x.placements])) ===
-    JSON.stringify(b.lessons.map(x => [x.lessonId, x.placements])) &&
-    JSON.stringify(a.unresolved) === JSON.stringify(b.unresolved);
+  return (
+    JSON.stringify(a.lessons.map(x => [x.lessonId, x.placements])) ===
+      JSON.stringify(b.lessons.map(x => [x.lessonId, x.placements])) &&
+    JSON.stringify(a.unresolved) === JSON.stringify(b.unresolved)
+  );
 }
 
 /** Distinguish typed Lesson evidence from a YAML-only draft or an unverified path. */
 export function inspectIndexedLesson(index, textbook, lessonId, requiredLanguages) {
-  const unknown = { source: 'unverified', languageStatus: 'unknown', missingLanguages: [],
-    readiness: 'Static Lesson index unavailable', reason: 'Cannot verify Lesson implementation' };
+  const unknown = {
+    source: 'unverified',
+    languageStatus: 'unknown',
+    missingLanguages: [],
+    readiness: 'Static Lesson index unavailable',
+    reason: 'Cannot verify Lesson implementation',
+  };
   if (!index || !Array.isArray(index.candidates) || !Array.isArray(index.diagnostics)) return unknown;
   const found = index.candidates.filter(x => x.lessonId === lessonId && x.package === textbook);
-  const problems = index.diagnostics.filter(d => d.entityId === lessonId ||
-    (typeof d.file === 'string' && d.file.includes('/' + lessonId + '/')));
-  if (found.length > 1 || problems.length) return {
-    ...unknown, reason: found.length > 1 ? 'Duplicate Lesson identity in index' :
-      problems.map(d => d.reason).join('; ').slice(0, 450),
-    readiness: 'Static index reports invalid Lesson source',
-  };
-  if (!found.length) return { ...unknown, source: 'absent', readiness: 'No statically verified Lesson source',
-    reason: 'No matching Lesson in canonical static index' };
+  const problems = index.diagnostics.filter(
+    d => d.entityId === lessonId || (typeof d.file === 'string' && d.file.includes('/' + lessonId + '/')),
+  );
+  if (found.length > 1 || problems.length)
+    return {
+      ...unknown,
+      reason:
+        found.length > 1
+          ? 'Duplicate Lesson identity in index'
+          : problems
+              .map(d => d.reason)
+              .join('; ')
+              .slice(0, 450),
+      readiness: 'Static index reports invalid Lesson source',
+    };
+  if (!found.length)
+    return {
+      ...unknown,
+      source: 'absent',
+      readiness: 'No statically verified Lesson source',
+      reason: 'No matching Lesson in canonical static index',
+    };
   const item = found[0];
   const declared = Array.isArray(item.languages) ? item.languages : [];
   const missingLanguages = [...new Set(requiredLanguages)].filter(x => !declared.includes(x)).sort();
   const languageStatus = item.languageStatus === 'verified' ? 'verified' : 'unknown';
   const source = item.status === 'implemented' ? 'implemented' : 'editorial-draft';
-  const readiness = source !== 'implemented' ? 'Editorial-only Lesson draft' :
-    languageStatus !== 'verified' ? 'Lesson language declaration unverified' :
-    missingLanguages.length ? 'Missing declared Course languages: ' + missingLanguages.join(', ') :
-    'Authored TypeScript; independent locale, review and publication checks remain';
-  return { source, readiness, languageStatus, missingLanguages,
-    reason: languageStatus === 'unknown' ? 'Lesson language declaration unverified' : null };
+  const readiness =
+    source !== 'implemented'
+      ? 'Editorial-only Lesson draft'
+      : languageStatus !== 'verified'
+        ? 'Lesson language declaration unverified'
+        : missingLanguages.length
+          ? 'Missing declared Course languages: ' + missingLanguages.join(', ')
+          : 'Authored TypeScript; independent locale, review and publication checks remain';
+  return {
+    source,
+    readiness,
+    languageStatus,
+    missingLanguages,
+    reason: languageStatus === 'unknown' ? 'Lesson language declaration unverified' : null,
+  };
 }
 
 export function resolveClaims(lessonId, claims) {
   const matches = claims.filter(p => p.lessonId === lessonId).sort((a, b) => a.number - b.number);
   const active = matches.filter(p => p.state === 'open');
-  if (active.length > 1) return { status: 'Needs resolution', pr: null,
-    diagnostic: 'Multiple active implementation PRs: ' + active.map(p => '#' + p.number).join(', ') };
-  const current = active[0] ?? [...matches].filter(p => p.merged).at(-1) ??
-    [...matches].filter(p => p.state === 'closed').at(-1);
+  if (active.length > 1)
+    return {
+      status: 'Needs resolution',
+      pr: null,
+      diagnostic: 'Multiple active implementation PRs: ' + active.map(p => '#' + p.number).join(', '),
+    };
+  const current =
+    active[0] ?? [...matches].filter(p => p.merged).at(-1) ?? [...matches].filter(p => p.state === 'closed').at(-1);
   if (!current) return { status: 'Not started', pr: null, diagnostic: null };
-  if (current.state === 'open') return { status: (current.draft ? 'Draft' : 'Open') + ' · #' + current.number,
-    pr: current.number, diagnostic: null };
+  if (current.state === 'open')
+    return {
+      status: (current.draft ? 'Draft' : 'Open') + ' · #' + current.number,
+      pr: current.number,
+      diagnostic: null,
+    };
   if (current.merged) return { status: 'Merged · #' + current.number, pr: current.number, diagnostic: null };
-  return { status: 'Closed unmerged · #' + current.number, pr: current.number,
-    diagnostic: 'Historical closed-unmerged PR; verify replacement or restart' };
+  return {
+    status: 'Closed unmerged · #' + current.number,
+    pr: current.number,
+    diagnostic: 'Historical closed-unmerged PR; verify replacement or restart',
+  };
 }
 
 function escaped(value) {
-  return String(value ?? '').slice(0, 500).replace(/[\r\n\t\x00-\x1f\x7f]/g, ' ')
+  return String(value ?? '')
+    .slice(0, 500)
+    .replace(/[\r\n\t\x00-\x1f\x7f]/g, ' ')
     .replace(/[\\|<>&*_\[\]()!#]/g, '\\$&')
     .replaceAll(String.fromCharCode(96), '\\' + String.fromCharCode(96));
 }
@@ -190,38 +256,60 @@ function verifiedString(value, max = 500) {
 }
 
 export function validateReport(report) {
-  if (!plainObject(report) || !REPO.test(report.repo) ||
-      !Number.isSafeInteger(report.pr) || report.pr < 1 ||
-      !SHA.test(report.sha) || !UUID.test(report.courseId) ||
-      !TEXTBOOK.test(report.textbook) || !/^[a-f0-9]{64}$/.test(report.outsideHash) ||
-      !Array.isArray(report.lessons) || report.lessons.length > 1000 ||
-      !Array.isArray(report.unresolved) || report.unresolved.length > 1000 ||
-      !Array.isArray(report.diagnostics) || report.diagnostics.length > 100 ||
-      typeof report.complete !== 'boolean' || typeof report.allocated !== 'boolean') {
+  if (
+    !plainObject(report) ||
+    !REPO.test(report.repo) ||
+    !Number.isSafeInteger(report.pr) ||
+    report.pr < 1 ||
+    !SHA.test(report.sha) ||
+    !UUID.test(report.courseId) ||
+    !TEXTBOOK.test(report.textbook) ||
+    !/^[a-f0-9]{64}$/.test(report.outsideHash) ||
+    !Array.isArray(report.lessons) ||
+    report.lessons.length > 1000 ||
+    !Array.isArray(report.unresolved) ||
+    report.unresolved.length > 1000 ||
+    !Array.isArray(report.diagnostics) ||
+    report.diagnostics.length > 100 ||
+    typeof report.complete !== 'boolean' ||
+    typeof report.allocated !== 'boolean'
+  ) {
     throw new Error('Invalid Course status report');
   }
   const ids = new Set();
   for (const row of report.lessons) {
-    if (!plainObject(row) || !UUID.test(row.lessonId) || ids.has(row.lessonId) ||
-        !verifiedString(row.title, 180) || !Array.isArray(row.placements) ||
-        !row.placements.length || row.placements.length > 100 ||
-        !row.placements.every(x => verifiedString(x, 500)) ||
-        !['implemented', 'editorial-draft', 'absent', 'unverified'].includes(row.source) ||
-        !verifiedString(row.status, 150) ||
-        (row.readiness !== undefined && !verifiedString(row.readiness, 500)) ||
-        (row.ancestry !== undefined && row.ancestry !== null &&
-          !['present','absent','unknown'].includes(row.ancestry)) ||
-        (row.missingLanguages !== undefined && (!Array.isArray(row.missingLanguages) ||
+    if (
+      !plainObject(row) ||
+      !UUID.test(row.lessonId) ||
+      ids.has(row.lessonId) ||
+      !verifiedString(row.title, 180) ||
+      !Array.isArray(row.placements) ||
+      !row.placements.length ||
+      row.placements.length > 100 ||
+      !row.placements.every(x => verifiedString(x, 500)) ||
+      !['implemented', 'editorial-draft', 'absent', 'unverified'].includes(row.source) ||
+      !verifiedString(row.status, 150) ||
+      (row.readiness !== undefined && !verifiedString(row.readiness, 500)) ||
+      (row.ancestry !== undefined &&
+        row.ancestry !== null &&
+        !['present', 'absent', 'unknown'].includes(row.ancestry)) ||
+      (row.missingLanguages !== undefined &&
+        (!Array.isArray(row.missingLanguages) ||
           row.missingLanguages.length > 100 ||
           !row.missingLanguages.every(x => /^[a-z]{2,3}(?:-[A-Za-z0-9]{2,8})?$/.test(x)))) ||
-        !(row.pr === null || (Number.isSafeInteger(row.pr) && row.pr > 0))) {
+      !(row.pr === null || (Number.isSafeInteger(row.pr) && row.pr > 0))
+    ) {
       throw new Error('Invalid Lesson status row');
     }
     ids.add(row.lessonId);
   }
   for (const d of [...report.unresolved, ...report.diagnostics]) {
-    if (!plainObject(d) || !verifiedString(d.reason, 500) ||
-        (d.placement !== undefined && !verifiedString(d.placement, 500))) throw new Error('Invalid status diagnostic');
+    if (
+      !plainObject(d) ||
+      !verifiedString(d.reason, 500) ||
+      (d.placement !== undefined && !verifiedString(d.placement, 500))
+    )
+      throw new Error('Invalid status diagnostic');
   }
   return report;
 }
@@ -236,21 +324,57 @@ export function renderLessonsBlock(report) {
     else if (lesson.status.startsWith('Merged')) count.merged++;
     else if (lesson.status === 'Reused / existing') count.reused++;
     else count.pending++;
-    const label = lesson.pr ? '[' + escaped(lesson.status) + '](https://github.com/' +
-      report.repo + '/pull/' + lesson.pr + ')' : escaped(lesson.status);
-    rows.push('| ' + escaped(lesson.title) + ' | ' + lesson.lessonId + ' | ' +
-      lesson.placements.map(escaped).join('; ') + ' | ' + label + ' | ' + escaped(lesson.source) +
-      ' | ' + escaped(lesson.readiness ?? 'Independent readiness not verified') +
-      (lesson.ancestry ? '; merged ancestry: ' + escaped(lesson.ancestry) : '') + ' |');
+    const label = lesson.pr
+      ? '[' + escaped(lesson.status) + '](https://github.com/' + report.repo + '/pull/' + lesson.pr + ')'
+      : escaped(lesson.status);
+    rows.push(
+      '| ' +
+        escaped(lesson.title) +
+        ' | ' +
+        lesson.lessonId +
+        ' | ' +
+        lesson.placements.map(escaped).join('; ') +
+        ' | ' +
+        label +
+        ' | ' +
+        escaped(lesson.source) +
+        ' | ' +
+        escaped(lesson.readiness ?? 'Independent readiness not verified') +
+        (lesson.ancestry ? '; merged ancestry: ' + escaped(lesson.ancestry) : '') +
+        ' |',
+    );
   }
-  const out = [START, '## Lessons', '', 'Inventory SHA: ' + report.sha, '',
-    'Coverage: **' + (report.complete ? 'complete' : 'INCOMPLETE') + '** · ' +
-    'Unique Lessons: **' + report.lessons.length + '** · Pending: ' + count.pending +
-    ' · Draft/open: ' + count.active + ' · Merged PR: ' + count.merged +
-    ' · Reused: ' + count.reused + ' · Unresolved: ' + count.unresolved, ''];
+  const out = [
+    START,
+    '## Lessons',
+    '',
+    'Inventory SHA: ' + report.sha,
+    '',
+    'Coverage: **' +
+      (report.complete ? 'complete' : 'INCOMPLETE') +
+      '** · ' +
+      'Unique Lessons: **' +
+      report.lessons.length +
+      '** · Pending: ' +
+      count.pending +
+      ' · Draft/open: ' +
+      count.active +
+      ' · Merged PR: ' +
+      count.merged +
+      ' · Reused: ' +
+      count.reused +
+      ' · Unresolved: ' +
+      count.unresolved,
+    '',
+  ];
   if (!report.allocated && !report.lessons.length) out.push('Lesson inventory not allocated yet.', '');
-  if (rows.length) out.push('| Lesson | UUID | Module / Chapter placement(s) | Production PR status | Source | Readiness |',
-    '| --- | --- | --- | --- | --- | --- |', ...rows, '');
+  if (rows.length)
+    out.push(
+      '| Lesson | UUID | Module / Chapter placement(s) | Production PR status | Source | Readiness |',
+      '| --- | --- | --- | --- | --- | --- |',
+      ...rows,
+      '',
+    );
   if (report.unresolved.length) {
     out.push('### Unallocated Lesson slots', '');
     for (const u of report.unresolved.slice(0, 20)) out.push('- ' + escaped(u.placement) + ': ' + escaped(u.reason));

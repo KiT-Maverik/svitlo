@@ -11,5 +11,8 @@ test('CLI modes cannot share write/read-only flags', () => {
   assert.throws(() => parseArgs(['update', ...base, '--root', '/tmp/checkout', '--report', 'x']), /Usage/);
   assert.throws(() => parseArgs(['update', ...base, '--report', 'x', '--pr', '999']), /Usage/);
   assert.throws(() => parseArgs(['update', ...base, '--report', 'x', '--out', 'evil']), /Usage/);
-  assert.throws(() => parseArgs(['update', '--repo', '../escape', '--pr', '2', '--sha', sha, '--report', 'x']), /Usage/);
+  assert.throws(
+    () => parseArgs(['update', '--repo', '../escape', '--pr', '2', '--sha', sha, '--report', 'x']),
+    /Usage/,
+  );
 });

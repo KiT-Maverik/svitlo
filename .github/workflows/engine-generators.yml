@@ -73,16 +73,13 @@ jobs:
             scripts/syncCourseLessonStatus/sync-course-lessons.spec.mjs \
             scripts/syncCourseLessonStatus/workflow.spec.mjs
 
-      - name: Inspect generated YAML schema parity
-        run: |
-          npm run content:generate:yaml-schemas --workspace @svitlo/engine
-          git diff --stat -- shared/engine/yaml-schemas
-          git diff --name-only -- shared/engine/yaml-schemas
-          npm run content:check:yaml-schemas --workspace @svitlo/engine
 
-      - name: Temporary source-derived and Prettier export
+      - name: Verify all checked-in Zod-derived YAML schemas
+        run: npm run content:check:yaml-schemas --workspace @svitlo/engine
+
+      - name: Check Course Flow source formatting
         run: |
-          npx prettier --write \
+          npx prettier --check \
             scripts/syncCourseLessonStatus/*.mjs \
             shared/engine/scripts/validateCourseFlow/*.mjs \
             shared/engine/scripts/materializeCourseFlow/*.mjs \
@@ -90,14 +87,3 @@ jobs:
             shared/engine/configurators/courses/defineCourse/courseHierarchy.spec.ts \
             studio/skills/course-workflow/course-flow.schema.json \
             .github/workflows/sync-course-lessons.yml
-          node --input-type=module <<'NODE'
-          import fs from 'node:fs';
-          import { execFileSync } from 'node:child_process';
-          const changes = execFileSync('git', ['diff', '--name-only'], { encoding: 'utf8' }).trim().split('\n').filter(Boolean);
-          for (const name of changes) {
-            const encoded = fs.readFileSync(name).toString('base64');
-            for (let i = 0; i < encoded.length; i += 2000) {
-              console.log('SVITLO_EXPORT|' + name + '|' + Math.floor(i/2000) + '|' + encoded.slice(i,i+2000));
-            }
-          }
-          NODE

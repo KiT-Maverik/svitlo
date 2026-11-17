@@ -28,16 +28,20 @@ function assertPath(target) {
   let cursor = path.parse(full).root;
   for (const part of full.slice(cursor.length).split(path.sep).filter(Boolean)) {
     cursor = path.join(cursor, part);
-    if (fs.existsSync(cursor) && fs.lstatSync(cursor).isSymbolicLink())
-      fail('symlink path refused: ' + cursor);
+    if (fs.existsSync(cursor) && fs.lstatSync(cursor).isSymbolicLink()) fail('symlink path refused: ' + cursor);
   }
 }
 function sourceMd(plan) {
   const lines = ['# ' + plan.title, '', '## Course methodology', ''];
   const labels = [
-    ['purpose', 'Purpose'], ['audience', 'Audience'], ['approach', 'Teaching approach'],
-    ['depth', 'Depth'], ['accessibility', 'Accessibility'], ['scope', 'Scope'],
-    ['entryConditions', 'Entry conditions'], ['sourceNotes', 'Source notes'],
+    ['purpose', 'Purpose'],
+    ['audience', 'Audience'],
+    ['approach', 'Teaching approach'],
+    ['depth', 'Depth'],
+    ['accessibility', 'Accessibility'],
+    ['scope', 'Scope'],
+    ['entryConditions', 'Entry conditions'],
+    ['sourceNotes', 'Source notes'],
   ];
   for (const [key, label] of labels) {
     if (plan.methodology[key]) lines.push('### ' + label, '', plan.methodology[key], '');
@@ -45,7 +49,7 @@ function sourceMd(plan) {
   const competencies = (name, data) => {
     if (!data) return;
     lines.push('## ' + name, '');
-    for (const k of ['skills','skillGroups','skillDomains','courses']) {
+    for (const k of ['skills', 'skillGroups', 'skillDomains', 'courses']) {
       if (data[k]?.length) lines.push('- ' + k + ': ' + data[k].join(', '));
     }
     if (data.explanation) lines.push('', data.explanation);
@@ -54,9 +58,14 @@ function sourceMd(plan) {
   competencies('Learning outcomes', plan.outcomes);
   competencies('Prerequisites', plan.prerequisites);
   for (const standard of plan.standardsAlignment ?? []) {
-    lines.push('## Education standard ' + standard.standardId, '',
-      'Alignment status: ' + standard.status, '',
-      'Evidence: ' + standard.evidence, '');
+    lines.push(
+      '## Education standard ' + standard.standardId,
+      '',
+      'Alignment status: ' + standard.status,
+      '',
+      'Evidence: ' + standard.evidence,
+      '',
+    );
     if (standard.version) lines.push('Edition: ' + standard.version, '');
     if (standard.sourceUrl) lines.push('Source: ' + standard.sourceUrl, '');
     if (standard.jurisdiction) lines.push('Jurisdiction: ' + standard.jurisdiction, '');
@@ -66,16 +75,29 @@ function sourceMd(plan) {
     for (const key of collection.order) {
       const node = collection.items[key];
       if (node.type === 'lesson') {
-        lines.push('### Lesson ' + node.slug + ' — ' + node.title, '',
-          'Lesson UUID: ' + node.lessonId, '',
-          'Objective: ' + node.objective, '',
-          'Skills: ' + node.skills.join(', '), '');
-        for (const k of ['depth','sequenceReason','matchingRationale'])
+        lines.push(
+          '### Lesson ' + node.slug + ' — ' + node.title,
+          '',
+          'Lesson UUID: ' + node.lessonId,
+          '',
+          'Objective: ' + node.objective,
+          '',
+          'Skills: ' + node.skills.join(', '),
+          '',
+        );
+        for (const k of ['depth', 'sequenceReason', 'matchingRationale'])
           if (node[k]) lines.push(k + ': ' + node[k], '');
       } else {
-        lines.push('## ' + (node.type === 'module' ? 'Module' : 'Chapter') +
-          ': ' + node.title, '', 'UUID: ' + node.id, '',
-          'Placement: ' + [...location, key].join(' / '), '', node.methodology, '');
+        lines.push(
+          '## ' + (node.type === 'module' ? 'Module' : 'Chapter') + ': ' + node.title,
+          '',
+          'UUID: ' + node.id,
+          '',
+          'Placement: ' + [...location, key].join(' / '),
+          '',
+          node.methodology,
+          '',
+        );
         competencies('Learning outcomes for ' + node.slug, node.outcomes);
         competencies('Prerequisites for ' + node.slug, node.prerequisites);
         visit(node.content, [...location, key]);
@@ -89,8 +111,11 @@ function competencyIds(data, allowCourses) {
   if (!data) return undefined;
   if (!allowCourses && data.courses?.length)
     fail('outcomes.courses cannot be mapped to Course target skills without an approved prepares-for contract');
-  return Object.fromEntries(['skills','skillGroups','skillDomains', ...(allowCourses ? ['courses'] : [])]
-    .filter(k => Array.isArray(data[k]) && data[k].length).map(k => [k, data[k]]));
+  return Object.fromEntries(
+    ['skills', 'skillGroups', 'skillDomains', ...(allowCourses ? ['courses'] : [])]
+      .filter(k => Array.isArray(data[k]) && data[k].length)
+      .map(k => [k, data[k]]),
+  );
 }
 function localizedTitle(title, language) {
   return { [language]: title };
@@ -106,7 +131,8 @@ export function technicalFromEditorial(plan, resolveLesson = () => null) {
   if (!SLUG.test(plan.slug ?? '') || !plan.title?.trim() || !plan.description?.trim())
     fail('Stage 5 requires stable Course slug and authored learner-facing title and description');
   const ids = new Set([plan.id]);
-  const moduleSlugs = new Set(), chapterSlugs = new Set();
+  const moduleSlugs = new Set(),
+    chapterSlugs = new Set();
   function collection(tree, depth) {
     const items = {};
     for (const slug of tree?.order ?? []) {
@@ -126,7 +152,10 @@ export function technicalFromEditorial(plan, resolveLesson = () => null) {
       if (group.has(slug)) fail('Duplicate ' + child.type + ' source filename slug ' + slug);
       group.add(slug);
       const config = {
-        type: child.type, id: child.id, slug, params: {},
+        type: child.type,
+        id: child.id,
+        slug,
+        params: {},
         locale: { title: localizedTitle(child.title, plan.documentLanguage) },
         content: collection(child.content, depth + 1),
       };
@@ -135,7 +164,7 @@ export function technicalFromEditorial(plan, resolveLesson = () => null) {
     return { items, order: [...(tree?.order ?? [])] };
   }
   const params = { languages: plan.supportedLanguages };
-  for (const field of ['age','grade']) {
+  for (const field of ['age', 'grade']) {
     const range = plan[field];
     if (range) {
       if (!Number.isInteger(range.min) || !Number.isInteger(range.max) || range.min > range.max)
@@ -147,23 +176,25 @@ export function technicalFromEditorial(plan, resolveLesson = () => null) {
   const prerequisites = competencyIds(plan.prerequisites, true);
   if (outcomes && Object.keys(outcomes).length) params.outcomes = outcomes;
   if (prerequisites && Object.keys(prerequisites).length) params.prerequisites = prerequisites;
-  if (plan.standardsAlignment?.length)
-    params.educationStandards = plan.standardsAlignment.map(x => x.standardId);
-  const locale = { title: localizedTitle(plan.title, plan.documentLanguage),
-    description: localizedTitle(plan.description, plan.documentLanguage) };
+  if (plan.standardsAlignment?.length) params.educationStandards = plan.standardsAlignment.map(x => x.standardId);
+  const locale = {
+    title: localizedTitle(plan.title, plan.documentLanguage),
+    description: localizedTitle(plan.description, plan.documentLanguage),
+  };
   if (plan.outcomes?.explanation)
     locale.outcomesText = localizedTitle(plan.outcomes.explanation, plan.documentLanguage);
   if (plan.prerequisites?.explanation)
     locale.prerequisitesText = localizedTitle(plan.prerequisites.explanation, plan.documentLanguage);
   return {
-    config: { id: plan.id, slug: plan.slug, type: 'course', params, locale,
-      content: collection(plan.content, 0) },
+    config: { id: plan.id, slug: plan.slug, type: 'course', params, locale, content: collection(plan.content, 0) },
     production: { documentLanguage: plan.documentLanguage, methodology: sourceMd(plan) },
   };
 }
 function tsLiteral(value, indentation = 0) {
-  return JSON.stringify(value, null, 2).split('\n').map((line, index) =>
-    index ? '  '.repeat(indentation) + line : line).join('\n');
+  return JSON.stringify(value, null, 2)
+    .split('\n')
+    .map((line, index) => (index ? '  '.repeat(indentation) + line : line))
+    .join('\n');
 }
 function symbolOf(node) {
   const suffix = { course: 'Course', module: 'Module', chapter: 'Chapter' }[node.type];
@@ -177,8 +208,8 @@ function relativeImport(from, to) {
 }
 /** Static only: never import or execute authored Lesson code. */
 function lessonSourceCoordinates(root, pkg, courseId, lessonId, index) {
-  const entries = index?.candidates?.filter(x =>
-    x.package === pkg && x.lessonId === lessonId && x.status === 'implemented') ?? [];
+  const entries =
+    index?.candidates?.filter(x => x.package === pkg && x.lessonId === lessonId && x.status === 'implemented') ?? [];
   if (entries.length !== 1 || index.diagnostics?.some(x => x.entityId === lessonId)) return null;
   const filename = path.resolve(root, entries[0].source);
   const base = path.resolve(root, pkg, 'data/lessons');
@@ -187,12 +218,20 @@ function lessonSourceCoordinates(root, pkg, courseId, lessonId, index) {
   if (!fs.existsSync(filename)) return null;
   const src = ts.createSourceFile(filename, fs.readFileSync(filename, 'utf8'), ts.ScriptTarget.Latest, true);
   if (src.parseDiagnostics.length) return null;
-  const candidates = src.statements.filter(ts.isVariableStatement).filter(st =>
-    st.modifiers?.some(m => m.kind === ts.SyntaxKind.ExportKeyword)).flatMap(st =>
-      st.declarationList.declarations.filter(d =>
-        ts.isIdentifier(d.name) && ts.isCallExpression(d.initializer) &&
-        ts.isIdentifier(d.initializer.expression) && d.initializer.expression.text === 'defineLesson')
-        .map(d => d.name.text));
+  const candidates = src.statements
+    .filter(ts.isVariableStatement)
+    .filter(st => st.modifiers?.some(m => m.kind === ts.SyntaxKind.ExportKeyword))
+    .flatMap(st =>
+      st.declarationList.declarations
+        .filter(
+          d =>
+            ts.isIdentifier(d.name) &&
+            ts.isCallExpression(d.initializer) &&
+            ts.isIdentifier(d.initializer.expression) &&
+            d.initializer.expression.text === 'defineLesson',
+        )
+        .map(d => d.name.text),
+    );
   if (candidates.length !== 1) return null;
   const courseFolder = path.posix.join(pkg, 'data/courses', courseId.at(-1), courseId);
   return { path: path.posix.relative(courseFolder, entries[0].source), export: candidates[0] };
@@ -219,7 +258,8 @@ export function renderModularCourse(technical, pkg, resolveLesson = () => null) 
   register(config.content);
   const files = new Map();
   for (const { node, file } of nodes) {
-    const imports = new Map(), unresolved = [];
+    const imports = new Map(),
+      unresolved = [];
     const addImport = (symbol, target) => {
       const specifier = relativeImport(file, target);
       const key = specifier + ':' + symbol;
@@ -249,33 +289,55 @@ export function renderModularCourse(technical, pkg, resolveLesson = () => null) 
       if (key !== 'content') {
         parts.push('  ' + JSON.stringify(key) + ': ' + tsLiteral(value, 1));
       } else {
-        const children = Object.entries(value.items).map(([slug, entry]) =>
-          '    ' + JSON.stringify(slug) + ': ' + expression(entry.config));
-        const collection = '{\n    items: {\n' + children.join(',\n') +
-          (children.length ? '\n' : '') + '    },\n    order: ' + tsLiteral(value.order, 2) + '\n  }';
+        const children = Object.entries(value.items).map(
+          ([slug, entry]) => '    ' + JSON.stringify(slug) + ': ' + expression(entry.config),
+        );
+        const collection =
+          '{\n    items: {\n' +
+          children.join(',\n') +
+          (children.length ? '\n' : '') +
+          '    },\n    order: ' +
+          tsLiteral(value.order, 2) +
+          '\n  }';
         parts.push('  content: ' + collection);
       }
     }
     const header = [
       HEADER.trimEnd(),
       'import { define' + node.type[0].toUpperCase() + node.type.slice(1) + ' } from "@svitlo/engine/build";',
-      ...[...imports.values()].map(x => 'import { ' + x.symbol +
-        (x.alias ? ' as ' + x.alias : '') + ' } from ' + JSON.stringify(x.specifier) + ';'),
+      ...[...imports.values()].map(
+        x =>
+          'import { ' + x.symbol + (x.alias ? ' as ' + x.alias : '') + ' } from ' + JSON.stringify(x.specifier) + ';',
+      ),
       '',
-      ...unresolved.map(x => '// TODO: Resolve standalone Lesson UUID ' +
-        JSON.stringify(x.lessonId) + ' and replace ' + x.alias + '; never define Lesson inside Course.'),
+      ...unresolved.map(
+        x =>
+          '// TODO: Resolve standalone Lesson UUID ' +
+          JSON.stringify(x.lessonId) +
+          ' and replace ' +
+          x.alias +
+          '; never define Lesson inside Course.',
+      ),
       ...(unresolved.length ? [''] : []),
-      'export const ' + symbolOf(node) + ' = define' +
-        node.type[0].toUpperCase() + node.type.slice(1) +
-        '({\n' + parts.join(',\n') + '\n});',
+      'export const ' +
+        symbolOf(node) +
+        ' = define' +
+        node.type[0].toUpperCase() +
+        node.type.slice(1) +
+        '({\n' +
+        parts.join(',\n') +
+        '\n});',
       '',
     ];
     files.set(file, header.join('\n'));
   }
-  for (const family of ['module','chapter']) {
-    const entries = nodes.filter(x => x.node.type === family).sort((a,b) => a.file.localeCompare(b.file));
-    if (entries.length) files.set((family === 'module' ? 'modules/' : 'chapters/') + 'index.ts',
-      entries.map(x => 'export { ' + symbolOf(x.node) + ' } from "./' + x.node.slug + '";').join('\n') + '\n');
+  for (const family of ['module', 'chapter']) {
+    const entries = nodes.filter(x => x.node.type === family).sort((a, b) => a.file.localeCompare(b.file));
+    if (entries.length)
+      files.set(
+        (family === 'module' ? 'modules/' : 'chapters/') + 'index.ts',
+        entries.map(x => 'export { ' + symbolOf(x.node) + ' } from "./' + x.node.slug + '";').join('\n') + '\n',
+      );
   }
   return files;
 }
@@ -320,18 +382,18 @@ function writeArtifacts(artifacts) {
 export function parseArgs(argv) {
   const opts = {};
   for (let i = 0; i < argv.length; i++) {
-    const key = argv[i], value = argv[i+1];
-    if (['--package','--course'].includes(key)) {
+    const key = argv[i],
+      value = argv[i + 1];
+    if (['--package', '--course'].includes(key)) {
       if (opts[key] || !value) fail('duplicate/missing option ' + key);
       opts[key] = value;
       i++;
-    } else if (['--write','--check','--finalize'].includes(key)) {
+    } else if (['--write', '--check', '--finalize'].includes(key)) {
       if (opts.action) fail('choose exactly one mode');
       opts.action = key;
     } else fail('unknown option ' + key);
   }
-  if (!PACKAGE.test(opts['--package'] ?? '') ||
-      !UUID.test(opts['--course'] ?? '') || !opts.action)
+  if (!PACKAGE.test(opts['--package'] ?? '') || !UUID.test(opts['--course'] ?? '') || !opts.action)
     fail('usage: --package content/<book> --course <uuid> --write|--check|--finalize');
   return { pkg: opts['--package'], id: opts['--course'], mode: opts.action };
 }
@@ -341,9 +403,11 @@ export function materialize(argv, root = rootDefault) {
   const source = path.join(folder, 'course.yaml');
   assertPath(source);
   if (!fs.existsSync(source)) fail('missing approved temporary course.yaml: ' + source);
-  if (fs.statSync(source).size > 2*1024*1024) fail('course.yaml exceeds 2MiB');
-  if (mode === '--write' && (fs.existsSync(path.join(folder, 'index.ts')) ||
-      fs.readdirSync(folder).some(name => name.endsWith('.data.ts')))) {
+  if (fs.statSync(source).size > 2 * 1024 * 1024) fail('course.yaml exceeds 2MiB');
+  if (
+    mode === '--write' &&
+    (fs.existsSync(path.join(folder, 'index.ts')) || fs.readdirSync(folder).some(name => name.endsWith('.data.ts')))
+  ) {
     console.log('SKIP Course ' + id + ': existing authored Course entrypoint; no files modified');
     return { skipped: true };
   }
@@ -361,6 +425,10 @@ export function materialize(argv, root = rootDefault) {
   return { skipped: false, artifacts };
 }
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
-  try { materialize(process.argv.slice(2)); }
-  catch (error) { console.error(String(error.message ?? error)); process.exitCode = 1; }
+  try {
+    materialize(process.argv.slice(2));
+  } catch (error) {
+    console.error(String(error.message ?? error));
+    process.exitCode = 1;
+  }
 }

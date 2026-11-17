@@ -17,14 +17,25 @@ import { fileURLToPath } from 'node:url';
 import YAML from 'yaml';
 import { buildLessonIndex } from '../../shared/engine/scripts/generateLessonsBySkill/lesson-index.mjs';
 import {
-  canonicalUUID, collectInventory, sameInventory, parseParent, parseLessonClaim,
-  resolveClaims, outsideHash, validateReport, renderLessonsBlock, replaceManagedBlock,
-  REPO, TEXTBOOK, inspectIndexedLesson,
+  canonicalUUID,
+  collectInventory,
+  sameInventory,
+  parseParent,
+  parseLessonClaim,
+  resolveClaims,
+  outsideHash,
+  validateReport,
+  renderLessonsBlock,
+  replaceManagedBlock,
+  REPO,
+  TEXTBOOK,
+  inspectIndexedLesson,
 } from './synchronizer.mjs';
 
 const SHA = /^[a-f0-9]{40}$/;
 const rootDir = path.resolve(fileURLToPath(new URL('../../', import.meta.url)));
-const usage = 'Usage: analyze --repo owner/repo --pr N --sha SHA --root DIRECTORY --out FILE ' +
+const usage =
+  'Usage: analyze --repo owner/repo --pr N --sha SHA --root DIRECTORY --out FILE ' +
   '| update --repo owner/repo --pr N --sha SHA --report FILE';
 const hasOwn = (obj, key) => Object.prototype.hasOwnProperty.call(obj, key);
 
@@ -33,20 +44,34 @@ export function parseArgs(argv) {
   if (!['analyze', 'update'].includes(mode)) throw new Error(usage);
   const opts = { mode };
   for (let i = 0; i < args.length; i += 2) {
-    const key = args[i], value = args[i + 1];
-    if (!['--repo', '--pr', '--sha', '--root', '--out', '--report'].includes(key) ||
-        hasOwn(opts, key) || !value || value.startsWith('--')) throw new Error(usage);
+    const key = args[i],
+      value = args[i + 1];
+    if (
+      !['--repo', '--pr', '--sha', '--root', '--out', '--report'].includes(key) ||
+      hasOwn(opts, key) ||
+      !value ||
+      value.startsWith('--')
+    )
+      throw new Error(usage);
     opts[key] = value;
   }
-  if (!REPO.test(opts['--repo'] ?? '') || !/^[1-9]\d{0,8}$/.test(opts['--pr'] ?? '') ||
-      !SHA.test(opts['--sha'] ?? '') ||
-      (mode === 'analyze' && (!opts['--root'] || !opts['--out'] || opts['--report'])) ||
-      (mode === 'update' && (!opts['--report'] || opts['--root'] || opts['--out']))) {
+  if (
+    !REPO.test(opts['--repo'] ?? '') ||
+    !/^[1-9]\d{0,8}$/.test(opts['--pr'] ?? '') ||
+    !SHA.test(opts['--sha'] ?? '') ||
+    (mode === 'analyze' && (!opts['--root'] || !opts['--out'] || opts['--report'])) ||
+    (mode === 'update' && (!opts['--report'] || opts['--root'] || opts['--out']))
+  ) {
     throw new Error(usage);
   }
   return {
-    mode, repo: opts['--repo'], pr: Number(opts['--pr']),
-    sha: opts['--sha'], root: opts['--root'], out: opts['--out'], report: opts['--report'],
+    mode,
+    repo: opts['--repo'],
+    pr: Number(opts['--pr']),
+    sha: opts['--sha'],
+    root: opts['--root'],
+    out: opts['--out'],
+    report: opts['--report'],
   };
 }
 
@@ -83,7 +108,13 @@ export function parseYamlFile(filename) {
   const source = fs.readFileSync(filename, 'utf8');
   if (Buffer.byteLength(source, 'utf8') > 2 * 1024 * 1024) throw new Error('Course YAML exceeds 2 MiB');
   const document = YAML.parseDocument(source, { strict: true, uniqueKeys: true, version: '1.2' });
-  if (document.errors.length) throw new Error(document.errors.map(x => x.message).join('; ').slice(0, 500));
+  if (document.errors.length)
+    throw new Error(
+      document.errors
+        .map(x => x.message)
+        .join('; ')
+        .slice(0, 500),
+    );
   return document.toJS({ maxAliasCount: 0 });
 }
 function readInventory(root, relative, mode, courseId) {
@@ -124,25 +155,36 @@ function reportDiagnostic(collection, reason) {
 
 export async function analyze(options) {
   const parent = await github(options.repo, 'pulls/' + options.pr);
-  if (parent.state !== 'open' || parent.head?.repo?.full_name !== options.repo ||
-      parent.head?.sha !== options.sha) throw new Error('Open, unchanged same-repository Course PR required');
+  if (parent.state !== 'open' || parent.head?.repo?.full_name !== options.repo || parent.head?.sha !== options.sha)
+    throw new Error('Open, unchanged same-repository Course PR required');
   const identity = parseParent(parent.body);
   const editor = identity.courseDirectory + '/course.yaml';
   const tech = identity.courseDirectory + '/config.yaml';
-  const diagnostics = [], unresolved = [];
-  let complete = true, current = null;
+  const diagnostics = [],
+    unresolved = [];
+  let complete = true,
+    current = null;
   try {
     const planned = readInventory(options.root, editor, 'editorial', identity.courseId);
     const generated = readInventory(options.root, tech, 'technical', identity.courseId);
-    if (planned && generated && (!sameInventory(planned, generated) ||
-        JSON.stringify(planned.languages) !== JSON.stringify(generated.languages))) {
-      reportDiagnostic(diagnostics, 'Editorial and technical Lesson inventories diverge; Stage 5 reconciliation required');
+    if (
+      planned &&
+      generated &&
+      (!sameInventory(planned, generated) || JSON.stringify(planned.languages) !== JSON.stringify(generated.languages))
+    ) {
+      reportDiagnostic(
+        diagnostics,
+        'Editorial and technical Lesson inventories diverge; Stage 5 reconciliation required',
+      );
       complete = false;
     }
     current = generated ?? planned;
     if (!current) {
       complete = false;
-      reportDiagnostic(diagnostics, 'No verifiable course.yaml or config.yaml Course inventory; TypeScript-only composition is not parsed');
+      reportDiagnostic(
+        diagnostics,
+        'No verifiable course.yaml or config.yaml Course inventory; TypeScript-only composition is not parsed',
+      );
     }
     if (current) unresolved.push(...current.unresolved);
   } catch (error) {
@@ -153,8 +195,9 @@ export async function analyze(options) {
   if (current && !current.allocated && !current.lessons.length) complete = false;
 
   let prs = [];
-  try { prs = await listAllPrs(options.repo); }
-  catch (error) {
+  try {
+    prs = await listAllPrs(options.repo);
+  } catch (error) {
     complete = false;
     reportDiagnostic(diagnostics, 'GitHub PR discovery incomplete: ' + String(error.message));
   }
@@ -164,13 +207,16 @@ export async function analyze(options) {
     try {
       const claim = parseLessonClaim(pr.body);
       if (!claim || claim.courseId !== identity.courseId || claim.parentPr !== options.pr) continue;
-      if (pr.head?.repo?.full_name !== options.repo ||
-          !Number.isSafeInteger(pr.number) || pr.number < 1) {
+      if (pr.head?.repo?.full_name !== options.repo || !Number.isSafeInteger(pr.number) || pr.number < 1) {
         throw new Error('Lesson PR must be from the same repository');
       }
       claims.push({
-        ...claim, number: pr.number, state: pr.state, draft: Boolean(pr.draft),
-        merged: Boolean(pr.merged_at), mergeCommitSha: pr.merge_commit_sha ?? null,
+        ...claim,
+        number: pr.number,
+        state: pr.state,
+        draft: Boolean(pr.draft),
+        merged: Boolean(pr.merged_at),
+        mergeCommitSha: pr.merge_commit_sha ?? null,
       });
     } catch (error) {
       complete = false;
@@ -214,8 +260,10 @@ export async function analyze(options) {
     if (status === 'Not started' && source === 'implemented') status = 'Reused / existing';
     if (status.startsWith('Merged') && source !== 'implemented') {
       complete = false;
-      reportDiagnostic(diagnostics, entry.lessonId +
-        ': merged Lesson PR does not have verified implementation in Course head');
+      reportDiagnostic(
+        diagnostics,
+        entry.lessonId + ': merged Lesson PR does not have verified implementation in Course head',
+      );
     }
     // A merged PR's target ancestry still requires independent verification
     // before claiming the Course branch incorporates the Lesson.
@@ -225,18 +273,37 @@ export async function analyze(options) {
       ancestry = await mergedAncestry(options.repo, claim?.mergeCommitSha, options.sha);
       if (ancestry !== 'present') {
         complete = false;
-        reportDiagnostic(diagnostics, entry.lessonId + ': merged PR commit not contained in Course branch (' + ancestry + ')');
+        reportDiagnostic(
+          diagnostics,
+          entry.lessonId + ': merged PR commit not contained in Course branch (' + ancestry + ')',
+        );
       }
-      reportDiagnostic(diagnostics, entry.lessonId +
-        ': verify independent Lesson approval, localization and publication gates');
+      reportDiagnostic(
+        diagnostics,
+        entry.lessonId + ': verify independent Lesson approval, localization and publication gates',
+      );
     }
-    lessons.push({ ...entry, status, pr: match.pr, source,
-      readiness: inspected.readiness, missingLanguages: inspected.missingLanguages, ancestry });
+    lessons.push({
+      ...entry,
+      status,
+      pr: match.pr,
+      source,
+      readiness: inspected.readiness,
+      missingLanguages: inspected.missingLanguages,
+      ancestry,
+    });
   }
   const report = {
-    repo: options.repo, pr: options.pr, sha: options.sha, courseId: identity.courseId,
-    textbook: identity.textbook, outsideHash: outsideHash(parent.body),
-    complete, allocated: Boolean(current?.allocated), lessons, unresolved,
+    repo: options.repo,
+    pr: options.pr,
+    sha: options.sha,
+    courseId: identity.courseId,
+    textbook: identity.textbook,
+    outsideHash: outsideHash(parent.body),
+    complete,
+    allocated: Boolean(current?.allocated),
+    lessons,
+    unresolved,
     diagnostics: diagnostics.slice(0, 100),
   };
   validateReport(report);
@@ -256,11 +323,14 @@ export async function update(options) {
   const first = await github(options.repo, 'pulls/' + options.pr);
   const second = await github(options.repo, 'pulls/' + options.pr);
   for (const current of [first, second]) {
-    if (current.state !== 'open' || current.head?.repo?.full_name !== report.repo ||
-        current.head?.sha !== report.sha) throw new Error('Course parent moved or closed; rerun analysis');
+    if (current.state !== 'open' || current.head?.repo?.full_name !== report.repo || current.head?.sha !== report.sha)
+      throw new Error('Course parent moved or closed; rerun analysis');
     const identity = parseParent(current.body);
-    if (identity.courseId !== report.courseId || identity.textbook !== report.textbook ||
-        outsideHash(current.body) !== report.outsideHash) {
+    if (
+      identity.courseId !== report.courseId ||
+      identity.textbook !== report.textbook ||
+      outsideHash(current.body) !== report.outsideHash
+    ) {
       throw new Error('Course PR manual description changed; re-analyze instead of overwriting');
     }
   }
@@ -280,9 +350,17 @@ async function main() {
     fs.mkdirSync(path.dirname(destination), { recursive: true });
     fs.writeFileSync(destination, JSON.stringify(data, null, 2) + '\n');
   }
-  process.stdout.write(JSON.stringify(options.mode === 'analyze' ?
-    { complete: data.complete, lessons: data.lessons.length, diagnostics: data.diagnostics.length } : data) + '\n');
+  process.stdout.write(
+    JSON.stringify(
+      options.mode === 'analyze'
+        ? { complete: data.complete, lessons: data.lessons.length, diagnostics: data.diagnostics.length }
+        : data,
+    ) + '\n',
+  );
 }
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
-  main().catch(error => { console.error(String(error.message ?? error)); process.exitCode = 1; });
+  main().catch(error => {
+    console.error(String(error.message ?? error));
+    process.exitCode = 1;
+  });
 }

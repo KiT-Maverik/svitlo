@@ -10,15 +10,17 @@ import { fileURLToPath } from 'node:url';
 import Ajv2020 from 'ajv/dist/2020.js';
 import YAML from 'yaml';
 
-const schemaPath = fileURLToPath(new URL('../../../../studio/skills/course-workflow/course-flow.schema.json', import.meta.url));
+const schemaPath = fileURLToPath(
+  new URL('../../../../studio/skills/course-workflow/course-flow.schema.json', import.meta.url),
+);
 const schema = JSON.parse(fs.readFileSync(schemaPath, 'utf8'));
 const ajv = new Ajv2020({ allErrors: true, strict: true, validateFormats: false });
 const validateStructural = ajv.compile(schema);
 const uuid = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i;
 const collection = x => x !== null && typeof x === 'object' && !Array.isArray(x);
 const allowed = {
-  course: new Set(['module','chapter','lesson']),
-  module: new Set(['chapter','lesson']),
+  course: new Set(['module', 'chapter', 'lesson']),
+  module: new Set(['chapter', 'lesson']),
   chapter: new Set(['lesson']),
 };
 export function parseYaml(text) {
@@ -29,12 +31,12 @@ export function parseYaml(text) {
 }
 
 export function checkPlan(plan, stage) {
-  if (!['1','2','3','3-complete'].includes(stage)) throw new Error('Expected --stage 1|2|3|3-complete');
+  if (!['1', '2', '3', '3-complete'].includes(stage)) throw new Error('Expected --stage 1|2|3|3-complete');
   const errors = [];
   if (!validateStructural(plan)) {
     return {
-      valid: false, errors: (validateStructural.errors ?? []).slice(0, 100).map(x =>
-        (x.instancePath || '/') + ': ' + x.message),
+      valid: false,
+      errors: (validateStructural.errors ?? []).slice(0, 100).map(x => (x.instancePath || '/') + ': ' + x.message),
     };
   }
   if (stage === '1' && plan.content) errors.push('Stage 1 must not author Module/Chapter/Lesson structure');
@@ -45,8 +47,7 @@ export function checkPlan(plan, stage) {
     if (depth > 12) return errors.push(location + ': nesting exceeds 12 levels');
     if (!node.content) return;
     const { items, order } = node.content;
-    if (Object.keys(items).length !== order.length ||
-        order.some(key => !Object.hasOwn(items, key))) {
+    if (Object.keys(items).length !== order.length || order.some(key => !Object.hasOwn(items, key))) {
       errors.push(location + ': order must contain every items key exactly once');
     }
     for (const [key, child] of Object.entries(items)) {
@@ -60,7 +61,8 @@ export function checkPlan(plan, stage) {
         lessonCount.total++;
         if (!child.lessonId) {
           lessonCount.unidentified++;
-          if (stage === '3-complete') errors.push(position + ': Lesson UUID must be allocated before Stage 3 completion');
+          if (stage === '3-complete')
+            errors.push(position + ': Lesson UUID must be allocated before Stage 3 completion');
         } else {
           if (!uuid.test(child.lessonId)) errors.push(position + ': invalid Lesson UUID');
           ids.add(child.lessonId.toLowerCase());
@@ -74,9 +76,13 @@ export function checkPlan(plan, stage) {
   }
   if (plan.content) walk(plan, 'course', 0, 'course');
   if (errors.length > 100) errors.splice(100);
-  return { valid: errors.length === 0, errors,
-    lessonSlots: lessonCount.total, allocatedLessonIds: ids.size,
-    unresolvedLessonIds: lessonCount.unidentified };
+  return {
+    valid: errors.length === 0,
+    errors,
+    lessonSlots: lessonCount.total,
+    allocatedLessonIds: ids.size,
+    unresolvedLessonIds: lessonCount.unidentified,
+  };
 }
 
 function args(argv) {
@@ -90,11 +96,12 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
     const input = args(process.argv.slice(2));
     if (!input.file.endsWith('/course.yaml') && path.basename(input.file) !== 'course.yaml')
       throw new Error('This command accepts only editorial course.yaml; never technical config.yaml');
-    const result = checkPlan(parseYaml(fs.readFileSync(input.file,'utf8')), input.stage);
+    const result = checkPlan(parseYaml(fs.readFileSync(input.file, 'utf8')), input.stage);
     for (const err of result.errors) console.error(err);
     process.stdout.write(JSON.stringify(result) + '\n');
     if (!result.valid) process.exitCode = 1;
   } catch (error) {
-    console.error(String(error.message ?? error)); process.exitCode = 1;
+    console.error(String(error.message ?? error));
+    process.exitCode = 1;
   }
 }
