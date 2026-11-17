@@ -1,0 +1,43 @@
+name: EducationStandard catalog
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'shared/education-standards/**'
+      - 'shared/engine/configurators/educationStandards/**'
+      - 'shared/engine/build.ts'
+      - 'shared/engine/runtime.ts'
+      - 'package-lock.json'
+      - '.github/workflows/education-standards.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: education-standards-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  catalog:
+    name: Catalog build, types, tests and formatting
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - name: Build Engine (authoring contract)
+        run: npm run package:build --workspace @svitlo/engine
+      - name: Build education standards catalog
+        run: npm run package:build --workspace @svitlo/education-standards
+      - name: Typecheck education standards catalog
+        run: npm run code:check:types --workspace @svitlo/education-standards
+      - name: Run catalog identity, locale and publication tests
+        run: npm test --workspace @svitlo/education-standards
+      - name: Check catalog formatting
+        run: npm run code:format:check --workspace @svitlo/education-standards
