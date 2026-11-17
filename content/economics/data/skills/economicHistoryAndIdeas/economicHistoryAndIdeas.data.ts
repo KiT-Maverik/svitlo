@@ -35,7 +35,7 @@ export const economicHistoryAndIdeas_SkillDomain_Data = defineSkillDomain({
     et: 'Majandusajalugu ja -ideed',
     be: 'Эканамічная гісторыя і ідэі',
     ka: 'ეკონომიკური ისტორია და იდეები',
-    kk: 'Экономикалық тарих және идеялар',
+    kk: 'Ekonomikalyq tarih jäne ideialar',
     qm: 'İqtisadiy tarih ve fikirler',
   },
   groups: [
@@ -74,7 +74,7 @@ export const economicHistoryAndIdeas_SkillDomain_Data = defineSkillDomain({
       et: 'Uuri, kuidas majandused ja majandusideed ajaloo jooksul muutusid.',
       be: 'Дасьледуй, як эканомікі і эканамічныя ідэі зьмяняліся цягам гісторыі.',
       ka: 'შეისწავლე, როგორ იცვლებოდა ეკონომიკა და ეკონომიკური იდეები ისტორიის განმავლობაში.',
-      kk: 'Тарих бойы экономикалар мен экономикалық идеялар қалай өзгергенін зертте.',
+      kk: 'Tarih boiy ekonomikalar men ekonomikalyq ideialar qalai özgergenın zertte.',
       qm: 'Tarih boyunca iqtisatlar ve iqtisadiy fikirler nasıl deñişkenini ögren.',
     },
   },

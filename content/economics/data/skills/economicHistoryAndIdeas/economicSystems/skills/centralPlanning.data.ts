@@ -31,7 +31,7 @@ export const centralPlanning_Skill_Data = defineSkill({
     et: 'Keskne planeerimine',
     be: 'Цэнтралізаванае плянаваньне',
     ka: 'ცენტრალიზებული დაგეგმვა',
-    kk: 'Орталықтандырылған жоспарлау',
+    kk: 'Ortalyqtandyrylğan josparlau',
     qm: 'Merkezleştirilgen planlaştırma',
   },
   description: {
@@ -64,7 +64,7 @@ export const centralPlanning_Skill_Data = defineSkill({
       et: 'Mõista, kuidas keskplaanid jaotavad tootmisressursse.',
       be: 'Зразумей, як цэнтралізаваныя пляны разьмяркоўваюць вытворчыя рэсурсы.',
       ka: 'გაიგე, როგორ ანაწილებენ ცენტრალური გეგმები საწარმოო რესურსებს.',
-      kk: 'Орталық жоспарлар өндірістік ресурстарды қалай бөлетінін түсін.',
+      kk: 'Ortalyq josparlar öndırıstık resurstardy qalai böletının tüsın.',
       qm: 'Merkezleştirilgen planlar istisal resurslarını nasıl bölüştürgenini añla.',
     },
   },

@@ -31,7 +31,7 @@ export const marketCoordination_Skill_Data = defineSkill({
     et: 'Turukoordineerimine',
     be: 'Рынкавая каардынацыя',
     ka: 'საბაზრო კოორდინაცია',
-    kk: 'Нарықтық үйлестіру',
+    kk: 'Naryqtyq üilestıru',
     qm: 'Bazar uyğunlaştırması',
   },
   description: {
@@ -64,7 +64,7 @@ export const marketCoordination_Skill_Data = defineSkill({
       et: 'Vaata, kuidas hinnad koordineerivad valikuid ilma kesksete korraldusteta.',
       be: 'Паглядзі, як цэны ўзгадняюць рашэньні без цэнтральных загадаў.',
       ka: 'ნახე, როგორ ათანხმებს ფასები არჩევანს ცენტრალური მითითებების გარეშე.',
-      kk: 'Бағалар орталық нұсқаусыз шешімдерді қалай үйлестіретінін біл.',
+      kk: 'Bağalar ortalyq nūsqausyz şeşımderdı qalai üilestıretının bıl.',
       qm: 'Fiyatlar merkezden emir olmadan saylavlarnı nasıl uyğunlaştırğanını ögren.',
     },
   },

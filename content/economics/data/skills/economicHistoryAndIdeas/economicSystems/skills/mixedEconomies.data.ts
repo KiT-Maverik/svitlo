@@ -31,7 +31,7 @@ export const mixedEconomies_Skill_Data = defineSkill({
     et: 'Segamajandused',
     be: 'Зьмешаныя эканамічныя сыстэмы',
     ka: 'შერეული ეკონომიკები',
-    kk: 'Аралас экономикалар',
+    kk: 'Aralas ekonomikalar',
     qm: 'Qarışıq iqtisatlar',
   },
   description: {
@@ -64,7 +64,7 @@ export const mixedEconomies_Skill_Data = defineSkill({
       et: 'Uuri, miks paljud majandused ühendavad turud ja riigi osaluse.',
       be: 'Дасьледуй, чаму шмат якія эканомікі спалучаюць рынкі і ўдзел дзяржавы.',
       ka: 'შეისწავლე, რატომ აერთიანებს ბევრი ეკონომიკა ბაზრებსა და სახელმწიფოს მონაწილეობას.',
-      kk: 'Көп экономика нарық пен мемлекеттің қатысуын неге біріктіретінін зертте.',
+      kk: 'Köp ekonomika naryq pen memlekettıñ qatysuyn nege bırıktıretının zertte.',
       qm: 'Çoq iqtisatlar bazar ve devlet iştirakini niçün birleştirgenini ögren.',
     },
   },
