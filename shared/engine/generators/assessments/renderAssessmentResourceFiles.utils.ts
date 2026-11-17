@@ -125,6 +125,12 @@ export function renderAssessmentResourceFiles(entries: readonly AssessmentPublic
       lessonId,
       kind,
       ...(kind === 'question' ? { questionType: type as AssessmentResourceEntry['questionType'] } : {}),
+      ...(kind === 'flashcard'
+        ? {
+            disabilities: (publication.base as { parameters?: { disabilities?: AssessmentResourceEntry['disabilities'] } })
+              .parameters?.disabilities ?? [],
+          }
+        : {}),
       languages,
       localeFiles: Object.keys(locale) as LanguageCode[],
       contentHash: hash,
