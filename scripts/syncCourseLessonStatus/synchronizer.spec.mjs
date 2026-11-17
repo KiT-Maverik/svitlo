@@ -4,6 +4,7 @@ import {
   collectInventory,
   parseParent,
   parseLessonClaim,
+  targetsCourseLessonClaim,
   managedBounds,
   replaceManagedBlock,
   outsideHash,
@@ -109,6 +110,19 @@ test('PR identity uses exact UUIDs and never fuzzy title/branch matching', () =>
   assert.equal(resolveClaims(lessonId, [{ ...example, state: 'closed' }]).status, 'Closed unmerged · #5');
   assert.equal(resolveClaims(lessonId, []).status, 'Not started');
   assert.equal(resolveClaims(lessonId, [example, { ...example, number: 6 }]).status, 'Needs resolution');
+});
+
+test('global PR discovery scopes claims before validating their complete identity', () => {
+  const marker = '<!-- svitlo-course-lesson:v1 -->';
+  const example = marker + '\nCourse: <course-uuid>\nLesson: <lesson-uuid>\nParent PR: #<number>';
+  assert.equal(targetsCourseLessonClaim(example, courseId, 653), false);
+  assert.equal(targetsCourseLessonClaim(marker + '\nCourse: other\nParent PR: #999', courseId, 653), false);
+  assert.equal(targetsCourseLessonClaim('Course: ' + courseId + '\nParent PR: #653', courseId, 653), false);
+  assert.equal(targetsCourseLessonClaim(marker + '\nCourse: ' + courseId + '\nParent PR: #999', courseId, 653), true);
+  assert.equal(targetsCourseLessonClaim(marker + '\nCourse: invalid\nParent PR: #653', courseId, 653), true);
+  assert.equal(targetsCourseLessonClaim(marker + '\nParent PR: #653broken', courseId, 653), true);
+  assert.equal(targetsCourseLessonClaim(marker + '\nCourse: ' + courseId.toUpperCase(), courseId, 653), true);
+  assert.throws(() => targetsCourseLessonClaim(marker, courseId, 0), /parent PR number/);
 });
 
 test('bounded reports refuse malformed rows and escape Markdown', () => {
