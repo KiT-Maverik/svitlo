@@ -173,6 +173,7 @@ describe('On-demand coverage GitHub workflow', () => {
     const publish = JSON.stringify(doc.jobs.publish);
     assert.match(publish, /! -name lesson-lookup ! -name engine-coverage/);
     assert.doesNotMatch(publish, /rm -rf -- \.agent-ci-artifacts(?:\\n|")/);
+    assert.match(JSON.stringify(doc.jobs.generate), /Exclude other workflows' diagnostics/);
     assert.equal(doc.jobs.publish.concurrency.group, doc.jobs.cleanup.concurrency.group);
   });
 });
