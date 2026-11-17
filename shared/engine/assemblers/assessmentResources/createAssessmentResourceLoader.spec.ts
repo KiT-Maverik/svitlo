@@ -6,7 +6,6 @@ import { defineSelectOneAnswer } from '../../configurators/questions/defineSelec
 import type { ContentBlock_Props } from '../../configurators/contentBlocks/contentBlock.types';
 import { createAssessmentResourceLoader, type ReadAssessmentFiles } from './createAssessmentResourceLoader';
 
-
 function textValue(block: ContentBlock_Props | undefined): string {
   assert.equal(block?.type, 'text');
   if (block?.type !== 'text') throw new Error('Expected a resolved Text block');
@@ -31,7 +30,17 @@ const manifest = {
 };
 const source = new Map<string, unknown>([
   [prefix + '/assessment-manifest.json', manifest],
-  [prefix + '/questions/' + questionId + '/base.json', { id: questionId, type: 'selectOneAnswer', slug: 'question', params: { assessmentMethod: 'retrieval', restrictions: [] }, locale: {}, content: { question: [] } }],
+  [
+    prefix + '/questions/' + questionId + '/base.json',
+    {
+      id: questionId,
+      type: 'selectOneAnswer',
+      slug: 'question',
+      params: { assessmentMethod: 'retrieval', restrictions: [] },
+      locale: {},
+      content: { question: [] },
+    },
+  ],
   [prefix + '/questions/' + questionId + '/uk.json', { locale: { title: 'Питання' } }],
 ]);
 
@@ -60,7 +69,8 @@ test('loader never reads an unrelated bank entry, batches selected paths and cac
 });
 
 test('loader rejects missing files, wrong IDs and cancelled navigation without caching failures', async () => {
-  const reader: ReadAssessmentFiles = async paths => new Map(paths.filter(path => path.endsWith('manifest.json')).map(path => [path, manifest]));
+  const reader: ReadAssessmentFiles = async paths =>
+    new Map(paths.filter(path => path.endsWith('manifest.json')).map(path => [path, manifest]));
   const loader = createAssessmentResourceLoader(reader);
   await assert.rejects(
     () => loader.loadQuestions({ lessonId, language: 'en', ids: [questionId] }),
@@ -71,7 +81,6 @@ test('loader rejects missing files, wrong IDs and cancelled navigation without c
     /aborted/,
   );
 });
-
 
 test('loader resolves a complete published Flashcard in one scoped batch and caches selected results', async () => {
   const cardId = '715383c3-ea22-5043-9213-555180837358';
@@ -87,7 +96,7 @@ test('loader resolves a complete published Flashcard in one scoped batch and cac
         id: cardId,
         slug: 'sampleCard',
         type: 'flashcard',
-        parameters: { tags: [], flags: [] },
+        parameters: { tags: [], disabilities: [], flags: [] },
         content: {
           front: [{ id: frontId, slug: 'front', type: 'text', params: {}, locale: { value: 'Front' } }],
           back: [{ id: backId, slug: 'back', type: 'text', params: {} }],
@@ -109,7 +118,8 @@ test('loader resolves a complete published Flashcard in one scoped batch and cac
       },
     },
   };
-  const { renderAssessmentResourceFiles } = await import('../../generators/assessments/renderAssessmentResourceFiles.utils');
+  const { renderAssessmentResourceFiles } =
+    await import('../../generators/assessments/renderAssessmentResourceFiles.utils');
   const generated = renderAssessmentResourceFiles([publication]);
   const data = new Map([...generated].map(([path, value]) => ['data/lessons/' + path, JSON.parse(value)]));
   const requests: string[][] = [];
@@ -117,6 +127,23 @@ test('loader resolves a complete published Flashcard in one scoped batch and cac
     requests.push([...paths]);
     return new Map(paths.filter(path => data.has(path)).map(path => [path, data.get(path)]));
   });
+  const manifestPath = prefix + '/assessment-manifest.json';
+  const inconsistentFiles = new Map(data);
+  const inconsistentManifest = structuredClone(data.get(manifestPath)) as {
+    entries: Record<string, { disabilities: string[] }>;
+  };
+  inconsistentManifest.entries[cardId].disabilities = ['blindness'];
+  inconsistentFiles.set(manifestPath, inconsistentManifest);
+  const inconsistentLoader = createAssessmentResourceLoader(
+    async paths =>
+      new Map(paths.filter(path => inconsistentFiles.has(path)).map(path => [path, inconsistentFiles.get(path)])),
+  );
+  await assert.rejects(
+    () => inconsistentLoader.loadFlashcards({ lessonId, language: 'uk', ids: [cardId], accessNeeds: ['deafness'] }),
+    /disability metadata mismatch/,
+    'Manifest and card data must agree before an eligible card can be presented',
+  );
+
   const uk = await loader.loadFlashcards({ lessonId, language: 'uk', ids: [cardId] });
   assert.equal(uk.length, 1);
   assert.equal(uk[0].id, cardId);
@@ -137,7 +164,6 @@ test('loader resolves a complete published Flashcard in one scoped batch and cac
   assert.equal(textValue(en[0].content.back[0]), 'Back');
   assert.equal(requests.length, count + 1, 'Different locale needs separate selected files');
 });
-
 
 test('a completed Question is published and resolved separately with the requested language only', async () => {
   const prompt = defineText<'prompt', ['en', 'uk']>({
@@ -178,7 +204,8 @@ test('a completed Question is published and resolved separately with the request
     content,
   });
   const publication = question.build.props({ languages: ['en', 'uk'] });
-  const { renderAssessmentResourceFiles } = await import('../../generators/assessments/renderAssessmentResourceFiles.utils');
+  const { renderAssessmentResourceFiles } =
+    await import('../../generators/assessments/renderAssessmentResourceFiles.utils');
   const generated = renderAssessmentResourceFiles([
     { source: 'sample-question.ts', lessonId, kind: 'question', languages: ['en', 'uk'], publication },
   ]);
@@ -207,4 +234,39 @@ test('a completed Question is published and resolved separately with the request
   assert.equal(textValue(en[0].content.question[0]), 'What is equal?');
   assert.equal(textValue(en[0].content.answers.incorrect.incorrect), 'Three');
   assert.equal(requests.length, 3, 'Only requested locale is loaded after shared manifest');
+});
+
+test('incompatible Flashcard UUIDs are excluded from batched reads before fetching content', async () => {
+  const deniedId = '715383c3-ea22-5043-9213-555180837358';
+  const ownedManifest = {
+    lessonId,
+    entries: {
+      [deniedId]: {
+        lessonId,
+        kind: 'flashcard',
+        languages: ['en'],
+        localeFiles: [],
+        contentHash: 'a'.repeat(64),
+        disabilities: ['deafness'],
+      },
+    },
+  };
+  const batches: string[][] = [];
+  const reader: ReadAssessmentFiles = async paths => {
+    batches.push([...paths]);
+    return new Map(paths.map(path => [path, ownedManifest]));
+  };
+  const loader = createAssessmentResourceLoader(reader);
+  const cards = await loader.loadFlashcards({
+    lessonId,
+    language: 'en',
+    ids: [deniedId],
+    accessNeeds: ['deafness'],
+  });
+  assert.deepEqual(cards, []);
+  assert.deepEqual(batches, [[prefix + '/assessment-manifest.json']]);
+  await assert.rejects(
+    () => loader.loadFlashcards({ lessonId, language: 'en', ids: [deniedId], accessNeeds: ['deafness', 'deafness'] }),
+    /Duplicate voluntarily selected access need/,
+  );
 });

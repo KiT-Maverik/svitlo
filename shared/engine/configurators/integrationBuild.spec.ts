@@ -88,7 +88,6 @@ describe('Configurators', () => {
       >({
         id: id('07'),
         slug: 'card',
-        type: 'flashcard',
         parameters: { tags: [], flags: { items: { warningFlag: { type: 'warning' } }, order: ['warningFlag'] } },
         content: {
           front: defineFlashcardSide<{ front: typeof front }, ['uk', 'en']>({ items: { front }, order: ['front'] }),
