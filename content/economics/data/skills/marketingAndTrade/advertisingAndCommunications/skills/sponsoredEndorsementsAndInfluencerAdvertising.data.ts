@@ -31,7 +31,7 @@ export const sponsoredEndorsementsAndInfluencerAdvertising_Skill_Data = defineSk
     et: 'Sponsoreeritud soovitused ja suunamudijate reklaam',
     be: 'Аплачаныя рэкамэндацыі й рэкляма ўплывовых асобаў',
     ka: 'სპონსორირებული რეკომენდაციები და ინფლუენსერის რეკლამა',
-    kk: 'Демеушілік ұсыныстар және инфлюенсер жарнамасы',
+    kk: 'Demeuşılık ūsynystar jäne infliuenser jarnamasy',
     qm: 'Sponsorlu tavsiyeler ve tesirli şahıslarnıñ reklamaları',
   },
   description: {
@@ -65,7 +65,7 @@ export const sponsoredEndorsementsAndInfluencerAdvertising_Skill_Data = defineSk
       et: 'Tunne ära tasustatud soovitused ja hinda nende väidete usaldusväärsust.',
       be: 'Распазнавай аплачаныя парады й правярай праўдзівасьць іхных заяваў.',
       ka: 'ამოიცანი ფასიანი რეკომენდაციები და შეამოწმე მათი მტკიცებების სანდოობა.',
-      kk: 'Ақылы ұсынысты танып, ондағы тұжырымдардың сенімділігін тексер.',
+      kk: 'Aqyly ūsynysty tanyp, ondağy tūjyrymdardyñ senımdılıgın tekser.',
       qm: 'Aqça içün yapılğan tavsiyelerni tanı ve iddialarınıñ işançlı olğanını teşker.',
     },
   },

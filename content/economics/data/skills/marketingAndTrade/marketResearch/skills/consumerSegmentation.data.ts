@@ -31,7 +31,7 @@ export const consumerSegmentation_Skill_Data = defineSkill({
     et: 'Tarbijate segmenteerimine',
     be: 'Сэгмэнтацыя спажыўцоў',
     ka: 'მომხმარებელთა სეგმენტაცია',
-    kk: 'Тұтынушыларды сегменттеу',
+    kk: 'Tūtynuşylardy segmentteu',
     qm: 'Müşterilerni bölüklerge ayırmaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const consumerSegmentation_Skill_Data = defineSkill({
       et: 'Rühmita kliente sisuliste erinevuste, mitte stereotüüpide järgi.',
       be: 'Групуй кліентаў паводле значных адрозьненьняў, а не стэрэатыпаў.',
       ka: 'დააჯგუფე მომხმარებლები მნიშვნელოვანი განსხვავებებით და არა სტერეოტიპებით.',
-      kk: 'Клиенттерді таптаурынмен емес, мәнді айырмашылықпен топтастыр.',
+      kk: 'Klientterdı taptaurynmen emes, mändı aiyrmaşylyqpen toptastyr.',
       qm: 'Müşterilerni qalıp fikirlernen degil, esaslı farqlarnen böl.',
     },
   },

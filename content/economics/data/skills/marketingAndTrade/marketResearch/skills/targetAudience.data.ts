@@ -31,7 +31,7 @@ export const targetAudience_Skill_Data = defineSkill({
     et: 'Sihtrühm',
     be: 'Мэтавая аўдыторыя',
     ka: 'სამიზნე აუდიტორია',
-    kk: 'Мақсатты аудитория',
+    kk: 'Maqsatty auditoriia',
     qm: 'Maqsatlı müşteriler',
   },
   description: {
@@ -65,7 +65,7 @@ export const targetAudience_Skill_Data = defineSkill({
       et: 'Tuvasta kliendid, kellele toode kõige paremini sobib.',
       be: 'Вызнач, каму прадукт найбольш пасуе.',
       ka: 'განსაზღვრე, რომელი მომხმარებლებისთვისაა პროდუქტი ყველაზე შესაფერისი.',
-      kk: 'Өнім кімге көбірек қажет екенін анықта.',
+      kk: 'Önım kımge köbırek qajet ekenın anyqta.',
       qm: 'Bir mal kimge eñ uyğun kelgenini tap.',
     },
   },

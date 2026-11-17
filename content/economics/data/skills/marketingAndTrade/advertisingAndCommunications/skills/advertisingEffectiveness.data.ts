@@ -31,7 +31,7 @@ export const advertisingEffectiveness_Skill_Data = defineSkill({
     et: 'Reklaami tulemuslikkus',
     be: 'Эфэктыўнасьць рэклямы',
     ka: 'რეკლამის ეფექტიანობა',
-    kk: 'Жарнама тиімділігі',
+    kk: 'Jarnama tiımdılıgı',
     qm: 'Reklamanıñ neticeliligi',
   },
   description: {
@@ -65,7 +65,7 @@ export const advertisingEffectiveness_Skill_Data = defineSkill({
       et: 'Hinda kampaania tulemusi, võrdsustamata klikke müügiga.',
       be: 'Ацэньвай вынікі кампаніі, не атаясамліваючы клікі з продажамі.',
       ka: 'შეაფასე კამპანიის შედეგები და ნუ გააიგივებ დაწკაპუნებებს გაყიდვებთან.',
-      kk: 'Басуды сатылым деп есептемей, науқан нәтижелерін бағала.',
+      kk: 'Basudy satylym dep eseptemei, nauqan nätijelerın bağala.',
       qm: 'Basuvlarnı satış dep saymay, kampaniya neticelerini qıymetle.',
     },
   },

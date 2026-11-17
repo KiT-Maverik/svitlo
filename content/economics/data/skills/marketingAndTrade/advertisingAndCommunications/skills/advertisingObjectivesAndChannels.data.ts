@@ -31,7 +31,7 @@ export const advertisingObjectivesAndChannels_Skill_Data = defineSkill({
     et: 'Reklaami eesmärgid ja kanalid',
     be: 'Мэты й каналы рэклямы',
     ka: 'რეკლამის მიზნები და არხები',
-    kk: 'Жарнама мақсаттары мен арналары',
+    kk: 'Jarnama maqsattary men arnalary',
     qm: 'Reklama maqsatları ve kanalları',
   },
   description: {
@@ -64,7 +64,7 @@ export const advertisingObjectivesAndChannels_Skill_Data = defineSkill({
       et: 'Vali sõnumi ja sihtrühmaga sobivad reklaamikanalid.',
       be: 'Выбірай каналы адпаведна паведамленьню й аўдыторыі.',
       ka: 'აირჩიე შეტყობინებისა და აუდიტორიის შესაფერისი არხები.',
-      kk: 'Хабарға және аудиторияға сай жарнама арналарын таңда.',
+      kk: 'Habarğa jäne auditoriiağa sai jarnama arnalaryn tañda.',
       qm: 'Haber ve dinleyicilerge uyğun reklama kanallarını sayla.',
     },
   },
