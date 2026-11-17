@@ -53,7 +53,7 @@ export const identifyTheMainPartsOfAMushroomFruitingBody = defineSkill({
       it: 'Individua cappello, gambo e strutture produttrici di spore di un fungo comune.',
       ja: '身近なキノコの傘、柄、胞子をつくる部分を見分けましょう。',
       ka: 'ამოიცანით ჩვეულებრივი სოკოს ქუდი, ფეხი და სპორების წარმომქმნელი სტრუქტურები.',
-      kk: 'Kädımgı sañyrauqūlaqtyñ qalpağyn, sabağyn jäne spora tüzetın bölıkterın anyqtañyz.',
+      kk: 'Qalpaqşaly sañyrauqūlaqtyñ qalpaqşasyn, tübırtegın jäne spora tüzetın bölıkterın anyqtañyz.',
       ko: '흔한 버섯의 갓, 자루, 포자를 만드는 구조를 알아보세요.',
       lt: 'Atpažinkite įprasto grybo kepurėlę, kotą ir sporas gaminančias struktūras.',
       lv: 'Atpazīstiet parastas sēnes cepurīti, kātiņu un sporas veidojošās struktūras.',
