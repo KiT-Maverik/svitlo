@@ -433,6 +433,13 @@ describe('Opt-in flashcard reference (independent of the existing review consume
         id: 'subtitle-block', slug: 'captions', type: 'subtitles',
         params: {}, locale: { fileLocation: 'https://example.org/captions.vtt' },
       };
+      const checkpoint = lesson.section[0].content.find(block => block.type === 'checkpoint');
+      const item = checkpoint.content[0];
+      Object.assign(item, { type: 'checkpointItem', id: 'checkpoint-item-id', slug: 'checkpointItem' });
+      item.answer.push({
+        id: 'checkpoint-audio-id', slug: 'listenAgain', type: 'audio', params: {},
+        locale: { fileLocation: audioId + '.ogg', title: 'Listen and recall' },
+      });
       lesson.section[0].content.push(subtitles);
       const sources = sourceIndex(tmp.root, path.relative(tmp.root, tmp.lessonDir));
       const props = {
@@ -455,6 +462,8 @@ describe('Opt-in flashcard reference (independent of the existing review consume
       assert.match(output, /Owning block:.*narration/);
       assert.match(output, /Previous instructional context/);
       assert.match(output, /carousel-image-id/);
+      assert.match(output, /checkpoint \/ checkpointItem \/ listenAgain/);
+      assert.match(output, /checkpoint-audio-id/);
       assert.match(output, /External authored URL/);
       assert.match(output, /https:\/\/example.org\/captions\.vtt/);
       assert.match(output, new RegExp('blob/' + sha));
