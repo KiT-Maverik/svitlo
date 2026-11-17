@@ -30,6 +30,7 @@ on:
           - assessment-methods
           - ui-kit
           - geography-home-copy
+          - education-standards
       textbook:
         description: 'For Skills/Lessons: content/<book>'
         required: false
@@ -117,19 +118,19 @@ jobs:
                 }
                 component = parts[3] === 'all' ? '' : parts[3];
                 locale = parts[4] || '';
-              } else if (kind === 'assessment-methods' || kind === 'geography-home-copy') {
+              } else if (kind === 'assessment-methods' || kind === 'geography-home-copy' || kind === 'education-standards') {
                 if (![3, 4].includes(parts.length)) {
                   throw Error('Usage: /agent-artifacts generate ' + kind + ' [locale]');
                 }
                 locale = parts[3] || '';
               } else {
-                throw Error('Explicit kind required: skills, lessons, ui-kit, assessment-methods, geography-home-copy');
+                throw Error('Explicit kind required: skills, lessons, ui-kit, assessment-methods, geography-home-copy, education-standards');
               }
             }
           } else if (operation === 'generate') {
             ({ kind = '', textbook = '', locale = '', component = '', lesson = '' } = event.inputs);
           }
-          const allowed = ['skills', 'lessons', 'ui-kit', 'assessment-methods', 'geography-home-copy'];
+          const allowed = ['skills', 'lessons', 'ui-kit', 'assessment-methods', 'geography-home-copy', 'education-standards'];
           if (operation === 'generate') {
             if (!allowed.includes(kind)) throw Error('Unsupported reference family');
             if ((kind === 'skills' || kind === 'lessons') !== Boolean(textbook) ||
@@ -211,9 +212,12 @@ jobs:
           node-version: '24'
       - name: Install dependencies for the requested generator
         run: npm ci --ignore-scripts --no-audit --no-fund
-      - name: Build Engine only for typed Lesson generation
-        if: needs.resolve.outputs.kind == 'lessons'
+      - name: Build Engine for typed Lesson or EducationStandard generation
+        if: needs.resolve.outputs.kind == 'lessons' || needs.resolve.outputs.kind == 'education-standards'
         run: npm run package:build --workspace @svitlo/engine
+      - name: Build EducationStandard authoring catalog
+        if: needs.resolve.outputs.kind == 'education-standards'
+        run: npm run package:build --workspace @svitlo/education-standards
       - name: Generate only the selected reference scope
         env:
           REQUEST_KIND: ${{ needs.resolve.outputs.kind }}
@@ -288,7 +292,7 @@ jobs:
           const root = '.agent-ci-artifacts';
           const manifest = JSON.parse(fs.readFileSync(path.join(root, 'manifest.json'), 'utf8'));
           if (manifest.kind !== 'pr-scoped-agent-ci-artifacts' || manifest.schemaVersion !== 3 ||
-              !manifest.scope || !['skills', 'lessons', 'ui-kit', 'assessment-methods', 'geography-home-copy'].includes(manifest.scope.kind) ||
+              !manifest.scope || !['skills', 'lessons', 'ui-kit', 'assessment-methods', 'geography-home-copy', 'education-standards'].includes(manifest.scope.kind) ||
               !Array.isArray(manifest.generated) || !Array.isArray(manifest.failures) ||
               manifest.generated.length === 0) throw Error('Invalid or empty agent artifact manifest');
           const requested = {
@@ -305,7 +309,8 @@ jobs:
           }
           const expectedKinds = { skills: 'taxonomy', lessons: 'lesson',
             'ui-kit': 'ui-kit-locale', 'assessment-methods': 'assessment-method',
-            'geography-home-copy': 'geography-home-copy' };
+            'geography-home-copy': 'geography-home-copy',
+            'education-standards': 'education-standard' };
           const expected = new Set();
           for (const entry of manifest.generated) {
             if (entry.kind !== expectedKinds[manifest.scope.kind]) {
@@ -328,7 +333,8 @@ jobs:
             const segments = typeof name === 'string' ? name.split('/') : [];
             const depth = segments[1] === 'taxonomies' ? 4 : segments[1] === 'lessons' ? 6
               : segments[1] === 'lessons-by-skill' ? 3 : segments[1] === 'assessment-methods' ? 3
-              : segments[1] === 'ui-kit' ? 4 : segments[1] === 'geography-home-copy' ? 3 : -1;
+              : segments[1] === 'ui-kit' ? 4 : segments[1] === 'geography-home-copy' ? 3
+              : segments[1] === 'education-standards' ? 3 : -1;
             if (typeof name !== 'string' ||
                 segments[0] !== root || segments.length !== depth ||
                 segments.slice(2).some(part => !/^[a-zA-Z0-9._-]+$/.test(part) || part === '..') ||

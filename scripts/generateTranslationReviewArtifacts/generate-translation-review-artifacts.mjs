@@ -14,7 +14,7 @@ import { readSupportedLanguageCodes } from '../../shared/engine/scripts/readSupp
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const output = path.join(root, '.agent-ci-artifacts');
-const families = new Set(['skills', 'lessons', 'assessment-methods', 'ui-kit', 'geography-home-copy']);
+const families = new Set(['skills', 'lessons', 'assessment-methods', 'ui-kit', 'geography-home-copy', 'education-standards']);
 const uuidPattern = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i;
 
 export function parseArguments(args) {
@@ -28,7 +28,7 @@ export function parseArguments(args) {
       args[i + 1].startsWith('--')
     ) {
       throw new Error(
-        'Usage: --kind <skills|lessons|assessment-methods|ui-kit|geography-home-copy> ' +
+        'Usage: --kind <skills|lessons|assessment-methods|ui-kit|geography-home-copy|education-standards> ' +
           '[--package content/<textbook>] [--locale <code>] [--component <name>] [--lesson <uuid>]',
       );
     }
@@ -194,6 +194,12 @@ export async function generate(options) {
       allowMissing: true,
       components,
     });
+  } else if (options.kind === 'education-standards') {
+    const { generateEducationStandardReviewArtifacts } =
+      await import('./education-standards-reference.mjs');
+    generateEducationStandardReviewArtifacts({
+      root, output, languages, registered, manifest, saveManifest,
+    });
   } else if (options.kind === 'geography-home-copy') {
     const { generateHomeCopyReviewArtifacts } =
       await import('../../content/geography/scripts/generateHomeCopyReference/generate-home-copy-reference.mjs');
@@ -216,6 +222,7 @@ export async function generate(options) {
     assessmentMethodDocuments: manifest.generated.filter(item => item.kind === 'assessment-method').length,
     uiKitDocuments: manifest.generated.filter(item => item.kind === 'ui-kit-locale').length,
     geographyHomeCopyDocuments: manifest.generated.filter(item => item.kind === 'geography-home-copy').length,
+    educationStandardDocuments: manifest.generated.filter(item => item.kind === 'education-standard').length,
   };
   saveManifest();
   if (manifest.generated.length === 0) {
