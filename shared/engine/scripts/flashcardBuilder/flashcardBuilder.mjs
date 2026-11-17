@@ -285,6 +285,11 @@ export function runOne(packageRoot, lessonId, mode, repositoryRoot = root) {
   const target = path.join(lesson, 'flashcards', 'index.ts');
   safeFilesystemPath(source);
   safeFilesystemPath(target);
+  // Existing refined TypeScript is authoritative; skip before parsing stale YAML.
+  if (mode === '--write' && fs.existsSync(target))
+    return { created: false, skipped: true, reason: 'existing authored Flashcard entrypoint' };
+  if (mode === '--write' && fs.existsSync(path.dirname(target)) && fs.readdirSync(path.dirname(target)).length)
+    throw new Error('Partial Flashcard Bank tree exists; refusing to mix drafts: ' + path.dirname(target));
   ensure(fs.existsSync(source), 'missing ' + source);
   const bank = sourceDocument(source);
   ensure(bank.lessonId === lessonId, 'YAML Lesson UUID disagrees with canonical path');
@@ -300,7 +305,7 @@ export function runOne(packageRoot, lessonId, mode, repositoryRoot = root) {
   if (fs.existsSync(target)) {
     ensure(
       fs.readFileSync(target, 'utf8') === code,
-      'existing TypeScript differs from flashcards.yaml; refusing overwrite/deletion',
+      'stale or manually edited Flashcard TypeScript; --check is only for untouched scaffolds',
     );
     return { created: false, bytes: code.length };
   }

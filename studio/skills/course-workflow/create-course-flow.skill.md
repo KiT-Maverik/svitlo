@@ -12,7 +12,7 @@
 
 ## Starting or resuming by PR number
 
-1. Inspect the exact PR number, complete body, labels, head/base branches, linked subtask PRs, relevant Lesson/Translation Production Issues, comments, reviewer decisions, CI/check suites and immutable head SHA. Do not assume chat history or an old checklist is current.
+1. Inspect the exact PR number, complete body, labels, head/base branches, linked subtask PRs, historical Lesson/Translation Production Issues where they actually exist, comments, reviewer decisions, CI/check suites and immutable head SHA. Do not assume chat history or an old checklist is current.
 2. Read the source hierarchy at the UUID bucket path. Before Stage 5 inspect `course.yaml`; after Stage 5 inspect permanent Course source and optional technical `config.yaml`. During transition compare both inventories. Inspect any claimed Lesson sources in their independent UUID directories.
 3. **Reconcile** each Course stage, Module subtask and target locale against Git evidence/review approvals. Record the SHA, blocker, owner, links and exact next authorized action; check conflicts or stale authoring/review. Never auto-approve an editorial review.
 4. Continue the **first authorized unfinished unit** (or an independently scoped Module/locale in an assigned agent-subtask PR). A parent coordinating agent is the only editor of the manually maintained PR checklist; do not overwrite concurrent edits. Child PRs target the parent branch and use `pr: agent-subtask`; parent has `pr: integration`.
@@ -40,7 +40,7 @@ Verify exact Skill/Group/Domain UUIDs against source. Distinguish **entry prereq
 
 In the _same_ `course.yaml`, author ordered Course/Module/Chapter groups, stable keys/slugs, measurable outcomes, rationale, prerequisites, scope distribution and depth. Course may have direct Chapters or Lessons; Modules may have Chapters and/or Lessons; Chapters may have Lessons. Do not add wrapper Modules solely for bookkeeping. **No Lesson slots, Lesson queries, Episodes, scenario decisions or Screenwriter here.** Module/Chapter methodology is editorial, not an extra Runtime Props field.
 
-**Complete:** accepted entire macrostructure with no unresolved ordering/coverage decision. **Handoff:** bounded Module-specific Lesson design; if no Modules, use bounded Course/Chapter units.
+**Complete:** accepted entire macrostructure with no unresolved ordering/coverage decision. The final Course must satisfy the [Course methodology completeness contract](../../docs/entities/course.md#course-methodology-completeness--pedagogical-technical-specification); Stage 1 breadth alone is not evidence of a complete educational specification. **Handoff:** bounded Module-specific Lesson design; if no Modules, use bounded Course/Chapter units.
 
 For the temporary editorial source, run the **read-only stage validator**:
 `node shared/engine/scripts/validateCourseFlow/validate-course-flow.mjs --file content/<book>/data/courses/<bucket>/<uuid>/course.yaml --stage 2`. Stage 1 uses `--stage 1`, Stage 3 work-in-progress uses `--stage 3`, and only an entirely identified Lesson plan may use `--stage 3-complete`. The manually maintained editorial schema is `course-flow.schema.json`; Engine technical `config.yaml` is validated separately using Engine-derived schemas. YAML validity never constitutes editorial approval.
@@ -57,7 +57,7 @@ For **each** Module/selected bounded unit, perform these three tasks **in order*
 
 The parent PR must show per-Module three checkboxes, child Draft PR/Issue links, verified SHA, unresolved blockers and the next action. Parallel Module subtasks must have disjoint paths and target the Course parent branch. The stage can complete **before** independent Lesson implementation PRs merge: that distinct status belongs in the automatically refreshed **Lessons** block.
 
-**Complete:** all Module units have approved slots, verified match decisions and complete missing Lesson methodology handoffs; ambiguities are resolved or explicitly block affected units. **Handoff:** independent Course-wide plan review.
+**Complete:** all Module units have approved slots, verified match decisions and complete missing Lesson methodology handoffs; ambiguities are resolved or explicitly block affected units. Each new Lesson methodology must pass the [Lesson educational-specification gate](../../docs/entities/lesson.md#lesson-methodology-completeness--pedagogical-technical-specification), without requiring old frontmatter or creating a second authoring document. **Handoff:** independent Course-wide plan review.
 
 ### 4. Review Course Plan — whole Course
 
@@ -81,7 +81,7 @@ Materialize the independently approved editorial plan with `node shared/engine/s
 
 **Owner:** [Technical Translator](../../personas/technical-translator.persona.md). **Skills:** [Manage Translation Production](../translation-workflow/manage-translation-production.skill.md), [Technical Translation](../translation-workflow/technical-translation.skill.md). **Prerequisite:** stable source-language Course/Module/Chapter code and authorized translation scope.
 
-Inventory Course-owned learner-facing `entity × locale` fields; exclude English-only Methodologist documentation and invariants. Translate and mark **per target language** in parent PR. Target language declarations are intent, never evidence of finished translation. Coordinate one existing/new Translation Production Issue for the explicit batch and non-overlapping ownership across child PRs. Standalone Lesson locale gaps remain Lesson Translation Production dependencies.
+Inventory Course-owned learner-facing `entity × locale` fields; exclude English-only Methodologist documentation and invariants. Translate and mark **per target language** in parent PR. Target language declarations are intent, never evidence of finished translation. For **new** Course localization campaigns, coordinate one Draft translation integration PR with a frozen Course-entity × locale matrix and nonoverlapping child PRs via [Manage Translation Production](../translation-workflow/manage-translation-production.skill.md); for existing historical Translation Issues preserve/reconcile their approved state rather than force-migrating. Standalone Lesson locale gaps remain Lesson Translation Production dependencies.
 
 **Complete for each locale:** independently verifiable complete authored Course-owned strings at a pinned SHA, ready for independent review. **Handoff:** one independent review per required locale.
 
