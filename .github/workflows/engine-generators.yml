@@ -58,15 +58,3 @@ jobs:
             shared/engine/scripts/sceneScaffolding/sceneScaffolding.spec.mjs \
             scripts/textbook-tooling/buildTextbook/stageTextbookAssets.spec.mjs
 
-      - name: Temporary export of generated Course YAML schemas
-        run: |
-          npm run content:generate:yaml-schemas --workspace @svitlo/engine
-          node --input-type=module -e '
-            import fs from "node:fs";
-            for (const name of ["course.schema.json", "course.scaffold.schema.json", "courseOverrides.schema.json"]) {
-              const encoded = fs.readFileSync("shared/engine/yaml-schemas/" + name).toString("base64");
-              for (let i = 0; i < encoded.length; i += 2000) {
-                console.log("SVITLO_SCHEMA_PART|" + name + "|" + Math.floor(i/2000) + "|" + encoded.slice(i, i+2000));
-              }
-            }
-          '
