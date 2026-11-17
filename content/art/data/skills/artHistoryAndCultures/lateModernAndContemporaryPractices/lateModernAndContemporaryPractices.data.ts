@@ -39,7 +39,7 @@ export const lateModernAndContemporaryPractices_SkillGroup_Data = defineSkillGro
     et: 'Hilismodernistlikud ja kaasaegsed praktikad',
     be: 'Пазнейшыя мадэрнісцкія і сучасныя практыкі',
     ka: 'გვიანი მოდერნიზმისა და თანამედროვე პრაქტიკები',
-    kk: 'Кейінгі модерн және заманауи тәжірибелер',
+    kk: 'Keiıngı modern jäne zamanaui täjıribeler',
     qm: 'Keç modernizm ve çağdaş sanat tecribeleri',
   },
   skills: [
@@ -80,7 +80,7 @@ export const lateModernAndContemporaryPractices_SkillGroup_Data = defineSkillGro
       et: 'Uuri teoseid, mis tõstavad esile ideid, ruumi, osalust või igapäevaseid kujutisi.',
       be: 'Даследуйце творы, у якіх асаблівае значэнне маюць ідэі, прастора, удзел або паўсядзённыя вобразы.',
       ka: 'შეისწავლეთ ნამუშევრები, რომლებშიც განსაკუთრებული მნიშვნელობა ენიჭება იდეებს, სივრცეს, მონაწილეობას ან ყოველდღიურ გამოსახულებებს.',
-      kk: 'Идеяға, кеңістікке, қатысуға немесе күнделікті бейнелерге ерекше мән беретін туындыларды зерттеңіз.',
+      kk: 'İdeiağa, keñıstıkke, qatysuğa nemese kündelıktı beinelerge erekşe män beretın tuyndylardy zertteñız.',
       qm: 'Fikirge, mekânğa, iştirakqa ya da kündeş suretlerge hususiy ehemmiyet bergen eserlerni keşf etiñiz.',
     },
   },

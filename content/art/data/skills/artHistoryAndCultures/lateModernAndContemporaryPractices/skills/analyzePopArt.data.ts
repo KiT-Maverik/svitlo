@@ -31,7 +31,7 @@ export const analyzePopArt_Skill_Data = defineSkill({
     et: 'Analüüsida popkunsti',
     be: 'Аналізаваць поп-арт',
     ka: 'პოპ-არტის გაანალიზება',
-    kk: 'Поп-артты талдау',
+    kk: 'Pop-artty taldau',
     qm: 'Pop-artnı tahlil etüv',
   },
   description: {
@@ -65,7 +65,7 @@ export const analyzePopArt_Skill_Data = defineSkill({
       et: 'Uuri, kuidas popkunstnikud kasutasid reklaami, tarbekaupu ja massimeediat.',
       be: 'Даведайцеся, як мастакі поп-арту выкарыстоўвалі рэкламу, спажывецкія тавары і масмедыя.',
       ka: 'გაიგეთ, როგორ იყენებდნენ პოპ-არტის მხატვრები რეკლამას, სამომხმარებლო პროდუქტებსა და მასმედიას.',
-      kk: 'Біліңіз: поп-арт суретшілері жарнаманы, тұтыну тауарларын және бұқаралық ақпарат құралдарын қалай қолданды.',
+      kk: 'Bılıñız: pop-art suretşılerı jarnamany, tūtynu tauarlaryn jäne būqaralyq aqparat qūraldaryn qalai qoldandy.',
       qm: "Pop-art sanatkârlarınıñ reklama, iste'mal malları ve kütleviy haberleşüv vastalarını nasıl qullanğanını tahlil etiñiz.",
     },
   },

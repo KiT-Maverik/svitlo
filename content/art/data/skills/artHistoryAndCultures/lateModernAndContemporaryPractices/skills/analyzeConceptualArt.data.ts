@@ -31,7 +31,7 @@ export const analyzeConceptualArt_Skill_Data = defineSkill({
     et: 'Analüüsida kontseptuaalkunsti',
     be: 'Аналізаваць канцэптуальнае мастацтва',
     ka: 'კონცეპტუალური ხელოვნების გაანალიზება',
-    kk: 'Тұжырымдамалық өнерді талдау',
+    kk: 'Tūjyrymdamalyq önerdı taldau',
     qm: 'Kontseptual sanatnı tahlil etüv',
   },
   description: {
@@ -65,7 +65,7 @@ export const analyzeConceptualArt_Skill_Data = defineSkill({
       et: 'Avasta kunsti, kus idee või juhis on sama tähtis kui füüsiline objekt.',
       be: 'Пазнаёмцеся з мастацтвам, дзе ідэя або інструкцыя не менш важная за аб’ект.',
       ka: 'გაეცანით ხელოვნებას, სადაც იდეა ან ინსტრუქცია ფიზიკური ობიექტის ტოლად მნიშვნელოვანია.',
-      kk: 'Тұжырымдама не нұсқау физикалық нысанмен бірдей маңызды өнерді зерттеңіз.',
+      kk: 'Tūjyrymdama ne nūsqau fizikalyq nysanmen bırdei mañyzdy önerdı zertteñız.',
       qm: 'Fikir ya da talimat maddiy obyekt qadar mühim olğan sanatnı tahlil etiñiz.',
     },
   },

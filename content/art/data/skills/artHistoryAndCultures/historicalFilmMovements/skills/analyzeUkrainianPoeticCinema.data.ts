@@ -31,7 +31,7 @@ export const analyzeUkrainianPoeticCinema_Skill_Data = defineSkill({
     et: 'Analüüsida Ukraina poeetilist kino',
     be: 'Аналізаваць украінскае паэтычнае кіно',
     ka: 'უკრაინული პოეტური კინოს გაანალიზება',
-    kk: 'Украинаның поэтикалық киносын талдау',
+    kk: 'Ukrainanyñ poetikalyq kinosyn taldau',
     qm: 'Ukrayna şiirsel sinemasını tahlil etmek',
   },
   description: {
@@ -65,7 +65,7 @@ export const analyzeUkrainianPoeticCinema_Skill_Data = defineSkill({
       et: 'Avasta, kuidas Ukraina poeetiline kino kasutab visuaalset sümboolikat ja lüürilist jutustamist.',
       be: 'Даведайцеся, як украінскае паэтычнае кіно выкарыстоўвае візуальную сімволіку і лірычнае апавяданне.',
       ka: 'გაიგეთ, როგორ იყენებს უკრაინული პოეტური კინო ვიზუალურ სიმბოლიკასა და ლირიკულ თხრობას.',
-      kk: 'Біліңіз: украин поэтикалық киносы визуалды символика мен лирикалық баяндауды қалай қолданады.',
+      kk: 'Bılıñız: ukrain poetikalyq kinosy vizualdy simvolika men lirikalyq baiandaudy qalai qoldanady.',
       qm: 'Ukrayna şiirsel sinemasının görsel remizler ve lirik hikâye anlatımını nasıl kullandığını keşf etiñiz.',
     },
   },

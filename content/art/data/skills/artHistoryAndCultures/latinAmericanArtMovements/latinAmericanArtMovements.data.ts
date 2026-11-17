@@ -37,7 +37,7 @@ export const latinAmericanArtMovements_SkillGroup_Data = defineSkillGroup({
     et: 'Ladina-Ameerika kunstiliikumised',
     be: 'Мастацкія рухі Лацінскай Амерыкі',
     ka: 'ლათინური ამერიკის ხელოვნების მოძრაობები',
-    kk: 'Латын Америкасындағы өнер қозғалыстары',
+    kk: 'Latyn Amerikasyndağy öner qozğalystary',
     qm: 'Latin Amerika sanat areketleri',
   },
   skills: [
@@ -76,7 +76,7 @@ export const latinAmericanArtMovements_SkillGroup_Data = defineSkillGroup({
       et: 'Tutvu Ladina-Ameerika kunstiliikumistega nende konkreetse tausta ja eesmärkide kaudu.',
       be: 'Вывучайце розныя мастацкія рухі Лацінскай Амерыкі з улікам іх кантэксту і мэтаў.',
       ka: 'შეისწავლეთ ლათინური ამერიკის ხელოვნების განსხვავებული მოძრაობები მათი კონკრეტული კონტექსტისა და მიზნების მიხედვით.',
-      kk: 'Латын Америкасындағы өнер қозғалыстарын олардың нақты жағдайы мен мақсаттары арқылы таныңыз.',
+      kk: 'Latyn Amerikasyndağy öner qozğalystaryn olardyñ naqty jağdaiy men maqsattary arqyly tanyñyz.',
       qm: 'Müeyyen şartları ve maqsatları arqalı çeşit Latin Amerika sanat areketlerini ögreniñiz.',
     },
   },

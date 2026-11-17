@@ -37,7 +37,7 @@ export const indigenousArtisticTraditionsOfTheAmericas_SkillGroup_Data = defineS
     et: 'Ameerika põlisrahvaste kunstilised traditsioonid',
     be: 'Мастацкія традыцыі карэнных народаў Паўночнай і Паўднёвай Амэрыкі',
     ka: 'ამერიკის მკვიდრი ხალხების მხატვრული ტრადიციები',
-    kk: 'Америка байырғы халықтарының көркемдік дәстүрлері',
+    kk: 'Amerika baiyrğy halyqtarynyñ körkemdık dästürlerı',
     qm: 'Amerika yerli halklarınıñ sanat adetleri',
   },
   skills: [
@@ -76,7 +76,7 @@ export const indigenousArtisticTraditionsOfTheAmericas_SkillGroup_Data = defineS
       et: 'Uuri Ameerika konkreetsete põlisrahvaste kunstilisi traditsioone nende enda kontekstis.',
       be: 'Дасьледуйце мастацкія традыцыі канкрэтных карэнных народаў Паўночнай і Паўднёвай Амэрыкі ў іх культурным кантэксьце.',
       ka: 'შეისწავლეთ ამერიკის კონკრეტული მკვიდრი ხალხების მხატვრული ტრადიციები მათსავე კონტექსტში.',
-      kk: 'Америкадағы нақты байырғы халықтардың көркемдік дәстүрлерін өз контекстінде зерттеңіз.',
+      kk: 'Amerikadağy naqty baiyrğy halyqtardyñ körkemdık dästürlerın öz kontekstınde zertteñız.',
       qm: 'Amerika qıtasındaki belli yerli halqlarnıñ sanat adetlerini öz bağlamlarında ögrenip baqıñız.',
     },
   },

@@ -31,7 +31,7 @@ export const analyzeHaidaFormlineArt_Skill_Data = defineSkill({
     et: 'Analüüsida haida formline-kunsti',
     be: 'Аналізаваць мастацтва формлайн народа гайда',
     ka: 'ჰაიდას ფორმლაინ ხელოვნების გაანალიზება',
-    kk: 'Хайда халқының formline өнерін талдау',
+    kk: 'Haida halqynyñ formline önerın taldau',
     qm: 'Haida formline sanatını tahlil etmek',
   },
   description: {
@@ -65,7 +65,7 @@ export const analyzeHaidaFormlineArt_Skill_Data = defineSkill({
       et: 'Uuri haida formline-kunsti vorme ja negatiivset ruumi kultuurilises kontekstis.',
       be: 'Разгледзьце формы і адмоўную прастору ў мастацтве формлайн народа гайда ў культурным кантэксце.',
       ka: 'შეისწავლეთ ფორმები და ნეგატიური სივრცე ჰაიდას ფორმლაინ ხელოვნებაში მის კულტურულ კონტექსტში.',
-      kk: 'Хайда formline өнеріндегі пішіндер мен бос кеңістікті мәдени контекст аясында қарастырыңыз.',
+      kk: 'Haida formline önerındegı pışınder men bos keñıstıktı mädeni kontekst aiasynda qarastyryñyz.',
       qm: 'Haida formline sanatındaki şekillerni ve boşluq naqışlarını olarnıñ medeniy bağlamında tahlil etiñiz.',
     },
   },

@@ -31,7 +31,7 @@ export const analyzeAndeanWeavingTraditions_Skill_Data = defineSkill({
     et: 'Analüüsida Andide kudumistraditsioone',
     be: 'Аналізаваць андскія ткацкія традыцыі',
     ka: 'ანდების ქსოვის ტრადიციების გაანალიზება',
-    kk: 'Анд тауларының тоқымашылық дәстүрлерін талдау',
+    kk: 'And taularynyñ toqymaşylyq dästürlerın taldau',
     qm: 'And dokuma ananelerini tahlil etmek',
   },
   description: {
@@ -65,7 +65,7 @@ export const analyzeAndeanWeavingTraditions_Skill_Data = defineSkill({
       et: 'Uuri, kuidas kudumismustrid ja nende tähendused erinevad Andide kogukondades ja ajastutel.',
       be: 'Даведайцеся, як узоры і значэнні тканін адрозніваюцца ў супольнасцях і эпохах Анд.',
       ka: 'გაიგეთ, როგორ განსხვავდება ქსოვის ნიმუშები და მათი მნიშვნელობები ანდების სხვადასხვა თემსა და ეპოქაში.',
-      kk: 'Зерттеңіз: Анд қауымдары мен кезеңдерінде тоқымашылық өрнектері мен мағыналары қалай өзгереді.',
+      kk: 'Zertteñız: And qauymdary men kezeñderınde toqymaşylyq örnekterı men mağynalary qalai özgeredı.',
       qm: 'And toplulukları ve devirleri arasında dokuma naqışları ve manaları nasıl değişkenini keşf etiñiz.',
     },
   },

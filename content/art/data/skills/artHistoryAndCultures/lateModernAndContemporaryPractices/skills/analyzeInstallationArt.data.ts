@@ -31,7 +31,7 @@ export const analyzeInstallationArt_Skill_Data = defineSkill({
     et: 'Analüüsida installatsioonikunsti',
     be: 'Аналізаваць мастацтва інсталяцыі',
     ka: 'ინსტალაციური ხელოვნების გაანალიზება',
-    kk: 'Инсталляциялық өнерді талдау',
+    kk: 'İnstalliatsiialyq önerdı taldau',
     qm: 'İnstallatsiya sanatını tahlil etüv',
   },
   description: {
@@ -65,7 +65,7 @@ export const analyzeInstallationArt_Skill_Data = defineSkill({
       et: 'Avasta, kuidas installatsioonikunst muudab ruumi, milles vaatajad liiguvad.',
       be: 'Даведайцеся, як інсталяцыя змяняе прастору, па якой рухаюцца гледачы.',
       ka: 'გაიგეთ, როგორ ცვლის ინსტალაციური ხელოვნება მაყურებლის გასავლელ სივრცეს.',
-      kk: 'Инсталляциялық өнер көрермендер жүретін кеңістікті қалай өзгертетінін біліңіз.',
+      kk: 'İnstalliatsiialyq öner körermender jüretın keñıstıktı qalai özgertetının bılıñız.',
       qm: 'İnstallatsiya sanatınıñ seyirciler içinde areket etken mekânnı nasıl deñiştirgenini tahlil etiñiz.',
     },
   },

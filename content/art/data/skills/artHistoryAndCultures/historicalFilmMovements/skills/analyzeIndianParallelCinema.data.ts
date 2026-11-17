@@ -31,7 +31,7 @@ export const analyzeIndianParallelCinema_Skill_Data = defineSkill({
     et: 'Analüüsida India paralleelkino',
     be: 'Аналізаваць індыйскае паралельнае кіно',
     ka: 'ინდური პარალელური კინოს გაანალიზება',
-    kk: 'Үндістанның параллель киносын талдау',
+    kk: 'Ündıstannyñ parallel kinosyn taldau',
     qm: 'Hindistan Paralel Sinemasını tahlil etmek',
   },
   description: {
@@ -65,7 +65,7 @@ export const analyzeIndianParallelCinema_Skill_Data = defineSkill({
       et: 'Uuri, kuidas India paralleelkino arendas peavoolu filmistiilidele alternatiive.',
       be: 'Даведайцеся, як індыйскае паралельнае кіно стварыла альтэрнатыву мэйнстрымным кінастылям.',
       ka: 'გაიგეთ, როგორ განავითარა ინდურმა პარალელურმა კინომ მეინსტრიმული კინოს სტილების ალტერნატივები.',
-      kk: 'Зерттеңіз: Үндістанның параллель киносы негізгі кино стильдеріне қандай баламалар ұсынды.',
+      kk: 'Zertteñız: Ündıstannyñ parallel kinosy negızgı kino stilderıne qandai balamalar ūsyndy.',
       qm: 'Hindistan Paralel Sinemasının ana akım film üsluplarına nasıl alternatifler geliştirdiğini keşf etiñiz.',
     },
   },

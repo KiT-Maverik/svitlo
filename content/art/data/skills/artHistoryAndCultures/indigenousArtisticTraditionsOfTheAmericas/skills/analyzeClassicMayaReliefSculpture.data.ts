@@ -31,7 +31,7 @@ export const analyzeClassicMayaReliefSculpture_Skill_Data = defineSkill({
     et: 'Analüüsida klassikalise maiade perioodi reljeefskulptuuri',
     be: 'Аналізаваць рэльефную скульптуру мая класічнага перыяду',
     ka: 'კლასიკური მაიას რელიეფური ქანდაკების გაანალიზება',
-    kk: 'Классикалық майя дәуірінің бедерлі мүсінін талдау',
+    kk: 'Klassikalyq maiia däuırınıñ bederlı müsının taldau',
     qm: 'Klasik Maya kabartma heykelini tahlil etmek',
   },
   description: {
@@ -65,7 +65,7 @@ export const analyzeClassicMayaReliefSculpture_Skill_Data = defineSkill({
       et: 'Uuri, kuidas klassikalise maiade perioodi paikade reljeefidel kujutatakse tegelasi, raidkirju ja dünastilisi motiive.',
       be: 'Даведайцеся, як на рэльефах помнікаў мая класічнага перыяду паказаны постаці, надпісы і дынастычныя вобразы.',
       ka: 'გაიგეთ, როგორ ასახავს კლასიკური მაიას ძეგლების რელიეფები ფიგურებს, წარწერებსა და დინასტიურ სახეებს.',
-      kk: 'Біліңіз: классикалық майя ескерткіштерінің бедерлерінде тұлғалар, жазулар және әулеттік бейнелер қалай көрсетілген.',
+      kk: 'Bılıñız: klassikalyq maiia eskertkışterınıñ bederlerınde tūlğalar, jazular jäne äulettık beineler qalai körsetılgen.',
       qm: 'Klasik Maya alanlarındaki kabartmaların figürleri, yazıtları ve hanedan imgelerini nasıl yansıttığını keşf etiñiz.',
     },
   },
