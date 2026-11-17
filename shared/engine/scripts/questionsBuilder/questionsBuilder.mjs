@@ -79,8 +79,7 @@ export function inspectQuestions(document) {
   const questionCount = Object.keys(document.questions).reduce((total, type) => {
     if (!questionTypes.includes(type)) reject('questions.' + type, 'unsupported Engine Question type');
     const items = document.questions[type];
-    if (!record(items) || !Object.keys(items).length)
-      reject('questions.' + type, 'expected a nonempty slug map');
+    if (!record(items) || !Object.keys(items).length) reject('questions.' + type, 'expected a nonempty slug map');
     for (const [key, config] of Object.entries(items)) {
       const location = 'questions.' + type + '.' + key;
       if (!slug.test(key) || !record(config) || config.slug !== key || config.type !== type)
@@ -100,8 +99,7 @@ export function inspectQuestions(document) {
     if (!uuid.test(sectionId)) reject('quizSelections', 'Section key must be UUID: ' + sectionId);
     if (!Array.isArray(ids) || !ids.length || ids.some(id => !uuid.test(id ?? '')))
       reject('quizSelections.' + sectionId, 'expected nonempty Question UUID array');
-    if (new Set(ids).size !== ids.length)
-      reject('quizSelections.' + sectionId, 'duplicate selected Question UUID');
+    if (new Set(ids).size !== ids.length) reject('quizSelections.' + sectionId, 'duplicate selected Question UUID');
     for (const id of ids) {
       if (!questionIds.has(id))
         reject('quizSelections.' + sectionId, 'selected Question not present in full bank: ' + id);
@@ -123,8 +121,7 @@ function verifyLocation(source, root) {
   const packageRoot = path.join(root, 'content', match[1]);
   if (!fs.existsSync(path.join(packageRoot, 'package.json')))
     throw new Error('No textbook workspace at ' + packageRoot);
-  if (!fs.existsSync(path.join(folder, 'index.ts')) &&
-      !fs.readdirSync(folder).some(name => name.endsWith('.data.ts')))
+  if (!fs.existsSync(path.join(folder, 'index.ts')) && !fs.readdirSync(folder).some(name => name.endsWith('.data.ts')))
     throw new Error('Cannot create a Question Bank without an authored Lesson owner: ' + folder);
   if (!fs.existsSync(path.join(folder, 'constants.ts')))
     throw new Error('Missing LessonLanguages constants.ts; integrate the modular Lesson first: ' + folder);
@@ -184,11 +181,13 @@ export function runOne(source, mode = '--check', root = repoRoot) {
     throw new Error('Partial Question Bank tree exists; refusing to mix generated drafts: ' + output);
   const document = readQuestionsYaml(source);
   const { files, questionCount, selections } = renderQuestions(document, lessonId);
-  const expected = new Map([...files].map(([relative, body]) => {
-    if (!relative.startsWith('questions/') || relative.split('/').includes('..'))
-      throw new Error('Unsafe Question Bank output: ' + relative);
-    return [path.join(path.dirname(output), relative), body];
-  }));
+  const expected = new Map(
+    [...files].map(([relative, body]) => {
+      if (!relative.startsWith('questions/') || relative.split('/').includes('..'))
+        throw new Error('Unsafe Question Bank output: ' + relative);
+      return [path.join(path.dirname(output), relative), body];
+    }),
+  );
   for (const [target, body] of expected) {
     assertNoSymlinks(target);
     if (mode === '--check' && (!fs.existsSync(target) || fs.readFileSync(target, 'utf8') !== body))
@@ -214,10 +213,14 @@ export function runOne(source, mode = '--check', root = repoRoot) {
 }
 
 export function main(argv = process.argv.slice(2), root = repoRoot) {
-  if (argv.length !== 3 ||
-      !['--write', '--check', '--preflight', '--verify-sections'].includes(argv[0]) ||
-      argv[1] !== '--source')
-    throw new Error('Usage: questionsBuilder.mjs --write|--check|--preflight|--verify-sections --source content/<book>/data/lessons/<bucket>/<uuid>/questions.yaml');
+  if (
+    argv.length !== 3 ||
+    !['--write', '--check', '--preflight', '--verify-sections'].includes(argv[0]) ||
+    argv[1] !== '--source'
+  )
+    throw new Error(
+      'Usage: questionsBuilder.mjs --write|--check|--preflight|--verify-sections --source content/<book>/data/lessons/<bucket>/<uuid>/questions.yaml',
+    );
   const source = path.resolve(root, argv[2]);
   if (argv[0] === '--verify-sections') {
     const { folder, output } = verifyLocation(source, root);

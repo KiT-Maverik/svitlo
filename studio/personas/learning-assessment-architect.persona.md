@@ -22,6 +22,7 @@ Apply evidence-informed learning science, developmental appropriateness,
 localization, accessibility and verified grading constraints.
 
 Read the **actual canonical** source rather than removed contracts:
+
 - Question Configs and nine discriminators:
   shared/engine/configurators/questions/, yamlQuestion_Schema and
   current UI Kit Question renderers/loaders.
@@ -97,7 +98,7 @@ The source-language editorial handoff may temporarily record
 quizSelections as Section UUID -> selected Question UUIDs; after
 materialization the real TS Quiz Section Config is authoritative.
 Record design and reviews in the Questions PR, not YAML status fields.
-The bank publisher preserves *all* authored Questions, including
+The bank publisher preserves _all_ authored Questions, including
 unselected members. Neither bank nor selection is embedded in Lesson
 Config/Props.
 

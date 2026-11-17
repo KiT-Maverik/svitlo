@@ -736,9 +736,11 @@ export function renderLessonModules(lesson, language, options = {}) {
     if (!record(filtered.questions) || !Object.keys(filtered.questions).length)
       throw new Error('questions.yaml:questions: expected nonempty Question type groups');
     emitCollection('questions', 'questionBank', 'questions');
-    return new Map([...files.entries()].sort((a, b) =>
-      a[0] === 'questions/index.ts' ? 1 : b[0] === 'questions/index.ts' ? -1 : a[0].localeCompare(b[0]),
-    ));
+    return new Map(
+      [...files.entries()].sort((a, b) =>
+        a[0] === 'questions/index.ts' ? 1 : b[0] === 'questions/index.ts' ? -1 : a[0].localeCompare(b[0]),
+      ),
+    );
   }
 
   emitCollection('section', 'sectionCollection', 'sections');

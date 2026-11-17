@@ -42,6 +42,7 @@ The Question Bank is independent from Lesson Config and Props.
 
 For each intended assessment, record in the **Questions PR evidence**
 (not in additional YAML Config fields):
+
 - Approved target Skill and observable outcome/subcompetency.
 - Required cognitive Assessment Method and the actual mental operation.
 - Knowledge aspect, representation, context, difficulty and

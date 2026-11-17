@@ -60,7 +60,7 @@ Example (illustrative only; replace with approved IDs and content):
         - 00000000-0000-4000-8000-000000000010
 
 quizSelections may be omitted when no embedded Quiz is approved. Use
-shared/engine/yaml-schemas/question.schema.json to author *individual*
+shared/engine/yaml-schemas/question.schema.json to author _individual_
 Question Configs; the minimal wrapper groups them, identifies source
 language, and optionally records the reviewed Section mapping.
 
@@ -109,7 +109,7 @@ availability does not imply every UI Kit Question renderer is complete.
    the minimal Section registry/order. This tool does NOT edit Sections.
 3. Run --verify-sections and the independent assessment publisher,
    then scoped TypeScript, UI Kit and content build checks.
-4. Remove questions.yaml *manually only after* full source transfer,
+4. Remove questions.yaml _manually only after_ full source transfer,
    actual selection materialization, assets and locales are verified.
    Skipped/failed/partial generation must retain YAML. There is no
    automatic deletion that could lose editorial source.

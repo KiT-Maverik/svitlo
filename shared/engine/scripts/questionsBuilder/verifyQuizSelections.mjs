@@ -9,18 +9,17 @@ import ts from 'typescript';
 
 function property(node, key) {
   if (!node || !ts.isObjectLiteralExpression(node)) return undefined;
-  const entry = node.properties.find(item =>
-    ts.isPropertyAssignment(item) &&
-    (ts.isIdentifier(item.name) || ts.isStringLiteral(item.name)) &&
-    item.name.text === key,
+  const entry = node.properties.find(
+    item =>
+      ts.isPropertyAssignment(item) &&
+      (ts.isIdentifier(item.name) || ts.isStringLiteral(item.name)) &&
+      item.name.text === key,
   );
   return entry?.initializer;
 }
 
 function literal(node) {
-  return node && (ts.isStringLiteral(node) || ts.isNoSubstitutionTemplateLiteral(node))
-    ? node.text
-    : undefined;
+  return node && (ts.isStringLiteral(node) || ts.isNoSubstitutionTemplateLiteral(node)) ? node.text : undefined;
 }
 
 function stringArray(node) {
@@ -64,26 +63,33 @@ function questionSelection(file) {
 function registered(sectionIndex, sectionSlug) {
   const source = parse(sectionIndex);
   const imported = source.statements.some(
-    statement => ts.isImportDeclaration(statement) &&
-      literal(statement.moduleSpecifier) === './' + sectionSlug,
+    statement => ts.isImportDeclaration(statement) && literal(statement.moduleSpecifier) === './' + sectionSlug,
   );
   if (!imported) return false;
   // The registry's static order is an additional safeguard against an
   // unrendered Section. Dynamic registries need a separate manual review.
-  const hasOrder = source.statements.some(statement =>
-    ts.isVariableStatement(statement) &&
-    statement.declarationList.declarations.some(item =>
-      ts.isIdentifier(item.name) && item.name.text === 'section' &&
-      (stringArray(property(item.initializer, 'order')) ?? []).includes(sectionSlug) &&
-      (() => {
-        const items = property(item.initializer, 'items');
-        return !!items && ts.isObjectLiteralExpression(items) && items.properties.some(entry =>
-          (ts.isPropertyAssignment(entry) || ts.isShorthandPropertyAssignment(entry)) &&
-          (ts.isIdentifier(entry.name) || ts.isStringLiteral(entry.name)) &&
-          entry.name.text === sectionSlug,
-        );
-      })(),
-    ),
+  const hasOrder = source.statements.some(
+    statement =>
+      ts.isVariableStatement(statement) &&
+      statement.declarationList.declarations.some(
+        item =>
+          ts.isIdentifier(item.name) &&
+          item.name.text === 'section' &&
+          (stringArray(property(item.initializer, 'order')) ?? []).includes(sectionSlug) &&
+          (() => {
+            const items = property(item.initializer, 'items');
+            return (
+              !!items &&
+              ts.isObjectLiteralExpression(items) &&
+              items.properties.some(
+                entry =>
+                  (ts.isPropertyAssignment(entry) || ts.isShorthandPropertyAssignment(entry)) &&
+                  (ts.isIdentifier(entry.name) || ts.isStringLiteral(entry.name)) &&
+                  entry.name.text === sectionSlug,
+              )
+            );
+          })(),
+      ),
   );
   return hasOrder;
 }
@@ -119,9 +125,13 @@ export function verifyQuizSelections(lessonFolder, selections) {
     if (JSON.stringify(actual.questionIds) !== JSON.stringify(ids))
       throw new Error('Quiz selection UUIDs differ from reviewed Question Bank: ' + actual.slug);
     if (actual.mode === 'sample') {
-      if (!actual.count || !ts.isNumericLiteral(actual.count) ||
-          !Number.isInteger(Number(actual.count.text)) ||
-          Number(actual.count.text) < 1 || Number(actual.count.text) > ids.length)
+      if (
+        !actual.count ||
+        !ts.isNumericLiteral(actual.count) ||
+        !Number.isInteger(Number(actual.count.text)) ||
+        Number(actual.count.text) < 1 ||
+        Number(actual.count.text) > ids.length
+      )
         throw new Error('Unverifiable Quiz sample count: ' + actual.slug);
     }
   }

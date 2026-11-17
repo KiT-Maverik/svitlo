@@ -98,7 +98,7 @@ Section and stable UUID whenever possible; create one only when
 approved methodology requires it and none exists. Multiple Quizzes
 are allowed. An independent Question Bank does not force a Quiz.
 
-Choose a *small, purposeful, explicit* Question UUID subset per Quiz
+Choose a _small, purposeful, explicit_ Question UUID subset per Quiz
 without removing unselected Questions from the bank. The modern
 defineQuizSection uses params.selection.questionIds; mode all means
 every ID in that specified small subset, not every bank member.
@@ -128,6 +128,7 @@ Questions PR, not YAML/Config status flags.
 
 Use [Questions Builder](../../../shared/engine/scripts/questionsBuilder/README.md)
 at the authorized handoff:
+
 - Validate current Engine Question authoring shapes and selection UUIDs
   with --preflight; do not add stage-specific schemas.
 - Use --write to create Question Configurator modules under
@@ -179,6 +180,7 @@ Issue coordination when relevant.
 
 Keep the PR Draft until explicit owner authorization. Track these
 seven stages in the PR body, with:
+
 - Lesson UUID, parent Lesson PR, source language, supported languages,
   exact Lesson/Questions source SHA and branch relationships.
 - Current stage, precise next action, blocker, independent review SHA

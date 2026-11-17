@@ -77,9 +77,12 @@ test('complete bank is generated, while Quiz selection remains a small UUID hand
   }
   assert.match(files.get('questions/index.ts'), /firstQuestion/);
   assert.match(files.get('questions/index.ts'), /secondQuestion/);
-  assert.ok([...files].every(([, content]) =>
-    ts.createSourceFile('draft.ts', content, ts.ScriptTarget.Latest, true).parseDiagnostics.length === 0,
-  ));
+  assert.ok(
+    [...files].every(
+      ([, content]) =>
+        ts.createSourceFile('draft.ts', content, ts.ScriptTarget.Latest, true).parseDiagnostics.length === 0,
+    ),
+  );
   assert.ok([...files.keys()].some(p => p.endsWith('/prompt/index.ts')));
 });
 
@@ -170,15 +173,20 @@ test('actual Quiz Section and registry must contain exactly the reviewed subset'
         "export const section = { items: { introQuiz }, order: ['introQuiz'] };\n",
     );
     const sectionFile = path.join(section, 'index.ts');
-    const writeSelection = id => fs.writeFileSync(
-      sectionFile,
-      "import { defineQuizSection } from '@svitlo/engine/build';\n" +
-        "export const introQuiz = defineQuizSection({\n" +
-        "  id: '" + uuid(20) + "', slug: 'introQuiz', type: 'quiz',\n" +
-        "  params: { selection: { mode: 'all', questionIds: ['" + id + "'] } },\n" +
-        "  locale: {}, content: { items: {}, order: [] }\n" +
-        "});\n",
-    );
+    const writeSelection = id =>
+      fs.writeFileSync(
+        sectionFile,
+        "import { defineQuizSection } from '@svitlo/engine/build';\n" +
+          'export const introQuiz = defineQuizSection({\n' +
+          "  id: '" +
+          uuid(20) +
+          "', slug: 'introQuiz', type: 'quiz',\n" +
+          "  params: { selection: { mode: 'all', questionIds: ['" +
+          id +
+          "'] } },\n" +
+          '  locale: {}, content: { items: {}, order: [] }\n' +
+          '});\n',
+      );
     writeSelection(uuid(10));
     const selections = sample().quizSelections;
     assert.deepEqual(verifyQuizSelections(f.lesson, selections), { sections: 1, questionIds: 1 });
