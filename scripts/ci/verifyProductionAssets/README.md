@@ -1,0 +1,16 @@
+# Verify production assets in Ready PRs
+
+This scoped, read-only CI gate checks **changed** Lesson/Course UUID roots for unfinished source handoffs. It does not write or generate media, publish JSON, validate reviews, or change draft scaffolder behavior.
+
+```sh
+node --test scripts/ci/verifyProductionAssets/verify-production-assets.spec.mjs
+node scripts/ci/verifyProductionAssets/verify-production-assets.mjs <base-sha> <head-sha>
+```
+
+A Ready-for-review PR affecting `content/<book>/data/lessons/<bucket>/<uuid>/` must have an authored Lesson TypeScript entrypoint, no temporary `lesson.yaml`, `questions.yaml` or `flashcards.yaml`, no `TODO(asset)` markers and no reserved Nil UUID media filename in any TypeScript module of that Lesson, including its Question/Flashcard banks. Course UUID roots are checked for temporary `course.yaml` / `config.yaml` and the same media markers, including nested Episodes, Scenes and Quiz/Flashcards Sections.
+
+Only affected entity roots are inspected. A standalone Lesson/Course PR checks the complete changed entity. A bank child PR that changes only `questions/` or `flashcards/` (and its selected `sections/` modules) checks that bank's TypeScript source and its changed Section files, **not** the unfinished parent Lesson or sibling bank. A final Lesson PR checks all its embedded bank sources together. Unrelated unfinished drafts do not block a separate PR. Deleted entities are not inspected. Standalone shared textbook media are resolved by the **separate strict production** `content/<book>` package build. The existing `generateLessonProps`, `generateCourseProps`, and `generateAssessmentResources --kind all` publishers validate typed resources, referenced physical assets, all requested locales and write/pack generated JSON to the textbook distribution. The `Content packages build` workflow invokes them through `buildChangedContent`. Neither its successful publication nor this scanner alone certifies independent editorial, translation, accessibility, Scene runtime or owner acceptance.
+
+Draft PRs intentionally permit these unfinished markers and optional failed content builds as part of an acknowledged production stage. The readiness check runs **when the PR is no longer Draft**, including subsequent pushes, and fails with actionable file/line diagnostics. The status workflow runs for **every** PR, not only when content paths change, so GitHub can require it without indefinitely pending checks. The content package's strict production publication runs at the main-bound Ready/merge boundary; nested subtasks use the existing draft mode until their parent's final publication, because they may legitimately depend on unfinished upstream content. To make the CI failure a non-bypassable merge gate, the repository ruleset/branch protection must require the `Content packages build / Affected content / build, taxonomy and packaging` status check (or an equivalent mandatory aggregation) on relevant protected target branches. GitHub's workflow YAML alone cannot set required checks.
+
+No `completed` field belongs in Engine Config/Props, no real UUID is guessed, and draft scaffolders never allocate physical assets. Fix the referenced media and run a strict production build; do not suppress the check using `SVITLO_MEDIA_MODE=draft`.

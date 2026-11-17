@@ -104,7 +104,26 @@ Before **Ready for Review or merge**, every mandatory CI, format/type/build/sche
 `npm run content:check:yaml-schemas --workspace @svitlo/engine`
 `node --test shared/engine/scripts/courseBuilder/courseBuilder.spec.mjs`
 
-Run the repository's canonical generator/test tasks for affected packages, and report exact outcomes; commands are not automatically proof of approval.
+Before declaring the Course ready, verify **every Course-owned Episode** has
+all required media produced (Image, Audio, Video, poster, Subtitles and nested
+Carousel/Quest dependencies). The Course technical YAML→TS scaffolder emits
+`TODO(asset)` and reserved Nil UUID media filenames for unresolved asset
+requests; those are **allowed in Drafts only** and must be absent at Ready/merge.
+Do not add media-generation side effects or production status fields to
+`defineEpisode`; the resource lifecycle belongs to the source scaffolder,
+specialists and strict production publisher. Run `generateCourseProps --preflight`
+without `--draft` and the affected textbook's production `package:build`,
+then inspect the generated Course/Episode resources and static manifest. The
+Course PR also depends on every referenced standalone Lesson's actual release
+readiness; a merged Lesson PR or generated source alone is not proof. Record
+real resource paths, language coverage and build SHA/evidence.
+
+The `Content packages build` check rejects unresolved media markers in
+changed Course UUID roots on review-ready PRs; the production build also
+rejects missing physical references. Configure protected-branch required
+checks separately to prevent bypassing CI. Run the repository's canonical
+generator/test tasks for affected packages, and report exact outcomes; commands
+are not automatically proof of approval.
 
 ## Parent Draft PR template
 
