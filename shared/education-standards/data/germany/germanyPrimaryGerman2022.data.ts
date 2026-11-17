@@ -4,7 +4,7 @@ import { defineEducationStandard } from '@svitlo/engine/build';
 export const germanyPrimaryGerman2022 = defineEducationStandard({
   id: 'be5c6107-6e50-4feb-bae7-d8e2d50dbc84',
   slug: 'germanyPrimaryGerman2022',
-  name: 'Bildungsstandards für das Fach Deutsch – Primarbereich',
+  name: 'Bildungsstandards für das Fach Deutsch Primarbereich',
   params: {
     countries: ['DE'],
     grade: { min: 1, max: 4 },
