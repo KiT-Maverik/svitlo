@@ -3,7 +3,7 @@ import { createHash } from 'node:crypto';
 export const START = '<!-- svitlo-course-lessons:start -->';
 export const END = '<!-- svitlo-course-lessons:end -->';
 export const UUID = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i;
-export const REPO = /^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/;
+export const REPO = /^[A-Za-z0-9][A-Za-z0-9_.-]*\/[A-Za-z0-9][A-Za-z0-9_.-]*$/;
 export const TEXTBOOK = /^content\/[a-z][a-z0-9-]*$/;
 const SHA = /^[a-f0-9]{40}$/;
 
