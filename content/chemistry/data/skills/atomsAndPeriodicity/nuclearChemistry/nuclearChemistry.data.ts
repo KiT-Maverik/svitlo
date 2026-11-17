@@ -38,7 +38,7 @@ export const nuclearChemistry_SkillGroup_Data = defineSkillGroup({
     et: 'Tuumakeemia',
     be: 'Ядзерная хімія',
     ka: 'ბირთვული ქიმია',
-    kk: 'Ядролық химия',
+    kk: 'Iadrolyq himiia',
     qm: 'Çekirdek kimyası',
   },
   skills: [
@@ -78,7 +78,7 @@ export const nuclearChemistry_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri, kuidas aatomituumade muutused erinevad tavalistest keemilistest reaktsioonidest.',
       be: 'Дасьледуй, чым зьмены атамных ядраў адрозьніваюцца ад звычайных хімічных рэакцыяў.',
       ka: 'შეისწავლე, როგორ განსხვავდება ატომბირთვების ცვლილებები ჩვეულებრივი ქიმიური რეაქციებისგან.',
-      kk: 'Атом ядроларының өзгерісі кәдімгі химиялық реакциялардан қалай ерекшеленетінін зертте.',
+      kk: 'Atom iadrolarynyñ özgerısı kädımgı himiialyq reaktsiialardan qalai erekşelenetının zertte.',
       qm: 'Atom çekirdeklerindeki deñişmeler adiy kimyeviy reaksiyalardan nasıl farq etkenini ögren.',
     },
   },

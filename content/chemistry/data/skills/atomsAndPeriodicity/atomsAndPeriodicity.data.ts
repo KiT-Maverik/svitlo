@@ -37,7 +37,7 @@ export const atomsAndPeriodicity_SkillDomain_Data = defineSkillDomain({
     et: 'Aatomid ja perioodilisus',
     be: 'Атамы і пэрыядычнасьць',
     ka: 'ატომები და პერიოდულობა',
-    kk: 'Атомдар және периодтылық',
+    kk: 'Atomdar jäne periodtylyq',
     qm: 'Atomlar ve devirlilik',
   },
   groups: [
@@ -78,7 +78,7 @@ export const atomsAndPeriodicity_SkillDomain_Data = defineSkillDomain({
       et: 'Uuri aatomite sees olevaid osakesi ja keemilisi elemente ühendavaid korrapärasusi.',
       be: 'Дасьледуй часьціцы ўнутры атамаў і заканамернасьці, якія зьвязваюць хімічныя элемэнты.',
       ka: 'შეისწავლე ატომების შიგნით არსებული ნაწილაკები და კანონზომიერებები, რომლებიც ქიმიურ ელემენტებს აკავშირებს.',
-      kk: 'Атомдардың ішіндегі бөлшектерді және химиялық элементтерді байланыстыратын периодтық заңдылықтарды зертте.',
+      kk: 'Atomdardyñ ışındegı bölşekterdı jäne himiialyq elementterdı bailanystyratyn periodtyq zañdylyqtardy zertte.',
       qm: 'Atomlarnıñ içindeki zerrelerni ve kimyeviy elementlerni bağlağan devirli qanunlılıqlarnı ögren.',
     },
   },

@@ -31,7 +31,7 @@ export const neutronsAndIsotopes_Skill_Data = defineSkill({
     et: 'Neutronid ja isotoobid',
     be: 'Нэўтроны й ізатопы',
     ka: 'ნეიტრონები და იზოტოპები',
-    kk: 'Нейтрондар және изотоптар',
+    kk: 'Neitrondar jäne izotoptar',
     qm: 'Neytronlar ve izotoplar',
   },
   description: {
@@ -64,7 +64,7 @@ export const neutronsAndIsotopes_Skill_Data = defineSkill({
       et: 'Mõista, miks sama elemendi isotoopidel on erinev arv neutroneid.',
       be: 'Зразумей, чаму ізатопы аднаго элемэнту маюць розную колькасьць нэўтронаў.',
       ka: 'გაიგე, რატომ განსხვავდება ერთი ელემენტის იზოტოპებში ნეიტრონების რაოდენობა.',
-      kk: 'Бір элементтің изотоптарында нейтрондар саны неге әртүрлі болатынын түсін.',
+      kk: 'Bır elementtıñ izotoptarynda neitrondar sany nege ärtürlı bolatynyn tüsın.',
       qm: 'Bir elementniñ izotoplarında neytronlarnıñ sayısı ne içün farqlı olğanını añla.',
     },
   },

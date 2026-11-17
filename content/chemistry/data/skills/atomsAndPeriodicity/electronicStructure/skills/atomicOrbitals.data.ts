@@ -31,7 +31,7 @@ export const atomicOrbitals_Skill_Data = defineSkill({
     et: 'Aatomorbitaalid',
     be: 'Атамныя арбіталі',
     ka: 'ატომური ორბიტალები',
-    kk: 'Атомдық орбитальдар',
+    kk: 'Atomdyq orbitaldar',
     qm: 'Atom orbitalleri',
   },
   description: {
@@ -65,7 +65,7 @@ export const atomicOrbitals_Skill_Data = defineSkill({
       et: 'Mõista orbitaale ruumipiirkondadena, mida kirjeldab elektroni leidmise tõenäosus.',
       be: 'Зразумей арбіталі як вобласьці прасторы, апісаныя імавернасьцю знаходжаньня электрона.',
       ka: 'გაიგე, რომ ორბიტალები სივრცის არეებია, რომლებიც ელექტრონის აღმოჩენის ალბათობით აღიწერება.',
-      kk: 'Орбитальдарды электронның болуы ықтималдығымен сипатталатын кеңістік аймақтары ретінде түсін.',
+      kk: 'Orbitaldardy elektronnyñ boluy yqtimaldyğymen sipattalatyn keñıstık aimaqtary retınde tüsın.',
       qm: 'Atom orbitallerini elektron bulunuvınıñ ihtimallığınen tarif etilgen saalar olaraq añla.',
     },
   },

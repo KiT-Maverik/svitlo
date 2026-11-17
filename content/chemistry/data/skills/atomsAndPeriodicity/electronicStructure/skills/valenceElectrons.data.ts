@@ -31,7 +31,7 @@ export const valenceElectrons_Skill_Data = defineSkill({
     et: 'Valentselektronid',
     be: 'Валентныя электроны',
     ka: 'ვალენტური ელექტრონები',
-    kk: 'Валенттік электрондар',
+    kk: 'Valenttık elektrondar',
     qm: 'Valent elektronları',
   },
   description: {
@@ -65,7 +65,7 @@ export const valenceElectrons_Skill_Data = defineSkill({
       et: 'Selgita väliskihi elektronide abil elementide reaktsioonide sarnasusi.',
       be: 'Растлумач падабенства рэакцый элемэнтаў праз электроны вонкавага слою.',
       ka: 'გარე ელექტრონების დახმარებით ახსენი, რატომ რეაგირებენ ზოგიერთი ელემენტი მსგავსად.',
-      kk: 'Сыртқы электрондар арқылы элементтер реакцияларының ұқсастығын түсіндір.',
+      kk: 'Syrtqy elektrondar arqyly elementter reaktsiialarynyñ ūqsastyğyn tüsındır.',
       qm: 'Tışqı elektronlarğa esaslanıp elementlerniñ reaksiyalarındaki oşaşlıqnı añlat.',
     },
   },

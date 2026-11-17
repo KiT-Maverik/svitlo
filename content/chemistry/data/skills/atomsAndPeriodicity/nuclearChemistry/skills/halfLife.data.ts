@@ -31,7 +31,7 @@ export const halfLife_Skill_Data = defineSkill({
     et: 'Poolestusaeg',
     be: 'Пэрыяд паўраспаду',
     ka: 'ნახევარდაშლის პერიოდი',
-    kk: 'Жартылай ыдырау кезеңі',
+    kk: 'Jartylai ydyrau kezeñı',
     qm: 'Yarım dağılma devri',
   },
   description: {
@@ -65,7 +65,7 @@ export const halfLife_Skill_Data = defineSkill({
       et: 'Mõista poolestusaega paljude radioaktiivsete aatomite statistilise mustrina, mitte ühe aatomi kellana.',
       be: 'Зразумей пэрыяд паўраспаду як заканамернасьць для мноства радыеактыўных атамаў, а не гадзіньнік аднаго атама.',
       ka: 'გაიგე, რომ ნახევარდაშლის პერიოდი მრავალი რადიოაქტიური ატომის სტატისტიკური კანონზომიერებაა და არა ერთი ატომის საათი.',
-      kk: 'Жартылай ыдырауды бір атомның сағаты емес, көптеген радиоактивті атомдарға тән статистикалық заңдылық деп түсін.',
+      kk: 'Jartylai ydyraudy bır atomnyñ sağaty emes, köptegen radioaktivtı atomdarğa tän statistikalyq zañdylyq dep tüsın.',
       qm: 'Yarım dağılma devrini bir atomnıñ saati degil, çoq radioaktiv atomlarnıñ statistik qanunlılığı olaraq añla.',
     },
   },

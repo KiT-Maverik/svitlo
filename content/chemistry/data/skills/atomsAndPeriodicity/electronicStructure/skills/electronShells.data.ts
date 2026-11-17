@@ -31,7 +31,7 @@ export const electronShells_Skill_Data = defineSkill({
     et: 'Elektronkihid',
     be: 'Электронныя абалонкі',
     ka: 'ელექტრონული გარსები',
-    kk: 'Электрондық қабаттар',
+    kk: 'Elektrondyq qabattar',
     qm: 'Elektron qabıqları',
   },
   description: {
@@ -65,7 +65,7 @@ export const electronShells_Skill_Data = defineSkill({
       et: 'Selgita seaduspärasusi elektronkihtide abil, kujutlemata elektrone kindlatel planeediorbiitidel.',
       be: 'Тлумач заканамернасьці праз электронныя абалонкі, не ўяўляючы фіксаваных плянэтных арбітаў.',
       ka: 'ელექტრონული გარსებით ახსენი კანონზომიერებები ისე, რომ არ წარმოიდგინო ფიქსირებული პლანეტური ორბიტები.',
-      kk: 'Заңдылықтарды электрондық қабаттар арқылы түсіндір, бірақ оларды тұрақты ғаламшар орбиталары деп елестетпе.',
+      kk: 'Zañdylyqtardy elektrondyq qabattar arqyly tüsındır, bıraq olardy tūraqty ğalamşar orbitalary dep elestetpe.',
       qm: 'Qanunlılıqlarnı elektron qabıqlarınen añlat, lâkin olarnı planetalarnıñ sabit yörüngeleri olaraq tasavur etme.',
     },
   },

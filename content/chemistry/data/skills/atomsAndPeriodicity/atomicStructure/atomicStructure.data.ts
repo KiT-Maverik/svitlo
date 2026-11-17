@@ -38,7 +38,7 @@ export const atomicStructure_SkillGroup_Data = defineSkillGroup({
     et: 'Aatomi ehitus',
     be: 'Будова атама',
     ka: 'ატომის აგებულება',
-    kk: 'Атом құрылысы',
+    kk: 'Atom qūrylysy',
     qm: 'Atomnıñ qurulışı',
   },
   skills: [
@@ -78,7 +78,7 @@ export const atomicStructure_SkillGroup_Data = defineSkillGroup({
       et: 'Õpi, mis määrab keemilise elemendi ning kuidas sama elemendi aatomid võivad erineda.',
       be: 'Даведайся, што вызначае хімічны элемэнт і чым могуць адрозьнівацца атамы аднаго элемэнту.',
       ka: 'გაიგე, რა განსაზღვრავს ქიმიური ელემენტის ვინაობას და როგორ შეიძლება განსხვავდებოდეს ერთი ელემენტის ატომები.',
-      kk: 'Элементтің қандай элемент екенін не анықтайтынын және бір элемент атомдарының қалай ерекшеленетінін біл.',
+      kk: 'Elementtıñ qandai element ekenın ne anyqtaitynyn jäne bır element atomdarynyñ qalai erekşelenetının bıl.',
       qm: 'Elementniñ kimligini ne belgilegenini ve bir element atomlarınıñ ne içün farqlı ola bilgenini ögren.',
     },
   },

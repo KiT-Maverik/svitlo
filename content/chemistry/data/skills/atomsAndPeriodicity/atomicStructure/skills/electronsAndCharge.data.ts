@@ -31,7 +31,7 @@ export const electronsAndCharge_Skill_Data = defineSkill({
     et: 'Elektronid ja elektrilaeng',
     be: 'Электроны і электрычны зарад',
     ka: 'ელექტრონები და მუხტი',
-    kk: 'Электрондар және заряд',
+    kk: 'Elektrondar jäne zariad',
     qm: 'Elektronlar ve yük',
   },
   description: {
@@ -64,7 +64,7 @@ export const electronsAndCharge_Skill_Data = defineSkill({
       et: 'Selgita, kuidas elektronide loovutamine või saamine muudab aatomi laengut.',
       be: 'Растлумач, як страта або далучэньне электронаў зьмяняе зарад атама.',
       ka: 'ახსენი, როგორ იცვლება ატომის მუხტი ელექტრონების დაკარგვის ან შეძენისას.',
-      kk: 'Электронды жоғалту немесе қосып алу атом зарядына қалай әсер ететінін түсіндір.',
+      kk: 'Elektrondy joğaltu nemese qosyp alu atom zariadyna qalai äser etetının tüsındır.',
       qm: 'Elektronlarnı coyğan ya da alğan atomnıñ elektrik yükü nasıl deñişkenini añlat.',
     },
   },

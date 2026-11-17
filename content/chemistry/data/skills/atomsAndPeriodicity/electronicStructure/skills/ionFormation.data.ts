@@ -31,7 +31,7 @@ export const ionFormation_Skill_Data = defineSkill({
     et: 'Ioonide teke',
     be: 'Утварэньне іёнаў',
     ka: 'იონების წარმოქმნა',
-    kk: 'Иондардың түзілуі',
+    kk: 'İondardyñ tüzıluı',
     qm: 'İonlarnıñ peyda olması',
   },
   description: {
@@ -65,7 +65,7 @@ export const ionFormation_Skill_Data = defineSkill({
       et: 'Ennusta levinud ioonide laenguid, arvestades keemilist keskkonda.',
       be: 'Прадказвай звычайныя зарады іёнаў з улікам хімічнага асяродзьдзя.',
       ka: 'იწინასწარმეტყველე გავრცელებული იონების მუხტები ქიმიური გარემოს გათვალისწინებით.',
-      kk: 'Химиялық ортаны ескере отырып, жиі кездесетін иондардың зарядын болжа.',
+      kk: 'Himiialyq ortany eskere otyryp, jiı kezdesetın iondardyñ zariadyn bolja.',
       qm: 'Kimyeviy muhitni köz ögüne alıp, yayğın ionlarnıñ elektrik yüklerini tahmin et.',
     },
   },

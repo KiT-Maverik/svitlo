@@ -31,7 +31,7 @@ export const electronConfigurations_Skill_Data = defineSkill({
     et: 'Elektronkonfiguratsioonid',
     be: 'Электронныя канфігурацыі',
     ka: 'ელექტრონული კონფიგურაციები',
-    kk: 'Электрондық конфигурациялар',
+    kk: 'Elektrondyq konfiguratsiialar',
     qm: 'Elektron konfiguratsiyaları',
   },
   description: {
@@ -65,7 +65,7 @@ export const electronConfigurations_Skill_Data = defineSkill({
       et: 'Näita, kuidas elektronid täidavad aatomites ja ioonides erinevaid olekuid.',
       be: 'Пакажы, як электроны займаюць станы ў атамах і іёнах.',
       ka: 'აჩვენე, როგორ ნაწილდებიან ელექტრონები ატომებსა და იონებში სხვადასხვა მდგომარეობაზე.',
-      kk: 'Атомдар мен иондарда электрондардың күйлерді қалай толтыратынын көрсет.',
+      kk: 'Atomdar men iondarda elektrondardyñ küilerdı qalai toltyratynyn körset.',
       qm: 'Atomlarda ve ionlarda elektronlarnıñ alalları nasıl tolğurdığını köster.',
     },
   },

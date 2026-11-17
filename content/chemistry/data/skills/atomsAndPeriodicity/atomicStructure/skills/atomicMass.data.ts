@@ -31,7 +31,7 @@ export const atomicMass_Skill_Data = defineSkill({
     et: 'Aatommass',
     be: 'Атамная маса',
     ka: 'ატომური მასა',
-    kk: 'Атомдық масса',
+    kk: 'Atomdyq massa',
     qm: 'Atom kütlesi',
   },
   description: {
@@ -65,7 +65,7 @@ export const atomicMass_Skill_Data = defineSkill({
       et: 'Uuri, miks keskmine aatommass ei ole alati täisarv.',
       be: 'Дасьледуй, чаму сярэдняя атамная маса ня заўсёды цэлы лік.',
       ka: 'გაიგე, რატომ არ არის საშუალო ატომური მასა ყოველთვის მთელი რიცხვი.',
-      kk: 'Орташа атомдық масса неге әрдайым бүтін сан болмайтынын зертте.',
+      kk: 'Ortaşa atomdyq massa nege ärdaiym bütın san bolmaitynyn zertte.',
       qm: 'Ortalama atom kütlesi ne içün er vaqıt bütün sayı olmağanını ögren.',
     },
   },

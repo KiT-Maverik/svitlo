@@ -31,7 +31,7 @@ export const protonsAndAtomicNumber_Skill_Data = defineSkill({
     et: 'Prootonid ja aatomnumber',
     be: 'Пратоны і атамны нумар',
     ka: 'პროტონები და ატომური ნომერი',
-    kk: 'Протондар және атомдық нөмір',
+    kk: 'Protondar jäne atomdyq nömır',
     qm: 'Protonlar ve atom nomeri',
   },
   description: {
@@ -64,7 +64,7 @@ export const protonsAndAtomicNumber_Skill_Data = defineSkill({
       et: 'Tuvasta keemiline element prootonite arvu järgi.',
       be: 'Вызнач хімічны элемэнт паводле колькасьці пратонаў.',
       ka: 'განსაზღვრე ქიმიური ელემენტი პროტონების რაოდენობით.',
-      kk: 'Протондар саны арқылы химиялық элементті анықта.',
+      kk: 'Protondar sany arqyly himiialyq elementtı anyqta.',
       qm: 'Protonlarnıñ sayısına köre kimyeviy elementni belgile.',
     },
   },

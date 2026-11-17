@@ -39,7 +39,7 @@ export const electronicStructure_SkillGroup_Data = defineSkillGroup({
     et: 'Elektronstruktuur',
     be: 'Электронная будова',
     ka: 'ელექტრონული აგებულება',
-    kk: 'Электрондық құрылым',
+    kk: 'Elektrondyq qūrylym',
     qm: 'Elektron qurulışı',
   },
   skills: [
@@ -80,7 +80,7 @@ export const electronicStructure_SkillGroup_Data = defineSkillGroup({
       et: 'Õpi, kuidas elektronid paiknevad ja miks see mõjutab keemilist käitumist.',
       be: 'Даведайся, як разьмяшчаюцца электроны і чаму гэта ўплывае на хімічныя паводзіны.',
       ka: 'გაიგე, როგორ ნაწილდება ელექტრონები და რატომ მოქმედებს ეს ქიმიურ თვისებებზე.',
-      kk: 'Электрондардың қалай орналасатынын және бұл химиялық қасиеттерге неге әсер ететінін біл.',
+      kk: 'Elektrondardyñ qalai ornalasatynyn jäne būl himiialyq qasietterge nege äser etetının bıl.',
       qm: 'Elektronlarnıñ nasıl yerleşkenini ve bunıñ kimyeviy hususiyetlerge ne içün tesir etkenini ögren.',
     },
   },
