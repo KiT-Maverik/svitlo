@@ -31,7 +31,7 @@ export const economicsOfPersonalData_Skill_Data = defineSkill({
     et: 'Isikuandmete majandus',
     be: 'Эканоміка асабістых зьвестак',
     ka: 'პერსონალური მონაცემების ეკონომიკა',
-    kk: 'Жеке деректер экономикасы',
+    kk: 'Jeke derekter ekonomikasy',
     qm: 'Şahsiy malümatlar iqtisadı',
   },
   description: {
@@ -65,7 +65,7 @@ export const economicsOfPersonalData_Skill_Data = defineSkill({
       et: 'Uuri isikuandmetega rahastatud teenuste varjatud majanduslikke kompromisse.',
       be: 'Дасьледуй схаваныя эканамічныя кампрамісы сэрвісаў, што фінансуюцца асабістымі зьвесткамі.',
       ka: 'შეისწავლე პერსონალური მონაცემებით დაფინანსებული სერვისების ფარული ეკონომიკური დათმობები.',
-      kk: 'Жеке деректер есебінен қаржыланатын қызметтердің жасырын экономикалық ымыраларын зертте.',
+      kk: 'Jeke derekterdı paidalanu arqyly qarjylandyrylatyn qyzmetterdıñ közge körınbeıtın ekonomikalyq ymyralaryn zertte.',
       qm: 'Şahsiy malümatlar hesabına çalışqan hızmetlerniñ gizli iqtisadiy ödünlerini ögren.',
     },
   },

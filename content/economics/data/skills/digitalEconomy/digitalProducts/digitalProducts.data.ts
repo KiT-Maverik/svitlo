@@ -37,7 +37,7 @@ export const digitalProducts_SkillGroup_Data = defineSkillGroup({
     et: 'Digitooted',
     be: 'Лічбавыя прадукты',
     ka: 'ციფრული პროდუქტები',
-    kk: 'Цифрлық өнімдер',
+    kk: 'Tsifrlyq önımder',
     qm: 'Raqamlı mahsullar',
   },
   skills: [
@@ -76,7 +76,7 @@ export const digitalProducts_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri, miks digitoodete loomine võib olla kallis, kuid kopeerimine odav.',
       be: 'Даведайся, чаму стварэньне лічбавых прадуктаў можа быць дарагім, а капіяваньне — танным.',
       ka: 'გაიგე, რატომ შეიძლება ციფრული პროდუქტის შექმნა ძვირი იყოს, ხოლო კოპირება — იაფი.',
-      kk: 'Цифрлық өнімді жасау қымбат, ал көшіру арзан болуы мүмкін екенін түсін.',
+      kk: 'Tsifrlyq önımdı jasaudyñ qymbat, al köşırudıñ arzan boluy mümkın ekenın tüsın.',
       qm: 'Raqamlı mahsulnı yaratmaq qıymetli, amma nusqalamaq ucuz ola bilgenini ögren.',
     },
   },

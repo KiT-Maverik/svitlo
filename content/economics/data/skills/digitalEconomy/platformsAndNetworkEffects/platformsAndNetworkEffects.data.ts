@@ -38,7 +38,7 @@ export const platformsAndNetworkEffects_SkillGroup_Data = defineSkillGroup({
     et: 'Platvormid ja võrgustikumõjud',
     be: 'Плятформы і сеткавыя эфэкты',
     ka: 'პლატფორმები და ქსელური ეფექტები',
-    kk: 'Платформалар мен желілік әсерлер',
+    kk: 'Platformalar men jelılık äserler',
     qm: 'Platformalar ve şebeke tesirleri',
   },
   skills: [
@@ -78,7 +78,7 @@ export const platformsAndNetworkEffects_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri, miks platvorm võib muutuda kasulikumaks, kui osalejaid lisandub.',
       be: 'Даведайся, чаму плятформа можа стаць карысьнейшай, калі ўдзельнікаў больш.',
       ka: 'გაიგე, რატომ შეიძლება პლატფორმა უფრო სასარგებლო გახდეს მონაწილეების მატებასთან ერთად.',
-      kk: 'Қатысушылар көбейгенде платформа неге пайдалырақ болатынын біл.',
+      kk: 'Qatysuşylar köbeigen saiyn platformanyñ nege paidalyraq bolatynyn bıl.',
       qm: 'İştirakçiler çoğalğanda platforma niçün daa faydalı ola bilgenini ögren.',
     },
   },

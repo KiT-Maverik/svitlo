@@ -35,7 +35,7 @@ export const digitalEconomy_SkillDomain_Data = defineSkillDomain({
     et: 'Digimajandus',
     be: 'Лічбавая эканоміка',
     ka: 'ციფრული ეკონომიკა',
-    kk: 'Цифрлық экономика',
+    kk: 'Tsifrlyq ekonomika',
     qm: 'Raqamlı iqtisat',
   },
   groups: [
@@ -74,7 +74,7 @@ export const digitalEconomy_SkillDomain_Data = defineSkillDomain({
       et: 'Uuri, kuidas digitooted ja -platvormid muudavad ettevõtteid ja turge.',
       be: 'Дасьледуй, як лічбавыя прадукты і плятформы зьмяняюць бізнэс і рынкі.',
       ka: 'შეისწავლე, როგორ ცვლის ციფრული პროდუქტები და პლატფორმები ბიზნესსა და ბაზრებს.',
-      kk: 'Цифрлық өнімдер мен платформалар бизнес пен нарықтарды қалай өзгертетінін зертте.',
+      kk: 'Tsifrlyq önımder men platformalar bıznes pen naryqtardy qalai özgertetının zertte.',
       qm: 'Raqamlı mahsullar ve platformalar iş ve bazarlarnı nasıl deñiştirgenini ögren.',
     },
   },
