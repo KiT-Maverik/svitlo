@@ -178,11 +178,11 @@ export function renderFlashcardBank(bank) {
   ].join('\n');
 }
 
-export function runOne(packageRoot, lessonId, mode) {
+export function runOne(packageRoot, lessonId, mode, repositoryRoot = root) {
   ensure(['--preflight', '--write', '--check'].includes(mode), 'unknown execution mode');
   ensure(uuid.test(lessonId), 'invalid Lesson UUID');
   const textbook = path.resolve(packageRoot);
-  const contentRoot = path.resolve(root, 'content') + path.sep;
+  const contentRoot = path.resolve(repositoryRoot, 'content') + path.sep;
   ensure(textbook.startsWith(contentRoot) && fs.existsSync(path.join(textbook, 'package.json')),
     'not a textbook workspace');
   const lesson = path.join(textbook, 'data', 'lessons', lessonId.at(-1), lessonId);
