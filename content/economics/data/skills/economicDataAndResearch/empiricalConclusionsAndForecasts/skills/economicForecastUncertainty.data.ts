@@ -31,7 +31,7 @@ export const economicForecastUncertainty_Skill_Data = defineSkill({
     et: 'Majandusprognooside ebakindlus',
     be: 'Нявызначанасьць эканамічнага прагнозу',
     ka: 'ეკონომიკური პროგნოზების გაურკვევლობა',
-    kk: 'Экономикалық болжамның белгісіздігі',
+    kk: 'Ekonomikalyq boljamnyñ belgısızdıgı',
     qm: 'İqtisadiy tahminniñ belirsizligi',
   },
   description: {
@@ -65,7 +65,7 @@ export const economicForecastUncertainty_Skill_Data = defineSkill({
       et: 'Tunne majandusprognoosides ära ebakindlus ja eri võimalused.',
       be: 'Распазнавай нявызначанасьць і розныя магчымасьці ў эканамічных прагнозах.',
       ka: 'ამოიცანი გაურკვევლობა და სხვადასხვა შესაძლებლობა ეკონომიკურ პროგნოზებში.',
-      kk: 'Экономикалық болжамдардағы белгісіздік пен түрлі мүмкіндіктерді таны.',
+      kk: 'Ekonomikalyq boljamdardağy belgısızdık pen ärtürlı yqtimal nätijelerdı tany.',
       qm: 'İqtisadiy tahminlerde belirsizlikni ve çeşit ihtimallerni tanı.',
     },
   },

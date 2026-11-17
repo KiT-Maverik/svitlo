@@ -31,7 +31,7 @@ export const policyEffectEvaluation_Skill_Data = defineSkill({
     et: 'Poliitika mõju hindamine',
     be: 'Ацэнка ўплыву палітыкі',
     ka: 'პოლიტიკის ეფექტის შეფასება',
-    kk: 'Саясат әсерін бағалау',
+    kk: 'Saiasat äserın bağalau',
     qm: 'Siyasetniñ tesirini baalav',
   },
   description: {
@@ -65,7 +65,7 @@ export const policyEffectEvaluation_Skill_Data = defineSkill({
       et: 'Hinda, mida poliitika muutis võrreldes sellega, mis oleks võinud juhtuda ilma selleta.',
       be: 'Ацані, што зьмяніла палітыка ў параўнаньні з тым, што магло адбыцца безь яе.',
       ka: 'შეაფასე, რა შეცვალა პოლიტიკამ იმასთან შედარებით, რაც მის გარეშე მოხდებოდა.',
-      kk: 'Саясаттың әсерін ол болмағанда не болатынымен салыстырып бағала.',
+      kk: 'Saiasattyñ äserın ol bolmağanda ne boluy mümkın edı degen boljam men salystyryp bağala.',
       qm: 'Siyasetniñ neni deñiştirgenini, o olmasa ne olabileceginen teñeştirip baala.',
     },
   },

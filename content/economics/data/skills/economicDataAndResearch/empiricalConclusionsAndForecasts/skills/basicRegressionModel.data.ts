@@ -31,7 +31,7 @@ export const basicRegressionModel_Skill_Data = defineSkill({
     et: 'Lihtne regressioonimudel',
     be: 'Базавая рэгрэсійная мадэль',
     ka: 'საბაზისო რეგრესიის მოდელი',
-    kk: 'Негізгі регрессия моделі',
+    kk: 'Negızgı regressia modelı',
     qm: 'Esas regressiya modeli',
   },
   description: {
@@ -65,7 +65,7 @@ export const basicRegressionModel_Skill_Data = defineSkill({
       et: 'Loe, milliseid seoseid kirjeldab lihtne regressioonimudel.',
       be: 'Прачытай сувязі, якія апісвае простая рэгрэсійная мадэль.',
       ka: 'განმარტე კავშირები, რომლებსაც მარტივი რეგრესიის მოდელი აღწერს.',
-      kk: 'Қарапайым регрессия моделі көрсететін байланыстарды оқып түсін.',
+      kk: 'Qarapaiym regressia modelı sipattaityn bailanystardy oqyp tüsın.',
       qm: 'Sade regressiya modeli tasvir etken alâqalarnı añla.',
     },
   },
