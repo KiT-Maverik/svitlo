@@ -78,7 +78,7 @@ export const photographyAndFilm_SkillDomain_Data = defineSkillDomain({
       et: 'Uuri, kuidas kadreering, valgus, pildijadad ja heli kujundavad fotosid ja filme.',
       be: 'Даследуйце, як кадраванне, святло, паслядоўнасці выяў і гук фарміруюць фатаграфіі і фільмы.',
       ka: 'შეისწავლეთ, როგორ აყალიბებს კადრირება, სინათლე, გამოსახულებების მიმდევრობა და ხმა ფოტოებსა და ფილმებს.',
-      kk: 'Zertteñız: kadrlau, jaryq, suretter tızbegı men dybys fotosuretter men filmderdı qalai qalyptastyrady.',
+      kk: 'Kadrlau men jaryqtyñ fotosuretke, al kadrlar tızbegı men dybystyñ filmge qalai äser etetının zertteñız.',
       qm: 'Kadrlama, ışıq, suret sıraları ve sesniñ foto suretleri ve filmlerni nasıl şekillendirgenini keşf etiñiz.',
     },
   },

@@ -64,7 +64,7 @@ export const interpretConsonanceAndDissonance_Skill_Data = defineSkill({
       et: 'Kuula, kuidas muusikaline pinge ja rahu sõltuvad stiilist ja kontekstist.',
       be: 'Паслухайце, як музычная напружанасць і спакой залежаць ад стылю і кантэксту.',
       ka: 'მოუსმინეთ, როგორ არის მუსიკალური დაძაბულობა და სიმშვიდე დამოკიდებული სტილსა და კონტექსტზე.',
-      kk: 'Tyñdañyz: muzykalyq şiryğu men tynyştyq stil men mänmätınge qalai täueldı.',
+      kk: 'Muzykalyq şiryğu men tynyştaludyñ stil men kontekstke qalai bailanysty ekenın tyñdap anyqtañyz.',
       qm: 'Musiqiy gerginlik ve tınçlıqnıñ uslûpqa ve şaraitke bağlı olğanını diñleñiz.',
     },
   },

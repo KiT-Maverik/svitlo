@@ -79,7 +79,7 @@ export const pitchAndMelody_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri, kuidas noodid liiguvad ja ühinevad meloodiateks.',
       be: 'Даследуйце, як ноты рухаюцца і спалучаюцца, утвараючы мелодыі.',
       ka: 'შეისწავლეთ, როგორ მოძრაობს და ერთიანდება ნოტები მელოდიების შესაქმნელად.',
-      kk: 'Zertteñız: notalar qalai qozğalyp, äuenge bırıgedı.',
+      kk: 'Notalardyñ joğary-tömen qozğalyp, bırıguı arqyly äuennıñ qalai paida bolatynyn zertteñız.',
       qm: 'Notalarnıñ nasıl hareket etip, birleşip ezgi yaratqanını keşf etiñiz.',
     },
   },

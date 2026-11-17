@@ -31,7 +31,7 @@ export const analyzeDanceInCulturalContext_Skill_Data = defineSkill({
     et: 'Analüüsi tantsu kultuurikontekstis',
     be: 'Аналізуйце танец у культурным кантэксце',
     ka: 'გააანალიზეთ ცეკვა კულტურულ კონტექსტში',
-    kk: 'Bidı mädeni kontekstte taldañyz',
+    kk: 'Bidı mädeni kontekste taldau',
     qm: 'Oyunnı medeniy bağlamında tahlil etiñiz',
   },
   description: {

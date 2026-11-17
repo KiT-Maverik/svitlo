@@ -64,7 +64,7 @@ export const composeAMusicalPiece_Skill_Data = defineSkill({
       et: 'Arenda muusikalisi ideid kontrastide ja rahuldava lõpuga teoseks.',
       be: 'Развівайце музычныя ідэі ў твор з кантрастамі і пераканаўчым завяршэннем.',
       ka: 'განავითარეთ მუსიკალური იდეები კონტრასტებისა და დამაკმაყოფილებელი დასასრულის მქონე ნაწარმოებად.',
-      kk: 'Damytyñyz muzykalyq ideialardy qarama-qaişylyğy men sättı aiaqtaluy bar şyğarmağa.',
+      kk: 'Muzykalyq ideialardy aiqyn qarama-qarsylyq pen üilesımdı aiaqtaluy bar tūtas şyğarmağa ainaldyryñyz.',
       qm: 'Muzika fikirlerini zıddiyet ve tatmin etici soñu olğan eserge inkişaf etiñiz.',
     },
   },
