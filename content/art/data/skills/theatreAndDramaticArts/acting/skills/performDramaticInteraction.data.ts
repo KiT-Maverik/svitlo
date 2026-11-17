@@ -31,7 +31,7 @@ export const performDramaticInteraction_Skill_Data = defineSkill({
     et: 'Esitada dramaatilist suhtlust',
     be: 'Выконваць драматычнае ўзаемадзеянне',
     ka: 'დრამატული ურთიერთქმედების შესრულება',
-    kk: 'Драмалық өзара әрекетті орындау',
+    kk: 'Dramalyq özara ärekettı oryndau',
     qm: 'Dramatik qarşılıqlı tesirni icra etmek',
   },
   description: {
@@ -64,7 +64,7 @@ export const performDramaticInteraction_Skill_Data = defineSkill({
       et: 'Reageeri teistele esinejatele, jäädes stseeni kujuteldavasse maailma.',
       be: 'Рэагуйце на іншых выканаўцаў, застаючыся ў выдуманым свеце сцэны.',
       ka: 'უპასუხეთ სხვა მსახიობებს და შეინარჩუნეთ სცენის წარმოსახვითი სამყარო.',
-      kk: 'Сахнаның қиялдағы әлемінен шықпай, басқа орындаушыларға жауап беріңіз.',
+      kk: 'Sahnanyñ qiialdağy älemınen şyqpai, basqa oryndauşylarğa jauap berıñız.',
       qm: 'Sahneniñ hayalî dünyasında qalaraq başqa oyuncularğa cevap beriñiz.',
     },
   },

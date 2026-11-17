@@ -38,7 +38,7 @@ export const dramaturgyAndDirection_SkillGroup_Data = defineSkillGroup({
     et: 'Dramaturgia ja lavastamine',
     be: 'Драматургія і рэжысура',
     ka: 'დრამატურგია და რეჟისურა',
-    kk: 'Драматургия және режиссура',
+    kk: 'Dramaturgiia jäne rejissura',
     qm: 'Dramaturgiya ve rejissurlıq',
   },
   skills: [
@@ -78,7 +78,7 @@ export const dramaturgyAndDirection_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri, kuidas üles ehitatakse draamalugu ja tuuakse see lavale.',
       be: 'Даследуйце, як будуецца драматычная гісторыя і ўвасабляецца на сцэне.',
       ka: 'შეისწავლეთ, როგორ არის აგებული დრამატული ამბავი და როგორ გადადის სცენაზე.',
-      kk: 'Зерттеңіз: драмалық оқиға қалай құрылып, сахнада қалай көрсетіледі.',
+      kk: 'Zertteñız: dramalyq oqiğa qalai qūrylyp, sahnada qalai körsetıledı.',
       qm: 'Dramatik hikâyeniñ nasıl qurulğanını ve sahnege nasıl köçürilgenini keşf etiñiz.',
     },
   },

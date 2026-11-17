@@ -31,7 +31,7 @@ export const maintainStagePresence_Skill_Data = defineSkill({
     et: 'Säilitada lavalist kohalolu',
     be: 'Захоўваць сцэнічную прысутнасць',
     ka: 'სცენური თანდასწრების შენარჩუნება',
-    kk: 'Сахналық болмысты сақтау',
+    kk: 'Sahnalyq bolmysty saqtau',
     qm: 'Sahne mevcudiyetini saqlamaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const maintainStagePresence_Skill_Data = defineSkill({
       et: 'Hoia kogu etenduse vältel tähelepanu ja tegelaskuju järjepidevust.',
       be: 'Захоўвайце ўвагу і паслядоўнасць вобраза на працягу ўсяго выступу.',
       ka: 'შეინარჩუნეთ ყურადღება და პერსონაჟის თანმიმდევრულობა მთელი წარმოდგენის განმავლობაში.',
-      kk: 'Бүкіл қойылым бойы зейінді және кейіпкер бейнесінің бірізділігін сақтаңыз.',
+      kk: 'Bükıl qoiylym boiy zeiındı jäne keiıpker beinesınıñ bırızdılıgın saqtañyz.',
       qm: 'Bütün tamaşa boyunca diqqati ve personaj obrazını tutarlı saqlañız.',
     },
   },

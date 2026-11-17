@@ -40,7 +40,7 @@ export const textilesAndDecorativeArts_SkillGroup_Data = defineSkillGroup({
     et: 'Tekstiili- ja dekoratiivkunst',
     be: 'Тэкстыльнае і дэкаратыўнае мастацтва',
     ka: 'ტექსტილი და დეკორატიული ხელოვნება',
-    kk: 'Тоқыма және сәндік өнер',
+    kk: 'Toqyma jäne sändık öner',
   },
   skills: [
     createAWovenStructure_Skill_Data,
@@ -81,7 +81,7 @@ export const textilesAndDecorativeArts_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri mustreid, kudumist ja kaunistamist tekstiilmaterjalide abil.',
       be: 'Даследуйце ўзоры, ткацтва і аздабленне з дапамогай тэкстыльных матэрыялаў.',
       ka: 'შეისწავლეთ ორნამენტი, ქსოვა და დეკორირება ტექსტილის მასალებით.',
-      kk: 'Тоқыма материалдары арқылы өрнек, тоқу және безендіруді зерттеңіз.',
+      kk: 'Toqyma materialdary arqyly örnek, toqu jäne bezendırudı zertteñız.',
     },
   },
 });

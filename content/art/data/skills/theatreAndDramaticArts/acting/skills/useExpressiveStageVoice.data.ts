@@ -31,7 +31,7 @@ export const useExpressiveStageVoice_Skill_Data = defineSkill({
     et: 'Kasutada väljendusrikast lavahäält',
     be: 'Выкарыстоўваць выразны сцэнічны голас',
     ka: 'გამომსახველობითი სასცენო ხმის გამოყენება',
-    kk: 'Мәнерлі сахналық дауысты қолдану',
+    kk: 'Mänerlı sahnalyq dauysty qoldanu',
     qm: 'İfadeleyici sahne sesini qullanmaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const useExpressiveStageVoice_Skill_Data = defineSkill({
       et: 'Räägi laval selgelt ja ilmekalt, kasutades sobivat hääle tugevust ning tooni.',
       be: 'Гаварыце на сцэне выразна, зразумела і з належнай сілай голасу.',
       ka: 'ისაუბრეთ სცენაზე მკაფიოდ, გამომსახველობითი ხმითა და ტონით.',
-      kk: 'Сахнада анық, мәнерлі және жеткілікті күшті дауыспен сөйлеңіз.',
+      kk: 'Sahnada anyq, mänerlı jäne jetkılıktı küştı dauyspen söileñız.',
       qm: 'Sahnede añlaq, ifadeleyici ve yeterli ses gücünen söyleñiz.',
     },
   },

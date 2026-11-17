@@ -33,7 +33,7 @@ export const createTextileEmbellishment_Skill_Data = defineSkill({
     et: 'Tekstiilkaunistuse loomine',
     be: 'Ствараць тэкстыльнае аздабленне',
     ka: 'ტექსტილის დეკორის შექმნა',
-    kk: 'Тоқыма әшекейін жасау',
+    kk: 'Toqyma äşekeiın jasau',
   },
   description: {
     methodological: 'Use stitching, appliqué or similar additions to develop tactile and visual character.',
@@ -67,7 +67,7 @@ export const createTextileEmbellishment_Skill_Data = defineSkill({
       et: 'Kaunista tekstiile õmbluste, aplikatsioonide või muude lisadetailidega, et rikastada selle taktiilset ja visuaalset ilmet.',
       be: 'Упрыгожвайце тэкстыль шыўкамі, аплікацыямі або іншымі дэталямі, каб узбагаціць яго тактыльныя і візуальныя ўласцівасці.',
       ka: 'გააფორმეთ ტექსტილი ნაკერებით, აპლიკაციებით ან სხვა დეტალებით, რათა გაამდიდროთ მისი ტაქტილური და ვიზუალური ხასიათი.',
-      kk: 'Тоқыма бұйымдарын тігіспен, аппликациямен немесе басқа қосымша бөлшектермен безендіріңіз.',
+      kk: 'Toqyma būiymdaryn tıgıspen, applikatsiiamen nemese basqa qosymşa bölşektermen bezendırıñız.',
     },
   },
 });

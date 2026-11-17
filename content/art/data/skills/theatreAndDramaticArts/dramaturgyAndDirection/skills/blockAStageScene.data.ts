@@ -31,7 +31,7 @@ export const blockAStageScene_Skill_Data = defineSkill({
     et: 'Kavandada lavastseeni liikumine',
     be: 'Плянаваць перамяшчэньні актораў на сцэне',
     ka: 'სცენის მიზანსცენის დაგეგმვა',
-    kk: 'Сахналық көріністің мизансценасын құру',
+    kk: 'Sahnalyq körınıstıñ mizanstsenasyn qūru',
     qm: 'Sahne mizansenini qurmaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const blockAStageScene_Skill_Data = defineSkill({
       et: 'Kavanda näitlejate asukohad ja liikumine, et stseen oleks publikule arusaadav.',
       be: 'Сплануйце размяшчэнне і рух акцёраў, каб сцэна была зразумелай гледачам.',
       ka: 'დაგეგმეთ მსახიობების განლაგება და მოძრაობა, რათა სცენა მაყურებლისთვის გასაგები იყოს.',
-      kk: 'Көрерменге көрініс анық болуы үшін актерлердің орындары мен қозғалысын жоспарлаңыз.',
+      kk: 'Körermenge körınıs anyq boluy üşın akterlerdıñ oryndary men qozğalysyn josparlañyz.',
       qm: 'Seyircige sahneniñ añlaşılır olması içün oyuncılarnıñ turuş yerlerini ve areketlerini planlañız.',
     },
   },

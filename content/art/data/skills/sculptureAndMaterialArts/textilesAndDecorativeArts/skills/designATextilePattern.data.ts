@@ -33,7 +33,7 @@ export const designATextilePattern_Skill_Data = defineSkill({
     et: 'Tekstiilmustri kujundamine',
     be: 'Праектаваць тэкстыльны ўзор',
     ka: 'ტექსტილის ნიმუშის დიზაინი',
-    kk: 'Тоқыма өрнегін жобалау',
+    kk: 'Toqyma örnegın jobalau',
   },
   description: {
     methodological: 'Adapt a visual motif to fabric scale and an appropriate repeat structure.',
@@ -67,7 +67,7 @@ export const designATextilePattern_Skill_Data = defineSkill({
       et: 'Kohanda kujundust nii, et muster korduks kangal tõhusalt.',
       be: 'Адаптуйце дызайн так, каб узор эфектыўна паўтараўся на тканіне.',
       ka: 'შეცვალეთ დიზაინი ისე, რომ ნიმუში ქსოვილზე ეფექტურად მეორდებოდეს.',
-      kk: 'Бүкіл мата бойында тиімді қайталанатындай етіп дизайнды бейімдеңіз.',
+      kk: 'Bükıl mata boiynda tiımdı qaitalanatyndai etıp dizaindy beiımdeñız.',
     },
   },
 });

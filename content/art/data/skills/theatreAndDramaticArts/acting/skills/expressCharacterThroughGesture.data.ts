@@ -31,7 +31,7 @@ export const expressCharacterThroughGesture_Skill_Data = defineSkill({
     et: 'Väljendada tegelast žestidega',
     be: 'Выяўляць персанажа праз жэсты',
     ka: 'პერსონაჟის ჟესტებით გამოხატვა',
-    kk: 'Кейіпкерді ым-ишара арқылы бейнелеу',
+    kk: 'Keiıpkerdı ym-işara arqyly beineleu',
     qm: 'Personajnı jestler arqalı ifade etmek',
   },
   description: {
@@ -64,7 +64,7 @@ export const expressCharacterThroughGesture_Skill_Data = defineSkill({
       et: 'Näita kehahoiaku ja žestidega, mida tegelane tunneb või kavatseb.',
       be: 'Паказвайце пачуцці або намеры персанажа з дапамогай паставы і жэстаў.',
       ka: 'გამოხატეთ პერსონაჟის გრძნობები ან განზრახვები პოზითა და ჟესტებით.',
-      kk: 'Дене қалпы мен ым-ишара арқылы кейіпкердің сезімі мен ниетін көрсетіңіз.',
+      kk: 'Dene qalpy men ym-işara arqyly keiıpkerdıñ sezımı men nietın körsetıñız.',
       qm: 'Personajnıñ ne hissetkenini ya da niyetini duruş ve jestler ile kösteriñiz.',
     },
   },

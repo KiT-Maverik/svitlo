@@ -31,7 +31,7 @@ export const establishACharacterObjective_Skill_Data = defineSkill({
     et: 'Määratleda tegelase eesmärk',
     be: 'Вызначаць мэту персанажа',
     ka: 'პერსონაჟის მიზნის განსაზღვრა',
-    kk: 'Кейіпкердің мақсатын белгілеу',
+    kk: 'Keiıpkerdıñ maqsatyn belgıleu',
     qm: 'Personajnıñ maqsadını belgilemek',
   },
   description: {
@@ -64,7 +64,7 @@ export const establishACharacterObjective_Skill_Data = defineSkill({
       et: 'Otsusta, mida tegelane soovib ja kuidas see tema tegevust mõjutab.',
       be: 'Вызначце, чаго хоча персанаж і як гэта ўплывае на яго дзеянні.',
       ka: 'განსაზღვრეთ, რა სურს პერსონაჟს და როგორ მოქმედებს ეს მის ქცევაზე.',
-      kk: 'Актердің кейіпкері нені қалайтынын және бұл оның әрекетіне қалай әсер ететінін анықтаңыз.',
+      kk: 'Akterdıñ keiıpkerı nenı qalaitynyn jäne būl onyñ äreketıne qalai äser etetının anyqtañyz.',
       qm: 'Personajnıñ ne istegenini ve bunıñ areketlerine nasıl tesir etkenini belgileñiz.',
     },
   },

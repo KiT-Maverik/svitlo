@@ -33,7 +33,7 @@ export const createAWovenStructure_Skill_Data = defineSkill({
     et: 'Kootud struktuuri loomine',
     be: 'Ствараць тканую структуру',
     ka: 'ნაქსოვი სტრუქტურის შექმნა',
-    kk: 'Тоқыма құрылымын жасау',
+    kk: 'Toqyma qūrylymyn jasau',
   },
   description: {
     methodological: 'Interlace strands according to a selected structure and visual pattern.',
@@ -67,7 +67,7 @@ export const createAWovenStructure_Skill_Data = defineSkill({
       et: 'Põimi lõngad või ribad kavandatud kootud mustriks.',
       be: 'Пераплятайце ніткі або палоскі, каб стварыць задуманы тканы ўзор.',
       ka: 'გადახლართეთ ძაფები ან ზოლები დაგეგმილი ნაქსოვი ნიმუშის შესაქმნელად.',
-      kk: 'Жоспарланған тоқыма өрнегін жасау үшін жіптерді немесе жолақтарды айқастырып тоқыңыз.',
+      kk: 'Josparlanğan toqyma örnegın jasau üşın jıpterdı nemese jolaqtardy aiqastyryp toqyñyz.',
     },
   },
 });

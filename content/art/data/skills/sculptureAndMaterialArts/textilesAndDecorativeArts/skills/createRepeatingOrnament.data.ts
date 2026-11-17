@@ -33,7 +33,7 @@ export const createRepeatingOrnament_Skill_Data = defineSkill({
     et: 'Korduva ornamendi loomine',
     be: 'Ствараць паўтаральны арнамент',
     ka: 'განმეორებადი ორნამენტის შექმნა',
-    kk: 'Қайталанатын өрнек жасау',
+    kk: 'Qaitalanatyn örnek jasau',
   },
   description: {
     methodological: 'Develop a motif through planned translations, rotations, reflections or variations.',
@@ -67,7 +67,7 @@ export const createRepeatingOrnament_Skill_Data = defineSkill({
       et: 'Korda ja varieeri kujundeid dekoratiivse mustri loomiseks.',
       be: 'Паўтарайце і змяняйце формы, каб стварыць дэкаратыўны ўзор.',
       ka: 'გაიმეორეთ და შეცვალეთ ფორმები დეკორატიული ნიმუშის შესაქმნელად.',
-      kk: 'Сәндік өрнек жасау үшін пішіндерді қайталап, түрлендіріңіз.',
+      kk: 'Sändık örnek jasau üşın pışınderdı qaitalap, türlendırıñız.',
     },
   },
 });

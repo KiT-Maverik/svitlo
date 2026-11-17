@@ -39,7 +39,7 @@ export const acting_SkillGroup_Data = defineSkillGroup({
     et: 'Näitlemine',
     be: 'Акцёрскае майстэрства',
     ka: 'მსახიობობა',
-    kk: 'Актерлік өнер',
+    kk: 'Akterlık öner',
     qm: 'Aktrislik',
   },
   skills: [
@@ -80,7 +80,7 @@ export const acting_SkillGroup_Data = defineSkillGroup({
       et: 'Kasuta keha, häält ja reaktsioone, et muuta tegelaskuju usutavaks.',
       be: 'Выкарыстоўвайце цела, голас і рэакцыі, каб зрабіць персанажа пераканаўчым.',
       ka: 'გამოიყენეთ სხეული, ხმა და რეაქციები პერსონაჟის დამაჯერებლად წარმოსაჩენად.',
-      kk: 'Кейіпкерді нанымды көрсету үшін денеңізді, дауысыңызды және реакцияларыңызды пайдаланыңыз.',
+      kk: 'Keiıpkerdı nanymdy körsetu üşın deneñızdı, dauysyñyzdy jäne reaktsiialaryñyzdy paidalanyñyz.',
       qm: 'Bir personajnı inandırıcı etüv içün beden, ses ve cevapları qullanıñız.',
     },
   },

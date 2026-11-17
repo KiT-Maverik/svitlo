@@ -31,7 +31,7 @@ export const analyzeDramaticStructure_Skill_Data = defineSkill({
     et: 'Analüüsida dramaatilist ülesehitust',
     be: 'Аналізаваць драматычную структуру',
     ka: 'დრამატული სტრუქტურის ანალიზი',
-    kk: 'Драмалық құрылымды талдау',
+    kk: 'Dramalyq qūrylymdy taldau',
     qm: 'Dramatik qurulışnı tahlil etmek',
   },
   description: {
@@ -65,7 +65,7 @@ export const analyzeDramaticStructure_Skill_Data = defineSkill({
       et: 'Leia hetked, mis muudavad stseeni suunda või tähendust.',
       be: 'Знайдзіце моманты, якія змяняюць кірунак або сэнс сцэны.',
       ka: 'იპოვეთ მომენტები, რომლებიც სცენის მიმართულებას ან მნიშვნელობას ცვლის.',
-      kk: 'Сахнаның бағытын не мағынасын өзгертетін сәттерді табыңыз.',
+      kk: 'Sahnanyñ bağytyn ne mağynasyn özgertetın sätterdı tabyñyz.',
       qm: 'Sahneniñ yönüni ya da manasını deñiştiren anlerni tapıñız.',
     },
   },
