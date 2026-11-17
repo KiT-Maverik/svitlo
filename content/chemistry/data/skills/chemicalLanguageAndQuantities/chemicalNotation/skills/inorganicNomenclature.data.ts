@@ -31,7 +31,7 @@ export const inorganicNomenclature_Skill_Data = defineSkill({
     et: 'Anorgaaniliste ühendite nimetamine',
     be: 'Намэнклятура неарганічных злучэньняў',
     ka: 'არაორგანული ნომენკლატურა',
-    kk: 'Бейорганикалық номенклатура',
+    kk: 'Beiorganikalyq nomenklatura',
     qm: 'Neorganik adlandırma',
   },
   description: {
@@ -65,7 +65,7 @@ export const inorganicNomenclature_Skill_Data = defineSkill({
       et: 'Rakenda nimetamisreegleid anorgaaniliste ühendite tuvastamiseks.',
       be: 'Ужывай правілы найменьня для вызначэньня неарганічных злучэньняў.',
       ka: 'არაორგანული ნაერთების ამოსაცნობად გამოიყენე სახელდების წესები.',
-      kk: 'Бейорганикалық қосылыстарды тану үшін атау ережелерін қолдан.',
+      kk: 'Beiorganikalyq qosylystardy tanu üşın atau erejelerın qoldan.',
       qm: 'Neorganik birikmelerni tanımaq içün adlandırma qaydalarını qullan.',
     },
   },

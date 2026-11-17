@@ -31,7 +31,7 @@ export const elementSymbols_Skill_Data = defineSkill({
     et: 'Elementide tähised',
     be: 'Сымбалі элемэнтаў',
     ka: 'ელემენტთა სიმბოლოები',
-    kk: 'Элементтердің таңбалары',
+    kk: 'Elementterdıñ tañbalary',
     qm: 'Element remizleri',
   },
   description: {
@@ -65,7 +65,7 @@ export const elementSymbols_Skill_Data = defineSkill({
       et: 'Loe elementide tähiseid õigesti, eristades suur- ja väiketähti.',
       be: 'Правільна чытай сымбалі элемэнтаў, улічваючы вялікія й малыя літары.',
       ka: 'სწორად წაიკითხე ელემენტთა სიმბოლოები დიდი და პატარა ასოების განსხვავებით.',
-      kk: 'Бас және кіші әріптердің айырмасын ескеріп, элемент таңбаларын дұрыс оқы.',
+      kk: 'Bas jäne kışı ärıpterdıñ aiyrmasyn eskerıp, element tañbalaryn dūrys oqy.',
       qm: 'Element remizlerini büyük ve kiçik ariflerni ayıraraq doğru oqu.',
     },
   },

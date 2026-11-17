@@ -31,7 +31,7 @@ export const reactionYield_Skill_Data = defineSkill({
     et: 'Reaktsiooni saagis',
     be: 'Выхад рэакцыі',
     ka: 'რეაქციის გამოსავალი',
-    kk: 'Реакция шығымы',
+    kk: 'Reaktsiia şyğymy',
     qm: 'Reaktsiyanıñ çıqımı',
   },
   description: {
@@ -65,7 +65,7 @@ export const reactionYield_Skill_Data = defineSkill({
       et: 'Võrdle teoreetilist ja tegelikku saagist ning selgita protsendilist saagist.',
       be: 'Параўнай тэарэтычны й сапраўдны выхад, растлумач працэнтны выхад.',
       ka: 'შეადარე თეორიული და ფაქტობრივი გამოსავალი და ახსენი პროცენტული გამოსავალი.',
-      kk: 'Теориялық және нақты шығымды салыстырып, пайыздық шығымды түсіндір.',
+      kk: 'Teoriialyq jäne naqty şyğymdy salystyryp, paiyzdyq şyğymdy tüsındır.',
       qm: 'Nazariy ve aqiqiy çıqımnı teñeştir, faizlik çıqımnı añlat.',
     },
   },

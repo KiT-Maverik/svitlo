@@ -31,7 +31,7 @@ export const empiricalFormulas_Skill_Data = defineSkill({
     et: 'Empiirilised valemid',
     be: 'Эмпірычныя формулы',
     ka: 'ემპირიული ფორმულები',
-    kk: 'Эмпирикалық формулалар',
+    kk: 'Empirikalyq formulalar',
     qm: 'Empirik formulalar',
   },
   description: {
@@ -65,7 +65,7 @@ export const empiricalFormulas_Skill_Data = defineSkill({
       et: 'Tõlgenda elementide lihtsaimat täisarvulist suhet aines.',
       be: 'Тлумач найпрасьцейшыя цэлалікавыя суадносіны элемэнтаў у рэчыве.',
       ka: 'გაიგე ნივთიერებაში ელემენტების უმარტივესი მთელი რიცხვების თანაფარდობა.',
-      kk: 'Заттағы элементтердің ең қарапайым бүтін сан қатынасын түсіндір.',
+      kk: 'Zattağy elementterdıñ eñ qarapaiym bütın san qatynasyn tüsındır.',
       qm: 'Maddedeki elementlerniñ eñ sade tam sayı nisbetini añla.',
     },
   },

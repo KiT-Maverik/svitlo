@@ -42,7 +42,7 @@ export const chemicalNotation_SkillGroup_Data = defineSkillGroup({
     et: 'Keemiline tähistus',
     be: 'Хімічны запіс',
     ka: 'ქიმიური აღნიშვნები',
-    kk: 'Химиялық белгілеу',
+    kk: 'Himiialyq belgıleu',
     qm: 'Kimyeviy işaretler',
   },
   skills: [
@@ -86,7 +86,7 @@ export const chemicalNotation_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri, kuidas sümbolid ja valemid näitavad koostist ja laengut.',
       be: 'Даведайся, як сымбалі й формулы перадаюць склад і зарад.',
       ka: 'გაიგე, როგორ გამოხატავს სიმბოლოები და ფორმულები შედგენილობასა და მუხტს.',
-      kk: 'Таңбалар мен формулалардың құрам мен зарядты қалай көрсететінін біл.',
+      kk: 'Tañbalar men formulalardyñ qūram men zariadty qalai körsetetının bıl.',
       qm: 'Remiz ve formulalarnıñ terkibni ve yükni nasıl köstergenini ögren.',
     },
   },

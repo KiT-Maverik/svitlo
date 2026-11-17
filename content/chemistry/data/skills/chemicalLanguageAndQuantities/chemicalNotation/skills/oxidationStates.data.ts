@@ -31,7 +31,7 @@ export const oxidationStates_Skill_Data = defineSkill({
     et: 'Oksüdatsiooniastmed',
     be: 'Ступені акісьленьня',
     ka: 'ჟანგვის ხარისხები',
-    kk: 'Тотығу дәрежелері',
+    kk: 'Totyğu därejelerı',
     qm: 'Oksidlenuv dereceleri',
   },
   description: {
@@ -65,7 +65,7 @@ export const oxidationStates_Skill_Data = defineSkill({
       et: 'Kasuta formaalseid oksüdatsiooniastmeid, pidamata neid tegelikeks laenguteks.',
       be: 'Карыстайся фармальнымі ступенямі акісьленьня, ня блытаючы іх з сапраўднымі зарадамі.',
       ka: 'გამოიყენე ფორმალური ჟანგვის რიცხვები და არ აურიო რეალურ მუხტებში.',
-      kk: 'Формал тотығу сандарын нақты зарядтармен шатастырмай қолдан.',
+      kk: 'Formal totyğu sandaryn naqty zariadtarmen şatastyrmai qoldan.',
       qm: 'Resmiy oksidlenuv sayılarınen çalış, olarnı aqiqiy yük sanma.',
     },
   },

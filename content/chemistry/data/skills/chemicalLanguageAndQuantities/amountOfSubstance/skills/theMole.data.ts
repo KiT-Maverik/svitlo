@@ -31,7 +31,7 @@ export const theMole_Skill_Data = defineSkill({
     et: 'Mool',
     be: 'Моль',
     ka: 'მოლი',
-    kk: 'Моль',
+    kk: 'Mol',
     qm: 'Mol',
   },
   description: {
@@ -64,7 +64,7 @@ export const theMole_Skill_Data = defineSkill({
       et: 'Mõista mooli kui kindlaksmääratud arvu keemilisi osakesi.',
       be: 'Зразумей моль як вызначаны лік хімічных часьцінак.',
       ka: 'გაიგე მოლი, როგორც ქიმიური ნაწილაკების განსაზღვრული რაოდენობა.',
-      kk: 'Мольді химиялық бөлшектердің белгіленген саны деп түсін.',
+      kk: 'Moldı himiialyq bölşekterdıñ belgılengen sany dep tüsın.',
       qm: 'Mol belli sayıda kimyeviy zerrelerni bildirgenini añla.',
     },
   },

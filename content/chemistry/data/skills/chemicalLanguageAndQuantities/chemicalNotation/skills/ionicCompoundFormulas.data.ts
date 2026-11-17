@@ -31,7 +31,7 @@ export const ionicCompoundFormulas_Skill_Data = defineSkill({
     et: 'Ioonühendite valemid',
     be: 'Формулы іённых злучэньняў',
     ka: 'იონური ნაერთების ფორმულები',
-    kk: 'Иондық қосылыстардың формулалары',
+    kk: 'İondyq qosylystardyñ formulalary',
     qm: 'İon birikmeleriniñ formulaları',
   },
   description: {
@@ -64,7 +64,7 @@ export const ionicCompoundFormulas_Skill_Data = defineSkill({
       et: 'Kasuta ioonide laenguid elektriliselt neutraalsete ühendite valemite kirjutamiseks.',
       be: 'Выкарыстоўвай зарады іёнаў для запісу формулаў электранэўтральных злучэньняў.',
       ka: 'იონების მუხტებით დაწერე ელექტრულად ნეიტრალური ნაერთების ფორმულები.',
-      kk: 'Ион зарядтарын пайдаланып, электрлік бейтарап қосылыстар формулаларын жаз.',
+      kk: 'İon zariadtaryn paidalanyp, elektrlık beitarap qosylystar formulalaryn jaz.',
       qm: 'İon yüklerini qullanıp elektrikçe neytral birikme formulalarını yaz.',
     },
   },

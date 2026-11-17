@@ -31,7 +31,7 @@ export const molarMass_Skill_Data = defineSkill({
     et: 'Molaarmass',
     be: 'Малярная маса',
     ka: 'მოლური მასა',
-    kk: 'Молярлық масса',
+    kk: 'Moliarlyq massa',
     qm: 'Molyar massa',
   },
   description: {
@@ -64,7 +64,7 @@ export const molarMass_Skill_Data = defineSkill({
       et: 'Seo molaarmassi abil keemiline valem ühe mooli massiga.',
       be: 'Ужывай малярную масу, каб зьвязаць формулу з масай аднаго моля.',
       ka: 'მოლური მასით დააკავშირე ქიმიური ფორმულა ერთი მოლის მასასთან.',
-      kk: 'Молярлық масса арқылы химиялық формула мен бір моль массасын байланыстыр.',
+      kk: 'Moliarlyq massa arqyly himiialyq formula men bır mol massasyn bailanystyr.',
       qm: 'Molyar massa vastasınen formuladan bir molniñ massasını tap.',
     },
   },

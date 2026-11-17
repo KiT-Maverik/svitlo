@@ -31,7 +31,7 @@ export const stoichiometricRatios_Skill_Data = defineSkill({
     et: 'Stöhhiomeetrilised suhted',
     be: 'Стэхіямэтрычныя суадносіны',
     ka: 'სტექიომეტრიული თანაფარდობები',
-    kk: 'Стехиометриялық қатынастар',
+    kk: 'Stehiometriialyq qatynastar',
     qm: 'Stohiometrik nisbetler',
   },
   description: {
@@ -64,7 +64,7 @@ export const stoichiometricRatios_Skill_Data = defineSkill({
       et: 'Võrdle tasakaalustatud võrrandi abil lähteainete ja saaduste hulki.',
       be: 'Паводле ўраўнаванага раўнаньня параўноўвай колькасьці рэагентаў і прадуктаў.',
       ka: 'გათანაბრებული განტოლებით შეადარე რეაგენტებისა და პროდუქტების რაოდენობები.',
-      kk: 'Теңестірілген теңдеумен реагенттер мен өнімдердің мөлшерлерін салыстыр.',
+      kk: 'Teñestırılgen teñdeumen reagentter men önımderdıñ mölşerlerın salystyr.',
       qm: 'Muvazenetlengen teñlemeden reaktsiyadaki maddeler miqdarlarını teñeştir.',
     },
   },

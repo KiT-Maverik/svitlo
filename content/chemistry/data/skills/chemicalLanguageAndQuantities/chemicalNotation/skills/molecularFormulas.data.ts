@@ -31,7 +31,7 @@ export const molecularFormulas_Skill_Data = defineSkill({
     et: 'Molekulivalemid',
     be: 'Малекулярныя формулы',
     ka: 'მოლეკულური ფორმულები',
-    kk: 'Молекулалық формулалар',
+    kk: 'Molekulalyq formulalar',
     qm: 'Molekul formulaları',
   },
   description: {
@@ -64,7 +64,7 @@ export const molecularFormulas_Skill_Data = defineSkill({
       et: 'Loe molekulivalemist, millised aatomid on ühes molekulis.',
       be: 'Прачытай малекулярную формулу, каб вызначыць атамы ў адной малекуле.',
       ka: 'მოლეკულური ფორმულით განსაზღვრე ერთი მოლეკულის ატომები.',
-      kk: 'Молекулалық формуладан бір молекуладағы атомдарды анықта.',
+      kk: 'Molekulalyq formuladan bır molekuladağy atomdardy anyqta.',
       qm: 'Bir molekulda olğan atomlarnı formuladan belgile.',
     },
   },

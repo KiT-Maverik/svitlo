@@ -31,7 +31,7 @@ export const organicNomenclature_Skill_Data = defineSkill({
     et: 'Orgaaniliste ühendite nimetamine',
     be: 'Намэнклятура арганічных злучэньняў',
     ka: 'ორგანული ნომენკლატურა',
-    kk: 'Органикалық номенклатура',
+    kk: 'Organikalyq nomenklatura',
     qm: 'Organik adlandırma',
   },
   description: {
@@ -65,7 +65,7 @@ export const organicNomenclature_Skill_Data = defineSkill({
       et: 'Seo orgaaniliste ühendite süstemaatilised nimed nende molekulistruktuuriga.',
       be: 'Сувязвай сыстэматычныя назвы арганічных злучэньняў з будовай малекулаў.',
       ka: 'დაუკავშირე ორგანული ნაერთების სისტემური სახელები მათ მოლეკულურ სტრუქტურას.',
-      kk: 'Органикалық қосылыстардың жүйелік атауларын молекулалық құрылымымен байланыстыр.',
+      kk: 'Organikalyq qosylystardyñ jüielık ataularyn molekulalyq qūrylymymen bailanystyr.',
       qm: 'Organik birikmelerniñ sistemalı adlarını molekul qurulışına bağla.',
     },
   },

@@ -31,7 +31,7 @@ export const chemicalFormulas_Skill_Data = defineSkill({
     et: 'Keemilised valemid',
     be: 'Хімічныя формулы',
     ka: 'ქიმიური ფორმულები',
-    kk: 'Химиялық формулалар',
+    kk: 'Himiialyq formulalar',
     qm: 'Kimyeviy formulalar',
   },
   description: {
@@ -64,7 +64,7 @@ export const chemicalFormulas_Skill_Data = defineSkill({
       et: 'Mõista, kuidas alaindeksid näitavad eri aatomite suhteid.',
       be: 'Зразумей, як ніжнія індэксы паказваюць суадносіны розных атамаў.',
       ka: 'გაიაზრე, როგორ მიუთითებს ქვედა ინდექსები სხვადასხვა ატომის თანაფარდობას.',
-      kk: 'Төменгі индекстер әртүрлі атомдардың қатынасын қалай көрсететінін түсін.',
+      kk: 'Tömengı indekster ärtürlı atomdardyñ qatynasyn qalai körsetetının tüsın.',
       qm: 'Aşağı indekslerniñ çeşit atomlar nisbetini nasıl köstergenini añla.',
     },
   },
