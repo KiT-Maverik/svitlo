@@ -32,7 +32,7 @@ export const dailySkyMotion_Skill_Data = defineSkill({
     et: 'Taeva ööpäevane näiv liikumine',
     be: 'Суткавы бачны рух неба',
     ka: 'ცის დღეღამური მოჩვენებითი მოძრაობა',
-    kk: 'Аспанның тәуліктік көрінерлік қозғалысы',
+    kk: 'Aspannyñ täulıktık körınerlık qozğalysy',
   },
   description: {
     methodological:
@@ -66,7 +66,7 @@ export const dailySkyMotion_Skill_Data = defineSkill({
       et: 'Kirjelda, kuidas tähed päeva või öö jooksul näiliselt üle taeva liiguvad.',
       be: 'Апішы, як зоркі нібыта рухаюцца па небе цягам дня ці ночы.',
       ka: 'აღწერე, როგორ გვეჩვენება ვარსკვლავების გადაადგილება ცაზე დღისა თუ ღამის განმავლობაში.',
-      kk: 'Жұлдыздардың күндіз немесе түнде аспан бойымен қалай қозғалғандай көрінетінін сипатта.',
+      kk: 'Jūldyzdardyñ kündız nemese tünde aspan boiymen qalai qozğalğandai körınetının sipatta.',
     },
   },
 });

@@ -38,7 +38,7 @@ export const atmospheresAndWeather_SkillGroup_Data = defineSkillGroup({
     et: 'Atmosfäärid ja ilm',
     be: 'Атмасфэры і надвор’е',
     ka: 'ატმოსფეროები და ამინდი',
-    kk: 'Атмосфералар мен ауа райы',
+    kk: 'Atmosferalar men aua raiy',
     qm: 'Atmosferalar ve ava vaziyeti',
   },
   skills: [
@@ -78,7 +78,7 @@ export const atmospheresAndWeather_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri, miks on eri planeetidel nii erinevad atmosfäärid ja ilmastikuolud.',
       be: 'Даведайцеся, чаму розныя плянэты маюць настолькі адрозныя атмасфэры і ўмовы надвор’я.',
       ka: 'გაიგეთ, რატომ აქვთ სხვადასხვა პლანეტას ასე განსხვავებული ატმოსფეროები და ამინდის პირობები.',
-      kk: 'Әртүрлі ғаламшарлардың атмосферасы мен ауа райы неге бір-бірінен қатты ерекшеленетінін біліңіз.',
+      kk: 'Ärtürlı ğalamşarlardyñ atmosferasy men aua raiy nege bır-bırınen qatty erekşelenetının bılıñız.',
       qm: 'Çeşitli seyyarelerniñ atmosferaları ve ava vaziyetleri ne içün birbirinden pek farqlı olğanını ögreniñiz.',
     },
   },

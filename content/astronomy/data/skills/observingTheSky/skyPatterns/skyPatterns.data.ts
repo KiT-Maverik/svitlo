@@ -41,7 +41,7 @@ export const skyPatterns_SkillGroup_Data = defineSkillGroup({
     et: 'Mustrid taevas',
     be: 'Узоры на небе',
     ka: 'ცის მოხაზულობები',
-    kk: 'Аспандағы өрнектер',
+    kk: 'Aspandağy örnekter',
   },
   skills: [
     apparentBrightness_Skill_Data,
@@ -83,7 +83,7 @@ export const skyPatterns_SkillGroup_Data = defineSkillGroup({
       et: 'Õpi ära tundma mustreid taevas ja mõistma, kuidas nende nähtavus muutub.',
       be: 'Распазнавай узоры на небе і даведвайся, як зьмяняецца іхная бачнасьць.',
       ka: 'ამოიცანი ცაზე ხილული მოხაზულობები და გაიგე, როგორ იცვლება მათი ხილვადობა.',
-      kk: 'Аспандағы өрнектерді танып, олардың көрінуі қалай өзгеретінін түсін.',
+      kk: 'Aspandağy örnekterdı tanyp, olardyñ körınuı qalai özgeretının tüsın.',
     },
   },
 });

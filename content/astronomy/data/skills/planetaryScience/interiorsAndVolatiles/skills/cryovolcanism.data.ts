@@ -31,7 +31,7 @@ export const cryovolcanism_Skill_Data = defineSkill({
     et: 'Krüovulkanism',
     be: 'Крыявульканізм',
     ka: 'კრიოვულკანიზმი',
-    kk: 'Криовулканизм',
+    kk: 'Kriovulkanizm',
     qm: 'Buz vulkanizmi',
   },
   description: {
@@ -64,7 +64,7 @@ export const cryovolcanism_Skill_Data = defineSkill({
       et: 'Uuri, kuidas külmadel taevakehadel võib sulakivimi asemel pursata jääd või lenduvaid aineid.',
       be: 'Даведайцеся, як халодныя сьветы могуць вывяргаць лёд або лятучыя рэчывы замест расплаўленай пароды.',
       ka: 'გაიგეთ, როგორ შეიძლება ცივ ციურ სხეულებზე გამდნარი ქანის ნაცვლად ყინული ან აქროლადი მასალა ამოიფრქვეს.',
-      kk: 'Суық әлемдерде балқыған жыныстың орнына мұз немесе ұшпа заттар қалай атқылайтынын біліңіз.',
+      kk: 'Suyq älemderde balqyğan jynystyñ ornyna mūz nemese ūşpa zattar qalai atqylaitynyn bılıñız.',
       qm: 'Suvuq kök cisimlerinde erigen taş yerine buz ya da uçucı maddeler nasıl fışqırğanını ögreniñiz.',
     },
   },

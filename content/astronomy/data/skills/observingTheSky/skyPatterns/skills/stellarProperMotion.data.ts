@@ -32,7 +32,7 @@ export const stellarProperMotion_Skill_Data = defineSkill({
     et: 'Tähtede omaliikumine',
     be: 'Уласны рух зорак',
     ka: 'ვარსკვლავთა საკუთარი მოძრაობა',
-    kk: 'Жұлдыздардың меншікті қозғалысы',
+    kk: 'Jūldyzdardyñ menşıktı qozğalysy',
   },
   description: {
     methodological:
@@ -66,7 +66,7 @@ export const stellarProperMotion_Skill_Data = defineSkill({
       et: 'Märka tähe väga aeglast liikumist kaugemate tähtede suhtes.',
       be: 'Распазнавай вельмі павольнае перамяшчэньне зоркі адносна больш далёкіх зорак.',
       ka: 'ამოიცანი ვარსკვლავის ძალიან ნელი გადაადგილება უფრო შორეული ვარსკვლავების მიმართ.',
-      kk: 'Алысырақ жұлдыздармен салыстырғанда бір жұлдыздың өте баяу орын ауыстыруын таны.',
+      kk: 'Alysyraq jūldyzdarmen salystyrğanda bır jūldyzdyñ öte baiau oryn auystyruyn tany.',
     },
   },
 });

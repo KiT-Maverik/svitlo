@@ -31,7 +31,7 @@ export const atmosphericCirculation_Skill_Data = defineSkill({
     et: 'Atmosfääri tsirkulatsioon',
     be: 'Атмасфэрная цыркуляцыя',
     ka: 'ატმოსფერული ცირკულაცია',
-    kk: 'Атмосфералық айналым',
+    kk: 'Atmosferalyq ainalym',
     qm: 'Atmosfera devranı',
   },
   description: {
@@ -64,7 +64,7 @@ export const atmosphericCirculation_Skill_Data = defineSkill({
       et: 'Mõista, kuidas planeedi pöörlemine ja soojenemine kujundavad suuremõõtmelisi õhuvoolusid.',
       be: 'Зразумейце, як вярчэньне і награваньне плянэты фармуюць буйнамаштабныя паветраныя плыні.',
       ka: 'გაიგეთ, როგორ აყალიბებს პლანეტის ბრუნვა და გათბობა ჰაერის ფართომასშტაბიან მოძრაობას.',
-      kk: 'Ғаламшардың айналуы мен қызуы ауқымды ауа қозғалысын қалай қалыптастыратынын түсініңіз.',
+      kk: 'Ğalamşardyñ ainaluy men qyzuy auqymdy aua qozğalysyn qalai qalyptastyratynyn tüsınıñız.',
       qm: 'Seyyareniñ aylanması ve qızması büyük miqyastaki ava areketlerini nasıl şekillendirgenini añlañız.',
     },
   },

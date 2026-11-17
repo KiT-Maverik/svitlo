@@ -31,7 +31,7 @@ export const planetaryInteriorStructure_Skill_Data = defineSkill({
     et: 'Planeetide siseehitus',
     be: 'Унутраная будова плянэт',
     ka: 'პლანეტების შიდა აგებულება',
-    kk: 'Ғаламшарлардың ішкі құрылысы',
+    kk: 'Ğalamşarlardyñ ışkı qūrylysy',
     qm: 'Seyyarelerniñ içki quruluşu',
   },
   description: {
@@ -64,7 +64,7 @@ export const planetaryInteriorStructure_Skill_Data = defineSkill({
       et: 'Uuri kaudsete tõendite abil planeedi tuuma ja sisekihte.',
       be: 'Паводле ўскосных сьведчаньняў дасьледуйце ядро і ўнутраныя пласты плянэты.',
       ka: 'არაპირდაპირი მტკიცებულებებით შეისწავლეთ პლანეტის ბირთვი და შიდა ფენები.',
-      kk: 'Жанама деректердің көмегімен ғаламшардың ядросы мен ішкі қабаттарын зерттеңіз.',
+      kk: 'Janama derekterdıñ kömegımen ğalamşardyñ iadrosy men ışkı qabattaryn zertteñız.',
       qm: 'Dolaylı deliller yardımınen seyyareniñ özenini ve içki qatlarını tetqiq etiñiz.',
     },
   },

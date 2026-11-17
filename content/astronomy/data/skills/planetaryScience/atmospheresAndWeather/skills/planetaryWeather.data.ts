@@ -31,7 +31,7 @@ export const planetaryWeather_Skill_Data = defineSkill({
     et: 'Ilm planeetidel',
     be: 'Надвор’е на плянэтах',
     ka: 'ამინდი პლანეტებზე',
-    kk: 'Ғаламшарлардағы ауа райы',
+    kk: 'Ğalamşarlardağy aua raiy',
     qm: 'Seyyarelerde ava vaziyeti',
   },
   description: {
@@ -65,7 +65,7 @@ export const planetaryWeather_Skill_Data = defineSkill({
       et: 'Tunne torme, tuuli ja pilvi ära taevakehadel, mille tingimused erinevad Maa omadest.',
       be: 'Распазнавайце буры, вятры і аблокі на нябесных целах з умовамі, адрознымі ад зямных.',
       ka: 'ამოიცანით ქარიშხლები, ქარები და ღრუბლები ციურ სხეულებზე, სადაც პირობები დედამიწისგან განსხვავდება.',
-      kk: 'Жерден өзгеше жағдайлары бар әлемдердегі дауылдарды, желдер мен бұлттарды таныңыз.',
+      kk: 'Jerden özgeşe jağdailary bar älemderdegı dauyldardy, jelder men būlttardy tanyñyz.',
       qm: 'Yer yüzündekinden farqlı şartları olğan kök cisimlerinde fırtınalarnı, yellerni ve bulutlarnı tanıñız.',
     },
   },

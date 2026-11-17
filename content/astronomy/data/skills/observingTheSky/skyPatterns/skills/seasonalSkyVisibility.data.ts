@@ -32,7 +32,7 @@ export const seasonalSkyVisibility_Skill_Data = defineSkill({
     et: 'Taeva hooajaline nähtavus',
     be: 'Сэзонная бачнасьць неба',
     ka: 'ცის სეზონური ხილვადობა',
-    kk: 'Аспанның маусымдық көрінуі',
+    kk: 'Aspannyñ mausymdyq körınuı',
   },
   description: {
     methodological: 'Explain why different stars and constellations become visible at different times of the year.',
@@ -65,7 +65,7 @@ export const seasonalSkyVisibility_Skill_Data = defineSkill({
       et: 'Selgita, miks eri aastaaegadel on näha erinevaid tähemustreid.',
       be: 'Растлумач, чаму ў розныя поры году бачныя розныя зорныя ўзоры.',
       ka: 'ახსენი, რატომ ჩანს სხვადასხვა სეზონზე ვარსკვლავების სხვადასხვა მოხაზულობა.',
-      kk: 'Әр маусымда әртүрлі жұлдыз өрнектері неге көрінетінін түсіндір.',
+      kk: 'Är mausymda ärtürlı jūldyz örnekterı nege körınetının tüsındır.',
     },
   },
 });

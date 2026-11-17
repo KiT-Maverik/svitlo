@@ -31,7 +31,7 @@ export const atmosphericRetentionAndEscape_Skill_Data = defineSkill({
     et: 'Atmosfääri püsimine ja gaaside põgenemine',
     be: 'Утрыманьне і страта атмасфэры',
     ka: 'ატმოსფეროს შენარჩუნება და გაზების გაქცევა',
-    kk: 'Атмосфераны сақтау және газдардың жоғалуы',
+    kk: 'Atmosferany saqtau jäne gazdardyñ joğaluy',
     qm: 'Atmosferanı saqlav ve gazlarnıñ qaçuvı',
   },
   description: {
@@ -65,7 +65,7 @@ export const atmosphericRetentionAndEscape_Skill_Data = defineSkill({
       et: 'Selgita, miks mõned taevakehad säilitavad tiheda atmosfääri, teised aga kaotavad gaase kosmosesse.',
       be: 'Растлумачце, чаму адны нябесныя целы захоўваюць шчыльныя атмасфэры, а іншыя губляюць газы ў космасе.',
       ka: 'ახსენით, რატომ ინარჩუნებს ზოგი ციური სხეული სქელ ატმოსფეროს, ზოგი კი გაზებს კოსმოსში კარგავს.',
-      kk: 'Неліктен кейбір аспан денелері қалың атмосферасын сақтайтынын, ал басқалары газдарын ғарышқа жоғалтатынын түсіндіріңіз.',
+      kk: 'Nelıkten keibır aspan denelerı qalyñ atmosferasyn saqtaitynyn, al basqalary gazdaryn ğaryşqa joğaltatynyn tüsındırıñız.',
       qm: 'Bazı kök cisimleri qalın atmosferalarını ne içün saqlap qalğanını, başqaları ise gazlarını fezağa ne içün coyğanını añlatıñız.',
     },
   },

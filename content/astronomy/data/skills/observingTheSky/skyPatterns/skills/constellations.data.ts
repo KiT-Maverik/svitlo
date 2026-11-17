@@ -32,7 +32,7 @@ export const constellations_Skill_Data = defineSkill({
     et: 'Tähtkujud',
     be: 'Сузор’і',
     ka: 'თანავარსკვლავედები',
-    kk: 'Шоқжұлдыздар',
+    kk: 'Şoqjūldyzdar',
   },
   description: {
     methodological:
@@ -66,7 +66,7 @@ export const constellations_Skill_Data = defineSkill({
       et: 'Kasuta objektide leidmiseks ametlikult määratletud tähtkujude alasid, eeldamata, et nende tähed on ruumis üksteise lähedal.',
       be: 'Выкарыстоўвай афіцыйна вызначаныя вобласьці сузор’яў для пошуку аб’ектаў, не мяркуючы, што іхныя зоркі фізычна блізкія адна да адной.',
       ka: 'გამოიყენე ოფიციალურად განსაზღვრული თანავარსკვლავედების უბნები ობიექტების მოსაძებნად ისე, რომ არ ივარაუდო, თითქოს მათი ვარსკვლავები სივრცეში ერთმანეთთან ახლოს არიან.',
-      kk: 'Аспан нысандарын табу үшін ресми белгіленген шоқжұлдыз аймақтарын пайдалан, бірақ олардың жұлдыздары кеңістікте бір-біріне жақын деп ойлама.',
+      kk: 'Aspan nysandaryn tabu üşın resmi belgılengen şoqjūldyz aimaqtaryn paidalan, bıraq olardyñ jūldyzdary keñıstıkte bır-bırıne jaqyn dep oilama.',
     },
   },
 });

@@ -31,7 +31,7 @@ export const planetaryGreenhouseEffects_Skill_Data = defineSkill({
     et: 'Kasvuhooneefekt planeetidel',
     be: 'Парніковыя эфэкты на плянэтах',
     ka: 'სათბურის ეფექტები პლანეტებზე',
-    kk: 'Ғаламшарлардағы жылыжай әсері',
+    kk: 'Ğalamşarlardağy jylyjai äserı',
     qm: 'Seyyarelerde sera tesiri',
   },
   description: {
@@ -65,7 +65,7 @@ export const planetaryGreenhouseEffects_Skill_Data = defineSkill({
       et: 'Uuri, kuidas atmosfäärigaasid eri planeetidel soojust kinni hoiavad ja kiirgavad.',
       be: 'Дасьледуйце, як атмасфэрныя газы затрымліваюць і выпраменьваюць цяпло на розных плянэтах.',
       ka: 'გაეცანით, როგორ აკავებენ და ასხივებენ ატმოსფერული გაზები სითბოს სხვადასხვა პლანეტაზე.',
-      kk: 'Әртүрлі ғаламшарлардағы атмосфера газдары жылуды қалай ұстап қалып, қайта шығаратынын зерттеңіз.',
+      kk: 'Ärtürlı ğalamşarlardağy atmosfera gazdary jyludy qalai ūstap qalyp, qaita şyğaratynyn zertteñız.',
       qm: 'Çeşitli seyyarelerde atmosfera gazlarınıñ sıcaqlıqnı nasıl tutıp ve keri yayğanını ögreniñiz.',
     },
   },

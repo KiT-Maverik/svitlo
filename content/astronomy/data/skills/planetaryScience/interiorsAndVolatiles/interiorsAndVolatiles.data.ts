@@ -39,7 +39,7 @@ export const interiorsAndVolatiles_SkillGroup_Data = defineSkillGroup({
     et: 'Siseehitus ja lenduvad ained',
     be: 'Нетры і лятучыя рэчывы',
     ka: 'შიდა აგებულება და აქროლადი ნივთიერებები',
-    kk: 'Ішкі құрылым мен ұшпа заттар',
+    kk: 'Işkı qūrylym men ūşpa zattar',
     qm: 'İçki qatlar ve uçucı maddeler',
   },
   skills: [
@@ -80,7 +80,7 @@ export const interiorsAndVolatiles_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri planeetide varjatud sisekihte, magnetvälju, vett ja jääd.',
       be: 'Дасьледуйце схаваныя нутраныя пласты плянэт, магнітныя палі, ваду і лёд.',
       ka: 'შეისწავლეთ პლანეტების დაფარული შიდა ფენები, მაგნიტური ველები, წყალი და ყინული.',
-      kk: 'Ғаламшарлардың жасырын ішкі қабаттарын, магнит өрістерін, су мен мұзды зерттеңіз.',
+      kk: 'Ğalamşarlardyñ jasyryn ışkı qabattaryn, magnit örısterın, su men mūzdy zertteñız.',
       qm: 'Seyyarelerniñ gizli içki qatlarını, magnit meydanlarını, suv ve buznı tetqiq etiñiz.',
     },
   },
