@@ -31,7 +31,7 @@ export const advertisingCampaign_Skill_Data = defineSkill({
     et: 'Reklaamikampaania',
     be: 'Рэклямная кампанія',
     ka: 'სარეკლამო კამპანია',
-    kk: 'Жарнама науқаны',
+    kk: 'Jarnama nauqany',
     qm: 'Reklama kampaniyası',
   },
   description: {
@@ -64,7 +64,7 @@ export const advertisingCampaign_Skill_Data = defineSkill({
       et: 'Kavanda kindla sihtrühmani jõudmiseks ühtne sõnumite sari.',
       be: 'Сплянуй узгоднены шэраг паведамленьняў для пэўнай аўдыторыі.',
       ka: 'დაგეგმე თანმიმდევრული შეტყობინებების სერია კონკრეტული აუდიტორიისთვის.',
-      kk: 'Белгілі аудиторияға жететін бірізді хабарламаларды жоспарла.',
+      kk: 'Belgılı auditoriiağa jetetın bırızdı habarlamalardy josparla.',
       qm: 'Belli dinleyicilerge irişmek içün uyğun haberler sırasını planla.',
     },
   },

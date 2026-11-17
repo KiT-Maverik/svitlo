@@ -31,7 +31,7 @@ export const unemploymentRate_Skill_Data = defineSkill({
     et: 'Töötuse määr',
     be: 'Узровень беспрацоўя',
     ka: 'უმუშევრობის დონე',
-    kk: 'Жұмыссыздық деңгейі',
+    kk: 'Jūmyssyzdyq deñgeiı',
     qm: 'İşsizlik seviyesi',
   },
   description: {
@@ -65,7 +65,7 @@ export const unemploymentRate_Skill_Data = defineSkill({
       et: 'Mõista, keda tööpuuduse mõõtmisel arvestatakse.',
       be: 'Зразумей, каго ўлічваюць пры вымярэньні беспрацоўя.',
       ka: 'გაიაზრეთ, ვის ითვლიან უმუშევრობის გაზომვისას.',
-      kk: 'Жұмыссыздық өлшенгенде кімдер есептелетінін түсініңіз.',
+      kk: 'Jūmyssyzdyq ölşengende kımder esepteletının tüsınıñız.',
       qm: 'İşsizlik ölçülgende kimler esaplanğanını añla.',
     },
   },

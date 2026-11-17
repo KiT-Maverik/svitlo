@@ -31,7 +31,7 @@ export const advertisingClaims_Skill_Data = defineSkill({
     et: 'Reklaamiväited',
     be: 'Рэклямныя цьверджаньні',
     ka: 'სარეკლამო მტკიცებები',
-    kk: 'Жарнамалық мәлімдемелер',
+    kk: 'Jarnamalyq mälımdemeler',
     qm: 'Reklama iddiaları',
   },
   description: {
@@ -64,7 +64,7 @@ export const advertisingClaims_Skill_Data = defineSkill({
       et: 'Tunne ära reklaamiväited, mis vajavad tõendeid.',
       be: 'Распазнавай рэклямныя заявы, што патрабуюць доказаў.',
       ka: 'ამოიცანი რეკლამაში ისეთი განცხადებები, რომლებსაც მტკიცებულება სჭირდება.',
-      kk: 'Қай жарнама мәлімдемесіне дәлел керегін анықта.',
+      kk: 'Qai jarnama mälımdemesıne dälel keregın anyqta.',
       qm: 'Qaysı reklama iddialarına delil kerek olğanını tanı.',
     },
   },

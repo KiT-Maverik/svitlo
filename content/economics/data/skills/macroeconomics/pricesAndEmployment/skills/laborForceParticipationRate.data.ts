@@ -31,7 +31,7 @@ export const laborForceParticipationRate_Skill_Data = defineSkill({
     et: 'Tööjõus osalemise määr',
     be: 'Узровень удзелу ў працоўнай сіле',
     ka: 'სამუშაო ძალაში მონაწილეობის დონე',
-    kk: 'Жұмыс күшіне қатысу деңгейі',
+    kk: 'Jūmys küşıne qatysu deñgeiı',
     qm: 'İş quvetinde iştirak seviyesi',
   },
   description: {
@@ -65,7 +65,7 @@ export const laborForceParticipationRate_Skill_Data = defineSkill({
       et: 'Võrdle tööjõus osalemise määra töötuse määraga.',
       be: 'Параўнай удзел у працоўнай сіле з роўнем беспрацоўя.',
       ka: 'შეადარეთ სამუშაო ძალაში მონაწილეობისა და უმუშევრობის მაჩვენებლები.',
-      kk: 'Жұмыс күшіне қатысу деңгейін жұмыссыздық деңгейімен салыстырыңыз.',
+      kk: 'Jūmys küşıne qatysu deñgeiın jūmyssyzdyq deñgeiımen salystyryñyz.',
       qm: 'İş quvetinde iştirakni işsizlik seviyesi ile teñeştir.',
     },
   },

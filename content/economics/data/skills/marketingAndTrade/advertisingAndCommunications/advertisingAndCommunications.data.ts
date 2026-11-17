@@ -39,7 +39,7 @@ export const advertisingAndCommunications_SkillGroup_Data = defineSkillGroup({
     et: 'Reklaam ja kommunikatsioon',
     be: 'Рэкляма й камунікацыі',
     ka: 'რეკლამა და კომუნიკაცია',
-    kk: 'Жарнама және коммуникация',
+    kk: 'Jarnama jäne kommunikatsiia',
     qm: 'Reklama ve haberleşüv',
   },
   skills: [
@@ -80,7 +80,7 @@ export const advertisingAndCommunications_SkillGroup_Data = defineSkillGroup({
       et: 'Õpi, kuidas reklaam sõnumeid edastab ja kuidas selle väiteid hinnata.',
       be: 'Даведайся, як рэкляма перадае паведамленьні й як ацэньваць яе цьверджаньні.',
       ka: 'გაიგე, როგორ გადასცემს რეკლამა შეტყობინებას და როგორ უნდა შეფასდეს მისი მტკიცებები.',
-      kk: 'Жарнаманың хабарды қалай жеткізетінін және уәждерін бағалауды біл.',
+      kk: 'Jarnamanyñ habardy qalai jetkızetının jäne uäjderın bağalaudy bıl.',
       qm: 'Reklama nasıl haber berip, onıñ iddialarını nasıl teşkerüv kerek olğanını ögren.',
     },
   },

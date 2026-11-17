@@ -31,7 +31,7 @@ export const typesOfUnemployment_Skill_Data = defineSkill({
     et: 'Tööpuuduse liigid',
     be: 'Віды беспрацоўя',
     ka: 'უმუშევრობის ტიპები',
-    kk: 'Жұмыссыздық түрлері',
+    kk: 'Jūmyssyzdyq türlerı',
     qm: 'İşsizlik çeşitleri',
   },
   description: {
@@ -64,7 +64,7 @@ export const typesOfUnemployment_Skill_Data = defineSkill({
       et: 'Uuri tööpuuduse erinevaid põhjuseid.',
       be: 'Дасьледуй, чаму беспрацоўе мае розныя прычыны.',
       ka: 'გამოიკვლიეთ უმუშევრობის წარმოშობის სხვადასხვა მიზეზი.',
-      kk: 'Жұмыссыздықтың әртүрлі себептерін зерттеңіз.',
+      kk: 'Jūmyssyzdyqtyñ ärtürlı sebepterın zertteñız.',
       qm: 'İşsizlik çeşit sebeplerden nasıl peyda olğanını araştır.',
     },
   },
