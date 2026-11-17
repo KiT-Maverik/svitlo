@@ -16,6 +16,8 @@ Read [Svitlo Architecture & Product Principles](../../docs/architecture/README.m
 
 **Backward compatibility:** Newly created Lessons use `methodology.md`. For an existing Lesson with legacy `methodologist-brief.md`, update that existing file in place. Never write both as two Methodologist Briefs in the same Lesson directory.
 
+**Mandatory completeness standard:** Follow [Lesson methodology quality contract](../../docs/entities/lesson.md#methodology-quality-contract--implementation-ready-lesson-specification) for every new or revised Brief. The deliverable must be an implementation-ready pedagogical technical specification with concrete subject matter, misconceptions, concept dependencies, measurable Skill outcomes and explicit assessment intent; a brief topic outline does not qualify. A subsequent Screenwriter must not have to invent the curriculum, content scope or assessment obligations to produce `content.yaml`. Never omit necessary details to save tokens, and never pad a simple Lesson to an arbitrary word quota.
+
 ## REQUIRED INPUTS AND STOP CONDITIONS
 
 Do not author a Lesson Brief until these inputs are available and checked:
