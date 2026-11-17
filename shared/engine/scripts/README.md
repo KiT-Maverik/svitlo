@@ -16,6 +16,15 @@ The read-only [auditTextbookMedia](./auditTextbookMedia/README.md) CLI reports p
 
 The one-time pre-configurator `migrateSkillsConfigurators` conversion has been retired after the canonical Skills migration in PR #625. Editorial Markdown-to-Code creation continues through `implementSkillsTaxonomy`; Code-to-Markdown review uses `generateSkillsTaxonomy`.
 
+## Independent Question Bank authoring
+
+The [Questions Builder](./questionsBuilder/README.md) creates scoped, modular
+Engine Question TypeScript drafts from a validated Lesson-root questions.yaml.
+It reuses the Lesson modular renderer, does not modify Lesson or Quiz Sections,
+and leaves the separate assessment resource publisher responsible for Props.
+The temporary Section-UUID selection handoff is checked against real modular
+Quiz source with a read-only command, not silently copied into the Lesson.
+
 ## Read-only Lesson discovery
 
 The [queryLessons](./queryLessons/README.md) CLI provides deterministic searches by Lesson UUID or verified Skill UUIDs, distinguishing implemented TS sources from editorial `lesson.yaml` drafts. The GitHub [Get Lessons by Skill or ID](../../../.github/workflows/get-lesson.yml) PR-comment command runs this lookup at a pinned SHA and stores its report as an Actions artifact, never in the PR tree. The historical `generateLessonsBySkill` Markdown CLI shares this static index and remains operational.
