@@ -1,6 +1,6 @@
 # Lesson Workflow
 
-**Start at [Create Lesson Flow](./create-lesson-flow.skill.md)** for all new or resumed standalone/Course-originated Lessons. One Draft Lesson PR tracks eight stages and independent review SHAs; one temporary `lesson.yaml` holds ordered `config` + nested `production` through Stages 1–5. Historical Lesson Production Issues remain evidence but are no longer mandatory for new production. Questions/Flashcards are separate child workflows; Translation Production Issues keep their own rules.
+**Start at [Create Lesson Flow](./create-lesson-flow.skill.md)** for all new or resumed standalone/Course-originated Lessons. One Draft Lesson PR tracks eight stages and independent review SHAs; one temporary `lesson.yaml` holds ordered `config` + nested `production` through Stages 1–5. Historical Lesson Production Issues remain evidence but are no longer mandatory for new production. Questions/Flashcards are separate child workflows; **Questions must be completed before Flashcards unless Questions is explicitly Not Applicable with Methodologist rationale**. Translation Production Issues keep their own rules.
 
 Specialist operations:
 
@@ -10,7 +10,7 @@ Specialist operations:
 4. [Review Lesson Experience](./review-lesson-experience.skill.md) — independent Experience Review Stage 4.
 5. [Review Lesson Methodology](./review-lesson-methodology.skill.md) — independent Methodology Compliance Stage 5.
 6. [Implement Scene](./implement-scene.skill.md) — Stage 6 specialist; [Finalize Lesson](../../../shared/engine/scripts/finalizeLesson/README.md) validates, scaffolds and safely deletes YAML only after verified transfer.
-7. [Create Lesson Questions](./create-lesson-questions.skill.md) and [Create Lesson Flashcards](./create-lesson-flashcards.skill.md) — separately owned bank workflows, child Draft PRs, not main Lesson stages.
+7. [Create Lesson Questions](./create-lesson-questions.skill.md) (separate seven-stage [PR #647](https://github.com/KiT-Maverik/svitlo/pull/647)) and [Create Lesson Flashcards](./create-lesson-flashcards.skill.md) (separate six-stage [PR #646](https://github.com/KiT-Maverik/svitlo/pull/646)) — child Draft PRs with strict Questions-first prerequisite, not main Lesson stages.
 8. [Manage Lesson Production](./manage-lesson-production.skill.md) — legacy Issue evidence recovery/migration only.
 
 Old `lesson-content.schema.json` and `lesson-methodology-frontmatter.schema.json` are read-only **legacy editorial input** contracts, not new Lesson authoring requirements. At Stage 6 only, validate completed `lesson.yaml` using the Engine-derived `lesson.scaffold.schema.json` + `production.schema.json`; draft stages may be structurally incomplete without artificial `draft` or `approved` flags. No new `content.yaml` or fabricated locales.
