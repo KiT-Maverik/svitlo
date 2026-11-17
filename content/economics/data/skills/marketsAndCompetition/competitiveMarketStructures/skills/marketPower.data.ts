@@ -31,7 +31,7 @@ export const marketPower_Skill_Data = defineSkill({
     et: 'Turujõud',
     be: 'Рынкавая ўлада',
     ka: 'საბაზრო ძალაუფლება',
-    kk: 'Нарықтық билік',
+    kk: 'Naryqtyq bilık',
     qm: 'Bazar quveti',
   },
   description: {
@@ -65,7 +65,7 @@ export const marketPower_Skill_Data = defineSkill({
       et: 'Mõista, kuidas mõned osalejad saavad turuhindu mõjutada.',
       be: 'Зразумей, як асобныя ўдзельнікі могуць уплываць на рынкавыя цэны.',
       ka: 'გაიგე, როგორ შეუძლიათ ზოგიერთ მონაწილეს საბაზრო ფასებზე ზემოქმედება.',
-      kk: 'Кейбір қатысушылар нарық бағасына қалай ықпал ететінін түсін.',
+      kk: 'Keibır qatysuşylar naryq bağasyna qalai yqpal etetının tüsın.',
       qm: 'Bazı iştirakçiler bazar fiyatlarına nasıl tesir ete bilgenini añla.',
     },
   },

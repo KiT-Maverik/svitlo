@@ -31,7 +31,7 @@ export const typesOfMarketCompetition_Skill_Data = defineSkill({
     et: 'Turukonkurentsi liigid',
     be: 'Віды рынкавай канкурэнцыі',
     ka: 'საბაზრო კონკურენციის სახეები',
-    kk: 'Нарықтағы бәсеке түрлері',
+    kk: 'Naryqtağy bäseke türlerı',
     qm: 'Bazar raqipliginiñ çeşitleri',
   },
   description: {
@@ -65,7 +65,7 @@ export const typesOfMarketCompetition_Skill_Data = defineSkill({
       et: 'Tunne ära erinevad turustruktuurid konkurentsi põhjal.',
       be: 'Распазнавай розныя рынкавыя структуры паводле канкурэнцыі.',
       ka: 'ამოიცანი სხვადასხვა საბაზრო სტრუქტურა კონკურენციის მიხედვით.',
-      kk: 'Бәсеке сипатына қарай нарық құрылымдарын ажырат.',
+      kk: 'Bäseke sipatyna qarai naryq qūrylymdaryn ajyrat.',
       qm: 'Raqiplikke köre farqlı bazar quruluşlarını tanı.',
     },
   },

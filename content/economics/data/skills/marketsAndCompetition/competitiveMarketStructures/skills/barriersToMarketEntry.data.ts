@@ -31,7 +31,7 @@ export const barriersToMarketEntry_Skill_Data = defineSkill({
     et: 'Turule sisenemise tõkked',
     be: "Бар'еры ўваходу на рынак",
     ka: 'ბაზარზე შესვლის ბარიერები',
-    kk: 'Нарыққа кіру кедергілері',
+    kk: 'Naryqqa kıru kedergılerı',
     qm: 'Bazarğa kirüv maniaları',
   },
   description: {
@@ -65,7 +65,7 @@ export const barriersToMarketEntry_Skill_Data = defineSkill({
       et: 'Selgita, miks uuel ettevõttel on raske mõnele turule siseneda.',
       be: 'Вызначай, чаму новай фірме цяжка трапіць на некаторыя рынкі.',
       ka: 'განსაზღვრე, რატომ უჭირთ ახალ კომპანიებს ზოგიერთ ბაზარზე შესვლა.',
-      kk: 'Жаңа фирмаға кейбір нарыққа кіру неге қиын екенін анықта.',
+      kk: 'Jaña firmağa keibır naryqqa kıru nege qiyn ekenın anyqta.',
       qm: 'Yañı firma bazı bazarlarğa ne içün qıyın kirgenini belgile.',
     },
   },

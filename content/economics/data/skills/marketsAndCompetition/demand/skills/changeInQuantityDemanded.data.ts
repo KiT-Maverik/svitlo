@@ -31,7 +31,7 @@ export const changeInQuantityDemanded_Skill_Data = defineSkill({
     et: 'Nõutava koguse muutus',
     be: 'Зьмена велічыні попыту',
     ka: 'მოთხოვნილი რაოდენობის ცვლილება',
-    kk: 'Сұраныс көлемінің өзгерісі',
+    kk: 'Sūranys kölemınıñ özgerısı',
     qm: 'Talap etilgen miqdarnıñ deñişüvi',
   },
   description: {
@@ -64,7 +64,7 @@ export const changeInQuantityDemanded_Skill_Data = defineSkill({
       et: 'Märka, kuidas hinnamuutus tekitab liikumise mööda nõudluskõverat.',
       be: 'Распазнавай рух уздоўж крывой попыту пры зьмене цаны.',
       ka: 'ამოიცანი, როგორ გადაადგილდება წერტილი მოთხოვნის მრუდზე ფასის ცვლილებით.',
-      kk: 'Баға өзгерсе, сұраныс қисығы бойымен қозғалыс қалай болатынын таны.',
+      kk: 'Bağa özgerse, sūranys qisyğy boiymen qozğalys qalai bolatynyn tany.',
       qm: 'Fiyat deñişkende talap egrisi boyunca areketni tanı.',
     },
   },
