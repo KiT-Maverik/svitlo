@@ -1,5 +1,7 @@
 # Create Lesson Flashcards — Question-first memory authoring
 
+> **Current precedence:** [Create Lesson Flow](./create-lesson-flow.skill.md) tracks this bank separately from its eight Lesson stages; the independent six-stage [Flashcards Flow, PR #646](https://github.com/KiT-Maverik/svitlo/pull/646) owns its PR, editorial design and review. **Questions must already be Completed for the same Lesson**, except when its Lesson PR expressly records **Questions: Not Applicable** with verified Methodologist rationale; an incomplete Question bank is never N/A. This explicit exception supersedes the older unconditional 'even when quizRequired false' blocker below. A child Draft Flashcards PR targets the active Lesson branch. Historical mandatory Lesson Production Issue, `content.yaml` and legacy approval preconditions below are not new-work requirements. Preserve existing bank inputs and evidence; do not duplicate #646's workflow in #643.
+
 **Persona:** [Flashcard Learning Architect](../../personas/flashcard-learning-architect.persona.md). Read it fully, the [Methodologist Persona](../../personas/methodist.persona.md), root/applicable `AGENTS.md`, current Lesson/ContentBlock/Flashcard contracts, actual Text and Code renderers, [Lesson Workflow](./README.md), and [Lesson production coordinator](./manage-lesson-production.skill.md) when working in an authorized production scope.
 
 ## Purpose, ownership and storage
