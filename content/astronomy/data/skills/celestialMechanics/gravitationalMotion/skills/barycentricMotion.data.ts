@@ -31,7 +31,7 @@ export const barycentricMotion_Skill_Data = defineSkill({
     et: 'Liikumine ühise massikeskme ümber',
     be: 'Рух вакол супольнага цэнтру мас',
     ka: 'მოძრაობა საერთო მასათა ცენტრის გარშემო',
-    kk: 'Ортақ масса центрінің айналасындағы қозғалыс',
+    kk: 'Ortaq massa tsentrınıñ ainalasyndağy qozğalys',
     qm: 'Umumiy kütle merkezi etrafında areket',
   },
   description: {
@@ -65,7 +65,7 @@ export const barycentricMotion_Skill_Data = defineSkill({
       et: 'Mõista, miks kaks teineteise ümber tiirlevat keha liiguvad ümber ühise massikeskme.',
       be: 'Зразумейце, чаму два целы, што абарачаюцца адно вакол аднаго, рухаюцца вакол супольнага цэнтру мас.',
       ka: 'გაიგეთ, რატომ მოძრაობს ორი ურთიერთორბიტული სხეული საერთო მასათა ცენტრის გარშემო.',
-      kk: 'Бір-бірін айналатын екі дененің неге ортақ масса центрін айнала қозғалатынын түсініңіз.',
+      kk: 'Bır-bırın ainalatyn ekı denenıñ nege ortaq massa tsentrın ainala qozğalatynyn tüsınıñız.',
       qm: 'Bir-birini dolanğan eki cisimniñ ne içün umumiy kütle merkezi etrafında areket etkenini añlañız.',
     },
   },

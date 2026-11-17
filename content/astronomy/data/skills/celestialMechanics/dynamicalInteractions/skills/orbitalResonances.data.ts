@@ -31,7 +31,7 @@ export const orbitalResonances_Skill_Data = defineSkill({
     et: 'Orbitaalresonantsid',
     be: 'Арбітальныя рэзанансы',
     ka: 'ორბიტული რეზონანსები',
-    kk: 'Орбиталық резонанстар',
+    kk: 'Orbitalyq rezonanstar',
     qm: 'Orbita rezonansları',
   },
   description: {
@@ -64,7 +64,7 @@ export const orbitalResonances_Skill_Data = defineSkill({
       et: 'Tunne ära, millal korduvad tiirlemisperioodide suhted mõjutavad süsteemi.',
       be: 'Распазнавайце, калі паўторныя суадносіны пэрыядаў абарачэньня па арбітах уплываюць на сыстэму.',
       ka: 'ამოიცანით, როდის მოქმედებს ორბიტული პერიოდების განმეორებადი შეფარდებები სისტემაზე.',
-      kk: 'Орбиталық кезеңдердің қайталанатын қатынастары жүйеге қашан әсер ететінін анықтаңыз.',
+      kk: 'Orbitalyq kezeñderdıñ qaitalanatyn qatynastary jüiege qaşan äser etetının anyqtañyz.',
       qm: 'Orbita devirleri arasında tekrarlanğan vaqıt münasebetleriniñ sistemağa qaçan tesir etkenini tanıñız.',
     },
   },

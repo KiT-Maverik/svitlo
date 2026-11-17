@@ -31,7 +31,7 @@ export const tidalForces_Skill_Data = defineSkill({
     et: 'Loodejõud',
     be: 'Прыліўныя сілы',
     ka: 'მოქცევის ძალები',
-    kk: 'Тасу күштері',
+    kk: 'Tasu küşterı',
     qm: 'Gelgit quvetleri',
   },
   description: {
@@ -65,7 +65,7 @@ export const tidalForces_Skill_Data = defineSkill({
       et: 'Uuri, kuidas taevakeha eri osadele mõjuv ebaühtlane gravitatsiooniline tõmme tekitab loodeid.',
       be: 'Даведайцеся, як неаднолькавае гравітацыйнае прыцягненьне розных частак нябеснага цела выклікае прылівы і адлівы.',
       ka: 'გაიგეთ, როგორ წარმოქმნის ციური სხეულის სხვადასხვა ნაწილზე არათანაბარი გრავიტაციული მიზიდულობა მოქცევასა და მიქცევას.',
-      kk: 'Аспан денесінің әр бөлігіндегі әркелкі гравитациялық тартылыс толысу мен қайтуды қалай тудыратынын біліңіз.',
+      kk: 'Aspan denesınıñ är bölıgındegı ärkelkı gravitatsiialyq tartylys tolysu men qaitudy qalai tudyratynyn bılıñız.',
       qm: 'Kök cisminiñ çeşit yerlerindeki cazibe quvetiniñ birdey olmağan tesirleri gelgitlerni nasıl peyda etkenini ögreniñiz.',
     },
   },

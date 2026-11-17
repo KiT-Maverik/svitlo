@@ -31,7 +31,7 @@ export const keplersThirdLaw_Skill_Data = defineSkill({
     et: 'Kepleri kolmas seadus',
     be: 'Трэці закон Кеплера',
     ka: 'კეპლერის მესამე კანონი',
-    kk: 'Кеплердің үшінші заңы',
+    kk: 'Keplerdıñ üşınşı zañy',
     qm: 'Keplerniñ üçünci qanunı',
   },
   description: {
@@ -65,7 +65,7 @@ export const keplersThirdLaw_Skill_Data = defineSkill({
       et: 'Seosta keha tiirlemisperiood tema orbiidi suuruse ja gravitatsiooni põhjustava massiga.',
       be: 'Зьвязвайце пэрыяд абарачэньня цела з памерам яго арбіты і масай, якая выклікае гравітацыйнае прыцягненьне.',
       ka: 'დააკავშირეთ სხეულის ორბიტული პერიოდი მისი ორბიტის ზომასა და მიზიდულობის გამომწვევ მასასთან.',
-      kk: 'Дененің орбиталық периодын орбитасының өлшемімен және тартылыс күшін тудыратын массамен байланыстырыңыз.',
+      kk: 'Denenıñ orbitalyq periodyn orbitasynyñ ölşemımen jäne tartylys küşın tudyratyn massamen bailanystyryñyz.',
       qm: 'Bir cisimniñ orbita devrini onıñ orbitasınıñ büyükligi ve cazibe quvetini peyda etken kütle ile bağlañız.',
     },
   },

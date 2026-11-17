@@ -35,7 +35,7 @@ export const celestialMechanics_SkillDomain_Data = defineSkillDomain({
     et: 'Taevamehaanika',
     be: 'Нябесная мэханіка',
     ka: 'ციური მექანიკა',
-    kk: 'Аспан механикасы',
+    kk: 'Aspan mehanikasy',
     qm: 'Kök mehanikası',
   },
   groups: [
@@ -74,7 +74,7 @@ export const celestialMechanics_SkillDomain_Data = defineSkillDomain({
       et: 'Uuri, kuidas gravitatsioon ja liikumine kujundavad kosmoses olevate kehade orbiite ja pöörlemist.',
       be: 'Дасьледуйце, як гравітацыя і рух вызначаюць арбіты і вярчэньне аб’ектаў у космасе.',
       ka: 'გაეცანით, როგორ განსაზღვრავს გრავიტაცია და მოძრაობა კოსმოსური სხეულების ორბიტებსა და ბრუნვას.',
-      kk: 'Гравитация мен қозғалыстың ғарыш денелерінің орбиталары мен айналуын қалай анықтайтынын зерттеңіз.',
+      kk: 'Gravitatsiia men qozğalystyñ ğaryş denelerınıñ orbitalary men ainaluyn qalai anyqtaitynyn zertteñız.',
       qm: 'Cazibe quveti ve areketniñ kâinattaki cisimlerniñ orbitalarını ve aylanmasını nasıl şekillendirgenini ögreniñiz.',
     },
   },

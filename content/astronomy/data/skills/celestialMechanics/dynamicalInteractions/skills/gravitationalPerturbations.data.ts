@@ -31,7 +31,7 @@ export const gravitationalPerturbations_Skill_Data = defineSkill({
     et: 'Gravitatsioonilised häiritused',
     be: 'Гравітацыйныя абурэньні',
     ka: 'გრავიტაციული შეშფოთებები',
-    kk: 'Гравитациялық ұйытқулар',
+    kk: 'Gravitatsiialyq ūiytqular',
     qm: 'Cazibe quveti bozuvları',
   },
   description: {
@@ -64,7 +64,7 @@ export const gravitationalPerturbations_Skill_Data = defineSkill({
       et: 'Selgita, kuidas täiendavad gravitatsioonilised mõjud muudavad muidu lihtsat orbiiti.',
       be: 'Растлумачце, як дадатковыя гравітацыйныя ўплывы зьмяняюць арбіту, якая інакш была б простай.',
       ka: 'ახსენით, როგორ ცვლის დამატებითი გრავიტაციული ზემოქმედება სხვაგვარად მარტივ ორბიტას.',
-      kk: 'Қосымша гравитациялық әсерлер қарапайым орбитаны қалай өзгертетінін түсіндіріңіз.',
+      kk: 'Qosymşa gravitatsiialyq äserler qarapaiym orbitany qalai özgertetının tüsındırıñız.',
       qm: 'Qoşma cazibe quveti tesirleriniñ sade bir orbitanı nasıl deñiştirgenini añlatıñız.',
     },
   },

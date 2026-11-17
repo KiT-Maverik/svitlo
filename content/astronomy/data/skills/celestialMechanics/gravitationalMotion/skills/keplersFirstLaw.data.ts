@@ -31,7 +31,7 @@ export const keplersFirstLaw_Skill_Data = defineSkill({
     et: 'Kepleri esimene seadus',
     be: 'Першы закон Кеплера',
     ka: 'კეპლერის პირველი კანონი',
-    kk: 'Кеплердің бірінші заңы',
+    kk: 'Keplerdıñ bırınşı zañy',
     qm: 'Keplerniñ birinci qanunı',
   },
   description: {
@@ -65,7 +65,7 @@ export const keplersFirstLaw_Skill_Data = defineSkill({
       et: 'Mõista, et ideaalne orbiit võib olla ellips, mille ühes fookuses asub keskne keha.',
       be: 'Распазнавайце, як ідэалізаваная арбіта можа быць эліпсам з цэнтральным целам у адным з фокусаў.',
       ka: 'ამოიცანით, როგორ შეიძლება იდეალური ორბიტა იყოს ელიფსი, რომლის ერთ ფოკუსში ცენტრალური სხეული მდებარეობს.',
-      kk: 'Идеал орбита эллипс болып, орталық дене оның бір фокусында орналасуы мүмкін екенін түсініңіз.',
+      kk: 'İdeal orbita ellips bolyp, ortalyq dene onyñ bır fokusynda ornalasuy mümkın ekenın tüsınıñız.',
       qm: 'İdeal orbita ellips şeklinde ola bilecegini ve merkezdeki cisimniñ onıñ bir fokusında bulunğanını añlañız.',
     },
   },

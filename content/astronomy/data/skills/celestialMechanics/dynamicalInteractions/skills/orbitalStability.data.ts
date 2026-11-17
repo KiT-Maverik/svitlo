@@ -31,7 +31,7 @@ export const orbitalStability_Skill_Data = defineSkill({
     et: 'Orbiidi stabiilsus',
     be: 'Арбітальная ўстойлівасьць',
     ka: 'ორბიტული მდგრადობა',
-    kk: 'Орбиталық тұрақтылық',
+    kk: 'Orbitalyq tūraqtylyq',
     qm: 'Orbita sabitligi',
   },
   description: {
@@ -65,7 +65,7 @@ export const orbitalStability_Skill_Data = defineSkill({
       et: 'Uuri, mis aitab orbitaalsüsteemil stabiilsena püsida ja mis seda muuta võib.',
       be: 'Дасьледуйце, што дапамагае арбітальнай сыстэме заставацца ўстойлівай, а што выклікае яе зьмены.',
       ka: 'გაეცანით, რა ეხმარება ორბიტულ სისტემას მდგრადობის შენარჩუნებაში და რა იწვევს მის ცვლილებას.',
-      kk: 'Орбиталық жүйенің тұрақты болуына не көмектесетінін және оны не өзгертетінін зерттеңіз.',
+      kk: 'Orbitalyq jüienıñ tūraqty boluyna ne kömektesetının jäne ony ne özgertetının zertteñız.',
       qm: 'Orbita sistemasınıñ sabit qalmasına ne yardım etkenini ve ne sebepnen deñişkenini ögreniñiz.',
     },
   },

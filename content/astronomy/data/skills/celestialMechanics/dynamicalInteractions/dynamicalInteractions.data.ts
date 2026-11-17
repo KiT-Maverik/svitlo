@@ -38,7 +38,7 @@ export const dynamicalInteractions_SkillGroup_Data = defineSkillGroup({
     et: 'Dünaamilised vastasmõjud',
     be: 'Дынамічныя ўзаемадзеяньні',
     ka: 'დინამიკური ურთიერთქმედებები',
-    kk: 'Динамикалық өзара әрекеттесулер',
+    kk: 'Dinamikalyq özara ärekettesuler',
     qm: 'Dinamik tesirleşüvler',
   },
   skills: [
@@ -78,7 +78,7 @@ export const dynamicalInteractions_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri, kuidas loodejõud ja muud gravitatsioonilised vastasmõjud taevakehade liikumist muudavad.',
       be: 'Дасьледуйце, як прыліўныя сілы ды іншыя гравітацыйныя ўзаемадзеяньні зьмяняюць рух нябесных целаў.',
       ka: 'გაეცანით, როგორ ცვლის მოქცევის ძალები და სხვა გრავიტაციული ურთიერთქმედებები ციური სხეულების მოძრაობას.',
-      kk: 'Тасу күштері мен басқа гравитациялық әсерлер аспан денелерінің қозғалысын қалай өзгертетінін зерттеңіз.',
+      kk: 'Tasu küşterı men basqa gravitatsiialyq äserler aspan denelerınıñ qozğalysyn qalai özgertetının zertteñız.',
       qm: 'Gelgit quvetleri ve başqa cazibe quveti tesirleşüvleriniñ kök cisimleriniñ areketini nasıl deñiştirgenini ögreniñiz.',
     },
   },

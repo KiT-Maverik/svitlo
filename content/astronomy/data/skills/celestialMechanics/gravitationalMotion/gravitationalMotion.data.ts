@@ -40,7 +40,7 @@ export const gravitationalMotion_SkillGroup_Data = defineSkillGroup({
     et: 'Gravitatsiooniline liikumine',
     be: 'Гравітацыйны рух',
     ka: 'გრავიტაციული მოძრაობა',
-    kk: 'Гравитациялық қозғалыс',
+    kk: 'Gravitatsiialyq qozğalys',
     qm: 'Cazibe quveti tesirindeki areket',
   },
   skills: [
@@ -82,7 +82,7 @@ export const gravitationalMotion_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri, kuidas gravitatsioon juhib taevakehade liikumist.',
       be: 'Даведайцеся, як гравітацыя вызначае рух нябесных целаў.',
       ka: 'გაიგეთ, როგორ განაპირობებს გრავიტაცია ციური სხეულების მოძრაობას.',
-      kk: 'Тартылыс күші аспан денелерінің қозғалысын қалай басқаратынын біліңіз.',
+      kk: 'Tartylys küşı aspan denelerınıñ qozğalysyn qalai basqaratynyn bılıñız.',
       qm: 'Cazibe quvetiniñ kök cisimleriniñ areketini nasıl idare etkenini ögreniñiz.',
     },
   },

@@ -31,7 +31,7 @@ export const keplersSecondLaw_Skill_Data = defineSkill({
     et: 'Kepleri teine seadus',
     be: 'Другі закон Кеплера',
     ka: 'კეპლერის მეორე კანონი',
-    kk: 'Кеплердің екінші заңы',
+    kk: 'Keplerdıñ ekınşı zañy',
     qm: 'Keplerniñ ekinci qanunı',
   },
   description: {
@@ -65,7 +65,7 @@ export const keplersSecondLaw_Skill_Data = defineSkill({
       et: 'Selgita, miks tiirlev keha liigub kesksele kehale lähemal olles kiiremini.',
       be: 'Растлумачце, чаму цела на арбіце рухаецца хутчэй, калі набліжаецца да цэнтральнага цела.',
       ka: 'ახსენით, რატომ მოძრაობს ორბიტაზე მყოფი სხეული უფრო სწრაფად, როცა ცენტრალურ სხეულს უახლოვდება.',
-      kk: 'Орбитадағы дененің орталық денеге жақындағанда неге жылдамырақ қозғалатынын түсіндіріңіз.',
+      kk: 'Orbitadağy denenıñ ortalyq denege jaqyndağanda nege jyldamyraq qozğalatynyn tüsındırıñız.',
       qm: 'Orbitadaki cisim merkezdeki cisimge yaqın olğanda ne içün daa tez areket etkenini añlatıñız.',
     },
   },
