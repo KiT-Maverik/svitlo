@@ -55,6 +55,11 @@
 - [Teacher Custom Exams](./assessment/teacher-custom-exams.md)
 - [Teacher Review Workflows](./assessment/teacher-review-workflows.md)
 
+### Curriculum & Course Authoring (2)
+
+- [Reconstruct Course Review YAML from Authored Sources](./curriculum/course-yaml-review-export.md)
+- [Regional Lesson Variants in Programs](./curriculum/regional-lesson-variants.md)
+
 ### Learner Experience, Notes, Skills & Programs (19)
 
 - [Coding Workspace](./learning/coding-workspace.md)
@@ -105,6 +110,6 @@
 
 ---
 
-**Total planned feature documents:** 64. The previous immutable-builder quality task was resolved as an Engine code/typecheck change (see [Git-First Typed Content](../docs/architecture/git-first-typed-content.md)); it is no longer a planned feature.
+**Total planned feature documents:** 66. The previous immutable-builder quality task was resolved as an Engine code/typecheck change (see [Git-First Typed Content](../docs/architecture/git-first-typed-content.md)); it is no longer a planned feature.
 
 **Curation rules:** Preserve open decisions as questions, distinguish proposed versus existing contracts, do not assign invented completion dates or guarantees, and update each item when a decision, prototype, implementation PR or test result actually exists. Planned features may depend on other items; descriptions are **not** authorization to start multiple implementation streams simultaneously.
