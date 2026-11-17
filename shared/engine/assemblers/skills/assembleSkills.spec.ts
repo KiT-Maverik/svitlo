@@ -164,14 +164,14 @@ test('consumes actual SkillDomain Build output without a second translation wrap
     slug: 'mechanics',
     name: { en: 'Mechanics', uk: 'Механіка' },
     description: { methodological: 'Mechanics methodology' },
-    skills: { items: { balance: leaf }, order: ['balance'] },
+    skills: { balance: leaf },
   });
   const root = defineSkillDomain<'physics', { mechanics: typeof cluster }, {}, ['uk']>({
     id: id('13'),
     slug: 'physics',
     title: { en: 'Physics', uk: 'Фізика' },
     description: { methodological: 'Physics methodology' },
-    groups: { items: { mechanics: cluster }, order: ['mechanics'] },
+    groups: { mechanics: cluster },
   });
   const built = root.build.props({ languages: ['uk'] });
   const result = assembleSkills(

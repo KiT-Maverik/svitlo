@@ -121,8 +121,8 @@ function createAssessmentMethodResources() {
   const localized = Object.fromEntries(languages.map(language => [language, {}]));
 
   for (const { name, definition } of entries) {
-    const metadata = definition.config.base;
-    const dictionaries = definition.config.locales();
+    const publication = definition.build.props({ languages });
+    const metadata = publication.base;
     if (metadata.slug !== name || ids.has(metadata.id)) {
       throw new Error('Invalid or duplicate Assessment Method identity: ' + name);
     }
@@ -131,8 +131,7 @@ function createAssessmentMethodResources() {
     for (const { language } of DEFAULT_SUPPORTED_LANGUAGES) {
       const props = assessmentMethod_Props_Schema.parse({
         ...metadata,
-        title: dictionaries.title[language],
-        description: dictionaries.description[language],
+        ...publication.locale?.[language],
       });
       if (!props.title.trim() || !props.description.trim()) {
         throw new Error('Missing Assessment Method text: ' + name + '/' + language);
