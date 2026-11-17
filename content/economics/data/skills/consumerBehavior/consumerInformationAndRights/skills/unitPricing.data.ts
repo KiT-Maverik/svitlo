@@ -31,7 +31,7 @@ export const unitPricing_Skill_Data = defineSkill({
     et: 'Ühikuhind',
     be: 'Цана за адзінку тавару',
     ka: 'ერთეულის ფასი',
-    kk: 'Бірлік бағасы',
+    kk: 'Bırlık bağasy',
     qm: 'Bir danege fiyat',
   },
   description: {
@@ -65,7 +65,7 @@ export const unitPricing_Skill_Data = defineSkill({
       et: 'Võrdle tooteid õiglaselt, arvutades ühiku maksumuse.',
       be: 'Параўноўвай тавары слушна, вылічваючы кошт за адзінку.',
       ka: 'სამართლიანად შეადარე პროდუქტები ერთეულის ღირებულების გამოთვლით.',
-      kk: 'Бір бірліктің құнын есептеп, өнімдерді әділ салыстыр.',
+      kk: 'Bır bırlıktıñ qūnyn eseptep, önımderdı ädıl salystyr.',
       qm: 'Bir danege masrafnı esaplap mallarnı adaletnen qıyasla.',
     },
   },

@@ -31,7 +31,7 @@ export const consumerChoiceWithLimitedBudget_Skill_Data = defineSkill({
     et: 'Tarbijavalik piiratud eelarvega',
     be: 'Спажывецкі выбар пры абмежаваным бюджэце',
     ka: 'მომხმარებლის არჩევანი შეზღუდული ბიუჯეტით',
-    kk: 'Шектеулі бюджеттегі тұтынушы таңдауы',
+    kk: 'Şekteulı biudjet jağdaiyndağy tūtynuşy tañdauy',
     qm: 'Sınırlı büdcetnen istimalci saylavı',
   },
   description: {
@@ -65,7 +65,7 @@ export const consumerChoiceWithLimitedBudget_Skill_Data = defineSkill({
       et: 'Vali saadaolevate toodete seast, kui sissetulek ja hinnad võimalusi piiravad.',
       be: 'Выбірай з даступных тавараў, калі даход і цэны абмяжоўваюць магчымасьці.',
       ka: 'აირჩიე ხელმისაწვდომ პროდუქტებს შორის, როცა შემოსავალი და ფასები შესაძლებლობებს ზღუდავს.',
-      kk: 'Табыс пен бағалар нұсқаларды шектегенде қолжетімді тауарларды таңда.',
+      kk: 'Tabys pen bağalar tañdau nūsqalaryn şektegende, qoljetımdı tauarlardy tañda.',
       qm: 'Kirim ve fiyatlar saylavnı sıñırlağanda satın alınabilgen mallarnı sayla.',
     },
   },

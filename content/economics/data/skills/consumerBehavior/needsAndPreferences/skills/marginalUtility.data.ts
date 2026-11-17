@@ -31,7 +31,7 @@ export const marginalUtility_Skill_Data = defineSkill({
     et: 'Piirkasulikkus',
     be: 'Гранічная карыснасьць',
     ka: 'ზღვრული სარგებლიანობა',
-    kk: 'Шекті пайдалылық',
+    kk: 'Şektı paidalylyq',
     qm: 'Çegara faydası',
   },
   description: {
@@ -65,7 +65,7 @@ export const marginalUtility_Skill_Data = defineSkill({
       et: 'Uuri, millist lisaväärtust annab veel üks ühik kaupa.',
       be: 'Дасьледуй, якую дадатковую каштоўнасьць дае яшчэ адна адзінка тавару.',
       ka: 'გაიგე, რა დამატებით ღირებულებას გაძლევს პროდუქტის კიდევ ერთი ერთეული.',
-      kk: 'Тауардың тағы бір данасы қандай қосымша құндылық беретінін зертте.',
+      kk: 'Tauardyñ tağy bır danasyn alu sağan qandai qosymşa paidalylyq äkeletının zertte.',
       qm: 'Bir maldan daa bir dane almaq saña nasıl artqa qıymet bergenini ögren.',
     },
   },

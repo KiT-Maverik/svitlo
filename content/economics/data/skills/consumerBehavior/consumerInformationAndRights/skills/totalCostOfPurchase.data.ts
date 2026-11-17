@@ -31,7 +31,7 @@ export const totalCostOfPurchase_Skill_Data = defineSkill({
     et: 'Ostu kogukulu',
     be: 'Поўны кошт пакупкі',
     ka: 'შესყიდვის სრული ღირებულება',
-    kk: 'Сатып алудың толық құны',
+    kk: 'Satyp aludyñ tolyq qūny',
     qm: 'Satın aluvnıñ umumiy masrafı',
   },
   description: {
@@ -65,7 +65,7 @@ export const totalCostOfPurchase_Skill_Data = defineSkill({
       et: 'Võrdle kogu tegelikku ostukulu, mitte ainult näidatud hinda.',
       be: 'Параўноўвай поўны сапраўдны кошт пакупкі, а ня толькі цану на цэньніку.',
       ka: 'შეადარე შესყიდვის სრული რეალური ღირებულება და არა მხოლოდ მითითებული ფასი.',
-      kk: 'Тек көрсетілген бағаны емес, сатып алудың нақты толық шығынын салыстыр.',
+      kk: 'Tek körsetılgen bağany emes, satyp aludyñ naqty barlyq şyğynyn salystyr.',
       qm: 'Fakat kösterilgen fiyatnı degil, satın aluvnıñ bütün aqiqiy masrafını qıyasla.',
     },
   },

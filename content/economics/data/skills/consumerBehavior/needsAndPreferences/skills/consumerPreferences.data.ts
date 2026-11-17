@@ -31,7 +31,7 @@ export const consumerPreferences_Skill_Data = defineSkill({
     et: 'Tarbija eelistused',
     be: 'Спажывецкія ўпадабаньні',
     ka: 'მომხმარებლის პრეფერენციები',
-    kk: 'Тұтынушы талғамдары',
+    kk: 'Tūtynuşy talğamdary',
     qm: 'İstimalciniñ tercihleri',
   },
   description: {
@@ -65,7 +65,7 @@ export const consumerPreferences_Skill_Data = defineSkill({
       et: 'Võrdle, kuidas inimene järjestaks erinevaid kaupade kombinatsioone.',
       be: 'Параўноўвай, як чалавек можа расставіць розныя наборы тавараў паводле прывабнасьці.',
       ka: 'შეადარე, როგორ დაალაგებდა ადამიანი საქონლის სხვადასხვა კომბინაციას.',
-      kk: 'Адамның тауарлардың әртүрлі жиынтығын қалай реттейтінін салыстыр.',
+      kk: 'Adamdardyñ tauarlardyñ ärtürlı jiyntyqtaryn qandai retpen üstın köretının salystyr.',
       qm: 'İnsan farqlı mal toplamlarını nasıl sıralay bilgenini qıyasla.',
     },
   },
