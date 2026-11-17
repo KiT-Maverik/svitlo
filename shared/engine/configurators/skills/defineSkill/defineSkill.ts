@@ -8,12 +8,7 @@ import {
   selectPublicationLocales,
   splitLocalizedFields,
 } from '../../_shared__configurators';
-import {
-  skill_Config_Schema,
-  skill_Props_Schema,
-  type Skill_Config,
-  type Skill_Props,
-} from './defineSkill.schemas';
+import { skill_Config_Schema, skill_Props_Schema, type Skill_Config, type Skill_Props } from './defineSkill.schemas';
 
 type SkillPublication<Base> = {
   base: Base;

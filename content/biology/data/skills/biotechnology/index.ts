@@ -41,9 +41,7 @@ export const biotechnology = defineSkillDomain({
     vi: 'Công nghệ sinh học',
     zh: '生物技术',
   },
-  groups: {
-
-  },
+  groups: {},
   skills: {
     evaluateEcologicalRisksOfBiotechnologyUse,
     explainThePrincipleOfGeneticModification,

@@ -70,10 +70,7 @@ const validate = (config: SkillDomain_Config): void => {
   }
   const ids = new Set<string>();
   const slugs = new Set<string>();
-  for (const [slug, child] of [
-    ...Object.entries(config.skills ?? {}),
-    ...Object.entries(config.groups ?? {}),
-  ]) {
+  for (const [slug, child] of [...Object.entries(config.skills ?? {}), ...Object.entries(config.groups ?? {})]) {
     if (slugs.has(slug)) issues.push({ path: slug, message: 'Duplicate Domain child slug: ' + slug });
     slugs.add(slug);
     if (!isRecord(child) || typeof child.id !== 'string') continue;
@@ -149,17 +146,16 @@ export function defineSkillDomain<
     parse: (value: unknown) => Props,
     languages: readonly LanguageCode[],
   ) => {
-    const entries = Object.keys(items).sort().map(key => items[key].build.props({ languages }));
+    const entries = Object.keys(items)
+      .sort()
+      .map(key => items[key].build.props({ languages }));
     const base = entries.map(resource => resource.base) as DeepPartial<Props>[];
     const locale: Partial<Record<LanguageCode, Props[]>> = {};
     for (const language of languages) {
       if (entries.some(resource => resource.locale?.[language] !== undefined)) {
         locale[language] = entries.map(resource =>
           parse(
-            mergeForValidation(
-              resource.base,
-              (resource.locale?.[language] ?? {}) as DeepPartial<typeof resource.base>,
-            ),
+            mergeForValidation(resource.base, (resource.locale?.[language] ?? {}) as DeepPartial<typeof resource.base>),
           ),
         );
       }

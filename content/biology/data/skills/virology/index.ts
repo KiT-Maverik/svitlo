@@ -39,9 +39,7 @@ export const virology = defineSkillDomain({
     vi: 'Virus học',
     zh: '病毒学',
   },
-  groups: {
-
-  },
+  groups: {},
   skills: {
     distinguishAVirusFromACellularOrganism,
     explainMechanismsOfViralTransmission,

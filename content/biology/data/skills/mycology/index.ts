@@ -40,9 +40,7 @@ export const mycology = defineSkillDomain({
     vi: 'Nấm học',
     zh: '真菌学',
   },
-  groups: {
-
-  },
+  groups: {},
   skills: {
     distinguishMyceliumFromAFruitingBody,
     explainTheRoleOfFungiInDecomposingOrganicRemains,

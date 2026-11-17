@@ -63,25 +63,19 @@ const run = (locale = 'en', ...flags) =>
   });
 
 before(() => {
-  write(
-    path.join(taxonomy, 'index.ts'),
-    "export { d } from './d';\n" +
-      "export { direct } from './direct';\n",
-  );
+  write(path.join(taxonomy, 'index.ts'), "export { d } from './d';\n" + "export { direct } from './direct';\n");
   write(
     path.join(taxonomy, 'd/index.ts'),
-    "import { g } from './g';\n" +
-      entity('SkillDomain', 'd', 'Grouped Domain', "groups: { g }"),
+    "import { g } from './g';\n" + entity('SkillDomain', 'd', 'Grouped Domain', 'groups: { g }'),
   );
   write(
     path.join(taxonomy, 'd/g/index.ts'),
-    "import { s } from './s';\n" + entity('SkillGroup', 'g', 'Group', "skills: { s }"),
+    "import { s } from './s';\n" + entity('SkillGroup', 'g', 'Group', 'skills: { s }'),
   );
   write(groupedSkill, entity('Skill', 's', 'Grouped Skill'));
   write(
     path.join(taxonomy, 'direct/index.ts'),
-    "import { t } from './t';\n" +
-      entity('SkillDomain', 'direct', 'Direct Domain', "skills: { t }", true),
+    "import { t } from './t';\n" + entity('SkillDomain', 'direct', 'Direct Domain', 'skills: { t }', true),
   );
   write(directSkill, entity('Skill', 't', 'Direct Skill'));
 });

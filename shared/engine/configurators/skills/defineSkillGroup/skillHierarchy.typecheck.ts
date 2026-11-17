@@ -78,4 +78,10 @@ domain.build.props({ languages: ['en'] });
 // @ts-expect-error Explicit publication options are required.
 both.build.props();
 // @ts-expect-error Old ordered collection format is forbidden.
-defineSkillGroup({ id, slug: 'old', name: { uk: 'Old' }, description: { methodological: 'Old' }, skills: { items: { both }, order: ['both'] } });
+defineSkillGroup({
+  id,
+  slug: 'old',
+  name: { uk: 'Old' },
+  description: { methodological: 'Old' },
+  skills: { items: { both }, order: ['both'] },
+});

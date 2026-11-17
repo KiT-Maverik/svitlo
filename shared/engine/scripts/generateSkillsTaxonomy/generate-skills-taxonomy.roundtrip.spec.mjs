@@ -25,7 +25,12 @@ function sourceFiles(dir) {
   return fs.readdirSync(dir, { withFileTypes: true }).flatMap(entry => {
     const file = path.join(dir, entry.name);
     if (entry.isDirectory()) return entry.name === '__tests__' ? [] : sourceFiles(file);
-    return entry.isFile() && entry.name.endsWith('.ts') && !['review.ts','_review.ts'].includes(entry.name) && path.relative(taxonomyRoot, file) !== 'index.ts' ? [file] : [];
+    return entry.isFile() &&
+      entry.name.endsWith('.ts') &&
+      !['review.ts', '_review.ts'].includes(entry.name) &&
+      path.relative(taxonomyRoot, file) !== 'index.ts'
+      ? [file]
+      : [];
   });
 }
 

@@ -9,11 +9,22 @@ import * as methods from './index';
 const directory = fileURLToPath(new URL('./', import.meta.url));
 const names = Object.keys(methods).sort();
 const ASSESSMENT_METHOD_KEYS = [
-  'analogicalReasoning', 'application', 'classification', 'errorDiagnosis',
-  'interpretation', 'justification', 'knowledgeConstruction', 'knowledgeTransfer',
-  'missingInformationInference', 'patternGeneralization', 'prediction',
-  'relationshipMapping', 'representationTranslation', 'retrieval',
-  'structuralAnalysis', 'verification',
+  'analogicalReasoning',
+  'application',
+  'classification',
+  'errorDiagnosis',
+  'interpretation',
+  'justification',
+  'knowledgeConstruction',
+  'knowledgeTransfer',
+  'missingInformationInference',
+  'patternGeneralization',
+  'prediction',
+  'relationshipMapping',
+  'representationTranslation',
+  'retrieval',
+  'structuralAnalysis',
+  'verification',
 ] as const satisfies readonly (keyof typeof methods)[];
 const languages = DEFAULT_SUPPORTED_LANGUAGES.map(({ language }) => language);
 
@@ -55,7 +66,9 @@ describe('Assessment Method authored definitions', () => {
     for (const name of names) {
       const source = readFileSync(fileURLToPath(new URL('./' + name + '.ts', import.meta.url)), 'utf8');
       assert.match(source, /defineAssessmentMethod\(/);
-      assert.ok(source.includes("id: '" + methods[name as keyof typeof methods].build.props({ languages }).base.id + "'"));
+      assert.ok(
+        source.includes("id: '" + methods[name as keyof typeof methods].build.props({ languages }).base.id + "'"),
+      );
       assert.doesNotMatch(
         source,
         /assessmentMethodTranslations|_AssessmentMethod_Data|assessmentMethods_AssessmentMethod_Ids|from ['"]\.\/locales/,

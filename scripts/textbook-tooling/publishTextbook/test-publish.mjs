@@ -34,7 +34,6 @@ assert.equal(manifest.textbook, id);
 const required = id === 'playground';
 const hasAuthoredSkills = existsSync(join(root, 'data/skills/index.ts'));
 
-
 function fixture(t, built = true) {
   const temp = mkdtempSync(join(realpathSync(tmpdir()), 'svitlo-' + id + '-publish-'));
   t.after(() => rmSync(temp, { recursive: true, force: true }));

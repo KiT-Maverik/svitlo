@@ -22,13 +22,18 @@ describe('Configurators', () => {
         const writing = defineSkill({ ...fields, id: 'dbe68255-2f03-4ac9-b1e7-277dca1cd161', slug: 'writing' });
         const numeracy = defineSkill({ ...fields, id: 'dbe68255-2f03-4ac9-b1e7-277dca1cd162', slug: 'numeracy' });
         const group = defineSkillGroup({
-          ...fields, id: 'dbe68255-2f03-4ac9-b1e7-277dca1cd163', slug: 'literacy',
+          ...fields,
+          id: 'dbe68255-2f03-4ac9-b1e7-277dca1cd163',
+          slug: 'literacy',
           skills: { writing, reading },
         });
         const domain = defineSkillDomain({
           id: 'dbe68255-2f03-4ac9-b1e7-277dca1cd164',
-          slug: 'language', title: localized, description,
-          groups: { literacy: group }, skills: { numeracy },
+          slug: 'language',
+          title: localized,
+          description,
+          groups: { literacy: group },
+          skills: { numeracy },
         });
         assert.equal(group.skills.reading, reading);
         assert.equal(group.skills.writing, writing);
@@ -39,8 +44,10 @@ describe('Configurators', () => {
         assert.equal('group' in domain, false);
         assert.equal('skill' in domain, false);
         assert.equal('overrides' in group.build, false);
-        assert.deepEqual(group.build.props({ languages: ['en'] }).base.skills?.map(item => item!.slug),
-          ['reading', 'writing']);
+        assert.deepEqual(
+          group.build.props({ languages: ['en'] }).base.skills?.map(item => item!.slug),
+          ['reading', 'writing'],
+        );
       });
 
       test('empty Domain is an invalid published classification', () => {

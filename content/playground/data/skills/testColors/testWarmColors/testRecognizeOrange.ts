@@ -16,7 +16,7 @@ export const testRecognizeOrange = defineSkill({
     he: '[TEST he] Recognize orange',
     hi: '[TEST hi] Recognize orange',
     id: '[TEST id] Recognize orange',
-    it: '[TEST it] Riconoscere l\'arancione',
+    it: "[TEST it] Riconoscere l'arancione",
     ja: '[TEST ja] Recognize orange',
     ka: '[TEST ka] Recognize orange',
     kk: '[TEST kk] Recognize orange',

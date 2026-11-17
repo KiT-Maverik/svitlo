@@ -37,9 +37,7 @@ export const characteristicsOfLivingThings = defineSkillDomain({
     vi: 'Đặc điểm của sinh vật',
     zh: '生命的特征',
   },
-  groups: {
-
-  },
+  groups: {},
   skills: {
     classifyObjectsAsLivingDeadOrNeverAlive,
   },

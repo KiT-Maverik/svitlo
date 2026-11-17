@@ -63,19 +63,25 @@ test('rejects missing or stale child imports and orphan Skill files', t => {
 test('rejects duplicate UUID identities without disallowing identical slugs in separate parents', t => {
   const { root, write } = fixture();
   t.after(() => fs.rmSync(root, { recursive: true, force: true }));
-  write('geometry/angles/rightAngle.ts',
-    "export const rightAngle = defineSkill({ slug: 'rightAngle', id: '22222222-2222-4222-8222-222222222222', name: {} });\n");
+  write(
+    'geometry/angles/rightAngle.ts',
+    "export const rightAngle = defineSkill({ slug: 'rightAngle', id: '22222222-2222-4222-8222-222222222222', name: {} });\n",
+  );
   assert.throws(() => checkTaxonomy(root), /Duplicate UUID/);
 });
 test('mixed Domain composes direct Skills and Groups; shorthand and exact named entries work', t => {
   const { root, write } = fixture();
   t.after(() => fs.rmSync(root, { recursive: true, force: true }));
-  write('geometry/rectangle.ts',
-    "export const rectangle = defineSkill({ slug: 'rectangle', id: '44444444-4444-4444-8444-444444444444', name: {} });\n");
+  write(
+    'geometry/rectangle.ts',
+    "export const rectangle = defineSkill({ slug: 'rectangle', id: '44444444-4444-4444-8444-444444444444', name: {} });\n",
+  );
   const file = path.join(root, 'geometry/index.ts');
   const original = fs.readFileSync(file, 'utf8');
-  write('geometry/index.ts',
-    original.replace("import { angles }", "import { rectangle } from './rectangle';\nimport { angles }")
+  write(
+    'geometry/index.ts',
+    original
+      .replace('import { angles }', "import { rectangle } from './rectangle';\nimport { angles }")
       .replace('groups: { angles }', 'groups: { angles }, skills: { rectangle }'),
   );
   assert.deepEqual(checkTaxonomy(root), { domains: 1, groups: 1, skills: 2 });
@@ -88,8 +94,10 @@ test('rejects old ordered collection format and mismatched child slugs', t => {
   t.after(() => fs.rmSync(root, { recursive: true, force: true }));
   const file = path.join(root, 'geometry/index.ts');
   const original = fs.readFileSync(file, 'utf8');
-  write('geometry/index.ts', original.replace('groups: { angles }',
-    "groups: { items: { angles }, order: ['angles'] }"));
+  write(
+    'geometry/index.ts',
+    original.replace('groups: { angles }', "groups: { items: { angles }, order: ['angles'] }"),
+  );
   assert.throws(() => checkTaxonomy(root), /Invalid child configurator entry|Group membership/);
   write('geometry/index.ts', original.replace('groups: { angles }', 'groups: { wrong: angles }'));
   assert.throws(() => checkTaxonomy(root), /Child slug\/symbol mismatch/);

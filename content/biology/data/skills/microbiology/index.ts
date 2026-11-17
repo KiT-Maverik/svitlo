@@ -45,9 +45,7 @@ export const microbiology = defineSkillDomain({
     vi: 'Vi sinh vật học',
     zh: '微生物学',
   },
-  groups: {
-
-  },
+  groups: {},
   skills: {
     distinguishBacteriaAndArchaea,
     distinguishBeneficialAndHarmfulMicrobialInteractionsWithHumans,

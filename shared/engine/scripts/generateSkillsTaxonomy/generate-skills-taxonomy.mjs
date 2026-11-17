@@ -32,7 +32,9 @@ function options(args) {
       continue;
     }
     if (!['--package', '--locale'].includes(arg) || !args[i + 1] || args[i + 1].startsWith('--')) {
-      fail('Usage: --package <textbook-directory> [--locale <language-code>] [--check | --stdout] [--source-only | --allow-missing]');
+      fail(
+        'Usage: --package <textbook-directory> [--locale <language-code>] [--check | --stdout] [--source-only | --allow-missing]',
+      );
     }
     const key = arg.slice(2);
     if (result[key] !== undefined && (key !== 'locale' || result.locale !== 'en')) fail('Duplicate argument ' + arg);
@@ -92,7 +94,13 @@ function dictionary(object, field, file) {
     const code = key(p.name);
     if (Object.hasOwn(pairs, code)) fail('Duplicate locale ' + code + ': ' + file);
     const literal = unwrap(p.initializer);
-    if (opts.allowMissing && code !== 'en' && (ts.isStringLiteral(literal) || ts.isNoSubstitutionTemplateLiteral(literal)) && !literal.text.trim()) continue;
+    if (
+      opts.allowMissing &&
+      code !== 'en' &&
+      (ts.isStringLiteral(literal) || ts.isNoSubstitutionTemplateLiteral(literal)) &&
+      !literal.text.trim()
+    )
+      continue;
     pairs[code] = stringValue(p.initializer, file + ':' + field + ':' + code);
   }
   return pairs;
@@ -251,7 +259,9 @@ let markdown =
   (opts.sourceOnly
     ? '> TRANSLATION SOURCE PREVIEW ONLY: Other registered languages were not checked for completeness. Not a publication or linguistic-review artifact.\n\n'
     : '') +
-  (opts.allowMissing && missingCount > 0 ? '> DRAFT REFERENCE: missing localized fields; not approved for independent review.\n\n' : '') +
+  (opts.allowMissing && missingCount > 0
+    ? '> DRAFT REFERENCE: missing localized fields; not approved for independent review.\n\n'
+    : '') +
   '## SUMMARY\n\n' +
   'Domains: ' +
   domains.length +
