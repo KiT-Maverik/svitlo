@@ -31,7 +31,7 @@ export const monetaryPolicy_Skill_Data = defineSkill({
     et: 'Rahapoliitika',
     be: 'Манэтарная палітыка',
     ka: 'მონეტარული პოლიტიკა',
-    kk: 'Ақша-кредит саясаты',
+    kk: 'Aqşa-kredit saiasaty',
     qm: 'Para siyaseti',
   },
   description: {
@@ -65,7 +65,7 @@ export const monetaryPolicy_Skill_Data = defineSkill({
       et: 'Uuri, kuidas keskpank mõjutab inflatsiooni ja laenuvõtmist.',
       be: 'Дасьледуй, як цэнтральны банк уплывае на інфляцыю й пазыкі.',
       ka: 'გამოიკვლიეთ, როგორ მოქმედებს ცენტრალური ბანკი ინფლაციასა და სესხებზე.',
-      kk: 'Орталық банк инфляция мен қарыз алуға қалай әсер ететінін зерттеңіз.',
+      kk: 'Ortalyq bank infliatsiia men qaryz aluğa qalai äser etetının zertteñız.',
       qm: 'Merkeziy bank enflâtsiya ve borc almağa nasıl tesir etkenini araştır.',
     },
   },

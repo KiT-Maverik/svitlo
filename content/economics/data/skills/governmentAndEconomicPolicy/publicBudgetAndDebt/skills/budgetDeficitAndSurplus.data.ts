@@ -31,7 +31,7 @@ export const budgetDeficitAndSurplus_Skill_Data = defineSkill({
     et: 'Eelarve puudujääk ja ülejääk',
     be: 'Бюджэтны дэфіцыт і прафіцыт',
     ka: 'ბიუჯეტის დეფიციტი და პროფიციტი',
-    kk: 'Бюджет тапшылығы мен профициті',
+    kk: 'Biudjet tapşylyğy men profitsitı',
     qm: 'Bütçe kemçiligi ve artığı',
   },
   description: {
@@ -65,7 +65,7 @@ export const budgetDeficitAndSurplus_Skill_Data = defineSkill({
       et: 'Erista ühe aasta puudujääki kogu riigivõlast.',
       be: 'Адрозьнівай гадавы дэфіцыт ад агульнай дзяржаўнай запазычанасьці.',
       ka: 'განასხვავეთ წლიური დეფიციტი მთლიანი სახელმწიფო ვალისგან.',
-      kk: 'Жылдық тапшылық пен жалпы мемлекеттік қарыздың айырмасын түсініңіз.',
+      kk: 'Jyldyq tapşylyq pen jalpy memlekettık qaryzdyñ aiyrmasyn tüsınıñız.',
       qm: 'Bir yıllıq kemçiliknen umumiy devlet borcunuñ farqını añla.',
     },
   },

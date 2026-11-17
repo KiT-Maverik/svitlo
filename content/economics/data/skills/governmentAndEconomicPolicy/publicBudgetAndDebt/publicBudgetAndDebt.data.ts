@@ -37,7 +37,7 @@ export const publicBudgetAndDebt_SkillGroup_Data = defineSkillGroup({
     et: 'Riigieelarve ja võlg',
     be: 'Дзяржаўны бюджэт і доўг',
     ka: 'სახელმწიფო ბიუჯეტი და ვალი',
-    kk: 'Мемлекеттік бюджет және қарыз',
+    kk: 'Memlekettık biudjet jäne qaryz',
     qm: 'Devlet bütçesi ve borcu',
   },
   skills: [
@@ -76,7 +76,7 @@ export const publicBudgetAndDebt_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri, kuidas avalikud eelarved, puudujäägid ja võlad on seotud.',
       be: 'Даведайся, як зьвязаныя бюджэты, дэфіцыты і дзяржаўны доўг.',
       ka: 'გაიგეთ, როგორ უკავშირდება ერთმანეთს საჯარო ბიუჯეტები, დეფიციტი და ვალი.',
-      kk: 'Мемлекеттік бюджеттер, тапшылықтар мен қарыздар қалай байланысты екенін біліңіз.',
+      kk: 'Memlekettık biudjetter, tapşylyqtar men qaryzdar qalai bailanysty ekenın bılıñız.',
       qm: 'Devlet bütçeleri, kemçilik ve borc arasında nasıl bağ olğanını ögren.',
     },
   },

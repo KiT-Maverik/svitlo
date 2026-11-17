@@ -31,7 +31,7 @@ export const monetaryTransmissionMechanism_Skill_Data = defineSkill({
     et: 'Rahapoliitika ülekandemehhanism',
     be: 'Мэханізм перадачы манэтарнай палітыкі',
     ka: 'მონეტარული გადაცემის მექანიზმი',
-    kk: 'Ақша-кредит саясатының трансмиссиясы',
+    kk: 'Aqşa-kredit saiasatynyñ transmissiiasy',
     qm: 'Para siyasetiniñ keçiriliş yolu',
   },
   description: {
@@ -65,7 +65,7 @@ export const monetaryTransmissionMechanism_Skill_Data = defineSkill({
       et: 'Mõista, kuidas keskpanga otsus jõuab kogu majanduseni.',
       be: 'Зразумей, як рашэньне цэнтральнага банку ўплывае на ўсю эканоміку.',
       ka: 'გაიაზრეთ, როგორ აღწევს ცენტრალური ბანკის გადაწყვეტილება მთელ ეკონომიკამდე.',
-      kk: 'Орталық банк шешімінің бүкіл экономикаға қалай таралатынын түсініңіз.',
+      kk: 'Ortalyq bank şeşımınıñ bükıl ekonomikağa qalai taralatynyn tüsınıñız.',
       qm: 'Merkeziy bank qararı bütün iqtisatqa nasıl tesir etkenini añla.',
     },
   },

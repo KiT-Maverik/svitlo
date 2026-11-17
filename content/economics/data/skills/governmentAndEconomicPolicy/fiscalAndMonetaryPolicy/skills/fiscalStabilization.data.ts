@@ -31,7 +31,7 @@ export const fiscalStabilization_Skill_Data = defineSkill({
     et: 'Eelarvepoliitiline stabiliseerimine',
     be: 'Фіскальная стабілізацыя',
     ka: 'ფისკალური სტაბილიზაცია',
-    kk: 'Бюджеттік тұрақтандыру',
+    kk: 'Biudjettık tūraqtandyru',
     qm: 'Bütçe vastasınen sabitleştirüv',
   },
   description: {
@@ -65,7 +65,7 @@ export const fiscalStabilization_Skill_Data = defineSkill({
       et: 'Uuri, kuidas riigi kulutused ja maksud võivad majandustegevust mõjutada.',
       be: 'Дасьледуй, як дзяржаўныя выдаткі і падаткі ўплываюць на эканамічную дзейнасьць.',
       ka: 'გამოიკვლიეთ, როგორ მოქმედებს სახელმწიფო ხარჯები და გადასახადები ეკონომიკურ საქმიანობაზე.',
-      kk: 'Мемлекеттік шығындар мен салықтар экономикалық белсенділікке қалай әсер ететінін зерттеңіз.',
+      kk: 'Memlekettık şyğyndar men salyqtar ekonomikalyq belsendılıkke qalai äser etetının zertteñız.',
       qm: 'Devlet sarfları ve vergiler iqtisadiy faaliyetke nasıl tesir etkenini araştır.',
     },
   },

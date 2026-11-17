@@ -37,7 +37,7 @@ export const governmentAndEconomicPolicy_SkillDomain_Data = defineSkillDomain({
     et: 'Riik ja majanduspoliitika',
     be: 'Дзяржава і эканамічная палітыка',
     ka: 'სახელმწიფო და ეკონომიკური პოლიტიკა',
-    kk: 'Мемлекет және экономикалық саясат',
+    kk: 'Memleket jäne ekonomikalyq saiasat',
     qm: 'Devlet ve iqtisadiy siyaset',
   },
   groups: [
@@ -78,7 +78,7 @@ export const governmentAndEconomicPolicy_SkillDomain_Data = defineSkillDomain({
       et: 'Uuri, kuidas valitsuse otsused mõjutavad ressursse, stiimuleid ja majandustulemusi.',
       be: 'Дасьледуй, як дзяржаўныя рашэньні ўплываюць на рэсурсы, стымулы й эканамічныя вынікі.',
       ka: 'გამოიკვლიეთ, როგორ მოქმედებს მთავრობის გადაწყვეტილებები რესურსებზე, სტიმულებსა და ეკონომიკურ შედეგებზე.',
-      kk: 'Үкімет шешімдері ресурстарға, ынталарға және экономикалық нәтижелерге қалай ықпал ететінін зерттеңіз.',
+      kk: 'Ükımet şeşımderı resurstarğa, yntalarğa jäne ekonomikalyq nätijelerge qalai yqpal etetının zertteñız.',
       qm: 'Devlet qararları resurslarğa, teşviqlerge ve iqtisadiy neticelerge nasıl tesir etkenini araştır.',
     },
   },
