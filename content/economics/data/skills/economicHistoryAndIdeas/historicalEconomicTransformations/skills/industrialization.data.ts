@@ -31,7 +31,7 @@ export const industrialization_Skill_Data = defineSkill({
     et: 'Industrialiseerimine',
     be: 'Індустрыялізацыя',
     ka: 'ინდუსტრიალიზაცია',
-    kk: 'Индустрияландыру',
+    kk: 'İndustriialandyru',
     qm: 'Sanayileşüv',
   },
   description: {
@@ -65,7 +65,7 @@ export const industrialization_Skill_Data = defineSkill({
       et: 'Mõista, kuidas industrialiseerimine muutis tööd ja tootmist.',
       be: 'Зразумей, як індустрыялізацыя зьмяніла працу і вытворчасьць.',
       ka: 'გაიგე, როგორ შეცვალა ინდუსტრიალიზაციამ შრომა და წარმოება.',
-      kk: 'Индустрияландыру еңбек пен өндірісті қалай өзгерткенін түсін.',
+      kk: 'İndustriialandyru eñbek pen öndırıstı qalai özgertkenın tüsın.',
       qm: 'Sanayileşüv emekni ve istisalnı nasıl deñiştirgenini añla.',
     },
   },

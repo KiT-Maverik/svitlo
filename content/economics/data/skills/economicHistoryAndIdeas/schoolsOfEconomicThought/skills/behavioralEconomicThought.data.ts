@@ -31,7 +31,7 @@ export const behavioralEconomicThought_Skill_Data = defineSkill({
     et: 'Käitumisökonoomiline mõtlemine',
     be: 'Паводзінная эканамічная думка',
     ka: 'ქცევითი ეკონომიკური აზროვნება',
-    kk: 'Мінез-құлық экономикасының ойлары',
+    kk: 'Mınez-qūlyq ekonomikasynyñ oilary',
     qm: 'Davranış iqtisadiyatı fikirleri',
   },
   description: {
@@ -65,7 +65,7 @@ export const behavioralEconomicThought_Skill_Data = defineSkill({
       et: 'Uuri, kuidas inimeste tegelikud otsused seavad lihtsustatud majanduseeldused kahtluse alla.',
       be: 'Даведайся, як рэальныя людзкія рашэньні ставяць пад сумнеў спрошчаныя эканамічныя дапушчэньні.',
       ka: 'გაიგე, როგორ ეწინააღმდეგება ადამიანების რეალური გადაწყვეტილებები გამარტივებულ ეკონომიკურ დაშვებებს.',
-      kk: 'Адамдардың нақты шешімдері қарапайым экономикалық болжамдарға қалай қайшы келетінін біл.',
+      kk: 'Adamdardyñ naqty şeşımderı qarapaiym ekonomikalyq boljamdarğa qalai qaişy keletının bıl.',
       qm: 'İnsanlarnıñ aqiqiy qararları sade iqtisadiy faraziyelerni nasıl sual astına qoyğanını ögren.',
     },
   },

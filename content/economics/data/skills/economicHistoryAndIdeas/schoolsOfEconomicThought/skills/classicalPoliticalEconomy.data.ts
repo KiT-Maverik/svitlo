@@ -31,7 +31,7 @@ export const classicalPoliticalEconomy_Skill_Data = defineSkill({
     et: 'Klassikaline poliitökonoomia',
     be: 'Клясычная палітычная эканомія',
     ka: 'კლასიკური პოლიტიკური ეკონომია',
-    kk: 'Классикалық саяси экономия',
+    kk: 'Klassikalyq saiasi ekonomiia',
     qm: 'Klassik siyasiy iqtisat',
   },
   description: {
@@ -65,7 +65,7 @@ export const classicalPoliticalEconomy_Skill_Data = defineSkill({
       et: 'Uuri varaseid majandusideid töö, kaubanduse ja rikkuse kohta.',
       be: 'Дасьледуй раньнія эканамічныя ідэі пра працу, гандаль і багацьце.',
       ka: 'შეისწავლე ადრეული ეკონომიკური იდეები შრომის, ვაჭრობისა და სიმდიდრის შესახებ.',
-      kk: 'Еңбек, сауда және байлық туралы ерте экономикалық идеяларды зертте.',
+      kk: 'Eñbek, sauda jäne bailyq turaly erte ekonomikalyq ideialardy zertte.',
       qm: 'Emek, ticaret ve baylıq aqqında ilk iqtisadiy fikirlerni ögren.',
     },
   },

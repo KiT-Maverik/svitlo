@@ -31,7 +31,7 @@ export const globalizationOfEconomicRelations_Skill_Data = defineSkill({
     et: 'Majandussuhete üleilmastumine',
     be: 'Глябалізацыя эканамічных сувязяў',
     ka: 'ეკონომიკური ურთიერთობების გლობალიზაცია',
-    kk: 'Экономикалық байланыстардың жаһандануы',
+    kk: 'Ekonomikalyq bailanystardyñ jahandanuy',
     qm: 'İqtisadiy alâqalarnıñ dünyalaşuvı',
   },
   description: {
@@ -65,7 +65,7 @@ export const globalizationOfEconomicRelations_Skill_Data = defineSkill({
       et: 'Uuri, kuidas rahvusvahelised majandussidemed laienesid ja inimesi erinevalt mõjutasid.',
       be: 'Дасьледуй, як міжнародныя эканамічныя сувязі пашыраліся і па-рознаму ўплывалі на людзей.',
       ka: 'შეისწავლე, როგორ ფართოვდებოდა საერთაშორისო ეკონომიკური კავშირები და სხვადასხვაგვარად მოქმედებდა ადამიანებზე.',
-      kk: 'Халықаралық экономикалық байланыстар қалай кеңейіп, адамдарға әртүрлі әсер еткенін зертте.',
+      kk: 'Halyqaralyq ekonomikalyq bailanystar qalai keñeiıp, adamdarğa ärtürlı äser etkenın zertte.',
       qm: 'Memleketlerara iqtisadiy alâqalar nasıl kenişlegenini ve insanlarga çeşit tesir etkenini ögren.',
     },
   },

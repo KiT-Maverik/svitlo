@@ -39,7 +39,7 @@ export const schoolsOfEconomicThought_SkillGroup_Data = defineSkillGroup({
     et: 'Majandusmõtte koolkonnad',
     be: 'Напрамкі эканамічнай думкі',
     ka: 'ეკონომიკური აზროვნების სკოლები',
-    kk: 'Экономикалық ой мектептері',
+    kk: 'Ekonomikalyq oi mektepterı',
     qm: 'İqtisadiy fikir mektepleri',
   },
   skills: [
@@ -80,7 +80,7 @@ export const schoolsOfEconomicThought_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri, kuidas majandusteadlased on majandusprobleeme eri viisidel selgitanud.',
       be: 'Даведайся, як эканамісты па-рознаму тлумачылі эканамічныя праблемы.',
       ka: 'გაიგე, როგორ ხსნიდნენ ეკონომისტები ეკონომიკურ პრობლემებს სხვადასხვა გზით.',
-      kk: 'Экономистер экономикалық мәселелерді әртүрлі қалай түсіндіргенін біл.',
+      kk: 'Ekonomister ekonomikalyq mäselelerdı ärtürlı qalai tüsındırgenın bıl.',
       qm: 'İqtisatçılar iqtisadiy meselelerni çeşit usullernen nasıl añlatqanını ögren.',
     },
   },

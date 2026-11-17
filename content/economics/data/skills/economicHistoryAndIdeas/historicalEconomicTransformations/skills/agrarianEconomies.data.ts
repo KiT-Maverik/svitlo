@@ -31,7 +31,7 @@ export const agrarianEconomies_Skill_Data = defineSkill({
     et: 'Agraarmajandused',
     be: 'Аграрныя эканомікі',
     ka: 'აგრარული ეკონომიკები',
-    kk: 'Аграрлық экономикалар',
+    kk: 'Agrarlyq ekonomikalar',
     qm: 'Ziraatqa esaslanğan iqtisatlar',
   },
   description: {
@@ -65,7 +65,7 @@ export const agrarianEconomies_Skill_Data = defineSkill({
       et: 'Uuri, kuidas maa ja põllumajandus kujundasid ajaloolisi majandusi.',
       be: 'Дасьледуй, як зямля і земляробства фармавалі эканомікі мінулага.',
       ka: 'შეისწავლე, როგორ აყალიბებდა მიწა და მიწათმოქმედება წარსულის ეკონომიკას.',
-      kk: 'Жер мен егіншілік бұрынғы экономикаларды қалай қалыптастырғанын зертте.',
+      kk: 'Jer men egınşılık būrynğy ekonomikalardy qalai qalyptastyrğanyn zertte.',
       qm: 'Yer ve ziraat keçmişteki iqtisatlarnı nasıl şekillendirgenini ögren.',
     },
   },
