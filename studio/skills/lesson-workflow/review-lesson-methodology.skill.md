@@ -12,6 +12,8 @@ The user or a [Lesson Production Issue](./manage-lesson-production.skill.md) sel
 
 Work from **canonical source files**, not just previous agents' summaries or the Issue checklist. Never assert methodological approval from a created document alone. One Issue can contain several Lessons at different stages.
 
+**Specification-completeness gate:** First evaluate the original `methodology.md` against the [Lesson methodology quality contract](../../docs/entities/lesson.md#methodology-quality-contract--implementation-ready-lesson-specification). If its actual subject matter, Skill outcomes, dependencies, misconceptions, example boundaries or `assessmentPlan` are so underspecified that `content.yaml` requires invented educational decisions, do **not** silently repair the Brief in the review or award a pass; request a Methodologist/editor-approved amendment and re-review. A complete Screenwriter plan must not conceal a deficient upstream technical specification.
+
 ## Methodological audit
 
 Assess every Section against the original approved goals and verified references:
