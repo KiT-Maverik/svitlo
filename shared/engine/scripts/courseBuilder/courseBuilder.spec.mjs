@@ -169,7 +169,7 @@ test('Episode media drafts identify absent image, audio, video, subtitles and po
   blocks.items.captions = { type: 'subtitles', slug: 'captions' };
   blocks.order.push('picture', 'sound', 'movie', 'captions');
   const generated = renderCourseSource(draft);
-  assert.equal((generated.match(/TODO\\(asset\\)/g) ?? []).length, 5);
+  assert.equal((generated.match(/TODO\(asset\)/g) ?? []).length, 5);
   for (const extension of ['webp', 'mp3', 'mp4', 'vtt']) {
     assert(generated.includes('00000000-0000-0000-0000-000000000000.' + extension));
   }
@@ -178,7 +178,7 @@ test('Episode media drafts identify absent image, audio, video, subtitles and po
   // A real file reference supplied by an author must not be replaced.
   blocks.items.picture.locale.fileName = 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa.webp';
   const withRealImage = renderCourseSource(draft);
-  assert.equal((withRealImage.match(/TODO\\(asset\\)/g) ?? []).length, 4);
+  assert.equal((withRealImage.match(/TODO\(asset\)/g) ?? []).length, 4);
   assert(withRealImage.includes('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa.webp'));
 });
 
