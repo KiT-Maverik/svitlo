@@ -31,7 +31,7 @@ export const manipulativeCommercialTactics_Skill_Data = defineSkill({
     et: 'Manipuleerivad müügivõtted',
     be: 'Маніпулятыўныя гандлёвыя прыёмы',
     ka: 'მანიპულაციური სავაჭრო ხერხები',
-    kk: 'Манипуляциялық сауда тәсілдері',
+    kk: 'Manipuliatsiialyq sauda täsılderı',
     qm: 'Aldatıcı ticaret usulları',
   },
   description: {
@@ -65,7 +65,7 @@ export const manipulativeCommercialTactics_Skill_Data = defineSkill({
       et: 'Tunne ära näiline kiirustamine, võlts nappus ja ostusurve.',
       be: 'Распазнавай штучную сьпешку, уяўны дэфіцыт і іншы ціск на пакупніка.',
       ka: 'ამოიცანი ხელოვნურად შექმნილი გადაუდებლობა, მოჩვენებითი დეფიციტი და ზეწოლა ყიდვისკენ.',
-      kk: 'Жалған асығыстықты, жасанды тапшылықты және сатып алу қысымын таны.',
+      kk: 'Jalğan asyğystyqty, jasandy tapşylyqty jäne satyp alu qysymyn tany.',
       qm: 'Sahte acelelikni, yalancı qıtlıqnı ve satın almağa basqını tanı.',
     },
   },

@@ -31,7 +31,7 @@ export const psychologicalPricing_Skill_Data = defineSkill({
     et: 'Psühholoogiline hinnakujundus',
     be: 'Псыхалягічнае цэнаўтварэньне',
     ka: 'ფსიქოლოგიური ფასწარმოქმნა',
-    kk: 'Психологиялық баға белгілеу',
+    kk: 'Psihologiialyq bağa belgıleu',
     qm: 'Psihologik fiyatlandırma',
   },
   description: {
@@ -65,7 +65,7 @@ export const psychologicalPricing_Skill_Data = defineSkill({
       et: 'Uuri, miks 99-ga lõppevad hinnad ja läbikriipsutatud võrdlushinnad taju mõjutavad.',
       be: 'Дасьледуй, чаму цэны на 99 і закрэсьленыя старыя цэны ўплываюць на ўспрыманьне.',
       ka: 'გაიგე, რატომ მოქმედებს აღქმაზე 99-ით დასრულებული და გადახაზული ფასები.',
-      kk: '99-мен аяқталатын және сызылған салыстырма бағалар қабылдауға қалай әсер ететінін зертте.',
+      kk: '99-men aiaqtalatyn jäne syzylğan salystyrma bağalar qabyldauğa qalai äser etetının zertte.',
       qm: '99 ile bitken fiyatlar ve üstü sızılğan eski fiyatlar tasavurğa nasıl tesir etkenini ögren.',
     },
   },

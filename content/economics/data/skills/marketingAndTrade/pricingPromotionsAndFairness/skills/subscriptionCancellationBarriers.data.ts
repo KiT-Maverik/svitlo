@@ -31,7 +31,7 @@ export const subscriptionCancellationBarriers_Skill_Data = defineSkill({
     et: 'Tellimuse tühistamise tõkked',
     be: 'Перашкоды скасаваньню падпіскі',
     ka: 'გამოწერის გაუქმების ბარიერები',
-    kk: 'Жазылымнан бас тарту кедергілері',
+    kk: 'Jazylymnan bas tartu kedergılerı',
     qm: 'Abunelikni toqtatuv maniaları',
   },
   description: {
@@ -65,7 +65,7 @@ export const subscriptionCancellationBarriers_Skill_Data = defineSkill({
       et: 'Tunne ära, kui tellimuse lõpetamine on asjatult raskeks tehtud.',
       be: 'Распазнавай, калі скасаваньне падпіскі беспадстаўна ўскладняюць.',
       ka: 'ამოიცანი, როდის ართულებენ გაუმართლებლად გამოწერის გაუქმებას.',
-      kk: 'Жазылымды тоқтатуды себепсіз қиындатқан жағдайды таны.',
+      kk: 'Jazylymdy toqtatudy sebepsız qiyndatqan jağdaidy tany.',
       qm: 'Abunelikni toqtatmaq nege lüzumsız qıyınlaştırılğanını tanı.',
     },
   },

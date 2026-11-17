@@ -38,7 +38,7 @@ export const productAndValueProposition_SkillGroup_Data = defineSkillGroup({
     et: 'Toode ja väärtuspakkumine',
     be: 'Прадукт і каштоўнасная прапанова',
     ka: 'პროდუქტი და ღირებულების შეთავაზება',
-    kk: 'Өнім және құндылық ұсынысы',
+    kk: 'Önım jäne qūndylyq ūsynysy',
     qm: 'Mal ve qıymet teklifi',
   },
   skills: [
@@ -78,7 +78,7 @@ export const productAndValueProposition_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri, mis teeb toote või teenuse kliendile väärtuslikuks.',
       be: 'Даведайся, што робіць тавар або паслугу каштоўнымі для кліента.',
       ka: 'გაიგე, რა ხდის პროდუქტს ან მომსახურებას ღირებულს მომხმარებლისთვის.',
-      kk: 'Өнім не қызмет клиентке неліктен құнды екенін анықта.',
+      kk: 'Önım ne qyzmet klientke nelıkten qūndy ekenın anyqta.',
       qm: 'Mal ya da hızmetni müşteri içün qıymetli yapqan şeyni ögren.',
     },
   },

@@ -31,7 +31,7 @@ export const retailPricingStrategies_Skill_Data = defineSkill({
     et: 'Jaehinna strateegiad',
     be: 'Стратэгіі розьнічных цэнаў',
     ka: 'საცალო ფასების სტრატეგიები',
-    kk: 'Бөлшек баға стратегиялары',
+    kk: 'Bölşek bağa strategiialary',
     qm: 'Perakende fiyat strategiyaları',
   },
   description: {
@@ -64,7 +64,7 @@ export const retailPricingStrategies_Skill_Data = defineSkill({
       et: 'Uuri, kuidas poed oma toodete hinnad määravad.',
       be: 'Дасьледуй, як крамы вызначаюць цэны тавараў.',
       ka: 'შეისწავლე, როგორ ადგენენ მაღაზიები ფასებს.',
-      kk: 'Дүкендер тауар бағасын қалай белгілейтінін зертте.',
+      kk: 'Dükender tauar bağasyn qalai belgıleitının zertte.',
       qm: 'Tükânlar öz mallarına fiyatnı nasıl qoyğanını araştır.',
     },
   },

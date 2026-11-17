@@ -31,7 +31,7 @@ export const commercialRoleOfPackaging_Skill_Data = defineSkill({
     et: 'Pakendi äriline roll',
     be: 'Камэрцыйная роля ўпакоўкі',
     ka: 'შეფუთვის კომერციული როლი',
-    kk: 'Қаптаманың коммерциялық рөлі',
+    kk: 'Qaptamanyñ kommertsiialyq rölı',
     qm: 'Qaplamanıñ ticariy roli',
   },
   description: {
@@ -65,7 +65,7 @@ export const commercialRoleOfPackaging_Skill_Data = defineSkill({
       et: 'Vaata, kuidas pakend mõjutab ootusi ja toote praktilist väärtust.',
       be: 'Дасьледуй, як упакоўка ўплывае на чаканьні й практычную вартасьць тавару.',
       ka: 'შეისწავლე, როგორ მოქმედებს შეფუთვა მოლოდინებსა და პროდუქტის პრაქტიკულ ღირებულებაზე.',
-      kk: 'Қаптама күту мен өнімнің тәжірибелік құнына қалай әсер ететінін біл.',
+      kk: 'Qaptama kütu men önımnıñ täjıribelık qūnyna qalai äser etetının bıl.',
       qm: 'Qaplama ümitlerge ve malnıñ ameliy qıymetine nasıl tesir etkenini ögren.',
     },
   },
