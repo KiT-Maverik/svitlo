@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-/** Editorial Markdown -> direct-composition Skill Data. English-first; dry run by default. */
+/** Editorial Markdown -> canonical, direct-composition Skill Configs. English-first; dry run by default. */
 import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
@@ -226,18 +226,19 @@ function parse(markdown) {
     entries.push(entry);
   }
   if (!entries.length) throw Error('No taxonomy entries');
-  // Slugs are globally unique among Domain/Group/Skill records in this textbook.
-  // Check skipped/pending entries too, case-insensitively for filesystem portability.
+  // A slug identifies a member in one parent's collection, not a textbook-wide entity.
+  // Different groups may legitimately contain skills named by2 (divide and multiply).
   const slugOwners = new Map();
   for (const e of entries) {
     if (!slugPattern.test(e.slug ?? '')) continue;
-    const canonicalSlug = e.slug.toLowerCase();
-    const first = slugOwners.get(canonicalSlug);
+    const scope = e.parent?.key ?? '<domains>';
+    const key = scope + '/' + e.slug.toLowerCase();
+    const first = slugOwners.get(key);
     if (first) {
-      const problem = `Duplicate taxonomy slug "${e.slug}" across ${first.key} (${first.kind}) and ${e.key} (${e.kind})`;
+      const problem = `Duplicate sibling slug "${e.slug}" in ${scope} (${first.kind} / ${e.kind})`;
       first.issues.push(problem);
       e.issues.push(problem);
-    } else slugOwners.set(canonicalSlug, e);
+    } else slugOwners.set(key, e);
   }
   for (const e of entries) {
     if (e.kind === 'SkillDomain') e.children = entries.filter(x => x.parent === e);
@@ -248,10 +249,10 @@ function parse(markdown) {
 
 function fileOf(e) {
   const domain = e.domain?.slug ?? e.slug;
-  if (e.kind === 'SkillDomain') return path.join(opts.targetRoot, domain, domain + '.data.ts');
-  if (e.kind === 'SkillGroup') return path.join(opts.targetRoot, domain, e.slug, e.slug + '.data.ts');
-  const p = e.depth === 5 ? path.join(opts.targetRoot, domain, e.parent.slug) : path.join(opts.targetRoot, domain);
-  return path.join(p, 'skills', e.slug + '.data.ts');
+  if (e.kind === 'SkillDomain') return path.join(opts.targetRoot, domain, 'index.ts');
+  if (e.kind === 'SkillGroup') return path.join(opts.targetRoot, domain, e.slug, 'index.ts');
+  const parent = e.depth === 5 ? path.join(opts.targetRoot, domain, e.parent.slug) : path.join(opts.targetRoot, domain);
+  return path.join(parent, e.slug + '.ts');
 }
 function rel(file) {
   return path.relative(root, file).split(path.sep).join('/');
@@ -302,36 +303,34 @@ function existing(e) {
   return { slug, id, name, frontend, methodological };
 }
 function scanRegistry() {
-  const registry = new Set(),
-    seenSlugs = new Map();
-  if (!fs.existsSync(opts.targetRoot)) return { ids: registry, slugs: seenSlugs };
+  const ids = new Set(), slugs = new Map();
+  if (!fs.existsSync(opts.targetRoot)) return { ids, slugs };
   function walk(dir) {
     for (const ent of fs.readdirSync(dir, { withFileTypes: true })) {
-      const f = path.join(dir, ent.name);
-      if (ent.isSymbolicLink()) throw Error('Symlink in taxonomy: ' + rel(f));
-      if (ent.isDirectory()) {
-        walk(f);
-        continue;
-      }
-      if (!ent.isFile() || !f.endsWith('.data.ts')) continue;
-      const slug = path.basename(f, '.data.ts');
-      const parts = path.relative(opts.targetRoot, f).split(path.sep);
-      const kind =
-        parts.length === 2 ? 'SkillDomain' : parts.length === 3 && parts[1] !== 'skills' ? 'SkillGroup' : 'Skill';
-      if (!slugPattern.test(slug)) throw Error('Bad source slug: ' + rel(f));
-      const info = readCode(f, kind);
+      const file = path.join(dir, ent.name);
+      if (ent.isSymbolicLink()) throw Error('Symlink in taxonomy: ' + rel(file));
+      if (ent.isDirectory()) { walk(file); continue; }
+      if (!ent.isFile() || !file.endsWith('.ts') || ['review.ts', '_review.ts'].includes(ent.name)) continue;
+      const parts = path.relative(opts.targetRoot, file).split(path.sep);
+      if (parts.length === 1 && ent.name === 'index.ts') continue;
+      const slug = ent.name === 'index.ts' ? parts.at(-2) : ent.name.slice(0, -3);
+      const kind = ent.name === 'index.ts' ? (parts.length === 2 ? 'SkillDomain' : 'SkillGroup') : 'Skill';
+      if (!slugPattern.test(slug)) throw Error('Bad source slug: ' + rel(file));
+      const info = readCode(file, kind);
       const id = literal(property(info.config, 'id').initializer, 'UUID');
       const authoredSlug = optionalProperty(info.config, 'slug');
       if (authoredSlug && literal(authoredSlug.initializer, 'slug') !== slug)
-        throw Error('Slug differs from canonical source filename: ' + rel(f));
-      if (!uuidPattern.test(id) || registry.has(id.toLowerCase())) throw Error('Invalid/duplicate UUID: ' + rel(f));
-      if (seenSlugs.has(slug.toLowerCase())) throw Error('Duplicate existing source slug: ' + slug);
-      registry.add(id.toLowerCase());
-      seenSlugs.set(slug.toLowerCase(), f);
+        throw Error('Slug differs from canonical source filename: ' + rel(file));
+      if (!uuidPattern.test(id) || ids.has(id.toLowerCase())) throw Error('Invalid/duplicate UUID: ' + rel(file));
+      const owner = path.dirname(file);
+      const key = owner.toLowerCase() + '/' + slug.toLowerCase();
+      if (slugs.has(key)) throw Error('Duplicate sibling source slug: ' + slug);
+      ids.add(id.toLowerCase());
+      slugs.set(key, file);
     }
   }
   walk(opts.targetRoot);
-  return { ids: registry, slugs: seenSlugs };
+  return { ids, slugs };
 }
 function allocateId(used) {
   for (let i = 0; i < 64; i++) {
@@ -346,15 +345,13 @@ function allocateId(used) {
 function listDiskChildren(e) {
   const folder = path.dirname(fileOf(e));
   if (!fs.existsSync(folder)) return [];
-  const results = [];
-  const skillFolder = path.join(folder, 'skills');
-  if (fs.existsSync(skillFolder)) {
-    for (const name of fs.readdirSync(skillFolder).filter(n => n.endsWith('.data.ts')))
-      results.push({ slug: name.slice(0, -8), kind: 'Skill' });
-  }
+  const results = fs.readdirSync(folder, { withFileTypes: true })
+    .filter(ent => ent.isFile() && ent.name.endsWith('.ts') &&
+      !['index.ts', 'review.ts', '_review.ts'].includes(ent.name))
+    .map(ent => ({ slug: ent.name.slice(0, -3), kind: 'Skill' }));
   if (e.kind === 'SkillDomain') {
-    for (const entry of fs.readdirSync(folder, { withFileTypes: true })) {
-      if (entry.isDirectory() && entry.name !== 'skills') results.push({ slug: entry.name, kind: 'SkillGroup' });
+    for (const ent of fs.readdirSync(folder, { withFileTypes: true })) {
+      if (ent.isDirectory()) results.push({ slug: ent.name, kind: 'SkillGroup' });
     }
   }
   return results;
@@ -375,8 +372,8 @@ function children(e, local) {
     .map(child => {
       const f =
         child.kind === 'SkillGroup'
-          ? path.join(path.dirname(fileOf(e)), child.slug, child.slug + '.data.ts')
-          : path.join(path.dirname(fileOf(e)), 'skills', child.slug + '.data.ts');
+          ? path.join(path.dirname(fileOf(e)), child.slug, 'index.ts')
+          : path.join(path.dirname(fileOf(e)), child.slug + '.ts');
       if (!local.has(f) && !fs.existsSync(f)) throw Error('Missing approved child: ' + rel(f));
       return { ...child, file: f };
     });
@@ -390,81 +387,49 @@ function render(e, value, kids) {
   ];
   const groups = kids.filter(x => x.kind === 'SkillGroup');
   const skills = kids.filter(x => x.kind === 'Skill');
-  if (kids.length) imports.push(''); // Separate builder from entity imports.
-  for (const x of groups)
-    imports.push('import { ' + x.slug + "_SkillGroup_Data } from './" + x.slug + '/' + x.slug + ".data';");
-  if (skills.length)
-    imports.push('import { ' + skills.map(x => x.slug + '_Skill_Data').join(', ') + " } from './skills';");
-  const addCollection = (name, children, kind) => {
-    lines.push('  ' + name + ': {');
-    lines.push('    items: {');
-    for (const child of children) lines.push('      ' + child.slug + ': ' + child.slug + '_' + kind + '_Data,');
-    lines.push('    },');
-    lines.push('    order: [');
-    for (const child of children) lines.push('      ' + JSON.stringify(child.slug) + ',');
-    lines.push('    ],');
+  if (kids.length) imports.push('');
+  for (const child of groups)
+    imports.push('import { ' + child.slug + " } from './" + child.slug + "';");
+  for (const child of skills)
+    imports.push('import { ' + child.slug + " } from './" + child.slug + "';");
+  const addMap = (field, children) => {
+    if (!children.length) return;
+    lines.push('  ' + field + ': {');
+    for (const child of children) lines.push('    ' + child.slug + ',');
     lines.push('  },');
   };
-  if (e.kind === 'SkillDomain') addCollection('groups', groups, 'SkillGroup');
-  if (skills.length) addCollection('skills', skills, 'Skill');
+  if (e.kind === 'SkillDomain') addMap('groups', groups);
+  addMap('skills', skills);
   lines.push('  description: {');
   lines.push('    methodological: ' + JSON.stringify(value.methodological) + ',');
   if (value.frontend) lines.push('    frontend: ' + dictionary(value.frontend, 4) + ',');
   lines.push('  },');
-  return (
-    imports.join('\n') +
-    '\n\nexport const ' +
-    e.slug +
-    '_' +
-    e.kind +
-    '_Data = define' +
-    e.kind +
-    '({\n' +
-    lines.join('\n') +
-    '\n});\n'
-  );
+  return imports.join('\n') + '\n\nexport const ' + e.slug + ' = define' + e.kind + '({\n' +
+    lines.join('\n') + '\n});\n';
 }
 function stableMembership(e, kids) {
   if (e.kind === 'Skill') return true;
   const old = readCode(fileOf(e), e.kind).config;
   if (optionalProperty(old, 'groupIds') || optionalProperty(old, 'skillIds')) return false;
-  for (const [field, kind] of [
-    ['groups', 'SkillGroup'],
-    ['skills', 'Skill'],
-  ]) {
+  for (const [field, kind] of [['groups', 'SkillGroup'], ['skills', 'Skill']]) {
     if (field === 'groups' && e.kind === 'SkillGroup') continue;
-    const members = kids.filter(x => x.kind === kind);
+    const members = kids.filter(child => child.kind === kind);
     const prop = optionalProperty(old, field);
-    if (!prop) {
-      if (members.length) return false;
-      continue;
-    }
+    if (!prop) { if (members.length) return false; continue; }
     const value = unwrap(prop.initializer);
-    if (!ts.isObjectLiteralExpression(value) || value.properties.length !== 2) return false;
-    const items = unwrap(optionalProperty(value, 'items')?.initializer);
-    const order = unwrap(optionalProperty(value, 'order')?.initializer);
-    if (!ts.isObjectLiteralExpression(items) || !ts.isArrayLiteralExpression(order)) return false;
-    if (items.properties.length !== members.length || order.elements.length !== members.length) return false;
-    const expected = new Set(members.map(x => x.slug));
-    const keys = [];
-    for (const entry of items.properties) {
-      if (
-        !ts.isPropertyAssignment(entry) ||
-        !(ts.isIdentifier(entry.name) || ts.isStringLiteral(entry.name)) ||
-        !ts.isIdentifier(entry.initializer) ||
-        !expected.has(entry.name.text) ||
-        entry.initializer.text !== entry.name.text + '_' + kind + '_Data'
-      )
-        return false;
-      keys.push(entry.name.text);
+    if (!ts.isObjectLiteralExpression(value) || value.properties.length !== members.length) return false;
+    const expected = new Set(members.map(child => child.slug));
+    for (const entry of value.properties) {
+      let slug, symbol;
+      if (ts.isShorthandPropertyAssignment(entry)) {
+        slug = entry.name.text; symbol = slug;
+      } else if (ts.isPropertyAssignment(entry) &&
+        (ts.isIdentifier(entry.name) || ts.isStringLiteral(entry.name)) && ts.isIdentifier(entry.initializer)) {
+        slug = entry.name.text; symbol = entry.initializer.text;
+      } else return false;
+      if (!expected.delete(slug) || symbol !== slug) return false;
     }
-    const ordered = [];
-    for (const entry of order.elements) {
-      if (!ts.isStringLiteral(entry) || !expected.has(entry.text)) return false;
-      ordered.push(entry.text);
-    }
-    if (new Set(keys).size !== keys.length || new Set(ordered).size !== ordered.length) return false;
-    if (keys.some(key => !ordered.includes(key))) return false;
+    if (expected.size) return false;
   }
   return true;
 }
@@ -508,14 +473,6 @@ function patchExisting(e, reviewed, methodological) {
   sourceFile(file, content);
   return content;
 }
-function indexContent(kids) {
-  return (
-    kids
-      .map(k => 'export { ' + k + "_Skill_Data } from './" + k + ".data';")
-      .sort()
-      .join('\n') + '\n'
-  );
-}
 function domainsFor(planned) {
   const domains = new Set();
   if (fs.existsSync(opts.targetRoot))
@@ -528,11 +485,9 @@ function domainsFor(planned) {
   return [...domains].sort();
 }
 function rootIndex(planned) {
-  return (
-    domainsFor(planned)
-      .map(s => 'export { ' + s + "_SkillDomain_Data } from './" + s + '/' + s + ".data';")
-      .join('\n') + '\n'
-  );
+  return domainsFor(planned)
+    .map(slug => 'export { ' + slug + " } from './" + slug + "';")
+    .join('\n') + '\n';
 }
 function domainPlan(d, entities, registry, codes) {
   const local = new Map(),
@@ -580,7 +535,8 @@ function domainPlan(d, entities, registry, codes) {
     if (e.kind === 'Skill' && !authoredFrontend) throw Error('Skill frontend description is not authored: ' + e.key);
     if (e.kind === 'Skill' || authoredFrontend) checkLocaleValues(frontend, 'frontend ' + e.key, codes);
     else if (frontend) checkLocaleValues(frontend, 'frontend ' + e.key, codes);
-    if (!found && registry.slugs.has(e.slug.toLowerCase()) && registry.slugs.get(e.slug.toLowerCase()) !== file)
+    if (!found && registry.slugs.has(path.dirname(file).toLowerCase() + '/' + e.slug.toLowerCase()) &&
+      registry.slugs.get(path.dirname(file).toLowerCase() + '/' + e.slug.toLowerCase()) !== file)
       throw Error('Slug already exists elsewhere in source: ' + e.slug);
     const id = prior?.id ?? allocateId(registry.ids);
     const kids = e.kind === 'Skill' ? [] : children(e, local);
@@ -593,11 +549,6 @@ function domainPlan(d, entities, registry, codes) {
     // Safe idempotent create also upgrades previously generated ID-only/slugless code:
     // keep existing UUID and translations, but emit canonical full-entity children.
     if (!found || fs.readFileSync(file, 'utf8') !== code) local.set(file, code);
-    if (kids.length && kids[0].kind === 'Skill') {
-      const f = path.join(path.dirname(file), 'skills/index.ts');
-      const body = indexContent(kids.filter(x => x.kind === 'Skill').map(x => x.slug));
-      if (!fs.existsSync(f) || fs.readFileSync(f, 'utf8') !== body) local.set(f, body);
-    }
     done.add(e);
   }
   return { local, done };

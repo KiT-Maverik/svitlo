@@ -13,3 +13,5 @@ emission or auto-registers incomplete Scene components.
 ## Unused media audit
 
 The read-only [auditTextbookMedia](./auditTextbookMedia/README.md) CLI reports possible unused textbook-wide media files without running a Lesson/Course build. It compares assets with literal UUID filename references in authored textbook source and does not delete files or fail on unused candidates.
+
+The one-time pre-configurator `migrateSkillsConfigurators` conversion has been retired after the canonical Skills migration in PR #625. Editorial Markdown-to-Code creation continues through `implementSkillsTaxonomy`; Code-to-Markdown review uses `generateSkillsTaxonomy`.
