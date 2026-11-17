@@ -124,3 +124,12 @@ test('create-only builder never overwrites TS, retains YAML and strictly checks 
     fs.rmSync(folder, { recursive: true, force: true });
   }
 });
+
+test('TEMPORARY: expose exact Prettier-formatted Flashcard schema for #646 regeneration', async () => {
+  const { fileURLToPath } = await import('node:url');
+  const prettier = await import('prettier');
+  const sourcePath = fileURLToPath(new URL('../../yaml-schemas/flashcard.schema.json', import.meta.url));
+  const source = fs.readFileSync(sourcePath, 'utf8');
+  const formatted = await prettier.format(source, { filepath: sourcePath });
+  console.log('SVITLO_PRETTIER_FLASHCARD_HEX:' + Buffer.from(formatted, 'utf8').toString('hex'));
+});
