@@ -18,7 +18,7 @@ export const respondToSuspectedPoisoning = defineSkill({
     it: 'Reagire a un sospetto avvelenamento',
     ja: '中毒が疑われるときの対応',
     ka: 'სავარაუდო მოწამვლაზე რეაგირება',
-    kk: 'Küdıktı ulanuğa äreket etu',
+    kk: 'Ulanuğa küdık tuyndağanda äreket etu',
     ko: '중독이 의심될 때 대응하기',
     lt: 'Reaguoti į įtariamą apsinuodijimą',
     lv: 'Reaģēt uz aizdomām par saindēšanos',

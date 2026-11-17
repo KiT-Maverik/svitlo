@@ -18,7 +18,7 @@ export const respondToSuspectedHypoglycaemia = defineSkill({
     it: 'Reagire a una sospetta ipoglicemia',
     ja: '低血糖が疑われるときの対応',
     ka: 'სავარაუდო ჰიპოგლიკემიაზე რეაგირება',
-    kk: 'Küdıktı gipoglikemiiağa äreket etu',
+    kk: 'Gipoglikemiiağa küdık tuyndağanda äreket etu',
     ko: '저혈당이 의심될 때 대응하기',
     lt: 'Reaguoti į įtariamą hipoglikemiją',
     lv: 'Reaģēt uz aizdomām par hipoglikēmiju',
