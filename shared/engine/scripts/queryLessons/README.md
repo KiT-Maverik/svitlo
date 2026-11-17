@@ -16,7 +16,9 @@ On an **open same-repository PR**, a contributor with actual write/maintain/admi
 /get lesson by skill <skill-uuid> [<skill-uuid> ...] [--match any|all] [--package content/<book>]
 ```
 
-The [GitHub workflow](../../../../.github/workflows/get-lesson.yml) authorizes on the default branch, checks out the exact PR head with read-only credentials in a separate job, uploads bounded JSON, and updates one bot comment after a trusted report validation. Comments work only once the workflow is merged to `main`. The workflow never commits or changes the PR. An optional manual dispatch takes a PR number and the same comment syntax.
+The [GitHub workflow](../../../../.github/workflows/get-lesson.yml) authorizes on the default branch, checks out the exact PR head with read-only credentials in a separate analysis job, uploads bounded JSON, and validates the report in a trusted `contents: write` job. It then commits a stable query-hash-named `.json` plus a human-readable `.md` to **`.agent-ci-artifacts/lesson-lookup/` in the source PR branch**. PR comments only trigger the workflow; no result is posted back as a comment. Repeating a query replaces only its two files and preserves other queries and unrelated temporary references. The branch must still point to the analyzed SHA; otherwise publishing stops safely and a fresh request is required. Comments work only after the workflow reaches `main`. Manual dispatch accepts a PR number and the same command syntax.
+
+These documents are temporary and must be removed with `/agent-artifacts cleanup` (or the existing ready-for-review cleanup path) before merging. The Agent CI Artifacts guard deliberately rejects a merge containing `.agent-ci-artifacts/`.
 
 Machine output: `{ query, sourceSha, matches, scanned, diagnostics, complete }`. Each match includes immutable Lesson ID, textbook, status `implemented` or `editorial-draft`, grounded file paths, all verified Skills, matching Skills, coverage, and known languages (otherwise `unknown`). A typed source and accompanying YAML are one implemented candidate; discrepancies are diagnostics.
 
