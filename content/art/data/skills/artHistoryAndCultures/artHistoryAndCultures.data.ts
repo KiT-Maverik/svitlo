@@ -46,7 +46,7 @@ export const artHistoryAndCultures_SkillDomain_Data = defineSkillDomain({
     et: 'Kunstiajalugu ja kultuurid',
     be: 'Гісторыя мастацтва і культуры',
     ka: 'ხელოვნების ისტორია და კულტურები',
-    kk: 'Өнер тарихы мен мәдениеттер',
+    kk: 'Öner tarihy men mädenietter',
     qm: 'Sanat tarihı ve medeniyetler',
   },
   groups: [
@@ -96,7 +96,7 @@ export const artHistoryAndCultures_SkillDomain_Data = defineSkillDomain({
       et: 'Uuri, kuidas kunstiteosed peegeldavad kindlaid paiku, kogukondi, ajastuid ja kunstialaseid arutelusid.',
       be: 'Даследуйце, як творы мастацтва адлюстроўваюць пэўныя месцы, супольнасці, перыяды і мастацкія дыскусіі.',
       ka: 'შეისწავლეთ, როგორ ასახავს ხელოვნების ნიმუშები კონკრეტულ ადგილებს, თემებს, პერიოდებსა და მხატვრულ დისკუსიებს.',
-      kk: 'Өнер туындыларының нақты орындарды, қауымдастықтарды, кезеңдер мен өнер пікірталастарын қалай бейнелейтінін зерттеңіз.',
+      kk: 'Öner tuyndylarynyñ naqty oryndardy, qauymdastyqtardy, kezeñder men öner pıkırtalastaryn qalai beineleitının zertteñız.',
       qm: 'Sanat eserlerinin belirli yerleri, cemaatleri, devirleri ve sanat münakaşalarını nasıl aksettirdiğini keşfediñiz.',
     },
   },

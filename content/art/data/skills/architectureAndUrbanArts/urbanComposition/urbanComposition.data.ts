@@ -38,7 +38,7 @@ export const urbanComposition_SkillGroup_Data = defineSkillGroup({
     et: 'Linnaruumi kompositsioon',
     be: 'Гарадская кампазіцыя',
     ka: 'ურბანული კომპოზიცია',
-    kk: 'Қалалық композиция',
+    kk: 'Qalalyq kompozitsiia',
     qm: 'Şeer kompozitsiyası',
   },
   skills: [
@@ -78,7 +78,7 @@ export const urbanComposition_SkillGroup_Data = defineSkillGroup({
       et: 'Avasta, kuidas tänavate ja avalike ruumide paigutus kujundab linna iseloomu.',
       be: 'Адкрыйце, як размяшчэнне вуліц і грамадскіх прастор фарміруе характар горада.',
       ka: 'აღმოაჩინეთ, როგორ აყალიბებს ქუჩებისა და საჯარო სივრცეების განლაგება ქალაქის ხასიათს.',
-      kk: 'Көшелер мен қоғамдық кеңістіктердің орналасуы қала сипатын қалай қалыптастыратынын анықтаңыз.',
+      kk: 'Köşeler men qoğamdyq keñıstıkterdıñ ornalasuy qala sipatyn qalai qalyptastyratynyn anyqtañyz.',
       qm: 'Sokaklar ve cemaat meydanlarınıñ tertibi şeer karakterini nasıl şekillendirgenini keşf etiñiz.',
     },
   },

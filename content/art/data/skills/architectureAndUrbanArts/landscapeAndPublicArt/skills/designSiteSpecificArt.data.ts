@@ -31,7 +31,7 @@ export const designSiteSpecificArt_Skill_Data = defineSkill({
     et: 'Kohaspetsiifilise kunsti kujundamine',
     be: 'Праектаваць мастацтва для канкрэтнага месца',
     ka: 'კონკრეტულ ადგილზე მორგებული ხელოვნების შექმნა',
-    kk: 'Белгілі бір орынға арналған өнер жобалау',
+    kk: 'Belgılı bır orynğa arnalğan öner jobalau',
     qm: 'Yerine mahsus sanat tasarlamaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const designSiteSpecificArt_Skill_Data = defineSkill({
       et: 'Loo kunsti, mis suhestub paigaga, kus inimesed seda kogevad.',
       be: 'Стварайце мастацтва, якое адгукаецца на месца, дзе людзі з ім сустракаюцца.',
       ka: 'შექმენით ხელოვნება, რომელიც ეხმიანება ადგილს, სადაც ადამიანები მას ეცნობიან.',
-      kk: 'Адамдар өнермен кездесетін орынның ерекшелігіне үн қосатын туынды жасаңыз。',
+      kk: 'Adamdar önermen kezdesetın orynnyñ erekşelıgıne ün qosatyn tuyndy jasañyz.',
 
       qm: 'İnsanlarnıñ rast kelgen yerine cevap bergen sanat eserini yaratıñız.',
     },

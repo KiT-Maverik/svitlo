@@ -31,7 +31,7 @@ export const designAPublicSquare_Skill_Data = defineSkill({
     et: 'Avaliku väljaku kujundamine',
     be: 'Праектаваць грамадскую плошчу',
     ka: 'საჯარო მოედნის დაპროექტება',
-    kk: 'Қоғамдық алаң жобалау',
+    kk: 'Qoğamdyq alañ jobalau',
     qm: 'Cemaat meydanını tasarlamaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const designAPublicSquare_Skill_Data = defineSkill({
       et: 'Kujunda külalislahke avalik väljak kohtumiseks, liikumiseks ja visuaalseks naudinguks.',
       be: 'Арганізуйце гасцінную грамадскую плошчу для сустрэч, руху і візуальнай выразнасці.',
       ka: 'მოაწყვეთ მიმზიდველი საჯარო მოედანი შეხვედრებისთვის, გადაადგილებისა და ვიზუალური ინტერესისთვის.',
-      kk: 'Кездесуге, қозғалысқа және көркемдік тартымдылыққа арналған жайлы қоғамдық алаң ұйымдастырыңыз。',
+      kk: 'Kezdesuge, qozğalysqa jäne körkemdık tartymdylyqqa arnalğan jaily qoğamdyq alañ ūiymdastyryñyz.',
 
       qm: 'Toplanış, qatnav ve körüniş cazibesi içün quçaqlayıcı bir cemaat meydanını tertip etiñiz.',
     },

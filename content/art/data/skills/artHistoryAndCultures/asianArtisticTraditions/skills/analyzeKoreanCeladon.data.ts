@@ -31,7 +31,7 @@ export const analyzeKoreanCeladon_Skill_Data = defineSkill({
     et: 'Analüüsida Korea seladon keraamikat',
     be: 'Аналізаваць карэйскую селадонавую кераміку',
     ka: 'კორეული სელადონის გაანალიზება',
-    kk: 'Корей селадонын талдау',
+    kk: 'Korei seladonyn taldau',
     qm: 'Koreya seladon keramikasını tahlil etmek',
   },
   description: {
@@ -65,7 +65,7 @@ export const analyzeKoreanCeladon_Skill_Data = defineSkill({
       et: 'Uuri, kuidas Korea seladon keraamikas ühinevad vormid, glasuuriefektid ja kaunistused.',
       be: 'Разгледзьце, як карэйская селадонавая кераміка спалучае формы, эфекты палівы і аздабленне.',
       ka: 'დააკვირდით, როგორ აერთიანებს კორეული სელადონის კერამიკა ფორმებს, ჭიქურის ეფექტებსა და დეკორს.',
-      kk: 'Корей селадон керамикасында пішін, глазурь әсерлері мен әшекейдің қалай үйлесетінін қарастырыңыз.',
+      kk: 'Korei seladon keramikasynda pışın, glazur äserlerı men äşekeidıñ qalai üilesetının qarastyryñyz.',
       qm: 'Koreya seladon keramikasında şekiller, sır tesirleri ve bezeklerniñ nasıl birleşkenini baqıñız.',
     },
   },

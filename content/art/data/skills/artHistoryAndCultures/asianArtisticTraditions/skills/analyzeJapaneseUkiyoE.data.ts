@@ -31,7 +31,7 @@ export const analyzeJapaneseUkiyoE_Skill_Data = defineSkill({
     et: 'Analüüsida Jaapani ukiyo-e kunsti',
     be: 'Аналізаваць японскае ўкіё-э',
     ka: 'იაპონური უკიო-ე ხელოვნების გაანალიზება',
-    kk: 'Жапонның укиё-э өнерін талдау',
+    kk: 'Japonnyñ ukiio-e önerın taldau',
     qm: 'Yapon ukiyo-e sanatını tahlil etmek',
   },
   description: {
@@ -65,7 +65,7 @@ export const analyzeJapaneseUkiyoE_Skill_Data = defineSkill({
       et: 'Uuri, kuidas Jaapani ukiyo-e puulõiked seostuvad linnaelu ja puuplokilt trükkimisega.',
       be: 'Даследуйце, як японскія гравюры ўкіё-э звязаны з гарадскім жыццём і друкам з драўляных дошак.',
       ka: 'გაეცანით, როგორ უკავშირდება იაპონური უკიო-ე გრავიურები ქალაქურ ცხოვრებასა და ხეზე ბეჭდვას.',
-      kk: 'Жапон укиё-э баспаларының қала өмірімен және ағаш қалыпта басу әдісімен байланысын зерттеңіз.',
+      kk: 'Japon ukiio-e baspalarynyñ qala ömırımen jäne ağaş qalypta basu ädısımen bailanysyn zertteñız.',
       qm: 'Yapon ukiyo-e basmalarınıñ şeer hayatı ve ağaç kalıp basmasınen bağını ögrenin.',
     },
   },

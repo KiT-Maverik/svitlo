@@ -31,7 +31,7 @@ export const integrateArtWithArchitecture_Skill_Data = defineSkill({
     et: 'Kunsti arhitektuuriga lõimimine',
     be: 'Інтэграваць мастацтва з архітэктурай',
     ka: 'ხელოვნების არქიტექტურასთან ინტეგრირება',
-    kk: 'Өнерді сәулетпен кіріктіру',
+    kk: 'Önerdı säuletpen kırıktıru',
     qm: 'Sanatnı mimariy ile birleştirmek',
   },
   description: {
@@ -64,7 +64,7 @@ export const integrateArtWithArchitecture_Skill_Data = defineSkill({
       et: 'Kavanda kunstiline lisand, mis suhestub teadlikult hoone või ruumiga.',
       be: 'Стварыце мастацкае дапаўненне, якое мэтанакіравана звязана з будынкам або прасторай.',
       ka: 'შექმენით მხატვრული დამატება, რომელიც გააზრებულად უკავშირდება შენობას ან სივრცეს.',
-      kk: 'Ғимаратпен немесе кеңістікпен мақсатты байланыс орнататын көркемдік толықтыру жобалаңыз。',
+      kk: 'Ğimaratpen nemese keñıstıkpen maqsatty bailanys ornatatyn körkemdık tolyqtyru jobalañyz.',
 
       qm: 'Bina ya da meydan ile maqsatlı bağ qurğan sanat qoşuntısını tasarlayıñız.',
     },

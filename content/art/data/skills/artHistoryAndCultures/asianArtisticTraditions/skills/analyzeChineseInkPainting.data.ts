@@ -31,7 +31,7 @@ export const analyzeChineseInkPainting_Skill_Data = defineSkill({
     et: 'Analüüsida Hiina tušimaali',
     be: 'Аналізаваць кітайскі жывапіс тушшу',
     ka: 'ჩინური ტუშით მხატვრობის გაანალიზება',
-    kk: 'Қытайдың тушьпен салынған кескіндемесін талдау',
+    kk: 'Qytaidyñ tuşpen salynğan keskındemesın taldau',
     qm: 'Qıtay siyah mürekkep resim sanatını tahlil etmek',
   },
   description: {
@@ -65,7 +65,7 @@ export const analyzeChineseInkPainting_Skill_Data = defineSkill({
       et: 'Uuri, kuidas Hiina tušimaal ühendab väljendusrikkad pintslitõmbed, ruumi ja kirjalikud pealdised.',
       be: 'Даведайцеся, як кітайскі жывапіс тушшу спалучае выразныя мазкі пэндзля, прастору і надпісы.',
       ka: 'გაიგეთ, როგორ აერთიანებს ჩინური ტუშით მხატვრობა გამომსახველ ფუნჯის მონასმებს, სივრცესა და წარწერებს.',
-      kk: 'Қытайдың тушьпен салынған кескіндемесінде мәнерлі қылқалам іздері, кеңістік пен жазулардың қалай үйлесетінін біліңіз.',
+      kk: 'Qytaidyñ tuşpen salynğan keskındemesınde mänerlı qylqalam ızderı, keñıstık pen jazulardyñ qalai üilesetının bılıñız.',
       qm: 'Qıtay mürekkep resimlerinde ifadeleyici fırça izleriniñ, mekân ve yazılarnıñ nasıl birleşkenini ögrenin.',
     },
   },

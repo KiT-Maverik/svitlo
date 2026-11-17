@@ -39,7 +39,7 @@ export const asianArtisticTraditions_SkillGroup_Data = defineSkillGroup({
     et: 'Aasia kunstilised traditsioonid',
     be: 'Мастацкія традыцыі Азіі',
     ka: 'აზიის მხატვრული ტრადიციები',
-    kk: 'Азияның өнер дәстүрлері',
+    kk: 'Aziianyñ öner dästürlerı',
     qm: 'Asiya sanat adetleri',
   },
   skills: [
@@ -80,7 +80,7 @@ export const asianArtisticTraditions_SkillGroup_Data = defineSkillGroup({
       et: 'Avasta Aasia eri kunstipraktikaid nende ajaloo ja materjalide kaudu.',
       be: 'Дасьледуйце адметныя мастацкія практыкі Азіі празь іх гісторыю і матэрыялы.',
       ka: 'შეისწავლეთ აზიის მრავალფეროვანი მხატვრული პრაქტიკა მათი ისტორიისა და მასალების მიხედვით.',
-      kk: 'Азияның әртүрлі өнер тәжірибелерін тарихы мен материалдары арқылы зерттеңіз.',
+      kk: 'Aziianyñ ärtürlı öner täjıribelerın tarihy men materialdary arqyly zertteñız.',
       qm: "Asiya'daki farklı sanat uygulamalarını tarihleri ve malzemeleri üzerinden keşfediñiz.",
     },
   },

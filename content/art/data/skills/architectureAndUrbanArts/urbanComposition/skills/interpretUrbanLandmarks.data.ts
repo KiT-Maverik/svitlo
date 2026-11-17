@@ -31,7 +31,7 @@ export const interpretUrbanLandmarks_Skill_Data = defineSkill({
     et: 'Linna maamärkide tõlgendamine',
     be: 'Інтэрпрэтаваць гарадскія арыенціры',
     ka: 'ურბანული ღირსშესანიშნაობების ინტერპრეტაცია',
-    kk: 'Қалалық бағдарларды түсіндіру',
+    kk: 'Qalalyq bağdarlardy tüsındıru',
     qm: 'Şeer alametlerini tefsir etüv',
   },
   description: {
@@ -64,7 +64,7 @@ export const interpretUrbanLandmarks_Skill_Data = defineSkill({
       et: 'Uuri, kuidas silmapaistvad linnamärgid aitavad inimestel orienteeruda ja sidet tunnetada.',
       be: 'Даследуйце, як выразныя гарадскія арыенціры дапамагаюць людзям арыентавацца і адчуваць сувязь з горадам.',
       ka: 'შეისწავლეთ, როგორ ეხმარება გამორჩეული ურბანული ღირსშესანიშნაობები ადამიანებს ორიენტირებასა და კავშირის განცდაში.',
-      kk: 'Қаланың ерекше нысандары адамдарға бағыт табуға және ортақтық сезінуге қалай көмектесетінін зерттеңіз。',
+      kk: 'Qalanyñ erekşe nysandary adamdarğa bağyt tabuğa jäne ortaqtyq sezınuge qalai kömektesetının zertteñız.',
 
       qm: 'Ayrı yerlerniñ insanlarğa yol tapmağa ve bağlılıq duymağa nasıl yardım etkenini keşf etiñiz.',
     },

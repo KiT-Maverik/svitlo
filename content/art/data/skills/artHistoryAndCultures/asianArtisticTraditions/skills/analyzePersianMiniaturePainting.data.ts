@@ -31,7 +31,7 @@ export const analyzePersianMiniaturePainting_Skill_Data = defineSkill({
     et: 'Analüüsida Pärsia miniatuurmaali',
     be: 'Аналізаваць персідскі мініяцюрны жывапіс',
     ka: 'სპარსული მინიატურული მხატვრობის გაანალიზება',
-    kk: 'Парсы миниатюралық кескіндемесін талдау',
+    kk: 'Parsy miniatiuralyq keskındemesın taldau',
     qm: 'Fars minyatür resmini tahlil etmek',
   },
   description: {
@@ -65,7 +65,7 @@ export const analyzePersianMiniaturePainting_Skill_Data = defineSkill({
       et: 'Uuri, kuidas Pärsia miniatuurmaalid jutustavad lugusid värvide ja stiliseeritud ruumi abil.',
       be: 'Даведайцеся, як персідскія мініяцюры расказваюць гісторыі з дапамогай колеру і стылізаванай прасторы.',
       ka: 'გაეცანით, როგორ ჰყვება სპარსული მინიატურები ამბებს ფერებისა და სტილიზებული სივრცის მეშვეობით.',
-      kk: 'Парсы миниатюраларының түс пен стильдендірілген кеңістік арқылы оқиғаларды қалай баяндайтынын зерттеңіз.',
+      kk: 'Parsy miniatiuralarynyñ tüs pen stildendırılgen keñıstık arqyly oqiğalardy qalai baiandaitynyn zertteñız.',
       qm: 'Fars minyatür resimleri renk ve üslüplaştırılğan mekân vastasınen nasıl añlatqanını ögrenin.',
     },
   },

@@ -31,7 +31,7 @@ export const compareUrbanSpatialPatterns_Skill_Data = defineSkill({
     et: 'Linnaruumi mustrite võrdlemine',
     be: 'Параўноўваць гарадскія прасторавыя ўзоры',
     ka: 'ურბანული სივრცითი ნიმუშების შედარება',
-    kk: 'Қалалық кеңістік үлгілерін салыстыру',
+    kk: 'Qalalyq keñıstık ülgılerın salystyru',
     qm: 'Şeer meydan şekillerini qarşılaştırmaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const compareUrbanSpatialPatterns_Skill_Data = defineSkill({
       et: 'Võrdle erinevaid tänavamustreid ja kogemusi, mida need loovad.',
       be: 'Параўнайце розныя схемы вуліц і ўражанні, якія яны ствараюць.',
       ka: 'შეადარეთ ქუჩების სხვადასხვა განლაგება და მათ მიერ შექმნილი გამოცდილება.',
-      kk: 'Көше құрылымдарының әртүрлі үлгілері мен олардың қалыптастыратын тәжірибесін салыстырыңыз。',
+      kk: 'Köşe qūrylymdarynyñ ärtürlı ülgılerı men olardyñ qalyptastyratyn täjıribesın salystyryñyz.',
 
       qm: 'Ayrı sokak tertiplerini ve olarnıñ doğurğan tecribelerini qarşılaştırıñız.',
     },

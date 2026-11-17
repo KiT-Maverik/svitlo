@@ -31,7 +31,7 @@ export const analyzeAStreetscape_Skill_Data = defineSkill({
     et: 'Tänavaruumi analüüsimine',
     be: 'Аналізаваць вулічны краявід',
     ka: 'ქუჩის პეიზაჟის ანალიზი',
-    kk: 'Көше көрінісін талдау',
+    kk: 'Köşe körınısın taldau',
     qm: 'Sokak körünişini tahlil etüv',
   },
   description: {
@@ -64,7 +64,7 @@ export const analyzeAStreetscape_Skill_Data = defineSkill({
       et: 'Uuri, kuidas hooned, liikumisteed ja servad annavad tänavale omapära.',
       be: 'Паглядзіце, як будынкі, шляхі і межы надаюць вуліцы адметны характар.',
       ka: 'შეისწავლეთ, როგორ ანიჭებს შენობები, ბილიკები და საზღვრები ქუჩას გამორჩეულ ხასიათს.',
-      kk: 'Ғимараттар, жолдар мен кеңістік шекаралары көшеге өзіндік сипат қалай беретінін зерттеңіз。',
+      kk: 'Ğimarattar, joldar men keñıstık şekaralary köşege özındık sipat qalai beretının zertteñız.',
 
       qm: 'Binalar, yollar ve kenarlarnıñ sokakka mahsus bir hava nasıl bergenini araştırıñız.',
     },

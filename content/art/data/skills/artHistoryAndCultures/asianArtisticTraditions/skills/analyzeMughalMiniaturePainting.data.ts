@@ -31,7 +31,7 @@ export const analyzeMughalMiniaturePainting_Skill_Data = defineSkill({
     et: 'Analüüsida Mogulite miniatuurmaali',
     be: 'Аналізаваць магольскі мініяцюрны жывапіс',
     ka: 'მუღალთა მინიატურული მხატვრობის გაანალიზება',
-    kk: 'Моғол миниатюралық кескіндемесін талдау',
+    kk: 'Moğol miniatiuralyq keskındemesın taldau',
     qm: 'Babür minyatür resmini tahlil etmek',
   },
   description: {
@@ -65,7 +65,7 @@ export const analyzeMughalMiniaturePainting_Skill_Data = defineSkill({
       et: 'Avasta, kuidas Mogulite õukonna- ja käsikirjamaal jutustab lugusid peente detailide abil.',
       be: 'Даведайцеся, як магольскі прыдворны жывапіс і ілюстрацыі рукапісаў расказваюць гісторыі праз дэталёвыя выявы.',
       ka: 'გაიგეთ, როგორ გადმოსცემს მუღალთა სასახლისა და ხელნაწერების მხატვრობა ამბებს დახვეწილი დეტალებით.',
-      kk: 'Моғол сарайы мен қолжазба кескіндемесінің ұсақ бөлшектер арқылы оқиғаларды қалай баяндайтынын біліңіз.',
+      kk: 'Moğol saraiy men qoljazba keskındemesınıñ ūsaq bölşekter arqyly oqiğalardy qalai baiandaitynyn bılıñız.',
       qm: 'Babür saray resimleri ve elyazmalarındaki resimler ince tafsilâtlarnen nasıl ikâye añlatqanını ögreniñiz.',
     },
   },
