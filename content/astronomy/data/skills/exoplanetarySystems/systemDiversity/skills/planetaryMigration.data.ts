@@ -31,7 +31,7 @@ export const planetaryMigration_Skill_Data = defineSkill({
     et: 'Planeetide ränne',
     be: 'Міграцыя плянэт',
     ka: 'პლანეტების მიგრაცია',
-    kk: 'Ғаламшарлардың көшуі',
+    kk: 'Ğalamşarlardyñ köşuı',
     qm: 'Seyyarelerniñ köçüvi',
   },
   description: {
@@ -65,7 +65,7 @@ export const planetaryMigration_Skill_Data = defineSkill({
       et: 'Uuri, kuidas planeedid võivad pärast tekkimist liikuda teistele orbiitidele.',
       be: 'Дасьледуйце, як плянэты пасьля ўтварэньня могуць пераходзіць на іншыя арбіты.',
       ka: 'გაიგეთ, როგორ შეიძლება პლანეტებმა წარმოქმნის შემდეგ სხვა ორბიტებზე გადაინაცვლონ.',
-      kk: 'Ғаламшарлар қалыптасқаннан кейін басқа орбиталарға қалай ауысуы мүмкін екенін зерттеңіз.',
+      kk: 'Ğalamşarlar qalyptasqannan keiın basqa orbitalarğa qalai auysuy mümkın ekenın zertteñız.',
       qm: 'Seyyareler peyda olğandan soñ başqa orbitalarğa nasıl köçe bilgenini ögreniñiz.',
     },
   },

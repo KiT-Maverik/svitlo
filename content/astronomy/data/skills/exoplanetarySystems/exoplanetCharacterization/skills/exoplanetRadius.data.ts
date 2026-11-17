@@ -31,7 +31,7 @@ export const exoplanetRadius_Skill_Data = defineSkill({
     et: 'Eksoplaneedi raadius',
     be: 'Радыюс экзаплянэты',
     ka: 'ეგზოპლანეტის რადიუსი',
-    kk: 'Экзопланетаның радиусы',
+    kk: 'Ekzoplanetanyñ radiusy',
     qm: 'Ekzoseyyareniñ radiusı',
   },
   description: {
@@ -65,7 +65,7 @@ export const exoplanetRadius_Skill_Data = defineSkill({
       et: 'Hinda kauge planeedi suurust transiidi ja tähe kohta teadaoleva teabe põhjal.',
       be: 'Ацэньвайце памер далёкай плянэты паводле яе транзыту і зьвестак пра зорку.',
       ka: 'შეაფასეთ შორეული პლანეტის ზომა მისი ტრანზიტისა და ვარსკვლავის შესახებ მონაცემებით.',
-      kk: 'Алыс ғаламшардың өлшемін транзит пен оның жұлдызы туралы ақпарат арқылы бағалаңыз.',
+      kk: 'Alys ğalamşardyñ ölşemın tranzit pen onyñ jūldyzy turaly aqparat arqyly bağalañyz.',
       qm: 'Uzaq seyyareniñ büyükligini yıldız ögünden keçüvi ve yıldız aqqındaki malümat yardımınen tahmin etiñiz.',
     },
   },

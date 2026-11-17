@@ -31,7 +31,7 @@ export const circumstellarHabitableZones_Skill_Data = defineSkill({
     et: 'Tähtede elukõlblikud vööndid',
     be: 'Зоны патэнцыйнай населенасьці вакол зорак',
     ka: 'ვარსკვლავების გარშემო სასიცოცხლო ზონები',
-    kk: 'Жұлдыз маңындағы тіршілікке қолайлы аймақтар',
+    kk: 'Jūldyz mañyndağy tırşılıkke qolaily aimaqtar',
     qm: 'Yıldız etrafındaki yaşavğa elverişli zonalar',
   },
   description: {
@@ -65,7 +65,7 @@ export const circumstellarHabitableZones_Skill_Data = defineSkill({
       et: 'Mõista, mida tähe elukõlblik vöönd ütleb ja ei ütle vedela vee kohta.',
       be: 'Зразумейце, што зона патэнцыйнай населенасьці зоркі можа, а чаго ня можа паведаміць пра вадкую ваду.',
       ka: 'გაიგეთ, რას გვამცნობს და რას ვერ ამტკიცებს ვარსკვლავის სასიცოცხლო ზონა თხევადი წყლის შესახებ.',
-      kk: 'Жұлдыздың тіршілікке қолайлы аймағы сұйық су туралы нені айта алатынын және нені дәлелдей алмайтынын түсініңіз.',
+      kk: 'Jūldyzdyñ tırşılıkke qolaily aimağy sūiyq su turaly nenı aita alatynyn jäne nenı däleldei almaitynyn tüsınıñız.',
       qm: 'Yıldıznıñ yaşavğa elverişli zonası sıyıq suv aqqında neni bildirgenini ve neni isbat etmegenini añlañız.',
     },
   },

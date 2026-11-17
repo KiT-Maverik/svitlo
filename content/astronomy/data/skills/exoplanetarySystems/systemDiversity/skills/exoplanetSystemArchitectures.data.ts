@@ -31,7 +31,7 @@ export const exoplanetSystemArchitectures_Skill_Data = defineSkill({
     et: 'Eksoplaneedisüsteemide ülesehitus',
     be: 'Архітэктура экзаплянэтных сыстэмаў',
     ka: 'ეგზოპლანეტური სისტემების აგებულება',
-    kk: 'Экзопланеталық жүйелердің құрылысы',
+    kk: 'Ekzoplanetalyq jüielerdıñ qūrylysy',
     qm: 'Ekzoseyyare sistemalarınıñ quruluşları',
   },
   description: {
@@ -65,7 +65,7 @@ export const exoplanetSystemArchitectures_Skill_Data = defineSkill({
       et: 'Võrdle tihedalt paiknevate planeetide, ebatavaliste orbiitide või orbitaalresonantsidega süsteeme.',
       be: 'Параўноўвайце сыстэмы са шчыльным разьмяшчэньнем плянэт, незвычайнымі арбітамі або арбітальнымі рэзанансамі.',
       ka: 'შეადარეთ სისტემები მჭიდროდ განლაგებული პლანეტებით, უჩვეულო ორბიტებით ან ორბიტული რეზონანსებით.',
-      kk: 'Ғаламшарлары тығыз орналасқан, орбиталары ерекше немесе орбиталық резонанстары бар жүйелерді салыстырыңыз.',
+      kk: 'Ğalamşarlary tyğyz ornalasqan, orbitalary erekşe nemese orbitalyq rezonanstary bar jüielerdı salystyryñyz.',
       qm: 'Seyyareleri yaqın yerleşken, orbitaları ğayrı-adetiy ya da orbital rezonansı olğan sistemalarnı qıyaslañız.',
     },
   },

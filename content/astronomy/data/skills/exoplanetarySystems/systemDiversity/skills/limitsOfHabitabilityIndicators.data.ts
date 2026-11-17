@@ -31,7 +31,7 @@ export const limitsOfHabitabilityIndicators_Skill_Data = defineSkill({
     et: 'Elukõlblikkuse näitajate piirangud',
     be: 'Абмежаваньні паказьнікаў прыдатнасьці да жыцьця',
     ka: 'სიცოცხლისათვის ვარგისიანობის მაჩვენებლების შეზღუდვები',
-    kk: 'Тіршілікке қолайлылық көрсеткіштерінің шектеулері',
+    kk: 'Tırşılıkke qolailylyq körsetkışterınıñ şekteulerı',
     qm: 'Yaşavğa elverişlilik belgileriniñ sıñırları',
   },
   description: {
@@ -65,7 +65,7 @@ export const limitsOfHabitabilityIndicators_Skill_Data = defineSkill({
       et: 'Mõista, miks Maa-suurune planeet sobival orbiidil ei pruugi olla eluks kõlblik.',
       be: 'Зразумейце, чаму плянэта памерам зь Зямлю на адпаведнай арбіце не абавязкова прыдатная для жыцьця.',
       ka: 'გაიგეთ, რატომ არ არის დედამიწის ზომის პლანეტა შესაფერის ორბიტაზე აუცილებლად სიცოცხლისთვის ვარგისი.',
-      kk: 'Жер көлеміндей ғаламшар қолайлы орбитада болса да, неге міндетті түрде тіршілікке жарамды емес екенін түсініңіз.',
+      kk: 'Jer kölemındei ğalamşar qolaily orbitada bolsa da, nege mındettı türde tırşılıkke jaramdy emes ekenın tüsınıñız.',
       qm: 'Yer büyükligindeki seyyare uyğun orbitada olsa da, ne içün mıtlaq yaşavğa elverişli olmağanını añlañız.',
     },
   },

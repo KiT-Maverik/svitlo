@@ -31,7 +31,7 @@ export const transitDetection_Skill_Data = defineSkill({
     et: 'Transiidimeetod',
     be: 'Выяўленьне мэтадам транзытаў',
     ka: 'ტრანზიტის მეთოდით აღმოჩენა',
-    kk: 'Транзит әдісімен анықтау',
+    kk: 'Tranzit ädısımen anyqtau',
     qm: 'Tranzit usulı ile tapuv',
   },
   description: {
@@ -65,7 +65,7 @@ export const transitDetection_Skill_Data = defineSkill({
       et: 'Tunne ära, kuidas korduv tähe heleduse vähenemine võib viidata tähe eest mööduvale planeedile.',
       be: 'Распазнавайце, як паўторныя зьніжэньні яркасьці зоркі могуць сьведчыць пра праходжаньне плянэты перад ёй.',
       ka: 'ამოიცანით, როგორ შეიძლება ვარსკვლავის სინათლის განმეორებითი შესუსტება მის წინ პლანეტის გავლას ნიშნავდეს.',
-      kk: 'Жұлдыз жарығының қайталанып бәсеңдеуі оның алдынан өтетін ғаламшарды қалай білдіруі мүмкін екенін таныңыз.',
+      kk: 'Jūldyz jaryğynyñ qaitalanyp bäseñdeuı onyñ aldynan ötetın ğalamşardy qalai bıldıruı mümkın ekenın tanyñyz.',
       qm: 'Yıldız yarığınıñ tekrar tekrar azayuvı onıñ ögünden keçken seyyareni nasıl köstere bilgenini ögreniñiz.',
     },
   },

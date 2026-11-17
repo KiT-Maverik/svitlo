@@ -31,7 +31,7 @@ export const directImaging_Skill_Data = defineSkill({
     et: 'Otsene pildistamine',
     be: 'Непасрэднае атрыманьне выяваў',
     ka: 'პირდაპირი გამოსახულების მიღება',
-    kk: 'Тікелей бейнелеу',
+    kk: 'Tıkelei beineleu',
     qm: 'Doğrudan tasvir aluv',
   },
   description: {
@@ -65,7 +65,7 @@ export const directImaging_Skill_Data = defineSkill({
       et: 'Uuri, miks on keeruline pildistada planeeti selle heleda ematähe kõrval.',
       be: 'Дасьледуйце, чаму цяжка сфатаграфаваць плянэту побач зь яе яркай зоркай-гаспадаром.',
       ka: 'გაიგეთ, რატომ არის ძნელი პლანეტის გადაღება მისი კაშკაშა მასპინძელი ვარსკვლავის გვერდით.',
-      kk: 'Жарқыраған негізгі жұлдызының жанындағы ғаламшарды суретке түсіру неге қиын екенін зерттеңіз.',
+      kk: 'Jarqyrağan negızgı jūldyzynyñ janyndağy ğalamşardy suretke tüsıru nege qiyn ekenın zertteñız.',
       qm: 'Parlaq ana yıldız yanında seyyareniñ resmini çekmek ne içün qıyın olğanını ögreniñiz.',
     },
   },

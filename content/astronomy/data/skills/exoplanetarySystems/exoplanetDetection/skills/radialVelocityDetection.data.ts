@@ -31,7 +31,7 @@ export const radialVelocityDetection_Skill_Data = defineSkill({
     et: 'Radiaalkiiruse meetod',
     be: 'Выяўленьне паводле радыяльнай хуткасьці',
     ka: 'რადიალური სიჩქარით აღმოჩენა',
-    kk: 'Радиал жылдамдық әдісімен анықтау',
+    kk: 'Radial jyldamdyq ädısımen anyqtau',
     qm: 'Radial tezlik usulı ile tapuv',
   },
   description: {
@@ -65,7 +65,7 @@ export const radialVelocityDetection_Skill_Data = defineSkill({
       et: 'Järelda tähe spektrimuutustest tema ümber tiirleva planeedi gravitatsioonilist mõju.',
       be: 'Паводле зьменаў у спэктры зоркі вызначайце гравітацыйны ўплыў плянэты, што абарачаецца вакол яе.',
       ka: 'ვარსკვლავის სპექტრული ხაზების პერიოდული წანაცვლებით გამოიკვლიეთ მის გარშემო მოძრავი პლანეტის გრავიტაციული გავლენა.',
-      kk: 'Жұлдыз спектріндегі қозғалыс өзгерістерінен оны айналатын ғаламшардың тартылыс әсерін анықтаңыз.',
+      kk: 'Jūldyz spektrındegı qozğalys özgerısterınen ony ainalatyn ğalamşardyñ tartylys äserın anyqtañyz.',
       qm: 'Yıldıznıñ spektrindeki areket deñişmelerinden onı dolanğan seyyareniñ çekişini añlañız.',
     },
   },

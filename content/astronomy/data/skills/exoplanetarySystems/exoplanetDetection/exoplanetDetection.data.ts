@@ -38,7 +38,7 @@ export const exoplanetDetection_SkillGroup_Data = defineSkillGroup({
     et: 'Eksoplaneetide avastamine',
     be: 'Выяўленьне экзаплянэт',
     ka: 'ეგზოპლანეტების აღმოჩენა',
-    kk: 'Экзопланеталарды анықтау',
+    kk: 'Ekzoplanetalardy anyqtau',
     qm: 'Ekzoseyyarelerni tapuv',
   },
   skills: [
@@ -78,7 +78,7 @@ export const exoplanetDetection_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri, milliste meetoditega astronoomid leiavad planeete kaugete tähtede ümber.',
       be: 'Даведайцеся, якімі мэтадамі астраномы знаходзяць плянэты каля далёкіх зорак.',
       ka: 'გაეცანით მეთოდებს, რომლებითაც ასტრონომები შორეული ვარსკვლავების გარშემო პლანეტებს პოულობენ.',
-      kk: 'Астрономдар алыс жұлдыздардың айналасындағы ғаламшарларды қандай әдістермен табатынын біліңіз.',
+      kk: 'Astronomdar alys jūldyzdardyñ ainalasyndağy ğalamşarlardy qandai ädıstermen tabatynyn bılıñız.',
       qm: 'Astronomlar uzaq yıldızlar etrafındaki seyyarelerni tapmaq içün qullanğan usullarnı ögreniñiz.',
     },
   },

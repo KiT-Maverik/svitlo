@@ -31,7 +31,7 @@ export const gravitationalMicrolensing_Skill_Data = defineSkill({
     et: 'Gravitatsiooniline mikroläätsestumine',
     be: 'Гравітацыйнае мікралінзаваньне',
     ka: 'გრავიტაციული მიკროლინზირება',
-    kk: 'Гравитациялық микролинзалау',
+    kk: 'Gravitatsiialyq mikrolinzalau',
     qm: 'Gravitatsion mikrolinzalanma',
   },
   description: {
@@ -65,7 +65,7 @@ export const gravitationalMicrolensing_Skill_Data = defineSkill({
       et: 'Mõista, kuidas gravitatsioonilääts võib ajutiselt suurendada kauge tähe näivat heledust ja aidata planeeti avastada.',
       be: 'Зразумейце, як гравітацыя можа ненадоўга ўзмацніць сьвятло далёкай зоркі й выявіць плянэту.',
       ka: 'გაიგეთ, როგორ შეუძლია გრავიტაციას შორეული ვარსკვლავის სინათლის ხანმოკლე გაძლიერება და პლანეტის გამოვლენა.',
-      kk: 'Тартылыс күші алыс жұлдыз жарығын уақытша күшейтіп, ғаламшарды қалай анықтай алатынын түсініңіз.',
+      kk: 'Tartylys küşı alys jūldyz jaryğyn uaqytşa küşeitıp, ğalamşardy qalai anyqtai alatynyn tüsınıñız.',
       qm: 'Cazibe quveti uzaq yıldıznıñ yarığını qısqa vaqıtqa küçlendirip, seyyareni nasıl köstere bilgenini añlañız.',
     },
   },

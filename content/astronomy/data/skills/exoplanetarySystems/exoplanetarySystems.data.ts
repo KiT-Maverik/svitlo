@@ -35,7 +35,7 @@ export const exoplanetarySystems_SkillDomain_Data = defineSkillDomain({
     et: 'Eksoplaneedisüsteemid',
     be: 'Экзаплянэтныя сыстэмы',
     ka: 'ეგზოპლანეტური სისტემები',
-    kk: 'Экзопланеталық жүйелер',
+    kk: 'Ekzoplanetalyq jüieler',
     qm: 'Ekzoseyyare sistemaları',
   },
   groups: [
@@ -74,7 +74,7 @@ export const exoplanetarySystems_SkillDomain_Data = defineSkillDomain({
       et: 'Uuri planeete väljaspool Päikesesüsteemi ja seda, mida nende avastused teiste planeedisüsteemide kohta näitavad.',
       be: 'Дасьледуйце плянэты за межамі Сонечнай сыстэмы й тое, што іх адкрыцьці раскрываюць пра іншыя плянэтныя сыстэмы.',
       ka: 'გაეცანით მზის სისტემის მიღმა პლანეტებს და იმას, რას გვიჩვენებს მათი აღმოჩენა სხვა პლანეტურ სისტემებზე.',
-      kk: 'Күн жүйесінен тыс ғаламшарларды және олардың ашылуы басқа ғаламшар жүйелері туралы не білдіретінін зерттеңіз.',
+      kk: 'Kün jüiesınen tys ğalamşarlardy jäne olardyñ aşyluy basqa ğalamşar jüielerı turaly ne bıldıretının zertteñız.',
       qm: 'Küneş sistemasından tıştaki seyyarelerni ve olarnıñ keşfleri başqa seyyare sistemaları aqqında neni köstergenini ögreniñiz.',
     },
   },

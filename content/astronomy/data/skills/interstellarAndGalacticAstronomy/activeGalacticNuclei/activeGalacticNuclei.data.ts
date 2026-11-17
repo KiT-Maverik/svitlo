@@ -39,7 +39,7 @@ export const activeGalacticNuclei_SkillGroup_Data = defineSkillGroup({
     et: 'Aktiivsed galaktikatuumad',
     be: 'Актыўныя ядры галяктык',
     ka: 'აქტიური გალაქტიკური ბირთვები',
-    kk: 'Белсенді галактикалық ядролар',
+    kk: 'Belsendı galaktikalyq iadrolar',
   },
   skills: [
     accretionPoweredEmission_Skill_Data,
@@ -79,7 +79,7 @@ export const activeGalacticNuclei_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri galaktikate keskmeid, kus mustade aukude poole langev aine vabastab tohutult energiat.',
       be: 'Дасьледуй цэнтры галяктык, дзе рэчыва, што падае да чорных дзірак, вызваляе велізарную энэргію.',
       ka: 'გამოიკვლიე გალაქტიკათა ცენტრები, სადაც შავი ხვრელებისკენ ვარდნილი ნივთიერება უზარმაზარ ენერგიას გამოყოფს.',
-      kk: 'Қара құрдымдарға құлаған зат орасан энергия бөлетін галактика орталықтарын зертте.',
+      kk: 'Qara qūrdymdarğa qūlağan zat orasan energiia böletın galaktika ortalyqtaryn zertte.',
     },
   },
 });

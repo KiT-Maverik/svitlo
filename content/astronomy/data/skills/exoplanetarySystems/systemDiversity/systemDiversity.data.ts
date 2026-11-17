@@ -38,7 +38,7 @@ export const systemDiversity_SkillGroup_Data = defineSkillGroup({
     et: 'Planeedisüsteemide mitmekesisus',
     be: 'Разнастайнасьць плянэтных сыстэмаў',
     ka: 'პლანეტური სისტემების მრავალფეროვნება',
-    kk: 'Ғаламшар жүйелерінің әртүрлілігі',
+    kk: 'Ğalamşar jüielerınıñ ärtürlılıgı',
     qm: 'Seyyare sistemalarınıñ çeşitliligi',
   },
   skills: [
@@ -77,7 +77,7 @@ export const systemDiversity_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri, kui palju võivad teised planeedisüsteemid erineda meie Päikesesüsteemist.',
       be: 'Даведайцеся, наколькі іншыя плянэтныя сыстэмы могуць адрозьнівацца ад Сонечнай сыстэмы.',
       ka: 'გაიგეთ, რამდენად შეიძლება განსხვავდებოდეს სხვა პლანეტური სისტემები ჩვენი მზის სისტემისგან.',
-      kk: 'Басқа ғаламшар жүйелері біздің Күн жүйесінен қаншалықты ерекшеленуі мүмкін екенін біліңіз.',
+      kk: 'Basqa ğalamşar jüielerı bızdıñ Kün jüiesınen qanşalyqty erekşelenuı mümkın ekenın bılıñız.',
       qm: 'Başqa seyyare sistemaları bizim Küneş sistemamızdan ne qadar farqlı ola bilecegini ögreniñiz.',
     },
   },
