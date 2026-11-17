@@ -31,7 +31,7 @@ export const fixedAndVariableCosts_Skill_Data = defineSkill({
     et: 'Püsi- ja muutuvkulud',
     be: 'Сталыя й зьменныя выдаткі',
     ka: 'ფიქსირებული და ცვლადი ხარჯები',
-    kk: 'Тұрақты және айнымалы шығындар',
+    kk: 'Tūraqty jäne ainymaly şyğyndar',
     qm: 'Sabit ve deñişken masraflar',
   },
   description: {
@@ -65,7 +65,7 @@ export const fixedAndVariableCosts_Skill_Data = defineSkill({
       et: 'Erista püsivaid kulusid neist, mis koos toodanguga kasvavad.',
       be: 'Адрозьнівай нязьменныя выдаткі ад тых, што растуць з абсягам вытворчасьці.',
       ka: 'გაარჩიე მუდმივი ხარჯები იმ ხარჯებისგან, რომლებიც წარმოებასთან ერთად იზრდება.',
-      kk: 'Өзгермейтін шығынды өнім көлемімен өсетін шығыннан ажырат.',
+      kk: 'Özgermeitın şyğyndy önım kölemımen ösetın şyğynnan ajyrat.',
       qm: 'Sabit qalğan masraflarnen istisal artqanda artqan masraflarnı ayır.',
     },
   },

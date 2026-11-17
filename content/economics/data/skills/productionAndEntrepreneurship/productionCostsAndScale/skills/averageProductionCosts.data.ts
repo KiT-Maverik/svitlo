@@ -31,7 +31,7 @@ export const averageProductionCosts_Skill_Data = defineSkill({
     et: 'Keskmised tootmiskulud',
     be: 'Сярэднія вытворчыя выдаткі',
     ka: 'წარმოების საშუალო დანახარჯები',
-    kk: 'Орташа өндірістік шығындар',
+    kk: 'Ortaşa öndırıstık şyğyndar',
     qm: 'Ortaca istisal masrafları',
   },
   description: {
@@ -65,7 +65,7 @@ export const averageProductionCosts_Skill_Data = defineSkill({
       et: 'Arvuta ühe ühiku tootmise keskmine maksumus.',
       be: 'Вылічы сярэдні кошт вытворчасьці адной адзінкі.',
       ka: 'გამოთვალე ერთი ერთეულის წარმოების საშუალო დანახარჯი.',
-      kk: 'Бір өнім бірлігін өндірудің орташа құнын есепте.',
+      kk: 'Bır önım bırlıgın öndırudıñ ortaşa qūnyn esepte.',
       qm: 'Bir dane mahsul istisaliniñ ortaca masrafını esapla.',
     },
   },

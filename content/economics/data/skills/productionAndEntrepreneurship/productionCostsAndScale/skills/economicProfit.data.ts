@@ -31,7 +31,7 @@ export const economicProfit_Skill_Data = defineSkill({
     et: 'Majanduslik kasum',
     be: 'Эканамічны прыбытак',
     ka: 'ეკონომიკური მოგება',
-    kk: 'Экономикалық пайда',
+    kk: 'Ekonomikalyq paida',
     qm: 'İqtisadiy fayda',
   },
   description: {
@@ -65,7 +65,7 @@ export const economicProfit_Skill_Data = defineSkill({
       et: 'Mõista, miks majanduslik kasum arvestab enamat kui kirjapandud kulusid.',
       be: 'Зразумей, чаму эканамічны прыбытак улічвае ня толькі запісаныя выдаткі.',
       ka: 'გაიგე, რატომ ითვალისწინებს ეკონომიკური მოგება აღრიცხულ ხარჯებზე მეტს.',
-      kk: 'Экономикалық пайда есепте көрсетілген шығындармен қатар балама шығындарды да неге ескеретінін түсін.',
+      kk: 'Ekonomikalyq paida esepte körsetılgen şyğyndarmen qatar balama şyğyndardy da nege eskeretının tüsın.',
       qm: 'İqtisadiy fayda ne içün yazılğan masraflardan başqa masraflarnı da esapqa alğanını añla.',
     },
   },

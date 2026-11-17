@@ -39,7 +39,7 @@ export const productionCostsAndScale_SkillGroup_Data = defineSkillGroup({
     et: 'Tootmiskulud ja mastaap',
     be: 'Выдаткі й маштаб вытворчасьці',
     ka: 'წარმოების დანახარჯები და მასშტაბი',
-    kk: 'Өндіріс шығындары мен ауқымы',
+    kk: 'Öndırıs şyğyndary men auqymy',
     qm: 'İstisal masrafları ve miqyas',
   },
   skills: [
@@ -80,7 +80,7 @@ export const productionCostsAndScale_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri, kuidas tootmiskulud muutuvad ettevõtte tegevuse ulatusega.',
       be: 'Дасьледуй, як вытворчыя выдаткі зьмяняюцца з маштабам фірмы.',
       ka: 'გაიგე, როგორ იცვლება წარმოების დანახარჯები კომპანიის მასშტაბთან ერთად.',
-      kk: 'Фирма ауқымы өзгергенде өндіріс шығындары қалай өзгеретінін зертте.',
+      kk: 'Firma auqymy özgergende öndırıs şyğyndary qalai özgeretının zertte.',
       qm: 'Firmanıñ miqyasınen istisal masrafları nasıl deñişkenini ögren.',
     },
   },

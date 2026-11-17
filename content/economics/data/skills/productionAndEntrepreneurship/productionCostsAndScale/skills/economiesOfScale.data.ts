@@ -31,7 +31,7 @@ export const economiesOfScale_Skill_Data = defineSkill({
     et: 'Mastaabisääst',
     be: 'Эканомія ад маштабу',
     ka: 'მასშტაბის ეკონომია',
-    kk: 'Ауқым есебінен үнемдеу',
+    kk: 'Auqym esebınen ünemdeu',
     qm: 'Miqyas iqtisadı',
   },
   description: {
@@ -64,7 +64,7 @@ export const economiesOfScale_Skill_Data = defineSkill({
       et: 'Uuri, kuidas suurem tootmismaht võib ühikukulu muuta.',
       be: 'Дасьледуй, як большы маштаб вытворчасьці можа зьмяняць выдаткі на адзінку.',
       ka: 'გამოიკვლიე, როგორ ცვლის დიდი მოცულობით წარმოება ერთეულის ღირებულებას.',
-      kk: 'Ірі ауқымда өндіру бірлік құнын қалай өзгерте алатынын зертте.',
+      kk: 'Irı auqymda öndıru bırlık qūnyn qalai özgerte alatynyn zertte.',
       qm: 'Büyük miqyasta istisal bir danege masrafnı nasıl deñiştire bilgenini ögren.',
     },
   },

@@ -36,7 +36,7 @@ export const productionAndEntrepreneurship_SkillDomain_Data = defineSkillDomain(
     et: 'Tootmine ja ettevõtlus',
     be: 'Вытворчасьць і прадпрымальніцтва',
     ka: 'წარმოება და მეწარმეობა',
-    kk: 'Өндіріс пен кәсіпкерлік',
+    kk: 'Öndırıs pen käsıpkerlık',
     qm: 'İstisal ve işadamlıq',
   },
   groups: [
@@ -76,7 +76,7 @@ export const productionAndEntrepreneurship_SkillDomain_Data = defineSkillDomain(
       et: 'Uuri, kuidas ettevõtted muudavad ressursid ja ideed toodeteks ning teenusteks.',
       be: 'Дасьледуй, як бізнэс ператварае рэсурсы й ідэі ў тавары і паслугі.',
       ka: 'გაიგე, როგორ აქცევენ ბიზნესები რესურსებსა და იდეებს პროდუქტებად და მომსახურებად.',
-      kk: 'Бизнестің ресурстар мен идеяларды тауарлар және қызметтерге қалай айналдыратынын зертте.',
+      kk: 'Biznestıñ resurstar men ideialardy tauarlar jäne qyzmetterge qalai ainaldyratynyn zertte.',
       qm: 'İşletmeler kaynaklar ve fikirlerni mallar ve hızmetlerge nasıl çevirgenini ögren.',
     },
   },
