@@ -31,7 +31,7 @@ export const nominalAndRealOutput_Skill_Data = defineSkill({
     et: 'Nominaalne ja reaalne kogutoodang',
     be: 'Намінальны і рэальны выпуск',
     ka: 'ნომინალური და რეალური გამოშვება',
-    kk: 'Номиналды және нақты өндіріс',
+    kk: 'Nominaldy jäne naqty öndırıs',
     qm: 'Nominal ve aqiqiy istisal',
   },
   description: {
@@ -65,7 +65,7 @@ export const nominalAndRealOutput_Skill_Data = defineSkill({
       et: 'Tee vahet, kas suurenes tootmine või tõusid vaid hinnad.',
       be: 'Адрозьнівай рост вытворчасьці ад аднаго толькі росту цэнаў.',
       ka: 'განასხვავეთ, გაიზარდა წარმოება თუ მხოლოდ ფასებმა მოიმატა.',
-      kk: 'Өндіріс өсті ме, әлде тек баға көтерілді ме, ажыратыңыз.',
+      kk: 'Öndırıs östı me, älde tek bağa köterıldı me, ajyratyñyz.',
       qm: 'İstisal artqanmı, yoqsa tek fiyatlar yükselgenmi, ayır.',
     },
   },

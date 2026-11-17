@@ -40,7 +40,7 @@ export const pricesAndEmployment_SkillGroup_Data = defineSkillGroup({
     et: 'Hinnad ja tööhõive',
     be: 'Цэны і занятасьць',
     ka: 'ფასები და დასაქმება',
-    kk: 'Бағалар және жұмыспен қамту',
+    kk: 'Bağalar jäne jūmyspen qamtu',
     qm: 'Fiyatlar ve işnen temin',
   },
   skills: [
@@ -81,7 +81,7 @@ export const pricesAndEmployment_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri, kuidas mõõdetakse ja selgitatakse inflatsiooni ning tööpuudust.',
       be: 'Дасьледуй, як вымяраюць і тлумачаць інфляцыю ды беспрацоўе.',
       ka: 'გამოიკვლიეთ, როგორ ზომავენ და ხსნიან ინფლაციასა და უმუშევრობას.',
-      kk: 'Инфляция мен жұмыссыздық қалай өлшеніп, түсіндірілетінін зерттеңіз.',
+      kk: 'İnfliatsiia men jūmyssyzdyq qalai ölşenıp, tüsındırıletının zertteñız.',
       qm: 'Enflâtsiya ve işsizlik nasıl ölçülip añlatılğanını araştır.',
     },
   },

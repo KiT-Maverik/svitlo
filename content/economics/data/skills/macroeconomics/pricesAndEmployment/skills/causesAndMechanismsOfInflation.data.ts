@@ -31,7 +31,7 @@ export const causesAndMechanismsOfInflation_Skill_Data = defineSkill({
     et: 'Inflatsiooni põhjused ja toimemehhanismid',
     be: 'Прычыны і мэханізмы інфляцыі',
     ka: 'ინფლაციის მიზეზები და მექანიზმები',
-    kk: 'Инфляция себептері мен тетіктері',
+    kk: 'İnfliatsiia sebepterı men tetıkterı',
     qm: 'Enflâtsiyanıñ sebepleri ve yolları',
   },
   description: {
@@ -65,7 +65,7 @@ export const causesAndMechanismsOfInflation_Skill_Data = defineSkill({
       et: 'Uuri, miks hinnad võivad tõusta kogu majanduses.',
       be: 'Дасьледуй розныя прычыны росту цэнаў ва ўсёй эканоміцы.',
       ka: 'გამოიკვლიეთ სხვადასხვა მიზეზი, რის გამოც ფასები მთლიან ეკონომიკაში იზრდება.',
-      kk: 'Экономика бойынша бағалардың өсуіне әкелетін әртүрлі себептерді зерттеңіз.',
+      kk: 'Ekonomika boiynşa bağalardyñ ösuıne äkeletın ärtürlı sebepterdı zertteñız.',
       qm: 'Bütün iqtisatta fiyatlar ne içün yükselgeniniñ çeşit sebeplerini araştır.',
     },
   },

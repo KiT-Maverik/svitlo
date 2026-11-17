@@ -31,7 +31,7 @@ export const consumerPriceIndex_Skill_Data = defineSkill({
     et: 'Tarbijahinnaindeks',
     be: 'Індэкс спажывецкіх цэнаў',
     ka: 'სამომხმარებლო ფასების ინდექსი',
-    kk: 'Тұтыну бағаларының индексі',
+    kk: 'Tūtynu bağalarynyñ indeksı',
     qm: 'İstimalci fiyatları indeksi',
   },
   description: {
@@ -65,7 +65,7 @@ export const consumerPriceIndex_Skill_Data = defineSkill({
       et: 'Uuri, kuidas hinnaindeks näitab elamiskulude muutusi.',
       be: 'Даведайся, як індэкс цэнаў адлюстроўвае зьмены кошту жыцьця.',
       ka: 'გაიგეთ, როგორ ასახავს ფასების ინდექსი ცხოვრების ღირებულების ცვლილებას.',
-      kk: 'Баға индексі өмір сүру құнының өзгеруін қалай көрсететінін біліңіз.',
+      kk: 'Bağa indeksı ömır süru qūnynyñ özgeruın qalai körsetetının bılıñız.',
       qm: 'Fiyat indeksi yaşav masraflarınıñ deñişüvini nasıl köstergenini ögren.',
     },
   },

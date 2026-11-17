@@ -31,7 +31,7 @@ export const inflationAndDeflation_Skill_Data = defineSkill({
     et: 'Inflatsioon ja deflatsioon',
     be: 'Інфляцыя і дэфляцыя',
     ka: 'ინფლაცია და დეფლაცია',
-    kk: 'Инфляция және дефляция',
+    kk: 'İnfliatsiia jäne defliatsiia',
     qm: 'Enflâtsiya ve deflâtsiya',
   },
   description: {
@@ -65,7 +65,7 @@ export const inflationAndDeflation_Skill_Data = defineSkill({
       et: 'Erista üldist inflatsiooni ühe kauba hinnatõusust.',
       be: 'Адрозьнівай агульную інфляцыю ад росту цаны аднаго тавару.',
       ka: 'განასხვავეთ საერთო ინფლაცია ერთი საქონლის გაძვირებისგან.',
-      kk: 'Жалпы инфляцияны бір тауар бағасының өсуінен ажыратыңыз.',
+      kk: 'Jalpy infliatsiiany bır tauar bağasynyñ ösuınen ajyratyñyz.',
       qm: 'Umumiy fiyat artuvını bir malnıñ fiyatınıñ artuvından ayır.',
     },
   },

@@ -31,7 +31,7 @@ export const grossDomesticProduct_Skill_Data = defineSkill({
     et: 'Sisemajanduse koguprodukt',
     be: 'Валавы ўнутраны прадукт',
     ka: 'მთლიანი შიდა პროდუქტი',
-    kk: 'Жалпы ішкі өнім',
+    kk: 'Jalpy ışkı önım',
     qm: 'Umumiy içki mahsulât',
   },
   description: {
@@ -65,7 +65,7 @@ export const grossDomesticProduct_Skill_Data = defineSkill({
       et: 'Mõista, mida SKP arvestab ja mida mitte.',
       be: 'Зразумей, што ўлічвае ВУП, а што застаецца па-за ім.',
       ka: 'გაიაზრეთ, რა შედის მშპ-ში და რა რჩება მის მიღმა.',
-      kk: 'ЖІӨ нені қамтитынын және нені есепке алмайтынын түсініңіз.',
+      kk: 'JIÖ nenı qamtitynyn jäne nenı esepke almaitynyn tüsınıñız.',
       qm: 'UİM neyi esapqa alğanını ve neyi almağanını añla.',
     },
   },
