@@ -29,7 +29,11 @@ const clean = value =>
     .replaceAll(tick, '\\' + tick)
     .replace(/([*_[\]<>|])/g, '\\$1')
     .replaceAll('\n', ' ');
-const code = value => tick + String(value).replaceAll(tick, '') + tick;
+const code = value => {
+  const text = String(value);
+  const fence = tick.repeat(Math.max(1, ...(text.match(/`+/g) ?? []).map(run => run.length + 1)));
+  return fence + (text.includes(tick) ? ' ' : '') + text + (text.includes(tick) ? ' ' : '') + fence;
+};
 const sourceLink = (sha, relative) =>
   'https://github.com/KiT-Maverik/svitlo/blob/' +
   sha + '/' + relative.split('/').map(encodeURIComponent).join('/');
@@ -58,7 +62,7 @@ function sourceForBlock(block, sourceFiles) {
     .sort((a, b) => b.relative.length - a.relative.length || a.relative.localeCompare(b.relative, 'en'))[0]?.relative;
 }
 
-function parseReference(value, kind, book, root) {
+function parseReference(value, kind, book, root, verifyAtSha) {
   if (typeof value !== 'string' || !value.trim()) return { status: 'Missing reference' };
   if (/^https?:\/\//i.test(value)) {
     try {
@@ -78,14 +82,22 @@ function parseReference(value, kind, book, root) {
   const name = match[0];
   const relative = 'content/' + book + '/assets/' + kind + '/' + name;
   const actual = path.join(root, relative);
-  let exists = false;
-  if (fs.existsSync(actual)) {
-    if (fs.lstatSync(actual).isSymbolicLink()) {
-      throw new Error('Symlinked referenced media: ' + relative);
-    }
-    exists = fs.statSync(actual).isFile();
+  let exists = true;
+  let cursor = path.resolve(root);
+  for (const component of relative.split('/')) {
+    cursor = path.join(cursor, component);
+    if (!fs.existsSync(cursor)) { exists = false; break; }
+    if (fs.lstatSync(cursor).isSymbolicLink()) throw new Error('Symlinked referenced media: ' + relative);
   }
-  return { status: exists ? 'Verified local file' : 'Referenced file missing', relative, name, uuid: match[1], exists };
+  if (exists) exists = fs.statSync(actual).isFile();
+  const unresolved = match[1] === '00000000-0000-0000-0000-000000000000';
+  const committed = !unresolved && typeof verifyAtSha === 'function' && verifyAtSha(relative);
+  const status = unresolved ? 'Unresolved scaffold filename; not a produced resource'
+    : exists && committed ? 'File on disk and present at source SHA'
+    : exists ? 'File on disk; not confirmed at source SHA'
+    : committed ? 'Present at source SHA, unavailable in working tree'
+    : 'Referenced file missing or uncommitted';
+  return { status, relative, name, uuid: match[1], exists, committed };
 }
 
 function learningContext(block) {
@@ -105,7 +117,7 @@ function documentBlock(lines, label, content) {
 
 /** Render only additional evidence useful to Question/Flashcard designers. */
 export function renderFlashcardReference({
-  lesson, locale, packagePath, sourceFiles, sourceRef, root, lessonDirectory, sourceBranch,
+  lesson, locale, packagePath, sourceFiles, sourceRef, root, lessonDirectory, sourceBranch, verifyAtSha,
 }) {
   if (!/^[0-9a-f]{40}$/.test(sourceRef)) throw new Error('Flashcard reference requires an exact Git source SHA');
   if (!isObject(lesson) || !Array.isArray(lesson.section)) throw new Error('Missing built Lesson sections');
@@ -123,7 +135,8 @@ export function renderFlashcardReference({
     '- **Lesson slug:** ' + code(lesson.slug),
     '- **Effective locale:** ' + code(locale),
     '- **Declared Lesson languages:** ' + (lesson.params.languages ?? []).map(code).join(', '),
-    '- **Content build status:** complete resolved typed Lesson Props; editorial approval is not inferred.',
+    '- **Content build status:** resolved typed Lesson Props; media readiness and editorial approval are separate.',
+    '- **Reference completeness:** pending media checks.',
     '',
     '### Methodological reference',
     '',
@@ -145,6 +158,7 @@ export function renderFlashcardReference({
   );
 
   let occurrences = 0;
+  let missingMedia = 0;
   const seen = new Set();
   for (const section of lesson.section) {
     if (!isObject(section)) throw new Error('Malformed Lesson Section');
@@ -166,7 +180,8 @@ export function renderFlashcardReference({
         seen.add(key);
         occurrences++;
         if (occurrences > 256) throw new Error('Too many Lesson media occurrences for one reference');
-        const resource = parseReference(raw, kind, book, root);
+        const resource = parseReference(raw, kind, book, root, verifyAtSha);
+        if (!resource.committed && !resource.remote) missingMedia++;
         const authored = ['alt', 'caption', 'title', 'label', 'description']
           .filter(name => typeof block.locale?.[name] === 'string' && block.locale[name].trim())
           .map(name => name + ': ' + clean(block.locale[name]));
@@ -182,9 +197,9 @@ export function renderFlashcardReference({
           lines.push(
             '- **Media resource UUID (not the block UUID):** ' + code(resource.uuid),
             '- Resource filename: ' + code(resource.name),
-            '- Repository media path: ' + (resource.exists
+            '- Repository media path: ' + (resource.committed
               ? '[file](' + sourceLink(sourceRef, resource.relative) + ')'
-              : code(resource.relative) + ' (not verified on disk)'),
+              : code(resource.relative) + ' (not verified at source SHA)'),
           );
         } else if (resource.remote) {
           lines.push('- Authored external reference: ' + code(resource.remote));
@@ -221,6 +236,10 @@ export function renderFlashcardReference({
     section.content.forEach((block, index, blocks) => visit(block, [], index, blocks));
   }
   if (occurrences === 0) lines.push('No directly referenced media found in this Lesson locale.', '');
+  const completeness = missingMedia
+    ? 'incomplete media evidence (' + missingMedia + ' missing/unverified reference(s)); full instructional text remains above'
+    : 'all listed local media verified at SHA; external source availability not checked';
+  lines[11] = '- **Reference completeness:** ' + completeness;
   lines.push(
     '### Independent assessment references',
     '',
