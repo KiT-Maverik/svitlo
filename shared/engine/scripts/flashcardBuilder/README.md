@@ -2,6 +2,23 @@
 
 This is a **create-only** source scaffolder for one existing Lesson-owned Flashcard bank, independent of the Lesson Builder and the assessment resource publisher. Follow repository `AGENTS.md`, `shared/engine/scripts/AGENTS.md`, and the Studio [Create Flashcards Flow](../../../studio/skills/lesson-workflow/create-flashcards-flow.skill.md) first.
 
+## Verify Flashcards Section selections
+
+After materializing an independently reviewed bank, check the actual Lesson's
+Flashcards Section references without rewriting the Lesson:
+
+```sh
+node shared/engine/scripts/flashcardBuilder/flashcardBuilder.mjs --package content/playground --lesson <uuid> --verify-sections
+```
+
+The verifier requires an authored \`flashcards/index.ts\`, validates the whole
+source bank and checks every statically declared \`defineFlashcardsSection\`:
+its identity, literal unique ordered \`flashcardIds\`, membership in the **full**
+bank and registration in \`sections/index.ts\`. No embedded Section is allowed
+and reported as zero. This is not editorial approval, full publication or
+evidence that translations and linked media exist. Dynamic Section definitions
+require manual review. It reuses the Questions Flow #647 static registry parser.
+
 After the Engine build:
 
 ```sh

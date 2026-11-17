@@ -202,3 +202,38 @@ test('source-language drafts reject mixed or foreign locale values without reduc
   assert.match(renderFlashcardBank(uk), /documentLanguage: uk/);
   assert.match(renderFlashcardBank(bank), /Planned Lesson languages: en, uk/);
 });
+
+test('read-only Flashcards Section check accepts reviewed UUID subsets and rejects bad registry/IDs', () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-flashcards-sections-'));
+  try {
+    const textbook = path.join(root, 'content', 'playground');
+    const lesson = path.join(textbook, 'data', 'lessons', lessonId.at(-1), lessonId);
+    const sectionDir = path.join(lesson, 'sections', 'recall');
+    fs.mkdirSync(sectionDir, { recursive: true });
+    fs.writeFileSync(path.join(textbook, 'package.json'), '{"name":"@svitlo/playground"}\n');
+    fs.writeFileSync(path.join(lesson, 'flashcards.yaml'), yaml.stringify(createBank()));
+    runOne(textbook, lessonId, '--write', root);
+    const entrypoint = path.join(lesson, 'flashcards', 'index.ts');
+    const original = fs.readFileSync(entrypoint, 'utf8');
+    const registry = path.join(lesson, 'sections', 'index.ts');
+    const sectionFile = path.join(sectionDir, 'index.ts');
+    fs.writeFileSync(registry, "import { recall } from './recall';\nexport const section = { items: { recall }, order: ['recall'] };\n");
+    const section = ids => "export const recall = defineFlashcardsSection({ id: '" + id(700) +
+      "', slug: 'recall', params: { selection: { flashcardIds: " + JSON.stringify(ids) + " } } });\n";
+    fs.writeFileSync(sectionFile, section([id(1)]));
+    assert.deepEqual(runOne(textbook, lessonId, '--verify-sections', root), { sections: 1, selectedCards: 1 });
+    fs.writeFileSync(sectionFile, section([id(999)]));
+    assert.throws(() => runOne(textbook, lessonId, '--verify-sections', root), /absent from complete bank/);
+    fs.writeFileSync(sectionFile, section([id(1), id(1)]));
+    assert.throws(() => runOne(textbook, lessonId, '--verify-sections', root), /Duplicate selected/);
+    fs.writeFileSync(sectionFile, section([id(1)]));
+    fs.writeFileSync(registry, 'export const section = { items: {}, order: [] };\n');
+    assert.throws(() => runOne(textbook, lessonId, '--verify-sections', root), /absent from static Lesson registry/);
+    fs.rmSync(sectionDir, { recursive: true });
+    assert.deepEqual(runOne(textbook, lessonId, '--verify-sections', root), { sections: 0, selectedCards: 0 });
+    assert.equal(fs.readFileSync(entrypoint, 'utf8'), original);
+    assert.equal(fs.existsSync(path.join(lesson, 'flashcards.yaml')), true);
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
+});

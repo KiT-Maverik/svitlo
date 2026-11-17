@@ -16,6 +16,7 @@ import path from 'node:path';
 import { createRequire } from 'node:module';
 import { fileURLToPath } from 'node:url';
 import yaml from 'yaml';
+import { verifyFlashcardsSelections } from './verifyFlashcardsSections.mjs';
 
 const require = createRequire(import.meta.url);
 const {
@@ -267,7 +268,7 @@ export function renderFlashcardBank(bank) {
 }
 
 export function runOne(packageRoot, lessonId, mode, repositoryRoot = root) {
-  ensure(['--preflight', '--write', '--check'].includes(mode), 'unknown execution mode');
+  ensure(['--preflight', '--write', '--check', '--verify-sections'].includes(mode), 'unknown execution mode');
   ensure(uuid.test(lessonId), 'invalid Lesson UUID');
   const textbook = path.resolve(packageRoot);
   const contentRoot = path.resolve(repositoryRoot, 'content') + path.sep;
@@ -284,6 +285,10 @@ export function runOne(packageRoot, lessonId, mode, repositoryRoot = root) {
   const bank = sourceDocument(source);
   ensure(bank.lessonId === lessonId, 'YAML Lesson UUID disagrees with canonical path');
   const code = renderFlashcardBank(bank);
+  if (mode === '--verify-sections') {
+    ensure(fs.existsSync(target), 'missing authored Flashcard TS entrypoint: ' + target);
+    return verifyFlashcardsSelections(lesson, bank.flashcards.order.map(name => bank.flashcards.items[name].id));
+  }
   if (mode === '--preflight') return { created: false, bytes: code.length };
   if (fs.existsSync(target)) {
     ensure(
@@ -306,8 +311,8 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
     for (let i = 0; i < args.length; i++) {
       if (args[i] === '--package' && !packageName) packageName = args[++i];
       else if (args[i] === '--lesson' && !lessonId) lessonId = args[++i];
-      else if (['--preflight', '--write', '--check'].includes(args[i]) && !mode) mode = args[i];
-      else throw new Error('Usage: --package content/<book> --lesson <uuid> --preflight|--write|--check');
+      else if (['--preflight', '--write', '--check', '--verify-sections'].includes(args[i]) && !mode) mode = args[i];
+      else throw new Error('Usage: --package content/<book> --lesson <uuid> --preflight|--write|--check|--verify-sections');
     }
     if (!packageName || !lessonId || !mode) throw new Error('Missing --package, --lesson or mode');
     const result = runOne(path.join(root, packageName), lessonId, mode);
