@@ -69,8 +69,14 @@ describe('Configurators', () => {
       assert.equal('order' in group.skills, false);
       assert.equal('overrides' in group.build, false);
       const resource = group.build.props({ languages: ['uk'] });
-      assert.deepEqual(resource.base.skills?.map(item => item!.slug), ['balance', 'motion']);
-      assert.deepEqual(resource.locale?.uk?.skills?.map(item => item!.name), ['Рівновага', 'Motion']);
+      assert.deepEqual(
+        resource.base.skills?.map(item => item!.slug),
+        ['balance', 'motion'],
+      );
+      assert.deepEqual(
+        resource.locale?.uk?.skills?.map(item => item!.name),
+        ['Рівновага', 'Motion'],
+      );
       assert.equal(JSON.stringify(resource).includes('"items"'), false);
     });
 
@@ -81,7 +87,11 @@ describe('Configurators', () => {
         name: { en: 'Duplicate', uk: 'Дублікат' },
         description: { methodological: 'Duplicate', frontend: { en: 'Duplicate', uk: 'Дублікат' } },
       });
-      const duplicates = defineSkillGroup<'duplicates', { balance: typeof balance; duplicate: typeof duplicateId }, ['uk']>({
+      const duplicates = defineSkillGroup<
+        'duplicates',
+        { balance: typeof balance; duplicate: typeof duplicateId },
+        ['uk']
+      >({
         id: id('05'),
         slug: 'duplicates',
         name: { en: 'Duplicates', uk: 'Дублікати' },
@@ -120,9 +130,18 @@ describe('Configurators', () => {
       assert.strictEqual(mixed.groups?.mechanics, group);
       assert.strictEqual(mixed.skills?.direct, direct);
       const published = mixed.build.props({ languages: ['uk'] });
-      assert.deepEqual(published.base.skills?.map(x => x!.slug), ['direct']);
-      assert.deepEqual(published.base.groups?.map(x => x!.slug), ['mechanics']);
-      assert.deepEqual(published.locale?.uk?.groups?.[0]?.skills?.map(x => x!.name), ['Рівновага', 'Motion']);
+      assert.deepEqual(
+        published.base.skills?.map(x => x!.slug),
+        ['direct'],
+      );
+      assert.deepEqual(
+        published.base.groups?.map(x => x!.slug),
+        ['mechanics'],
+      );
+      assert.deepEqual(
+        published.locale?.uk?.groups?.[0]?.skills?.map(x => x!.name),
+        ['Рівновага', 'Motion'],
+      );
       assert.equal(JSON.stringify(published).includes('"order"'), false);
       const standalone = defineSkillDomain<'standalone', {}, { direct: typeof direct }, ['uk']>({
         id: id('09'),
@@ -131,7 +150,10 @@ describe('Configurators', () => {
         description: { methodological: 'Standalone hierarchy' },
         skills: { direct },
       });
-      assert.deepEqual(standalone.build.props({ languages: ['uk'] }).base.skills?.map(x => x!.slug), ['direct']);
+      assert.deepEqual(
+        standalone.build.props({ languages: ['uk'] }).base.skills?.map(x => x!.slug),
+        ['direct'],
+      );
       assert.equal(standalone.build.props({ languages: ['uk'] }).base.groups, undefined);
     });
 
@@ -142,7 +164,12 @@ describe('Configurators', () => {
         name: { en: 'Mechanics', uk: 'Механіка' },
         description: { methodological: 'Collision', frontend: { en: 'Collision', uk: 'Колізія' } },
       });
-      const collisions = defineSkillDomain<'collisions', { mechanics: typeof group }, { mechanics: typeof collidingSkill }, ['uk']>({
+      const collisions = defineSkillDomain<
+        'collisions',
+        { mechanics: typeof group },
+        { mechanics: typeof collidingSkill },
+        ['uk']
+      >({
         id: id('11'),
         slug: 'collisions',
         title: { en: 'Collisions', uk: 'Колізії' },

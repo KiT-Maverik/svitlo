@@ -303,13 +303,17 @@ function existing(e) {
   return { slug, id, name, frontend, methodological };
 }
 function scanRegistry() {
-  const ids = new Set(), slugs = new Map();
+  const ids = new Set(),
+    slugs = new Map();
   if (!fs.existsSync(opts.targetRoot)) return { ids, slugs };
   function walk(dir) {
     for (const ent of fs.readdirSync(dir, { withFileTypes: true })) {
       const file = path.join(dir, ent.name);
       if (ent.isSymbolicLink()) throw Error('Symlink in taxonomy: ' + rel(file));
-      if (ent.isDirectory()) { walk(file); continue; }
+      if (ent.isDirectory()) {
+        walk(file);
+        continue;
+      }
       if (!ent.isFile() || !file.endsWith('.ts') || ['review.ts', '_review.ts'].includes(ent.name)) continue;
       const parts = path.relative(opts.targetRoot, file).split(path.sep);
       if (parts.length === 1 && ent.name === 'index.ts') continue;
@@ -345,9 +349,11 @@ function allocateId(used) {
 function listDiskChildren(e) {
   const folder = path.dirname(fileOf(e));
   if (!fs.existsSync(folder)) return [];
-  const results = fs.readdirSync(folder, { withFileTypes: true })
-    .filter(ent => ent.isFile() && ent.name.endsWith('.ts') &&
-      !['index.ts', 'review.ts', '_review.ts'].includes(ent.name))
+  const results = fs
+    .readdirSync(folder, { withFileTypes: true })
+    .filter(
+      ent => ent.isFile() && ent.name.endsWith('.ts') && !['index.ts', 'review.ts', '_review.ts'].includes(ent.name),
+    )
     .map(ent => ({ slug: ent.name.slice(0, -3), kind: 'Skill' }));
   if (e.kind === 'SkillDomain') {
     for (const ent of fs.readdirSync(folder, { withFileTypes: true })) {
@@ -388,10 +394,8 @@ function render(e, value, kids) {
   const groups = kids.filter(x => x.kind === 'SkillGroup');
   const skills = kids.filter(x => x.kind === 'Skill');
   if (kids.length) imports.push('');
-  for (const child of groups)
-    imports.push('import { ' + child.slug + " } from './" + child.slug + "';");
-  for (const child of skills)
-    imports.push('import { ' + child.slug + " } from './" + child.slug + "';");
+  for (const child of groups) imports.push('import { ' + child.slug + " } from './" + child.slug + "';");
+  for (const child of skills) imports.push('import { ' + child.slug + " } from './" + child.slug + "';");
   const addMap = (field, children) => {
     if (!children.length) return;
     lines.push('  ' + field + ': {');
@@ -404,28 +408,40 @@ function render(e, value, kids) {
   lines.push('    methodological: ' + JSON.stringify(value.methodological) + ',');
   if (value.frontend) lines.push('    frontend: ' + dictionary(value.frontend, 4) + ',');
   lines.push('  },');
-  return imports.join('\n') + '\n\nexport const ' + e.slug + ' = define' + e.kind + '({\n' +
-    lines.join('\n') + '\n});\n';
+  return (
+    imports.join('\n') + '\n\nexport const ' + e.slug + ' = define' + e.kind + '({\n' + lines.join('\n') + '\n});\n'
+  );
 }
 function stableMembership(e, kids) {
   if (e.kind === 'Skill') return true;
   const old = readCode(fileOf(e), e.kind).config;
   if (optionalProperty(old, 'groupIds') || optionalProperty(old, 'skillIds')) return false;
-  for (const [field, kind] of [['groups', 'SkillGroup'], ['skills', 'Skill']]) {
+  for (const [field, kind] of [
+    ['groups', 'SkillGroup'],
+    ['skills', 'Skill'],
+  ]) {
     if (field === 'groups' && e.kind === 'SkillGroup') continue;
     const members = kids.filter(child => child.kind === kind);
     const prop = optionalProperty(old, field);
-    if (!prop) { if (members.length) return false; continue; }
+    if (!prop) {
+      if (members.length) return false;
+      continue;
+    }
     const value = unwrap(prop.initializer);
     if (!ts.isObjectLiteralExpression(value) || value.properties.length !== members.length) return false;
     const expected = new Set(members.map(child => child.slug));
     for (const entry of value.properties) {
       let slug, symbol;
       if (ts.isShorthandPropertyAssignment(entry)) {
-        slug = entry.name.text; symbol = slug;
-      } else if (ts.isPropertyAssignment(entry) &&
-        (ts.isIdentifier(entry.name) || ts.isStringLiteral(entry.name)) && ts.isIdentifier(entry.initializer)) {
-        slug = entry.name.text; symbol = entry.initializer.text;
+        slug = entry.name.text;
+        symbol = slug;
+      } else if (
+        ts.isPropertyAssignment(entry) &&
+        (ts.isIdentifier(entry.name) || ts.isStringLiteral(entry.name)) &&
+        ts.isIdentifier(entry.initializer)
+      ) {
+        slug = entry.name.text;
+        symbol = entry.initializer.text;
       } else return false;
       if (!expected.delete(slug) || symbol !== slug) return false;
     }
@@ -485,9 +501,11 @@ function domainsFor(planned) {
   return [...domains].sort();
 }
 function rootIndex(planned) {
-  return domainsFor(planned)
-    .map(slug => 'export { ' + slug + " } from './" + slug + "';")
-    .join('\n') + '\n';
+  return (
+    domainsFor(planned)
+      .map(slug => 'export { ' + slug + " } from './" + slug + "';")
+      .join('\n') + '\n'
+  );
 }
 function domainPlan(d, entities, registry, codes) {
   const local = new Map(),
@@ -535,8 +553,11 @@ function domainPlan(d, entities, registry, codes) {
     if (e.kind === 'Skill' && !authoredFrontend) throw Error('Skill frontend description is not authored: ' + e.key);
     if (e.kind === 'Skill' || authoredFrontend) checkLocaleValues(frontend, 'frontend ' + e.key, codes);
     else if (frontend) checkLocaleValues(frontend, 'frontend ' + e.key, codes);
-    if (!found && registry.slugs.has(path.dirname(file).toLowerCase() + '/' + e.slug.toLowerCase()) &&
-      registry.slugs.get(path.dirname(file).toLowerCase() + '/' + e.slug.toLowerCase()) !== file)
+    if (
+      !found &&
+      registry.slugs.has(path.dirname(file).toLowerCase() + '/' + e.slug.toLowerCase()) &&
+      registry.slugs.get(path.dirname(file).toLowerCase() + '/' + e.slug.toLowerCase()) !== file
+    )
       throw Error('Slug already exists elsewhere in source: ' + e.slug);
     const id = prior?.id ?? allocateId(registry.ids);
     const kids = e.kind === 'Skill' ? [] : children(e, local);

@@ -31,7 +31,10 @@ void group.skills.nonexistent;
 void group.skill;
 
 const domain = defineSkillDomain({
-  id: fields.id, slug: 'language', title: localized, description: fields.description,
+  id: fields.id,
+  slug: 'language',
+  title: localized,
+  description: fields.description,
   groups: { literacy: group },
   skills: { numeracy },
 });
@@ -52,18 +55,26 @@ void domain.groups?.literacy.skills.nonexistent;
 void domain.group;
 
 const emptyDomain = defineSkillDomain({
-  id: fields.id, slug: 'empty', title: localized, description: fields.description,
+  id: fields.id,
+  slug: 'empty',
+  title: localized,
+  description: fields.description,
 });
 type EmptyGroupKeys = Expect<Equal<keyof NonNullable<typeof emptyDomain.groups>, never>>;
 type EmptySkillKeys = Expect<Equal<keyof NonNullable<typeof emptyDomain.skills>, never>>;
 
 const readonlySkills = [reading, writing] as const;
 const readonlyGroup = defineSkillGroup({
-  ...fields, slug: 'readonly', skills: configuratorArrayToSlugMap(readonlySkills),
+  ...fields,
+  slug: 'readonly',
+  skills: configuratorArrayToSlugMap(readonlySkills),
 });
 type ReadonlyKeys = Expect<Equal<keyof typeof readonlyGroup.skills, 'reading' | 'writing'>>;
 const readonlyDomain = defineSkillDomain({
-  id: fields.id, slug: 'readonly-domain', title: localized, description: fields.description,
+  id: fields.id,
+  slug: 'readonly-domain',
+  title: localized,
+  description: fields.description,
   groups: { literacy: group },
   skills: configuratorArrayToSlugMap(readonlySkills),
 });
