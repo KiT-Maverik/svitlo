@@ -31,7 +31,7 @@ export const laborMarketDiscrimination_Skill_Data = defineSkill({
     et: 'Diskrimineerimine tööturul',
     be: 'Дыскрымінацыя на рынку працы',
     ka: 'დისკრიმინაცია შრომის ბაზარზე',
-    kk: 'Еңбек нарығындағы кемсітушілік',
+    kk: 'Eñbek naryğyndağy kemsıtuşılık',
     qm: 'Emek bazarında ayrımsızlıq',
   },
   description: {
@@ -65,7 +65,7 @@ export const laborMarketDiscrimination_Skill_Data = defineSkill({
       et: 'Märka ebaõiglasi tööalaseid erinevusi, mida töötulemus ei selgita.',
       be: 'Распазнавай несправядлівыя адрозьненьні ў занятасьці, не зьвязаныя з вынікамі працы.',
       ka: 'ამოიცანი უსამართლო განსხვავებები დასაქმებაში, რომლებსაც შრომის შედეგები არ ხსნის.',
-      kk: 'Жұмыс нәтижесімен түсіндірілмейтін әділетсіз еңбек айырмашылықтарын таны.',
+      kk: 'Jūmys nätijesımen tüsındırılmeitın ädıletsız eñbek aiyrmaşylyqtaryn tany.',
       qm: 'İş neticelerine bağlanmağan adaletsiz iş farqlarını tanı.',
     },
   },

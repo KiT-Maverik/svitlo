@@ -31,7 +31,7 @@ export const jobSearchAndMatching_Skill_Data = defineSkill({
     et: 'Tööotsing ja sobivus',
     be: 'Пошук працы й адпаведнасьць вакансіі',
     ka: 'სამუშაოს ძიება და შესაბამისობა',
-    kk: 'Жұмыс іздеу және сәйкестендіру',
+    kk: 'Jūmys ızdeu jäne säikestendıru',
     qm: 'İş qıdırması ve uyğunlığı',
   },
   description: {
@@ -65,7 +65,7 @@ export const jobSearchAndMatching_Skill_Data = defineSkill({
       et: 'Mõista, miks sobiva vaba töökoha leidmine vajab aega ja teavet.',
       be: 'Зразумей, чаму пошук прыдатнай вакансіі патрабуе часу й інфармацыі.',
       ka: 'გაიგე, რატომ მოითხოვს შესაფერისი ვაკანსიის პოვნა დროსა და ინფორმაციას.',
-      kk: 'Лайықты бос орын табу үшін уақыт пен ақпарат неге қажет екенін түсін.',
+      kk: 'Laiyqty bos oryn tabu üşın uaqyt pen aqparat nege qajet ekenın tüsın.',
       qm: 'Uyğun boş iş yerini tapmaq içün nege vaqt ve malümat kerek olğanını añla.',
     },
   },

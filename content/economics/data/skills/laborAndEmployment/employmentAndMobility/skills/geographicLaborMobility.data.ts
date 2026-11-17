@@ -31,7 +31,7 @@ export const geographicLaborMobility_Skill_Data = defineSkill({
     et: 'Geograafiline tööalane liikuvus',
     be: 'Геаграфічная працоўная мабільнасьць',
     ka: 'გეოგრაფიული შრომითი მობილობა',
-    kk: 'Географиялық еңбек мобильдігі',
+    kk: 'Geografiialyq eñbek mobildıgı',
     qm: 'Coğrafiy emek areketliligi',
   },
   description: {
@@ -65,7 +65,7 @@ export const geographicLaborMobility_Skill_Data = defineSkill({
       et: 'Võrdle töö pärast kolimise eeliseid ja raskusi.',
       be: 'Параўнай выгоды й цяжкасьці пераезду дзеля працы.',
       ka: 'შეადარე სამუშაოს გამო საცხოვრებლის შეცვლის სარგებელი და სირთულეები.',
-      kk: 'Жұмыс үшін көшу артықшылықтары мен қиындықтарын салыстыр.',
+      kk: 'Jūmys üşın köşu artyqşylyqtary men qiyndyqtaryn salystyr.',
       qm: 'İş içün köçüvniñ faydalarını ve qıyınlıqlarını qıyasla.',
     },
   },

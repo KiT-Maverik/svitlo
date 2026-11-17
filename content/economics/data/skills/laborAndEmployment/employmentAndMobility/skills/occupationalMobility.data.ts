@@ -31,7 +31,7 @@ export const occupationalMobility_Skill_Data = defineSkill({
     et: 'Tööalane liikuvus',
     be: 'Прафэсійная мабільнасьць',
     ka: 'პროფესიული მობილობა',
-    kk: 'Кәсіби мобильдік',
+    kk: 'Käsıbi mobildık',
     qm: 'Meslek areketliligi',
   },
   description: {
@@ -65,7 +65,7 @@ export const occupationalMobility_Skill_Data = defineSkill({
       et: 'Uuri karjäärivahetuse kulusid ja võimalusi.',
       be: 'Дасьледуй выдаткі й магчымасьці зьмены прафэсіі.',
       ka: 'შეისწავლე პროფესიის შეცვლის ხარჯები და შესაძლებლობები.',
-      kk: 'Мамандық ауыстырудың шығыны мен мүмкіндігін зертте.',
+      kk: 'Mamandyq auystyrudyñ şyğyny men mümkındıgın zertte.',
       qm: 'Meslek deñiştirüvniñ masrafları ve imkânlarını araştır.',
     },
   },

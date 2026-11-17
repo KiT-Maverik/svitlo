@@ -35,7 +35,7 @@ export const laborAndEmployment_SkillDomain_Data = defineSkillDomain({
     et: 'Töö ja tööhõive',
     be: 'Праца й занятасьць',
     ka: 'შრომა და დასაქმება',
-    kk: 'Еңбек және жұмыспен қамту',
+    kk: 'Eñbek jäne jūmyspen qamtu',
     qm: 'Emek ve işnen temin',
   },
   groups: [
@@ -74,7 +74,7 @@ export const laborAndEmployment_SkillDomain_Data = defineSkillDomain({
       et: 'Uuri, kuidas töötajad ja tööandjad teevad otsuseid töökohtade, oskuste ja palga kohta.',
       be: 'Дасьледуй, як работнікі й наймальнікі вырашаюць пытаньні працы, навыкаў і аплаты.',
       ka: 'შეისწავლე, როგორ იღებენ მუშაკები და დამსაქმებლები გადაწყვეტილებებს სამუშაოზე, უნარებსა და ხელფასზე.',
-      kk: 'Қызметкерлер мен жұмыс берушілер жұмыс, дағды және жалақы туралы қалай шешетінін зертте.',
+      kk: 'Qyzmetkerler men jūmys beruşıler jūmys, dağdy jäne jalaqy turaly qalai şeşetının zertte.',
       qm: 'İşçiler ve iş bericiler iş, maharet ve maaş aqqında nasıl qarar bergenini ögren.',
     },
   },
