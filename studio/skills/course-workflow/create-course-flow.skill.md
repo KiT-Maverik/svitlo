@@ -40,24 +40,24 @@ Verify exact Skill/Group/Domain UUIDs against source. Distinguish **entry prereq
 
 In the _same_ `course.yaml`, author ordered Course/Module/Chapter groups, stable keys/slugs, measurable outcomes, rationale, prerequisites, scope distribution and depth. Course may have direct Chapters or Lessons; Modules may have Chapters and/or Lessons; Chapters may have Lessons. Do not add wrapper Modules solely for bookkeeping. **No Lesson slots, Lesson queries, Episodes, scenario decisions or Screenwriter here.** Module/Chapter methodology is editorial, not an extra Runtime Props field.
 
-**Complete:** accepted entire macrostructure with no unresolved ordering/coverage decision. **Handoff:** bounded Module-specific Lesson design; if no Modules, use bounded Course/Chapter units.
+**Complete:** accepted entire macrostructure with no unresolved ordering/coverage decision. The final Course must satisfy the [Course methodology completeness contract](../../docs/entities/course.md#course-methodology-completeness--pedagogical-technical-specification); Stage 1 breadth alone is not evidence of a complete educational specification. **Handoff:** bounded Module-specific Lesson design; if no Modules, use bounded Course/Chapter units.
 
 For the temporary editorial source, run the **read-only stage validator**:
 `node shared/engine/scripts/validateCourseFlow/validate-course-flow.mjs --file content/<book>/data/courses/<bucket>/<uuid>/course.yaml --stage 2`. Stage 1 uses `--stage 1`, Stage 3 work-in-progress uses `--stage 3`, and only an entirely identified Lesson plan may use `--stage 3-complete`. The manually maintained editorial schema is `course-flow.schema.json`; Engine technical `config.yaml` is validated separately using Engine-derived schemas. YAML validity never constitutes editorial approval.
 
 ### 3. Design & Match Lessons — each Module (or bounded alternative)
 
-**Owner:** [Methodologist](../../personas/methodist.persona.md); [Assessment Architect](../../personas/learning-assessment-architect.persona.md) reviews assessment intent. **Skills:** [Create Course TOC](./create-course-toc.skill.md) for slots, [Match Course TOC Lessons](./match-course-toc-lessons.skill.md), [Create Lesson Brief](../lesson-workflow/create-lesson-brief.skill.md), [Manage Lesson Production](../lesson-workflow/manage-lesson-production.skill.md). **Prerequisite:** accepted Stage 2 unit structure.
+**Owner:** [Methodologist](../../personas/methodist.persona.md); [Assessment Architect](../../personas/learning-assessment-architect.persona.md) reviews assessment intent. **Skills:** [Create Course TOC](./create-course-toc.skill.md) for slots, [Match Course TOC Lessons](./match-course-toc-lessons.skill.md), [Create Lesson Brief](../lesson-workflow/create-lesson-brief.skill.md), [Create Lesson Flow](../lesson-workflow/create-lesson-flow.skill.md) for Lesson PR handoffs; [Manage Lesson Production](../lesson-workflow/manage-lesson-production.skill.md) only for historical Issue reconciliation. **Prerequisite:** accepted Stage 2 unit structure.
 
 For **each** Module/selected bounded unit, perform these three tasks **in order**:
 
 1. **Design Lesson slots.** Choose stable slot keys, observable learner outcomes, depth, sequence rationale, exact verified Skill IDs and prerequisites. This is the first stage where slots exist.
 2. **Match existing Lessons.** Use read-only `/get lesson by skill <uuid> --package content/<book>` on an authorized open PR. The default-branch feature from merged PR #638 also supports `/get lesson by id <uuid>` and multi-Skill `--match all`. If the workflow is unavailable or not operational, use `node shared/engine/scripts/queryLessons/query-lessons.mjs --by skill --skill <uuid> --package content/<book> --format json --stdout` and report completeness diagnostics. Compare candidate methodology, implementation vs draft status, real supported languages, prerequisite fit and assessment coverage. `complete: false` is not evidence of absence. Reuse the existing Lesson UUID; absent target translation is a Lesson Translation Production dependency, not a duplicate Lesson.
-3. **Prepare missing Lesson methodologies only.** For genuinely missing Lessons, authorize separate standalone UUIDs and detailed Methodologist briefs with verified Skills, independent prerequisites, educational plan and `assessmentPlan` (possibly several Quizzes). Coordinate one Lesson Production Issue for an explicit batch, not a redundant Issue per Lesson. Do not implement Lesson data in Course files.
+3. **Prepare missing Lesson methodologies only.** For genuinely missing Lessons, authorize unique reusable Lesson UUIDs and author/reuse complete Methodologist material in each Lesson's single temporary `lesson.yaml` under `production.methodology`, with verified Skills, independent prerequisites, educational plan and `assessmentPlan` (possibly several Quizzes). The later Lesson Stage 1 assesses that methodology for completeness; do not pre-generate a competing standalone `methodology.md` or imply an artificial `Approved` frontmatter gate. For each genuinely missing Lesson UUID, create or reuse exactly one linked Draft Lesson PR through [Create Lesson Flow](../lesson-workflow/create-lesson-flow.skill.md). Historical Lesson Production Issues remain evidence, not a mandatory new coordinator. Do not implement Lesson data in Course files. At Course consumption/build time pass **the Course's effective requested languages** to the referenced Lesson Build; verify they are a subset of the standalone Lesson's declared supported languages and do not mutate those declarations. Pass the resulting effective Lesson language scope to independent Flashcard Build (#646), without embedding Course identity or fallback translations into standalone resources.
 
 The parent PR must show per-Module three checkboxes, child Draft PR/Issue links, verified SHA, unresolved blockers and the next action. Parallel Module subtasks must have disjoint paths and target the Course parent branch. The stage can complete **before** independent Lesson implementation PRs merge: that distinct status belongs in the automatically refreshed **Lessons** block.
 
-**Complete:** all Module units have approved slots, verified match decisions and complete missing Lesson methodology handoffs; ambiguities are resolved or explicitly block affected units. **Handoff:** independent Course-wide plan review.
+**Complete:** all Module units have approved slots, verified match decisions and complete missing Lesson methodology handoffs; ambiguities are resolved or explicitly block affected units. Each new Lesson methodology must pass the [Lesson educational-specification gate](../../docs/entities/lesson.md#lesson-methodology-completeness--pedagogical-technical-specification), without requiring old frontmatter or creating a second authoring document. **Handoff:** independent Course-wide plan review.
 
 ### 4. Review Course Plan — whole Course
 
@@ -104,7 +104,26 @@ Before **Ready for Review or merge**, every mandatory CI, format/type/build/sche
 `npm run content:check:yaml-schemas --workspace @svitlo/engine`
 `node --test shared/engine/scripts/courseBuilder/courseBuilder.spec.mjs`
 
-Run the repository's canonical generator/test tasks for affected packages, and report exact outcomes; commands are not automatically proof of approval.
+Before declaring the Course ready, verify **every Course-owned Episode** has
+all required media produced (Image, Audio, Video, poster, Subtitles and nested
+Carousel/Quest dependencies). The Course technical YAML→TS scaffolder emits
+`TODO(asset)` and reserved Nil UUID media filenames for unresolved asset
+requests; those are **allowed in Drafts only** and must be absent at Ready/merge.
+Do not add media-generation side effects or production status fields to
+`defineEpisode`; the resource lifecycle belongs to the source scaffolder,
+specialists and strict production publisher. Run `generateCourseProps --preflight`
+without `--draft` and the affected textbook's production `package:build`,
+then inspect the generated Course/Episode resources and static manifest. The
+Course PR also depends on every referenced standalone Lesson's actual release
+readiness; a merged Lesson PR or generated source alone is not proof. Record
+real resource paths, language coverage and build SHA/evidence.
+
+The `Content packages build` check rejects unresolved media markers in
+changed Course UUID roots on review-ready PRs; the production build also
+rejects missing physical references. Configure protected-branch required
+checks separately to prevent bypassing CI. Run the repository's canonical
+generator/test tasks for affected packages, and report exact outcomes; commands
+are not automatically proof of approval.
 
 ## Parent Draft PR template
 

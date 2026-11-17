@@ -21,6 +21,7 @@ import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { build } from 'esbuild';
 import { stageTextbookAssets } from './stageTextbookAssets.mjs';
+import { verifyAssessmentSelections } from '../verifyAssessmentSelections/verifyAssessmentSelections.mjs';
 import { randomUUID } from 'node:crypto';
 
 const root = resolve(process.cwd());
@@ -232,6 +233,14 @@ try {
       mkdirSync(dirname(target), { recursive: true });
       copyFileSync(join(generatedAssessmentRoot, name), target);
     }
+  }
+
+  // An authored Quiz/Flashcards Section may be valid even when its independent
+  // bank was never generated. Verify every candidate UUID against the published
+  // bank manifest and actual JSON/locale files before committing production.
+  if (mediaMode === 'production') {
+    const verified = verifyAssessmentSelections(resources);
+    console.log('Verified ' + verified + ' referenced Question/Flashcard resource(s) in production');
   }
 
   const sourcePublic = join(root, 'public');

@@ -1,6 +1,6 @@
 # Lesson Content
 
-**Entity category:** Educational Screenwriter-owned **machine-readable editorial plan** for one independently reusable Lesson.
+**Entity category:** historical Screenwriter-owned editorial plan for a Lesson. **Not a new-work source:** [Create Lesson Flow](../../skills/lesson-workflow/create-lesson-flow.skill.md) now uses a single temporary `lesson.yaml` with nested `config` and `production` through Stages 1–5; the old `content.yaml` and its hand-maintained schema are retained only for an audited, non-destructive legacy migration. Do not generate new `content.yaml` or represent it as a current canonical authoring requirement.
 
 A Lesson has two distinct editorial sources: `methodology.md` specifies **what, why, for whom** and the required Quiz/Assessment Method policy; `content.yaml` specifies **how to teach it**: ordered Sections, ContentBlocks, learner-facing source-language copy, experience design, required Quiz placements and production dependencies.
 

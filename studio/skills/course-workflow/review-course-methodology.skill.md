@@ -20,6 +20,7 @@ For the specified Course UUID, read the entire current:
 - Approved scenario/episode materials if present, with the Scenario Review result and current revision-specific sign-off, or documented reason why the Course has no scenario layer.
 - Course production limitations and the Engine Config-shaped YAML handoff; the generic draft scaffolder checks **neither** approval status nor editorial review reports.
 
+**Upstream completeness gate:** assess the Course's actual approved source against the [Course methodology completeness contract](../../docs/entities/course.md#course-methodology-completeness--pedagogical-technical-specification). Return `changes-requested`/`blocked` when outcomes, depth, dependencies, verified standards, learner context, misconceptions or evidence are missing. Require a Methodologist-owned revision and fresh independent review instead of inventing omitted pedagogy in Course overrides. TypeScript/Schema validity and a generated document do not constitute pedagogical approval.
 ## Methodological audit
 
 1. Check actual Course coverage, competency prerequisites, depth, repetition, pacing and progression against verified Skill dependencies and approved outcomes; identify unaddressed gaps and misleading Lesson reuse.

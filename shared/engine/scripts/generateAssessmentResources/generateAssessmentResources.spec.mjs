@@ -96,6 +96,7 @@ test('Engine fixture independently publishes localized Question and Flashcard bo
     const prefix = owner + '/' + (entry.kind === 'question' ? 'questions' : 'flashcards') + '/' + uuid;
     const base = JSON.parse(files.get(prefix + '/base.json'));
     assert.equal(base.id, uuid);
+    if (entry.kind === 'flashcard') assert.deepEqual(entry.disabilities, []);
     assert.equal(typeof entry.contentHash, 'string');
     assert.equal(entry.contentHash.length, 64);
     assert.deepEqual(entry.languages, ['en', 'uk']);

@@ -1,22 +1,22 @@
 # Separate Lesson composition from Question and Flashcard banks
 
-**Status:** owner-approved target architecture; **partial cross-package implementation in Draft PR #606, full migration not implemented**. This document is the work specification for [Issue #605](https://github.com/KiT-Maverik/svitlo/issues/605). It supersedes that Issue's earlier proposal to remove banks from the first-stage YAML while keeping them in final Lesson Config/Props.
+**Status (checked 17 November 2026):** PR #606 has merged; independent Question/Flashcard resource publication, host/UI selection and dedicated `questionsBuilder/` / `flashcardBuilder/` draft scaffolding exist. The remaining content migration, integrated acceptance and any Custom Practice UI are separate work, **not** evidence that the core bank separation is still a Draft. This document is the work specification for [Issue #605](https://github.com/KiT-Maverik/svitlo/issues/605). It supersedes that Issue's earlier proposal to remove banks from the first-stage YAML while keeping them in final Lesson Config/Props.
 **Scope:** Engine Build and runtime contracts; Section selection; independent YAML/TS authoring, generation and validation; static resource publishing/assembling; UI Kit/host loading; textbooks and Studio migration.
 **Related:** [Lesson entity](../entities/lesson.md), [Section entity](../entities/section.md), [Lesson YAML Builder](./lesson-yaml-builder.md), [source layout](./lesson-generated-source-layout.md), [unified YAML handoff](./yaml-config-scaffolding.md), [Lesson workflow](../../skills/lesson-workflow/README.md), [PR #557](https://github.com/KiT-Maverik/svitlo/pull/557), [PR #576](https://github.com/KiT-Maverik/svitlo/pull/576).
 
 
-## Verified incremental implementation (16 November 2026)
+## Verified historical implementation checkpoint (16 November 2026; superseded where newer builders exist)
 
-The existing Draft PR #606 branch now implements more than standalone resource primitives:
+The PR #606 implementation established more than standalone resource primitives (historical 16 November snapshot):
 
 - Engine `defineLesson` Config, Build outputs, Props and Course override paths omit full Question and Flashcard banks. Quiz and Flashcards Sections carry explicit UUID selection; the Quiz's deterministic sample/shuffle function selects final UUIDs before loading their resources. The derived YAML editor JSON Schemas have been regenerated.
-- Independent Question and Flashcard Build publication serializes one UUID-addressed base and sparse locale file per resource, with a metadata-only, cross-kind merged manifest. The two resource stages can run separately from already authored TypeScript bank modules, and the textbook build stages their files in its portable static manifest. **Editorial bank YAML-to-TypeScript stages are not implemented.**
+- Independent Question and Flashcard Build publication serializes one UUID-addressed base and sparse locale file per resource, with a metadata-only, cross-kind merged manifest. The two resource stages can run separately from already authored TypeScript bank modules, and the textbook build stages their files in its portable static manifest. **At this historical checkpoint**, editorial bank YAML-to-TypeScript stages were not yet implemented; current Questions/Flashcards builders must be read instead.
 - Stage A Lesson Builder now accepts `lesson.yaml` only, rejects embedded root banks, and creates no Question/Flashcard TS directories.
 - The Mathematics textbook's 109 technical Lesson YAMLs now use `lesson.yaml` and have no embedded root Question/Flashcard bank fields. This is a mechanical migration of unapproved technical drafts; no Lesson generation or editorial approval is implied. The independent editorial YAML files live beside it in the Lesson root; Stage B/C conversion remains deferred.
 - UI Kit's Quiz and Flashcards Sections use a host-injected async loader with selected-resource validation, locale handling, retry and cancellation. The Playground Web host supplies a static-file reader; no entire bank is passed through Lesson Props.
 - Verified via GitHub's `Content packages build` on commit `05a5ed8`: the Playground package generated **271 independent assessment files** and built **428 static resources**. Engine generator and ContentBlock Build API workflows also succeeded on that commit. Additional unit/integration tests and subsequent CI remain in progress.
 
-**Still mandatory before closing #605:** reconcile approved `questions.yaml` and `flashcards.yaml` editorial content with independent stages, verify complete-publication UUID ownership and references, handle reused legacy Playground Lesson/Quiz examples without silently duplicating UUIDs, align Studio and fixtures, prove offline/accessibility and host behavior end to end, and obtain independent Development/QA review. Keep the acceptance checklist below unchecked until each boundary is verified.
+**Remaining acceptance concerns for the original Issue (verify their current status independently):** reconcile approved `questions.yaml` and `flashcards.yaml` editorial content with independent stages, verify complete-publication UUID ownership and references, handle reused legacy Playground Lesson/Quiz examples without silently duplicating UUIDs, align Studio and fixtures, prove offline/accessibility and host behavior end to end, and obtain independent Development/QA review. Keep the acceptance checklist below unchecked until each boundary is verified.
 
 ## Decision and nonnegotiable invariants
 
@@ -28,7 +28,7 @@ The existing Draft PR #606 branch now implements more than standalone resource p
 6. Draft scaffolding is allowed to leave intentionally unresolved asset/import/reference work; publishing a complete Lesson/Quiz must fail clearly if referenced bank entries or required requested-locale data are missing. Editorial/release readiness remains a **separate future decision** (#591), not a reason to put approval fields into Lesson Props.
 7. No new generic factories or parallel copies of the same authoring source. Build/authoring APIs stay in `@svitlo/engine/build`; runtime and UI Kit consume only data-only published contracts.
 
-## Observed pre-migration behavior (check current main again before coding)
+## Historical pre-migration behavior (NOT the current implementation)
 
 - `shared/engine/configurators/lessons/defineLesson/defineLesson.schemas.ts`: Config has optional `questions` and `flashcards`; Props **require** the full `flashcards` array and optionally include full `questions` by kind. Lesson override types also include both banks.
 - `shared/engine/configurators/lessons/defineLesson/defineLesson.ts`: validates child banks/Quiz dependencies; `build.props()` builds and inserts every bank entry, including localized content, into Lesson publication. `build.overrides()` can replace/add/disable bank entries.
