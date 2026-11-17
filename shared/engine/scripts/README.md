@@ -15,3 +15,7 @@ emission or auto-registers incomplete Scene components.
 The read-only [auditTextbookMedia](./auditTextbookMedia/README.md) CLI reports possible unused textbook-wide media files without running a Lesson/Course build. It compares assets with literal UUID filename references in authored textbook source and does not delete files or fail on unused candidates.
 
 The one-time pre-configurator `migrateSkillsConfigurators` conversion has been retired after the canonical Skills migration in PR #625. Editorial Markdown-to-Code creation continues through `implementSkillsTaxonomy`; Code-to-Markdown review uses `generateSkillsTaxonomy`.
+
+## Read-only Lesson discovery
+
+The [queryLessons](./queryLessons/README.md) CLI provides deterministic searches by Lesson UUID or verified Skill UUIDs, distinguishing implemented TS sources from editorial `lesson.yaml` drafts. The GitHub [Get Lessons by Skill or ID](../../../.github/workflows/get-lesson.yml) PR-comment command runs this lookup at a pinned SHA and stores its report as an Actions artifact, never in the PR tree. The historical `generateLessonsBySkill` Markdown CLI shares this static index and remains operational.
