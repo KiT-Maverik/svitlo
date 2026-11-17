@@ -22,6 +22,7 @@ import {
   sameInventory,
   parseParent,
   parseLessonClaim,
+  targetsCourseLessonClaim,
   resolveClaims,
   outsideHash,
   validateReport,
@@ -203,12 +204,17 @@ export async function analyze(options) {
   }
   const claims = [];
   for (const pr of prs) {
-    if (typeof pr.body !== 'string' || !pr.body.includes('<!-- svitlo-course-lesson:v1 -->')) continue;
+    if (!targetsCourseLessonClaim(pr.body, identity.courseId, options.pr)) continue;
     try {
       const claim = parseLessonClaim(pr.body);
-      if (!claim || claim.courseId !== identity.courseId || claim.parentPr !== options.pr) continue;
+      if (!claim || claim.courseId !== identity.courseId || claim.parentPr !== options.pr) {
+        throw new Error('Lesson PR Course/parent identity mismatch');
+      }
       if (pr.head?.repo?.full_name !== options.repo || !Number.isSafeInteger(pr.number) || pr.number < 1) {
         throw new Error('Lesson PR must be from the same repository');
+      }
+      if (pr.base?.ref !== parent.head?.ref || pr.base?.repo?.full_name !== options.repo) {
+        throw new Error('Lesson PR must target its Course parent branch');
       }
       claims.push({
         ...claim,
