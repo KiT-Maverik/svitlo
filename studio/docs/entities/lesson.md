@@ -1,5 +1,7 @@
 # Lesson
 
+> New authoring follows [Create Lesson Flow](../../skills/lesson-workflow/create-lesson-flow.skill.md): one temporary `lesson.yaml` through editorial review, Draft Lesson PR for workflow status, Stage 6 safe finalization and independent bank subtasks. Historical separate `content.yaml`/`methodology.md` plans must be migrated without loss, not kept as duplicate new sources.
+
 **Entity category:** self-contained, Course-neutral educational material. Can be standalone, reused across Courses, or authored under one Course without acquiring narrative responsibilities.
 
 A **Lesson** independently teaches **one or more approved Skills**. It must make sense without a Program, Curriculum, mascot, quest, reward system, external plot or special learner history. The Lesson owns the actual instructional material and its purposeful order of learning experiences; a Program can place it into a larger journey but does not own its pedagogical content.
