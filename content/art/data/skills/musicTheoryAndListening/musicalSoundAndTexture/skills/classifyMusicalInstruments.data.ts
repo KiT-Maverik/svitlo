@@ -31,7 +31,7 @@ export const classifyMusicalInstruments_Skill_Data = defineSkill({
     et: 'Muusikainstrumentide liigitamine',
     be: 'Класіфікацыя музычных інструментаў',
     ka: 'მუსიკალური ინსტრუმენტების კლასიფიკაცია',
-    kk: 'Музыкалық аспаптарды жіктеу',
+    kk: 'Muzykalyq aspaptardy jıkteu',
     qm: 'Musiki sazlarını sınıflandırmaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const classifyMusicalInstruments_Skill_Data = defineSkill({
       et: 'Rühmita pillid heli tekitamise viisi järgi, austades eri traditsioone.',
       be: 'Групуйце інструменты паводле спосабу ўтварэння гуку, паважаючы розныя традыцыі.',
       ka: 'დააჯგუფეთ ინსტრუმენტები ხმის წარმოქმნის მეთოდის მიხედვით და პატივი ეცით განსხვავებულ ტრადიციებს.',
-      kk: 'Аспаптарды дыбыс шығару тәсіліне қарай топтастырып, әртүрлі дәстүрлерді құрметтеңіз.',
+      kk: 'Aspaptardy dybys şyğaru täsılıne qarai toptastyryp, ärtürlı dästürlerdı qūrmetteñız.',
       qm: 'Sazlarnı ses çıqaruv usulına köre taqımlaştırıñız ve çeşit türlü ananelerni sayğı etiñiz.',
     },
   },

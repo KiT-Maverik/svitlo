@@ -31,7 +31,7 @@ export const followMusicalPhrases_Skill_Data = defineSkill({
     et: 'Muusikaliste fraaside jälgimine',
     be: 'Сачыць за музычнымі фразамі',
     ka: 'მუსიკალური ფრაზების მიყოლა',
-    kk: 'Музыкалық фразаларды қадағалау',
+    kk: 'Muzykalyq frazalardy qadağalau',
     qm: 'Musiki ibarelerini takip etmek',
   },
   description: {
@@ -64,7 +64,7 @@ export const followMusicalPhrases_Skill_Data = defineSkill({
       et: 'Jälgi, kust muusikaline mõte algab, areneb ja lõpeb.',
       be: 'Сачыце за тым, дзе музычная думка пачынаецца, развіваецца і завяршаецца.',
       ka: 'მიჰყევით, სად იწყება მუსიკალური ფრაზა, როგორ ვითარდება და სად სრულდება.',
-      kk: 'Музыкалық ойдың қайдан басталып, қалай дамып, қайда аяқталатынын қадағалаңыз.',
+      kk: 'Muzykalyq oidyñ qaidan bastalyp, qalai damyp, qaida aiaqtalatynyn qadağalañyz.',
       qm: 'Musiki fikriniñ qayerde başlanıp, inkişaf etkenini ve bitkenini takip etiñiz.',
     },
   },

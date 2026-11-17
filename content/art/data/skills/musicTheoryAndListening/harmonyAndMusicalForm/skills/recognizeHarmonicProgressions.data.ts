@@ -31,7 +31,7 @@ export const recognizeHarmonicProgressions_Skill_Data = defineSkill({
     et: 'Tuvastada harmooniajärgnevusi',
     be: 'Распазнаваць гарманічныя паслядоўнасці',
     ka: 'ჰარმონიული პროგრესიების ამოცნობა',
-    kk: 'Гармониялық тізбектерді тану',
+    kk: 'Garmoniialyq tızbekterdı tanu',
     qm: 'Armonik silsilelerni tanımaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const recognizeHarmonicProgressions_Skill_Data = defineSkill({
       et: 'Jälgi, kuidas muutuvad akordid aitavad muusikal edasi liikuda.',
       be: 'Сачыце, як змены акордаў дапамагаюць музыцы рухацца наперад.',
       ka: 'დააკვირდით, როგორ ეხმარება აკორდების ცვლილება მუსიკას წინსვლაში.',
-      kk: 'Бақылаңыз: аккордтардың өзгеруі музыканы қалай алға жетелейді.',
+      kk: 'Baqylañyz: akkordtardyñ özgeruı muzykany qalai alğa jeteleidı.',
       qm: 'Akkordlarnıñ deñişüvi musiqanı nasıl ileriletkenini takip etiñiz.',
     },
   },

@@ -31,7 +31,7 @@ export const interpretConsonanceAndDissonance_Skill_Data = defineSkill({
     et: 'Tõlgendada konsonantsi ja dissonantsi',
     be: 'Тлумачыць кансананс і дысананс',
     ka: 'კონსონანსისა და დისონანსის განმარტება',
-    kk: 'Консонанс пен диссонансты түсіндіру',
+    kk: 'Konsonans pen dissonansty tüsındıru',
     qm: 'Konsonans ve dissonansnı añlatmaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const interpretConsonanceAndDissonance_Skill_Data = defineSkill({
       et: 'Kuula, kuidas muusikaline pinge ja rahu sõltuvad stiilist ja kontekstist.',
       be: 'Паслухайце, як музычная напружанасць і спакой залежаць ад стылю і кантэксту.',
       ka: 'მოუსმინეთ, როგორ არის მუსიკალური დაძაბულობა და სიმშვიდე დამოკიდებული სტილსა და კონტექსტზე.',
-      kk: 'Тыңдаңыз: музыкалық ширығу мен тыныштық стиль мен мәнмәтінге қалай тәуелді.',
+      kk: 'Tyñdañyz: muzykalyq şiryğu men tynyştyq stil men mänmätınge qalai täueldı.',
       qm: 'Musiqiy gerginlik ve tınçlıqnıñ uslûpqa ve şaraitke bağlı olğanını diñleñiz.',
     },
   },

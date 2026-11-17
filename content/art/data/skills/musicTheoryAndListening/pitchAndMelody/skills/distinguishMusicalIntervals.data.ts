@@ -31,7 +31,7 @@ export const distinguishMusicalIntervals_Skill_Data = defineSkill({
     et: 'Eristada muusikalisi intervalle',
     be: 'Адрозніваць музычныя інтэрвалы',
     ka: 'მუსიკალური ინტერვალების გარჩევა',
-    kk: 'Музыкалық интервалдарды ажырату',
+    kk: 'Muzykalyq intervaldardy ajyratu',
     qm: 'Musikiy aralıqlarnı ayırmaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const distinguishMusicalIntervals_Skill_Data = defineSkill({
       et: 'Võrdle, kui kaugel kõlavad kaks nooti teineteisest.',
       be: 'Параўнайце, наколькі далёка адзін ад аднаго гучаць дзве ноты.',
       ka: 'შეადარეთ, რამდენად დაშორებულად ჟღერს ორი მუსიკალური ბგერა.',
-      kk: 'Екі музыкалық дыбыстың естілу арақашықтығын салыстырыңыз.',
+      kk: 'Ekı muzykalyq dybystyñ estılu araqaşyqtyğyn salystyryñyz.',
       qm: 'İki musiki notasınıñ ses aralığını qarşılaştırıñız.',
     },
   },

@@ -31,7 +31,7 @@ export const readPitchNotation_Skill_Data = defineSkill({
     et: 'Lugeda helikõrguse noodikirja',
     be: 'Чытаць запіс вышыні гукаў',
     ka: 'ბგერის სიმაღლის ნოტაციის წაკითხვა',
-    kk: 'Дыбыс биіктігінің ноталық жазбасын оқу',
+    kk: 'Dybys biıktıgınıñ notalyq jazbasyn oqu',
     qm: 'Ses yüksekliği notasını oqumaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const readPitchNotation_Skill_Data = defineSkill({
       et: 'Loe nootide helikõrgust kindla noodikirja süsteemi abil.',
       be: 'Чытайце вышыню нот з дапамогай пэўнай сістэмы музычнага запісу.',
       ka: 'წაიკითხეთ ნოტების სიმაღლე კონკრეტული მუსიკალური ნოტაციის სისტემით.',
-      kk: 'Ноталардың дыбыс биіктігін белгілі бір музыкалық нотация жүйесімен оқыңыз.',
+      kk: 'Notalardyñ dybys biıktıgın belgılı bır muzykalyq notatsiia jüiesımen oqyñyz.',
       qm: 'Belirli bir musiki nota yazısı sistemini qullanıp notalarnıñ ses yüksekliğini oquñız.',
     },
   },

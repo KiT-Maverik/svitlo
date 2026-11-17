@@ -39,7 +39,7 @@ export const musicalSoundAndTexture_SkillGroup_Data = defineSkillGroup({
     et: 'Muusikaline kõla ja tekstuur',
     be: 'Музычнае гучанне і фактура',
     ka: 'მუსიკალური ჟღერადობა და ფაქტურა',
-    kk: 'Музыкалық дыбыс пен фактура',
+    kk: 'Muzykalyq dybys pen faktura',
     qm: 'Musiqiy ses ve faktura',
   },
   skills: [
@@ -80,7 +80,7 @@ export const musicalSoundAndTexture_SkillGroup_Data = defineSkillGroup({
       et: 'Avasta helid ja kihid, mis muudavad muusikalised esitused äratuntavaks.',
       be: 'Адкрыйце гукі і пласты, якія робяць музычныя выкананні пазнавальнымі.',
       ka: 'აღმოაჩინეთ ხმები და ფენები, რომლებიც მუსიკალურ შესრულებას ცნობადს ხდის.',
-      kk: 'Музыкалық орындауды тануға мүмкіндік беретін дыбыстар мен қабаттарды зерттеңіз.',
+      kk: 'Muzykalyq oryndaudy tanuğa mümkındık beretın dybystar men qabattardy zertteñız.',
       qm: 'Musiqiy icralarnı tanıtqan sesler ve qatlamlarnı keşf etiñiz.',
     },
   },

@@ -31,7 +31,7 @@ export const composeAMelody_Skill_Data = defineSkill({
     et: 'Meloodia loomine',
     be: 'Стварыць мелодыю',
     ka: 'მელოდიის შექმნა',
-    kk: 'Әуен шығару',
+    kk: 'Äuen şyğaru',
     qm: 'Bir ezgi bestelemek',
   },
   description: {
@@ -64,7 +64,7 @@ export const composeAMelody_Skill_Data = defineSkill({
       et: 'Loo viis, ühendades noodid ja rütmid.',
       be: 'Стварыце мелодыю, спалучаючы ноты і рытмы.',
       ka: 'შექმენით მელოდია ნოტებისა და რიტმების შეხამებით.',
-      kk: 'Ноталар мен ырғақтарды үйлестіріп, әуен құрастырыңыз.',
+      kk: 'Notalar men yrğaqtardy üilestırıp, äuen qūrastyryñyz.',
       qm: 'Notalar ve ritimleri birleştirerek bir ezgi oluşturıñız.',
     },
   },

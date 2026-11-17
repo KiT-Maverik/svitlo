@@ -31,7 +31,7 @@ export const identifyMusicalTexture_Skill_Data = defineSkill({
     et: 'Muusikalise faktuuri äratundmine',
     be: 'Вызначаць музычную фактуру',
     ka: 'მუსიკალური ფაქტურის ამოცნობა',
-    kk: 'Музыкалық фактураны анықтау',
+    kk: 'Muzykalyq fakturany anyqtau',
     qm: 'Musiki tekstürini tanımaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const identifyMusicalTexture_Skill_Data = defineSkill({
       et: 'Kuula, kas muusikas on üks meloodialiin, unisoon või mitu samaaegset partiid.',
       be: 'На слых вызначайце, ці мае музыка адну лінію, унісон або некалькі партый адначасова.',
       ka: 'მოსმენით გაარჩიეთ, მუსიკაში ერთი ხაზი, უნისონი თუ რამდენიმე ერთდროული პარტიაა.',
-      kk: 'Тыңдау арқылы музыкада бір әуен желісі, унисон немесе бірнеше партия қатар орындалатынын анықтаңыз.',
+      kk: 'Tyñdau arqyly muzykada bır äuen jelısı, unison nemese bırneşe partiia qatar oryndalatynyn anyqtañyz.',
       qm: 'Dinleyerek müzikte tek bir ezgi hattı, unison ya da aynı anda birkaç partiya bar ekenini ayırt etiñiz.',
     },
   },

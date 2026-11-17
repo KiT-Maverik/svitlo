@@ -31,7 +31,7 @@ export const identifyMusicalMotifs_Skill_Data = defineSkill({
     et: 'Tuvastada muusikalisi motiive',
     be: 'Распазнаваць музычныя матывы',
     ka: 'მუსიკალური მოტივების ამოცნობა',
-    kk: 'Музыкалық мотивтерді анықтау',
+    kk: 'Muzykalyq motivterdı anyqtau',
     qm: 'Musiqiy motivlerni tanımaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const identifyMusicalMotifs_Skill_Data = defineSkill({
       et: 'Tunne lühike muusikaline idee ära, kui see kordub eri kujul.',
       be: 'Распазнайце кароткую музычную ідэю, калі яна вяртаецца ў розных формах.',
       ka: 'ამოიცანით მოკლე მუსიკალური იდეა, როდესაც ის სხვადასხვა ფორმით ბრუნდება.',
-      kk: 'Қысқа музыкалық идея әртүрлі түрде қайталанғанда, оны таныңыз.',
+      kk: 'Qysqa muzykalyq ideia ärtürlı türde qaitalanğanda, ony tanyñyz.',
       qm: 'Qısqa musiqiy fikir çeşit şekillerde tekrarlanğanda onı tanıñız.',
     },
   },

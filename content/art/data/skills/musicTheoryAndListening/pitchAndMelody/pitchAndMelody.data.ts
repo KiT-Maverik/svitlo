@@ -39,7 +39,7 @@ export const pitchAndMelody_SkillGroup_Data = defineSkillGroup({
     et: 'Helikõrgus ja meloodia',
     be: 'Вышыня гуку і мелодыя',
     ka: 'ბგერის სიმაღლე და მელოდია',
-    kk: 'Дыбыс биіктігі мен әуен',
+    kk: 'Dybys biıktıgı men äuen',
     qm: 'Ses yüksekliği ve ezgi',
   },
   skills: [
@@ -79,7 +79,7 @@ export const pitchAndMelody_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri, kuidas noodid liiguvad ja ühinevad meloodiateks.',
       be: 'Даследуйце, як ноты рухаюцца і спалучаюцца, утвараючы мелодыі.',
       ka: 'შეისწავლეთ, როგორ მოძრაობს და ერთიანდება ნოტები მელოდიების შესაქმნელად.',
-      kk: 'Зерттеңіз: ноталар қалай қозғалып, әуенге бірігеді.',
+      kk: 'Zertteñız: notalar qalai qozğalyp, äuenge bırıgedı.',
       qm: 'Notalarnıñ nasıl hareket etip, birleşip ezgi yaratqanını keşf etiñiz.',
     },
   },

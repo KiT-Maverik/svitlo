@@ -31,7 +31,7 @@ export const identifyMusicalTimbre_Skill_Data = defineSkill({
     et: 'Muusikalise tämbri äratundmine',
     be: 'Вызначаць музычны тэмбр',
     ka: 'მუსიკალური ტემბრის ამოცნობა',
-    kk: 'Музыкалық тембрді анықтау',
+    kk: 'Muzykalyq tembrdı anyqtau',
     qm: 'Musiki tembrini tanımaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const identifyMusicalTimbre_Skill_Data = defineSkill({
       et: 'Tunne ära eri häälte ja pillide ainulaadsed kõlaomadused.',
       be: 'Распазнавайце ўнікальныя гукавыя ўласцівасці розных галасоў і інструментаў.',
       ka: 'ამოიცანით სხვადასხვა ხმისა და ინსტრუმენტის უნიკალური ჟღერადობის თვისებები.',
-      kk: 'Әртүрлі дауыстар мен аспаптардың өзіндік дыбыстық ерекшеліктерін таныңыз.',
+      kk: 'Ärtürlı dauystar men aspaptardyñ özındık dybystyq erekşelıkterın tanyñyz.',
       qm: 'Farklı sesler ve sazlarınıñ özge tını hususiyetlerini tanıñız.',
     },
   },

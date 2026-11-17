@@ -31,7 +31,7 @@ export const distinguishPitchFromLoudness_Skill_Data = defineSkill({
     et: 'Eristada helikõrgust valjususest',
     be: 'Адрозніваць вышыню гуку ад гучнасці',
     ka: 'ბგერის სიმაღლისა და სიძლიერის გარჩევა',
-    kk: 'Дыбыс биіктігін қаттылығынан ажырату',
+    kk: 'Dybys biıktıgın qattylyğynan ajyratu',
     qm: 'Ses yüksekligini ses şiddetinden ayırmaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const distinguishPitchFromLoudness_Skill_Data = defineSkill({
       et: 'Tuvasta, kas heli on kõrge või madal, ajamata seda segi valjusega.',
       be: 'Вызначайце, ці гук высокі або нізкі, не блытаючы гэта з гучнасцю.',
       ka: 'გაარჩიეთ, ბგერა მაღალია თუ დაბალი და ნუ აურევთ ამას ხმის სიძლიერეში.',
-      kk: 'Дыбыстың жоғары не төмен екенін оның қаттылығымен шатастырмай анықтаңыз.',
+      kk: 'Dybystyñ joğary ne tömen ekenın onyñ qattylyğymen şatastyrmai anyqtañyz.',
       qm: 'Sesniñ ince yaki qalın olğanını ses şiddeti ile qarıştırmadan tanıñız.',
     },
   },

@@ -36,7 +36,7 @@ export const musicTheoryAndListening_SkillDomain_Data = defineSkillDomain({
     et: 'Muusikateooria ja kuulamine',
     be: 'Тэорыя музыкі і слуханне',
     ka: 'მუსიკის თეორია და მოსმენა',
-    kk: 'Музыка теориясы және тыңдау',
+    kk: 'Muzyka teoriiasy jäne tyñdau',
     qm: 'Muzika nazariyesi ve diñleme',
   },
   groups: [
@@ -76,7 +76,7 @@ export const musicTheoryAndListening_SkillDomain_Data = defineSkillDomain({
       et: 'Uuri, kuidas muusika loob eri traditsioonides heli, rütmi, meloodia ja vormi mustreid.',
       be: 'Даследуйце, як музыка стварае заканамернасці гуку, рытму, мелодыі і формы ў розных традыцыях.',
       ka: 'შეისწავლეთ, როგორ ქმნის მუსიკა ხმის, რიტმის, მელოდიისა და ფორმის კანონზომიერებებს სხვადასხვა ტრადიციაში.',
-      kk: 'Әртүрлі дәстүрлерде музыканың дыбыс, ырғақ, әуен және форма үлгілерін қалай жасайтынын зерттеңіз.',
+      kk: 'Ärtürlı dästürlerde muzykanyñ dybys, yrğaq, äuen jäne forma ülgılerın qalai jasaitynyn zertteñız.',
       qm: 'Çeşitli añanelerde muzikanıñ ses, ritim, avaz ve şekil ülgilerini nasıl yaratqanını keşf etiñiz.',
     },
   },
