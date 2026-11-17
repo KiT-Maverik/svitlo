@@ -38,7 +38,7 @@ export const printmaking_SkillGroup_Data = defineSkillGroup({
     et: 'Graafika',
     be: 'Друкаваная графіка',
     ka: 'ბეჭდვითი გრაფიკა',
-    kk: 'Баспа графикасы',
+    kk: 'Baspa grafikasy',
     qm: 'Baskı sanatı',
   },
   skills: [
@@ -78,7 +78,7 @@ export const printmaking_SkillGroup_Data = defineSkillGroup({
       et: 'Loo kujutisi, kandes kujunduse ettevalmistatud pinnalt üle.',
       be: 'Стварайце выявы, пераносячы малюнак з падрыхтаванай паверхні.',
       ka: 'შექმენით გამოსახულებები მომზადებული ზედაპირიდან ნიმუშის გადატანით.',
-      kk: 'Дайындалған беттен өрнекті көшіру арқылы кескін жасаңыз.',
+      kk: 'Daiyndalğan betten örnektı köşıru arqyly keskın jasañyz.',
       qm: 'Hazırlanğan yüzeylerden tasarımlarnı keçirip suretler yaratmaq usullarını keşf etiñiz.',
     },
   },

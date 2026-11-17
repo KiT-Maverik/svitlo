@@ -31,7 +31,7 @@ export const usePositiveAndNegativeSpace_Skill_Data = defineSkill({
     et: 'Positiivse ja negatiivse ruumi kasutamine',
     be: 'Выкарыстоўваць станоўчую і адмоўную прастору',
     ka: 'დადებითი და უარყოფითი სივრცის გამოყენება',
-    kk: 'Оң және теріс кеңістікті пайдалану',
+    kk: 'Oñ jäne terıs keñıstıktı paidalanu',
     qm: 'Musbet ve menfiy boşluqtan faydalanmaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const usePositiveAndNegativeSpace_Skill_Data = defineSkill({
       et: 'Kasuta tahkeid vorme ja nendevahelisi tühimikke skulptuuri osadena.',
       be: 'Выкарыстоўвайце аб’ёмныя формы і прастору паміж імі як часткі скульптуры.',
       ka: 'გამოიყენეთ მყარი ფორმები და მათ შორის არსებული სივრცეები ქანდაკების ნაწილებად.',
-      kk: 'Тұтас пішіндер мен олардың арасындағы кеңістікті мүсіннің бөлігі ретінде пайдаланыңыз.',
+      kk: 'Tūtas pışınder men olardyñ arasyndağy keñıstıktı müsınnıñ bölıgı retınde paidalanyñyz.',
       qm: 'Heykelniñ parçaları olaraq qatı şekillerden ve olarnıñ arasındaki boşluqlardan faydalaniñız.',
     },
   },

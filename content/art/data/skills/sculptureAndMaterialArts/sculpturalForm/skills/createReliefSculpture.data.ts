@@ -31,7 +31,7 @@ export const createReliefSculpture_Skill_Data = defineSkill({
     et: 'Reljeefskulptuuri loomine',
     be: 'Ствараць рэльефную скульптуру',
     ka: 'რელიეფური ქანდაკების შექმნა',
-    kk: 'Бедерлі мүсін жасау',
+    kk: 'Bederlı müsın jasau',
     qm: 'Qabarıq heykel yaratmaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const createReliefSculpture_Skill_Data = defineSkill({
       et: 'Loo tasasel alusel kõrgemaid ja süvendatud kujundeid.',
       be: 'Стварайце выпуклыя і заглыбленыя формы на плоскай аснове.',
       ka: 'ბრტყელ საფუძველზე შექმენით ამობურცული და ჩაღრმავებული ფორმები.',
-      kk: 'Жазық негізде шығыңқы және ойыңқы пішіндер жасаңыз.',
+      kk: 'Jazyq negızde şyğyñqy jäne oiyñqy pışınder jasañyz.',
       qm: 'Yassı bir esas üstünde qabarıq ve içke kirgen şekiller yaratıñız.',
     },
   },

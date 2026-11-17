@@ -38,7 +38,7 @@ export const sculptureAndMaterialArts_SkillDomain_Data = defineSkillDomain({
     et: 'Skulptuur ja materjalikunst',
     be: 'Скульптура і матэрыяльнае мастацтва',
     ka: 'ქანდაკება და მასალების ხელოვნება',
-    kk: 'Мүсін және материалдық өнер',
+    kk: 'Müsın jäne materialdyq öner',
   },
   groups: [
     ceramicsAndAssemblage_SkillGroup_Data,
@@ -79,7 +79,7 @@ export const sculptureAndMaterialArts_SkillDomain_Data = defineSkillDomain({
       et: 'Loo väljendusrikkaid füüsilisi objekte vormimise, trükkimise, savi, kanga ja muude materjalide abil.',
       be: 'Стварайце выразныя фізічныя аб’екты з дапамогай фармавання, друку, гліны, тканіны і іншых матэрыялаў.',
       ka: 'შექმენით გამომსახველი ფიზიკური ობიექტები ფორმირებით, ბეჭდვით, თიხით, ქსოვილითა და სხვა მასალებით.',
-      kk: 'Пішіндеу, басып шығару, саз, мата және басқа материалдар арқылы әсерлі физикалық бұйымдар жасаңыз.',
+      kk: 'Pışındeu, basyp şyğaru, saz, mata jäne basqa materialdar arqyly äserlı fizikalyq būiymdar jasañyz.',
     },
   },
 });

@@ -31,7 +31,7 @@ export const designAPrintMatrix_Skill_Data = defineSkill({
     et: 'Trükiplaadi kavandamine',
     be: 'Праектаваць друкарскую форму',
     ka: 'საბეჭდი ფორმის დაპროექტება',
-    kk: 'Баспа матрицасын жобалау',
+    kk: 'Baspa matritsasyn jobalau',
     qm: 'Baskı kalıbını tasarlamaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const designAPrintMatrix_Skill_Data = defineSkill({
       et: 'Kavanda, millised trükipinna osad kujutise jätavad.',
       be: 'Вызначце, якія часткі друкарскай паверхні будуць пераносіць выяву.',
       ka: 'დაგეგმეთ, საბეჭდი ზედაპირის რომელი ნაწილები გადაიტანს გამოსახულებას.',
-      kk: 'Баспа бетінің қай бөліктері кескін қалдыратынын жоспарлаңыз.',
+      kk: 'Baspa betınıñ qai bölıkterı keskın qaldyratynyn josparlañyz.',
       qm: 'Baskı yüzüniñ hangi yerleri suret qaldıracağını evelden planlañız.',
     },
   },

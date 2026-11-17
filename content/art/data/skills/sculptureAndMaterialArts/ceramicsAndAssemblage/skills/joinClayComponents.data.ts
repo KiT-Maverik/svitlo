@@ -31,7 +31,7 @@ export const joinClayComponents_Skill_Data = defineSkill({
     et: 'Savist osade ühendamine',
     be: 'Злучаць часткі гліны',
     ka: 'თიხის ნაწილების შეერთება',
-    kk: 'Саз бөліктерін біріктіру',
+    kk: 'Saz bölıkterın bırıktıru',
     qm: 'Balçıq parçalarını birleştirmek',
   },
   description: {
@@ -64,7 +64,7 @@ export const joinClayComponents_Skill_Data = defineSkill({
       et: 'Ühenda eraldi saviosad üheks stabiilseks vormiks.',
       be: 'Злучайце асобныя часткі гліны, каб утварыць адзіную ўстойлівую форму.',
       ka: 'შეაერთეთ თიხის ცალკეული ნაწილები ერთ მყარ ფორმად.',
-      kk: 'Жеке саз бөліктерін біріктіріп, біртұтас берік пішін жасаңыз.',
+      kk: 'Jeke saz bölıkterın bırıktırıp, bırtūtas berık pışın jasañyz.',
       qm: 'Ayrı balçıq parçalarını birleştirip sağlam bir şekil yapıñız.',
     },
   },

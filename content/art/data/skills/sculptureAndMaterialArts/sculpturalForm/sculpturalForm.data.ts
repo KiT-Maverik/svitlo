@@ -39,7 +39,7 @@ export const sculpturalForm_SkillGroup_Data = defineSkillGroup({
     et: 'Skulptuurne vorm',
     be: 'Скульптурная форма',
     ka: 'სკულპტურული ფორმა',
-    kk: 'Мүсіндік пішін',
+    kk: 'Müsındık pışın',
     qm: 'Heykel şekli',
   },
   skills: [
@@ -80,7 +80,7 @@ export const sculpturalForm_SkillGroup_Data = defineSkillGroup({
       et: 'Avasta, kuidas ruumala, tühi ruum ja erinevad vaatenurgad skulptuuri kujundavad.',
       be: 'Даследуйце, як аб’ём, пустая прастора і розныя пункты гледжання фарміруюць скульптуру.',
       ka: 'შეისწავლეთ, როგორ აყალიბებს ქანდაკებას მოცულობა, ცარიელი სივრცე და სხვადასხვა ხედვის კუთხე.',
-      kk: 'Көлем, бос кеңістік және әртүрлі көру бұрыштары мүсінді қалай қалыптастыратынын зерттеңіз.',
+      kk: 'Kölem, bos keñıstık jäne ärtürlı köru būryştary müsındı qalai qalyptastyratynyn zertteñız.',
       qm: 'Hacim, boş mekân ve türlü baqış noqtaları heykelni nasıl şekillendirgenini keşf etiñiz.',
     },
   },

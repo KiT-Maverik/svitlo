@@ -31,7 +31,7 @@ export const modelAdditiveSculpture_Skill_Data = defineSkill({
     et: 'Skulptuuri modelleerimine materjali lisades',
     be: 'Мадэляваць скульптуру метадам нарошчвання',
     ka: 'მასალის დამატებით ქანდაკების გამოძერწვა',
-    kk: 'Материал қосу арқылы мүсін жасау',
+    kk: 'Material qosu arqyly müsın jasau',
     qm: 'Qoşma usulı ile heykel şekillendirmek',
   },
   description: {
@@ -64,7 +64,7 @@ export const modelAdditiveSculpture_Skill_Data = defineSkill({
       et: 'Lisa ja vormi pehmet materjali, et luua skulptuurne objekt.',
       be: 'Дадавайце і фармуйце мяккі матэрыял, каб стварыць скульптурны аб’ект.',
       ka: 'დაამატეთ და გამოძერწეთ რბილი მასალა სკულპტურული ობიექტის შესაქმნელად.',
-      kk: 'Жұмсақ материалды қосып, пішін беріп, мүсіндік бұйым жасаңыз.',
+      kk: 'Jūmsaq materialdy qosyp, pışın berıp, müsındık būiym jasañyz.',
       qm: 'Heykel obyektini qurmaq içün yumşaq material qoşuñız ve şekillendiriñiz.',
     },
   },

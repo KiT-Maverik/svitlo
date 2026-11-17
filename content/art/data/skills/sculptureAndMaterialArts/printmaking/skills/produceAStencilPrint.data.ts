@@ -31,7 +31,7 @@ export const produceAStencilPrint_Skill_Data = defineSkill({
     et: 'Šabloontrüki valmistamine',
     be: 'Ствараць трафарэтны адбітак',
     ka: 'შაბლონური ანაბეჭდის შექმნა',
-    kk: 'Трафареттік баспа жасау',
+    kk: 'Trafarettık baspa jasau',
     qm: 'Şablon baskısı yaratmaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const produceAStencilPrint_Skill_Data = defineSkill({
       et: 'Kasuta šablooni avasid valitud kujundite trükkimiseks.',
       be: 'Выкарыстоўвайце адтуліны ў трафарэце, каб надрукаваць выбраныя формы.',
       ka: 'გამოიყენეთ შაბლონის ღიობები არჩეული ფორმების დასაბეჭდად.',
-      kk: 'Таңдаған пішіндерді басып шығару үшін трафареттегі ашық жерлерді пайдаланыңыз.',
+      kk: 'Tañdağan pışınderdı basyp şyğaru üşın trafarettegı aşyq jerlerdı paidalanyñyz.',
       qm: 'Saylağan şekilleri baskı etmek içün şablondaki açıq yerlerden boya keçiriñiz.',
     },
   },

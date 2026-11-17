@@ -31,7 +31,7 @@ export const produceAReliefPrint_Skill_Data = defineSkill({
     et: 'Kõrgtrüki valmistamine',
     be: 'Ствараць рэльефны адбітак',
     ka: 'რელიეფური ანაბეჭდის შექმნა',
-    kk: 'Бедерлі баспа жасау',
+    kk: 'Bederlı baspa jasau',
     qm: 'Qabarıq baskı yaratmaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const produceAReliefPrint_Skill_Data = defineSkill({
       et: 'Kanna kujutis üle, kandes trükivärvi trükiplaadi kõrgematele osadele.',
       be: 'Пераносце выяву, наносячы фарбу на выступаючыя часткі друкарскай формы.',
       ka: 'გადაიტანეთ გამოსახულება საბეჭდი ფორმის ამობურცულ ნაწილებზე მელნის დატანით.',
-      kk: 'Баспа қалыптың шығыңқы бөліктеріне бояу жағып, кескінді көшіріңіз.',
+      kk: 'Baspa qalyptyñ şyğyñqy bölıkterıne boiau jağyp, keskındı köşırıñız.',
       qm: 'Baskı kalıbınıñ qabarıq yerlerine boya sürüp suretni kağıtqa keçiriñiz.',
     },
   },

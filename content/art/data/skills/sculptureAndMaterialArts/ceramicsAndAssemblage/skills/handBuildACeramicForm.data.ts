@@ -31,7 +31,7 @@ export const handBuildACeramicForm_Skill_Data = defineSkill({
     et: 'Keraamilise vormi käsitsi voolimine',
     be: 'Ляпіць керамічную форму ўручную',
     ka: 'კერამიკული ფორმის ხელით ძერწვა',
-    kk: 'Керамикалық пішінді қолмен жасау',
+    kk: 'Keramikalyq pışındı qolmen jasau',
     qm: 'Keramika şeklini elnen yapmaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const handBuildACeramicForm_Skill_Data = defineSkill({
       et: 'Vormi savi käte, savirullide või saviplaatide abil.',
       be: 'Надавайце гліне форму рукамі, джгутамі або пласцінамі.',
       ka: 'ხელით, თიხის გრეხილებით ან ფირფიტებით მიეცით თიხას ფორმა.',
-      kk: 'Қолмен, ширатылған сазбен немесе тақташалармен сазға пішін беріңіз.',
+      kk: 'Qolmen, şiratylğan sazben nemese taqtaşalarmen sazğa pışın berıñız.',
       qm: 'Balçıqnı elleriñiz, buramalar ya da yassı qatlar ile şekillendiriñiz.',
     },
   },

@@ -31,7 +31,7 @@ export const constructThreeDimensionalForm_Skill_Data = defineSkill({
     et: 'Kolmemõõtmelise vormi konstrueerimine',
     be: 'Канструяваць трохмерную форму',
     ka: 'სამგანზომილებიანი ფორმის აგება',
-    kk: 'Үшөлшемді пішін құрастыру',
+    kk: 'Üşölşemdı pışın qūrastyru',
     qm: 'Üçölçemli şekil qurmaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const constructThreeDimensionalForm_Skill_Data = defineSkill({
       et: 'Loo kolmemõõtmeline vorm, mis mõjub terviklikult mitme nurga alt.',
       be: 'Стварыце трохмерную форму, якая выглядае цэласна з розных ракурсаў.',
       ka: 'შექმენით სამგანზომილებიანი ფორმა, რომელიც რამდენიმე კუთხიდან დანახვისას მთლიანია.',
-      kk: 'Бірнеше бұрыштан қарағанда да үйлесімді көрінетін үшөлшемді пішін жасаңыз.',
+      kk: 'Bırneşe būryştan qarağanda da üilesımdı körınetın üşölşemdı pışın jasañyz.',
       qm: 'Bir qaç açıdan körüngen ve işlegen üçölçemli şekil yapıñız.',
     },
   },

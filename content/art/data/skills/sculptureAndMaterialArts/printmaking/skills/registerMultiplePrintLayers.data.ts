@@ -31,7 +31,7 @@ export const registerMultiplePrintLayers_Skill_Data = defineSkill({
     et: 'Mitme trükikihi täpne kohakuti seadmine',
     be: 'Сумяшчаць некалькі друкарскіх слаёў',
     ka: 'რამდენიმე საბეჭდი ფენის შეთავსება',
-    kk: 'Бірнеше баспа қабатын дәл келтіру',
+    kk: 'Bırneşe baspa qabatyn däl keltıru',
     qm: 'Bir qaç baskı qatını teñleştirmek',
   },
   description: {
@@ -64,7 +64,7 @@ export const registerMultiplePrintLayers_Skill_Data = defineSkill({
       et: 'Joonda trükikihid nii, et värvid ja kujundid kattuksid kavandatud viisil.',
       be: 'Сумясціце адбіткі слаёў так, каб колеры і формы супадалі, як задумана.',
       ka: 'შეათავსეთ დაბეჭდილი ფენები ისე, რომ ფერები და ფორმები განზრახულის შესაბამისად დაემთხვეს.',
-      kk: 'Түстер мен пішіндер ойдағыдай түйісуі үшін баспа қабаттарын туралаңыз.',
+      kk: 'Tüster men pışınder oidağydai tüiısuı üşın baspa qabattaryn turalañyz.',
       qm: 'Boya qatlarınıñ renkleri ve şekilleri planlanğan yerde birleşecek şekilde teñleştirñiz.',
     },
   },
