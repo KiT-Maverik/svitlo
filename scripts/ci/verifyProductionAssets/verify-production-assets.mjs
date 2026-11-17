@@ -63,10 +63,10 @@ export function verifyChangedEntities(root, changedPaths) {
       continue;
     }
     const isLesson = relative.includes('/data/lessons/');
-    if (isLesson) {
-      const hasRoot = fs.existsSync(path.join(full, 'index.ts')) ||
-        fs.readdirSync(full).some(name => name.endsWith('.data.ts'));
-      if (!hasRoot) findings.push(relative + ': missing authored Lesson TypeScript entrypoint');
+    const hasRoot = fs.existsSync(path.join(full, 'index.ts')) ||
+      fs.readdirSync(full).some(name => name.endsWith('.data.ts'));
+    if (!hasRoot) {
+      findings.push(relative + ': missing authored ' + (isLesson ? 'Lesson' : 'Course') + ' TypeScript entrypoint');
     }
     const temporary = isLesson
       ? ['lesson.yaml', 'questions.yaml', 'flashcards.yaml']
