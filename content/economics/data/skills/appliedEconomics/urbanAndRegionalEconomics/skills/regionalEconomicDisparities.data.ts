@@ -31,7 +31,7 @@ export const regionalEconomicDisparities_Skill_Data = defineSkill({
     et: 'Piirkondlikud majanduserinevused',
     be: 'Рэгіянальныя эканамічныя адрозьненьні',
     ka: 'რეგიონული ეკონომიკური განსხვავებები',
-    kk: 'Өңірлік экономикалық айырмашылықтар',
+    kk: 'Öñırlık ekonomikalyq aiyrmaşylyqtar',
     qm: 'Bölgelerara iqtisadiy farqlar',
   },
   description: {
@@ -65,7 +65,7 @@ export const regionalEconomicDisparities_Skill_Data = defineSkill({
       et: 'Võrdle piirkondade majandusvõimalusi sobivate näitajate abil.',
       be: 'Параўнай эканамічныя магчымасьці розных рэгіёнаў паводле адпаведных паказьнікаў.',
       ka: 'შეადარე სხვადასხვა რეგიონის ეკონომიკური შესაძლებლობები შესაბამისი მაჩვენებლებით.',
-      kk: 'Өңірлердің экономикалық мүмкіндіктерін тиісті көрсеткіштермен салыстыр.',
+      kk: 'Öñırlerdıñ ekonomikalyq mümkındıkterın tiıstı körsetkıştermen salystyr.',
       qm: 'Çeşit bölgeleriniñ iqtisadiy imkânlarını münasip köstergiçlernen teñeştir.',
     },
   },

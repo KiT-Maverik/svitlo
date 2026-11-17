@@ -31,7 +31,7 @@ export const regionalSpecialization_Skill_Data = defineSkill({
     et: 'Piirkondlik spetsialiseerumine',
     be: 'Рэгіянальная спэцыялізацыя',
     ka: 'რეგიონული სპეციალიზაცია',
-    kk: 'Өңірлік мамандану',
+    kk: 'Öñırlık mamandanu',
     qm: 'Bölge ihtisaslaşuvı',
   },
   description: {
@@ -65,7 +65,7 @@ export const regionalSpecialization_Skill_Data = defineSkill({
       et: 'Mõista, miks eri piirkonnad keskenduvad eri majandusharudele.',
       be: 'Зразумей, чаму розныя рэгіёны засяроджваюцца на розных галінах.',
       ka: 'გაიგე, რატომ სპეციალიზდებიან სხვადასხვა რეგიონები განსხვავებულ დარგებში.',
-      kk: 'Әртүрлі өңірлер неге әртүрлі салаларға маманданатынын түсін.',
+      kk: 'Ärtürlı öñırler nege ärtürlı salalarğa mamandanatynyn tüsın.',
       qm: 'Çeşit bölgeler niçün çeşit sanaat saalarına ihtisaslaşqanını añla.',
     },
   },

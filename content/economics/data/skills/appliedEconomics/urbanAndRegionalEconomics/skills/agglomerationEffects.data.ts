@@ -31,7 +31,7 @@ export const agglomerationEffects_Skill_Data = defineSkill({
     et: 'Linnastumisest tulenevad koondumismõjud',
     be: 'Аглямэрацыйныя эфэкты',
     ka: 'აგლომერაციის ეფექტები',
-    kk: 'Агломерация әсерлері',
+    kk: 'Aglomeratsiia äserlerı',
     qm: 'Aglomeratsiya tesirleri',
   },
   description: {
@@ -65,7 +65,7 @@ export const agglomerationEffects_Skill_Data = defineSkill({
       et: 'Uuri, miks ettevõtete koondumine võib suurendada nii tootlikkust kui ka kulusid.',
       be: 'Дасьледуй, чаму канцэнтрацыя прадпрыемстваў можа падвышаць прадукцыйнасьць і выдаткі.',
       ka: 'შეისწავლე, რატომ შეიძლება ბიზნესების თავმოყრამ გაზარდოს პროდუქტიულობაც და ხარჯებიც.',
-      kk: 'Кәсіпорындардың шоғырлануы өнімділік пен шығынды қатар неге арттыруы мүмкін екенін зертте.',
+      kk: 'Käsıporyndardyñ şoğyrlanuy önımdılık pen şyğyndy qatar nege arttyruy mümkın ekenın zertte.',
       qm: 'Şirketlerniñ bir yerde toplanması istisalnı da masraflarnı da niçün arttıra bilgenini ögren.',
     },
   },
