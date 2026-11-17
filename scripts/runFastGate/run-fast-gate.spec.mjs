@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { test } from 'node:test';
-import { chooseChecks, requiresWebBuild } from './run-fast-gate.mjs';
+import { chooseChecks, requiresWebBuild, requiresCourseStatusTests } from './run-fast-gate.mjs';
 
 const packages = [
   { path: 'shared/engine', name: '@svitlo/engine' },
@@ -104,4 +104,11 @@ test('content build always reports required status and scopes package builds int
   assert.match(workflow, /build-changed-content\.mjs/, 'content selection remains scoped in script');
   assert.match(workflow, /verify-production-assets\.mjs/, 'Ready PRs must check missing assets');
   assert.match(workflow, /!github\.event\.pull_request\.draft/, 'Drafts are allowed to be unfinished');
+});
+
+test('Course status changes invoke the complete synchronizer test suite', () => {
+  assert.equal(requiresCourseStatusTests(['scripts/syncCourseLessonStatus/synchronizer.mjs']), true);
+  assert.equal(requiresCourseStatusTests(['scripts/syncCourseLessonStatus/workflow.spec.mjs']), true);
+  assert.equal(requiresCourseStatusTests(['.github/workflows/sync-course-lessons.yml']), true);
+  assert.equal(requiresCourseStatusTests(['content/astronomy/data/courses/sample/course.yaml']), false);
 });
