@@ -31,7 +31,7 @@ export const illustrateAnAction_Skill_Data = defineSkill({
     et: 'Tegevuse illustreerimine',
     be: 'Ілюстраваць дзеяньне',
     ka: 'მოქმედების ილუსტრირება',
-    kk: 'Әрекетті суреттеу',
+    kk: 'Ärekettı suretteu',
     qm: 'Areketni resimlemek',
   },
   description: {
@@ -64,7 +64,7 @@ export const illustrateAnAction_Skill_Data = defineSkill({
       et: 'Näita tegevust selgelt tegelase asendi ja paigutuse abil.',
       be: 'Выразна пакажыце дзеяньне праз позу і разьмяшчэньне пэрсанажа.',
       ka: 'პერსონაჟის პოზითა და მდებარეობით ნათლად აჩვენეთ მოქმედება.',
-      kk: 'Кейіпкердің қалпы мен орналасуы арқылы әрекетті анық көрсетіңіз.',
+      kk: 'Keiıpkerdıñ qalpy men ornalasuy arqyly ärekettı anyq körsetıñız.',
       qm: 'Qaramanın turuşı ve yerleşüvi yardımınen areketni açıq kösteriñiz.',
     },
   },

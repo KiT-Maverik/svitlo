@@ -31,7 +31,7 @@ export const illustrateASequence_Skill_Data = defineSkill({
     et: 'Sündmuste jada illustreerimine',
     be: 'Ілюстраваць пасьлядоўнасьць падзеяў',
     ka: 'მოვლენათა თანმიმდევრობის ილუსტრირება',
-    kk: 'Оқиғалар тізбегін суреттеу',
+    kk: 'Oqiğalar tızbegın suretteu',
     qm: 'Vaqialar silsilesini resimlemek',
   },
   description: {
@@ -64,7 +64,7 @@ export const illustrateASequence_Skill_Data = defineSkill({
       et: 'Näita pildiseeria abil, kuidas sündmused arenevad.',
       be: 'Пакажыце сэрыяй малюнкаў, як разьвіваюцца падзеі.',
       ka: 'სურათების სერიით აჩვენეთ, როგორ ვითარდება მოვლენები.',
-      kk: 'Оқиғалардың қалай өрбитінін бірқатар сурет арқылы көрсетіңіз.',
+      kk: 'Oqiğalardyñ qalai örbitının bırqatar suret arqyly körsetıñız.',
       qm: 'Vaqialarnıñ nasıl inkişaf etkenini bir qaç resimnen kösteriñiz.',
     },
   },

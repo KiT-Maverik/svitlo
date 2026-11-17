@@ -35,7 +35,7 @@ export const drawingAndIllustration_SkillDomain_Data = defineSkillDomain({
     et: 'Joonistamine ja illustratsioon',
     be: 'Маляванне і ілюстрацыя',
     ka: 'ხატვა და ილუსტრაცია',
-    kk: 'Сурет салу және иллюстрация',
+    kk: 'Suret salu jäne illiustratsiia',
     qm: 'Sızuv ve illüstratsiya',
   },
   groups: [
@@ -74,7 +74,7 @@ export const drawingAndIllustration_SkillDomain_Data = defineSkillDomain({
       et: 'Õpi, kuidas joonistus kujutab nähtut ning illustratsioon jutustab lugusid või jagab ideid.',
       be: 'Даведайцеся, як малюнак адлюстроўвае ўбачанае, а ілюстрацыя расказвае гісторыі ці перадае ідэі.',
       ka: 'შეისწავლეთ, როგორ ასახავს ნახატი დანახულს და როგორ გადმოსცემს ილუსტრაცია ამბებსა თუ იდეებს.',
-      kk: 'Бейнелеу көргенімізді қалай көрсететінін, ал иллюстрация оқиғалар мен идеяларды қалай жеткізетінін үйреніңіз.',
+      kk: 'Beineleu körgenımızdı qalai körsetetının, al illiustratsiia oqiğalar men ideialardy qalai jetkızetının üirenıñız.',
       qm: 'Sızuv körgenlerimizni tasvir etmege, illüstratsiya ise ikâyelerni ve fikirlerni bildirmege nasıl yardım etkenini ögreniñiz.',
     },
   },

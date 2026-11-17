@@ -31,7 +31,7 @@ export const designMultisensoryRelationships_Skill_Data = defineSkill({
     et: 'Mitmetaju seoste kujundamine',
     be: 'Праектаваць мультысэнсорныя сувязі',
     ka: 'მრავალსენსორული კავშირების დიზაინი',
-    kk: 'Көпсезімді байланыстарды жобалау',
+    kk: 'Köpsezımdı bailanystardy jobalau',
     qm: 'Çoqusuliy bağlarnı tasarlamaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const designMultisensoryRelationships_Skill_Data = defineSkill({
       et: 'Ühenda heli, pildid, liikumine või puudutus üheks kunstiliseks kogemuseks.',
       be: 'Аб’ядноўвайце гук, выявы, рух або дотык у адным мастацкім досведзе.',
       ka: 'შეაერთეთ ხმა, გამოსახულებები, მოძრაობა ან შეხება ერთ მხატვრულ გამოცდილებაში.',
-      kk: 'Дыбыс, кескін, қозғалыс немесе жанасуды бір өнер тәжірибесіне біріктіріңіз。',
+      kk: 'Dybys, keskın, qozğalys nemese janasudy bır öner täjıribesıne bırıktırıñız.',
 
       qm: 'Ses, suret, hareket ya da toqunuvnı bir sanat tecribesine birleştiriñiz.',
     },

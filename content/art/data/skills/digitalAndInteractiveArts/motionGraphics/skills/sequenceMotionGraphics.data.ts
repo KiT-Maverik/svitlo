@@ -31,7 +31,7 @@ export const sequenceMotionGraphics_Skill_Data = defineSkill({
     et: 'Liikuva graafika järjestamine',
     be: 'Упарадкоўваць рухомую графіку',
     ka: 'მოძრავი გრაფიკის თანმიმდევრობა',
-    kk: 'Қозғалыс графикасын реттеу',
+    kk: 'Qozğalys grafikasyn retteu',
     qm: 'Hareketli grafikni silsilege tertip etmek',
   },
   description: {
@@ -65,7 +65,7 @@ export const sequenceMotionGraphics_Skill_Data = defineSkill({
       et: 'Järjesta liikuvad graafikaosad läbimõeldud rütmi ja üleminekutega.',
       be: 'Размяшчайце фрагменты рухомай графікі з прадуманым рытмам і пераходамі.',
       ka: 'დაალაგეთ მოძრავი გრაფიკის მონაკვეთები გააზრებული რიტმითა და გადასვლებით.',
-      kk: 'Қозғалмалы графика бөліктерін мақсатты ырғақ пен ауысулар арқылы реттеңіз。',
+      kk: 'Qozğalmaly grafika bölıkterın maqsatty yrğaq pen auysular arqyly retteñız.',
 
       qm: 'Hareketli grafik elementlerini maqsatlı bir zaman tertibinde birleştiriñiz.',
     },

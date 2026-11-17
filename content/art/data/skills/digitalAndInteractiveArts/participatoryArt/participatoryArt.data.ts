@@ -38,7 +38,7 @@ export const participatoryArt_SkillGroup_Data = defineSkillGroup({
     et: 'Osaluskunst',
     be: 'Партыцыпатыўнае мастацтва',
     ka: 'მონაწილეობითი ხელოვნება',
-    kk: 'Интерактивті өнер',
+    kk: 'İnteraktivtı öner',
     qm: 'Qatnaşuv sanat',
   },
   skills: [
@@ -78,7 +78,7 @@ export const participatoryArt_SkillGroup_Data = defineSkillGroup({
       et: 'Avasta teosed, kus publiku valikud on osa kogemusest.',
       be: 'Даследуйце творы, у якіх выбар аўдыторыі становіцца часткай досведу.',
       ka: 'შეისწავლეთ ნამუშევრები, რომლებშიც აუდიტორიის არჩევანი გამოცდილების ნაწილია.',
-      kk: 'Көрермен таңдауы тәжірибенің бір бөлігіне айналатын өнер туындыларын зерттеңіз.',
+      kk: 'Körermen tañdauy täjıribenıñ bır bölıgıne ainalatyn öner tuyndylaryn zertteñız.',
 
       qm: 'Seyirciniñ saylavları tecribeniñ bir qısmına çevrilgen sanat eserlerini keşf etiñiz.',
     },

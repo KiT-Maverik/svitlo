@@ -31,7 +31,7 @@ export const analyzeAudienceParticipation_Skill_Data = defineSkill({
     et: 'Publiku osaluse analüüsimine',
     be: 'Аналізаваць удзел аўдыторыі',
     ka: 'აუდიტორიის მონაწილეობის ანალიზი',
-    kk: 'Көрермендердің қатысуын талдау',
+    kk: 'Körermenderdıñ qatysuyn taldau',
     qm: 'Seyirci qatnaşuvını tahlil etüv',
   },
   description: {
@@ -64,7 +64,7 @@ export const analyzeAudienceParticipation_Skill_Data = defineSkill({
       et: 'Uuri, kuidas osalejate panus muudab kunstiteose autorlust, järjestust või tõlgendust.',
       be: 'Даследуйце, як унёсак удзельнікаў змяняе аўтарства, паслядоўнасць або інтэрпрэтацыю твора.',
       ka: 'შეისწავლეთ, როგორ ცვლის მონაწილეთა წვლილი ნამუშევრის ავტორობას, თანმიმდევრობას ან ინტერპრეტაციას.',
-      kk: 'Қатысушылардың үлесі өнер туындысының авторлығын, ретін немесе түсіндірілуін қалай өзгертетінін зерттеңіз。',
+      kk: 'Qatysuşylardyñ ülesı öner tuyndysynyñ avtorlyğyn, retın nemese tüsındırıluın qalai özgertetının zertteñız.',
 
       qm: 'Qatnaşuvnıñ sanat eserini kim şekillendire ve onıñ manasını nasıl deñiştire bilecegini keşf etiñiz.',
     },

@@ -39,7 +39,7 @@ export const illustrativeStorytelling_SkillGroup_Data = defineSkillGroup({
     et: 'Illustreeritud jutustamine',
     be: 'Апавяданне праз ілюстрацыю',
     ka: 'ილუსტრაციით თხრობა',
-    kk: 'Иллюстрация арқылы әңгімелеу',
+    kk: 'İlliustratsiia arqyly äñgımeleu',
     qm: 'Tasvirli hikâye anlatımı',
   },
   skills: [
@@ -80,7 +80,7 @@ export const illustrativeStorytelling_SkillGroup_Data = defineSkillGroup({
       et: 'Kasuta pilte tegelaste, tegevuste ja lugude edasiandmiseks.',
       be: 'Выкарыстоўвайце выявы, каб перадаваць персанажаў, дзеянні і гісторыі.',
       ka: 'გამოიყენეთ სურათები პერსონაჟების, მოქმედებებისა და ამბების გადმოსაცემად.',
-      kk: 'Кейіпкерлерді, әрекеттерді және оқиғаларды жеткізу үшін суреттерді пайдаланыңыз.',
+      kk: 'Keiıpkerlerdı, äreketterdı jäne oqiğalardy jetkızu üşın suretterdı paidalanyñyz.',
       qm: 'Şahısları, hareketleri ve hikâyeleri anlatmak içün resimler kullanıñız.',
     },
   },

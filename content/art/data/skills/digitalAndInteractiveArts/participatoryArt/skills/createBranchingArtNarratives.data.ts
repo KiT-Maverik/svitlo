@@ -31,7 +31,7 @@ export const createBranchingArtNarratives_Skill_Data = defineSkill({
     et: 'Hargnevate kunstiliste narratiivide loomine',
     be: 'Ствараць разгалінаваныя мастацкія аповеды',
     ka: 'განშტოებული მხატვრული ნარატივების შექმნა',
-    kk: 'Тармақталған көркем әңгімелер жасау',
+    kk: 'Tarmaqtalğan körkem äñgımeler jasau',
     qm: 'Dallanğan sanat hikâyelerini yaratmaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const createBranchingArtNarratives_Skill_Data = defineSkill({
       et: 'Lase publiku valikutel viia erinevate tähenduslike süžeeradadeni.',
       be: 'Дазвольце выбару аўдыторыі весці да розных змястоўных сюжэтных шляхоў.',
       ka: 'მიეცით აუდიტორიის არჩევანს საშუალება, სხვადასხვა შინაარსიან სიუჟეტურ გზამდე მიიყვანოს.',
-      kk: 'Көрермен таңдауы әртүрлі мағыналы оқиға желілеріне апарсын。',
+      kk: 'Körermen tañdauy ärtürlı mağynaly oqiğa jelılerıne aparsyn.',
 
       qm: 'Seyirciniñ saylavları ayrı ve manalı hikâye yollarına alıp barğanını qurıñız.',
     },

@@ -31,7 +31,7 @@ export const adaptIllustrationToAnAudience_Skill_Data = defineSkill({
     et: 'Illustratsiooni kohandamine sihtrühmale',
     be: 'Адаптаваць ілюстрацыю да аўдыторыі',
     ka: 'ილუსტრაციის მორგება აუდიტორიაზე',
-    kk: 'Иллюстрацияны аудиторияға бейімдеу',
+    kk: 'İlliustratsiiany auditoriiağa beiımdeu',
     qm: 'Resimlemeni seyircilerge uyğunlaştırmaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const adaptIllustrationToAnAudience_Skill_Data = defineSkill({
       et: 'Vali illustreerimisvõtted, mis sobivad inimestele, kes pilti loevad või vaatavad.',
       be: 'Падбірайце спосабы ілюстраваньня для людзей, якія будуць яе чытаць ці разглядаць.',
       ka: 'შეარჩიეთ გამოსახვის ხერხები იმ ადამიანებისთვის, რომლებიც ილუსტრაციას წაიკითხავენ ან დაათვალიერებენ.',
-      kk: 'Иллюстрацияны оқитын немесе көретін адамдарға лайық бейнелеу тәсілдерін таңдаңыз.',
+      kk: 'İlliustratsiiany oqityn nemese köretın adamdarğa laiyq beineleu täsılderın tañdañyz.',
       qm: 'Resimlemeni oquycaq ya da baqacaq adamlarğa uyğun tasvir usullarını saylañız.',
     },
   },

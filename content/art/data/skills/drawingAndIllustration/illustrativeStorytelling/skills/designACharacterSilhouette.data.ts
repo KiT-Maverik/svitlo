@@ -31,7 +31,7 @@ export const designACharacterSilhouette_Skill_Data = defineSkill({
     et: 'Tegelase silueti kujundamine',
     be: 'Распрацоўваць сілуэт пэрсанажа',
     ka: 'პერსონაჟის სილუეტის შექმნა',
-    kk: 'Кейіпкер сұлбасын жобалау',
+    kk: 'Keiıpker sūlbasyn jobalau',
     qm: 'Qaraman siluetini tasarlamaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const designACharacterSilhouette_Skill_Data = defineSkill({
       et: 'Kujunda tegelane, kelle saab ära tunda üksnes piirjoone järgi.',
       be: 'Стварыце пэрсанажа, якога можна пазнаць толькі па вонкавым контуры.',
       ka: 'შექმენით პერსონაჟი, რომლის ამოცნობაც მხოლოდ კონტურით არის შესაძლებელი.',
-      kk: 'Сыртқы сұлбасына қарап-ақ тануға болатын кейіпкер жасаңыз.',
+      kk: 'Syrtqy sūlbasyna qarap-aq tanuğa bolatyn keiıpker jasañyz.',
       qm: 'Tek dış çizgilerinden tanılacaq bir qaraman tasarlañız.',
     },
   },

@@ -31,7 +31,7 @@ export const animateGraphicElements_Skill_Data = defineSkill({
     et: 'Graafiliste elementide animeerimine',
     be: 'Анімаваць графічныя элементы',
     ka: 'გრაფიკული ელემენტების ანიმირება',
-    kk: 'Графикалық элементтерді жандандыру',
+    kk: 'Grafikalyq elementterdı jandandyru',
     qm: 'Grafik elementlerni canlandırmaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const animateGraphicElements_Skill_Data = defineSkill({
       et: 'Animeeri kujundeid ja ikoone, et suunata tähelepanu või luua väljendusrikast liikumist.',
       be: 'Анімуйце формы і значкі, каб накіроўваць увагу або ствараць выразны рух.',
       ka: 'გააცოცხლეთ ფორმები და ხატულები ყურადღების მისაპყრობად ან გამომსახველობითი მოძრაობის შესაქმნელად.',
-      kk: 'Назарды бағыттау немесе мәнерлі қозғалыс жасау үшін пішіндер мен белгішелерді жандандырыңыз。',
+      kk: 'Nazardy bağyttau nemese mänerlı qozğalys jasau üşın pışınder men belgışelerdı jandandyryñyz.',
 
       qm: 'Grafik şekillerge zaman içinde hereket beriñiz.',
     },

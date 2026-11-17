@@ -31,7 +31,7 @@ export const designArtisticInteraction_Skill_Data = defineSkill({
     et: 'Kunstilise interaktsiooni kujundamine',
     be: 'Праектаваць мастацкае ўзаемадзеянне',
     ka: 'მხატვრული ურთიერთქმედების დიზაინი',
-    kk: 'Көркем өзара әрекеттесуді жобалау',
+    kk: 'Körkem özara ärekettesudı jobalau',
     qm: 'Sanat tesirleşüvini tasarlamaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const designArtisticInteraction_Skill_Data = defineSkill({
       et: 'Kavanda kunstiline interaktsioon, mis muudab kunstiteost väljendusrikkalt.',
       be: 'Спраектуйце ўзаемадзеянне, якое выразна змяняе мастацкі твор.',
       ka: 'შექმენით ინტერაქცია, რომელიც ნამუშევარს გამომსახველობითად ცვლის.',
-      kk: 'Жұмысты мәнерлі түрде өзгертетін өзара әрекеттесуді жобалаңыз。',
+      kk: 'Jūmysty mänerlı türde özgertetın özara ärekettesudı jobalañyz.',
 
       qm: 'Sanat eserini ifadeleyici bir şekilde deñiştirecek tesirleşüvni tasarlayıñız.',
     },

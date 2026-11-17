@@ -31,7 +31,7 @@ export const designKineticTypography_Skill_Data = defineSkill({
     et: 'Kineetilise tüpograafia kujundamine',
     be: 'Праектаваць кінетычную тыпаграфіку',
     ka: 'კინეტიკური ტიპოგრაფიის დიზაინი',
-    kk: 'Кинетикалық типографияны жобалау',
+    kk: 'Kinetikalyq tipografiiany jobalau',
     qm: 'Hareketli tipografiyanı tasarlamaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const designKineticTypography_Skill_Data = defineSkill({
       et: 'Pane liikuvad sõnad tähendust edasi andma ajastuse ja teisenduste abil.',
       be: 'Перадавайце сэнс рухомымі словамі праз іх рытм і трансфармацыі.',
       ka: 'მოძრავი სიტყვებით გადმოეცით აზრი დროისა და გარდაქმნების საშუალებით.',
-      kk: 'Қозғалыстағы сөздердің уақытын және түрленуін басқарып, мағына жеткізіңіз.',
+      kk: 'Qozğalystağy sözderdıñ uaqytyn jäne türlenuın basqaryp, mağyna jetkızıñız.',
 
       qm: 'Yazı şekilleriniñ hareketi vastasınen mana ve tesir yaratqan tasarımını yapıñız.',
     },
