@@ -7,6 +7,7 @@ import ts from 'typescript';
 import yaml from 'yaml';
 
 import { inspectQuestions, readQuestionsYaml, renderQuestions, runOne } from './questionsBuilder.mjs';
+import { verifyQuizSelections } from './verifyQuizSelections.mjs';
 
 const uuid = n => '00000000-0000-4000-8000-' + String(n).padStart(12, '0');
 const lessonId = uuid(1);
@@ -153,6 +154,42 @@ test('YAML is preserved and strict parsing rejects obsolete nested source paths'
     const sourceBytes = fs.readFileSync(f.source, 'utf8');
     runOne(f.source, '--write', f.root);
     assert.equal(fs.readFileSync(f.source, 'utf8'), sourceBytes);
+  } finally {
+    f.remove();
+  }
+});
+
+test('actual Quiz Section and registry must contain exactly the reviewed subset', () => {
+  const f = fixture();
+  try {
+    const section = path.join(f.lesson, 'sections', 'introQuiz');
+    fs.mkdirSync(section, { recursive: true });
+    fs.writeFileSync(
+      path.join(f.lesson, 'sections', 'index.ts'),
+      "import { introQuiz } from './introQuiz';\n" +
+        "export const section = { items: { introQuiz }, order: ['introQuiz'] };\n",
+    );
+    const sectionFile = path.join(section, 'index.ts');
+    const writeSelection = id => fs.writeFileSync(
+      sectionFile,
+      "import { defineQuizSection } from '@svitlo/engine/build';\n" +
+        "export const introQuiz = defineQuizSection({\n" +
+        "  id: '" + uuid(20) + "', slug: 'introQuiz', type: 'quiz',\n" +
+        "  params: { selection: { mode: 'all', questionIds: ['" + id + "'] } },\n" +
+        "  locale: {}, content: { items: {}, order: [] }\n" +
+        "});\n",
+    );
+    writeSelection(uuid(10));
+    const selections = sample().quizSelections;
+    assert.deepEqual(verifyQuizSelections(f.lesson, selections), { sections: 1, questionIds: 1 });
+    writeSelection(uuid(11));
+    assert.throws(() => verifyQuizSelections(f.lesson, selections), /differ from reviewed/);
+    writeSelection(uuid(10));
+    fs.writeFileSync(
+      path.join(f.lesson, 'sections', 'index.ts'),
+      "import { introQuiz } from './introQuiz';\nexport const section = { items: {}, order: [] };\n",
+    );
+    assert.throws(() => verifyQuizSelections(f.lesson, selections), /absent from static Section registry/);
   } finally {
     f.remove();
   }
