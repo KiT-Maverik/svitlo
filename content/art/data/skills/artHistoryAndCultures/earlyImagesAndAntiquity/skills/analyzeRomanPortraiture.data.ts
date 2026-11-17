@@ -65,7 +65,7 @@ export const analyzeRomanPortraiture_Skill_Data = defineSkill({
       et: 'Uuri, kuidas Rooma portreed kujutasid inimesi ja nende ühiskondlikku positsiooni.',
       be: 'Даведайцеся, як рымскія партрэты адлюстроўвалі асоб і іх грамадскае становішча.',
       ka: 'გაეცანით, როგორ ასახავდა რომაული პორტრეტები ადამიანებსა და მათ საზოგადოებრივ მდგომარეობას.',
-      kk: 'Zertteñız: Rim portretterı adamdardy jäne olardyñ qoğamdağy ornyn qalai beinelegen.',
+      kk: 'Rim portretterınıñ adamdardy jäne olardyñ qoğamdağy märtebesın qalai beinelegenın zertteñız.',
       qm: 'Roma portrelerinin şahısları ve içtimai mevqilerini nasıl tasvir etkenini keşf etiñiz.',
     },
   },

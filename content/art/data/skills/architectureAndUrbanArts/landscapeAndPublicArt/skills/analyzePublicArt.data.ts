@@ -64,7 +64,7 @@ export const analyzePublicArt_Skill_Data = defineSkill({
       et: 'Uuri, kuidas avaliku kunstiteose asukoht mõjutab selle tähendust ja ligipääsetavust.',
       be: 'Даследуйце, як размяшчэнне публічнага мастацкага твора ўплывае на яго значэнне і даступнасць.',
       ka: 'შეისწავლეთ, როგორ მოქმედებს საჯარო ხელოვნების ნიმუშის მდებარეობა მის მნიშვნელობასა და ხელმისაწვდომობაზე.',
-      kk: 'Qoğamdyq öner tuyndysynyñ ornalasuy onyñ mänı men qoljetımdılıgıne qalai äser etetının zertteñız。',
+      kk: 'Qoğamdyq öner tuyndysynyñ ornalasqan jerı onyñ mänı men köpşılıkke qoljetımdılıgıne qalai äser etetının zertteñız.',
 
       qm: 'Cemaat sanat eseriniñ yeriniñ mana ve qolaylıqqa nasıl tesir etkenini keşf etiñiz.',
     },

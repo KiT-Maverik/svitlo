@@ -65,7 +65,7 @@ export const interpretUpperPaleolithicCavePainting_Skill_Data = defineSkill({
       et: 'Uuri, mida koopapildid ja nende asukohad näitavad ning mis on endiselt teadmata.',
       be: 'Даследуйце, што расказваюць пячорныя выявы і месцы іх размяшчэння, а што застаецца невядомым.',
       ka: 'შეისწავლეთ, რას გვიჩვენებს მღვიმის გამოსახულებები და მათი მდებარეობა და რა რჩება უცნობი.',
-      kk: 'Zertteñız: üñgır suretterı men olardyñ ornalasuy nenı añğartady jäne ne älı belgısız.',
+      kk: 'Üñgırdegı suretter men olardyñ ornalasuy nenı añğartatynyn jäne nenıñ älı belgısız ekenın zertteñız.',
       qm: 'Mağara resimleri ve yerleşimleri neler bildire, neler hâlâ meçhul qalğanını keşf etiñiz.',
     },
   },

@@ -65,7 +65,7 @@ export const analyzeIndianParallelCinema_Skill_Data = defineSkill({
       et: 'Uuri, kuidas India paralleelkino arendas peavoolu filmistiilidele alternatiive.',
       be: 'Даведайцеся, як індыйскае паралельнае кіно стварыла альтэрнатыву мэйнстрымным кінастылям.',
       ka: 'გაიგეთ, როგორ განავითარა ინდურმა პარალელურმა კინომ მეინსტრიმული კინოს სტილების ალტერნატივები.',
-      kk: 'Zertteñız: Ündıstannyñ parallel kinosy negızgı kino stilderıne qandai balamalar ūsyndy.',
+      kk: 'Ündıstannyñ parallel kinosy keñ taralğan kino stilderıne qandai balama täsılder ūsynğanyn zertteñız.',
       qm: 'Hindistan Paralel Sinemasının ana akım film üsluplarına nasıl alternatifler geliştirdiğini keşf etiñiz.',
     },
   },

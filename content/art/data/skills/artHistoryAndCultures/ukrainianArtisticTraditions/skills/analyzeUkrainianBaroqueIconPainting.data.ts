@@ -65,7 +65,7 @@ export const analyzeUkrainianBaroqueIconPainting_Skill_Data = defineSkill({
       et: 'Uuri, kuidas Ukraina baroki ikoonimaal arendas figuuride kujutamist ja kaunistusi.',
       be: 'Даследуйце, як ва ўкраінскім барочным іканапісе развіваліся выявы постацей і дэкор.',
       ka: 'შეისწავლეთ, როგორ განვითარდა ფიგურებისა და დეკორის გამოსახვა უკრაინულ ბაროკოს ხატწერაში.',
-      kk: 'Zertteñız: ukrain barokko ikonalarynda adam beinesı men äşekeileu qalai damydy.',
+      kk: 'Ukrain barokko ikona keskındemesınde adam beinelerı men äşekeileu täsılderınıñ qalai damyğanyn zertteñız.',
       qm: 'Ukraina barok ikon resminde suretler ve bezekler nasıl inkişaf etkenini keşf etiñiz.',
     },
   },

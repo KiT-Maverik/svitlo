@@ -65,7 +65,7 @@ export const analyzeAndeanWeavingTraditions_Skill_Data = defineSkill({
       et: 'Uuri, kuidas kudumismustrid ja nende tähendused erinevad Andide kogukondades ja ajastutel.',
       be: 'Даведайцеся, як узоры і значэнні тканін адрозніваюцца ў супольнасцях і эпохах Анд.',
       ka: 'გაიგეთ, როგორ განსხვავდება ქსოვის ნიმუშები და მათი მნიშვნელობები ანდების სხვადასხვა თემსა და ეპოქაში.',
-      kk: 'Zertteñız: And qauymdary men kezeñderınde toqymaşylyq örnekterı men mağynalary qalai özgeredı.',
+      kk: 'Ärtürlı And qauymdastyqtary men tarihi kezeñderde toqu örnekterı men olardyñ mağynalary qalai özgergenın zertteñız.',
       qm: 'And toplulukları ve devirleri arasında dokuma naqışları ve manaları nasıl değişkenini keşf etiñiz.',
     },
   },

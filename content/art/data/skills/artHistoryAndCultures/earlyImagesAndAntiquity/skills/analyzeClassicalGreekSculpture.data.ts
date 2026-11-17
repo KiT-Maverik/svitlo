@@ -65,7 +65,7 @@ export const analyzeClassicalGreekSculpture_Skill_Data = defineSkill({
       et: 'Uuri, kuidas Kreeka skulptorid kujutasid eri aegadel keha, tasakaalu ja liikumist.',
       be: 'Даследуйце, як грэчаскія скульптары ў розныя эпохі адлюстроўвалі цела, раўнавагу і рух.',
       ka: 'შეისწავლეთ, როგორ გამოსახავდნენ ბერძენი მოქანდაკეები სხეულს, წონასწორობასა და მოძრაობას სხვადასხვა ეპოქაში.',
-      kk: 'Zertteñız: grek müsınşılerı är däuırde denenı, tepe-teñdıktı jäne qozğalysty qalai beinelegen.',
+      kk: 'Grek müsınşılerınıñ är däuırde adam denesın, tepe-teñdıktı jäne qozğalysty qalai beinelegenın zertteñız.',
       qm: 'Yunan heykeltıraşları beden, denge ve areketni devirler boyunca nasıl tasvir etkenini inceleñiz.',
     },
   },

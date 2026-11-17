@@ -65,7 +65,7 @@ export const analyzeBoychukism_Skill_Data = defineSkill({
       et: 'Tutvu boitšukismi monumentaalse kunstiga ja selle kunstnike ajalooga.',
       be: 'Пазнаёмцеся з манументальным мастацтвам бойчукізму і гісторыяй яго мастакоў.',
       ka: 'გაეცანით ბოიჩუკიზმის მონუმენტურ ხელოვნებას და მისი მხატვრების ისტორიას.',
-      kk: 'Tanyñyz: boichukşyldyqtyñ monumentaldy önerı men onyñ suretşılerınıñ tarihyn.',
+      kk: 'Boitşukşyldyqtyñ monumentaldy önerımen jäne osy ağym suretşılerınıñ tarihymen tanysyñyz.',
       qm: 'Boyçukçılıqnıñ abidiy sanatını ve bu sanatçılarnıñ tarihını ögreniniz.',
     },
   },

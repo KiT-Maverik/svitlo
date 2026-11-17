@@ -65,7 +65,7 @@ export const analyzePerformanceArt_Skill_Data = defineSkill({
       et: 'Avasta etendusi, kus elav tegevus ja publiku kohalolek muutuvad kunstiks.',
       be: 'Пазнаёмцеся з перформансамі, дзе жывая дзея і прысутнасць гледачоў становяцца мастацтвам.',
       ka: 'გაეცანით პერფორმანსებს, სადაც ცოცხალი მოქმედება და მაყურებლის დასწრება ხელოვნებად იქცევა.',
-      kk: 'Zertteñız: tırı äreket pen körermennıñ qatysuy önerge ainalatyn performanstardy.',
+      kk: 'Tırı äreket pen körermennıñ qatysuy önerge ainalatyn performanstardy zertteñız.',
       qm: 'Canlı areket ve seyirciniñ iştiraki sanatqa çevrilgen performanslarnı tahlil etiñiz.',
     },
   },

@@ -64,7 +64,7 @@ export const composeALandscapeView_Skill_Data = defineSkill({
       et: 'Sea taimed, vaated ja pilgupüüdjad mõjuvaks väliruumi kompositsiooniks.',
       be: 'Размясціце расліны, краявіды і акцэнтныя элементы ў выразнай кампазіцыі пад адкрытым небам.',
       ka: 'მცენარეები, ხედები და აქცენტები მიმზიდველ გარე კომპოზიციად დაალაგეთ.',
-      kk: 'Ösımdıkterdı, körınısterdı jäne nazar audaratyn nysandardy tartymdy aşyq keñıstık kompozitsiiasyna bırıktırıñız。',
+      kk: 'Ösımdıkterdı, körınıs bağyttaryn jäne negızgı nysandardy üilestırıp, tartymdy aşyq keñıstık kompozitsiiasyn jasañyz.',
 
       qm: 'Ösimliklerni, körünişlerni ve diqqet merkezlerini tesirli açıq hava kompozitsiyasına tertip etiñiz.',
     },

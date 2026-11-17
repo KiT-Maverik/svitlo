@@ -64,7 +64,7 @@ export const analyzeDanceInCulturalContext_Skill_Data = defineSkill({
       et: 'Uuri, kuidas tants seostub oma kogukonna ja esitamise sündmusega.',
       be: 'Даследуйце сувязь танца з яго супольнасцю і нагодай выканання.',
       ka: 'გამოიკვლიეთ, როგორ უკავშირდება ცეკვა თავის საზოგადოებასა და შესრულების შემთხვევას.',
-      kk: 'Zertteñız: bi öz qauymdastyğymen jäne oryndalatyn jağdaimen qalai bailanysty.',
+      kk: 'Bidıñ öz qauymdastyğymen jäne oryndalatyn jağdaimen qalai bailanysatynyn zertteñız.',
       qm: 'Bir oyunnıñ cemaatı ve oynalğan vesilesi ile bağını tedqiq etiñiz.',
     },
   },

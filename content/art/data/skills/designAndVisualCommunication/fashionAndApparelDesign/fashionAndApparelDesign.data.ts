@@ -84,7 +84,7 @@ export const fashionAndApparelDesign_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri, kuidas rõiva kuju, kangas ja detailid muudavad moeidee rõivaks.',
       be: 'Даследуйце, як форма адзення, тканіна і дэталі ператвараюць модную ідэю ў вопратку.',
       ka: 'შეისწავლეთ, როგორ აქცევს სამოსის ფორმა, ქსოვილი და დეტალები მოდის იდეას ტანსაცმლად.',
-      kk: 'Zertteñız: kiım pışını, mata men bölşekter sän ideiasyn kiımge qalai ainaldyrady.',
+      kk: 'Kiımnıñ pışını, matasy men bölşekterı sän ideiasyn qalai naqty kiımge ainaldyratynyn zertteñız.',
       qm: 'Kiyim şekli, kumaş ve tafsilatlarnıñ moda fikrini kiyimge nasıl çevirdgenini keşf etiñiz.',
     },
   },

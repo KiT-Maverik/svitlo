@@ -80,7 +80,7 @@ export const traditionsAndInterpretation_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri eri tantsutraditsioonide tähendust ja kultuurilist tausta.',
       be: 'Даследуйце значэнне і культурны кантэкст розных танцавальных традыцый.',
       ka: 'გამოიკვლიეთ სხვადასხვა საცეკვაო ტრადიციის მნიშვნელობა და კულტურული კონტექსტი.',
-      kk: 'Zertteñız: türlı bi dästürlerınıñ mänı men mädeni kontekstı.',
+      kk: 'Ärtürlı bi dästürlerınıñ mänın jäne mädeni kontekstın zertteñız.',
       qm: 'Farklı oyun ananeleriniñ manasını ve medeniy bağlamını tedqiq etiñiz.',
     },
   },

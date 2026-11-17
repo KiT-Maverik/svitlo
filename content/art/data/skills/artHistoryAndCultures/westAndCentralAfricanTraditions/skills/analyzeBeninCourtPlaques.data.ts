@@ -65,7 +65,7 @@ export const analyzeBeninCourtPlaques_Skill_Data = defineSkill({
       et: 'Uuri, kuidas Benini õukonna reljeefplaatidel kujutatakse võimu, inimesi ja ajaloosündmusi.',
       be: 'Даследуйце, як на рэльефных пласцінах двара Беніну адлюстраваны ўлада, людзі і гістарычныя падзеі.',
       ka: 'შეისწავლეთ, როგორ ასახავს ბენინის სამეფო კარის რელიეფური დაფები ძალაუფლებას, ადამიანებსა და ისტორიულ მოვლენებს.',
-      kk: 'Zertteñız: Benin saraiynyñ bederlı taqtalarynda bilık, adamdar men tarihi oqiğalar qalai beinelengen.',
+      kk: 'Benin saraiynyñ bederlı taqtalary bilıktı, adamdardy jäne tarihi oqiğalardy qalai beineleitının zertteñız.',
       qm: 'Benin saray levhalarınıñ qudretni, adamlarnı ve tarihiy vaqialarnı nasıl tasvir etkenini inceleyiñiz.',
     },
   },
