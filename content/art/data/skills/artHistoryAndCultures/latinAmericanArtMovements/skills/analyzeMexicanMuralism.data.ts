@@ -31,7 +31,7 @@ export const analyzeMexicanMuralism_Skill_Data = defineSkill({
     et: 'Analüüsida Mehhiko muralismi',
     be: 'Аналізаваць мексіканскі муралізм',
     ka: 'მექსიკური მიურალიზმის ანალიზი',
-    kk: 'Мексикалық мурализмді талдау',
+    kk: 'Meksikalyq muralizmdı taldau',
     qm: 'Meksika muralizmini tahlil etmek',
   },
   description: {
@@ -65,7 +65,7 @@ export const analyzeMexicanMuralism_Skill_Data = defineSkill({
       et: 'Uuri, kuidas Mehhiko muralistid sidusid avaliku seinamaali ajaloo ja ühiskondlike ideedega.',
       be: 'Даведайся, як мексіканскія муралісты звязвалі публічны жывапіс з гісторыяй і грамадскімі ідэямі.',
       ka: 'გაიგეთ, როგორ აკავშირებდნენ მექსიკელი მიურალისტები საჯარო მხატვრობას ისტორიასა და სოციალურ იდეებთან.',
-      kk: 'Мексикалық муралистердің қоғамдық кескіндемені тарихпен және әлеуметтік идеялармен қалай байланыстырғанын зерттеңіз.',
+      kk: 'Meksikalyq muralisterdıñ qoğamdyq keskındemenı tarihpen jäne äleumettık ideialarmen qalai bailanystyrğanyn zertteñız.',
       qm: 'Meksikalı muralistlerniñ cemaat içün resimni tarih ve içtimai fikirlernen nasıl bağlağanını ögren.',
     },
   },

@@ -31,7 +31,7 @@ export const analyzeGothicCathedralSculpture_Skill_Data = defineSkill({
     et: 'Analüüsida gooti katedraalide skulptuuri',
     be: 'Аналізаваць скульптуру гатычных сабораў',
     ka: 'გოთიკური ტაძრის ქანდაკების ანალიზი',
-    kk: 'Готикалық собор мүсінін талдау',
+    kk: 'Gotikalyq sobor müsının taldau',
     qm: 'Gotik katedral heykelini tahlil etmek',
   },
   description: {
@@ -65,7 +65,7 @@ export const analyzeGothicCathedralSculpture_Skill_Data = defineSkill({
       et: 'Uuri, kuidas katedraalide raidfiguurid jutustavad lugusid gooti arhitektuuri kontekstis.',
       be: 'Даведайся, як разьбяныя постаці сабораў перадаюць гісторыі ў гатычнай архітэктуры.',
       ka: 'გაიგეთ, როგორ გადმოსცემენ ტაძრების მოჩუქურთმებული ფიგურები ამბებს გოთიკურ არქიტექტურაში.',
-      kk: 'Готикалық сәулет аясында собордағы қашалған мүсіндердің оқиғаларды қалай жеткізетінін зерттеңіз.',
+      kk: 'Gotikalyq säulet aiasynda sobordağy qaşalğan müsınderdıñ oqiğalardy qalai jetkızetının zertteñız.',
       qm: 'Gotik mimaride oyulğan katedral şekilleriniñ hikâyelerni nasıl añlatqanını ögren.',
     },
   },

@@ -31,7 +31,7 @@ export const analyzeImpressionism_Skill_Data = defineSkill({
     et: 'Analüüsida impressionismi',
     be: 'Аналізаваць імпрэсіянізм',
     ka: 'იმპრესიონიზმის ანალიზი',
-    kk: 'Импрессионизмді талдау',
+    kk: 'İmpressionizmdı taldau',
     qm: 'Impressionizmni tahlil etmek',
   },
   description: {
@@ -65,7 +65,7 @@ export const analyzeImpressionism_Skill_Data = defineSkill({
       et: 'Vaata, kuidas impressionistid jäädvustasid muutuvat valgust ja moodsa elu hetki.',
       be: 'Паглядзіце, як імпрэсіяністы перадавалі зменлівае святло і імгненні сучаснага жыцця.',
       ka: 'დააკვირდით, როგორ ასახავდნენ იმპრესიონისტი მხატვრები ცვალებად სინათლესა და თანამედროვე ცხოვრების წამებს.',
-      kk: 'Импрессионист суретшілердің құбылмалы жарық пен заманауи өмір сәттерін қалай бейнелегенін байқаңыз.',
+      kk: 'İmpressionist suretşılerdıñ qūbylmaly jaryq pen zamanaui ömır sätterın qalai beinelegenın baiqañyz.',
       qm: 'Impressionist ressamlarınıñ deñişken yarıqnı ve modern yaşayıştan anlarını nasıl tasvir etkenini közetiñiz.',
     },
   },

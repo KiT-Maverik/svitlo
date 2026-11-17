@@ -31,7 +31,7 @@ export const analyzeGermanExpressionistPainting_Skill_Data = defineSkill({
     et: 'Analüüsida Saksa ekspressionistlikku maalikunsti',
     be: 'Аналізаваць нямецкі экспрэсіянісцкі жывапіс',
     ka: 'გერმანული ექსპრესიონისტული მხატვრობის ანალიზი',
-    kk: 'Неміс экспрессионистік кескіндемесін талдау',
+    kk: 'Nemıs ekspressionistık keskındemesın taldau',
     qm: 'Alman ekspressionist resim sanatını tahlil etmek',
   },
   description: {
@@ -65,7 +65,7 @@ export const analyzeGermanExpressionistPainting_Skill_Data = defineSkill({
       et: 'Uuri eri Saksa ekspressionistlike rühmituste erksaid värve ja muudetud vorme.',
       be: 'Даследуйце насычаныя колеры і змененыя формы розных нямецкіх экспрэсіянісцкіх груп.',
       ka: 'შეისწავლეთ გერმანული ექსპრესიონისტული ჯგუფების მკვეთრი ფერები და გარდაქმნილი ფორმები.',
-      kk: 'Әртүрлі неміс экспрессионистік топтарының қанық түстері мен өзгертілген пішіндерін зерттеңіз.',
+      kk: 'Ärtürlı nemıs ekspressionistık toptarynyñ qanyq tüsterı men özgertılgen pışınderın zertteñız.',
       qm: 'Ayrı Alman ekspressionist toplarnıñ canlı renklerini ve şekil deñişmelerini keşf etiñiz.',
     },
   },

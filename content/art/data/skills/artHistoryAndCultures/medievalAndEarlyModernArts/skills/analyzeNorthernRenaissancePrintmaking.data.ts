@@ -31,7 +31,7 @@ export const analyzeNorthernRenaissancePrintmaking_Skill_Data = defineSkill({
     et: 'Analüüsida põhja renessansi graafikat',
     be: 'Аналізаваць графіку Паўночнага Адраджэння',
     ka: 'ჩრდილოეთის რენესანსის ბეჭდვითი გრაფიკის ანალიზი',
-    kk: 'Солтүстік Қайта өрлеу дәуірінің баспа графикасын талдау',
+    kk: 'Soltüstık Qaita örleu däuırınıñ baspa grafikasyn taldau',
     qm: 'Kuzey Rönesansı basma sanatını tahlil etmek',
   },
   description: {
@@ -65,7 +65,7 @@ export const analyzeNorthernRenaissancePrintmaking_Skill_Data = defineSkill({
       et: 'Uuri, kuidas Põhja-Euroopa graafikud lõid ja levitasid detailirohkeid kujutisi.',
       be: 'Даведайся, як паўночнаеўрапейскія графікі стваралі і распаўсюджвалі падрабязныя выявы.',
       ka: 'გაიგეთ, როგორ ქმნიდნენ და ავრცელებდნენ ჩრდილოეთ ევროპელი მბეჭდავი მხატვრები დეტალურ გამოსახულებებს.',
-      kk: 'Солтүстік Еуропа баспа шеберлерінің егжей-тегжейлі бейнелерді қалай жасап, таратқанын біліңіз.',
+      kk: 'Soltüstık Europa baspa şeberlerınıñ egjei-tegjeilı beinelerdı qalai jasap, taratqanyn bılıñız.',
       qm: 'Kuzey Avropa basma ustalarınıñ tafsilâtlı suretlerni nasıl yaratqanını ve taratqanını ögren.',
     },
   },

@@ -31,7 +31,7 @@ export const analyzePostImpressionism_Skill_Data = defineSkill({
     et: 'Analüüsida postimpressionismi',
     be: 'Аналізаваць постімпрэсіянізм',
     ka: 'პოსტიმპრესიონიზმის ანალიზი',
-    kk: 'Постимпрессионизмді талдау',
+    kk: 'Postimpressionizmdı taldau',
     qm: 'Post-impressionizmni tahlil etmek',
   },
   description: {
@@ -65,7 +65,7 @@ export const analyzePostImpressionism_Skill_Data = defineSkill({
       et: 'Võrdle eri uusi suundi, mida kunstnikud pärast impressionismi arendasid.',
       be: 'Параўнайце розныя новыя кірункі, якія мастакі развівалі пасля імпрэсіянізму.',
       ka: 'შეადარეთ განსხვავებული ახალი მიმართულებები, რომლებსაც მხატვრები იმპრესიონიზმის შემდეგ ავითარებდნენ.',
-      kk: 'Суретшілер импрессионизмнен кейін дамытқан әртүрлі жаңа бағыттарды салыстырыңыз.',
+      kk: 'Suretşıler impressionizmnen keiın damytqan ärtürlı jaña bağyttardy salystyryñyz.',
       qm: 'Sanatçılarnıñ impressionizmden soñ inkişaf ettirgen çeşit çeşit yañı yollarını qarşılaştırıñız.',
     },
   },

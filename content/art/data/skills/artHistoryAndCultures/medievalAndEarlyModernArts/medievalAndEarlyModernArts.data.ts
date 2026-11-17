@@ -39,7 +39,7 @@ export const medievalAndEarlyModernArts_SkillGroup_Data = defineSkillGroup({
     et: 'Keskaja ja varauusaegne kunst',
     be: 'Мастацтва Сярэднявечча і ранняга Новага часу',
     ka: 'შუა საუკუნეებისა და ადრეული ახალი დროის ხელოვნება',
-    kk: 'Орта ғасырлар және ерте жаңа дәуір өнері',
+    kk: 'Orta ğasyrlar jäne erte jaña däuır önerı',
     qm: 'Orta çağ ve erte yañı devir sanatları',
   },
   skills: [
@@ -80,7 +80,7 @@ export const medievalAndEarlyModernArts_SkillGroup_Data = defineSkillGroup({
       et: 'Võrdle eri keskaja ja varauusaja traditsioonide sakraalseid ning ilmalikke teoseid.',
       be: 'Параўноўвайце сакральныя і свецкія творы розных сярэднявечных і раннемадэрных традыцый.',
       ka: 'შეადარეთ შუა საუკუნეებისა და ადრეული ახალი დროის სხვადასხვა ტრადიციის საკრალური და სამოქალაქო ნამუშევრები.',
-      kk: 'Орта ғасырлар мен ерте жаңа дәуірдің әртүрлі дәстүрлеріндегі діни және қоғамдық туындыларды салыстырыңыз.',
+      kk: 'Orta ğasyrlar men erte jaña däuırdıñ ärtürlı dästürlerındegı dıni jäne qoğamdyq tuyndylardy salystyryñyz.',
       qm: 'Ayrı orta çağ ve erte yañı devir ananelerindeki muqaddes ve cemaat eserlerini muqayese etiñiz.',
     },
   },

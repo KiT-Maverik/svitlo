@@ -31,7 +31,7 @@ export const analyzeConstructivism_Skill_Data = defineSkill({
     et: 'Analüüsida konstruktivismi',
     be: 'Аналізаваць канструктывізм',
     ka: 'კონსტრუქტივიზმის ანალიზი',
-    kk: 'Конструктивизмді талдау',
+    kk: 'Konstruktivizmdı taldau',
     qm: 'Konstruktivizmni tahlil etmek',
   },
   description: {
@@ -65,7 +65,7 @@ export const analyzeConstructivism_Skill_Data = defineSkill({
       et: 'Uuri, kuidas konstruktivistid ühendasid geomeetrilisi vorme, eksperimentaalseid materjale ja ühiskondlikke ideid.',
       be: 'Даведайся, як канструктывісты спалучалі геаметрычныя формы, эксперыментальныя матэрыялы і грамадскія ідэі.',
       ka: 'გაიგეთ, როგორ აერთიანებდნენ კონსტრუქტივისტი მხატვრები გეომეტრიულ ფორმებს, ექსპერიმენტულ მასალებსა და სოციალურ იდეებს.',
-      kk: 'Конструктивист суретшілердің геометриялық пішіндерді, тәжірибелік материалдарды және қоғамдық идеяларды қалай ұштастырғанын зерттеңіз.',
+      kk: 'Konstruktivist suretşılerdıñ geometriialyq pışınderdı, täjıribelık materialdardy jäne qoğamdyq ideialardy qalai ūştastyrğanyn zertteñız.',
       qm: 'Konstruktivist sanatçılarnıñ geometrik şekiller, tecribiy materiallar ve cemiyet fikirlerini nasıl birleştirgenini ögren.',
     },
   },

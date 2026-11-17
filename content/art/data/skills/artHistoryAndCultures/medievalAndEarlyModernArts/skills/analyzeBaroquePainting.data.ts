@@ -31,7 +31,7 @@ export const analyzeBaroquePainting_Skill_Data = defineSkill({
     et: 'Analüüsida barokkmaali',
     be: 'Аналізаваць барочны жывапіс',
     ka: 'ბაროკოს ფერწერის ანალიზი',
-    kk: 'Барокко кескіндемесін талдау',
+    kk: 'Barokko keskındemesın taldau',
     qm: 'Barok resmini tahlil etmek',
   },
   description: {
@@ -65,7 +65,7 @@ export const analyzeBaroquePainting_Skill_Data = defineSkill({
       et: 'Uuri, kuidas barokkmaalijad kasutasid dramaatilist valgust, liikumist ja kompositsiooni.',
       be: 'Даведайся, як мастакі барока выкарыстоўвалі драматычнае святло, рух і кампазіцыю.',
       ka: 'გაიგეთ, როგორ იყენებდნენ ბაროკოს მხატვრები დრამატულ სინათლეს, მოძრაობასა და კომპოზიციას.',
-      kk: 'Барокко суретшілерінің драмалық жарықты, қимылды және композицияны қалай қолданғанын зерттеңіз.',
+      kk: 'Barokko suretşılerınıñ dramalyq jaryqty, qimyldy jäne kompozitsiiany qalai qoldanğanyn zertteñız.',
       qm: 'Barok ressamlarınıñ dramatik yarıqnı, areketni ve tertipni nasıl qullanğanını ögren.',
     },
   },

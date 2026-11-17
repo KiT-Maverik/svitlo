@@ -31,7 +31,7 @@ export const analyzeCuscoSchoolPainting_Skill_Data = defineSkill({
     et: 'Analüüsida Cusco koolkonna maali',
     be: 'Аналізаваць жывапіс Кускаўскай школы',
     ka: 'კუსკოს სკოლის მხატვრობის გაანალიზება',
-    kk: 'Куско мектебінің кескіндемесін талдау',
+    kk: 'Kusko mektebınıñ keskındemesın taldau',
     qm: 'Cusco mektebiniñ resimlerini tahlil etüv',
   },
   description: {
@@ -65,7 +65,7 @@ export const analyzeCuscoSchoolPainting_Skill_Data = defineSkill({
       et: 'Avasta, kuidas Cusco koolkonna maal ühendab Andide ja Euroopa kunstimõjusid.',
       be: 'Даведайцеся, як жывапіс Кускаўскай школы спалучае мастацкія ўплывы Анд і Еўропы.',
       ka: 'გაიგეთ, როგორ აერთიანებს კუსკოს სკოლის მხატვრობა ანდებისა და ევროპის ხელოვნების გავლენებს.',
-      kk: 'Біліңіз: Куско мектебінің кескіндемесі Анд және Еуропа өнерінің ықпалдарын қалай біріктіреді.',
+      kk: 'Bılıñız: Kusko mektebınıñ keskındemesı And jäne Europa önerınıñ yqpaldaryn qalai bırıktıredı.',
       qm: 'Cusco mektebiniñ resimlerinde And ve Avropa sanatınıñ tesirleri nasıl birleştirilgenini tahlil etiñiz.',
     },
   },

@@ -31,7 +31,7 @@ export const analyzeByzantineIconPainting_Skill_Data = defineSkill({
     et: 'Analüüsida Bütsantsi ikoonimaali',
     be: 'Аналізаваць візантыйскі іканапіс',
     ka: 'ბიზანტიური ხატწერის ანალიზი',
-    kk: 'Византия икон кескіндемесін талдау',
+    kk: 'Vizantiia ikon keskındemesın taldau',
     qm: 'Bizans ikon resmini tahlil etmek',
   },
   description: {
@@ -65,7 +65,7 @@ export const analyzeByzantineIconPainting_Skill_Data = defineSkill({
       et: 'Uuri, kuidas Bütsantsi ikoonid kasutavad jumalateenistusel sümboolseid vorme ja materjale.',
       be: 'Даведайся, як візантыйскія іконы выкарыстоўваюць сімвалічныя формы і матэрыялы ў набажэнстве.',
       ka: 'გაიგეთ, როგორ იყენებენ ბიზანტიური ხატები სიმბოლურ ფორმებსა და მასალებს ღვთისმსახურებაში.',
-      kk: 'Византия иконаларының құлшылықта нышандық пішіндер мен материалдарды қалай қолданатынын зерттеңіз.',
+      kk: 'Vizantiia ikonalarynyñ qūlşylyqta nyşandyq pışınder men materialdardy qalai qoldanatynyn zertteñız.',
       qm: 'Bizans ikonlarınıñ ibadette remziy şekiller ve materiallarnı nasıl qullanğanını ögren.',
     },
   },
