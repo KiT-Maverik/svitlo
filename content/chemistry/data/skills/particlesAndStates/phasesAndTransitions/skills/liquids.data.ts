@@ -31,7 +31,7 @@ export const liquids_Skill_Data = defineSkill({
     et: 'Vedelikud',
     be: 'Вадкасьці',
     ka: 'სითხეები',
-    kk: 'Сұйықтар',
+    kk: 'Sūiyqtar',
     qm: 'Suyluqlar',
   },
   description: {
@@ -64,7 +64,7 @@ export const liquids_Skill_Data = defineSkill({
       et: 'Uuri, kuidas lähestikku asuvad liikuvad osakesed võimaldavad vedelikel voolata.',
       be: 'Дасьледуй, як блізкія рухомыя часьцінкі дазваляюць вадкасьцям цячы.',
       ka: 'გამოიკვლიე, როგორ აძლევს ერთმანეთთან ახლოს მოძრავი ნაწილაკები სითხეებს დინების საშუალებას.',
-      kk: 'Бір-біріне жақын әрі қозғалатын бөлшектер сұйықтың ағуына қалай мүмкіндік беретінін зертте.',
+      kk: 'Bır-bırıne jaqyn ärı qozğalatyn bölşekter sūiyqtyñ ağuyna qalai mümkındık beretının zertte.',
       qm: 'Bir-birine yaqın areket etken parçacıqlar suyluqlarnıñ aqmasına nasıl imkân bergenini ögren.',
     },
   },

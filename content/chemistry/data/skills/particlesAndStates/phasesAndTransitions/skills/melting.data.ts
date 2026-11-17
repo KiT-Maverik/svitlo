@@ -31,7 +31,7 @@ export const melting_Skill_Data = defineSkill({
     et: 'Sulamine',
     be: 'Плаўленьне',
     ka: 'დნობა',
-    kk: 'Балқу',
+    kk: 'Balqu',
     qm: 'Erüv',
   },
   description: {
@@ -65,7 +65,7 @@ export const melting_Skill_Data = defineSkill({
       et: 'Mõista, kuidas tahke aine muutub vedelaks ilma uue aine tekketa.',
       be: 'Зразумей, як цьвёрдае рэчыва робіцца вадкім без утварэньня новага рэчыва.',
       ka: 'გაიგე, როგორ გადადის მყარი ნივთიერება თხევად მდგომარეობაში ახალი ნივთიერების წარმოქმნის გარეშე.',
-      kk: 'Қатты заттың жаңа затқа айналмай сұйыққа қалай айналатынын түсін.',
+      kk: 'Qatty zattyñ jaña zatqa ainalmai sūiyqqa qalai ainalatynyn tüsın.',
       qm: 'Qattı madde yañı maddege aylanmadan nasıl suyluq olğanını añla.',
     },
   },

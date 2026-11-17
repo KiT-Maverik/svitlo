@@ -31,7 +31,7 @@ export const gases_Skill_Data = defineSkill({
     et: 'Gaasid',
     be: 'Газы',
     ka: 'აირები',
-    kk: 'Газдар',
+    kk: 'Gazdar',
     qm: 'Gazlar',
   },
   description: {
@@ -64,7 +64,7 @@ export const gases_Skill_Data = defineSkill({
       et: 'Selgita, miks gaasid levivad ja neid saab kokku suruda.',
       be: 'Растлумач, чаму газы распаўсюджваюцца і паддаюцца сьцісканьню.',
       ka: 'ახსენი, რატომ ვრცელდება აირები და რატომ შეიძლება მათი შეკუმშვა.',
-      kk: 'Газдар неге таралатынын және оларды неге сығуға болатынын түсіндір.',
+      kk: 'Gazdar nege taralatynyn jäne olardy nege syğuğa bolatynyn tüsındır.',
       qm: 'Gazlar ne içün yayılıp, sıqıştırılğanını añlat.',
     },
   },

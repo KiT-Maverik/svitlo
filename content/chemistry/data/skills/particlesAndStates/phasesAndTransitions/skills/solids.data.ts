@@ -31,7 +31,7 @@ export const solids_Skill_Data = defineSkill({
     et: 'Tahked ained',
     be: 'Цьвёрдыя целы',
     ka: 'მყარი ნივთიერებები',
-    kk: 'Қатты заттар',
+    kk: 'Qatty zattar',
     qm: 'Qattı maddeler',
   },
   description: {
@@ -65,7 +65,7 @@ export const solids_Skill_Data = defineSkill({
       et: 'Selgita, miks tahked ained säilitavad kuju, kuigi osakesed ei seisa paigal.',
       be: 'Растлумач, чаму цьвёрдыя целы захоўваюць форму, хоць іхныя часьцінкі не стаяць на месцы.',
       ka: 'ახსენი, რატომ ინარჩუნებენ მყარი ნივთიერებები ფორმას, მიუხედავად იმისა, რომ ნაწილაკები უძრავი არ არიან.',
-      kk: 'Бөлшектері қозғалса да, қатты заттардың пішінін неге сақтайтынын түсіндір.',
+      kk: 'Bölşekterı qozğalsa da, qatty zattardyñ pışının nege saqtaitynyn tüsındır.',
       qm: 'Parçacıqları areketsiz olmasa bile, qattı maddeler şeklini ne içün saqlap qalğanını añlat.',
     },
   },

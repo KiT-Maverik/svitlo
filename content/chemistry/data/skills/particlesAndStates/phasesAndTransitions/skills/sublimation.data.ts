@@ -31,7 +31,7 @@ export const sublimation_Skill_Data = defineSkill({
     et: 'Sublimatsioon',
     be: 'Сублімацыя',
     ka: 'სუბლიმაცია',
-    kk: 'Сублимация',
+    kk: 'Sublimatsiia',
     qm: 'Sublimatsiya',
   },
   description: {
@@ -64,7 +64,7 @@ export const sublimation_Skill_Data = defineSkill({
       et: 'Selgita, kuidas mõned tahked ained muutuvad otse auruks vedelat olekut läbimata.',
       be: 'Растлумач, як некаторыя цьвёрдыя рэчывы пераходзяць адразу ў пару, абмінаючы вадкую фазу.',
       ka: 'ახსენი, როგორ გადადის ზოგი მყარი ნივთიერება პირდაპირ ორთქლად თხევადი ფაზის გარეშე.',
-      kk: 'Кейбір қатты заттардың сұйық күйден өтпей бірден буға қалай айналатынын түсіндір.',
+      kk: 'Keibır qatty zattardyñ sūiyq küiden ötpei bırden buğa qalai ainalatynyn tüsındır.',
       qm: 'Bazı qattı maddeler suyluq olmadan nasıl doğrudan-doğruğa buharğa aylanganını añlat.',
     },
   },

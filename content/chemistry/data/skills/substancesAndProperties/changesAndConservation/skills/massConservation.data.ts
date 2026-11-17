@@ -31,7 +31,7 @@ export const massConservation_Skill_Data = defineSkill({
     et: 'Massi jäävus',
     be: 'Закон захаваньня масы',
     ka: 'მასის მუდმივობა',
-    kk: 'Массаның сақталуы',
+    kk: 'Massanyñ saqtaluy',
     qm: 'Kütleniñ saqlanuvı',
   },
   description: {
@@ -65,7 +65,7 @@ export const massConservation_Skill_Data = defineSkill({
       et: 'Selgita, kuidas aine säilib ka siis, kui gaasid liiguvad anumasse või sealt välja.',
       be: 'Растлумач, як рэчыва захоўваецца, нават калі газы ўваходзяць у пасудзіну або выходзяць зь яе.',
       ka: 'ახსენი, როგორ ნარჩუნდება ნივთიერება მაშინაც, როცა აირი ჭურჭელში შედის ან გამოდის.',
-      kk: 'Газ ыдысқа кіріп-шығып жатса да, заттың қалай сақталатынын түсіндір.',
+      kk: 'Gaz ydysqa kırıp-şyğyp jatsa da, zattyñ qalai saqtalatynyn tüsındır.',
       qm: 'Gazlar qapqa kirip çıqsa bile, madde nasıl saqlanğanını añlat.',
     },
   },

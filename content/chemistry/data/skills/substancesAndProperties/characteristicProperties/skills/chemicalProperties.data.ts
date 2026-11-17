@@ -31,7 +31,7 @@ export const chemicalProperties_Skill_Data = defineSkill({
     et: 'Keemilised omadused',
     be: 'Хімічныя ўласьцівасьці',
     ka: 'ქიმიური თვისებები',
-    kk: 'Химиялық қасиеттер',
+    kk: 'Himiialyq qasietter',
     qm: 'Himiyeviy hususiyetler',
   },
   description: {
@@ -65,7 +65,7 @@ export const chemicalProperties_Skill_Data = defineSkill({
       et: 'Mõista, kuidas aine reaktsioonivõime kirjeldab selle keemilisi omadusi.',
       be: 'Распазнавай, як рэакцыйная здольнасьць рэчыва характарызуе ягоныя хімічныя ўласьцівасьці.',
       ka: 'გაიგე, როგორ ახასიათებს ნივთიერების რეაქციის უნარი მის ქიმიურ თვისებებს.',
-      kk: 'Заттың реакцияға түсу қабілеті оның химиялық қасиеттерін қалай сипаттайтынын біл.',
+      kk: 'Zattyñ reaktsiiağa tüsu qabıletı onyñ himiialyq qasietterın qalai sipattaitynyn bıl.',
       qm: 'Madde reaksiyaga nasıl kirgeni onıñ himiyeviy hususiyetlerini nasıl köstergenini añla.',
     },
   },

@@ -38,7 +38,7 @@ export const characteristicProperties_SkillGroup_Data = defineSkillGroup({
     et: 'Iseloomulikud omadused',
     be: 'Характэрныя ўласьцівасьці',
     ka: 'დამახასიათებელი თვისებები',
-    kk: 'Сипаттамалық қасиеттер',
+    kk: 'Sipattamalyq qasietter',
     qm: 'Ayırıcı hususiyetler',
   },
   skills: [
@@ -78,7 +78,7 @@ export const characteristicProperties_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri mõõdetavaid omadusi, mis aitavad aineid kirjeldada ja ära tunda.',
       be: 'Дасьледуй вымяральныя ўласьцівасьці, якія дапамагаюць апісваць і пазнаваць рэчывы.',
       ka: 'გამოიკვლიე გაზომვადი თვისებები, რომლებიც ნივთიერებების აღწერასა და ამოცნობაში გვეხმარება.',
-      kk: 'Заттарды сипаттау мен анықтауға көмектесетін өлшенетін қасиеттерді зертте.',
+      kk: 'Zattardy sipattau men anyqtauğa kömektesetın ölşenetın qasietterdı zertte.',
       qm: 'Maddelerni tasvir etmege ve tanımağa yardım etken ölçülgen hususiyetlerni ögren.',
     },
   },

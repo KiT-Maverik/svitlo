@@ -31,7 +31,7 @@ export const chemicalChanges_Skill_Data = defineSkill({
     et: 'Keemilised muutused',
     be: 'Хімічныя зьмены',
     ka: 'ქიმიური ცვლილებები',
-    kk: 'Химиялық өзгерістер',
+    kk: 'Himiialyq özgerıster',
     qm: 'Himiyeviy deñişüvler',
   },
   description: {
@@ -65,7 +65,7 @@ export const chemicalChanges_Skill_Data = defineSkill({
       et: 'Kasuta sobivaid tõendeid otsustamaks, kas keemiline reaktsioon toimus.',
       be: 'Выкарыстоўвай належныя доказы, каб вызначыць, ці адбылася хімічная рэакцыя.',
       ka: 'შესაფერისი მტკიცებულებებით დაადგინე, მოხდა თუ არა ქიმიური რეაქცია.',
-      kk: 'Тиісті дәлелдермен химиялық реакция болғанын немесе болмағанын анықта.',
+      kk: 'Tiıstı däleldermen himiialyq reaktsiia bolğanyn nemese bolmağanyn anyqta.',
       qm: 'Himiyeviy reaksiyanıñ olğanını ya da olmağanını uygun delillernen belgile.',
     },
   },

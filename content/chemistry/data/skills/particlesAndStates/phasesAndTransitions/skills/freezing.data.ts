@@ -31,7 +31,7 @@ export const freezing_Skill_Data = defineSkill({
     et: 'Tahkumine',
     be: 'Замярзаньне',
     ka: 'გამყარება',
-    kk: 'Қату',
+    kk: 'Qatu',
     qm: 'Donuv',
   },
   description: {
@@ -65,7 +65,7 @@ export const freezing_Skill_Data = defineSkill({
       et: 'Selgita, kuidas jahtumine korraldab vedeliku osakesed tahkeks aineks.',
       be: 'Растлумач, як ахаладжэньне зьмяняе разьмяшчэньне часьцінак вадкасьці й утварае цьвёрдае рэчыва.',
       ka: 'ახსენი, როგორ ალაგებს გაციება სითხის ნაწილაკებს მყარი ნივთიერების წარმოსაქმნელად.',
-      kk: 'Суыту сұйық бөлшектерін реттеп, қатты затты қалай түзетінін түсіндір.',
+      kk: 'Suytu sūiyq bölşekterın rettep, qatty zatty qalai tüzetının tüsındır.',
       qm: 'Suvumaq suyluq parçacıqlarını nasıl tertiplep, qattı madde peyda etkenini añlat.',
     },
   },

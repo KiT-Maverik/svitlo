@@ -31,7 +31,7 @@ export const deposition_Skill_Data = defineSkill({
     et: 'Härmatumine',
     be: 'Дэсублімацыя',
     ka: 'დესუბლიმაცია',
-    kk: 'Десублимация',
+    kk: 'Desublimatsiia',
     qm: 'Desublimatsiya',
   },
   description: {
@@ -64,7 +64,7 @@ export const deposition_Skill_Data = defineSkill({
       et: 'Selgita, kuidas aur võib otse tahkeks aineks muutuda vedelat olekut läbimata.',
       be: 'Растлумач, як пара можа непасрэдна ўтварыць цьвёрдае рэчыва без вадкай фазы.',
       ka: 'ახსენი, როგორ შეიძლება ორთქლი პირდაპირ მყარ ნივთიერებად იქცეს თხევადი ფაზის გარეშე.',
-      kk: 'Будың сұйыққа айналмай бірден қатты затты қалай түзетінін түсіндір.',
+      kk: 'Budyñ sūiyqqa ainalmai bırden qatty zatty qalai tüzetının tüsındır.',
       qm: 'Buhar suyluq olmadan nasıl doğrudan-doğruğa qattı madde peyda etkenini añlat.',
     },
   },

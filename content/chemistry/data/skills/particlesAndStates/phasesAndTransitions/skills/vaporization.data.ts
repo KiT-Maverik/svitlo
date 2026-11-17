@@ -31,7 +31,7 @@ export const vaporization_Skill_Data = defineSkill({
     et: 'Aurustumine',
     be: 'Параўтварэньне',
     ka: 'აორთქლება',
-    kk: 'Булану',
+    kk: 'Bulanu',
     qm: 'Buharğa aylanuv',
   },
   description: {
@@ -65,7 +65,7 @@ export const vaporization_Skill_Data = defineSkill({
       et: 'Erista vedeliku pinnalt aurustumist kogu vedeliku ulatuses toimuvast keemisest.',
       be: 'Адрозьнівай выпарэньне з паверхні ад кіпеньня ва ўсім аб’ёме вадкасьці.',
       ka: 'განასხვავე ზედაპირზე აორთქლება სითხის მთელ მოცულობაში დუღილისგან.',
-      kk: 'Сұйық бетіндегі булануды бүкіл сұйықта жүретін қайнаудан ажырат.',
+      kk: 'Sūiyq betındegı bulanudy bükıl sūiyqta jüretın qainaudan ajyrat.',
       qm: 'Suyluq yüzündeki buharlanmanı bütün suyluqtaki qaynavdan ayır.',
     },
   },

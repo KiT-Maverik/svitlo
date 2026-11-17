@@ -31,7 +31,7 @@ export const physicalChanges_Skill_Data = defineSkill({
     et: 'Füüsikalised muutused',
     be: 'Фізычныя зьмены',
     ka: 'ფიზიკური ცვლილებები',
-    kk: 'Физикалық өзгерістер',
+    kk: 'Fizikalyq özgerıster',
     qm: 'Fizikiy deñişüvler',
   },
   description: {
@@ -65,7 +65,7 @@ export const physicalChanges_Skill_Data = defineSkill({
       et: 'Tunne ära sulamine, lõikamine ja muud muutused, mis ei muuda aine keemilist olemust.',
       be: 'Распазнавай плаўленьне, разразаньне і іншыя зьмены, якія захоўваюць хімічную тоеснасьць.',
       ka: 'ამოიცანი დნობა, დაჭრა და სხვა ცვლილებები, რომლებიც ქიმიურ იდენტობას ინარჩუნებს.',
-      kk: 'Балқу, кесу және химиялық табиғатты өзгертпейтін басқа өзгерістерді таны.',
+      kk: 'Balqu, kesu jäne himiialyq tabiğatty özgertpeitın basqa özgerısterdı tany.',
       qm: 'Erüv, kesüv ve himiyeviy kimlikni deñiştirmegen başqa deñişüvlerni tanı.',
     },
   },
