@@ -31,7 +31,7 @@ export const directAndIndirectNetworkEffects_Skill_Data = defineSkill({
     et: 'Otsesed ja kaudsed võrgustikumõjud',
     be: 'Прамыя і ўскосныя сеткавыя эфэкты',
     ka: 'პირდაპირი და არაპირდაპირი ქსელური ეფექტები',
-    kk: 'Тікелей және жанама желілік әсерлер',
+    kk: 'Tıkeleı jäne janama jelılık äserler',
     qm: 'Doğrudan ve vasıtalı şebeke tesirleri',
   },
   description: {
@@ -65,7 +65,7 @@ export const directAndIndirectNetworkEffects_Skill_Data = defineSkill({
       et: 'Võrdle võrgustikumõjusid ühe rühma sees ja eri rühmade vahel.',
       be: 'Параўнай сеткавыя эфэкты ўнутры адной групы і паміж рознымі групамі.',
       ka: 'შეადარე ქსელური ეფექტები ერთ ჯგუფში და სხვადასხვა ჯგუფებს შორის.',
-      kk: 'Бір топ ішіндегі және әртүрлі топтар арасындағы желілік әсерлерді салыстыр.',
+      kk: 'Bır top ışındegı jäne ärtürlı toptar arasyndağy jelılık äserlerdı salystyr.',
       qm: 'Bir gruppa içindeki ve çeşit gruppalar arasındaki şebeke tesirlerini teñeştir.',
     },
   },

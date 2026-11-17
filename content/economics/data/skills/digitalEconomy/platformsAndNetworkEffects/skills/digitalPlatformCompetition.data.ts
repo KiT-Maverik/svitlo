@@ -31,7 +31,7 @@ export const digitalPlatformCompetition_Skill_Data = defineSkill({
     et: 'Digiplatvormide konkurents',
     be: 'Канкурэнцыя лічбавых плятформаў',
     ka: 'ციფრული პლატფორმების კონკურენცია',
-    kk: 'Цифрлық платформалар бәсекесі',
+    kk: 'Tsifrlyq platformalar bäsekesı',
     qm: 'Raqamlı platformalarnıñ raqipligi',
   },
   description: {
@@ -65,7 +65,7 @@ export const digitalPlatformCompetition_Skill_Data = defineSkill({
       et: 'Mõista, kuidas teenuse vahetamine või mitme platvormi kasutamine mõjutab konkurentsi.',
       be: 'Зразумей, як зьмена сэрвісу або выкарыстаньне некалькіх плятформаў уплывае на канкурэнцыю.',
       ka: 'გაიგე, როგორ მოქმედებს სერვისის შეცვლა ან რამდენიმე პლატფორმის გამოყენება კონკურენციაზე.',
-      kk: 'Қызметті ауыстыру немесе бірнеше платформаны пайдалану бәсекеге қалай әсер ететінін түсін.',
+      kk: 'Qyzmettı auystyru nemese bırneşe platformany paidalanu bäsekege qalai äser etetının tüsın.',
       qm: 'Hızmetni deñiştirmek ya da bir qaç platformanı qullanmaq raqiplikke nasıl tesir etkenini añla.',
     },
   },

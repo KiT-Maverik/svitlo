@@ -31,7 +31,7 @@ export const twoSidedMarkets_Skill_Data = defineSkill({
     et: 'Kahepoolsed turud',
     be: 'Двухбаковыя рынкі',
     ka: 'ორმხრივი ბაზრები',
-    kk: 'Екі жақты нарықтар',
+    kk: 'Ekı jaqty naryqtar',
     qm: 'Eki taraflı bazarlar',
   },
   description: {
@@ -65,7 +65,7 @@ export const twoSidedMarkets_Skill_Data = defineSkill({
       et: 'Uuri, kuidas platvorm ühendab kaht rühma, näiteks ostjaid ja müüjaid.',
       be: 'Дасьледуй, як плятформа злучае дзьве групы, напрыклад пакупнікоў і прадаўцоў.',
       ka: 'შეისწავლე, როგორ აკავშირებს პლატფორმა ორ ჯგუფს, მაგალითად მყიდველებსა და გამყიდველებს.',
-      kk: 'Платформа сатып алушылар мен сатушылар сияқты екі топты қалай байланыстыратынын зертте.',
+      kk: 'Platforma satyp aluşylar men satuşylar siaqty ekı topty qalai bailanystyratynyn zertte.',
       qm: 'Platforma alıcılar ve satıcılar kibi eki gruppanı nasıl birleştirgenini ögren.',
     },
   },
