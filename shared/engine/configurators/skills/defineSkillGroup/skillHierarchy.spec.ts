@@ -140,7 +140,7 @@ describe('Configurators', () => {
         id: id('10'),
         slug: 'mechanics',
         name: { en: 'Mechanics', uk: 'Механіка' },
-        description: { methodological: 'Collision' },
+        description: { methodological: 'Collision', frontend: { en: 'Collision', uk: 'Колізія' } },
       });
       const collisions = defineSkillDomain<'collisions', { mechanics: typeof group }, { mechanics: typeof collidingSkill }, ['uk']>({
         id: id('11'),
