@@ -31,7 +31,7 @@ export const alloys_Skill_Data = defineSkill({
     et: 'Sulamid',
     be: 'Сплавы',
     ka: 'შენადნობები',
-    kk: 'Қорытпалар',
+    kk: 'Qorytpalar',
     qm: 'Qotuşmalar',
   },
   description: {
@@ -65,7 +65,7 @@ export const alloys_Skill_Data = defineSkill({
       et: 'Mõista, kuidas metallid moodustavad sulameid ilma tingimata uut ühendit tekitamata.',
       be: 'Зразумей, як мэталы ўтвараюць сплавы, не абавязкова ствараючы новае злучэньне.',
       ka: 'გაიგე, როგორ წარმოქმნიან ლითონები შენადნობებს ახალი ნაერთის აუცილებელი წარმოქმნის გარეშე.',
-      kk: 'Металдар міндетті түрде жаңа қосылыс түзбей-ақ қорытпа қалай жасайтынын түсін.',
+      kk: 'Metaldar mındettı türde jaña qosylys tüzbei-aq qorytpa qalai jasaitynyn tüsın.',
       qm: 'Metallar er vaqıt yañı bir birleşme peyda etmeden de qotuşma nasıl yapqanını añla.',
     },
   },

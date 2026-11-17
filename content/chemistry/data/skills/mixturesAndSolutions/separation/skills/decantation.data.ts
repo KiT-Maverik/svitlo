@@ -31,7 +31,7 @@ export const decantation_Skill_Data = defineSkill({
     et: 'Dekanteerimine',
     be: 'Дэкантацыя',
     ka: 'დეკანტაცია',
-    kk: 'Декантация',
+    kk: 'Dekantatsiia',
     qm: 'Dekantatsiya',
   },
   description: {
@@ -65,7 +65,7 @@ export const decantation_Skill_Data = defineSkill({
       et: 'Eralda settinud tahked osakesed või vedelikukihid, valades ühe kihi ettevaatlikult ära.',
       be: 'Аддзяляй аселыя цьвёрдыя часьціцы або слаі вадкасьцяў, асьцярожна зьліваючы адзін слой.',
       ka: 'გამოყავი დალექილი მყარი ნაწილაკები ან სითხის ფენები ერთი ფენის ფრთხილად გადაღვრით.',
-      kk: 'Тұнған қатты бөлшектерді немесе сұйықтық қабаттарын бір қабатты абайлап құю арқылы бөл.',
+      kk: 'Tūnğan qatty bölşekterdı nemese sūiyqtyq qabattaryn bır qabatty abailap qūiu arqyly böl.',
       qm: 'Çökken qattı zerrelerni ya da sıyıqlıq qatlarını bir qatnı ihtiyatnen tökip ayır.',
     },
   },

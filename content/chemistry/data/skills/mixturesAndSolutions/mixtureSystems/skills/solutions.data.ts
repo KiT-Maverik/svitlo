@@ -31,7 +31,7 @@ export const solutions_Skill_Data = defineSkill({
     et: 'Lahused',
     be: 'Растворы',
     ka: 'ხსნარები',
-    kk: 'Ерітінділер',
+    kk: 'Erıtındıler',
     qm: 'Çezintiler',
   },
   description: {
@@ -64,7 +64,7 @@ export const solutions_Skill_Data = defineSkill({
       et: 'Tunne ära lahus, milles lahustunud aine on ühtlaselt jaotunud.',
       be: 'Распазнавай раствор, у якім растворанае рэчыва разьмеркавана раўнамерна.',
       ka: 'ამოიცანი ხსნარი, რომელშიც გახსნილი ნივთიერება თანაბრადაა განაწილებული.',
-      kk: 'Еріген заты біркелкі таралған ерітіндіні анықта.',
+      kk: 'Erıgen zaty bırkelkı taralğan erıtındını anyqta.',
       qm: 'Erigen madde bir tegiz dağılğan çezintini tanı.',
     },
   },

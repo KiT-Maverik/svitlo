@@ -31,7 +31,7 @@ export const suspensions_Skill_Data = defineSkill({
     et: 'Suspensioonid',
     be: 'Сусьпэнзіі',
     ka: 'სუსპენზიები',
-    kk: 'Суспензиялар',
+    kk: 'Suspenziialar',
     qm: 'Suspenziyalar',
   },
   description: {
@@ -64,7 +64,7 @@ export const suspensions_Skill_Data = defineSkill({
       et: 'Tunne ära suspensioonid, milles hajutatud osakesed võivad settida.',
       be: 'Распазнавай сусьпэнзіі з разьмеркаванымі часьціцамі, якія могуць асядаць.',
       ka: 'ამოიცანი სუსპენზიები, რომელთა განაწილებული ნაწილაკები შეიძლება დაილექოს.',
-      kk: 'Таралған бөлшектері тұна алатын суспензияларды анықта.',
+      kk: 'Taralğan bölşekterı tūna alatyn suspenziialardy anyqta.',
       qm: 'Dağılğan zerreleri töbige çöke bilgen suspenziyalarnı tanı.',
     },
   },

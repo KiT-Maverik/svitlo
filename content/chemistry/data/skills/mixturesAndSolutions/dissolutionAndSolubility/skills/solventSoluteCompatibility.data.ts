@@ -31,7 +31,7 @@ export const solventSoluteCompatibility_Skill_Data = defineSkill({
     et: 'Lahusti ja lahustuva aine sobivus',
     be: 'Сумяшчальнасьць растваральніка й растваранага рэчыва',
     ka: 'გამხსნელისა და გახსნილი ნივთიერების თავსებადობა',
-    kk: 'Еріткіш пен еріген заттың үйлесімділігі',
+    kk: 'Erıtkış pen erıgen zattyñ üilesımdılıgı',
     qm: 'Eritici ve erigen madde uyarlığı',
   },
   description: {
@@ -65,7 +65,7 @@ export const solventSoluteCompatibility_Skill_Data = defineSkill({
       et: 'Ennusta osakeste vastastikmõjude järgi, kas ained võivad teineteises lahustuda.',
       be: 'Паводле ўзаемадзеяньняў часьціцаў прадказвай, ці могуць рэчывы растварацца адно ў адным.',
       ka: 'ნაწილაკთა ურთიერთქმედებით ივარაუდე, შეიძლება თუ არა ნივთიერებები ერთმანეთში გაიხსნას.',
-      kk: 'Бөлшектер әрекеттесуі бойынша заттардың бір-бірінде еру мүмкіндігін болжа.',
+      kk: 'Bölşekter ärekettesuı boiynşa zattardyñ bır-bırınde eru mümkındıgın bolja.',
       qm: 'Zerreler arası tesirleşüvge köre maddeler bir-birinde eriy bilgenini tahmin et.',
     },
   },

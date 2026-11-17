@@ -41,7 +41,7 @@ export const separation_SkillGroup_Data = defineSkillGroup({
     et: 'Segude lahutamine',
     be: 'Разьдзяленьне сумесяў',
     ka: 'ნარევების განცალკევება',
-    kk: 'Қоспаларды бөлу',
+    kk: 'Qospalardy bölu',
     qm: 'Qarışıqlarnı ayırma',
   },
   skills: [
@@ -83,7 +83,7 @@ export const separation_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri, kuidas füüsikaliste omaduste erinevused aitavad segusid lahutada.',
       be: 'Даведайся, як адрозьненьні фізычных уласьцівасьцяў дапамагаюць разьдзяляць сумесі.',
       ka: 'გაიგე, როგორ ეხმარება ფიზიკური თვისებების განსხვავება ნარევების განცალკევებას.',
-      kk: 'Физикалық қасиеттердің айырмашылығы қоспаларды бөлуге қалай көмектесетінін біл.',
+      kk: 'Fizikalyq qasietterdıñ aiyrmaşylyğy qospalardy böluge qalai kömektesetının bıl.',
       qm: 'Fizikiy hususiyetler arasındaki farqlar qarışıqlarnı ayırmağa nasıl yardım etkenini ögren.',
     },
   },

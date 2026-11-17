@@ -31,7 +31,7 @@ export const temperatureAndSolubility_Skill_Data = defineSkill({
     et: 'Temperatuur ja lahustuvus',
     be: 'Тэмпэратура й растваральнасьць',
     ka: 'ტემპერატურა და ხსნადობა',
-    kk: 'Температура және ерігіштік',
+    kk: 'Temperatura jäne erıgıştık',
     qm: 'Sıcaklıq ve eriyicilik',
   },
   description: {
@@ -65,7 +65,7 @@ export const temperatureAndSolubility_Skill_Data = defineSkill({
       et: 'Uuri, miks temperatuur võib muuta lahustuva aine hulka.',
       be: 'Дасьледуй, чаму тэмпэратура можа зьмяняць колькасьць рэчыва, што раствараецца.',
       ka: 'გაიგე, რატომ შეიძლება ტემპერატურამ შეცვალოს გახსნილი ნივთიერების რაოდენობა.',
-      kk: 'Температура заттың еритін мөлшерін неге өзгерте алатынын зертте.',
+      kk: 'Temperatura zattyñ eritın mölşerın nege özgerte alatynyn zertte.',
       qm: 'Sıcaklıqnıñ erigen madde miqdarını ne içün deñiştire bilgenini ögren.',
     },
   },

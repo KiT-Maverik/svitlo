@@ -31,7 +31,7 @@ export const colloids_Skill_Data = defineSkill({
     et: 'Kolloidid',
     be: 'Калоіды',
     ka: 'კოლოიდები',
-    kk: 'Коллоидтар',
+    kk: 'Kolloidtar',
     qm: 'Kolloidler',
   },
   description: {
@@ -65,7 +65,7 @@ export const colloids_Skill_Data = defineSkill({
       et: 'Erista kolloide tõelistest lahustest ja jämedatest suspensioonidest.',
       be: 'Адрозьнівай калоіды ад сапраўдных раствораў і грубадыспэрсных сусьпэнзіяў.',
       ka: 'განასხვავე კოლოიდები ნამდვილი ხსნარებისა და მსხვილდისპერსიული სუსპენზიებისგან.',
-      kk: 'Коллоидтарды шынайы ерітінділер мен ірі дисперсті суспензиялардан ажырат.',
+      kk: 'Kolloidtardy şynaiy erıtındıler men ırı disperstı suspenziialardan ajyrat.',
       qm: 'Kolloidlerni aqiqiy çezintilerden ve iri zerreli suspenziyalardan ayır.',
     },
   },

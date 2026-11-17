@@ -31,7 +31,7 @@ export const chromatography_Skill_Data = defineSkill({
     et: 'Kromatograafia',
     be: 'Храматаграфія',
     ka: 'ქრომატოგრაფია',
-    kk: 'Хроматография',
+    kk: 'Hromatografiia',
     qm: 'Hromatografiya',
   },
   description: {
@@ -64,7 +64,7 @@ export const chromatography_Skill_Data = defineSkill({
       et: 'Mõista, kuidas kromatograafia eraldab koostisosi nende erineva liikumise tõttu faaside vahel.',
       be: 'Зразумей, як храматаграфія разьдзяляе кампанэнты дзякуючы рознай хуткасьці іх руху паміж фазамі.',
       ka: 'გაიგე, როგორ აცალკევებს ქრომატოგრაფია კომპონენტებს ფაზებს შორის მათი განსხვავებული გადაადგილების მიხედვით.',
-      kk: 'Хроматография компоненттерді фазалар арасындағы әртүрлі қозғалысы арқылы қалай бөлетінін түсін.',
+      kk: 'Hromatografiia komponentterdı fazalar arasyndağy ärtürlı qozğalysy arqyly qalai böletının tüsın.',
       qm: 'Hromatografiyanıñ terkibiy qısımlarnı fazalar arasındaki farqlı areketlerine köre nasıl ayırğanını añla.',
     },
   },

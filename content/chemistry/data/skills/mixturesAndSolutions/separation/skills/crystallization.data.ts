@@ -31,7 +31,7 @@ export const crystallization_Skill_Data = defineSkill({
     et: 'Kristalliseerimine',
     be: 'Крышталізацыя',
     ka: 'კრისტალიზაცია',
-    kk: 'Кристалдану',
+    kk: 'Kristaldanu',
     qm: 'Kristallaşma',
   },
   description: {
@@ -65,7 +65,7 @@ export const crystallization_Skill_Data = defineSkill({
       et: 'Eralda aine lahusest, juhtides kristallide teket.',
       be: 'Аддзяляй рэчыва ад раствору, кіруючы ўтварэньнем крышталёў.',
       ka: 'ხსნარიდან ნივთიერება გამოყავი კრისტალების წარმოქმნის კონტროლით.',
-      kk: 'Кристалдардың түзілуін басқарып, затты ерітіндіден бөліп ал.',
+      kk: 'Kristaldardyñ tüzıluın basqaryp, zatty erıtındıden bölıp al.',
       qm: 'Kristallarnıñ peyda oluvını idare etip, maddeni çezintiden ayır.',
     },
   },

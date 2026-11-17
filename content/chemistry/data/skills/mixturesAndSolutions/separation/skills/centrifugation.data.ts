@@ -31,7 +31,7 @@ export const centrifugation_Skill_Data = defineSkill({
     et: 'Tsentrifuugimine',
     be: 'Цэнтрыфугаваньне',
     ka: 'ცენტრიფუგირება',
-    kk: 'Центрифугалау',
+    kk: 'Tsentrifugalau',
     qm: 'Santrifugal ayırma',
   },
   description: {
@@ -65,7 +65,7 @@ export const centrifugation_Skill_Data = defineSkill({
       et: 'Uuri, kuidas segu pöörlemine kiirendab osakeste eraldumist.',
       be: 'Дасьледуй, як кручэньне сумесі паскарае разьдзяленьне часьціцаў.',
       ka: 'გამოიკვლიე, როგორ აჩქარებს ნარევის ბრუნვა ნაწილაკების განცალკევებას.',
-      kk: 'Қоспаны айналдыру бөлшектердің бөлінуін қалай тездететінін зертте.',
+      kk: 'Qospany ainaldyru bölşekterdıñ bölınuın qalai tezdetetının zertte.',
       qm: 'Qarışıqnı döndürme zerrelerniñ ayırılmasını nasıl tezleştire bilgenini ögren.',
     },
   },

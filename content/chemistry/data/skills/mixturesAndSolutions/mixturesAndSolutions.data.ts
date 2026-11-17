@@ -36,7 +36,7 @@ export const mixturesAndSolutions_SkillDomain_Data = defineSkillDomain({
     et: 'Segud ja lahused',
     be: 'Сумесі й растворы',
     ka: 'ნარევები და ხსნარები',
-    kk: 'Қоспалар және ерітінділер',
+    kk: 'Qospalar jäne erıtındıler',
     qm: 'Qarışıqlar ve çezintiler',
   },
   groups: [
@@ -76,7 +76,7 @@ export const mixturesAndSolutions_SkillDomain_Data = defineSkillDomain({
       et: 'Uuri, kuidas ained segunevad, lahustuvad ning kuidas neid uuesti eraldada.',
       be: 'Дасьледуй, як рэчывы зьмешваюцца, раствараюцца й могуць зноў падзяляцца.',
       ka: 'გამოიკვლიე, როგორ ერევა ნივთიერებები ერთმანეთს, იხსნება და კვლავ შეიძლება მათი განცალკევება.',
-      kk: 'Заттар қалай араласатынын, еритінін және қайта бөлінетінін зертте.',
+      kk: 'Zattar qalai aralasatynyn, eritının jäne qaita bölınetının zertte.',
       qm: 'Maddeler nasıl qarışqanını, erigenini ve yañıdan nasıl ayırılğanını ögren.',
     },
   },

@@ -31,7 +31,7 @@ export const distillation_Skill_Data = defineSkill({
     et: 'Destilleerimine',
     be: 'Дыстыляцыя',
     ka: 'დისტილაცია',
-    kk: 'Дистилляция',
+    kk: 'Distilliatsiia',
     qm: 'Distillyatsiya',
   },
   description: {
@@ -64,7 +64,7 @@ export const distillation_Skill_Data = defineSkill({
       et: 'Uuri, kuidas erinevad keemisomadused võimaldavad aineid destilleerimise teel eraldada.',
       be: 'Дасьледуй, як адрозьненьні ў кіпеньні дазваляюць разьдзяляць рэчывы дыстыляцыяй.',
       ka: 'გამოიკვლიე, როგორ იძლევა დუღილის თვისებებში განსხვავება ნივთიერებების დისტილაციით განცალკევების შესაძლებლობას.',
-      kk: 'Қайнау қасиеттерінің айырмашылығы заттарды дистилляция арқылы бөлуге қалай мүмкіндік беретінін зертте.',
+      kk: 'Qainau qasietterınıñ aiyrmaşylyğy zattardy distilliatsiia arqyly böluge qalai mümkındık beretının zertte.',
       qm: 'Qaynav hususiyetlerindeki farqlar maddelerni distillyatsiya yardımınen nasıl ayırmağa imkân bergenini ögren.',
     },
   },
