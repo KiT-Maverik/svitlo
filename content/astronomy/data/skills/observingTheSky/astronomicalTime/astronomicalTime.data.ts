@@ -40,7 +40,7 @@ export const astronomicalTime_SkillGroup_Data = defineSkillGroup({
     et: 'Astronoomiline aeg',
     be: 'Астранамічны час',
     ka: 'ასტრონომიული დრო',
-    kk: 'Астрономиялық уақыт',
+    kk: 'Astronomiialyq uaqyt',
   },
   skills: [
     astronomicalDatesAndEpochs_Skill_Data,
@@ -81,7 +81,7 @@ export const astronomicalTime_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri, kuidas Päikese, Kuu ja tähtede korduvaid liikumisi kasutatakse aja mõõtmiseks.',
       be: 'Даведайся, як паўторныя рухі Сонца, Месяца і зорак выкарыстоўваюць для вымярэньня часу.',
       ka: 'გაიგე, როგორ იყენებენ მზის, მთვარისა და ვარსკვლავების განმეორებად მოძრაობებს დროის გასაზომად.',
-      kk: 'Күннің, Айдың және жұлдыздардың қайталанатын қозғалыстары уақытты өлшеуге қалай қолданылатынын зертте.',
+      kk: 'Künnıñ, Aidyñ jäne jūldyzdardyñ qaitalanatyn qozğalystary uaqytty ölşeuge qalai qoldanylatynyn zertte.',
     },
   },
 });

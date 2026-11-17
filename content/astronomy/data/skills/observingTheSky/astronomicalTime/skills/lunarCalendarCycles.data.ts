@@ -32,7 +32,7 @@ export const lunarCalendarCycles_Skill_Data = defineSkill({
     et: 'Kuukalendri tsüklid',
     be: 'Цыклі месяцовага календара',
     ka: 'მთვარის კალენდრის ციკლები',
-    kk: 'Ай күнтізбесінің циклдері',
+    kk: 'Ai küntızbesınıñ tsiklderı',
   },
   description: {
     methodological:
@@ -66,7 +66,7 @@ export const lunarCalendarCycles_Skill_Data = defineSkill({
       et: 'Uuri, kuidas Kuu faaside vaheldumine on seotud kuukalendri tsüklitega.',
       be: 'Даведайся, як зьмена фаз Месяца зьвязаная з цыклямі месяцовага календара.',
       ka: 'გაიგე, როგორ უკავშირდება მთვარის ფაზების ცვლილება მთვარის კალენდრის ციკლებს.',
-      kk: 'Ай фазаларының өзгеруі Ай күнтізбесінің циклдерімен қалай байланысатынын біл.',
+      kk: 'Ai fazalarynyñ özgeruı Ai küntızbesınıñ tsiklderımen qalai bailanysatynyn bıl.',
     },
   },
 });

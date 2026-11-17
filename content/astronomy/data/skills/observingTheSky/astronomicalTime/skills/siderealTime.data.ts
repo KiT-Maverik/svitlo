@@ -32,7 +32,7 @@ export const siderealTime_Skill_Data = defineSkill({
     et: 'Täheaeg',
     be: 'Зорны час',
     ka: 'ვარსკვლავური დრო',
-    kk: 'Жұлдыздық уақыт',
+    kk: 'Jūldyzdyq uaqyt',
   },
   description: {
     methodological:
@@ -66,7 +66,7 @@ export const siderealTime_Skill_Data = defineSkill({
       et: 'Õpi mõistma täheaega tähtede näiva liikumise kaudu.',
       be: 'Зразумей зорны час праз бачны рух зорак.',
       ka: 'გაიგე ვარსკვლავური დრო ვარსკვლავების მოჩვენებითი მოძრაობის დახმარებით.',
-      kk: 'Жұлдыздардың көрінерлік қозғалысы арқылы жұлдыздық уақытты түсін.',
+      kk: 'Jūldyzdardyñ körınerlık qozğalysy arqyly jūldyzdyq uaqytty tüsın.',
     },
   },
 });

@@ -32,7 +32,7 @@ export const solarSystemsGalacticLocation_Skill_Data = defineSkill({
     et: 'Päikesesüsteemi asukoht galaktikas',
     be: 'Месца Сонечнай сыстэмы ў Галяктыцы',
     ka: 'მზის სისტემის ადგილი გალაქტიკაში',
-    kk: 'Күн жүйесінің галактикадағы орны',
+    kk: 'Kün jüiesınıñ galaktikadağy orny',
   },
   description: {
     methodological:
@@ -66,7 +66,7 @@ export const solarSystemsGalacticLocation_Skill_Data = defineSkill({
       et: 'Leia Päikesesüsteemi asukoht Linnuteel, mitte selle keskmes.',
       be: 'Знайдзі Сонечную сыстэму ў Млечным Шляху, не разьмяшчаючы яе ў цэнтры.',
       ka: 'იპოვე მზის სისტემის ადგილი ირმის ნახტომში და არა მის ცენტრში.',
-      kk: 'Күн жүйесінің Құс жолындағы орнын тап, ол ортасында емес.',
+      kk: 'Kün jüiesınıñ Qūs jolyndağy ornyn tap, ol ortasynda emes.',
     },
   },
 });

@@ -32,7 +32,7 @@ export const astronomicalDatesAndEpochs_Skill_Data = defineSkill({
     et: 'Astronoomilised kuupäevad ja epohhid',
     be: 'Астранамічныя даты і эпохі',
     ka: 'ასტრონომიული თარიღები და ეპოქები',
-    kk: 'Астрономиялық даталар мен дәуірлер',
+    kk: 'Astronomiialyq datalar men däuırler',
   },
   description: {
     methodological:
@@ -66,7 +66,7 @@ export const astronomicalDatesAndEpochs_Skill_Data = defineSkill({
       et: 'Õpi vaatluste võrdlemisel tõlgendama astronoomilisi kuupäevi ja võrdlusepohhe.',
       be: 'Навучыся тлумачыць астранамічныя даты і апорныя эпохі, параўноўваючы назіраньні.',
       ka: 'ისწავლე ასტრონომიული თარიღებისა და ათვლის ეპოქების განმარტება დაკვირვებების შედარებისას.',
-      kk: 'Бақылауларды салыстырғанда астрономиялық даталар мен есептік дәуірлерді түсіндіруді үйрен.',
+      kk: 'Baqylaulardy salystyrğanda astronomiialyq datalar men eseptık däuırlerdı tüsındırudı üiren.',
     },
   },
 });

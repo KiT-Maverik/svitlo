@@ -32,7 +32,7 @@ export const interstellarGas_Skill_Data = defineSkill({
     et: 'Tähtedevaheline gaas',
     be: 'Міжзорны газ',
     ka: 'ვარსკვლავთშორისი აირი',
-    kk: 'Жұлдызаралық газ',
+    kk: 'Jūldyzaralyq gaz',
   },
   description: {
     methodological:
@@ -66,7 +66,7 @@ export const interstellarGas_Skill_Data = defineSkill({
       et: 'Erista tähtede vahel leiduva gaasi eri vorme.',
       be: 'Адрозьнівай розныя формы газу паміж зоркамі.',
       ka: 'განასხვავე ვარსკვლავებს შორის არსებული აირის ფორმები.',
-      kk: 'Жұлдыздар арасындағы газдың әртүрлі түрлерін ажырат.',
+      kk: 'Jūldyzdar arasyndağy gazdyñ ärtürlı türlerın ajyrat.',
     },
   },
 });

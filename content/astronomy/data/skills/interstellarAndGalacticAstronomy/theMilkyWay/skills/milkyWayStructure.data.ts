@@ -32,7 +32,7 @@ export const milkyWayStructure_Skill_Data = defineSkill({
     et: 'Linnutee ehitus',
     be: 'Будова Млечнага Шляху',
     ka: 'ირმის ნახტომის აგებულება',
-    kk: 'Құс жолының құрылысы',
+    kk: 'Qūs jolynyñ qūrylysy',
   },
   description: {
     methodological:
@@ -66,7 +66,7 @@ export const milkyWayStructure_Skill_Data = defineSkill({
       et: 'Erista meie galaktika ketast, keskset mõhna ja halot.',
       be: 'Адрозьнівай дыск, цэнтральнае патаўшчэньне й гало нашай Галяктыкі.',
       ka: 'ამოიცანი ჩვენი გალაქტიკის დისკო, ცენტრალური ამობურცულობა და ჰალო.',
-      kk: 'Галактикамыздың дискісін, орталық дөңесін және галосын анықта.',
+      kk: 'Galaktikamyzdyñ diskısın, ortalyq döñesın jäne galosyn anyqta.',
     },
   },
 });

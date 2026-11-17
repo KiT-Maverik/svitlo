@@ -39,7 +39,7 @@ export const theMilkyWay_SkillGroup_Data = defineSkillGroup({
     et: 'Linnutee',
     be: 'Млечны Шлях',
     ka: 'ირმის ნახტომი',
-    kk: 'Құс жолы',
+    kk: 'Qūs joly',
   },
   skills: [
     galacticRotation_Skill_Data,
@@ -79,7 +79,7 @@ export const theMilkyWay_SkillGroup_Data = defineSkillGroup({
       et: 'Õpi, kuidas astronoomid kaardistavad Linnuteed selle seest.',
       be: 'Даведайся, як астраномы складаюць мапу Млечнага Шляху, знаходзячыся ўнутры яго.',
       ka: 'გაიგე, როგორ ადგენენ ასტრონომები ირმის ნახტომის რუკას მის შიგნით ყოფნისას.',
-      kk: 'Астрономдар Құс жолының картасын оның ішінде тұрып қалай жасайтынын біл.',
+      kk: 'Astronomdar Qūs jolynyñ kartasyn onyñ ışınde tūryp qalai jasaitynyn bıl.',
     },
   },
 });

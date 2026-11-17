@@ -32,7 +32,7 @@ export const nebulae_Skill_Data = defineSkill({
     et: 'Udukogud',
     be: 'Туманнасьці',
     ka: 'ნისლეულები',
-    kk: 'Тұмандықтар',
+    kk: 'Tūmandyqtar',
   },
   description: {
     methodological:
@@ -66,7 +66,7 @@ export const nebulae_Skill_Data = defineSkill({
       et: 'Erista udukogusid nende ja valguse vastastikmõju järgi.',
       be: 'Распазнавай віды туманнасьцяў паводле іхнага ўзаемадзеяньня са сьвятлом.',
       ka: 'ამოიცანი ნისლეულების სახეობები სინათლესთან მათი ურთიერთქმედების მიხედვით.',
-      kk: 'Тұмандықтарды жарықпен әрекеттесуіне қарай ажырат.',
+      kk: 'Tūmandyqtardy jaryqpen ärekettesuıne qarai ajyrat.',
     },
   },
 });

@@ -32,7 +32,7 @@ export const solarTime_Skill_Data = defineSkill({
     et: 'Päikeseaeg',
     be: 'Сонечны час',
     ka: 'მზის დრო',
-    kk: 'Күн уақыты',
+    kk: 'Kün uaqyty',
   },
   description: {
     methodological:
@@ -66,7 +66,7 @@ export const solarTime_Skill_Data = defineSkill({
       et: 'Õpi mõistma, kuidas Päikese asend on seotud päikeseajaga.',
       be: 'Зразумей, як становішча Сонца зьвязанае з сонечным часам.',
       ka: 'გაიგე, როგორ უკავშირდება მზის მდებარეობა მზის დროს.',
-      kk: 'Күннің аспандағы орны Күн уақытымен қалай байланысатынын түсін.',
+      kk: 'Künnıñ aspandağy orny Kün uaqytymen qalai bailanysatynyn tüsın.',
     },
   },
 });

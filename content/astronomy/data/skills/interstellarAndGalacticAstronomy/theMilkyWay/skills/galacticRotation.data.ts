@@ -32,7 +32,7 @@ export const galacticRotation_Skill_Data = defineSkill({
     et: 'Galaktika pöörlemine',
     be: 'Кручэньне Галяктыкі',
     ka: 'გალაქტიკის ბრუნვა',
-    kk: 'Галактиканың айналуы',
+    kk: 'Galaktikanyñ ainaluy',
   },
   description: {
     methodological:
@@ -66,7 +66,7 @@ export const galacticRotation_Skill_Data = defineSkill({
       et: 'Kasuta tähtede ja gaasi liikumist, et õppida meie galaktika massijaotust.',
       be: 'Паводле руху зорак і газу даведайся, як разьмеркаваная маса ў нашай Галяктыцы.',
       ka: 'ვარსკვლავებისა და აირის მოძრაობით გაიგე, როგორ არის განაწილებული მასა ჩვენს გალაქტიკაში.',
-      kk: 'Жұлдыздар мен газдың қозғалысына қарап, біздің галактикадағы массаның таралуын біл.',
+      kk: 'Jūldyzdar men gazdyñ qozğalysyna qarap, bızdıñ galaktikadağy massanyñ taraluyn bıl.',
     },
   },
 });

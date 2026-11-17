@@ -32,7 +32,7 @@ export const solarCalendarCycles_Skill_Data = defineSkill({
     et: 'Päikesekalendri tsüklid',
     be: 'Цыклі сонечнага календара',
     ka: 'მზის კალენდრის ციკლები',
-    kk: 'Күн күнтізбесінің циклдері',
+    kk: 'Kün küntızbesınıñ tsiklderı',
   },
   description: {
     methodological:
@@ -66,7 +66,7 @@ export const solarCalendarCycles_Skill_Data = defineSkill({
       et: 'Uuri, kuidas Maa aastane liikumine on seotud päikesekalendri tsüklitega.',
       be: 'Даведайся, як гадавы рух Зямлі зьвязаны з цыклямі сонечнага календара.',
       ka: 'გაიგე, როგორ უკავშირდება დედამიწის წლიური მოძრაობა მზის კალენდრის ციკლებს.',
-      kk: 'Жердің жылдық қозғалысы Күн күнтізбесінің циклдерімен қалай байланысатынын біл.',
+      kk: 'Jerdıñ jyldyq qozğalysy Kün küntızbesınıñ tsiklderımen qalai bailanysatynyn bıl.',
     },
   },
 });

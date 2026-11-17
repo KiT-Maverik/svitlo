@@ -32,7 +32,7 @@ export const starClusters_Skill_Data = defineSkill({
     et: 'Täheparved',
     be: 'Зорныя скопішчы',
     ka: 'ვარსკვლავთგროვები',
-    kk: 'Жұлдыз шоғырлары',
+    kk: 'Jūldyz şoğyrlary',
   },
   description: {
     methodological:
@@ -66,7 +66,7 @@ export const starClusters_Skill_Data = defineSkill({
       et: 'Võrdle hajus- ja kerasparvi ning nende asukohti.',
       be: 'Параўнай рассеяныя й шаравыя зорныя скопішчы ды іхныя месцы.',
       ka: 'შეადარე გაფანტული და სფერული ვარსკვლავთგროვები და მათი მდებარეობა.',
-      kk: 'Ашық және шар тәрізді жұлдыз шоғырларын, олардың орналасуын салыстыр.',
+      kk: 'Aşyq jäne şar tärızdı jūldyz şoğyrlaryn, olardyñ ornalasuyn salystyr.',
     },
   },
 });
