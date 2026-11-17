@@ -186,7 +186,7 @@ function subdirs(dir) {
   if (!fs.existsSync(dir)) return [];
   return fs
     .readdirSync(dir, { withFileTypes: true })
-    .filter(x => x.isDirectory() && x.name !== '__tests__' && x.name !== 'skills')
+    .filter(x => x.isDirectory() && x.name !== '__tests__')
     .map(x => x.name)
     .sort();
 }
@@ -194,12 +194,12 @@ function fileNames(dir) {
   if (!fs.existsSync(dir)) return [];
   return fs
     .readdirSync(dir)
-    .filter(x => x.endsWith('.data.ts'))
+    .filter(x => x.endsWith('.ts') && x !== 'index.ts')
     .sort();
 }
 
 function readSkills(folder) {
-  const d = path.join(folder, 'skills');
+  const d = folder;
   const names = fileNames(d);
   return names.map(name => readEntity(path.join(d, name), 'Skill'));
 }
@@ -217,7 +217,7 @@ function markdownLine(entity, level, output, details = '') {
 const domains = [];
 for (const folder of subdirs(taxonomyRoot)) {
   const domainFolder = path.join(taxonomyRoot, folder);
-  const domainFile = path.join(domainFolder, folder + '.data.ts');
+  const domainFile = path.join(domainFolder, 'index.ts');
   if (!fs.existsSync(domainFile)) fail('Missing Domain source: ' + domainFile);
   const domain = readEntity(domainFile, 'SkillDomain');
   const groups = subdirs(domainFolder);
@@ -225,7 +225,7 @@ for (const folder of subdirs(taxonomyRoot)) {
   if (groups.length === 0 && directSkills.length === 0) fail('Domain has no Groups or Skills: ' + domainFile);
   const content = groups.map(group => {
     const groupFolder = path.join(domainFolder, group);
-    const groupFile = path.join(groupFolder, group + '.data.ts');
+    const groupFile = path.join(groupFolder, 'index.ts');
     if (!fs.existsSync(groupFile)) fail('Missing Group source: ' + groupFile);
     const skills = readSkills(groupFolder);
     if (!skills.length) fail('Empty Group: ' + groupFile);
