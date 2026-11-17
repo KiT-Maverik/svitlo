@@ -31,7 +31,7 @@ export const exchangeRateRegimes_Skill_Data = defineSkill({
     et: 'Vahetuskursirežiimid',
     be: 'Рэжымы валютнага курсу',
     ka: 'გაცვლითი კურსის რეჟიმები',
-    kk: 'Валюта бағамының режимдері',
+    kk: 'Valiuta bağamynyñ rejimderı',
     qm: 'Pul kursı usulları',
   },
   description: {
@@ -64,7 +64,7 @@ export const exchangeRateRegimes_Skill_Data = defineSkill({
       et: 'Võrdle vabalt ujuvaid kursse võimude juhitavate kurssidega.',
       be: 'Параўнай плаваючыя курсы з курсамі, якімі кіруюць улады.',
       ka: 'შეადარეთ მცურავი კურსები ხელისუფლების მიერ მართვად კურსებს.',
-      kk: 'Еркін өзгеретін бағамдарды билік реттейтін бағамдармен салыстырыңыз.',
+      kk: 'Erkın özgeretın bağamdardy bilık retteitın bağamdarmen salystyryñyz.',
       qm: 'Erkin deñişken kurslarnen akimiyet idare etken kurslarnı teñeştir.',
     },
   },

@@ -31,7 +31,7 @@ export const taxProgressivity_Skill_Data = defineSkill({
     et: 'Maksude progressiivsus',
     be: 'Прагрэсіўнасьць падаткаабкладаньня',
     ka: 'გადასახადის პროგრესულობა',
-    kk: 'Салықтың прогрессивтілігі',
+    kk: 'Salyqtyñ progressivtılıgı',
     qm: 'Vergilerniñ artan nisbetliligi',
   },
   description: {
@@ -65,7 +65,7 @@ export const taxProgressivity_Skill_Data = defineSkill({
       et: 'Võrdle maksukoormust eri sissetulekutasemetel.',
       be: 'Параўнай, як падатковы цяжар зьмяняецца пры розных даходах.',
       ka: 'შეადარეთ, როგორ იცვლება საგადასახადო ტვირთი შემოსავლის სხვადასხვა დონეზე.',
-      kk: 'Әртүрлі табыс деңгейінде салық ауыртпалығы қалай өзгеретінін салыстырыңыз.',
+      kk: 'Ärtürlı tabys deñgeiınde salyq auyrtpalyğy qalai özgeretının salystyryñyz.',
       qm: 'Çeşit kelir seviyelerinde vergi ağırılığı nasıl deñişkenini teñeştir.',
     },
   },

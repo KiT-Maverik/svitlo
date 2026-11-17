@@ -31,7 +31,7 @@ export const taxIncidence_Skill_Data = defineSkill({
     et: 'Maksukoormuse tegelik jaotus',
     be: 'Падатковы цяжар',
     ka: 'საგადასახადო ტვირთის განაწილება',
-    kk: 'Салық ауыртпалығының бөлінуі',
+    kk: 'Salyq auyrtpalyğynyñ bölınuı',
     qm: 'Vergi ağırılığınıñ bölünüvi',
   },
   description: {
@@ -65,7 +65,7 @@ export const taxIncidence_Skill_Data = defineSkill({
       et: 'Uuri, kes maksukoormust tegelikult kannab.',
       be: 'Дасьледуй, хто насамрэч нясе выдаткі ад падатку.',
       ka: 'გამოიკვლიეთ, რეალურად ვინ იხდის გადასახადის ხარჯს.',
-      kk: 'Салық шығынын іс жүзінде кім көтеретінін зерттеңіз.',
+      kk: 'Salyq şyğynyn ıs jüzınde kım köteretının zertteñız.',
       qm: 'Verginiñ masrafını aqiqaten kim çekkenini araştır.',
     },
   },

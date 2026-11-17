@@ -31,7 +31,7 @@ export const balanceOfPayments_Skill_Data = defineSkill({
     et: 'Maksebilanss',
     be: 'Плацежны балянс',
     ka: 'საგადამხდელო ბალანსი',
-    kk: 'Төлем балансы',
+    kk: 'Tölem balansy',
     qm: 'Ödemeler balansı',
   },
   description: {
@@ -65,7 +65,7 @@ export const balanceOfPayments_Skill_Data = defineSkill({
       et: 'Uuri, kuidas registreeritakse rahvusvahelisi makseid ja investeeringuid.',
       be: 'Пабач, як улічваюць міжнародныя плацяжы й інвэстыцыі.',
       ka: 'გაიგეთ, როგორ აღირიცხება საერთაშორისო გადახდები და ინვესტიციები.',
-      kk: 'Халықаралық төлемдер мен инвестициялар қалай есепке алынатынын зерттеңіз.',
+      kk: 'Halyqaralyq tölemder men investitsiialar qalai esepke alynatynyn zertteñız.',
       qm: 'Halqlarara ödemeler ve yatırımlar nasıl esapqa alınğanını kör.',
     },
   },

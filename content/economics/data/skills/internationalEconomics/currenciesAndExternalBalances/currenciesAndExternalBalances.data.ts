@@ -38,7 +38,7 @@ export const currenciesAndExternalBalances_SkillGroup_Data = defineSkillGroup({
     et: 'Valuutad ja välismajanduse bilansid',
     be: 'Валюты і зьнешнія балянсы',
     ka: 'ვალუტები და საგარეო ბალანსები',
-    kk: 'Валюталар және сыртқы баланстар',
+    kk: 'Valiutalar jäne syrtqy balanstar',
     qm: 'Pullar ve tışqı esaplar',
   },
   skills: [
@@ -78,7 +78,7 @@ export const currenciesAndExternalBalances_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri, kuidas vahetuskursid ja piiriülesed kontod toimivad.',
       be: 'Даведайся, як працуюць валютныя курсы й трансьмежавыя рахункі.',
       ka: 'გაიგეთ, როგორ მუშაობს გაცვლითი კურსები და საზღვარგარეთის ანგარიშები.',
-      kk: 'Валюта бағамдары мен трансшекаралық есептер қалай жұмыс істейтінін біліңіз.',
+      kk: 'Valiuta bağamdary men transşekaralyq esepter qalai jūmys ısteitının bılıñız.',
       qm: 'Alıştıruv kursları ve memleketlerarası esaplar nasıl işlegenini ögren.',
     },
   },
