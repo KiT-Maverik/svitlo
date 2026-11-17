@@ -11,6 +11,7 @@ Create or revise the **permanent methodological specification for exactly one Co
 **Do not create a Table of Contents, Module/Chapter plan, Lesson brief, story, scenario, assessment questions, UX, code, or a Course runtime data file.** Course Methodology is an editorial artifact for future specialists and maintainers, not a generated frontend resource. An existing course may use this skill to document or revise its rationale.
 
 **Mandatory quality standard (new Course and legacy maintenance):** apply [Course methodology completeness](../../docs/entities/course.md#course-methodology-completeness--pedagogical-technical-specification). The approved methodology must explain concrete scope, verified Skill outcomes, instructional progression, misconception handling, learner entry profile, sources/standards claims and assessment evidence at sufficient depth that downstream specialists do not invent requirements. For new Course production, build this progressively in `course.yaml` with the seven-stage Course Flow; do not create a separate permanent `methodology.md` before materialization. No arbitrary word or token quota, artificial approval frontmatter or early runtime field.
+
 ## Inputs
 
 Establish the following from the editorial request and repository; ask only for materially missing information rather than guessing:

@@ -7,6 +7,7 @@ Read the latest complete `lesson.yaml` with its original `production.methodology
 Record source SHA, Skill/outcome-by-Section coverage, exact defects/paths, independent verdict, reviewer and sign-off in Lesson PR. Screenwriter repairs approved content fixes; independent reviews of changed source become stale as appropriate. Do not self-approve, introduce `draft`/`approved` frontmatter, create duplicate methodology-review.md or fabricate `review.ts` Props-digest approvals.
 
 **Original-specification gate:** independently review `lesson.yaml` `production.methodology` against the [Lesson methodology completeness contract](../../docs/entities/lesson.md#lesson-methodology-completeness--pedagogical-technical-specification), in addition to evaluating its correct execution in Sections. Insufficient subject matter, Skill outcomes, dependencies, misconceptions, example boundaries or assessment evidence cannot be silently supplied by the reviewer/Screenwriter or excused by passing TypeScript. Request a Methodologist-owned amendment and re-review at the new source SHA.
+
 ## Detailed methodological audit
 
 Assess every Section against the verified Stage 1 methodology and verified references:
