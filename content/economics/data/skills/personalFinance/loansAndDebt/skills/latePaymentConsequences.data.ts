@@ -31,7 +31,7 @@ export const latePaymentConsequences_Skill_Data = defineSkill({
     et: 'Hilinenud maksete tagajärjed',
     be: 'Наступствы пратэрміноўкі плацяжоў',
     ka: 'დაგვიანებული გადახდის შედეგები',
-    kk: 'Кешіктірілген төлем салдары',
+    kk: 'Keşıktırılgen tölem saldary',
     qm: 'Keç ödemeniñ neticeleri',
   },
   description: {
@@ -65,7 +65,7 @@ export const latePaymentConsequences_Skill_Data = defineSkill({
       et: 'Mõista, mis võib juhtuda, kui laenumakse hilineb.',
       be: 'Зразумей, што можа адбыцца, калі спазьніцца з аплатай.',
       ka: 'გაიგე, რა შეიძლება მოხდეს, თუ გადახდა ვადაგადაცილებულია.',
-      kk: 'Төлем мерзімі өтіп кетсе не болуы мүмкін екенін түсін.',
+      kk: 'Tölem merzımı ötıp ketse ne boluy mümkın ekenın tüsın.',
       qm: 'Borç ödemesi vaqıtında yapılmasa ne ola bilgenini añla.',
     },
   },

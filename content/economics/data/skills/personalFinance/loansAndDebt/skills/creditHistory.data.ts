@@ -31,7 +31,7 @@ export const creditHistory_Skill_Data = defineSkill({
     et: 'Krediidiajalugu',
     be: 'Крэдытная гісторыя',
     ka: 'საკრედიტო ისტორია',
-    kk: 'Несие тарихы',
+    kk: 'Nesie tarihy',
     qm: 'Kredit tarihı',
   },
   description: {
@@ -64,7 +64,7 @@ export const creditHistory_Skill_Data = defineSkill({
       et: 'Uuri, kuidas varasem tagasimaksmine mõjutab tulevast laenamist.',
       be: 'Даведайся, як ранейшыя выплаты ўплываюць на магчымасьць пазычаць надалей.',
       ka: 'გაიგე, როგორ მოქმედებს წინა გადახდები მომავალ სესხებზე.',
-      kk: 'Бұрынғы төлемдер кейінгі қарыз алуға қалай әсер ететінін біл.',
+      kk: 'Būrynğy tölemder keiıngı qaryz aluğa qalai äser etetının bıl.',
       qm: 'Keçmiş ödemeler kelecekte borç almağa nasıl tesir etkenini ögren.',
     },
   },

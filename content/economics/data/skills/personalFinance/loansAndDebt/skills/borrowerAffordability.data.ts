@@ -31,7 +31,7 @@ export const borrowerAffordability_Skill_Data = defineSkill({
     et: 'Laenuvõtja maksevõime',
     be: 'Плацежаздольнасьць пазычальніка',
     ka: 'მსესხებლის გადახდისუნარიანობა',
-    kk: 'Қарыз алушының төлем қабілеті',
+    kk: 'Qaryz aluşynyñ tölem qabıletı',
     qm: 'Borç alıcınıñ ödeme qabiliyeti',
   },
   description: {
@@ -64,7 +64,7 @@ export const borrowerAffordability_Skill_Data = defineSkill({
       et: 'Uuri, kas eeldatav tulu katab kavandatud laenumaksed.',
       be: 'Правер, ці хопіць чаканага даходу на плянаваныя выплаты пазыкі.',
       ka: 'შეამოწმე, მოსალოდნელი შემოსავალი დაგეგმილ გადასახდელებს ეყოფა თუ არა.',
-      kk: 'Күтілетін кіріс жоспарланған несие төлемдеріне жете ме, зертте.',
+      kk: 'Kütıletın kırıs josparlanğan nesie tölemderıne jete me, zertte.',
       qm: 'Beklenilgen kirset planlanğan borç ödemelerine yeterli olamı, tekşir.',
     },
   },

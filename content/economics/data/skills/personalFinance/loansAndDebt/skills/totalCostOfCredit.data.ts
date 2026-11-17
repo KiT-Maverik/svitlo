@@ -31,7 +31,7 @@ export const totalCostOfCredit_Skill_Data = defineSkill({
     et: 'Laenu kogukulu',
     be: 'Поўны кошт крэдыту',
     ka: 'კრედიტის სრული ღირებულება',
-    kk: 'Несиенің толық құны',
+    kk: 'Nesienıñ tolyq qūny',
     qm: 'Kreditniñ umumiy fiyatı',
   },
   description: {
@@ -65,7 +65,7 @@ export const totalCostOfCredit_Skill_Data = defineSkill({
       et: 'Võrdle laenu tegelikke kulusid kogu tagasimakseperioodi jooksul.',
       be: 'Параўнай рэальны кошт пазыкі за ўвесь тэрмін вяртаньня.',
       ka: 'შეადარე სესხის რეალური ფასი მთელი დაბრუნების პერიოდში.',
-      kk: 'Несиенің бүкіл өтеу мерзіміндегі нақты құнын салыстыр.',
+      kk: 'Nesienıñ bükıl öteu merzımındegı naqty qūnyn salystyr.',
       qm: 'Borçnı qaytaruvnıñ bütün devrinde aqiqiy masraflarnı qıyasla.',
     },
   },

@@ -38,7 +38,7 @@ export const loansAndDebt_SkillGroup_Data = defineSkillGroup({
     et: 'Laenud ja võlad',
     be: 'Пазыкі й даўгі',
     ka: 'სესხები და ვალები',
-    kk: 'Несиелер мен қарыздар',
+    kk: 'Nesieler men qaryzdar',
     qm: 'Borçlar ve qarızlar',
   },
   skills: [
@@ -77,7 +77,7 @@ export const loansAndDebt_SkillGroup_Data = defineSkillGroup({
       et: 'Mõista laenamise kulusid ja kohustusi.',
       be: 'Зразумей выдаткі й абавязкі, зьвязаныя з пазычаньнем грошай.',
       ka: 'გაიგე ფულის სესხების ხარჯები და ვალდებულებები.',
-      kk: 'Қарыз алудың шығындары мен міндеттерін түсін.',
+      kk: 'Qaryz aludyñ şyğyndary men mındetterın tüsın.',
       qm: 'Borç aluvnıñ masraflarını ve mesuliyetlerini añla.',
     },
   },
