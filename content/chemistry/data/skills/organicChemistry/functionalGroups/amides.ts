@@ -52,7 +52,7 @@ export const amides = defineSkill({
       it: "Identifica le ammidi dal gruppo carbonilico legato all'azoto e distinguile dalle ammine.",
       ja: 'アミドのカルボニル基と窒素のつながりを理解し、アミンと区別しよう。',
       ka: 'ამოიცანი ამიდები და განასხვავე მათი კარბონილ–აზოტის კავშირი ამინებისგან.',
-      kk: 'Amidterdı tanyp, karbonil–azot bailanysyn aminderden ajyrat.',
+      kk: 'Amidterdı karbonil–azot bailanysy arqyly tany jäne olardy aminderden ajyrat.',
       ko: '아마이드를 알아보고 카보닐–질소 결합을 아민과 구별해 보세요.',
       lt: 'Atpažink amidus ir atskirk jų karbonilo–azoto jungtį nuo aminų.',
       lv: 'Atpazīsti amīdus un atšķir to karbonilgrupas un slāpekļa saiti no amīniem.',
