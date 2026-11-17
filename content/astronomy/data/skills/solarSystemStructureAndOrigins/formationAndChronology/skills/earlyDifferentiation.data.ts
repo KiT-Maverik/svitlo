@@ -31,7 +31,7 @@ export const earlyDifferentiation_Skill_Data = defineSkill({
     et: 'Varajane diferentseerumine',
     be: 'Раньняя дыфэрэнцыяцыя',
     ka: 'ადრეული დიფერენციაცია',
-    kk: 'Ерте жіктелу',
+    kk: 'Erte jıktelu',
     qm: 'İlk devirde qatlamlarğa ayrılma',
   },
   description: {
@@ -65,7 +65,7 @@ export const earlyDifferentiation_Skill_Data = defineSkill({
       et: 'Mõista, kuidas noortel planeetkehadel tekivad sisemised kihid, kui nende koostisained eralduvad.',
       be: 'Зразумейце, як у маладых плянэтных целах утвараюцца ўнутраныя слаі, калі рэчывы падзяляюцца.',
       ka: 'გაიგეთ, როგორ წარმოიქმნება ახალგაზრდა პლანეტური სხეულების შიდა შრეები მასალების განცალკევების შედეგად.',
-      kk: 'Жас планеталық денелерде заттардың бөлінуі нәтижесінде ішкі қабаттар қалай пайда болатынын түсініңіз.',
+      kk: 'Jas planetalyq denelerde zattardyñ bölınuı nätijesınde ışkı qabattar qalai paida bolatynyn tüsınıñız.',
       qm: 'Yañı peyda olğan planetalarğa oşağan cisimlerde maddeler bir-birinden ayrılğanda içki qatlamlar nasıl teşkil olğanını añlañız.',
     },
   },

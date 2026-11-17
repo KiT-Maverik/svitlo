@@ -31,7 +31,7 @@ export const ageOfTheSolarSystem_Skill_Data = defineSkill({
     et: 'Päikesesüsteemi vanus',
     be: 'Узрост Сонечнай сыстэмы',
     ka: 'მზის სისტემის ასაკი',
-    kk: 'Күн жүйесінің жасы',
+    kk: 'Kün jüiesınıñ jasy',
     qm: 'Küneş sistemasınıñ yaşı',
   },
   description: {
@@ -65,7 +65,7 @@ export const ageOfTheSolarSystem_Skill_Data = defineSkill({
       et: 'Uuri, kuidas meteoriidid ja radiomeetriline dateerimine aitavad hinnata Päikesesüsteemi vanust.',
       be: 'Даведайцеся, як мэтэарыты і радыёмэтрычнае датаваньне дапамагаюць ацаніць узрост Сонечнай сыстэмы.',
       ka: 'გაიგეთ, როგორ გვეხმარება მეტეორიტები და რადიომეტრიული დათარიღება მზის სისტემის ასაკის შეფასებაში.',
-      kk: 'Метеориттер мен радиометриялық мерзімдеу Күн жүйесінің жасын бағалауға қалай көмектесетінін біліңіз.',
+      kk: 'Meteoritter men radiometriialyq merzımdeu Kün jüiesınıñ jasyn bağalauğa qalai kömektesetının bılıñız.',
       qm: 'Meteoritler ve radioaktiv parçalanmağa esaslanğan yaş belgilev usulı Küneş sistemasınıñ yaşını nasıl tayin etmege yardım etkenini ögreniñiz.',
     },
   },

@@ -38,7 +38,7 @@ export const minorBodies_SkillGroup_Data = defineSkillGroup({
     et: 'Päikesesüsteemi väikehad',
     be: 'Малыя целы Сонечнай сыстэмы',
     ka: 'მზის სისტემის მცირე სხეულები',
-    kk: 'Күн жүйесінің кіші денелері',
+    kk: 'Kün jüiesınıñ kışı denelerı',
     qm: 'Küneş sistemasınıñ kiçik cisimleri',
   },
   skills: [
@@ -78,7 +78,7 @@ export const minorBodies_SkillGroup_Data = defineSkillGroup({
       et: 'Õpi tundma Päikesesüsteemi väikehi ja seda, mida need räägivad süsteemi minevikust.',
       be: 'Даведайцеся пра малыя целы Сонечнай сыстэмы і пра тое, што яны распавядаюць пра яе мінулае.',
       ka: 'გაიგეთ მზის სისტემის მცირე სხეულებისა და იმის შესახებ, თუ რას გვიმხელენ ისინი მის წარსულზე.',
-      kk: 'Күн жүйесіндегі кіші денелер туралы және олардың жүйенің өткені жайлы не білдіретінін біліңіз.',
+      kk: 'Kün jüiesındegı kışı deneler turaly jäne olardyñ jüienıñ ötkenı jaily ne bıldıretının bılıñız.',
       qm: 'Küneş sistemasındaki kiçik cisimler ve olarnıñ sistemanıñ keçmişi aqqında ne bildire bilgenini ögreniñiz.',
     },
   },

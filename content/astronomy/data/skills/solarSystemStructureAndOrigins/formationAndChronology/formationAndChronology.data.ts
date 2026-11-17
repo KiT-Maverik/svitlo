@@ -39,7 +39,7 @@ export const formationAndChronology_SkillGroup_Data = defineSkillGroup({
     et: 'Kujunemine ja kronoloogia',
     be: 'Утварэньне і храналёгія',
     ka: 'ფორმირება და ქრონოლოგია',
-    kk: 'Қалыптасуы және хронологиясы',
+    kk: 'Qalyptasuy jäne hronologiiasy',
     qm: 'Peyda oluv ve vaqt tertibi',
   },
   skills: [
@@ -80,7 +80,7 @@ export const formationAndChronology_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri tõendeid selle kohta, kuidas Päikesesüsteem aja jooksul kujunes ja muutus.',
       be: 'Прасачыце паводле сьведчаньняў, як Сонечная сыстэма ўтваралася і зьмянялася з часам.',
       ka: 'გამოიკვლიეთ მტკიცებულებები იმისა, თუ როგორ ჩამოყალიბდა და დროთა განმავლობაში შეიცვალა მზის სისტემა.',
-      kk: 'Күн жүйесінің уақыт өте қалай қалыптасып, өзгергенін айғақтайтын дәлелдерді зерттеңіз.',
+      kk: 'Kün jüiesınıñ uaqyt öte qalai qalyptasyp, özgergenın aiğaqtaityn dälelderdı zertteñız.',
       qm: 'Küneş sistemasınıñ vaqt keçken sayın nasıl peyda olıp deñişkenini köstergen delillerni araştırıñız.',
     },
   },

@@ -31,7 +31,7 @@ export const planetaryAccretion_Skill_Data = defineSkill({
     et: 'Planeetide akretsioon',
     be: 'Плянэтная акрэцыя',
     ka: 'პლანეტური აკრეცია',
-    kk: 'Планеталық аккреция',
+    kk: 'Planetalyq akkretsiia',
     qm: 'Seyyare cisimleriniñ toplanıp büyüvi',
   },
   description: {
@@ -64,7 +64,7 @@ export const planetaryAccretion_Skill_Data = defineSkill({
       et: 'Selgita, kuidas väiksemad tahked osakesed ühinevad ja moodustavad suuremaid planeetkehi.',
       be: "Растлумачце, як дробныя цьвёрдыя часьцінкі аб'ядноўваюцца й утвараюць большыя плянэтныя целы.",
       ka: 'ახსენით, როგორ ერთიანდება პატარა მყარი ნაწილაკები და წარმოქმნის უფრო დიდ პლანეტურ სხეულებს.',
-      kk: 'Ұсақ қатты бөлшектердің бірігіп, үлкенірек планеталық денелерді қалай түзетінін түсіндіріңіз.',
+      kk: 'Ūsaq qatty bölşekterdıñ bırıgıp, ülkenırek planetalyq denelerdı qalai tüzetının tüsındırıñız.',
       qm: 'Ufak qattı madde parçaları bir araya toplanıp daa büyük planeta cisimlerini nasıl peyda etkenini añlatıñız.',
     },
   },

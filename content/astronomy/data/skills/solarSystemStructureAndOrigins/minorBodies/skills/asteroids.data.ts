@@ -31,7 +31,7 @@ export const asteroids_Skill_Data = defineSkill({
     et: 'Asteroidid',
     be: 'Астэроіды',
     ka: 'ასტეროიდები',
-    kk: 'Астероидтар',
+    kk: 'Asteroidtar',
     qm: 'Asteroidler',
   },
   description: {
@@ -65,7 +65,7 @@ export const asteroids_Skill_Data = defineSkill({
       et: 'Uuri kiviste ja metallirikaste asteroidide mitmekesisust ning nende orbiite.',
       be: 'Дасьледуйце разнастайнасьць камяністых і багатых на мэталы астэроідаў і іхныя арбіты.',
       ka: 'გამოიკვლიეთ კლდოვანი და მეტალებით მდიდარი ასტეროიდების მრავალფეროვნება და მათი ორბიტები.',
-      kk: 'Тасты және металға бай астероидтардың алуан түрін, сондай-ақ олардың орбиталарын зерттеңіз.',
+      kk: 'Tasty jäne metalğa bai asteroidtardyñ aluan türın, sondai-aq olardyñ orbitalaryn zertteñız.',
       qm: 'Taşlı ve metallarğa bay asteroidlerniñ çeşitlerini ve olarnıñ orbitalarını ögreniñiz.',
     },
   },

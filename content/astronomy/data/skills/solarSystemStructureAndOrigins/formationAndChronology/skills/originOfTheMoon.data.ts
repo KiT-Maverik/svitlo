@@ -31,7 +31,7 @@ export const originOfTheMoon_Skill_Data = defineSkill({
     et: 'Kuu päritolu',
     be: 'Паходжаньне Месяца',
     ka: 'მთვარის წარმოშობა',
-    kk: 'Айдың пайда болуы',
+    kk: 'Aidyñ paida boluy',
     qm: 'Aynıñ peyda oluvı',
   },
   description: {
@@ -65,7 +65,7 @@ export const originOfTheMoon_Skill_Data = defineSkill({
       et: 'Võrdle tõendeid Kuu tekke erinevate teooriate kohta, sealhulgas hiidkokkupõrke hüpoteesi.',
       be: 'Параўнайце доказы на карысьць розных тэорыяў паходжаньня Месяца, у тым ліку гіпотэзы гіганцкага сутыкненьня.',
       ka: 'შეადარეთ მთვარის წარმოშობის სხვადასხვა თეორიის მტკიცებულებები, მათ შორის გიგანტური შეჯახების ჰიპოთეზის.',
-      kk: 'Алып соқтығысу гипотезасын қоса алғанда, Айдың пайда болуы туралы түрлі теориялардың дәлелдерін салыстырыңыз.',
+      kk: 'Alyp soqtyğysu gipotezasyn qosa alğanda, Aidyñ paida boluy turaly türlı teoriialardyñ dälelderın salystyryñyz.',
       qm: 'Büyük çarpışuv faraziyesi de dahil, Aynıñ peyda oluvı aqqındaki türlü nazariyelerniñ delillerini muqayese etiñiz.',
     },
   },

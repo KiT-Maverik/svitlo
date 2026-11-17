@@ -31,7 +31,7 @@ export const protoplanetaryDisks_Skill_Data = defineSkill({
     et: 'Protoplanetaarsed kettad',
     be: 'Пратоплянэтныя дыскі',
     ka: 'პროტოპლანეტური დისკოები',
-    kk: 'Протопланеталық дискілер',
+    kk: 'Protoplanetalyq diskıler',
     qm: 'İlk planetalar peyda olğan toz ve gaz diskleri',
   },
   description: {
@@ -64,7 +64,7 @@ export const protoplanetaryDisks_Skill_Data = defineSkill({
       et: 'Uuri, kuidas gaasi- ja tolmukettad annavad planeetide tekkeks vajalikku ainet.',
       be: 'Даведайцеся, як дыскі з газу і пылу забясьпечваюць рэчыва для ўтварэньня плянэтаў.',
       ka: 'გაიგეთ, როგორ უზრუნველყოფს გაზისა და მტვრის დისკოები პლანეტების წარმოქმნისთვის საჭირო მასალას.',
-      kk: 'Газ бен шаң дискілері планеталардың түзілуіне қажетті материалды қалай беретінін біліңіз.',
+      kk: 'Gaz ben şañ diskılerı planetalardyñ tüzıluıne qajettı materialdy qalai beretının bılıñız.',
       qm: 'Gaz ve tozdan ibaret diskler planetalarnıñ peyda olması içün kerekli maddelerni nasıl temin etkenini ögreniñiz.',
     },
   },
