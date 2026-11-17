@@ -31,7 +31,7 @@ export const intergenerationalEconomicImpacts_Skill_Data = defineSkill({
     et: 'Põlvkondadevahelised majandusmõjud',
     be: 'Міжпакаленныя эканамічныя наступствы',
     ka: 'თაობათაშორისი ეკონომიკური შედეგები',
-    kk: 'Ұрпақаралық экономикалық әсерлер',
+    kk: 'Ūrpaqaralyq ekonomikalyq äserler',
     qm: 'Nesillerara iqtisadiy tesirler',
   },
   description: {
@@ -64,7 +64,7 @@ export const intergenerationalEconomicImpacts_Skill_Data = defineSkill({
       et: 'Mõtle, millised põlvkonnad otsusest võidavad või kaotavad.',
       be: 'Падумай, якія пакаленьні выйграюць ці прайграюць ад рашэньня.',
       ka: 'დაფიქრდი, რომელი თაობები იგებენ ან ზარალდებიან გადაწყვეტილების შედეგად.',
-      kk: 'Шешімнен қай ұрпақ ұтып, қайсысы ұтылатынын ойлан.',
+      kk: 'Şeşımnen qai ūrpaq ūtyp, qaisysy ūtylatynyn oilan.',
       qm: 'Qarardan qaysı nesiller fayda ya da zarar körgenini tüşün.',
     },
   },

@@ -31,7 +31,7 @@ export const socialCostOfPollution_Skill_Data = defineSkill({
     et: 'Saastamise ühiskondlik kulu',
     be: 'Грамадзкія выдаткі забруджваньня',
     ka: 'დაბინძურების სოციალური ხარჯი',
-    kk: 'Ластаудың қоғамдық шығындары',
+    kk: 'Lastaudyñ qoğamdyq şyğyndary',
     qm: 'Kirletüvniñ cemiyetke masrafı',
   },
   description: {
@@ -64,7 +64,7 @@ export const socialCostOfPollution_Skill_Data = defineSkill({
       et: 'Tunne ära saastamise kulud, mida kannavad teised inimesed.',
       be: 'Распазнавай выдаткі ад забруджваньня, якія нясуць іншыя людзі.',
       ka: 'ამოიცანი დაბინძურების ხარჯები, რომლებსაც სხვა ადამიანები იხდიან.',
-      kk: 'Өзге адамдар көтеретін ластану шығындарын анықта.',
+      kk: 'Özge adamdar köteretın lastanu şyğyndaryn anyqta.',
       qm: 'Kirletüv sebebinden başqa insanlarğa tüşken masraflarnı tanı.',
     },
   },

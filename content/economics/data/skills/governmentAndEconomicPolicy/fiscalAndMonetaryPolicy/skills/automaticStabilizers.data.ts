@@ -31,7 +31,7 @@ export const automaticStabilizers_Skill_Data = defineSkill({
     et: 'Automaatsed stabilisaatorid',
     be: 'Аўтаматычныя стабілізатары',
     ka: 'ავტომატური სტაბილიზატორები',
-    kk: 'Автоматты тұрақтандырғыштар',
+    kk: 'Avtomatty tūraqtandyrğyştar',
     qm: 'Öz-özünden sabitleştiriciler',
   },
   description: {
@@ -65,7 +65,7 @@ export const automaticStabilizers_Skill_Data = defineSkill({
       et: 'Uuri, kuidas maksud ja toetused majanduse muutudes automaatselt reageerivad.',
       be: 'Пабач, як падаткі і дапамогі аўтаматычна рэагуюць на зьмены ў эканоміцы.',
       ka: 'გაიგეთ, როგორ რეაგირებს გადასახადები და დახმარებები ავტომატურად ეკონომიკის ცვლილებაზე.',
-      kk: 'Экономика өзгергенде салықтар мен төлемдер автоматты түрде қалай өзгеретінін біліңіз.',
+      kk: 'Ekonomika özgergende salyqtar men tölemder avtomatty türde qalai özgeretının bılıñız.',
       qm: 'İqtisat deñişkende vergiler ve yardım aqçaları nasıl öz-özünden deñişkenini ögren.',
     },
   },

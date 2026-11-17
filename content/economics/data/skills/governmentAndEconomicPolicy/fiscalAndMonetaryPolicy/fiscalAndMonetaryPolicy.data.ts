@@ -38,7 +38,7 @@ export const fiscalAndMonetaryPolicy_SkillGroup_Data = defineSkillGroup({
     et: 'Eelarve- ja rahapoliitika',
     be: 'Фіскальная і манэтарная палітыка',
     ka: 'ფისკალური და მონეტარული პოლიტიკა',
-    kk: 'Бюджеттік және ақша-кредит саясаты',
+    kk: 'Biudjettık jäne aqşa-kredit saiasaty',
     qm: 'Bütçe ve para siyaseti',
   },
   skills: [
@@ -78,7 +78,7 @@ export const fiscalAndMonetaryPolicy_SkillGroup_Data = defineSkillGroup({
       et: 'Võrdle peamisi majandusliku stabiilsuse toetamise vahendeid.',
       be: 'Параўнай галоўныя прылады падтрымкі эканамічнай стабільнасьці.',
       ka: 'შეადარეთ ეკონომიკური სტაბილურობის მხარდასაჭერი მთავარი ინსტრუმენტები.',
-      kk: 'Экономикалық тұрақтылықты қолдайтын негізгі құралдарды салыстырыңыз.',
+      kk: 'Ekonomikalyq tūraqtylyqty qoldaityn negızgı qūraldardy salystyryñyz.',
       qm: 'İqtisadiy sabitlikni tutmaq içün qullanılğan esas aletlerni teñeştir.',
     },
   },

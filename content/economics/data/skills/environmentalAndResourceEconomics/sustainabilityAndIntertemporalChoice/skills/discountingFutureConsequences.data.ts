@@ -31,7 +31,7 @@ export const discountingFutureConsequences_Skill_Data = defineSkill({
     et: 'Tulevaste tagajärgede diskonteerimine',
     be: 'Дыскантаваньне будучых наступстваў',
     ka: 'მომავალი შედეგების დისკონტირება',
-    kk: 'Болашақ салдарды дисконттау',
+    kk: 'Bolaşaq saldardy diskonttau',
     qm: 'Kelecekteki neticelerniñ diskontlanması',
   },
   description: {
@@ -65,7 +65,7 @@ export const discountingFutureConsequences_Skill_Data = defineSkill({
       et: 'Uuri, miks tulevastele tulemustele antud väärtus hindamist muudab.',
       be: 'Дасьледуй, чаму вартасьць, нададзеная будучым вынікам, зьмяняе ацэнку.',
       ka: 'გაიგე, რატომ ცვლის შეფასებას მომავალი შედეგებისთვის მინიჭებული ღირებულება.',
-      kk: 'Болашақ нәтижелерге берілген құн бағалауды неге өзгертетінін зертте.',
+      kk: 'Bolaşaq nätijelerge berılgen qūn bağalaudy nege özgertetının zertte.',
       qm: 'Kelecekteki neticelerge berilgen qıymet ne içün baalavnı deñiştirgenini ögren.',
     },
   },
