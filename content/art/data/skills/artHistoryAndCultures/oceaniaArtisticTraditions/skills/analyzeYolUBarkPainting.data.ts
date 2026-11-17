@@ -31,7 +31,7 @@ export const analyzeYolUBarkPainting_Skill_Data = defineSkill({
     et: 'Analüüsida Yolŋu kooremaali',
     be: 'Аналізаваць жывапіс Yolŋu на кары',
     ka: 'Yolŋu-ის ქერქზე შესრულებული მხატვრობის ანალიზი',
-    kk: 'Yolŋu ағаш қабығындағы кескіндемесін талдау',
+    kk: 'Yolŋu ağaş qabyğyndağy keskındemesın taldau',
     qm: 'Yolŋu ağaç qabığında resim sanatını tahlil etmek',
   },
   description: {
@@ -65,7 +65,7 @@ export const analyzeYolUBarkPainting_Skill_Data = defineSkill({
       et: 'Uuri Yolŋu kooremaale, austades kogukonna teadmisi ja avaldamiseks lubatud tähendusi.',
       be: 'Вывучайце малюнкі Yolŋu на кары, паважаючы веды супольнасці і дазволеныя да раскрыцця значэнні.',
       ka: 'შეისწავლეთ Yolŋu-ის ქერქზე შესრულებული ნახატები თემის ცოდნისა და გასაჯაროებისთვის ნებადართული მნიშვნელობების პატივისცემით.',
-      kk: 'Қауымдастық білімін және жариялауға рұқсат етілген мағыналарды құрметтей отырып, Yolŋu қабық суреттерін зерттеңіз.',
+      kk: 'Qauymdastyq bılımın jäne jariialauğa rūqsat etılgen mağynalardy qūrmettei otyryp, Yolŋu qabyq suretterın zertteñız.',
       qm: 'Cemaat bilgisini ve izin etilgen manalarnı sayıp, Yolŋu qabıq resimlerini ögrenüñiz.',
     },
   },

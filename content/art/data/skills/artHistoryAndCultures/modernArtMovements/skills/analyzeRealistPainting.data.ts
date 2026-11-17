@@ -31,7 +31,7 @@ export const analyzeRealistPainting_Skill_Data = defineSkill({
     et: 'Analüüsida realistlikku maalikunsti',
     be: 'Аналізаваць рэалістычны жывапіс',
     ka: 'რეალისტური მხატვრობის ანალიზი',
-    kk: 'Реалистік кескіндемені талдау',
+    kk: 'Realistık keskındemenı taldau',
     qm: 'Realist resim sanatını tahlil etmek',
   },
   description: {
@@ -65,7 +65,7 @@ export const analyzeRealistPainting_Skill_Data = defineSkill({
       et: 'Vaata, kuidas realistid kujutasid igapäevaelu ja oma aja ühiskonda.',
       be: 'Паглядзіце, як рэалісты адлюстроўвалі паўсядзённае жыццё і грамадства свайго часу.',
       ka: 'ნახეთ, როგორ ასახავდნენ რეალისტი მხატვრები ყოველდღიურ ცხოვრებასა და თანადროულ საზოგადოებას.',
-      kk: 'Реалист суретшілердің күнделікті өмір мен өз дәуіріндегі қоғамды қалай бейнелегенін көріңіз.',
+      kk: 'Realist suretşılerdıñ kündelıktı ömır men öz däuırındegı qoğamdy qalai beinelegenın körıñız.',
       qm: 'Realist ressamlarınıñ kündevi yaşayışnı ve çağdaş cemiyetni nasıl tasvir etkenini körüñiz.',
     },
   },

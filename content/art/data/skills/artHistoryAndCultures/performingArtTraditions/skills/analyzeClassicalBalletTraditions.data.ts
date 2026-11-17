@@ -31,7 +31,7 @@ export const analyzeClassicalBalletTraditions_Skill_Data = defineSkill({
     et: 'Analüüsida klassikalise balleti traditsioone',
     be: 'Аналізаваць традыцыі класічнага балета',
     ka: 'კლასიკური ბალეტის ტრადიციების ანალიზი',
-    kk: 'Классикалық балет дәстүрлерін талдау',
+    kk: 'Klassikalyq balet dästürlerın taldau',
     qm: 'Klassik balet ananelerini tahlil etmek',
   },
   description: {
@@ -65,7 +65,7 @@ export const analyzeClassicalBalletTraditions_Skill_Data = defineSkill({
       et: 'Uuri, kuidas klassikalise balleti tehnika ja lavastus arenesid eri keskkondades.',
       be: 'Даследуйце, як тэхнікі класічнага балета і сцэнічнае ўвасабленне развіваліся ў розных умовах.',
       ka: 'შეისწავლეთ, როგორ ვითარდებოდა კლასიკური ბალეტის ტექნიკა და სასცენო დადგმა სხვადასხვა გარემოში.',
-      kk: 'Әртүрлі ортада классикалық балет техникасы мен сахналық қойылымның қалай дамығанын зерттеңіз.',
+      kk: 'Ärtürlı ortada klassikalyq balet tehnikasy men sahnalyq qoiylymnyñ qalai damyğanyn zertteñız.',
       qm: 'Klassik balet tehnikası ve sahne qoyuluşınıñ çeşit yerlerde nasıl inkişaf etkenini tetqiq etiñiz.',
     },
   },

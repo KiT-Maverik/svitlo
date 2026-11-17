@@ -31,7 +31,7 @@ export const analyzeBebopJazz_Skill_Data = defineSkill({
     et: 'Analüüsida bebop-džässi',
     be: 'Аналізаваць бібоп-джаз',
     ka: 'ბიბოპ ჯაზის ანალიზი',
-    kk: 'Бибоп-джазды талдау',
+    kk: 'Bibop-djazdy taldau',
     qm: 'Bebop cazını tahlil etmek',
   },
   description: {
@@ -65,7 +65,7 @@ export const analyzeBebopJazz_Skill_Data = defineSkill({
       et: 'Avasta, kuidas bebopi muusikud kujundasid ümber džässi improvisatsiooni ja ansamblirollid.',
       be: 'Даведайцеся, як музыканты бібопу змянілі джазавую імправізацыю і ролі ў ансамблі.',
       ka: 'გაიგეთ, როგორ შეცვალეს ბიბოპის მუსიკოსებმა ჯაზური იმპროვიზაცია და ანსამბლის წევრთა როლები.',
-      kk: 'Бибоп музыканттарының джаз импровизациясы мен ансамбльдегі рөлдерді қалай өзгерткенін біліңіз.',
+      kk: 'Bibop muzykanttarynyñ djaz improvizatsiiasy men ansambldegı rölderdı qalai özgertkenın bılıñız.',
       qm: 'Bebop muzıkacılarınıñ caz improvizasiyasını ve ansambldeki vazifelerini nasıl deñiştirgenini keşf etiñiz.',
     },
   },

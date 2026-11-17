@@ -31,7 +31,7 @@ export const analyzeArtisticTechnologyHistorically_Skill_Data = defineSkill({
     et: 'Analüüsida kunstitehnoloogiat ajalooliselt',
     be: 'Гістарычна аналізаваць мастацкія тэхналогіі',
     ka: 'ხელოვნების ტექნოლოგიების ისტორიული ანალიზი',
-    kk: 'Өнер технологияларын тарихи тұрғыдан талдау',
+    kk: 'Öner tehnologiialaryn tarihi tūrğydan taldau',
     qm: 'Sanat tehnologiyalarını tarihiy baqıştan tahlil etmek',
   },
   description: {
@@ -64,7 +64,7 @@ export const analyzeArtisticTechnologyHistorically_Skill_Data = defineSkill({
       et: 'Vaata, kuidas uued tööriistad ja materjalid avavad kunstnikele erinevaid võimalusi.',
       be: 'Паглядзіце, як новыя інструменты і матэрыялы адкрываюць для мастакоў розныя магчымасці.',
       ka: 'ნახეთ, როგორ უხსნის ახალი ხელსაწყოები და მასალები მხატვრებს განსხვავებულ შესაძლებლობებს.',
-      kk: 'Көркем құралдар мен материалдар суретшілерге жаңа мүмкіндіктерді қалай ашатынын көріңіз.',
+      kk: 'Körkem qūraldar men materialdar suretşılerge jaña mümkındıkterdı qalai aşatynyn körıñız.',
       qm: 'Yañı aletler ve materiallar sanatçılarğa çeşit imkânlarnı nasıl açqanını ögreniniz.',
     },
   },

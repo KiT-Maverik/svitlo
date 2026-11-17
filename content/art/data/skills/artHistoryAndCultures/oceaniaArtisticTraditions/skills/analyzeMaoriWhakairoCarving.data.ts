@@ -31,7 +31,7 @@ export const analyzeMaoriWhakairoCarving_Skill_Data = defineSkill({
     et: 'Analüüsida maoori whakairo puunikerdusi',
     be: 'Аналізаваць разьбу whakairo народа маоры',
     ka: 'მაორის whakairo კვეთის გაანალიზება',
-    kk: 'Маори халқының whakairo ою өнерін талдау',
+    kk: 'Maori halqynyñ whakairo oiu önerın taldau',
     qm: 'Māori whakairo oymacılığını tahlil etmek',
   },
   description: {
@@ -65,7 +65,7 @@ export const analyzeMaoriWhakairoCarving_Skill_Data = defineSkill({
       et: 'Avasta maoori whakairo puunikerduste vorme, tähendusi ja kogukondlikku konteksti.',
       be: 'Пазнаёмцеся з формамі, значэннямі і супольнасным кантэкстам разьбы whakairo народа маоры.',
       ka: 'გაეცანით მაორის whakairo კვეთის ფორმებს, მნიშვნელობებსა და თემის კონტექსტს.',
-      kk: 'Маори халқының whakairo ою өнерінің пішіндерімен, мағыналарымен және қауымдық контекстімен танысыңыз.',
+      kk: 'Maori halqynyñ whakairo oiu önerınıñ pışınderımen, mağynalarymen jäne qauymdyq kontekstımen tanysyñyz.',
       qm: 'Māori whakairo oymacılığının biçimlerini, anlamlarını ve topluluk bağlamını keşf etiñiz.',
     },
   },

@@ -39,7 +39,7 @@ export const performingArtTraditions_SkillGroup_Data = defineSkillGroup({
     et: 'Etenduskunstide traditsioonid',
     be: 'Традыцыі выканальніцкіх мастацтваў',
     ka: 'საშემსრულებლო ხელოვნების ტრადიციები',
-    kk: 'Орындаушылық өнер дәстүрлері',
+    kk: 'Oryndauşylyq öner dästürlerı',
     qm: 'İcra sanatları adetleri',
   },
   skills: [
@@ -80,7 +80,7 @@ export const performingArtTraditions_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri, kuidas teatri-, tantsu- ja muusikatraditsioonid arenevad oma kultuurilises keskkonnas.',
       be: 'Даследуйце, як тэатральныя, танцавальныя і музычныя традыцыі развіваюцца ў сваіх культурных умовах.',
       ka: 'შეისწავლეთ, როგორ ვითარდება თეატრის, ცეკვისა და მუსიკის ტრადიციები საკუთარ კულტურულ გარემოში.',
-      kk: 'Театр, би және музыка дәстүрлерінің өз мәдени ортасында қалай дамитынын зерттеңіз.',
+      kk: 'Teatr, bi jäne muzyka dästürlerınıñ öz mädeni ortasynda qalai damitynyn zertteñız.',
       qm: 'Teatr, oyun ve müzik adetlerini öz medeniyet muhitinde nasıl inkişaf ettiğini keşfetiñiz.',
     },
   },

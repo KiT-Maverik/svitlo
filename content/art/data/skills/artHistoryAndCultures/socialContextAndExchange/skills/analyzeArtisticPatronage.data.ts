@@ -31,7 +31,7 @@ export const analyzeArtisticPatronage_Skill_Data = defineSkill({
     et: 'Analüüsida kunstide patronaaži',
     be: 'Аналізаваць мастацкае мецэнацтва',
     ka: 'ხელოვნების მფარველობის გაანალიზება',
-    kk: 'Өнерге қамқорлық жасауды талдау',
+    kk: 'Önerge qamqorlyq jasaudy taldau',
     qm: 'Sanatqa berilgen destekni tahlil etmek',
   },
   description: {
@@ -64,7 +64,7 @@ export const analyzeArtisticPatronage_Skill_Data = defineSkill({
       et: 'Uuri, kuidas patroonid ja tellimustööd mõjutavad loodavaid kunstiteoseid.',
       be: 'Даведайцеся, як мецэнаты і замовы ўплываюць на тое, якія творы мастацтва ствараюцца.',
       ka: 'გაიგეთ, როგორ მოქმედებენ მფარველები და შეკვეთები იმაზე, თუ რა ხელოვნების ნიმუშები იქმნება.',
-      kk: 'Зерттеушілер мен тапсырыстардың қандай өнер туындылары жасалатынына қалай әсер ететінін біліңіз.',
+      kk: 'Zertteuşıler men tapsyrystardyñ qandai öner tuyndylary jasalatynyna qalai äser etetının bılıñız.',
       qm: 'Sanatqa destek bergen insanlar ve buyurtmalar yaratılğan eserlerge nasıl tesir etkenini ögreniniz.',
     },
   },

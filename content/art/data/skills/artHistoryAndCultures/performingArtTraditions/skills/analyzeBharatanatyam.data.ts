@@ -31,7 +31,7 @@ export const analyzeBharatanatyam_Skill_Data = defineSkill({
     et: 'Analüüsida bharatanatyami',
     be: 'Аналізаваць бгаратанатьям',
     ka: 'ბჰარატანატიამის ანალიზი',
-    kk: 'Бхаратанатьямды талдау',
+    kk: 'Bharatanatiamdy taldau',
     qm: 'Bharatanatyamnı tahlil etmek',
   },
   description: {
@@ -65,7 +65,7 @@ export const analyzeBharatanatyam_Skill_Data = defineSkill({
       et: 'Uuri bharatanatyami liikumist, žeste ja repertuaari Lõuna-India muutuvates oludes.',
       be: 'Даследуйце рухі, жэсты і рэпертуар бгаратанатьям у зменлівых кантэкстах Паўднёвай Індыі.',
       ka: 'შეისწავლეთ ბჰარატანატიამის მოძრაობები, ჟესტები და რეპერტუარი სამხრეთ ინდოეთის ცვალებად კონტექსტებში.',
-      kk: 'Оңтүстік Үндістанның өзгермелі жағдайларындағы бхаратанатьям қимылдарын, ишараларын және репертуарын зерттеңіз.',
+      kk: 'Oñtüstık Ündıstannyñ özgermelı jağdailaryndağy bharatanatiam qimyldaryn, işaralaryn jäne repertuaryn zertteñız.',
       qm: 'Deñişken Cenübiy Hindistan şartlarında Bharatanatyam areketlerini, jestlerini ve repertuarını keşf etiñiz.',
     },
   },

@@ -31,7 +31,7 @@ export const analyzeHipHopDJCulture_Skill_Data = defineSkill({
     et: 'Analüüsida hiphopi DJ-kultuuri',
     be: 'Аналізаваць культуру хіп-хоп-дыджэяў',
     ka: 'ჰიპ-ჰოპ დიჯეის კულტურის ანალიზი',
-    kk: 'Хип-хоп диджей мәдениетін талдау',
+    kk: 'Hip-hop didjei mädenietın taldau',
     qm: 'Hip-hop DJ medeniyetini tahlil etmek',
   },
   description: {
@@ -65,7 +65,7 @@ export const analyzeHipHopDJCulture_Skill_Data = defineSkill({
       et: 'Avasta varase hiphopi DJ-praktikate muusikalised ja kogukondlikud juured.',
       be: 'Даследуйце музычныя і грамадскія вытокі ранніх практык хіп-хоп-дыджэяў.',
       ka: 'შეისწავლეთ ადრეული ჰიპ-ჰოპ დიჯეის პრაქტიკის მუსიკალური და სათემო ფესვები.',
-      kk: 'Ерте хип-хоп диджей тәжірибелерінің музыкалық және қауымдық негіздерін зерттеңіз.',
+      kk: 'Erte hip-hop didjei täjıribelerınıñ muzykalyq jäne qauymdyq negızderın zertteñız.',
       qm: 'İlkin hip-hop DJ adetleriniñ muzıkal ve cemaat köklerini keşf etiñiz.',
     },
   },

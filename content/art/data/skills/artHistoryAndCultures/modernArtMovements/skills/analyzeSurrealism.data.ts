@@ -31,7 +31,7 @@ export const analyzeSurrealism_Skill_Data = defineSkill({
     et: 'Analüüsida sürrealismi',
     be: 'Аналізаваць сюррэалізм',
     ka: 'სიურრეალიზმის გაანალიზება',
-    kk: 'Сюрреализмді талдау',
+    kk: 'Siurrealizmdı taldau',
     qm: 'Sürrealizmni tahlil etmek',
   },
   description: {
@@ -65,7 +65,7 @@ export const analyzeSurrealism_Skill_Data = defineSkill({
       et: 'Uuri, kuidas sürrealistid uurisid unenägusid ja ootamatuid kombinatsioone.',
       be: 'Даведайцеся, як мастакі-сюррэалісты даследавалі сны і нечаканыя спалучэнні.',
       ka: 'გაიგეთ, როგორ იკვლევდნენ სიურრეალისტი მხატვრები სიზმრებსა და მოულოდნელ შეხამებებს.',
-      kk: 'Сюрреалист суретшілердің түс көруден туған бейнелер мен күтпеген үйлесімдерді қалай зерттегенін біліңіз.',
+      kk: 'Siurrealist suretşılerdıñ tüs köruden tuğan beineler men kütpegen üilesımderdı qalai zerttegenın bılıñız.',
       qm: 'Sürrealist sanatçılarnıñ ruyalarnı ve beklenmegen birleşmelerni nasıl araştırğanını ögreniniz.',
     },
   },

@@ -31,7 +31,7 @@ export const analyzeRomanticPainting_Skill_Data = defineSkill({
     et: 'Analüüsida romantismi maalikunsti',
     be: 'Аналізаваць рамантычны жывапіс',
     ka: 'რომანტიზმის მხატვრობის ანალიზი',
-    kk: 'Романтизм кескіндемесін талдау',
+    kk: 'Romantizm keskındemesın taldau',
     qm: 'Romantik resim sanatını tahlil etmek',
   },
   description: {
@@ -65,7 +65,7 @@ export const analyzeRomanticPainting_Skill_Data = defineSkill({
       et: 'Uuri, kuidas romantismi kunstnikud kasutasid maastikke, tundeid ja dramaatilisi teemasid.',
       be: 'Даследуйце, як рамантыкі выкарыстоўвалі пейзажы, эмоцыі і драматычныя сюжэты.',
       ka: 'შეისწავლეთ, როგორ იყენებდნენ რომანტიკოსი მხატვრები პეიზაჟებს, ემოციებსა და დრამატულ თემებს.',
-      kk: 'Романтик суретшілердің пейзаждарды, сезімдерді және драмалық тақырыптарды қалай қолданғанын зерттеңіз.',
+      kk: 'Romantik suretşılerdıñ peizajdardy, sezımderdı jäne dramalyq taqyryptardy qalai qoldanğanyn zertteñız.',
       qm: 'Romantik ressamlarınıñ peyzajlarnı, duyğularnı ve dramatik mevzulernı nasıl qullanğanını tetqiq etiñiz.',
     },
   },
