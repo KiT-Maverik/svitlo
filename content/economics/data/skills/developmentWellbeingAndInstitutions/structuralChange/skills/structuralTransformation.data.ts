@@ -31,7 +31,7 @@ export const structuralTransformation_Skill_Data = defineSkill({
     et: 'Struktuurne ümberkujundamine',
     be: 'Структурная трансфармацыя',
     ka: 'სტრუქტურული გარდაქმნა',
-    kk: 'Құрылымдық трансформация',
+    kk: 'Qūrylymdyq transformatsia',
     qm: 'Quruluşnıñ deñişüvi',
   },
   description: {
@@ -64,7 +64,7 @@ export const structuralTransformation_Skill_Data = defineSkill({
       et: 'Uuri, mis juhtub, kui töötajad ja investeeringud liiguvad tegevusalade vahel.',
       be: 'Дасьледуй, што адбываецца, калі працаўнікі й інвэстыцыі пераходзяць паміж галінамі.',
       ka: 'გამოიკვლიეთ, რა ხდება, როცა მუშაკები და ინვესტიციები დარგებს შორის გადაადგილდება.',
-      kk: 'Жұмысшылар мен инвестициялар салалар арасында ауысқанда не болатынын зерттеңіз.',
+      kk: 'Jūmysşylar men investitsialar bır saladan ekınşısıne auysqanda ne bolatynyn zertte.',
       qm: 'İşçiler ve yatırım saalar arasında köçkende neler olğanını araştır.',
     },
   },

@@ -31,7 +31,7 @@ export const humanDevelopmentIndicators_Skill_Data = defineSkill({
     et: 'Inimarengu näitajad',
     be: 'Паказьнікі чалавечага разьвіцьця',
     ka: 'ადამიანური განვითარების მაჩვენებლები',
-    kk: 'Адам дамуының көрсеткіштері',
+    kk: 'Adam damuynyñ körsetkışterı',
     qm: 'İnsan inkişafınıñ köstergiçleri',
   },
   description: {
@@ -65,7 +65,7 @@ export const humanDevelopmentIndicators_Skill_Data = defineSkill({
       et: 'Mõista, mida inimarengu indeksid mõõdavad ja mida mitte.',
       be: 'Зразумей, што вымяраюць індэксы чалавечага разьвіцьця, а чаго не паказваюць.',
       ka: 'გაიაზრეთ, რას ზომავს ადამიანური განვითარების ინდექსები და რას არა.',
-      kk: 'Адам дамуының индекстері нені өлшеп, нені қамтымайтынын түсініңіз.',
+      kk: 'Adam damuynyñ indeksterı nenı ölşeıtının jäne nenı qamtymaitynyn tüsın.',
       qm: 'İnsan inkişafı indeksleri neyi ölçip, neyi esapqa almağanını añla.',
     },
   },

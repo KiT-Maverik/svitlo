@@ -31,7 +31,7 @@ export const technologicalCatchUp_Skill_Data = defineSkill({
     et: 'Tehnoloogilise mahajäämuse vähendamine',
     be: 'Тэхналягічнае наганяньне',
     ka: 'ტექნოლოგიური ჩამორჩენის დაძლევა',
-    kk: 'Технологиялық қуып жету',
+    kk: 'Tehnologialyq quyp jetu',
     qm: 'Tehnologiyada artqa qaluvnı bitirüv',
   },
   description: {
@@ -65,7 +65,7 @@ export const technologicalCatchUp_Skill_Data = defineSkill({
       et: 'Mõista, kuidas riigid õpivad mujal arendatud tehnoloogiatest.',
       be: 'Зразумей, як краіны вучацца на тэхналёгіях, распрацаваных у іншых месцах.',
       ka: 'გაიაზრეთ, როგორ სწავლობენ ქვეყნები სხვაგან შემუშავებული ტექნოლოგიებიდან.',
-      kk: 'Елдер басқа жерде жасалған технологиядан қалай үйренетінін түсініңіз.',
+      kk: 'Elder basqa jerde jasalğan tehnologialardan qalai üirenetının tüsın.',
       qm: 'Memleketler başqa yerlerde inkişaf etken tehnologiyadan nasıl ögrenebilgenini añla.',
     },
   },

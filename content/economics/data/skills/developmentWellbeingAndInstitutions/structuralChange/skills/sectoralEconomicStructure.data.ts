@@ -31,7 +31,7 @@ export const sectoralEconomicStructure_Skill_Data = defineSkill({
     et: 'Majanduse sektorite struktuur',
     be: 'Галіновая структура эканомікі',
     ka: 'ეკონომიკის დარგობრივი სტრუქტურა',
-    kk: 'Экономиканың салалық құрылымы',
+    kk: 'Ekonomikanyñ salalyq qūrylymy',
     qm: 'İqtisatnıñ saalarğa bölünüvi',
   },
   description: {
@@ -64,7 +64,7 @@ export const sectoralEconomicStructure_Skill_Data = defineSkill({
       et: 'Võrdle põllumajanduse, tööstuse ja teenuste majanduslikku rolli.',
       be: 'Параўнай эканамічныя ролі сельскай гаспадаркі, прамысловасьці й паслугаў.',
       ka: 'შეადარეთ სოფლის მეურნეობის, მრეწველობისა და მომსახურების ეკონომიკური როლები.',
-      kk: 'Ауыл шаруашылығы, өнеркәсіп және қызметтердің экономикалық рөлдерін салыстырыңыз.',
+      kk: 'Auyl şaruaşylyğy, önerkäsıp pen qyzmet körsetudıñ ekonomikalyq rölderın salystyr.',
       qm: 'Ziraat, sanayi ve hızmetlerniñ iqtisadiy vazifelerini teñeştir.',
     },
   },

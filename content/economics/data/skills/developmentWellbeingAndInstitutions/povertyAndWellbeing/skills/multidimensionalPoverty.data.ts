@@ -31,7 +31,7 @@ export const multidimensionalPoverty_Skill_Data = defineSkill({
     et: 'Mitmemõõtmeline vaesus',
     be: 'Шматмерная беднасьць',
     ka: 'მრავალგანზომილებიანი სიღარიბე',
-    kk: 'Көпөлшемді кедейлік',
+    kk: 'Köpölşemdı kedeılık',
     qm: 'Çoq öçülü faqırlıq',
   },
   description: {
@@ -64,7 +64,7 @@ export const multidimensionalPoverty_Skill_Data = defineSkill({
       et: 'Uuri, miks vaesus hõlmab enamat kui sissetulekut.',
       be: 'Дасьледуй, чаму беднасьць — гэта ня толькі даход.',
       ka: 'გამოიკვლიეთ, რატომ მოიცავს სიღარიბე შემოსავალზე მეტს.',
-      kk: 'Кедейлік неге тек табысқа байланысты емес екенін зерттеңіз.',
+      kk: 'Kedeılıktıñ tek tabysqa ğana bailanysty emes ekenın zertte.',
       qm: 'Faqırlıq ne içün tek kelirden ibaret olmağanını araştır.',
     },
   },
