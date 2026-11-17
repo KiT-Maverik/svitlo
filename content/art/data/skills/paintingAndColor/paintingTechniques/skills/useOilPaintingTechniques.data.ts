@@ -31,7 +31,7 @@ export const useOilPaintingTechniques_Skill_Data = defineSkill({
     et: 'Õlimaali tehnikate kasutamine',
     be: 'Выкарыстоўваць тэхнікі алейнага жывапісу',
     ka: 'ზეთით ხატვის ტექნიკების გამოყენება',
-    kk: 'Майлы бояумен кескіндеме техникасын қолдану',
+    kk: 'Maily boiaumen keskındeme tehnikasyn qoldanu',
     qm: 'Yağlı boya usullarını qullanmaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const useOilPaintingTechniques_Skill_Data = defineSkill({
       et: 'Kasuta aeglaselt kuivavat õlivärvi, et värve segada, kihte lisada ja maalitud alasid ohutult kohandada.',
       be: 'Працуйце з алейнымі фарбамі, якія павольна сохнуць: змешвайце колеры, накладвайце слаі і бяспечна карэктуйце намаляваныя ўчасткі.',
       ka: 'იმუშავეთ ნელა შრობადი ზეთის საღებავებით: შეურიეთ ფერები, შექმენით ფენები და უსაფრთხოდ შეცვალეთ მოხატული მონაკვეთები.',
-      kk: 'Баяуды қауіпсіз пайдалана отырып, баяу кебетін майлы бояумен түстерді араластырыңыз, қабаттар жасаңыз және боялған тұстарды түзетіңіз.',
+      kk: 'Baiaudy qauıpsız paidalana otyryp, baiau kebetın maily boiaumen tüsterdı aralastyryñyz, qabattar jasañyz jäne boialğan tūstardy tüzetıñız.',
       qm: 'Yavaş quruğan yağlı boya ile renklerni qarıştırıñız, qatlamlar yaratıp, boyalğan yerlerni emniyetli şekilde deñiştiriñiz.',
     },
   },

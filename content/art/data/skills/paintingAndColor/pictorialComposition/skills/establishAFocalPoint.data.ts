@@ -31,7 +31,7 @@ export const establishAFocalPoint_Skill_Data = defineSkill({
     et: 'Fookuspunkti loomine',
     be: 'Ствараць фокусны цэнтр',
     ka: 'ფოკუსური წერტილის შექმნა',
-    kk: 'Негізгі назар нүктесін белгілеу',
+    kk: 'Negızgı nazar nüktesın belgıleu',
     qm: 'Diqqat merkezini belgilemek',
   },
   description: {
@@ -64,7 +64,7 @@ export const establishAFocalPoint_Skill_Data = defineSkill({
       et: 'Suuna vaataja pilk maali kõige olulisemale osale.',
       be: 'Накіроўвайце позірк гледача да найважнейшай часткі карціны.',
       ka: 'მაყურებლის მზერა ნახატის ყველაზე მნიშვნელოვანი ნაწილისკენ მიმართეთ.',
-      kk: 'Көрерменнің назарын картинаның ең маңызды бөлігіне бағыттаңыз.',
+      kk: 'Körermennıñ nazaryn kartinanyñ eñ mañyzdy bölıgıne bağyttañyz.',
       qm: 'Seyirciniñ baqışını resimniñ eñ müim yerine yöneltiñiz.',
     },
   },

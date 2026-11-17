@@ -31,7 +31,7 @@ export const selectPaintingSupports_Skill_Data = defineSkill({
     et: 'Maalimispindade valimine',
     be: 'Выбіраць асновы для жывапісу',
     ka: 'ფერწერის საფუძვლების შერჩევა',
-    kk: 'Кескіндеме негіздерін таңдау',
+    kk: 'Keskındeme negızderın tañdau',
     qm: 'Resim içün zemin saylamaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const selectPaintingSupports_Skill_Data = defineSkill({
       et: 'Vali paber, lõuend või muu pind, mis sobib sinu maalimisvahenditega.',
       be: 'Абярыце паперу, палатно або іншую паверхню, якая падыходзіць для вашых матэрыялаў для жывапісу.',
       ka: 'შეარჩიეთ ქაღალდი, ტილო ან სხვა ზედაპირი, რომელიც თქვენს სახატავ მასალებს შეესაბამება.',
-      kk: 'Кескіндеме материалдарыңызға сай қағазды, кенепті немесе басқа бетті таңдаңыз.',
+      kk: 'Keskındeme materialdaryñyzğa sai qağazdy, keneptı nemese basqa bettı tañdañyz.',
       qm: 'Resim malzemeleriñizge uyğun qağıt, tuval ya da başqa bir zemin saylañız.',
     },
   },

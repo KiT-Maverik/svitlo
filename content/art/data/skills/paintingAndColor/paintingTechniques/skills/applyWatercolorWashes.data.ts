@@ -31,7 +31,7 @@ export const applyWatercolorWashes_Skill_Data = defineSkill({
     et: 'Akvarellipesu tegemine',
     be: 'Наносіць акварэльныя заліўкі',
     ka: 'აკვარელის ლესირების შესრულება',
-    kk: 'Акварель бояуымен жайма жағу',
+    kk: 'Akvarel boiauymen jaima jağu',
     qm: 'Akvarel boya qatlarını sürmek',
   },
   description: {
@@ -64,7 +64,7 @@ export const applyWatercolorWashes_Skill_Data = defineSkill({
       et: 'Loo heledaid ja läbipaistvaid värvipindu, reguleerides vee ja värvi hulka.',
       be: 'Стварайце лёгкія празрыстыя ўчасткі, кантралюючы колькасць вады і фарбы.',
       ka: 'წყლისა და საღებავის რაოდენობის კონტროლით შექმენით მსუბუქი, გამჭვირვალე ფერადი არეები.',
-      kk: 'Су мен бояу мөлшерін реттеп, ашық әрі мөлдір түсті аймақтар жасаңыз.',
+      kk: 'Su men boiau mölşerın rettep, aşyq ärı möldır tüstı aimaqtar jasañyz.',
       qm: 'Su ve boya miqdarını idare etip, yengil ve şeffaf boya alanlarını yaratıñız.',
     },
   },

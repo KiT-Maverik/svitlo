@@ -31,7 +31,7 @@ export const blendWetPaint_Skill_Data = defineSkill({
     et: 'Märja värvi hajutamine',
     be: 'Растушоўваць вільготную фарбу',
     ka: 'სველი საღებავის შერწყმა',
-    kk: 'Ылғал бояуды араластыру',
+    kk: 'Ylğal boiaudy aralastyru',
     qm: 'Islaq boyanı qarıştırmaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const blendWetPaint_Skill_Data = defineSkill({
       et: 'Sega värve, kuni värv on veel märg, et luua sujuvaid või teadlikult kujundatud üleminekuid.',
       be: 'Змешвайце колеры, пакуль фарба яшчэ вільготная, каб ствараць плаўныя або наўмысныя пераходы.',
       ka: 'შეურიეთ ფერები, სანამ საღებავი სველია, რათა შექმნათ გლუვი ან განზრახ გამოკვეთილი გადასვლები.',
-      kk: 'Бояу кеппей тұрғанда түстерді араластырып, бірқалыпты немесе әдейі жасалған ауысуларды қалыптастырыңыз.',
+      kk: 'Boiau keppei tūrğanda tüsterdı aralastyryp, bırqalypty nemese ädeiı jasalğan auysulardy qalyptastyryñyz.',
       qm: 'Yumşaq ya da mahsus deñişimler yaratmaq içün boyalarnı daa islaq olğanında qarıştırıñız.',
     },
   },

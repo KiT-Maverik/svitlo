@@ -39,7 +39,7 @@ export const pictorialComposition_SkillGroup_Data = defineSkillGroup({
     et: 'Maalikompositsioon',
     be: 'Жывапісная кампазіцыя',
     ka: 'ფერწერული კომპოზიცია',
-    kk: 'Кескіндеме композициясы',
+    kk: 'Keskındeme kompozitsiiasy',
     qm: 'Resim kompozitsiyası',
   },
   skills: [
@@ -80,7 +80,7 @@ export const pictorialComposition_SkillGroup_Data = defineSkillGroup({
       et: 'Sea suured värvipinnad, kontrastid ja servad tervikuks, et maal mõjuks ühtse kompositsioonina.',
       be: 'Арганізуйце вялікія каляровыя плоскасці, кантрасты і краі, каб карціна ўспрымалася як цэлае.',
       ka: 'დაალაგეთ დიდი ფერადი არეები, კონტრასტები და კიდეები ისე, რომ ნახატი ერთიან მთლიანობად აღიქმებოდეს.',
-      kk: 'Картина тұтас көрінуі үшін үлкен түстік аймақтарды, контрастарды және жиектерді үйлестіріңіз.',
+      kk: 'Kartina tūtas körınuı üşın ülken tüstık aimaqtardy, kontrastardy jäne jiekterdı üilestırıñız.',
       qm: 'Resim bir bütün olaraq tesirli olması içün büyük tüs alanlarını, qarşıtlıqlarnı ve kenarlarnı tertip etiñiz.',
     },
   },

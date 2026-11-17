@@ -31,7 +31,7 @@ export const applyAGlaze_Skill_Data = defineSkill({
     et: 'Lasuurikihi pealekandmine',
     be: 'Наносіць лесіровачны слой',
     ka: 'ლასურის ფენის დატანა',
-    kk: 'Лессировка қабатын жағу',
+    kk: 'Lessirovka qabatyn jağu',
     qm: 'Lazur qatını sürmek',
   },
   description: {
@@ -64,7 +64,7 @@ export const applyAGlaze_Skill_Data = defineSkill({
       et: 'Kanna kuivanud värvikihi peale läbipaistev värv, et selle ilmet õrnalt muuta.',
       be: 'Нанясіце празрысты колер на высахлую фарбу, каб далікатна змяніць яе выгляд.',
       ka: 'გამშრალ საღებავზე გამჭვირვალე ფერი დაიტანეთ, რათა მისი იერსახე ნაზად შეცვალოთ.',
-      kk: 'Кепкен бояудың үстіне мөлдір түс жағып, оның көрінісін сәл өзгертіңіз.',
+      kk: 'Kepken boiaudyñ üstıne möldır tüs jağyp, onyñ körınısın säl özgertıñız.',
       qm: 'Körünüşini yavaşça deñiştirmek içün qurı boya üstüne şeffaf boya qatını sürüñiz.',
     },
   },

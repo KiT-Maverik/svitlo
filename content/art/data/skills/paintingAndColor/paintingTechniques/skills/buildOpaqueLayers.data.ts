@@ -31,7 +31,7 @@ export const buildOpaqueLayers_Skill_Data = defineSkill({
     et: 'Katvate värvikihtide loomine',
     be: 'Ствараць непразрыстыя слаі фарбы',
     ka: 'გაუმჭვირვალე საღებავის ფენების შექმნა',
-    kk: 'Мөлдір емес бояу қабаттарын жасау',
+    kk: 'Möldır emes boiau qabattaryn jasau',
     qm: 'Qaplayıcı boya qatlarını qurmaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const buildOpaqueLayers_Skill_Data = defineSkill({
       et: 'Loo ja muuda maali, kandes varasematele kihtidele katvat värvi.',
       be: 'Стварайце і змяняйце выяву, наносячы шчыльную фарбу па-над папярэднімі слаямі.',
       ka: 'შექმენით და შეცვალეთ ნახატი წინა ფენებზე მკვრივი, გაუმჭვირვალე საღებავის დატანით.',
-      kk: 'Алдыңғы қабаттардың үстіне қою, мөлдір емес бояу жағып, суретті құрастырып өзгертіңіз.',
+      kk: 'Aldyñğy qabattardyñ üstıne qoiu, möldır emes boiau jağyp, surettı qūrastyryp özgertıñız.',
       qm: 'Evvelki qatlar üstüne qaplayıcı boya sürip, resimni qurıñız ve deñiştiriñiz.',
     },
   },

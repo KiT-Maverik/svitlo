@@ -31,7 +31,7 @@ export const composeWithColorMasses_Skill_Data = defineSkill({
     et: 'Kompositsiooni loomine värvipindade abil',
     be: 'Кампанаваць з дапамогай каляровых мас',
     ka: 'კომპოზიციის შექმნა ფერადი ლაქებით',
-    kk: 'Түстік дақтар арқылы композиция құру',
+    kk: 'Tüstık daqtar arqyly kompozitsiia qūru',
     qm: 'Büyük tüs alanları ile kompozitsiya qurmaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const composeWithColorMasses_Skill_Data = defineSkill({
       et: 'Paiguta kõigepealt suured värvipinnad ja lisa alles seejärel väikesed detailid.',
       be: 'Спачатку размясціце вялікія каляровыя плоскасці, а потым дадавайце дробныя дэталі.',
       ka: 'პატარა დეტალების დამატებამდე დიდი ფერადი არეები დაალაგეთ.',
-      kk: 'Ұсақ бөлшектерді қоспас бұрын үлкен түстік аймақтарды орналастырыңыз.',
+      kk: 'Ūsaq bölşekterdı qospas būryn ülken tüstık aimaqtardy ornalastyryñyz.',
       qm: 'Kiçik tafsilatlarnı qoşmazdan evel büyük tüs alanlarını tertip etiñiz.',
     },
   },

@@ -31,7 +31,7 @@ export const controlPaintedEdges_Skill_Data = defineSkill({
     et: 'Maalitud servade juhtimine',
     be: 'Кіраваць краямі мазкоў',
     ka: 'მოხატული კიდეების კონტროლი',
-    kk: 'Боялған жиектерді басқару',
+    kk: 'Boialğan jiekterdı basqaru',
     qm: 'Boyalğan kenarlarnı idare etmek',
   },
   description: {
@@ -64,7 +64,7 @@ export const controlPaintedEdges_Skill_Data = defineSkill({
       et: 'Vali teravad või pehmed servad, et suunata tähelepanu ja kujutada ruumi.',
       be: 'Выбірайце выразныя або мяккія краі, каб накіроўваць увагу і перадаваць прастору.',
       ka: 'აირჩიეთ მკვეთრი ან რბილი კიდეები ყურადღების მისაქცევად და სივრცის გამოსახატავად.',
-      kk: 'Назарды бағыттап, кеңістікті білдіру үшін айқын немесе жұмсақ жиектерді таңдаңыз.',
+      kk: 'Nazardy bağyttap, keñıstıktı bıldıru üşın aiqyn nemese jūmsaq jiekterdı tañdañyz.',
       qm: 'Dikkatni yöneltmek ve mekân hissini bermek içün keskin ya da yumşaq kenarlarnı saylañız.',
     },
   },

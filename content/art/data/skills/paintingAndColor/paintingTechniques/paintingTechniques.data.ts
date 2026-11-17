@@ -41,7 +41,7 @@ export const paintingTechniques_SkillGroup_Data = defineSkillGroup({
     et: 'Maalimistehnikad',
     be: 'Тэхнікі жывапісу',
     ka: 'ფერწერის ტექნიკები',
-    kk: 'Кескіндеме техникасы',
+    kk: 'Keskındeme tehnikasy',
     qm: 'Boya sürüv usulları',
   },
   skills: [
@@ -84,7 +84,7 @@ export const paintingTechniques_SkillGroup_Data = defineSkillGroup({
       et: 'Avasta, kuidas värvi pealekandmine muudab läbipaistvust, kihte ja servi.',
       be: 'Даведайцеся, як спосаб нанясення фарбы ўплывае на празрыстасць, слаі і краі.',
       ka: 'გაიგეთ, როგორ ცვლის საღებავის დატანის მეთოდი გამჭვირვალობას, ფენებსა და კიდეებს.',
-      kk: 'Бояуды жағу тәсілдері мөлдірлікке, қабаттарға және жиектерге қалай әсер ететінін біліңіз.',
+      kk: 'Boiaudy jağu täsılderı möldırlıkke, qabattarğa jäne jiekterge qalai äser etetının bılıñız.',
       qm: 'Boyanı sürüv usulları şeffaflıqnı, qatlamlarnı ve kenarlarnı nasıl deñiştirgenini keşf etiñiz.',
     },
   },

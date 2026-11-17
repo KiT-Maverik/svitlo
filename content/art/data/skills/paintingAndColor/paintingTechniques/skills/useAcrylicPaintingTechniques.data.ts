@@ -31,7 +31,7 @@ export const useAcrylicPaintingTechniques_Skill_Data = defineSkill({
     et: 'Akrüülmaali tehnikate kasutamine',
     be: 'Выкарыстоўваць тэхнікі акрылавага жывапісу',
     ka: 'აკრილით ხატვის ტექნიკების გამოყენება',
-    kk: 'Акрил бояумен кескіндеме техникасын қолдану',
+    kk: 'Akril boiaumen keskındeme tehnikasyn qoldanu',
     qm: 'Akrilik boya usullarını qullanmaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const useAcrylicPaintingTechniques_Skill_Data = defineSkill({
       et: 'Kasuta akrüülvärvi kiiret kuivamist, et luua värve, tekstuure ja kihte.',
       be: 'Выкарыстоўвайце хуткае высыханне акрылавых фарбаў, каб ствараць колеры, фактуры і слаі.',
       ka: 'გამოიყენეთ აკრილის საღებავის სწრაფად გაშრობის თვისება ფერების, ფაქტურებისა და ფენების შესაქმნელად.',
-      kk: 'Түстерді, фактураларды және қабаттарды қалыптастыру үшін акрил бояуының тез кебу қасиетін пайдаланыңыз.',
+      kk: 'Tüsterdı, fakturalardy jäne qabattardy qalyptastyru üşın akril boiauynyñ tez kebu qasietın paidalanyñyz.',
       qm: 'Renkler, teksturalar ve qatlamlar yaratmaq içün akrilik boyanıñ tez quruv hususiyetinden faydalaniñız.',
     },
   },
