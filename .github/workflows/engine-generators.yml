@@ -62,7 +62,6 @@ jobs:
             shared/engine/scripts/sceneScaffolding/sceneScaffolding.spec.mjs \
             scripts/textbook-tooling/buildTextbook/stageTextbookAssets.spec.mjs
 
-
       - name: Test Course Flow regression suites
         run: |
           node --test \
@@ -73,10 +72,8 @@ jobs:
             scripts/syncCourseLessonStatus/sync-course-lessons.spec.mjs \
             scripts/syncCourseLessonStatus/workflow.spec.mjs
 
-
       - name: Verify all checked-in Zod-derived YAML schemas
         run: npm run content:check:yaml-schemas --workspace @svitlo/engine
-
 
       - name: Check formatting of Course Flow sources and generated schemas
         run: |
