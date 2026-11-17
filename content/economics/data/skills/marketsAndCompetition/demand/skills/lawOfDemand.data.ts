@@ -31,7 +31,7 @@ export const lawOfDemand_Skill_Data = defineSkill({
     et: 'Nõudlusseadus',
     be: 'Закон попыту',
     ka: 'მოთხოვნის კანონი',
-    kk: 'Сұраныс заңы',
+    kk: 'Sūranys zañy',
     qm: 'Talap qanunı',
   },
   description: {
@@ -65,7 +65,7 @@ export const lawOfDemand_Skill_Data = defineSkill({
       et: 'Uuri, miks kõrgem hind tähendab tavaliselt väiksemat nõutavat kogust.',
       be: 'Дасьледуй, чаму вышэйшая цана звычайна зьмяншае патрэбную колькасьць.',
       ka: 'გაიგე, რატომ ამცირებს მაღალი ფასი ჩვეულებრივ მოთხოვნილ რაოდენობას.',
-      kk: 'Бағаның өсуі неліктен әдетте сұраныс көлемін азайтатынын біл.',
+      kk: 'Bağanyñ ösuı nelıkten ädette sūranys kölemın azaitatynyn bıl.',
       qm: 'Yuqarı fiyat ne içün adette az miqdar talapqa ketirgenini ögren.',
     },
   },

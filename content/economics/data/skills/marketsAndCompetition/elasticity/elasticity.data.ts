@@ -38,7 +38,7 @@ export const elasticity_SkillGroup_Data = defineSkillGroup({
     et: 'Elastsus',
     be: 'Элястычнасьць',
     ka: 'ელასტიკურობა',
-    kk: 'Икемділік',
+    kk: 'İkemdılık',
     qm: 'Elastiklik',
   },
   skills: [
@@ -77,7 +77,7 @@ export const elasticity_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri, miks ostjad ja müüjad reageerivad hinnamuutustele erinevalt.',
       be: 'Даведайся, чаму пакупнікі й прадаўцы па-рознаму рэагуюць на зьмену цэнаў.',
       ka: 'გაიგე, რატომ რეაგირებენ მყიდველები და გამყიდველები სხვადასხვაგვარად ფასების ცვლილებაზე.',
-      kk: 'Сатып алушылар мен сатушылардың баға өзгерісіне неге әртүрлі жауап беретінін зертте.',
+      kk: 'Satyp aluşylar men satuşylardyñ bağa özgerısıne nege ärtürlı jauap beretının zertte.',
       qm: 'Alıcılar ve satıcılar fiyat deñişmelerine ne içün farqlı cevap bergenini ögren.',
     },
   },

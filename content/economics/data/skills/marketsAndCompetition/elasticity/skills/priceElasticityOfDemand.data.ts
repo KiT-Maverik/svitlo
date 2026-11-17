@@ -31,7 +31,7 @@ export const priceElasticityOfDemand_Skill_Data = defineSkill({
     et: 'Nõudluse hinnaelastsus',
     be: 'Цэнавая элястычнасьць попыту',
     ka: 'მოთხოვნის ფასის ელასტიკურობა',
-    kk: 'Сұраныстың баға икемділігі',
+    kk: 'Sūranystyñ bağa ikemdılıgı',
     qm: 'Talapnıñ fiyat elastikligi',
   },
   description: {
@@ -65,7 +65,7 @@ export const priceElasticityOfDemand_Skill_Data = defineSkill({
       et: 'Mõõda, kui tugevalt ostukogus hinnamuutusele reageerib.',
       be: 'Вымярай, наколькі моцна абсяг пакупак рэагуе на зьмену цаны.',
       ka: 'გაზომე, რამდენად რეაგირებს შესყიდვის მოცულობა ფასის ცვლილებაზე.',
-      kk: 'Баға өзгерісіне сатып алу көлемі қаншалықты әсерленетінін өлше.',
+      kk: 'Bağa özgerısıne satyp alu kölemı qanşalyqty äserlenetının ölşe.',
       qm: 'Fiyat deñişkende satın aluv miqdarı ne qadar deñişkenini ölç.',
     },
   },

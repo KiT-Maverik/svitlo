@@ -31,7 +31,7 @@ export const shiftInDemand_Skill_Data = defineSkill({
     et: 'Nõudluse nihe',
     be: 'Зрушэньне попыту',
     ka: 'მოთხოვნის მრუდის გადაადგილება',
-    kk: 'Сұраныстың ығысуы',
+    kk: 'Sūranystyñ yğysuy',
     qm: 'Talapnıñ köçüvi',
   },
   description: {
@@ -65,7 +65,7 @@ export const shiftInDemand_Skill_Data = defineSkill({
       et: 'Selgita, mis võib nõudlust nihutada isegi muutumatu hinna korral.',
       be: 'Растлумач, што можа зьмяніць попыт, нават калі цана тавару нязьменная.',
       ka: 'ახსენი, რა ცვლის მოთხოვნას მაშინაც, თუ პროდუქტის ფასი არ იცვლება.',
-      kk: 'Тауар бағасы өзгермесе де сұранысты не ығыстыра алатынын түсіндір.',
+      kk: 'Tauar bağasy özgermese de sūranysty ne yğystyra alatynyn tüsındır.',
       qm: 'Malnıñ fiyatı deñişmese bile talapnı neler köçüre bilgenini añlat.',
     },
   },

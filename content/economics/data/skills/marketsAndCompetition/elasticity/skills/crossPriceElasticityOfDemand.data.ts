@@ -31,7 +31,7 @@ export const crossPriceElasticityOfDemand_Skill_Data = defineSkill({
     et: 'Nõudluse ristelastsus',
     be: 'Перакрыжаваная цэнавая элястычнасьць попыту',
     ka: 'მოთხოვნის ჯვარედინი ფასის ელასტიკურობა',
-    kk: 'Сұраныстың айқас баға икемділігі',
+    kk: 'Sūranystyñ aiqas bağa ikemdılıgı',
     qm: 'Talapnıñ çarpaz fiyat elastikligi',
   },
   description: {
@@ -65,7 +65,7 @@ export const crossPriceElasticityOfDemand_Skill_Data = defineSkill({
       et: 'Selgita, kas kaks toodet on asendus- või täiendkaubad.',
       be: 'Вызначай, ці два тавары зьяўляюцца заменнікамі або дапаўняюць адзін аднаго.',
       ka: 'განსაზღვრე, ორი პროდუქტი შემცვლელია თუ შემავსებელი.',
-      kk: 'Екі тауар алмастырушы ма, әлде толықтырушы ма, анықта.',
+      kk: 'Ekı tauar almastyruşy ma, älde tolyqtyruşy ma, anyqta.',
       qm: 'Eki mal bir-biriniñ yerine keçkenini ya da tamamlağanını tap.',
     },
   },

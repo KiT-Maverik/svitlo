@@ -31,7 +31,7 @@ export const incomeElasticityOfDemand_Skill_Data = defineSkill({
     et: 'Nõudluse sissetulekuelastsus',
     be: 'Даходная элястычнасьць попыту',
     ka: 'მოთხოვნის შემოსავლის ელასტიკურობა',
-    kk: 'Сұраныстың табыс икемділігі',
+    kk: 'Sūranystyñ tabys ikemdılıgı',
     qm: 'Talapnıñ kirim elastikligi',
   },
   description: {
@@ -65,7 +65,7 @@ export const incomeElasticityOfDemand_Skill_Data = defineSkill({
       et: 'Uuri, kuidas ostuharjumused sissetuleku muutudes muutuvad.',
       be: 'Дасьледуй, як пакупніцкія звычкі зьмяняюцца разам з даходамі.',
       ka: 'გაიგე, როგორ იცვლება ყიდვის ჩვევები შემოსავლის ცვლილებასთან ერთად.',
-      kk: 'Табыс өзгергенде сатып алу әдеттері қалай өзгеретінін зертте.',
+      kk: 'Tabys özgergende satyp alu ädetterı qalai özgeretının zertte.',
       qm: 'İnsanlarnıñ kirimi deñişkende satın aluv adetleri nasıl deñişkenini ögren.',
     },
   },
