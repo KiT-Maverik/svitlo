@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { disability_Schema, type Disability } from '../../schemas/disabilities.schemas';
 
 import { questionTypes, type Question_Type } from '../../configurators/questions/question.constants';
 import type { Question_Props } from '../../configurators/questions/question.types';
@@ -14,6 +15,11 @@ export const assessmentResourceEntry_Schema = z.strictObject({
   lessonId: z.uuid(),
   kind: z.enum(['question', 'flashcard']),
   questionType: z.enum(questionTypes).optional(),
+  /** Eligibility metadata only; card content stays in the independent resource. */
+  disabilities: z.array(disability_Schema).refine(
+    values => new Set(values).size === values.length,
+    'Duplicate Flashcard disability restriction',
+  ).optional(),
   languages: z.array(languageCode_Schema).nonempty(),
   /** Only the published locale fragments; invariant-only entries need no locale file. */
   localeFiles: z.array(languageCode_Schema).optional(),
@@ -49,6 +55,8 @@ export interface AssessmentResourceLoader {
     language: LanguageCode;
     ids: readonly string[];
     signal?: AbortSignal;
+    /** Voluntarily supplied access requirements. Never infer a diagnosis. */
+    accessNeeds?: readonly Disability[];
   }): Promise<readonly Flashcard_Props[]>;
 }
 
@@ -100,6 +108,9 @@ export function validateAssessmentReferences(
     if (entry.kind !== selection.kind) {
       throw new Error('Assessment UUID ' + id + ' has the wrong resource type ' + context);
     }
+    if (entry.kind === 'question' && entry.disabilities !== undefined) {
+      throw new Error('Question UUID ' + id + ' cannot declare Flashcard disabilities');
+    }
     if (entry.kind === 'question' && !entry.questionType) {
       throw new Error('Question UUID ' + id + ' is missing its Question type');
     }
@@ -116,6 +127,24 @@ export function validateAssessmentReferences(
       throw new Error('Assessment UUID ' + id + ' is unavailable in ' + language);
     }
     return entry;
+  });
+}
+
+/** Preserve explicit Section order while excluding incompatible retrieval modes. */
+export function selectAccessibleFlashcardIds(
+  entries: readonly AssessmentResourceEntry[],
+  ids: readonly string[],
+  accessNeeds: readonly Disability[],
+): string[] {
+  const needs = z.array(disability_Schema).parse([...accessNeeds]);
+  if (new Set(needs).size !== needs.length) throw new Error('Duplicate voluntarily selected access need');
+  if (entries.length !== ids.length) throw new Error('Flashcard selection metadata mismatch');
+  return ids.filter((id, index) => {
+    const entry = entries[index];
+    if (entry.kind !== 'flashcard') throw new Error('Expected Flashcard metadata for ' + id);
+    if (needs.length && entry.disabilities === undefined)
+      throw new Error('Missing accessibility metadata for Flashcard ' + id);
+    return !needs.some(need => entry.disabilities?.includes(need));
   });
 }
 
