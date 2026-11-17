@@ -154,7 +154,8 @@ export function resolveClaims(lessonId, claims) {
 
 function escaped(value) {
   return String(value ?? '').slice(0, 500).replace(/[\r\n\t\x00-\x1f\x7f]/g, ' ')
-    .replace(/[\\|<>&*_\[\]()!#]/g, '\\    .replace(/[\\|<>&*_[\]()!#' + String.fromCharCode(96) + ']/g, '\\$&');').replaceAll(String.fromCharCode(96), '\\' + String.fromCharCode(96));
+    .replace(/[\\|<>&*_\[\]()!#]/g, '\\$&')
+    .replaceAll(String.fromCharCode(96), '\\' + String.fromCharCode(96));
 }
 function verifiedString(value, max = 500) {
   return typeof value === 'string' && value.length <= max && !/[\x00-\x08\x0b\x0c\x0e-\x1f]/.test(value);
