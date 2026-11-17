@@ -8,6 +8,7 @@ import { defineContentSection } from './sections/defineContentSection';
 import { defineLesson } from './lessons/defineLesson';
 import { lesson_Props_Schema } from './lessons/defineLesson/defineLesson.schemas';
 import { defineFlashcard } from './flashcards/defineFlashcard';
+import { defineFlashcardSide } from './flashcards/defineFlashcardSide';
 import { defineAnswerWithNumber } from './questions/defineAnswerWithNumber';
 import { defineChapter } from './courses/defineChapter';
 import { defineModule } from './courses/defineModule';
@@ -90,8 +91,8 @@ describe('Configurators', () => {
         type: 'flashcard',
         parameters: { tags: [], flags: { items: { warningFlag: { type: 'warning' } }, order: ['warningFlag'] } },
         content: {
-          front: { items: { front }, order: ['front'] },
-          back: { items: { back }, order: ['back'] },
+          front: defineFlashcardSide<{ front: typeof front }, ['uk', 'en']>({ items: { front }, order: ['front'] }),
+          back: defineFlashcardSide<{ back: typeof back }, ['uk', 'en']>({ items: { back }, order: ['back'] }),
         },
       });
       const lesson = defineLesson({
@@ -106,8 +107,6 @@ describe('Configurators', () => {
         },
         locale: { title: { uk: 'Урок', en: 'Lesson' } },
         section: { items: { intro: introduction }, order: ['intro'] },
-        flashcards: { items: { card }, order: ['card'] },
-        questions: { answerWithNumber: { numeric } },
       });
       const chapter = defineChapter<'chapter', { lesson: typeof lesson }, ['uk', 'en']>({
         id: id('09'),
@@ -134,7 +133,7 @@ describe('Configurators', () => {
         content: { items: { module: courseModule }, order: ['module'] },
       });
 
-      test('Course → Module → Chapter → Lesson → Section → ContentBlock and Lesson banks share one publication scope', () => {
+      test('Course → Module → Chapter → Lesson → Section → ContentBlock omit independent assessment banks', () => {
         const resource = course.build.props(uk);
         const json = JSON.stringify(resource);
         assert.deepEqual(Object.keys(resource.locale ?? {}), ['uk']);
@@ -143,8 +142,8 @@ describe('Configurators', () => {
         assert.equal(json.includes('How many?'), false);
         assert.equal(json.includes('Introduction'), false);
         assert.ok(json.includes('Привіт'));
-        assert.ok(json.includes('Скільки?'), 'Question Bank must be built within Lesson');
-        assert.ok(json.includes('Відповідь'), 'Flashcard must be built within Lesson');
+        assert.equal(json.includes('Скільки?'), false, 'Question Bank must remain independent of Lesson');
+        assert.equal(json.includes('Відповідь'), false, 'Flashcard Bank must remain independent of Lesson');
         assert.equal(json.includes('"additionalItems"'), false);
         assert.equal(json.includes('"order"'), false);
         assert.equal(json.includes('"build"'), false);
@@ -220,29 +219,17 @@ describe('Configurators', () => {
         assert.deepEqual(lesson_Props_Schema.parse(lessonResult).section, []);
       });
 
-      test('Lesson → Question Bank applies nested question patch for only the requested language', () => {
-        const patch = lesson.build.overrides(
-          {
-            questions: {
-              answerWithNumber: {
-                items: {
-                  numeric: {
-                    content: {
-                      question: { items: { questionPrompt: { locale: { value: { uk: 'Скільки тепер?' } } } } },
-                    },
-                  },
-                },
-              },
-            },
-          },
-          uk,
-        );
-        assert.ok(JSON.stringify(patch.locale?.uk?.questions).includes('Скільки тепер?'));
-        assert.deepEqual(Object.keys(patch.locale ?? {}), ['uk']);
-        assert.equal(JSON.stringify(lesson.build.props(uk)).includes('Скільки тепер?'), false);
+      test('Independent Question and Flashcard configurators publish without serializing banks into Lesson', () => {
+        const questionResource = numeric.build.props(uk);
+        const flashcardResource = card.build.props(uk);
+        assert.ok(JSON.stringify(questionResource).includes('Скільки?'));
+        assert.ok(JSON.stringify(flashcardResource).includes('Відповідь'));
+        assert.equal(JSON.stringify(lesson.build.props(uk)).includes('Скільки?'), false);
+        assert.equal(JSON.stringify(lesson.build.props(uk)).includes('Відповідь'), false);
+        assert.equal(JSON.stringify(course.build.props(uk)).includes('Відповідь'), false);
       });
 
-      test('SkillDomain → SkillGroup → Skill validates resolved multilingual nested overrides', () => {
+      test('SkillDomain → SkillGroup → Skill publishes stable multilingual classification', () => {
         const balance = defineSkill<'balance', ['uk', 'en']>({
           id: id('12'),
           slug: 'balance',
@@ -254,31 +241,21 @@ describe('Configurators', () => {
           slug: 'mechanics',
           name: { uk: 'Механіка', en: 'Mechanics' },
           description: { methodological: 'Mechanics' },
-          skills: { items: { balance }, order: ['balance'] },
+          skills: { balance },
         });
         const domain = defineSkillDomain<'physics', { mechanics: typeof mechanics }, {}, ['uk']>({
           id: id('14'),
           slug: 'physics',
           title: { uk: 'Фізика', en: 'Physics' },
           description: { methodological: 'Physics overview' },
-          groups: { items: { mechanics }, order: ['mechanics'] },
+          groups: { mechanics },
         });
         const resource = domain.build.props(uk);
-        const patch = domain.build.overrides(
-          {
-            groups: { items: { mechanics: { skills: { items: { balance: { name: { uk: 'Баланс' } } } } } } },
-          },
-          uk,
-        );
-        const effective = mergeObjects(
-          mergeObjects(mergeObjects(resource.base, resource.locale?.uk ?? {}), patch.base),
-          patch.locale?.uk ?? {},
-        );
+        const effective = mergeObjects(resource.base, resource.locale?.uk ?? {});
         assert.doesNotThrow(() => skillDomain_Props_Schema.parse(effective));
-        assert.ok(JSON.stringify(effective).includes('Баланс'));
-        assert.deepEqual(Object.keys(patch.locale ?? {}), ['uk']);
-        assert.equal(JSON.stringify(domain.build.props(uk)).includes('Баланс'), false);
+        assert.ok(JSON.stringify(effective).includes('Рівновага'));
         assert.equal(JSON.stringify(resource).includes('Balance'), false);
+        assert.equal('overrides' in domain.build, false);
       });
     });
   });

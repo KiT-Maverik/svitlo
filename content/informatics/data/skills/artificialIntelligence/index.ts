@@ -1,0 +1,91 @@
+import { defineSkillDomain } from '@svitlo/engine/build';
+
+import { aIFundamentals } from './aIFundamentals';
+import { imitationAndUnderstanding } from './imitationAndUnderstanding';
+import { languageModelTokensAndContext } from './languageModelTokensAndContext';
+import { modelArchitecturesAndResources } from './modelArchitecturesAndResources';
+import { prompting } from './prompting';
+import { reliabilityAndResponsibleAIUse } from './reliabilityAndResponsibleAIUse';
+import { safeInteractionWithAI } from './safeInteractionWithAI';
+
+export const artificialIntelligence = defineSkillDomain({
+  slug: 'artificialIntelligence',
+  id: '7ca59646-251b-4009-b150-7533da7eb92c',
+  title: {
+    ar: 'الذكاء الاصطناعي',
+    be: 'Штучны інтэлект',
+    bn: 'কৃত্রিম বুদ্ধিমত্তা',
+    de: 'Künstliche Intelligenz',
+    en: 'Artificial Intelligence',
+    es: 'Inteligencia artificial',
+    et: 'Tehisintellekt',
+    fr: 'Intelligence artificielle',
+    he: 'בינה מלאכותית',
+    hi: 'कृत्रिम बुद्धिमत्ता',
+    id: 'Kecerdasan buatan',
+    it: 'Intelligenza artificiale',
+    ja: '人工知能',
+    ka: 'ხელოვნური ინტელექტი',
+    kk: 'Жасанды интеллект',
+    ko: '인공지능',
+    lt: 'Dirbtinis intelektas',
+    lv: 'Mākslīgais intelekts',
+    mr: 'कृत्रिम बुद्धिमत्ता',
+    ms: 'Kecerdasan buatan',
+    pl: 'Sztuczna inteligencja',
+    pt: 'Inteligência artificial',
+    qm: 'Suniy intellekt',
+    ta: 'செயற்கை நுண்ணறிவு',
+    te: 'కృత్రిమ మేధస్సు',
+    tr: 'Yapay zekâ',
+    uk: 'Штучний інтелект',
+    ur: 'مصنوعی ذہانت',
+    vi: 'Trí tuệ nhân tạo',
+    zh: '人工智能',
+  },
+  groups: {
+    aIFundamentals,
+    imitationAndUnderstanding,
+    languageModelTokensAndContext,
+    modelArchitecturesAndResources,
+    prompting,
+    reliabilityAndResponsibleAIUse,
+    safeInteractionWithAI,
+  },
+  description: {
+    methodological:
+      'Examines systems performing recognition, prediction, generation, and other forms of intelligent information processing. Includes explicitly programmed rules and trained models, how they work, prompting, technical trade-offs, and reliability verification.',
+    frontend: {
+      ar: 'اكتشف كيف تتعلم أنظمة الذكاء الاصطناعي وتتنبأ وتولّد المحتوى، ولماذا تخطئ أحيانًا.',
+      be: 'Дасьледуй, як сыстэмы штучнага інтэлекту навучаюцца, прагназуюць, ствараюць зьмест і часам памыляюцца.',
+      bn: 'কৃত্রিম বুদ্ধিমত্তার ব্যবস্থা কীভাবে শেখে, পূর্বাভাস দেয়, নতুন বিষয়বস্তু তৈরি করে এবং কখনো ভুল করে, তা জানো।',
+      de: 'Erkunde, wie KI-Systeme lernen, Vorhersagen treffen, Inhalte erzeugen und manchmal scheitern.',
+      en: 'Discover how artificial intelligence systems learn, predict, generate and sometimes fail.',
+      es: 'Descubre cómo los sistemas de inteligencia artificial aprenden, predicen, generan contenido y a veces fallan.',
+      et: 'Uuri, kuidas tehisintellekti süsteemid õpivad, ennustavad, loovad sisu ja vahel eksivad.',
+      fr: 'Découvre comment les systèmes d’intelligence artificielle apprennent, prédisent, génèrent du contenu et échouent parfois.',
+      he: 'גלו כיצד מערכות בינה מלאכותית לומדות, מנבאות, יוצרות תוכן ולפעמים טועות.',
+      hi: 'जानें कि एआई प्रणालियाँ कैसे सीखती हैं, अनुमान लगाती हैं, सामग्री बनाती हैं और कभी-कभी गलती करती हैं।',
+      id: 'Jelajahi cara sistem kecerdasan buatan belajar, memprediksi, menghasilkan konten, dan kadang gagal.',
+      it: 'Scopri come i sistemi di IA, basati su regole o su modelli addestrati, possono riconoscere dati, fare previsioni o generare contenuti, e perché a volte sbagliano.',
+      ja: '人工知能の仕組みが学習、予測、生成を行い、ときには間違える理由を探ろう。',
+      ka: 'გამოიკვლიე, როგორ სწავლობენ ხელოვნური ინტელექტის სისტემები, აკეთებენ პროგნოზებს, ქმნიან შიგთავსს და ზოგჯერ ცდებიან.',
+      kk: 'Жасанды интеллект жүйелерінің қалай үйренетінін, болжайтынын, мазмұн жасайтынын және кейде қателесетінін зертте.',
+      ko: '인공지능 시스템이 학습하고 예측하며 콘텐츠를 생성하다가 때때로 오류를 내는 이유를 알아보세요.',
+      lt: 'Tyrinėk, kaip dirbtinio intelekto sistemos mokosi, prognozuoja, kuria turinį ir kartais klysta.',
+      lv: 'Izpēti, kā mākslīgā intelekta sistēmas mācās, prognozē, ģenerē saturu un reizēm kļūdās.',
+      mr: 'कृत्रिम बुद्धिमत्ता प्रणाली कशा शिकतात, अंदाज बांधतात, आशय निर्माण करतात आणि कधी चुकतात ते शोधा.',
+      ms: 'Terokai cara sistem AI belajar, membuat ramalan, menghasilkan kandungan dan kadangkala melakukan kesilapan.',
+      pl: 'Odkryj, jak systemy sztucznej inteligencji uczą się, przewidują, tworzą treści i czasem popełniają błędy.',
+      pt: 'Descubra como sistemas de inteligência artificial aprendem, preveem, geram conteúdo e às vezes falham.',
+      qm: 'Suniy intellekt sistemaları nasıl ögrenip, evelden aytıp, yañı malümat yaratqanını ve bazan neden yañlışqanını araştır.',
+      ta: 'செயற்கை நுண்ணறிவு அமைப்புகள் எவ்வாறு கற்கின்றன, கணிக்கின்றன, உள்ளடக்கம் உருவாக்குகின்றன, சில நேரம் தவறுகின்றன என்பதை ஆராயுங்கள்.',
+      te: 'AI వ్యవస్థలు ఎలా నేర్చుకుని, అంచనా వేసి, కంటెంట్ సృష్టిస్తాయి, కొన్నిసార్లు ఎందుకు తప్పుతాయో తెలుసుకోండి.',
+      tr: 'Yapay zekâ sistemlerinin nasıl öğrendiğini, tahmin ve üretim yaptığını, bazen de hata verdiğini keşfet.',
+      uk: 'Досліджуй, як системи штучного інтелекту навчаються, прогнозують, генерують вміст і часом помиляються.',
+      ur: 'جانیں کہ مصنوعی ذہانت کے نظام کیسے سیکھتے، پیش گوئی کرتے، مواد بناتے اور کبھی غلطی کرتے ہیں۔',
+      vi: 'Khám phá cách hệ thống AI học, dự đoán, tạo nội dung và đôi khi mắc lỗi.',
+      zh: '探索人工智能系统如何学习、预测、生成内容，以及为什么有时会出错。',
+    },
+  },
+});

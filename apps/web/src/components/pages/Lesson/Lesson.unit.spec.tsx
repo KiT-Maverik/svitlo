@@ -60,7 +60,6 @@ const response = {
       content: [{ id: sceneTwoId, slug: 'secondScene', type: 'scene', params: {}, locale: { value: 'Scene two' } }],
     },
   ],
-  flashcards: [],
 } satisfies Lesson_Props;
 
 describe('Web lesson preparation', () => {

@@ -17,81 +17,71 @@ const englishOnly = defineSkill<'englishOnly', ['en']>({
   description: { methodological: 'English coverage', frontend: { en: 'English copy' } },
 });
 
-// Every child must cover at least all parent languages; extra child languages are valid.
+// Every child must cover at least the parent's languages.
 const group = defineSkillGroup<'group', { both: typeof both }, ['uk']>({
   id,
   slug: 'group',
   name: { uk: 'Група' },
   description: { methodological: 'Group context' },
-  skills: { items: { both }, order: ['both'] },
+  skills: { both },
 });
 const domain = defineSkillDomain<'domain', { group: typeof group }, {}, ['uk']>({
   id,
   slug: 'domain',
   title: { uk: 'Область' },
   description: { methodological: 'Domain context' },
-  groups: { items: { group }, order: ['group'] },
+  groups: { group },
 });
-
-// Compile-time lower-level coverage must not widen through either Group or Domain.
 defineSkillGroup<'invalidGroup', { englishOnly: typeof englishOnly }, ['en', 'uk']>({
   id,
   slug: 'invalidGroup',
   name: { en: 'Invalid', uk: 'Некоректна' },
   description: { methodological: 'Incompatible Skill language' },
   // @ts-expect-error Ukrainian is absent from the Skill language tuple.
-  skills: { items: { englishOnly }, order: ['englishOnly'] },
+  skills: { englishOnly },
 });
 defineSkillDomain<'invalidDomain', { group: typeof group }, {}, ['en', 'uk']>({
   id,
   slug: 'invalidDomain',
   title: { en: 'Invalid', uk: 'Некоректна' },
   description: { methodological: 'Incompatible Group language' },
-  // @ts-expect-error The Group only supports Ukrainian, not English.
-  groups: { items: { group }, order: ['group'] },
-});
-
-// Existing child patches are keyed strictly by the author's literal slug.
-group.build.overrides({ skills: { items: { both: { name: { uk: 'Двоє' } } } } }, { languages: ['uk'] });
-// @ts-expect-error Identity fields are not overridable.
-both.build.overrides({ slug: 'altered' }, { languages: ['en', 'uk'] });
-group.build.overrides(
-  {
-    skills: {
-      items: {
-        // @ts-expect-error Unknown Skill child key must be rejected at the type boundary.
-        missing: { name: 'Unknown' },
-      },
-    },
-  },
-  { languages: ['uk'] },
-);
-defineSkill<'incomplete', ['en', 'uk']>({
-  id,
-  slug: 'incomplete',
-  // @ts-expect-error Unsupported language cannot be omitted from a complete authored dictionary.
-  name: { en: 'Incomplete' },
-  description: { methodological: 'Incomplete', frontend: { en: 'Only English', uk: 'Англійська' } },
+  // @ts-expect-error The Group does not support English.
+  groups: { group },
 });
 
 const scoped: LanguageScope<['uk']> = domain;
 void scoped;
-
-/** Build publication scopes are statically limited to guaranteed authoring languages. */
+const knownSkill = group.skills.both;
+void knownSkill;
+// @ts-expect-error Unknown Skill keys cannot be accessed.
+void group.skills.unknown;
+// @ts-expect-error Only .skills accessor exists.
+void group.skill;
+// @ts-expect-error Domain has no singular .group accessor.
+void domain.group;
+// @ts-expect-error Skill overrides are not supported.
+both.build.overrides({});
+// @ts-expect-error Group overrides are not supported.
+group.build.overrides({});
+// @ts-expect-error Domain overrides are not supported.
+domain.build.overrides({});
 both.build.props({ languages: ['en', 'uk'] });
 both.build.props({ languages: ['uk'] });
 group.build.props({ languages: ['uk'] });
 domain.build.props({ languages: ['uk'] });
-both.build.overrides({ name: { en: 'Updated' } }, { languages: ['uk'] });
 // @ts-expect-error Skill cannot publish an undeclared language.
 both.build.props({ languages: ['de'] });
-// @ts-expect-error Group's guaranteed scope is Ukrainian, despite its child's English.
+// @ts-expect-error Group's guaranteed scope is Ukrainian.
 group.build.props({ languages: ['en'] });
 // @ts-expect-error Domain's guaranteed scope is Ukrainian.
 domain.build.props({ languages: ['en'] });
-// @ts-expect-error Override publication must obey the same language scope.
-group.build.overrides({}, { languages: ['en'] });
 // @ts-expect-error Explicit publication options are required.
 both.build.props();
-// @ts-expect-error Overrides require publication options as well.
-both.build.overrides({});
+// @ts-expect-error Old ordered collection format is forbidden.
+defineSkillGroup({
+  id,
+  slug: 'old',
+  name: { uk: 'Old' },
+  description: { methodological: 'Old' },
+  skills: { items: { both }, order: ['both'] },
+});

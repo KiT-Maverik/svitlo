@@ -8,7 +8,7 @@
 
 For each assigned Lesson, create or revise a single source-language machine-readable Question bank:
 
-`content/<textbook>/data/lessons/<last-hex-digit>/<lesson-uuid>/questions/questions.yaml`
+`content/<textbook>/data/lessons/<last-hex-digit>/<lesson-uuid>/questions.yaml`
 
 The path must match the real Lesson's UUID-resolved directory. Do not guess it from the slug. `questions.yaml` is an **editorial generation source** and **not** the runtime `Lesson.questions` catalog, an additional `content.yaml`, or an alternate owner of the methodology.
 
@@ -55,7 +55,7 @@ After authoring the bank, inspect _every approved Quiz Section_ in the current `
 - The Quiz must use only approved, existing bank Question slugs, preserving their source-language and type-independent identities. Assign separate default selections for multiple Quizzes, reflecting their placement and prerequisites, and avoid unintended repeated Questions.
 - A Question **not selected into any default Quiz remains in the Lesson bank** and remains eligible for extra practice. Do not delete or artificially cap the bank to satisfy the default Quiz length. Custom Practice should be able to operate on the full valid bank when implemented, with its own independently configured selection and scoring.
 
-**Ownership and technical handoff:** keep Quiz subsets in Assessment-Architect-owned `questions/questions.yaml`, never Screenwriter `content.yaml`. The **separate reviewed projection** must reconcile `assessmentPlanKey` and map each approved `quizAssignments[].selection` to the matching Engine Quiz Section's **`params.selection`**, retaining the full Question bank under `questions.<type>.<slug>`. The generic YAML → TypeScript scaffolder does **not** independently merge these editorial schemas, select Questions, validate approval, or publish a Lesson. See [YAML Config handoff](../../docs/architecture/yaml-config-scaffolding.md).
+**Ownership and technical handoff:** keep Quiz subsets in Assessment-Architect-owned `questions.yaml`, never Screenwriter `content.yaml`. The **separate reviewed projection** must reconcile `assessmentPlanKey` and map each approved `quizAssignments[].selection` to the matching Engine Quiz Section's **`params.selection`**, retaining the full Question bank under `questions.<type>.<slug>`. The generic YAML → TypeScript scaffolder does **not** independently merge these editorial schemas, select Questions, validate approval, or publish a Lesson. See [YAML Config handoff](../../docs/architecture/yaml-config-scaffolding.md).
 
 ## Step 4 — Author complete, implementable items
 
@@ -156,4 +156,4 @@ Validate machine-readable YAML against the schema plus **semantic checks** (a sc
 6. Only one source language is authored. No invented translations, IDs, media or renderer capabilities.
 7. The full bank is preserved for Custom Practice regardless of default Quiz subsets, and the independent technical handoff is responsible for carrying both the full Question bank and approved Quiz selections into the Config-shaped draft. The bank matches current approved source revisions. A subsequent material change to methodology or content invalidates affected reviews/coverage until checked.
 
-Create/update the bank only in its Lesson's `questions/` folder. Follow the Lesson Production Issue handoff, Draft PR and source-specific approval policy when operating in a production workflow. The Coding Agent consumes the _approved_ YAML to author typed data and tests; the Translation workflow supplies remaining locales. The generic YAML-to-TypeScript scaffolder is only a draft emitter, not an editorial Question-bank converter or publication checker; verify the current implementation before claiming any further behavior.
+Create/update `questions.yaml` directly in the owning Lesson UUID root. The `questions/` TypeScript directory need not exist when the editorial YAML is authored. Follow the Lesson Production Issue handoff, Draft PR and source-specific approval policy when operating in a production workflow. The Coding Agent consumes the _approved_ YAML to author typed data and tests; the Translation workflow supplies remaining locales. The generic YAML-to-TypeScript scaffolder is only a draft emitter, not an editorial Question-bank converter or publication checker; verify the current implementation before claiming any further behavior.

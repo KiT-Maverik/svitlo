@@ -1,0 +1,64 @@
+import assert from 'node:assert/strict';
+import test from 'node:test';
+
+import {
+  assessmentResourcePath,
+  selectQuizQuestionIds,
+  validateAssessmentReferences,
+  type AssessmentResourceManifest,
+} from './assessmentResources';
+
+const lessonId = '92177be3-97a1-5ca4-b21a-07f0dac27f50';
+const sectionId = '1e125b21-9af0-4000-8000-000000000001';
+const firstId = '1e125b21-9af0-4000-8000-000000000002';
+const secondId = '1e125b21-9af0-4000-8000-000000000003';
+const cardId = '1e125b21-9af0-4000-8000-000000000004';
+const hash = 'a'.repeat(64);
+const manifest: AssessmentResourceManifest = {
+  lessonId,
+  entries: {
+    [firstId]: { lessonId, kind: 'question', questionType: 'selectOneAnswer', languages: ['en', 'uk'], contentHash: hash },
+    [secondId]: { lessonId, kind: 'question', questionType: 'answerWithText', languages: ['en'], contentHash: hash },
+    [cardId]: { lessonId, kind: 'flashcard', languages: ['en'], contentHash: hash },
+  },
+};
+
+test('assessment paths are portable, UUID-addressed and reject invalid IDs', () => {
+  assert.equal(
+    assessmentResourcePath(lessonId, 'question', firstId, 'uk'),
+    'data/lessons/0/' + lessonId + '/questions/' + firstId + '/uk.json',
+  );
+  assert.equal(
+    assessmentResourcePath(lessonId, 'flashcard', cardId),
+    'data/lessons/0/' + lessonId + '/flashcards/' + cardId + '/base.json',
+  );
+  assert.throws(() => assessmentResourcePath(lessonId, 'question', '../escape'), /uuid|UUID|Invalid/);
+});
+
+test('reference validation requires explicit selected, correctly owned, localized entries', () => {
+  const valid = { lessonId, sectionId, kind: 'question' as const, ids: [firstId], language: 'uk' as const };
+  assert.deepEqual(validateAssessmentReferences(manifest, valid), [manifest.entries[firstId]]);
+  assert.throws(() => validateAssessmentReferences(manifest, { ...valid, ids: [] }), /Empty assessment/);
+  assert.throws(() => validateAssessmentReferences(manifest, { ...valid, ids: [firstId, firstId] }), /Duplicate/);
+  assert.throws(() => validateAssessmentReferences(manifest, { ...valid, ids: [cardId] }), /wrong resource type/);
+  assert.throws(() => validateAssessmentReferences(manifest, { ...valid, ids: [secondId] }), /unavailable in uk/);
+  assert.throws(() => validateAssessmentReferences(manifest, { ...valid, lessonId: secondId }), /different Lesson/);
+  assert.throws(() => validateAssessmentReferences(manifest, { ...valid, ids: ['1e125b21-9af0-4000-8000-000000000005'] }), /Missing assessment/);
+  assert.throws(
+    () => validateAssessmentReferences({ ...manifest, entries: { ...manifest.entries, [firstId]: { ...manifest.entries[firstId], lessonId: sectionId } } }, valid),
+    /different Lesson/,
+  );
+});
+
+test('Quiz selects only explicit UUID candidates with stable sampling and never defaults to the whole bank', () => {
+  const base = { mode: 'all' as const, questionIds: [firstId, secondId] };
+  assert.deepEqual(selectQuizQuestionIds(base, sectionId), [firstId, secondId]);
+  assert.deepEqual(selectQuizQuestionIds({ ...base, mode: 'sample', count: 1 }, sectionId), [firstId]);
+  const shuffled = { ...base, mode: 'sample' as const, count: 1, shuffle: true, seed: 12 };
+  assert.deepEqual(selectQuizQuestionIds(shuffled, sectionId), selectQuizQuestionIds(shuffled, sectionId));
+  assert.equal(selectQuizQuestionIds(shuffled, sectionId).length, 1);
+  assert.throws(() => selectQuizQuestionIds({ mode: 'all', questionIds: [] }, sectionId), /explicit questionIds/);
+  assert.throws(() => selectQuizQuestionIds({ ...base, questionIds: [firstId, firstId] }, sectionId), /Duplicate/);
+  assert.throws(() => selectQuizQuestionIds({ ...base, mode: 'sample', count: 3 }, sectionId), /sample count/);
+  assert.throws(() => selectQuizQuestionIds({ ...base, count: 1 }, sectionId), /sample mode/);
+});

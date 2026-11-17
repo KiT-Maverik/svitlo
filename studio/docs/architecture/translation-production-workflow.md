@@ -1,4 +1,4 @@
-# Translation Production — one Issue, two integration phases
+# Translation Production — one Issue, owner-scheduled review
 
 **Status:** standard GitHub production coordination protocol for typed, localized Svitlo entities. Not a new automatic agent-spawning service or a translation/Markdown generation engine.
 
@@ -15,48 +15,28 @@ Use [Manage Translation Production](../../skills/translation-workflow/manage-tra
 - Agent count and assignments come from current entity counts, strings/complexity, locale roster and source layout. Four workers often fit large batches but are not a fixed quota. Smaller work may use one or two.
 - Preserve approved UUIDs, source language, content meaning, methodologically English-only descriptions and correct localization contracts; translation coverage is not proven by TypeScript passing alone.
 
-## PR topology
+## PR topology and owner-directed review
 
 ```text
 main
- └─ Draft TRANSLATION INTEGRATION PR → main
-      ├─ Translation Agent 1 — Draft subtask PR → integration
-      ├─ Translation Agent 2 — Draft subtask PR → integration
-      ├─ Translation Agent N — Draft subtask PR → integration
-      │
-      ├── HARD BARRIER: all translation PRs merged;
-      │   exact entity × language coverage and integrated SHA verified
-      │
-      ├─ Independent Review Agent 1 — Draft subtask PR → integration
-      ├─ Independent Review Agent 2 — Draft subtask PR → integration
-      └─ Independent Review Agent M — Draft subtask PR → integration
+ └─ Draft translation integration PR → main
+      ├─ Translator Agent 1 Draft PR → integration — optional review on this PR, then merge
+      ├─ Translator Agent 2 Draft PR → integration — optional review on this PR, then merge
+      └─ Translator Agent N Draft PR → integration
+           └─ alternatively: later independent reviewer Draft PR → integration
 ```
 
-Agent PRs always start at the current appropriate integration SHA and target **integration**, never `main`. PRs have clear owning scope, canonical labels (`pr: integration` on the parent, `pr: agent-subtask` on agent PRs), and `Refs #<issue-number>`. Only the parent integration PR may close the Issue on final authorized merge. No separate Issue per locale or agent; all phases remain visible in the same tracker.
+There is **no mandatory global "all translations merged before review" barrier**. The owner selects when to start each independent review, which PR/SHA it inspects, whether corrections are authorized and whether the reviewed translator PR can be merged. Translation and review stay within the single Issue; an independent reviewer must differ from the translator of the assigned scope.
 
-## Translation phase
+## Translation and review procedure
 
-Coordinator verifies authored source/requirements, establishes integration baseline once, opens Draft integration PR and assigns balanced, nonconflicting batch ownership. Translator agents independently edit only their assigned typed fields, verify included TypeScript sources and relevant localized content, and submit Draft agent PRs. Coordinator confirms permitted/approved merges, checks the **actual merged integration state**, records the new integration SHA and waits until every assigned pair is covered before proceeding.
-
-Do not confuse an agent's successful branch with integration completion. An open/unmerged translation subtask blocks the **entire review launch**.
-
-## Independent review phase, with hard artifact prerequisite
-
-Review agents are **independent** of original translators for their scope where feasible. Reviews start only from an integrated revision containing **all translated agent PRs**, with complete coverage and a validated source SHA.
-
-For **each entity type in scope**, review coordinator and review agents MUST verify that an installed, working **Code → localized Markdown generator** supports those exact entities, locales and current file layout. The current Agent CI Artifacts infrastructure includes:
-
-- Skills: `shared/engine/scripts/generateSkillsTaxonomy/generate-skills-taxonomy.mjs`, reviewed from `.agent-ci-artifacts/taxonomies/<textbook>/<language>.md`.
-- Lessons: `shared/engine/scripts/generateLessonsMarkdown/generate-lessons-markdown.mjs`, reviewed from `.agent-ci-artifacts/lessons/<textbook>/<bucket>/<lesson-slug>/<language>.md` or the actual path present in the current manifest. Verify support for the nested Lesson content being reviewed.
-- Assessment Methods: `shared/ui-kit/scripts/generateAssessmentMethodsReference/generate-assessment-methods-reference.mjs`, reviewed from `.agent-ci-artifacts/assessment-methods/<language>.md`.
-
-These are **known generator families, not guarantees** for every target subtype, locale or revision. Courses, UI Kit dictionaries and other entities require verified matching generators before review. The existing CI wrapper may generate all locales rather than accepting selective locale arguments; reviewers simply select assigned documents.
-
-Each reviewer creates its **own Draft subtask PR from the frozen integration head**, generates the reference library in that PR branch on demand and verifies `manifest.json`/source commit and all required output paths. The on-demand workflow resides in `.github/workflows/translation-review.yml`; `/agent-artifacts generate` requires repository-owner authorization or manual GitHub Actions invocation. Local CLI generation is valid only if actually run and its output verified. No artifact is written to the **integration branch**; PR-only generated files must be cleaned via `/agent-artifacts cleanup` before merging a review correction PR. This also prevents the temporary library leaking to `main`.
-
-**NON-NEGOTIABLE STOP:** if the required entity→Markdown generator is missing, unsupported, yields incomplete localized documents, or produces a failing/stale manifest, the reviewer **stops the review** and explicitly tells the user **in chat** the exact missing generator/locale/target and required corrective action. Mark that review batch/phase `blocked` in the Issue. Do **not** replace required generated localized Markdown with manual code scanning, fabricated output, fallback translation or unverified source text. A coordinator should detect this before assigning reviewer batches, but each reviewer must check independently. The generator may be repaired in a separate tooling PR and the blocked review resumed afterward.
-
-A reviewer reviews **the whole assigned entity-language scope** from the generated human-readable documents, not just changed Git diff, compares with approved source meaning, and records specific corrections, terminology decisions, linguistic quality and evidence. Authorized corrections use [Technical Translation](../../skills/translation-workflow/technical-translation.skill.md) on canonical types, not on generated Markdown. Refresh stale output after source changes and re-review affected scope. If no corrections are needed, issue-linked evidence can suffice; don't create fake edits merely to have a PR.
+1. Coordinator establishes the fixed entity/language inventory and single Draft integration PR. Translators produce scoped Draft subtask PRs targeting integration; verify actual changed authored files with the strongest meaningful scoped checks. Do not weaken contracts or falsely describe broader CI failures as green.
+2. **Pre-integration review on an existing translator PR:** On explicit owner request, the independent reviewer pins the translator PR head and generates *only the assigned family/textbook/locale* Markdown there (e.g., `/agent-artifacts generate skills content/astronomy it`). Confirm `.agent-ci-artifacts/manifest.json` sourceCommit matches, requested documents exist, `missing === 0`, `reviewReady === true`, and no relevant failures. The reviewer does **not** have to integrate other books first.
+3. **Post-integration review (optional):** When the owner specifically chooses this topology, pin the intended integrated source SHA and create a separate Draft reviewer PR targeting integration; generate/verify on that working PR branch.
+4. Independently read the **entire assigned Code-derived Markdown** against approved source/editorial meaning, not only changed lines. Record evidence for semantic, scientific, linguistic, register and accessibility findings. Review is read-only until fixes are authorized; then edit only the permitted canonical typed locale fields on the working branch, regenerate and recheck affected documents.
+5. **Scoped artifact hard stop:** If the required entity-specific Markdown generator or assigned document/manifest is missing, incomplete or stale, stop that review and explain the exact blocker in chat and Issue. Do not use fabricated output or manual distributed source scanning as a substitute.
+6. **Authorized translator PR merge:** After complete independent review, fixes and relevant verification, clean `.agent-ci-artifacts/` from that translator PR, inspect current source SHA, diff, head/base and required GitHub checks, and merge **the same translator PR** into integration if authorized. Track the actual merged SHA. Unrelated CI blockers are separately recorded; never bypass required protections.
+7. When all required batches are independently reviewed and integrated, run final integrated validation. The parent integration PR stays Draft until the owner separately authorizes its merge to `main`.
 
 ## GitHub Issue tracking / resumption
 

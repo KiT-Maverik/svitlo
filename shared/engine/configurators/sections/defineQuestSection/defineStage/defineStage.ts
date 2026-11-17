@@ -25,7 +25,9 @@ export type Stage_Overrides = {
 export const defineStage = <
   const Slug extends string,
   const Languages extends readonly LanguageCode[] = AllLanguageCodes,
->(config: Stage_Config & { slug: Slug }) => {
+>(
+  config: Stage_Config & { slug: Slug },
+) => {
   const validate = (value: Stage_Config): void => {
     stage_Config_Schema.parse(value);
     assertQuestChild(value.content.video.medium, 'video', 'content.video.medium');
@@ -37,8 +39,8 @@ export const defineStage = <
     assertQuestChild(value.content.image, 'image', 'content.image');
     assertQuestChild(value.content.subtitles, 'subtitles', 'content.subtitles');
   };
-  validate(config);
   const { id, slug, type } = config;
+  const { content: _content, ...authoredMetadata } = config;
   const content = {
     video: { ...config.content.video },
     audio: { ...config.content.audio },
@@ -47,20 +49,31 @@ export const defineStage = <
   };
   const props = (options: PublicationLanguageOptions<Languages>) => {
     const languages = resolvePublicationLanguages(options);
+    validate({ ...authoredMetadata, content });
     const output = nestQuestPublication({ id, slug, type }, projectQuestTree(content, languages), 'content');
     validateQuestPublication(stage_Props_Schema, output, languages);
     return output;
   };
   const overrides = (patch: Stage_Overrides, options: PublicationLanguageOptions<Languages>) => {
     const languages = resolvePublicationLanguages(options);
-    if (!patch || typeof patch !== 'object' || Array.isArray(patch) ||
-      Object.keys(patch).some(key => key !== 'content')) throw new Error('Invalid QuestStage overrides');
+    validate({ ...authoredMetadata, content });
+    if (
+      !patch ||
+      typeof patch !== 'object' ||
+      Array.isArray(patch) ||
+      Object.keys(patch).some(key => key !== 'content')
+    )
+      throw new Error('Invalid QuestStage overrides');
     const output = nestQuestPublication({}, projectQuestTree(content, languages, patch.content ?? {}), 'content');
     validateQuestPublication(stage_Props_Schema, props(options), languages, output);
     return output;
   };
   const result = {
-    id, slug, type, content, validate,
+    id,
+    slug,
+    type,
+    content,
+    validate,
     build: { props, overrides },
     config: {
       base: { id, slug, type },

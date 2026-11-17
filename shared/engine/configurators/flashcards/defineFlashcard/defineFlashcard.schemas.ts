@@ -6,6 +6,7 @@ import { identityBase_Schema, paramsBase_Schema } from '../../_shared__configura
 import type { Configurator_Mode } from '../../configurator.schemas';
 import { localizationSwitch as contentBlockLocalizationSwitch, contentBlockResolved_Schema } from '../../contentBlocks/contentBlock.schemas';
 import type { ContentBlock_Configurator, ContentBlock_Props } from '../../contentBlocks/contentBlock.types';
+import { flashcardSide_Config_Schema, type FlashcardSide_Overrides } from '../defineFlashcardSide/defineFlashcardSide.schemas';
 
 export const flashcardRelationshipTypes = [
   'reverse',
@@ -62,17 +63,6 @@ export const flashcardFlag_Config_Schema = flagSchema('config');
 export type Flashcard_Flag_Config = z.infer<typeof flashcardFlag_Config_Schema>;
 export type Flashcard_Flag_Props = z.infer<ReturnType<typeof flagSchema<'props'>>>;
 
-export type Flashcard_OrderedContent<Item> = { items: Record<string, Item>; order: string[] };
-type Flashcard_Content<Item> = {
-  front: Flashcard_OrderedContent<Item>;
-  back: Flashcard_OrderedContent<Item>;
-  hint?: Flashcard_OrderedContent<Item>;
-};
-const authoredBlocks = z.strictObject({
-  items: z.record(z.string(), z.custom<ContentBlock_Configurator>()),
-  order: z.array(z.string()),
-});
-
 export const flashcard_Config_Schema = identityBase_Schema.extend({
   type: z.literal('flashcard'),
   parameters: paramsBase_Schema.shape.params.extend({
@@ -88,10 +78,12 @@ export const flashcard_Config_Schema = identityBase_Schema.extend({
       })
       .optional(),
   }),
+  // Preserve the structural Config shape for YAML/editor schema generation.
+  // defineFlashcard validates that these values are built side configurators.
   content: z.strictObject({
-    front: authoredBlocks,
-    back: authoredBlocks,
-    hint: authoredBlocks.optional(),
+    front: z.object(flashcardSide_Config_Schema.shape),
+    back: z.object(flashcardSide_Config_Schema.shape),
+    hint: z.object(flashcardSide_Config_Schema.shape).optional(),
   }),
 });
 export type Flashcard_Config = z.infer<typeof flashcard_Config_Schema>;
@@ -136,14 +128,6 @@ export const flashcard_Override_Metadata_Schema: z.ZodType<{ parameters?: Flashc
     ),
   );
 
-export type Flashcard_Item_Overrides<
-  Items extends Record<string, ContentBlock_Configurator>,
-  Added extends Record<string, ContentBlock_Configurator> = {},
-> = {
-  items?: { [Key in keyof Items]?: Parameters<Items[Key]['build']['overrides']>[0] | false };
-  additionalItems?: Added & { [Key in keyof Items]?: never };
-  order?: Extract<keyof Items | keyof NoInfer<Added>, string>[];
-};
 type IdentitySafePatch<Value, Immutable extends keyof Value> = DeepPartial<Omit<Value, Immutable>>;
 export type Flashcard_Named_Overrides<
   Items extends Record<string, object>,
@@ -172,9 +156,9 @@ export type Flashcard_Overrides<
     relationships?: Flashcard_Named_Overrides<Relationships, AddedRelationships, 'type' | 'relationshipId'>;
   };
   content?: {
-    front?: Flashcard_Item_Overrides<Front, AddedFront>;
-    back?: Flashcard_Item_Overrides<Back, AddedBack>;
-    hint?: Flashcard_Item_Overrides<Hint, AddedHint>;
+    front?: FlashcardSide_Overrides<Front, AddedFront>;
+    back?: FlashcardSide_Overrides<Back, AddedBack>;
+    hint?: FlashcardSide_Overrides<Hint, AddedHint>;
   };
 };
 

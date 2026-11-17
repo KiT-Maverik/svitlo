@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useMemo, useState } from 'react';
-import { DEFAULT_SUPPORTED_LANGUAGES, type Locale } from '@svitlo/engine/runtime';
+import { DEFAULT_SUPPORTED_LANGUAGES, createAssessmentResourceLoader, type Locale } from '@svitlo/engine/runtime';
 import { type UiKitMessages, type Topic, Lesson, ImageRendererProvider, SceneLocaleProvider } from '@svitlo/ui-kit';
 import { NextImageRenderer } from '@svitlo/adapter-nextjs';
 import { preloadScene, resolveScene } from '@/generated/textbookScenes';
@@ -43,6 +43,20 @@ export default function WebLesson({
   const contentLocale = lessonLocale ?? locale;
   const language = DEFAULT_SUPPORTED_LANGUAGES.find(entry => entry.locale === contentLocale)?.language;
   if (!language) throw new Error('Unsupported Lesson language: ' + contentLocale);
+  const assessmentLoader = useMemo(
+    () =>
+      createAssessmentResourceLoader(async (paths, signal) => {
+        const entries = await Promise.all(
+          paths.map(async path => {
+            const result = await fetch('/' + path, { signal });
+            if (!result.ok) throw new Error('Failed to load assessment resource: ' + path);
+            return [path, await result.json()] as const;
+          }),
+        );
+        return new Map(entries);
+      }),
+    [],
+  );
   const ids = useMemo(() => sceneIds([response.section, response.events]), [response.section, response.events]);
   const requestKey = `${href}:${response.id}:${contentLocale}`;
   const [prepared, setPrepared] = useState<{
@@ -85,6 +99,7 @@ export default function WebLesson({
           topics={topics}
           layout={Layout}
           sceneRegistry={resolveScene}
+          assessmentLoader={assessmentLoader}
           contentLoading={current.status !== 'ready'}
           contentError={current.status === 'error'}
           onRetryContent={retry}

@@ -32,6 +32,6 @@ const group = defineSkillGroup({
   slug: 'literacy',
   name: 'Literacy',
   description: { methodological: 'Foundations', frontend: 'Learning' },
-  skills: { items: { reading: skill }, order: ['reading'] },
+  skills: { reading: skill },
 });
 group.build.props({ languages: ['uk'] });

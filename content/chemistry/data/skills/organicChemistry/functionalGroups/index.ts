@@ -1,0 +1,91 @@
+import { defineSkillGroup } from '@svitlo/engine/build';
+
+import { alcohols } from './alcohols';
+import { aldehydes } from './aldehydes';
+import { amides } from './amides';
+import { amines } from './amines';
+import { carboxylicAcids } from './carboxylicAcids';
+import { esters } from './esters';
+import { ketones } from './ketones';
+
+export const functionalGroups = defineSkillGroup({
+  slug: 'functionalGroups',
+  id: '94a44d15-8cac-4625-9fea-2a61f4d7a969',
+  name: {
+    ar: 'المجموعات الوظيفية',
+    be: 'Функцыянальныя групы',
+    bn: 'কার্যকরী মূলক',
+    de: 'Funktionelle Gruppen',
+    en: 'Functional Groups',
+    es: 'Grupos funcionales',
+    et: 'Funktsionaalrühmad',
+    fr: 'Groupes fonctionnels',
+    he: 'קבוצות פונקציונליות',
+    hi: 'क्रियात्मक समूह',
+    id: 'Gugus Fungsi',
+    it: 'Gruppi funzionali',
+    ja: '官能基',
+    ka: 'ფუნქციური ჯგუფები',
+    kk: 'Функционалдық топтар',
+    ko: '작용기',
+    lt: 'Funkcinės grupės',
+    lv: 'Funkcionālās grupas',
+    mr: 'कार्यकारी गट',
+    ms: 'Kumpulan Berfungsi',
+    pl: 'Grupy funkcyjne',
+    pt: 'Grupos funcionais',
+    qm: 'Funktsional toparlar',
+    ta: 'வினைசெயல் தொகுதிகள்',
+    te: 'క్రియాశీల సమూహాలు',
+    tr: 'Fonksiyonel Gruplar',
+    uk: 'Функціональні групи',
+    ur: 'فعلی گروہ',
+    vi: 'Nhóm chức',
+    zh: '官能团',
+  },
+  skills: {
+    alcohols,
+    aldehydes,
+    amides,
+    amines,
+    carboxylicAcids,
+    esters,
+    ketones,
+  },
+  description: {
+    methodological:
+      'Different atom groups create families whose chemical behavior can be predicted more reliably than from molecular size alone.',
+    frontend: {
+      ar: 'تعرّف المجموعات الوظيفية التي تحدد سلوك المركبات العضوية.',
+      be: 'Распазнавай функцыянальныя групы, якія вызначаюць уласьцівасьці арганічных злучэньняў.',
+      bn: 'জৈব যৌগের রাসায়নিক আচরণ নির্ধারণে ভূমিকা রাখা কার্যকরী মূলক শনাক্ত করো।',
+      de: 'Erkenne funktionelle Gruppen, die das Verhalten organischer Verbindungen prägen.',
+      en: 'Recognize functional groups that shape the behavior of organic compounds.',
+      es: 'Reconoce grupos funcionales que determinan el comportamiento de compuestos orgánicos.',
+      et: 'Tunne ära funktsionaalrühmad, mis mõjutavad orgaaniliste ühendite omadusi.',
+      fr: 'Reconnais les groupes fonctionnels qui déterminent le comportement des composés organiques.',
+      he: 'זהו קבוצות פונקציונליות המשפיעות על התנהגותן של תרכובות אורגניות.',
+      hi: 'ऐसे क्रियात्मक समूह पहचानें जो कार्बनिक यौगिकों के व्यवहार को प्रभावित करते हैं।',
+      id: 'Kenali gugus fungsi yang memengaruhi perilaku senyawa organik.',
+      it: 'Riconosci i gruppi funzionali che determinano il comportamento dei composti organici.',
+      ja: '有機化合物の反応性を左右する官能基を見分けよう。',
+      ka: 'ამოიცანი ფუნქციური ჯგუფები, რომლებიც ორგანული ნაერთების თვისებებს განსაზღვრავს.',
+      kk: 'Органикалық қосылыстардың қасиеттерін анықтайтын функционалдық топтарды таны.',
+      ko: '유기 화합물의 반응성을 좌우하는 작용기를 알아보세요.',
+      lt: 'Atpažink funkcines grupes, lemiančias organinių junginių savybes.',
+      lv: 'Atpazīsti funkcionālās grupas, kas nosaka organisko savienojumu īpašības.',
+      mr: 'कार्बनिक संयुगांचे वर्तन ठरवणारे कार्यकारी गट ओळखा.',
+      ms: 'Kenali kumpulan berfungsi yang mempengaruhi tingkah laku sebatian organik.',
+      pl: 'Rozpoznawaj grupy funkcyjne wpływające na zachowanie związków organicznych.',
+      pt: 'Reconheça grupos funcionais que influenciam o comportamento dos compostos orgânicos.',
+      qm: 'Organik birleşmelerniñ hususiyetlerini belgilegen funktsional toparlarnı tanı.',
+      ta: 'கரிமச் சேர்மங்களின் நடத்தையை நிர்ணயிக்கும் வினைசெயல் தொகுதிகளை அறியுங்கள்.',
+      te: 'కర్బన సమ్మేళనాల ప్రవర్తనను నిర్ణయించే క్రియాశీల సమూహాలను గుర్తించండి.',
+      tr: 'Organik bileşiklerin davranışını belirleyen fonksiyonel grupları tanı.',
+      uk: 'Розпізнавай функціональні групи, що визначають властивості органічних сполук.',
+      ur: 'نامیاتی مرکبات کے رویے کو متاثر کرنے والے فعلی گروہوں کو پہچانو۔',
+      vi: 'Nhận biết các nhóm chức quyết định tính chất của hợp chất hữu cơ.',
+      zh: '识别决定有机化合物化学行为的官能团。',
+    },
+  },
+});
