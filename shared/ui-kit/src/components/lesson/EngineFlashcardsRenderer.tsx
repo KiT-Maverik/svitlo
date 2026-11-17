@@ -86,7 +86,9 @@ export function EngineFlashcardsRenderer({
   if (!current.cards.length)
     return (
       <Typography role="alert">
-        {accessNeeds.length ? messages.flashcard.flashcard.noCompatibleCards : messages.learningLayout.preparingLessonError}
+        {accessNeeds.length
+          ? messages.flashcard.flashcard.noCompatibleCards
+          : messages.learningLayout.preparingLessonError}
       </Typography>
     );
   return (

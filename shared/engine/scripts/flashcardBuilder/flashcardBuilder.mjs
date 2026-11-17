@@ -190,7 +190,11 @@ export function renderFlashcardBank(bank) {
         ensure(block.slug === key, name + '.' + sideName + ' slug/map mismatch');
         validateSourceLocales(block.locale, sourceLanguage, name + '.' + sideName + '.' + key + '.locale');
         if (block.params?.variables) {
-          validateSourceLocales(block.params.variables, sourceLanguage, name + '.' + sideName + '.' + key + '.variables');
+          validateSourceLocales(
+            block.params.variables,
+            sourceLanguage,
+            name + '.' + sideName + '.' + key + '.variables',
+          );
         }
         ensure(!nestedIds.has(block.id) && !ids.has(block.id), 'duplicate ContentBlock UUID ' + block.id);
         nestedIds.add(block.id);
@@ -287,7 +291,10 @@ export function runOne(packageRoot, lessonId, mode, repositoryRoot = root) {
   const code = renderFlashcardBank(bank);
   if (mode === '--verify-sections') {
     ensure(fs.existsSync(target), 'missing authored Flashcard TS entrypoint: ' + target);
-    return verifyFlashcardsSelections(lesson, bank.flashcards.order.map(name => bank.flashcards.items[name].id));
+    return verifyFlashcardsSelections(
+      lesson,
+      bank.flashcards.order.map(name => bank.flashcards.items[name].id),
+    );
   }
   if (mode === '--preflight') return { created: false, bytes: code.length };
   if (fs.existsSync(target)) {
@@ -312,7 +319,10 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
       if (args[i] === '--package' && !packageName) packageName = args[++i];
       else if (args[i] === '--lesson' && !lessonId) lessonId = args[++i];
       else if (['--preflight', '--write', '--check', '--verify-sections'].includes(args[i]) && !mode) mode = args[i];
-      else throw new Error('Usage: --package content/<book> --lesson <uuid> --preflight|--write|--check|--verify-sections');
+      else
+        throw new Error(
+          'Usage: --package content/<book> --lesson <uuid> --preflight|--write|--check|--verify-sections',
+        );
     }
     if (!packageName || !lessonId || !mode) throw new Error('Missing --package, --lesson or mode');
     const result = runOne(path.join(root, packageName), lessonId, mode);

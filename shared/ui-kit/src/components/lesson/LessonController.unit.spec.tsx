@@ -256,24 +256,33 @@ describe('Engine Props Lesson Controller', () => {
     expect(screen.getByText('Light does.')).toBeVisible();
   });
 
-
   it('shows a compatible alternative when a host loader returns incompatible Flashcards', async () => {
     const response = fixture(false);
     const restricted: Flashcard_Props = {
-      id: uuid(94), slug: 'audioRecall', type: 'flashcard',
+      id: uuid(94),
+      slug: 'audioRecall',
+      type: 'flashcard',
       parameters: { tags: [], disabilities: ['deafness'], flags: [] },
       content: { front: [text(95, 'Listen to a bell')], back: [text(96, 'A bell')] },
     };
     const alternative: Flashcard_Props = {
-      id: uuid(97), slug: 'textRecall', type: 'flashcard',
+      id: uuid(97),
+      slug: 'textRecall',
+      type: 'flashcard',
       parameters: { tags: [], disabilities: [], flags: [] },
       content: { front: [text(98, 'Which object rings?')], back: [text(99, 'A bell')] },
     };
-    response.section = [{
-      id: uuid(100), slug: 'accessibleRecall', type: 'flashcards',
-      params: { selection: { flashcardIds: [restricted.id, alternative.id] } },
-      locale: { title: 'Recall', navigationLabel: 'Flashcards' }, content: [],
-    }, response.section[1]];
+    response.section = [
+      {
+        id: uuid(100),
+        slug: 'accessibleRecall',
+        type: 'flashcards',
+        params: { selection: { flashcardIds: [restricted.id, alternative.id] } },
+        locale: { title: 'Recall', navigationLabel: 'Flashcards' },
+        content: [],
+      },
+      response.section[1],
+    ];
     const loader: AssessmentResourceLoader = {
       loadQuestions: async () => [],
       loadFlashcards: async ({ accessNeeds }) => {
@@ -290,22 +299,33 @@ describe('Engine Props Lesson Controller', () => {
   it('announces an explicit localized empty eligible Flashcard pool', async () => {
     const response = fixture(false);
     const audio: Flashcard_Props = {
-      id: uuid(101), slug: 'audioOnly', type: 'flashcard',
+      id: uuid(101),
+      slug: 'audioOnly',
+      type: 'flashcard',
       parameters: { tags: [], disabilities: ['deafness'], flags: [] },
       content: { front: [text(102, 'Hear this sound')], back: [text(103, 'A bell')] },
     };
-    response.section = [{
-      id: uuid(104), slug: 'audioRecall', type: 'flashcards',
-      params: { selection: { flashcardIds: [audio.id] } },
-      locale: { title: 'Recall', navigationLabel: 'Flashcards' }, content: [],
-    }, response.section[1]];
-    showLesson(response, [], {
-      loadQuestions: async () => [],
-      loadFlashcards: async () => [audio],
-    }, ['deafness']);
-    expect(await screen.findByRole('alert')).toHaveTextContent(
-      enUiKitMessages.flashcard.flashcard.noCompatibleCards,
+    response.section = [
+      {
+        id: uuid(104),
+        slug: 'audioRecall',
+        type: 'flashcards',
+        params: { selection: { flashcardIds: [audio.id] } },
+        locale: { title: 'Recall', navigationLabel: 'Flashcards' },
+        content: [],
+      },
+      response.section[1],
+    ];
+    showLesson(
+      response,
+      [],
+      {
+        loadQuestions: async () => [],
+        loadFlashcards: async () => [audio],
+      },
+      ['deafness'],
     );
+    expect(await screen.findByRole('alert')).toHaveTextContent(enUiKitMessages.flashcard.flashcard.noCompatibleCards);
     expect(screen.queryByText('Hear this sound')).toBeNull();
   });
 

@@ -147,23 +147,34 @@ test('create-only builder never overwrites TS, retains YAML and strictly checks 
 test('media Config drafts retain independently owned block UUIDs without inventing physical asset paths', () => {
   const bank = createBank();
   const audio = {
-    id: id(401), slug: 'stimulusAudio', type: 'audio',
-    params: {}, locale: { title: { en: 'A bell rings' } },
+    id: id(401),
+    slug: 'stimulusAudio',
+    type: 'audio',
+    params: {},
+    locale: { title: { en: 'A bell rings' } },
   };
   const image = {
-    id: id(402), slug: 'diagram', type: 'image',
-    params: { fill: true, aspectRatio: 1 }, locale: { alt: { en: 'One triangle' } },
+    id: id(402),
+    slug: 'diagram',
+    type: 'image',
+    params: { fill: true, aspectRatio: 1 },
+    locale: { alt: { en: 'One triangle' } },
   };
   const video = {
-    id: id(403), slug: 'motion', type: 'video',
-    params: {}, locale: { label: { en: 'Motion demonstration' } },
+    id: id(403),
+    slug: 'motion',
+    type: 'video',
+    params: {},
+    locale: { label: { en: 'Motion demonstration' } },
   };
   const subtitles = { id: id(404), slug: 'captions', type: 'subtitles', params: {}, locale: {} };
   bank.flashcards.items.first.content.front = {
-    items: { stimulusAudio: audio, diagram: image }, order: ['stimulusAudio', 'diagram'],
+    items: { stimulusAudio: audio, diagram: image },
+    order: ['stimulusAudio', 'diagram'],
   };
   bank.flashcards.items.first.content.back = {
-    items: { motion: video, captions: subtitles }, order: ['motion', 'captions'],
+    items: { motion: video, captions: subtitles },
+    order: ['motion', 'captions'],
   };
   const source = renderFlashcardBank(bank);
   for (const kind of ['Audio', 'Image', 'Video', 'Subtitles']) {
@@ -217,9 +228,16 @@ test('read-only Flashcards Section check accepts reviewed UUID subsets and rejec
     const original = fs.readFileSync(entrypoint, 'utf8');
     const registry = path.join(lesson, 'sections', 'index.ts');
     const sectionFile = path.join(sectionDir, 'index.ts');
-    fs.writeFileSync(registry, "import { recall } from './recall';\nexport const section = { items: { recall }, order: ['recall'] };\n");
-    const section = ids => "export const recall = defineFlashcardsSection({ id: '" + id(700) +
-      "', slug: 'recall', params: { selection: { flashcardIds: " + JSON.stringify(ids) + " } } });\n";
+    fs.writeFileSync(
+      registry,
+      "import { recall } from './recall';\nexport const section = { items: { recall }, order: ['recall'] };\n",
+    );
+    const section = ids =>
+      "export const recall = defineFlashcardsSection({ id: '" +
+      id(700) +
+      "', slug: 'recall', params: { selection: { flashcardIds: " +
+      JSON.stringify(ids) +
+      ' } } });\n';
     fs.writeFileSync(sectionFile, section([id(1)]));
     assert.deepEqual(runOne(textbook, lessonId, '--verify-sections', root), { sections: 1, selectedCards: 1 });
     fs.writeFileSync(sectionFile, section([id(999)]));
