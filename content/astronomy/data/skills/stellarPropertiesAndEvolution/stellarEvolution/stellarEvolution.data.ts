@@ -39,7 +39,7 @@ export const stellarEvolution_SkillGroup_Data = defineSkillGroup({
     et: 'Tähtede areng',
     be: 'Эвалюцыя зорак',
     ka: 'ვარსკვლავთა ევოლუცია',
-    kk: 'Жұлдыздардың эволюциясы',
+    kk: 'Jūldyzdardyñ evoliutsiiasy',
     qm: 'Yıldızlarnıñ evolyutsiyası',
   },
   skills: [
@@ -80,7 +80,7 @@ export const stellarEvolution_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri, kuidas tähed muutuvad tuumakütuse ammendudes.',
       be: 'Даведайцеся, як зоркі зьмяняюцца, паступова вычэрпваючы ядзернае паліва.',
       ka: 'გაიგეთ, როგორ იცვლებიან ვარსკვლავები ბირთვული საწვავის ამოწურვისას.',
-      kk: 'Жұлдыздар ядролық отынын тауыса келе қалай өзгеретінін біліңіз.',
+      kk: 'Jūldyzdar iadrolyq otynyn tauysa kele qalai özgeretının bılıñız.',
       qm: 'Yıldızlar yadroviy yaqıtlarını sarf etken sayın nasıl deñişkenini ögreniñiz.',
     },
   },

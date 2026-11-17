@@ -31,7 +31,7 @@ export const stellarTemperature_Skill_Data = defineSkill({
     et: 'Tähtede temperatuur',
     be: 'Тэмпэратура зорак',
     ka: 'ვარსკვლავების ტემპერატურა',
-    kk: 'Жұлдыздардың температурасы',
+    kk: 'Jūldyzdardyñ temperaturasy',
     qm: 'Yıldızlarnıñ sıcaqlığı',
   },
   description: {
@@ -64,7 +64,7 @@ export const stellarTemperature_Skill_Data = defineSkill({
       et: 'Uuri tähtede temperatuuri nende valguse värvuste ja spektrimustrite abil.',
       be: 'Дасьледуйце тэмпэратуру зорак паводле колераў і спэктральных асаблівасьцяў іхнага сьвятла.',
       ka: 'გამოიყენეთ ვარსკვლავების სინათლის ფერები და სპექტრული ნიშნები მათი ტემპერატურის შესასწავლად.',
-      kk: 'Жұлдыз температурасын зерттеу үшін оның жарығының түстері мен спектрлік белгілерін пайдаланыңыз.',
+      kk: 'Jūldyz temperaturasyn zertteu üşın onyñ jaryğynyñ tüsterı men spektrlık belgılerın paidalanyñyz.',
       qm: 'Yıldız yarığınıñ renkleri ve spektr belgilerine köre sıcaqlığını araştırıñız.',
     },
   },

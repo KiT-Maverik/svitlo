@@ -31,7 +31,7 @@ export const pulsars_Skill_Data = defineSkill({
     et: 'Pulsarid',
     be: 'Пульсары',
     ka: 'პულსარები',
-    kk: 'Пульсарлар',
+    kk: 'Pulsarlar',
     qm: 'Pulsarlar',
   },
   description: {
@@ -65,7 +65,7 @@ export const pulsars_Skill_Data = defineSkill({
       et: 'Selgita, miks pöörlevad neutrontähed võivad tekitada korrapäraseid kiirgusimpulsse.',
       be: 'Растлумачце, чаму нэўтронныя зоркі, што круцяцца, могуць выпраменьваць рэгулярныя імпульсы.',
       ka: 'ახსენით, რატომ შეიძლება მბრუნავმა ნეიტრონულმა ვარსკვლავებმა გამოსცენ გამოსხივების რეგულარული იმპულსები.',
-      kk: 'Айналатын нейтрондық жұлдыздар неге тұрақты сәуле импульстерін шығара алатынын түсіндіріңіз.',
+      kk: 'Ainalatyn neitrondyq jūldyzdar nege tūraqty säule impulsterın şyğara alatynyn tüsındırıñız.',
       qm: 'Aylanğan neytron yıldızları ne içün muntazam nurlanuv impulsları çıqara bilgenini añlatıñız.',
     },
   },

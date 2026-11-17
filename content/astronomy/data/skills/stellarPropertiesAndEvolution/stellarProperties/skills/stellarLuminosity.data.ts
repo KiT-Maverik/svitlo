@@ -31,7 +31,7 @@ export const stellarLuminosity_Skill_Data = defineSkill({
     et: 'Tähtede kiirgusvõimsus',
     be: 'Сьвяцільнасьць зорак',
     ka: 'ვარსკვლავების ნათობა',
-    kk: 'Жұлдыздардың жарқырау қуаты',
+    kk: 'Jūldyzdardyñ jarqyrau quaty',
     qm: 'Yıldızlarnıñ yarıq quveti',
   },
   description: {
@@ -65,7 +65,7 @@ export const stellarLuminosity_Skill_Data = defineSkill({
       et: 'Erista tähe kiiratavat energiat ja selle Maalt nähtavat heledust.',
       be: 'Адрозьнівайце выпраменьваную зоркай энэргію ад яе бачнай яркасьці зь Зямлі.',
       ka: 'განასხვავეთ ვარსკვლავის გამოსხივების სრული სიმძლავრე და მისი დედამიწიდან დანახული სიკაშკაშე.',
-      kk: 'Жұлдыздың бір секундта шығаратын энергиясы мен оның Жерден көрінетін жарықтығын ажыратыңыз.',
+      kk: 'Jūldyzdyñ bır sekundta şyğaratyn energiiasy men onyñ Jerden körınetın jaryqtyğyn ajyratyñyz.',
       qm: 'Yıldıznıñ çıqarğan umumiy yarıq quvetini Yerden körüngen parlaqlığından ayırıñız.',
     },
   },

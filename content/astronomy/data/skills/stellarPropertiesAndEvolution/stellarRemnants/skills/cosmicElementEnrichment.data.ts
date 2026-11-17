@@ -31,7 +31,7 @@ export const cosmicElementEnrichment_Skill_Data = defineSkill({
     et: 'Kosmiline elementide rikastumine',
     be: 'Узбагачэньне космасу элемэнтамі',
     ka: 'კოსმოსის ელემენტებით გამდიდრება',
-    kk: 'Ғарыштың химиялық элементтермен баюы',
+    kk: 'Ğaryştyñ himiialyq elementtermen baiuy',
     qm: 'Kosmosta elementlerniñ artması',
   },
   description: {
@@ -65,7 +65,7 @@ export const cosmicElementEnrichment_Skill_Data = defineSkill({
       et: 'Uuri, kuidas tähed ja täheplahvatused levitavad elemente ümbritsevasse kosmosesse.',
       be: 'Даведайцеся, як зоркі і іхныя выбухі пашыраюць хімічныя элемэнты ў навакольнай прасторы.',
       ka: 'გაიგეთ, როგორ ავრცელებენ ვარსკვლავები და მათი აფეთქებები ქიმიურ ელემენტებს გარემომცველ სივრცეში.',
-      kk: 'Жұлдыздар мен олардың жарылыстары химиялық элементтерді айналадағы кеңістікке қалай тарататынын біліңіз.',
+      kk: 'Jūldyzdar men olardyñ jarylystary himiialyq elementterdı ainaladağy keñıstıkke qalai taratatynyn bılıñız.',
       qm: 'Yıldızlar ve olarnıñ patlavları kimyeviy elementlerni etraftaki kosmosqa nasıl tarqatqanını ögreniñiz.',
     },
   },

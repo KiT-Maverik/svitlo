@@ -31,7 +31,7 @@ export const stellarRadius_Skill_Data = defineSkill({
     et: 'Tähe raadius',
     be: 'Радыюс зоркі',
     ka: 'ვარსკვლავის რადიუსი',
-    kk: 'Жұлдыз радиусы',
+    kk: 'Jūldyz radiusy',
     qm: 'Yıldıznıñ radiusı',
   },
   description: {
@@ -64,7 +64,7 @@ export const stellarRadius_Skill_Data = defineSkill({
       et: 'Uuri, kuidas astronoomid hindavad tähe raadiust selle valguse ja teiste vaatluste põhjal.',
       be: 'Даведайцеся, як астраномы вызначаюць радыюс зоркі паводле яе сьвятла і іншых назіраньняў.',
       ka: 'გაიგეთ, როგორ ადგენენ ასტრონომები ვარსკვლავის რადიუსს სინათლისა და სხვა დაკვირვებების მიხედვით.',
-      kk: 'Астрономдардың жұлдыз радиусын жарығы мен өзге бақылаулар арқылы қалай анықтайтынын біліңіз.',
+      kk: 'Astronomdardyñ jūldyz radiusyn jaryğy men özge baqylaular arqyly qalai anyqtaitynyn bılıñız.',
       qm: 'Astronomlar yıldıznıñ radiusını onıñ yarığı ve başqa közetüvlerge köre nasıl belgilegenini ögreniñiz.',
     },
   },

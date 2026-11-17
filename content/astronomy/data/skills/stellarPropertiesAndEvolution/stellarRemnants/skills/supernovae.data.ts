@@ -31,7 +31,7 @@ export const supernovae_Skill_Data = defineSkill({
     et: 'Supernoovad',
     be: 'Звышновыя зоркі',
     ka: 'სუპერნოვები',
-    kk: 'Асқын жаңа жұлдыздар',
+    kk: 'Asqyn jaña jūldyzdar',
     qm: 'Süpernovalar',
   },
   description: {
@@ -65,7 +65,7 @@ export const supernovae_Skill_Data = defineSkill({
       et: 'Võrdle eri protsesse, mis põhjustavad supernoovade plahvatusi.',
       be: 'Параўнайце розныя працэсы, якія выклікаюць выбухі звышновых зорак.',
       ka: 'შეადარეთ სხვადასხვა პროცესი, რომლებიც სუპერნოვების აფეთქებებს იწვევს.',
-      kk: 'Асқын жаңа жұлдыз жарылыстарын тудыратын әртүрлі үдерістерді салыстырыңыз.',
+      kk: 'Asqyn jaña jūldyz jarylystaryn tudyratyn ärtürlı üderısterdı salystyryñyz.',
       qm: 'Süpernova patlavlarına sebep olğan türlü protsesslerni muqayese etiñiz.',
     },
   },

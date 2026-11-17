@@ -37,7 +37,7 @@ export const stellarPropertiesAndEvolution_SkillDomain_Data = defineSkillDomain(
     et: 'Tähtede omadused ja areng',
     be: 'Уласьцівасьці і эвалюцыя зорак',
     ka: 'ვარსკვლავების თვისებები და ევოლუცია',
-    kk: 'Жұлдыздардың қасиеттері мен эволюциясы',
+    kk: 'Jūldyzdardyñ qasietterı men evoliutsiiasy',
     qm: 'Yıldızlarnıñ hususiyetleri ve evolyutsiyası',
   },
   groups: [
@@ -78,7 +78,7 @@ export const stellarPropertiesAndEvolution_SkillDomain_Data = defineSkillDomain(
       et: 'Uuri, millised on tähed, kuidas nad tekivad ja elu jooksul muutuvad.',
       be: 'Дасьледуйце, якія бываюць зоркі, як яны ўтвараюцца і зьмяняюцца цягам свайго існаваньня.',
       ka: 'შეისწავლეთ, როგორია ვარსკვლავები, როგორ წარმოიქმნებიან და როგორ იცვლებიან სიცოცხლის განმავლობაში.',
-      kk: 'Жұлдыздардың қасиеттерін, қалай пайда болатынын және өмір бойы қалай өзгеретінін зерттеңіз.',
+      kk: 'Jūldyzdardyñ qasietterın, qalai paida bolatynyn jäne ömır boiy qalai özgeretının zertteñız.',
       qm: 'Yıldızlar nasıl olğanını, nasıl peyda olğanını ve ömürleri devamında nasıl deñişkenini ögreniñiz.',
     },
   },

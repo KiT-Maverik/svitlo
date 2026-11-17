@@ -31,7 +31,7 @@ export const neutronStars_Skill_Data = defineSkill({
     et: 'Neutrontähed',
     be: 'Нэўтронныя зоркі',
     ka: 'ნეიტრონული ვარსკვლავები',
-    kk: 'Нейтрондық жұлдыздар',
+    kk: 'Neitrondyq jūldyzdar',
     qm: 'Neytron yıldızları',
   },
   description: {
@@ -65,7 +65,7 @@ export const neutronStars_Skill_Data = defineSkill({
       et: 'Uuri, kuidas tähe tuuma kokkukukkumine võib moodustada neutrontähe.',
       be: 'Даведайцеся, як каляпс ядра зоркі можа ўтварыць нэўтронную зорку.',
       ka: 'გაიგეთ, როგორ შეიძლება ვარსკვლავის ბირთვის კოლაფსმა წარმოქმნას ნეიტრონული ვარსკვლავი.',
-      kk: 'Жұлдыз өзегінің сығылуы нейтрондық жұлдызды қалай түзетінін біліңіз.',
+      kk: 'Jūldyz özegınıñ syğyluy neitrondyq jūldyzdy qalai tüzetının bılıñız.',
       qm: 'Yıldıznıñ merkeziniñ çöküvi neytron yıldızını nasıl peyda ete bilgenini ögreniñiz.',
     },
   },

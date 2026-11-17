@@ -39,7 +39,7 @@ export const stellarProperties_SkillGroup_Data = defineSkillGroup({
     et: 'Tähtede füüsikalised omadused',
     be: 'Фізычныя ўласьцівасьці зорак',
     ka: 'ვარსკვლავების ფიზიკური თვისებები',
-    kk: 'Жұлдыздардың физикалық қасиеттері',
+    kk: 'Jūldyzdardyñ fizikalyq qasietterı',
     qm: 'Yıldızlarnıñ fiziki hususiyetleri',
   },
   skills: [
@@ -80,7 +80,7 @@ export const stellarProperties_SkillGroup_Data = defineSkillGroup({
       et: 'Õpi, kuidas astronoomid mõõdavad ja järeldavad tähtede füüsikalisi omadusi.',
       be: 'Даведайцеся, як астраномы вымяраюць і вызначаюць фізычныя ўласьцівасьці зорак.',
       ka: 'გაიგეთ, როგორ ზომავენ და ადგენენ ასტრონომები ვარსკვლავების ფიზიკურ თვისებებს.',
-      kk: 'Астрономдардың жұлдыздардың физикалық қасиеттерін қалай өлшеп, анықтайтынын біліңіз.',
+      kk: 'Astronomdardyñ jūldyzdardyñ fizikalyq qasietterın qalai ölşep, anyqtaitynyn bılıñız.',
       qm: 'Astronomlar yıldızlarnıñ fiziki hususiyetlerini nasıl ölçkenini ve netice çıqarğanını ögreniñiz.',
     },
   },

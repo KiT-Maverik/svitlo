@@ -31,7 +31,7 @@ export const stellarMassBlackHoles_Skill_Data = defineSkill({
     et: 'Tähemassiga mustad augud',
     be: 'Чорныя дзіркі зорнай масы',
     ka: 'ვარსკვლავური მასის შავი ხვრელები',
-    kk: 'Жұлдыздық массалы қара құрдымдар',
+    kk: 'Jūldyzdyq massaly qara qūrdymdar',
     qm: 'Yıldız kütlesindeki qara çuqurlar',
   },
   description: {
@@ -64,7 +64,7 @@ export const stellarMassBlackHoles_Skill_Data = defineSkill({
       et: 'Uuri, kuidas tekivad tähemassiga mustad augud ja kuidas astronoomid nende mõju tuvastavad.',
       be: 'Дасьледуйце, як утвараюцца чорныя дзіркі зорнай масы і як астраномы выяўляюць іхны ўплыў.',
       ka: 'შეისწავლეთ, როგორ წარმოიქმნება ვარსკვლავური მასის შავი ხვრელები და როგორ აფიქსირებენ ასტრონომები მათ გავლენას.',
-      kk: 'Жұлдыздық массалы қара құрдымдардың қалай пайда болатынын және астрономдардың олардың әсерін қалай анықтайтынын зерттеңіз.',
+      kk: 'Jūldyzdyq massaly qara qūrdymdardyñ qalai paida bolatynyn jäne astronomdardyñ olardyñ äserın qalai anyqtaitynyn zertteñız.',
       qm: 'Yıldız kütlesindeki qara çuqurlar nasıl peyda olğanını ve astronomlar olarnıñ tesirini nasıl belgilegenini ögreniñiz.',
     },
   },

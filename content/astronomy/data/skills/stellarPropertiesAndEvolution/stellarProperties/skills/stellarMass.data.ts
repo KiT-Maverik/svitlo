@@ -31,7 +31,7 @@ export const stellarMass_Skill_Data = defineSkill({
     et: 'Tähtede mass',
     be: 'Маса зорак',
     ka: 'ვარსკვლავების მასა',
-    kk: 'Жұлдыздардың массасы',
+    kk: 'Jūldyzdardyñ massasy',
     qm: 'Yıldızlarnıñ kütlesi',
   },
   description: {
@@ -64,7 +64,7 @@ export const stellarMass_Skill_Data = defineSkill({
       et: 'Kasuta orbiidimõõtmisi ja mudeleid tähe massi hindamiseks.',
       be: 'Выкарыстоўвайце арбітальныя вымярэньні і мадэлі для ацэнкі масы зоркі.',
       ka: 'გამოიყენეთ ორბიტული გაზომვები და მოდელები ვარსკვლავის მასის შესაფასებლად.',
-      kk: 'Жұлдыз массасын бағалау үшін орбиталық өлшемдер мен модельдерді қолданыңыз.',
+      kk: 'Jūldyz massasyn bağalau üşın orbitalyq ölşemder men modelderdı qoldanyñyz.',
       qm: 'Yıldıznıñ kütlesini baalamaq içün orbital ölçevler ve modellerden faydalanıñız.',
     },
   },
