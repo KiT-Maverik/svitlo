@@ -1,5 +1,5 @@
 name: Translation production
-description: Coordinate parallel entity translations and independent post-integration reviews in one issue.
+description: Coordinate parallel entity translations and owner-directed independent reviews in one issue.
 title: 'Translate and review: '
 labels:
   - 'work: translation'
@@ -73,7 +73,9 @@ body:
         Approved source of meaning:
         Constraints / reading audience:
         Preferred concurrency (optional, default planned from workload):
-        Authorized agent-subtask merges:
+        Owner-authorized review timing, assignments and source PRs:
+        Permission to fix reviewed locale fields:
+        Authorized agent-subtask merges after review:
         Final integration merge requires owner approval:
     validations:
       required: true
@@ -95,7 +97,7 @@ body:
         Planned translation agent count / rationale:
         Translation integration branch / Draft PR -> main:
         Translation baseline and check commands:
-        Independent review snapshot (set only after all translation PRs merge):
+        Review source PR/SHA and owner authorization per batch:
         Review generator and artifact paths verified:
         Planned review agent count / rationale:
 
@@ -115,17 +117,17 @@ body:
         - [ ] Canonical source data / baseline available
         - [ ] One Draft integration PR targeting main created and linked
         - [ ] Translation batches nonoverlapping and completely assigned
-        - [ ] All translation subtask PRs verified and merged into integration
-        - [ ] Integrated translations validated and review baseline frozen
-        - [ ] Entity-specific localized Markdown generator verified
-        - [ ] Review agent batches assigned from integrated revision
-        - [ ] All assigned review documents generated and manifest verified
-        - [ ] All review batches completed; corrections merged and rechecked
+        - [ ] Owner-authorized review batch assignments and source PRs recorded
+        - [ ] Entity-specific localized Markdown generator verified for each review
+        - [ ] Assigned Markdown and manifest verified against source PR/SHA
+        - [ ] Reviewed translator PRs corrected, cleaned and individually merged as authorized
+        - [ ] All translation subtask PRs merged into integration
+        - [ ] All reviews complete; integrated source validation verified
         - [ ] Final completeness, typecheck, CI and cleanup verified
         - [ ] Owner authorized final integration merge
       description: |
-        Each gate needs evidence linked below. Do not check "review ready"
-        based on unmerged translation PRs. Reviewer MUST STOP and report in
+        Each gate needs evidence linked below. An owner-authorized review
+        may begin directly on an unmerged translator PR. Reviewer MUST STOP and report in
         chat if the required entity-specific localized document generator is absent.
     validations:
       required: true
@@ -139,7 +141,7 @@ body:
         Active owners and branches:
         Last confirmed integration SHA:
         Translation batch PRs and merge evidence:
-        Reviewer source revision:
+        Reviewer source PR/SHA and authorization:
         Agent CI Artifacts manifest / document paths:
         Missing generator, locales or other blockers:
         Latest validated results:

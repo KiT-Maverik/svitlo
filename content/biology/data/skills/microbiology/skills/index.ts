@@ -1,9 +1,0 @@
-export { distinguishBacteriaAndArchaea_Skill_Data } from './distinguishBacteriaAndArchaea.data';
-export { distinguishBeneficialAndHarmfulMicrobialInteractionsWithHumans_Skill_Data } from './distinguishBeneficialAndHarmfulMicrobialInteractionsWithHumans.data';
-export { explainBacterialCellDivision_Skill_Data } from './explainBacterialCellDivision.data';
-export { explainProkaryoticCellStructure_Skill_Data } from './explainProkaryoticCellStructure.data';
-export { explainTheRoleOfMicroorganismsInFermentation_Skill_Data } from './explainTheRoleOfMicroorganismsInFermentation.data';
-export { explainTheirRoleInDecomposition_Skill_Data } from './explainTheirRoleInDecomposition.data';
-export { identifyBacterialHabitats_Skill_Data } from './identifyBacterialHabitats.data';
-export { recognizeMicroorganismsFromDescriptions_Skill_Data } from './recognizeMicroorganismsFromDescriptions.data';
-export { recognizeMicroscopicEukaryotes_Skill_Data } from './recognizeMicroscopicEukaryotes.data';

@@ -1,0 +1,91 @@
+import { defineSkillGroup } from '@svitlo/engine/build';
+
+import { detectAnInfiniteLoop } from './detectAnInfiniteLoop';
+import { handleAnEvent } from './handleAnEvent';
+import { implementALoop } from './implementALoop';
+import { implementConditionalBehavior } from './implementConditionalBehavior';
+import { moveLoopInvariantComputationsOutsideALoop } from './moveLoopInvariantComputationsOutsideALoop';
+import { orderOverlappingConditionalChecks } from './orderOverlappingConditionalChecks';
+import { writeASequenceOfCommands } from './writeASequenceOfCommands';
+
+export const programmingConstructs = defineSkillGroup({
+  slug: 'programmingConstructs',
+  id: '8da65c85-bad1-4a3c-bd42-deb0faeee09b',
+  name: {
+    ar: 'بنى البرمجة',
+    be: 'Праграмныя канструкцыі',
+    bn: 'প্রোগ্রামিং কাঠামো',
+    de: 'Programmierkonstrukte',
+    en: 'Programming Constructs',
+    es: 'Estructuras de programación',
+    et: 'Programmeerimiskonstruktsioonid',
+    fr: 'Structures de programmation',
+    he: 'מבני תכנות',
+    hi: 'प्रोग्रामिंग संरचनाएँ',
+    id: 'Struktur pemrograman',
+    it: 'Costrutti di programmazione',
+    ja: 'プログラムの制御構造',
+    ka: 'პროგრამირების კონსტრუქციები',
+    kk: 'Бағдарламалау конструкциялары',
+    ko: '프로그래밍 구문',
+    lt: 'Programavimo konstrukcijos',
+    lv: 'Programmēšanas konstrukcijas',
+    mr: 'प्रोग्रामिंग संरचना',
+    ms: 'Struktur pengaturcaraan',
+    pl: 'Konstrukcje programistyczne',
+    pt: 'Estruturas de programação',
+    qm: 'Programmalav qurulışları',
+    ta: 'நிரலாக்கக் கட்டமைப்புகள்',
+    te: 'ప్రోగ్రామింగ్ నిర్మాణాలు',
+    tr: 'Programlama yapıları',
+    uk: 'Програмні конструкції',
+    ur: 'پروگرامنگ کی ساختیں',
+    vi: 'Cấu trúc lập trình',
+    zh: '程序控制结构',
+  },
+  skills: {
+    detectAnInfiniteLoop,
+    handleAnEvent,
+    implementALoop,
+    implementConditionalBehavior,
+    moveLoopInvariantComputationsOutsideALoop,
+    orderOverlappingConditionalChecks,
+    writeASequenceOfCommands,
+  },
+  description: {
+    methodological:
+      'Using executable commands, conditions, loops, and event responses to control a program. Unlike algorithm design, the constructs must be implemented in a particular execution environment.',
+    frontend: {
+      ar: 'تعلّم التحكم في البرامج باستخدام التسلسل والشروط والحلقات والأحداث.',
+      be: 'Навучыся кіраваць праграмай з дапамогай пасьлядоўнасьцяў, умоваў, цыкляў і падзеяў.',
+      bn: 'ক্রম, শর্ত, লুপ ও ইভেন্ট দিয়ে প্রোগ্রাম নিয়ন্ত্রণ করতে শেখো।',
+      de: 'Lerne, Programme mit Abläufen, Bedingungen, Schleifen und Ereignissen zu steuern.',
+      en: 'Learn to control programs using sequences, conditions, loops and events.',
+      es: 'Aprende a controlar programas mediante secuencias, condiciones, bucles y eventos.',
+      et: 'Õpi programme juhtima järjestuste, tingimuste, tsüklite ja sündmustega.',
+      fr: 'Apprends à contrôler les programmes avec des séquences, conditions, boucles et événements.',
+      he: 'למדו לשלוט בתוכניות באמצעות רצפים, תנאים, לולאות ואירועים.',
+      hi: 'अनुक्रम, शर्तों, लूप और घटनाओं से प्रोग्राम नियंत्रित करना सीखें।',
+      id: 'Pelajari cara mengendalikan program menggunakan urutan, kondisi, perulangan, dan peristiwa.',
+      it: 'Impara a controllare i programmi mediante sequenze, condizioni, cicli ed eventi.',
+      ja: '順序、条件分岐、繰り返し、イベントを使ってプログラムを制御しよう。',
+      ka: 'ისწავლე პროგრამის მართვა მიმდევრობებით, პირობებით, ციკლებითა და მოვლენებით.',
+      kk: 'Бағдарламаны тізбектер, шарттар, циклдер және оқиғалар арқылы басқаруды үйрен.',
+      ko: '순서, 조건, 반복문, 이벤트를 사용해 프로그램을 제어하는 방법을 배워 보세요.',
+      lt: 'Išmok valdyti programas naudodamas sekas, sąlygas, ciklus ir įvykius.',
+      lv: 'Iemācies vadīt programmas, izmantojot secības, nosacījumus, ciklus un notikumus.',
+      mr: 'क्रम, अटी, लूप आणि घटनांद्वारे प्रोग्राम नियंत्रित करणे शिका.',
+      ms: 'Pelajari cara mengawal atur cara menggunakan urutan, syarat, gelung dan peristiwa.',
+      pl: 'Naucz się sterować programami za pomocą sekwencji, warunków, pętli i zdarzeń.',
+      pt: 'Aprenda a controlar programas usando sequências, condições, laços e eventos.',
+      qm: 'Sıralama, şart, devir ve vaqialar yardımınen programmalarnı idare etmege ögren.',
+      ta: 'வரிசைகள், நிபந்தனைகள், மடக்குகள், நிகழ்வுகள் மூலம் நிரல்களைக் கட்டுப்படுத்தக் கற்றுக்கொள்.',
+      te: 'క్రమాలు, షరతులు, లూప్‌లు, సంఘటనలతో ప్రోగ్రామ్‌లను నియంత్రించడం నేర్చుకోండి.',
+      tr: 'Sıralamalar, koşullar, döngüler ve olaylarla programları denetlemeyi öğren.',
+      uk: 'Навчися керувати програмою за допомогою послідовностей, умов, циклів і подій.',
+      ur: 'ترتیب، شرائط، حلقوں اور واقعات سے پروگراموں کو کنٹرول کرنا سیکھیں۔',
+      vi: 'Học cách điều khiển chương trình bằng trình tự, điều kiện, vòng lặp và sự kiện.',
+      zh: '学习用顺序、条件、循环和事件控制程序。',
+    },
+  },
+});

@@ -1,6 +1,6 @@
 name: Agent CI Artifacts
 
-# One reusable CI tool, invoked on demand or when a draft PR becomes ready.
+# One scoped, on-demand reference generator. PR ready-for-review triggers artifact cleanup only.
 # This workflow must exist on the default branch before comment/manual triggers work.
 on:
   issue_comment:
@@ -12,15 +12,42 @@ on:
         required: true
         type: number
       operation:
-        description: 'Generate complete reference library, or remove it from this PR'
+        description: 'Generate only the requested reference scope, or clean up'
         required: true
         type: choice
         default: generate
         options:
           - generate
           - cleanup
+      kind:
+        description: 'Reference family (required when generating)'
+        required: false
+        type: choice
+        default: skills
+        options:
+          - skills
+          - lessons
+          - assessment-methods
+          - ui-kit
+          - geography-home-copy
+      textbook:
+        description: 'For Skills/Lessons: content/<book>'
+        required: false
+        type: string
+      locale:
+        description: 'Optional language code; empty means all languages in the selected scope'
+        required: false
+        type: string
+      component:
+        description: 'UI Kit component name; empty means all dictionaries'
+        required: false
+        type: string
+      lesson:
+        description: 'Optional Lesson UUID (requires kind=lessons)'
+        required: false
+        type: string
   pull_request:
-    branches: [main, new-lesson]
+    branches: [main, new-lesson, integration/italian-localization]
     types: [ready_for_review]
 
 permissions:
@@ -38,8 +65,7 @@ jobs:
       github.event_name == 'pull_request' ||
       (github.event_name == 'issue_comment' &&
        github.event.issue.pull_request &&
-       github.event.comment.author_association == 'OWNER' &&
-       (github.event.comment.body == '/agent-artifacts generate' ||
+       (startsWith(github.event.comment.body, '/agent-artifacts generate') ||
         github.event.comment.body == '/agent-artifacts cleanup'))
     runs-on: ubuntu-latest
     permissions:
@@ -50,6 +76,11 @@ jobs:
       head_sha: ${{ steps.request.outputs.head_sha }}
       branch: ${{ steps.request.outputs.branch }}
       operation: ${{ steps.request.outputs.operation }}
+      kind: ${{ steps.request.outputs.kind }}
+      textbook: ${{ steps.request.outputs.textbook }}
+      locale: ${{ steps.request.outputs.locale }}
+      component: ${{ steps.request.outputs.component }}
+      lesson: ${{ steps.request.outputs.lesson }}
     steps:
       - name: Resolve trusted PR context without checking out code
         id: request
@@ -64,17 +95,83 @@ jobs:
           const isPR = process.env.GITHUB_EVENT_NAME === 'pull_request';
           const pr = isComment ? event.issue.number : isPR ? event.pull_request.number : Number(event.inputs.pr_number);
           if (!Number.isSafeInteger(pr) || pr < 1) throw Error('Valid PR number required');
-          const operation = isPR ? 'cleanup'
-            : isComment ? event.comment.body.trim().split(' ')[1] : event.inputs.operation;
+          const parts = isComment ? event.comment.body.trim().split(/\s+/) : [];
+          const operation = isPR ? 'cleanup' : isComment ? parts[1] : event.inputs.operation;
           if (!['generate', 'cleanup'].includes(operation)) throw Error('Invalid operation');
+          let kind = '', textbook = '', locale = '', component = '', lesson = '';
+          if (isComment) {
+            if (parts[0] !== '/agent-artifacts') throw Error('Unknown command');
+            if (operation === 'cleanup') {
+              if (parts.length !== 2) throw Error('Cleanup accepts no scope');
+            } else {
+              kind = parts[2] || '';
+              if (kind === 'skills' || kind === 'lessons') {
+                if (![4, 5].includes(parts.length)) {
+                  throw Error('Usage: /agent-artifacts generate ' + kind + ' content/<book> [locale]');
+                }
+                textbook = parts[3];
+                locale = parts[4] || '';
+              } else if (kind === 'ui-kit') {
+                if (![4, 5].includes(parts.length)) {
+                  throw Error('Usage: /agent-artifacts generate ui-kit <component|all> [locale]');
+                }
+                component = parts[3] === 'all' ? '' : parts[3];
+                locale = parts[4] || '';
+              } else if (kind === 'assessment-methods' || kind === 'geography-home-copy') {
+                if (![3, 4].includes(parts.length)) {
+                  throw Error('Usage: /agent-artifacts generate ' + kind + ' [locale]');
+                }
+                locale = parts[3] || '';
+              } else {
+                throw Error('Explicit kind required: skills, lessons, ui-kit, assessment-methods, geography-home-copy');
+              }
+            }
+          } else if (operation === 'generate') {
+            ({ kind = '', textbook = '', locale = '', component = '', lesson = '' } = event.inputs);
+          }
+          const allowed = ['skills', 'lessons', 'ui-kit', 'assessment-methods', 'geography-home-copy'];
+          if (operation === 'generate') {
+            if (!allowed.includes(kind)) throw Error('Unsupported reference family');
+            if ((kind === 'skills' || kind === 'lessons') !== Boolean(textbook) ||
+                (textbook && !/^content\/[a-z][a-z0-9-]*$/.test(textbook))) {
+              throw Error('Only Skills and Lessons require content/<book>');
+            }
+            if (locale && !/^[a-z]{2,4}$/.test(locale)) throw Error('Invalid locale');
+            if (component && (kind !== 'ui-kit' || !/^[A-Za-z][A-Za-z0-9]*$/.test(component))) {
+              throw Error('Invalid UI Kit component');
+            }
+            if (lesson && (kind !== 'lessons' ||
+                !/^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i.test(lesson))) {
+              throw Error('Invalid Lesson UUID');
+            }
+          }
+          const headers = {
+            authorization: 'Bearer ' + process.env.GH_TOKEN,
+            accept: 'application/vnd.github+json',
+            'x-github-api-version': '2022-11-28',
+          };
+          if (isComment) {
+            const author = event.comment.user?.login;
+            if (typeof author !== 'string' || !/^[a-zA-Z0-9-]+$/.test(author)) {
+              throw Error('Valid PR comment author required');
+            }
+            // Check actual repository access: author_association is not a permission level.
+            // GitHub maps the maintain role to permission=write.
+            const accessResponse = await fetch('https://api.github.com/repos/' +
+              process.env.GITHUB_REPOSITORY + '/collaborators/' +
+              encodeURIComponent(author) + '/permission', { headers });
+            if (!accessResponse.ok) {
+              throw Error('Cannot authorize PR comment by ' + author +
+                ': permission lookup HTTP ' + accessResponse.status);
+            }
+            const { permission } = await accessResponse.json();
+            if (!['write', 'maintain', 'admin'].includes(permission)) {
+              throw Error('PR comment author ' + author +
+                ' lacks write, maintain or admin repository access');
+            }
+          }
           const response = await fetch('https://api.github.com/repos/' +
-            process.env.GITHUB_REPOSITORY + '/pulls/' + pr, {
-              headers: {
-                authorization: 'Bearer ' + process.env.GH_TOKEN,
-                accept: 'application/vnd.github+json',
-                'x-github-api-version': '2022-11-28',
-              },
-            });
+            process.env.GITHUB_REPOSITORY + '/pulls/' + pr, { headers });
           if (!response.ok) throw Error('Unable to read PR: HTTP ' + response.status);
           const pull = await response.json();
           if (pull.state !== 'open') throw Error('PR must be open');
@@ -89,14 +186,14 @@ jobs:
               pull.head.ref.startsWith('-')) throw Error('Unsafe branch ref');
           const entries = {
             pr: String(pr), head_sha: pull.head.sha,
-            branch: pull.head.ref, operation,
+            branch: pull.head.ref, operation, kind, textbook, locale, component, lesson,
           };
           fs.appendFileSync(process.env.GITHUB_OUTPUT,
             Object.entries(entries).map(([k,v]) => k + '=' + v).join('\n') + '\n');
           NODE
 
   generate:
-    name: Build complete Markdown reference library (read-only source)
+    name: Generate selected Markdown references
     needs: resolve
     if: needs.resolve.outputs.operation == 'generate'
     runs-on: ubuntu-latest
@@ -112,36 +209,28 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
-      - name: Install and build current Lesson dependencies
+      - name: Install dependencies for the requested generator
+        run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Build Engine only for typed Lesson generation
+        if: needs.resolve.outputs.kind == 'lessons'
+        run: npm run package:build --workspace @svitlo/engine
+      - name: Generate only the selected reference scope
+        env:
+          REQUEST_KIND: ${{ needs.resolve.outputs.kind }}
+          REQUEST_BOOK: ${{ needs.resolve.outputs.textbook }}
+          REQUEST_LOCALE: ${{ needs.resolve.outputs.locale }}
+          REQUEST_COMPONENT: ${{ needs.resolve.outputs.component }}
+          REQUEST_LESSON: ${{ needs.resolve.outputs.lesson }}
         shell: bash
         run: |
           set -euo pipefail
-          npm ci --ignore-scripts --no-audit --no-fund
-          npm run package:build --workspace @svitlo/engine
-      - name: Validate Lesson artifact adapter
-        run: |
-          node --check shared/engine/scripts/generateLessonReviewArtifacts/generate-lesson-review-artifacts.mjs
-          node --test shared/engine/scripts/generateLessonReviewArtifacts/generate-lesson-review-artifacts.spec.mjs
-          node --check shared/engine/scripts/generateLessonsMarkdown/generate-lessons-markdown.mjs
-          node --check shared/engine/scripts/generateLessonsMarkdown/lesson-markdown.mjs
-          node --test shared/engine/scripts/generateLessonsMarkdown/generate-lessons-markdown.spec.mjs
-          node --check shared/engine/scripts/generateLessonsBySkill/generate-lessons-by-skill.mjs
-          node --test shared/engine/scripts/generateLessonsBySkill/generate-lessons-by-skill.spec.mjs
-      - name: Smoke-test actual Playground Lesson Markdown
-        shell: bash
-        run: |
-          set -euo pipefail
-          node shared/engine/scripts/generateLessonsMarkdown/generate-lessons-markdown.mjs --package content/playground --lesson d3048d21-8690-5255-b62c-984c69ac272c --locale uk --stdout > "$RUNNER_TEMP/lesson-uk.md"
-          grep -q '## Question Bank' "$RUNNER_TEMP/lesson-uk.md"
-          grep -q '## Flashcard Bank' "$RUNNER_TEMP/lesson-uk.md"
-          grep -q 'Quiz uses references' "$RUNNER_TEMP/lesson-uk.md"
-      - name: Generate Skills and Lesson Markdown in every supported language
-        run: |
-          node --check scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.mjs
-          node --check shared/engine/scripts/generateSkillsTaxonomy/generate-skills-taxonomy.mjs
-          node scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.mjs
+          args=(--kind "$REQUEST_KIND")
+          if [[ -n "$REQUEST_BOOK" ]]; then args+=(--package "$REQUEST_BOOK"); fi
+          if [[ -n "$REQUEST_LOCALE" ]]; then args+=(--locale "$REQUEST_LOCALE"); fi
+          if [[ -n "$REQUEST_COMPONENT" ]]; then args+=(--component "$REQUEST_COMPONENT"); fi
+          if [[ -n "$REQUEST_LESSON" ]]; then args+=(--lesson "$REQUEST_LESSON"); fi
+          node scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.mjs "${args[@]}"
       - name: Upload isolated CI result for trusted publish job
-        if: success()
         uses: actions/upload-artifact@v4
         with:
           name: agent-reference-library
@@ -151,8 +240,7 @@ jobs:
           retention-days: 1
       - name: Remove runner-only data
         if: always()
-        run: |
-          rm -rf -- .agent-ci-artifacts "$RUNNER_TEMP/lesson-uk.md"
+        run: rm -rf -- .agent-ci-artifacts
 
   publish:
     name: Commit review documents to source PR branch
@@ -176,6 +264,11 @@ jobs:
       - name: Validate downloaded files and commit only agent artifacts
         env:
           TARGET_BRANCH: ${{ needs.resolve.outputs.branch }}
+          REQUEST_KIND: ${{ needs.resolve.outputs.kind }}
+          REQUEST_BOOK: ${{ needs.resolve.outputs.textbook }}
+          REQUEST_LOCALE: ${{ needs.resolve.outputs.locale }}
+          REQUEST_COMPONENT: ${{ needs.resolve.outputs.component }}
+          REQUEST_LESSON: ${{ needs.resolve.outputs.lesson }}
         shell: bash
         run: |
           set -euo pipefail
@@ -194,14 +287,48 @@ jobs:
           import path from 'node:path';
           const root = '.agent-ci-artifacts';
           const manifest = JSON.parse(fs.readFileSync(path.join(root, 'manifest.json'), 'utf8'));
-          if (manifest.kind !== 'pr-scoped-agent-ci-artifacts' ||
+          if (manifest.kind !== 'pr-scoped-agent-ci-artifacts' || manifest.schemaVersion !== 3 ||
+              !manifest.scope || !['skills', 'lessons', 'ui-kit', 'assessment-methods', 'geography-home-copy'].includes(manifest.scope.kind) ||
               !Array.isArray(manifest.generated) || !Array.isArray(manifest.failures) ||
               manifest.generated.length === 0) throw Error('Invalid or empty agent artifact manifest');
+          const requested = {
+            kind: process.env.REQUEST_KIND,
+            package: process.env.REQUEST_BOOK || null,
+            locale: process.env.REQUEST_LOCALE || null,
+            component: process.env.REQUEST_COMPONENT || null,
+            lesson: process.env.REQUEST_LESSON || null,
+          };
+          for (const [key, value] of Object.entries(requested)) {
+            if (manifest.scope[key] !== value) {
+              throw Error('Manifest scope disagrees with authorized request: ' + key);
+            }
+          }
+          const expectedKinds = { skills: 'taxonomy', lessons: 'lesson',
+            'ui-kit': 'ui-kit-locale', 'assessment-methods': 'assessment-method',
+            'geography-home-copy': 'geography-home-copy' };
           const expected = new Set();
           for (const entry of manifest.generated) {
+            if (entry.kind !== expectedKinds[manifest.scope.kind]) {
+              throw Error('Generated document outside requested family: ' + entry.kind);
+            }
+            if (manifest.scope.locale && entry.locale !== manifest.scope.locale) {
+              throw Error('Generated document outside requested locale');
+            }
+            if (manifest.scope.package && entry.textbook !== manifest.scope.package) {
+              throw Error('Generated document outside requested textbook');
+            }
+            if (manifest.scope.component && entry.component !== manifest.scope.component) {
+              throw Error('Generated document outside requested UI Kit component');
+            }
+            if (manifest.scope.lesson && entry.lesson !==
+                manifest.scope.lesson.slice(-1) + '/' + manifest.scope.lesson) {
+              throw Error('Generated document outside requested Lesson UUID');
+            }
             const name = entry.path;
             const segments = typeof name === 'string' ? name.split('/') : [];
-            const depth = segments[1] === 'taxonomies' ? 4 : segments[1] === 'lessons' ? 6 : segments[1] === 'lessons-by-skill' ? 3 : segments[1] === 'assessment-methods' ? 3 : -1;
+            const depth = segments[1] === 'taxonomies' ? 4 : segments[1] === 'lessons' ? 6
+              : segments[1] === 'lessons-by-skill' ? 3 : segments[1] === 'assessment-methods' ? 3
+              : segments[1] === 'ui-kit' ? 4 : segments[1] === 'geography-home-copy' ? 3 : -1;
             if (typeof name !== 'string' ||
                 segments[0] !== root || segments.length !== depth ||
                 segments.slice(2).some(part => !/^[a-zA-Z0-9._-]+$/.test(part) || part === '..') ||
@@ -209,6 +336,11 @@ jobs:
                 (segments[1] === 'lessons-by-skill' && !/^[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}\.md$/.test(segments[2])) ||
                 expected.has(name) || !fs.statSync(name).isFile()) {
               throw Error('Invalid generated artifact entry: ' + String(name));
+            }
+            if (Object.hasOwn(entry, 'missing') &&
+                (!Number.isSafeInteger(entry.missing) || entry.missing < 0 ||
+                 entry.reviewReady !== (entry.missing === 0))) {
+              throw Error('Invalid missing-translation status: ' + name);
             }
             expected.add(name);
           }

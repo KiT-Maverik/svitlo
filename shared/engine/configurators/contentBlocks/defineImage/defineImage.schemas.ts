@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import type { DeepPartial } from '#types';
-import { deepStrict_Schema } from '#schemas';
+import { deepStrict_Schema, imageMediaReference_Schema, localizedMediaReference_Schema } from '#schemas';
 import { createContentBlockBaseSchema, localizationSwitch } from '../contentBlock.schemas';
 
 import type { Configurator_Mode } from '../../configurator.schemas';
@@ -20,24 +20,36 @@ const params = contentBlockBase.shape.params.extend({
 
 const imageBase = contentBlockBase.extend({ params });
 
-const locale = <Mode extends Configurator_Mode>(mode: Mode) => ({
-  src: localizationSwitch[mode],
-  alt: localizationSwitch[mode],
-  caption: localizationSwitch[mode].optional(),
+const configLocale = {
+  fileName: localizedMediaReference_Schema(imageMediaReference_Schema),
+  alt: localizationSwitch.config,
+  caption: localizationSwitch.config.optional(),
   fallback: z
     .object({
-      offline: localizationSwitch[mode].optional(),
-      unavailable: localizationSwitch[mode].optional(),
-      retry: localizationSwitch[mode].optional(),
+      offline: localizationSwitch.config.optional(),
+      unavailable: localizationSwitch.config.optional(),
+      retry: localizationSwitch.config.optional(),
     })
     .optional(),
-});
+};
+const propsLocale = {
+  src: localizationSwitch.props,
+  alt: localizationSwitch.props,
+  caption: localizationSwitch.props.optional(),
+  fallback: z
+    .object({
+      offline: localizationSwitch.props.optional(),
+      unavailable: localizationSwitch.props.optional(),
+      retry: localizationSwitch.props.optional(),
+    })
+    .optional(),
+};
 export type ContentBlock_Image_Locale<Mode extends Configurator_Mode> = z.infer<
-  z.ZodObject<ReturnType<typeof locale<Mode>>>
+  z.ZodObject<Mode extends 'config' ? typeof configLocale : typeof propsLocale>
 >;
 
 export const image_Config_Schema = imageBase
-  .extend(addUnifiedLocale(locale('config')))
+  .extend(addUnifiedLocale(configLocale))
   .refine(
     value =>
       value.params.fill
@@ -66,7 +78,7 @@ export type ContentBlock_Image_PropsBase = z.infer<typeof imageBase> & {
 };
 
 export const image_Props_Schema = imageBase
-  .extend(addUnifiedLocale(locale('props')))
+  .extend(addUnifiedLocale(propsLocale))
   .refine(
     value =>
       value.params.fill

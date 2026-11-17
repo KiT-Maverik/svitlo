@@ -109,7 +109,7 @@ describe('EngineContentBlockRenderer — assembled Props bridge', () => {
     expect(container.querySelector('audio')).toHaveAttribute('aria-label', 'Audio explanation');
   });
 
-  it('resolves optional localized media copy and code template variables for the selected language', () => {
+  it('renders already-localized media copy and code template variables from runtime props', () => {
     const blocks: ContentBlock_Props[] = [
       {
         id: 'localized-code',
@@ -117,7 +117,7 @@ describe('EngineContentBlockRenderer — assembled Props bridge', () => {
         type: 'code',
         params: { language: 'javascript', codeAsText: 'console.log("%_%MESSAGE%_%");' },
         locale: {
-          title: { en: 'Snippet', uk: 'Фрагмент' },
+          title: 'Фрагмент',
           variables: { MESSAGE: 'Привіт' },
         },
       },
@@ -129,7 +129,7 @@ describe('EngineContentBlockRenderer — assembled Props bridge', () => {
         locale: {
           src: '/art.png',
           alt: 'Мистецтво',
-          caption: { en: 'Painting', uk: 'Картина' },
+          caption: 'Картина',
         },
       },
       {
@@ -140,7 +140,7 @@ describe('EngineContentBlockRenderer — assembled Props bridge', () => {
         locale: {
           fileLocation: '/recording.mp3',
           title: 'Назва аудіо',
-          description: { en: 'Listen', uk: 'Слухайте' },
+          description: 'Слухайте',
         },
       },
     ];

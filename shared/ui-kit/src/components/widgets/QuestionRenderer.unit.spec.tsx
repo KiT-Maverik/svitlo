@@ -169,7 +169,7 @@ describe('QuestionRenderer — published Engine Props', () => {
 });
 
 const quizSettings = (layout: 'stack' | 'stepper', timeLimitSeconds?: number): QuizSection_Props['params'] => ({
-  selection: { mode: 'all' },
+  selection: { mode: 'all', questionIds: [one.id] },
   layout: { mode: layout, showProgress: true },
   feedbackMode: 'immediate',
   interaction: {
@@ -231,7 +231,7 @@ describe('Quiz Section presentation', () => {
 });
 
 describe('accessible Question labels', () => {
-  it('resolves an accessible media label for the selected content language', () => {
+  it('uses the already-localized accessible media label from runtime props', () => {
     const block = {
       id: uuid(101),
       slug: 'audioChoice',
@@ -241,11 +241,23 @@ describe('accessible Question labels', () => {
         fileLocation: '/recording.mp4',
         poster: '/poster.png',
         label: 'Recording',
-        title: { en: 'Recording', uk: 'Запис' },
+        title: 'Запис',
       },
     };
     expect(questionBlockLabel(block, 'uk')).toBe('Запис');
-    expect(() => questionBlockLabel(block, 'ar')).toThrow('Missing localized content at video.title for ar');
+    expect(questionBlockLabel(block, 'ar')).toBe('Запис');
+  });
+
+  it('rejects subtitles as question labels until a synchronized media renderer exists', () => {
+    expect(() =>
+      questionBlockLabel({
+        id: uuid(102),
+        slug: 'captions',
+        type: 'subtitles',
+        params: {},
+        locale: { fileLocation: '/captions.en.vtt' },
+      }),
+    ).toThrow('Subtitles cannot be used as standalone question labels');
   });
 
   it('strips Markdown syntax from a choice label using canonical locale Props', () => {

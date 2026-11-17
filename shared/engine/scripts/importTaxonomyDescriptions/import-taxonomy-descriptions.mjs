@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 /**
  * Safely promote already-edited English methodology from structured taxonomy
- * Markdown to existing Skill/Group/Domain *.data.ts files.
+ * Markdown to existing canonical Skill/Group/Domain index.ts and <slug>.ts files.
  *
  * Usage:
- *   node scripts/import-taxonomy-descriptions.mjs --package content/math
- *   node scripts/import-taxonomy-descriptions.mjs --package content/math --write
+ *   node shared/engine/scripts/importTaxonomyDescriptions/import-taxonomy-descriptions.mjs --package content/math
+ *   node shared/engine/scripts/importTaxonomyDescriptions/import-taxonomy-descriptions.mjs --package content/math --write
  *
  * Dry-run is the default. No translation, ID generation, file creation,
  * export rewrites, hierarchy changes, or frontend localization is performed.
@@ -67,11 +67,17 @@ function parseSection(entry) {
   if (linkLines.length !== 1) fail(prefix + 'expected exactly one standalone Code link');
   const match = linkLines[0].line.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
   if (match[2] === '#') fail(prefix + 'not implemented — cannot import description');
-  if (!/^[a-zA-Z0-9_.-]+\.data\.ts$/.test(match[1])) fail(prefix + 'bad Code link label');
+  if (!/^[a-zA-Z0-9_.-]+\.ts$/.test(match[1])) fail(prefix + 'bad Code link label');
   const target = path.resolve(path.dirname(markdownPath), decodeURI(match[2]));
   const srcRoot = path.join(packageRoot, 'data', 'skills') + path.sep;
-  if (!target.startsWith(srcRoot) || path.basename(target) !== match[1] || !fs.existsSync(target)) {
-    fail(prefix + 'Code link target must be an existing taxonomy *.data.ts: ' + match[2]);
+  const parts = path.relative(path.join(packageRoot, 'data', 'skills'), target).split(path.sep);
+  const canonical =
+    (parts.length === 2 && parts[1] === 'index.ts') ||
+    (parts.length === 2 && /^[a-z][a-zA-Z0-9]*\.ts$/.test(parts[1])) ||
+    (parts.length === 3 && parts[2] === 'index.ts') ||
+    (parts.length === 3 && /^[a-z][a-zA-Z0-9]*\.ts$/.test(parts[2]));
+  if (!target.startsWith(srcRoot) || !canonical || path.basename(target) !== match[1] || !fs.existsSync(target)) {
+    fail(prefix + 'Code link target must be an existing canonical taxonomy .ts file: ' + match[2]);
   }
 
   function field(label) {

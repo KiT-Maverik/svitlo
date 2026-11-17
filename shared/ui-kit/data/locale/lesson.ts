@@ -23,6 +23,27 @@ const en = {
 
 export type Lesson_Locale = typeof en;
 
+const it: Lesson_Locale = {
+  steps: { navigation: 'Fasi della lezione' },
+  celebration: {
+    title: 'Congratulazioni! Hai completato questa lezione!',
+    description: 'Teoria, esercizi, schede di ripasso e quiz: hai completato tutte le fasi.',
+    correctAnswers: 'Risposte corrette:',
+    scoreTemplate: '{score} su {total}',
+    note: 'Completare la lezione non significa aver risposto correttamente a tutte le domande: puoi sempre ripassare il materiale.',
+    home: 'Pagina iniziale',
+  },
+  questionProgress: {
+    navigation: 'Stato delle domande',
+    status: {
+      correct: 'Risposta corretta',
+      incorrect: 'Risposta errata',
+      unanswered: 'Non hai ancora risposto',
+      deferred: 'Rimandata',
+    },
+  },
+};
+
 const zh: Lesson_Locale = {
   steps: { navigation: '课程步骤' },
   celebration: {
@@ -613,6 +634,7 @@ const qm: Lesson_Locale = {
 
 export const lesson: UiKit_Component_Locale<Lesson_Locale> = {
   en,
+  it,
   zh,
   hi,
   es,

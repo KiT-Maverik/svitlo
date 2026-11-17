@@ -1,0 +1,91 @@
+import { defineSkillGroup } from '@svitlo/engine/build';
+
+import { angularResolution } from './angularResolution';
+import { astronomicalDetectors } from './astronomicalDetectors';
+import { astronomicalInterferometry } from './astronomicalInterferometry';
+import { lightGatheringAperture } from './lightGatheringAperture';
+import { opticalTelescopeSystems } from './opticalTelescopeSystems';
+import { radioAstronomy } from './radioAstronomy';
+import { spaceBasedObservation } from './spaceBasedObservation';
+
+export const telescopesAndDetectors = defineSkillGroup({
+  slug: 'telescopesAndDetectors',
+  id: '922c69ea-ab21-43f5-b975-21066259b7d2',
+  name: {
+    ar: 'التلسكوبات والكواشف',
+    be: 'Тэлескопы і дэтэктары',
+    bn: 'দূরবীক্ষণ যন্ত্র ও শনাক্তকারী',
+    de: 'Teleskope und Detektoren',
+    en: 'Telescopes and Detectors',
+    es: 'Telescopios y detectores',
+    et: 'Teleskoobid ja detektorid',
+    fr: 'Télescopes et détecteurs',
+    he: 'טלסקופים וגלאים',
+    hi: 'दूरबीनें और संसूचक',
+    id: 'Teleskop dan detektor',
+    it: 'Telescopi e rivelatori',
+    ja: '望遠鏡と検出器',
+    ka: 'ტელესკოპები და დეტექტორები',
+    kk: 'Teleskoptar men detektorlar',
+    ko: '망원경과 검출기',
+    lt: 'Teleskopai ir detektoriai',
+    lv: 'Teleskopi un detektori',
+    mr: 'दुर्बिणी आणि शोधक',
+    ms: 'Teleskop dan pengesan',
+    pl: 'Teleskopy i detektory',
+    pt: 'Telescópios e detectores',
+    qm: 'Teleskoplar ve detektorlar',
+    ta: 'தொலைநோக்கிகளும் கண்டறியும் கருவிகளும்',
+    te: 'దూరదర్శినులు, సంకేత గ్రాహకాలు',
+    tr: 'Teleskoplar ve algılayıcılar',
+    uk: 'Телескопи та детектори',
+    ur: 'دوربینیں اور آشکارے',
+    vi: 'Kính thiên văn và đầu dò',
+    zh: '望远镜与探测器',
+  },
+  skills: {
+    angularResolution,
+    astronomicalDetectors,
+    astronomicalInterferometry,
+    lightGatheringAperture,
+    opticalTelescopeSystems,
+    radioAstronomy,
+    spaceBasedObservation,
+  },
+  description: {
+    methodological:
+      'Instrumentation alters the detail, wavelengths and measurable signals available to observers; its scientific limitations are as important as its capabilities.',
+    frontend: {
+      ar: 'استكشف ما يمكن أن تكشفه التلسكوبات والكواشف، ولماذا توجد حدود لقياساتها.',
+      be: 'Даведайся, што могуць выявіць тэлескопы і дэтэктары і чаму іхныя вымярэньні маюць абмежаваньні.',
+      bn: 'দূরবীক্ষণ যন্ত্র ও শনাক্তকারী কী তথ্য প্রকাশ করতে পারে এবং তাদের পরিমাপের সীমাবদ্ধতা কেন আছে, তা জানো।',
+      de: 'Entdecke, was Teleskope und Detektoren sichtbar machen können und warum ihre Messungen Grenzen haben.',
+      en: 'Explore what telescopes and detectors can reveal and why their measurements have limits.',
+      es: 'Explora qué pueden revelar los telescopios y detectores y por qué sus mediciones tienen límites.',
+      et: 'Uuri, mida teleskoobid ja detektorid suudavad paljastada ning miks nende mõõtmistel on piirangud.',
+      fr: 'Découvre ce que les télescopes et les détecteurs peuvent révéler et pourquoi leurs mesures ont des limites.',
+      he: 'גלה מה טלסקופים וגלאים יכולים לחשוף ומדוע יש מגבלות למדידות שלהם.',
+      hi: 'जानें कि दूरबीनें और संसूचक क्या उजागर कर सकते हैं और उनके मापों की सीमाएँ क्यों होती हैं।',
+      id: 'Jelajahi apa yang dapat diungkap teleskop dan detektor serta mengapa hasil pengukurannya memiliki batasan.',
+      it: 'Esplora ciò che telescopi e rivelatori possono rivelare e perché le loro misurazioni hanno dei limiti.',
+      ja: '望遠鏡や検出器で何がわかるのか、また測定にはなぜ限界があるのか調べよう。',
+      ka: 'გაიგე, რისი გამოვლენა შეუძლიათ ტელესკოპებსა და დეტექტორებს და რატომ აქვს მათ გაზომვებს შეზღუდვები.',
+      kk: 'Teleskoptar men detektorlar nenı anyqtai alatynyn jäne olardyñ ölşeulerınıñ nelıkten şekteulerı bar ekenın zertte.',
+      ko: '망원경과 검출기로 무엇을 알아낼 수 있으며 측정에 어떤 한계가 있는지 살펴보세요.',
+      lt: 'Sužinok, ką gali atskleisti teleskopai ir detektoriai ir kodėl jų matavimai turi ribų.',
+      lv: 'Izpēti, ko var atklāt teleskopi un detektori un kāpēc to mērījumiem ir ierobežojumi.',
+      mr: 'दुर्बिणी आणि शोधक कोणती माहिती उघड करू शकतात व त्यांच्या मोजमापांना मर्यादा का असतात ते जाणून घ्या.',
+      ms: 'Terokai perkara yang dapat didedahkan oleh teleskop dan pengesan serta sebab pengukuran mereka mempunyai batasan.',
+      pl: 'Odkryj, co mogą ujawnić teleskopy i detektory oraz dlaczego ich pomiary mają ograniczenia.',
+      pt: 'Descubra o que telescópios e detectores podem revelar e por que suas medições têm limites.',
+      qm: 'Teleskoplar ve detektorlar neler kösterebilgenini ve olarnıñ ölçüvlerinde ne çeşit sıñırlar barlığını araştırıñız.',
+      ta: 'தொலைநோக்கிகளும் கண்டறியும் கருவிகளும் எதை வெளிப்படுத்த முடியும், அவற்றின் அளவீடுகளுக்கு ஏன் வரம்புகள் உள்ளன என்பதை ஆராயுங்கள்.',
+      te: 'దూరదర్శినులు, సంకేత గ్రాహకాలు ఏమి వెల్లడించగలవో, వాటి కొలతలకు పరిమితులు ఎందుకు ఉన్నాయో తెలుసుకోండి.',
+      tr: 'Teleskopların ve algılayıcıların neleri ortaya çıkarabildiğini ve ölçümlerinin neden sınırlı olduğunu keşfet.',
+      uk: 'Дізнайся, що можуть виявити телескопи й детектори та чому їхні вимірювання мають обмеження.',
+      ur: 'جانیں کہ دوربینیں اور آشکارے کیا ظاہر کر سکتے ہیں اور ان کی پیمائشوں کی حدود کیوں ہوتی ہیں۔',
+      vi: 'Khám phá kính thiên văn và đầu dò có thể tiết lộ điều gì và vì sao phép đo của chúng có giới hạn.',
+      zh: '探索望远镜和探测器能揭示什么，以及它们的测量为何存在局限。',
+    },
+  },
+});

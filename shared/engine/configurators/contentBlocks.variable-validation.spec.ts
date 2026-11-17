@@ -104,7 +104,7 @@ describe('Configurators', () => {
             type: 'text',
             params: {},
             locale: { value: 'Literal %_%id: notValid' },
-          }),
+          }).build.props({ languages: ['en'] }),
         );
       });
 
@@ -189,17 +189,21 @@ describe('Configurators', () => {
         );
       });
 
-      test('Code validates static source text during definition', () => {
+      test('Code validates static source text at Build time', () => {
         assert.throws(
           () =>
             defineCode<'exampleCode', ['en']>({
               ...codeConfig,
               params: { ...codeConfig.params, codeAsText: '%_%UNDECLARED%_%' },
-            }),
+            }).build.props({ languages: ['en'] }),
           /variable "UNDECLARED" is not declared/,
         );
         assert.throws(
-          () => defineCode<'exampleCode', ['en']>({ ...codeConfig, params: { ...codeConfig.params, codeAsText: '' } }),
+          () =>
+            defineCode<'exampleCode', ['en']>({
+              ...codeConfig,
+              params: { ...codeConfig.params, codeAsText: '' },
+            }).build.props({ languages: ['en'] }),
           /Too small|expected string|String must contain/i,
         );
         assert.doesNotThrow(() => defineCode<'exampleCode', ['en']>(codeConfig));

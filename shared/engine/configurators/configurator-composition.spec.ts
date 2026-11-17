@@ -41,7 +41,6 @@ describe('Configurators', () => {
           },
           locale: { title: 'Lesson' },
           section: { items: { intro: section }, order: ['intro'] },
-          flashcards: { items: {}, order: [] },
         });
         const resource = lesson.build.props({ languages: ['uk'] });
         assert.deepEqual(
@@ -66,14 +65,14 @@ describe('Configurators', () => {
           slug: 'literacy',
           name: 'Literacy',
           description: { methodological: 'Reading fundamentals', frontend: 'Reading' },
-          skills: { items: { reading: skill }, order: ['reading'] },
+          skills: { reading: skill },
         });
         const domain = defineSkillDomain({
           id: id('06'),
           slug: 'language',
           title: 'Language',
           description: { methodological: 'Language learning', frontend: 'Language' },
-          groups: { items: { literacy: group }, order: ['literacy'] },
+          groups: { literacy: group },
         });
         const result = domain.build.props({ languages: ['uk'] });
         assert.deepEqual(
