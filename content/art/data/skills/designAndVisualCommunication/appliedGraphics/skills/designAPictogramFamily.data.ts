@@ -32,7 +32,7 @@ export const designAPictogramFamily_Skill_Data = defineSkill({
     et: 'Piktogrammide perekonna kujundamine',
     be: 'Праектаваць набор піктаграм',
     ka: 'პიქტოგრამების ნაკრების დიზაინი',
-    kk: 'Пиктограммалар тобын жобалау',
+    kk: 'Piktogrammalar tobyn jobalau',
     qm: 'Piktogram ailesi tasarlamaq',
   },
   description: {
@@ -66,7 +66,7 @@ export const designAPictogramFamily_Skill_Data = defineSkill({
       et: 'Kujunda ühtse stiiliga, kuid kergesti eristatavate märkide perekonna.',
       be: 'Стварыце сямейства знакаў, якія выглядаюць звязанымі, але лёгка адрозніваюцца.',
       ka: 'შექმენით ნიშნების ერთიანი ნაკრები, რომელთა ერთმანეთისგან გარჩევაც ადვილია.',
-      kk: 'Жалпы стилі бар, бірақ бір-бірінен оңай ажыратылатын белгілер тобын жобалаңыз.',
+      kk: 'Jalpy stilı bar, bıraq bır-bırınen oñai ajyratylatyn belgıler tobyn jobalañyz.',
       qm: 'Bir-birine bağlı körüngen, amma kolay ayırıla bilgen işaretler ailesini tasarlañız.',
     },
   },

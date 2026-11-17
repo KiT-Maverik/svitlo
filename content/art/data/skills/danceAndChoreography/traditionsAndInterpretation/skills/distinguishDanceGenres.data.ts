@@ -31,7 +31,7 @@ export const distinguishDanceGenres_Skill_Data = defineSkill({
     et: 'Erista tantsužanre',
     be: 'Адрознівайце жанры танца',
     ka: 'განასხვავეთ ცეკვის ჟანრები',
-    kk: 'Би жанрларын ажыратыңыз',
+    kk: 'Bi janrlaryn ajyratyñyz',
     qm: 'Oyun janrlarını farq etiñiz',
   },
   description: {
@@ -64,7 +64,7 @@ export const distinguishDanceGenres_Skill_Data = defineSkill({
       et: 'Märka, kuidas eri tantsustiilid kasutavad liikumist ja ühiskondlikke tavasid.',
       be: 'Распазнавайце, як розныя танцавальныя стылі выкарыстоўваюць рухі і грамадскія звычаі.',
       ka: 'ამოიცანით, როგორ იყენებს ცეკვის სხვადასხვა სტილი მოძრაობასა და სოციალურ წესებს.',
-      kk: 'Алуан би стильдерінің қимылдар мен әлеуметтік дәстүрлерді қалай қолданатынын таныңыз.',
+      kk: 'Aluan bi stilderınıñ qimyldar men äleumettık dästürlerdı qalai qoldanatynyn tanyñyz.',
       qm: 'Farklı oyun tarzlarınıñ areket ve cemaat adetlerini nasıl qullanğanını tanıñız.',
     },
   },

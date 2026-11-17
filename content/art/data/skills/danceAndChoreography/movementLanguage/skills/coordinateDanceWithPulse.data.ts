@@ -31,7 +31,7 @@ export const coordinateDanceWithPulse_Skill_Data = defineSkill({
     et: 'Sobita tants pulsilöögiga',
     be: 'Узгадняйце танец з пульсам',
     ka: 'შეუსაბამეთ ცეკვა რიტმულ პულსს',
-    kk: 'Биді ырғақтық соққымен үйлестіріңіз',
+    kk: 'Bidı yrğaqtyq soqqymen üilestırıñız',
     qm: 'Oyunnı ritmik urğu ile uyğunlaştıñız',
   },
   description: {
@@ -64,7 +64,7 @@ export const coordinateDanceWithPulse_Skill_Data = defineSkill({
       et: 'Seo oma liigutused muusikalise pulsiga, kaotamata nende väljendusrikkust.',
       be: 'Звязвайце рухі з музычным пульсам, не гублячы іх выразнасці.',
       ka: 'დააკავშირეთ მოძრაობები მუსიკალურ პულსთან მათი გამომსახველობის შენარჩუნებით.',
-      kk: 'Қимылдардың мәнерлілігін жоғалтпай, оларды музыкалық ырғақпен байланыстырыңыз.',
+      kk: 'Qimyldardyñ mänerlılıgın joğaltpai, olardy muzykalyq yrğaqpen bailanystyryñyz.',
       qm: 'İfadeleyişini saqlap, areketleriñizni muzika urğusı ile bağlañız',
     },
   },

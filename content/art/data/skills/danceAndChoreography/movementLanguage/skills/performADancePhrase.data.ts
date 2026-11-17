@@ -31,7 +31,7 @@ export const performADancePhrase_Skill_Data = defineSkill({
     et: 'Esita tantsufraas',
     be: 'Выканайце танцавальную фразу',
     ka: 'შეასრულეთ საცეკვაო ფრაზა',
-    kk: 'Би тіркесін орындаңыз',
+    kk: 'Bi tırkesın oryndañyz',
     qm: 'Oyun ibaresini icra etiñiz',
   },
   description: {
@@ -64,7 +64,7 @@ export const performADancePhrase_Skill_Data = defineSkill({
       et: 'Ühenda liigutused sidusaks ja eesmärgipäraseks tantsufraasiks.',
       be: 'Злучайце рухі ў цэласную і мэтанакіраваную танцавальную фразу.',
       ka: 'შეაერთეთ მოძრაობები თანმიმდევრულ და მიზანმიმართულ საცეკვაო ფრაზად.',
-      kk: 'Қимылдарды өзара байланысты әрі мақсатты би тіркесіне біріктіріңіз.',
+      kk: 'Qimyldardy özara bailanysty ärı maqsatty bi tırkesıne bırıktırıñız.',
       qm: 'Areketlerni bağlı ve maqsatlı bir oyun ibaresine birleştiriñiz',
     },
   },

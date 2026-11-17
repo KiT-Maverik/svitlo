@@ -39,7 +39,7 @@ export const appliedGraphics_SkillGroup_Data = defineSkillGroup({
     et: 'Tarbegraafika',
     be: 'Прыкладная графіка',
     ka: 'გამოყენებითი გრაფიკა',
-    kk: 'Қолданбалы графика',
+    kk: 'Qoldanbaly grafika',
     qm: 'Tatbiqiy grafika',
   },
   skills: [
@@ -80,7 +80,7 @@ export const appliedGraphics_SkillGroup_Data = defineSkillGroup({
       et: 'Kujunda graafikat pakenditele, väljaannetele ja avalikule teabele.',
       be: 'Стварайце графіку для ўпакоўкі, публікацый і грамадскай інфармацыі.',
       ka: 'შექმენით გრაფიკა შეფუთვისთვის, პუბლიკაციებისა და საჯარო ინფორმაციისთვის.',
-      kk: 'Қаптама, басылым және қоғамдық ақпаратқа арналған графика жасаңыз.',
+      kk: 'Qaptama, basylym jäne qoğamdyq aqparatqa arnalğan grafika jasañyz.',
       qm: 'Ambalajlar, neşirler ve cemaat malümatı içün grafikler tasarlañız.',
     },
   },

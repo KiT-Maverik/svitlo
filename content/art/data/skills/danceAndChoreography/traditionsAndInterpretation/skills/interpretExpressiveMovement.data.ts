@@ -31,7 +31,7 @@ export const interpretExpressiveMovement_Skill_Data = defineSkill({
     et: 'Tõlgenda väljendusrikast liikumist',
     be: 'Інтэрпрэтуйце выразныя рухі',
     ka: 'განმარტეთ გამომსახველობითი მოძრაობა',
-    kk: 'Мәнерлі қимылды түсіндіріңіз',
+    kk: 'Mänerlı qimyldy tüsındırıñız',
     qm: 'İfadeleyici areketni tefsir etiñiz',
   },
   description: {
@@ -64,7 +64,7 @@ export const interpretExpressiveMovement_Skill_Data = defineSkill({
       et: 'Selgita liikumise üksikasjade abil, mida tants võib väljendada.',
       be: 'Выкарыстоўвайце дэталі руху, каб растлумачыць, што можа выражаць танец.',
       ka: 'მოძრაობის დეტალებით ახსენით, რისი გამოხატვა შეუძლია ცეკვას.',
-      kk: 'Қимыл бөлшектерін пайдаланып, бидің нені білдіруі мүмкін екенін түсіндіріңіз.',
+      kk: 'Qimyl bölşekterın paidalanyp, bidıñ nenı bıldıruı mümkın ekenın tüsındırıñız.',
       qm: 'Oyunnıñ neni ifade etkenini areket tafsilâtları ile añlatıñız.',
     },
   },

@@ -31,7 +31,7 @@ export const evaluateDancePerformance_Skill_Data = defineSkill({
     et: 'Hinda tantsuetendust',
     be: 'Ацэньвайце танцавальны выступ',
     ka: 'შეაფასეთ საცეკვაო შესრულება',
-    kk: 'Би қойылымын бағалаңыз',
+    kk: 'Bi qoiylymyn bağalañyz',
     qm: 'Oyun icrasını qıymetlendiriñiz',
   },
   description: {
@@ -64,7 +64,7 @@ export const evaluateDancePerformance_Skill_Data = defineSkill({
       et: 'Arutle tantsuetenduse üle selgete kunstiliste ja tehniliste kriteeriumide alusel.',
       be: 'Абмяркоўвайце танцавальны выступ паводле выразных мастацкіх і тэхнічных крытэрыяў.',
       ka: 'იმსჯელეთ საცეკვაო შესრულებაზე მკაფიო მხატვრული და ტექნიკური კრიტერიუმებით.',
-      kk: 'Би қойылымын нақты көркемдік және техникалық өлшемдер арқылы талқылаңыз.',
+      kk: 'Bi qoiylymyn naqty körkemdık jäne tehnikalyq ölşemder arqyly talqylañyz.',
       qm: 'Oyun icrasını açıq bediiy ve tehnik ölçülerge köre müzakere etiñiz.',
     },
   },

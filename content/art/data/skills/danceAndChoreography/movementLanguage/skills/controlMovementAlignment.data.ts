@@ -31,7 +31,7 @@ export const controlMovementAlignment_Skill_Data = defineSkill({
     et: 'Kontrolli keha joondust liikumisel',
     be: 'Кантралюйце выраўноўванне цела падчас руху',
     ka: 'აკონტროლეთ სხეულის გასწორება მოძრაობისას',
-    kk: 'Қозғалыс кезіндегі дене қалпын бақылаңыз',
+    kk: 'Qozğalys kezındegı dene qalpyn baqylañyz',
     qm: 'Areket etken vaqıtta bedenniñ tüzülüşini kontrol etiñiz',
   },
   description: {
@@ -64,7 +64,7 @@ export const controlMovementAlignment_Skill_Data = defineSkill({
       et: 'Paiguta kehaosi teadlikult, et luua selged tantsujooned.',
       be: 'Свядома размяшчайце часткі цела, каб ствараць выразныя танцавальныя лініі.',
       ka: 'განზრახ მოათავსეთ სხეულის ნაწილები მკაფიო საცეკვაო ხაზების შესაქმნელად.',
-      kk: 'Дененің бөліктерін айқын би сызықтарын жасау үшін саналы түрде орналастырыңыз.',
+      kk: 'Denenıñ bölıkterın aiqyn bi syzyqtaryn jasau üşın sanaly türde ornalastyryñyz.',
       qm: 'Açıq oyun çizgileri yaratmaq içün beden qisımlarını qasd ile yerleştiriñiz',
     },
   },

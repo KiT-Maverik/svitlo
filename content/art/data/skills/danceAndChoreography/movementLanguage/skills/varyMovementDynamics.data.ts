@@ -31,7 +31,7 @@ export const varyMovementDynamics_Skill_Data = defineSkill({
     et: 'Muuda liikumise dünaamikat',
     be: 'Змяняйце дынаміку руху',
     ka: 'შეცვალეთ მოძრაობის დინამიკა',
-    kk: 'Қозғалыс динамикасын өзгертіңіз',
+    kk: 'Qozğalys dinamikasyn özgertıñız',
     qm: 'Areket dinamikasını çeşitlendiriñiz',
   },
   description: {
@@ -64,7 +64,7 @@ export const varyMovementDynamics_Skill_Data = defineSkill({
       et: 'Muuda liikumise jõudu, raskust ja voolavust, et väljendada eri omadusi.',
       be: 'Змяняйце сілу, вагу і плыўнасць руху, каб перадаваць розныя якасці.',
       ka: 'შეცვალეთ მოძრაობის ძალა, სიმძიმე და დინება სხვადასხვა თვისების გამოსახატავად.',
-      kk: 'Өзге қасиеттерді білдіру үшін қозғалыстың күшін, салмағын және ағынын өзгертіңіз.',
+      kk: 'Özge qasietterdı bıldıru üşın qozğalystyñ küşın, salmağyn jäne ağynyn özgertıñız.',
       qm: 'Farklı hususiyetlerni ifade etmek içün areketniñ küçüni, ağırlığını ve aqışını deñiştiriñiz.',
     },
   },

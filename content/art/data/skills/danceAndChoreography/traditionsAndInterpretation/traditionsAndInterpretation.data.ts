@@ -39,7 +39,7 @@ export const traditionsAndInterpretation_SkillGroup_Data = defineSkillGroup({
     et: 'Traditsioonid ja tõlgendamine',
     be: 'Традыцыі і інтэрпрэтацыя',
     ka: 'ტრადიციები და ინტერპრეტაცია',
-    kk: 'Дәстүрлер мен түсіндіру',
+    kk: 'Dästürler men tüsındıru',
     qm: 'Ananeler ve tefsir',
   },
   skills: [
@@ -80,7 +80,7 @@ export const traditionsAndInterpretation_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri eri tantsutraditsioonide tähendust ja kultuurilist tausta.',
       be: 'Даследуйце значэнне і культурны кантэкст розных танцавальных традыцый.',
       ka: 'გამოიკვლიეთ სხვადასხვა საცეკვაო ტრადიციის მნიშვნელობა და კულტურული კონტექსტი.',
-      kk: 'Зерттеңіз: түрлі би дәстүрлерінің мәні мен мәдени контексті.',
+      kk: 'Zertteñız: türlı bi dästürlerınıñ mänı men mädeni kontekstı.',
       qm: 'Farklı oyun ananeleriniñ manasını ve medeniy bağlamını tedqiq etiñiz.',
     },
   },

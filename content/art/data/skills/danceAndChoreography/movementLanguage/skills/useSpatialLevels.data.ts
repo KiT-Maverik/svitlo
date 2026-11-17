@@ -31,7 +31,7 @@ export const useSpatialLevels_Skill_Data = defineSkill({
     et: 'Kasuta ruumitasandeid',
     be: 'Выкарыстоўвайце прасторавыя ўзроўні',
     ka: 'გამოიყენეთ სივრცის დონეები',
-    kk: 'Кеңістік деңгейлерін пайдаланыңыз',
+    kk: 'Keñıstık deñgeilerın paidalanyñyz',
     qm: 'Mekân seviyelerini qullanıñız',
   },
   description: {
@@ -64,7 +64,7 @@ export const useSpatialLevels_Skill_Data = defineSkill({
       et: 'Liigu teadlikult kõrgel, keskmisel ja madalal tasandil.',
       be: 'Свядома рухайцеся на высокім, сярэднім і нізкім узроўнях.',
       ka: 'იმოძრავეთ გააზრებულად მაღალ, საშუალო და დაბალ დონეებზე.',
-      kk: 'Жоғары, орта және төмен деңгейлерде саналы түрде қозғалыңыз.',
+      kk: 'Joğary, orta jäne tömen deñgeilerde sanaly türde qozğalyñyz.',
       qm: 'Yüksek, orta ve alçaq seviyelerde maqsatlı areket etiñiz.',
     },
   },

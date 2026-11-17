@@ -31,7 +31,7 @@ export const analyzeDanceInCulturalContext_Skill_Data = defineSkill({
     et: 'Analüüsi tantsu kultuurikontekstis',
     be: 'Аналізуйце танец у культурным кантэксце',
     ka: 'გააანალიზეთ ცეკვა კულტურულ კონტექსტში',
-    kk: 'Биді мәдени контекстте талдаңыз',
+    kk: 'Bidı mädeni kontekstte taldañyz',
     qm: 'Oyunnı medeniy bağlamında tahlil etiñiz',
   },
   description: {
@@ -64,7 +64,7 @@ export const analyzeDanceInCulturalContext_Skill_Data = defineSkill({
       et: 'Uuri, kuidas tants seostub oma kogukonna ja esitamise sündmusega.',
       be: 'Даследуйце сувязь танца з яго супольнасцю і нагодай выканання.',
       ka: 'გამოიკვლიეთ, როგორ უკავშირდება ცეკვა თავის საზოგადოებასა და შესრულების შემთხვევას.',
-      kk: 'Зерттеңіз: би өз қауымдастығымен және орындалатын жағдаймен қалай байланысты.',
+      kk: 'Zertteñız: bi öz qauymdastyğymen jäne oryndalatyn jağdaimen qalai bailanysty.',
       qm: 'Bir oyunnıñ cemaatı ve oynalğan vesilesi ile bağını tedqiq etiñiz.',
     },
   },

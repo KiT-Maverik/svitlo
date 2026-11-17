@@ -32,7 +32,7 @@ export const checkVisualAccessibility_Skill_Data = defineSkill({
     et: 'Visuaalse ligipääsetavuse kontrollimine',
     be: 'Правяраць візуальную даступнасць',
     ka: 'ვიზუალური ხელმისაწვდომობის შემოწმება',
-    kk: 'Көрнекі қолжетімділікті тексеру',
+    kk: 'Körnekı qoljetımdılıktı tekseru',
     qm: 'Vizual erişilebilirlikni kontrol etmek',
   },
   description: {
@@ -66,7 +66,7 @@ export const checkVisualAccessibility_Skill_Data = defineSkill({
       et: 'Märka ja kõrvalda visuaalsed takistused, näiteks nõrk kontrast või ainult värvil põhinevad vihjed.',
       be: 'Выяўляйце і выпраўляйце візуальныя бар’еры, напрыклад нізкі кантраст або адрозненні толькі па колеры.',
       ka: 'იპოვეთ და გამოასწორეთ ვიზუალური ბარიერები, როგორიცაა დაბალი კონტრასტი ან მხოლოდ ფერზე დაფუძნებული მინიშნებები.',
-      kk: 'Төмен контраст немесе тек түске сүйенетін белгілер сияқты көрнекі кедергілерді тауып, түзетіңіз.',
+      kk: 'Tömen kontrast nemese tek tüske süienetın belgıler siiaqty körnekı kedergılerdı tauyp, tüzetıñız.',
       qm: 'Zayıf kontrast ya da tek başına renge dayalı işaretler gibi vizual manialarnı tapıp düzetiñiz.',
     },
   },

@@ -31,7 +31,7 @@ export const adaptTraditionalMovementResponsibly_Skill_Data = defineSkill({
     et: 'Kohanda pärimuslikke liigutusi vastutustundlikult',
     be: 'Адказна адаптуйце традыцыйныя рухі',
     ka: 'პასუხისმგებლობით მოარგეთ ტრადიციული მოძრაობები',
-    kk: 'Дәстүрлі қимылдарды жауапкершілікпен бейімдеңіз',
+    kk: 'Dästürlı qimyldardy jauapkerşılıkpen beiımdeñız',
     qm: 'Ananeviy areketlerni mesuliyetnen uyğulaştıñız',
   },
   description: {
@@ -64,7 +64,7 @@ export const adaptTraditionalMovementResponsibly_Skill_Data = defineSkill({
       et: 'Kujunda pärimuslikke liigutusi ümber, austades nende päritolu ja tähendust.',
       be: 'Пераасэнсоўвайце традыцыйныя рухі, паважаючы іх паходжанне і значэнне.',
       ka: 'გადაამუშავეთ ტრადიციული მოძრაობები მათი წარმომავლობისა და მნიშვნელობის პატივისცემით.',
-      kk: 'Дәстүрлі қимылдарды олардың шығу тегі мен мағынасын құрметтей отырып өзгертіңіз.',
+      kk: 'Dästürlı qimyldardy olardyñ şyğu tegı men mağynasyn qūrmettei otyryp özgertıñız.',
       qm: 'Ananeviy areketlerni menbalarını ve manalarını sayğılayaraq yañıdan işleyiñiz.',
     },
   },
