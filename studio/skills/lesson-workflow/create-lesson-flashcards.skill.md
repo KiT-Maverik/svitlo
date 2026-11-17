@@ -37,29 +37,17 @@ When the back is a genuine multi-element enumeration, put one **typed list flag*
 
 ## Step 2 — Reuse Question data, never duplicate its localized facts
 
-If a Question field expresses the desired prompt, correct answer, date, term, number, code or media, specify a typed `questionField` reference as the **value** of the editorial ContentBlock instead of copying its rendered text. It has `questionSlug` and `fieldPath`, an array of exact property names and indices locating one field on the canonical Question data. Example paths are `[question, 0, value]` and `[answers, correct, straightLine, value]`. A referenced field must exist, be semantically correct for that card, and have the expected source type/localization.
+Inspect the approved **full** Question bank and each reusable current typed export at the verified Question SHA. Prefer a direct, typed reference over a translated copy when a Question already owns the same fact or response. A selected Quiz subset does not limit the pool available for Flashcard memory targets.
 
-During the **separately reviewed technical handoff and TypeScript completion** (not an automatic generic scaffolder step), resolve a Question by its globally unique slug and canonical type, locate the actual exported Question source, and emit a real import and type-safe field access, for example:
+**Current implemented pattern (Playground):** Question entrypoints export typed Configurators, not the obsolete `*_Question_Data` contract. The existing Lesson-owned Flashcard source imports the real `lightTravelsStraight` Question Configurator and accesses `lightTravelsStraight.content.question.items.question` and `lightTravelsStraight.content.answers.correct.items.straightLine`. Verify the current export/property structure before reusing it; do not rely on examples from prior versions.
 
-```ts
-import { lightTravelsStraight_Question_Data } from '../questions/lightTravelsStraight';
+**Authoring boundary:** Engine's current `yamlFlashcard_Schema` requires concrete, typed ContentBlock Config values. It does **not** support an editorial `{ kind: questionField, questionSlug, fieldPath }` placeholder as a localized Text/Code/Markdown value. Until the generator validates and emits type-safe Question imports, record the exact target export, intended field, Question SHA and expected locales in the child PR's source/reuse plan, and **block dependent card materialization**. Do not inject pseudo-references into `flashcards.yaml`, substitute an English literal or fabricate a new Question entity to satisfy a draft generator.
 
-const front = [{ id: '...', slug: 'front', type: 'text', value: lightTravelsStraight_Question_Data.question[0].value }];
-const back = [
-  {
-    id: '...',
-    slug: 'back',
-    type: 'text',
-    value: lightTravelsStraight_Question_Data.answers.correct.straightLine.value,
-  },
-];
-```
-
-These are **illustrations of the generated pattern**, not committed imports or a claim the generator exists. If an authorized preliminary TypeScript scaffold is created before its Question export is ready, it must contain a **conspicuous unresolved `TODO(question-import): <questionSlug> <fieldPath>` next to the intended assignment** and remain blocked from validation/publication; do not silently insert placeholder prose or freeze a copied source-language value. In the complete implementation the TODO is replaced by the real imported `Question_Data` property access. The source Question must remain the localizable authority. Generate stable Flashcard ContentBlock IDs and slugs, but **never reuse Question ContentBlock IDs blindly**. Reject dangling paths, wrong types, incorrect options or duplicate source text. Never quietly substitute English literals when import resolution fails. Where the Question offers no reusable value, author concise independent source-language copy.
+Where code deliberately reuses an **existing** Question-owned ContentBlock Configurator, it also reuses its identity; a **new** Flashcard-owned ContentBlock instead requires a distinct UUID even if it uses the same factual text or media UUID. Respect the current Engine ownership/collision checks and clarify which pattern is intended before generating code. Reject unresolved exports, mismatched fields, distracting/wrong answers, unsupported locales and stale Question sources. Independent concise Flashcard copy is permitted only when no Question owns that exact learner-facing value.
 
 ## Step 3 — Use ContentBlocks purposefully
 
-Every `front`, `back` and `hint` is an **ordered array of editorial ContentBlocks**; the future generator maps them to actual typed ContentBlocks. Know all available block types from current Engine schemas and UI Kit; avoid promising renderer support based merely on a type's presence.
+Every `front`, `back` and optional `hint` is a named `{ items, order }` collection of real Engine ContentBlock Configs; publishing resolves it to ordered Props arrays. Know all available block types from current Engine schemas and UI Kit; avoid promising renderer support based merely on a type's presence.
 
 - `text`: plain brief prompts/answers; use `%_%id: personName; value: Maria%_%` for named inline fragments. The identifier must be `camelCase` (e.g. `personName`, `year`, `planetName`) and must match a key in the `variables` object when styling is configured (e.g. `variables: { personName: { applyStyle: ['variable'] } }`). Text keeps the visible value directly inside the marker. This emphasizes a generalizable variable, **not automatic random replacement**.
 - `code`: actual programming syntax/algorithms, with correct `language` and optional localized `variables`. Use `%_%VARIABLE_NAME%_%` with UPPER_SNAKE_CASE identifiers matching keys of the `variables` object (not an array of `{ id, value }` entries). Code substitutes values before highlighting; unlike Text, it does not embed an `id`/`value` pair in the source marker.
