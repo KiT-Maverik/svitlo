@@ -65,7 +65,7 @@ export const analyzePopArt_Skill_Data = defineSkill({
       et: 'Uuri, kuidas popkunstnikud kasutasid reklaami, tarbekaupu ja massimeediat.',
       be: 'Даведайцеся, як мастакі поп-арту выкарыстоўвалі рэкламу, спажывецкія тавары і масмедыя.',
       ka: 'გაიგეთ, როგორ იყენებდნენ პოპ-არტის მხატვრები რეკლამას, სამომხმარებლო პროდუქტებსა და მასმედიას.',
-      kk: 'Bılıñız: pop-art suretşılerı jarnamany, tūtynu tauarlaryn jäne būqaralyq aqparat qūraldaryn qalai qoldandy.',
+      kk: 'Pop-art suretşılerınıñ jarnama, tūtynu tauarlary men būqaralyq aqparat qūraldaryn qalai qoldanğanyn zertteñız.',
       qm: "Pop-art sanatkârlarınıñ reklama, iste'mal malları ve kütleviy haberleşüv vastalarını nasıl qullanğanını tahlil etiñiz.",
     },
   },

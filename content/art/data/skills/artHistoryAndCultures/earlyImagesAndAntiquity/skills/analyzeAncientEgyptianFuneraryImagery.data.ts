@@ -65,7 +65,7 @@ export const analyzeAncientEgyptianFuneraryImagery_Skill_Data = defineSkill({
       et: 'Uuri, kuidas Vana-Egiptuse matusekujutistes kasutatakse sümboleid, tegelasi ja hoolikalt valitud stseene.',
       be: 'Даведайцеся, як у пахавальных выявах Старажытнага Егіпта выкарыстоўваліся сімвалы, постаці і старанна адабраныя сцэны.',
       ka: 'გაიგეთ, როგორ იყენებდნენ ძველი ეგვიპტის სამარხების გამოსახულებებში სიმბოლოებს, ფიგურებსა და საგულდაგულოდ შერჩეულ სცენებს.',
-      kk: 'Bılıñız: Ejelgı Mysyrdyñ jerleu beinelerınde nyşandar, tūlğalar jäne mūqiiat tañdalğan körınıster qalai qoldanylğan.',
+      kk: 'Ejelgı Mysyr jerleu beinelerındegı nyşandar, adam tūlğalary men arnaiy tañdalğan körınısterdıñ qalai qoldanylğanyn zertteñız.',
       qm: 'Qadimiy Mısır mezar tasvirlerinde remizler, şahıslar ve itinaynen saylanğan sahneler nasıl qullanılğanını ögrenin.',
     },
   },

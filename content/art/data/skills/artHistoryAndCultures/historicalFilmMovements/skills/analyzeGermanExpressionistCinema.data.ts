@@ -65,7 +65,7 @@ export const analyzeGermanExpressionistCinema_Skill_Data = defineSkill({
       et: 'Vaata, kuidas Saksa ekspressionistlikud filmid lõid atmosfääri dekoratsioonide, valguse ja näitlemise abil.',
       be: 'Даведайцеся, як нямецкія экспрэсіянісцкія фільмы стваралі атмасферу з дапамогай дэкарацый, святла і акцёрскай гульні.',
       ka: 'გაიგეთ, როგორ ქმნიდა გერმანული ექსპრესიონისტული კინო ატმოსფეროს დეკორაციებით, განათებითა და მსახიობობით.',
-      kk: 'Bılıñız: nemıs ekspressionistık filmderı dekoratsiia, jaryq jäne akterlık oiyn arqyly atmosferany qalai jasağan.',
+      kk: 'Nemıs ekspressionistık filmderınde dekoratsiia, jaryq pen akterlık oiynnyñ erekşe atmosferany qalai qalyptastyratynyn baiqañyz.',
       qm: 'Alman Dışavurumcu filmlerinin dekor, ışıq ve oyunculuk ile nasıl hava yarattığını keşf etiñiz.',
     },
   },

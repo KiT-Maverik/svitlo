@@ -31,7 +31,7 @@ export const analyzeBoychukism_Skill_Data = defineSkill({
     et: 'Analüüsida boitšukismi',
     be: 'Аналізаваць бойчукізм',
     ka: 'ბოიჩუკიზმის გაანალიზება',
-    kk: 'Boichukşyldyqty taldau',
+    kk: 'Boitşukşyldyqty taldau',
     qm: 'Boyçukçılıqnı tahlil etmek',
   },
   description: {

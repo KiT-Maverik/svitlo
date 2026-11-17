@@ -65,7 +65,7 @@ export const analyzeClassicMayaReliefSculpture_Skill_Data = defineSkill({
       et: 'Uuri, kuidas klassikalise maiade perioodi paikade reljeefidel kujutatakse tegelasi, raidkirju ja dünastilisi motiive.',
       be: 'Даведайцеся, як на рэльефах помнікаў мая класічнага перыяду паказаны постаці, надпісы і дынастычныя вобразы.',
       ka: 'გაიგეთ, როგორ ასახავს კლასიკური მაიას ძეგლების რელიეფები ფიგურებს, წარწერებსა და დინასტიურ სახეებს.',
-      kk: 'Bılıñız: klassikalyq maiia eskertkışterınıñ bederlerınde tūlğalar, jazular jäne äulettık beineler qalai körsetılgen.',
+      kk: 'Maiianyñ klassikalyq däuırıne jatatyn naqty eskertkışterdegı bederlerde adam tūlğalary, jazular men äulettık beineler qalai qoldanylğanyn taldañyz.',
       qm: 'Klasik Maya alanlarındaki kabartmaların figürleri, yazıtları ve hanedan imgelerini nasıl yansıttığını keşf etiñiz.',
     },
   },

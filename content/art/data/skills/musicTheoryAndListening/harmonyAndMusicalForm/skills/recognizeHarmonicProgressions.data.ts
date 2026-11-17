@@ -64,7 +64,7 @@ export const recognizeHarmonicProgressions_Skill_Data = defineSkill({
       et: 'Jälgi, kuidas muutuvad akordid aitavad muusikal edasi liikuda.',
       be: 'Сачыце, як змены акордаў дапамагаюць музыцы рухацца наперад.',
       ka: 'დააკვირდით, როგორ ეხმარება აკორდების ცვლილება მუსიკას წინსვლაში.',
-      kk: 'Baqylañyz: akkordtardyñ özgeruı muzykany qalai alğa jeteleidı.',
+      kk: 'Akkordtardyñ bırınen bırıne auysuy muzykanyñ damuyn qalai ılgerıletetının tyñdap baiqañyz.',
       qm: 'Akkordlarnıñ deñişüvi musiqanı nasıl ileriletkenini takip etiñiz.',
     },
   },

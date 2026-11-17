@@ -65,7 +65,7 @@ export const analyzeMinimalism_Skill_Data = defineSkill({
       et: 'Vaata, kuidas minimalistlik kunst kasutab kordust, lihtsaid materjale ja vaataja ruumi.',
       be: 'Паглядзіце, як мінімалістычнае мастацтва выкарыстоўвае паўтарэнне, простыя матэрыялы і прастору гледача.',
       ka: 'ნახეთ, როგორ იყენებს მინიმალისტური ხელოვნება გამეორებას, მარტივ მასალებსა და მაყურებლის სივრცეს.',
-      kk: 'Körıñız: minimalistık öner qaitalaudy, qarapaiym materialdardy jäne körermen keñıstıgın qalai paidalanady.',
+      kk: 'Minimalistık önerdegı qaitalaudyñ, qarapaiym materialdardyñ jäne körermen keñıstıgınıñ rölın zertteñız.',
       qm: 'Minimalist sanatnıñ tekrarlav, sade materiallar ve seyirci mekânını nasıl qullanğanını tahlil etiñiz.',
     },
   },

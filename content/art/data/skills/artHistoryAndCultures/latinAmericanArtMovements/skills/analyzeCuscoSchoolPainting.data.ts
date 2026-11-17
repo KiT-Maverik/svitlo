@@ -65,7 +65,7 @@ export const analyzeCuscoSchoolPainting_Skill_Data = defineSkill({
       et: 'Avasta, kuidas Cusco koolkonna maal ühendab Andide ja Euroopa kunstimõjusid.',
       be: 'Даведайцеся, як жывапіс Кускаўскай школы спалучае мастацкія ўплывы Анд і Еўропы.',
       ka: 'გაიგეთ, როგორ აერთიანებს კუსკოს სკოლის მხატვრობა ანდებისა და ევროპის ხელოვნების გავლენებს.',
-      kk: 'Bılıñız: Kusko mektebınıñ keskındemesı And jäne Europa önerınıñ yqpaldaryn qalai bırıktıredı.',
+      kk: 'Kusko mektebınıñ keskındemesınde And pen Europa önerınıñ yqpaly qalai ūştasatynyn zertteñız.',
       qm: 'Cusco mektebiniñ resimlerinde And ve Avropa sanatınıñ tesirleri nasıl birleştirilgenini tahlil etiñiz.',
     },
   },

@@ -65,7 +65,7 @@ export const analyzeUkrainianPoeticCinema_Skill_Data = defineSkill({
       et: 'Avasta, kuidas Ukraina poeetiline kino kasutab visuaalset sümboolikat ja lüürilist jutustamist.',
       be: 'Даведайцеся, як украінскае паэтычнае кіно выкарыстоўвае візуальную сімволіку і лірычнае апавяданне.',
       ka: 'გაიგეთ, როგორ იყენებს უკრაინული პოეტური კინო ვიზუალურ სიმბოლიკასა და ლირიკულ თხრობას.',
-      kk: 'Bılıñız: ukrain poetikalyq kinosy vizualdy simvolika men lirikalyq baiandaudy qalai qoldanady.',
+      kk: 'Ukrain poetikalyq kinosynyñ körnekı nyşandar men lirikalyq baiandaudy qalai qoldanatynyn zertteñız.',
       qm: 'Ukrayna şiirsel sinemasının görsel remizler ve lirik hikâye anlatımını nasıl kullandığını keşf etiñiz.',
     },
   },

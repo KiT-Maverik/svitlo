@@ -66,7 +66,7 @@ export const distinguishDocumentaryAndStagedPhotography_Skill_Data = defineSkill
       et: 'Tee kindlaks, kas foto dokumenteerib sündmust või on stseen lavastatud.',
       be: 'Вызначайце, ці фатаграфія дакументуе падзею, ці сцэна была пастановачнай.',
       ka: 'გაარჩიეთ, ფოტო მოვლენას ასახავს თუ სცენა დადგმულია.',
-      kk: 'Anyqtañyz: fotosuret oqiğany tırkei me, älde körınıs ädeiı qoiylğan ba.',
+      kk: 'Fotosuret oqiğany qūjattai ma, älde tüsırılım üşın körınıs arnaiy qoiylğan ba — sony ajyratyñyz.',
       qm: 'Foto sureti vaqianı belgelepmi, yoqsa sahne evvelden tertip etilgenmi, ayırıñız.',
     },
   },
