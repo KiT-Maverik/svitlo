@@ -31,7 +31,7 @@ export const divisionOfLabor_Skill_Data = defineSkill({
     et: 'Tööjaotus',
     be: 'Падзел працы',
     ka: 'შრომის დანაწილება',
-    kk: 'Еңбек бөлінісі',
+    kk: 'Eñbek bölınısı',
     qm: 'İş bölüşüvi',
   },
   description: {
@@ -65,7 +65,7 @@ export const divisionOfLabor_Skill_Data = defineSkill({
       et: 'Vaata, kuidas tööülesannete spetsialiseerumine võib tootlikkust tõsta.',
       be: 'Даведайся, як спэцыялізацыя задачаў можа павысіць прадукцыйнасьць.',
       ka: 'ნახე, როგორ ზრდის სამუშაოს სპეციალიზაცია პროდუქტიულობას.',
-      kk: 'Маманданған міндеттердің өнімділікті қалай арттыратынын біл.',
+      kk: 'Mamdandyrılğan mındetterdıñ eñbek önımdılıgın qalai arttyratynyn bıl.',
       qm: 'İş vazifelerini ihtisaslaştırmaq mahsuldarlıqqa nasıl tesir etkenini gör.',
     },
   },

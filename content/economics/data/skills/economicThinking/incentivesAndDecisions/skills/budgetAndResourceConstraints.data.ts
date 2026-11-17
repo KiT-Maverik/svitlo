@@ -31,7 +31,7 @@ export const budgetAndResourceConstraints_Skill_Data = defineSkill({
     et: 'Eelarve- ja ressursipiirangud',
     be: 'Бюджэтныя і рэсурсныя абмежаваньні',
     ka: 'ბიუჯეტისა და რესურსების შეზღუდვები',
-    kk: 'Бюджет пен ресурс шектеулері',
+    kk: 'Biudjet pen resurs şekteulerı',
     qm: 'Büdcet ve kaynak sıñırlamaları',
   },
   description: {
@@ -65,7 +65,7 @@ export const budgetAndResourceConstraints_Skill_Data = defineSkill({
       et: 'Selgita välja, millised valikud on raha, aja ja teiste ressursside piires võimalikud.',
       be: 'Вызначай, якія варыянты магчымыя пры абмежаваньнях грошай, часу ды іншых рэсурсаў.',
       ka: 'განსაზღვრე, რომელი არჩევანია შესაძლებელი ფულის, დროისა და სხვა რესურსების შეზღუდვით.',
-      kk: 'Ақша, уақыт және басқа ресурс шектеулерінде қандай таңдау мүмкін екенін анықта.',
+      kk: 'Aqşa, uaqyt jäne özge şekteulerdı eskerıp, qandai tañdau jasauğa bolatynyn anıqta.',
       qm: 'Aqça, vaqıt ve başqa kaynaklar sıñırında mümkün saylavlarnı belgile.',
     },
   },

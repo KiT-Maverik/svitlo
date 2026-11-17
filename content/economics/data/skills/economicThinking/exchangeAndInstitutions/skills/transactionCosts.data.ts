@@ -31,7 +31,7 @@ export const transactionCosts_Skill_Data = defineSkill({
     et: 'Tehingukulud',
     be: 'Трансакцыйныя выдаткі',
     ka: 'ტრანზაქციის ხარჯები',
-    kk: 'Мәміле шығындары',
+    kk: 'Mämıle şyğyndary',
     qm: 'Muamele masrafları',
   },
   description: {
@@ -65,7 +65,7 @@ export const transactionCosts_Skill_Data = defineSkill({
       et: 'Märka vahetuse jaoks kuluvat aega ja vaeva.',
       be: 'Заўважай час і намаганьні, патрэбныя для абмену.',
       ka: 'ამოიცანი გაცვლისთვის საჭირო დრო და ძალისხმევა.',
-      kk: 'Айырбас жасауға кететін уақыт пен күшті байқа.',
+      kk: 'Aiyrbas jasauğa ketetın uaqyt pen küş-jıgerdı esker.',
       qm: 'Alış-verişni yapmaq içün kerek vaqıt ve emekni tanı.',
     },
   },

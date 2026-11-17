@@ -31,7 +31,7 @@ export const propertyRights_Skill_Data = defineSkill({
     et: 'Omandiõigused',
     be: 'Правы ўласнасьці',
     ka: 'საკუთრების უფლებები',
-    kk: 'Меншік құқықтары',
+    kk: 'Menşık qūqyqtary',
     qm: 'Mülkiyet aqları',
   },
   description: {
@@ -65,7 +65,7 @@ export const propertyRights_Skill_Data = defineSkill({
       et: 'Uuri, miks selged omandiõigused on majandusotsuste jaoks tähtsad.',
       be: 'Дасьледуй, чаму выразныя правы ўласнасьці важныя для эканамічных рашэньняў.',
       ka: 'გაიგე, რატომ არის მკაფიო საკუთრების უფლებები მნიშვნელოვანი ეკონომიკური გადაწყვეტილებებისთვის.',
-      kk: 'Айқын меншік құқықтары экономикалық шешімдер үшін неге маңызды екенін зертте.',
+      kk: 'Menşık qūqyqtarynyñ anıq boluy ekonomikalyq şeşımderge nege mañyzdy ekenın zertte.',
       qm: 'Mülkiyet aqlarınıñ añıq oluvı iqtisadiy qararlar içün nege müim olğanını ögren.',
     },
   },

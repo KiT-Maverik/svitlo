@@ -31,7 +31,7 @@ export const gainsFromVoluntaryExchange_Skill_Data = defineSkill({
     et: 'Vabatahtliku vahetuse kasu',
     be: 'Выгоды добраахвотнага абмену',
     ka: 'ნებაყოფლობითი გაცვლის სარგებელი',
-    kk: 'Ерікті айырбастың пайдасы',
+    kk: 'Erıktı aiyrbas paydasy',
     qm: 'İhtiyariy alış-verişniñ faydaları',
   },
   description: {
@@ -65,7 +65,7 @@ export const gainsFromVoluntaryExchange_Skill_Data = defineSkill({
       et: 'Mõista, kuidas kaubandus võib mõlemale poolele kasulik olla, kuid õiglust mitte tagada.',
       be: 'Зразумей, як гандаль можа быць выгадным абодвум бакам, але не гарантуе справядлівасьці.',
       ka: 'გაიგე, როგორ შეიძლება ვაჭრობა ორივე მხარისთვის სასარგებლო იყოს, თუმცა სამართლიანობას არ უზრუნველყოფდეს.',
-      kk: 'Сауданың екі жаққа да тиімді болуы мүмкін, бірақ әділдікке кепіл емес екенін түсін.',
+      kk: 'Aiyrbas ekı jaqqa da paidaly boluy mümkın, bıraq ädıldıkke kepıldık bermeıtının tüsın.',
       qm: 'Alış-veriş eki tarafqa faydalı olabilgenini, amma adaletni kefillemegenini añla.',
     },
   },
