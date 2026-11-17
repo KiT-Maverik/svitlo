@@ -31,7 +31,7 @@ export const useRelativeProportions_Skill_Data = defineSkill({
     et: 'Suhteliste proportsioonide kasutamine',
     be: 'Выкарыстоўваць адносныя прапорцыі',
     ka: 'შეფარდებითი პროპორციების გამოყენება',
-    kk: 'Салыстырмалы пропорцияларды қолдану',
+    kk: 'Salystyrmaly proportsiialardy qoldanu',
     qm: 'Nisbiy nisbetlerden faydalanmaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const useRelativeProportions_Skill_Data = defineSkill({
       et: 'Võrdle osade suurusi, et joonistada objekti õigetes proportsioonides.',
       be: 'Параўноўвайце памеры частак, каб намаляваць аб’ект у правільных прапорцыях.',
       ka: 'შეადარეთ ნაწილების ზომები, რათა ობიექტი სწორი პროპორციებით დახატოთ.',
-      kk: 'Нысанды дұрыс пропорциямен салу үшін бөліктердің өлшемдерін салыстырыңыз.',
+      kk: 'Nysandy dūrys proportsiiamen salu üşın bölıkterdıñ ölşemderın salystyryñyz.',
       qm: 'Mevzunı doğru nisbetlerde sızmaq içün parçalarınıñ ölçülerini qarşılaştıriñız.',
     },
   },

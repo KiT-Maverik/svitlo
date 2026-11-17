@@ -39,7 +39,7 @@ export const observationalDrawing_SkillGroup_Data = defineSkillGroup({
     et: 'Vaatlusjoonistus',
     be: 'Маляванне з назірання',
     ka: 'დაკვირვებით ხატვა',
-    kk: 'Бақылау арқылы сурет салу',
+    kk: 'Baqylau arqyly suret salu',
     qm: 'Müşahedeye dayalı çizim',
   },
   skills: [
@@ -80,7 +80,7 @@ export const observationalDrawing_SkillGroup_Data = defineSkillGroup({
       et: 'Loo joonistusi, vaadeldes tähelepanelikult kujundeid, servi, valgust ja pindu.',
       be: 'Стварайце малюнкі, уважна назіраючы за формамі, краямі, святлом і паверхнямі.',
       ka: 'შექმენით ნახატები ფორმების, კიდეების, სინათლისა და ზედაპირების დაკვირვებით.',
-      kk: 'Пішіндерді, жиектерді, жарық пен беттерді мұқият бақылап сурет салыңыз.',
+      kk: 'Pışınderdı, jiekterdı, jaryq pen betterdı mūqiiat baqylap suret salyñyz.',
       qm: 'Şekilleri, kenarları, ışığı ve yüzeyleri dikkatle gözleyerek çizimler yapıñız.',
     },
   },

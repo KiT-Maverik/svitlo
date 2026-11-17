@@ -31,7 +31,7 @@ export const constructTwoPointPerspective_Skill_Data = defineSkill({
     et: 'Kahe koondumispunktiga perspektiivi konstrueerimine',
     be: 'Будаваць двухкрапкавую пэрспэктыву',
     ka: 'ორწერტილიანი პერსპექტივის აგება',
-    kk: 'Екі нүктелі перспектива құрастыру',
+    kk: 'Ekı nüktelı perspektiva qūrastyru',
     qm: 'Eki noqtalı perspektiva qurmaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const constructTwoPointPerspective_Skill_Data = defineSkill({
       et: 'Näita vormi nurki kahe eri koondumispunkti abil.',
       be: 'Паказвайце куты формы з дапамогай двух розных пунктаў сходу.',
       ka: 'ფორმის კუთხეები ორი განსხვავებული გაქრობის წერტილით აჩვენეთ.',
-      kk: 'Пішіннің бұрыштарын екі түрлі жоғалу нүктесімен көрсетіңіз.',
+      kk: 'Pışınnıñ būryştaryn ekı türlı joğalu nüktesımen körsetıñız.',
       qm: 'Şekilniñ köşelerini eki ayrı yoqaluv noqtası yardımınen kösteriñiz.',
     },
   },

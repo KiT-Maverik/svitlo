@@ -31,7 +31,7 @@ export const drawFromObservation_Skill_Data = defineSkill({
     et: 'Vaatluse põhjal joonistamine',
     be: 'Маляваць з натуры',
     ka: 'ნატურიდან ხატვა',
-    kk: 'Бақылап сурет салу',
+    kk: 'Baqylap suret salu',
     qm: 'Közlemden resim sızmaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const drawFromObservation_Skill_Data = defineSkill({
       et: 'Joonista objekti, võrreldes hoolikalt nähtavaid vorme ja nende suhteid.',
       be: 'Малюйце прадмет, уважліва параўноўваючы бачныя формы і іх суадносіны.',
       ka: 'დახატეთ ობიექტი მისი ხილული ფორმებისა და მათი ურთიერთმიმართების ყურადღებით შედარებით.',
-      kk: 'Көрінетін пішіндер мен олардың өзара байланысын мұқият салыстырып, нысанды салыңыз.',
+      kk: 'Körınetın pışınder men olardyñ özara bailanysyn mūqiiat salystyryp, nysandy salyñyz.',
       qm: 'Körüngen şekillerni ve olarnıñ münasebetlerini diqqatnen qarşılaştırıp, mevzunı sızıñız.',
     },
   },

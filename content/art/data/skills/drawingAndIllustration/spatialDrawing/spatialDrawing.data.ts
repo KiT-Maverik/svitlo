@@ -39,7 +39,7 @@ export const spatialDrawing_SkillGroup_Data = defineSkillGroup({
     et: 'Ruumiline joonistamine',
     be: 'Прасторавае маляванне',
     ka: 'სივრცული ხატვა',
-    kk: 'Кеңістіктік сурет салу',
+    kk: 'Keñıstıktık suret salu',
     qm: 'Mekânsal çizim',
   },
   skills: [
@@ -80,7 +80,7 @@ export const spatialDrawing_SkillGroup_Data = defineSkillGroup({
       et: 'Loo tasasel lehel usutav ruum ja vorm või muuda perspektiivi teadlikult.',
       be: 'Стварайце пераканаўчую прастору і форму на плоскай старонцы або свядома змяняйце перспектыву.',
       ka: 'შექმენით დამაჯერებელი სივრცე და ფორმა ბრტყელ გვერდზე ან განზრახ შეცვალეთ პერსპექტივა.',
-      kk: 'Жазық бетте нанымды кеңістік пен пішін жасаңыз немесе перспективаны әдейі өзгертіңіз.',
+      kk: 'Jazyq bette nanymdy keñıstık pen pışın jasañyz nemese perspektivany ädeiı özgertıñız.',
       qm: 'Düz sayfada inandırıcı mekân ve biçim yaratıñız ya da perspektifi bilerek değiştirin.',
     },
   },

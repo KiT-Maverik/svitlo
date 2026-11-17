@@ -31,7 +31,7 @@ export const controlDrawingMarks_Skill_Data = defineSkill({
     et: 'Joonistusjälgede kontrollimine',
     be: 'Кіраваць рысавальнымі штрыхамі',
     ka: 'ნახატის შტრიხების მართვა',
-    kk: 'Сурет штрихтарын басқару',
+    kk: 'Suret ştrihtaryn basqaru',
     qm: 'Resim sızıqlarını idare etmek',
   },
   description: {
@@ -64,7 +64,7 @@ export const controlDrawingMarks_Skill_Data = defineSkill({
       et: 'Muuda survet ja suunda, et luua eri tüüpi jooni ja jälgi.',
       be: 'Зьмяняйце націск і кірунак, каб ствараць розныя лініі і штрыхі.',
       ka: 'შეცვალეთ ზეწოლა და მიმართულება სხვადასხვა ხაზისა და შტრიხის მისაღებად.',
-      kk: 'Қысым мен бағытты өзгертіп, әртүрлі сызықтар мен іздер салыңыз.',
+      kk: 'Qysym men bağytty özgertıp, ärtürlı syzyqtar men ızder salyñyz.',
       qm: 'Basım ve yönni deñiştirip, çeşitli sızıqlar ve izler yaratıñız.',
     },
   },

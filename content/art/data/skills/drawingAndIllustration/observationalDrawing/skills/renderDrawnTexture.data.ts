@@ -31,7 +31,7 @@ export const renderDrawnTexture_Skill_Data = defineSkill({
     et: 'Pinnatekstuuri kujutamine joonistuses',
     be: 'Перадаваць фактуру ў малюнку',
     ka: 'ტექსტურის გამოსახვა ნახატში',
-    kk: 'Суретте беттің фактурасын беру',
+    kk: 'Surette bettıñ fakturasyn beru',
     qm: 'Resimde yüzey fakturasını köstermek',
   },
   description: {
@@ -65,7 +65,7 @@ export const renderDrawnTexture_Skill_Data = defineSkill({
       et: 'Kasuta joonistusjälgi kareda, sileda ja muu pinnatunde edasiandmiseks.',
       be: 'Карыстайцеся штрыхамі, каб перадаваць шурпатыя, гладкія ды іншыя ўласьцівасьці паверхні.',
       ka: 'გამოიყენეთ შტრიხები უხეში, გლუვი და სხვა ზედაპირული თვისებების საჩვენებლად.',
-      kk: 'Штрихтар арқылы кедір-бұдыр, тегіс және басқа бет қасиеттерін көрсетіңіз.',
+      kk: 'Ştrihtar arqyly kedır-būdyr, tegıs jäne basqa bet qasietterın körsetıñız.',
       qm: 'Qaba, tegiz ve başqa yüzey hususiyetlerini resim izleri ile tasvir etiñiz.',
     },
   },

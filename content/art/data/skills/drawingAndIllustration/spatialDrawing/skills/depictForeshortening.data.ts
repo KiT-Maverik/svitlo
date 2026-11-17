@@ -31,7 +31,7 @@ export const depictForeshortening_Skill_Data = defineSkill({
     et: 'Perspektiivse lühenemise kujutamine',
     be: 'Перадаваць пэрспэктыўнае скарачэньне',
     ka: 'პერსპექტიული შემოკლების გამოსახვა',
-    kk: 'Перспективалық қысқаруды бейнелеу',
+    kk: 'Perspektivalyq qysqarudy beineleu',
     qm: 'Perspektiv qısqaruvnı tasvir etmek',
   },
   description: {
@@ -64,7 +64,7 @@ export const depictForeshortening_Skill_Data = defineSkill({
       et: 'Joonista vorme, mis vaataja poole suunatuna paistavad lühemad.',
       be: 'Малюйце формы, што выглядаюць карацейшымі, калі скіраваныя да гледача.',
       ka: 'დახატეთ ფორმები, რომლებიც მაყურებლისკენ მიმართულებისას უფრო მოკლე ჩანს.',
-      kk: 'Көрерменге қарай бағытталғанда қысқа болып көрінетін пішіндерді салыңыз.',
+      kk: 'Körermenge qarai bağyttalğanda qysqa bolyp körınetın pışınderdı salyñyz.',
       qm: 'Seyirci tarafına yönelgende qısqa körüngen şekillerni sızıñız.',
     },
   },

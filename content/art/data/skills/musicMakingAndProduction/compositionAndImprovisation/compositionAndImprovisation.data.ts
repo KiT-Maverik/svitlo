@@ -39,7 +39,7 @@ export const compositionAndImprovisation_SkillGroup_Data = defineSkillGroup({
     et: 'Loomine ja improvisatsioon',
     be: 'Кампазіцыя і імправізацыя',
     ka: 'კომპოზიცია და იმპროვიზაცია',
-    kk: 'Композиция және импровизация',
+    kk: 'Kompozitsiia jäne improvizatsiia',
     qm: 'Besteleme ve doğaçlama',
   },
   skills: [
@@ -80,7 +80,7 @@ export const compositionAndImprovisation_SkillGroup_Data = defineSkillGroup({
       et: 'Mõtle välja, ühenda ja korralda muusikalisi ideid terviklikeks teosteks.',
       be: 'Прыдумвайце, спалучайце і ўпарадкоўвайце музычныя ідэі ў завершаныя творы.',
       ka: 'შექმენით, გააერთიანეთ და დაალაგეთ მუსიკალური იდეები სრულ ნაწარმოებებად.',
-      kk: 'Ойлап тауып, біріктіріп, музыкалық идеяларды тұтас шығармаға айналдырыңыз.',
+      kk: 'Oilap tauyp, bırıktırıp, muzykalyq ideialardy tūtas şyğarmağa ainaldyryñyz.',
       qm: 'Muzika fikirlerini icat etiñiz, birleştirip tam eserlerge tertip etiñiz.',
     },
   },

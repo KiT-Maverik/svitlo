@@ -31,7 +31,7 @@ export const constructContourDrawing_Skill_Data = defineSkill({
     et: 'Kontuurjoonistuse loomine',
     be: 'Ствараць контурны малюнак',
     ka: 'კონტურული ნახატის შექმნა',
-    kk: 'Контурлық сурет салу',
+    kk: 'Konturlyq suret salu',
     qm: 'Kontur resmini sızmaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const constructContourDrawing_Skill_Data = defineSkill({
       et: 'Kasuta piirjooni ja kattuvaid servi, et kujutada nähtut.',
       be: 'Перадавайце ўбачанае контурамі і краямі, што перакрываюцца.',
       ka: 'გამოიყენეთ კონტურები და გადამფარავი კიდეები იმის გამოსახატავად, რასაც ხედავთ.',
-      kk: 'Көргеніңізді контурлар мен қабаттасқан жиектер арқылы бейнелеңіз.',
+      kk: 'Körgenıñızdı konturlar men qabattasqan jiekter arqyly beineleñız.',
       qm: 'Körgeniñizni tış çizgiler ve üst-üstüne kelgen kenarlar yardımınen tasvir etiñiz.',
     },
   },

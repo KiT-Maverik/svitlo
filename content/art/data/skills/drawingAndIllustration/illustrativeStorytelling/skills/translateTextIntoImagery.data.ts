@@ -31,7 +31,7 @@ export const translateTextIntoImagery_Skill_Data = defineSkill({
     et: 'Teksti muutmine piltideks',
     be: 'Ператвараць тэкст у вобразы',
     ka: 'ტექსტის გამოსახულებებად გარდაქმნა',
-    kk: 'Мәтінді бейнеге айналдыру',
+    kk: 'Mätındı beinege ainaldyru',
     qm: 'Metinni tasvirlerge çevirmek',
   },
   description: {
@@ -64,7 +64,7 @@ export const translateTextIntoImagery_Skill_Data = defineSkill({
       et: 'Muuda kirjalik mõte tähenduslikeks piltideks, selle asemel et iga sõna kopeerida.',
       be: 'Перадайце пісьмовую ідэю зьмястоўнымі выявамі, а не даслоўным капіяваньнем.',
       ka: 'წერილობითი იდეა მნიშვნელობის მქონე გამოსახულებებად აქციეთ და ნუ გადაიტანთ ყოველ სიტყვას პირდაპირ.',
-      kk: 'Жазылған ойды әр сөзін көшірмей, мағыналы суреттер арқылы жеткізіңіз.',
+      kk: 'Jazylğan oidy är sözın köşırmei, mağynaly suretter arqyly jetkızıñız.',
       qm: 'Yazılğan fikirni er sözüni köçürmeyip, manalı tasvirlerge çeviriñiz.',
     },
   },

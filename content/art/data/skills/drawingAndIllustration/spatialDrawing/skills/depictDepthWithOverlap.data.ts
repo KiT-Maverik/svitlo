@@ -31,7 +31,7 @@ export const depictDepthWithOverlap_Skill_Data = defineSkill({
     et: 'Sügavuse kujutamine kattumise abil',
     be: 'Перадаваць глыбіню праз перакрыцьцё',
     ka: 'სიღრმის გამოსახვა გადაფარვით',
-    kk: 'Қабаттасу арқылы тереңдікті көрсету',
+    kk: 'Qabattasu arqyly tereñdıktı körsetu',
     qm: 'Üst-üstüne kelüvnen terenlikni köstermek',
   },
   description: {
@@ -64,7 +64,7 @@ export const depictDepthWithOverlap_Skill_Data = defineSkill({
       et: 'Näita esemete kattumist, et need paistaksid lähemal või kaugemal.',
       be: 'Паказвайце перакрыцьцё прадметаў, каб яны здаваліся бліжэйшымі або далейшымі.',
       ka: 'აჩვენეთ საგნების ერთმანეთის გადაფარვა, რათა ისინი უფრო ახლოს ან შორს ჩანდნენ.',
-      kk: 'Заттардың бірін-бірі жабуын көрсетіп, олардың жақын не алыс екенін білдіріңіз.',
+      kk: 'Zattardyñ bırın-bırı jabuyn körsetıp, olardyñ jaqyn ne alys ekenın bıldırıñız.',
       qm: 'Eşyalarnı bir-birini qapatqan şekilde kösterip, yaqın ya da uzaq körünmelerini temin etiñiz.',
     },
   },

@@ -31,7 +31,7 @@ export const renderLightAndShadow_Skill_Data = defineSkill({
     et: 'Valguse ja varju kujutamine',
     be: 'Перадаваць сьвятло і цень',
     ka: 'სინათლისა და ჩრდილის გამოსახვა',
-    kk: 'Жарық пен көлеңкені бейнелеу',
+    kk: 'Jaryq pen köleñkenı beineleu',
     qm: 'Yarıq ve kölgeni tasvir etmek',
   },
   description: {
@@ -64,7 +64,7 @@ export const renderLightAndShadow_Skill_Data = defineSkill({
       et: 'Näita valgust ja varju erinevate heledate ning tumedate toonidega.',
       be: 'Паказвайце сьвятло і цень праз розныя сьветлыя і цёмныя тоны.',
       ka: 'აჩვენეთ სინათლე და ჩრდილი სხვადასხვა ღია და მუქი ტონით.',
-      kk: 'Әртүрлі ашық және қою реңктер арқылы жарық пен көлеңкені көрсетіңіз.',
+      kk: 'Ärtürlı aşyq jäne qoiu reñkter arqyly jaryq pen köleñkenı körsetıñız.',
       qm: 'Açıq ve qoyu renk tonlarınen yarıq ve kölgeni kösteriñiz.',
     },
   },

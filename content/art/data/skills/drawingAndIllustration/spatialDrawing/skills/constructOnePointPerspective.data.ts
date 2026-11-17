@@ -31,7 +31,7 @@ export const constructOnePointPerspective_Skill_Data = defineSkill({
     et: 'Ühe koondumispunktiga perspektiivi konstrueerimine',
     be: 'Будаваць аднакрапкавую пэрспэктыву',
     ka: 'ერთწერტილიანი პერსპექტივის აგება',
-    kk: 'Бір нүктелі перспектива құрастыру',
+    kk: 'Bır nüktelı perspektiva qūrastyru',
     qm: 'Bir noqtalı perspektiva qurmaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const constructOnePointPerspective_Skill_Data = defineSkill({
       et: 'Joonista stseen, kus rööpsed jooned suunduvad ühte koondumispunkti.',
       be: 'Намалюйце сцэну, дзе паралельныя лініі сыходзяцца ў адным пункце.',
       ka: 'დახატეთ სცენა, სადაც პარალელური ხაზები ერთ გაქრობის წერტილამდე მიდის.',
-      kk: 'Параллель сызықтары бір жоғалу нүктесіне бағытталған көріністі салыңыз.',
+      kk: 'Parallel syzyqtary bır joğalu nüktesıne bağyttalğan körınıstı salyñyz.',
       qm: 'Paralel sızıqlar bir yoqaluv noqtasına doğru ketken manzara sızıñız.',
     },
   },
