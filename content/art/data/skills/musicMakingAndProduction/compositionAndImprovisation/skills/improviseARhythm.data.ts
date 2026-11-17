@@ -31,7 +31,7 @@ export const improviseARhythm_Skill_Data = defineSkill({
     et: 'Improviseeri rütmi',
     be: 'Імправізуйце рытм',
     ka: 'მოახდინეთ რიტმის იმპროვიზაცია',
-    kk: 'Ырғақты суырып салыңыз',
+    kk: 'Yrğaqty suyryp salyñyz',
     qm: 'Bir ritmni doğaçlama yaratmaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const improviseARhythm_Skill_Data = defineSkill({
       et: 'Mõtle rütmiidee välja, mängides ühtlase pulsi saatel.',
       be: 'Прыдумвайце рытмічную ідэю, іграючы пад раўнамерны пульс.',
       ka: 'შექმენით რიტმული იდეა თანაბარი პულსის თანხლებით დაკვრისას.',
-      kk: 'Бірқалыпты ырғаққа қосылып ойнап, жаңа ырғақ ойлап табыңыз.',
+      kk: 'Bırqalypty yrğaqqa qosylyp oinap, jaña yrğaq oilap tabyñyz.',
       qm: 'Daimiy urğuğa qoşulıp çalğanda bir ritm fikri icat etiñiz.',
     },
   },

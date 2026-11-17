@@ -31,7 +31,7 @@ export const maintainAnEnsemblePart_Skill_Data = defineSkill({
     et: 'Hoia ansamblis oma partiid',
     be: 'Захоўвайце сваю партыю ў ансамблі',
     ka: 'შეინარჩუნეთ თქვენი პარტია ანსამბლში',
-    kk: 'Ансамбльдегі өз партияңызды сақтаңыз',
+    kk: 'Ansambldegı öz partiiañyzdy saqtañyz',
     qm: 'Ansamblde öz partiyanıznı saqlañız',
   },
   description: {
@@ -64,7 +64,7 @@ export const maintainAnEnsemblePart_Skill_Data = defineSkill({
       et: 'Hoia oma muusikapartii teistega koos mängides kindlana.',
       be: 'Падчас сумеснага выканання стабільна трымайце сваю музычную партыю.',
       ka: 'სხვებთან ერთად დაკვრისას შეინარჩუნეთ თქვენი მუსიკალური პარტიის სტაბილურობა.',
-      kk: 'Басқалармен бірге орындағанда музыкалық партияңызды тұрақты ұстаңыз.',
+      kk: 'Basqalarmen bırge oryndağanda muzykalyq partiiañyzdy tūraqty ūstañyz.',
       qm: 'Başkalarınen çalğanda öz muzika partiyanıznı turaqlı tutıñız',
     },
   },

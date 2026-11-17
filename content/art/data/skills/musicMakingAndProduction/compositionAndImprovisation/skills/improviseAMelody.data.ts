@@ -31,7 +31,7 @@ export const improviseAMelody_Skill_Data = defineSkill({
     et: 'Improviseeri meloodiat',
     be: 'Імправізуйце мелодыю',
     ka: 'მოახდინეთ მელოდიის იმპროვიზაცია',
-    kk: 'Әуенді суырып салыңыз',
+    kk: 'Äuendı suyryp salyñyz',
     qm: 'Bir avaznı doğaçlama yaratmaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const improviseAMelody_Skill_Data = defineSkill({
       et: 'Loo meloodia kohapeal, järgides muusikalist raamistikku.',
       be: 'Стварайце мелодыю экспромтам у зададзеным музычным кантэксце.',
       ka: 'მოიგონეთ მელოდია ადგილზე, მუსიკალური კონტექსტის დაცვით.',
-      kk: 'Музыкалық мәнмәтінді сақтай отырып, әуенді сол сәтте шығарыңыз.',
+      kk: 'Muzykalyq mänmätındı saqtai otyryp, äuendı sol sätte şyğaryñyz.',
       qm: 'Muzika bağlamına uyaraq o anda bir avaz icat etiñiz.',
     },
   },

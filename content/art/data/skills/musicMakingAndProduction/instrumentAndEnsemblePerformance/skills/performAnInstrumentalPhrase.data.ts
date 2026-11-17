@@ -31,7 +31,7 @@ export const performAnInstrumentalPhrase_Skill_Data = defineSkill({
     et: 'Esita instrumentaalset fraasi',
     be: 'Выконвайце інструментальную фразу',
     ka: 'შეასრულეთ ინსტრუმენტული ფრაზა',
-    kk: 'Аспаптық музыкалық фразаны орындаңыз',
+    kk: 'Aspaptyq muzykalyq frazany oryndañyz',
     qm: 'Enstrümental muzika cümlesini icra etiñiz',
   },
   description: {
@@ -64,7 +64,7 @@ export const performAnInstrumentalPhrase_Skill_Data = defineSkill({
       et: 'Esita sidusat muusikalist mõtet ilmekalt ajastuse ja artikulatsiooniga.',
       be: 'Выконвайце цэласную музычную фразу з выразным таймінгам і артыкуляцыяй.',
       ka: 'შეასრულეთ ერთიანი მუსიკალური აზრი გამომსახველი დროისა და არტიკულაციით.',
-      kk: 'Орындау кезінде уақыт пен артикуляцияны мәнерлі қолданып, тұтас музыкалық ойды жеткізіңіз.',
+      kk: 'Oryndau kezınde uaqyt pen artikuliatsiiany mänerlı qoldanyp, tūtas muzykalyq oidy jetkızıñız.',
       qm: 'Birleşik muzika fikrini ifadeli zamanlama ve artikülâsyonnen çalıñız',
     },
   },

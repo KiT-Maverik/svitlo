@@ -31,7 +31,7 @@ export const arrangeMusicForAnEnsemble_Skill_Data = defineSkill({
     et: 'Sea muusikat ansamblile',
     be: 'Аранжыруйце музыку для ансамбля',
     ka: 'მოაწყვეთ მუსიკა ანსამბლისთვის',
-    kk: 'Ансамбльге арнап музыка өңдеңіз',
+    kk: 'Ansamblge arnap muzyka öñdeñız',
     qm: 'Ansambl içün muzikanı aranje etiñiz',
   },
   description: {
@@ -64,7 +64,7 @@ export const arrangeMusicForAnEnsemble_Skill_Data = defineSkill({
       et: 'Kohanda olemasolev muusika valitud pillide või lauljate rühmale.',
       be: 'Адаптуйце наяўную музыку для абранага складу інструментаў або спевакоў.',
       ka: 'მოარგეთ არსებული მუსიკა არჩეულ ინსტრუმენტთა ან მომღერალთა ჯგუფს.',
-      kk: 'Қолда бар музыканы таңдалған аспаптар немесе әншілер тобына бейімдеңіз.',
+      kk: 'Qolda bar muzykany tañdalğan aspaptar nemese änşıler tobyna beiımdeñız.',
       qm: 'Mevcut muzikanı saylanğan sazlar ya da yırçılar toplulığına uyğulaştıñız.',
     },
   },

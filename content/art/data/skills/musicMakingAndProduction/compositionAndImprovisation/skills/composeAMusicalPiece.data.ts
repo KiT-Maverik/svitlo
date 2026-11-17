@@ -31,7 +31,7 @@ export const composeAMusicalPiece_Skill_Data = defineSkill({
     et: 'Loo muusikapala',
     be: 'Стварыце музычны твор',
     ka: 'შექმენით მუსიკალური ნაწარმოები',
-    kk: 'Музыкалық шығарма жазыңыз',
+    kk: 'Muzykalyq şyğarma jazyñyz',
     qm: 'Bir muzika eserini besteleyiñiz',
   },
   description: {
@@ -64,7 +64,7 @@ export const composeAMusicalPiece_Skill_Data = defineSkill({
       et: 'Arenda muusikalisi ideid kontrastide ja rahuldava lõpuga teoseks.',
       be: 'Развівайце музычныя ідэі ў твор з кантрастамі і пераканаўчым завяршэннем.',
       ka: 'განავითარეთ მუსიკალური იდეები კონტრასტებისა და დამაკმაყოფილებელი დასასრულის მქონე ნაწარმოებად.',
-      kk: 'Дамытыңыз музыкалық идеяларды қарама-қайшылығы мен сәтті аяқталуы бар шығармаға.',
+      kk: 'Damytyñyz muzykalyq ideialardy qarama-qaişylyğy men sättı aiaqtaluy bar şyğarmağa.',
       qm: 'Muzika fikirlerini zıddiyet ve tatmin etici soñu olğan eserge inkişaf etiñiz.',
     },
   },

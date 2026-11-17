@@ -39,7 +39,7 @@ export const instrumentAndEnsemblePerformance_SkillGroup_Data = defineSkillGroup
     et: 'Pillimäng ja ansambliesitus',
     be: 'Інструментальнае і ансамблевае выкананне',
     ka: 'ინსტრუმენტზე და ანსამბლში შესრულება',
-    kk: 'Аспапта және ансамбльде орындау',
+    kk: 'Aspapta jäne ansamblde oryndau',
     qm: 'Saz çalmaq ve ansambl icrası',
   },
   skills: [
@@ -80,7 +80,7 @@ export const instrumentAndEnsemblePerformance_SkillGroup_Data = defineSkillGroup
       et: 'Arenda muusikalist väljendusoskust pillimängutehnika ja koos musitseerimise abil.',
       be: 'Развівайце музычную выразнасць праз тэхніку ігры на інструменце і сумеснае выкананне.',
       ka: 'განავითარეთ მუსიკალური გამოხატვა ინსტრუმენტზე დაკვრის ტექნიკითა და ერთობლივი შესრულებით.',
-      kk: 'Аспапта ойнау техникасы мен бірлесіп орындау арқылы музыкалық мәнерлілікті дамытыңыз.',
+      kk: 'Aspapta oinau tehnikasy men bırlesıp oryndau arqyly muzykalyq mänerlılıktı damytyñyz.',
       qm: 'Saz çaluv tehnikası ve birlikte çaluv ile muzika ifadesini inkişaf etiñiz.',
     },
   },

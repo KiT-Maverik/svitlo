@@ -31,7 +31,7 @@ export const respondToMusicalCues_Skill_Data = defineSkill({
     et: 'Reageeri muusikalistele märguannetele',
     be: 'Рэагуйце на музычныя сігналы',
     ka: 'გამოეხმაურეთ მუსიკალურ მინიშნებებს',
-    kk: 'Музыкалық белгілерге жауап беріңіз',
+    kk: 'Muzykalyq belgılerge jauap berıñız',
     qm: 'Muzika işaretlerine cevap beriñiz',
   },
   description: {
@@ -64,7 +64,7 @@ export const respondToMusicalCues_Skill_Data = defineSkill({
       et: 'Märka muusikalisi märguandeid ja reageeri õigel hetkel koos teistega.',
       be: 'Заўважайце музычныя сігналы і разам рэагуйце ў патрэбны момант.',
       ka: 'შენიშნეთ მუსიკალური მინიშნებები და საჭირო მომენტში ერთად უპასუხეთ.',
-      kk: 'Музыкалық белгілерді байқап, қажетті сәтте бірге жауап беріңіз.',
+      kk: 'Muzykalyq belgılerdı baiqap, qajettı sätte bırge jauap berıñız.',
       qm: 'Muzika işaretlerini sezip doğru anda beraber cevap beriñiz',
     },
   },

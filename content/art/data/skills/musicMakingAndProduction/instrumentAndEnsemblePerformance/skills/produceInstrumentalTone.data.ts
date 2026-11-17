@@ -31,7 +31,7 @@ export const produceInstrumentalTone_Skill_Data = defineSkill({
     et: 'Loo instrumendi kõla',
     be: 'Стварайце гучанне інструмента',
     ka: 'შექმენით ინსტრუმენტის ჟღერადობა',
-    kk: 'Аспаптың үнін шығарыңыз',
+    kk: 'Aspaptyñ ünın şyğaryñyz',
     qm: 'Enstrümental ses çıqarıñız',
   },
   description: {
@@ -64,7 +64,7 @@ export const produceInstrumentalTone_Skill_Data = defineSkill({
       et: 'Kujunda instrumendi kõla nii, et see sobiks mängitava muusikaga.',
       be: 'Фармуйце гучанне інструмента ў адпаведнасці з музыкай, якую хочаце выканаць.',
       ka: 'მოარგეთ ინსტრუმენტის ჟღერადობა იმ მუსიკას, რომლის დაკვრაც გსურთ.',
-      kk: 'Аспаптың үнін орындағыңыз келетін музыкаға сәйкестендіріңіз.',
+      kk: 'Aspaptyñ ünın oryndağyñyz keletın muzykağa säikestendırıñız.',
       qm: 'Çalmaq istegen muzikañızğa uyğun enstrümental ses şekillendiriñiz',
     },
   },

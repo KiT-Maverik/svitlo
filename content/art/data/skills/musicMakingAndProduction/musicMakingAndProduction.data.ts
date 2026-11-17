@@ -36,7 +36,7 @@ export const musicMakingAndProduction_SkillDomain_Data = defineSkillDomain({
     et: 'Muusika loomine ja tootmine',
     be: 'Стварэнне і прадзюсаванне музыкі',
     ka: 'მუსიკის შექმნა და პროდიუსინგი',
-    kk: 'Музыка жасау және продюсерлік',
+    kk: 'Muzyka jasau jäne prodiuserlık',
     qm: 'Muzika yaratması ve prodüserligi',
   },
   groups: [
@@ -76,7 +76,7 @@ export const musicMakingAndProduction_SkillDomain_Data = defineSkillDomain({
       et: 'Loo väljendusrikast muusikat hääle, pillide, improvisatsiooni ja salvestatud helide abil.',
       be: 'Стварайце выразную музыку з дапамогай голасу, інструментаў, імправізацыі і запісаных гукаў.',
       ka: 'შექმენით გამომსახველობითი მუსიკა ხმით, ინსტრუმენტებით, იმპროვიზაციითა და ჩაწერილი ბგერებით.',
-      kk: 'Дауысыңыз, аспаптар, импровизация және жазылған дыбыстар арқылы әсерлі музыка жасаңыз.',
+      kk: 'Dauysyñyz, aspaptar, improvizatsiia jäne jazylğan dybystar arqyly äserlı muzyka jasañyz.',
       qm: 'Davuşıñız, sazlarıñız, doğaçlama ve yazılğan seslerden ifadeleyici muzika yaratığız.',
     },
   },

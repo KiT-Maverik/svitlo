@@ -31,7 +31,7 @@ export const shapePerformanceDynamics_Skill_Data = defineSkill({
     et: 'Kujunda esituse dünaamikat',
     be: 'Фармуйце дынаміку выканання',
     ka: 'შექმენით შესრულების დინამიკა',
-    kk: 'Орындау динамикасын қалыптастырыңыз',
+    kk: 'Oryndau dinamikasyn qalyptastyryñyz',
     qm: 'İcra dinamikanı şekillendiriñiz',
   },
   description: {
@@ -64,7 +64,7 @@ export const shapePerformanceDynamics_Skill_Data = defineSkill({
       et: 'Muuda helitugevust ja artikulatsiooni, et esitus oleks väljendusrikas.',
       be: 'Выкарыстоўвайце змены гучнасці і артыкуляцыі, каб зрабіць выкананне выразным.',
       ka: 'გამოიყენეთ ხმის სიმძლავრისა და არტიკულაციის ცვლილებები შესრულების გამოსახატავად.',
-      kk: 'Орындауды мәнерлі ету үшін дыбыс қаттылығы мен артикуляцияны өзгертіңіз.',
+      kk: 'Oryndaudy mänerlı etu üşın dybys qattylyğy men artikuliatsiiany özgertıñız.',
       qm: 'İcranı ifadeli etmek içün ses şiddeti ve artikülâsiyanı deñiştiriñiz',
     },
   },

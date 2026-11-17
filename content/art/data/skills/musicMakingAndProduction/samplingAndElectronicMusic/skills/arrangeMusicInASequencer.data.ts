@@ -31,7 +31,7 @@ export const arrangeMusicInASequencer_Skill_Data = defineSkill({
     et: 'Sea muusikat sekventseris',
     be: 'Упарадкоўвайце музыку ў секвенсары',
     ka: 'მუსიკის დალაგება სეკვენსერში',
-    kk: 'Музыканы секвенсерде реттеңіз',
+    kk: 'Muzykany sekvenserde retteñız',
     qm: 'Sekvenserde muzika tertip etiñiz',
   },
   description: {
@@ -64,7 +64,7 @@ export const arrangeMusicInASequencer_Skill_Data = defineSkill({
       et: 'Paiguta salvestatud või elektroonilised muusikapartiid ajas lõikudeks.',
       be: 'Размяшчайце запісаныя або электронныя музычныя партыі ў часавыя секцыі.',
       ka: 'დროში დაალაგეთ ჩაწერილი ან ელექტრონული მუსიკალური ნაწილები სექციებად.',
-      kk: 'Жазылған немесе электрондық музыкалық бөліктерді уақыт бойынша бөлімдерге орналастырыңыз.',
+      kk: 'Jazylğan nemese elektrondyq muzykalyq bölıkterdı uaqyt boiynşa bölımderge ornalastyryñyz.',
       qm: 'Qayd etilgen yaki elektron muzika partiyalarını vaqt içinde bölümlerge tertip etiñiz',
     },
   },

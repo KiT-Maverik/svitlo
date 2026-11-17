@@ -31,7 +31,7 @@ export const composeARhythmicGroove_Skill_Data = defineSkill({
     et: 'Loo rütmiline groove',
     be: 'Стварыце рытмічны груў',
     ka: 'შექმენით რიტმული გროუვი',
-    kk: 'Ырғақты грув жасаңыз',
+    kk: 'Yrğaqty gruv jasañyz',
     qm: 'Ritmik groove tertip etiñiz',
   },
   description: {
@@ -64,7 +64,7 @@ export const composeARhythmicGroove_Skill_Data = defineSkill({
       et: 'Ühenda korduvad rütmid groove’iks, mille osad üksteist täiendavad.',
       be: 'Спалучайце паўтаральныя рытмы ў груў, часткі якога дапаўняюць адна адну.',
       ka: 'შეაერთეთ განმეორებადი რიტმები გროუვად, რომლის ნაწილებიც ერთმანეთს ავსებს.',
-      kk: 'Қайталанатын ырғақтарды бөліктері бірін-бірі толықтыратын грувке біріктіріңіз.',
+      kk: 'Qaitalanatyn yrğaqtardy bölıkterı bırın-bırı tolyqtyratyn gruvke bırıktırıñız.',
       qm: 'Tekrarlanağan ritmlerni bir-birini tamamlağan bölüklerden ibaret groovege birleştiriñiz.',
     },
   },

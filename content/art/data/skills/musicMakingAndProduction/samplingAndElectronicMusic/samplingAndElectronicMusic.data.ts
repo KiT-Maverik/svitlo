@@ -40,7 +40,7 @@ export const samplingAndElectronicMusic_SkillGroup_Data = defineSkillGroup({
     et: 'Sämplimine ja elektrooniline muusika',
     be: 'Сэмпліраванне і электронная музыка',
     ka: 'სემპლირება და ელექტრონული მუსიკა',
-    kk: 'Сэмплдеу және электрондық музыка',
+    kk: 'Sempldeu jäne elektrondyq muzyka',
     qm: 'Semplev ve elektron muzika',
   },
   skills: [
@@ -82,7 +82,7 @@ export const samplingAndElectronicMusic_SkillGroup_Data = defineSkillGroup({
       et: 'Kasuta salvestisi ja elektroonilisi tööriistu muusikahelide loomiseks ja korraldamiseks.',
       be: 'Выкарыстоўвайце запісы і электронныя інструменты, каб ствараць і ўпарадкоўваць музычныя гукі.',
       ka: 'გამოიყენეთ ჩანაწერები და ელექტრონული ხელსაწყოები მუსიკალური ხმების შესაქმნელად და დასალაგებლად.',
-      kk: 'Музыкалық дыбыстарды жасау және реттеу үшін жазбалар мен электрондық құралдарды пайдаланыңыз.',
+      kk: 'Muzykalyq dybystardy jasau jäne retteu üşın jazbalar men elektrondyq qūraldardy paidalanyñyz.',
       qm: 'Muzika seslerini yaratmaq ve tertiplemek içün qaydlar ve elektron aletler qullanıñız',
     },
   },
