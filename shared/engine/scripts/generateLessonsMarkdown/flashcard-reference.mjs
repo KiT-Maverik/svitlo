@@ -232,6 +232,15 @@ export function renderFlashcardReference({
         if (!Array.isArray(slides)) throw new Error('Carousel is missing resolved slides: ' + block.slug);
         slides.forEach((child, n) => visit(child, [...ancestry, block.slug], n, slides));
       }
+      if (block.type === 'checkpoint') {
+        if (!Array.isArray(block.content)) throw new Error('Checkpoint is missing resolved items: ' + block.slug);
+        block.content.forEach(item => {
+          if (!isObject(item) || item.type !== 'checkpointItem' || !Array.isArray(item.answer))
+            throw new Error('Invalid Checkpoint Item in ' + block.slug);
+          const elements = [item.question, ...item.answer];
+          elements.forEach((child, n) => visit(child, [...ancestry, block.slug, item.slug], n, elements));
+        });
+      }
     }
     section.content.forEach((block, index, blocks) => visit(block, [], index, blocks));
   }
