@@ -22,11 +22,13 @@ function fixture(callback) {
       fs.mkdirSync(path.dirname(filename), { recursive: true });
       fs.copyFileSync(path.join(root, relative), filename);
     }
-    const file = path.join(temporary, registry);
-    fs.writeFileSync(file, fs.readFileSync(file, 'utf8').replace(
-      'export const DEFAULT_SUPPORTED_LANGUAGES = [',
-      "export const DEFAULT_SUPPORTED_LANGUAGES = [\n  { locale: 'it-IT', language: 'it' },",
-    ));
+    // Italian is already registered. Simulate missing localized content only
+    // in the disposable fixture, without mutating canonical language keys.
+    const file = path.join(temporary, content);
+    const source = fs.readFileSync(file, 'utf8');
+    const italian = /^  it: \[[^\n]*\],\r?\n/m;
+    assert.match(source, italian, 'Expected canonical Italian geography fields');
+    fs.writeFileSync(file, source.replace(italian, ''));
     callback(temporary);
   } finally {
     fs.rmSync(temporary, { recursive: true, force: true });
