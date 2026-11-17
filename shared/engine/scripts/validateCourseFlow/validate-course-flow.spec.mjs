@@ -34,6 +34,6 @@ test('reject invalid order keys, nested Modules and identity mismatch', () => {
   assert.equal(checkPlan({...nested,content:{...nested.content,order:[]}}, '2').valid,false);
 });
 test('safe YAML 1.2 parser rejects duplicate keys', () => {
-  assert.equal(parseYaml('id: hello\\n' .replace('\\\\n','\n')).id, 'hello');
+  assert.equal(parseYaml('id: hello\n').id, 'hello');
   assert.throws(() => parseYaml('id: first\nid: second\n'), /duplicate|Map keys must be unique/i);
 });

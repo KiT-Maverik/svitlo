@@ -42,6 +42,9 @@ In the *same* `course.yaml`, author ordered Course/Module/Chapter groups, stable
 
 **Complete:** accepted entire macrostructure with no unresolved ordering/coverage decision. **Handoff:** bounded Module-specific Lesson design; if no Modules, use bounded Course/Chapter units.
 
+For the temporary editorial source, run the **read-only stage validator**:
+`node shared/engine/scripts/validateCourseFlow/validate-course-flow.mjs --file content/<book>/data/courses/<bucket>/<uuid>/course.yaml --stage 2`. Stage 1 uses `--stage 1`, Stage 3 work-in-progress uses `--stage 3`, and only an entirely identified Lesson plan may use `--stage 3-complete`. The manually maintained editorial schema is `course-flow.schema.json`; Engine technical `config.yaml` is validated separately using Engine-derived schemas. YAML validity never constitutes editorial approval.
+
 ### 3. Design & Match Lessons — each Module (or bounded alternative)
 
 **Owner:** [Methodologist](../../personas/methodist.persona.md); [Assessment Architect](../../personas/learning-assessment-architect.persona.md) reviews assessment intent. **Skills:** [Create Course TOC](./create-course-toc.skill.md) for slots, [Match Course TOC Lessons](./match-course-toc-lessons.skill.md), [Create Lesson Brief](../lesson-workflow/create-lesson-brief.skill.md), [Manage Lesson Production](../lesson-workflow/manage-lesson-production.skill.md). **Prerequisite:** accepted Stage 2 unit structure.
