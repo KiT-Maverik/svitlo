@@ -192,7 +192,17 @@ seven stages in the PR body, with:
   publisher --preflight/--check, Section/UI Kit checks, Engine typecheck,
   package/textbook build, localization/RTL QA, CI and independent reviews.
 
-Final QA is a checklist, **not an eighth stage**. A missing or unfinished
+Final QA is a checklist, **not an eighth stage**. Before owner-authorized
+Ready/merge, run the existing `generateAssessmentResources --kind question`
+production publisher without `--draft`; verify that **every bank Question**
+(including unselected items) is included in the generated publication and
+staged textbook manifest. Inspect the entire changed Lesson UUID root for any
+`TODO(asset)`, reserved Nil media filename, temporary `questions.yaml` or
+missing referenced media, captions and accessible alternative. The strict
+textbook `package:build` must succeed for the full required language scope.
+Passing the Questions YAML→TS builder alone is not resource completion; do not
+mark the Questions child PR complete until the real generated resources exist.
+A missing or unfinished
 Question Bank is never marked Questions-N/A. Do not modify Flashcards
 Flow, Course Flow, or derive an independent Lesson Markdown generator
 inside this workflow.
