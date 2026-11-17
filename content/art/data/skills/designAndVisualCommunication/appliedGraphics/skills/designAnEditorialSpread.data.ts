@@ -32,7 +32,7 @@ export const designAnEditorialSpread_Skill_Data = defineSkill({
     et: 'Toimetusliku küljenduse kujundamine',
     be: 'Праектаваць рэдакцыйны разварот',
     ka: 'სარედაქციო განფენის დიზაინი',
-    kk: 'Редакциялық бет жаймасын жобалау',
+    kk: 'Redaktsiialyq bet jaimasyn jobalau',
     qm: 'Redaksiya yayım maketini tasarlamaq',
   },
   description: {
@@ -66,7 +66,7 @@ export const designAnEditorialSpread_Skill_Data = defineSkill({
       et: 'Paiguta tekst, pildid ja tühi ruum lehekülgedele või avatud vaatele.',
       be: 'Размяшчайце тэкст, выявы і вольную прастору на старонках або развароце.',
       ka: 'განათავსეთ ტექსტი, სურათები და ცარიელი სივრცე გვერდებზე ან გაშლილ გვერდზე.',
-      kk: 'Беттерде немесе қосарланған бетте мәтін, сурет және бос кеңістікті орналастырыңыз.',
+      kk: 'Betterde nemese qosarlanğan bette mätın, suret jäne bos keñıstıktı ornalastyryñyz.',
       qm: 'Metin, suret ve boş alanlarnı bir ya da eki sayfa üstünde tertip etiñiz.',
     },
   },

@@ -32,7 +32,7 @@ export const buildAVisualIdentity_Skill_Data = defineSkill({
     et: 'Visuaalse identiteedi loomine',
     be: 'Ствараць візуальную ідэнтычнасць',
     ka: 'ვიზუალური იდენტობის შექმნა',
-    kk: 'Визуалды бірегейлік қалыптастыру',
+    kk: 'Vizualdy bıregeilık qalyptastyru',
     qm: 'Vizual kimlik yaratmaq',
   },
   description: {
@@ -66,7 +66,7 @@ export const buildAVisualIdentity_Skill_Data = defineSkill({
       et: 'Ühenda värvid, kirjatüübid ja kujundid ühtseks visuaalseks identiteediks.',
       be: 'Спалучайце колеры, шрыфты і формы ў цэласную візуальную ідэнтычнасць.',
       ka: 'შეუთავსეთ ფერები, ასოები და ფორმები თანმიმდევრულ ვიზუალურ იდენტობად.',
-      kk: 'Түстерді, қаріптерді және пішіндерді біріктіріп, біртұтас визуалды бірегейлік жасаңыз.',
+      kk: 'Tüsterdı, qarıpterdı jäne pışınderdı bırıktırıp, bırtūtas vizualdy bıregeilık jasañyz.',
       qm: 'Renklerni, yazı şekillerini ve şekillerni birleştirip tutarlı vizual kimlik yaratıñız.',
     },
   },

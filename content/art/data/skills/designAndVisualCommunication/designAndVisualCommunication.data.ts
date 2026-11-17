@@ -38,7 +38,7 @@ export const designAndVisualCommunication_SkillDomain_Data = defineSkillDomain({
     et: 'Disain ja visuaalne kommunikatsioon',
     be: 'Дызайн і візуальная камунікацыя',
     ka: 'დიზაინი და ვიზუალური კომუნიკაცია',
-    kk: 'Дизайн және визуалды коммуникация',
+    kk: 'Dizain jäne vizualdy kommunikatsiia',
     qm: 'Tasarım ve vizual iletişim',
   },
   groups: [
@@ -80,7 +80,7 @@ export const designAndVisualCommunication_SkillDomain_Data = defineSkillDomain({
       et: 'Kasuta kujundeid, sõnu, pilte ja materjale, et disaini abil ideid edastada.',
       be: 'Выкарыстоўвайце формы, словы, выявы і матэрыялы, каб перадаваць ідэі праз дызайн.',
       ka: 'გამოიყენეთ ფორმები, სიტყვები, გამოსახულებები და მასალები დიზაინით იდეების გადასაცემად.',
-      kk: 'Пішіндерді, сөздерді, суреттер мен материалдарды пайдаланып, дизайн арқылы ой жеткізіңіз.',
+      kk: 'Pışınderdı, sözderdı, suretter men materialdardy paidalanyp, dizain arqyly oi jetkızıñız.',
       qm: 'Şekiller, sözler, suretler ve materiallarnı qullanıp dizayn vasıtası ile fikirlerni añlatıñız.',
     },
   },

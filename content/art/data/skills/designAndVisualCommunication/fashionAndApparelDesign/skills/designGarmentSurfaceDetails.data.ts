@@ -32,7 +32,7 @@ export const designGarmentSurfaceDetails_Skill_Data = defineSkill({
     et: 'Rõivaste pinnadetailide kujundamine',
     be: 'Праектаваць дэталі паверхні адзення',
     ka: 'ტანსაცმლის ზედაპირის დეტალების დიზაინი',
-    kk: 'Киімнің беткі бөлшектерін жобалау',
+    kk: 'Kiımnıñ betkı bölşekterın jobalau',
     qm: 'Kiyim yüzeyi tafsilatlarını tasarlamaq',
   },
   description: {
@@ -67,7 +67,7 @@ export const designGarmentSurfaceDetails_Skill_Data = defineSkill({
       et: 'Paiguta kaunistused nii, et need sobiksid rõiva kuju ja liikumisega.',
       be: 'Размяшчайце дэкаратыўныя дэталі так, каб яны спалучаліся з формай і рухам адзення.',
       ka: 'განათავსეთ დეკორატიული დეტალები ისე, რომ სამოსის ფორმასა და მოძრაობას შეესაბამებოდეს.',
-      kk: 'Сәндік бөлшектерді киімнің пішіні мен қозғалысына үйлесетін жерге орналастырыңыз.',
+      kk: 'Sändık bölşekterdı kiımnıñ pışını men qozğalysyna üilesetın jerge ornalastyryñyz.',
       qm: 'Bezeme tafsilatlarını kiyimniñ şekli ve areketi ile uyğunlaşqan yerlerine yerleştirñiz.',
     },
   },

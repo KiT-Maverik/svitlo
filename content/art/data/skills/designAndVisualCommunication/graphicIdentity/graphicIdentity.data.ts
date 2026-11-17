@@ -39,7 +39,7 @@ export const graphicIdentity_SkillGroup_Data = defineSkillGroup({
     et: 'Graafiline identiteet',
     be: 'Графічная ідэнтычнасць',
     ka: 'გრაფიკული იდენტობა',
-    kk: 'Графикалық сәйкестік',
+    kk: 'Grafikalyq säikestık',
     qm: 'Grafik kimlik',
   },
   skills: [
@@ -80,7 +80,7 @@ export const graphicIdentity_SkillGroup_Data = defineSkillGroup({
       et: 'Loo äratuntav visuaalne identiteet omavahel seotud graafiliste valikute abil.',
       be: 'Стварайце пазнавальную візуальную ідэнтычнасць з дапамогай узгодненых графічных рашэнняў.',
       ka: 'შექმენით ცნობადი ვიზუალური იდენტობა ურთიერთდაკავშირებული გრაფიკული არჩევანით.',
-      kk: 'Өзара үйлесімді графикалық шешімдер арқылы танылатын визуалды бірегейлік қалыптастырыңыз.',
+      kk: 'Özara üilesımdı grafikalyq şeşımder arqyly tanylatyn vizualdy bıregeilık qalyptastyryñyz.',
       qm: 'Bağlı grafik saylavları ile tanılğan vizual kimlik yaratıñız.',
     },
   },

@@ -32,7 +32,7 @@ export const designPackagingGraphics_Skill_Data = defineSkill({
     et: 'Pakendigraafika kujundamine',
     be: 'Праектаваць графіку ўпакоўкі',
     ka: 'შეფუთვის გრაფიკის დიზაინი',
-    kk: 'Қаптама графикасын жобалау',
+    kk: 'Qaptama grafikasyn jobalau',
     qm: 'Ambalaj grafikasını tasarlamaq',
   },
   description: {
@@ -66,7 +66,7 @@ export const designPackagingGraphics_Skill_Data = defineSkill({
       et: 'Paiguta pakendile graafika ja teave selges visuaalses järjekorras.',
       be: 'Размяшчайце графіку і інфармацыю на ўпакоўцы ў выразнай візуальнай паслядоўнасці.',
       ka: 'განათავსეთ გრაფიკა და ინფორმაცია შეფუთვაზე მკაფიო ვიზუალური თანმიმდევრობით.',
-      kk: 'Қаптамада графика мен ақпаратты анық көрнекі ретпен орналастырыңыз.',
+      kk: 'Qaptamada grafika men aqparatty anyq körnekı retpen ornalastyryñyz.',
       qm: 'Ambalaj üstüne grafik ve malümatnı açıq vizual sıra ile yerleştirñiz.',
     },
   },

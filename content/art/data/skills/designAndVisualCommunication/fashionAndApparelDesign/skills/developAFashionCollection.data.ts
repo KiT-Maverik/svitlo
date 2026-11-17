@@ -32,7 +32,7 @@ export const developAFashionCollection_Skill_Data = defineSkill({
     et: 'Moekollektsiooni arendamine',
     be: 'Распрацоўваць калекцыю моды',
     ka: 'მოდის კოლექციის შექმნა',
-    kk: 'Сән топтамасын әзірлеу',
+    kk: 'Sän toptamasyn äzırleu',
     qm: 'Moda kolleksiyasını geliştirmek',
   },
   description: {
@@ -67,7 +67,7 @@ export const developAFashionCollection_Skill_Data = defineSkill({
       et: 'Kujunda läbimõeldud erinevustega omavahel seotud rõivakomplektide seeria.',
       be: 'Стварайце звязаную серыю вобразаў з прадуманымі адрозненнямі.',
       ka: 'შექმენით ურთიერთდაკავშირებული სამოსის სერია გააზრებული განსხვავებებით.',
-      kk: 'Жақсы ойластырылған айырмашылықтары бар өзара үйлесімді киімдер топтамасын жасаңыз.',
+      kk: 'Jaqsy oilastyrylğan aiyrmaşylyqtary bar özara üilesımdı kiımder toptamasyn jasañyz.',
       qm: 'Bir-birine bağlı, amma düşünilgen farqları olğan kiyim toplamasını tasarlañız.',
     },
   },

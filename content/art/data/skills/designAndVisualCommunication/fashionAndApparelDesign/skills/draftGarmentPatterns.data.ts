@@ -32,7 +32,7 @@ export const draftGarmentPatterns_Skill_Data = defineSkill({
     et: 'Rõivamustrite konstrueerimine',
     be: 'Распрацоўваць выкрайкі адзення',
     ka: 'ტანსაცმლის თარგების შექმნა',
-    kk: 'Киім үлгілерін сызу',
+    kk: 'Kiım ülgılerın syzu',
     qm: 'Kiyim kalıplarını hazırlamaq',
   },
   description: {
@@ -67,7 +67,7 @@ export const draftGarmentPatterns_Skill_Data = defineSkill({
       et: 'Muuda rõivakontseptsioon kokkupandavateks lõikeosadeks.',
       be: 'Ператварыце ідэю адзення ў злучальныя дэталі выкрайкі.',
       ka: 'აქციეთ სამოსის იდეა შესაკრავ თარგის ნაწილებად.',
-      kk: 'Киім идеясын құрастыруға болатын үлгі бөлшектеріне айналдырыңыз.',
+      kk: 'Kiım ideiasyn qūrastyruğa bolatyn ülgı bölşekterıne ainaldyryñyz.',
       qm: 'Kiyim fikrini birleştirile bilecek kalıp parçalarına çevirñiz.',
     },
   },

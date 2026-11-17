@@ -32,7 +32,7 @@ export const adaptGraphicsAcrossFormats_Skill_Data = defineSkill({
     et: 'Graafika kohandamine eri vormingutele',
     be: 'Адаптаваць графіку да розных фарматаў',
     ka: 'გრაფიკის სხვადასხვა ფორმატზე მორგება',
-    kk: 'Графиканы әртүрлі пішімдерге бейімдеу',
+    kk: 'Grafikany ärtürlı pışımderge beiımdeu',
     qm: 'Grafikleri farklı formatlara uyarlamaq',
   },
   description: {
@@ -66,7 +66,7 @@ export const adaptGraphicsAcrossFormats_Skill_Data = defineSkill({
       et: 'Kohanda visuaalset kujundust eri suurustele nii, et sõnum säiliks.',
       be: 'Адаптуйце візуальны дызайн да розных памераў, не губляючы яго паведамлення.',
       ka: 'შეუსაბამეთ ვიზუალური დიზაინი სხვადასხვა ზომას ისე, რომ გზავნილი არ დაიკარგოს.',
-      kk: 'Хабарын жоғалтпай, визуалды дизайнды әртүрлі өлшемдерге бейімдеңіз.',
+      kk: 'Habaryn joğaltpai, vizualdy dizaindy ärtürlı ölşemderge beiımdeñız.',
       qm: 'Mesajını yitirmeden vizual dizaynını türlü ölçülere uyğulañız.',
     },
   },

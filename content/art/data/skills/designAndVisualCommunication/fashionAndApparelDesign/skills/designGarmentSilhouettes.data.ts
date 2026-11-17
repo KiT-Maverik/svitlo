@@ -32,7 +32,7 @@ export const designGarmentSilhouettes_Skill_Data = defineSkill({
     et: 'Rõivasiluettide kujundamine',
     be: 'Праектаваць сілуэты адзення',
     ka: 'ტანსაცმლის სილუეტების დიზაინი',
-    kk: 'Киім сұлбасын жобалау',
+    kk: 'Kiım sūlbasyn jobalau',
     qm: 'Kiyim siluetlerini tasarlamaq',
   },
   description: {
@@ -67,7 +67,7 @@ export const designGarmentSilhouettes_Skill_Data = defineSkill({
       et: 'Kujunda rõiva piirjooned ja maht liikuva keha järgi.',
       be: 'Фармуйце контур і аб’ём адзення з улікам руху цела.',
       ka: 'შექმენით სამოსის კონტური და მოცულობა მოძრავი სხეულის გათვალისწინებით.',
-      kk: 'Қозғалыстағы денеге сай киімнің сұлбасы мен көлемін жасаңыз.',
+      kk: 'Qozğalystağy denege sai kiımnıñ sūlbasy men kölemın jasañyz.',
       qm: 'Areket etken bedenge uyğun kiyimniñ sırtqı şeklini ve hacmini tasarlañız.',
     },
   },

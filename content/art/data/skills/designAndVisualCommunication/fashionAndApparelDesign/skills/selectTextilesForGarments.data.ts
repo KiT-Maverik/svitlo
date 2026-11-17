@@ -32,7 +32,7 @@ export const selectTextilesForGarments_Skill_Data = defineSkill({
     et: 'Rõivastele tekstiilide valimine',
     be: 'Выбіраць тэкстыль для адзення',
     ka: 'ტანსაცმლისთვის ქსოვილების შერჩევა',
-    kk: 'Киімге арналған тоқыма материалдарын таңдау',
+    kk: 'Kiımge arnalğan toqyma materialdaryn tañdau',
     qm: 'Kiyim içün tekstil saylamaq',
   },
   description: {
@@ -67,7 +67,7 @@ export const selectTextilesForGarments_Skill_Data = defineSkill({
       et: 'Vali kangad, mille kaal, tekstuur ja langevus sobivad rõivadisainiga.',
       be: 'Выбірайце тканіны, вага, фактура і драпіроўка якіх адпавядаюць дызайну адзення.',
       ka: 'შეარჩიეთ ქსოვილები, რომელთა წონა, ტექსტურა და დრაპირება სამოსის დიზაინს შეესაბამება.',
-      kk: 'Киім дизайнына сай салмағы, текстурасы мен драпировкасы бар маталарды таңдаңыз.',
+      kk: 'Kiım dizainyna sai salmağy, teksturasy men drapirovkasy bar matalardy tañdañyz.',
       qm: 'Ağırlığı, teksturası ve dökümü kiyim dizaynına uyğun kumaşlarnı saylañız.',
     },
   },

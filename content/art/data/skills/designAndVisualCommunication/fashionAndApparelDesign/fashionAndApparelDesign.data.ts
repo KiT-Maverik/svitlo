@@ -41,7 +41,7 @@ export const fashionAndApparelDesign_SkillGroup_Data = defineSkillGroup({
     et: 'Moe- ja rõivadisain',
     be: 'Дызайн моды і адзення',
     ka: 'მოდის და ტანსაცმლის დიზაინი',
-    kk: 'Сән және киім дизайны',
+    kk: 'Sän jäne kiım dizainy',
     qm: 'Moda ve kiyim tasarımı',
   },
   skills: [
@@ -84,7 +84,7 @@ export const fashionAndApparelDesign_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri, kuidas rõiva kuju, kangas ja detailid muudavad moeidee rõivaks.',
       be: 'Даследуйце, як форма адзення, тканіна і дэталі ператвараюць модную ідэю ў вопратку.',
       ka: 'შეისწავლეთ, როგორ აქცევს სამოსის ფორმა, ქსოვილი და დეტალები მოდის იდეას ტანსაცმლად.',
-      kk: 'Зерттеңіз: киім пішіні, мата мен бөлшектер сән идеясын киімге қалай айналдырады.',
+      kk: 'Zertteñız: kiım pışını, mata men bölşekter sän ideiasyn kiımge qalai ainaldyrady.',
       qm: 'Kiyim şekli, kumaş ve tafsilatlarnıñ moda fikrini kiyimge nasıl çevirdgenini keşf etiñiz.',
     },
   },

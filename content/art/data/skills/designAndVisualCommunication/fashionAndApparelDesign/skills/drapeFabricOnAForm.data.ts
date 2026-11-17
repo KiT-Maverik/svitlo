@@ -32,7 +32,7 @@ export const drapeFabricOnAForm_Skill_Data = defineSkill({
     et: 'Kanga drapeerimine vormile',
     be: 'Драпіраваць тканіну на форме',
     ka: 'ქსოვილის დრაპირება ფორმაზე',
-    kk: 'Пішінге мата драптау',
+    kk: 'Pışınge mata draptau',
     qm: 'Kumaşı forma üstünde drape etmek',
   },
   description: {
@@ -67,7 +67,7 @@ export const drapeFabricOnAForm_Skill_Data = defineSkill({
       et: 'Sea kangas kehale või vormile, et uurida volte, istuvust ja mahtu.',
       be: 'Размяшчайце тканіну на целе або форме, каб даследаваць складкі, пасадку і аб’ём.',
       ka: 'განათავსეთ ქსოვილი სხეულზე ან ფორმაზე, რათა შეისწავლოთ ნაკეცები, მორგება და მოცულობა.',
-      kk: 'Матадағы қатпарларды, қонымдылық пен көлемді зерттеу үшін оны денеге не пішінге орналастырыңыз.',
+      kk: 'Matadağy qatparlardy, qonymdylyq pen kölemdı zertteu üşın ony denege ne pışınge ornalastyryñyz.',
       qm: 'Qatlamlarnı, oturuşnı ve hacimni keşf etmek içün kumaşnı beden ya da şekil üstüne yerleştirñiz.',
     },
   },

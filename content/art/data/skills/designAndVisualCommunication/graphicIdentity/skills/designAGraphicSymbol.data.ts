@@ -32,7 +32,7 @@ export const designAGraphicSymbol_Skill_Data = defineSkill({
     et: 'Graafilise sümboli kujundamine',
     be: 'Праектаваць графічны сімвал',
     ka: 'გრაფიკული სიმბოლოს დიზაინი',
-    kk: 'Графикалық таңба жобалау',
+    kk: 'Grafikalyq tañba jobalau',
     qm: 'Grafik sembol tasarlamaq',
   },
   description: {
@@ -66,7 +66,7 @@ export const designAGraphicSymbol_Skill_Data = defineSkill({
       et: 'Loo lihtne sümbol, mis edastab kindlat ideed.',
       be: 'Стварыце просты сімвал, які перадае пэўную ідэю.',
       ka: 'შექმენით მარტივი სიმბოლო, რომელიც კონკრეტულ იდეას გადმოსცემს.',
-      kk: 'Белгілі бір ойды жеткізетін қарапайым таңба жасаңыз.',
+      kk: 'Belgılı bır oidy jetkızetın qarapaiym tañba jasañyz.',
       qm: 'Müeyyen bir fikirni añlatqan sade sembol yaratıñız.',
     },
   },
