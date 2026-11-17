@@ -28,7 +28,10 @@ const root = path.resolve(fileURLToPath(new URL('../../../..', import.meta.url))
 const uuid = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/;
 const slug = /^[a-z][A-Za-z0-9]*$/;
 const isRecord = value => value !== null && typeof value === 'object' && !Array.isArray(value);
-const supportedBlocks = new Set(['text', 'markdown', 'code']);
+// Media-shaped YAML is a source-only draft: the regular Lesson/YAML Config
+// projection intentionally omits physical filenames. Never guess assets.
+const mediaBlocks = new Set(['audio', 'image', 'video', 'subtitles']);
+const supportedBlocks = new Set(['text', 'markdown', 'code', ...mediaBlocks]);
 
 function ensure(value, message) {
   if (!value) throw new Error('flashcards.yaml: ' + message);
@@ -165,9 +168,7 @@ export function renderFlashcardBank(bank) {
         nestedIds.add(block.id);
         ensure(
           supportedBlocks.has(block.type),
-          'block type ' +
-            block.type +
-            ' requires verified media/Question source integration (#645); refusing an invented fallback',
+          'block type ' + block.type + ' needs a separately verified Configurator handoff; no fabricated fallback',
         );
         factories.add(yamlFactoryByType[block.type]);
       }
@@ -179,7 +180,21 @@ export function renderFlashcardBank(bank) {
 
   const edges = materializeRelationships(cards, bank.relationships ?? { items: {}, order: [] });
   const literal = value => JSON.stringify(value, null, 2);
-  const blockExpression = block => yamlFactoryByType[block.type] + '(' + literal(block) + ')';
+  const blockExpression = block => {
+    const call = yamlFactoryByType[block.type] + '(' + literal(block) + ')';
+    if (!mediaBlocks.has(block.type)) return call;
+    // Existing Engine YAML projections deliberately omit these fields; leaving
+    // the typed Config incomplete is safer than inventing a filename or UUID.
+    const fields = block.type === 'video' ? 'fileName and posterFileName' : 'fileName';
+    return (
+      '/* TODO(asset): Verify an existing ' +
+      block.type +
+      ' resource at the pinned Lesson SHA; populate locale.' +
+      fields +
+      ' in this new Flashcard-owned block. This draft is NOT publishable. */\n' +
+      call
+    );
+  };
   const sideExpression = side =>
     'defineFlashcardSide({ items: {' +
     side.order.map(name => JSON.stringify(name) + ': ' + blockExpression(side.items[name])).join(', ') +

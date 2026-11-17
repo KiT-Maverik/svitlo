@@ -143,3 +143,38 @@ test('create-only builder never overwrites TS, retains YAML and strictly checks 
     fs.rmSync(folder, { recursive: true, force: true });
   }
 });
+
+test('media Config drafts retain independently owned block UUIDs without inventing physical asset paths', () => {
+  const bank = createBank();
+  const audio = {
+    id: id(401), slug: 'stimulusAudio', type: 'audio',
+    params: {}, locale: { title: { en: 'A bell rings' } },
+  };
+  const image = {
+    id: id(402), slug: 'diagram', type: 'image',
+    params: { fill: true, aspectRatio: 1 }, locale: { alt: { en: 'One triangle' } },
+  };
+  const video = {
+    id: id(403), slug: 'motion', type: 'video',
+    params: {}, locale: { label: { en: 'Motion demonstration' } },
+  };
+  const subtitles = { id: id(404), slug: 'captions', type: 'subtitles', params: {}, locale: {} };
+  bank.flashcards.items.first.content.front = {
+    items: { stimulusAudio: audio, diagram: image }, order: ['stimulusAudio', 'diagram'],
+  };
+  bank.flashcards.items.first.content.back = {
+    items: { motion: video, captions: subtitles }, order: ['motion', 'captions'],
+  };
+  const source = renderFlashcardBank(bank);
+  for (const kind of ['Audio', 'Image', 'Video', 'Subtitles']) {
+    assert.match(source, new RegExp('define' + kind + '\\('));
+  }
+  assert.equal((source.match(/TODO\(asset\)/g) ?? []).length, 4);
+  assert.match(source, /locale\.fileName and posterFileName/);
+  assert.doesNotMatch(source, /"fileName":|"posterFileName":/);
+  assert.deepEqual(
+    ts.createSourceFile('flashcards/index.ts', source, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS).parseDiagnostics,
+    [],
+  );
+  assert.equal(bank.flashcards.items.first.content.front.items.stimulusAudio.locale.fileName, undefined);
+});
