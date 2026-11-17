@@ -1,5 +1,7 @@
 # Create Lesson Questions — Assessment Architect
 
+> **New parent handoff:** [Create Lesson Flow](./create-lesson-flow.skill.md) tracks Question bank work as a **separate child Draft PR** targeting the Lesson branch, with source SHA and independent review. A new mandatory Lesson Production Issue, historic `content.yaml` and “Approved” frontmatter prerequisites below are superseded as **parent coordination** rules; preserve historical evidence. The detailed independent Question bank redesign is outside #643 and requires its own authorized workflow.
+
 **Persona:** [Learning Assessment Architect](../../personas/learning-assessment-architect.persona.md). Read it fully, the [Methodologist Persona](../../personas/methodist.persona.md), applicable `AGENTS.md`, the [Lesson Workflow](./README.md), and current canonical Question/Assessment Method/Quiz/ContentBlock contracts. This skill is for **specialist editorial Question authoring**, not production of code, media or translation.
 
 **Production coordination:** For an authorized Lesson-production batch, reuse the existing fixed-scope Lesson Production Issue under [Manage Lesson Production](./manage-lesson-production.skill.md). Confirm assigned Lesson UUIDs, ownership, source revisions, reviews and sign-offs. Process all independently ready Lessons, leave blocked ones visible, and do not create a new Issue for each bank or Lesson. Pure design/brainstorming does not need an Issue.
