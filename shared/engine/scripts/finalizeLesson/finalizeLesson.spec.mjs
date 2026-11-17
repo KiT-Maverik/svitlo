@@ -223,3 +223,19 @@ test('representative real Mathematics Lesson blueprint validates without generat
   assert.equal(result.document.production.documentLanguage, 'en');
   assert.equal(fs.readFileSync(source, 'utf8'), original, 'preflight never modifies real Math source');
 });
+
+test('empty source-language dictionaries block finalization even when editor schema permits them', () =>
+  fixture(f => {
+    f.document.config.locale.title = {};
+    f.save();
+    assert.throws(() => preflightLesson(f.source, f.root), /config.locale.title: empty locale dictionary/);
+    assert.throws(() => finalizeLesson(f.source, { repo: f.root }), /empty locale dictionary/);
+    assert.equal(fs.existsSync(f.source), true);
+    assert.equal(fs.existsSync(path.join(f.folder, 'index.ts')), false);
+
+    f.document.config.locale.title = { en: 'Test Lesson' };
+    f.document.config.section.items.intro.config.content.items.story.config.locale.value = {};
+    f.save();
+    assert.throws(() => preflightLesson(f.source, f.root), /config.locale.value: empty locale dictionary/);
+    assert.equal(fs.existsSync(f.source), true);
+  }));
