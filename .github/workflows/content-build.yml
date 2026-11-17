@@ -3,19 +3,6 @@ name: Content packages build
 on:
   pull_request:
     types: [opened, synchronize, reopened, ready_for_review]
-    paths:
-      - 'content/**'
-      - 'scripts/textbook-tooling/**'
-      - 'shared/engine/scripts/checkSkillsTaxonomyStructure/check-skills-taxonomy-structure.mjs'
-      - 'shared/engine/scripts/checkSkillsTaxonomyStructure/check-skills-taxonomy-structure.spec.mjs'
-      - 'scripts/checkBuiltPackageExports/check-built-package-exports.mjs'
-      - 'scripts/checkBuiltPackageExports/check-built-package-exports.spec.mjs'
-      - 'scripts/ci/buildChangedContent/build-changed-content.mjs'
-      - 'scripts/ci/buildChangedContent/build-changed-content.spec.mjs'
-      - 'scripts/ci/buildChangedContent/skills-agent-owners.json'
-      - 'scripts/ci/verifyProductionAssets/**'
-      - 'shared/engine/scripts/courseBuilder/**'
-      - '.github/workflows/content-build.yml'
   workflow_dispatch:
 
 permissions:
@@ -59,7 +46,8 @@ jobs:
           HEAD_SHA: ${{ github.event.pull_request.head.sha }}
           BASE_REF: ${{ github.base_ref }}
           HEAD_REF: ${{ github.head_ref }}
-          SVITLO_MEDIA_MODE: production
+          # Drafts allow honest missing-media handoffs; Ready must publish real assets.
+          SVITLO_MEDIA_MODE: ${{ github.event.pull_request.draft && 'draft' || 'production' }}
         run: node scripts/ci/buildChangedContent/build-changed-content.mjs
       - name: Manually build every content package
         if: github.event_name == 'workflow_dispatch'
