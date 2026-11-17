@@ -211,3 +211,15 @@ test('LessonHandoffError identifies path-specific diagnostics', () => {
   const diagnostic = new LessonHandoffError('config.id', 'not a UUID');
   assert.match(diagnostic.message, /lesson.yaml:config.id: not a UUID/);
 });
+
+test('representative real Mathematics Lesson blueprint validates without generating or editing source', () => {
+  const source = path.join(
+    repoRoot,
+    'content/math/data/lessons/0/25668e08-3fcf-5748-bac6-928a4ecc9c80/lesson.yaml',
+  );
+  const original = fs.readFileSync(source, 'utf8');
+  const result = preflightLesson(source, repoRoot);
+  assert.equal(result.lessonId, '25668e08-3fcf-5748-bac6-928a4ecc9c80');
+  assert.equal(result.document.production.documentLanguage, 'en');
+  assert.equal(fs.readFileSync(source, 'utf8'), original, 'preflight never modifies real Math source');
+});
