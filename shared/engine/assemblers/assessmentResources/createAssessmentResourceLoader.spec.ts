@@ -117,6 +117,22 @@ test('loader resolves a complete published Flashcard in one scoped batch and cac
     requests.push([...paths]);
     return new Map(paths.filter(path => data.has(path)).map(path => [path, data.get(path)]));
   });
+  const manifestPath = prefix + '/assessment-manifest.json';
+  const inconsistentFiles = new Map(data);
+  const inconsistentManifest = structuredClone(data.get(manifestPath)) as {
+    entries: Record<string, { disabilities: string[] }>;
+  };
+  inconsistentManifest.entries[cardId].disabilities = ['blindness'];
+  inconsistentFiles.set(manifestPath, inconsistentManifest);
+  const inconsistentLoader = createAssessmentResourceLoader(async paths =>
+    new Map(paths.filter(path => inconsistentFiles.has(path)).map(path => [path, inconsistentFiles.get(path)])),
+  );
+  await assert.rejects(
+    () => inconsistentLoader.loadFlashcards({ lessonId, language: 'uk', ids: [cardId], accessNeeds: ['deafness'] }),
+    /disability metadata mismatch/,
+    'Manifest and card data must agree before an eligible card can be presented',
+  );
+
   const uk = await loader.loadFlashcards({ lessonId, language: 'uk', ids: [cardId] });
   assert.equal(uk.length, 1);
   assert.equal(uk[0].id, cardId);
