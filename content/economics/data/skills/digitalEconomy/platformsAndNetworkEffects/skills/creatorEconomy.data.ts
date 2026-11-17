@@ -31,7 +31,7 @@ export const creatorEconomy_Skill_Data = defineSkill({
     et: 'Sisuloojate majandus',
     be: 'Эканоміка стваральнікаў кантэнту',
     ka: 'კონტენტის შემქმნელთა ეკონომიკა',
-    kk: 'Контент жасаушылар экономикасы',
+    kk: 'Kontent jasaushylar ekonomikasy',
     qm: 'İcad eticiler iqtisadı',
   },
   description: {
@@ -65,7 +65,7 @@ export const creatorEconomy_Skill_Data = defineSkill({
       et: 'Uuri, kuidas veebiloojad raha teenivad ja digiplatvormidest sõltuvad.',
       be: 'Дасьледуй, як інтэрнэт-творцы зарабляюць і залежаць ад лічбавых плятформаў.',
       ka: 'შეისწავლე, როგორ გამოიმუშავებენ ონლაინ შემქმნელები ფულს და რატომ არიან პლატფორმებზე დამოკიდებული.',
-      kk: 'Онлайн авторлар қалай табыс тауып, цифрлық платформаларға неге тәуелді екенін зертте.',
+      kk: 'Onlain kontent jasaushylar qalai tabys tabatynyn jäne tsifrlyq platformalarğa ne üşın süienetının zertte.',
       qm: 'İnternet icad eticileri nasıl aqça qazanıp raqamlı platformalarğa bağlanğanını ögren.',
     },
   },

@@ -31,7 +31,7 @@ export const subscriptionsVersusOneTimePurchases_Skill_Data = defineSkill({
     et: 'Tellimused ja ühekordsed ostud',
     be: 'Падпіска і аднаразовая купля',
     ka: 'გამოწერა და ერთჯერადი შეძენა',
-    kk: 'Жазылым мен бір реттік сатып алу',
+    kk: 'Jazylym men bır rettık satyp alu',
     qm: 'Abunelik ve bir kerelik satın aluv',
   },
   description: {
@@ -65,7 +65,7 @@ export const subscriptionsVersusOneTimePurchases_Skill_Data = defineSkill({
       et: 'Võrdle ühekordset ja korduvat tasu digitaalse juurdepääsu eest.',
       be: 'Параўнай аднаразовую і паўторную аплату лічбавага доступу.',
       ka: 'შეადარე ციფრული წვდომისთვის ერთჯერადი და განმეორებითი გადახდა.',
-      kk: 'Цифрлық қолжетімділікке бір реттік және мерзімді төлемді салыстыр.',
+      kk: 'Tsifrlyq qyzmetke qoljetımdılık üşın bır ret töleu men merzımdı tölem jasau şyğyndaryn salystyr.',
       qm: 'Raqamlı irişim içün bir kerelik ve tekrar tölevlerni teñeştir.',
     },
   },

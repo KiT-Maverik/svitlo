@@ -31,7 +31,7 @@ export const paymentFinancialTechnologies_Skill_Data = defineSkill({
     et: 'Maksete finantstehnoloogia',
     be: 'Плацежныя фінансавыя тэхналёгіі',
     ka: 'გადახდების ფინანსური ტექნოლოგიები',
-    kk: 'Төлем қаржы технологиялары',
+    kk: 'Tölemge arnalğan qarjy tehnologialary',
     qm: 'Tölev maliye tehnologiyaları',
   },
   description: {
@@ -64,7 +64,7 @@ export const paymentFinancialTechnologies_Skill_Data = defineSkill({
       et: 'Võrdle digitaalsete makseteenuste kulusid ja eeliseid.',
       be: 'Параўнай выдаткі і выгады лічбавых плацежных сэрвісаў.',
       ka: 'შეადარე ციფრული გადახდის სერვისების ხარჯები და სარგებელი.',
-      kk: 'Цифрлық төлем қызметтерінің шығындары мен пайдасын салыстыр.',
+      kk: 'Tsifrlyq tölem qyzmetterınıñ şyğyndary men paidasyn salystyr.',
       qm: 'Raqamlı tölev hızmetleriniñ masraf ve faydalarını teñeştir.',
     },
   },

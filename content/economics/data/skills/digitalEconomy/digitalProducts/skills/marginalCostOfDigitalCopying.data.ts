@@ -31,7 +31,7 @@ export const marginalCostOfDigitalCopying_Skill_Data = defineSkill({
     et: 'Digitaalse kopeerimise piirkulu',
     be: 'Гранічныя выдаткі лічбавага капіяваньня',
     ka: 'ციფრული კოპირების ზღვრული ხარჯი',
-    kk: 'Цифрлық көшірудің шекті шығыны',
+    kk: 'Tsifrlyq köşırudıñ şektı şyğyny',
     qm: 'Raqamlı nusqalavnıñ soñki masrafı',
   },
   description: {
@@ -65,7 +65,7 @@ export const marginalCostOfDigitalCopying_Skill_Data = defineSkill({
       et: 'Mõista, miks veel ühe digikoopia tegemine võib maksta väga vähe.',
       be: 'Зразумей, чаму стварэньне яшчэ адной лічбавай копіі можа каштаваць вельмі мала.',
       ka: 'გაიგე, რატომ შეიძლება კიდევ ერთი ციფრული ასლის დამზადება ძალიან იაფი იყოს.',
-      kk: 'Тағы бір цифрлық көшірме жасау неге өте арзан болуы мүмкін екенін түсін.',
+      kk: 'Tağy bır tsifrlyq köşırme jasaudyñ qūny nege öte tömen boluy mümkın ekenın tüsın.',
       qm: 'Bir daa raqamlı nusqa yapmaq niçün pek az masraf istey bilgenini añla.',
     },
   },

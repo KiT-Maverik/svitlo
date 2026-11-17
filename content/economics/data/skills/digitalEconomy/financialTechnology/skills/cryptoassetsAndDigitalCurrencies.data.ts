@@ -31,7 +31,7 @@ export const cryptoassetsAndDigitalCurrencies_Skill_Data = defineSkill({
     et: 'Krüptovarad ja digivaluutad',
     be: 'Крыптаактывы і лічбавыя валюты',
     ka: 'კრიპტოაქტივები და ციფრული ვალუტები',
-    kk: 'Криптоактивтер мен цифрлық валюталар',
+    kk: 'Kriptoaktivter men tsifrlyq valiutalar',
     qm: 'Kriptoaktivler ve raqamlı valyutalar',
   },
   description: {
@@ -65,7 +65,7 @@ export const cryptoassetsAndDigitalCurrencies_Skill_Data = defineSkill({
       et: 'Erista krüptovarasid ametlikest digivaluutadest.',
       be: 'Адрозьнівай крыптаактывы ад афіцыйных лічбавых валютаў.',
       ka: 'განასხვავე კრიპტოაქტივები ოფიციალური ციფრული ვალუტებისგან.',
-      kk: 'Криптоактивтерді ресми цифрлық валюталардан ажырат.',
+      kk: 'Kriptoaktivterdı resmi tsifrlyq valiutalardan ajyrat.',
       qm: 'Kriptoaktivlerni resmiy raqamlı valyutalardan ayır.',
     },
   },
