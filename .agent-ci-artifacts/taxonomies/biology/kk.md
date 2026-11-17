@@ -1244,7 +1244,7 @@ Groups: 0 · Skills: 4
 
 **Methodological description (English):** Locate the cap, stalk, and spore-producing structures on a diagram of a typical cap-and-stalk mushroom.
 
-**User-friendly description (kk):** Kädımgı sañyrauqūlaqtyñ qalpağyn, sabağyn jäne spora tüzetın bölıkterın anyqtañyz.
+**User-friendly description (kk):** Qalpaqşaly sañyrauqūlaqtyñ qalpaqşasyn, tübırtegın jäne spora tüzetın bölıkterın anyqtañyz.
 
 #### Sañyrauqūlaqtardy ağzalardyñ bölek toby retınde tanu
 
