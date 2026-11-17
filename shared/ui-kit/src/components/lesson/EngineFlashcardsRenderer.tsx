@@ -7,6 +7,7 @@ import type {
   Flashcard_Props,
   FlashcardsSection_Props,
   LanguageCode,
+  Disability,
 } from '@svitlo/engine/runtime';
 import type { UiKitMessages } from '#types/uiKitMessages';
 import { Flashcard } from '../widgets/Flashcard/Flashcard';
@@ -18,6 +19,7 @@ export function EngineFlashcardsRenderer({
   lessonId,
   language,
   assessmentLoader,
+  accessNeeds = [],
   section,
   messages,
   sceneRegistry,
@@ -25,12 +27,14 @@ export function EngineFlashcardsRenderer({
   lessonId: string;
   language: LanguageCode;
   assessmentLoader?: AssessmentResourceLoader;
+  accessNeeds?: readonly Disability[];
   section: FlashcardsSection_Props;
   messages: UiKitMessages;
   sceneRegistry?: SceneRegistry;
 }) {
   const ids = section.params.selection.flashcardIds;
-  const identity = lessonId + ':' + language + ':' + section.id + ':' + ids.join(',');
+  const accessKey = [...accessNeeds].sort().join(',');
+  const identity = lessonId + ':' + language + ':' + section.id + ':' + ids.join(',') + ':' + accessKey;
   const [attempt, setAttempt] = useState(0);
   const [load, setLoad] = useState<{
     identity: string;
@@ -44,11 +48,17 @@ export function EngineFlashcardsRenderer({
     if (!assessmentLoader) {
       setLoad({ identity, status: 'error', cards: [] });
     } else {
-      assessmentLoader.loadFlashcards({ lessonId, language, ids, signal: controller.signal })
+      assessmentLoader.loadFlashcards({ lessonId, language, ids, accessNeeds, signal: controller.signal })
         .then(cards => {
-          if (cards.length !== ids.length || cards.some((card, index) => card.id !== ids[index]))
-            throw new Error('Flashcard resource UUID mismatch for Section ' + section.id);
-          return cards;
+          let previous = -1;
+          for (const card of cards) {
+            const next = ids.indexOf(card.id);
+            if (next <= previous || next === -1)
+              throw new Error('Flashcard resource UUID mismatch for Section ' + section.id);
+            previous = next;
+          }
+          // A custom host loader must not bypass eligibility even if it ignores accessNeeds.
+          return cards.filter(card => !accessNeeds.some(need => card.parameters.disabilities.includes(need)));
         })
         .then(
           cards => {
@@ -71,6 +81,7 @@ export function EngineFlashcardsRenderer({
         <Button onClick={() => setAttempt(value => value + 1)}>{messages.learningLayout.actions.retry}</Button>
       </Stack>
     );
+  if (!current.cards.length) return <Typography role="alert">{messages.learningLayout.preparingLessonError}</Typography>;
   return (
     <ResolvedFlashcards
       key={identity}
