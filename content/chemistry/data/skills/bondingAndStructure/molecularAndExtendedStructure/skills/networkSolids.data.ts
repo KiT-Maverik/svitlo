@@ -31,7 +31,7 @@ export const networkSolids_Skill_Data = defineSkill({
     et: 'Kovalentsed võreained',
     be: 'Кавалентныя сеткаваныя цьвёрдыя рэчывы',
     ka: 'კოვალენტური ბადის მყარი ნივთიერებები',
-    kk: 'Коваленттік торлы қатты заттар',
+    kk: 'Kovalenttık torly qatty zattar',
     qm: 'Kovalent şebekeli qattı maddeler',
   },
   description: {
@@ -65,7 +65,7 @@ export const networkSolids_Skill_Data = defineSkill({
       et: 'Uuri, miks ulatuslikud kovalentsed võrgustikud käituvad teisiti kui üksikud molekulid.',
       be: 'Дасьледуй, чаму працяглыя кавалентныя сеткі паводзяцца інакш, чым асобныя малекулы.',
       ka: 'გაიგე, რატომ განსხვავდება ფართო კოვალენტური ქსელების ქცევა ცალკეული მოლეკულებისგან.',
-      kk: 'Кең коваленттік торлар жеке молекулалардан неге өзгеше қасиет көрсететінін зертте.',
+      kk: 'Keñ kovalenttık torlar jeke molekulalardan nege özgeşe qasiet körsetetının zertte.',
       qm: 'Uzaqqa yayılğan kovalent şebekeler ayrı molekulalardan ne içün farqlı olğanını ögren.',
     },
   },

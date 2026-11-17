@@ -36,7 +36,7 @@ export const chemicalInquiry_SkillDomain_Data = defineSkillDomain({
     et: 'Keemiline uurimine',
     be: 'Хімічнае дасьледаваньне',
     ka: 'ქიმიური კვლევა',
-    kk: 'Химиялық зерттеу',
+    kk: 'Himiialyq zertteu',
     qm: 'Himiyeviy tetqiqat',
   },
   groups: [
@@ -76,7 +76,7 @@ export const chemicalInquiry_SkillDomain_Data = defineSkillDomain({
       et: 'Uuri, kuidas keemikud aineid uurivad, selgitusi kontrollivad ja usaldusväärseid tõendeid kasutavad.',
       be: 'Дасьледуй, як хімікі вывучаюць рэчывы, правяраюць тлумачэньні і выкарыстоўваюць надзейныя доказы.',
       ka: 'გაიგე, როგორ იკვლევენ ქიმიკოსები ნივთიერებებს, ამოწმებენ ახსნებს და იყენებენ სანდო მტკიცებულებებს.',
-      kk: 'Химиктердің заттарды қалай зерттейтінін, түсіндірмелерді тексеретінін және сенімді дәлелдерді қолданатынын біл.',
+      kk: 'Himikterdıñ zattardy qalai zertteitının, tüsındırmelerdı tekseretının jäne senımdı dälelderdı qoldanatynyn bıl.',
       qm: 'Himikler maddelerni nasıl ögrenip, izaatlarnı tekşirip, işançlı delillerni qullanğanını ögren.',
     },
   },

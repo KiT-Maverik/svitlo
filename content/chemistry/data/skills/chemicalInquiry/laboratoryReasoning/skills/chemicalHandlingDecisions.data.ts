@@ -31,7 +31,7 @@ export const chemicalHandlingDecisions_Skill_Data = defineSkill({
     et: 'Kemikaalide käitlemise otsused',
     be: 'Рашэньні пра абыходжаньне з хімікатамі',
     ka: 'ქიმიური ნივთიერებების დამუშავების გადაწყვეტილებები',
-    kk: 'Химиялық заттарды қолдану шешімдері',
+    kk: 'Himiialyq zattardy qoldanu şeşımderı',
     qm: 'Himikatlarnı qullanuv qararları',
   },
   description: {
@@ -65,7 +65,7 @@ export const chemicalHandlingDecisions_Skill_Data = defineSkill({
       et: 'Vali kemikaaliinfo ja tingimuste põhjal ohutud käitlemispõhimõtted.',
       be: 'Абірай прынцыпы бясьпечнага абыходжаньня на падставе зьвестак пра рэчыва і ўмоваў.',
       ka: 'აირჩიე უსაფრთხო მოპყრობის პრინციპები ნივთიერების ინფორმაციისა და პირობების მიხედვით.',
-      kk: 'Химиялық ақпарат пен жағдайларға сай қауіпсіз жұмыс істеу қағидаларын таңда.',
+      kk: 'Himiialyq aqparat pen jağdailarğa sai qauıpsız jūmys ısteu qağidalaryn tañda.',
       qm: 'Madde aqqında malümat ve şaraitke köre havfsız qullanuv qaidelerini sayla.',
     },
   },

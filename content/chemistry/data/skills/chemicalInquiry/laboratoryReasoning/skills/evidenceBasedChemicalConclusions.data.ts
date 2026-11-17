@@ -31,7 +31,7 @@ export const evidenceBasedChemicalConclusions_Skill_Data = defineSkill({
     et: 'Tõenditel põhinevad keemilised järeldused',
     be: 'Высновы ў хіміі на аснове доказаў',
     ka: 'მტკიცებულებებზე დაფუძნებული ქიმიური დასკვნები',
-    kk: 'Дәлелге сүйенген химиялық қорытындылар',
+    kk: 'Dälelge süiengen himiialyq qorytyndylar',
     qm: 'Delillerge esaslanğan himiyeviy neticeler',
   },
   description: {
@@ -65,7 +65,7 @@ export const evidenceBasedChemicalConclusions_Skill_Data = defineSkill({
       et: 'Otsusta, kas keemilised vaatlused toetavad pakutud selgitust.',
       be: 'Ацані, ці сапраўды хімічныя назіраньні пацьвярджаюць прапанаванае тлумачэньне.',
       ka: 'შეაფასე, ნამდვილად ამყარებს თუ არა ქიმიური დაკვირვებები შემოთავაზებულ ახსნას.',
-      kk: 'Химиялық бақылаулар ұсынылған түсіндірмені шынымен қолдайтынын бағала.',
+      kk: 'Himiialyq baqylaular ūsynylğan tüsındırmenı şynymen qoldaitynyn bağala.',
       qm: 'Himiyeviy közetüvler teklif etilgen izaatnı kerçekten qollap-quvetlegenini baala.',
     },
   },

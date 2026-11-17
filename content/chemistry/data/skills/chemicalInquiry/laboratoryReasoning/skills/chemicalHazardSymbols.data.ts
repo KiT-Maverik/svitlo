@@ -31,7 +31,7 @@ export const chemicalHazardSymbols_Skill_Data = defineSkill({
     et: 'Keemiliste ohtude sümbolid',
     be: 'Знакі хімічнай небясьпекі',
     ka: 'ქიმიური საფრთხის ნიშნები',
-    kk: 'Химиялық қауіп таңбалары',
+    kk: 'Himiialyq qauıp tañbalary',
     qm: 'Himiyeviy telüke işaretleri',
   },
   description: {
@@ -64,7 +64,7 @@ export const chemicalHazardSymbols_Skill_Data = defineSkill({
       et: 'Tunne ära keemiliste ohtude piktogrammid ning mõista, et risk sõltub kokkupuutest.',
       be: 'Распазнавай піктаграмы хімічнай небясьпекі і разумей, што рызыка залежыць ад узьдзеяньня.',
       ka: 'ამოიცანი ქიმიური საფრთხის პიქტოგრამები და გაიგე, რომ რისკი ზემოქმედებაზეა დამოკიდებული.',
-      kk: 'Химиялық қауіп белгілерін танып, тәуекел әсер етуге тәуелді екенін түсін.',
+      kk: 'Himiialyq qauıp belgılerın tanyp, täuekel äser etuge täueldı ekenın tüsın.',
       qm: 'Himiyeviy telüke resimlerini tanı ve havf temasqa bağlı olğanını añla.',
     },
   },

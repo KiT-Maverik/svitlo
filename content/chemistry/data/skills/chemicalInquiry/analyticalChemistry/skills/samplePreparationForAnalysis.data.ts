@@ -31,7 +31,7 @@ export const samplePreparationForAnalysis_Skill_Data = defineSkill({
     et: 'Proovi ettevalmistamine analüüsiks',
     be: 'Падрыхтоўка ўзору да аналізу',
     ka: 'ნიმუშის მომზადება ანალიზისთვის',
-    kk: 'Үлгіні талдауға дайындау',
+    kk: 'Ülgını taldauğa daiyndau',
     qm: 'Analiz içün numune azırlav',
   },
   description: {
@@ -65,7 +65,7 @@ export const samplePreparationForAnalysis_Skill_Data = defineSkill({
       et: 'Vali proovi ettevalmistamise viisid, vältides saastumist ja aine kadu.',
       be: 'Абірай спосабы падрыхтоўкі ўзору, пазьбягаючы забруджаньня або страты рэчыва.',
       ka: 'აირჩიე ნიმუშის მომზადების გზები დაბინძურებისა და დანაკარგის თავიდან ასაცილებლად.',
-      kk: 'Ластану мен материал жоғалуын болдырмай, үлгіні дайындау тәсілдерін таңда.',
+      kk: 'Lastanu men material joğaluyn boldyrmai, ülgını daiyndau täsılderın tañda.',
       qm: 'Kirlenüv ya da madde coyuluvından qaçınıp, numuneni azırlav usulını sayla.',
     },
   },

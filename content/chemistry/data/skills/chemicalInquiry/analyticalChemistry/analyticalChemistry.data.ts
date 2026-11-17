@@ -40,7 +40,7 @@ export const analyticalChemistry_SkillGroup_Data = defineSkillGroup({
     et: 'Analüütiline keemia',
     be: 'Аналітычная хімія',
     ka: 'ანალიზური ქიმია',
-    kk: 'Аналитикалық химия',
+    kk: 'Analitikalyq himiia',
     qm: 'Analitik himiya',
   },
   skills: [
@@ -82,7 +82,7 @@ export const analyticalChemistry_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri, kuidas keemikud aineid proovides tuvastavad ja nende koguseid mõõdavad.',
       be: 'Даведайся, як хімікі вызначаюць рэчывы і вымяраюць іхную колькасьць ва ўзорах.',
       ka: 'გაიგე, როგორ ადგენენ ქიმიკოსები ნიმუშებში ნივთიერებების იდენტობას და ზომავენ მათ რაოდენობას.',
-      kk: 'Химиктердің үлгілердегі заттарды қалай анықтап, мөлшерін қалай өлшейтінін біл.',
+      kk: 'Himikterdıñ ülgılerdegı zattardy qalai anyqtap, mölşerın qalai ölşeitının bıl.',
       qm: 'Himikler numunelerde maddelerni nasıl tanıp, olarnıñ miqdarını nasıl ölçkenini ögren.',
     },
   },

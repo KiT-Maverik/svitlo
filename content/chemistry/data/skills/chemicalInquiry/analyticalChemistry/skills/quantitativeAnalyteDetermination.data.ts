@@ -31,7 +31,7 @@ export const quantitativeAnalyteDetermination_Skill_Data = defineSkill({
     et: 'Analüüdi kvantitatiivne määramine',
     be: 'Колькаснае вызначэньне аналіту',
     ka: 'ანალიტის რაოდენობრივი განსაზღვრა',
-    kk: 'Аналитті сандық анықтау',
+    kk: 'Analittı sandyq anyqtau',
     qm: 'Analitniñ miqdarını tayin etüv',
   },
   description: {
@@ -65,7 +65,7 @@ export const quantitativeAnalyteDetermination_Skill_Data = defineSkill({
       et: 'Määra sobivate mõõtmiste põhjal sihtaine kogus.',
       be: 'Вызначай колькасьць патрэбнага рэчыва паводле адпаведных вымярэньняў.',
       ka: 'სათანადო გაზომვებით განსაზღვრე მიზნობრივი ნივთიერების რაოდენობა.',
-      kk: 'Тиісті өлшеулер арқылы мақсатты заттың мөлшерін анықта.',
+      kk: 'Tiıstı ölşeuler arqyly maqsatty zattyñ mölşerın anyqta.',
       qm: 'Uygun ölçevlerge köre maqsat maddesiniñ ne qadar olğanını tap.',
     },
   },

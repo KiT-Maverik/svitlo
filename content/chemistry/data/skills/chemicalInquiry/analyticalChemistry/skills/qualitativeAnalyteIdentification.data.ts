@@ -31,7 +31,7 @@ export const qualitativeAnalyteIdentification_Skill_Data = defineSkill({
     et: 'Analüüdi kvalitatiivne tuvastamine',
     be: 'Якаснае вызначэньне аналіту',
     ka: 'ანალიტის თვისებრივი იდენტიფიკაცია',
-    kk: 'Аналитті сапалық анықтау',
+    kk: 'Analittı sapalyq anyqtau',
     qm: 'Analitniñ keyfiyetine köre tanılmasi',
   },
   description: {
@@ -65,7 +65,7 @@ export const qualitativeAnalyteIdentification_Skill_Data = defineSkill({
       et: 'Kasuta segu aine tuvastamiseks keemilisi katseid või seadmesignaale.',
       be: 'Выкарыстоўвай хімічныя тэсты або сыгналы прыбораў для вызначэньня рэчыва ў сумесі.',
       ka: 'გამოიყენე ქიმიური ტესტები ან ხელსაწყოს სიგნალები ნარევში ნივთიერების ამოსაცნობად.',
-      kk: 'Қоспадағы затты анықтау үшін химиялық сынақтарды немесе құрал сигналдарын қолдан.',
+      kk: 'Qospadağy zatty anyqtau üşın himiialyq synaqtardy nemese qūral signaldaryn qoldan.',
       qm: 'Qarışıqtaki maddeyi tanımaq içün himiyeviy sınavlar ya da alet işaretlerini qullan.',
     },
   },

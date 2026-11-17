@@ -31,7 +31,7 @@ export const spectroscopicEvidence_Skill_Data = defineSkill({
     et: 'Spektroskoopilised tõendid',
     be: 'Спэктраскапічныя доказы',
     ka: 'სპექტროსკოპიული მტკიცებულებები',
-    kk: 'Спектроскопиялық дәлелдер',
+    kk: 'Spektroskopiialyq dälelder',
     qm: 'Spektroskopik deliller',
   },
   description: {
@@ -65,7 +65,7 @@ export const spectroscopicEvidence_Skill_Data = defineSkill({
       et: 'Uuri, kuidas spektrid annavad vihjeid aine identiteedi, struktuuri või koguse kohta.',
       be: 'Дасьледуй, як спэктры даюць падказкі пра хімічную тоеснасьць, структуру або колькасьць рэчыва.',
       ka: 'გამოიკვლიე, როგორ გვაძლევს სპექტრები ინფორმაციას ნივთიერების იდენტობაზე, სტრუქტურასა და რაოდენობაზე.',
-      kk: 'Спектрлер заттың табиғаты, құрылымы немесе мөлшері туралы қандай дерек беретінін біл.',
+      kk: 'Spektrler zattyñ tabiğaty, qūrylymy nemese mölşerı turaly qandai derek beretının bıl.',
       qm: 'Spektrler maddeyiñ kimligi, qurulışı ya da miqdarı aqqında qanday işaretler bergenini ögren.',
     },
   },

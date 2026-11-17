@@ -31,7 +31,7 @@ export const analyticalInterferences_Skill_Data = defineSkill({
     et: 'Analüütilised segavad mõjud',
     be: 'Аналітычныя перашкоды',
     ka: 'ანალიზის ხელშემშლელი ფაქტორები',
-    kk: 'Аналитикалық кедергілер',
+    kk: 'Analitikalyq kedergıler',
     qm: 'Analizde qarşılıqlar',
   },
   description: {
@@ -65,7 +65,7 @@ export const analyticalInterferences_Skill_Data = defineSkill({
       et: 'Märka, millal muud kemikaalid häirivad analüütilist mõõtmist.',
       be: 'Распазнавай, калі іншыя хімічныя рэчывы замінаюць аналітычнаму вымярэньню.',
       ka: 'ამოიცანი, როდის უშლის ხელს სხვა ქიმიური ნივთიერებები ანალიზურ გაზომვას.',
-      kk: 'Басқа химиялық заттар талдау өлшеміне қашан кедергі жасайтынын таны.',
+      kk: 'Basqa himiialyq zattar taldau ölşemıne qaşan kedergı jasaitynyn tany.',
       qm: 'Başqa himiyeviy maddeler ölçevge ne vaqıt qarşı çıqqanını tanı.',
     },
   },

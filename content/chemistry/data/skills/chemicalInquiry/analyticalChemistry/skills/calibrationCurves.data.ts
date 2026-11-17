@@ -31,7 +31,7 @@ export const calibrationCurves_Skill_Data = defineSkill({
     et: 'Kalibreerimiskõverad',
     be: 'Калібровачныя крывыя',
     ka: 'კალიბრაციის მრუდები',
-    kk: 'Калибрлеу қисықтары',
+    kk: 'Kalibrleu qisyqtary',
     qm: 'Kalibrovka egri sızıqları',
   },
   description: {
@@ -65,7 +65,7 @@ export const calibrationCurves_Skill_Data = defineSkill({
       et: 'Loe kalibreerimiskõverat, et siduda seadme signaalid teadaolevate kontsentratsioonidega.',
       be: 'Чытай калібровачную крывую, каб зьвязаць сыгналы прыбора з вядомымі канцэнтрацыямі.',
       ka: 'წაიკითხე კალიბრაციის მრუდი, რომელიც აკავშირებს ხელსაწყოს სიგნალს ცნობილ კონცენტრაციასთან.',
-      kk: 'Құрал сигналдарын белгілі концентрациялармен байланыстыру үшін калибрлеу қисығын оқы.',
+      kk: 'Qūral signaldaryn belgılı kontsentratsiialarmen bailanystyru üşın kalibrleu qisyğyn oqy.',
       qm: 'Alet işaretlerini belli kontsentratsiyalarğa bağlamaq içün kalibrovka egri sızığını oqu.',
     },
   },

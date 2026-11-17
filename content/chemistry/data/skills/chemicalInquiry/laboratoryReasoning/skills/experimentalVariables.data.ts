@@ -31,7 +31,7 @@ export const experimentalVariables_Skill_Data = defineSkill({
     et: 'Katsemuutujad',
     be: 'Экспэрымэнтальныя зьменныя',
     ka: 'ექსპერიმენტის ცვლადები',
-    kk: 'Эксперименттік айнымалылар',
+    kk: 'Eksperimenttık ainymalylar',
     qm: 'Eksperiment deñişkenleri',
   },
   description: {
@@ -65,7 +65,7 @@ export const experimentalVariables_Skill_Data = defineSkill({
       et: 'Määra, millist keemilist tingimust muudetakse ja mida õiglases katses mõõdetakse.',
       be: 'Вызначай, якую хімічную ўмову зьмяняюць і што вымяраюць у карэктным дасьледаваньні.',
       ka: 'განსაზღვრე, რომელი ქიმიური პირობა იცვლება და რა იზომება სწორ ექსპერიმენტში.',
-      kk: 'Әділ тәжірибеде қай химиялық шарт өзгеретінін және ненің өлшенетінін анықта.',
+      kk: 'Ädıl täjıribede qai himiialyq şart özgeretının jäne nenıñ ölşenetının anyqta.',
       qm: 'Adil tetqiqatta qaysı himiyeviy şaraitniñ deñişkenini ve neni ölçkenini tap.',
     },
   },

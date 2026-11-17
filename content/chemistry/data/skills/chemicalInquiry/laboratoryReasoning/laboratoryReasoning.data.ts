@@ -38,7 +38,7 @@ export const laboratoryReasoning_SkillGroup_Data = defineSkillGroup({
     et: 'Laboris arutlemine',
     be: 'Лябараторнае разважаньне',
     ka: 'ლაბორატორიული მსჯელობა',
-    kk: 'Зертханалық пайымдау',
+    kk: 'Zerthanalyq paiymdau',
     qm: 'Laboratoriyada fikir yürsetüv',
   },
   skills: [
@@ -78,7 +78,7 @@ export const laboratoryReasoning_SkillGroup_Data = defineSkillGroup({
       et: 'Õpi ainetega ohutult töötama ja põhjendatud järeldusi tegema.',
       be: 'Навучыся бясьпечна працаваць з рэчывамі і рабіць абгрунтаваныя высновы.',
       ka: 'ისწავლე ნივთიერებებთან უსაფრთხოდ მუშაობა და დასაბუთებული დასკვნების გამოტანა.',
-      kk: 'Заттармен қауіпсіз жұмыс істеп, негізді қорытынды жасауды үйрен.',
+      kk: 'Zattarmen qauıpsız jūmys ıstep, negızdı qorytyndy jasaudy üiren.',
       qm: 'Maddelernen havfsız çalışmaq ve delillerge esaslanğan neticeler çıqarmaqnı ögren.',
     },
   },
