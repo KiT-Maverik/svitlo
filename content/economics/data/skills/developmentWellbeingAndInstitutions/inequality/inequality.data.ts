@@ -38,7 +38,7 @@ export const inequality_SkillGroup_Data = defineSkillGroup({
     et: 'Ebavõrdsus',
     be: 'Няроўнасьць',
     ka: 'უთანასწორობა',
-    kk: 'Теңсіздік',
+    kk: 'Teñsızdık',
     qm: 'Teñsizlik',
   },
   skills: [
@@ -78,7 +78,7 @@ export const inequality_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri, miks keskmine sissetulek ei näita ressursside jaotumist.',
       be: 'Дасьледуй, чаму сярэдні даход не паказвае, як разьмеркаваныя рэсурсы.',
       ka: 'გამოიკვლიეთ, რატომ ვერ გვიჩვენებს საშუალო შემოსავალი რესურსების განაწილებას.',
-      kk: 'Орташа табыс ресурстардың қалай бөлінетінін неге көрсетпейтінін зерттеңіз.',
+      kk: 'Ortaşa tabys resurstar qalai bölınetının nege körsetpeıtının zertte.',
       qm: 'Orta kelir resurslarnıñ nasıl paylaştırılğanını ne içün köstermeygenini araştır.',
     },
   },

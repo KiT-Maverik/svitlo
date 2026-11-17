@@ -37,7 +37,7 @@ export const institutionsAndDevelopment_SkillGroup_Data = defineSkillGroup({
     et: 'Institutsioonid ja areng',
     be: 'Інстытуцыі і разьвіцьцё',
     ka: 'ინსტიტუტები და განვითარება',
-    kk: 'Институттар және даму',
+    kk: 'Instituttar jäne damu',
     qm: 'Müesseseler ve inkişaf',
   },
   skills: [
@@ -76,7 +76,7 @@ export const institutionsAndDevelopment_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri, kuidas institutsioonid mõjutavad ühiskonna heaolu võimalusi.',
       be: 'Дасьледуй, як інстытуцыі ўплываюць на шанцы грамадзтва на дабрабыт.',
       ka: 'გამოიკვლიეთ, როგორ მოქმედებს ინსტიტუტები საზოგადოების კეთილდღეობის შესაძლებლობაზე.',
-      kk: 'Институттар қоғамның өркендеу мүмкіндігіне қалай әсер ететінін зерттеңіз.',
+      kk: 'Instituttardyñ qoğamnyñ örkendeu mümkındıgıne qalai äser etetının zertte.',
       qm: 'Müesseseler cemiyetniñ refahqa erişüv imkânına nasıl tesir etkenini araştır.',
     },
   },

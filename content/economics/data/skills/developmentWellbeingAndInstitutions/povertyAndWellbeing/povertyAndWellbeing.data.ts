@@ -37,7 +37,7 @@ export const povertyAndWellbeing_SkillGroup_Data = defineSkillGroup({
     et: 'Vaesus ja heaolu',
     be: 'Беднасьць і дабрабыт',
     ka: 'სიღარიბე და კეთილდღეობა',
-    kk: 'Кедейлік және әл-ауқат',
+    kk: 'Kedeılık jäne äl-auqat',
     qm: 'Faqırlıq ve refah',
   },
   skills: [
@@ -76,7 +76,7 @@ export const povertyAndWellbeing_SkillGroup_Data = defineSkillGroup({
       et: 'Tutvu vaesuse ja heaolu mõõtmise eri viisidega.',
       be: 'Даведайся пра розныя спосабы вымярэньня беднасьці і дабрабыту.',
       ka: 'გაიგეთ, როგორ იზომება სიღარიბე და კეთილდღეობა სხვადასხვა გზით.',
-      kk: 'Кедейлік пен әл-ауқатты өлшеудің әртүрлі тәсілдерін біліңіз.',
+      kk: 'Kedeılık pen äl-auqatty ölşeudıñ ärtürlı täsılderın bıl.',
       qm: 'Faqırlıq ve refahnı ölçmekniñ çeşit yollarını ögren.',
     },
   },

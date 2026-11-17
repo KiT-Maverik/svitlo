@@ -36,7 +36,7 @@ export const developmentWellbeingAndInstitutions_SkillDomain_Data = defineSkillD
     et: 'Areng, heaolu ja institutsioonid',
     be: 'Разьвіцьцё, дабрабыт і інстытуцыі',
     ka: 'განვითარება, კეთილდღეობა და ინსტიტუტები',
-    kk: 'Даму, әл-ауқат және институттар',
+    kk: 'Damu, äl-auqat jäne instituttar',
     qm: 'İnkişaf, refah ve müesseseler',
   },
   groups: [
@@ -76,7 +76,7 @@ export const developmentWellbeingAndInstitutions_SkillDomain_Data = defineSkillD
       et: 'Uuri, miks jõukus, võimalused ja elukvaliteet ühiskonniti erinevad.',
       be: 'Дасьледуй, чаму багацьце, магчымасьці і якасьць жыцьця адрозьніваюцца паміж грамадзтвамі.',
       ka: 'გამოიკვლიეთ, რატომ განსხვავდება სიმდიდრე, შესაძლებლობები და ცხოვრების ხარისხი საზოგადოებებს შორის.',
-      kk: 'Қоғамдар арасында байлық, мүмкіндіктер және өмір сапасы неге әртүрлі екенін зерттеңіз.',
+      kk: 'Qoğamdar arasynda bailyq, mümkındıkter men ömır sapasy nege ärtürlı ekenın zertte.',
       qm: 'Cemiyetler arasında baylıq, imkânlar ve yaşav keyfiyeti ne içün farq etkenini araştır.',
     },
   },
