@@ -31,7 +31,7 @@ export const internationalCapitalFlows_Skill_Data = defineSkill({
     et: 'Rahvusvahelised kapitalivood',
     be: 'Міжнародныя патокі капіталу',
     ka: 'კაპიტალის საერთაშორისო ნაკადები',
-    kk: 'Халықаралық капитал ағындары',
+    kk: 'Halyqaralyq kapital ağyndary',
     qm: 'Halqlarara sermaye aqımları',
   },
   description: {
@@ -65,7 +65,7 @@ export const internationalCapitalFlows_Skill_Data = defineSkill({
       et: 'Uuri, miks investorid liigutavad kapitali üle piiride.',
       be: 'Даведайся, чаму інвэстары перамяшчаюць капітал паміж краінамі.',
       ka: 'გაიგეთ, რატომ გადააქვთ ინვესტორებს კაპიტალი ქვეყნებს შორის.',
-      kk: 'Инвесторлар капиталды елдер арасында неге ауыстыратынын біліңіз.',
+      kk: 'İnvestorlar kapitaldy elder arasynda nege auystyratynyn bılıñız.',
       qm: 'Yatırımcılar sermayeni memleketler arasında ne içün köçürgenini ögren.',
     },
   },

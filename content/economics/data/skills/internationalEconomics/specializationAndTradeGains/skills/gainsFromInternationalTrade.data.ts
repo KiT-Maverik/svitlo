@@ -31,7 +31,7 @@ export const gainsFromInternationalTrade_Skill_Data = defineSkill({
     et: 'Rahvusvahelise kaubanduse eelised',
     be: 'Выгады міжнароднага гандлю',
     ka: 'საერთაშორისო ვაჭრობის სარგებელი',
-    kk: 'Халықаралық сауданың пайдасы',
+    kk: 'Halyqaralyq saudanyñ paidasy',
     qm: 'Halqlarara ticaretniñ faydaları',
   },
   description: {
@@ -65,7 +65,7 @@ export const gainsFromInternationalTrade_Skill_Data = defineSkill({
       et: 'Uuri, kuidas riigid võivad kaubandusest võita, samas kui mõned rühmad kaotavad.',
       be: 'Дасьледуй, як краіны могуць мець выгаду, калі асобныя групы страчваюць.',
       ka: 'გამოიკვლიეთ, როგორ იგებენ ქვეყნები ვაჭრობით, მაშინ როცა ზოგი ჯგუფი ზარალდება.',
-      kk: 'Кей топтар ұтылса да, елдердің саудадан қалай пайда алатынын зерттеңіз.',
+      kk: 'Kei toptar ūtylsa da, elderdıñ saudadan qalai paida alatynyn zertteñız.',
       qm: 'Bazı gruppalar zarar körse de memleketler ticaretten nasıl fayda tapqanını araştır.',
     },
   },

@@ -31,7 +31,7 @@ export const absoluteAdvantage_Skill_Data = defineSkill({
     et: 'Absoluutne eelis',
     be: 'Абсалютная перавага',
     ka: 'აბსოლუტური უპირატესობა',
-    kk: 'Абсолюттік артықшылық',
+    kk: 'Absoliuttık artyqşylyq',
     qm: 'Mutlaq üstünlik',
   },
   description: {
@@ -64,7 +64,7 @@ export const absoluteAdvantage_Skill_Data = defineSkill({
       et: 'Tunne ära, kes suudab toota vähemate ressurssidega.',
       be: 'Вызнач, хто можа вырабляць нешта з меншымі выдаткамі рэсурсаў.',
       ka: 'ამოიცანით, ვინ აწარმოებს ნაკლები რესურსით.',
-      kk: 'Аз ресурс жұмсап кім өнім өндіре алатынын анықтаңыз.',
+      kk: 'Az resurs jūmsap kım önım öndıre alatynyn anyqtañyz.',
       qm: 'Bir malnı kim daa az resurs qullanıp istisal etebilgenini belgile.',
     },
   },

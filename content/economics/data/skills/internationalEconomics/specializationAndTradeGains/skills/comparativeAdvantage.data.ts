@@ -31,7 +31,7 @@ export const comparativeAdvantage_Skill_Data = defineSkill({
     et: 'Suhteline eelis',
     be: 'Параўнальная перавага',
     ka: 'შედარებითი უპირატესობა',
-    kk: 'Салыстырмалы артықшылық',
+    kk: 'Salystyrmaly artyqşylyq',
     qm: 'Teñeştirilmeli üstünlik',
   },
   description: {
@@ -65,7 +65,7 @@ export const comparativeAdvantage_Skill_Data = defineSkill({
       et: 'Mõista, miks kaubandus aitab isegi siis, kui üks riik toodab kõike tõhusamalt.',
       be: 'Зразумей, чаму гандаль карысны, нават калі адна краіна ўсё вырабляе больш эфэктыўна.',
       ka: 'გაიაზრეთ, რატომაა ვაჭრობა სასარგებლო მაშინაც, როცა ერთი ქვეყანა ყველაფერს უფრო ეფექტიანად აწარმოებს.',
-      kk: 'Бір ел бәрін тиімдірек өндірсе де, сауда неге пайдалы болуы мүмкін екенін түсініңіз.',
+      kk: 'Bır el bärın tiımdırek öndırse de, sauda nege paidaly boluy mümkın ekenın tüsınıñız.',
       qm: 'Bir memleket er şeyni daa verimli istisal etse de ticaret ne içün faydalı olğanını añla.',
     },
   },

@@ -31,7 +31,7 @@ export const globalValueChains_Skill_Data = defineSkill({
     et: 'Ülemaailmsed väärtusahelad',
     be: 'Глябальныя ланцугі стварэньня вартасьці',
     ka: 'გლობალური ღირებულების ჯაჭვები',
-    kk: 'Жаһандық құн тізбектері',
+    kk: 'Jahandyq qūn tızbekterı',
     qm: 'Dünya deger zincirleri',
   },
   description: {
@@ -65,7 +65,7 @@ export const globalValueChains_Skill_Data = defineSkill({
       et: 'Vaata, kuidas eri riigid osalevad ühe toote valmistamises.',
       be: 'Пабач, як розныя краіны ўдзельнічаюць у вырабе аднаго тавару.',
       ka: 'ნახეთ, როგორ მონაწილეობს სხვადასხვა ქვეყანა ერთი პროდუქტის წარმოებაში.',
-      kk: 'Бір өнімді жасауға әртүрлі елдер қалай үлес қосатынын біліңіз.',
+      kk: 'Bır önımdı jasauğa ärtürlı elder qalai üles qosatynyn bılıñız.',
       qm: 'Bir mahsulâtnı yapmağa çeşit memleketler nasıl iştirak etkenini kör.',
     },
   },

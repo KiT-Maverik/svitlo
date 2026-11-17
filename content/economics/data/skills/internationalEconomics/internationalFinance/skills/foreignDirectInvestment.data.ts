@@ -31,7 +31,7 @@ export const foreignDirectInvestment_Skill_Data = defineSkill({
     et: 'Otsesed välisinvesteeringud',
     be: 'Прамыя замежныя інвэстыцыі',
     ka: 'პირდაპირი უცხოური ინვესტიციები',
-    kk: 'Тікелей шетелдік инвестициялар',
+    kk: 'Tıkelei şeteldık investitsiialar',
     qm: 'Tış memleketten doğrudan yatırım',
   },
   description: {
@@ -65,7 +65,7 @@ export const foreignDirectInvestment_Skill_Data = defineSkill({
       et: 'Tunne ära investeeringud, millega kaasneb püsiv osalus välisettevõttes.',
       be: 'Распазнавай укладаньні, якія прадугледжваюць працяглы ўдзел у замежным бізнэсе.',
       ka: 'ამოიცანით ინვესტიციები, რომლებიც უცხოურ ბიზნესში ხანგრძლივ მონაწილეობას მოიცავს.',
-      kk: 'Шетелдік бизнесте ұзақ мерзімді қатысуды көздейтін инвестицияларды ажыратыңыз.',
+      kk: 'Şeteldık bizneste ūzaq merzımdı qatysudy közdeitın investitsiialardy ajyratyñyz.',
       qm: 'Tış memleket biznesinde uzun müddet iştiraknı bildirgen yatırımlarnı tanı.',
     },
   },
