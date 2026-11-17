@@ -1,5 +1,5 @@
 # Temporary editorial Course Flow plan; not Engine config.yaml.
-# Stage 2 editorial macrostructure draft; Stage 1 scope and four-locale pilot accepted by the owner on 2026-11-17.
+# Stage 3 editorial Lesson plan; Stage 2 macrostructure accepted by owner on 2026-11-18.
 id: 1e79d8fc-2223-4fa7-bc64-70d8172d3e8b
 type: course
 slug: astronomyGradeOne
@@ -56,7 +56,8 @@ methodology:
     Таксономічні UUID звірені з content/astronomy/data/skills.
     Власник погодив вступну глибину, чотиримовний пілот і
     відсутність заяв про відповідність освітнім стандартам
-    2026-11-17. Stage 2 макроструктура очікує редакторської перевірки.
+    2026-11-17. Власник погодив Stage 2 2026-11-18;
+    Stage 3 потребує незалежного методичного review.
 outcomes:
   skillGroups:
     - 6b5700fb-8ba9-4483-9b1b-5c6a28347e12 # observationPractice
@@ -82,19 +83,18 @@ prerequisites:
   explanation: Спеціалізованих попередніх астрономічних компетентностей не вимагається.
 standardsAlignment: []
 openDecisions:
-  macrostructureReview: >-
-    Потрібно редакторськи погодити Stage 2: один прямий Chapter курсу,
-    два Modules (кожен із принаймні одним Chapter), усього чотири
-    тематичні Chapters. Жодні Lessons або Episodes ще не створені.
   lessonPlacementPilot: >-
-    TODO(Stage 3): спроєктувати чотири окремі reusable Lesson slots:
-    Course/firstLookAtSky (вступ і безпека), Module skyCycles/skyChangesOverview
-    (зміни неба), Chapter safeObservation/observationJournal
-    (щоденник спостережень), Chapter solarSystemBasics/sunEarthMoonRoles
-    (роль Сонця, Землі й Місяця). Це покриває пряме вкладення в Course,
-    Module, прямий Chapter курсу і Chapter усередині Module.
-    TODO(editorial): перевірити, чи вступні slots не дублюють Chapters,
-    і за потреби реорганізувати їх без зміни незалежних Lesson UUID.
+    Stage 3: чотири Lesson slots із незмінними reusable UUID охоплюють
+    Course, Module, прямий Chapter та Chapter усередині Module.
+    TODO(editorial): перевірити дублювання introductory Lesson із
+    Chapter safeObservation та Module overview із дочірніми Chapters;
+    за потреби змінити розміщення посилань, не переназначаючи UUID.
+  chapterCoverage: >-
+    TODO(Stage 3 / Stage 4 independent review): Chapters dayAndNight і
+    moonAppearance поки порожні. Module-wide Lesson охоплює обидві
+    теми тільки вступно. Перед завершенням плану додати відповідні
+    незалежні Lessons у ці Chapters або реорганізувати структуру,
+    не руйнуючи мінімального тесту кожного виду вкладеності.
   episodePlacementPilot: >-
     TODO(Screenwriter, після погодження плану): передбачити один Course
     Episode (welcomeToSky), один Module Episode (skyCyclesStory) у
@@ -105,6 +105,21 @@ openDecisions:
     окремої педагогічної цінності; не робити його умовою Stage 4 review.
 content:
   items:
+    firstLookAtSky:
+      type: lesson
+      slug: firstLookAtSky
+      lessonId: 5217424c-e9d7-45e6-8f49-bb450d8e47f1
+      title: Почнімо досліджувати небо
+      objective: >-
+        Пояснити, чому не можна дивитися безпосередньо на Сонце,
+        і назвати приклади безпечного спостереження за небом.
+      skills:
+        - b4b9b469-391d-40f8-b11d-6884c76ed106 # safeSolarObservation
+      depth: Вступне розпізнавання ризиків без обов'язкового особистого спостереження.
+      sequenceReason: Навчити безпеки перед іншими спостереженнями денного неба.
+      matchingRationale: >-
+        Редакторський задум незалежного Lesson; у пакеті Astronomy
+        немає існуючих Lessons. Без прив'язки до конкретного Course.
     safeObservation:
       type: chapter
       slug: safeObservation
@@ -127,6 +142,25 @@ content:
           та фіксує просте спостереження за допомогою доступного
           їй формату; повного володіння професійним протоколом
           спостереження не вимагаємо.
+      content:
+        items:
+          observationJournal:
+            type: lesson
+            slug: observationJournal
+            lessonId: 26157b19-77ae-4bbb-ad0e-8f1a5ffae6b8
+            title: Мій перший щоденник неба
+            objective: >-
+              Зафіксувати одне спостереження малюнком, піктограмою
+              чи коротким усним описом, зазначивши час дня.
+            skills:
+              - 05f79f1d-da4d-4c52-a2d1-332cfd48867c # astronomicalObservationRecords
+            depth: Прості дані про спостереження; не вимагаємо письма або нічних виходів.
+            sequenceReason: Після навчання безпеки перейти до фіксації побаченого.
+            matchingRationale: >-
+              Новий Course-neutral Lesson для базових записів
+              спостереження; перевірений Skill у taxonomy.
+        order:
+          - observationJournal
     skyCycles:
       type: module
       slug: skyCycles
@@ -150,6 +184,26 @@ content:
           знайомство з двома Skill, а не сертифікація повного їх обсягу.
       content:
         items:
+          skyChangesOverview:
+            type: lesson
+            slug: skyChangesOverview
+            lessonId: f5dfb216-b1a4-4f16-82f6-fb2a1169f64d
+            title: Як помітити зміни на небі
+            objective: >-
+              Порівняти денне та нічне небо і помітити,
+              що освітлена частина Місяця може виглядати по-різному,
+              відокремлюючи спостереження від пояснення причин.
+            skills:
+              - faa8f11a-cc06-42c9-8864-8151732e690a # dayAndNight
+              - 53bba831-1f84-4b25-8e05-33f54167cc98 # lunarPhases
+            depth: >-
+              Спостереження та порівняння; не повна геометрія фаз
+              Місяця чи деталізована механіка обертання Землі.
+            sequenceReason: Спільний вступ до двох циклів перед тематичними Chapters.
+            matchingRationale: >-
+              Тестове розміщення прямо у Module.
+              TODO(editorial): перевірити ширину Lesson,
+              бо обидва підпорядковані Chapters ще не наповнені.
           dayAndNight:
             type: chapter
             slug: dayAndNight
@@ -184,6 +238,7 @@ content:
                 частини Місяця, не претендуючи на повне пояснення
                 орбітальної геометрії.
         order:
+          - skyChangesOverview
           - dayAndNight
           - moonAppearance
     solarSystem:
@@ -222,9 +277,29 @@ content:
               explanation: >-
                 Дитина пояснює простими словами, що Сонце є зорею,
                 Земля планетою, а Місяць її природним супутником.
+            content:
+              items:
+                sunEarthMoonRoles:
+                  type: lesson
+                  slug: sunEarthMoonRoles
+                  lessonId: 9b0bf991-e871-4b2e-9e1c-d15497135906
+                  title: Сонце, Земля і Місяць — хто є хто?
+                  objective: >-
+                    Розрізнити Сонце як зорю, Землю як планету,
+                    а Місяць як природний супутник Землі.
+                  skills:
+                    - 2c404b38-fbad-47f6-a70c-fe12218ac240 # solarSystemComponents
+                  depth: Базова класифікація за роллю без масштабів та формул.
+                  sequenceReason: Перенести досвід спостереження на поняття небесних тіл.
+                  matchingRationale: >-
+                    Новий самостійний Lesson без Course-залежних
+                    персонажів; відповідає перевіреному Skill.
+              order:
+                - sunEarthMoonRoles
         order:
           - solarSystemBasics
   order:
+    - firstLookAtSky
     - safeObservation
     - skyCycles
     - solarSystem
