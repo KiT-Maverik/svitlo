@@ -15,10 +15,11 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import YAML from 'yaml';
+import { buildLessonIndex } from '../../shared/engine/scripts/generateLessonsBySkill/lesson-index.mjs';
 import {
   canonicalUUID, collectInventory, sameInventory, parseParent, parseLessonClaim,
   resolveClaims, outsideHash, validateReport, renderLessonsBlock, replaceManagedBlock,
-  REPO, TEXTBOOK,
+  REPO, TEXTBOOK, inspectIndexedLesson,
 } from './synchronizer.mjs';
 
 const SHA = /^[a-f0-9]{40}$/;
@@ -87,18 +88,22 @@ export function parseYamlFile(filename) {
 }
 function readInventory(root, relative, mode, courseId) {
   const file = verifiedPath(root, relative);
-  return file ? collectInventory(parseYamlFile(file), mode, courseId) : null;
+  if (!file) return null;
+  const data = parseYamlFile(file);
+  const inventory = collectInventory(data, mode, courseId);
+  const languages = mode === 'editorial' ? data.supportedLanguages : data.config?.params?.languages;
+  if (!Array.isArray(languages) || !languages.length || !languages.every(x => typeof x === 'string'))
+    throw new Error('Course required languages are missing or invalid');
+  return { ...inventory, languages };
 }
-function sourceStatus(root, textbook, id) {
-  const relative = textbook + '/data/lessons/' + id.slice(-1) + '/' + id;
-  const directory = verifiedPath(root, relative);
-  if (!directory) return 'absent';
-  if (!fs.statSync(directory).isDirectory()) return 'unverified';
-  const files = fs.readdirSync(directory, { withFileTypes: true });
-  if (files.some(f => f.isSymbolicLink())) return 'unverified';
-  if (files.some(f => f.isFile() && (f.name === 'index.ts' || f.name.endsWith('.data.ts')))) return 'implemented';
-  if (files.some(f => f.isFile() && f.name === 'lesson.yaml')) return 'editorial-draft';
-  return 'absent';
+async function mergedAncestry(repo, mergeSha, headSha) {
+  if (!SHA.test(mergeSha ?? '')) return 'unknown';
+  try {
+    const comparison = await github(repo, 'compare/' + mergeSha + '...' + headSha);
+    return ['ahead', 'identical'].includes(comparison.status) ? 'present' : 'absent';
+  } catch {
+    return 'unknown';
+  }
 }
 
 async function listAllPrs(repo) {
@@ -129,7 +134,8 @@ export async function analyze(options) {
   try {
     const planned = readInventory(options.root, editor, 'editorial', identity.courseId);
     const generated = readInventory(options.root, tech, 'technical', identity.courseId);
-    if (planned && generated && !sameInventory(planned, generated)) {
+    if (planned && generated && (!sameInventory(planned, generated) ||
+        JSON.stringify(planned.languages) !== JSON.stringify(generated.languages))) {
       reportDiagnostic(diagnostics, 'Editorial and technical Lesson inventories diverge; Stage 5 reconciliation required');
       complete = false;
     }
@@ -179,15 +185,27 @@ export async function analyze(options) {
     }
   }
 
+  let lessonIndex;
+  try {
+    lessonIndex = buildLessonIndex(options.root, identity.textbook);
+    if (!lessonIndex.complete) {
+      complete = false;
+      for (const d of lessonIndex.diagnostics.slice(0, 15))
+        reportDiagnostic(diagnostics, 'Lesson index: ' + d.file + ': ' + d.reason);
+    }
+  } catch (error) {
+    complete = false;
+    reportDiagnostic(diagnostics, 'Static Lesson indexing failed: ' + String(error.message));
+  }
+
   const lessons = [];
   for (const entry of current?.lessons ?? []) {
     const match = resolveClaims(entry.lessonId, claims);
-    let source = 'unverified';
-    try { source = sourceStatus(options.root, identity.textbook, entry.lessonId); }
-    catch (error) {
+    const inspected = inspectIndexedLesson(lessonIndex, identity.textbook, entry.lessonId, current?.languages ?? []);
+    const source = inspected.source;
+    if (inspected.reason) reportDiagnostic(diagnostics, entry.lessonId + ': ' + inspected.reason);
+    if (source !== 'implemented' || inspected.missingLanguages.length || inspected.languageStatus !== 'verified')
       complete = false;
-      reportDiagnostic(diagnostics, entry.lessonId + ': ' + String(error.message));
-    }
     if (match.diagnostic) {
       reportDiagnostic(diagnostics, entry.lessonId + ': ' + match.diagnostic);
       if (match.status === 'Needs resolution') complete = false;
@@ -201,11 +219,19 @@ export async function analyze(options) {
     }
     // A merged PR's target ancestry still requires independent verification
     // before claiming the Course branch incorporates the Lesson.
+    let ancestry = null;
     if (status.startsWith('Merged')) {
+      const claim = claims.find(x => x.number === match.pr);
+      ancestry = await mergedAncestry(options.repo, claim?.mergeCommitSha, options.sha);
+      if (ancestry !== 'present') {
+        complete = false;
+        reportDiagnostic(diagnostics, entry.lessonId + ': merged PR commit not contained in Course branch (' + ancestry + ')');
+      }
       reportDiagnostic(diagnostics, entry.lessonId +
-        ': verify merged commit ancestry, Lesson approval, language coverage and publication gates');
+        ': verify independent Lesson approval, localization and publication gates');
     }
-    lessons.push({ ...entry, status, pr: match.pr, source });
+    lessons.push({ ...entry, status, pr: match.pr, source,
+      readiness: inspected.readiness, missingLanguages: inspected.missingLanguages, ancestry });
   }
   const report = {
     repo: options.repo, pr: options.pr, sha: options.sha, courseId: identity.courseId,

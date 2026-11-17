@@ -137,6 +137,34 @@ export function sameInventory(a, b) {
     JSON.stringify(a.unresolved) === JSON.stringify(b.unresolved);
 }
 
+/** Distinguish typed Lesson evidence from a YAML-only draft or an unverified path. */
+export function inspectIndexedLesson(index, textbook, lessonId, requiredLanguages) {
+  const unknown = { source: 'unverified', languageStatus: 'unknown', missingLanguages: [],
+    readiness: 'Static Lesson index unavailable', reason: 'Cannot verify Lesson implementation' };
+  if (!index || !Array.isArray(index.candidates) || !Array.isArray(index.diagnostics)) return unknown;
+  const found = index.candidates.filter(x => x.lessonId === lessonId && x.package === textbook);
+  const problems = index.diagnostics.filter(d => d.entityId === lessonId ||
+    (typeof d.file === 'string' && d.file.includes('/' + lessonId + '/')));
+  if (found.length > 1 || problems.length) return {
+    ...unknown, reason: found.length > 1 ? 'Duplicate Lesson identity in index' :
+      problems.map(d => d.reason).join('; ').slice(0, 450),
+    readiness: 'Static index reports invalid Lesson source',
+  };
+  if (!found.length) return { ...unknown, source: 'absent', readiness: 'No statically verified Lesson source',
+    reason: 'No matching Lesson in canonical static index' };
+  const item = found[0];
+  const declared = Array.isArray(item.languages) ? item.languages : [];
+  const missingLanguages = [...new Set(requiredLanguages)].filter(x => !declared.includes(x)).sort();
+  const languageStatus = item.languageStatus === 'verified' ? 'verified' : 'unknown';
+  const source = item.status === 'implemented' ? 'implemented' : 'editorial-draft';
+  const readiness = source !== 'implemented' ? 'Editorial-only Lesson draft' :
+    languageStatus !== 'verified' ? 'Lesson language declaration unverified' :
+    missingLanguages.length ? 'Missing declared Course languages: ' + missingLanguages.join(', ') :
+    'Authored TypeScript; independent locale, review and publication checks remain';
+  return { source, readiness, languageStatus, missingLanguages,
+    reason: languageStatus === 'unknown' ? 'Lesson language declaration unverified' : null };
+}
+
 export function resolveClaims(lessonId, claims) {
   const matches = claims.filter(p => p.lessonId === lessonId).sort((a, b) => a.number - b.number);
   const active = matches.filter(p => p.state === 'open');
@@ -180,6 +208,12 @@ export function validateReport(report) {
         !row.placements.every(x => verifiedString(x, 500)) ||
         !['implemented', 'editorial-draft', 'absent', 'unverified'].includes(row.source) ||
         !verifiedString(row.status, 150) ||
+        (row.readiness !== undefined && !verifiedString(row.readiness, 500)) ||
+        (row.ancestry !== undefined && row.ancestry !== null &&
+          !['present','absent','unknown'].includes(row.ancestry)) ||
+        (row.missingLanguages !== undefined && (!Array.isArray(row.missingLanguages) ||
+          row.missingLanguages.length > 100 ||
+          !row.missingLanguages.every(x => /^[a-z]{2,3}(?:-[A-Za-z0-9]{2,8})?$/.test(x)))) ||
         !(row.pr === null || (Number.isSafeInteger(row.pr) && row.pr > 0))) {
       throw new Error('Invalid Lesson status row');
     }
@@ -205,7 +239,9 @@ export function renderLessonsBlock(report) {
     const label = lesson.pr ? '[' + escaped(lesson.status) + '](https://github.com/' +
       report.repo + '/pull/' + lesson.pr + ')' : escaped(lesson.status);
     rows.push('| ' + escaped(lesson.title) + ' | ' + lesson.lessonId + ' | ' +
-      lesson.placements.map(escaped).join('; ') + ' | ' + label + ' | ' + escaped(lesson.source) + ' |');
+      lesson.placements.map(escaped).join('; ') + ' | ' + label + ' | ' + escaped(lesson.source) +
+      ' | ' + escaped(lesson.readiness ?? 'Independent readiness not verified') +
+      (lesson.ancestry ? '; merged ancestry: ' + escaped(lesson.ancestry) : '') + ' |');
   }
   const out = [START, '## Lessons', '', 'Inventory SHA: ' + report.sha, '',
     'Coverage: **' + (report.complete ? 'complete' : 'INCOMPLETE') + '** · ' +
@@ -213,8 +249,8 @@ export function renderLessonsBlock(report) {
     ' · Draft/open: ' + count.active + ' · Merged PR: ' + count.merged +
     ' · Reused: ' + count.reused + ' · Unresolved: ' + count.unresolved, ''];
   if (!report.allocated && !report.lessons.length) out.push('Lesson inventory not allocated yet.', '');
-  if (rows.length) out.push('| Lesson | UUID | Module / Chapter placement(s) | Production PR status | Source/readiness |',
-    '| --- | --- | --- | --- | --- |', ...rows, '');
+  if (rows.length) out.push('| Lesson | UUID | Module / Chapter placement(s) | Production PR status | Source | Readiness |',
+    '| --- | --- | --- | --- | --- | --- |', ...rows, '');
   if (report.unresolved.length) {
     out.push('### Unallocated Lesson slots', '');
     for (const u of report.unresolved.slice(0, 20)) out.push('- ' + escaped(u.placement) + ': ' + escaped(u.reason));

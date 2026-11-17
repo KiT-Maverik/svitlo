@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {
   collectInventory, parseParent, parseLessonClaim, managedBounds, replaceManagedBlock,
-  outsideHash, sameInventory, resolveClaims, renderLessonsBlock, validateReport, START, END,
+  outsideHash, sameInventory, resolveClaims, inspectIndexedLesson, renderLessonsBlock, validateReport, START, END,
 } from './synchronizer.mjs';
 
 const courseId = '30ecbde1-97fd-5fe7-a353-ea89b9ef4a67';
@@ -85,4 +85,19 @@ test('bounded reports refuse malformed rows and escape Markdown', () => {
   assert.match(markdown, /Escape \\| Markdown/);
   assert.equal(replaceManagedBlock(body, markdown).includes('## Workflow\n- [ ] One'), true);
   assert.throws(() => renderLessonsBlock({ ...report, lessons: [{ ...report.lessons[0], pr: -1 }] }), /Invalid/);
+});
+
+test('static Lesson evidence distinguishes typed source from drafts and locale gaps', () => {
+  const candidate = { package: 'content/math', lessonId, status: 'implemented',
+    languages: ['en', 'uk'], languageStatus: 'verified' };
+  const index = { candidates: [candidate], diagnostics: [] };
+  assert.equal(inspectIndexedLesson(index, 'content/math', lessonId, ['en']).source, 'implemented');
+  assert.deepEqual(inspectIndexedLesson(index, 'content/math', lessonId, ['en', 'fr']).missingLanguages, ['fr']);
+  assert.equal(inspectIndexedLesson({ ...index, candidates: [{ ...candidate, status: 'editorial-draft' }] },
+    'content/math', lessonId, ['en']).source, 'editorial-draft');
+  assert.equal(inspectIndexedLesson({ ...index, diagnostics: [{ entityId: lessonId, reason: 'Unverified TS' }] },
+    'content/math', lessonId, ['en']).source, 'unverified');
+  assert.equal(inspectIndexedLesson({ candidates: [], diagnostics: [] },
+    'content/math', lessonId, ['en']).source, 'absent');
+  assert.equal(inspectIndexedLesson(null, 'content/math', lessonId, ['en']).source, 'unverified');
 });
