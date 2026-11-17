@@ -23,21 +23,28 @@ Matching selects or drafts **which** standalone Lesson belongs in each slot; it 
 
 ## Search helper and PR artifacts
 
-Generate a **flat Skill UUID lookup** using the real repository tool:
+For an **open same-repository PR**, a contributor with verified repository write access may post **exactly one** of these commands as a PR comment:
 
-```sh
-# Select one Skill without writing files:
-node shared/engine/scripts/generateLessonsBySkill/generate-lessons-by-skill.mjs --skill <skill-uuid> --stdout
-
-# Select multiple Skills for a Chapter or Module:
-node shared/engine/scripts/generateLessonsBySkill/generate-lessons-by-skill.mjs --package content/<book> \
-  --skill <uuid-1> --skill <uuid-2> --output .agent-ci-artifacts/lessons-by-skill
-
-# Generate the full available index:
-node shared/engine/scripts/generateLessonsBySkill/generate-lessons-by-skill.mjs --output .agent-ci-artifacts/lessons-by-skill
+```text
+/get lesson by id <lesson-uuid>
+/get lesson by id <lesson-uuid> --package content/math
+/get lesson by skill <skill-uuid>
+/get lesson by skill <skill-uuid> <skill-uuid> --package content/math
+/get lesson by skill <skill-uuid> <skill-uuid> --match all --package content/math
 ```
 
-The existing **Agent CI Artifacts** workflow generates `.agent-ci-artifacts/lessons-by-skill/<skill-id>.md` files in PR branches. They are ephemeral and removed before merge; they are **not** a production database. The generator statically parses Skill and Lesson TypeScript source without executing Lesson code. Each file contains candidate Lesson IDs, textbook paths, canonical source links and multi-Skill membership. A Lesson appears in **every** applicable Skill lookup. Use the full Lesson data and Methodology to decide suitability: a shared Skill ID is **not** proof of equal depth, readiness, language availability or pedagogical fit. Index excludes editorial-only Lesson drafts; search the actual draft directories separately before proposing new ones. Treat generator warnings about unsupported dynamic expressions as coverage gaps in the index, not as evidence of no Lesson.
+The on-demand [Get Lessons by Skill or ID](../../../.github/workflows/get-lesson.yml) workflow checks the exact PR head commit read-only and updates **one bot comment** with matched candidate IDs, status, Skill membership and source links. It also retains a machine-readable JSON artifact for seven days. It becomes available for PR comments **only after the workflow has been merged into the default branch**. The lookup is not automatically executed by Course work and is not a Course or age/standard/title query.
+
+CLI equivalent (no GitHub comments or filesystem writes):
+
+```sh
+node shared/engine/scripts/queryLessons/query-lessons.mjs --by skill --skill <uuid> --skill <uuid> --match all --package content/math --format json --stdout
+node shared/engine/scripts/queryLessons/query-lessons.mjs --by id --lesson <uuid> --format json --stdout
+```
+
+The existing legacy Skill Markdown CLI remains available at `shared/engine/scripts/generateLessonsBySkill/generate-lessons-by-skill.mjs` and shares the improved static index, but lists only implemented Lessons. **Do not assume** the `Agent CI Artifacts` workflow automatically produces `.agent-ci-artifacts/lessons-by-skill` files: the current `.github/workflows/translation-review.yml` does not generate that family. The lookup never adds these files to the PR branch.
+
+Treat the result as a **candidate list**, not a pedagogical acceptance decision. Status `implemented` means a typed Lesson entrypoint was statically resolved; `editorial-draft` means **only `lesson.yaml` was found**, not publishability or approval. Compare Lesson source and methodology against learner audience, prerequisite/depth/outcomes and Course-supported language set. Unknown language coverage is **not** complete language coverage. If `complete: false` or diagnostics are present, **no result is not proof of absence**: inspect the affected package/source before creating a Lesson. Shared Skill IDs do not prove teaching depth, assessment validity or Course suitability.
 
 The PR-scoped reference `.agent-ci-artifacts/assessment-methods/<language>.md` can help evaluate whether existing Lessons' Quiz Sections capture the **specific Skills and outcomes** needed by a Course slot. Its frontend labels follow the chosen locale, while detailed methodological explanations remain English. Compare canonical `AssessmentMethodKey` values with the target cognitive evidence: a Question type alone does not establish pedagogical coverage. For new Lesson drafts, use the [Create Lesson Brief](../lesson-workflow/create-lesson-brief.skill.md) Quiz assessment intent section to explain the need for assessment, selected Methods, targeted Skills and why different Methods may be necessary. This reference is temporary, not the source of truth; if missing, inspect Contracts, Engine methodological descriptions and UI Kit labels. Do not implement or invent Questions as part of matching.
 
