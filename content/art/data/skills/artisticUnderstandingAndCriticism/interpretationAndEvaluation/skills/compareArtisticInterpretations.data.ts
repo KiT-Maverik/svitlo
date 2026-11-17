@@ -31,7 +31,7 @@ export const compareArtisticInterpretations_Skill_Data = defineSkill({
     et: 'Kunstiliste tõlgenduste võrdlemine',
     be: 'Параўноўваць мастацкія інтэрпрэтацыі',
     ka: 'მხატვრული ინტერპრეტაციების შედარება',
-    kk: 'Өнер туындыларының түсіндірмелерін салыстыру',
+    kk: 'Öner tuyndylarynyñ tüsındırmelerın salystyru',
     qm: 'Sanat añlatmalarını qarşılaştırmaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const compareArtisticInterpretations_Skill_Data = defineSkill({
       et: 'Võrdle kunstiteose erinevaid tõlgendusi ja tõendeid, mis igaüht neist toetavad.',
       be: 'Параўноўвай розныя інтэрпрэтацыі мастацкага твора і доказы на карысць кожнай з іх.',
       ka: 'შეადარეთ ნამუშევრის განსხვავებული ინტერპრეტაციები და თითოეულის მხარდამჭერი მტკიცებულებები.',
-      kk: 'Өнер туындысының әртүрлі түсіндірмелерін және олардың әрқайсысын растайтын дәлелдерді салыстырыңыз.',
+      kk: 'Öner tuyndysynyñ ärtürlı tüsındırmelerın jäne olardyñ ärqaisysyn rastaityn dälelderdı salystyryñyz.',
       qm: 'Bir sanat eseriniñ çeşit añlatmalarını ve er biriniñ dayanağı olğan delillerini qarşılaştırıñız.',
     },
   },

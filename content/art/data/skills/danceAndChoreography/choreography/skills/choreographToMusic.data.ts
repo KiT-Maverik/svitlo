@@ -31,7 +31,7 @@ export const choreographToMusic_Skill_Data = defineSkill({
     et: 'Loo koreograafia muusika järgi',
     be: 'Стварайце харэаграфію пад музыку',
     ka: 'შექმენით ქორეოგრაფია მუსიკის მიხედვით',
-    kk: 'Музыкаға сай хореография жасаңыз',
+    kk: 'Muzykağa sai horeografiia jasañyz',
     qm: 'Muzikağa köre koreografiya qurıñız',
   },
   description: {
@@ -64,7 +64,7 @@ export const choreographToMusic_Skill_Data = defineSkill({
       et: 'Sobita liigutused muusika rütmi, rõhkude ja muutustega.',
       be: 'Узгадняйце рухі з рытмам, акцэнтамі і зменамі музыкі.',
       ka: 'შეუსაბამეთ მოძრაობები მუსიკის რიტმს, აქცენტებსა და ცვლილებებს.',
-      kk: 'Қимылдарды музыканың ырғағымен, екпінімен және өзгерістерімен сәйкестендіріңіз.',
+      kk: 'Qimyldardy muzykanyñ yrğağymen, ekpınımen jäne özgerısterımen säikestendırıñız.',
       qm: 'Areketlerni muzikanıñ ritmine, aksentlerine ve deñişmelerine uyğunlaştıñız',
     },
   },

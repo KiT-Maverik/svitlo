@@ -31,7 +31,7 @@ export const structureADanceComposition_Skill_Data = defineSkill({
     et: 'Struktureeri tantsukompositsioon',
     be: 'Структуруйце танцавальную кампазіцыю',
     ka: 'ააგეთ საცეკვაო კომპოზიციის სტრუქტურა',
-    kk: 'Би композициясын құрылымдаңыз',
+    kk: 'Bi kompozitsiiasyn qūrylymdañyz',
     qm: 'Oyun kompozitsiyasınıñ qurılışını qurıñız',
   },
   description: {
@@ -64,7 +64,7 @@ export const structureADanceComposition_Skill_Data = defineSkill({
       et: 'Järjesta tantsufraasid korduse, kontrasti ja arenduse abil.',
       be: 'Размяшчайце танцавальныя фразы з дапамогай паўтарэння, кантрасту і развіцця.',
       ka: 'დაალაგეთ საცეკვაო ფრაზები გამეორების, კონტრასტისა და განვითარების გამოყენებით.',
-      kk: 'Қайталау, қарама-қарсылық және дамытуды пайдаланып би тіркестерін құрастырыңыз.',
+      kk: 'Qaitalau, qarama-qarsylyq jäne damytudy paidalanyp bi tırkesterın qūrastyryñyz.',
       qm: 'Oyun ibarelerini tekrar, qarşıtlıq ve inkişaf ile tertip etiñiz',
     },
   },

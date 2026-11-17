@@ -39,7 +39,7 @@ export const movementLanguage_SkillGroup_Data = defineSkillGroup({
     et: 'Liikumiskeel',
     be: 'Мова руху',
     ka: 'მოძრაობის ენა',
-    kk: 'Қозғалыс тілі',
+    kk: 'Qozğalys tılı',
     qm: 'Areket tili',
   },
   skills: [
@@ -80,7 +80,7 @@ export const movementLanguage_SkillGroup_Data = defineSkillGroup({
       et: 'Kasuta kehaasendit, energiat, ruumi ja aega väljendusrikka liikumise kujundamiseks.',
       be: 'Выкарыстоўвайце становішча цела, энергію, прастору і час, каб ствараць выразны рух.',
       ka: 'გამოიყენეთ სხეულის პოზიცია, ენერგია, სივრცე და დრო გამომსახველობითი მოძრაობის შესაქმნელად.',
-      kk: 'Мәнерлі қозғалыс қалыптастыру үшін дене қалпын, қуатты, кеңістікті және уақытты пайдаланыңыз.',
+      kk: 'Mänerlı qozğalys qalyptastyru üşın dene qalpyn, quatty, keñıstıktı jäne uaqytty paidalanyñyz.',
       qm: 'İfadeleyici areket yaratmaq içün beden vaziyetini, enerjini, mekân ve vaqıtnı qullanıñız',
     },
   },

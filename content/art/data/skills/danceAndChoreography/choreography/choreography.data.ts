@@ -39,7 +39,7 @@ export const choreography_SkillGroup_Data = defineSkillGroup({
     et: 'Koreograafia',
     be: 'Харэаграфія',
     ka: 'ქორეოგრაფია',
-    kk: 'Хореография',
+    kk: 'Horeografiia',
     qm: 'Koreografiya',
   },
   skills: [
@@ -80,7 +80,7 @@ export const choreography_SkillGroup_Data = defineSkillGroup({
       et: 'Loo ja muuda liikumisfraase, et kujundada terviklik tants.',
       be: 'Стварайце і змяняйце рухавыя фразы, каб скласці цэласны танец.',
       ka: 'შექმენით და გარდაქმენით მოძრაობის ფრაზები სრული ცეკვის შესაქმნელად.',
-      kk: 'Толық би құрастыру үшін қозғалыс фразаларын жасап, түрлендіріңіз.',
+      kk: 'Tolyq bi qūrastyru üşın qozğalys frazalaryn jasap, türlendırıñız.',
       qm: 'Oyunnıñ tam bir eserini yaratmaq içün areket ibarelerini yaratıp deñiştiriñiz.',
     },
   },

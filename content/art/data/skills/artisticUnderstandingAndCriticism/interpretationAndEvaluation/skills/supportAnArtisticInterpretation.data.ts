@@ -31,7 +31,7 @@ export const supportAnArtisticInterpretation_Skill_Data = defineSkill({
     et: 'Kunstilise tõlgenduse põhjendamine',
     be: 'Абгрунтоўваць мастацкую інтэрпрэтацыю',
     ka: 'მხატვრული ინტერპრეტაციის დასაბუთება',
-    kk: 'Өнер туындысын түсіндіруді негіздеу',
+    kk: 'Öner tuyndysyn tüsındırudı negızdeu',
     qm: 'Sanat añlatmasını deliller ile desteklev',
   },
   description: {
@@ -64,7 +64,7 @@ export const supportAnArtisticInterpretation_Skill_Data = defineSkill({
       et: 'Kasuta teose üksikasju, et oma tõlgendust selgitada ja põhjendada.',
       be: 'Выкарыстоўвай дэталі твора, каб растлумачыць і абгрунтаваць сваю інтэрпрэтацыю.',
       ka: 'გამოიყენეთ ნამუშევრის დეტალები თქვენი ინტერპრეტაციის ასახსნელად და გასამყარებლად.',
-      kk: 'Өз түсіндірмеңізді түсіндіріп, негіздеу үшін туындының нақты бөлшектерін пайдаланыңыз.',
+      kk: 'Öz tüsındırmeñızdı tüsındırıp, negızdeu üşın tuyndynyñ naqty bölşekterın paidalanyñyz.',
       qm: 'Öz añlatmañıznı izalıp desteklemek içün sanat eseriniñ tafsilâtlarından faydalaniñız.',
     },
   },

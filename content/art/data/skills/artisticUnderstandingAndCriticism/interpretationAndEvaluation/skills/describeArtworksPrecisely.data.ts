@@ -31,7 +31,7 @@ export const describeArtworksPrecisely_Skill_Data = defineSkill({
     et: 'Kunstiteoste täpne kirjeldamine',
     be: 'Дакладна апісваць мастацкія творы',
     ka: 'ნამუშევრების ზუსტად აღწერა',
-    kk: 'Өнер туындыларын дәл сипаттау',
+    kk: 'Öner tuyndylaryn däl sipattau',
     qm: 'Sanat eserlerini doğru tasvir etüv',
   },
   description: {
@@ -65,7 +65,7 @@ export const describeArtworksPrecisely_Skill_Data = defineSkill({
       et: 'Kirjelda esmalt üksikasju, mida sa tegelikult näed või kuuled, ja alles siis selgita nende tähendust.',
       be: 'Спачатку апісвай дэталі, якія сапраўды бачыш або чуеш, а потым тлумач іх значэнне.',
       ka: 'ჯერ აღწერეთ დეტალები, რომლებსაც ნამდვილად ხედავთ ან გესმით, შემდეგ კი განმარტეთ მათი მნიშვნელობა.',
-      kk: 'Мағынасын түсіндірмес бұрын, шын мәнінде көріп немесе естіп тұрған бөлшектерді сипаттаңыз.',
+      kk: 'Mağynasyn tüsındırmes būryn, şyn mänınde körıp nemese estıp tūrğan bölşekterdı sipattañyz.',
       qm: 'Manasını añlatmazdan evel, aqıqıy körgen ya da eşitken tafsilâtlarnı tasvir etiñiz.',
     },
   },

@@ -31,7 +31,7 @@ export const distinguishObservationFromInterpretation_Skill_Data = defineSkill({
     et: 'Vaatluse eristamine tõlgendusest',
     be: 'Адрозніваць назіранне ад інтэрпрэтацыі',
     ka: 'დაკვირვებისა და ინტერპრეტაციის გარჩევა',
-    kk: 'Бақылауды түсіндіруден ажырату',
+    kk: 'Baqylaudy tüsındıruden ajyratu',
     qm: 'Müşaade ve añlatma arasındaki farqnı ayırt etüv',
   },
   description: {
@@ -64,7 +64,7 @@ export const distinguishObservationFromInterpretation_Skill_Data = defineSkill({
       et: 'Erista seda, mida märkad, sellest, mida arvad selle tähendavat.',
       be: 'Адрознівай тое, што заўважаеш, ад таго, што, на тваю думку, гэта азначае.',
       ka: 'განასხვავეთ ის, რასაც ამჩნევთ, იმისგან, თუ რას ფიქრობთ, რომ ეს ნიშნავს.',
-      kk: 'Байқаған нәрсеңіз бен оның нені білдіретіні туралы ойыңызды ажыратыңыз.',
+      kk: 'Baiqağan närseñız ben onyñ nenı bıldıretını turaly oiyñyzdy ajyratyñyz.',
       qm: 'Körgeniñiz şey ile onıñ ne añlatqanı aqqında fikir yürütüviñizni ayırt etiñiz.',
     },
   },

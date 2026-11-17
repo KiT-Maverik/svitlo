@@ -31,7 +31,7 @@ export const createAMovementMotif_Skill_Data = defineSkill({
     et: 'Loo liikumismotiiv',
     be: 'Стварыце рухавы матыў',
     ka: 'შექმენით მოძრაობის მოტივი',
-    kk: 'Қозғалыс мотивін жасаңыз',
+    kk: 'Qozğalys motivın jasañyz',
     qm: 'Areket motifini yaratıp çıñız',
   },
   description: {
@@ -64,7 +64,7 @@ export const createAMovementMotif_Skill_Data = defineSkill({
       et: 'Mõtle välja lühike ja äratuntav tantsuliigutuste jada.',
       be: 'Прыдумайце кароткую, пазнавальную паслядоўнасць танцавальных рухаў.',
       ka: 'მოიფიქრეთ მოკლე, ადვილად ამოსაცნობი საცეკვაო მოძრაობების მიმდევრობა.',
-      kk: 'Ойдан қысқа әрі танылатын би қимылдарының тізбегін жасаңыз.',
+      kk: 'Oidan qysqa ärı tanylatyn bi qimyldarynyñ tızbegın jasañyz.',
       qm: 'Qısqa ve tanınabilir oyun areketleri silsilesini icat etiñiz',
     },
   },

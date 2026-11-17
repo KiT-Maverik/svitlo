@@ -31,7 +31,7 @@ export const varyAMovementMotif_Skill_Data = defineSkill({
     et: 'Muuda liikumismotiivi',
     be: 'Змяняйце рухавы матыў',
     ka: 'შეცვალეთ მოძრაობის მოტივი',
-    kk: 'Қозғалыс мотивін түрлендіріңіз',
+    kk: 'Qozğalys motivın türlendırıñız',
     qm: 'Areket motifini deñiştiriñiz',
   },
   description: {
@@ -64,7 +64,7 @@ export const varyAMovementMotif_Skill_Data = defineSkill({
       et: 'Muuda liikumisideed suuna, ulatuse, kiiruse või kehaasendi muutmisega.',
       be: "Змяняйце задум руху, вар'іруючы кірунак, амплітуду, хуткасць або становішча цела.",
       ka: 'შეცვალეთ მოძრაობის იდეა მიმართულების, ზომის, სიჩქარის ან სხეულის პოზიციის შეცვლით.',
-      kk: 'Бағытты, ауқымды, жылдамдықты немесе дене қалпын өзгерту арқылы қозғалыс идеясын түрлендіріңіз.',
+      kk: 'Bağytty, auqymdy, jyldamdyqty nemese dene qalpyn özgertu arqyly qozğalys ideiasyn türlendırıñız.',
       qm: 'Areket fikrini yön, ölçü, hız ya da beden vaziyetini deñiştirerek deñiştiriñiz',
     },
   },

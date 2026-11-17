@@ -31,7 +31,7 @@ export const designDanceFormations_Skill_Data = defineSkill({
     et: 'Kujunda tantsijate paigutusi',
     be: 'Праектуйце танцавальныя пабудовы',
     ka: 'შექმენით მოცეკვავეთა განლაგებები',
-    kk: 'Би құрамдарын жобалаңыз',
+    kk: 'Bi qūramdaryn jobalañyz',
     qm: 'Oyun saflarını tasarlañız',
   },
   description: {
@@ -64,7 +64,7 @@ export const designDanceFormations_Skill_Data = defineSkill({
       et: 'Kavanda, kuidas tantsijad liiguvad koos ja moodustavad ruumis mustreid.',
       be: 'Плануйце, як танцоры будуць рухацца разам і ствараць фігуры ў прасторы.',
       ka: 'დაგეგმეთ, როგორ იმოძრავებენ მოცეკვავეები ერთად და შექმნიან განლაგებებს სივრცეში.',
-      kk: 'Жаңа кеңістіктік өрнектер құру үшін бишілердің бірге қозғалуын жоспарлаңыз.',
+      kk: 'Jaña keñıstıktık örnekter qūru üşın bişılerdıñ bırge qozğaluyn josparlañyz.',
       qm: 'Oyun icracıları birlikte nasıl areket etip mekânda saf quracağını planlañız',
     },
   },

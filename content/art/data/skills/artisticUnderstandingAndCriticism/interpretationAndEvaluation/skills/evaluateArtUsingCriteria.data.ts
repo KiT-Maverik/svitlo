@@ -31,7 +31,7 @@ export const evaluateArtUsingCriteria_Skill_Data = defineSkill({
     et: 'Kunsti hindamine kriteeriumide alusel',
     be: 'Ацэньваць мастацтва паводле крытэрыяў',
     ka: 'ხელოვნების შეფასება კრიტერიუმების გამოყენებით',
-    kk: 'Өнерді өлшемдер арқылы бағалау',
+    kk: 'Önerdı ölşemder arqyly bağalau',
     qm: 'Sanatnı ölçülerge köre baalav',
   },
   description: {
@@ -65,7 +65,7 @@ export const evaluateArtUsingCriteria_Skill_Data = defineSkill({
       et: 'Hinda kunstiteost selgete, selle eesmärkidega sobivate kriteeriumide, mitte üksnes oma maitse järgi.',
       be: 'Ацэньвай твор паводле выразных крытэрыяў, адпаведных яго мэтам, а не толькі паводле ўласнага густу.',
       ka: 'შეაფასეთ ნამუშევარი მკაფიო კრიტერიუმებით, რომლებიც მის მიზნებს შეესაბამება, და არა მხოლოდ თქვენი გემოვნებით.',
-      kk: 'Туындыны тек талғамыңызға сүйенбей, оның мақсатына сай нақты өлшемдер бойынша бағалаңыз.',
+      kk: 'Tuyndyny tek talğamyñyzğa süienbei, onyñ maqsatyna sai naqty ölşemder boiynşa bağalañyz.',
       qm: 'Sanat eserini tek öz zevqiñizge köre degil, maqsatına uyğun açıq ölçülerge köre baalañız.',
     },
   },

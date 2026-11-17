@@ -39,7 +39,7 @@ export const interpretationAndEvaluation_SkillGroup_Data = defineSkillGroup({
     et: 'Tõlgendamine ja hindamine',
     be: 'Інтэрпрэтацыя й ацэнка',
     ka: 'ინტერპრეტაცია და შეფასება',
-    kk: 'Түсіндіру және бағалау',
+    kk: 'Tüsındıru jäne bağalau',
     qm: 'Añlatma ve baalav',
   },
   skills: [
@@ -80,7 +80,7 @@ export const interpretationAndEvaluation_SkillGroup_Data = defineSkillGroup({
       et: 'Õpi arutama, mida kunstiteos võib tähendada, kasutades tõendeid ja selgeid kriteeriume.',
       be: 'Вучыся абмяркоўваць магчымы сэнс мастацкага твора, абапіраючыся на доказы й выразныя крытэрыі.',
       ka: 'ისწავლეთ ნამუშევრის შესაძლო მნიშვნელობის განხილვა მტკიცებულებებისა და მკაფიო კრიტერიუმების გამოყენებით.',
-      kk: 'Дәлелдер мен нақты өлшемдерді пайдаланып, өнер туындысы нені білдіруі мүмкін екенін талқылауды үйреніңіз.',
+      kk: 'Dälelder men naqty ölşemderdı paidalanyp, öner tuyndysy nenı bıldıruı mümkın ekenın talqylaudy üirenıñız.',
       qm: 'Sanat eserleriniñ manasını añlatmaq içün deliller ve açıq ölçülerge esaslanıp fikir yürütüñiz.',
     },
   },
