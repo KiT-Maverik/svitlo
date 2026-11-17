@@ -256,7 +256,11 @@ test('incomplete previews still reject bad jurisdictions, original language, and
     ['countries: ["UA"]', 'countries: ["UA", "UA"]', /Duplicated jurisdiction/],
     ['nameLanguage: "uk"', 'nameLanguage: "bad tag"', /Invalid original name language/],
     ['grade: { min: 1, max: 4 }', 'grade: { min: 5, max: 4 }', /Invalid grade range/],
-    ['https://example.org/standards/2026', 'https://user:pass@example.org/standards/2026', /Invalid official source URL/],
+    [
+      'https://example.org/standards/2026',
+      'https://user:pass@example.org/standards/2026',
+      /Invalid official source URL/,
+    ],
   ];
   for (const [before, after, expected] of changes) {
     const root = setup([record('sampleOne', UUID_A, { en: 'Learning outcomes' })]);

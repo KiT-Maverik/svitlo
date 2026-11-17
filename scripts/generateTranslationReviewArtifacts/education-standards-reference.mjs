@@ -146,15 +146,23 @@ export function readEducationStandardSources(root, registered) {
     if (new Set(params.countries).size !== params.countries.length) {
       throw Error('Duplicated jurisdiction: ' + slug);
     }
-    if (typeof params.nameLanguage !== 'string' ||
-        !/^[a-z]{2,3}(?:-[A-Za-z0-9]{2,8})*$/.test(params.nameLanguage)) {
+    if (typeof params.nameLanguage !== 'string' || !/^[a-z]{2,3}(?:-[A-Za-z0-9]{2,8})*$/.test(params.nameLanguage)) {
       throw Error('Invalid original name language: ' + slug);
     }
-    for (const [field, maximum] of [['age', 125], ['grade', 40]]) {
+    for (const [field, maximum] of [
+      ['age', 125],
+      ['grade', 40],
+    ]) {
       const range = params[field];
       if (range === undefined) continue;
-      if (!range || !Number.isInteger(range.min) || !Number.isInteger(range.max) ||
-          range.min < 0 || range.min > range.max || range.max > maximum) {
+      if (
+        !range ||
+        !Number.isInteger(range.min) ||
+        !Number.isInteger(range.max) ||
+        range.min < 0 ||
+        range.min > range.max ||
+        range.max > maximum
+      ) {
         throw Error('Invalid ' + field + ' range: ' + slug);
       }
     }
@@ -203,7 +211,8 @@ export function verifyBuiltStandards(entries, built, registered) {
     if (!item || item.slug !== config.slug) throw Error('Build/source identity mismatch: ' + config.slug);
     const frontend = config.description.frontend;
     const complete = registered.every(
-      language => typeof frontend[language] === 'string' && frontend[language].trim() && frontend[language].trim() !== MISSING,
+      language =>
+        typeof frontend[language] === 'string' && frontend[language].trim() && frontend[language].trim() !== MISSING,
     );
     if (!complete) continue; // Partial Code is previewed statically, never published.
     const props = item.build.props({ languages: [...registered] });
