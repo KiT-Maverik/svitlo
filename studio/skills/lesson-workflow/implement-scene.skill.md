@@ -1,4 +1,6 @@
-# Implement Scene Skill
+# Implement Scene
+
+> **Current Lesson flow:** [Create Lesson Flow](./create-lesson-flow.skill.md), Stage 6, owns resource implementation within the existing Draft Lesson PR. New mandatory Lesson Production Issues and prior `content.yaml` approval gates in older guidance below are superseded. Real Scene specs, typed code, accessibility and testing remain essential; existing Issue approvals must be reconciled, never discarded. Skill
 
 **Persona:** [Coding Agent](../../personas/coding-agent.persona.md) — read it fully before any work. Also read applicable root/package `AGENTS.md`, [Lesson Production](../../docs/architecture/lesson-production-workflow.md), [Lesson Content](../../docs/entities/lesson-content.md), accessibility/offline architecture and the **actual current** Engine schemas and UI Kit renderer, textbook Scene registry, tests and package scripts.
 

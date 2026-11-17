@@ -1,5 +1,7 @@
 # Match Course TOC Lessons
 
+> **Current Lesson handoff:** [Create Lesson Flow](../lesson-workflow/create-lesson-flow.skill.md) opens/resumes one verified UUID-linked Draft Lesson PR. New mandatory Lesson Production Issues are retired; preserve existing Issue evidence. The #639 Course Lesson Tracker owns only Course-level inventory. The older Issue-related text below describes historical coordination, not current new-work requirements.
+
 **Mandatory first action:** Read the [Methodologist Persona](../../personas/methodist.persona.md) in full, [Course TOC](./create-course-toc.skill.md), [Create Lesson Brief](../lesson-workflow/create-lesson-brief.skill.md), [Lesson editorial ownership](../../docs/architecture/lesson-editorial-document.md) and [UUID addressing](../../docs/architecture/entity-uuid-addressing.md) and [Manage Lesson Production](../lesson-workflow/manage-lesson-production.skill.md).
 
 ## Purpose, inputs and outputs
