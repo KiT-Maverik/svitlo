@@ -32,7 +32,7 @@ export const angularSeparation_Skill_Data = defineSkill({
     et: 'Nurkvahe',
     be: 'Кутавая адлегласьць',
     ka: 'კუთხური მანძილი',
-    kk: 'Бұрыштық қашықтық',
+    kk: 'Būryştyq qaşyqtyq',
   },
   description: {
     methodological:
@@ -66,7 +66,7 @@ export const angularSeparation_Skill_Data = defineSkill({
       et: 'Võrdle nurkade, mitte kilomeetrite abil, kui kaugel objektid taevas üksteisest näivad olevat.',
       be: 'Параўноўвай, наколькі далёка адзін ад аднаго здаюцца аб’екты на небе, вымяраючы куты, а не кілямэтры.',
       ka: 'შეადარე, რამდენად დაშორებულად ჩანან ცაზე ობიექტები ერთმანეთისგან, კილომეტრების ნაცვლად კუთხეებით.',
-      kk: 'Аспанда нысандар бір-бірінен қаншалықты алыс көрінетінін километрмен емес, бұрыштармен салыстыр.',
+      kk: 'Aspanda nysandar bır-bırınen qanşalyqty alys körınetının kilometrmen emes, būryştarmen salystyr.',
     },
   },
 });

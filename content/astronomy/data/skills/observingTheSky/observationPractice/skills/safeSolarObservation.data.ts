@@ -32,7 +32,7 @@ export const safeSolarObservation_Skill_Data = defineSkill({
     et: 'Päikese ohutu vaatlemine',
     be: 'Бясьпечнае назіраньне за Сонцам',
     ka: 'მზეზე უსაფრთხო დაკვირვება',
-    kk: 'Күнді қауіпсіз бақылау',
+    kk: 'Kündı qauıpsız baqylau',
   },
   description: {
     methodological:
@@ -66,7 +66,7 @@ export const safeSolarObservation_Skill_Data = defineSkill({
       et: 'Õpi ära tundma ohutuid Päikese vaatlemise viise ja vältima võtteid, mis võivad nägemist kahjustada.',
       be: 'Навучыся распазнаваць бясьпечныя спосабы назіраньня за Сонцам і пазьбягаць мэтадаў, якія могуць пашкодзіць зрок.',
       ka: 'ისწავლე მზეზე დაკვირვების უსაფრთხო ხერხების ამოცნობა და მოერიდე მეთოდებს, რომლებმაც შეიძლება მხედველობა დააზიანოს.',
-      kk: 'Күнді бақылаудың қауіпсіз тәсілдерін танып, көру қабілетіне зиян келтіруі мүмкін әдістерден аулақ болуды үйрен.',
+      kk: 'Kündı baqylaudyñ qauıpsız täsılderın tanyp, köru qabıletıne ziian keltıruı mümkın ädısterden aulaq boludy üiren.',
     },
   },
 });

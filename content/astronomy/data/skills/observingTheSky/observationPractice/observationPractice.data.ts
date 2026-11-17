@@ -39,7 +39,7 @@ export const observationPractice_SkillGroup_Data = defineSkillGroup({
     et: 'Vaatluspraktika',
     be: 'Практыка назіраньняў',
     ka: 'დაკვირვების პრაქტიკა',
-    kk: 'Бақылау тәжірибесі',
+    kk: 'Baqylau täjıribesı',
   },
   skills: [
     astronomicalObservationRecords_Skill_Data,
@@ -79,7 +79,7 @@ export const observationPractice_SkillGroup_Data = defineSkillGroup({
       et: 'Õpi kavandama ohutuid ja kasulikke taevavaatlusi ning tegema märkmeid, millest ka teised aru saavad.',
       be: 'Навучыся плянаваць бясьпечныя й карысныя назіраньні за небам і весьці запісы, зразумелыя іншым.',
       ka: 'ისწავლე ცაზე უსაფრთხო და სასარგებლო დაკვირვებების დაგეგმვა და ისეთი ჩანაწერების გაკეთება, რომლებსაც სხვებიც გაიგებენ.',
-      kk: 'Аспанды қауіпсіз әрі пайдалы бақылауды жоспарлап, басқалар түсіне алатын жазбалар жүргізуді үйрен.',
+      kk: 'Aspandy qauıpsız ärı paidaly baqylaudy josparlap, basqalar tüsıne alatyn jazbalar jürgızudı üiren.',
     },
   },
 });

@@ -32,7 +32,7 @@ export const equatorialCoordinates_Skill_Data = defineSkill({
     et: 'Ekvatoriaalkoordinaadid',
     be: 'Экватарыяльныя каардынаты',
     ka: 'ეკვატორული კოორდინატები',
-    kk: 'Экваторлық координаттар',
+    kk: 'Ekvatorlyq koordinattar',
   },
   description: {
     methodological: "Interpret right ascension and declination as a coordinate system tied to Earth's rotational axis.",
@@ -65,7 +65,7 @@ export const equatorialCoordinates_Skill_Data = defineSkill({
       et: 'Loe otsetõusu ja käänet, et leida objekte taevakaardilt.',
       be: 'Чытай прамое ўзыходжаньне і схіленьне, каб знаходзіць аб’екты на мапе неба.',
       ka: 'წაიკითხე პირდაპირი აღვლენა და დახრილობა, რათა ციურ რუკაზე ობიექტები იპოვო.',
-      kk: 'Аспан картасынан нысандарды табу үшін тік шарықтау мен еңкеюді оқы.',
+      kk: 'Aspan kartasynan nysandardy tabu üşın tık şaryqtau men eñkeiudı oqy.',
     },
   },
 });

@@ -32,7 +32,7 @@ export const celestialSphere_Skill_Data = defineSkill({
     et: 'Taevasfäär',
     be: 'Нябесная сфэра',
     ka: 'ციური სფერო',
-    kk: 'Аспан сферасы',
+    kk: 'Aspan sferasy',
   },
   description: {
     methodological:
@@ -66,7 +66,7 @@ export const celestialSphere_Skill_Data = defineSkill({
       et: 'Õpi tundma kujuteldavat taevasfääri, mida kasutatakse öötaeva kaardistamiseks.',
       be: 'Зразумей, што такое ўяўная нябесная сфэра, якую выкарыстоўваюць для стварэньня мапаў начнога неба.',
       ka: 'გაიგე, რა არის წარმოსახვითი ციური სფერო, რომელსაც ღამის ცის რუკების შესადგენად იყენებენ.',
-      kk: 'Түнгі аспан картасын жасау үшін қолданылатын ойша алынған аспан сферасын түсін.',
+      kk: 'Tüngı aspan kartasyn jasau üşın qoldanylatyn oişa alynğan aspan sferasyn tüsın.',
     },
   },
 });

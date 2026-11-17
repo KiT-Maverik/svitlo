@@ -37,7 +37,7 @@ export const observingTheSky_SkillDomain_Data = defineSkillDomain({
     et: 'Taeva vaatlemine',
     be: 'Назіраньне за небам',
     ka: 'ცაზე დაკვირვება',
-    kk: 'Аспанды бақылау',
+    kk: 'Aspandy baqylau',
   },
   groups: [
     astronomicalTime_SkillGroup_Data,
@@ -77,7 +77,7 @@ export const observingTheSky_SkillDomain_Data = defineSkillDomain({
       et: 'Õpi kirjeldama, kus taevakehad taevas paistavad ning kuidas nende asukohad aja ja vaatluskoha muutudes teisenevad.',
       be: 'Навучыся апісваць, дзе на небе бачныя нябесныя целы і як іхнае становішча зьмяняецца ў залежнасьці ад часу і месца назіраньня.',
       ka: 'ისწავლე აღწერა, სად ჩანს ციური სხეულები ცაზე და როგორ იცვლება მათი მდებარეობა დროისა და დაკვირვების ადგილის მიხედვით.',
-      kk: 'Аспан денелері аспанда қай жерде көрінетінін және олардың орны уақыт пен бақылау орнына қарай қалай өзгеретінін сипаттауды үйрен.',
+      kk: 'Aspan denelerı aspanda qai jerde körınetının jäne olardyñ orny uaqyt pen baqylau ornyna qarai qalai özgeretının sipattaudy üiren.',
     },
   },
 });

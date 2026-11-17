@@ -32,7 +32,7 @@ export const observingConditions_Skill_Data = defineSkill({
     et: 'Vaatlustingimused',
     be: 'Умовы назіраньня',
     ka: 'დაკვირვების პირობები',
-    kk: 'Бақылау жағдайлары',
+    kk: 'Baqylau jağdailary',
   },
   description: {
     methodological:
@@ -66,7 +66,7 @@ export const observingConditions_Skill_Data = defineSkill({
       et: 'Vali vaatluseks sobiva ilma, pimeduse ja nähtavusega aeg ning koht.',
       be: 'Выбірай час і месца з адпаведным надвор’ем, цемрай і бачнасьцю.',
       ka: 'შეარჩიე დრო და ადგილი შესაფერისი ამინდით, სიბნელითა და ხილვადობით.',
-      kk: 'Ауа райы, қараңғылық пен көріну деңгейі қолайлы уақыт пен орынды таңда.',
+      kk: 'Aua raiy, qarañğylyq pen körınu deñgeiı qolaily uaqyt pen oryndy tañda.',
     },
   },
 });

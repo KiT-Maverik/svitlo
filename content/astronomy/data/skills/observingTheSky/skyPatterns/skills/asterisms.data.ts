@@ -32,7 +32,7 @@ export const asterisms_Skill_Data = defineSkill({
     et: 'Asterismid',
     be: 'Астэрызмы',
     ka: 'ასტერიზმები',
-    kk: 'Астеризмдер',
+    kk: 'Asterizmder',
   },
   description: {
     methodological:
@@ -66,7 +66,7 @@ export const asterisms_Skill_Data = defineSkill({
       et: 'Tunne ära tuttavaid tähemustreid, mis ei pruugi olla ametlikult määratletud tähtkujud.',
       be: 'Распазнавай знаёмыя зорныя ўзоры, якія не абавязкова зьяўляюцца афіцыйна вызначанымі сузор’ямі.',
       ka: 'ამოიცანი ვარსკვლავების ნაცნობი მოხაზულობები, რომლებიც შეიძლება ოფიციალურად განსაზღვრული თანავარსკვლავედები არ იყოს.',
-      kk: 'Ресми шоқжұлдыздар бола бермейтін таныс жұлдыз өрнектерін анықта.',
+      kk: 'Resmi şoqjūldyzdar bola bermeitın tanys jūldyz örnekterın anyqta.',
     },
   },
 });

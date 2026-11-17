@@ -32,7 +32,7 @@ export const apparentBrightness_Skill_Data = defineSkill({
     et: 'Näiv heledus',
     be: 'Бачная яркасьць',
     ka: 'მოჩვენებითი სიკაშკაშე',
-    kk: 'Көрінерлік жарықтылық',
+    kk: 'Körınerlık jaryqtylyq',
   },
   description: {
     methodological:
@@ -66,7 +66,7 @@ export const apparentBrightness_Skill_Data = defineSkill({
       et: 'Võrdle, kui heledana taevakehad Maalt paistavad, ajamata seda segi valguse hulgaga, mida nad tegelikult kiirgavad.',
       be: 'Параўноўвай, наколькі яркімі здаюцца нябесныя целы зь Зямлі, не блытаючы гэта з колькасьцю сьвятла, якое яны насамрэч выпраменьваюць.',
       ka: 'შეადარე, რამდენად კაშკაშად ჩანს ციური სხეულები დედამიწიდან, და ეს არ აგერიოს სინათლის იმ რაოდენობაში, რომელსაც ისინი სინამდვილეში ასხივებენ.',
-      kk: 'Аспан денелерінің Жерден қаншалықты жарық көрінетінін салыстыр, бірақ оны олардың шын мәнінде шығаратын жарық мөлшерімен шатастырма.',
+      kk: 'Aspan denelerınıñ Jerden qanşalyqty jaryq körınetının salystyr, bıraq ony olardyñ şyn mänınde şyğaratyn jaryq mölşerımen şatastyrma.',
     },
   },
 });

@@ -39,7 +39,7 @@ export const skyGeometry_SkillGroup_Data = defineSkillGroup({
     et: 'Taeva geomeetria',
     be: 'Геамэтрыя неба',
     ka: 'ცის გეომეტრია',
-    kk: 'Аспан геометриясы',
+    kk: 'Aspan geometriiasy',
   },
   skills: [
     angularSeparation_Skill_Data,
@@ -79,7 +79,7 @@ export const skyGeometry_SkillGroup_Data = defineSkillGroup({
       et: 'Kasuta nurki ja taevakoordinaate, et kirjeldada Maalt nähtavate objektide suunda.',
       be: 'Выкарыстоўвай куты і нябесныя каардынаты, каб апісваць кірункі на аб’екты, бачныя зь Зямлі.',
       ka: 'გამოიყენე კუთხეები და ციური კოორდინატები დედამიწიდან დანახული ობიექტების მიმართულებების აღსაწერად.',
-      kk: 'Жерден көрінетін нысандардың бағытын сипаттау үшін бұрыштар мен аспан координаттарын пайдалан.',
+      kk: 'Jerden körınetın nysandardyñ bağytyn sipattau üşın būryştar men aspan koordinattaryn paidalan.',
     },
   },
 });

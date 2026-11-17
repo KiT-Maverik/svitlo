@@ -32,7 +32,7 @@ export const skyMapsAndStarCharts_Skill_Data = defineSkill({
     et: 'Taevakaardid ja tähekaardid',
     be: 'Мапы неба і зорныя мапы',
     ka: 'ცის რუკები და ვარსკვლავთა რუკები',
-    kk: 'Аспан карталары мен жұлдыз карталары',
+    kk: 'Aspan kartalary men jūldyz kartalary',
   },
   description: {
     methodological:
@@ -66,7 +66,7 @@ export const skyMapsAndStarCharts_Skill_Data = defineSkill({
       et: 'Õpi lugema kindla koha ja kuupäeva jaoks koostatud taevakaarti.',
       be: 'Навучыся чытаць мапу неба для пэўнага месца й даты.',
       ka: 'ისწავლე კონკრეტული ადგილისა და თარიღისთვის განკუთვნილი ცის რუკის წაკითხვა.',
-      kk: 'Белгілі бір орын мен күнге арналған аспан картасын оқуды үйрен.',
+      kk: 'Belgılı bır oryn men künge arnalğan aspan kartasyn oqudy üiren.',
     },
   },
 });

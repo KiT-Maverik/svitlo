@@ -32,7 +32,7 @@ export const astronomicalObservationRecords_Skill_Data = defineSkill({
     et: 'Astronoomiliste vaatluste ülestähendused',
     be: 'Запісы астранамічных назіраньняў',
     ka: 'ასტრონომიული დაკვირვებების ჩანაწერები',
-    kk: 'Астрономиялық бақылау жазбалары',
+    kk: 'Astronomiialyq baqylau jazbalary',
   },
   description: {
     methodological:
@@ -66,7 +66,7 @@ export const astronomicalObservationRecords_Skill_Data = defineSkill({
       et: 'Pane kirja, millal, kus ja kuidas sa taevas midagi nägid.',
       be: 'Запісвай, калі, дзе і як ты ўбачыў ці ўбачыла нешта на небе.',
       ka: 'ჩაიწერე, როდის, სად და როგორ დაინახე რაიმე ცაზე.',
-      kk: 'Аспанда бір нәрсені қашан, қайда және қалай көргеніңді жазып ал.',
+      kk: 'Aspanda bır närsenı qaşan, qaida jäne qalai körgenıñdı jazyp al.',
     },
   },
 });

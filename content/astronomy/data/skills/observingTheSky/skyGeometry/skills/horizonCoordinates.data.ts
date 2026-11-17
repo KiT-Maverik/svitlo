@@ -32,7 +32,7 @@ export const horizonCoordinates_Skill_Data = defineSkill({
     et: 'Horisondikoordinaadid',
     be: 'Гарызантальныя каардынаты',
     ka: 'ჰორიზონტული კოორდინატები',
-    kk: 'Көкжиектік координаттар',
+    kk: 'Kökjiektık koordinattar',
   },
   description: {
     methodological:
@@ -66,7 +66,7 @@ export const horizonCoordinates_Skill_Data = defineSkill({
       et: 'Määra taevakeha suund selle kõrguse järgi horisondist ja asimuudi abil.',
       be: 'Вызначай кірунак на нябеснае цела паводле яго вышыні над гарызонтам і азымуту.',
       ka: 'ციური სხეულის მიმართულება განსაზღვრე ჰორიზონტიდან მისი სიმაღლის კუთხითა და აზიმუტით.',
-      kk: 'Аспан денесінің бағытын көкжиектен биіктігі мен азимуты арқылы анықта.',
+      kk: 'Aspan denesınıñ bağytyn kökjiekten biıktıgı men azimuty arqyly anyqta.',
     },
   },
 });
