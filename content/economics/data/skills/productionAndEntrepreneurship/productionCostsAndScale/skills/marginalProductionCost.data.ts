@@ -31,7 +31,7 @@ export const marginalProductionCost_Skill_Data = defineSkill({
     et: 'Tootmise piirkulu',
     be: 'Гранічныя вытворчыя выдаткі',
     ka: 'წარმოების ზღვრული დანახარჯი',
-    kk: 'Шекті өндірістік шығын',
+    kk: 'Şektı öndırıstık şyğyn',
     qm: 'Çegara istisal masrafı',
   },
   description: {
@@ -65,7 +65,7 @@ export const marginalProductionCost_Skill_Data = defineSkill({
       et: 'Hinda veel ühe ühiku tootmise lisakulu.',
       be: 'Ацэньвай выдаткі на яшчэ адну вырабленую адзінку.',
       ka: 'შეაფასე კიდევ ერთი ერთეულის წარმოების ხარჯი.',
-      kk: 'Тағы бір бірлік өндірудің құнын бағала.',
+      kk: 'Tağy bır bırlık öndırudıñ qūnyn bağala.',
       qm: 'Bir dane daa istisal etüvniñ masrafını tahmin et.',
     },
   },

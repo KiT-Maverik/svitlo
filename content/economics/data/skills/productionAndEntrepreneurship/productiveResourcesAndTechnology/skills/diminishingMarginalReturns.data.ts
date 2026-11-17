@@ -31,7 +31,7 @@ export const diminishingMarginalReturns_Skill_Data = defineSkill({
     et: 'Kahanev piirtootlikkus',
     be: 'Закон спадальнай гранічнай аддачы',
     ka: 'კლებადი ზღვრული უკუგება',
-    kk: 'Кемімелі шекті қайтарым',
+    kk: 'Kemımelı şektı qaitarym',
     qm: 'Azayğan çegara qaytarımı',
   },
   description: {
@@ -65,7 +65,7 @@ export const diminishingMarginalReturns_Skill_Data = defineSkill({
       et: 'Mõista, miks ühe sisendi lisamine võib lõpuks anda üha vähem lisatoodangut.',
       be: 'Зразумей, чаму даданьне аднаго рэсурсу ўрэшце дае ўсё меней дадатковай прадукцыі.',
       ka: 'გაიგე, რატომ შეიძლება ერთი რესურსის მატებამ საბოლოოდ სულ ნაკლები დამატებითი შედეგი მოგვცეს.',
-      kk: 'Бір ресурс көлемін арттыру неге ақырында қосымша өнімді азайтатынын түсін.',
+      kk: 'Bır resurs kölemın arttyru nege aqyrynda qosymşa önımdı azaitatynyn tüsın.',
       qm: 'Bir kaynaknı daa çoq qullanuv soñunda ne içün daa az artqa mahsul bergenini añla.',
     },
   },

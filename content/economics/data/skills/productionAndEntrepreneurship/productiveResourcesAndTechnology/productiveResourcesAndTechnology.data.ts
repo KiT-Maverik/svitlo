@@ -38,7 +38,7 @@ export const productiveResourcesAndTechnology_SkillGroup_Data = defineSkillGroup
     et: 'Tootmisressursid ja tehnoloogia',
     be: 'Вытворчыя рэсурсы й тэхналёгія',
     ka: 'საწარმოო რესურსები და ტექნოლოგია',
-    kk: 'Өндірістік ресурстар мен технология',
+    kk: 'Öndırıstık resurstar men tehnologiia',
     qm: 'İstisal kaynakları ve tehnologiya',
   },
   skills: [
@@ -78,7 +78,7 @@ export const productiveResourcesAndTechnology_SkillGroup_Data = defineSkillGroup
       et: 'Uuri, kuidas ressursid ja tehnoloogia mõjutavad ettevõtte tootmisvõimalusi.',
       be: 'Даведайся, як рэсурсы й тэхналёгія ўплываюць на вытворчыя магчымасьці фірмаў.',
       ka: 'გაიგე, როგორ მოქმედებს რესურსები და ტექნოლოგია კომპანიის წარმოების შესაძლებლობებზე.',
-      kk: 'Ресурстар мен технология фирманың өндіріс мүмкіндігіне қалай әсер ететінін зертте.',
+      kk: 'Resurstar men tehnologiia firmanyñ öndırıs mümkındıgıne qalai äser etetının zertte.',
       qm: 'Kaynaklar ve tehnologiya firmalarnıñ istisal imkânlarına nasıl tesir etkenini ögren.',
     },
   },

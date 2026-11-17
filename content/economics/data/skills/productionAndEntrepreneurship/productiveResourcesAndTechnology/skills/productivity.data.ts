@@ -31,7 +31,7 @@ export const productivity_Skill_Data = defineSkill({
     et: 'Tootlikkus',
     be: 'Прадукцыйнасьць',
     ka: 'პროდუქტიულობა',
-    kk: 'Өнімділік',
+    kk: 'Önımdılık',
     qm: 'Mahsuldarlıq',
   },
   description: {
@@ -65,7 +65,7 @@ export const productivity_Skill_Data = defineSkill({
       et: 'Uuri, kui palju toodangut saadakse kasutatud ressurssidest.',
       be: 'Дасьледуй, колькі прадукцыі атрымліваецца з выкарыстаных рэсурсаў.',
       ka: 'გაიგე, რამდენი პროდუქტი იქმნება გამოყენებული რესურსებით.',
-      kk: 'Қолданылған ресурстардан қанша өнім шығатынын зертте.',
+      kk: 'Qoldanylğan resurstardan qanşa önım şyğatynyn zertte.',
       qm: 'Qullanılğan kaynaklardan ne qadar mahsul alınğanını ögren.',
     },
   },

@@ -31,7 +31,7 @@ export const productionFunction_Skill_Data = defineSkill({
     et: 'Tootmisfunktsioon',
     be: 'Вытворчая функцыя',
     ka: 'წარმოების ფუნქცია',
-    kk: 'Өндіріс функциясы',
+    kk: 'Öndırıs funktsiiasy',
     qm: 'İstisal funktsiyası',
   },
   description: {
@@ -65,7 +65,7 @@ export const productionFunction_Skill_Data = defineSkill({
       et: 'Seo ettevõtte sisendid ja tehnoloogia võimaliku toodangu kogusega.',
       be: 'Зьвязвай рэсурсы й тэхналёгію фірмы з колькасьцю магчымай прадукцыі.',
       ka: 'დააკავშირე კომპანიის რესურსები და ტექნოლოგია შესაძლო წარმოების რაოდენობასთან.',
-      kk: 'Фирманың ресурстары мен технологиясын мүмкін өнім көлемімен байланыстыр.',
+      kk: 'Firmanyñ resurstary men tehnologiiasyn mümkın önım kölemımen bailanystyr.',
       qm: 'Firmanıñ kaynakları ve tehnologiyasını mümkün mahsul miqdarınen bağla.',
     },
   },

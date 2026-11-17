@@ -31,7 +31,7 @@ export const factorsOfProduction_Skill_Data = defineSkill({
     et: 'Tootmistegurid',
     be: 'Фактары вытворчасьці',
     ka: 'წარმოების ფაქტორები',
-    kk: 'Өндіріс факторлары',
+    kk: 'Öndırıs faktorlary',
     qm: 'İstisal faktörleri',
   },
   description: {
@@ -65,7 +65,7 @@ export const factorsOfProduction_Skill_Data = defineSkill({
       et: 'Tunne ära eri ressursid, mida on kaupade ja teenuste loomiseks vaja.',
       be: 'Распазнавай розныя рэсурсы, патрэбныя для тавараў і паслуг.',
       ka: 'ამოიცანი საქონლისა და მომსახურების შექმნისთვის საჭირო რესურსები.',
-      kk: 'Тауарлар мен қызметтерді өндіруге қажетті ресурстарды таны.',
+      kk: 'Tauarlar men qyzmetterdı öndıruge qajettı resurstardy tany.',
       qm: 'Mallar ve hızmetler istisal etmege kerek farqlı kaynaklarnı tanı.',
     },
   },
