@@ -932,7 +932,7 @@ Skills: 4
 
 **Methodological description (English):** Explain how commissions or institutional support affect works and their presentation.
 
-**User-friendly description (kk):** Zertteuşıler men tapsyrystardyñ qandai öner tuyndylary jasalatynyna qalai äser etetının bılıñız.
+**User-friendly description (kk):** Tapsyrys beruşıler men önerdı qoldaityn mekemeler tuyndylardyñ jasaluyna jäne körermenge ūsynyluyna qalai äser etetının zertteñız.
 
 ##### Öner tehnologiialaryn tarihi tūrğydan taldau
 
@@ -976,13 +976,13 @@ Skills: 3
 
 **User-friendly description (kk):** Boitşukşyldyqtyñ monumentaldy önerımen jäne osy ağym suretşılerınıñ tarihymen tanysyñyz.
 
-##### Petrikovka sändık keskındemesın taldau
+##### Petrykivka sändık keskındemesın taldau
 
 [analyzePetrykivkaDecorativePainting.ts](../../../data/skills/artHistoryAndCultures/ukrainianArtisticTraditions/analyzePetrykivkaDecorativePainting.ts)
 
 **Methodological description (English):** Interpret stylized plant motifs, characteristic brushstrokes and community transmission in the ornamental painting tradition associated with Petrykivka.
 
-**User-friendly description (kk):** Petrikovka keskındeme dästürındegı gül örnekterı men qylqalam täsılderın bılıñız.
+**User-friendly description (kk):** Petrykivka keskındeme dästürındegı gül örnekterı men qylqalam täsılderın bılıñız.
 
 ##### Ukrain barokko ikonalaryn taldau
 
@@ -2180,7 +2180,7 @@ Skills: 5
 
 **Methodological description (English):** Combine vocal percussion techniques into intelligible rhythmic grooves.
 
-**User-friendly description (kk):** Baqyldağan dybystardy baqylap, yrğaqty gruv jasañyz.
+**User-friendly description (kk):** Dauyspen şyğarylatyn soqpaly dybystardy üilestırıp, anyq yrğaqtyq örnek jasañyz.
 
 ##### Dene perkussiiasyn oryndañyz
 
@@ -2540,7 +2540,7 @@ Skills: 7
 
 **Methodological description (English):** Exploit the slow drying and blending behavior of oil-bound pigment to build controlled passages, revise wet edges and manage successive paint layers with suitable materials and safe handling.
 
-**User-friendly description (kk):** Baiaudy qauıpsız paidalana otyryp, baiau kebetın maily boiaumen tüsterdı aralastyryñyz, qabattar jasañyz jäne boialğan tūstardy tüzetıñız.
+**User-friendly description (kk):** Qauıpsızdık erejelerın saqtap, baiau kebetın maily boiaumen tüsterdı aralastyryp, qabattar jasañyz jäne boialğan jerlerdı tüzetıñız.
 
 #### Keskındeme kompozitsiiasy
 
