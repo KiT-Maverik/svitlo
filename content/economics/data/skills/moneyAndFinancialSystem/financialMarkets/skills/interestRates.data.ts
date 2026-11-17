@@ -31,7 +31,7 @@ export const interestRates_Skill_Data = defineSkill({
     et: 'Intressimäärad',
     be: 'Працэнтныя стаўкі',
     ka: 'საპროცენტო განაკვეთები',
-    kk: 'Пайыздық мөлшерлемелер',
+    kk: 'Paiyzdyq mölşerlemeler',
     qm: 'Faiz nisbetleri',
   },
   description: {
@@ -64,7 +64,7 @@ export const interestRates_Skill_Data = defineSkill({
       et: 'Uuri, kuidas intressimäärad mõjutavad laenamist ja säästmist.',
       be: 'Дасьледуй уплыў працэнтных ставак на пазыкі й ашчаджэньні.',
       ka: 'შეისწავლე, როგორ მოქმედებს პროცენტის განაკვეთი სესხებსა და დანაზოგზე.',
-      kk: 'Пайыз мөлшерлемесі қарыз алу мен жинаққа қалай әсер ететінін зертте.',
+      kk: 'Paiyz mölşerlemesı qaryz alu men jinaqqa qalai äser etetının zertte.',
       qm: 'Faiz nisbetleri borç aluvğa ve aqça toplamağa nasıl tesir etkenini araştır.',
     },
   },

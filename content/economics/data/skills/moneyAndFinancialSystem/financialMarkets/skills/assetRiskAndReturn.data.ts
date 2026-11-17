@@ -31,7 +31,7 @@ export const assetRiskAndReturn_Skill_Data = defineSkill({
     et: 'Varade risk ja tootlus',
     be: 'Рызыка й даходнасьць актываў',
     ka: 'აქტივების რისკი და შემოსავლიანობა',
-    kk: 'Актив тәуекелі мен табыстылығы',
+    kk: 'Aktiv täuekelı men tabystylyğy',
     qm: 'Varlıqlarnıñ havfı ve keliri',
   },
   description: {
@@ -65,7 +65,7 @@ export const assetRiskAndReturn_Skill_Data = defineSkill({
       et: 'Võrdle finantsvarade riske, võimalikku tootlust ja likviidsust.',
       be: 'Параўнай рызыкі, магчымыя даходы й ліквіднасьць фінансавых актываў.',
       ka: 'შეადარე ფინანსური აქტივების რისკები, შესაძლო სარგებელი და ლიკვიდობა.',
-      kk: 'Қаржы активтерінің тәуекелін, ықтимал кірісін және өтімділігін салыстыр.',
+      kk: 'Qarjy aktivterınıñ täuekelın, yqtimal kırısın jäne ötımdılıgın salystyr.',
       qm: 'Maliy varlıqlarnıñ havflarını, mümkün kelirini ve likvidligini qıyasla.',
     },
   },

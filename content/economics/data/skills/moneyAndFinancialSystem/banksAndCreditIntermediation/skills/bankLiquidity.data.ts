@@ -31,7 +31,7 @@ export const bankLiquidity_Skill_Data = defineSkill({
     et: 'Panga likviidsus',
     be: 'Банкаўская ліквіднасьць',
     ka: 'ბანკის ლიკვიდობა',
-    kk: 'Банк өтімділігі',
+    kk: 'Bank ötımdılıgı',
     qm: 'Bank likvidligi',
   },
   description: {
@@ -65,7 +65,7 @@ export const bankLiquidity_Skill_Data = defineSkill({
       et: 'Mõista, miks pangal võib tekkida sularahapuudus, kuigi tema varad on väärtuslikud.',
       be: 'Зразумей, чаму банку можа не хапаць наяўных, хоць ягоныя актывы маюць каштоўнасьць.',
       ka: 'გაიგე, რატომ შეიძლება ბანკს ნაღდი ფული აკლდეს, თუმცა აქტივები ღირებულია.',
-      kk: 'Активтері бағалы болса да банкте қолма-қол ақша неге жетіспеуі мүмкін екенін түсін.',
+      kk: 'Aktivterı bağaly bolsa da bankte qolma-qol aqşa nege jetıspeuı mümkın ekenın tüsın.',
       qm: 'Qıymetli varlıqları olsa da bankta naqit niçün yetmezlik ola bilgenini añla.',
     },
   },

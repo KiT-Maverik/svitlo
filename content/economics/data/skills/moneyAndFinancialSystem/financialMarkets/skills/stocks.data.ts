@@ -31,7 +31,7 @@ export const stocks_Skill_Data = defineSkill({
     et: 'Aktsiad',
     be: 'Акцыі',
     ka: 'აქციები',
-    kk: 'Акциялар',
+    kk: 'Aktsiialar',
     qm: 'Aktsiyalar',
   },
   description: {
@@ -65,7 +65,7 @@ export const stocks_Skill_Data = defineSkill({
       et: 'Mõista, mida tähendab ettevõtte aktsiate omamine.',
       be: 'Даведайся, што азначае мець акцыі кампаніі.',
       ka: 'გაიგე, რას ნიშნავს კომპანიის აქციების ფლობა.',
-      kk: 'Компания акциясына ие болудың мәнін біл.',
+      kk: 'Kompaniia aktsiiasyna ie boludyñ mänın bıl.',
       qm: 'Şirket aktsiyalarına saip oluv ne demek olğanını ögren.',
     },
   },

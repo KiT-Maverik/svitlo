@@ -31,7 +31,7 @@ export const bonds_Skill_Data = defineSkill({
     et: 'Võlakirjad',
     be: 'Аблігацыі',
     ka: 'ობლიგაციები',
-    kk: 'Облигациялар',
+    kk: 'Obligatsiialar',
     qm: 'Obligatsiyalar',
   },
   description: {
@@ -65,7 +65,7 @@ export const bonds_Skill_Data = defineSkill({
       et: 'Mõista võlakirju kui laene, mida saab osta ja müüa.',
       be: 'Зразумей аблігацыі як пазыковыя абавязаньні, якія можна купляць і прадаваць.',
       ka: 'გაიგე, რომ ობლიგაციები არის სესხები, რომელთა ყიდვა-გაყიდვა შეიძლება.',
-      kk: 'Облигацияны сатып алуға, сатуға болатын қарыз міндеттемесі ретінде түсін.',
+      kk: 'Obligatsiiany satyp aluğa, satuğa bolatyn qaryz mındettemesı retınde tüsın.',
       qm: 'Obligatsiyalarnı satın alıp satmaq mümkün olğan borç senetleri olaraq añla.',
     },
   },
