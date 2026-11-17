@@ -1,0 +1,34 @@
+# Temporary focused QA for Draft PR #627; remove before merging into #625.
+name: Skills subtask checks
+on:
+  push:
+    branches:
+      - agent/skills-taxonomy-api-and-tooling
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: skills-subtask-check-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - name: Engine TypeScript build
+        run: npm run package:build --workspace @svitlo/engine
+      - name: Engine type checks
+        if: success()
+        run: npm run code:check:types --workspace @svitlo/engine
+      - name: Engine tests
+        if: success()
+        run: npm run test --workspace @svitlo/engine
+      - name: Playground package build
+        if: success()
+        run: npm run package:build --workspace @svitlo/playground
