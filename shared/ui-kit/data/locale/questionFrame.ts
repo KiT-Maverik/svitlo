@@ -22,6 +22,26 @@ const en = {
 
 export type QuestionFrame_Locale = typeof en;
 
+const it: QuestionFrame_Locale = {
+  check: 'Verifica',
+  retry: 'Riprova',
+  hint: 'Suggerimento',
+  explanation: 'Spiegazione',
+  correct: 'Corretto!',
+  incorrect: 'Non proprio. Riprova.',
+  answerLabel: 'La tua risposta',
+  matchInstructions: 'Scegli un elemento a sinistra, poi quello corrispondente a destra.',
+  left: 'Sinistra',
+  right: 'Destra',
+  availableBlocks: 'Blocchi disponibili',
+  blanks: 'Spazi da completare',
+  moveItem: 'Sposta elemento',
+  removeItem: 'Rimuovi elemento',
+  correctChoice: 'Risposta corretta',
+  incorrectChoice: 'Risposta errata',
+  missedChoice: 'Risposta corretta non selezionata',
+};
+
 const uk: QuestionFrame_Locale = {
   check: 'Перевірити',
   retry: 'Спробувати ще раз',
@@ -585,6 +605,7 @@ const qm: QuestionFrame_Locale = {
 
 export const questionFrame: UiKit_Component_Locale<QuestionFrame_Locale> = {
   en,
+  it,
   uk,
   zh,
   hi,

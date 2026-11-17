@@ -17,6 +17,7 @@ import {
   validateSluggedConfiguratorMap,
 } from '../../_shared__configurators';
 import { contentBlockTypes, type ContentBlock_Configurator } from '../../contentBlocks';
+import { selectQuizQuestionIds } from '../../../assemblers/assessmentResources/assessmentResources';
 import {
   quizSection_Config_Schema,
   quizSection_Props_Schema,
@@ -76,6 +77,7 @@ const validateResolvedProps = (
     try {
       const valid = quizSection_Props_Schema.parse(resolved);
       validateGrading(valid.params.grading);
+      selectQuizQuestionIds(valid.params.selection, valid.id);
     } catch (error) {
       throw new Error(
         'Invalid defineQuizSection Props for language ' +
@@ -115,6 +117,7 @@ const validateScreenReferences = (
 const validate = (config: QuizSection_Config): void => {
   const parsed = quizSection_Config_Schema.parse(config);
   validateGrading(parsed.params.grading);
+  selectQuizQuestionIds(parsed.params.selection, parsed.id);
   const issues = [
     ...validateOrderedKeys(config.content, { path: 'content' }),
     ...validateSluggedConfiguratorMap(config.content?.items, contentBlockTypes, {
@@ -148,12 +151,12 @@ const validate = (config: QuizSection_Config): void => {
 };
 
 /**
- * Configure a Quiz that selects Questions from its parent Lesson's Question Bank.
+ * Configure a Quiz with explicitly referenced, standalone Question UUIDs.
  *
  * @remarks
  * Do not place Question configurators inside this Section's `content`.
- * Use `params.selection` to choose which bank questions to assess and
- * whether to use all of them or a sample.
+ * Use `params.selection.questionIds` to identify the permitted Question candidates;
+ * sampling and ordering apply only to this explicit list.
  *
  * The Section's ContentBlocks are available for starting and ending screens.
  * `params.screen` references their active, enabled slugs, not Question slugs.
@@ -170,10 +173,10 @@ export const defineQuizSection = <
     content: { items: Items & ChildrenSupporting<Languages, Items>; order: string[] };
   } & ConfigWithLanguages<QuizSection_Config, Languages>,
 ) => {
-  validate(config);
   // Metadata is copied; children hold independent, immutable authoring snapshots.
   const metadataSchema = quizSection_Config_Schema.omit({ content: true });
-  const authored = structuredClone(metadataSchema.parse(config));
+  const { content: _content, ...metadataInput } = config;
+  const authored: Omit<QuizSection_Config, 'content'> = structuredClone(metadataInput);
   const copyAuthored = () => metadataSchema.parse(structuredClone(authored));
   const { id, type, slug } = authored;
   const initialItems: Items = { ...config.content.items };
@@ -239,6 +242,7 @@ export const defineQuizSection = <
 
   const props = (options: PublicationLanguageOptions<Languages>): Publication<QuizSection_PropsBase> => {
     const languages = resolvePublicationLanguages(options);
+    validate({ ...copyAuthored(), content: { items: initialItems, order: initialOrder } });
     const metadata = copyAuthored();
     const own = ownLocale(metadata.locale);
     const children = buildContent(initialItems, initialOrder, languages);
@@ -269,6 +273,7 @@ export const defineQuizSection = <
   ): Publication<OverrideBase> => {
     try {
       const languages = resolvePublicationLanguages(options);
+      validate({ ...copyAuthored(), content: { items: initialItems, order: initialOrder } });
       if (!isRecord(patch)) throw new Error('Expected an overrides object');
       for (const key of Object.keys(patch)) {
         if (!['params', 'locale', 'content'].includes(key)) {

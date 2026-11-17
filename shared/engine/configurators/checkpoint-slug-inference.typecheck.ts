@@ -1,5 +1,5 @@
 import { defineText } from './contentBlocks/defineText';
-import { defineCheckpoint, defineCheckpointItem } from './contentBlocks/defineCheckpoint';
+import { defineCheckpoint, defineCheckpointItem, defineCheckpointAnswer } from './contentBlocks/defineCheckpoint';
 import { configuratorArrayToSlugMap } from './_shared__configurators';
 
 type Equal<A, B> = (<T>() => T extends A ? 1 : 2) extends <T>() => T extends B ? 1 : 2 ? true : false;
@@ -26,17 +26,22 @@ type AnswerSlug = Expect<Equal<typeof answers.answer.slug, 'answer'>>;
 // @ts-expect-error The helper must not accept an unknown literal key.
 void answers.unknown;
 
+const answerComposite = defineCheckpointAnswer({
+  id: 'b775647f-203d-481a-a1c7-4d331c779d70',
+  type: 'checkpointAnswer', slug: 'answerContent',
+  content: { items: answers, order: ['answer'] },
+});
 const item = defineCheckpointItem({
   id: 'b775647f-203d-481a-a1c7-4d331c779d6d',
   type: 'checkpointItem',
   slug: 'whatIsLight',
   question,
-  answer: { items: answers, order: ['answer'] },
+  answer: answerComposite,
 });
 type ItemSlug = Expect<Equal<typeof item.slug, 'whatIsLight'>>;
-type ItemAnswerKeys = Expect<Equal<keyof typeof item.answer.items, 'answer'>>;
+type ItemAnswerKeys = Expect<Equal<keyof typeof item.answer.content.items, 'answer'>>;
 // @ts-expect-error Answer keys must be inferred literally.
-void item.answer.items.unknown;
+void item.answer.content.items.unknown;
 
 const checkpoint = defineCheckpoint({
   id: 'b775647f-203d-481a-a1c7-4d331c779d6c',
@@ -56,7 +61,7 @@ checkpoint.content.items.whatIsLight.question.build.overrides(
   { locale: { value: 'Updated question' } },
   { languages: ['en', 'uk'] },
 );
-checkpoint.content.items.whatIsLight.answer.items.answer.build.overrides(
+checkpoint.content.items.whatIsLight.answer.content.items.answer.build.overrides(
   { locale: { value: 'Updated answer' } },
   { languages: ['en', 'uk'] },
 );
@@ -73,25 +78,25 @@ const later = defineText({
 item.build.overrides(
   {
     question: { locale: { value: { uk: 'Оновлене питання' } } },
-    answer: {
+    answer: { content: {
       items: { answer: { locale: { value: 'Updated' } } },
       additionalItems: configuratorArrayToSlugMap([later]),
       order: ['answer', 'later'],
-    },
+    } },
   },
   { languages: ['en', 'uk'] },
 );
 // @ts-expect-error Only existing answer keys can be patched.
-item.build.overrides({ answer: { items: { unknown: { locale: { value: 'Unknown' } } } } }, { languages: ['en', 'uk'] });
+item.build.overrides({ answer: { content: { items: { unknown: { locale: { value: 'Unknown' } } } } } }, { languages: ['en', 'uk'] });
 // @ts-expect-error The mandatory question cannot be disabled.
 item.build.overrides({ question: { params: { disabled: true } } }, { languages: ['en', 'uk'] });
 // @ts-expect-error Unknown slugs are forbidden in the final order.
-item.build.overrides({ answer: { order: ['unknown'] } }, { languages: ['en', 'uk'] });
+item.build.overrides({ answer: { content: { order: ['unknown'] } } }, { languages: ['en', 'uk'] });
 // @ts-expect-error Identity cannot be changed.
 item.build.overrides({ slug: 'renamed' }, { languages: ['en', 'uk'] });
 item.build.overrides(
   // @ts-expect-error A new child must not reuse an authored slug.
-  { answer: { additionalItems: configuratorArrayToSlugMap([answer]) } },
+  { answer: { content: { additionalItems: configuratorArrayToSlugMap([answer]) } } },
   { languages: ['en', 'uk'] },
 );
 
@@ -101,7 +106,7 @@ const notQuestion: import('./contentBlocks/defineCheckpoint').ContentBlock_Check
   slug: 'invalid',
   // @ts-expect-error A bare config is not a Text configurator.
   question: question.config.base,
-  answer: { items: answers, order: ['answer'] },
+  answer: answerComposite,
 };
 void notQuestion;
 
@@ -124,7 +129,10 @@ const laterItem = defineCheckpointItem({
   type: 'checkpointItem',
   slug: 'laterItem',
   question,
-  answer: { items: configuratorArrayToSlugMap([later]), order: ['later'] },
+  answer: defineCheckpointAnswer({
+    id: 'b775647f-203d-481a-a1c7-4d331c779d71', type: 'checkpointAnswer', slug: 'laterAnswer',
+    content: { items: configuratorArrayToSlugMap([later]), order: ['later'] },
+  }),
 });
 checkpoint.build.overrides(
   {

@@ -1,3 +1,3 @@
-export { testColors_SkillDomain_Data } from './testColors/testColors.data';
-export { testShapes_SkillDomain_Data } from './testShapes/testShapes.data';
-export { testLight_SkillDomain_Data } from './testLight/testLight.data';
+export { testColors } from './testColors';
+export { testShapes } from './testShapes';
+export { testLight } from './testLight';

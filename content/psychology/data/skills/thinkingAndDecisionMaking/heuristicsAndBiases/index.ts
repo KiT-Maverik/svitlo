@@ -1,0 +1,91 @@
+import { defineSkillGroup } from '@svitlo/engine/build';
+
+import { anchoringBias } from './anchoringBias';
+import { availabilityHeuristic } from './availabilityHeuristic';
+import { confirmationBias } from './confirmationBias';
+import { framingEffects } from './framingEffects';
+import { fundamentalAttributionError } from './fundamentalAttributionError';
+import { hindsightBias } from './hindsightBias';
+import { representativenessHeuristic } from './representativenessHeuristic';
+
+export const heuristicsAndBiases = defineSkillGroup({
+  slug: 'heuristicsAndBiases',
+  id: 'ecfda315-3e86-4a7f-901f-6e4aeebc8cfe',
+  name: {
+    ar: 'الاستدلالات السريعة والتحيزات',
+    be: 'Эўрыстыкі й кагнітыўныя прадузятасьці',
+    bn: 'মানসিক শর্টকাট ও পক্ষপাত',
+    de: 'Heuristiken und kognitive Verzerrungen',
+    en: 'Heuristics and Biases',
+    es: 'Heurísticos y sesgos',
+    et: 'Heuristikad ja kallutatused',
+    fr: 'Heuristiques et biais cognitifs',
+    he: 'היוריסטיקות והטיות',
+    hi: 'सरलीकृत नियम और संज्ञानात्मक पूर्वाग्रह',
+    id: 'Heuristik dan Bias',
+    it: 'Euristiche e distorsioni cognitive',
+    ja: 'ヒューリスティクスと認知バイアス',
+    ka: 'ევრისტიკები და მიკერძოებები',
+    kk: 'Эвристикалар және когнитивтік бұрмалаулар',
+    ko: '휴리스틱과 인지 편향',
+    lt: 'Heuristikos ir šališkumai',
+    lv: 'Heiristikas un kognitīvās kļūdas',
+    mr: 'मानसिक शॉर्टकट आणि पूर्वग्रह',
+    ms: 'Heuristik dan Bias',
+    pl: 'Heurystyki i błędy poznawcze',
+    pt: 'Heurísticas e vieses',
+    qm: 'Evristikalar ve taraflılıq',
+    ta: 'தீர்வுக் குறுக்குவழிகளும் சாய்வுகளும்',
+    te: 'సరళ అంచనాలు మరియు పక్షపాతాలు',
+    tr: 'Sezgisel Kestirmeler ve Yanlılıklar',
+    uk: 'Евристики та когнітивні упередження',
+    ur: 'ذہنی آسان طریقے اور تعصبات',
+    vi: 'Lối tắt tư duy và thiên kiến',
+    zh: '启发式与认知偏差',
+  },
+  skills: {
+    anchoringBias,
+    availabilityHeuristic,
+    confirmationBias,
+    framingEffects,
+    fundamentalAttributionError,
+    hindsightBias,
+    representativenessHeuristic,
+  },
+  description: {
+    methodological:
+      'Fast judgments exploit convenient cues but may be systematically distorted by memory, presentation, or expectations.',
+    frontend: {
+      ar: 'اكتشف الاختصارات الذهنية والتحيزات التي تؤثر في الأحكام.',
+      be: 'Даведайся пра мысьленчыя скароты й прадузятасьці, якія ўплываюць на меркаваньні.',
+      bn: 'বিচারকে প্রভাবিত করা মানসিক শর্টকাট ও পক্ষপাত সম্পর্কে জানো।',
+      de: 'Entdecke gedankliche Abkürzungen und Verzerrungen, die Urteile beeinflussen.',
+      en: 'Discover shortcuts and biases that influence judgments.',
+      es: 'Descubre los atajos mentales y sesgos que influyen en los juicios.',
+      et: 'Avasta mõtlemise otseteed ja kallutatused, mis mõjutavad hinnanguid.',
+      fr: 'Découvre les raccourcis mentaux et les biais qui influencent nos jugements.',
+      he: 'גלו קיצורי דרך מחשבתיים והטיות שמשפיעים על שיפוטים.',
+      hi: 'निर्णय को प्रभावित करने वाले मानसिक शॉर्टकट और पूर्वाग्रहों को पहचानें।',
+      id: 'Pelajari jalan pintas berpikir dan bias yang memengaruhi penilaian.',
+      it: 'Scopri le scorciatoie mentali e le distorsioni che influenzano i giudizi.',
+      ja: '判断に影響する思考の近道や偏りを探ろう。',
+      ka: 'გაიგე აზროვნების შემოკლებული გზებისა და მიკერძოებების შესახებ, რომლებიც შეფასებებზე მოქმედებს.',
+      kk: 'Пайымға әсер ететін ойлау қысқартулары мен жаңсақтықтарды біл.',
+      ko: '판단에 영향을 주는 사고의 지름길과 편향을 알아보세요.',
+      lt: 'Sužinok apie mąstymo trumpinius ir šališkumus, veikiančius sprendimus.',
+      lv: 'Izzini domāšanas īsceļus un aizspriedumus, kas ietekmē spriedumus.',
+      mr: 'आपल्या अंदाजांवर परिणाम करणारे मानसिक शॉर्टकट आणि पूर्वग्रह शोधा.',
+      ms: 'Ketahui jalan pintas pemikiran dan kecenderungan berat sebelah yang mempengaruhi pertimbangan.',
+      pl: 'Poznaj skróty myślowe i uprzedzenia wpływające na oceny.',
+      pt: 'Descubra atalhos mentais e vieses que influenciam julgamentos.',
+      qm: 'Hükümlerge tesir etken fikir qisqa yolları ve taraflılıqnı ögren.',
+      ta: 'தீர்ப்புகளைப் பாதிக்கும் சிந்தனைக் குறுக்குவழிகளையும் சாய்வுகளையும் அறியுங்கள்.',
+      te: 'తీర్పులను ప్రభావితం చేసే ఆలోచన సరళ మార్గాలు, పక్షపాతాలను తెలుసుకోండి.',
+      tr: 'Yargılarımızı etkileyen zihinsel kestirmeleri ve yanlılıkları keşfet.',
+      uk: 'Дізнайся про мисленнєві скорочення та упередження, що впливають на судження.',
+      ur: 'جانیں کہ ذہنی مختصر راستے اور تعصبات فیصلوں پر کیسے اثر ڈالتے ہیں۔',
+      vi: 'Khám phá các lối tắt tư duy và thiên kiến ảnh hưởng đến phán đoán.',
+      zh: '探索影响判断的思维捷径和认知偏差。',
+    },
+  },
+});

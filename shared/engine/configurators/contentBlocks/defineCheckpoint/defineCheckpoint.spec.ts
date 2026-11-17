@@ -6,6 +6,7 @@ import { configuratorArrayToSlugMap, mergeForValidation } from '../../_shared__c
 import { defineText } from '../defineText';
 import { defineCheckpoint, checkpoint_Config_Schema, checkpoint_Props_Schema } from './index';
 import { defineCheckpointItem } from './defineCheckpointItem';
+import { defineCheckpointAnswer } from './defineCheckpointAnswer';
 
 describe('Configurators', () => {
   describe('ContentBlocks', () => {
@@ -23,12 +24,19 @@ describe('Configurators', () => {
       ) => {
         const answer = text(answerId, 'answer', 'Invariant answer');
         const question = text(questionId, 'question', value);
-        return defineCheckpointItem<Slug, { answer: typeof answer }, typeof question, ['en', 'uk']>({
+        const compositeIdSuffix = { first: 'a', second: 'b', later: 'c' }[slug as 'first' | 'second' | 'later'];
+        const answerConfigurator = defineCheckpointAnswer<'answer', { answer: typeof answer }, ['en', 'uk']>({
+          id: 'b775647f-203d-481a-a1c7-4d331c779d6' + compositeIdSuffix,
+          slug: 'answer',
+          type: 'checkpointAnswer',
+          content: { items: configuratorArrayToSlugMap([answer]), order: ['answer'] },
+        });
+        return defineCheckpointItem<Slug, typeof answerConfigurator, typeof question, ['en', 'uk']>({
           id,
           slug,
           type: 'checkpointItem',
           question,
-          answer: { items: configuratorArrayToSlugMap([answer]), order: ['answer'] },
+          answer: answerConfigurator,
         });
       };
 
@@ -196,7 +204,7 @@ describe('Configurators', () => {
             defineCheckpoint<string, { first: typeof first; second: typeof second }, ['en', 'uk']>({
               ...base,
               content: { items: configuratorArrayToSlugMap([first, second]), order: ['first'] },
-            }),
+            }).build.props({ languages: ['en'] }),
           /Missing slug/,
         );
         assert.throws(
@@ -204,7 +212,7 @@ describe('Configurators', () => {
             defineCheckpoint<string, { first: typeof first }, ['en', 'uk']>({
               ...base,
               content: { items: { first }, order: [] },
-            }),
+            }).build.props({ languages: ['en'] }),
           /At least one active Checkpoint item/,
         );
         const original = checkpoint.build.props({ languages: ['en', 'uk'] });

@@ -70,8 +70,8 @@ export const defineAnswerWithNumber = <
     content: Content & QuestionChildrenSupporting<Languages, Content> & {};
   } & ConfigWithLanguages<Question_AnswerWithNumber_Config, Languages>,
 ) => {
-  validate(config);
-  const authored = cloneJson(metadataSchema.parse(config));
+  const { content: _content, ...metadataInput } = config;
+  const authored = cloneJson(metadataInput);
   const copyMetadata = () => cloneJson(authored);
   const { id, type } = authored;
   const slug = config.slug;
@@ -87,6 +87,7 @@ export const defineAnswerWithNumber = <
     options: PublicationLanguageOptions<Languages>,
   ): QuestionResourcePublication<Question_AnswerWithNumber_Props> => {
     const languages = resolvePublicationLanguages(options);
+    validate({ ...copyMetadata(), content: initialContent });
     const metadata = copyMetadata();
     const own = projectQuestionLocale(metadata.locale, languages);
     const common = resolveCommonContent(initialContent, languages);
@@ -114,6 +115,7 @@ export const defineAnswerWithNumber = <
   ): QuestionOverridePublication<Question_AnswerWithNumber_Props> => {
     try {
       const languages = resolvePublicationLanguages(options);
+      validate({ ...copyMetadata(), content: initialContent });
       ensureQuestionPatchShape(patch);
       const metadataPatch = answerWithNumber_Override_Config_Schema.parse({
         ...(patch.params !== undefined ? { params: patch.params } : {}),

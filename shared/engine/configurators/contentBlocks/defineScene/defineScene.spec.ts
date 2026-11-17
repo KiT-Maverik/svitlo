@@ -32,7 +32,7 @@ describe('Configurators', () => {
             type: 'scene',
             params: {},
             locale: { value: ['first', 'second'] as never },
-          }),
+          }).build.props(scope),
         );
         const scene = defineScene(config());
         assert.throws(() => scene.build.overrides({ type: 'image' } as never, scope), /Invalid Scene overrides/);

@@ -1,7 +1,7 @@
 'use client';
 
 import { useMemo, type ComponentType } from 'react';
-import type { LanguageCode } from '@svitlo/engine/runtime';
+import type { LanguageCode, AssessmentResourceLoader } from '@svitlo/engine/runtime';
 import type { Lesson_Props } from '@svitlo/engine/runtime';
 import type { UiKitMessages } from '#types/uiKitMessages';
 import { LessonController, type EditableSectionParam } from './LessonController';
@@ -19,6 +19,8 @@ export type LessonProps = {
   messages: UiKitMessages;
   layout: ComponentType<LessonLearningLayoutProps>;
   sceneRegistry?: SceneRegistry;
+  /** Host-provided reader for separately published, selected Question/Flashcard resources. */
+  assessmentLoader?: AssessmentResourceLoader;
   contentLoading?: boolean;
   eventOverrides?: LessonEventSceneMap;
   editableSectionParams?: readonly EditableSectionParam[];

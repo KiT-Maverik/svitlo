@@ -1,0 +1,91 @@
+import { defineSkillGroup } from '@svitlo/engine/build';
+
+import { applyAGlaze } from './applyAGlaze';
+import { applyWatercolorWashes } from './applyWatercolorWashes';
+import { blendWetPaint } from './blendWetPaint';
+import { buildOpaqueLayers } from './buildOpaqueLayers';
+import { selectPaintingSupports } from './selectPaintingSupports';
+import { useAcrylicPaintingTechniques } from './useAcrylicPaintingTechniques';
+import { useOilPaintingTechniques } from './useOilPaintingTechniques';
+
+export const paintingTechniques = defineSkillGroup({
+  slug: 'paintingTechniques',
+  id: '5901f087-7742-4eaf-965f-42ae92137057',
+  name: {
+    ar: 'تقنيات الرسم',
+    be: 'Тэхнікі жывапісу',
+    bn: 'চিত্রাঙ্কনের কৌশল',
+    de: 'Maltechniken',
+    en: 'Painting Techniques',
+    es: 'Técnicas de pintura',
+    et: 'Maalimistehnikad',
+    fr: 'Techniques de peinture',
+    he: 'טכניקות ציור',
+    hi: 'चित्रकारी की तकनीकें',
+    id: 'Teknik Melukis',
+    it: 'Tecniche pittoriche',
+    ja: '絵画技法',
+    ka: 'ფერწერის ტექნიკები',
+    kk: 'Keskındeme tehnikasy',
+    ko: '회화 기법',
+    lt: 'Tapybos technikos',
+    lv: 'Glezniecības paņēmieni',
+    mr: 'चित्रकलेची तंत्रे',
+    ms: 'Teknik Lukisan',
+    pl: 'Techniki malarskie',
+    pt: 'Técnicas de pintura',
+    qm: 'Boya sürüv usulları',
+    ta: 'ஓவிய நுட்பங்கள்',
+    te: 'చిత్రలేఖన పద్ధతులు',
+    tr: 'Resim Teknikleri',
+    uk: 'Техніки живопису',
+    ur: 'مصوری کی تکنیکیں',
+    vi: 'Kỹ thuật vẽ tranh',
+    zh: '绘画技法',
+  },
+  skills: {
+    applyAGlaze,
+    applyWatercolorWashes,
+    blendWetPaint,
+    buildOpaqueLayers,
+    selectPaintingSupports,
+    useAcrylicPaintingTechniques,
+    useOilPaintingTechniques,
+  },
+  description: {
+    methodological:
+      'Different physical application methods affect transparency, edges, layering and surface appearance.',
+    frontend: {
+      ar: 'اكتشف كيف تؤثر طرق تطبيق الطلاء في الشفافية والطبقات والحواف.',
+      be: 'Даведайцеся, як спосаб нанясення фарбы ўплывае на празрыстасць, слаі і краі.',
+      bn: 'রং প্রয়োগের বিভিন্ন পদ্ধতি কীভাবে স্বচ্ছতা, স্তর ও প্রান্ত বদলে দেয়, তা জানুন।',
+      de: 'Entdecke, wie der Farbauftrag Transparenz, Schichten und Kanten verändert.',
+      en: 'Discover how paint application changes transparency, layers and edges.',
+      es: 'Descubre cómo la aplicación de la pintura cambia la transparencia, las capas y los bordes.',
+      et: 'Avasta, kuidas värvi pealekandmine muudab läbipaistvust, kihte ja servi.',
+      fr: 'Découvrez comment l’application de la peinture modifie la transparence, les couches et les contours.',
+      he: 'גלו כיצד אופן הנחת הצבע משנה את השקיפות, השכבות והקצוות.',
+      hi: 'जानें कि रंग लगाने के अलग-अलग तरीकों से पारदर्शिता, परतें और किनारे कैसे बदलते हैं।',
+      id: 'Pelajari bagaimana cara mengaplikasikan cat memengaruhi transparansi, lapisan, dan tepian.',
+      it: "Scopri come l'applicazione del colore modifica trasparenze, strati e contorni.",
+      ja: '絵の具の塗り方によって、透明感や層、輪郭がどのように変わるかを学びましょう。',
+      ka: 'გაიგეთ, როგორ ცვლის საღებავის დატანის მეთოდი გამჭვირვალობას, ფენებსა და კიდეებს.',
+      kk: 'Boiaudy jağu täsılderı möldırlıkke, qabattarğa jäne jiekterge qalai äser etetının bılıñız.',
+      ko: '물감의 다양한 도포 방식이 투명도와 층, 가장자리에 어떤 변화를 주는지 알아보세요.',
+      lt: 'Sužinokite, kaip dažų tepimo būdas keičia skaidrumą, sluoksnius ir kraštus.',
+      lv: 'Uzziniet, kā krāsas uzklāšanas veids maina caurspīdīgumu, slāņus un malas.',
+      mr: 'रंग लावण्याच्या पद्धतींमुळे पारदर्शकता, थर आणि कडा कशा बदलतात ते जाणून घ्या.',
+      ms: 'Terokai bagaimana cara sapuan cat mengubah ketelusan, lapisan dan bahagian tepi.',
+      pl: 'Dowiedz się, jak sposób nakładania farby wpływa na przezroczystość, warstwy i krawędzie.',
+      pt: 'Descubra como a aplicação da tinta altera a transparência, as camadas e as bordas.',
+      qm: 'Boyanı sürüv usulları şeffaflıqnı, qatlamlarnı ve kenarlarnı nasıl deñiştirgenini keşf etiñiz.',
+      ta: 'வண்ணம் பூசும் முறைகள் ஒளிபுகும் தன்மை, அடுக்குகள், விளிம்புகள் ஆகியவற்றை எவ்வாறு மாற்றுகின்றன என்பதை அறியுங்கள்.',
+      te: 'రంగును పూసే విధానం పారదర్శకత, పొరలు, అంచులను ఎలా మారుస్తుందో తెలుసుకోండి.',
+      tr: 'Boyanın uygulanma biçiminin saydamlığı, katmanları ve kenarları nasıl değiştirdiğini keşfedin.',
+      uk: 'Дізнайтеся, як спосіб нанесення фарби впливає на прозорість, шари та краї.',
+      ur: 'جانیں کہ رنگ لگانے کے مختلف طریقے شفافیت، تہوں اور کناروں کو کیسے بدلتے ہیں۔',
+      vi: 'Khám phá cách thức tô vẽ làm thay đổi độ trong suốt, các lớp màu và đường biên.',
+      zh: '了解不同的上色方式如何影响透明度、颜料层次和边缘。',
+    },
+  },
+});
