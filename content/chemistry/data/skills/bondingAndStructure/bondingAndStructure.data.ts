@@ -35,7 +35,7 @@ export const bondingAndStructure_SkillDomain_Data = defineSkillDomain({
     et: 'Keemilised sidemed ja struktuur',
     be: 'Хімічныя сувязі й будова',
     ka: 'ქიმიური ბმები და სტრუქტურა',
-    kk: 'Химиялық байланыстар және құрылым',
+    kk: 'Himiialyq bailanystar jäne qūrylym',
     qm: 'Kimyeviy bağlar ve qurulış',
   },
   groups: [
@@ -74,7 +74,7 @@ export const bondingAndStructure_SkillDomain_Data = defineSkillDomain({
       et: 'Uuri, kuidas keemilised sidemed ja osakestevaheline tõmme mõjutavad materjalide omadusi.',
       be: 'Дасьледуй, як хімічныя сувязі й прыцягненьне паміж часьціцамі ўплываюць на ўласьцівасьці матэрыялаў.',
       ka: 'გამოიკვლიე, როგორ მოქმედებს ქიმიური ბმები და ნაწილაკებს შორის მიზიდულობა მასალების თვისებებზე.',
-      kk: 'Химиялық байланыстар мен бөлшектер арасындағы тартылыс материал қасиеттерін қалай анықтайтынын зертте.',
+      kk: 'Himiialyq bailanystar men bölşekter arasyndağy tartylys material qasietterın qalai anyqtaitynyn zertte.',
       qm: 'Kimyeviy bağlar ve zerreler arasındaki çekilüv materiallarnıñ hususiyetlerine nasıl tesir etkenini ögren.',
     },
   },

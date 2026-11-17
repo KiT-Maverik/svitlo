@@ -38,7 +38,7 @@ export const periodicOrganization_SkillGroup_Data = defineSkillGroup({
     et: 'Elementide perioodiline korraldus',
     be: 'Пэрыядычная арганізацыя',
     ka: 'პერიოდული ორგანიზება',
-    kk: 'Периодтық жүйелеу',
+    kk: 'Periodtyq jüieleu',
     qm: 'Devirli tertip',
   },
   skills: [
@@ -78,7 +78,7 @@ export const periodicOrganization_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri, kuidas perioodilisustabel järjestab elemente kasulike seaduspärasuste alusel.',
       be: 'Даведайся, як пэрыядычная табліца ўпарадкоўвае элемэнты паводле карысных заканамернасьцяў.',
       ka: 'გაიგე, როგორ აწყობს პერიოდული ცხრილი ელემენტებს სასარგებლო კანონზომიერებებად.',
-      kk: 'Периодтық кесте элементтерді пайдалы заңдылықтар бойынша қалай реттейтінін біл.',
+      kk: 'Periodtyq keste elementterdı paidaly zañdylyqtar boiynşa qalai retteitının bıl.',
       qm: 'Deviriy cedvel kimyeviy elementlerni faydalı qanunlılıqlarğa köre nasıl tertiplegenini ögren.',
     },
   },

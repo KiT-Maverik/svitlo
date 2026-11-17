@@ -31,7 +31,7 @@ export const nuclearTransmutation_Skill_Data = defineSkill({
     et: 'Tuumatransmutatsioon',
     be: 'Ядзернае ператварэньне',
     ka: 'ბირთვული ტრანსმუტაცია',
-    kk: 'Ядролық түрлену',
+    kk: 'Iadrolyq türlenu',
     qm: 'Çekirdek dönüşümi',
   },
   description: {
@@ -64,7 +64,7 @@ export const nuclearTransmutation_Skill_Data = defineSkill({
       et: 'Jälgi prootonite ja nukleonide arvu muutusi tuumamuundumistes.',
       be: 'Адсочвай зьмену колькасьці пратонаў і нуклёнаў падчас ядзерных ператварэньняў.',
       ka: 'თვალი ადევნე პროტონებისა და ნუკლონების რაოდენობის ცვლილებას ბირთვული გარდაქმნებისას.',
-      kk: 'Ядролық түрленулер кезінде протондар мен нуклондар санының өзгеруін бақыла.',
+      kk: 'Iadrolyq türlenuler kezınde protondar men nuklondar sanynyñ özgeruın baqyla.',
       qm: 'Çekirdek dönüşümlerinde proton ve nuklonlarnıñ sayısı nasıl deñişkenini takip et.',
     },
   },

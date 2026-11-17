@@ -31,7 +31,7 @@ export const elementFamilies_Skill_Data = defineSkill({
     et: 'Elementide perekonnad',
     be: 'Сем’і элемэнтаў',
     ka: 'ელემენტების ოჯახები',
-    kk: 'Элементтер отбасылары',
+    kk: 'Elementter otbasylary',
     qm: 'Element aileleri',
   },
   description: {
@@ -65,7 +65,7 @@ export const elementFamilies_Skill_Data = defineSkill({
       et: 'Märka perioodilisustabeli peamiste elementide perekondade ühiseid suundumusi.',
       be: 'Распазнавай супольныя заканамернасьці асноўных сем’яў элемэнтаў у пэрыядычнай табліцы.',
       ka: 'ამოიცანი პერიოდული ცხრილის ძირითადი ოჯახების საერთო ტენდენციები.',
-      kk: 'Периодтық кестедегі негізгі элемент отбасыларының ортақ заңдылықтарын анықта.',
+      kk: 'Periodtyq kestedegı negızgı element otbasylarynyñ ortaq zañdylyqtaryn anyqta.',
       qm: 'Deviriy cedveldeki esas element aileleriniñ ortaq mayillerini tanı.',
     },
   },

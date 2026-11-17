@@ -31,7 +31,7 @@ export const periodicTableStructure_Skill_Data = defineSkill({
     et: 'Perioodilisustabeli ehitus',
     be: 'Будова пэрыядычнай табліцы',
     ka: 'პერიოდული ცხრილის სტრუქტურა',
-    kk: 'Периодтық кестенің құрылысы',
+    kk: 'Periodtyq kestenıñ qūrylysy',
     qm: 'Deviriy cedvelniñ qurulışı',
   },
   description: {
@@ -65,7 +65,7 @@ export const periodicTableStructure_Skill_Data = defineSkill({
       et: 'Õpi lugema perioodilisustabeli rühmi, perioode ja sümboleid.',
       be: 'Навучыся чытаць групы, пэрыяды й сымбалі ў пэрыядычнай табліцы.',
       ka: 'წაიკითხე პერიოდული ცხრილის ჯგუფები, პერიოდები და ქიმიური სიმბოლოები.',
-      kk: 'Периодтық кестедегі топтарды, периодтарды және таңбаларды оқы.',
+      kk: 'Periodtyq kestedegı toptardy, periodtardy jäne tañbalardy oqy.',
       qm: 'Deviriy cedveldeki gruppalarnı, devirlerni ve element işaretlerini oqu.',
     },
   },

@@ -31,7 +31,7 @@ export const electronAffinity_Skill_Data = defineSkill({
     et: 'Elektronafiinsus',
     be: 'Сроднасьць да электрона',
     ka: 'ელექტრონისადმი სწრაფვა',
-    kk: 'Электрон қосып алу энергиясы',
+    kk: 'Elektron qosyp alu energiiasy',
     qm: 'Elektronğa yaqınlıq',
   },
   description: {
@@ -64,7 +64,7 @@ export const electronAffinity_Skill_Data = defineSkill({
       et: 'Erista elektroni liitumisel toimuvat energiamuutust teistest aatomite omaduste suundumustest.',
       be: 'Адрозьнівай зьмену энэргіі пры далучэньні электрона ад іншых атамных тэндэнцыяў.',
       ka: 'განასხვავე ელექტრონის მიერთებისას ენერგიის ცვლილება სხვა ატომური ტენდენციებისგან.',
-      kk: 'Электрон қосылғандағы энергия өзгерісін басқа атомдық үрдістерден ажырат.',
+      kk: 'Elektron qosylğandağy energiia özgerısın basqa atomdyq ürdısterden ajyrat.',
       qm: 'Elektron qoşulğanda energiya deñişmesini diger atom mayillerinden ayır.',
     },
   },

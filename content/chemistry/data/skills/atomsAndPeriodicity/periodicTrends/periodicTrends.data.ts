@@ -38,7 +38,7 @@ export const periodicTrends_SkillGroup_Data = defineSkillGroup({
     et: 'Perioodilised suundumused',
     be: 'Пэрыядычныя тэндэнцыі',
     ka: 'პერიოდული ტენდენციები',
-    kk: 'Периодтық үрдістер',
+    kk: 'Periodtyq ürdıster',
     qm: 'Devirli mayiller',
   },
   skills: [
@@ -78,7 +78,7 @@ export const periodicTrends_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri aatomite suuruse ja elektronide tõmbe suundumusi.',
       be: 'Дасьледуй тэндэнцыі зьмены памеру атамаў і прыцягненьня электронаў.',
       ka: 'გამოიკვლიე ატომების ზომისა და ელექტრონების მიზიდულობის ცვლილების ტენდენციები.',
-      kk: 'Атом өлшемі мен электрондарды тартудың периодтық үрдістерін зертте.',
+      kk: 'Atom ölşemı men elektrondardy tartudyñ periodtyq ürdısterın zertte.',
       qm: 'Atomlarnıñ büyüklügi ve elektronlarnı çeküv quvetindeki deñişmelerini ögren.',
     },
   },

@@ -31,7 +31,7 @@ export const metalsNonmetalsAndMetalloids_Skill_Data = defineSkill({
     et: 'Metallid, mittemetallid ja poolmetallid',
     be: 'Мэталы, немэталы й мэталоіды',
     ka: 'ლითონები, არალითონები და მეტალოიდები',
-    kk: 'Металдар, бейметалдар және металлоидтар',
+    kk: 'Metaldar, beimetaldar jäne metalloidtar',
     qm: 'Metallar, metal olmağanlar ve yarım metallar',
   },
   description: {
@@ -65,7 +65,7 @@ export const metalsNonmetalsAndMetalloids_Skill_Data = defineSkill({
       et: 'Erista metalle, mittemetalle ja poolmetalle, arvestades erandeid.',
       be: 'Адрозьнівай мэталы, немэталы й мэталоіды, улічваючы выключэньні.',
       ka: 'გამოარჩიე ლითონები, არალითონები და მეტალოიდები გამონაკლისების გათვალისწინებით.',
-      kk: 'Ерекшеліктерді ескере отырып, металдар, бейметалдар және металлоидтарды ажырат.',
+      kk: 'Erekşelıkterdı eskere otyryp, metaldar, beimetaldar jäne metalloidtardy ajyrat.',
       qm: 'İstisnalarnı da köz ögüne alıp, metallar, metal olmağanlar ve yarım metallar arasındaki farqnı añla.',
     },
   },

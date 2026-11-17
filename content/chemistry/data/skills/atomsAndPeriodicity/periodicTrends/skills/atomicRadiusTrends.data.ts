@@ -31,7 +31,7 @@ export const atomicRadiusTrends_Skill_Data = defineSkill({
     et: 'Aatomiraadiuse suundumused',
     be: 'Тэндэнцыі атамнага радыюса',
     ka: 'ატომური რადიუსის ტენდენციები',
-    kk: 'Атом радиусының өзгеру үрдісі',
+    kk: 'Atom radiusynyñ özgeru ürdısı',
     qm: 'Atom radiusınıñ deñişmesi',
   },
   description: {
@@ -64,7 +64,7 @@ export const atomicRadiusTrends_Skill_Data = defineSkill({
       et: 'Võrdle aatomite suuruse muutumist perioodilisustabelis.',
       be: 'Параўноўвай, як зьмяняюцца памеры атамаў у пэрыядычнай табліцы.',
       ka: 'შეადარე, როგორ იცვლება ატომების ზომები პერიოდულ ცხრილში.',
-      kk: 'Периодтық кестеде атомдардың өлшемі қалай өзгеретінін салыстыр.',
+      kk: 'Periodtyq kestede atomdardyñ ölşemı qalai özgeretının salystyr.',
       qm: 'Deviriy cedvelde atom büyüklügi nasıl deñişkenini qıyasla.',
     },
   },

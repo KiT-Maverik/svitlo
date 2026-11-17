@@ -31,7 +31,7 @@ export const radioactiveDecay_Skill_Data = defineSkill({
     et: 'Radioaktiivne lagunemine',
     be: 'Радыеактыўны распад',
     ka: 'რადიოაქტიური დაშლა',
-    kk: 'Радиоактивті ыдырау',
+    kk: 'Radioaktivtı ydyrau',
     qm: 'Radioaktiv dağılma',
   },
   description: {
@@ -65,7 +65,7 @@ export const radioactiveDecay_Skill_Data = defineSkill({
       et: 'Tunne ära radioaktiivsed muutused, mis muudavad ühe nukliidi teiseks.',
       be: 'Распазнавай радыеактыўныя зьмены, якія ператвараюць адзін нуклід у іншы.',
       ka: 'ამოიცანი რადიოაქტიური ცვლილებები, რომლებიც ერთ ნუკლიდს მეორედ გარდაქმნის.',
-      kk: 'Бір нуклидті басқа нуклидке айналдыратын радиоактивті өзгерістерді анықта.',
+      kk: 'Bır nuklidtı basqa nuklidke ainaldyratyn radioaktivtı özgerısterdı anyqta.',
       qm: 'Bir nuklidni başqa nuklidge çevirgen radioaktiv deñişmelerini tanı.',
     },
   },

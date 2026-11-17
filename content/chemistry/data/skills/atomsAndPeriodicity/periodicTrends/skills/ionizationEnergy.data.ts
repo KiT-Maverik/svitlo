@@ -31,7 +31,7 @@ export const ionizationEnergy_Skill_Data = defineSkill({
     et: 'Ionisatsioonienergia',
     be: 'Энэргія іянізацыі',
     ka: 'იონიზაციის ენერგია',
-    kk: 'Иондану энергиясы',
+    kk: 'İondanu energiiasy',
     qm: 'İonlaşma energiyası',
   },
   description: {
@@ -64,7 +64,7 @@ export const ionizationEnergy_Skill_Data = defineSkill({
       et: 'Mõista, kui palju energiat kulub elektroni eemaldamiseks aatomist.',
       be: 'Зразумей, колькі энэргіі трэба, каб аддзяліць электрон ад атама.',
       ka: 'გაიგე, რამდენი ენერგიაა საჭირო ატომიდან ელექტრონის მოსაცილებლად.',
-      kk: 'Атомнан электронды жұлып алуға қажет энергияны түсін.',
+      kk: 'Atomnan elektrondy jūlyp aluğa qajet energiiany tüsın.',
       qm: 'Atomdan bir elektronnı ayırmaq içün kerek olğan energiyanı añla.',
     },
   },

@@ -31,7 +31,7 @@ export const electronegativity_Skill_Data = defineSkill({
     et: 'Elektronegatiivsus',
     be: 'Электраадмоўнасьць',
     ka: 'ელექტროუარყოფითობა',
-    kk: 'Электртерістілік',
+    kk: 'Elektrterıstılık',
     qm: 'Elektron menfiyligi',
   },
   description: {
@@ -64,7 +64,7 @@ export const electronegativity_Skill_Data = defineSkill({
       et: 'Kasuta elektronegatiivsust, et selgitada, kuidas aatomid elektrone jagavad.',
       be: 'Выкарыстоўвай электраадмоўнасьць, каб растлумачыць, як атамы дзеляцца электронамі.',
       ka: 'გამოიყენე ელექტროუარყოფითობა ატომებს შორის ელექტრონების გაზიარების ასახსნელად.',
-      kk: 'Атомдардың электрондарды қалай ортақтасатынын электртерістілік арқылы түсіндір.',
+      kk: 'Atomdardyñ elektrondardy qalai ortaqtasatynyn elektrterıstılık arqyly tüsındır.',
       qm: 'Atomlarnıñ elektronlarnı nasıl paylaşqanını elektron menfiyligi yardımınen añlat.',
     },
   },

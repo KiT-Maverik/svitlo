@@ -31,7 +31,7 @@ export const periodicity_Skill_Data = defineSkill({
     et: 'Perioodilisus',
     be: 'Пэрыядычнасьць',
     ka: 'პერიოდულობა',
-    kk: 'Периодтылық',
+    kk: 'Periodtylyq',
     qm: 'Devirlilik',
   },
   description: {
@@ -64,7 +64,7 @@ export const periodicity_Skill_Data = defineSkill({
       et: 'Selgita, miks elementide mõned omadused perioodilisustabelis korduvad.',
       be: 'Растлумач, чаму пэўныя ўласьцівасьці элемэнтаў паўтараюцца ў пэрыядычнай табліцы.',
       ka: 'ახსენი, რატომ მეორდება ელემენტების ზოგი თვისება პერიოდულ ცხრილში.',
-      kk: 'Периодтық кестеде элементтердің кейбір қасиеттері неге қайталанатынын түсіндір.',
+      kk: 'Periodtyq kestede elementterdıñ keibır qasietterı nege qaitalanatynyn tüsındır.',
       qm: 'Elementlerniñ bazı hususiyetleri deviriy cedvelde ne içün tekrarlanğanını añlat.',
     },
   },

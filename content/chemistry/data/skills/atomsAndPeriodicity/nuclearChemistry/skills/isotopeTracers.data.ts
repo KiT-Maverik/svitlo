@@ -31,7 +31,7 @@ export const isotopeTracers_Skill_Data = defineSkill({
     et: 'Isotoopmärgised',
     be: 'Ізатопныя маркеры',
     ka: 'იზოტოპური მარკერები',
-    kk: 'Изотоптық таңбалауыштар',
+    kk: 'İzotoptyq tañbalauyştar',
     qm: 'İzotop işaretleyiciler',
   },
   description: {
@@ -65,7 +65,7 @@ export const isotopeTracers_Skill_Data = defineSkill({
       et: 'Uuri, kuidas isotoobid aitavad keemilistes protsessides ainete liikumist jälgida.',
       be: 'Даведайся, як ізатопы дапамагаюць адсочваць рэчывы ў хімічных працэсах.',
       ka: 'გაიგე, როგორ გვეხმარება იზოტოპები ქიმიურ პროცესებში ნივთიერებების მოძრაობის კვალის მიგნებაში.',
-      kk: 'Химиялық процестерде заттарды қадағалауға изотоптар қалай көмектесетінін біл.',
+      kk: 'Himiialyq protsesterde zattardy qadağalauğa izotoptar qalai kömektesetının bıl.',
       qm: 'İzotoplarnıñ kimyeviy süreçlerde maddelerniñ yolunı izlemege nasıl yardım etkenini ögren.',
     },
   },
