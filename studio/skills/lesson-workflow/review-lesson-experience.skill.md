@@ -5,3 +5,19 @@
 Inspect every Section and proposed Scene/media/Quest for learning value, purposeful feedback, pacing, motivation appropriate to the audience, cognitive load, keyboard/touch/screen-reader/semantic RTL/reduced motion, captions/transcripts, offline and low-device alternatives and feasible implementation. Flag pointless compulsory interaction, vague/nonimplementable scripts, inaccessible paths and unreviewed curriculum/assessment assumptions. Quest may be draft-only; do not claim shipped runtime behavior.
 
 Independently document specific affected nodes, reviewed source SHA, severity, evidence, actionable corrections, role, verdict and next actor **in Lesson PR**. The Screenwriter owns edits; changed source invalidates affected reviews. A passing opinion is not an invented approval token or `review.ts` Props evidence. Do not self-approve or change YAML statuses.
+
+## Detailed experience audit criteria
+
+Evaluate **every** Section and its ContentBlocks, not only the introduction:
+
+1. Alignment with goals and learner readiness: coherent concept progression, minimal misconceptions, audience-native explanations and appropriate cognitive load.
+2. Evidence-informed instructional effectiveness: purposeful explanation, worked examples/fading, prediction and exploration, opportunities for feedback/retrieval/application/transfer when warranted, useful learner control and appropriate pacing. Do not impose a universal recipe.
+3. All actual ContentBlock types: `text`, `markdown`, `checkpoint`, `code`, `audio`, `video`, `youtube`, `image`, `carousel`, `scene`, `subtitles`. Subtitles is a new Build-only ContentBlock; review production readiness honestly until its renderer and YAML handoff exist. Verify their pedagogical role and actual support, identify better options if justified; a `checkpoint` does not count as a scored Quiz, and a Quiz is a Section, not a block.
+4. Modern and interactive experiences: whether diagrams, simulations, manipulable models, narrative pacing, multimedia or custom Scenes materially improve understanding; distinguish feasible from speculative or missing implementation.
+5. Motivation and gamification: intrinsic engagement and meaningful challenge; flag distracting decoration, reward pressure, overstimulation or artificial clicking quotas.
+6. Accessibility and localization: alternative interaction modes, readable text, keyboard/touch/screen-reader, accessible feedback, semantic LTR/RTL, captions/transcripts, motion control, offline/weak-device equivalence. Check that `production.documentLanguage` is actual authored copy and other planned locales are not invented.
+7. Production readiness: media `production` specifications, pending Scenes, interactions and Quiz/assessment dependencies are explicit and actionable. Missing assets are _legitimate planned production work_ when clearly identified; they must not masquerade as available assets or be treated as missing pedagogical design by default.
+
+## Quest plan review (draft-only runtime boundary)
+
+For proposed `type: quest` Sections, consult [Quest](../../docs/entities/quest.md) and inspect each Stage/Task branch, retry and completion path. Verify learning value of interventions, understandable failure feedback, no trap/loop without recovery, meaningful engagement without forced entertainment, and parity for captions, transcripts, narration, nonvisual Task controls, touch/keyboard, RTL, cognitive load, reduced motion and offline. Review Quest proposed media and Scenes as _planned_ resources, not working renderer behavior. Flag missing Quest runtime integration as a production dependency; do not conflate Task completion with a graded Quiz.
