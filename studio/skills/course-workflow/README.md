@@ -1,6 +1,6 @@
 # Course workflow
 
-Independent course-authoring skills; explicit artifact prerequisites, **no mandatory full pipeline**.
+**Canonical entry point:** [Create Course Flow](./create-course-flow.skill.md) — a seven-stage, PR-tracked, restartable Course production process. New Course production uses this orchestration and its temporary editorial `course.yaml` plan; the specialist skills below remain independently invokable for bounded historical/maintenance tasks.
 
 - [Create Course Methodology](./create-course-methodology.skill.md) — Methodologist; writes durable Course `methodology.md`.
 - [Create Course Table of Contents](./create-course-toc.skill.md) — Methodologist; requires `methodology.md` and Skill Taxonomy; creates ordered skill-based `toc.yaml`.
