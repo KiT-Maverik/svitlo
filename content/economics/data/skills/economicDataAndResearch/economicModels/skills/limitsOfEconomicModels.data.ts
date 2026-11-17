@@ -31,7 +31,7 @@ export const limitsOfEconomicModels_Skill_Data = defineSkill({
     et: 'Majandusmudelite piirangud',
     be: 'Межы эканамічных мадэляў',
     ka: 'ეკონომიკური მოდელების შეზღუდვები',
-    kk: 'Экономикалық модельдердің шектеулері',
+    kk: 'Ekonomikalyq modelderdıñ şekteulerı',
     qm: 'İqtisadiy modellerniñ sıñırları',
   },
   description: {
@@ -65,7 +65,7 @@ export const limitsOfEconomicModels_Skill_Data = defineSkill({
       et: 'Tunne ära, millal majandusmudel ei pruugi tegelikkusele vastata.',
       be: 'Распазнавай, калі эканамічная мадэль можа не адпавядаць рэчаіснасьці.',
       ka: 'ამოიცანი, როდის შეიძლება ეკონომიკური მოდელი რეალობას არ შეესაბამებოდეს.',
-      kk: 'Экономикалық модель шынайы жағдайға сай келмеуі мүмкін сәттерді таны.',
+      kk: 'Ekonomikalyq model naqty jağdaidy dürıs sipattamaityn kezderdı tany.',
       qm: 'İqtisadiy modelniñ aqiqiy vaziyetke uyğun kelmey bilecegi allarnı tanı.',
     },
   },

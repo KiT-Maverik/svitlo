@@ -31,7 +31,7 @@ export const economicDataQuality_Skill_Data = defineSkill({
     et: 'Majandusandmete kvaliteet',
     be: 'Якасьць эканамічных зьвестак',
     ka: 'ეკონომიკური მონაცემების ხარისხი',
-    kk: 'Экономикалық деректердің сапасы',
+    kk: 'Ekonomikalyq derekterdıñ sapasy',
     qm: 'İqtisadiy malümatlarnıñ keyfiyeti',
   },
   description: {
@@ -64,7 +64,7 @@ export const economicDataQuality_Skill_Data = defineSkill({
       et: 'Hinda, kas majandusnäitajad põhinevad usaldusväärsetel ja võrreldavatel andmetel.',
       be: 'Ацані, ці эканамічныя лічбы абапіраюцца на надзейныя і параўнальныя зьвесткі.',
       ka: 'შეაფასე, ეფუძნება თუ არა ეკონომიკური რიცხვები სანდო და შესადარებელ მონაცემებს.',
-      kk: 'Экономикалық сандар сенімді әрі салыстырмалы деректерге негізделгенін бағала.',
+      kk: 'Ekonomikalyq körsetkışterdıñ senımdı jäne salystyrmaly derekterge süienetının bağala.',
       qm: 'İqtisadiy raqamlar işançlı ve teñeştirilebilir malümatlarğa esaslana mı, baala.',
     },
   },

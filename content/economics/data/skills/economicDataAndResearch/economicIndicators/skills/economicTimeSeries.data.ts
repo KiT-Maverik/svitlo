@@ -31,7 +31,7 @@ export const economicTimeSeries_Skill_Data = defineSkill({
     et: 'Majanduslikud aegread',
     be: 'Эканамічныя часавыя шэрагі',
     ka: 'ეკონომიკური დროითი რიგები',
-    kk: 'Экономикалық уақыт қатарлары',
+    kk: 'Ekonomikalyq uaqyt qatarlary',
     qm: 'İqtisadiy zaman sıraları',
   },
   description: {
@@ -64,7 +64,7 @@ export const economicTimeSeries_Skill_Data = defineSkill({
       et: 'Loe, kuidas majandusnäitaja aja jooksul muutub.',
       be: 'Прачытай, як эканамічны паказьнік зьмяняецца з часам.',
       ka: 'წაიკითხე, როგორ იცვლება ეკონომიკური მაჩვენებელი დროთა განმავლობაში.',
-      kk: 'Экономикалық көрсеткіштің уақыт өте қалай өзгеретінін оқып түсін.',
+      kk: 'Ekonomikalyq körsetkıştıñ uaqyt ötken saiyn qalai özgeretının oqyp tüsın.',
       qm: 'İqtisadiy köstergiç vaqt keçkeninen nasıl deñişkenini oqup añla.',
     },
   },

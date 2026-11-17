@@ -31,7 +31,7 @@ export const ceterisParibusAssumption_Skill_Data = defineSkill({
     et: "Ceteris paribus'e eeldus",
     be: 'Прыпушчэньне пры іншых нязьменных умовах',
     ka: 'სხვა თანაბარი პირობების დაშვება',
-    kk: 'Басқа шарттар өзгермейді деген болжам',
+    kk: 'Basqa şarttar özgermeıdı degen boljam',
     qm: 'Başqa şartlar deñişmey degən faraziye',
   },
   description: {
@@ -64,7 +64,7 @@ export const ceterisParibusAssumption_Skill_Data = defineSkill({
       et: 'Mõista, mida tähendab teiste tingimuste muutumatuna hoidmine.',
       be: 'Зразумей, што значыць пакідаць іншыя ўмовы нязьменнымі.',
       ka: 'გაიგე, რას ნიშნავს სხვა პირობების უცვლელად დატოვება.',
-      kk: 'Басқа шарттарды өзгеріссіз қалдыру нені білдіретінін түсін.',
+      kk: 'Basqa şarttardy tūraqty dep aludyñ mänın tüsın.',
       qm: 'Başqa şartlarnı deñiştirmeden saqlamaq ne demek olğanını añla.',
     },
   },

@@ -31,7 +31,7 @@ export const buildingEconomicModels_Skill_Data = defineSkill({
     et: 'Majandusmudelite koostamine',
     be: 'Пабудова эканамічных мадэляў',
     ka: 'ეკონომიკური მოდელების აგება',
-    kk: 'Экономикалық модель құру',
+    kk: 'Ekonomikalyq model qūru',
     qm: 'İqtisadiy model quruv',
   },
   description: {
@@ -65,7 +65,7 @@ export const buildingEconomicModels_Skill_Data = defineSkill({
       et: 'Vali majandusolukorra olulised osad mudeli jaoks.',
       be: 'Абяры найважнейшыя складнікі эканамічнай сытуацыі для мадэлі.',
       ka: 'შეარჩიე ეკონომიკური სიტუაციის არსებითი ნაწილები მოდელისთვის.',
-      kk: 'Экономикалық жағдайдың маңызды бөліктерін модельге таңда.',
+      kk: 'Ekonomikalyq jağdaidyñ eñ mañyzdy bölıkterın model üşın tañda.',
       qm: 'İqtisadiy vaziyetniñ esas qısımlarını model içün sayla.',
     },
   },
