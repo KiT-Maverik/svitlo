@@ -6,6 +6,10 @@ on:
     paths:
       - 'shared/engine/generators/**'
       - 'shared/engine/scripts/lessonBuilder/**'
+      - 'shared/engine/scripts/materializeCourseFlow/**'
+      - 'shared/engine/scripts/validateCourseFlow/**'
+      - 'shared/engine/yaml-schemas/**'
+      - 'scripts/syncCourseLessonStatus/**'
       - 'shared/engine/scripts/sceneScaffolding/**'
       - 'shared/engine/index.ts'
       - 'shared/engine/package.json'
@@ -58,3 +62,14 @@ jobs:
             shared/engine/scripts/sceneScaffolding/sceneScaffolding.spec.mjs \
             scripts/textbook-tooling/buildTextbook/stageTextbookAssets.spec.mjs
 
+
+      - name: Verify Course schemas and Course Flow regressions
+        run: |
+          npm run content:check:yaml-schemas --workspace @svitlo/engine
+          node --test \
+            shared/engine/scripts/materializeCourseFlow/materialize-course-flow.spec.mjs \
+            shared/engine/scripts/validateCourseFlow/validate-course-flow.spec.mjs \
+            shared/engine/scripts/courseBuilder/courseBuilder.spec.mjs \
+            scripts/syncCourseLessonStatus/synchronizer.spec.mjs \
+            scripts/syncCourseLessonStatus/sync-course-lessons.spec.mjs \
+            scripts/syncCourseLessonStatus/workflow.spec.mjs

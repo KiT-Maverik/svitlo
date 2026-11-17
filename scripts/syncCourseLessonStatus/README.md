@@ -16,7 +16,7 @@ Script roles: `synchronizer.mjs` provides pure inventory/status/Markdown and
 sentinel enforcement; `sync-course-lessons.mjs` separates read-only source
 analysis from **trusted** description updates. The analysis reads authored YAML
 1.2 as data, never imports Course/Lesson TypeScript. GitHub PR status is distinct
-from verified Lesson source readiness. New Lesson implementation PRs must use:
+from verified Lesson source readiness. The analyzer reuses the static `buildLessonIndex` from #638 and checks declared target languages and actual merged PR SHA ancestry. This does **not** assert independently approved translations or publication readiness. New Lesson implementation PRs must use:
 
 ```md
 <!-- svitlo-course-lesson:v1 -->
