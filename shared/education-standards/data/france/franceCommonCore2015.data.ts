@@ -9,7 +9,7 @@ export const franceCommonCore2015 = defineEducationStandard({
     countries: ['FR'],
     nameLanguage: 'fr',
     version: 'Decree of 31 March 2015 (as amended; still in force 2026)',
-    sourceUrl: 'https://www.education.gouv.fr/le-socle-commun-de-connaissances-de-competences-et-de-culture-12512',
+    sourceUrl: 'https://www.legifrance.gouv.fr/loda/id/JORFTEXT000030426718/',
   },
   description: {
     methodological:
