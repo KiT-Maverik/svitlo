@@ -62,7 +62,13 @@ function isRecord(input: unknown): input is Record<string, unknown> {
 function parseResolved(kind: AssessmentResourceKind, id: string, entry: AssessmentResourceEntry, value: unknown) {
   if (!isRecord(value) || value.id !== id) throw new Error('Assessment resource UUID mismatch: ' + id);
   if (kind === 'flashcard') {
-    return flashcard_Props_Schema.parse(value) as Flashcard_Props;
+    const card = flashcard_Props_Schema.parse(value) as Flashcard_Props;
+    const indexed = entry.disabilities;
+    const authored = card.parameters.disabilities;
+    if (!indexed || indexed.length !== authored.length || indexed.some(value => !authored.includes(value))) {
+      throw new Error('Flashcard disability metadata mismatch for ' + id);
+    }
+    return card;
   }
   if (typeof value.type !== 'string' || !Object.hasOwn(questionSchemas, value.type)) {
     throw new Error('Unknown Question resource type for ' + id);
