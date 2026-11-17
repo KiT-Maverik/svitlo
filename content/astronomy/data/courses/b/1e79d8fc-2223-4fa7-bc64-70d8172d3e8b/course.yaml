@@ -89,12 +89,14 @@ openDecisions:
     TODO(editorial): перевірити дублювання introductory Lesson із
     Chapter safeObservation та Module overview із дочірніми Chapters;
     за потреби змінити розміщення посилань, не переназначаючи UUID.
-  chapterCoverage: >-
-    TODO(Stage 3 / Stage 4 independent review): Chapters dayAndNight і
-    moonAppearance поки порожні. Module-wide Lesson охоплює обидві
-    теми тільки вступно. Перед завершенням плану додати відповідні
-    незалежні Lessons у ці Chapters або реорганізувати структуру,
-    не руйнуючи мінімального тесту кожного виду вкладеності.
+  lessonScopeReview: >-
+    Stage 3: Chapters dayAndNight і moonAppearance мають окремі
+    тематичні Lesson slots з новими reusable UUID. Module-level
+    skyChangesOverview залишається вступним міжтемним оглядом.
+    TODO(independent editorial review): перевірити, чи окремі теми
+    не дублюються й чи початкова модель місячних фаз відповідає
+    когнітивному рівню учнів 6–8 років. За потреби уточнити
+    методики без повторного створення Lesson UUID.
   episodePlacementPilot: >-
     TODO(Screenwriter, після погодження плану): передбачити один Course
     Episode (welcomeToSky), один Module Episode (skyCyclesStory) у
@@ -220,6 +222,31 @@ content:
               explanation: >-
                 Дитина розрізняє день і ніч та на доступному рівні
                 пов'язує їх чергування з обертанням Землі.
+            content:
+              items:
+                dayNightBasics:
+                  type: lesson
+                  slug: dayNightBasics
+                  lessonId: 6027d3ba-6bda-439d-8239-a514c3c9cac9
+                  title: Чому змінюються день і ніч
+                  objective: >-
+                    Пояснити чергування дня і ночі через обертання
+                    Землі та дію сонячного світла, без припущення,
+                    ніби Сонце щодня облітає Землю.
+                  skills:
+                    - faa8f11a-cc06-42c9-8864-8151732e690a # dayAndNight
+                  depth: >-
+                    Початкове причинне пояснення через освітлену
+                    та неосвітлену сторону Землі, без формул і часових поясів.
+                  sequenceReason: >-
+                    Після Module-wide порівняння видимих циклів окремо
+                    пояснити добове обертання та наслідок для дня і ночі.
+                  matchingRationale: >-
+                    Канонічний astronomy Skill verified;
+                    complete read-only Lesson-by-Skill lookup показав
+                    нуль наявних Lesson у пакеті.
+              order:
+                - dayNightBasics
           moonAppearance:
             type: chapter
             slug: moonAppearance
@@ -237,6 +264,32 @@ content:
                 Дитина впізнає і порівнює видимі форми освітленої
                 частини Місяця, не претендуючи на повне пояснення
                 орбітальної геометрії.
+            content:
+              items:
+                moonAppearanceBasics:
+                  type: lesson
+                  slug: moonAppearanceBasics
+                  lessonId: d0b23382-653d-4453-825d-f1d1024543fe
+                  title: Чому Місяць виглядає по-різному
+                  objective: >-
+                    Порівняти видиму освітлену частину Місяця на
+                    зображеннях різних днів, розрізнити вигляд
+                    і незмінну фізичну форму тіла та пов'язати
+                    його освітлення із Сонцем.
+                  skills:
+                    - 53bba831-1f84-4b25-8e05-33f54167cc98 # lunarPhases
+                  depth: >-
+                    Описові фази й елементарне уявлення про джерело
+                    світла без обов'язкової тривимірної геометрії.
+                  sequenceReason: >-
+                    Після Module-level спостереження за змінами неба
+                    поглибити поняття видимої освітленої частини Місяця.
+                  matchingRationale: >-
+                    Канонічний astronomy Skill verified;
+                    complete read-only Lesson-by-Skill lookup показав
+                    нуль наявних Lesson у пакеті.
+              order:
+                - moonAppearanceBasics
         order:
           - skyChangesOverview
           - dayAndNight
