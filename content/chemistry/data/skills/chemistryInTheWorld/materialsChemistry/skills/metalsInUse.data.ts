@@ -31,7 +31,7 @@ export const metalsInUse_Skill_Data = defineSkill({
     et: 'Metallide kasutus',
     be: 'Мэталы ў выкарыстаньні',
     ka: 'ლითონების გამოყენება',
-    kk: 'Металдарды қолдану',
+    kk: 'Metaldardy qoldanu',
     qm: 'Metallarnı qullanuv',
   },
   description: {
@@ -65,7 +65,7 @@ export const metalsInUse_Skill_Data = defineSkill({
       et: 'Seosta metallide struktuur ja töötlemine nende igapäevaste omadustega.',
       be: 'Зьвязвай будову й апрацоўку мэталаў зь іхнымі ўласьцівасьцямі ў паўсядзённым ужываньні.',
       ka: 'დააკავშირე ლითონების სტრუქტურა და დამუშავება მათ ყოველდღიურ თვისებებთან.',
-      kk: 'Металдардың құрылысы мен өңделуін күнделікті қасиеттерімен байланыстыр.',
+      kk: 'Metaldardyñ qūrylysy men öñdeluın kündelıktı qasietterımen bailanystyr.',
       qm: 'Metallarnıñ qurulışı ve işlevini kündelik hususiyetlerinen bağla.',
     },
   },

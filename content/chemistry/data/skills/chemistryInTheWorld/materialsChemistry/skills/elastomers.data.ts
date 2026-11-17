@@ -31,7 +31,7 @@ export const elastomers_Skill_Data = defineSkill({
     et: 'Elastomeerid',
     be: 'Эластамэры',
     ka: 'ელასტომერები',
-    kk: 'Эластомерлер',
+    kk: 'Elastomerler',
     qm: 'Elastomerler',
   },
   description: {
@@ -65,7 +65,7 @@ export const elastomers_Skill_Data = defineSkill({
       et: 'Uuri, miks teatud ristseotud polümeerivõrgud venivad ja taastavad kuju.',
       be: 'Дасьледуй, чаму некаторыя сшытыя палімерныя сеткі расьцягваюцца й аднаўляюць форму.',
       ka: 'შეისწავლე, რატომ შეუძლია ზოგიერთ ჯვარედინად შეკავშირებულ პოლიმერულ ქსელს გაჭიმვა და ფორმის აღდგენა.',
-      kk: 'Кейбір айқас байланысқан полимер торлары созылып, қайта қалпына қалай келетінін зертте.',
+      kk: 'Keibır aiqas bailanysqan polimer torlary sozylyp, qaita qalpyna qalai keletının zertte.',
       qm: 'Bağlanğan polimer ağları niçün çekilip soñra öz şeklini qaytara bilgenini araştır.',
     },
   },

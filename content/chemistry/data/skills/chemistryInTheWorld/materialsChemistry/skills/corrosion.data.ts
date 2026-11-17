@@ -31,7 +31,7 @@ export const corrosion_Skill_Data = defineSkill({
     et: 'Korrosioon',
     be: 'Карозія',
     ka: 'კოროზია',
-    kk: 'Коррозия',
+    kk: 'Korroziia',
     qm: 'Korroziya',
   },
   description: {
@@ -64,7 +64,7 @@ export const corrosion_Skill_Data = defineSkill({
       et: 'Selgita, kuidas elektrokeemilised reaktsioonid põhjustavad korrosiooni ja kuidas kaitse toimib.',
       be: 'Растлумач, як электрахімічныя рэакцыі выклікаюць карозію й як дзейнічае абарона ад яе.',
       ka: 'ახსენი, როგორ იწვევს ელექტროქიმიური რეაქციები კოროზიას და როგორ მოქმედებს დაცვა.',
-      kk: 'Электрохимиялық реакциялар коррозияны қалай туғызатынын және қорғау қалай жұмыс істейтінін түсіндір.',
+      kk: 'Elektrohimiialyq reaktsiialar korroziiany qalai tuğyzatynyn jäne qorğau qalai jūmys ısteitının tüsındır.',
       qm: 'Elektrokimyeviy reaktsiyalar korroziyanı nasıl peyda etkenini ve qorçalav nasıl işlekenini añlat.',
     },
   },

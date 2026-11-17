@@ -38,7 +38,7 @@ export const moleculesOfLife_SkillGroup_Data = defineSkillGroup({
     et: 'Elumolekulid',
     be: 'Малекулы жыцьця',
     ka: 'სიცოცხლის მოლეკულები',
-    kk: 'Тіршілік молекулалары',
+    kk: 'Tırşılık molekulalary',
     qm: 'Ayat molekulaları',
   },
   skills: [
@@ -78,7 +78,7 @@ export const moleculesOfLife_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri oluliste bioloogiliste ainete molekulaarstruktuure.',
       be: 'Дасьледуй малекулярную будову важных біялягічных рэчываў.',
       ka: 'შეისწავლე მნიშვნელოვანი ბიოლოგიური ნივთიერებების მოლეკულური სტრუქტურები.',
-      kk: 'Маңызды биологиялық заттардың молекулалық құрылысын зертте.',
+      kk: 'Mañyzdy biologiialyq zattardyñ molekulalyq qūrylysyn zertte.',
       qm: 'Müim biologik maddelerniñ molekula qurulışlarını araştır.',
     },
   },

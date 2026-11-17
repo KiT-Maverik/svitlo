@@ -36,7 +36,7 @@ export const chemistryInTheWorld_SkillDomain_Data = defineSkillDomain({
     et: 'Keemia meie maailmas',
     be: 'Хімія навокал нас',
     ka: 'ქიმია ჩვენს სამყაროში',
-    kk: 'Бізді қоршаған химия',
+    kk: 'Bızdı qorşağan himiia',
     qm: 'Dünyamızda kimya',
   },
   groups: [
@@ -76,7 +76,7 @@ export const chemistryInTheWorld_SkillDomain_Data = defineSkillDomain({
       et: 'Uuri, kuidas keemia selgitab igapäevaseid materjale, keskkonda ja elumolekule.',
       be: 'Даведайся, як хімія тлумачыць уласьцівасьці штодзённых матэрыялаў, навакольля й малекулаў жыцьця.',
       ka: 'გაიგე, როგორ ხსნის ქიმია ყოველდღიურ მასალებს, გარემოსა და სიცოცხლის მოლეკულებს.',
-      kk: 'Химия күнделікті материалдарды, қоршаған ортаны және тіршілік молекулаларын қалай түсіндіретінін біл.',
+      kk: 'Himiia kündelıktı materialdardy, qorşağan ortany jäne tırşılık molekulalaryn qalai tüsındıretının bıl.',
       qm: 'Kimya kündelik maddelerni, çevreni ve ayat molekulalarını nasıl añlatqanını ögren.',
     },
   },

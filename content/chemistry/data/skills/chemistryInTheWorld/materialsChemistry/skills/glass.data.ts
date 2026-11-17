@@ -31,7 +31,7 @@ export const glass_Skill_Data = defineSkill({
     et: 'Klaas',
     be: 'Шкло',
     ka: 'მინა',
-    kk: 'Шыны',
+    kk: 'Şyny',
     qm: 'Cam',
   },
   description: {
@@ -65,7 +65,7 @@ export const glass_Skill_Data = defineSkill({
       et: 'Uuri, miks klaas käitub teisiti kui kristallilised tahked ained.',
       be: 'Даведайся, чаму шкло паводзіцца іначай, чым крышталічныя цьвёрдыя рэчывы.',
       ka: 'გაიგე, რატომ განსხვავდება მინის თვისებები კრისტალური მყარი ნივთიერებებისგან.',
-      kk: 'Шынының кристалдық қатты заттардан неліктен өзгеше қасиеттері барын біл.',
+      kk: 'Şynynyñ kristaldyq qatty zattardan nelıkten özgeşe qasietterı baryn bıl.',
       qm: 'Cam kristallı qattı maddelerden niçün başqa türlü hususiyetlerge saip olğanını ögren.',
     },
   },

@@ -31,7 +31,7 @@ export const ceramics_Skill_Data = defineSkill({
     et: 'Keraamika',
     be: 'Кераміка',
     ka: 'კერამიკა',
-    kk: 'Керамика',
+    kk: 'Keramika',
     qm: 'Keramika',
   },
   description: {
@@ -65,7 +65,7 @@ export const ceramics_Skill_Data = defineSkill({
       et: 'Uuri, kuidas keraamika koostis ja struktuur mõjutavad tugevust ja kuumakindlust.',
       be: 'Дасьледуй, як склад і структура керамікі ўплываюць на трываласьць і тэрмаўстойлівасьць.',
       ka: 'შეისწავლე, როგორ მოქმედებს კერამიკის შემადგენლობა და სტრუქტურა სიმტკიცესა და თბომედეგობაზე.',
-      kk: 'Керамиканың құрамы мен құрылысы беріктігіне және ыстыққа төзімділігіне қалай әсер ететінін зертте.',
+      kk: 'Keramikanyñ qūramy men qūrylysy berıktıgıne jäne ystyqqa tözımdılıgıne qalai äser etetının zertte.',
       qm: 'Keramikanıñ terkibi ve qurulışı qattılıqqa ve sıcaqqa dayanırlıqqa nasıl tesir etkenini araştır.',
     },
   },

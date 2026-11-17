@@ -31,7 +31,7 @@ export const carbohydrateChemistry_Skill_Data = defineSkill({
     et: 'Süsivesikute keemia',
     be: 'Хімія вугляводаў',
     ka: 'ნახშირწყლების ქიმია',
-    kk: 'Көмірсулар химиясы',
+    kk: 'Kömırsular himiiasy',
     qm: 'Karbonhidratlar kimyası',
   },
   description: {
@@ -65,7 +65,7 @@ export const carbohydrateChemistry_Skill_Data = defineSkill({
       et: 'Uuri, kuidas suhkruühikud ühinevad eri süsivesikuteks.',
       be: 'Даведайся, як цукровыя зьвёны злучаюцца й утвараюць розныя вугляводы.',
       ka: 'გაიგე, როგორ ერთიანდებიან შაქრის ერთეულები სხვადასხვა ნახშირწყლად.',
-      kk: 'Қант бірліктері қосылып, түрлі көмірсуларды қалай түзетінін біл.',
+      kk: 'Qant bırlıkterı qosylyp, türlı kömırsulardy qalai tüzetının bıl.',
       qm: 'Şeker birlikleri birleşip türlü karbonhidratlarnı nasıl peyda etkenini ögren.',
     },
   },

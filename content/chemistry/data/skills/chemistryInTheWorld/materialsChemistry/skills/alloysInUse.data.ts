@@ -31,7 +31,7 @@ export const alloysInUse_Skill_Data = defineSkill({
     et: 'Sulamite kasutus',
     be: 'Сплавы ў выкарыстаньні',
     ka: 'შენადნობების გამოყენება',
-    kk: 'Қорытпаларды қолдану',
+    kk: 'Qorytpalardy qoldanu',
     qm: 'Qarışıq metallar',
   },
   description: {
@@ -65,7 +65,7 @@ export const alloysInUse_Skill_Data = defineSkill({
       et: 'Uuri, miks sulamitel võivad olla teistsugused omadused kui neid moodustavatel metallidel.',
       be: 'Даведайся, чаму сплавы могуць мець уласьцівасьці, адрозныя ад мэталаў, што ўваходзяць у іх склад.',
       ka: 'გაიგე, რატომ შეიძლება შენადნობების თვისებები განსხვავდებოდეს მათი შემადგენელი ლითონებისგან.',
-      kk: 'Қорытпалардың қасиеттері оларды құрайтын металдардан неліктен өзгеше болатынын біл.',
+      kk: 'Qorytpalardyñ qasietterı olardy qūraityn metaldardan nelıkten özgeşe bolatynyn bıl.',
       qm: 'Qarışıq metallarnıñ hususiyetleri olarnı qurğan metallardan niçün farqlı ola bilgenini ögren.',
     },
   },

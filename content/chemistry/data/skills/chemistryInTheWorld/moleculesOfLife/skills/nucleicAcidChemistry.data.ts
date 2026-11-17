@@ -31,7 +31,7 @@ export const nucleicAcidChemistry_Skill_Data = defineSkill({
     et: 'Nukleiinhapete keemia',
     be: 'Хімія нуклеінавых кісьляў',
     ka: 'ნუკლეინის მჟავების ქიმია',
-    kk: 'Нуклеин қышқылдарының химиясы',
+    kk: 'Nuklein qyşqyldarynyñ himiiasy',
     qm: 'Nuklein asitleri kimyası',
   },
   description: {
@@ -65,7 +65,7 @@ export const nucleicAcidChemistry_Skill_Data = defineSkill({
       et: 'Mõista DNA ja RNA keemilisi ehitusüksusi ning põhiskeleti ehitust.',
       be: 'Зразумей хімічныя будаўнічыя блёкі й каркас ДНК і РНК.',
       ka: 'გაიგე DNA-სა და RNA-ს ქიმიური შემადგენელი ერთეულები და ძირითადი ჩონჩხი.',
-      kk: 'ДНҚ мен РНҚ-ның химиялық құрамбөліктері мен қаңқасын түсін.',
+      kk: 'DNQ men RNQ-nyñ himiialyq qūrambölıkterı men qañqasyn tüsın.',
       qm: 'DNA ve RNA-nıñ kimyeviy qurulış birlikleri ve esas iskeletini añla.',
     },
   },

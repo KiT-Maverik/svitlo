@@ -31,7 +31,7 @@ export const proteinChemistry_Skill_Data = defineSkill({
     et: 'Valkude keemia',
     be: 'Хімія бялкоў',
     ka: 'ცილების ქიმია',
-    kk: 'Нәруыздар химиясы',
+    kk: 'Näruyzdar himiiasy',
     qm: 'Proteinler kimyası',
   },
   description: {
@@ -64,7 +64,7 @@ export const proteinChemistry_Skill_Data = defineSkill({
       et: 'Uuri, kuidas aminohapped ja nende vastasmõjud kujundavad valkude struktuuri.',
       be: 'Даведайся, як амінакісьлі й іхныя ўзаемадзеяньні фармуюць будову бялкоў.',
       ka: 'გაიგე, როგორ აყალიბებენ ამინომჟავები და მათი ურთიერთქმედებები ცილების სტრუქტურას.',
-      kk: 'Аминқышқылдар мен олардың әрекеттесулері нәруыздың құрылымын қалай қалыптастыратынын біл.',
+      kk: 'Aminqyşqyldar men olardyñ ärekettesulerı näruyzdyñ qūrylymyn qalai qalyptastyratynyn bıl.',
       qm: 'Amino asitler ve olarnıñ tesirleşüvi protein qurulışını nasıl şekillendirgenini ögren.',
     },
   },

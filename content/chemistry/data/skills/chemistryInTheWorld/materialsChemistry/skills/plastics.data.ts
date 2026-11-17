@@ -31,7 +31,7 @@ export const plastics_Skill_Data = defineSkill({
     et: 'Plastid',
     be: 'Плястмасы',
     ka: 'პლასტმასები',
-    kk: 'Пластмассалар',
+    kk: 'Plastmassalar',
     qm: 'Plastik maddeler',
   },
   description: {
@@ -65,7 +65,7 @@ export const plastics_Skill_Data = defineSkill({
       et: 'Mõista, kuidas polümeerid ja töötlemine mõjutavad plastide omadusi.',
       be: 'Зразумей, як палімэры й спосабы апрацоўкі ўплываюць на ўласьцівасьці плястмасаў.',
       ka: 'გაიგე, როგორ მოქმედებს პოლიმერები და მათი დამუშავება პლასტმასის თვისებებზე.',
-      kk: 'Полимерлер мен өңдеу тәсілдері пластмассаның қасиеттеріне қалай әсер ететінін түсін.',
+      kk: 'Polimerler men öñdeu täsılderı plastmassanyñ qasietterıne qalai äser etetının tüsın.',
       qm: 'Polimerler ve işlev usulları plastikniñ hususiyetlerine nasıl tesir etkenini añla.',
     },
   },

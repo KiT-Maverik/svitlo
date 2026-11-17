@@ -41,7 +41,7 @@ export const materialsChemistry_SkillGroup_Data = defineSkillGroup({
     et: 'Materjalikeemia',
     be: 'Хімія матэрыялаў',
     ka: 'მასალების ქიმია',
-    kk: 'Материалдар химиясы',
+    kk: 'Materialdar himiiasy',
     qm: 'Materiallar kimyası',
   },
   skills: [
@@ -84,7 +84,7 @@ export const materialsChemistry_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri, kuidas keemiline struktuur määrab materjali kasulikke omadusi.',
       be: 'Дасьледуй, як хімічная будова вызначае карысныя ўласьцівасьці матэрыялу.',
       ka: 'შეისწავლე, როგორ განსაზღვრავს ქიმიური სტრუქტურა მასალის სასარგებლო თვისებებს.',
-      kk: 'Химиялық құрылым материалдың пайдалы қасиеттерін қалай анықтайтынын зертте.',
+      kk: 'Himiialyq qūrylym materialdyñ paidaly qasietterın qalai anyqtaitynyn zertte.',
       qm: 'Kimyeviy qurulış materialnıñ faydalı hususiyetlerini nasıl belgilegenini araştır.',
     },
   },

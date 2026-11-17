@@ -31,7 +31,7 @@ export const lipidChemistry_Skill_Data = defineSkill({
     et: 'Lipiidide keemia',
     be: 'Хімія ліпідаў',
     ka: 'ლიპიდების ქიმია',
-    kk: 'Липидтер химиясы',
+    kk: 'Lipidter himiiasy',
     qm: 'Lipidler kimyası',
   },
   description: {
@@ -65,7 +65,7 @@ export const lipidChemistry_Skill_Data = defineSkill({
       et: 'Võrdle rasvade, õlide ja teiste lipiidide struktuuri ning keemilist käitumist.',
       be: 'Параўноўвай будову й хімічныя ўласьцівасьці тлушчаў, алеяў ды іншых ліпідаў.',
       ka: 'შეადარე ცხიმების, ზეთებისა და სხვა ლიპიდების სტრუქტურა და ქიმიური თვისებები.',
-      kk: 'Майлар, сұйық майлар және басқа липидтердің құрылысы мен химиялық қасиеттерін салыстыр.',
+      kk: 'Mailar, sūiyq mailar jäne basqa lipidterdıñ qūrylysy men himiialyq qasietterın salystyr.',
       qm: 'Yağ, may ve başqa lipidlerniñ qurulışı ve kimyeviy hususiyetlerini teñeştir.',
     },
   },
