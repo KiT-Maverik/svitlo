@@ -305,11 +305,12 @@ export function buildLessonIndex(root, selectedPackage) {
   const packages = selectedPackage ? [selectedPackage.split('/')[1]] :
     fs.existsSync(packagesDir) ? fs.readdirSync(packagesDir, { withFileTypes: true })
       .filter(x => x.isDirectory() && /^[a-z][a-z0-9-]*$/.test(x.name)).map(x => x.name).sort() : [];
-  const diagnostics = [], candidates = [];
+  const diagnostics = [], candidates = [], skillDefinitions = new Map();
   let implemented = 0, drafts = 0;
   for (const book of packages) {
     const pkg = 'content/' + book;
     const catalogue = skillCatalogue(root, book, diagnostics);
+    for (const [id, skill] of catalogue.byId) skillDefinitions.set(pkg + ':' + id, skill);
     const dir = path.join(packagesDir, book, 'data/lessons');
     if (!fs.existsSync(dir)) continue;
     for (const bucket of fs.readdirSync(dir, { withFileTypes: true }).filter(x => x.isDirectory()).map(x => x.name).sort()) {
@@ -366,7 +367,7 @@ export function buildLessonIndex(root, selectedPackage) {
     }
   }
   candidates.sort((a, b) => a.package.localeCompare(b.package) || a.lessonId.localeCompare(b.lessonId));
-  return { candidates, diagnostics, complete: diagnostics.length === 0,
+  return { candidates, diagnostics, skillDefinitions, complete: diagnostics.length === 0,
     scanned: { packages: packages.length, implemented, drafts, candidates: candidates.length } };
 }
 export function searchLessons(root, query, sourceSha = null) {
