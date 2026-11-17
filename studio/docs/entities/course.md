@@ -1,5 +1,7 @@
 # Course content, creators, Lessons and Episodes
 
+**New Course production:** [Create Course Flow](../../skills/course-workflow/create-course-flow.skill.md) coordinates the seven stages. Its temporary editorial `course.yaml` is distinct from technical `config.yaml`; durable `methodology.md` is created at materialization. Existing independently authored Courses may retain their historical source formats. The older independent Course skills described below apply to legacy maintenance, not to new Course creation.
+
 **Current authoring rule (Episode configurator migration):** A Course, Module or Chapter may contain independent `defineEpisode` children alongside `defineLesson` children. Episodes own narrative Sections and are not Lesson subtypes. A Lesson remains pedagogically Course-neutral even if physically authored under one Course. The legacy creator/publication details below describe historical APIs and need separate runtime migration. **For Issue #507 YAML draft-scaffolding, the current authority is [Engine's Config-shaped YAML handoff](../architecture/yaml-config-scaffolding.md): typed `content.items/order`, explicit nested `type`, and existing standalone Lesson `lessonId` references.** The editorial `toc.yaml` is distinct from technical Course YAML; `overrides.yaml` uses only the current Build API patch shape and has its own review requirements.
 
 **Status:** Authored Course contracts, creator APIs and a Playground-only Course publication/navigation prototype are implemented. Course-owned React Scene registry generation, full publisher hardening, and progression/persistence remain future integration work.
@@ -11,6 +13,28 @@ A **Course** is an ordered learning journey, distinct from a Curriculum. Its aut
 `Course_Toc`, `Course_TocModule`, `Course_TocChapter`, `Course_TocLesson` and `Course_TocEpisode` have independently typed `children`. Their `type` values are derived from the existing Course/Module/Chapter/Episode/Lesson contracts, not duplicated discriminator unions. Modules, Chapters and Episodes accept optional `iconKey`. Lesson icons are resolved from the existing Lesson Definition (`iconKey` is not redundantly authored in Lesson Data).
 
 A TOC creator receives only `{ language }`. It reads localized Lesson titles from the already imported Lesson Data and emits compact TOC leaves with `type`, `id`, and localized `title`.
+
+## Course teaching outcomes and referenced educational standards
+
+Current Engine Course Config/Props support optional `params.outcomes` with
+`skills`, `skillGroups`, `skillDomains` UUID arrays. This describes
+**intended competencies to teach**; existing `params.prerequisites`
+describes **entry conditions** and remains separate. Referencing a Domain or
+Group defines scope, not mastery of every descendant Skill. The optional
+`locale.outcomesText` supplies short learner-facing copy, while substantive
+methodological rationale stays in the Course editorial plan and later
+`methodology.md`. Optional audience ranges are `params.age` (0–125) and
+`params.grade` (0–40), each `{ min, max }` with `min <= max`, and must be
+interpreted within the specified jurisdiction/learner context.
+
+Optional `params.educationStandards` stores immutable EducationStandard UUID
+references. It is **not** proof of accreditation, certification, compliance,
+or real coverage; alignment sources/versions and scoped evidence require
+separate Course methodology and independent review. The Engine does not
+silently create standards, translate their separately owned frontend text,
+or automatically check educational alignment. For complete Course editing,
+regenerate the derived YAML JSON schemas using `generateYamlSchemas` after
+the Zod Config change; the independent generator is authoritative.
 
 ## Current Build API and Course-owned overrides
 
