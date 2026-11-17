@@ -31,7 +31,7 @@ export const economicGrowth_Skill_Data = defineSkill({
     et: 'Majanduskasv',
     be: 'Эканамічны рост',
     ka: 'ეკონომიკური ზრდა',
-    kk: 'Экономикалық өсім',
+    kk: 'Ekonomikalyq ösım',
     qm: 'İqtisadiy ösüv',
   },
   description: {
@@ -65,7 +65,7 @@ export const economicGrowth_Skill_Data = defineSkill({
       et: 'Mõõda inflatsiooniga korrigeeritud toodangu kasvukiirust.',
       be: 'Вымерай тэмп росту выпуску з улікам інфляцыі.',
       ka: 'გაზომეთ ინფლაციით შესწორებული წარმოების ზრდის ტემპი.',
-      kk: 'Инфляцияға түзетілген өндіріс өсімінің қарқынын өлшеңіз.',
+      kk: 'İnfliatsiiağa tüzetılgen öndırıs ösımınıñ qarqynyn ölşeñız.',
       qm: 'Enflâtsiya tesiri çıqarılğan istisalnıñ ne qadar tez öskenini ölç.',
     },
   },

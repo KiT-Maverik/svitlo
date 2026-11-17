@@ -31,7 +31,7 @@ export const potentialOutput_Skill_Data = defineSkill({
     et: 'Potentsiaalne kogutoodang',
     be: 'Патэнцыйны выпуск',
     ka: 'პოტენციური გამოშვება',
-    kk: 'Әлеуетті өндіріс',
+    kk: 'Äleuettı öndırıs',
     qm: 'Mümkün olğan istisal',
   },
   description: {
@@ -64,7 +64,7 @@ export const potentialOutput_Skill_Data = defineSkill({
       et: 'Mõista, miks majandus võib toota alla või üle oma jätkusuutliku võimsuse.',
       be: 'Зразумей, чаму эканоміка можа вырабляць ніжэй або вышэй за сваю ўстойлівую магутнасьць.',
       ka: 'გაიაზრეთ, რატომ შეიძლება ეკონომიკა მდგრად შესაძლებლობაზე ნაკლებს ან მეტს აწარმოებდეს.',
-      kk: 'Экономика тұрақты қуатынан төмен не жоғары деңгейде неге өндіре алатынын түсініңіз.',
+      kk: 'Ekonomika tūraqty quatynan tömen ne joğary deñgeide nege öndıre alatynyn tüsınıñız.',
       qm: 'İqtisat öz devamlı imkânından az ya da çoq ne içün istisal etebilgenini añla.',
     },
   },

@@ -31,7 +31,7 @@ export const gdpPerCapitaAndWelfare_Skill_Data = defineSkill({
     et: 'SKP elaniku kohta ja heaolu',
     be: 'ВУП на аднаго жыхара і дабрабыт',
     ka: 'მშპ ერთ სულ მოსახლეზე და კეთილდღეობა',
-    kk: 'Жан басына шаққандағы ЖІӨ және әл-ауқат',
+    kk: 'Jan basyna şaqqandağy JIÖ jäne äl-auqat',
     qm: 'Adam başına umumiy içki mahsulât ve refah',
   },
   description: {
@@ -65,7 +65,7 @@ export const gdpPerCapitaAndWelfare_Skill_Data = defineSkill({
       et: 'Mõista, miks SKP elaniku kohta ei mõõda kogu heaolu.',
       be: 'Зразумей, чаму ВУП на чалавека не паказвае ўвесь дабрабыт.',
       ka: 'გაიაზრეთ, რატომ ვერ ზომავს ერთ სულ მოსახლეზე მშპ სრულ კეთილდღეობას.',
-      kk: 'Жан басына шаққандағы ЖІӨ әл-ауқатты толық неге өлшемейтінін түсініңіз.',
+      kk: 'Jan basyna şaqqandağy JIÖ äl-auqatty tolyq nege ölşemeitının tüsınıñız.',
       qm: 'Adam başına UİM refahnı ne içün tam ölçmegenini añla.',
     },
   },

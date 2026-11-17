@@ -38,7 +38,7 @@ export const nationalAccounts_SkillGroup_Data = defineSkillGroup({
     et: 'Rahvamajanduse arvepidamine',
     be: 'Нацыянальныя рахункі',
     ka: 'ეროვნული ანგარიშები',
-    kk: 'Ұлттық шоттар',
+    kk: 'Ūlttyq şottar',
     qm: 'Milliy esaplar',
   },
   skills: [
@@ -78,7 +78,7 @@ export const nationalAccounts_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri, kuidas majandusteadlased mõõdavad majandustegevust tervikuna.',
       be: 'Даведайся, як эканамісты вымяраюць агульную эканамічную дзейнасьць.',
       ka: 'გაიგეთ, როგორ ზომავენ ეკონომისტები მთლიან ეკონომიკურ საქმიანობას.',
-      kk: 'Экономистер жалпы экономикалық белсенділікті қалай өлшейтінін біліңіз.',
+      kk: 'Ekonomister jalpy ekonomikalyq belsendılıktı qalai ölşeitının bılıñız.',
       qm: 'İqtisatçılar umumiy iqtisadiy faaliyetni nasıl ölçkenini ögren.',
     },
   },

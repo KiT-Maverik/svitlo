@@ -36,7 +36,7 @@ export const macroeconomics_SkillDomain_Data = defineSkillDomain({
     et: 'Makroökonoomika',
     be: 'Макраэканоміка',
     ka: 'მაკროეკონომიკა',
-    kk: 'Макроэкономика',
+    kk: 'Makroekonomika',
     qm: 'Makroiqtisat',
   },
   groups: [
@@ -76,7 +76,7 @@ export const macroeconomics_SkillDomain_Data = defineSkillDomain({
       et: 'Uuri, kuidas riigi kogutoodang, hinnad, tööhõive ja kasv omavahel seostuvad.',
       be: 'Дасьледуй, як зьвязаныя нацыянальны выпуск, цэны, занятасьць і эканамічны рост.',
       ka: 'გამოიკვლიეთ, როგორ უკავშირდება ერთმანეთს ეროვნული წარმოება, ფასები, დასაქმება და ზრდა.',
-      kk: 'Ұлттық өндіріс, бағалар, жұмыспен қамту және өсім қалай байланысатынын зерттеңіз.',
+      kk: 'Ūlttyq öndırıs, bağalar, jūmyspen qamtu jäne ösım qalai bailanysatynyn zertteñız.',
       qm: 'Milliy istisal, fiyatlar, işnen temin ve iqtisadiy ösüv nasıl bağlı olğanını araştır.',
     },
   },

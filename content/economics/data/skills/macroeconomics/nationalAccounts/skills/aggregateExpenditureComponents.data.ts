@@ -31,7 +31,7 @@ export const aggregateExpenditureComponents_Skill_Data = defineSkill({
     et: 'Kogukulutuste koostisosad',
     be: 'Складнікі сукупных выдаткаў',
     ka: 'ერთობლივი დანახარჯების კომპონენტები',
-    kk: 'Жиынтық шығындардың құрамдастары',
+    kk: 'Jiyntyq şyğyndardyñ qūramdastary',
     qm: 'Umumiy masraflarnıñ qısımları',
   },
   description: {
@@ -65,7 +65,7 @@ export const aggregateExpenditureComponents_Skill_Data = defineSkill({
       et: 'Tunne ära majanduse peamised kulutuste liigid.',
       be: 'Вызнач асноўныя катэгорыі выдаткаў у эканоміцы.',
       ka: 'ამოიცანით ეკონომიკაში დანახარჯების ძირითადი კატეგორიები.',
-      kk: 'Экономикадағы шығындардың негізгі санаттарын анықтаңыз.',
+      kk: 'Ekonomikadağy şyğyndardyñ negızgı sanattaryn anyqtañyz.',
       qm: 'İqtisatta sarf etüvniñ esas çeşitlerini belgile.',
     },
   },
