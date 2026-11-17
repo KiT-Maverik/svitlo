@@ -31,7 +31,7 @@ export const financialSupervision_Skill_Data = defineSkill({
     et: 'Finantsjärelevalve',
     be: 'Фінансавы нагляд',
     ka: 'ფინანსური ზედამხედველობა',
-    kk: 'Қаржылық қадағалау',
+    kk: 'Qarjylyq qadağalau',
     qm: 'Maliy nezaret',
   },
   description: {
@@ -65,7 +65,7 @@ export const financialSupervision_Skill_Data = defineSkill({
       et: 'Mõista, kuidas finantsreeglid riske vähendada püüavad.',
       be: 'Зразумей, як фінансавыя правілы мусяць зьмяншаць рызыкі.',
       ka: 'გაიგე, როგორ ცდილობს ფინანსური წესები რისკების შემცირებას.',
-      kk: 'Қаржылық ережелер тәуекелді қалай азайтуға тырысатынын түсін.',
+      kk: 'Qarjylyq erejeler täuekeldı qalai azaituğa tyrysatynyn tüsın.',
       qm: 'Maliy qaydalar havflarnı nasıl azaytmağa tırışqanını añla.',
     },
   },

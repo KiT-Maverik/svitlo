@@ -31,7 +31,7 @@ export const systemicFinancialRisk_Skill_Data = defineSkill({
     et: 'Süsteemne finantsrisk',
     be: 'Сыстэмная фінансавая рызыка',
     ka: 'სისტემური ფინანსური რისკი',
-    kk: 'Жүйелік қаржылық тәуекел',
+    kk: 'Jüielık qarjylyq täuekel',
     qm: 'Sistemalı maliy havf',
   },
   description: {
@@ -65,7 +65,7 @@ export const systemicFinancialRisk_Skill_Data = defineSkill({
       et: 'Mõista, miks ühe finantsasutuse raskused võivad teisi mõjutada.',
       be: 'Распазнавай, чаму праблемы адной фінансавай установы могуць закрануць іншыя.',
       ka: 'გაიგე, რატომ შეიძლება ერთი ფინანსური ორგანიზაციის პრობლემა სხვებსაც შეეხოს.',
-      kk: 'Бір қаржы ұйымындағы мәселе басқаларға неліктен әсер етуі мүмкін екенін біл.',
+      kk: 'Bır qarjy ūiymyndağy mäsele basqalarğa nelıkten äser etuı mümkın ekenın bıl.',
       qm: 'Bir maliy müessisedeki müşkülniñ başqalarına niçün tesir ete bilgenini tanı.',
     },
   },

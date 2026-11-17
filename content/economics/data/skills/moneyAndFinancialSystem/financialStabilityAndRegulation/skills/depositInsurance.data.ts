@@ -31,7 +31,7 @@ export const depositInsurance_Skill_Data = defineSkill({
     et: 'Hoiuste tagamine',
     be: 'Гарантаваньне ўкладаў',
     ka: 'დეპოზიტების დაზღვევა',
-    kk: 'Депозиттерге кепілдік беру',
+    kk: 'Depozitterge kepıldık beru',
     qm: 'Depozit sigortası',
   },
   description: {
@@ -65,7 +65,7 @@ export const depositInsurance_Skill_Data = defineSkill({
       et: 'Uuri, mida hoiuste kaitse katab ja millised on piirangud.',
       be: 'Даведайся, якія ўклады абароненыя й якія межы гарантыяў.',
       ka: 'გაიგე, რას ფარავს დეპოზიტების დაცვა და რა შეზღუდვები აქვს.',
-      kk: 'Салымды қорғау нені қамтитынын және шектеулерін біл.',
+      kk: 'Salymdy qorğau nenı qamtitynyn jäne şekteulerın bıl.',
       qm: 'Depozit qorunması neni qaplağanını ve sıñırlarını ögren.',
     },
   },

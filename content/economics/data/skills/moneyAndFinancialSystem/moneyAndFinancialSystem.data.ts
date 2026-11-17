@@ -36,7 +36,7 @@ export const moneyAndFinancialSystem_SkillDomain_Data = defineSkillDomain({
     et: 'Raha ja finantssüsteem',
     be: 'Грошы й фінансавая сыстэма',
     ka: 'ფული და ფინანსური სისტემა',
-    kk: 'Ақша және қаржы жүйесі',
+    kk: 'Aqşa jäne qarjy jüiesı',
     qm: 'Aqça ve maliy sistema',
   },
   groups: [
@@ -76,7 +76,7 @@ export const moneyAndFinancialSystem_SkillDomain_Data = defineSkillDomain({
       et: 'Uuri, kuidas raha, pangad ja finantsturud majandust ühendavad.',
       be: 'Даведайся, як грошы, банкі й фінансавыя рынкі зьвязваюць эканоміку.',
       ka: 'გაიგე, როგორ აკავშირებს ფული, ბანკები და ფინანსური ბაზრები ეკონომიკას.',
-      kk: 'Ақша, банктер мен қаржы нарықтары экономиканы қалай байланыстыратынын біл.',
+      kk: 'Aqşa, bankter men qarjy naryqtary ekonomikany qalai bailanystyratynyn bıl.',
       qm: 'Aqça, banklar ve maliy bazarlar iqtisadiyatnı nasıl bağlağanını ögren.',
     },
   },
