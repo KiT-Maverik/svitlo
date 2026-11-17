@@ -201,11 +201,36 @@ jobs:
               throw Error('Unsafe Agent CI Artifacts path');
             fs.mkdirSync(dir, { recursive: true });
           }
+          // The read-only job may execute untrusted PR code: render the Markdown
+          // from verified JSON here instead of copying PR-controlled Markdown.
+          const escape = value => String(value ?? '').slice(0, 180)
+            .replace(/[\x00-\x1f\x7f]/g, ' ')
+            .replace(/[<>&*_[\]()!#|\x60]/g, ch => '\\' + ch);
+          const lines = ['# Engine coverage gaps', '',
+            'Analyzed PR head: ' + sha, '',
+            '| Files considered | With gaps | Not executed | Fully covered |',
+            '| ---: | ---: | ---: | ---: |',
+            '| ' + data.targetFiles + ' | ' + data.filesWithGaps + ' | ' +
+              data.notExecutedFiles + ' | ' + data.completeFiles + ' |', '',
+            'Only missing coverage is reported; this is not a test-quality assertion.', ''];
+          for (const gap of data.gaps.slice(0, 100)) {
+            const link = 'https://github.com/' + repo + '/blob/' + sha + '/' +
+              gap.file.split('/').map(encodeURIComponent).join('/');
+            const locations = gap.status === 'not-executed' ? 'Not executed' :
+              'lines ' + gap.lines.filter(Number.isSafeInteger).join(', ') +
+              '; branches ' + gap.branches.filter(Number.isSafeInteger).join(', ');
+            lines.push('- [' + escape(gap.file) + '](' + link + ') — ' + locations +
+              (gap.changed === true ? ' (changed)' : ''));
+          }
+          if (data.gaps.length > 100)
+            lines.push('Additional gaps in JSON: ' + (data.gaps.length - 100));
+          const safeMarkdown = lines.join('\n').slice(0, 30000) + '\n';
           for (const name of names) {
             const dest = '.agent-ci-artifacts/engine-coverage/' + name;
             if (fs.existsSync(dest) && !fs.lstatSync(dest).isFile())
               throw Error('Unsafe existing coverage artifact');
-            fs.copyFileSync('report/' + name, dest);
+            if (name === 'engine-gaps.md') fs.writeFileSync(dest, safeMarkdown);
+            else fs.copyFileSync('report/' + name, dest);
           }
           NODE
       - name: Commit coverage result to the source PR branch
