@@ -31,7 +31,7 @@ export const animateAPuppet_Skill_Data = defineSkill({
     et: 'Nuku elustamine',
     be: 'Ажыўляць ляльку',
     ka: 'თოჯინის გაცოცხლება',
-    kk: 'Қуыршақты жандандыру',
+    kk: 'Quyrşaqty jandandyru',
     qm: 'Qurçaqnı canlandırmaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const animateAPuppet_Skill_Data = defineSkill({
       et: 'Ärata nukk ellu täpselt ajastatud ja suunatud liigutustega.',
       be: 'Ажыўляйце ляльку дакладна разлічанымі і накіраванымі рухамі.',
       ka: 'გააცოცხლეთ თოჯინა ზუსტად დროული და მიზანმიმართული მოძრაობებით.',
-      kk: 'Дәл уақытында және бағытталған қимылдар арқылы қуыршақты жандандырыңыз.',
+      kk: 'Däl uaqytynda jäne bağyttalğan qimyldar arqyly quyrşaqty jandandyryñyz.',
       qm: 'Qurçaqnı vaqıtı ve yönü doğru belgilenmiş areketler ile canlandırıñız.',
     },
   },

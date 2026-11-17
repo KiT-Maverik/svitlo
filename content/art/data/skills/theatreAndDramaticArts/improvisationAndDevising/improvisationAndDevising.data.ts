@@ -38,7 +38,7 @@ export const improvisationAndDevising_SkillGroup_Data = defineSkillGroup({
     et: 'Improvisatsioon ja lavalooming',
     be: 'Імправізацыя і стварэнне спектакля',
     ka: 'იმპროვიზაცია და სცენური შექმნა',
-    kk: 'Импровизация және сахналық туынды жасау',
+    kk: 'İmprovizatsiia jäne sahnalyq tuyndy jasau',
     qm: 'Doğaçlama ve sahne yaratımı',
   },
   skills: [
@@ -78,7 +78,7 @@ export const improvisationAndDevising_SkillGroup_Data = defineSkillGroup({
       et: 'Loo teatrit ühiselt, mõeldes välja olukordi, tegevusi ja konflikte.',
       be: 'Стварайце тэатр разам, прыдумваючы сітуацыі, дзеянні і канфлікты.',
       ka: 'შექმენით თეატრი ერთად, სიტუაციების, მოქმედებებისა და კონფლიქტების მოფიქრებით.',
-      kk: 'Жағдаяттар, әрекеттер мен қақтығыстарды ойлап тауып, театрды бірге жасаңыз.',
+      kk: 'Jağdaiattar, äreketter men qaqtyğystardy oilap tauyp, teatrdy bırge jasañyz.',
       qm: 'Vaziyetlerni, areketlerni ve çatışmalarnı oylap tapıp, birlikte teatr eseri yaratıñız.',
     },
   },

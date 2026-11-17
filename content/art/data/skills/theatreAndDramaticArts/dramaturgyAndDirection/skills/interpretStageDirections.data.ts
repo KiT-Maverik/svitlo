@@ -31,7 +31,7 @@ export const interpretStageDirections_Skill_Data = defineSkill({
     et: 'Tõlgendada lavajuhiseid',
     be: 'Тлумачыць сцэнічныя рэмаркі',
     ka: 'სასცენო მითითებების განმარტება',
-    kk: 'Сахналық нұсқауларды түсіндіру',
+    kk: 'Sahnalyq nūsqaulardy tüsındıru',
     qm: 'Sahne talimatlarını añlamaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const interpretStageDirections_Skill_Data = defineSkill({
       et: 'Muuda kirjalikud lavajuhised sihipärasteks tegevusteks.',
       be: 'Ператварайце пісьмовыя рэмаркі ў мэтанакіраваныя дзеянні.',
       ka: 'გადააქციეთ წერილობითი სასცენო მითითებები მიზანმიმართულ მოქმედებებად.',
-      kk: 'Жазбаша сахналық нұсқауларды мақсатты әрекеттерге айналдырыңыз.',
+      kk: 'Jazbaşa sahnalyq nūsqaulardy maqsatty äreketterge ainaldyryñyz.',
       qm: 'Yazılı sahne talimatlarını maqsatlı areketlerge çeviriñiz.',
     },
   },

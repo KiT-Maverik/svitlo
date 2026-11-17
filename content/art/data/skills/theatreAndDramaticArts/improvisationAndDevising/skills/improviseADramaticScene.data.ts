@@ -31,7 +31,7 @@ export const improviseADramaticScene_Skill_Data = defineSkill({
     et: 'Improvisatsiooniline stseeni esitamine',
     be: 'Імправізаваць драматычную сцэну',
     ka: 'დრამატული სცენის იმპროვიზაცია',
-    kk: 'Драмалық көріністі импровизациялау',
+    kk: 'Dramalyq körınıstı improvizatsiialau',
     qm: 'Dramatik sahneni doğaçlamaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const improviseADramaticScene_Skill_Data = defineSkill({
       et: 'Mõtle stseen välja, reageerides teiste esinejate uutele ideedele.',
       be: 'Прыдумвайце сцэну, рэагуючы на новыя ідэі іншых выканаўцаў.',
       ka: 'შექმენით სცენა იმპროვიზაციით და სხვა მსახიობების ახალ იდეებზე რეაგირებით.',
-      kk: 'Басқа орындаушылардың жаңа идеяларына жауап бере отырып, көріністі импровизациялаңыз.',
+      kk: 'Basqa oryndauşylardyñ jaña ideialaryna jauap bere otyryp, körınıstı improvizatsiialañyz.',
       qm: 'Başqa oyuncılarnıñ yañı fikirlerine cevap berip sahneni doğaçlama qurıñız.',
     },
   },

@@ -31,7 +31,7 @@ export const deviseASceneCollaboratively_Skill_Data = defineSkill({
     et: 'Luua stseen koostöös',
     be: 'Сумесна ствараць сцэну',
     ka: 'სცენის ერთობლივად შექმნა',
-    kk: 'Бірлесіп сахна құрастыру',
+    kk: 'Bırlesıp sahna qūrastyru',
     qm: 'Bir sahneni birlikte yaratmaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const deviseASceneCollaboratively_Skill_Data = defineSkill({
       et: 'Tee teistega koostööd, et kujundada ideed esitatavaks stseeniks.',
       be: 'Працуйце разам з іншымі, каб ператварыць ідэі ў сцэну, якую можна сыграць.',
       ka: 'იმუშავეთ სხვებთან ერთად, რათა იდეები სათამაშო სცენად აქციოთ.',
-      kk: 'Басқалармен бірге идеяларды сахналауға болатын көрініске айналдырыңыз.',
+      kk: 'Basqalarmen bırge ideialardy sahnalauğa bolatyn körınıske ainaldyryñyz.',
       qm: 'Başqaları ile birlikte fikirlerni sahnelenebilir bir sahnege çevirñiz.',
     },
   },

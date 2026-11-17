@@ -31,7 +31,7 @@ export const createDramaticConflict_Skill_Data = defineSkill({
     et: 'Luua dramaatiline konflikt',
     be: 'Ствараць драматычны канфлікт',
     ka: 'დრამატული კონფლიქტის შექმნა',
-    kk: 'Драмалық қақтығыс жасау',
+    kk: 'Dramalyq qaqtyğys jasau',
     qm: 'Dramatik çatışma yaratmaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const createDramaticConflict_Skill_Data = defineSkill({
       et: 'Loo pinge tegelaste vahel, kes soovivad erinevaid asju.',
       be: 'Стварайце напружанне паміж персанажамі з рознымі жаданнямі.',
       ka: 'შექმენით დაძაბულობა პერსონაჟებს შორის, რომლებსაც განსხვავებული სურვილები აქვთ.',
-      kk: 'Әртүрлі нәрсені қалайтын кейіпкерлер арасында шиеленіс тудырыңыз.',
+      kk: 'Ärtürlı närsenı qalaityn keiıpkerler arasynda şielenıs tudyryñyz.',
       qm: 'Farklı maqsatları olğan personajlar arasında çatışma yaratıñız.',
     },
   },

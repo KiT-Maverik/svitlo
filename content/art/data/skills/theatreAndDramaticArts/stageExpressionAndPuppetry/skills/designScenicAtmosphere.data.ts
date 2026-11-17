@@ -31,7 +31,7 @@ export const designScenicAtmosphere_Skill_Data = defineSkill({
     et: 'Kujundada lavakeskkond',
     be: 'Ствараць сцэнічную атмасферу',
     ka: 'სასცენო ატმოსფეროს შექმნა',
-    kk: 'Сахналық атмосфераны жобалау',
+    kk: 'Sahnalyq atmosferany jobalau',
     qm: 'Sahne havasını tasarlamaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const designScenicAtmosphere_Skill_Data = defineSkill({
       et: 'Vali lavadetaile, mis aitavad luua meeleolu ja tegevuspaika.',
       be: 'Выбірайце сцэнічныя дэталі, якія дапамагаюць стварыць настрой і месца дзеяння.',
       ka: 'შეარჩიეთ სცენის დეტალები, რომლებიც განწყობასა და გარემოს ქმნის.',
-      kk: 'Сахнаның көңіл күйі мен ортасын қалыптастыратын бөлшектерді таңдаңыз.',
+      kk: 'Sahnanyñ köñıl küiı men ortasyn qalyptastyratyn bölşekterdı tañdañyz.',
       qm: 'Sahne havasını ve mekânını qurmağa yardım etken tafsilatlarnı saylañız.',
     },
   },

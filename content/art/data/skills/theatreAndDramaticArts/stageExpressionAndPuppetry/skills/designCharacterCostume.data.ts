@@ -31,7 +31,7 @@ export const designCharacterCostume_Skill_Data = defineSkill({
     et: 'Kujundada tegelase kostüüm',
     be: 'Ствараць касцюм персанажа',
     ka: 'პერსონაჟის კოსტიუმის დიზაინი',
-    kk: 'Кейіпкер костюмін жобалау',
+    kk: 'Keiıpker kostiumın jobalau',
     qm: 'Personaj kostümüni tasarlamaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const designCharacterCostume_Skill_Data = defineSkill({
       et: 'Kujunda kostüüm, mis toob esile tegelase rolli või muutumise.',
       be: 'Стварайце адзенне, якое раскрывае ролю або пераўтварэнне персанажа.',
       ka: 'შექმენით ტანსაცმელი, რომელიც პერსონაჟის როლს ან გარდასახვას წარმოაჩენს.',
-      kk: 'Кейіпкердің рөлін не өзгерісін ашатын киім үлгісін жасаңыз.',
+      kk: 'Keiıpkerdıñ rölın ne özgerısın aşatyn kiım ülgısın jasañyz.',
       qm: 'Personajnıñ rolüni ya da deñişimini kösteretken kiyim tasarlañız.',
     },
   },

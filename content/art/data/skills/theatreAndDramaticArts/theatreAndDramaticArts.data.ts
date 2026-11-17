@@ -36,7 +36,7 @@ export const theatreAndDramaticArts_SkillDomain_Data = defineSkillDomain({
     et: 'Teater ja draamakunst',
     be: 'Тэатр і драматычнае мастацтва',
     ka: 'თეატრი და დრამატული ხელოვნება',
-    kk: 'Театр және драмалық өнер',
+    kk: 'Teatr jäne dramalyq öner',
     qm: 'Teatr ve dramatik sanatlar',
   },
   groups: [
@@ -76,7 +76,7 @@ export const theatreAndDramaticArts_SkillDomain_Data = defineSkillDomain({
       et: 'Uuri, kuidas näitlejad, lood, lavastus ja koostöö muudavad teatri elavaks.',
       be: 'Даследуйце, як акцёры, гісторыі, пастаноўка і супраца ажыўляюць тэатр.',
       ka: 'შეისწავლეთ, როგორ აცოცხლებენ მსახიობები, ისტორიები, დადგმა და თანამშრომლობა თეატრს.',
-      kk: 'Актерлер, оқиғалар, сахналау және ынтымақтастық театр қойылымына қалай жан бітіретінін зерттеңіз.',
+      kk: 'Akterler, oqiğalar, sahnalau jäne yntymaqtastyq teatr qoiylymyna qalai jan bıtıretının zertteñız.',
       qm: 'Aktyorlar, hikâyeler, sahnege qoyuv ve işbirligi canlı teatrğa nasıl can bergenini keşf etiñiz.',
     },
   },

@@ -31,7 +31,7 @@ export const developDramaticOffers_Skill_Data = defineSkill({
     et: 'Arendada dramaatilisi ettepanekuid',
     be: 'Развіваць драматычныя прапановы',
     ka: 'დრამატული შეთავაზებების განვითარება',
-    kk: 'Драмалық ұсыныстарды дамыту',
+    kk: 'Dramalyq ūsynystardy damytu',
     qm: 'Dramatik teklifleri geliştirmek',
   },
   description: {
@@ -64,7 +64,7 @@ export const developDramaticOffers_Skill_Data = defineSkill({
       et: 'Arenda teise näitleja ideid, et ühine stseen edasi areneks.',
       be: 'Развівайце ідэі іншага акцёра, каб супольная сцэна працягвалася.',
       ka: 'განავითარეთ სხვა მსახიობის იდეები, რათა ერთობლივი სცენა გაგრძელდეს.',
-      kk: 'Бірлескен көріністі жалғастыру үшін басқа актердің идеяларын дамытыңыз.',
+      kk: 'Bırlesken körınıstı jalğastyru üşın basqa akterdıñ ideialaryn damytyñyz.',
       qm: 'Ortaq sahneni ilerletmek içün başqa oyuncınıñ fikirlerini geliştiriñiz.',
     },
   },

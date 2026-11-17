@@ -38,7 +38,7 @@ export const stageExpressionAndPuppetry_SkillGroup_Data = defineSkillGroup({
     et: 'Lavaline väljendus ja nukuteater',
     be: 'Сцэнічная выразнасць і лялечны тэатр',
     ka: 'სასცენო გამოხატვა და თოჯინების თეატრი',
-    kk: 'Сахналық мәнер және қуыршақ театры',
+    kk: 'Sahnalyq mäner jäne quyrşaq teatry',
     qm: 'Sahne ifadesi ve qurçaq tiyatrosı',
   },
   skills: [
@@ -78,7 +78,7 @@ export const stageExpressionAndPuppetry_SkillGroup_Data = defineSkillGroup({
       et: 'Kasuta lavakujundust, kostüüme, valgust ja nukke, et laval tähendust väljendada.',
       be: 'Выкарыстоўвайце дэкарацыі, касцюмы, святло і лялек, каб перадаваць сэнс на сцэне.',
       ka: 'გამოიყენეთ დეკორაციები, კოსტიუმები, განათება და თოჯინები სცენაზე აზრის გამოსახატავად.',
-      kk: 'Сахнада мағына жеткізу үшін декорацияны, костюмдерді, жарықты және қуыршақтарды пайдаланыңыз.',
+      kk: 'Sahnada mağyna jetkızu üşın dekoratsiiany, kostiumderdı, jaryqty jäne quyrşaqtardy paidalanyñyz.',
       qm: 'Sahnede mana bildirmek içün dekor, kostüm, ışıq ve qurçaqlarnı qullanıñız.',
     },
   },

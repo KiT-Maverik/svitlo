@@ -31,7 +31,7 @@ export const designStageLighting_Skill_Data = defineSkill({
     et: 'Kujundada lavavalgustust',
     be: 'Праектаваць сцэнічнае асвятленне',
     ka: 'სასცენო განათების დიზაინი',
-    kk: 'Сахналық жарықтандыруды жобалау',
+    kk: 'Sahnalyq jaryqtandyrudy jobalau',
     qm: 'Sahne ışıqlandırmasını tasarlamaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const designStageLighting_Skill_Data = defineSkill({
       et: 'Kasuta lavavalgustust tähelepanu suunamiseks ja õhustiku loomiseks.',
       be: 'Выкарыстоўвайце сцэнічнае асвятленне, каб накіроўваць увагу і ствараць атмасферу.',
       ka: 'გამოიყენეთ სასცენო განათება ყურადღების მისაქცევად და ატმოსფეროს შესაქმნელად.',
-      kk: 'Көрермен назарын бағыттап, атмосфера қалыптастыру үшін сахна жарығын пайдаланыңыз.',
+      kk: 'Körermen nazaryn bağyttap, atmosfera qalyptastyru üşın sahna jaryğyn paidalanyñyz.',
       qm: 'Dikkatni yöneltmek ve hava yaratmaq içün sahne ışığını qullanıñız.',
     },
   },

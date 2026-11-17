@@ -31,7 +31,7 @@ export const directAScene_Skill_Data = defineSkill({
     et: 'Lavastada stseeni',
     be: 'Рэжысіраваць сцэну',
     ka: 'სცენის დადგმა',
-    kk: 'Сахнаны қою',
+    kk: 'Sahnany qoiu',
     qm: 'Bir sahneni rejissurlamaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const directAScene_Skill_Data = defineSkill({
       et: 'Suuna esinejate valikuid ühise dramaatilise idee edastamiseks.',
       be: 'Накіроўвайце выбар выканаўцаў, каб перадаць агульную драматычную задуму.',
       ka: 'უხელმძღვანელეთ მსახიობთა არჩევანს საერთო დრამატული ჩანაფიქრის გადმოსაცემად.',
-      kk: 'Ортақ драмалық ойды жеткізу үшін орындаушылардың шешімдеріне бағыт беріңіз.',
+      kk: 'Ortaq dramalyq oidy jetkızu üşın oryndauşylardyñ şeşımderıne bağyt berıñız.',
       qm: 'Ortaq dramatik niyetni bildirmek içün oyuncılarnıñ seçimlerine yol kösteriñiz.',
     },
   },
