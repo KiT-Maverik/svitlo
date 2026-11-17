@@ -102,7 +102,7 @@ Place a stable section in each Lesson PR (preserving existing unrelated body), f
 - [ ] Independent Content/Experience/Compliance evidence current
 - [ ] Actual Scenes, media, offline/a11y behavior verified
 - [ ] No `TODO(asset)` or reserved Nil UUID filenames remain anywhere in this Lesson's typed source, including Question/Flashcard banks; every required physical media file, poster, subtitle/transcript and Scene is implemented and verified
-- [ ] Production-mode Lesson, Question and Flashcard generated Props are built/staged for the complete required locale scope; verify actual `package:build` output and manifest rather than relying on successful scaffolding or `--draft`
+- [ ] Production-mode Lesson, Question and Flashcard generated Props are built/staged for the complete required locale scope; verify actual `package:build` output and manifest **and ensure every Quiz/Flashcards Section candidate UUID resolves to a real published bank resource** rather than relying on successful scaffolding or `--draft`
 - [ ] Full target locale coverage and independent reviews verified
 - [ ] No tracked temporary review artifacts
 - [ ] Scoped tests, typecheck, build, formatting and mandatory CI green
