@@ -71,7 +71,6 @@ export const flashcardDisabilities_Schema = z.array(disability_Schema).refine(
 );
 
 export const flashcard_Config_Schema = identityBase_Schema.extend({
-  type: z.literal('flashcard'),
   parameters: paramsBase_Schema.shape.params.extend({
     tags: z.array(z.string()),
     disabilities: flashcardDisabilities_Schema.optional(),
