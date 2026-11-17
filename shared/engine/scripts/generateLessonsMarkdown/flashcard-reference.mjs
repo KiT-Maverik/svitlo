@@ -17,7 +17,10 @@ const extensions = {
 const mediaTypes = {
   image: [['src', 'images', 'image']],
   audio: [['fileLocation', 'audio', 'audio']],
-  video: [['fileLocation', 'video', 'video'], ['poster', 'images', 'poster image']],
+  video: [
+    ['fileLocation', 'video', 'video'],
+    ['poster', 'images', 'poster image'],
+  ],
   subtitles: [['fileLocation', 'subtitles', 'subtitles']],
   youtube: [['href', null, 'external video']],
 };
@@ -35,8 +38,7 @@ const code = value => {
   return fence + (text.includes(tick) ? ' ' : '') + text + (text.includes(tick) ? ' ' : '') + fence;
 };
 const sourceLink = (sha, relative) =>
-  'https://github.com/KiT-Maverik/svitlo/blob/' +
-  sha + '/' + relative.split('/').map(encodeURIComponent).join('/');
+  'https://github.com/KiT-Maverik/svitlo/blob/' + sha + '/' + relative.split('/').map(encodeURIComponent).join('/');
 
 function readSourceFile(root, relative, maxBytes = 65536) {
   if (typeof relative !== 'string' || relative.startsWith('/') || relative.split('/').includes('..')) {
@@ -86,25 +88,38 @@ function parseReference(value, kind, book, root, verifyAtSha) {
   let cursor = path.resolve(root);
   for (const component of relative.split('/')) {
     cursor = path.join(cursor, component);
-    if (!fs.existsSync(cursor)) { exists = false; break; }
+    if (!fs.existsSync(cursor)) {
+      exists = false;
+      break;
+    }
     if (fs.lstatSync(cursor).isSymbolicLink()) throw new Error('Symlinked referenced media: ' + relative);
   }
   if (exists) exists = fs.statSync(actual).isFile();
   const unresolved = match[1] === '00000000-0000-0000-0000-000000000000';
   const committed = !unresolved && typeof verifyAtSha === 'function' && verifyAtSha(relative);
-  const status = unresolved ? 'Unresolved scaffold filename; not a produced resource'
-    : exists && committed ? 'File on disk and present at source SHA'
-    : exists ? 'File on disk; not confirmed at source SHA'
-    : committed ? 'Present at source SHA, unavailable in working tree'
-    : 'Referenced file missing or uncommitted';
+  const status = unresolved
+    ? 'Unresolved scaffold filename; not a produced resource'
+    : exists && committed
+      ? 'File on disk and present at source SHA'
+      : exists
+        ? 'File on disk; not confirmed at source SHA'
+        : committed
+          ? 'Present at source SHA, unavailable in working tree'
+          : 'Referenced file missing or uncommitted';
   return { status, relative, name, uuid: match[1], exists, committed };
 }
 
 function learningContext(block) {
   if (!isObject(block)) return '';
-  const text = block.type === 'code'
-    ? block.params?.codeAsText
-    : block.locale?.value ?? block.locale?.description ?? block.locale?.caption ?? block.locale?.alt ?? block.locale?.title ?? block.locale?.label;
+  const text =
+    block.type === 'code'
+      ? block.params?.codeAsText
+      : (block.locale?.value ??
+        block.locale?.description ??
+        block.locale?.caption ??
+        block.locale?.alt ??
+        block.locale?.title ??
+        block.locale?.label);
   if (typeof text !== 'string') return '';
   return text.replace(/\s+/g, ' ').trim().slice(0, 220);
 }
@@ -117,7 +132,15 @@ function documentBlock(lines, label, content) {
 
 /** Render only additional evidence useful to Question/Flashcard designers. */
 export function renderFlashcardReference({
-  lesson, locale, packagePath, sourceFiles, sourceRef, root, lessonDirectory, sourceBranch, verifyAtSha,
+  lesson,
+  locale,
+  packagePath,
+  sourceFiles,
+  sourceRef,
+  root,
+  lessonDirectory,
+  sourceBranch,
+  verifyAtSha,
 }) {
   if (!/^[0-9a-f]{40}$/.test(sourceRef)) throw new Error('Flashcard reference requires an exact Git source SHA');
   if (!isObject(lesson) || !Array.isArray(lesson.section)) throw new Error('Missing built Lesson sections');
@@ -144,10 +167,21 @@ export function renderFlashcardReference({
   const methodologyPath = lessonRoot + '/methodology.md';
   const methodology = readSourceFile(root, methodologyPath);
   if (methodology === null) {
-    lines.push('No canonical ' + code('methodology.md') + ' exists in this Lesson directory. Objectives, prerequisites and review approval cannot be inferred.', '');
+    lines.push(
+      'No canonical ' +
+        code('methodology.md') +
+        ' exists in this Lesson directory. Objectives, prerequisites and review approval cannot be inferred.',
+      '',
+    );
   } else {
-    lines.push('Verbatim canonical methodology (' + '[source](' + sourceLink(sourceRef, methodologyPath) + ')'
-      + '); its presence does not certify approval:', '');
+    lines.push(
+      'Verbatim canonical methodology (' +
+        '[source](' +
+        sourceLink(sourceRef, methodologyPath) +
+        ')' +
+        '); its presence does not certify approval:',
+      '',
+    );
     documentBlock(lines, '', methodology);
   }
   lines.push(
@@ -168,7 +202,10 @@ export function renderFlashcardReference({
         throw new Error('Malformed referenced ContentBlock in Section ' + section.slug);
       const owner = ancestry.length ? ancestry.join(' / ') + ' / ' + block.slug : block.slug;
       const before = siblings.slice(0, index).reverse().map(learningContext).find(Boolean);
-      const after = siblings.slice(index + 1).map(learningContext).find(Boolean);
+      const after = siblings
+        .slice(index + 1)
+        .map(learningContext)
+        .find(Boolean);
       const fields = mediaTypes[block.type] ?? [];
       const blockSource = sourceForBlock(block, sourceFiles);
       const specPath = blockSource ? path.posix.join(path.posix.dirname(blockSource), 'specification.md') : null;
@@ -189,7 +226,8 @@ export function renderFlashcardReference({
         lines.push(
           '- Section: ' + code(section.slug) + ' (' + code(section.id) + ')',
           '- Owning block: ' + code(block.slug) + ' (' + code(block.id) + '), type ' + code(block.type),
-          '- Block source: ' + (blockSource ? '[source](' + sourceLink(sourceRef, blockSource) + ')' : 'not located in Lesson TS sources'),
+          '- Block source: ' +
+            (blockSource ? '[source](' + sourceLink(sourceRef, blockSource) + ')' : 'not located in Lesson TS sources'),
           '- Resolved locale: ' + code(locale) + '; field: ' + code('locale.' + field),
           '- Reference status: ' + clean(resource.status),
         );
@@ -197,9 +235,10 @@ export function renderFlashcardReference({
           lines.push(
             '- **Media resource UUID (not the block UUID):** ' + code(resource.uuid),
             '- Resource filename: ' + code(resource.name),
-            '- Repository media path: ' + (resource.committed
-              ? '[file](' + sourceLink(sourceRef, resource.relative) + ')'
-              : code(resource.relative) + ' (not verified at source SHA)'),
+            '- Repository media path: ' +
+              (resource.committed
+                ? '[file](' + sourceLink(sourceRef, resource.relative) + ')'
+                : code(resource.relative) + ' (not verified at source SHA)'),
           );
         } else if (resource.remote) {
           lines.push('- Authored external reference: ' + code(resource.remote));
@@ -212,20 +251,34 @@ export function renderFlashcardReference({
           '- Following instructional context: ' + (after ? clean(after) : 'not authored as nearby text'),
         );
         for (const item of authored) lines.push('- Authored ' + item);
-        if (spec !== null) lines.push('- Media production specification: [source](' + sourceLink(sourceRef, specPath) + ')');
-        lines.push('- Active-recall stimulus: ' + (authored.length || spec !== null
-          ? 'candidate only, supported by authored metadata/specification; human review required'
-          : 'undetermined; no semantic description was authored'), '');
+        if (spec !== null)
+          lines.push('- Media production specification: [source](' + sourceLink(sourceRef, specPath) + ')');
+        lines.push(
+          '- Active-recall stimulus: ' +
+            (authored.length || spec !== null
+              ? 'candidate only, supported by authored metadata/specification; human review required'
+              : 'undetermined; no semantic description was authored'),
+          '',
+        );
         if (spec !== null) documentBlock(lines, 'Referenced production specification:', spec);
       }
       if (block.type === 'scene') {
         // A Scene is a code-driven interaction, not an inferred physical media file.
-        lines.push('#### Scene source — ' + clean(owner), '',
+        lines.push(
+          '#### Scene source — ' + clean(owner),
+          '',
           '- Scene block UUID: ' + code(block.id),
           '- Source: ' + (blockSource ? '[source](' + sourceLink(sourceRef, blockSource) + ')' : 'not located'),
           '- Source locale: ' + code(locale),
-          '- Embedded Scene media: not inferred from opaque Scene Props; inspect the actual Scene implementation.', '');
-        if (spec !== null) documentBlock(lines, 'Referenced Scene specification: [source](' + sourceLink(sourceRef, specPath) + ')', spec);
+          '- Embedded Scene media: not inferred from opaque Scene Props; inspect the actual Scene implementation.',
+          '',
+        );
+        if (spec !== null)
+          documentBlock(
+            lines,
+            'Referenced Scene specification: [source](' + sourceLink(sourceRef, specPath) + ')',
+            spec,
+          );
       }
       if (block.type === 'carousel') {
         const slides = block.locale?.slides;
@@ -246,7 +299,9 @@ export function renderFlashcardReference({
   }
   if (occurrences === 0) lines.push('No directly referenced media found in this Lesson locale.', '');
   const completeness = missingMedia
-    ? 'incomplete media evidence (' + missingMedia + ' missing/unverified reference(s)); full instructional text remains above'
+    ? 'incomplete media evidence (' +
+      missingMedia +
+      ' missing/unverified reference(s)); full instructional text remains above'
     : 'all listed local media verified at SHA; external source availability not checked';
   lines[11] = '- **Reference completeness:** ' + completeness;
   lines.push(
@@ -256,15 +311,24 @@ export function renderFlashcardReference({
     '',
   );
   for (const section of lesson.section) {
-    const ids = section.type === 'quiz'
-      ? section.params?.selection?.questionIds
-      : section.type === 'flashcards' ? section.params?.selection?.flashcardIds : null;
+    const ids =
+      section.type === 'quiz'
+        ? section.params?.selection?.questionIds
+        : section.type === 'flashcards'
+          ? section.params?.selection?.flashcardIds
+          : null;
     if (ids) {
       if (!Array.isArray(ids) || !ids.every(id => typeof id === 'string'))
         throw new Error('Invalid assessment selection in Section ' + section.slug);
       lines.push(
-        '- ' + clean(section.type) + ' Section ' + code(section.slug) + ' (' + code(section.id) + '): '
-          + ids.map(code).join(', '),
+        '- ' +
+          clean(section.type) +
+          ' Section ' +
+          code(section.slug) +
+          ' (' +
+          code(section.id) +
+          '): ' +
+          ids.map(code).join(', '),
       );
     }
   }

@@ -183,7 +183,8 @@ export async function generate(options, { root = repositoryRoot, loader = loadLe
       if (sourceRef === 'main') throw new Error('Flashcard references require an actual Git revision SHA');
       const relativeLesson = path.relative(root, item.directory);
       const dirty = spawnSync('git', ['status', '--porcelain', '--untracked-files=all', '--', relativeLesson], {
-        cwd: root, encoding: 'utf8',
+        cwd: root,
+        encoding: 'utf8',
       });
       if (dirty.status !== 0 || dirty.stdout.trim())
         throw new Error('Lesson sources have uncommitted changes; flashcard provenance must be SHA-pinned');
@@ -205,29 +206,34 @@ export async function generate(options, { root = repositoryRoot, loader = loadLe
     });
     if (options.purpose === 'flashcards') {
       const branch = spawnSync('git', ['symbolic-ref', '--quiet', '--short', 'HEAD'], {
-        cwd: root, encoding: 'utf8',
+        cwd: root,
+        encoding: 'utf8',
       });
       const verifiedMedia = new Map();
       const verifyAtSha = relative => {
         if (!verifiedMedia.has(relative)) {
           const tracked = spawnSync('git', ['cat-file', '-e', sourceRef + ':' + relative], {
-            cwd: root, encoding: 'utf8', timeout: 5000,
+            cwd: root,
+            encoding: 'utf8',
+            timeout: 5000,
           });
           verifiedMedia.set(relative, tracked.status === 0);
         }
         return verifiedMedia.get(relative);
       };
-      markdown += '\n' + renderFlashcardReference({
-        lesson: resolved,
-        locale: options.locale,
-        packagePath: options.package,
-        sourceFiles: sources,
-        sourceRef,
-        sourceBranch: branch.status === 0 ? branch.stdout.trim() : null,
-        root,
-        lessonDirectory: item.directory,
-        verifyAtSha,
-      });
+      markdown +=
+        '\n' +
+        renderFlashcardReference({
+          lesson: resolved,
+          locale: options.locale,
+          packagePath: options.package,
+          sourceFiles: sources,
+          sourceRef,
+          sourceBranch: branch.status === 0 ? branch.stdout.trim() : null,
+          root,
+          lessonDirectory: item.directory,
+          verifyAtSha,
+        });
       if (Buffer.byteLength(markdown, 'utf8') > 2 * 1024 * 1024)
         throw new Error('Flashcard Lesson Markdown exceeds the maximum output size');
     }

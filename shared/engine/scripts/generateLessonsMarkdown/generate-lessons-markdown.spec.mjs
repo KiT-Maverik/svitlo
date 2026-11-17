@@ -352,7 +352,6 @@ it('requires an exact Lesson UUID for read-only language inventory', () => {
   );
 });
 
-
 describe('Opt-in flashcard reference (independent of the existing review consumer)', () => {
   const sha = 'a'.repeat(40);
   const imgId = '10101010-1010-4010-8010-101010101010';
@@ -362,7 +361,17 @@ describe('Opt-in flashcard reference (independent of the existing review consume
 
   it('recognizes explicit CLI mode and refuses ambiguous or non-lesson invocations', () => {
     assert.equal(
-      parseArguments(['--package', packagePath, '--lesson', lessonId, '--locale', 'uk', '--purpose', 'flashcards', '--stdout']).purpose,
+      parseArguments([
+        '--package',
+        packagePath,
+        '--lesson',
+        lessonId,
+        '--locale',
+        'uk',
+        '--purpose',
+        'flashcards',
+        '--stdout',
+      ]).purpose,
       'flashcards',
     );
     assert.throws(
@@ -370,25 +379,47 @@ describe('Opt-in flashcard reference (independent of the existing review consume
       /requires exactly one --lesson/,
     );
     assert.throws(
-      () => parseArguments(['--package', packagePath, '--lesson', lessonId, '--list-locales', '--purpose', 'flashcards']),
+      () =>
+        parseArguments(['--package', packagePath, '--lesson', lessonId, '--list-locales', '--purpose', 'flashcards']),
       /Usage|requires exactly one/,
     );
     assert.throws(
-      () => parseArguments(['--package', packagePath, '--lesson', lessonId, '--locale', 'uk', '--stdout', '--purpose', 'unknown']),
+      () =>
+        parseArguments([
+          '--package',
+          packagePath,
+          '--lesson',
+          lessonId,
+          '--locale',
+          'uk',
+          '--stdout',
+          '--purpose',
+          'unknown',
+        ]),
       /requires exactly one/,
     );
   });
 
   it('keeps regular Markdown unchanged while opt-in mode includes Quiz and Flashcard Section details', () => {
     const lesson = fixture('uk');
-    lesson.section[1].content = [{
-      id: 'quiz-intro', slug: 'quizIntro', type: 'text',
-      params: {}, locale: { value: 'Read before the quiz.' },
-    }];
+    lesson.section[1].content = [
+      {
+        id: 'quiz-intro',
+        slug: 'quizIntro',
+        type: 'text',
+        params: {},
+        locale: { value: 'Read before the quiz.' },
+      },
+    ];
     lesson.section.push({
-      id: 'cards-id', slug: 'flashcards', type: 'flashcards', params: {
+      id: 'cards-id',
+      slug: 'flashcards',
+      type: 'flashcards',
+      params: {
         selection: { flashcardIds: ['00000000-0000-4000-8000-000000000002'] },
-      }, locale: { title: 'Flashcards', navigationLabel: 'Cards' }, content: [],
+      },
+      locale: { title: 'Flashcards', navigationLabel: 'Cards' },
+      content: [],
     });
     const args = { lesson, locale: 'uk', languages: ['en', 'uk'], packagePath };
     const regular = renderLessonMarkdown(args);
@@ -415,7 +446,10 @@ describe('Opt-in flashcard reference (independent of the existing review consume
       const authoredBlock = path.join(tmp.lessonDir, 'sections/theory/narration');
       fs.mkdirSync(authoredBlock, { recursive: true });
       fs.writeFileSync(path.join(authoredBlock, 'index.ts'), "export const narration = { id: 'audio-id' };\n");
-      fs.writeFileSync(path.join(authoredBlock, 'specification.md'), 'A narrated demonstration of light. Human-authored production note.\n');
+      fs.writeFileSync(
+        path.join(authoredBlock, 'specification.md'),
+        'A narrated demonstration of light. Human-authored production note.\n',
+      );
       const lesson = fixture('uk');
       const audio = lesson.section[0].content.find(block => block.type === 'audio');
       audio.locale.fileLocation = audioId + '.ogg';
@@ -425,26 +459,43 @@ describe('Opt-in flashcard reference (independent of the existing review consume
       const video = lesson.section[0].content.find(block => block.type === 'video');
       video.locale.fileLocation = videoId + '.mp4';
       const carousel = lesson.section[0].content.find(block => block.type === 'carousel');
-      carousel.locale.slides = [{
-        id: 'carousel-image-id', slug: 'recallPicture', type: 'image', params: {},
-        locale: { src: imgId + '.png', alt: 'Repeated physical image in another role' },
-      }];
+      carousel.locale.slides = [
+        {
+          id: 'carousel-image-id',
+          slug: 'recallPicture',
+          type: 'image',
+          params: {},
+          locale: { src: imgId + '.png', alt: 'Repeated physical image in another role' },
+        },
+      ];
       const subtitles = {
-        id: 'subtitle-block', slug: 'captions', type: 'subtitles',
-        params: {}, locale: { fileLocation: 'https://example.org/captions.vtt' },
+        id: 'subtitle-block',
+        slug: 'captions',
+        type: 'subtitles',
+        params: {},
+        locale: { fileLocation: 'https://example.org/captions.vtt' },
       };
       const checkpoint = lesson.section[0].content.find(block => block.type === 'checkpoint');
       const item = checkpoint.content[0];
       Object.assign(item, { type: 'checkpointItem', id: 'checkpoint-item-id', slug: 'checkpointItem' });
       item.answer.push({
-        id: 'checkpoint-audio-id', slug: 'listenAgain', type: 'audio', params: {},
+        id: 'checkpoint-audio-id',
+        slug: 'listenAgain',
+        type: 'audio',
+        params: {},
         locale: { fileLocation: audioId + '.ogg', title: 'Listen and recall' },
       });
       lesson.section[0].content.push(subtitles);
       const sources = sourceIndex(tmp.root, path.relative(tmp.root, tmp.lessonDir));
       const props = {
-        lesson, locale: 'uk', packagePath, root: tmp.root, lessonDirectory: tmp.lessonDir,
-        sourceRef: sha, sourceBranch: 'tooling/lesson-markdown-flashcard-reference', sourceFiles: sources,
+        lesson,
+        locale: 'uk',
+        packagePath,
+        root: tmp.root,
+        lessonDirectory: tmp.lessonDir,
+        sourceRef: sha,
+        sourceBranch: 'tooling/lesson-markdown-flashcard-reference',
+        sourceFiles: sources,
         verifyAtSha: relative => relative.endsWith(audioId + '.ogg') || relative.endsWith(imgId + '.png'),
       };
       const output = renderFlashcardReference(props);
@@ -484,8 +535,13 @@ describe('Opt-in flashcard reference (independent of the existing review consume
       img.locale.src = imgId + '.png';
       const src = sourceIndex(tmp.root, path.relative(tmp.root, tmp.lessonDir));
       const args = {
-        lesson, locale: 'uk', packagePath, root: tmp.root, lessonDirectory: tmp.lessonDir,
-        sourceFiles: src, sourceRef: sha,
+        lesson,
+        locale: 'uk',
+        packagePath,
+        root: tmp.root,
+        lessonDirectory: tmp.lessonDir,
+        sourceFiles: src,
+        sourceRef: sha,
       };
       assert.throws(() => renderFlashcardReference({ ...args, sourceRef: 'main' }), /exact Git source SHA/);
       const asset = path.join(tmp.root, 'content/engine-fixture/assets/images', imgId + '.png');
@@ -505,10 +561,7 @@ describe('Opt-in flashcard reference (independent of the existing review consume
     try {
       const opts = { package: packagePath, lesson: lessonId, locale: 'uk', stdout: true, purpose: 'flashcards' };
       const lesson = await loadLesson(lessonEntry, textbook);
-      await assert.rejects(
-        generate(opts, { root: tmp.root, loader: async () => lesson }),
-        /actual Git revision SHA/,
-      );
+      await assert.rejects(generate(opts, { root: tmp.root, loader: async () => lesson }), /actual Git revision SHA/);
     } finally {
       tmp.cleanup();
     }

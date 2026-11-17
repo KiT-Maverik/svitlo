@@ -106,7 +106,15 @@ export function sourceIndex(repositoryRoot, lessonRelativePath) {
   };
 }
 
-export function renderLessonMarkdown({ lesson, locale, languages, packagePath, sourceFiles, sourceRef = 'main', purpose = 'review' }) {
+export function renderLessonMarkdown({
+  lesson,
+  locale,
+  languages,
+  packagePath,
+  sourceFiles,
+  sourceRef = 'main',
+  purpose = 'review',
+}) {
   const record = value => value !== null && typeof value === 'object' && !Array.isArray(value);
   const escape = value =>
     String(value)
@@ -275,7 +283,9 @@ export function renderLessonMarkdown({ lesson, locale, languages, packagePath, s
   }
   add('## Assessment resources');
   add('');
-  add('Question and Flashcard contents are published and reviewed independently; Section UUID selections appear above.');
+  add(
+    'Question and Flashcard contents are published and reviewed independently; Section UUID selections appear above.',
+  );
   add('');
   return lines.join('\n').trimEnd() + '\n';
 }
