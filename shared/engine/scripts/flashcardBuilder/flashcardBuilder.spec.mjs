@@ -54,6 +54,20 @@ test('renders deterministic Engine-shaped Flashcard calls and mirrors canonical 
   assert.equal(bank.flashcards.items.first.parameters.relationships, undefined, 'input is never mutated');
 });
 
+test('reserved-word slugs stay valid map keys but never become JavaScript declaration names', () => {
+  const bank = createBank();
+  const reserved = bank.flashcards.items.first;
+  delete bank.flashcards.items.first;
+  reserved.slug = 'default';
+  bank.flashcards.items.default = reserved;
+  bank.flashcards.order[0] = 'default';
+  bank.relationships.items.reversePair.source = 'default';
+  const source = renderFlashcardBank(bank);
+  assert.match(source, /"default": flashcard_0/);
+  assert.doesNotMatch(source, /const default =/);
+  assert.deepEqual(ts.createSourceFile('flashcards/index.ts', source, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS).parseDiagnostics, []);
+});
+
 test('rejects invalid IDs, unapproved metadata and stale or ambiguous relationship edges', () => {
   const bad = createBank();
   bad.flashcards.items.first.slug = 'wrong';
@@ -74,6 +88,12 @@ test('rejects invalid IDs, unapproved metadata and stale or ambiguous relationsh
   duplicate.relationships.items.duplicate = { relationshipId: 'second', type: 'reverse', source: 'second', target: 'first' };
   duplicate.relationships.order.push('duplicate');
   assert.throws(() => renderFlashcardBank(duplicate), /duplicate Flashcard relationship/);
+  const identityConflict = createBank();
+  identityConflict.relationships.items.secondLink = {
+    relationshipId: 'reverse-pair', type: 'contrast', source: 'first', target: 'second',
+  };
+  identityConflict.relationships.order.push('secondLink');
+  assert.throws(() => renderFlashcardBank(identityConflict), /duplicate Flashcard relationship ID/);
   const unsupported = createBank();
   unsupported.flashcards.items.first.content.front.items.front.type = 'image';
   assert.throws(() => renderFlashcardBank(unsupported), /invalid|Invalid|code|type|Required/i);
