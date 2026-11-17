@@ -42,6 +42,8 @@ jobs:
       - run: npm ci
       - name: Test final resource readiness gate
         run: node --test scripts/ci/verifyProductionAssets/verify-production-assets.spec.mjs
+      - name: Test Course Episode media draft handoff
+        run: node --test shared/engine/scripts/courseBuilder/courseBuilder.spec.mjs
       - name: Refuse unfinished Lesson, bank and Episode resources on review-ready PRs
         if: github.event_name == 'pull_request' && !github.event.pull_request.draft
         env:
