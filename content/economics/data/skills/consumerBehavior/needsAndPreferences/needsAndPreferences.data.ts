@@ -39,7 +39,7 @@ export const needsAndPreferences_SkillGroup_Data = defineSkillGroup({
     et: 'Vajadused ja eelistused',
     be: 'Патрэбы й упадабаньні',
     ka: 'საჭიროებები და პრეფერენციები',
-    kk: 'Қажеттіліктер мен талғамдар',
+    kk: 'Qajettılıkter men talğamdar',
     qm: 'İhtiyaclar ve tercihler',
   },
   skills: [
@@ -80,7 +80,7 @@ export const needsAndPreferences_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri, miks inimesed hindavad tooteid ja kogemusi erinevalt.',
       be: 'Дасьледуй, чаму розныя людзі па-рознаму цэняць тавары й уражаньні.',
       ka: 'გაიგე, რატომ აფასებენ ადამიანები პროდუქტებსა და გამოცდილებას სხვადასხვანაირად.',
-      kk: 'Адамдардың тауарлар мен тәжірибені неге әртүрлі бағалайтынын зертте.',
+      kk: 'Adamdardyñ tauarlar men täjırıbelerge nege ärtürlı bağa beretının zertte.',
       qm: 'Farqlı insanlar mallar ve tecribelerge ne içün farqlı qıymet bergenini ögren.',
     },
   },

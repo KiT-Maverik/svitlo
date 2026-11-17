@@ -35,7 +35,7 @@ export const consumerBehavior_SkillDomain_Data = defineSkillDomain({
     et: 'Tarbijakäitumine',
     be: 'Паводзіны спажыўцоў',
     ka: 'მომხმარებლის ქცევა',
-    kk: 'Тұтынушы мінез-құлқы',
+    kk: 'Tūtynuşy mınez-qūlqy',
     qm: 'İstimalciniñ areketi',
   },
   groups: [
@@ -74,7 +74,7 @@ export const consumerBehavior_SkillDomain_Data = defineSkillDomain({
       et: 'Uuri, kuidas inimesed otsustavad, mida osta, ja milline teave nende otsuseid mõjutab.',
       be: 'Дасьледуй, як людзі выбіраюць пакупкі і якія зьвесткі ўплываюць на іх рашэньні.',
       ka: 'გაიგე, როგორ არჩევენ ადამიანები, რა იყიდონ, და რა ინფორმაცია მოქმედებს მათ გადაწყვეტილებებზე.',
-      kk: 'Адамдар нені сатып алуды қалай таңдайтынын және қандай ақпарат әсер ететінін зертте.',
+      kk: 'Adamdardyñ nenı satyp aludy qalai tañdaitynyn jäne olardyñ şeşımıne qandai aqparat äser etetının zertte.',
       qm: 'İnsanlar ne satın almaqnı nasıl saylağanını ve hangi malümat qararlarına tesir etkenini ögren.',
     },
   },

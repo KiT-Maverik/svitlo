@@ -38,7 +38,7 @@ export const behavioralFactorsInChoice_SkillGroup_Data = defineSkillGroup({
     et: 'Käitumuslikud valikutegurid',
     be: 'Паводзінныя чыньнікі выбару',
     ka: 'ქცევითი ფაქტორები არჩევანში',
-    kk: 'Таңдаудың мінез-құлық факторлары',
+    kk: 'Tañdaudyñ mınez-qūlyq faktorlary',
     qm: 'Saylavda areketniñ sebepleri',
   },
   skills: [
@@ -78,7 +78,7 @@ export const behavioralFactorsInChoice_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri, kuidas valikute esitamise viis mõjutab otsuseid.',
       be: 'Даведайся, як спосаб падачы варыянтаў уплывае на рашэньні.',
       ka: 'გაიგე, როგორ მოქმედებს ვარიანტების წარდგენა გადაწყვეტილებებზე.',
-      kk: 'Нұсқаларды көрсету тәсілі шешімге қалай әсер ететінін біл.',
+      kk: 'Nūsqalardy ūsynu täsılı şeşımge qalai äser etetının bıl.',
       qm: 'Saylavlarnıñ nasıl kösterilüvi qararlarğa nasıl tesir etkenini ögren.',
     },
   },

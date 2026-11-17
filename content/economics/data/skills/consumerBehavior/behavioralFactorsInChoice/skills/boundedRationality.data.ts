@@ -31,7 +31,7 @@ export const boundedRationality_Skill_Data = defineSkill({
     et: 'Piiratud ratsionaalsus',
     be: 'Абмежаваная рацыянальнасьць',
     ka: 'შეზღუდული რაციონალურობა',
-    kk: 'Шектеулі ұтымдылық',
+    kk: 'Şekteulı ūtymdylyq',
     qm: 'Sınırlı aqılcılıq',
   },
   description: {
@@ -65,7 +65,7 @@ export const boundedRationality_Skill_Data = defineSkill({
       et: 'Märka, miks inimesed kasutavad sageli lihtsustusi, mitte ei võrdle kõiki võimalusi.',
       be: 'Заўважай, чаму людзі часта спрашчаюць выбар замест параўнаньня ўсіх варыянтаў.',
       ka: 'ნახე, რატომ იყენებენ ადამიანები შემოკლებულ გზებს ყველა ვარიანტის შედარების ნაცვლად.',
-      kk: 'Адамдар неге барлық нұсқаны салыстырмай, оңай жол іздейтінін түсін.',
+      kk: 'Adamdardyñ nege barlyq nūsqany salystyrudyñ ornyna jeñıl jol izdeitının tüsın.',
       qm: 'İnsanlar er saylavnı qıyaslamaq yerine ne içün qısqa yollar qullanğanını gör.',
     },
   },

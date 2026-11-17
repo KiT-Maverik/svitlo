@@ -38,7 +38,7 @@ export const consumerInformationAndRights_SkillGroup_Data = defineSkillGroup({
     et: 'Tarbijateave ja -õigused',
     be: 'Інфармацыя і правы спажыўца',
     ka: 'მომხმარებლის ინფორმაცია და უფლებები',
-    kk: 'Тұтынушы ақпараты мен құқықтары',
+    kk: 'Tūtynuşy aqparaty men qūqyqtary',
     qm: 'İstimalci malümatı ve aqları',
   },
   skills: [
@@ -78,7 +78,7 @@ export const consumerInformationAndRights_SkillGroup_Data = defineSkillGroup({
       et: 'Õpi, kuidas teave ja tarbija õigused ostuotsuseid mõjutavad.',
       be: 'Даведайся, як зьвесткі й правы спажыўцоў уплываюць на пакупкі.',
       ka: 'ისწავლე, როგორ მოქმედებს ინფორმაცია და მომხმარებლის უფლებები შესყიდვაზე.',
-      kk: 'Ақпарат пен тұтынушы құқықтары сатып алу шешіміне қалай әсер ететінін біл.',
+      kk: 'Aqparat pen tūtynuşy qūqyqtary satyp alu turaly şeşımge qalai äser etetının bıl.',
       qm: 'Malümat ve istimalci aqları satın aluv qararlarına nasıl tesir etkenini ögren.',
     },
   },
