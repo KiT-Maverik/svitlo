@@ -84,7 +84,11 @@ export function EngineFlashcardsRenderer({
       </Stack>
     );
   if (!current.cards.length)
-    return <Typography role="alert">{messages.learningLayout.preparingLessonError}</Typography>;
+    return (
+      <Typography role="alert">
+        {accessNeeds.length ? messages.flashcard.flashcard.noCompatibleCards : messages.learningLayout.preparingLessonError}
+      </Typography>
+    );
   return (
     <ResolvedFlashcards
       key={identity}
