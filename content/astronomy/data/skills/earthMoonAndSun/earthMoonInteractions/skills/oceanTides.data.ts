@@ -31,7 +31,7 @@ export const oceanTides_Skill_Data = defineSkill({
     et: 'Ookeani tõus ja mõõn',
     be: 'Акіянскія прылівы і адлівы',
     ka: 'ოკეანის მოქცევა და მიქცევა',
-    kk: 'Мұхиттағы толысу мен қайту',
+    kk: 'Mūhittağy tolysu men qaitu',
     qm: 'Okeanlarda med ve cezir',
   },
   description: {
@@ -65,7 +65,7 @@ export const oceanTides_Skill_Data = defineSkill({
       et: 'Mõista, kuidas Kuu ja Päike aitavad kaasa ookeani tõusu ja mõõna tekkimisele.',
       be: 'Зразумейце, як Месяц і Сонца спрычыняюць акіянскія прылівы і адлівы.',
       ka: 'გაიგეთ, როგორ უწყობენ ხელს მთვარე და მზე ოკეანეში მოქცევისა და მიქცევის წარმოქმნას.',
-      kk: 'Ай мен Күннің мұхиттағы толысу мен қайту құбылысына қалай ықпал ететінін түсініңіз.',
+      kk: 'Ai men Künnıñ mūhittağy tolysu men qaitu qūbylysyna qalai yqpal etetının tüsınıñız.',
       qm: 'Ay ve Küneşniñ okeanlarda med ve cezir peyda olmasına nasıl tesir etkenini añlañız.',
     },
   },

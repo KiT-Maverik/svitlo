@@ -31,7 +31,7 @@ export const lunarLibration_Skill_Data = defineSkill({
     et: 'Kuu libratsioon',
     be: 'Лібрацыя Месяца',
     ka: 'მთვარის ლიბრაცია',
-    kk: 'Ай либрациясы',
+    kk: 'Ai libratsiiasy',
     qm: 'Aynıñ libratsiyası',
   },
   description: {
@@ -65,7 +65,7 @@ export const lunarLibration_Skill_Data = defineSkill({
       et: 'Uuri, miks aja jooksul muutuvad nähtavaks veidi erinevad Kuu pinnapiirkonnad.',
       be: 'Даведайцеся, чаму з часам мы можам бачыць крыху розныя ўчасткі паверхні Месяца.',
       ka: 'გაიგეთ, რატომ ხდება დროთა განმავლობაში მთვარის ზედაპირის ოდნავ განსხვავებული ნაწილები ხილული.',
-      kk: 'Уақыт өте Ай бетінің сәл өзгеше бөліктері неліктен көрінетінін біліңіз.',
+      kk: 'Uaqyt öte Ai betınıñ säl özgeşe bölıkterı nelıkten körınetının bılıñız.',
       qm: 'Vaqıt keçken sayın Aynıñ yüzündeki biraz başqa yerlerni ne içün köre bilecegimizni ögreniñiz.',
     },
   },

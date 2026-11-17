@@ -31,7 +31,7 @@ export const eclipseSeasons_Skill_Data = defineSkill({
     et: 'Varjutuste hooajad',
     be: 'Сэзоны зацьменьняў',
     ka: 'დაბნელებების სეზონები',
-    kk: 'Тұтылу маусымдары',
+    kk: 'Tūtylu mausymdary',
     qm: 'Tutulma devirleri',
   },
   description: {
@@ -65,7 +65,7 @@ export const eclipseSeasons_Skill_Data = defineSkill({
       et: 'Uuri, miks iga noorkuu või täiskuu ajal varjutust ei toimu.',
       be: 'Даведайцеся, чаму зацьменьні адбываюцца не ў кожны маладзік ці поўню.',
       ka: 'გაიგეთ, რატომ არ ხდება დაბნელება ყოველ ახალმთვარეობასა თუ სავსემთვარეობაზე.',
-      kk: 'Неліктен әрбір жаңа Ай немесе толған Ай кезінде тұтылу болмайтынын біліңіз.',
+      kk: 'Nelıkten ärbır jaña Ai nemese tolğan Ai kezınde tūtylu bolmaitynyn bılıñız.',
       qm: 'Ne içün er yañı ayda ya da tolun ayda tutulma olmağanını ögreniñiz.',
     },
   },

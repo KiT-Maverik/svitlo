@@ -31,7 +31,7 @@ export const lunarTidalEvolution_Skill_Data = defineSkill({
     et: 'Kuu loodete mõjul toimuv areng',
     be: 'Прыліўная эвалюцыя Месяца',
     ka: 'მთვარის მოქცევითი ევოლუცია',
-    kk: 'Айдың тасу-қайту әсерінен эволюциясы',
+    kk: 'Aidyñ tasu-qaitu äserınen evoliutsiiasy',
     qm: 'Aynıñ med-cezir tesirinen deñişüvi',
   },
   description: {
@@ -65,7 +65,7 @@ export const lunarTidalEvolution_Skill_Data = defineSkill({
       et: 'Uuri, kuidas loodelised vastastikmõjud aegamisi muudavad Maa pöörlemist ja Kuu orbiiti.',
       be: 'Даведайцеся, як прыліўнае ўзаемадзеяньне паступова зьмяняе кручэньне Зямлі і арбіту Месяца.',
       ka: 'გაიგეთ, როგორ ცვლის მოქცევითი ურთიერთქმედება ნელ-ნელა დედამიწის ბრუნვასა და მთვარის ორბიტას.',
-      kk: 'Тасу-қайту әсерінен болатын өзара әрекет Жердің айналуын және Ай орбитасын біртіндеп қалай өзгертетінін біліңіз.',
+      kk: 'Tasu-qaitu äserınen bolatyn özara äreket Jerdıñ ainaluyn jäne Ai orbitasyn bırtındep qalai özgertetının bılıñız.',
       qm: 'Med-cezir tesirleri Yerniñ aylanmasını ve Aynıñ orbitasını nasıl asta-asta deñiştirgenini ögreniñiz.',
     },
   },

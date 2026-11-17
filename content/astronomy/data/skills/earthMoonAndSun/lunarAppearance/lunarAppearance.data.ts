@@ -38,7 +38,7 @@ export const lunarAppearance_SkillGroup_Data = defineSkillGroup({
     et: 'Kuu nähtav kuju',
     be: 'Бачны выгляд Месяца',
     ka: 'მთვარის იერსახე',
-    kk: 'Айдың көрінісі',
+    kk: 'Aidyñ körınısı',
     qm: 'Aynıñ körünişi',
   },
   skills: [
@@ -78,7 +78,7 @@ export const lunarAppearance_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri, kuidas Kuu liikumine ja päikesevalgus muudavad Maalt nähtavat Kuu ilmet.',
       be: 'Дасьледуйце, як рух Месяца і сонечнае асьвятленьне зьмяняюць тое, што мы бачым зь Зямлі.',
       ka: 'შეისწავლეთ, როგორ ცვლის მთვარის მოძრაობა და მზის სინათლე იმას, რასაც დედამიწიდან ვხედავთ.',
-      kk: 'Айдың қозғалысы мен Күн сәулесі Жерден көрінетін Ай бейнесін қалай өзгертетінін зерттеңіз.',
+      kk: 'Aidyñ qozğalysy men Kün säulesı Jerden körınetın Ai beinesın qalai özgertetının zertteñız.',
       qm: 'Aynıñ areketi ve Küneş yarığı Yerden körgenlerimizni nasıl deñiştirgenini ögreniñiz.',
     },
   },

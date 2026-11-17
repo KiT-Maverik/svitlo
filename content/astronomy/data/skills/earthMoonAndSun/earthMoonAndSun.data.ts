@@ -36,7 +36,7 @@ export const earthMoonAndSun_SkillDomain_Data = defineSkillDomain({
     et: 'Maa, Kuu ja Päike',
     be: 'Зямля, Месяц і Сонца',
     ka: 'დედამიწა, მთვარე და მზე',
-    kk: 'Жер, Ай және Күн',
+    kk: 'Jer, Ai jäne Kün',
     qm: 'Yer, Ay ve Küneş',
   },
   groups: [
@@ -76,7 +76,7 @@ export const earthMoonAndSun_SkillDomain_Data = defineSkillDomain({
       et: 'Mõista, kuidas Maa, Kuu ja Päikese liikumine ning asend tekitavad taevas tuttavaid korduvaid nähtusi.',
       be: 'Зразумейце, як рух і ўзаемнае размяшчэньне Зямлі, Месяца і Сонца ствараюць знаёмыя цыклічныя зьявы на небе.',
       ka: 'გაიგეთ, როგორ ქმნის დედამიწის, მთვარისა და მზის მოძრაობა და მდებარეობა ცაზე ნაცნობ პერიოდულ მოვლენებს.',
-      kk: 'Жердің, Айдың және Күннің қозғалысы мен орналасуы аспандағы таныс қайталанатын құбылыстарды қалай тудыратынын түсініңіз.',
+      kk: 'Jerdıñ, Aidyñ jäne Künnıñ qozğalysy men ornalasuy aspandağy tanys qaitalanatyn qūbylystardy qalai tudyratynyn tüsınıñız.',
       qm: 'Yer, Ay ve Küneşniñ areketleri ve yerleşüvi kökteki tanış devirli adiselerni nasıl peyda etkenini añlañız.',
     },
   },

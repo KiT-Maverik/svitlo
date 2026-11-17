@@ -32,7 +32,7 @@ export const hotBigBangModel_Skill_Data = defineSkill({
     et: 'Kuuma Suure Paugu mudel',
     be: 'Мадэль гарачага Вялікага выбуху',
     ka: 'ცხელი დიდი აფეთქების მოდელი',
-    kk: 'Ыстық Үлкен жарылыс моделі',
+    kk: 'Ystyq Ülken jarylys modelı',
   },
   description: {
     methodological:
@@ -66,7 +66,7 @@ export const hotBigBangModel_Skill_Data = defineSkill({
       et: 'Uuri, mida kuuma Suure Paugu mudel selgitab ja mida see ei tõesta.',
       be: 'Даведайся, што тлумачыць мадэль гарачага Вялікага выбуху і чаго яна не даказвае.',
       ka: 'გაიგე, რას ხსნის ცხელი დიდი აფეთქების მოდელი და რას არ ამტკიცებს იგი.',
-      kk: 'Ыстық Үлкен жарылыс моделі нені түсіндіретінін және нені дәлелдемейтінін біл.',
+      kk: 'Ystyq Ülken jarylys modelı nenı tüsındıretının jäne nenı däleldemeitının bıl.',
     },
   },
 });

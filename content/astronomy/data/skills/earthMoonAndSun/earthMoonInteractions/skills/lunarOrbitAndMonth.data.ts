@@ -31,7 +31,7 @@ export const lunarOrbitAndMonth_Skill_Data = defineSkill({
     et: 'Kuu orbiit ja kuu pikkus',
     be: 'Арбіта Месяца і месяц',
     ka: 'მთვარის ორბიტა და თვე',
-    kk: 'Ай орбитасы және ай',
+    kk: 'Ai orbitasy jäne ai',
     qm: 'Aynıñ orbitası ve ay devri',
   },
   description: {
@@ -65,7 +65,7 @@ export const lunarOrbitAndMonth_Skill_Data = defineSkill({
       et: 'Võrdle Kuu tiirlemist ümber Maa tema korduva faaside tsükliga.',
       be: 'Параўнайце абарачэньне Месяца вакол Зямлі з паўтаральным цыклем ягоных фазаў.',
       ka: 'შეადარეთ მთვარის ბრუნვის პერიოდი დედამიწის გარშემო მისი ფაზების განმეორების პერიოდს.',
-      kk: 'Айдың Жерді айналып шығу мерзімін оның фазаларының қайталану кезеңімен салыстырыңыз.',
+      kk: 'Aidyñ Jerdı ainalyp şyğu merzımın onyñ fazalarynyñ qaitalanu kezeñımen salystyryñyz.',
       qm: 'Aynıñ Yer etrafında dolanğan devrini onıñ fazaları tekrarlanğan devirnen muqayese etiñiz.',
     },
   },

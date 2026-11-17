@@ -31,7 +31,7 @@ export const solarEclipses_Skill_Data = defineSkill({
     et: 'Päikesevarjutused',
     be: 'Сонечныя зацьменьні',
     ka: 'მზის დაბნელებები',
-    kk: 'Күн тұтылулары',
+    kk: 'Kün tūtylulary',
     qm: 'Küneş tutulmaları',
   },
   description: {
@@ -65,7 +65,7 @@ export const solarEclipses_Skill_Data = defineSkill({
       et: 'Selgita, millal toimub päikesevarjutus ja miks see eri vaatluskohtades erinev välja näeb.',
       be: 'Растлумачце, калі адбываецца сонечнае зацьменьне і чаму ягоны выгляд залежыць ад месца назіраньня.',
       ka: 'ახსენით, როდის ხდება მზის დაბნელება და რატომ გამოიყურება ის სხვადასხვაგვარად სხვადასხვა ადგილიდან.',
-      kk: 'Күн тұтылуы қашан болатынын және оның көрінісі бақылау орнына қарай неге өзгеретінін түсіндіріңіз.',
+      kk: 'Kün tūtyluy qaşan bolatynyn jäne onyñ körınısı baqylau ornyna qarai nege özgeretının tüsındırıñız.',
       qm: 'Küneş tutulmasınıñ ne vaqıt olğanını ve körünişiniñ baqılğan yerge köre ne içün deñişkenini añlatıñız.',
     },
   },

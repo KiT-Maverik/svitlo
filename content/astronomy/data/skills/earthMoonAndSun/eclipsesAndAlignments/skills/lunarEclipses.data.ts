@@ -31,7 +31,7 @@ export const lunarEclipses_Skill_Data = defineSkill({
     et: 'Kuuvarjutused',
     be: 'Месяцавыя зацьменьні',
     ka: 'მთვარის დაბნელებები',
-    kk: 'Ай тұтылулары',
+    kk: 'Ai tūtylulary',
     qm: 'Ay tutulmaları',
   },
   description: {
@@ -64,7 +64,7 @@ export const lunarEclipses_Skill_Data = defineSkill({
       et: 'Mõista, kuidas Maa heidab kuuvarjutuse ajal Kuule varju.',
       be: 'Зразумейце, як падчас месяцовага зацьменьня Зямля адкідае цень на Месяц.',
       ka: 'გაიგეთ, როგორ ეცემა დედამიწის ჩრდილი მთვარეზე მთვარის დაბნელების დროს.',
-      kk: 'Ай тұтылуы кезінде Жердің көлеңкесі Айға қалай түсетінін түсініңіз.',
+      kk: 'Ai tūtyluy kezınde Jerdıñ köleñkesı Aiğa qalai tüsetının tüsınıñız.',
       qm: 'Ay tutulğan vaqıtta Yerniñ kölgesi Ayğa nasıl tüşkenini añlañız.',
     },
   },

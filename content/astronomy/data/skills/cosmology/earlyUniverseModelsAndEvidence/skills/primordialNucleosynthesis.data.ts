@@ -32,7 +32,7 @@ export const primordialNucleosynthesis_Skill_Data = defineSkill({
     et: 'Ürgnukleosüntees',
     be: 'Першасны нуклеасынтэз',
     ka: 'პირველადი ნუკლეოსინთეზი',
-    kk: 'Алғашқы нуклеосинтез',
+    kk: 'Alğaşqy nukleosintez',
   },
   description: {
     methodological:
@@ -66,7 +66,7 @@ export const primordialNucleosynthesis_Skill_Data = defineSkill({
       et: 'Uuri, kuidas varase Universumi mudelid ennustavad kergete elementide koguseid.',
       be: 'Дасьледуй, як мадэлі раньняга Сусьвету прадказваюць колькасьць лёгкіх элемэнтаў.',
       ka: 'გამოიკვლიე, როგორ წინასწარმეტყველებენ ადრეული სამყაროს მოდელები მსუბუქი ელემენტების რაოდენობას.',
-      kk: 'Ерте Ғалам модельдері жеңіл элементтердің мөлшерін қалай болжайтынын зертте.',
+      kk: 'Erte Ğalam modelderı jeñıl elementterdıñ mölşerın qalai boljaitynyn zertte.',
     },
   },
 });
