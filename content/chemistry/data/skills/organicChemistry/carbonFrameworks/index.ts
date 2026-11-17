@@ -1,0 +1,91 @@
+import { defineSkillGroup } from '@svitlo/engine/build';
+
+import { alkanes } from './alkanes';
+import { alkenes } from './alkenes';
+import { alkynes } from './alkynes';
+import { aromaticCompounds } from './aromaticCompounds';
+import { hydrocarbons } from './hydrocarbons';
+import { stereoisomerism } from './stereoisomerism';
+import { structuralIsomerism } from './structuralIsomerism';
+
+export const carbonFrameworks = defineSkillGroup({
+  slug: 'carbonFrameworks',
+  id: '9af143a7-8353-4c3f-911d-5714cd3d84e1',
+  name: {
+    ar: 'هياكل الكربون',
+    be: 'Вугляродныя шкілеты',
+    bn: 'কার্বন কাঠামো',
+    de: 'Kohlenstoffgerüste',
+    en: 'Carbon Frameworks',
+    es: 'Esqueletos de carbono',
+    et: 'Süsinikskeletid',
+    fr: 'Squelettes carbonés',
+    he: 'שלדי פחמן',
+    hi: 'कार्बन ढाँचे',
+    id: 'Kerangka Karbon',
+    it: 'Scheletri carboniosi',
+    ja: '炭素骨格',
+    ka: 'ნახშირბადის ჩონჩხები',
+    kk: 'Көміртек қаңқалары',
+    ko: '탄소 골격',
+    lt: 'Anglies skeletai',
+    lv: 'Oglekļa skeleti',
+    mr: 'कार्बन सांगाडे',
+    ms: 'Rangka Karbon',
+    pl: 'Szkielety węglowe',
+    pt: 'Esqueletos de carbono',
+    qm: 'Karbon iskeletleri',
+    ta: 'கார்பன் எலும்புக்கூடுகள்',
+    te: 'కార్బన్ అస్థిపంజరాలు',
+    tr: 'Karbon İskeletleri',
+    uk: 'Карбонові скелети',
+    ur: 'کاربن کے ڈھانچے',
+    vi: 'Khung cacbon',
+    zh: '碳骨架',
+  },
+  skills: {
+    alkanes,
+    alkenes,
+    alkynes,
+    aromaticCompounds,
+    hydrocarbons,
+    stereoisomerism,
+    structuralIsomerism,
+  },
+  description: {
+    methodological:
+      "Carbon's bonding versatility permits chains, rings and varied structural representations for compounds containing carbon.",
+    frontend: {
+      ar: 'افهم كيف يشكّل الكربون سلاسل وحلقات وتراكيب جزيئية متنوعة.',
+      be: 'Зразумей, як вуглярод утварае ланцугі, кольцы й разнастайныя малекулярныя структуры.',
+      bn: 'কার্বন কীভাবে শৃঙ্খল, বলয় ও নানা আণবিক গঠন তৈরি করে তা বোঝো।',
+      de: 'Verstehe, wie Kohlenstoff Ketten, Ringe und verschiedene Molekülstrukturen bildet.',
+      en: 'Understand how carbon forms chains, rings and varied molecular structures.',
+      es: 'Comprende cómo el carbono forma cadenas, anillos y diversas estructuras moleculares.',
+      et: 'Mõista, kuidas süsinik moodustab ahelaid, tsükleid ja eri molekulaarstruktuure.',
+      fr: 'Comprends comment le carbone forme des chaînes, des cycles et des structures moléculaires variées.',
+      he: 'הבינו כיצד פחמן יוצר שרשראות, טבעות ומבנים מולקולריים מגוונים.',
+      hi: 'समझें कि कार्बन कैसे शृंखलाएँ, वलय और अलग-अलग आणविक संरचनाएँ बनाता है।',
+      id: 'Pahami bagaimana karbon membentuk rantai, cincin, dan berbagai struktur molekul.',
+      it: 'Comprendi come il carbonio forma catene, anelli e strutture molecolari diverse.',
+      ja: '炭素が鎖や環、多様な分子構造を作るしくみを理解しよう。',
+      ka: 'გაიგე, როგორ წარმოქმნის ნახშირბადი ჯაჭვებს, რგოლებსა და მრავალფეროვან მოლეკულურ სტრუქტურებს.',
+      kk: 'Көміртек тізбектерді, сақиналарды және түрлі молекулалық құрылымдарды қалай түзетінін түсін.',
+      ko: '탄소가 사슬과 고리, 다양한 분자 구조를 어떻게 만드는지 이해해 보세요.',
+      lt: 'Suprask, kaip anglis sudaro grandines, žiedus ir įvairias molekulines struktūras.',
+      lv: 'Izproti, kā ogleklis veido ķēdes, gredzenus un dažādas molekulārās struktūras.',
+      mr: 'कार्बन साखळ्या, वलये आणि विविध रेणवीय संरचना कशा बनवतो ते समजून घ्या.',
+      ms: 'Fahami bagaimana karbon membentuk rantai, gelang dan pelbagai struktur molekul.',
+      pl: 'Zrozum, jak węgiel tworzy łańcuchy, pierścienie i różnorodne struktury cząsteczek.',
+      pt: 'Entenda como o carbono forma cadeias, anéis e estruturas moleculares variadas.',
+      qm: 'Karbonnıñ zıncırlar, alqalar ve türlü molekula qurulışlarını nasıl peyda etkenini añla.',
+      ta: 'கார்பன் சங்கிலி, வளையம் மற்றும் பல்வேறு மூலக்கூறு அமைப்புகளை எவ்வாறு உருவாக்குகிறது என்பதைப் புரிந்துகொள்ளுங்கள்.',
+      te: 'కార్బన్ గొలుసులు, వలయాలు, విభిన్న అణు నిర్మాణాలను ఎలా ఏర్పరుస్తుందో తెలుసుకోండి.',
+      tr: 'Karbonun zincirleri, halkaları ve farklı molekül yapılarını nasıl oluşturduğunu anla.',
+      uk: 'Зрозумій, як Карбон утворює ланцюги, кільця та різноманітні молекулярні структури.',
+      ur: 'سمجھو کہ کاربن زنجیریں، حلقے اور مختلف سالماتی ساختیں کیسے بناتا ہے۔',
+      vi: 'Hiểu cách cacbon hình thành chuỗi, vòng và các cấu trúc phân tử đa dạng.',
+      zh: '理解碳如何形成链、环和多样的分子结构。',
+    },
+  },
+});

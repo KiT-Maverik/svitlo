@@ -1,0 +1,91 @@
+import { defineSkillGroup } from '@svitlo/engine/build';
+
+import { compareParticleArrangementsInSolidsLiquidsAndGases } from './compareParticleArrangementsInSolidsLiquidsAndGases';
+import { explainGasPressureThroughParticleMotion } from './explainGasPressureThroughParticleMotion';
+import { explainRandomThermalMotionOfParticles } from './explainRandomThermalMotionOfParticles';
+import { explainTheParticulateStructureOfMatter } from './explainTheParticulateStructureOfMatter';
+import { explainThePropertiesOfStatesOfMatterThroughParticleMotion } from './explainThePropertiesOfStatesOfMatterThroughParticleMotion';
+import { explainThermalExpansionThroughParticleMotionAndInteractions } from './explainThermalExpansionThroughParticleMotionAndInteractions';
+import { relateParticleMotionToTemperatureChanges } from './relateParticleMotionToTemperatureChanges';
+
+export const particleModelOfMatter = defineSkillGroup({
+  slug: 'particleModelOfMatter',
+  id: '970007f0-cb32-4b4e-9839-bec8e25c2446',
+  name: {
+    ar: 'النموذج الجسيمي للمادة',
+    be: 'Мадэль часьцічнай будовы рэчыва',
+    bn: 'পদার্থের কণার মডেল',
+    de: 'Teilchenmodell der Materie',
+    en: 'Particle Model of Matter',
+    es: 'Modelo de partículas de la materia',
+    et: 'Aine osakestemudel',
+    fr: 'Modèle particulaire de la matière',
+    he: 'מודל החלקיקים של החומר',
+    hi: 'पदार्थ का कण मॉडल',
+    id: 'Model partikel materi',
+    it: 'Modello particellare della materia',
+    ja: '物質の粒子モデル',
+    ka: 'ნივთიერების ნაწილაკური მოდელი',
+    kk: 'Заттың бөлшектік моделі',
+    ko: '물질의 입자 모형',
+    lt: 'Medžiagos dalelių modelis',
+    lv: 'Vielas daļiņu modelis',
+    mr: 'पदार्थाचे कण मॉडेल',
+    ms: 'Model zarah jirim',
+    pl: 'Model cząsteczkowy materii',
+    pt: 'Modelo de partículas da matéria',
+    qm: 'Maddeniñ parçacıq modeli',
+    ta: 'பொருளின் துகள் மாதிரி',
+    te: 'పదార్థ కణ నమూనా',
+    tr: 'Maddenin tanecik modeli',
+    uk: 'Модель частинкової будови речовини',
+    ur: 'مادے کا ذراتی ماڈل',
+    vi: 'Mô hình hạt của vật chất',
+    zh: '物质的粒子模型',
+  },
+  skills: {
+    compareParticleArrangementsInSolidsLiquidsAndGases,
+    explainGasPressureThroughParticleMotion,
+    explainRandomThermalMotionOfParticles,
+    explainTheParticulateStructureOfMatter,
+    explainThePropertiesOfStatesOfMatterThroughParticleMotion,
+    explainThermalExpansionThroughParticleMotionAndInteractions,
+    relateParticleMotionToTemperatureChanges,
+  },
+  description: {
+    methodological:
+      'Substances consist of particles with spaces and interactions between them; the model explains properties without requiring complex formulas.',
+    frontend: {
+      ar: 'تعلّم كيف تتفاعل الجسيمات غير المرئية لتكوّن المواد.',
+      be: 'Даведайся, як нябачныя часьціцы ўзаемадзейнічаюць і ўтвараюць рэчывы.',
+      bn: 'অদৃশ্য কণা পরস্পর ক্রিয়া করে কীভাবে পদার্থ গঠন করে, তা জানো।',
+      de: 'Erfahre, wie unsichtbare Teilchen zusammenwirken und Stoffe bilden.',
+      en: 'Learn how invisible particles interact to make up physical substances.',
+      es: 'Aprende cómo partículas invisibles interactúan y constituyen las sustancias.',
+      et: 'Uuri, kuidas nähtamatud osakesed vastastikmõjus aineid moodustavad.',
+      fr: 'Découvre comment des particules invisibles interagissent pour former les substances.',
+      he: 'למדו כיצד חלקיקים בלתי נראים פועלים זה על זה ויוצרים חומרים.',
+      hi: 'जानें कि अदृश्य कण आपस में क्रिया करके पदार्थ कैसे बनाते हैं।',
+      id: 'Pelajari bagaimana partikel tak terlihat berinteraksi membentuk zat.',
+      it: 'Impara come le particelle invisibili interagiscono e costituiscono le sostanze fisiche.',
+      ja: '目に見えない粒子が相互作用して物質をつくることを学ぼう。',
+      ka: 'გაიგე, როგორ ურთიერთქმედებენ უხილავი ნაწილაკები და ქმნიან ნივთიერებებს.',
+      kk: 'Көрінбейтін бөлшектердің өзара әрекеттесіп, затты қалай құрайтынын біл.',
+      ko: '눈에 보이지 않는 입자들이 서로 상호 작용해 물질을 이루는 원리를 알아보세요.',
+      lt: 'Sužinok, kaip nematomos dalelės sąveikauja ir sudaro medžiagas.',
+      lv: 'Uzzini, kā neredzamas daļiņas mijiedarbojas un veido vielas.',
+      mr: 'न दिसणारे कण परस्परक्रिया करून पदार्थ कसा बनवतात ते जाणून घ्या.',
+      ms: 'Ketahui bagaimana zarah yang tidak kelihatan berinteraksi membentuk bahan.',
+      pl: 'Dowiedz się, jak niewidoczne cząstki oddziałują ze sobą i tworzą substancje.',
+      pt: 'Aprenda como partículas invisíveis interagem para formar substâncias.',
+      qm: 'Közge körünmegen parçacıqlarnıñ bir-birinen nasıl tesirleşip maddeni teşkil etkenini ögren.',
+      ta: 'கண்ணுக்குத் தெரியாத துகள்கள் ஒன்றோடொன்று தொடர்புகொண்டு பொருட்களை எவ்வாறு உருவாக்குகின்றன என்பதை அறியுங்கள்.',
+      te: 'కంటికి కనిపించని కణాలు పరస్పరం చర్య చేసి పదార్థాన్ని ఎలా ఏర్పరుస్తాయో తెలుసుకోండి.',
+      tr: 'Görünmeyen taneciklerin etkileşerek maddeleri nasıl oluşturduğunu öğren.',
+      uk: 'Дізнайся, як невидимі частинки взаємодіють і утворюють речовини.',
+      ur: 'جانیں کہ نظر نہ آنے والے ذرات کیسے باہم تعامل کرکے مادہ بناتے ہیں۔',
+      vi: 'Tìm hiểu cách các hạt vô hình tương tác và cấu thành vật chất.',
+      zh: '了解看不见的粒子如何相互作用并构成物质。',
+    },
+  },
+});

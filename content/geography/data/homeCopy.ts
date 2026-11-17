@@ -2,6 +2,7 @@ import type { LanguageCode } from '@svitlo/engine/runtime';
 type HomeCopy = readonly [title: string, description: string];
 export const geographyHomeCopy = {
   en: ['Geography', 'Learning materials are being prepared.'],
+  it: ['Geografia', 'I materiali didattici sono in preparazione.'],
   zh: ['地理', '学习资料正在准备中。'],
   hi: ['भूगोल', 'अध्ययन सामग्री तैयार की जा रही है।'],
   es: ['Geografía', 'Estamos preparando los materiales de aprendizaje.'],

@@ -30,10 +30,10 @@ function directories(directory) {
     .sort();
 }
 
-export function discoverLessons(root) {
+export function discoverLessons(root, packageName = null) {
   const applications = path.join(root, 'content');
   const lessons = [];
-  for (const app of directories(applications)) {
+  for (const app of packageName ? [packageName.slice('content/'.length)] : directories(applications)) {
     if (!appNamePattern.test(app)) continue;
     const rootDirectory = path.join(applications, app, 'data', 'lessons');
     for (const bucket of directories(rootDirectory)) {
@@ -64,8 +64,18 @@ export function discoverLessons(root) {
  * node shared/engine/scripts/generateLessonsMarkdown/generate-lessons-markdown.mjs --package content/<book>
  *   --lesson <uuid> --locale <code> --stdout
  */
-export function generateLessonReviewArtifacts({ root, output, languages, manifest, saveManifest, run = spawnSync }) {
-  const lessons = discoverLessons(root);
+export function generateLessonReviewArtifacts({
+  root,
+  output,
+  languages,
+  manifest,
+  saveManifest,
+  run = spawnSync,
+  packageName = null,
+  lessonId = null,
+  supportedLanguages = null,
+}) {
+  const lessons = discoverLessons(root, packageName).filter(item => !lessonId || item.id === lessonId);
   const generator = path.join(root, 'shared/engine/scripts/generateLessonsMarkdown/generate-lessons-markdown.mjs');
   const generatorAvailable = fs.existsSync(generator) && fs.lstatSync(generator).isFile();
   const result = { discoveredLessons: lessons.length, generated: 0, failures: 0 };
@@ -82,7 +92,38 @@ export function generateLessonReviewArtifacts({ root, output, languages, manifes
   }
 
   for (const lesson of lessons) {
-    for (const locale of languages) {
+    let selectedLanguages = languages;
+    if (!selectedLanguages) {
+      const listed = run(
+        process.execPath,
+        [generator, '--package', lesson.package, '--lesson', lesson.id, '--list-locales'],
+        { cwd: root, encoding: 'utf8', timeout: 180_000, maxBuffer: 32 * 1024 * 1024 },
+      );
+      try {
+        if (listed.error || listed.status !== 0) {
+          throw new Error(listed.error?.message || listed.stderr || 'Cannot enumerate Lesson languages');
+        }
+        selectedLanguages = JSON.parse(listed.stdout);
+        if (
+          !Array.isArray(selectedLanguages) ||
+          selectedLanguages.length === 0 ||
+          new Set(selectedLanguages).size !== selectedLanguages.length ||
+          !selectedLanguages.every(
+            code => typeof code === 'string' && (!supportedLanguages || supportedLanguages.includes(code)),
+          )
+        ) {
+          throw new Error('Invalid Lesson language declaration');
+        }
+      } catch (error) {
+        const message = String(error.message || error).slice(0, 1500);
+        manifest.failures.push({ kind: 'lesson', textbook: lesson.package, lesson: lesson.relative, error: message });
+        result.failures++;
+        saveManifest();
+        process.stderr.write('::warning::Lesson languages ' + lesson.id + ': ' + message.replace(/\n/g, ' ') + '\n');
+        continue;
+      }
+    }
+    for (const locale of selectedLanguages) {
       const name = `${lesson.textbook}/${lesson.relative}/${locale}`;
       const relative = path.join('lessons', lesson.textbook, lesson.relative, `${locale}.md`);
       const destination = path.join(output, relative);
@@ -93,7 +134,7 @@ export function generateLessonReviewArtifacts({ root, output, languages, manifes
       );
 
       const markdown = generated.stdout || '';
-      if (generated.error || generated.status !== 0 || !markdown.trim()) {
+      if (generated.error || generated.status !== 0 || !markdown.trim() || markdown.includes('%%MISSING%%')) {
         const error = String(
           generated.error?.message || generated.stderr || `Generator returned ${generated.status} or empty Markdown`,
         )
@@ -119,6 +160,8 @@ export function generateLessonReviewArtifacts({ root, output, languages, manifes
         lesson: `${lesson.relative}`,
         locale,
         path: `.agent-ci-artifacts/${relative.split(path.sep).join('/')}`,
+        missing: 0,
+        reviewReady: true,
       });
       saveManifest();
       result.generated++;

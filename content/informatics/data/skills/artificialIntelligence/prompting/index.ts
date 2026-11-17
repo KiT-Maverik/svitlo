@@ -1,0 +1,91 @@
+import { defineSkillGroup } from '@svitlo/engine/build';
+
+import { breakAComplexPromptIntoSubtasks } from './breakAComplexPromptIntoSubtasks';
+import { providePromptContext } from './providePromptContext';
+import { refineAPromptBasedOnResults } from './refineAPromptBasedOnResults';
+import { specifyAnOutputFormat } from './specifyAnOutputFormat';
+import { specifyAPromptObjective } from './specifyAPromptObjective';
+import { specifyARoleInAPrompt } from './specifyARoleInAPrompt';
+import { specifyPromptConstraints } from './specifyPromptConstraints';
+
+export const prompting = defineSkillGroup({
+  slug: 'prompting',
+  id: 'b1ca0627-ec01-4c90-9e78-d3e54acaf01f',
+  name: {
+    ar: 'صياغة الطلبات للذكاء الاصطناعي',
+    be: 'Стварэньне запытаў да ШІ',
+    bn: 'এআই প্রম্পট লেখা',
+    de: 'Promptgestaltung',
+    en: 'Prompting',
+    es: 'Redacción de instrucciones para IA',
+    et: 'Viipade koostamine',
+    fr: 'Formulation de requêtes pour l’IA',
+    he: 'ניסוח פרומפטים',
+    hi: 'प्रॉम्प्ट लिखना',
+    id: 'Penyusunan prompt',
+    it: 'Formulazione dei prompt',
+    ja: 'プロンプトの作成',
+    ka: 'პრომპტების შედგენა',
+    kk: 'Промпт құрастыру',
+    ko: '프롬프트 작성',
+    lt: 'Užklausų DI kūrimas',
+    lv: 'Uzvedņu veidošana',
+    mr: 'एआयसाठी सूचना लिहिणे',
+    ms: 'Penulisan prom',
+    pl: 'Tworzenie promptów',
+    pt: 'Elaboração de prompts',
+    qm: 'Suniy intellektke sorav yazuv',
+    ta: 'AI-க்கான வழிமுறைகளை எழுதுதல்',
+    te: 'AI కోసం ప్రాంప్ట్ రచన',
+    tr: 'Prompt yazma',
+    uk: 'Складання промптів',
+    ur: 'اے آئی کے لیے ہدایات لکھنا',
+    vi: 'Viết câu lệnh cho AI',
+    zh: '提示词编写',
+  },
+  skills: {
+    breakAComplexPromptIntoSubtasks,
+    providePromptContext,
+    refineAPromptBasedOnResults,
+    specifyAnOutputFormat,
+    specifyAPromptObjective,
+    specifyARoleInAPrompt,
+    specifyPromptConstraints,
+  },
+  description: {
+    methodological:
+      'Specifying requirements for an AI request: objective, context, constraints, desired output format, and iterative refinement. Prompt components can vary independently; checking whether answers are true belongs to AI reliability.',
+    frontend: {
+      ar: 'تعلّم تقديم تعليمات وسياق وقيود أوضح لأنظمة الذكاء الاصطناعي.',
+      be: 'Навучыся даваць сыстэмам ШІ больш зразумелыя інструкцыі, кантэкст і абмежаваньні.',
+      bn: 'এআই ব্যবস্থাকে আরও স্পষ্ট নির্দেশনা, প্রসঙ্গ ও সীমা জানাতে শেখো।',
+      de: 'Lerne, KI-Systemen klarere Anweisungen, Hintergründe und Einschränkungen zu geben.',
+      en: 'Learn to give AI systems clearer instructions, context and constraints.',
+      es: 'Aprende a dar a los sistemas de IA instrucciones, contexto y restricciones más claros.',
+      et: 'Õpi andma TI süsteemidele selgemaid juhiseid, tausta ja piiranguid.',
+      fr: 'Apprends à fournir aux systèmes d’IA des consignes, un contexte et des contraintes plus clairs.',
+      he: 'למדו כיצד לתת למערכות בינה מלאכותית הוראות, הקשר ואילוצים ברורים יותר.',
+      hi: 'एआई प्रणालियों को स्पष्ट निर्देश, संदर्भ और सीमाएँ देना सीखें।',
+      id: 'Pelajari cara memberi instruksi, konteks, dan batasan yang lebih jelas kepada sistem AI.',
+      it: 'Impara a fornire ai sistemi di IA istruzioni, contesto e vincoli più chiari.',
+      ja: 'AIシステムに明確な指示、背景情報、条件を伝える方法を学ぼう。',
+      ka: 'ისწავლე AI სისტემებისთვის უფრო მკაფიო მითითებების, კონტექსტისა და შეზღუდვების მიწოდება.',
+      kk: 'ЖИ жүйелеріне анығырақ нұсқаулар, контекст және шектеулер беруді үйрен.',
+      ko: 'AI 시스템에 더 명확한 지시, 배경 정보와 제약을 제공하는 방법을 알아보세요.',
+      lt: 'Išmok DI sistemoms pateikti aiškesnes instrukcijas, kontekstą ir apribojimus.',
+      lv: 'Mācies sniegt MI sistēmām skaidrākas norādes, kontekstu un ierobežojumus.',
+      mr: 'एआय प्रणालींना अधिक स्पष्ट सूचना, संदर्भ आणि निर्बंध देणे शिका.',
+      ms: 'Belajar memberikan arahan, konteks dan kekangan yang lebih jelas kepada sistem AI.',
+      pl: 'Naucz się podawać systemom AI jaśniejsze instrukcje, kontekst i ograniczenia.',
+      pt: 'Aprenda a dar instruções, contexto e restrições mais claros aos sistemas de IA.',
+      qm: 'Suniy intellekt sistemalarına daa açıq talimat, kontekst ve sıñırlavlar bermege ögren.',
+      ta: 'AI அமைப்புகளுக்குத் தெளிவான அறிவுறுத்தல்கள், சூழல் மற்றும் கட்டுப்பாடுகளை வழங்கக் கற்றுக்கொள்ளுங்கள்.',
+      te: 'AI వ్యవస్థలకు స్పష్టమైన సూచనలు, సందర్భం, పరిమితులు ఇవ్వడం నేర్చుకోండి.',
+      tr: 'Yapay zekâ sistemlerine daha açık talimatlar, bağlam ve kısıtlar vermeyi öğren.',
+      uk: 'Навчися давати системам ШІ чіткіші інструкції, контекст та обмеження.',
+      ur: 'اے آئی نظاموں کو واضح ہدایات، سیاق اور حدود دینا سیکھیں۔',
+      vi: 'Học cách đưa hướng dẫn, ngữ cảnh và ràng buộc rõ ràng hơn cho hệ thống AI.',
+      zh: '学习如何向人工智能系统提供更清晰的指令、背景信息和限制条件。',
+    },
+  },
+});

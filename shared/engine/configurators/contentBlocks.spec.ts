@@ -7,6 +7,7 @@ import {
   defineCode,
   defineCheckpoint,
   defineCheckpointItem,
+  defineCheckpointAnswer,
   text_Config_Schema,
   code_Props_Schema,
 } from './contentBlocks';
@@ -79,7 +80,10 @@ describe('Configurators', () => {
           type: 'checkpointItem',
           question,
           check: true,
-          answer: { items: { answer }, order: ['answer'] },
+          answer: defineCheckpointAnswer({
+            id: id('07'), slug: 'answer', type: 'checkpointAnswer',
+            content: { items: { answer }, order: ['answer'] },
+          }),
         });
         const checkpoint = defineCheckpoint({
           id: id('06'),

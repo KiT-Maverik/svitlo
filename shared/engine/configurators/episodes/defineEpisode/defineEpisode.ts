@@ -104,10 +104,9 @@ export const defineEpisode = <
     section: { items: Sections & ChildrenSupporting<Languages, Sections>; order: string[] };
   },
 ) => {
-  validate(config as unknown as Episode_Config);
   const metadataSchema = episode_Config_Schema.omit({ section: true });
   const { section: _section, ...metadataInput } = config;
-  const authored = structuredClone(metadataSchema.parse(metadataInput));
+  const authored = structuredClone(metadataInput);
   const copyAuthored = () => metadataSchema.parse(structuredClone(authored));
   const { id, slug, type } = authored;
   const initialSections: Sections = { ...config.section.items };
@@ -180,6 +179,7 @@ export const defineEpisode = <
 
   const props = (options: PublicationLanguageOptions<Languages>): Publication<Episode_PropsBase> => {
     const languages = publicationLanguages(options);
+    validate({ ...copyAuthored(), section: { items: initialSections, order: initialOrder } });
     const own = copyAuthored();
     const translated = splitLocale(own.locale);
     const children = buildSections(initialSections, initialOrder, languages);
@@ -211,6 +211,7 @@ export const defineEpisode = <
   ): Publication<OverrideBase> => {
     try {
       const languages = publicationLanguages(options);
+      validate({ ...copyAuthored(), section: { items: initialSections, order: initialOrder } });
       if (!isRecord(patch)) throw new Error('Expected Episode overrides object');
       for (const key of Object.keys(patch)) {
         if (!['params', 'locale', 'section', 'events'].includes(key))

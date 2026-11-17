@@ -33,9 +33,7 @@ function entity(kind, slug, name, membership, withFrontend = kind === 'Skill') {
   return (
     'export const ' +
     slug +
-    '_' +
-    kind +
-    '_Data = define' +
+    ' = define' +
     kind +
     '({' +
     'slug: ' +
@@ -54,8 +52,8 @@ function entity(kind, slug, name, membership, withFrontend = kind === 'Skill') {
     '});\n'
   );
 }
-const groupedSkill = path.join(taxonomy, 'd/g/skills/s.data.ts');
-const directSkill = path.join(taxonomy, 'direct/skills/t.data.ts');
+const groupedSkill = path.join(taxonomy, 'd/g/s.ts');
+const directSkill = path.join(taxonomy, 'direct/t.ts');
 const output = locale => path.join(fixture, 'docs/generated/skills/taxonomy.' + locale + '.md');
 const run = (locale = 'en', ...flags) =>
   spawnSync(process.execPath, [generator, '--package', path.relative(root, fixture), '--locale', locale, ...flags], {
@@ -65,28 +63,20 @@ const run = (locale = 'en', ...flags) =>
   });
 
 before(() => {
+  write(path.join(taxonomy, 'index.ts'), "export { d } from './d';\n" + "export { direct } from './direct';\n");
   write(
-    path.join(taxonomy, 'index.ts'),
-    "export { d_SkillDomain_Data } from './d/d.data';\n" +
-      "export { direct_SkillDomain_Data } from './direct/direct.data';\n",
+    path.join(taxonomy, 'd/index.ts'),
+    "import { g } from './g';\n" + entity('SkillDomain', 'd', 'Grouped Domain', 'groups: { g }'),
   );
   write(
-    path.join(taxonomy, 'd/d.data.ts'),
-    "import { g_SkillGroup_Data } from './g/g.data';\n" +
-      entity('SkillDomain', 'd', 'Grouped Domain', 'groups: [g_SkillGroup_Data]'),
+    path.join(taxonomy, 'd/g/index.ts'),
+    "import { s } from './s';\n" + entity('SkillGroup', 'g', 'Group', 'skills: { s }'),
   );
-  write(
-    path.join(taxonomy, 'd/g/g.data.ts'),
-    "import { s_Skill_Data } from './skills';\n" + entity('SkillGroup', 'g', 'Group', 'skills: [s_Skill_Data]'),
-  );
-  write(path.join(taxonomy, 'd/g/skills/index.ts'), "export { s_Skill_Data } from './s.data';\n");
   write(groupedSkill, entity('Skill', 's', 'Grouped Skill'));
   write(
-    path.join(taxonomy, 'direct/direct.data.ts'),
-    "import { t_Skill_Data } from './skills';\n" +
-      entity('SkillDomain', 'direct', 'Direct Domain', 'groups: [], skills: [t_Skill_Data]', true),
+    path.join(taxonomy, 'direct/index.ts'),
+    "import { t } from './t';\n" + entity('SkillDomain', 'direct', 'Direct Domain', 'skills: { t }', true),
   );
-  write(path.join(taxonomy, 'direct/skills/index.ts'), "export { t_Skill_Data } from './t.data';\n");
   write(directSkill, entity('Skill', 't', 'Direct Skill'));
 });
 after(() => fs.rmSync(fixture, { recursive: true, force: true }));
@@ -132,10 +122,58 @@ test('canonical lowercase data/skills renders grouped and direct Skill hierarchi
     ]) {
       assert.match(a.stdout, new RegExp('^' + level + ' ' + label + ' ' + locale + '$', 'm'));
     }
-    assert.equal([...a.stdout.matchAll(/^\[([^\]]+\.data\.ts)\]\(([^)]+)\)$/gm)].length, 5);
+    assert.equal([...a.stdout.matchAll(/^\[([^\]]+\.ts)\]\(([^)]+)\)$/gm)].length, 5);
     assert.match(a.stdout, new RegExp('Frontend Grouped Skill ' + locale));
     assert.doesNotMatch(a.stdout, /^(Slug|Action|Status):/m);
     assert.equal(fs.existsSync(output(locale)), false, '--stdout never writes files');
+  }
+});
+
+test('English source preview remains available while another registered translation is incomplete', () => {
+  const original = entity('Skill', 's', 'Grouped Skill');
+  assert.ok(original.includes('"uk": "Frontend Grouped Skill uk"'), 'Registered Ukrainian fixture must exist');
+  write(groupedSkill, original.replace('"uk": "Frontend Grouped Skill uk", ', ''));
+  try {
+    const strict = run('en', '--stdout');
+    assert.notEqual(strict.status, 0);
+    assert.match(strict.stderr, /Missing required frontend locale uk/);
+
+    const preview = run('en', '--stdout', '--source-only');
+    assert.equal(preview.status, 0, preview.stderr);
+    assert.match(preview.stdout, /TRANSLATION SOURCE PREVIEW ONLY/);
+    assert.match(preview.stdout, /Grouped Skill en/);
+    assert.equal(fs.existsSync(output('en')), false, 'Preview never writes generated Markdown');
+
+    const invalidLocale = run('uk', '--stdout', '--source-only');
+    assert.notEqual(invalidLocale.status, 0);
+    assert.match(invalidLocale.stderr, /use --locale en --stdout/);
+
+    const invalidWrite = run('en', '--source-only');
+    assert.notEqual(invalidWrite.status, 0);
+    assert.match(invalidWrite.stderr, /use --locale en --stdout/);
+  } finally {
+    write(groupedSkill, original);
+  }
+});
+
+test('draft localized Markdown marks missing fields without masking strict publication failures', () => {
+  const original = entity('Skill', 's', 'Grouped Skill');
+  write(groupedSkill, original.replace('"uk": "Frontend Grouped Skill uk", ', ''));
+  try {
+    const draft = run('uk', '--stdout', '--allow-missing');
+    assert.equal(draft.status, 0, draft.stderr);
+    assert.match(draft.stdout, /^Missing translations: 1$/m);
+    assert.match(draft.stdout, /User-friendly description \(uk\):\*\* %%MISSING%%/);
+    assert.match(draft.stdout, /English explanation for Grouped Skill/);
+    assert.equal(fs.existsSync(output('uk')), false);
+    const strict = run('uk', '--stdout');
+    assert.notEqual(strict.status, 0);
+    assert.match(strict.stderr, /Missing required frontend locale uk/);
+    const blockedWrite = run('uk', '--allow-missing');
+    assert.notEqual(blockedWrite.status, 0);
+    assert.match(blockedWrite.stderr, /read-only --stdout/);
+  } finally {
+    write(groupedSkill, original);
   }
 });
 

@@ -1,0 +1,91 @@
+import { defineSkillGroup } from '@svitlo/engine/build';
+
+import { compareProbabilitiesOfSimpleEvents } from './compareProbabilitiesOfSimpleEvents';
+import { distinguishPossibilityFromProbability } from './distinguishPossibilityFromProbability';
+import { distinguishRandomAndDeterministicEvents } from './distinguishRandomAndDeterministicEvents';
+import { explainEventPossibility } from './explainEventPossibility';
+import { explainEventProbability } from './explainEventProbability';
+import { explainLimitsOfPrediction } from './explainLimitsOfPrediction';
+import { useRandomnessInAModel } from './useRandomnessInAModel';
+
+export const probabilityAndUncertainty = defineSkillGroup({
+  slug: 'probabilityAndUncertainty',
+  id: '8194d9fb-a38f-487b-b644-362535e13593',
+  name: {
+    ar: 'الاحتمال وعدم اليقين',
+    be: 'Імавернасьць і нявызначанасьць',
+    bn: 'সম্ভাব্যতা ও অনিশ্চয়তা',
+    de: 'Wahrscheinlichkeit und Unsicherheit',
+    en: 'Probability and Uncertainty',
+    es: 'Probabilidad e incertidumbre',
+    et: 'Tõenäosus ja määramatus',
+    fr: 'Probabilité et incertitude',
+    he: 'הסתברות ואי־ודאות',
+    hi: 'प्रायिकता और अनिश्चितता',
+    id: 'Probabilitas dan Ketidakpastian',
+    it: 'Probabilità e incertezza',
+    ja: '確率と不確実性',
+    ka: 'ალბათობა და გაურკვევლობა',
+    kk: 'Ықтималдық және белгісіздік',
+    ko: '확률과 불확실성',
+    lt: 'Tikimybė ir neapibrėžtumas',
+    lv: 'Varbūtība un nenoteiktība',
+    mr: 'संभाव्यता आणि अनिश्चितता',
+    ms: 'Kebarangkalian dan Ketidakpastian',
+    pl: 'Prawdopodobieństwo i niepewność',
+    pt: 'Probabilidade e incerteza',
+    qm: 'İhtimallıq ve belgisizlik',
+    ta: 'நிகழ்தகவும் நிச்சயமின்மையும்',
+    te: 'సంభావ్యత మరియు అనిశ్చితి',
+    tr: 'Olasılık ve Belirsizlik',
+    uk: 'Імовірність і невизначеність',
+    ur: 'امکان اور غیر یقینی کیفیت',
+    vi: 'Xác suất và sự bất định',
+    zh: '概率与不确定性',
+  },
+  skills: {
+    compareProbabilitiesOfSimpleEvents,
+    distinguishPossibilityFromProbability,
+    distinguishRandomAndDeterministicEvents,
+    explainEventPossibility,
+    explainEventProbability,
+    explainLimitsOfPrediction,
+    useRandomnessInAModel,
+  },
+  description: {
+    methodological:
+      'Distinguishing possible and impossible outcomes, probabilistic models, comparisons of likelihoods, and limits of prediction. Randomness as a source of variation in a digital model is distinct from assessing a particular risk.',
+    frontend: {
+      ar: 'استكشف الأحداث الممكنة وفرص وقوعها وحدود التنبؤ.',
+      be: 'Дасьледуй магчымыя падзеі, іхныя шанцы й межы прадказаньня.',
+      bn: 'সম্ভাব্য ঘটনা, তাদের ঘটার সম্ভাবনা এবং পূর্বাভাসের সীমা জানো।',
+      de: 'Erkunde mögliche Ereignisse, ihre Chancen und die Grenzen von Vorhersagen.',
+      en: 'Explore possible events, their chances and the limits of prediction.',
+      es: 'Explora los sucesos posibles, sus probabilidades y los límites de la predicción.',
+      et: 'Uuri võimalikke sündmusi, nende tõenäosusi ja ennustamise piire.',
+      fr: 'Explore les événements possibles, leurs chances et les limites des prévisions.',
+      he: 'גלו אירועים אפשריים, את סיכוייהם ואת מגבלות החיזוי.',
+      hi: 'संभावित घटनाओं, उनके होने के अवसर और पूर्वानुमान की सीमाएँ जानें।',
+      id: 'Jelajahi peristiwa yang mungkin terjadi, peluangnya, dan batas prediksi.',
+      it: 'Esplora gli eventi possibili, le loro probabilità e i limiti delle previsioni.',
+      ja: '起こりうる出来事、その確率、予測の限界について考えよう。',
+      ka: 'შეისწავლე შესაძლო მოვლენები, მათი ალბათობა და წინასწარმეტყველების საზღვრები.',
+      kk: 'Мүмкін оқиғаларды, олардың ықтималдығын және болжау шегін зертте.',
+      ko: '가능한 사건과 그 확률, 예측의 한계를 알아보세요.',
+      lt: 'Tyrinėk galimus įvykius, jų tikimybes ir prognozavimo ribas.',
+      lv: 'Izpēti iespējamos notikumus, to varbūtības un prognozēšanas robežas.',
+      mr: 'घडू शकणाऱ्या घटना, त्यांची शक्यता आणि भाकितांच्या मर्यादा जाणून घ्या.',
+      ms: 'Terokai peristiwa yang mungkin berlaku, peluangnya dan had ramalan.',
+      pl: 'Poznaj możliwe zdarzenia, ich szanse i ograniczenia przewidywania.',
+      pt: 'Explore eventos possíveis, suas chances e os limites da previsão.',
+      qm: 'Mümkün adiseler, olarnıñ şansları ve qabaqtan aytuvnıñ sıñırlarını araştır.',
+      ta: 'நிகழக்கூடிய நிகழ்வுகள், அவற்றின் நிகழ்தகவு மற்றும் முன்னறிவிப்பின் எல்லைகளை ஆராய்.',
+      te: 'జరగగల సంఘటనలు, వాటి అవకాశాలు, అంచనాల పరిమితులను అన్వేషించండి.',
+      tr: 'Olası olayları, gerçekleşme şanslarını ve tahminin sınırlarını keşfet.',
+      uk: 'Досліджуй можливі події, їхні шанси та межі прогнозування.',
+      ur: 'ممکنہ واقعات، ان کے ہونے کے امکانات اور پیش گوئی کی حدود کو جانیں۔',
+      vi: 'Khám phá các sự kiện có thể xảy ra, xác suất của chúng và giới hạn dự đoán.',
+      zh: '探索可能发生的事件、其发生的概率以及预测的局限。',
+    },
+  },
+});

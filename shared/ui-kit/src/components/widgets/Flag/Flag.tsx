@@ -25,6 +25,7 @@ export const flagCountryByLocale = {
   'pt-BR': 'br',
   'ur-PK': 'pk',
   'id-ID': 'id',
+  'it-IT': 'it',
   'de-DE': 'de',
   'ja-JP': 'jp',
   'ko-KR': 'kr',

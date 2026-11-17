@@ -10,7 +10,7 @@ import {
   selectPublicationLocales,
   validateRequestedPublication,
 } from '../../_shared__configurators';
-import { validateLocalAssetPaths } from '../_shared__contentBlocks';
+import { runtimeMediaLocale } from '../_shared__contentBlocks';
 import {
   audio_Config_Schema,
   audio_Props_Schema,
@@ -30,7 +30,6 @@ type AudioOverridePropsBase = {
 
 const parseAndValidate = (config: ContentBlock_Audio_Config): ContentBlock_Audio_Config => {
   const parsed = audio_Config_Schema.parse(config);
-  validateLocalAssetPaths(parsed.locale.fileLocation, 'locale.fileLocation');
   return parsed;
 };
 const validate = (config: ContentBlock_Audio_Config): void => {
@@ -39,7 +38,7 @@ const validate = (config: ContentBlock_Audio_Config): void => {
 
 const buildAudioProps = (config: ContentBlock_Audio_Config): AudioPropsPublication<ContentBlock_Audio_PropsBase> => {
   const { id, type, slug, params } = config;
-  const { base: invariant, locale } = splitLocalizedFields(config.locale);
+  const { base: invariant, locale } = splitLocalizedFields(runtimeMediaLocale(config.locale, 'fileLocation'));
   const base = {
     id,
     type,
@@ -59,7 +58,7 @@ const buildAudioProps = (config: ContentBlock_Audio_Config): AudioPropsPublicati
 };
 
 const buildAudioPatch = (patch: ContentBlock_Audio_Overrides): AudioPropsPublication<AudioOverridePropsBase> => {
-  const { base: invariant, locale } = splitLocalizedFields(patch.locale ?? {});
+  const { base: invariant, locale } = splitLocalizedFields(runtimeMediaLocale(patch.locale ?? {}, 'fileLocation'));
   return {
     base: {
       ...(patch.params !== undefined ? { params: patch.params } : {}),
@@ -88,10 +87,10 @@ export const defineAudio = <
       Languages
     >,
 ) => {
-  const authored = structuredClone(parseAndValidate(config));
+  const authored: ContentBlock_Audio_Config = structuredClone(config);
   const { id, type } = authored;
   const slug = config.slug;
-  const copyAuthored = () => audio_Config_Schema.parse(structuredClone(authored));
+  const copyAuthored = () => structuredClone(authored);
   const base = {
     id,
     type,

@@ -48,7 +48,7 @@ export type AssembleCourseLessonInput = {
 };
 
 const forbiddenKeys = new Set(['__proto__', 'constructor', 'prototype']);
-const allowedOverrideKeys = new Set(['params', 'locale', 'section', 'flashcards', 'questions', 'events']);
+const allowedOverrideKeys = new Set(['params', 'locale', 'section', 'events']);
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   if (value === null || typeof value !== 'object' || Array.isArray(value)) return false;

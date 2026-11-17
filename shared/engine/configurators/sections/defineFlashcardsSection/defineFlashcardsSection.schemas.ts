@@ -10,6 +10,9 @@ import type { Configurator_Mode } from '../../configurator.schemas';
 
 const params = paramsBase_Schema.shape.params.extend({
   skippable: z.boolean().optional(),
+  selection: z.strictObject({
+    flashcardIds: z.array(z.uuid()).nonempty().refine(ids => new Set(ids).size === ids.length, 'Flashcard UUIDs must be unique'),
+  }),
 });
 
 const sectionBase = identityBase_Schema.extend({

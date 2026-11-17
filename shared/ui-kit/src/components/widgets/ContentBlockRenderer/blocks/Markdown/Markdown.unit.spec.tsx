@@ -115,6 +115,68 @@ describe('Markdown content block', () => {
     expect(article).toHaveAttribute('lang', 'en-US');
   });
 
+  it('renders inline and display LaTeX with accessible MathML', () => {
+    render(
+      <Markdown
+        {...response}
+        locale={{ ...response.locale, value: 'Area $S = \\pi r^2$.\n\n$$\nE = mc^2\n$$' }}
+      />,
+    );
+    const article = screen.getByRole('article');
+    expect(article).toHaveTextContent('Area');
+    expect(article.querySelector('p .katex')).not.toBeNull();
+    expect(article.querySelector('.katex-display .katex')).not.toBeNull();
+    expect(article.querySelectorAll('.katex-mathml math')).toHaveLength(2);
+  });
+
+  it('renders math after resolving localized Markdown variables', () => {
+    render(
+      <Markdown
+        {...response}
+        locale={{ value: 'Square: $%_%FORMULA%_%$', variables: { FORMULA: 'x^2' } }}
+      />,
+    );
+    expect(screen.getByRole('article').querySelector('.katex')).not.toBeNull();
+    expect(screen.getByRole('article')).toHaveTextContent('Square:');
+  });
+
+  it('preserves RTL prose while rendering mathematical expressions', () => {
+    render(
+      <ContentLanguageContext.Provider value="ar">
+        <Markdown {...response} locale={{ value: 'المساحة: $S = \\pi r^2$' }} />
+      </ContentLanguageContext.Provider>,
+    );
+    const article = screen.getByRole('article');
+    expect(article).toHaveAttribute('dir', 'rtl');
+    expect(article.querySelector('.katex-mathml math')).not.toBeNull();
+  });
+
+  it('does not interpret escaped currency as LaTeX', () => {
+    render(<Markdown {...response} locale={{ value: 'Price: \\$5 and \\$10.' }} />);
+    const article = screen.getByRole('article');
+    expect(article).toHaveTextContent('Price: $5 and $10.');
+    expect(article.querySelector('.katex')).toBeNull();
+  });
+
+  it('does not trust dangerous TeX links and keeps raw HTML sanitized', () => {
+    render(
+      <Markdown
+        {...response}
+        locale={{ value: '<script>alert(1)</script> $\\href{javascript:alert(1)}{click}$' }}
+      />,
+    );
+    const article = screen.getByRole('article');
+    expect(article.querySelector('script')).toBeNull();
+    expect(article.querySelector('a[href^="javascript:"]')).toBeNull();
+    expect(article).toHaveTextContent('click');
+  });
+
+  it('renders math on the server without client-side typesetting', () => {
+    const html = renderToStaticMarkup(<Markdown {...response} locale={{ value: '$\\sqrt{x}$' }} />);
+    expect(html).toContain('class="katex"');
+    expect(html).toContain('<math');
+  });
+
   it('renders the same safe Markdown on the server', () => {
     const html = renderToStaticMarkup(
       <Markdown {...response} locale={{ ...response.locale, value: "<aside><mark>Safe note</mark></aside><script>alert(1)</script>" }} />,

@@ -12,17 +12,17 @@
  * table is Engine's yamlFactoryByType.ts (read as TypeScript syntax, not
  * executed or validated). Output contains only the source documentLanguage's
  * authored locale values; other languages are never invented.
- * Reads one config.yaml with { config, production } at each entity node.
+ * Reads one lesson.yaml with { config, production } at each entity node.
  * Production is authoring-only; TypeScript is intentionally incomplete.
  *
  * The separate generateLessonProps publisher is not invoked by this script.
  */
 import fs from 'node:fs';
 import path from 'node:path';
-import crypto from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import yaml from 'yaml';
-import { loadFactoryRegistry, sourceAuthoringCopy } from '../yamlScaffolding/yamlScaffolding.mjs';
+import { loadFactoryRegistry } from '../yamlScaffolding/yamlScaffolding.mjs';
+import { renderLessonModules } from './lessonModules.mjs';
 import {
   splitScaffoldDocument,
   productionFiles,
@@ -32,8 +32,6 @@ import {
 export { loadFactoryRegistry };
 
 export const repoRoot = path.resolve(fileURLToPath(new URL('../../../..', import.meta.url)));
-const header = '// Scaffolded by shared/engine/scripts/lessonBuilder/lessonBuilder.mjs; DRAFT FOR AI EDITING.\n';
-const checksumLabel = '// Draft content sha256: ';
 const uuidPattern = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/;
 
 export class BuilderDiagnostic extends Error {
@@ -50,7 +48,6 @@ function fail(file, field, message) {
 }
 
 const isRecord = value => value !== null && typeof value === 'object' && !Array.isArray(value);
-const digest = text => crypto.createHash('sha256').update(text).digest('hex');
 
 function noSymlinks(location) {
   let current = path.parse(path.resolve(location)).root;
@@ -83,172 +80,13 @@ function parseYaml(file, relative) {
   }
 }
 
-/**
- * A context is the authoring-contract location, not a schema. Ordinary object
- * fields (including flag.type and params.type) remain plain data.
- */
-function childContext(parent, key, owner) {
-  const collections = {
-    sectionCollection: 'sectionItems',
-    flashcardCollection: 'flashcardItems',
-    blockCollection: 'blockItems',
-    slideCollection: 'slideItems',
-    checkpointCollection: 'checkpointItems',
-    pairsCollection: 'pairItems',
-    slotsCollection: 'slotItems',
-  };
-  if (collections[parent] && key === 'items') return collections[parent];
-  const members = {
-    sectionItems: 'section',
-    flashcardItems: 'flashcard',
-    blockItems: 'block',
-    slideItems: 'slide',
-    checkpointItems: 'checkpointItem',
-    questionGroup: 'question',
-    pairItems: 'pair',
-    slotItems: 'slot',
-  };
-  if (members[parent]) return members[parent];
-  if (parent === 'questionBank') return 'questionGroup';
-  if (parent === 'lesson') {
-    if (key === 'section') return 'sectionCollection';
-    if (key === 'flashcards') return 'flashcardCollection';
-    if (key === 'questions') return 'questionBank';
-  }
-  if (parent === 'section' && owner.type === 'quest') {
-    if (key === 'stages') return 'questStages';
-    if (key === 'tasks') return 'questTasks';
-  }
-  if (parent === 'questStages') return 'stage';
-  if (parent === 'questTasks') return 'task';
-  if (parent === 'stage' && key === 'content') return 'questStageContent';
-  if (parent === 'questStageContent') {
-    if (key === 'video') return 'questVideoTracks';
-    if (key === 'audio') return 'questAudioTracks';
-    if (key === 'image' || key === 'subtitles') return 'block';
-  }
-  if (parent === 'questVideoTracks') return 'block';
-  if (parent === 'questAudioTracks') return 'nullableBlock';
-  if (parent === 'task' && key === 'scene') return 'block';
-  if (parent === 'section' && key === 'content') return 'blockCollection';
-  if (parent === 'block') {
-    if (owner.type === 'carousel' && key === 'slides') return 'slideCollection';
-    if (owner.type === 'checkpoint' && key === 'content') return 'checkpointCollection';
-  }
-  if (parent === 'checkpointItem') {
-    if (key === 'question') return 'block';
-    if (key === 'answer') return 'blockCollection';
-  }
-  if (parent === 'question' && key === 'content') return 'questionContent';
-  if (parent === 'flashcard' && key === 'content') return 'flashcardContent';
-  if (parent === 'flashcardContent' && ['front', 'back', 'hint'].includes(key)) return 'blockCollection';
-  if (parent === 'questionContent') {
-    if (key === 'answers') return 'questionAnswers';
-    if (key === 'pairs') return 'pairsCollection';
-    if (key === 'slots') return 'slotsCollection';
-    if (['question', 'hint', 'explanation', 'correctSequence', 'distractors', 'sequence'].includes(key))
-      return 'blockCollection';
-  }
-  if (parent === 'questionAnswers' && ['correct', 'incorrect', 'distractors'].includes(key)) return 'blockCollection';
-  if (parent === 'pair' && ['left', 'right'].includes(key)) return 'block';
-  if (parent === 'slot' && key === 'correctAnswer') return 'block';
-  return 'plain';
-}
-
-const factoryContexts = new Set([
-  'lesson',
-  'section',
-  'stage',
-  'task',
-  'block',
-  'slide',
-  'checkpointItem',
-  'question',
-  'flashcard',
-]);
-const indent = level => '  '.repeat(level);
-
-/**
- * Serialize source fields in original order, wrapping only actual Configurator
- * positions in the Engine factory selected by their type discriminator.
- */
-export function renderLessonDraft(lesson, language, factories = loadFactoryRegistry()) {
-  const used = new Set();
-
-  function render(value, context, field, level) {
-    if (context === 'nullableBlock') {
-      if (value === null) return 'null'; // A genuinely silent Quest audio track.
-      return render(value, 'block', field, level);
-    }
-    if (factoryContexts.has(context)) {
-      if (!isRecord(value)) fail('content.yaml', field, 'expected an object with type for factory dispatch');
-      const type = value.type;
-      if (typeof type !== 'string' || !type)
-        fail('content.yaml', field + '.type', 'missing type discriminator for ' + context + ' factory dispatch');
-      if (context === 'lesson' && type !== 'lesson')
-        fail('content.yaml', field + '.type', 'expected lesson type for the Lesson entrypoint');
-      const factory = factories[type];
-      if (!factory) fail('content.yaml', field + '.type', 'unknown type "' + type + '"; no Engine define* factory');
-      used.add(factory);
-      return factory + '(' + renderObject(value, context, field, level) + ')';
-    }
-    if (Array.isArray(value)) {
-      if (!value.length) return '[]';
-      return (
-        '[\n' +
-        value
-          .map((item, index) => indent(level + 1) + render(item, 'plain', field + '[' + index + ']', level + 1))
-          .join(',\n') +
-        '\n' +
-        indent(level) +
-        ']'
-      );
-    }
-    if (isRecord(value)) return renderObject(value, context, field, level);
-    if (value === null || ['string', 'number', 'boolean'].includes(typeof value)) return JSON.stringify(value);
-    fail('content.yaml', field, 'unsupported YAML value');
-  }
-
-  function renderObject(value, context, field, level) {
-    const entries = Object.entries(value);
-    if (!entries.length) return '{}';
-    return (
-      '{\n' +
-      entries
-        .map(([key, raw]) => {
-          const next = childContext(context, key, value);
-          const child = raw;
-          return indent(level + 1) + JSON.stringify(key) + ': ' + render(child, next, field + '.' + key, level + 1);
-        })
-        .join(',\n') +
-      '\n' +
-      indent(level) +
-      '}'
-    );
-  }
-
-  const call = render(sourceAuthoringCopy(lesson, language), 'lesson', '$', 0);
-  const imports = [...used].sort((a, b) => a.localeCompare(b));
-  const name = lesson.slug + '_Lesson';
-  return (
-    'import { ' +
-    imports.join(', ') +
-    " } from '@svitlo/engine/build';\n\n" +
-    'export const ' +
-    name +
-    ' = ' +
-    call +
-    ';\n'
-  );
-}
-
 /** The UUID path is an output-safety boundary, not editorial validation. */
 function targetFor(source, repo) {
   const location = path.resolve(source);
   noSymlinks(location);
   const root = fs.statSync(location).isDirectory() ? location : path.dirname(location);
-  if (fs.statSync(location).isFile() && path.basename(location) !== 'config.yaml')
-    throw new Error('Expected config.yaml source: ' + location);
+  if (fs.statSync(location).isFile() && path.basename(location) !== 'lesson.yaml')
+    throw new Error('Expected lesson.yaml source: ' + location);
   const relative = path.relative(path.resolve(repo), root).split(path.sep).join('/');
   const match = /^content\/((?:languages\/)?[a-z][a-z-]*)\/(.+)$/.exec(relative);
   if (!match) throw new Error('Expected source inside a textbook workspace: ' + relative);
@@ -260,91 +98,146 @@ function targetFor(source, repo) {
 
 /** The single YAML tree separates Engine Config from production guidance at every node. */
 function combineSources(root) {
-  const document = parseYaml(path.join(root, 'config.yaml'), 'config.yaml');
+  const document = parseYaml(path.join(root, 'lesson.yaml'), 'lesson.yaml');
   const { config: lesson, documentLanguage, tasks } = splitScaffoldDocument(document);
   if (typeof documentLanguage !== 'string' || !documentLanguage)
-    fail('config.yaml', 'production.documentLanguage', 'required source-language provenance');
+    fail('lesson.yaml', 'production.documentLanguage', 'required source-language provenance');
   if (typeof lesson.slug !== 'string' || !/^[a-zA-Z][a-zA-Z0-9]*$/.test(lesson.slug))
-    fail('config.yaml', 'config.slug', 'a safe camelCase slug is required for the output filename');
+    fail('lesson.yaml', 'config.slug', 'a safe camelCase slug is required for the output filename');
   return { lesson, language: documentLanguage, tasks };
 }
 
+/** Compare exact bytes, without injecting any generated provenance comment. */
 function writeDraft(file, content, mode) {
-  const body = content;
-  const rendered = header + checksumLabel + digest(body) + '\n' + body;
   noSymlinks(file);
   if (fs.existsSync(file)) {
-    // Creation never updates an existing draft, regardless of its provenance.
     if (mode === 'generate') return 0;
-    const original = fs.readFileSync(file, 'utf8');
-    const expectedHeader = header + checksumLabel;
-    if (!original.startsWith(expectedHeader))
-      fail(path.basename(file), '$', 'refusing to overwrite a manually authored file');
-    const split = original.indexOf('\n', expectedHeader.length);
-    const checksum = original.slice(expectedHeader.length, split);
-    if (split < 0 || !/^[a-f0-9]{64}$/.test(checksum) || digest(original.slice(split + 1)) !== checksum)
-      fail(path.basename(file), '$', 'generated file was modified manually');
-    if (original === rendered) return 0;
-    if (mode === 'check')
-      fail(
-        path.basename(file),
-        '$',
-        'stale draft: existing file differs from YAML; generator will skip, so review manually',
-      );
+    if (fs.readFileSync(file, 'utf8') === content) return 0;
+    fail(
+      path.basename(file),
+      '$',
+      'stale or manually edited draft: existing file differs from YAML; generator will skip, so review manually',
+    );
   }
   if (mode === 'check') fail(path.basename(file), '$', 'missing draft; run content:generate:lessons');
-  fs.writeFileSync(file, rendered, { flag: 'wx' });
+  fs.writeFileSync(file, content, { flag: 'wx' });
+  return 1;
+}
+
+/**
+ * A Review file belongs to humans after creation; checking the YAML may not
+ * compare it with the initially empty template or overwrite review evidence.
+ */
+function writeReviewDraft(file, content, mode) {
+  noSymlinks(file);
+  if (fs.existsSync(file)) {
+    if (mode === 'generate') fail('review.ts', '$', 'refusing to overwrite an authored Review file');
+    return 0;
+  }
+  if (mode === 'check') fail('review.ts', '$', 'missing Lesson review record');
+  fs.writeFileSync(file, content, { flag: 'wx' });
+  return 1;
+}
+
+/**
+ * Source Markdown/Code files are editable authoring text, not generated TS.
+ * Keep their exact bytes (no banner/checksum); compare them only in check mode,
+ * and never replace existing content in creation-only mode.
+ */
+function writeAuthoredSource(file, content, mode) {
+  noSymlinks(file);
+  if (fs.existsSync(file)) {
+    if (mode === 'generate') fail(path.basename(file), '$', 'refusing to overwrite an authored source file');
+    if (fs.readFileSync(file, 'utf8') !== content)
+      fail(path.basename(file), '$', 'authored source differs from lesson.yaml; resolve the source of truth manually');
+    return 0;
+  }
+  if (mode === 'check') fail(path.basename(file), '$', 'missing authored source file');
+  fs.writeFileSync(file, content, { flag: 'wx' });
   return 1;
 }
 
 export function runOne(source, mode = 'check', repo = repoRoot) {
   if (!['generate', 'check'].includes(mode)) throw new Error('Mode must be generate or check');
   const target = targetFor(source, repo);
-  // An existing *.data.ts marks this UUID as already authored. Do not parse
-  // or regenerate it: the source YAML may be outdated after AI editing.
+  // An existing root index.ts or *.data.ts marks an authored Lesson. Do not
+  // parse stale YAML in generate mode and never overwrite manual edits.
   const sourceRelative = path.relative(target.bookRoot, target.root).split(path.sep).join('/');
   const canonicalSource = /^data\/lessons\/[0-9a-f]\/[0-9a-f-]{36}$/.test(sourceRelative);
   const existing = canonicalSource
     ? fs
         .readdirSync(target.root)
-        .filter(name => name.endsWith('.data.ts'))
+        .filter(name => name.endsWith('.data.ts') || name === 'index.ts')
         .sort()
     : [];
   if (mode === 'generate' && existing.length) {
     return { changed: 0, skipped: true, files: existing, lessonId: target.lessonId };
   }
+
+  if (!fs.existsSync(path.join(target.root, 'lesson.yaml')) && fs.existsSync(path.join(target.root, 'config.yaml')))
+    fail('config.yaml', '$', 'legacy technical Lesson source: migrate explicitly to lesson.yaml; no automatic rewrite');
   const { lesson, language, tasks } = combineSources(target.root);
   if (typeof lesson.id !== 'string' || !uuidPattern.test(lesson.id))
-    fail('config.yaml', 'config.id', 'a Lesson UUID is required for ID-addressed output');
+    fail('lesson.yaml', 'config.id', 'a Lesson UUID is required for ID-addressed output');
   const outputFolder = path.join(target.bookRoot, 'data/lessons', lesson.id.at(-1), lesson.id);
   noSymlinks(outputFolder);
-  // When source is outside the canonical target, derive the destination from
-  // the single authored config.id. Existing data is still never overwritten.
   const destinationData = fs.existsSync(outputFolder)
     ? fs
         .readdirSync(outputFolder)
-        .filter(name => name.endsWith('.data.ts'))
+        .filter(name => name.endsWith('.data.ts') || name === 'index.ts')
         .sort()
     : [];
   if (mode === 'generate' && destinationData.length) {
     return { changed: 0, skipped: true, files: destinationData, lessonId: lesson.id };
   }
-  const artifacts = productionFiles(outputFolder, tasks);
-  // Verify all authored production destinations before creating TS or Markdown.
-  checkProductionFiles(artifacts, mode);
-  const draft = renderLessonDraft(lesson, language);
-  const entryName = lesson.slug + '.data.ts';
-  for (const name of destinationData) {
-    if (name !== entryName) {
-      fail(name, '$', 'competing Lesson data entrypoint; refusing to create another');
+  if (destinationData.some(name => name.endsWith('.data.ts'))) {
+    fail(destinationData[0], '$', 'competing legacy Lesson entrypoint; modular layout requires a clean UUID folder');
+  }
+  const nodeLocations = new Map();
+  const modules = renderLessonModules(lesson, language, { bookRoot: target.bookRoot, outputFolder, nodeLocations });
+  // Ordinary Text, Markdown and Code must contain authored learner-facing
+  // content, never a generated specification instead of their real text.
+  const artifacts = productionFiles(
+    outputFolder,
+    tasks.filter(task => !['text', 'markdown', 'code'].includes(task.type)),
+    { nodeLocations },
+  );
+
+  // A partial previous run may have left modules without the root entrypoint.
+  // Never mix their contents with newly generated modules.
+  if (mode === 'generate') {
+    const draftDirectories = ['sections'];
+    const hasOrphans =
+      fs.existsSync(path.join(outputFolder, 'review.ts')) ||
+      fs.existsSync(path.join(outputFolder, 'constants.ts')) ||
+      draftDirectories.some(name => fs.existsSync(path.join(outputFolder, name)));
+    if (hasOrphans) fail('index.ts', '$', 'incomplete Lesson source tree; refusing to mix drafts with existing files');
+  }
+  for (const relative of modules.keys()) {
+    const destination = path.join(outputFolder, relative);
+    noSymlinks(destination);
+    if (mode === 'generate' && fs.existsSync(destination)) {
+      fail(relative, '$', 'existing Lesson source; refusing to overwrite or mix drafts');
     }
   }
+  checkProductionFiles(artifacts, mode);
+
   if (mode === 'generate') fs.mkdirSync(outputFolder, { recursive: true });
-  const changed = writeDraft(path.join(outputFolder, entryName), draft, mode);
+  let changed = 0;
+  for (const [relative, body] of modules) {
+    const destination = path.join(outputFolder, relative);
+    if (mode === 'generate') fs.mkdirSync(path.dirname(destination), { recursive: true });
+    changed +=
+      relative === 'review.ts'
+        ? writeReviewDraft(destination, body, mode)
+        : relative.endsWith('.ts')
+          ? writeDraft(destination, body, mode)
+          : writeAuthoredSource(destination, body, mode);
+  }
   const specs = mode === 'generate' ? writeProductionFiles(artifacts) : 0;
   return {
     changed: changed + specs,
-    files: [entryName, ...artifacts.map(item => item.file)],
+    files: [...modules.keys(), ...artifacts.map(item => item.file)],
     lessonId: lesson.id,
   };
 }
@@ -371,7 +264,10 @@ function discover(repo) {
         for (const entry of fs.readdirSync(path.join(lessons, bucket.name), { withFileTypes: true })) {
           if (!entry.isDirectory()) continue;
           const location = path.join(lessons, bucket.name, entry.name);
-          if (fs.existsSync(path.join(location, 'config.yaml'))) roots.push(location);
+          if (fs.existsSync(path.join(location, 'lesson.yaml'))) roots.push(location);
+          else if (fs.existsSync(path.join(location, 'config.yaml')))
+            console.warn('SKIP legacy technical Lesson config.yaml: ' + path.relative(repo, location) +
+              ' (migrate to lesson.yaml explicitly)');
         }
       }
     }
@@ -383,7 +279,7 @@ export function main(args = process.argv.slice(2), repo = repoRoot) {
   const [mode, ...rest] = args;
   if (!['generate', 'check'].includes(mode) || (rest.length && !(rest.length === 2 && rest[0] === '--source')))
     throw new Error(
-      'Usage: node shared/engine/scripts/lessonBuilder/lessonBuilder.mjs generate|check [--source content/<book>/.../config.yaml|<canonical-lesson-folder>]',
+      'Usage: node shared/engine/scripts/lessonBuilder/lessonBuilder.mjs generate|check [--source content/<book>/.../lesson.yaml|<canonical-lesson-folder>]',
     );
   const roots = rest.length ? [path.resolve(repo, rest[1])] : discover(repo);
   for (const root of roots) {

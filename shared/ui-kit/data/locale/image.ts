@@ -15,6 +15,18 @@ const en = {
 
 export type Image_Locale = typeof en;
 
+const it: Image_Locale = {
+  offline: 'Questa immagine non è disponibile offline.',
+  unavailable: 'Questa immagine non è disponibile.',
+  retry: 'Riprova',
+  carousel: {
+    fullscreen: 'Schermo intero',
+    exitFullscreen: 'Esci da schermo intero',
+    pause: 'Metti in pausa la presentazione',
+    play: 'Avvia la presentazione',
+  },
+};
+
 const uk: Image_Locale = {
   offline: 'Це зображення недоступне без інтернету.',
   unavailable: 'Це зображення недоступне.',
@@ -370,6 +382,7 @@ const qm: Image_Locale = {
 
 export const image: UiKit_Component_Locale<Image_Locale> = {
   en,
+  it,
   uk,
   zh,
   hi,

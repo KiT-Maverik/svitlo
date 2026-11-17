@@ -9,7 +9,6 @@ export { createContentBlockBaseSchema, contentBlockResolved_Schema, localization
 export * from './configurators/contentBlocks/defineAudio/defineAudio.schemas';
 export * from './configurators/contentBlocks/defineSubtitles/defineSubtitles.schemas';
 export * from './configurators/contentBlocks/defineCarousel/defineCarousel.schemas';
-export * from './configurators/contentBlocks/defineCarousel/defineCarouselSlide/defineCarouselSlide.schemas';
 export * from './configurators/contentBlocks/defineCheckpoint/defineCheckpoint.schemas';
 export * from './configurators/contentBlocks/defineCheckpoint/defineCheckpointItem/defineCheckpointItem.schemas';
 export * from './configurators/contentBlocks/defineCode/defineCode.schemas';

@@ -33,7 +33,7 @@ const params = sectionBase.shape.params.extend({
   timeLimitSeconds: z.number().positive().optional(),
   selection: z.strictObject({
     mode: z.enum(['all', 'sample']),
-    questionSlugs: z.array(camelCase_Schema).optional(),
+    questionIds: z.array(z.uuid()).nonempty().refine(ids => new Set(ids).size === ids.length, 'Quiz Question UUIDs must be unique'),
     count: z.number().int().positive().optional(),
     shuffle: z.boolean().optional(),
     seed: z.number().optional(),

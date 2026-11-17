@@ -66,24 +66,36 @@ function markdownForTask(task) {
 }
 
 /**
- * Materialize a deterministic, non-executable handoff next to the ID-addressed
- * entity. The output path is derived only from config.id and the textbook root.
- * This does NOT create Scene implementations or real media assets.
+ * For modular Lesson sources, scene/media specifications are written next to
+ * their generated slug modules via UUID-to-path mapping. Course/legacy callers
+ * keep ID-addressed paths until they adopt the same contract.
+ * This does NOT create Scene implementations or actual media assets.
  */
-export function productionFiles(entityFolder, tasks) {
+export function productionFiles(entityFolder, tasks, { nodeLocations } = {}) {
   const textbookRoot = path.resolve(entityFolder, '../../../..');
   const outputs = [];
   for (const task of tasks) {
     const { id, type, production } = task;
+    const colocated =
+      nodeLocations && ['scene', 'image', 'audio', 'video', 'subtitles'].includes(type);
     let destination;
     let body;
+    function colocatedSpecification() {
+      const folder = nodeLocations.get(id);
+      if (!folder) {
+        throw new Error('Missing generated Lesson module path for production ' + type + ' ' + id);
+      }
+      return path.join(entityFolder, folder, 'specification.md');
+    }
     if (['lesson', 'course'].includes(type) && text(production.methodology)) {
       destination = path.join(entityFolder, 'methodology.md');
       body = production.methodology.trimEnd() + '\n';
     } else if (type === 'scene' && text(production.specification)) {
       if (!uuid.test(id ?? ''))
         throw new Error('config.yaml:' + task.location + '.config.id: Scene specification requires UUID');
-      destination = path.join(textbookRoot, 'scenes', id.at(-1), id, 'specification.md');
+      destination = colocated
+        ? colocatedSpecification()
+        : path.join(textbookRoot, 'scenes', id.at(-1), id, 'specification.md');
       body = markdownForTask(task);
     } else if (
       ['image', 'audio', 'video', 'subtitles'].includes(type) &&
@@ -91,7 +103,9 @@ export function productionFiles(entityFolder, tasks) {
     ) {
       if (!uuid.test(id ?? ''))
         throw new Error('config.yaml:' + task.location + '.config.id: media specification requires UUID');
-      destination = path.join(textbookRoot, 'data/assets', id.at(-1), id, 'specification.md');
+      destination = colocated
+        ? colocatedSpecification()
+        : path.join(textbookRoot, 'data/assets', id.at(-1), id, 'specification.md');
       body = markdownForTask(task);
     } else if (text(production.specification)) {
       if (!uuid.test(id ?? ''))
