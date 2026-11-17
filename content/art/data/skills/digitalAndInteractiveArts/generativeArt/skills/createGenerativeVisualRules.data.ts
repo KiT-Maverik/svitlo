@@ -31,7 +31,7 @@ export const createGenerativeVisualRules_Skill_Data = defineSkill({
     et: 'Generatiivsete visuaalreeglite loomine',
     be: 'Ствараць генератыўныя візуальныя правілы',
     ka: 'გენერაციული ვიზუალური წესების შექმნა',
-    kk: 'Генеративті визуалды ережелер жасау',
+    kk: 'Generativtı vizualdy erejeler jasau',
     qm: 'Yaratıcı körüniş qaidelerini yaratmaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const createGenerativeVisualRules_Skill_Data = defineSkill({
       et: 'Loo visuaalne reegel, mis tekitab erinevaid, kuid omavahel seotud pilte.',
       be: 'Стварыце візуальнае правіла, якое стварае розныя, але звязаныя паміж сабой выявы.',
       ka: 'შექმენით ვიზუალური წესი, რომელიც განსხვავებულ, მაგრამ ერთმანეთთან დაკავშირებულ გამოსახულებებს წარმოქმნის.',
-      kk: 'Әртүрлі болғанымен өзара байланысты кескіндер жасайтын визуалды ереже құрыңыз。',
+      kk: 'Ärtürlı bolğanymen özara bailanysty keskınder jasaityn vizualdy ereje qūryñyz.',
 
       qm: 'Bir-birine bağlı, amma ayrı suretlerni doğurğan körüniş qaidesini yaratıñız.',
     },

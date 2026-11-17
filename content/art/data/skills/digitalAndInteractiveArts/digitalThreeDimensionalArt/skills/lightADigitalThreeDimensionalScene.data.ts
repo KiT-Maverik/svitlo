@@ -31,7 +31,7 @@ export const lightADigitalThreeDimensionalScene_Skill_Data = defineSkill({
     et: 'Digitaalse kolmemõõtmelise stseeni valgustamine',
     be: 'Асвятляць лічбавую трохмерную сцэну',
     ka: 'ციფრული სამგანზომილებიანი სცენის განათება',
-    kk: 'Цифрлық үшөлшемді көріністі жарықтандыру',
+    kk: 'Tsifrlyq üşölşemdı körınıstı jaryqtandyru',
     qm: 'Raqemiy üç ölçemli körünişni yarıtmaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const lightADigitalThreeDimensionalScene_Skill_Data = defineSkill({
       et: 'Kasuta digitaalset valgust ja varje meeleolu loomiseks ning vormi esiletoomiseks.',
       be: 'Выкарыстоўвайце лічбавае асвятленне і цені, каб стварыць настрой і выявіць форму.',
       ka: 'გამოიყენეთ ციფრული განათება და ჩრდილები განწყობის შესაქმნელად და ფორმის გამოსაკვეთად.',
-      kk: 'Көңіл күй қалыптастырып, пішінді айқындау үшін цифрлық жарық пен көлеңкені пайдаланыңыз。',
+      kk: 'Köñıl küi qalyptastyryp, pışındı aiqyndau üşın tsifrlyq jaryq pen köleñkenı paidalanyñyz.',
 
       qm: 'Köñül vaziyetini yaratmaq ve şekilni köstermek içün raqemiy yarıq ve kölgeler qullanıñız.',
     },

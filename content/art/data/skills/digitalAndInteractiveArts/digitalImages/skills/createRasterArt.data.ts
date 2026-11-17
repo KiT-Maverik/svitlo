@@ -31,7 +31,7 @@ export const createRasterArt_Skill_Data = defineSkill({
     et: 'Rasterkunsti loomine',
     be: 'Ствараць растравы твор',
     ka: 'რასტერული ხელოვნების შექმნა',
-    kk: 'Растрлық өнер жасау',
+    kk: 'Rastrlyq öner jasau',
     qm: 'Rastr sanatını yaratmaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const createRasterArt_Skill_Data = defineSkill({
       et: 'Loo pikslipõhiseid pilte teadlikult valitud värvide, märkide ja kihtidega.',
       be: 'Стварайце піксельныя выявы з дапамогай прадуманых колераў, штрыхоў і слаёў.',
       ka: 'შექმენით პიქსელური გამოსახულებები გააზრებული ფერებით, ნიშნებითა და ფენებით.',
-      kk: 'Ойластырылған түстер, белгілер мен қабаттар арқылы пиксельдік кескіндер жасаңыз。',
+      kk: 'Oilastyrylğan tüster, belgıler men qabattar arqyly pikseldık keskınder jasañyz.',
 
       qm: 'Pikselge esaslanğan suretlerni maqsatlı tüs, iz ve qatlar ile qurıñız.',
     },

@@ -31,7 +31,7 @@ export const useArtisticRandomness_Skill_Data = defineSkill({
     et: 'Kunstilise juhuslikkuse kasutamine',
     be: 'Выкарыстоўваць мастацкую выпадковасць',
     ka: 'მხატვრული შემთხვევითობის გამოყენება',
-    kk: 'Көркем кездейсоқтықты пайдалану',
+    kk: 'Körkem kezdeisoqtyqty paidalanu',
     qm: 'Sanat tesadüfini qullanmaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const useArtisticRandomness_Skill_Data = defineSkill({
       et: 'Kasuta oma kunstilise plaani piires juhitud juhuslikkust üllatavate variatsioonide loomiseks.',
       be: 'Выкарыстоўвайце кантраляваную выпадковасць, каб ствараць нечаканыя варыяцыі ў межах мастацкай задумы.',
       ka: 'გამოიყენეთ კონტროლირებადი შემთხვევითობა მხატვრული გეგმის ფარგლებში მოულოდნელი ვარიაციების შესაქმნელად.',
-      kk: 'Өнерлік жоспарыңыз аясында күтпеген өзгерістер жасау үшін басқарылатын кездейсоқтықты пайдаланыңыз。',
+      kk: 'Önerlık josparyñyz aiasynda kütpegen özgerıster jasau üşın basqarylatyn kezdeisoqtyqty paidalanyñyz.',
 
       qm: 'Tesadüfniñ sanat eserine qanday çeşitlik ve keşif ketirgenini qullanıñız.',
     },

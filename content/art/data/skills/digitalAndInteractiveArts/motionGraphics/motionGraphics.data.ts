@@ -37,7 +37,7 @@ export const motionGraphics_SkillGroup_Data = defineSkillGroup({
     et: 'Liikuv graafika',
     be: 'Рухомая графіка',
     ka: 'მოძრავი გრაფიკა',
-    kk: 'Қозғалыс графикасы',
+    kk: 'Qozğalys grafikasy',
     qm: 'Hareketli grafik',
   },
   skills: [animateGraphicElements_Skill_Data, designKineticTypography_Skill_Data, sequenceMotionGraphics_Skill_Data],
@@ -72,7 +72,7 @@ export const motionGraphics_SkillGroup_Data = defineSkillGroup({
       et: 'Kasuta liikuvat graafikat ideede, rütmi ja visuaalsete muutuste edastamiseks.',
       be: 'Выкарыстоўвайце рухомую графіку, каб перадаваць ідэі, рытм і візуальныя змены.',
       ka: 'გამოიყენეთ მოძრავი გრაფიკა იდეების, რიტმისა და ვიზუალური ცვლილებების გადმოსაცემად.',
-      kk: 'Идеяларды, ырғақты және визуалды өзгерістерді жеткізу үшін қозғалыстағы графиканы пайдаланыңыз.',
+      kk: 'İdeialardy, yrğaqty jäne vizualdy özgerısterdı jetkızu üşın qozğalystağy grafikany paidalanyñyz.',
 
       qm: 'Hareket, yazı ve körüniş elementleriniñ zaman içinde nasıl tertiplengenini keşf etiñiz.',
     },

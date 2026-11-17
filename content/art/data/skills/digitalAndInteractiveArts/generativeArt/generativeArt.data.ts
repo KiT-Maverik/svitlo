@@ -38,7 +38,7 @@ export const generativeArt_SkillGroup_Data = defineSkillGroup({
     et: 'Generatiivne kunst',
     be: 'Генератыўнае мастацтва',
     ka: 'გენერაციული ხელოვნება',
-    kk: 'Генеративті өнер',
+    kk: 'Generativtı öner',
     qm: 'Yaratıcı algoritm sanat',
   },
   skills: [
@@ -78,7 +78,7 @@ export const generativeArt_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri, kuidas lihtsad reeglid ja kontrollitud varieeruvus võivad luua visuaalkunsti.',
       be: 'Даследуйце, як простыя правілы і кантраляваная разнастайнасць могуць ствараць візуальнае мастацтва.',
       ka: 'შეისწავლეთ, როგორ შეიძლება მარტივმა წესებმა და კონტროლირებულმა მრავალფეროვნებამ შექმნას ვიზუალური ხელოვნება.',
-      kk: 'Қарапайым ережелер мен басқарылатын өзгерістердің визуалды өнерді қалай жасай алатынын зерттеңіз.',
+      kk: 'Qarapaiym erejeler men basqarylatyn özgerısterdıñ vizualdy önerdı qalai jasai alatynyn zertteñız.',
 
       qm: 'Basit qaide ve nezaretli çeşitlikniñ körüniş sanatını nasıl yaratabilecegini keşf etiñiz.',
     },

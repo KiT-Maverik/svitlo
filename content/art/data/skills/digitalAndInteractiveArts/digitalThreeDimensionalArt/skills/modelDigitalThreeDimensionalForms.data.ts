@@ -31,7 +31,7 @@ export const modelDigitalThreeDimensionalForms_Skill_Data = defineSkill({
     et: 'Digitaalsete kolmemõõtmeliste vormide modelleerimine',
     be: 'Мадэляваць лічбавыя трохмерныя формы',
     ka: 'ციფრული სამგანზომილებიანი ფორმების მოდელირება',
-    kk: 'Цифрлық үшөлшемді пішіндерді модельдеу',
+    kk: 'Tsifrlyq üşölşemdı pışınderdı modeldeu',
     qm: 'Raqemiy üç ölçemli şekillerge model bermek',
   },
   description: {
@@ -65,7 +65,7 @@ export const modelDigitalThreeDimensionalForms_Skill_Data = defineSkill({
       et: 'Vormi kolmemõõtmeline digiobjekt läbimõeldud kuju ja proportsioonidega.',
       be: 'Фармуйце трохмерны лічбавы аб’ект з прадуманай формай і прапорцыямі.',
       ka: 'შექმენით სამგანზომილებიანი ციფრული ობიექტი გააზრებული ფორმითა და პროპორციებით.',
-      kk: 'Ойластырылған пішін мен пропорция арқылы үшөлшемді цифрлық нысанды модельдеңіз。',
+      kk: 'Oilastyrylğan pışın men proportsiia arqyly üşölşemdı tsifrlyq nysandy modeldeñız.',
 
       qm: 'Maqsatlı şekil ve nisbet ile üç ölçemli raqemiy obyektni şekillendiriñiz.',
     },

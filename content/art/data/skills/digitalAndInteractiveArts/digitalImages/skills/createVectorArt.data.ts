@@ -31,7 +31,7 @@ export const createVectorArt_Skill_Data = defineSkill({
     et: 'Vektorkunsti loomine',
     be: 'Ствараць вектарны твор',
     ka: 'ვექტორული ხელოვნების შექმნა',
-    kk: 'Векторлық өнер жасау',
+    kk: 'Vektorlyq öner jasau',
     qm: 'Vektor sanatını yaratmaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const createVectorArt_Skill_Data = defineSkill({
       et: 'Loo skaleeritavaid pilte muudetavate digikõverate ja kujundite abil.',
       be: 'Стварайце маштабаваныя выявы з дапамогай рэдагаваных лічбавых крывых і фігур.',
       ka: 'შექმენით მასშტაბირებადი გამოსახულებები რედაქტირებადი ციფრული მრუდებისა და ფორმების გამოყენებით.',
-      kk: 'Өңдеуге болатын цифрлық қисықтар мен пішіндер арқылы өлшемі өзгеретін кескіндер жасаңыз。',
+      kk: 'Öñdeuge bolatyn tsifrlyq qisyqtar men pışınder arqyly ölşemı özgeretın keskınder jasañyz.',
 
       qm: 'Deñiştirilebilen raqemiy egri ve şekiller ile ölçeklenebilir suretler yaratmaq.',
     },

@@ -31,7 +31,7 @@ export const useDigitalMasks_Skill_Data = defineSkill({
     et: 'Digitaalsete maskide kasutamine',
     be: 'Выкарыстоўваць лічбавыя маскі',
     ka: 'ციფრული ნიღბების გამოყენება',
-    kk: 'Цифрлық бүркеніштерді пайдалану',
+    kk: 'Tsifrlyq bürkenışterdı paidalanu',
     qm: 'Raqemiy maskalarnı qullanmaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const useDigitalMasks_Skill_Data = defineSkill({
       et: 'Peida või näita pildi osi, et teha täpseid muudatusi.',
       be: 'Хавайце або паказвайце часткі выявы, каб уносіць дакладныя змены.',
       ka: 'დამალეთ ან გამოაჩინეთ გამოსახულების ნაწილები ზუსტი ცვლილებების შესატანად.',
-      kk: 'Нақты өзгерістер енгізу үшін кескіннің бөліктерін жасырыңыз немесе көрсетіңіз。',
+      kk: 'Naqty özgerıster engızu üşın keskınnıñ bölıkterın jasyryñyz nemese körsetıñız.',
 
       qm: 'Maqsatlı deñiştirmeler yapmaq içün suretniñ bir qısımını gizleñ ya da kösteriñ.',
     },

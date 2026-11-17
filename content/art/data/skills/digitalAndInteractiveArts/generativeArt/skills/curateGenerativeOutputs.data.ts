@@ -31,7 +31,7 @@ export const curateGenerativeOutputs_Skill_Data = defineSkill({
     et: 'Generatiivsete väljundite kureerimine',
     be: 'Адбіраць генератыўныя вынікі',
     ka: 'გენერაციული შედეგების კურაცია',
-    kk: 'Генеративті нәтижелерді іріктеу',
+    kk: 'Generativtı nätijelerdı ırıkteu',
     qm: 'Yaratılğan neticelerni saylap tertip etmek',
   },
   description: {
@@ -64,7 +64,7 @@ export const curateGenerativeOutputs_Skill_Data = defineSkill({
       et: 'Vali ja täiusta loodud pilte oma kunstiliste eesmärkide järgi.',
       be: 'Выбірайце і ўдасканальвайце згенераваныя выявы ў адпаведнасці з мастацкімі мэтамі.',
       ka: 'შეარჩიეთ და გააუმჯობესეთ გენერირებული გამოსახულებები თქვენი მხატვრული მიზნების შესაბამისად.',
-      kk: 'Өнерлік мақсаттарыңызға сай жасалған кескіндерді таңдап, жетілдіріңіз。',
+      kk: 'Önerlık maqsattaryñyzğa sai jasalğan keskınderdı tañdap, jetıldırıñız.',
 
       qm: 'Yaratılğan suretlerni öz sanat maqsatlarıñızğa köre saylañız ve yahşılañız.',
     },

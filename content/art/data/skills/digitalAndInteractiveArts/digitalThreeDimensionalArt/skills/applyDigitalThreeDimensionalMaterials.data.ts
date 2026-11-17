@@ -31,7 +31,7 @@ export const applyDigitalThreeDimensionalMaterials_Skill_Data = defineSkill({
     et: 'Digitaalsete kolmemõõtmeliste materjalide rakendamine',
     be: 'Ужываць лічбавыя трохмерныя матэрыялы',
     ka: 'ციფრული სამგანზომილებიანი მასალების გამოყენება',
-    kk: 'Цифрлық үшөлшемді материалдарды қолдану',
+    kk: 'Tsifrlyq üşölşemdı materialdardy qoldanu',
     qm: 'Raqemiy üç ölçemli materiallarnı qullanmaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const applyDigitalThreeDimensionalMaterials_Skill_Data = defineSkill({
       et: 'Anna digitaalsele objektile soovitud pind tekstuuri, läike ja värvi abil.',
       be: 'Надайце лічбаваму аб’екту патрэбную паверхню з дапамогай тэкстуры, бляску і колеру.',
       ka: 'ციფრულ ობიექტს მიანიჭეთ სასურველი ზედაპირი ტექსტურის, ბზინვარებისა და ფერის გამოყენებით.',
-      kk: 'Цифрлық нысанға текстура, жылтырлық және түс арқылы қалаған беткі көрінісін беріңіз。',
+      kk: 'Tsifrlyq nysanğa tekstura, jyltyrlyq jäne tüs arqyly qalağan betkı körınısın berıñız.',
 
       qm: 'Raqemiy obyektke tekstura, parıltı ve tüs vastasınen saylanğan yüzeyni beriñiz.',
     },

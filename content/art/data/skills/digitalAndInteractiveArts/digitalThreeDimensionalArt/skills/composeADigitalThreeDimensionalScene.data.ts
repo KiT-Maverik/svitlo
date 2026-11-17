@@ -31,7 +31,7 @@ export const composeADigitalThreeDimensionalScene_Skill_Data = defineSkill({
     et: 'Digitaalse kolmemõõtmelise stseeni loomine',
     be: 'Кампанаваць лічбавую трохмерную сцэну',
     ka: 'ციფრული სამგანზომილებიანი სცენის კომპოზიცია',
-    kk: 'Цифрлық үшөлшемді көріністі құрастыру',
+    kk: 'Tsifrlyq üşölşemdı körınıstı qūrastyru',
     qm: 'Raqemiy üç ölçemli körünişni tertip etmek',
   },
   description: {
@@ -65,7 +65,7 @@ export const composeADigitalThreeDimensionalScene_Skill_Data = defineSkill({
       et: 'Paiguta virtuaalsed objektid ja vali stseenile vaatepunkt.',
       be: 'Размясціце віртуальныя аб’екты і выберыце пункт гледжання, каб скампанаваць сцэну.',
       ka: 'განალაგეთ ვირტუალური ობიექტები და აირჩიეთ ხედვის წერტილი სცენის შესაქმნელად.',
-      kk: 'Көріністі құрастыру үшін виртуалды нысандарды орналастырып, көру нүктесін таңдаңыз。',
+      kk: 'Körınıstı qūrastyru üşın virtualdy nysandardy ornalastyryp, köru nüktesın tañdañyz.',
 
       qm: 'Sanal obyektlerni yerleştirip, sahneni qurmaq içün körüniş noqtasını saylañız.',
     },

@@ -38,7 +38,7 @@ export const digitalThreeDimensionalArt_SkillGroup_Data = defineSkillGroup({
     et: 'Väljendusrikaste virtuaalruumide loomine modelleerimise, materjalide, valguse ja kompositsiooni abil.',
     be: 'Трохвымернае лічбавае мастацтва',
     ka: 'სამგანზომილებიანი ციფრული ხელოვნება',
-    kk: 'Үшөлшемді цифрлық өнер',
+    kk: 'Üşölşemdı tsifrlyq öner',
     qm: 'Modelleme, material, yarıq ve kompozitsiya vastasınen ifadeleyici sanal meydanlar qurmaq',
   },
   skills: [
@@ -78,7 +78,7 @@ export const digitalThreeDimensionalArt_SkillGroup_Data = defineSkillGroup({
       et: 'Loo väljendusrikkaid virtuaalseid ruume modelleerimise, materjalide, valguse ja kompositsiooni abil.',
       be: 'Стварайце выразныя віртуальныя прасторы з дапамогай мадэлявання, матэрыялаў, святла і кампазіцыі.',
       ka: 'მოდელირებით, მასალებით, განათებითა და კომპოზიციით შექმენით გამომსახველობითი ვირტუალური სივრცეები.',
-      kk: 'Модельдеу, материалдар, жарық пен композиция арқылы әсерлі виртуалды кеңістіктер құрыңыз.',
+      kk: 'Modeldeu, materialdar, jaryq pen kompozitsiia arqyly äserlı virtualdy keñıstıkter qūryñyz.',
 
       qm: 'Modelleme, material, yarıq ve kompozitsiya vastasınen ifadeleyici sanal meydanlar qurmaq.',
     },
