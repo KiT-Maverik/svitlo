@@ -268,6 +268,9 @@ jobs:
     needs: [resolve, generate]
     if: needs.resolve.outputs.operation == 'generate' && needs.generate.result == 'success'
     runs-on: ubuntu-latest
+    concurrency:
+      group: agent-ci-publish-${{ needs.resolve.outputs.pr }}
+      cancel-in-progress: false
     permissions:
       contents: write
     steps:
@@ -275,9 +278,18 @@ jobs:
         with:
           ref: ${{ needs.resolve.outputs.head_sha }}
           persist-credentials: true
-      - name: Replace previous PR-scoped reference library
+      - name: Replace only generated reference documents, preserving diagnostics
         shell: bash
-        run: rm -rf -- .agent-ci-artifacts
+        run: |
+          set -euo pipefail
+          mkdir -p .agent-ci-artifacts
+          for dir in .agent-ci-artifacts/lesson-lookup .agent-ci-artifacts/engine-coverage; do
+            if [ -L "$dir" ] || { [ -e "$dir" ] && [ ! -d "$dir" ]; }; then
+              echo "::error::Unsafe diagnostic artifact directory: $dir"; exit 1
+            fi
+          done
+          find .agent-ci-artifacts -mindepth 1 -maxdepth 1 \
+            ! -name lesson-lookup ! -name engine-coverage -exec rm -rf -- {} +
       - uses: actions/download-artifact@v4
         with:
           name: agent-reference-library
@@ -391,6 +403,9 @@ jobs:
     needs: resolve
     if: needs.resolve.outputs.operation == 'cleanup'
     runs-on: ubuntu-latest
+    concurrency:
+      group: agent-ci-publish-${{ needs.resolve.outputs.pr }}
+      cancel-in-progress: false
     permissions:
       contents: write
     steps:
