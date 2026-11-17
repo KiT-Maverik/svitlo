@@ -40,4 +40,11 @@ jobs:
       - name: Run catalog identity, locale and publication tests
         run: npm test --workspace @svitlo/education-standards
       - name: Check catalog formatting
-        run: npm run code:format:check --workspace @svitlo/education-standards
+        shell: bash
+        run: |
+          if ! npm run code:format:check --workspace @svitlo/education-standards; then
+            # Show the exact Prettier patch in CI logs without writing to the PR branch.
+            npm run code:format:fix --workspace @svitlo/education-standards
+            git --no-pager diff -- shared/education-standards
+            exit 1
+          fi
