@@ -41,7 +41,7 @@ export const pricingPromotionsAndFairness_SkillGroup_Data = defineSkillGroup({
     et: 'Hinnad, soodustused ja ausus',
     be: 'Цэны, акцыі й сумленнасьць',
     ka: 'ფასები, აქციები და სამართლიანობა',
-    kk: 'Бағалар, акциялар және адалдық',
+    kk: 'Bağalar, aktsiialar jäne adaldyq',
     qm: 'Fiyatlar, aktsiyalar ve insaf',
   },
   skills: [
@@ -84,7 +84,7 @@ export const pricingPromotionsAndFairness_SkillGroup_Data = defineSkillGroup({
       et: 'Õpi hindama müügihindu, allahindlusi ja ausaid müügiviise.',
       be: 'Вучыся ацэньваць акцыйныя цэны, зьніжкі й сумленныя прыёмы продажу.',
       ka: 'ისწავლე ფასდაკლების ფასებისა და პატიოსანი გაყიდვის შეფასება.',
-      kk: 'Жеңілдік бағасын, науқандарды және әділ сатуды бағалауды үйрен.',
+      kk: 'Jeñıldık bağasyn, nauqandardy jäne ädıl satudy bağalaudy üiren.',
       qm: 'Ucuzlatılğan fiyatlarnı, indirimlerni ve insaflı satış usullarını qıymetle.',
     },
   },

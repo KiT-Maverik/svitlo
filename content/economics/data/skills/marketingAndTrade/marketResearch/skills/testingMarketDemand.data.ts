@@ -31,7 +31,7 @@ export const testingMarketDemand_Skill_Data = defineSkill({
     et: 'Turunõudluse katsetamine',
     be: 'Праверка рынкавага попыту',
     ka: 'ბაზრის მოთხოვნის შემოწმება',
-    kk: 'Нарық сұранысын тексеру',
+    kk: 'Naryq sūranysyn tekseru',
     qm: 'Bazar talapını sınamaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const testingMarketDemand_Skill_Data = defineSkill({
       et: 'Uuri, kas inimesed pakutavat toodet ka päriselt ostaksid.',
       be: 'Высьветлі, ці будуць людзі сапраўды купляць прапанаваны прадукт.',
       ka: 'გაარკვიე, იყიდიან თუ არა ადამიანები შემოთავაზებულ პროდუქტს.',
-      kk: 'Ұсынылған өнімді адамдар шынымен сатып ала ма, тексер.',
+      kk: 'Ūsynylğan önımdı adamdar şynymen satyp ala ma, tekser.',
       qm: 'Teklif etilgen malnı insanlar aqiqaten satın alacaqmı, araştır.',
     },
   },

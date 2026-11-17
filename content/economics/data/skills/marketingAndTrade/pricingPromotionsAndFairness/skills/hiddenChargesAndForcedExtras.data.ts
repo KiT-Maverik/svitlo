@@ -31,7 +31,7 @@ export const hiddenChargesAndForcedExtras_Skill_Data = defineSkill({
     et: 'Varjatud tasud ja pealesurutud lisad',
     be: 'Схаваныя плацяжы й навязаныя дадаткі',
     ka: 'დამალული გადასახადები და თავსმოხვეული დამატებები',
-    kk: 'Жасырын төлемдер мен таңылған қосымшалар',
+    kk: 'Jasyryn tölemder men tañylğan qosymşalar',
     qm: 'Gizli ödemeler ve zornen qoşulğan şeyler',
   },
   description: {
@@ -65,7 +65,7 @@ export const hiddenChargesAndForcedExtras_Skill_Data = defineSkill({
       et: 'Märka tasusid ja lisasid, mis muudavad pakkumise algsest kallimaks.',
       be: 'Заўважай даплаты й дадаткі, якія робяць прапанову даражэйшай.',
       ka: 'შენიშნე დამატებითი გადასახადები, რომლებიც შეთავაზებას აძვირებს.',
-      kk: 'Ұсынысты қымбаттататын қосымша төлемдерді байқа.',
+      kk: 'Ūsynysty qymbattatatyn qosymşa tölemderdı baiqa.',
       qm: 'Teklifni başta körüngeninden qıymetli yapqan qoşma ödemelerni tap.',
     },
   },

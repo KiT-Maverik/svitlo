@@ -31,7 +31,7 @@ export const discountsAndPromotions_Skill_Data = defineSkill({
     et: 'Allahindlused ja kampaaniad',
     be: 'Зьніжкі й акцыі',
     ka: 'ფასდაკლებები და აქციები',
-    kk: 'Жеңілдіктер мен акциялар',
+    kk: 'Jeñıldıkter men aktsiialar',
     qm: 'İndirimler ve aktsiyalar',
   },
   description: {
@@ -65,7 +65,7 @@ export const discountsAndPromotions_Skill_Data = defineSkill({
       et: 'Kontrolli enne ostmist, kas allahindlus päriselt raha säästab.',
       be: 'Правярай перад пакупкай, ці зьніжка насамрэч ашчаджае грошы.',
       ka: 'ყიდვამდე გადაამოწმე, ფასდაკლება ნამდვილად ზოგავს თუ არა ფულს.',
-      kk: 'Сатып аларда жеңілдік шынымен ақша үнемдей ме, тексер.',
+      kk: 'Satyp alarda jeñıldık şynymen aqşa ünemdei me, tekser.',
       qm: 'Satın almadan evel indirim aqçanı aqiqaten saqlaymı, tekşir.',
     },
   },

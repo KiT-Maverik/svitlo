@@ -38,7 +38,7 @@ export const marketingAndTrade_SkillDomain_Data = defineSkillDomain({
     et: 'Turundus ja kaubandus',
     be: 'Маркетынг і гандаль',
     ka: 'მარკეტინგი და ვაჭრობა',
-    kk: 'Маркетинг және сауда',
+    kk: 'Marketing jäne sauda',
     qm: 'Marketing ve ticaret',
   },
   groups: [
@@ -80,7 +80,7 @@ export const marketingAndTrade_SkillDomain_Data = defineSkillDomain({
       et: 'Uuri, kuidas ettevõtted kliente mõistavad, tooteid esitlevad ja vastutustundlikult müüvad.',
       be: 'Дасьледуй, як бізнэс разумее кліентаў, паказвае тавары й адказна прадае.',
       ka: 'შეისწავლე, როგორ იგებენ კომპანიები მომხმარებელთა საჭიროებებს, წარადგენენ პროდუქტებს და ყიდიან პასუხისმგებლობით.',
-      kk: 'Кәсіпорындардың клиенттерді қалай түсініп, өнім ұсынып, жауапты сататынын зертте.',
+      kk: 'Käsıporyndardyñ klientterdı qalai tüsınıp, önım ūsynyp, jauapty satatynyn zertte.',
       qm: 'Şirketler müşterilerni nasıl añlap, mallarnı kösterip, mesuliyetnen satqanını ögren.',
     },
   },

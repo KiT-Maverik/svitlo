@@ -31,7 +31,7 @@ export const ethicalMarketing_Skill_Data = defineSkill({
     et: 'Eetiline turundus',
     be: 'Этычны маркетынг',
     ka: 'ეთიკური მარკეტინგი',
-    kk: 'Этикалық маркетинг',
+    kk: 'Etikalyq marketing',
     qm: 'Ahlâqiy marketing',
   },
   description: {
@@ -65,7 +65,7 @@ export const ethicalMarketing_Skill_Data = defineSkill({
       et: 'Hinda, kas müügiviis on aus ja austab kliendi valikut.',
       be: 'Ацані, ці продаж сумленны й ці паважае выбар пакупніка.',
       ka: 'შეაფასე, პატიოსანია თუ არა გაყიდვის მეთოდი და პატივს სცემს თუ არა არჩევანს.',
-      kk: 'Сату тәсілі адал әрі тұтынушы таңдауын құрметтей ме, бағала.',
+      kk: 'Satu täsılı adal ärı tūtynuşy tañdauyn qūrmettei me, bağala.',
       qm: 'Satış usulı dürüstmi ve müşteriniñ saylavına ürmet etemi, qıymetle.',
     },
   },
