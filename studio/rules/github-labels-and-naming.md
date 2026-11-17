@@ -33,10 +33,17 @@
 | `issue: *`     | Issue intake or investigation status              | Issues only: `needs-triage`, `needs-info`, `needs-reproduction`. Use only while the condition applies.                                                                                                                                                                         |
 | `source: *`    | Origin of the Issue                               | Issues only. Choose the factual source: `internal`, `expert-review`, `user-report`, `agent`, or `automation`. Do not confuse a project-owner request (`internal`) with a report submitted through the product's user-report UI (`user-report`).                                |
 | `attention: *` | Special action still required                     | Issues and PRs, only when applicable: `decision`, `blocked`, `manual-qa`. Remove a transient label after the underlying condition is resolved.                                                                                                                                 |
+| `assert: *`    | Opt-in content verification                     | PRs only: `assert: media` invokes strict physical-media and generated-resource checks on Ready-for-Review PRs targeting `main`. This is a requested assertion, not an approval or mandatory merge check.                                                         |
 
 Consult the catalog for exact label names and colors. Content scopes use parchment yellow (`#D9C48B`), applications teal, backend rust, shared packages blue, Studio classic amber (`#B7791F`), and repository tooling/fallback slate. The `work` values are `feature`, `architecture`, `fix`, `refactor`, `content`, `translation`, `review`, `tests`, `ci`, `docs`, and `tooling`.
 
 **Distinguish architecture from feature and refactor:** Use `work: architecture` for system design or architectural changes to module boundaries, contracts, data models, composition, dependency direction, or runtime data flows. Use `work: feature` for new user-facing or technical capabilities, and `work: refactor` for reorganizing implementation without intentionally changing its architecture or behavior. Architecture-only work must not be labeled `work: feature` solely because it adds technical infrastructure. Apply both labels only when the change genuinely includes both architecture work and a new capability.
+
+## Opt-in content assertions
+
+`assert: media` is an explicit **PR-only** request to verify real physical media, complete generated Lesson/Course/Question/Flashcard JSON, and resource manifests. Apply it to a Lesson/Course PR targeting `main`. The independent `Assert media resources` workflow runs when an already labeled PR transitions from Draft to Ready for Review (`ready_for_review`). It also runs when the label is added to an already Ready PR (`labeled`), on later pushes (`synchronize`) and on reopening an already labeled, Ready PR. Draft PRs are not blocked by this opt-in assertion.
+
+The label does **not** certify a successful check: inspect the check result at the current head SHA. It is **not itself a merge requirement** and must not replace an always-reported, branch-protected status check; otherwise removing/omitting the label would bypass enforcement. Never auto-apply the label based only on a PR title or file extension. A check with no affected Course, Lesson or physical media scope must fail rather than silently succeed.
 
 ## Draft pull requests for coding agents
 
