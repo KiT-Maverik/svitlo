@@ -31,7 +31,7 @@ export const hertzsprungRussellDiagram_Skill_Data = defineSkill({
     et: 'Hertzsprungi–Russelli diagramm',
     be: 'Дыяграма Гэрцшпрунга — Расэла',
     ka: 'ჰერცშპრუნგ–რასელის დიაგრამა',
-    kk: 'Герцшпрунг–Рассел диаграммасы',
+    kk: 'Gertsşprung–Rassel diagrammasy',
     qm: 'Hertzsprung–Russell diagramması',
   },
   description: {
@@ -65,7 +65,7 @@ export const hertzsprungRussellDiagram_Skill_Data = defineSkill({
       et: 'Loe Hertzsprungi–Russelli diagrammi, et võrrelda tähtede temperatuuri, heledust ja arenguetappe.',
       be: 'Чытайце дыяграму Гэрцшпрунга — Расэла, каб параўноўваць тэмпэратуры, сьвяцільнасьці і стадыі эвалюцыі зорак.',
       ka: 'წაიკითხეთ ჰერცშპრუნგ–რასელის დიაგრამა, რათა შეადაროთ ვარსკვლავების ტემპერატურა, ნათობა და ევოლუციის ეტაპები.',
-      kk: 'Герцшпрунг–Рассел диаграммасы арқылы жұлдыздардың температурасын, жарқырауын және эволюция кезеңдерін салыстырыңыз.',
+      kk: 'Gertsşprung–Rassel diagrammasy arqyly jūldyzdardyñ temperaturasyn, jarqyrauyn jäne evoliutsiia kezeñderın salystyryñyz.',
       qm: 'Hertzsprung–Russell diagrammasını oqup yıldızlarnıñ sıcaqlığını, yarıq quvetini ve evolyutsiya basamaqalarını muqayese etiñiz.',
     },
   },

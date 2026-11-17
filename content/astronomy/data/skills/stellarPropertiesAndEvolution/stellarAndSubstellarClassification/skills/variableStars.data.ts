@@ -31,7 +31,7 @@ export const variableStars_Skill_Data = defineSkill({
     et: 'Muutlikud tähed',
     be: 'Зьменныя зоркі',
     ka: 'ცვალებადი ვარსკვლავები',
-    kk: 'Айнымалы жұлдыздар',
+    kk: 'Ainymaly jūldyzdar',
     qm: 'Parlaqlığı deñişken yıldızlar',
   },
   description: {
@@ -65,7 +65,7 @@ export const variableStars_Skill_Data = defineSkill({
       et: 'Õpi tundma tähe heleduse muutumise erinevaid põhjuseid.',
       be: 'Распазнавайце розныя прычыны зьмены яркасьці зоркі.',
       ka: 'გაიგეთ ვარსკვლავის სიკაშკაშის ცვლილების სხვადასხვა მიზეზი.',
-      kk: 'Жұлдыз жарықтығының өзгеруінің әртүрлі себептерін анықтаңыз.',
+      kk: 'Jūldyz jaryqtyğynyñ özgeruınıñ ärtürlı sebepterın anyqtañyz.',
       qm: 'Yıldıznıñ parlaqlığı türlü sebeplerden ne içün deñişkenini ögreniñiz.',
     },
   },

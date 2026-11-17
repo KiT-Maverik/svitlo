@@ -31,7 +31,7 @@ export const stellarSpectralTypes_Skill_Data = defineSkill({
     et: 'Tähtede spektriklassid',
     be: 'Спэктральныя клясы зорак',
     ka: 'ვარსკვლავების სპექტრული კლასები',
-    kk: 'Жұлдыздардың спектрлік кластары',
+    kk: 'Jūldyzdardyñ spektrlık klastary',
     qm: 'Yıldızlarnıñ spektr sınıfları',
   },
   description: {
@@ -64,7 +64,7 @@ export const stellarSpectralTypes_Skill_Data = defineSkill({
       et: 'Tuvasta tähtede spektriklassid nende valguse tunnuste järgi.',
       be: 'Вызначайце спэктральныя клясы зорак паводле асаблівасьцяў іхнага сьвятла.',
       ka: 'ამოიცანით ვარსკვლავების სპექტრული კლასები მათი სინათლის ნიშნებით.',
-      kk: 'Жұлдыздардың спектрлік кластарын жарығындағы белгілер бойынша анықтаңыз.',
+      kk: 'Jūldyzdardyñ spektrlık klastaryn jaryğyndağy belgıler boiynşa anyqtañyz.',
       qm: 'Yıldız yarığınıñ belgilerine köre spektr sınıflarını belgileñiz.',
     },
   },

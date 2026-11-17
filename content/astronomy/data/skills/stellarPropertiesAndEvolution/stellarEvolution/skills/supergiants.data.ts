@@ -31,7 +31,7 @@ export const supergiants_Skill_Data = defineSkill({
     et: 'Ülihiiud',
     be: 'Звышгіганты',
     ka: 'ზეგიგანტები',
-    kk: 'Аса алып жұлдыздар',
+    kk: 'Asa alyp jūldyzdar',
     qm: 'Pek büyük dev yıldızlar',
   },
   description: {
@@ -65,7 +65,7 @@ export const supergiants_Skill_Data = defineSkill({
       et: 'Õpi tundma arenenud massiivsete tähtede tohutut suurust ja suurt heledust.',
       be: 'Распазнавайце вялізныя памеры і высокую сьвяцільнасьць эвалюцыянавалых масіўных зорак.',
       ka: 'ამოიცანით განვითარებული მასიური ვარსკვლავების უზარმაზარი ზომები და მაღალი ნათობა.',
-      kk: 'Эволюцияланған массивті жұлдыздардың алып өлшемі мен жоғары жарқырауын таныңыз.',
+      kk: 'Evoliutsiialanğan massivtı jūldyzdardyñ alyp ölşemı men joğary jarqyrauyn tanyñyz.',
       qm: 'Evolyutsiya keçken büyük kütleli yıldızlarnıñ pek büyük ölçülerini ve yüksek parlaqlığını tanıñız.',
     },
   },

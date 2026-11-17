@@ -31,7 +31,7 @@ export const advancedStellarFusion_Skill_Data = defineSkill({
     et: 'Tähtede hilisem tuumasüntees',
     be: 'Позьнія стадыі тэрмаядзернага сынтэзу ў зорках',
     ka: 'ვარსკვლავებში ბირთვული სინთეზის გვიანი ეტაპები',
-    kk: 'Жұлдыздардағы ядролық синтездің кейінгі кезеңдері',
+    kk: 'Jūldyzdardağy iadrolyq sintezdıñ keiıngı kezeñderı',
     qm: 'Yıldızlarda soñki devri yadroviy qoşulma',
   },
   description: {
@@ -64,7 +64,7 @@ export const advancedStellarFusion_Skill_Data = defineSkill({
       et: 'Uuri, kuidas osa tähti elu hilisemates etappides sünteesib raskemaid elemente.',
       be: 'Дасьледуйце, як некаторыя зоркі на позьніх этапах існаваньня зьліваюць цяжэйшыя элемэнты.',
       ka: 'შეისწავლეთ, როგორ აერთებს ზოგიერთი ვარსკვლავი მძიმე ელემენტებს ბირთვული სინთეზით სიცოცხლის გვიან ეტაპებზე.',
-      kk: 'Кейбір жұлдыздар өмірінің соңғы кезеңдерінде ауыр элементтерді ядролық синтез арқылы қалай түзетінін зерттеңіз.',
+      kk: 'Keibır jūldyzdar ömırınıñ soñğy kezeñderınde auyr elementterdı iadrolyq sintez arqyly qalai tüzetının zertteñız.',
       qm: 'Bazı yıldızlar ömürleriniñ soñki devrinde ağır elementlerni yadroviy qoşulma vastasınen nasıl peyda etkenini ögreniñiz.',
     },
   },

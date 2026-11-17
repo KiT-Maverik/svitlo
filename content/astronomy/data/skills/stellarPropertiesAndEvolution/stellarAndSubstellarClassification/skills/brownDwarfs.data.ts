@@ -31,7 +31,7 @@ export const brownDwarfs_Skill_Data = defineSkill({
     et: 'Pruunid kääbused',
     be: 'Карычневыя карлікі',
     ka: 'ყავისფერი ჯუჯები',
-    kk: 'Қоңыр ергежейлілер',
+    kk: 'Qoñyr ergejeilıler',
     qm: 'Qoñur cüce cisimler',
   },
   description: {
@@ -65,7 +65,7 @@ export const brownDwarfs_Skill_Data = defineSkill({
       et: 'Uuri, mille poolest pruunid kääbused erinevad tähtedest ja planeedimassiga objektidest.',
       be: 'Даведайцеся, чым карычневыя карлікі адрозьніваюцца ад зорак і целаў плянэтнай масы.',
       ka: 'გაიგეთ, რით განსხვავდებიან ყავისფერი ჯუჯები ვარსკვლავებისა და პლანეტური მასის ობიექტებისგან.',
-      kk: 'Қоңыр ергежейлілердің жұлдыздар мен планеталық массалы денелерден айырмасын біліңіз.',
+      kk: 'Qoñyr ergejeilılerdıñ jūldyzdar men planetalyq massaly denelerden aiyrmasyn bılıñız.',
       qm: 'Qoñur cüce cisimler yıldızlardan ve planeta kütlesindeki cisimlerden nasıl farqlı olğanını ögreniñiz.',
     },
   },

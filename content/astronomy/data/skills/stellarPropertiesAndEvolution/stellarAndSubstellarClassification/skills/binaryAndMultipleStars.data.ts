@@ -31,7 +31,7 @@ export const binaryAndMultipleStars_Skill_Data = defineSkill({
     et: 'Kaksik- ja mitmiktähed',
     be: 'Падвойныя і кратныя зоркі',
     ka: 'ორმაგი და მრავალჯერადი ვარსკვლავები',
-    kk: 'Қос және көптік жұлдыздар',
+    kk: 'Qos jäne köptık jūldyzdar',
     qm: 'Eki ve bir qaç yıldızlı sistemalar',
   },
   description: {
@@ -65,7 +65,7 @@ export const binaryAndMultipleStars_Skill_Data = defineSkill({
       et: 'Uuri, kuidas tähepaarid ja -rühmad üksteise ümber tiirlevad.',
       be: 'Дасьледуйце, як пары і групы зорак абарачаюцца адна вакол адной.',
       ka: 'შეისწავლეთ, როგორ ბრუნავენ ვარსკვლავების წყვილები და ჯგუფები ერთმანეთის გარშემო.',
-      kk: 'Жұлдыздар жұптары мен топтарының бірін-бірі қалай айналатынын зерттеңіз.',
+      kk: 'Jūldyzdar jūptary men toptarynyñ bırın-bırı qalai ainalatynyn zertteñız.',
       qm: 'Yıldız çiftleri ve topluları bir-biri etrafında nasıl aylanğanını ögreniñiz.',
     },
   },

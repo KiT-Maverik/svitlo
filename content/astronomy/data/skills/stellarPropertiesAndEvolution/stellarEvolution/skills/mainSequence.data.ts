@@ -31,7 +31,7 @@ export const mainSequence_Skill_Data = defineSkill({
     et: 'Peajada',
     be: 'Галоўная пасьлядоўнасьць',
     ka: 'მთავარი მიმდევრობა',
-    kk: 'Бас тізбек',
+    kk: 'Bas tızbek',
     qm: 'Baş sıra',
   },
   description: {
@@ -65,7 +65,7 @@ export const mainSequence_Skill_Data = defineSkill({
       et: 'Selgita, miks tähed veedavad suurema osa elust tuumades vesinikku sünteesides.',
       be: 'Растлумачце, чаму зоркі праводзяць большую частку жыцьця, зьліваючы вадарод у ядрах.',
       ka: 'ახსენით, რატომ ატარებენ ვარსკვლავები სიცოცხლის უმეტეს ნაწილს ბირთვში წყალბადის შერწყმაში.',
-      kk: 'Жұлдыздар өмірінің басым бөлігін өзегінде сутегі синтезімен неге өткізетінін түсіндіріңіз.',
+      kk: 'Jūldyzdar ömırınıñ basym bölıgın özegınde sutegı sintezımen nege ötkızetının tüsındırıñız.',
       qm: 'Yıldızlar ömürleriniñ esas qısmında merkezlerinde vodorodnı ne içün yadroviy qoşulmağa kirsetkenini añlatıñız.',
     },
   },

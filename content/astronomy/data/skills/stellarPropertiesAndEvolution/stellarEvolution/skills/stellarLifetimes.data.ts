@@ -31,7 +31,7 @@ export const stellarLifetimes_Skill_Data = defineSkill({
     et: 'Tähtede eluiga',
     be: 'Працягласьць жыцьця зорак',
     ka: 'ვარსკვლავების სიცოცხლის ხანგრძლივობა',
-    kk: 'Жұлдыздардың өмір сүру ұзақтығы',
+    kk: 'Jūldyzdardyñ ömır süru ūzaqtyğy',
     qm: 'Yıldızlarnıñ ömür uzunlığı',
   },
   description: {
@@ -64,7 +64,7 @@ export const stellarLifetimes_Skill_Data = defineSkill({
       et: 'Võrdle tähtede eluiga sõltuvalt nende algmassist.',
       be: 'Параўнайце працягласьць жыцьця зорак у залежнасьці ад іх пачатковай масы.',
       ka: 'შეადარეთ ვარსკვლავების სიცოცხლის ხანგრძლივობა მათი საწყისი მასების მიხედვით.',
-      kk: 'Жұлдыздардың өмір ұзақтығын олардың бастапқы массасына қарай салыстырыңыз.',
+      kk: 'Jūldyzdardyñ ömır ūzaqtyğyn olardyñ bastapqy massasyna qarai salystyryñyz.',
       qm: 'Yıldızlarnıñ ömür uzunlığını başlanğıç kütlelerine köre muqayese etiñiz.',
     },
   },

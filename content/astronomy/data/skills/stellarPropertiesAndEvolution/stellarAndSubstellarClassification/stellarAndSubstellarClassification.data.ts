@@ -40,7 +40,7 @@ export const stellarAndSubstellarClassification_SkillGroup_Data = defineSkillGro
     et: 'Tähtede ja alamtäheliste objektide liigitus',
     be: "Клясыфікацыя зорак і субзорных аб'ектаў",
     ka: 'ვარსკვლავებისა და სუბვარსკვლავური ობიექტების კლასიფიკაცია',
-    kk: 'Жұлдыздар мен жұлдыз асты денелерін жіктеу',
+    kk: 'Jūldyzdar men jūldyz asty denelerın jıkteu',
     qm: 'Yıldızlar ve yıldızdan kiçik cisimlerniñ tasnifi',
   },
   skills: [
@@ -82,7 +82,7 @@ export const stellarAndSubstellarClassification_SkillGroup_Data = defineSkillGro
       et: 'Uuri eri tüüpi tähti ja seotud objekte nende spektrite, massi ja heleduse põhjal.',
       be: "Дасьледуйце розныя тыпы зорак і роднасных аб'ектаў паводле спэктраў, масы і яркасьці.",
       ka: 'შეისწავლეთ სხვადასხვა ტიპის ვარსკვლავები და მონათესავე ობიექტები სპექტრის, მასისა და სიკაშკაშის მიხედვით.',
-      kk: 'Жұлдыздар мен оларға ұқсас денелердің түрлерін спектрі, массасы және жарықтығы бойынша зерттеңіз.',
+      kk: 'Jūldyzdar men olarğa ūqsas denelerdıñ türlerın spektrı, massasy jäne jaryqtyğy boiynşa zertteñız.',
       qm: 'Yıldızlar ve olarğa yaqın cisimlerni spektri, kütlesi ve parlaqlığına köre ögreniñiz.',
     },
   },

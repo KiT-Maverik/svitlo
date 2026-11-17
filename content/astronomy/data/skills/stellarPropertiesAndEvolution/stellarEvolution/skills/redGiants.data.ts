@@ -31,7 +31,7 @@ export const redGiants_Skill_Data = defineSkill({
     et: 'Punased hiiud',
     be: 'Чырвоныя гіганты',
     ka: 'წითელი გიგანტები',
-    kk: 'Қызыл алыптар',
+    kk: 'Qyzyl alyptar',
     qm: 'Qırmızı dev yıldızlar',
   },
   description: {
@@ -65,7 +65,7 @@ export const redGiants_Skill_Data = defineSkill({
       et: 'Uuri, kuidas tähed paisuvad ja nende pinnad jahtuvad, kui neist saavad punased hiiud.',
       be: 'Дасьледуйце, як зоркі пашыраюцца і іх паверхні астываюць, калі яны робяцца чырвонымі гігантамі.',
       ka: 'შეისწავლეთ, როგორ ფართოვდებიან ვარსკვლავები და როგორ ცივდება მათი ზედაპირი წითელ გიგანტებად ქცევისას.',
-      kk: 'Жұлдыздар қызыл алыптарға айналғанда қалай кеңейіп, беттері салқындайтынын зерттеңіз.',
+      kk: 'Jūldyzdar qyzyl alyptarğa ainalğanda qalai keñeiıp, betterı salqyndaitynyn zertteñız.',
       qm: 'Yıldızlar qırmızı devlerge aylanganda nasıl keñeygenini ve yüzleriniñ sıcaqlığı nasıl azayğanını ögreniñiz.',
     },
   },

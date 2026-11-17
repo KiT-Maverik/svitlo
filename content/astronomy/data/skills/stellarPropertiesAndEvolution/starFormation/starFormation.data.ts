@@ -38,7 +38,7 @@ export const starFormation_SkillGroup_Data = defineSkillGroup({
     et: 'Tähtede teke',
     be: 'Утварэньне зорак',
     ka: 'ვარსკვლავების წარმოქმნა',
-    kk: 'Жұлдыздардың түзілуі',
+    kk: 'Jūldyzdardyñ tüzıluı',
     qm: 'Yıldızlarnıñ peyda oluvı',
   },
   skills: [
@@ -78,7 +78,7 @@ export const starFormation_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri, kuidas tähed sünnivad tohututes gaasi- ja tolmupilvedes.',
       be: 'Дасьледуйце, як зоркі нараджаюцца ў вялізных воблаках газу і пылу.',
       ka: 'გამოიკვლიეთ, როგორ იბადებიან ვარსკვლავები გაზისა და მტვრის უზარმაზარ ღრუბლებში.',
-      kk: 'Жұлдыздардың орасан газ бен шаң бұлттарының ішінде қалай пайда болатынын зерттеңіз.',
+      kk: 'Jūldyzdardyñ orasan gaz ben şañ būlttarynyñ ışınde qalai paida bolatynyn zertteñız.',
       qm: 'Yıldızlar büyük gaz ve toz bulutlarınıñ içinde nasıl peyda olğanını araştırıñız.',
     },
   },
