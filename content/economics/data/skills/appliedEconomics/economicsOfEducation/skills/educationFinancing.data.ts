@@ -31,7 +31,7 @@ export const educationFinancing_Skill_Data = defineSkill({
     et: 'Hariduse rahastamine',
     be: 'Фінансаваньне адукацыі',
     ka: 'განათლების დაფინანსება',
-    kk: 'Білім беруді қаржыландыру',
+    kk: 'Bılım berudı qarjylandyru',
     qm: 'Tasilni maliyeleştirmek',
   },
   description: {
@@ -64,7 +64,7 @@ export const educationFinancing_Skill_Data = defineSkill({
       et: 'Uuri, kes hariduse eest maksab ja kuidas rahastusotsused mõjutavad ligipääsu.',
       be: 'Дасьледуй, хто аплачвае адукацыю і як рашэньні аб фінансаваньні ўплываюць на доступ.',
       ka: 'შეისწავლე, ვინ იხდის განათლების საფასურს და როგორ მოქმედებს დაფინანსება ხელმისაწვდომობაზე.',
-      kk: 'Білімге кім төлейтінін және қаржыландыру шешімдері қолжетімділікке қалай әсер ететінін зертте.',
+      kk: 'Bılımge kım töleitının jäne qarjylandyru şeşımderı qoljetımdılıkke qalai äser etetının zertte.',
       qm: 'Tasil içün kim tölegenini ve maliye qararları irişimge nasıl tesir etkenini ögren.',
     },
   },

@@ -31,7 +31,7 @@ export const healthcareFinancing_Skill_Data = defineSkill({
     et: 'Tervishoiu rahastamine',
     be: 'Фінансаваньне аховы здароўя',
     ka: 'ჯანდაცვის დაფინანსება',
-    kk: 'Денсаулық сақтауды қаржыландыру',
+    kk: 'Densaulyq saqtaudy qarjylandyru',
     qm: 'Sağlıq saqlavnı maliyeleştirmek',
   },
   description: {
@@ -65,7 +65,7 @@ export const healthcareFinancing_Skill_Data = defineSkill({
       et: 'Võrdle tervishoiu rahastamise eri viise.',
       be: 'Параўнай розныя спосабы фінансаваньня аховы здароўя.',
       ka: 'შეადარე ჯანდაცვის დაფინანსების სხვადასხვა გზა.',
-      kk: 'Денсаулық сақтауды қаржыландырудың әртүрлі жолдарын салыстыр.',
+      kk: 'Densaulyq saqtaudy qarjylandyrudyñ ärtürlı joldaryn salystyr.',
       qm: 'Sağlıq saqlavnı maliyeleştirmeniñ çeşit yollarını teñeştir.',
     },
   },

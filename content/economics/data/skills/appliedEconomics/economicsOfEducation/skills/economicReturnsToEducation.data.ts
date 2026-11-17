@@ -31,7 +31,7 @@ export const economicReturnsToEducation_Skill_Data = defineSkill({
     et: 'Hariduse majanduslik tasuvus',
     be: 'Эканамічная аддача ад адукацыі',
     ka: 'განათლების ეკონომიკური სარგებელი',
-    kk: 'Білімнің экономикалық қайтарымы',
+    kk: 'Bılımnıñ ekonomikalyq qaitarymy',
     qm: 'Tasilniñ iqtisadiy qaytarımı',
   },
   description: {
@@ -65,7 +65,7 @@ export const economicReturnsToEducation_Skill_Data = defineSkill({
       et: 'Võrdle hariduse majanduslikku väärtust aja- ja rahakuluga.',
       be: 'Параўнай эканамічную вартасьць адукацыі з выдаткамі часу і грошай.',
       ka: 'შეადარე განათლების ეკონომიკური ღირებულება დროისა და ფულის დანახარჯს.',
-      kk: 'Білімнің экономикалық құнын уақыт пен ақша шығындарымен салыстыр.',
+      kk: 'Bılımnıñ ekonomikalyq qūnyn uaqyt pen aqşa şyğyndarymen salystyr.',
       qm: 'Tasilniñ iqtisadiy qıymetini vaqt ve aqça masraflarınen teñeştir.',
     },
   },

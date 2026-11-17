@@ -31,7 +31,7 @@ export const healthInsuranceAndMoralHazard_Skill_Data = defineSkill({
     et: 'Ravikindlustus ja moraalirisk',
     be: 'Мэдычнае страхаваньне і маральная рызыка',
     ka: 'ჯანმრთელობის დაზღვევა და მორალური რისკი',
-    kk: 'Медициналық сақтандыру және моральдық тәуекел',
+    kk: 'Meditsinalyq saqtandyru jäne moraldyq täuekel',
     qm: 'Sağlıq sigortası ve ahlâqiy risk',
   },
   description: {
@@ -65,7 +65,7 @@ export const healthInsuranceAndMoralHazard_Skill_Data = defineSkill({
       et: 'Mõista, kuidas kindlustus võib muuta maksjat ja teenuste kasutust.',
       be: 'Зразумей, як страхаваньне можа зьмяніць таго, хто плаціць, і выкарыстаньне паслуг.',
       ka: 'გაიგე, როგორ შეიძლება დაზღვევამ შეცვალოს გადამხდელი და სერვისების გამოყენება.',
-      kk: 'Сақтандыру кім төлейтінін және қызметтерді қолдануды қалай өзгерте алатынын түсін.',
+      kk: 'Saqtandyru kım töleitının jäne qyzmetterdı qoldanudy qalai özgerte alatynyn tüsın.',
       qm: 'Sigorta kim tölegenini ve hızmetlerniñ nasıl qullanılğanını deñiştire bilgenini añla.',
     },
   },

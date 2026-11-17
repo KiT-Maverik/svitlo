@@ -37,7 +37,7 @@ export const healthEconomics_SkillGroup_Data = defineSkillGroup({
     et: 'Terviseökonoomika',
     be: 'Эканоміка аховы здароўя',
     ka: 'ჯანდაცვის ეკონომიკა',
-    kk: 'Денсаулық сақтау экономикасы',
+    kk: 'Densaulyq saqtau ekonomikasy',
     qm: 'Sağlıq iqtisadı',
   },
   skills: [
@@ -76,7 +76,7 @@ export const healthEconomics_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri, miks tervishoiuturud toimivad tavapärastest kaubaturgudest erinevalt.',
       be: 'Даведайся, чаму рынкі мэдычных паслуг працуюць інакш, чым рынкі звычайных тавараў.',
       ka: 'გაიგე, რატომ მუშაობს ჯანდაცვის ბაზრები განსხვავებულად ჩვეულებრივი საქონლის ბაზრებისგან.',
-      kk: 'Медициналық қызмет нарығы кәдімгі тауар нарығынан неге өзгеше жұмыс істейтінін біл.',
+      kk: 'Meditsinalyq qyzmet naryğy kädımgı tauar naryğynan nege özgeşe jūmys ısteitının bıl.',
       qm: 'Sağlıq hızmetleri bazarı adiy mahsul bazarından niçün farqlı çalışqanını ögren.',
     },
   },

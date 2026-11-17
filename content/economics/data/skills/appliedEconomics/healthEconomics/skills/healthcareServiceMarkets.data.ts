@@ -31,7 +31,7 @@ export const healthcareServiceMarkets_Skill_Data = defineSkill({
     et: 'Tervishoiuteenuste turud',
     be: 'Рынкі мэдычных паслуг',
     ka: 'ჯანდაცვის მომსახურების ბაზრები',
-    kk: 'Медициналық қызмет нарықтары',
+    kk: 'Meditsinalyq qyzmet naryqtary',
     qm: 'Sağlıq hızmetleri bazarları',
   },
   description: {
@@ -65,7 +65,7 @@ export const healthcareServiceMarkets_Skill_Data = defineSkill({
       et: 'Uuri, miks tervishoiuteenuste ostmisega kaasneb keerukas teave ja stiimulid.',
       be: 'Дасьледуй, чаму набыцьцё мэдычных паслуг зьвязана са складанай інфармацыяй і стымуламі.',
       ka: 'შეისწავლე, რატომ უკავშირდება ჯანდაცვის სერვისების ყიდვა რთულ ინფორმაციასა და სტიმულებს.',
-      kk: 'Медициналық қызмет сатып алуда күрделі ақпарат пен ынталандырулар неге бар екенін зертте.',
+      kk: 'Meditsinalyq qyzmet satyp aluda kürdelı aqparat pen yntalandyrular nege bar ekenın zertte.',
       qm: 'Sağlıq hızmetlerini satın aluvda malümat ve teşviqler niçün qarmaşıq olğanını ögren.',
     },
   },
