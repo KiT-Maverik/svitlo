@@ -31,7 +31,7 @@ export const laborSupply_Skill_Data = defineSkill({
     et: 'Tööjõupakkumine',
     be: 'Прапанова працы',
     ka: 'შრომის მიწოდება',
-    kk: 'Еңбек ұсынысы',
+    kk: 'Eñbek ūsynysy',
     qm: 'Emek teklifi',
   },
   description: {
@@ -65,7 +65,7 @@ export const laborSupply_Skill_Data = defineSkill({
       et: 'Mõista, miks inimesed valivad erinevat liiki ja mahus tasustatud tööd.',
       be: "Зразумей, чаму людзі выбіраюць розныя віды й аб'ёмы аплатнай працы.",
       ka: 'გაიგე, რატომ ირჩევენ ადამიანები სხვადასხვა ტიპისა და მოცულობის ანაზღაურებად სამუშაოს.',
-      kk: 'Адамдар неге ақылы жұмыстың әртүрлі түрі мен көлемін таңдайтынын түсін.',
+      kk: 'Adamdar nege aqyly jūmystyñ ärtürlı türı men kölemın tañdaitynyn tüsın.',
       qm: 'İnsanlar ne içün türlü çeşit ve miqdarda aqçalı iş saylağanını añla.',
     },
   },

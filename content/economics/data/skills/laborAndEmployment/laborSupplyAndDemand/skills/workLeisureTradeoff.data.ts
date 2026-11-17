@@ -31,7 +31,7 @@ export const workLeisureTradeoff_Skill_Data = defineSkill({
     et: 'Valik töö ja vaba aja vahel',
     be: 'Выбар паміж працай і вольным часам',
     ka: 'არჩევანი შრომასა და დასვენებას შორის',
-    kk: 'Жұмыс пен бос уақыт таңдауы',
+    kk: 'Jūmys pen bos uaqyt tañdauy',
     qm: 'İş ve boş vaqt arasında saylav',
   },
   description: {
@@ -64,7 +64,7 @@ export const workLeisureTradeoff_Skill_Data = defineSkill({
       et: 'Uuri kompromisse sissetuleku, puhkuse ja muude kohustuste vahel.',
       be: 'Вывучай кампрамісы паміж даходам, адпачынкам ды іншымі абавязкамі.',
       ka: 'განიხილე შემოსავლის, დასვენებისა და სხვა მოვალეობების ურთიერთკომპრომისები.',
-      kk: 'Табыс, демалыс және өзге міндеттер арасындағы ымыраны зертте.',
+      kk: 'Tabys, demalys jäne özge mındetter arasyndağy ymyrany zertte.',
       qm: 'Qazanç, raqat ve başqa mesuliyetler arasındaki seçimi araştır.',
     },
   },

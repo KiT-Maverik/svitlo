@@ -39,7 +39,7 @@ export const businessFluctuationsAndAggregateDemand_SkillGroup_Data = defineSkil
     et: 'Majanduskõikumised ja kogunõudlus',
     be: 'Эканамічныя ваганьні і сукупны попыт',
     ka: 'ეკონომიკური რყევები და ერთობლივი მოთხოვნა',
-    kk: 'Экономикалық ауытқулар және жиынтық сұраныс',
+    kk: 'Ekonomikalyq auytqular jäne jiyntyq sūranys',
     qm: 'İqtisadiy dalğalanmalar ve umumiy talap',
   },
   skills: [
@@ -80,7 +80,7 @@ export const businessFluctuationsAndAggregateDemand_SkillGroup_Data = defineSkil
       et: 'Uuri, miks majandused läbivad kasvu ja aeglustumise perioode.',
       be: 'Дасьледуй, чаму эканоміка перажывае ўздым і запаволеньне.',
       ka: 'გამოიკვლიეთ, რატომ გადის ეკონომიკა ზრდისა და შენელების პერიოდებს.',
-      kk: 'Экономиканың өрлеу мен баяулау кезеңдерін неге бастан кешіретінін зерттеңіз.',
+      kk: 'Ekonomikanyñ örleu men baiaulau kezeñderın nege bastan keşıretının zertteñız.',
       qm: 'İqtisat ne içün yükselüv ve yavaşlav devirlerinden keçkenini araştır.',
     },
   },

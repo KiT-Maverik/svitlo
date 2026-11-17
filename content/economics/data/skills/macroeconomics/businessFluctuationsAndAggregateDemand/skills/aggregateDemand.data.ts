@@ -31,7 +31,7 @@ export const aggregateDemand_Skill_Data = defineSkill({
     et: 'Kogunõudlus',
     be: 'Сукупны попыт',
     ka: 'ერთობლივი მოთხოვნა',
-    kk: 'Жиынтық сұраныс',
+    kk: 'Jiyntyq sūranys',
     qm: 'Umumiy talap',
   },
   description: {
@@ -65,7 +65,7 @@ export const aggregateDemand_Skill_Data = defineSkill({
       et: 'Uuri, mis kujundab kaupade ja teenuste kogunõudlust.',
       be: 'Дасьледуй, што вызначае агульны попыт на тавары й паслугі.',
       ka: 'გამოიკვლიეთ, რა განსაზღვრავს საქონელსა და მომსახურებაზე მთლიან მოთხოვნას.',
-      kk: 'Тауарлар мен қызметтерге жалпы сұранысты не қалыптастыратынын зерттеңіз.',
+      kk: 'Tauarlar men qyzmetterge jalpy sūranysty ne qalyptastyratynyn zertteñız.',
       qm: 'Mallar ve hızmetlerge umumiy talapnı neler şekillendirgenini ögren.',
     },
   },

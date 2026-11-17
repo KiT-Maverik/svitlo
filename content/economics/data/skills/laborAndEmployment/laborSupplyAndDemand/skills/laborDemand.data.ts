@@ -31,7 +31,7 @@ export const laborDemand_Skill_Data = defineSkill({
     et: 'Tööjõunõudlus',
     be: 'Попыт на працу',
     ka: 'შრომაზე მოთხოვნა',
-    kk: 'Еңбекке сұраныс',
+    kk: 'Eñbekke sūranys',
     qm: 'Emekke talap',
   },
   description: {
@@ -65,7 +65,7 @@ export const laborDemand_Skill_Data = defineSkill({
       et: 'Selgita, miks ettevõtted inimesi palkavad ja kui palju tööjõudu vajavad.',
       be: 'Патлумач, чаму фірмы наймаюць людзей і колькі працы ім патрэбна.',
       ka: 'ახსენი, რატომ ქირაობენ კომპანიები თანამშრომლებს და რამდენი შრომა სჭირდებათ.',
-      kk: 'Фирмалар неге адам жалдайтынын және қанша еңбек қажет екенін түсіндір.',
+      kk: 'Firmalar nege adam jaldaitynyn jäne qanşa eñbek qajet ekenın tüsındır.',
       qm: 'Şirketler niçün işçi alğanını ve ne qadar emek kerek olğanını añlat.',
     },
   },

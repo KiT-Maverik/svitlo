@@ -31,7 +31,7 @@ export const wageDetermination_Skill_Data = defineSkill({
     et: 'Palga kujunemine',
     be: 'Фармаваньне заробкаў',
     ka: 'ხელფასის განსაზღვრა',
-    kk: 'Жалақының қалыптасуы',
+    kk: 'Jalaqynyñ qalyptasuy',
     qm: 'Maaşnıñ belgilenüvi',
   },
   description: {
@@ -64,7 +64,7 @@ export const wageDetermination_Skill_Data = defineSkill({
       et: 'Uuri, miks palgad tööde ja töökohtade vahel erinevad.',
       be: 'Даведайся, чаму заробкі розьняцца паміж працамі й працоўнымі месцамі.',
       ka: 'შეისწავლე, რატომ განსხვავდება ხელფასი სამუშაოებსა და ორგანიზაციებში.',
-      kk: 'Жұмыс орындары мен кәсіптер арасында жалақы неге ерекшеленетінін біл.',
+      kk: 'Jūmys oryndary men käsıpter arasynda jalaqy nege erekşelenetının bıl.',
       qm: 'İş ve iş yerlerine köre maaşlar niçün farqlı olğanını ögren.',
     },
   },
