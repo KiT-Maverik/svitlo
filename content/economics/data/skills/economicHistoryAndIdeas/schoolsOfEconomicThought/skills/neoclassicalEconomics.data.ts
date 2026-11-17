@@ -31,7 +31,7 @@ export const neoclassicalEconomics_Skill_Data = defineSkill({
     et: 'Neoklassikaline majandusteadus',
     be: 'Нэаклясычная эканоміка',
     ka: 'ნეოკლასიკური ეკონომიკა',
-    kk: 'Неоклассикалық экономика',
+    kk: 'Neoklassikalyq ekonomika',
     qm: 'Neoklassik iqtisat',
   },
   description: {
@@ -65,7 +65,7 @@ export const neoclassicalEconomics_Skill_Data = defineSkill({
       et: 'Mõista majandusmudeleid, mis põhinevad stiimulitel ja piirvalikutel.',
       be: 'Зразумей эканамічныя мадэлі, заснаваныя на стымулах і гранічных выбарах.',
       ka: 'გაიგე ეკონომიკური მოდელები, რომლებიც სტიმულებსა და ზღვრულ არჩევანზეა დაფუძნებული.',
-      kk: 'Ынталандырулар мен шекті таңдауға негізделген экономикалық модельдерді түсін.',
+      kk: 'Yntalandyrular men şektı tañdauğa negızdelgen ekonomikalyq modelderdı tüsın.',
       qm: 'Teşviqler ve marjinal saylavlarğa esaslanğan iqtisadiy modellerni añla.',
     },
   },

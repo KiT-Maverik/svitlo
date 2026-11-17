@@ -37,7 +37,7 @@ export const commonPoolResources_SkillGroup_Data = defineSkillGroup({
     et: 'Ühiselt kasutatavad ressursid',
     be: 'Рэсурсы супольнага карыстаньня',
     ka: 'საერთო სარგებლობის რესურსები',
-    kk: 'Ортақ пайдаланылатын ресурстар',
+    kk: 'Ortaq paidalanylatyn resurstar',
     qm: 'Umumiy qullanılğan resurslar',
   },
   skills: [
@@ -76,7 +76,7 @@ export const commonPoolResources_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri, miks ühiseid ressursse võidakse üle kasutada.',
       be: 'Даведайся, чаму супольныя рэсурсы могуць выкарыстоўваць празьмерна.',
       ka: 'გაიგე, რატომ შეიძლება საერთო რესურსები ზედმეტად გამოიყენონ.',
-      kk: 'Ортақ ресурстар неге шамадан тыс пайдаланылуы мүмкін екенін біл.',
+      kk: 'Ortaq resurstar nege şamadan tys paidalanyluy mümkın ekenın bıl.',
       qm: 'Umumiy resurslar niçün adden ziyade qullanıla bilgenini ögren.',
     },
   },

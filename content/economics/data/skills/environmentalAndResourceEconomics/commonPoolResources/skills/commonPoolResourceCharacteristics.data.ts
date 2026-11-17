@@ -31,7 +31,7 @@ export const commonPoolResourceCharacteristics_Skill_Data = defineSkill({
     et: 'Ühiskasutatavate ressursside omadused',
     be: 'Уласьцівасьці рэсурсаў супольнага карыстаньня',
     ka: 'საერთო რესურსების თვისებები',
-    kk: 'Ортақ ресурстардың сипаттары',
+    kk: 'Ortaq resurstardyñ sipattary',
     qm: 'Umumiy resurslarnıñ hususiyetleri',
   },
   description: {
@@ -64,7 +64,7 @@ export const commonPoolResourceCharacteristics_Skill_Data = defineSkill({
       et: 'Tunne ära ressursid, mida jääb paljude kasutajate tõttu vähemaks.',
       be: 'Распазнавай рэсурсы, якіх меншае, калі імі карыстаецца шмат людзей.',
       ka: 'ამოიცანი რესურსები, რომლებიც ბევრი ადამიანის გამოყენებით იკლებს.',
-      kk: 'Көп адам пайдаланғанда азаятын ресурстарды таны.',
+      kk: 'Köp adam paidalanğanda azaiatyn resurstardy tany.',
       qm: 'Çoq insan qullanğanda azala bilgen resurslarnı tanı.',
     },
   },

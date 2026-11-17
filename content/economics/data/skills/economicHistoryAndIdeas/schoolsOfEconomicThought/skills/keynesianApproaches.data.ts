@@ -31,7 +31,7 @@ export const keynesianApproaches_Skill_Data = defineSkill({
     et: 'Keinsistlikud lähenemised',
     be: 'Кейнсіянскія падыходы',
     ka: 'კეინზიანური მიდგომები',
-    kk: 'Кейнстік тәсілдер',
+    kk: 'Keinstık täsılder',
     qm: 'Keynsçi yaqlaşımlar',
   },
   description: {
@@ -65,7 +65,7 @@ export const keynesianApproaches_Skill_Data = defineSkill({
       et: 'Uuri, miks keinsistlikud lähenemised rõhutavad nõudlust ja majanduslangusi.',
       be: 'Дасьледуй, чаму кейнсіянскія падыходы падкрэсьліваюць попыт і эканамічныя спады.',
       ka: 'შეისწავლე, რატომ ამახვილებენ კეინზიანური მიდგომები ყურადღებას მოთხოვნასა და ეკონომიკურ ვარდნაზე.',
-      kk: 'Кейнстік тәсілдер сұраныс пен экономикалық құлдырауға неге мән беретінін зертте.',
+      kk: 'Keinstık täsılder sūranys pen ekonomikalyq qūldyrauğa nege män beretının zertte.',
       qm: 'Keynsçi yaqlaşımlar talep ve iqtisadiy tüşüşke niçün emiyet bergenini ögren.',
     },
   },

@@ -31,7 +31,7 @@ export const institutionalEconomicThought_Skill_Data = defineSkill({
     et: 'Institutsionaalne majandusmõte',
     be: 'Інстытуцыйная эканамічная думка',
     ka: 'ინსტიტუციური ეკონომიკური აზროვნება',
-    kk: 'Институционалдық экономикалық ой',
+    kk: 'İnstitutsionaldyq ekonomikalyq oi',
     qm: 'Müesseseviy iqtisadiy fikir',
   },
   description: {
@@ -65,7 +65,7 @@ export const institutionalEconomicThought_Skill_Data = defineSkill({
       et: 'Mõista, kuidas institutsioonid ja ühiskondlikud reeglid kujundavad majandustulemusi.',
       be: 'Зразумей, як інстытуты і грамадзкія правілы ўплываюць на эканамічныя вынікі.',
       ka: 'გაიგე, როგორ აყალიბებენ ინსტიტუტები და სოციალური წესები ეკონომიკურ შედეგებს.',
-      kk: 'Институттар мен әлеуметтік ережелер экономикалық нәтижелерге қалай әсер ететінін түсін.',
+      kk: 'İnstituttar men äleumettık erejeler ekonomikalyq nätijelerge qalai äser etetının tüsın.',
       qm: 'Müesseseler ve cemiyet qaydeleri iqtisadiy neticelerge nasıl tesir etkenini añla.',
     },
   },
