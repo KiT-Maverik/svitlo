@@ -11,6 +11,7 @@ import { Scene } from './blocks/Scene/Scene';
 import { ContentBlock_Text } from './blocks/Text/Text';
 import { Video } from './blocks/Video/Video';
 import { Youtube } from './blocks/Youtube/Youtube';
+import { Subtitles } from './blocks/Subtitles/Subtitles';
 import type { ContentBlockRendererProps, ContentBlockResponse, SceneRegistry } from '#types/content-blocks';
 import { assertNever, requireTaggedResponse } from './utils';
 import { ContentLanguageContext, useContentLanguage } from './ContentLanguageContext';
@@ -65,8 +66,7 @@ function renderBlock(
     case 'carousel':
       return <Carousel {...response} messages={messages} sceneRegistry={sceneRegistry} />;
     case 'subtitles':
-      // WebVTT resources require a synchronized player, not standalone block rendering.
-      throw new Error('Subtitles require a media player; they cannot render as standalone content');
+      return <Subtitles {...response} />;
     default:
       return assertNever(response);
   }

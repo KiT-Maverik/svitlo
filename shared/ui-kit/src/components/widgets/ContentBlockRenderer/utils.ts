@@ -70,3 +70,9 @@ export function resolveLocalizedRecord(
     Object.entries(values).map(([key, value]) => [key, resolveLocalizedText(value, language, field + '.' + key)]),
   );
 }
+
+/** A caption asset has no authored title, so use its filename as a language-neutral link label. */
+export function subtitlesResourceLabel(fileLocation: string): string {
+  const path = fileLocation.split(/[?#]/u, 1)[0];
+  return path.split('/').pop() || fileLocation;
+}
