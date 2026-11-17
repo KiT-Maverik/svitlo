@@ -31,7 +31,7 @@ export const analyzeMesopotamianNarrativeReliefs_Skill_Data = defineSkill({
     et: 'Analüüsida Mesopotaamia jutustavaid reljeefe',
     be: 'Аналізаваць месапатамскія апавядальныя рэльефы',
     ka: 'მესოპოტამიური ნარატიული რელიეფების გაანალიზება',
-    kk: 'Месопотамияның оқиғалы бедерлі бейнелерін талдау',
+    kk: 'Mesopotamiianyñ oqiğaly bederlı beinelerın taldau',
     qm: 'Mesopotamiya hikâyeli kabartmalarını tahlil etmek',
   },
   description: {
@@ -65,7 +65,7 @@ export const analyzeMesopotamianNarrativeReliefs_Skill_Data = defineSkill({
       et: 'Jälgi lugusid ja kuninglikke sõnumeid, mis on raiutud muistse Mesopotaamia reljeefidele.',
       be: 'Сачыце за гісторыямі і царскімі пасланнямі, высечанымі на рэльефах старажытнай Месапатаміі.',
       ka: 'გაეცანით ძველი მესოპოტამიის რელიეფებში ამოკვეთილ ამბებსა და სამეფო გზავნილებს.',
-      kk: 'Қосөзеннің ежелгі бедерлі бейнелерінде қашалған оқиғалар мен патшалық хабарларды зерделеңіз.',
+      kk: 'Qosözennıñ ejelgı bederlı beinelerınde qaşalğan oqiğalar men patşalyq habarlardy zerdeleñız.',
       qm: 'Qadimiy Mezopotamiya kabartmalarında oyulğan hikâyeler ve hükümdar mesajlarını izleyin.',
     },
   },

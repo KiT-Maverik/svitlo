@@ -38,7 +38,7 @@ export const historicalFilmMovements_SkillGroup_Data = defineSkillGroup({
     et: 'Ajaloolised filmiliikumised',
     be: 'Гістарычныя плыні кінэматографу',
     ka: 'კინოს ისტორიული მიმდინარეობები',
-    kk: 'Тарихи кино қозғалыстары',
+    kk: 'Tarihi kino qozğalystary',
     qm: 'Tarihiy film aqımları',
   },
   skills: [
@@ -78,7 +78,7 @@ export const historicalFilmMovements_SkillGroup_Data = defineSkillGroup({
       et: 'Avasta, kuidas eri filmiliikumised kujundasid omanäolisi visuaalseid ja jutustamisvõtteid.',
       be: 'Дасьледуйце, як розныя кінаплыні выпрацавалі адметныя візуальныя і апавядальныя прыёмы.',
       ka: 'შეისწავლეთ, როგორ განავითარა კინოს სხვადასხვა მიმდინარეობამ გამორჩეული ვიზუალური და თხრობითი ხერხები.',
-      kk: 'Әртүрлі кино қозғалыстарының өзіндік визуалды және баяндау тәсілдерін қалай дамытқанын зерттеңіз.',
+      kk: 'Ärtürlı kino qozğalystarynyñ özındık vizualdy jäne baiandau täsılderın qalai damytqanyn zertteñız.',
       qm: 'Farklı film aqımlarıñ özlerine has körüntü ve añlatım uslublarını nasıl inkişaf ettirgenini keşfediñiz.',
     },
   },

@@ -31,7 +31,7 @@ export const analyzeRomanPortraiture_Skill_Data = defineSkill({
     et: 'Analüüsida Rooma portreekunsti',
     be: 'Аналізаваць рымскі партрэт',
     ka: 'რომაული პორტრეტული ხელოვნების გაანალიზება',
-    kk: 'Рим портрет өнерін талдау',
+    kk: 'Rim portret önerın taldau',
     qm: 'Roma portre sanatını tahlil etmek',
   },
   description: {
@@ -65,7 +65,7 @@ export const analyzeRomanPortraiture_Skill_Data = defineSkill({
       et: 'Uuri, kuidas Rooma portreed kujutasid inimesi ja nende ühiskondlikku positsiooni.',
       be: 'Даведайцеся, як рымскія партрэты адлюстроўвалі асоб і іх грамадскае становішча.',
       ka: 'გაეცანით, როგორ ასახავდა რომაული პორტრეტები ადამიანებსა და მათ საზოგადოებრივ მდგომარეობას.',
-      kk: 'Зерттеңіз: Рим портреттері адамдарды және олардың қоғамдағы орнын қалай бейнелеген.',
+      kk: 'Zertteñız: Rim portretterı adamdardy jäne olardyñ qoğamdağy ornyn qalai beinelegen.',
       qm: 'Roma portrelerinin şahısları ve içtimai mevqilerini nasıl tasvir etkenini keşf etiñiz.',
     },
   },

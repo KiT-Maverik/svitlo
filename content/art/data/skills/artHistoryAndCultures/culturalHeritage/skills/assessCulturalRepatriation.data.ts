@@ -31,7 +31,7 @@ export const assessCulturalRepatriation_Skill_Data = defineSkill({
     et: 'Hinnata kultuuriväärtuste tagastamist',
     be: 'Ацэньваць рэпатрыяцыю культурных каштоўнасцей',
     ka: 'კულტურული საგანძურის დაბრუნების შეფასება',
-    kk: 'Мәдени құндылықтарды қайтаруды бағалау',
+    kk: 'Mädeni qūndylyqtardy qaitarudy bağalau',
     qm: 'Medeniy miras eşyalarnıñ qaytarılmasını degerlendirmek',
   },
   description: {
@@ -65,7 +65,7 @@ export const assessCulturalRepatriation_Skill_Data = defineSkill({
       et: 'Uuri kogukondade nõudeid ja eseme omandamise ajalugu, kui arutled selle tagastamise üle.',
       be: 'Разглядаць патрабаванні супольнасцяў і гісторыю набыцця пры абмеркаванні вяртання прадмета.',
       ka: 'განიხილეთ თემების მოთხოვნები და ნივთის შეძენის ისტორია მისი დაბრუნების საკითხის შეფასებისას.',
-      kk: 'Затты қайтару мәселесін талқылағанда қауымдастықтардың талаптары мен оны иелену тарихын қарастырыңыз.',
+      kk: 'Zatty qaitaru mäselesın talqylağanda qauymdastyqtardyñ talaptary men ony ielenu tarihyn qarastyryñyz.',
       qm: 'Eşyanıñ qaytarılması aqqında laf etkeniñde cemaatlarnıñ taleplerini ve onıñ alınuv tarihını ögren.',
     },
   },

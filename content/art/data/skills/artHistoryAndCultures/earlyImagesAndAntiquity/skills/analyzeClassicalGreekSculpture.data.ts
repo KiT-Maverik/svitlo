@@ -31,7 +31,7 @@ export const analyzeClassicalGreekSculpture_Skill_Data = defineSkill({
     et: 'Analüüsida Vana-Kreeka klassikalist skulptuuri',
     be: 'Аналізаваць класічную грэчаскую скульптуру',
     ka: 'კლასიკური ბერძნული ქანდაკების გაანალიზება',
-    kk: 'Классикалық грек мүсін өнерін талдау',
+    kk: 'Klassikalyq grek müsın önerın taldau',
     qm: 'Klassik Yunan heykelini tahlil etmek',
   },
   description: {
@@ -65,7 +65,7 @@ export const analyzeClassicalGreekSculpture_Skill_Data = defineSkill({
       et: 'Uuri, kuidas Kreeka skulptorid kujutasid eri aegadel keha, tasakaalu ja liikumist.',
       be: 'Даследуйце, як грэчаскія скульптары ў розныя эпохі адлюстроўвалі цела, раўнавагу і рух.',
       ka: 'შეისწავლეთ, როგორ გამოსახავდნენ ბერძენი მოქანდაკეები სხეულს, წონასწორობასა და მოძრაობას სხვადასხვა ეპოქაში.',
-      kk: 'Зерттеңіз: грек мүсіншілері әр дәуірде денені, тепе-теңдікті және қозғалысты қалай бейнелеген.',
+      kk: 'Zertteñız: grek müsınşılerı är däuırde denenı, tepe-teñdıktı jäne qozğalysty qalai beinelegen.',
       qm: 'Yunan heykeltıraşları beden, denge ve areketni devirler boyunca nasıl tasvir etkenini inceleñiz.',
     },
   },

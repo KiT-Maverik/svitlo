@@ -38,7 +38,7 @@ export const culturalHeritage_SkillGroup_Data = defineSkillGroup({
     et: 'Kultuuripärand',
     be: 'Культурная спадчына',
     ka: 'კულტურული მემკვიდრეობა',
-    kk: 'Мәдени мұра',
+    kk: 'Mädeni mūra',
     qm: 'Medeniy miras',
   },
   skills: [
@@ -78,7 +78,7 @@ export const culturalHeritage_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri, kuidas kultuuriobjektide päritolu, hoidmine ja eksponeerimine kogukondi mõjutavad.',
       be: 'Дасьледуйце, як паходжаньне, захаваньне і паказ культурных аб’ектаў уплываюць на супольнасьці.',
       ka: 'შეისწავლეთ, როგორ მოქმედებს კულტურული ობიექტების წარმომავლობა, დაცვა და გამოფენა საზოგადოებებზე.',
-      kk: 'Мәдени нысандардың шығу тегі, сақталуы мен көрсетілуінің қауымға әсерін зерттеңіз.',
+      kk: 'Mädeni nysandardyñ şyğu tegı, saqtaluy men körsetıluınıñ qauymğa äserın zertteñız.',
       qm: 'Medeniy eşyalarniñ menşei, qorunması ve sergilenmesi cemaatlerge nasıl tesir etkenini ögrenip baqıñız.',
     },
   },

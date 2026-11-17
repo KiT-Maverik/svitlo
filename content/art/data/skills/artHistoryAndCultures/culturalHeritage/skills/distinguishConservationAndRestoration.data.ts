@@ -31,7 +31,7 @@ export const distinguishConservationAndRestoration_Skill_Data = defineSkill({
     et: 'Eristada konserveerimist ja restaureerimist',
     be: 'Адрозніваць кансервацыю і рэстаўрацыю',
     ka: 'კონსერვაციისა და რესტავრაციის გარჩევა',
-    kk: 'Консервация мен реставрацияны ажырату',
+    kk: 'Konservatsiia men restavratsiiany ajyratu',
     qm: 'Saqlaunı ve tiklevni ayırmaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const distinguishConservationAndRestoration_Skill_Data = defineSkill({
       et: 'Mõista, kuidas algmaterjali säilitamine erineb kadunud tunnuste taastamisest.',
       be: 'Зразумець, чым захаванне арыгінальнага матэрыялу адрозніваецца ад аднаўлення страчаных элементаў.',
       ka: 'გაიგეთ, რით განსხვავდება ორიგინალი მასალის შენარჩუნება დაკარგული დეტალების აღდგენისგან.',
-      kk: 'Түпнұсқа материалды сақтаудың жоғалған белгілерді қайта жасаудан айырмасын түсініңіз.',
+      kk: 'Tüpnūsqa materialdy saqtaudyñ joğalğan belgılerdı qaita jasaudan aiyrmasyn tüsınıñız.',
       qm: 'Asıl materialnı saqlamaqnen coyulğan hususiyetlerni yañıdan yapmaq arasındaki farqnı añla.',
     },
   },

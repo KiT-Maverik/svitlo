@@ -31,7 +31,7 @@ export const interpretUpperPaleolithicCavePainting_Skill_Data = defineSkill({
     et: 'Tõlgendada ülemise paleoliitikumi koopamaale',
     be: 'Інтэрпрэтаваць пячорны жывапіс позняга палеаліту',
     ka: 'ზედა პალეოლითის მღვიმის მხატვრობის ინტერპრეტირება',
-    kk: 'Кейінгі палеолит дәуіріндегі үңгір суреттерін түсіндіру',
+    kk: 'Keiıngı paleolit däuırındegı üñgır suretterın tüsındıru',
     qm: 'Üst Paleolitik mağara resimlerini tefsir etmek',
   },
   description: {
@@ -65,7 +65,7 @@ export const interpretUpperPaleolithicCavePainting_Skill_Data = defineSkill({
       et: 'Uuri, mida koopapildid ja nende asukohad näitavad ning mis on endiselt teadmata.',
       be: 'Даследуйце, што расказваюць пячорныя выявы і месцы іх размяшчэння, а што застаецца невядомым.',
       ka: 'შეისწავლეთ, რას გვიჩვენებს მღვიმის გამოსახულებები და მათი მდებარეობა და რა რჩება უცნობი.',
-      kk: 'Зерттеңіз: үңгір суреттері мен олардың орналасуы нені аңғартады және не әлі белгісіз.',
+      kk: 'Zertteñız: üñgır suretterı men olardyñ ornalasuy nenı añğartady jäne ne älı belgısız.',
       qm: 'Mağara resimleri ve yerleşimleri neler bildire, neler hâlâ meçhul qalğanını keşf etiñiz.',
     },
   },

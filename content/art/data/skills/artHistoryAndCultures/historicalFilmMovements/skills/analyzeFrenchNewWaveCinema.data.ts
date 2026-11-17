@@ -31,7 +31,7 @@ export const analyzeFrenchNewWaveCinema_Skill_Data = defineSkill({
     et: 'Analüüsida Prantsuse uue laine kino',
     be: 'Аналізаваць кіно французскай новай хвалі',
     ka: 'ფრანგული ახალი ტალღის კინოს გაანალიზება',
-    kk: 'Француздық жаңа толқын киносын талдау',
+    kk: 'Frantsuzdyq jaña tolqyn kinosyn taldau',
     qm: 'Fransız Yeni Dalğa sinemasını tahlil etmek',
   },
   description: {
@@ -65,7 +65,7 @@ export const analyzeFrenchNewWaveCinema_Skill_Data = defineSkill({
       et: 'Avasta Prantsuse uue laine kino eksperimentaalset filmimist ja montaaži.',
       be: 'Даведайцеся пра эксперыментальныя здымкі і мантаж французскага кіно новай хвалі.',
       ka: 'გაეცანით ფრანგული ახალი ტალღის კინოს ექსპერიმენტულ გადაღებასა და მონტაჟს.',
-      kk: 'Француздық жаңа толқын киносының тәжірибелік түсірілімі мен монтажын зерттеңіз.',
+      kk: 'Frantsuzdyq jaña tolqyn kinosynyñ täjıribelık tüsırılımı men montajyn zertteñız.',
       qm: 'Fransız Yeni Dalğa sinemasının tecribeli çekim ve montaj usullarını keşf etiñiz.',
     },
   },

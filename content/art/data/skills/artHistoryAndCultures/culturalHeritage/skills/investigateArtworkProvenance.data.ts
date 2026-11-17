@@ -31,7 +31,7 @@ export const investigateArtworkProvenance_Skill_Data = defineSkill({
     et: 'Uurida kunstiteose päritolu- ja omandiajalugu',
     be: 'Даследаваць паходжанне і гісторыю ўласнасці твора мастацтва',
     ka: 'ნამუშევრის წარმომავლობის გამოკვლევა',
-    kk: 'Өнер туындысының шығу тарихын зерттеу',
+    kk: 'Öner tuyndysynyñ şyğu tarihyn zertteu',
     qm: 'Sanat eseriniñ menşe tarihını araştırmaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const investigateArtworkProvenance_Skill_Data = defineSkill({
       et: 'Jälgi kunstiteose dokumenteeritud omandiajalugu ja märka puuduvaid andmeid.',
       be: 'Адсочваць задакументаваную гісторыю ўласнасці на твор і выяўляць прабелы.',
       ka: 'მიჰყევით ნამუშევრის მფლობელობის დოკუმენტირებულ ისტორიას და შენიშნეთ დაკარგული ინფორმაცია.',
-      kk: 'Өнер туындысының құжатталған меншік тарихын қадағалап, жетіспейтін деректерді байқаңыз.',
+      kk: 'Öner tuyndysynyñ qūjattalğan menşık tarihyn qadağalap, jetıspeitın derekterdı baiqañyz.',
       qm: 'Sanat eseriniñ belgilengen saiplik tarihını izlep, eksik malümatnı fark et.',
     },
   },

@@ -31,7 +31,7 @@ export const analyzeGermanExpressionistCinema_Skill_Data = defineSkill({
     et: 'Analüüsida Saksa ekspressionistlikku kino',
     be: 'Аналізаваць нямецкі экспрэсіянісцкі кінематограф',
     ka: 'გერმანული ექსპრესიონისტული კინოს გაანალიზება',
-    kk: 'Неміс экспрессионистік киносын талдау',
+    kk: 'Nemıs ekspressionistık kinosyn taldau',
     qm: 'Alman Dışavurumcu sinemasını tahlil etmek',
   },
   description: {
@@ -65,7 +65,7 @@ export const analyzeGermanExpressionistCinema_Skill_Data = defineSkill({
       et: 'Vaata, kuidas Saksa ekspressionistlikud filmid lõid atmosfääri dekoratsioonide, valguse ja näitlemise abil.',
       be: 'Даведайцеся, як нямецкія экспрэсіянісцкія фільмы стваралі атмасферу з дапамогай дэкарацый, святла і акцёрскай гульні.',
       ka: 'გაიგეთ, როგორ ქმნიდა გერმანული ექსპრესიონისტული კინო ატმოსფეროს დეკორაციებით, განათებითა და მსახიობობით.',
-      kk: 'Біліңіз: неміс экспрессионистік фильмдері декорация, жарық және актерлік ойын арқылы атмосфераны қалай жасаған.',
+      kk: 'Bılıñız: nemıs ekspressionistık filmderı dekoratsiia, jaryq jäne akterlık oiyn arqyly atmosferany qalai jasağan.',
       qm: 'Alman Dışavurumcu filmlerinin dekor, ışıq ve oyunculuk ile nasıl hava yarattığını keşf etiñiz.',
     },
   },

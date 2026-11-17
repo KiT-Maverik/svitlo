@@ -31,7 +31,7 @@ export const analyzeAncientEgyptianFuneraryImagery_Skill_Data = defineSkill({
     et: 'Analüüsida Vana-Egiptuse matusekujutisi',
     be: 'Аналізаваць пахавальныя выявы Старажытнага Егіпта',
     ka: 'ძველი ეგვიპტის სამარხების გამოსახულებების გაანალიზება',
-    kk: 'Ежелгі Мысырдың жерлеу бейнелерін талдау',
+    kk: 'Ejelgı Mysyrdyñ jerleu beinelerın taldau',
     qm: 'Qadimiy Mısır cenaze tasvirlerini tahlil etmek',
   },
   description: {
@@ -65,7 +65,7 @@ export const analyzeAncientEgyptianFuneraryImagery_Skill_Data = defineSkill({
       et: 'Uuri, kuidas Vana-Egiptuse matusekujutistes kasutatakse sümboleid, tegelasi ja hoolikalt valitud stseene.',
       be: 'Даведайцеся, як у пахавальных выявах Старажытнага Егіпта выкарыстоўваліся сімвалы, постаці і старанна адабраныя сцэны.',
       ka: 'გაიგეთ, როგორ იყენებდნენ ძველი ეგვიპტის სამარხების გამოსახულებებში სიმბოლოებს, ფიგურებსა და საგულდაგულოდ შერჩეულ სცენებს.',
-      kk: 'Біліңіз: Ежелгі Мысырдың жерлеу бейнелерінде нышандар, тұлғалар және мұқият таңдалған көріністер қалай қолданылған.',
+      kk: 'Bılıñız: Ejelgı Mysyrdyñ jerleu beinelerınde nyşandar, tūlğalar jäne mūqiiat tañdalğan körınıster qalai qoldanylğan.',
       qm: 'Qadimiy Mısır mezar tasvirlerinde remizler, şahıslar ve itinaynen saylanğan sahneler nasıl qullanılğanını ögrenin.',
     },
   },

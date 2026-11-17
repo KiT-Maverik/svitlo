@@ -39,7 +39,7 @@ export const earlyImagesAndAntiquity_SkillGroup_Data = defineSkillGroup({
     et: 'Varased kujutised ja antiikaeg',
     be: 'Раньнія выявы і старажытнасьць',
     ka: 'ადრეული გამოსახულებები და ანტიკურობა',
-    kk: 'Ерте бейнелер мен ежелгі дәуір',
+    kk: 'Erte beineler men ejelgı däuır',
     qm: 'Erken tasvirler ve antik çağ',
   },
   skills: [
@@ -80,7 +80,7 @@ export const earlyImagesAndAntiquity_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri varaseid kujutisi ja antiikkunsti säilinud esemete ning nende konkreetse konteksti kaudu.',
       be: 'Дасьледуйце раньнія выявы і старажытнае мастацтва праз захаваныя прадметы і іх гістарычны кантэкст.',
       ka: 'შეისწავლეთ ადრეული გამოსახულებები და უძველესი ხელოვნება შემორჩენილი ობიექტებისა და მათი კონკრეტული კონტექსტის მიხედვით.',
-      kk: 'Ерте бейнелер мен ежелгі өнерді сақталған заттар мен олардың нақты контексті арқылы зерттеңіз.',
+      kk: 'Erte beineler men ejelgı önerdı saqtalğan zattar men olardyñ naqty kontekstı arqyly zertteñız.',
       qm: 'Erken tasvirlerni ve qadimiy sanattı saqlanıp qalğan eserler ve olarnıñ hususiy bağlamları arqalı ögrenip baqıñız.',
     },
   },

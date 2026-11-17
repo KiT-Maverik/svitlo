@@ -31,7 +31,7 @@ export const evaluateMuseumRepresentation_Skill_Data = defineSkill({
     et: 'Hinnata muuseumide esitlusviisi',
     be: 'Ацэньваць музейнае прадстаўленне',
     ka: 'მუზეუმში წარმოდგენის შეფასება',
-    kk: 'Музейдегі ұсыну тәсілін бағалау',
+    kk: 'Muzeidegı ūsynu täsılın bağalau',
     qm: 'Muzeydeki temsil tarzını degerlendirmek',
   },
   description: {
@@ -64,7 +64,7 @@ export const evaluateMuseumRepresentation_Skill_Data = defineSkill({
       et: 'Mõtle, kelle ajalugu ja vaatenurgad on muuseumides esindatud ning kelle omad puuduvad.',
       be: 'Разглядаць, чые гісторыі і погляды прадстаўлены ў музеях, а чые адсутнічаюць.',
       ka: 'განიხილეთ, ვისი ისტორიები და ხედვებია მუზეუმებში წარმოდგენილი და ვისი — გამოტოვებული.',
-      kk: 'Музейлерде кімдердің тарихы мен көзқарасы көрсетілгенін, ал кімдердікі ескерусіз қалғанын қарастырыңыз.',
+      kk: 'Muzeilerde kımderdıñ tarihy men közqarasy körsetılgenın, al kımderdıkı eskerusız qalğanyn qarastyryñyz.',
       qm: 'Muzeylerde kimlerniñ tarihları ve közqarışları körsetilgenini, kimlerniñki eksik qalğanını közden keçir.',
     },
   },
