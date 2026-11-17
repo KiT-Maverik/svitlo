@@ -57,16 +57,19 @@ function filesUnder(folder, prefix = '') {
     })
     .sort();
 }
-// An index.ts is a Lesson entrypoint only in its canonical UUID directory;
-// nested Section/ContentBlock barrel indexes are NOT standalone Lessons.
-const authored = folder =>
-  filesUnder(join(root, folder)).some(
+// Skills are authored through a root Domain index.ts, not *.data.ts.
+// Lessons retain their own UUID entrypoint detection; nested Section indexes
+// must not be mistaken for standalone Lessons.
+const authored = folder => {
+  if (folder === 'data/skills') return existsSync(join(root, folder, 'index.ts'));
+  return filesUnder(join(root, folder)).some(
     name =>
       name.endsWith('.data.ts') ||
       (folder === 'data/lessons' &&
         /^[0-9a-f]\/[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}\/index\.ts$/.test(name) &&
         name.split('/')[1].at(-1) === name[0]),
   );
+};
 
 // Dependencies required for build-time content generation; none are included in
 // the runtime output. Standalone npm workspace builds start from a clean checkout.
