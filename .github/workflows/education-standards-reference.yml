@@ -1,0 +1,42 @@
+name: EducationStandard review references
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'scripts/generateTranslationReviewArtifacts/**'
+      - '.github/workflows/translation-review.yml'
+      - '.github/workflows/education-standards-reference.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: education-standard-references-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  reference-tests:
+    name: EducationStandard adapter and scoped-dispatch tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Verify source parser, publication cross-check, and locale manifest behavior
+        run: node --test scripts/generateTranslationReviewArtifacts/education-standards-reference.spec.mjs
+      - name: Verify existing scoped generator behavior
+        run: node --test scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.spec.mjs
+      - name: Check related script formatting
+        shell: bash
+        run: |
+          if ! npx prettier --check scripts/generateTranslationReviewArtifacts/education-standards-reference.mjs scripts/generateTranslationReviewArtifacts/education-standards-reference.spec.mjs scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.mjs; then
+            npx prettier --write scripts/generateTranslationReviewArtifacts/education-standards-reference.mjs scripts/generateTranslationReviewArtifacts/education-standards-reference.spec.mjs scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.mjs
+            git --no-pager diff -- scripts/generateTranslationReviewArtifacts
+            exit 1
+          fi
