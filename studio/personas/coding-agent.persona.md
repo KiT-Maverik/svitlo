@@ -72,3 +72,7 @@ This persona defines the engineering role, not a task workflow. Any code-generat
 ## Quest Section implementation boundary
 
 For [Quest Section](../docs/entities/quest.md), inspect the new Engine Build-only configurators before proposing runtime work. The Section owns un-ordered slug-keyed Stage/Task maps with mandatory `start`; Stage owns required separate media pathways, Task owns exactly one Scene. Never add a second authored transition graph or infer Stage playback order from map iteration. The later UI integration must preserve separate presentation/Task workspaces, overlay reaction playback, central async input gating/cancellation, user-controlled locale/quality/captions and complete nonvisual interaction. Do not claim an authored Quest can currently be assembled or displayed by Lesson/Episode renderers. Respect the requested scope; do not wire runtime in a contract-only task.
+
+## LaTeX in Markdown ContentBlocks
+
+When implementing or editing a `markdown` ContentBlock, follow [Markdown formulas](../docs/entities/markdown-content-block.md). The block supports `$...$` and `$$...$$` LaTeX via UI Kit. Preserve `defineMarkdown` source/locale contracts; verify sanitization before KaTeX, SSR, RTL, accessible math and escaped dollars. Static formulas do not require a separate ContentBlock type.

@@ -7,7 +7,8 @@ A Section is a navigable learning unit. Regular Sections hold ordered ContentBlo
 See [Content Section schemas](../../../shared/engine/configurators/sections/defineContentSection/defineContentSection.schemas.ts) and [Quiz Section schemas](../../../shared/engine/configurators/sections/defineQuizSection/defineQuizSection.schemas.ts). Both define Config and Props, Section `params`, localized `title`/`navigationLabel`, and ordered ContentBlocks.
 
 - Content Section: `type: 'content'`, with authored `content: { items, order }` published as an ordered array.
-- Quiz Section: `type: 'quiz'`; `params` include `selection`, `questionOptions`, `layout`, `interaction`, `feedbackMode`, `grading`, `results`, `screen`, `timeLimitSeconds` and `isBlocker`. Quiz `content` holds Section-owned screen ContentBlocks; Questions are selected from the separate Lesson Question Bank.
+- Quiz Section: `type: 'quiz'`; `params` include `selection`, `questionOptions`, `layout`, `interaction`, `feedbackMode`, `grading`, `results`, `screen`, `timeLimitSeconds` and `isBlocker`. Quiz `content` holds Section-owned screen ContentBlocks; Questions are addressed by explicit stable `params.selection.questionIds` UUIDs against a separately published, Lesson-owned Question Bank; neither Lesson nor Section embeds the complete bank.
+- Flashcards Section: `type: 'flashcards'`; `params.selection.flashcardIds` contains unique ordered Flashcard UUIDs from a separately published Lesson-owned bank, while ordinary Section-owned ContentBlocks remain in `content`.
 - Multiple Quizzes are allowed. A blocking Quiz can prevent forward navigation; meeting a grading threshold is a separate assessment result.
 - `layout.mode` supports `stack` and `stepper`. Without `timeLimitSeconds`, the Quiz is untimed.
 
@@ -27,7 +28,7 @@ The Lesson's approved `methodology.md` YAML frontmatter declares `assessmentPlan
 
 ## YAML Config draft authoring
 
-The technical Lesson `config.yaml` embeds a `config` object and optional `production` instructions at **each Section and nested ContentBlock**. Stable IDs and typed `params` live only in `config`; slug-keyed `content: { items, order }` preserves order without positional authoring arrays. The [composed editor schema](../../../shared/engine/yaml-schemas/lesson.scaffold.schema.json) derives `config` from Engine Zod and embeds manually maintained production requirements. The TypeScript scaffolder emits deliberately incomplete `define*Section` and `define*` drafts and UUID-addressed production specifications, but neither checks editorial approval nor publishes Props. See [Unified YAML handoff](../architecture/yaml-config-scaffolding.md).
+The **current** technical Lesson `config.yaml` embeds a `config` object and optional `production` instructions at **each Section and nested ContentBlock**. Stable IDs and typed `params` live only in `config`; slug-keyed `content: { items, order }` preserves order without positional authoring arrays. The [composed editor schema](../../../shared/engine/yaml-schemas/lesson.scaffold.schema.json) derives `config` from Engine Zod and embeds manually maintained production requirements. The TypeScript scaffolder emits deliberately incomplete `define*Section` and `define*` drafts and UUID-addressed production specifications, but neither checks editorial approval nor publishes Props. The approved next-stage source is `lesson.yaml`; the existing builder has not yet migrated. See [Unified YAML handoff](../architecture/yaml-config-scaffolding.md).
 
 ## Quest — contract-only autonomous Section
 

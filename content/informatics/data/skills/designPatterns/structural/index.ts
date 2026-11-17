@@ -1,0 +1,91 @@
+import { defineSkillGroup } from '@svitlo/engine/build';
+
+import { adapter } from './adapter';
+import { bridge } from './bridge';
+import { composite } from './composite';
+import { decorator } from './decorator';
+import { facade } from './facade';
+import { flyweight } from './flyweight';
+import { proxy } from './proxy';
+
+export const structural = defineSkillGroup({
+  slug: 'structural',
+  id: 'c33084e6-0f4c-43c3-af2d-309e0f6cbf62',
+  name: {
+    ar: 'الأنماط الهيكلية',
+    be: 'Структурныя шаблёны',
+    bn: 'কাঠামোগত প্যাটার্ন',
+    de: 'Strukturmuster',
+    en: 'Structural',
+    es: 'Patrones estructurales',
+    et: 'Struktuurimustrid',
+    fr: 'Patrons structurels',
+    he: 'תבניות מבניות',
+    hi: 'संरचनात्मक पैटर्न',
+    id: 'Pola Struktural',
+    it: 'Pattern strutturali',
+    ja: '構造パターン',
+    ka: 'სტრუქტურული შაბლონები',
+    kk: 'Құрылымдық үлгілер',
+    ko: '구조 패턴',
+    lt: 'Struktūriniai šablonai',
+    lv: 'Strukturālie šabloni',
+    mr: 'संरचनात्मक नमुने',
+    ms: 'Corak Struktur',
+    pl: 'Wzorce strukturalne',
+    pt: 'Padrões estruturais',
+    qm: 'Quruluş şablonları',
+    ta: 'கட்டமைப்பு மாதிரிகள்',
+    te: 'నిర్మాణ నమూనాలు',
+    tr: 'Yapısal Kalıplar',
+    uk: 'Структурні шаблони',
+    ur: 'ساختی پیٹرن',
+    vi: 'Mẫu cấu trúc',
+    zh: '结构型模式',
+  },
+  skills: {
+    adapter,
+    bridge,
+    composite,
+    decorator,
+    facade,
+    flyweight,
+    proxy,
+  },
+  description: {
+    methodological:
+      'Seven methods of combining components through adaptation, wrapping, nesting, intermediaries, or shared state.',
+    frontend: {
+      ar: 'اكتشف أنماط ربط مكونات البرمجيات وتغليفها ومشاركتها.',
+      be: 'Вывучай шаблёны злучэньня, абгортваньня й супольнага карыстаньня кампанэнтамі.',
+      bn: 'সফটওয়্যার অংশ যুক্ত, মোড়ানো ও ভাগ করার প্যাটার্ন জানো।',
+      de: 'Entdecke Muster zum Verbinden, Umhüllen und Teilen von Softwarekomponenten.',
+      en: 'Discover patterns for connecting, wrapping and sharing software components.',
+      es: 'Descubre patrones para conectar, envolver y compartir componentes de software.',
+      et: 'Uuri mustreid tarkvarakomponentide ühendamiseks, mähkimiseks ja jagamiseks.',
+      fr: 'Découvre des patrons pour relier, envelopper et partager des composants logiciels.',
+      he: 'גלו תבניות לחיבור, עטיפה ושיתוף של רכיבי תוכנה.',
+      hi: 'सॉफ़्टवेयर घटकों को जोड़ने, आवरण देने और साझा करने के पैटर्न जानें।',
+      id: 'Temukan pola untuk menghubungkan, membungkus, dan berbagi komponen perangkat lunak.',
+      it: 'Scopri i pattern per collegare, avvolgere e condividere componenti software.',
+      ja: 'ソフトウェア部品を接続し、包み、共有するためのパターンを学ぼう。',
+      ka: 'შეისწავლე კომპონენტების დაკავშირების, შეფუთვისა და გაზიარების შაბლონები.',
+      kk: 'Компоненттерді қосу, орау және ортақ пайдалану үлгілерін зертте.',
+      ko: '소프트웨어 구성 요소를 연결하고 감싸고 공유하는 패턴을 알아보세요.',
+      lt: 'Tyrinėk šablonus komponentams jungti, apgaubti ir bendrinti.',
+      lv: 'Izpēti šablonus programmatūras komponentu savienošanai, ietīšanai un kopīgošanai.',
+      mr: 'सॉफ्टवेअर घटक जोडणे, गुंडाळणे व सामायिक करण्याचे नमुने शिका.',
+      ms: 'Terokai corak menghubungkan, membalut dan berkongsi komponen perisian.',
+      pl: 'Poznaj wzorce łączenia, opakowywania i współdzielenia komponentów.',
+      pt: 'Descubra padrões para conectar, envolver e compartilhar componentes de software.',
+      qm: 'Programma komponentlerini bağlamaq, sarmaq ve paylaşmaq şablonlarını ögren.',
+      ta: 'மென்பொருள் கூறுகளை இணைக்கவும் சுற்றவும் பகிரவும் பயன்படும் மாதிரிகளை அறி.',
+      te: 'సాఫ్ట్‌వేర్ భాగాలను కలపడం, చుట్టడం, పంచుకోవడం కోసం నమూనాలను తెలుసుకోండి.',
+      tr: 'Yazılım bileşenlerini bağlama, sarma ve paylaşma kalıplarını keşfet.',
+      uk: 'Досліджуй шаблони з’єднання, обгортання та спільного використання програмних компонентів.',
+      ur: 'سافٹ ویئر اجزا کو جوڑنے، لپیٹنے اور مشترک کرنے کے پیٹرن سیکھیں۔',
+      vi: 'Khám phá các mẫu nối, bọc và chia sẻ thành phần phần mềm.',
+      zh: '了解连接、包装和共享软件组件的模式。',
+    },
+  },
+});

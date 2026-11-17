@@ -4,7 +4,8 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { Box, Button, Checkbox, FormControlLabel, MenuItem, Radio, Stack, TextField, Typography } from '@mui/material';
 import type {
   ContentBlock_Props,
-  Lesson_Props,
+  LanguageCode,
+  AssessmentResourceLoader,
   QuizSection_Props,
   Question_SelectOneAnswer_Props,
   Question_SelectMultipleAnswers_Props,
@@ -17,6 +18,7 @@ import type {
   Question_FillBlanksWithText_Props,
 } from '@svitlo/engine/runtime';
 import {
+  selectQuizQuestionIds,
   selectOneAnswer_Props_Schema,
   selectMultipleAnswers_Props_Schema,
   matchBlocks_Props_Schema,
@@ -71,31 +73,20 @@ function shuffle<T extends { id: string }>(items: T[], seed: string): T[] {
   return [...items].sort((a, b) => stableHash(seed + a.id) - stableHash(seed + b.id));
 }
 
-/** Authored Quiz selection is resolved exclusively against published Engine Question Props. */
-export function selectQuizQuestions(lesson: Lesson_Props, section: QuizSection_Props): Question[] {
-  const all = Object.entries(lesson.questions ?? {}).flatMap(([kind, questions]) =>
-    (questions ?? []).map(item => parseQuestion(item, kind)),
-  );
-  const bySlug = new Map<string, Question>();
-  for (const question of all) {
-    if (bySlug.has(question.slug)) throw new Error('Duplicate Question slug: ' + question.slug);
-    bySlug.set(question.slug, question);
+/** Resolve exactly the previously selected UUIDs; reject missing, extra or duplicated resources. */
+export function selectQuizQuestions(raw: readonly Question[], ids: readonly string[]): Question[] {
+  const byId = new Map<string, Question>();
+  for (const entry of raw) {
+    const question = parseQuestion(entry, entry.type);
+    if (byId.has(question.id)) throw new Error('Duplicate loaded Question UUID: ' + question.id);
+    byId.set(question.id, question);
   }
-  const selection = section.params.selection;
-  const selected = selection.questionSlugs
-    ? selection.questionSlugs.map(slug => {
-        const question = bySlug.get(slug);
-        if (!question) throw new Error('Unknown Quiz Question slug: ' + slug);
-        return question;
-      })
-    : all;
-  const ordered = selection.shuffle ? shuffle(selected, section.id + ':' + String(selection.seed ?? 0)) : selected;
-  if (selection.mode === 'sample') {
-    if (!selection.count || selection.count > ordered.length)
-      throw new Error('Invalid Quiz sample count: ' + section.id);
-    return ordered.slice(0, selection.count);
-  }
-  return ordered;
+  if (byId.size !== ids.length) throw new Error('Loaded Quiz resources do not match selected UUIDs');
+  return ids.map(id => {
+    const question = byId.get(id);
+    if (!question) throw new Error('Missing selected Quiz Question UUID: ' + id);
+    return question;
+  });
 }
 
 function plain(value: string): string {
@@ -373,19 +364,86 @@ function QuestionCard({
 }
 
 export function EngineQuestionRenderer({
-  lesson,
+  lessonId,
+  language,
+  assessmentLoader,
   section,
   messages,
   sceneRegistry,
   onComplete,
 }: {
-  lesson: Lesson_Props;
+  lessonId: string;
+  language: LanguageCode;
+  assessmentLoader?: AssessmentResourceLoader;
   section: QuizSection_Props;
   messages: UiKitMessages;
   sceneRegistry?: SceneRegistry;
   onComplete?: (result: { passed: boolean; correct: number; total: number; timedOut: boolean }) => void;
 }) {
-  const questions = useMemo(() => selectQuizQuestions(lesson, section), [lesson, section]);
+  const ids = useMemo(() => selectQuizQuestionIds(section.params.selection, section.id), [section]);
+  const identity = lessonId + ':' + language + ':' + section.id + ':' + ids.join(',');
+  const [attempt, setAttempt] = useState(0);
+  const [load, setLoad] = useState<{
+    identity: string;
+    status: 'loading' | 'ready' | 'error';
+    questions: Question[];
+  }>({ identity, status: 'loading', questions: [] });
+
+  useEffect(() => {
+    const controller = new AbortController();
+    setLoad({ identity, status: 'loading', questions: [] });
+    if (!assessmentLoader) {
+      setLoad({ identity, status: 'error', questions: [] });
+    } else {
+      assessmentLoader.loadQuestions({ lessonId, language, ids, signal: controller.signal })
+        .then(result => selectQuizQuestions(result, ids))
+        .then(
+        questions => {
+          if (!controller.signal.aborted)
+            setLoad({ identity, status: 'ready', questions });
+        },
+        () => {
+          if (!controller.signal.aborted) setLoad({ identity, status: 'error', questions: [] });
+        },
+      );
+    }
+    return () => controller.abort();
+  }, [assessmentLoader, lessonId, language, identity, attempt]);
+
+  const current = load.identity === identity ? load : { status: 'loading' as const, questions: [] };
+  if (current.status === 'loading') return <Typography role="status">{messages.learningLayout.preparingLesson}</Typography>;
+  if (current.status === 'error')
+    return (
+      <Stack spacing={2}>
+        <Typography role="alert">{messages.learningLayout.preparingLessonError}</Typography>
+        <Button onClick={() => setAttempt(value => value + 1)}>{messages.learningLayout.actions.retry}</Button>
+      </Stack>
+    );
+  return (
+    <ResolvedQuiz
+      key={identity}
+      questions={current.questions}
+      section={section}
+      messages={messages}
+      sceneRegistry={sceneRegistry}
+      onComplete={onComplete}
+    />
+  );
+}
+
+function ResolvedQuiz({
+  questions,
+  section,
+  messages,
+  sceneRegistry,
+  onComplete,
+}: {
+  questions: Question[];
+  section: QuizSection_Props;
+  messages: UiKitMessages;
+  sceneRegistry?: SceneRegistry;
+  onComplete?: (result: { passed: boolean; correct: number; total: number; timedOut: boolean }) => void;
+}) {
   const [statuses, setStatuses] = useState<Readonly<Record<string, boolean>>>({});
   const [index, setIndex] = useState(0);
   const [remaining, setRemaining] = useState(section.params.timeLimitSeconds);

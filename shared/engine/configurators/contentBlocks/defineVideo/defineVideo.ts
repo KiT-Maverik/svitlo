@@ -10,7 +10,7 @@ import {
   selectPublicationLocales,
   validateRequestedPublication,
 } from '../../_shared__configurators';
-import { validateLocalAssetPaths } from '../_shared__contentBlocks';
+import { runtimeMediaLocale } from '../_shared__contentBlocks';
 import {
   video_Config_Schema,
   video_Props_Schema,
@@ -30,8 +30,6 @@ type VideoOverridePropsBase = {
 
 const parseAndValidate = (config: ContentBlock_Video_Config): ContentBlock_Video_Config => {
   const parsed = video_Config_Schema.parse(config);
-  validateLocalAssetPaths(parsed.locale.fileLocation, 'locale.fileLocation');
-  validateLocalAssetPaths(parsed.locale.poster, 'locale.poster');
   return parsed;
 };
 const validate = (config: ContentBlock_Video_Config): void => {
@@ -40,7 +38,7 @@ const validate = (config: ContentBlock_Video_Config): void => {
 
 const buildVideoProps = (config: ContentBlock_Video_Config): VideoPropsPublication<ContentBlock_Video_PropsBase> => {
   const { id, type, slug, params } = config;
-  const { base: invariant, locale } = splitLocalizedFields(config.locale);
+  const { base: invariant, locale } = splitLocalizedFields(runtimeMediaLocale(config.locale, 'fileLocation'));
   const base = {
     id,
     type,
@@ -60,7 +58,7 @@ const buildVideoProps = (config: ContentBlock_Video_Config): VideoPropsPublicati
 };
 
 const buildVideoPatch = (patch: ContentBlock_Video_Overrides): VideoPropsPublication<VideoOverridePropsBase> => {
-  const { base: invariant, locale } = splitLocalizedFields(patch.locale ?? {});
+  const { base: invariant, locale } = splitLocalizedFields(runtimeMediaLocale(patch.locale ?? {}, 'fileLocation'));
   return {
     base: {
       ...(patch.params !== undefined ? { params: patch.params } : {}),
@@ -79,10 +77,9 @@ const buildVideoPatch = (patch: ContentBlock_Video_Overrides): VideoPropsPublica
  * Add a video as an instructional ContentBlock.
  *
  * @remarks
- * `locale.fileLocation` points to the video and `locale.poster` to its preview.
+ * `locale.fileName` references the video and `locale.posterFileName` its preview.
  * `locale.label` names the player accessibly; `locale.title` is an optional
- * visible heading, not a substitute for the label. Local textbook assets
- * are checked where the textbook can be resolved.
+ * visible heading, not a substitute for the label. File existence is checked by the textbook generator, not by the Configurator.
  * Author fallback messages for offline/unavailable playback when appropriate.
  */
 export const defineVideo = <
@@ -94,10 +91,10 @@ export const defineVideo = <
       Languages
     >,
 ) => {
-  const authored = structuredClone(parseAndValidate(config));
+  const authored: ContentBlock_Video_Config = structuredClone(config);
   const { id, type } = authored;
   const slug = config.slug;
-  const copyAuthored = () => video_Config_Schema.parse(structuredClone(authored));
+  const copyAuthored = () => structuredClone(authored);
   const base = {
     id,
     type,

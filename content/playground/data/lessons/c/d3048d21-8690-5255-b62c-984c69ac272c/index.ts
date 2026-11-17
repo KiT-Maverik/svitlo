@@ -1,14 +1,13 @@
 import { defineLesson } from '@svitlo/engine/build';
 import { howLightMoves_languages } from './constants';
-import { howLightMovesFlashcards } from './flashcards';
-import { howLightMovesQuestions } from './questions';
-import { testExplainLightTravel_Skill_Data } from '../../../skills/testLight/testLightPropagation/skills';
+import { testExplainLightTravel } from '../../../skills/testLight/testLightPropagation/testExplainLightTravel';
 import { contentSection } from './sections/content';
 import { practiceSection } from './sections/practice';
 import { quizSection } from './sections/quiz';
 
 export const howLightMovesTitle = {
   en: 'How Light Travels',
+  it: 'Come si propaga la luce',
   qm: 'Yarıq nasıl yayıla?',
   lt: 'Kaip sklinda šviesa',
   lv: 'Kā izplatās gaisma',
@@ -43,7 +42,7 @@ export const howLightMoves = defineLesson({
   id: 'd3048d21-8690-5255-b62c-984c69ac272c',
   slug: 'howLightMoves',
   type: 'lesson',
-  skills: [testExplainLightTravel_Skill_Data.id],
+  skills: [testExplainLightTravel.id],
   params: {
     requireQuiz: true,
     languages: howLightMoves_languages,
@@ -54,8 +53,6 @@ export const howLightMoves = defineLesson({
     },
   },
   locale: { title: howLightMovesTitle },
-  flashcards: howLightMovesFlashcards,
-  questions: howLightMovesQuestions,
   section: {
     items: { content: contentSection, practice: practiceSection, quiz: quizSection },
     order: ['content', 'practice', 'quiz'],

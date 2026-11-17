@@ -49,3 +49,7 @@ The host copies the published files into `public/data/lessons` and the
 runtime assembler consumes one base file plus the selected locale file.
 
 The CLI and its regression tests live in this named directory. The Props serializer and its tests live in [`../../generators/lessons/`](../../generators/lessons/).
+
+## Independent assessments
+
+A separate Engine CLI at [`../generateAssessmentResources/`](../generateAssessmentResources/) publishes already-authored Question/Flashcard configurators into UUID-addressed files and metadata-only manifests. The textbook build stages those files beside `data/lessons/<bucket>/<uuid>/base.json`, rather than embedding them in Lesson JSON. The Lesson Props generator and this CLI are distinct workflows; neither automatically produces approved `questions/questions.yaml` or `flashcards/flashcards.yaml` drafts.

@@ -1,0 +1,91 @@
+import { defineSkillGroup } from '@svitlo/engine/build';
+
+import { diagnoseAPrototypeFailure } from './diagnoseAPrototypeFailure';
+import { evaluatePrototypePerformance } from './evaluatePrototypePerformance';
+import { measurementUncertainty } from './measurementUncertainty';
+import { planAnEngineeringTest } from './planAnEngineeringTest';
+import { reviseADesignUsingEvidence } from './reviseADesignUsingEvidence';
+import { validateUserNeeds } from './validateUserNeeds';
+import { verifyDesignRequirements } from './verifyDesignRequirements';
+
+export const testingAndIteration = defineSkillGroup({
+  slug: 'testingAndIteration',
+  id: 'ea206b05-6976-49cf-882b-c98ea0c2ca4f',
+  name: {
+    ar: 'الاختبار والتحسين المتكرر',
+    be: 'Выпрабаваньні й ітэрацыі',
+    bn: 'পরীক্ষা ও পুনরাবৃত্ত উন্নতি',
+    de: 'Testen und iteratives Verbessern',
+    en: 'Testing and Iteration',
+    es: 'Pruebas e iteración',
+    et: 'Katsetamine ja iteratiivne täiustamine',
+    fr: 'Essais et itérations',
+    he: 'בדיקות ושיפור מחזורי',
+    hi: 'परीक्षण और पुनरावृत्ति',
+    id: 'Pengujian dan Iterasi',
+    it: 'Prove e iterazione',
+    ja: '試験と改善の繰り返し',
+    ka: 'გამოცდა და განმეორებითი გაუმჯობესება',
+    kk: 'Сынақ және қайталап жетілдіру',
+    ko: '시험과 반복 개선',
+    lt: 'Bandymas ir kartotinis tobulinimas',
+    lv: 'Pārbaude un iteratīva uzlabošana',
+    mr: 'चाचणी आणि पुनरावृत्ती सुधारणा',
+    ms: 'Pengujian dan Penambahbaikan Berulang',
+    pl: 'Testowanie i iteracyjne ulepszanie',
+    pt: 'Testes e iteração',
+    qm: 'Sınav ve tekrar yahşılaştırma',
+    ta: 'சோதனையும் மீள்மேம்பாடும்',
+    te: 'పరీక్షలు మరియు పునరావృత మెరుగుదల',
+    tr: 'Test ve Yinelemeli İyileştirme',
+    uk: 'Випробування та ітерації',
+    ur: 'جانچ اور بتدریج بہتری',
+    vi: 'Thử nghiệm và cải tiến lặp lại',
+    zh: '测试与迭代',
+  },
+  skills: {
+    diagnoseAPrototypeFailure,
+    evaluatePrototypePerformance,
+    measurementUncertainty,
+    planAnEngineeringTest,
+    reviseADesignUsingEvidence,
+    validateUserNeeds,
+    verifyDesignRequirements,
+  },
+  description: {
+    methodological:
+      'A plausible prototype is not proof of performance. Measurement, failure analysis and controlled revisions provide a basis for improving the proposed product.',
+    frontend: {
+      ar: 'استخدم أدلة الاختبار لتحسين النموذج الأولي والتحقق من أدائه لغرضه.',
+      be: 'Выкарыстоўвай вынікі выпрабаваньняў, каб палепшыць прататып і праверыць яго прызначэньне.',
+      bn: 'পরীক্ষার ফল দিয়ে প্রোটোটাইপ উন্নত করো এবং কাজটি ঠিক হচ্ছে কি না দেখো।',
+      de: 'Nutze Testergebnisse zur Verbesserung eines Prototyps und prüfe, ob er seinen Zweck erfüllt.',
+      en: 'Use evidence from testing to improve a prototype and check its purpose.',
+      es: 'Usa resultados de pruebas para mejorar un prototipo y comprobar su finalidad.',
+      et: 'Kasuta katsetulemusi prototüübi parandamiseks ja eesmärgi kontrollimiseks.',
+      fr: 'Utilise les résultats des essais pour améliorer un prototype et vérifier son utilité.',
+      he: 'השתמשו בתוצאות בדיקה לשיפור אב טיפוס ולבדיקת התאמתו למטרה.',
+      hi: 'परीक्षण के प्रमाण से प्रोटोटाइप सुधारें और जाँचें कि वह उद्देश्य पूरा करता है।',
+      id: 'Gunakan hasil uji untuk memperbaiki prototipe dan memeriksa tujuannya.',
+      it: 'Utilizza i risultati delle prove per migliorare un prototipo e verificarne lo scopo.',
+      ja: '試験結果を使って試作品を改善し、目的に合っているか確かめよう。',
+      ka: 'გამოიყენე გამოცდის შედეგები პროტოტიპის გასაუმჯობესებლად და მიზნის შესამოწმებლად.',
+      kk: 'Сынақ нәтижелерімен прототипті жетілдіріп, мақсатына сай екенін тексер.',
+      ko: '시험 결과를 이용해 시제품을 개선하고 목적에 맞는지 확인해 보세요.',
+      lt: 'Naudok bandymų rezultatus prototipui tobulinti ir patikrink jo paskirtį.',
+      lv: 'Izmanto testu rezultātus prototipa uzlabošanai un mērķa pārbaudei.',
+      mr: 'चाचणीच्या पुराव्याने नमुना सुधार आणि तो उद्देश पूर्ण करतो का तपास.',
+      ms: 'Gunakan bukti ujian untuk memperbaik prototaip dan menyemak tujuannya.',
+      pl: 'Wykorzystaj wyniki testów do ulepszenia prototypu i sprawdzenia, czy spełnia cel.',
+      pt: 'Use resultados dos testes para melhorar um protótipo e verificar sua finalidade.',
+      qm: 'Sınav neticelerinen prototipni yahşılaştır ve maqsadına uyğunlığını tekşir.',
+      ta: 'சோதனைச் சான்றுகளால் முன்மாதிரியை மேம்படுத்தி நோக்கத்தை நிறைவேற்றுகிறதா எனப் பார்.',
+      te: 'పరీక్ష ఆధారాలతో నమూనాను మెరుగుపరిచి దాని ఉద్దేశ్యాన్ని సాధిస్తుందో చూడండి.',
+      tr: 'Test kanıtlarıyla prototipi iyileştir ve amacına uygunluğunu denetle.',
+      uk: 'Використовуй результати випробувань, щоб поліпшити прототип і перевірити його призначення.',
+      ur: 'آزمائش کے نتائج سے نمونہ بہتر کریں اور اس کا مقصد پورا ہونے کی جانچ کریں۔',
+      vi: 'Dùng kết quả thử nghiệm để cải tiến nguyên mẫu và kiểm tra mục đích sử dụng.',
+      zh: '利用测试数据改进原型，并验证它是否符合目的。',
+    },
+  },
+});

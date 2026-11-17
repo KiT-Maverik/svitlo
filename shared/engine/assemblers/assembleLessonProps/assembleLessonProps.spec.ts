@@ -51,7 +51,6 @@ function resource(): PublishedLessonPropsResource {
       },
       locale: { title: 'Shared title' },
       section: [first, second],
-      flashcards: [],
     },
     locale: {
       uk: {

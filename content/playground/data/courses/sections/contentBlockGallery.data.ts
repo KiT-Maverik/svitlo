@@ -1,8 +1,8 @@
 import {
   defineAudio,
   defineCarousel,
-  defineCarouselSlide,
   defineCheckpoint,
+  defineCheckpointAnswer,
   defineCheckpointItem,
   configuratorArrayToSlugMap,
   defineCode,
@@ -54,7 +54,7 @@ const localImage = defineImage({
   type: 'image',
   params: { fill: true, aspectRatio: 16 / 9, objectFit: 'contain' },
   locale: {
-    src: '/textbooks/playground/whale.png',
+    fileName: '57afc1bb-0a28-4fce-b5a3-e19916f80c71.png',
     alt: 'A cartoon whale used as the Playground image demo.',
     caption: 'IMAGE · A locally published PNG with alternative text and a caption.',
   },
@@ -75,32 +75,35 @@ const localCarousel = defineCarousel({
   locale: { title: 'CAROUSEL · Interactive image gallery' },
   slides: {
     items: {
-      whale: defineCarouselSlide({
+      whale: defineImage({
         id: '7cbc27a9-ed06-552b-a9e4-fb06d08e58cf',
         slug: 'whale',
-        type: 'carouselSlide',
+        type: 'image',
+        params: { fill: true, aspectRatio: 16 / 9, objectFit: 'contain' },
         locale: {
-          src: '/textbooks/playground/whale.png',
+          fileName: '57afc1bb-0a28-4fce-b5a3-e19916f80c71.png',
           alt: 'A friendly cartoon whale on a light background.',
           caption: 'The Playground whale illustration.',
         },
       }),
-      light: defineCarouselSlide({
+      light: defineImage({
         id: '1ee28a95-6c00-51c0-8c83-e4d1ddd09e02',
         slug: 'light',
-        type: 'carouselSlide',
+        type: 'image',
+        params: { fill: true, aspectRatio: 16 / 9, objectFit: 'contain' },
         locale: {
-          src: '/textbooks/playground/carousel-light.svg',
+          fileName: '7735fe7a-8c0d-4f28-8ca4-c65c50e3b721.svg',
           alt: 'A glowing yellow sun with light rays against a blue sky.',
           caption: 'An illustration of a light source.',
         },
       }),
-      prism: defineCarouselSlide({
+      prism: defineImage({
         id: '43f9c078-914c-57d5-9bc8-72a66483b1c6',
         slug: 'prism',
-        type: 'carouselSlide',
+        type: 'image',
+        params: { fill: true, aspectRatio: 16 / 9, objectFit: 'contain' },
         locale: {
-          src: '/textbooks/playground/carousel-prism.svg',
+          fileName: '73fd4c6d-228d-47ac-bae5-3f6c13e90ca2.svg',
           alt: 'A triangular prism splitting a beam of white light into a rainbow.',
           caption: 'An illustration of light dispersion.',
         },
@@ -116,8 +119,8 @@ const localVideo = defineVideo({
   type: 'video',
   params: {},
   locale: {
-    fileLocation: '/textbooks/playground/barabaka.mp4',
-    poster: '/textbooks/playground/whale.png',
+    fileName: 'a8d23b46-7dae-46c2-ab6b-dce183c924fe.mp4',
+    posterFileName: '57afc1bb-0a28-4fce-b5a3-e19916f80c71.png',
     title: 'VIDEO · Locally published MP4',
     label: 'Local MP4 demonstration',
   },
@@ -129,7 +132,7 @@ const localAudio = defineAudio({
   type: 'audio',
   params: {},
   locale: {
-    fileLocation: '/textbooks/playground/demo-tone.wav',
+    fileName: 'c62066ad-c957-41d5-8dd1-3ea524e75b9c.wav',
     title: 'AUDIO · Local demo tone',
     description: 'A short original test tone, used only to demonstrate audio playback.',
   },
@@ -167,18 +170,23 @@ const interactiveCheckpoint = defineCheckpoint({
           locale: { value: 'How do I reveal this answer?' },
         }),
         check: true,
-        answer: {
-          items: configuratorArrayToSlugMap([
-            defineText({
-              id: '3fe35315-ae2e-57bf-9fa7-ec8ce278852d',
-              slug: 'checkpointAnswer',
-              type: 'text',
-              params: {},
-              locale: { value: 'Open the checkpoint row, then mark it complete.' },
-            }),
-          ]),
-          order: ['checkpointAnswer'],
-        },
+        answer: defineCheckpointAnswer({
+          id: '93befd3a-30f8-431a-a2d8-41d3983c5e99',
+          slug: 'revealAnswerContent',
+          type: 'checkpointAnswer',
+          content: {
+            items: configuratorArrayToSlugMap([
+              defineText({
+                id: '3fe35315-ae2e-57bf-9fa7-ec8ce278852d',
+                slug: 'checkpointAnswer',
+                type: 'text',
+                params: {},
+                locale: { value: 'Open the checkpoint row, then mark it complete.' },
+              }),
+            ]),
+            order: ['checkpointAnswer'],
+          },
+        }),
       }),
     ]),
     order: ['revealAnswer'],

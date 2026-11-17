@@ -1,3 +1,0 @@
-export { explainBroadEnvironmentalVariationWithLatitude_Skill_Data } from './explainBroadEnvironmentalVariationWithLatitude.data';
-export { identifyEnvironmentalShiftsFromComparativeGeographicEvidence_Skill_Data } from './identifyEnvironmentalShiftsFromComparativeGeographicEvidence.data';
-export { recognizeAltitudinalChangesInNaturalConditions_Skill_Data } from './recognizeAltitudinalChangesInNaturalConditions.data';

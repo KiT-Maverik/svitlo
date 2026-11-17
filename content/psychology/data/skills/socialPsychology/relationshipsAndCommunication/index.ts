@@ -1,0 +1,91 @@
+import { defineSkillGroup } from '@svitlo/engine/build';
+
+import { activeListening } from './activeListening';
+import { attachmentInRelationships } from './attachmentInRelationships';
+import { interpersonalConflict } from './interpersonalConflict';
+import { nonverbalCommunication } from './nonverbalCommunication';
+import { personalBoundaries } from './personalBoundaries';
+import { relationshipRepair } from './relationshipRepair';
+import { voluntaryConsent } from './voluntaryConsent';
+
+export const relationshipsAndCommunication = defineSkillGroup({
+  slug: 'relationshipsAndCommunication',
+  id: '9a36af84-9ad0-4f0b-9707-751f77649c14',
+  name: {
+    ar: 'العلاقات والتواصل',
+    be: 'Адносіны і камунікацыя',
+    bn: 'সম্পর্ক ও যোগাযোগ',
+    de: 'Beziehungen und Kommunikation',
+    en: 'Relationships and Communication',
+    es: 'Relaciones y comunicación',
+    et: 'Suhted ja suhtlemine',
+    fr: 'Relations et communication',
+    he: 'מערכות יחסים ותקשורת',
+    hi: 'संबंध और संचार',
+    id: 'Hubungan dan komunikasi',
+    it: 'Relazioni e comunicazione',
+    ja: '人間関係とコミュニケーション',
+    ka: 'ურთიერთობები და კომუნიკაცია',
+    kk: 'Қарым-қатынас және байланыс',
+    ko: '관계와 의사소통',
+    lt: 'Santykiai ir bendravimas',
+    lv: 'Attiecības un saziņa',
+    mr: 'नाती आणि संवाद',
+    ms: 'Hubungan dan komunikasi',
+    pl: 'Relacje i komunikacja',
+    pt: 'Relacionamentos e comunicação',
+    qm: 'Munasebetler ve haberleşüv',
+    ta: 'உறவுகளும் தொடர்பாடலும்',
+    te: 'సంబంధాలు, సంభాషణ',
+    tr: 'İlişkiler ve iletişim',
+    uk: 'Стосунки та спілкування',
+    ur: 'تعلقات اور ابلاغ',
+    vi: 'Quan hệ và giao tiếp',
+    zh: '人际关系与沟通',
+  },
+  skills: {
+    activeListening,
+    attachmentInRelationships,
+    interpersonalConflict,
+    nonverbalCommunication,
+    personalBoundaries,
+    relationshipRepair,
+    voluntaryConsent,
+  },
+  description: {
+    methodological:
+      "Relationships develop through mutual interpretation, reciprocal actions, boundaries, and social context rather than perfect reading of another's intentions.",
+    frontend: {
+      ar: 'تعلّم التعرف على التواصل الصحي والحدود الشخصية والتحديات في العلاقات.',
+      be: 'Вучыся пазнаваць здаровыя зносіны, асабістыя межы й цяжкасьці ў адносінах.',
+      bn: 'সুস্থ যোগাযোগ, ব্যক্তিগত সীমা ও সম্পর্কের চ্যালেঞ্জ চিনতে শেখো।',
+      de: 'Lerne, gesunde Kommunikation, persönliche Grenzen und Beziehungsprobleme zu erkennen.',
+      en: 'Learn to recognize healthy communication, boundaries and relational challenges.',
+      es: 'Aprende a reconocer una comunicación sana, límites personales y desafíos relacionales.',
+      et: 'Õpi ära tundma tervet suhtlust, isiklikke piire ja suhteprobleeme.',
+      fr: 'Apprends à reconnaître une communication saine, des limites personnelles et des défis relationnels.',
+      he: 'למדו לזהות תקשורת בריאה, גבולות אישיים ואתגרים ביחסים.',
+      hi: 'स्वस्थ बातचीत, व्यक्तिगत सीमाएँ और संबंधों की चुनौतियाँ पहचानना सीखें।',
+      id: 'Belajar mengenali komunikasi sehat, batas pribadi, dan tantangan hubungan.',
+      it: 'Impara a riconoscere una comunicazione sana, i confini personali e le difficoltà relazionali.',
+      ja: '健全な対話、個人の境界、関係の難しさを見分ける方法を学ぼう。',
+      ka: 'ისწავლე ჯანსაღი კომუნიკაციის, პირადი საზღვრებისა და ურთიერთობის სირთულეების ამოცნობა.',
+      kk: 'Салауатты сөйлесу, жеке шекаралар және қатынастағы қиындықтарды танып үйрен.',
+      ko: '건강한 소통과 개인의 경계, 관계의 어려움을 알아보세요.',
+      lt: 'Mokykis atpažinti sveiką bendravimą, asmenines ribas ir santykių sunkumus.',
+      lv: 'Mācies atpazīt veselīgu saziņu, personīgās robežas un attiecību grūtības.',
+      mr: 'निरोगी संवाद, वैयक्तिक मर्यादा आणि नात्यातील अडचणी ओळखायला शिका.',
+      ms: 'Belajar mengenali komunikasi sihat, sempadan peribadi dan cabaran hubungan.',
+      pl: 'Naucz się rozpoznawać zdrową komunikację, granice osobiste i trudności w relacjach.',
+      pt: 'Aprenda a reconhecer comunicação saudável, limites pessoais e desafios das relações.',
+      qm: 'Sağlam haberleşüvni, şahsiy sıñırlarnı ve munasebetteki qıyınlıqlarnı tanımağa ögren.',
+      ta: 'ஆரோக்கியமான உரையாடல், தனிப்பட்ட எல்லைகள், உறவுச் சிக்கல்களை அறியக் கற்றுக்கொள்ளுங்கள்.',
+      te: 'ఆరోగ్యకర సంభాషణ, వ్యక్తిగత హద్దులు, సంబంధాల సవాళ్లను గుర్తించడం నేర్చుకోండి.',
+      tr: 'Sağlıklı iletişimi, kişisel sınırları ve ilişkilerdeki zorlukları tanımayı öğren.',
+      uk: 'Навчися розпізнавати здорове спілкування, особисті межі й труднощі у стосунках.',
+      ur: 'صحت مند بات چیت، ذاتی حدود اور رشتوں کے مسائل پہچاننا سیکھیں۔',
+      vi: 'Học nhận biết giao tiếp lành mạnh, ranh giới cá nhân và thách thức trong quan hệ.',
+      zh: '学习识别健康的交流方式、个人界限及关系中的难题。',
+    },
+  },
+});

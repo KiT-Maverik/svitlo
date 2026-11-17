@@ -2,6 +2,7 @@ import { act, fireEvent, render, screen } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import type { ContentBlock_Carousel_Props } from '@svitlo/engine/runtime';
 import { ContentBlockRenderer } from '../../ContentBlockRenderer';
+import type { ResponseOf, SceneRegistry } from '../../ContentBlockRenderer';
 import { enUiKitMessages } from '../../../../../testing/uiKitMessages.unit.fx';
 
 const gallery: ContentBlock_Carousel_Props = {
@@ -12,9 +13,9 @@ const gallery: ContentBlock_Carousel_Props = {
   locale: {
     title: 'Gallery',
     slides: [
-      { src: '/one.png', alt: 'First image', caption: 'First caption' },
-      { src: '/two.png', alt: 'Second image' },
-      { src: '/three.png', alt: 'Third image' },
+      { id: 'image-one', slug: 'imageOne', type: 'image', params: { fill: true, aspectRatio: 1.5 }, locale: { src: '/one.png', alt: 'First image', caption: 'First caption' } },
+      { id: 'image-two', slug: 'imageTwo', type: 'image', params: { fill: true, aspectRatio: 1.5 }, locale: { src: '/two.png', alt: 'Second image' } },
+      { id: 'image-three', slug: 'imageThree', type: 'image', params: { fill: true, aspectRatio: 1.5 }, locale: { src: '/three.png', alt: 'Third image' } },
     ],
   },
 };
@@ -84,6 +85,47 @@ describe('carousel content block', () => {
     show({ ...gallery, params: { ...gallery.params, autoplay: true }, locale: { ...gallery.locale, slides: [gallery.locale.slides[0]] } });
     expect(screen.queryByRole('button', { name: 'Next' })).not.toBeInTheDocument();
     expect(screen.queryByRole('button', { name: 'Pause slideshow' })).not.toBeInTheDocument();
+  });
+
+  it('mounts a registered interactive Scene with its published locale and preserves its interaction', () => {
+    const interaction = vi.fn();
+    const Activity = ({ locales }: { locales: ResponseOf<'scene'>['locale']['value'] }) => (
+      <button onClick={interaction} type="button">{typeof locales === 'string' ? locales : 'Explore the scene'}</button>
+    );
+    const registry: SceneRegistry = id => (id === 'scene-slide' ? Activity : undefined);
+    const mixed: ContentBlock_Carousel_Props = {
+      ...gallery,
+      params: { ...gallery.params, autoplay: true, autoplayIntervalMs: 1600 },
+      locale: {
+        title: 'Interactive carousel',
+        slides: [
+          gallery.locale.slides[0],
+          {
+            id: 'scene-slide', slug: 'activity', type: 'scene', params: {},
+            locale: { value: 'Try this activity' },
+          },
+        ],
+      },
+    };
+    vi.useFakeTimers();
+    render(<ContentBlockRenderer language="en" messages={enUiKitMessages} blocks={[mixed]} sceneRegistry={registry} />);
+    fireEvent.click(screen.getByRole('button', { name: 'Next' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Try this activity' }));
+    expect(interaction).toHaveBeenCalledOnce();
+    act(() => vi.advanceTimersByTime(5000));
+    expect(screen.getByRole('button', { name: 'Try this activity' })).toBeVisible();
+    expect(screen.getByRole('button', { name: 'Interactive carousel 2' })).toHaveAttribute('aria-current', 'true');
+  });
+
+  it('does not silently render a Scene without a registered implementation', () => {
+    const mixed: ContentBlock_Carousel_Props = {
+      ...gallery, params: { startIndex: 1 },
+      locale: { title: 'Missing Scene', slides: [
+        gallery.locale.slides[0],
+        { id: 'unregistered', slug: 'missing', type: 'scene', params: {}, locale: { value: 'Preview' } },
+      ] },
+    };
+    expect(() => show(mixed)).toThrow(/Unregistered scene id: unregistered/);
   });
 
   it('requests fullscreen through the DOM API when available', () => {

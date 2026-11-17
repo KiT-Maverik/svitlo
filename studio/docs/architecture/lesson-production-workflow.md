@@ -16,13 +16,31 @@ The GitHub Issue is the **persistent, cross-chat state and coordination record**
 
 Both reviews are independent of the Screenwriter and of each other. The reviewers return specific, traceable findings; the Screenwriter revises `content.yaml`. An independent `pass` verdict is **not an editorial approval**: authorized sign-off must be linked. Each review identifies the exact `content.yaml` Git blob/revision. Content revisions require rechecking stale reviews; Methodology amendments may also invalidate approvals.
 
+## Canonical Lesson Production stage identifiers
+
+The Engine `LessonReviewStage`, the `review.ts` AI properties and the
+Lesson Production Issue tracker use the **same camelCase stage identifiers**:
+`methodology`, `content`, `experienceReview`, `methodologyReview`,
+`questions`, `flashcards`, `generateSources`, `resourceProduction`,
+`localization`, and `validation`. There is no `ai.stages` wrapper, no
+kebab-case legacy alias and no translation map between Issue records and
+Engine review fields. `completed` is a terminal tracker status, not an AI
+review field.
+
+Each direct stage property under `ai` requires verified `{ pr, language }`
+evidence; `ai.locales` is the full-scope AI localization integration PR.
+`human.acceptance`, `human.locales`, and optional `human.scientific`
+are unchanged. Leave the review draft's Props digest identifier and mandatory
+values unresolved until verification. Renaming stages does **not** create
+approval evidence or invalidate the requirement to reconcile revisions.
+
 ## Typical stage lifecycle
 
 1. Methodologist authors `methodology.md`; editor approves including the Quiz and Assessment Method plan.
 2. Screenwriter authors machine-readable `content.yaml` in one source language; editor determines draft readiness and required approval.
 3. Learning Experience Expert independently reviews and requests corrections until a source-specific pass and editorial sign-off.
 4. Methodologist independently reviews the **same latest source revision** and requests corrections until sign-off. Any correction sends the affected Lesson back through required reviews; do not mechanically re-run unaffected Lessons.
-5. The Assessment Architect completes and independently obtains approval of the full `questions/questions.yaml` Question Bank and its explicit Quiz assignments. The Flashcard Learning Architect may subsequently author `flashcards/flashcards.yaml` after separate authorization and approval; these cards reuse Question fields and encode one canonical relation edge per pair.
+5. The Assessment Architect completes and independently obtains approval of the full `questions.yaml` Question Bank and its explicit Quiz assignments. The Flashcard Learning Architect may subsequently author `flashcards.yaml` after separate authorization and approval; these cards reuse Question fields and encode one canonical relation edge per pair.
 6. The independent [deterministic Lesson YAML Builder](./lesson-yaml-builder.md), when authorized, validates all stable approved inputs (including Flashcards YAML when present), emits typed Lesson/Section/ContentBlock, complete Question and optional Flashcard data with curated Quiz selections, and records pending Scene/media/translation requirements plus SHA-256 source revisions. The coordinator checks external approval evidence; it is never inferred from YAML status alone.
 7. Coding Agents use [Implement Scene](../../skills/lesson-workflow/implement-scene.skill.md) for approved Scene behaviors, typed source-locale text, co-located tests and registry integration; media and translations remain separately owned. The Builder does not create fake Scene implementations or translate.
 8. Typecheck, build, content-generation validation, QA and publisher checks gate completion. For authored Flashcards, verify canonical Question references, typed flags, reciprocal relation integrity, stable partner IDs and locale-specific acronym review.
@@ -41,7 +59,7 @@ A Methodologist Draft creates an Issue row at `methodology` / `ready-for-review`
 
 The Issue Form includes a frozen UUID scope, source references, constraints, a per-Lesson state table, a scope-level checklist and a handoff block. Preserve the `svitlo-lesson-production:v1` marker so agents recognize the format in any chat.
 
-The **per-Lesson table is authoritative for stage status** and records next action, owner/branch, linked PR and blockers. Scope-level checkboxes are true only if **all** Lessons satisfy the corresponding gate. Allowed status values are `not-started`, `in-progress`, `ready-for-review`, `changes-requested`, `approved`, `blocked` and `completed`. Verified approvals, code and artifacts outrank stale checkboxes. The coordinator records the approved current revisions of `content.yaml`, `questions/questions.yaml` and `flashcards/flashcards.yaml`; material upstream changes invalidate affected downstream approvals and generated sources until revalidated, without resetting unaffected Lessons.
+The **per-Lesson table is authoritative for stage status** and records next action, owner/branch, linked PR and blockers. Scope-level checkboxes are true only if **all** Lessons satisfy the corresponding gate. Allowed status values are `not-started`, `in-progress`, `ready-for-review`, `changes-requested`, `approved`, `blocked` and `completed`. Verified approvals, code and artifacts outrank stale checkboxes. The coordinator records the approved current revisions of `content.yaml`, `questions.yaml` and `flashcards.yaml`; material upstream changes invalidate affected downstream approvals and generated sources until revalidated, without resetting unaffected Lessons.
 
 A PR is an **implementation/review change set**, not the complete production Issue. Use appropriately scoped Draft PRs (a PR may cover multiple Lessons), descriptive titles, canonical labels, and `Refs #N`. Do not `Closes #N` for intermediate PRs. No required one-PR-per-Lesson convention. A large Scene/media deliverable can have its own cross-linked Issue without replacing the main Lesson scope tracker.
 
