@@ -31,7 +31,7 @@ export const framingEffect_Skill_Data = defineSkill({
     et: 'Raamistusefekt',
     be: 'Эфэкт абрамленьня',
     ka: 'ჩარჩოს ეფექტი',
-    kk: 'Фрейминг әсері',
+    kk: 'Aqparatty ūsynu täsılınıñ äserı',
     qm: 'Çerçive tesiri',
   },
   description: {
@@ -65,7 +65,7 @@ export const framingEffect_Skill_Data = defineSkill({
       et: 'Uuri, miks samad faktid mõjuvad kasumi või kahjumina kirjeldatuna erinevalt.',
       be: 'Дасьледуй, чаму аднолькавыя факты здаюцца іншымі, калі падаць іх як здабытак ці страту.',
       ka: 'გაიგე, რატომ ჩანს იგივე ფაქტი განსხვავებულად, როცა მოგებად ან დანაკარგად არის აღწერილი.',
-      kk: 'Бір ақпарат табыс не шығын ретінде ұсынылса неге басқаша қабылданатынын зертте.',
+      kk: 'Bırdeı aqparatty tabys ne şyğyn retınde ūsynğanda nege ärtürlı qabyldaitynymyzdy zertte.',
       qm: 'Aynı faktlar qazanıç ya da coyuqlıq olaraq kösterilgende ne içün farqlı duyulğanını ögren.',
     },
   },

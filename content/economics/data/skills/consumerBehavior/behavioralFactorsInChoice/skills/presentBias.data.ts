@@ -31,7 +31,7 @@ export const presentBias_Skill_Data = defineSkill({
     et: 'Oleviku eelistamine',
     be: 'Перавага цяперашняга',
     ka: 'აწმყოს მიკერძოება',
-    kk: 'Қазіргі уақытқа бейімділік',
+    kk: 'Qazırgı uaqytqa beımdılık',
     qm: 'Şimdiki vaqıtqa üstünlük',
   },
   description: {
@@ -64,7 +64,7 @@ export const presentBias_Skill_Data = defineSkill({
       et: 'Mõista, miks vahetu tasu võib kaaluda üles parema tulevase tulemuse.',
       be: 'Зразумей, чаму імгненная ўзнагарода часам пераважае лепшы вынік у будучыні.',
       ka: 'გაიგე, რატომ შეიძლება მყისიერმა ჯილდომ მომავალში უკეთეს შედეგს აჯობოს.',
-      kk: 'Дереу сыйақы алу неліктен болашақтағы жақсы нәтижеден басым түсуі мүмкін екенін түсін.',
+      kk: 'Dereu alatyn syiaqynyñ nege bolaşaqtağy jaqsyraq nätijeden mañyzdy bolyp körınetının tüsın.',
       qm: 'Derhal bergen mukâfat kelecekteki yahşı neticeden ne içün üstün olabilgenini añla.',
     },
   },

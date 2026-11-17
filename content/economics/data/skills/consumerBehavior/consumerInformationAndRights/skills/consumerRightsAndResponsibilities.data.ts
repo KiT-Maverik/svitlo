@@ -31,7 +31,7 @@ export const consumerRightsAndResponsibilities_Skill_Data = defineSkill({
     et: 'Tarbija õigused ja kohustused',
     be: 'Правы і абавязкі спажыўца',
     ka: 'მომხმარებლის უფლებები და პასუხისმგებლობა',
-    kk: 'Тұтынушы құқықтары мен міндеттері',
+    kk: 'Tūtynuşy qūqyqtary men mındetterı',
     qm: 'İstimalciniñ aqları ve vazifeleri',
   },
   description: {
@@ -64,7 +64,7 @@ export const consumerRightsAndResponsibilities_Skill_Data = defineSkill({
       et: 'Tunne ära ostmisega seotud õigused ja kohustused.',
       be: 'Распазнавай правы й абавязкі, зьвязаныя з пакупкай.',
       ka: 'ამოიცანი ყიდვასთან დაკავშირებული უფლებები და ვალდებულებები.',
-      kk: 'Сатып алуға байланысты құқықтар мен міндеттерді таны.',
+      kk: 'Satyp aludağy qūqyqtar men mındetterdı tany.',
       qm: 'Bir şey satın aluvnen bağlı aqlar ve vazifelerni tanı.',
     },
   },

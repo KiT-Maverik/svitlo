@@ -31,7 +31,7 @@ export const choiceArchitecture_Skill_Data = defineSkill({
     et: 'Valikuarhitektuur',
     be: 'Архітэктура выбару',
     ka: 'არჩევანის არქიტექტურა',
-    kk: 'Таңдау сәулеті',
+    kk: 'Tañdau säuletı',
     qm: 'Saylav tertibi',
   },
   description: {
@@ -65,7 +65,7 @@ export const choiceArchitecture_Skill_Data = defineSkill({
       et: 'Pane tähele, kuidas vaikimisi valikud ja paigutus otsust suunavad.',
       be: 'Зьвяртай увагу, як варыянты па змоўчаньні й разьмяшчэньне кіруюць выбарам.',
       ka: 'დააკვირდი, როგორ მიმართავს ნაგულისხმევი ვარიანტები და განლაგება გადაწყვეტილებას.',
-      kk: 'Әдепкі нұсқалар мен олардың орналасуы шешімді қалай бағыттайтынын байқа.',
+      kk: 'Ädepkı nūsqalar men olardyñ ornalasuy şeşımge qalai yqpal etetının bayqa.',
       qm: 'Evvelden saylanğan variantlar ve olarnıñ tertibi qararnı nasıl yöneltkenini baq.',
     },
   },

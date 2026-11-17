@@ -31,7 +31,7 @@ export const qualityOfConsumerInformation_Skill_Data = defineSkill({
     et: 'Tarbijateabe kvaliteet',
     be: 'Якасьць спажывецкай інфармацыі',
     ka: 'მომხმარებლის ინფორმაციის ხარისხი',
-    kk: 'Тұтынушылық ақпарат сапасы',
+    kk: 'Tūtynuşy aqparatynyñ sapasy',
     qm: 'İstimalci malümatınıñ keyfiyeti',
   },
   description: {
@@ -65,7 +65,7 @@ export const qualityOfConsumerInformation_Skill_Data = defineSkill({
       et: 'Kontrolli, kas tooteväited, hinnangud ja arvustused on usaldusväärsed.',
       be: 'Правярай, ці надзейныя зьвесткі пра тавар, ацэнкі й водгукі.',
       ka: 'შეამოწმე, რამდენად სანდოა პროდუქტის დაპირებები, შეფასებები და მიმოხილვები.',
-      kk: 'Тауар туралы уәделер, рейтингтер мен пікірлер сенімді ме, тексер.',
+      kk: 'Tauar turaly mälımdemeler, reitingter men pıkırlerdıñ senımdılıgın tekser.',
       qm: 'Mal aqqında iddialar, qıymetler ve fikirler işançlı olğanını teşker.',
     },
   },
