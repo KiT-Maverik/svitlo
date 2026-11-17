@@ -4,13 +4,13 @@ import { defineEducationStandard } from '@svitlo/engine/build';
 export const germanyPrimaryMathematics2022 = defineEducationStandard({
   id: '04845e33-1dc7-4ed3-b686-b42e7a043895',
   slug: 'germanyPrimaryMathematics2022',
-  name: 'Bildungsstandards im Fach Mathematik für den Primarbereich',
+  name: 'Bildungsstandards für das Fach Mathematik – Primarbereich',
   params: {
     countries: ['DE'],
     grade: { min: 1, max: 4 },
     nameLanguage: 'de',
-    version: 'KMK revision adopted 23 June 2022',
-    sourceUrl: 'https://www.kmk.org/bildungsministerkonferenz/bildungsthemen/bildungsstandards.html',
+    version: 'KMK decision 15 October 2004; revision 23 June 2022',
+    sourceUrl: 'https://www.kmk.org/fileadmin/Dateien/veroeffentlichungen_beschluesse/2022/2022_06_23-Bista-Primarbereich-Mathe.pdf',
   },
   description: {
     methodological:
