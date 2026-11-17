@@ -4,6 +4,10 @@ Entity authoring, editorial YAML builders, taxonomy migration, publishing, and r
 
 The named Lesson and Course CLIs are in `generateLessonProps/` and `generateCourseProps/`, and delegate publication to `../generators/`. Their CLI regression tests stay beside them. The cross-generator npm smoke test is in `generatorCliIntegration/`.
 
+## Flashcard bank TypeScript scaffolding
+
+The independent [flashcardBuilder](./flashcardBuilder/README.md) converts one Engine-validated source-language Flashcard bank YAML to create-only typed Draft TS. It never overwrites authored banks, generates translations or publishes Props. The existing assessment-resource publisher still consumes completed typed TS separately.
+
 ## React Scene implementation handoff
 
 See [sceneScaffolding](./sceneScaffolding/README.md) for a separate, opted-in
