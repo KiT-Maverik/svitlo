@@ -250,3 +250,24 @@ test('invalid source metadata causes a per-locale manifest failure, not a review
     fs.rmSync(root, { recursive: true, force: true });
   }
 });
+
+test('incomplete previews still reject bad jurisdictions, original language, and ranges', () => {
+  const changes = [
+    ['countries: ["UA"]', 'countries: ["UA", "UA"]', /Duplicated jurisdiction/],
+    ['nameLanguage: "uk"', 'nameLanguage: "bad tag"', /Invalid original name language/],
+    ['grade: { min: 1, max: 4 }', 'grade: { min: 5, max: 4 }', /Invalid grade range/],
+    ['https://example.org/standards/2026', 'https://user:pass@example.org/standards/2026', /Invalid official source URL/],
+  ];
+  for (const [before, after, expected] of changes) {
+    const root = setup([record('sampleOne', UUID_A, { en: 'Learning outcomes' })]);
+    try {
+      const filename = path.join(root, 'shared/education-standards/data/example/sampleOne.data.ts');
+      const source = fs.readFileSync(filename, 'utf8');
+      assert.ok(source.includes(before));
+      fs.writeFileSync(filename, source.replace(before, after));
+      assert.throws(() => readEducationStandardSources(root, LANGUAGES), expected);
+    } finally {
+      fs.rmSync(root, { recursive: true, force: true });
+    }
+  }
+});

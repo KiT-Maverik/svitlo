@@ -143,10 +143,28 @@ export function readEducationStandardSources(root, registered) {
     ) {
       throw Error('Invalid jurisdiction metadata: ' + slug);
     }
-    required(params.nameLanguage, slug + '.nameLanguage');
+    if (new Set(params.countries).size !== params.countries.length) {
+      throw Error('Duplicated jurisdiction: ' + slug);
+    }
+    if (typeof params.nameLanguage !== 'string' ||
+        !/^[a-z]{2,3}(?:-[A-Za-z0-9]{2,8})*$/.test(params.nameLanguage)) {
+      throw Error('Invalid original name language: ' + slug);
+    }
+    for (const [field, maximum] of [['age', 125], ['grade', 40]]) {
+      const range = params[field];
+      if (range === undefined) continue;
+      if (!range || !Number.isInteger(range.min) || !Number.isInteger(range.max) ||
+          range.min < 0 || range.min > range.max || range.max > maximum) {
+        throw Error('Invalid ' + field + ' range: ' + slug);
+      }
+    }
     required(params.version, slug + '.version');
     const sourceUrl = required(params.sourceUrl, slug + '.sourceUrl');
-    if (!/^https?:\/\//.test(sourceUrl) || !new URL(sourceUrl).hostname) {
+    if (!/^https?:\/\//.test(sourceUrl)) {
+      throw Error('Invalid official source URL: ' + slug);
+    }
+    const url = new URL(sourceUrl);
+    if (!url.hostname || url.username || url.password) {
       throw Error('Invalid official source URL: ' + slug);
     }
     const frontend = config.description.frontend;
@@ -185,7 +203,7 @@ export function verifyBuiltStandards(entries, built, registered) {
     if (!item || item.slug !== config.slug) throw Error('Build/source identity mismatch: ' + config.slug);
     const frontend = config.description.frontend;
     const complete = registered.every(
-      language => typeof frontend[language] === 'string' && frontend[language].trim() && frontend[language] !== MISSING,
+      language => typeof frontend[language] === 'string' && frontend[language].trim() && frontend[language].trim() !== MISSING,
     );
     if (!complete) continue; // Partial Code is previewed statically, never published.
     const props = item.build.props({ languages: [...registered] });
@@ -224,7 +242,7 @@ export function renderEducationStandardMarkdown(entries, locale, sourceCommit) {
   ];
   for (const { config, sourcePath } of entries) {
     const translation = config.description.frontend[locale];
-    const hasTranslation = typeof translation === 'string' && translation.trim() && translation !== MISSING;
+    const hasTranslation = typeof translation === 'string' && translation.trim() && translation.trim() !== MISSING;
     if (!hasTranslation) missing++;
     lines.push(
       '',
