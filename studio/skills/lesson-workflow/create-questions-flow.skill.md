@@ -41,11 +41,16 @@ exclusive. Do not alter the parent Lesson's unrelated content,
 Screenwriter sections, Flashcards bank, or other child branches.
 
 The parent [Create Lesson Flow #643](https://github.com/KiT-Maverik/svitlo/pull/643)
-orders Questions before Flashcards. Integration with
+is merged and orders **per-Lesson** Questions before Flashcards.
 [Flashcards Flow #646](https://github.com/KiT-Maverik/svitlo/pull/646)
-must occur after this bank and its Section registry edits are
-completed and merged into the Lesson branch. A genuinely reviewed
-Questions-N/A decision is different from an unfinished Question Bank.
+is a **downstream consumer, never a dependency or merge gate of this
+Create Questions Flow PR**. Finish, review and merge #647 independently;
+afterwards #646 can incorporate the available Question authoring contract.
+For an actual Lesson, finish and integrate its Question bank and Quiz
+Section registry edits before the Flashcards child edits the same
+Section registry. A genuinely reviewed Questions-N/A decision is
+different from an unfinished Question Bank. Do not wait for #646 to
+merge before completing #647.
 
 ## Stage 1 — Lesson Analysis
 
