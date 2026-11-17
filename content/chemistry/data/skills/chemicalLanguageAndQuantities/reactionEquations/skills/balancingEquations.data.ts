@@ -31,7 +31,7 @@ export const balancingEquations_Skill_Data = defineSkill({
     et: 'Võrrandite tasakaalustamine',
     be: 'Ураўноўваньне раўнаньняў',
     ka: 'განტოლებების გათანაბრება',
-    kk: 'Теңдеулерді теңестіру',
+    kk: 'Teñdeulerdı teñestıru',
     qm: 'Teñlemelerni muvazenetlemek',
   },
   description: {
@@ -64,7 +64,7 @@ export const balancingEquations_Skill_Data = defineSkill({
       et: 'Tasakaalusta reaktsioonivõrrand ainevalemeid muutmata.',
       be: 'Ураўнуй хімічнае раўнаньне, не зьмяняючы формулы рэчываў.',
       ka: 'გაათანაბრე ქიმიური განტოლება ფორმულების შეუცვლელად.',
-      kk: 'Химиялық формулаларды өзгертпей теңдеуді теңестір.',
+      kk: 'Himiialyq formulalardy özgertpei teñdeudı teñestır.',
       qm: 'Kimyeviy formulalarnı deñiştirmeden reaktsiya teñlemesini muvazenetle.',
     },
   },

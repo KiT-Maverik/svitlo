@@ -31,7 +31,7 @@ export const redoxCouples_Skill_Data = defineSkill({
     et: 'Redokspaarid',
     be: 'Акісьляльна-аднаўленчыя пары',
     ka: 'რედოქს წყვილები',
-    kk: 'Тотығу-тотықсыздану жұптары',
+    kk: 'Totyğu-totyqsyzdanu jūptary',
     qm: 'Redoks çiftleri',
   },
   description: {
@@ -65,7 +65,7 @@ export const redoxCouples_Skill_Data = defineSkill({
       et: 'Selgita, kuidas üks aine oksüdeerub, samal ajal kui teine redutseerub.',
       be: 'Патлумач, як адно рэчыва акісьляецца, калі другое аднаўляецца.',
       ka: 'ახსენი, როგორ იჟანგება ერთი მონაწილე და აღდგება მეორე.',
-      kk: 'Бір зат тотығып жатқанда екіншісі қалай тотықсызданатынын түсіндір.',
+      kk: 'Bır zat totyğyp jatqanda ekınşısı qalai totyqsyzdanatynyn tüsındır.',
       qm: 'Bir madde oksidlenip başqası qayta tiklengenini añlat.',
     },
   },

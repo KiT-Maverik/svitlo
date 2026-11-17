@@ -35,7 +35,7 @@ export const chemicalReactions_SkillDomain_Data = defineSkillDomain({
     et: 'Keemilised reaktsioonid',
     be: 'Хімічныя рэакцыі',
     ka: 'ქიმიური რეაქციები',
-    kk: 'Химиялық реакциялар',
+    kk: 'Himiialyq reaktsiialar',
     qm: 'Kimyeviy reaktsiyalar',
   },
   groups: [
@@ -74,7 +74,7 @@ export const chemicalReactions_SkillDomain_Data = defineSkillDomain({
       et: 'Uuri, kuidas reaktsioonid muudavad aineid aatomite ümberpaigutamise ja osakeste ülekande kaudu.',
       be: 'Дасьледуй, як рэакцыі зьмяняюць рэчывы праз перагрупоўку атамаў і перанос часьцінак.',
       ka: 'გამოიკვლიე, როგორ ცვლიან რეაქციები ნივთიერებებს ატომების გადაჯგუფებითა და ნაწილაკების გადატანით.',
-      kk: 'Атомдардың қайта орналасуы мен бөлшек алмасуы арқылы заттардың қалай өзгеретінін зертте.',
+      kk: 'Atomdardyñ qaita ornalasuy men bölşek almasuy arqyly zattardyñ qalai özgeretının zertte.',
       qm: 'Atomlarnı yeniden tertiplep, zerrelerni keçirip, reaktsiyalar maddelerni nasıl deñiştirgenini araştır.',
     },
   },

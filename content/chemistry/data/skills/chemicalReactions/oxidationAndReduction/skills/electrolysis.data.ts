@@ -31,7 +31,7 @@ export const electrolysis_Skill_Data = defineSkill({
     et: 'Elektrolüüs',
     be: 'Электроліз',
     ka: 'ელექტროლიზი',
-    kk: 'Электролиз',
+    kk: 'Elektroliz',
     qm: 'Elektroliz',
   },
   description: {
@@ -65,7 +65,7 @@ export const electrolysis_Skill_Data = defineSkill({
       et: 'Mõista, kuidas elekter käivitab reaktsioone, mis ei toimu iseeneslikult.',
       be: 'Зразумей, як электрычнасьць выклікае рэакцыі, што самі не адбываюцца.',
       ka: 'გაიგე, როგორ წარმართავს ელექტრობა არასპონტანურ რეაქციებს.',
-      kk: 'Электр энергиясы өздігінен жүрмейтін реакцияларды қалай қозғайтынын түсін.',
+      kk: 'Elektr energiiasy özdıgınen jürmeitın reaktsiialardy qalai qozğaitynyn tüsın.',
       qm: 'Elektrik öz-özünden olmağan reaktsiyalarnı nasıl ketirgenini añla.',
     },
   },

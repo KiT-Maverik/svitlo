@@ -38,7 +38,7 @@ export const reactionEquations_SkillGroup_Data = defineSkillGroup({
     et: 'Reaktsioonivõrrandid',
     be: 'Раўнаньні рэакцыяў',
     ka: 'რეაქციის განტოლებები',
-    kk: 'Реакция теңдеулері',
+    kk: 'Reaktsiia teñdeulerı',
     qm: 'Reaktsiya teñlemeleri',
   },
   skills: [
@@ -78,7 +78,7 @@ export const reactionEquations_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri, kuidas võrrandid kujutavad keemilisi muutusi ja ainete suhteid.',
       be: 'Дасьледуй, як раўнаньні паказваюць хімічныя ператварэньні й прапорцыі рэчываў.',
       ka: 'გამოიკვლიე, როგორ ასახავს განტოლებები ქიმიურ ცვლილებებსა და თანაფარდობებს.',
-      kk: 'Теңдеулердің химиялық өзгерістерді және зат қатынастарын қалай көрсететінін зертте.',
+      kk: 'Teñdeulerdıñ himiialyq özgerısterdı jäne zat qatynastaryn qalai körsetetının zertte.',
       qm: 'Teñlemeler kimyeviy deñişüvlerni ve maddeler nisbetini nasıl köstergenini araştır.',
     },
   },

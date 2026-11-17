@@ -40,7 +40,7 @@ export const reactionPatterns_SkillGroup_Data = defineSkillGroup({
     et: 'Reaktsioonimustrid',
     be: 'Тыпы рэакцыяў',
     ka: 'რეაქციების ტიპები',
-    kk: 'Реакция түрлері',
+    kk: 'Reaktsiia türlerı',
     qm: 'Reaktsiya çeşitleri',
   },
   skills: [
@@ -82,7 +82,7 @@ export const reactionPatterns_SkillGroup_Data = defineSkillGroup({
       et: 'Tutvu keemiliste reaktsioonide tavapäraste liigitustega.',
       be: 'Дасьледуй распаўсюджаныя спосабы клясыфікацыі хімічных рэакцыяў.',
       ka: 'გაეცანი ქიმიური რეაქციების კლასიფიკაციის გავრცელებულ გზებს.',
-      kk: 'Химиялық реакцияларды жіктеудің кең тараған жолдарын біл.',
+      kk: 'Himiialyq reaktsiialardy jıkteudıñ keñ tarağan joldaryn bıl.',
       qm: 'Kimyeviy reaktsiyalarnı sınıflandıruvnıñ adetiy usullarını ögren.',
     },
   },

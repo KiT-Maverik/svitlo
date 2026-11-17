@@ -31,7 +31,7 @@ export const symbolicEquations_Skill_Data = defineSkill({
     et: 'Sümbolvõrrandid',
     be: 'Сымбальныя раўнаньні',
     ka: 'სიმბოლური განტოლებები',
-    kk: 'Таңбалық теңдеулер',
+    kk: 'Tañbalyq teñdeuler',
     qm: 'Remizli teñlemeler',
   },
   description: {
@@ -64,7 +64,7 @@ export const symbolicEquations_Skill_Data = defineSkill({
       et: 'Kirjuta lähteainete ja saaduste õiged keemilised valemid.',
       be: 'Запішы правільныя хімічныя формулы рэагентаў і прадуктаў.',
       ka: 'დაწერე რეაგენტებისა და პროდუქტების სწორი ქიმიური ფორმულები.',
-      kk: 'Реагенттер мен өнімдердің дұрыс химиялық формулаларын жаз.',
+      kk: 'Reagentter men önımderdıñ dūrys himiialyq formulalaryn jaz.',
       qm: 'Reaktsiyağa kirgen maddeler ve neticeler içün doğru formulalarnı yaz.',
     },
   },

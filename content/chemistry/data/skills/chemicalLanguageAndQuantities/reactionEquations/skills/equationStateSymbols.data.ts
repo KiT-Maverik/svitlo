@@ -31,7 +31,7 @@ export const equationStateSymbols_Skill_Data = defineSkill({
     et: 'Oleku tähised võrrandites',
     be: 'Абазначэньні агрэгатнага стану ў раўнаньнях',
     ka: 'მდგომარეობის ნიშნები განტოლებებში',
-    kk: 'Теңдеудегі күй белгілері',
+    kk: 'Teñdeudegı küi belgılerı',
     qm: 'Teñlemelerde al işaretleri',
   },
   description: {
@@ -65,7 +65,7 @@ export const equationStateSymbols_Skill_Data = defineSkill({
       et: 'Loe tahke, vedela, gaasilise ja lahustunud oleku tähiseid.',
       be: 'Чытай сымбалі цьвёрдага, вадкага, газавага й растворанага стану.',
       ka: 'წაიკითხე მყარი, თხევადი, აირადი და გახსნილი მდგომარეობის ნიშნები.',
-      kk: 'Қатты, сұйық, газ және еріген күйді білдіретін таңбаларды оқы.',
+      kk: 'Qatty, sūiyq, gaz jäne erıgen küidı bıldıretın tañbalardy oqy.',
       qm: 'Qattı, sıvı, gaz ya da erigen allarnı bildirgen işaretlerni oqu.',
     },
   },

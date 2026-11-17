@@ -31,7 +31,7 @@ export const wordEquations_Skill_Data = defineSkill({
     et: 'Sõnalised võrrandid',
     be: 'Слоўныя раўнаньні',
     ka: 'სიტყვიერი განტოლებები',
-    kk: 'Сөздік теңдеулер',
+    kk: 'Sözdık teñdeuler',
     qm: 'Söznen teñlemeler',
   },
   description: {
@@ -64,7 +64,7 @@ export const wordEquations_Skill_Data = defineSkill({
       et: 'Kirjelda reaktsiooni lähteainete ja saaduste nimedega.',
       be: 'Апішы рэакцыю назвамі зыходных рэчываў і прадуктаў.',
       ka: 'აღწერე რეაქცია საწყისი ნივთიერებებისა და პროდუქტების სახელებით.',
-      kk: 'Реакцияны бастапқы заттар мен өнімдердің атауларымен сипатта.',
+      kk: 'Reaktsiiany bastapqy zattar men önımderdıñ ataularymen sipatta.',
       qm: 'Reaktsiyanı başta olğan maddeler ve neticeler adlarınen tarif et.',
     },
   },

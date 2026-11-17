@@ -31,7 +31,7 @@ export const combustion_Skill_Data = defineSkill({
     et: 'Põlemine',
     be: 'Гарэньне',
     ka: 'წვა',
-    kk: 'Жану',
+    kk: 'Janu',
     qm: 'Yanuv',
   },
   description: {
@@ -65,7 +65,7 @@ export const combustion_Skill_Data = defineSkill({
       et: 'Mõista põlemist oksüdeerijaga toimuva energiat vabastava reaktsioonina.',
       be: 'Зразумей гарэньне як рэакцыю з акісьляльнікам, у якой вылучаецца энэргія.',
       ka: 'გაიგე წვა, როგორც დამჟანგავის მონაწილეობით ენერგიის გამომყოფი რეაქცია.',
-      kk: 'Жануды тотықтырғыш қатысатын энергия бөлетін реакция деп түсін.',
+      kk: 'Janudy totyqtyrğyş qatysatyn energiia böletın reaktsiia dep tüsın.',
       qm: 'Yanuvnı oksidleştirici qatnaşqan ve energiya çıqarğan reaktsiya olaraq añla.',
     },
   },

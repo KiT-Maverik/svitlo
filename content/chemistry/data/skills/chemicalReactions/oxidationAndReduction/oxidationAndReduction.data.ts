@@ -39,7 +39,7 @@ export const oxidationAndReduction_SkillGroup_Data = defineSkillGroup({
     et: 'Oksüdeerumine ja redutseerumine',
     be: 'Акісьленьне і аднаўленьне',
     ka: 'ჟანგვა და აღდგენა',
-    kk: 'Тотығу және тотықсыздану',
+    kk: 'Totyğu jäne totyqsyzdanu',
     qm: 'Oksidlenuv ve qayta tiklenuv',
   },
   skills: [
@@ -80,7 +80,7 @@ export const oxidationAndReduction_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri, kuidas oksüdeerumine ja redutseerumine seostuvad elektronide muutustega.',
       be: 'Дасьледуй сувязь акісьленьня й аднаўленьня са зьменамі электронаў.',
       ka: 'გამოიკვლიე, როგორ უკავშირდება ჟანგვა და აღდგენა ელექტრონების ცვლილებებს.',
-      kk: 'Тотығу мен тотықсызданудың электрон өзгерістерімен байланысын зертте.',
+      kk: 'Totyğu men totyqsyzdanudyñ elektron özgerısterımen bailanysyn zertte.',
       qm: 'Oksidlenuv ve qayta tiklenuv elektron deñişüvlerine nasıl bağlı olğanını araştır.',
     },
   },

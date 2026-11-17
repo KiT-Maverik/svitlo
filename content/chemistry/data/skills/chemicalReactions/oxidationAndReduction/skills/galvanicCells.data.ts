@@ -31,7 +31,7 @@ export const galvanicCells_Skill_Data = defineSkill({
     et: 'Galvaanielemendid',
     be: 'Гальванічныя элемэнты',
     ka: 'გალვანური ელემენტები',
-    kk: 'Гальваникалық элементтер',
+    kk: 'Galvanikalyq elementter',
     qm: 'Galvanik elementler',
   },
   description: {
@@ -65,7 +65,7 @@ export const galvanicCells_Skill_Data = defineSkill({
       et: 'Vaata, kuidas eraldi toimuvad redoksreaktsioonid toodavad elektrienergiat.',
       be: 'Даведайся, як аддзеленыя акісьляльна-аднаўленчыя рэакцыі даюць электраэнэргію.',
       ka: 'ნახე, როგორ წარმოქმნიან განცალკევებული ჟანგვა-აღდგენის რეაქციები ელექტროენერგიას.',
-      kk: 'Бөлек жүретін редокс реакциялар элементте электр қуатын қалай шығаратынын біл.',
+      kk: 'Bölek jüretın redoks reaktsiialar elementte elektr quatyn qalai şyğaratynyn bıl.',
       qm: 'Bir-birinden ayrı redoks reaktsiyaları elementte elektrik energiyasını nasıl peyda etkenini ögren.',
     },
   },

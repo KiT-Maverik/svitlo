@@ -31,7 +31,7 @@ export const reduction_Skill_Data = defineSkill({
     et: 'Redutseerumine',
     be: 'Аднаўленьне',
     ka: 'აღდგენა',
-    kk: 'Тотықсыздану',
+    kk: 'Totyqsyzdanu',
     qm: 'Qayta tiklenuv',
   },
   description: {
@@ -65,7 +65,7 @@ export const reduction_Skill_Data = defineSkill({
       et: 'Tunne redutseerumine ära elektronide vastuvõtmise või oksüdatsiooniastme languse järgi.',
       be: 'Распазнавай аднаўленьне па далучэньні электронаў або зьніжэньні ступені акісьленьня.',
       ka: 'ამოიცანი აღდგენა ელექტრონის მიღებით ან ჟანგვის ხარისხის შემცირებით.',
-      kk: 'Электрон қосып алу не тотығу дәрежесінің кемуі арқылы тотықсыздануды анықта.',
+      kk: 'Elektron qosyp alu ne totyğu därejesınıñ kemuı arqyly totyqsyzdanudy anyqta.',
       qm: 'Elektron aluv ya da oksidlenuv derecesiniñ azayuvınen qayta tiklenuvni tanı.',
     },
   },

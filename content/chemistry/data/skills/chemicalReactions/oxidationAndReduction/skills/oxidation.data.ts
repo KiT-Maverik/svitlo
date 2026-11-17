@@ -31,7 +31,7 @@ export const oxidation_Skill_Data = defineSkill({
     et: 'Oksüdeerumine',
     be: 'Акісьленьне',
     ka: 'ჟანგვა',
-    kk: 'Тотығу',
+    kk: 'Totyğu',
     qm: 'Oksidlenuv',
   },
   description: {
@@ -65,7 +65,7 @@ export const oxidation_Skill_Data = defineSkill({
       et: 'Tunne oksüdeerumine ära elektronide loovutamise või oksüdatsiooniastme kasvu järgi.',
       be: 'Распазнавай акісьленьне па страце электронаў або павышэньні ступені акісьленьня.',
       ka: 'ამოიცანი ჟანგვა ელექტრონის დაკარგვით ან ჟანგვის ხარისხის მატებით.',
-      kk: 'Электрон жоғалту не тотығу дәрежесінің өсуі арқылы тотығуды анықта.',
+      kk: 'Elektron joğaltu ne totyğu därejesınıñ ösuı arqyly totyğudy anyqta.',
       qm: 'Elektron coyuv ya da oksidlenuv derecesiniñ artuvınen oksidlenuvnı tanı.',
     },
   },
