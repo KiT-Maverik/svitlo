@@ -31,7 +31,7 @@ export const marketShortagesAndSurpluses_Skill_Data = defineSkill({
     et: 'Turupuudujääk ja ülejääk',
     be: 'Дэфіцыт і лішак тавару',
     ka: 'საბაზრო დეფიციტი და ნამეტი',
-    kk: 'Нарықтағы тапшылық пен артықшылық',
+    kk: 'Naryqtağy tapşylyq pen artyqşylyq',
     qm: 'Bazar azlığı ve artıqları',
   },
   description: {
@@ -64,7 +64,7 @@ export const marketShortagesAndSurpluses_Skill_Data = defineSkill({
       et: 'Tunne ära olukord, kui toodet on turul liiga vähe või palju.',
       be: 'Распазнавай, калі на рынку тавару замала або зашмат.',
       ka: 'ამოიცანი, როდის არის ბაზარზე პროდუქტი მეტისმეტად ცოტა ან ბევრი.',
-      kk: 'Нарықта тауар тым аз не тым көп болатын жағдайларды таны.',
+      kk: 'Naryqta tauar tym az ne tym köp bolatyn jağdailardy tany.',
       qm: 'Bazarda mal pek az ya da pek çoq olğanını tanı.',
     },
   },

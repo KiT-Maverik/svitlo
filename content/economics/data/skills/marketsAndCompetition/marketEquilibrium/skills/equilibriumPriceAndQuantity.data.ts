@@ -31,7 +31,7 @@ export const equilibriumPriceAndQuantity_Skill_Data = defineSkill({
     et: 'Tasakaaluhind ja -kogus',
     be: 'Раўнаважная цана і абсяг',
     ka: 'წონასწორული ფასი და რაოდენობა',
-    kk: 'Тепе-теңдік бағасы мен көлемі',
+    kk: 'Tepe-teñdık bağasy men kölemı',
     qm: 'Muvastıq fiyatı ve miqdarı',
   },
   description: {
@@ -65,7 +65,7 @@ export const equilibriumPriceAndQuantity_Skill_Data = defineSkill({
       et: 'Leia pakkumis- ja nõudluskõvera lõikepunkt.',
       be: 'Знайдзі кропку перасячэньня крывых попыту й прапановы.',
       ka: 'იპოვე მოთხოვნისა და მიწოდების მრუდების გადაკვეთა.',
-      kk: 'Сұраныс пен ұсыныс қисықтарының қиылысу нүктесін тап.',
+      kk: 'Sūranys pen ūsynys qisyqtarynyñ qiylysu nüktesın tap.',
       qm: 'Talap ve teklif egrileriniñ kesişken noqtasını tap.',
     },
   },

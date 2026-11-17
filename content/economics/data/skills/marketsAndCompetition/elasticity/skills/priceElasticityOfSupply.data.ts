@@ -31,7 +31,7 @@ export const priceElasticityOfSupply_Skill_Data = defineSkill({
     et: 'Pakkumise hinnaelastsus',
     be: 'Цэнавая элястычнасьць прапановы',
     ka: 'მიწოდების ფასის ელასტიკურობა',
-    kk: 'Ұсыныстың баға икемділігі',
+    kk: 'Ūsynystyñ bağa ikemdılıgı',
     qm: 'Teklifniñ fiyat elastikligi',
   },
   description: {
@@ -65,7 +65,7 @@ export const priceElasticityOfSupply_Skill_Data = defineSkill({
       et: 'Uuri, kui kiiresti ja tugevalt tootjad kõrgemale hinnale reageerivad.',
       be: 'Дасьледуй, як хутка й моцна вытворцы рэагуюць на вышэйшыя цэны.',
       ka: 'გაიგე, რამდენად სწრაფად და ძლიერ რეაგირებენ მწარმოებლები ფასის ზრდაზე.',
-      kk: 'Баға өскенде өндірушілер қаншалықты жылдам және күшті жауап беретінін зертте.',
+      kk: 'Bağa öskende öndıruşıler qanşalyqty jyldam jäne küştı jauap beretının zertte.',
       qm: 'İstisalciler yuqarı fiyatqa ne qadar tez ve quvetli cevap bergenini ögren.',
     },
   },

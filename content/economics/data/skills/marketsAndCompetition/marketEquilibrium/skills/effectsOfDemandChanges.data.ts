@@ -31,7 +31,7 @@ export const effectsOfDemandChanges_Skill_Data = defineSkill({
     et: 'Nõudluse muutuse mõjud',
     be: 'Наступствы зьмены попыту',
     ka: 'მოთხოვნის ცვლილების შედეგები',
-    kk: 'Сұраныс өзгерісінің әсері',
+    kk: 'Sūranys özgerısınıñ äserı',
     qm: 'Talap deñişmesiniñ tesirleri',
   },
   description: {
@@ -65,7 +65,7 @@ export const effectsOfDemandChanges_Skill_Data = defineSkill({
       et: 'Ennusta, mis juhtub hinnaga nõudluse kasvades või kahanedes.',
       be: 'Прадбач, што будзе з цаной, калі попыт вырастае ці падае.',
       ka: 'იწინასწარმეტყველე, რა მოუვა ფასს მოთხოვნის ზრდისას ან კლებისას.',
-      kk: 'Сұраныс артқанда не кемігенде баға қалай өзгеретінін болжа.',
+      kk: 'Sūranys artqanda ne kemıgende bağa qalai özgeretının bolja.',
       qm: 'Talap artqanda ya da azayğanda fiyat nasıl deñişkenini tahmin et.',
     },
   },

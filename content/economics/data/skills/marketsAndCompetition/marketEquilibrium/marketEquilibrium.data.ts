@@ -38,7 +38,7 @@ export const marketEquilibrium_SkillGroup_Data = defineSkillGroup({
     et: 'Turutasakaal',
     be: 'Рынкавая раўнавага',
     ka: 'საბაზრო წონასწორობა',
-    kk: 'Нарықтық тепе-теңдік',
+    kk: 'Naryqtyq tepe-teñdık',
     qm: 'Bazar muvastığı',
   },
   skills: [
@@ -78,7 +78,7 @@ export const marketEquilibrium_SkillGroup_Data = defineSkillGroup({
       et: 'Mõista, kuidas ostjate ja müüjate plaanid võivad tasakaalustuda.',
       be: 'Зразумей, як пляны пакупнікоў і прадаўцоў могуць дасягнуць раўнавагі.',
       ka: 'გაიგე, როგორ შეიძლება მყიდველებისა და გამყიდველების გეგმები დაბალანსდეს.',
-      kk: 'Сатып алушы мен сатушы жоспарлары қалай теңесетінін түсін.',
+      kk: 'Satyp aluşy men satuşy josparlary qalai teñesetının tüsın.',
       qm: 'Alıcılar ve satıcılarnıñ planları nasıl muvastıq tapabilgenini añla.',
     },
   },

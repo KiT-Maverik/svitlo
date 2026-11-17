@@ -31,7 +31,7 @@ export const effectsOfSupplyChanges_Skill_Data = defineSkill({
     et: 'Pakkumise muutuse mõjud',
     be: 'Наступствы зьмены прапановы',
     ka: 'მიწოდების ცვლილების შედეგები',
-    kk: 'Ұсыныс өзгерісінің әсері',
+    kk: 'Ūsynys özgerısınıñ äserı',
     qm: 'Teklif deñişmesiniñ tesirleri',
   },
   description: {
@@ -65,7 +65,7 @@ export const effectsOfSupplyChanges_Skill_Data = defineSkill({
       et: 'Uuri, kuidas pakkumise muutus mõjutab hindu ja koguseid.',
       be: 'Дасьледуй, як зьмена прапановы ўплывае на цэны й абсягі.',
       ka: 'გაიგე, როგორ მოქმედებს მიწოდების ცვლილება ფასებსა და რაოდენობებზე.',
-      kk: 'Ұсыныс өзгерсе, баға мен көлемге қалай әсер ететінін зертте.',
+      kk: 'Ūsynys özgerse, bağa men kölemge qalai äser etetının zertte.',
       qm: 'Teklif deñişkende fiyatlar ve miqdarlar nasıl deñişkenini ögren.',
     },
   },
