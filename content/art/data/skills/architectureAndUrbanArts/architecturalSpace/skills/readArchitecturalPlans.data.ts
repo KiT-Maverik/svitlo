@@ -31,7 +31,7 @@ export const readArchitecturalPlans_Skill_Data = defineSkill({
     et: 'Arhitektuurijooniste lugemine',
     be: 'Чытаць архітэктурныя планы',
     ka: 'არქიტექტურული გეგმების წაკითხვა',
-    kk: 'Сәулет жоспарларын оқу',
+    kk: 'Säulet josparlaryn oqu',
     qm: 'Mimariy planlarnı oquv',
   },
   description: {
@@ -64,7 +64,7 @@ export const readArchitecturalPlans_Skill_Data = defineSkill({
       et: 'Kasuta plaanisümboleid, et mõista hoone ruume, ühendusi ja liikumisteid.',
       be: 'Выкарыстоўвайце абазначэньні на пляне, каб зразумець пакоі, іх сувязі і маршруты ў будынку.',
       ka: 'გეგმის ნიშნებით გაიგეთ შენობის ოთახები, კავშირები და გადაადგილების მარშრუტები.',
-      kk: 'Жоспар белгілерін пайдаланып, ғимараттағы бөлмелерді, байланыстарды және қозғалыс жолдарын түсініңіз.',
+      kk: 'Jospar belgılerın paidalanyp, ğimarattağy bölmelerdı, bailanystardy jäne qozğalys joldaryn tüsınıñız.',
 
       qm: 'Plan remizlerini qullanıp, binadaki odalarnı, bağlanışlarnı ve yollarını añlañız.',
     },

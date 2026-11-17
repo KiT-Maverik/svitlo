@@ -38,7 +38,7 @@ export const landscapeAndPublicArt_SkillGroup_Data = defineSkillGroup({
     et: 'Maastik ja avalik kunst',
     be: 'Ландшафт і публічнае мастацтва',
     ka: 'ლანდშაფტი და საჯარო ხელოვნება',
-    kk: 'Ландшафт және қоғамдық өнер',
+    kk: 'Landşaft jäne qoğamdyq öner',
     qm: 'Manzara ve cemaat sanatı',
   },
   skills: [
@@ -78,7 +78,7 @@ export const landscapeAndPublicArt_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri, kuidas maastik ja välikunst suhestuvad paikade ja nende kogukondadega.',
       be: 'Даследуйце, як ландшафт і мастацтва пад адкрытым небам адгукаюцца на асаблівасці месцаў і іх супольнасцей.',
       ka: 'შეისწავლეთ, როგორ ეხმიანება ლანდშაფტი და ღია ცის ქვეშ შექმნილი ხელოვნება ადგილებსა და მათ საზოგადოებებს.',
-      kk: 'Ландшафт пен ашық аспан астындағы өнердің орындар мен олардың қауымдастықтарына қалай үн қосатынын зерттеңіз.',
+      kk: 'Landşaft pen aşyq aspan astyndağy önerdıñ oryndar men olardyñ qauymdastyqtaryna qalai ün qosatynyn zertteñız.',
       qm: 'Manzarani ve açıq havadaki sanattı yerlerge ve olarnıñ cemaatlerine uyğun şekilde qullanıñız.',
     },
   },

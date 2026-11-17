@@ -31,7 +31,7 @@ export const composeALandscapeView_Skill_Data = defineSkill({
     et: 'Maastikuvaate kujundamine',
     be: 'Кампанаваць ландшафтны від',
     ka: 'ლანდშაფტის ხედის კომპოზიცია',
-    kk: 'Ландшафт көрінісін құрастыру',
+    kk: 'Landşaft körınısın qūrastyru',
     qm: 'Manzara körünişini tertip etmek',
   },
   description: {
@@ -64,7 +64,7 @@ export const composeALandscapeView_Skill_Data = defineSkill({
       et: 'Sea taimed, vaated ja pilgupüüdjad mõjuvaks väliruumi kompositsiooniks.',
       be: 'Размясціце расліны, краявіды і акцэнтныя элементы ў выразнай кампазіцыі пад адкрытым небам.',
       ka: 'მცენარეები, ხედები და აქცენტები მიმზიდველ გარე კომპოზიციად დაალაგეთ.',
-      kk: 'Өсімдіктерді, көріністерді және назар аударатын нысандарды тартымды ашық кеңістік композициясына біріктіріңіз。',
+      kk: 'Ösımdıkterdı, körınısterdı jäne nazar audaratyn nysandardy tartymdy aşyq keñıstık kompozitsiiasyna bırıktırıñız。',
 
       qm: 'Ösimliklerni, körünişlerni ve diqqet merkezlerini tesirli açıq hava kompozitsiyasına tertip etiñiz.',
     },

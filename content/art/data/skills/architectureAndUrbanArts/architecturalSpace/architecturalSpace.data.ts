@@ -38,7 +38,7 @@ export const architecturalSpace_SkillGroup_Data = defineSkillGroup({
     et: 'Arhitektuuriruum',
     be: 'Архітэктурная прастора',
     ka: 'არქიტექტურული სივრცე',
-    kk: 'Сәулеттік кеңістік',
+    kk: 'Säulettık keñıstık',
     qm: 'Mimariy meydan',
   },
   skills: [
@@ -77,7 +77,7 @@ export const architecturalSpace_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri, kuidas ruumide suurus ja omavahelised ühendused kujundavad hoone tajumist.',
       be: 'Даследуйце, як памеры прастор і сувязі паміж імі фарміруюць адчуванне ад будынка.',
       ka: 'აღმოაჩინეთ, როგორ აყალიბებს სივრცეების ზომა და მათ შორის კავშირები შენობის აღქმას.',
-      kk: 'Кеңістіктердің өлшемі мен өзара байланысы ғимараттың қалай қабылданатынын қалай қалыптастыратынын зерттеңіз.',
+      kk: 'Keñıstıkterdıñ ölşemı men özara bailanysy ğimarattyñ qalai qabyldanatynyn qalai qalyptastyratynyn zertteñız.',
 
       qm: 'Mimariy meydanlarnıñ ölçüsi ve bağlanışı bina tecribesini nasıl şekillendirgenini keşf etiñiz.',
     },

@@ -36,7 +36,7 @@ export const architectureAndUrbanArts_SkillDomain_Data = defineSkillDomain({
     et: 'Arhitektuur ja linnakunst',
     be: 'Архітэктура і гарадское мастацтва',
     ka: 'არქიტექტურა და ურბანული ხელოვნება',
-    kk: 'Сәулет және қалалық өнер',
+    kk: 'Säulet jäne qalalyq öner',
     qm: 'Mimarlıq ve şeer sanatları',
   },
   groups: [
@@ -76,7 +76,7 @@ export const architectureAndUrbanArts_SkillDomain_Data = defineSkillDomain({
       et: 'Avasta, kuidas hooned, tänavad ja avalikud ruumid loovad visuaalseid ja kultuurilisi kogemusi.',
       be: 'Даследуйце, як будынкі, вуліцы і грамадскія прасторы ствараюць візуальны і культурны досвед.',
       ka: 'შეისწავლეთ, როგორ ქმნის შენობები, ქუჩები და საჯარო სივრცეები ვიზუალურ და კულტურულ გამოცდილებას.',
-      kk: 'Ғимараттар, көшелер мен қоғамдық кеңістіктер визуалды және мәдени тәжірибені қалай қалыптастыратынын зерттеңіз.',
+      kk: 'Ğimarattar, köşeler men qoğamdyq keñıstıkter vizualdy jäne mädeni täjıribenı qalai qalyptastyratynyn zertteñız.',
       qm: 'Binalar, sokaklar ve cemaat yerleri körüniş ve medeniy tecribeni nasıl yarata, keşf etiñiz.',
     },
   },

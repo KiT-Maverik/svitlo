@@ -31,7 +31,7 @@ export const analyzeSpatialProportions_Skill_Data = defineSkill({
     et: 'Ruumiliste proportsioonide analüüsimine',
     be: 'Аналізаваць прасторавыя прапорцыі',
     ka: 'სივრცითი პროპორციების ანალიზი',
-    kk: 'Кеңістік пропорцияларын талдау',
+    kk: 'Keñıstık proportsiialaryn taldau',
     qm: 'Meydan nisbetlerini tahlil etüv',
   },
   description: {
@@ -64,7 +64,7 @@ export const analyzeSpatialProportions_Skill_Data = defineSkill({
       et: 'Pane tähele, kuidas ruumide suurus ja avad mõjutavad mõõtkavatunnet ja õhustikku.',
       be: 'Зьвярніце ўвагу, як памеры пакояў і праёмаў уплываюць на адчуваньне маштабу й атмасфэру.',
       ka: 'დააკვირდით, როგორ მოქმედებს ოთახების ზომა და ღიობები მასშტაბის შეგრძნებასა და ატმოსფეროზე.',
-      kk: 'Бөлме өлшемдері мен ойықтардың ауқым сезімі мен атмосфераға әсерін байқаңыз.',
+      kk: 'Bölme ölşemderı men oiyqtardyñ auqym sezımı men atmosferağa äserın baiqañyz.',
 
       qm: 'Oda ölçüleri ve açılışlarnıñ ölçek ve havağa nasıl tesir etkenini közetiñiz.',
     },

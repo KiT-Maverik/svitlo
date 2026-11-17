@@ -31,7 +31,7 @@ export const compareArchitecturalStyles_Skill_Data = defineSkill({
     et: 'Arhitektuuristiilide võrdlemine',
     be: 'Параўноўваць архітэктурныя стылі',
     ka: 'არქიტექტურული სტილების შედარება',
-    kk: 'Сәулет стильдерін салыстыру',
+    kk: 'Säulet stilderın salystyru',
     qm: 'Mimari üslüplerni qarşılaştırmaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const compareArchitecturalStyles_Skill_Data = defineSkill({
       et: 'Võrdle arhitektuuristiile nende vormide ja kultuurikonteksti põhjal.',
       be: 'Параўноўвайце архітэктурныя стылі паводле іх формаў і культурнага кантэксту.',
       ka: 'შეადარეთ არქიტექტურული სტილები მათი ფორმებისა და კულტურული კონტექსტის მიხედვით.',
-      kk: 'Сәулет стильдерін пішіндері мен мәдени контексті бойынша салыстырыңыз.',
+      kk: 'Säulet stilderın pışınderı men mädeni kontekstı boiynşa salystyryñyz.',
       qm: 'Mimariy üslüplerni şekilleri ve medeniy bağlamları boyunca qarşılaştırıñız.',
     },
   },

@@ -38,7 +38,7 @@ export const architecturalFormAndStyle_SkillGroup_Data = defineSkillGroup({
     et: 'Arhitektuurne vorm ja stiil',
     be: 'Архітэктурная форма і стыль',
     ka: 'არქიტექტურული ფორმა და სტილი',
-    kk: 'Сәулеттік пішін мен стиль',
+    kk: 'Säulettık pışın men stil',
     qm: 'Mimari şekil ve üslüp',
   },
   skills: [
@@ -78,7 +78,7 @@ export const architecturalFormAndStyle_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri, mida arhitektuursed kaunistused oma ajaloolises kontekstis väljendavad.',
       be: 'Дасьледуйце, як формы будынкаў і дэталі аздобы выяўляюць архітэктурныя ідэі.',
       ka: 'შეისწავლეთ, როგორ გამოხატავს შენობების ფორმები და დეკორატიული დეტალები არქიტექტურულ იდეებს.',
-      kk: 'Ғимарат пішіндері мен сәндік бөлшектер сәулеттік идеяларды қалай білдіретінін зерттеңіз.',
+      kk: 'Ğimarat pışınderı men sändık bölşekter säulettık ideialardy qalai bıldıretının zertteñız.',
       qm: 'Binalarnıñ şekilleri ve bezek tafsilâtları mimariy fikirlerni nasıl ifade etkenini keşf etiñiz.',
     },
   },

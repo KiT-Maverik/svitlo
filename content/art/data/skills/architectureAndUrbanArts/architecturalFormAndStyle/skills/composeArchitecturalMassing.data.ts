@@ -31,7 +31,7 @@ export const composeArchitecturalMassing_Skill_Data = defineSkill({
     et: 'Arhitektuursete mahtude komponeerimine',
     be: 'Кампанаваць архітэктурныя аб’ёмы',
     ka: 'არქიტექტურული მოცულობების კომპოზიცია',
-    kk: 'Сәулеттік көлемдерді құрастыру',
+    kk: 'Säulettık kölemderdı qūrastyru',
     qm: 'Mimariy kütlelerni tertip etüv',
   },
   description: {
@@ -64,7 +64,7 @@ export const composeArchitecturalMassing_Skill_Data = defineSkill({
       et: 'Ühenda hoonemahud ja avatud ruumid tasakaalustatud visuaalseks tervikuks.',
       be: 'Аб’ядноўвайце аб’ёмы будынкаў і адкрытыя прасторы ў збалянсаваную візуальную форму.',
       ka: 'შეაერთეთ შენობების მოცულობები და ღია სივრცეები დაბალანსებულ ვიზუალურ ფორმად.',
-      kk: 'Ғимарат көлемдері мен ашық кеңістіктерді үйлесімді көрнекі пішінге біріктіріңіз.',
+      kk: 'Ğimarat kölemderı men aşyq keñıstıkterdı üilesımdı körnekı pışınge bırıktırıñız.',
       qm: 'Bina hacimleri ve açıq meydanlarnı teñleşken körüniş şekline birleştiriñiz.',
     },
   },

@@ -31,7 +31,7 @@ export const analyzeABuildingFacade_Skill_Data = defineSkill({
     et: 'Hoone fassaadi analüüsimine',
     be: 'Аналізаваць фасад будынка',
     ka: 'შენობის ფასადის ანალიზი',
-    kk: 'Ғимарат қасбетін талдау',
+    kk: 'Ğimarat qasbetın taldau',
     qm: 'Bina cephesini tahlil etüv',
   },
   description: {
@@ -64,7 +64,7 @@ export const analyzeABuildingFacade_Skill_Data = defineSkill({
       et: 'Loe hoone väliskülje seinte, akende ja avade visuaalset mustrit.',
       be: 'Прааналізуйце візуальны рытм сьценаў, вокнаў і праёмаў на фасадзе будынка.',
       ka: 'წაიკითხეთ შენობის გარე კედლების, ფანჯრებისა და ღიობების ვიზუალური წყობა.',
-      kk: 'Ғимараттың сыртқы қабырғалары, терезелері мен ойықтарының көрнекі өрнегін талдаңыз.',
+      kk: 'Ğimarattyñ syrtqy qabyrğalary, terezelerı men oiyqtarynyñ körnekı örnegın taldañyz.',
       qm: 'Bina dış yüzündeki divar, pencereler ve açılışlarnıñ körüniş tertibini oquñız.',
     },
   },

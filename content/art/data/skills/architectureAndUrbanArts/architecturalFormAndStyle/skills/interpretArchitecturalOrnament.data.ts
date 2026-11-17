@@ -31,7 +31,7 @@ export const interpretArchitecturalOrnament_Skill_Data = defineSkill({
     et: 'Arhitektuuriornamenti tõlgendamine',
     be: 'Інтэрпрэтаваць архітэктурны арнамент',
     ka: 'არქიტექტურული ორნამენტის ინტერპრეტაცია',
-    kk: 'Сәулеттік әшекейді түсіндіру',
+    kk: 'Säulettık äşekeidı tüsındıru',
     qm: 'Mimariy bezekni tefsir etüv',
   },
   description: {
@@ -64,7 +64,7 @@ export const interpretArchitecturalOrnament_Skill_Data = defineSkill({
       et: 'Uuri, kuidas arhitektuursed kaunistused väljendavad oma ajastu ja kultuuri tähendusi.',
       be: 'Дасьледуйце, што архітэктурны дэкор перадае ў сваім гістарычным кантэксьце.',
       ka: 'შეისწავლეთ, რას გადმოსცემს არქიტექტურული მორთულობა ისტორიულ კონტექსტში.',
-      kk: 'Сәулеттік әшекейдің тарихи контексте нені білдіретінін зерттеңіз.',
+      kk: 'Säulettık äşekeidıñ tarihi kontekste nenı bıldıretının zertteñız.',
 
       qm: 'Mimariy bezekniñ tarihiy şartlarda ne bildirgenini araştırıñız.',
     },

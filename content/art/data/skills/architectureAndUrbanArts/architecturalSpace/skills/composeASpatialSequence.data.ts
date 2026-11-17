@@ -31,7 +31,7 @@ export const composeASpatialSequence_Skill_Data = defineSkill({
     et: 'Ruumilise järjestuse loomine',
     be: 'Кампанаваць прасторавую паслядоўнасць',
     ka: 'სივრცითი თანმიმდევრობის შედგენა',
-    kk: 'Кеңістіктік реттілік құрастыру',
+    kk: 'Keñıstıktık rettılık qūrastyru',
     qm: 'Meydanlar silsilesini tertip etmek',
   },
   description: {
@@ -64,7 +64,7 @@ export const composeASpatialSequence_Skill_Data = defineSkill({
       et: 'Paiguta ühendatud ruumid nii, et avatus ja tähelepanu fookus muutuksid sihipäraselt.',
       be: 'Разьмяшчайце злучаныя прасторы, каб мэтанакіравана зьмяняць адчуваньне адкрытасьці і фокус увагі.',
       ka: 'დაალაგეთ დაკავშირებული სივრცეები ისე, რომ მიზანმიმართულად შეიცვალოს გახსნილობისა და ყურადღების ფოკუსი.',
-      kk: 'Ашықтық пен назар фокусын мақсатты түрде өзгерту үшін байланысқан кеңістіктерді орналастырыңыз.',
+      kk: 'Aşyqtyq pen nazar fokusyn maqsatty türde özgertu üşın bailanysqan keñıstıkterdı ornalastyryñyz.',
 
       qm: 'Bağlı meydanlarnı, açılıq ve diqqet merkezini maqsatlı deñiştirecek şekilde tertip etiñiz.',
     },

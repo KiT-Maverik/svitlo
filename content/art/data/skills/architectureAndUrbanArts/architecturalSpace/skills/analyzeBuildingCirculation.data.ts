@@ -31,7 +31,7 @@ export const analyzeBuildingCirculation_Skill_Data = defineSkill({
     et: 'Hoone liikumisteede analüüsimine',
     be: 'Аналізаваць рух у будынку',
     ka: 'შენობაში გადაადგილების ანალიზი',
-    kk: 'Ғимарат ішіндегі қозғалысты талдау',
+    kk: 'Ğimarat ışındegı qozğalysty taldau',
     qm: 'Bina içindeki qatnavnı tahlil etüv',
   },
   description: {
@@ -64,7 +64,7 @@ export const analyzeBuildingCirculation_Skill_Data = defineSkill({
       et: 'Vaata, kuidas sissepääsud ja liikumisteed inimesi ruumis suunavad.',
       be: 'Паглядзіце, як уваходы і праходы накіроўваюць рух людзей у прасторы.',
       ka: 'ნახეთ, როგორ წარმართავს შესასვლელები და გასასვლელები ადამიანების გადაადგილებას სივრცეში.',
-      kk: 'Кіреберістер мен өткелдер адамдардың кеңістікте қозғалуын қалай бағыттайтынын көріңіз.',
+      kk: 'Kıreberıster men ötkelder adamdardyñ keñıstıkte qozğaluyn qalai bağyttaitynyn körıñız.',
 
       qm: 'Binağa kirüvler ve yollar insanlarnı meydan içinde nasıl yönelttigini körüñiz.',
     },
