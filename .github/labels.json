@@ -285,11 +285,6 @@
     "description": "Issue created by an automated check or monitoring system"
   },
   {
-    "name": "assert: media",
-    "color": "0E7490",
-    "description": "Run strict physical media and generated-resource assertions for this PR"
-  },
-  {
     "name": "attention: decision",
     "color": "DB2777",
     "description": "Requires a decision from the project owner or designated reviewer"
