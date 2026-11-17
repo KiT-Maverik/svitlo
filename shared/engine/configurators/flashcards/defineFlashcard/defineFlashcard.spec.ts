@@ -56,7 +56,6 @@ describe('Configurators', () => {
       };
 
       const source = {
-        type: 'flashcard' as const,
         id: id('a4'),
         slug: 'lightCard' as const,
         parameters: {
@@ -109,7 +108,6 @@ describe('Configurators', () => {
         const card = defineFlashcard({
           id: id('a7'),
           slug: 'invariantFlashcard',
-          type: 'flashcard',
           parameters: { tags: [], flags: { items: {}, order: [] } },
           content: {
             front: defineFlashcardSide({ items: { extra }, order: ['extra'] }),
