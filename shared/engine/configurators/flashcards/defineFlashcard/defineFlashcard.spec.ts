@@ -162,6 +162,7 @@ describe('Configurators', () => {
         assert.equal(flagValue(card.build.props({ languages: ['en', 'uk'] }).locale?.uk?.parameters?.flags, 1), 'АБВ');
         assert.doesNotThrow(() => JSON.stringify(card.build.props({ languages: ['en', 'uk'] })));
         assert.equal(flashcard_Config_Schema.safeParse(source).success, true);
+        assert.equal(flashcard_Config_Schema.safeParse({ ...source, type: 'flashcard' }).success, false);
         assert.equal(flashcardConfigurator_Schema.safeParse(card).success, true);
         assert.equal(flashcard_Props_Schema.safeParse(source).success, false);
         assert.equal('override' in card, false);
