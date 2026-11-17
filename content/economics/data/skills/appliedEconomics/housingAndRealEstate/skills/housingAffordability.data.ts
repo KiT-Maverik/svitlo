@@ -31,7 +31,7 @@ export const housingAffordability_Skill_Data = defineSkill({
     et: 'Eluaseme taskukohasus',
     be: 'Даступнасьць жытла',
     ka: 'საცხოვრებლის ხელმისაწვდომობა',
-    kk: 'Тұрғын үйдің қолжетімділігі',
+    kk: 'Tūrğyn üidıñ qoljetımdılıgı',
     qm: 'Meskenniñ elverişliligi',
   },
   description: {
@@ -65,7 +65,7 @@ export const housingAffordability_Skill_Data = defineSkill({
       et: 'Uuri, millal eluase on konkreetsele leibkonnale taskukohane.',
       be: 'Высьветлі, калі канкрэтная сям’я можа дазволіць сабе жытло.',
       ka: 'გაიგე, რა პირობებშია საცხოვრებელი კონკრეტული ოჯახისთვის ხელმისაწვდომი.',
-      kk: 'Нақты отбасы үшін үй қашан қолжетімді болатынын анықта.',
+      kk: 'Naqty otbasy üşın üi qaşan qoljetımdı bolatynyn anyqta.',
       qm: 'Belli bir aile içün evniñ ne vaqıt elverişli olğanını ögren.',
     },
   },

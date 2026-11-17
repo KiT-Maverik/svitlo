@@ -31,7 +31,7 @@ export const congestionEconomics_Skill_Data = defineSkill({
     et: 'Liiklusummikute ökonoomika',
     be: 'Эканоміка транспартных затораў',
     ka: 'სატრანსპორტო საცობების ეკონომიკა',
-    kk: 'Көлік кептелісінің экономикасы',
+    kk: 'Kölık keptelısınıñ ekonomikasy',
     qm: 'Yol tıqanuvı iqtisadı',
   },
   description: {
@@ -65,7 +65,7 @@ export const congestionEconomics_Skill_Data = defineSkill({
       et: 'Mõista, miks iga lisanduv sõiduk võib teisi aeglustada.',
       be: 'Зразумей, чаму кожны дадатковы аўтамабіль можа запавольваць астатніх.',
       ka: 'გაიგე, რატომ შეიძლება ყოველი დამატებითი მანქანა სხვებს ანელებდეს.',
-      kk: 'Әр қосымша көлік басқаларын неге баяулатуы мүмкін екенін түсін.',
+      kk: 'Är qosymşa kölık basqalaryn nege baiaulatuy mümkın ekenın tüsın.',
       qm: 'Er qoşulğan maşina başqalarını niçün yavaşlata bilgenini añla.',
     },
   },

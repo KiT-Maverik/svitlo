@@ -31,7 +31,7 @@ export const infrastructureInvestmentAppraisal_Skill_Data = defineSkill({
     et: 'Taristuinvesteeringute hindamine',
     be: 'Ацэнка інфраструктурных інвэстыцыяў',
     ka: 'ინფრასტრუქტურული ინვესტიციების შეფასება',
-    kk: 'Инфрақұрылымдық инвестицияларды бағалау',
+    kk: 'İnfraqūrylymdyq investitsiialardy bağalau',
     qm: 'Altyapı yatırımlarını baalav',
   },
   description: {
@@ -65,7 +65,7 @@ export const infrastructureInvestmentAppraisal_Skill_Data = defineSkill({
       et: 'Hinda, kas transpordiprojekti kasu õigustab kõiki kulusid.',
       be: 'Ацані, ці апраўдваюць выгады транспартнага праекту ўсе яго выдаткі.',
       ka: 'შეაფასე, ამართლებს თუ არა სატრანსპორტო პროექტის სარგებელი მის სრულ ხარჯებს.',
-      kk: 'Көлік жобасының пайдасы барлық шығындарын ақтайтынын бағала.',
+      kk: 'Kölık jobasynyñ paidasy barlyq şyğyndaryn aqtaitynyn bağala.',
       qm: 'Naqliyat leyhasınıñ faydası bütün masraflarını aqlay mı, baala.',
     },
   },

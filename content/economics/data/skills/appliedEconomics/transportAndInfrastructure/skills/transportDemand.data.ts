@@ -31,7 +31,7 @@ export const transportDemand_Skill_Data = defineSkill({
     et: 'Transpordinõudlus',
     be: 'Попыт на транспарт',
     ka: 'ტრანსპორტზე მოთხოვნა',
-    kk: 'Көлікке сұраныс',
+    kk: 'Kölıkke sūranys',
     qm: 'Naqliyatqa talep',
   },
   description: {
@@ -65,7 +65,7 @@ export const transportDemand_Skill_Data = defineSkill({
       et: 'Uuri, miks inimesed valivad ühe liikumisviisi teise asemel.',
       be: 'Дасьледуй, чаму людзі выбіраюць адзін спосаб перамяшчэньня замест іншага.',
       ka: 'შეისწავლე, რატომ ირჩევენ ადამიანები მოგზაურობის ერთ გზას მეორის ნაცვლად.',
-      kk: 'Адамдар бір көлік түрін басқасынан неге артық көретінін зертте.',
+      kk: 'Adamdar bır kölık türın basqasynan nege artyq köretının zertte.',
       qm: 'İnsanlar bir seyaat usulını digerinden niçün saylağanını ögren.',
     },
   },

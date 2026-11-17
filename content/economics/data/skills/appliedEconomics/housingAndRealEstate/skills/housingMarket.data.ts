@@ -31,7 +31,7 @@ export const housingMarket_Skill_Data = defineSkill({
     et: 'Eluasemeturg',
     be: 'Рынак жытла',
     ka: 'საცხოვრებლის ბაზარი',
-    kk: 'Тұрғын үй нарығы',
+    kk: 'Tūrğyn üi naryğy',
     qm: 'Mesken bazarı',
   },
   description: {
@@ -65,7 +65,7 @@ export const housingMarket_Skill_Data = defineSkill({
       et: 'Mõista, kuidas kohalik pakkumine ja nõudlus mõjutavad eluasemehindu.',
       be: 'Зразумей, як мясцовы попыт і прапанова ўплываюць на цэны жытла.',
       ka: 'გაიგე, როგორ მოქმედებს ადგილობრივი მიწოდება და მოთხოვნა საცხოვრებლის ფასებზე.',
-      kk: 'Жергілікті сұраныс пен ұсыныс үй бағасына қалай әсер ететінін түсін.',
+      kk: 'Jergılıktı sūranys pen ūsynys üi bağasyna qalai äser etetının tüsın.',
       qm: 'Yerli talep ve teklif ev fiyatlarına nasıl tesir etkenini añla.',
     },
   },

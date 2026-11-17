@@ -31,7 +31,7 @@ export const landUseEconomics_Skill_Data = defineSkill({
     et: 'Maakasutuse ökonoomika',
     be: 'Эканоміка землекарыстаньня',
     ka: 'მიწათსარგებლობის ეკონომიკა',
-    kk: 'Жер пайдалану экономикасы',
+    kk: 'Jer paidalanu ekonomikasy',
     qm: 'Yer qullanımı iqtisadı',
   },
   description: {
@@ -65,7 +65,7 @@ export const landUseEconomics_Skill_Data = defineSkill({
       et: 'Uuri, kuidas maakasutuse reeglid mõjutavad seda, kuhu ja mida ehitatakse.',
       be: 'Дасьледуй, як правілы землекарыстаньня ўплываюць на месца і тып забудовы.',
       ka: 'შეისწავლე, როგორ მოქმედებს მიწათსარგებლობის წესები მშენებლობის ადგილზე და ტიპზე.',
-      kk: 'Жер пайдалану ережелері құрылыстың орны мен түріне қалай әсер ететінін зертте.',
+      kk: 'Jer paidalanu erejelerı qūrylystyñ orny men türıne qalai äser etetının zertte.',
       qm: 'Yer qullanımı qaydeleri qayerde ve ne qurulğanına nasıl tesir etkenini ögren.',
     },
   },
