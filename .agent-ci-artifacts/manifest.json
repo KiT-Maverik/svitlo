@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 3,
+  "kind": "pr-scoped-agent-ci-artifacts",
+  "sourceCommit": "bca1014d43a6308ae5c305165fa3244b0657f969",
+  "scope": {
+    "kind": "skills",
+    "package": "content/chemistry",
+    "locale": "kk",
+    "component": null,
+    "lesson": null
+  },
+  "packages": [
+    "content/chemistry"
+  ],
+  "locales": [
+    "kk"
+  ],
+  "generated": [
+    {
+      "kind": "taxonomy",
+      "textbook": "content/chemistry",
+      "locale": "kk",
+      "path": ".agent-ci-artifacts/taxonomies/chemistry/kk.md",
+      "domains": 13,
+      "groups": 43,
+      "skills": 215,
+      "missing": 0,
+      "reviewReady": true
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "documents": 1,
+    "failures": 0,
+    "missingTranslations": 0,
+    "incompleteDocuments": 0,
+    "taxonomyDocuments": 1,
+    "lessonDocuments": 0,
+    "assessmentMethodDocuments": 0,
+    "uiKitDocuments": 0,
+    "geographyHomeCopyDocuments": 0
+  }
+}
