@@ -196,6 +196,7 @@ function skillRef(node, sf, file, catalogue) {
     if (!catalogue.byId.has(result)) throw Error('Imported Skill absent from taxonomy: ' + result);
     return result;
   }
+  if (imported?.file) throw Error('Imported module does not export the requested Skill: ' + reference.text);
   // Legacy barrel imports sometimes use an unresolved directory; accept only
   // an unambiguous textbook-local export symbol, never a guess across packages.
   const lookup = catalogue.bySymbol.get(imported?.symbol ?? reference.text);
