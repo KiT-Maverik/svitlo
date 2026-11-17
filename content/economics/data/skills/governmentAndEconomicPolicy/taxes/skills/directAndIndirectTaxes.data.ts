@@ -31,7 +31,7 @@ export const directAndIndirectTaxes_Skill_Data = defineSkill({
     et: 'Otsesed ja kaudsed maksud',
     be: 'Прамыя і ўскосныя падаткі',
     ka: 'პირდაპირი და არაპირდაპირი გადასახადები',
-    kk: 'Тікелей және жанама салықтар',
+    kk: 'Tıkelei jäne janama salyqtar',
     qm: 'Doğrudan ve vastalı vergiler',
   },
   description: {
@@ -64,7 +64,7 @@ export const directAndIndirectTaxes_Skill_Data = defineSkill({
       et: 'Erista tulumakse ostudelt kogutavatest maksudest.',
       be: 'Адрозьнівай падаткі на даходы ад падаткаў на пакупкі.',
       ka: 'განასხვავეთ შემოსავალზე და შესყიდვებზე დაწესებული გადასახადები.',
-      kk: 'Табысқа салынатын салықтарды сатып алуға салынатын салықтардан ажыратыңыз.',
+      kk: 'Tabysqa salynatyn salyqtardy satyp aluğa salynatyn salyqtardan ajyratyñyz.',
       qm: 'Kelirden alınğan vergilernen alışveriş vergilerini ayır.',
     },
   },

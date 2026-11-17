@@ -31,7 +31,7 @@ export const publicGoods_Skill_Data = defineSkill({
     et: 'Avalikud hüved',
     be: 'Грамадзкія даброты',
     ka: 'საზოგადოებრივი სიკეთეები',
-    kk: 'Қоғамдық игіліктер',
+    kk: 'Qoğamdyq igılıkter',
     qm: 'Cemaat malları',
   },
   description: {
@@ -64,7 +64,7 @@ export const publicGoods_Skill_Data = defineSkill({
       et: 'Mõista, miks mõningaid ühishüvesid on raske üksikostudega rahastada.',
       be: 'Зразумей, чаму частку супольных дабротаў цяжка фінансаваць асобнымі пакупкамі.',
       ka: 'გაიაზრეთ, რატომაა ზოგი საერთო სიკეთის დაფინანსება ინდივიდუალური შესყიდვებით რთული.',
-      kk: 'Кей ортақ игіліктерді жеке сатып алумен қаржыландыру неге қиын екенін түсініңіз.',
+      kk: 'Kei ortaq igılıkterdı jeke satyp alumen qarjylandyru nege qiyn ekenın tüsınıñız.',
       qm: 'Bazı umumiy faydalı mallarnı ayrı-ayrı satın aluvnen maliyelemek ne içün qıyın olğanını añla.',
     },
   },

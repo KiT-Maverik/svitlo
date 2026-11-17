@@ -31,7 +31,7 @@ export const targetedAndUniversalBenefits_Skill_Data = defineSkill({
     et: 'Sihtotstarbelised ja universaalsed toetused',
     be: 'Адрасная і ўнівэрсальная дапамога',
     ka: 'მიზნობრივი და უნივერსალური დახმარება',
-    kk: 'Атаулы және әмбебап жәрдемақылар',
+    kk: 'Atauly jäne ämbebap järdemaqylar',
     qm: 'Belgili gruppalarğa ve erkeske yardım',
   },
   description: {
@@ -65,7 +65,7 @@ export const targetedAndUniversalBenefits_Skill_Data = defineSkill({
       et: 'Võrdle kõigile mõeldud toetusi kindlatele rühmadele suunatud abiga.',
       be: 'Параўнай падтрымку для ўсіх з дапамогай асобным групам.',
       ka: 'შეადარეთ ყველასთვის ხელმისაწვდომი დახმარება გარკვეული ჯგუფების მხარდაჭერას.',
-      kk: 'Барлығына арналған қолдауды белгілі топтарға арналған көмектен ажыратыңыз.',
+      kk: 'Barlyğyna arnalğan qoldaudy belgılı toptarğa arnalğan kömekten ajyratyñyz.',
       qm: 'Erkeske berilgen yardımnen belli gruppalarğa berilgen yardımnı teñeştir.',
     },
   },

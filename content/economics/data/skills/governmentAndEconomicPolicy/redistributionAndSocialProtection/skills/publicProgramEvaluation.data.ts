@@ -31,7 +31,7 @@ export const publicProgramEvaluation_Skill_Data = defineSkill({
     et: 'Avaliku programmi hindamine',
     be: 'Ацэнка дзяржаўнай праграмы',
     ka: 'საჯარო პროგრამის შეფასება',
-    kk: 'Мемлекеттік бағдарламаны бағалау',
+    kk: 'Memlekettık bağdarlamany bağalau',
     qm: 'Devlet programmasınıñ neticesini ölçüv',
   },
   description: {
@@ -64,7 +64,7 @@ export const publicProgramEvaluation_Skill_Data = defineSkill({
       et: 'Hinda, kas riiklik programm täitis eesmärgid ja millise kuluga.',
       be: 'Вызнач, ці дасягнула праграма мэтаў і колькі гэта каштавала.',
       ka: 'შეაფასეთ, მიაღწია თუ არა სახელმწიფო პროგრამამ მიზნებს და რა ფასად.',
-      kk: 'Бағдарлама өз мақсатына жетті ме және ол қаншаға түсті, анықтаңыз.',
+      kk: 'Bağdarlama öz maqsatyna jettı me jäne ol qanşağa tüstı, anyqtañyz.',
       qm: 'Devlet programması maqsadına yetkenmi ve ne qadar masraf olğanını belgile.',
     },
   },

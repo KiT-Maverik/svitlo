@@ -31,7 +31,7 @@ export const socialTransfers_Skill_Data = defineSkill({
     et: 'Sotsiaalsed siirded',
     be: 'Сацыяльныя трансфэрты',
     ka: 'სოციალური ტრანსფერები',
-    kk: 'Әлеуметтік трансферттер',
+    kk: 'Äleumettık transfertter',
     qm: 'İçtimaiy aqça köçürüvleri',
   },
   description: {
@@ -65,7 +65,7 @@ export const socialTransfers_Skill_Data = defineSkill({
       et: 'Uuri, kuidas sotsiaaltoetused mõjutavad leibkonna vahendeid.',
       be: 'Дасьледуй, як сацыяльныя выплаты зьмяняюць рэсурсы хатніх гаспадарак.',
       ka: 'გამოიკვლიეთ, როგორ ცვლის სოციალური გადასახდელები შინამეურნეობების რესურსებს.',
-      kk: 'Әлеуметтік төлемдер үй шаруашылықтарының ресурстарын қалай өзгертетінін біліңіз.',
+      kk: 'Äleumettık tölemder üi şaruaşylyqtarynyñ resurstaryn qalai özgertetının bılıñız.',
       qm: 'İçtimaiy ödemeler ailelerniñ resurslarını nasıl deñiştirgenini araştır.',
     },
   },
