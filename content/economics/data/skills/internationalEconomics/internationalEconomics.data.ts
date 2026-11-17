@@ -36,7 +36,7 @@ export const internationalEconomics_SkillDomain_Data = defineSkillDomain({
     et: 'Rahvusvaheline majandus',
     be: 'Міжнародная эканоміка',
     ka: 'საერთაშორისო ეკონომიკა',
-    kk: 'Халықаралық экономика',
+    kk: 'Halyqaralyq ekonomika',
     qm: 'Halqlarara iqtisat',
   },
   groups: [
@@ -76,7 +76,7 @@ export const internationalEconomics_SkillDomain_Data = defineSkillDomain({
       et: 'Uuri, kuidas kaubandus, valuutad ja investeeringud riike ühendavad.',
       be: 'Дасьледуй, як гандаль, валюты й інвэстыцыі злучаюць краіны.',
       ka: 'გამოიკვლიეთ, როგორ აკავშირებს ვაჭრობა, ვალუტები და ინვესტიციები სხვადასხვა ქვეყანას.',
-      kk: 'Сауда, валюталар мен инвестициялар елдерді қалай байланыстыратынын зерттеңіз.',
+      kk: 'Sauda, valiutalar men investitsiialar elderdı qalai bailanystyratynyn zertteñız.',
       qm: 'Ticaret, pullar ve sermaye qoyuluvı çeşit memleketlerni nasıl bağlağanını araştır.',
     },
   },

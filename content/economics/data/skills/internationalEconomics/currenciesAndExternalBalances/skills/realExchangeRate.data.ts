@@ -31,7 +31,7 @@ export const realExchangeRate_Skill_Data = defineSkill({
     et: 'Reaalne vahetuskurss',
     be: 'Рэальны валютны курс',
     ka: 'რეალური გაცვლითი კურსი',
-    kk: 'Нақты валюта бағамы',
+    kk: 'Naqty valiuta bağamy',
     qm: 'Aqiqiy alıştıruv kursı',
   },
   description: {
@@ -64,7 +64,7 @@ export const realExchangeRate_Skill_Data = defineSkill({
       et: 'Võrdle eri riikide hindu, võttes arvesse vahetuskursse.',
       be: 'Параўнай цэны ў розных краінах з улікам валютных курсаў.',
       ka: 'შეადარეთ ფასები ქვეყნებს შორის გაცვლითი კურსის გათვალისწინებით.',
-      kk: 'Бағамдарды ескеріп, елдер арасындағы бағаларды салыстырыңыз.',
+      kk: 'Bağamdardy eskerıp, elder arasyndağy bağalardy salystyryñyz.',
       qm: 'Kurslarnı esapqa alıp memleketler arasında fiyatlarnı teñeştir.',
     },
   },

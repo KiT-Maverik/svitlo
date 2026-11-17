@@ -31,7 +31,7 @@ export const debtCrises_Skill_Data = defineSkill({
     et: 'Võlakriisid',
     be: 'Даўгавыя крызісы',
     ka: 'ვალის კრიზისები',
-    kk: 'Қарыз дағдарыстары',
+    kk: 'Qaryz dağdarystary',
     qm: 'Borc buhranları',
   },
   description: {
@@ -65,7 +65,7 @@ export const debtCrises_Skill_Data = defineSkill({
       et: 'Mõista, miks laenuvõtjad või riigid võivad sattuda võlakriisi.',
       be: 'Зразумей, чаму пазычальнікі або дзяржавы могуць сутыкнуцца з даўгавым крызісам.',
       ka: 'გაიაზრეთ, რატომ შეიძლება მსესხებლები ან მთავრობები ვალის კრიზისში აღმოჩნდნენ.',
-      kk: 'Қарыз алушылар не үкіметтер неге қарыз дағдарысына тап болатынын түсініңіз.',
+      kk: 'Qaryz aluşylar ne ükımetter nege qaryz dağdarysyna tap bolatynyn tüsınıñız.',
       qm: 'Borc alıcılar ya da devletler ne içün borc buhranına tüşebilgenini añla.',
     },
   },

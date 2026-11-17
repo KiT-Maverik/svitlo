@@ -38,7 +38,7 @@ export const internationalFinance_SkillGroup_Data = defineSkillGroup({
     et: 'Rahvusvaheline rahandus',
     be: 'Міжнародныя фінансы',
     ka: 'საერთაშორისო ფინანსები',
-    kk: 'Халықаралық қаржы',
+    kk: 'Halyqaralyq qarjy',
     qm: 'Halqlarara maliye',
   },
   skills: [
@@ -78,7 +78,7 @@ export const internationalFinance_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri, kuidas riigid üle piiride laenavad ja investeerivad.',
       be: 'Дасьледуй, як краіны пазычаюць і ўкладаюць грошы празь межы.',
       ka: 'გამოიკვლიეთ, როგორ სესხულობენ და აბანდებენ ქვეყნები თანხებს საზღვრებს მიღმა.',
-      kk: 'Елдер шекарадан тыс қалай қарыз алып, инвестиция салатынын зерттеңіз.',
+      kk: 'Elder şekaradan tys qalai qaryz alyp, investitsiia salatynyn zertteñız.',
       qm: 'Memleketler sınırlar aşaraq nasıl borc alıp yatırımlar yapqanını araştır.',
     },
   },

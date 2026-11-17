@@ -31,7 +31,7 @@ export const currencyCrises_Skill_Data = defineSkill({
     et: 'Valuutakriisid',
     be: 'Валютныя крызісы',
     ka: 'სავალუტო კრიზისები',
-    kk: 'Валюталық дағдарыстар',
+    kk: 'Valiutalyq dağdarystar',
     qm: 'Pul buhranları',
   },
   description: {
@@ -65,7 +65,7 @@ export const currencyCrises_Skill_Data = defineSkill({
       et: 'Uuri, kuidas valuutakriis võib kujuneda.',
       be: 'Дасьледуй, як можа ўзьнікнуць валютны крызіс.',
       ka: 'გამოიკვლიეთ, როგორ შეიძლება განვითარდეს სავალუტო კრიზისი.',
-      kk: 'Валюталық дағдарыс қалай туындауы мүмкін екенін зерттеңіз.',
+      kk: 'Valiutalyq dağdarys qalai tuyndauy mümkın ekenın zertteñız.',
       qm: 'Pul buhranı nasıl peyda olabilgenini araştır.',
     },
   },

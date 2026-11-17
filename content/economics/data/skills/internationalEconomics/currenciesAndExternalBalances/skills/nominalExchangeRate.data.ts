@@ -31,7 +31,7 @@ export const nominalExchangeRate_Skill_Data = defineSkill({
     et: 'Nominaalne vahetuskurss',
     be: 'Намінальны валютны курс',
     ka: 'ნომინალური გაცვლითი კურსი',
-    kk: 'Номиналды валюта бағамы',
+    kk: 'Nominaldy valiuta bağamy',
     qm: 'Nominal alıştıruv kursı',
   },
   description: {
@@ -65,7 +65,7 @@ export const nominalExchangeRate_Skill_Data = defineSkill({
       et: 'Mõista, kui palju üks valuuta teises valuutas väärt on.',
       be: 'Зразумей, колькі адна валюта каштуе ў адзінках іншай.',
       ka: 'გაიაზრეთ, რამდენია ერთი ვალუტის ღირებულება მეორეში.',
-      kk: 'Бір валютаның екінші валютадағы құнын түсініңіз.',
+      kk: 'Bır valiutanyñ ekınşı valiutadağy qūnyn tüsınıñız.',
       qm: 'Bir pulnıñ başqa pulğa nisbeten qıymetini añla.',
     },
   },
