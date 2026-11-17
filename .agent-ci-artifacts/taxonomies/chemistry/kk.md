@@ -348,7 +348,7 @@ Skills: 4
 
 **Methodological description (English):** Different electron distributions support different limiting models of chemical bonding; real substances can have mixed characteristics.
 
-**User-friendly description (kk):** Atomdar men iondardyñ elektrondardyñ türlı ornalasuy arqyly himiialyq bailanys tüzuın zertte.
+**User-friendly description (kk):** Atomdar men iondar elektrondardyñ ärtürlı ornalasuyna qarai himiialyq bailanystardy qalai tüzetının zertte.
 
 ##### Bailanystyñ poliarlyğy
 
@@ -1726,7 +1726,7 @@ Skills: 7
 
 **Methodological description (English):** Interpret differential movement or partitioning of mixture components between phases.
 
-**User-friendly description (kk):** Hromatografiia komponentterdı fazalar arasyndağy ärtürlı qozğalysy arqyly qalai böletının tüsın.
+**User-friendly description (kk):** Hromatografiia fazalar arasynda ärtürlı qozğalatyn komponentterdı qalai böletının tüsın.
 
 ##### Kristaldanu
 
@@ -1742,7 +1742,7 @@ Skills: 7
 
 **Methodological description (English):** Separate layers or sediment by pouring off a liquid after gravitational settling without claiming complete purification.
 
-**User-friendly description (kk):** Tūnğan qatty bölşekterdı nemese sūiyqtyq qabattaryn bır qabatty abailap qūiu arqyly böl.
+**User-friendly description (kk):** Tūnğan qatty bölşekterdı nemese sūiyqtyq qabattaryn üstıñgı qabatty abailap qūiu arqyly böl.
 
 ##### Distilliatsiia
 
@@ -1876,7 +1876,7 @@ Skills: 7
 
 **Methodological description (English):** Recognize carbonyl–nitrogen connectivity and distinguish amides from amines.
 
-**User-friendly description (kk):** Amidterdı tanyp, karbonil–azot bailanysyn aminderden ajyrat.
+**User-friendly description (kk):** Amidterdı karbonil–azot bailanysy arqyly tany jäne olardy aminderden ajyrat.
 
 ##### Aminder
 
