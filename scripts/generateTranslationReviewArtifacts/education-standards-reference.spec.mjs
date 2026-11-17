@@ -287,15 +287,24 @@ test('incomplete authoring skips the unavailable compiled package and still gene
     const entries = readEducationStandardSources(root, LANGUAGES);
     assert.equal(hasCompleteEducationStandardLocales(entries, LANGUAGES), false);
     generateEducationStandardReviewArtifacts({
-      root, output, languages: ['en', 'uk'], registered: LANGUAGES, manifest,
+      root,
+      output,
+      languages: ['en', 'uk'],
+      registered: LANGUAGES,
+      manifest,
       saveManifest: () => {},
-      loadCatalog: () => { throw Error('Partial catalogs must never be imported'); },
+      loadCatalog: () => {
+        throw Error('Partial catalogs must never be imported');
+      },
     });
     assert.equal(manifest.failures.length, 0);
-    assert.deepEqual(manifest.generated.map(item => [item.locale, item.missing, item.reviewReady]), [
-      ['en', 0, true],
-      ['uk', 1, false],
-    ]);
+    assert.deepEqual(
+      manifest.generated.map(item => [item.locale, item.missing, item.reviewReady]),
+      [
+        ['en', 0, true],
+        ['uk', 1, false],
+      ],
+    );
     const uk = fs.readFileSync(path.join(output, 'education-standards/uk.md'), 'utf8');
     assert.match(uk, /%%MISSING%%/);
     assert.equal(fs.existsSync(path.join(output, 'taxonomies')), false);
