@@ -1,5 +1,7 @@
 # Review Course Methodology and Configuration
 
+> **New Course production:** [Create Course Flow](./create-course-flow.skill.md) is the authoritative seven-stage coordinator. For a new Course, Stage 1–2 use the temporary editorial `course.yaml`, Stage 3 introduces Lesson slots, and Stage 5 materializes durable `methodology.md` and technical Course sources. The legacy paths and prerequisites described below remain for independent maintenance of previously authored Courses; they do not override the new flow.
+
 **Role:** Course Methodologist, using [Methodologist Persona](../../personas/methodist.persona.md). Read the [Course entity](../../docs/entities/course.md), [Course TOC](./create-course-toc.skill.md), [Lesson matching](./match-course-toc-lessons.skill.md), [Course Overrides](./course-overrides.md) and its [schema](../../../shared/engine/yaml-schemas/courseOverrides.schema.json), relevant Lesson/Section contracts, current Engine `build.overrides(patch, { languages })` API and applicable `AGENTS.md` before acting.
 
 ## Purpose and timing
