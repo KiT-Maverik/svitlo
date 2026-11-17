@@ -31,7 +31,7 @@ export const planetAndDwarfPlanetClassification_Skill_Data = defineSkill({
     et: 'Planeetide ja kääbusplaneetide liigitus',
     be: 'Клясыфікацыя плянэтаў і карлікавых плянэтаў',
     ka: 'პლანეტებისა და ჯუჯა პლანეტების კლასიფიკაცია',
-    kk: 'Планеталар мен ергежейлі планеталарды жіктеу',
+    kk: 'Planetalar men ergejeilı planetalardy jıkteu',
     qm: 'Planetalar ve cüce planetalarnıñ tasnifi',
   },
   description: {
@@ -65,7 +65,7 @@ export const planetAndDwarfPlanetClassification_Skill_Data = defineSkill({
       et: 'Erista planeete ja kääbusplaneete nende füüsikaliste ning orbitaalsete tunnuste järgi.',
       be: 'Адрозьнівайце плянэты і карлікавыя плянэты паводле іх фізычных уласьцівасьцяў і характарыстык арбітаў.',
       ka: 'განასხვავეთ პლანეტები და ჯუჯა პლანეტები მათი ფიზიკური და ორბიტული მახასიათებლებით.',
-      kk: 'Планеталар мен ергежейлі планеталарды физикалық және орбиталық қасиеттері бойынша ажыратыңыз.',
+      kk: 'Planetalar men ergejeilı planetalardy fizikalyq jäne orbitalyq qasietterı boiynşa ajyratyñyz.',
       qm: 'Planetalarnı ve cüce planetalarnı fiziki ve orbital hususiyetlerine köre ayırıñız.',
     },
   },

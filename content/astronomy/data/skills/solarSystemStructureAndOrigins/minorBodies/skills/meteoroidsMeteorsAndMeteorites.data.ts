@@ -31,7 +31,7 @@ export const meteoroidsMeteorsAndMeteorites_Skill_Data = defineSkill({
     et: 'Meteoroidid, meteoorid ja meteoriidid',
     be: 'Мэтэароіды, мэтэоры і мэтэарыты',
     ka: 'მეტეოროიდები, მეტეორები და მეტეორიტები',
-    kk: 'Метеороидтар, метеорлар және метеориттер',
+    kk: 'Meteoroidtar, meteorlar jäne meteoritter',
     qm: 'Meteoroidler, meteorlar ve meteoritler',
   },
   description: {
@@ -65,7 +65,7 @@ export const meteoroidsMeteorsAndMeteorites_Skill_Data = defineSkill({
       et: 'Erista kosmoses liikuvat meteoroidi, taevas nähtavat meteoori ja maapinnale jõudnud meteoriiti.',
       be: 'Адрозьнівайце мэтэароід у космасе, мэтэор у небе і мэтэарыт, які дасягнуў зямлі.',
       ka: 'განასხვავეთ მეტეოროიდი კოსმოსში, მეტეორი ცაზე და მიწაზე ჩამოვარდნილი მეტეორიტი.',
-      kk: 'Ғарыштағы метеороидты, аспандағы метеорды және жерге түскен метеоритті ажыратыңыз.',
+      kk: 'Ğaryştağy meteoroidty, aspandağy meteordy jäne jerge tüsken meteorittı ajyratyñyz.',
       qm: 'Kosmostaki meteoroidni, kökte körüngen meteornı ve yerge tüşken meteoritni bir-birinden ayırıñız.',
     },
   },

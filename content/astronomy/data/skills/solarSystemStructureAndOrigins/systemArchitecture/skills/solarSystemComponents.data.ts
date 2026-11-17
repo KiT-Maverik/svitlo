@@ -31,7 +31,7 @@ export const solarSystemComponents_Skill_Data = defineSkill({
     et: 'Päikesesüsteemi koostisosad',
     be: 'Складнікі Сонечнай сыстэмы',
     ka: 'მზის სისტემის შემადგენელი ნაწილები',
-    kk: 'Күн жүйесінің құрамдастары',
+    kk: 'Kün jüiesınıñ qūramdastary',
     qm: 'Küneş sistemasınıñ terkibiy qısımları',
   },
   description: {
@@ -65,7 +65,7 @@ export const solarSystemComponents_Skill_Data = defineSkill({
       et: 'Õpi eristama Päikest, planeete, kaaslasi ja väikehi nende rolli järgi Päikesesüsteemis.',
       be: 'Распазнавайце Сонца, плянэты, спадарожнікі і малыя целы паводле іх ролі ў Сонечнай сыстэме.',
       ka: 'ამოიცანით მზე, პლანეტები, თანამგზავრები და მცირე სხეულები მათი როლის მიხედვით მზის სისტემაში.',
-      kk: 'Күнді, планеталарды, серіктерді және кіші денелерді Күн жүйесіндегі рөлі бойынша ажыратыңыз.',
+      kk: 'Kündı, planetalardy, serıkterdı jäne kışı denelerdı Kün jüiesındegı rölı boiynşa ajyratyñyz.',
       qm: 'Küneşni, planetalarnı, yoldaşlarnı ve kiçik cisimlerni sistemadaki vazifelerine köre tanıñız.',
     },
   },

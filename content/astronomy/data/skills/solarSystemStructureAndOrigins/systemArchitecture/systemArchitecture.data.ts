@@ -38,7 +38,7 @@ export const systemArchitecture_SkillGroup_Data = defineSkillGroup({
     et: 'Päikesesüsteemi ülesehitus',
     be: 'Структура Сонечнай сыстэмы',
     ka: 'მზის სისტემის სტრუქტურა',
-    kk: 'Күн жүйесінің құрылымы',
+    kk: 'Kün jüiesınıñ qūrylymy',
     qm: 'Küneş sistemasınıñ tertibi',
   },
   skills: [
@@ -78,7 +78,7 @@ export const systemArchitecture_SkillGroup_Data = defineSkillGroup({
       et: 'Õpi tundma Päikesesüsteemi eri piirkondi ja Päikese ümber tiirlevate kehade liike.',
       be: 'Дасьледуйце розныя вобласьці Сонечнай сыстэмы і віды целаў, якія абарачаюцца вакол Сонца.',
       ka: 'გაიგეთ მზის სისტემის სხვადასხვა რეგიონებისა და მზის გარშემო მოძრავი სხეულების სახეობების შესახებ.',
-      kk: 'Күн жүйесінің әртүрлі аймақтары мен Күнді айналатын денелердің түрлерін біліңіз.',
+      kk: 'Kün jüiesınıñ ärtürlı aimaqtary men Kündı ainalatyn denelerdıñ türlerın bılıñız.',
       qm: 'Küneş sistemasınıñ türlü bölgelerini ve Küneş etrafında aylanağan cisimlerni ögreniñiz.',
     },
   },

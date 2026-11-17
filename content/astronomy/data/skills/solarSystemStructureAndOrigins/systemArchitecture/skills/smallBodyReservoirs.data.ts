@@ -31,7 +31,7 @@ export const smallBodyReservoirs_Skill_Data = defineSkill({
     et: 'Väikekehade kogumid',
     be: 'Скупнасьці малых целаў',
     ka: 'მცირე სხეულების თავმოყრის რეგიონები',
-    kk: 'Кіші денелер шоғырланған аймақтар',
+    kk: 'Kışı deneler şoğyrlanğan aimaqtar',
     qm: 'Kiçik cisimlerniñ toplanuv bölgeleri',
   },
   description: {
@@ -65,7 +65,7 @@ export const smallBodyReservoirs_Skill_Data = defineSkill({
       et: 'Leia asteroidivöö, Kuiperi vöö ja oletatav kauge Öpiku–Oorti pilv.',
       be: 'Знайдзіце пояс астэроідаў, пояс Койпэра і гіпатэтычнае далёкае воблака Оарта.',
       ka: 'იპოვეთ ასტეროიდთა სარტყელი, კოიპერის სარტყელი და ჰიპოთეზური შორეული ოორტის ღრუბელი.',
-      kk: 'Астероидтар белдеуін, Койпер белдеуін және болжамды алыс Оорт бұлтын табыңыз.',
+      kk: 'Asteroidtar beldeuın, Koiper beldeuın jäne boljamdy alys Oort būltyn tabyñyz.',
       qm: 'Asteroidler quşağını, Kuiper quşağını ve faraziy uzaq Oort bulutını tapıñız.',
     },
   },

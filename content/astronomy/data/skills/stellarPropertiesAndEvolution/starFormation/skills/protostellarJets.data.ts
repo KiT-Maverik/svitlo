@@ -31,7 +31,7 @@ export const protostellarJets_Skill_Data = defineSkill({
     et: 'Protostellaarsed joad',
     be: 'Пратазорныя струмені',
     ka: 'პროტოვარსკვლავური ჭავლები',
-    kk: 'Протожұлдыздық ағындар',
+    kk: 'Protojūldyzdyq ağyndar',
     qm: 'Protoyıldızlarnıñ dar aqımları',
   },
   description: {
@@ -65,7 +65,7 @@ export const protostellarJets_Skill_Data = defineSkill({
       et: 'Uuri, miks noored tähed võivad välja paisata kitsaid ja kiireid ainejugasid.',
       be: 'Даведайцеся, чаму маладыя зоркі могуць выкідаць вузкія хуткія струмені рэчыва.',
       ka: 'გაიგეთ, რატომ შეიძლება ახალგაზრდა ვარსკვლავებმა გამოუშვან ნივთიერების ვიწრო და სწრაფი ჭავლები.',
-      kk: 'Жас жұлдыздардың неге жылдам қозғалатын заттың жіңішке ағындарын шығара алатынын біліңіз.',
+      kk: 'Jas jūldyzdardyñ nege jyldam qozğalatyn zattyñ jıñışke ağyndaryn şyğara alatynyn bılıñız.',
       qm: 'Yaş yıldızlar ne içün tar ve tez aqğan madde aqımlarını tışarı çıqara bilgenini ögreniñiz.',
     },
   },

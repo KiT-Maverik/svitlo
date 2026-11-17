@@ -31,7 +31,7 @@ export const innerAndOuterSolarSystem_Skill_Data = defineSkill({
     et: 'Päikesesüsteemi sise- ja välisosa',
     be: 'Унутраная і вонкавая Сонечная сыстэма',
     ka: 'მზის სისტემის შიდა და გარე ნაწილები',
-    kk: 'Ішкі және сыртқы Күн жүйесі',
+    kk: 'Işkı jäne syrtqy Kün jüiesı',
     qm: 'Küneş sistemasınıñ içki ve tışqı qısımları',
   },
   description: {
@@ -65,7 +65,7 @@ export const innerAndOuterSolarSystem_Skill_Data = defineSkill({
       et: 'Võrdle Päikesesüsteemi sise- ja välispiirkondi ning neile iseloomulikke tingimusi.',
       be: 'Параўнайце ўнутраныя й вонкавыя вобласьці Сонечнай сыстэмы і характэрныя для іх умовы.',
       ka: 'შეადარეთ მზის სისტემის შიდა და გარე რეგიონები და მათთვის დამახასიათებელი პირობები.',
-      kk: 'Күн жүйесінің ішкі және сыртқы аймақтарын әрі оларға тән жағдайларды салыстырыңыз.',
+      kk: 'Kün jüiesınıñ ışkı jäne syrtqy aimaqtaryn ärı olarğa tän jağdailardy salystyryñyz.',
       qm: 'Küneş sistemasınıñ içki ve tışqı bölgelerini, olarda olğan şaraitlerni muqayese etiñiz.',
     },
   },

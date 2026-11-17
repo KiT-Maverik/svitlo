@@ -31,7 +31,7 @@ export const protostars_Skill_Data = defineSkill({
     et: 'Protostaarid',
     be: 'Пратазоркі',
     ka: 'პროტოვარსკვლავები',
-    kk: 'Протожұлдыздар',
+    kk: 'Protojūldyzdar',
     qm: 'Protoyıldızlar',
   },
   description: {
@@ -65,7 +65,7 @@ export const protostars_Skill_Data = defineSkill({
       et: 'Õpi ära tundma noore tähe algusjärku enne püsiva vesiniku termotuumasünteesi algust.',
       be: 'Распазнавайце раньнюю стадыю маладой зоркі да пачатку ўстойлівага сынтэзу вадароду.',
       ka: 'ამოიცანით ახალგაზრდა ვარსკვლავის ადრეული ეტაპი, სანამ წყალბადის სტაბილური ბირთვული შერწყმა დაიწყება.',
-      kk: 'Тұрақты сутегі синтезі басталмаған жас жұлдыздың алғашқы кезеңін таныңыз.',
+      kk: 'Tūraqty sutegı sintezı bastalmağan jas jūldyzdyñ alğaşqy kezeñın tanyñyz.',
       qm: 'Vodorodnıñ devamlı yadroviy qoşulması başlanmağance yaş yıldıznıñ ilk devrini tanıñız.',
     },
   },

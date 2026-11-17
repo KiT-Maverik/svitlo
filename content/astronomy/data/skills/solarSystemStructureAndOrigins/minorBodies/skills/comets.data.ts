@@ -31,7 +31,7 @@ export const comets_Skill_Data = defineSkill({
     et: 'Komeedid',
     be: 'Камэты',
     ka: 'კომეტები',
-    kk: 'Кометалар',
+    kk: 'Kometalar',
     qm: 'Quyruqlı yıldızlar',
   },
   description: {
@@ -65,7 +65,7 @@ export const comets_Skill_Data = defineSkill({
       et: 'Uuri, kuidas päikesevalgus põhjustab komeetidel helendavate pilvede ja sabade teket.',
       be: 'Даведайцеся, як сонечнае сьвятло спрычыняе ўтварэньне сьветлых аблокаў і хвастоў у камэтаў.',
       ka: 'გაიგეთ, როგორ წარმოქმნის მზის სინათლე კომეტების გარშემო მანათობელ ღრუბლებსა და კუდებს.',
-      kk: 'Күн сәулесінің әсерінен кометалардың айналасында жарқыраған бұлттар мен құйрықтар қалай пайда болатынын біліңіз.',
+      kk: 'Kün säulesınıñ äserınen kometalardyñ ainalasynda jarqyrağan būlttar men qūiryqtar qalai paida bolatynyn bılıñız.',
       qm: 'Küneş yarığı tesirinen quyruqlı yıldızlar etrafında parlavıq bulutlar ve quyruqlar nasıl peyda olğanını ögreniñiz.',
     },
   },

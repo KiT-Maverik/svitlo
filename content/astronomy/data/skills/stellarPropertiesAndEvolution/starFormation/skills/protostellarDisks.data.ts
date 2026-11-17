@@ -31,7 +31,7 @@ export const protostellarDisks_Skill_Data = defineSkill({
     et: 'Protostellaarsed kettad',
     be: 'Пратазорныя дыскі',
     ka: 'პროტოვარსკვლავური დისკოები',
-    kk: 'Протожұлдыздық дискілер',
+    kk: 'Protojūldyzdyq diskıler',
     qm: 'Protoyıldız diskleri',
   },
   description: {
@@ -65,7 +65,7 @@ export const protostellarDisks_Skill_Data = defineSkill({
       et: 'Uuri, kuidas aineketas varustab kujunevat tähte materjaliga.',
       be: 'Дасьледуйце, як дыск рэчыва забясьпечвае матэрыялам зорку, якая фармуецца.',
       ka: 'შეისწავლეთ, როგორ აწვდის ნივთიერების დისკო მასალას ფორმირებად ვარსკვლავს.',
-      kk: 'Зат дискісінің қалыптасып жатқан жұлдызға материалды қалай жеткізетінін зерттеңіз.',
+      kk: 'Zat diskısınıñ qalyptasyp jatqan jūldyzğa materialdy qalai jetkızetının zertteñız.',
       qm: 'Madde diski peyda olğan yıldızğa nasıl madde yetkizgenini ögreniñiz.',
     },
   },

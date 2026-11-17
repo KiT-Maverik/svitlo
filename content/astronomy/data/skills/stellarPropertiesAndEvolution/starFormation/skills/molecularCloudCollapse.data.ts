@@ -31,7 +31,7 @@ export const molecularCloudCollapse_Skill_Data = defineSkill({
     et: 'Molekulaarpilvede kokkutõmbumine',
     be: 'Каляпс малекулярных воблакаў',
     ka: 'მოლეკულური ღრუბლების კოლაფსი',
-    kk: 'Молекулалық бұлттардың сығылуы',
+    kk: 'Molekulalyq būlttardyñ syğyluy',
     qm: 'Molekulyar bulutlarnıñ çöküvi',
   },
   description: {
@@ -65,7 +65,7 @@ export const molecularCloudCollapse_Skill_Data = defineSkill({
       et: 'Selgita, kuidas tihedad gaasipiirkonnad kokku varisevad ja tähtede teket alustavad.',
       be: 'Растлумачце, як шчыльныя вобласьці газу могуць сьціскацца і пачынаць утварэньне зорак.',
       ka: 'ახსენით, როგორ იწყება ვარსკვლავების წარმოქმნა მკვრივი გაზის უბნების კოლაფსით.',
-      kk: 'Тығыз газ аймақтары сығылып, жұлдыздардың түзілуін қалай бастайтынын түсіндіріңіз.',
+      kk: 'Tyğyz gaz aimaqtary syğylyp, jūldyzdardyñ tüzıluın qalai bastaitynyn tüsındırıñız.',
       qm: 'Qoyu gaz bölgeleri cazibe quveti tesirinen sıqılıp yıldızlarnıñ peyda oluvını nasıl başlatqanını añlatıñız.',
     },
   },

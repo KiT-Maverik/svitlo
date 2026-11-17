@@ -31,7 +31,7 @@ export const transNeptunianObjects_Skill_Data = defineSkill({
     et: 'Neptuuni-tagused objektid',
     be: "Транснэптунавыя аб'екты",
     ka: 'ტრანსნეპტუნური ობიექტები',
-    kk: 'Транснептундық нысандар',
+    kk: 'Transneptundyq nysandar',
     qm: 'Neptundan soñ yerleşken cisimler',
   },
   description: {
@@ -64,7 +64,7 @@ export const transNeptunianObjects_Skill_Data = defineSkill({
       et: 'Uuri mitmesuguseid objekte, mis tiirlevad Neptuuni orbiidist kaugemal.',
       be: "Дасьледуйце разнастайныя аб'екты, што абарачаюцца за арбітай Нэптуна.",
       ka: 'შეისწავლეთ მრავალფეროვანი ობიექტები, რომლებიც ნეპტუნის ორბიტის მიღმა მოძრაობენ.',
-      kk: 'Нептун орбитасынан тыс айналатын әртүрлі нысандарды зерттеңіз.',
+      kk: 'Neptun orbitasynan tys ainalatyn ärtürlı nysandardy zertteñız.',
       qm: 'Neptunnıñ orbitasından uzaqta aylanğan çeşit-çeşit cisimlerni araştırıñız.',
     },
   },
