@@ -66,6 +66,19 @@ test('Course-context Lesson assembler consumes actual published Course and Lesso
   assert.equal(typeof props.locale.title, 'string');
 });
 
+test('Course demonstration Lessons never expose a Quiz without their own published Question bank', () => {
+  for (const id of [
+    'f760e7b7-9f77-5027-89ce-4e40d9d031a1',
+    'b256e7b2-9f7d-5a9a-a0cb-3f3c2734b8a2',
+    'fb3b328a-0dd6-55f1-9bb9-7c80ea1ac91b',
+  ]) {
+    const base = read('data', 'lessons', id.slice(-1), id, 'base.json');
+    assert.equal(base.params.requireQuiz, false, 'demo Lesson ' + id + ' must not claim a required unowned Quiz');
+    assert(!base.section.some(section => section.type === 'quiz' || section.type === 'flashcards'),
+      'demo Lesson ' + id + ' must not refer to independently owned assessment banks');
+  }
+});
+
 test('new Lesson and Course files are in the package manifest', () => {
   assert(files.includes('data/lessons/' + lessonId.slice(-1) + '/' + lessonId + '/base.json'));
   assert(files.some(name => name.startsWith('data/courses/' + courseId + '/') && name.endsWith('.json')));
