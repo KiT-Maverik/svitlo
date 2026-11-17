@@ -31,7 +31,7 @@ export const emissionsPermitTrading_Skill_Data = defineSkill({
     et: 'Heitmelubadega kauplemine',
     be: 'Гандаль дазволамі на выкіды',
     ka: 'ემისიების ნებართვებით ვაჭრობა',
-    kk: 'Шығарындыларға рұқсаттар саудасы',
+    kk: 'Şyğaryndylarğa rūqsattar saudasy',
     qm: 'Emissiya ruhsetleriniñ ticareti',
   },
   description: {
@@ -64,7 +64,7 @@ export const emissionsPermitTrading_Skill_Data = defineSkill({
       et: 'Uuri, kuidas saastelubadega kaubeldakse heitkoguste ülempiiri korral.',
       be: 'Даведайся, як працуе гандаль дазволамі на забруджваньне пры агульным ліміце выкідаў.',
       ka: 'გაიგე, როგორ მუშაობს დაბინძურების ნებართვებით ვაჭრობა ემისიების საერთო ზღვრის პირობებში.',
-      kk: 'Жалпы шығарындылар шегі кезінде ластау рұқсаттарының саудасы қалай жүретінін біл.',
+      kk: 'Jalpy şyğaryndylar şegı kezınde lastau rūqsattarynyñ saudasy qalai jüretının bıl.',
       qm: 'Umumiy emissiya sıñırı bar olğanda kirletüv ruhsetleri nasıl satılğanını ögren.',
     },
   },

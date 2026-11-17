@@ -35,7 +35,7 @@ export const environmentalAndResourceEconomics_SkillDomain_Data = defineSkillDom
     et: 'Keskkonna- ja ressursimajandus',
     be: 'Эканоміка навакольнага асяродзьдзя і рэсурсаў',
     ka: 'გარემოსა და რესურსების ეკონომიკა',
-    kk: 'Қоршаған орта және ресурстар экономикасы',
+    kk: 'Qorşağan orta jäne resurstar ekonomikasy',
     qm: 'Çevre ve resurslar iqtisadiyatı',
   },
   groups: [
@@ -74,7 +74,7 @@ export const environmentalAndResourceEconomics_SkillDomain_Data = defineSkillDom
       et: 'Uuri, kuidas majandusotsused mõjutavad loodusvarasid ja keskkonda.',
       be: 'Дасьледуй, як эканамічныя рашэньні ўплываюць на прыродныя рэсурсы і навакольнае асяродзьдзе.',
       ka: 'შეისწავლე, როგორ მოქმედებს ეკონომიკური გადაწყვეტილებები ბუნებრივ რესურსებსა და გარემოზე.',
-      kk: 'Экономикалық шешімдердің табиғи ресурстар мен қоршаған ортаға әсерін зертте.',
+      kk: 'Ekonomikalyq şeşımderdıñ tabiği resurstar men qorşağan ortağa äserın zertte.',
       qm: 'İqtisadiy qararlar tabiat resurslarına ve çevrege nasıl tesir etkenini ögren.',
     },
   },

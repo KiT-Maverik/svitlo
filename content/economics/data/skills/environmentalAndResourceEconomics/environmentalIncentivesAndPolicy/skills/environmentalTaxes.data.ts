@@ -31,7 +31,7 @@ export const environmentalTaxes_Skill_Data = defineSkill({
     et: 'Keskkonnamaksud',
     be: 'Экалягічныя падаткі',
     ka: 'გარემოსდაცვითი გადასახადები',
-    kk: 'Экологиялық салықтар',
+    kk: 'Ekologiialyq salyqtar',
     qm: 'Çevre vergileri',
   },
   description: {
@@ -64,7 +64,7 @@ export const environmentalTaxes_Skill_Data = defineSkill({
       et: 'Vaata, kuidas saastetasu võib soodustada puhtamaid valikuid.',
       be: 'Паглядзі, як плата за забруджваньне можа заахвочваць чысьцейшыя рашэньні.',
       ka: 'ნახე, როგორ უბიძგებს დაბინძურების გადასახადი უფრო სუფთა არჩევანისკენ.',
-      kk: 'Ластау үшін төлем таза шешімдерге қалай ынталандыратынын біл.',
+      kk: 'Lastau üşın tölem taza şeşımderge qalai yntalandyratynyn bıl.',
       qm: 'Kirletüv içün tölev daha temiz saylavlarğa nasıl teşviq etkenini ögren.',
     },
   },

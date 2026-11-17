@@ -38,7 +38,7 @@ export const environmentalIncentivesAndPolicy_SkillGroup_Data = defineSkillGroup
     et: 'Keskkonnastiimulid ja -poliitika',
     be: 'Экалягічныя стымулы і палітыка',
     ka: 'გარემოსდაცვითი წახალისება და პოლიტიკა',
-    kk: 'Экологиялық ынталандыру мен саясат',
+    kk: 'Ekologiialyq yntalandyru men saiasat',
     qm: 'Çevre teşviqleri ve siyaseti',
   },
   skills: [
@@ -78,7 +78,7 @@ export const environmentalIncentivesAndPolicy_SkillGroup_Data = defineSkillGroup
       et: 'Uuri majanduspoliitikat, mis motiveerib vähem saastama.',
       be: 'Дасьледуй эканамічную палітыку, якая заахвочвае менш забруджваць.',
       ka: 'შეისწავლე ეკონომიკური პოლიტიკა, რომელიც ნაკლებ დაბინძურებას წაახალისებს.',
-      kk: 'Ластануды азайтуға ынталандыратын экономикалық саясатты зертте.',
+      kk: 'Lastanudy azaituğa yntalandyratyn ekonomikalyq saiasatty zertte.',
       qm: 'Kirletüvni azaltmağa teşviq etken iqtisadiy siyasetni ögren.',
     },
   },

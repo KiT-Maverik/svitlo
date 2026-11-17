@@ -31,7 +31,7 @@ export const renewableResourceDepletion_Skill_Data = defineSkill({
     et: 'Taastuvate ressursside ammendumine',
     be: 'Высьняжэньне аднаўляльных рэсурсаў',
     ka: 'განახლებადი რესურსების ამოწურვა',
-    kk: 'Жаңартылатын ресурстардың сарқылуы',
+    kk: 'Jañartylatyn resurstardyñ sarqyluy',
     qm: 'Yañartılğan resurslarnıñ tükenüvi',
   },
   description: {
@@ -65,7 +65,7 @@ export const renewableResourceDepletion_Skill_Data = defineSkill({
       et: 'Uuri, miks isegi taastuvad ressursid võivad ammenduda.',
       be: 'Даведайся, чаму нават аднаўляльныя рэсурсы могуць вычарпацца.',
       ka: 'გაიგე, რატომ შეიძლება განახლებადი რესურსებიც ამოიწუროს.',
-      kk: 'Тіпті жаңартылатын ресурстар да неге сарқылуы мүмкін екенін біл.',
+      kk: 'Tıptı jañartylatyn resurstar da nege sarqyluy mümkın ekenın bıl.',
       qm: 'Ne içün hatta yañarıcı resurslar da tükenebilecegini ögren.',
     },
   },

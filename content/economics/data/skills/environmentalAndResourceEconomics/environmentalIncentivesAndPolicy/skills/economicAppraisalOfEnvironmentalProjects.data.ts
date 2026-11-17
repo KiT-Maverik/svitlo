@@ -31,7 +31,7 @@ export const economicAppraisalOfEnvironmentalProjects_Skill_Data = defineSkill({
     et: 'Keskkonnaprojektide majanduslik hindamine',
     be: 'Эканамічная ацэнка экалягічных праектаў',
     ka: 'გარემოსდაცვითი პროექტების ეკონომიკური შეფასება',
-    kk: 'Экологиялық жобаларды экономикалық бағалау',
+    kk: 'Ekologiialyq jobalardy ekonomikalyq bağalau',
     qm: 'Çevre leyhalarınıñ iqtisadiy qıymetlendirilüvi',
   },
   description: {
@@ -65,7 +65,7 @@ export const economicAppraisalOfEnvironmentalProjects_Skill_Data = defineSkill({
       et: 'Hinda, kas keskkonnaprojekti kasu õigustab selle kulusid.',
       be: 'Ацані, ці апраўдваюць выгады экалягічнага праекту яго выдаткі.',
       ka: 'შეაფასე, ამართლებს თუ არა გარემოსდაცვითი პროექტის სარგებელი მის ხარჯებს.',
-      kk: 'Экологиялық жобаның пайдасы шығындарын ақтай ма, бағала.',
+      kk: 'Ekologiialyq jobanyñ paidasy şyğyndaryn aqtai ma, bağala.',
       qm: 'Çevre leyhasınıñ faydası masraflarına deger mi, qıymetlendir.',
     },
   },
