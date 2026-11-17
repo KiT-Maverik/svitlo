@@ -28,16 +28,23 @@ function walk(dir, predicate, result = []) {
   return result;
 }
 function unwrap(node) {
-  while (node && (ts.isAsExpression(node) || ts.isSatisfiesExpression(node) ||
-    ts.isParenthesizedExpression(node) || ts.isNonNullExpression(node))) node = node.expression;
+  while (
+    node &&
+    (ts.isAsExpression(node) ||
+      ts.isSatisfiesExpression(node) ||
+      ts.isParenthesizedExpression(node) ||
+      ts.isNonNullExpression(node))
+  )
+    node = node.expression;
   return node;
 }
 function key(prop) {
   return prop && (ts.isIdentifier(prop.name) || ts.isStringLiteral(prop.name)) ? prop.name.text : null;
 }
 function field(object, name) {
-  const item = object?.properties?.find(p =>
-    (ts.isPropertyAssignment(p) || ts.isShorthandPropertyAssignment(p)) && key(p) === name);
+  const item = object?.properties?.find(
+    p => (ts.isPropertyAssignment(p) || ts.isShorthandPropertyAssignment(p)) && key(p) === name,
+  );
   return item && (ts.isPropertyAssignment(item) ? item.initializer : item.name);
 }
 function string(node) {
@@ -83,10 +90,11 @@ function importSource(sf, file, local) {
     const imported = statement.importClause?.namedBindings;
     if (!imported || !ts.isNamedImports(imported)) continue;
     for (const element of imported.elements) {
-      if (element.name.text === local) return {
-        symbol: (element.propertyName ?? element.name).text,
-        file: moduleFile(file, statement.moduleSpecifier.text),
-      };
+      if (element.name.text === local)
+        return {
+          symbol: (element.propertyName ?? element.name).text,
+          file: moduleFile(file, statement.moduleSpecifier.text),
+        };
     }
   }
   return null;
@@ -141,12 +149,20 @@ function namedString(sf, file, node) {
   return string(expression(sf, file, node));
 }
 function skillCatalogue(root, book, diagnostics) {
-  const byId = new Map(), bySymbol = new Map();
+  const byId = new Map(),
+    bySymbol = new Map();
   const folder = path.join(root, 'content', book, 'data/skills');
   let files = [];
-  try { files = walk(folder, p => p.endsWith('.ts') && !p.endsWith('.d.ts') && !p.endsWith('.spec.ts')); }
-  catch (error) {
-    diagnostics.push({ file: relative(root, folder), package: 'content/' + book, entityId: null, reason: error.message, incomplete: true });
+  try {
+    files = walk(folder, p => p.endsWith('.ts') && !p.endsWith('.d.ts') && !p.endsWith('.spec.ts'));
+  } catch (error) {
+    diagnostics.push({
+      file: relative(root, folder),
+      package: 'content/' + book,
+      entityId: null,
+      reason: error.message,
+      incomplete: true,
+    });
   }
   for (const file of files) {
     try {
@@ -154,7 +170,13 @@ function skillCatalogue(root, book, diagnostics) {
       for (const [symbol, declaration] of declarations(sf)) {
         if (!declaration.exported) continue;
         const call = unwrap(declaration.node);
-        if (!call || !ts.isCallExpression(call) || !ts.isIdentifier(call.expression) || call.expression.text !== 'defineSkill') continue;
+        if (
+          !call ||
+          !ts.isCallExpression(call) ||
+          !ts.isIdentifier(call.expression) ||
+          call.expression.text !== 'defineSkill'
+        )
+          continue;
         const config = object(call.arguments[0]);
         const id = string(field(config, 'id'));
         if (!uuid(id)) throw Error('defineSkill has no literal UUID: ' + symbol);
@@ -166,7 +188,13 @@ function skillCatalogue(root, book, diagnostics) {
         else bySymbol.set(symbol, value);
       }
     } catch (error) {
-      diagnostics.push({ file: relative(root, file), package: 'content/' + book, entityId: null, reason: error.message, incomplete: true });
+      diagnostics.push({
+        file: relative(root, file),
+        package: 'content/' + book,
+        entityId: null,
+        reason: error.message,
+        incomplete: true,
+      });
     }
   }
   return { byId, bySymbol };
@@ -178,10 +206,15 @@ function skillRef(node, sf, file, catalogue) {
     if (!uuid(id) || !catalogue.byId.has(id)) throw Error('Unknown or invalid Skill UUID ' + id);
     return id;
   }
-  if (!ts.isPropertyAccessExpression(node) || node.name.text !== 'id') throw Error('Unsupported dynamic Skill expression');
+  if (!ts.isPropertyAccessExpression(node) || node.name.text !== 'id')
+    throw Error('Unsupported dynamic Skill expression');
   let reference = node.expression;
-  if (ts.isPropertyAccessExpression(reference) && reference.name.text === 'base' &&
-    ts.isPropertyAccessExpression(reference.expression) && reference.expression.name.text === 'config') {
+  if (
+    ts.isPropertyAccessExpression(reference) &&
+    reference.name.text === 'base' &&
+    ts.isPropertyAccessExpression(reference.expression) &&
+    reference.expression.name.text === 'config'
+  ) {
     reference = reference.expression.expression;
   }
   if (!ts.isIdentifier(reference)) throw Error('Unsupported Skill reference');
@@ -215,7 +248,8 @@ function lessonObject(sf, file, expected, depth = new Set()) {
       if (!init || !ts.isCallExpression(init)) continue;
       const outer = init.expression;
       const isLesson = ts.isIdentifier(outer) && outer.text === 'defineLesson';
-      const isLegacy = ts.isCallExpression(outer) && ts.isIdentifier(outer.expression) && outer.expression.text === 'defineLessonData';
+      const isLegacy =
+        ts.isCallExpression(outer) && ts.isIdentifier(outer.expression) && outer.expression.text === 'defineLessonData';
       if (!isLesson && !isLegacy) continue;
       const conf = object(init.arguments[0]);
       if (!conf) throw Error('Dynamic Lesson configuration: ' + symbol);
@@ -227,7 +261,9 @@ function lessonObject(sf, file, expected, depth = new Set()) {
     }
     if (!selected) throw Error('No exported defineLesson for ' + expected);
     return selected;
-  } finally { depth.delete(identity); }
+  } finally {
+    depth.delete(identity);
+  }
 }
 function lessonValues(sf, file, config, catalogue, visited = new Set()) {
   const identity = file + ':' + config.pos;
@@ -282,7 +318,9 @@ function lessonValues(sf, file, config, catalogue, visited = new Set()) {
     }
     if (!values.skills) throw Error('Lesson missing statically verified Skill IDs');
     return values;
-  } finally { visited.delete(identity); }
+  } finally {
+    visited.delete(identity);
+  }
 }
 function draftData(file) {
   if (fs.statSync(file).size > 2_000_000) throw Error('YAML exceeds size limit');
@@ -290,66 +328,114 @@ function draftData(file) {
   if (doc.errors.length) throw Error('Invalid YAML: ' + doc.errors.map(x => x.message).join('; '));
   const parsed = doc.toJS({ maxAliasCount: 0 });
   const config = parsed?.config;
-  if (!isRecord(config) || !uuid(config.id) || !Array.isArray(config.skills) ||
-    !config.skills.length || !config.skills.every(uuid)) throw Error('Draft requires config.id and literal config.skills UUIDs');
+  if (
+    !isRecord(config) ||
+    !uuid(config.id) ||
+    !Array.isArray(config.skills) ||
+    !config.skills.length ||
+    !config.skills.every(uuid)
+  )
+    throw Error('Draft requires config.id and literal config.skills UUIDs');
   if (new Set(config.skills.map(normalized)).size !== config.skills.length) throw Error('Duplicate draft Skill IDs');
   return {
-    id: normalized(config.id), slug: typeof config.slug === 'string' ? config.slug : null,
+    id: normalized(config.id),
+    slug: typeof config.slug === 'string' ? config.slug : null,
     title: typeof config.locale?.title?.en === 'string' ? config.locale.title.en : null,
     skills: config.skills.map(normalized),
-    languages: Array.isArray(config.params?.languages) &&
-      config.params.languages.every(x => typeof x === 'string') ? config.params.languages : null,
+    languages:
+      Array.isArray(config.params?.languages) && config.params.languages.every(x => typeof x === 'string')
+        ? config.params.languages
+        : null,
   };
 }
 export function buildLessonIndex(root, selectedPackage) {
   if (selectedPackage && !PACKAGE.test(selectedPackage)) throw Error('Invalid textbook package');
   sourceCache.clear();
   const packagesDir = path.join(root, 'content');
-  const packages = selectedPackage ? [selectedPackage.split('/')[1]] :
-    fs.existsSync(packagesDir) ? fs.readdirSync(packagesDir, { withFileTypes: true })
-      .filter(x => x.isDirectory() && /^[a-z][a-z0-9-]*$/.test(x.name)).map(x => x.name).sort() : [];
-  const diagnostics = [], candidates = [], skillDefinitions = new Map();
-  let implemented = 0, drafts = 0;
+  const packages = selectedPackage
+    ? [selectedPackage.split('/')[1]]
+    : fs.existsSync(packagesDir)
+      ? fs
+          .readdirSync(packagesDir, { withFileTypes: true })
+          .filter(x => x.isDirectory() && /^[a-z][a-z0-9-]*$/.test(x.name))
+          .map(x => x.name)
+          .sort()
+      : [];
+  const diagnostics = [],
+    candidates = [],
+    skillDefinitions = new Map();
+  let implemented = 0,
+    drafts = 0;
   for (const book of packages) {
     const pkg = 'content/' + book;
     if (selectedPackage && !fs.existsSync(path.join(packagesDir, book))) {
-      diagnostics.push({ file: pkg, package: pkg, entityId: null,
-        reason: 'Unknown textbook package', incomplete: true });
+      diagnostics.push({
+        file: pkg,
+        package: pkg,
+        entityId: null,
+        reason: 'Unknown textbook package',
+        incomplete: true,
+      });
       continue;
     }
     const catalogue = skillCatalogue(root, book, diagnostics);
     for (const [id, skill] of catalogue.byId) skillDefinitions.set(pkg + ':' + id, skill);
     const dir = path.join(packagesDir, book, 'data/lessons');
     if (!fs.existsSync(dir)) continue;
-    for (const bucket of fs.readdirSync(dir, { withFileTypes: true }).filter(x => x.isDirectory()).map(x => x.name).sort()) {
+    for (const bucket of fs
+      .readdirSync(dir, { withFileTypes: true })
+      .filter(x => x.isDirectory())
+      .map(x => x.name)
+      .sort()) {
       const bucketDir = path.join(dir, bucket);
-      for (const name of fs.readdirSync(bucketDir, { withFileTypes: true }).filter(x => x.isDirectory()).map(x => x.name).sort()) {
+      for (const name of fs
+        .readdirSync(bucketDir, { withFileTypes: true })
+        .filter(x => x.isDirectory())
+        .map(x => x.name)
+        .sort()) {
         const folder = path.join(bucketDir, name);
-        const diagnostic = (file, reason) => diagnostics.push({
-          file: relative(root, file), entityId: uuid(name) ? normalized(name) : null,
-          package: pkg, reason, incomplete: true,
-        });
+        const diagnostic = (file, reason) =>
+          diagnostics.push({
+            file: relative(root, file),
+            entityId: uuid(name) ? normalized(name) : null,
+            package: pkg,
+            reason,
+            incomplete: true,
+          });
         if (!uuid(name) || bucket !== normalized(name).slice(-1) || name !== normalized(name)) {
-          diagnostic(folder, 'Invalid UUID bucket or Lesson directory name'); continue;
+          diagnostic(folder, 'Invalid UUID bucket or Lesson directory name');
+          continue;
         }
         const indexFile = path.join(folder, 'index.ts');
-        const legacy = fs.readdirSync(folder).filter(n => n.endsWith('.data.ts')).sort();
+        const legacy = fs
+          .readdirSync(folder)
+          .filter(n => n.endsWith('.data.ts'))
+          .sort();
         const typed = exists(indexFile) ? indexFile : legacy.length === 1 ? path.join(folder, legacy[0]) : null;
         const draft = path.join(folder, 'lesson.yaml');
-        if ((fs.existsSync(indexFile) && fs.lstatSync(indexFile).isSymbolicLink()) ||
-          (fs.existsSync(draft) && fs.lstatSync(draft).isSymbolicLink())) {
-          diagnostic(folder, 'Lesson source symlink refused'); continue;
+        if (
+          (fs.existsSync(indexFile) && fs.lstatSync(indexFile).isSymbolicLink()) ||
+          (fs.existsSync(draft) && fs.lstatSync(draft).isSymbolicLink())
+        ) {
+          diagnostic(folder, 'Lesson source symlink refused');
+          continue;
         }
         if (!typed && !exists(draft)) continue;
-        if (legacy.length > 1 && !exists(indexFile)) { diagnostic(folder, 'Ambiguous Lesson *.data.ts'); continue; }
-        let compiled = null, editorial = null;
+        if (legacy.length > 1 && !exists(indexFile)) {
+          diagnostic(folder, 'Ambiguous Lesson *.data.ts');
+          continue;
+        }
+        let compiled = null,
+          editorial = null;
         if (typed) {
           implemented++;
           try {
             const sf = fileSource(typed);
             const conf = lessonObject(sf, typed, normalized(name));
             compiled = lessonValues(sf, typed, conf, catalogue);
-          } catch (error) { diagnostic(typed, error.message); }
+          } catch (error) {
+            diagnostic(typed, error.message);
+          }
         }
         if (exists(draft)) {
           drafts++;
@@ -359,42 +445,68 @@ export function buildLessonIndex(root, selectedPackage) {
             for (const skill of editorial.skills) {
               if (!catalogue.byId.has(skill)) throw Error('Unknown draft Skill UUID: ' + skill);
             }
-          } catch (error) { diagnostic(draft, error.message); editorial = null; }
+          } catch (error) {
+            diagnostic(draft, error.message);
+            editorial = null;
+          }
         }
-        if (compiled && editorial && (compiled.skills.length !== editorial.skills.length ||
-          compiled.skills.some(id => !editorial.skills.includes(id)))) {
+        if (
+          compiled &&
+          editorial &&
+          (compiled.skills.length !== editorial.skills.length ||
+            compiled.skills.some(id => !editorial.skills.includes(id)))
+        ) {
           diagnostic(draft, 'Typed Lesson and YAML draft disagree on Skill IDs');
         }
         const values = compiled ?? (typed ? null : editorial);
         if (!values) continue;
         const brief = ['methodology.md', 'methodologist-brief.md'].map(n => path.join(folder, n)).find(exists);
         candidates.push({
-          lessonId: normalized(name), package: pkg, textbook: book,
+          lessonId: normalized(name),
+          package: pkg,
+          textbook: book,
           status: typed ? 'implemented' : 'editorial-draft',
-          title: values.title, slug: values.slug, skills: values.skills,
-          languages: values.languages, languageStatus: values.languages ? 'verified' : 'unknown',
-          source: relative(root, typed ?? draft), draftSource: exists(draft) ? relative(root, draft) : null,
+          title: values.title,
+          slug: values.slug,
+          skills: values.skills,
+          languages: values.languages,
+          languageStatus: values.languages ? 'verified' : 'unknown',
+          source: relative(root, typed ?? draft),
+          draftSource: exists(draft) ? relative(root, draft) : null,
           methodology: brief ? relative(root, brief) : null,
         });
       }
     }
   }
   candidates.sort((a, b) => a.package.localeCompare(b.package) || a.lessonId.localeCompare(b.lessonId));
-  return { candidates, diagnostics, skillDefinitions, complete: diagnostics.length === 0,
-    scanned: { packages: packages.length, implemented, drafts, candidates: candidates.length } };
+  return {
+    candidates,
+    diagnostics,
+    skillDefinitions,
+    complete: diagnostics.length === 0,
+    scanned: { packages: packages.length, implemented, drafts, candidates: candidates.length },
+  };
 }
 export function searchLessons(root, query, sourceSha = null) {
   const { candidates, diagnostics, complete, scanned } = buildLessonIndex(root, query.package);
   const duplicates = new Map();
-  for (const item of candidates) duplicates.set(item.lessonId, [...(duplicates.get(item.lessonId) ?? []), item.package]);
+  for (const item of candidates)
+    duplicates.set(item.lessonId, [...(duplicates.get(item.lessonId) ?? []), item.package]);
   if (query.by === 'id' && (duplicates.get(query.lessonId)?.length ?? 0) > 1) {
     throw Error('Lesson UUID exists in multiple packages: ' + duplicates.get(query.lessonId).join(', '));
   }
-  const matches = candidates.filter(item => query.by === 'id' ? item.lessonId === query.lessonId :
-    query.match === 'all' ? query.skills.every(id => item.skills.includes(id)) :
-      query.skills.some(id => item.skills.includes(id)))
-    .map(item => ({ ...item, matchedSkills: query.by === 'skill' ?
-      query.skills.filter(id => item.skills.includes(id)) : [], coverage: query.by === 'skill' ?
-        query.skills.filter(id => item.skills.includes(id)).length : null }));
+  const matches = candidates
+    .filter(item =>
+      query.by === 'id'
+        ? item.lessonId === query.lessonId
+        : query.match === 'all'
+          ? query.skills.every(id => item.skills.includes(id))
+          : query.skills.some(id => item.skills.includes(id)),
+    )
+    .map(item => ({
+      ...item,
+      matchedSkills: query.by === 'skill' ? query.skills.filter(id => item.skills.includes(id)) : [],
+      coverage: query.by === 'skill' ? query.skills.filter(id => item.skills.includes(id)).length : null,
+    }));
   return { query, sourceSha, matches, scanned, diagnostics, complete };
 }

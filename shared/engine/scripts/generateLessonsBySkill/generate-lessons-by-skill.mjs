@@ -24,14 +24,18 @@ export function buildIndex(root = repoRoot, selectedPackage) {
   const index = new Map();
   for (const item of result.candidates.filter(x => x.status === 'implemented')) {
     for (const skill of item.skills) {
-      if (!index.has(skill)) index.set(skill, { skill: result.skillDefinitions.get(item.package + ':' + skill) ?? null, lessons: [] });
+      if (!index.has(skill))
+        index.set(skill, { skill: result.skillDefinitions.get(item.package + ':' + skill) ?? null, lessons: [] });
       index.get(skill).lessons.push(item);
     }
   }
   return {
     index,
     failures: result.diagnostics.map(d => ({
-      lessonId: d.entityId, textbook: d.package.split('/')[1], file: d.file, error: d.reason,
+      lessonId: d.entityId,
+      textbook: d.package.split('/')[1],
+      file: d.file,
+      error: d.reason,
     })),
     lessonCount: result.scanned.implemented,
   };
@@ -42,20 +46,31 @@ export function renderSkillIndex(skillId, result) {
   const lessons = result?.lessons ?? [];
   const lines = [
     '<!-- GENERATED FROM LESSON CODE; DO NOT EDIT. -->',
-    '# Lessons by Skill ID: ' + skillId, '',
-    ...(skill ? ['Skill: ' + skill.name, 'Taxonomy source: [' +
-      path.posix.basename(skill.source) + '](' + link(skill.source) + ')', ''] : []),
-    'Implemented Lesson candidates: ' + lessons.length, '',
+    '# Lessons by Skill ID: ' + skillId,
+    '',
+    ...(skill
+      ? [
+          'Skill: ' + skill.name,
+          'Taxonomy source: [' + path.posix.basename(skill.source) + '](' + link(skill.source) + ')',
+          '',
+        ]
+      : []),
+    'Implemented Lesson candidates: ' + lessons.length,
+    '',
   ];
   for (const item of lessons) {
     lines.push(
-      '## ' + (item.title ?? item.slug ?? item.lessonId), '',
+      '## ' + (item.title ?? item.slug ?? item.lessonId),
+      '',
       '- Lesson ID: ' + String.fromCharCode(96) + item.lessonId + String.fromCharCode(96),
       '- Textbook: ' + String.fromCharCode(96) + item.package + String.fromCharCode(96),
       '- Lesson data: [' + path.posix.basename(item.source) + '](' + link(item.source) + ')',
       '- Skills: ' + item.skills.map(id => String.fromCharCode(96) + id + String.fromCharCode(96)).join(', '),
-      '- Methodology: ' + (item.methodology ?
-        '[' + path.posix.basename(item.methodology) + '](' + link(item.methodology) + ')' : 'Not found'), '',
+      '- Methodology: ' +
+        (item.methodology
+          ? '[' + path.posix.basename(item.methodology) + '](' + link(item.methodology) + ')'
+          : 'Not found'),
+      '',
     );
   }
   if (!lessons.length) lines.push('No implemented Lesson in this index references this Skill ID.', '');
@@ -110,9 +125,10 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
     const result = generate({ packagePath: options.package, skillIds: options.skills, output: options.output });
     for (const failure of result.failures) process.stderr.write('Warning: ' + JSON.stringify(failure) + '\n');
     if (options.stdout) process.stdout.write(result.generated[0].markdown);
-    else process.stderr.write(
-      'Generated ' + result.generated.length + ' Skill lookup files from ' + result.lessonCount + ' Lessons.\n',
-    );
+    else
+      process.stderr.write(
+        'Generated ' + result.generated.length + ' Skill lookup files from ' + result.lessonCount + ' Lessons.\n',
+      );
     if (result.failures.length) process.exitCode = 1;
   } catch (error) {
     process.stderr.write('Lesson Skill index failed: ' + String(error.message) + '\n');
