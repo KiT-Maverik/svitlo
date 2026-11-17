@@ -77,7 +77,7 @@ function registered(sectionIndex, sectionSlug) {
       (stringArray(property(item.initializer, 'order')) ?? []).includes(sectionSlug) &&
       (() => {
         const items = property(item.initializer, 'items');
-        return ts.isObjectLiteralExpression(items) && items.properties.some(entry =>
+        return !!items && ts.isObjectLiteralExpression(items) && items.properties.some(entry =>
           (ts.isPropertyAssignment(entry) || ts.isShorthandPropertyAssignment(entry)) &&
           (ts.isIdentifier(entry.name) || ts.isStringLiteral(entry.name)) &&
           entry.name.text === sectionSlug,
