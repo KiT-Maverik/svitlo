@@ -16,6 +16,8 @@ A Lesson remains Course-neutral and reusable; no Course UUID, storyline, mascot 
 
 Stages 1–5 progressively author exactly one temporary `lesson.yaml` with root/nested `config` (Engine Config, one immutable UUID per entity) and optional `production` (Methodologist source, learner purpose, specs, prompts, scripts and source `documentLanguage`). Its `config.params.languages` contains the full intended locale tuple; source-language copy lives only in the actual `production.documentLanguage` locale. Missing translations remain missing. Ordered entities use the real Engine `items/order` contracts, not invented arrays or a second `content.yaml`.
 
+**Effective language scope (handoff to #639, #646, #647):** a standalone Lesson builds against its own declared languages. A Course requesting that Lesson must pass its actual effective requested languages to the Lesson Build, and validate that the requested scope is a subset of the Lesson-supported languages; do not shrink the persisted standalone Lesson tuple or embed the Course in Lesson Config. A Flashcard Build receives the **Lesson's actual effective language scope**, without Course-specific persisted coupling or silent fallback. The existing Lesson Markdown generator enhancement in [#645](https://github.com/KiT-Maverik/svitlo/pull/645) is an external dependency to verify, not a generator to duplicate in this PR.
+
 **No** `draft`, `approved`, `stage`, `reviewStatus` fields, approval frontmatter, Methodologist-approved strings, or stage-specific Zod/JSON Schema families. YAML must stay syntactically sound while editorially incomplete. Legacy `methodology.md`, `methodologist-brief.md`, `content.yaml` or other approved inputs require explicit, non-destructive migration into `lesson.yaml`, retaining the full authored prose and original review/source SHA. Never silently delete legacy files, overwrite hand-authored sources or invent missing content. Separate `questions.yaml`/`flashcards.yaml` sibling files are owned by their own independent workflows, not Lesson Config.
 
 ## Stages (record role, source SHA, evidence, verdict and next action after each)
@@ -60,7 +62,7 @@ Run `node shared/engine/scripts/finalizeLesson/finalizeLesson.mjs preflight --so
 
 ## Independent Questions and Flashcards
 
-Record separate Questions/Flashcards states in the Lesson PR (`Not Started` / `PR #N @ SHA` / `Completed @ SHA` / `Not Applicable` with Methodologist rationale), not as Lesson stages. An educationally required Quiz implies Questions cannot be N/A. Each bank may have an independently authorized child Draft PR targeting the Lesson branch with source SHA/assessment dependencies; Flashcards may depend on approved Question fields and cannot always start concurrently. The full detailed Questions/Flashcards flows are **out of scope** here. Never embed their banks into `lesson.yaml`, delete their source sidecars during Lesson finalization or infer their acceptance from a Lesson stage.
+Record **separate** Questions/Flashcards states in the Lesson PR (`Not Started` / `PR #N @ SHA` / `Completed @ SHA` / `Not Applicable` with verified Methodologist rationale), not as Lesson stages. **Questions must be completed, integrated and independently reviewed before Flashcards authoring begins**, except when the Lesson PR explicitly records **Questions: Not Applicable** with verified Methodologist rationale; an unfinished or missing bank is **not** N/A. A required Quiz forbids Questions N/A. Each independently authorized bank has its own Draft child PR targeting the active Lesson branch and its own workflow/reviews; for an already merged Lesson use a separately verified integration base. The detailed seven-stage [Questions Flow, PR #647](https://github.com/KiT-Maverik/svitlo/pull/647) and six-stage [Flashcards Flow, PR #646](https://github.com/KiT-Maverik/svitlo/pull/646) are **sibling specifications**, not workflows to recreate inside #643. Flashcards may reference actual completed Question fields; neither child PR may overwrite unrelated Lesson sources or declare acceptance from the parent checkbox. Preserve `questions.yaml` and `flashcards.yaml` until their own verified materialization. Neither bank belongs in Lesson Config.
 
 ## PR body tracker and resumability
 
@@ -91,7 +93,7 @@ Place a stable section in each Lesson PR (preserving existing unrelated body), f
 
 ## Final QA / Development Review — NOT a ninth stage
 - [ ] Verified YAML source materialization; no stale temporary YAML
-- [ ] Questions/Flashcards completed or justified N/A
+- [ ] Questions completed before Flashcards (or verified Questions N/A); bank acceptance/PR SHAs reconciled
 - [ ] Independent Content/Experience/Compliance evidence current
 - [ ] Actual Scenes, media, offline/a11y behavior verified
 - [ ] Full target locale coverage and independent reviews verified
