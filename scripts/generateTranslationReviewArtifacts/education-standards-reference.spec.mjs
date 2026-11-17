@@ -65,11 +65,11 @@ function built(records) {
           slug,
           name: 'Original title',
           params: {
-            countries: ['UA'],
-            nameLanguage: 'uk',
             version: '2026',
-            sourceUrl: 'https://example.org/standards/2026',
             grade: { min: 1, max: 4 },
+            countries: ['UA'],
+            sourceUrl: 'https://example.org/standards/2026',
+            nameLanguage: 'uk',
           },
           description: {
             methodological: 'Official learning outcomes and expectations for a fictional test curriculum.',
