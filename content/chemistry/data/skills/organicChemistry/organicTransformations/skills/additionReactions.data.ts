@@ -31,7 +31,7 @@ export const additionReactions_Skill_Data = defineSkill({
     et: 'Liitumisreaktsioonid',
     be: 'Рэакцыі далучэньня',
     ka: 'მიერთების რეაქციები',
-    kk: 'Қосылу реакциялары',
+    kk: 'Qosylu reaktsiialary',
     qm: 'Qoşuluv reaktsiyaları',
   },
   description: {
@@ -64,7 +64,7 @@ export const additionReactions_Skill_Data = defineSkill({
       et: 'Tunne ära reaktsioonid, milles aatomid liituvad küllastumata sideme kohale.',
       be: 'Распазнавай рэакцыі, у якіх атамы далучаюцца да ненасычанай сувязі.',
       ka: 'ამოიცანი რეაქციები, როდესაც ატომები უჯერ ბმას ემატება.',
-      kk: 'Қанықпаған байланысқа атомдар қосылатын реакцияларды таны.',
+      kk: 'Qanyqpağan bailanysqa atomdar qosylatyn reaktsiialardy tany.',
       qm: 'Atomlar toymağan bağlarğa qoşulğan reaktsiyalarnı tanı.',
     },
   },

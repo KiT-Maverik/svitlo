@@ -38,7 +38,7 @@ export const organicTransformations_SkillGroup_Data = defineSkillGroup({
     et: 'Orgaanilised muundumised',
     be: 'Арганічныя ператварэньні',
     ka: 'ორგანული გარდაქმნები',
-    kk: 'Органикалық түрленулер',
+    kk: 'Organikalyq türlenuler',
     qm: 'Organik deñişüvler',
   },
   skills: [
@@ -78,7 +78,7 @@ export const organicTransformations_SkillGroup_Data = defineSkillGroup({
       et: 'Avasta orgaanilistes reaktsioonides levinud muutuste mustreid.',
       be: 'Даведайся пра пашыраныя тыпы зьменаў у арганічных рэакцыях.',
       ka: 'გაიგე ორგანულ რეაქციებში გავრცელებული ცვლილებების ტიპების შესახებ.',
-      kk: 'Органикалық реакциялардағы өзгерістердің кең тараған түрлерін таны.',
+      kk: 'Organikalyq reaktsiialardağy özgerısterdıñ keñ tarağan türlerın tany.',
       qm: 'Organik reaktsiyalarda rastkelgen yayğın deñişüv çeşitlerini ögren.',
     },
   },

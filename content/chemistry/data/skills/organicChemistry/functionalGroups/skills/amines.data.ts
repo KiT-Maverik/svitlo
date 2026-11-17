@@ -31,7 +31,7 @@ export const amines_Skill_Data = defineSkill({
     et: 'Amiinid',
     be: 'Аміны',
     ka: 'ამინები',
-    kk: 'Аминдер',
+    kk: 'Aminder',
     qm: 'Aminler',
   },
   description: {
@@ -64,7 +64,7 @@ export const amines_Skill_Data = defineSkill({
       et: 'Uuri lämmastikku sisaldavate amiinirühmade keemilist käitumist.',
       be: 'Дасьледуй хімічныя паводзіны амінных групаў, якія зьмяшчаюць азот.',
       ka: 'შეისწავლე აზოტის შემცველი ამინის ჯგუფების ქიმიური თვისებები.',
-      kk: 'Құрамында азот бар амин топтарының химиялық қасиеттерін зертте.',
+      kk: 'Qūramynda azot bar amin toptarynyñ himiialyq qasietterın zertte.',
       qm: 'Azotlı amin toparlarınıñ kimyeviy hususiyetlerini araştır.',
     },
   },

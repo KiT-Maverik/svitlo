@@ -36,7 +36,7 @@ export const organicChemistry_SkillDomain_Data = defineSkillDomain({
     et: 'Orgaaniline keemia',
     be: 'Арганічная хімія',
     ka: 'ორგანული ქიმია',
-    kk: 'Органикалық химия',
+    kk: 'Organikalyq himiia',
     qm: 'Organik kimya',
   },
   groups: [
@@ -76,7 +76,7 @@ export const organicChemistry_SkillDomain_Data = defineSkillDomain({
       et: 'Uuri süsinikuühendite struktuuri, liigitust ja muundumisi.',
       be: 'Дасьледуй будову, клясыфікацыю й ператварэньні злучэньняў вугляроду.',
       ka: 'შეისწავლე ნახშირბადის ნაერთების სტრუქტურა, კლასიფიკაცია და გარდაქმნები.',
-      kk: 'Көміртек қосылыстарының құрылысын, жіктелуін және өзгеруін зертте.',
+      kk: 'Kömırtek qosylystarynyñ qūrylysyn, jıkteluın jäne özgeruın zertte.',
       qm: 'Karbon birleşmeleriniñ qurulışını, sınıflandırıluvını ve deñişüvlerini araştır.',
     },
   },

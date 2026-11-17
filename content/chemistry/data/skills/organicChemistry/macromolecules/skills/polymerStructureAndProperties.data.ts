@@ -31,7 +31,7 @@ export const polymerStructureAndProperties_Skill_Data = defineSkill({
     et: 'Polümeeride struktuur ja omadused',
     be: 'Будова й уласьцівасьці палімэраў',
     ka: 'პოლიმერების სტრუქტურა და თვისებები',
-    kk: 'Полимер құрылысы және қасиеттері',
+    kk: 'Polimer qūrylysy jäne qasietterı',
     qm: 'Polimerlerniñ qurulışı ve hususiyetleri',
   },
   description: {
@@ -64,7 +64,7 @@ export const polymerStructureAndProperties_Skill_Data = defineSkill({
       et: 'Seosta polümeeriahelate kuju ja ristsidemed materjali omadustega.',
       be: 'Зьвязвай форму палімерных ланцугоў і папярочныя сувязі з уласьцівасьцямі матэрыялаў.',
       ka: 'დააკავშირე პოლიმერული ჯაჭვების ფორმა და ჯვარედინი ბმები მასალის თვისებებთან.',
-      kk: 'Полимер тізбектерінің пішіні мен көлденең байланыстарын материал қасиеттерімен байланыстыр.',
+      kk: 'Polimer tızbekterınıñ pışını men köldeneñ bailanystaryn material qasietterımen bailanystyr.',
       qm: 'Polimer zıncırlarınıñ şekli ve çapraz bağlarnı material hususiyetlerinen bağla.',
     },
   },

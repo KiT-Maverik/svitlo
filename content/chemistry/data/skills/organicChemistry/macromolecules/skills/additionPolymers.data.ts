@@ -31,7 +31,7 @@ export const additionPolymers_Skill_Data = defineSkill({
     et: 'Liitumispolümeerid',
     be: 'Палімеры далучэньня',
     ka: 'მიერთების პოლიმერები',
-    kk: 'Қосылу полимерлері',
+    kk: 'Qosylu polimerlerı',
     qm: 'Qoşuluv polimerleri',
   },
   description: {
@@ -64,7 +64,7 @@ export const additionPolymers_Skill_Data = defineSkill({
       et: 'Tunne ära polümeerid, mis tekivad sobivate küllastumata monomeeride liitumisel.',
       be: 'Распазнавай палімеры, утвораныя злучэньнем адпаведных ненасычаных манамэраў.',
       ka: 'ამოიცანი პოლიმერები, რომლებიც შესაბამისი უჯერი მონომერების შეერთებით წარმოიქმნება.',
-      kk: 'Тиісті қанықпаған мономерлер қосылғанда түзілетін полимерлерді таны.',
+      kk: 'Tiıstı qanyqpağan monomerler qosylğanda tüzıletın polimerlerdı tany.',
       qm: 'Munasıp toymağan monomerler birleşkende peyda olğan polimerlerni tanı.',
     },
   },

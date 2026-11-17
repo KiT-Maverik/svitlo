@@ -31,7 +31,7 @@ export const ketones_Skill_Data = defineSkill({
     et: 'Ketoonid',
     be: 'Кетоны',
     ka: 'კეტონები',
-    kk: 'Кетондар',
+    kk: 'Ketondar',
     qm: 'Ketonlar',
   },
   description: {
@@ -65,7 +65,7 @@ export const ketones_Skill_Data = defineSkill({
       et: 'Erista ketoone aldehüüdidest karbonüülrühma ehituse järgi.',
       be: 'Адрозьнівай кетоны ад альдэгідаў паводле будовы карбанільнай групы.',
       ka: 'განასხვავე კეტონები ალდეჰიდებისგან კარბონილის ჯგუფის სტრუქტურით.',
-      kk: 'Кетондарды карбонил тобының құрылысына қарай альдегидтерден ажырат.',
+      kk: 'Ketondardy karbonil tobynyñ qūrylysyna qarai aldegidterden ajyrat.',
       qm: 'Karbonil toparınıñ qurulışına köre ketonlarnı aldegidlerden ayır.',
     },
   },

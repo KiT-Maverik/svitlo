@@ -31,7 +31,7 @@ export const eliminationReactions_Skill_Data = defineSkill({
     et: 'Elimineerimisreaktsioonid',
     be: 'Рэакцыі элімінаваньня',
     ka: 'ელიმინაციის რეაქციები',
-    kk: 'Элиминация реакциялары',
+    kk: 'Eliminatsiia reaktsiialary',
     qm: 'Ayrılıp çıquv reaktsiyaları',
   },
   description: {
@@ -64,7 +64,7 @@ export const eliminationReactions_Skill_Data = defineSkill({
       et: 'Selgita, kuidas aatomite või rühmade eemaldamine võib tekitada kaksik- või kolmiksidemeid.',
       be: 'Растлумач, як адшчапленьне атамаў або групаў можа ўтвараць падвойныя ці патройныя сувязі.',
       ka: 'ახსენი, როგორ შეიძლება ატომების ან ჯგუფების მოცილებით ორმაგი ან სამმაგი ბმები წარმოიქმნას.',
-      kk: 'Атомдар не топтар бөлінгенде қос немесе үштік байланыстар қалай түзілетінін түсіндір.',
+      kk: 'Atomdar ne toptar bölıngende qos nemese üştık bailanystar qalai tüzıletının tüsındır.',
       qm: 'Atomlar ya da toparlar ayrılğanında eki ya da üç qat bağlar nasıl peyda olğanını añlat.',
     },
   },

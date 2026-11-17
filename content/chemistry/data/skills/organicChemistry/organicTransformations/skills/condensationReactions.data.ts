@@ -31,7 +31,7 @@ export const condensationReactions_Skill_Data = defineSkill({
     et: 'Kondensatsioonireaktsioonid',
     be: 'Рэакцыі кандэнсацыі',
     ka: 'კონდენსაციის რეაქციები',
-    kk: 'Конденсация реакциялары',
+    kk: 'Kondensatsiia reaktsiialary',
     qm: 'Kondensatsiya reaktsiyaları',
   },
   description: {
@@ -64,7 +64,7 @@ export const condensationReactions_Skill_Data = defineSkill({
       et: 'Uuri, kuidas kaks orgaanilist lähteainet ühinevad väikese molekuli eraldumisel.',
       be: 'Дасьледуй, як два арганічныя рэагенты злучаюцца з вылучэньнем малой малекулы.',
       ka: 'შეისწავლე, როგორ ერთიანდება ორი ორგანული რეაგენტი მცირე მოლეკულის გამოყოფით.',
-      kk: 'Екі органикалық реагент ұсақ молекула бөліп шығарып қалай қосылатынын зертте.',
+      kk: 'Ekı organikalyq reagent ūsaq molekula bölıp şyğaryp qalai qosylatynyn zertte.',
       qm: 'Eki organik reagent ufak molekulanı ayırıp nasıl birleşkenini araştır.',
     },
   },

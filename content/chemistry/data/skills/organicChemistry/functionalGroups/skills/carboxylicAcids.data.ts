@@ -31,7 +31,7 @@ export const carboxylicAcids_Skill_Data = defineSkill({
     et: 'Karboksüülhapped',
     be: 'Карбонавыя кісьлі',
     ka: 'კარბოქსილის მჟავები',
-    kk: 'Карбон қышқылдары',
+    kk: 'Karbon qyşqyldary',
     qm: 'Karboksil asitleri',
   },
   description: {
@@ -64,7 +64,7 @@ export const carboxylicAcids_Skill_Data = defineSkill({
       et: 'Uuri, kuidas karboksüülrühm määrab karboksüülhapete iseloomulikud omadused.',
       be: 'Дасьледуй, як карбаксільная група вызначае характэрныя ўласьцівасьці карбонавых кісьляў.',
       ka: 'შეისწავლე, როგორ განსაზღვრავს კარბოქსილის ჯგუფი კარბოქსილის მჟავების თვისებებს.',
-      kk: 'Карбоксил тобы карбон қышқылдарының ерекше қасиеттерін қалай анықтайтынын зертте.',
+      kk: 'Karboksil toby karbon qyşqyldarynyñ erekşe qasietterın qalai anyqtaitynyn zertte.',
       qm: 'Karboksil toparı karboksil asitlerine has hususiyetlerni nasıl bergenini araştır.',
     },
   },

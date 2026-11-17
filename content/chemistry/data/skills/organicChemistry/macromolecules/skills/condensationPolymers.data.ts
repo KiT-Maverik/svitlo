@@ -31,7 +31,7 @@ export const condensationPolymers_Skill_Data = defineSkill({
     et: 'Kondensatsioonipolümeerid',
     be: 'Палімеры кандэнсацыі',
     ka: 'კონდენსაციური პოლიმერები',
-    kk: 'Конденсациялық полимерлер',
+    kk: 'Kondensatsiialyq polimerler',
     qm: 'Kondensatsiya polimerleri',
   },
   description: {
@@ -64,7 +64,7 @@ export const condensationPolymers_Skill_Data = defineSkill({
       et: 'Tunne ära polümeerid, mis moodustuvad väikeste molekulide eraldumisega reaktsioonides.',
       be: 'Распазнавай палімеры, якія ўтвараюцца ў рэакцыях з вылучэньнем малых малекулаў.',
       ka: 'ამოიცანი პოლიმერები, რომლებიც მცირე მოლეკულების გამოყოფით მიმდინარე რეაქციებში წარმოიქმნება.',
-      kk: 'Ұсақ молекулалар бөлінетін реакцияларда түзілетін полимерлерді таны.',
+      kk: 'Ūsaq molekulalar bölınetın reaktsiialarda tüzıletın polimerlerdı tany.',
       qm: 'Ufak molekulalar ayrılğan reaktsiyalarda peyda olğan polimerlerni tanı.',
     },
   },

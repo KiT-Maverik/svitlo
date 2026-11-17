@@ -38,7 +38,7 @@ export const macromolecules_SkillGroup_Data = defineSkillGroup({
     et: 'Makromolekulid',
     be: 'Макрамалекулы',
     ka: 'მაკრომოლეკულები',
-    kk: 'Макромолекулалар',
+    kk: 'Makromolekulalar',
     qm: 'Makromolekulalar',
   },
   skills: [
@@ -78,7 +78,7 @@ export const macromolecules_SkillGroup_Data = defineSkillGroup({
       et: 'Mõista, kuidas korduvad ehitusüksused moodustavad suurmolekule eriomaste omadustega.',
       be: 'Зразумей, як паўторныя структурныя зьвёны ўтвараюць вялікія малекулы з адметнымі ўласьцівасьцямі.',
       ka: 'გაიგე, როგორ წარმოქმნის განმეორებადი ერთეულები განსაკუთრებული თვისებების მქონე დიდ მოლეკულებს.',
-      kk: 'Қайталанатын буындар ерекше қасиеті бар ірі молекулаларды қалай түзетінін түсін.',
+      kk: 'Qaitalanatyn buyndar erekşe qasietı bar ırı molekulalardy qalai tüzetının tüsın.',
       qm: 'Tekrarlanğan qurulış birlikleri özüne has hususiyetli büyük molekulalarnı nasıl peyda etkenini añla.',
     },
   },

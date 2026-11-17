@@ -31,7 +31,7 @@ export const polymerization_Skill_Data = defineSkill({
     et: 'Polümerisatsioon',
     be: 'Палімерызацыя',
     ka: 'პოლიმერიზაცია',
-    kk: 'Полимерлену',
+    kk: 'Polimerlenu',
     qm: 'Polimerleşüv',
   },
   description: {
@@ -64,7 +64,7 @@ export const polymerization_Skill_Data = defineSkill({
       et: 'Uuri, kuidas väikesed monomeerid ühinevad pikkadeks polümeerimolekulideks.',
       be: 'Дасьледуй, як малыя манамэры злучаюцца ў доўгія малекулы палімэраў.',
       ka: 'შეისწავლე, როგორ ერთიანდებიან პატარა მონომერები გრძელ პოლიმერულ მოლეკულებად.',
-      kk: 'Ұсақ мономерлер ұзын полимер молекулаларына қалай қосылатынын зертте.',
+      kk: 'Ūsaq monomerler ūzyn polimer molekulalaryna qalai qosylatynyn zertte.',
       qm: 'Ufak monomerler birleşip uzun polimer molekulalarını nasıl peyda etkenini araştır.',
     },
   },

@@ -31,7 +31,7 @@ export const esters_Skill_Data = defineSkill({
     et: 'Estrid',
     be: 'Эстэры',
     ka: 'ესტერები',
-    kk: 'Күрделі эфирлер',
+    kk: 'Kürdelı efirler',
     qm: 'Esterler',
   },
   description: {
@@ -64,7 +64,7 @@ export const esters_Skill_Data = defineSkill({
       et: 'Tunne ära estersidemed ning uuri, kuidas estrid tekivad või lagunevad.',
       be: 'Распазнавай эстэрныя сувязі й дасьледуй, як эстэры ўтвараюцца й расшчапляюцца.',
       ka: 'ამოიცანი ესტერული ბმები და გაიგე, როგორ წარმოიქმნება ან იშლება ესტერები.',
-      kk: 'Эфирлік байланыстарды және күрделі эфирлердің түзілуі мен ыдырауын таны.',
+      kk: 'Efirlık bailanystardy jäne kürdelı efirlerdıñ tüzıluı men ydyrauyn tany.',
       qm: 'Ester bağlarını tanı ve esterler nasıl peyda olıp parçalanğanını ögren.',
     },
   },
