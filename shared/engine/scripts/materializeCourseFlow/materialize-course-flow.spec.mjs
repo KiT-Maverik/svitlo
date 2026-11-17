@@ -12,7 +12,8 @@ const moduleId = '12ecbde1-97fd-5fe7-a353-ea89b9ef4a67';
 const chapterId = '20ecbde1-97fd-5fe7-a353-ea89b9ef4a67';
 const lessonId = 'd3048d21-8690-5255-b62c-984c69ac272c';
 const plan = {
-  id, slug: 'spaceCourse', title: 'Space', type: 'course',
+  id, slug: 'spaceCourse', title: 'Space', description: 'A beginner course about space', type: 'course',
+  age: { min: 6, max: 10 }, grade: { min: 1, max: 4 },
   documentLanguage: 'en', supportedLanguages: ['en', 'uk'],
   methodology: { purpose: 'Understand space', audience: 'Primary school', approach: 'Conceptual' },
   outcomes: { skills: [lessonId], explanation: 'Learn key concepts' },
@@ -40,7 +41,9 @@ test('editorial -> technical draft preserves UUIDs, order, intent and evidence',
   assert.equal(cfg.content.items.foundations.config.id, moduleId);
   assert.equal(cfg.content.items.foundations.config.content.items.first.config.id, chapterId);
   assert.equal(cfg.content.items.review.config.lessonId, lessonId);
-  assert.equal(cfg.locale.description, undefined);
+  assert.deepEqual(cfg.locale.description, { en: 'A beginner course about space' });
+  assert.deepEqual(cfg.params.age, { min: 6, max: 10 });
+  assert.deepEqual(cfg.params.grade, { min: 1, max: 4 });
   assert.match(technical.production.methodology, /Partial thematic overlap/);
   assert(!technical.production.methodology.includes('Certification:'));
   const drafts = renderModularCourse(technical, 'content/math');
@@ -58,6 +61,7 @@ test('missing identities and unsafe mappings fail instead of fabricating', () =>
   delete changed.content.items.foundations.id;
   assert.throws(() => technicalFromEditorial(changed), /Missing stable UUID/);
   assert.throws(() => technicalFromEditorial({ ...plan, slug: undefined }), /stable Course slug/);
+  assert.throws(() => technicalFromEditorial({ ...plan, description: undefined }), /title and description/);
   const courses = { ...plan, outcomes: { courses: [id] } };
   assert.throws(() => technicalFromEditorial(courses), /outcomes.courses/);
 });

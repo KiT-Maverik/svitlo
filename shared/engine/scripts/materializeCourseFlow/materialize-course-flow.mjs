@@ -103,8 +103,8 @@ function localizedTitle(title, language) {
 export function technicalFromEditorial(plan, resolveLesson = () => null) {
   const check = checkPlan(plan, '3-complete');
   if (!check.valid) fail('unapproved/incomplete Stage 3 source: ' + check.errors.join('; '));
-  if (!SLUG.test(plan.slug ?? '') || !plan.title?.trim())
-    fail('Stage 5 requires a stable Course slug and authored learner-facing title');
+  if (!SLUG.test(plan.slug ?? '') || !plan.title?.trim() || !plan.description?.trim())
+    fail('Stage 5 requires stable Course slug and authored learner-facing title and description');
   const ids = new Set([plan.id]);
   const moduleSlugs = new Set(), chapterSlugs = new Set();
   function collection(tree, depth) {
@@ -135,18 +135,26 @@ export function technicalFromEditorial(plan, resolveLesson = () => null) {
     return { items, order: [...(tree?.order ?? [])] };
   }
   const params = { languages: plan.supportedLanguages };
+  for (const field of ['age','grade']) {
+    const range = plan[field];
+    if (range) {
+      if (!Number.isInteger(range.min) || !Number.isInteger(range.max) || range.min > range.max)
+        fail('Invalid audience ' + field + ' bounds');
+      params[field] = range;
+    }
+  }
   const outcomes = competencyIds(plan.outcomes, false);
   const prerequisites = competencyIds(plan.prerequisites, true);
   if (outcomes && Object.keys(outcomes).length) params.outcomes = outcomes;
   if (prerequisites && Object.keys(prerequisites).length) params.prerequisites = prerequisites;
   if (plan.standardsAlignment?.length)
     params.educationStandards = plan.standardsAlignment.map(x => x.standardId);
-  const locale = { title: localizedTitle(plan.title, plan.documentLanguage) };
+  const locale = { title: localizedTitle(plan.title, plan.documentLanguage),
+    description: localizedTitle(plan.description, plan.documentLanguage) };
   if (plan.outcomes?.explanation)
     locale.outcomesText = localizedTitle(plan.outcomes.explanation, plan.documentLanguage);
   if (plan.prerequisites?.explanation)
     locale.prerequisitesText = localizedTitle(plan.prerequisites.explanation, plan.documentLanguage);
-  // Do not fill locale.description from methodological purpose: they are distinct authored fields.
   return {
     config: { id: plan.id, slug: plan.slug, type: 'course', params, locale,
       content: collection(plan.content, 0) },

@@ -15,7 +15,7 @@ node shared/engine/scripts/materializeCourseFlow/materialize-course-flow.mjs --p
 ```
 
 Preconditions: Stage 4 independently approved at an exact SHA; the Course has an
-authored slug/title and **persistent UUIDs for every Module/Chapter and Lesson
+authored slug/title/description and **persistent UUIDs for every Module/Chapter and Lesson
 reference**. A missing required Config locale or unresolved standalone Lesson
 reference is retained as an explicit TypeScript handoff, never fabricated.
 `params.outcomes`, prerequisites and EducationStandard UUIDs are mapped from
