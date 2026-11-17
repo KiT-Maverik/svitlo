@@ -31,7 +31,7 @@ export const massMoleConversion_Skill_Data = defineSkill({
     et: 'Massi ja moolide teisendamine',
     be: 'Пералік масы ў молі',
     ka: 'მასისა და მოლის გარდაქმნა',
-    kk: 'Масса мен мольді түрлендіру',
+    kk: 'Massa men moldı türlendıru',
     qm: 'Massa ve mol arasında deñiştirme',
   },
   description: {
@@ -64,7 +64,7 @@ export const massMoleConversion_Skill_Data = defineSkill({
       et: 'Teisenda aine mass moolideks ja vastupidi.',
       be: 'Пераводзь масу рэчыва ў колькасьць моляў і наадварот.',
       ka: 'ნივთიერების მასა მოლებში გადაიყვანე და პირიქით.',
-      kk: 'Зат массасын мольге, ал мольді массаға айналдыр.',
+      kk: 'Zat massasyn molge, al moldı massağa ainaldyr.',
       qm: 'Maddeniñ massasını molğa, mol miqdarını massağa çevir.',
     },
   },

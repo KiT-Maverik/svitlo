@@ -31,7 +31,7 @@ export const macroscopicAndParticleExplanations_Skill_Data = defineSkill({
     et: 'Makroskoopilised ja osakeste tasandi selgitused',
     be: 'Макраскапічныя і часьцінкавыя тлумачэньні',
     ka: 'მაკროსკოპული და ნაწილაკური ახსნები',
-    kk: 'Макроскопиялық және бөлшектік түсіндірмелер',
+    kk: 'Makroskopiialyq jäne bölşektık tüsındırmeler',
     qm: 'Makroskopik ve parçacıq seviyesindeki izaatlar',
   },
   description: {
@@ -65,7 +65,7 @@ export const macroscopicAndParticleExplanations_Skill_Data = defineSkill({
       et: 'Seo nähtavad keemilised muutused võimalike osakeste tasandi selgitustega.',
       be: 'Зьвязвай бачныя хімічныя зьмены з магчымымі тлумачэньнямі на ўзроўні часьцінак.',
       ka: 'დააკავშირე ხილული ქიმიური ცვლილებები ნაწილაკების დონეზე შესაძლო ახსნებთან.',
-      kk: 'Көрінетін химиялық өзгерістерді бөлшектер туралы ықтимал түсіндірмелермен байланыстыр.',
+      kk: 'Körınetın himiialyq özgerısterdı bölşekter turaly yqtimal tüsındırmelermen bailanystyr.',
       qm: 'Közge körüngen himiyeviy deñişüvlerni parçacıqlar aqqındaki mümkün izaatlarğa bağla.',
     },
   },

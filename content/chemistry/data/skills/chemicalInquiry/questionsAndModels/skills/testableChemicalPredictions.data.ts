@@ -31,7 +31,7 @@ export const testableChemicalPredictions_Skill_Data = defineSkill({
     et: 'Kontrollitavad keemilised ennustused',
     be: 'Правяральныя хімічныя прадказаньні',
     ka: 'შემოწმებადი ქიმიური პროგნოზები',
-    kk: 'Тексерілетін химиялық болжамдар',
+    kk: 'Tekserıletın himiialyq boljamdar',
     qm: 'Sınap olğanı mümkün himiyeviy tahminler',
   },
   description: {
@@ -64,7 +64,7 @@ export const testableChemicalPredictions_Skill_Data = defineSkill({
       et: 'Esita keemilise muutuse kohta kontrollitav ennustus ja leia seda toetavad tõendid.',
       be: 'Зрабі прадказаньне пра хімічную зьмену, якое можна праверыць, і вызнач доказы на яго карысьць.',
       ka: 'გამოთქვი შემოწმებადი პროგნოზი ქიმიურ ცვლილებაზე და იპოვე მისი დამადასტურებელი მტკიცებულებები.',
-      kk: 'Химиялық өзгеріс туралы тексерілетін болжам жаса және оны қолдайтын дәлелдерді анықта.',
+      kk: 'Himiialyq özgerıs turaly tekserıletın boljam jasa jäne ony qoldaityn dälelderdı anyqta.',
       qm: 'Himiyeviy deñişüv aqqında sınalğanı mümkün tahmin yap ve onı qollağan delillerni tap.',
     },
   },

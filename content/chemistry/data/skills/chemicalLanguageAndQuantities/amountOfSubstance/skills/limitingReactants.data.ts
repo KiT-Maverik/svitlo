@@ -31,7 +31,7 @@ export const limitingReactants_Skill_Data = defineSkill({
     et: 'Piiravad lähteained',
     be: 'Лімітуючыя рэагенты',
     ka: 'ლიმიტირებელი რეაგენტები',
-    kk: 'Шектеуші реагенттер',
+    kk: 'Şekteuşı reagentter',
     qm: 'Çekleyici reaktsiya maddeleri',
   },
   description: {
@@ -64,7 +64,7 @@ export const limitingReactants_Skill_Data = defineSkill({
       et: 'Tee kindlaks, milline lähteaine piirab suurimat võimalikku saaduse hulka.',
       be: 'Вызнач, які рэагент абмяжоўвае максымальную магчымую колькасьць прадукту.',
       ka: 'განსაზღვრე, რომელი რეაგენტი ზღუდავს პროდუქტის მაქსიმალურ რაოდენობას.',
-      kk: 'Қай реагент өнімнің ең көп мөлшерін шектейтінін анықта.',
+      kk: 'Qai reagent önımnıñ eñ köp mölşerın şekteitının anyqta.',
       qm: 'Qaysı reaktsiya maddesi neticeniñ eñ büyük mümkün miqdarını çeklegenini belgile.',
     },
   },

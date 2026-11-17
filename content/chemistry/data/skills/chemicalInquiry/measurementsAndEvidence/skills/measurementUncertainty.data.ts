@@ -31,7 +31,7 @@ export const measurementUncertainty_Skill_Data = defineSkill({
     et: 'Mõõtemääramatus',
     be: 'Нявызначанасьць вымярэньняў',
     ka: 'გაზომვის განუსაზღვრელობა',
-    kk: 'Өлшеу белгісіздігі',
+    kk: 'Ölşeu belgısızdıgı',
     qm: 'Ölçevde belgisizlik',
   },
   description: {
@@ -65,7 +65,7 @@ export const measurementUncertainty_Skill_Data = defineSkill({
       et: 'Mõista, miks mõõdetud väärtustel on määramatus, mitte täielik täpsus.',
       be: 'Зразумей, чаму вымераныя значэньні маюць нявызначанасьць, а не абсалютную дакладнасьць.',
       ka: 'გაიგე, რატომ ახლავს გაზომილ მნიშვნელობებს განუსაზღვრელობა და არა სრული სიზუსტე.',
-      kk: 'Өлшенген мәндер неге абсолют дәл емес, белгісіздікке ие болатынын түсін.',
+      kk: 'Ölşengen mänder nege absoliut däl emes, belgısızdıkke ie bolatynyn tüsın.',
       qm: 'Ölçülgen qiymetler ne içün mutlaq keskin degil, belgisizlikke malik olğanını añla.',
     },
   },

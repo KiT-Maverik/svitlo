@@ -31,7 +31,7 @@ export const measuringMass_Skill_Data = defineSkill({
     et: 'Massi mõõtmine',
     be: 'Вымярэньне масы',
     ka: 'მასის გაზომვა',
-    kk: 'Массаны өлшеу',
+    kk: 'Massany ölşeu',
     qm: 'Kütleni ölçev',
   },
   description: {
@@ -65,7 +65,7 @@ export const measuringMass_Skill_Data = defineSkill({
       et: 'Mõõda proovi massi, arvestades anumat ja ühikuid.',
       be: 'Вымерай масу ўзору з улікам пасудзіны і адзінак вымярэньня.',
       ka: 'გაზომე ნიმუშის მასა ჭურჭლისა და ერთეულების გათვალისწინებით.',
-      kk: 'Ыдыс массасы мен өлшем бірліктерін ескеріп, үлгінің массасын өлше.',
+      kk: 'Ydys massasy men ölşem bırlıkterın eskerıp, ülgınıñ massasyn ölşe.',
       qm: 'Qapnıñ kütlesini ve ölçü birliklerini esapqa alıp numuneniñ kütlesini ölç.',
     },
   },

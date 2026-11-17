@@ -40,7 +40,7 @@ export const amountOfSubstance_SkillGroup_Data = defineSkillGroup({
     et: 'Ainehulk',
     be: 'Колькасьць рэчыва',
     ka: 'ნივთიერების რაოდენობა',
-    kk: 'Зат мөлшері',
+    kk: 'Zat mölşerı',
     qm: 'Madde miqdarı',
   },
   skills: [
@@ -82,7 +82,7 @@ export const amountOfSubstance_SkillGroup_Data = defineSkillGroup({
       et: 'Seo osakeste arv mõõdetavate masside ja reaktsioonis osalevate ainehulkadega.',
       be: 'Сувязвай лік часьцінак з вымернымі масамі й колькасьцямі ў рэакцыях.',
       ka: 'დააკავშირე ნაწილაკების რიცხვი გასაზომ მასებთან და რეაქციაში რაოდენობებთან.',
-      kk: 'Бөлшектер санын өлшенетін массалар мен реакциядағы зат мөлшерлерімен байланыстыр.',
+      kk: 'Bölşekter sanyn ölşenetın massalar men reaktsiiadağy zat mölşerlerımen bailanystyr.',
       qm: 'Zerreler sayısını ölçülgen massa ve reaktsiyadaki miqdarlarğa bağla.',
     },
   },

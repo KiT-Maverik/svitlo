@@ -31,7 +31,7 @@ export const chemicalModels_Skill_Data = defineSkill({
     et: 'Keemilised mudelid',
     be: 'Хімічныя мадэлі',
     ka: 'ქიმიური მოდელები',
-    kk: 'Химиялық модельдер',
+    kk: 'Himiialyq modelder',
     qm: 'Himiyeviy modeller',
   },
   description: {
@@ -65,7 +65,7 @@ export const chemicalModels_Skill_Data = defineSkill({
       et: 'Kasuta keemilisi jooniseid ja valemeid ning mõista nende piiranguid.',
       be: 'Выкарыстоўвай хімічныя схемы і формулы, разумеючы іхныя абмежаваньні.',
       ka: 'გამოიყენე ქიმიური დიაგრამები და ფორმულები, თან გაითვალისწინე მათი შეზღუდვები.',
-      kk: 'Химиялық сызбалар мен формулаларды пайдаланып, олардың шектеулерін түсін.',
+      kk: 'Himiialyq syzbalar men formulalardy paidalanyp, olardyñ şekteulerın tüsın.',
       qm: 'Himiyeviy resimler ve formulalarnı qullan, amma olarnıñ sıñırlarını da añla.',
     },
   },

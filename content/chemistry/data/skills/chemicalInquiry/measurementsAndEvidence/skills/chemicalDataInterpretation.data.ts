@@ -31,7 +31,7 @@ export const chemicalDataInterpretation_Skill_Data = defineSkill({
     et: 'Keemiliste andmete tõlgendamine',
     be: 'Тлумачэньне хімічных зьвестак',
     ka: 'ქიმიური მონაცემების ინტერპრეტაცია',
-    kk: 'Химиялық деректерді түсіндіру',
+    kk: 'Himiialyq derekterdı tüsındıru',
     qm: 'Himiyeviy malümatnı añlatuv',
   },
   description: {
@@ -65,7 +65,7 @@ export const chemicalDataInterpretation_Skill_Data = defineSkill({
       et: 'Kasuta keemilisi andmeid tingimuste ja tulemuste vaheliste seoste uurimiseks.',
       be: 'Выкарыстоўвай хімічныя зьвесткі, каб дасьледаваць сувязі паміж умовамі й вынікамі.',
       ka: 'გამოიყენე ქიმიური მონაცემები პირობებსა და შედეგებს შორის კავშირების შესასწავლად.',
-      kk: 'Химиялық деректер арқылы жағдайлар мен нәтижелер арасындағы байланыстарды зертте.',
+      kk: 'Himiialyq derekter arqyly jağdailar men nätijeler arasyndağy bailanystardy zertte.',
       qm: 'Himiyeviy malümatnı qullanıp, şarait ve neticeler arasındaki bağlılıqnı araştır.',
     },
   },

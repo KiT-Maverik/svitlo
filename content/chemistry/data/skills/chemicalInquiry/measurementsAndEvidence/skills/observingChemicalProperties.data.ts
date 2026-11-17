@@ -31,7 +31,7 @@ export const observingChemicalProperties_Skill_Data = defineSkill({
     et: 'Keemiliste omaduste vaatlemine',
     be: 'Назіраньне за хімічнымі ўласьцівасьцямі',
     ka: 'ქიმიური თვისებების დაკვირვება',
-    kk: 'Химиялық қасиеттерді бақылау',
+    kk: 'Himiialyq qasietterdı baqylau',
     qm: 'Himiyeviy hususiyetlerni közetüv',
   },
   description: {
@@ -65,7 +65,7 @@ export const observingChemicalProperties_Skill_Data = defineSkill({
       et: 'Märka keemilise muutuse tunnuseid, näiteks raua roostetamist või lahtilõigatud õuna pruunistumist.',
       be: 'Заўважай прыкметы хімічных зьменаў, напрыклад, як жалеза іржавее або разрэзаны яблык цямнее.',
       ka: 'შეამჩნიე ქიმიური ცვლილების ნიშნები, მაგალითად, როგორ ჟანგდება რკინა ან მუქდება გაჭრილი ვაშლი.',
-      kk: 'Темірдің тот басуы немесе кесілген алманың қоңырлануы сияқты химиялық өзгеріс белгілерін байқа.',
+      kk: 'Temırdıñ tot basuy nemese kesılgen almanyñ qoñyrlanuy siiaqty himiialyq özgerıs belgılerın baiqa.',
       qm: 'Demirniñ tot basması ya da kesilgen almanıñ qararması kibi himiyeviy deñişüv belgilerini közet.',
     },
   },

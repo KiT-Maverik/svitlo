@@ -38,7 +38,7 @@ export const questionsAndModels_SkillGroup_Data = defineSkillGroup({
     et: 'Küsimused ja mudelid',
     be: 'Пытаньні і мадэлі',
     ka: 'კითხვები და მოდელები',
-    kk: 'Сұрақтар және модельдер',
+    kk: 'Sūraqtar jäne modelder',
     qm: 'Sualler ve modeller',
   },
   skills: [
@@ -78,7 +78,7 @@ export const questionsAndModels_SkillGroup_Data = defineSkillGroup({
       et: 'Õpi, kuidas keemiaküsimusi tõendite ja mudelite abil sõnastada ning selgitada.',
       be: 'Даведайся, як фармуляваць і тлумачыць хімічныя пытаньні з дапамогай доказаў і мадэляў.',
       ka: 'ისწავლე, როგორ ჩამოაყალიბო და ახსნა ქიმიური კითხვები მტკიცებულებებისა და მოდელების დახმარებით.',
-      kk: 'Химиялық сұрақтарды дәлелдер мен модельдер арқылы қалай құрастырып, түсіндіретінін үйрен.',
+      kk: 'Himiialyq sūraqtardy dälelder men modelder arqyly qalai qūrastyryp, tüsındıretının üiren.',
       qm: 'Himiyeviy sualler deliller ve modeller vastasınen nasıl qoyulıp añlatılğanını ögren.',
     },
   },

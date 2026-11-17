@@ -31,7 +31,7 @@ export const chemistryAsADiscipline_Skill_Data = defineSkill({
     et: 'Keemia kui teadusharu',
     be: 'Хімія як навука',
     ka: 'ქიმია როგორც მეცნიერება',
-    kk: 'Химия ғылым ретінде',
+    kk: 'Himiia ğylym retınde',
     qm: 'İlim olaraq himiya',
   },
   description: {
@@ -65,7 +65,7 @@ export const chemistryAsADiscipline_Skill_Data = defineSkill({
       et: 'Avasta, millistele küsimustele aine ja selle muutuste kohta keemia vastata suudab.',
       be: 'Даведайся, на якія пытаньні пра рэчыва і ягоныя зьмены можа адказаць хімія.',
       ka: 'გაიგე, რომელ კითხვებს პასუხობს ქიმია ნივთიერებისა და მისი ცვლილებების შესახებ.',
-      kk: 'Химия заттар мен олардың өзгерістері туралы қандай сұрақтарға жауап бере алатынын біл.',
+      kk: 'Himiia zattar men olardyñ özgerısterı turaly qandai sūraqtarğa jauap bere alatynyn bıl.',
       qm: 'Himiya madde ve onıñ deñişüvleri aqqında qaysı suallerge cevap bere bilgenini ögren.',
     },
   },

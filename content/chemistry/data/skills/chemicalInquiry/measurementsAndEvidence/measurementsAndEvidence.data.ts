@@ -39,7 +39,7 @@ export const measurementsAndEvidence_SkillGroup_Data = defineSkillGroup({
     et: 'Mõõtmised ja tõendid',
     be: 'Вымярэньні і доказы',
     ka: 'გაზომვები და მტკიცებულებები',
-    kk: 'Өлшеулер мен дәлелдер',
+    kk: 'Ölşeuler men dälelder',
     qm: 'Ölçevler ve deliller',
   },
   skills: [
@@ -80,7 +80,7 @@ export const measurementsAndEvidence_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri, kuidas mõõtmised ja hoolikad vaatlused toetavad keemilisi selgitusi.',
       be: 'Даведайся, як вымярэньні і ўважлівыя назіраньні падтрымліваюць хімічныя тлумачэньні.',
       ka: 'გაიგე, როგორ ამყარებს გაზომვა და დაკვირვება ქიმიურ ახსნებს.',
-      kk: 'Өлшеулер мен мұқият бақылаулар химиялық түсіндірмелерді қалай қолдайтынын біл.',
+      kk: 'Ölşeuler men mūqiiat baqylaular himiialyq tüsındırmelerdı qalai qoldaitynyn bıl.',
       qm: 'Ölçevler ve diqqatlı közetüv himiyeviy izaatlarnı nasıl qollap-quvetlegenini ögren.',
     },
   },

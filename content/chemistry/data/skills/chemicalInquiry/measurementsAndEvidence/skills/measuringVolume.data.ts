@@ -31,7 +31,7 @@ export const measuringVolume_Skill_Data = defineSkill({
     et: 'Ruumala mõõtmine',
     be: "Вымярэньне аб'ёму",
     ka: 'მოცულობის გაზომვა',
-    kk: 'Көлемді өлшеу',
+    kk: 'Kölemdı ölşeu',
     qm: 'Acimni ölçev',
   },
   description: {
@@ -65,7 +65,7 @@ export const measuringVolume_Skill_Data = defineSkill({
       et: 'Mõõda vedeliku või gaasi ruumala ja mõista seadmete piiranguid.',
       be: 'Вымярай аб’ём вадкасьцяў або газаў і ведай абмежаваньні прыбораў.',
       ka: 'გაზომე სითხის ან აირის მოცულობა და გაითვალისწინე ხელსაწყოს შეზღუდვები.',
-      kk: 'Сұйық не газ көлемін өлшеп, құралдардың шектеулерін таны.',
+      kk: 'Sūiyq ne gaz kölemın ölşep, qūraldardyñ şekteulerın tany.',
       qm: 'Suyluq ya da gaz acimini ölç ve aletlerniñ sıñırlarını añla.',
     },
   },
