@@ -31,7 +31,7 @@ export const corruptionAndEconomicIncentives_Skill_Data = defineSkill({
     et: 'Korruptsioon ja majanduslikud stiimulid',
     be: 'Карупцыя і эканамічныя стымулы',
     ka: 'კორუფცია და ეკონომიკური სტიმულები',
-    kk: 'Сыбайлас жемқорлық және экономикалық ынталар',
+    kk: 'Sybailas jemqorlyq jäne ekonomikalyq yntalandyru',
     qm: 'Poraçılıq ve iqtisadiy teşviqler',
   },
   description: {
@@ -64,7 +64,7 @@ export const corruptionAndEconomicIncentives_Skill_Data = defineSkill({
       et: 'Mõista, kuidas korruptsioon moonutab äriotsuseid ja konkurentsi.',
       be: 'Зразумей, як карупцыя скажае рашэньні бізнэсу й канкурэнцыю.',
       ka: 'გაიაზრეთ, როგორ ამახინჯებს კორუფცია ბიზნესის გადაწყვეტილებებსა და კონკურენციას.',
-      kk: 'Жемқорлық бизнес шешімдері мен бәсекені қалай бұрмалайтынын түсініңіз.',
+      kk: 'Jemqorlyq bıznes şeşımderı men bäsekenı qalai būrmalaitynyn tüsın.',
       qm: 'Poraçılıq biznes qararlarını ve raqabetni nasıl bozğanını añla.',
     },
   },

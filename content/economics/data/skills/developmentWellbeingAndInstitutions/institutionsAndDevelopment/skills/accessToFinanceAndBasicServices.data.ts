@@ -31,7 +31,7 @@ export const accessToFinanceAndBasicServices_Skill_Data = defineSkill({
     et: 'Juurdepääs rahandusele ja põhiteenustele',
     be: 'Доступ да фінансавых і базавых паслугаў',
     ka: 'ფინანსურ და საბაზისო სერვისებზე წვდომა',
-    kk: 'Қаржыға және негізгі қызметтерге қолжетімділік',
+    kk: 'Qarjyğa jäne negızgı qyzmetterge qoljetımdılık',
     qm: 'Maliye ve esas hızmetlerge irişim',
   },
   description: {
@@ -65,7 +65,7 @@ export const accessToFinanceAndBasicServices_Skill_Data = defineSkill({
       et: 'Uuri, kuidas põhiteenused mõjutavad inimeste majandusvõimalusi.',
       be: 'Дасьледуй, як неабходныя паслугі ўплываюць на эканамічныя магчымасьці людзей.',
       ka: 'გამოიკვლიეთ, როგორ მოქმედებს აუცილებელი სერვისები ადამიანების ეკონომიკურ შესაძლებლობებზე.',
-      kk: 'Маңызды қызметтер адамдардың экономикалық мүмкіндіктеріне қалай әсер ететінін зерттеңіз.',
+      kk: 'Mañyzdy qyzmetterdıñ adamdardyñ ekonomikalyq mümkındıkterıne qalai äser etetının zertte.',
       qm: 'Esas hızmetler adamlarnıñ iqtisadiy imkânlarına nasıl tesir etkenini araştır.',
     },
   },

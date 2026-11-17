@@ -31,7 +31,7 @@ export const inclusiveEconomicInstitutions_Skill_Data = defineSkill({
     et: 'Kaasavad majandusinstitutsioonid',
     be: 'Інклюзіўныя эканамічныя інстытуцыі',
     ka: 'ინკლუზიური ეკონომიკური ინსტიტუტები',
-    kk: 'Инклюзивті экономикалық институттар',
+    kk: 'İnkliuzivtı ekonomikalyq instituttar',
     qm: 'Erkesni qapsağan iqtisadiy müesseseler',
   },
   description: {
@@ -65,7 +65,7 @@ export const inclusiveEconomicInstitutions_Skill_Data = defineSkill({
       et: 'Tunne ära, kuidas õiglane ligipääs ja kaitstud õigused laiendavad majandusvõimalusi.',
       be: 'Распазнавай, як справядлівы доступ і абароненыя правы пашыраюць эканамічныя магчымасьці.',
       ka: 'ამოიცანით, როგორ აფართოებს სამართლიანი წვდომა და დაცული უფლებები ეკონომიკურ შესაძლებლობებს.',
-      kk: 'Әділ қолжетімділік пен қорғалған құқықтар экономикалық мүмкіндіктерді қалай кеңейтетінін біліңіз.',
+      kk: 'Ädıl qoljetımdılık pen qūqyqtardyñ qorğaluy ekonomikalyq mümkındıkterdı qalai keñeitetının bıl.',
       qm: 'Adaletli irişim ve qorçalğan aqlar iqtisadiy imkânlarnı nasıl kenişletkenini ögren.',
     },
   },
