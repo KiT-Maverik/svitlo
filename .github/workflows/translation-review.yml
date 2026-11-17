@@ -212,11 +212,28 @@ jobs:
           node-version: '24'
       - name: Install dependencies for the requested generator
         run: npm ci --ignore-scripts --no-audit --no-fund
-      - name: Build Engine for typed Lesson or EducationStandard generation
-        if: needs.resolve.outputs.kind == 'lessons' || needs.resolve.outputs.kind == 'education-standards'
-        run: npm run package:build --workspace @svitlo/engine
-      - name: Build EducationStandard authoring catalog
+      - name: Detect complete EducationStandard authoring matrix
+        id: catalog_check
         if: needs.resolve.outputs.kind == 'education-standards'
+        shell: bash
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import { readSupportedLanguageCodes } from './shared/engine/scripts/readSupportedLanguages/read-supported-languages.mjs';
+          import {
+            readEducationStandardSources,
+            hasCompleteEducationStandardLocales,
+          } from './scripts/generateTranslationReviewArtifacts/education-standards-reference.mjs';
+          const registered = readSupportedLanguageCodes();
+          const entries = readEducationStandardSources(process.cwd(), registered);
+          const complete = hasCompleteEducationStandardLocales(entries, registered);
+          fs.appendFileSync(process.env.GITHUB_OUTPUT, 'complete=' + complete + '\n');
+          NODE
+      - name: Build Engine for typed Lesson or complete EducationStandard generation
+        if: needs.resolve.outputs.kind == 'lessons' || (needs.resolve.outputs.kind == 'education-standards' && steps.catalog_check.outputs.complete == 'true')
+        run: npm run package:build --workspace @svitlo/engine
+      - name: Build complete EducationStandard authoring catalog
+        if: needs.resolve.outputs.kind == 'education-standards' && steps.catalog_check.outputs.complete == 'true'
         run: npm run package:build --workspace @svitlo/education-standards
       - name: Generate only the selected reference scope
         env:

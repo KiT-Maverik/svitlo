@@ -192,6 +192,15 @@ function sameParams(actual, expected) {
   return JSON.stringify(entries(actual)) === JSON.stringify(entries(expected));
 }
 
+export function hasCompleteEducationStandardLocales(entries, registered) {
+  return entries.every(({ config }) =>
+    registered.every(language => {
+      const value = config.description.frontend[language];
+      return typeof value === 'string' && value.trim() && value.trim() !== MISSING;
+    }),
+  );
+}
+
 export function verifyBuiltStandards(entries, built, registered) {
   if (!Array.isArray(built) || built.length !== entries.length) throw Error('Build/source catalog size mismatch');
   const byId = new Map();
@@ -300,7 +309,11 @@ export function generateEducationStandardReviewArtifacts({
   for (const locale of languages) {
     try {
       const entries = readEducationStandardSources(root, registered);
-      verifyBuiltStandards(entries, loadCatalog(), registered);
+      // Build verification is only possible for a fully typed locale matrix.
+      // Partial drafts remain source-derived references, never publication.
+      if (hasCompleteEducationStandardLocales(entries, registered)) {
+        verifyBuiltStandards(entries, loadCatalog(), registered);
+      }
       const result = renderEducationStandardMarkdown(entries, locale, manifest.sourceCommit);
       const relative = 'education-standards/' + locale + '.md';
       fs.mkdirSync(path.join(output, 'education-standards'), { recursive: true });

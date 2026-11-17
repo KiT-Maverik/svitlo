@@ -7,6 +7,7 @@ import test from 'node:test';
 import { parseArguments } from './generate-translation-review-artifacts.mjs';
 import {
   readEducationStandardSources,
+  hasCompleteEducationStandardLocales,
   verifyBuiltStandards,
   renderEducationStandardMarkdown,
   generateEducationStandardReviewArtifacts,
@@ -273,5 +274,32 @@ test('incomplete previews still reject bad jurisdictions, original language, and
     } finally {
       fs.rmSync(root, { recursive: true, force: true });
     }
+  }
+});
+
+test('incomplete authoring skips the unavailable compiled package and still generates review previews', () => {
+  const value = record('sampleOne', UUID_A, { en: 'Learning outcomes' });
+  const root = setup([value]);
+  const output = path.join(root, '.agent-ci-artifacts');
+  fs.mkdirSync(output);
+  const manifest = { sourceCommit: SOURCE_SHA, generated: [], failures: [] };
+  try {
+    const entries = readEducationStandardSources(root, LANGUAGES);
+    assert.equal(hasCompleteEducationStandardLocales(entries, LANGUAGES), false);
+    generateEducationStandardReviewArtifacts({
+      root, output, languages: ['en', 'uk'], registered: LANGUAGES, manifest,
+      saveManifest: () => {},
+      loadCatalog: () => { throw Error('Partial catalogs must never be imported'); },
+    });
+    assert.equal(manifest.failures.length, 0);
+    assert.deepEqual(manifest.generated.map(item => [item.locale, item.missing, item.reviewReady]), [
+      ['en', 0, true],
+      ['uk', 1, false],
+    ]);
+    const uk = fs.readFileSync(path.join(output, 'education-standards/uk.md'), 'utf8');
+    assert.match(uk, /%%MISSING%%/);
+    assert.equal(fs.existsSync(path.join(output, 'taxonomies')), false);
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
   }
 });
