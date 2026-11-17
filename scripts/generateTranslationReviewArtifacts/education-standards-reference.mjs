@@ -162,8 +162,7 @@ export function readEducationStandardSources(root, registered) {
 
 function sameParams(actual, expected) {
   // Zod orders parsed keys by its schema, not by the authoring source.
-  const entries = value =>
-    Object.entries(value ?? {}).sort(([left], [right]) => left.localeCompare(right));
+  const entries = value => Object.entries(value ?? {}).sort(([left], [right]) => left.localeCompare(right));
   return JSON.stringify(entries(actual)) === JSON.stringify(entries(expected));
 }
 
