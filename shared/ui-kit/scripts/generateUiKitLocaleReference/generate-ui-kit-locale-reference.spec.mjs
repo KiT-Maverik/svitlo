@@ -24,11 +24,16 @@ function fixture(callback) {
       fs.mkdirSync(path.dirname(destination), { recursive: true });
       fs.copyFileSync(path.join(repoRoot, relative), destination);
     }
-    const file = path.join(root, registry);
-    const source = fs.readFileSync(file, 'utf8');
-    assert.match(source, /export const DEFAULT_SUPPORTED_LANGUAGES = \[/);
-    fs.writeFileSync(file, source.replace('export const DEFAULT_SUPPORTED_LANGUAGES = [',
-      "export const DEFAULT_SUPPORTED_LANGUAGES = [\n  { locale: 'it-IT', language: 'it' },"));
+    // Keep the real 30-language registry; make only the copied Italian
+    // UI Kit dictionaries incomplete to exercise strict and draft preview.
+    for (const name of fs.readdirSync(path.join(root, sourceDir)).filter(name =>
+      name.endsWith('.ts') && !['index.ts', 'locale.types.ts'].includes(name))) {
+      const file = path.join(root, sourceDir, name);
+      const source = fs.readFileSync(file, 'utf8');
+      const italian = /^  it,\r?\n/m;
+      assert.match(source, italian, 'Missing Italian entry in fixture: ' + name);
+      fs.writeFileSync(file, source.replace(italian, ''));
+    }
     callback(root);
   } finally {
     fs.rmSync(root, { recursive: true, force: true });
