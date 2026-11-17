@@ -168,7 +168,7 @@ function relativeImport(from, to) {
   return relative;
 }
 /** Static only: never import or execute authored Lesson code. */
-function lessonSourceCoordinates(root, pkg, lessonId, index) {
+function lessonSourceCoordinates(root, pkg, courseId, lessonId, index) {
   const entries = index?.candidates?.filter(x =>
     x.package === pkg && x.lessonId === lessonId && x.status === 'implemented') ?? [];
   if (entries.length !== 1 || index.diagnostics?.some(x => x.entityId === lessonId)) return null;
@@ -186,7 +186,8 @@ function lessonSourceCoordinates(root, pkg, lessonId, index) {
         ts.isIdentifier(d.initializer.expression) && d.initializer.expression.text === 'defineLesson')
         .map(d => d.name.text));
   if (candidates.length !== 1) return null;
-  return { path: entries[0].source, export: candidates[0] };
+  const courseFolder = path.posix.join(pkg, 'data/courses', courseId.at(-1), courseId);
+  return { path: path.posix.relative(courseFolder, entries[0].source), export: candidates[0] };
 }
 /** Generate Course-owned files; no standalone Lesson definition is emitted. */
 export function renderModularCourse(technical, pkg, resolveLesson = () => null) {
@@ -272,7 +273,7 @@ export function renderModularCourse(technical, pkg, resolveLesson = () => null) 
 }
 export function planArtifacts(plan, pkg, root, lessonIndex) {
   const coursePath = pkg + '/data/courses/' + plan.id.at(-1) + '/' + plan.id;
-  const lookup = id => lessonSourceCoordinates(root, pkg, id, lessonIndex);
+  const lookup = id => lessonSourceCoordinates(root, pkg, plan.id, id, lessonIndex);
   const technical = technicalFromEditorial(plan, lookup);
   const drafts = renderModularCourse(technical, pkg, lookup);
   const result = new Map([

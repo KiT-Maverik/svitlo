@@ -94,3 +94,15 @@ test('divergent authored handoffs never get overwritten', () => {
     assert.equal(fs.existsSync(path.join(folder,'index.ts')),false);
   } finally { fs.rmSync(root,{recursive:true,force:true}); }
 });
+
+test('Course-root-relative Lesson import paths preserve standalone Lesson ownership', () => {
+  const technical = technicalFromEditorial(plan, () => ({
+    path: '../../../lessons/c/' + lessonId + '/orbit.data.ts', export: 'orbit_Lesson',
+  }));
+  const drafts = renderModularCourse(technical, 'content/math', () => ({
+    path: '../../../lessons/c/' + lessonId + '/orbit.data.ts', export: 'orbit_Lesson',
+  }));
+  assert.match(drafts.get('index.ts'), /from "\.\.\/\.\.\/\.\.\/lessons\/c\//);
+  assert.match(drafts.get('chapters/first.ts'), /from "\.\.\/\.\.\/\.\.\/\.\.\/lessons\/c\//);
+  assert(!drafts.get('index.ts').includes('defineLesson('));
+});
