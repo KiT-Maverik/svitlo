@@ -251,6 +251,9 @@ jobs:
           if [[ -n "$REQUEST_COMPONENT" ]]; then args+=(--component "$REQUEST_COMPONENT"); fi
           if [[ -n "$REQUEST_LESSON" ]]; then args+=(--lesson "$REQUEST_LESSON"); fi
           node scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.mjs "${args[@]}"
+      - name: Exclude other workflows' diagnostics from this runner-only handoff
+        # Preserve those files on the PR branch; the trusted publisher retains them.
+        run: rm -rf -- .agent-ci-artifacts/lesson-lookup .agent-ci-artifacts/engine-coverage
       - name: Upload isolated CI result for trusted publish job
         uses: actions/upload-artifact@v4
         with:
