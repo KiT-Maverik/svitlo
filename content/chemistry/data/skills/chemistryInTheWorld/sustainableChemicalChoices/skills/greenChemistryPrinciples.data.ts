@@ -31,7 +31,7 @@ export const greenChemistryPrinciples_Skill_Data = defineSkill({
     et: 'Rohelise keemia põhimõtted',
     be: 'Прынцыпы зялёнай хіміі',
     ka: 'მწვანე ქიმიის პრინციპები',
-    kk: 'Жасыл химия қағидалары',
+    kk: 'Jasyl himiia qağidalary',
     qm: 'Yeşil kimya esasları',
   },
   description: {
@@ -65,7 +65,7 @@ export const greenChemistryPrinciples_Skill_Data = defineSkill({
       et: 'Võrdle keemilisi protsesse jäätmete, ohutuse, energiavajaduse ja materjalitõhususe järgi.',
       be: 'Параўноўвай хімічныя працэсы паводле адходаў, бясьпекі, энэргіі й эфэктыўнасьці выкарыстаньня матэрыялаў.',
       ka: 'შეადარე ქიმიური პროცესები ნარჩენების, უსაფრთხოების, ენერგიისა და მასალების ეფექტიანობის მიხედვით.',
-      kk: 'Химиялық процестерді қалдық, қауіпсіздік, энергия және материал тиімділігі бойынша салыстыр.',
+      kk: 'Himiialyq protsesterdı qaldyq, qauıpsızdık, energiia jäne material tiımdılıgı boiynşa salystyr.',
       qm: 'Kimyeviy protsesslerni qaldıq, emniyet, energiya talapı ve material faydalılığına köre teñeştir.',
     },
   },

@@ -31,7 +31,7 @@ export const reactionEnthalpy_Skill_Data = defineSkill({
     et: 'Reaktsioonientalpia',
     be: 'Энтальпія рэакцыі',
     ka: 'რეაქციის ენთალპია',
-    kk: 'Реакция энтальпиясы',
+    kk: 'Reaktsiia entalpiiasy',
     qm: 'Reaktsiya entalpiyası',
   },
   description: {
@@ -64,7 +64,7 @@ export const reactionEnthalpy_Skill_Data = defineSkill({
       et: 'Võrdle energiat enne ja pärast reaktsiooni entalpia muutuse abil.',
       be: 'Параўнай энэргію да і пасьля рэакцыі паводле зьмены энтальпіі.',
       ka: 'შეადარე ენერგია რეაქციამდე და მის შემდეგ ენთალპიის ცვლილებით.',
-      kk: 'Энтальпия өзгерісі бойынша реакцияға дейінгі және кейінгі энергияны салыстыр.',
+      kk: 'Entalpiia özgerısı boiynşa reaktsiiağa deiıngı jäne keiıngı energiiany salystyr.',
       qm: 'Entalpiya deñişüvi boyunca reaktsiyadan evel ve soñ energiyanı teñeştir.',
     },
   },

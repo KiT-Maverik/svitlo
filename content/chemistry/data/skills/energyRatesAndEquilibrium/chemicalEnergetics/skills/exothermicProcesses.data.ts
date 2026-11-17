@@ -31,7 +31,7 @@ export const exothermicProcesses_Skill_Data = defineSkill({
     et: 'Eksotermilised protsessid',
     be: 'Экзатэрмічныя працэсы',
     ka: 'ეგზოთერმული პროცესები',
-    kk: 'Экзотермиялық процестер',
+    kk: 'Ekzotermiialyq protsester',
     qm: 'Isı çıqarğan adiseler',
   },
   description: {
@@ -65,7 +65,7 @@ export const exothermicProcesses_Skill_Data = defineSkill({
       et: 'Tunne ära soojust eraldavad protsessid, eeldamata, et need on kiired.',
       be: 'Распазнавай працэсы з вылучэньнем цяпла, ня лічачы іх абавязкова хуткімі.',
       ka: 'ამოიცანი სითბოს გამომყოფი პროცესები, თუმცა არ ივარაუდო, რომ სწრაფად მიმდინარეობს.',
-      kk: 'Жылу бөлетін процесті таны, бірақ оны міндетті түрде жылдам деп ойлама.',
+      kk: 'Jylu böletın protsestı tany, bıraq ony mındettı türde jyldam dep oilama.',
       qm: 'Isı çıqarğan adiselerni tanı, amma olarnıñ tez olğanını farz etme.',
     },
   },

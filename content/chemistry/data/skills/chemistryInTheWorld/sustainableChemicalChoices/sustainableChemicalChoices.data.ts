@@ -38,7 +38,7 @@ export const sustainableChemicalChoices_SkillGroup_Data = defineSkillGroup({
     et: 'Kestlikud keemilised valikud',
     be: 'Устойлівы выбар у хіміі',
     ka: 'მდგრადი ქიმიური არჩევანი',
-    kk: 'Химиядағы тұрақты таңдау',
+    kk: 'Himiiadağy tūraqty tañdau',
     qm: 'Devamlı kimyeviy saylavlar',
   },
   skills: [
@@ -78,7 +78,7 @@ export const sustainableChemicalChoices_SkillGroup_Data = defineSkillGroup({
       et: 'Kasuta keemilisi tõendeid paremate otsuste tegemiseks materjalide, jäätmete ja ressursside kohta.',
       be: 'Выкарыстоўвай хімічныя доказы для лепшых рашэньняў пра матэрыялы, адходы й рэсурсы.',
       ka: 'გამოიყენე ქიმიური მტკიცებულებები მასალების, ნარჩენებისა და რესურსების შესახებ უკეთესი გადაწყვეტილებებისთვის.',
-      kk: 'Материалдар, қалдықтар мен ресурстар жөніндегі шешімдер үшін химиялық дәлелдерді қолдан.',
+      kk: 'Materialdar, qaldyqtar men resurstar jönındegı şeşımder üşın himiialyq dälelderdı qoldan.',
       qm: 'Materiallar, qaldıqlar ve resurslar aqqında yahşı qararlar içün kimyeviy delillerni qullan.',
     },
   },

@@ -31,7 +31,7 @@ export const entropy_Skill_Data = defineSkill({
     et: 'Entroopia',
     be: 'Энтрапія',
     ka: 'ენტროპია',
-    kk: 'Энтропия',
+    kk: 'Entropiia',
     qm: 'Entropiya',
   },
   description: {
@@ -65,7 +65,7 @@ export const entropy_Skill_Data = defineSkill({
       et: 'Uuri energia hajumise ja osakeste paigutuste seost entroopiaga.',
       be: 'Дасьледуй сувязь расьсейваньня энэргіі й разьмяшчэньня часьцінак з энтрапіяй.',
       ka: 'გამოიკვლიე ენერგიის გაფანტვისა და ნაწილაკთა განლაგების კავშირი ენტროპიასთან.',
-      kk: 'Энергияның таралуы мен бөлшек орналасуының энтропиямен байланысын зертте.',
+      kk: 'Energiianyñ taraluy men bölşek ornalasuynyñ entropiiamen bailanysyn zertte.',
       qm: 'Energiyanıñ yayılmasını ve zerreler tertibiniñ entropiyağa bağını araştır.',
     },
   },

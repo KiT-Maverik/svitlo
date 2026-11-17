@@ -31,7 +31,7 @@ export const hesssLaw_Skill_Data = defineSkill({
     et: 'Hessi seadus',
     be: 'Закон Геса',
     ka: 'ჰესის კანონი',
-    kk: 'Гесс заңы',
+    kk: 'Gess zañy',
     qm: 'Gess qanunı',
   },
   description: {
@@ -65,7 +65,7 @@ export const hesssLaw_Skill_Data = defineSkill({
       et: 'Ühenda teadaolevaid reaktsioonide entalpiamuutusi, et arvutada teise reaktsiooni entalpiamuutus.',
       be: 'Аб’ядноўвай вядомыя зьмены энэргіі рэакцыяў для разьліку энтальпіі іншай рэакцыі.',
       ka: 'გააერთიანე ცნობილი რეაქციების ენერგიის ცვლილებები სხვა რეაქციის ენთალპიის გამოსათვლელად.',
-      kk: 'Белгілі реакциялардың энергия өзгерісін біріктіріп, басқа реакция энтальпиясын есепте.',
+      kk: 'Belgılı reaktsiialardyñ energiia özgerısın bırıktırıp, basqa reaktsiia entalpiiasyn esepte.',
       qm: 'Bilingen reaktsiya energiyası deñişüvlerini birleştirip başqa reaktsiyanıñ entalpiyasını esapla.',
     },
   },

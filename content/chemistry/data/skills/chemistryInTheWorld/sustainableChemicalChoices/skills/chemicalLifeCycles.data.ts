@@ -31,7 +31,7 @@ export const chemicalLifeCycles_Skill_Data = defineSkill({
     et: 'Keemiliste ainete olelusringid',
     be: 'Жыцьцёвы цыкль хімічных рэчываў',
     ka: 'ქიმიური ნივთიერებების სასიცოცხლო ციკლები',
-    kk: 'Химиялық заттардың өмірлік циклдері',
+    kk: 'Himiialyq zattardyñ ömırlık tsiklderı',
     qm: 'Kimyeviy maddelerniñ ömür devri',
   },
   description: {
@@ -65,7 +65,7 @@ export const chemicalLifeCycles_Skill_Data = defineSkill({
       et: 'Jälgi ainet tootmisest kasutuse ja jäätmeteni, mitte üksnes ühte etappi.',
       be: 'Прасачы шлях рэчыва ад вытворчасьці праз выкарыстаньне да адходаў, а ня толькі адзін этап.',
       ka: 'თვალი ადევნე ნივთიერებას წარმოებიდან გამოყენებამდე და ნარჩენად ქცევამდე, არა მხოლოდ ერთ ეტაპს.',
-      kk: 'Заттың өндірістен пайдалану мен қалдыққа дейінгі жолын бір кезеңмен шектелмей қадағала.',
+      kk: 'Zattyñ öndırısten paidalanu men qaldyqqa deiıngı jolyn bır kezeñmen şektelmei qadağala.',
       qm: 'Madde yolunı işlep çıqaruvdan qullanuv ve qaldıqlarğa qadar izle, tek bir meraleni degil.',
     },
   },

@@ -31,7 +31,7 @@ export const recyclingChemistry_Skill_Data = defineSkill({
     et: 'Ringlussevõtu keemia',
     be: 'Хімія перапрацоўкі',
     ka: 'გადამუშავების ქიმია',
-    kk: 'Қайта өңдеу химиясы',
+    kk: 'Qaita öñdeu himiiasy',
     qm: 'Qayta işlev kimyası',
   },
   description: {
@@ -65,7 +65,7 @@ export const recyclingChemistry_Skill_Data = defineSkill({
       et: 'Uuri, kuidas materjalide koostis mõjutab ringlussevõttu ja taaskasutusse suunamist.',
       be: 'Дасьледуй, як склад матэрыялу ўплывае на яго перапрацоўку й аднаўленьне рэсурсаў.',
       ka: 'შეისწავლე, როგორ მოქმედებს მასალის შემადგენლობა გადამუშავებასა და აღდგენაზე.',
-      kk: 'Материалдың құрамы қайта өңдеу мен қалпына келтіруге қалай әсер ететінін зертте.',
+      kk: 'Materialdyñ qūramy qaita öñdeu men qalpyna keltıruge qalai äser etetının zertte.',
       qm: 'Materialnıñ terkibi qayta işlev ve qaytarıp aluvğa nasıl tesir etkenini araştır.',
     },
   },

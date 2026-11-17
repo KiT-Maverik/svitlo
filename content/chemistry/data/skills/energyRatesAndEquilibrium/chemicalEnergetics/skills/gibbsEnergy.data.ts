@@ -31,7 +31,7 @@ export const gibbsEnergy_Skill_Data = defineSkill({
     et: 'Gibbsi energia',
     be: 'Энэргія Гібса',
     ka: 'გიბსის ენერგია',
-    kk: 'Гиббс энергиясы',
+    kk: 'Gibbs energiiasy',
     qm: 'Gibbs energiyası',
   },
   description: {
@@ -65,7 +65,7 @@ export const gibbsEnergy_Skill_Data = defineSkill({
       et: 'Kasuta Gibbsi energiat, et otsustada, kas keemiline muutus on antud tingimustel soodne.',
       be: 'Карыстайся энэргіяй Гібса, каб вызначыць спрыяльнасьць зьмены пры зададзеных умовах.',
       ka: 'გიბსის ენერგიით შეაფასე, რამდენად ხელსაყრელია ქიმიური ცვლილება მოცემულ პირობებში.',
-      kk: 'Белгілі жағдайда химиялық өзгеріс тиімді ме, Гиббс энергиясымен бағала.',
+      kk: 'Belgılı jağdaida himiialyq özgerıs tiımdı me, Gibbs energiiasymen bağala.',
       qm: 'Belli şaraitte kimyeviy deñişüv uygunmı, Gibbs energiyasınen baala.',
     },
   },

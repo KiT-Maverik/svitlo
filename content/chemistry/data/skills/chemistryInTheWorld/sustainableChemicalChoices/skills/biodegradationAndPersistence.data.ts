@@ -31,7 +31,7 @@ export const biodegradationAndPersistence_Skill_Data = defineSkill({
     et: 'Biolagunemine ja püsivus',
     be: 'Біяраскладаньне й устойлівасьць рэчываў',
     ka: 'ბიოდეგრადაცია და მდგრადობა',
-    kk: 'Биологиялық ыдырау және тұрақтылық',
+    kk: 'Biologiialyq ydyrau jäne tūraqtylyq',
     qm: 'Biologik parçalanma ve devamlılıq',
   },
   description: {
@@ -65,7 +65,7 @@ export const biodegradationAndPersistence_Skill_Data = defineSkill({
       et: 'Mõista, millal ained keskkonnas lagunevad ja millal need püsima jäävad.',
       be: 'Зразумей, калі рэчывы раскладаюцца ў навакольлі, а калі застаюцца надоўга.',
       ka: 'გაიგე, როდის იშლება ნივთიერებები გარემოში და როდის რჩება ისინი დიდხანს.',
-      kk: 'Заттар қоршаған ортада қашан ыдырап, қашан ұзақ сақталатынын түсін.',
+      kk: 'Zattar qorşağan ortada qaşan ydyrap, qaşan ūzaq saqtalatynyn tüsın.',
       qm: 'Maddeler çevrede ne zaman parçalanğanını, ne zaman uzun müddet qalğanını añla.',
     },
   },

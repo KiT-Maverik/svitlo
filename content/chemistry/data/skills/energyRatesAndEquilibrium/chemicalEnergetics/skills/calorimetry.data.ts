@@ -31,7 +31,7 @@ export const calorimetry_Skill_Data = defineSkill({
     et: 'Kalorimeetria',
     be: 'Калярымэтрыя',
     ka: 'კალორიმეტრია',
-    kk: 'Калориметрия',
+    kk: 'Kalorimetriia',
     qm: 'Kalorimetriya',
   },
   description: {
@@ -65,7 +65,7 @@ export const calorimetry_Skill_Data = defineSkill({
       et: 'Hinda soojusülekannet temperatuurimuutuse põhjal, arvestades soojuskadu.',
       be: 'Ацэньвай цеплаперадачу паводле зьмены тэмпэратуры, улічваючы страты цяпла.',
       ka: 'შეაფასე სითბოს გადაცემა ტემპერატურის ცვლილებით, სითბოს დანაკარგის გათვალისწინებით.',
-      kk: 'Жылу шығынын ескеріп, температура өзгерісінен жылу алмасуды бағала.',
+      kk: 'Jylu şyğynyn eskerıp, temperatura özgerısınen jylu almasudy bağala.',
       qm: 'Isı coyuvnı da esapqa alıp, sıcaqlıq deñişüvinden ısı keçüvini baala.',
     },
   },

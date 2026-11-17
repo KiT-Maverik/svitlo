@@ -31,7 +31,7 @@ export const bondEnergyEstimates_Skill_Data = defineSkill({
     et: 'Sidemeenergia hinnangud',
     be: 'Ацэнкі энэргіі сувязяў',
     ka: 'ბმის ენერგიის შეფასება',
-    kk: 'Байланыс энергиясын бағалау',
+    kk: 'Bailanys energiiasyn bağalau',
     qm: 'Bağ energiyası esapları',
   },
   description: {
@@ -65,7 +65,7 @@ export const bondEnergyEstimates_Skill_Data = defineSkill({
       et: 'Hinda reaktsioonienergiat katkevate ja tekkivate sidemete abil, arvestades mudeli piire.',
       be: 'Ацэньвай энэргію паводле разарваных і ўтвораных сувязяў, улічваючы абмежаваньні мадэлі.',
       ka: 'შეაფასე რეაქციის ენერგია გაწყვეტილი და წარმოქმნილი ბმებით, მოდელის შეზღუდვებით.',
-      kk: 'Үзілген және түзілген байланыстардан реакция энергиясын болжап, модель шегін ескер.',
+      kk: 'Üzılgen jäne tüzılgen bailanystardan reaktsiia energiiasyn boljap, model şegın esker.',
       qm: 'Üzülgen ve peyda olğan bağlardan reaktsiya energiyasını baala, modelniñ sınırlarını tanı.',
     },
   },

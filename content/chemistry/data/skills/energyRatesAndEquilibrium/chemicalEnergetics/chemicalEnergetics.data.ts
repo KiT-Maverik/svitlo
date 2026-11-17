@@ -42,7 +42,7 @@ export const chemicalEnergetics_SkillGroup_Data = defineSkillGroup({
     et: 'Keemiline energeetika',
     be: 'Хімічная энэргетыка',
     ka: 'ქიმიური ენერგეტიკა',
-    kk: 'Химиялық энергетика',
+    kk: 'Himiialyq energetika',
     qm: 'Kimyeviy energetika',
   },
   skills: [
@@ -86,7 +86,7 @@ export const chemicalEnergetics_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri, kuidas energia keemiliste muutuste ajal neeldub, eraldub või ümber jaotub.',
       be: 'Даведайся, як энэргія паглынаецца, вылучаецца ці пераразьмяркоўваецца пры хімічных зьменах.',
       ka: 'გაიგე, როგორ შთაინთქმება, გამოიყოფა ან გადანაწილდება ენერგია ქიმიურ ცვლილებებში.',
-      kk: 'Химиялық өзгерістерде энергияның қалай жұтылып, бөлініп не қайта таралатынын біл.',
+      kk: 'Himiialyq özgerısterde energiianyñ qalai jūtylyp, bölınıp ne qaita taralatynyn bıl.',
       qm: 'Kimyeviy deñişüvde energiya nasıl siñdirilgeni, çıqarılğanı ya da qayta bölüngenini ögren.',
     },
   },

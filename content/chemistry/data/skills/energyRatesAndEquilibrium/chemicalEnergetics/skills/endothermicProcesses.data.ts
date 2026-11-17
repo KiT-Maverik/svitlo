@@ -31,7 +31,7 @@ export const endothermicProcesses_Skill_Data = defineSkill({
     et: 'Endotermilised protsessid',
     be: 'Эндатэрмічныя працэсы',
     ka: 'ენდოთერმული პროცესები',
-    kk: 'Эндотермиялық процестер',
+    kk: 'Endotermiialyq protsester',
     qm: 'Isı siñdirgen adiseler',
   },
   description: {
@@ -65,7 +65,7 @@ export const endothermicProcesses_Skill_Data = defineSkill({
       et: 'Tunne ära soojust neelavad protsessid, eeldamata, et need ei saa toimuda.',
       be: 'Распазнавай працэсы з паглынаньнем цяпла, ня лічачы іх немагчымымі.',
       ka: 'ამოიცანი სითბოს შთანმთქმელი პროცესები, თუმცა არ ჩათვალო, რომ ვერ მიმდინარეობს.',
-      kk: 'Жылу жұтатын процесті таны, бірақ ол жүрмейді деп ойлама.',
+      kk: 'Jylu jūtatyn protsestı tany, bıraq ol jürmeidı dep oilama.',
       qm: 'Isı siñdirgen adiselerni tanı, amma olarnıñ olamayacağını farz etme.',
     },
   },
