@@ -31,7 +31,7 @@ export const condensation_Skill_Data = defineSkill({
     et: 'Kondenseerumine',
     be: 'Кандэнсацыя',
     ka: 'კონდენსაცია',
-    kk: 'Конденсация',
+    kk: 'Kondensatsiia',
     qm: 'Yoğunlaşuv',
   },
   description: {
@@ -65,7 +65,7 @@ export const condensation_Skill_Data = defineSkill({
       et: 'Mõista, miks aur võib uuesti vedeliku tilkadeks muutuda.',
       be: 'Зразумей, чаму пара можа зноў ператварыцца ў кроплі вадкасьці.',
       ka: 'გაიგე, რატომ შეიძლება ორთქლი კვლავ სითხის წვეთებად იქცეს.',
-      kk: 'Будың қайтадан сұйық тамшыларға неге айналатынын түсін.',
+      kk: 'Budyñ qaitadan sūiyq tamşylarğa nege ainalatynyn tüsın.',
       qm: 'Buhar ne içün qaytadan suyluq tamçılarğa aylana bilgenini añla.',
     },
   },

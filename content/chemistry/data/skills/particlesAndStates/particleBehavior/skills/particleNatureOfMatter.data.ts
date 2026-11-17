@@ -31,7 +31,7 @@ export const particleNatureOfMatter_Skill_Data = defineSkill({
     et: 'Aine osakseline ehitus',
     be: 'Часьцінкавая будова рэчыва',
     ka: 'ნივთიერების ნაწილაკური ბუნება',
-    kk: 'Заттың бөлшектік табиғаты',
+    kk: 'Zattyñ bölşektık tabiğaty',
     qm: 'Maddeniñ parçacıqlı tabiatı',
   },
   description: {
@@ -65,7 +65,7 @@ export const particleNatureOfMatter_Skill_Data = defineSkill({
       et: 'Selgita, miks pidevana näiv proov koosneb paljudest tillukestest osakestest.',
       be: 'Растлумач, чаму на выгляд суцэльны ўзор складаецца зь мноства дробных часьцінак.',
       ka: 'ახსენი, რატომ შედგება უწყვეტად მოჩანე ნიმუში უამრავი პატარა ნაწილაკისგან.',
-      kk: 'Тұтас көрінетін үлгі неге көптеген ұсақ бөлшектерден тұратынын түсіндір.',
+      kk: 'Tūtas körınetın ülgı nege köptegen ūsaq bölşekterden tūratynyn tüsındır.',
       qm: 'Bir bütün körüngen numune ne içün pek çoq kiçik parçacıqdan ibaret olğanını añlat.',
     },
   },

@@ -31,7 +31,7 @@ export const particleMotion_Skill_Data = defineSkill({
     et: 'Osakeste liikumine',
     be: 'Рух часьцінак',
     ka: 'ნაწილაკების მოძრაობა',
-    kk: 'Бөлшектер қозғалысы',
+    kk: 'Bölşekter qozğalysy',
     qm: 'Parçacıqlarnıñ areketi',
   },
   description: {
@@ -64,7 +64,7 @@ export const particleMotion_Skill_Data = defineSkill({
       et: 'Seo osakeste liikumine levimise, segunemise ja temperatuurimuutustega.',
       be: 'Зьвязвай рух часьцінак з распаўсюджваньнем, зьмешваньнем і зьменамі тэмпэратуры.',
       ka: 'დააკავშირე ნაწილაკების მოძრაობა გავრცელებასთან, შერევასთან და ტემპერატურის ცვლილებასთან.',
-      kk: 'Бөлшектер қозғалысын таралу, араласу және температура өзгерістерімен байланыстыр.',
+      kk: 'Bölşekter qozğalysyn taralu, aralasu jäne temperatura özgerısterımen bailanystyr.',
       qm: 'Parçacıqlarnıñ areketini yayılma, qarışma ve araret deñişüvlerinen bağla.',
     },
   },

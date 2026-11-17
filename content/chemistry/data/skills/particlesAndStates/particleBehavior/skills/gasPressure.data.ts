@@ -31,7 +31,7 @@ export const gasPressure_Skill_Data = defineSkill({
     et: 'Gaasi rõhk',
     be: 'Ціск газу',
     ka: 'აირის წნევა',
-    kk: 'Газ қысымы',
+    kk: 'Gaz qysymy',
     qm: 'Gaz basımı',
   },
   description: {
@@ -64,7 +64,7 @@ export const gasPressure_Skill_Data = defineSkill({
       et: 'Uuri, kuidas gaasiosakeste põrked pindadega tekitavad rõhu.',
       be: 'Даведайся, як сутыкненьні часьцінак газу з паверхнямі ствараюць ціск.',
       ka: 'გაიგე, როგორ წარმოქმნის აირის ნაწილაკების ზედაპირთან შეჯახება წნევას.',
-      kk: 'Газ бөлшектерінің бетке соқтығысуы қысымды қалай тудыратынын біл.',
+      kk: 'Gaz bölşekterınıñ betke soqtyğysuy qysymdy qalai tudyratynyn bıl.',
       qm: 'Gaz parçacıqları yüzge çarpqanda basım nasıl meydanğa kelgenini ögren.',
     },
   },

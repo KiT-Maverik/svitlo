@@ -43,7 +43,7 @@ export const particleBehavior_SkillGroup_Data = defineSkillGroup({
     et: 'Osakeste käitumine',
     be: 'Паводзіны часьцінак',
     ka: 'ნაწილაკების ქცევა',
-    kk: 'Бөлшектердің мінез-құлқы',
+    kk: 'Bölşekterdıñ mınez-qūlqy',
     qm: 'Parçacıqlarnıñ davranışı',
   },
   skills: [
@@ -88,7 +88,7 @@ export const particleBehavior_SkillGroup_Data = defineSkillGroup({
       et: 'Saa teada, kuidas tillukesed osakesed liiguvad, üksteist mõjutavad ja meid ümbritsevaid aineid moodustavad.',
       be: 'Даведайся, як малюсенькія часьцінкі рухаюцца, узаемадзейнічаюць і ўтвараюць рэчывы навокал.',
       ka: 'გაიგე, როგორ მოძრაობენ და ურთიერთქმედებენ პატარა ნაწილაკები და ქმნიან ნივთიერებებს.',
-      kk: 'Ұсақ бөлшектердің қозғалып, өзара әсерлесіп, айналамыздағы заттарды қалай құрайтынын біл.',
+      kk: 'Ūsaq bölşekterdıñ qozğalyp, özara äserlesıp, ainalamyzdağy zattardy qalai qūraitynyn bıl.',
       qm: 'Kiçik parçacıqlar nasıl areket etkenini, bir-birinen tesirleşkenini ve etraftaki maddelerni nasıl teşkil etkenini ögren.',
     },
   },

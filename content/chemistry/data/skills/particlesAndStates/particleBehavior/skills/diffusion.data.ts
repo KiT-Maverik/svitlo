@@ -31,7 +31,7 @@ export const diffusion_Skill_Data = defineSkill({
     et: 'Difusioon',
     be: 'Дыфузія',
     ka: 'დიფუზია',
-    kk: 'Диффузия',
+    kk: 'Diffuziia',
     qm: 'Diffuziya',
   },
   description: {
@@ -64,7 +64,7 @@ export const diffusion_Skill_Data = defineSkill({
       et: 'Selgita, miks osakesed levivad kokkuvõttes suurema kontsentratsiooniga piirkonnast väiksemasse.',
       be: 'Растлумач, чаму часьцінкі ў цэлым распаўсюджваюцца з большай канцэнтрацыі да меншай.',
       ka: 'ახსენი, რატომ ვრცელდება ნაწილაკები მთლიანობაში მაღალი კონცენტრაციიდან დაბლისკენ.',
-      kk: 'Бөлшектердің жалпы алғанда жоғары концентрациядан төменге неге таралатынын түсіндір.',
+      kk: 'Bölşekterdıñ jalpy alğanda joğary kontsentratsiiadan tömenge nege taralatynyn tüsındır.',
       qm: 'Parçacıqlar umumiy olaraq yüksek kontsentratsiyadan aşağı kontsentratsiyağa ne içün yayılğanını añlat.',
     },
   },

@@ -31,7 +31,7 @@ export const gasPressureVolumeRelationship_Skill_Data = defineSkill({
     et: 'Gaasi rõhu ja ruumala seos',
     be: 'Залежнасьць ціску газу ад аб’ёму',
     ka: 'აირის წნევისა და მოცულობის კავშირი',
-    kk: 'Газ қысымы мен көлемінің байланысы',
+    kk: 'Gaz qysymy men kölemınıñ bailanysy',
     qm: 'Gaz basımı ve acim bağlılığı',
   },
   description: {
@@ -65,7 +65,7 @@ export const gasPressureVolumeRelationship_Skill_Data = defineSkill({
       et: 'Uuri, kuidas ruumala muutus mõjutab gaasi rõhku püsival temperatuuril.',
       be: 'Дасьледуй, як зьмена аб’ёму ўплывае на ціск газу пры сталай тэмпэратуры.',
       ka: 'გამოიკვლიე, როგორ მოქმედებს მოცულობის ცვლილება აირის წნევაზე მუდმივი ტემპერატურისას.',
-      kk: 'Температура тұрақты болғанда көлем өзгерісі газ қысымына қалай әсер ететінін зертте.',
+      kk: 'Temperatura tūraqty bolğanda kölem özgerısı gaz qysymyna qalai äser etetının zertte.',
       qm: 'Araret deñişmegeninde acim deñişüvi gaz basımına nasıl tesir etkenini ögren.',
     },
   },

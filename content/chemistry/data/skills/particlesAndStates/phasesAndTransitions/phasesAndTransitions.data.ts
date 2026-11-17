@@ -43,7 +43,7 @@ export const phasesAndTransitions_SkillGroup_Data = defineSkillGroup({
     et: 'Faasid ja faasisiirded',
     be: 'Станы і фазавыя пераходы',
     ka: 'ფაზები და გადასვლები',
-    kk: 'Фазалар және фазалық ауысулар',
+    kk: 'Fazalar jäne fazalyq auysular',
     qm: 'Fazalar ve keçişler',
   },
   skills: [
@@ -88,7 +88,7 @@ export const phasesAndTransitions_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri, mis juhtub osakestega, kui aine muutub tahkeks, vedelaks või gaasiliseks.',
       be: 'Даведайся, што адбываецца з часьцінкамі, калі рэчыва пераходзіць паміж цьвёрдым, вадкім і газападобным станамі.',
       ka: 'გაიგე, რა ემართებათ ნაწილაკებს ნივთიერების მყარ, თხევად და აირად მდგომარეობებს შორის გადასვლისას.',
-      kk: 'Зат қатты, сұйық және газ күйлері арасында ауысқанда бөлшектерге не болатынын біл.',
+      kk: 'Zat qatty, sūiyq jäne gaz küilerı arasynda auysqanda bölşekterge ne bolatynyn bıl.',
       qm: 'Madde qattı, suyluq ve gaz alları arasında deñişkende parçacıqlarğa ne olğanını ögren.',
     },
   },

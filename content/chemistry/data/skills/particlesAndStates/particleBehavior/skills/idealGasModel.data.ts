@@ -31,7 +31,7 @@ export const idealGasModel_Skill_Data = defineSkill({
     et: 'Ideaalse gaasi mudel',
     be: 'Мадэль ідэальнага газу',
     ka: 'იდეალური აირის მოდელი',
-    kk: 'Идеал газ моделі',
+    kk: 'İdeal gaz modelı',
     qm: 'İdeal gaz modeli',
   },
   description: {
@@ -65,7 +65,7 @@ export const idealGasModel_Skill_Data = defineSkill({
       et: 'Kasuta ideaalse gaasi mudelit ning mõista, millal see muutub ebatäpseks.',
       be: 'Выкарыстоўвай мадэль ідэальнага газу, разумеючы, калі яна становіцца недакладнай.',
       ka: 'გამოიყენე იდეალური აირის მოდელი და იცოდე, როდის ხდება იგი არაზუსტი.',
-      kk: 'Идеал газ моделін қолдана отырып, оның қай жағдайда дәл болмайтынын біл.',
+      kk: 'İdeal gaz modelın qoldana otyryp, onyñ qai jağdaida däl bolmaitynyn bıl.',
       qm: 'İdeal gaz modelini qullan, amma onıñ qaysı şaraitte yañlış netice bergenini de añla.',
     },
   },

@@ -31,7 +31,7 @@ export const substitutionReactions_Skill_Data = defineSkill({
     et: 'Asendusreaktsioonid',
     be: 'Рэакцыі замяшчэньня',
     ka: 'ჩანაცვლების რეაქციები',
-    kk: 'Орынбасу реакциялары',
+    kk: 'Orynbasu reaktsiialary',
     qm: 'Yerini alma reaktsiyaları',
   },
   description: {
@@ -64,7 +64,7 @@ export const substitutionReactions_Skill_Data = defineSkill({
       et: 'Tunne ära reaktsioonid, milles orgaanilise molekuli aatom või rühm asendatakse teisega.',
       be: 'Распазнавай рэакцыі, у якіх атам або група ў арганічнай малекуле замяняюцца іншымі.',
       ka: 'ამოიცანი რეაქციები, როცა ორგანულ მოლეკულაში ატომი ან ჯგუფი სხვით იცვლება.',
-      kk: 'Органикалық молекулада атом не топ басқа атоммен немесе топпен алмасатын реакцияларды таны.',
+      kk: 'Organikalyq molekulada atom ne top basqa atommen nemese toppen almasatyn reaktsiialardy tany.',
       qm: 'Organik molekulada bir atom ya da topar başqasınen deñişken reaktsiyalarnı tanı.',
     },
   },

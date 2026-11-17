@@ -31,7 +31,7 @@ export const gasVolumeAmountRelationship_Skill_Data = defineSkill({
     et: 'Gaasi ruumala ja ainehulga seos',
     be: 'Залежнасьць аб’ёму газу ад колькасьці рэчыва',
     ka: 'აირის მოცულობისა და ნივთიერების რაოდენობის კავშირი',
-    kk: 'Газ көлемі мен зат мөлшерінің байланысы',
+    kk: 'Gaz kölemı men zat mölşerınıñ bailanysy',
     qm: 'Gaz acimi ve madde miqdarı bağlılığı',
   },
   description: {
@@ -65,7 +65,7 @@ export const gasVolumeAmountRelationship_Skill_Data = defineSkill({
       et: 'Seo gaasi ruumala ainehulgaga püsival temperatuuril ja rõhul.',
       be: 'Зьвязвай аб’ём газу з колькасьцю рэчыва пры сталых тэмпэратуры й ціску.',
       ka: 'დააკავშირე აირის მოცულობა ნივთიერების რაოდენობასთან მუდმივი ტემპერატურისა და წნევისას.',
-      kk: 'Температура мен қысым тұрақты кезде газ көлемін зат мөлшерімен байланыстыр.',
+      kk: 'Temperatura men qysym tūraqty kezde gaz kölemın zat mölşerımen bailanystyr.',
       qm: 'Araret ve basım deñişmegeninde gaz acimini madde miqdarına bağla.',
     },
   },

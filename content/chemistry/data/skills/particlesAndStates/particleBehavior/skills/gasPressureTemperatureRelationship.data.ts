@@ -31,7 +31,7 @@ export const gasPressureTemperatureRelationship_Skill_Data = defineSkill({
     et: 'Gaasi rõhu ja temperatuuri seos',
     be: 'Залежнасьць ціску газу ад тэмпэратуры',
     ka: 'აირის წნევისა და ტემპერატურის კავშირი',
-    kk: 'Газ қысымы мен температурасының байланысы',
+    kk: 'Gaz qysymy men temperaturasynyñ bailanysy',
     qm: 'Gaz basımı ve araret bağlılığı',
   },
   description: {
@@ -65,7 +65,7 @@ export const gasPressureTemperatureRelationship_Skill_Data = defineSkill({
       et: 'Uuri, kuidas püsiva ruumalaga gaasi soojendamine muudab selle rõhku.',
       be: 'Дасьледуй, як награваньне газу пры сталым аб’ёме зьмяняе ягоны ціск.',
       ka: 'გამოიკვლიე, როგორ ცვლის აირის გაცხელება მუდმივ მოცულობაში მის წნევას.',
-      kk: 'Көлемі тұрақты ыдыстағы газды қыздыру оның қысымын қалай өзгертетінін біл.',
+      kk: 'Kölemı tūraqty ydystağy gazdy qyzdyru onyñ qysymyn qalai özgertetının bıl.',
       qm: 'Acim deñişmegeninde gaznı qızdırmaq basımnı nasıl deñiştirgenini ögren.',
     },
   },

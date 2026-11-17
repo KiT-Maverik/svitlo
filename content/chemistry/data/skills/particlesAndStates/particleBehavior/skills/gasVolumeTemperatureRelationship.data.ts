@@ -31,7 +31,7 @@ export const gasVolumeTemperatureRelationship_Skill_Data = defineSkill({
     et: 'Gaasi ruumala ja temperatuuri seos',
     be: 'Залежнасьць аб’ёму газу ад тэмпэратуры',
     ka: 'აირის მოცულობისა და ტემპერატურის კავშირი',
-    kk: 'Газ көлемі мен температурасының байланысы',
+    kk: 'Gaz kölemı men temperaturasynyñ bailanysy',
     qm: 'Gaz acimi ve araret bağlılığı',
   },
   description: {
@@ -65,7 +65,7 @@ export const gasVolumeTemperatureRelationship_Skill_Data = defineSkill({
       et: 'Seo gaasi ruumala absoluutse temperatuuriga püsival rõhul.',
       be: 'Зьвязвай аб’ём газу з абсалютнай тэмпэратурай пры сталым ціску.',
       ka: 'დააკავშირე აირის მოცულობა აბსოლუტურ ტემპერატურასთან მუდმივი წნევისას.',
-      kk: 'Қысым тұрақты кезде газ көлемін абсолют температурамен байланыстыр.',
+      kk: 'Qysym tūraqty kezde gaz kölemın absoliut temperaturamen bailanystyr.',
       qm: 'Basım deñişmegeninde gaz acimini mutlaq araretke bağla.',
     },
   },
