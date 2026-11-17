@@ -39,7 +39,7 @@ export const planetaryClasses_SkillGroup_Data = defineSkillGroup({
     et: 'Planetaarsete kehade klassid',
     be: 'Клясы плянэтных целаў',
     ka: 'პლანეტური სხეულების კლასები',
-    kk: 'Ғаламшар денелерінің кластары',
+    kk: 'Ğalamşar denelerınıñ klastary',
     qm: 'Seyyare cisimleriniñ sınıfları',
   },
   skills: [
@@ -80,7 +80,7 @@ export const planetaryClasses_SkillGroup_Data = defineSkillGroup({
       et: 'Võrdle kiviseid maailmu, hiidplaneete, kuusid ja teisi planetaarseid kehi.',
       be: 'Параўноўвайце камяністыя сьветы, плянэты-гіганты, спадарожнікі ды іншыя плянэтныя целы.',
       ka: 'შეადარეთ კლდოვანი სამყაროები, გიგანტური პლანეტები, თანამგზავრები და სხვა პლანეტური სხეულები.',
-      kk: 'Тасты әлемдерді, алып ғаламшарларды, серіктерді және өзге ғаламшар денелерін салыстырыңыз.',
+      kk: 'Tasty älemderdı, alyp ğalamşarlardy, serıkterdı jäne özge ğalamşar denelerın salystyryñyz.',
       qm: 'Taşlı dünyalarnı, dev seyyarelerni, aylarnı ve başqa seyyare cisimlerini qıyaslañız.',
     },
   },

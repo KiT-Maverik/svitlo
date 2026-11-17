@@ -31,7 +31,7 @@ export const waterAndIceBeyondEarth_Skill_Data = defineSkill({
     et: 'Vesi ja jää väljaspool Maad',
     be: 'Вада і лёд па-за Зямлёй',
     ka: 'წყალი და ყინული დედამიწის მიღმა',
-    kk: 'Жерден тыс су мен мұз',
+    kk: 'Jerden tys su men mūz',
     qm: 'Yer yüzünden tış suv ve buz',
   },
   description: {
@@ -64,7 +64,7 @@ export const waterAndIceBeyondEarth_Skill_Data = defineSkill({
       et: 'Uuri, kus teistel taevakehadel võib leiduda vett ja jääd.',
       be: 'Дасьледуйце, дзе на іншых нябесных целах могуць існаваць вада і лёд.',
       ka: 'გამოიკვლიეთ, სად შეიძლება არსებობდეს წყალი და ყინული სხვა ციურ სხეულებზე.',
-      kk: 'Басқа ғарыш денелерінде су мен мұз қай жерде болуы мүмкін екенін зерттеңіз.',
+      kk: 'Basqa ğaryş denelerınde su men mūz qai jerde boluy mümkın ekenın zertteñız.',
       qm: 'Başqa kök cisimlerinde suv ve buznıñ qayda bulunğanını tetqiq etiñiz.',
     },
   },

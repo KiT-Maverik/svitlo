@@ -36,7 +36,7 @@ export const planetaryScience_SkillDomain_Data = defineSkillDomain({
     et: 'Planeediteadus',
     be: 'Плянэталёгія',
     ka: 'პლანეტოლოგია',
-    kk: 'Планетология',
+    kk: 'Planetologiia',
     qm: 'Seyyareler ilimi',
   },
   groups: [
@@ -76,7 +76,7 @@ export const planetaryScience_SkillDomain_Data = defineSkillDomain({
       et: 'Uuri, millest eri maailmad koosnevad ning kuidas toimivad nende pinnad, atmosfäärid ja siseehitus.',
       be: 'Дасьледуйце, з чаго складаюцца розныя сьветы і як уладкаваныя іх паверхні, атмасфэры і нетры.',
       ka: 'შეისწავლეთ, რისგან შედგება სხვადასხვა ციური სამყარო და როგორ მოქმედებს მათი ზედაპირები, ატმოსფეროები და შიდა ფენები.',
-      kk: 'Әртүрлі ғаламшарлар мен серіктердің неден тұратынын және олардың беті, атмосферасы мен ішкі қабаттары қалай жұмыс істейтінін зерттеңіз.',
+      kk: 'Ärtürlı ğalamşarlar men serıkterdıñ neden tūratynyn jäne olardyñ betı, atmosferasy men ışkı qabattary qalai jūmys ısteitının zertteñız.',
       qm: 'Çeşitli seyyareler ve başqa kök cisimleri nelerden ibaret olğanını, olarnıñ yüzleri, atmosferaları ve içki qatları nasıl işlegenini ögreniñiz.',
     },
   },

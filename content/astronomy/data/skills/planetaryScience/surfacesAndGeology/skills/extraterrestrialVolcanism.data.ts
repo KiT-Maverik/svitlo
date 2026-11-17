@@ -31,7 +31,7 @@ export const extraterrestrialVolcanism_Skill_Data = defineSkill({
     et: 'Maaväline vulkanism',
     be: 'Пазаземны вульканізм',
     ka: 'არამიწიერი ვულკანიზმი',
-    kk: 'Жерден тыс жанартау әрекеті',
+    kk: 'Jerden tys janartau äreketı',
     qm: 'Yer yüzünden tış vulkanizm',
   },
   description: {
@@ -64,7 +64,7 @@ export const extraterrestrialVolcanism_Skill_Data = defineSkill({
       et: 'Otsi vulkaanide jälgi maailmadelt väljaspool Maad.',
       be: 'Шукайце прыкметы вульканічнай дзейнасьці на нябесных целах па-за Зямлёй.',
       ka: 'მოძებნეთ ვულკანების ნიშნები დედამიწის მიღმა მდებარე ციურ სხეულებზე.',
-      kk: 'Жерден басқа аспан денелеріндегі жанартаулардың белгілерін іздеңіз.',
+      kk: 'Jerden basqa aspan denelerındegı janartaulardyñ belgılerın ızdeñız.',
       qm: 'Yer yüzünden başqa kök cisimlerinde vulkanlarnıñ izlerini qıdırıñız.',
     },
   },

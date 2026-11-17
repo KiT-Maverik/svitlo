@@ -31,7 +31,7 @@ export const giantPlanets_Skill_Data = defineSkill({
     et: 'Hiidplaneedid',
     be: 'Плянэты-гіганты',
     ka: 'გიგანტური პლანეტები',
-    kk: 'Алып ғаламшарлар',
+    kk: 'Alyp ğalamşarlar',
     qm: 'Dev seyyareler',
   },
   description: {
@@ -65,7 +65,7 @@ export const giantPlanets_Skill_Data = defineSkill({
       et: 'Erista gaasihiide ja jäähiide nende koostise ja siseehituse järgi.',
       be: 'Адрозьнівайце газавыя і ледзяныя гіганты паводле складу і ўнутранай будовы.',
       ka: 'განასხვავეთ გაზის გიგანტები და ყინულის გიგანტები მათი შედგენილობითა და შიდა აგებულებით.',
-      kk: 'Газ алыптары мен мұз алыптарын құрамы және ішкі құрылысы бойынша ажыратыңыз.',
+      kk: 'Gaz alyptary men mūz alyptaryn qūramy jäne ışkı qūrylysy boiynşa ajyratyñyz.',
       qm: 'Gaz devlerini ve buz devlerini terkibine ve içki quruluşuna köre ayırıñız.',
     },
   },

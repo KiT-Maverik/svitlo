@@ -31,7 +31,7 @@ export const impactCratering_Skill_Data = defineSkill({
     et: 'Löögikraatrite teke',
     be: 'Утварэньне ўдарных кратэраў',
     ka: 'დარტყმითი კრატერების წარმოქმნა',
-    kk: 'Соққы кратерлерінің түзілуі',
+    kk: 'Soqqy kraterlerınıñ tüzıluı',
     qm: 'Çarpma kraterleriniñ peyda oluvı',
   },
   description: {
@@ -65,7 +65,7 @@ export const impactCratering_Skill_Data = defineSkill({
       et: 'Mõista, kuidas kokkupõrked tekitavad kraatreid ja mida nende jaotus näitab.',
       be: 'Зразумейце, як сутыкненьні ўтвараюць кратэры і пра што сьведчыць іх разьмеркаваньне.',
       ka: 'გაიგეთ, როგორ წარმოქმნის შეჯახება კრატერებს და რას გვიჩვენებს მათი განაწილება.',
-      kk: 'Соқтығысулар кратерлерді қалай қалыптастыратынын және олардың таралуы нені көрсететінін түсініңіз.',
+      kk: 'Soqtyğysular kraterlerdı qalai qalyptastyratynyn jäne olardyñ taraluy nenı körsetetının tüsınıñız.',
       qm: 'Çarpışuvlar kraterlerni nasıl yaratağanını ve olarnıñ dağılımı neni köstergenini añlañız.',
     },
   },

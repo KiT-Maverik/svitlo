@@ -31,7 +31,7 @@ export const naturalSatellites_Skill_Data = defineSkill({
     et: 'Looduslikud kaaslased',
     be: 'Натуральныя спадарожнікі',
     ka: 'ბუნებრივი თანამგზავრები',
-    kk: 'Табиғи серіктер',
+    kk: 'Tabiği serıkter',
     qm: 'Tabiiy uydular',
   },
   description: {
@@ -65,7 +65,7 @@ export const naturalSatellites_Skill_Data = defineSkill({
       et: 'Uuri, kuidas kuud erinevad suuruse, päritolu, koostise ja aktiivsuse poolest.',
       be: 'Даведайцеся, чым спадарожнікі адрозьніваюцца паводле памеру, паходжаньня, складу і актыўнасьці.',
       ka: 'გაიგეთ, როგორ განსხვავდებიან თანამგზავრები ზომით, წარმოშობით, შედგენილობითა და აქტიურობით.',
-      kk: 'Серіктердің өлшемі, шығу тегі, құрамы мен белсенділігі жағынан қалай ерекшеленетінін біліңіз.',
+      kk: 'Serıkterdıñ ölşemı, şyğu tegı, qūramy men belsendılıgı jağynan qalai erekşelenetının bılıñız.',
       qm: 'Aylarnıñ büyükligi, peyda oluvı, terkibi ve faalligi boyunca nasıl farq etkenini ögreniñiz.',
     },
   },

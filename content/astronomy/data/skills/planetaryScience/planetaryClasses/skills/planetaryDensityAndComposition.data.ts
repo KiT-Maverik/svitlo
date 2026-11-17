@@ -31,7 +31,7 @@ export const planetaryDensityAndComposition_Skill_Data = defineSkill({
     et: 'Planeetide tihedus ja koostis',
     be: 'Шчыльнасьць і склад плянэт',
     ka: 'პლანეტების სიმკვრივე და შემადგენლობა',
-    kk: 'Ғаламшарлардың тығыздығы мен құрамы',
+    kk: 'Ğalamşarlardyñ tyğyzdyğy men qūramy',
     qm: 'Seyyarelerniñ sıqlığı ve terkibi',
   },
   description: {
@@ -64,7 +64,7 @@ export const planetaryDensityAndComposition_Skill_Data = defineSkill({
       et: 'Järelda taevakeha massi, suuruse ja tiheduse põhjal, millest see võib koosneda.',
       be: 'Паводле масы, памеру і шчыльнасьці нябеснага цела вызначайце яго магчымы склад.',
       ka: 'ციური სხეულის მასის, ზომისა და სიმკვრივის მიხედვით იმსჯელეთ მის შესაძლო შემადგენლობაზე.',
-      kk: 'Ғаламшардың массасы, өлшемі және тығыздығы арқылы оның қандай заттардан тұруы мүмкін екенін анықтаңыз.',
+      kk: 'Ğalamşardyñ massasy, ölşemı jäne tyğyzdyğy arqyly onyñ qandai zattardan tūruy mümkın ekenın anyqtañyz.',
       qm: 'Bir seyyareniñ kütlesi, büyükligi ve sıqlığına baqıp, onıñ nelerden ibaret olğanını tahmin etiñiz.',
     },
   },

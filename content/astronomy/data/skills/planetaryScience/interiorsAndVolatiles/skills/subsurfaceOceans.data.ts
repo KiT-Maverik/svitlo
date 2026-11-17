@@ -31,7 +31,7 @@ export const subsurfaceOceans_Skill_Data = defineSkill({
     et: 'Pinnaalused ookeanid',
     be: 'Падпаверхневыя акіяны',
     ka: 'ზედაპირისქვეშა ოკეანეები',
-    kk: 'Жерасты мұхиттары',
+    kk: 'Jerasty mūhittary',
     qm: 'Yüzniñ astındaki okeanlar',
   },
   description: {
@@ -65,7 +65,7 @@ export const subsurfaceOceans_Skill_Data = defineSkill({
       et: 'Uuri vihjeid sellele, et mõne jäise kuu pinna all võivad peituda vedelad ookeanid.',
       be: 'Дасьледуйце сьведчаньні таго, што пад паверхняй некаторых ледзяных спадарожнікаў могуць быць вадкія акіяны.',
       ka: 'შეისწავლეთ ნიშნები, რომ ზოგი ყინულოვანი თანამგზავრის ზედაპირის ქვეშ შეიძლება თხევადი ოკეანეები იყოს.',
-      kk: 'Кейбір мұзды серіктердің астында сұйық мұхиттар жасырынуы мүмкін екенін көрсететін белгілерді зерттеңіз.',
+      kk: 'Keibır mūzdy serıkterdıñ astynda sūiyq mūhittar jasyrynuy mümkın ekenın körsetetın belgılerdı zertteñız.',
       qm: 'Bazı buzlı aylarnıñ yüzüniñ astında sıyıq suvdan ibaret okeanlar ola bilecegini köstergen delillerni tetqiq etiñiz.',
     },
   },

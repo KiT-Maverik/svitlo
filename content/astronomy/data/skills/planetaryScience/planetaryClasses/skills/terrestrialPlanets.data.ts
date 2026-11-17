@@ -31,7 +31,7 @@ export const terrestrialPlanets_Skill_Data = defineSkill({
     et: 'Maa-tüüpi planeedid',
     be: 'Плянэты зямной групы',
     ka: 'დედამიწის ტიპის პლანეტები',
-    kk: 'Жер тектес ғаламшарлар',
+    kk: 'Jer tektes ğalamşarlar',
     qm: 'Yer tipli seyyareler',
   },
   description: {
@@ -65,7 +65,7 @@ export const terrestrialPlanets_Skill_Data = defineSkill({
       et: 'Uuri, miks Merkuur, Veenus, Maa ja Marss on erinevate tingimustega kiviplaneedid.',
       be: 'Даведайцеся, чаму Мэркуры, Вэнэра, Зямля і Марс — камяністыя плянэты з рознымі ўмовамі.',
       ka: 'გაიგეთ, რატომ არიან მერკური, ვენერა, დედამიწა და მარსი კლდოვანი პლანეტები განსხვავებული პირობებით.',
-      kk: 'Меркурий, Шолпан, Жер және Марс неге жағдайлары әртүрлі тасты ғаламшарлар екенін біліңіз.',
+      kk: 'Merkurii, Şolpan, Jer jäne Mars nege jağdailary ärtürlı tasty ğalamşarlar ekenın bılıñız.',
       qm: 'Merkuriy, Venera, Yer ve Mars ne içün şartları farqlı taşlı seyyareler olğanını ögreniñiz.',
     },
   },

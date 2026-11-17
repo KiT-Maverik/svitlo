@@ -31,7 +31,7 @@ export const planetaryTectonics_Skill_Data = defineSkill({
     et: 'Planeetide tektoonika',
     be: 'Плянэтная тэктоніка',
     ka: 'პლანეტური ტექტონიკა',
-    kk: 'Ғаламшар тектоникасы',
+    kk: 'Ğalamşar tektonikasy',
     qm: 'Seyyare tektonikası',
   },
   description: {
@@ -65,7 +65,7 @@ export const planetaryTectonics_Skill_Data = defineSkill({
       et: 'Võrdle, kuidas eri maailmade maakoor paindub, murdub või liigub.',
       be: 'Параўноўвайце, як кара розных нябесных целаў выгінаецца, разломваецца або рухаецца.',
       ka: 'შეადარეთ, როგორ იხრება, ტყდება ან გადაადგილდება სხვადასხვა ციური სხეულის ქერქი.',
-      kk: 'Әртүрлі ғаламшарлардың қыртысы қалай иіліп, жарылып немесе қозғалатынын салыстырыңыз.',
+      kk: 'Ärtürlı ğalamşarlardyñ qyrtysy qalai iılıp, jarylyp nemese qozğalatynyn salystyryñyz.',
       qm: 'Çeşitli kök cisimleriniñ qabıqları nasıl egilgenini, qırılğanını ya da areket etkenini qıyaslañız.',
     },
   },

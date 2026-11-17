@@ -31,7 +31,7 @@ export const planetaryRingSystems_Skill_Data = defineSkill({
     et: 'Planeetide rõngasüsteemid',
     be: 'Сыстэмы плянэтных кольцаў',
     ka: 'პლანეტური რგოლების სისტემები',
-    kk: 'Ғаламшар сақиналарының жүйелері',
+    kk: 'Ğalamşar saqinalarynyñ jüielerı',
     qm: 'Seyyare alqa sistemaları',
   },
   description: {
@@ -65,7 +65,7 @@ export const planetaryRingSystems_Skill_Data = defineSkill({
       et: 'Uuri, kuidas planeedirõngad tekivad, muutuvad ja lähedaste kuudega vastastikmõjus on.',
       be: 'Дасьледуйце, як утвараюцца і зьмяняюцца плянэтныя кольцы ды як яны ўзаемадзейнічаюць з блізкімі спадарожнікамі.',
       ka: 'შეისწავლეთ, როგორ წარმოიქმნება და იცვლება პლანეტების რგოლები და როგორ ურთიერთქმედებენ ახლომდებარე თანამგზავრებთან.',
-      kk: 'Ғаламшар сақиналары қалай қалыптасып, өзгеретінін және жақын серіктермен қалай әрекеттесетінін зерттеңіз.',
+      kk: 'Ğalamşar saqinalary qalai qalyptasyp, özgeretının jäne jaqyn serıktermen qalai ärekettesetının zertteñız.',
       qm: 'Seyyare alqaları nasıl peyda olğanını, deñişkenini ve yaqın aylarnen nasıl tesirleşkenini ögreniñiz.',
     },
   },

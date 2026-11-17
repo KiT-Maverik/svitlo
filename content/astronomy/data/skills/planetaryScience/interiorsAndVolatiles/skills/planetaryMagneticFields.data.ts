@@ -31,7 +31,7 @@ export const planetaryMagneticFields_Skill_Data = defineSkill({
     et: 'Planeetide magnetväljad',
     be: 'Магнітныя палі плянэт',
     ka: 'პლანეტების მაგნიტური ველები',
-    kk: 'Ғаламшарлардың магнит өрістері',
+    kk: 'Ğalamşarlardyñ magnit örısterı',
     qm: 'Seyyarelerniñ magnit meydanları',
   },
   description: {
@@ -65,7 +65,7 @@ export const planetaryMagneticFields_Skill_Data = defineSkill({
       et: 'Selgita, kuidas planeedi sees liikuv elektrit juhtiv aine võib tekitada magnetvälja.',
       be: 'Растлумачце, як рух электраправоднага рэчыва ўнутры плянэты можа ствараць магнітнае поле.',
       ka: 'ახსენით, როგორ შეუძლია პლანეტის შიგნით მოძრავ გამტარ ნივთიერებას მაგნიტური ველის წარმოქმნა.',
-      kk: 'Ғаламшар ішінде қозғалатын электр өткізгіш заттың магнит өрісін қалай тудыруы мүмкін екенін түсіндіріңіз.',
+      kk: 'Ğalamşar ışınde qozğalatyn elektr ötkızgış zattyñ magnit örısın qalai tudyruy mümkın ekenın tüsındırıñız.',
       qm: 'Seyyare içinde areket etken elektrikke keçirici madde magnit meydanını nasıl yarata bilgenini añlatıñız.',
     },
   },
