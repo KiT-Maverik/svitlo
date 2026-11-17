@@ -46,8 +46,9 @@ jobs:
           HEAD_SHA: ${{ github.event.pull_request.head.sha }}
           BASE_REF: ${{ github.base_ref }}
           HEAD_REF: ${{ github.head_ref }}
-          # Drafts allow honest missing-media handoffs; Ready must publish real assets.
-          SVITLO_MEDIA_MODE: ${{ github.event.pull_request.draft && 'draft' || 'production' }}
+          # Nested subtask PRs may depend on unfinished parent Lessons. Only a
+          # review-ready main-bound PR is a full textbook release boundary.
+          SVITLO_MEDIA_MODE: ${{ (github.base_ref == 'main' && !github.event.pull_request.draft) && 'production' || 'draft' }}
         run: node scripts/ci/buildChangedContent/build-changed-content.mjs
       - name: Manually build every content package
         if: github.event_name == 'workflow_dispatch'
