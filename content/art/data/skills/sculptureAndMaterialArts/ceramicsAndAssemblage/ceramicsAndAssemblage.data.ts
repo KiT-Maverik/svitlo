@@ -38,7 +38,7 @@ export const ceramicsAndAssemblage_SkillGroup_Data = defineSkillGroup({
     et: 'Keraamika ja assamblaaž',
     be: 'Кераміка і асамбляж',
     ka: 'კერამიკა და ასამბლაჟი',
-    kk: 'Керамика және ассамбляж',
+    kk: 'Keramika jäne assambliaj',
     qm: 'Keramika ve hazır eşyalardan kompozitsiya',
   },
   skills: [
@@ -78,7 +78,7 @@ export const ceramicsAndAssemblage_SkillGroup_Data = defineSkillGroup({
       et: 'Avasta, kuidas savist ja igapäevastest esemetest saab luua ilmekaid kunstiteoseid.',
       be: 'Даследуйце, як гліна і паўсядзённыя прадметы могуць ператварацца ў выразныя творы мастацтва.',
       ka: 'შეისწავლეთ, როგორ შეიძლება თიხა და ყოველდღიური საგნები გამომსახველ ხელოვნების ნიმუშებად იქცეს.',
-      kk: 'Саз бен күнделікті заттардың мәнерлі өнер туындыларына қалай айналатынын зерттеңіз.',
+      kk: 'Saz ben kündelıktı zattardyñ mänerlı öner tuyndylaryna qalai ainalatynyn zertteñız.',
       qm: 'Balçıq ve kündelik eşyalar ifadeleyici sanat eserlerine nasıl çevrile bilecegini keşf etiñiz.',
     },
   },

@@ -37,7 +37,7 @@ export const photographyAndFilm_SkillDomain_Data = defineSkillDomain({
     et: 'Fotograafia ja film',
     be: 'Фатаграфія і кіно',
     ka: 'ფოტოგრაფია და კინო',
-    kk: 'Фотография және кино',
+    kk: 'Fotografiia jäne kino',
     qm: 'Fotoğrafçılıq ve film',
   },
   groups: [
@@ -78,7 +78,7 @@ export const photographyAndFilm_SkillDomain_Data = defineSkillDomain({
       et: 'Uuri, kuidas kadreering, valgus, pildijadad ja heli kujundavad fotosid ja filme.',
       be: 'Даследуйце, як кадраванне, святло, паслядоўнасці выяў і гук фарміруюць фатаграфіі і фільмы.',
       ka: 'შეისწავლეთ, როგორ აყალიბებს კადრირება, სინათლე, გამოსახულებების მიმდევრობა და ხმა ფოტოებსა და ფილმებს.',
-      kk: 'Зерттеңіз: кадрлау, жарық, суреттер тізбегі мен дыбыс фотосуреттер мен фильмдерді қалай қалыптастырады.',
+      kk: 'Zertteñız: kadrlau, jaryq, suretter tızbegı men dybys fotosuretter men filmderdı qalai qalyptastyrady.',
       qm: 'Kadrlama, ışıq, suret sıraları ve sesniñ foto suretleri ve filmlerni nasıl şekillendirgenini keşf etiñiz.',
     },
   },

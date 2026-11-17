@@ -32,7 +32,7 @@ export const controlPhotographicExposure_Skill_Data = defineSkill({
     et: 'Fotograafilise särituse juhtimine',
     be: 'Кіраваць фатаграфічнай экспазіцыяй',
     ka: 'ფოტოგრაფიული ექსპოზიციის კონტროლი',
-    kk: 'Фотографиялық экспозицияны басқару',
+    kk: 'Fotografiialyq ekspozitsiiany basqaru',
     qm: 'Fotoğraf pozlamasını idare etmek',
   },
   description: {
@@ -66,7 +66,7 @@ export const controlPhotographicExposure_Skill_Data = defineSkill({
       et: 'Reguleeri säritust, et muuta pilt heledamaks, tumedamaks või ilmekamaks.',
       be: 'Рэгулюйце экспазіцыю, каб зрабіць выяву святлейшай, цямнейшай або выразнейшай.',
       ka: 'შეცვალეთ ექსპოზიცია, რათა გამოსახულება უფრო ნათელი, მუქი ან გამომსახველი გახდეს.',
-      kk: 'Экспозицияны өзгертіп, суретті ашық, күңгірт немесе әсерлі етіңіз.',
+      kk: 'Ekspozitsiiany özgertıp, surettı aşyq, küñgırt nemese äserlı etıñız.',
       qm: 'Suretni daa aydın, qaranlıq ya da ifadeleyici etmek içün kamera ekspozitsiyasını ayarlañız.',
     },
   },

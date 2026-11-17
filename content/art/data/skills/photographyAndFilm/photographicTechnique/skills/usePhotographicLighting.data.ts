@@ -32,7 +32,7 @@ export const usePhotographicLighting_Skill_Data = defineSkill({
     et: 'Fotograafilise valgustuse kasutamine',
     be: 'Выкарыстоўваць фатаграфічнае асвятленне',
     ka: 'ფოტოგრაფიული განათების გამოყენება',
-    kk: 'Фотографиялық жарықты пайдалану',
+    kk: 'Fotografiialyq jaryqty paidalanu',
     qm: 'Fotoğraf ışıqlandırmasını qullanmaq',
   },
   description: {
@@ -66,7 +66,7 @@ export const usePhotographicLighting_Skill_Data = defineSkill({
       et: 'Kujunda valgustusega objekti välimust ja meeleolu.',
       be: 'Фармуйце выгляд і настрой аб’екта з дапамогай асвятлення.',
       ka: 'განათებით შექმენით ობიექტის იერსახე და განწყობა.',
-      kk: 'Жарық арқылы нысанның көрінісі мен көңіл күйін қалыптастырыңыз.',
+      kk: 'Jaryq arqyly nysannyñ körınısı men köñıl küiın qalyptastyryñyz.',
       qm: 'Işıqlandırma ile esas obyektniñ körünişi ve havasını şekillendiriñiz.',
     },
   },

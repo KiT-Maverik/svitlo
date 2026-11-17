@@ -32,7 +32,7 @@ export const createAPhotographicPortrait_Skill_Data = defineSkill({
     et: 'Fotograafilise portree loomine',
     be: 'Ствараць фотапартрэт',
     ka: 'ფოტოპორტრეტის შექმნა',
-    kk: 'Фотопортрет жасау',
+    kk: 'Fotoportret jasau',
     qm: 'Fotoğraf portresi yaratmaq',
   },
   description: {
@@ -66,7 +66,7 @@ export const createAPhotographicPortrait_Skill_Data = defineSkill({
       et: 'Loo läbimõeldud portree, kasutades poosi, perspektiivi, keskkonda ja valgust.',
       be: 'Стварайце прадуманы партрэт, выкарыстоўваючы позу, перспектыву, асяроддзе і святло.',
       ka: 'შექმენით გააზრებული პორტრეტი პოზის, პერსპექტივის, გარემოსა და სინათლის გამოყენებით.',
-      kk: 'Поза, перспектива, орта және жарықты пайдаланып, ойластырылған портрет жасаңыз.',
+      kk: 'Poza, perspektiva, orta jäne jaryqty paidalanyp, oilastyrylğan portret jasañyz.',
       qm: 'Poz, perspektiva, çevre ve ışıq qullanıp manalı portret çeküñiz.',
     },
   },

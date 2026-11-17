@@ -31,7 +31,7 @@ export const createFoundObjectAssemblage_Skill_Data = defineSkill({
     et: 'Leitud esemetest assamblaaži loomine',
     be: 'Ствараць асамбляж з знойдзеных прадметаў',
     ka: 'ნაპოვნი საგნებით ასამბლაჟის შექმნა',
-    kk: 'Табылған заттардан ассамбляж жасау',
+    kk: 'Tabylğan zattardan assambliaj jasau',
     qm: 'Tabılğan eşyalardan assamblaj yaratmaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const createFoundObjectAssemblage_Skill_Data = defineSkill({
       et: 'Ühenda olemasolevad esemed, et luua uus kunstiline tähendus.',
       be: 'Аб’ядноўвайце гатовыя прадметы, каб стварыць новы мастацкі сэнс.',
       ka: 'შეაერთეთ არსებული საგნები ახალი მხატვრული მნიშვნელობის შესაქმნელად.',
-      kk: 'Бұрыннан бар заттарды біріктіріп, жаңа көркем мағына жасаңыз.',
+      kk: 'Būrynnan bar zattardy bırıktırıp, jaña körkem mağyna jasañyz.',
       qm: 'Mevcut eşyalarni birleştirip yañı sanat manası yaratıñız.',
     },
   },

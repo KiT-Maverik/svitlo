@@ -32,7 +32,7 @@ export const composeAPhotograph_Skill_Data = defineSkill({
     et: 'Foto kompositsiooni loomine',
     be: 'Кампанаваць фотаздымак',
     ka: 'ფოტოს კომპოზიციის შექმნა',
-    kk: 'Фотосуреттің композициясын құру',
+    kk: 'Fotosurettıñ kompozitsiiasyn qūru',
     qm: 'Fotoğraf kompozisyonu qurmaq',
   },
   description: {
@@ -66,7 +66,7 @@ export const composeAPhotograph_Skill_Data = defineSkill({
       et: 'Otsusta, mida kaadrisse kaasata ja kuhu objekt paigutada.',
       be: 'Вырашайце, што ўключыць у кадр і дзе размясціць аб’ект.',
       ka: 'გადაწყვიტეთ, რა მოხვდება კადრში და სად განთავსდება მთავარი ობიექტი.',
-      kk: 'Кадрға нені енгізіп, нысанды қай жерге орналастыру керегін шешіңіз.',
+      kk: 'Kadrğa nenı engızıp, nysandy qai jerge ornalastyru keregın şeşıñız.',
       qm: 'Kadrda neler olacağını ve esas obyektniñ qayerge yerleşecegini saylañız.',
     },
   },

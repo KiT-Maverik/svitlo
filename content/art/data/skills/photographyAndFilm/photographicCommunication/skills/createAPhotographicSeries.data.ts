@@ -32,7 +32,7 @@ export const createAPhotographicSeries_Skill_Data = defineSkill({
     et: 'Fotoseeria loomine',
     be: 'Ствараць фотасерыю',
     ka: 'ფოტოსერიის შექმნა',
-    kk: 'Фотосуреттер топтамасын жасау',
+    kk: 'Fotosuretter toptamasyn jasau',
     qm: 'Fotoğraf serisi yaratmaq',
   },
   description: {
@@ -66,7 +66,7 @@ export const createAPhotographicSeries_Skill_Data = defineSkill({
       et: 'Paiguta seotud fotod, et edastada laiemat lugu või ideed.',
       be: 'Размясціце звязаныя фатаграфіі, каб перадаць шырэйшую гісторыю або ідэю.',
       ka: 'დაალაგეთ დაკავშირებული ფოტოები უფრო ფართო ამბის ან იდეის გადმოსაცემად.',
-      kk: 'Байланысты фотосуреттерді үлкенірек оқиға не ойды жеткізу үшін реттеңіз.',
+      kk: 'Bailanysty fotosuretterdı ülkenırek oqiğa ne oidy jetkızu üşın retteñız.',
       qm: 'Büyük bir hikâye ya da fikirni añlatmaq içün bağlı foto suretlerini tertip etiñiz.',
     },
   },

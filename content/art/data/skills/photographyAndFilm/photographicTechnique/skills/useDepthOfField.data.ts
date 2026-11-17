@@ -32,7 +32,7 @@ export const useDepthOfField_Skill_Data = defineSkill({
     et: 'Teravussügavuse kasutamine',
     be: 'Выкарыстоўваць глыбіню рэзкасці',
     ka: 'ველის სიღრმის გამოყენება',
-    kk: 'Өріс тереңдігін пайдалану',
+    kk: 'Örıs tereñdıgın paidalanu',
     qm: 'Alan derinliğini qullanmaq',
   },
   description: {
@@ -66,7 +66,7 @@ export const useDepthOfField_Skill_Data = defineSkill({
       et: 'Vali, mis jääb fotol teravaks ja mis muutub häguseks.',
       be: 'Выбірайце, што на фатаграфіі застанецца рэзкім, а што будзе размытым.',
       ka: 'აირჩიეთ, რა დარჩება ფოტოზე მკვეთრი და რა იქნება ბუნდოვანი.',
-      kk: 'Фотосуретте ненің анық, ненің бұлыңғыр болатынын таңдаңыз.',
+      kk: 'Fotosurette nenıñ anyq, nenıñ būlyñğyr bolatynyn tañdañyz.',
       qm: 'Foto suretinde neniñ keskin, neniñ bulanıq olacağını saylañız.',
     },
   },

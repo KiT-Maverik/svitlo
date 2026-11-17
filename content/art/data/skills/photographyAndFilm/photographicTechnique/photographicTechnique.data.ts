@@ -39,7 +39,7 @@ export const photographicTechnique_SkillGroup_Data = defineSkillGroup({
     et: 'Fotograafiatehnika',
     be: 'Фатаграфічная тэхніка',
     ka: 'ფოტოგრაფიის ტექნიკა',
-    kk: 'Фотография техникасы',
+    kk: 'Fotografiia tehnikasy',
     qm: 'Fotoğraf tekniği',
   },
   skills: [
@@ -80,7 +80,7 @@ export const photographicTechnique_SkillGroup_Data = defineSkillGroup({
       et: 'Kasuta kaamera ja valgustuse valikuid, et luua selge visuaalse mõjuga foto.',
       be: 'Выкарыстоўвайце налады камеры і асвятлення, каб стварыць фатаграфію з выразным візуальным эфектам.',
       ka: 'გამოიყენეთ კამერისა და განათების პარამეტრები მკაფიო ვიზუალური ეფექტის მქონე ფოტოს შესაქმნელად.',
-      kk: 'Көрнекі әсері айқын фотосурет жасау үшін камера мен жарық параметрлерін таңдаңыз.',
+      kk: 'Körnekı äserı aiqyn fotosuret jasau üşın kamera men jaryq parametrlerın tañdañyz.',
       qm: 'Açıq vizual tesirli foto sureti yaratmaq içün kamera ve ışıqlandırma saylavlarını qullanıñız.',
     },
   },

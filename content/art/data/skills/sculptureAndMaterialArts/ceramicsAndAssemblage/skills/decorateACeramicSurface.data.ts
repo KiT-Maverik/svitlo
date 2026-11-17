@@ -31,7 +31,7 @@ export const decorateACeramicSurface_Skill_Data = defineSkill({
     et: 'Keraamilise pinna kaunistamine',
     be: 'Упрыгожваць керамічную паверхню',
     ka: 'კერამიკული ზედაპირის გაფორმება',
-    kk: 'Керамика бетін безендіру',
+    kk: 'Keramika betın bezendıru',
     qm: 'Keramika yüzüni bezemek',
   },
   description: {
@@ -64,7 +64,7 @@ export const decorateACeramicSurface_Skill_Data = defineSkill({
       et: 'Lisa savist eseme pinnale sobivaid värve või tekstuure.',
       be: 'Дадавайце колеры або фактуры, якія пасуюць да паверхні глінянага вырабу.',
       ka: 'დაამატეთ თიხის საგნის ზედაპირისთვის შესაფერისი ფერები ან ფაქტურები.',
-      kk: 'Саздан жасалған бұйымның бетіне үйлесімді түстер немесе фактуралар қосыңыз.',
+      kk: 'Sazdan jasalğan būiymnyñ betıne üilesımdı tüster nemese fakturalar qosyñyz.',
       qm: 'Balçıq eşyanıñ yüzüne uyğun tüsler ya da teksturalar qoşuñız.',
     },
   },

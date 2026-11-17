@@ -39,7 +39,7 @@ export const photographicCommunication_SkillGroup_Data = defineSkillGroup({
     et: 'Fotograafiline kommunikatsioon',
     be: 'Фатаграфічная камунікацыя',
     ka: 'ფოტოგრაფიული კომუნიკაცია',
-    kk: 'Фотографиялық коммуникация',
+    kk: 'Fotografiialyq kommunikatsiia',
     qm: 'Fotoğrafla iletişim',
   },
   skills: [
@@ -80,7 +80,7 @@ export const photographicCommunication_SkillGroup_Data = defineSkillGroup({
       et: 'Avasta, kuidas fotod saavad eri viisidel dokumenteerida, kujutada või jutustada lugusid.',
       be: 'Даведайцеся, як фатаграфіі могуць па-рознаму дакументаваць, адлюстроўваць або расказваць гісторыі.',
       ka: 'აღმოაჩინეთ, როგორ შეუძლია ფოტოსურათს სხვადასხვა გზით დოკუმენტირება, გამოსახვა ან ამბის მოყოლა.',
-      kk: 'Фотосуреттердің әртүрлі жолмен құжаттап, бейнелеп немесе әңгіме айтып бере алатынын зерттеңіз.',
+      kk: 'Fotosuretterdıñ ärtürlı jolmen qūjattap, beinelep nemese äñgıme aityp bere alatynyn zertteñız.',
       qm: 'Foto suretleriniñ türlü usullar ile nasıl belgelep, tasvir etip ya da hikâye añlatqanını keşf etiñiz.',
     },
   },

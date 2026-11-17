@@ -32,7 +32,7 @@ export const distinguishDocumentaryAndStagedPhotography_Skill_Data = defineSkill
     et: 'Dokumentaal- ja lavastatud fotograafia eristamine',
     be: 'Адрозніваць дакументальную і пастановачную фатаграфію',
     ka: 'დოკუმენტური და დადგმული ფოტოგრაფიის გარჩევა',
-    kk: 'Деректі және қойылымдық фотосуретті ажырату',
+    kk: 'Derektı jäne qoiylymdyq fotosurettı ajyratu',
     qm: 'Belgesel ve sahnelenmiş fotoğrafçılığı ayırmaq',
   },
   description: {
@@ -66,7 +66,7 @@ export const distinguishDocumentaryAndStagedPhotography_Skill_Data = defineSkill
       et: 'Tee kindlaks, kas foto dokumenteerib sündmust või on stseen lavastatud.',
       be: 'Вызначайце, ці фатаграфія дакументуе падзею, ці сцэна была пастановачнай.',
       ka: 'გაარჩიეთ, ფოტო მოვლენას ასახავს თუ სცენა დადგმულია.',
-      kk: 'Анықтаңыз: фотосурет оқиғаны тіркей ме, әлде көрініс әдейі қойылған ба.',
+      kk: 'Anyqtañyz: fotosuret oqiğany tırkei me, älde körınıs ädeiı qoiylğan ba.',
       qm: 'Foto sureti vaqianı belgelepmi, yoqsa sahne evvelden tertip etilgenmi, ayırıñız.',
     },
   },

@@ -32,7 +32,7 @@ export const editPhotographyExpressively_Skill_Data = defineSkill({
     et: 'Fotode ilmekas töötlemine',
     be: 'Выразна рэдагаваць фатаграфіі',
     ka: 'გამომსახველობითი ფოტოს რედაქტირება',
-    kk: 'Фотосуретті мәнерлеп өңдеу',
+    kk: 'Fotosurettı mänerlep öñdeu',
     qm: 'Fotoğrafı ifadeci şekilde düzenlemek',
   },
   description: {
@@ -66,7 +66,7 @@ export const editPhotographyExpressively_Skill_Data = defineSkill({
       et: 'Muuda foto värve ja kadreeringut, austades samal ajal seda, mida foto väidab kujutavat.',
       be: 'Карэктуйце колер і кадраванне, паважаючы тое, што фатаграфія нібыта паказвае.',
       ka: 'შეცვალეთ ფოტოს ფერი და კადრირება ისე, რომ პატივი სცეთ მის მიერ ნაჩვენებ შინაარსს.',
-      kk: 'Фотосурет нені көрсететінін ескеріп, түсі мен кадрлауын түзетіңіз.',
+      kk: 'Fotosuret nenı körsetetının eskerıp, tüsı men kadrlauyn tüzetıñız.',
       qm: 'Foto suretiniñ göstergen dep iddia etken manasına sayğı duyaraq tüs ve kadrlamasını deñiştiriñiz.',
     },
   },
