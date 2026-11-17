@@ -6,7 +6,7 @@
 
 Start with either an existing **Lesson UUID** or **Lesson PR number**. Resolve the same-repository active Lesson PR (if any), canonical UUID directory, actual owner and source SHA, original methodology, support languages, and Question-bank stage. Do not create another Lesson, assign another UUID, or infer approval from file existence. Reuse any existing Flashcards PR for this Lesson. Otherwise create exactly one **Draft Flashcards PR**: target the active Lesson PR head branch, or the verified current integration branch (normally `main`) if the Lesson was already merged. Record original Lesson PR provenance. Follow GitHub naming and labels; do not apply mutually exclusive `pr: integration` and `pr: agent-subtask` to the same PR. Confirm nested Course→Lesson→Flashcards ancestry with the actual open PRs.
 
-The Flashcards PR description is the **single resumable process record**. Mark it `<!-- svitlo-create-flashcards-flow:v1 -->`, with Lesson UUID, parent PR, source SHA, Question source SHA and approval/N/A rationale, reference Markdown revision, document language, owning Lesson languages, optional verified Course subset, six stage checkboxes, blockers, verified reviewer IDs and next action. Keep no workflow status in Flashcard YAML, Config or Props. Stale source SHA invalidates only dependent evidence.
+The Flashcards PR description is the **single resumable process record**. Mark it `<!-- svitlo-create-flashcards-flow:v1 -->`, with Lesson UUID, parent PR, source SHA, Question source SHA and approval/N/A rationale, reference Markdown revision, document language, owning Lesson languages, optional verified Course subset, seven stage checkboxes, blockers, verified reviewer IDs and next action. Keep no workflow status in Flashcard YAML, Config or Props. Stale source SHA invalidates only dependent evidence.
 
 ## Hard prerequisites
 
@@ -14,7 +14,7 @@ The Flashcards PR description is the **single resumable process record**. Mark i
 2. Read the **complete current approved Question bank**, not merely default Quiz selection. Questions must be marked **Completed** with a verifiable bank source revision, or explicitly **Not Applicable** in the owning Lesson PR with Methodologist rationale. A missing, unreviewed, empty, unfinished or blocked bank, and the absence of a Quiz, are **not** N/A. If upstream Questions change, re-evaluate dependent cards and field references.
 3. Confirm a canonical typed Lesson identity, language tuple, relevant Engine schemas, real UI Kit support and publication rules. If the Lesson is still a speculative draft without assembled source/context, mark **Blocked** in the PR. Do not synthesize lesson content or false translations to pass this gate.
 
-## Six-stage production
+## Seven-stage production
 
 ### 1. Lesson Analysis — Flashcard Learning Architect
 
@@ -30,28 +30,36 @@ Choose whether each retrieval **direction** genuinely needs a distinct card. Pre
 
 For each card, choose `parameters.disabilities: Disability[]` using the existing Engine union. Empty `[]` means compatible with the available accessible modes. Annotate only a retrieval task that truly lacks an equivalent accessible alternative, and explain any nonempty restriction in PR review evidence. Avoid diagnosis, blanket multimedia restrictions and gratuitous overexclusion.
 
-### 3. Memory Design Review — independent reviewer
+### 3. Flashcards Section Design — Flashcard Learning Architect / Lesson Section owner
 
-Review the **actual complete YAML** against pinned Lesson and Question SHAs, target coverage, scientific accuracy, atomicity, repetition, direction diversity, flags, acronym letters, relationship semantics, Question field reuse, media stimulus/answer leakage, access equivalence and intended locales. Record per-card findings, reviewer identity, exact SHA and verdict in the PR. YAML syntax, author assertions and status checkboxes never count as independent approval.
+The complete Lesson-owned Flashcard Bank is independent of its embedded Flashcards Section. The bank may retain cards for later Custom Practice; the Lesson Section selects a deliberately small, pedagogically justified, explicit ordered subset from the reviewed bank. Do not mechanically insert every bank UUID or assume a bank needs a Section.
 
-### 4. Resource Production — Coding Agent
+Inspect the latest generated Lesson `sections/index.ts`, actual Section modules and current Question-flow handoff from PR #647. Integrate the Questions child PR into the Lesson branch **before** rebasing a Flashcards child PR that may edit the same narrow Section registry. Reuse existing `defineFlashcardsSection` UUID/slug when suitable; otherwise create the minimum new Section and update only its owned module plus necessary registry import/order. Never regenerate the Lesson root, alter Question sources, or create another Lesson PR.
+
+Record the chosen Flashcard UUIDs, rationale, Section placement, source SHA and conflict-safety notes in the child PR. Section selection must respect the separate accessibility metadata filter at runtime, and an excluded card must not count as completed.
+
+### 4. Memory Design Review — independent reviewer
+
+Review the **actual complete YAML and proposed Flashcards Section placement/selection** against pinned Lesson and Question SHAs, target coverage, scientific accuracy, atomicity, repetition, direction diversity, flags, acronym letters, relationship semantics, Question field reuse, media stimulus/answer leakage, access equivalence and intended locales. Record per-card findings, reviewer identity, exact SHA and verdict in the PR. YAML syntax, author assertions and status checkboxes never count as independent approval.
+
+### 5. Resource Production — Coding Agent
 
 Use the named tested Flashcard bank converter (when implemented and verified) to derive typed `defineFlashcard`, `defineFlashcardSide` and nested `define*` modules beneath the **existing** Lesson UUID's `flashcards/`. Validate against the one Engine/Zod-derived Config projection; do not introduce a parallel manual editorial schema or overwrite Lesson/Question source. Use creation-only writes, reject symlinks/unsafe paths, unresolved imports or media, duplicate IDs/relations, and conflicting existing TypeScript. The temporary YAML is removable **only after verified byte-complete, faithful materialization**; retain it on every skip/failure and preserve Git history.
 
 Complete authored assets as needed, then use `generateAssessmentResources --kind flashcard --preflight/--write/--check` for separate UUID-addressed resources. Keep authored planned languages; any source-only TS draft scope from #643 is provisional and must not masquerade as complete publication. Published manifest metadata must carry disability restrictions so the loader filters Section candidates **before fetching** incompatible bodies. Preserve requested order, return a clear unavailable state on an empty eligible set, and never infer or expose learners' private access requirements.
 
-### 5. Translation — Technical Translator
+### 6. Translation — Technical Translator
 
 Translate all required actual learner-facing card text, alt/caption/hint, custom flag, accessible alternatives and culturally valid acronyms to the **Lesson's actual language plan**. Reuse already-localized Question fields via references rather than cloning them. A Course may request a verified subset at publication without shrinking a globally reusable Flashcard or Lesson.
 
-### 6. Translation Review — independent Linguistic Reviewer
+### 7. Translation Review — independent Linguistic Reviewer
 
 Review Code-derived localized references against current source revision and target language, including RTL, punctuation, scientific sense, terminology, alt and hints, media parity, text/image/audio answer leakage and acronym reconstruction. Record verifiable per-language and per-SHA evidence in the PR. Missing or stale reviews are blockers.
 
-## Final QA (checklist, not a seventh stage)
+## Final QA (checklist, not an eighth stage)
 
 Verify one Lesson UUID and one Flashcards PR; pinned upstream source evidence; no duplicate/stale YAML/TS; Config, Props, source locales and requested publications; unique IDs and mirrored relation edges; Question/media references; accessibility compatibility pre-fetch selection and empty eligible state; independent reviews, source and translation approval; full Engine/UI Kit/content package checks and package builds. Confirm the active PR's actual CI and target base before requesting the owner's sign-off. **Remain Draft** until the owner explicitly marks Ready.
 
 ## Current upstream dependencies
 
-The parent workflow belongs to PR #643 (Create Lesson Flow), the optional Course handoff to #639, and the required curated Markdown source to #645. Never copy their unfinished code into this PR. Until those land, record the blocker and source SHA explicitly and implement independent Engine/Flashcard work without inventing the upstream contracts.
+The parent workflow belongs to PR #643 (Create Lesson Flow), Course handoff to merged PR #639, and curated Markdown source to merged PR #645. The full Question Bank and its small Quiz Section handoff are owned by PR #647. Re-verify each dependency's actual merged status and source SHA at execution time. Never copy their unfinished code into this PR. Until those land, record the blocker and source SHA explicitly and implement independent Engine/Flashcard work without inventing the upstream contracts.
