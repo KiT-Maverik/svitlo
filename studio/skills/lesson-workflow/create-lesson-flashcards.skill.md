@@ -163,4 +163,4 @@ Validate every actual card and its engine-derived YAML source against:
 9. Nonoverwriting TS scaffold, existing authored source preservation, no missing referenced asset/Question, no silent YAML deletion.
 10. Independent Memory Design Review on the exact source SHA; syntactic validation, checked box or author's own review is not approval.
 
-Use the **existing Lesson-owned child Draft Flashcards PR** under [Create Flashcards Flow](./create-flashcards-flow.skill.md) for the six-stage checklist, findings and final QA. Keep `flashcards.yaml` until materialization and independent approval can actually be verified; no duplicate editorial schema or new Lesson Production Issue is created merely for this bank workflow.
+Use the **existing Lesson-owned child Draft Flashcards PR** under [Create Flashcards Flow](./create-flashcards-flow.skill.md) for the seven-stage checklist, findings and final QA. Keep `flashcards.yaml` until materialization and independent approval can actually be verified; no duplicate editorial schema or new Lesson Production Issue is created merely for this bank workflow.
