@@ -1,15 +1,20 @@
 # EducationStandard reference catalog (authoring only)
 
-Canonical, cross-textbook reference records for independently verified educational standards and national curricula. The only public package entrypoint is `@svitlo/education-standards/build`, which exposes `defineEducationStandard` instances **for build-time authoring and future course-alignment research only**. It must never be imported into a browser/runtime application. This package creates no registry, publisher, JSON distribution, certification, or claims of Course compliance.
+This package owns a small **global, cross-textbook reference catalog**. Its `@svitlo/education-standards/build` entrypoint exposes 14 immutable `defineEducationStandard` declarations and a deterministic, typed `educationStandards` tuple. Build-only data must never be loaded in runtime applications. No standard publisher, browser registry, Course schema change, certification or Course-alignment claim is provided.
 
-Records live in `data/<jurisdiction>/<semanticSlug>.data.ts`; each carries an immutable UUID, exact official original-language name, English methodological explanation, full canonical locale dictionary and a primary source. Locale dictionaries are authored text, not automatic machine fallbacks. The source text and jurisdiction/cohort/edition are editorially verified and can be revised without regenerating UUIDs. Changing the meaning or replacing a legal instrument needs an explicit review.
+Each record lives in `data/<jurisdiction>/<semanticSlug>.data.ts` and contains a persisted UUID, an official original-language name, a substantive English methodology, a complete 30-language frontend-description dictionary and verified primary-reference URL. Different annexes of one legal instrument are listed separately only where they govern distinct levels of education. `params.version` denotes the official originating edition and any known amending context; always verify the legally applicable consolidated text and transition dates before using a standard for curricular alignment.
 
-After building Engine, run:
+**Editorial status:** Source information has been researched against official publishers; the methodology, precise legal applicability and **all 420 localized descriptions** require independent methodological and linguistic review before declaring this catalog approved. In particular, do not treat `qm` as Turkish; Crimean Tatar requires separate review of its proper Latin orthography and terminology. These descriptions are original drafts, not approved government translations.
+
+After the Engine package is built, verify:
 
 ```sh
 npm run package:build --workspace @svitlo/education-standards
 npm run code:check:types --workspace @svitlo/education-standards
 npm test --workspace @svitlo/education-standards
+npm run code:format:check
 ```
 
-**Important:** Source URL/version metadata is reference provenance, not evidence of Course alignment, accreditation or national recognition. Final publication requires primary-source review and independently approved translations against Code-derived per-locale markdown; the existing Agent CI Artifacts workflow does **not** currently document an EducationStandard adapter. This is a Draft editorial catalog until that review has taken place.
+**Review blocker:** Svitlo's current Agent CI Artifacts workflow does not include an EducationStandard Code-derived Markdown adapter. Independent translation review must not proceed until one is implemented, and until the generated documents and manifest are verified against the exact source SHA. A source URL, a valid TypeScript build or a Course UUID reference does not establish alignment, compliance or accreditation.
+
+Sources and jurisdiction-specific transition notes are recorded in PR #640's evidence comment.
