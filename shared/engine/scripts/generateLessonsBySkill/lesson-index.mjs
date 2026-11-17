@@ -36,7 +36,9 @@ function key(prop) {
   return prop && (ts.isIdentifier(prop.name) || ts.isStringLiteral(prop.name)) ? prop.name.text : null;
 }
 function field(object, name) {
-  return object?.properties?.find(p => ts.isPropertyAssignment(p) && key(p) === name)?.initializer;
+  const item = object?.properties?.find(p =>
+    (ts.isPropertyAssignment(p) || ts.isShorthandPropertyAssignment(p)) && key(p) === name);
+  return item && (ts.isPropertyAssignment(item) ? item.initializer : item.name);
 }
 function string(node) {
   node = unwrap(node);
@@ -309,7 +311,7 @@ export function buildLessonIndex(root, selectedPackage) {
   let implemented = 0, drafts = 0;
   for (const book of packages) {
     const pkg = 'content/' + book;
-    if (selectedPackage && !fs.existsSync(path.join(packagesDir, book, 'package.json'))) {
+    if (selectedPackage && !fs.existsSync(path.join(packagesDir, book))) {
       diagnostics.push({ file: pkg, package: pkg, entityId: null,
         reason: 'Unknown textbook package', incomplete: true });
       continue;
