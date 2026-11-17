@@ -18,8 +18,7 @@ const entityRoot = new RegExp(
   '^(content/(?:languages/)?[a-z][a-z0-9-]*/data/(?:lessons|courses)/[0-9a-f]/' + uuid + ')/',
 );
 const unresolved = /00000000-0000-0000-0000-000000000000\.(?:svg|png|jpe?g|webp|gif|avif|mp3|wav|ogg|m4a|flac|mp4|webm|vtt|srt)/i;
-const sourceExtension = /\.(?:ts|tsx|mts|mtsx)$/i;
-const yamlNames = new Set(['lesson.yaml', 'questions.yaml', 'flashcards.yaml', 'course.yaml', 'config.yaml']);
+const sourceExtension = /\.(?:ts|tsx|mts)$/i;
 
 export function affectedEntities(changedPaths) {
   return [...new Set(changedPaths.map(item => item.match(entityRoot)?.[1]).filter(Boolean))].sort();
@@ -39,10 +38,6 @@ function inspect(root, relative, findings) {
   }
   if (!info.isFile()) {
     findings.push(relative + ': unsupported filesystem entry');
-    return;
-  }
-  if (yamlNames.has(path.basename(relative)) && relative.split('/').at(-2) === relative.split('/').at(-3)) {
-    // A nested sidecar may be unrelated; root-level YAML is assessed by the caller.
     return;
   }
   if (!sourceExtension.test(relative)) return;
