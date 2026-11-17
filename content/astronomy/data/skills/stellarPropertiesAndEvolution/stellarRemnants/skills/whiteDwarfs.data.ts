@@ -31,7 +31,7 @@ export const whiteDwarfs_Skill_Data = defineSkill({
     et: 'Valged kääbused',
     be: 'Белыя карлікі',
     ka: 'თეთრი ჯუჯები',
-    kk: 'Ақ ергежейлілер',
+    kk: 'Aq ergejeilıler',
     qm: 'Beyaz cüce yıldızlar',
   },
   description: {
@@ -65,7 +65,7 @@ export const whiteDwarfs_Skill_Data = defineSkill({
       et: 'Mõista, miks osa tähti jätab elu lõpus endast maha tihedad valged kääbused.',
       be: 'Зразумейце, чаму некаторыя зоркі напрыканцы жыцьця пакідаюць шчыльныя белыя карлікі.',
       ka: 'გაიგეთ, რატომ ტოვებენ ზოგიერთი ვარსკვლავი სიცოცხლის ბოლოს მკვრივ თეთრ ჯუჯებს.',
-      kk: 'Кейбір жұлдыздар өмірінің соңында неліктен тығыз ақ ергежейлілер қалдыратынын түсініңіз.',
+      kk: 'Keibır jūldyzdar ömırınıñ soñynda nelıkten tyğyz aq ergejeilıler qaldyratynyn tüsınıñız.',
       qm: 'Bazı yıldızlar ömürleriniñ soñunda ne içün sıqı beyaz cüce yıldızlar qaldırğanını añlañız.',
     },
   },

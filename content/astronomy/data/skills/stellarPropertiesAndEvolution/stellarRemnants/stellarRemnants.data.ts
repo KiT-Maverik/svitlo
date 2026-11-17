@@ -40,7 +40,7 @@ export const stellarRemnants_SkillGroup_Data = defineSkillGroup({
     et: 'Tähejäänused',
     be: 'Зорныя рэшткі',
     ka: 'ვარსკვლავური ნაშთები',
-    kk: 'Жұлдыз қалдықтары',
+    kk: 'Jūldyz qaldyqtary',
     qm: 'Yıldız qaldıqları',
   },
   skills: [
@@ -82,7 +82,7 @@ export const stellarRemnants_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri eri tüüpi tähtede tihedaid jäänuseid ja plahvatuslikke lõppe.',
       be: 'Дасьледуйце кампактныя рэшткі й выбуховыя завяршэньні жыцьця розных тыпаў зорак.',
       ka: 'შეისწავლეთ სხვადასხვა ტიპის ვარსკვლავების მკვრივი ნაშთები და მათი აფეთქებითი დასასრული.',
-      kk: 'Әртүрлі жұлдыздардың тығыз қалдықтарын және жарылыспен аяқталуын зерттеңіз.',
+      kk: 'Ärtürlı jūldyzdardyñ tyğyz qaldyqtaryn jäne jarylyspen aiaqtaluyn zertteñız.',
       qm: 'Türlü yıldızlarnıñ sıqı qaldıqlarını ve patlavnen tamamlanğan ömürlerini ögreniñiz.',
     },
   },
