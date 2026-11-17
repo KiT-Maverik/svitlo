@@ -38,7 +38,7 @@ export const economicIndicators_SkillGroup_Data = defineSkillGroup({
     et: 'Majandusnäitajad',
     be: 'Эканамічныя паказьнікі',
     ka: 'ეკონომიკური მაჩვენებლები',
-    kk: 'Экономикалық көрсеткіштер',
+    kk: 'Ekonomikalyq körsetkışter',
     qm: 'İqtisadiy köstergiçler',
   },
   skills: [
@@ -78,7 +78,7 @@ export const economicIndicators_SkillGroup_Data = defineSkillGroup({
       et: 'Õpi tõlgendama majandusstatistikat kontekstis.',
       be: 'Навучыся тлумачыць эканамічную статыстыку з улікам кантэксту.',
       ka: 'ისწავლე ეკონომიკური სტატისტიკის განმარტება კონტექსტის გათვალისწინებით.',
-      kk: 'Экономикалық статистиканы мәнмәтінмен түсіндіруді үйрен.',
+      kk: 'Ekonomikalyq statistikany mänmätınge sai tüsındırudı üiren.',
       qm: 'İqtisadiy statistikanı vaziyetni köz ögüne alıp añlamağa ögren.',
     },
   },

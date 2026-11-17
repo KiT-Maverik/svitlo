@@ -36,7 +36,7 @@ export const economicDataAndResearch_SkillDomain_Data = defineSkillDomain({
     et: 'Majandusandmed ja uuringud',
     be: 'Эканамічныя зьвесткі і дасьледаваньні',
     ka: 'ეკონომიკური მონაცემები და კვლევა',
-    kk: 'Экономикалық деректер мен зерттеулер',
+    kk: 'Ekonomikalyq derekter men zertteuler',
     qm: 'İqtisadiy malümatlar ve araştırmalar',
   },
   groups: [
@@ -76,7 +76,7 @@ export const economicDataAndResearch_SkillDomain_Data = defineSkillDomain({
       et: 'Uuri, kuidas majandusteadlased väiteid andmete ja mudelitega kontrollivad.',
       be: 'Даведайся, як эканамісты правяраюць цьверджаньні з дапамогай зьвестак і мадэляў.',
       ka: 'გაიგე, როგორ ამოწმებენ ეკონომისტები მტკიცებებს მონაცემებითა და მოდელებით.',
-      kk: 'Экономистер деректер мен модельдер арқылы тұжырымдарды қалай тексеретінін біл.',
+      kk: 'Ekonomister derekter men modelderdı paidalanyp, tūjyrymdardy qalai tekseretının bıl.',
       qm: 'İqtisatçılar malümatlar ve modellernen fikirlerni nasıl sınap körgenlerini ögren.',
     },
   },
