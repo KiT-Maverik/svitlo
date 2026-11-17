@@ -16,6 +16,20 @@ const en = {
 
 export type Audio_Locale = typeof en;
 
+const it: Audio_Locale = {
+  play: 'Riproduci',
+  pause: 'Pausa',
+  seek: 'Posizione di riproduzione',
+  mute: 'Disattiva audio',
+  unmute: 'Attiva audio',
+  volume: 'Volume',
+  speed: 'Velocità di riproduzione',
+  offline: 'Questo audio non è disponibile offline.',
+  unavailable: 'Questo audio non è disponibile.',
+  playbackError: 'Impossibile riprodurre l’audio.',
+  retry: 'Riprova',
+};
+
 const uk: Audio_Locale = {
   play: 'Відтворити',
   pause: 'Пауза',
@@ -410,6 +424,7 @@ const qm: Audio_Locale = {
 
 export const audio: UiKit_Component_Locale<Audio_Locale> = {
   en,
+  it,
   uk,
   zh,
   hi,

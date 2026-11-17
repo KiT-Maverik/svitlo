@@ -226,7 +226,10 @@ describe('Configurators', () => {
       test('Text rejects positional arrays in authored locale values and override patches', () => {
         const text = defineText<'intro', ['en', 'uk']>({ ...identity, locale: { value: 'Welcome' } });
         assert.throws(() =>
-          defineText<'intro', ['en', 'uk']>({ ...identity, locale: { value: ['not a locale dictionary'] } } as never),
+          defineText<'intro', ['en', 'uk']>({
+            ...identity,
+            locale: { value: ['not a locale dictionary'] },
+          } as never).build.props({ languages: ['en', 'uk'] }),
         );
         assert.throws(() =>
           text.build.overrides({ locale: { value: ['not a locale dictionary'] } } as never, {

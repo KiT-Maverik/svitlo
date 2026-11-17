@@ -446,7 +446,11 @@ test('nested Carousel and Checkpoint configurators become factory calls in Cours
                                   slug: 'gallery',
                                   slides: {
                                     items: {
-                                      slide: { type: 'carouselSlide', slug: 'slide' },
+                                      slide: {
+                                         type: 'image', slug: 'slide',
+                                         params: { fill: true, aspectRatio: 1.5 },
+                                         locale: { src: null, alt: { uk: 'Зображення' } },
+                                       },
                                     },
                                     order: ['slide'],
                                   },
@@ -507,7 +511,6 @@ test('nested Carousel and Checkpoint configurators become factory calls in Cours
     'defineEpisode',
     'defineContentSection',
     'defineCarousel',
-    'defineCarouselSlide',
     'defineCheckpoint',
     'defineCheckpointItem',
     'defineText',
@@ -516,6 +519,9 @@ test('nested Carousel and Checkpoint configurators become factory calls in Cours
   }
   assert.equal((code.match(/defineText\(/g) ?? []).length, 2);
   assert(!code.includes('EN_SECRET'));
+  const invalid = structuredClone(nested);
+  invalid.content.items.module.content.items.chapter.content.items.episode.section.items.section.content.items.gallery.slides.items.slide.type = 'text';
+  assert.throws(() => renderCourseSource(invalid), /Carousel slides must be image or scene/);
   assert.deepEqual(ts.createSourceFile('draft.ts', code, ts.ScriptTarget.Latest, true).parseDiagnostics, []);
 });
 
@@ -582,7 +588,6 @@ const courseNodeTypes = new Set([
   'video',
   'youtube',
   'carousel',
-  'carouselSlide',
   'checkpoint',
   'checkpointItem',
 ]);

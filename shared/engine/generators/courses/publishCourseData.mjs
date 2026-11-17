@@ -188,7 +188,10 @@ function assertSameCourseStructure(base, localized, location = 'course') {
  * `course.build.overrides(patch, { languages })`. When omitted, the Course
  * references standalone Lessons without any Course-specific changes.
  */
-export function renderCourseFiles(course, { languages = course?.config?.base?.params?.languages, overrides } = {}) {
+export function renderCourseFiles(
+  course,
+  { languages = course?.config?.base?.params?.languages, overrides, projectMedia } = {},
+) {
   if (course?.type !== 'course' || !uuid.test(course.id) || !course?.build?.props) {
     throw new Error('Expected a defineCourse configurator with a valid Course ID');
   }
@@ -217,7 +220,8 @@ export function renderCourseFiles(course, { languages = course?.config?.base?.pa
     }
   }
   const baseResolved = mergeCourseProps(resource.base, patch?.base);
-  const base = compactEntity(baseResolved, lessonPatches);
+  const baseRaw = compactEntity(baseResolved, lessonPatches);
+  const base = projectMedia ? projectMedia(baseRaw, 'base') : baseRaw;
   assertJson(base, 'Course base ' + course.id);
 
   const files = new Map([['base.json', JSON.stringify(base, null, 2) + '\n']]);
@@ -226,7 +230,8 @@ export function renderCourseFiles(course, { languages = course?.config?.base?.pa
       mergeCourseProps(mergeCourseProps(resource.base, resource.locale?.[language]), patch?.base),
       patch?.locale?.[language],
     );
-    const localized = compactEntity(resolved, lessonPatches, language);
+    const localizedRaw = compactEntity(resolved, lessonPatches, language);
+    const localized = projectMedia ? projectMedia(localizedRaw, language) : localizedRaw;
     assertSameCourseStructure(base, localized);
     const delta = difference(base, localized);
     if (delta !== undefined) {

@@ -10,7 +10,7 @@ import {
   selectPublicationLocales,
   validateRequestedPublication,
 } from '../../_shared__configurators';
-import { validateLocalAssetPaths } from '../_shared__contentBlocks';
+import { runtimeMediaLocale } from '../_shared__contentBlocks';
 import {
   image_Config_Schema,
   image_Props_Schema,
@@ -30,7 +30,6 @@ type ImageOverridePropsBase = {
 
 const parseAndValidate = (config: ContentBlock_Image_Config): ContentBlock_Image_Config => {
   const parsed = image_Config_Schema.parse(config);
-  validateLocalAssetPaths(parsed.locale.src, 'locale.src');
   return parsed;
 };
 const validate = (config: ContentBlock_Image_Config): void => {
@@ -39,7 +38,7 @@ const validate = (config: ContentBlock_Image_Config): void => {
 
 const buildImageProps = (config: ContentBlock_Image_Config): ImagePropsPublication<ContentBlock_Image_PropsBase> => {
   const { id, type, slug, params } = config;
-  const { base: invariant, locale } = splitLocalizedFields(config.locale);
+  const { base: invariant, locale } = splitLocalizedFields(runtimeMediaLocale(config.locale, 'src'));
   const base = {
     id,
     type,
@@ -59,7 +58,7 @@ const buildImageProps = (config: ContentBlock_Image_Config): ImagePropsPublicati
 };
 
 const buildImagePatch = (patch: ContentBlock_Image_Overrides): ImagePropsPublication<ImageOverridePropsBase> => {
-  const { base: invariant, locale } = splitLocalizedFields(patch.locale ?? {});
+  const { base: invariant, locale } = splitLocalizedFields(runtimeMediaLocale(patch.locale ?? {}, 'src'));
   return {
     base: {
       ...(patch.params !== undefined ? { params: patch.params } : {}),
@@ -88,10 +87,10 @@ export const defineImage = <
       Languages
     >,
 ) => {
-  const authored = structuredClone(parseAndValidate(config));
+  const authored: ContentBlock_Image_Config = structuredClone(config);
   const { id, type } = authored;
   const slug = config.slug;
-  const copyAuthored = () => image_Config_Schema.parse(structuredClone(authored));
+  const copyAuthored = () => structuredClone(authored);
   const base = {
     id,
     type,

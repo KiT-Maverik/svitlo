@@ -132,12 +132,8 @@ export function renderLessonMarkdown({ lesson, locale, languages, packagePath, s
     throw new Error('Missing, duplicate or unsupported lesson languages');
   }
   if (!supported.includes(locale)) throw new Error(`Lesson ${relative} does not support locale ${locale}`);
-  if (
-    !Array.isArray(lesson.section) ||
-    !Array.isArray(lesson.flashcards) ||
-    (lesson.questions !== undefined && !record(lesson.questions))
-  ) {
-    throw new Error('Lesson is missing Section or Flashcard Props arrays or has an invalid Question Bank');
+  if (!Array.isArray(lesson.section) || Object.hasOwn(lesson, 'questions') || Object.hasOwn(lesson, 'flashcards')) {
+    throw new Error('Lesson must contain Section Props only; assessment banks are reviewed independently');
   }
   if (!record(lesson.locale) || typeof lesson.locale.title !== 'string' || !lesson.locale.title.trim()) {
     throw new Error('Lesson Props must contain a resolved locale.title');
@@ -259,65 +255,18 @@ export function renderLessonMarkdown({ lesson, locale, languages, packagePath, s
     }
     if (section.type === 'quiz') {
       if (!record(section.params)) throw new Error(`Quiz Section ${section.slug} is missing params`);
-      add('- **Quiz uses references into the Question Bank below; content is not repeated here.**');
-      writeValue('Quiz parameters and selected Question slugs', section.params);
+      add('- **Quiz references independently published Question UUIDs; answer contents are not embedded.**');
+      writeValue('Quiz parameters and selected Question UUIDs', section.params);
     } else {
       if (!Array.isArray(section.content)) throw new Error(`Section ${section.slug} is missing content`);
       section.content.forEach((block, i) => writeValue(`Block ${i + 1}`, block));
     }
     add('');
   }
-  add('## Question Bank');
+  add('## Assessment resources');
   add('');
-  let questionCount = 0;
-  for (const [type, catalog] of Object.entries(localized.questions ?? {})) {
-    if (!Array.isArray(catalog)) throw new Error(`Invalid question catalog ${type}`);
-    for (const question of catalog) {
-      const key = question?.slug;
-      if (
-        !record(question) ||
-        typeof question.id !== 'string' ||
-        !record(question.content) ||
-        !Array.isArray(question.content.question) ||
-        question.type !== type
-      )
-        throw new Error(`Invalid question ${type}/${key}`);
-      questionCount++;
-      add(`### ${questionCount}. ${headingText(key)} · ${headingText(type)}`);
-      add('');
-      add(`- ID: \`${question.id}\``);
-      add(`- Canonical: ${source(question.id, sourceEntry)}`);
-      for (const [field, value] of Object.entries(question)) {
-        if (['id', 'slug', 'type'].includes(field)) continue;
-        writeValue(field, value);
-      }
-      add('');
-    }
-  }
-  if (!questionCount) add('No Questions in this bank.', '');
-  add('## Flashcard Bank');
+  add('Question and Flashcard contents are published and reviewed independently; Section UUID selections appear above.');
   add('');
-  localized.flashcards.forEach((card, index) => {
-    if (
-      !record(card) ||
-      typeof card.id !== 'string' ||
-      !record(card.content) ||
-      !Array.isArray(card.content.front) ||
-      !Array.isArray(card.content.back) ||
-      (card.content.hint !== undefined && !Array.isArray(card.content.hint))
-    )
-      throw new Error(`Invalid Flashcard ${index + 1}`);
-    add(`### Flashcard ${index + 1}`);
-    add('');
-    add(`- ID: \`${card.id}\``);
-    add(`- Canonical: ${source(card.id, sourceEntry)}`);
-    for (const [field, value] of Object.entries(card)) {
-      if (field === 'id') continue;
-      writeValue(field, value);
-    }
-    add('');
-  });
-  if (!localized.flashcards.length) add('No Flashcards in this bank.', '');
   return lines.join('\n').trimEnd() + '\n';
 }
 

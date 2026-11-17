@@ -1,0 +1,91 @@
+import { defineSkillGroup } from '@svitlo/engine/build';
+
+import { ancientAstronomicalKnowledge } from './ancientAstronomicalKnowledge';
+import { ancientCalendarSystems } from './ancientCalendarSystems';
+import { ancientMeasurementSystems } from './ancientMeasurementSystems';
+import { earlyUrbanInfrastructure } from './earlyUrbanInfrastructure';
+import { historyOfAncientMedicine } from './historyOfAncientMedicine';
+import { metallurgyAndHistoricalEffects } from './metallurgyAndHistoricalEffects';
+import { originsOfWriting } from './originsOfWriting';
+
+export const productionAndKnowledge = defineSkillGroup({
+  slug: 'productionAndKnowledge',
+  id: '742b4358-b545-4895-9856-453f918343d0',
+  name: {
+    ar: 'الإنتاج والمعرفة',
+    be: 'Вытворчасьць і веды',
+    bn: 'উৎপাদন ও জ্ঞান',
+    de: 'Produktion und Wissen',
+    en: 'Production and Knowledge',
+    es: 'Producción y conocimiento',
+    et: 'Tootmine ja teadmised',
+    fr: 'Production et savoirs',
+    he: 'ייצור וידע',
+    hi: 'उत्पादन और ज्ञान',
+    id: 'Produksi dan pengetahuan',
+    it: 'Produzione e conoscenza',
+    ja: '生産と知識',
+    ka: 'წარმოება და ცოდნა',
+    kk: 'Өндіріс және білім',
+    ko: '생산과 지식',
+    lt: 'Gamyba ir žinios',
+    lv: 'Ražošana un zināšanas',
+    mr: 'उत्पादन आणि ज्ञान',
+    ms: 'Pengeluaran dan pengetahuan',
+    pl: 'Produkcja i wiedza',
+    pt: 'Produção e conhecimento',
+    qm: 'İstisal ve bilgi',
+    ta: 'உற்பத்தியும் அறிவும்',
+    te: 'ఉత్పత్తి, జ్ఞానం',
+    tr: 'Üretim ve Bilgi',
+    uk: 'Виробництво та знання',
+    ur: 'پیداوار اور علم',
+    vi: 'Sản xuất và tri thức',
+    zh: '生产与知识',
+  },
+  skills: {
+    ancientAstronomicalKnowledge,
+    ancientCalendarSystems,
+    ancientMeasurementSystems,
+    earlyUrbanInfrastructure,
+    historyOfAncientMedicine,
+    metallurgyAndHistoricalEffects,
+    originsOfWriting,
+  },
+  description: {
+    methodological:
+      'Evaluate material inventions and systems of information transmission by function, spread, and historical context rather than claims of being first.',
+    frontend: {
+      ar: 'استكشف كيف صنعت المجتمعات القديمة الأشياء وتبادلت المعرفة.',
+      be: 'Дасьледуй, як старажытныя грамадзтвы выраблялі рэчы і дзяліліся ведамі.',
+      bn: 'প্রাচীন সমাজ কীভাবে জিনিস তৈরি করত ও জ্ঞান ভাগ করত তা জানো।',
+      de: 'Erkunde, wie antike Gesellschaften Dinge herstellten und Wissen weitergaben.',
+      en: 'Explore how ancient societies made things and shared knowledge.',
+      es: 'Explora cómo las sociedades antiguas fabricaban objetos y compartían conocimientos.',
+      et: 'Uuri, kuidas muistsed ühiskonnad valmistasid esemeid ja jagasid teadmisi.',
+      fr: 'Explore comment les sociétés anciennes fabriquaient des objets et partageaient leurs savoirs.',
+      he: 'גלו כיצד חברות עתיקות ייצרו חפצים וחלקו ידע.',
+      hi: 'जानें कि प्राचीन समाज वस्तुएँ कैसे बनाते और ज्ञान कैसे बाँटते थे।',
+      id: 'Jelajahi bagaimana masyarakat kuno membuat barang dan berbagi pengetahuan.',
+      it: 'Esplora come le società antiche producevano beni e condividevano conoscenze.',
+      ja: '古代社会が物を作り、知識を共有した方法を調べましょう。',
+      ka: 'შეისწავლე, როგორ ამზადებდნენ ძველი საზოგადოებები ნივთებს და აზიარებდნენ ცოდნას.',
+      kk: 'Ежелгі қоғамдар заттарды қалай жасап, білімді қалай бөліскенін зертте.',
+      ko: '고대 사회가 물건을 만들고 지식을 나눈 방법을 알아보세요.',
+      lt: 'Tyrinėk, kaip senovės visuomenės gamino daiktus ir dalijosi žiniomis.',
+      lv: 'Izpēti, kā senās sabiedrības izgatavoja priekšmetus un dalījās zināšanās.',
+      mr: 'प्राचीन समाज वस्तू कशा बनवत आणि ज्ञान कसे वाटून घेत ते जाणून घ्या.',
+      ms: 'Terokai cara masyarakat purba menghasilkan barangan dan berkongsi ilmu.',
+      pl: 'Poznaj sposoby wytwarzania przedmiotów i dzielenia się wiedzą w dawnych społeczeństwach.',
+      pt: 'Explore como sociedades antigas produziam objetos e compartilhavam conhecimentos.',
+      qm: 'Qadimiy cemiyetler eşyalarını nasıl yapıp bilgilerini nasıl paylaşqanını ögren.',
+      ta: 'பண்டைய சமூகங்கள் பொருட்களை எவ்வாறு உற்பத்தி செய்தும் அறிவைப் பகிர்ந்தும் இருந்தன என்பதை ஆராய்.',
+      te: 'ప్రాచీన సమాజాలు వస్తువులను ఎలా తయారు చేసి జ్ఞానాన్ని ఎలా పంచుకున్నాయో తెలుసుకోండి.',
+      tr: 'Eski toplumların eşyaları nasıl ürettiğini ve bilgiyi nasıl paylaştığını keşfet.',
+      uk: 'Досліди, як давні суспільства виготовляли речі й ділилися знаннями.',
+      ur: 'جانیں کہ قدیم معاشرے چیزیں کیسے بناتے اور علم کیسے بانٹتے تھے۔',
+      vi: 'Khám phá cách các xã hội cổ đại tạo ra đồ vật và chia sẻ tri thức.',
+      zh: '探索古代社会如何制造物品与分享知识。',
+    },
+  },
+});

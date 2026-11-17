@@ -1,4 +1,5 @@
 import { defineText } from './contentBlocks/defineText/defineText';
+import { defineCheckpointAnswer } from './contentBlocks/defineCheckpoint/defineCheckpointAnswer';
 import { defineCheckpointItem } from './contentBlocks/defineCheckpoint/defineCheckpointItem';
 import { defineCheckpoint } from './contentBlocks/defineCheckpoint/defineCheckpoint';
 
@@ -20,12 +21,16 @@ text.build.props({ languages: ['pl'] });
 // @ts-expect-error The publication scope is mandatory.
 text.build.props();
 
-const item = defineCheckpointItem<'item', { intro: typeof text }, typeof text, ['en', 'uk']>({
+const answer = defineCheckpointAnswer<'answer', { intro: typeof text }, ['en', 'uk']>({
+  id: 'b775647f-203d-481a-a1c7-4d331c779d64', type: 'checkpointAnswer', slug: 'answer',
+  content: { items: { intro: text }, order: ['intro'] },
+});
+const item = defineCheckpointItem<'item', typeof answer, typeof text, ['en', 'uk']>({
   id: 'b775647f-203d-481a-a1c7-4d331c779d62',
   type: 'checkpointItem',
   slug: 'item',
   question: text,
-  answer: { items: { intro: text }, order: ['intro'] },
+  answer,
 });
 const checkpoint = defineCheckpoint<'review', { item: typeof item }, ['en', 'uk']>({
   id: 'b775647f-203d-481a-a1c7-4d331c779d63',

@@ -29,11 +29,10 @@ import {
   type ContentBlock_Carousel_Overrides,
   type ContentBlock_Carousel_PropsBase,
   type ContentBlock_Carousel_SlideProps,
+  type ContentBlock_Carousel_SlideConfigurator,
+  carousel_Slide_Props_Schema,
 } from './defineCarousel.schemas';
-import { carouselSlide_Published_Schema, type ContentBlock_CarouselSlide_Configurator } from './defineCarouselSlide';
-
-type Slide = ContentBlock_CarouselSlide_Configurator;
-type SlideResource = ReturnType<Slide['build']['props']>;
+type Slide = ContentBlock_Carousel_SlideConfigurator;
 type SlidePatch = ReturnType<Slide['build']['overrides']>;
 type CarouselLocaleBody = { locale: DeepPartial<ContentBlock_Carousel_Locale<'props'>> };
 type CarouselLocaleFiles = Partial<Record<LanguageCode, CarouselLocaleBody>>;
@@ -57,7 +56,7 @@ const validate = (config: ContentBlock_Carousel_Config): void => {
   });
   if (isRecord(config.slides) && isRecord(config.slides.items)) {
     issues.push(
-      ...validateSluggedConfiguratorMap(config.slides.items, ['carouselSlide'], {
+      ...validateSluggedConfiguratorMap(config.slides.items, ['image', 'scene'], {
         path: 'slides.items',
         itemLabel: 'Carousel slide',
       }),
@@ -81,11 +80,10 @@ const validate = (config: ContentBlock_Carousel_Config): void => {
 };
 
 /**
- * Display several instructional images in a single ordered Carousel.
+ * Display images and registered interactive Scenes in one ordered Carousel.
  *
  * @remarks
- * Author each slide with `defineCarouselSlide`, including its accessible
- * alternative text and optional caption. `slides.order` controls the
+ * Author each slide with `defineImage` or `defineScene`. `slides.order` controls the
  * pedagogical sequence; at least one slide must remain enabled.
  *
  * @example
@@ -106,9 +104,9 @@ export const defineCarousel = <
     slides: { items: Items & ChildrenSupporting<Languages, Items>; order: string[] };
   } & ConfigWithLanguages<ContentBlock_Carousel_Config, Languages>,
 ) => {
-  validate(config);
   const metadataSchema = carousel_Config_Schema.omit({ slides: true });
-  const authored = metadataSchema.parse(config);
+  const { slides: _slides, ...metadataInput } = config;
+  const authored: Omit<ContentBlock_Carousel_Config, 'slides'> = structuredClone(metadataInput);
   const copyAuthored = () => metadataSchema.parse(structuredClone(authored));
   const { id, type } = authored;
   const slug = config.slug;
@@ -139,22 +137,28 @@ export const defineCarousel = <
     base: ContentBlock_Carousel_SlideProps[] | undefined;
     locale: Partial<Record<LanguageCode, ContentBlock_Carousel_SlideProps[]>>;
   } => {
-    const entries = order.map(key => {
-      const slide = items[key];
-      const resource = slide.build.props({ languages });
-      const patch = Object.hasOwn(patches, key)
-        ? (slide.build.overrides as (patch: never, options: PublicationLanguageOptions) => SlidePatch)(
-            patches[key] as never,
-            { languages },
-          )
-        : undefined;
-      return { resource, patch };
-    });
+    const entries = order
+      .map(key => {
+        const slide = items[key];
+        const resource = slide.build.props({ languages });
+        const patch = Object.hasOwn(patches, key)
+          ? (slide.build.overrides as (patch: never, options: PublicationLanguageOptions) => SlidePatch)(
+              patches[key] as never,
+              { languages },
+            )
+          : undefined;
+        return { resource, patch };
+      })
+      .filter(({ resource, patch }) => {
+        // Disabled children are absent from resolved Carousel Props, like other nested
+        // ContentBlocks. Preserve the authored collection and its order unchanged.
+        const effective = mergeForValidation(resource.base, patch?.base ?? {});
+        return effective.params.disabled !== true;
+      });
+    if (!entries.length) throw new Error('At least one active Carousel slide is required');
 
-    const invariant = entries.map(({ resource, patch }) =>
-      mergeForValidation(resource.base.locale ?? {}, patch?.base.locale ?? {}),
-    );
-    const arraySchema = z.array(carouselSlide_Published_Schema).min(1);
+    const arraySchema = z.array(carousel_Slide_Props_Schema).min(1);
+    const invariant = entries.map(({ resource, patch }) => mergeForValidation(resource.base, patch?.base ?? {}));
     const parsedInvariant = arraySchema.safeParse(invariant);
 
     const translatedLanguages = languages.filter(language =>
@@ -162,13 +166,12 @@ export const defineCarousel = <
         ({ resource, patch }) => resource.locale?.[language] !== undefined || patch?.locale?.[language] !== undefined,
       ),
     );
-
     const localized: Partial<Record<LanguageCode, ContentBlock_Carousel_SlideProps[]>> = {};
     for (const language of translatedLanguages) {
       const values = entries.map(({ resource, patch }) => {
-        const fromResource = mergeForValidation(resource.base.locale ?? {}, resource.locale?.[language]?.locale ?? {});
-        const withPatchBase = mergeForValidation(fromResource, patch?.base.locale ?? {});
-        return mergeForValidation(withPatchBase, patch?.locale?.[language]?.locale ?? {});
+        const withLocale = mergeForValidation(resource.base, resource.locale?.[language] ?? {});
+        const withPatchBase = mergeForValidation(withLocale, patch?.base ?? {});
+        return mergeForValidation(withPatchBase, patch?.locale?.[language] ?? {});
       });
       const parsed = arraySchema.safeParse(values);
       if (!parsed.success) {
@@ -182,16 +185,13 @@ export const defineCarousel = <
     if (!parsedInvariant.success && !translatedLanguages.length) {
       throw new Error('Carousel slides must be invariant or complete in their localized files');
     }
-    return {
-      base: parsedInvariant.success ? parsedInvariant.data : undefined,
-      locale: localized,
-    };
+    return { base: parsedInvariant.success ? parsedInvariant.data : undefined, locale: localized };
   };
 
   const base = {
     id,
-    type,
     slug,
+    type,
     params: structuredClone(authored.params),
     locale: onlyStrings(authored.locale),
   } satisfies DeepPartial<ContentBlock_Carousel_Config>;
@@ -200,6 +200,7 @@ export const defineCarousel = <
     options: PublicationLanguageOptions<Languages>,
   ): CarouselPublication<ContentBlock_Carousel_PropsBase> => {
     const languages = resolvePublicationLanguages(options);
+    validate({ ...copyAuthored(), slides: { items: initialItems, order: initialOrder } });
     const metadata = copyAuthored();
     const own = splitOwnLocale(metadata.locale);
     const built = buildSlides(initialItems, initialOrder, languages);
@@ -240,6 +241,7 @@ export const defineCarousel = <
   ): CarouselPublication<CarouselOverrideBase> => {
     try {
       const languages = resolvePublicationLanguages(options);
+      validate({ ...copyAuthored(), slides: { items: initialItems, order: initialOrder } });
       if (!isRecord(patch)) throw new Error('Expected Carousel overrides object');
       for (const key of Object.keys(patch)) {
         if (!['params', 'locale', 'slides'].includes(key)) {
@@ -276,7 +278,7 @@ export const defineCarousel = <
       const additions = patch.slides?.additionalItems ?? {};
       if (!isRecord(additions)) throw new Error('slides.additionalItems must be a slug-keyed configurator map');
 
-      const addedIssues = validateSluggedConfiguratorMap(additions, ['carouselSlide'], {
+      const addedIssues = validateSluggedConfiguratorMap(additions, ['image', 'scene'], {
         path: 'slides.additionalItems',
         itemLabel: 'Carousel slide',
       });
@@ -319,6 +321,7 @@ export const defineCarousel = <
       if (issues.length) throw new Error(issues.map(issue => issue.message).join('; '));
       if (!order.length) throw new Error('At least one active Carousel slide is required');
 
+      const sourcePublication = props(options);
       const modifiesSlides =
         Object.keys(changes).length > 0 || Object.keys(additions).length > 0 || patch.slides?.order !== undefined;
       if (modifiesSlides) {
@@ -330,10 +333,20 @@ export const defineCarousel = <
         for (const [language, entries] of Object.entries(built.locale)) {
           (files[language as LanguageCode] ??= { locale: {} }).locale.slides = entries;
         }
+        // When a localized child is disabled or removed, the remaining slides may
+        // be invariant. Override the original language-specific arrays as well;
+        // otherwise the old arrays would resurrect the removed slide at assembly.
+        if (built.base) {
+          for (const language of languages) {
+            if (sourcePublication.locale?.[language]?.locale.slides && !built.locale[language]) {
+              (files[language] ??= { locale: {} }).locale.slides = structuredClone(built.base);
+            }
+          }
+        }
       }
 
       output.locale = Object.keys(files).length ? files : undefined;
-      validateRequestedPublication(carousel_Props_Schema, props(options), languages, output);
+      validateRequestedPublication(carousel_Props_Schema, sourcePublication, languages, output);
       return output;
     } catch (error) {
       throw new Error(

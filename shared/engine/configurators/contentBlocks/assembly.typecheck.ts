@@ -2,10 +2,10 @@ import {
   defineText,
   defineAudio,
   defineCarousel,
-  defineCarouselSlide,
   defineCode,
   defineImage,
   defineMarkdown,
+  readMarkdown,
   defineScene,
   defineVideo,
   defineYoutube,
@@ -25,7 +25,7 @@ const audio = defineAudio<'audio', ['en']>({
   slug: 'audio',
   type: 'audio',
   params: {},
-  locale: { title: { en: 'Narration' }, fileLocation: 'https://example.com/a.mp3' },
+  locale: { title: { en: 'Narration' }, fileName: 'https://example.com/a.mp3' },
 });
 const carousel = defineCarousel({
   id,
@@ -35,11 +35,12 @@ const carousel = defineCarousel({
   locale: {},
   slides: {
     items: {
-      first: defineCarouselSlide({
+      first: defineImage({
         id,
         slug: 'first',
-        type: 'carouselSlide',
-        locale: { src: 'https://example.com/image.png', alt: 'Alt' },
+        type: 'image',
+        params: { fill: true, aspectRatio: 1.5 },
+        locale: { fileName: 'https://example.com/image.png', alt: 'Alt' },
       }),
     },
     order: ['first'],
@@ -57,7 +58,7 @@ const image = defineImage<'image', ['en']>({
   slug: 'image',
   type: 'image',
   params: { width: 100, height: 100 },
-  locale: { src: 'https://example.com/image.png', alt: { en: 'Diagram' } },
+  locale: { fileName: 'https://example.com/image.png', alt: { en: 'Diagram' } },
 });
 const markdown = defineMarkdown<'markdown', ['en']>({
   id,
@@ -66,6 +67,20 @@ const markdown = defineMarkdown<'markdown', ['en']>({
   params: {},
   locale: { value: { en: 'Hello' } },
 });
+// The source-language reader cannot satisfy a Lesson after its language tuple expands.
+const incompleteMarkdown = () =>
+  defineMarkdown<'incompleteMarkdown', ['en', 'uk']>({
+    id,
+    slug: 'incompleteMarkdown',
+    type: 'markdown',
+    params: {},
+    locale: {
+      // @ts-expect-error The Markdown reader returned only en; uk is required.
+      value: readMarkdown(import.meta.url, ['en'] as const),
+    },
+  });
+void incompleteMarkdown;
+
 const scene = defineScene<'scene', ['en']>({
   id,
   slug: 'scene',
@@ -79,8 +94,8 @@ const video = defineVideo<'video', ['en']>({
   type: 'video',
   params: {},
   locale: {
-    fileLocation: 'https://example.com/movie.mp4',
-    poster: 'https://example.com/movie.jpg',
+    fileName: 'https://example.com/movie.mp4',
+    posterFileName: 'https://example.com/movie.jpg',
     label: { en: 'Movie' },
   },
 });
@@ -251,25 +266,28 @@ defineMarkdown<'missingVariableLanguage', ['uk', 'en']>({
   },
 });
 
-const bilingualSlide = defineCarouselSlide<'bilingualSlide', ['uk', 'en']>({
+const bilingualSlide = defineImage<'bilingualSlide', ['uk', 'en']>({
   id,
   slug: 'bilingualSlide',
-  type: 'carouselSlide',
-  locale: { src: 'https://example.com/image.png', alt: { uk: 'Фото', en: 'Photo' } },
+  type: 'image',
+  params: { fill: true, aspectRatio: 1.5 },
+  locale: { fileName: 'https://example.com/image.png', alt: { uk: 'Фото', en: 'Photo' } },
 });
 void bilingualSlide;
 
-const ukOnlySlide = defineCarouselSlide<'ukOnly', ['uk']>({
+const ukOnlySlide = defineImage<'ukOnly', ['uk']>({
   id,
   slug: 'ukOnly',
-  type: 'carouselSlide',
-  locale: { src: 'https://example.com/uk-only.png', alt: { uk: 'Лише українською' } },
+  type: 'image',
+  params: { fill: true, aspectRatio: 1.5 },
+  locale: { fileName: 'https://example.com/uk-only.png', alt: { uk: 'Лише українською' } },
 });
-const bilingualSlideForGallery = defineCarouselSlide<'bilingual', ['uk', 'en']>({
+const bilingualSlideForGallery = defineImage<'bilingual', ['uk', 'en']>({
   id,
   slug: 'bilingual',
-  type: 'carouselSlide',
-  locale: { src: 'https://example.com/bilingual.png', alt: { uk: 'Фото', en: 'Photo' } },
+  type: 'image',
+  params: { fill: true, aspectRatio: 1.5 },
+  locale: { fileName: 'https://example.com/bilingual.png', alt: { uk: 'Фото', en: 'Photo' } },
 });
 const typedCarouselSupports = defineCarousel<
   'typedGallery',
@@ -298,5 +316,33 @@ defineCarousel<'invalidGallery', { ukOnly: typeof ukOnlySlide }, ['uk', 'en']>({
       ukOnly: ukOnlySlide,
     },
     order: ['ukOnly'],
+  },
+});
+
+/** Carousel infers the exact Image/Scene child kinds and validates localized overrides. */
+const mixedCarousel = defineCarousel<'mixedGallery', { image: typeof image; scene: typeof scene }, ['en']>({
+  id,
+  slug: 'mixedGallery',
+  type: 'carousel',
+  params: {},
+  locale: { title: { en: 'Explore' } },
+  slides: { items: { image, scene }, order: ['image', 'scene'] },
+});
+mixedCarousel.build.overrides(
+  { slides: { items: { scene: { locale: { value: { heading: { en: 'Updated' } } } } } } },
+  { languages: ['en'] },
+);
+defineCarousel({
+  id,
+  slug: 'invalidChild',
+  type: 'carousel',
+  params: {},
+  locale: {},
+  slides: {
+    items: {
+      // @ts-expect-error Text is not a Carousel Image/Scene child.
+      text,
+    },
+    order: ['text'],
   },
 });

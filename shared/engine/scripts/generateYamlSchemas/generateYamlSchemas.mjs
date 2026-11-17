@@ -38,8 +38,8 @@ const schemas = {
 export function draftYamlSchema(kind, configSchema) {
   if (kind !== 'lesson' && kind !== 'course') return configSchema;
   const schema = structuredClone(configSchema);
-  // Keep Zod-derived required fields. Pending local media is represented
-  // by literal null in the YAML-only Zod projections, not by omitted fields.
+  // Keep Zod-derived required fields. Media filenames are omitted from
+  // technical YAML and inserted as unresolved placeholders by Lesson Builder.
   schema.properties.documentLanguage = { type: 'string', minLength: 2 };
   if (kind === 'course') {
     const importSource = {
@@ -160,8 +160,8 @@ export function scaffoldYamlSchema(kind, authoredConfig) {
     title: 'Svitlo ' + kind + ' unified config.yaml authoring draft',
     description:
       'Config is derived from Engine Zod; production references manually owned production.schema.json. ' +
-      'Complete Config structure may contain literal null for pending local media; ' +
-      'TypeScript fails until the actual resources have been produced.',
+      'Technical YAML omits physical media filenames; Lesson Builder inserts reserved Nil UUID placeholders ' +
+      'and TODO(asset) comments in generated TypeScript for resource production.',
     ...envelope,
     $defs: {
       ...Object.fromEntries(Object.entries($defs).map(([name, schema]) => [name, wrap(schema)])),
@@ -198,8 +198,6 @@ export function courseOverridesSchema(course) {
   delete params.required;
   const locale = structuredClone(course.properties.locale);
   delete locale.required;
-  const questions = structuredClone(collection);
-  delete questions.properties.order; // Question Bank groups have no ordering API.
   return {
     $schema: 'https://json-schema.org/draft/2020-12/schema',
     $id: 'https://svitlo.dev/engine/yaml-schemas/courseOverrides.schema.json',
@@ -218,8 +216,6 @@ export function courseOverridesSchema(course) {
           locale: { type: 'object' },
           content: { $ref: '#/$defs/patchCollection' },
           section: { $ref: '#/$defs/patchCollection' },
-          flashcards: { $ref: '#/$defs/patchCollection' },
-          questions: { type: 'object', additionalProperties: questions },
         },
         additionalProperties: false,
       },

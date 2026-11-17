@@ -23,18 +23,20 @@ only internal `$ref` pointers, embedding both manual production definitions and
 the Course's direct Build overrides guide. Source language provenance is
 `production.documentLanguage`.
 
-YAML Zod projections preserve all Engine-required Config fields; the only
-intentional type differences for pending local assets are `z.literal(null)`
-for `image.src`, `audio.fileLocation`, `video.fileLocation`,
-`video.poster`, `carouselSlide.src` and localized `subtitles.fileLocation`. Existing Config/Props schemas are
-unchanged. The YAML editor schema requires these keys to exist and be null;
-the TypeScript draft remains invalid until real asset paths are supplied.
+Technical YAML deliberately omits `fileName` and `posterFileName` on Image,
+Audio, Video and Subtitles nodes, including nested Carousel and Quest media.
+The YAML Zod projections derive from their Engine Config schemas while
+excluding those fields; JSON Schema forbids supplying them (including `null`).
+Engine TypeScript Configs remain strict and require category-correct
+UUID filenames. The Lesson Builder inserts an unresolved Nil UUID plus
+`TODO(asset)` in TypeScript, preserving the source YAML without inventing a
+real asset. Draft vs Production checks belong to textbook publication.
 
 The existing Config-only editor schemas and direct
-`courseOverrides.schema.json` remain separately generated. This is
-**editor guidance only**: neither TypeScript scaffolder validates full inputs
-or tries to make generated source compile. Incomplete TS **fails typecheck by
-design** where an explicit null media asset/Scene/import/translation is pending.
+`courseOverrides.schema.json` remain separately generated. This is editor
+guidance only: the TypeScript scaffolders do not validate complete source
+inputs or try to make incomplete drafts compile. Missing Scenes, imports and
+translations remain specialist dependencies.
 
 Production schema changes are edited by hand, not overwritten by the JSON
 schema generator. A subsequent specialist implements missing resources from
@@ -51,7 +53,7 @@ npm run content:check:yaml-schemas --workspace @svitlo/engine
 node --test shared/engine/scripts/generateYamlSchemas/generateYamlSchemas.spec.mjs
 ```
 
-Quest is an authoring-only `type: quest` Section variant with named `stages` and `tasks` maps (both requiring `start` at configurator validation), not a positional collection. The Zod-to-JSON-Schema projection recursively expands Quest Stages into their required medium/small video, three nullable audio slots, image, Subtitles, and Tasks into one Scene each. Subtitles WebVTT paths use pending `null` in technical drafts. This schema and the two draft scaffolders do **not** enable Quest in the runtime Section union or provide playback.
+Quest is an authoring-only `type: quest` Section variant with named `stages` and `tasks` maps (both requiring `start` at configurator validation), not a positional collection. The Zod-to-JSON-Schema projection recursively expands Quest Stages into their required medium/small video, three nullable audio slots, image, Subtitles, and Tasks into one Scene each. Subtitles references are generated only in TypeScript drafts as unresolved Nil UUID placeholders. This schema and the two draft scaffolders do **not** enable Quest in the runtime Section union or provide playback.
 
 Generated, reviewable JSON Schemas are written to
 `shared/engine/yaml-schemas/{contentBlock,section,question,flashcard,lesson,episode,course,courseOverrides}.schema.json` plus `lesson.scaffold.schema.json` and `course.scaffold.schema.json`. Manual `production.schema.json` is not generated.
@@ -67,7 +69,7 @@ supersede methodology, assessment, screenwriting or review documents.
 - **Schema generator:** derives editor-facing JSON Schema from current Engine Zod Config
   compositions. Lesson/Course editor schemas include a small **draft YAML
   envelope**: `documentLanguage` (required for Lesson, optional for Course),
-  complete required Config fields, literal null for pending media, and optional Course Lesson
+  all required non-media Config fields, omitted media filenames, and optional Course Lesson
   `source` import coordinates. These are **not** additions to Engine Config.
 - **`courseOverrides.schema.json`:** guides the sole supported Course-owned
   overrides document: the direct `course.build.overrides(patch, { languages })`

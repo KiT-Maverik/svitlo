@@ -9,6 +9,18 @@ const en = {
 
 export type NavbarPreferences_Locale = typeof en;
 
+const it: NavbarPreferences_Locale = {
+  language: 'Lingua dell’interfaccia',
+  lessonLanguage: 'Lingua della lezione',
+  theme: { dark: 'Tema scuro', light: 'Tema chiaro' },
+  volume: {
+    label: 'Volume',
+    mute: 'Disattiva audio',
+    unmute: 'Attiva audio',
+    maximum: 'Volume massimo',
+  },
+};
+
 const zh: NavbarPreferences_Locale = {
   language: '界面语言',
   lessonLanguage: '课程语言',
@@ -212,6 +224,7 @@ const qm: NavbarPreferences_Locale = {
 
 export const navbarPreferences: UiKit_Component_Locale<NavbarPreferences_Locale> = {
   en,
+  it,
   zh,
   hi,
   es,

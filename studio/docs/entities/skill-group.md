@@ -18,12 +18,12 @@ Each new-format SkillGroup has one English `Slug: lowerCamelCase` immediately be
 
 ## RUNTIME CONTRACT AND ARTIFACTS
 
-The Group config lives in `<PackageRoot>/data/skills/<domain>/<group>/<group>.data.ts`, imports child Skills from `./skills/index.ts` and embeds complete Skill entities in the `skills` dictionary, not UUID-only references. A Group does not have its own directory-level `index.ts`; only its `skills/index.ts` barrel exports immediate Skill Data.
+The Group config lives in `<PackageRoot>/data/skills/<domain>/<group>/index.ts`, imports immediate Skills directly from `./<skill>` and embeds the complete Skill configurators in the slug-keyed `skills` dictionary, not UUID-only references. No nested `skills/` barrel is used.
 
-The Engine `defineSkillGroup` config has `slug`, `id`, localized `name` and a `skills` array containing immediate Skill configurators. It requires `description: { methodological: string; frontend?: Record<LanguageCode, string> }` (reviewed English methodological text required for promotion; frontend absent or complete for all languages), but does not contain teaching order, evaluation evidence or student progress.
+The Engine `defineSkillGroup` config has `slug`, `id`, localized `name` and a plain `skills: Record<Slug, Skill_Configurator>` map containing immediate Skills. There is no authoring `items` or `order` and no `build.overrides()` API for classification entities. It requires `description: { methodological: string; frontend?: Record<LanguageCode, string> }` (reviewed English methodological text required for promotion; frontend absent or complete for all languages), but does not contain teaching order, evaluation evidence or student progress.
 
 - **Editorial authority until migration:** `<PackageRoot>/docs/skills/taxonomy.md`; after reviewed migration, Code localized name, English methodological meaning, any optional full frontend translations and parent/child placement.
-- **Implementation link:** a verified application `*.data.ts` file linked with its complete filename as the label, or exactly `[Not implemented](#)` as a standalone link without `Code:`.
+- **Implementation link:** a verified canonical Group `index.ts` file linked with its complete filename as the label, or exactly `[Not implemented](#)` as a standalone link without `Code:`.
 
 New-format records use separate single-line `Methodological description:` (English) and `User-friendly description:` (default `[Not authored]`) fields after the standalone link. Older unlabeled prose requires migration; there is no generic `Description:` field or per-entity editorial approval file. The current `Action: skip|create|update|delete` and `Status: pending|implemented` fields instead denote future generator intent and verified Code implementation.
 

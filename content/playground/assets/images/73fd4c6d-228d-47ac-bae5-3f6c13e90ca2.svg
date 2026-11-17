@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540" role="img" aria-label="Prism dispersing white light">
+  <rect width="960" height="540" fill="#182b4a"/>
+  <path d="M60 268H425" fill="none" stroke="#fff" stroke-width="21" stroke-linecap="round"/>
+  <path d="M425 268L690 130L690 410Z" fill="#a8dcec" fill-opacity=".45" stroke="#c9f0ff" stroke-width="6" stroke-linejoin="round" transform="translate(-90 0)"/>
+  <g stroke-width="18" stroke-linecap="round">
+    <path d="M600 268L900 165" stroke="#fa616a"/>
+    <path d="M600 268L900 210" stroke="#ffbc55"/>
+    <path d="M600 268L900 255" stroke="#ffe27e"/>
+    <path d="M600 268L900 300" stroke="#91dd98"/>
+    <path d="M600 268L900 345" stroke="#6ab6e9"/>
+    <path d="M600 268L900 390" stroke="#a998e9"/>
+  </g>
+</svg>

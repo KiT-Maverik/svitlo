@@ -4,7 +4,7 @@ name: Agent CI Artifacts / clean
 # Configure this check as REQUIRED in main branch protection / rulesets.
 on:
   pull_request:
-    branches: [main, new-lesson]
+    branches: [main, new-lesson, integration/italian-localization]
     types: [opened, reopened, synchronize, ready_for_review]
   merge_group:
   # Lets PR Auto-format re-run this required guard on the formatting commit.
