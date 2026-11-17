@@ -31,7 +31,7 @@ export const freeFloatingPlanets_Skill_Data = defineSkill({
     et: 'Vabalt hulkuvad planeedid',
     be: 'Вольныя плянэты',
     ka: 'თავისუფლად მოხეტიალე პლანეტები',
-    kk: 'Еркін кезбе ғаламшарлар',
+    kk: 'Erkın kezbe ğalamşarlar',
     qm: 'Serbest dolaşqan seyyareler',
   },
   description: {
@@ -65,7 +65,7 @@ export const freeFloatingPlanets_Skill_Data = defineSkill({
       et: 'Uuri, kuidas ilma ematäheta planeedid võivad tekkida, liikuda ja kuidas neid avastatakse.',
       be: 'Даведайцеся, як плянэты бязь зоркі-гаспадара могуць утварацца, рухацца і быць выяўленымі.',
       ka: 'გაიგეთ, როგორ შეიძლება წარმოიქმნას და გადაადგილდეს პლანეტები მასპინძელი ვარსკვლავის გარეშე და როგორ აღმოაჩენენ მათ.',
-      kk: 'Өз жұлдызы жоқ ғаламшарлардың қалай пайда болып, қозғалып және анықталуы мүмкін екенін біліңіз.',
+      kk: 'Öz jūldyzy joq ğalamşarlardyñ qalai paida bolyp, qozğalyp jäne anyqtaluy mümkın ekenın bılıñız.',
       qm: 'Etrafında aylanağan yıldızı olmağan seyyarelerniñ nasıl peyda olğanını, areket etkenini ve tapılğanını ögreniñiz.',
     },
   },

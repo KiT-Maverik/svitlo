@@ -32,7 +32,7 @@ export const darkMatterEvidence_Skill_Data = defineSkill({
     et: 'Tumeaine tõendid',
     be: 'Сьведчаньні цёмнай матэрыі',
     ka: 'ბნელი მატერიის მტკიცებულებები',
-    kk: 'Қараңғы материя дәлелдері',
+    kk: 'Qarañğy materiia dälelderı',
   },
   description: {
     methodological:
@@ -66,7 +66,7 @@ export const darkMatterEvidence_Skill_Data = defineSkill({
       et: 'Uuri, miks astronoomid järeldavad gravitatsioonitõenditest nähtamatu aine olemasolu.',
       be: 'Даведайся, чаму паводле гравітацыйных сьведчаньняў астраномы мяркуюць пра нябачнае рэчыва.',
       ka: 'გაიგე, რატომ ასკვნიან ასტრონომები გრავიტაციული მონაცემებიდან უხილავი მატერიის არსებობას.',
-      kk: 'Астрономдар тартылыс деректерінен көзге көрінбейтін материя бар деп неге тұжырымдайтынын біл.',
+      kk: 'Astronomdar tartylys derekterınen közge körınbeitın materiia bar dep nege tūjyrymdaitynyn bıl.',
     },
   },
 });

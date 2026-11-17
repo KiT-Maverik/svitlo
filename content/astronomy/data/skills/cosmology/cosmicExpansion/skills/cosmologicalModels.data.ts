@@ -32,7 +32,7 @@ export const cosmologicalModels_Skill_Data = defineSkill({
     et: 'Kosmoloogilised mudelid',
     be: 'Касмалягічныя мадэлі',
     ka: 'კოსმოლოგიური მოდელები',
-    kk: 'Космологиялық модельдер',
+    kk: 'Kosmologiialyq modelder',
   },
   description: {
     methodological:
@@ -66,7 +66,7 @@ export const cosmologicalModels_Skill_Data = defineSkill({
       et: 'Võrdle Universumi paisumise mudeleid, nende eeldusi ja ennustusi.',
       be: 'Параўноўвай мадэлі пашырэньня Сусьвету, іхныя дапушчэньні й прадказаньні.',
       ka: 'შეადარე სამყაროს გაფართოების მოდელები, მათი დაშვებები და პროგნოზები.',
-      kk: 'Ғаламның кеңею модельдерін, олардың болжамдары мен алғышарттарын салыстыр.',
+      kk: 'Ğalamnyñ keñeiu modelderın, olardyñ boljamdary men alğyşarttaryn salystyr.',
     },
   },
 });

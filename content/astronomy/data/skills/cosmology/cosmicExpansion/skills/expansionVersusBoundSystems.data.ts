@@ -32,7 +32,7 @@ export const expansionVersusBoundSystems_Skill_Data = defineSkill({
     et: 'Paisumine ja seotud süsteemid',
     be: 'Пашырэньне і зьвязаныя сыстэмы',
     ka: 'გაფართოება და შეკრული სისტემები',
-    kk: 'Кеңею және байланысқан жүйелер',
+    kk: 'Keñeiu jäne bailanysqan jüieler',
   },
   description: {
     methodological:
@@ -66,7 +66,7 @@ export const expansionVersusBoundSystems_Skill_Data = defineSkill({
       et: 'Uuri, miks ruumi paisumine ei venita planeete, tähti ega galaktikaid lihtsalt laiali.',
       be: 'Даведайся, чаму пашырэньне прасторы не расьцягвае проста так плянэты, зоркі ці галяктыкі.',
       ka: 'გაიგე, რატომ არ ჭიმავს სივრცის გაფართოება პირდაპირ პლანეტებს, ვარსკვლავებსა და გალაქტიკებს.',
-      kk: 'Кеңістіктің кеңеюі планеталарды, жұлдыздарды не галактикаларды жай ғана неге алшақтатпайтынын біл.',
+      kk: 'Keñıstıktıñ keñeiuı planetalardy, jūldyzdardy ne galaktikalardy jai ğana nege alşaqtatpaitynyn bıl.',
     },
   },
 });

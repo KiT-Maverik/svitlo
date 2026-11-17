@@ -37,7 +37,7 @@ export const organizationAndMembership_SkillGroup_Data = defineSkillGroup({
     et: 'Korraldus ja süsteemi kuuluvus',
     be: 'Арганізацыя і прыналежнасьць да сыстэмаў',
     ka: 'ორგანიზება და სისტემის წევრობა',
-    kk: 'Ұйымдасу және жүйеге жату',
+    kk: 'Ūiymdasu jäne jüiege jatu',
     qm: 'Tertip ve sistemalarğa aitlik',
   },
   skills: [
@@ -76,7 +76,7 @@ export const organizationAndMembership_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri, kuidas taevakehad kuuluvad suurematesse astronoomilistesse süsteemidesse või liiguvad iseseisvalt.',
       be: 'Даведайцеся, як касьмічныя аб’екты ўваходзяць у большыя астранамічныя сыстэмы або рухаюцца незалежна.',
       ka: 'გაიგეთ, როგორ ეკუთვნიან კოსმოსური ობიექტები უფრო დიდ ასტრონომიულ სისტემებს ან დამოუკიდებლად მოძრაობენ.',
-      kk: 'Ғарыш нысандарының ірі астрономиялық жүйелерге қалай кіретінін немесе өз бетінше қозғалатынын біліңіз.',
+      kk: 'Ğaryş nysandarynyñ ırı astronomiialyq jüielerge qalai kıretının nemese öz betınşe qozğalatynyn bılıñız.',
       qm: 'Kök cisimleriniñ daa büyük astronomiya sistemalarına nasıl ait olğanını ya da mustaqil areket etkenini ögreniñiz.',
     },
   },

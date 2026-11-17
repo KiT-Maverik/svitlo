@@ -32,7 +32,7 @@ export const limitsOfCosmologicalKnowledge_Skill_Data = defineSkill({
     et: 'Kosmoloogiliste teadmiste piirid',
     be: 'Межы касмалягічных ведаў',
     ka: 'კოსმოლოგიური ცოდნის საზღვრები',
-    kk: 'Космологиялық білімнің шегі',
+    kk: 'Kosmologiialyq bılımnıñ şegı',
   },
   description: {
     methodological:
@@ -66,7 +66,7 @@ export const limitsOfCosmologicalKnowledge_Skill_Data = defineSkill({
       et: 'Erista vaatlusega kinnitatud teadmisi Universumi kohta suurtest vastamata küsimustest.',
       be: 'Адрозьнівай тое, што назіраньні пацьвердзілі пра Сусьвет, ад важных пытаньняў без адказу.',
       ka: 'განასხვავე დაკვირვებებით დადგენილი ფაქტები სამყაროს შესახებ და მთავარი უპასუხო კითხვები.',
-      kk: 'Ғалам туралы бақылаулар анықтаған деректерді әлі жауабы жоқ үлкен сұрақтардан ажырат.',
+      kk: 'Ğalam turaly baqylaular anyqtağan derekterdı älı jauaby joq ülken sūraqtardan ajyrat.',
     },
   },
 });

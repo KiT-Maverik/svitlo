@@ -32,7 +32,7 @@ export const darkEnergyEvidence_Skill_Data = defineSkill({
     et: 'Tumeenergia tõendid',
     be: 'Сьведчаньні цёмнай энэргіі',
     ka: 'ბნელი ენერგიის მტკიცებულებები',
-    kk: 'Қараңғы энергия дәлелдері',
+    kk: 'Qarañğy energiia dälelderı',
   },
   description: {
     methodological:
@@ -66,7 +66,7 @@ export const darkEnergyEvidence_Skill_Data = defineSkill({
       et: 'Uuri tõendeid selle kohta, et Universumi paisumine kiireneb.',
       be: 'Дасьледуй сьведчаньні таго, што пашырэньне Сусьвету паскараецца.',
       ka: 'გამოიკვლიე მტკიცებულებები, რომ სამყაროს გაფართოება ჩქარდება.',
-      kk: 'Ғаламның кеңеюі үдей түсетінін көрсететін дәлелдерді зертте.',
+      kk: 'Ğalamnyñ keñeiuı üdei tüsetının körsetetın dälelderdı zertte.',
     },
   },
 });

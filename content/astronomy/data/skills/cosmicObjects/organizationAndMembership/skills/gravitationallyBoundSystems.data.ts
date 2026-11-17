@@ -31,7 +31,7 @@ export const gravitationallyBoundSystems_Skill_Data = defineSkill({
     et: 'Gravitatsiooniliselt seotud süsteemid',
     be: 'Гравітацыйна зьвязаныя сыстэмы',
     ka: 'გრავიტაციულად დაკავშირებული სისტემები',
-    kk: 'Гравитациялық байланысқан жүйелер',
+    kk: 'Gravitatsiialyq bailanysqan jüieler',
     qm: 'Cazibe quveti ile bağlı sistemalar',
   },
   description: {
@@ -65,7 +65,7 @@ export const gravitationallyBoundSystems_Skill_Data = defineSkill({
       et: 'Võrdle planeedisüsteeme, täheparvi, galaktikaid ja teisi gravitatsiooniliselt seotud süsteeme.',
       be: 'Параўноўвайце плянэтныя сыстэмы, зорныя скопішчы, галяктыкі ды іншыя сыстэмы, зьвязаныя гравітацыяй.',
       ka: 'შეადარეთ პლანეტური სისტემები, ვარსკვლავთა გროვები, გალაქტიკები და სხვა გრავიტაციულად შეკავშირებული სისტემები.',
-      kk: 'Ғаламшар жүйелерін, жұлдыз шоғырларын, галактикаларды және тартылыс күшімен байланысқан басқа жүйелерді салыстырыңыз.',
+      kk: 'Ğalamşar jüielerın, jūldyz şoğyrlaryn, galaktikalardy jäne tartylys küşımen bailanysqan basqa jüielerdı salystyryñyz.',
       qm: 'Seyyare sistemalarını, yıldız toplulıqlarını, galaktikalarnı ve cazibe quveti ile bağlı başqa sistemalarnı qıyaslañız.',
     },
   },

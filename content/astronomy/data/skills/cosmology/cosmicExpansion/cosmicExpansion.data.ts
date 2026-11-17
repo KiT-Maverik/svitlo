@@ -39,7 +39,7 @@ export const cosmicExpansion_SkillGroup_Data = defineSkillGroup({
     et: 'Kosmiline paisumine',
     be: 'Пашырэньне Сусьвету',
     ka: 'კოსმოსური გაფართოება',
-    kk: 'Ғаламның кеңеюі',
+    kk: 'Ğalamnyñ keñeiuı',
   },
   skills: [
     cosmologicalModels_Skill_Data,
@@ -79,7 +79,7 @@ export const cosmicExpansion_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri, mida vaatlused Universumi paisumise kohta näitavad.',
       be: 'Даведайся, што назіраньні кажуць пра пашырэньне Сусьвету.',
       ka: 'გაიგე, რას გვიჩვენებს დაკვირვებები სამყაროს გაფართოების შესახებ.',
-      kk: 'Бақылаулар Ғаламның кеңеюі туралы не айтатынын түсін.',
+      kk: 'Baqylaular Ğalamnyñ keñeiuı turaly ne aitatynyn tüsın.',
     },
   },
 });

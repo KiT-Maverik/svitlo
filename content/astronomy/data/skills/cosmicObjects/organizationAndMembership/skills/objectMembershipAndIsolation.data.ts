@@ -31,7 +31,7 @@ export const objectMembershipAndIsolation_Skill_Data = defineSkill({
     et: 'Objektide süsteemi kuuluvus ja eraldatus',
     be: 'Прыналежнасьць аб’ектаў да сыстэмаў і ізаляванасьць',
     ka: 'ობიექტის სისტემაში წევრობა და იზოლაცია',
-    kk: 'Нысандардың жүйеге жатуы және оқшаулығы',
+    kk: 'Nysandardyñ jüiege jatuy jäne oqşaulyğy',
     qm: 'Cisimlerniñ sistemalarğa aitligi ve ayrı qaluvı',
   },
   description: {
@@ -65,7 +65,7 @@ export const objectMembershipAndIsolation_Skill_Data = defineSkill({
       et: 'Selgita, kas objekt kuulub suuremasse süsteemi, ajamata seda segi objekti enda liigiga.',
       be: 'Высьветліце, ці ўваходзіць аб’ект у большую сыстэму, не блытаючы прыналежнасьць зь відам самога аб’екта.',
       ka: 'გაარკვიეთ, ეკუთვნის თუ არა ობიექტი უფრო დიდ სისტემას და ნუ აურევთ ამ კავშირს თავად ობიექტის ტიპში.',
-      kk: 'Нысанның үлкенірек жүйеге кіретінін анықтап, оның жүйеге жатуын нысанның өз түрімен шатастырмаңыз.',
+      kk: 'Nysannyñ ülkenırek jüiege kıretının anyqtap, onyñ jüiege jatuyn nysannyñ öz türımen şatastyrmañyz.',
       qm: 'Bir cisimniñ daa büyük sistemağa ait olıp-olmağanını añlañız, amma bu aitlikni cisimniñ öz çeşiti ile qarıştırmañız.',
     },
   },

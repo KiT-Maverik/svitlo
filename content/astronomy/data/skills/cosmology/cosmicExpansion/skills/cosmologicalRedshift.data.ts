@@ -32,7 +32,7 @@ export const cosmologicalRedshift_Skill_Data = defineSkill({
     et: 'Kosmoloogiline punanihe',
     be: 'Касмалягічны чырвоны зрух',
     ka: 'კოსმოლოგიური წითელი წანაცვლება',
-    kk: 'Космологиялық қызыл ығысу',
+    kk: 'Kosmologiialyq qyzyl yğysu',
   },
   description: {
     methodological:
@@ -66,7 +66,7 @@ export const cosmologicalRedshift_Skill_Data = defineSkill({
       et: 'Mõista, kuidas paisuv ruum venitab liikuva valguse lainepikkust.',
       be: 'Зразумей, як пашырэньне прасторы павялічвае даўжыню хвалі сьвятла ў руху.',
       ka: 'გაიგე, როგორ ზრდის გაფართოებადი სივრცე მასში მოძრავი სინათლის ტალღის სიგრძეს.',
-      kk: 'Кеңейетін кеңістік жарық толқындарының ұзындығын қалай арттыратынын түсін.',
+      kk: 'Keñeietın keñıstık jaryq tolqyndarynyñ ūzyndyğyn qalai arttyratynyn tüsın.',
     },
   },
 });

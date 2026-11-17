@@ -31,7 +31,7 @@ export const stellarSubstellarAndPlanetaryBoundaries_Skill_Data = defineSkill({
     et: 'Tähtede, tähealuste objektide ja planeetide piirid',
     be: 'Межы паміж зоркамі, субзоркавымі аб’ектамі і плянэтамі',
     ka: 'ზღვარი ვარსკვლავებს, ქვევარსკვლავურ ობიექტებსა და პლანეტებს შორის',
-    kk: 'Жұлдыздар, субжұлдыздық нысандар және ғаламшарлар шекарасы',
+    kk: 'Jūldyzdar, subjūldyzdyq nysandar jäne ğalamşarlar şekarasy',
     qm: 'Yıldızlar, yıldız-altı cisimler ve seyyareler arasındaki sıñırlar',
   },
   description: {
@@ -65,7 +65,7 @@ export const stellarSubstellarAndPlanetaryBoundaries_Skill_Data = defineSkill({
       et: 'Uuri tähtede, pruunide kääbuste ja planeetide erinevusi, sealhulgas nende kategooriate hägusaid piire.',
       be: 'Дасьледуйце адрозьненьні паміж зоркамі, карычневымі карлікамі і плянэтамі, у тым ліку там, дзе межы катэгорыяў няпэўныя.',
       ka: 'გაეცანით განსხვავებებს ვარსკვლავებს, ყავისფერ ჯუჯებსა და პლანეტებს შორის, მათ შორის იქ, სადაც მათი კატეგორიების საზღვრები იკვეთება.',
-      kk: 'Жұлдыздар, қоңыр ергежейлілер және ғаламшарлар арасындағы айырмашылықтарды, соның ішінде санаттарының шекаралары көмескі тұстарын зерттеңіз.',
+      kk: 'Jūldyzdar, qoñyr ergejeilıler jäne ğalamşarlar arasyndağy aiyrmaşylyqtardy, sonyñ ışınde sanattarynyñ şekaralary kömeskı tūstaryn zertteñız.',
       qm: 'Yıldızlar, qoñur cüceler ve seyyarelerniñ farqlarını, olarnıñ sınıflandırma sıñırları belgisiz olğan yerlerni de ögreniñiz.',
     },
   },

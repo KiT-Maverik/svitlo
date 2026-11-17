@@ -38,7 +38,7 @@ export const cosmicComponentsAndConstraints_SkillGroup_Data = defineSkillGroup({
     et: 'Kosmilised koostisosad ja piirangud',
     be: 'Складнікі космасу і абмежаваньні',
     ka: 'კოსმოსის შემადგენლობა და შეზღუდვები',
-    kk: 'Ғарыштық құрамдастар мен шектеулер',
+    kk: 'Ğaryştyq qūramdastar men şekteuler',
   },
   skills: [darkEnergyEvidence_Skill_Data, darkMatterEvidence_Skill_Data, limitsOfCosmologicalKnowledge_Skill_Data],
   description: {
@@ -73,7 +73,7 @@ export const cosmicComponentsAndConstraints_SkillGroup_Data = defineSkillGroup({
       et: 'Õpi, kuidas kosmilised mõõtmised viitavad osadele ja küsimustele, mida me veel täielikult ei selgita.',
       be: 'Даведайся, як касьмічныя вымярэньні паказваюць на складнікі й пытаньні, якія мы яшчэ ня можам цалкам растлумачыць.',
       ka: 'გაიგე, როგორ მიუთითებენ კოსმოსური გაზომვები სამყაროს შემადგენლობაზე და რა კითხვები რჩება ჯერ კიდევ პასუხგაუცემელი.',
-      kk: 'Ғарыштық өлшеулер әлі толық түсіндіре алмайтын құрамдастар мен сұрақтарды қалай көрсететінін біл.',
+      kk: 'Ğaryştyq ölşeuler älı tolyq tüsındıre almaityn qūramdastar men sūraqtardy qalai körsetetının bıl.',
     },
   },
 });
