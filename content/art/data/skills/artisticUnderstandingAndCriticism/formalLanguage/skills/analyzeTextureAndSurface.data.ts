@@ -31,7 +31,7 @@ export const analyzeTextureAndSurface_Skill_Data = defineSkill({
     et: 'Analüüsi tekstuuri ja pinda',
     be: 'Аналізаваць фактуру й паверхню',
     ka: 'გაანალიზეთ ტექსტურა და ზედაპირი',
-    kk: 'Фактура мен бетті талдау',
+    kk: 'Faktura men bettı taldau',
     qm: 'Faktura ve yüzeyni talil etüv',
   },
   description: {
@@ -65,7 +65,7 @@ export const analyzeTextureAndSurface_Skill_Data = defineSkill({
       et: 'Pane tähele tegelikke ja kujutatud tekstuure ning seda, kuidas need muudavad kunstiteose mõju.',
       be: 'Зьвярні ўвагу на сапраўдныя й намаляваныя фактуры і на тое, як яны зьмяняюць уражаньне ад твору мастацтва.',
       ka: 'დააკვირდით რეალურ და გამოსახულ ტექსტურებს და იმას, თუ როგორ ცვლის ისინი ნამუშევრის აღქმას.',
-      kk: 'Нақты және бейнеленген фактураларға, сондай-ақ олардың өнер туындысынан алатын әсерді қалай өзгертетініне назар аударыңыз.',
+      kk: 'Naqty jäne beinelengen fakturalarğa, sondai-aq olardyñ öner tuyndysynan alatyn äserdı qalai özgertetınıne nazar audaryñyz.',
       qm: 'Aqıqıy ve surette körsetilgen fakturalarğa, olarnıñ sanat eseriniñ tesirini nasıl deñiştirdigine diqqat etiñiz.',
     },
   },

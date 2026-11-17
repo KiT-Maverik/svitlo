@@ -31,7 +31,7 @@ export const analyzeArtisticRhythm_Skill_Data = defineSkill({
     et: 'Analüüsi kunstilist rütmi',
     be: 'Аналізаваць мастацкі рытм',
     ka: 'გაანალიზეთ მხატვრული რიტმი',
-    kk: 'Көркем ырғақты талдау',
+    kk: 'Körkem yrğaqty taldau',
     qm: 'Sanat ritmikani talil etüv',
   },
   description: {
@@ -64,7 +64,7 @@ export const analyzeArtisticRhythm_Skill_Data = defineSkill({
       et: 'Leia mustreid ja muutusi piltide, helide või liikumise rütmis.',
       be: 'Знаходзь заканамернасьці й зьмены рытму ў выявах, гуках або рухах.',
       ka: 'იპოვეთ კანონზომიერებები და ცვლილებები გამოსახულებების, ხმებისა თუ მოძრაობის რიტმში.',
-      kk: 'Бейнелердің, дыбыстардың немесе қозғалыстың ырғағындағы үлгілер мен өзгерістерді табыңыз.',
+      kk: 'Beinelerdıñ, dybystardyñ nemese qozğalystyñ yrğağyndağy ülgıler men özgerısterdı tabyñyz.',
       qm: 'Suretler, sesler ve areketler ritmindegi qaytalanğan şekiller ve deñişüvlerni tapıñız.',
     },
   },

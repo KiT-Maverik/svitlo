@@ -31,7 +31,7 @@ export const interpretArtisticIntent_Skill_Data = defineSkill({
     et: 'Tõlgenda kunstilist kavatsust',
     be: 'Тлумачыць мастацкую задуму',
     ka: 'განმარტეთ მხატვრული ჩანაფიქრი',
-    kk: 'Көркемдік ниетті түсіндіру',
+    kk: 'Körkemdık niettı tüsındıru',
     qm: 'Sanatçınıñ niyetini añlatmaq',
   },
   description: {
@@ -65,7 +65,7 @@ export const interpretArtisticIntent_Skill_Data = defineSkill({
       et: 'Kasuta kunstiteose vihjeid, et uurida, mida selle looja võis tahta väljendada.',
       be: 'Выкарыстоўвай падказкі ў творы мастацтва, каб высьветліць, што мог задумаць ягоны аўтар.',
       ka: 'გამოიყენეთ ნამუშევარში არსებული მინიშნებები, რათა გაარკვიოთ, რისი გამოხატვა სურდა მის შემქმნელს.',
-      kk: 'Өнер туындысындағы ишараларды пайдаланып, автордың нені көздегенін зерттеңіз.',
+      kk: 'Öner tuyndysyndağy işaralardy paidalanyp, avtordyñ nenı közdegenın zertteñız.',
       qm: 'Sanat eserindeki işaretlerden faydalanıp, yaratıcı ne maqsat etken olabilecegini keşf etiñiz.',
     },
   },

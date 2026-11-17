@@ -31,7 +31,7 @@ export const analyzeColorRelationships_Skill_Data = defineSkill({
     et: 'Analüüsi värvisuhteid',
     be: 'Аналізаваць суадносіны колераў',
     ka: 'გაანალიზეთ ფერთა ურთიერთკავშირები',
-    kk: 'Түстердің өзара байланысын талдау',
+    kk: 'Tüsterdıñ özara bailanysyn taldau',
     qm: 'Tüsler arasındaki bağlarnı talil etüv',
   },
   description: {
@@ -65,7 +65,7 @@ export const analyzeColorRelationships_Skill_Data = defineSkill({
       et: 'Uuri, kuidas värvikombinatsioonid mõjutavad meeleolu, kontrasti ja tähelepanu.',
       be: 'Дасьледуй, як спалучэньні колераў уплываюць на настрой, кантраст і ўвагу.',
       ka: 'შეისწავლეთ, როგორ მოქმედებს ფერების შეხამება განწყობაზე, კონტრასტსა და ყურადღებაზე.',
-      kk: 'Түстер үйлесімінің көңіл күйге, контраст пен назарға қалай әсер ететінін зерттеңіз.',
+      kk: 'Tüster üilesımınıñ köñıl küige, kontrast pen nazarğa qalai äser etetının zertteñız.',
       qm: 'Tüslerniñ birleşüvi duyğuğa, qarşıtlıqqa ve diqqatqa nasıl tesir etkenini keşf etiñiz.',
     },
   },

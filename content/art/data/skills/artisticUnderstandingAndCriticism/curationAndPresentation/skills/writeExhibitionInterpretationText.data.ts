@@ -31,7 +31,7 @@ export const writeExhibitionInterpretationText_Skill_Data = defineSkill({
     et: 'Kirjutada näituse tõlgendustekst',
     be: 'Пісаць інтэрпрэтацыйны тэкст для выставы',
     ka: 'გამოფენის განმარტებითი ტექსტის დაწერა',
-    kk: 'Көрмеге арналған түсіндірме мәтін жазу',
+    kk: 'Körmege arnalğan tüsındırme mätın jazu',
     qm: 'Sergi içün añlatma metnini yazmaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const writeExhibitionInterpretationText_Skill_Data = defineSkill({
       et: 'Kirjuta kasulikud näitusetekstid, mis annavad tausta, kuid ei ütle ette, mida tunda.',
       be: 'Пішы карысныя выставовыя тэксты, якія даюць кантэкст, але не навязваюць пачуццяў.',
       ka: 'დაწერეთ გამოფენის სასარგებლო ტექსტები, რომლებიც კონტექსტს გვთავაზობს და არ გვკარნახობს, რას უნდა ვგრძნობდეთ.',
-      kk: 'Қандай сезімде болу керегін нұсқамай, мәнмәтін беретін пайдалы көрме мәтіндерін жазыңыз.',
+      kk: 'Qandai sezımde bolu keregın nūsqamai, mänmätın beretın paidaly körme mätınderın jazyñyz.',
       qm: 'Ne duyulması kerekligini buyurmayıp, sergi aqqında faydalı ve bağlam berici metin yazıñız.',
     },
   },

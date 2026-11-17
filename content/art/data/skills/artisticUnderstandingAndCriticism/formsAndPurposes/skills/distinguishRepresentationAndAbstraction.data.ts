@@ -31,7 +31,7 @@ export const distinguishRepresentationAndAbstraction_Skill_Data = defineSkill({
     et: 'Erista kujutamist ja abstraktsust',
     be: 'Адрозьніваць адлюстраваньне й абстракцыю',
     ka: 'განასხვავეთ გამოსახვა და აბსტრაქცია',
-    kk: 'Бейнелеу мен абстракцияны ажырату',
+    kk: 'Beineleu men abstraktsiiany ajyratu',
     qm: 'Tasvir ve mücerretleştirme arasındaki farqnı ayırt etüv',
   },
   description: {
@@ -65,7 +65,7 @@ export const distinguishRepresentationAndAbstraction_Skill_Data = defineSkill({
       et: 'Uuri erinevust äratuntavate objektide kujutamise ja abstraktsete vormide kasutamise vahel.',
       be: 'Дасьледуй розьніцу паміж выявай пазнавальных прадметаў і выкарыстаньнем абстрактных формаў.',
       ka: 'შეისწავლეთ განსხვავება ცნობადი საგნების გამოსახვასა და აბსტრაქტული ფორმების გამოყენებას შორის.',
-      kk: 'Танылатын нысандарды бейнелеу мен абстрактілі пішіндерді қолданудың айырмасын зерттеңіз.',
+      kk: 'Tanylatyn nysandardy beineleu men abstraktılı pışınderdı qoldanudyñ aiyrmasyn zertteñız.',
       qm: 'Tanılğan şeylerni tasvir etüv ile mücerret şekillerni qullanmaq arasındaki farqnı keşf etiñiz.',
     },
   },

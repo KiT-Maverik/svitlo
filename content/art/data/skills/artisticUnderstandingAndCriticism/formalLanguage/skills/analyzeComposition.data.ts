@@ -31,7 +31,7 @@ export const analyzeComposition_Skill_Data = defineSkill({
     et: 'Analüüsi kompositsiooni',
     be: 'Аналізаваць кампазыцыю',
     ka: 'გაანალიზეთ კომპოზიცია',
-    kk: 'Композицияны талдау',
+    kk: 'Kompozitsiiany taldau',
     qm: 'Kompozitsiyanı talil etüv',
   },
   description: {
@@ -64,7 +64,7 @@ export const analyzeComposition_Skill_Data = defineSkill({
       et: 'Vaata, kuidas kunstnikud suunavad sinu tähelepanu paigutuse, mõõtkava ja tasakaalu abil.',
       be: 'Паглядзі, як мастакі скіроўваюць тваю ўвагу з дапамогай разьмяшчэньня, маштабу й раўнавагі.',
       ka: 'ნახეთ, როგორ მიმართავენ ხელოვანები თქვენს ყურადღებას განლაგების, მასშტაბისა და წონასწორობის გამოყენებით.',
-      kk: 'Суретшілер орналасу, ауқым және тепе-теңдік арқылы назарыңызды қалай бағыттайтынын көріңіз.',
+      kk: 'Suretşıler ornalasu, auqym jäne tepe-teñdık arqyly nazaryñyzdy qalai bağyttaitynyn körıñız.',
       qm: 'Sanatçılarnıñ diqqatıñıznı yöneltmek içün yerleşüv, ölçü ve teñlikni nasıl qullanğanına baqıñız.',
     },
   },

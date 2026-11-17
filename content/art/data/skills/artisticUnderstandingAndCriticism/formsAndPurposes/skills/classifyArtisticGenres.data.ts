@@ -31,7 +31,7 @@ export const classifyArtisticGenres_Skill_Data = defineSkill({
     et: 'Liigita kunstiliike',
     be: 'Клясыфікаваць мастацкія жанры',
     ka: 'ხელოვნების ჟანრების კლასიფიკაცია',
-    kk: 'Өнер жанрларын жіктеу',
+    kk: 'Öner janrlaryn jıkteu',
     qm: 'Sanat janrlarını tasnif etüv',
   },
   description: {
@@ -65,7 +65,7 @@ export const classifyArtisticGenres_Skill_Data = defineSkill({
       et: 'Tunne levinud kunstiliike ning märka ka teoseid, mis neid ühendavad või proovile panevad.',
       be: 'Распазнавай пашыраныя мастацкія жанры й заўважай творы, якія іх спалучаюць або аспрэчваюць.',
       ka: 'ამოიცანით ხელოვნების გავრცელებული ჟანრები და შენიშნეთ ნამუშევრები, რომლებიც მათ აერთიანებს ან ეჭვქვეშ აყენებს.',
-      kk: 'Өнердің кең тараған жанрларын танып, оларды біріктіретін немесе оларға күмән келтіретін туындыларды байқаңыз.',
+      kk: 'Önerdıñ keñ tarağan janrlaryn tanyp, olardy bırıktıretın nemese olarğa kümän keltıretın tuyndylardy baiqañyz.',
       qm: 'Adetiy sanat janrlarını tanıñız, amma olarnı qarıştırğan ya da şübhege qoyğan eserlerge de diqqat etiñiz.',
     },
   },

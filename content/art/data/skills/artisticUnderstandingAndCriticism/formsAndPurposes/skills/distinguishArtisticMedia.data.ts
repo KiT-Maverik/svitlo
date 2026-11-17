@@ -31,7 +31,7 @@ export const distinguishArtisticMedia_Skill_Data = defineSkill({
     et: 'Erista kunstimeediume',
     be: 'Адрозьніваць мастацкія мэдыюмы',
     ka: 'განასხვავეთ ხელოვნების მედიუმები',
-    kk: 'Өнер медиаларын ажырату',
+    kk: 'Öner medialaryn ajyratu',
     qm: 'Sanat vastalarını ayırt etüv',
   },
   description: {
@@ -65,7 +65,7 @@ export const distinguishArtisticMedia_Skill_Data = defineSkill({
       et: 'Vaata, kuidas pildid, helid, liikumine, sõnad ja ruum väljendavad eri kunstivormides tähendusi.',
       be: 'Паглядзі, як выявы, гукі, рух, словы й прастора перадаюць сэнс у розных відах мастацтва.',
       ka: 'ნახეთ, როგორ გადმოსცემს გამოსახულებები, ხმები, მოძრაობა, სიტყვები და სივრცე აზრს ხელოვნების სხვადასხვა ფორმაში.',
-      kk: 'Бейнелер, дыбыстар, қозғалыс, сөздер мен кеңістік өнердің әртүрлі түрлерінде мағынаны қалай жеткізетінін көріңіз.',
+      kk: 'Beineler, dybystar, qozğalys, sözder men keñıstık önerdıñ ärtürlı türlerınde mağynany qalai jetkızetının körıñız.',
       qm: 'Suretler, sesler, areket, sözler ve mekânnıñ çeşit sanat şekillerinde nasıl ifade vastası olğanını añlañız.',
     },
   },

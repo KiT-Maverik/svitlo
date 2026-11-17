@@ -31,7 +31,7 @@ export const analyzeLineAndShape_Skill_Data = defineSkill({
     et: 'Analüüsi jooni ja kujundeid',
     be: 'Аналізаваць лініі й формы',
     ka: 'გაანალიზეთ ხაზები და ფორმები',
-    kk: 'Сызықтар мен пішіндерді талдау',
+    kk: 'Syzyqtar men pışınderdı taldau',
     qm: 'Sızıqlar ve şekillerni talil etüv',
   },
   description: {
@@ -64,7 +64,7 @@ export const analyzeLineAndShape_Skill_Data = defineSkill({
       et: 'Pane tähele, kuidas jooned ja kujundid su pilku suunavad ning pilti struktureerivad.',
       be: 'Зьвярні ўвагу, як лініі й формы вядуць позірк і ўпарадкоўваюць выяву.',
       ka: 'დააკვირდით, როგორ წარმართავს ხაზები და ფორმები მზერას და აწყობს გამოსახულებას.',
-      kk: 'Сызықтар мен пішіндердің көзқарасыңызды қалай бағыттап, бейнені қалай ұйымдастыратынын байқаңыз.',
+      kk: 'Syzyqtar men pışınderdıñ közqarasyñyzdy qalai bağyttap, beinenı qalai ūiymdastyratynyn baiqañyz.',
       qm: 'Sızıqlar ve şekiller köz qarışıñıznı nasıl yöneltip suretni tertip etkenine diqqat etiñiz.',
     },
   },

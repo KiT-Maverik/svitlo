@@ -39,7 +39,7 @@ export const formalLanguage_SkillGroup_Data = defineSkillGroup({
     et: 'Vormikeel',
     be: 'Мова формы',
     ka: 'ფორმის ენა',
-    kk: 'Пішін тілі',
+    kk: 'Pışın tılı',
     qm: 'Forma tili',
   },
   skills: [
@@ -80,7 +80,7 @@ export const formalLanguage_SkillGroup_Data = defineSkillGroup({
       et: 'Avasta, kuidas jooned, värvid, kujundid ja muud omadused suunavad meie kunstikogemust.',
       be: 'Даведайся, як лініі, колеры, формы й іншыя элемэнты ўплываюць на нашае ўспрыманьне мастацтва.',
       ka: 'გაიგეთ, როგორ წარმართავს ხაზები, ფერები, ფორმები და სხვა ელემენტები ხელოვნების აღქმას.',
-      kk: 'Сызықтар, түстер, пішіндер және басқа ерекшеліктер өнерді қабылдауымызға қалай бағыт беретінін зерттеңіз.',
+      kk: 'Syzyqtar, tüster, pışınder jäne basqa erekşelıkter önerdı qabyldauymyzğa qalai bağyt beretının zertteñız.',
       qm: 'Sızıq, tüs, şekil ve başqa hususiyetler sanatnı nasıl tecribe etkenimizge yol kösterdigini keşf etiñiz.',
     },
   },

@@ -31,7 +31,7 @@ export const sequenceAnExhibition_Skill_Data = defineSkill({
     et: 'Näituse teoste järjestamine',
     be: 'Выбудоўваць паслядоўнасць выставы',
     ka: 'გამოფენის თანმიმდევრობის დაგეგმვა',
-    kk: 'Көрме ретін құрастыру',
+    kk: 'Körme retın qūrastyru',
     qm: 'Serginiñ tertibini qurmaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const sequenceAnExhibition_Skill_Data = defineSkill({
       et: 'Sea teosed järjestusse nii, et see looks tähenduslikke seoseid ja kontraste.',
       be: 'Размяшчай творы так, каб іх паслядоўнасць стварала змястоўныя сувязі й кантрасты.',
       ka: 'დაალაგეთ ნამუშევრები ისე, რომ მათმა თანმიმდევრობამ მნიშვნელოვანი კავშირები და კონტრასტები შექმნას.',
-      kk: 'Туындыларды реті мағыналы байланыстар мен қарама-қайшылықтар тудыратындай орналастырыңыз.',
+      kk: 'Tuyndylardy retı mağynaly bailanystar men qarama-qaişylyqtar tudyratyndai ornalastyryñyz.',
       qm: 'Sanat eserlerini öyle tertip etiñiz ki, olarnıñ sırası manalı bağlar ve qarşıtlıqlar yaratsın.',
     },
   },

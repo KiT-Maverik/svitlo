@@ -38,7 +38,7 @@ export const formsAndPurposes_SkillGroup_Data = defineSkillGroup({
     et: 'Vormid ja eesmärgid',
     be: 'Формы й мэты',
     ka: 'ფორმები და მიზნები',
-    kk: 'Пішіндер мен мақсаттар',
+    kk: 'Pışınder men maqsattar',
     qm: 'Forma ve maqsatlar',
   },
   skills: [
@@ -78,7 +78,7 @@ export const formsAndPurposes_SkillGroup_Data = defineSkillGroup({
       et: 'Avasta, kuidas kunst saab mitmel moel edasi anda mõtteid, tundeid ja kogemusi.',
       be: 'Дасьледуй шматлікія спосабы, якімі мастацтва перадае думкі, пачуцьці й досьвед.',
       ka: 'შეისწავლეთ მრავალი გზა, რომლითაც ხელოვნებას შეუძლია იდეების, გრძნობებისა და გამოცდილების გადმოცემა.',
-      kk: 'Өнердің ойларды, сезімдер мен тәжірибені жеткізудің сан алуан жолдарын зерттеңіз.',
+      kk: 'Önerdıñ oilardy, sezımder men täjıribenı jetkızudıñ san aluan joldaryn zertteñız.',
       qm: 'Sanatnıñ fikirlerni, duyğularnı ve tecrübelerni añlatqan çeşit yollarını keşf etiñiz.',
     },
   },

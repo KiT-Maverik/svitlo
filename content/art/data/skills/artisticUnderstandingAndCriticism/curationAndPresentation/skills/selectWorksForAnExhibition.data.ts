@@ -31,7 +31,7 @@ export const selectWorksForAnExhibition_Skill_Data = defineSkill({
     et: 'Valida näitusele teoseid',
     be: 'Адбіраць творы для выставы',
     ka: 'ნამუშევრების შერჩევა გამოფენისთვის',
-    kk: 'Көрмеге арналған туындыларды таңдау',
+    kk: 'Körmege arnalğan tuyndylardy tañdau',
     qm: 'Sergi içün eserlerni saylamaq',
   },
   description: {
@@ -64,7 +64,7 @@ export const selectWorksForAnExhibition_Skill_Data = defineSkill({
       et: 'Vali teosed, mis sobivad kokku kindla teema ja publikuga.',
       be: 'Выбірай творы, якія спалучаюцца паміж сабой для пэўнай тэмы й аўдыторыі.',
       ka: 'შეარჩიეთ ნამუშევრები, რომლებიც ერთმანეთს ერგება კონკრეტული თემისა და აუდიტორიისთვის.',
-      kk: 'Белгілі бір тақырып пен аудиторияға үйлесетін өнер туындыларын таңдаңыз.',
+      kk: 'Belgılı bır taqyryp pen auditoriiağa üilesetın öner tuyndylaryn tañdañyz.',
       qm: 'Belli bir mevzu ve ziyaretçiler içün bir-birine uyğun sanat eserlerini saylañız.',
     },
   },
