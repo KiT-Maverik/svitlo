@@ -44,7 +44,10 @@ export type AssessmentMethod_Configurator<
 } & LanguageScope<Languages>;
 
 /** Assessment method descriptions and labels retain their authored semantics. */
-export function defineAssessmentMethod<const Slug extends string, const Languages extends readonly LanguageCode[] = AllLanguageCodes>(
+export function defineAssessmentMethod<
+  const Slug extends string,
+  const Languages extends readonly LanguageCode[] = AllLanguageCodes,
+>(
   config: Omit<AssessmentMethod_Config, 'slug'> & { slug: Slug } & RequireLanguages<AssessmentMethod_Config, Languages>,
 ): AssessmentMethod_Configurator<Slug, Languages> {
   const authored = structuredClone(config);
