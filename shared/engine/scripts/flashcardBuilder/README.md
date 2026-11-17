@@ -11,10 +11,10 @@ Flashcards Section references without rewriting the Lesson:
 node shared/engine/scripts/flashcardBuilder/flashcardBuilder.mjs --package content/playground --lesson <uuid> --verify-sections
 ```
 
-The verifier requires an authored \`flashcards/index.ts\`, validates the whole
-source bank and checks every statically declared \`defineFlashcardsSection\`:
-its identity, literal unique ordered \`flashcardIds\`, membership in the **full**
-bank and registration in \`sections/index.ts\`. No embedded Section is allowed
+The verifier requires an authored `flashcards/index.ts`, validates the whole
+source bank and checks every statically declared `defineFlashcardsSection`:
+its identity, literal unique ordered `flashcardIds`, membership in the **full**
+bank and registration in `sections/index.ts`. No embedded Section is allowed
 and reported as zero. This is not editorial approval, full publication or
 evidence that translations and linked media exist. Dynamic Section definitions
 require manual review. It reuses the Questions Flow #647 static registry parser.
