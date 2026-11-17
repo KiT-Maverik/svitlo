@@ -31,7 +31,7 @@ export const dynamicEquilibrium_Skill_Data = defineSkill({
     et: 'Dünaamiline tasakaal',
     be: 'Дынамічная раўнавага',
     ka: 'დინამიკური წონასწორობა',
-    kk: 'Динамикалық тепе-теңдік',
+    kk: 'Dinamikalyq tepe-teñdık',
     qm: 'Dinamik muvazenet',
   },
   description: {
@@ -64,7 +64,7 @@ export const dynamicEquilibrium_Skill_Data = defineSkill({
       et: 'Mõista, miks reaktsioonid jätkuvad ka siis, kui tasakaalukontsentratsioonid püsivad.',
       be: 'Зразумей, чаму рэакцыі працягваюцца пры нязьменных раўнаважных канцэнтрацыях.',
       ka: 'გაიგე, რატომ გრძელდება რეაქციები მუდმივი წონასწორული კონცენტრაციების მიუხედავად.',
-      kk: 'Тепе-теңдік концентрациялары тұрақты болса да реакциялар неге жалғасатынын түсін.',
+      kk: 'Tepe-teñdık kontsentratsiialary tūraqty bolsa da reaktsiialar nege jalğasatynyn tüsın.',
       qm: 'Muvazenet konsentratsiyaları deñişmese de reaktsiyalar ne içün devam etkenini añla.',
     },
   },

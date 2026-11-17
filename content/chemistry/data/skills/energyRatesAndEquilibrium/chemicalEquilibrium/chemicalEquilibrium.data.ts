@@ -39,7 +39,7 @@ export const chemicalEquilibrium_SkillGroup_Data = defineSkillGroup({
     et: 'Keemiline tasakaal',
     be: 'Хімічная раўнавага',
     ka: 'ქიმიური წონასწორობა',
-    kk: 'Химиялық тепе-теңдік',
+    kk: 'Himiialyq tepe-teñdık',
     qm: 'Kimyeviy muvazenet',
   },
   skills: [
@@ -80,7 +80,7 @@ export const chemicalEquilibrium_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri, mis juhtub, kui edasi- ja tagasireaktsioon jõuavad tasakaalu.',
       be: 'Дасьледуй, што адбываецца, калі прамая й адваротная рэакцыі дасягаюць раўнавагі.',
       ka: 'გამოიკვლიე, რა ხდება, როცა პირდაპირი და უკურეაქციები წონასწორობას აღწევს.',
-      kk: 'Тура және кері реакциялар тепе-теңдікке жеткенде не болатынын зертте.',
+      kk: 'Tura jäne kerı reaktsiialar tepe-teñdıkke jetkende ne bolatynyn zertte.',
       qm: 'İleri ve ters reaktsiyalar muvazenetke kelgende ne olğanını araştır.',
     },
   },

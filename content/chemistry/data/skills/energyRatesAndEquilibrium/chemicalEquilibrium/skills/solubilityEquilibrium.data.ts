@@ -31,7 +31,7 @@ export const solubilityEquilibrium_Skill_Data = defineSkill({
     et: 'Lahustuvustasakaal',
     be: 'Раўнавага растваральнасьці',
     ka: 'ხსნადობის წონასწორობა',
-    kk: 'Ерігіштік тепе-теңдігі',
+    kk: 'Erıgıştık tepe-teñdıgı',
     qm: 'Erime muvazeneti',
   },
   description: {
@@ -65,7 +65,7 @@ export const solubilityEquilibrium_Skill_Data = defineSkill({
       et: 'Uuri tasakaalu lahustunud ioonide ja tahkete ainete lahustumise ning sadestumise vahel.',
       be: 'Дасьледуй баланс растварэньня й асаджэньня паміж іёнамі ў растворы й цьвёрдым рэчывам.',
       ka: 'გამოიკვლიე იონების გახსნასა და მყარი ნივთიერების დალექვას შორის წონასწორობა.',
-      kk: 'Еріген иондар мен қатты зат арасындағы еру және тұнба түзілу тепе-теңдігін зертте.',
+      kk: 'Erıgen iondar men qatty zat arasyndağy eru jäne tūnba tüzılu tepe-teñdıgın zertte.',
       qm: 'Erigen ionlar ve qattı maddeler arasında erüv ve çöküvniñ muvazenetini araştır.',
     },
   },

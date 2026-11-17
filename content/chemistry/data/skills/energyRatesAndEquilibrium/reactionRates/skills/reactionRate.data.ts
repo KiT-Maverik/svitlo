@@ -31,7 +31,7 @@ export const reactionRate_Skill_Data = defineSkill({
     et: 'Reaktsiooni kiirus',
     be: 'Хуткасьць рэакцыі',
     ka: 'რეაქციის სიჩქარე',
-    kk: 'Реакция жылдамдығы',
+    kk: 'Reaktsiia jyldamdyğy',
     qm: 'Reaktsiya tezligi',
   },
   description: {
@@ -64,7 +64,7 @@ export const reactionRate_Skill_Data = defineSkill({
       et: 'Arvuta, kui kiiresti lähteained kaovad või saadused tekivad aja jooksul.',
       be: 'Вылічы, як хутка зьнікаюць рэагенты або зьяўляюцца прадукты з часам.',
       ka: 'გამოთვალე, რა სიჩქარით ქრება რეაგენტები ან ჩნდება პროდუქტები დროში.',
-      kk: 'Уақыт өткенде реагенттер азаюы немесе өнімдер түзілуі қаншалықты тез екенін есепте.',
+      kk: 'Uaqyt ötkende reagentter azaiuy nemese önımder tüzıluı qanşalyqty tez ekenın esepte.',
       qm: 'Vaqıt keçkende maddeler ne qadar tez azayğanını ya da mahsuller peyda olğanını esapla.',
     },
   },

@@ -31,7 +31,7 @@ export const equilibriumShifts_Skill_Data = defineSkill({
     et: 'Tasakaalu nihkumine',
     be: 'Зьмяшчэньне раўнавагі',
     ka: 'წონასწორობის გადანაცვლება',
-    kk: 'Тепе-теңдіктің ығысуы',
+    kk: 'Tepe-teñdıktıñ yğysuy',
     qm: 'Muvazenetniñ ayışuvı',
   },
   description: {
@@ -65,7 +65,7 @@ export const equilibriumShifts_Skill_Data = defineSkill({
       et: 'Ennusta, kuidas tingimuste muutus mõjutab tasakaalu koostist.',
       be: 'Прагназуй, як зьмена ўмоваў зьмяняе раўнаважны склад.',
       ka: 'ივარაუდე, როგორ შეცვლის პირობების ცვლილება წონასწორულ შემადგენლობას.',
-      kk: 'Шарттар өзгерсе, тепе-теңдік құрамы қалай ауысатынын болжа.',
+      kk: 'Şarttar özgerse, tepe-teñdık qūramy qalai auysatynyn bolja.',
       qm: 'Şarait deñişkende muvazenetteki terkib nasıl deñişkenini faraz et.',
     },
   },

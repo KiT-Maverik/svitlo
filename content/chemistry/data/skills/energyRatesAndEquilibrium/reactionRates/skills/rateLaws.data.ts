@@ -31,7 +31,7 @@ export const rateLaws_Skill_Data = defineSkill({
     et: 'Kiirusseadused',
     be: 'Законы хуткасьці',
     ka: 'სიჩქარის კანონები',
-    kk: 'Жылдамдық заңдары',
+    kk: 'Jyldamdyq zañdary',
     qm: 'Tezlik qanunları',
   },
   description: {
@@ -65,7 +65,7 @@ export const rateLaws_Skill_Data = defineSkill({
       et: 'Kasuta katseliselt määratud seost kontsentratsiooni ja reaktsioonikiiruse vahel.',
       be: 'Выкарыстоўвай экспэрымэнтальна вызначаную залежнасьць хуткасьці ад канцэнтрацыі.',
       ka: 'გამოიყენე ექსპერიმენტული კავშირი კონცენტრაციასა და რეაქციის სიჩქარეს შორის.',
-      kk: 'Концентрация мен реакция жылдамдығының тәжірибелік байланысын қолдан.',
+      kk: 'Kontsentratsiia men reaktsiia jyldamdyğynyñ täjıribelık bailanysyn qoldan.',
       qm: 'Konsentratsiya ve reaktsiya tezligi arasında tecribevi bağı qullan.',
     },
   },

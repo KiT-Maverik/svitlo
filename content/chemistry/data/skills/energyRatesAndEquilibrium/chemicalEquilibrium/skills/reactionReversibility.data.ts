@@ -31,7 +31,7 @@ export const reactionReversibility_Skill_Data = defineSkill({
     et: 'Reaktsioonide pöörduvus',
     be: 'Зваротнасьць рэакцыяў',
     ka: 'რეაქციის შექცევადობა',
-    kk: 'Реакцияның қайтымдылығы',
+    kk: 'Reaktsiianyñ qaitymdylyğy',
     qm: 'Reaktsiyalarnıñ keri qaytuvı',
   },
   description: {
@@ -65,7 +65,7 @@ export const reactionReversibility_Skill_Data = defineSkill({
       et: 'Tunne ära mõlemas suunas kulgeda võivad reaktsioonid.',
       be: 'Распазнавай рэакцыі, здольныя ісьці ў абодвух кірунках.',
       ka: 'ამოიცანი რეაქციები, რომლებიც ორივე მიმართულებით მიმდინარეობს.',
-      kk: 'Екі бағытта да жүре алатын реакцияларды таны.',
+      kk: 'Ekı bağytta da jüre alatyn reaktsiialardy tany.',
       qm: 'Eki yönde de devam ete bilgen reaktsiyalarnı tanı.',
     },
   },

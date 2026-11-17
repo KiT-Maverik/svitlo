@@ -31,7 +31,7 @@ export const concentrationEffects_Skill_Data = defineSkill({
     et: 'Kontsentratsiooni mõju',
     be: 'Уплыў канцэнтрацыі',
     ka: 'კონცენტრაციის გავლენა',
-    kk: 'Концентрация әсері',
+    kk: 'Kontsentratsiia äserı',
     qm: 'Konsentratsiya tesiri',
   },
   description: {
@@ -64,7 +64,7 @@ export const concentrationEffects_Skill_Data = defineSkill({
       et: 'Selgita, miks lähteainete kontsentratsiooni muutus võib reaktsiooni kiirust muuta.',
       be: 'Патлумач, чаму зьмена канцэнтрацыі рэагентаў можа зьмяніць хуткасьць рэакцыі.',
       ka: 'ახსენი, რატომ შეუძლია რეაგენტების კონცენტრაციის ცვლილებას რეაქციის სიჩქარის შეცვლა.',
-      kk: 'Реагенттердің концентрациясы өзгерсе, реакция жылдамдығы неге өзгеретінін түсіндір.',
+      kk: 'Reagentterdıñ kontsentratsiiasy özgerse, reaktsiia jyldamdyğy nege özgeretının tüsındır.',
       qm: 'Reaktsiya maddeleriniñ konsentratsiyası deñişkende tezlik ne içün deñişkenini añlat.',
     },
   },

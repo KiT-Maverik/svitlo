@@ -31,7 +31,7 @@ export const reactionOrder_Skill_Data = defineSkill({
     et: 'Reaktsiooni järk',
     be: 'Парадак рэакцыі',
     ka: 'რეაქციის რიგი',
-    kk: 'Реакция реті',
+    kk: 'Reaktsiia retı',
     qm: 'Reaktsiya tertibi',
   },
   description: {
@@ -65,7 +65,7 @@ export const reactionOrder_Skill_Data = defineSkill({
       et: 'Tee kindlaks, kuidas reaktsiooni järk mõjutab kiiruse muutumist.',
       be: 'Вызнач, як парадак рэакцыі ўплывае на зьмены яе хуткасьці.',
       ka: 'განსაზღვრე, როგორ მოქმედებს რეაქციის რიგი სიჩქარის ცვლილებაზე.',
-      kk: 'Реакция реті жылдамдық өзгерісіне қалай әсер ететінін анықта.',
+      kk: 'Reaktsiia retı jyldamdyq özgerısıne qalai äser etetının anyqta.',
       qm: 'Reaktsiya tertibi tezlik deñişüvine nasıl tesir etkenini belgile.',
     },
   },

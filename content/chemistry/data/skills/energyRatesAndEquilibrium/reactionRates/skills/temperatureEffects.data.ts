@@ -31,7 +31,7 @@ export const temperatureEffects_Skill_Data = defineSkill({
     et: 'Temperatuuri mõju',
     be: 'Уплыў тэмпэратуры',
     ka: 'ტემპერატურის გავლენა',
-    kk: 'Температура әсері',
+    kk: 'Temperatura äserı',
     qm: 'Sıcaqlıq tesiri',
   },
   description: {
@@ -64,7 +64,7 @@ export const temperatureEffects_Skill_Data = defineSkill({
       et: 'Mõista, kuidas temperatuur mõjutab tõhusate osakestekohtumiste tõenäosust.',
       be: 'Зразумей, як тэмпэратура ўплывае на імавернасьць выніковых узаемадзеяньняў часьцінак.',
       ka: 'გაიგე, როგორ მოქმედებს ტემპერატურა ნაწილაკთა წარმატებული ურთიერთქმედების ალბათობაზე.',
-      kk: 'Температура бөлшектердің нәтижелі әрекеттесу ықтималдығына қалай әсер ететінін түсін.',
+      kk: 'Temperatura bölşekterdıñ nätijelı ärekettesu yqtimaldyğyna qalai äser etetının tüsın.',
       qm: 'Sıcaqlıq zerrelerniñ muvafaqiyetli tesirleşüv ihtimalına nasıl tesir etkenini añla.',
     },
   },

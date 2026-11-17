@@ -40,7 +40,7 @@ export const reactionRates_SkillGroup_Data = defineSkillGroup({
     et: 'Reaktsioonikiirused',
     be: 'Хуткасьць рэакцыяў',
     ka: 'რეაქციის სიჩქარეები',
-    kk: 'Реакция жылдамдықтары',
+    kk: 'Reaktsiia jyldamdyqtary',
     qm: 'Reaktsiya tezlikleri',
   },
   skills: [
@@ -82,7 +82,7 @@ export const reactionRates_SkillGroup_Data = defineSkillGroup({
       et: 'Uuri, kui kiiresti lähteained muutuvad saadusteks.',
       be: 'Дасьледуй, як хутка рэагенты ператвараюцца ў прадукты.',
       ka: 'გამოიკვლიე, რამდენად სწრაფად გარდაიქმნება რეაგენტები პროდუქტებად.',
-      kk: 'Реагенттер өнімдерге қаншалықты тез айналатынын зертте.',
+      kk: 'Reagentter önımderge qanşalyqty tez ainalatynyn zertte.',
       qm: 'Reaktsiya maddeleri ne qadar tez mahsulge aylanğanını araştır.',
     },
   },

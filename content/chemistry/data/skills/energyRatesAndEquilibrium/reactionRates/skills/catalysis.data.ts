@@ -31,7 +31,7 @@ export const catalysis_Skill_Data = defineSkill({
     et: 'Katalüüs',
     be: 'Каталіз',
     ka: 'კატალიზი',
-    kk: 'Катализ',
+    kk: 'Kataliz',
     qm: 'Kataliz',
   },
   description: {
@@ -65,7 +65,7 @@ export const catalysis_Skill_Data = defineSkill({
       et: 'Uuri, kuidas katalüsaatorid kiirendavad reaktsioone, ise kokkuvõttes kulumata.',
       be: 'Даведайся, як каталізатары паскараюць рэакцыі, не расходуючыся ў выніку.',
       ka: 'გაიგე, როგორ აჩქარებენ კატალიზატორები რეაქციას ისე, რომ მთლიანობაში არ იხარჯებიან.',
-      kk: 'Катализаторлар жалпы жұмсалмай, реакцияларды қалай жылдамдататынын біл.',
+      kk: 'Katalizatorlar jalpy jūmsalmai, reaktsiialardy qalai jyldamdatatynyn bıl.',
       qm: 'Katalizatorlar umumen sarf olunmadan reaktsiyalarnı nasıl tezleştirgenini ögren.',
     },
   },

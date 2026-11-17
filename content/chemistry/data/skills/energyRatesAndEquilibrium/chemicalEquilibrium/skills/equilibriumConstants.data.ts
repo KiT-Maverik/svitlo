@@ -31,7 +31,7 @@ export const equilibriumConstants_Skill_Data = defineSkill({
     et: 'Tasakaalukonstandid',
     be: 'Канстанты раўнавагі',
     ka: 'წონასწორობის მუდმივები',
-    kk: 'Тепе-теңдік тұрақтылары',
+    kk: 'Tepe-teñdık tūraqtylary',
     qm: 'Muvazenet sabitleri',
   },
   description: {
@@ -65,7 +65,7 @@ export const equilibriumConstants_Skill_Data = defineSkill({
       et: 'Tõlgenda tasakaalukonstanti reageerivate ainete vahelise seosena.',
       be: 'Тлумач канстанту раўнавагі як суадносіны паміж рэчывамі ў рэакцыі.',
       ka: 'წონასწორობის მუდმივა გაიგე, როგორც რეაქციაში მონაწილე ნივთიერებათა თანაფარდობა.',
-      kk: 'Тепе-теңдік тұрақтысын әрекеттесетін заттардың қатынасы ретінде түсіндір.',
+      kk: 'Tepe-teñdık tūraqtysyn ärekettesetın zattardyñ qatynasy retınde tüsındır.',
       qm: 'Muvazenet sabitini reaktsiyağa qatnaşqan maddeler arasındaki nisbet olaraq añla.',
     },
   },
