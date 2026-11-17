@@ -23,3 +23,7 @@ The one-time pre-configurator `migrateSkillsConfigurators` conversion has been r
 ## Read-only Lesson discovery
 
 The [queryLessons](./queryLessons/README.md) CLI provides deterministic searches by Lesson UUID or verified Skill UUIDs, distinguishing implemented TS sources from editorial `lesson.yaml` drafts. The GitHub [Get Lessons by Skill or ID](../../../.github/workflows/get-lesson.yml) PR-comment command runs this lookup at a pinned SHA and stores its report as an Actions artifact, never in the PR tree. The historical `generateLessonsBySkill` Markdown CLI shares this static index and remains operational.
+
+## Course Flow Stage 5
+
+[materializeCourseFlow](./materializeCourseFlow/README.md) converts an independently approved editorial Course plan into technical YAML, durable methodology and Course-owned modular TypeScript drafts; it does not alter the separate generic Course Builder.
