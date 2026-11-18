@@ -11,6 +11,9 @@ After the owner authorizes the relevant review, a GitHub user with repository `w
 /agent-artifacts generate skills content/astronomy
 /agent-artifacts generate lessons content/math it
 /agent-artifacts generate lessons content/math
+/agent-artifacts generate courses content/astronomy 1e79d8fc-2223-4fa7-bc64-70d8172d3e8b uk
+/agent-artifacts generate courses content/astronomy 1e79d8fc-2223-4fa7-bc64-70d8172d3e8b
+/agent-artifacts generate courses content/astronomy
 /agent-artifacts generate assessment-methods it
 /agent-artifacts generate ui-kit audio it
 /agent-artifacts generate ui-kit all it
@@ -20,6 +23,8 @@ After the owner authorizes the relevant review, a GitHub user with repository `w
 /agent-artifacts cleanup
 ```
 
+For Courses, an omitted UUID selects all authored Courses in the textbook and an omitted locale selects each Course's own declared languages. Course documents contain Course/Module/Chapter localized copy and Episode-owned Sections; standalone Lessons appear only as UUID references. A Course must have resolvable authored TypeScript before its references can be generated. Course output is scoped to `.agent-ci-artifacts/courses/<book>/<bucket>/<uuid>/<locale>.md`.
+
 For Skills, an omitted locale selects the registered textbook language roster; for Lessons, it selects **each discovered Lesson's own `params.languages`**. With a locale specified, only that locale is requested. Selecting one textbook never traverses or generates Markdown for another textbook. `ui-kit all` is an explicit request for all UI Kit component dictionaries; omitting its locale selects every registered language, and specifying a component selects only that component. Standalone references similarly accept an optional locale. EducationStandard is a global catalog owned by `shared/ui-kit/data/definitions/educationStandards`, and its omission selects precisely the canonical language roster. The build-time source catalog is owned by UI Kit definitions. There is intentionally **no** no-argument `/agent-artifacts generate` command.
 
 The workflow's manual dispatch inputs select the same fields and additionally support an optional single Lesson UUID. Local equivalent:
@@ -27,13 +32,14 @@ The workflow's manual dispatch inputs select the same fields and additionally su
 ```sh
 node scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.mjs --kind skills --package content/astronomy --locale it
 node scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.mjs --kind lessons --package content/math
+node scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.mjs --kind courses --package content/astronomy --course 1e79d8fc-2223-4fa7-bc64-70d8172d3e8b --locale uk
 node scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.mjs --kind lessons --package content/playground --locale uk --lesson d3048d21-8690-5255-b62c-984c69ac272c
 node scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.mjs --kind education-standards --locale uk
 ```
 
 ## Execution boundaries
 
-The workflow installs locked Node dependencies. It builds Engine **only for Lessons or fully translated EducationStandard catalogs**. For a complete EducationStandard catalog it verifies the authored UI Kit definitions against Engine's Build API in memory without publishing source JavaScript. For incomplete drafts it skips the TypeScript build and uses safe static Code inspection to render absent translations as `%%MISSING%%`, without bypassing Engine's strict publication rules. A locale can be ready for linguistic review even when other locales remain incomplete. Skills/UI Kit/Assessment Methods/Geography preview generators statically read Code and do not require an Engine build. Generator unit tests and unrelated Playground smoke tests belong in ordinary development CI, **not** in every document-generation request.
+The workflow installs locked Node dependencies. It builds Engine **only for Lessons, Courses or fully translated EducationStandard catalogs**. For a complete EducationStandard catalog it verifies the authored UI Kit definitions against Engine's Build API in memory without publishing source JavaScript. For incomplete drafts it skips the TypeScript build and uses safe static Code inspection to render absent translations as `%%MISSING%%`, without bypassing Engine's strict publication rules. A locale can be ready for linguistic review even when other locales remain incomplete. Skills/UI Kit/Assessment Methods/Geography preview generators statically read Code and do not require an Engine build. Generator unit tests and unrelated Playground smoke tests belong in ordinary development CI, **not** in every document-generation request.
 
 Each generation **replaces only the generated reference-document portion** of `.agent-ci-artifacts/` with the requested documents and a version-3 `manifest.json`. It preserves independently produced `.agent-ci-artifacts/lesson-lookup/` and `.agent-ci-artifacts/engine-coverage/` diagnostics from the same PR, which are also committed temporarily to that branch. The manifest records `scope`, `sourceCommit`, per-document `locale`, `missing` and `reviewReady` where available, plus failures. Partial Skills/UI Kit/Geography/Assessment Methods previews may contain `%%MISSING%%` but strict authored content, runtime publication and independent linguistic-review gates are unchanged. A failed or missing requested document is not review-ready.
 
