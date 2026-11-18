@@ -300,7 +300,10 @@ test('finalized TypeScript-only Course synchronizes persisted Lesson ID, linked 
     '- Course UUID: ' + String.fromCharCode(96) + courseId + String.fromCharCode(96),
     '- Textbook: ' + String.fromCharCode(96) + 'content/astronomy' + String.fromCharCode(96),
     '- Reviewed temporary source (finalized and removed after Stage 5; retained in Git history): ' +
-      String.fromCharCode(96) + folder + '/course.yaml' + String.fromCharCode(96),
+      String.fromCharCode(96) +
+      folder +
+      '/course.yaml' +
+      String.fromCharCode(96),
     '',
     '## Independently reviewed Course stages',
     '- [x] Stage 4 approved',
@@ -315,26 +318,38 @@ test('finalized TypeScript-only Course synchronizes persisted Lesson ID, linked 
   const previousFetch = globalThis.fetch;
   const previousToken = process.env.GH_TOKEN;
   try {
-    put(folder + '/index.ts', [
-      'import { defineCourse } from "@svitlo/engine/build";',
-      '// Misleading TODO UUIDs must not be used for Course identity.',
-      'export const astronomy_Course = defineCourse({',
-      '  "id": "' + courseId + '",',
-      '  "type": "course",',
-      '  "params": { "languages": ["uk", "en"] },',
-      '  content: { items: { "firstLookAtSky": UNRESOLVED_LESSON_0 },',
-      '    order: ["firstLookAtSky"] }',
-      '});',
-      '',
-    ].join('\n'));
-    put(folder + '/methodology.md', [
-      '# Astronomy', '',
-      '## Course methodology', '',
-      '### Lesson firstLookAtSky — Погляд на небо', '',
-      'Lesson UUID: ' + lessonId, '',
-      'Objective: Learn the sky', '',
-    ].join('\n'));
-    put('content/astronomy/data/lessons/7/' + lessonId + '/lesson.yaml',
+    put(
+      folder + '/index.ts',
+      [
+        'import { defineCourse } from "@svitlo/engine/build";',
+        '// Misleading TODO UUIDs must not be used for Course identity.',
+        'export const astronomy_Course = defineCourse({',
+        '  "id": "' + courseId + '",',
+        '  "type": "course",',
+        '  "params": { "languages": ["uk", "en"] },',
+        '  content: { items: { "firstLookAtSky": UNRESOLVED_LESSON_0 },',
+        '    order: ["firstLookAtSky"] }',
+        '});',
+        '',
+      ].join('\n'),
+    );
+    put(
+      folder + '/methodology.md',
+      [
+        '# Astronomy',
+        '',
+        '## Course methodology',
+        '',
+        '### Lesson firstLookAtSky — Погляд на небо',
+        '',
+        'Lesson UUID: ' + lessonId,
+        '',
+        'Objective: Learn the sky',
+        '',
+      ].join('\n'),
+    );
+    put(
+      'content/astronomy/data/lessons/7/' + lessonId + '/lesson.yaml',
       YAML.stringify({
         config: { id: lessonId, locale: { title: { uk: 'Знайомство з небом' } } },
         production: { documentLanguage: 'uk', methodology: 'Observe safely' },
@@ -360,23 +375,28 @@ test('finalized TypeScript-only Course synchronizes persisted Lesson ID, linked 
       } else if (endpoint === 'pulls/653') {
         result = { state: 'open', body, head: { sha, ref: 'course/astronomy-grade-one', repo: { full_name: repo } } };
       } else if (endpoint === 'pulls?state=all&per_page=100&page=1') {
-        result = [{
-          number: 699,
-          title: 'Create first-look sky Lesson',
-          body: claim,
-          state: 'open',
-          draft: true,
-          merged_at: null,
-          head: { repo: { full_name: repo } },
-          base: { ref: 'course/astronomy-grade-one', repo: { full_name: repo } },
-        }];
+        result = [
+          {
+            number: 699,
+            title: 'Create first-look sky Lesson',
+            body: claim,
+            state: 'open',
+            draft: true,
+            merged_at: null,
+            head: { repo: { full_name: repo } },
+            base: { ref: 'course/astronomy-grade-one', repo: { full_name: repo } },
+          },
+        ];
       } else {
         throw Error('Unexpected GitHub API endpoint: ' + endpoint);
       }
       return { ok: true, json: async () => result };
     };
     const report = await analyze({ repo, pr: 653, sha, root });
-    assert.deepEqual(report.lessons.map(x => x.lessonId), [lessonId]);
+    assert.deepEqual(
+      report.lessons.map(x => x.lessonId),
+      [lessonId],
+    );
     assert.equal(report.lessons[0].title, 'Знайомство з небом');
     assert.equal(report.lessons[0].status, 'Draft · #699');
     assert.equal(report.lessons[0].prTitle, 'Create first-look sky Lesson');

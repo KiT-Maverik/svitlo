@@ -33,8 +33,14 @@ function safeSource(root, filename) {
 }
 
 function unwrap(node) {
-  while (node && (ts.isAsExpression(node) || ts.isSatisfiesExpression(node) ||
-    ts.isParenthesizedExpression(node) || ts.isNonNullExpression(node))) node = node.expression;
+  while (
+    node &&
+    (ts.isAsExpression(node) ||
+      ts.isSatisfiesExpression(node) ||
+      ts.isParenthesizedExpression(node) ||
+      ts.isNonNullExpression(node))
+  )
+    node = node.expression;
   return node;
 }
 function object(node, context) {
@@ -44,8 +50,10 @@ function object(node, context) {
 }
 function property(node, key) {
   const matches = object(node, 'Config').properties.filter(
-    p => (ts.isPropertyAssignment(p) || ts.isShorthandPropertyAssignment(p)) &&
-      (ts.isIdentifier(p.name) || ts.isStringLiteral(p.name)) && p.name.text === key,
+    p =>
+      (ts.isPropertyAssignment(p) || ts.isShorthandPropertyAssignment(p)) &&
+      (ts.isIdentifier(p.name) || ts.isStringLiteral(p.name)) &&
+      p.name.text === key,
   );
   if (matches.length !== 1) fail('expected one static ' + key + ' property');
   return ts.isShorthandPropertyAssignment(matches[0]) ? matches[0].name : matches[0].initializer;
@@ -65,8 +73,10 @@ function stringArray(node, context) {
 function entries(node, context) {
   const map = new Map();
   for (const entry of object(node, context).properties) {
-    if (!(ts.isPropertyAssignment(entry) || ts.isShorthandPropertyAssignment(entry)) ||
-        (!ts.isStringLiteral(entry.name) && !ts.isIdentifier(entry.name)))
+    if (
+      !(ts.isPropertyAssignment(entry) || ts.isShorthandPropertyAssignment(entry)) ||
+      (!ts.isStringLiteral(entry.name) && !ts.isIdentifier(entry.name))
+    )
       fail(context + ' must have static property assignments');
     const key = entry.name.text;
     if (!IDENTIFIER.test(key) || map.has(key)) fail('duplicate/unsafe Course child key ' + key);
@@ -96,8 +106,12 @@ function staticFile(root, file) {
 function staticDeclaration(ast, symbol, exported = false) {
   const found = [];
   for (const statement of ast.statements) {
-    if (!ts.isVariableStatement(statement) || !(statement.declarationList.flags & ts.NodeFlags.Const) ||
-        (exported && !statement.modifiers?.some(m => m.kind === ts.SyntaxKind.ExportKeyword))) continue;
+    if (
+      !ts.isVariableStatement(statement) ||
+      !(statement.declarationList.flags & ts.NodeFlags.Const) ||
+      (exported && !statement.modifiers?.some(m => m.kind === ts.SyntaxKind.ExportKeyword))
+    )
+      continue;
     for (const declaration of statement.declarationList.declarations) {
       if (ts.isIdentifier(declaration.name) && declaration.name.text === symbol && declaration.initializer)
         found.push(declaration.initializer);
@@ -110,8 +124,11 @@ function staticDeclaration(ast, symbol, exported = false) {
 function exportedLanguages(root, courseDirectory, name) {
   const constants = staticFile(root, courseDirectory + '/constants.ts').ast;
   const values = stringArray(staticDeclaration(constants, name, true), name);
-  if (!values.length || new Set(values).size !== values.length ||
-      values.some(x => !/^[a-z]{2,3}(?:-[A-Za-z0-9]{2,8})?$/.test(x)))
+  if (
+    !values.length ||
+    new Set(values).size !== values.length ||
+    values.some(x => !/^[a-z]{2,3}(?:-[A-Za-z0-9]{2,8})?$/.test(x))
+  )
     fail('Invalid ' + name + ' locale tuple');
   return values;
 }
@@ -165,8 +182,12 @@ function barrelSource(root, barrel, exported) {
   const ast = staticFile(root, barrel).ast;
   const results = [];
   for (const node of ast.statements) {
-    if (!ts.isExportDeclaration(node) || !ts.isNamedExports(node.exportClause) ||
-        !ts.isStringLiteral(node.moduleSpecifier)) fail('Unexpected Course barrel statement');
+    if (
+      !ts.isExportDeclaration(node) ||
+      !ts.isNamedExports(node.exportClause) ||
+      !ts.isStringLiteral(node.moduleSpecifier)
+    )
+      fail('Unexpected Course barrel statement');
     for (const element of node.exportClause.elements) {
       if (element.name.text === exported) {
         const target = resolveImport(barrel, node.moduleSpecifier.text);
@@ -331,10 +352,12 @@ export function readCourseTsInventory(root, courseDirectory, courseId) {
       // reviewed methodology and actual Lesson Config (not TODO comments)
       // bind the UUID to each ordered child slot.
       const reference = references[nextReference++];
-      if (!reference || reference.slug !== key ||
-          (reference.placement && reference.placement !== placement.join(' / ')))
-        fail('Course Lesson sequence/placement differs from materialized methodology: ' +
-          placement.join(' / '));
+      if (
+        !reference ||
+        reference.slug !== key ||
+        (reference.placement && reference.placement !== placement.join(' / '))
+      )
+        fail('Course Lesson sequence/placement differs from materialized methodology: ' + placement.join(' / '));
       const lessonId = reference.lessonId;
       if (aliasedLesson && aliasedLesson.lessonId !== lessonId)
         fail('Lesson data alias UUID differs from materialized methodology');

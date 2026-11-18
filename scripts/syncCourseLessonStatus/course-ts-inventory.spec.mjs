@@ -190,48 +190,65 @@ test('Reject mismatched Course UUID bucket or cross-package root', () => {
   }
 });
 
-
 function genericCourseFixture() {
   const f = fixture();
   const write = (name, body) => f.put(name, body);
   const reusedSource = path.posix.join('content/math/data/lessons/7', reusedLesson, 'orbit.data.ts');
-  write(indexFile, [
-    'import { defineCourse } from "@svitlo/engine/build";',
-    'import { direct } from "#lessonsData/c/' + newLesson + '/index";',
-    'import { foundations_Module as foundations } from "./modules";',
-    'import { languages, type CourseLanguages } from "./constants";',
-    'const items = { direct, foundations };',
-    'export const main_Course = defineCourse<"main", typeof items, CourseLanguages>({',
-    '  id: "' + courseId + '", type: "course",',
-    '  params: { languages },',
-    '  content: { items, order: ["direct", "foundations"] },',
-    '});',
-  ].join('\n'));
-  write(directory + '/constants.ts', [
-    'export const plannedLanguages = ["en", "uk"] as const satisfies readonly string[];',
-    'export const languages = ["en"] as const satisfies readonly string[];',
-    'export type CourseLanguages = typeof languages;',
-  ].join('\n'));
+  write(
+    indexFile,
+    [
+      'import { defineCourse } from "@svitlo/engine/build";',
+      'import { direct } from "#lessonsData/c/' + newLesson + '/index";',
+      'import { foundations_Module as foundations } from "./modules";',
+      'import { languages, type CourseLanguages } from "./constants";',
+      'const items = { direct, foundations };',
+      'export const main_Course = defineCourse<"main", typeof items, CourseLanguages>({',
+      '  id: "' + courseId + '", type: "course",',
+      '  params: { languages },',
+      '  content: { items, order: ["direct", "foundations"] },',
+      '});',
+    ].join('\n'),
+  );
+  write(
+    directory + '/constants.ts',
+    [
+      'export const plannedLanguages = ["en", "uk"] as const satisfies readonly string[];',
+      'export const languages = ["en"] as const satisfies readonly string[];',
+      'export type CourseLanguages = typeof languages;',
+    ].join('\n'),
+  );
   write(directory + '/modules/index.ts', 'export { foundations_Module } from "./foundations";\n');
-  write(moduleFile, [
-    'import { defineModule } from "@svitlo/engine/build";',
-    'import { standaloneLesson as reused } from "#lessonsData/7/' + reusedLesson + '/orbit.data";',
-    'import type { CourseLanguages } from "../constants";',
-    'const items = { reused };',
-    'export const foundations_Module = defineModule<"foundations", typeof items, CourseLanguages>({',
-    '  id: "12ecbde1-97fd-5fe7-a353-ea89b9ef4a67",',
-    '  slug: "foundations", type: "module",',
-    '  content: { items, order: ["reused"] },',
-    '});',
-  ].join('\n'));
-  write(methodsFile, [
-    '### Lesson direct — First Sky', '',
-    'Lesson UUID: ' + newLesson, '',
-    'Objective: Observe', '',
-    '### Lesson reused — Reused Lesson', '',
-    'Lesson UUID: ' + reusedLesson, '',
-    'Objective: Review', '',
-  ].join('\n'));
+  write(
+    moduleFile,
+    [
+      'import { defineModule } from "@svitlo/engine/build";',
+      'import { standaloneLesson as reused } from "#lessonsData/7/' + reusedLesson + '/orbit.data";',
+      'import type { CourseLanguages } from "../constants";',
+      'const items = { reused };',
+      'export const foundations_Module = defineModule<"foundations", typeof items, CourseLanguages>({',
+      '  id: "12ecbde1-97fd-5fe7-a353-ea89b9ef4a67",',
+      '  slug: "foundations", type: "module",',
+      '  content: { items, order: ["reused"] },',
+      '});',
+    ].join('\n'),
+  );
+  write(
+    methodsFile,
+    [
+      '### Lesson direct — First Sky',
+      '',
+      'Lesson UUID: ' + newLesson,
+      '',
+      'Objective: Observe',
+      '',
+      '### Lesson reused — Reused Lesson',
+      '',
+      'Lesson UUID: ' + reusedLesson,
+      '',
+      'Objective: Review',
+      '',
+    ].join('\n'),
+  );
   return { ...f, reusedSource };
 }
 
@@ -241,7 +258,10 @@ test('new generic Course draft resolves const items, family barrel, planned loca
     const report = readCourseTsInventory(f.root, directory, courseId);
     assert.deepEqual(report.languages, ['en', 'uk']);
     assert.equal(report.lessons.length, 2);
-    assert.deepEqual(report.lessons.map(row => row.lessonId), [reusedLesson, newLesson].sort());
+    assert.deepEqual(
+      report.lessons.map(row => row.lessonId),
+      [reusedLesson, newLesson].sort(),
+    );
     assert.equal(report.lessons.find(x => x.lessonId === newLesson).placements[0], 'direct');
     assert.equal(report.lessons.find(x => x.lessonId === reusedLesson).placements[0], 'foundations / reused');
   } finally {
@@ -251,14 +271,15 @@ test('new generic Course draft resolves const items, family barrel, planned loca
 
 test('generic Course inventory rejects forged alias UUID, unsafe barrel and invented source locales', () => {
   const f = genericCourseFixture();
-  const originals = [indexFile, directory + '/modules/index.ts', directory + '/constants.ts']
-    .map(file => ({ file, body: fs.readFileSync(path.join(f.root, file), 'utf8') }));
+  const originals = [indexFile, directory + '/modules/index.ts', directory + '/constants.ts'].map(file => ({
+    file,
+    body: fs.readFileSync(path.join(f.root, file), 'utf8'),
+  }));
   try {
     for (const item of originals) {
       let corrupted;
       if (item.file === indexFile) corrupted = item.body.replace(newLesson, courseId);
-      else if (item.file.endsWith('/modules/index.ts'))
-        corrupted = item.body.replace('./foundations', '../../secrets');
+      else if (item.file.endsWith('/modules/index.ts')) corrupted = item.body.replace('./foundations', '../../secrets');
       else corrupted = item.body.replace('["en"]', '["en", "de"]');
       f.put(item.file, corrupted);
       assert.throws(() => readCourseTsInventory(f.root, directory, courseId));
