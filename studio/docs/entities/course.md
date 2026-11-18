@@ -6,7 +6,7 @@
 
 **Status:** Authored Course contracts, creator APIs and a Playground-only Course publication/navigation prototype are implemented. Course-owned React Scene registry generation, full publisher hardening, and progression/persistence remain future integration work.
 
-A **Course** is an ordered learning journey, distinct from a Curriculum. Its authored tree contains Modules, Chapters, Episodes and **complete reusable Lesson Data objects** or sparse Lesson override entries with the canonical Lesson attached at authoring time. This is a build-time-only dependency; no complete Lesson is duplicated in published Course JSON. A Module holds Chapters, Episodes or Lessons; a Chapter holds Episodes or Lessons. Episodes own `scenario` Sections; Scenes remain ContentBlocks.
+A **Course** is an ordered learning journey, distinct from a Curriculum. Its authored tree contains Modules, Chapters, Episodes and ordinary Lesson references/Build inputs (including independently reusable instruction and justified Course-sequence-specific assessment Lessons), with optional sparse Lesson overrides. The canonical Lesson is linked at authoring/build time; no complete Lesson is duplicated in published Course JSON. A Module holds Chapters, Episodes or Lessons; a Chapter holds Episodes or Lessons. Episodes own `scenario` Sections; Scenes remain ContentBlocks.
 
 ## Navigation models
 
