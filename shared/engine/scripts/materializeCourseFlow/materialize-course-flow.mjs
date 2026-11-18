@@ -182,9 +182,6 @@ export function technicalFromEditorial(plan, resolveLesson = () => null) {
   collectExplicit(authored.content);
   const newLessons = new Map();
   const generated = new Set();
-  const moduleSlugs = new Set(),
-    chapterSlugs = new Set(),
-    episodeSlugs = new Set();
   function collection(tree, parent) {
     const items = {};
     for (const slug of tree?.order ?? []) {
@@ -208,9 +205,6 @@ export function technicalFromEditorial(plan, resolveLesson = () => null) {
       if (generated.has(child.id) || (ids.has(child.id) && !explicit.has(child.id)))
         fail('duplicate generated entity UUID at ' + placement);
       generated.add(child.id);
-      const group = child.type === 'module' ? moduleSlugs : child.type === 'chapter' ? chapterSlugs : episodeSlugs;
-      if (group.has(slug)) fail('duplicate ' + child.type + ' source filename slug ' + slug);
-      group.add(slug);
       if (child.type === 'episode') {
         const config = {
           id: child.id,
