@@ -87,7 +87,7 @@ test('loader resolves a complete published Flashcard in one scoped batch and cac
   const backId = 'cf1a5371-1111-4555-8999-000000000002';
   const publication = {
     source: 'content/playground/card.ts',
-    ownerLessonId: lessonId,
+    lessonId,
     kind: 'flashcard' as const,
     languages: ['en', 'uk'] as const,
     publication: {
