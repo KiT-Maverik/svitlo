@@ -1,5 +1,3 @@
-# Temporary editorial Course Flow plan; not Engine config.yaml.
-# Stage 3 methodology complete; independent Stage 4 Course plan review pending.
 id: 1e79d8fc-2223-4fa7-bc64-70d8172d3e8b
 type: course
 slug: astronomyGradeOne
@@ -52,14 +50,6 @@ methodology:
     Не потрібні попередні курси астрономії. Достатньо побутового
     знайомства зі світлом і темрявою; читання, складна арифметика,
     телескоп і особисте нічне спостереження не є передумовами.
-  sourceNotes: >-
-    Робочий пілот нового Create Course Flow.
-    Таксономічні UUID звірені з content/astronomy/data/skills.
-    Власник погодив вступну глибину, чотиримовний пілот і
-    відсутність заяв про відповідність освітнім стандартам
-    2026-11-17. Власник погодив Stage 2 2026-11-18.
-    Stage 3 охоплює Methodologist і Assessment Architect у межах
-    авторського циклу. Один незалежний аудит усього плану — Stage 4.
 outcomes:
   skillGroups:
     - 6b5700fb-8ba9-4483-9b1b-5c6a28347e12 # observationPractice
@@ -87,13 +77,11 @@ prerequisites:
 standardsAlignment: []
 openDecisions:
   episodePlacementPilot: >-
-    TODO(Screenwriter, після погодження плану): передбачити один Course
-    Episode (welcomeToSky), один Module Episode (skyCyclesStory) у
-    skyCycles і один Chapter Episode (solarSystemStory) у solarSystemBasics.
-    Episodes не належать до Stage 2/3 методичного YAML, мають самостійні
-    авторські обґрунтування, Sections і ресурси. TODO(editorial):
-    перенести або прибрати суто тестовий Episode, якщо він не додає
-    окремої педагогічної цінності; не робити його умовою Stage 4 review.
+    Розглянути один Course Episode (welcomeToSky), один Module Episode
+    (skyCyclesStory) у skyCycles та один Chapter Episode (solarSystemStory)
+    у solarSystemBasics. Для кожного Episode потрібні окреме педагогічне
+    обґрунтування, Sections і ресурси. Суто тестовий Episode слід перенести
+    або прибрати, якщо він не додає окремої педагогічної цінності.
 content:
   items:
     firstLookAtSky:
@@ -335,7 +323,7 @@ content:
               Надати датовані, перевірені зображення з текстовими, звуковими й невізуальними еквівалентами. Без обов'язкового читання, письма чи нічних виходів; матеріали доступні офлайн. Не заохочувати пряме споглядання Сонця. `uk` — авторське джерело; `en`, `pl`, `qm` — тільки планові переклади.
 
               ## Межі виробництва
-              Самостійна Course-neutral методологія; це не готові Sections, Questions, Assets, сценарій чи підтверджене mastery. Незалежна перевірка всього плану відбувається тільки в Stage 4.
+              Самостійна Course-neutral методологія; це не готові Sections, Questions, Assets, сценарій чи підтверджене mastery.
           dayAndNight:
             type: chapter
             slug: dayAndNight
