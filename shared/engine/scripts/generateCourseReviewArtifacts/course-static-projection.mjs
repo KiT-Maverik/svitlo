@@ -137,8 +137,16 @@ function declaredLanguages(root) {
 export function readModularCourse(item, supportedLanguages) {
   const root = item.directory;
   const declared = declaredLanguages(root);
-  if (declared.some(code => !supportedLanguages.includes(code)))
-    throw new Error('Unsupported Course language in constants.ts');
+  // Stage 5 temporarily exposes only the source locale as executable TS, while
+  // preserving the planned translation roster in this deterministic generator marker.
+  // These languages are eligible for review previews, NOT production publication.
+  const constants = fs.readFileSync(path.join(root, 'constants.ts'), 'utf8');
+  const marker = constants.match(/\/\/ TODO \(BLOCKER\): Restore the complete language set when translations are ready:\s*\r?\n\s*\/\/ export const languages = (\[[^\n]*\]) as const satisfies SupportedLanguages;/);
+  const planned = marker ? JSON.parse(marker[1]) : declared;
+  if (!Array.isArray(planned) || !planned.length || new Set(planned).size !== planned.length ||
+      declared.some(code => !planned.includes(code)) ||
+      planned.some(code => !supportedLanguages.includes(code)))
+    throw new Error('Invalid planned Course language roster');
   const coursePrefix = '#coursesData/' + item.id.slice(-1) + '/' + item.id + '/';
   const visit = (file, depth, ids = new Set()) => {
     if (depth > 20) throw new Error('Course hierarchy exceeds depth limit');
@@ -182,9 +190,9 @@ export function readModularCourse(item, supportedLanguages) {
   const full = visit(item.entry, 0);
   return {
     id: item.id, type: 'course',
-    config: { base: { params: { languages: declared } } },
+    config: { base: { params: { languages: planned } } },
     project(locale) {
-      if (!declared.includes(locale)) throw new Error('Locale not declared by Course');
+      if (!planned.includes(locale)) throw new Error('Locale not declared or planned by Course');
       let missingCount = 0;
       const localize = input => {
         if (Array.isArray(input)) return input.map(localize);
