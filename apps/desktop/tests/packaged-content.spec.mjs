@@ -23,7 +23,9 @@ test('build bundles the complete Lesson Props base and sparse selected locale', 
   assert.equal(lessonBase.id, id);
   assert.equal(lessonBase.type, 'lesson');
   assert.ok(Array.isArray(lessonBase.section));
-  assert.ok(Array.isArray(lessonBase.flashcards));
+  // Questions and Flashcards are separate resources, not embedded in Lesson Props.
+  assert.equal(Object.hasOwn(lessonBase, 'flashcards'), false);
+  assert.equal(Object.hasOwn(lessonBase, 'questions'), false);
   assert.ok(lessonBase.params.languages.includes('uk'));
   const ukFile = join(resources, 'uk.json');
   if (existsSync(ukFile)) assert.ok(JSON.parse(readFileSync(ukFile, 'utf8')));
