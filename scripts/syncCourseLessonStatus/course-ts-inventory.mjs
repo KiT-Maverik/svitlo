@@ -32,23 +32,32 @@ function safeSource(root, filename) {
   return fs.readFileSync(target, 'utf8');
 }
 
+function unwrap(node) {
+  while (node && (ts.isAsExpression(node) || ts.isSatisfiesExpression(node) ||
+    ts.isParenthesizedExpression(node) || ts.isNonNullExpression(node))) node = node.expression;
+  return node;
+}
 function object(node, context) {
+  node = unwrap(node);
   if (!ts.isObjectLiteralExpression(node)) fail(context + ' must be a static object');
   return node;
 }
 function property(node, key) {
   const matches = object(node, 'Config').properties.filter(
-    p => ts.isPropertyAssignment(p) && (ts.isIdentifier(p.name) || ts.isStringLiteral(p.name)) && p.name.text === key,
+    p => (ts.isPropertyAssignment(p) || ts.isShorthandPropertyAssignment(p)) &&
+      (ts.isIdentifier(p.name) || ts.isStringLiteral(p.name)) && p.name.text === key,
   );
   if (matches.length !== 1) fail('expected one static ' + key + ' property');
-  return matches[0].initializer;
+  return ts.isShorthandPropertyAssignment(matches[0]) ? matches[0].name : matches[0].initializer;
 }
 function string(node, context) {
+  node = unwrap(node);
   if (!ts.isStringLiteral(node) && !ts.isNoSubstitutionTemplateLiteral(node))
     fail(context + ' must be a string literal');
   return node.text;
 }
 function stringArray(node, context) {
+  node = unwrap(node);
   if (!ts.isArrayLiteralExpression(node) || node.elements.length > 10000)
     fail(context + ' must be an ordered string array');
   return node.elements.map(x => string(x, context));
@@ -56,11 +65,12 @@ function stringArray(node, context) {
 function entries(node, context) {
   const map = new Map();
   for (const entry of object(node, context).properties) {
-    if (!ts.isPropertyAssignment(entry) || (!ts.isStringLiteral(entry.name) && !ts.isIdentifier(entry.name)))
+    if (!(ts.isPropertyAssignment(entry) || ts.isShorthandPropertyAssignment(entry)) ||
+        (!ts.isStringLiteral(entry.name) && !ts.isIdentifier(entry.name)))
       fail(context + ' must have static property assignments');
     const key = entry.name.text;
     if (!IDENTIFIER.test(key) || map.has(key)) fail('duplicate/unsafe Course child key ' + key);
-    map.set(key, entry.initializer);
+    map.set(key, ts.isShorthandPropertyAssignment(entry) ? entry.name : entry.initializer);
   }
   return map;
 }
@@ -83,6 +93,29 @@ function staticFile(root, file) {
   }
   return { ast, imports };
 }
+function staticDeclaration(ast, symbol, exported = false) {
+  const found = [];
+  for (const statement of ast.statements) {
+    if (!ts.isVariableStatement(statement) || !(statement.declarationList.flags & ts.NodeFlags.Const) ||
+        (exported && !statement.modifiers?.some(m => m.kind === ts.SyntaxKind.ExportKeyword))) continue;
+    for (const declaration of statement.declarationList.declarations) {
+      if (ts.isIdentifier(declaration.name) && declaration.name.text === symbol && declaration.initializer)
+        found.push(declaration.initializer);
+    }
+  }
+  if (found.length !== 1) fail('Missing or ambiguous static ' + symbol + ' declaration');
+  return found[0];
+}
+
+function exportedLanguages(root, courseDirectory, name) {
+  const constants = staticFile(root, courseDirectory + '/constants.ts').ast;
+  const values = stringArray(staticDeclaration(constants, name, true), name);
+  if (!values.length || new Set(values).size !== values.length ||
+      values.some(x => !/^[a-z]{2,3}(?:-[A-Za-z0-9]{2,8})?$/.test(x)))
+    fail('Invalid ' + name + ' locale tuple');
+  return values;
+}
+
 function exportedDefinition(ast, factory, symbol) {
   const found = [];
   for (const stmt of ast.statements) {
