@@ -22,7 +22,7 @@ export const time = defineSkillDomain({
     it: 'Tempo',
     ja: '時間',
     ka: 'დრო',
-    kk: 'Уақыт',
+    kk: 'Uaqyt',
     ko: '시간',
     lt: 'Laikas',
     lv: 'Laiks',
