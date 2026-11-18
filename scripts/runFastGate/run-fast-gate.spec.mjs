@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { test } from 'node:test';
-import { chooseChecks, requiresWebBuild, requiresCourseStatusTests } from './run-fast-gate.mjs';
+import { chooseChecks, requiresWebBuild, requiresCourseStatusTests, shouldBuildDependency } from './run-fast-gate.mjs';
 
 const packages = [
   { path: 'shared/engine', name: '@svitlo/engine' },
@@ -111,4 +111,16 @@ test('Course status changes invoke the complete synchronizer test suite', () => 
   assert.equal(requiresCourseStatusTests(['scripts/syncCourseLessonStatus/workflow.spec.mjs']), true);
   assert.equal(requiresCourseStatusTests(['.github/workflows/sync-course-lessons.yml']), true);
   assert.equal(requiresCourseStatusTests(['content/astronomy/data/courses/sample/course.yaml']), false);
+});
+
+
+test('FastGate builds required content package exports for host typechecks only', () => {
+  const desktop = { path: 'apps/desktop', name: '@svitlo/desktop' };
+  const playground = { path: 'content/playground', scripts: { 'package:build': 'tsc' } };
+  const engine = { path: 'shared/engine', scripts: { 'package:build': 'tsc' } };
+  const math = { path: 'content/math', name: '@svitlo/math' };
+  assert.equal(shouldBuildDependency(desktop, playground), true);
+  assert.equal(shouldBuildDependency(desktop, engine), true);
+  assert.equal(shouldBuildDependency(math, playground), false);
+  assert.equal(shouldBuildDependency(desktop, { ...playground, scripts: {} }), false);
 });
