@@ -14,7 +14,7 @@ export const howLightMovesTitle = {
   et: 'Kuidas valgus levib',
   be: 'Як пашыраецца сьвятло',
   ka: 'როგორ ვრცელდება სინათლე',
-  kk: 'Жарық қалай таралады',
+  kk: 'Jaryq qalai taralady',
   zh: '光是如何传播的',
   hi: 'प्रकाश कैसे चलता है',
   es: 'Cómo se propaga la luz',

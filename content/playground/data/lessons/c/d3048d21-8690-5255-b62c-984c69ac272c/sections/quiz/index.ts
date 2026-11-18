@@ -16,7 +16,7 @@ const title = {
   id: 'Kuis',
   ja: 'クイズ',
   ka: 'ტესტი',
-  kk: 'Тест',
+  kk: 'Test',
   ko: '퀴즈',
   lt: 'Testas',
   lv: 'Tests',

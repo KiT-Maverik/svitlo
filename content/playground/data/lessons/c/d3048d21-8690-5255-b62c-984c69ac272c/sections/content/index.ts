@@ -19,7 +19,7 @@ const title = {
   id: 'Teori',
   ja: '理論',
   ka: 'თეორია',
-  kk: 'Теория',
+  kk: 'Teoriia',
   ko: '이론',
   lt: 'Teorija',
   lv: 'Teorija',
