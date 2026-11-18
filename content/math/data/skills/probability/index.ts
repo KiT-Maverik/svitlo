@@ -21,7 +21,7 @@ export const probability = defineSkillDomain({
     it: 'Probabilità',
     ja: '確率',
     ka: 'ალბათობა',
-    kk: 'Ықтималдық',
+    kk: 'Yqtimaldyq',
     ko: '확률',
     lt: 'Tikimybė',
     lv: 'Varbūtība',

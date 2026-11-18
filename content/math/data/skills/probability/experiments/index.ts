@@ -20,7 +20,7 @@ export const experiments = defineSkillGroup({
     it: 'Esperimenti casuali',
     ja: '確率の実験',
     ka: 'შემთხვევითი ექსპერიმენტები',
-    kk: 'Кездейсоқ тәжірибелер',
+    kk: 'Kezdeisoq täjıribeler',
     ko: '무작위 실험',
     lt: 'Atsitiktiniai bandymai',
     lv: 'Nejauši eksperimenti',
