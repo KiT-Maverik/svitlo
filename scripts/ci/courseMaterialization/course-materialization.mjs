@@ -120,7 +120,7 @@ function validateLessonAssignments(manifest, meta) {
       typeof lesson.title !== 'string' ||
       !lesson.title.trim() ||
       lesson.title.length > 300 ||
-      /[\\r\\n\\x00-\\x1f]/.test(lesson.title) ||
+      /[\r\n\x00-\x1f]/.test(lesson.title) ||
       lesson.path !==
         meta.identity.pkg + '/data/lessons/' + lesson.id.at(-1) + '/' + lesson.id + '/lesson.yaml' ||
       ids.has(lesson.id) ||
@@ -151,11 +151,11 @@ export function renderLessonRegistry(assignments) {
     lesson =>
       '| ' +
       safeLessonTitle(lesson.title) +
-      ' | \`' +
+      ' | `' +
       lesson.slug +
-      '\` | \`' +
+      '` | `' +
       lesson.id +
-      '\` | Not started |',
+      '` | Not started |',
   );
   return [
     LESSONS_START,
@@ -167,7 +167,7 @@ export function renderLessonRegistry(assignments) {
     ...(rows.length ? [] : ['| No new Lessons | — | — | Not started |']),
     '',
     LESSONS_END,
-  ].join('\\n');
+  ].join('\n');
 }
 
 /** Replace only the generated placeholder; never overwrite a table edited by Lesson agents. */
@@ -180,7 +180,7 @@ export function registerLessonRegistry(body, assignments) {
   if (end < start) throw Error('Misordered Course Lessons markers');
   const existing = body.slice(start, end + LESSONS_END.length);
   if (existing.includes('| Lesson | Slug | UUID | Lesson PR |')) {
-    if (assignments.some(lesson => !existing.includes('\`' + lesson.id + '\`')))
+    if (assignments.some(lesson => !existing.includes('`' + lesson.id + '`')))
       throw Error('Registered Lesson UUIDs differ; refusing to overwrite Lesson PR links');
     return body;
   }
@@ -191,8 +191,10 @@ export function registerLessonRegistry(body, assignments) {
 function publishOutputs(sha, manifest) {
   const filename = process.env.GITHUB_OUTPUT;
   if (!filename) return;
-  const shouldRegister = manifest.operation === 'materialize' && manifest.lessonAssignments.length > 0;
-  fs.appendFileSync(filename, 'head=' + sha + '\\nregister=' + shouldRegister + '\\n');
+  const shouldRegister =
+    manifest.operation === 'materialize' &&
+    manifest.entries.some(entry => manifest.lessonAssignments.some(lesson => lesson.path === entry.path));
+  fs.appendFileSync(filename, 'head=' + sha + '\nregister=' + shouldRegister + '\n');
 }
 
 function verifyManifest(manifest, meta, root) {
@@ -444,7 +446,8 @@ async function registerLessons(meta) {
   )
     throw Error('Lesson registration source differs from authorized materialization');
   const assignments = validateLessonAssignments(manifest, meta);
-  if (!assignments.length) return;
+  if (!assignments.length || !manifest.entries.some(entry => assignments.some(lesson => lesson.path === entry.path)))
+    throw Error('Lesson registration requires a verified newly generated Lesson YAML');
   const committedHead = process.env.COURSE_PUBLISHED_HEAD;
   if (!/^[a-f0-9]{40}$/.test(committedHead ?? '')) throw Error('Missing verified publication HEAD');
   if (committedHead !== meta.head) {
@@ -452,7 +455,7 @@ async function registerLessons(meta) {
     if (
       commit?.parents?.length !== 1 ||
       commit.parents[0].sha !== meta.head ||
-      !commit.message?.startsWith('Materialize Course ' + meta.identity.id + '\\n')
+      !commit.message?.startsWith('Materialize Course ' + meta.identity.id + '\n')
     )
       throw Error('Lesson registration requires the exact Stage 5 materialization commit');
   }
