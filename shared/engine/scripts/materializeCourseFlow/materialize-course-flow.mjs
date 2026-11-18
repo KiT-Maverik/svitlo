@@ -83,8 +83,6 @@ function sourceMd(plan) {
           '',
           'Lesson UUID: ' + node.lessonId,
           '',
-          'Placement: ' + [...location, key].join(' / '),
-          '',
           'Objective: ' + node.objective,
           '',
           'Skills: ' + node.skills.join(', '),
