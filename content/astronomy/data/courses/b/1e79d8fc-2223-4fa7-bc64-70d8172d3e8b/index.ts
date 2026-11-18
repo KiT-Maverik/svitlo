@@ -1,17 +1,14 @@
-// Generated Course authoring draft; manual completion and review required.
 import { defineCourse } from "@svitlo/engine/build";
-import { safeObservation_Chapter } from "./chapters/safeObservation";
-import { skyCycles_Module } from "./modules/skyCycles";
-import { solarSystem_Module } from "./modules/solarSystem";
 
-// TODO: Resolve standalone Lesson UUID "c042698a-de5b-5055-9e10-ff5621f80ed7" and replace UNRESOLVED_LESSON_0; never define Lesson inside Course.
+import { safeObservation_Chapter } from "./chapters";
+import { skyCycles_Module, solarSystem_Module } from "./modules";
 
-export const astronomyGradeOne_Course = defineCourse({
-  "id": "1e79d8fc-2223-4fa7-bc64-70d8172d3e8b",
-  "slug": "astronomyGradeOne",
+export const astronomyGradeOne = defineCourse({
+  id: "1e79d8fc-2223-4fa7-bc64-70d8172d3e8b",
+  slug: "astronomyGradeOne",
   "type": "course",
   "params": {
-    "languages": [
+    languages: [
       "uk",
       "en",
       "pl",
