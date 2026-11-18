@@ -64,6 +64,35 @@ Unknown files, divergent existing files, symlinks/submodules, ambiguous IDs,
 stale approvals, changed HEAD and partial output fail closed. Repeated
 materialization with identical committed files is a no-op.
 
+## Automatic Course Lesson table refresh
+
+After a successful Stage 5 **materialize or finalize** Git commit, two
+isolated workflow jobs refresh the existing marker-delimited Lessons table in
+the **Course parent PR description**:
+
+1. Read-only job checks out the new Course HEAD as untrusted data, reads
+   technical Course TS using a bounded TypeScript AST parser, and reconciles
+   the persisted Lesson UUIDs from materialized methodology and canonical
+   Lesson YAML with their current Lesson PRs. It emits a bounded report as a
+   short-lived GitHub Actions artifact.
+2. Write-only updater uses the existing trusted sync-course-lessons.mjs helper,
+   with pull-requests:write but no repository code write. It validates the
+   exact PR/head/body hash and replaces only the existing Lessons markers.
+   The seven manual Course stages and all other text remain unchanged.
+
+The table displays Course Lesson name, stable UUID, placement, linked Lesson
+PR **title, number, and Draft/Open/Merged state**, source and readiness.
+Unstarted Lessons display Not started; no Lesson PR is automatically created.
+Existing Lesson-PR lifecycle changes and manual /course-status sync keep using
+the same synchronizer. A concurrent edit fails the guarded update rather
+than overwriting the user's description.
+
+**Do not rely on generated TODO comment UUIDs.** Those comments are temporary
+developer hints. Identifiers come from the approved/materialized Course
+methodology and canonical per-Lesson YAML Config, and are reconciled against
+static Course TS imports/placements. The upstream Engine materializer is
+intentionally untouched here to avoid conflicts with PR #679.
+
 ## Validation and recovery
 
 Run:
