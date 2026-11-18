@@ -162,7 +162,7 @@ function assertSource(root, meta) {
   const source = path.join(root, meta.identity.yaml);
   relativeSafe(root, source);
   if (!fs.existsSync(source) || !fs.statSync(source).isFile() || gitBlob(fs.readFileSync(source)) !== meta.sourceBlob)
-    throw Error('Canonical Course source differs from approved Git blob');
+    throw Error('Canonical Course source differs from pinned Git blob');
 }
 
 function identicalSnapshot(a, b) {
@@ -177,7 +177,7 @@ function identicalSnapshot(a, b) {
 async function analyze(root, meta) {
   await requireActor(meta.actor);
   const live = await inspect(meta.number, meta.head);
-  if (!identicalSnapshot(live, meta)) throw Error('Source identity or Stage 4 evidence changed');
+  if (!identicalSnapshot(live, meta)) throw Error('Source identity or Stage 4 completion changed');
   assertSource(root, meta);
   const tracked = trackedFiles(root, meta.identity.pkg);
   const argumentsBase = ['--package', meta.identity.pkg, '--course', meta.identity.id];
@@ -260,7 +260,7 @@ async function analyze(root, meta) {
 async function publish(root, meta) {
   await requireActor(meta.actor);
   const live = await inspect(meta.number, meta.head);
-  if (!identicalSnapshot(live, meta)) throw Error('HEAD/source/review changed since read-only generation');
+  if (!identicalSnapshot(live, meta)) throw Error('HEAD/source/Stage 4 completion changed since read-only generation');
   assertSource(root, meta);
   const manifest = readReport();
   const count = verifyManifest(manifest, meta, root);
@@ -305,7 +305,7 @@ async function publish(root, meta) {
     throw Error('PR HEAD advanced before write; no branch ref updated');
   const freshReview = await inspect(meta.number, meta.head);
   if (!identicalSnapshot(freshReview, meta))
-    throw Error('Course identity or Stage 4 approval changed before ref update');
+    throw Error('Course identity or Stage 4 completion changed before ref update');
   const updated = await github('git/refs/heads/' + meta.branch, 'PATCH', { sha: next.sha, force: false });
   if (updated?.object?.sha !== next.sha) throw Error('GitHub did not confirm the exact new branch ref');
   report(
@@ -317,7 +317,7 @@ async function publish(root, meta) {
       meta.number +
       ': ' +
       next.sha +
-      ' (approved source blob ' +
+      ' (pinned source blob ' +
       meta.sourceBlob +
       ')',
   );
