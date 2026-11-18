@@ -4,11 +4,10 @@ on:
   pull_request:
     branches: [main]
     paths:
-      - 'shared/education-standards/**'
+      - 'shared/ui-kit/data/definitions/educationStandards/**'
+      - 'shared/ui-kit/scripts/generateLocales/**'
+      - 'scripts/generateTranslationReviewArtifacts/education-standards-reference.*'
       - 'shared/engine/configurators/educationStandards/**'
-      - 'shared/engine/build.ts'
-      - 'shared/engine/runtime.ts'
-      - 'package-lock.json'
       - '.github/workflows/education-standards.yml'
   workflow_dispatch:
 
@@ -21,7 +20,7 @@ concurrency:
 
 jobs:
   catalog:
-    name: Catalog build, types, tests and formatting
+    name: UI Kit EducationStandard definitions, localization and reference validation
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
@@ -31,20 +30,13 @@ jobs:
           node-version: '24'
           cache: npm
       - run: npm ci
-      - name: Build Engine (authoring contract)
+      - name: Build Engine
         run: npm run package:build --workspace @svitlo/engine
-      - name: Build education standards catalog
-        run: npm run package:build --workspace @svitlo/education-standards
-      - name: Typecheck education standards catalog
-        run: npm run code:check:types --workspace @svitlo/education-standards
-      - name: Run catalog identity, locale and publication tests
-        run: npm test --workspace @svitlo/education-standards
-      - name: Check catalog formatting
-        shell: bash
-        run: |
-          if ! npm run code:format:check --workspace @svitlo/education-standards; then
-            # Show the exact Prettier patch in CI logs without writing to the PR branch.
-            npm run code:format:fix --workspace @svitlo/education-standards
-            git --no-pager diff -- shared/education-standards
-            exit 1
-          fi
+      - name: Typecheck UI Kit definitions
+        run: npm run code:check:types --workspace @svitlo/ui-kit
+      - name: Validate catalog and publish locale resources
+        run: npm run test:locales --workspace @svitlo/ui-kit
+      - name: Validate review reference generator
+        run: node --test scripts/generateTranslationReviewArtifacts/education-standards-reference.spec.mjs
+      - name: Check formatting
+        run: npx prettier --check shared/ui-kit/data/definitions/educationStandards shared/ui-kit/scripts/generateLocales scripts/generateTranslationReviewArtifacts/education-standards-reference.mjs scripts/generateTranslationReviewArtifacts/education-standards-reference.spec.mjs

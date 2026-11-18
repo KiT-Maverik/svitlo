@@ -120,11 +120,6 @@
     "description": "Changes to shared/adapters/"
   },
   {
-    "name": "shared: education-standards",
-    "color": "2563EB",
-    "description": "Changes to shared/education-standards/"
-  },
-  {
     "name": "shared: engine",
     "color": "2563EB",
     "description": "Changes to shared/engine/"
