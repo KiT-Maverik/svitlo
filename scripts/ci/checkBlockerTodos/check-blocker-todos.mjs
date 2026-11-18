@@ -15,7 +15,6 @@ const sourceExtensions = new Set([
   '.ts', '.tsx', '.mts', '.cts', '.js', '.jsx', '.mjs', '.cjs',
   '.yml', '.yaml', '.sh', '.bash', '.py', '.css', '.scss', '.html', '.sql',
 ]);
-const blockingComment = /(?:^|[\s{])(?:\/\/|\/\*+|\*|#|<!--|--)\s*TODO \(BLOCKER\):/;
 const commitSha = /^[0-9a-f]{40}$/i;
 
 function isSourceFile(file) {
@@ -34,6 +33,99 @@ function finding(file, line, text) {
   return { file, line, text: text.trim() };
 }
 
+/**
+ * Find actual comments, not comment-shaped text within quoted strings.
+ * Tracks strings, template literals, and block comments across lines.
+ * This is not a full language parser.
+ */
+export function scanSource(file, source) {
+  const extension = path.extname(file).toLowerCase();
+  const slashComments = ['.ts', '.tsx', '.mts', '.cts', '.js', '.jsx', '.mjs', '.cjs',
+    '.css', '.scss', '.sql'].includes(extension);
+  const hashComments = ['.yml', '.yaml', '.sh', '.bash', '.py'].includes(extension);
+  const dashComments = extension === '.sql';
+  const htmlComments = extension === '.html';
+  const marker = /^\s*\**\s*TODO \(BLOCKER\):/;
+  const lines = source.split(/\r?\n/);
+  const findings = [];
+  let quoted = null;
+  let block = null;
+
+  for (let lineIndex = 0; lineIndex < lines.length; lineIndex++) {
+    const line = lines[lineIndex];
+    const report = text => {
+      if (marker.test(text)) findings.push(finding(file, lineIndex + 1, line));
+    };
+    let i = 0;
+
+    // A multi-line block comment may start on a previous line.
+    if (block) {
+      const end = line.indexOf(block);
+      report(line.slice(0, end < 0 ? undefined : end));
+      if (end < 0) continue;
+      i = end + block.length;
+      block = null;
+    }
+
+    while (i < line.length) {
+      const char = line[i];
+      if (quoted) {
+        if (char === '\\') {
+          i += 2;
+          continue;
+        }
+        if (char === quoted) quoted = null;
+        i++;
+        continue;
+      }
+
+      if (char === "'" || char === '"' || char === String.fromCharCode(96)) {
+        quoted = char;
+        i++;
+        continue;
+      }
+
+      if (slashComments && line.startsWith('//', i)) {
+        report(line.slice(i + 2));
+        break;
+      }
+      if (slashComments && line.startsWith('/*', i)) {
+        const end = line.indexOf('*/', i + 2);
+        report(line.slice(i + 2, end < 0 ? undefined : end));
+        if (end < 0) {
+          block = '*/';
+          break;
+        }
+        i = end + 2;
+        continue;
+      }
+      if (htmlComments && line.startsWith('<!--', i)) {
+        const end = line.indexOf('-->', i + 4);
+        report(line.slice(i + 4, end < 0 ? undefined : end));
+        if (end < 0) {
+          block = '-->';
+          break;
+        }
+        i = end + 3;
+        continue;
+      }
+      if (hashComments && char === '#' && (i === 0 || /\s/.test(line[i - 1]))) {
+        report(line.slice(i + 1));
+        break;
+      }
+      if (dashComments && line.startsWith('--', i) && (i === 0 || /\s/.test(line[i - 1]))) {
+        report(line.slice(i + 2));
+        break;
+      }
+      i++;
+    }
+    // A single/double quote can only span source lines via continuation.
+    // Template strings can always span lines.
+    if (quoted && quoted !== String.fromCharCode(96) && !/\\$/.test(line)) quoted = null;
+  }
+  return findings;
+}
+
 /** Scan tracked source, excluding untracked outputs, binary assets, and Markdown. */
 export function scanFull(root) {
   const findings = [];
@@ -41,12 +133,7 @@ export function scanFull(root) {
   for (const file of files) {
     const location = path.join(root, file);
     if (!fs.existsSync(location) || !fs.lstatSync(location).isFile()) continue;
-    const lines = fs.readFileSync(location, 'utf8').split(/\r?\n/);
-    for (let line = 0; line < lines.length; line++) {
-      if (blockingComment.test(lines[line])) {
-        findings.push(finding(file, line + 1, lines[line]));
-      }
-    }
+    findings.push(...scanSource(file, fs.readFileSync(location, 'utf8')));
   }
   return findings;
 }
@@ -63,7 +150,7 @@ export function scanDiff(root, base, head) {
   const patch = git(root, '-c', 'core.quotePath=false', 'diff', '--no-ext-diff',
     '--no-color', '--find-renames', '--unified=0', '--diff-filter=ACMR',
     base + '...' + head, '--');
-  const findings = [];
+  const added = new Map();
   let file = null;
   let lineNumber = 0;
   let inHunk = false;
@@ -86,8 +173,9 @@ export function scanDiff(root, base, head) {
     }
     if (!inHunk) continue;
     if (line.startsWith('+')) {
-      if (file && blockingComment.test(line.slice(1))) {
-        findings.push(finding(file, lineNumber, line.slice(1)));
+      if (file) {
+        if (!added.has(file)) added.set(file, new Set());
+        added.get(file).add(lineNumber);
       }
       lineNumber++;
     } else if (line.startsWith(' ')) {
@@ -95,6 +183,13 @@ export function scanDiff(root, base, head) {
     } else if (!line.startsWith('-') && !line.startsWith('\\')) {
       inHunk = false;
     }
+  }
+  const findings = [];
+  for (const [changedFile, numbers] of added) {
+    const location = path.join(root, changedFile);
+    if (!fs.existsSync(location) || !fs.lstatSync(location).isFile()) continue;
+    findings.push(...scanSource(changedFile, fs.readFileSync(location, 'utf8'))
+      .filter(hit => numbers.has(hit.line)));
   }
   return findings;
 }

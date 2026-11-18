@@ -4,7 +4,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { test } from 'node:test';
-import { scanDiff, scanFull, main } from './check-blocker-todos.mjs';
+import { scanDiff, scanFull, scanSource, main } from './check-blocker-todos.mjs';
 
 const blocker = '// ' + 'TODO (BLOCKER): Complete translations';
 const ordinary = '// TODO: Refactor later';
@@ -70,7 +70,15 @@ test('diff catches added blockers and reports actual new line numbers', () => {
     assert.deepEqual(scanDiff(root, base, head), [
       { file: 'content/astronomy/constants.ts', line: 3, text: blocker },
     ]);
-    assert.throws(() => main(['diff', base, head], root), /unresolved TODO/);
+    const previous = console.error;
+    const diagnostics = [];
+    console.error = message => diagnostics.push(message);
+    try {
+      assert.throws(() => main(['diff', base, head], root), /unresolved TODO/);
+      assert.match(diagnostics[0], /file=content\/astronomy\/constants.ts,line=3/);
+    } finally {
+      console.error = previous;
+    }
   });
 });
 
@@ -111,6 +119,44 @@ test('the canonical marker includes a space and source comments', () => {
     commit();
     assert.deepEqual(scanFull(root).map(item => item.line), [2, 4, 5]);
   });
+});
+
+
+test('quoted JSX-like comment text does not trigger the repository-wide guard', () => {
+  const faux = "'{/* " + "TODO (BLOCKER): fixture text */}',";
+  assert.deepEqual(scanSource('scripts/ci/checkBlockerTodos/check-blocker-todos.spec.mjs', faux), []);
+  assert.deepEqual(scanSource('source.ts', 'const code = ' + JSON.stringify(faux) + ';'), []);
+  assert.deepEqual(scanSource('example.tsx', '{/* ' + 'TODO (BLOCKER): real JSX comment */}').map(x => x.line), [1]);
+});
+
+test('full and diff ignore string values while checking inline and multiline comments', () => {
+  withRepo(({ root, put, commit }) => {
+    const marker = 'TODO (BLOCKER):';
+    put('a.ts', 'export const original = 1;\n');
+    const base = commit();
+    put('a.ts', [
+      'const fixture = "' + '/* ' + marker + ' documentation */" + "value";',
+      'const template = ' + String.fromCharCode(96),
+      '// ' + marker + ' inside template literal',
+      String.fromCharCode(96) + ';',
+      'export const updated = 2; // ' + marker + ' real inline comment',
+      '/*',
+      ' * ' + marker + ' real multiline comment',
+      ' */',
+      'const jsxString = "{/* ' + marker + ' fixture */}";',
+    ].join('\n'));
+    const head = commit();
+    assert.deepEqual(scanFull(root).map(x => x.line), [5, 7]);
+    assert.deepEqual(scanDiff(root, base, head).map(x => x.line), [5, 7]);
+  });
+});
+
+test('quoted YAML values are not comments, but actual YAML comments block', () => {
+  const marker = 'TODO (BLOCKER):';
+  assert.deepEqual(scanSource('lesson.yaml', [
+    'message: "# ' + marker + ' not a comment"',
+    'next: true # ' + marker + ' incomplete locale',
+  ].join('\n')).map(x => x.line), [2]);
 });
 
 test('CLI rejects invalid modes and shorthand commit refs', () => {
