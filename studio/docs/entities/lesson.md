@@ -30,7 +30,7 @@ For every target Lesson and Skill, the Methodologist specifies:
 
 ## EDITORIAL ARTIFACTS AND IMPLEMENTATION
 
-**New work:** the single temporary `lesson.yaml` with `config` and authoring-only `production` holds reviewed Methodologist and Screenwriter material through Stages 1–5 and is safely materialized in Stage 6. Historic files listed below are **migration provenance**, not a request to create new parallel `methodology.md` or `content.yaml`. Questions/Flashcards are independently authored Lesson-owned banks; an assessment-only Lesson may reference Questions owned by *other* Lessons, without duplicating their bank source.
+**New work:** the single temporary `lesson.yaml` with `config` and authoring-only `production` holds reviewed Methodologist and Screenwriter material through Stages 1–5 and is safely materialized in Stage 6. Historic files listed below are **migration provenance**, not a request to create new parallel `methodology.md` or `content.yaml`. Questions/Flashcards are independently authored Lesson-owned banks; an assessment-only Lesson may reference Questions owned by _other_ Lessons, without duplicating their bank source.
 
 Reusable/standalone Lesson files live under `<PackageRoot>/data/lessons/<last-hex-digit>/<uuid>/`. Course-originated Lessons retain separate identity; instructional Lessons remain Course-neutral, but assessment-only Lessons may have reviewed Course-specific prerequisites; see [Episode](./episode.md) for Course-owned narrative activities. The [shared UUID addressing rule](../architecture/entity-uuid-addressing.md) determines this path from the permanent Lesson ID. Keep the human-readable camelCase slug in Lesson metadata, not in the directory name. Existing folders do not move when a slug changes.
 
