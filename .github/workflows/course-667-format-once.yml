@@ -1,0 +1,57 @@
+name: One-time Course PR formatting
+
+on:
+  push:
+    branches: [docs/course-plan-lesson-boundary]
+    paths: [.github/workflows/course-667-format-once.yml]
+
+permissions:
+  contents: read
+
+jobs:
+  once:
+    if: github.event.head_commit.message == 'ci: temporary one-time Course formatter'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: docs/course-plan-lesson-boundary
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Install pinned formatter
+        run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Format only the Course implementation files
+        run: |
+          ./node_modules/.bin/prettier --write \
+            studio/skills/course-workflow/create-course-flow.skill.md \
+            studio/skills/course-workflow/course-flow.schema.json \
+            shared/engine/scripts/materializeCourseFlow/README.md \
+            shared/engine/scripts/materializeCourseFlow/materialize-course-flow.mjs \
+            shared/engine/scripts/materializeCourseFlow/materialize-course-flow.spec.mjs \
+            shared/engine/scripts/validateCourseFlow/validate-course-flow.mjs \
+            shared/engine/scripts/validateCourseFlow/validate-course-flow.spec.mjs
+          git rm -- .github/workflows/course-667-format-once.yml
+      - uses: actions/create-github-app-token@v3
+        id: formatter-app
+        with:
+          client-id: ${{ vars.PR_FORMATTER_APP_CLIENT_ID }}
+          private-key: ${{ secrets.PR_FORMATTER_APP_PRIVATE_KEY }}
+          permission-contents: write
+          permission-workflows: write
+      - name: Commit fixes and remove this temporary workflow
+        env:
+          GH_TOKEN: ${{ steps.formatter-app.outputs.token }}
+        run: |
+          set -euo pipefail
+          git add -u
+          git config user.name 'svitlo-course-formatter[bot]'
+          git config user.email 'svitlo-course-formatter[bot]@users.noreply.github.com'
+          git commit -m 'style: format Course source and remove temporary action'
+          authorization=$(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w0)
+          git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $authorization" \
+            push origin 'HEAD:refs/heads/docs/course-plan-lesson-boundary'
