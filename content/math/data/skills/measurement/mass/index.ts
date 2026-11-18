@@ -23,7 +23,7 @@ export const mass = defineSkillGroup({
     it: 'Massa',
     ja: '質量',
     ka: 'მასა',
-    kk: 'Масса',
+    kk: 'Massa',
     ko: '질량',
     lt: 'Masė',
     lv: 'Masa',
