@@ -9,7 +9,16 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { createHash } from 'node:crypto';
 import { execFileSync } from 'node:child_process';
-import { github, inspect, requireActor, report, gitBlob, validateArtifactPath } from './course-gate.mjs';
+import {
+  github,
+  inspect,
+  parseIdentity,
+  requireCompletedStageFour,
+  requireActor,
+  report,
+  gitBlob,
+  validateArtifactPath,
+} from './course-gate.mjs';
 
 function sha256(bytes) {
   return createHash('sha256').update(bytes).digest('hex');
@@ -184,6 +193,11 @@ export function registerLessonRegistry(body, assignments) {
       throw Error('Registered Lesson UUIDs differ; refusing to overwrite Lesson PR links');
     return body;
   }
+  if (
+    !existing.includes('Lesson inventory not allocated yet.') &&
+    existing.replace(LESSONS_START, '').replace(LESSONS_END, '').trim() !== ''
+  )
+    throw Error('Unknown Lesson table content; refusing to overwrite agent edits');
   const next = renderLessonRegistry(assignments);
   return body.slice(0, start) + next + body.slice(end + LESSONS_END.length);
 }
@@ -446,7 +460,10 @@ async function registerLessons(meta) {
   )
     throw Error('Lesson registration source differs from authorized materialization');
   const assignments = validateLessonAssignments(manifest, meta);
-  if (!assignments.length || !manifest.entries.some(entry => assignments.some(lesson => lesson.path === entry.path)))
+  if (
+    !assignments.length ||
+    !manifest.entries.some(entry => assignments.some(lesson => lesson.path === entry.path))
+  )
     throw Error('Lesson registration requires a verified newly generated Lesson YAML');
   const committedHead = process.env.COURSE_PUBLISHED_HEAD;
   if (!/^[a-f0-9]{40}$/.test(committedHead ?? '')) throw Error('Missing verified publication HEAD');
@@ -467,6 +484,9 @@ async function registerLessons(meta) {
     pr.head.ref === meta.branch &&
     pr.base?.ref === (process.env.COURSE_DEFAULT_BRANCH || 'main');
   if (!matches(current)) throw Error('Course PR changed after materialization');
+  if (JSON.stringify(parseIdentity(current.body)) !== JSON.stringify(meta.identity))
+    throw Error('Course PR identity changed after materialization');
+  requireCompletedStageFour(current.body);
   const body = registerLessonRegistry(current.body, assignments);
   if (body === current.body) {
     report('Lesson IDs already registered for Course PR #' + meta.number);

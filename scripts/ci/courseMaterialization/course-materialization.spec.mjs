@@ -273,6 +273,9 @@ test('one-time Lesson table uses Not started and preserves agent-added PR links'
   assert.equal(registerLessonRegistry(linked, [assignment]), linked);
   assert.throws(() => registerLessonRegistry(linked, [{ ...assignment, id: '0'.repeat(36) }]));
   assert.throws(() => registerLessonRegistry(body.replace('<!-- svitlo-course-lessons:end -->', ''), [assignment]));
+  assert.throws(() =>
+    registerLessonRegistry(body.replace('Lesson inventory not allocated yet.', 'Agent link: #700'), [assignment]),
+  );
   assert(renderLessonRegistry([assignment]).includes('Not started'));
 });
 
@@ -287,7 +290,11 @@ test('Stage 5 uses a separate trusted, one-time Lesson registration job', () => 
   assert.equal(workflow.jobs['register-lessons'].permissions['pull-requests'], 'write');
   assert.equal(workflow.jobs.publish.outputs.register, '$' + '{{ steps.publish.outputs.register }}');
   assert.ok(workflow.jobs['register-lessons'].needs.includes('publish'));
-  assert.ok(workflow.jobs['register-lessons'].steps.some(s => s.run?.includes('course-materialization.mjs register')));
+  assert.ok(
+    workflow.jobs['register-lessons'].steps.some(s => s.run?.includes('course-materialization.mjs register')),
+  );
   assert.ok(!workflow.jobs['refresh-analyze'] && !workflow.jobs['refresh-update']);
-  assert.ok(!fs.existsSync(fileURLToPath(new URL('../../../.github/workflows/sync-course-lessons.yml', import.meta.url))));
+  assert.ok(
+    !fs.existsSync(fileURLToPath(new URL('../../../.github/workflows/sync-course-lessons.yml', import.meta.url))),
+  );
 });
