@@ -111,7 +111,7 @@ test('Reject tampered TypeScript IDs, incomplete mapping, invalid imports and dy
     f.put(indexFile, original);
     f.put(methodsFile, fs.readFileSync(path.join(f.root, methodsFile), 'utf8')
       .replace('Lesson UUID: ' + newLesson, 'Lesson UUID: ' + courseId));
-    assert.throws(() => readCourseTsInventory(f.root, directory, courseId), /Lesson YAML ID|UUID/);
+    assert.throws(() => readCourseTsInventory(f.root, directory, courseId), /Lesson YAML ID|UUID|missing required TypeScript or Lesson source/);
   } finally { f.close(); }
 });
 
