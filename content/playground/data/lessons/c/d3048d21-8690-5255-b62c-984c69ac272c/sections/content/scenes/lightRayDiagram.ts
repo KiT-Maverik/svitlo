@@ -172,13 +172,13 @@ const ka: Locale = {
 
 const kk: Locale = {
   scene: {
-    title: 'Жарықтың жолын бақыла',
-    description: 'Көзден экранға дейін түзу сызық бойымен.',
+    title: 'Jaryqtyñ jolyn baqyla',
+    description: 'Jaryq közınen ekranğa deiın tüzu syzyq boiymen.',
   },
   labels: {
-    source: 'Жарық көзі',
-    direction: 'Жарықтың таралу бағыты',
-    screen: 'Экран',
+    source: 'Jaryq közı',
+    direction: 'Jaryqtyñ taralu bağyty',
+    screen: 'Ekran',
   },
 };
 

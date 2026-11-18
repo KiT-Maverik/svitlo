@@ -478,35 +478,35 @@ const ka: Locale = {
 
 const kk: Locale = {
   header: {
-    eyebrow: 'ЗЕРТТЕ · САЛЫСТЫР · БАҚЫЛА',
-    title: 'Бір жарық. Әртүрлі орта.',
+    eyebrow: 'ZERTTE · SALYSTYR · BAQYLA',
+    title: 'Bır jaryq. Ärtürlı orta.',
     description:
-      'Ортаны ауыстырып, жарықтың бірдей қашықтықты жүріп өту уақытын салыстыр. Нүкте жарық көзі мен экран арасында қайталанып қозғалады.',
+      'Ortany auystyryp, jaryqtyñ bırdei qaşyqtyqty jürıp ötu uaqytyn salystyr. Nükte jaryq közı men ekran arasynda qaitalanyp qozğalady.',
   },
   selector: {
-    label: 'Жарық таралатын орта',
+    label: 'Jaryq taralatyn orta',
     media: {
-      vacuum: 'Вакуум',
-      air: 'Ауа',
-      water: 'Су',
+      vacuum: 'Vakuum',
+      air: 'Aua',
+      water: 'Su',
     },
   },
   simulation: {
-    trackPrefix: 'Жарықтың таралу моделі: ',
-    source: 'Көз',
-    screen: 'Экран',
-    play: 'Ойнату',
-    pause: 'Кідірту',
-    speedUnit: 'км/с',
+    trackPrefix: 'Jaryqtyñ taralu modelı: ',
+    source: 'Jaryq közı',
+    screen: 'Ekran',
+    play: 'Oinatu',
+    pause: 'Kıdırtu',
+    speedUnit: 'km/s',
   },
   insight: {
-    quote: 'Жарықтың жылдамдығы ортаға тәуелді: суда жарық вакуумға қарағанда баяу таралады.',
+    quote: 'Jaryqtyñ jyldamdyğy ortağa täueldı: suda jaryq vakuumğa qarağanda baiau taralady.',
   },
   notes: {
     caption:
-      'Анимация едәуір баяулатылған, бірақ жылдамдықтардың қатынасы сақталған. Ауа мен вакуумның көрінісі дерлік бірдей. Нүктенің қайтуы тек модельді қайталайды, шағылуды көрсетпейді. Көрінетін жарыққа арналған мәндер жуық және жағдайға байланысты өзгереді.',
-    model: 'Модель: v = c / n.',
-    sourceLink: 'Сыну көрсеткішінің мәндері: OpenStax',
+      'Animatsiia edäuır baiaulatylğan, bıraq jyldamdyqtardyñ qatynasy saqtalğan. Aua men vakuumnyñ körınısı derlık bırdei. Nüktenıñ qaituy tek modeldı qaitalaidy, şağyludy körsetpeidı. Körınetın jaryqqa arnalğan mänder juyq jäne jağdaiğa bailanysty özgeredı.',
+    model: 'Model: v = c / n.',
+    sourceLink: 'Synu körsetkışınıñ mänderı: OpenStax',
   },
 };
 
