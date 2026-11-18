@@ -26,7 +26,7 @@ const module = defineModule<'module', { chapter: typeof chapter }, ['en', 'uk']>
   locale: { title: 'Module' },
   content: { items: { chapter }, order: ['chapter'] },
 });
-const course = defineCourse<'course', ['en', 'uk'], { module: typeof module; chapter: typeof chapter }>({
+const course = defineCourse<'course', { module: typeof module; chapter: typeof chapter }, ['en', 'uk']>({
   id,
   type: 'course',
   slug: 'course',
@@ -49,7 +49,7 @@ const chapterEnglishOnly = defineChapter<'chapterEnglish', {}, ['en']>({
   locale: { title: { en: 'Chapter' } },
   content: { items: {}, order: [] },
 });
-const courseEnglish = defineCourse<'courseEnglish', ['en'], { chapter: typeof chapter }>({
+const courseEnglish = defineCourse<'courseEnglish', { chapter: typeof chapter }, ['en']>({
   id,
   type: 'course',
   slug: 'courseEnglish',

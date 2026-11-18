@@ -37,7 +37,7 @@ The only public method is `standard.build.props({ languages })`. Requested langu
 
 `base` is invariant across publication languages; each selected `locale[lang]` contains only the Props-shaped frontend-description fragment. Merging `base` with one requested locale must satisfy `educationStandard_Props_Schema`. Consumers must retain original-name `lang` metadata; no UI renderer or runtime registry is introduced here.
 
-Build exports the `defineEducationStandard` factory. Runtime exports only the Config/Props schemas and types. There is no separate package of default locales or automatic English fallback. Authored real-world standard records and any standard-resource publisher belong to subsequent approved editorial/distribution work, with verified sources and genuine translations.
+Build exports the `defineEducationStandard` factory. Runtime exports only the Config/Props schemas and types. There is no separate package of default locales or automatic English fallback. The approved global authored catalog lives in `shared/ui-kit/data/definitions/educationStandards/`, with original-language source records under `data/<country>/*.data.ts`. UI Kit's existing locale generator publishes `public/data/uiKit/educationStandards/base.json` and `<language>.json` alongside UI component and Assessment Method dictionaries. Only published JSON is consumed at runtime, never authored configurators. The standards publisher is a UI Kit build-time generator, not a separate `@svitlo/education-standards` workspace or a runtime registry.
 
 ## Relationship to Courses
 
