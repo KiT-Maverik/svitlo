@@ -12,8 +12,23 @@ import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 
 const sourceExtensions = new Set([
-  '.ts', '.tsx', '.mts', '.cts', '.js', '.jsx', '.mjs', '.cjs',
-  '.yml', '.yaml', '.sh', '.bash', '.py', '.css', '.scss', '.html', '.sql',
+  '.ts',
+  '.tsx',
+  '.mts',
+  '.cts',
+  '.js',
+  '.jsx',
+  '.mjs',
+  '.cjs',
+  '.yml',
+  '.yaml',
+  '.sh',
+  '.bash',
+  '.py',
+  '.css',
+  '.scss',
+  '.html',
+  '.sql',
 ]);
 const commitSha = /^[0-9a-f]{40}$/i;
 
@@ -40,8 +55,19 @@ function finding(file, line, text) {
  */
 export function scanSource(file, source) {
   const extension = path.extname(file).toLowerCase();
-  const slashComments = ['.ts', '.tsx', '.mts', '.cts', '.js', '.jsx', '.mjs', '.cjs',
-    '.css', '.scss', '.sql'].includes(extension);
+  const slashComments = [
+    '.ts',
+    '.tsx',
+    '.mts',
+    '.cts',
+    '.js',
+    '.jsx',
+    '.mjs',
+    '.cjs',
+    '.css',
+    '.scss',
+    '.sql',
+  ].includes(extension);
   const hashComments = ['.yml', '.yaml', '.sh', '.bash', '.py'].includes(extension);
   const dashComments = extension === '.sql';
   const htmlComments = extension === '.html';
@@ -147,9 +173,19 @@ export function scanDiff(root, base, head) {
   if (!commitSha.test(base) || !commitSha.test(head)) {
     throw new Error('Diff mode requires two full 40-character commit SHAs');
   }
-  const patch = git(root, '-c', 'core.quotePath=false', 'diff', '--no-ext-diff',
-    '--no-color', '--find-renames', '--unified=0', '--diff-filter=ACMR',
-    base + '...' + head, '--');
+  const patch = git(
+    root,
+    '-c',
+    'core.quotePath=false',
+    'diff',
+    '--no-ext-diff',
+    '--no-color',
+    '--find-renames',
+    '--unified=0',
+    '--diff-filter=ACMR',
+    base + '...' + head,
+    '--',
+  );
   const added = new Map();
   let file = null;
   let lineNumber = 0;
@@ -188,28 +224,29 @@ export function scanDiff(root, base, head) {
   for (const [changedFile, numbers] of added) {
     const location = path.join(root, changedFile);
     if (!fs.existsSync(location) || !fs.lstatSync(location).isFile()) continue;
-    findings.push(...scanSource(changedFile, fs.readFileSync(location, 'utf8'))
-      .filter(hit => numbers.has(hit.line)));
+    findings.push(...scanSource(changedFile, fs.readFileSync(location, 'utf8')).filter(hit => numbers.has(hit.line)));
   }
   return findings;
 }
 
 function escapeAnnotation(value) {
-  return String(value).replace(/%/g, '%25').replace(/\r/g, '%0D')
-    .replace(/\n/g, '%0A').replace(/,/g, '%2C');
+  return String(value).replace(/%/g, '%25').replace(/\r/g, '%0D').replace(/\n/g, '%0A').replace(/,/g, '%2C');
 }
 
 export function main(args, root = path.resolve(fileURLToPath(new URL('../../..', import.meta.url)))) {
   const [mode, base, head] = args;
-  if ((mode !== 'full' && mode !== 'diff') ||
+  if (
+    (mode !== 'full' && mode !== 'diff') ||
     (mode === 'full' && args.length !== 1) ||
-    (mode === 'diff' && args.length !== 3)) {
+    (mode === 'diff' && args.length !== 3)
+  ) {
     throw new Error('Usage: check-blocker-todos.mjs full | diff <base-sha> <head-sha>');
   }
   const findings = mode === 'full' ? scanFull(root) : scanDiff(root, base, head);
   for (const item of findings) {
-    console.error('::error file=' + escapeAnnotation(item.file) +
-      ',line=' + item.line + '::' + escapeAnnotation(item.text));
+    console.error(
+      '::error file=' + escapeAnnotation(item.file) + ',line=' + item.line + '::' + escapeAnnotation(item.text),
+    );
   }
   if (findings.length) {
     throw new Error(findings.length + ' unresolved TODO (BLOCKER) comment(s) in ' + mode + ' mode');
