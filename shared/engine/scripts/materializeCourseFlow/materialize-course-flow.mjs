@@ -33,6 +33,37 @@ function assertPath(target) {
     if (fs.existsSync(cursor) && fs.lstatSync(cursor).isSymbolicLink()) fail('symlink path refused: ' + cursor);
   }
 }
+function addCompetencies(lines, name, data) {
+  if (!data) return;
+  lines.push('## ' + name, '');
+  for (const key of ['skills', 'skillGroups', 'skillDomains', 'courses']) {
+    if (data[key]?.length) lines.push('- ' + key + ': ' + data[key].join(', '));
+  }
+  if (data.explanation) lines.push('', data.explanation);
+  lines.push('');
+}
+
+/** Keep Course-specific Lesson placement rationale with its immediate parent. */
+function addDirectLessons(lines, collection) {
+  for (const key of collection?.order ?? []) {
+    const node = collection.items[key];
+    if (node.type !== 'lesson') continue;
+    lines.push(
+      '### Lesson ' + node.slug + ' — ' + node.title,
+      '',
+      'Lesson UUID: ' + node.lessonId,
+      '',
+      'Objective: ' + node.objective,
+      '',
+      'Skills: ' + node.skills.join(', '),
+      '',
+    );
+    for (const field of ['depth', 'sequenceReason', 'matchingRationale'])
+      if (node[field]) lines.push(field + ': ' + node[field], '');
+  }
+}
+
+/** Keep the Course methodology independent from child methodology sidecars. */
 function sourceMd(plan) {
   const lines = ['# ' + plan.title, '', '## Course methodology', ''];
   const labels = [
@@ -48,17 +79,8 @@ function sourceMd(plan) {
   for (const [key, label] of labels) {
     if (plan.methodology[key]) lines.push('### ' + label, '', plan.methodology[key], '');
   }
-  const competencies = (name, data) => {
-    if (!data) return;
-    lines.push('## ' + name, '');
-    for (const k of ['skills', 'skillGroups', 'skillDomains', 'courses']) {
-      if (data[k]?.length) lines.push('- ' + k + ': ' + data[k].join(', '));
-    }
-    if (data.explanation) lines.push('', data.explanation);
-    lines.push('');
-  };
-  competencies('Learning outcomes', plan.outcomes);
-  competencies('Prerequisites', plan.prerequisites);
+  addCompetencies(lines, 'Learning outcomes', plan.outcomes);
+  addCompetencies(lines, 'Prerequisites', plan.prerequisites);
   for (const standard of plan.standardsAlignment ?? []) {
     lines.push(
       '## Education standard ' + standard.standardId,
@@ -72,52 +94,26 @@ function sourceMd(plan) {
     if (standard.sourceUrl) lines.push('Source: ' + standard.sourceUrl, '');
     if (standard.jurisdiction) lines.push('Jurisdiction: ' + standard.jurisdiction, '');
   }
-  function visit(collection, location) {
-    if (!collection) return;
-    for (const key of collection.order) {
-      const node = collection.items[key];
-      if (node.type === 'lesson') {
-        lines.push(
-          '### Lesson ' + node.slug + ' — ' + node.title,
-          '',
-          'Lesson UUID: ' + node.lessonId,
-          '',
-          'Objective: ' + node.objective,
-          '',
-          'Skills: ' + node.skills.join(', '),
-          '',
-        );
-        for (const k of ['depth', 'sequenceReason', 'matchingRationale'])
-          if (node[k]) lines.push(k + ': ' + node[k], '');
-      } else if (node.type === 'episode') {
-        lines.push(
-          '## Episode: ' + node.title,
-          '',
-          'UUID: ' + node.id,
-          '',
-          'Placement: ' + [...location, key].join(' / '),
-          '',
-          node.methodology ?? 'Episode content requires authoring review',
-          '',
-        );
-      } else {
-        lines.push(
-          '## ' + (node.type === 'module' ? 'Module' : 'Chapter') + ': ' + node.title,
-          '',
-          'UUID: ' + node.id,
-          '',
-          'Placement: ' + [...location, key].join(' / '),
-          '',
-          node.methodology,
-          '',
-        );
-        competencies('Learning outcomes for ' + node.slug, node.outcomes);
-        competencies('Prerequisites for ' + node.slug, node.prerequisites);
-        visit(node.content, [...location, key]);
-      }
-    }
-  }
-  visit(plan.content, []);
+  addDirectLessons(lines, plan.content);
+  return lines.join('\n').trimEnd() + '\n';
+}
+
+/** Every Course-owned entity persists its own pedagogy beside its source. */
+function childMethodologyMd(node) {
+  const heading = node.type[0].toUpperCase() + node.type.slice(1);
+  const lines = [
+    '# ' + node.title,
+    '',
+    '## ' + heading + ' methodology',
+    '',
+    node.methodology ?? 'Episode content requires authoring review',
+    '',
+    'UUID: ' + node.id,
+    '',
+  ];
+  addCompetencies(lines, 'Learning outcomes', node.outcomes);
+  addCompetencies(lines, 'Prerequisites', node.prerequisites);
+  addDirectLessons(lines, node.content);
   return lines.join('\n').trimEnd() + '\n';
 }
 function competencyIds(data, allowCourses) {
@@ -284,11 +280,6 @@ function symbolOf(node) {
     fail('Unsupported modular entity');
   return node.slug;
 }
-function relativeImport(from, to) {
-  let relative = path.posix.relative(path.posix.dirname(from), to.replace(/\.tsx?$/, ''));
-  if (!relative.startsWith('.')) relative = './' + relative;
-  return relative;
-}
 /** Static only: never import or execute authored Lesson code. */
 function lessonSourceCoordinates(root, pkg, courseId, lessonId, index) {
   const entries =
@@ -391,7 +382,7 @@ function renderEpisodeDraft(episode, language, courseId) {
     'import { ' +
     factoryNames.sort().join(', ') +
     " } from '@svitlo/engine/build';\n\n" +
-    "import { languages, type CourseLanguages } from '../constants';\n\n" +
+    "import { languages, type CourseLanguages } from '#coursesData/" + courseId.at(-1) + '/' + courseId + "/constants';\n\n" +
     'const section = ' +
     sectionExpression +
     ';\n\n' +
@@ -447,22 +438,27 @@ export function renderModularCourse(
 ) {
   const { config } = technical;
   const nodes = [{ node: config, file: 'index.ts' }];
-  const paths = new Set();
-  function register(collection) {
+  const paths = new Set(['index.ts']);
+  const files = new Map();
+  function register(collection, editorial, parent) {
     for (const key of collection?.order ?? []) {
       const child = collection.items[key]?.config;
       if (!record(child)) fail('Malformed technical child ' + key);
       if (['module', 'chapter', 'episode'].includes(child.type)) {
-        const filename = child.type + 's/' + child.slug + '.ts';
+        if (!SLUG.test(child.slug)) fail('Invalid Course-owned entity slug ' + child.slug);
+        const directory = parent + '/' + child.slug;
+        const filename = directory + '/index.ts';
         if (paths.has(filename)) fail('Duplicate Course-owned file ' + filename);
         paths.add(filename);
+        const original = editorial?.items?.[key];
+        if (!original || original.type !== child.type) fail('Missing editorial methodology for ' + directory);
         nodes.push({ node: child, file: filename });
-        register(child.content);
+        files.set(directory + '/methodology.md', childMethodologyMd(original));
+        register(child.content, original.content, directory);
       }
     }
   }
-  register(config.content);
-  const files = new Map();
+  register(config.content, technical.authored.content, 'content');
   for (const { node, file } of nodes) {
     if (node.type === 'episode') {
       files.set(file, renderEpisodeDraft(node, technical.production.documentLanguage, config.id));
@@ -486,8 +482,9 @@ export function renderModularCourse(
     };
     function expression(child, key) {
       if (['module', 'chapter', 'episode'].includes(child.type)) {
-        // A family barrel never re-exports its parent or a higher level.
-        const specifier = relativeImport(file, child.type + 's/index.ts').replace(/\/index$/, '');
+        const directory = file === 'index.ts' ? 'content' : path.posix.dirname(file);
+        const specifier =
+          '#coursesData/' + config.id.at(-1) + '/' + config.id + '/' + directory + '/' + child.slug + '/index';
         return addImport(symbolOf(child), specifier, key);
       }
       if (child.type !== 'lesson') fail('Course methodology may not create ' + child.type);
@@ -506,7 +503,7 @@ export function renderModularCourse(
         if (!SLUG.test(slug) || !UUID.test(child.lessonId))
           fail('Cannot construct a future Lesson import without canonical UUID and slug');
         specifier = '#lessonsData/' + child.lessonId.at(-1) + '/' + child.lessonId + '/index';
-        symbol = slug + '_Lesson';
+        symbol = slug;
       }
       return addImport(symbol, specifier, key);
     }
@@ -553,13 +550,13 @@ export function renderModularCourse(
       'import { define' + node.type[0].toUpperCase() + node.type.slice(1) + " } from '@svitlo/engine/build';",
     ];
     const aliasImports = renderImports('#');
-    const relativeImports = renderImports('.');
+    const constants = '#coursesData/' + config.id.at(-1) + '/' + config.id + '/constants';
     if (node.type === 'course') {
-      relativeImports.push("import { languages, type CourseLanguages } from './constants';");
+      aliasImports.push('import { languages, type CourseLanguages } from ' + JSON.stringify(constants) + ';');
     } else {
-      relativeImports.push("import type { CourseLanguages } from '../constants';");
+      aliasImports.push('import type { CourseLanguages } from ' + JSON.stringify(constants) + ';');
     }
-    const imported = [packageImports, aliasImports, relativeImports]
+    const imported = [packageImports, aliasImports]
       .filter(group => group.length)
       .map(group => group.join('\n'))
       .join('\n\n');
@@ -582,15 +579,6 @@ export function renderModularCourse(
       '\n});\n';
     files.set(file, source);
   }
-  for (const family of ['module', 'chapter', 'episode']) {
-    const entries = nodes.filter(x => x.node.type === family).sort((a, b) => a.file.localeCompare(b.file));
-    if (entries.length) {
-      files.set(
-        family + 's/index.ts',
-        entries.map(x => 'export { ' + symbolOf(x.node) + ' } from "./' + x.node.slug + '";').join('\n') + '\n',
-      );
-    }
-  }
   // Use the real shared Review contract until a Course-specific review contract exists.
   // Missing evidence intentionally produces TypeScript diagnostics, not fictitious approvals.
   files.set(
@@ -604,14 +592,14 @@ export function renderModularCourse(
   const planned = config.params.languages;
   files.set(
     'constants.ts',
-    "import type { LanguageCode } from '@svitlo/engine/build';\n\n" +
-      '// Restore the complete language set when translations are ready:\n' +
+    "import type { SupportedLanguages } from '@svitlo/engine/build';\n\n" +
+      '// TODO: Restore the complete language set when translations are ready:\n' +
       '// export const languages = ' +
       JSON.stringify(planned) +
-      ' as const satisfies readonly [LanguageCode, ...LanguageCode[]];\n\n' +
+      ' as const satisfies SupportedLanguages;\n\n' +
       'export const languages = ' +
       JSON.stringify([technical.production.documentLanguage]) +
-      ' as const satisfies readonly [LanguageCode, ...LanguageCode[]];\n' +
+      ' as const satisfies SupportedLanguages;\n' +
       'export type CourseLanguages = typeof languages;\n',
   );
   return files;
@@ -715,14 +703,19 @@ export function parseArgs(argv) {
     } else if (['--write', '--check', '--finalize'].includes(key)) {
       if (opts.action) fail('choose exactly one mode');
       opts.action = key;
+    } else if (key === '--preserve-config') {
+      if (opts.preserveConfig) fail('duplicate option ' + key);
+      opts.preserveConfig = true;
     } else fail('unknown option ' + key);
   }
   if (!PACKAGE.test(opts['--package'] ?? '') || !UUID.test(opts['--course'] ?? '') || !opts.action)
-    fail('usage: --package content/<book> --course <uuid> --write|--check|--finalize');
-  return { pkg: opts['--package'], id: opts['--course'], mode: opts.action };
+    fail('usage: --package content/<book> --course <uuid> --write|--check|--finalize [--preserve-config]');
+  if (opts.preserveConfig && opts.action !== '--finalize')
+    fail('--preserve-config is only valid with --finalize');
+  return { pkg: opts['--package'], id: opts['--course'], mode: opts.action, preserveConfig: !!opts.preserveConfig };
 }
 export function materialize(argv, root = rootDefault) {
-  const { pkg, id, mode } = parseArgs(argv);
+  const { pkg, id, mode, preserveConfig } = parseArgs(argv);
   const folder = path.join(root, pkg, 'data/courses', id.at(-1), id);
   const source = path.join(folder, 'course.yaml');
   assertPath(source);
@@ -734,7 +727,7 @@ export function materialize(argv, root = rootDefault) {
   const artifacts = planArtifacts(plan, pkg, root, lessonIndex);
   checkArtifacts(artifacts, mode);
   if (mode === '--write') writeArtifacts(artifacts);
-  else if (mode === '--finalize') {
+  else if (mode === '--finalize' && !preserveConfig) {
     // Only after a separate successful check/commit; Git retains the plan history.
     fs.unlinkSync(source);
   }

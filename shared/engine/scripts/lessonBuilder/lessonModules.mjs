@@ -372,14 +372,14 @@ export function renderLessonModules(lesson, language, options = {}) {
   if (hasLanguages && !questionBankOnly) {
     files.set(
       'constants.ts',
-      "import type { LanguageCode } from '@svitlo/engine/build';\n\n" +
-        '// Restore the complete language set when translations are ready:\n' +
+      "import type { SupportedLanguages } from '@svitlo/engine/build';\n\n" +
+        '// TODO: Restore the complete language set when translations are ready:\n' +
         '// export const languages = ' +
         JSON.stringify(languageValues) +
-        ' as const satisfies readonly [LanguageCode, ...LanguageCode[]];\n\n' +
+        ' as const satisfies SupportedLanguages;\n\n' +
         'export const languages = ' +
         JSON.stringify([language]) +
-        ' as const satisfies readonly [LanguageCode, ...LanguageCode[]];\n' +
+        ' as const satisfies SupportedLanguages;\n' +
         'export type LessonLanguages = typeof languages;\n',
     );
   }
@@ -817,7 +817,7 @@ export function renderLessonModules(lesson, language, options = {}) {
     groupedImports([rootImports[0]], rootImports.slice(1)) +
     'export const ' +
     filtered.slug +
-    '_Lesson = defineLesson' +
+    ' = defineLesson' +
     langArgs +
     '({\n' +
     rootFields.join(',\n') +
