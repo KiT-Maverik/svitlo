@@ -400,6 +400,11 @@ jobs:
                 segments[0] !== root || segments.length !== depth ||
                 segments.slice(2).some(part => !/^[a-zA-Z0-9._-]+$/.test(part) || part === '..') ||
                 !name.endsWith('.md') ||
+                (segments[1] === 'courses' && (!/^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/.test(segments[4]) ||
+                   segments[3] !== segments[4].slice(-1) ||
+                   entry.course !== segments[3] + '/' + segments[4] ||
+                   entry.textbook !== 'content/' + segments[2] ||
+                   segments[5] !== entry.locale + '.md')) ||
                 (segments[1] === 'lessons-by-skill' && !/^[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}\.md$/.test(segments[2])) ||
                 expected.has(name) || !fs.statSync(name).isFile()) {
               throw Error('Invalid generated artifact entry: ' + String(name));
