@@ -59,9 +59,11 @@ approval. PR identity and the canonical source are independently verified.
    a commit whose parent is the pinned HEAD. Branch ref updates are non-force:
    a concurrent push rejects the update rather than overwriting it.
 
-Allowed materialize outputs: Course index.ts, constants.ts, review.ts,
-methodology.md, modules/_.ts, chapters/_.ts, episodes/*.ts and only new
-Lesson UUID-root lesson.yaml files. Finalize may delete only the Course YAML.
+Allowed materialize outputs: Course root index.ts, constants.ts, review.ts and
+methodology.md; nested content/<slug>/index.ts and content/<slug>/methodology.md
+for Course-owned Module/Chapter/Episode nodes (at most three nested slugs);
+and only new Lesson UUID-root lesson.yaml files. Finalize may delete only the
+Course YAML.
 Unknown files, divergent existing files, symlinks/submodules, ambiguous IDs,
 incomplete Stage 4, changed HEAD and partial output fail closed. Repeated
 materialization with identical committed files is a no-op.
