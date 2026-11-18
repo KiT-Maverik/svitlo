@@ -9,7 +9,16 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { createHash } from 'node:crypto';
 import { execFileSync } from 'node:child_process';
-import { github, inspect, requireActor, report, gitBlob, validateArtifactPath } from './course-gate.mjs';
+import {
+  github,
+  inspect,
+  parseIdentity,
+  requireCompletedStageFour,
+  requireActor,
+  report,
+  gitBlob,
+  validateArtifactPath,
+} from './course-gate.mjs';
 
 function sha256(bytes) {
   return createHash('sha256').update(bytes).digest('hex');
@@ -96,6 +105,103 @@ function changedFiles(root) {
   return changes;
 }
 
+const LESSONS_START = '<!-- svitlo-course-lessons:start -->';
+const LESSONS_END = '<!-- svitlo-course-lessons:end -->';
+const UUID = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/;
+const SLUG = /^[a-z][A-Za-z0-9]*$/;
+
+/** Metadata emitted by the materializer when it writes each standalone Lesson YAML. */
+function validateLessonAssignments(manifest, meta) {
+  const assignments = manifest.lessonAssignments;
+  if (!Array.isArray(assignments) || assignments.length > 500) throw Error('Invalid generated Lesson assignment list');
+  if (meta.operation === 'finalize' && assignments.length)
+    throw Error('Finalization may not register Lesson identities');
+  const ids = new Set();
+  const filenames = new Set();
+  for (const lesson of assignments) {
+    if (
+      !lesson ||
+      typeof lesson.id !== 'string' ||
+      !UUID.test(lesson.id) ||
+      typeof lesson.slug !== 'string' ||
+      !SLUG.test(lesson.slug) ||
+      typeof lesson.title !== 'string' ||
+      !lesson.title.trim() ||
+      lesson.title.length > 300 ||
+      /[\r\n\x00-\x1f]/.test(lesson.title) ||
+      lesson.path !== meta.identity.pkg + '/data/lessons/' + lesson.id.at(-1) + '/' + lesson.id + '/lesson.yaml' ||
+      ids.has(lesson.id) ||
+      filenames.has(lesson.path)
+    )
+      throw Error('Invalid or duplicated generated Lesson identity');
+    ids.add(lesson.id);
+    filenames.add(lesson.path);
+  }
+  for (const entry of manifest.entries) {
+    if (
+      entry.path.startsWith(meta.identity.pkg + '/data/lessons/') &&
+      entry.path.endsWith('/lesson.yaml') &&
+      !filenames.has(entry.path)
+    )
+      throw Error('Generated Lesson YAML lacks a registered identity');
+  }
+  return assignments;
+}
+
+function safeLessonTitle(title) {
+  return title.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('|', '&#124;');
+}
+
+/** A one-time handoff; agents may later fill in the PR column by editing the description. */
+export function renderLessonRegistry(assignments) {
+  const rows = assignments.map(
+    lesson => '| ' + safeLessonTitle(lesson.title) + ' | `' + lesson.slug + '` | `' + lesson.id + '` | Not started |',
+  );
+  return [
+    LESSONS_START,
+    '## Lessons',
+    '',
+    '| Lesson | Slug | UUID | Lesson PR |',
+    '| --- | --- | --- | --- |',
+    ...rows,
+    ...(rows.length ? [] : ['| No new Lessons | — | — | Not started |']),
+    '',
+    LESSONS_END,
+  ].join('\n');
+}
+
+/** Replace only the generated placeholder; never overwrite a table edited by Lesson agents. */
+export function registerLessonRegistry(body, assignments) {
+  if (typeof body !== 'string') throw Error('Missing Course PR description');
+  if (body.split(LESSONS_START).length !== 2 || body.split(LESSONS_END).length !== 2)
+    throw Error('Exactly one balanced Course Lessons region required');
+  const start = body.indexOf(LESSONS_START);
+  const end = body.indexOf(LESSONS_END, start);
+  if (end < start) throw Error('Misordered Course Lessons markers');
+  const existing = body.slice(start, end + LESSONS_END.length);
+  if (existing.includes('| Lesson | Slug | UUID | Lesson PR |')) {
+    if (assignments.some(lesson => !existing.includes('`' + lesson.id + '`')))
+      throw Error('Registered Lesson UUIDs differ; refusing to overwrite Lesson PR links');
+    return body;
+  }
+  if (
+    !existing.includes('Lesson inventory not allocated yet.') &&
+    existing.replace(LESSONS_START, '').replace(LESSONS_END, '').trim() !== ''
+  )
+    throw Error('Unknown Lesson table content; refusing to overwrite agent edits');
+  const next = renderLessonRegistry(assignments);
+  return body.slice(0, start) + next + body.slice(end + LESSONS_END.length);
+}
+
+function publishOutputs(sha, manifest) {
+  const filename = process.env.GITHUB_OUTPUT;
+  if (!filename) return;
+  const shouldRegister =
+    manifest.operation === 'materialize' &&
+    manifest.entries.some(entry => manifest.lessonAssignments.some(lesson => lesson.path === entry.path));
+  fs.appendFileSync(filename, 'head=' + sha + '\nregister=' + shouldRegister + '\n');
+}
+
 function verifyManifest(manifest, meta, root) {
   if (
     !manifest ||
@@ -143,6 +249,7 @@ function verifyManifest(manifest, meta, root) {
   if (total > 32 * 1024 * 1024) throw Error('Generated artifact exceeds 32MiB safe handoff limit');
   if (meta.operation === 'finalize' && (seen.size !== 1 || !seen.has(meta.identity.yaml)))
     throw Error('Finalize manifest must contain exactly one Course YAML deletion');
+  validateLessonAssignments(manifest, meta);
   return manifest.entries.length;
 }
 
@@ -184,9 +291,11 @@ async function analyze(root, meta) {
   const { materialize } =
     await import('../../../shared/engine/scripts/materializeCourseFlow/materialize-course-flow.mjs');
   let entries = [];
+  let artifactsForRegistry = [];
   if (meta.operation === 'materialize') {
     const { artifacts } = materialize([...argumentsBase, '--write'], root);
     materialize([...argumentsBase, '--check'], root);
+    artifactsForRegistry = artifacts.lessonAssignments;
     for (const [relative, content] of artifacts.files) {
       const filename = path.join(artifacts.folder, relative);
       const local = relativeSafe(root, filename);
@@ -230,6 +339,7 @@ async function analyze(root, meta) {
     head: meta.head,
     identity: meta.identity,
     sourceBlob: meta.sourceBlob,
+    lessonAssignments: meta.operation === 'materialize' ? artifactsForRegistry : [],
     entries: entries.sort((a, b) => a.path.localeCompare(b.path)),
   };
   verifyManifest(manifest, meta, root);
@@ -265,6 +375,7 @@ async function publish(root, meta) {
   const manifest = readReport();
   const count = verifyManifest(manifest, meta, root);
   if (!count) {
+    publishOutputs(meta.head, manifest);
     report('Course already materialized exactly; no commit needed for PR #' + meta.number);
     return;
   }
@@ -308,6 +419,7 @@ async function publish(root, meta) {
     throw Error('Course identity or Stage 4 completion changed before ref update');
   const updated = await github('git/refs/heads/' + meta.branch, 'PATCH', { sha: next.sha, force: false });
   if (updated?.object?.sha !== next.sha) throw Error('GitHub did not confirm the exact new branch ref');
+  publishOutputs(next.sha, manifest);
   report(
     'Committed ' +
       count +
@@ -323,14 +435,70 @@ async function publish(root, meta) {
   );
 }
 
+/** Use only the verified Stage 5 handoff; never reconstruct Course identities from TypeScript. */
+async function registerLessons(meta) {
+  if (meta.operation !== 'materialize') throw Error('Lesson registration requires materialize operation');
+  const manifest = readReport();
+  if (
+    manifest.version !== 1 ||
+    manifest.pr !== meta.number ||
+    manifest.operation !== meta.operation ||
+    manifest.head !== meta.head ||
+    manifest.repo !== meta.repo ||
+    manifest.sourceBlob !== meta.sourceBlob ||
+    JSON.stringify(manifest.identity) !== JSON.stringify(meta.identity) ||
+    !Array.isArray(manifest.entries)
+  )
+    throw Error('Lesson registration source differs from authorized materialization');
+  const assignments = validateLessonAssignments(manifest, meta);
+  if (!assignments.length || !manifest.entries.some(entry => assignments.some(lesson => lesson.path === entry.path)))
+    throw Error('Lesson registration requires a verified newly generated Lesson YAML');
+  const committedHead = process.env.COURSE_PUBLISHED_HEAD;
+  if (!/^[a-f0-9]{40}$/.test(committedHead ?? '')) throw Error('Missing verified publication HEAD');
+  if (committedHead !== meta.head) {
+    const commit = await github('git/commits/' + committedHead);
+    if (
+      commit?.parents?.length !== 1 ||
+      commit.parents[0].sha !== meta.head ||
+      !commit.message?.startsWith('Materialize Course ' + meta.identity.id + '\n')
+    )
+      throw Error('Lesson registration requires the exact Stage 5 materialization commit');
+  }
+  const current = await github('pulls/' + meta.number);
+  const matches = pr =>
+    pr?.state === 'open' &&
+    pr.draft &&
+    pr.head?.sha === committedHead &&
+    pr.head.ref === meta.branch &&
+    pr.base?.ref === (process.env.COURSE_DEFAULT_BRANCH || 'main');
+  if (!matches(current)) throw Error('Course PR changed after materialization');
+  if (JSON.stringify(parseIdentity(current.body)) !== JSON.stringify(meta.identity))
+    throw Error('Course PR identity changed after materialization');
+  requireCompletedStageFour(current.body);
+  const body = registerLessonRegistry(current.body, assignments);
+  if (body === current.body) {
+    report('Lesson IDs already registered for Course PR #' + meta.number);
+    return;
+  }
+  // GitHub PR-body updates do not provide CAS. Check again immediately before PATCH.
+  const beforeWrite = await github('pulls/' + meta.number);
+  if (!matches(beforeWrite) || beforeWrite.body !== current.body)
+    throw Error('Course PR changed while preparing Lesson registration');
+  await github('pulls/' + meta.number, 'PATCH', { body });
+  report('Registered ' + assignments.length + ' generated Lesson IDs in Course PR #' + meta.number);
+}
+
 async function main() {
   const mode = process.argv[2];
-  if (!['analyze', 'publish'].includes(mode) || process.argv.length !== 3)
-    throw Error('Usage: course-materialization.mjs analyze|publish');
+  if (!['analyze', 'publish', 'register'].includes(mode) || process.argv.length !== 3)
+    throw Error('Usage: course-materialization.mjs analyze|publish|register');
   const meta = metadata();
-  const root = checkedRoot();
-  if (mode === 'analyze') await analyze(root, meta);
-  else await publish(root, meta);
+  if (mode === 'register') await registerLessons(meta);
+  else {
+    const root = checkedRoot();
+    if (mode === 'analyze') await analyze(root, meta);
+    else await publish(root, meta);
+  }
 }
 
 if (process.argv[1] && process.argv[1].endsWith('/course-materialization.mjs')) {
@@ -340,4 +508,4 @@ if (process.argv[1] && process.argv[1].endsWith('/course-materialization.mjs')) 
   });
 }
 
-export { verifyManifest, metadata, trackedFiles, changedFiles, identicalSnapshot };
+export { verifyManifest, metadata, trackedFiles, changedFiles, identicalSnapshot, validateLessonAssignments };
