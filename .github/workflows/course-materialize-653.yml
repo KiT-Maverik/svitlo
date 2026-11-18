@@ -1,4 +1,4 @@
-name: Temporary Course Stage 5 materialization 653
+name: Temporary Course Stage 5 finalize 653
 on:
   pull_request:
     paths:
@@ -6,7 +6,7 @@ on:
 permissions:
   contents: write
 jobs:
-  materialize:
+  finalize:
     if: github.event.pull_request.number == 653 && github.event.pull_request.head.repo.full_name == 'KiT-Maverik/svitlo'
     runs-on: ubuntu-latest
     steps:
@@ -19,16 +19,24 @@ jobs:
           node-version: '22'
           cache: npm
       - run: npm ci
-      - name: Materialize reviewed Course plan
-        run: node shared/engine/scripts/materializeCourseFlow/materialize-course-flow.mjs --package content/astronomy --course 1e79d8fc-2223-4fa7-bc64-70d8172d3e8b --write
-      - name: Verify generated authoring sources
-        run: node shared/engine/scripts/materializeCourseFlow/materialize-course-flow.mjs --package content/astronomy --course 1e79d8fc-2223-4fa7-bc64-70d8172d3e8b --check
-      - name: Commit Stage 5 draft artifacts
+      - name: Recheck committed Stage 5 outputs and source provenance
+        run: |
+          set -eu
+          source="content/astronomy/data/courses/b/1e79d8fc-2223-4fa7-bc64-70d8172d3e8b/course.yaml"
+          test "$(git hash-object "$source")" = "9725baacca8b40638e8054673a193f825f182547"
+          node shared/engine/scripts/materializeCourseFlow/materialize-course-flow.mjs --package content/astronomy --course 1e79d8fc-2223-4fa7-bc64-70d8172d3e8b --check
+      - name: Finalize unchanged reviewed Course YAML
+        run: |
+          set -eu
+          node shared/engine/scripts/materializeCourseFlow/materialize-course-flow.mjs --package content/astronomy --course 1e79d8fc-2223-4fa7-bc64-70d8172d3e8b --finalize
+          test ! -e content/astronomy/data/courses/b/1e79d8fc-2223-4fa7-bc64-70d8172d3e8b/course.yaml
+          test ! -e content/astronomy/data/courses/b/1e79d8fc-2223-4fa7-bc64-70d8172d3e8b/config.yaml
+      - name: Commit only temporary Course YAML removal
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add -- content/astronomy/data/courses/b/1e79d8fc-2223-4fa7-bc64-70d8172d3e8b/ content/astronomy/data/lessons/
-          git diff --cached --stat
-          git diff --cached --quiet && { echo 'No artifacts generated'; exit 1; }
-          git commit -m "Materialize reviewed astronomy course and lesson methodology handoffs"
+          git add -u -- content/astronomy/data/courses/b/1e79d8fc-2223-4fa7-bc64-70d8172d3e8b/course.yaml
+          git diff --cached --name-only
+          test "$(git diff --cached --name-only | wc -l)" -eq 1
+          git commit -m "Finalize reviewed astronomy course source materialization"
           git push origin HEAD:refs/heads/course/astronomy-grade-one
