@@ -238,6 +238,12 @@ export function readCourseTsInventory(root, courseDirectory, courseId) {
       if (!reference || reference.slug !== key || usedReferences.has(reference))
         fail('No unique, unused Lesson UUID mapping for Course slot ' + placement.join(' / '));
       const lessonId = reference.lessonId;
+      if (!imported) {
+        const lessonYaml = book + '/data/lessons/' + lessonId.at(-1) + '/' + lessonId + '/lesson.yaml';
+        // An unresolved generated Lesson must have its canonical Stage 5 handoff.
+        // Metadata-only references without a persisted Config identity are unsafe.
+        safeSource(root, lessonYaml);
+      }
       if (imported) {
         const prefix = book + '/data/lessons/';
         const relative = target.startsWith(prefix) ? target.slice(prefix.length) : null;
