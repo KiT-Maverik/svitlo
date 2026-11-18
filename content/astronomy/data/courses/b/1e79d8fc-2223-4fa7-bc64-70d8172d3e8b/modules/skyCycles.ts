@@ -1,6 +1,6 @@
 // Generated Course authoring draft; manual completion and review required.
 import { defineModule } from "@svitlo/engine/build";
-import { dayAndNight } from "../chapters/dayAndNight";
+import { dayAndNight_Chapter } from "../chapters/dayAndNight";
 import { moonAppearance_Chapter } from "../chapters/moonAppearance";
 
 // TODO: Resolve standalone Lesson UUID "4e4b5a9b-7013-5320-8fc3-7f34a70c8915" and replace UNRESOLVED_LESSON_0; never define Lesson inside Course.
@@ -18,7 +18,7 @@ export const skyCycles_Module = defineModule({
   content: {
     items: {
     "skyChangesOverview": UNRESOLVED_LESSON_0,
-    dayAndNight,
+    "dayAndNight": dayAndNight_Chapter,
     "moonAppearance": moonAppearance_Chapter
     },
     order: [
