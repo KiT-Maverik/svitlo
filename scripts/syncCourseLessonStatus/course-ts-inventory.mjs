@@ -137,11 +137,12 @@ function readMethodologyReferences(root, courseDirectory) {
   }
   if (!references.length || references.length > 1000)
     fail('No bounded, statically verifiable Lesson references in methodology.md');
-  const seen = new Set();
+  const explicit = new Set();
   for (const entry of references) {
-    const key = entry.placement ?? entry.slug;
-    if (seen.has(key)) fail('Ambiguous Lesson methodology reference ' + key);
-    seen.add(key);
+    if (entry.placement) {
+      if (explicit.has(entry.placement)) fail('Duplicate explicit Lesson placement ' + entry.placement);
+      explicit.add(entry.placement);
+    }
   }
   return references;
 }
@@ -176,7 +177,7 @@ export function readCourseTsInventory(root, courseDirectory, courseId) {
   if (!TEXTBOOK.test(book)) fail('Invalid textbook in Course directory');
   const lessons = new Map();
   const references = readMethodologyReferences(root, courseDirectory);
-  const usedReferences = new Set();
+  let nextReference = 0;
   const visited = new Set();
   let visits = 0;
   let languages;
@@ -232,11 +233,14 @@ export function readCourseTsInventory(root, courseDirectory, courseId) {
       } else if (!/^UNRESOLVED_LESSON_[0-9]+$/.test(symbolName)) {
         fail('Unresolved Course child identifier: ' + symbolName);
       }
-      const matches = references.filter(r =>
-        r.placement ? r.placement === placement.join(' / ') : r.slug === key);
-      const reference = matches.length === 1 ? matches[0] : null;
-      if (!reference || reference.slug !== key || usedReferences.has(reference))
-        fail('No unique, unused Lesson UUID mapping for Course slot ' + placement.join(' / '));
+      // The Stage 5 methodology emits Lesson references in Course preorder.
+      // Consume that sequence together with the actual TypeScript items/order
+      // graph; never rely on UUIDs embedded in compiler TODO comments.
+      const reference = references[nextReference++];
+      if (!reference || reference.slug !== key ||
+          (reference.placement && reference.placement !== placement.join(' / ')))
+        fail('Course Lesson sequence/placement differs from materialized methodology: ' +
+          placement.join(' / '));
       const lessonId = reference.lessonId;
       if (!imported) {
         const lessonYaml = book + '/data/lessons/' + lessonId.at(-1) + '/' + lessonId + '/lesson.yaml';
@@ -257,7 +261,6 @@ export function readCourseTsInventory(root, courseDirectory, courseId) {
         if (canonicalUUID(string(property(lessonConfig, 'id'), 'Lesson id')) !== lessonId)
           fail('Referenced Lesson source does not match its UUID directory');
       }
-      usedReferences.add(reference);
       const title = titleFromYaml(root, book, lessonId, reference.title);
       const place = placement.join(' / ');
       const previous = lessons.get(lessonId);
@@ -270,7 +273,7 @@ export function readCourseTsInventory(root, courseDirectory, courseId) {
     }
   }
   readNode(courseDirectory + '/index.ts', 'defineCourse', null, []);
-  if (usedReferences.size !== references.length)
+  if (nextReference !== references.length)
     fail('Orphaned Lesson UUID mapping in materialized methodology');
   return {
     lessons: [...lessons.values()].map(x => ({ ...x, placements: x.placements.sort() }))
