@@ -24,18 +24,22 @@ const card = (): AssessmentPublicationEntry => ({
   publication: { base: { id: cardId, type: 'flashcard' } },
 });
 
-test('renders independent UUID files plus metadata-only manifest in deterministic order', () => {
+test('renders globally UUID-addressed files and one metadata-only manifest deterministically', () => {
   const files = renderAssessmentResourceFiles([card(), question()]);
-  const prefix = 'c/' + lessonId;
+  const questionPrefix = 'questions/2/' + questionId;
+  const cardPrefix = 'flashcards/8/' + cardId;
+  const manifestPath = 'assessments/manifest.json';
   assert.deepEqual([...files.keys()], [
-    prefix + '/questions/' + questionId + '/base.json',
-    prefix + '/questions/' + questionId + '/en.json',
-    prefix + '/questions/' + questionId + '/uk.json',
-    prefix + '/flashcards/' + cardId + '/base.json',
-    prefix + '/assessment-manifest.json',
+    manifestPath,
+    cardPrefix + '/base.json',
+    questionPrefix + '/base.json',
+    questionPrefix + '/en.json',
+    questionPrefix + '/uk.json',
   ]);
-  const manifest = JSON.parse(files.get(prefix + '/assessment-manifest.json')!);
+  const manifest = JSON.parse(files.get(manifestPath)!);
   assert.deepEqual(Object.keys(manifest.entries).sort(), [cardId, questionId].sort());
+  assert.deepEqual(Object.keys(manifest), ['entries']);
+  assert.equal(manifest.entries[questionId].ownerLessonId, lessonId);
   assert.equal(manifest.entries[questionId].questionType, 'selectOneAnswer');
   assert.equal(manifest.entries[cardId].kind, 'flashcard');
   assert.deepEqual(manifest.entries[questionId].languages, ['en', 'uk']);
@@ -98,7 +102,7 @@ test('merges independently produced Question/Flashcard stages into one non-dupli
   const questionStage = renderAssessmentResourceFiles([question()]);
   const flashcardStage = renderAssessmentResourceFiles([card()]);
   const combined = mergeAssessmentResourceFiles([questionStage, flashcardStage]);
-  const manifestPath = 'c/' + lessonId + '/assessment-manifest.json';
+  const manifestPath = 'assessments/manifest.json';
   const combinedManifest = JSON.parse(combined.get(manifestPath)!);
   assert.deepEqual(Object.keys(combinedManifest.entries).sort(), [cardId, questionId].sort());
   assert.equal(combinedManifest.entries[questionId].kind, 'question');
@@ -109,9 +113,23 @@ test('merges independently produced Question/Flashcard stages into one non-dupli
   const otherLesson = renderAssessmentResourceFiles([
     { ...question(), lessonId: '00000000-0000-4000-8000-000000000010' },
   ]);
-  assert.throws(() => mergeAssessmentResourceFiles([questionStage, otherLesson]), /Duplicate Assessment UUID across Lessons/);
+  assert.throws(() => mergeAssessmentResourceFiles([questionStage, otherLesson]), /Duplicate Assessment UUID across stages/);
   const noManifest = new Map(questionStage);
   noManifest.delete(manifestPath);
   assert.throws(() => mergeAssessmentResourceFiles([noManifest]), /Unindexed Assessment resource/);
 });
 
+
+test('merged publication rejects tampered resource content, unindexed locale and missing base', () => {
+  const stage = renderAssessmentResourceFiles([question()]);
+  const folder = 'questions/2/' + questionId;
+  const corrupted = new Map(stage);
+  corrupted.set(folder + '/uk.json', JSON.stringify({ locale: { title: 'Altered' } }));
+  assert.throws(() => mergeAssessmentResourceFiles([corrupted]), /content hash mismatch/);
+  const unknown = new Map(stage);
+  unknown.set(folder + '/fr.json', '{"locale":{}}');
+  assert.throws(() => mergeAssessmentResourceFiles([unknown]), /not declared/);
+  const missing = new Map(stage);
+  missing.delete(folder + '/base.json');
+  assert.throws(() => mergeAssessmentResourceFiles([missing]), /base is missing/);
+});
