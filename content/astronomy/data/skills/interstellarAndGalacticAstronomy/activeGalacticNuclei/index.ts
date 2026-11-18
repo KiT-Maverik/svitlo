@@ -64,7 +64,7 @@ export const activeGalacticNuclei = defineSkillGroup({
       it: 'Indaga i centri galattici in cui la materia che cade verso i buchi neri genera enormi quantità di energia.',
       ja: 'ブラックホールへ落ち込む物質が莫大なエネルギーを放つ銀河の中心を調べよう。',
       ka: 'გამოიკვლიე გალაქტიკათა ცენტრები, სადაც შავი ხვრელებისკენ ვარდნილი ნივთიერება უზარმაზარ ენერგიას გამოყოფს.',
-      kk: 'Qara qūrdymdarğa qūlağan zat orasan energiia böletın galaktika ortalyqtaryn zertte.',
+      kk: 'Qara qūrdymdarğa qarai tartylğan zat quatty säule şyğaratyn galaktika ortalyqtaryn zertte.',
       ko: '블랙홀을 향해 떨어지는 물질이 엄청난 에너지를 방출하는 은하 중심을 살펴보세요.',
       lt: 'Tyrinėk galaktikų centrus, kuriuose į juodąsias skyles krintanti medžiaga išlaisvina milžinišką energiją.',
       lv: 'Izpēti galaktiku centrus, kur matērija, krītot melno caurumu virzienā, atbrīvo milzīgu enerģiju.',

@@ -53,7 +53,7 @@ export const astronomicalInterferometry = defineSkill({
       it: 'Comprendi come combinare i segnali di telescopi distanti possa rivelare dettagli più fini.',
       ja: '離れた望遠鏡の信号を組み合わせると、より細かな構造がわかる仕組みを理解しよう。',
       ka: 'გაიგე, როგორ ეხმარება ერთმანეთისგან დაშორებული ტელესკოპების სიგნალების გაერთიანება უფრო წვრილი დეტალების დანახვას.',
-      kk: 'Bır-bırınen alys ornalasqan teleskoptardyñ signaldaryn bırıktıru ūsaq bölşekterdı qalai aiqynyraq köruge kömektesetının tüsın.',
+      kk: 'Bır-bırınen alşaq ornalasqan teleskoptardyñ signaldaryn bırıktıru aspan nysandarynyñ ūsaq detallaryn qalai aiqynyraq körsetetının tüsın.',
       ko: '서로 떨어진 망원경의 신호를 결합하면 어떻게 더 세밀한 구조를 알아낼 수 있는지 이해해 보세요.',
       lt: 'Suprask, kaip sujungus signalus iš toliau vienas nuo kito esančių teleskopų galima įžvelgti smulkesnes detales.',
       lv: 'Izproti, kā signālu apvienošana no atstatus esošiem teleskopiem ļauj saskatīt smalkākas detaļas.',
