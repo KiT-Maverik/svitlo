@@ -18,7 +18,7 @@ export const useAFunctionsReturnValue = defineSkill({
     it: 'Utilizzare il valore restituito da una funzione',
     ja: '関数の戻り値を使う',
     ka: 'ფუნქციის დაბრუნებული მნიშვნელობის გამოყენება',
-    kk: 'Funktsiia qaitarğan mändı paidalanu',
+    kk: 'Funksia qaitarğan mändı paidalanu',
     ko: '함수 반환값 사용하기',
     lt: 'Naudoti funkcijos grąžinamą reikšmę',
     lv: 'Izmantot funkcijas atgriezto vērtību',

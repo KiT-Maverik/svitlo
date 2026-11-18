@@ -53,7 +53,7 @@ export const explainParallelExecution = defineSkill({
       it: 'Riconosci quando più processori svolgono effettivamente lavoro nello stesso momento.',
       ja: '複数のプロセッサが本当に同時に処理を行っている場合を見分けよう。',
       ka: 'ამოიცანი, როდის ასრულებს რამდენიმე პროცესორი სამუშაოს რეალურად ერთდროულად.',
-      kk: 'Bırneşe protsessordyñ şynymen bır uaqytta jūmys ısteitın jağdailaryn tany.',
+      kk: 'Bırneşe prosesordyñ şynymen bır uaqytta jūmys ısteitın jağdailaryn tany.',
       ko: '여러 프로세서가 실제로 동시에 작업을 수행하는 경우를 알아보세요.',
       lt: 'Atpažink, kada keli procesoriai iš tikrųjų atlieka darbą vienu metu.',
       lv: 'Atpazīsti, kad vairāki procesori patiešām veic darbu vienlaikus.',

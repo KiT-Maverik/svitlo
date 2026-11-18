@@ -53,7 +53,7 @@ export const explainStatementBlockBoundaries = defineSkill({
       it: 'Individua quali comandi appartengono a un ciclo, una funzione o un blocco condizionale.',
       ja: 'どの命令がループ、関数、条件分岐のブロックに入るか見つけよう。',
       ka: 'იპოვე, რომელი ბრძანებები ეკუთვნის ციკლს, ფუნქციას ან პირობით ბლოკს.',
-      kk: 'Qai komandalar tsiklge, funktsiiağa nemese şart blogyna jatatynyn anyqta.',
+      kk: 'Qai komandalar siklge, funksiağa nemese şart blogyna jatatynyn anyqta.',
       ko: '어떤 명령이 반복문, 함수 또는 조건 블록 안에 속하는지 찾아보세요.',
       lt: 'Nustatyk, kurios komandos priklauso ciklo, funkcijos ar sąlygos blokui.',
       lv: 'Nosaki, kuras komandas pieder ciklam, funkcijai vai nosacījuma blokam.',
