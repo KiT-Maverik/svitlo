@@ -26,7 +26,7 @@ export const presentation = defineSkillGroup({
     it: 'Rappresentazione dei dati',
     ja: 'データの表現',
     ka: 'მონაცემების წარმოდგენა',
-    kk: 'Деректерді ұсыну',
+    kk: 'Derekterdı ūsynu',
     ko: '자료 표현',
     lt: 'Duomenų pateikimas',
     lv: 'Datu attēlošana',
