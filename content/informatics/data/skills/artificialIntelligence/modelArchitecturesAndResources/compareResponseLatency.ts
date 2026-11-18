@@ -53,7 +53,7 @@ export const compareResponseLatency = defineSkill({
       it: "Confronta il ritardo prima dell'inizio di una risposta dell'IA, distinguendolo dalla velocità di generazione.",
       ja: 'AIが回答を始めるまでの待ち時間と、その後の生成速度を別々に比べよう。',
       ka: 'ცალკე შეადარე AI-ს პასუხის დაწყებამდე დრო და შემდგომი გენერირების სიჩქარე.',
-      kk: 'Jİ jauaby bastalğanşa kıdırıstı keiıngı generatsiia jyldamdyğynan bölek salystyr.',
+      kk: 'Jİ jauaby bastalğanşa kıdırıstı keiıngı generasia jyldamdyğynan bölek salystyr.',
       ko: 'AI가 답변을 시작하기까지의 대기 시간과 이후 생성 속도를 따로 비교해 보세요.',
       lt: 'Atskirai palygink laukimą iki DI atsakymo pradžios ir vėlesnį generavimo greitį.',
       lv: 'Atsevišķi salīdzini gaidīšanu līdz MI atbildes sākumam un turpmāko ģenerēšanas ātrumu.',

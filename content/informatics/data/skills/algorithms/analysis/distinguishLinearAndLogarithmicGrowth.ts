@@ -53,7 +53,7 @@ export const distinguishLinearAndLogarithmicGrowth = defineSkill({
       it: 'Confronta una crescita proporzionale alla dimensione dei dati con quella dovuta al loro dimezzamento ripetuto.',
       ja: '入力サイズに比例する増加と、繰り返し半分にする場合の増加を比較しましょう。',
       ka: 'შეადარე შეყვანის ზომის პროპორციული ზრდა განმეორებითი განახევრებისას ზრდას.',
-      kk: 'Kırıs kölemıne proportsional ösudı qaita-qaita ekıge bölumen bailanysty ösumen salystyr.',
+      kk: 'Kırıs kölemıne proporsional ösudı qaita-qaita ekıge bölumen bailanysty ösumen salystyr.',
       ko: '입력 크기에 비례하는 증가와 반복해서 반으로 줄일 때의 증가를 비교하세요.',
       lt: 'Palygink augimą proporcingą įvesties dydžiui su augimu nuolat dalijant perpus.',
       lv: 'Salīdzini pieaugumu proporcionāli ievades lielumam ar pieaugumu, atkārtoti dalot uz pusēm.',

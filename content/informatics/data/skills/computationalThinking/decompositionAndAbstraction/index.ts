@@ -23,7 +23,7 @@ export const decompositionAndAbstraction = defineSkillGroup({
     it: 'Scomposizione e astrazione',
     ja: '分解と抽象化',
     ka: 'დეკომპოზიცია და აბსტრაქცია',
-    kk: 'Bölşekteu jäne abstraktsiialau',
+    kk: 'Bölşekteu jäne abstraksialau',
     ko: '분해와 추상화',
     lt: 'Skaidymas ir abstrakcija',
     lv: 'Sadalīšana un abstrakcija',

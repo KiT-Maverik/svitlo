@@ -18,7 +18,7 @@ export const explainProceduralResourceGeneration = defineSkill({
     it: 'Spiegare la generazione procedurale delle risorse',
     ja: 'リソースの手続き型生成を説明する',
     ka: 'რესურსების პროცედურული გენერაციის ახსნა',
-    kk: 'Resurstardyñ protseduralyq generatsiiasyn tüsındıru',
+    kk: 'Resurstardyñ proseduralyq generasiasyn tüsındıru',
     ko: '절차적 리소스 생성 설명하기',
     lt: 'Paaiškinti procedūrinį išteklių generavimą',
     lv: 'Izskaidrot resursu procedurālo ģenerēšanu',

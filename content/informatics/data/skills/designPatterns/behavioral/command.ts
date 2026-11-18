@@ -52,7 +52,7 @@ export const command = defineSkill({
       it: "Rappresenta un'operazione come un oggetto che può essere conservato o pianificato.",
       ja: '操作を保存または実行予定にできるオブジェクトとして表そう。',
       ka: 'წარმოადგინე ოპერაცია ობიექტად, რომლის შენახვა ან დაგეგმვა შეიძლება.',
-      kk: 'Operatsiiany saqtauğa ne josparlauğa bolatyn obekt retınde körset.',
+      kk: 'Operasiany saqtauğa ne josparlauğa bolatyn obekt retınde körset.',
       ko: '작업을 저장하거나 실행을 예약할 수 있는 객체로 표현해 보세요.',
       lt: 'Pavaizduok operaciją kaip objektą, kurį galima išsaugoti ar suplanuoti.',
       lv: 'Attēlo darbību kā objektu, ko var saglabāt vai ieplānot.',

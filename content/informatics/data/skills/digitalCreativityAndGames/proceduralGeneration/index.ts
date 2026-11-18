@@ -23,7 +23,7 @@ export const proceduralGeneration = defineSkillGroup({
     it: 'Generazione procedurale',
     ja: '手続き型生成',
     ka: 'პროცედურული გენერაცია',
-    kk: 'Protseduralyq generatsiia',
+    kk: 'Proseduralyq generasia',
     ko: '절차적 생성',
     lt: 'Procedūrinis generavimas',
     lv: 'Procedurālā ģenerēšana',

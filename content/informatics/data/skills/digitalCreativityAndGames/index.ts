@@ -62,7 +62,7 @@ export const digitalCreativityAndGames = defineSkillDomain({
       it: 'Crea contenuti digitali, progetta regole di gioco e scopri la generazione procedurale.',
       ja: 'デジタル作品を作り、遊べるゲームのルールを設計し、手続き型生成を探ろう。',
       ka: 'შექმენი ციფრული მასალები, შეიმუშავე თამაშის წესები და გამოიკვლიე პროცედურული გენერაცია.',
-      kk: 'Sifrlyq materialdar jasa, oiyn erejelerın qūrastyr jäne protseduralyq generatsiiany zertte.',
+      kk: 'Sifrlyq materialdar jasa, oiyn erejelerın qūrastyr jäne proseduralyq generasiany zertte.',
       ko: '디지털 미디어를 만들고 플레이 가능한 게임 규칙을 설계하며 절차적 생성을 탐구해 보세요.',
       lt: 'Kurk skaitmeninę mediją, projektuok žaidimų taisykles ir tyrinėk procedūrinį generavimą.',
       lv: 'Veido digitālus materiālus, izstrādā spēļu noteikumus un izpēti procedurālo ģenerēšanu.',
