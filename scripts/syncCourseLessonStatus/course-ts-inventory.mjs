@@ -85,13 +85,7 @@ function staticFile(root, file) {
       imports.set(local, { target, exported: member.propertyName?.text ?? local });
     }
   }
-  const placeholders = new Map();
-  const regex = /^\/\/ TODO: Resolve standalone Lesson UUID "([a-f0-9-]{36})" and replace (UNRESOLVED_LESSON_[0-9]+); never define Lesson inside Course\.$/gm;
-  for (const [, id, symbol] of text.matchAll(regex)) {
-    if (placeholders.has(symbol)) fail('duplicate placeholder ' + symbol);
-    placeholders.set(symbol, canonicalUUID(id));
-  }
-  return { ast, imports, placeholders };
+  return { ast, imports };
 }
 function exportedDefinition(ast, factory, symbol) {
   const found = [];
@@ -120,6 +114,38 @@ function resolveImport(from, specifier) {
     fail('Course import escapes repository');
   return result;
 }
+/**
+ * The materializer persists Lesson identities in the generated methodology.md,
+ * derived from the actual YAML Config IDs. The Course AST supplies placements.
+ * TODO comments are intentionally ignored: they are authoring hints, not data.
+ */
+function readMethodologyReferences(root, courseDirectory) {
+  const body = safeSource(root, courseDirectory + '/methodology.md');
+  const lines = body.split(/\r?\n/);
+  const references = [];
+  for (let i = 0; i < lines.length; i++) {
+    const match = lines[i].match(/^### Lesson ([a-z][A-Za-z0-9]*) — (.{1,180})$/);
+    if (!match) continue;
+    // The maintained generator always writes the UUID immediately after a
+    // blank line. New outputs additionally include the exact Course placement.
+    const idMatch = lines[i + 2]?.match(/^Lesson UUID: ([a-f0-9-]{36})$/);
+    if (!idMatch) fail('Lesson methodology UUID missing for ' + match[1]);
+    const lessonId = canonicalUUID(idMatch[1]);
+    const placementMatch = lines[i + 4]?.match(/^Placement: ([a-zA-Z0-9_ /-]{1,500})$/);
+    const placement = placementMatch ? placementMatch[1] : null;
+    references.push({ slug: match[1], lessonId, title: match[2], placement });
+  }
+  if (!references.length || references.length > 1000)
+    fail('No bounded, statically verifiable Lesson references in methodology.md');
+  const seen = new Set();
+  for (const entry of references) {
+    const key = entry.placement ?? entry.slug;
+    if (seen.has(key)) fail('Ambiguous Lesson methodology reference ' + key);
+    seen.add(key);
+  }
+  return references;
+}
+
 function titleFromYaml(root, book, id, fallback) {
   const filename = book + '/data/lessons/' + id.at(-1) + '/' + id + '/lesson.yaml';
   // A reused Lesson can have no YAML; Stage 5 does not create it.
@@ -149,6 +175,8 @@ export function readCourseTsInventory(root, courseDirectory, courseId) {
   const book = courseDirectory.slice(0, -expectedEnd.length);
   if (!TEXTBOOK.test(book)) fail('Invalid textbook in Course directory');
   const lessons = new Map();
+  const references = readMethodologyReferences(root, courseDirectory);
+  const usedReferences = new Set();
   const visited = new Set();
   let visits = 0;
   let languages;
@@ -183,12 +211,16 @@ export function readCourseTsInventory(root, courseDirectory, courseId) {
       if (!ts.isIdentifier(expression)) fail('Course child must be a static identifier');
       const symbolName = expression.text;
       const placement = [...location, key];
-      let lessonId = parsed.placeholders.get(symbolName);
-      if (lessonId && parsed.imports.has(symbolName))
-        fail('Ambiguous Lesson TODO and imported reference: ' + symbolName);
-      if (!lessonId) {
-        const imported = parsed.imports.get(symbolName);
-        if (!imported) fail('Unresolved Course child identifier: ' + symbolName);
+      const matches = references.filter(r =>
+        r.placement ? r.placement === placement.join(' / ') : r.slug === key);
+      const reference = matches.length === 1 ? matches[0] : null;
+      if (!reference || reference.slug !== key || usedReferences.has(reference))
+        fail('No unique, unused Lesson UUID mapping for Course slot ' + placement.join(' / '));
+      let lessonId = reference.lessonId;
+      const imported = parsed.imports.get(symbolName);
+      if (!imported) {
+        if (!/^UNRESOLVED_LESSON_[0-9]+$/.test(symbolName))
+          fail('Unresolved Course child identifier: ' + symbolName);
         const target = resolveImport(file, imported.target);
         const componentPrefix = courseDirectory + '/';
         const component = target.startsWith(componentPrefix) ?
@@ -210,13 +242,15 @@ export function readCourseTsInventory(root, courseDirectory, courseId) {
         const lessonMatch = relative?.match(/^([a-f0-9])\/([a-f0-9]{8}-(?:[a-f0-9]{4}-){3}[a-f0-9]{12})\/([A-Za-z0-9_.-]+)\.ts$/);
         if (!lessonMatch || lessonMatch[1] !== lessonMatch[2].at(-1))
           fail('Unexpected Course import; only canonical Lessons and Course components are allowed');
-        lessonId = canonicalUUID(lessonMatch[2]);
+        if (canonicalUUID(lessonMatch[2]) !== lessonId)
+          fail('Referenced Lesson source path does not match approved methodology UUID');
         const lesson = staticFile(root, target);
         const lessonConfig = exportedDefinition(lesson.ast, 'defineLesson', imported.exported);
         if (canonicalUUID(string(property(lessonConfig, 'id'), 'Lesson id')) !== lessonId)
           fail('Referenced Lesson source does not match its UUID directory');
       }
-      const title = titleFromYaml(root, book, lessonId, key);
+      usedReferences.add(reference);
+      const title = titleFromYaml(root, book, lessonId, reference.title);
       const place = placement.join(' / ');
       const previous = lessons.get(lessonId);
       if (previous) {
@@ -228,6 +262,8 @@ export function readCourseTsInventory(root, courseDirectory, courseId) {
     }
   }
   readNode(courseDirectory + '/index.ts', 'defineCourse', null, []);
+  if (usedReferences.size !== references.length)
+    fail('Orphaned Lesson UUID mapping in materialized methodology');
   return {
     lessons: [...lessons.values()].map(x => ({ ...x, placements: x.placements.sort() }))
       .sort((a, b) => a.lessonId.localeCompare(b.lessonId)),
