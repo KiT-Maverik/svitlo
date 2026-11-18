@@ -108,11 +108,13 @@ Course PR number, source HEAD and reviewed YAML blob SHA. Only the commit files
 are durable Course artifacts; report files are short-lived Actions artifacts,
 not PR comments or tracked .agent-ci-artifacts.
 
-After an incomplete or stale Stage 4, finish the separate-chat review, resolve corrections and update the parent PR checklist before retrying.
+After an incomplete or stale Stage 4, finish the separate-chat review,
+resolve corrections and update the parent PR checklist before retrying.
 After a concurrent push, rerun the command. After divergent generated content,
 resolve differences manually; the tool does not overwrite authored work.
 
 **E2E limitation:** GitHub cannot dispatch this issue_comment workflow until it
-is deployed on main, and a synthetic Course PR needs a completed Stage 4 checklist. Complete the safe synthetic-PR run after deployment and
+is deployed on main, and a synthetic Course PR needs a completed Stage 4 checklist. Complete the
+safe synthetic-PR run after deployment and
 record its exact run and commit SHAs before claiming production E2E validation.
 This implementation does not modify #653, mark PRs Ready or merge anything.
