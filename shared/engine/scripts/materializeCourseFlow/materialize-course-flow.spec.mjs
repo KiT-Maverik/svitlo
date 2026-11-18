@@ -275,7 +275,7 @@ test('approved Course Episode generates a standalone typed Episode module with i
     diagnostics: [],
   });
   const episodeCode = artifacts.files.get('episodes/story.ts');
-  assert(episodeCode.includes('defineEpisode('));
+  assert(episodeCode.includes('defineEpisode<'));
   assert(episodeCode.includes('defineMarkdown('), 'preserve authored nested Episode content');
   assert(episodeCode.includes('export const story = defineEpisode<"story", CourseLanguages, typeof section.items>'));
   assert(episodeCode.includes("import { languages, type CourseLanguages } from '../constants';"));

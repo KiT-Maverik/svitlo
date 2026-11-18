@@ -319,11 +319,6 @@ function lessonSourceCoordinates(root, pkg, courseId, lessonId, index) {
   const courseFolder = path.posix.join(pkg, 'data/courses', courseId.at(-1), courseId);
   return { path: path.posix.relative(courseFolder, entries[0].source), export: candidates[0] };
 }
-/** Generate Course-owned files; no standalone Lesson definition is emitted. */
-/**
- * Reuse the typed nested Config renderer for authored Episode Sections/blocks.
- * Extract only the Episode expression; never emit a second Course declaration.
- */
 /**
  * Extract the nested Episode Config without creating a second Course.
  * Episode source uses the Course's active authoring language tuple.
@@ -385,7 +380,7 @@ function renderEpisodeDraft(episode, language, courseId) {
   );
   const sectionExpression = section.initializer.getText(ast);
   const factoryNames = [
-    ...new Set([...expression.matchAll(/\bdefine[A-Z][A-Za-z0-9_]*(?=\s*(?:<[^>]*>)?\()/g)].map(m => m[0])),
+    ...new Set([...[expression, sectionExpression].join('\n').matchAll(/\bdefine[A-Z][A-Za-z0-9_]*(?=\s*(?:<[^>]*>)?\()/g)].map(m => m[0])),
   ].sort();
   if (!factoryNames.includes('defineEpisode')) factoryNames.push('defineEpisode');
   return (
