@@ -111,7 +111,8 @@ test('Stage 4 checklist fails closed on incomplete, absent, duplicate or ambiguo
     courseWorkflow().replace('- [x] 3. Design & Match Lessons', '- [x] 3. Review Course Plan'),
     courseWorkflow().replace('## Handoffs / blockers', '- [ ] 4. Review Course Plan\n## Handoffs / blockers'),
     courseWorkflow().replace('## Handoffs / blockers', '- [x] 4. Review Course Plan\n## Handoffs / blockers'),
-  ]) assert.throws(() => requireCompletedStageFour(body));
+  ])
+    assert.throws(() => requireCompletedStageFour(body));
   // A lookalike checklist outside the canonical Workflow section is not a gate.
   assert.throws(() => requireCompletedStageFour('## Notes\n- [x] 4. Review Course Plan\n## Workflow\n'));
   assert.equal(requireCompletedStageFour(courseWorkflow() + '\n## Notes\n- [ ] 4. Review Course Plan'), true);
