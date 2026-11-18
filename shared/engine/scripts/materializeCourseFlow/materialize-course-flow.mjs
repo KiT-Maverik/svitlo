@@ -447,40 +447,81 @@ export function renderModularCourse(technical, pkg, resolveLesson = () => null) 
     'export const sourceLanguage = ' + JSON.stringify(technical.production.documentLanguage) + ' as const;\n');
   return files;
 }
+/**
+ * Exactly one Course input course.yaml. The returned artifacts are Course-owned
+ * TS/Markdown plus new Lesson-owned YAMLs; there is NO generated config.yaml.
+ */
 export function planArtifacts(plan, pkg, root, lessonIndex) {
   const coursePath = pkg + '/data/courses/' + plan.id.at(-1) + '/' + plan.id;
   const lookup = id => lessonSourceCoordinates(root, pkg, plan.id, id, lessonIndex);
   const technical = technicalFromEditorial(plan, lookup);
   const drafts = renderModularCourse(technical, pkg, lookup);
-  const result = new Map([
-    ['config.yaml', YAML.stringify(technical, { lineWidth: 0 })],
+  const files = new Map([
     ['methodology.md', technical.production.methodology],
     ...drafts,
   ]);
-  return { folder: path.join(root, coursePath), files: result };
+  const lessonFiles = new Map();
+  for (const [id, { node }] of technical.newLessons) {
+    if (!node.methodology?.trim()) fail('planned Lesson lacks complete methodology: ' + node.slug);
+    const lessonFolder = path.join(root, pkg, 'data/lessons', id.at(-1), id);
+    const lessonConfig = {
+      config: {
+        id,
+        slug: node.slug,
+        type: 'lesson',
+        skills: [...node.skills],
+        params: {
+          languages: [...plan.supportedLanguages],
+          requireQuiz: node.quizRequired ?? false,
+          sections: { allowNavigation: true, allowSkipping: true, showIndexes: true },
+        },
+        locale: { title: { [plan.documentLanguage]: node.title } },
+        section: { items: {}, order: [] },
+      },
+      production: {
+        documentLanguage: plan.documentLanguage,
+        methodology: node.methodology,
+      },
+    };
+    lessonFiles.set(path.join(lessonFolder, 'lesson.yaml'), YAML.stringify(lessonConfig, { lineWidth: 0 }));
+  }
+  return { folder: path.join(root, coursePath), files, lessonFiles, technical };
+}
+function artifactEntries(artifacts) {
+  return [
+    ...[...artifacts.files].map(([name, content]) => [path.join(artifacts.folder, name), content]),
+    ...artifacts.lessonFiles,
+  ];
 }
 function checkArtifacts(artifacts, mode) {
-  const { folder, files } = artifacts;
-  assertPath(folder);
-  if (files.size > 1500) fail('too many generated files');
-  for (const [name, content] of files) {
-    const destination = path.join(folder, name);
+  const entries = artifactEntries(artifacts);
+  if (entries.length > 2500) fail('too many generated files');
+  const targets = new Set();
+  for (const [destination, content] of entries) {
     assertPath(destination);
+    if (targets.has(destination)) fail('duplicated artifact destination ' + destination);
+    targets.add(destination);
+    if (destination.endsWith('/lesson.yaml')) {
+      const directory = path.dirname(destination);
+      if (fs.existsSync(directory) && !fs.existsSync(destination) && fs.readdirSync(directory).length)
+        fail('Lesson UUID destination already contains unrelated authored files: ' + directory);
+    }
     if (fs.existsSync(destination)) {
       if (fs.readFileSync(destination, 'utf8') !== content)
         fail('existing authored file differs; refusing overwrite: ' + destination);
     } else if (mode !== '--write') fail('missing materialized source: ' + destination);
-    if (name.endsWith('.ts')) {
-      const parsed = ts.createSourceFile(name, content, ts.ScriptTarget.Latest, true);
-      if (parsed.parseDiagnostics.length) fail('generated TypeScript syntax invalid: ' + name);
+    if (destination.endsWith('.ts')) {
+      const parsed = ts.createSourceFile(destination, content, ts.ScriptTarget.Latest, true);
+      if (parsed.parseDiagnostics.length) fail('generated TypeScript syntax invalid: ' + destination);
     }
   }
 }
 function writeArtifacts(artifacts) {
-  const { folder, files } = artifacts;
-  for (const [name, content] of files) {
-    const filename = path.join(folder, name);
+  // Preflight all targets before the first write. A repeat after any partial
+  // failure deterministically derives the same identities and validates bytes.
+  for (const [filename, content] of artifactEntries(artifacts)) {
     if (fs.existsSync(filename)) continue;
+    assertPath(filename);
     fs.mkdirSync(path.dirname(filename), { recursive: true });
     fs.writeFileSync(filename, content, { flag: 'wx' });
   }
@@ -510,13 +551,6 @@ export function materialize(argv, root = rootDefault) {
   assertPath(source);
   if (!fs.existsSync(source)) fail('missing approved temporary course.yaml: ' + source);
   if (fs.statSync(source).size > 2 * 1024 * 1024) fail('course.yaml exceeds 2MiB');
-  if (
-    mode === '--write' &&
-    (fs.existsSync(path.join(folder, 'index.ts')) || fs.readdirSync(folder).some(name => name.endsWith('.data.ts')))
-  ) {
-    console.log('SKIP Course ' + id + ': existing authored Course entrypoint; no files modified');
-    return { skipped: true };
-  }
   const plan = parseYaml(fs.readFileSync(source, 'utf8'));
   if (plan.id !== id) fail('Course UUID in plan does not match canonical folder');
   const lessonIndex = buildLessonIndex(root, pkg);
@@ -527,7 +561,7 @@ export function materialize(argv, root = rootDefault) {
     // Only after a separate successful check/commit; Git retains the plan history.
     fs.unlinkSync(source);
   }
-  console.log(mode + ' Course ' + id + ': ' + artifacts.files.size + ' verified draft artifacts');
+  console.log(mode + ' Course ' + id + ': ' + (artifacts.files.size + artifacts.lessonFiles.size) + ' verified source artifacts; no config.yaml');
   return { skipped: false, artifacts };
 }
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
