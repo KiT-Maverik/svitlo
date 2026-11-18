@@ -18,7 +18,7 @@ export const modelObjectComposition = defineSkill({
     it: 'Modellare la composizione di oggetti',
     ja: 'オブジェクトの合成をモデル化する',
     ka: 'ობიექტების კომპოზიციის მოდელირება',
-    kk: 'Obekt kompozitsiiasyn modeldeu',
+    kk: 'Obekt kompozisiasyn modeldeu',
     ko: '객체 합성 모델링하기',
     lt: 'Modeliuoti objektų kompoziciją',
     lv: 'Modelēt objektu kompozīciju',
