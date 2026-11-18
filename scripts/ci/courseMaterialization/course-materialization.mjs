@@ -234,6 +234,8 @@ async function publish(root, meta) {
   if (beforeWrite?.head?.sha !== meta.head || beforeWrite.head.ref !== meta.branch ||
       beforeWrite.state !== 'open')
     throw Error('PR HEAD advanced before write; no branch ref updated');
+  const freshReview = await inspect(meta.number, meta.head);
+  if (!identicalSnapshot(freshReview, meta)) throw Error('Course identity or Stage 4 approval changed before ref update');
   const updated = await github('git/refs/heads/' + meta.branch, 'PATCH', { sha: next.sha, force: false });
   if (updated?.object?.sha !== next.sha)
     throw Error('GitHub did not confirm the exact new branch ref');
