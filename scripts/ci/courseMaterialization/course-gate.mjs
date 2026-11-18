@@ -165,7 +165,7 @@ export async function inspect(number, expectedHead) {
     throw Error('Canonical course.yaml missing or not a regular Git file');
   const authors = await github('commits?path=' + encodeURIComponent(identity.yaml) +
     '&sha=' + pr.head.sha + '&per_page=1');
-  const sourceAuthor = authors?.[0]?.author?.login ?? authors?.[0]?.commit?.author?.name;
+  const sourceAuthor = authors?.[0]?.author?.login;
   if (!sourceAuthor || !pr.user?.login)
     throw Error('Cannot verify last Course YAML author and PR author');
   const reviews = await collect('pulls/' + number + '/reviews');
