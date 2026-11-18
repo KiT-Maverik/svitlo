@@ -1,6 +1,6 @@
 # Separate Lesson composition from Question and Flashcard banks
 
-**Status (checked 17 November 2026):** PR #606 has merged; independent Question/Flashcard resource publication, host/UI selection and dedicated `questionsBuilder/` / `flashcardBuilder/` draft scaffolding exist. The remaining content migration, integrated acceptance and any Custom Practice UI are separate work, **not** evidence that the core bank separation is still a Draft. This document is the work specification for [Issue #605](https://github.com/KiT-Maverik/svitlo/issues/605). It supersedes that Issue's earlier proposal to remove banks from the first-stage YAML while keeping them in final Lesson Config/Props.
+**Status (updated 18 November 2026, PR #668 Draft):** PR #606 has merged; independent Question/Flashcard resource publication, host/UI selection and dedicated `questionsBuilder/` / `flashcardBuilder/` draft scaffolding exist. The remaining content migration, integrated acceptance and any Custom Practice UI are separate work, **not** evidence that the core bank separation is still a Draft. This document is the work specification for [Issue #605](https://github.com/KiT-Maverik/svitlo/issues/605). It supersedes that Issue's earlier proposal to remove banks from the first-stage YAML while keeping them in final Lesson Config/Props.
 **Scope:** Engine Build and runtime contracts; Section selection; independent YAML/TS authoring, generation and validation; static resource publishing/assembling; UI Kit/host loading; textbooks and Studio migration.
 **Related:** [Lesson entity](../entities/lesson.md), [Section entity](../entities/section.md), [Lesson YAML Builder](./lesson-yaml-builder.md), [source layout](./lesson-generated-source-layout.md), [unified YAML handoff](./yaml-config-scaffolding.md), [Lesson workflow](../../skills/lesson-workflow/README.md), [PR #557](https://github.com/KiT-Maverik/svitlo/pull/557), [PR #576](https://github.com/KiT-Maverik/svitlo/pull/576).
 
@@ -17,9 +17,9 @@ The PR #606 implementation established more than standalone resource primitives 
 
 **Remaining acceptance concerns for the original Issue (verify their current status independently):** reconcile approved `questions.yaml` and `flashcards.yaml` editorial content with independent stages, verify complete-publication UUID ownership and references, handle reused legacy Playground Lesson/Quiz examples without silently duplicating UUIDs, align Studio and fixtures, prove offline/accessibility and host behavior end to end, and obtain independent Development/QA review. Keep the acceptance checklist below unchecked until each boundary is verified.
 
-## Next revision — globally addressed assessment publications (planned, not implemented)
+## Global UUID assessment publication migration (Draft PR #668 — implementation in progress)
 
-**Decision for this Draft PR:** Keep authoring Question/Flashcard banks with their Lesson's independent workflow and source-language provenance, but **do not** publish those banks under the Lesson's JSON resource directory. Questions and Flashcards are first-class, globally UUID-addressed *publication* resources within one textbook. This section specifies pending implementation; current code still publishes beneath `data/lessons/<bucket>/<lessonId>/` and uses Lesson-scoped manifests and loaders.
+**Decision for this Draft PR:** Keep authoring Question/Flashcard banks with their Lesson's independent workflow and source-language provenance, but **do not** publish those banks under the Lesson's JSON resource directory. Questions and Flashcards are first-class, globally UUID-addressed *publication* resources within one textbook. This section is the accepted contract for the ongoing PR #668 migration. Engine generation, runtime paths, and textbook staging are being migrated; maintain the Draft label until all consumers, tests and CI are verified.
 
 Publication and static-host paths (illustrative UUIDs omitted):
 
