@@ -170,6 +170,7 @@ export function technicalFromEditorial(plan, resolveLesson = () => null) {
           const id = node.id.toLowerCase();
           if (ids.has(id)) fail('duplicate Course entity UUID ' + id);
           ids.add(id);
+          explicit.add(id);
         }
         if (node.content) collectExplicit(node.content);
       }
@@ -301,6 +302,35 @@ function lessonSourceCoordinates(root, pkg, courseId, lessonId, index) {
   return { path: path.posix.relative(courseFolder, entries[0].source), export: candidates[0] };
 }
 /** Generate Course-owned files; no standalone Lesson definition is emitted. */
+/**
+ * Reuse the typed nested Config renderer for authored Episode Sections/blocks.
+ * Extract only the Episode expression; never emit a second Course declaration.
+ */
+function renderEpisodeDraft(episode, language, courseId) {
+  const wrapper = {
+    type: 'course', id: courseId, slug: 'episodeScaffold', documentLanguage: language,
+    params: { languages: [language] },
+    locale: { title: { [language]: 'Episode draft' }, description: { [language]: 'Draft' } },
+    content: { items: { [episode.slug]: episode }, order: [episode.slug] },
+  };
+  const rendered = renderCourseSource(wrapper);
+  const ast = ts.createSourceFile('episode-scaffold.ts', rendered, ts.ScriptTarget.Latest, true);
+  if (ast.parseDiagnostics.length) fail('Course Builder produced invalid Episode draft syntax');
+  const calls = [];
+  const visit = node => {
+    if (ts.isCallExpression(node) && ts.isIdentifier(node.expression) && node.expression.text === 'defineEpisode')
+      calls.push(node);
+    ts.forEachChild(node, visit);
+  };
+  visit(ast);
+  if (calls.length !== 1) fail('Expected exactly one generated Episode expression for ' + episode.slug);
+  const expression = calls[0].getText(ast);
+  const factoryNames = [...new Set(
+    [...expression.matchAll(/\bdefine[A-Z][A-Za-z0-9_]*(?=\s*\()/g)].map(m => m[0]),
+  )].sort();
+  return HEADER + 'import { ' + factoryNames.join(', ') + ' } from "@svitlo/engine/build";\n\n' +
+    'export const ' + symbolOf(episode) + ' = ' + expression + ';\n';
+}
 export function renderModularCourse(technical, pkg, resolveLesson = () => null) {
   const { config } = technical;
   const rootFile = 'index.ts';
@@ -310,8 +340,8 @@ export function renderModularCourse(technical, pkg, resolveLesson = () => null) 
     for (const key of collection?.order ?? []) {
       const child = collection.items[key]?.config;
       if (!record(child)) fail('Malformed technical child ' + key);
-      if (child.type === 'module' || child.type === 'chapter') {
-        const filename = (child.type === 'module' ? 'modules/' : 'chapters/') + child.slug + '.ts';
+      if (child.type === 'module' || child.type === 'chapter' || child.type === 'episode') {
+        const filename = (child.type === 'module' ? 'modules/' : child.type === 'chapter' ? 'chapters/' : 'episodes/') + child.slug + '.ts';
         if (paths.has(filename)) fail('Duplicate Course-owned file ' + filename);
         paths.set(filename, child);
         nodes.push({ node: child, file: filename });
@@ -322,6 +352,10 @@ export function renderModularCourse(technical, pkg, resolveLesson = () => null) 
   register(config.content);
   const files = new Map();
   for (const { node, file } of nodes) {
+    if (node.type === 'episode') {
+      files.set(file, renderEpisodeDraft(node, technical.production.documentLanguage, config.id));
+      continue;
+    }
     const imports = new Map(),
       unresolved = [];
     const addImport = (symbol, target) => {
@@ -331,8 +365,8 @@ export function renderModularCourse(technical, pkg, resolveLesson = () => null) 
       return symbol;
     };
     function expression(child) {
-      if (child.type === 'module' || child.type === 'chapter') {
-        const target = (child.type === 'module' ? 'modules/' : 'chapters/') + child.slug + '.ts';
+      if (child.type === 'module' || child.type === 'chapter' || child.type === 'episode') {
+        const target = (child.type === 'module' ? 'modules/' : child.type === 'chapter' ? 'chapters/' : 'episodes/') + child.slug + '.ts';
         return addImport(symbolOf(child), target);
       }
       if (child.type !== 'lesson') fail('Course methodology may not create ' + child.type);
@@ -395,14 +429,22 @@ export function renderModularCourse(technical, pkg, resolveLesson = () => null) 
     ];
     files.set(file, header.join('\n'));
   }
-  for (const family of ['module', 'chapter']) {
+  for (const family of ['module', 'chapter', 'episode']) {
     const entries = nodes.filter(x => x.node.type === family).sort((a, b) => a.file.localeCompare(b.file));
     if (entries.length)
       files.set(
-        (family === 'module' ? 'modules/' : 'chapters/') + 'index.ts',
+        (family === 'module' ? 'modules/' : family === 'chapter' ? 'chapters/' : 'episodes/') + 'index.ts',
         entries.map(x => 'export { ' + symbolOf(x.node) + ' } from "./' + x.node.slug + '";').join('\n') + '\n',
       );
   }
+  files.set('review.ts',
+    '// Course review evidence is authored independently after generated Props are reviewed.\n' +
+    '// TODO(review): Record independently verified Course and locale review decisions here.\n' +
+    'export const courseReview = { methodology: null, experience: null, translation: null } as const;\n');
+  files.set('constants.ts',
+    '// Course identity and source locale; all other locales require real translation.\n' +
+    'export const courseId = ' + JSON.stringify(config.id) + ' as const;\n' +
+    'export const sourceLanguage = ' + JSON.stringify(technical.production.documentLanguage) + ' as const;\n');
   return files;
 }
 export function planArtifacts(plan, pkg, root, lessonIndex) {
