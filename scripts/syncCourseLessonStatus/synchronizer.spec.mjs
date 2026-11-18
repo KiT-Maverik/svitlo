@@ -9,6 +9,7 @@ import {
   replaceManagedBlock,
   outsideHash,
   sameInventory,
+  compatibleMaterializedInventory,
   resolveClaims,
   inspectIndexedLesson,
   renderLessonsBlock,
@@ -96,6 +97,63 @@ test('editorial hierarchy deduplicates repeated Lesson UUID, retains placements 
   );
 });
 
+test('materialized Course PR identity accepts the reviewed historical YAML source and protects manual stage fields', () => {
+  const finalized = body
+    .replace(
+      '- Course UUID: ' + courseId,
+      '- Course UUID: ' + String.fromCharCode(96) + courseId + String.fromCharCode(96),
+    )
+    .replace(
+      '- Textbook: content/math',
+      '- Textbook: ' + String.fromCharCode(96) + 'content/math' + String.fromCharCode(96),
+    )
+    .replace(
+      '- Source plan: content/math/data/courses/7/' + courseId + '/course.yaml',
+      '- Reviewed temporary source (finalized and removed after Stage 5; retained in Git history): ' +
+        String.fromCharCode(96) +
+        'content/math/data/courses/7/' +
+        courseId +
+        '/course.yaml' +
+        String.fromCharCode(96),
+    );
+  assert.equal(parseParent(finalized).courseId, courseId);
+  const initial = finalized.replace(
+    '- Reviewed temporary source (finalized and removed after Stage 5; retained in Git history): ',
+    '- Single temporary source plan: ',
+  );
+  assert.equal(parseParent(initial).textbook, 'content/math');
+  assert.throws(() => parseParent(initial.replace('/courses/7/', '/courses/8/')), /canonical/);
+});
+
+test('materialized inventory reconciles planned UUID-less slots with stable placement', () => {
+  const planned = {
+    lessons: [{ lessonId, placements: ['alpha / first / introduction'] }],
+    unresolved: [{ placement: 'alpha / review', reason: 'Lesson UUID not allocated' }],
+  };
+  const materialized = {
+    lessons: [
+      { lessonId, placements: ['alpha / first / introduction'] },
+      { lessonId: courseId, placements: ['alpha / review'] },
+    ],
+    unresolved: [],
+  };
+  assert.equal(compatibleMaterializedInventory(planned, materialized), true);
+  assert.equal(
+    compatibleMaterializedInventory(planned, {
+      ...materialized,
+      lessons: [{ ...materialized.lessons[0], placements: ['bad / slot'] }, materialized.lessons[1]],
+    }),
+    false,
+  );
+  assert.equal(
+    compatibleMaterializedInventory(planned, {
+      ...materialized,
+      lessons: [{ ...materialized.lessons[0], lessonId: courseId }, materialized.lessons[1]],
+    }),
+    false,
+  );
+});
+
 test('PR identity uses exact UUIDs and never fuzzy title/branch matching', () => {
   const claim = parseLessonClaim(
     '<!-- svitlo-course-lesson:v1 -->\nCourse: ' + courseId + '\nLesson: ' + lessonId + '\nParent PR: #639\n',
@@ -105,6 +163,7 @@ test('PR identity uses exact UUIDs and never fuzzy title/branch matching', () =>
   assert.throws(() => parseLessonClaim('<!-- svitlo-course-lesson:v1 -->\nCourse: fake'), /UUID|Expected/);
   const example = { lessonId, number: 5, state: 'open', draft: true, merged: false };
   assert.equal(resolveClaims(lessonId, [example]).status, 'Draft · #5');
+  assert.equal(resolveClaims(lessonId, [{ ...example, title: 'Lesson Production' }]).prTitle, 'Lesson Production');
   assert.equal(resolveClaims(lessonId, [{ ...example, draft: false }]).status, 'Open · #5');
   assert.equal(resolveClaims(lessonId, [{ ...example, state: 'closed', merged: true }]).status, 'Merged · #5');
   assert.equal(resolveClaims(lessonId, [{ ...example, state: 'closed' }]).status, 'Closed unmerged · #5');

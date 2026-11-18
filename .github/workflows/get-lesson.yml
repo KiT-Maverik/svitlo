@@ -32,6 +32,7 @@ jobs:
       pull-requests: read
     outputs:
       pr: ${{ steps.resolve.outputs.pr }}
+      branch: ${{ steps.resolve.outputs.branch }}
       sha: ${{ steps.resolve.outputs.sha }}
       valid: ${{ steps.resolve.outputs.valid }}
       query: ${{ steps.resolve.outputs.query }}
@@ -94,8 +95,12 @@ jobs:
           let valid = 'true', query = '', error = '';
           try { query = Buffer.from(JSON.stringify(parse(command))).toString('base64'); }
           catch (e) { valid = 'false'; error = Buffer.from(String(e.message).slice(0, 300)).toString('base64'); }
+          const branch = pr.head.ref;
+          if (typeof branch !== 'string' || !/^[a-zA-Z0-9][a-zA-Z0-9._/-]*$/.test(branch) ||
+              branch.includes('..') || branch.includes('//') || branch.endsWith('/') ||
+              branch.endsWith('.lock')) throw Error('Unsafe PR branch name');
           fs.appendFileSync(process.env.GITHUB_OUTPUT, [
-            'pr=' + number, 'sha=' + pr.head.sha, 'valid=' + valid,
+            'pr=' + number, 'branch=' + branch, 'sha=' + pr.head.sha, 'valid=' + valid,
             'query=' + query, 'error=' + error, '',
           ].join('\n'));
           NODE
@@ -166,115 +171,154 @@ jobs:
           retention-days: 7
           if-no-files-found: error
 
-  report:
+  publish:
+    name: Publish Lesson lookup to PR-scoped Agent CI Artifacts
     needs: [resolve, analyze]
-    if: >-
-      always() && needs.resolve.result == 'success' &&
-      (needs.analyze.result == 'success' || needs.resolve.outputs.valid == 'false')
+    if: needs.resolve.result == 'success' && needs.resolve.outputs.valid == 'true' && needs.analyze.result == 'success'
     runs-on: ubuntu-latest
+    timeout-minutes: 10
+    concurrency:
+      group: agent-ci-publish-${{ needs.resolve.outputs.pr }}
+      cancel-in-progress: false
     permissions:
-      issues: write
+      contents: write
       pull-requests: read
     steps:
+      - name: Check out pinned PR commit as data only
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.resolve.outputs.sha }}
+          persist-credentials: true
       - name: Download result from this run only
-        if: needs.resolve.outputs.valid == 'true'
         uses: actions/download-artifact@v4
         with:
           name: get-lesson-${{ needs.resolve.outputs.pr }}
           path: report
-      - name: Validate untrusted artifact before bot comment
+      - name: Validate report and stage only Lesson lookup artifacts
         env:
           GH_TOKEN: ${{ github.token }}
           PR_NUMBER: ${{ needs.resolve.outputs.pr }}
+          TARGET_BRANCH: ${{ needs.resolve.outputs.branch }}
           HEAD_SHA: ${{ needs.resolve.outputs.sha }}
           QUERY_B64: ${{ needs.resolve.outputs.query }}
-          ERROR_B64: ${{ needs.resolve.outputs.error }}
-          VALID: ${{ needs.resolve.outputs.valid }}
         run: |
           node --input-type=module <<'NODE'
+          import crypto from 'node:crypto';
           import fs from 'node:fs';
           import { execFileSync } from 'node:child_process';
-          const repo = process.env.GITHUB_REPOSITORY, pr = Number(process.env.PR_NUMBER), sha = process.env.HEAD_SHA;
-          const api = (url, method, file) => {
-            const args = ['api', url];
-            if (method) args.push('--method', method, '-F', 'body=@' + file);
-            return execFileSync('gh', args, { encoding: 'utf8', timeout: 30000, maxBuffer: 8 * 1024 * 1024 });
-          };
-          const esc = s => String(s ?? '').slice(0, 180).replace(/[\x00-\x1f\x7f]/g, ' ')
-            .replace(/[<>&*_[\]()!#|\x60]/g, x => '\\' + x);
-          const id = s => typeof s === 'string' && /^[a-f0-9]{8}(-[a-f0-9]{4}){3}-[a-f0-9]{12}$/.test(s);
-          const safe = s => typeof s === 'string' && s.length < 500 &&
+
+          const repo = process.env.GITHUB_REPOSITORY;
+          const pr = Number(process.env.PR_NUMBER);
+          const sha = process.env.HEAD_SHA;
+          const branch = process.env.TARGET_BRANCH;
+          const query = JSON.parse(Buffer.from(process.env.QUERY_B64, 'base64').toString('utf8'));
+          const latest = JSON.parse(execFileSync('gh', ['api', 'repos/' + repo + '/pulls/' + pr], { encoding: 'utf8' }));
+          if (latest.state !== 'open' || latest.head?.repo?.full_name !== repo ||
+              latest.head?.sha !== sha || latest.head?.ref !== branch)
+            throw Error('PR head changed since read-only analysis; rerun lookup');
+          const files = fs.readdirSync('report');
+          if (files.length !== 1 || files[0] !== 'result.json' ||
+              !fs.lstatSync('report/result.json').isFile() ||
+              fs.statSync('report/result.json').size > 1024 * 1024)
+            throw Error('Unexpected lookup artifact');
+          const payload = JSON.parse(fs.readFileSync('report/result.json', 'utf8'));
+          const result = payload.result;
+          const uuid = s => typeof s === 'string' &&
+            /^[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}$/.test(s);
+          const safeSource = s => typeof s === 'string' && s.length < 500 &&
             /^content\/[a-z][a-z0-9-]*\/data\/lessons\/[0-9a-f]\/[a-f0-9-]{36}\//.test(s) &&
-            s.split('/').every(x => x !== '.' && x !== '..' && /^[a-zA-Z0-9._-]+$/.test(x));
-          const url = p => 'https://github.com/' + repo + '/blob/' + sha + '/' +
-            p.split('/').map(encodeURIComponent).join('/');
-          const lines = ['<!-- svitlo-get-lesson -->', '## Lesson lookup', '',
-            'Analyzed PR head: ' + sha, ''];
-          if (process.env.VALID !== 'true') {
-            lines.push('Invalid command: ' + esc(Buffer.from(process.env.ERROR_B64, 'base64').toString()), '',
-              'Usage: /get lesson by id UUID [--package content/book] OR ' +
-              '/get lesson by skill UUID [UUID ...] [--match any|all] [--package content/book].');
-          } else {
-            if (fs.readdirSync('report').join(',') !== 'result.json' ||
-              fs.statSync('report/result.json').size > 1024 * 1024) throw Error('Unexpected lookup artifact');
-            const q = JSON.parse(Buffer.from(process.env.QUERY_B64, 'base64').toString('utf8'));
-            const payload = JSON.parse(fs.readFileSync('report/result.json', 'utf8')), r = payload.result;
-            if (payload.pr !== pr || payload.sha !== sha ||
-              JSON.stringify(payload.query) !== JSON.stringify(q) ||
-              JSON.stringify(r?.query) !== JSON.stringify(q) || r.sourceSha !== sha ||
-              typeof r.complete !== 'boolean' || !Array.isArray(r.matches) || !Array.isArray(r.diagnostics) ||
-              !r.scanned || r.matches.length > 10000 || r.diagnostics.length > 10000)
-              throw Error('Untrusted report binding/schema mismatch');
-            const seen = new Set();
-            for (const entry of r.matches) {
-              if (!id(entry.lessonId) || !/^content\/[a-z][a-z0-9-]*$/.test(entry.package) ||
-                !['implemented','editorial-draft'].includes(entry.status) || !safe(entry.source) ||
+            s.split('/').every(part => part !== '.' && part !== '..' && /^[a-zA-Z0-9._-]+$/.test(part));
+          if (payload.pr !== pr || payload.sha !== sha ||
+              JSON.stringify(payload.query) !== JSON.stringify(query) ||
+              JSON.stringify(result?.query) !== JSON.stringify(query) || result.sourceSha !== sha ||
+              typeof result.complete !== 'boolean' ||
+              !Array.isArray(result.matches) || !Array.isArray(result.diagnostics) ||
+              !result.scanned || result.matches.length > 10000 || result.diagnostics.length > 10000)
+            throw Error('Untrusted lookup artifact binding/schema mismatch');
+          const seen = new Set();
+          for (const entry of result.matches) {
+            if (!uuid(entry.lessonId) || !/^content\/[a-z][a-z0-9-]*$/.test(entry.package) ||
+                !['implemented','editorial-draft'].includes(entry.status) || !safeSource(entry.source) ||
                 entry.source.split('/')[1] !== entry.package.split('/')[1] ||
-                !Array.isArray(entry.skills) || !entry.skills.every(id) ||
-                !Array.isArray(entry.matchedSkills) || !entry.matchedSkills.every(s => entry.skills.includes(s)) ||
-                (entry.methodology && !safe(entry.methodology)) ||
-                (entry.draftSource && !safe(entry.draftSource)))
-                throw Error('Unsafe candidate in artifact');
-              const key = entry.package + ':' + entry.lessonId;
-              if (seen.has(key)) throw Error('Duplicate candidate');
-              seen.add(key);
-            }
-            for (const d of r.diagnostics)
-              if (typeof d.reason !== 'string' || d.reason.length > 1000 ||
-                (d.file && (typeof d.file !== 'string' || d.file.length > 500)))
-                throw Error('Unsafe diagnostic');
-            lines.push('Query: ' + esc(q.by === 'id' ? q.lessonId : q.skills.join(', ') + ' (' + q.match + ')') +
-              (q.package ? ' in ' + esc(q.package) : ' across textbooks'), '',
-              'Verified candidates: **' + r.matches.length + '**. Index ' + (r.complete ? 'complete.' : 'INCOMPLETE.'), '');
-            for (const entry of r.matches.slice(0, 15)) {
-              lines.push('- [' + esc(entry.title || entry.slug || entry.lessonId) + '](' + url(entry.source) + ')' +
-                ' — ' + esc(entry.package) + ' · ' + entry.status + ' · ' + entry.lessonId +
-                ' · matched ' + entry.matchedSkills.length + (q.by === 'skill' ? '/' + q.skills.length : '') +
-                ' · all Skills: ' + entry.skills.join(', ') +
-                (entry.methodology ? ' · [methodology](' + url(entry.methodology) + ')' : '') +
-                (entry.draftSource ? ' · [draft YAML](' + url(entry.draftSource) + ')' : '') +
-                ' · locales: ' + (entry.languageStatus === 'verified' && Array.isArray(entry.languages) ?
-                  entry.languages.map(esc).join(', ') : 'unknown'));
-            }
-            if (r.matches.length > 15) lines.push('Additional candidates in JSON: ' + (r.matches.length - 15));
-            if (!r.matches.length) lines.push(r.complete ? 'No verified Lesson matches.' : 'No verified matches; index incomplete.');
-            if (r.diagnostics.length) {
-              lines.push('', 'Diagnostics: ' + r.diagnostics.length);
-              for (const d of r.diagnostics.slice(0, 8)) lines.push('- ' + esc(d.file) + ': ' + esc(d.reason));
-            }
-            lines.push('', 'Full JSON artifact (7 days): https://github.com/' + repo +
-              '/actions/runs/' + process.env.GITHUB_RUN_ID,
-              'Skill overlap is not proof of pedagogical, readiness or language fit.');
+                !Array.isArray(entry.skills) || !entry.skills.every(uuid) ||
+                !Array.isArray(entry.matchedSkills) ||
+                !entry.matchedSkills.every(id => entry.skills.includes(id)) ||
+                (entry.methodology && !safeSource(entry.methodology)) ||
+                (entry.draftSource && !safeSource(entry.draftSource)))
+              throw Error('Unsafe Lesson candidate in artifact');
+            const key = entry.package + ':' + entry.lessonId;
+            if (seen.has(key)) throw Error('Duplicate Lesson candidate');
+            seen.add(key);
           }
-          const latest = JSON.parse(api('repos/' + repo + '/pulls/' + pr));
-          if (latest.head?.sha !== sha) lines.push('', 'Warning: PR moved; results refer to earlier SHA.');
-          const f = process.env.RUNNER_TEMP + '/get-lesson-comment.md';
-          fs.writeFileSync(f, lines.join('\n').slice(0, 14000) + '\n');
-          const comments = JSON.parse(execFileSync('gh', ['api', 'repos/' + repo +
-            '/issues/' + pr + '/comments?per_page=100', '--paginate', '--slurp'],
-            { encoding: 'utf8', timeout: 30000, maxBuffer: 8 * 1024 * 1024 })).flat();
-          const old = comments.filter(c => c.user?.login === 'github-actions[bot]' &&
-            c.body?.startsWith('<!-- svitlo-get-lesson -->')).at(-1);
-          if (old) api('repos/' + repo + '/issues/comments/' + old.id, 'PATCH', f);
-          else api('repos/' + repo + '/issues/' + pr + '/comments', 'POST', f);
+          for (const diagnostic of result.diagnostics) {
+            if (typeof diagnostic.reason !== 'string' || diagnostic.reason.length > 1000 ||
+                (diagnostic.file && (typeof diagnostic.file !== 'string' || diagnostic.file.length > 500)))
+              throw Error('Unsafe lookup diagnostic');
+          }
+          const escape = s => String(s ?? '').slice(0, 180).replace(/[\x00-\x1f\x7f]/g, ' ')
+            .replace(/[<>&*_[\]()!#|\x60]/g, ch => '\\' + ch);
+          const sourceLink = source => 'https://github.com/' + repo + '/blob/' + sha + '/' +
+            source.split('/').map(encodeURIComponent).join('/');
+          const key = crypto.createHash('sha256').update(JSON.stringify(query)).digest('hex').slice(0, 16);
+          const lines = ['# Lesson lookup', '', 'Source PR: #' + pr, 'Analyzed PR head: ' + sha,
+            'Query: ' + escape(query.by === 'id' ? query.lessonId : query.skills.join(', ') +
+              ' (' + query.match + ')') + (query.package ? ' in ' + escape(query.package) : ' across textbooks'),
+            '', 'Verified candidates: **' + result.matches.length + '**. Index ' +
+              (result.complete ? 'complete.' : 'INCOMPLETE.'), ''];
+          for (const entry of result.matches.slice(0, 40)) {
+            lines.push('- [' + escape(entry.title || entry.slug || entry.lessonId) + '](' +
+              sourceLink(entry.source) + ') — ' + escape(entry.package) + ' · ' +
+              escape(entry.status) + ' · ' + entry.lessonId + ' · matched ' +
+              entry.matchedSkills.length + (query.by === 'skill' ? '/' + query.skills.length : '') +
+              (entry.methodology ? ' · [methodology](' + sourceLink(entry.methodology) + ')' : '') +
+              (entry.draftSource ? ' · [draft YAML](' + sourceLink(entry.draftSource) + ')' : '') +
+              ' · locales: ' + (entry.languageStatus === 'verified' && Array.isArray(entry.languages) ?
+              entry.languages.map(escape).join(', ') : 'unknown'));
+          }
+          if (result.matches.length > 40)
+            lines.push('Additional candidates in the adjacent JSON file: ' + (result.matches.length - 40));
+          if (!result.matches.length)
+            lines.push(result.complete ? 'No verified Lesson matches.' : 'No verified matches; index incomplete.');
+          if (result.diagnostics.length) {
+            lines.push('', 'Diagnostics: ' + result.diagnostics.length);
+            for (const d of result.diagnostics.slice(0, 12))
+              lines.push('- ' + escape(d.file) + ': ' + escape(d.reason));
+          }
+          lines.push('', 'Skill overlap does not establish pedagogical, readiness or language fit.');
+          const dirs = ['.agent-ci-artifacts', '.agent-ci-artifacts/lesson-lookup'];
+          for (const dir of dirs) {
+            if (fs.existsSync(dir) && (fs.lstatSync(dir).isSymbolicLink() || !fs.lstatSync(dir).isDirectory()))
+              throw Error('Unsafe Agent CI Artifacts path');
+            fs.mkdirSync(dir, { recursive: true });
+          }
+          for (const extension of ['json', 'md']) {
+            const file = '.agent-ci-artifacts/lesson-lookup/' + key + '.' + extension;
+            if (fs.existsSync(file) && !fs.lstatSync(file).isFile())
+              throw Error('Unsafe existing lookup artifact');
+          }
+          fs.writeFileSync('.agent-ci-artifacts/lesson-lookup/' + key + '.json',
+            JSON.stringify(payload, null, 2) + '\n');
+          fs.writeFileSync('.agent-ci-artifacts/lesson-lookup/' + key + '.md',
+            lines.join('\n').slice(0, 30000) + '\n');
           NODE
+      - name: Commit lookup result to the source PR branch
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TARGET_BRANCH: ${{ needs.resolve.outputs.branch }}
+          HEAD_SHA: ${{ needs.resolve.outputs.sha }}
+          PR_NUMBER: ${{ needs.resolve.outputs.pr }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          latest=$(gh api "repos/$GITHUB_REPOSITORY/pulls/$PR_NUMBER")
+          test "$(jq -r '.head.sha' <<<"$latest")" = "$HEAD_SHA"
+          test "$(jq -r '.head.ref' <<<"$latest")" = "$TARGET_BRANCH"
+          git add -- .agent-ci-artifacts/lesson-lookup/
+          if git diff --cached --quiet; then
+            echo 'Lesson lookup artifact is unchanged'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'chore(agent-ci): save scoped Lesson lookup result'
+          git push origin "HEAD:refs/heads/$TARGET_BRANCH"
