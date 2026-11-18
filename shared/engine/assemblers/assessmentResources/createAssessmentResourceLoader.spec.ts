@@ -72,11 +72,11 @@ test('loader rejects missing files, wrong IDs and cancelled navigation without c
     new Map(paths.filter(path => path.endsWith('manifest.json')).map(path => [path, manifest]));
   const loader = createAssessmentResourceLoader(reader);
   await assert.rejects(
-    () => loader.loadQuestions({ language: 'en', ids: [questionId] }),
+    () => loader.loadQuestions({ language: 'uk', ids: [questionId] }),
     /Missing assessment published file/,
   );
   await assert.rejects(
-    () => loader.loadQuestions({ language: 'en', ids: [questionId], signal: AbortSignal.abort() }),
+    () => loader.loadQuestions({ language: 'uk', ids: [questionId], signal: AbortSignal.abort() }),
     /aborted/,
   );
 });
@@ -259,7 +259,6 @@ test('a completed Question is published and resolved separately with the request
 test('incompatible Flashcard UUIDs are excluded from batched reads before fetching content', async () => {
   const deniedId = '715383c3-ea22-5043-9213-555180837358';
   const ownedManifest = {
-    lessonId,
     entries: {
       [deniedId]: {
         ownerLessonId: lessonId,
