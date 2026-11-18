@@ -53,7 +53,7 @@ export const diagnosticImagingHardware = defineSkill({
       it: 'Esplora le apparecchiature impiegate per ottenere immagini a scopo diagnostico.',
       ja: '医療検査用の画像を作る装置を調べよう。',
       ka: 'შეისწავლე სამედიცინო გამოკვლევის გამოსახულებების შესაქმნელი აპარატურა.',
-      kk: 'Meditsinalyq zertteulerge suret jasaityn jabdyqty zertte.',
+      kk: 'Meditsinalyq tekserulerge arnalğan beineleu jabdyğyn zertte.',
       ko: '의료 검사용 영상을 생성하는 장비를 살펴보세요.',
       lt: 'Tyrinėk įrangą, kuria kuriami vaizdai medicininiams tyrimams.',
       lv: 'Izpēti aparatūru, ar kuru iegūst attēlus medicīniskām pārbaudēm.',
