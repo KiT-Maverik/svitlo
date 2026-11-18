@@ -21,7 +21,9 @@ for (const lesson of index.lessons) {
   assert.equal(base.type, 'lesson');
   assert.deepEqual(base.params.languages, lesson.languages);
   assert.ok(Array.isArray(base.section));
-  assert.ok(Array.isArray(base.flashcards));
+  // Assessment banks are published independently; Lesson Props must not embed them.
+  assert.equal(Object.hasOwn(base, 'flashcards'), false);
+  assert.equal(Object.hasOwn(base, 'questions'), false);
   for (const language of lesson.languages) {
     const localeFile = join(directory, language + '.json');
     if (existsSync(localeFile)) JSON.parse(readFileSync(localeFile, 'utf8'));
