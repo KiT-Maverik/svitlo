@@ -86,8 +86,10 @@ export function renderAssessmentResourceFiles(
   const index: Record<string, AssessmentResourceEntry> = {};
 
   for (const entry of [...entries].sort(
-    (a, b) => compare(a.publication.base?.id ?? '', b.publication.base?.id ?? '')
-      || compare(a.lessonId, b.lessonId) || compare(a.kind, b.kind),
+    (a, b) =>
+      compare(a.publication.base?.id ?? '', b.publication.base?.id ?? '') ||
+      compare(a.lessonId, b.lessonId) ||
+      compare(a.kind, b.kind),
   )) {
     const { source, lessonId, kind, publication } = entry;
     resolveEntityPath(lessonId);
@@ -177,8 +179,7 @@ export function mergeAssessmentResourceFiles(
       const matched = /^(questions|flashcards)\/([0-9a-f])\/([0-9a-f-]{36})\/(base|[a-z]{2})\.json$/.exec(filename);
       if (!matched) throw new Error('Invalid Assessment resource path: ' + filename);
       const [, collection, bucket, id] = matched;
-      if (resolveEntityPath(id) !== bucket + '/' + id)
-        throw new Error('Invalid Assessment UUID path: ' + filename);
+      if (resolveEntityPath(id) !== bucket + '/' + id) throw new Error('Invalid Assessment UUID path: ' + filename);
       if (files.has(filename)) throw new Error('Duplicate Assessment resource file: ' + filename);
       const parsed = JSON.parse(body);
       if (parsed === null || typeof parsed !== 'object' || Array.isArray(parsed)) {
@@ -204,9 +205,11 @@ export function mergeAssessmentResourceFiles(
 
   for (const [id, entry] of Object.entries(index)) {
     const folder = (entry.kind === 'question' ? 'questions/' : 'flashcards/') + resolveEntityPath(id);
-    if (new Set(entry.languages).size !== entry.languages.length
-      || new Set(entry.localeFiles).size !== entry.localeFiles.length
-      || entry.localeFiles.some(code => !entry.languages.includes(code))) {
+    if (
+      new Set(entry.languages).size !== entry.languages.length ||
+      new Set(entry.localeFiles).size !== entry.localeFiles.length ||
+      entry.localeFiles.some(code => !entry.languages.includes(code))
+    ) {
       throw new Error('Invalid Assessment publication languages: ' + id);
     }
     const baseFile = folder + '/base.json';

@@ -247,8 +247,9 @@ test('a completed Question is published and resolved separately with the request
   changedManifest.entries[questionId].localeFiles = ['uk'];
   withoutEnglish.set(manifestUrl, changedManifest);
   withoutEnglish.delete('data/questions/' + questionId.at(-1) + '/' + questionId + '/en.json');
-  const missingEnglishLoader = createAssessmentResourceLoader(async paths =>
-    new Map(paths.filter(path => withoutEnglish.has(path)).map(path => [path, withoutEnglish.get(path)])),
+  const missingEnglishLoader = createAssessmentResourceLoader(
+    async paths =>
+      new Map(paths.filter(path => withoutEnglish.has(path)).map(path => [path, withoutEnglish.get(path)])),
   );
   await assert.rejects(
     () => missingEnglishLoader.loadQuestions({ language: 'de', ids: [questionId] }),

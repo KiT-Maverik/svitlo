@@ -20,14 +20,14 @@ function validateFiles(files, mode = 'lesson') {
     if (typeof relative !== 'string') throw new Error('Invalid generated path: ' + String(relative));
     if (mode === 'lesson') {
       const match = lessonFile.exec(relative);
-      if (!match || match[1] !== match[2].slice(-1))
-        throw new Error('Invalid generated Lesson path: ' + relative);
+      if (!match || match[1] !== match[2].slice(-1)) throw new Error('Invalid generated Lesson path: ' + relative);
     } else {
       const match = assessmentFile.exec(relative);
       if (!match || (relative !== 'assessments/manifest.json' && match[2] !== match[3].slice(-1)))
         throw new Error('Invalid generated Assessment path: ' + relative);
     }
-    if (typeof body !== 'string') throw new Error('Invalid generated ' + (mode === 'lesson' ? 'Lesson' : 'Assessment') + ' body: ' + relative);
+    if (typeof body !== 'string')
+      throw new Error('Invalid generated ' + (mode === 'lesson' ? 'Lesson' : 'Assessment') + ' body: ' + relative);
   }
 }
 

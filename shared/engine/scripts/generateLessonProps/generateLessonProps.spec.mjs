@@ -102,7 +102,10 @@ test('global Assessment JSON is published atomically without changing Lesson Pro
       );
     }
     assert.throws(() => publishLessonProps(assessmentRoot, files), /Invalid generated Lesson path/);
-    assert.doesNotThrow(() => check(assessmentRoot, files, 'assessment'), 'invalid publication must leave previous files intact');
+    assert.doesNotThrow(
+      () => check(assessmentRoot, files, 'assessment'),
+      'invalid publication must leave previous files intact',
+    );
   } finally {
     fs.rmSync(directory, { recursive: true, force: true });
   }

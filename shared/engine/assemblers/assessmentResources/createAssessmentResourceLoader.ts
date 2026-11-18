@@ -86,13 +86,17 @@ function parseResolved(kind: AssessmentResourceKind, id: string, entry: Assessme
  * every locale file; a missing requested translation otherwise falls back to
  * genuine English, not to an unrelated language or fabricated text.
  */
-function resolveLanguage(entry: AssessmentResourceEntry, id: string, requested: Parameters<AssessmentResourceLoader['loadQuestions']>[0]['language']) {
+function resolveLanguage(
+  entry: AssessmentResourceEntry,
+  id: string,
+  requested: Parameters<AssessmentResourceLoader['loadQuestions']>[0]['language'],
+) {
   if (entry.localeFiles.includes(requested)) return { language: requested, fallback: false };
   if (!entry.localeFiles.length && entry.languages.includes(requested)) {
     return { language: undefined, fallback: false };
   }
   if (entry.localeFiles.includes('en') || (!entry.localeFiles.length && entry.languages.includes('en'))) {
-    return { language: entry.localeFiles.includes('en') ? 'en' as const : undefined, fallback: requested !== 'en' };
+    return { language: entry.localeFiles.includes('en') ? ('en' as const) : undefined, fallback: requested !== 'en' };
   }
   throw new Error('Missing assessment locale ' + requested + ' and English fallback for UUID ' + id);
 }
@@ -161,6 +165,8 @@ export function createAssessmentResourceLoader(read: ReadAssessmentFiles): Asses
     loadQuestions: async ({ language, ids, signal }) =>
       (await load(language, ids, 'question', signal)) as Awaited<ReturnType<AssessmentResourceLoader['loadQuestions']>>,
     loadFlashcards: async ({ language, ids, signal, accessNeeds }) =>
-      (await load(language, ids, 'flashcard', signal, accessNeeds)) as Awaited<ReturnType<AssessmentResourceLoader['loadFlashcards']>>,
+      (await load(language, ids, 'flashcard', signal, accessNeeds)) as Awaited<
+        ReturnType<AssessmentResourceLoader['loadFlashcards']>
+      >,
   };
 }

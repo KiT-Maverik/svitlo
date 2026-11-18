@@ -25,20 +25,21 @@ const manifest: AssessmentResourceManifest = {
       localeFiles: ['en', 'uk'],
       contentHash: hash,
     },
-    [secondId]: { ownerLessonId: lessonId, kind: 'question', questionType: 'answerWithText', languages: ['en'], localeFiles: ['en'], contentHash: hash },
+    [secondId]: {
+      ownerLessonId: lessonId,
+      kind: 'question',
+      questionType: 'answerWithText',
+      languages: ['en'],
+      localeFiles: ['en'],
+      contentHash: hash,
+    },
     [cardId]: { ownerLessonId: lessonId, kind: 'flashcard', languages: ['en'], localeFiles: ['en'], contentHash: hash },
   },
 };
 
 test('assessment paths are portable, UUID-addressed and reject invalid IDs', () => {
-  assert.equal(
-    assessmentResourcePath('question', firstId, 'uk'),
-    'data/questions/2/' + firstId + '/uk.json',
-  );
-  assert.equal(
-    assessmentResourcePath('flashcard', cardId),
-    'data/flashcards/4/' + cardId + '/base.json',
-  );
+  assert.equal(assessmentResourcePath('question', firstId, 'uk'), 'data/questions/2/' + firstId + '/uk.json');
+  assert.equal(assessmentResourcePath('flashcard', cardId), 'data/flashcards/4/' + cardId + '/base.json');
   assert.throws(() => assessmentResourcePath('question', '../escape'), /uuid|UUID|Invalid/);
 });
 
@@ -49,16 +50,24 @@ test('reference validation requires explicit selected, correctly owned, localize
   assert.throws(() => validateAssessmentReferences(manifest, { ...valid, ids: [firstId, firstId] }), /Duplicate/);
   assert.throws(() => validateAssessmentReferences(manifest, { ...valid, ids: [cardId] }), /wrong resource type/);
   assert.deepEqual(validateAssessmentReferences(manifest, { ...valid, ids: [secondId] }), [manifest.entries[secondId]]);
-  assert.deepEqual(validateAssessmentReferences(manifest, { ...valid, lessonId: secondId }), [manifest.entries[firstId]], 'Cross-Lesson selection is allowed');
+  assert.deepEqual(
+    validateAssessmentReferences(manifest, { ...valid, lessonId: secondId }),
+    [manifest.entries[firstId]],
+    'Cross-Lesson selection is allowed',
+  );
   assert.throws(
     () => validateAssessmentReferences(manifest, { ...valid, ids: ['1e125b21-9af0-4000-8000-000000000005'] }),
     /Missing assessment/,
   );
   assert.throws(
-    () => validateAssessmentReferences(
-      { ...manifest, entries: { ...manifest.entries, [firstId]: { ...manifest.entries[firstId], ownerLessonId: 'invalid' } } },
-      valid,
-    ),
+    () =>
+      validateAssessmentReferences(
+        {
+          ...manifest,
+          entries: { ...manifest.entries, [firstId]: { ...manifest.entries[firstId], ownerLessonId: 'invalid' } },
+        },
+        valid,
+      ),
     /uuid|UUID|Invalid/,
   );
 });

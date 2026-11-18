@@ -32,12 +32,17 @@ function fixture(root) {
   const manifest = {
     entries: {
       [questionId]: {
-        ownerLessonId: lessonId, kind: 'question', questionType: 'selectOneAnswer',
-        languages: ['en', 'uk'], localeFiles: ['en', 'uk'],
+        ownerLessonId: lessonId,
+        kind: 'question',
+        questionType: 'selectOneAnswer',
+        languages: ['en', 'uk'],
+        localeFiles: ['en', 'uk'],
       },
       [cardId]: {
-        ownerLessonId: lessonId, kind: 'flashcard',
-        languages: ['en', 'uk'], localeFiles: ['en', 'uk'],
+        ownerLessonId: lessonId,
+        kind: 'flashcard',
+        languages: ['en', 'uk'],
+        localeFiles: ['en', 'uk'],
       },
     },
   };
@@ -53,16 +58,21 @@ function fixture(root) {
 }
 function withFixture(fn) {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-selection-publication-'));
-  try { fn(root, fixture(root)); } finally { fs.rmSync(root, { recursive: true, force: true }); }
+  try {
+    fn(root, fixture(root));
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
 }
 
 test('valid Question and Flashcard resources are resolved in every published Lesson locale', () =>
   withFixture(root => assert.equal(verifyAssessmentSelections(root), 2)));
 
-test('global assessment manifest is required for enabled selected Sections', () => withFixture(root => {
-  fs.rmSync(path.join(root, manifestPath));
-  assert.throws(() => verifyAssessmentSelections(root), /Missing assessment manifest/);
-}));
+test('global assessment manifest is required for enabled selected Sections', () =>
+  withFixture(root => {
+    fs.rmSync(path.join(root, manifestPath));
+    assert.throws(() => verifyAssessmentSelections(root), /Missing assessment manifest/);
+  }));
 
 test('wrong resource kind is rejected, but another authored Lesson may own a selected Question', () =>
   withFixture((root, { manifest }) => {
@@ -82,18 +92,19 @@ test('every selected candidate ID is checked, including Quiz candidates not samp
     assert.throws(() => verifyAssessmentSelections(root), new RegExp(missing));
   }));
 
-test('publication requires real base and advertised localized files', () => withFixture((root, { manifest }) => {
-  fs.rmSync(path.join(root, cardPath, 'base.json'));
-  assert.throws(() => verifyAssessmentSelections(root), /has no generated base.json/);
-  put(root, cardPath + '/base.json', { id: cardId, type: 'flashcard' });
-  fs.rmSync(path.join(root, questionPath, 'uk.json'));
-  assert.throws(() => verifyAssessmentSelections(root), /missing generated locale uk/);
-  put(root, questionPath + '/uk.json', {});
-  manifest.entries[cardId].languages = ['en'];
-  manifest.entries[cardId].localeFiles = ['en'];
-  put(root, manifestPath, manifest);
-  assert.throws(() => verifyAssessmentSelections(root), /missing published language uk/);
-}));
+test('publication requires real base and advertised localized files', () =>
+  withFixture((root, { manifest }) => {
+    fs.rmSync(path.join(root, cardPath, 'base.json'));
+    assert.throws(() => verifyAssessmentSelections(root), /has no generated base.json/);
+    put(root, cardPath + '/base.json', { id: cardId, type: 'flashcard' });
+    fs.rmSync(path.join(root, questionPath, 'uk.json'));
+    assert.throws(() => verifyAssessmentSelections(root), /missing generated locale uk/);
+    put(root, questionPath + '/uk.json', {});
+    manifest.entries[cardId].languages = ['en'];
+    manifest.entries[cardId].localeFiles = ['en'];
+    put(root, manifestPath, manifest);
+    assert.throws(() => verifyAssessmentSelections(root), /missing published language uk/);
+  }));
 
 test('missing declared locale fails production instead of silently falling back to English', () =>
   withFixture((root, { manifest }) => {

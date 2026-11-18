@@ -18,10 +18,15 @@ function json(filename) {
 
 function directories(folder) {
   if (!fs.existsSync(folder)) return [];
-  return fs.readdirSync(folder, { withFileTypes: true }).filter(item => {
-    if (item.isSymbolicLink()) throw new Error('Symlink in generated Lesson resources: ' + path.join(folder, item.name));
-    return item.isDirectory();
-  }).map(item => item.name).sort();
+  return fs
+    .readdirSync(folder, { withFileTypes: true })
+    .filter(item => {
+      if (item.isSymbolicLink())
+        throw new Error('Symlink in generated Lesson resources: ' + path.join(folder, item.name));
+      return item.isDirectory();
+    })
+    .map(item => item.name)
+    .sort();
 }
 
 /**
@@ -33,7 +38,9 @@ function invariantOnly(value) {
   if (!value || typeof value !== 'object') return true;
   if (Array.isArray(value)) return value.every(invariantOnly);
   if (isRecord(value.locale) && Object.keys(value.locale).length > 0) return false;
-  return Object.entries(value).every(([key, item]) => key === 'locale' ? !isRecord(item) || Object.keys(item).length === 0 : invariantOnly(item));
+  return Object.entries(value).every(([key, item]) =>
+    key === 'locale' ? !isRecord(item) || Object.keys(item).length === 0 : invariantOnly(item),
+  );
 }
 
 function checkedResource(root, id, entry, language, kind, sectionId, lessonId) {
@@ -48,20 +55,30 @@ function checkedResource(root, id, entry, language, kind, sectionId, lessonId) {
     throw new Error('Invalid selected ' + kind + ' resource identity/type: ' + id);
   }
   if (!Array.isArray(entry.languages) || !entry.languages.includes(language)) {
-    throw new Error('Selected ' + kind + ' ' + id + ' missing published language ' + language + ' in Section ' + sectionId);
+    throw new Error(
+      'Selected ' + kind + ' ' + id + ' missing published language ' + language + ' in Section ' + sectionId,
+    );
   }
   const locales = entry.localeFiles;
-  if (!Array.isArray(locales) || new Set(locales).size !== locales.length || locales.some(locale => !entry.languages.includes(locale))) {
+  if (
+    !Array.isArray(locales) ||
+    new Set(locales).size !== locales.length ||
+    locales.some(locale => !entry.languages.includes(locale))
+  ) {
     throw new Error('Invalid locale metadata for ' + kind + ' ' + id);
   }
   if (locales.includes(language)) {
     const localeFile = path.join(directory, language + '.json');
     if (!fs.existsSync(localeFile)) {
-      throw new Error('Selected ' + kind + ' ' + id + ' missing generated locale ' + language + ' in Section ' + sectionId);
+      throw new Error(
+        'Selected ' + kind + ' ' + id + ' missing generated locale ' + language + ' in Section ' + sectionId,
+      );
     }
     json(localeFile);
   } else if (locales.length || !invariantOnly(base)) {
-    throw new Error('Selected ' + kind + ' ' + id + ' missing required authored locale ' + language + ' in Section ' + sectionId);
+    throw new Error(
+      'Selected ' + kind + ' ' + id + ' missing required authored locale ' + language + ' in Section ' + sectionId,
+    );
   }
 }
 
@@ -78,29 +95,38 @@ export function verifyAssessmentSelections(staticRoot) {
   for (const bucket of directories(lessons)) {
     if (!/^[0-9a-f]$/.test(bucket)) throw new Error('Invalid generated Lesson bucket: ' + bucket);
     for (const id of directories(path.join(lessons, bucket))) {
-      if (!uuid.test(id) || id.at(-1) !== bucket) throw new Error('Invalid generated Lesson UUID path: ' + bucket + '/' + id);
+      if (!uuid.test(id) || id.at(-1) !== bucket)
+        throw new Error('Invalid generated Lesson UUID path: ' + bucket + '/' + id);
       const owner = path.join(lessons, bucket, id);
       const basePath = path.join(owner, 'base.json');
       if (!fs.existsSync(basePath)) throw new Error('Missing generated Lesson base.json: ' + owner);
       const lesson = json(basePath);
-      if (lesson.id !== id || !Array.isArray(lesson.section)) throw new Error('Invalid generated Lesson identity/Sections: ' + owner);
+      if (lesson.id !== id || !Array.isArray(lesson.section))
+        throw new Error('Invalid generated Lesson identity/Sections: ' + owner);
       const languages = lesson.params?.languages;
-      if (!Array.isArray(languages) || !languages.length) throw new Error('Missing generated Lesson languages: ' + owner);
-      const sections = lesson.section.filter(section =>
-        ['quiz', 'flashcards'].includes(section.type) && section.params?.disabled !== true);
+      if (!Array.isArray(languages) || !languages.length)
+        throw new Error('Missing generated Lesson languages: ' + owner);
+      const sections = lesson.section.filter(
+        section => ['quiz', 'flashcards'].includes(section.type) && section.params?.disabled !== true,
+      );
       if (!sections.length) continue;
       if (!manifest) throw new Error('Missing assessment manifest for selected Question/Flashcard Section: ' + owner);
       for (const section of sections) {
         const kind = section.type === 'quiz' ? 'question' : 'flashcard';
         const key = kind === 'question' ? 'questionIds' : 'flashcardIds';
         const ids = section.params?.selection?.[key];
-        if (!Array.isArray(ids) || !ids.length) throw new Error('Missing selected ' + key + ' in Section ' + section.id);
-        if (new Set(ids).size !== ids.length) throw new Error('Duplicate selected ' + key + ' in Section ' + section.id);
+        if (!Array.isArray(ids) || !ids.length)
+          throw new Error('Missing selected ' + key + ' in Section ' + section.id);
+        if (new Set(ids).size !== ids.length)
+          throw new Error('Duplicate selected ' + key + ' in Section ' + section.id);
         for (const selectedId of ids) {
-          if (typeof selectedId !== 'string' || !uuid.test(selectedId)) throw new Error('Invalid ' + kind + ' UUID in Section ' + section.id);
+          if (typeof selectedId !== 'string' || !uuid.test(selectedId))
+            throw new Error('Invalid ' + kind + ' UUID in Section ' + section.id);
           const entry = manifest.entries[selectedId];
           if (!entry || entry.kind !== kind || !uuid.test(entry.ownerLessonId ?? '')) {
-            throw new Error('Missing or wrong-kind ' + kind + ' ' + selectedId + ' in Section ' + section.id + ' (Lesson ' + id + ')');
+            throw new Error(
+              'Missing or wrong-kind ' + kind + ' ' + selectedId + ' in Section ' + section.id + ' (Lesson ' + id + ')',
+            );
           }
           for (const language of languages) {
             checkedResource(staticRoot, selectedId, entry, language, kind, section.id, id);

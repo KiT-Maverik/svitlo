@@ -86,7 +86,9 @@ export function validateAssessmentReferences(
   const manifest = assessmentResourceManifest_Schema.parse(rawManifest);
   const context = selection.sectionId
     ? 'in Section ' + z.uuid().parse(selection.sectionId)
-    : selection.lessonId ? 'for Lesson ' + z.uuid().parse(selection.lessonId) : 'in Assessment selection';
+    : selection.lessonId
+      ? 'for Lesson ' + z.uuid().parse(selection.lessonId)
+      : 'in Assessment selection';
   if (selection.kind !== 'question' && selection.kind !== 'flashcard') {
     throw new Error('Unknown assessment resource kind ' + context);
   }
@@ -113,8 +115,10 @@ export function validateAssessmentReferences(
     if (entry.languages.length !== new Set(entry.languages).size) {
       throw new Error('Duplicate language for assessment UUID ' + id);
     }
-    if (entry.localeFiles.length !== new Set(entry.localeFiles).size
-      || entry.localeFiles.some(code => !entry.languages.includes(code))) {
+    if (
+      entry.localeFiles.length !== new Set(entry.localeFiles).size ||
+      entry.localeFiles.some(code => !entry.languages.includes(code))
+    ) {
       throw new Error('Unexpected or duplicated locale fragment for assessment UUID ' + id);
     }
     return entry;

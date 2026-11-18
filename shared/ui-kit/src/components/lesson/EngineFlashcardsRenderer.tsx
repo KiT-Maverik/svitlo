@@ -142,18 +142,18 @@ function ResolvedFlashcards({
         {index + 1} / {cards.length}
       </Typography>
       <Box lang={fallbackIds.includes(card.id) ? 'en' : undefined}>
-      <Flashcard
-        key={card.id}
-        messages={messages.flashcard}
-        question={render(card.content.front)}
-        answer={render(card.content.back)}
-        flags={card.parameters.flags}
-        revealed={revealed}
-        onReveal={() => setRevealed(true)}
-        onRate={() => {
-          if (index < cards.length - 1) select(index + 1);
-        }}
-      />
+        <Flashcard
+          key={card.id}
+          messages={messages.flashcard}
+          question={render(card.content.front)}
+          answer={render(card.content.back)}
+          flags={card.parameters.flags}
+          revealed={revealed}
+          onReveal={() => setRevealed(true)}
+          onRate={() => {
+            if (index < cards.length - 1) select(index + 1);
+          }}
+        />
       </Box>
       <Stack direction="row" sx={{ justifyContent: 'space-between' }}>
         <Button disabled={index === 0} onClick={() => select(index - 1)}>

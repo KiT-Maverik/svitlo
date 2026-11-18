@@ -7,13 +7,7 @@ import {
   selectQuizQuestionIds,
   validateAssessmentReferences,
 } from '@svitlo/engine/build';
-import {
-  textbook,
-  lessonEntry,
-  lessonId,
-  questionId,
-  flashcardId,
-} from '../../testing/fixtures.mjs';
+import { textbook, lessonEntry, lessonId, questionId, flashcardId } from '../../testing/fixtures.mjs';
 
 const id = index => '00000000-0000-4000-8000-' + String(index).padStart(12, '0');
 const question = (key, number, type = 'selectOneAnswer') => ({

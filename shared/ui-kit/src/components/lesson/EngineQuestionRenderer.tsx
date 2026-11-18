@@ -396,23 +396,27 @@ export function EngineQuestionRenderer({
     if (!assessmentLoader) {
       setLoad({ identity, status: 'error', questions: [], fallbackIds: [] });
     } else {
-      assessmentLoader.loadQuestions({ language, ids, signal: controller.signal })
-        .then(result => ({ questions: selectQuizQuestions(result.items, ids), fallbackIds: result.fallbacks.map(item => item.id) }))
+      assessmentLoader
+        .loadQuestions({ language, ids, signal: controller.signal })
+        .then(result => ({
+          questions: selectQuizQuestions(result.items, ids),
+          fallbackIds: result.fallbacks.map(item => item.id),
+        }))
         .then(
-        ({ questions, fallbackIds }) => {
-          if (!controller.signal.aborted)
-            setLoad({ identity, status: 'ready', questions, fallbackIds });
-        },
-        () => {
-          if (!controller.signal.aborted) setLoad({ identity, status: 'error', questions: [], fallbackIds: [] });
-        },
-      );
+          ({ questions, fallbackIds }) => {
+            if (!controller.signal.aborted) setLoad({ identity, status: 'ready', questions, fallbackIds });
+          },
+          () => {
+            if (!controller.signal.aborted) setLoad({ identity, status: 'error', questions: [], fallbackIds: [] });
+          },
+        );
     }
     return () => controller.abort();
   }, [assessmentLoader, lessonId, language, identity, attempt]);
 
   const current = load.identity === identity ? load : { status: 'loading' as const, questions: [], fallbackIds: [] };
-  if (current.status === 'loading') return <Typography role="status">{messages.learningLayout.preparingLesson}</Typography>;
+  if (current.status === 'loading')
+    return <Typography role="status">{messages.learningLayout.preparingLesson}</Typography>;
   if (current.status === 'error')
     return (
       <Stack spacing={2}>
@@ -493,7 +497,11 @@ function ResolvedQuiz({
         />
       )}
       {questions.map((question, position) => (
-        <Box key={question.id} lang={fallbackIds.includes(question.id) ? 'en' : undefined} sx={{ display: stepper && index !== position ? 'none' : 'block' }}>
+        <Box
+          key={question.id}
+          lang={fallbackIds.includes(question.id) ? 'en' : undefined}
+          sx={{ display: stepper && index !== position ? 'none' : 'block' }}
+        >
           <QuestionCard
             question={question}
             messages={messages}
