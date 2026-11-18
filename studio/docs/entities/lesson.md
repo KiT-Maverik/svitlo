@@ -4,7 +4,7 @@
 
 **Entity category:** ordinary Lesson with Sections. Instructional Lessons are Course-neutral and reusable; a deliberately placed **assessment-only Lesson** may depend pedagogically on preceding Course Lessons and their Question Banks without a different Engine entity type.
 
-An **instructional Lesson** independently teaches **one or more approved Skills** and must make sense without a Course, Curriculum, mascot, quest, reward system, external plot or special learner history. An **assessment-only Lesson** can instead measure approved Skills from earlier Course Lessons; its methodology may be Course-placement-dependent and should **not** pretend to teach or be independently reusable without its prerequisites. The Lesson owns the actual instructional material and its purposeful order of learning experiences; a Program can place it into a larger journey but does not own its pedagogical content.
+An **instructional Lesson** independently teaches **one or more approved Skills** and must make sense without a Course, Curriculum, mascot, quest, reward system, external plot or special learner history. An **assessment-only Lesson** can instead measure approved Skills from earlier Course Lessons; its methodology may be Course-placement-dependent and should **not** pretend to teach or be independently reusable without its prerequisites. The Lesson owns its ordered instructional or assessment Sections and their content; a Course places it into a larger journey without duplicating that source.
 
 ## PEDAGOGICAL RESPONSIBILITIES
 
