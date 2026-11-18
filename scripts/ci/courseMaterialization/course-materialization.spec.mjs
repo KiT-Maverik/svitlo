@@ -93,7 +93,10 @@ test('Stage 4 authorizes same-account separate-chat review using the parent Cour
   assert.equal(requireCompletedStageFour(courseWorkflow()), true);
   // The reviewing agent may commit through the Course PR author's own account.
   // No GitHub reviews, review-specific comments, approval roles or blob signatures are needed.
-  assert.equal(requireCompletedStageFour(courseWorkflow().replace('separate-chat review completed', 'review completed')), true);
+  assert.equal(
+    requireCompletedStageFour(courseWorkflow().replace('separate-chat review completed', 'review completed')),
+    true,
+  );
 });
 
 test('Stage 4 checklist fails closed on incomplete, absent, duplicate or ambiguous stages', () => {
