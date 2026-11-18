@@ -18,7 +18,7 @@ export const designDigitalInterfaceFeedback = defineSkill({
     it: "Progettare il feedback di un'interfaccia digitale",
     ja: 'デジタル画面のフィードバックを設計する',
     ka: 'ციფრული ინტერფეისის უკუკავშირის დიზაინი',
-    kk: 'Tsifrlyq interfeistıñ kerı bailanysyn jobalau',
+    kk: 'Sifrlyq interfeistıñ kerı bailanysyn jobalau',
     ko: '디지털 인터페이스 피드백 설계하기',
     lt: 'Kurti skaitmeninės sąsajos grįžtamąjį ryšį',
     lv: 'Veidot digitālās saskarnes atgriezenisko saiti',

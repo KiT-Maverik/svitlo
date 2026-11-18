@@ -18,7 +18,7 @@ export const designDigitalInterfaceNavigation = defineSkill({
     it: "Progettare la navigazione di un'interfaccia digitale",
     ja: 'デジタル画面のナビゲーションを設計する',
     ka: 'ციფრული ინტერფეისის ნავიგაციის დიზაინი',
-    kk: 'Tsifrlyq interfeis navigatsiiasyn jobalau',
+    kk: 'Sifrlyq interfeis navigatsiiasyn jobalau',
     ko: '디지털 인터페이스 탐색 설계하기',
     lt: 'Kurti skaitmeninės sąsajos naršymą',
     lv: 'Veidot digitālās saskarnes navigāciju',

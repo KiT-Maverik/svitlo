@@ -60,7 +60,7 @@ export const accessibility = defineSkillGroup({
       it: "Scopri come abilità diverse e metodi di input differenti influiscono sull'accesso digitale.",
       ja: 'さまざまな能力や入力方法がデジタルアクセスにどう影響するか学ぼう。',
       ka: 'გამოიკვლიე, როგორ მოქმედებს განსხვავებული შესაძლებლობები და შეყვანის მეთოდები ციფრულ ხელმისაწვდომობაზე.',
-      kk: 'Ärtürlı mümkındıkter men engızu ädısterı tsifrlyq qoljetımdılıkke qalai äser etetının zertte.',
+      kk: 'Ärtürlı mümkındıkter men engızu ädısterı sifrlyq qoljetımdılıkke qalai äser etetının zertte.',
       ko: '다양한 능력과 입력 방식이 디지털 접근에 어떤 영향을 주는지 알아보세요.',
       lt: 'Sužinok, kaip skirtingi gebėjimai ir įvesties būdai veikia skaitmeninį prieinamumą.',
       lv: 'Izpēti, kā atšķirīgas spējas un ievades metodes ietekmē digitālo piekļuvi.',

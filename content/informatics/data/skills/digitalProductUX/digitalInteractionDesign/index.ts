@@ -23,7 +23,7 @@ export const digitalInteractionDesign = defineSkillGroup({
     it: 'Progettazione delle interazioni digitali',
     ja: 'デジタルな操作の設計',
     ka: 'ციფრული ინტერაქციის დიზაინი',
-    kk: 'Tsifrlyq özara ärekettesu dizainy',
+    kk: 'Sifrlyq özara ärekettesu dizainy',
     ko: '디지털 상호 작용 설계',
     lt: 'Skaitmeninių sąveikų dizainas',
     lv: 'Digitālās mijiedarbības dizains',

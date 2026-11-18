@@ -18,7 +18,7 @@ export const chooseADigitalCreativeTool = defineSkill({
     it: 'Scegliere uno strumento creativo digitale',
     ja: 'デジタル制作ツールを選ぶ',
     ka: 'ციფრული შემოქმედებითი ხელსაწყოს არჩევა',
-    kk: 'Tsifrlyq şyğarmaşylyq qūralyn tañdau',
+    kk: 'Sifrlyq şyğarmaşylyq qūralyn tañdau',
     ko: '디지털 창작 도구 선택하기',
     lt: 'Pasirinkti skaitmeninį kūrybos įrankį',
     lv: 'Izvēlēties digitālu jaunrades rīku',

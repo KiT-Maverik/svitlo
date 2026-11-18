@@ -18,7 +18,7 @@ export const testDigitalInteractionAccessibility = defineSkill({
     it: "Verificare l'accessibilità delle interazioni digitali",
     ja: 'デジタル操作のアクセシビリティを検証する',
     ka: 'ციფრული ინტერაქციის ხელმისაწვდომობის შემოწმება',
-    kk: 'Tsifrlyq özara ärekettıñ qoljetımdılıgın tekseru',
+    kk: 'Sifrlyq özara ärekettıñ qoljetımdılıgın tekseru',
     ko: '디지털 상호작용의 접근성 테스트하기',
     lt: 'Išbandyti skaitmeninės sąveikos prieinamumą',
     lv: 'Pārbaudīt digitālās mijiedarbības piekļūstamību',

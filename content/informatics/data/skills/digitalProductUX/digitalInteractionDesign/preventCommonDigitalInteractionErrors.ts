@@ -18,7 +18,7 @@ export const preventCommonDigitalInteractionErrors = defineSkill({
     it: 'Prevenire gli errori comuni nelle interazioni digitali',
     ja: 'デジタル操作でよくあるミスを防ぐ',
     ka: 'ციფრული ინტერაქციის გავრცელებული შეცდომების თავიდან აცილება',
-    kk: 'Tsifrlyq özara ärekettegı jiı qatelerdıñ aldyn alu',
+    kk: 'Sifrlyq özara ärekettegı jiı qatelerdıñ aldyn alu',
     ko: '흔한 디지털 상호작용 오류 예방하기',
     lt: 'Užkirsti kelią įprastoms skaitmeninės sąveikos klaidoms',
     lv: 'Novērst biežas digitālās mijiedarbības kļūdas',
