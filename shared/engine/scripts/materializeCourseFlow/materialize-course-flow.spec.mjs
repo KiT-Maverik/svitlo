@@ -224,12 +224,26 @@ test('approved Course Episode generates a standalone typed Episode module with i
   const input = structuredClone(plan);
   input.content.items.story = {
     type: 'episode', slug: 'story', title: 'Opening story',
-    section: { items: {}, order: [] },
+    section: {
+      items: {
+        introduction: {
+          type: 'content', slug: 'introduction',
+          content: {
+            items: {
+              greeting: { type: 'markdown', slug: 'greeting', locale: { value: { en: 'Look up at the sky' } } },
+            },
+            order: ['greeting'],
+          },
+        },
+      },
+      order: ['introduction'],
+    },
   };
   input.content.order.push('story');
   const artifacts = planArtifacts(input, 'content/math', '/tmp/svitlo-episode-fixture', { candidates: [], diagnostics: [] });
   const episodeCode = artifacts.files.get('episodes/story.ts');
   assert(episodeCode.includes('defineEpisode('));
+  assert(episodeCode.includes('defineMarkdown('), 'preserve authored nested Episode content');
   assert(episodeCode.includes('export const story_Episode'));
   assert(!episodeCode.includes('defineCourse('));
   assert(artifacts.files.get('index.ts').includes('story_Episode'));
