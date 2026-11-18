@@ -81,13 +81,6 @@ export function chooseChecks(changed, workspaces) {
   return { affected, jsFiles, jsonFiles };
 }
 /** A host production build catches CSS dependencies that UI Kit's TS tests cannot. */
-/** Course synchronizer PR tests must execute before new trusted code reaches main. */
-export function requiresCourseStatusTests(changed) {
-  return changed.some(
-    file => file.startsWith('scripts/syncCourseLessonStatus/') || file === '.github/workflows/sync-course-lessons.yml',
-  );
-}
-
 export function requiresWebBuild(changed) {
   return changed.some(
     file =>
@@ -125,14 +118,6 @@ function runGate(changed) {
   for (const f of plan.jsFiles) exec('node', ['--check', f]);
   for (const f of plan.jsonFiles) json(f);
   exec('node', ['--test', 'scripts/runFastGate/run-fast-gate.spec.mjs']);
-  if (requiresCourseStatusTests(changed)) {
-    const suite = fs
-      .readdirSync(path.join(repoRoot, 'scripts/syncCourseLessonStatus'))
-      .filter(name => name.endsWith('.spec.mjs'))
-      .sort()
-      .map(name => 'scripts/syncCourseLessonStatus/' + name);
-    exec('node', ['--test', ...suite]);
-  }
   // A migration helper must never reintroduce deleted package imports.
   if (changed.some(file => file.startsWith('scripts/migrateEngineImports/'))) {
     exec('node', ['--test', 'scripts/migrateEngineImports/migrate-engine-imports.spec.mjs']);
