@@ -101,10 +101,13 @@ test('editorial -> technical draft preserves UUIDs, order, intent and evidence',
   for (const [name, text] of drafts)
     assert.equal(ts.createSourceFile(name, text, ts.ScriptTarget.Latest, true).parseDiagnostics.length, 0);
 });
-test('missing identities and unsafe mappings fail instead of fabricating', () => {
+test('missing Course-owned identities are deterministically allocated, malformed plans rejected', () => {
   const changed = structuredClone(plan);
   delete changed.content.items.foundations.id;
-  assert.throws(() => technicalFromEditorial(changed), /Missing stable UUID/);
+  const first = technicalFromEditorial(changed);
+  const second = technicalFromEditorial(changed);
+  assert.match(first.config.content.items.foundations.config.id, /^[0-9a-f-]{36}$/);
+  assert.equal(first.config.content.items.foundations.config.id, second.config.content.items.foundations.config.id);
   assert.throws(() => technicalFromEditorial({ ...plan, slug: undefined }), /stable Course slug/);
   assert.throws(() => technicalFromEditorial({ ...plan, description: undefined }), /title and description/);
   const courses = { ...plan, outcomes: { courses: [id] } };
@@ -118,11 +121,13 @@ test('non-clobbering lifecycle and explicit finalization', () => {
     fs.mkdirSync(folder, { recursive: true });
     fs.writeFileSync(path.join(folder, 'course.yaml'), YAML.stringify(plan));
     const artifacts = planArtifacts(plan, 'content/math', root, { candidates: [], diagnostics: [] });
-    assert.equal(artifacts.files.get('config.yaml').includes('lessonId:'), true);
+    assert.equal(artifacts.files.has('config.yaml'), false);
+    assert.equal(artifacts.lessonFiles.size, 0);
     materialize([...args, '--write'], root);
     assert(fs.existsSync(path.join(folder, 'index.ts')));
     materialize([...args, '--check'], root);
-    assert.equal(materialize([...args, '--write'], root).skipped, true);
+    assert.equal(materialize([...args, '--write'], root).skipped, false);
+    assert.equal(fs.existsSync(path.join(folder, 'config.yaml')), false);
     assert(fs.existsSync(path.join(folder, 'course.yaml')));
     materialize([...args, '--finalize'], root);
     assert.equal(fs.existsSync(path.join(folder, 'course.yaml')), false);
@@ -160,4 +165,76 @@ test('Course-root-relative Lesson import paths preserve standalone Lesson owners
   assert.match(drafts.get('index.ts'), /from "\.\.\/\.\.\/\.\.\/lessons\/c\//);
   assert.match(drafts.get('chapters/first.ts'), /from "\.\.\/\.\.\/\.\.\/\.\.\/lessons\/c\//);
   assert(!drafts.get('index.ts').includes('defineLesson('));
+});
+
+test('planned Lesson is materialized with a stable UUID and complete methodology, no PR or Course YAML handoff', () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-planned-lesson-'));
+  const folder = path.join(root, 'content/math/data/courses', id.at(-1), id);
+  const input = structuredClone(plan);
+  delete input.content.items.review.lessonId;
+  input.content.items.review.methodology = '# Lesson methodology\n\nTeach the target concept through observation, model and justified assessment.';
+  input.content.items.review.quizRequired = true;
+  try {
+    fs.mkdirSync(folder, { recursive: true });
+    fs.writeFileSync(path.join(folder, 'course.yaml'), YAML.stringify(input));
+    const artifacts = planArtifacts(input, 'content/math', root, { candidates: [], diagnostics: [] });
+    assert.equal(artifacts.files.has('config.yaml'), false);
+    assert.equal(artifacts.lessonFiles.size, 1);
+    const [filename, yaml] = [...artifacts.lessonFiles][0];
+    const obj = YAML.parse(yaml);
+    assert.equal(obj.config.id, artifacts.technical.config.content.items.review.config.lessonId);
+    assert.equal(obj.config.type, 'lesson');
+    assert.deepEqual(obj.config.section, { items: {}, order: [] });
+    assert.equal(obj.config.params.requireQuiz, true);
+    assert.equal(obj.production.methodology, input.content.items.review.methodology);
+    assert(filename.endsWith('/data/lessons/' + obj.config.id.at(-1) + '/' + obj.config.id + '/lesson.yaml'));
+    materialize(['--package', 'content/math', '--course', id, '--write'], root);
+    materialize(['--package', 'content/math', '--course', id, '--check'], root);
+    assert.equal(fs.readFileSync(filename, 'utf8'), yaml);
+    assert(!fs.existsSync(path.join(folder, 'config.yaml')));
+    materialize(['--package', 'content/math', '--course', id, '--finalize'], root);
+    assert(!fs.existsSync(path.join(folder, 'course.yaml')));
+    assert(fs.existsSync(filename), 'standalone Lesson YAML is not removed by Course finalization');
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test('new Lesson UUID allocation never overwrites a divergent author source', () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-lesson-protection-'));
+  const folder = path.join(root, 'content/math/data/courses', id.at(-1), id);
+  const input = structuredClone(plan);
+  delete input.content.items.review.lessonId;
+  input.content.items.review.methodology = 'Substantive learning specification for an independent lesson.';
+  try {
+    fs.mkdirSync(folder, { recursive: true });
+    fs.writeFileSync(path.join(folder, 'course.yaml'), YAML.stringify(input));
+    const target = [...planArtifacts(input, 'content/math', root, { candidates: [], diagnostics: [] }).lessonFiles.keys()][0];
+    fs.mkdirSync(path.dirname(target), { recursive: true });
+    fs.writeFileSync(target, 'pre-existing authored Lesson YAML\n');
+    assert.throws(() => materialize(['--package', 'content/math', '--course', id, '--write'], root), /refusing overwrite/);
+    assert(!fs.existsSync(path.join(folder, 'index.ts')), 'must preflight before any writes');
+    assert.equal(fs.readFileSync(target, 'utf8'), 'pre-existing authored Lesson YAML\n');
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test('approved Course Episode generates a standalone typed Episode module with its authored Sections', () => {
+  const input = structuredClone(plan);
+  input.content.items.story = {
+    type: 'episode', slug: 'story', title: 'Opening story',
+    section: { items: {}, order: [] },
+  };
+  input.content.order.push('story');
+  const artifacts = planArtifacts(input, 'content/math', '/tmp/svitlo-episode-fixture', { candidates: [], diagnostics: [] });
+  const episodeCode = artifacts.files.get('episodes/story.ts');
+  assert(episodeCode.includes('defineEpisode('));
+  assert(episodeCode.includes('export const story_Episode'));
+  assert(!episodeCode.includes('defineCourse('));
+  assert(artifacts.files.get('index.ts').includes('story_Episode'));
+  assert(artifacts.files.has('episodes/index.ts'));
+  assert(artifacts.files.has('review.ts'));
+  assert(!artifacts.files.has('config.yaml'));
+  assert.equal(ts.createSourceFile('episode.ts', episodeCode, ts.ScriptTarget.Latest, true).parseDiagnostics.length, 0);
 });
