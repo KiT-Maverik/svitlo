@@ -129,7 +129,7 @@ test('editorial -> technical draft preserves UUIDs, order, intent and evidence',
   assert(!drafts.get('review.ts').includes('methodology: null'));
   const constants = drafts.get('constants.ts');
   assert(constants.includes("import type { SupportedLanguages } from '@svitlo/engine/build';"));
-  assert(constants.includes('TODO: Restore the complete language set'));
+  assert(constants.includes('TODO (BLOCKER): Restore the complete language set'));
   assert(constants.includes('// export const languages = ["en","uk"] as const'));
   assert(constants.includes('export const languages = ["en"] as const'));
   assert(constants.includes('export type CourseLanguages = typeof languages;'));

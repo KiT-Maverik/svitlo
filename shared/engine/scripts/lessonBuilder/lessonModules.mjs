@@ -382,7 +382,7 @@ export function renderLessonModules(lesson, language, options = {}) {
     files.set(
       'constants.ts',
       "import type { SupportedLanguages } from '@svitlo/engine/build';\n\n" +
-        '// TODO: Restore the complete language set when translations are ready:\n' +
+        '// TODO (BLOCKER): Restore the complete language set when translations are ready:\n' +
         '// export const languages = ' +
         JSON.stringify(languageValues) +
         ' as const satisfies SupportedLanguages;\n\n' +
