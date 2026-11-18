@@ -172,7 +172,8 @@ test('planned Lesson is materialized with a stable UUID and complete methodology
   const folder = path.join(root, 'content/math/data/courses', id.at(-1), id);
   const input = structuredClone(plan);
   delete input.content.items.review.lessonId;
-  input.content.items.review.methodology = '# Lesson methodology\n\nTeach the target concept through observation, model and justified assessment.';
+  input.content.items.review.methodology =
+    '# Lesson methodology\n\nTeach the target concept through observation, model and justified assessment.';
   input.content.items.review.quizRequired = true;
   try {
     fs.mkdirSync(folder, { recursive: true });
@@ -209,10 +210,15 @@ test('new Lesson UUID allocation never overwrites a divergent author source', ()
   try {
     fs.mkdirSync(folder, { recursive: true });
     fs.writeFileSync(path.join(folder, 'course.yaml'), YAML.stringify(input));
-    const target = [...planArtifacts(input, 'content/math', root, { candidates: [], diagnostics: [] }).lessonFiles.keys()][0];
+    const target = [
+      ...planArtifacts(input, 'content/math', root, { candidates: [], diagnostics: [] }).lessonFiles.keys(),
+    ][0];
     fs.mkdirSync(path.dirname(target), { recursive: true });
     fs.writeFileSync(target, 'pre-existing authored Lesson YAML\n');
-    assert.throws(() => materialize(['--package', 'content/math', '--course', id, '--write'], root), /refusing overwrite/);
+    assert.throws(
+      () => materialize(['--package', 'content/math', '--course', id, '--write'], root),
+      /refusing overwrite/,
+    );
     assert(!fs.existsSync(path.join(folder, 'index.ts')), 'must preflight before any writes');
     assert.equal(fs.readFileSync(target, 'utf8'), 'pre-existing authored Lesson YAML\n');
   } finally {
@@ -223,11 +229,14 @@ test('new Lesson UUID allocation never overwrites a divergent author source', ()
 test('approved Course Episode generates a standalone typed Episode module with its authored Sections', () => {
   const input = structuredClone(plan);
   input.content.items.story = {
-    type: 'episode', slug: 'story', title: 'Opening story',
+    type: 'episode',
+    slug: 'story',
+    title: 'Opening story',
     section: {
       items: {
         introduction: {
-          type: 'content', slug: 'introduction',
+          type: 'content',
+          slug: 'introduction',
           content: {
             items: {
               greeting: { type: 'markdown', slug: 'greeting', locale: { value: { en: 'Look up at the sky' } } },
@@ -240,7 +249,10 @@ test('approved Course Episode generates a standalone typed Episode module with i
     },
   };
   input.content.order.push('story');
-  const artifacts = planArtifacts(input, 'content/math', '/tmp/svitlo-episode-fixture', { candidates: [], diagnostics: [] });
+  const artifacts = planArtifacts(input, 'content/math', '/tmp/svitlo-episode-fixture', {
+    candidates: [],
+    diagnostics: [],
+  });
   const episodeCode = artifacts.files.get('episodes/story.ts');
   assert(episodeCode.includes('defineEpisode('));
   assert(episodeCode.includes('defineMarkdown('), 'preserve authored nested Episode content');

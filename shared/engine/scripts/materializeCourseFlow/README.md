@@ -5,6 +5,7 @@ This Engine utility consumes **one temporary Course YAML** under content/<book>/
 ## Usage
 
 Run the maintained script shared/engine/scripts/materializeCourseFlow/materialize-course-flow.mjs with:
+
 - --package content/<book> --course <uuid> --write
 - --package content/<book> --course <uuid> --check
 - --package content/<book> --course <uuid> --finalize
@@ -13,7 +14,7 @@ Run the maintained script shared/engine/scripts/materializeCourseFlow/materializ
 
 The single Course YAML has independently reviewed pedagogy, audience and Skills, Modules, Chapters, reuse references to existing Lessons, and full inline methodologies for new Lessons. Episode nodes, when authored, include independently specified Sections and content. Source language must belong to intended languages. Reviewer approval is tracked separately in the parent Course PR: this CLI cannot grant it.
 
-Output files include index.ts, methodology.md, constants.ts, review.ts (unapproved review skeleton), modules/*.ts, chapters/*.ts and episodes/*.ts with respective barrel files. The root index holds Course content ordering. Episodes use the established typed nested Course Builder renderer for Sections/blocks. Generated TypeScript is explicitly an authoring draft, not proof of a working build.
+Output files include index.ts, methodology.md, constants.ts, review.ts (unapproved review skeleton), modules/_.ts, chapters/_.ts and episodes/*.ts with respective barrel files. The root index holds Course content ordering. Episodes use the established typed nested Course Builder renderer for Sections/blocks. Generated TypeScript is explicitly an authoring draft, not proof of a working build.
 
 For each new Lesson with inline methodology and no ID, Stage 5 derives a stable UUID from the Course UUID and canonical placement path. It creates only content/<book>/data/lessons/<last-hex>/<uuid>/lesson.yaml, with a minimal Config identity/Skills/language/title/empty-Sections shell and the reviewed source-language production.methodology text. Optional quizRequired on the slot supplies initial Quiz intent; absent values are provisional authoring shells, not independent approval. No Lesson TS, Questions, Flashcards, assets, translations, review or PR is created. Later Lesson Production reuses this exact ID and YAML.
 

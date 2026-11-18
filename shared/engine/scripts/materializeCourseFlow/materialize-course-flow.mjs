@@ -91,8 +91,16 @@ function sourceMd(plan) {
         for (const k of ['depth', 'sequenceReason', 'matchingRationale'])
           if (node[k]) lines.push(k + ': ' + node[k], '');
       } else if (node.type === 'episode') {
-        lines.push('## Episode: ' + node.title, '', 'UUID: ' + node.id, '',
-          'Placement: ' + [...location, key].join(' / '), '', node.methodology ?? 'Episode content requires authoring review', '');
+        lines.push(
+          '## Episode: ' + node.title,
+          '',
+          'UUID: ' + node.id,
+          '',
+          'Placement: ' + [...location, key].join(' / '),
+          '',
+          node.methodology ?? 'Episode content requires authoring review',
+          '',
+        );
       } else {
         lines.push(
           '## ' + (node.type === 'module' ? 'Module' : 'Chapter') + ': ' + node.title,
@@ -141,12 +149,12 @@ export function deriveCourseEntityId(courseId, kind, placement) {
     fail('invalid deterministic entity ID inputs');
   const bytes = createHash('sha1')
     .update('svitlo-course-source-v1:' + courseId + ':' + kind + ':' + placement)
-    .digest().subarray(0, 16);
+    .digest()
+    .subarray(0, 16);
   bytes[6] = (bytes[6] & 0x0f) | 0x50;
   bytes[8] = (bytes[8] & 0x3f) | 0x80;
   const h = bytes.toString('hex');
-  return h.slice(0, 8) + '-' + h.slice(8, 12) + '-' + h.slice(12, 16) + '-' +
-    h.slice(16, 20) + '-' + h.slice(20);
+  return h.slice(0, 8) + '-' + h.slice(8, 12) + '-' + h.slice(12, 16) + '-' + h.slice(16, 20) + '-' + h.slice(20);
 }
 
 /** One approved Course YAML directly produces a typed in-memory Course tree. */
@@ -179,7 +187,9 @@ export function technicalFromEditorial(plan, resolveLesson = () => null) {
   collectExplicit(authored.content);
   const newLessons = new Map();
   const generated = new Set();
-  const moduleSlugs = new Set(), chapterSlugs = new Set(), episodeSlugs = new Set();
+  const moduleSlugs = new Set(),
+    chapterSlugs = new Set(),
+    episodeSlugs = new Set();
   function collection(tree, parent) {
     const items = {};
     for (const slug of tree?.order ?? []) {
@@ -208,7 +218,9 @@ export function technicalFromEditorial(plan, resolveLesson = () => null) {
       group.add(slug);
       if (child.type === 'episode') {
         const config = {
-          id: child.id, type: 'episode', slug,
+          id: child.id,
+          type: 'episode',
+          slug,
           params: { ...child.params, languages: child.params?.languages ?? [plan.documentLanguage] },
           locale: { title: child.locale?.title ?? { [plan.documentLanguage]: child.title } },
           section: child.section ?? { items: {}, order: [] },
@@ -218,7 +230,10 @@ export function technicalFromEditorial(plan, resolveLesson = () => null) {
         continue;
       }
       const config = {
-        type: child.type, id: child.id, slug, params: {},
+        type: child.type,
+        id: child.id,
+        slug,
+        params: {},
         locale: { title: { [plan.documentLanguage]: child.title } },
         content: collection(child.content, [...parent, slug]),
       };
@@ -308,7 +323,10 @@ function lessonSourceCoordinates(root, pkg, courseId, lessonId, index) {
  */
 function renderEpisodeDraft(episode, language, courseId) {
   const wrapper = {
-    type: 'course', id: courseId, slug: 'episodeScaffold', documentLanguage: language,
+    type: 'course',
+    id: courseId,
+    slug: 'episodeScaffold',
+    documentLanguage: language,
     params: { languages: [language] },
     locale: { title: { [language]: 'Episode draft' }, description: { [language]: 'Draft' } },
     content: { items: { [episode.slug]: episode }, order: [episode.slug] },
@@ -325,11 +343,20 @@ function renderEpisodeDraft(episode, language, courseId) {
   visit(ast);
   if (calls.length !== 1) fail('Expected exactly one generated Episode expression for ' + episode.slug);
   const expression = calls[0].getText(ast);
-  const factoryNames = [...new Set(
-    [...expression.matchAll(/\bdefine[A-Z][A-Za-z0-9_]*(?=\s*\()/g)].map(m => m[0]),
-  )].sort();
-  return HEADER + 'import { ' + factoryNames.join(', ') + ' } from "@svitlo/engine/build";\n\n' +
-    'export const ' + symbolOf(episode) + ' = ' + expression + ';\n';
+  const factoryNames = [
+    ...new Set([...expression.matchAll(/\bdefine[A-Z][A-Za-z0-9_]*(?=\s*\()/g)].map(m => m[0])),
+  ].sort();
+  return (
+    HEADER +
+    'import { ' +
+    factoryNames.join(', ') +
+    ' } from "@svitlo/engine/build";\n\n' +
+    'export const ' +
+    symbolOf(episode) +
+    ' = ' +
+    expression +
+    ';\n'
+  );
 }
 export function renderModularCourse(technical, pkg, resolveLesson = () => null) {
   const { config } = technical;
@@ -341,7 +368,10 @@ export function renderModularCourse(technical, pkg, resolveLesson = () => null) 
       const child = collection.items[key]?.config;
       if (!record(child)) fail('Malformed technical child ' + key);
       if (child.type === 'module' || child.type === 'chapter' || child.type === 'episode') {
-        const filename = (child.type === 'module' ? 'modules/' : child.type === 'chapter' ? 'chapters/' : 'episodes/') + child.slug + '.ts';
+        const filename =
+          (child.type === 'module' ? 'modules/' : child.type === 'chapter' ? 'chapters/' : 'episodes/') +
+          child.slug +
+          '.ts';
         if (paths.has(filename)) fail('Duplicate Course-owned file ' + filename);
         paths.set(filename, child);
         nodes.push({ node: child, file: filename });
@@ -366,7 +396,10 @@ export function renderModularCourse(technical, pkg, resolveLesson = () => null) 
     };
     function expression(child) {
       if (child.type === 'module' || child.type === 'chapter' || child.type === 'episode') {
-        const target = (child.type === 'module' ? 'modules/' : child.type === 'chapter' ? 'chapters/' : 'episodes/') + child.slug + '.ts';
+        const target =
+          (child.type === 'module' ? 'modules/' : child.type === 'chapter' ? 'chapters/' : 'episodes/') +
+          child.slug +
+          '.ts';
         return addImport(symbolOf(child), target);
       }
       if (child.type !== 'lesson') fail('Course methodology may not create ' + child.type);
@@ -437,14 +470,22 @@ export function renderModularCourse(technical, pkg, resolveLesson = () => null) 
         entries.map(x => 'export { ' + symbolOf(x.node) + ' } from "./' + x.node.slug + '";').join('\n') + '\n',
       );
   }
-  files.set('review.ts',
+  files.set(
+    'review.ts',
     '// Course review evidence is authored independently after generated Props are reviewed.\n' +
-    '// TODO(review): Record independently verified Course and locale review decisions here.\n' +
-    'export const courseReview = { methodology: null, experience: null, translation: null } as const;\n');
-  files.set('constants.ts',
+      '// TODO(review): Record independently verified Course and locale review decisions here.\n' +
+      'export const courseReview = { methodology: null, experience: null, translation: null } as const;\n',
+  );
+  files.set(
+    'constants.ts',
     '// Course identity and source locale; all other locales require real translation.\n' +
-    'export const courseId = ' + JSON.stringify(config.id) + ' as const;\n' +
-    'export const sourceLanguage = ' + JSON.stringify(technical.production.documentLanguage) + ' as const;\n');
+      'export const courseId = ' +
+      JSON.stringify(config.id) +
+      ' as const;\n' +
+      'export const sourceLanguage = ' +
+      JSON.stringify(technical.production.documentLanguage) +
+      ' as const;\n',
+  );
   return files;
 }
 /**
@@ -456,10 +497,7 @@ export function planArtifacts(plan, pkg, root, lessonIndex) {
   const lookup = id => lessonSourceCoordinates(root, pkg, plan.id, id, lessonIndex);
   const technical = technicalFromEditorial(plan, lookup);
   const drafts = renderModularCourse(technical, pkg, lookup);
-  const files = new Map([
-    ['methodology.md', technical.production.methodology],
-    ...drafts,
-  ]);
+  const files = new Map([['methodology.md', technical.production.methodology], ...drafts]);
   const lessonFiles = new Map();
   for (const [id, { node }] of technical.newLessons) {
     if (!node.methodology?.trim()) fail('planned Lesson lacks complete methodology: ' + node.slug);
@@ -561,7 +599,14 @@ export function materialize(argv, root = rootDefault) {
     // Only after a separate successful check/commit; Git retains the plan history.
     fs.unlinkSync(source);
   }
-  console.log(mode + ' Course ' + id + ': ' + (artifacts.files.size + artifacts.lessonFiles.size) + ' verified source artifacts; no config.yaml');
+  console.log(
+    mode +
+      ' Course ' +
+      id +
+      ': ' +
+      (artifacts.files.size + artifacts.lessonFiles.size) +
+      ' verified source artifacts; no config.yaml',
+  );
   return { skipped: false, artifacts };
 }
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {

@@ -62,7 +62,8 @@ test('safe YAML 1.2 parser rejects duplicate keys', () => {
 test('Stage 3 is complete for a fully specified planned Lesson without any UUID', () => {
   const planned = {
     ...lesson,
-    methodology: '# Lesson educational methodology\n\nAccurate outcomes, concept sequence, misconceptions and assessment evidence.',
+    methodology:
+      '# Lesson educational methodology\n\nAccurate outcomes, concept sequence, misconceptions and assessment evidence.',
     quizRequired: false,
   };
   const source = { ...plan(), content: { items: { intro: planned }, order: ['intro'] } };
@@ -70,7 +71,10 @@ test('Stage 3 is complete for a fully specified planned Lesson without any UUID'
   assert.equal(result.valid, true, result.errors.join('; '));
   assert.equal(result.plannedLessons, 1);
   assert.equal(result.unresolvedLessonIds, 0);
-  assert.equal(checkPlan({ ...source, content: { items: { intro: { ...lesson } }, order: ['intro'] } }, '3-complete').valid, false);
+  assert.equal(
+    checkPlan({ ...source, content: { items: { intro: { ...lesson } }, order: ['intro'] } }, '3-complete').valid,
+    false,
+  );
 });
 test('Stage 3 allows specifically authored Episodes but Stage 2 remains macrostructure-only', () => {
   const episode = { type: 'episode', slug: 'story', title: 'Story', section: { items: {}, order: [] } };
