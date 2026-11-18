@@ -24,13 +24,11 @@ function safeSource(root, filename) {
   let cursor = base;
   for (const part of path.relative(base, target).split(path.sep)) {
     cursor = path.join(cursor, part);
-    if (fs.existsSync(cursor) && fs.lstatSync(cursor).isSymbolicLink())
-      fail('symlink path refused: ' + filename);
+    if (fs.existsSync(cursor) && fs.lstatSync(cursor).isSymbolicLink()) fail('symlink path refused: ' + filename);
   }
   if (!fs.existsSync(target)) fail('missing required TypeScript or Lesson source: ' + filename);
   const stat = fs.statSync(target);
-  if (!stat.isFile() || stat.size > SOURCE_LIMIT)
-    fail('source is not a bounded regular file: ' + filename);
+  if (!stat.isFile() || stat.size > SOURCE_LIMIT) fail('source is not a bounded regular file: ' + filename);
   return fs.readFileSync(target, 'utf8');
 }
 
@@ -40,8 +38,7 @@ function object(node, context) {
 }
 function property(node, key) {
   const matches = object(node, 'Config').properties.filter(
-    p => ts.isPropertyAssignment(p) &&
-      (ts.isIdentifier(p.name) || ts.isStringLiteral(p.name)) && p.name.text === key,
+    p => ts.isPropertyAssignment(p) && (ts.isIdentifier(p.name) || ts.isStringLiteral(p.name)) && p.name.text === key,
   );
   if (matches.length !== 1) fail('expected one static ' + key + ' property');
   return matches[0].initializer;
@@ -59,8 +56,7 @@ function stringArray(node, context) {
 function entries(node, context) {
   const map = new Map();
   for (const entry of object(node, context).properties) {
-    if (!ts.isPropertyAssignment(entry) ||
-        (!ts.isStringLiteral(entry.name) && !ts.isIdentifier(entry.name)))
+    if (!ts.isPropertyAssignment(entry) || (!ts.isStringLiteral(entry.name) && !ts.isIdentifier(entry.name)))
       fail(context + ' must have static property assignments');
     const key = entry.name.text;
     if (!IDENTIFIER.test(key) || map.has(key)) fail('duplicate/unsafe Course child key ' + key);
@@ -90,13 +86,12 @@ function staticFile(root, file) {
 function exportedDefinition(ast, factory, symbol) {
   const found = [];
   for (const stmt of ast.statements) {
-    if (!ts.isVariableStatement(stmt) || !stmt.modifiers?.some(m => m.kind === ts.SyntaxKind.ExportKeyword))
-      continue;
+    if (!ts.isVariableStatement(stmt) || !stmt.modifiers?.some(m => m.kind === ts.SyntaxKind.ExportKeyword)) continue;
     for (const declaration of stmt.declarationList.declarations) {
       if (!ts.isIdentifier(declaration.name) || (symbol && declaration.name.text !== symbol)) continue;
       const call = declaration.initializer;
-      if (!call || !ts.isCallExpression(call) || !ts.isIdentifier(call.expression) ||
-          call.expression.text !== factory) continue;
+      if (!call || !ts.isCallExpression(call) || !ts.isIdentifier(call.expression) || call.expression.text !== factory)
+        continue;
       if (call.arguments.length !== 1) fail('dynamic ' + factory + ' argument');
       found.push({ config: object(call.arguments[0], factory), name: declaration.name.text });
     }
@@ -105,8 +100,13 @@ function exportedDefinition(ast, factory, symbol) {
   return found[0].config;
 }
 function resolveImport(from, specifier) {
-  if (typeof specifier !== 'string' || !specifier.startsWith('.') || specifier.includes('\\') ||
-      /[?&#\0]/.test(specifier) || specifier.endsWith('.tsx'))
+  if (
+    typeof specifier !== 'string' ||
+    !specifier.startsWith('.') ||
+    specifier.includes('\\') ||
+    /[?&#\0]/.test(specifier) ||
+    specifier.endsWith('.tsx')
+  )
     fail('non-static or non-relative Course import');
   const target = path.posix.normalize(path.posix.join(path.posix.dirname(from), specifier));
   const result = target.endsWith('.ts') ? target : target + '.ts';
@@ -155,8 +155,7 @@ function titleFromYaml(root, book, id, fallback) {
   const doc = YAML.parseDocument(text, { strict: true, uniqueKeys: true, version: '1.2' });
   if (doc.errors.length) fail('malformed Lesson YAML for ' + id);
   const lesson = doc.toJS({ maxAliasCount: 0 });
-  if (canonicalUUID(lesson?.config?.id) !== id)
-    fail('Lesson YAML ID disagrees with Course reference: ' + id);
+  if (canonicalUUID(lesson?.config?.id) !== id) fail('Lesson YAML ID disagrees with Course reference: ' + id);
   const titles = lesson.config?.locale?.title;
   const language = lesson.production?.documentLanguage;
   const localized = titles?.[language] ?? (titles && Object.values(titles)[0]);
@@ -191,12 +190,14 @@ export function readCourseTsInventory(root, courseDirectory, courseId) {
     if (type !== factory.slice('define'.length).toLowerCase())
       fail('Course node discriminator does not match ' + factory);
     if (factory === 'defineCourse') {
-      if (canonicalUUID(string(property(config, 'id'), 'Course id')) !== id)
-        fail('Course TS root identity mismatch');
+      if (canonicalUUID(string(property(config, 'id'), 'Course id')) !== id) fail('Course TS root identity mismatch');
       const params = property(config, 'params');
       languages = stringArray(property(object(params, 'Course params'), 'languages'), 'Course languages');
-      if (!languages.length || languages.some(x => !/^[a-z]{2,3}(?:-[A-Za-z0-9]{2,8})?$/.test(x)) ||
-          new Set(languages).size !== languages.length)
+      if (
+        !languages.length ||
+        languages.some(x => !/^[a-z]{2,3}(?:-[A-Za-z0-9]{2,8})?$/.test(x)) ||
+        new Set(languages).size !== languages.length
+      )
         fail('Invalid Course languages');
     } else {
       canonicalUUID(string(property(config, 'id'), 'nested entity id'));
@@ -204,8 +205,8 @@ export function readCourseTsInventory(root, courseDirectory, courseId) {
     const content = object(property(config, 'content'), 'Course content');
     const items = entries(property(content, 'items'), 'Course content.items');
     const order = stringArray(property(content, 'order'), 'Course content.order');
-    if (order.length !== items.size || new Set(order).size !== order.length ||
-        order.some(x => !items.has(x))) fail('Course content.items/order mismatch');
+    if (order.length !== items.size || new Set(order).size !== order.length || order.some(x => !items.has(x)))
+      fail('Course content.items/order mismatch');
     for (const key of order) {
       if (!IDENTIFIER.test(key)) fail('Invalid Course child slug ' + key);
       const expression = items.get(key);
@@ -222,8 +223,7 @@ export function readCourseTsInventory(root, courseDirectory, courseId) {
         if (group) {
           if (group[2] !== key) fail('Nested Course slug/import mismatch at ' + key);
           if (group[1] !== 'episodes') {
-            readNode(target, group[1] === 'modules' ? 'defineModule' : 'defineChapter',
-              imported.exported, placement);
+            readNode(target, group[1] === 'modules' ? 'defineModule' : 'defineChapter', imported.exported, placement);
           } else {
             const episode = staticFile(root, target);
             exportedDefinition(episode.ast, 'defineEpisode', imported.exported);
@@ -237,10 +237,12 @@ export function readCourseTsInventory(root, courseDirectory, courseId) {
       // Consume that sequence together with the actual TypeScript items/order
       // graph; never rely on UUIDs embedded in compiler TODO comments.
       const reference = references[nextReference++];
-      if (!reference || reference.slug !== key ||
-          (reference.placement && reference.placement !== placement.join(' / ')))
-        fail('Course Lesson sequence/placement differs from materialized methodology: ' +
-          placement.join(' / '));
+      if (
+        !reference ||
+        reference.slug !== key ||
+        (reference.placement && reference.placement !== placement.join(' / '))
+      )
+        fail('Course Lesson sequence/placement differs from materialized methodology: ' + placement.join(' / '));
       const lessonId = reference.lessonId;
       if (!imported) {
         const lessonYaml = book + '/data/lessons/' + lessonId.at(-1) + '/' + lessonId + '/lesson.yaml';
@@ -251,7 +253,9 @@ export function readCourseTsInventory(root, courseDirectory, courseId) {
       if (imported) {
         const prefix = book + '/data/lessons/';
         const relative = target.startsWith(prefix) ? target.slice(prefix.length) : null;
-        const lessonMatch = relative?.match(/^([a-f0-9])\/([a-f0-9]{8}-(?:[a-f0-9]{4}-){3}[a-f0-9]{12})\/([A-Za-z0-9_.-]+)\.ts$/);
+        const lessonMatch = relative?.match(
+          /^([a-f0-9])\/([a-f0-9]{8}-(?:[a-f0-9]{4}-){3}[a-f0-9]{12})\/([A-Za-z0-9_.-]+)\.ts$/,
+        );
         if (!lessonMatch || lessonMatch[1] !== lessonMatch[2].at(-1))
           fail('Unexpected Course import; only canonical Lessons and Course components are allowed');
         if (canonicalUUID(lessonMatch[2]) !== lessonId)
@@ -273,10 +277,10 @@ export function readCourseTsInventory(root, courseDirectory, courseId) {
     }
   }
   readNode(courseDirectory + '/index.ts', 'defineCourse', null, []);
-  if (nextReference !== references.length)
-    fail('Orphaned Lesson UUID mapping in materialized methodology');
+  if (nextReference !== references.length) fail('Orphaned Lesson UUID mapping in materialized methodology');
   return {
-    lessons: [...lessons.values()].map(x => ({ ...x, placements: x.placements.sort() }))
+    lessons: [...lessons.values()]
+      .map(x => ({ ...x, placements: x.placements.sort() }))
       .sort((a, b) => a.lessonId.localeCompare(b.lessonId)),
     unresolved: [],
     allocated: true,

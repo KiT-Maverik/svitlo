@@ -8,8 +8,13 @@ import YAML from 'yaml';
 import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import {
-  parseIdentity, parseTrigger, parseReviewEvidence, stageFourApprovals, validateArtifactPath,
-  gitBlob, safeBranch,
+  parseIdentity,
+  parseTrigger,
+  parseReviewEvidence,
+  stageFourApprovals,
+  validateArtifactPath,
+  gitBlob,
+  safeBranch,
 } from './course-gate.mjs';
 import { verifyManifest, identicalSnapshot } from './course-materialization.mjs';
 
@@ -25,17 +30,39 @@ const sourceEvidence = (role, value = blob) =>
   'Stage 4 approval: ' + role + '\nCourse UUID: ' + id + '\nCourse YAML blob: ' + value;
 const reviews = [
   { user: { login: 'methodologist' }, state: 'APPROVED', commit_id: sha, body: sourceEvidence('methodologist') },
-  { user: { login: 'assessment-agent' }, state: 'APPROVED', commit_id: sha,
-    body: sourceEvidence('assessment-architect') },
+  {
+    user: { login: 'assessment-agent' },
+    state: 'APPROVED',
+    commit_id: sha,
+    body: sourceEvidence('assessment-architect'),
+  },
 ];
-const reviewInput = { reviews, prAuthor: 'author', sourceAuthor: 'editor',
-  identity, blob, blobsAtCommits: new Map([[sha, blob]]) };
+const reviewInput = {
+  reviews,
+  prAuthor: 'author',
+  sourceAuthor: 'editor',
+  identity,
+  blob,
+  blobsAtCommits: new Map([[sha, blob]]),
+};
 
 test('exact marker, UUID, package and canonical Course YAML are mandatory', () => {
-  const body = '<!-- svitlo-course-flow:v1 -->\n' +
-    '- Course UUID: ' + String.fromCharCode(96) + id + String.fromCharCode(96) + '\n' +
-    '- Textbook: ' + String.fromCharCode(96) + pkg + String.fromCharCode(96) + '\n' +
-    '- Single temporary source plan: ' + String.fromCharCode(96) + yaml + String.fromCharCode(96);
+  const body =
+    '<!-- svitlo-course-flow:v1 -->\n' +
+    '- Course UUID: ' +
+    String.fromCharCode(96) +
+    id +
+    String.fromCharCode(96) +
+    '\n' +
+    '- Textbook: ' +
+    String.fromCharCode(96) +
+    pkg +
+    String.fromCharCode(96) +
+    '\n' +
+    '- Single temporary source plan: ' +
+    String.fromCharCode(96) +
+    yaml +
+    String.fromCharCode(96);
   assert.deepEqual(parseIdentity(body), identity);
   assert.throws(() => parseIdentity(body + '\n<!-- svitlo-course-flow:v1 -->'));
   assert.throws(() => parseIdentity(body.replace('/courses/b/', '/courses/a/')));
@@ -43,41 +70,57 @@ test('exact marker, UUID, package and canonical Course YAML are mandatory', () =
 });
 
 test('only exact top-level same-actor PR comments or enumerated dispatch can authorize', () => {
-  const event = { issue: { number: 678, pull_request: {} },
-    comment: { user: { login: 'owner' }, body: '/course materialize' } };
-  assert.deepEqual(parseTrigger(event, 'issue_comment', 'owner'),
-    { number: 678, operation: 'materialize', actor: 'owner' });
+  const event = {
+    issue: { number: 678, pull_request: {} },
+    comment: { user: { login: 'owner' }, body: '/course materialize' },
+  };
+  assert.deepEqual(parseTrigger(event, 'issue_comment', 'owner'), {
+    number: 678,
+    operation: 'materialize',
+    actor: 'owner',
+  });
   for (const body of ['/course materialize\nhi', '/course finalize extra', ' /course materialize', '/course status']) {
     assert.throws(() => parseTrigger({ ...event, comment: { ...event.comment, body } }, 'issue_comment', 'owner'));
   }
   assert.throws(() => parseTrigger(event, 'issue_comment', 'stranger'));
   assert.throws(() => parseTrigger({ ...event, issue: { number: 678 } }, 'issue_comment', 'owner'));
-  assert.deepEqual(parseTrigger({ inputs: { pr_number: '42', operation: 'finalize' } },
-    'workflow_dispatch', 'owner'), { number: 42, operation: 'finalize', actor: 'owner' });
-  assert.throws(() => parseTrigger({ inputs: { pr_number: '42', operation: 'rm -rf' } },
-    'workflow_dispatch', 'owner'));
+  assert.deepEqual(parseTrigger({ inputs: { pr_number: '42', operation: 'finalize' } }, 'workflow_dispatch', 'owner'), {
+    number: 42,
+    operation: 'finalize',
+    actor: 'owner',
+  });
+  assert.throws(() => parseTrigger({ inputs: { pr_number: '42', operation: 'rm -rf' } }, 'workflow_dispatch', 'owner'));
 });
 
 test('Stage 4 requires independently evidenced, role-distinct, source-pinned approvals', () => {
   assert.deepEqual(stageFourApprovals(reviewInput), {
-    methodologist: 'methodologist', 'assessment-architect': 'assessment-agent',
+    methodologist: 'methodologist',
+    'assessment-architect': 'assessment-agent',
   });
   assert.deepEqual(parseReviewEvidence(sourceEvidence('methodologist')), {
-    id, role: 'methodologist', blob,
+    id,
+    role: 'methodologist',
+    blob,
   });
   assert.throws(() => stageFourApprovals({ ...reviewInput, reviews: reviews.slice(0, 1) }));
   assert.throws(() => stageFourApprovals({ ...reviewInput, prAuthor: 'methodologist' }));
   assert.throws(() => stageFourApprovals({ ...reviewInput, sourceAuthor: 'assessment-agent' }));
-  assert.throws(() => stageFourApprovals({ ...reviewInput,
-    reviews: [reviews[0], { ...reviews[1], user: { login: 'methodologist' } }] }));
-  assert.throws(() => stageFourApprovals({ ...reviewInput,
-    reviews: [reviews[0], { ...reviews[1], body: sourceEvidence('assessment-architect', 'c'.repeat(40)) }] }));
-  assert.throws(() => stageFourApprovals({ ...reviewInput,
-    blobsAtCommits: new Map([[sha, 'c'.repeat(40)]]) }));
-  assert.throws(() => stageFourApprovals({ ...reviewInput,
-    reviews: [...reviews, { ...reviews[0], state: 'CHANGES_REQUESTED' }] }));
-  assert.throws(() => stageFourApprovals({ ...reviewInput,
-    reviews: [{ ...reviews[0], state: 'COMMENTED' }, reviews[1]] }));
+  assert.throws(() =>
+    stageFourApprovals({ ...reviewInput, reviews: [reviews[0], { ...reviews[1], user: { login: 'methodologist' } }] }),
+  );
+  assert.throws(() =>
+    stageFourApprovals({
+      ...reviewInput,
+      reviews: [reviews[0], { ...reviews[1], body: sourceEvidence('assessment-architect', 'c'.repeat(40)) }],
+    }),
+  );
+  assert.throws(() => stageFourApprovals({ ...reviewInput, blobsAtCommits: new Map([[sha, 'c'.repeat(40)]]) }));
+  assert.throws(() =>
+    stageFourApprovals({ ...reviewInput, reviews: [...reviews, { ...reviews[0], state: 'CHANGES_REQUESTED' }] }),
+  );
+  assert.throws(() =>
+    stageFourApprovals({ ...reviewInput, reviews: [{ ...reviews[0], state: 'COMMENTED' }, reviews[1]] }),
+  );
 });
 
 test('allowlist blocks arbitrary files, traversal and incorrect UUID buckets', () => {
@@ -85,7 +128,8 @@ test('allowlist blocks arbitrary files, traversal and incorrect UUID buckets', (
     pkg + '/data/courses/b/' + id + '/index.ts',
     pkg + '/data/courses/b/' + id + '/episodes/example.ts',
     pkg + '/data/lessons/c/' + lesson + '/lesson.yaml',
-  ]) assert.equal(validateArtifactPath(filename, identity, 'materialize'), true);
+  ])
+    assert.equal(validateArtifactPath(filename, identity, 'materialize'), true);
   for (const filename of [
     '.github/workflows/evil.yml',
     pkg + '/data/courses/b/' + id + '/../secrets',
@@ -93,7 +137,8 @@ test('allowlist blocks arbitrary files, traversal and incorrect UUID buckets', (
     pkg + '/data/courses/b/' + id + '/config.yaml',
     pkg + '/data/courses/b/' + id + '/README.md',
     pkg + '/data/courses/b/' + id + '/episodes/../../evil.ts',
-  ]) assert.equal(validateArtifactPath(filename, identity, 'materialize'), false);
+  ])
+    assert.equal(validateArtifactPath(filename, identity, 'materialize'), false);
   assert.equal(validateArtifactPath(yaml, identity, 'finalize'), true);
   assert.equal(validateArtifactPath(yaml, identity, 'materialize'), false);
   assert.equal(validateArtifactPath('.github/workflows/evil.yml', identity, 'finalize'), false);
@@ -118,19 +163,39 @@ test('artifact verification enforces exact path/hash, create-only and one-file f
     fs.mkdirSync(path.dirname(source), { recursive: true });
     fs.writeFileSync(source, 'id: ' + id + '\n');
     execFileSync('git', ['add', '--', yaml], { cwd: root });
-    const meta = { number: 678, repo: 'KiT-Maverik/svitlo', operation: 'materialize',
-      head, identity, sourceBlob: blob };
+    const meta = {
+      number: 678,
+      repo: 'KiT-Maverik/svitlo',
+      operation: 'materialize',
+      head,
+      identity,
+      sourceBlob: blob,
+    };
     const output = pkg + '/data/courses/b/' + id + '/index.ts';
     const bytes = Buffer.from('export const course = true;\n');
-    const validEntry = { path: output, action: 'create',
-      data: bytes.toString('base64'), sha256: createHash('sha256').update(bytes).digest('hex') };
-    const manifest = { version: 1, pr: meta.number, repo: meta.repo, operation: meta.operation,
-      head, identity, sourceBlob: blob, entries: [validEntry] };
+    const validEntry = {
+      path: output,
+      action: 'create',
+      data: bytes.toString('base64'),
+      sha256: createHash('sha256').update(bytes).digest('hex'),
+    };
+    const manifest = {
+      version: 1,
+      pr: meta.number,
+      repo: meta.repo,
+      operation: meta.operation,
+      head,
+      identity,
+      sourceBlob: blob,
+      entries: [validEntry],
+    };
     assert.equal(verifyManifest(manifest, meta, root), 1);
-    assert.throws(() => verifyManifest({ ...manifest,
-      entries: [{ ...validEntry, sha256: 'e'.repeat(64) }] }, meta, root));
-    assert.throws(() => verifyManifest({ ...manifest,
-      entries: [{ ...validEntry, path: '.github/workflows/evil.yml' }] }, meta, root));
+    assert.throws(() =>
+      verifyManifest({ ...manifest, entries: [{ ...validEntry, sha256: 'e'.repeat(64) }] }, meta, root),
+    );
+    assert.throws(() =>
+      verifyManifest({ ...manifest, entries: [{ ...validEntry, path: '.github/workflows/evil.yml' }] }, meta, root),
+    );
     assert.throws(() => verifyManifest({ ...manifest, entries: [validEntry, validEntry] }, meta, root));
     assert.throws(() => verifyManifest({ ...manifest, head: sha }, meta, root));
     fs.mkdirSync(path.dirname(path.join(root, output)), { recursive: true });
@@ -138,17 +203,20 @@ test('artifact verification enforces exact path/hash, create-only and one-file f
     execFileSync('git', ['add', '--', output], { cwd: root });
     assert.throws(() => verifyManifest(manifest, meta, root), 'Cannot overwrite committed files');
     const finalizeMeta = { ...meta, operation: 'finalize' };
-    const finalized = { ...manifest, operation: 'finalize',
-      entries: [{ path: yaml, action: 'delete' }] };
+    const finalized = { ...manifest, operation: 'finalize', entries: [{ path: yaml, action: 'delete' }] };
     assert.equal(verifyManifest(finalized, finalizeMeta, root), 1);
     assert.throws(() => verifyManifest({ ...finalized, entries: [] }, finalizeMeta, root));
-    assert.throws(() => verifyManifest({ ...finalized,
-      entries: [{ path: yaml, action: 'create', data: validEntry.data }] }, finalizeMeta, root));
+    assert.throws(() =>
+      verifyManifest(
+        { ...finalized, entries: [{ path: yaml, action: 'create', data: validEntry.data }] },
+        finalizeMeta,
+        root,
+      ),
+    );
   } finally {
     fs.rmSync(root, { recursive: true, force: true });
   }
 });
-
 
 test('Stage 5 workflow refreshes the managed Lessons block using isolated GitHub permissions', () => {
   const workflowPath = fileURLToPath(new URL('../../../.github/workflows/course-materialization.yml', import.meta.url));
@@ -171,7 +239,5 @@ test('Stage 5 workflow refreshes the managed Lessons block using isolated GitHub
   const trustedUpdater = workflow.jobs['refresh-update'].steps;
   assert.equal(trustedUpdater.filter(s => s.uses === 'actions/checkout@v4').length, 1);
   assert.ok(trustedUpdater.some(s => s.run?.includes('sync-course-lessons.mjs update')));
-  assert.ok(workflow.jobs['refresh-analyze'].steps.some(
-    s => s.run?.includes('sync-course-lessons.mjs analyze'),
-  ));
+  assert.ok(workflow.jobs['refresh-analyze'].steps.some(s => s.run?.includes('sync-course-lessons.mjs analyze')));
 });

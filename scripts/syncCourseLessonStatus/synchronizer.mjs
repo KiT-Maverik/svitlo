@@ -179,17 +179,25 @@ export function collectInventory(document, mode, expectedId) {
 
 /** A planned Lesson slot may lack a UUID until Stage 5 assigns it. */
 export function compatibleMaterializedInventory(planned, materialized) {
-  const slots = inventory => [
-    ...inventory.lessons.flatMap(lesson => lesson.placements.map(placement => ({
-      placement, lessonId: lesson.lessonId,
-    }))),
-    ...inventory.unresolved.map(item => ({ placement: item.placement, lessonId: null })),
-  ].sort((a, b) => a.placement.localeCompare(b.placement));
-  const before = slots(planned), after = slots(materialized);
-  return before.length === after.length &&
-    before.every((slot, i) =>
-      slot.placement === after[i].placement &&
-      (slot.lessonId === null || slot.lessonId === after[i].lessonId));
+  const slots = inventory =>
+    [
+      ...inventory.lessons.flatMap(lesson =>
+        lesson.placements.map(placement => ({
+          placement,
+          lessonId: lesson.lessonId,
+        })),
+      ),
+      ...inventory.unresolved.map(item => ({ placement: item.placement, lessonId: null })),
+    ].sort((a, b) => a.placement.localeCompare(b.placement));
+  const before = slots(planned),
+    after = slots(materialized);
+  return (
+    before.length === after.length &&
+    before.every(
+      (slot, i) =>
+        slot.placement === after[i].placement && (slot.lessonId === null || slot.lessonId === after[i].lessonId),
+    )
+  );
 }
 
 export function sameInventory(a, b) {
@@ -275,7 +283,13 @@ export function resolveClaims(lessonId, claims) {
       prTitle: current.title ?? null,
       diagnostic: null,
     };
-  if (current.merged) return { status: 'Merged · #' + current.number, pr: current.number, prTitle: current.title ?? null, diagnostic: null };
+  if (current.merged)
+    return {
+      status: 'Merged · #' + current.number,
+      pr: current.number,
+      prTitle: current.title ?? null,
+      diagnostic: null,
+    };
   return {
     status: 'Closed unmerged · #' + current.number,
     pr: current.number,
@@ -367,7 +381,14 @@ export function renderLessonsBlock(report) {
     else if (lesson.status === 'Reused / existing') count.reused++;
     else count.pending++;
     const label = lesson.pr
-      ? '[' + escaped(lesson.status) + (lesson.prTitle ? ' · ' + escaped(lesson.prTitle) : '') + '](https://github.com/' + report.repo + '/pull/' + lesson.pr + ')'
+      ? '[' +
+        escaped(lesson.status) +
+        (lesson.prTitle ? ' · ' + escaped(lesson.prTitle) : '') +
+        '](https://github.com/' +
+        report.repo +
+        '/pull/' +
+        lesson.pr +
+        ')'
       : escaped(lesson.status);
     rows.push(
       '| ' +

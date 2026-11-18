@@ -98,18 +98,24 @@ test('editorial hierarchy deduplicates repeated Lesson UUID, retains placements 
 });
 
 test('materialized Course PR identity accepts the reviewed historical YAML source and protects manual stage fields', () => {
-  const finalized = body.replace(
-    '- Course UUID: ' + courseId,
-    '- Course UUID: ' + String.fromCharCode(96) + courseId + String.fromCharCode(96),
-  ).replace(
-    '- Textbook: content/math',
-    '- Textbook: ' + String.fromCharCode(96) + 'content/math' + String.fromCharCode(96),
-  ).replace(
-    '- Source plan: content/math/data/courses/7/' + courseId + '/course.yaml',
-    '- Reviewed temporary source (finalized and removed after Stage 5; retained in Git history): ' +
-    String.fromCharCode(96) + 'content/math/data/courses/7/' + courseId + '/course.yaml' +
-    String.fromCharCode(96),
-  );
+  const finalized = body
+    .replace(
+      '- Course UUID: ' + courseId,
+      '- Course UUID: ' + String.fromCharCode(96) + courseId + String.fromCharCode(96),
+    )
+    .replace(
+      '- Textbook: content/math',
+      '- Textbook: ' + String.fromCharCode(96) + 'content/math' + String.fromCharCode(96),
+    )
+    .replace(
+      '- Source plan: content/math/data/courses/7/' + courseId + '/course.yaml',
+      '- Reviewed temporary source (finalized and removed after Stage 5; retained in Git history): ' +
+        String.fromCharCode(96) +
+        'content/math/data/courses/7/' +
+        courseId +
+        '/course.yaml' +
+        String.fromCharCode(96),
+    );
   assert.equal(parseParent(finalized).courseId, courseId);
   const initial = finalized.replace(
     '- Reviewed temporary source (finalized and removed after Stage 5; retained in Git history): ',
@@ -125,17 +131,27 @@ test('materialized inventory reconciles planned UUID-less slots with stable plac
     unresolved: [{ placement: 'alpha / review', reason: 'Lesson UUID not allocated' }],
   };
   const materialized = {
-    lessons: [{ lessonId, placements: ['alpha / first / introduction'] },
-      { lessonId: courseId, placements: ['alpha / review'] }],
+    lessons: [
+      { lessonId, placements: ['alpha / first / introduction'] },
+      { lessonId: courseId, placements: ['alpha / review'] },
+    ],
     unresolved: [],
   };
   assert.equal(compatibleMaterializedInventory(planned, materialized), true);
-  assert.equal(compatibleMaterializedInventory(planned, {
-    ...materialized, lessons: [{ ...materialized.lessons[0], placements: ['bad / slot'] }, materialized.lessons[1]],
-  }), false);
-  assert.equal(compatibleMaterializedInventory(planned, {
-    ...materialized, lessons: [{ ...materialized.lessons[0], lessonId: courseId }, materialized.lessons[1]],
-  }), false);
+  assert.equal(
+    compatibleMaterializedInventory(planned, {
+      ...materialized,
+      lessons: [{ ...materialized.lessons[0], placements: ['bad / slot'] }, materialized.lessons[1]],
+    }),
+    false,
+  );
+  assert.equal(
+    compatibleMaterializedInventory(planned, {
+      ...materialized,
+      lessons: [{ ...materialized.lessons[0], lessonId: courseId }, materialized.lessons[1]],
+    }),
+    false,
+  );
 });
 
 test('PR identity uses exact UUIDs and never fuzzy title/branch matching', () => {

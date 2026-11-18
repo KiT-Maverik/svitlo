@@ -47,8 +47,7 @@ export function parseTrigger(event, kind, actor) {
     if (!['materialize', 'finalize'].includes(operation))
       throw Error('Dispatch operation must be materialize or finalize');
   } else throw Error('Unsupported event');
-  if (!Number.isSafeInteger(number) || number < 1 || number > 999999999)
-    throw Error('Invalid Course PR number');
+  if (!Number.isSafeInteger(number) || number < 1 || number > 999999999) throw Error('Invalid Course PR number');
   return { number, operation, actor };
 }
 
@@ -62,17 +61,31 @@ export function parseReviewEvidence(body) {
 }
 
 export function safeBranch(name, base) {
-  return typeof name === 'string' &&
+  return (
+    typeof name === 'string' &&
     /^[A-Za-z0-9][A-Za-z0-9._/-]*$/.test(name) &&
-    name !== base && !name.includes('..') && !name.includes('//') &&
-    !name.endsWith('/') && !name.endsWith('.lock') && !name.includes('/.') &&
-    !name.startsWith('.') && !name.includes('@{');
+    name !== base &&
+    !name.includes('..') &&
+    !name.includes('//') &&
+    !name.endsWith('/') &&
+    !name.endsWith('.lock') &&
+    !name.includes('/.') &&
+    !name.startsWith('.') &&
+    !name.includes('@{')
+  );
 }
 
 export function validateArtifactPath(filename, identity, operation) {
-  if (typeof filename !== 'string' || filename.length > 300 ||
-      filename.startsWith('/') || filename.includes('\\') || filename.includes('..') ||
-      filename.includes('//') || filename.includes('\0')) return false;
+  if (
+    typeof filename !== 'string' ||
+    filename.length > 300 ||
+    filename.startsWith('/') ||
+    filename.includes('\\') ||
+    filename.includes('..') ||
+    filename.includes('//') ||
+    filename.includes('\0')
+  )
+    return false;
   if (operation === 'finalize') return filename === identity.yaml;
   if (operation !== 'materialize') return false;
   const base = identity.pkg + '/data/courses/' + identity.id.at(-1) + '/' + identity.id + '/';
@@ -82,14 +95,18 @@ export function validateArtifactPath(filename, identity, operation) {
     if (/^(modules|chapters|episodes)\/(?:index|[a-z][A-Za-z0-9]*)\.ts$/.test(relative)) return true;
   }
   const prefix = identity.pkg + '/data/lessons/';
-  const match = filename.startsWith(prefix) ?
-    filename.slice(prefix.length).match(/^([0-9a-f])\/([0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12})\/lesson\.yaml$/) : null;
+  const match = filename.startsWith(prefix)
+    ? filename.slice(prefix.length).match(/^([0-9a-f])\/([0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12})\/lesson\.yaml$/)
+    : null;
   return !!match && match[1] === match[2].at(-1);
 }
 
 export function gitBlob(bytes) {
   const buffer = Buffer.isBuffer(bytes) ? bytes : Buffer.from(bytes);
-  return createHash('sha1').update('blob ' + buffer.length + '\0').update(buffer).digest('hex');
+  return createHash('sha1')
+    .update('blob ' + buffer.length + '\0')
+    .update(buffer)
+    .digest('hex');
 }
 
 export function stageFourApprovals({ reviews, prAuthor, sourceAuthor, identity, blob, blobsAtCommits }) {
@@ -102,16 +119,24 @@ export function stageFourApprovals({ reviews, prAuthor, sourceAuthor, identity, 
   const accepted = new Map();
   for (const review of latest.values()) {
     const login = review.user.login.toLowerCase();
-    if (review.state !== 'APPROVED' || login === prAuthor?.toLowerCase() ||
-        login === sourceAuthor?.toLowerCase()) continue;
+    if (review.state !== 'APPROVED' || login === prAuthor?.toLowerCase() || login === sourceAuthor?.toLowerCase())
+      continue;
     const evidence = parseReviewEvidence(review.body);
-    if (!evidence || evidence.id !== identity.id || evidence.blob !== blob ||
-        !roles.includes(evidence.role) || !SHA.test(review.commit_id ?? '')) continue;
+    if (
+      !evidence ||
+      evidence.id !== identity.id ||
+      evidence.blob !== blob ||
+      !roles.includes(evidence.role) ||
+      !SHA.test(review.commit_id ?? '')
+    )
+      continue;
     if (blobsAtCommits.get(review.commit_id) !== blob) continue;
     if (!accepted.has(evidence.role)) accepted.set(evidence.role, login);
   }
   if (accepted.size !== roles.length || accepted.get(roles[0]) === accepted.get(roles[1]))
-    throw Error('Stage 4 requires independent GitHub APPROVED reviews by two distinct accounts (methodologist and assessment-architect), pinned to the current Course YAML Git blob; the PR/last source author cannot self-approve');
+    throw Error(
+      'Stage 4 requires independent GitHub APPROVED reviews by two distinct accounts (methodologist and assessment-architect), pinned to the current Course YAML Git blob; the PR/last source author cannot self-approve',
+    );
   return Object.fromEntries(accepted);
 }
 
@@ -152,32 +177,42 @@ export async function inspect(number, expectedHead) {
   if (!/^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/.test(repo ?? '')) throw Error('Invalid repository');
   const pr = await github('pulls/' + number);
   const base = process.env.COURSE_DEFAULT_BRANCH || 'main';
-  if (!pr || pr.state !== 'open' || !pr.draft || pr.base?.ref !== base ||
-      pr.head?.repo?.full_name !== repo || !SHA.test(pr.head?.sha ?? '') ||
-      !safeBranch(pr.head?.ref, base))
+  if (
+    !pr ||
+    pr.state !== 'open' ||
+    !pr.draft ||
+    pr.base?.ref !== base ||
+    pr.head?.repo?.full_name !== repo ||
+    !SHA.test(pr.head?.sha ?? '') ||
+    !safeBranch(pr.head?.ref, base)
+  )
     throw Error('Open same-repo Draft Course parent PR targeting ' + base + ' required');
-  if (expectedHead && pr.head.sha !== expectedHead)
-    throw Error('PR HEAD advanced; re-run the command');
+  if (expectedHead && pr.head.sha !== expectedHead) throw Error('PR HEAD advanced; re-run the command');
   const identity = parseIdentity(pr.body);
   const encoded = identity.yaml.split('/').map(encodeURIComponent).join('/');
   const source = await github('contents/' + encoded + '?ref=' + pr.head.sha);
   if (!source || source.type !== 'file' || !SHA.test(source.sha ?? ''))
     throw Error('Canonical course.yaml missing or not a regular Git file');
-  const authors = await github('commits?path=' + encodeURIComponent(identity.yaml) +
-    '&sha=' + pr.head.sha + '&per_page=1');
+  const authors = await github(
+    'commits?path=' + encodeURIComponent(identity.yaml) + '&sha=' + pr.head.sha + '&per_page=1',
+  );
   const sourceAuthor = authors?.[0]?.author?.login;
-  if (!sourceAuthor || !pr.user?.login)
-    throw Error('Cannot verify last Course YAML author and PR author');
+  if (!sourceAuthor || !pr.user?.login) throw Error('Cannot verify last Course YAML author and PR author');
   const reviews = await collect('pulls/' + number + '/reviews');
   const blobsAtCommits = new Map();
-  for (const commitId of new Set(reviews.filter(r => r.state === 'APPROVED' && SHA.test(r.commit_id ?? ''))
-    .map(r => r.commit_id))) {
+  for (const commitId of new Set(
+    reviews.filter(r => r.state === 'APPROVED' && SHA.test(r.commit_id ?? '')).map(r => r.commit_id),
+  )) {
     const revision = await github('contents/' + encoded + '?ref=' + commitId);
     blobsAtCommits.set(commitId, revision?.sha ?? null);
   }
   const reviewers = stageFourApprovals({
-    reviews, prAuthor: pr.user.login, sourceAuthor, identity,
-    blob: source.sha, blobsAtCommits,
+    reviews,
+    prAuthor: pr.user.login,
+    sourceAuthor,
+    identity,
+    blob: source.sha,
+    blobsAtCommits,
   });
   for (const login of Object.values(reviewers)) {
     const permission = await github('collaborators/' + encodeURIComponent(login) + '/permission');
@@ -185,8 +220,13 @@ export async function inspect(number, expectedHead) {
       throw Error('Reviewer lacks repository write permission: ' + login);
   }
   return {
-    pr: number, head: pr.head.sha, branch: pr.head.ref, identity,
-    sourceBlob: source.sha, repo, reviewers,
+    pr: number,
+    head: pr.head.sha,
+    branch: pr.head.ref,
+    identity,
+    sourceBlob: source.sha,
+    repo,
+    reviewers,
   };
 }
 
@@ -199,24 +239,38 @@ export async function requireActor(actor) {
 
 export function report(message) {
   console.log(message);
-  if (process.env.GITHUB_STEP_SUMMARY)
-    fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, message + '\n');
+  if (process.env.GITHUB_STEP_SUMMARY) fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, message + '\n');
 }
 
 async function main() {
-  if (process.argv[2] !== 'resolve' || process.argv.length !== 3)
-    throw Error('Usage: course-gate.mjs resolve');
+  if (process.argv[2] !== 'resolve' || process.argv.length !== 3) throw Error('Usage: course-gate.mjs resolve');
   const event = JSON.parse(fs.readFileSync(process.env.GITHUB_EVENT_PATH, 'utf8'));
   const cmd = parseTrigger(event, process.env.GITHUB_EVENT_NAME, process.env.GITHUB_ACTOR);
   await requireActor(cmd.actor);
   const pr = await inspect(cmd.number);
-  const meta = Buffer.from(JSON.stringify({
-    number: cmd.number, operation: cmd.operation, actor: cmd.actor, head: pr.head,
-    branch: pr.branch, identity: pr.identity, sourceBlob: pr.sourceBlob, repo: pr.repo,
-  })).toString('base64');
+  const meta = Buffer.from(
+    JSON.stringify({
+      number: cmd.number,
+      operation: cmd.operation,
+      actor: cmd.actor,
+      head: pr.head,
+      branch: pr.branch,
+      identity: pr.identity,
+      sourceBlob: pr.sourceBlob,
+      repo: pr.repo,
+    }),
+  ).toString('base64');
   fs.appendFileSync(process.env.GITHUB_OUTPUT, 'meta=' + meta + '\npr=' + cmd.number + '\nhead=' + pr.head + '\n');
-  report('Authorized ' + cmd.operation + ' for PR #' + cmd.number + ', Course YAML blob ' + pr.sourceBlob +
-    ', HEAD ' + pr.head);
+  report(
+    'Authorized ' +
+      cmd.operation +
+      ' for PR #' +
+      cmd.number +
+      ', Course YAML blob ' +
+      pr.sourceBlob +
+      ', HEAD ' +
+      pr.head,
+  );
 }
 
 if (process.argv[1] && process.argv[1].endsWith('/course-gate.mjs')) {

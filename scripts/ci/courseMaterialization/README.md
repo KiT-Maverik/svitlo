@@ -32,7 +32,7 @@ YAML Git blob, and place these three standalone lines in the review body:
     Course YAML blob: <40-hex-git-blob-sha>
 
 The other review uses **assessment-architect** in the first line and the same
-UUID/blob. Reviews must originate from *different GitHub accounts*, neither the
+UUID/blob. Reviews must originate from _different GitHub accounts_, neither the
 Course PR author nor the last Course YAML commit author. If an approver submits
 CHANGES_REQUESTED or their review is dismissed, a new approval is needed. A
 checkbox, COMMENTED review, stale SHA, unverified self-review or PR-body
@@ -58,7 +58,7 @@ source-path fields. The YAML path is derived from the UUID last-hex bucket.
    a concurrent push rejects the update rather than overwriting it.
 
 Allowed materialize outputs: Course index.ts, constants.ts, review.ts,
-methodology.md, modules/*.ts, chapters/*.ts, episodes/*.ts and only new
+methodology.md, modules/_.ts, chapters/_.ts, episodes/*.ts and only new
 Lesson UUID-root lesson.yaml files. Finalize may delete only the Course YAML.
 Unknown files, divergent existing files, symlinks/submodules, ambiguous IDs,
 stale approvals, changed HEAD and partial output fail closed. Repeated

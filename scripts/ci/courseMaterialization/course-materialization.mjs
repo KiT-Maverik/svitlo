@@ -9,9 +9,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { createHash } from 'node:crypto';
 import { execFileSync } from 'node:child_process';
-import {
-  github, inspect, requireActor, report, gitBlob, validateArtifactPath,
-} from './course-gate.mjs';
+import { github, inspect, requireActor, report, gitBlob, validateArtifactPath } from './course-gate.mjs';
 
 function sha256(bytes) {
   return createHash('sha256').update(bytes).digest('hex');
@@ -19,13 +17,18 @@ function sha256(bytes) {
 
 function metadata() {
   const input = process.env.COURSE_META_B64 ?? '';
-  if (!/^[A-Za-z0-9+/=]+$/.test(input) || input.length > 8192)
-    throw Error('Missing or invalid pinned Course metadata');
+  if (!/^[A-Za-z0-9+/=]+$/.test(input) || input.length > 8192) throw Error('Missing or invalid pinned Course metadata');
   const meta = JSON.parse(Buffer.from(input, 'base64').toString('utf8'));
-  if (!Number.isSafeInteger(meta.number) || !['materialize', 'finalize'].includes(meta.operation) ||
-      !/^[a-f0-9]{40}$/.test(meta.head) || !/^[a-f0-9]{40}$/.test(meta.sourceBlob) ||
-      !meta.identity?.yaml || !meta.identity?.pkg || !meta.identity?.id ||
-      meta.repo !== process.env.GITHUB_REPOSITORY)
+  if (
+    !Number.isSafeInteger(meta.number) ||
+    !['materialize', 'finalize'].includes(meta.operation) ||
+    !/^[a-f0-9]{40}$/.test(meta.head) ||
+    !/^[a-f0-9]{40}$/.test(meta.sourceBlob) ||
+    !meta.identity?.yaml ||
+    !meta.identity?.pkg ||
+    !meta.identity?.id ||
+    meta.repo !== process.env.GITHUB_REPOSITORY
+  )
     throw Error('Invalid Course metadata fields');
   return meta;
 }
@@ -36,8 +39,11 @@ function checkedRoot() {
     throw Error('Expected a real, immutable Git checkout');
   const head = execFileSync('git', ['rev-parse', 'HEAD'], { cwd: root, encoding: 'utf8' }).trim();
   if (head !== metadata().head) throw Error('Data checkout is not the pinned PR head');
-  const status = execFileSync('git', ['status', '--porcelain=v1', '--untracked-files=all'],
-    { cwd: root, encoding: 'utf8', maxBuffer: 16 * 1024 * 1024 });
+  const status = execFileSync('git', ['status', '--porcelain=v1', '--untracked-files=all'], {
+    cwd: root,
+    encoding: 'utf8',
+    maxBuffer: 16 * 1024 * 1024,
+  });
   if (status.trim()) throw Error('PR data checkout was dirty before operation');
   return root;
 }
@@ -56,8 +62,11 @@ function relativeSafe(root, filename) {
 }
 
 function trackedFiles(root, pkg) {
-  const output = execFileSync('git', ['ls-files', '-s', '-z', '--', pkg],
-    { cwd: root, encoding: 'utf8', maxBuffer: 32 * 1024 * 1024 });
+  const output = execFileSync('git', ['ls-files', '-s', '-z', '--', pkg], {
+    cwd: root,
+    encoding: 'utf8',
+    maxBuffer: 32 * 1024 * 1024,
+  });
   const files = new Set();
   for (const item of output.split('\0').filter(Boolean)) {
     const separator = item.indexOf('\t');
@@ -70,8 +79,11 @@ function trackedFiles(root, pkg) {
 }
 
 function changedFiles(root) {
-  const status = execFileSync('git', ['status', '--porcelain=v1', '--untracked-files=all', '-z'],
-    { cwd: root, encoding: 'utf8', maxBuffer: 32 * 1024 * 1024 });
+  const status = execFileSync('git', ['status', '--porcelain=v1', '--untracked-files=all', '-z'], {
+    cwd: root,
+    encoding: 'utf8',
+    maxBuffer: 32 * 1024 * 1024,
+  });
   const changes = new Map();
   for (const item of status.split('\0').filter(Boolean)) {
     const state = item.slice(0, 2);
@@ -85,30 +97,45 @@ function changedFiles(root) {
 }
 
 function verifyManifest(manifest, meta, root) {
-  if (!manifest || manifest.version !== 1 || manifest.pr !== meta.number ||
-      manifest.operation !== meta.operation || manifest.head !== meta.head ||
-      manifest.repo !== meta.repo || manifest.sourceBlob !== meta.sourceBlob ||
-      JSON.stringify(manifest.identity) !== JSON.stringify(meta.identity) ||
-      !Array.isArray(manifest.entries) || manifest.entries.length > 2500)
+  if (
+    !manifest ||
+    manifest.version !== 1 ||
+    manifest.pr !== meta.number ||
+    manifest.operation !== meta.operation ||
+    manifest.head !== meta.head ||
+    manifest.repo !== meta.repo ||
+    manifest.sourceBlob !== meta.sourceBlob ||
+    JSON.stringify(manifest.identity) !== JSON.stringify(meta.identity) ||
+    !Array.isArray(manifest.entries) ||
+    manifest.entries.length > 2500
+  )
     throw Error('Artifact metadata differs from authorized PR and source');
   const tracked = trackedFiles(root, meta.identity.pkg);
   let total = 0;
   const seen = new Set();
   for (const entry of manifest.entries) {
-    if (!entry || !validateArtifactPath(entry.path, meta.identity, meta.operation) ||
-        seen.has(entry.path)) throw Error('Unallowlisted or duplicated artifact path');
+    if (!entry || !validateArtifactPath(entry.path, meta.identity, meta.operation) || seen.has(entry.path))
+      throw Error('Unallowlisted or duplicated artifact path');
     seen.add(entry.path);
     if (meta.operation === 'finalize') {
-      if (entry.action !== 'delete' || entry.path !== meta.identity.yaml ||
-          !tracked.has(entry.path)) throw Error('Finalize must delete only the tracked Course YAML');
+      if (entry.action !== 'delete' || entry.path !== meta.identity.yaml || !tracked.has(entry.path))
+        throw Error('Finalize must delete only the tracked Course YAML');
     } else {
-      if (entry.action !== 'create' || tracked.has(entry.path) ||
-          typeof entry.data !== 'string' || entry.data.length > 12 * 1024 * 1024 ||
-          !/^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/.test(entry.data))
+      if (
+        entry.action !== 'create' ||
+        tracked.has(entry.path) ||
+        typeof entry.data !== 'string' ||
+        entry.data.length > 12 * 1024 * 1024 ||
+        !/^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/.test(entry.data)
+      )
         throw Error('Artifact must create a new allowlisted source file');
       const bytes = Buffer.from(entry.data, 'base64');
-      if (bytes.toString('base64') !== entry.data || !bytes.length ||
-          sha256(bytes) !== entry.sha256 || !Buffer.from(bytes.toString('utf8'), 'utf8').equals(bytes))
+      if (
+        bytes.toString('base64') !== entry.data ||
+        !bytes.length ||
+        sha256(bytes) !== entry.sha256 ||
+        !Buffer.from(bytes.toString('utf8'), 'utf8').equals(bytes)
+      )
         throw Error('Invalid artifact bytes/hash');
       total += bytes.length;
     }
@@ -121,8 +148,12 @@ function verifyManifest(manifest, meta, root) {
 
 function readReport() {
   const filename = process.env.COURSE_REPORT;
-  if (!filename || !fs.existsSync(filename) || fs.lstatSync(filename).isSymbolicLink() ||
-      fs.statSync(filename).size > 48 * 1024 * 1024)
+  if (
+    !filename ||
+    !fs.existsSync(filename) ||
+    fs.lstatSync(filename).isSymbolicLink() ||
+    fs.statSync(filename).size > 48 * 1024 * 1024
+  )
     throw Error('Missing, symlinked, or oversized Stage 5 artifact');
   return JSON.parse(fs.readFileSync(filename, 'utf8'));
 }
@@ -130,15 +161,17 @@ function readReport() {
 function assertSource(root, meta) {
   const source = path.join(root, meta.identity.yaml);
   relativeSafe(root, source);
-  if (!fs.existsSync(source) || !fs.statSync(source).isFile() ||
-      gitBlob(fs.readFileSync(source)) !== meta.sourceBlob)
+  if (!fs.existsSync(source) || !fs.statSync(source).isFile() || gitBlob(fs.readFileSync(source)) !== meta.sourceBlob)
     throw Error('Canonical Course source differs from approved Git blob');
 }
 
 function identicalSnapshot(a, b) {
-  return a.head === b.head && a.branch === b.branch &&
+  return (
+    a.head === b.head &&
+    a.branch === b.branch &&
     a.sourceBlob === b.sourceBlob &&
-    JSON.stringify(a.identity) === JSON.stringify(b.identity);
+    JSON.stringify(a.identity) === JSON.stringify(b.identity)
+  );
 }
 
 async function analyze(root, meta) {
@@ -148,7 +181,8 @@ async function analyze(root, meta) {
   assertSource(root, meta);
   const tracked = trackedFiles(root, meta.identity.pkg);
   const argumentsBase = ['--package', meta.identity.pkg, '--course', meta.identity.id];
-  const { materialize } = await import('../../../shared/engine/scripts/materializeCourseFlow/materialize-course-flow.mjs');
+  const { materialize } =
+    await import('../../../shared/engine/scripts/materializeCourseFlow/materialize-course-flow.mjs');
   let entries = [];
   if (meta.operation === 'materialize') {
     const { artifacts } = materialize([...argumentsBase, '--write'], root);
@@ -157,14 +191,22 @@ async function analyze(root, meta) {
       const filename = path.join(artifacts.folder, relative);
       const local = relativeSafe(root, filename);
       if (tracked.has(local)) continue;
-      entries.push({ path: local, action: 'create', data: Buffer.from(content).toString('base64'),
-        sha256: sha256(Buffer.from(content)) });
+      entries.push({
+        path: local,
+        action: 'create',
+        data: Buffer.from(content).toString('base64'),
+        sha256: sha256(Buffer.from(content)),
+      });
     }
     for (const [filename, content] of artifacts.lessonFiles) {
       const local = relativeSafe(root, filename);
       if (tracked.has(local)) continue;
-      entries.push({ path: local, action: 'create', data: Buffer.from(content).toString('base64'),
-        sha256: sha256(Buffer.from(content)) });
+      entries.push({
+        path: local,
+        action: 'create',
+        data: Buffer.from(content).toString('base64'),
+        sha256: sha256(Buffer.from(content)),
+      });
     }
   } else {
     // Source and generated bytes must already exist in the committed PR head.
@@ -181,28 +223,44 @@ async function analyze(root, meta) {
     entries = [{ path: meta.identity.yaml, action: 'delete' }];
   }
   const manifest = {
-    version: 1, repo: meta.repo, pr: meta.number, operation: meta.operation,
-    head: meta.head, identity: meta.identity, sourceBlob: meta.sourceBlob,
+    version: 1,
+    repo: meta.repo,
+    pr: meta.number,
+    operation: meta.operation,
+    head: meta.head,
+    identity: meta.identity,
+    sourceBlob: meta.sourceBlob,
     entries: entries.sort((a, b) => a.path.localeCompare(b.path)),
   };
   verifyManifest(manifest, meta, root);
   const changed = changedFiles(root);
-  if (changed.size !== entries.length ||
-      entries.some(entry => changed.get(entry.path) !== (entry.action === 'create' ? '??' : ' D')))
+  if (
+    changed.size !== entries.length ||
+    entries.some(entry => changed.get(entry.path) !== (entry.action === 'create' ? '??' : ' D'))
+  )
     throw Error('Unapproved generated or modified files detected');
   const output = process.env.COURSE_REPORT;
   if (!output) throw Error('COURSE_REPORT is required');
   fs.mkdirSync(path.dirname(output), { recursive: true });
   fs.writeFileSync(output, JSON.stringify(manifest));
-  report('Analyzed ' + meta.operation + ' at PR #' + meta.number + ' / ' + meta.head +
-    ': ' + entries.length + ' allowlisted files; source blob ' + meta.sourceBlob);
+  report(
+    'Analyzed ' +
+      meta.operation +
+      ' at PR #' +
+      meta.number +
+      ' / ' +
+      meta.head +
+      ': ' +
+      entries.length +
+      ' allowlisted files; source blob ' +
+      meta.sourceBlob,
+  );
 }
 
 async function publish(root, meta) {
   await requireActor(meta.actor);
   const live = await inspect(meta.number, meta.head);
-  if (!identicalSnapshot(live, meta))
-    throw Error('HEAD/source/review changed since read-only generation');
+  if (!identicalSnapshot(live, meta)) throw Error('HEAD/source/review changed since read-only generation');
   assertSource(root, meta);
   const manifest = readReport();
   const count = verifyManifest(manifest, meta, root);
@@ -214,34 +272,55 @@ async function publish(root, meta) {
   if (!original?.tree?.sha) throw Error('Cannot resolve exact parent Git tree');
   const tree = await github('git/trees', 'POST', {
     base_tree: original.tree.sha,
-    tree: manifest.entries.map(entry => entry.action === 'delete' ?
-      { path: entry.path, mode: '100644', type: 'blob', sha: null } :
-      { path: entry.path, mode: '100644', type: 'blob',
-        content: Buffer.from(entry.data, 'base64').toString('utf8') }),
+    tree: manifest.entries.map(entry =>
+      entry.action === 'delete'
+        ? { path: entry.path, mode: '100644', type: 'blob', sha: null }
+        : {
+            path: entry.path,
+            mode: '100644',
+            type: 'blob',
+            content: Buffer.from(entry.data, 'base64').toString('utf8'),
+          },
+    ),
   });
   if (!/^[a-f0-9]{40}$/.test(tree?.sha ?? '')) throw Error('Git tree creation failed');
   const next = await github('git/commits', 'POST', {
-    message: (meta.operation === 'materialize' ? 'Materialize' : 'Finalize') +
-      ' Course ' + meta.identity.id + '\n\nCourse-PR: #' + meta.number +
-      '\nCourse-Source-Commit: ' + meta.head +
-      '\nCourse-Source-Blob: ' + meta.sourceBlob,
+    message:
+      (meta.operation === 'materialize' ? 'Materialize' : 'Finalize') +
+      ' Course ' +
+      meta.identity.id +
+      '\n\nCourse-PR: #' +
+      meta.number +
+      '\nCourse-Source-Commit: ' +
+      meta.head +
+      '\nCourse-Source-Blob: ' +
+      meta.sourceBlob,
     tree: tree.sha,
     parents: [meta.head],
   });
   if (!/^[a-f0-9]{40}$/.test(next?.sha ?? '')) throw Error('Git commit creation failed');
   // A concurrent push makes this non-fast-forward; GitHub rejects the update.
   const beforeWrite = await github('pulls/' + meta.number);
-  if (beforeWrite?.head?.sha !== meta.head || beforeWrite.head.ref !== meta.branch ||
-      beforeWrite.state !== 'open')
+  if (beforeWrite?.head?.sha !== meta.head || beforeWrite.head.ref !== meta.branch || beforeWrite.state !== 'open')
     throw Error('PR HEAD advanced before write; no branch ref updated');
   const freshReview = await inspect(meta.number, meta.head);
-  if (!identicalSnapshot(freshReview, meta)) throw Error('Course identity or Stage 4 approval changed before ref update');
+  if (!identicalSnapshot(freshReview, meta))
+    throw Error('Course identity or Stage 4 approval changed before ref update');
   const updated = await github('git/refs/heads/' + meta.branch, 'PATCH', { sha: next.sha, force: false });
-  if (updated?.object?.sha !== next.sha)
-    throw Error('GitHub did not confirm the exact new branch ref');
-  report('Committed ' + count + ' verified Stage 5 ' + meta.operation +
-    ' changes to PR #' + meta.number + ': ' + next.sha +
-    ' (approved source blob ' + meta.sourceBlob + ')');
+  if (updated?.object?.sha !== next.sha) throw Error('GitHub did not confirm the exact new branch ref');
+  report(
+    'Committed ' +
+      count +
+      ' verified Stage 5 ' +
+      meta.operation +
+      ' changes to PR #' +
+      meta.number +
+      ': ' +
+      next.sha +
+      ' (approved source blob ' +
+      meta.sourceBlob +
+      ')',
+  );
 }
 
 async function main() {
