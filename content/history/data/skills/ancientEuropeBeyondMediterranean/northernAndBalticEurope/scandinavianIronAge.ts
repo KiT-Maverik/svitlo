@@ -52,7 +52,7 @@ export const scandinavianIronAge = defineSkill({
       it: "Esplora la vita in Scandinavia prima dell'epoca vichinga.",
       ja: 'ヴァイキング時代以前のスカンディナヴィアの暮らしを探ろう。',
       ka: 'გამოიკვლიეთ სკანდინავიის ცხოვრება ვიკინგების ეპოქამდე.',
-      kk: 'Vikingter däuırıne deiıngı Skandinaviia ömırın zertteñız.',
+      kk: 'Vikingter däuırıne deiıngı Skandinaviia ömırın zertte.',
       ko: '바이킹 시대 이전 스칸디나비아의 생활을 탐구하세요.',
       lt: 'Tyrinėkite Skandinavijos gyvenimą iki vikingų laikų.',
       lv: 'Izpēti dzīvi Skandināvijā pirms vikingu laikmeta.',

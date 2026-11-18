@@ -52,7 +52,7 @@ export const mycenaeanCivilization = defineSkill({
       it: 'Scopri che cosa rivelano i palazzi e i documenti micenei sui primi Greci.',
       ja: 'ミケーネの宮殿や記録から初期のギリシャ人について何が分かるか学ぼう。',
       ka: 'გაიგეთ, რას გვიჩვენებს მიკენური სასახლეები და ჩანაწერები ადრეული ბერძნების შესახებ.',
-      kk: 'Miken sarailary men jazbalary alğaşqy grekter turaly nenı körsetetının bılıñız.',
+      kk: 'Miken sarailary men jazbalary alğaşqy grekter turaly nenı körsetetının bıl.',
       ko: '미케네의 궁전과 기록이 초기 그리스인에 관해 무엇을 알려 주는지 알아보세요.',
       lt: 'Sužinokite, ką Mikėnų rūmai ir įrašai atskleidžia apie ankstyvuosius graikus.',
       lv: 'Uzzini, ko Mikēnu pilis un pieraksti atklāj par agrīnajiem grieķiem.',

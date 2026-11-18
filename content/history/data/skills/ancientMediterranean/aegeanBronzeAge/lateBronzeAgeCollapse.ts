@@ -53,7 +53,7 @@ export const lateBronzeAgeCollapse = defineSkill({
       it: "Esplora perché gli Stati dell'età del bronzo cambiarono o crollarono in modi diversi.",
       ja: '青銅器時代の国々が異なる形で変化・崩壊した理由を探ろう。',
       ka: 'გამოიკვლიეთ, რატომ იცვლებოდნენ ან ინგრეოდნენ ბრინჯაოს ხანის სახელმწიფოები სხვადასხვაგვარად.',
-      kk: 'Qola däuırındegı memleketter nege ärtürlı özgerıp ne qūlağanyn zertteñız.',
+      kk: 'Qola däuırındegı memleketter nege ärtürlı özgerıp ne qūlağanyn zertte.',
       ko: '청동기 시대 국가들이 서로 다른 방식으로 변하거나 무너진 이유를 탐구하세요.',
       lt: 'Tyrinėkite, kodėl bronzos amžiaus valstybės keitėsi ar žlugo skirtingai.',
       lv: 'Izpēti, kāpēc bronzas laikmeta valstis mainījās vai sabruka dažādi.',

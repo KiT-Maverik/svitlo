@@ -53,7 +53,7 @@ export const kyivanRus = defineSkill({
       it: "Esplora le popolazioni, i sovrani e le rotte commerciali della Rus' di Kyiv medievale.",
       ja: '中世のキーウ・ルーシの人々、支配者、交易路を調べよう。',
       ka: 'გაეცანით შუა საუკუნეების კიევის რუსის ხალხს, მმართველებსა და სავაჭრო გზებს.',
-      kk: 'Ortağasyrlyq Kiev Rusınıñ tūrğyndaryn, bileuşılerın jäne sauda joldaryn zertteñız.',
+      kk: 'Ortağasyrlyq Kiev Rusınıñ tūrğyndaryn, bileuşılerın jäne sauda joldaryn zertte.',
       ko: '중세 키이우 루스의 사람들, 통치자, 교역로를 알아보세요.',
       lt: 'Susipažinkite su viduramžių Kyjivo Rusios gyventojais, valdovais ir prekybos keliais.',
       lv: 'Iepazīsti viduslaiku Kijivas Krievzemes iedzīvotājus, valdniekus un tirdzniecības ceļus.',

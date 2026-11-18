@@ -62,7 +62,7 @@ export const aegeanBronzeAge = defineSkillGroup({
       it: "Scopri le società palaziali dell'Egeo nell'età del bronzo.",
       ja: '青銅器時代のエーゲ海地域にあった宮殿社会を調べよう。',
       ka: 'გაეცანით ეგეოსის ბრინჯაოს ხანის სასახლეთა საზოგადოებებს.',
-      kk: 'Egei öñırınıñ qola däuırındegı sarai qoğamdarymen tanysyñyz.',
+      kk: 'Egei öñırınıñ qola däuırındegı sarai qoğamdarymen tanys.',
       ko: '청동기 시대 에게해 지역의 궁전 중심 사회를 살펴보세요.',
       lt: 'Susipažinkite su Egėjo regiono bronzos amžiaus rūmų visuomenėmis.',
       lv: 'Iepazīsti Egejas bronzas laikmeta pils sabiedrības.',

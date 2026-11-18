@@ -64,7 +64,7 @@ export const ancientEuropeBeyondMediterranean = defineSkillDomain({
       it: 'Scopri le società europee antiche al di fuori della Grecia e di Roma.',
       ja: 'ギリシャやローマ以外の古代ヨーロッパ社会を探ろう。',
       ka: 'გაეცანით ძველი ევროპის საზოგადოებებს საბერძნეთისა და რომის მიღმა.',
-      kk: 'Grekiia men Rimnen tys ejelgı Europa qoğamdarymen tanysyñyz.',
+      kk: 'Grekiia men Rimnen tys ejelgı Europa qoğamdarymen tanys.',
       ko: '그리스와 로마 밖의 고대 유럽 사회를 탐구해 보세요.',
       lt: 'Atraskite senovės Europos visuomenes už Graikijos ir Romos ribų.',
       lv: 'Iepazīsti senās Eiropas sabiedrības ārpus Grieķijas un Romas.',

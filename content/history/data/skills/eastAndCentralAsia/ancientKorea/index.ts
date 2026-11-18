@@ -64,7 +64,7 @@ export const ancientKorea = defineSkillGroup({
       it: 'Esplora i primi regni della penisola coreana.',
       ja: '朝鮮半島の初期の王国を調べよう。',
       ka: 'გაეცანით კორეის ნახევარკუნძულის ადრეულ სამეფოებს.',
-      kk: 'Korei tübegınıñ alğaşqy patşalyqtaryn zertteñız.',
+      kk: 'Korei tübegınıñ alğaşqy patşalyqtaryn zertte.',
       ko: '한반도 초기 왕국들을 탐구해 보세요.',
       lt: 'Susipažinkite su ankstyvosiomis Korėjos pusiasalio karalystėmis.',
       lv: 'Iepazīsti Korejas pussalas agrīnās karalistes.',

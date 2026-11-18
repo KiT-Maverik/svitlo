@@ -52,7 +52,7 @@ export const springAndAutumnPeriod = defineSkill({
       it: 'Esplora gli Stati rivali della Cina durante il periodo delle Primavere e degli Autunni.',
       ja: '中国の春秋時代に競い合った諸国を調べよう。',
       ka: 'გაეცანით ჩინეთის მეტოქე სამეფოებს გაზაფხულისა და შემოდგომის ეპოქაში.',
-      kk: 'Qytaidyñ Köktem men küz däuırındegı bäsekeles memleketterın zertteñız.',
+      kk: 'Qytaidyñ Köktem men küz däuırındegı bäsekeles memleketterın zertte.',
       ko: '중국 춘추 시대에 경쟁하던 여러 나라를 탐구해 보세요.',
       lt: 'Tyrinėkite konkuruojančias Kinijos valstybes Pavasarių ir rudenų laikotarpiu.',
       lv: 'Izpēti Ķīnas konkurējošās valstis Pavasaru un rudeņu periodā.',

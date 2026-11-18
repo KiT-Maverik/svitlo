@@ -68,7 +68,7 @@ export const romanEmpire = defineSkillGroup({
       it: "Esplora come l'Impero romano governava popoli molto diversi.",
       ja: 'ローマ帝国がさまざまな民族をどう統治したか探ろう。',
       ka: 'გამოიკვლიეთ, როგორ მართავდა რომის იმპერია მრავალ განსხვავებულ ხალხს.',
-      kk: 'Rim imperiiasy köptegen ärtürlı halyqtardy qalai basqarğanyn zertteñız.',
+      kk: 'Rim imperiiasy köptegen ärtürlı halyqtardy qalai basqarğanyn zertte.',
       ko: '로마 제국이 서로 다른 여러 민족을 어떻게 다스렸는지 알아보세요.',
       lt: 'Tyrinėkite, kaip Romos imperija valdė daugybę skirtingų tautų.',
       lv: 'Izpēti, kā Romas impērija pārvaldīja daudzas dažādas tautas.',

@@ -62,7 +62,7 @@ export const macedoniaAndHellenisticWorld = defineSkillGroup({
       it: 'Esplora gli imperi e le culture del mondo ellenistico.',
       ja: 'ヘレニズム世界の帝国と文化を探ろう。',
       ka: 'გამოიკვლიეთ ელინისტური სამყაროს იმპერიები და კულტურები.',
-      kk: 'Ellinistık älemdegı imperiialar men mädenietterdı zertteñız.',
+      kk: 'Ellinistık älemdegı imperiialar men mädenietterdı zertte.',
       ko: '헬레니즘 세계의 제국과 문화를 탐구하세요.',
       lt: 'Pažinkite helenistinio pasaulio imperijas ir kultūras.',
       lv: 'Iepazīsti hellēnistiskās pasaules impērijas un kultūras.',

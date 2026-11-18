@@ -53,7 +53,7 @@ export const gojoseon = defineSkill({
       it: 'Scopri che cosa gli storici conoscono e discutono riguardo a Gojoseon.',
       ja: '古朝鮮について歴史家が知っていることと議論していることを調べよう。',
       ka: 'გაიგეთ, რა იციან ისტორიკოსებმა გოჯოსონის შესახებ და რაზე კამათობენ.',
-      kk: 'Tarihşylar Kotşoson turaly nenı bıletının jäne nenı talqylaitynyn bılıñız.',
+      kk: 'Tarihşylar Kotşoson turaly nenı bıletının jäne nenı talqylaitynyn bıl.',
       ko: '역사학자들이 고조선에 대해 무엇을 알고 무엇을 논쟁하는지 알아보세요.',
       lt: 'Sužinokite, ką istorikai žino ir dėl ko ginčijasi apie Godžosoną.',
       lv: 'Uzzini, ko vēsturnieki zina par Kodžosonu un par ko vēl strīdas.',

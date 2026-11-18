@@ -52,7 +52,7 @@ export const crisisOfRomanRepublic = defineSkill({
       it: 'Comprendi perché il governo repubblicano romano divenne instabile.',
       ja: 'ローマの共和政が不安定になった理由を考えよう。',
       ka: 'გაიაზრეთ, რატომ გახდა რომის რესპუბლიკური მმართველობა არასტაბილური.',
-      kk: 'Rimnıñ respublikalyq bilıgı nelıkten tūraqsyz bolğanyn tüsınıñız.',
+      kk: 'Rimnıñ respublikalyq bilıgı nelıkten tūraqsyz bolğanyn tüsın.',
       ko: '로마 공화정이 왜 불안정해졌는지 이해해 보세요.',
       lt: 'Supraskite, kodėl Romos respublikinė valdžia tapo nestabili.',
       lv: 'Izproti, kāpēc Romas republikāniskā valdība kļuva nestabila.',

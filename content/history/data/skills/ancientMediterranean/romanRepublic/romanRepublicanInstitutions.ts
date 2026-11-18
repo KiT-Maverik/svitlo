@@ -52,7 +52,7 @@ export const romanRepublicanInstitutions = defineSkill({
       it: 'Comprendi chi deteneva il potere nella Repubblica romana.',
       ja: 'ローマ共和政で誰が権力を握っていたか理解しよう。',
       ka: 'გაიაზრეთ, ვის ჰქონდა ძალაუფლება რომის რესპუბლიკაში.',
-      kk: 'Rim respublikasynda bilık kımderdıñ qolynda bolğanyn tüsınıñız.',
+      kk: 'Rim respublikasynda bilık kımderdıñ qolynda bolğanyn tüsın.',
       ko: '로마 공화정에서 누가 권력을 가졌는지 이해해 보세요.',
       lt: 'Supraskite, kam priklausė valdžia Romos Respublikoje.',
       lv: 'Izproti, kam piederēja vara Romas Republikā.',

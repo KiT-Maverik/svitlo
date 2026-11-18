@@ -53,7 +53,7 @@ export const augustanPrincipate = defineSkill({
       it: 'Scopri come Augusto instaurò il potere imperiale romano.',
       ja: 'アウグストゥスがローマの帝政をどのように確立したか調べよう。',
       ka: 'გაიგეთ, როგორ დაამკვიდრა ავგუსტუსმა რომის იმპერიული ძალაუფლება.',
-      kk: 'Avgust Rimdegı imperiialyq bilıktı qalai ornatqanyn bılıñız.',
+      kk: 'Avgust Rimdegı imperiialyq bilıktı qalai ornatqanyn bıl.',
       ko: '아우구스투스가 로마 제정 권력을 어떻게 확립했는지 살펴보세요.',
       lt: 'Sužinokite, kaip Augustas įtvirtino Romos imperijos valdžią.',
       lv: 'Uzzini, kā Augusts izveidoja Romas imperatora varu.',

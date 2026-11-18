@@ -52,7 +52,7 @@ export const ancientGreekTheater = defineSkill({
       it: 'Scopri perché il teatro era importante nelle antiche città greche.',
       ja: '古代ギリシャの都市で演劇が重要だった理由を考えよう。',
       ka: 'გაიგეთ, რატომ იყო თეატრი მნიშვნელოვანი ძველ ბერძნულ ქალაქებში.',
-      kk: 'Ejelgı grek qalalarynda teatrdyñ nege mañyzdy bolğanyn bılıñız.',
+      kk: 'Ejelgı grek qalalarynda teatrdyñ nege mañyzdy bolğanyn bıl.',
       ko: '고대 그리스 도시에서 연극이 왜 중요했는지 살펴보세요.',
       lt: 'Sužinokite, kodėl teatras buvo svarbus senovės Graikijos miestuose.',
       lv: 'Uzzini, kāpēc teātris bija svarīgs sengrieķu pilsētās.',

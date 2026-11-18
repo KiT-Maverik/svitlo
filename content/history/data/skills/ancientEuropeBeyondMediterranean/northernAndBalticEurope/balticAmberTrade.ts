@@ -52,7 +52,7 @@ export const balticAmberTrade = defineSkill({
       it: "Segui i percorsi dell'ambra baltica nelle antiche reti commerciali.",
       ja: 'バルト海の琥珀が古代の交易網を通じてどう運ばれたかたどろう。',
       ka: 'მიჰყევით, როგორ ვრცელდებოდა ბალტიის ქარვა ძველი სავაჭრო ქსელებით.',
-      kk: 'Baltyq kärıptasynyñ ejelgı sauda jelılerımen qalai tarağanyn zertteñız.',
+      kk: 'Baltyq kärıptasynyñ ejelgı sauda jelılerımen qalai tarağanyn zertte.',
       ko: '발트해의 호박이 고대 교역망을 따라 어떻게 이동했는지 추적하세요.',
       lt: 'Atsekite, kaip Baltijos gintaras keliavo senovės prekybos tinklais.',
       lv: 'Izseko, kā Baltijas dzintars ceļoja pa seniem tirdzniecības tīkliem.',

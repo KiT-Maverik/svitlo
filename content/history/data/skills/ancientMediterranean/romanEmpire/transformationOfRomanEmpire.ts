@@ -53,7 +53,7 @@ export const transformationOfRomanEmpire = defineSkill({
       it: "Comprendi perché l'Impero romano cambiò in modi diversi.",
       ja: 'ローマ帝国が地域によって異なる形で変化した理由を考えよう。',
       ka: 'გაიაზრეთ, რატომ შეიცვალა რომის იმპერია სხვადასხვა გზით.',
-      kk: 'Rim imperiiasy nelıkten ärtürlı jolmen özgergenın tüsınıñız.',
+      kk: 'Rim imperiiasy nelıkten ärtürlı jolmen özgergenın tüsın.',
       ko: '로마 제국이 서로 다른 방식으로 변화한 이유를 이해해 보세요.',
       lt: 'Supraskite, kodėl Romos imperija keitėsi skirtingais būdais.',
       lv: 'Izproti, kāpēc Romas impērija mainījās dažādos veidos.',

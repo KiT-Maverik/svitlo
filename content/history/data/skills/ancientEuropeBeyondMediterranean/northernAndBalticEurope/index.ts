@@ -61,7 +61,7 @@ export const northernAndBalticEurope = defineSkillGroup({
       it: "Scopri come le popolazioni dell'Europa settentrionale erano collegate dalle vie d'acqua.",
       ja: '北ヨーロッパの人々が水路でどのようにつながっていたか調べよう。',
       ka: 'გაიგეთ, როგორ აკავშირებდა ჩრდილოეთ ევროპის მცხოვრებლებს წყლის გზები.',
-      kk: 'Soltüstık Europa tūrğyndarynyñ su joldary arqyly qalai bailanysqanyn bılıñız.',
+      kk: 'Soltüstık Europa tūrğyndarynyñ su joldary arqyly qalai bailanysqanyn bıl.',
       ko: '북유럽 사람들이 수로를 통해 어떻게 연결되었는지 알아보세요.',
       lt: 'Sužinokite, kaip vandens keliai jungė Šiaurės Europos gyventojus.',
       lv: 'Uzzini, kā ūdensceļi savienoja Ziemeļeiropas iedzīvotājus.',

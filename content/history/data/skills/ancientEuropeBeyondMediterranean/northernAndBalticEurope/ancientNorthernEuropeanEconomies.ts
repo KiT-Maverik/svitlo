@@ -52,7 +52,7 @@ export const ancientNorthernEuropeanEconomies = defineSkill({
       it: "Scopri di che cosa vivevano le antiche comunità dell'Europa settentrionale.",
       ja: '古代北方の共同体がどうやって暮らしを立てていたか学ぼう。',
       ka: 'გაიგეთ, როგორ ირჩენდნენ თავს ძველი ჩრდილოეთის თემები.',
-      kk: 'Ejelgı soltüstık qauymdar qalai künkörıs jasağanyn bılıñız.',
+      kk: 'Ejelgı soltüstık qauymdar qalai künkörıs jasağanyn bıl.',
       ko: '고대 북유럽 공동체가 어떻게 생계를 유지했는지 살펴보세요.',
       lt: 'Sužinokite, kaip senovės šiaurės bendruomenės užsidirbdavo pragyvenimui.',
       lv: 'Uzzini, kā senās ziemeļu kopienas nodrošināja iztiku.',

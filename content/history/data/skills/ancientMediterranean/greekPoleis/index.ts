@@ -68,7 +68,7 @@ export const greekPoleis = defineSkillGroup({
       it: 'Confronta i modi in cui erano governate le diverse città-Stato greche.',
       ja: 'ギリシャのさまざまな都市国家の統治方法を比較しよう。',
       ka: 'შეადარეთ, როგორ იმართებოდა სხვადასხვა ბერძნული ქალაქ-სახელმწიფო.',
-      kk: 'Ärtürlı grek qala-memleketterınıñ basqaryluyn salystyryñyz.',
+      kk: 'Ärtürlı grek qala-memleketterınıñ basqaryluyn salystyr.',
       ko: '그리스 도시국가들이 어떻게 다르게 통치되었는지 비교해 보세요.',
       lt: 'Palyginkite, kaip buvo valdomi skirtingi Graikijos miestai-valstybės.',
       lv: 'Salīdzini, kā tika pārvaldītas dažādas Grieķijas pilsētvalstis.',

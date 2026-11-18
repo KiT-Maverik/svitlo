@@ -52,7 +52,7 @@ export const steppePastoralism = defineSkill({
       it: 'Scopri perché le comunità delle steppe si spostavano con il bestiame.',
       ja: '草原の人々が家畜とともに移動した理由を考えよう。',
       ka: 'გაიგეთ, რატომ გადაადგილდებოდნენ სტეპის თემები თავიანთ პირუტყვთან ერთად.',
-      kk: 'Dala qauymdary malymen bırge nelıkten köşkenın bılıñız.',
+      kk: 'Dala qauymdary malymen bırge nelıkten köşkenın bıl.',
       ko: '초원 공동체가 가축과 함께 이동한 이유를 알아보세요.',
       lt: 'Sužinokite, kodėl stepių bendruomenės keliavo su savo bandomis.',
       lv: 'Uzzini, kāpēc stepju kopienas pārvietojās kopā ar ganāmpulkiem.',

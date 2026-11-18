@@ -53,7 +53,7 @@ export const earlySteppeCultures = defineSkill({
       it: 'Scopri che cosa rivelano i tumuli funerari e gli insediamenti antichi delle steppe.',
       ja: '古代の草原の墳丘墓や集落から何が分かるか学ぼう。',
       ka: 'გაიგეთ, რას გვიჩვენებს ძველი სტეპის სამარხები და დასახლებები.',
-      kk: 'Ejelgı dala qorğandary men qonystary nenı körsetetının bılıñız.',
+      kk: 'Ejelgı dala qorğandary men qonystary nenı körsetetının bıl.',
       ko: '고대 초원의 무덤과 정착지가 무엇을 알려 주는지 살펴보세요.',
       lt: 'Sužinokite, ką atskleidžia senoviniai stepių pilkapiai ir gyvenvietės.',
       lv: 'Uzzini, ko atklāj senie stepju apbedījumu uzkalni un apmetnes.',

@@ -53,7 +53,7 @@ export const greekCitiesOfBlackSea = defineSkill({
       it: 'Esplora le città greche lungo la costa settentrionale del Mar Nero.',
       ja: '黒海北岸に築かれたギリシャ都市を探ろう。',
       ka: 'გამოიკვლიეთ ბერძნული ქალაქები შავი ზღვის ჩრდილოეთ სანაპიროზე.',
-      kk: 'Qara teñızdıñ soltüstık jağalauyndağy grek qalalaryn zertteñız.',
+      kk: 'Qara teñızdıñ soltüstık jağalauyndağy grek qalalaryn zertte.',
       ko: '흑해 북부 해안의 그리스 도시들을 살펴보세요.',
       lt: 'Tyrinėkite graikų miestus šiaurinėje Juodosios jūros pakrantėje.',
       lv: 'Izpēti grieķu pilsētas Melnās jūras ziemeļu piekrastē.',

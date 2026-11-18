@@ -53,7 +53,7 @@ export const papermakingInAncientChina = defineSkill({
       it: 'Esplora come la fabbricazione della carta in Cina cambiò la diffusione delle informazioni.',
       ja: '中国の製紙技術が情報の広まり方をどう変えたか学ぼう。',
       ka: 'გამოიკვლიეთ, როგორ შეცვალა ჩინურმა ქაღალდის დამზადებამ ინფორმაციის გავრცელება.',
-      kk: 'Qytaida qağaz jasaudyñ aqparat taraluyn qalai özgertkenın bılıñız.',
+      kk: 'Qytaida qağaz jasaudyñ aqparat taraluyn qalai özgertkenın bıl.',
       ko: '중국의 제지술이 정보의 확산을 어떻게 바꾸었는지 탐구하세요.',
       lt: 'Sužinokite, kaip Kinijos popieriaus gamyba pakeitė informacijos sklaidą.',
       lv: 'Izpēti, kā papīra izgatavošana Ķīnā mainīja informācijas izplatīšanos.',

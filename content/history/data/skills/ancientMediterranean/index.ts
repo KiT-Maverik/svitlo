@@ -68,7 +68,7 @@ export const ancientMediterranean = defineSkillDomain({
       it: 'Esplora come le diverse società antiche plasmarono il Mediterraneo.',
       ja: 'さまざまな古代社会が地中海世界をどう形づくったか探ろう。',
       ka: 'გამოიკვლიეთ, როგორ ჩამოაყალიბეს სხვადასხვა ძველმა საზოგადოებამ ხმელთაშუაზღვისპირეთი.',
-      kk: 'Ärtürlı ejelgı qoğamdardyñ Jerorta teñızı älemın qalai qalyptastyrğanyn zertteñız.',
+      kk: 'Ärtürlı ejelgı qoğamdardyñ Jerorta teñızı älemın qalai qalyptastyrğanyn zertte.',
       ko: '서로 다른 고대 사회가 지중해 세계를 어떻게 형성했는지 알아보세요.',
       lt: 'Tyrinėkite, kaip įvairios senovės visuomenės formavo Viduržemio jūros pasaulį.',
       lv: 'Izpēti, kā dažādas senās sabiedrības veidoja Vidusjūras pasauli.',

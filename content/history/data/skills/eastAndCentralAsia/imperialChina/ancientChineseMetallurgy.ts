@@ -53,7 +53,7 @@ export const ancientChineseMetallurgy = defineSkill({
       it: "Scopri come si sviluppò la lavorazione dei metalli nell'antica Cina.",
       ja: '古代中国で金属加工がどのように発展したかを調べよう。',
       ka: 'გაიგეთ, როგორ განვითარდა ლითონის დამუშავება ძველ ჩინეთში.',
-      kk: 'Ejelgı Qytaida metall öñdeu qalai damyğanyn bılıñız.',
+      kk: 'Ejelgı Qytaida metall öñdeu qalai damyğanyn bıl.',
       ko: '고대 중국에서 금속 가공 기술이 어떻게 발전했는지 알아보세요.',
       lt: 'Sužinokite, kaip senovės Kinijoje vystėsi metalo apdirbimas.',
       lv: 'Uzzini, kā senajā Ķīnā attīstījās metālapstrāde.',

@@ -52,7 +52,7 @@ export const peloponnesianWar = defineSkill({
       it: 'Esplora perché Atene e Sparta combatterono e quali furono le conseguenze.',
       ja: 'アテネとスパルタが戦った理由とその後の出来事を探ろう。',
       ka: 'გამოიკვლიეთ, რატომ იბრძოდნენ ათენი და სპარტა და რა მოჰყვა ამას.',
-      kk: 'Afina men Sparta nelıkten soğysqanyn jäne keiın ne bolğanyn zertteñız.',
+      kk: 'Afina men Sparta nelıkten soğysqanyn jäne keiın ne bolğanyn zertte.',
       ko: '아테네와 스파르타가 싸운 이유와 그 뒤에 일어난 일을 알아보세요.',
       lt: 'Tyrinėkite, kodėl Atėnai ir Sparta kariavo ir kas vyko po to.',
       lv: 'Izpēti, kāpēc Atēnas un Sparta karoja un kas notika pēc tam.',

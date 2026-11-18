@@ -52,7 +52,7 @@ export const xiongnu = defineSkill({
       it: "Scopri come gli Xiongnu interagivano con l'Impero Han.",
       ja: '匈奴が漢帝国とどのように関わったかを調べよう。',
       ka: 'გაიგეთ, როგორ ურთიერთობდნენ სიუნგნუ ხანის იმპერიასთან.',
-      kk: 'Siunnulardyñ Han imperiiasymen qalai bailanysqanyn bılıñız.',
+      kk: 'Siunnulardyñ Han imperiiasymen qalai bailanysqanyn bıl.',
       ko: '흉노가 한 제국과 어떻게 교류했는지 알아보세요.',
       lt: 'Sužinokite, kaip siongnu bendravo su Hanų imperija.',
       lv: 'Uzzini, kā sjunnu mijiedarbojās ar Haņu impēriju.',

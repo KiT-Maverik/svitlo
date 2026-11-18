@@ -52,7 +52,7 @@ export const warringStatesPeriod = defineSkill({
       it: 'Scopri come i governi degli Stati Combattenti si sfidavano e attuavano riforme.',
       ja: '戦国時代の諸国がどのように競争し、改革したかを探ろう。',
       ka: 'გაიგეთ, როგორ ეჯიბრებოდნენ ერთმანეთს მეომარი სახელმწიფოების ხელისუფლებები და ატარებდნენ რეფორმებს.',
-      kk: 'Soğysuşy patşalyqtardyñ ükımetterı qalai bäsekelesıp, reformalar jürgızgenın bılıñız.',
+      kk: 'Soğysuşy patşalyqtardyñ ükımetterı qalai bäsekelesıp, reformalar jürgızgenın bıl.',
       ko: '전국 시대 여러 나라의 정부가 어떻게 경쟁하고 개혁했는지 알아보세요.',
       lt: 'Sužinokite, kaip Kariaujančių valstybių valdžios varžėsi ir vykdė reformas.',
       lv: 'Uzzini, kā Karojošo valstu valdības sacentās un īstenoja reformas.',

@@ -52,7 +52,7 @@ export const qinEmpire = defineSkill({
       it: 'Scopri le politiche che aiutarono i Qin a unificare la Cina.',
       ja: '秦が中国を統一するのに役立った政策を学ぼう。',
       ka: 'გაიგეთ, რომელმა პოლიტიკამ შეუწყო ხელი ცინის მიერ ჩინეთის გაერთიანებას.',
-      kk: 'Tsin bileuşılerıne Qytaidy bırıktıruge qandai saiasat kömekteskenın bılıñız.',
+      kk: 'Tsin bileuşılerıne Qytaidy bırıktıruge qandai saiasat kömekteskenın bıl.',
       ko: '진나라가 중국을 통일하는 데 도움이 된 정책을 살펴보세요.',
       lt: 'Sužinokite, kokia politika padėjo Čin suvienyti Kiniją.',
       lv: 'Uzzini, kāda politika palīdzēja Cjiņu valdniekiem apvienot Ķīnu.',

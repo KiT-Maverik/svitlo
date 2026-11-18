@@ -52,7 +52,7 @@ export const silla = defineSkill({
       it: 'Esplora come Silla si sviluppò a partire da comunità regionali.',
       ja: '新羅が地域の共同体からどのように発展したか調べよう。',
       ka: 'გამოიკვლიეთ, როგორ განვითარდა სილა რეგიონული თემებიდან.',
-      kk: 'Sillanyñ aimaqtyq qauymdardan qalai damyğanyn zertteñız.',
+      kk: 'Sillanyñ aimaqtyq qauymdardan qalai damyğanyn zertte.',
       ko: '신라가 지역 공동체에서 어떻게 발전했는지 탐구해 보세요.',
       lt: 'Sužinokite, kaip Sila vystėsi iš regioninių bendruomenių.',
       lv: 'Izpēti, kā Silla attīstījās no reģionālām kopienām.',

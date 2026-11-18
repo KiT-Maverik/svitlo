@@ -52,7 +52,7 @@ export const hellenisticKingdoms = defineSkill({
       it: 'Esplora i diversi regni nati dopo Alessandro.',
       ja: 'アレクサンドロスの後に成立したさまざまな王国を調べよう。',
       ka: 'გამოიკვლიეთ ალექსანდრეს შემდეგ წარმოქმნილი სხვადასხვა სამეფო.',
-      kk: 'Aleksandrdan keiın qūrylğan ärtürlı patşalyqtardy zertteñız.',
+      kk: 'Aleksandrdan keiın qūrylğan ärtürlı patşalyqtardy zertte.',
       ko: '알렉산드로스 이후에 형성된 여러 왕국을 탐구하세요.',
       lt: 'Tyrinėkite skirtingas karalystes, susikūrusias po Aleksandro.',
       lv: 'Izpēti dažādās valstis, kas radās pēc Aleksandra.',

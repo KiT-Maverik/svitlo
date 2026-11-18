@@ -52,7 +52,7 @@ export const dailyLifeInRomanEmpire = defineSkill({
       it: "Scopri come la vita quotidiana variava nelle diverse regioni dell'Impero romano.",
       ja: 'ローマ帝国の各地で日常生活がどう違っていたか調べよう。',
       ka: 'გაიგეთ, როგორ განსხვავდებოდა ყოველდღიური ცხოვრება რომის იმპერიის სხვადასხვა ნაწილში.',
-      kk: 'Rim imperiiasynyñ är bölıgınde kündelıktı ömır qalai ärtürlı bolğanyn bılıñız.',
+      kk: 'Rim imperiiasynyñ är bölıgınde kündelıktı ömır qalai ärtürlı bolğanyn bıl.',
       ko: '로마 제국 곳곳의 일상생활이 어떻게 달랐는지 알아보세요.',
       lt: 'Sužinokite, kaip kasdienis gyvenimas skyrėsi įvairiose Romos imperijos dalyse.',
       lv: 'Uzzini, kā ikdiena atšķīrās dažādās Romas impērijas vietās.',

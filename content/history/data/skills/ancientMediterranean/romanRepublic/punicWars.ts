@@ -52,7 +52,7 @@ export const punicWars = defineSkill({
       it: 'Esplora le guerre tra Roma e Cartagine.',
       ja: 'ローマとカルタゴの間の戦争を学ぼう。',
       ka: 'გამოიკვლიეთ რომსა და კართაგენს შორის ომები.',
-      kk: 'Rim men Karfagen arasyndağy soğystardy zertteñız.',
+      kk: 'Rim men Karfagen arasyndağy soğystardy zertte.',
       ko: '로마와 카르타고 사이의 전쟁을 살펴보세요.',
       lt: 'Tyrinėkite karus tarp Romos ir Kartaginos.',
       lv: 'Izpēti karus starp Romu un Kartāgu.',

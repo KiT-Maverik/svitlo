@@ -53,7 +53,7 @@ export const greekReligionAndMythology = defineSkill({
       it: 'Comprendi come i miti e le pratiche religiose plasmavano la vita delle comunità greche.',
       ja: '神話や宗教儀礼がギリシャ人の共同体生活にどう関わったか考えよう。',
       ka: 'გაიაზრეთ, როგორ აყალიბებდა მითები და რელიგიური წეს-ჩვეულებები ბერძნული თემების ცხოვრებას.',
-      kk: 'Mifter men dıni täjıribeler grek qauymdarynyñ ömırın qalai qalyptastyrğanyn tüsınıñız.',
+      kk: 'Mifter men dıni täjıribeler grek qauymdarynyñ ömırın qalai qalyptastyrğanyn tüsın.',
       ko: '신화와 종교 활동이 그리스 공동체의 삶을 어떻게 형성했는지 이해해 보세요.',
       lt: 'Supraskite, kaip mitai ir religinės praktikos formavo graikų bendruomenių gyvenimą.',
       lv: 'Izproti, kā mīti un reliģiskās prakses veidoja grieķu kopienu dzīvi.',

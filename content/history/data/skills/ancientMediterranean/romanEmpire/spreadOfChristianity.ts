@@ -52,7 +52,7 @@ export const spreadOfChristianity = defineSkill({
       it: 'Esplora come il cristianesimo si diffuse sotto il dominio romano.',
       ja: 'ローマの支配下でキリスト教がどのように広まったか探ろう。',
       ka: 'გამოიკვლიეთ, როგორ გავრცელდა ქრისტიანობა რომაული მმართველობის დროს.',
-      kk: 'Hristiandyqtyñ Rim bilıgı kezınde qalai taralğanyn zertteñız.',
+      kk: 'Hristiandyqtyñ Rim bilıgı kezınde qalai taralğanyn zertte.',
       ko: '로마의 지배 아래 기독교가 어떻게 확산되었는지 알아보세요.',
       lt: 'Tyrinėkite, kaip krikščionybė plito valdant romėnams.',
       lv: 'Izpēti, kā kristietība izplatījās Romas valdīšanas laikā.',

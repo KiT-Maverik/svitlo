@@ -52,7 +52,7 @@ export const confucianTradition = defineSkill({
       it: 'Esplora le idee confuciane sul comportamento e sul buon governo.',
       ja: '人のふるまいやよい政治についての儒教思想を学ぼう。',
       ka: 'გამოიკვლიეთ კონფუციანური იდეები ქცევისა და კარგი მმართველობის შესახებ.',
-      kk: 'Mınez-qūlyq pen dūrys basqaru turaly konfutsiişıldık ideialardy zertteñız.',
+      kk: 'Mınez-qūlyq pen dūrys basqaru turaly konfutsiişıldık ideialardy zertte.',
       ko: '올바른 행동과 좋은 통치에 관한 유교 사상을 살펴보세요.',
       lt: 'Tyrinėkite konfucianizmo idėjas apie elgesį ir gerą valdymą.',
       lv: 'Izpēti konfūcisma idejas par uzvedību un labu pārvaldību.',

@@ -53,7 +53,7 @@ export const conquestsOfAlexander = defineSkill({
       it: 'Segui le conquiste di Alessandro e le loro conseguenze politiche.',
       ja: 'アレクサンドロスの征服と政治的な影響をたどろう。',
       ka: 'მიჰყევით ალექსანდრეს დაპყრობებსა და მათ პოლიტიკურ შედეგებს.',
-      kk: 'Aleksandr joryqtaryn jäne olardyñ saiasi saldaryn zertteñız.',
+      kk: 'Aleksandr joryqtaryn jäne olardyñ saiasi saldaryn zertte.',
       ko: '알렉산드로스의 정복 활동과 정치적 결과를 살펴보세요.',
       lt: 'Sekite Aleksandro užkariavimus ir jų politines pasekmes.',
       lv: 'Izpēti Aleksandra iekarojumus un to politiskās sekas.',

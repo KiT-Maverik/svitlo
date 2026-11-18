@@ -53,7 +53,7 @@ export const europeanBronzeAge = defineSkill({
       it: "Scopri come le popolazioni dell'età del bronzo lavoravano e commerciavano in Europa.",
       ja: '青銅器時代のヨーロッパで人々がどう働き、交易したか調べよう。',
       ka: 'გაიგეთ, როგორ მუშაობდნენ და ვაჭრობდნენ ადამიანები ევროპის ბრინჯაოს ხანაში.',
-      kk: 'Europada qola däuırınıñ adamdary qalai eñbek etıp, sauda jasağanyn bılıñız.',
+      kk: 'Europada qola däuırınıñ adamdary qalai eñbek etıp, sauda jasağanyn bıl.',
       ko: '청동기 시대 유럽 사람들이 어떻게 일하고 교역했는지 알아보세요.',
       lt: 'Sužinokite, kaip žmonės dirbo ir prekiavo Europoje bronzos amžiuje.',
       lv: 'Uzzini, kā cilvēki strādāja un tirgojās Eiropā bronzas laikmetā.',

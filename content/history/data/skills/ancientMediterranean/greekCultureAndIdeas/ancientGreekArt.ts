@@ -53,7 +53,7 @@ export const ancientGreekArt = defineSkill({
       it: "Riconosci come cambiò l'arte greca e quali funzioni svolgeva.",
       ja: 'ギリシャ美術がどう変化し、どんな役割を果たしたか調べよう。',
       ka: 'ამოიცანით, როგორ იცვლებოდა ბერძნული ხელოვნება და რა როლებს ასრულებდა.',
-      kk: 'Grek önerınıñ qalai özgergenın jäne qandai qyzmet atqarğanyn anyqtañyz.',
+      kk: 'Grek önerınıñ qalai özgergenın jäne qandai qyzmet atqarğanyn anyqta.',
       ko: '그리스 미술이 어떻게 변화했고 어떤 역할을 했는지 알아보세요.',
       lt: 'Atpažinkite, kaip kito graikų menas ir kokius vaidmenis atliko.',
       lv: 'Atpazīsti, kā mainījās grieķu māksla un kādas funkcijas tā pildīja.',

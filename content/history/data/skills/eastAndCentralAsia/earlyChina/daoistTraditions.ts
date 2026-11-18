@@ -52,7 +52,7 @@ export const daoistTraditions = defineSkill({
       it: 'Scopri le idee taoiste, senza considerare identici tutti i testi.',
       ja: 'すべての文献が同じだと考えずに、道家の多様な思想を調べよう。',
       ka: 'გაეცანით დაოსურ იდეებს ისე, რომ ყველა ტექსტი ერთნაირად არ ჩათვალოთ.',
-      kk: 'Barlyq mätındı bırdei sanamai, daosizm ideialaryn qarastyryñyz.',
+      kk: 'Barlyq mätındı bırdei sanamai, daosizm ideialaryn qarastyr.',
       ko: '모든 문헌이 같다고 여기지 말고 도가 사상의 다양성을 탐구하세요.',
       lt: 'Pažinkite daoizmo idėjas nemanydami, kad visi tekstai vienodi.',
       lv: 'Iepazīsti daoisma idejas, neuzskatot visus tekstus par vienādiem.',

@@ -52,7 +52,7 @@ export const romanProvincialGovernment = defineSkill({
       it: 'Comprendi come erano governate le province romane.',
       ja: 'ローマの属州がどう統治されたか理解しよう。',
       ka: 'გაიაზრეთ, როგორ იმართებოდა რომის პროვინციები.',
-      kk: 'Rim provintsiialary qalai basqarylğanyn tüsınıñız.',
+      kk: 'Rim provintsiialary qalai basqarylğanyn tüsın.',
       ko: '로마의 속주들이 어떻게 다스려졌는지 이해해 보세요.',
       lt: 'Supraskite, kaip buvo valdomos Romos provincijos.',
       lv: 'Izproti, kā tika pārvaldītas Romas provinces.',

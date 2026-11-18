@@ -53,7 +53,7 @@ export const sakaAndRelatedSteppeCultures = defineSkill({
       it: 'Esplora ciò che sappiamo dei Saka e delle culture affini.',
       ja: 'サカとそれに関連する文化について分かっていることを調べよう。',
       ka: 'გაეცანით, რა არის ცნობილი საკებისა და მათთან დაკავშირებული კულტურების შესახებ.',
-      kk: 'Saqtar men tuystas mädenietter turaly ne belgılı ekenın zertteñız.',
+      kk: 'Saqtar men tuystas mädenietter turaly ne belgılı ekenın zertte.',
       ko: '사카와 관련 문화에 대해 알려진 사실을 탐구하세요.',
       lt: 'Tyrinėkite, kas žinoma apie sakus ir giminingas kultūras.',
       lv: 'Izpēti, kas zināms par sakiem un tiem radniecīgajām kultūrām.',

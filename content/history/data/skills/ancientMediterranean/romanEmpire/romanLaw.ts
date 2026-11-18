@@ -52,7 +52,7 @@ export const romanLaw = defineSkill({
       it: "Esplora il ruolo del diritto e l'evoluzione delle idee giuridiche nella società romana.",
       ja: 'ローマ社会における法の役割と、法についての考え方の変化を探ろう。',
       ka: 'გამოიკვლიეთ სამართლის როლი და კანონზე ცვალებადი წარმოდგენები რომაულ საზოგადოებაში.',
-      kk: 'Rim qoğamyndağy qūqyqtyñ rölın jäne zañ turaly özgergen tüsınıkterdı zertteñız.',
+      kk: 'Rim qoğamyndağy qūqyqtyñ rölın jäne zañ turaly özgergen tüsınıkterdı zertte.',
       ko: '로마 사회에서 법의 역할과 법에 대한 생각이 어떻게 변했는지 탐구하세요.',
       lt: 'Tyrinėkite teisės vaidmenį ir besikeičiančias teisės sampratas romėnų visuomenėje.',
       lv: 'Izpēti tiesību lomu un mainīgos priekšstatus par likumu romiešu sabiedrībā.',

@@ -52,7 +52,7 @@ export const earlyRomanCommunities = defineSkill({
       it: 'Scopri come Roma si sviluppò tra le comunità vicine della penisola italiana.',
       ja: 'ローマがイタリアの周辺共同体の中でどう発展したか学ぼう。',
       ka: 'გაიგეთ, როგორ განვითარდა რომი იტალიის მეზობელ თემებს შორის.',
-      kk: 'Rimnıñ İtaliiadağy körşı qauymdar arasynda qalai damyğanyn zertteñız.',
+      kk: 'Rimnıñ İtaliiadağy körşı qauymdar arasynda qalai damyğanyn zertte.',
       ko: '로마가 이탈리아의 이웃 공동체들 사이에서 어떻게 발전했는지 살펴보세요.',
       lt: 'Tyrinėkite, kaip Roma vystėsi tarp kaimyninių Italijos bendruomenių.',
       lv: 'Izpēti, kā Roma attīstījās starp kaimiņu kopienām Itālijā.',

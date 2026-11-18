@@ -52,7 +52,7 @@ export const britainBeforeAndUnderRome = defineSkill({
       it: 'Esplora la Britannia prima e durante il dominio romano.',
       ja: 'ローマ支配以前と支配期のブリテンを探ろう。',
       ka: 'გამოიკვლიეთ ბრიტანეთი რომის მმართველობამდე და რომაული ბატონობის პერიოდში.',
-      kk: 'Britaniianyñ Rim bilıgıne deiıngı jäne sol kezeñdegı tarihyn zertteñız.',
+      kk: 'Britaniianyñ Rim bilıgıne deiıngı jäne sol kezeñdegı tarihyn zertte.',
       ko: '로마가 지배하기 전과 지배하던 시기의 브리튼을 살펴보세요.',
       lt: 'Tyrinėkite Britaniją prieš Romos valdymą ir jo laikotarpiu.',
       lv: 'Izpēti Britāniju pirms Romas valdīšanas un tās laikā.',

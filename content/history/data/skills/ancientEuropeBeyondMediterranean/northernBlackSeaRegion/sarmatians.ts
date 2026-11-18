@@ -52,7 +52,7 @@ export const sarmatians = defineSkill({
       it: 'Scopri la storia dei gruppi sarmati nelle steppe.',
       ja: '草原地帯のサルマタイ人諸集団の歴史を学ぼう。',
       ka: 'გაეცანით სტეპებში სარმატული ჯგუფების ისტორიას.',
-      kk: 'Daladağy sarmat taipalarynyñ tarihyn zertteñız.',
+      kk: 'Daladağy sarmat taipalarynyñ tarihyn zertte.',
       ko: '초원 지역의 사르마티아 집단들의 역사를 알아보세요.',
       lt: 'Sužinokite sarmatų grupių istoriją stepėse.',
       lv: 'Iepazīsti sarmatu grupu vēsturi stepēs.',

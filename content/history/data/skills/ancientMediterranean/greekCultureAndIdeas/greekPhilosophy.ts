@@ -53,7 +53,7 @@ export const greekPhilosophy = defineSkill({
       it: "Esplora le domande poste dai filosofi dell'antica Grecia.",
       ja: '古代ギリシャの哲学者たちが問いかけた問題を調べよう。',
       ka: 'გამოიკვლიეთ, რა კითხვებს სვამდნენ ძველი ბერძენი ფილოსოფოსები.',
-      kk: 'Ejelgı grek filosoftary qoiğan sūraqtardy zertteñız.',
+      kk: 'Ejelgı grek filosoftary qoiğan sūraqtardy zertte.',
       ko: '고대 그리스 철학자들이 던진 질문들을 살펴보세요.',
       lt: 'Tyrinėkite senovės graikų filosofų keltus klausimus.',
       lv: 'Izpēti jautājumus, ko uzdeva sengrieķu filozofi.',

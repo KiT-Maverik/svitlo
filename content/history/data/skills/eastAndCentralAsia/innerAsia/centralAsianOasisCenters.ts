@@ -52,7 +52,7 @@ export const centralAsianOasisCenters = defineSkill({
       it: 'Esplora le città delle oasi che collegavano le antiche rotte commerciali.',
       ja: '古代の交易路を結んだオアシス都市を探ろう。',
       ka: 'გამოიკვლიეთ ოაზისის ქალაქები, რომლებიც ძველ სავაჭრო გზებს აკავშირებდნენ.',
-      kk: 'Ejelgı sauda joldaryn jalğağan oazis qalalaryn zertteñız.',
+      kk: 'Ejelgı sauda joldaryn jalğağan oazis qalalaryn zertte.',
       ko: '고대 교역로를 연결한 오아시스 도시들을 살펴보세요.',
       lt: 'Tyrinėkite oazių miestus, jungusius senovės prekybos kelius.',
       lv: 'Izpēti oāžu pilsētas, kas savienoja senos tirdzniecības ceļus.',

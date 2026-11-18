@@ -64,7 +64,7 @@ export const greekCultureAndIdeas = defineSkillGroup({
       it: "Scopri la diversità delle credenze, del pensiero e dell'arte nell'antica Grecia.",
       ja: '古代ギリシャの信仰、思想、芸術の多様さを探ろう。',
       ka: 'გაეცანით ძველი ბერძნების რწმენების, აზროვნებისა და ხელოვნების მრავალფეროვნებას.',
-      kk: 'Ejelgı grekterdıñ senımderı, oilary men önerınıñ aluan türlılıgın bılıñız.',
+      kk: 'Ejelgı grekterdıñ senımderı, oilary men önerınıñ aluan türlılıgın bıl.',
       ko: '고대 그리스의 다양한 믿음과 사상, 예술을 알아보세요.',
       lt: 'Pažinkite senovės graikų tikėjimų, idėjų ir meno įvairovę.',
       lv: 'Iepazīsti seno grieķu ticējumu, domu un mākslas daudzveidību.',

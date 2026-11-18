@@ -52,7 +52,7 @@ export const patricianPlebeianConflict = defineSkill({
       it: 'Scopri come i cittadini romani comuni conquistarono diritti politici.',
       ja: '一般のローマ市民が政治的権利を獲得した過程を調べよう。',
       ka: 'გაიგეთ, როგორ მოიპოვეს რიგითმა რომაელმა მოქალაქეებმა პოლიტიკური უფლებები.',
-      kk: 'Qarapaiym rim azamattary saiasi qūqyqtardy qalai alğanyn bılıñız.',
+      kk: 'Qarapaiym rim azamattary saiasi qūqyqtardy qalai alğanyn bıl.',
       ko: '평범한 로마 시민들이 어떻게 정치적 권리를 얻었는지 알아보세요.',
       lt: 'Sužinokite, kaip eiliniai Romos piliečiai įgijo politinių teisių.',
       lv: 'Uzzini, kā parastie romiešu pilsoņi ieguva politiskās tiesības.',

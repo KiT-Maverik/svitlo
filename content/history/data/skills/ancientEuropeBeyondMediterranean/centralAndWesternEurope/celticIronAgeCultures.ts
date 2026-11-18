@@ -53,7 +53,7 @@ export const celticIronAgeCultures = defineSkill({
       it: "Esplora le culture legate ai Celti nell'età del ferro attraverso i ritrovamenti archeologici.",
       ja: '考古学的な発見からケルト人と関係のある鉄器時代の文化を探ろう。',
       ka: 'არქეოლოგიური აღმოჩენებით გამოიკვლიეთ კელტებთან დაკავშირებული რკინის ხანის კულტურები.',
-      kk: 'Arheologiialyq oljalar arqyly keltterge qatysty temır däuırı mädenietterın zertteñız.',
+      kk: 'Arheologiialyq oljalar arqyly keltterge qatysty temır däuırı mädenietterın zertte.',
       ko: '고고학 유물을 통해 켈트와 관련된 철기 시대 문화를 탐구하세요.',
       lt: 'Remdamiesi archeologiniais radiniais tyrinėkite su keltais susijusias geležies amžiaus kultūras.',
       lv: 'Izpēti ar ķeltiem saistītās dzelzs laikmeta kultūras pēc arheoloģiskajiem atradumiem.',

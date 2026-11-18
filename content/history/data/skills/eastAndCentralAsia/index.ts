@@ -66,7 +66,7 @@ export const eastAndCentralAsia = defineSkillDomain({
       it: "Esplora le diverse società antiche dell'Asia orientale e centrale.",
       ja: '東アジアと中央アジアの多様な古代社会を探ろう。',
       ka: 'გამოიკვლიეთ აღმოსავლეთ და ცენტრალური აზიის მრავალფეროვანი უძველესი საზოგადოებები.',
-      kk: 'Şyğys jäne Ortalyq Aziianyñ aluan türlı ejelgı qoğamdaryn zertteñız.',
+      kk: 'Şyğys jäne Ortalyq Aziianyñ aluan türlı ejelgı qoğamdaryn zertte.',
       ko: '동아시아와 중앙아시아의 다양한 고대 사회를 살펴보세요.',
       lt: 'Tyrinėkite įvairias senovės Rytų ir Vidurinės Azijos visuomenes.',
       lv: 'Iepazīsti daudzveidīgās senās Austrumāzijas un Centrālāzijas sabiedrības.',

@@ -68,7 +68,7 @@ export const earlyChina = defineSkillGroup({
       it: 'Scopri come si svilupparono i primi Stati e le tradizioni della Cina.',
       ja: '中国の初期の国家や伝統がどのように発展したかを探ろう。',
       ka: 'გაიგეთ, როგორ განვითარდა ჩინეთის ადრეული სახელმწიფოები და ტრადიციები.',
-      kk: 'Qytaidyñ alğaşqy memleketterı men dästürlerı qalai damyğanyn bılıñız.',
+      kk: 'Qytaidyñ alğaşqy memleketterı men dästürlerı qalai damyğanyn bıl.',
       ko: '중국의 초기 국가와 전통이 어떻게 발전했는지 알아보세요.',
       lt: 'Sužinokite, kaip formavosi ir vystėsi ankstyvosios Kinijos valstybės bei tradicijos.',
       lv: 'Uzzini, kā veidojās un attīstījās Ķīnas agrīnās valstis un tradīcijas.',

@@ -66,7 +66,7 @@ export const romanRepublic = defineSkillGroup({
       it: 'Scopri come la Repubblica romana si espanse e cambiò.',
       ja: 'ローマの共和政がどう拡大し変化したか調べよう。',
       ka: 'გამოიკვლიეთ, როგორ იზრდებოდა და იცვლებოდა რომის რესპუბლიკა.',
-      kk: 'Rim respublikasy qalai keñeiıp, özgergenın bılıñız.',
+      kk: 'Rim respublikasy qalai keñeiıp, özgergenın bıl.',
       ko: '로마 공화정이 어떻게 성장하고 변화했는지 알아보세요.',
       lt: 'Sužinokite, kaip Romos Respublika plėtėsi ir keitėsi.',
       lv: 'Uzzini, kā Romas Republika auga un mainījās.',

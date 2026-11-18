@@ -53,7 +53,7 @@ export const grecoPersianWars = defineSkill({
       it: 'Comprendi le guerre tra le città-Stato greche e la Persia.',
       ja: 'ギリシャの都市国家とペルシアの間の戦争を理解しよう。',
       ka: 'გაიაზრეთ ბერძნულ ქალაქ-სახელმწიფოებსა და სპარსეთს შორის ომები.',
-      kk: 'Grek qala-memleketterı men Parsy elı arasyndağy soğystardy tüsınıñız.',
+      kk: 'Grek qala-memleketterı men Parsy elı arasyndağy soğystardy tüsın.',
       ko: '그리스 도시국가들과 페르시아 사이의 전쟁을 이해해 보세요.',
       lt: 'Supraskite graikų miestų-valstybių karus su Persija.',
       lv: 'Izproti karus starp grieķu pilsētvalstīm un Persiju.',

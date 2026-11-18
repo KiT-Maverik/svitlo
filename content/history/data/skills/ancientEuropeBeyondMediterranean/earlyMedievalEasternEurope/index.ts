@@ -58,7 +58,7 @@ export const earlyMedievalEasternEurope = defineSkillGroup({
       it: "Esplora i primi Stati medievali e le reti commerciali dell'Europa orientale.",
       ja: '中世初期の東ヨーロッパにおける国家と交易のつながりを探ろう。',
       ka: 'გამოიკვლიეთ ადრეული შუა საუკუნეების აღმოსავლეთ ევროპის სახელმწიფოები და სავაჭრო კავშირები.',
-      kk: 'Şyğys Europanyñ erte ortağasyrlyq memleketterı men sauda bailanystaryn zertteñız.',
+      kk: 'Şyğys Europanyñ erte ortağasyrlyq memleketterı men sauda bailanystaryn zertte.',
       ko: '중세 초기 동유럽의 국가와 교역 관계를 살펴보세요.',
       lt: 'Tyrinėkite ankstyvųjų viduramžių Rytų Europos valstybes ir prekybinius ryšius.',
       lv: 'Izpēti agro viduslaiku Austrumeiropas valstis un tirdzniecības sakarus.',

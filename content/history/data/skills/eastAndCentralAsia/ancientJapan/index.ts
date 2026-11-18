@@ -62,7 +62,7 @@ export const ancientJapan = defineSkillGroup({
       it: "Scopri le culture antiche dell'arcipelago giapponese.",
       ja: '日本列島に存在した古代文化を探ろう。',
       ka: 'გამოიკვლიეთ იაპონიის არქიპელაგის უძველესი კულტურები.',
-      kk: 'Japon arhipelagynyñ ejelgı mädenietterın zertteñız.',
+      kk: 'Japon arhipelagynyñ ejelgı mädenietterın zertte.',
       ko: '일본 열도의 고대 문화들을 살펴보세요.',
       lt: 'Pažinkite senąsias Japonijos salyno kultūras.',
       lv: 'Iepazīsti Japānas arhipelāga senās kultūras.',

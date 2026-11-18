@@ -52,7 +52,7 @@ export const ancientGermanicCommunities = defineSkill({
       it: 'Scopri la varietà delle antiche comunità di lingua germanica.',
       ja: '古代のゲルマン系言語を話す共同体の多様さを学ぼう。',
       ka: 'გაეცანით ძველ გერმანულ ენებზე მოსაუბრე თემების მრავალფეროვნებას.',
-      kk: 'Ejelgı german tılderınde söilegen qauymdardyñ aluan türlılıgın zertteñız.',
+      kk: 'Ejelgı german tılderınde söilegen qauymdardyñ aluan türlılıgın zertte.',
       ko: '고대 게르만어를 사용한 여러 공동체의 다양성을 알아보세요.',
       lt: 'Sužinokite apie senovės germaniškai kalbėjusių bendruomenių įvairovę.',
       lv: 'Iepazīsti seno ģermāņu valodās runājošo kopienu daudzveidību.',

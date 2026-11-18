@@ -52,7 +52,7 @@ export const fallOfHanAndSuccessorStates = defineSkill({
       it: "Esplora che cosa accadde dopo l'indebolimento del potere imperiale Han.",
       ja: '漢の帝国支配が弱まった後に何が起こったか探ろう。',
       ka: 'გამოიკვლიეთ, რა მოხდა ხანის იმპერიული ძალაუფლების შესუსტების შემდეგ.',
-      kk: 'Han imperiialyq bilıgı älsıregennen keiın ne bolğanyn zertteñız.',
+      kk: 'Han imperiialyq bilıgı älsıregennen keiın ne bolğanyn zertte.',
       ko: '한나라의 제국 통치가 약해진 뒤 어떤 일이 있었는지 살펴보세요.',
       lt: 'Tyrinėkite, kas vyko susilpnėjus Hanų imperijos valdžiai.',
       lv: 'Izpēti, kas notika, vājinoties Haņu impērijas varai.',
