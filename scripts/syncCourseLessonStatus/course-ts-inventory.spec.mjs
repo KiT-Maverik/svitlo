@@ -120,6 +120,10 @@ test('Reject malformed Lesson YAML and symlinks without evaluating Course TypeSc
   try {
     f.put(yamlFile, YAML.stringify({ config: { id: courseId } }));
     assert.throws(() => readCourseTsInventory(f.root, directory, courseId), /YAML ID disagrees/);
+    f.put(yamlFile, YAML.stringify({
+      config: { id: newLesson, locale: { title: { en: 'First Sky' } } },
+      production: { documentLanguage: 'en' },
+    }));
     const filename = path.join(f.root, moduleFile);
     fs.rmSync(filename);
     fs.symlinkSync('/etc/passwd', filename);
