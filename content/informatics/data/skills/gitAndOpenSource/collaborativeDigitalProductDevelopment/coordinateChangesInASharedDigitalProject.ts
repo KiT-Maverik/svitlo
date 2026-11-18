@@ -18,7 +18,7 @@ export const coordinateChangesInASharedDigitalProject = defineSkill({
     it: 'Coordinare le modifiche in un progetto digitale condiviso',
     ja: '共有デジタルプロジェクトの変更を調整する',
     ka: 'საერთო ციფრულ პროექტში ცვლილებების კოორდინაცია',
-    kk: 'Ortaq tsifrlyq jobadağy özgerısterdı üilestıru',
+    kk: 'Ortaq sifrlyq jobadağy özgerısterdı üilestıru',
     ko: '공유 디지털 프로젝트의 변경 조율하기',
     lt: 'Koordinuoti bendro skaitmeninio projekto pakeitimus',
     lv: 'Koordinēt izmaiņas kopīgā digitālā projektā',

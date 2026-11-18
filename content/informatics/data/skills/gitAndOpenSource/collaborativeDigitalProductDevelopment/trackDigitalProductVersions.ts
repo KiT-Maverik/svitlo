@@ -18,7 +18,7 @@ export const trackDigitalProductVersions = defineSkill({
     it: 'Tenere traccia delle versioni di un prodotto digitale',
     ja: 'デジタル製品のバージョンを追跡する',
     ka: 'ციფრული პროდუქტის ვერსიების თვალყურის დევნება',
-    kk: 'Tsifrlyq önım nūsqalaryn qadağalau',
+    kk: 'Sifrlyq önım nūsqalaryn qadağalau',
     ko: '디지털 제품 버전 추적하기',
     lt: 'Stebėti skaitmeninio produkto versijas',
     lv: 'Izsekot digitālā produkta versijas',

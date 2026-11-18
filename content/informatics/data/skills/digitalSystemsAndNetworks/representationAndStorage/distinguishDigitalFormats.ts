@@ -18,7 +18,7 @@ export const distinguishDigitalFormats = defineSkill({
     it: 'Distinguere i formati digitali',
     ja: 'デジタル形式を区別する',
     ka: 'ციფრული ფორმატების განსხვავება',
-    kk: 'Tsifrlyq pışımderdı ajyratu',
+    kk: 'Sifrlyq pışımderdı ajyratu',
     ko: '디지털 형식 구별하기',
     lt: 'Atskirti skaitmeninius formatus',
     lv: 'Atšķirt digitālos formātus',

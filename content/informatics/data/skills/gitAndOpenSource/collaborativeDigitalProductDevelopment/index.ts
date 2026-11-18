@@ -22,7 +22,7 @@ export const collaborativeDigitalProductDevelopment = defineSkillGroup({
     it: 'Sviluppo collaborativo di prodotti digitali',
     ja: 'デジタル製品の共同開発',
     ka: 'ციფრული პროდუქტების ერთობლივი განვითარება',
-    kk: 'Tsifrlyq önımderdı bırlesıp äzırleu',
+    kk: 'Sifrlyq önımderdı bırlesıp äzırleu',
     ko: '디지털 제품 공동 개발',
     lt: 'Bendras skaitmeninių produktų kūrimas',
     lv: 'Kopīga digitālu produktu izstrāde',

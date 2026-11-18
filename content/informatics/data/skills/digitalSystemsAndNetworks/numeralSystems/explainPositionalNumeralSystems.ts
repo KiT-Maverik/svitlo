@@ -53,7 +53,7 @@ export const explainPositionalNumeralSystems = defineSkill({
       it: 'Comprendi perché la posizione di una cifra cambia il suo valore in un numero.',
       ja: '数字の位置によって数の中での値が変わる理由を理解しよう。',
       ka: 'გაიგე, რატომ ცვლის ციფრის მდებარეობა რიცხვში მის მნიშვნელობას.',
-      kk: 'Sandağy tsifrdyñ orny onyñ mänın nege özgertetının tüsın.',
+      kk: 'Sandağy sifrdyñ orny onyñ mänın nege özgertetının tüsın.',
       ko: '숫자의 위치가 바뀌면 수에서 나타내는 값이 달라지는 이유를 이해해 보세요.',
       lt: 'Suprask, kodėl skaitmens vieta skaičiuje keičia jo vertę.',
       lv: 'Izproti, kāpēc cipara vieta skaitlī maina tā vērtību.',

@@ -64,7 +64,7 @@ export const numeralSystems = defineSkillGroup({
       it: 'Impara come le cifre rappresentano i numeri in sistemi con basi differenti.',
       ja: '底の異なる記数法で数字がどのように数を表すか学ぼう。',
       ka: 'ისწავლე, როგორ გამოსახავენ ციფრები რიცხვებს სხვადასხვა ფუძის მქონე სისტემებში.',
-      kk: 'Negızderı ärtürlı jüielerde tsifrlar sandardy qalai körsetetının üiren.',
+      kk: 'Negızderı ärtürlı jüielerde sifrlar sandardy qalai körsetetının üiren.',
       ko: '밑이 다른 진법에서 숫자가 수를 어떻게 나타내는지 배워 보세요.',
       lt: 'Sužinok, kaip skaitmenys žymi skaičius skirtingo pagrindo sistemose.',
       lv: 'Uzzini, kā cipari attēlo skaitļus sistēmās ar dažādām bāzēm.',

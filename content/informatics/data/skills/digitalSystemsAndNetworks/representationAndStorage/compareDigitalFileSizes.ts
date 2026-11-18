@@ -18,7 +18,7 @@ export const compareDigitalFileSizes = defineSkill({
     it: 'Confrontare le dimensioni dei file digitali',
     ja: 'デジタルファイルの大きさを比較する',
     ka: 'ციფრული ფაილების ზომების შედარება',
-    kk: 'Tsifrlyq fail ölşemderın salystyru',
+    kk: 'Sifrlyq fail ölşemderın salystyru',
     ko: '디지털 파일 크기 비교하기',
     lt: 'Palyginti skaitmeninių failų dydžius',
     lv: 'Salīdzināt digitālo failu lielumus',
