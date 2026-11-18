@@ -23,7 +23,7 @@ export const models = defineSkillGroup({
     it: 'Modelli per i problemi',
     ja: '問題のモデル化',
     ka: 'ამოცანების მოდელები',
-    kk: 'Есеп модельдері',
+    kk: 'Esep modelderı',
     ko: '문제 모델링',
     lt: 'Uždavinių modeliai',
     lv: 'Uzdevumu modeļi',

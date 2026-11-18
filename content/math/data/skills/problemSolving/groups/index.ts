@@ -21,7 +21,7 @@ export const groups = defineSkillGroup({
     it: 'Problemi di raggruppamento',
     ja: 'グループの文章題',
     ka: 'დაჯგუფების ამოცანები',
-    kk: 'Топтастыру есептері',
+    kk: 'Toptastyru esepterı',
     ko: '묶음 문제',
     lt: 'Grupavimo uždaviniai',
     lv: 'Grupēšanas uzdevumi',

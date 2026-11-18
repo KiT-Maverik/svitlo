@@ -22,7 +22,7 @@ export const conditions = defineSkillGroup({
     it: 'Analizzare i testi dei problemi',
     ja: '問題文の条件分析',
     ka: 'ამოცანის პირობის ანალიზი',
-    kk: 'Есеп шарттарын талдау',
+    kk: 'Esep şarttaryn taldau',
     ko: '문제 조건 분석',
     lt: 'Uždavinių sąlygų analizė',
     lv: 'Uzdevumu nosacījumu analīze',
