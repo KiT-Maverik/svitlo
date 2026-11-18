@@ -2,6 +2,8 @@ name: Content packages build
 
 on:
   pull_request:
+    # Ready-for-review requires production resource checks not run on draft PRs.
+    # Keep this event even when the formatter makes no source changes.
     types: [opened, synchronize, reopened, ready_for_review]
   workflow_dispatch:
 

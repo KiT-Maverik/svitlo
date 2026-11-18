@@ -20,32 +20,34 @@ The optional workflow_dispatch form takes a PR number and enumerated operation.
 No other event causes materialization. Generated source remains an authoring draft,
 not published Course content; no Lesson Production PRs or translations are created.
 
-## Independent Stage 4 evidence
+## Stage 4 review prerequisite
 
-The owner appoints two independent GitHub reviewers with current repository write
-permission: one **Methodologist** and one **Assessment Architect**. Each must submit
-an actual **APPROVED** PR review, on a commit containing the exact current Course
-YAML Git blob, and place these three standalone lines in the review body:
+Stage 4 is one substantive whole-Course methodological and assessment review of
+the completed Stage 1–3 specification, performed in a **separate agent chat or
+execution context**. The reviewer may use the same GitHub account as the
+Course author. Requested corrections are resolved in the Course source; findings
+and the review outcome are recorded in the parent Course PR discussion and
+manual `## Workflow` checklist.
 
-    Stage 4 approval: methodologist
-    Course UUID: <uuid>
-    Course YAML blob: <40-hex-git-blob-sha>
+The Stage 5 gate requires **exactly one canonical, checked Stage 1, Stage 2,
+Stage 3 and Stage 4 item** in the parent PR's `## Workflow` section. The
+Stage 4 entry is `- [x] 4. Review Course Plan` (optional explanatory text may
+follow). Missing, unchecked, duplicate, malformed or ambiguous stage items
+fail closed. The parent PR is responsible for clearing or marking a Stage
+stale when later editorial changes require another review. A checkmark is a
+trusted owner/agent **workflow declaration**, not cryptographic proof of a
+separate chat or educational quality.
 
-The other review uses **assessment-architect** in the first line and the same
-UUID/blob. Reviews must originate from _different GitHub accounts_, neither the
-Course PR author nor the last Course YAML commit author. If an approver submits
-CHANGES_REQUESTED or their review is dismissed, a new approval is needed. A
-checkbox, COMMENTED review, stale SHA, unverified self-review or PR-body
-assertion is **not** sufficient. GitHub proves account separation and source
-provenance; the owner must verify the reviewers' professional roles.
-
-The PR must have a unique canonical Course marker, UUID, textbook and
-source-path fields. The YAML path is derived from the UUID last-hex bucket.
+No external GitHub reviewer account, `APPROVED` event, reviewer-role text,
+review-specific comment, `Stage 4 approval:` line, `Course YAML blob:` line
+or reviewer-commit archaeology is required. The maintainer's exact operation
+trigger authorizes running Stage 5; it is not an additional methodological
+approval. PR identity and the canonical source are independently verified.
 
 ## Security boundary
 
 1. Resolve the invoking actor, Course identity, current Git source blob, Stage 4
-   evidence and HEAD SHA before checking out PR content.
+   checklist and HEAD SHA before checking out PR content.
 2. Read-only analyze job checks out trusted default-branch scripts separately
    from the pinned PR as **data**. It installs only trusted dependencies with
    lifecycle scripts disabled; runs the trusted Engine materializer (root
@@ -53,7 +55,7 @@ source-path fields. The YAML path is derived from the UUID last-hex bucket.
    paths, syntax, and source provenance. An Actions artifact contains a bounded
    SHA256-verified handoff.
 3. Write-capable publish job executes **trusted code only**. It rechecks actor,
-   reviews, SHA, blob and allowlisted paths, then uses the Git Data API to make
+   checklist, SHA, blob and allowlisted paths, then uses the Git Data API to make
    a commit whose parent is the pinned HEAD. Branch ref updates are non-force:
    a concurrent push rejects the update rather than overwriting it.
 
@@ -61,7 +63,7 @@ Allowed materialize outputs: Course index.ts, constants.ts, review.ts,
 methodology.md, modules/_.ts, chapters/_.ts, episodes/*.ts and only new
 Lesson UUID-root lesson.yaml files. Finalize may delete only the Course YAML.
 Unknown files, divergent existing files, symlinks/submodules, ambiguous IDs,
-stale approvals, changed HEAD and partial output fail closed. Repeated
+incomplete Stage 4, changed HEAD and partial output fail closed. Repeated
 materialization with identical committed files is a no-op.
 
 ## Automatic Course Lesson table refresh
@@ -106,12 +108,13 @@ Course PR number, source HEAD and reviewed YAML blob SHA. Only the commit files
 are durable Course artifacts; report files are short-lived Actions artifacts,
 not PR comments or tracked .agent-ci-artifacts.
 
-After stale/missing reviews, obtain independent approvals for the current blob.
+After an incomplete or stale Stage 4, finish the separate-chat review,
+resolve corrections and update the parent PR checklist before retrying.
 After a concurrent push, rerun the command. After divergent generated content,
 resolve differences manually; the tool does not overwrite authored work.
 
 **E2E limitation:** GitHub cannot dispatch this issue_comment workflow until it
-is deployed on main, and independent reviewer accounts are required to approve
-a synthetic Course PR. Complete the safe synthetic-PR run after deployment and
+is deployed on main, and a synthetic Course PR needs a completed Stage 4 checklist. Complete the
+safe synthetic-PR run after deployment and
 record its exact run and commit SHAs before claiming production E2E validation.
 This implementation does not modify #653, mark PRs Ready or merge anything.
