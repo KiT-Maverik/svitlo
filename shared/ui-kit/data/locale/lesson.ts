@@ -593,11 +593,11 @@ const ka: Lesson_Locale = {
 const kk: Lesson_Locale = {
   steps: { navigation: 'Sabaq kezeñderı' },
   celebration: {
-    title: 'Qūttyqtaimyz! Sız būl sabaqty aiaqtadyñyz!',
+    title: 'Qūttyqtaimyz! Būl sabaqty aiaqtadyñ!',
     description: 'Teoriia, praktika, oqu kartotşkalary men test — barlyq kezeñder aiaqtaldy.',
     correctAnswers: 'Dūrys jauaptar:',
     scoreTemplate: '{score} / {total}',
-    note: 'Sabaqty aiaqtau barlyq jauap dūrys boldy degendı bıldırmeidı — materialğa ärqaşan qaita orala alasyz.',
+    note: 'Sabaqty aiaqtau barlyq jauap dūrys boldy degendı bıldırmeidı — materialğa ärqaşan qaita orala alasyñ.',
     home: 'Basty betke',
   },
   questionProgress: {

@@ -983,7 +983,7 @@ const ka: LearningLayout_Locale = {
 };
 
 const kk: LearningLayout_Locale = {
-  preparingLesson: 'Sabağyñyzdy daiyndap jatyrmyz…',
+  preparingLesson: 'Sabağyñdy daiyndap jatyrmyz…',
   preparingLessonError: 'Sabaqty daiyndau mümkın bolmady.',
   brand: 'Світло',
   navigation: {

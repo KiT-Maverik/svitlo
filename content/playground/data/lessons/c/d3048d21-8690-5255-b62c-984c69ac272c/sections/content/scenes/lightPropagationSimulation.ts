@@ -335,7 +335,7 @@ const kk: Locale = {
   scene: {
     title: 'Jaryqtyñ jolyn baqyla',
     description: 'Jaryq közınen ekranğa deiın tüzu syzyq boiymen.',
-    accessibleName: 'Jaryqtyñ jaryq közınen ekranğa taralu animatsiiasy',
+    accessibleName: 'Jaryq közınen ekranğa taralu animatsiiasy',
   },
   track: {
     accessibleDescription:

@@ -391,7 +391,7 @@ const ka: Flashcard_Locale = {
 const kk: Flashcard_Locale = {
   flashcard: {
     region: 'Oqu kartotşkasy',
-    flags: { warning: 'Nazar audaryñyz' },
+    flags: { warning: 'Nazar audar' },
     actions: {
       menu: 'Kartotşka äreketterı',
       reveal: 'Jauapty körsetu',
