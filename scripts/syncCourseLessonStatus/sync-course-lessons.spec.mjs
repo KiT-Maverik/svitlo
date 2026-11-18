@@ -276,3 +276,129 @@ test('Stage 1 ignores unrelated marker examples but fails closed for associated 
     fs.rmSync(root, { recursive: true, force: true });
   }
 });
+
+test('finalized TypeScript-only Course synchronizes persisted Lesson ID, linked PR title, and preserves manual stages', async () => {
+  const fs = await import('node:fs');
+  const os = await import('node:os');
+  const path = await import('node:path');
+  const YAML = (await import('yaml')).default;
+  const { analyze, update } = await import('./sync-course-lessons.mjs');
+  const { START, END, outsideHash } = await import('./synchronizer.mjs');
+  const repo = 'KiT-Maverik/svitlo';
+  const courseId = '1e79d8fc-2223-4fa7-bc64-70d8172d3e8b';
+  const lessonId = 'c042698a-de5b-5055-9e10-ff5621f80ed7';
+  const sha = 'd'.repeat(40);
+  const folder = 'content/astronomy/data/courses/b/' + courseId;
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-course-finalized-'));
+  const put = (relative, source) => {
+    const target = path.join(root, relative);
+    fs.mkdirSync(path.dirname(target), { recursive: true });
+    fs.writeFileSync(target, source);
+  };
+  const originalBody = [
+    '<!-- svitlo-course-flow:v1 -->',
+    '- Course UUID: ' + String.fromCharCode(96) + courseId + String.fromCharCode(96),
+    '- Textbook: ' + String.fromCharCode(96) + 'content/astronomy' + String.fromCharCode(96),
+    '- Reviewed temporary source (finalized and removed after Stage 5; retained in Git history): ' +
+      String.fromCharCode(96) + folder + '/course.yaml' + String.fromCharCode(96),
+    '',
+    '## Independently reviewed Course stages',
+    '- [x] Stage 4 approved',
+    '- [x] Stage 5 completed',
+    START,
+    'old table',
+    END,
+    '',
+  ].join('\n');
+  let body = originalBody;
+  let patchCount = 0;
+  const previousFetch = globalThis.fetch;
+  const previousToken = process.env.GH_TOKEN;
+  try {
+    put(folder + '/index.ts', [
+      'import { defineCourse } from "@svitlo/engine/build";',
+      '// Misleading TODO UUIDs must not be used for Course identity.',
+      'export const astronomy_Course = defineCourse({',
+      '  "id": "' + courseId + '",',
+      '  "type": "course",',
+      '  "params": { "languages": ["uk", "en"] },',
+      '  content: { items: { "firstLookAtSky": UNRESOLVED_LESSON_0 },',
+      '    order: ["firstLookAtSky"] }',
+      '});',
+      '',
+    ].join('\n'));
+    put(folder + '/methodology.md', [
+      '# Astronomy', '',
+      '## Course methodology', '',
+      '### Lesson firstLookAtSky — Погляд на небо', '',
+      'Lesson UUID: ' + lessonId, '',
+      'Objective: Learn the sky', '',
+    ].join('\n'));
+    put('content/astronomy/data/lessons/7/' + lessonId + '/lesson.yaml',
+      YAML.stringify({
+        config: { id: lessonId, locale: { title: { uk: 'Знайомство з небом' } } },
+        production: { documentLanguage: 'uk', methodology: 'Observe safely' },
+      }),
+    );
+    // There must not be any temporary Course YAML after Stage 5 finalize.
+    assert.equal(fs.existsSync(path.join(root, folder, 'course.yaml')), false);
+    const claim = [
+      '<!-- svitlo-course-lesson:v1 -->',
+      'Course: ' + courseId,
+      'Lesson: ' + lessonId,
+      'Parent PR: #653',
+      '',
+    ].join('\n');
+    process.env.GH_TOKEN = 'fixture-token';
+    globalThis.fetch = async (url, options = {}) => {
+      const endpoint = String(url).split('/repos/' + repo + '/')[1];
+      let result;
+      if (endpoint === 'pulls/653' && options.method === 'PATCH') {
+        body = JSON.parse(options.body).body;
+        patchCount++;
+        result = {};
+      } else if (endpoint === 'pulls/653') {
+        result = { state: 'open', body, head: { sha, ref: 'course/astronomy-grade-one', repo: { full_name: repo } } };
+      } else if (endpoint === 'pulls?state=all&per_page=100&page=1') {
+        result = [{
+          number: 699,
+          title: 'Create first-look sky Lesson',
+          body: claim,
+          state: 'open',
+          draft: true,
+          merged_at: null,
+          head: { repo: { full_name: repo } },
+          base: { ref: 'course/astronomy-grade-one', repo: { full_name: repo } },
+        }];
+      } else {
+        throw Error('Unexpected GitHub API endpoint: ' + endpoint);
+      }
+      return { ok: true, json: async () => result };
+    };
+    const report = await analyze({ repo, pr: 653, sha, root });
+    assert.deepEqual(report.lessons.map(x => x.lessonId), [lessonId]);
+    assert.equal(report.lessons[0].title, 'Знайомство з небом');
+    assert.equal(report.lessons[0].status, 'Draft · #699');
+    assert.equal(report.lessons[0].prTitle, 'Create first-look sky Lesson');
+    assert.equal(report.unresolved.length, 0);
+    assert.doesNotMatch(report.diagnostics.map(x => x.reason).join('\n'), /Course inventory parse failed/);
+    const reportFile = path.join(root, 'result.json');
+    fs.writeFileSync(reportFile, JSON.stringify(report));
+    const options = { repo, pr: 653, sha, report: reportFile };
+    assert.equal((await update(options)).updated, true);
+    assert.equal(patchCount, 1);
+    assert.equal(outsideHash(originalBody), outsideHash(body));
+    assert.match(body, /Stage 4 approved/);
+    assert.match(body, /Stage 5 completed/);
+    assert.match(body, /Create first-look sky Lesson/);
+    assert.match(body, /\/pull\/699/);
+    assert.match(body, new RegExp(lessonId));
+    assert.equal((await update(options)).updated, false);
+    assert.equal(patchCount, 1);
+  } finally {
+    globalThis.fetch = previousFetch;
+    if (previousToken === undefined) delete process.env.GH_TOKEN;
+    else process.env.GH_TOKEN = previousToken;
+    fs.rmSync(root, { recursive: true, force: true });
+  }
+});
