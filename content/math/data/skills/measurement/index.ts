@@ -24,7 +24,7 @@ export const measurement = defineSkillDomain({
     it: 'Misure',
     ja: '測定',
     ka: 'გაზომვა',
-    kk: 'Өлшеу',
+    kk: 'Ölşeu',
     ko: '측정',
     lt: 'Matavimas',
     lv: 'Mērīšana',
