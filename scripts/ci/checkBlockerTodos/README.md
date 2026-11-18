@@ -12,7 +12,7 @@ node scripts/ci/checkBlockerTodos/check-blocker-todos.mjs diff <base-sha> <head-
 
 - `full`: scan **all Git-tracked source files** in the checkout; ignore Markdown documentation, binary assets, and untracked output.
 - `diff`: scan **added lines only** in the full merge-base PR diff (`git diff base...head`). Unchanged inherited blockers, including unchanged files renamed in the PR, do not fail this mode.
-- The scanner recognizes source comment delimiters such as `//`, `/*`, `*`, `#`, and JSX block comments. The exact canonical marker has a space: `TODO (BLOCKER):`.
+- The scanner ignores markers inside quoted string/template values and recognizes source comment delimiters such as `//`, `/*`, `*`, `#`, and JSX block comments. The exact canonical marker has a space: `TODO (BLOCKER):`.
 - Failures emit GitHub Actions annotations with file and line numbers.
 
 ## GitHub Actions
