@@ -41,7 +41,6 @@ export async function loadPublishedUiKitMessages<T>(locale: Locale): Promise<T> 
   return (await loadJson('/data/uiKit/components/' + getLanguageCode(locale) + '.json')) as T;
 }
 
-
 /** Load only Engine-addressed, locally packaged assessment JSON, never remote resources. */
 export const packagedAssessmentLoader = createAssessmentResourceLoader(async (paths, signal) => {
   const results = new Map<string, unknown>();

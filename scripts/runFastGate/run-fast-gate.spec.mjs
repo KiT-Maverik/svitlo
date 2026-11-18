@@ -113,7 +113,6 @@ test('Course status changes invoke the complete synchronizer test suite', () => 
   assert.equal(requiresCourseStatusTests(['content/astronomy/data/courses/sample/course.yaml']), false);
 });
 
-
 test('FastGate builds required content package exports for host typechecks only', () => {
   const desktop = { path: 'apps/desktop', name: '@svitlo/desktop' };
   const playground = { path: 'content/playground', scripts: { 'package:build': 'tsc' } };

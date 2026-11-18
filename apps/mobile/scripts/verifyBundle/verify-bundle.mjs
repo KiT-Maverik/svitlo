@@ -48,10 +48,7 @@ for (const method of methods) {
   assert.ok(methodsBase[method].id);
 }
 const methodLanguages = readdirSync(methodsRoot).filter(name => name !== 'base.json');
-assert.deepEqual(
-  methodLanguages.sort(),
-  allLanguageCodes.map(language => language + '.json').sort(),
-);
+assert.deepEqual(methodLanguages.sort(), allLanguageCodes.map(language => language + '.json').sort());
 assert.ok(methodLanguages.includes('uk.json'));
 assert.ok(methodLanguages.includes('qm.json'));
 for (const filename of methodLanguages) {

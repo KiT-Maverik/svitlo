@@ -41,10 +41,7 @@ test('build bundles the complete Lesson Props base and sparse selected locale', 
     assert.ok(base[method].id);
   }
   const languages = readdirSync(methodsRoot).filter(name => name !== 'base.json');
-  assert.deepEqual(
-    languages.sort(),
-    allLanguageCodes.map(language => language + '.json').sort(),
-  );
+  assert.deepEqual(languages.sort(), allLanguageCodes.map(language => language + '.json').sort());
   assert.ok(languages.includes('uk.json'));
   assert.ok(languages.includes('qm.json'));
   for (const filename of languages) {

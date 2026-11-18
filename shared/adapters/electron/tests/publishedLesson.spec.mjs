@@ -80,7 +80,6 @@ test('Electron rejects missing base, invalid locale payload and unsupported lang
   await assert.rejects(loadPublishedLesson(id, 'uk'), /Invalid assembled Lesson Props/);
 });
 
-
 test('Electron assessment loading uses only the packaged local manifest', async t => {
   const requested = [];
   t.mock.method(globalThis, 'fetch', async url => {

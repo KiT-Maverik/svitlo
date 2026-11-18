@@ -111,9 +111,11 @@ function changedFiles(base, head) {
 }
 /** Build dependencies that a workspace typecheck consumes through published exports. */
 export function shouldBuildDependency(owner, dependency) {
-  return Boolean(dependency.scripts?.['package:build']) &&
+  return (
+    Boolean(dependency.scripts?.['package:build']) &&
     (dependency.path.startsWith('shared/') ||
-      (owner.path.startsWith('apps/') && dependency.path.startsWith('content/')));
+      (owner.path.startsWith('apps/') && dependency.path.startsWith('content/')))
+  );
 }
 
 function runGate(changed) {
