@@ -1,17 +1,20 @@
 #!/usr/bin/env node
 /**
  * @fileoverview Stage 5: approved temporary editorial Course plan -> deterministic
- * technical Config handoff and Course-owned modular TypeScript DRAFT.
+ * Course-owned modular TypeScript/Markdown DRAFTS and initial Lesson YAMLs.
  * This is not a Course publisher, content approver, translator or Lesson builder.
- * Never fabricates UUIDs, Lesson files, translations, source metadata or Episodes.
+ * It assigns stable UUIDs only to explicitly planned, reviewed source nodes;
+ * no intermediate config.yaml, fabricated translations, media or Lesson PRs.
  */
 import fs from 'node:fs';
+import { createHash } from 'node:crypto';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import ts from 'typescript';
 import YAML from 'yaml';
 import { parseYaml, checkPlan } from '../validateCourseFlow/validate-course-flow.mjs';
 import { buildLessonIndex } from '../generateLessonsBySkill/lesson-index.mjs';
+import { renderCourseSource } from '../courseBuilder/courseBuilder.mjs';
 
 const rootDefault = path.resolve(fileURLToPath(new URL('../../../..', import.meta.url)));
 const UUID = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/;
@@ -87,6 +90,9 @@ function sourceMd(plan) {
         );
         for (const k of ['depth', 'sequenceReason', 'matchingRationale'])
           if (node[k]) lines.push(k + ': ' + node[k], '');
+      } else if (node.type === 'episode') {
+        lines.push('## Episode: ' + node.title, '', 'UUID: ' + node.id, '',
+          'Placement: ' + [...location, key].join(' / '), '', node.methodology ?? 'Episode content requires authoring review', '');
       } else {
         lines.push(
           '## ' + (node.type === 'module' ? 'Module' : 'Chapter') + ': ' + node.title,
@@ -125,50 +131,107 @@ function localizedTitle(title, language) {
  * This stage requires persisted IDs on every Module/Chapter and every Lesson
  * reference. The schema intentionally allows missing IDs in earlier stages.
  */
+/**
+ * Stable RFC 4122 version-5-shaped UUID generated for a *specific* Course slot.
+ * No random allocations: a rerun after a partial write always reuses the ID.
+ * The Course UUID and complete placement path namespace the identifier.
+ */
+export function deriveCourseEntityId(courseId, kind, placement) {
+  if (!UUID.test(courseId) || !['module', 'chapter', 'episode', 'lesson'].includes(kind) || !placement)
+    fail('invalid deterministic entity ID inputs');
+  const bytes = createHash('sha1')
+    .update('svitlo-course-source-v1:' + courseId + ':' + kind + ':' + placement)
+    .digest().subarray(0, 16);
+  bytes[6] = (bytes[6] & 0x0f) | 0x50;
+  bytes[8] = (bytes[8] & 0x3f) | 0x80;
+  const h = bytes.toString('hex');
+  return h.slice(0, 8) + '-' + h.slice(8, 12) + '-' + h.slice(12, 16) + '-' +
+    h.slice(16, 20) + '-' + h.slice(20);
+}
+
+/** One approved Course YAML directly produces a typed in-memory Course tree. */
 export function technicalFromEditorial(plan, resolveLesson = () => null) {
   const check = checkPlan(plan, '3-complete');
   if (!check.valid) fail('unapproved/incomplete Stage 3 source: ' + check.errors.join('; '));
   if (!SLUG.test(plan.slug ?? '') || !plan.title?.trim() || !plan.description?.trim())
     fail('Stage 5 requires stable Course slug and authored learner-facing title and description');
-  const ids = new Set([plan.id]);
-  const moduleSlugs = new Set(),
-    chapterSlugs = new Set();
-  function collection(tree, depth) {
+  if (!plan.supportedLanguages.includes(plan.documentLanguage))
+    fail('documentLanguage must be included in supportedLanguages');
+  const authored = structuredClone(plan);
+  const ids = new Set([plan.id.toLowerCase()]);
+  const explicit = new Set();
+  function collectExplicit(collection) {
+    for (const slug of collection?.order ?? []) {
+      const node = collection.items[slug];
+      if (node.type === 'lesson') {
+        if (node.lessonId) explicit.add(node.lessonId.toLowerCase());
+      } else {
+        if (node.id) {
+          const id = node.id.toLowerCase();
+          if (ids.has(id)) fail('duplicate Course entity UUID ' + id);
+          ids.add(id);
+        }
+        if (node.content) collectExplicit(node.content);
+      }
+    }
+  }
+  collectExplicit(authored.content);
+  const newLessons = new Map();
+  const generated = new Set();
+  const moduleSlugs = new Set(), chapterSlugs = new Set(), episodeSlugs = new Set();
+  function collection(tree, parent) {
     const items = {};
     for (const slug of tree?.order ?? []) {
       const child = tree.items[slug];
+      const placement = [...parent, slug].join('/');
       if (child.type === 'lesson') {
-        if (!UUID.test(child.lessonId ?? '')) fail('Lesson ' + slug + ' needs its persistent UUID');
+        if (!child.lessonId) {
+          child.lessonId = deriveCourseEntityId(plan.id, 'lesson', placement);
+          if (ids.has(child.lessonId) || explicit.has(child.lessonId) || generated.has(child.lessonId))
+            fail('generated Lesson UUID collision at ' + placement);
+          generated.add(child.lessonId);
+          newLessons.set(child.lessonId, { node: structuredClone(child), placement });
+        }
         const source = resolveLesson(child.lessonId);
         const config = { type: 'lesson', slug, lessonId: child.lessonId };
         if (source) config.source = source;
         items[slug] = { config };
         continue;
       }
-      if (!UUID.test(child.id ?? '')) fail('Missing stable UUID for ' + child.type + ' ' + slug);
-      if (ids.has(child.id)) fail('Duplicate Course-owned UUID: ' + child.id);
-      ids.add(child.id);
-      const group = child.type === 'module' ? moduleSlugs : chapterSlugs;
-      if (group.has(slug)) fail('Duplicate ' + child.type + ' source filename slug ' + slug);
+      if (!child.id) child.id = deriveCourseEntityId(plan.id, child.type, placement);
+      if (generated.has(child.id) || (ids.has(child.id) && !explicit.has(child.id)))
+        fail('duplicate generated entity UUID at ' + placement);
+      generated.add(child.id);
+      const group = child.type === 'module' ? moduleSlugs : child.type === 'chapter' ? chapterSlugs : episodeSlugs;
+      if (group.has(slug)) fail('duplicate ' + child.type + ' source filename slug ' + slug);
       group.add(slug);
+      if (child.type === 'episode') {
+        const config = {
+          id: child.id, type: 'episode', slug,
+          params: { ...child.params, languages: child.params?.languages ?? [plan.documentLanguage] },
+          locale: { title: child.locale?.title ?? { [plan.documentLanguage]: child.title } },
+          section: child.section ?? { items: {}, order: [] },
+          ...(child.events ? { events: child.events } : {}),
+        };
+        items[slug] = { config };
+        continue;
+      }
       const config = {
-        type: child.type,
-        id: child.id,
-        slug,
-        params: {},
-        locale: { title: localizedTitle(child.title, plan.documentLanguage) },
-        content: collection(child.content, depth + 1),
+        type: child.type, id: child.id, slug, params: {},
+        locale: { title: { [plan.documentLanguage]: child.title } },
+        content: collection(child.content, [...parent, slug]),
       };
       items[slug] = { config };
     }
     return { items, order: [...(tree?.order ?? [])] };
   }
+  const content = collection(authored.content, []);
   const params = { languages: plan.supportedLanguages };
   for (const field of ['age', 'grade']) {
     const range = plan[field];
     if (range) {
       if (!Number.isInteger(range.min) || !Number.isInteger(range.max) || range.min > range.max)
-        fail('Invalid audience ' + field + ' bounds');
+        fail('invalid audience ' + field + ' bounds');
       params[field] = range;
     }
   }
@@ -178,16 +241,17 @@ export function technicalFromEditorial(plan, resolveLesson = () => null) {
   if (prerequisites && Object.keys(prerequisites).length) params.prerequisites = prerequisites;
   if (plan.standardsAlignment?.length) params.educationStandards = plan.standardsAlignment.map(x => x.standardId);
   const locale = {
-    title: localizedTitle(plan.title, plan.documentLanguage),
-    description: localizedTitle(plan.description, plan.documentLanguage),
+    title: { [plan.documentLanguage]: plan.title },
+    description: { [plan.documentLanguage]: plan.description },
   };
-  if (plan.outcomes?.explanation)
-    locale.outcomesText = localizedTitle(plan.outcomes.explanation, plan.documentLanguage);
+  if (plan.outcomes?.explanation) locale.outcomesText = { [plan.documentLanguage]: plan.outcomes.explanation };
   if (plan.prerequisites?.explanation)
-    locale.prerequisitesText = localizedTitle(plan.prerequisites.explanation, plan.documentLanguage);
+    locale.prerequisitesText = { [plan.documentLanguage]: plan.prerequisites.explanation };
   return {
-    config: { id: plan.id, slug: plan.slug, type: 'course', params, locale, content: collection(plan.content, 0) },
-    production: { documentLanguage: plan.documentLanguage, methodology: sourceMd(plan) },
+    config: { id: plan.id, slug: plan.slug, type: 'course', params, locale, content },
+    production: { documentLanguage: plan.documentLanguage, methodology: sourceMd(authored) },
+    newLessons,
+    authored,
   };
 }
 function tsLiteral(value, indentation = 0) {
@@ -197,7 +261,7 @@ function tsLiteral(value, indentation = 0) {
     .join('\n');
 }
 function symbolOf(node) {
-  const suffix = { course: 'Course', module: 'Module', chapter: 'Chapter' }[node.type];
+  const suffix = { course: 'Course', module: 'Module', chapter: 'Chapter', episode: 'Episode' }[node.type];
   if (!suffix || !SLUG.test(node.slug ?? '')) fail('Unsupported modular entity');
   return node.slug + '_' + suffix;
 }
