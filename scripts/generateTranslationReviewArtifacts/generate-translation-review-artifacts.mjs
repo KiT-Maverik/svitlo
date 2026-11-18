@@ -65,7 +65,10 @@ export function parseArguments(args) {
 function checkTextbook(options) {
   if (!options.package) return;
   const directory = path.join(root, options.package);
-  const target = path.join(directory, options.kind === 'skills' ? 'data/skills' : options.kind === 'courses' ? 'data/courses' : 'data/lessons');
+  const target = path.join(
+    directory,
+    options.kind === 'skills' ? 'data/skills' : options.kind === 'courses' ? 'data/courses' : 'data/lessons',
+  );
   for (const location of [directory, target]) {
     if (!fs.existsSync(location) || !fs.statSync(location).isDirectory() || fs.lstatSync(location).isSymbolicLink()) {
       throw new Error('Missing or unsafe requested textbook directory: ' + location);
