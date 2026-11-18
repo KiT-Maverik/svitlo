@@ -94,9 +94,29 @@ test('editorial -> technical draft preserves UUIDs, order, intent and evidence',
     'chapters/first.ts',
   ])
     assert(drafts.has(name), 'missing ' + name);
-  assert(drafts.get('index.ts').includes('import { foundations_Module } from "./modules/foundations"'));
-  assert(drafts.get('modules/foundations.ts').includes('import { first_Chapter } from "../chapters/first"'));
-  assert(drafts.get('chapters/first.ts').includes('UNRESOLVED_LESSON_0'));
+  assert(drafts.get('index.ts').includes('import { foundations } from "./modules"'));
+  assert(drafts.get('modules/foundations.ts').includes('import { first } from "../chapters"'));
+  assert(drafts.get('chapters/first.ts').includes(
+    'import { orbit_Lesson as orbit } from "#lessonsData/c/' + lessonId + '/index";',
+  ));
+  assert(drafts.get('index.ts').includes('defineCourse<"spaceCourse", typeof items, CourseLanguages>'));
+  assert(drafts.get('modules/foundations.ts').includes('defineModule<"foundations", typeof items, CourseLanguages>'));
+  assert(drafts.get('chapters/first.ts').includes('defineChapter<"first", typeof items, CourseLanguages>'));
+  assert.match(drafts.get('index.ts'), /params: \{\s+languages,/);
+  assert(!drafts.get('index.ts').includes('UNRESOLVED_LESSON'));
+  assert(!drafts.get('index.ts').includes('Generated Course authoring draft'));
+  assert(!drafts.get('index.ts').includes('foundations_Module'));
+  assert(!drafts.get('index.ts').includes('"slug":'));
+  assert(drafts.get('chapters/first.ts').includes('  orbit,'));
+  assert(drafts.get('review.ts').includes('export const courseReview = {} as const;'));
+  assert(!drafts.get('review.ts').includes('methodology: null'));
+  const constants = drafts.get('constants.ts');
+  assert(constants.includes("import type { LanguageCode } from '@svitlo/engine/build';"));
+  assert(constants.includes('// export const languages = ["en","uk"] as const'));
+  assert(constants.includes('export const languages = ["en"] as const'));
+  assert(constants.includes('export type CourseLanguages = typeof languages;'));
+  assert(!constants.includes('sourceLanguage'));
+  assert(!constants.includes('courseId'));
   assert(![...drafts.values()].join('\n').includes('defineLesson('));
   for (const [name, text] of drafts)
     assert.equal(ts.createSourceFile(name, text, ts.ScriptTarget.Latest, true).parseDiagnostics.length, 0);
@@ -162,8 +182,9 @@ test('Course-root-relative Lesson import paths preserve standalone Lesson owners
     path: '../../../lessons/c/' + lessonId + '/orbit.data.ts',
     export: 'orbit_Lesson',
   }));
-  assert.match(drafts.get('index.ts'), /from "\.\.\/\.\.\/\.\.\/lessons\/c\//);
-  assert.match(drafts.get('chapters/first.ts'), /from "\.\.\/\.\.\/\.\.\/\.\.\/lessons\/c\//);
+  assert.match(drafts.get('index.ts'), /from "#lessonsData\/c\//);
+  assert.match(drafts.get('chapters/first.ts'), /from "#lessonsData\/c\//);
+  assert(drafts.get('chapters/first.ts').includes('orbit_Lesson as orbit'));
   assert(!drafts.get('index.ts').includes('defineLesson('));
 });
 
@@ -256,11 +277,69 @@ test('approved Course Episode generates a standalone typed Episode module with i
   const episodeCode = artifacts.files.get('episodes/story.ts');
   assert(episodeCode.includes('defineEpisode('));
   assert(episodeCode.includes('defineMarkdown('), 'preserve authored nested Episode content');
-  assert(episodeCode.includes('export const story_Episode'));
+  assert(episodeCode.includes('export const story = defineEpisode<"story", CourseLanguages, typeof section.items>'));
+  assert(episodeCode.includes("import { languages, type CourseLanguages } from '../constants';"));
+  assert(!episodeCode.includes('Generated Course authoring draft'));
   assert(!episodeCode.includes('defineCourse('));
-  assert(artifacts.files.get('index.ts').includes('story_Episode'));
+  assert(artifacts.files.get('index.ts').includes('import { story } from "./episodes";'));
   assert(artifacts.files.has('episodes/index.ts'));
   assert(artifacts.files.has('review.ts'));
   assert(!artifacts.files.has('config.yaml'));
   assert.equal(ts.createSourceFile('episode.ts', episodeCode, ts.ScriptTarget.Latest, true).parseDiagnostics.length, 0);
+});
+
+
+test('future Lesson imports use reserved UUIDs, authored Lesson slugs and one syntax-valid source module', () => {
+  const input = structuredClone(plan);
+  delete input.content.items.foundations.content.items.first.content.items.orbit.lessonId;
+  input.content.items.foundations.content.items.first.content.items.orbit.methodology =
+    'Reviewed independent methodology for the planned Orbit Lesson.';
+  const artifacts = planArtifacts(input, 'content/math', '/tmp/svitlo-future-lesson-fixture', {
+    candidates: [],
+    diagnostics: [],
+  });
+  const lessonUuid = [...artifacts.technical.newLessons.keys()][0];
+  const chapter = artifacts.files.get('chapters/first.ts');
+  assert(chapter.includes('import { orbit_Lesson as orbit } from "#lessonsData/' +
+    lessonUuid.at(-1) + '/' + lessonUuid + '/index";'));
+  assert(chapter.includes('  orbit,'));
+  assert(!chapter.includes('UNRESOLVED_LESSON'));
+  assert(!chapter.includes('TODO: Resolve'));
+  assert.equal(ts.createSourceFile('first.ts', chapter, ts.ScriptTarget.Latest, true).parseDiagnostics.length, 0);
+  assert([...artifacts.lessonFiles.keys()].some(file => file.endsWith('/' + lessonUuid + '/lesson.yaml')));
+});
+
+test('existing Lesson YAML determines export name when a slot uses a different placement slug', () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-lesson-source-slug-'));
+  const lessonPath = path.join(root, 'content/math/data/lessons', lessonId.at(-1), lessonId);
+  try {
+    fs.mkdirSync(lessonPath, { recursive: true });
+    fs.writeFileSync(
+      path.join(lessonPath, 'lesson.yaml'),
+      YAML.stringify({ config: { id: lessonId, slug: 'independentOrbit', type: 'lesson' } }),
+    );
+    const artifacts = planArtifacts(plan, 'content/math', root, { candidates: [], diagnostics: [] });
+    assert(artifacts.files.get('chapters/first.ts').includes('independentOrbit_Lesson as orbit'));
+    assert(artifacts.files.get('index.ts').includes('independentOrbit_Lesson as review'));
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test('Course drafts import only downward through family barrels without circular root imports', () => {
+  const drafts = renderModularCourse(technicalFromEditorial(plan), 'content/math');
+  const root = drafts.get('index.ts');
+  const module = drafts.get('modules/foundations.ts');
+  const chapter = drafts.get('chapters/first.ts');
+  assert(root.includes('from "./modules"'));
+  assert(!root.includes('from "./modules/foundations"'));
+  assert(module.includes('from "../chapters"'));
+  assert(!module.includes('from "../chapters/first"'));
+  assert(chapter.includes('from "#lessonsData/'));
+  assert(!chapter.includes('from "../modules"'));
+  assert(!module.includes('from "../index"'));
+  assert(!chapter.includes('from "../index"'));
+  for (const output of [root, module, chapter]) {
+    assert.equal(ts.createSourceFile('generated.ts', output, ts.ScriptTarget.Latest, true).parseDiagnostics.length, 0);
+  }
 });
