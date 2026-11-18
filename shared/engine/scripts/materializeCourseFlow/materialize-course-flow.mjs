@@ -20,7 +20,6 @@ const rootDefault = path.resolve(fileURLToPath(new URL('../../../..', import.met
 const UUID = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/;
 const PACKAGE = /^content\/[a-z][a-z0-9-]*$/;
 const SLUG = /^[a-z][A-Za-z0-9]*$/;
-const HEADER = '// Generated Course authoring draft; manual completion and review required.\n';
 const record = value => !!value && typeof value === 'object' && !Array.isArray(value);
 
 function fail(message) {
@@ -271,15 +270,19 @@ export function technicalFromEditorial(plan, resolveLesson = () => null) {
   };
 }
 function tsLiteral(value, indentation = 0) {
+  // JSON is a stable source serializer; unquote only legal, non-special TS property keys.
   return JSON.stringify(value, null, 2)
+    .replace(/(^|\n)([ \t]*)"([A-Za-z_$][A-Za-z0-9_$]*)":/g, (full, line, space, key) =>
+      key === '__proto__' ? full : line + space + key + ':',
+    )
     .split('\n')
     .map((line, index) => (index ? '  '.repeat(indentation) + line : line))
     .join('\n');
 }
 function symbolOf(node) {
-  const suffix = { course: 'Course', module: 'Module', chapter: 'Chapter', episode: 'Episode' }[node.type];
-  if (!suffix || !SLUG.test(node.slug ?? '')) fail('Unsupported modular entity');
-  return node.slug + '_' + suffix;
+  if (!['course', 'module', 'chapter', 'episode'].includes(node.type) || !SLUG.test(node.slug ?? ''))
+    fail('Unsupported modular entity');
+  return node.slug;
 }
 function relativeImport(from, to) {
   let relative = path.posix.relative(path.posix.dirname(from), to.replace(/\.tsx?$/, ''));
@@ -316,10 +319,9 @@ function lessonSourceCoordinates(root, pkg, courseId, lessonId, index) {
   const courseFolder = path.posix.join(pkg, 'data/courses', courseId.at(-1), courseId);
   return { path: path.posix.relative(courseFolder, entries[0].source), export: candidates[0] };
 }
-/** Generate Course-owned files; no standalone Lesson definition is emitted. */
 /**
- * Reuse the typed nested Config renderer for authored Episode Sections/blocks.
- * Extract only the Episode expression; never emit a second Course declaration.
+ * Extract the nested Episode Config without creating a second Course.
+ * Episode source uses the Course's active authoring language tuple.
  */
 function renderEpisodeDraft(episode, language, courseId) {
   const wrapper = {
@@ -342,15 +344,57 @@ function renderEpisodeDraft(episode, language, courseId) {
   };
   visit(ast);
   if (calls.length !== 1) fail('Expected exactly one generated Episode expression for ' + episode.slug);
-  const expression = calls[0].getText(ast);
+  const call = calls[0];
+  const config = call.arguments[0];
+  if (!ts.isObjectLiteralExpression(config)) fail('Episode draft must use an object Config');
+  const property = (obj, name) =>
+    obj.properties.find(
+      entry =>
+        ts.isPropertyAssignment(entry) &&
+        (ts.isIdentifier(entry.name) || ts.isStringLiteral(entry.name)) &&
+        entry.name.text === name,
+    );
+  const section = property(config, 'section');
+  const params = property(config, 'params');
+  if (!section || !params || !ts.isObjectLiteralExpression(params.initializer))
+    fail('Episode draft lacks section or params Config');
+  const languagesProperty = property(params.initializer, 'languages');
+  if (!languagesProperty) fail('Episode draft lacks its language declaration');
+
+  const start = call.getStart(ast);
+  const changes = [
+    { start: section.getStart(ast) - start, end: section.getEnd() - start, value: 'section' },
+    {
+      start: languagesProperty.initializer.getStart(ast) - start,
+      end: languagesProperty.initializer.getEnd() - start,
+      value: 'languages',
+    },
+  ];
+  let expression = call.getText(ast);
+  for (const change of changes.sort((a, b) => b.start - a.start)) {
+    expression = expression.slice(0, change.start) + change.value + expression.slice(change.end);
+  }
+  expression = expression.replace(
+    /^defineEpisode\(/,
+    'defineEpisode<' + JSON.stringify(episode.slug) + ', CourseLanguages, typeof section.items>(',
+  );
+  const sectionExpression = section.initializer.getText(ast);
   const factoryNames = [
-    ...new Set([...expression.matchAll(/\bdefine[A-Z][A-Za-z0-9_]*(?=\s*\()/g)].map(m => m[0])),
+    ...new Set(
+      [...[expression, sectionExpression].join('\n').matchAll(/\bdefine[A-Z][A-Za-z0-9_]*(?=\s*(?:<[^>]*>)?\()/g)].map(
+        m => m[0],
+      ),
+    ),
   ].sort();
+  if (!factoryNames.includes('defineEpisode')) factoryNames.push('defineEpisode');
   return (
-    HEADER +
     'import { ' +
-    factoryNames.join(', ') +
-    ' } from "@svitlo/engine/build";\n\n' +
+    factoryNames.sort().join(', ') +
+    " } from '@svitlo/engine/build';\n\n" +
+    "import { languages, type CourseLanguages } from '../constants';\n\n" +
+    'const section = ' +
+    sectionExpression +
+    ';\n\n' +
     'export const ' +
     symbolOf(episode) +
     ' = ' +
@@ -358,22 +402,60 @@ function renderEpisodeDraft(episode, language, courseId) {
     ';\n'
   );
 }
-export function renderModularCourse(technical, pkg, resolveLesson = () => null) {
+const reservedNames = new Set([
+  'items',
+  'languages',
+  'CourseLanguages',
+  'defineCourse',
+  'defineChapter',
+  'defineModule',
+  'defineEpisode',
+  'default',
+  'class',
+  'const',
+  'var',
+  'let',
+  'function',
+  'export',
+  'import',
+  'new',
+  'return',
+  'case',
+  'this',
+  'if',
+  'else',
+  'for',
+  'while',
+  'null',
+  'true',
+  'false',
+  'await',
+  'yield',
+  'super',
+  'delete',
+  'void',
+  'typeof',
+  'in',
+]);
+
+/** Generate a modular, acyclic authoring draft, never a standalone Lesson implementation. */
+export function renderModularCourse(
+  technical,
+  pkg,
+  resolveLesson = () => null,
+  resolveDraftSlug = (_id, slug) => slug,
+) {
   const { config } = technical;
-  const rootFile = 'index.ts';
-  const nodes = [{ node: config, file: rootFile }];
-  const paths = new Map();
+  const nodes = [{ node: config, file: 'index.ts' }];
+  const paths = new Set();
   function register(collection) {
     for (const key of collection?.order ?? []) {
       const child = collection.items[key]?.config;
       if (!record(child)) fail('Malformed technical child ' + key);
-      if (child.type === 'module' || child.type === 'chapter' || child.type === 'episode') {
-        const filename =
-          (child.type === 'module' ? 'modules/' : child.type === 'chapter' ? 'chapters/' : 'episodes/') +
-          child.slug +
-          '.ts';
+      if (['module', 'chapter', 'episode'].includes(child.type)) {
+        const filename = child.type + 's/' + child.slug + '.ts';
         if (paths.has(filename)) fail('Duplicate Course-owned file ' + filename);
-        paths.set(filename, child);
+        paths.add(filename);
         nodes.push({ node: child, file: filename });
         register(child.content);
       }
@@ -386,105 +468,151 @@ export function renderModularCourse(technical, pkg, resolveLesson = () => null) 
       files.set(file, renderEpisodeDraft(node, technical.production.documentLanguage, config.id));
       continue;
     }
-    const imports = new Map(),
-      unresolved = [];
-    const addImport = (symbol, target) => {
-      const specifier = relativeImport(file, target);
-      const key = specifier + ':' + symbol;
-      if (!imports.has(key)) imports.set(key, { symbol, specifier });
-      return symbol;
+    const imports = new Map();
+    const localSymbols = new Set(reservedNames);
+    localSymbols.add(node.slug);
+    const addImport = (symbol, specifier, requestedAlias) => {
+      const signature = specifier + '#' + symbol;
+      if (imports.has(signature)) return imports.get(signature).alias;
+      let alias = requestedAlias;
+      if (!SLUG.test(alias) || localSymbols.has(alias)) {
+        alias = requestedAlias + 'Item';
+        let index = 2;
+        while (localSymbols.has(alias)) alias = requestedAlias + 'Item' + index++;
+      }
+      localSymbols.add(alias);
+      imports.set(signature, { symbol, specifier, alias });
+      return alias;
     };
-    function expression(child) {
-      if (child.type === 'module' || child.type === 'chapter' || child.type === 'episode') {
-        const target =
-          (child.type === 'module' ? 'modules/' : child.type === 'chapter' ? 'chapters/' : 'episodes/') +
-          child.slug +
-          '.ts';
-        return addImport(symbolOf(child), target);
+    function expression(child, key) {
+      if (['module', 'chapter', 'episode'].includes(child.type)) {
+        // A family barrel never re-exports its parent or a higher level.
+        const specifier = relativeImport(file, child.type + 's/index.ts').replace(/\/index$/, '');
+        return addImport(symbolOf(child), specifier, key);
       }
       if (child.type !== 'lesson') fail('Course methodology may not create ' + child.type);
-      const reference = resolveLesson(child.lessonId);
-      if (reference) {
-        const specifier = relativeImport(file, reference.path);
-        const alias = 'standaloneLesson' + imports.size;
-        const key = specifier + ':' + reference.export;
-        if (!imports.has(key)) imports.set(key, { symbol: reference.export, specifier, alias });
-        return imports.get(key).alias;
-      }
-      const alias = 'UNRESOLVED_LESSON_' + unresolved.length;
-      unresolved.push({ lessonId: child.lessonId, alias });
-      return alias;
-    }
-    const parts = [];
-    for (const [key, value] of Object.entries(node)) {
-      if (key !== 'content') {
-        parts.push('  ' + JSON.stringify(key) + ': ' + tsLiteral(value, 1));
+      const reference = resolveLesson(child.lessonId) ?? child.source;
+      let specifier;
+      let symbol;
+      if (reference && typeof reference.path === 'string' && typeof reference.export === 'string') {
+        const rootFolder = 'data/courses/' + config.id.at(-1) + '/' + config.id;
+        const absolute = path.posix.normalize(path.posix.join(rootFolder, reference.path));
+        if (!absolute.startsWith('data/lessons/') || !absolute.endsWith('.ts'))
+          fail('Invalid verified standalone Lesson source: ' + reference.path);
+        specifier = '#lessonsData/' + absolute.slice('data/lessons/'.length, -3);
+        symbol = reference.export;
       } else {
-        const children = Object.entries(value.items).map(
-          ([slug, entry]) => '    ' + JSON.stringify(slug) + ': ' + expression(entry.config),
+        const slug = resolveDraftSlug(child.lessonId, child.slug);
+        if (!SLUG.test(slug) || !UUID.test(child.lessonId))
+          fail('Cannot construct a future Lesson import without canonical UUID and slug');
+        specifier = '#lessonsData/' + child.lessonId.at(-1) + '/' + child.lessonId + '/index';
+        symbol = slug + '_Lesson';
+      }
+      return addImport(symbol, specifier, key);
+    }
+    const entries =
+      node.content?.order.map(key => {
+        const child = node.content.items[key]?.config;
+        if (!child) fail('Missing ordered child ' + key);
+        const alias = expression(child, key);
+        return '  ' + (key === alias ? key : key + ': ' + alias) + ',';
+      }) ?? [];
+    const params = node.type === 'course' ? { ...node.params } : null;
+    const fields = [];
+    for (const [key, value] of Object.entries(node)) {
+      if (key === 'content') {
+        fields.push('  content: {\n    items,\n    order: ' + tsLiteral(value.order, 2) + '\n  }');
+      } else if (key === 'params' && params) {
+        fields.push(
+          '  params: {\n    languages,' +
+            Object.entries(params)
+              .filter(([field]) => field !== 'languages')
+              .map(([field, fieldValue]) => '\n    ' + field + ': ' + tsLiteral(fieldValue, 2) + ',')
+              .join('') +
+            '\n  }',
         );
-        const collection =
-          '{\n    items: {\n' +
-          children.join(',\n') +
-          (children.length ? '\n' : '') +
-          '    },\n    order: ' +
-          tsLiteral(value.order, 2) +
-          '\n  }';
-        parts.push('  content: ' + collection);
+      } else {
+        fields.push('  ' + key + ': ' + tsLiteral(value, 1));
       }
     }
-    const header = [
-      HEADER.trimEnd(),
-      'import { define' + node.type[0].toUpperCase() + node.type.slice(1) + ' } from "@svitlo/engine/build";',
-      ...[...imports.values()].map(
-        x =>
-          'import { ' + x.symbol + (x.alias ? ' as ' + x.alias : '') + ' } from ' + JSON.stringify(x.specifier) + ';',
-      ),
-      '',
-      ...unresolved.map(
-        x =>
-          '// TODO: Resolve standalone Lesson UUID ' +
-          JSON.stringify(x.lessonId) +
-          ' and replace ' +
-          x.alias +
-          '; never define Lesson inside Course.',
-      ),
-      ...(unresolved.length ? [''] : []),
-      'export const ' +
-        symbolOf(node) +
-        ' = define' +
-        node.type[0].toUpperCase() +
-        node.type.slice(1) +
-        '({\n' +
-        parts.join(',\n') +
-        '\n});',
-      '',
+    const importGroups = new Map();
+    for (const { symbol, specifier, alias } of imports.values()) {
+      const group = importGroups.get(specifier) ?? [];
+      group.push(symbol === alias ? symbol : symbol + ' as ' + alias);
+      importGroups.set(specifier, group);
+    }
+    const renderImports = prefix =>
+      [...importGroups]
+        .filter(([specifier]) => specifier.startsWith(prefix))
+        .sort(([a], [b]) => a.localeCompare(b))
+        .map(
+          ([specifier, bindings]) =>
+            'import { ' + bindings.sort().join(', ') + ' } from ' + JSON.stringify(specifier) + ';',
+        );
+    const packageImports = [
+      'import { define' + node.type[0].toUpperCase() + node.type.slice(1) + " } from '@svitlo/engine/build';",
     ];
-    files.set(file, header.join('\n'));
+    const aliasImports = renderImports('#');
+    const relativeImports = renderImports('.');
+    if (node.type === 'course') {
+      relativeImports.push("import { languages, type CourseLanguages } from './constants';");
+    } else {
+      relativeImports.push("import type { CourseLanguages } from '../constants';");
+    }
+    const imported = [packageImports, aliasImports, relativeImports]
+      .filter(group => group.length)
+      .map(group => group.join('\n'))
+      .join('\n\n');
+    const factoryName = 'define' + node.type[0].toUpperCase() + node.type.slice(1);
+    const source =
+      imported +
+      '\n\n' +
+      'const items = {\n' +
+      entries.join('\n') +
+      (entries.length ? '\n' : '') +
+      '};\n\n' +
+      'export const ' +
+      symbolOf(node) +
+      ' = ' +
+      factoryName +
+      '<' +
+      JSON.stringify(node.slug) +
+      ', typeof items, CourseLanguages>({\n' +
+      fields.join(',\n') +
+      '\n});\n';
+    files.set(file, source);
   }
   for (const family of ['module', 'chapter', 'episode']) {
     const entries = nodes.filter(x => x.node.type === family).sort((a, b) => a.file.localeCompare(b.file));
-    if (entries.length)
+    if (entries.length) {
       files.set(
-        (family === 'module' ? 'modules/' : family === 'chapter' ? 'chapters/' : 'episodes/') + 'index.ts',
+        family + 's/index.ts',
         entries.map(x => 'export { ' + symbolOf(x.node) + ' } from "./' + x.node.slug + '";').join('\n') + '\n',
       );
+    }
   }
+  // Use the real shared Review contract until a Course-specific review contract exists.
+  // Missing evidence intentionally produces TypeScript diagnostics, not fictitious approvals.
   files.set(
     'review.ts',
-    '// Course review evidence is authored independently after generated Props are reviewed.\n' +
-      '// TODO(review): Record independently verified Course and locale review decisions here.\n' +
-      'export const courseReview = { methodology: null, experience: null, translation: null } as const;\n',
+    "import type { Review } from '@svitlo/engine/build';\n\n" +
+      'export const courseReview = {\n' +
+      '  ai: { locales: undefined },\n' +
+      '  human: { acceptance: undefined, locales: {} },\n' +
+      '} satisfies Review;\n',
   );
+  const planned = config.params.languages;
   files.set(
     'constants.ts',
-    '// Course identity and source locale; all other locales require real translation.\n' +
-      'export const courseId = ' +
-      JSON.stringify(config.id) +
-      ' as const;\n' +
-      'export const sourceLanguage = ' +
-      JSON.stringify(technical.production.documentLanguage) +
-      ' as const;\n',
+    "import type { LanguageCode } from '@svitlo/engine/build';\n\n" +
+      '// Restore the complete language set when translations are ready:\n' +
+      '// export const languages = ' +
+      JSON.stringify(planned) +
+      ' as const satisfies readonly [LanguageCode, ...LanguageCode[]];\n\n' +
+      'export const languages = ' +
+      JSON.stringify([technical.production.documentLanguage]) +
+      ' as const satisfies readonly [LanguageCode, ...LanguageCode[]];\n' +
+      'export type CourseLanguages = typeof languages;\n',
   );
   return files;
 }
@@ -496,7 +624,18 @@ export function planArtifacts(plan, pkg, root, lessonIndex) {
   const coursePath = pkg + '/data/courses/' + plan.id.at(-1) + '/' + plan.id;
   const lookup = id => lessonSourceCoordinates(root, pkg, plan.id, id, lessonIndex);
   const technical = technicalFromEditorial(plan, lookup);
-  const drafts = renderModularCourse(technical, pkg, lookup);
+  const draftSlug = (id, slotSlug) => {
+    const fromPlan = technical.newLessons.get(id)?.node.slug;
+    if (fromPlan) return fromPlan;
+    const file = path.join(root, pkg, 'data/lessons', id.at(-1), id, 'lesson.yaml');
+    assertPath(file);
+    if (!fs.existsSync(file)) return slotSlug;
+    const source = YAML.parse(fs.readFileSync(file, 'utf8'));
+    if (source?.config?.id !== id || !SLUG.test(source?.config?.slug ?? ''))
+      fail('Invalid standalone Lesson identity in ' + file);
+    return source.config.slug;
+  };
+  const drafts = renderModularCourse(technical, pkg, lookup, draftSlug);
   const files = new Map([['methodology.md', technical.production.methodology], ...drafts]);
   const lessonFiles = new Map();
   for (const [id, { node }] of technical.newLessons) {
