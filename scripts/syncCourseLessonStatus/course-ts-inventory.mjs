@@ -211,20 +211,12 @@ export function readCourseTsInventory(root, courseDirectory, courseId) {
       if (!ts.isIdentifier(expression)) fail('Course child must be a static identifier');
       const symbolName = expression.text;
       const placement = [...location, key];
-      const matches = references.filter(r =>
-        r.placement ? r.placement === placement.join(' / ') : r.slug === key);
-      const reference = matches.length === 1 ? matches[0] : null;
-      if (!reference || reference.slug !== key || usedReferences.has(reference))
-        fail('No unique, unused Lesson UUID mapping for Course slot ' + placement.join(' / '));
-      let lessonId = reference.lessonId;
       const imported = parsed.imports.get(symbolName);
-      if (!imported) {
-        if (!/^UNRESOLVED_LESSON_[0-9]+$/.test(symbolName))
-          fail('Unresolved Course child identifier: ' + symbolName);
-        const target = resolveImport(file, imported.target);
-        const componentPrefix = courseDirectory + '/';
-        const component = target.startsWith(componentPrefix) ?
-          target.slice(componentPrefix.length) : null;
+      let target;
+      if (imported) {
+        target = resolveImport(file, imported.target);
+        const prefix = courseDirectory + '/';
+        const component = target.startsWith(prefix) ? target.slice(prefix.length) : null;
         const group = component?.match(/^(modules|chapters|episodes)\/([a-zA-Z][a-zA-Z0-9_]*)\.ts$/);
         if (group) {
           if (group[2] !== key) fail('Nested Course slug/import mismatch at ' + key);
@@ -237,6 +229,16 @@ export function readCourseTsInventory(root, courseDirectory, courseId) {
           }
           continue;
         }
+      } else if (!/^UNRESOLVED_LESSON_[0-9]+$/.test(symbolName)) {
+        fail('Unresolved Course child identifier: ' + symbolName);
+      }
+      const matches = references.filter(r =>
+        r.placement ? r.placement === placement.join(' / ') : r.slug === key);
+      const reference = matches.length === 1 ? matches[0] : null;
+      if (!reference || reference.slug !== key || usedReferences.has(reference))
+        fail('No unique, unused Lesson UUID mapping for Course slot ' + placement.join(' / '));
+      const lessonId = reference.lessonId;
+      if (imported) {
         const prefix = book + '/data/lessons/';
         const relative = target.startsWith(prefix) ? target.slice(prefix.length) : null;
         const lessonMatch = relative?.match(/^([a-f0-9])\/([a-f0-9]{8}-(?:[a-f0-9]{4}-){3}[a-f0-9]{12})\/([A-Za-z0-9_.-]+)\.ts$/);
