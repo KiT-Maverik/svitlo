@@ -293,43 +293,60 @@ export function readCourseTsInventory(root, courseDirectory, courseId) {
       const symbolName = expression.text;
       const placement = [...location, key];
       const imported = parsed.imports.get(symbolName);
-      let target;
-      if (imported) {
+      const aliasedLesson = imported ? lessonAlias(imported.target, book) : null;
+      let target = aliasedLesson?.target;
+      if (imported && !aliasedLesson) {
         target = resolveImport(file, imported.target);
         const prefix = courseDirectory + '/';
-        const component = target.startsWith(prefix) ? target.slice(prefix.length) : null;
-        const group = component?.match(/^(modules|chapters|episodes)\/([a-zA-Z][a-zA-Z0-9_]*)\.ts$/);
+        let component = target.startsWith(prefix) ? target.slice(prefix.length) : null;
+        let group = component?.match(/^(modules|chapters|episodes)\/([a-zA-Z][a-zA-Z0-9_]*)\.ts$/);
+        let exportName = imported.exported;
+        if (!group) {
+          // The newer materializer imports through static family barrel files,
+          // e.g. ./modules -> modules/index.ts -> ./skyCycles.
+          const family = component?.match(/^(modules|chapters|episodes)\.ts$/)?.[1];
+          if (family) {
+            const linked = barrelSource(root, courseDirectory + '/' + family + '/index.ts', exportName);
+            target = linked.target;
+            exportName = linked.symbol;
+            component = target.startsWith(prefix) ? target.slice(prefix.length) : null;
+            group = component?.match(/^(modules|chapters|episodes)\/([a-zA-Z][a-zA-Z0-9_]*)\.ts$/);
+            if (!group || group[1] !== family) fail('Course barrel escapes its entity family');
+          }
+        }
         if (group) {
           if (group[2] !== key) fail('Nested Course slug/import mismatch at ' + key);
           if (group[1] !== 'episodes') {
-            readNode(target, group[1] === 'modules' ? 'defineModule' : 'defineChapter', imported.exported, placement);
+            readNode(target, group[1] === 'modules' ? 'defineModule' : 'defineChapter', exportName, placement);
           } else {
             const episode = staticFile(root, target);
-            exportedDefinition(episode.ast, 'defineEpisode', imported.exported);
+            exportedDefinition(episode.ast, 'defineEpisode', exportName);
           }
           continue;
         }
-      } else if (!/^UNRESOLVED_LESSON_[0-9]+$/.test(symbolName)) {
+      } else if (!imported && !/^UNRESOLVED_LESSON_[0-9]+$/.test(symbolName)) {
         fail('Unresolved Course child identifier: ' + symbolName);
       }
-      // The Stage 5 methodology emits Lesson references in Course preorder.
-      // Consume that sequence together with the actual TypeScript items/order
-      // graph; never rely on UUIDs embedded in compiler TODO comments.
+      // The materializer emits Lesson references in Course preorder. The
+      // reviewed methodology and actual Lesson Config (not TODO comments)
+      // bind the UUID to each ordered child slot.
       const reference = references[nextReference++];
-      if (
-        !reference ||
-        reference.slug !== key ||
-        (reference.placement && reference.placement !== placement.join(' / '))
-      )
-        fail('Course Lesson sequence/placement differs from materialized methodology: ' + placement.join(' / '));
+      if (!reference || reference.slug !== key ||
+          (reference.placement && reference.placement !== placement.join(' / ')))
+        fail('Course Lesson sequence/placement differs from materialized methodology: ' +
+          placement.join(' / '));
       const lessonId = reference.lessonId;
-      if (!imported) {
+      if (aliasedLesson && aliasedLesson.lessonId !== lessonId)
+        fail('Lesson data alias UUID differs from materialized methodology');
+      const authoredFile = target ? path.join(root, target) : null;
+      const hasTypedSource = authoredFile && fs.existsSync(authoredFile);
+      if (!imported || (aliasedLesson && !hasTypedSource)) {
         const lessonYaml = book + '/data/lessons/' + lessonId.at(-1) + '/' + lessonId + '/lesson.yaml';
-        // An unresolved generated Lesson must have its canonical Stage 5 handoff.
-        // Metadata-only references without a persisted Config identity are unsafe.
+        // A future Lesson's alias can exist before its TS implementation;
+        // the actual initial Config identity must already be materialized.
         safeSource(root, lessonYaml);
       }
-      if (imported) {
+      if (imported && (!aliasedLesson || hasTypedSource)) {
         const prefix = book + '/data/lessons/';
         const relative = target.startsWith(prefix) ? target.slice(prefix.length) : null;
         const lessonMatch = relative?.match(
