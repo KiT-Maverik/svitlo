@@ -1,0 +1,50 @@
+import { defineEducationStandard } from '@svitlo/engine/build';
+
+/** Authored cross-textbook reference, not a claim of Course alignment. */
+export const commonCoreEnglishLanguageArts = defineEducationStandard({
+  id: '87209b53-5044-4f7d-84d5-1bbd9f5bc686',
+  slug: 'commonCoreEnglishLanguageArts',
+  name: 'Common Core State Standards for English Language Arts & Literacy in History/Social Studies, Science, and Technical Subjects',
+  params: {
+    countries: ['US'],
+    nameLanguage: 'en',
+    sourceUrl: 'https://corestandards.org/english-language-arts-standards/',
+    version: '2010 original framework',
+  },
+  description: {
+    methodological:
+      'This 2010 state-led Common Core framework sets grade-banded expectations for reading, writing, speaking, listening and language across US K–12 schooling, with history/social studies, science and technical-subject literacy addressed specifically in secondary grades. The standards emphasise evidence from texts and disciplinary literacy; they do not replace the full curricula of the named subjects. Adoption and later modifications vary among US states. Neither the original initiative nor the presence of this reference establishes a nationally mandated syllabus or evidence of alignment for any course.',
+    frontend: {
+      ar: 'يحدد أهداف القراءة والكتابة والتواصل ومهارات التعامل مع النصوص في المدارس الأمريكية.',
+      be: 'Вызначае чаканыя ўменьні чытаць, пісаць і працаваць з тэкстамі ў школах ЗША.',
+      bn: 'যুক্তরাষ্ট্রের বিদ্যালয়ে পড়া, লেখা ও বিষয়ভিত্তিক পাঠ বোঝার লক্ষ্য নির্ধারণ করে।',
+      de: 'Legt Lernziele für Lesen, Schreiben und fachbezogene Textkompetenz an US-Schulen dar.',
+      en: 'Sets expectations for reading, writing and disciplinary literacy in US schools.',
+      es: 'Establece objetivos de lectura, escritura y alfabetización en distintas materias en EE. UU.',
+      et: 'Seab USA koolidele lugemise, kirjutamise ja ainealase tekstipädevuse eesmärgid.',
+      fr: 'Fixe les attentes en lecture, écriture et littératie disciplinaire dans les écoles américaines.',
+      he: 'מגדיר יעדים לקריאה, כתיבה ואוריינות במקצועות הלימוד בבתי ספר בארה״ב.',
+      hi: 'अमेरिकी विद्यालयों में पढ़ने, लिखने और विषयगत साक्षरता की अपेक्षाएँ तय करता है।',
+      id: 'Menetapkan sasaran membaca, menulis, dan literasi lintas mata pelajaran di sekolah AS.',
+      it: 'Definisce obiettivi di lettura, scrittura e alfabetizzazione nelle discipline nelle scuole USA.',
+      ja: '米国の学校での読解、作文、教科横断的な文章理解の目標を定めます。',
+      ka: 'განსაზღვრავს აშშ-ის სკოლებში კითხვის, წერისა და საგნობრივი ტექსტების გააზრების მიზნებს.',
+      kk: 'АҚШ мектептеріндегі оқу, жазу және пәндік сауаттылық талаптарын айқындайды.',
+      ko: '미국 학교의 읽기, 쓰기 및 교과별 문해력 목표를 정합니다.',
+      lt: 'Apibrėžia skaitymo, rašymo ir dalykinio raštingumo siekinius JAV mokyklose.',
+      lv: 'Nosaka lasīšanas, rakstīšanas un mācību priekšmetu tekstpratības mērķus ASV skolās.',
+      mr: 'अमेरिकी शाळांमधील वाचन, लेखन आणि विषयाधारित साक्षरतेची उद्दिष्टे ठरवते.',
+      ms: 'Menetapkan matlamat membaca, menulis dan literasi merentas mata pelajaran di sekolah AS.',
+      pl: 'Określa oczekiwania dotyczące czytania, pisania i rozumienia tekstów przedmiotowych w szkołach USA.',
+      pt: 'Define expectativas de leitura, escrita e letramento nas disciplinas das escolas dos EUA.',
+      qm: 'AQŞ mekteplerinde oquv, yazuv ve ders metinlerini añlav maqsatlarını belgiley.',
+      ta: 'அமெரிக்கப் பள்ளிகளில் வாசிப்பு, எழுத்து மற்றும் பாடவாரியான எழுத்தறிவுத் திறன் இலக்குகளை வரையறுக்கிறது.',
+      te: 'అమెరికా పాఠశాలల్లో చదవడం, రాయడం, విషయాలవారీ పాఠ్య అవగాహన లక్ష్యాలను నిర్దేశిస్తుంది.',
+      tr: 'ABD okullarında okuma, yazma ve derslere özgü okuryazarlık hedeflerini belirler.',
+      uk: 'Визначає очікувані вміння читати, писати й працювати з текстами різних дисциплін у школах США.',
+      ur: 'امریکی اسکولوں میں پڑھنے، لکھنے اور مختلف مضامین میں متن سمجھنے کی توقعات طے کرتا ہے۔',
+      vi: 'Đặt ra yêu cầu về đọc, viết và đọc hiểu theo môn học tại các trường Hoa Kỳ.',
+      zh: '规定美国学校阅读、写作及各学科文本素养的学习要求。',
+    },
+  },
+});

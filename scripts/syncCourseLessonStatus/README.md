@@ -15,8 +15,8 @@ The trusted GitHub Actions workflow (after it reaches the default branch) accept
 
 Script roles: `synchronizer.mjs` provides pure inventory/status/Markdown and
 sentinel enforcement; `sync-course-lessons.mjs` separates read-only source
-analysis from **trusted** description updates. The analysis reads authored YAML
-1.2 as data, never imports Course/Lesson TypeScript. GitHub PR status is distinct
+analysis from **trusted** description updates. The analysis reads authored YAML 1.2 or static materialized Course TypeScript
+AST as data; it never imports or executes Course/Lesson TypeScript. GitHub PR status is distinct
 from verified Lesson source readiness. The analyzer reuses the static `buildLessonIndex` from #638 and checks declared target languages and actual merged PR SHA ancestry. This does **not** assert independently approved translations or publication readiness. New Lesson implementation PRs must use:
 
 ```md
@@ -42,13 +42,42 @@ PATCH is not atomic compare-and-swap; it re-reads before writing, rejects
 changed non-managed text or a moved Course head and leaves an explicit race
 risk requiring re-run. Idempotent content is not patched.
 
-**Known scope boundary:** when a Course has only generated TypeScript and no
-parsable technical `config.yaml`, source inventory is explicitly incomplete; it
-does not infer Lesson membership from filenames. Future Course TS AST extraction
-must be independently reviewed before claiming support. Historical Lesson PRs
-without explicit marker cannot be matched by title or branch. Existing
-implemented standalone Lessons need no new implementation PR and appear as
-`Reused / existing` once verified from their canonical UUID directory.
+**Materialized Course support:** once Stage 5 commits the Course's modular
+TypeScript files, the analyzer statically traverses `defineCourse` →
+`defineModule`/`defineChapter` imports and their ordered `content.items/order`
+without executing any authored TypeScript. Lesson UUID identities come from the
+materializer's durable Course `methodology.md` (with validation against
+`lesson.yaml`'s `config.id` where present, and against the referenced Lesson
+source when already implemented). **TODO comment text is never an identity
+source.** The analyzer handles the temporary editorial `course.yaml` and the
+finalized TS-only Course; it rejects ambiguous placements/IDs, missing source,
+unsafe imports and inconsistent plans rather than guessing. The existing
+technical `config.yaml` reader is retained only for historical Courses, not
+introduced as an intermediate new Course source.
+
+The parser supports both the original inline Course `content.items`/direct Lesson
+imports and the newer generic Draft layout in PR #679: statically declared
+`const items`, Course-family barrel re-exports, canonical `#lessonsData`
+aliases and `plannedLanguages` versus authored `languages`. It reads each
+as syntax/data only. Intended locales are used for Lesson coverage; source-only
+authored Course locales are not incorrectly reported as a plan mismatch. No
+changes are made to the Engine materializer.
+
+After a Course Stage 5 materialize or finalize commit, the dedicated command
+workflow refreshes the existing managed `Lessons` block automatically:
+read-only inventory with the new HEAD, then trusted `pull-requests:write`
+update under the same per-Course concurrency group. Future Lesson PR lifecycle
+events still use the existing synchronizer. A matching Lesson PR contributes
+its **actual PR title, number, link, and status**; unstarted Lessons retain
+`Not started`. User-maintained stage checklists and all text outside the
+Lessons markers are preserved. GitHub's PR-body PATCH is not an atomic CAS:
+on concurrent edits, the updater fails closed; the owner can rerun
+`/course-status sync`.
+
+Historical Lesson PRs without the explicit identity marker cannot be matched
+by fuzzy title/branch searches. Existing implemented standalone Lessons need
+no new implementation PR and appear as `Reused / existing` once verified
+from their canonical UUID directory.
 
 A Stage 1/2 Course that has not allocated Lesson slots displays `NOT ALLOCATED`
 instead of the misleading `INCOMPLETE` when its source inventory is readable and
