@@ -53,7 +53,7 @@ export const modelTheSensorToActionRelationship = defineSkill({
       it: 'Collega una misura del sensore, una regola decisionale e la risposta di un attuatore.',
       ja: 'センサーの測定値、判断規則、アクチュエーターの反応を結びつけよう。',
       ka: 'დააკავშირე სენსორის გაზომვა, გადაწყვეტილების წესი და ამძრავის პასუხი.',
-      kk: 'Dattşik ölşemın, şeşım erejesın jäne atqaruşy mehanizm reaktsiiasyn bailanystyr.',
+      kk: 'Dattşik ölşemın, şeşım erejesın jäne atqaruşy mehanizm reaksiasyn bailanystyr.',
       ko: '센서 측정값, 판단 규칙과 구동기의 반응을 연결해 보세요.',
       lt: 'Susiek jutiklio matavimą, sprendimo taisyklę ir vykdiklio atsaką.',
       lv: 'Saisti sensora mērījumu, lēmuma noteikumu un izpildmehānisma reakciju.',

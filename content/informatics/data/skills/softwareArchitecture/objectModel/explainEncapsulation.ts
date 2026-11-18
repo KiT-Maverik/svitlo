@@ -18,7 +18,7 @@ export const explainEncapsulation = defineSkill({
     it: "Spiegare l'incapsulamento",
     ja: 'カプセル化を説明する',
     ka: 'ინკაფსულაციის ახსნა',
-    kk: 'İnkapsuliatsiiany tüsındıru',
+    kk: 'İnkapsuliasiany tüsındıru',
     ko: '캡슐화 설명하기',
     lt: 'Aiškinti inkapsuliaciją',
     lv: 'Izskaidrot iekapsulēšanu',

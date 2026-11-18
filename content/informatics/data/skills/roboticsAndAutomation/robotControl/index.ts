@@ -64,7 +64,7 @@ export const robotControl = defineSkillGroup({
       it: 'Crea e migliora istruzioni per i movimenti e le risposte di un robot.',
       ja: 'ロボットの動きや反応を決める指示を作り、改善しよう。',
       ka: 'შექმენი და გააუმჯობესე ბრძანებები რობოტის მოძრაობისა და რეაგირებისთვის.',
-      kk: 'Robottyñ qozğalysy men reaktsiialaryna arnalğan nūsqaulardy qūrastyryp, jetıldır.',
+      kk: 'Robottyñ qozğalysy men reaksialaryna arnalğan nūsqaulardy qūrastyryp, jetıldır.',
       ko: '로봇의 움직임과 반응을 위한 지시를 만들고 개선해 보세요.',
       lt: 'Kurk ir tobulink roboto judėjimo bei reagavimo komandas.',
       lv: 'Veido un uzlabo norādes robota kustībai un reakcijām.',

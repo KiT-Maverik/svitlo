@@ -53,7 +53,7 @@ export const deferUnnecessaryFeaturesYAGNI = defineSkill({
       it: 'Evita di implementare funzionalità che sono soltanto possibilità future immaginate.',
       ja: '想像上の将来のためだけの機能を作らないようにしよう。',
       ka: 'ნუ დაამატებ ფუნქციებს მხოლოდ წარმოსახვითი სამომავლო საჭიროებებისთვის.',
-      kk: 'Tek oidağy bolaşaq qajettılıkter üşın funktsiia qospa.',
+      kk: 'Tek oidağy bolaşaq qajettılıkter üşın funksia qospa.',
       ko: '상상만 하는 미래의 가능성을 위해 기능을 미리 구현하지 마세요.',
       lt: 'Nekurk funkcijų vien dėl įsivaizduojamų ateities poreikių.',
       lv: 'Neveido funkcijas tikai iedomātām nākotnes vajadzībām.',

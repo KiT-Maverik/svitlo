@@ -18,7 +18,7 @@ export const implementRobotObstacleResponse = defineSkill({
     it: 'Implementare la risposta di un robot agli ostacoli',
     ja: 'ロボットの障害物への反応を実装する',
     ka: 'რობოტის რეაქციის განხორციელება დაბრკოლებაზე',
-    kk: 'Robottyñ kedergıge reaktsiiasyn ıske asyru',
+    kk: 'Robottyñ kedergıge reaksiasyn ıske asyru',
     ko: '로봇의 장애물 반응 구현하기',
     lt: 'Įgyvendinti roboto reakciją į kliūtį',
     lv: 'Ieviest robota reakciju uz šķērsli',

@@ -18,7 +18,7 @@ export const applyObjectAbstraction = defineSkill({
     it: "Applicare l'astrazione degli oggetti",
     ja: 'オブジェクトの抽象化を適用する',
     ka: 'ობიექტების აბსტრაქციის გამოყენება',
-    kk: 'Obekt abstraktsiiasyn qoldanu',
+    kk: 'Obekt abstraksiasyn qoldanu',
     ko: '객체 추상화 적용하기',
     lt: 'Taikyti objektų abstrakciją',
     lv: 'Lietot objektu abstrakciju',

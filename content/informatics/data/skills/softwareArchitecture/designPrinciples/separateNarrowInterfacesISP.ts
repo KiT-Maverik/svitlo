@@ -53,7 +53,7 @@ export const separateNarrowInterfacesISP = defineSkill({
       it: 'Rendi le interfacce abbastanza piccole perché i client dipendano solo dalle operazioni che usano.',
       ja: '利用側が必要な操作だけに依存するようインターフェースを小さくしよう。',
       ka: 'შექმენი იმდენად მცირე ინტერფეისები, რომ კლიენტებს მხოლოდ საჭირო ოპერაციები მოეთხოვებოდეთ.',
-      kk: 'Klientke tek paidalanatyn operatsiialary kerek bolatyndai interfeisterdı şağyn ūsta.',
+      kk: 'Klientke tek paidalanatyn operasialary kerek bolatyndai interfeisterdı şağyn ūsta.',
       ko: '사용자가 필요한 동작에만 의존하도록 인터페이스를 작게 나눠 보세요.',
       lt: 'Kurk tokias siauras sąsajas, kad klientams reikėtų tik naudojamų operacijų.',
       lv: 'Veido saskarnes pietiekami šauras, lai klienti būtu atkarīgi tikai no lietotajām darbībām.',
