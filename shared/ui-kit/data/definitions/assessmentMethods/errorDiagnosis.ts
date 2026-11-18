@@ -1,6 +1,6 @@
-import { defineAssessmentMethod } from '@svitlo/engine/build';
+import { defineAssessmentMethod, type AllLanguageCodes } from '@svitlo/engine/build';
 
-export const errorDiagnosis = defineAssessmentMethod({
+export const errorDiagnosis = defineAssessmentMethod<'errorDiagnosis', AllLanguageCodes>({
   id: 'fab328dc-1556-4c0a-994b-d186c5bc75bb',
   slug: 'errorDiagnosis',
   title: {

@@ -1,6 +1,6 @@
-import { defineAssessmentMethod } from '@svitlo/engine/build';
+import { defineAssessmentMethod, type AllLanguageCodes } from '@svitlo/engine/build';
 
-export const analogicalReasoning = defineAssessmentMethod({
+export const analogicalReasoning = defineAssessmentMethod<'analogicalReasoning', AllLanguageCodes>({
   id: '91734986-923d-4072-9f82-72bc3c099538',
   slug: 'analogicalReasoning',
   title: {

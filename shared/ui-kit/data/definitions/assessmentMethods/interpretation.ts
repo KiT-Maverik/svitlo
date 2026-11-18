@@ -1,6 +1,6 @@
-import { defineAssessmentMethod } from '@svitlo/engine/build';
+import { defineAssessmentMethod, type AllLanguageCodes } from '@svitlo/engine/build';
 
-export const interpretation = defineAssessmentMethod({
+export const interpretation = defineAssessmentMethod<'interpretation', AllLanguageCodes>({
   id: '89f33fe0-5efd-4213-869a-df9ee5a6fa4c',
   slug: 'interpretation',
   title: {
