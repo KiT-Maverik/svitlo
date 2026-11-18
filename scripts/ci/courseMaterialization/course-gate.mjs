@@ -4,6 +4,7 @@
  * All PR source is treated as data; no checkboxes or PR-body claims grant approval.
  */
 import fs from 'node:fs';
+import { createHash } from 'node:crypto';
 
 const UUID = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/;
 const SHA = /^[0-9a-f]{40}$/;
@@ -84,6 +85,11 @@ export function validateArtifactPath(filename, identity, operation) {
   const match = filename.startsWith(prefix) ?
     filename.slice(prefix.length).match(/^([0-9a-f])\/([0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12})\/lesson\.yaml$/) : null;
   return !!match && match[1] === match[2].at(-1);
+}
+
+export function gitBlob(bytes) {
+  const buffer = Buffer.isBuffer(bytes) ? bytes : Buffer.from(bytes);
+  return createHash('sha1').update('blob ' + buffer.length + '\0').update(buffer).digest('hex');
 }
 
 export function stageFourApprovals({ reviews, prAuthor, sourceAuthor, identity, blob, blobsAtCommits }) {
