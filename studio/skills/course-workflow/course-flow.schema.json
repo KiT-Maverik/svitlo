@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://svitlo.org/studio/schemas/course-flow.schema.json",
-  "title": "Svitlo temporary Course editorial plan (not Engine Config YAML)",
+  "title": "Svitlo single temporary Course authoring specification (removed after materialization)",
   "type": "object",
   "additionalProperties": false,
   "required": ["id", "documentLanguage", "supportedLanguages", "methodology"],
@@ -233,6 +233,9 @@
         },
         {
           "$ref": "#/$defs/lesson"
+        },
+        {
+          "$ref": "#/$defs/episode"
         }
       ]
     },
@@ -352,6 +355,16 @@
           "type": "string",
           "minLength": 1,
           "maxLength": 2000
+        },
+        "methodology": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100000,
+          "description": "Complete Course-neutral methodology for an unimplemented Lesson; materializer creates its minimal lesson.yaml and persistent UUID."
+        },
+        "quizRequired": {
+          "type": "boolean",
+          "description": "Optional explicit Quiz intent for the initial Lesson YAML shell; the complete plan remains in methodology."
         }
       }
     },
@@ -386,6 +399,64 @@
           "type": "integer",
           "minimum": 0,
           "maximum": 40
+        }
+      }
+    },
+    "episode": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "slug", "title"],
+      "properties": {
+        "type": {
+          "const": "episode"
+        },
+        "id": {
+          "$ref": "#/$defs/uuid"
+        },
+        "slug": {
+          "$ref": "#/$defs/slug"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "methodology": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100000
+        },
+        "params": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "locale": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "events": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "section": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["items", "order"],
+          "properties": {
+            "items": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            },
+            "order": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "$ref": "#/$defs/slug"
+              }
+            }
+          }
         }
       }
     }
