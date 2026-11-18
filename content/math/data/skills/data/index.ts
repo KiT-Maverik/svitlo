@@ -22,7 +22,7 @@ export const data = defineSkillDomain({
     it: 'Dati',
     ja: 'データ',
     ka: 'მონაცემები',
-    kk: 'Деректер',
+    kk: 'Derekter',
     ko: '자료',
     lt: 'Duomenys',
     lv: 'Dati',
