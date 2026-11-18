@@ -90,6 +90,7 @@ test('publication requires real base and advertised localized files', () => with
   assert.throws(() => verifyAssessmentSelections(root), /missing generated locale uk/);
   put(root, questionPath + '/uk.json', {});
   manifest.entries[cardId].languages = ['en'];
+  manifest.entries[cardId].localeFiles = ['en'];
   put(root, manifestPath, manifest);
   assert.throws(() => verifyAssessmentSelections(root), /missing published language uk/);
 }));

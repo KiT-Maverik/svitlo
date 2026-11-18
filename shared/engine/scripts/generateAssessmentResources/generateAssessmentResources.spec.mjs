@@ -77,7 +77,7 @@ test('assessment stages reject wrong kinds, duplicate UUIDs, stale slugs, malfor
 });
 
 test('Engine fixture independently publishes localized Question and Flashcard bodies with metadata-only manifest', async () => {
-    const files = await render(textbook, 'all');
+  const files = await render(textbook, 'all');
   const manifest = JSON.parse(files.get('assessments/manifest.json'));
   const entries = Object.entries(manifest.entries);
   assert.equal(manifest.entries[questionId].ownerLessonId, lessonId);
@@ -114,7 +114,7 @@ test('Engine fixture independently publishes localized Question and Flashcard bo
 });
 
 test('Engine fixture Quiz UUID references resolve against its independent Question manifest', async () => {
-    const lesson = await loadLessonData(lessonEntry);
+  const lesson = await loadLessonData(lessonEntry);
   const published = lesson.build.props({ languages: ['uk'] });
   const response = assembleLessonProps(published, 'uk');
   assert.equal(Object.hasOwn(response, 'questions'), false);
