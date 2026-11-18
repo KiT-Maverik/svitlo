@@ -28,7 +28,6 @@ function resources() {
         sections: { allowNavigation: true, allowSkipping: true, showIndexes: true },
       },
       section: [section],
-      flashcards: [],
     },
     uk: {
       locale: { title: 'Світло' },
