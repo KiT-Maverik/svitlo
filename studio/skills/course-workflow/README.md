@@ -1,6 +1,6 @@
 # Course workflow
 
-**Canonical entry point:** [Create Course Flow](./create-course-flow.skill.md) — a seven-stage, PR-tracked, restartable Course production process. New Course production uses this orchestration and its temporary editorial `course.yaml` plan; the specialist skills below remain independently invokable for bounded historical/maintenance tasks.
+**Canonical entry point:** [Create Course Flow](./create-course-flow.skill.md) — a seven-stage, PR-tracked, restartable Course production process. New Course production uses **one temporary `course.yaml`** for the complete reviewed plan. Stage 5 materializes it directly to typed Course sources and initial YAMLs for new Lessons, then safely removes the temporary Course YAML. It **does not generate `config.yaml` or automatically create Lesson PRs**. Specialist skills below remain available for bounded historical/maintenance tasks.
 
 - [Create Course Methodology](./create-course-methodology.skill.md) — Methodologist; writes durable Course `methodology.md`.
 - [Create Course Table of Contents](./create-course-toc.skill.md) — Methodologist; requires `methodology.md` and Skill Taxonomy; creates ordered skill-based `toc.yaml`.
