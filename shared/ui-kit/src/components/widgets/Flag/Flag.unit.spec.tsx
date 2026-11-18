@@ -28,7 +28,7 @@ describe('Widgets/Flag', () => {
   it('uses the agreed flags for the new language communities', () => {
     expect(flagCountryByLocale['be-tarask']).toBe('by');
     expect(flagCountryByLocale['ka-GE']).toBe('ge');
-    expect(flagCountryByLocale['kk-Cyrl-KZ']).toBe('kz');
+    expect(flagCountryByLocale['kk-Latn-KZ']).toBe('kz');
     expect(flagCountryByLocale['lt-LT']).toBe('lt');
     expect(flagCountryByLocale['lv-LV']).toBe('lv');
     expect(flagCountryByLocale['et-EE']).toBe('ee');
