@@ -10,8 +10,7 @@ import { createHash } from 'node:crypto';
 import {
   parseIdentity,
   parseTrigger,
-  parseReviewEvidence,
-  stageFourApprovals,
+  requireCompletedStageFour,
   validateArtifactPath,
   gitBlob,
   safeBranch,
@@ -26,25 +25,23 @@ const identity = { id, pkg, yaml };
 const sha = 'a'.repeat(40);
 const head = 'b'.repeat(40);
 const blob = gitBlob('id: ' + id + '\n');
-const sourceEvidence = (role, value = blob) =>
-  'Stage 4 approval: ' + role + '\nCourse UUID: ' + id + '\nCourse YAML blob: ' + value;
-const reviews = [
-  { user: { login: 'methodologist' }, state: 'APPROVED', commit_id: sha, body: sourceEvidence('methodologist') },
-  {
-    user: { login: 'assessment-agent' },
-    state: 'APPROVED',
-    commit_id: sha,
-    body: sourceEvidence('assessment-architect'),
-  },
-];
-const reviewInput = {
-  reviews,
-  prAuthor: 'author',
-  sourceAuthor: 'editor',
-  identity,
-  blob,
-  blobsAtCommits: new Map([[sha, blob]]),
-};
+const courseWorkflow = (s1 = 'x', s2 = 'x', s3 = 'x', s4 = 'x') =>
+  [
+    '<!-- svitlo-course-flow:v1 -->',
+    '## Course identity',
+    '- Course UUID: ' + id,
+    '- Textbook: ' + pkg,
+    '- Single temporary source plan: ' + yaml,
+    '## Workflow',
+    '- [' + s1 + '] 1. Create Course Methodology — approved scope',
+    '- [' + s2 + '] 2. Design Course Structure',
+    '- [' + s3 + '] 3. Design & Match Lessons',
+    '  - [x] Module skyCycles',
+    '- [' + s4 + '] 4. Review Course Plan — separate-chat review completed',
+    '- [ ] 5. Materialize Course',
+    '## Handoffs / blockers',
+    '- Stage 4 findings resolved in the PR; no separate account required',
+  ].join('\n');
 
 test('exact marker, UUID, package and canonical Course YAML are mandatory', () => {
   const body =
@@ -92,35 +89,33 @@ test('only exact top-level same-actor PR comments or enumerated dispatch can aut
   assert.throws(() => parseTrigger({ inputs: { pr_number: '42', operation: 'rm -rf' } }, 'workflow_dispatch', 'owner'));
 });
 
-test('Stage 4 requires independently evidenced, role-distinct, source-pinned approvals', () => {
-  assert.deepEqual(stageFourApprovals(reviewInput), {
-    methodologist: 'methodologist',
-    'assessment-architect': 'assessment-agent',
-  });
-  assert.deepEqual(parseReviewEvidence(sourceEvidence('methodologist')), {
-    id,
-    role: 'methodologist',
-    blob,
-  });
-  assert.throws(() => stageFourApprovals({ ...reviewInput, reviews: reviews.slice(0, 1) }));
-  assert.throws(() => stageFourApprovals({ ...reviewInput, prAuthor: 'methodologist' }));
-  assert.throws(() => stageFourApprovals({ ...reviewInput, sourceAuthor: 'assessment-agent' }));
-  assert.throws(() =>
-    stageFourApprovals({ ...reviewInput, reviews: [reviews[0], { ...reviews[1], user: { login: 'methodologist' } }] }),
+test('Stage 4 authorizes same-account separate-chat review using the parent Course PR checklist', () => {
+  assert.equal(requireCompletedStageFour(courseWorkflow()), true);
+  // The reviewing agent may commit through the Course PR author's own account.
+  // No GitHub reviews, review-specific comments, approval roles or blob signatures are needed.
+  assert.equal(
+    requireCompletedStageFour(courseWorkflow().replace('separate-chat review completed', 'review completed')),
+    true,
   );
-  assert.throws(() =>
-    stageFourApprovals({
-      ...reviewInput,
-      reviews: [reviews[0], { ...reviews[1], body: sourceEvidence('assessment-architect', 'c'.repeat(40)) }],
-    }),
-  );
-  assert.throws(() => stageFourApprovals({ ...reviewInput, blobsAtCommits: new Map([[sha, 'c'.repeat(40)]]) }));
-  assert.throws(() =>
-    stageFourApprovals({ ...reviewInput, reviews: [...reviews, { ...reviews[0], state: 'CHANGES_REQUESTED' }] }),
-  );
-  assert.throws(() =>
-    stageFourApprovals({ ...reviewInput, reviews: [{ ...reviews[0], state: 'COMMENTED' }, reviews[1]] }),
-  );
+});
+
+test('Stage 4 checklist fails closed on incomplete, absent, duplicate or ambiguous stages', () => {
+  for (const body of [
+    courseWorkflow(' ', 'x', 'x', 'x'),
+    courseWorkflow('x', ' ', 'x', 'x'),
+    courseWorkflow('x', 'x', ' ', 'x'),
+    courseWorkflow('x', 'x', 'x', ' '),
+    courseWorkflow().replace('## Workflow', '## Progress'),
+    courseWorkflow() + '\n## Workflow',
+    courseWorkflow().replace('- [x] 4. Review Course Plan', '- [x] 4. Review Course Planner'),
+    courseWorkflow().replace('- [x] 3. Design & Match Lessons', '- [x] 3. Review Course Plan'),
+    courseWorkflow().replace('## Handoffs / blockers', '- [ ] 4. Review Course Plan\n## Handoffs / blockers'),
+    courseWorkflow().replace('## Handoffs / blockers', '- [x] 4. Review Course Plan\n## Handoffs / blockers'),
+  ])
+    assert.throws(() => requireCompletedStageFour(body));
+  // A lookalike checklist outside the canonical Workflow section is not a gate.
+  assert.throws(() => requireCompletedStageFour('## Notes\n- [x] 4. Review Course Plan\n## Workflow\n'));
+  assert.equal(requireCompletedStageFour(courseWorkflow() + '\n## Notes\n- [ ] 4. Review Course Plan'), true);
 });
 
 test('allowlist blocks arbitrary files, traversal and incorrect UUID buckets', () => {
@@ -223,6 +218,7 @@ test('Stage 5 workflow refreshes the managed Lessons block using isolated GitHub
   const workflow = YAML.parse(fs.readFileSync(workflowPath, 'utf8'));
   assert.deepEqual(workflow.permissions, {});
   assert.equal(workflow.jobs.analyze.permissions['contents'], 'read');
+  assert.match(workflow.jobs.resolve.steps.find(s => s.id === 'gate').name, /Stage 4 checklist/);
   assert.equal(workflow.jobs.publish.permissions['contents'], 'write');
   assert.equal(workflow.jobs['refresh-analyze'].permissions['pull-requests'], 'read');
   assert.equal(workflow.jobs['refresh-update'].permissions['pull-requests'], 'write');
