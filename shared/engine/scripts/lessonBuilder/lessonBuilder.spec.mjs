@@ -211,7 +211,7 @@ test('Lesson constants use documentLanguage, preserving the full planned tuple f
       [
         "import type { SupportedLanguages } from '@svitlo/engine/build';",
         '',
-        '// TODO: Restore the complete language set when translations are ready:',
+        '// TODO (BLOCKER): Restore the complete language set when translations are ready:',
         '// export const languages = ["en","uk","pl","qm"] as const satisfies SupportedLanguages;',
         '',
         'export const languages = ["uk"] as const satisfies SupportedLanguages;',
