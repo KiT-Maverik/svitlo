@@ -3,6 +3,8 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import YAML from 'yaml';
 import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import {
@@ -145,4 +147,31 @@ test('artifact verification enforces exact path/hash, create-only and one-file f
   } finally {
     fs.rmSync(root, { recursive: true, force: true });
   }
+});
+
+
+test('Stage 5 workflow refreshes the managed Lessons block using isolated GitHub permissions', () => {
+  const workflowPath = fileURLToPath(new URL('../../../.github/workflows/course-materialization.yml', import.meta.url));
+  const workflow = YAML.parse(fs.readFileSync(workflowPath, 'utf8'));
+  assert.deepEqual(workflow.permissions, {});
+  assert.equal(workflow.jobs.analyze.permissions['contents'], 'read');
+  assert.equal(workflow.jobs.publish.permissions['contents'], 'write');
+  assert.equal(workflow.jobs['refresh-analyze'].permissions['pull-requests'], 'read');
+  assert.equal(workflow.jobs['refresh-update'].permissions['pull-requests'], 'write');
+  assert.equal(workflow.jobs['refresh-update'].permissions.contents, 'read');
+  assert.ok(workflow.jobs['refresh-analyze'].needs.includes('publish'));
+  assert.ok(workflow.jobs['refresh-update'].needs.includes('refresh-analyze'));
+  assert.equal(workflow.jobs['refresh-update'].concurrency['cancel-in-progress'], false);
+  assert.ok(workflow.jobs['refresh-update'].concurrency.group.includes('course-lessons-description-'));
+  for (const job of ['analyze', 'refresh-analyze']) {
+    const checkouts = workflow.jobs[job].steps.filter(s => s.uses === 'actions/checkout@v4');
+    assert.ok(checkouts.length >= 2);
+    assert.ok(checkouts.every(s => s.with['persist-credentials'] === false));
+  }
+  const trustedUpdater = workflow.jobs['refresh-update'].steps;
+  assert.equal(trustedUpdater.filter(s => s.uses === 'actions/checkout@v4').length, 1);
+  assert.ok(trustedUpdater.some(s => s.run?.includes('sync-course-lessons.mjs update')));
+  assert.ok(workflow.jobs['refresh-analyze'].steps.some(
+    s => s.run?.includes('sync-course-lessons.mjs analyze'),
+  ));
 });
