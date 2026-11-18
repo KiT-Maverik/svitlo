@@ -17,6 +17,31 @@ The PR #606 implementation established more than standalone resource primitives 
 
 **Remaining acceptance concerns for the original Issue (verify their current status independently):** reconcile approved `questions.yaml` and `flashcards.yaml` editorial content with independent stages, verify complete-publication UUID ownership and references, handle reused legacy Playground Lesson/Quiz examples without silently duplicating UUIDs, align Studio and fixtures, prove offline/accessibility and host behavior end to end, and obtain independent Development/QA review. Keep the acceptance checklist below unchecked until each boundary is verified.
 
+## Next revision — globally addressed assessment publications (planned, not implemented)
+
+**Decision for this Draft PR:** Keep authoring Question/Flashcard banks with their Lesson's independent workflow and source-language provenance, but **do not** publish those banks under the Lesson's JSON resource directory. Questions and Flashcards are first-class, globally UUID-addressed *publication* resources within one textbook. This section specifies pending implementation; current code still publishes beneath `data/lessons/<bucket>/<lessonId>/` and uses Lesson-scoped manifests and loaders.
+
+Publication and static-host paths (illustrative UUIDs omitted):
+
+```text
+data/questions/<last-hex-of-question-id>/<question-id>/base.json
+data/questions/<last-hex-of-question-id>/<question-id>/<locale>.json
+data/flashcards/<last-hex-of-flashcard-id>/<flashcard-id>/base.json
+data/flashcards/<last-hex-of-flashcard-id>/<flashcard-id>/<locale>.json
+data/assessments/manifest.json
+```
+
+- `resolveEntityPath(questionId)` and `resolveEntityPath(flashcardId)` supply the same bucket/UUID algorithm as other entities. The content package's `generated/assessments/` tree and portable `static/data/` tree must resolve to these same public relative paths. Both kinds must preserve independent `base.json` plus sparse locale files; authored TypeScript and `questions.yaml`/`flashcards.yaml` stay in their existing independent bank workflows. Never embed full banks in Lesson Props or Quiz Props.
+- One textbook-scoped metadata-only manifest indexes **each** globally unique UUID with kind, optional `ownerLessonId` (provenance rather than path), available languages/locale fragments, type/restrictions when applicable and content hash. Reject duplicate UUIDs *across kinds and Lessons*, unsafe paths, unexpected or missing files, and mismatched metadata. No per-Lesson manifest is needed for runtime resolution.
+- `defineQuizSection` continues to hold **only** `params.selection.questionIds` for the actual Question candidates. Question Configurators are authored exclusively in the Question Bank, **never** embedded or defined by the Quiz. Quiz `content.items` is only for optional screen ContentBlocks. A Quiz may select Question UUIDs originating in other Lessons; an assessment-only Lesson need not own a Question Bank.
+- Host-injected resource readers accept `{ ids, language, signal }` (and Flashcard access needs), not a mandatory `lessonId`. Use the manifest to validate type, locale, resource existence, and optional provenance; batch/load only selected IDs, preserve sample/shuffle semantics, caching, abort, stale-navigation handling and offline manifest coverage. UI Kit must not embed a textbook path.
+- **Runtime fallback:** if a requested Question/Flashcard locale is missing, use a genuinely published `en` locale when available (plus invariant base). If English is unavailable too, return a clear missing-resource error; do not invent text or silently use unrelated languages. Report/mark the fallback so consumers can surface it appropriately.
+- **Production validation is stricter than runtime resilience:** for each Lesson's actual effective publication languages, verify every selected Question/Flashcard has the required real locale content (or truly locale-independent validated fields); ensure the Question/Flashcard bank advertised language support and per-Lesson published scope are consistent. Missing translations for a **declared supported locale** fail the complete textbook/Lesson build even though a runtime English fallback can protect a partially deployed or out-of-scope request. An `en` fallback requires genuine `en` content, not a fake translation.
+- Preserve authored multilingual content and physical-media/Scene validation: these JSON resources may reference media; do not assume that moving their JSON makes media checks unnecessary. Update the textbook static manifest/build, web host loader, offline cache/install behavior, and any desktop/mobile adapters that actually consume the old loader signature. Do not retain silent legacy URL aliases after consumers/tests migrate.
+- Verification must include deterministic output and manifest comparison, mixed-Lesson Quiz selection, absent requested locale + existing English, absent both, missing declared supported locale failing production, cross-kind UUID collision, missing selected Question, source-English-with-no-English fallback error, cancellation/caching, and complete production build for a real consumer package. Do not declare ready on spec text alone.
+
+**Scope boundary:** this is a breaking publication/resolver migration. Do not redesign Question/Flashcard authoring, invent another Quiz entity, embed banks in Lessons, or use a separate permanent assessment-planning YAML. The existing historical paths and per-Lesson manifest descriptions below explain the shipped pre-migration implementation; they are to be updated/retired as the code changes.
+
 ## Decision and nonnegotiable invariants
 
 1. A Lesson describes pedagogical structure and Sections, **not** the full Question or Flashcard bank. Remove both fields from **all** `defineLesson` Config, Props and override contracts; this is a deliberate breaking source/publication change, not merely making these fields optional.
