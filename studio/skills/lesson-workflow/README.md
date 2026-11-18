@@ -1,6 +1,6 @@
 # Lesson Workflow
 
-**Start at [Create Lesson Flow](./create-lesson-flow.skill.md)** for all new or resumed standalone/Course-originated Lessons. One Draft Lesson PR tracks eight stages and independent review SHAs; one temporary `lesson.yaml` holds ordered `config` + nested `production` through Stages 1–5. Historical Lesson Production Issues remain evidence but are no longer mandatory for new production. Questions/Flashcards are separate child workflows; **Questions must be completed before Flashcards unless Questions is explicitly Not Applicable with Methodologist rationale**. Translation Production Issues keep their own rules.
+**Start at [Create Lesson Flow](./create-lesson-flow.skill.md)** for all new or resumed standalone/Course-originated Lessons. One Draft Lesson PR tracks eight stages and independent review SHAs; one temporary `lesson.yaml` holds ordered `config` + nested `production` through Stages 1–5. Historical Lesson Production Issues remain evidence but are no longer mandatory for new production. Questions/Flashcards are separate child workflows; **Questions must be completed before Flashcards unless Questions is explicitly Not Applicable with Methodologist rationale**. Translation campaigns use the Draft PR protocol for new work; historical Translation Production Issues retain their approved scopes and evidence.
 
 Specialist operations:
 

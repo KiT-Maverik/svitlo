@@ -1,17 +1,20 @@
 #!/usr/bin/env node
 /**
  * @fileoverview Stage 5: approved temporary editorial Course plan -> deterministic
- * technical Config handoff and Course-owned modular TypeScript DRAFT.
+ * Course-owned modular TypeScript/Markdown DRAFTS and initial Lesson YAMLs.
  * This is not a Course publisher, content approver, translator or Lesson builder.
- * Never fabricates UUIDs, Lesson files, translations, source metadata or Episodes.
+ * It assigns stable UUIDs only to explicitly planned, reviewed source nodes;
+ * no intermediate config.yaml, fabricated translations, media or Lesson PRs.
  */
 import fs from 'node:fs';
+import { createHash } from 'node:crypto';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import ts from 'typescript';
 import YAML from 'yaml';
 import { parseYaml, checkPlan } from '../validateCourseFlow/validate-course-flow.mjs';
 import { buildLessonIndex } from '../generateLessonsBySkill/lesson-index.mjs';
+import { renderCourseSource } from '../courseBuilder/courseBuilder.mjs';
 
 const rootDefault = path.resolve(fileURLToPath(new URL('../../../..', import.meta.url)));
 const UUID = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/;
@@ -87,6 +90,17 @@ function sourceMd(plan) {
         );
         for (const k of ['depth', 'sequenceReason', 'matchingRationale'])
           if (node[k]) lines.push(k + ': ' + node[k], '');
+      } else if (node.type === 'episode') {
+        lines.push(
+          '## Episode: ' + node.title,
+          '',
+          'UUID: ' + node.id,
+          '',
+          'Placement: ' + [...location, key].join(' / '),
+          '',
+          node.methodology ?? 'Episode content requires authoring review',
+          '',
+        );
       } else {
         lines.push(
           '## ' + (node.type === 'module' ? 'Module' : 'Chapter') + ': ' + node.title,
@@ -125,50 +139,115 @@ function localizedTitle(title, language) {
  * This stage requires persisted IDs on every Module/Chapter and every Lesson
  * reference. The schema intentionally allows missing IDs in earlier stages.
  */
+/**
+ * Stable RFC 4122 version-5-shaped UUID generated for a *specific* Course slot.
+ * No random allocations: a rerun after a partial write always reuses the ID.
+ * The Course UUID and complete placement path namespace the identifier.
+ */
+export function deriveCourseEntityId(courseId, kind, placement) {
+  if (!UUID.test(courseId) || !['module', 'chapter', 'episode', 'lesson'].includes(kind) || !placement)
+    fail('invalid deterministic entity ID inputs');
+  const bytes = createHash('sha1')
+    .update('svitlo-course-source-v1:' + courseId + ':' + kind + ':' + placement)
+    .digest()
+    .subarray(0, 16);
+  bytes[6] = (bytes[6] & 0x0f) | 0x50;
+  bytes[8] = (bytes[8] & 0x3f) | 0x80;
+  const h = bytes.toString('hex');
+  return h.slice(0, 8) + '-' + h.slice(8, 12) + '-' + h.slice(12, 16) + '-' + h.slice(16, 20) + '-' + h.slice(20);
+}
+
+/** One approved Course YAML directly produces a typed in-memory Course tree. */
 export function technicalFromEditorial(plan, resolveLesson = () => null) {
   const check = checkPlan(plan, '3-complete');
   if (!check.valid) fail('unapproved/incomplete Stage 3 source: ' + check.errors.join('; '));
   if (!SLUG.test(plan.slug ?? '') || !plan.title?.trim() || !plan.description?.trim())
     fail('Stage 5 requires stable Course slug and authored learner-facing title and description');
-  const ids = new Set([plan.id]);
+  if (!plan.supportedLanguages.includes(plan.documentLanguage))
+    fail('documentLanguage must be included in supportedLanguages');
+  const authored = structuredClone(plan);
+  const ids = new Set([plan.id.toLowerCase()]);
+  const explicit = new Set();
+  function collectExplicit(collection) {
+    for (const slug of collection?.order ?? []) {
+      const node = collection.items[slug];
+      if (node.type === 'lesson') {
+        if (node.lessonId) explicit.add(node.lessonId.toLowerCase());
+      } else {
+        if (node.id) {
+          const id = node.id.toLowerCase();
+          if (ids.has(id)) fail('duplicate Course entity UUID ' + id);
+          ids.add(id);
+          explicit.add(id);
+        }
+        if (node.content) collectExplicit(node.content);
+      }
+    }
+  }
+  collectExplicit(authored.content);
+  const newLessons = new Map();
+  const generated = new Set();
   const moduleSlugs = new Set(),
-    chapterSlugs = new Set();
-  function collection(tree, depth) {
+    chapterSlugs = new Set(),
+    episodeSlugs = new Set();
+  function collection(tree, parent) {
     const items = {};
     for (const slug of tree?.order ?? []) {
       const child = tree.items[slug];
+      const placement = [...parent, slug].join('/');
       if (child.type === 'lesson') {
-        if (!UUID.test(child.lessonId ?? '')) fail('Lesson ' + slug + ' needs its persistent UUID');
+        if (!child.lessonId) {
+          child.lessonId = deriveCourseEntityId(plan.id, 'lesson', placement);
+          if (ids.has(child.lessonId) || explicit.has(child.lessonId) || generated.has(child.lessonId))
+            fail('generated Lesson UUID collision at ' + placement);
+          generated.add(child.lessonId);
+          newLessons.set(child.lessonId, { node: structuredClone(child), placement });
+        }
         const source = resolveLesson(child.lessonId);
         const config = { type: 'lesson', slug, lessonId: child.lessonId };
         if (source) config.source = source;
         items[slug] = { config };
         continue;
       }
-      if (!UUID.test(child.id ?? '')) fail('Missing stable UUID for ' + child.type + ' ' + slug);
-      if (ids.has(child.id)) fail('Duplicate Course-owned UUID: ' + child.id);
-      ids.add(child.id);
-      const group = child.type === 'module' ? moduleSlugs : chapterSlugs;
-      if (group.has(slug)) fail('Duplicate ' + child.type + ' source filename slug ' + slug);
+      if (!child.id) child.id = deriveCourseEntityId(plan.id, child.type, placement);
+      if (generated.has(child.id) || (ids.has(child.id) && !explicit.has(child.id)))
+        fail('duplicate generated entity UUID at ' + placement);
+      generated.add(child.id);
+      const group = child.type === 'module' ? moduleSlugs : child.type === 'chapter' ? chapterSlugs : episodeSlugs;
+      if (group.has(slug)) fail('duplicate ' + child.type + ' source filename slug ' + slug);
       group.add(slug);
+      if (child.type === 'episode') {
+        const config = {
+          id: child.id,
+          type: 'episode',
+          slug,
+          params: { ...child.params, languages: child.params?.languages ?? [plan.documentLanguage] },
+          locale: { title: child.locale?.title ?? { [plan.documentLanguage]: child.title } },
+          section: child.section ?? { items: {}, order: [] },
+          ...(child.events ? { events: child.events } : {}),
+        };
+        items[slug] = { config };
+        continue;
+      }
       const config = {
         type: child.type,
         id: child.id,
         slug,
         params: {},
-        locale: { title: localizedTitle(child.title, plan.documentLanguage) },
-        content: collection(child.content, depth + 1),
+        locale: { title: { [plan.documentLanguage]: child.title } },
+        content: collection(child.content, [...parent, slug]),
       };
       items[slug] = { config };
     }
     return { items, order: [...(tree?.order ?? [])] };
   }
+  const content = collection(authored.content, []);
   const params = { languages: plan.supportedLanguages };
   for (const field of ['age', 'grade']) {
     const range = plan[field];
     if (range) {
       if (!Number.isInteger(range.min) || !Number.isInteger(range.max) || range.min > range.max)
-        fail('Invalid audience ' + field + ' bounds');
+        fail('invalid audience ' + field + ' bounds');
       params[field] = range;
     }
   }
@@ -178,16 +257,17 @@ export function technicalFromEditorial(plan, resolveLesson = () => null) {
   if (prerequisites && Object.keys(prerequisites).length) params.prerequisites = prerequisites;
   if (plan.standardsAlignment?.length) params.educationStandards = plan.standardsAlignment.map(x => x.standardId);
   const locale = {
-    title: localizedTitle(plan.title, plan.documentLanguage),
-    description: localizedTitle(plan.description, plan.documentLanguage),
+    title: { [plan.documentLanguage]: plan.title },
+    description: { [plan.documentLanguage]: plan.description },
   };
-  if (plan.outcomes?.explanation)
-    locale.outcomesText = localizedTitle(plan.outcomes.explanation, plan.documentLanguage);
+  if (plan.outcomes?.explanation) locale.outcomesText = { [plan.documentLanguage]: plan.outcomes.explanation };
   if (plan.prerequisites?.explanation)
-    locale.prerequisitesText = localizedTitle(plan.prerequisites.explanation, plan.documentLanguage);
+    locale.prerequisitesText = { [plan.documentLanguage]: plan.prerequisites.explanation };
   return {
-    config: { id: plan.id, slug: plan.slug, type: 'course', params, locale, content: collection(plan.content, 0) },
-    production: { documentLanguage: plan.documentLanguage, methodology: sourceMd(plan) },
+    config: { id: plan.id, slug: plan.slug, type: 'course', params, locale, content },
+    production: { documentLanguage: plan.documentLanguage, methodology: sourceMd(authored) },
+    newLessons,
+    authored,
   };
 }
 function tsLiteral(value, indentation = 0) {
@@ -197,7 +277,7 @@ function tsLiteral(value, indentation = 0) {
     .join('\n');
 }
 function symbolOf(node) {
-  const suffix = { course: 'Course', module: 'Module', chapter: 'Chapter' }[node.type];
+  const suffix = { course: 'Course', module: 'Module', chapter: 'Chapter', episode: 'Episode' }[node.type];
   if (!suffix || !SLUG.test(node.slug ?? '')) fail('Unsupported modular entity');
   return node.slug + '_' + suffix;
 }
@@ -237,6 +317,47 @@ function lessonSourceCoordinates(root, pkg, courseId, lessonId, index) {
   return { path: path.posix.relative(courseFolder, entries[0].source), export: candidates[0] };
 }
 /** Generate Course-owned files; no standalone Lesson definition is emitted. */
+/**
+ * Reuse the typed nested Config renderer for authored Episode Sections/blocks.
+ * Extract only the Episode expression; never emit a second Course declaration.
+ */
+function renderEpisodeDraft(episode, language, courseId) {
+  const wrapper = {
+    type: 'course',
+    id: courseId,
+    slug: 'episodeScaffold',
+    documentLanguage: language,
+    params: { languages: [language] },
+    locale: { title: { [language]: 'Episode draft' }, description: { [language]: 'Draft' } },
+    content: { items: { [episode.slug]: episode }, order: [episode.slug] },
+  };
+  const rendered = renderCourseSource(wrapper);
+  const ast = ts.createSourceFile('episode-scaffold.ts', rendered, ts.ScriptTarget.Latest, true);
+  if (ast.parseDiagnostics.length) fail('Course Builder produced invalid Episode draft syntax');
+  const calls = [];
+  const visit = node => {
+    if (ts.isCallExpression(node) && ts.isIdentifier(node.expression) && node.expression.text === 'defineEpisode')
+      calls.push(node);
+    ts.forEachChild(node, visit);
+  };
+  visit(ast);
+  if (calls.length !== 1) fail('Expected exactly one generated Episode expression for ' + episode.slug);
+  const expression = calls[0].getText(ast);
+  const factoryNames = [
+    ...new Set([...expression.matchAll(/\bdefine[A-Z][A-Za-z0-9_]*(?=\s*\()/g)].map(m => m[0])),
+  ].sort();
+  return (
+    HEADER +
+    'import { ' +
+    factoryNames.join(', ') +
+    ' } from "@svitlo/engine/build";\n\n' +
+    'export const ' +
+    symbolOf(episode) +
+    ' = ' +
+    expression +
+    ';\n'
+  );
+}
 export function renderModularCourse(technical, pkg, resolveLesson = () => null) {
   const { config } = technical;
   const rootFile = 'index.ts';
@@ -246,8 +367,11 @@ export function renderModularCourse(technical, pkg, resolveLesson = () => null) 
     for (const key of collection?.order ?? []) {
       const child = collection.items[key]?.config;
       if (!record(child)) fail('Malformed technical child ' + key);
-      if (child.type === 'module' || child.type === 'chapter') {
-        const filename = (child.type === 'module' ? 'modules/' : 'chapters/') + child.slug + '.ts';
+      if (child.type === 'module' || child.type === 'chapter' || child.type === 'episode') {
+        const filename =
+          (child.type === 'module' ? 'modules/' : child.type === 'chapter' ? 'chapters/' : 'episodes/') +
+          child.slug +
+          '.ts';
         if (paths.has(filename)) fail('Duplicate Course-owned file ' + filename);
         paths.set(filename, child);
         nodes.push({ node: child, file: filename });
@@ -258,6 +382,10 @@ export function renderModularCourse(technical, pkg, resolveLesson = () => null) 
   register(config.content);
   const files = new Map();
   for (const { node, file } of nodes) {
+    if (node.type === 'episode') {
+      files.set(file, renderEpisodeDraft(node, technical.production.documentLanguage, config.id));
+      continue;
+    }
     const imports = new Map(),
       unresolved = [];
     const addImport = (symbol, target) => {
@@ -267,8 +395,11 @@ export function renderModularCourse(technical, pkg, resolveLesson = () => null) 
       return symbol;
     };
     function expression(child) {
-      if (child.type === 'module' || child.type === 'chapter') {
-        const target = (child.type === 'module' ? 'modules/' : 'chapters/') + child.slug + '.ts';
+      if (child.type === 'module' || child.type === 'chapter' || child.type === 'episode') {
+        const target =
+          (child.type === 'module' ? 'modules/' : child.type === 'chapter' ? 'chapters/' : 'episodes/') +
+          child.slug +
+          '.ts';
         return addImport(symbolOf(child), target);
       }
       if (child.type !== 'lesson') fail('Course methodology may not create ' + child.type);
@@ -331,50 +462,104 @@ export function renderModularCourse(technical, pkg, resolveLesson = () => null) 
     ];
     files.set(file, header.join('\n'));
   }
-  for (const family of ['module', 'chapter']) {
+  for (const family of ['module', 'chapter', 'episode']) {
     const entries = nodes.filter(x => x.node.type === family).sort((a, b) => a.file.localeCompare(b.file));
     if (entries.length)
       files.set(
-        (family === 'module' ? 'modules/' : 'chapters/') + 'index.ts',
+        (family === 'module' ? 'modules/' : family === 'chapter' ? 'chapters/' : 'episodes/') + 'index.ts',
         entries.map(x => 'export { ' + symbolOf(x.node) + ' } from "./' + x.node.slug + '";').join('\n') + '\n',
       );
   }
+  files.set(
+    'review.ts',
+    '// Course review evidence is authored independently after generated Props are reviewed.\n' +
+      '// TODO(review): Record independently verified Course and locale review decisions here.\n' +
+      'export const courseReview = { methodology: null, experience: null, translation: null } as const;\n',
+  );
+  files.set(
+    'constants.ts',
+    '// Course identity and source locale; all other locales require real translation.\n' +
+      'export const courseId = ' +
+      JSON.stringify(config.id) +
+      ' as const;\n' +
+      'export const sourceLanguage = ' +
+      JSON.stringify(technical.production.documentLanguage) +
+      ' as const;\n',
+  );
   return files;
 }
+/**
+ * Exactly one Course input course.yaml. The returned artifacts are Course-owned
+ * TS/Markdown plus new Lesson-owned YAMLs; there is NO generated config.yaml.
+ */
 export function planArtifacts(plan, pkg, root, lessonIndex) {
   const coursePath = pkg + '/data/courses/' + plan.id.at(-1) + '/' + plan.id;
   const lookup = id => lessonSourceCoordinates(root, pkg, plan.id, id, lessonIndex);
   const technical = technicalFromEditorial(plan, lookup);
   const drafts = renderModularCourse(technical, pkg, lookup);
-  const result = new Map([
-    ['config.yaml', YAML.stringify(technical, { lineWidth: 0 })],
-    ['methodology.md', technical.production.methodology],
-    ...drafts,
-  ]);
-  return { folder: path.join(root, coursePath), files: result };
+  const files = new Map([['methodology.md', technical.production.methodology], ...drafts]);
+  const lessonFiles = new Map();
+  for (const [id, { node }] of technical.newLessons) {
+    if (!node.methodology?.trim()) fail('planned Lesson lacks complete methodology: ' + node.slug);
+    const lessonFolder = path.join(root, pkg, 'data/lessons', id.at(-1), id);
+    const lessonConfig = {
+      config: {
+        id,
+        slug: node.slug,
+        type: 'lesson',
+        skills: [...node.skills],
+        params: {
+          languages: [...plan.supportedLanguages],
+          requireQuiz: node.quizRequired ?? false,
+          sections: { allowNavigation: true, allowSkipping: true, showIndexes: true },
+        },
+        locale: { title: { [plan.documentLanguage]: node.title } },
+        section: { items: {}, order: [] },
+      },
+      production: {
+        documentLanguage: plan.documentLanguage,
+        methodology: node.methodology,
+      },
+    };
+    lessonFiles.set(path.join(lessonFolder, 'lesson.yaml'), YAML.stringify(lessonConfig, { lineWidth: 0 }));
+  }
+  return { folder: path.join(root, coursePath), files, lessonFiles, technical };
+}
+function artifactEntries(artifacts) {
+  return [
+    ...[...artifacts.files].map(([name, content]) => [path.join(artifacts.folder, name), content]),
+    ...artifacts.lessonFiles,
+  ];
 }
 function checkArtifacts(artifacts, mode) {
-  const { folder, files } = artifacts;
-  assertPath(folder);
-  if (files.size > 1500) fail('too many generated files');
-  for (const [name, content] of files) {
-    const destination = path.join(folder, name);
+  const entries = artifactEntries(artifacts);
+  if (entries.length > 2500) fail('too many generated files');
+  const targets = new Set();
+  for (const [destination, content] of entries) {
     assertPath(destination);
+    if (targets.has(destination)) fail('duplicated artifact destination ' + destination);
+    targets.add(destination);
+    if (destination.endsWith('/lesson.yaml')) {
+      const directory = path.dirname(destination);
+      if (fs.existsSync(directory) && !fs.existsSync(destination) && fs.readdirSync(directory).length)
+        fail('Lesson UUID destination already contains unrelated authored files: ' + directory);
+    }
     if (fs.existsSync(destination)) {
       if (fs.readFileSync(destination, 'utf8') !== content)
         fail('existing authored file differs; refusing overwrite: ' + destination);
     } else if (mode !== '--write') fail('missing materialized source: ' + destination);
-    if (name.endsWith('.ts')) {
-      const parsed = ts.createSourceFile(name, content, ts.ScriptTarget.Latest, true);
-      if (parsed.parseDiagnostics.length) fail('generated TypeScript syntax invalid: ' + name);
+    if (destination.endsWith('.ts')) {
+      const parsed = ts.createSourceFile(destination, content, ts.ScriptTarget.Latest, true);
+      if (parsed.parseDiagnostics.length) fail('generated TypeScript syntax invalid: ' + destination);
     }
   }
 }
 function writeArtifacts(artifacts) {
-  const { folder, files } = artifacts;
-  for (const [name, content] of files) {
-    const filename = path.join(folder, name);
+  // Preflight all targets before the first write. A repeat after any partial
+  // failure deterministically derives the same identities and validates bytes.
+  for (const [filename, content] of artifactEntries(artifacts)) {
     if (fs.existsSync(filename)) continue;
+    assertPath(filename);
     fs.mkdirSync(path.dirname(filename), { recursive: true });
     fs.writeFileSync(filename, content, { flag: 'wx' });
   }
@@ -404,13 +589,6 @@ export function materialize(argv, root = rootDefault) {
   assertPath(source);
   if (!fs.existsSync(source)) fail('missing approved temporary course.yaml: ' + source);
   if (fs.statSync(source).size > 2 * 1024 * 1024) fail('course.yaml exceeds 2MiB');
-  if (
-    mode === '--write' &&
-    (fs.existsSync(path.join(folder, 'index.ts')) || fs.readdirSync(folder).some(name => name.endsWith('.data.ts')))
-  ) {
-    console.log('SKIP Course ' + id + ': existing authored Course entrypoint; no files modified');
-    return { skipped: true };
-  }
   const plan = parseYaml(fs.readFileSync(source, 'utf8'));
   if (plan.id !== id) fail('Course UUID in plan does not match canonical folder');
   const lessonIndex = buildLessonIndex(root, pkg);
@@ -421,7 +599,14 @@ export function materialize(argv, root = rootDefault) {
     // Only after a separate successful check/commit; Git retains the plan history.
     fs.unlinkSync(source);
   }
-  console.log(mode + ' Course ' + id + ': ' + artifacts.files.size + ' verified draft artifacts');
+  console.log(
+    mode +
+      ' Course ' +
+      id +
+      ': ' +
+      (artifacts.files.size + artifacts.lessonFiles.size) +
+      ' verified source artifacts; no config.yaml',
+  );
   return { skipped: false, artifacts };
 }
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {

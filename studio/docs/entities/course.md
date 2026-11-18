@@ -1,6 +1,6 @@
 # Course content, creators, Lessons and Episodes
 
-**New Course production:** [Create Course Flow](../../skills/course-workflow/create-course-flow.skill.md) coordinates the seven stages. Its temporary editorial `course.yaml` is distinct from technical `config.yaml`; durable `methodology.md` is created at materialization. Existing independently authored Courses may retain their historical source formats. The older independent Course skills described below apply to legacy maintenance, not to new Course creation.
+**New Course production:** [Create Course Flow](../../skills/course-workflow/create-course-flow.skill.md) coordinates the seven stages. Its **single temporary `course.yaml`** contains the reviewed Course specification and is directly materialized to TypeScript/Markdown Course sources and minimal new Lesson YAML handoffs; it is removed after verified finalization. **No intermediate or permanent Course `config.yaml` is produced.** The separate generic Config-shaped Course Builder below remains for historical maintenance, not the new Course Flow.
 
 **Current authoring rule (Episode configurator migration):** A Course, Module or Chapter may contain independent `defineEpisode` children alongside `defineLesson` children. Episodes own narrative Sections and are not Lesson subtypes. A Lesson remains pedagogically Course-neutral even if physically authored under one Course. The legacy creator/publication details below describe historical APIs and need separate runtime migration. **For Issue #507 YAML draft-scaffolding, the current authority is [Engine's Config-shaped YAML handoff](../architecture/yaml-config-scaffolding.md): typed `content.items/order`, explicit nested `type`, and existing standalone Lesson `lessonId` references.** The editorial `toc.yaml` is distinct from technical Course YAML; `overrides.yaml` uses only the current Build API patch shape and has its own review requirements.
 
@@ -13,6 +13,10 @@ A **Course** is an ordered learning journey, distinct from a Curriculum. Its aut
 `Course_Toc`, `Course_TocModule`, `Course_TocChapter`, `Course_TocLesson` and `Course_TocEpisode` have independently typed `children`. Their `type` values are derived from the existing Course/Module/Chapter/Episode/Lesson contracts, not duplicated discriminator unions. Modules, Chapters and Episodes accept optional `iconKey`. Lesson icons are resolved from the existing Lesson Definition (`iconKey` is not redundantly authored in Lesson Data).
 
 A TOC creator receives only `{ language }`. It reads localized Lesson titles from the already imported Lesson Data and emits compact TOC leaves with `type`, `id`, and localized `title`.
+
+## Reusable Lesson and Course narrative boundary
+
+A Course selects and orders independently valid Lessons, and may add **Course-owned** Episodes, storyline, characters, missions, rewards and contextual transitions without rewriting Lesson content, target Skills, assessment meaning or scientific facts. Internal Lesson teaching order remains its own; broader curricular progression belongs to the Course. A Curriculum is an editorial learning plan, not automatically a runtime Course. Narrative events/rewards and cross-Course state are only supported where **current implementation and tests** prove they exist; an intended flow must not be reported as implemented. This consolidates the historical Program terminology; the active entity name and API are **Course**.
 
 ## Course teaching outcomes and referenced educational standards
 
@@ -103,6 +107,19 @@ Course session/controller with completion across Lessons or persisted Course sta
 ## Course methodological specification
 
 The independent [Create Course Methodology](../../../studio/skills/course-workflow/create-course-methodology.skill.md) skill writes a persistent editorial `methodology.md` under `content/<textbook>/data/courses/<bucket>/<courseId>/`. It records the intended audience, pedagogical rationale, standards compatibility, entry prerequisites, documentLanguage and planned supportedLanguages. It does **not** create a TOC, Course Data, Lessons or narrative. The authored Course currently supports optional `prerequisites` (skills, skillGroups, skillDomains, courses and a localized free-text Markdown block) and `scenarioMode: 'none' | 'story'`; legacy Courses may omit these fields. An omitted scenarioMode is not an assertion that a Course has a storyline. These contract fields do not imply automatic editorial Markdown ingestion, standards validation, prerequisite gating or narrative playback; those require separate implementation.
+
+## Course methodology completeness — pedagogical technical specification
+
+The Course's methodology (initially in the editorial `course.yaml` and durably in generated `methodology.md`) is an **implementation-ready educational specification**, not an outline or a token-saving summary. Its completeness is proportional to the actual Course scope; there is no arbitrary word count. Stage 1 may leave structural details for Stages 2–3, but **Stage 4 must not accept a Course plan whose final scope, progression or evidence obligations remain underspecified**.
+
+- **Purpose, boundaries and learners:** state the educational problem, audience and entry profile, developmental/literacy/accessibility assumptions, supported depth and explicit exclusions. Age or grade alone is not a learner profile.
+- **Verified outcomes and taxonomy:** specify observable learning outcomes, source-verified Skill IDs and their intended depth (introduction, guided use, independent performance or transfer). Distinguish prerequisite Skills from Skills the Course teaches; Domain/Group inclusion is not blanket mastery.
+- **Sequence and dependencies:** explain why Modules, Chapters and Lesson slots occur in that order, how misconceptions and prerequisites are addressed, and where deliberate revisiting or reinforcement is needed.
+- **Pedagogy and evidence:** describe subject-appropriate explanatory models, practice/feedback needs, likely conceptual errors and the type of assessment evidence needed to support each material objective. Do not pre-author Question answers, grading, Scenes or UI layouts assigned to specialists.
+- **Sources, standards and constraints:** identify verifiable domain references, the jurisdiction/version and _actual extent_ of any claimed standard alignment, cultural/localization limits, accessible equivalent learning modes, offline/safety needs, known uncertainties and unresolved decisions with an owner.
+- **Independent adequacy test:** a reviewer must be able to justify the learning sequence, coverage and required evidence from the approved source **without inventing missing educational requirements**. A structurally valid YAML, attractive prose or a list of headings is insufficient. Deficiencies require a Methodologist-owned amendment and new revision-specific review; a builder does not grant editorial approval.
+
+Each genuinely new Lesson still requires its own complete [Course-neutral Lesson methodology](./lesson.md#lesson-methodology-completeness--pedagogical-technical-specification), authored in the Lesson's `lesson.yaml` `production.methodology`, not copied into the Course runtime Config. Course narrative/episode design remains separate.
 
 ## Course TOC Lesson matching
 

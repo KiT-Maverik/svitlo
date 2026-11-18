@@ -1,6 +1,6 @@
 # Manage Lesson Production — historical Issue recovery
 
-**New workflow:** [Create Lesson Flow](./create-lesson-flow.skill.md) replaces the mandatory Lesson Production Issue tracker with **one Draft Lesson PR per UUID**, whose body is the canonical workflow status/review evidence. Do **not** create another mandatory Issue or competing tracker for new work. The historic Issue Form remains an archive; the separate Translation Production Issue protocol is unchanged.
+**New workflow:** [Create Lesson Flow](./create-lesson-flow.skill.md) replaces the mandatory Lesson Production Issue tracker with **one Draft Lesson PR per UUID**, whose body is the canonical workflow status/review evidence. Do **not** create another mandatory Issue or competing tracker for new work. Historical Issue bodies, comments and Git history remain recoverable; no new Production Issue Form is required; the separate Translation Production Issue protocol is unchanged.
 
 For an existing Lesson Production Issue, read the **entire current Issue**, comments, source/approval SHAs, bounded Lesson UUIDs and linked Course/Lesson PRs. Reconcile each UUID to its current source and existing PR; only create a new Draft Lesson PR if truly absent and authorized. Preserve independent review results, their exact source revisions, outstanding blockers and approval links and cross-reference the former Issue from the Lesson PR. Do not silently reassign UUIDs, overwrite content or delete Issue history.
 

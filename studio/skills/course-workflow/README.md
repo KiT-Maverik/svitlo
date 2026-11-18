@@ -1,6 +1,6 @@
 # Course workflow
 
-**Canonical entry point:** [Create Course Flow](./create-course-flow.skill.md) — a seven-stage, PR-tracked, restartable Course production process. New Course production uses this orchestration and its temporary editorial `course.yaml` plan; the specialist skills below remain independently invokable for bounded historical/maintenance tasks.
+**Canonical entry point:** [Create Course Flow](./create-course-flow.skill.md) — a seven-stage, PR-tracked, restartable Course production process. New Course production uses **one temporary `course.yaml`** for the complete reviewed plan. Stage 5 materializes it directly to typed Course sources and initial YAMLs for new Lessons, then safely removes the temporary Course YAML. It **does not generate `config.yaml` or automatically create Lesson PRs**. Specialist skills below remain available for bounded historical/maintenance tasks.
 
 - [Create Course Methodology](./create-course-methodology.skill.md) — Methodologist; writes durable Course `methodology.md`.
 - [Create Course Table of Contents](./create-course-toc.skill.md) — Methodologist; requires `methodology.md` and Skill Taxonomy; creates ordered skill-based `toc.yaml`.
@@ -43,7 +43,7 @@ change is justified and approved; approval is distinct from technical
 scaffolding and from the final Engine Config/Props validation. Override patches
 must not mutate any reusable standalone Lesson.
 
-## Engine YAML draft handoff
+## Historical/technical Engine YAML draft handoff (separate from new Course Flow Stage 5)
 
 The editorial `toc.yaml` uses ordered arrays of skill-based slots; it is **not** a Config-shaped `defineCourse` YAML input. After Lesson matching and applicable approvals, a separate handoff converts verified Course/Module/Chapter/Episode nodes to typed `content: { items, order }` collections with explicit nested `type`, and each `type: lesson` item to an existing standalone `lessonId` reference. This handoff uses [the composed Course scaffold editor schema](../../../shared/engine/yaml-schemas/course.scaffold.schema.json) plus the manually defined [Production schema](../../../shared/engine/yaml-schemas/production.schema.json). It does not automatically approve or replace editorial Methodology/TOC; for new technical sources, the sparse Build patch is embedded as root `overrides` in `config.yaml`.
 
@@ -51,8 +51,8 @@ The editorial `toc.yaml` uses ordered arrays of skill-based slots; it is **not**
 
 Course Methodology records its editorial `documentLanguage` and planned `supportedLanguages`. The skill-based TOC declares its own source `documentLanguage` (which should belong to `supportedLanguages` when projected to a Course Config) and repeats the planned Course languages. Ordinary titles are translatable text; `{ value: "...", invariant: true }` identifies genuine language-independent titles. The projected Config contains source-language-only `locale` values while retaining intended `params.languages`. The scaffolder neither translates nor publishes. Standalone Lessons must ultimately cover every Course locale but may support more; matching checks this independently.
 
-**Downstream Lesson Workflow:** Methodologist proposals in [Match Course TOC Lessons](./match-course-toc-lessons.skill.md) must contain the same explicit `assessmentPlan` as independently authored Lesson Briefs. After approval, [Create Lesson Content](../lesson-workflow/create-lesson-content.skill.md) writes `content.yaml`, not a free-form `content.md`.
+**Downstream Lesson Workflow:** in new work, missing Lesson methodologies are authored or reused in a standalone `lesson.yaml` `production.methodology` and reviewed against the [Lesson methodology quality contract](../../docs/entities/lesson.md#lesson-methodology-completeness--pedagogical-technical-specification). [Create Lesson Content](../lesson-workflow/create-lesson-content.skill.md) enriches that same Lesson YAML; legacy `content.yaml` is an explicit migration input, never a newly required parallel source.
 
-## Course → Lesson Production handoff
+## Course → Lesson Draft PR handoff
 
-The authorized [Match Course TOC Lessons](./match-course-toc-lessons.skill.md) task deduplicates all new/unimplemented standalone Lesson UUIDs from its **selected matching batch** and creates/reuses **one [Lesson Production Issue](../lesson-workflow/manage-lesson-production.skill.md)**. Record the Course UUID, source `toc.yaml` revision, matched slot-key → Lesson-ID map, Methodologist Drafts and any existing editorial approvals. Reused implemented Lessons do **not** produce new Lesson Production Issues; translation-only gaps route to [Translation Production](../translation-workflow/manage-translation-production.skill.md). A new Methodologist Brief is Draft until separately approved. Merely creating the Issue never auto-launches a Screenwriter, generator/builder, Scene Coding Agent or publication. Course Methodology and TOC planning skills remain independent of this handoff.
+For a selected matching batch, deduplicate unresolved Lesson UUIDs and use [Create Lesson Flow](../lesson-workflow/create-lesson-flow.skill.md) to create/reuse **one linked Draft Lesson PR per UUID**, not an old fixed-batch Lesson Production Issue. Preserve source Course UUID, slot ↔ Lesson ID, Methodologist specification, verified SHA and existing review provenance in PR descriptions. Historical Issues remain searchable evidence, not the state tracker for new work. Translation-only gaps follow the separate Translation workflow. Do not imply matching authorizes subsequent content or implementation stages.
