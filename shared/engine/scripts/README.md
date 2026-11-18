@@ -4,6 +4,10 @@ Entity authoring, editorial YAML builders, taxonomy migration, publishing, and r
 
 The named Lesson and Course CLIs are in `generateLessonProps/` and `generateCourseProps/`, and delegate publication to `../generators/`. Their CLI regression tests stay beside them. The cross-generator npm smoke test is in `generatorCliIntegration/`.
 
+## Flashcard bank TypeScript scaffolding
+
+The independent [flashcardBuilder](./flashcardBuilder/README.md) converts one Engine-validated source-language Flashcard bank YAML to create-only typed Draft TS. It never overwrites authored banks, generates translations or publishes Props. The existing assessment-resource publisher still consumes completed typed TS separately.
+
 ## React Scene implementation handoff
 
 See [sceneScaffolding](./sceneScaffolding/README.md) for a separate, opted-in
@@ -31,4 +35,4 @@ The [queryLessons](./queryLessons/README.md) CLI provides deterministic searches
 
 ## Course Flow Stage 5
 
-[materializeCourseFlow](./materializeCourseFlow/README.md) converts an independently approved editorial Course plan into technical YAML, durable methodology and Course-owned modular TypeScript drafts; it does not alter the separate generic Course Builder.
+[materializeCourseFlow](./materializeCourseFlow/README.md) consumes a single reviewed temporary Course YAML and directly creates Course-owned TypeScript/Markdown drafts and new methodology-only Lesson YAMLs with stable UUIDs; it never writes an intermediate Course `config.yaml`. The general Config-shaped Course Builder remains independent.

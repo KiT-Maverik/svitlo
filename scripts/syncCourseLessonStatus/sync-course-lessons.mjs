@@ -2,7 +2,7 @@
 /**
  * @fileoverview Trusted Course-Lesson PR inventory coordinator.
  *
- * 'analyze' reads only static YAML + filename metadata from an immutable,
+ * 'analyze' reads static YAML, bounded Course TypeScript AST and filename metadata from an immutable,
  * untrusted Course PR checkout, with a read-only GitHub token, and emits a
  * bounded JSON report. It NEVER imports/evaluates authored TypeScript.
  *
@@ -20,8 +20,10 @@ import {
   canonicalUUID,
   collectInventory,
   sameInventory,
+  compatibleMaterializedInventory,
   parseParent,
   parseLessonClaim,
+  targetsCourseLessonClaim,
   resolveClaims,
   outsideHash,
   validateReport,
@@ -31,6 +33,7 @@ import {
   TEXTBOOK,
   inspectIndexedLesson,
 } from './synchronizer.mjs';
+import { readCourseTsInventory } from './course-ts-inventory.mjs';
 
 const SHA = /^[a-f0-9]{40}$/;
 const rootDir = path.resolve(fileURLToPath(new URL('../../', import.meta.url)));
@@ -166,15 +169,23 @@ export async function analyze(options) {
     current = null;
   try {
     const planned = readInventory(options.root, editor, 'editorial', identity.courseId);
-    const generated = readInventory(options.root, tech, 'technical', identity.courseId);
+    const technical = readInventory(options.root, tech, 'technical', identity.courseId);
+    // Legacy technical config.yaml is a separate historical workflow. New Stage 5
+    // never generates config.yaml; its modular TypeScript is parsed statically.
+    const courseIndex = !technical && verifiedPath(options.root, identity.courseDirectory + '/index.ts');
+    const materialized = courseIndex
+      ? readCourseTsInventory(options.root, identity.courseDirectory, identity.courseId)
+      : null;
+    const generated = materialized ?? technical;
     if (
       planned &&
       generated &&
-      (!sameInventory(planned, generated) || JSON.stringify(planned.languages) !== JSON.stringify(generated.languages))
+      (!(materialized ? compatibleMaterializedInventory(planned, generated) : sameInventory(planned, generated)) ||
+        JSON.stringify(planned.languages) !== JSON.stringify(generated.languages))
     ) {
       reportDiagnostic(
         diagnostics,
-        'Editorial and technical Lesson inventories diverge; Stage 5 reconciliation required',
+        'Editorial and materialized Lesson inventories diverge; Stage 5 reconciliation required',
       );
       complete = false;
     }
@@ -183,7 +194,7 @@ export async function analyze(options) {
       complete = false;
       reportDiagnostic(
         diagnostics,
-        'No verifiable course.yaml or config.yaml Course inventory; TypeScript-only composition is not parsed',
+        'No verifiable course.yaml, config.yaml or modular Course TypeScript source inventory',
       );
     }
     if (current) unresolved.push(...current.unresolved);
@@ -203,16 +214,22 @@ export async function analyze(options) {
   }
   const claims = [];
   for (const pr of prs) {
-    if (typeof pr.body !== 'string' || !pr.body.includes('<!-- svitlo-course-lesson:v1 -->')) continue;
+    if (!targetsCourseLessonClaim(pr.body, identity.courseId, options.pr)) continue;
     try {
       const claim = parseLessonClaim(pr.body);
-      if (!claim || claim.courseId !== identity.courseId || claim.parentPr !== options.pr) continue;
+      if (!claim || claim.courseId !== identity.courseId || claim.parentPr !== options.pr) {
+        throw new Error('Lesson PR Course/parent identity mismatch');
+      }
       if (pr.head?.repo?.full_name !== options.repo || !Number.isSafeInteger(pr.number) || pr.number < 1) {
         throw new Error('Lesson PR must be from the same repository');
+      }
+      if (pr.base?.ref !== parent.head?.ref || pr.base?.repo?.full_name !== options.repo) {
+        throw new Error('Lesson PR must target its Course parent branch');
       }
       claims.push({
         ...claim,
         number: pr.number,
+        title: typeof pr.title === 'string' ? pr.title.slice(0, 180) : null,
         state: pr.state,
         draft: Boolean(pr.draft),
         merged: Boolean(pr.merged_at),
@@ -287,6 +304,7 @@ export async function analyze(options) {
       ...entry,
       status,
       pr: match.pr,
+      prTitle: match.prTitle,
       source,
       readiness: inspected.readiness,
       missingLanguages: inspected.missingLanguages,

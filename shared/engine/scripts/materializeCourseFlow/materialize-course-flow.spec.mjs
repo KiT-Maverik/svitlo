@@ -94,17 +94,45 @@ test('editorial -> technical draft preserves UUIDs, order, intent and evidence',
     'chapters/first.ts',
   ])
     assert(drafts.has(name), 'missing ' + name);
-  assert(drafts.get('index.ts').includes('import { foundations_Module } from "./modules/foundations"'));
-  assert(drafts.get('modules/foundations.ts').includes('import { first_Chapter } from "../chapters/first"'));
-  assert(drafts.get('chapters/first.ts').includes('UNRESOLVED_LESSON_0'));
+  assert(drafts.get('index.ts').includes('import { foundations } from "./modules"'));
+  assert(drafts.get('modules/foundations.ts').includes('import { first } from "../chapters"'));
+  assert(
+    drafts
+      .get('chapters/first.ts')
+      .includes('import { orbit_Lesson as orbit } from "#lessonsData/c/' + lessonId + '/index";'),
+  );
+  assert(drafts.get('index.ts').includes('defineCourse<"spaceCourse", typeof items, CourseLanguages>'));
+  assert(drafts.get('modules/foundations.ts').includes('defineModule<"foundations", typeof items, CourseLanguages>'));
+  assert(drafts.get('chapters/first.ts').includes('defineChapter<"first", typeof items, CourseLanguages>'));
+  assert.match(drafts.get('index.ts'), /params: \{\s+languages,/);
+  assert(!drafts.get('index.ts').includes('UNRESOLVED_LESSON'));
+  assert(!drafts.get('index.ts').includes('Generated Course authoring draft'));
+  assert(!drafts.get('index.ts').includes('foundations_Module'));
+  assert(!drafts.get('index.ts').includes('"slug":'));
+  assert(drafts.get('chapters/first.ts').includes('  orbit,'));
+  assert(drafts.get('review.ts').includes("import type { Review } from '@svitlo/engine/build';"));
+  assert(drafts.get('review.ts').includes('export const courseReview = {'));
+  assert(drafts.get('review.ts').includes('} satisfies Review;'));
+  assert(drafts.get('review.ts').includes('acceptance: undefined'));
+  assert(!drafts.get('review.ts').includes('methodology: null'));
+  const constants = drafts.get('constants.ts');
+  assert(constants.includes("import type { LanguageCode } from '@svitlo/engine/build';"));
+  assert(constants.includes('// export const languages = ["en","uk"] as const'));
+  assert(constants.includes('export const languages = ["en"] as const'));
+  assert(constants.includes('export type CourseLanguages = typeof languages;'));
+  assert(!constants.includes('sourceLanguage'));
+  assert(!constants.includes('courseId'));
   assert(![...drafts.values()].join('\n').includes('defineLesson('));
   for (const [name, text] of drafts)
     assert.equal(ts.createSourceFile(name, text, ts.ScriptTarget.Latest, true).parseDiagnostics.length, 0);
 });
-test('missing identities and unsafe mappings fail instead of fabricating', () => {
+test('missing Course-owned identities are deterministically allocated, malformed plans rejected', () => {
   const changed = structuredClone(plan);
   delete changed.content.items.foundations.id;
-  assert.throws(() => technicalFromEditorial(changed), /Missing stable UUID/);
+  const first = technicalFromEditorial(changed);
+  const second = technicalFromEditorial(changed);
+  assert.match(first.config.content.items.foundations.config.id, /^[0-9a-f-]{36}$/);
+  assert.equal(first.config.content.items.foundations.config.id, second.config.content.items.foundations.config.id);
   assert.throws(() => technicalFromEditorial({ ...plan, slug: undefined }), /stable Course slug/);
   assert.throws(() => technicalFromEditorial({ ...plan, description: undefined }), /title and description/);
   const courses = { ...plan, outcomes: { courses: [id] } };
@@ -118,11 +146,13 @@ test('non-clobbering lifecycle and explicit finalization', () => {
     fs.mkdirSync(folder, { recursive: true });
     fs.writeFileSync(path.join(folder, 'course.yaml'), YAML.stringify(plan));
     const artifacts = planArtifacts(plan, 'content/math', root, { candidates: [], diagnostics: [] });
-    assert.equal(artifacts.files.get('config.yaml').includes('lessonId:'), true);
+    assert.equal(artifacts.files.has('config.yaml'), false);
+    assert.equal(artifacts.lessonFiles.size, 0);
     materialize([...args, '--write'], root);
     assert(fs.existsSync(path.join(folder, 'index.ts')));
     materialize([...args, '--check'], root);
-    assert.equal(materialize([...args, '--write'], root).skipped, true);
+    assert.equal(materialize([...args, '--write'], root).skipped, false);
+    assert.equal(fs.existsSync(path.join(folder, 'config.yaml')), false);
     assert(fs.existsSync(path.join(folder, 'course.yaml')));
     materialize([...args, '--finalize'], root);
     assert.equal(fs.existsSync(path.join(folder, 'course.yaml')), false);
@@ -157,7 +187,190 @@ test('Course-root-relative Lesson import paths preserve standalone Lesson owners
     path: '../../../lessons/c/' + lessonId + '/orbit.data.ts',
     export: 'orbit_Lesson',
   }));
-  assert.match(drafts.get('index.ts'), /from "\.\.\/\.\.\/\.\.\/lessons\/c\//);
-  assert.match(drafts.get('chapters/first.ts'), /from "\.\.\/\.\.\/\.\.\/\.\.\/lessons\/c\//);
+  assert.match(drafts.get('index.ts'), /from "#lessonsData\/c\//);
+  assert.match(drafts.get('chapters/first.ts'), /from "#lessonsData\/c\//);
+  assert(drafts.get('chapters/first.ts').includes('orbit_Lesson as orbit'));
   assert(!drafts.get('index.ts').includes('defineLesson('));
+});
+
+test('planned Lesson is materialized with a stable UUID and complete methodology, no PR or Course YAML handoff', () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-planned-lesson-'));
+  const folder = path.join(root, 'content/math/data/courses', id.at(-1), id);
+  const input = structuredClone(plan);
+  delete input.content.items.review.lessonId;
+  input.content.items.review.methodology =
+    '# Lesson methodology\n\nTeach the target concept through observation, model and justified assessment.';
+  input.content.items.review.quizRequired = true;
+  try {
+    fs.mkdirSync(folder, { recursive: true });
+    fs.writeFileSync(path.join(folder, 'course.yaml'), YAML.stringify(input));
+    const artifacts = planArtifacts(input, 'content/math', root, { candidates: [], diagnostics: [] });
+    assert.equal(artifacts.files.has('config.yaml'), false);
+    assert.equal(artifacts.lessonFiles.size, 1);
+    const [filename, yaml] = [...artifacts.lessonFiles][0];
+    const obj = YAML.parse(yaml);
+    assert.equal(obj.config.id, artifacts.technical.config.content.items.review.config.lessonId);
+    assert.equal(obj.config.type, 'lesson');
+    assert.deepEqual(obj.config.section, { items: {}, order: [] });
+    assert.equal(obj.config.params.requireQuiz, true);
+    assert.equal(obj.production.methodology, input.content.items.review.methodology);
+    assert(filename.endsWith('/data/lessons/' + obj.config.id.at(-1) + '/' + obj.config.id + '/lesson.yaml'));
+    materialize(['--package', 'content/math', '--course', id, '--write'], root);
+    materialize(['--package', 'content/math', '--course', id, '--check'], root);
+    assert.equal(fs.readFileSync(filename, 'utf8'), yaml);
+    assert(!fs.existsSync(path.join(folder, 'config.yaml')));
+    materialize(['--package', 'content/math', '--course', id, '--finalize'], root);
+    assert(!fs.existsSync(path.join(folder, 'course.yaml')));
+    assert(fs.existsSync(filename), 'standalone Lesson YAML is not removed by Course finalization');
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test('new Lesson UUID allocation never overwrites a divergent author source', () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-lesson-protection-'));
+  const folder = path.join(root, 'content/math/data/courses', id.at(-1), id);
+  const input = structuredClone(plan);
+  delete input.content.items.review.lessonId;
+  input.content.items.review.methodology = 'Substantive learning specification for an independent lesson.';
+  try {
+    fs.mkdirSync(folder, { recursive: true });
+    fs.writeFileSync(path.join(folder, 'course.yaml'), YAML.stringify(input));
+    const target = [
+      ...planArtifacts(input, 'content/math', root, { candidates: [], diagnostics: [] }).lessonFiles.keys(),
+    ][0];
+    fs.mkdirSync(path.dirname(target), { recursive: true });
+    fs.writeFileSync(target, 'pre-existing authored Lesson YAML\n');
+    assert.throws(
+      () => materialize(['--package', 'content/math', '--course', id, '--write'], root),
+      /refusing overwrite/,
+    );
+    assert(!fs.existsSync(path.join(folder, 'index.ts')), 'must preflight before any writes');
+    assert.equal(fs.readFileSync(target, 'utf8'), 'pre-existing authored Lesson YAML\n');
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test('approved Course Episode generates a standalone typed Episode module with its authored Sections', () => {
+  const input = structuredClone(plan);
+  input.content.items.story = {
+    type: 'episode',
+    slug: 'story',
+    title: 'Opening story',
+    section: {
+      items: {
+        introduction: {
+          type: 'content',
+          slug: 'introduction',
+          content: {
+            items: {
+              greeting: { type: 'markdown', slug: 'greeting', locale: { value: { en: 'Look up at the sky' } } },
+            },
+            order: ['greeting'],
+          },
+        },
+      },
+      order: ['introduction'],
+    },
+  };
+  input.content.order.push('story');
+  const artifacts = planArtifacts(input, 'content/math', '/tmp/svitlo-episode-fixture', {
+    candidates: [],
+    diagnostics: [],
+  });
+  const episodeCode = artifacts.files.get('episodes/story.ts');
+  assert(episodeCode.includes('defineEpisode<'));
+  assert(episodeCode.includes('defineMarkdown('), 'preserve authored nested Episode content');
+  assert(episodeCode.includes('export const story = defineEpisode<"story", CourseLanguages, typeof section.items>'));
+  assert(episodeCode.includes("import { languages, type CourseLanguages } from '../constants';"));
+  assert(!episodeCode.includes('Generated Course authoring draft'));
+  assert(!episodeCode.includes('defineCourse('));
+  assert(artifacts.files.get('index.ts').includes('import { story } from "./episodes";'));
+  assert(artifacts.files.has('episodes/index.ts'));
+  assert(artifacts.files.has('review.ts'));
+  assert(!artifacts.files.has('config.yaml'));
+  assert.equal(ts.createSourceFile('episode.ts', episodeCode, ts.ScriptTarget.Latest, true).parseDiagnostics.length, 0);
+});
+
+test('future Lesson imports use reserved UUIDs, authored Lesson slugs and one syntax-valid source module', () => {
+  const input = structuredClone(plan);
+  delete input.content.items.foundations.content.items.first.content.items.orbit.lessonId;
+  input.content.items.foundations.content.items.first.content.items.orbit.methodology =
+    'Reviewed independent methodology for the planned Orbit Lesson.';
+  const artifacts = planArtifacts(input, 'content/math', '/tmp/svitlo-future-lesson-fixture', {
+    candidates: [],
+    diagnostics: [],
+  });
+  const lessonUuid = [...artifacts.technical.newLessons.keys()][0];
+  const chapter = artifacts.files.get('chapters/first.ts');
+  assert(
+    chapter.includes(
+      'import { orbit_Lesson as orbit } from "#lessonsData/' + lessonUuid.at(-1) + '/' + lessonUuid + '/index";',
+    ),
+  );
+  assert(chapter.includes('  orbit,'));
+  assert(!chapter.includes('UNRESOLVED_LESSON'));
+  assert(!chapter.includes('TODO: Resolve'));
+  assert.equal(ts.createSourceFile('first.ts', chapter, ts.ScriptTarget.Latest, true).parseDiagnostics.length, 0);
+  assert([...artifacts.lessonFiles.keys()].some(file => file.endsWith('/' + lessonUuid + '/lesson.yaml')));
+});
+
+test('existing Lesson YAML determines export name when a slot uses a different placement slug', () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-lesson-source-slug-'));
+  const lessonPath = path.join(root, 'content/math/data/lessons', lessonId.at(-1), lessonId);
+  try {
+    fs.mkdirSync(lessonPath, { recursive: true });
+    fs.writeFileSync(
+      path.join(lessonPath, 'lesson.yaml'),
+      YAML.stringify({ config: { id: lessonId, slug: 'independentOrbit', type: 'lesson' } }),
+    );
+    const artifacts = planArtifacts(plan, 'content/math', root, { candidates: [], diagnostics: [] });
+    assert(artifacts.files.get('chapters/first.ts').includes('independentOrbit_Lesson as orbit'));
+    assert(artifacts.files.get('index.ts').includes('independentOrbit_Lesson as review'));
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test('Course drafts import only downward through family barrels without circular root imports', () => {
+  const drafts = renderModularCourse(technicalFromEditorial(plan), 'content/math');
+  const root = drafts.get('index.ts');
+  const module = drafts.get('modules/foundations.ts');
+  const chapter = drafts.get('chapters/first.ts');
+  assert(root.includes('from "./modules"'));
+  assert(!root.includes('from "./modules/foundations"'));
+  assert(module.includes('from "../chapters"'));
+  assert(!module.includes('from "../chapters/first"'));
+  assert(chapter.includes('from "#lessonsData/'));
+  assert(!chapter.includes('from "../modules"'));
+  assert(!module.includes('from "../index"'));
+  assert(!chapter.includes('from "../index"'));
+  for (const output of [root, module, chapter]) {
+    assert.equal(ts.createSourceFile('generated.ts', output, ts.ScriptTarget.Latest, true).parseDiagnostics.length, 0);
+  }
+});
+
+test('Course imports from the same barrel are merged and grouped by module origin', () => {
+  const input = structuredClone(plan);
+  input.content.items.extra = {
+    type: 'module',
+    slug: 'extra',
+    title: 'Extra',
+    methodology: 'Additional course module',
+    content: { items: {}, order: [] },
+  };
+  input.content.order.push('extra');
+  const drafts = renderModularCourse(technicalFromEditorial(input), 'content/math');
+  const root = drafts.get('index.ts');
+  assert(root.includes('import { extra, foundations } from "./modules";'));
+  assert.equal((root.match(/from "\.\/modules"/g) ?? []).length, 1);
+  const external = root.indexOf("from '@svitlo/engine/build';");
+  const textbook = root.indexOf('from "#lessonsData/');
+  const relative = root.indexOf('from "./modules";');
+  assert(external >= 0 && external < textbook && textbook < relative);
+  assert(root.slice(external, textbook).includes('\n\n'), 'separate package and textbook groups');
+  assert(root.slice(textbook, relative).includes('\n\n'), 'separate textbook and relative groups');
+  assert(root.includes('  extra,'));
+  assert(root.includes('  foundations,'));
 });

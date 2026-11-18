@@ -3,17 +3,6 @@ name: Content packages build
 on:
   pull_request:
     types: [opened, synchronize, reopened, ready_for_review]
-    paths:
-      - 'content/**'
-      - 'scripts/textbook-tooling/**'
-      - 'shared/engine/scripts/checkSkillsTaxonomyStructure/check-skills-taxonomy-structure.mjs'
-      - 'shared/engine/scripts/checkSkillsTaxonomyStructure/check-skills-taxonomy-structure.spec.mjs'
-      - 'scripts/checkBuiltPackageExports/check-built-package-exports.mjs'
-      - 'scripts/checkBuiltPackageExports/check-built-package-exports.spec.mjs'
-      - 'scripts/ci/buildChangedContent/build-changed-content.mjs'
-      - 'scripts/ci/buildChangedContent/build-changed-content.spec.mjs'
-      - 'scripts/ci/buildChangedContent/skills-agent-owners.json'
-      - '.github/workflows/content-build.yml'
   workflow_dispatch:
 
 permissions:
@@ -38,6 +27,18 @@ jobs:
           node-version: '24'
           cache: npm
       - run: npm ci
+      - name: Test final resource readiness gate
+        run: node --test scripts/ci/verifyProductionAssets/verify-production-assets.spec.mjs
+      - name: Test Course Episode media draft handoff
+        run: node --test shared/engine/scripts/courseBuilder/courseBuilder.spec.mjs
+      - name: Test published assessment resource references
+        run: node --test scripts/textbook-tooling/verifyAssessmentSelections/verifyAssessmentSelections.spec.mjs
+      - name: Refuse unfinished Lesson, bank and Episode resources on review-ready PRs
+        if: github.event_name == 'pull_request' && !github.event.pull_request.draft
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: node scripts/ci/verifyProductionAssets/verify-production-assets.mjs "$BASE_SHA" "$HEAD_SHA"
       - name: Verify changed content packages
         if: github.event_name == 'pull_request'
         env:
@@ -45,6 +46,9 @@ jobs:
           HEAD_SHA: ${{ github.event.pull_request.head.sha }}
           BASE_REF: ${{ github.base_ref }}
           HEAD_REF: ${{ github.head_ref }}
+          # Nested subtask PRs may depend on unfinished parent Lessons. Only a
+          # review-ready main-bound PR is a full textbook release boundary.
+          SVITLO_MEDIA_MODE: ${{ (github.base_ref == 'main' && !github.event.pull_request.draft) && 'production' || 'draft' }}
         run: node scripts/ci/buildChangedContent/build-changed-content.mjs
       - name: Manually build every content package
         if: github.event_name == 'workflow_dispatch'

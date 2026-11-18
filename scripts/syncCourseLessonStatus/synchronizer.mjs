@@ -57,15 +57,37 @@ export function parseParent(body) {
     throw new Error('Exactly one Course Flow identity marker required');
   }
   managedBounds(body);
-  const courseId = canonicalUUID(matchUnique(body, /^- Course UUID:\s*([0-9a-f-]+)\s*$/gim, 'Course UUID'));
-  const textbook = matchUnique(body, /^- Textbook:\s*(content\/[a-z0-9-]+)\s*$/gm, 'textbook');
+  const courseId = canonicalUUID(matchUnique(body, /^- Course UUID:\s*`?([0-9a-f-]+)`?\s*$/gim, 'Course UUID'));
+  const textbook = matchUnique(body, /^- Textbook:\s*`?(content\/[a-z0-9-]+)`?\s*$/gm, 'textbook');
   if (!TEXTBOOK.test(textbook)) throw new Error('Invalid textbook package');
-  const source = matchUnique(body, /^- Source plan:\s*(\S+)\s*$/gm, 'source plan');
+  // New Course parent descriptions change only the field label after finalization.
+  // All three forms must point to the same canonical UUID source path in Git history.
+  const source = matchUnique(
+    body,
+    /^- (?:Source plan|Single temporary source plan|Reviewed temporary source \(finalized and removed after Stage 5; retained in Git history\)):\s*`?([^\s`]+)`?\s*$/gm,
+    'source plan',
+  );
   const expected = textbook + '/data/courses/' + courseId.slice(-1) + '/' + courseId + '/course.yaml';
   if (source !== expected && source !== expected.replace(/course\.yaml$/, 'config.yaml')) {
     throw new Error('Course source plan must point to its canonical UUID directory');
   }
   return { courseId, textbook, courseDirectory: textbook + '/data/courses/' + courseId.slice(-1) + '/' + courseId };
+}
+
+/**
+ * Scope untrusted global PR search results before strict claim parsing.
+ * A marker-only example is not evidence of membership. Either an explicit
+ * Course UUID or the parent PR number links a malformed claim to this Course,
+ * including conflicting identity fields that must fail closed.
+ */
+export function targetsCourseLessonClaim(body, courseId, parentPr) {
+  if (typeof body !== 'string' || !body.includes('<!-- svitlo-course-lesson:v1 -->')) return false;
+  const id = canonicalUUID(courseId);
+  if (!Number.isSafeInteger(parentPr) || parentPr < 1) throw new Error('Invalid Course parent PR number');
+  return (
+    [...body.matchAll(/^Course:[ \t]*([^\r\n]*)/gim)].some(([, value]) => value.toLowerCase().includes(id)) ||
+    [...body.matchAll(/^Parent PR:[ \t]*#?([0-9]+)/gim)].some(([, value]) => Number(value) === parentPr)
+  );
 }
 
 export function parseLessonClaim(body) {
@@ -155,6 +177,29 @@ export function collectInventory(document, mode, expectedId) {
   };
 }
 
+/** A planned Lesson slot may lack a UUID until Stage 5 assigns it. */
+export function compatibleMaterializedInventory(planned, materialized) {
+  const slots = inventory =>
+    [
+      ...inventory.lessons.flatMap(lesson =>
+        lesson.placements.map(placement => ({
+          placement,
+          lessonId: lesson.lessonId,
+        })),
+      ),
+      ...inventory.unresolved.map(item => ({ placement: item.placement, lessonId: null })),
+    ].sort((a, b) => a.placement.localeCompare(b.placement));
+  const before = slots(planned),
+    after = slots(materialized);
+  return (
+    before.length === after.length &&
+    before.every(
+      (slot, i) =>
+        slot.placement === after[i].placement && (slot.lessonId === null || slot.lessonId === after[i].lessonId),
+    )
+  );
+}
+
 export function sameInventory(a, b) {
   return (
     JSON.stringify(a.lessons.map(x => [x.lessonId, x.placements])) ===
@@ -225,21 +270,30 @@ export function resolveClaims(lessonId, claims) {
     return {
       status: 'Needs resolution',
       pr: null,
+      prTitle: null,
       diagnostic: 'Multiple active implementation PRs: ' + active.map(p => '#' + p.number).join(', '),
     };
   const current =
     active[0] ?? [...matches].filter(p => p.merged).at(-1) ?? [...matches].filter(p => p.state === 'closed').at(-1);
-  if (!current) return { status: 'Not started', pr: null, diagnostic: null };
+  if (!current) return { status: 'Not started', pr: null, prTitle: null, diagnostic: null };
   if (current.state === 'open')
     return {
       status: (current.draft ? 'Draft' : 'Open') + ' · #' + current.number,
       pr: current.number,
+      prTitle: current.title ?? null,
       diagnostic: null,
     };
-  if (current.merged) return { status: 'Merged · #' + current.number, pr: current.number, diagnostic: null };
+  if (current.merged)
+    return {
+      status: 'Merged · #' + current.number,
+      pr: current.number,
+      prTitle: current.title ?? null,
+      diagnostic: null,
+    };
   return {
     status: 'Closed unmerged · #' + current.number,
     pr: current.number,
+    prTitle: current.title ?? null,
     diagnostic: 'Historical closed-unmerged PR; verify replacement or restart',
   };
 }
@@ -297,7 +351,9 @@ export function validateReport(report) {
         (!Array.isArray(row.missingLanguages) ||
           row.missingLanguages.length > 100 ||
           !row.missingLanguages.every(x => /^[a-z]{2,3}(?:-[A-Za-z0-9]{2,8})?$/.test(x)))) ||
-      !(row.pr === null || (Number.isSafeInteger(row.pr) && row.pr > 0))
+      !(row.pr === null || (Number.isSafeInteger(row.pr) && row.pr > 0)) ||
+      (row.prTitle !== undefined && row.prTitle !== null && !verifiedString(row.prTitle, 180)) ||
+      (row.pr === null && row.prTitle != null)
     ) {
       throw new Error('Invalid Lesson status row');
     }
@@ -325,7 +381,14 @@ export function renderLessonsBlock(report) {
     else if (lesson.status === 'Reused / existing') count.reused++;
     else count.pending++;
     const label = lesson.pr
-      ? '[' + escaped(lesson.status) + '](https://github.com/' + report.repo + '/pull/' + lesson.pr + ')'
+      ? '[' +
+        escaped(lesson.status) +
+        (lesson.prTitle ? ' · ' + escaped(lesson.prTitle) : '') +
+        '](https://github.com/' +
+        report.repo +
+        '/pull/' +
+        lesson.pr +
+        ')'
       : escaped(lesson.status);
     rows.push(
       '| ' +
@@ -351,7 +414,11 @@ export function renderLessonsBlock(report) {
     'Inventory SHA: ' + report.sha,
     '',
     'Coverage: **' +
-      (report.complete ? 'complete' : 'INCOMPLETE') +
+      (!report.allocated && !report.lessons.length && !report.unresolved.length && !report.diagnostics.length
+        ? 'NOT ALLOCATED'
+        : report.complete
+          ? 'complete'
+          : 'INCOMPLETE') +
       '** · ' +
       'Unique Lessons: **' +
       report.lessons.length +
