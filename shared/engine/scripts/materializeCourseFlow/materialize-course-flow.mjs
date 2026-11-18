@@ -449,7 +449,7 @@ export function renderModularCourse(technical, pkg, resolveLesson = () => null, 
     function expression(child, key) {
       if (['module', 'chapter', 'episode'].includes(child.type)) {
         // A family barrel never re-exports its parent or a higher level.
-        const specifier = relativeImport(file, child.type + 's/index.ts');
+        const specifier = relativeImport(file, child.type + 's/index.ts').replace(/\/index$/, '');
         return addImport(symbolOf(child), specifier, key);
       }
       if (child.type !== 'lesson') fail('Course methodology may not create ' + child.type);
