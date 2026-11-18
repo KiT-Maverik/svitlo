@@ -23,7 +23,7 @@ export const reasoning = defineSkillDomain({
     it: 'Ragionamento',
     ja: '推論',
     ka: 'მსჯელობა',
-    kk: 'Пайымдау',
+    kk: 'Paiymdau',
     ko: '추론',
     lt: 'Samprotavimas',
     lv: 'Spriešana',
