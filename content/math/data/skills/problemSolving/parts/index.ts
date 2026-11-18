@@ -21,7 +21,7 @@ export const parts = defineSkillGroup({
     it: 'Problemi sulle parti e sul tutto',
     ja: '部分と全体の文章題',
     ka: 'ნაწილისა და მთელის ამოცანები',
-    kk: 'Бөлік пен бүтінге арналған есептер',
+    kk: 'Bölık pen bütınge arnalğan esepter',
     ko: '부분과 전체 문제',
     lt: 'Dalies ir visumos uždaviniai',
     lv: 'Daļas un veseluma uzdevumi',
