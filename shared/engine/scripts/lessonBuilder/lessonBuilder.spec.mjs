@@ -209,7 +209,7 @@ test('Lesson constants use documentLanguage, preserving the full planned tuple f
     assert.equal(
       constants,
       [
-        "import type { LanguageCode } from '@svitlo/engine/build';",
+        "import type { SupportedLanguages } from '@svitlo/engine/build';",
         '',
         '// TODO: Restore the complete language set when translations are ready:',
         '// export const languages = ["en","uk","pl","qm"] as const satisfies SupportedLanguages;',
