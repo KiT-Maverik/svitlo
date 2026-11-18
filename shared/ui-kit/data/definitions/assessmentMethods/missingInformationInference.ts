@@ -1,6 +1,6 @@
-import { defineAssessmentMethod } from '@svitlo/engine/build';
+import { defineAssessmentMethod, type AllLanguageCodes } from '@svitlo/engine/build';
 
-export const missingInformationInference = defineAssessmentMethod({
+export const missingInformationInference = defineAssessmentMethod<'missingInformationInference', AllLanguageCodes>({
   id: 'ecb436fb-ab16-4d14-93a7-f3b52954599b',
   slug: 'missingInformationInference',
   title: {

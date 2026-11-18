@@ -1,6 +1,6 @@
-import { defineAssessmentMethod } from '@svitlo/engine/build';
+import { defineAssessmentMethod, type AllLanguageCodes } from '@svitlo/engine/build';
 
-export const relationshipMapping = defineAssessmentMethod({
+export const relationshipMapping = defineAssessmentMethod<'relationshipMapping', AllLanguageCodes>({
   id: '773e207f-3a99-40be-94c4-34401fff6442',
   slug: 'relationshipMapping',
   title: {

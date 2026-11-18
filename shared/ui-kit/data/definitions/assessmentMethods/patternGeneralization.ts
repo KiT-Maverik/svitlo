@@ -1,6 +1,6 @@
-import { defineAssessmentMethod } from '@svitlo/engine/build';
+import { defineAssessmentMethod, type AllLanguageCodes } from '@svitlo/engine/build';
 
-export const patternGeneralization = defineAssessmentMethod({
+export const patternGeneralization = defineAssessmentMethod<'patternGeneralization', AllLanguageCodes>({
   id: 'd26486ad-f49b-4f7c-b10b-7e9e87d62621',
   slug: 'patternGeneralization',
   title: {
