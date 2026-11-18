@@ -79,6 +79,14 @@ jobs:
       - name: Verify all checked-in Zod-derived YAML schemas
         run: npm run content:check:yaml-schemas --workspace @svitlo/engine
 
+      - name: Emit exact Prettier output for the new integration regression test
+        run: |
+          ./node_modules/.bin/prettier --write scripts/syncCourseLessonStatus/sync-course-lessons.spec.mjs >/dev/null
+          echo "SVITLO_FORMAT_START:scripts/syncCourseLessonStatus/sync-course-lessons.spec.mjs"
+          base64 -w0 scripts/syncCourseLessonStatus/sync-course-lessons.spec.mjs | fold -w120
+          echo "SVITLO_FORMAT_END:scripts/syncCourseLessonStatus/sync-course-lessons.spec.mjs"
+          exit 1
+
       - name: Check formatting of Course Flow sources and generated schemas
         run: |
           npx prettier --check \
