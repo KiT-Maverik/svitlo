@@ -390,14 +390,14 @@ const ka: Flashcard_Locale = {
 
 const kk: Flashcard_Locale = {
   flashcard: {
-    region: 'Оқу карточкасы',
-    flags: { warning: 'Назар аударыңыз' },
+    region: 'Oqu kartotşkasy',
+    flags: { warning: 'Nazar audaryñyz' },
     actions: {
-      menu: 'Карточка әрекеттері',
-      reveal: 'Жауапты көрсету',
-      forgot: 'Есімде жоқ',
-      remembered: 'Есімде',
-      addLabel: 'Белгі қосу',
+      menu: 'Kartotşka äreketterı',
+      reveal: 'Jauapty körsetu',
+      forgot: 'Esımde joq',
+      remembered: 'Esımde',
+      addLabel: 'Belgı qosu',
     },
   },
 };

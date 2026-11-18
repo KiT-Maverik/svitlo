@@ -209,10 +209,10 @@ const ka: NavbarPreferences_Locale = {
 };
 
 const kk: NavbarPreferences_Locale = {
-  language: 'Интерфейс тілі',
-  lessonLanguage: 'Сабақ тілі',
-  theme: { dark: 'Қараңғы тақырып', light: 'Ашық тақырып' },
-  volume: { label: 'Дыбыс деңгейі', mute: 'Дыбысты өшіру', unmute: 'Дыбысты қосу', maximum: 'Ең жоғары дыбыс деңгейі' },
+  language: 'İnterfeis tılı',
+  lessonLanguage: 'Sabaq tılı',
+  theme: { dark: 'Qarañğy taqyryp', light: 'Aşyq taqyryp' },
+  volume: { label: 'Dybys deñgeiı', mute: 'Dybysty öşıru', unmute: 'Dybysty qosu', maximum: 'Eñ joğary dybys deñgeiı' },
 };
 
 const qm: NavbarPreferences_Locale = {

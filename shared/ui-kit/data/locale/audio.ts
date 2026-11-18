@@ -395,17 +395,17 @@ const ka: Audio_Locale = {
 };
 
 const kk: Audio_Locale = {
-  play: 'Ойнату',
-  pause: 'Кідірту',
-  seek: 'Ойнату орны',
-  mute: 'Дыбысты өшіру',
-  unmute: 'Дыбысты қосу',
-  volume: 'Дыбыс деңгейі',
-  speed: 'Ойнату жылдамдығы',
-  offline: 'Бұл аудио интернетсіз қолжетімсіз.',
-  unavailable: 'Бұл аудио қолжетімсіз.',
-  playbackError: 'Аудионы ойнату мүмкін болмады.',
-  retry: 'Қайта көру',
+  play: 'Oinatu',
+  pause: 'Kıdırtu',
+  seek: 'Oinatu orny',
+  mute: 'Dybysty öşıru',
+  unmute: 'Dybysty qosu',
+  volume: 'Dybys deñgeiı',
+  speed: 'Oinatu jyldamdyğy',
+  offline: 'Būl audio internetsız qoljetımsız.',
+  unavailable: 'Būl audio qoljetımsız.',
+  playbackError: 'Audiony oinatu mümkın bolmady.',
+  retry: 'Qaitalap köru',
 };
 
 const qm: Audio_Locale = {

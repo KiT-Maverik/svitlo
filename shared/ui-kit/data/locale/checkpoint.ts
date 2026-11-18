@@ -130,7 +130,7 @@ const ka: Checkpoint_Locale = {
   checked: 'შემოწმებულია',
 };
 
-const kk: Checkpoint_Locale = { title: 'Біліміңді тексер', check: 'Тексеру', checked: 'Тексерілді' };
+const kk: Checkpoint_Locale = { title: 'Bılımıñdı tekser', check: 'Tekseru', checked: 'Tekserıldı' };
 
 const qm: Checkpoint_Locale = { title: 'Bilgiñni tekşer', check: 'Tekşer', checked: 'Tekşirildi' };
 

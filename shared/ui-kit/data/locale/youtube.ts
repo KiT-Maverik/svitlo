@@ -199,10 +199,10 @@ const ka: Youtube_Locale = {
 };
 
 const kk: Youtube_Locale = {
-  loading: 'Бейне жүктелуде…',
-  offline: 'Бұл бейнені көру үшін интернет байланысы қажет.',
-  unavailable: 'Бұл бейне қолжетімсіз.',
-  retry: 'Қайта көру',
+  loading: 'Beine jüktelude…',
+  offline: 'Būl beinenı köru üşın internet bailanysy qajet.',
+  unavailable: 'Būl beine qoljetımsız.',
+  retry: 'Qaitalap köru',
 };
 
 const qm: Youtube_Locale = {
