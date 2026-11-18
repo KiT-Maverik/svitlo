@@ -256,7 +256,16 @@ export function readCourseTsInventory(root, courseDirectory, courseId) {
     if (factory === 'defineCourse') {
       if (canonicalUUID(string(property(config, 'id'), 'Course id')) !== id) fail('Course TS root identity mismatch');
       const params = property(config, 'params');
-      languages = stringArray(property(object(params, 'Course params'), 'languages'), 'Course languages');
+      const languageRef = property(object(params, 'Course params'), 'languages');
+      if (ts.isIdentifier(languageRef)) {
+        if (languageRef.text !== 'languages') fail('Unexpected Course locale variable');
+        const authored = exportedLanguages(root, courseDirectory, 'languages');
+        languages = exportedLanguages(root, courseDirectory, 'plannedLanguages');
+        if (authored.some(locale => !languages.includes(locale)))
+          fail('Course authored locales exceed approved planned languages');
+      } else {
+        languages = stringArray(languageRef, 'Course languages');
+      }
       if (
         !languages.length ||
         languages.some(x => !/^[a-z]{2,3}(?:-[A-Za-z0-9]{2,8})?$/.test(x)) ||
@@ -267,7 +276,13 @@ export function readCourseTsInventory(root, courseDirectory, courseId) {
       canonicalUUID(string(property(config, 'id'), 'nested entity id'));
     }
     const content = object(property(config, 'content'), 'Course content');
-    const items = entries(property(content, 'items'), 'Course content.items');
+    const itemsRef = property(content, 'items');
+    const itemSource = ts.isIdentifier(itemsRef)
+      ? itemsRef.text === 'items'
+        ? staticDeclaration(parsed.ast, 'items')
+        : fail('Unexpected Course items variable')
+      : itemsRef;
+    const items = entries(itemSource, 'Course content.items');
     const order = stringArray(property(content, 'order'), 'Course content.order');
     if (order.length !== items.size || new Set(order).size !== order.length || order.some(x => !items.has(x)))
       fail('Course content.items/order mismatch');
