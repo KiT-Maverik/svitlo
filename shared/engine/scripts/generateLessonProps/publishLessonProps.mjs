@@ -27,7 +27,7 @@ function validateFiles(files, mode = 'lesson') {
       if (!match || (relative !== 'assessments/manifest.json' && match[2] !== match[3].slice(-1)))
         throw new Error('Invalid generated Assessment path: ' + relative);
     }
-    if (typeof body !== 'string') throw new Error('Invalid generated body: ' + relative);
+    if (typeof body !== 'string') throw new Error('Invalid generated ' + (mode === 'lesson' ? 'Lesson' : 'Assessment') + ' body: ' + relative);
   }
 }
 
