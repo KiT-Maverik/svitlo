@@ -119,7 +119,12 @@ test('Stage 5 modular source projects Course/Modules/Chapters/Episodes without a
     fs.writeFileSync(target, code);
   };
   try {
-    write('constants.ts', 'export const languages = ["uk", "en"] as const satisfies SupportedLanguages;\n');
+    write('constants.ts', [
+      '// TODO (BLOCKER): Restore the complete language set when translations are ready:',
+      '// export const languages = ["uk","en","pl"] as const satisfies SupportedLanguages;',
+      'export const languages = ["uk", "en"] as const satisfies SupportedLanguages;',
+      '',
+    ].join('\n'));
     write('index.ts', [
       'import { foundations } from "' + prefix + 'content/foundations/index";',
       'import { lesson } from "#lessonsData/' + id.lesson.slice(-1) + '/' + id.lesson + '/index";',
@@ -180,6 +185,9 @@ test('Stage 5 modular source projects Course/Modules/Chapters/Episodes without a
     const uk = parsed.project('uk');
     assert.equal(uk.missing, 0);
     assert(uk.course.content[0].content[1].section.items.opening.content.items.caption.locale.value === 'Оповідь');
-    assert.throws(() => parsed.project('pl'), /not declared/);
+    const pl = parsed.project('pl');
+    assert(pl.missing > 0, 'planned but untranslated language must be marked missing');
+    assert.equal(pl.course.locale.title, '%%MISSING%%');
+    assert.throws(() => parsed.project('de'), /not declared or planned/);
   } finally { fs.rmSync(root, { recursive: true, force: true }); }
 });
