@@ -79,26 +79,6 @@ jobs:
       - name: Verify all checked-in Zod-derived YAML schemas
         run: npm run content:check:yaml-schemas --workspace @svitlo/engine
 
-      - name: Export Prettier-formatted changed files for a one-time safe maintainer update
-        run: |
-          files=(
-            scripts/syncCourseLessonStatus/course-ts-inventory.mjs
-            scripts/syncCourseLessonStatus/course-ts-inventory.spec.mjs
-            scripts/syncCourseLessonStatus/synchronizer.mjs
-            scripts/syncCourseLessonStatus/synchronizer.spec.mjs
-            scripts/ci/courseMaterialization/README.md
-            scripts/ci/courseMaterialization/course-gate.mjs
-            scripts/ci/courseMaterialization/course-materialization.mjs
-            scripts/ci/courseMaterialization/course-materialization.spec.mjs
-          )
-          ./node_modules/.bin/prettier --write "${files[@]}" >/dev/null
-          for file in "${files[@]}"; do
-            echo "SVITLO_FORMAT_START:$file"
-            base64 -w0 "$file" | fold -w120
-            echo "SVITLO_FORMAT_END:$file"
-          done
-          exit 1
-
       - name: Check formatting of Course Flow sources and generated schemas
         run: |
           npx prettier --check \
