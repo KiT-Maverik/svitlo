@@ -346,3 +346,28 @@ test('Course drafts import only downward through family barrels without circular
     assert.equal(ts.createSourceFile('generated.ts', output, ts.ScriptTarget.Latest, true).parseDiagnostics.length, 0);
   }
 });
+
+
+test('Course imports from the same barrel are merged and grouped by module origin', () => {
+  const input = structuredClone(plan);
+  input.content.items.extra = {
+    type: 'module',
+    slug: 'extra',
+    title: 'Extra',
+    methodology: 'Additional course module',
+    content: { items: {}, order: [] },
+  };
+  input.content.order.push('extra');
+  const drafts = renderModularCourse(technicalFromEditorial(input), 'content/math');
+  const root = drafts.get('index.ts');
+  assert(root.includes('import { extra, foundations } from "./modules";'));
+  assert.equal((root.match(/from "\.\/modules"/g) ?? []).length, 1);
+  const external = root.indexOf("from '@svitlo/engine/build';");
+  const textbook = root.indexOf('from "#lessonsData/');
+  const relative = root.indexOf('from "./modules";');
+  assert(external >= 0 && external < textbook && textbook < relative);
+  assert(root.slice(external, textbook).includes('\n\n'), 'separate package and textbook groups');
+  assert(root.slice(textbook, relative).includes('\n\n'), 'separate textbook and relative groups');
+  assert(root.includes('  extra,'));
+  assert(root.includes('  foundations,'));
+});
