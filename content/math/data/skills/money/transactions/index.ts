@@ -22,7 +22,7 @@ export const transactions = defineSkillGroup({
     it: 'Acquisti',
     ja: '買い物',
     ka: 'შესყიდვები',
-    kk: 'Сатып алулар',
+    kk: 'Satyp alular',
     ko: '구매',
     lt: 'Pirkimai',
     lv: 'Pirkumi',
