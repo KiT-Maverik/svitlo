@@ -8,6 +8,8 @@ Establish audience/entry knowledge, approved Skill UUID/source links, goals and 
 
 Record exact current SHA, quality findings, author and next handoff in **Lesson PR**. Stage 1 may have an incomplete Engine Config tree; full structural validation belongs to Stage 6 only. Missing verified Skills, ambiguous audience/depth and unsupported subject claims block the stage; a missing artificial approval marker does not.
 
+**Mandatory handoff gate:** use the [Lesson methodology completeness contract](../../docs/entities/lesson.md#lesson-methodology-completeness--pedagogical-technical-specification) to decide whether `production.methodology` is a usable technical pedagogical specification. An independently working Screenwriter must be able to author substantive learner-facing content and resource requirements without inventing educational objectives, definitions, misconceptions, example boundaries or assessment intent. If not, record precise blockers and revise Stage 1. No word/token quota and no duplicate `methodology.md`/`content.yaml` as a new source.
+
 ## Detailed methodological quality checks
 
 Consult `.agent-ci-artifacts/assessment-methods/<language>.md` when available, choosing the learner's frontend language for short labels. The extended explanations remain **English**. The reference lists all canonical Assessment Methods and distinguishes the **cognitive operation assessed** from a **Question UI type**; it is a read-only convenience view, not a replacement for Assessment Method identifiers in Engine. If absent, inspect the canonical Engine schemas, English Engine methodology and UI Kit translations instead of making up methods or assuming defaults.

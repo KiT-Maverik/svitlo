@@ -1,34 +1,36 @@
-# Course editorial plan materializer (Stage 5)
+# Materialize a reviewed Course plan (Stage 5)
 
-This maintained utility converts an **approved** temporary Course `course.yaml` into
-a single technical `config.yaml` handoff, durable `methodology.md`, and separate
-Course/Module/Chapter **TypeScript drafts** under the same canonical Course UUID.
-It is not a Course publisher, a review gate, a Lesson factory, or the general
-`courseBuilder` replacement. The latter still handles arbitrary technical
-Course/Episode Config-shaped drafts independently.
+This Engine utility consumes **one temporary Course YAML** under content/<book>/data/courses/<bucket>/<course-uuid>/course.yaml. It creates Course-owned TypeScript/Markdown drafts and any required Lesson methodology-only YAML handoffs. It never writes intermediate config.yaml and never opens Lesson PRs. The resulting Course TS/Markdown files are the durable source of truth.
 
-```sh
-node shared/engine/scripts/materializeCourseFlow/materialize-course-flow.mjs --package content/math --course <uuid> --write
-node shared/engine/scripts/materializeCourseFlow/materialize-course-flow.mjs --package content/math --course <uuid> --check
-# In a subsequent reviewed commit, after verifying every materialized file:
-node shared/engine/scripts/materializeCourseFlow/materialize-course-flow.mjs --package content/math --course <uuid> --finalize
-```
+## Usage
 
-Preconditions: Stage 4 independently approved at an exact SHA; the Course has an
-authored slug/title/description and **persistent UUIDs for every Module/Chapter and Lesson
-reference**. A missing required Config locale or unresolved standalone Lesson
-reference is retained as an explicit TypeScript handoff, never fabricated.
-`params.outcomes`, prerequisites and EducationStandard UUIDs are mapped from
-the editorial plan; standards' contextual evidence is preserved in
-`methodology.md`, **not** represented as certification. No Episodes or Lesson
-declarations are auto-created. Only Lesson IDs with matching statically indexed
-implemented source and unambiguous exported `defineLesson` declaration are
-imported; remaining identities show TODOs.
+Run the maintained script shared/engine/scripts/materializeCourseFlow/materialize-course-flow.mjs with:
 
-The generator refuses symlinks and divergent pre-existing outputs; `--check`
-compares all outputs byte-for-byte and validates generated TypeScript syntax,
-not type completeness. An existing root entrypoint causes `--write` to SKIP,
-not overwrite. `--finalize` requires all materialized drafts to match before
-removing the temporary editorial plan, preserving it in Git history.
-`config.yaml` is a technical **draft handoff** and must not become a second
-permanently maintained authored source.
+- --package content/<book> --course <uuid> --write
+- --package content/<book> --course <uuid> --check
+- --package content/<book> --course <uuid> --finalize
+- --package content/<book> --course <uuid> --finalize --preserve-config (local debugging only)
+
+## Inputs and outputs
+
+The single Course YAML has independently reviewed pedagogy, audience and Skills, Modules, Chapters, reuse references to existing Lessons, and full inline methodologies for new Lessons. Episode nodes, when authored, include independently specified Sections and content. Source language must belong to intended languages. Reviewer approval is tracked separately in the parent Course PR: this CLI cannot grant it.
+
+Output files include the Course root `index.ts`, `constants.ts`, `methodology.md`, and `review.ts` (unapproved skeleton). All Course-owned Modules, Chapters, and Episodes live under a **single root `content/` directory** following their authored parent-child placement: `content/<moduleSlug>/index.ts`, `content/<moduleSlug>/<chapterSlug>/index.ts`, and `content/<moduleSlug>/<chapterSlug>/<episodeSlug>/index.ts`. A direct Course Chapter lives at `content/<chapterSlug>/index.ts`. There are no additional `content/` directories or type-grouped `modules/`, `chapters/`, or `episodes/` barrels. Each owned entity has a sibling `methodology.md`; the root Course methodology retains only Course-wide rationale and placement notes for directly referenced Lessons. A Module/Chapter methodology retains its own rationale, competency details and immediate Lesson placement decisions. No duplication of nested methodology in the root file.
+
+Episodes reuse the Course Builder renderer for Sections/blocks. Course, Module and Chapter sources use `define*<Slug, Items, CourseLanguages>`; Episode sources use `defineEpisode<Slug, Languages, Sections>`. Source imports use the textbook's `#coursesData/*` package import alias for children and `constants.ts`, and `#lessonsData/*` for standalone Lessons. This keeps imports stable under deeper nesting and avoids upward parent imports. Module/Chapter/Episode slugs need only be unique within their own parent directory.
+
+For each new Lesson with inline methodology and no ID, Stage 5 derives a stable UUID from the Course UUID and canonical placement path. It creates only content/<book>/data/lessons/<last-hex>/<uuid>/lesson.yaml, with a minimal Config identity/Skills/language/title/empty-Sections shell and the reviewed source-language production.methodology text. Optional quizRequired on the slot supplies initial Quiz intent; absent values are provisional authoring shells, not independent approval. No Lesson TS, Questions, Flashcards, assets, translations, review or PR is created. Later Lesson Production reuses this exact ID and YAML.
+
+Existing matched Lessons retain their actual IDs and source ownership. Source modules refer to standalone Lessons using the textbook's `package.json#imports` mapping `#lessonsData/*` (PR #595). For an implemented Lesson, retain its verified exported name; otherwise, use the canonical Lesson UUID and the `config.slug` from the existing `lesson.yaml` or newly materialized Lesson shell, targeting the **future** `index.ts` and its plain `slug` export (no `_Lesson` suffix). These imports intentionally remain unresolved until independent Lesson Production creates the modules. Do not use `UNRESOLVED_LESSON_N` or fabricate a Lesson configurator. The Course never owns or duplicates reusable Lesson implementations.
+
+The generated `constants.ts` uses Engine's nonempty `SupportedLanguages` type and a `TODO (BLOCKER):` for the planned full language set. It follows the Lesson Builder convention: an active `languages` tuple containing **only `documentLanguage`**, `CourseLanguages = typeof languages`, and a commented-out alternative declaration retaining the complete planned `supportedLanguages` tuple. Root Course `params.languages` uses the active tuple. An editor can activate the complete tuple only after genuine translations are authored; neither this CLI nor a type error is permission to copy/fabricate translations. No separate `courseId` or `sourceLanguage` constant is necessary.
+
+**A successful Course materialization is not required to pass TypeScript typechecking.** Unimplemented future Lesson imports, locale gaps and not-yet-authored Scene/media dependencies are valid Draft-only TypeScript errors. The CLI checks deterministic output bytes and **TypeScript syntax**, not complete typechecking or Props publication. This is intentional and should not be worked around with fake resources or `as any`. Before production acceptance, the actual textbook production build, external review evidence and full locale/resource coverage are required.
+
+`review.ts` uses Engine's existing shared `Review` base type (`ai.locales`, `human.acceptance`, `human.locales`), as the Lesson Review template does, but leaves mandatory PR numbers as `undefined`. It is syntactically valid and **intentionally fails TypeScript typechecking** until genuine evidence is recorded. Engine currently has **no Course-specific `CourseReview` contract**, so the builder must not invent stage/revision fields or imaginary methodology/experience/translation approvals. Independent reviews remain in the Course parent PR until they can be attached to a real Course revision and its checked evidence.
+
+## Safety and lifecycle
+
+`--write` validates every target before modifying files, refuses symbolic-link paths and divergent edited content, and uses exclusive creation. Derivation is deterministic: reruns after partial output use the same IDs. `--check` is read-only and compares generated bytes and TypeScript **syntax only**. `--finalize` refuses to run without exact matching materialized outputs; afterward it deletes **only the temporary Course `course.yaml`**. For local debugging, `--finalize --preserve-config` performs the same verification but keeps the temporary YAML on disk; this is not a committed second source of truth, and the ordinary finalization remains required before completing production. The new independent Lesson YAMLs stay until their own Lesson workflow finalizes them. Commit and independently verify the generated files before finalizing; Git history preserves the reviewed Course plan.
+
+The general courseBuilder remains an unrelated Config-shaped draft scaffolder for older workflows, not a second mandatory YAML step. This materializer never publishes Props, fabricates media/Quiz answers/translations, or starts Lesson Production.

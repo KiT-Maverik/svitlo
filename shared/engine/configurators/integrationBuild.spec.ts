@@ -123,7 +123,7 @@ describe('Configurators', () => {
         locale: { title: { uk: 'Модуль', en: 'Module' } },
         content: { items: { chapter }, order: ['chapter'] },
       });
-      const course = defineCourse<'course', ['uk'], { module: typeof courseModule }>({
+      const course = defineCourse<'course', { module: typeof courseModule }, ['uk']>({
         id: id('11'),
         slug: 'course',
         type: 'course',

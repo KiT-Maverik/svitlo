@@ -5,6 +5,8 @@ on:
     branches: [main]
     paths:
       - 'scripts/generateTranslationReviewArtifacts/**'
+      - 'shared/ui-kit/data/definitions/educationStandards/**'
+      - 'shared/ui-kit/scripts/generateLocales/loadEducationStandards.mjs'
       - '.github/workflows/translation-review.yml'
       - '.github/workflows/education-standards-reference.yml'
   workflow_dispatch:
@@ -32,23 +34,22 @@ jobs:
         run: node --test scripts/generateTranslationReviewArtifacts/education-standards-reference.spec.mjs
       - name: Verify existing scoped generator behavior
         run: node --test scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.spec.mjs
-      - name: Verify real Code-derived catalog when its workspace is available
-        if: hashFiles('shared/education-standards/package.json') != ''
+      - name: Verify real Code-derived UI Kit catalog
+        if: hashFiles('shared/ui-kit/data/definitions/educationStandards/data/index.ts') != ''
         shell: bash
         run: |
           set -euo pipefail
           npm run package:build --workspace @svitlo/engine
-          npm run package:build --workspace @svitlo/education-standards
+          npm run code:check:types --workspace @svitlo/ui-kit
           node scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.mjs --kind education-standards
           node --input-type=module <<'NODE'
           import assert from 'node:assert/strict';
           import fs from 'node:fs';
           import { execFileSync } from 'node:child_process';
-          import { createRequire } from 'node:module';
+          import { loadEducationStandards } from './shared/ui-kit/scripts/generateLocales/loadEducationStandards.mjs';
           import { readSupportedLanguageCodes } from './shared/engine/scripts/readSupportedLanguages/read-supported-languages.mjs';
           import { readEducationStandardSources } from './scripts/generateTranslationReviewArtifacts/education-standards-reference.mjs';
-          const require = createRequire(import.meta.url);
-          const expected = require('@svitlo/education-standards/build').educationStandards.length;
+          const expected = loadEducationStandards().length;
           const languages = readSupportedLanguageCodes();
           const records = readEducationStandardSources(process.cwd(), languages);
           const checkedOutSource = execFileSync('git', ['rev-parse', 'HEAD'], { encoding: 'utf8' }).trim();

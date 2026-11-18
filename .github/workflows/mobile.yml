@@ -15,6 +15,11 @@ on:
 permissions:
   contents: read
 
+# A formatter push supersedes the review-ready source revision.
+concurrency:
+  group: mobile-host-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   web:
     name: Browser, offline content and TypeScript

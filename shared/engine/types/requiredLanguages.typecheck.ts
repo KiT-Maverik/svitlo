@@ -7,7 +7,7 @@ import type {
   PublicationLanguageOptions,
   RequireLanguages,
 } from './index';
-import type { AllLanguageCodes } from '../schemas/languages.schemas';
+import type { AllLanguageCodes, SupportedLanguages } from '../schemas/languages.schemas';
 
 type Assert<Condition extends true> = Condition;
 type Equal<Left, Right> = (<T>() => T extends Left ? 1 : 2) extends <T>() => T extends Right ? 1 : 2 ? true : false;
@@ -16,6 +16,10 @@ type Authored = {
   title: { en: string; uk: string };
   nested: { label: { en: string; uk: string } };
 };
+
+const supportedLanguageCodes = ['en', 'uk'] as const satisfies SupportedLanguages;
+// @ts-expect-error Language scopes must contain at least one code.
+const missingSupportedLanguages = [] as const satisfies SupportedLanguages;
 
 const required: RequireLanguages<Authored, ['en', 'uk']> = {
   title: { en: 'Title', uk: 'Назва' },
@@ -82,6 +86,8 @@ const partial: PartialConfig = {
 const invalidPartial: PartialConfig = { nested: { enabled: 'false' } };
 
 // Suppress unused-value warnings while preserving compile-time assertions.
+void supportedLanguageCodes;
+void missingSupportedLanguages;
 void required;
 void missingRequiredLanguage;
 void completeConfig;

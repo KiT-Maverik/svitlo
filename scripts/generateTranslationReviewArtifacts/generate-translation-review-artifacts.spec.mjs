@@ -78,6 +78,13 @@ test('real Skills and UI Kit requests generate only their requested Markdown fil
     return manifest;
   }
   try {
+    // Independent diagnostics must survive both reference-family refreshes.
+    const lookupFile = path.join(workspace, 'lesson-lookup', 'sample.md');
+    const coverageFile = path.join(workspace, 'engine-coverage', 'engine-gaps.json');
+    fs.mkdirSync(path.dirname(lookupFile), { recursive: true });
+    fs.mkdirSync(path.dirname(coverageFile), { recursive: true });
+    fs.writeFileSync(lookupFile, 'Lesson lookup fixture\n');
+    fs.writeFileSync(coverageFile, '{"scope":"engine"}\n');
     const skills = request(['--kind', 'skills', '--package', 'content/art', '--locale', 'en']);
     assert.equal(skills.scope.kind, 'skills');
     assert.equal(skills.scope.package, 'content/art');
@@ -98,6 +105,8 @@ test('real Skills and UI Kit requests generate only their requested Markdown fil
     );
     assert.equal(ui.failures.length, 0);
     assert.equal(fs.existsSync(path.join(workspace, 'taxonomies')), false);
+    assert.equal(fs.readFileSync(lookupFile, 'utf8'), 'Lesson lookup fixture\n');
+    assert.equal(fs.readFileSync(coverageFile, 'utf8'), '{"scope":"engine"}\n');
   } finally {
     fs.rmSync(workspace, { recursive: true, force: true });
   }
