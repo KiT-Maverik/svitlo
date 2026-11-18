@@ -553,8 +553,16 @@ export function renderModularCourse(technical, pkg, resolveLesson = () => null, 
       );
     }
   }
-  // No CourseReview Configurator/contract exists yet; never invent approval evidence.
-  files.set('review.ts', 'export const courseReview = {} as const;\n');
+  // Use the real shared Review contract until a Course-specific review contract exists.
+  // Missing evidence intentionally produces TypeScript diagnostics, not fictitious approvals.
+  files.set(
+    'review.ts',
+    "import type { Review } from '@svitlo/engine/build';\n\n" +
+      'export const courseReview = {\n' +
+      '  ai: { locales: undefined },\n' +
+      '  human: { acceptance: undefined, locales: {} },\n' +
+      '} satisfies Review;\n',
+  );
   const planned = config.params.languages;
   files.set(
     'constants.ts',

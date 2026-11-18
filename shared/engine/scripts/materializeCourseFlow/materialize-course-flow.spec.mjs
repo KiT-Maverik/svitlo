@@ -108,7 +108,10 @@ test('editorial -> technical draft preserves UUIDs, order, intent and evidence',
   assert(!drafts.get('index.ts').includes('foundations_Module'));
   assert(!drafts.get('index.ts').includes('"slug":'));
   assert(drafts.get('chapters/first.ts').includes('  orbit,'));
-  assert(drafts.get('review.ts').includes('export const courseReview = {} as const;'));
+  assert(drafts.get('review.ts').includes("import type { Review } from '@svitlo/engine/build';"));
+  assert(drafts.get('review.ts').includes('export const courseReview = {'));
+  assert(drafts.get('review.ts').includes('} satisfies Review;'));
+  assert(drafts.get('review.ts').includes('acceptance: undefined'));
   assert(!drafts.get('review.ts').includes('methodology: null'));
   const constants = drafts.get('constants.ts');
   assert(constants.includes("import type { LanguageCode } from '@svitlo/engine/build';"));

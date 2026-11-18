@@ -24,7 +24,7 @@ The generated `constants.ts` follows the Lesson Builder convention: an active `l
 
 **A successful Course materialization is not required to pass TypeScript typechecking.** Unimplemented future Lesson imports, locale gaps and not-yet-authored Scene/media dependencies are valid Draft-only TypeScript errors. The CLI checks deterministic output bytes and **TypeScript syntax**, not complete typechecking or Props publication. This is intentional and should not be worked around with fake resources or `as any`. Before production acceptance, the actual textbook production build, external review evidence and full locale/resource coverage are required.
 
-`review.ts` is an empty, explicitly unapproved Course review register. Unlike the independently typed `LessonReview` template, Engine currently has **no `CourseReview` contract**. Therefore the builder cannot emit a typed Course stage/revision register or populate imaginary methodology/experience/translation approvals. Independent reviews remain in the Course parent PR until a typed Course review contract is approved and implemented.
+`review.ts` uses Engine's existing shared `Review` base type (`ai.locales`, `human.acceptance`, `human.locales`), as the Lesson Review template does, but leaves mandatory PR numbers as `undefined`. It is syntactically valid and **intentionally fails TypeScript typechecking** until genuine evidence is recorded. Engine currently has **no Course-specific `CourseReview` contract**, so the builder must not invent stage/revision fields or imaginary methodology/experience/translation approvals. Independent reviews remain in the Course parent PR until they can be attached to a real Course revision and its checked evidence.
 
 ## Safety and lifecycle
 
