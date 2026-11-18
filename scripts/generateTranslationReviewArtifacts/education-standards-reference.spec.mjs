@@ -46,7 +46,10 @@ function setup(records) {
     ].join('\n');
     fs.writeFileSync(path.join(directory, filename), source);
   }
-  fs.writeFileSync(path.join(root, 'shared/ui-kit/data/definitions/educationStandards/data/index.ts'), index.join('\n') + '\n');
+  fs.writeFileSync(
+    path.join(root, 'shared/ui-kit/data/definitions/educationStandards/data/index.ts'),
+    index.join('\n') + '\n',
+  );
   return root;
 }
 
@@ -118,7 +121,10 @@ test('generates deterministic source-linked Markdown for one requested language'
     assert.match(first.markdown, /English methodological description \(not translated\)/);
     assert.match(first.markdown, /Результати навчання/);
     assert.match(first.markdown, /https:\/\/example.org\/standards\/2026/);
-    assert.match(first.markdown, /shared\/ui-kit\/data\/definitions\/educationStandards\/data\/example\/sampleOne\.data\.ts/);
+    assert.match(
+      first.markdown,
+      /shared\/ui-kit\/data\/definitions\/educationStandards\/data\/example\/sampleOne\.data\.ts/,
+    );
     assert.doesNotMatch(first.markdown, /%%MISSING%%/);
   } finally {
     fs.rmSync(root, { recursive: true, force: true });
@@ -229,7 +235,10 @@ test('invalid source metadata causes a per-locale manifest failure, not a review
   const output = path.join(root, '.agent-ci-artifacts');
   fs.mkdirSync(output);
   try {
-    const filename = path.join(root, 'shared/ui-kit/data/definitions/educationStandards/data/example/sampleOne.data.ts');
+    const filename = path.join(
+      root,
+      'shared/ui-kit/data/definitions/educationStandards/data/example/sampleOne.data.ts',
+    );
     fs.writeFileSync(
       filename,
       fs.readFileSync(filename, 'utf8').replace('https://example.org/standards/2026', 'javascript:invalid'),
@@ -266,7 +275,10 @@ test('incomplete previews still reject bad jurisdictions, original language, and
   for (const [before, after, expected] of changes) {
     const root = setup([record('sampleOne', UUID_A, { en: 'Learning outcomes' })]);
     try {
-      const filename = path.join(root, 'shared/ui-kit/data/definitions/educationStandards/data/example/sampleOne.data.ts');
+      const filename = path.join(
+        root,
+        'shared/ui-kit/data/definitions/educationStandards/data/example/sampleOne.data.ts',
+      );
       const source = fs.readFileSync(filename, 'utf8');
       assert.ok(source.includes(before));
       fs.writeFileSync(filename, source.replace(before, after));

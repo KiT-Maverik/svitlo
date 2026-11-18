@@ -55,7 +55,10 @@ describe('Scripts', () => {
       it('publishes the 14 source identities and all canonical language files', () => {
         const base = readJson(path.join(directory, 'base.json')) as Record<string, { id: string; slug: string }>;
         assert.deepEqual(Object.keys(base).sort(), slugs);
-        assert.deepEqual(readdirSync(directory).sort(), ['base.json', ...allLanguageCodes.map(code => code + '.json')].sort());
+        assert.deepEqual(
+          readdirSync(directory).sort(),
+          ['base.json', ...allLanguageCodes.map(code => code + '.json')].sort(),
+        );
         for (const definition of educationStandards) {
           assert.equal(base[definition.slug].id, definition.id);
           assert.equal(base[definition.slug].slug, definition.slug);
@@ -64,15 +67,21 @@ describe('Scripts', () => {
 
       for (const language of allLanguageCodes) {
         it(language, () => {
-          const base = readJson(path.join(directory, 'base.json')) as Record<string, {
-            id: string;
-            slug: string;
-            name: string;
-            description: { methodological: string };
-          }>;
-          const locale = readJson(path.join(directory, language + '.json')) as Record<string, {
-            description: { frontend: string };
-          }>;
+          const base = readJson(path.join(directory, 'base.json')) as Record<
+            string,
+            {
+              id: string;
+              slug: string;
+              name: string;
+              description: { methodological: string };
+            }
+          >;
+          const locale = readJson(path.join(directory, language + '.json')) as Record<
+            string,
+            {
+              description: { frontend: string };
+            }
+          >;
           assert.deepEqual(Object.keys(locale).sort(), slugs);
           for (const slug of slugs) {
             educationStandard_Props_Schema.parse({

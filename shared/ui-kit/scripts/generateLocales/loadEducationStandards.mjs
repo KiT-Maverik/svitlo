@@ -30,8 +30,12 @@ export function loadEducationStandards(root = repositoryRoot) {
       compiled.paths = Module._nodeModulePaths(dirname(filepath));
       compiled._compile(javascript, filepath);
       const definition = compiled.exports[slug];
-      if (Object.keys(compiled.exports).length !== 1 || definition?.slug !== slug ||
-          definition.type !== 'educationStandard' || typeof definition.build?.props !== 'function') {
+      if (
+        Object.keys(compiled.exports).length !== 1 ||
+        definition?.slug !== slug ||
+        definition.type !== 'educationStandard' ||
+        typeof definition.build?.props !== 'function'
+      ) {
         throw new Error('Invalid EducationStandard declaration: ' + filepath);
       }
       definitions.push(definition);

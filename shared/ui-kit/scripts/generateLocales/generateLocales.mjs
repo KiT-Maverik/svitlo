@@ -236,7 +236,10 @@ try {
     mkdirSync(standardsOutput, { recursive: true });
     writeFileSync(join(standardsOutput, 'base.json'), JSON.stringify(educationStandards.base, null, 2) + '\n');
     for (const language of educationStandards.languages) {
-      writeFileSync(join(standardsOutput, language + '.json'), JSON.stringify(educationStandards.localized[language], null, 2) + '\n');
+      writeFileSync(
+        join(standardsOutput, language + '.json'),
+        JSON.stringify(educationStandards.localized[language], null, 2) + '\n',
+      );
     }
     console.log(
       `Generated ${published.length} UI Kit component dictionaries, Assessment Method and EducationStandard resources in ${output}`,
