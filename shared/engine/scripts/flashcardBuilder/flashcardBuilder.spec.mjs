@@ -136,9 +136,36 @@ test('create-only builder never overwrites TS, retains YAML and strictly checks 
     assert.equal(fs.existsSync(path.join(lesson, 'flashcards.yaml')), true);
     const output = path.join(lesson, 'flashcards', 'index.ts');
     fs.appendFileSync(output, '// manually edited\n');
-    assert.throws(() => runOne(textbook, lessonId, '--write', folder), /refusing overwrite/);
-    assert.throws(() => runOne(textbook, lessonId, '--check', folder), /refusing overwrite/);
+    const handEdited = fs.readFileSync(output, 'utf8');
+    assert.deepEqual(runOne(textbook, lessonId, '--write', folder), {
+      created: false,
+      skipped: true,
+      reason: 'existing authored Flashcard entrypoint',
+    });
+    assert.equal(fs.readFileSync(output, 'utf8'), handEdited);
+    assert.throws(() => runOne(textbook, lessonId, '--check', folder), /manually edited/);
+    fs.writeFileSync(path.join(lesson, 'flashcards.yaml'), ': invalid [ yaml');
+    assert.equal(runOne(textbook, lessonId, '--write', folder).skipped, true);
+    assert.equal(fs.readFileSync(output, 'utf8'), handEdited);
     assert.match(fs.readFileSync(output, 'utf8'), /manually edited/);
+  } finally {
+    fs.rmSync(folder, { recursive: true, force: true });
+  }
+});
+
+test('partial Flashcard tree without entrypoint blocks create-only generation', () => {
+  const folder = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-flashcards-partial-'));
+  try {
+    const textbook = path.join(folder, 'content', 'playground');
+    const lesson = path.join(textbook, 'data', 'lessons', lessonId.at(-1), lessonId);
+    fs.mkdirSync(path.join(lesson, 'flashcards', 'first'), { recursive: true });
+    fs.writeFileSync(path.join(textbook, 'package.json'), '{"name":"fixture"}\n');
+    fs.writeFileSync(path.join(lesson, 'flashcards.yaml'), yaml.stringify(createBank()));
+    const authored = path.join(lesson, 'flashcards', 'first', 'index.ts');
+    fs.writeFileSync(authored, '// authored card\n');
+    assert.throws(() => runOne(textbook, lessonId, '--write', folder), /Partial Flashcard Bank tree/);
+    assert.equal(fs.readFileSync(authored, 'utf8'), '// authored card\n');
+    assert.equal(fs.existsSync(path.join(lesson, 'flashcards', 'index.ts')), false);
   } finally {
     fs.rmSync(folder, { recursive: true, force: true });
   }

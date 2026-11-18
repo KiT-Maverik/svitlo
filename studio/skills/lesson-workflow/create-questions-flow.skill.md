@@ -1,7 +1,6 @@
 # Create Questions Flow — resumable Lesson Question Bank production
 
-**Purpose:** produce an independent full Question Bank and one or more
-pedagogically small Quiz Section selections for an existing Lesson.
+**Purpose:** produce an independent full Question Bank for an existing **bank-owning Lesson**, plus deliberate Quiz Section selections **only when that Lesson has approved Quizzes**. A full bank can exist with no Quiz Sections.
 Input is the Lesson UUID or its current parent Lesson PR number.
 The bank and each Quiz Section are separate deliverables; neither
 truncates the other. This is a seven-stage, PR-tracked workflow.
@@ -31,6 +30,8 @@ Quiz requirements and approved Skill definitions. Read derived
 Lesson Markdown from the existing generator; do not clone it or scan
 the entire media tree.
 
+Do **not** create an empty Questions PR for an assessment-only Lesson whose approved methodology explicitly relies solely on upstream Lessons' banks. Its parent Lesson PR records **own Questions: pending external banks** until evidence permits Methodologist-verified **Not Applicable**; its **Quiz selection** is finalized downstream, not inside an upstream bank owner's Questions PR. A teaching Lesson with an absent/unfinished required bank is never Questions-N/A.
+
 Use a single **Draft Questions child PR** targeting the open parent
 Lesson PR head branch; if the Lesson was merged, use its verified
 current integration/main base. Reuse an existing work PR rather than
@@ -46,9 +47,7 @@ is merged and orders **per-Lesson** Questions before Flashcards.
 is a **downstream consumer, never a dependency or merge gate of this
 Create Questions Flow PR**. Finish, review and merge #647 independently;
 afterwards #646 can incorporate the available Question authoring contract.
-For an actual Lesson, finish and integrate its Question bank and Quiz
-Section registry edits before the Flashcards child edits the same
-Section registry. A genuinely reviewed Questions-N/A decision is
+For a bank-owning Lesson, finish and integrate its Question bank and any approved **local** Quiz Section registry edits before the Flashcards child edits the same Section registry. Downstream assessment Lessons do not force local Quiz Sections or create backward dependencies on upstream bank PRs. A genuinely reviewed Questions-N/A decision is
 different from an unfinished Question Bank. Do not wait for #646 to
 merge before completing #647.
 
@@ -58,7 +57,7 @@ Collect approved outcomes, target Skills, required cognitive Assessment
 Methods, audience, misconceptions, representations, prerequisite knowledge
 and current Quiz Section purpose/order. Compare methodology against the
 current derived Lesson Markdown and real TS sources at an exact SHA.
-A bank may be appropriate without any embedded Quiz. If source content,
+A full independent bank is the **pedagogical default** for a substantive instructional Lesson even when it has no embedded Quiz. A concrete Methodologist-approved exception is required if no bank is warranted. If source content,
 methodology or derived reference is incomplete, record a real blocker;
 do not fabricate questions. Do not block unrelated independently ready
 Lesson work.
@@ -93,13 +92,13 @@ Only reuse verified Lesson media UUIDs or document an unmet media need.
 ## Stage 3 — Quiz Section Design
 
 Inspect actual Lesson/index.ts, sections/index.ts, each current Quiz
-Section module and the order. **Reuse** a suitable existing Quiz
+Section module and the order. If the bank-owning Lesson has **no approved Quiz**, record `Quiz selections: Not Applicable — bank preserved for later assessment/Custom Practice`, skip Section mutations and continue the bank review/production stages. **Reuse** a suitable existing Quiz
 Section and stable UUID whenever possible; create one only when
 approved methodology requires it and none exists. Multiple Quizzes
 are allowed. An independent Question Bank does not force a Quiz.
 
-Choose a _small, purposeful, explicit_ Question UUID subset per Quiz
-without removing unselected Questions from the bank. The modern
+When a Quiz is approved **in this owning Lesson**, choose a _small, purposeful, explicit_ Question UUID subset per Quiz
+without removing unselected Questions from the bank. An assessment-only Quiz belonging to **another Lesson** is not authored here and must not mutate this bank or Section registry; its Section owner later selects from all eligible reviewed upstream banks. The modern
 defineQuizSection uses params.selection.questionIds; mode all means
 every ID in that specified small subset, not every bank member.
 For sample, count must fit the eligible pool and every sample must
@@ -134,18 +133,14 @@ at the authorized handoff:
 - Use --write to create Question Configurator modules under
   questions/<questionType>/<slug>/index.ts and the independent
   questions/index.ts bank. No existing source is overwritten.
-- The Section owner edits only the approved Quiz module(s),
-  sections/index.ts and necessary root Lesson imports/order, preserving
-  all unrelated Sections/UUIDs. This work is intentionally not performed
+- **If** this bank-owning Lesson has approved Quiz Section(s), its Section owner edits only those Quiz module(s), sections/index.ts and necessary root Lesson imports/order, preserving all unrelated Sections/UUIDs. A bank with no Quiz must not acquire a Quiz merely to satisfy this stage. This work is intentionally not performed
   by a bank generator on an existing hand-authored Lesson.
-- Use --verify-sections to verify static Section UUID selections and
-  registration; review custom dynamic Composition manually.
+- For **actual local Quiz Sections**, use --verify-sections to verify static Section UUID selections and registration; review custom dynamic Composition manually. Do not require a nonexistent local Quiz to pass this optional check.
 - Publish **all** Questions with the existing Engine
   generateAssessmentResources --kind question publisher and test
   selected resource loading, real UI Kit support, full intended Lesson
   locale coverage, assets, TypeScript and textbook builds.
-- Remove temporary questions.yaml only after all bank modules and
-  selected Sections have been verified and editorial content transferred.
+- Remove temporary questions.yaml only after all bank modules and any **applicable local** selected Sections have been verified and editorial content transferred.
   On partial writes, missing media/locales, stale parent SHA, skip or
   conflict, retain YAML and report exact blockers. A Lesson-root
   lesson.yaml is not regenerated or restored by this stage.
@@ -200,11 +195,9 @@ staged textbook manifest. Inspect the entire changed Lesson UUID root for any
 `TODO(asset)`, reserved Nil media filename, temporary `questions.yaml` or
 missing referenced media, captions and accessible alternative. The strict
 textbook `package:build` must succeed for the full required language scope,
-including the post-generation check that every explicitly selected Quiz
-candidate resolves to the correct published Question, body and locale file.
+including the post-generation check that every explicitly selected **local** Quiz candidate resolves to the correct published Question, body and locale file. For an external downstream assessment Lesson, separately verify that the completed bank is integrated into its actual branch ancestry and published with the correct owning Lesson/UUID/locale; **PR #668** must be integrated and verified for global selection across banks.
 Passing the Questions YAML→TS builder alone is not resource completion; do not
 mark the Questions child PR complete until the real generated resources exist.
-A missing or unfinished
-Question Bank is never marked Questions-N/A. Do not modify Flashcards
+A missing or unfinished **required** Question Bank is never marked Questions-N/A; an approved assessment-only Lesson's absent **own** bank is a separate documented exception, conditional on verified external Question resources. Do not modify Flashcards
 Flow, Course Flow, or derive an independent Lesson Markdown generator
 inside this workflow.

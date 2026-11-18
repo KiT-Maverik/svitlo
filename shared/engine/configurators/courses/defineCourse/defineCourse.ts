@@ -166,8 +166,8 @@ export type Course_Configurator<
 /** Define a Course with immutable ordered child configurators and stateless Build. */
 export const defineCourse = <
   const Slug extends string,
-  const Languages extends readonly [LanguageCode, ...LanguageCode[]],
   const Items extends Record<string, Course_Child>,
+  const Languages extends readonly [LanguageCode, ...LanguageCode[]],
 >(
   config: Omit<Course_Config, 'slug' | 'content' | 'params' | 'locale'> & {
     slug: Slug;

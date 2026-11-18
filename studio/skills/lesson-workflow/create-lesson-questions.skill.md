@@ -101,12 +101,12 @@ automatic accommodation or evidence about a learner's health.
 
 ## 4. Full Bank and deliberate default Quiz subsets
 
-The bank can be far larger than any ordinary Quiz. Independently design
+The bank can be far larger than any ordinary Quiz. A substantive instructional Lesson normally owns an independent bank even if **none of its Sections is a Quiz**; that bank may later support an approved Course assessment-only Lesson. Independently design
 a small default Quiz selection for each pedagogically required
 defineQuizSection in its actual Lesson order. Reuse an approved Quiz's
 UUID, slug and existing learner copy rather than creating a duplicate.
 When methodology requires no Quiz, retain the independent bank without
-fabricating a Quiz Section.
+fabricating a Quiz Section. Another Lesson's assessment-only Quiz may later select reviewed Question UUIDs from multiple such banks, but its own Section owner—not this bank author—maintains that Quiz. Verify integrated branch ancestry, published Question ownership, target locales and PR #668's global resolver before final selection or publication.
 
 Each Quiz's modern params.selection.questionIds is a nonempty explicit
 list of **Question UUIDs**. mode all includes all **listed** IDs, not the
