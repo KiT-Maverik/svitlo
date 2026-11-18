@@ -6,6 +6,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import Module from 'node:module';
 import { pathToFileURL } from 'node:url';
+import { readModularCourse } from './course-static-projection.mjs';
 
 const UUID = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i;
 const object = value => value !== null && typeof value === 'object' && !Array.isArray(value);
@@ -201,7 +202,9 @@ export async function generateCourseReviewArtifacts({
   for (const item of available) {
     let entity;
     try {
-      entity = await loader(item.entry, path.join(root, packageName));
+      entity = item.id && loader === loadCourse
+        ? readModularCourse(item, supportedLanguages)
+        : await loader(item.entry, path.join(root, packageName));
       if (entity.type !== 'course' || !UUID.test(entity.id) ||
           (item.id && entity.id !== item.id)) throw new Error('Course identity mismatch');
       if (courseId && entity.id !== courseId) continue;
@@ -214,8 +217,10 @@ export async function generateCourseReviewArtifacts({
       for (const locale of languages ?? declared) {
         try {
           if (!declared.includes(locale)) throw new Error('Locale not declared by Course');
-          const props = entity.build.props({ languages: [locale] });
-          const resolved = mergeCourseReview(props.base, props.locale?.[locale]);
+          const projected = typeof entity.project === 'function' ? entity.project(locale) : null;
+          const props = projected ? null : entity.build.props({ languages: [locale] });
+          const resolved = projected?.course ?? mergeCourseReview(props.base, props.locale?.[locale]);
+          const missing = projected?.missing ?? 0;
           if (resolved.id !== entity.id) throw new Error('Resolved Course identity mismatch');
           const md = renderCourseMarkdown({ course: resolved, locale, packageName,
             sourceRef: manifest.sourceCommit, sources: courseSources(root, item) });
@@ -229,7 +234,7 @@ export async function generateCourseReviewArtifacts({
           fs.writeFileSync(destination, md);
           manifest.generated.push({ kind: 'course', textbook: packageName,
             course: entity.id.slice(-1) + '/' + entity.id, locale,
-            path: '.agent-ci-artifacts/' + relative, missing: 0, reviewReady: true });
+            path: '.agent-ci-artifacts/' + relative, missing, reviewReady: missing === 0 });
           generated++;
           saveManifest();
         } catch (error) { fail(entity.id, locale, error); }
