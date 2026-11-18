@@ -22,7 +22,7 @@ export const capacity = defineSkillGroup({
     it: 'Capacità',
     ja: '容量',
     ka: 'ტევადობა',
-    kk: 'Сыйымдылық',
+    kk: 'Syiymdylyq',
     ko: '들이',
     lt: 'Talpa',
     lv: 'Ietilpība',
