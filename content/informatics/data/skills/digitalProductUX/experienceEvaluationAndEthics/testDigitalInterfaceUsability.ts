@@ -18,7 +18,7 @@ export const testDigitalInterfaceUsability = defineSkill({
     it: "Verificare l'usabilità di un'interfaccia digitale",
     ja: 'デジタル画面の使いやすさを検証する',
     ka: 'ციფრული ინტერფეისის გამოყენებადობის შემოწმება',
-    kk: 'Tsifrlyq interfeistıñ paidalanu yñğailylyğyn tekseru',
+    kk: 'Sifrlyq interfeistıñ paidalanu yñğailylyğyn tekseru',
     ko: '디지털 인터페이스 사용성 테스트하기',
     lt: 'Išbandyti skaitmeninės sąsajos patogumą',
     lv: 'Pārbaudīt digitālās saskarnes lietojamību',

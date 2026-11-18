@@ -18,7 +18,7 @@ export const distinguishDigitalContentLicenses = defineSkill({
     it: 'Distinguere le licenze dei contenuti digitali',
     ja: 'デジタルコンテンツのライセンスを区別する',
     ka: 'ციფრული შიგთავსის ლიცენზიების გარჩევა',
-    kk: 'Tsifrlyq mazmūn litsenziialaryn ajyratu',
+    kk: 'Sifrlyq mazmūn litsenziialaryn ajyratu',
     ko: '디지털 콘텐츠 라이선스 구별하기',
     lt: 'Atskirti skaitmeninio turinio licencijas',
     lv: 'Atšķirt digitālā satura licences',

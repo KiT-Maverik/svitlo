@@ -18,7 +18,7 @@ export const respondToSuspiciousDigitalContact = defineSkill({
     it: 'Rispondere a contatti digitali sospetti',
     ja: '不審なオンラインの連絡に対処する',
     ka: 'საეჭვო ციფრულ კონტაქტზე რეაგირება',
-    kk: 'Kümändı tsifrlyq bailanysqa jauap beru',
+    kk: 'Kümändı sifrlyq bailanysqa jauap beru',
     ko: '의심스러운 디지털 연락에 대응하기',
     lt: 'Reaguoti į įtartiną skaitmeninį kontaktą',
     lv: 'Reaģēt uz aizdomīgu digitālu saziņu',

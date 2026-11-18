@@ -18,7 +18,7 @@ export const recognizeADigitalFootprint = defineSkill({
     it: "Riconoscere un'impronta digitale online",
     ja: 'デジタルの足跡を知る',
     ka: 'ციფრული კვალის ამოცნობა',
-    kk: 'Tsifrlyq ızdı tanu',
+    kk: 'Sifrlyq ızdı tanu',
     ko: '디지털 발자국 알아보기',
     lt: 'Atpažinti skaitmeninį pėdsaką',
     lv: 'Atpazīt digitālās pēdas',

@@ -22,7 +22,7 @@ export const digitalDeviceComponents = defineSkillGroup({
     it: 'Componenti dei dispositivi digitali',
     ja: 'デジタル機器の構成部品',
     ka: 'ციფრული მოწყობილობების კომპონენტები',
-    kk: 'Tsifrlyq qūrylğylardyñ qūramdas bölıkterı',
+    kk: 'Sifrlyq qūrylğylardyñ qūramdas bölıkterı',
     ko: '디지털 기기 구성 요소',
     lt: 'Skaitmeninių įrenginių komponentai',
     lv: 'Digitālo ierīču sastāvdaļas',

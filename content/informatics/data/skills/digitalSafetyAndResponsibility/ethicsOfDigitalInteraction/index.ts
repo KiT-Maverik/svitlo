@@ -23,7 +23,7 @@ export const ethicsOfDigitalInteraction = defineSkillGroup({
     it: 'Etica delle interazioni digitali',
     ja: 'デジタル交流の倫理',
     ka: 'ციფრული ურთიერთქმედების ეთიკა',
-    kk: 'Tsifrlyq özara ärekettesu etikasy',
+    kk: 'Sifrlyq özara ärekettesu etikasy',
     ko: '디지털 상호 작용의 윤리',
     lt: 'Skaitmeninio bendravimo etika',
     lv: 'Digitālās mijiedarbības ētika',
