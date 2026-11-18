@@ -1,36 +1,88 @@
-# Course Stage 5 PR-command materialization (implementation handoff)
+# Course Stage 5 PR-command automation
 
-**Status: specification only — no CI workflow, runner or trigger is implemented by this commit.**
-This document is the initial tracked work item for the [Draft PR](https://github.com/KiT-Maverik/svitlo/pulls) that will implement the Course Stage 5 automation. The PR body holds the detailed acceptance criteria; the implementing agent should update this README to describe the actual shipped command and lifecycle, not leave a speculative document behind.
+**Implemented:** .github/workflows/course-materialization.yml invokes the maintained
+Engine materializer at shared/engine/scripts/materializeCourseFlow/materialize-course-flow.mjs.
+This workflow **must be merged to main before issue_comment events can trigger it**.
+Do not run Stage 5 on Course #653 without separate owner authorization and valid Stage 4 evidence.
 
-## Intended user experience
+## Maintainer commands
 
-An authorized maintainer enters `/course materialize` as a **top-level comment on an open same-repository Course parent PR**. A GitHub Actions workflow installed on `main` checks the current PR identity, independently accepted Stage 4 review at an exact Course source revision, permission of the invoking actor, and branch/source consistency. It invokes the existing read-only validation and `shared/engine/scripts/materializeCourseFlow/materialize-course-flow.mjs` with `--write`, then `--check`, and commits only its verified outputs **to that Course PR's existing head branch** (never to `main` or to the automation PR). A separate `/course finalize` comment checks the already committed generation and runs `--finalize`, committing the deletion of the unchanged temporary `course.yaml` in a distinct commit.
+On an open same-repository **Draft Course parent PR targeting main**, an actor with
+write/maintain/admin permission may post one exact top-level comment:
 
-For a manual fallback and CI testing, support `workflow_dispatch` with explicit `pr_number` and `operation` (`materialize` or `finalize`), with the **same** identity, authorization, approval and safety checks.
+- **/course materialize:** run the existing materializer with --package, --course,
+  --write, then --check against the pinned Course source and commit only verified
+  new Course TypeScript/Markdown and minimal Lesson YAML files to the Course PR branch.
+- **/course finalize:** after outputs have been committed, run --check then
+  --finalize and separately commit removal of **only the unchanged course.yaml**.
 
-## Canonical sources to reuse
+The optional workflow_dispatch form takes a PR number and enumerated operation.
+No other event causes materialization. Generated source remains an authoring draft,
+not published Course content; no Lesson Production PRs or translations are created.
 
-- `studio/skills/course-workflow/create-course-flow.skill.md`, especially Stage 4 and Stage 5.
-- `shared/engine/scripts/materializeCourseFlow/README.md` and `materialize-course-flow.mjs` — the existing deterministic, create-only source materializer.
-- `shared/engine/scripts/validateCourseFlow/validate-course-flow.mjs` with `--stage 3-complete`.
-- `.github/workflows/get-lesson.yml` and `.github/workflows/sync-course-lessons.yml` — safe PR-comment command resolution, trusted/untrusted checkout separation and exact-head handling.
-- `shared/engine/scripts/materializeCourseFlow/materialize-course-flow.spec.mjs` — no-clobber, stable IDs, lifecycle and regression coverage.
-- `studio/rules/github-labels-and-naming.md`, `.github/labels.json`, `studio/rules/package-scripts.md`.
+## Independent Stage 4 evidence
 
-## Non-negotiable boundaries
+The owner appoints two independent GitHub reviewers with current repository write
+permission: one **Methodologist** and one **Assessment Architect**. Each must submit
+an actual **APPROVED** PR review, on a commit containing the exact current Course
+YAML Git blob, and place these three standalone lines in the review body:
 
-1. **Fail closed** if Stage 4 has not been independently signed off, its review points at another Course source revision, the PR/source identity is ambiguous, the actor lacks write permission, the branch advances mid-run, or the PR is from a fork/closed/protected branch.
-2. Treat the comment as the **explicit Stage 5 action authorization** only after Stage 4 is accepted; no automatic trigger on ordinary commits or Stage 4 progress.
-3. Never execute untrusted PR-controlled code in a job that has a write-capable token. Run generation on a pinned SHA with read-only permissions; isolate and validate output before a separate restricted write step. Do not interpolate untrusted comment text or PR metadata into shell commands.
-4. Limit changes to generated Course TypeScript/Markdown under the verified Course UUID directory and the minimal canonical `lesson.yaml` files for planned Lessons. Reuse stable UUIDs. Do not generate a separate `config.yaml`, Lesson TS, Question Banks, Flashcards, media, translations, approval records, or Lesson PRs.
-5. Do not overwrite authored files, silently repair conflicting outputs, change Stage 4 evidence, modify unrelated files or merge/mark Ready. Repeated invocations must be idempotent or report an exact conflict.
-6. **Finalize separately:** check committed materialized bytes and reviewer provenance first; delete only the original unchanged Course `course.yaml` in a subsequent commit. Keep generated `lesson.yaml` files and the approved history.
-7. Use clear Actions job summaries and artifact/log evidence (including exact source and resulting commit SHAs), not comments as a destination for generated outputs. If temporary `.agent-ci-artifacts/` reports are committed, preserve the established cleanup requirement before merge.
-8. Validate failure cases in tests: unauthorized trigger, wrong PR marker/UUID, stale approval, HEAD race, fork, path traversal/symlink, collision/non-clobber, restart after partial write, repeated materialize/finalize, missing or changed outputs and no-permission write.
+    Stage 4 approval: methodologist
+    Course UUID: <uuid>
+    Course YAML blob: <40-hex-git-blob-sha>
 
-**Publication is out of scope.** The output is authoring drafts plus methodology-only Lesson YAMLs, not a built/published Course. Before `Ready for Review`, follow the repository's real protected-branch checks and leave intentionally incomplete production resources visible.
+The other review uses **assessment-architect** in the first line and the same
+UUID/blob. Reviews must originate from *different GitHub accounts*, neither the
+Course PR author nor the last Course YAML commit author. If an approver submits
+CHANGES_REQUESTED or their review is dismissed, a new approval is needed. A
+checkbox, COMMENTED review, stale SHA, unverified self-review or PR-body
+assertion is **not** sufficient. GitHub proves account separation and source
+provenance; the owner must verify the reviewers' professional roles.
 
-## Initial target
+The PR must have a unique canonical Course marker, UUID, textbook and
+source-path fields. The YAML path is derived from the UUID last-hex bucket.
 
-[Course PR #653](https://github.com/KiT-Maverik/svitlo/pull/653) is the first intended caller **after** a real independent Stage 4 acceptance. Its currently in-progress Stage 4 is not evidence that an invocation may proceed now. The automation must work for any verified Course parent PR, not hardcode #653, the astronomy package, a UUID or a branch.
+## Security boundary
+
+1. Resolve the invoking actor, Course identity, current Git source blob, Stage 4
+   evidence and HEAD SHA before checking out PR content.
+2. Read-only analyze job checks out trusted default-branch scripts separately
+   from the pinned PR as **data**. It installs only trusted dependencies with
+   lifecycle scripts disabled; runs the trusted Engine materializer (root
+   explicitly points to the PR data checkout); checks all generated bytes,
+   paths, syntax, and source provenance. An Actions artifact contains a bounded
+   SHA256-verified handoff.
+3. Write-capable publish job executes **trusted code only**. It rechecks actor,
+   reviews, SHA, blob and allowlisted paths, then uses the Git Data API to make
+   a commit whose parent is the pinned HEAD. Branch ref updates are non-force:
+   a concurrent push rejects the update rather than overwriting it.
+
+Allowed materialize outputs: Course index.ts, constants.ts, review.ts,
+methodology.md, modules/*.ts, chapters/*.ts, episodes/*.ts and only new
+Lesson UUID-root lesson.yaml files. Finalize may delete only the Course YAML.
+Unknown files, divergent existing files, symlinks/submodules, ambiguous IDs,
+stale approvals, changed HEAD and partial output fail closed. Repeated
+materialization with identical committed files is a no-op.
+
+## Validation and recovery
+
+Run:
+
+    node --test scripts/ci/courseMaterialization/course-materialization.spec.mjs
+    node --test shared/engine/scripts/materializeCourseFlow/materialize-course-flow.spec.mjs shared/engine/scripts/validateCourseFlow/validate-course-flow.spec.mjs
+
+The Engine generators CI workflow executes these tests. Actions logs and step
+summaries contain precise errors and pinned SHA; published commits carry the
+Course PR number, source HEAD and reviewed YAML blob SHA. Only the commit files
+are durable Course artifacts; report files are short-lived Actions artifacts,
+not PR comments or tracked .agent-ci-artifacts.
+
+After stale/missing reviews, obtain independent approvals for the current blob.
+After a concurrent push, rerun the command. After divergent generated content,
+resolve differences manually; the tool does not overwrite authored work.
+
+**E2E limitation:** GitHub cannot dispatch this issue_comment workflow until it
+is deployed on main, and independent reviewer accounts are required to approve
+a synthetic Course PR. Complete the safe synthetic-PR run after deployment and
+record its exact run and commit SHAs before claiming production E2E validation.
+This implementation does not modify #653, mark PRs Ready or merge anything.
