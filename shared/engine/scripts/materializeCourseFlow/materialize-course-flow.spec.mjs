@@ -414,3 +414,11 @@ test('same Chapter slug in separate Module branches produces independent source 
   assert(root.includes('  extra,'));
   assert(root.includes('  foundations,'));
 });
+
+test('Course source exports reject reserved identifiers', () => {
+  const input = { ...plan, slug: 'items' };
+  assert.throws(
+    () => renderModularCourse(technicalFromEditorial(input), 'content/math'),
+    /Reserved Course source export identifier/,
+  );
+});

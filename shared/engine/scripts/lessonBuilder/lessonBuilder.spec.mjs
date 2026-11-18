@@ -1135,3 +1135,13 @@ test('PascalCase Scene slug exports distinct Configurator with textbook-local im
     assert.match(fs.readFileSync(f.generated('sections/intro/index.ts'), 'utf8'), /CompareCountersSceneConfig/);
     assertTypeScriptSyntax(readAll(f.lesson));
   }));
+
+test('Lesson root exports reject reserved identifiers rather than producing invalid TypeScript', () =>
+  fixture(f => {
+    for (const slug of ['class', 'languages', 'defineLesson']) {
+      assert.throws(
+        () => renderLessonModules({ ...f.config, slug }, 'uk'),
+        /reserved or invalid Lesson export identifier/,
+      );
+    }
+  }));

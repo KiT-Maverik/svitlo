@@ -272,6 +272,7 @@ function tsLiteral(value, indentation = 0) {
 function symbolOf(node) {
   if (!['course', 'module', 'chapter', 'episode'].includes(node.type) || !SLUG.test(node.slug ?? ''))
     fail('Unsupported modular entity');
+  if (reservedNames.has(node.slug)) fail('Reserved Course source export identifier: ' + node.slug);
   return node.slug;
 }
 /** Static only: never import or execute authored Lesson code. */

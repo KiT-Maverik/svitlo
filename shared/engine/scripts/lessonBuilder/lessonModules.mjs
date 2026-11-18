@@ -282,6 +282,15 @@ export function renderLessonModules(lesson, language, options = {}) {
   const questionBankOnly = options.questionBankOnly === true;
   if (!record(filtered) || filtered.type !== 'lesson')
     throw new Error('lesson.yaml:config.type: expected lesson type for the Lesson entrypoint');
+  // The root export is exactly config.slug; unlike the former _Lesson suffix,
+  // it must not shadow built-in imports or be a JavaScript keyword.
+  if (
+    !safeSlug.test(filtered.slug) ||
+    reserved.has(filtered.slug) ||
+    javascriptKeywords.has(filtered.slug) ||
+    filtered.slug === 'defineLesson'
+  )
+    throw new Error('lesson.yaml:config.slug: reserved or invalid Lesson export identifier');
   for (const field of ['questions', 'flashcards']) {
     if (Object.hasOwn(filtered, field) && !(questionBankOnly && field === 'questions'))
       throw new Error(
