@@ -108,7 +108,7 @@ function verifyManifest(manifest, meta, root) {
         throw Error('Artifact must create a new allowlisted source file');
       const bytes = Buffer.from(entry.data, 'base64');
       if (bytes.toString('base64') !== entry.data || !bytes.length ||
-          sha256(bytes) !== entry.sha256 || bytes.toString('utf8') !== Buffer.from(bytes).toString())
+          sha256(bytes) !== entry.sha256 || !Buffer.from(bytes.toString('utf8'), 'utf8').equals(bytes))
         throw Error('Invalid artifact bytes/hash');
       total += bytes.length;
     }
@@ -234,7 +234,9 @@ async function publish(root, meta) {
   if (beforeWrite?.head?.sha !== meta.head || beforeWrite.head.ref !== meta.branch ||
       beforeWrite.state !== 'open')
     throw Error('PR HEAD advanced before write; no branch ref updated');
-  await github('git/refs/heads/' + meta.branch, 'PATCH', { sha: next.sha, force: false });
+  const updated = await github('git/refs/heads/' + meta.branch, 'PATCH', { sha: next.sha, force: false });
+  if (updated?.object?.sha !== next.sha)
+    throw Error('GitHub did not confirm the exact new branch ref');
   report('Committed ' + count + ' verified Stage 5 ' + meta.operation +
     ' changes to PR #' + meta.number + ': ' + next.sha +
     ' (approved source blob ' + meta.sourceBlob + ')');
