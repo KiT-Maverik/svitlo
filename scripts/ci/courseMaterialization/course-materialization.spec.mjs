@@ -125,21 +125,39 @@ test('Stage 4 checklist fails closed on incomplete, absent, duplicate or ambiguo
 });
 
 test('allowlist blocks arbitrary files, traversal and incorrect UUID buckets', () => {
+  const root = pkg + '/data/courses/b/' + id + '/';
   for (const filename of [
-    pkg + '/data/courses/b/' + id + '/index.ts',
-    pkg + '/data/courses/b/' + id + '/episodes/example.ts',
+    root + 'index.ts',
+    root + 'constants.ts',
+    root + 'review.ts',
+    root + 'methodology.md',
+    root + 'content/safeObservation/index.ts',
+    root + 'content/safeObservation/methodology.md',
+    root + 'content/skyCycles/dayAndNight/index.ts',
+    root + 'content/skyCycles/dayAndNight/methodology.md',
+    root + 'content/skyCycles/dayAndNight/nightSkyEpisode/index.ts',
+    root + 'content/skyCycles/dayAndNight/nightSkyEpisode/methodology.md',
     pkg + '/data/lessons/c/' + lesson + '/lesson.yaml',
   ])
-    assert.equal(validateArtifactPath(filename, identity, 'materialize'), true);
+    assert.equal(validateArtifactPath(filename, identity, 'materialize'), true, filename);
   for (const filename of [
     '.github/workflows/evil.yml',
-    pkg + '/data/courses/b/' + id + '/../secrets',
+    root + '../secrets',
     pkg + '/data/lessons/b/' + lesson + '/lesson.yaml',
-    pkg + '/data/courses/b/' + id + '/config.yaml',
-    pkg + '/data/courses/b/' + id + '/README.md',
-    pkg + '/data/courses/b/' + id + '/episodes/../../evil.ts',
+    root + 'config.yaml',
+    root + 'README.md',
+    root + 'modules/skyCycles.ts',
+    root + 'chapters/dayAndNight.ts',
+    root + 'episodes/nightSkyEpisode.ts',
+    root + 'content/index.ts',
+    root + 'content/safeObservation/config.yaml',
+    root + 'content/skyCycles/other.ts',
+    root + 'content/sky_cycles/index.ts',
+    root + 'content/skyCycles/dayAndNight/nightSkyEpisode/deeper/index.ts',
+    root + 'content/skyCycles/../../evil.ts',
+    root + 'content/skyCycles//index.ts',
   ])
-    assert.equal(validateArtifactPath(filename, identity, 'materialize'), false);
+    assert.equal(validateArtifactPath(filename, identity, 'materialize'), false, filename);
   assert.equal(validateArtifactPath(yaml, identity, 'finalize'), true);
   assert.equal(validateArtifactPath(yaml, identity, 'materialize'), false);
   assert.equal(validateArtifactPath('.github/workflows/evil.yml', identity, 'finalize'), false);

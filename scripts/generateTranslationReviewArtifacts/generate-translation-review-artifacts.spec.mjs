@@ -11,6 +11,7 @@ test('requires an explicit reference family and never defaults to whole-reposito
   assert.throws(() => parseArguments(['--kind', 'all']), /explicit supported --kind/);
   assert.throws(() => parseArguments(['--kind', 'skills']), /require --package/);
   assert.throws(() => parseArguments(['--kind', 'lessons']), /require --package/);
+  assert.throws(() => parseArguments(['--kind', 'courses']), /require --package/);
 });
 
 test('scopes Skills and Lessons to the named textbook and optional locale', () => {
@@ -34,6 +35,16 @@ test('scopes Skills and Lessons to the named textbook and optional locale', () =
   });
 });
 
+test('selects only the requested Course UUID and optional locale', () => {
+  const course = '30ecbde1-97fd-5fe7-a353-ea89b9ef4a67';
+  assert.deepEqual(parseArguments(['--kind', 'courses', '--package', 'content/astronomy', '--course', course, '--locale', 'uk']), {
+    kind: 'courses', package: 'content/astronomy', course, locale: 'uk',
+  });
+  assert.deepEqual(parseArguments(['--kind', 'courses', '--package', 'content/astronomy']), {
+    kind: 'courses', package: 'content/astronomy',
+  });
+});
+
 test('rejects unsafe paths, invalid combinations and duplicate options before writing anything', () => {
   for (const args of [
     ['--kind', 'skills', '--package', '../outside'],
@@ -41,6 +52,8 @@ test('rejects unsafe paths, invalid combinations and duplicate options before wr
     ['--kind', 'skills', '--package', 'content/art', '--component', 'audio'],
     ['--kind', 'lessons', '--package', 'content/art', '--lesson', 'fake'],
     ['--kind', 'ui-kit', '--package', 'content/art'],
+    ['--kind', 'courses', '--package', 'content/math', '--course', 'fake'],
+    ['--kind', 'lessons', '--package', 'content/math', '--course', '30ecbde1-97fd-5fe7-a353-ea89b9ef4a67'],
     ['--kind', 'geography-home-copy', '--package', 'content/geography'],
     ['--kind', 'assessment-methods', '--locale', 'it', '--locale', 'en'],
     ['--kind', 'ui-kit', '--component', '../audio'],

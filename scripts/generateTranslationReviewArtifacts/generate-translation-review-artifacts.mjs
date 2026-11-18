@@ -17,6 +17,7 @@ const output = path.join(root, '.agent-ci-artifacts');
 const families = new Set([
   'skills',
   'lessons',
+  'courses',
   'assessment-methods',
   'ui-kit',
   'geography-home-copy',
@@ -29,22 +30,22 @@ export function parseArguments(args) {
   for (let i = 0; i < args.length; ++i) {
     const key = args[i];
     if (
-      !['--kind', '--package', '--locale', '--component', '--lesson'].includes(key) ||
+      !['--kind', '--package', '--locale', '--component', '--lesson', '--course'].includes(key) ||
       Object.hasOwn(options, key.slice(2)) ||
       !args[i + 1] ||
       args[i + 1].startsWith('--')
     ) {
       throw new Error(
-        'Usage: --kind <skills|lessons|assessment-methods|ui-kit|geography-home-copy|education-standards> ' +
-          '[--package content/<textbook>] [--locale <code>] [--component <name>] [--lesson <uuid>]',
+        'Usage: --kind <skills|lessons|courses|assessment-methods|ui-kit|geography-home-copy|education-standards> ' +
+          '[--package content/<textbook>] [--locale <code>] [--component <name>] [--lesson <uuid>] [--course <uuid>]',
       );
     }
     options[key.slice(2)] = args[++i];
   }
   if (!families.has(options.kind)) throw new Error('An explicit supported --kind is required');
-  const hasPackage = ['skills', 'lessons'].includes(options.kind);
+  const hasPackage = ['skills', 'lessons', 'courses'].includes(options.kind);
   if (hasPackage !== Boolean(options.package))
-    throw new Error('Only Skills and Lessons require --package content/<textbook>');
+    throw new Error('Only Skills, Lessons and Courses require --package content/<textbook>');
   if (options.package && !/^content\/[a-z][a-z0-9-]*$/.test(options.package)) {
     throw new Error('Unsafe textbook path: ' + options.package);
   }
@@ -54,6 +55,9 @@ export function parseArguments(args) {
   if (options.lesson && (options.kind !== 'lessons' || !uuidPattern.test(options.lesson))) {
     throw new Error('--lesson requires Lessons and a canonical UUID');
   }
+  if (options.course && (options.kind !== 'courses' || !uuidPattern.test(options.course))) {
+    throw new Error('--course requires Courses and a canonical UUID');
+  }
   if (options.locale && !/^[a-z]{2,4}$/.test(options.locale)) throw new Error('Invalid language code');
   return options;
 }
@@ -61,7 +65,10 @@ export function parseArguments(args) {
 function checkTextbook(options) {
   if (!options.package) return;
   const directory = path.join(root, options.package);
-  const target = path.join(directory, options.kind === 'skills' ? 'data/skills' : 'data/lessons');
+  const target = path.join(
+    directory,
+    options.kind === 'skills' ? 'data/skills' : options.kind === 'courses' ? 'data/courses' : 'data/lessons',
+  );
   for (const location of [directory, target]) {
     if (!fs.existsSync(location) || !fs.statSync(location).isDirectory() || fs.lstatSync(location).isSymbolicLink()) {
       throw new Error('Missing or unsafe requested textbook directory: ' + location);
@@ -110,6 +117,7 @@ export async function generate(options) {
       locale: options.locale ?? null,
       component: options.component ?? null,
       lesson: options.lesson ?? null,
+      course: options.course ?? null,
     },
     packages: options.package ? [options.package] : [],
     locales: options.locale ? [options.locale] : [],
@@ -195,6 +203,19 @@ export async function generate(options) {
       languages: options.locale ? languages : null,
       supportedLanguages: registered,
     });
+  } else if (options.kind === 'courses') {
+    const { generateCourseReviewArtifacts } =
+      await import('../../shared/engine/scripts/generateCourseReviewArtifacts/generate-course-review-artifacts.mjs');
+    await generateCourseReviewArtifacts({
+      root,
+      output,
+      manifest,
+      saveManifest,
+      packageName: options.package,
+      courseId: options.course,
+      languages: options.locale ? languages : null,
+      supportedLanguages: registered,
+    });
   } else if (options.kind === 'assessment-methods') {
     const { generateAssessmentMethodsReviewArtifacts } =
       await import('../../shared/ui-kit/scripts/generateAssessmentMethodsReference/generate-assessment-methods-reference.mjs');
@@ -245,6 +266,7 @@ export async function generate(options) {
     incompleteDocuments: manifest.generated.filter(item => item.reviewReady === false).length,
     taxonomyDocuments: manifest.generated.filter(item => item.kind === 'taxonomy').length,
     lessonDocuments: manifest.generated.filter(item => item.kind === 'lesson').length,
+    courseDocuments: manifest.generated.filter(item => item.kind === 'course').length,
     assessmentMethodDocuments: manifest.generated.filter(item => item.kind === 'assessment-method').length,
     uiKitDocuments: manifest.generated.filter(item => item.kind === 'ui-kit-locale').length,
     geographyHomeCopyDocuments: manifest.generated.filter(item => item.kind === 'geography-home-copy').length,

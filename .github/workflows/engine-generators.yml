@@ -2,7 +2,7 @@ name: Engine generators
 
 on:
   pull_request:
-    branches: [main]
+    branches: [main, integration-branch]
     paths:
       - 'shared/engine/generators/**'
       - 'shared/engine/scripts/lessonBuilder/**'
@@ -17,6 +17,8 @@ on:
       - 'shared/engine/tsconfig*.json'
       - 'shared/engine/scripts/generateLessonProps/**'
       - 'shared/engine/scripts/generateCourseProps/**'
+      - 'shared/engine/scripts/generateCourseReviewArtifacts/**'
+      - 'scripts/generateTranslationReviewArtifacts/**'
       - 'shared/engine/scripts/loadAuthoredConfigurators/**'
       - 'shared/engine/scripts/generatorCliIntegration/**'
       - 'scripts/textbook-tooling/**'
