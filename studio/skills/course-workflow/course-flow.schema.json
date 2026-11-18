@@ -360,7 +360,7 @@
           "type": "string",
           "minLength": 1,
           "maxLength": 100000,
-          "description": "Complete Course-neutral methodology for an unimplemented Lesson; materializer creates its minimal lesson.yaml and persistent UUID."
+          "description": "Complete methodology for a planned Lesson. Instructional Lessons are reusable; assessment-only Lessons may describe upstream Course Lesson slots and external Question Bank intent. Stage 5 creates the minimal lesson.yaml and persistent UUID."
         },
         "quizRequired": {
           "type": "boolean",
