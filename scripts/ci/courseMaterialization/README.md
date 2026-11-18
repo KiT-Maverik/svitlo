@@ -75,8 +75,8 @@ source bytes. After the trusted publisher commits the files, the separately
 permissioned `register-lessons` job reads that same artifact and replaces only
 the marker-delimited `Lessons` table in the parent Course PR Description.
 
-| Lesson | Slug | UUID | Lesson PR |
-| --- | --- | --- | --- |
+| Lesson         | Slug            | UUID               | Lesson PR   |
+| -------------- | --------------- | ------------------ | ----------- |
 | Example lesson | `exampleLesson` | `<generated-uuid>` | Not started |
 
 Creating the Lesson PR is **not** part of Course Stage 5. When separately
@@ -96,6 +96,7 @@ race with concurrent PR-description edits.
 The former `sync-course-lessons.yml` PR-lifecycle workflow and its standalone
 AST/YAML status-synchronization scripts were removed. `/course-status sync`
 no longer exists; no event should continually rewrite the table.
+
 ## Validation and recovery
 
 Run:

@@ -113,8 +113,7 @@ const SLUG = /^[a-z][A-Za-z0-9]*$/;
 /** Metadata emitted by the materializer when it writes each standalone Lesson YAML. */
 function validateLessonAssignments(manifest, meta) {
   const assignments = manifest.lessonAssignments;
-  if (!Array.isArray(assignments) || assignments.length > 500)
-    throw Error('Invalid generated Lesson assignment list');
+  if (!Array.isArray(assignments) || assignments.length > 500) throw Error('Invalid generated Lesson assignment list');
   if (meta.operation === 'finalize' && assignments.length)
     throw Error('Finalization may not register Lesson identities');
   const ids = new Set();
@@ -130,8 +129,7 @@ function validateLessonAssignments(manifest, meta) {
       !lesson.title.trim() ||
       lesson.title.length > 300 ||
       /[\r\n\x00-\x1f]/.test(lesson.title) ||
-      lesson.path !==
-        meta.identity.pkg + '/data/lessons/' + lesson.id.at(-1) + '/' + lesson.id + '/lesson.yaml' ||
+      lesson.path !== meta.identity.pkg + '/data/lessons/' + lesson.id.at(-1) + '/' + lesson.id + '/lesson.yaml' ||
       ids.has(lesson.id) ||
       filenames.has(lesson.path)
     )
@@ -157,14 +155,7 @@ function safeLessonTitle(title) {
 /** A one-time handoff; agents may later fill in the PR column by editing the description. */
 export function renderLessonRegistry(assignments) {
   const rows = assignments.map(
-    lesson =>
-      '| ' +
-      safeLessonTitle(lesson.title) +
-      ' | `' +
-      lesson.slug +
-      '` | `' +
-      lesson.id +
-      '` | Not started |',
+    lesson => '| ' + safeLessonTitle(lesson.title) + ' | `' + lesson.slug + '` | `' + lesson.id + '` | Not started |',
   );
   return [
     LESSONS_START,
@@ -460,10 +451,7 @@ async function registerLessons(meta) {
   )
     throw Error('Lesson registration source differs from authorized materialization');
   const assignments = validateLessonAssignments(manifest, meta);
-  if (
-    !assignments.length ||
-    !manifest.entries.some(entry => assignments.some(lesson => lesson.path === entry.path))
-  )
+  if (!assignments.length || !manifest.entries.some(entry => assignments.some(lesson => lesson.path === entry.path)))
     throw Error('Lesson registration requires a verified newly generated Lesson YAML');
   const committedHead = process.env.COURSE_PUBLISHED_HEAD;
   if (!/^[a-f0-9]{40}$/.test(committedHead ?? '')) throw Error('Missing verified publication HEAD');
