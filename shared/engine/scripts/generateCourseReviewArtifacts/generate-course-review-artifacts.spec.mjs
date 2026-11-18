@@ -107,3 +107,79 @@ test('rejects symlinked Course catalog', () => {
     assert.throws(() => discoverCourses(root, 'content/math'), /Symlink/);
   } finally { fs.rmSync(root, { recursive: true, force: true }); }
 });
+
+test('Stage 5 modular source projects Course/Modules/Chapters/Episodes without any Lesson TypeScript', async () => {
+  const { readModularCourse } = await import('./course-static-projection.mjs');
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-course-stage5-review-'));
+  const owned = path.join(root, 'content/math/data/courses', id.course.slice(-1), id.course);
+  const prefix = '#coursesData/' + id.course.slice(-1) + '/' + id.course + '/';
+  const write = (file, code) => {
+    const target = path.join(owned, file);
+    fs.mkdirSync(path.dirname(target), { recursive: true });
+    fs.writeFileSync(target, code);
+  };
+  try {
+    write('constants.ts', 'export const languages = ["uk", "en"] as const satisfies SupportedLanguages;\n');
+    write('index.ts', [
+      'import { foundations } from "' + prefix + 'content/foundations/index";',
+      'import { lesson } from "#lessonsData/' + id.lesson.slice(-1) + '/' + id.lesson + '/index";',
+      'const items = { foundations, lesson };',
+      'export const course = defineCourse<"course", typeof items, CourseLanguages>({',
+      '  id: "' + id.course + '", slug: "course", type: "course",',
+      '  params: { languages },',
+      '  locale: { title: { uk: "Курс", en: "Course" }, description: { uk: "Опис" } },',
+      '  content: { items, order: ["foundations", "lesson"] },',
+      '});',
+    ].join('\n'));
+    write('content/foundations/index.ts', [
+      'import { first } from "' + prefix + 'content/foundations/first/index";',
+      'import { story } from "' + prefix + 'content/foundations/story/index";',
+      'const items = { first, story };',
+      'export const foundations = defineModule<"foundations", typeof items, CourseLanguages>({',
+      '  id: "' + id.module + '", slug: "foundations", type: "module", params: {},',
+      '  locale: { title: { uk: "Модуль", en: "Module" } },',
+      '  content: { items, order: ["first", "story"] },',
+      '});',
+    ].join('\n'));
+    write('content/foundations/first/index.ts', [
+      'const items = {};',
+      'export const first = defineChapter<"first", typeof items, CourseLanguages>({',
+      '  id: "' + id.chapter + '", slug: "first", type: "chapter", params: {},',
+      '  locale: { title: { uk: "Розділ", en: "Chapter" } },',
+      '  content: { items, order: [] },',
+      '});',
+    ].join('\n'));
+    write('content/foundations/story/index.ts', [
+      'const section = { items: { opening: defineContentSection({',
+      '  id: "11111111-1111-4111-8111-111111111111", slug: "opening", type: "content",',
+      '  locale: { title: { uk: "Вступ", en: "Opening" } },',
+      '  content: { items: { caption: defineMarkdown({',
+      '    id: "22222222-2222-4222-8222-222222222222", slug: "caption", type: "markdown",',
+      '    locale: { value: { uk: "Оповідь", en: "Narrative" } },',
+      '  }) }, order: ["caption"] },',
+      '}) }, order: ["opening"] };',
+      'export const story = defineEpisode<"story", CourseLanguages, typeof section.items>({',
+      '  id: "' + id.episode + '", slug: "story", type: "episode",',
+      '  params: { languages }, locale: { title: { uk: "Епізод", en: "Episode" } },',
+      '  section,',
+      '});',
+    ].join('\n'));
+    const item = discoverCourses(root, 'content/math')[0];
+    const parsed = readModularCourse(item, ['uk', 'en', 'pl']);
+    const en = parsed.project('en');
+    assert.equal(en.course.locale.title, 'Course');
+    assert.equal(en.course.content[0].locale.title, 'Module');
+    assert.equal(en.course.content[0].content[1].locale.title, 'Episode');
+    assert.equal(en.course.content[1].id, id.lesson);
+    assert.equal(en.missing, 1);
+    const markdown = renderCourseMarkdown({ course: en.course, locale: 'en',
+      sourceRef: 'a'.repeat(40), packageName: 'content/math' });
+    assert(markdown.includes('Narrative'));
+    assert(markdown.includes('%%MISSING%%'));
+    assert(!markdown.includes('SECRET LESSON CONTENT'));
+    const uk = parsed.project('uk');
+    assert.equal(uk.missing, 0);
+    assert(uk.course.content[0].content[1].section.items.opening.content.items.caption.locale.value === 'Оповідь');
+    assert.throws(() => parsed.project('pl'), /not declared/);
+  } finally { fs.rmSync(root, { recursive: true, force: true }); }
+});
