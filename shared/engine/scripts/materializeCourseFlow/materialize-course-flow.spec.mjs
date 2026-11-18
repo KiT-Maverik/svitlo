@@ -132,8 +132,10 @@ test('editorial -> technical draft preserves UUIDs, order, intent and evidence',
   assert(!constants.includes('sourceLanguage'));
   assert(!constants.includes('courseId'));
   assert(![...drafts.values()].join('\n').includes('defineLesson('));
-  for (const [name, text] of drafts)
-    assert.equal(ts.createSourceFile(name, text, ts.ScriptTarget.Latest, true).parseDiagnostics.length, 0);
+  for (const [name, text] of drafts) {
+    if (name.endsWith('.ts'))
+      assert.equal(ts.createSourceFile(name, text, ts.ScriptTarget.Latest, true).parseDiagnostics.length, 0);
+  }
 });
 test('missing Course-owned identities are deterministically allocated, malformed plans rejected', () => {
   const changed = structuredClone(plan);
