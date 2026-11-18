@@ -1,7 +1,7 @@
-# Жарық қалай таралады
+# Jaryq qalai taralady
 
-Күн сәулесі мен қолшамның жарығына не ортақ? Екеуі де **жарықтың** қалай таралатынын түсінуге көмектеседі.
+Kün säulesı men qolşamnyñ jaryğyna ne ortaq? Ekeuı de **jaryqtyñ** qalai taralatynyn tüsınuge kömektesedı.
 
-## Көзден затқа дейін
+## Jaryq közınen zatqa deiın
 
-Біртекті мөлдір ортада жарық түзу сызық бойымен таралады. Оның бағытын **жарық сәулесімен** — ұшында жебесі бар сызықпен — көрсетеміз.
+Bırtektı möldır ortada jaryq tüzu syzyq boiymen taralady. Onyñ bağytyn **jaryq säulesımen** — ūşynda jebesı bar syzyqpen — körsetemız.
