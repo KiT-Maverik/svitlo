@@ -282,6 +282,15 @@ export function renderLessonModules(lesson, language, options = {}) {
   const questionBankOnly = options.questionBankOnly === true;
   if (!record(filtered) || filtered.type !== 'lesson')
     throw new Error('lesson.yaml:config.type: expected lesson type for the Lesson entrypoint');
+  // The root export is exactly config.slug; unlike the former _Lesson suffix,
+  // it must not shadow built-in imports or be a JavaScript keyword.
+  if (
+    !safeSlug.test(filtered.slug) ||
+    reserved.has(filtered.slug) ||
+    javascriptKeywords.has(filtered.slug) ||
+    filtered.slug === 'defineLesson'
+  )
+    throw new Error('lesson.yaml:config.slug: reserved or invalid Lesson export identifier');
   for (const field of ['questions', 'flashcards']) {
     if (Object.hasOwn(filtered, field) && !(questionBankOnly && field === 'questions'))
       throw new Error(
@@ -372,14 +381,14 @@ export function renderLessonModules(lesson, language, options = {}) {
   if (hasLanguages && !questionBankOnly) {
     files.set(
       'constants.ts',
-      "import type { LanguageCode } from '@svitlo/engine/build';\n\n" +
-        '// Restore the complete language set when translations are ready:\n' +
+      "import type { SupportedLanguages } from '@svitlo/engine/build';\n\n" +
+        '// TODO (BLOCKER): Restore the complete language set when translations are ready:\n' +
         '// export const languages = ' +
         JSON.stringify(languageValues) +
-        ' as const satisfies readonly [LanguageCode, ...LanguageCode[]];\n\n' +
+        ' as const satisfies SupportedLanguages;\n\n' +
         'export const languages = ' +
         JSON.stringify([language]) +
-        ' as const satisfies readonly [LanguageCode, ...LanguageCode[]];\n' +
+        ' as const satisfies SupportedLanguages;\n' +
         'export type LessonLanguages = typeof languages;\n',
     );
   }
@@ -817,7 +826,7 @@ export function renderLessonModules(lesson, language, options = {}) {
     groupedImports([rootImports[0]], rootImports.slice(1)) +
     'export const ' +
     filtered.slug +
-    '_Lesson = defineLesson' +
+    ' = defineLesson' +
     langArgs +
     '({\n' +
     rootFields.join(',\n') +

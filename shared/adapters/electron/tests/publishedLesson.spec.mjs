@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { loadPublishedLesson } from '../dist/renderer.js';
+import { loadPublishedLesson, packagedAssessmentLoader } from '../dist/renderer.js';
 
 const id = 'd3048d21-8690-5255-b62c-984c69ac272c';
 const sectionId = '663572e7-bd85-4516-86e2-3de07d209e02';
@@ -28,7 +28,6 @@ function resources() {
         sections: { allowNavigation: true, allowSkipping: true, showIndexes: true },
       },
       section: [section],
-      flashcards: [],
     },
     uk: {
       locale: { title: 'Світло' },
@@ -79,4 +78,17 @@ test('Electron rejects missing base, invalid locale payload and unsupported lang
     json: async () => (url.endsWith('/base.json') ? data.base : { locale: { title: 42 } }),
   }));
   await assert.rejects(loadPublishedLesson(id, 'uk'), /Invalid assembled Lesson Props/);
+});
+
+test('Electron assessment loading uses only the packaged local manifest', async t => {
+  const requested = [];
+  t.mock.method(globalThis, 'fetch', async url => {
+    requested.push(url);
+    return { ok: false, status: 404 };
+  });
+  await assert.rejects(
+    packagedAssessmentLoader.loadQuestions({ language: 'uk', ids: [id] }),
+    /Missing assessment published file: data\/assessments\/manifest\.json/,
+  );
+  assert.deepEqual(requested, ['/data/assessments/manifest.json']);
 });

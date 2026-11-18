@@ -40,7 +40,7 @@ describe('Configurators', () => {
         locale: { title: { en: 'Course', uk: 'Курс' }, description: 'Course introduction' },
         content: { items: { module: chapterModule }, order: ['module'] },
       };
-      const course = defineCourse<'course', typeof languages, { module: typeof chapterModule }>(courseInput);
+      const course = defineCourse<'course', { module: typeof chapterModule }, typeof languages>(courseInput);
 
       test('Course hierarchy retains literal slugs and publishes ordered plain Props', () => {
         assert.equal(course.slug, 'course');
