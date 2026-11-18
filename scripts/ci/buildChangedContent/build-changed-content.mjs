@@ -151,7 +151,10 @@ function execute(changed, all, baseRef, headRef) {
 function executePackage(path, kind, changed, all, baseRef, headRef) {
   const workspaces = contentWorkspaces();
   const agent = resolveAgentScope(
-    baseRef, headRef, changed, workspaces,
+    baseRef,
+    headRef,
+    changed,
+    workspaces,
     readJson('scripts/ci/buildChangedContent/skills-agent-owners.json'),
   );
   if (agent) {
@@ -175,7 +178,14 @@ if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.ur
       if (process.argv.length !== 5) throw new Error('Usage: --package <workspace-path> <content|agent>');
       const all = process.env.CONTENT_BUILD_ALL === 'true';
       const changed = all ? [] : changedFiles(process.env.BASE_SHA, process.env.HEAD_SHA);
-      executePackage(process.argv[3], process.argv[4], changed, all, process.env.BASE_REF || '', process.env.HEAD_REF || '');
+      executePackage(
+        process.argv[3],
+        process.argv[4],
+        changed,
+        all,
+        process.env.BASE_REF || '',
+        process.env.HEAD_REF || '',
+      );
     } else {
       if (process.argv.length > 3 || (process.argv.length === 3 && process.argv[2] !== '--all')) {
         throw new Error('Usage: build-changed-content.mjs [--all|--package <workspace-path> <content|agent>]');

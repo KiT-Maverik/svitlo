@@ -7,12 +7,7 @@
 import { appendFileSync, readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import {
-  changedFiles,
-  contentWorkspaces,
-  resolveAgentScope,
-  selectContentBuilds,
-} from './build-changed-content.mjs';
+import { changedFiles, contentWorkspaces, resolveAgentScope, selectContentBuilds } from './build-changed-content.mjs';
 
 const repo = resolve(fileURLToPath(new URL('../../..', import.meta.url)));
 
@@ -34,26 +29,31 @@ if (invoked) {
     if (process.argv.length !== 2) throw new Error('Usage: node plan-content-builds.mjs');
     const baseRef = process.env.BASE_REF || '';
     const headRef = process.env.HEAD_REF || '';
-    const all = shouldBuildAllContent(
-      process.env.GITHUB_EVENT_NAME,
-      baseRef,
-      process.env.PR_DRAFT === 'true',
-    );
+    const all = shouldBuildAllContent(process.env.GITHUB_EVENT_NAME, baseRef, process.env.PR_DRAFT === 'true');
     const changed = all ? [] : changedFiles(process.env.BASE_SHA, process.env.HEAD_SHA);
-    const owners = JSON.parse(readFileSync(resolve(repo, 'scripts/ci/buildChangedContent/skills-agent-owners.json'), 'utf8'));
+    const owners = JSON.parse(
+      readFileSync(resolve(repo, 'scripts/ci/buildChangedContent/skills-agent-owners.json'), 'utf8'),
+    );
     const matrix = planContentBuilds({ changed, workspaces: contentWorkspaces(), all, baseRef, headRef, owners });
     const hasBuilds = matrix.include.length > 0;
     const agentMode = matrix.include.some(item => item.kind === 'agent');
-    console.log((all ? 'All content packages' : 'Selected content packages') + ': ' + matrix.include.map(item => item.path).join(', '));
+    console.log(
+      (all ? 'All content packages' : 'Selected content packages') +
+        ': ' +
+        matrix.include.map(item => item.path).join(', '),
+    );
     if (!hasBuilds) console.log('No content packages require a build');
     if (process.env.GITHUB_OUTPUT) {
-      appendFileSync(process.env.GITHUB_OUTPUT, [
-        'matrix=' + JSON.stringify(matrix),
-        'has_builds=' + String(hasBuilds),
-        'all=' + String(all),
-        'agent_mode=' + String(agentMode),
-        '',
-      ].join('\n'));
+      appendFileSync(
+        process.env.GITHUB_OUTPUT,
+        [
+          'matrix=' + JSON.stringify(matrix),
+          'has_builds=' + String(hasBuilds),
+          'all=' + String(all),
+          'agent_mode=' + String(agentMode),
+          '',
+        ].join('\n'),
+      );
     }
   } catch (error) {
     console.error(error);

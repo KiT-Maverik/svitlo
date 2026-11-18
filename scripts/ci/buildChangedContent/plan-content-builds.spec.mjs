@@ -17,10 +17,9 @@ test('main-ready PRs and manual dispatch check every textbook, including nested 
   assert.equal(shouldBuildAllContent('pull_request', 'main', true), false);
   assert.equal(shouldBuildAllContent('pull_request', 'integration/skills', false), false);
   assert.equal(shouldBuildAllContent('push', 'main', false), false);
-  assert.deepEqual(
-    planContentBuilds({ changed: [], workspaces, all: true }),
-    { include: workspaces.map(({ path }) => ({ path, kind: 'content' })) },
-  );
+  assert.deepEqual(planContentBuilds({ changed: [], workspaces, all: true }), {
+    include: workspaces.map(({ path }) => ({ path, kind: 'content' })),
+  });
 });
 
 test('other PRs build only modified textbooks independently', () => {
@@ -29,27 +28,27 @@ test('other PRs build only modified textbooks independently', () => {
       changed: ['content/history/data/skills/index.ts', 'content/languages/ukrainian/textbook.ts'],
       workspaces,
     }),
-    { include: [
-      { path: 'content/history', kind: 'content' },
-      { path: 'content/languages/ukrainian', kind: 'content' },
-    ] },
+    {
+      include: [
+        { path: 'content/history', kind: 'content' },
+        { path: 'content/languages/ukrainian', kind: 'content' },
+      ],
+    },
   );
-  assert.deepEqual(
-    planContentBuilds({ changed: ['apps/web/page.tsx', 'shared/engine/index.ts'], workspaces }),
-    { include: [] },
-  );
+  assert.deepEqual(planContentBuilds({ changed: ['apps/web/page.tsx', 'shared/engine/index.ts'], workspaces }), {
+    include: [],
+  });
 });
 
 test('shared textbook build tooling keeps representative smoke distributions', () => {
-  assert.deepEqual(
-    planContentBuilds({ changed: ['scripts/textbook-tooling/buildTextbook/build.mjs'], workspaces }),
-    { include: [
+  assert.deepEqual(planContentBuilds({ changed: ['scripts/textbook-tooling/buildTextbook/build.mjs'], workspaces }), {
+    include: [
       { path: 'content/math', kind: 'content' },
       { path: 'content/playground', kind: 'content' },
       { path: 'content/art', kind: 'content' },
       { path: 'content/astronomy', kind: 'content' },
-    ] },
-  );
+    ],
+  });
 });
 
 test('skills agent subtasks retain their narrow domain validation instead of a package build', () => {
@@ -77,10 +76,14 @@ test('skills agent subtasks retain their narrow domain validation instead of a p
 });
 
 test('a missing agent ownership mapping is an error rather than a skipped build', () => {
-  assert.throws(() => planContentBuilds({
-    changed: ['content/history/data/skills/ancientAfrica/index.ts'],
-    workspaces,
-    baseRef: 'feat/history-skills-integration',
-    headRef: 'feat/history-skills-agent-2',
-  }), /No mapping for agent branch/);
+  assert.throws(
+    () =>
+      planContentBuilds({
+        changed: ['content/history/data/skills/ancientAfrica/index.ts'],
+        workspaces,
+        baseRef: 'feat/history-skills-integration',
+        headRef: 'feat/history-skills-agent-2',
+      }),
+    /No mapping for agent branch/,
+  );
 });
