@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useMemo, useState } from 'react';
-import { Button, Stack, Typography } from '@mui/material';
+import { Box, Button, Stack, Typography } from '@mui/material';
 import type {
   AssessmentResourceLoader,
   Flashcard_Props,
@@ -40,17 +40,19 @@ export function EngineFlashcardsRenderer({
     identity: string;
     status: 'loading' | 'ready' | 'error';
     cards: readonly Flashcard_Props[];
-  }>({ identity, status: 'loading', cards: [] });
+    fallbackIds: readonly string[];
+  }>({ identity, status: 'loading', cards: [], fallbackIds: [] });
 
   useEffect(() => {
     const controller = new AbortController();
-    setLoad({ identity, status: 'loading', cards: [] });
+    setLoad({ identity, status: 'loading', cards: [], fallbackIds: [] });
     if (!assessmentLoader) {
-      setLoad({ identity, status: 'error', cards: [] });
+      setLoad({ identity, status: 'error', cards: [], fallbackIds: [] });
     } else {
       assessmentLoader
-        .loadFlashcards({ lessonId, language, ids, accessNeeds, signal: controller.signal })
-        .then(cards => {
+        .loadFlashcards({ language, ids, accessNeeds, signal: controller.signal })
+        .then(result => {
+          const cards = result.items;
           let previous = -1;
           for (const card of cards) {
             const next = ids.indexOf(card.id);
@@ -59,21 +61,24 @@ export function EngineFlashcardsRenderer({
             previous = next;
           }
           // A custom host loader must not bypass eligibility even if it ignores accessNeeds.
-          return cards.filter(card => !accessNeeds.some(need => card.parameters.disabilities.includes(need)));
+          return {
+            cards: cards.filter(card => !accessNeeds.some(need => card.parameters.disabilities.includes(need))),
+            fallbackIds: result.fallbacks.map(item => item.id),
+          };
         })
         .then(
-          cards => {
-            if (!controller.signal.aborted) setLoad({ identity, status: 'ready', cards });
+          ({ cards, fallbackIds }) => {
+            if (!controller.signal.aborted) setLoad({ identity, status: 'ready', cards, fallbackIds });
           },
           () => {
-            if (!controller.signal.aborted) setLoad({ identity, status: 'error', cards: [] });
+            if (!controller.signal.aborted) setLoad({ identity, status: 'error', cards: [], fallbackIds: [] });
           },
         );
     }
     return () => controller.abort();
   }, [assessmentLoader, lessonId, language, identity, attempt]);
 
-  const current = load.identity === identity ? load : { status: 'loading' as const, cards: [] };
+  const current = load.identity === identity ? load : { status: 'loading' as const, cards: [], fallbackIds: [] };
   if (current.status === 'loading')
     return <Typography role="status">{messages.learningLayout.preparingLesson}</Typography>;
   if (current.status === 'error')
@@ -95,6 +100,7 @@ export function EngineFlashcardsRenderer({
     <ResolvedFlashcards
       key={identity}
       cards={current.cards}
+      fallbackIds={current.fallbackIds}
       section={section}
       messages={messages}
       sceneRegistry={sceneRegistry}
@@ -104,11 +110,13 @@ export function EngineFlashcardsRenderer({
 
 function ResolvedFlashcards({
   cards,
+  fallbackIds,
   section,
   messages,
   sceneRegistry,
 }: {
   cards: readonly Flashcard_Props[];
+  fallbackIds: readonly string[];
   section: FlashcardsSection_Props;
   messages: UiKitMessages;
   sceneRegistry?: SceneRegistry;
@@ -133,6 +141,7 @@ function ResolvedFlashcards({
       <Typography role="status">
         {index + 1} / {cards.length}
       </Typography>
+      <Box lang={fallbackIds.includes(card.id) ? 'en' : undefined}>
       <Flashcard
         key={card.id}
         messages={messages.flashcard}
@@ -145,6 +154,7 @@ function ResolvedFlashcards({
           if (index < cards.length - 1) select(index + 1);
         }}
       />
+      </Box>
       <Stack direction="row" sx={{ justifyContent: 'space-between' }}>
         <Button disabled={index === 0} onClick={() => select(index - 1)}>
           {messages.learningLayout.actions.previous}
