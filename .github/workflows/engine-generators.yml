@@ -10,6 +10,8 @@ on:
       - 'shared/engine/scripts/validateCourseFlow/**'
       - 'shared/engine/yaml-schemas/**'
       - 'scripts/syncCourseLessonStatus/**'
+      - 'scripts/ci/courseMaterialization/**'
+      - '.github/workflows/course-materialization.yml'
       - 'shared/engine/scripts/sceneScaffolding/**'
       - 'shared/engine/index.ts'
       - 'shared/engine/package.json'
@@ -70,7 +72,8 @@ jobs:
             shared/engine/scripts/courseBuilder/courseBuilder.spec.mjs \
             scripts/syncCourseLessonStatus/synchronizer.spec.mjs \
             scripts/syncCourseLessonStatus/sync-course-lessons.spec.mjs \
-            scripts/syncCourseLessonStatus/workflow.spec.mjs
+            scripts/syncCourseLessonStatus/workflow.spec.mjs \
+            scripts/ci/courseMaterialization/course-materialization.spec.mjs
 
       - name: Verify all checked-in Zod-derived YAML schemas
         run: npm run content:check:yaml-schemas --workspace @svitlo/engine
