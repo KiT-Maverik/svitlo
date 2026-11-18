@@ -84,6 +84,7 @@ test('end-to-end Course status analysis and trusted updates preserve manual desc
         result = [
           {
             number: 710,
+            title: 'Implement Foundations',
             body: claim,
             state: 'open',
             draft: true,
@@ -102,6 +103,7 @@ test('end-to-end Course status analysis and trusted updates preserve manual desc
     assert.equal(report.lessons.length, 1);
     assert.equal(report.lessons[0].source, 'absent');
     assert.equal(report.lessons[0].status, 'Draft · #710');
+    assert.equal(report.lessons[0].prTitle, 'Implement Foundations');
     const reportFile = path.join(root, 'report.json');
     fs.writeFileSync(reportFile, JSON.stringify(report));
     const opts = { repo, pr: 639, sha, report: reportFile };
@@ -110,6 +112,7 @@ test('end-to-end Course status analysis and trusted updates preserve manual desc
     assert.equal(outsideHash(body), outsideHash(parentBody));
     assert.match(body, /Human-approved checklist/);
     assert.match(body, /Draft/);
+    assert.match(body, /Implement Foundations/);
     assert.equal((await update(opts)).updated, false);
     assert.equal(patchCount, 1);
     body = body.replace('Human-approved checklist', 'Revised checklist');
