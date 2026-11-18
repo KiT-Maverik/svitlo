@@ -18,7 +18,7 @@ export const classifyGeographicObjectsByNaturalOrHumanMadeOrigin = defineSkill({
     it: "Classificare gli elementi geografici secondo l'origine naturale o antropica",
     ja: '自然または人工の由来で地理的事物を分類する',
     ka: 'გეოგრაფიული ობიექტების კლასიფიკაცია ბუნებრივი ან ადამიანისეული წარმოშობით',
-    kk: 'Geografiialyq nysandardy tabiği ne adam jasağan şyğu tegıne qarai jıkteu',
+    kk: 'Geografiialyq nysandardy tabiği ne adam jasağan dep jıkteu',
     ko: '자연적 또는 인공적 기원에 따라 지리적 대상 분류하기',
     lt: 'Skirstyti geografinius objektus pagal gamtinę ar žmogaus sukurtą kilmę',
     lv: 'Klasificēt ģeogrāfiskos objektus pēc dabiskas vai cilvēka izcelsmes',

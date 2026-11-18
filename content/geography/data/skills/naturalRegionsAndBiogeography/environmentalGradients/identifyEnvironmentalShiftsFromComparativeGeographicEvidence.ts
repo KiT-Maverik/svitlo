@@ -53,7 +53,7 @@ export const identifyEnvironmentalShiftsFromComparativeGeographicEvidence = defi
       it: 'Usa carte o osservazioni di date diverse per individuare cambiamenti nella distribuzione degli habitat.',
       ja: '異なる時点の地図や観測を使い、生息地の変化を読み取ろう。',
       ka: 'სხვადასხვა თარიღის რუკებით ან დაკვირვებებით შენიშნე ჰაბიტატების ცვლილებები.',
-      kk: 'Ärtürlı kündegı kartalar ne baqylaular arqyly tırşılık ortasynyñ özgerısın baiqa.',
+      kk: 'Ärtürlı uaqyttağy kartalar men baqylaulardy salystyryp, tırşılık ortasynyñ özgerısın baiqa.',
       ko: '서로 다른 시기의 지도나 관측 자료를 사용해 서식지의 변화를 찾아보세요.',
       lt: 'Naudok skirtingų datų žemėlapius ar stebėjimus buveinių pokyčiams pastebėti.',
       lv: 'Izmanto dažādu datumu kartes vai novērojumus, lai pamanītu dzīvotņu izmaiņas.',

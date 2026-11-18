@@ -53,7 +53,7 @@ export const compareLocationsAgainstStatedGeographicCriteria = defineSkill({
       it: 'Confronta possibili luoghi in base a esigenze geografiche chiaramente definite.',
       ja: '明確に定めた地理的な条件に照らして候補地を比べよう。',
       ka: 'შეადარე შესაძლო ადგილები მკაფიოდ განსაზღვრული გეოგრაფიული საჭიროებების მიხედვით.',
-      kk: 'Mümkın oryndardy naqty anyqtalğan geografiialyq talaptar boiynşa salystyr.',
+      kk: 'Yqtimal oryndardy naqty geografiialyq talaptarğa säikestıgı boiynşa salystyr.',
       ko: '분명하게 정한 지리적 요구에 따라 후보지를 비교해 보세요.',
       lt: 'Palygink galimas vietas pagal aiškiai nustatytus geografinius poreikius.',
       lv: 'Salīdzini iespējamās vietas pēc skaidri definētām ģeogrāfiskām vajadzībām.',

@@ -53,7 +53,7 @@ export const explainReplenishmentAndDepletionOfNaturalResources = defineSkill({
       it: 'Distingui le risorse che possono rigenerarsi da quelle che si esauriscono più rapidamente di quanto si formino.',
       ja: '補充できる資源と、できる速さより早く使い尽くされる資源を区別しよう。',
       ka: 'განასხვავე განახლებადი რესურსები იმ რესურსებისგან, რომლებიც წარმოქმნაზე სწრაფად იწურება.',
-      kk: 'Qaita tolyğatyn resurstardy paida boluynan jyldamyraq sarqylatyn resurstardan ajyrat.',
+      kk: 'Qaita qalpyna keletın resurstardy paida boluynan jyldamyraq sarqylatyn resurstardan ajyrat.',
       ko: '다시 채워질 수 있는 자원과 형성 속도보다 빨리 고갈되는 자원을 구별해 보세요.',
       lt: 'Atskirk išteklius, kurie gali atsinaujinti, nuo tų, kurie senka greičiau, nei susidaro.',
       lv: 'Atšķir resursus, kas var atjaunoties, no tiem, kas izsīkst ātrāk nekā veidojas.',

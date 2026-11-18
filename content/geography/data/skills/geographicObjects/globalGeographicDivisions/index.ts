@@ -72,7 +72,7 @@ export const globalGeographicDivisions = defineSkillGroup({
       it: 'Esplora continenti, parti del mondo, oceani ed emisferi secondo convenzioni esplicite.',
       ja: '明示された区分方法で大陸、世界の地域、海洋、半球を調べよう。',
       ka: 'გამოიკვლიე კონტინენტები, მსოფლიოს რეგიონები, ოკეანეები და ნახევარსფეროები განსაზღვრული წესებით.',
-      kk: 'Qūrlyqtardy, älem aimaqtaryn, mūhittar men jartyşarlardy naqty kelısımderge sai zertte.',
+      kk: 'Qūrlyqtardy, älem aimaqtaryn, mūhittar men jartyşarlardy körsetılgen jıkteu erejelerıne sai zertte.',
       ko: '명확한 기준에 따라 대륙, 세계 지역, 대양, 반구를 알아보세요.',
       lt: 'Tyrinėk žemynus, pasaulio regionus, vandenynus ir pusrutulius pagal aiškias konvencijas.',
       lv: 'Izpēti kontinentus, pasaules reģionus, okeānus un puslodes pēc skaidriem nosacījumiem.',

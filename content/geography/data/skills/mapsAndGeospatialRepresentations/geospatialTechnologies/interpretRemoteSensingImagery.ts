@@ -53,7 +53,7 @@ export const interpretRemoteSensingImagery = defineSkill({
       it: 'Interpreta immagini aeree o satellitari per studiare elementi geografici e cambiamenti.',
       ja: '航空写真や衛星画像から地理的な特徴と変化を調べよう。',
       ka: 'განმარტე საჰაერო ან სატელიტური გამოსახულებები გეოგრაფიული ობიექტებისა და ცვლილებების შესასწავლად.',
-      kk: 'Geografiialyq nysandar men özgerısterdı zertteu üşın äue ne sputniktık suretterdı tüsındır.',
+      kk: 'Geografiialyq nysandar men özgerısterdı zertteu üşın äueden nemese jerserıkten tüsırılgen suretterdı tüsındır.',
       ko: '항공·위성 영상을 해석해 지리적 특징과 변화를 조사해 보세요.',
       lt: 'Aiškink aeronuotraukas ar palydovinius vaizdus, kad tyrinėtum geografinius objektus ir pokyčius.',
       lv: 'Interpretē aerofoto vai satelītattēlus, lai pētītu ģeogrāfiskus objektus un pārmaiņas.',

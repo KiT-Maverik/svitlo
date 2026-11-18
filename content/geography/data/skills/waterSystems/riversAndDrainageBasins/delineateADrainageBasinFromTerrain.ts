@@ -53,7 +53,7 @@ export const delineateADrainageBasinFromTerrain = defineSkill({
       it: 'Individua il territorio le cui acque defluiscono verso una determinata sezione di un fiume.',
       ja: 'ある河川の出口へ水が流れ集まる土地を特定しよう。',
       ka: 'იპოვე ტერიტორია, საიდანაც წყალი კონკრეტულ მდინარის გამოსასვლელს მიემართება.',
-      kk: 'Suy belgılı özen şyğuyna ağatyn jer aumağyn anyqta.',
+      kk: 'Özennıñ belgılı bır nüktesıne suy ağatyn jer aumağyn anyqta.',
       ko: '특정 하천 출구로 물이 흘러가는 땅을 찾아보세요.',
       lt: 'Nustatyk teritoriją, kurios vanduo nuteka į konkretų upės ištekėjimą.',
       lv: 'Atrodi teritoriju, no kuras ūdens aiztek uz noteiktu upes izplūdes punktu.',

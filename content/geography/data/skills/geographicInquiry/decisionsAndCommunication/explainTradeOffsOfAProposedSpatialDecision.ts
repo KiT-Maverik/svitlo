@@ -18,7 +18,7 @@ export const explainTradeOffsOfAProposedSpatialDecision = defineSkill({
     it: 'Spiegare i compromessi di una decisione relativa al territorio',
     ja: '提案された空間的な判断の利点と欠点を説明する',
     ka: 'შემოთავაზებული სივრცითი გადაწყვეტილების დადებითი და უარყოფითი მხარეების ახსნა',
-    kk: 'Ūsynylğan keñıstıktık şeşımnıñ ymyralaryn tüsındıru',
+    kk: 'Ūsynylğan keñıstıktık şeşımnıñ paidasy men şyğynyn tüsındıru',
     ko: '제안된 공간적 결정의 득실 설명하기',
     lt: 'Paaiškinti siūlomo erdvinio sprendimo kompromisus',
     lv: 'Izskaidrot ierosināta telpiska lēmuma kompromisus',

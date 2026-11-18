@@ -53,7 +53,7 @@ export const explainGeographicImpactsOfClimateChange = defineSkill({
       it: 'Esplora come il cambiamento climatico influisce in modi diversi sui luoghi del mondo.',
       ja: '気候変動が世界の各地に異なる影響を与える理由を探ろう。',
       ka: 'გამოიკვლიე, როგორ განსხვავებულად მოქმედებს კლიმატის ცვლილება მსოფლიოს ადგილებზე.',
-      kk: 'Klimat özgerısı düniejüzındegı jerlerge ärqalai qalai äser etetının zertte.',
+      kk: 'Klimat özgerısı düniejüzındegı ärtürlı jerge qalai äser etetının zertte.',
       ko: '기후 변화가 세계의 여러 장소에 서로 다르게 영향을 주는 이유를 알아보세요.',
       lt: 'Tyrinėk, kaip klimato kaita skirtingai veikia vietoves visame pasaulyje.',
       lv: 'Izpēti, kā klimata pārmaiņas dažādi ietekmē vietas pasaulē.',

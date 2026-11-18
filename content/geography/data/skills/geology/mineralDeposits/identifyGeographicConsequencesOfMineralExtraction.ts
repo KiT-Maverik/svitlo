@@ -18,7 +18,7 @@ export const identifyGeographicConsequencesOfMineralExtraction = defineSkill({
     it: "Individuare le conseguenze geografiche dell'estrazione mineraria",
     ja: '鉱物採掘が地域に及ぼす影響を見分ける',
     ka: 'მინერალების მოპოვების გეოგრაფიული შედეგების ამოცნობა',
-    kk: 'Mineral öndırudıñ geografiialyq saldaryn anyqtau',
+    kk: 'Paidaly qazbalardy öndırudıñ geografiialyq saldaryn anyqtau',
     ko: '광물 채굴의 지리적 영향 알아보기',
     lt: 'Atpažinti geografines naudingųjų iškasenų gavybos pasekmes',
     lv: 'Noteikt minerālu ieguves ģeogrāfiskās sekas',
