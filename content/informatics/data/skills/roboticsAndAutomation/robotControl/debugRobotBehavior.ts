@@ -53,7 +53,7 @@ export const debugRobotBehavior = defineSkill({
       it: 'Determina se un comportamento inatteso del robot dipende da sensori, logica o azioni.',
       ja: '予想外の動作がセンサー、判断の仕組み、実行部分のどこに原因があるか調べよう。',
       ka: 'გაარკვიე, მოულოდნელი მოქმედება სენსორით, მართვის ლოგიკით თუ ამძრავით არის გამოწვეული.',
-      kk: 'Kütpegen äreket dattşikten, basqaru logikasynan nemese oryndaudan tuyndağanyn anyqta.',
+      kk: 'Kütpegen äreket sezgışten, basqaru logikasynan nemese oryndaudan tuyndağanyn anyqta.',
       ko: '예상치 못한 동작이 센서, 제어 논리, 실제 작동 중 어디에서 비롯됐는지 찾아보세요.',
       lt: 'Nustatyk, ar netikėtą elgesį lemia jutiklis, valdymo logika ar vykdymas.',
       lv: 'Nosaki, vai negaidītu uzvedību izraisa sensors, vadības loģika vai darbība.',

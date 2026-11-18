@@ -53,7 +53,7 @@ export const implementRobotObstacleResponse = defineSkill({
       it: 'Fai fermare, girare o aggirare un ostacolo a un robot quando un sensore lo rileva.',
       ja: 'センサーが障害物を見つけたら、ロボットが止まる、曲がる、避けるようにしよう。',
       ka: 'გააჩერე, მოაბრუნე ან გადაატარე რობოტი დაბრკოლებას, როცა სენსორი მას აღმოაჩენს.',
-      kk: 'Dattşik kedergını anyqtasa, robotty toqtat, būr nemese ainalyp ötkız.',
+      kk: 'Sezgış kedergını anyqtasa, robotty toqtat, būr nemese ainalyp ötkız.',
       ko: '센서가 장애물을 감지하면 로봇이 멈추거나 방향을 바꾸거나 피하도록 해 보세요.',
       lt: 'Padaryk, kad robotas sustotų, pasuktų ar aplenktų jutiklio aptiktą kliūtį.',
       lv: 'Liec robotam apstāties, pagriezties vai apbraukt šķērsli, kad sensors to konstatē.',

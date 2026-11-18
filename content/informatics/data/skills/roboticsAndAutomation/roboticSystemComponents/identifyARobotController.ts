@@ -53,7 +53,7 @@ export const identifyARobotController = defineSkill({
       it: 'Individua il controllore che trasforma i dati dei sensori in azioni programmate.',
       ja: 'センサーの入力をプログラムされた動作に変える装置を見つけよう。',
       ka: 'ამოიცანი კონტროლერი, რომელიც სენსორის მონაცემებს დაპროგრამებულ მოქმედებად გარდაქმნის.',
-      kk: 'Dattşik derekterın bağdarlamalanğan äreketterge ainaldyratyn kontrollerdı tany.',
+      kk: 'Sezgış derekterın bağdarlamalanğan äreketterge ainaldyratyn kontrollerdı tany.',
       ko: '센서 입력을 프로그래밍된 동작으로 바꾸는 제어기를 알아보세요.',
       lt: 'Atpažink valdiklį, paverčiantį jutiklių duomenis užprogramuotais veiksmais.',
       lv: 'Atpazīsti kontrolieri, kas sensoru ievadi pārvērš programmētās darbībās.',

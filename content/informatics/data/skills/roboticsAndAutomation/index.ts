@@ -60,7 +60,7 @@ export const roboticsAndAutomation = defineSkillDomain({
       it: "Esplora come sensori, programmazione e attuatori permettono ai robot di reagire all'ambiente.",
       ja: 'センサー、プログラム、アクチュエーターによってロボットが周囲に反応する仕組みを探ろう。',
       ka: 'გამოიკვლიე, როგორ აძლევს სენსორები, პროგრამირება და ამძრავები რობოტებს გარემოზე რეაგირების საშუალებას.',
-      kk: 'Dattşikter, bağdarlamalau jäne atqaruşy mehanizmder robotqa ortağa qalai jauap beruge kömektesetının zertte.',
+      kk: 'Sezgışter, bağdarlamalau jäne atqaruşy mehanizmder robotqa ortağa qalai jauap beruge kömektesetının zertte.',
       ko: '센서, 프로그래밍, 구동기가 로봇이 주변 환경에 반응하도록 하는 방법을 알아보세요.',
       lt: 'Tyrinėk, kaip jutikliai, programavimas ir vykdikliai leidžia robotams reaguoti į aplinką.',
       lv: 'Izpēti, kā sensori, programmēšana un izpildmehānismi ļauj robotiem reaģēt uz apkārtni.',
