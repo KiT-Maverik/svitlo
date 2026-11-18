@@ -95,14 +95,14 @@ test('editorial -> technical draft preserves UUIDs, order, intent and evidence',
   ])
     assert(drafts.has(name), 'missing ' + name);
   assert(
-    drafts.get('index.ts').includes(
-      'import { foundations } from "#coursesData/' + id.at(-1) + '/' + id + '/content/foundations/index";',
-    ),
+    drafts
+      .get('index.ts')
+      .includes('import { foundations } from "#coursesData/' + id.at(-1) + '/' + id + '/content/foundations/index";'),
   );
   assert(
-    drafts.get('content/foundations/index.ts').includes(
-      'import { first } from "#coursesData/' + id.at(-1) + '/' + id + '/content/foundations/first/index";',
-    ),
+    drafts
+      .get('content/foundations/index.ts')
+      .includes('import { first } from "#coursesData/' + id.at(-1) + '/' + id + '/content/foundations/first/index";'),
   );
   assert(
     drafts
@@ -110,8 +110,12 @@ test('editorial -> technical draft preserves UUIDs, order, intent and evidence',
       .includes('import { orbit } from "#lessonsData/c/' + lessonId + '/index";'),
   );
   assert(drafts.get('index.ts').includes('defineCourse<"spaceCourse", typeof items, CourseLanguages>'));
-  assert(drafts.get('content/foundations/index.ts').includes('defineModule<"foundations", typeof items, CourseLanguages>'));
-  assert(drafts.get('content/foundations/first/index.ts').includes('defineChapter<"first", typeof items, CourseLanguages>'));
+  assert(
+    drafts.get('content/foundations/index.ts').includes('defineModule<"foundations", typeof items, CourseLanguages>'),
+  );
+  assert(
+    drafts.get('content/foundations/first/index.ts').includes('defineChapter<"first", typeof items, CourseLanguages>'),
+  );
   assert.match(drafts.get('index.ts'), /params: \{\s+languages,/);
   assert(!drafts.get('index.ts').includes('UNRESOLVED_LESSON'));
   assert(!drafts.get('index.ts').includes('Generated Course authoring draft'));
@@ -307,9 +311,9 @@ test('approved Course Episode generates a standalone typed Episode module with i
   assert(!episodeCode.includes('Generated Course authoring draft'));
   assert(!episodeCode.includes('defineCourse('));
   assert(
-    artifacts.files.get('index.ts').includes(
-      'import { story } from "#coursesData/' + id.at(-1) + '/' + id + '/content/story/index";',
-    ),
+    artifacts.files
+      .get('index.ts')
+      .includes('import { story } from "#coursesData/' + id.at(-1) + '/' + id + '/content/story/index";'),
   );
   assert(artifacts.files.has('content/story/methodology.md'));
   assert(artifacts.files.has('review.ts'));
@@ -328,11 +332,7 @@ test('future Lesson imports use reserved UUIDs, authored Lesson slugs and one sy
   });
   const lessonUuid = [...artifacts.technical.newLessons.keys()][0];
   const chapter = artifacts.files.get('content/foundations/first/index.ts');
-  assert(
-    chapter.includes(
-      'import { orbit } from "#lessonsData/' + lessonUuid.at(-1) + '/' + lessonUuid + '/index";',
-    ),
-  );
+  assert(chapter.includes('import { orbit } from "#lessonsData/' + lessonUuid.at(-1) + '/' + lessonUuid + '/index";'));
   assert(chapter.includes('  orbit,'));
   assert(!chapter.includes('UNRESOLVED_LESSON'));
   assert(!chapter.includes('TODO: Resolve'));

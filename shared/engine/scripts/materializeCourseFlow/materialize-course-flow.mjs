@@ -376,7 +376,11 @@ function renderEpisodeDraft(episode, language, courseId) {
     'import { ' +
     factoryNames.sort().join(', ') +
     " } from '@svitlo/engine/build';\n\n" +
-    "import { languages, type CourseLanguages } from '#coursesData/" + courseId.at(-1) + '/' + courseId + "/constants';\n\n" +
+    "import { languages, type CourseLanguages } from '#coursesData/" +
+    courseId.at(-1) +
+    '/' +
+    courseId +
+    "/constants';\n\n" +
     'const section = ' +
     sectionExpression +
     ';\n\n' +
@@ -704,8 +708,7 @@ export function parseArgs(argv) {
   }
   if (!PACKAGE.test(opts['--package'] ?? '') || !UUID.test(opts['--course'] ?? '') || !opts.action)
     fail('usage: --package content/<book> --course <uuid> --write|--check|--finalize [--preserve-config]');
-  if (opts.preserveConfig && opts.action !== '--finalize')
-    fail('--preserve-config is only valid with --finalize');
+  if (opts.preserveConfig && opts.action !== '--finalize') fail('--preserve-config is only valid with --finalize');
   return { pkg: opts['--package'], id: opts['--course'], mode: opts.action, preserveConfig: !!opts.preserveConfig };
 }
 export function materialize(argv, root = rootDefault) {
