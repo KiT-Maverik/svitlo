@@ -55,7 +55,13 @@ unsafe imports and inconsistent plans rather than guessing. The existing
 technical `config.yaml` reader is retained only for historical Courses, not
 introduced as an intermediate new Course source.
 
-The parser supports both the original inline Course `content.items`/direct Lesson imports and the newer generic Draft layout in PR #679: statically declared `const items`, Course-family barrel re-exports, canonical `#lessonsData` aliases and `plannedLanguages` versus authored `languages`. It reads each as syntax/data only. Intended locales are used for Lesson coverage; source-only authored Course locales are not incorrectly reported as a plan mismatch. No changes are made to the Engine materializer.
+The parser supports both the original inline Course `content.items`/direct Lesson
+imports and the newer generic Draft layout in PR #679: statically declared
+`const items`, Course-family barrel re-exports, canonical `#lessonsData`
+aliases and `plannedLanguages` versus authored `languages`. It reads each
+as syntax/data only. Intended locales are used for Lesson coverage; source-only
+authored Course locales are not incorrectly reported as a plan mismatch. No
+changes are made to the Engine materializer.
 
 After a Course Stage 5 materialize or finalize commit, the dedicated command
 workflow refreshes the existing managed `Lessons` block automatically:
