@@ -18,7 +18,7 @@ export const explainMultiFactorAuthentication = defineSkill({
     it: "Spiegare l'autenticazione a più fattori",
     ja: '多要素認証を説明する',
     ka: 'მრავალფაქტორიანი ავთენტიფიკაციის ახსნა',
-    kk: 'Köp faktorly autentifikatsiiany tüsındıru',
+    kk: 'Köp faktorly autentifikasiany tüsındıru',
     ko: '다중 인증 설명하기',
     lt: 'Paaiškinti kelių veiksnių autentifikavimą',
     lv: 'Izskaidrot daudzfaktoru autentifikāciju',

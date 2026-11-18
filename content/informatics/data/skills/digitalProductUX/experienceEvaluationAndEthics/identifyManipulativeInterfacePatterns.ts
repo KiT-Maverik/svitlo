@@ -18,7 +18,7 @@ export const identifyManipulativeInterfacePatterns = defineSkill({
     it: 'Individuare schemi manipolativi nelle interfacce',
     ja: '利用者を誘導する画面設計を見抜く',
     ka: 'მანიპულაციური ინტერფეისის შაბლონების ამოცნობა',
-    kk: 'Manipuliatsiialyq interfeis ülgılerın tanu',
+    kk: 'Manipuliasialyq interfeis ülgılerın tanu',
     ko: '조작적인 인터페이스 패턴 식별하기',
     lt: 'Atpažinti manipuliatyvius sąsajos šablonus',
     lv: 'Atpazīt manipulatīvus saskarnes modeļus',

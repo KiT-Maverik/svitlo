@@ -53,7 +53,7 @@ export const explainLinusTorvaldsRoleInLinux = defineSkill({
       it: 'Scopri come è nato il kernel Linux e perché molti collaboratori contribuiscono ai sistemi operativi.',
       ja: 'Linux カーネルの始まりと、多くの貢献者がオペレーティングシステムを作る理由を学ぼう。',
       ka: 'გაიგე, როგორ დაიწყო Linux-ის ბირთვის შექმნა და რატომ მონაწილეობს ოპერაციული სისტემების განვითარებაში მრავალი ადამიანი.',
-      kk: 'Linux iadrosy qalai bastalğanyn jäne köptegen üles qosuşylar operatsiialyq jüielerdı nege bırge damytatynyn bıl.',
+      kk: 'Linux iadrosy qalai bastalğanyn jäne köptegen üles qosuşylar operasialyq jüielerdı nege bırge damytatynyn bıl.',
       ko: '리눅스 커널이 어떻게 시작되었고 많은 기여자가 운영체제를 함께 만드는지 알아보세요.',
       lt: 'Sužinok, kaip prasidėjo Linux branduolio kūrimas ir kodėl daug prisidedančiųjų kuria operacines sistemas.',
       lv: 'Uzzini, kā sākās Linux kodola izstrāde un kāpēc daudzi līdzautori veido operētājsistēmas.',

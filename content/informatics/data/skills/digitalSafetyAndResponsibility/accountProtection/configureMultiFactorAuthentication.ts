@@ -18,7 +18,7 @@ export const configureMultiFactorAuthentication = defineSkill({
     it: "Configurare l'autenticazione a più fattori",
     ja: '多要素認証を設定する',
     ka: 'მრავალფაქტორიანი ავთენტიფიკაციის გამართვა',
-    kk: 'Köp faktorly autentifikatsiiany baptau',
+    kk: 'Köp faktorly autentifikasiany baptau',
     ko: '다중 인증 설정하기',
     lt: 'Nustatyti kelių veiksnių autentifikavimą',
     lv: 'Iestatīt daudzfaktoru autentifikāciju',

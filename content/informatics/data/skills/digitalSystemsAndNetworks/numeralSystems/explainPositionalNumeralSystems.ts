@@ -18,7 +18,7 @@ export const explainPositionalNumeralSystems = defineSkill({
     it: 'Spiegare i sistemi di numerazione posizionali',
     ja: '位取り記数法を説明する',
     ka: 'პოზიციური თვლის სისტემების ახსნა',
-    kk: 'Pozitsiialyq sanau jüielerın tüsındıru',
+    kk: 'Pozisialyq sanau jüielerın tüsındıru',
     ko: '위치 기수법 설명하기',
     lt: 'Paaiškinti pozicines skaičiavimo sistemas',
     lv: 'Izskaidrot pozicionālās skaitīšanas sistēmas',
