@@ -96,9 +96,11 @@ test('editorial -> technical draft preserves UUIDs, order, intent and evidence',
     assert(drafts.has(name), 'missing ' + name);
   assert(drafts.get('index.ts').includes('import { foundations } from "./modules"'));
   assert(drafts.get('modules/foundations.ts').includes('import { first } from "../chapters"'));
-  assert(drafts.get('chapters/first.ts').includes(
-    'import { orbit_Lesson as orbit } from "#lessonsData/c/' + lessonId + '/index";',
-  ));
+  assert(
+    drafts
+      .get('chapters/first.ts')
+      .includes('import { orbit_Lesson as orbit } from "#lessonsData/c/' + lessonId + '/index";'),
+  );
   assert(drafts.get('index.ts').includes('defineCourse<"spaceCourse", typeof items, CourseLanguages>'));
   assert(drafts.get('modules/foundations.ts').includes('defineModule<"foundations", typeof items, CourseLanguages>'));
   assert(drafts.get('chapters/first.ts').includes('defineChapter<"first", typeof items, CourseLanguages>'));
@@ -291,7 +293,6 @@ test('approved Course Episode generates a standalone typed Episode module with i
   assert.equal(ts.createSourceFile('episode.ts', episodeCode, ts.ScriptTarget.Latest, true).parseDiagnostics.length, 0);
 });
 
-
 test('future Lesson imports use reserved UUIDs, authored Lesson slugs and one syntax-valid source module', () => {
   const input = structuredClone(plan);
   delete input.content.items.foundations.content.items.first.content.items.orbit.lessonId;
@@ -303,8 +304,11 @@ test('future Lesson imports use reserved UUIDs, authored Lesson slugs and one sy
   });
   const lessonUuid = [...artifacts.technical.newLessons.keys()][0];
   const chapter = artifacts.files.get('chapters/first.ts');
-  assert(chapter.includes('import { orbit_Lesson as orbit } from "#lessonsData/' +
-    lessonUuid.at(-1) + '/' + lessonUuid + '/index";'));
+  assert(
+    chapter.includes(
+      'import { orbit_Lesson as orbit } from "#lessonsData/' + lessonUuid.at(-1) + '/' + lessonUuid + '/index";',
+    ),
+  );
   assert(chapter.includes('  orbit,'));
   assert(!chapter.includes('UNRESOLVED_LESSON'));
   assert(!chapter.includes('TODO: Resolve'));
@@ -346,7 +350,6 @@ test('Course drafts import only downward through family barrels without circular
     assert.equal(ts.createSourceFile('generated.ts', output, ts.ScriptTarget.Latest, true).parseDiagnostics.length, 0);
   }
 });
-
 
 test('Course imports from the same barrel are merged and grouped by module origin', () => {
   const input = structuredClone(plan);

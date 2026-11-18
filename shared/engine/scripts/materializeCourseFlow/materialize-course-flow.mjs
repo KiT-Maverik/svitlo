@@ -380,7 +380,11 @@ function renderEpisodeDraft(episode, language, courseId) {
   );
   const sectionExpression = section.initializer.getText(ast);
   const factoryNames = [
-    ...new Set([...[expression, sectionExpression].join('\n').matchAll(/\bdefine[A-Z][A-Za-z0-9_]*(?=\s*(?:<[^>]*>)?\()/g)].map(m => m[0])),
+    ...new Set(
+      [...[expression, sectionExpression].join('\n').matchAll(/\bdefine[A-Z][A-Za-z0-9_]*(?=\s*(?:<[^>]*>)?\()/g)].map(
+        m => m[0],
+      ),
+    ),
   ].sort();
   if (!factoryNames.includes('defineEpisode')) factoryNames.push('defineEpisode');
   return (
@@ -399,14 +403,48 @@ function renderEpisodeDraft(episode, language, courseId) {
   );
 }
 const reservedNames = new Set([
-  'items', 'languages', 'CourseLanguages', 'defineCourse', 'defineChapter', 'defineModule',
-  'defineEpisode', 'default', 'class', 'const', 'var', 'let', 'function', 'export',
-  'import', 'new', 'return', 'case', 'this', 'if', 'else', 'for', 'while', 'null',
-  'true', 'false', 'await', 'yield', 'super', 'delete', 'void', 'typeof', 'in',
+  'items',
+  'languages',
+  'CourseLanguages',
+  'defineCourse',
+  'defineChapter',
+  'defineModule',
+  'defineEpisode',
+  'default',
+  'class',
+  'const',
+  'var',
+  'let',
+  'function',
+  'export',
+  'import',
+  'new',
+  'return',
+  'case',
+  'this',
+  'if',
+  'else',
+  'for',
+  'while',
+  'null',
+  'true',
+  'false',
+  'await',
+  'yield',
+  'super',
+  'delete',
+  'void',
+  'typeof',
+  'in',
 ]);
 
 /** Generate a modular, acyclic authoring draft, never a standalone Lesson implementation. */
-export function renderModularCourse(technical, pkg, resolveLesson = () => null, resolveDraftSlug = (_id, slug) => slug) {
+export function renderModularCourse(
+  technical,
+  pkg,
+  resolveLesson = () => null,
+  resolveDraftSlug = (_id, slug) => slug,
+) {
   const { config } = technical;
   const nodes = [{ node: config, file: 'index.ts' }];
   const paths = new Set();
@@ -472,19 +510,18 @@ export function renderModularCourse(technical, pkg, resolveLesson = () => null, 
       }
       return addImport(symbol, specifier, key);
     }
-    const entries = node.content?.order.map(key => {
-      const child = node.content.items[key]?.config;
-      if (!child) fail('Missing ordered child ' + key);
-      const alias = expression(child, key);
-      return '  ' + (key === alias ? key : key + ': ' + alias) + ',';
-    }) ?? [];
+    const entries =
+      node.content?.order.map(key => {
+        const child = node.content.items[key]?.config;
+        if (!child) fail('Missing ordered child ' + key);
+        const alias = expression(child, key);
+        return '  ' + (key === alias ? key : key + ': ' + alias) + ',';
+      }) ?? [];
     const params = node.type === 'course' ? { ...node.params } : null;
     const fields = [];
     for (const [key, value] of Object.entries(node)) {
       if (key === 'content') {
-        fields.push(
-          '  content: {\n    items,\n    order: ' + tsLiteral(value.order, 2) + '\n  }',
-        );
+        fields.push('  content: {\n    items,\n    order: ' + tsLiteral(value.order, 2) + '\n  }');
       } else if (key === 'params' && params) {
         fields.push(
           '  params: {\n    languages,' +
@@ -508,8 +545,9 @@ export function renderModularCourse(technical, pkg, resolveLesson = () => null, 
       [...importGroups]
         .filter(([specifier]) => specifier.startsWith(prefix))
         .sort(([a], [b]) => a.localeCompare(b))
-        .map(([specifier, bindings]) =>
-          'import { ' + bindings.sort().join(', ') + ' } from ' + JSON.stringify(specifier) + ';',
+        .map(
+          ([specifier, bindings]) =>
+            'import { ' + bindings.sort().join(', ') + ' } from ' + JSON.stringify(specifier) + ';',
         );
     const packageImports = [
       'import { define' + node.type[0].toUpperCase() + node.type.slice(1) + " } from '@svitlo/engine/build';",
