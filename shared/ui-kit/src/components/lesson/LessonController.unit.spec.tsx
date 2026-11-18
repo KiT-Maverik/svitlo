@@ -240,12 +240,11 @@ describe('Engine Props Lesson Controller', () => {
     response.section = [recall, response.section[1]];
     const requests: string[][] = [];
     const loader: AssessmentResourceLoader = {
-      loadQuestions: async () => [],
-      loadFlashcards: async ({ lessonId, language, ids }) => {
-        expect(lessonId).toBe(response.id);
+      loadQuestions: async () => ({ items: [], fallbacks: [] }),
+      loadFlashcards: async ({ language, ids }) => {
         expect(language).toBe('en');
         requests.push([...ids]);
-        return [card];
+        return { items: [card], fallbacks: [] };
       },
     };
     showLesson(response, [], loader);
@@ -284,10 +283,10 @@ describe('Engine Props Lesson Controller', () => {
       response.section[1],
     ];
     const loader: AssessmentResourceLoader = {
-      loadQuestions: async () => [],
+      loadQuestions: async () => ({ items: [], fallbacks: [] }),
       loadFlashcards: async ({ accessNeeds }) => {
         expect(accessNeeds).toEqual(['deafness']);
-        return [restricted, alternative]; // Deliberately emulate a host that ignores filtering.
+        return { items: [restricted, alternative], fallbacks: [] }; // Deliberately emulate a host that ignores filtering.
       },
     };
     showLesson(response, [], loader, ['deafness']);
@@ -320,8 +319,8 @@ describe('Engine Props Lesson Controller', () => {
       response,
       [],
       {
-        loadQuestions: async () => [],
-        loadFlashcards: async () => [audio],
+        loadQuestions: async () => ({ items: [], fallbacks: [] }),
+        loadFlashcards: async () => ({ items: [audio], fallbacks: [] }),
       },
       ['deafness'],
     );
@@ -373,13 +372,12 @@ describe('Engine Props Lesson Controller', () => {
     // Published Question Props arrive as JSON, without source-only TypeScript metadata.
     response.section = [quiz, response.section[1]];
     const loader: AssessmentResourceLoader = {
-      loadQuestions: async ({ lessonId, language, ids }) => {
-        expect(lessonId).toBe(response.id);
+      loadQuestions: async ({ language, ids }) => {
         expect(language).toBe('en');
         expect(ids).toEqual([question.id]);
-        return [JSON.parse(JSON.stringify(question))] as never;
+        return { items: [JSON.parse(JSON.stringify(question))] as never, fallbacks: [] };
       },
-      loadFlashcards: async () => [],
+      loadFlashcards: async () => ({ items: [], fallbacks: [] }),
     };
     showLesson(response, [], loader);
     expect(navigationButton('next')).toBeDisabled();
