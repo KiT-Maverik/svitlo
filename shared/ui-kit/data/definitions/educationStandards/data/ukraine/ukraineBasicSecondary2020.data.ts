@@ -1,0 +1,51 @@
+import { defineEducationStandard } from '@svitlo/engine/build';
+
+/** Authored global reference; a Course must separately evidence any claimed alignment. */
+export const ukraineBasicSecondary2020 = defineEducationStandard({
+  id: '70e88fb1-15e6-49fe-a3d2-455ebe274816',
+  slug: 'ukraineBasicSecondary2020',
+  name: 'Державний стандарт базової середньої освіти',
+  params: {
+    countries: ['UA'],
+    grade: { min: 5, max: 9 },
+    nameLanguage: 'uk',
+    sourceUrl: 'https://zakon.rada.gov.ua/laws/show/898-2020-%D0%BF',
+    version: '2020 (Resolution No. 898; as amended)',
+  },
+  description: {
+    methodological:
+      "Adopted by Ukraine's Cabinet of Ministers in Resolution No. 898 of 30 September 2020, this binding basic secondary education standard describes competency-based expected results across educational fields and the framework for grades 5–9. It informs model curricula and school educational programmes, including progression toward upper secondary choices. Amendments in 2026 affect terminology and accessibility as well as other provisions; practitioners must consult the currently effective consolidated act and transitional dates. It is neither a subject-by-subject course catalogue nor proof of compliance by any Svitlo Course.",
+    frontend: {
+      ar: 'يحدد نواتج التعلم للتعليم الثانوي الأساسي في أوكرانيا، من الصف الخامس إلى التاسع.',
+      be: 'Вызначае вынікі навучаньня для 5–9 клясаў ва Ўкраіне.',
+      bn: 'ইউক্রেনের পঞ্চম থেকে নবম শ্রেণির প্রত্যাশিত শিখনফল নির্ধারণ করে।',
+      de: 'Legt Lernziele für die Klassen 5–9 in der Ukraine fest.',
+      en: 'Sets expected learning outcomes for grades 5–9 in Ukraine.',
+      es: 'Define los resultados de aprendizaje de 5.º a 9.º grado en Ucrania.',
+      et: 'Määrab Ukraina 5.–9. klassi õpitulemused.',
+      fr: 'Fixe les acquis attendus de la 5e à la 9e année en Ukraine.',
+      he: 'מגדיר תוצרי למידה צפויים לכיתות ה׳–ט׳ באוקראינה.',
+      hi: 'यूक्रेन में कक्षा 5 से 9 तक के अपेक्षित अधिगम परिणाम तय करता है।',
+      id: 'Menetapkan capaian pembelajaran kelas 5–9 di Ukraina.',
+      it: 'Definisce i risultati di apprendimento attesi per le classi 5–9 in Ucraina.',
+      ja: 'ウクライナの5～9年生に求められる学習成果を定めます。',
+      ka: 'განსაზღვრავს უკრაინის მე-5–მე-9 კლასების სასწავლო შედეგებს.',
+      kk: 'Украинадағы 5–9-сыныптардың күтілетін оқу нәтижелерін айқындайды.',
+      ko: '우크라이나 5~9학년의 기대 학습 성과를 정합니다.',
+      lt: 'Apibrėžia Ukrainos 5–9 klasių laukiamus mokymosi rezultatus.',
+      lv: 'Nosaka sagaidāmos mācību rezultātus Ukrainas 5.–9. klasē.',
+      mr: 'युक्रेनमधील इयत्ता 5 ते 9 साठी अपेक्षित अध्ययन निष्पत्ती ठरवते.',
+      ms: 'Menetapkan hasil pembelajaran bagi tahun 5–9 persekolahan di Ukraine.',
+      pl: 'Określa oczekiwane efekty uczenia się w klasach 5–9 na Ukrainie.',
+      pt: 'Define os resultados de aprendizagem esperados do 5.º ao 9.º ano na Ucrânia.',
+      qm: 'Ukrainada 5–9-ncı sınıflarnıñ beklenilgen ögrenüv neticelerini belgiley.',
+      ta: 'உக்ரைனில் 5 முதல் 9 ஆம் வகுப்பு வரையிலான கற்றல் விளைவுகளை வரையறுக்கிறது.',
+      te: 'ఉక్రెయిన్‌లో 5–9 తరగతుల విద్యార్థుల ఆశించిన అభ్యసన ఫలితాలను నిర్దేశిస్తుంది.',
+      tr: "Ukrayna'da 5–9. sınıfların beklenen öğrenme çıktılarını belirler.",
+      uk: 'Визначає очікувані результати навчання в 5–9 класах України.',
+      ur: 'یوکرین میں جماعت 5 سے 9 تک کے متوقع تعلیمی نتائج طے کرتا ہے۔',
+      vi: 'Quy định kết quả học tập dự kiến cho lớp 5–9 tại Ukraina.',
+      zh: '规定乌克兰5至9年级的预期学习成果。',
+    },
+  },
+});
