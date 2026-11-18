@@ -21,7 +21,7 @@ export const verification = defineSkillGroup({
     it: 'Verifica delle soluzioni',
     ja: '解答の検証',
     ka: 'ამოხსნების შემოწმება',
-    kk: 'Шешімдерді тексеру',
+    kk: 'Şeşımderdı tekseru',
     ko: '풀이 검증',
     lt: 'Sprendimų tikrinimas',
     lv: 'Risinājumu pārbaude',

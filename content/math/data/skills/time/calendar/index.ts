@@ -23,7 +23,7 @@ export const calendar = defineSkillGroup({
     it: 'Calendario',
     ja: 'カレンダー',
     ka: 'კალენდარი',
-    kk: 'Күнтізбе',
+    kk: 'Küntızbe',
     ko: '달력',
     lt: 'Kalendorius',
     lv: 'Kalendārs',

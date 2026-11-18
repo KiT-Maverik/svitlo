@@ -24,7 +24,7 @@ export const clock = defineSkillGroup({
     it: "Leggere l'orologio",
     ja: '時計の読み方',
     ka: 'საათის წაკითხვა',
-    kk: 'Сағатты оқу',
+    kk: 'Sağatty oqu',
     ko: '시계 읽기',
     lt: 'Laikrodžio skaitymas',
     lv: 'Pulksteņa lasīšana',
