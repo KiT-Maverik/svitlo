@@ -119,8 +119,7 @@ export function validateArtifactPath(filename, identity, operation) {
   if (relative !== null) {
     if (['index.ts', 'constants.ts', 'review.ts', 'methodology.md'].includes(relative)) return true;
     // Match the materializer's nested Course > Module > Chapter > Episode source tree.
-    if (/^content\/(?:[a-z][A-Za-z0-9]*\/){1,3}(?:index\.ts|methodology\.md)$/.test(relative))
-      return true;
+    if (/^content\/(?:[a-z][A-Za-z0-9]*\/){1,3}(?:index\.ts|methodology\.md)$/.test(relative)) return true;
   }
   const prefix = identity.pkg + '/data/lessons/';
   const match = filename.startsWith(prefix)
