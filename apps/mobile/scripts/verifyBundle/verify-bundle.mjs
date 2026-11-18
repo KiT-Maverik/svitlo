@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { allLanguageCodes } from '@svitlo/engine/runtime';
 
 const root = resolve(fileURLToPath(new URL('../..', import.meta.url)));
 const dist = join(root, 'dist');
@@ -47,7 +48,10 @@ for (const method of methods) {
   assert.ok(methodsBase[method].id);
 }
 const methodLanguages = readdirSync(methodsRoot).filter(name => name !== 'base.json');
-assert.equal(methodLanguages.length, 29);
+assert.deepEqual(
+  methodLanguages.sort(),
+  allLanguageCodes.map(language => language + '.json').sort(),
+);
 assert.ok(methodLanguages.includes('uk.json'));
 assert.ok(methodLanguages.includes('qm.json'));
 for (const filename of methodLanguages) {
