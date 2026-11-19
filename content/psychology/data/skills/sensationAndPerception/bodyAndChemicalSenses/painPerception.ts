@@ -53,7 +53,7 @@ export const painPerception = defineSkill({
       it: "Esplora perché l'esperienza del dolore dipenda da più di un singolo segnale dei tessuti.",
       ja: '痛みの体験が一つの組織からの信号だけでは決まらない理由を考えよう。',
       ka: 'გამოიკვლიე, რატომ არის ტკივილის გამოცდილება დამოკიდებული ერთზე მეტ ქსოვილოვან სიგნალზე.',
-      kk: 'Auyrsynu täjıribesı bır ğana tın signalynan nege täuelsız ekenın zertte.',
+      kk: 'Auyrsynu täjıribesı tınnen keletın bır signalğa ğana täueldı emes ekenın zertte.',
       ko: '통증 경험이 단 하나의 조직 신호로 결정되지 않는 이유를 알아보세요.',
       lt: 'Išsiaiškink, kodėl skausmo patirtis priklauso nuo daugiau nei vieno audinių signalo.',
       lv: 'Izpēti, kāpēc sāpju pieredze ir atkarīga no vairāk nekā viena audu signāla.',
