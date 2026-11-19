@@ -18,6 +18,14 @@ function fixture(t, { packages = [ws('a', 'shared/a'), ws('b', 'shared/b', ['a']
   t.after(() => rmSync(temporary, { recursive: true, force: true }));
   const root = join(temporary, 'checkout');
   mkdirSync(root);
+  for (const pkg of packages) {
+    const directory = join(root, pkg.path);
+    mkdirSync(directory, { recursive: true });
+    writeFileSync(
+      join(directory, 'package.json'),
+      JSON.stringify({ name: pkg.name, exports: { '.': { default: './dist/index.js' } } }),
+    );
+  }
   const stateFile = join(temporary, 'build-state.json');
   const calls = [];
   let source = 'commit-1';
@@ -161,4 +169,21 @@ test('source revision requires an unchanged tracked worktree', t => {
   assert.equal(cleanSourceRevision(temporary), git(['rev-parse', 'HEAD']));
   writeFileSync(join(temporary, 'source.txt'), 'modified');
   assert.equal(cleanSourceRevision(temporary), null);
+});
+
+test('a nonempty distribution missing its declared public export is rejected', t => {
+  const f = fixture(t, { packages: [ws('a', 'shared/a')] });
+  const runner = createPackageBuildReuse({
+    root: f.root,
+    packages: [ws('a', 'shared/a')],
+    stateFile: f.stateFile,
+    runBuild: () => {
+      const directory = join(f.root, 'shared/a/dist');
+      mkdirSync(directory, { recursive: true });
+      writeFileSync(join(directory, 'other.js'), 'not the public entrypoint');
+    },
+    sourceRevision: () => 'commit-1',
+  });
+  assert.throws(() => runner.ensure('a'), /Missing compiled public export/);
+  assert.deepEqual(readBuildState(f.stateFile, f.root).records, {});
 });
