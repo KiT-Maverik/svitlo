@@ -1,4 +1,5 @@
 name: Lesson 660 one-time Stage 6 Scene checks
+# Final verification includes the generated-loader UUID integration regressions.
 
 on:
   push:
