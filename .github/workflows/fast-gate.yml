@@ -59,6 +59,8 @@ jobs:
           node scripts/migrateEngineEntrypoints/migrate-engine-entrypoints.mjs --check
           node scripts/ci/quietRun/quiet-run.mjs -- node --test scripts/checkEngineRuntimeGraph/check-engine-runtime-graph.spec.mjs
           node scripts/checkEngineRuntimeGraph/check-engine-runtime-graph.mjs
+      - name: Test quiet CI runner output and error handling
+        run: node scripts/ci/quietRun/quiet-run.mjs -- node --test scripts/ci/quietRun/quiet-run.spec.mjs
       - name: Scoped quality checks
         if: github.event_name == 'pull_request'
         env:
