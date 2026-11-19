@@ -53,7 +53,7 @@ export const explainHowErosionTransportsSurfaceMaterial = defineSkill({
       it: 'Descrivi come acqua, vento, ghiaccio e gravità asportano e trasportano materiale sciolto.',
       ja: '水、風、氷、重力が緩い物質を削り取って運ぶ仕組みを説明しよう。',
       ka: 'აღწერე, როგორ შლის და გადააქვს წყალს, ქარს, ყინულსა და მიზიდულობას ფხვიერი მასალა.',
-      kk: 'Su, jel, mūz jäne auyrlyq küşı borpyldaq materialdardy qalai būzyp, tasymaldaitynyn sipatta.',
+      kk: 'Su, jel, mūz jäne auyrlyq küşı borpyldaq materialdardy qalai ornynan qozğap, tasymaldaitynyn sipatta.',
       ko: '물, 바람, 얼음, 중력이 느슨한 물질을 제거하고 운반하는 방식을 설명해 보세요.',
       lt: 'Apibūdink, kaip vanduo, vėjas, ledas ir gravitacija pašalina bei perneša birias medžiagas.',
       lv: 'Apraksti, kā ūdens, vējš, ledus un gravitācija noārda un pārvieto irdenus materiālus.',
