@@ -380,7 +380,7 @@ const it: Locale = {
     eyebrow: 'ESPLORA · CONFRONTA · OSSERVA',
     title: 'Una sola luce. Mezzi diversi.',
     description:
-      'Passa da un mezzo all\'altro e confronta il tempo impiegato dalla luce a percorrere la stessa distanza. Il punto si muove ripetutamente tra la sorgente e lo schermo.',
+      "Passa da un mezzo all'altro e confronta il tempo impiegato dalla luce a percorrere la stessa distanza. Il punto si muove ripetutamente tra la sorgente e lo schermo.",
   },
   selector: {
     label: 'Mezzo di propagazione della luce',
@@ -399,11 +399,11 @@ const it: Locale = {
     speedUnit: 'km/s',
   },
   insight: {
-    quote: '“La velocità della luce dipende dal mezzo: nell\'acqua la luce si propaga più lentamente che nel vuoto.”',
+    quote: "“La velocità della luce dipende dal mezzo: nell'acqua la luce si propaga più lentamente che nel vuoto.”",
   },
   notes: {
     caption:
-      'L\'animazione è molto rallentata, ma conserva i rapporti tra le velocità. Aria e vuoto sembrano quasi identici. Il movimento di ritorno serve solo a ripetere il modello e non rappresenta una riflessione. I valori sono approssimativi per la luce visibile e variano secondo le condizioni.',
+      "L'animazione è molto rallentata, ma conserva i rapporti tra le velocità. Aria e vuoto sembrano quasi identici. Il movimento di ritorno serve solo a ripetere il modello e non rappresenta una riflessione. I valori sono approssimativi per la luce visibile e variano secondo le condizioni.",
     model: 'Modello: v = c / n.',
     sourceLink: "Valori dell'indice di rifrazione da OpenStax",
   },
@@ -478,35 +478,35 @@ const ka: Locale = {
 
 const kk: Locale = {
   header: {
-    eyebrow: 'ЗЕРТТЕ · САЛЫСТЫР · БАҚЫЛА',
-    title: 'Бір жарық. Әртүрлі орта.',
+    eyebrow: 'ZERTTE · SALYSTYR · BAQYLA',
+    title: 'Bır jaryq. Ärtürlı orta.',
     description:
-      'Ортаны ауыстырып, жарықтың бірдей қашықтықты жүріп өту уақытын салыстыр. Нүкте жарық көзі мен экран арасында қайталанып қозғалады.',
+      'Ortany auystyryp, jaryqtyñ bırdei qaşyqtyqty jürıp ötu uaqytyn salystyr. Nükte jaryq közı men ekran arasynda qaitalanyp qozğalady.',
   },
   selector: {
-    label: 'Жарық таралатын орта',
+    label: 'Jaryq taralatyn orta',
     media: {
-      vacuum: 'Вакуум',
-      air: 'Ауа',
-      water: 'Су',
+      vacuum: 'Vakuum',
+      air: 'Aua',
+      water: 'Su',
     },
   },
   simulation: {
-    trackPrefix: 'Жарықтың таралу моделі: ',
-    source: 'Көз',
-    screen: 'Экран',
-    play: 'Ойнату',
-    pause: 'Кідірту',
-    speedUnit: 'км/с',
+    trackPrefix: 'Jaryqtyñ taralu modelı: ',
+    source: 'Jaryq közı',
+    screen: 'Ekran',
+    play: 'Oinatu',
+    pause: 'Kıdırtu',
+    speedUnit: 'km/s',
   },
   insight: {
-    quote: 'Жарықтың жылдамдығы ортаға тәуелді: суда жарық вакуумға қарағанда баяу таралады.',
+    quote: 'Jaryqtyñ jyldamdyğy ortağa täueldı: suda jaryq vakuumğa qarağanda baiau taralady.',
   },
   notes: {
     caption:
-      'Анимация едәуір баяулатылған, бірақ жылдамдықтардың қатынасы сақталған. Ауа мен вакуумның көрінісі дерлік бірдей. Нүктенің қайтуы тек модельді қайталайды, шағылуды көрсетпейді. Көрінетін жарыққа арналған мәндер жуық және жағдайға байланысты өзгереді.',
-    model: 'Модель: v = c / n.',
-    sourceLink: 'Сыну көрсеткішінің мәндері: OpenStax',
+      'Animatsiia edäuır baiaulatylğan, bıraq jyldamdyqtardyñ qatynasy saqtalğan. Aua men vakuumnyñ körınısı derlık bırdei. Nüktenıñ qaituy tek modeldı qaitalaidy, şağyludy körsetpeidı. Körınetın jaryqqa arnalğan mänder juyq jäne jağdaiğa bailanysty özgeredı.',
+    model: 'Model: v = c / n.',
+    sourceLink: 'Synu körsetkışınıñ mänderı: OpenStax',
   },
 };
 

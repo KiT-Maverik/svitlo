@@ -16,7 +16,7 @@ const title = {
   id: 'Kuis',
   ja: 'クイズ',
   ka: 'ტესტი',
-  kk: 'Тест',
+  kk: 'Test',
   ko: '퀴즈',
   lt: 'Testas',
   lv: 'Tests',
@@ -42,7 +42,10 @@ export const quizSection = defineQuizSection({
     skippable: true,
     isBlocker: true,
     timeLimitSeconds: 300,
-    selection: { mode: 'all', questionIds: Object.values(howLightMovesQuestions.selectOneAnswer).map(question => question.id) },
+    selection: {
+      mode: 'all',
+      questionIds: Object.values(howLightMovesQuestions.selectOneAnswer).map(question => question.id),
+    },
     layout: { mode: 'stepper', showProgress: true },
     feedbackMode: 'immediate',
     interaction: {

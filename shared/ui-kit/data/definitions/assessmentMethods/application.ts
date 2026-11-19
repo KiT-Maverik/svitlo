@@ -1,6 +1,6 @@
-import { defineAssessmentMethod } from '@svitlo/engine/build';
+import { defineAssessmentMethod, type AllLanguageCodes } from '@svitlo/engine/build';
 
-export const application = defineAssessmentMethod({
+export const application = defineAssessmentMethod<'application', AllLanguageCodes>({
   id: 'd0fed184-cabc-4ed2-b5b7-f0fb087ed828',
   slug: 'application',
   title: {
@@ -18,7 +18,7 @@ export const application = defineAssessmentMethod({
     id: 'Penerapan',
     ja: '適用',
     ka: 'გამოყენება',
-    kk: 'Қолдану',
+    kk: 'Qoldanu',
     ko: '적용',
     lt: 'Taikymas',
     lv: 'Pielietošana',
@@ -50,7 +50,7 @@ export const application = defineAssessmentMethod({
     id: 'Menggunakan aturan, prosedur, atau algoritme yang sudah dikenal untuk memecahkan masalah. Penilaian mengukur proses berpikir ini, bukan bentuk jawabannya.',
     ja: '既知の規則、手順、アルゴリズムを使って問題を解きます。 評価するのは回答形式ではなく、この認知的な働きです。',
     ka: 'ცნობილი წესის, პროცედურის ან ალგორითმის გამოყენება ამოცანის ამოსახსნელად. ფასდება ეს სააზროვნო მოქმედება და არა პასუხის ფორმატი.',
-    kk: 'Есепті шешу үшін белгілі ережені, тәсілді немесе алгоритмді пайдалану. Жауаптың пішімі емес, осы ойлау әрекеті бағаланады.',
+    kk: 'Eseptı şeşu üşın belgılı erejenı, täsıldı nemese algoritmdı paidalanu. Jauaptyñ pışımı emes, osy oilau äreketı bağalanady.',
     ko: '알고 있는 규칙, 절차 또는 알고리즘으로 문제를 해결합니다. 평가는 답변 형식이 아니라 이러한 인지 활동을 측정합니다.',
     lt: 'Pritaikyti žinomą taisyklę, procedūrą ar algoritmą uždaviniui išspręsti. Vertinamas šis mąstymo veiksmas, o ne atsakymo pateikimo forma.',
     lv: 'Izmantot zināmu noteikumu, paņēmienu vai algoritmu uzdevuma atrisināšanai. Tiek vērtēta šī domāšanas darbība, nevis atbildes forma.',

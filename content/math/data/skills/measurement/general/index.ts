@@ -22,7 +22,7 @@ export const general = defineSkillGroup({
     it: 'Competenze generali di misurazione',
     ja: '測定の基本技能',
     ka: 'გაზომვის ზოგადი უნარები',
-    kk: 'Жалпы өлшеу дағдылары',
+    kk: 'Jalpy ölşeu dağdylary',
     ko: '일반 측정 기능',
     lt: 'Bendrieji matavimo įgūdžiai',
     lv: 'Vispārīgās mērīšanas prasmes',

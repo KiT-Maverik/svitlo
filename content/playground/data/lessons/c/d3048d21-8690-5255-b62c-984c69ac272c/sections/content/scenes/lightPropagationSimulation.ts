@@ -333,25 +333,25 @@ const ka: Locale = {
 
 const kk: Locale = {
   scene: {
-    title: 'Жарықтың жолын бақыла',
-    description: 'Көзден экранға дейін түзу сызық бойымен.',
-    accessibleName: 'Жарықтың көзден экранға таралу анимациясы',
+    title: 'Jaryqtyñ jolyn baqyla',
+    description: 'Jaryq közınen ekranğa deiın tüzu syzyq boiymen.',
+    accessibleName: 'Jaryq közınen ekranğa taralu animatsiiasy',
   },
   track: {
     accessibleDescription:
-      'Сары белгі сол жақтағы жарық көзінен оң жақтағы экранға дейін түзу сызық бойымен қозғалады.',
-    source: 'Жарық көзі',
-    screen: 'Экран',
+      'Sary belgı sol jaqtağy jaryq közınen oñ jaqtağy ekranğa deiın tüzu syzyq boiymen qozğalady.',
+    source: 'Jaryq közı',
+    screen: 'Ekran',
   },
   controls: {
-    play: 'Ойнату',
-    pause: 'Кідірту',
-    speed: 'Жылдамдық',
-    speedAccessibleName: 'Анимация жылдамдығы',
+    play: 'Oinatu',
+    pause: 'Kıdırtu',
+    speed: 'Jyldamdyq',
+    speedAccessibleName: 'Animatsiia jyldamdyğy',
     speedUnit: '×',
   },
   hints: {
-    scale: 'Қарапайым модель: жарықтың нақты жылдамдығы масштабпен көрсетілмеген.',
+    scale: 'Qarapaiym model: jaryqtyñ naqty jyldamdyğy masştabpen körsetılmegen.',
   },
 };
 

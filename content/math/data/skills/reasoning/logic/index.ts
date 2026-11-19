@@ -20,7 +20,7 @@ export const logic = defineSkillGroup({
     it: 'Ragionamento logico',
     ja: '論理的推論',
     ka: 'ლოგიკური მსჯელობა',
-    kk: 'Логикалық пайымдау',
+    kk: 'Logikalyq paiymdau',
     ko: '논리적 추론',
     lt: 'Loginis samprotavimas',
     lv: 'Loģiskā spriešana',
