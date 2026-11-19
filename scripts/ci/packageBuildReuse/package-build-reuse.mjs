@@ -48,6 +48,33 @@ export function cleanSourceRevision(root) {
   return head.stdout.trim() || null;
 }
 
+/** A nonempty dist is insufficient if a declared public entrypoint was never emitted. */
+export function assertCompiledExports(root, workspacePath) {
+  const directory = join(root, workspacePath);
+  const manifest = JSON.parse(readFileSync(join(directory, 'package.json'), 'utf8'));
+  const paths = [];
+  function collect(value) {
+    if (typeof value === 'string') {
+      if (value.startsWith('./dist/') && !value.includes('*')) paths.push(value);
+    } else if (value && typeof value === 'object') {
+      for (const child of Object.values(value)) collect(child);
+    }
+  }
+  collect(manifest.exports);
+  collect(manifest.main);
+  collect(manifest.types);
+  collect(manifest.bin);
+  for (const exported of paths) {
+    const absolute = resolve(directory, exported);
+    if (!absolute.startsWith(join(directory, 'dist') + '/')) {
+      throw new Error('Invalid public dist export: ' + workspacePath + '/' + exported);
+    }
+    if (!existsSync(absolute) || !statSync(absolute).isFile()) {
+      throw new Error('Missing compiled public export: ' + workspacePath + '/' + exported);
+    }
+  }
+}
+
 /** Complete content fingerprints detect deleted, truncated and modified artifacts. */
 export function snapshotDist(root, workspacePath) {
   const base = join(root, workspacePath, 'dist');
@@ -86,6 +113,7 @@ export function snapshotDist(root, workspacePath) {
   }
   walk(base);
   if (!count) throw new Error('Empty compiled dist for ' + workspacePath);
+  assertCompiledExports(root, workspacePath);
   return { count, digest: digest.digest('hex') };
 }
 
@@ -175,6 +203,8 @@ export function createPackageBuildReuse({ root, packages, stateFile, runBuild, s
       console.log('BUILD ' + name + ' / package:build (verified)');
       return 'built';
     } catch (error) {
+      // Never permit a previously stamped success to survive a failed rebuild.
+      delete state.records[name];
       state.stats.failed++;
       saveBuildState(stateFile, state);
       throw error;
