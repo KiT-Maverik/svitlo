@@ -1,0 +1,138 @@
+name: Materialize reviewed Questions or Flashcards from PR command
+
+# issue_comment workflows are loaded from the repository default branch.
+# A comment works only after this workflow is merged into main.
+on:
+  issue_comment:
+    types: [created]
+  workflow_dispatch:
+    inputs:
+      pr_number:
+        description: Open same-repository Draft Questions or Flashcards child PR
+        type: number
+        required: true
+      bank:
+        description: Assessment bank to materialize
+        type: choice
+        options: [questions, flashcards]
+        required: true
+
+permissions: {}
+
+concurrency:
+  group: bank-stage5-${{ github.event.issue.number || inputs.pr_number }}
+  cancel-in-progress: false
+
+jobs:
+  resolve:
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event.issue.pull_request &&
+       (github.event.comment.body == '/questions materialize' ||
+        github.event.comment.body == '/flashcards materialize'))
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      pull-requests: read
+    outputs:
+      meta: ${{ steps.authorize.outputs.meta }}
+      pr: ${{ steps.authorize.outputs.pr }}
+      head: ${{ steps.authorize.outputs.head }}
+    steps:
+      - name: Checkout trusted command authorization
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Verify actor, bank identity and reviewed Stage 1-4 checklist
+        id: authorize
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BANK_DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+        run: node scripts/ci/bankMaterialization/bank-gate.mjs resolve
+
+  analyze:
+    needs: resolve
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+      pull-requests: read
+    steps:
+      - name: Checkout trusted default-branch builders
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+          path: trusted
+          persist-credentials: false
+      - name: Checkout pinned bank PR as untrusted data only
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.resolve.outputs.head }}
+          path: candidate
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: trusted/package-lock.json
+      - name: Install and compile only trusted Engine code
+        working-directory: trusted
+        run: |
+          npm ci --ignore-scripts --no-audit --no-fund
+          npm run package:build --workspace @svitlo/engine
+      - name: Generate and verify the exact allowed bank source tree
+        env:
+          BANK_META_B64: ${{ needs.resolve.outputs.meta }}
+          BANK_CANDIDATE_ROOT: candidate
+          BANK_REPORT: ${{ runner.temp }}/bank-materialization/report.json
+        run: node trusted/scripts/ci/bankMaterialization/bank-materialization.mjs analyze
+      - name: Upload immutable generated-source evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: bank-stage5-${{ needs.resolve.outputs.pr }}-${{ github.run_id }}
+          path: ${{ runner.temp }}/bank-materialization/report.json
+          if-no-files-found: error
+          retention-days: 7
+
+  publish:
+    needs: [resolve, analyze]
+    if: needs.analyze.result == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+      pull-requests: read
+    steps:
+      - name: Checkout trusted default-branch publisher
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+          path: trusted
+          persist-credentials: false
+      - name: Checkout exact original bank PR commit as data
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.resolve.outputs.head }}
+          path: candidate
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Retrieve pinned read-only analysis
+        uses: actions/download-artifact@v4
+        with:
+          name: bank-stage5-${{ needs.resolve.outputs.pr }}-${{ github.run_id }}
+          path: report
+      - name: Revalidate source SHA, ownership and CAS; publish through Git API
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BANK_DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+          BANK_META_B64: ${{ needs.resolve.outputs.meta }}
+          BANK_CANDIDATE_ROOT: candidate
+          BANK_REPORT: report/report.json
+        run: node trusted/scripts/ci/bankMaterialization/bank-materialization.mjs publish

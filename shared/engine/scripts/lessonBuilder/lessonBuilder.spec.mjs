@@ -5,6 +5,7 @@ import path from 'node:path';
 import { test } from 'node:test';
 import ts from 'typescript';
 import yaml from 'yaml';
+import { scanSource } from '../../../../scripts/ci/checkBlockerTodos/check-blocker-todos.mjs';
 
 import { BuilderDiagnostic, loadFactoryRegistry, runOne, main } from './lessonBuilder.mjs';
 import { renderLessonModules } from './lessonModules.mjs';
@@ -303,7 +304,13 @@ test('omitted media fields create deterministic TODO(asset) placeholders without
     for (const [i, ext] of ['webp', 'mp3', 'mp4', 'vtt'].entries()) {
       assert(files[i].includes('fileName: "00000000-0000-0000-0000-000000000000.' + ext + '"'));
       assert.match(files[i], /TODO\(asset\)/);
+      assert.equal((files[i].match(/TODO \(BLOCKER\):/g) ?? []).length, 1);
+      assert.equal(scanSource('media/index.ts', files[i]).length, 1);
     }
+    assert.equal(
+      scanSource('text/index.ts', fs.readFileSync(f.generated('sections/intro/prompt/index.ts'), 'utf8')).length,
+      0,
+    );
     assert(files[2].includes('posterFileName: "00000000-0000-0000-0000-000000000000.webp"'));
     assert.equal(fs.readFileSync(f.generated('lesson.yaml'), 'utf8'), before);
     assertTypeScriptSyntax(readAll(f.lesson));
@@ -1144,4 +1151,76 @@ test('Lesson root exports reject reserved identifiers rather than producing inva
         /reserved or invalid Lesson export identifier/,
       );
     }
+  }));
+
+test('assessment Sections use the ordinary nested Section path with exactly one real blocker per Section', () =>
+  fixture(f => {
+    const make = (slug, number, type) => ({
+      id: id(number),
+      slug,
+      type,
+      params: {},
+      locale: { title: { uk: 'Перевірка' }, navigationLabel: { uk: 'Почати' } },
+      content: group({ opening: block('opening', number + 20, 'Уважно прочитайте інструкцію.') }),
+    });
+    f.config.section.items.quizOne = make('quizOne', 50, 'quiz');
+    f.config.section.items.cardsOne = make('cardsOne', 51, 'flashcards');
+    f.config.section.items.quizTwo = make('quizTwo', 52, 'quiz');
+    f.config.section.items.cardsTwo = make('cardsTwo', 53, 'flashcards');
+    f.config.section.order = ['cardsOne', 'intro', 'quizOne', 'quizTwo', 'cardsTwo'];
+    f.save();
+    const first = runOne(f.lesson, 'generate', f.root);
+    const files = readAll(f.lesson);
+    const ordered = files.get('sections/index.ts');
+    assert.match(ordered, /order: \[\s*"cardsOne",\s*"intro",\s*"quizOne",\s*"quizTwo",\s*"cardsTwo"/);
+    for (const [slug, factory, label] of [
+      ['quizOne', 'defineQuizSection', 'Quiz'],
+      ['quizTwo', 'defineQuizSection', 'Quiz'],
+      ['cardsOne', 'defineFlashcardsSection', 'Flashcards'],
+      ['cardsTwo', 'defineFlashcardsSection', 'Flashcards'],
+    ]) {
+      const file = 'sections/' + slug + '/index.ts';
+      const content = files.get(file);
+      assert.ok(content, file);
+      assert.match(
+        content,
+        new RegExp(
+          '\/\/ TODO \\(BLOCKER\\): This ' +
+            label +
+            ' Section is required by the Methodologist\\.\\n\/\/ Integrate[^\\n]+\\nexport const ' +
+            slug +
+            ' = ' +
+            factory,
+        ),
+      );
+      assert.match(content, /const content = \{/);
+      assert.match(content, /typeof content\.items, LessonLanguages/);
+      assert.equal((content.match(/TODO \(BLOCKER\):/g) ?? []).length, 1, file);
+      assert.ok(files.has('sections/' + slug + '/opening/index.ts'));
+    }
+    assert.doesNotMatch(files.get('sections/intro/index.ts'), /TODO \(BLOCKER\):/);
+    assert.equal(files.get('sections/quizOne/opening/index.ts').includes('Уважно прочитайте'), true);
+    assertTypeScriptSyntax(files);
+    const second = runOne(f.lesson, 'generate', f.root);
+    assert.equal(second.skipped, true, 'never overwrite a finished draft on a repeat run');
+    assert.deepEqual(readAll(f.lesson), files);
+    assert.ok(first.files.includes('sections/quizOne/index.ts'));
+  }));
+
+test('a Lesson without an assessment Section generates no assessment-specific blocker', () =>
+  fixture(f => {
+    runOne(f.lesson, 'generate', f.root);
+    const files = readAll(f.lesson);
+    assert.equal(
+      [...files].filter(
+        ([name, content]) => name.startsWith('sections/') && content.includes('This Quiz Section is required'),
+      ).length,
+      0,
+    );
+    assert.equal(
+      [...files].filter(
+        ([name, content]) => name.startsWith('sections/') && content.includes('This Flashcards Section is required'),
+      ).length,
+      0,
+    );
   }));

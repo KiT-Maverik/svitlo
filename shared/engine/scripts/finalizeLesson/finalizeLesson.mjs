@@ -18,6 +18,7 @@ import Ajv2020 from 'ajv/dist/2020.js';
 import yaml from 'yaml';
 import { runOne, repoRoot } from '../lessonBuilder/lessonBuilder.mjs';
 import { sourceAuthoringCopy } from '../yamlScaffolding/yamlScaffolding.mjs';
+import { verifyAssessmentSectionPlan } from './assessmentSectionPlan.mjs';
 
 const uuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/;
 const record = value => value !== null && typeof value === 'object' && !Array.isArray(value);
@@ -80,12 +81,23 @@ function parseSource(filename) {
   }
 }
 
-function validateSchema(
-  document,
-  repo,
-  filename = path.join(repo, 'shared/engine/yaml-schemas/lesson.scaffold.schema.json'),
-) {
+function validateSchema(document, repo, { allowBankPending = false } = {}) {
+  const filename = path.join(repo, 'shared/engine/yaml-schemas/lesson.scaffold.schema.json');
   const schema = JSON.parse(fs.readFileSync(filename, 'utf8'));
+  if (allowBankPending) {
+    // Keep the published Config/Zod schema unchanged. Only this read-only draft
+    // preflight may omit bank-dependent fields from assessment Section params.
+    const variants = schema.properties.config.properties.section.properties.items.additionalProperties.oneOf;
+    for (const variant of variants) {
+      const config = variant.properties?.config?.properties;
+      if (!['quiz', 'flashcards'].includes(config?.type?.const)) continue;
+      const params = config.params;
+      params.required = [];
+      for (const key of ['selection', 'layout', 'interaction', 'results']) {
+        if (params.properties?.[key]?.required) params.properties[key].required = [];
+      }
+    }
+  }
   const ajv = new Ajv2020({ allErrors: true, strict: false });
   ajv.addFormat('uuid', {
     type: 'string',
@@ -154,6 +166,51 @@ function verifyNonemptyLocaleFields(value, location = '$') {
   for (const [key, child] of Object.entries(value)) verifyNonemptyLocaleFields(child, location + '.' + key);
 }
 
+/**
+ * Draft validation relaxes only the fields deliberately deferred to the
+ * independently reviewed banks. A connected Section must still be complete.
+ * This is not a bank existence, ownership, locale or publication validator.
+ */
+function hasCompleteAssessmentParams(config) {
+  const params = config.params;
+  const selection = params?.selection;
+  if (config.type === 'flashcards')
+    return Array.isArray(selection?.flashcardIds) && selection.flashcardIds.length > 0;
+  if (config.type !== 'quiz') return true;
+  const interaction = params?.interaction;
+  const results = params?.results;
+  return (
+    Array.isArray(selection?.questionIds) && selection.questionIds.length > 0 &&
+    ['all', 'sample'].includes(selection.mode) &&
+    ['stack', 'stepper'].includes(params?.layout?.mode) &&
+    ['immediate', 'after-completion'].includes(params?.feedbackMode) &&
+    Number.isInteger(interaction?.retries) &&
+    ['showErrors', 'showCorrectAnswers', 'allowExplanations', 'allowDeferring',
+      'allowQuestionNavigation', 'skippable'].every(key => typeof interaction[key] === 'boolean') &&
+    ['immediate', 'after-review', 'hidden'].includes(results?.visibility) &&
+    typeof results?.showScore === 'boolean'
+  );
+}
+
+function verifyAssessmentSelections(document, assessment, allowBankPending) {
+  const pending = new Set(assessment.pending.map(item => item.slug));
+  for (const [slug, section] of Object.entries(document.config.section?.items ?? {})) {
+    const config = section?.config;
+    if (!config || !['quiz', 'flashcards'].includes(config.type)) continue;
+    if (allowBankPending && !pending.has(slug) && !hasCompleteAssessmentParams(config))
+      fail('config.section.items.' + slug + '.config.params',
+        'only explicitly bank-pending Sections may defer required assessment parameters');
+    const field = config.type === 'quiz' ? 'questionIds' : 'flashcardIds';
+    const ids = config.params?.selection?.[field];
+    if (Array.isArray(ids) && ids.some(id => !uuid.test(id)))
+      fail('config.section.items.' + slug + '.config.params.selection.' + field,
+        'real non-placeholder assessment UUIDs are required');
+    if (Array.isArray(ids) && ids.length !== new Set(ids).size)
+      fail('config.section.items.' + slug + '.config.params.selection.' + field,
+        'assessment selection UUIDs must be unique');
+  }
+}
+
 /** All authored production fields survive in a deterministic persistent handoff. */
 export function productionHandoff(document) {
   const nodes = [];
@@ -182,10 +239,10 @@ export function productionHandoff(document) {
 }
 
 /** Read-only, complete validation at the Resource Production boundary only. */
-export function preflightLesson(source, repo = repoRoot) {
+export function preflightLesson(source, repo = repoRoot, { allowBankPending = false, requireAssessmentPlan = false, schemaRepo = repo } = {}) {
   const location = sourceLocation(source, repo);
   const document = parseSource(location.filename);
-  validateSchema(document, repo);
+  validateSchema(document, schemaRepo, { allowBankPending });
   if (document.config.id !== location.lessonId) fail('config.id', 'YAML UUID differs from canonical directory');
   if (typeof document.production?.methodology !== 'string' || !document.production.methodology.trim())
     fail('production.methodology', 'complete Methodology must be authored before Resource Production');
@@ -195,12 +252,25 @@ export function preflightLesson(source, repo = repoRoot) {
   verifyCollections(document);
   verifyEntities(document);
   verifyNonemptyLocaleFields(document);
+  const assessment = verifyAssessmentSectionPlan(document, {
+    requireInventory: requireAssessmentPlan,
+    allowPending: allowBankPending,
+  });
+  verifyAssessmentSelections(document, assessment, allowBankPending);
   if (JSON.stringify(sourceAuthoringCopy(document.config, language)) !== JSON.stringify(document.config))
     fail(
       'config.locale',
       'non-source localized data would be dropped by Lesson Builder; reconcile those translations before finalization',
     );
-  return { ...location, document, handoff: productionHandoff(document) };
+  return { ...location, document, assessment, handoff: productionHandoff(document) };
+}
+
+/** Read-only Stage 6 source-draft preflight. Strict production validation is unchanged. */
+export function preflightLessonDraft(source, repo = repoRoot, { schemaRepo = repo } = {}) {
+  const item = preflightLesson(source, repo, { allowBankPending: true, requireAssessmentPlan: true, schemaRepo });
+  if (!item.assessment.pending.length)
+    fail('production.methodology', 'no pending bank integrations; use strict finalize instead');
+  return item;
 }
 
 /**
@@ -208,9 +278,9 @@ export function preflightLesson(source, repo = repoRoot) {
  * interrupted write; in that case recovery is manual and YAML is retained.
  * Injecting validate/generate is for deterministic failure-path regression tests.
  */
-export function finalizeLesson(
+function transferLesson(
   source,
-  { repo = repoRoot, validate = preflightLesson, generate = runOne, afterGenerate } = {},
+  { repo = repoRoot, validate = preflightLesson, generate = runOne, afterGenerate, retainSource = false } = {},
 ) {
   const original = fs.readFileSync(source);
   const item = validate(source, repo);
@@ -253,22 +323,46 @@ export function finalizeLesson(
   if (fs.readFileSync(handoffFile, 'utf8') !== item.handoff)
     fail('production', 'persistent production handoff verification failed; preserving YAML');
   if (!fs.readFileSync(source).equals(original)) fail('$', 'source changed before final deletion; preserving YAML');
-  fs.unlinkSync(source);
-  return { lessonId: item.lessonId, files: [...generated.files, 'production-handoff.json'], removed: source };
+  if (!retainSource) fs.unlinkSync(source);
+  return {
+    lessonId: item.lessonId,
+    files: [...generated.files, 'production-handoff.json'],
+    removed: retainSource ? null : source,
+    pending: item.assessment?.pending ?? [],
+  };
+}
+
+/** Complete, strict, single-pass finalizer for a source without an existing draft. */
+export function finalizeLesson(source, options = {}) {
+  return transferLesson(source, options);
+}
+
+/** Create-only, recoverable bank-pending draft; never deletes canonical YAML. */
+export function handoffLesson(source, options = {}) {
+  return transferLesson(source, {
+    ...options,
+    validate: options.validate ?? preflightLessonDraft,
+    retainSource: true,
+  });
 }
 
 export function main(args = process.argv.slice(2), repo = repoRoot) {
   const [mode, flag, source] = args;
-  if (!['preflight', 'finalize'].includes(mode) || flag !== '--source' || !source || args.length !== 3)
+  const preserve = args.length === 4 && args[3] === '--preserve-config';
+  if (!['preflight', 'preflight-draft', 'handoff', 'finalize'].includes(mode) || flag !== '--source' || !source || (args.length !== 3 && !preserve) || (preserve && mode !== 'finalize'))
     throw new Error(
-      'Usage: node shared/engine/scripts/finalizeLesson/finalizeLesson.mjs preflight|finalize --source content/<book>/data/lessons/<bucket>/<uuid>/lesson.yaml',
+      'Usage: node shared/engine/scripts/finalizeLesson/finalizeLesson.mjs preflight|preflight-draft|handoff|finalize --source content/<book>/data/lessons/<bucket>/<uuid>/lesson.yaml [--preserve-config (finalize only)]',
     );
   const filename = path.resolve(repo, source);
-  const result = mode === 'preflight' ? preflightLesson(filename, repo) : finalizeLesson(filename, { repo });
+  const result =
+    mode === 'preflight' ? preflightLesson(filename, repo) :
+    mode === 'preflight-draft' ? preflightLessonDraft(filename, repo) :
+    mode === 'handoff' ? handoffLesson(filename, { repo }) : finalizeLesson(filename, { repo, retainSource: preserve });
   console.log(
-    mode === 'preflight'
-      ? 'Lesson ' + result.lessonId + ': complete YAML preflight valid (read-only)'
-      : 'Lesson ' + result.lessonId + ': ' + result.files.length + ' persistent outputs verified; lesson.yaml removed',
+    mode.startsWith('preflight')
+      ? 'Lesson ' + result.lessonId + ': ' + mode + ' valid (read-only)'
+      : 'Lesson ' + result.lessonId + ': ' + result.files.length + ' persistent outputs verified; ' +
+        (result.removed ? 'lesson.yaml removed' : 'lesson.yaml preserved'),
   );
   return result;
 }

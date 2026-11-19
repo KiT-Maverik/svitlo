@@ -92,7 +92,9 @@ Generated tree:
     <lesson-uuid>/questions/<questionType>/<questionSlug>/<blockSlug>/index.ts
 
 Markdown/Code source handling and missing-media draft markers are reused
-from the Lesson renderer. The resulting grouped questions export is
+from the Lesson renderer. Each pending media block inherits one real
+`TODO (BLOCKER):` source comment above its export as well as the field-level
+`TODO(asset)` hints; no separate Question media logic is introduced. The resulting grouped questions export is
 consumable by the existing generateAssessmentResources --kind question
 publisher. **Every Question remains in the independent bank**, including
 unselected members. Publication is separate; it validates the full

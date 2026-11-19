@@ -73,6 +73,12 @@ authored source-locale dictionaries and never invents translations.
 
 **Independent editorial sidecars:** `questions.yaml` and `flashcards.yaml` may be authored directly next to `lesson.yaml` when their separate stages are approved. No `questions/` or `flashcards/` directory is required at YAML creation time. This builder never reads either sidecar, creates bank TS modules, or overwrites existing bank source directories. Embedded `config.questions` / `config.flashcards` cause an explicit error.
 
+## Required assessment Section drafts
+
+The Lesson Builder already dispatches Quiz and Flashcards Sections via its ordinary recursive Section emitter. Every authored assessment Section creates sections/<slug>/index.ts with the real defineQuizSection or defineFlashcardsSection factory, existing TypeScript generics and nested content; its collection order is preserved exactly. It also places **one actual "// TODO (BLOCKER):" comment immediately above the Section export** explaining that the independently reviewed Question/Flashcard integration must be verified. This is intentionally creation-only: a UUID-shaped selection does not prove that the bank was reviewed, integrated, owned and available in the Lesson's effective locales. Only the responsible bank/Section specialist removes that comment after verifying real resources and complete Quiz params. On subsequent generate runs the builder skips all previously authored source, never clobbering verified edits.
+
+A Section not required by the Methodologist is never created by the generator. The Stage 1 inventory and Stage 2 mapping reside in production.methodology and per-Section production.productionNotes, respectively, and are checked by the **separate** Stage 6 finalizer, not this draft-only builder. The existing Blocker TODOs workflow tolerates Draft PRs and blocks unresolved source blockers for Ready-to-main PRs.
+
 ## Generated handoffs
 
 - `index.ts` inside the canonical Lesson UUID directory: one `defineLesson` call, referencing the `section` collection assembled by
@@ -150,6 +156,9 @@ authored source-locale dictionaries and never invents translations.
   media. The Lesson Builder inserts a deterministic, reserved
   `00000000-0000-0000-0000-000000000000` filename (with a type-correct
   extension) and an adjacent `TODO(asset)` into each generated media Config.
+  Each generated media module also gets exactly one real `// TODO (BLOCKER):`
+  immediately above its export, covering any pending asset requirements
+  (including a Video poster). This comment is recognized by existing CI.
   This placeholder is **not** an assigned resource identity. A later media
   specialist replaces it in TypeScript with the real textbook-wide UUID
   filename. Draft Props can warn and preview unresolved media; Production
