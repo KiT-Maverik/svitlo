@@ -3,21 +3,27 @@
   "kind": "pr-scoped-agent-ci-artifacts",
   "sourceCommit": "daa6c4d40eb4c289c6c8d564e3168173af1a3fa6",
   "scope": {
-    "kind": "assessment-methods",
-    "package": null,
+    "kind": "skills",
+    "package": "content/playground",
     "locale": "kk",
     "component": null,
     "lesson": null
   },
-  "packages": [],
+  "packages": [
+    "content/playground"
+  ],
   "locales": [
     "kk"
   ],
   "generated": [
     {
-      "kind": "assessment-method",
+      "kind": "taxonomy",
+      "textbook": "content/playground",
       "locale": "kk",
-      "path": ".agent-ci-artifacts/assessment-methods/kk.md",
+      "path": ".agent-ci-artifacts/taxonomies/playground/kk.md",
+      "domains": 3,
+      "groups": 5,
+      "skills": 9,
       "missing": 0,
       "reviewReady": true
     }
@@ -28,9 +34,9 @@
     "failures": 0,
     "missingTranslations": 0,
     "incompleteDocuments": 0,
-    "taxonomyDocuments": 0,
+    "taxonomyDocuments": 1,
     "lessonDocuments": 0,
-    "assessmentMethodDocuments": 1,
+    "assessmentMethodDocuments": 0,
     "uiKitDocuments": 0,
     "geographyHomeCopyDocuments": 0
   }
