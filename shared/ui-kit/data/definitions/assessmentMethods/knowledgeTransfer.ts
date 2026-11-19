@@ -1,6 +1,6 @@
-import { defineAssessmentMethod } from '@svitlo/engine/build';
+import { defineAssessmentMethod, type AllLanguageCodes } from '@svitlo/engine/build';
 
-export const knowledgeTransfer = defineAssessmentMethod({
+export const knowledgeTransfer = defineAssessmentMethod<'knowledgeTransfer', AllLanguageCodes>({
   id: 'cd6a9007-8f80-4892-aa02-5729b099767a',
   slug: 'knowledgeTransfer',
   title: {
@@ -18,7 +18,7 @@ export const knowledgeTransfer = defineAssessmentMethod({
     id: 'Transfer pengetahuan',
     ja: '知識の転移',
     ka: 'ცოდნის გადატანა',
-    kk: 'Білімді жаңа жағдайға көшіру',
+    kk: 'Bılımdı jaña jağdaiğa köşıru',
     ko: '지식 전이',
     lt: 'Žinių perkėlimas',
     lv: 'Zināšanu pārnese',
@@ -50,7 +50,7 @@ export const knowledgeTransfer = defineAssessmentMethod({
     id: 'Menerapkan pengetahuan yang dipelajari dalam konteks baru atau sangat berbeda. Penilaian mengukur proses berpikir ini, bukan bentuk jawabannya.',
     ja: '学んだ知識を新しい、または大きく異なる場面に応用します。 評価するのは回答形式ではなく、この認知的な働きです。',
     ka: 'ადრე შეძენილი ცოდნის გამოყენება ახალ ან არსებითად განსხვავებულ კონტექსტში. ფასდება ეს სააზროვნო მოქმედება და არა პასუხის ფორმატი.',
-    kk: 'Бұрын игерілген білімді жаңа немесе едәуір өзгеше жағдайда қолдану. Жауаптың пішімі емес, осы ойлау әрекеті бағаланады.',
+    kk: 'Būryn igerılgen bılımdı jaña nemese edäuır özgeşe jağdaida qoldanu. Jauaptyñ pışımı emes, osy oilau äreketı bağalanady.',
     ko: '기존에 습득한 지식을 새롭거나 크게 다른 상황에 적용합니다. 평가는 답변 형식이 아니라 이러한 인지 활동을 측정합니다.',
     lt: 'Pritaikyti anksčiau įgytas žinias naujame arba iš esmės kitokiame kontekste. Vertinamas šis mąstymo veiksmas, o ne atsakymo pateikimo forma.',
     lv: 'Pielietot iepriekš apgūtas zināšanas jaunā vai būtiski atšķirīgā situācijā. Tiek vērtēta šī domāšanas darbība, nevis atbildes forma.',

@@ -355,15 +355,15 @@ const ka: Image_Locale = {
 };
 
 const kk: Image_Locale = {
-  offline: 'Бұл сурет интернетсіз қолжетімсіз.',
-  unavailable: 'Бұл сурет қолжетімсіз.',
-  retry: 'Қайта көру',
+  offline: 'Būl suret internetsız qoljetımsız.',
+  unavailable: 'Būl suret qoljetımsız.',
+  retry: 'Qaitalap köru',
 
   carousel: {
-    fullscreen: 'Толық экран',
-    exitFullscreen: 'Толық экраннан шығу',
-    pause: 'Слайд көрсетілімін кідірту',
-    play: 'Слайд көрсетілімін бастау',
+    fullscreen: 'Tolyq ekran',
+    exitFullscreen: 'Tolyq ekrannan şyğu',
+    pause: 'Slaid körsetılımın kıdırtu',
+    play: 'Slaid körsetılımın bastau',
   },
 };
 
