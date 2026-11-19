@@ -76,7 +76,7 @@ Skills: 4
 
 **Methodological description (English):** Traverse a collection, incrementing a counter for every item that meets the given condition.
 
-**User-friendly description (kk):** Berılgen şartqa sai keletın jinaqtyñ barlyq elementterın sana.
+**User-friendly description (kk):** Jinaqtağy berılgen şartqa sai keletın barlyq elementterdı sana.
 
 ##### Eñ ülken mändı tabu
 
@@ -1240,7 +1240,7 @@ Skills: 5
 
 **Methodological description (English):** Delegate product instantiation to an overridable factory method so clients use a shared contract without knowing the concrete class.
 
-**User-friendly description (kk):** Fabrika ädısı qandai naqty obekt jasaitynyn ışkı klasstar tañdasyn.
+**User-friendly description (kk):** Tuyndy klasstar fabrika ädısı qandai naqty obekt jasaitynyn tañdasyn.
 
 ##### Prototip
 
@@ -1298,7 +1298,7 @@ Skills: 7
 
 **Methodological description (English):** Add behavior through successive wrappers sharing an interface instead of creating a separate subclass for every combination.
 
-**User-friendly description (kk):** Işkı klasstardy köbeitpei, obektını orap jaña äreket qos.
+**User-friendly description (kk):** Tuyndy klasstardy köbeitpei, obektını orap jaña äreket qos.
 
 ##### Fasad
 
