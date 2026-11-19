@@ -27,3 +27,25 @@ without performing a build or modifying authored files.
 `workflow_dispatch` is the explicit full-build entrypoint. Use the workflow
 rather than invoking the planner locally without the `BASE_SHA`, `HEAD_SHA`
 and GitHub event environment variables.
+
+## Opt-in same-SHA sharding benchmark
+
+The normal per-package matrix and the protected `Affected content / build, taxonomy and packaging`
+status remain unchanged. To compare a candidate five-shard layout against the existing
+17-job baseline **on the same commit**, manually run **Content packages build** from
+Actions > Run workflow, select this branch/ref, and enable `benchmark_shards`.
+Manual runs still select **all** eligible textbooks. The normal `Content / content/*`
+jobs and additional `Content benchmark / shard-*` jobs run after the same preparation.
+Each benchmark shard does one `npm ci`, then invokes the unchanged
+`build-changed-content.mjs --package` pipeline separately for every assigned package.
+That includes package build, lint where configured, publisher tests, portability and
+scoped compiled-export validation. Each book receives bounded logs and a distinct
+failure annotation; other books in its shard still run. No dependencies or build
+artifacts cross runner boundaries.
+
+Use the same run's job timelines/logs to compare critical-path time, summed
+runner duration, dependency-install count/duration and log bytes. The benchmark
+costs extra runner minutes on purpose; run it only on demand. The selected-scope
+planner remains unchanged for Draft/develop/agent PRs, including zero selected
+workspaces. Promotion to the sharded matrix requires a measured improvement and
+separate code review; this experiment deliberately cannot weaken protected checks.

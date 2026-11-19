@@ -6,6 +6,12 @@ on:
     # Keep this event even when the formatter makes no source changes.
     types: [opened, synchronize, reopened, ready_for_review]
   workflow_dispatch:
+    inputs:
+      benchmark_shards:
+        description: 'Run an optional five-shard trial beside the original full content matrix'
+        type: boolean
+        required: false
+        default: false
 
 permissions:
   contents: read
@@ -24,6 +30,7 @@ jobs:
       has_builds: ${{ steps.plan.outputs.has_builds }}
       all: ${{ steps.plan.outputs.all }}
       agent_mode: ${{ steps.plan.outputs.agent_mode }}
+      shards: ${{ steps.plan.outputs.shards }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -104,6 +111,40 @@ jobs:
           SVITLO_MEDIA_MODE: ${{ (github.event_name == 'pull_request' && (github.base_ref != 'main' || github.event.pull_request.draft)) && 'draft' || 'production' }}
           SVITLO_CI_LABEL: Build and verify ${{ matrix.path }}
         run: node scripts/ci/quietRun/quiet-run.mjs -- node scripts/ci/buildChangedContent/build-changed-content.mjs --package "$CONTENT_PACKAGE_PATH" "$CONTENT_PACKAGE_KIND"
+
+
+  shard_benchmark:
+    # Opt-in comparison only. The original build and protected verify contexts are unchanged.
+    name: Content benchmark / ${{ matrix.id }}
+    needs: prepare
+    if: github.event_name == 'workflow_dispatch' && inputs.benchmark_shards == true && needs.prepare.outputs.has_builds == 'true'
+    strategy:
+      fail-fast: false
+      max-parallel: 5
+      matrix: ${{ fromJSON(needs.prepare.outputs.shards) }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Install dependencies once per benchmark shard
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --no-audit --no-fund
+      - name: Verify every package in the benchmark shard
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          BASE_REF: ${{ github.base_ref }}
+          HEAD_REF: ${{ github.head_ref }}
+          CONTENT_BUILD_ALL: ${{ needs.prepare.outputs.all }}
+          SVITLO_MEDIA_MODE: production
+          CONTENT_SHARD_PACKAGES: ${{ toJSON(matrix.packages) }}
+        run: node scripts/ci/buildChangedContent/content-shards.mjs
 
   verify:
     # Keep this exact required status context from the Protect main ruleset.

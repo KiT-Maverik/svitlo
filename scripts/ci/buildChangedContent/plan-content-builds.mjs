@@ -8,6 +8,7 @@ import { appendFileSync, readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { changedFiles, contentWorkspaces, resolveAgentScope, selectContentBuilds } from './build-changed-content.mjs';
+import { planContentShards } from './content-shards.mjs';
 
 const repo = resolve(fileURLToPath(new URL('../../..', import.meta.url)));
 
@@ -35,6 +36,7 @@ if (invoked) {
       readFileSync(resolve(repo, 'scripts/ci/buildChangedContent/skills-agent-owners.json'), 'utf8'),
     );
     const matrix = planContentBuilds({ changed, workspaces: contentWorkspaces(), all, baseRef, headRef, owners });
+    const shards = planContentShards(matrix.include);
     const hasBuilds = matrix.include.length > 0;
     const agentMode = matrix.include.some(item => item.kind === 'agent');
     console.log(
@@ -48,6 +50,7 @@ if (invoked) {
         process.env.GITHUB_OUTPUT,
         [
           'matrix=' + JSON.stringify(matrix),
+          'shards=' + JSON.stringify(shards),
           'has_builds=' + String(hasBuilds),
           'all=' + String(all),
           'agent_mode=' + String(agentMode),
