@@ -3,6 +3,7 @@ name: ContentBlock Build API
 on:
   pull_request:
     branches: [main, develop]
+    types: [opened, reopened, synchronize, ready_for_review]
     paths:
       - 'shared/engine/configurators/contentBlocks/**'
       - 'shared/engine/configurators/_shared__configurators/**'
@@ -20,6 +21,8 @@ concurrency:
 
 jobs:
   verify:
+    # Full host/browser/generator suites only at review boundary or explicitly on demand.
+    if: github.event_name == 'workflow_dispatch' || !github.event.pull_request.draft
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:

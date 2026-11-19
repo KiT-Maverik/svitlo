@@ -23,7 +23,7 @@ export const duration = defineSkillGroup({
     it: 'Durata',
     ja: '時間の長さ',
     ka: 'ხანგრძლივობა',
-    kk: 'Ұзақтық',
+    kk: 'Ūzaqtyq',
     ko: '시간의 길이',
     lt: 'Trukmė',
     lv: 'Ilgums',

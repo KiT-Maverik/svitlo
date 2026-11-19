@@ -24,7 +24,7 @@ export const argumentation = defineSkillGroup({
     it: 'Argomentazione matematica',
     ja: '数学的な根拠づけ',
     ka: 'მათემატიკური არგუმენტაცია',
-    kk: 'Математикалық дәлелдеу',
+    kk: 'Matematikalyq däleldeu',
     ko: '수학적 논증',
     lt: 'Matematinis argumentavimas',
     lv: 'Matemātiskā argumentācija',

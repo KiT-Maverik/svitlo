@@ -8,8 +8,13 @@ without performing a build or modifying authored files.
 - Pull requests promoting to production `main` **after** leaving Draft and manual workflow
   dispatch build every currently eligible content workspace. This remains true
   on later `synchronize` events while the PR is review-ready.
-- Draft `main` PRs, all `develop` PRs, and PRs targeting integration branches build only touched
-  textbooks, with representative smoke packages for shared textbook tooling.
+- **All Draft PRs** defer content package compilation/publication. The planner
+  emits an empty matrix and the same stable required verification status; it
+  does not install dependencies. Draft authored-blocker reporting is still
+  enforced independently by `Blocker TODOs / clean`.
+- **Ready PRs** targeting `develop` or intermediate integration branches build
+  touched textbooks, with representative smoke packages for shared tooling.
+  Ready `main` promotions build every eligible textbook.
 - The existing `feat/<subject>-skills-agent-N` child branch contract retains
   its assigned-domain TypeScript/structure check instead of a full package build.
 - If nothing is selected, the matrix skips and the stable final required check
@@ -24,6 +29,8 @@ without performing a build or modifying authored files.
   existing Protect main required-status context and fails if preparation or any
   required selected matrix build fails.
 
-`workflow_dispatch` is the explicit full-build entrypoint. Use the workflow
-rather than invoking the planner locally without the `BASE_SHA`, `HEAD_SHA`
-and GitHub event environment variables.
+`workflow_dispatch` is the explicit full-build entrypoint, including for a
+still-Draft PR branch selected manually in the Actions UI or via
+`gh workflow run content-build.yml --ref <branch>`. It bypasses Draft deferral
+and checks all content packages. Use the workflow rather than invoking the
+planner locally without `BASE_SHA`, `HEAD_SHA` and GitHub event variables.
