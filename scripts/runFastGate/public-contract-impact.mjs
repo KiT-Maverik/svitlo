@@ -64,7 +64,11 @@ export function publicModules(pkg, root = repoRoot) {
     const parsed = ts.createSourceFile(file, source, ts.ScriptTarget.Latest, true);
     const publishedShape = surface(source, file);
     for (const statement of parsed.statements) {
-      if (ts.isExportDeclaration(statement) && statement.moduleSpecifier && ts.isStringLiteral(statement.moduleSpecifier)) {
+      if (
+        ts.isExportDeclaration(statement) &&
+        statement.moduleSpecifier &&
+        ts.isStringLiteral(statement.moduleSpecifier)
+      ) {
         const next = resolveModule(file, statement.moduleSpecifier.text, packageRoot);
         if (next && !visited.has(next)) stack.push(next);
       }

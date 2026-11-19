@@ -111,10 +111,7 @@ test('local named exports do not crash public module traversal', () => {
     );
     writeFileSync(join(dir, 'remote.ts'), 'export const remoteValue = 2;\n');
     const pkg = { path: 'shared/demo', exports: { '.': { types: './dist/src/index.d.ts' } } };
-    assert.deepEqual([...publicModules(pkg, root)].sort(), [
-      'shared/demo/src/index.ts',
-      'shared/demo/src/remote.ts',
-    ]);
+    assert.deepEqual([...publicModules(pkg, root)].sort(), ['shared/demo/src/index.ts', 'shared/demo/src/remote.ts']);
   } finally {
     rmSync(root, { recursive: true, force: true });
   }
