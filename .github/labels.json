@@ -245,29 +245,29 @@
     "description": "Migrates architecture, interfaces, or data"
   },
   {
-    "name": "pr: course",
-    "color": "16A34A",
-    "description": "Course creation or editing PR, including course editorial or implementation deliverables"
+    "name": "work: course",
+    "color": "7C3AED",
+    "description": "Create or edit authored Courses, Course plans, or Course-specific educational content"
   },
   {
-    "name": "pr: lesson",
-    "color": "16A34A",
-    "description": "Lesson creation or editing PR, including lesson editorial or implementation deliverables"
+    "name": "work: lesson",
+    "color": "7C3AED",
+    "description": "Create or edit authored Lessons, methodology, or Lesson-specific educational content"
   },
   {
-    "name": "pr: questions",
-    "color": "16A34A",
-    "description": "Lesson question-bank authoring or assessment-question deliverables"
+    "name": "work: questions",
+    "color": "7C3AED",
+    "description": "Create or edit Lesson Question Banks and assessment questions"
   },
   {
-    "name": "pr: flashcards",
-    "color": "16A34A",
-    "description": "Lesson flashcard-bank authoring and revision-card deliverables"
+    "name": "work: flashcards",
+    "color": "7C3AED",
+    "description": "Create or edit Lesson Flashcard Banks and learning flashcards"
   },
   {
-    "name": "pr: media",
-    "color": "16A34A",
-    "description": "Produce static lesson media assets, such as images, audio, or video"
+    "name": "work: media",
+    "color": "7C3AED",
+    "description": "Create or edit static educational media assets for Lessons"
   },
   {
     "name": "issue: needs-triage",
