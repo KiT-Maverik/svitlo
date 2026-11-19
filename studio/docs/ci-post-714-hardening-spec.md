@@ -3,6 +3,7 @@
 **Status:** implementation checklist and evidence ledger for Draft PR #717. Changes should be evaluated against the code and CI results, not assumed complete from this brief. Do not merge or mark Ready without the owner's explicit decision.
 
 **Implemented in this Draft branch:**
+
 - Release source gate fails before npm install for non-develop or fork-origin Ready PRs targeting main, including edited/retargeted PR events. Stable check: `Production Quality / verify`.
 - FastGate and Content Build use merge-base/triple-dot changes and include both sides of moved files.
 - FastGate analyzes exported TS surfaces and the actual workspace dependency graph, following direct/transitive consumers while keeping private implementation edits scoped.
@@ -34,7 +35,7 @@
 ### P0 — Make the production promotion enforceable
 
 - Add a small, deterministic, test-covered gate to reject Ready PRs targeting main when the source branch is not develop. Use a stable, meaningful required status if the gate is made independent; alternatively make the existing mandatory production status fail. Never make security dependent on mutable labels. Do not silently retarget or invalidate historical PRs; enumerate and reconcile existing non-develop → main PRs with owner approval before activating the restriction.
-- For valid Ready develop → main promotions, keep full monorepo typecheck, required package/component/browser suites, *all* textbook builds, source TODO scan, and content/asset publication readiness. No expensive full suite on push to main after an already validated merge.
+- For valid Ready develop → main promotions, keep full monorepo typecheck, required package/component/browser suites, _all_ textbook builds, source TODO scan, and content/asset publication readiness. No expensive full suite on push to main after an already validated merge.
 - Smoke-test a real Ready develop → main promotion with the required context active. Verify both success and deliberate failure block the merge, and that the check is reported for the latest SHA. Do not merge the test promotion prematurely. Record manual ruleset action separately from committed code.
 - Preserve valid Draft semantics; Ready-only production checks must not accidentally report a misleading pass for unfinished Draft work.
 
@@ -67,7 +68,7 @@
 ### P1 — Verify default-branch comment automation and legacy branch ancestry
 
 - Exercise a representative authorized /lesson or /course materialize command, relevant /questions and /flashcards builders, and /agent-artifacts command after default branch moved to develop. Check actor authorization, trusted workflow source, pinned PR SHA, no-clobber/source preservation and final generated commit/status; do not claim success after posting a comment alone.
-- Inspect Course gate logic in scripts/ci/courseMaterialization/course-gate.mjs and course-materialization.mjs, which checks parent base against the default branch. Historical Course PR #653 targets integration-branch; establish whether it now fails, and propose a safe *per-PR owner-approved* reconciliation without broadly weakening the gate or mass-retargeting children.
+- Inspect Course gate logic in scripts/ci/courseMaterialization/course-gate.mjs and course-materialization.mjs, which checks parent base against the default branch. Historical Course PR #653 targets integration-branch; establish whether it now fails, and propose a safe _per-PR owner-approved_ reconciliation without broadly weakening the gate or mass-retargeting children.
 - Confirm automatic labels still correctly distinguish bank-only PRs from Lesson and preserve existing parent roles. Regression-test agent autoformat behavior on Ready transitions after bot pushes.
 
 ### P2 — Documentation, quiet diagnostics and evidence
@@ -92,16 +93,16 @@
 
 ## Trigger and required-status matrix (implementation branch)
 
-| Event/scope | FastGate / verify | Affected content / build, taxonomy and packaging | Blocker TODOs / clean | Production Quality / verify |
-| --- | --- | --- | --- | --- |
-| Draft Course/Lesson/bank child (integration target) | Not emitted | Scoped selection, often zero | Warning-only for authored blockers | Not emitted |
-| Ready Course/Lesson/bank child (integration target) | Not emitted | Scoped selection | Fails on authored blockers; intermediate target protection still needs owner decision | Not emitted |
-| Docs-only PR to develop | Emitted, skips npm install | Emitted, zero-package fast path | Emitted | Not emitted |
-| Exported Engine/UI Kit API PR to develop | Emitted, graph-based downstream typechecks | Emitted, scoped unless content/tooling changes | Emitted | Not emitted |
-| Private Engine implementation PR to develop | Emitted, owner only | Emitted, scoped | Emitted | Not emitted |
-| Single textbook PR to develop | Emitted, changed owner | Emitted, changed textbook | Emitted | Not emitted |
-| Ready same-repo develop → main | Not emitted | All eligible textbook builds and publishers | Full tracked-source scan | Full monorepo, browser and release-source gate |
-| Push to main | Not emitted | Not emitted | Not emitted | Not emitted |
+| Event/scope                                         | FastGate / verify                          | Affected content / build, taxonomy and packaging | Blocker TODOs / clean                                                                 | Production Quality / verify                    |
+| --------------------------------------------------- | ------------------------------------------ | ------------------------------------------------ | ------------------------------------------------------------------------------------- | ---------------------------------------------- |
+| Draft Course/Lesson/bank child (integration target) | Not emitted                                | Scoped selection, often zero                     | Warning-only for authored blockers                                                    | Not emitted                                    |
+| Ready Course/Lesson/bank child (integration target) | Not emitted                                | Scoped selection                                 | Fails on authored blockers; intermediate target protection still needs owner decision | Not emitted                                    |
+| Docs-only PR to develop                             | Emitted, skips npm install                 | Emitted, zero-package fast path                  | Emitted                                                                               | Not emitted                                    |
+| Exported Engine/UI Kit API PR to develop            | Emitted, graph-based downstream typechecks | Emitted, scoped unless content/tooling changes   | Emitted                                                                               | Not emitted                                    |
+| Private Engine implementation PR to develop         | Emitted, owner only                        | Emitted, scoped                                  | Emitted                                                                               | Not emitted                                    |
+| Single textbook PR to develop                       | Emitted, changed owner                     | Emitted, changed textbook                        | Emitted                                                                               | Not emitted                                    |
+| Ready same-repo develop → main                      | Not emitted                                | All eligible textbook builds and publishers      | Full tracked-source scan                                                              | Full monorepo, browser and release-source gate |
+| Push to main                                        | Not emitted                                | Not emitted                                      | Not emitted                                                                           | Not emitted                                    |
 
 Required contexts are enforced by the actual GitHub rulesets, not by these
 descriptions. As of 2026-11-19 `Production Quality / verify` is an active required

@@ -39,14 +39,16 @@ test('merge-base diff excludes base-only files and preserves renamed/deleted PR 
     git('add', '.');
     git('commit', '-m', 'base advances');
     const base = git('rev-parse', 'HEAD');
-    assert.deepEqual(changedFiles(base, head, cwd).sort(), [
-      'feature.ts', 'new-name.ts', 'removed.ts', 'renamed.ts',
-    ]);
+    assert.deepEqual(changedFiles(base, head, cwd).sort(), ['feature.ts', 'new-name.ts', 'removed.ts', 'renamed.ts']);
     assert.ok(git('diff', '--name-only', base, head).includes('only-on-base.ts'));
     git('merge', '--no-ff', 'feature', '-m', 'merge feature');
     const merged = git('rev-parse', 'HEAD');
     assert.deepEqual(changedFiles(common, merged, cwd).sort(), [
-      'feature.ts', 'new-name.ts', 'only-on-base.ts', 'removed.ts', 'renamed.ts',
+      'feature.ts',
+      'new-name.ts',
+      'only-on-base.ts',
+      'removed.ts',
+      'renamed.ts',
     ]);
   } finally {
     rmSync(cwd, { recursive: true, force: true });

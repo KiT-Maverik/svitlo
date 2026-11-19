@@ -41,7 +41,8 @@ test('Engine public signature changes select graph consumers; private changes do
   const changes = ['shared/engine/schemas/languages.schemas.ts'];
   assert.deepEqual([...chooseChecks(changes, packages).affected], ['@svitlo/engine']);
   assert.deepEqual([...chooseChecks(changes, packages, { publicChanges: changes }).affected].sort(), [
-    '@svitlo/engine', '@svitlo/indexdb',
+    '@svitlo/engine',
+    '@svitlo/indexdb',
   ]);
 });
 
@@ -137,20 +138,31 @@ test('transitive public impacts follow declared direct, development and peer dep
   ];
   const file = 'shared/ui-kit/src/widgets/Widget.types.ts';
   assert.deepEqual([...chooseChecks([file], workspaces, { publicChanges: [file] }).affected].sort(), [
-    '@svitlo/adapter-nextjs', '@svitlo/math', '@svitlo/ui-kit', '@svitlo/web',
+    '@svitlo/adapter-nextjs',
+    '@svitlo/math',
+    '@svitlo/ui-kit',
+    '@svitlo/web',
   ]);
   assert.deepEqual([...chooseChecks([file], workspaces).affected], ['@svitlo/ui-kit']);
   assert.deepEqual([...chooseChecks(['shared/ui-kit/package.json'], workspaces).affected].sort(), [
-    '@svitlo/adapter-nextjs', '@svitlo/math', '@svitlo/ui-kit', '@svitlo/web',
+    '@svitlo/adapter-nextjs',
+    '@svitlo/math',
+    '@svitlo/ui-kit',
+    '@svitlo/web',
   ]);
 });
 
 test('workspace graph rejects missing internal dependencies and cycles', () => {
-  assert.throws(() => workspaceDependents([
-    { name: '@svitlo/a', dependencies: { '@svitlo/missing': '0.0.0' } },
-  ]), /Unknown workspace dependency/);
-  assert.throws(() => workspaceDependents([
-    { name: '@svitlo/a', dependencies: { '@svitlo/b': '0.0.0' } },
-    { name: '@svitlo/b', devDependencies: { '@svitlo/a': '0.0.0' } },
-  ]), /Cyclic workspace dependency/);
+  assert.throws(
+    () => workspaceDependents([{ name: '@svitlo/a', dependencies: { '@svitlo/missing': '0.0.0' } }]),
+    /Unknown workspace dependency/,
+  );
+  assert.throws(
+    () =>
+      workspaceDependents([
+        { name: '@svitlo/a', dependencies: { '@svitlo/b': '0.0.0' } },
+        { name: '@svitlo/b', devDependencies: { '@svitlo/a': '0.0.0' } },
+      ]),
+    /Cyclic workspace dependency/,
+  );
 });

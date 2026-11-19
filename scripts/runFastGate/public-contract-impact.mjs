@@ -38,7 +38,10 @@ export function publicModules(pkg, root = repoRoot) {
   for (const location of exportLocations(pkg.exports)) {
     const relative = location.replace(/^\.\//, '');
     if (!relative.startsWith('dist/')) continue;
-    const source = relative.slice('dist/'.length).replace(/\.d\.(?:ts|mts)$/, '').replace(/\.(?:js|mjs)$/, '');
+    const source = relative
+      .slice('dist/'.length)
+      .replace(/\.d\.(?:ts|mts)$/, '')
+      .replace(/\.(?:js|mjs)$/, '');
     for (const name of [source + '.ts', source + '.tsx', source + '.mts']) {
       const file = path.join(packageRoot, name);
       if (fs.existsSync(file)) entrypoints.add(file);
@@ -88,7 +91,13 @@ export function publicModules(pkg, root = repoRoot) {
 
 function surface(source, file) {
   if (source === null) return '';
-  const node = ts.createSourceFile(file, source, ts.ScriptTarget.Latest, true, file.endsWith('.tsx') ? ts.ScriptKind.TSX : ts.ScriptKind.TS);
+  const node = ts.createSourceFile(
+    file,
+    source,
+    ts.ScriptTarget.Latest,
+    true,
+    file.endsWith('.tsx') ? ts.ScriptKind.TSX : ts.ScriptKind.TS,
+  );
   const parts = [];
   for (const statement of node.statements) {
     const exported =
@@ -120,15 +129,19 @@ export function publicSignature(source, filename = 'index.ts') {
 
 function readRevision(sha, filename, root) {
   try {
-    return execFileSync('git', ['show', sha + ':' + filename], { cwd: root, stdio: ['ignore', 'pipe', 'ignore'] })
-      .toString('utf8');
+    return execFileSync('git', ['show', sha + ':' + filename], {
+      cwd: root,
+      stdio: ['ignore', 'pipe', 'ignore'],
+    }).toString('utf8');
   } catch {
     return null;
   }
 }
 
 export function changedPublicContracts(changed, workspaces, base, head, root = repoRoot) {
-  const sharedChanges = changed.filter(file => /^(?:shared\/|content\/|apps\/)/.test(file) && /\.(?:ts|tsx|mts)$/.test(file));
+  const sharedChanges = changed.filter(
+    file => /^(?:shared\/|content\/|apps\/)/.test(file) && /\.(?:ts|tsx|mts)$/.test(file),
+  );
   if (!sharedChanges.length) return [];
   const mergeBase = execFileSync('git', ['merge-base', base, head], { cwd: root, encoding: 'utf8' }).trim();
   const byPath = new Map();
@@ -136,7 +149,9 @@ export function changedPublicContracts(changed, workspaces, base, head, root = r
     if (!sharedChanges.some(file => file.startsWith(pkg.path + '/'))) continue;
     for (const file of publicModules(pkg, root)) byPath.set(file, pkg.name);
   }
-  return sharedChanges.filter(file =>
-    byPath.has(file) && surface(readRevision(mergeBase, file, root), file) !== surface(readRevision(head, file, root), file),
+  return sharedChanges.filter(
+    file =>
+      byPath.has(file) &&
+      surface(readRevision(mergeBase, file, root), file) !== surface(readRevision(head, file, root), file),
   );
 }

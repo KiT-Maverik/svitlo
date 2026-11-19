@@ -122,7 +122,9 @@ export function workspaceDependents(workspaces) {
 export function chooseChecks(changed, workspaces, { publicChanges = [] } = {}) {
   const affected = new Set();
   const packages = new Map(workspaces.map(pkg => [pkg.name, pkg]));
-  const global = changed.some(file => file === 'package.json' || file.startsWith('scripts/checkWorkspaces/check-workspaces'));
+  const global = changed.some(
+    file => file === 'package.json' || file.startsWith('scripts/checkWorkspaces/check-workspaces'),
+  );
   const lockChange = changed.includes('package-lock.json');
   const triggers = new Set();
   for (const file of changed) {
@@ -190,7 +192,12 @@ async function runGate(changed, base, head) {
   const plan = chooseChecks(changed, workspaces, { publicChanges });
   for (const f of plan.jsFiles) exec('node', ['--check', f]);
   for (const f of plan.jsonFiles) json(f);
-  exec('node', ['--test', 'scripts/runFastGate/run-fast-gate.spec.mjs', 'scripts/runFastGate/public-contract-impact.spec.mjs', 'scripts/ci/prDiff/changed-files.spec.mjs']);
+  exec('node', [
+    '--test',
+    'scripts/runFastGate/run-fast-gate.spec.mjs',
+    'scripts/runFastGate/public-contract-impact.spec.mjs',
+    'scripts/ci/prDiff/changed-files.spec.mjs',
+  ]);
   // A migration helper must never reintroduce deleted package imports.
   if (changed.some(file => file.startsWith('scripts/migrateEngineImports/'))) {
     exec('node', ['--test', 'scripts/migrateEngineImports/migrate-engine-imports.spec.mjs']);
