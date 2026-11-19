@@ -9,7 +9,7 @@ import { repoRoot } from '../lessonBuilder/lessonBuilder.mjs';
 import { finalizeLesson, preflightLesson, preflightLessonDraft, handoffLesson, productionHandoff, LessonHandoffError } from './finalizeLesson.mjs';
 import { scanSource } from '../../../../scripts/ci/checkBlockerTodos/check-blocker-todos.mjs';
 
-const id = tail => '00000000-0000-4000-8000-' + tail.padStart(12, '0');
+const id = tail => '00000000-0000-4000-8000-' + String(tail).padStart(12, '0');
 const lessonId = id('12');
 const sectionId = id('13');
 const textId = id('14');
