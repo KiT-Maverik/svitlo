@@ -282,7 +282,7 @@ Skills: 5
 
 **Methodological description (English):** Examine Inland Niger Delta sites, including Djenné-Djeno from about the third century BCE, distinguishing early settlement and crafts from later urban florescence.
 
-**User-friendly description (kk):** Nigerdıñ ışkı atyrauynda erte qalalar qalai damyğanyn zertte.
+**User-friendly description (kk):** Nigerdıñ ışkı atyrauynda alğaşqy qonystar men keiıngı qala ortalyqtary qalai damyğanyn zertte.
 
 ##### Nok mädenietı
 
@@ -684,7 +684,7 @@ Skills: 3
 
 **Methodological description (English):** Examine Cretan palaces and maritime links while acknowledging that Linear A remains undeciphered.
 
-**User-friendly description (kk):** Ejelgı Krittı jäne onyñ jazuy ne turaly aita alatynynyñ şegın zertte.
+**User-friendly description (kk):** Krit aralyndağy sarailar men teñız bailanystaryn zertte jäne Linear A jazuy älı oqylmağanyn esker.
 
 ##### Miken örkenietı
 
@@ -1468,7 +1468,7 @@ Skills: 4
 
 **Methodological description (English):** Distinguish enslavement from other legal and economic conditions of restricted freedom.
 
-**User-friendly description (kk):** Ejelgı qoğamdardağy erkındıkten aiyrudyñ ärtürlı türlerın tany.
+**User-friendly description (kk):** Ejelgı qoğamdarda qūldyq pen erkındıktı şekteudıñ basqa zañdy jäne ekonomıkalyq türlerın ajyrat.
 
 ##### Äleumettık ierarhiialar
 
@@ -1940,7 +1940,7 @@ Skills: 4
 
 **Methodological description (English):** Interpret years and centuries in both eras and correctly calculate intervals without a year zero in conventional dating.
 
-**User-friendly description (kk):** Bızdıñ zamanymyzğa deiıngı jäne keiıngı jyldardy oqyp, olardyñ arasyndağy uaqytty esepte.
+**User-friendly description (kk):** Bızdıñ zamanymyzğa deiıngı jäne bızdıñ zamanymyzdağy jyldardy oqyp, nölınşı jyldyñ joqtyğyn eskerıp, uaqyt aralyğyn esepte.
 
 ##### Tarihi hronologiia
 
@@ -2126,7 +2126,7 @@ Skills: 5
 
 **Methodological description (English):** Explain changing relationships with animal populations and consequences for food, work, and mobility.
 
-**User-friendly description (kk):** Adamdardyñ qolğa üiretılgen januarlardy ösırudı qalai bastağanyn zertte.
+**User-friendly description (kk):** Adamdardyñ jabaiy januarlardy qalai qolğa üiretkenın jäne onyñ azyq, eñbek pen köşı-qonğa äserın zertte.
 
 ##### Alğaşqy toqymaşylyq
 
