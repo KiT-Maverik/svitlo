@@ -22,6 +22,29 @@
 
 FastGate builds prerequisite public exports once in dependency order, then runs independent workspace checks concurrently (default two; `SVITLO_FASTGATE_PARALLELISM=1..8`). Root `npm run code:check:types` checks all workspaces and is not the FastGate default. Content Build plans scope before npm install: `develop` selects impacted textbooks; Ready `main` PRs and manual dispatch build all. With zero selected textbooks, avoid `npm ci` but still return a stable required status. Do not run the full Engine suite again during an unrelated Biology build.
 
+## Production package-build reuse
+
+`Production Quality / verify` keeps its full root typecheck, unit/component tests,
+lint, distributable package builds, host builds, compiled-export checks and Chromium
+E2E. Its sequential job sets `SVITLO_CI_PACKAGE_BUILD_STATE` to a **runner-local**
+temporary JSON path. The root workspace aggregator, Engine/adapter test hooks,
+and Web/Mobile/Desktop textbook preparation use
+`scripts/ci/packageBuildReuse/package-build-reuse.mjs` when requesting a package
+build. Outside the opt-in job the helper runs the canonical npm build normally.
+
+A reuse requires the same clean checked-out Git revision, unchanged dependency
+build generations and an exact SHA-256 match for every file in the package's
+`dist/`. Missing, modified, or invalid output triggers an actual rebuild;
+compilation failure remains fatal. State is never transferred between
+workflows, runners or commits. Keep this job sequential: the JSON state is not
+a concurrent build server and is not a substitute for Content Build's matrix.
+
+The always-run summary records build requests, real builds, verified reuses and
+build durations. Comparable successful Ready `develop → main` runs are still
+required to substantiate wall-clock, total runner-time and log-volume savings;
+a counterfactual request count is not a measured before/after improvement.
+Regression coverage: `node --test scripts/ci/packageBuildReuse/package-build-reuse.spec.mjs`.
+
 ## Quiet logs and agents
 
 - Prefer `node scripts/ci/quietRun/quiet-run.mjs -- <command> [args...]` for installs, tests, builds and typechecks. Success prints status and duration, failure preserves the nonzero exit and bounded useful diagnostics; `SVITLO_CI_VERBOSE=1` enables full output on an intentional rerun.
