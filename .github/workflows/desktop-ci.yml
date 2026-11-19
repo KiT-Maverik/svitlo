@@ -37,8 +37,10 @@ jobs:
         run: node scripts/ci/quietRun/quiet-run.mjs -- npm run test --workspace @svitlo/adapter-electron
       - name: Lint Desktop
         run: node scripts/ci/quietRun/quiet-run.mjs -- npm run code:lint:check --workspace @svitlo/desktop
-      - name: Validate packaged resources
+      - name: Validate Electron source import boundaries
         run: node scripts/ci/quietRun/quiet-run.mjs -- npm run test --workspace @svitlo/desktop
+      - name: Validate packaged resources
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npm run test:integration --workspace @svitlo/desktop
       - name: Run Electron smoke test under virtual display
         run: xvfb-run -a npm run test:smoke --workspace @svitlo/desktop
       - name: Package for Linux

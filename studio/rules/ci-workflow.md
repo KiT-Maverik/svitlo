@@ -12,14 +12,14 @@
 
 ## Validation tiers
 
-| Event                                   | Scope                                                                                                                 |
-| --------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
-| Draft PR (any target)                  | Cheap source/security/artifact guards and authored `TODO (BLOCKER):` warnings; defer npm installs, builds and E2E |
-| Ready PR to `develop`                | Changed/dependent workspace FastGate, targeted generators/host/browser suites, selected content build, blocking TODO checks |
+| Event                                   | Scope                                                                                                                          |
+| --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| Draft PR (any target)                   | Cheap source/security/artifact guards and authored `TODO (BLOCKER):` warnings; defer npm installs, builds and E2E              |
+| Ready PR to `develop`                   | Changed/dependent workspace FastGate, targeted generators/host/browser suites, selected content build, blocking TODO checks    |
 | Ready child PR to an integration parent | Applicable targeted checks and selected content builds, blocking authored TODO checks; FastGate is only required for `develop` |
-| Ready promotion PR to `main`           | All textbook builds, complete package checks, E2E, full tracked-source blocker scan; no redundant FastGate |
-| Manual `workflow_dispatch`             | Explicit full diagnostics/builds on a selected branch, including a Draft branch |
-| Push to `main`                         | Avoid duplicating expensive pre-merge quality checks; run deployment-specific checks only when needed |
+| Ready promotion PR to `main`            | All textbook builds, complete package checks, E2E, full tracked-source blocker scan; no redundant FastGate                     |
+| Manual `workflow_dispatch`              | Explicit full diagnostics/builds on a selected branch, including a Draft branch                                                |
+| Push to `main`                          | Avoid duplicating expensive pre-merge quality checks; run deployment-specific checks only when needed                          |
 
 ### Why Draft is a first-class CI mode
 
@@ -90,7 +90,7 @@ Regression coverage: `node --test scripts/ci/packageBuildReuse/package-build-reu
 - Never wrap a command whose stdout is consumed by another process or by GitHub, including structured JSON, workflow-command output, a shell pipeline, GitHub API/token operations and source generation. Preserve `GITHUB_OUTPUT`, error annotations and all security checks. Do not upload potentially sensitive full successful logs.
 - Agents follow the **latest-head failure-triage procedure** below rather than fetching full successful or multi-job logs. Check status/step summaries first, then bounded relevant diagnostics. See [Quiet CI command execution](../../scripts/ci/quietRun/README.md) for output and safety exceptions.
 - On-demand comment jobs (`/course`, `/lesson`, `/questions`, `/flashcards`, `/agent-artifacts`, `/get lesson`, `/engine-coverage`, `/repo-audit`) must use **trusted default-branch code** and pinned PR source, preserving actor authorization, source SHA and staged artifact verification. Quiet output must not modify this trust boundary.
-- PR Auto-format still runs on Ready transitions and only changed files. Prettier `--log-level warn` removes per-file success chatter while preserving errors and App-authenticated post-format recheck.
+- PR Auto-format **fixes** changed files on Ready PRs targeting `develop`, using an App-authenticated commit to the unprotected PR source branch and a read-only `workflow_dispatch` recheck. It does **not** run on `develop → main` release promotions: no automation may push formatting commits directly to protected `develop` or `main`. Manual formatting checks remain available. Prettier `--log-level warn` removes per-file success chatter while preserving errors.
 
 ## Agent CI failure triage (low-token default)
 

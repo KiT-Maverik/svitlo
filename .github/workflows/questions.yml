@@ -51,6 +51,10 @@ jobs:
       - name: Build all distributable packages
         run: node scripts/ci/quietRun/quiet-run.mjs -- npm run package:build
       - run: node scripts/ci/quietRun/quiet-run.mjs -- npm run app:build
+      # Desktop packaged-resource assertions require the renderer produced by app:build.
+      # Keep them out of the prebuild root npm test stage, without losing coverage.
+      - name: Validate Desktop built resources
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npm run test:integration --workspace @svitlo/desktop
       # All eligible textbook publishers and tarballs are verified by the
       # required Affected content / build, taxonomy and packaging check.
       - name: Verify compiled public package artifacts
