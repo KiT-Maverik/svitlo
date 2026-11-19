@@ -117,6 +117,10 @@ for Image, Audio, Video, Subtitles and their nested Carousel/Quest variants;
 neither `null` nor a speculative UUID filename belongs in YAML. The
 Lesson Builder deliberately inserts a reserved Nil UUID with the required
 media extension and an adjacent `TODO(asset)` in generated TypeScript.
+Each unresolved media Configurator also receives one real `TODO (BLOCKER):`
+source comment above its generated export, including nested Question media
+through the shared renderer. Existing CI enforces the comment on eligible
+non-Draft PRs; strict production asset validation remains independent.
 This is an unresolved dependency, not a real resource identity. A later
 media specialist replaces these placeholders with validated physical
 `UUID.extension` asset names.

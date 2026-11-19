@@ -5,6 +5,7 @@ import path from 'node:path';
 import { test } from 'node:test';
 import ts from 'typescript';
 import yaml from 'yaml';
+import { scanSource } from '../../../../scripts/ci/checkBlockerTodos/check-blocker-todos.mjs';
 
 import { BuilderDiagnostic, loadFactoryRegistry, runOne, main } from './lessonBuilder.mjs';
 import { renderLessonModules } from './lessonModules.mjs';
@@ -303,7 +304,10 @@ test('omitted media fields create deterministic TODO(asset) placeholders without
     for (const [i, ext] of ['webp', 'mp3', 'mp4', 'vtt'].entries()) {
       assert(files[i].includes('fileName: "00000000-0000-0000-0000-000000000000.' + ext + '"'));
       assert.match(files[i], /TODO\(asset\)/);
+      assert.equal((files[i].match(/TODO \(BLOCKER\):/g) ?? []).length, 1);
+      assert.equal(scanSource('media/index.ts', files[i]).length, 1);
     }
+    assert.equal(scanSource('text/index.ts', fs.readFileSync(f.generated('sections/intro/prompt/index.ts'), 'utf8')).length, 0);
     assert(files[2].includes('posterFileName: "00000000-0000-0000-0000-000000000000.webp"'));
     assert.equal(fs.readFileSync(f.generated('lesson.yaml'), 'utf8'), before);
     assertTypeScriptSyntax(readAll(f.lesson));

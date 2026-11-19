@@ -5,6 +5,7 @@ import path from 'node:path';
 import { test } from 'node:test';
 import ts from 'typescript';
 import yaml from 'yaml';
+import { scanSource } from '../../../../scripts/ci/checkBlockerTodos/check-blocker-todos.mjs';
 
 import { inspectQuestions, readQuestionsYaml, renderQuestions, runOne } from './questionsBuilder.mjs';
 import { verifyQuizSelections } from './verifyQuizSelections.mjs';
@@ -84,6 +85,30 @@ test('complete bank is generated, while Quiz selection remains a small UUID hand
     ),
   );
   assert.ok([...files.keys()].some(p => p.endsWith('/prompt/index.ts')));
+});
+
+test('Question media blocks inherit one CI blocker from the shared Lesson renderer', () => {
+  const document = sample();
+  const question = document.questions.selectOneAnswer.firstQuestion.content.question;
+  question.items.audioPrompt = {
+    id: uuid(400),
+    slug: 'audioPrompt',
+    type: 'audio',
+    params: {},
+    locale: { title: { en: 'Listen to the prompt' } },
+  };
+  question.order.push('audioPrompt');
+  const { files } = renderQuestions(document, lessonId);
+  const media = files.get('questions/selectOneAnswer/firstQuestion/audioPrompt/index.ts');
+  assert.ok(media);
+  assert.match(media, /00000000-0000-0000-0000-000000000000\.mp3/);
+  assert.match(media, /TODO\(asset\)/);
+  assert.equal((media.match(/TODO \(BLOCKER\):/g) ?? []).length, 1);
+  assert.equal(scanSource('audioPrompt/index.ts', media).length, 1);
+  assert.deepEqual(
+    ts.createSourceFile('audioPrompt/index.ts', media, ts.ScriptTarget.Latest, true).parseDiagnostics,
+    [],
+  );
 });
 
 test('creation-only behavior skips an already authored bank and check is read-only', () => {
