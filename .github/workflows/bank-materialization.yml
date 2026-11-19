@@ -52,6 +52,7 @@ jobs:
         id: authorize
         env:
           GH_TOKEN: ${{ github.token }}
+          BANK_DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
         run: node scripts/ci/bankMaterialization/bank-gate.mjs resolve
 
   analyze:
@@ -130,6 +131,7 @@ jobs:
       - name: Revalidate source SHA, ownership and CAS; publish through Git API
         env:
           GH_TOKEN: ${{ github.token }}
+          BANK_DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
           BANK_META_B64: ${{ needs.resolve.outputs.meta }}
           BANK_CANDIDATE_ROOT: candidate
           BANK_REPORT: report/report.json
