@@ -1,6 +1,6 @@
 # Standardize low-token CI diagnosis for AI agents
 
-**Status:** documentation implementation specification for a Draft PR, not yet implemented.
+**Status:** documentation workflow implemented on Draft PR #730; owner review/Ready transition remain pending. Canonical agent instructions are in [CI workflow rules](../rules/ci-workflow.md#agent-ci-failure-triage-low-token-default) and [Quiet Run README](../../scripts/ci/quietRun/README.md).
 
 ## Problem
 `scripts/ci/quietRun/quiet-run.mjs` already condenses command output, but direct ingestion of complete GitHub Actions logs still costs context and includes successful runner setup/checkout noise. The canonical Studio policy recommends reading failures first but lacks a precise reusable triage procedure. `studio/docs/ci-post-714-hardening-spec.md` needs its historical #717 state distinguished from current merged status.
@@ -13,7 +13,7 @@
    - For insufficient failure evidence, rerun only the targeted check with `SVITLO_CI_VERBOSE=1`; redact secrets and do not hide CI exit codes/annotations.
    - Distinguish latest-head CI from superseded/cancelled runs and record precisely what was/was not verified.
 2. Clarify `scripts/ci/quietRun/README.md` for exceptions: generated structured stdout, GitHub workflow commands, API/authorization operations and piping must not be quiet-wrapped.
-3. Update the status of `studio/docs/ci-post-714-hardening-spec.md` to mark #717 merged while retaining historical evidence. Check Studio index links for consistency.
+3. Update the status of `studio/docs/ci-post-714-hardening-spec.md` to mark #717 merged while retaining historical evidence. Check Studio index links for consistency. **Completed in this Draft branch.**
 4. No changes to production checks, build coverage or security boundaries. Add small docs-linked policy assertions only if the repository already has an appropriate lightweight testing pattern.
 
 ## Acceptance
