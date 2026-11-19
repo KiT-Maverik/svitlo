@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { test } from 'node:test';
-import { chooseChecks, requiresWebBuild, shouldBuildDependency, workspaceDependents } from './run-fast-gate.mjs';
+import { chooseChecks, partitionBuildMutatingHosts, requiresWebBuild, shouldBuildDependency, workspaceDependents } from './run-fast-gate.mjs';
 
 const packages = [
   { path: 'shared/engine', name: '@svitlo/engine' },
@@ -165,4 +165,16 @@ test('workspace graph rejects missing internal dependencies and cycles', () => {
       ]),
     /Cyclic workspace dependency/,
   );
+});
+
+test('build-mutating host checks run after independent workspace checks', () => {
+  const targets = ['@svitlo/engine', '@svitlo/ui-kit', '@svitlo/web', '@svitlo/desktop', '@svitlo/mobile'];
+  assert.deepEqual(partitionBuildMutatingHosts(targets), {
+    parallel: ['@svitlo/engine', '@svitlo/ui-kit', '@svitlo/desktop'],
+    sequential: ['@svitlo/web', '@svitlo/mobile'],
+  });
+  assert.deepEqual(partitionBuildMutatingHosts(['@svitlo/engine']), {
+    parallel: ['@svitlo/engine'],
+    sequential: [],
+  });
 });
