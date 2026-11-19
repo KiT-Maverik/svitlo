@@ -643,9 +643,9 @@ config:
           purpose: "Один обов'язковий оцінюваний Quiz із Stage 1 для Skill safeSolarObservation."
           pedagogicalIntent: "Активне осмислення науково коректного правила із доступним feedback; не вимагати читання, письма, нічних спостережень або приладів."
           productionNotes: |-
-            Quiz placement only: assessmentPlanKey=safeSkyChoices; Skill=b4b9b469-391d-40f8-b11d-6884c76ed106; methods=classification,application.
+            Quiz placement only: assessmentPlanKey=safeSkyChoices; Skill=b4b9b469-391d-40f8-b11d-6884c76ed106; methods=classification,application. params: {} deliberately incomplete pending independently reviewed Question Bank, genuine questionIds, grading, interaction and screen selection from Assessment Architect. Stage 6 preflight/publication blocked until completed. Для дитини, що не читає: ведучий читає quizIntro й майбутні реальні формулювання Questions, описує усі зображення словами, надає можливість дати усну/вказівну відповідь за валідним погодженим способом. До публікації Assessment Architect + Coding Agent мають перевірити доступність справжніх форматів Questions і відсутність допомоги, яка підказує відповідь. Аудіо/TTS та Question Bank наразі відсутні, жодного оцінювання ще немає.
             Assessment intent: safeSkyChoices
-            Bank integration: pending params: {} deliberately incomplete pending independently reviewed Question Bank, genuine questionIds, grading, interaction and screen selection from Assessment Architect. Stage 6 preflight/publication blocked until completed. Для дитини, що не читає: ведучий читає quizIntro й майбутні реальні формулювання Questions, описує усі зображення словами, надає можливість дати усну/вказівну відповідь за валідним погодженим способом. До публікації Assessment Architect + Coding Agent мають перевірити доступність справжніх форматів Questions і відсутність допомоги, яка підказує відповідь. Аудіо/TTS та Question Bank наразі відсутні, жодного оцінювання ще немає.
+            Bank integration: pending
     order:
       - skyAroundUs
       - solarSafety
