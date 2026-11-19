@@ -229,7 +229,7 @@ test('trusted publisher accepts pre-Course Skills manifests but rejects scope mi
   const unrelatedCourse = validate({ ...legacy, course: 'aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee' });
   assert.notEqual(unrelatedCourse.status, 0);
   assert.match(unrelatedCourse.stderr, /Manifest scope disagrees with authorized request: course/);
-  const requestedCourse = validate(legacy, { REQUEST_KIND: 'courses' });
+  const requestedCourse = validate({ ...legacy, kind: 'courses' }, { REQUEST_KIND: 'courses' });
   assert.notEqual(requestedCourse.status, 0);
   assert.match(requestedCourse.stderr, /Manifest scope disagrees with authorized request: course/);
   const wrongPackage = validate({ ...legacy, package: 'content/art' });
