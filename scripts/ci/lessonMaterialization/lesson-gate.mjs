@@ -131,7 +131,7 @@ export function parseTrigger(event, kind, actor) {
 export function validateArtifactPath(filename, identity, operation = 'materialize') {
   if (operation === 'finalize') return filename === identity.yaml;
   if (operation !== 'materialize' || typeof filename !== 'string' || filename.length > 450 ||
-      filename.includes('..') || filename.includes('\') || filename.includes('//') ||
+      filename.includes('..') || filename.includes('\\') || filename.includes('//') ||
       filename.includes('\0') || filename.startsWith('/')) return false;
   const base = identity.yaml.slice(0, -'lesson.yaml'.length);
   if (!filename.startsWith(base)) return false;
