@@ -53,7 +53,7 @@ export const earlyWestAfricanUrbanCenters = defineSkill({
       it: 'Esplora come nacquero i primi centri abitati nel delta interno del Niger.',
       ja: 'ニジェール川内陸デルタの初期の町の発展を探ろう。',
       ka: 'შეისწავლე, როგორ განვითარდა ადრეული ქალაქები ნიგერის შიდა დელტაში.',
-      kk: 'Nigerdıñ ışkı atyrauynda erte qalalar qalai damyğanyn zertte.',
+      kk: 'Nigerdıñ ışkı atyrauynda alğaşqy qonystar men keiıngı qala ortalyqtary qalai damyğanyn zertte.',
       ko: '니제르강 내륙 삼각주에서 초기 도시가 어떻게 발전했는지 알아보세요.',
       lt: 'Tyrinėk ankstyvųjų miestų raidą vidinėje Nigerio deltoje.',
       lv: 'Izpēti agrīno pilsētu attīstību Nigēras iekšējā deltā.',
