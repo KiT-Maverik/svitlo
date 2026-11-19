@@ -65,6 +65,8 @@ test('bank identity is canonical, parent-linked and type-specific', () => {
     assert.throws(() => parseIdentity(body(bank).replace('Parent Lesson PR: #666', 'Parent Lesson PR: #0'), bank));
     assert.throws(() => parseIdentity(body(bank).replace(id, 'bogus'), bank));
     assert.throws(() => parseIdentity(body(bank).replace(pkg, 'content/../math'), bank));
+    assert.equal(parseIdentity(body(bank).replace(pkg, 'content/languages/ukrainian'), bank).pkg,
+                 'content/languages/ukrainian');
   }
 });
 
