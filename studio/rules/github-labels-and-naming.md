@@ -34,6 +34,20 @@
 | `source: *`    | Origin of the Issue                               | Issues only. Choose the factual source: `internal`, `expert-review`, `user-report`, `agent`, or `automation`. Do not confuse a project-owner request (`internal`) with a report submitted through the product's user-report UI (`user-report`).                                |
 | `attention: *` | Special action still required                     | Issues and PRs, only when applicable: `decision`, `blocked`, `manual-qa`. Remove a transient label after the underlying condition is resolved.                                                                                                                                 |
 
+### PR deliverable type labels
+
+Use the `pr: *` content-deliverable labels to identify the **kind of authored production artifact** in a PR. These labels are independent of the PR's topology (`pr: integration` vs `pr: agent-subtask`), scope (`content: *`) and work activity (`work: *`). They do not imply a particular review stage, approval or readiness.
+
+| Label            | Apply when the PR delivers                                                                     |
+| ---------------- | ---------------------------------------------------------------------------------------------- |
+| `pr: course`     | A Course definition, editorial plan, authored Course content or Course-specific implementation |
+| `pr: lesson`     | A Lesson definition, methodology, canonical Lesson source or Lesson-specific implementation    |
+| `pr: questions`  | A Question Bank or authored assessment questions belonging to a Lesson                         |
+| `pr: flashcards` | A Flashcard Bank or authored flashcards belonging to a Lesson                                  |
+| `pr: media`      | Static educational media assets produced for Lessons, including illustrations, audio or video  |
+
+Apply the relevant deliverable label to new production PRs and backfill existing ones when their purpose is verified. Multiple type labels are permitted **only** when the same PR genuinely produces multiple kinds of artifacts. Do not propagate a parent's `pr: course` to Lesson or Question/Flashcard child PRs: each PR is classified by its **own deliverable**, not by its ancestry. Do not apply these labels to repository-wide tooling or CI changes merely because they support Course/Lesson/Question/Flashcard/Media workflows. The new type labels have distinct colors in the canonical catalog so they can be filtered and distinguished in PR lists.
+
 Consult the catalog for exact label names and colors. Content scopes use parchment yellow (`#D9C48B`), applications teal, backend rust, shared packages blue, Studio classic amber (`#B7791F`), and repository tooling/fallback slate. The `work` values are `feature`, `architecture`, `fix`, `refactor`, `content`, `translation`, `review`, `tests`, `ci`, `docs`, and `tooling`.
 
 **Distinguish architecture from feature and refactor:** Use `work: architecture` for system design or architectural changes to module boundaries, contracts, data models, composition, dependency direction, or runtime data flows. Use `work: feature` for new user-facing or technical capabilities, and `work: refactor` for reorganizing implementation without intentionally changing its architecture or behavior. Architecture-only work must not be labeled `work: feature` solely because it adds technical infrastructure. Apply both labels only when the change genuinely includes both architecture work and a new capability.
@@ -44,7 +58,7 @@ Coding Agents **must create every PR as a GitHub Draft** (`draft: true`), whethe
 
 ## 3. Application requirements
 
-1. **At creation:** classify each new Issue and PR with the applicable scope label(s) (`content: *`, `app: *`, `backend: *`, `shared: *`, `studio`, `repo: *`) and `work: *` labels. Add relevant labels from other groups when appropriate. Creating labels in GitHub or adding names to the catalog does **not** apply them automatically to existing items.
+1. **At creation:** classify each new Issue and PR with the applicable scope label(s) (`content: *`, `app: *`, `backend: *`, `shared: *`, `studio`, `repo: *`) and `work: *` labels. Add the applicable `pr: course`, `pr: lesson`, `pr: questions`, `pr: flashcards` or `pr: media` label when the PR produces that entity type; add relevant labels from other groups when appropriate. Creating labels in GitHub or adding names to the catalog does **not** apply them automatically to existing items.
 2. **While updating:** re-evaluate labels when scope, status, blockers, or change characteristics evolve; remove stale labels. Never add mutually exclusive `priority: *` levels or both PR role labels.
 3. **For multi-agent work:** the central PR receives `pr: integration`; each agent's PR receives `pr: agent-subtask` and targets the integration branch. Preserve the mandated integration hierarchy. The actual scope/agent partition belongs in the PR body or work plan rather than boilerplate title prefixes.
 4. **For normal PRs:** omit `pr: integration` and `pr: agent-subtask`; they are not generic PR types. Assign `pr: migration` and/or `pr: breaking-change` only if the changes warrant them.
