@@ -1,9 +1,10 @@
 import assert from 'node:assert/strict';
 import { mkdtempSync, mkdirSync, writeFileSync, rmSync } from 'node:fs';
+import { execFileSync } from 'node:child_process';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { test } from 'node:test';
-import { publicModules, publicSignature } from './public-contract-impact.mjs';
+import { changedPublicContracts, publicModules, publicSignature } from './public-contract-impact.mjs';
 
 test('public signatures ignore a typed function body but detect interface and schema changes', () => {
   const before = 'export interface Contract { value: string }\nexport function run(): number { return 1; }';
@@ -25,6 +26,54 @@ test('only exported modules reachable from package manifest are public', () => {
     writeFileSync(join(root, 'shared/demo/src/private.ts'), "export type Private = string;\n");
     const pkg = { path: 'shared/demo', exports: { '.': { types: './dist/src/index.d.ts' } } };
     assert.deepEqual([...publicModules(pkg, root)].sort(), ['shared/demo/src/api.ts', 'shared/demo/src/index.ts']);
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test('a real git history distinguishes private edits from a changed re-exported API', () => {
+  const root = mkdtempSync(join(tmpdir(), 'svitlo-api-diff-'));
+  const packageRoot = join(root, 'shared/demo/src');
+  const git = (...args) => execFileSync('git', args, {
+    cwd: root,
+    encoding: 'utf8',
+    env: {
+      ...process.env,
+      GIT_AUTHOR_NAME: 'CI',
+      GIT_AUTHOR_EMAIL: 'ci@example.test',
+      GIT_COMMITTER_NAME: 'CI',
+      GIT_COMMITTER_EMAIL: 'ci@example.test',
+    },
+  }).trim();
+  const pkg = { path: 'shared/demo', name: '@svitlo/demo', exports: { '.': { types: './dist/src/index.d.ts' } } };
+  try {
+    mkdirSync(packageRoot, { recursive: true });
+    git('init', '-b', 'develop');
+    writeFileSync(join(packageRoot, 'index.ts'), "export * from './api';\n");
+    const file = join(packageRoot, 'api.ts');
+    writeFileSync(file, 'export interface Contract { id: string }\nexport function read(): number { return 1; }\n');
+    writeFileSync(join(packageRoot, 'internal.ts'), 'export const internal = 1;\n');
+    git('add', '.');
+    git('commit', '-m', 'initial API');
+    const base = git('rev-parse', 'HEAD');
+    git('checkout', '-b', 'feature');
+    writeFileSync(file, 'export interface Contract { id: string }\nexport function read(): number { return 2; }\n');
+    git('add', '.');
+    git('commit', '-m', 'private implementation only');
+    const privateHead = git('rev-parse', 'HEAD');
+    assert.deepEqual(
+      changedPublicContracts(['shared/demo/src/api.ts'], [pkg], base, privateHead, root),
+      [],
+    );
+    writeFileSync(file, 'export interface Contract { id: number }\nexport function read(): number { return 2; }\n');
+    writeFileSync(join(packageRoot, 'internal.ts'), 'export const internal = 2;\n');
+    git('add', '.');
+    git('commit', '-m', 'public contract and unrelated private file');
+    const publicHead = git('rev-parse', 'HEAD');
+    assert.deepEqual(
+      changedPublicContracts(['shared/demo/src/api.ts', 'shared/demo/src/internal.ts'], [pkg], base, publicHead, root),
+      ['shared/demo/src/api.ts'],
+    );
   } finally {
     rmSync(root, { recursive: true, force: true });
   }

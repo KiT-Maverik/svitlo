@@ -89,3 +89,38 @@
 - No new localization/Education Standards CI, no new blanket quality jobs, no broad change to approved content contracts.
 - A GitHub administrator/owner must adjust main required checks and optionally parent branch rulesets; GitHub Actions code alone cannot do this.
 - Make any trade-off that increases checks or runner minutes explicit with measured benefit. Do not treat a reviewer's recommendations as instructions to add tests indiscriminately.
+
+## Trigger and required-status matrix (implementation branch)
+
+| Event/scope | FastGate / verify | Affected content / build, taxonomy and packaging | Blocker TODOs / clean | Production Quality / verify |
+| --- | --- | --- | --- | --- |
+| Draft Course/Lesson/bank child (integration target) | Not emitted | Scoped selection, often zero | Warning-only for authored blockers | Not emitted |
+| Ready Course/Lesson/bank child (integration target) | Not emitted | Scoped selection | Fails on authored blockers; intermediate target protection still needs owner decision | Not emitted |
+| Docs-only PR to develop | Emitted, skips npm install | Emitted, zero-package fast path | Emitted | Not emitted |
+| Exported Engine/UI Kit API PR to develop | Emitted, graph-based downstream typechecks | Emitted, scoped unless content/tooling changes | Emitted | Not emitted |
+| Private Engine implementation PR to develop | Emitted, owner only | Emitted, scoped | Emitted | Not emitted |
+| Single textbook PR to develop | Emitted, changed owner | Emitted, changed textbook | Emitted | Not emitted |
+| Ready same-repo develop → main | Not emitted | All eligible textbook builds and publishers | Full tracked-source scan | Full monorepo, browser and release-source gate |
+| Push to main | Not emitted | Not emitted | Not emitted | Not emitted |
+
+Required contexts are enforced by the actual GitHub rulesets, not by these
+descriptions. As of 2026-11-19 `Production Quality / verify` still requires
+an owner GitHub Settings change on `Protect main` after a genuine Ready run.
+The parent-branch requirement is an unapproved proposal.
+
+## Baseline observations and limitations
+
+- PR #716 is an existing Ready `develop → main` promotion candidate. On
+  2026-11-19 its all-textbook Content Build ran successfully:
+  [Actions run 44596822428](https://github.com/KiT-Maverik/svitlo/actions/runs/44596822428).
+  This run predates the merged deployment of #717 and is **not** proof of the
+  new source guard or a matching before/after timing benchmark.
+- The graph/Diff/source-policy regression tests run inside FastGate after
+  `npm ci`. Separate optional runners (e.g. Chromium IndexedDB and
+  Engine-generator scoped gates) are retained for their non-equivalent checks.
+- Per-textbook matrix `npm ci`/runner-minute optimization is deliberately not
+  changed without actual representative release measurements; compare a bounded
+  shard trial against the existing max-parallel=5 baseline before approval.
+- No representative authorized comment materialization commands were executed
+  by this PR. Source trust/default branch and pinned SHA are reviewed in YAML,
+  not falsely reported as live end-to-end verification.
