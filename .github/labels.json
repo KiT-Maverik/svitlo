@@ -246,27 +246,27 @@
   },
   {
     "name": "pr: course",
-    "color": "4F46E5",
+    "color": "16A34A",
     "description": "Course creation or editing PR, including course editorial or implementation deliverables"
   },
   {
     "name": "pr: lesson",
-    "color": "0891B2",
+    "color": "16A34A",
     "description": "Lesson creation or editing PR, including lesson editorial or implementation deliverables"
   },
   {
     "name": "pr: questions",
-    "color": "9333EA",
+    "color": "16A34A",
     "description": "Lesson question-bank authoring or assessment-question deliverables"
   },
   {
     "name": "pr: flashcards",
-    "color": "D97706",
+    "color": "16A34A",
     "description": "Lesson flashcard-bank authoring and revision-card deliverables"
   },
   {
     "name": "pr: media",
-    "color": "DB2777",
+    "color": "16A34A",
     "description": "Produce static lesson media assets, such as images, audio, or video"
   },
   {
