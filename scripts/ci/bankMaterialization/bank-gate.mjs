@@ -9,7 +9,7 @@ import { createHash } from 'node:crypto';
 
 const UUID = /^[a-f0-9]{8}-(?:[a-f0-9]{4}-){3}[a-f0-9]{12}$/;
 const SHA = /^[a-f0-9]{40}$/;
-const PKG = /^content\/[a-z][a-z0-9-]*$/;
+const PKG = /^content\/(?:languages\/)?[a-z][a-z0-9-]*$/;
 const STAGES = {
   questions: ['Lesson Analysis', 'Question Design', 'Quiz Section Design', 'Independent Assessment Review'],
   flashcards: ['Lesson Analysis', 'Flashcard Design', 'Flashcards Section Design', 'Memory Design Review'],
@@ -129,7 +129,7 @@ export async function requireActor(actor) {
 function parentIdentity(body) {
   if (typeof body !== 'string' || !body.includes('<!-- svitlo-create-lesson-flow:v1 -->'))
     return null;
-  const m = /^- Lesson UUID \/ textbook \/ slug:\s*\x60?([a-f0-9-]{36})\x60?\s*\/\s*\x60?(content\/[a-z][a-z0-9-]*)/m.exec(body);
+  const m = /^- Lesson UUID \/ textbook \/ slug:\s*\x60?([a-f0-9-]{36})\x60?\s*\/\s*\x60?(content\/(?:languages\/)?[a-z][a-z0-9-]*)/m.exec(body);
   return m ? { id: m[1], pkg: m[2] } : null;
 }
 export async function inspect(number, bank, previous = undefined) {
@@ -149,8 +149,18 @@ export async function inspect(number, bank, previous = undefined) {
     throw Error('Verified parent Lesson PR identity missing or mismatched');
   if (parent.state === 'open' && pr.base?.ref !== parent.head?.ref)
     throw Error('Child bank PR must target the actual parent Lesson branch');
-  if (parent.merged && pr.base?.ref !== parent.base?.ref)
-    throw Error('Merged Lesson requires verified parent integration branch');
+  if (parent.merged) {
+    if (!SHA.test(parent.merge_commit_sha || ''))
+      throw Error('Merged Lesson parent has no verifiable merge commit');
+    if (pr.base?.ref !== parent.base?.ref &&
+        pr.base?.ref !== (process.env.BANK_DEFAULT_BRANCH || 'main'))
+      throw Error('Merged Lesson child must target former integration or current default branch');
+    // A nested Course->Lesson branch may already have been merged to main.
+    // Verify the actual parent merge is an ancestor of the bank target base.
+    const comparison = await github('compare/' + parent.merge_commit_sha + '...' + pr.base.sha);
+    if (!['ahead', 'identical'].includes(comparison?.status))
+      throw Error('Bank base does not include the merged parent Lesson source');
+  }
   if (bank === 'flashcards' &&
       !/Questions(?: \(own bank\))?:[ \t]*(?:Completed(?:[ \t]|@)|Not Applicable(?:[ \t]|—|:))/i.test(parent.body))
     throw Error('Parent Lesson must record completed Questions or approved Questions N/A');
