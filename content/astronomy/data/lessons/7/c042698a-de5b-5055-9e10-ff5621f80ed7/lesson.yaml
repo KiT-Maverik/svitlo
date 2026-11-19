@@ -110,7 +110,7 @@ config:
                               type: "checkpointAnswer"
                               content:
                                 items:
-                                  explanation:
+                                  twoSkyDescriptionsExplanation:
                                     config:
                                       id: "f5c927f5-6dc0-5aeb-8797-e8bda45420c3"
                                       slug: "twoSkyDescriptionsExplanation"
@@ -120,7 +120,7 @@ config:
                                         value:
                                           uk: "У першому описі хмар більше: вони закривають майже все небо. У другому — лише три маленькі хмари. Ми порівняли саме кількість і розташування хмар, не шукаючи Сонце поглядом."
                                 order:
-                                  - "explanation"
+                                  - "twoSkyDescriptionsExplanation"
                     order:
                       - "twoSkyDescriptions"
                 production:
@@ -353,7 +353,7 @@ config:
                       uk: "Розкрий пояснення після вибору"
                   content:
                     items:
-                      photo:
+                      photoPractice:
                         config:
                           id: "f4501e02-5b1f-5bc5-91a1-caf24ae056fd"
                           slug: "photoPractice"
@@ -374,7 +374,7 @@ config:
                               type: "checkpointAnswer"
                               content:
                                 items:
-                                  explanation:
+                                  photoPracticeExplanation:
                                     config:
                                       id: "289a8465-2c9d-57e4-b238-975298f78193"
                                       slug: "photoPracticeExplanation"
@@ -384,8 +384,8 @@ config:
                                         value:
                                           uk: "Безпечний варіант Б: готове наукове фото дозволяє побачити зображення Сонця без прямого погляду. А небезпечний, бо навіть короткий погляд може пошкодити очі."
                                 order:
-                                  - "explanation"
-                      glasses:
+                                  - "photoPracticeExplanation"
+                      glassesPractice:
                         config:
                           id: "b9c22837-6b9b-54e7-bac0-ebb8ed7d80ab"
                           slug: "glassesPractice"
@@ -406,7 +406,7 @@ config:
                               type: "checkpointAnswer"
                               content:
                                 items:
-                                  explanation:
+                                  glassesPracticeExplanation:
                                     config:
                                       id: "6cb7b211-df98-532e-9796-463c15bfd6e4"
                                       slug: "glassesPracticeExplanation"
@@ -416,8 +416,8 @@ config:
                                         value:
                                           uk: "Безпечний варіант А: подивитися на готове фото, а не на Сонце. Звичайні темні окуляри не дають належного захисту для прямого сонячного спостереження."
                                 order:
-                                  - "explanation"
-                      clouds:
+                                  - "glassesPracticeExplanation"
+                      cloudsPractice:
                         config:
                           id: "8bd54f37-7309-5f5a-96ee-26b818c72e44"
                           slug: "cloudsPractice"
@@ -438,7 +438,7 @@ config:
                               type: "checkpointAnswer"
                               content:
                                 items:
-                                  explanation:
+                                  cloudsPracticeExplanation:
                                     config:
                                       id: "ffd1af12-e015-5685-a189-5519ca54b52d"
                                       slug: "cloudsPracticeExplanation"
@@ -448,11 +448,11 @@ config:
                                         value:
                                           uk: "Варіант Б: готова фотографія або її словесний опис допомагають дізнатися про хмари вдень і вдома. Вихід надвір і телескоп не потрібні."
                                 order:
-                                  - "explanation"
+                                  - "cloudsPracticeExplanation"
                     order:
-                      - "photo"
-                      - "glasses"
-                      - "clouds"
+                      - "photoPractice"
+                      - "glassesPractice"
+                      - "cloudsPractice"
                 production:
                   purpose: "Основна доступна тренувальна вправа з трьома навчальними рішеннями та змістовними поясненнями, відкриваними лише після відповіді."
                   productionNotes: "Read-aloud: дорослий читає ситуацію і варіанти А/Б, приймає усну або жестову відповідь, потім відкриває картку і читає пояснення. Усі три ситуації доступні в українському Text, без Scene, з кнопками Accordion, без балів, таймера і перевірки правильності. Stage 6 перевіряє keyboard/touch/screen reader/офлайн."
@@ -532,7 +532,7 @@ config:
                               type: "checkpointAnswer"
                               content:
                                 items:
-                                  explanation:
+                                  sunglassesExplanation:
                                     config:
                                       id: "d2112e9b-5516-58bb-a94a-6307252346a8"
                                       slug: "sunglassesExplanation"
@@ -542,7 +542,7 @@ config:
                                         value:
                                           uk: "Ні. Звичайні темні окуляри не захищають для прямого спостереження Сонця. Замість цього розглянь готовий науковий знімок."
                                 order:
-                                  - "explanation"
+                                  - "sunglassesExplanation"
                       onlyNight:
                         config:
                           id: "a6a6a46c-0ab0-5e19-ab26-d24f73c54774"
@@ -564,7 +564,7 @@ config:
                               type: "checkpointAnswer"
                               content:
                                 items:
-                                  explanation:
+                                  onlyNightExplanation:
                                     config:
                                       id: "eed8fbd6-6570-5ea5-a23e-6adc072a27f3"
                                       slug: "onlyNightExplanation"
@@ -574,7 +574,7 @@ config:
                                         value:
                                           uk: "Ні. Про небо можна дізнаватися вдень і вдома: за готовими фото хмар або словесними описами. Дивитися на Сонце для цього не потрібно."
                                 order:
-                                  - "explanation"
+                                  - "onlyNightExplanation"
                     order:
                       - "sunglasses"
                       - "onlyNight"
