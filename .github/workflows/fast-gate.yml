@@ -3,6 +3,7 @@ name: FastGate
 on:
   pull_request:
     branches: [develop]
+    types: [opened, reopened, synchronize, ready_for_review]
   workflow_dispatch:
 
 permissions:
@@ -48,20 +49,25 @@ jobs:
             echo '::error::Remove .agent-ci-artifacts/ before merging into develop.'
             exit 1
           fi
+      - name: Verify Draft/Ready CI policy without npm installation
+        run: node --test scripts/ci/draftCiPolicy/draft-ci-policy.spec.mjs
+      - name: Explain lightweight Draft validation
+        if: github.event_name == 'pull_request' && github.event.pull_request.draft
+        run: echo 'Draft PR - expensive package builds and typechecks are deferred until Ready for review or manual workflow_dispatch.'
       - name: Validate GitHub label catalogue, matchers and historical backfill
         if: steps.scope.outputs.run == 'true'
         run: |
           node .github/scripts/verify-labels.cjs
           node scripts/ci/quietRun/quiet-run.mjs -- node --test .github/scripts/backfill-labels.test.cjs
       - uses: actions/setup-node@v4
-        if: steps.scope.outputs.run == 'true'
+        if: steps.scope.outputs.run == 'true' && (github.event_name == 'workflow_dispatch' || !github.event.pull_request.draft)
         with:
           node-version: '24'
           cache: npm
       - run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --no-audit --no-fund
-        if: steps.scope.outputs.run == 'true'
+        if: steps.scope.outputs.run == 'true' && (github.event_name == 'workflow_dispatch' || !github.event.pull_request.draft)
       - name: Enforce explicit Engine build/runtime entrypoints
-        if: steps.scope.outputs.run == 'true'
+        if: steps.scope.outputs.run == 'true' && (github.event_name == 'workflow_dispatch' || !github.event.pull_request.draft)
         run: |
           node scripts/ci/quietRun/quiet-run.mjs -- node --test scripts/migrateEngineImports/migrate-engine-imports.spec.mjs
           node scripts/migrateEngineImports/migrate-engine-imports.mjs --check
@@ -70,10 +76,10 @@ jobs:
           node scripts/ci/quietRun/quiet-run.mjs -- node --test scripts/checkEngineRuntimeGraph/check-engine-runtime-graph.spec.mjs
           node scripts/checkEngineRuntimeGraph/check-engine-runtime-graph.mjs
       - name: Test quiet CI runner output and error handling
-        if: steps.scope.outputs.run == 'true'
+        if: steps.scope.outputs.run == 'true' && (github.event_name == 'workflow_dispatch' || !github.event.pull_request.draft)
         run: node scripts/ci/quietRun/quiet-run.mjs -- node --test scripts/ci/quietRun/quiet-run.spec.mjs
       - name: Scoped quality checks
-        if: github.event_name == 'pull_request' && steps.scope.outputs.run == 'true'
+        if: github.event_name == 'pull_request' && !github.event.pull_request.draft && steps.scope.outputs.run == 'true'
         env:
           BASE_SHA: ${{ github.event.pull_request.base.sha }}
           HEAD_SHA: ${{ github.event.pull_request.head.sha }}

@@ -1,6 +1,6 @@
-import { defineAssessmentMethod } from '@svitlo/engine/build';
+import { defineAssessmentMethod, type AllLanguageCodes } from '@svitlo/engine/build';
 
-export const relationshipMapping = defineAssessmentMethod({
+export const relationshipMapping = defineAssessmentMethod<'relationshipMapping', AllLanguageCodes>({
   id: '773e207f-3a99-40be-94c4-34401fff6442',
   slug: 'relationshipMapping',
   title: {
@@ -18,7 +18,7 @@ export const relationshipMapping = defineAssessmentMethod({
     id: 'Pemetaan hubungan',
     ja: '関係の把握',
     ka: 'კავშირების დადგენა',
-    kk: 'Байланыстарды анықтау',
+    kk: 'Bailanystardy anyqtau',
     ko: '관계 파악',
     lt: 'Ryšių nustatymas',
     lv: 'Sakarību noteikšana',
@@ -50,7 +50,7 @@ export const relationshipMapping = defineAssessmentMethod({
     id: 'Mengidentifikasi hubungan atau ketergantungan penting antara konsep, entitas, dan proses. Penilaian mengukur proses berpikir ini, bukan bentuk jawabannya.',
     ja: '概念、対象、過程の間にある意味のある関係や依存を見つけます。 評価するのは回答形式ではなく、この認知的な働きです。',
     ka: 'ცნებებს, ობიექტებს ან პროცესებს შორის არსებითი კავშირებისა თუ დამოკიდებულებების გამოვლენა. ფასდება ეს სააზროვნო მოქმედება და არა პასუხის ფორმატი.',
-    kk: 'Ұғымдар, нысандар немесе үдерістер арасындағы мағыналық байланыстар мен тәуелділіктерді табу. Жауаптың пішімі емес, осы ойлау әрекеті бағаланады.',
+    kk: 'Ūğymdar, nysandar nemese üderıster arasyndağy mağynalyq bailanystar men täueldılıkterdı tabu. Jauaptyñ pışımı emes, osy oilau äreketı bağalanady.',
     ko: '개념, 대상 또는 과정 사이의 의미 있는 관계나 의존성을 찾습니다. 평가는 답변 형식이 아니라 이러한 인지 활동을 측정합니다.',
     lt: 'Nustatyti prasminius ryšius ar priklausomybes tarp sąvokų, objektų arba procesų. Vertinamas šis mąstymo veiksmas, o ne atsakymo pateikimo forma.',
     lv: 'Atklāt nozīmīgas sakarības vai atkarības starp jēdzieniem, objektiem vai procesiem. Tiek vērtēta šī domāšanas darbība, nevis atbildes forma.',

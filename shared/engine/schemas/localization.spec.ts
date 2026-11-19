@@ -1,10 +1,23 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
 
-import { allLanguageCodes } from './languages.schemas';
+import { allLanguageCodes, DEFAULT_SUPPORTED_LANGUAGES, locale_Schema } from './languages.schemas';
 import { createLocaleSubsetSchema, locale_All_Schema } from './locale.schemas';
 
 describe('Engine locale dictionary schemas', () => {
+  it('declares Kazakh as the single Latin-script locale while retaining the kk content key', () => {
+    const kazakh = DEFAULT_SUPPORTED_LANGUAGES.find(item => item.language === 'kk');
+    assert.deepEqual(kazakh, {
+      locale: 'kk-Latn-KZ',
+      language: 'kk',
+      name: 'Kazakh',
+      nativeName: 'Qazaqşa',
+      direction: 'ltr',
+    });
+    assert.equal(locale_Schema.safeParse('kk-Latn-KZ').success, true);
+    assert.equal(locale_Schema.safeParse('kk-Cyrl-KZ').success, false);
+  });
+
   it('requires complete language dictionaries and rejects unknown keys or empty values', () => {
     const complete = Object.fromEntries(allLanguageCodes.map(code => [code, code]));
     assert.equal(locale_All_Schema.safeParse(complete).success, true);

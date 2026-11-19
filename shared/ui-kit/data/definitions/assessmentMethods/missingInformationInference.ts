@@ -1,6 +1,6 @@
-import { defineAssessmentMethod } from '@svitlo/engine/build';
+import { defineAssessmentMethod, type AllLanguageCodes } from '@svitlo/engine/build';
 
-export const missingInformationInference = defineAssessmentMethod({
+export const missingInformationInference = defineAssessmentMethod<'missingInformationInference', AllLanguageCodes>({
   id: 'ecb436fb-ab16-4d14-93a7-f3b52954599b',
   slug: 'missingInformationInference',
   title: {
@@ -18,7 +18,7 @@ export const missingInformationInference = defineAssessmentMethod({
     id: 'Inferensi informasi yang hilang',
     ja: '不足情報の推論',
     ka: 'გამოტოვებული ინფორმაციის გამოტანა',
-    kk: 'Жетіспейтін ақпаратты қорыту',
+    kk: 'Jetıspeitın aqparatty qorytu',
     ko: '누락 정보 추론',
     lt: 'Trūkstamos informacijos nustatymas',
     lv: 'Trūkstošās informācijas izsecināšana',
@@ -50,7 +50,7 @@ export const missingInformationInference = defineAssessmentMethod({
     id: 'Menyimpulkan informasi yang tidak diketahui dari fakta, batasan, dan hubungan logis yang tersedia. Penilaian mengukur proses berpikir ini, bukan bentuk jawabannya.',
     ja: '既知の事実、条件、論理的な関係から未知の情報を導きます。 評価するのは回答形式ではなく、この認知的な働きです。',
     ka: 'უცნობი ინფორმაციის დადგენა ცნობილი ფაქტების, შეზღუდვებისა და ლოგიკური კავშირების საფუძველზე. ფასდება ეს სააზროვნო მოქმედება და არა პასუხის ფორმატი.',
-    kk: 'Белгілі деректерге, шектеулерге және логикалық байланыстарға сүйеніп, белгісіз ақпаратты анықтау. Жауаптың пішімі емес, осы ойлау әрекеті бағаланады.',
+    kk: 'Belgılı derekterge, şekteulerge jäne logikalyq bailanystarğa süienıp, belgısız aqparatty anyqtau. Jauaptyñ pışımı emes, osy oilau äreketı bağalanady.',
     ko: '알려진 사실, 제약 조건 및 논리적 관계를 통해 미지의 정보를 추론합니다. 평가는 답변 형식이 아니라 이러한 인지 활동을 측정합니다.',
     lt: 'Remiantis žinomais faktais, apribojimais ir loginiais ryšiais nustatyti nežinomą informaciją. Vertinamas šis mąstymo veiksmas, o ne atsakymo pateikimo forma.',
     lv: 'Izsecināt nezināmu informāciju, izmantojot zināmos faktus, ierobežojumus un loģiskās sakarības. Tiek vērtēta šī domāšanas darbība, nevis atbildes forma.',
