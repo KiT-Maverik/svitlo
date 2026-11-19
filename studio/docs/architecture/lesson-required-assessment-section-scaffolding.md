@@ -18,4 +18,4 @@ A requirement not yet satisfied produces a **real** `// TODO (BLOCKER):` immedia
 
 ## Readiness
 
-Draft Section TODOs block Ready/merge, while fully published Lessons require independently reviewed and published Question/Flashcard resources with correct UUID, language and ownership resolution in the normal production pipeline. Stage 6 remains in progress after materialization or YAML retirement until actual resources, Scenes/media and assessment integrations are complete. Preserve Sections' authored identity/order and approved copy through all flows.
+Draft Section TODOs block Ready/merge, while fully published Lessons require independently reviewed and published Question/Flashcard resources with correct UUID, language and ownership resolution in the normal production pipeline. Stage 6 is four-step source preparation (6.1 materialization, 6.2 accessibility, 6.3 offline, 6.4 source validation). It may finish before independent Stage 7/8 bank production or physical Scene/media delivery; those remain separate final Ready/merge blockers. Preserve Sections' authored identity/order and approved copy through all flows.
