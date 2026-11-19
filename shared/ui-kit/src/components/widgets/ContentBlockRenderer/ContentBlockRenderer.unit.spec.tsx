@@ -1,9 +1,10 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 
-import type { ContentBlock_Checkpoint_Props, ContentBlock_Markdown_Props, ContentBlock_Text_Props } from '@svitlo/engine/runtime';
+import type { ContentBlock_Checkpoint_Props, ContentBlock_Markdown_Props, ContentBlock_Subtitles_Props, ContentBlock_Text_Props } from '@svitlo/engine/runtime';
 import type { ContentBlockResponse, SceneRegistry } from './types';
 import { ContentBlockRenderer } from './ContentBlockRenderer';
+import { questionBlockLabel } from '../questions/response/QuestionContent';
 import { enUiKitMessages } from '../../../testing/uiKitMessages.unit.fx';
 
 const textBlock = (id: string, value: string): ContentBlock_Text_Props => ({
@@ -110,17 +111,20 @@ describe('ContentBlockRenderer', () => {
     expect(screen.getByRole('img', { name: 'Diagram' })).toBeVisible();
   });
 
-  it('rejects standalone WebVTT tracks rather than silently discarding captions', () => {
-    const subtitles: Extract<ContentBlockResponse, { type: 'subtitles' }> = {
+  it('exposes a standalone WebVTT captions asset as an accessible link and question label', () => {
+    const captions: ContentBlock_Subtitles_Props = {
       id: 'captions',
       slug: 'captions',
       type: 'subtitles',
       params: {},
-      locale: { fileLocation: '/captions.en.vtt' },
+      locale: { fileLocation: '/captions/uk.vtt?download=1' },
     };
-    expect(() =>
-      render(<ContentBlockRenderer messages={enUiKitMessages} blocks={[subtitles]} />),
-    ).toThrow('Subtitles require a media player');
+    render(<ContentBlockRenderer messages={enUiKitMessages} language="uk" blocks={[captions]} />);
+    const link = screen.getByRole('link', { name: 'uk.vtt' });
+    expect(link).toHaveAttribute('href', '/captions/uk.vtt?download=1');
+    expect(link).toHaveAttribute('lang', 'uk-UA');
+    expect(link).toHaveAttribute('dir', 'ltr');
+    expect(questionBlockLabel(captions)).toBe('uk.vtt');
   });
 
   it('does not dispatch quiz entries as content blocks', () => {

@@ -14,11 +14,12 @@ import Module from 'node:module';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { renderLessonMarkdown, sourceIndex, supportedLanguages } from './lesson-markdown.mjs';
+import { renderFlashcardReference } from './flashcard-reference.mjs';
 import { resolveEntityPath, assembleLessonProps } from '@svitlo/engine/runtime';
 
 const repositoryRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../../..');
 const usage =
-  'Usage: --package content/<textbook> [--lesson <uuid>] (--locale <language> (--stdout | --output <directory>) | --lesson <uuid> --list-locales)';
+  'Usage: --package content/<textbook> [--lesson <uuid>] (--locale <language> (--stdout | --output <directory>) [--purpose flashcards] | --lesson <uuid> --list-locales)';
 
 export function parseArguments(argv) {
   const options = {};
@@ -30,7 +31,7 @@ export function parseArguments(argv) {
     } else if (flag === '--stdout') {
       if (Object.hasOwn(options, 'stdout')) throw new Error('Duplicate --stdout');
       options.stdout = true;
-    } else if (['--package', '--lesson', '--locale', '--output'].includes(flag)) {
+    } else if (['--package', '--lesson', '--locale', '--output', '--purpose'].includes(flag)) {
       if (Object.hasOwn(options, flag.slice(2))) throw new Error(`Duplicate ${flag}`);
       const value = argv[++i];
       if (!value || value.startsWith('--')) throw new Error(usage);
@@ -45,6 +46,8 @@ export function parseArguments(argv) {
   )
     throw new Error(usage);
   if (options.stdout && !options.lesson) throw new Error('--stdout requires --lesson to select exactly one document');
+  if (options.purpose !== undefined && (options.purpose !== 'flashcards' || options.listLocales || !options.lesson))
+    throw new Error('--purpose flashcards requires exactly one --lesson and --locale');
   if (!/^content\/[a-z][a-z0-9-]*$/.test(options.package))
     throw new Error('Invalid --package: expected content/<textbook>');
   if (options.lesson) resolveEntityPath(options.lesson);
@@ -176,17 +179,64 @@ export async function generate(options, { root = repositoryRoot, loader = loadLe
     const commit = spawnSync('git', ['rev-parse', 'HEAD'], { cwd: root, encoding: 'utf8' });
     const sourceRef =
       commit.status === 0 && /^[0-9a-f]{40}$/.test(commit.stdout.trim()) ? commit.stdout.trim() : 'main';
+    if (options.purpose === 'flashcards') {
+      if (sourceRef === 'main') throw new Error('Flashcard references require an actual Git revision SHA');
+      const relativeLesson = path.relative(root, item.directory);
+      const dirty = spawnSync('git', ['status', '--porcelain', '--untracked-files=all', '--', relativeLesson], {
+        cwd: root,
+        encoding: 'utf8',
+      });
+      if (dirty.status !== 0 || dirty.stdout.trim())
+        throw new Error('Lesson sources have uncommitted changes; flashcard provenance must be SHA-pinned');
+      const declared = lesson.config?.base?.params?.languages;
+      if (!Array.isArray(declared) || !declared.includes(options.locale))
+        throw new Error('Requested locale is not declared in the source Lesson: ' + options.locale);
+    }
     if (typeof lesson.build?.props !== 'function') throw new Error('Lesson is missing the Configurator Build API');
     const publication = lesson.build.props({ languages: [options.locale] });
     const resolved = assembleLessonProps(publication, options.locale);
-    const markdown = renderLessonMarkdown({
+    let markdown = renderLessonMarkdown({
       lesson: resolved,
       locale: options.locale,
       languages: locales,
       packagePath: options.package,
       sourceFiles: sources,
       sourceRef,
+      purpose: options.purpose,
     });
+    if (options.purpose === 'flashcards') {
+      const branch = spawnSync('git', ['symbolic-ref', '--quiet', '--short', 'HEAD'], {
+        cwd: root,
+        encoding: 'utf8',
+      });
+      const verifiedMedia = new Map();
+      const verifyAtSha = relative => {
+        if (!verifiedMedia.has(relative)) {
+          const tracked = spawnSync('git', ['cat-file', '-e', sourceRef + ':' + relative], {
+            cwd: root,
+            encoding: 'utf8',
+            timeout: 5000,
+          });
+          verifiedMedia.set(relative, tracked.status === 0);
+        }
+        return verifiedMedia.get(relative);
+      };
+      markdown +=
+        '\n' +
+        renderFlashcardReference({
+          lesson: resolved,
+          locale: options.locale,
+          packagePath: options.package,
+          sourceFiles: sources,
+          sourceRef,
+          sourceBranch: branch.status === 0 ? branch.stdout.trim() : null,
+          root,
+          lessonDirectory: item.directory,
+          verifyAtSha,
+        });
+      if (Buffer.byteLength(markdown, 'utf8') > 2 * 1024 * 1024)
+        throw new Error('Flashcard Lesson Markdown exceeds the maximum output size');
+    }
     generated.push({ path: `${options.package.split('/')[1]}/${item.relative}/${options.locale}.md`, markdown });
   }
   if (options.stdout) return generated[0].markdown;
