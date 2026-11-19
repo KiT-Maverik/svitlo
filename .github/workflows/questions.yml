@@ -39,17 +39,11 @@ jobs:
       # Playground have separate component suites not included in npm test.
       - run: node scripts/ci/quietRun/quiet-run.mjs -- npm run test:components --workspace @svitlo/playground
       - run: node scripts/ci/quietRun/quiet-run.mjs -- npm run test:components --workspace @svitlo/web
-      - run: node scripts/ci/quietRun/quiet-run.mjs -- npm run test:integration:db:coverage --workspace @svitlo/indexdb
+      # npm test already executes IndexedDB integration tests with coverage.
       - run: node scripts/ci/quietRun/quiet-run.mjs -- npm run code:lint:check
       - run: node scripts/ci/quietRun/quiet-run.mjs -- npm run app:build
-      - name: Verify migrated textbook publishers and isolated ESM tarballs
-        run: |
-          for subject in math physics psychology philosophy language-literature; do
-            (cd "content/$subject" && node ../../scripts/ci/quietRun/quiet-run.mjs -- node --test ../../scripts/textbook-tooling/publishTextbook/test-publish.mjs)
-            (cd "content/$subject" && node ../../scripts/ci/quietRun/quiet-run.mjs -- node ../../scripts/textbook-tooling/checkPortability/check-portability.mjs)
-          done
-          (cd content/languages/ukrainian && node ../../../scripts/ci/quietRun/quiet-run.mjs -- node --test ../../../scripts/textbook-tooling/publishTextbook/test-publish.mjs)
-          (cd content/languages/ukrainian && node ../../../scripts/ci/quietRun/quiet-run.mjs -- node ../../../scripts/textbook-tooling/checkPortability/check-portability.mjs)
+      # All eligible textbook publishers and tarballs are verified by the
+      # required Affected content / build, taxonomy and packaging check.
       - name: Verify compiled public package artifacts
         run: node scripts/ci/quietRun/quiet-run.mjs -- npm run repo:check:artifacts
       - run: node scripts/ci/quietRun/quiet-run.mjs -- npx playwright install chromium

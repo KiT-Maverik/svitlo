@@ -1,6 +1,15 @@
 # Harden development and production CI after PR #714
 
-**Status:** implementation brief only. This planning document does not assert any listed change is implemented. The follow-up Draft PR is the agent handoff; do not merge or mark Ready without the owner's explicit decision.
+**Status:** implementation checklist and evidence ledger for Draft PR #717. Changes should be evaluated against the code and CI results, not assumed complete from this brief. Do not merge or mark Ready without the owner's explicit decision.
+
+**Implemented in this Draft branch:**
+- Release source gate fails before npm install for non-develop or fork-origin Ready PRs targeting main, including edited/retargeted PR events. Stable check: `Production Quality / verify`.
+- FastGate and Content Build use merge-base/triple-dot changes and include both sides of moved files.
+- FastGate analyzes exported TS surfaces and the actual workspace dependency graph, following direct/transitive consumers while keeping private implementation edits scoped.
+- Production Quality no longer repeats per-textbook publisher/portability checks already enforced by the required full Content Build; its extra IndexedDB integration invocation was also redundant with `npm test`.
+- CI branch/default documentation and the remaining manual protections are updated.
+
+**Not yet demonstrated:** real Ready promotion, fault injection on GitHub branch protection, nested ruleset owner decision, authorized comment-command end-to-end executions, and comparable performance measurements. These remain open acceptance criteria.
 
 **Baseline:** PR #714 was merged into develop on 2026-11-19. Keep develop as the default development integration branch and main as production. Preserve nested Course → Lesson → Questions/Flashcards PR parentage and existing authorization boundaries.
 
