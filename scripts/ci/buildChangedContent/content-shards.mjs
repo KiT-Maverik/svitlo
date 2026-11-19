@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
- * @fileoverview Read-only, deterministic content sharding for opt-in CI benchmarks.
- * Does not replace the protected one-job-per-textbook production matrix.
+ * @fileoverview Deterministic, bounded content sharding for CI.
+ * Each selected package keeps its own publication and portability validation.
  */
 import { spawnSync } from 'node:child_process';
 import { resolve } from 'node:path';
@@ -103,25 +103,25 @@ export function runContentShard(packages, launch = spawnSync, reporter = console
   if (!packages.length) throw new Error('Refusing an empty content shard');
   const failed = [];
   for (const item of packages) {
-    reporter.log('::group::Benchmark package ' + item.path);
+    reporter.log('::group::Content package ' + item.path);
     let result;
     try {
       result = launch(
-      process.execPath,
-      [
-        'scripts/ci/quietRun/quiet-run.mjs',
-        '--',
         process.execPath,
-        'scripts/ci/buildChangedContent/build-changed-content.mjs',
-        '--package',
-        item.path,
-        item.kind,
-      ],
-      {
-        cwd: repo,
-        stdio: 'inherit',
-        env: { ...process.env, SVITLO_CI_LABEL: 'Build and verify ' + item.path },
-      },
+        [
+          'scripts/ci/quietRun/quiet-run.mjs',
+          '--',
+          process.execPath,
+          'scripts/ci/buildChangedContent/build-changed-content.mjs',
+          '--package',
+          item.path,
+          item.kind,
+        ],
+        {
+          cwd: repo,
+          stdio: 'inherit',
+          env: { ...process.env, SVITLO_CI_LABEL: 'Build and verify ' + item.path },
+        },
       );
     } catch (error) {
       result = { error };
@@ -133,7 +133,7 @@ export function runContentShard(packages, launch = spawnSync, reporter = console
     }
   }
   if (failed.length) reporter.error('Failed content packages: ' + failed.join(', '));
-  else reporter.log('Verified ' + packages.length + ' content packages in this benchmark shard');
+  else reporter.log('Verified ' + packages.length + ' content packages in this shard');
   return failed;
 }
 

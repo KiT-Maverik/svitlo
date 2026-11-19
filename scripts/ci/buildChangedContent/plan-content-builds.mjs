@@ -65,7 +65,6 @@ if (invoked) {
       appendFileSync(
         process.env.GITHUB_OUTPUT,
         [
-          'matrix=' + JSON.stringify(matrix),
           'shards=' + JSON.stringify(shards),
           'has_builds=' + String(hasBuilds),
           'all=' + String(all),

@@ -1,9 +1,12 @@
-# Benchmark production textbook matrix sharding
+# Shard content builds: benchmark and production cutover
 
-**Scope:** An opt-in, five-shard performance experiment; the protected per-textbook matrix remains authoritative. Production cutover requires separate same-SHA performance evidence and review. [PR #729](https://github.com/KiT-Maverik/svitlo/pull/729) records the change and its live GitHub status.
-
+**Status:** The previously opt-in five-shard experiment is approved for
+production promotion in [PR #729](https://github.com/KiT-Maverik/svitlo/pull/729).
+The required status name and per-package tests are unchanged. Deployment
+depends on merging the reviewed PR; this document does not claim a deployed
+default-branch cutover.
 ## Baseline
-`.github/workflows/content-build.yml` has `Content / prepare`, a per-textbook build matrix with `max-parallel: 5`, and stable required `Affected content / build, taxonomy and packaging`. In Ready main promotions all 17 eligible textbooks build in isolated jobs, each performing `npm ci`. In run 44605135850 the 17 installs summed to ~302 seconds (not wall-clock time), and all 17 content builds succeeded. That is not proof sharding is faster.
+In the **historical baseline**, `.github/workflows/content-build.yml` used `Content / prepare`, a per-textbook build matrix with `max-parallel: 5`, and stable required `Affected content / build, taxonomy and packaging`. In Ready main promotions all 17 eligible textbooks build in isolated jobs, each performing `npm ci`. In run 44605135850 the 17 installs summed to ~302 seconds (not wall-clock time), and all 17 content builds succeeded. That is not proof sharding is faster.
 
 ## Implementation
 1. Record an apples-to-apples baseline: elapsed critical path, sum of job times, `npm ci` count/duration, successful/failed log bytes and per-package failure clarity. Include the full production case and an affected-one-textbook develop case.
@@ -35,22 +38,34 @@ The duration values derive from timestamped job logs; logged job lifetimes are
 **not** identical to GitHub billed runner minutes. Summed install time is
 **not** equivalent to critical-path savings because installs run concurrently.
 
-## Controlled experiment
+## Same-SHA result and cutover decision
 
-`workflow_dispatch` defaults to the original all-textbook matrix. Set
-`benchmark_shards=true` on the PR branch to run **both** variants at the
-same commit, with identical common prepare checks and all selected packages.
-The extra `Content benchmark / shard-*` jobs install once per shard and use
-the same per-book verifier as the unchanged baseline. The protected verify job
-depends on the original matrix, **not** on the trial.
+[Successful run 44613383307](https://github.com/KiT-Maverik/svitlo/actions/runs/44613383307)
+executed both designs on the same head SHA `f83b2a7f`:
 
-Before switching production, record the actual trial critical path, sum of
-shard runner times, install durations, log volume, per-book errors and cost
-against the baseline **in that same run**. Also compare a representative
-one-textbook develop PR; sharding must not broaden its selected scope.
-Verify explicit failed-shard handling. If evidence is inconclusive or regression
-occurs, retain the original matrix and document the findings. The opt-in
-benchmark is intentionally not a production optimization by itself.
+| Measurement (content jobs only) | Original 17 jobs | Five shards |
+| --- | ---: | ---: |
+| Elapsed matrix wall time | ~183s | ~68s |
+| Summed logged job lifetimes | ~717s | ~299s |
+| `npm ci` invocations | 17 | 5 |
+| Summed `npm ci` durations | ~282s | ~103s |
+| Decoded logs | ~406 KB | ~121 KB |
+| Successful packages | 17/17 | 17/17 |
 
-**Pending live evidence:** same-SHA baseline-vs-shards run, develop one-package
-measurement, GitHub billed minutes, failure injection and final cutover decision.
+The A/B variants shared CI runner scheduling and cache resources; these
+measurements support the decision to cut over, but are not a guaranteed speed
+improvement for every run. No billed runner-minute target applies.
+
+## Production acceptance
+
+- Preserve zero builds on Draft PRs and no-op selected scope on Ready PRs.
+- Produce at most 5 shards, one install per shard, and check every selected
+  package exactly once. Preserve agent scope and full manual/Ready-main coverage.
+- Keep publication, tarball portability, asset, taxonomy and exports checks
+  unchanged per textbook.
+- For one failing package, annotate its path, process the remaining packages
+  within that shard, return nonzero, and fail the stable protected verify job.
+- Do not distribute `node_modules` or compiled outputs across runners.
+- Retire the redundant opt-in parallel baseline matrix to avoid doubling work.
+- The simulated failure test verifies actual child exit handling without
+  deliberately corrupting educational content or performing a production deploy.

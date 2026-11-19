@@ -2,7 +2,7 @@
 
 `plan-content-builds.mjs` discovers buildable workspaces from `content/*` and
 `content/languages/*`, using their own `package.json` manifests. It produces
-GitHub Actions job outputs `matrix`, `shards`, `has_builds`, `all` and `agent_mode`
+GitHub Actions job outputs `shards`, `has_builds`, `all` and `agent_mode`
 without performing a build or modifying authored files.
 
 - Pull requests promoting to production `main` **after** leaving Draft and manual workflow
@@ -19,10 +19,13 @@ without performing a build or modifying authored files.
   its assigned-domain TypeScript/structure check instead of a full package build.
 - If nothing is selected, the matrix skips and the stable final required check
   succeeds only if the prepare job passed.
-- Each matrix runner invokes `build-changed-content.mjs --package <path> <kind>`,
-  which rechecks selection, validates its own distribution, publishing and
-  portability, and runs the scoped built-artifact check. Each runner owns its
-  ephemeral `dist/` and generated outputs; no artifacts are shared across jobs.
+- The selected packages are grouped deterministically into at most **five shards**.
+  Each runner installs dependencies once, then invokes
+  `build-changed-content.mjs --package <path> <kind>` independently for every
+  package in its shard. Publication, taxonomy, portability and compiled-export
+  checks remain per package. A failed package is annotated; remaining packages
+  in the shard still run and its job fails at the end.
+  Runner outputs and generated resources remain isolated between shards.
 - The prepare job owns common tests, review-ready resource readiness,
   `repo:check:packages` and artifact-guard regression tests. The final
   `Affected content / build, taxonomy and packaging` job preserves the
@@ -35,28 +38,21 @@ still-Draft PR branch selected manually in the Actions UI or via
 and checks all content packages. Use the workflow rather than invoking the
 planner locally without `BASE_SHA`, `HEAD_SHA` and GitHub event variables.
 
-## Opt-in same-SHA sharding benchmark
+## Verified five-shard cutover
 
-The normal per-package matrix and the protected `Affected content / build, taxonomy and packaging`
-status remain unchanged. To compare a candidate five-shard layout against the existing
-17-job baseline **on the same commit**, manually run **Content packages build** from
-Actions > Run workflow, select this branch/ref, and enable `benchmark_shards`.
-Manual runs still select **all** eligible textbooks. The normal `Content / content/*`
-jobs and additional `Content benchmark / shard-*` jobs run after the same preparation.
-Each benchmark shard does one `npm ci`, then invokes the unchanged
-`build-changed-content.mjs --package` pipeline separately for every assigned package.
-That includes package build, lint where configured, publisher tests, portability and
-scoped compiled-export validation. Each book receives bounded logs and a distinct
-failure annotation; other books in its shard still run. No dependencies or build
-artifacts cross runner boundaries.
+Same-commit comparison from
+[run 44613383307](https://github.com/KiT-Maverik/svitlo/actions/runs/44613383307)
+confirmed 17/17 packages passing with both layouts. The shard matrix took
+about 68 seconds versus 183 seconds for the original, with about 103 seconds
+versus 282 seconds in summed installs. These are measurements of runner logs,
+not assumptions about billed minutes.
 
-Use the same run's job timelines/logs to compare **each variant's own**
-critical path, summed runner duration, dependency-install count/duration and
-log bytes. The original and trial jobs can execute concurrently, so their
-shared workflow's total wall-clock duration is **not** either variant's runtime;
-runner scheduling and cache contention may affect the comparison. Repeat the
-trial if timings are too noisy to justify a cutover. The benchmark costs extra
-runner minutes on purpose; run it only on demand. The selected-scope
-planner remains unchanged for Draft/develop/agent PRs, including zero selected
-workspaces. Promotion to the sharded matrix requires a measured improvement and
-separate code review; this experiment deliberately cannot weaken protected checks.
+`Content / prepare` still fails closed. Draft PRs create no build shards;
+Ready develop PRs build only the selected packages (one shard if one package
+is affected); Ready main PRs and manual dispatch cover all eligible packages.
+The required `Affected content / build, taxonomy and packaging` job depends
+on successful preparation and **all selected shards**. A failed package
+produces a bounded `::error` annotation, all other packages in the shard
+still run, and the shard returns a nonzero status. The failure regression
+test executes real child processes, deliberately fails one, and asserts that
+the rest are attempted and that the resulting shard status is nonzero.

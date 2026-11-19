@@ -101,8 +101,9 @@ Dedicated EducationStandard catalog/reference GitHub workflows are removed. Exis
 ## Production and nested-PR enforcement follow-ups
 
 - Required `Affected content / build, taxonomy and packaging` runs the full
-  selected-content matrix on every Ready main PR, with publication and tarball
-  portability checks for each eligible textbook. Production Quality does **not**
+  selected-content workload across at most five deterministic shards on every Ready
+  main PR. Each shard installs dependencies once and preserves independent
+  publication and tarball portability checks for every eligible textbook. Production Quality does **not**
   rerun those publication/portability suites; it retains full TypeScript, root
   tests, app builds, package artifacts and Chromium E2E coverage.
 - FastGate determines changed files from the merge-base, compares the public
