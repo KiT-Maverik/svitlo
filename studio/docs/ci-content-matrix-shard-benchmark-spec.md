@@ -1,6 +1,6 @@
 # Benchmark production textbook matrix sharding
 
-**Status:** Draft opt-in benchmark harness. The protected per-textbook matrix is unchanged; shard promotion is **not approved** until a same-SHA experiment demonstrates a gain.
+**Scope:** An opt-in, five-shard performance experiment; the protected per-textbook matrix remains authoritative. Production cutover requires separate same-SHA performance evidence and review. [PR #729](https://github.com/KiT-Maverik/svitlo/pull/729) records the change and its live GitHub status.
 
 ## Baseline
 `.github/workflows/content-build.yml` has `Content / prepare`, a per-textbook build matrix with `max-parallel: 5`, and stable required `Affected content / build, taxonomy and packaging`. In Ready main promotions all 17 eligible textbooks build in isolated jobs, each performing `npm ci`. In run 44605135850 the 17 installs summed to ~302 seconds (not wall-clock time), and all 17 content builds succeeded. That is not proof sharding is faster.
