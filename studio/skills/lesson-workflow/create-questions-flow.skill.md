@@ -145,6 +145,10 @@ review that its small subset actually covers the Methodologist's
 intent. Re-review after material edits. Record the verdict in the
 Questions PR, not YAML/Config status flags.
 
+## Stage 5 CI command for approved bank YAML
+
+After Stage 4 Independent Assessment Review has accepted the current complete `questions.yaml` source (and its findings are corrected), the Coding Agent can use the opt-in [bank materialization workflow](../../../scripts/ci/bankMaterialization/README.md) **when deployed on `main`**. Verify the actual existing Questions child Draft PR identity, parent Lesson ancestry, authored canonical YAML blob and Stage 1–4 checklist. Post exactly `/questions materialize` as a top-level comment on **that Questions child PR**, or dispatch the workflow with its PR number and `bank=questions`; do not post to the Lesson PR. The job runs the existing Questions Builder `--preflight` → `--write` → `--check` with trusted Engine code and commits only verified `questions/**` files into the child PR branch. The original `questions.yaml` remains; no Lesson/Quiz Section sources or Flashcards are generated or altered. Verify the actual Actions run, source blob and new HEAD SHA before marking the source scaffold produced; a comment or green generic CI run alone is not evidence. Continue the same Stage 5 to complete Quiz selection integration, assets, verification, and publication; **never** mark Stage 5 complete from the draft scaffold alone. If the comment runner is not yet on `main`, use the documented local Builder and report the exact execution limitation instead of claiming it ran.
+
 ## Stage 5 — Resource Production
 
 Use [Questions Builder](../../../shared/engine/scripts/questionsBuilder/README.md)
