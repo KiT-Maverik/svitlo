@@ -38,6 +38,11 @@ export function run(argv = process.argv.slice(2)) {
   const started = Date.now();
   let output = '';
   let failure = null;
+  // Preserve the first actionable diagnostics, even if later log volume
+  // exceeds the rolling tail cap. Avoid retaining entire successful logs.
+  const diagnostics = [];
+  let pending = '';
+  const actionable = /(?:^|\s)(?:error TS\d+|Error:|FAIL|not ok|fatal:)|::error|\[error\]/i;
   const child = spawn(command, args, {
     stdio: verbose ? 'inherit' : ['inherit', 'pipe', 'pipe'],
     shell: false,
@@ -45,8 +50,14 @@ export function run(argv = process.argv.slice(2)) {
   });
   if (!verbose) {
     const record = chunk => {
-      output += chunk.toString('utf8');
+      const raw = chunk.toString('utf8');
+      output += raw;
       if (output.length > 128000) output = output.slice(-128000);
+      const parts = (pending + raw).split(/\r?\n/);
+      pending = parts.pop().slice(-512);
+      for (const line of parts) {
+        if (diagnostics.length < 25 && actionable.test(line)) diagnostics.push(line.slice(0, 400));
+      }
     };
     child.stdout.on('data', record);
     child.stderr.on('data', record);
@@ -64,7 +75,7 @@ export function run(argv = process.argv.slice(2)) {
       }
     } else {
       console.error(message + ' (exit ' + String(code ?? signal ?? failure?.message) + ')');
-      if (!verbose) console.error(failureExcerpt(output) || String(failure?.message || 'No child diagnostic output'));
+      if (!verbose) console.error(failureExcerpt(diagnostics.join('\n') + '\n' + output) || String(failure?.message || 'No child diagnostic output'));
     }
     if (process.env.GITHUB_STEP_SUMMARY) {
       appendFileSync(process.env.GITHUB_STEP_SUMMARY,

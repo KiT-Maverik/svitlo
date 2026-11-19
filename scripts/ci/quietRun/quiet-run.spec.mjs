@@ -34,3 +34,10 @@ test('failure excerpt is bounded and contains earlier TypeScript errors', () => 
   assert.ok(failureExcerpt(text).length <= 12000);
   assert.match(failureExcerpt(text), /error TS1234/);
 });
+
+test('early failure diagnostic survives logs larger than the output tail buffer', () => {
+  const result = invoke("console.error('Error: early diagnostic'); console.log('noise\\n'.repeat(27000)); process.exit(1)");
+  assert.equal(result.status, 1);
+  assert.match(result.stderr, /Error: early diagnostic/);
+  assert.ok(result.stderr.length < 14000);
+});

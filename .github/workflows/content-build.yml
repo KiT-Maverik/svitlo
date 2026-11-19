@@ -102,7 +102,8 @@ jobs:
           CONTENT_PACKAGE_PATH: ${{ matrix.path }}
           CONTENT_PACKAGE_KIND: ${{ matrix.kind }}
           SVITLO_MEDIA_MODE: ${{ (github.event_name == 'pull_request' && (github.base_ref != 'main' || github.event.pull_request.draft)) && 'draft' || 'production' }}
-        run: node scripts/ci/buildChangedContent/build-changed-content.mjs --package "$CONTENT_PACKAGE_PATH" "$CONTENT_PACKAGE_KIND"
+          SVITLO_CI_LABEL: Build and verify ${{ matrix.path }}
+        run: node scripts/ci/quietRun/quiet-run.mjs -- node scripts/ci/buildChangedContent/build-changed-content.mjs --package "$CONTENT_PACKAGE_PATH" "$CONTENT_PACKAGE_KIND"
 
   verify:
     # Keep this exact required status context from the Protect main ruleset.

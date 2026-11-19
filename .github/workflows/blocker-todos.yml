@@ -26,7 +26,7 @@ jobs:
         with:
           node-version: '24'
       - name: Test blocker TODO guard
-        run: node --test scripts/ci/checkBlockerTodos/check-blocker-todos.spec.mjs
+        run: node scripts/ci/quietRun/quiet-run.mjs -- node --test scripts/ci/checkBlockerTodos/check-blocker-todos.spec.mjs
       - name: Enforce blocking TODO guard
         shell: bash
         env:
