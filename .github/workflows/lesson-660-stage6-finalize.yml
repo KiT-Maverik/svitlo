@@ -33,6 +33,8 @@ jobs:
         run: npm ci --ignore-scripts --no-audit --no-fund
       - name: Build required Engine dependency
         run: npm run package:build --workspace @svitlo/engine
+      - name: Build UI Kit for the SceneRegistry public type declaration
+        run: npm run package:build --workspace @svitlo/ui-kit
       - name: Verify canonical UUID bucket paths for both Scenes
         run: |
           test -f content/astronomy/scenes/f/43fdcc5a-8c6c-5b71-a2d8-9682c677b47f/index.ts
