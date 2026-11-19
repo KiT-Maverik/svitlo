@@ -32,6 +32,7 @@ function npmBuild(name, root = repoRoot) {
     cwd: root,
     env: process.env,
     stdio: 'inherit',
+    shell: process.platform === 'win32',
   });
   if (result.error || result.status !== 0) {
     throw new Error(name + ' / package:build failed' + (result.error ? ': ' + result.error.message : ''));
