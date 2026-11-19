@@ -89,6 +89,8 @@ export function verifyAssessmentSectionPlan(document, { requireInventory = false
       fail('config.section.items.' + slug, 'unmatched or duplicate ' + type + ' Methodologist intent ' + intent[1]);
     if (section.config.slug !== slug)
       fail('config.section.items.' + slug + '.config.slug', 'Section slug must match its collection key');
+    if (section.config.params?.disabled === true)
+      fail('config.section.items.' + slug + '.config.params.disabled', 'required assessment Section cannot be disabled');
     if (!document.config.section.order?.includes(slug))
       fail('config.section.order', 'missing Methodologist-required assessment Section ' + slug);
     seen.add(key);
