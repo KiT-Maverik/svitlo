@@ -233,6 +233,18 @@ async function runGate(changed, base, head) {
   ) {
     exec('node', ['--test', 'scripts/runWorkspaceScript/run-workspace-script.spec.mjs']);
   }
+  // The production-only runner is skipped on develop PRs; execute its
+  // fail-closed regression tests on the same Ready head before integration.
+  if (
+    changed.some(
+      file =>
+        file.startsWith('scripts/ci/packageBuildReuse/') ||
+        file.startsWith('scripts/runWorkspaceScript/run-workspace-script.') ||
+        file === '.github/workflows/questions.yml',
+    )
+  ) {
+    exec('node', ['--test', 'scripts/ci/packageBuildReuse/package-build-reuse.spec.mjs']);
+  }
   if (
     changed.some(
       f => f.startsWith('shared/engine/scripts/generateSkills/') || f.startsWith('content/playground/data/skills/'),
