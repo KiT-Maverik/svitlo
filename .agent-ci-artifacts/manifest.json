@@ -1,77 +1,110 @@
 {
   "schemaVersion": 3,
   "kind": "pr-scoped-agent-ci-artifacts",
-  "sourceCommit": "daa6c4d40eb4c289c6c8d564e3168173af1a3fa6",
+  "sourceCommit": "c2ab6a63e6e50156a417fde3c02980cbebf7f533",
   "scope": {
-    "kind": "lessons",
-    "package": "content/playground",
+    "kind": "ui-kit",
+    "package": null,
     "locale": "kk",
     "component": null,
     "lesson": null
   },
-  "packages": [
-    "content/playground"
-  ],
+  "packages": [],
   "locales": [
     "kk"
   ],
   "generated": [
     {
-      "kind": "lesson",
-      "textbook": "content/playground",
-      "lesson": "1/f760e7b7-9f77-5027-89ce-4e40d9d031a1",
+      "kind": "ui-kit-locale",
+      "component": "audio",
       "locale": "kk",
-      "path": ".agent-ci-artifacts/lessons/playground/1/f760e7b7-9f77-5027-89ce-4e40d9d031a1/kk.md",
+      "path": ".agent-ci-artifacts/ui-kit/audio/kk.md",
       "missing": 0,
       "reviewReady": true
     },
     {
-      "kind": "lesson",
-      "textbook": "content/playground",
-      "lesson": "2/b256e7b2-9f7d-5a9a-a0cb-3f3c2734b8a2",
+      "kind": "ui-kit-locale",
+      "component": "checkpoint",
       "locale": "kk",
-      "path": ".agent-ci-artifacts/lessons/playground/2/b256e7b2-9f7d-5a9a-a0cb-3f3c2734b8a2/kk.md",
+      "path": ".agent-ci-artifacts/ui-kit/checkpoint/kk.md",
       "missing": 0,
       "reviewReady": true
     },
     {
-      "kind": "lesson",
-      "textbook": "content/playground",
-      "lesson": "4/9f417177-1d07-5a9d-ad74-0146c5637e84",
+      "kind": "ui-kit-locale",
+      "component": "flashcard",
       "locale": "kk",
-      "path": ".agent-ci-artifacts/lessons/playground/4/9f417177-1d07-5a9d-ad74-0146c5637e84/kk.md",
+      "path": ".agent-ci-artifacts/ui-kit/flashcard/kk.md",
       "missing": 0,
       "reviewReady": true
     },
     {
-      "kind": "lesson",
-      "textbook": "content/playground",
-      "lesson": "b/fb3b328a-0dd6-55f1-9bb9-7c80ea1ac91b",
+      "kind": "ui-kit-locale",
+      "component": "image",
       "locale": "kk",
-      "path": ".agent-ci-artifacts/lessons/playground/b/fb3b328a-0dd6-55f1-9bb9-7c80ea1ac91b/kk.md",
+      "path": ".agent-ci-artifacts/ui-kit/image/kk.md",
       "missing": 0,
       "reviewReady": true
     },
     {
-      "kind": "lesson",
-      "textbook": "content/playground",
-      "lesson": "c/d3048d21-8690-5255-b62c-984c69ac272c",
+      "kind": "ui-kit-locale",
+      "component": "learningLayout",
       "locale": "kk",
-      "path": ".agent-ci-artifacts/lessons/playground/c/d3048d21-8690-5255-b62c-984c69ac272c/kk.md",
+      "path": ".agent-ci-artifacts/ui-kit/learningLayout/kk.md",
+      "missing": 0,
+      "reviewReady": true
+    },
+    {
+      "kind": "ui-kit-locale",
+      "component": "lesson",
+      "locale": "kk",
+      "path": ".agent-ci-artifacts/ui-kit/lesson/kk.md",
+      "missing": 0,
+      "reviewReady": true
+    },
+    {
+      "kind": "ui-kit-locale",
+      "component": "navbarPreferences",
+      "locale": "kk",
+      "path": ".agent-ci-artifacts/ui-kit/navbarPreferences/kk.md",
+      "missing": 0,
+      "reviewReady": true
+    },
+    {
+      "kind": "ui-kit-locale",
+      "component": "questionFrame",
+      "locale": "kk",
+      "path": ".agent-ci-artifacts/ui-kit/questionFrame/kk.md",
+      "missing": 0,
+      "reviewReady": true
+    },
+    {
+      "kind": "ui-kit-locale",
+      "component": "video",
+      "locale": "kk",
+      "path": ".agent-ci-artifacts/ui-kit/video/kk.md",
+      "missing": 0,
+      "reviewReady": true
+    },
+    {
+      "kind": "ui-kit-locale",
+      "component": "youtube",
+      "locale": "kk",
+      "path": ".agent-ci-artifacts/ui-kit/youtube/kk.md",
       "missing": 0,
       "reviewReady": true
     }
   ],
   "failures": [],
   "summary": {
-    "documents": 5,
+    "documents": 10,
     "failures": 0,
     "missingTranslations": 0,
     "incompleteDocuments": 0,
     "taxonomyDocuments": 0,
-    "lessonDocuments": 5,
+    "lessonDocuments": 0,
     "assessmentMethodDocuments": 0,
-    "uiKitDocuments": 0,
+    "uiKitDocuments": 10,
     "geographyHomeCopyDocuments": 0
   }
 }
