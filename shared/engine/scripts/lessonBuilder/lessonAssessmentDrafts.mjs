@@ -12,6 +12,7 @@ const hasIds = ids => Array.isArray(ids) && ids.length > 0 &&
 
 export function hasCompleteAssessmentParams(config) {
   const params = config?.params;
+  if (params?.disabled === true) return false;
   if (config?.type === 'flashcards') return hasIds(params?.selection?.flashcardIds);
   if (config?.type !== 'quiz') return true;
   const selection = params?.selection;
