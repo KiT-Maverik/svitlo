@@ -1,0 +1,32 @@
+{
+  "name": "@svitlo/web-fixture-alpha",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "package:build": "node ../web/scripts/buildTestContent/build-fixture.mjs"
+  },
+  "bin": {
+    "svitlo-web-fixture-alpha": "./dist/publish.mjs"
+  },
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/textbook/index.d.ts",
+      "default": "./dist/textbook/index.js"
+    },
+    "./scenes": {
+      "types": "./dist/scenes/index.d.ts",
+      "default": "./dist/scenes/index.js"
+    },
+    "./styles": {
+      "default": "./dist/styles.css"
+    }
+  },
+  "peerDependencies": {
+    "react": "^19.3.0",
+    "@svitlo/ui-kit": "0.0.0"
+  }
+}

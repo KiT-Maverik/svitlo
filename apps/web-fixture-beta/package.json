@@ -1,0 +1,21 @@
+{
+  "name": "@svitlo/web-fixture-beta",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "package:build": "node ../web/scripts/buildTestContent/build-fixture.mjs"
+  },
+  "bin": {
+    "svitlo-web-fixture-beta": "./dist/publish.mjs"
+  },
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/textbook/index.d.ts",
+      "default": "./dist/textbook/index.js"
+    }
+  }
+}
