@@ -3,8 +3,9 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
+import { fileURLToPath } from 'node:url';
 import { test } from 'node:test';
-import { scanDiff, scanFull, scanSource, main } from './check-blocker-todos.mjs';
+import { scanDiff, scanFull, scanSource, scanChanged, main } from './check-blocker-todos.mjs';
 
 const blocker = '// ' + 'TODO (BLOCKER): Complete translations';
 const ordinary = '// TODO: Refactor later';
@@ -175,4 +176,54 @@ test('CLI rejects invalid modes and shorthand commit refs', () => {
   assert.throws(() => main([]), /Usage/);
   assert.throws(() => main(['full', 'extra']), /Usage/);
   assert.throws(() => scanDiff('.', 'main', 'HEAD'), /40-character/);
+});
+
+test('the workflow checks authored draft Course/Lesson/Bank diffs and full main promotion', () => {
+  const wf = fs.readFileSync(
+    path.join(path.resolve(fileURLToPath(new URL('../../..', import.meta.url))), '.github/workflows/blocker-todos.yml'),
+    'utf8',
+  );
+  assert.match(wf, /grep -Eq.*data\/\(courses\|lessons\)/);
+  assert.match(wf, /check-blocker-todos\.mjs report-diff/);
+  assert.match(wf, /check-blocker-todos\.mjs changed/);
+  assert.match(wf, /TARGET_BRANCH.*main/);
+  assert.match(wf, /check-blocker-todos\.mjs full/);
+});
+
+test('Draft TODO reports warnings without blocking authors or hiding errors', () => {
+  withRepo(({ root, put, commit }) => {
+    put('content/math/data/lessons/a/id/lesson.yaml', 'kind: lesson\n');
+    const base = commit();
+    put('content/math/data/lessons/a/id/lesson.yaml', '# TODO (BLOCKER): pending bank\n');
+    const head = commit();
+    const previous = console.error;
+    const messages = [];
+    console.error = message => messages.push(message);
+    try {
+      assert.doesNotThrow(() => main(['report-diff', base, head], root));
+      assert.ok(messages[0].startsWith('::warning file=content/math/data/lessons/a/id/lesson.yaml'));
+      assert.throws(() => main(['report-diff', base, 'bad'], root), /40-character/);
+    } finally {
+      console.error = previous;
+    }
+  });
+});
+
+test('Ready gate rejects an inherited blocker inside a changed authored source file', () => {
+  withRepo(({ root, put, commit }) => {
+    const target = 'content/math/data/lessons/a/id/questions/index.ts';
+    put(target, blocker + '\nexport const before = 1;\n');
+    const base = commit();
+    put(target, blocker + '\nexport const before = 2;\n');
+    const head = commit();
+    assert.deepEqual(scanDiff(root, base, head), []);
+    assert.equal(scanChanged(root, base, head).length, 1);
+    const previous = console.error;
+    console.error = () => {};
+    try {
+      assert.throws(() => main(['changed', base, head], root), /unresolved TODO/);
+    } finally {
+      console.error = previous;
+    }
+  });
 });

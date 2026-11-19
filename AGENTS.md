@@ -31,7 +31,7 @@ the instructions and resources relevant to that task. **Do not assume that
 - [`studio/rules/`](studio/rules/) — repository and GitHub workflow rules.
   Follow the [GitHub labels and naming policy](studio/rules/github-labels-and-naming.md)
   for Issues, PRs, and branches, and the [npm package script naming convention](studio/rules/package-scripts.md)
-  when creating or changing package scripts, build tooling, or CI invocations.
+  when creating or changing package scripts, build tooling, or CI invocations. Read [CI workflow and branch policy](studio/rules/ci-workflow.md) before changing CI or choosing a new PR target.
 - [`studio/personas/`](studio/personas/) — role-specific responsibilities
   and review criteria (coding agent, development reviewer, QA reviewer,
   methodologist, screenwriter, technical translator). Choose the persona(s)
@@ -74,7 +74,7 @@ Before creating or updating GitHub Issues, pull requests, or branches, read and 
 
 ## Translation production Draft PR coordination
 
-For **new** translation campaigns, follow [Manage Translation Production](studio/skills/translation-workflow/manage-translation-production.skill.md): use one Draft integration PR as the sole campaign tracker, with exact frozen entity × locale inventory and nonoverlapping translator/reviewer child Draft PRs. **Do not create a new Translation Production Issue.** Existing Issue campaigns remain valid historical/current work until individually owner-authorized migration; preserve their assignments, review evidence, SHAs and permissions via [legacy Issue recovery](studio/skills/translation-workflow/legacy-production-issues.md). The owner explicitly decides when independent review starts and on which source PR/SHA; it may occur directly on an unmerged translator PR. Validate source-derived Markdown and manifest only for supported scopes; clean temporary artifacts before child merge. Parent integration → `main` requires separate owner approval.
+For **new** translation campaigns, follow [Manage Translation Production](studio/skills/translation-workflow/manage-translation-production.skill.md): use one Draft integration PR as the sole campaign tracker, with exact frozen entity × locale inventory and nonoverlapping translator/reviewer child Draft PRs. **Do not create a new Translation Production Issue.** Existing Issue campaigns remain valid historical/current work until individually owner-authorized migration; preserve their assignments, review evidence, SHAs and permissions via [legacy Issue recovery](studio/skills/translation-workflow/legacy-production-issues.md). The owner explicitly decides when independent review starts and on which source PR/SHA; it may occur directly on an unmerged translator PR. Validate source-derived Markdown and manifest only for supported scopes; clean temporary artifacts before child merge. Parent integration → `develop` requires separate owner approval; production promotion from `develop` → `main` is separate.
 
 ## Lesson production Draft PR handoff
 

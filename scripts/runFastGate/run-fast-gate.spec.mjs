@@ -85,12 +85,16 @@ test('unrelated workflow changes do not select subject workspaces', () => {
   assert.deepEqual([...p.affected], []);
 });
 
-test('FastGate listens for Markdown-only CSS updates', () => {
+test('FastGate always emits a required status and scopes expensive checks, including Markdown CSS', () => {
   const workflow = readFileSync(
     fileURLToPath(new URL('../../.github/workflows/fast-gate.yml', import.meta.url)),
     'utf8',
   );
-  assert.ok(workflow.includes("'shared/ui-kit/src/components/widgets/ContentBlockRenderer/blocks/Markdown/**'"));
+  assert.match(workflow, /name: FastGate \/ verify/);
+  assert.doesNotMatch(workflow, /\n    paths:/, 'required checks cannot use GitHub PR paths filters');
+  assert.match(workflow, /ContentBlockRenderer\/blocks\/Markdown\//);
+  assert.match(workflow, /steps\.scope\.outputs\.run == 'true'/);
+  assert.match(workflow, /No changed executable source or CI config/);
 });
 
 test('content build always reports required status and scopes package builds internally', () => {

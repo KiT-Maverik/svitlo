@@ -5,10 +5,10 @@
 GitHub Actions job outputs `matrix`, `has_builds`, `all` and `agent_mode`
 without performing a build or modifying authored files.
 
-- Pull requests targeting `main` **after** leaving Draft and manual workflow
+- Pull requests promoting to production `main` **after** leaving Draft and manual workflow
   dispatch build every currently eligible content workspace. This remains true
   on later `synchronize` events while the PR is review-ready.
-- Draft `main` PRs and PRs targeting another branch build only touched
+- Draft `main` PRs, all `develop` PRs, and PRs targeting integration branches build only touched
   textbooks, with representative smoke packages for shared textbook tooling.
 - The existing `feat/<subject>-skills-agent-N` child branch contract retains
   its assigned-domain TypeScript/structure check instead of a full package build.

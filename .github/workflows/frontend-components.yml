@@ -15,9 +15,9 @@ jobs:
         with:
           node-version: 24
           cache: npm
-      - run: npm ci
-      - run: npm run test:components:coverage
+      - run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --no-audit --no-fund
+      - run: node scripts/ci/quietRun/quiet-run.mjs -- npm run test:components:coverage
       - run: npm test
-      - run: npm run code:check:types
-      - run: npm run code:lint:check
-      - run: npm run app:build
+      - run: node scripts/ci/quietRun/quiet-run.mjs -- npm run code:check:types
+      - run: node scripts/ci/quietRun/quiet-run.mjs -- npm run code:lint:check
+      - run: node scripts/ci/quietRun/quiet-run.mjs -- npm run app:build

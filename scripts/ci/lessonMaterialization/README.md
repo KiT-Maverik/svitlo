@@ -4,7 +4,7 @@ This CI workflow materializes the already-reviewed canonical Lesson YAML into cr
 
 ## Deploy before use
 
-**The workflow and its trusted scripts must first be merged to the default branch (main) with owner authorization.** GitHub issue_comment cannot execute a workflow which exists only on this Draft PR. This implementation PR is not an operational end-to-end test.
+**The workflow and its trusted scripts must first be merged to the repository default branch with owner authorization.** GitHub issue_comment cannot execute a workflow which exists only on this Draft PR. This implementation PR is not an operational end-to-end test.
 
 An agent resuming a Lesson by PR number first reads [Create Lesson Flow](../../../studio/skills/lesson-workflow/create-lesson-flow.skill.md), checks the actual PR tracker and Stage 5 evidence, immutable UUID, canonical source/blob and linked Course PR. Once deployed, a collaborator with write/maintain/admin permissions posts this **exact top-level comment** to that Lesson PR:
 
@@ -18,7 +18,7 @@ The optional `/lesson finalize` (dispatch operation=finalize) **fails closed** i
 
 ## Trusted job isolation
 
-- **Resolve:** read-only token, exact command/dispatch, write-capable actor, same-repo open Draft Lesson PR, canonical identity marker and UUID bucket, Stage 1–5 uniquely checked and Stage 6 pending, source Git blob and immutable head. Course-originated Lessons must target the real linked Course integration branch; verify parent PR, Course UUID/textbook and Lesson inventory. Standalone Lessons target main.
+- **Resolve:** read-only token, exact command/dispatch, write-capable actor, same-repo open Draft Lesson PR, canonical identity marker and UUID bucket, Stage 1–5 uniquely checked and Stage 6 pending, source Git blob and immutable head. Course-originated Lessons must target the real linked Course integration branch; verify parent PR, Course UUID/textbook and Lesson inventory. Standalone Lessons target develop for new work (existing PR ancestry remains authoritative).
 - **Analyze:** trusted default-branch implementation checkout under `trusted/` and a separate pinned PR commit under `candidate/`, treated as untrusted **data only**. Install dependencies only from trusted with `npm ci --ignore-scripts`. Run trusted Engine preflight/schema/factory registry against the candidate Lesson root. Bank-pending reviewed Quiz/Flashcards Sections use `preflight-draft` then `handoff`; fully specified Sections use strict `preflight` and source-preserving strict finalize. Verify the full create-only generated inventory and source fidelity, reject symlinks, overwrite, unexplained modifications, forbidden outputs and size limits; produce bounded SHA256 artifact.
 - **Publish:** separate contents:write job downloads the exact analyzer artifact, revalidates actor/stage/identity/branch/source SHA, allowed bytes/paths and tracked files, then creates a Git tree and one commit on the original HEAD. A non-force ref update rejects concurrent pushes. No shell push, PR-head script execution or persistent checkout credentials.
 - **Repeat:** an identical repeat immediately on the previous materializer's generated commit is an explicitly verified no-op. Manually edited or divergent source is a diagnostic; it is never overwritten.
@@ -43,4 +43,4 @@ npm run content:check:yaml-schemas --workspace @svitlo/engine
 
 The standalone Lesson finalizer supports `finalize --source <canonical lesson.yaml> --preserve-config` for a **strict first-time** source-preserving transfer; the bank-pending `handoff` always preserves YAML. Neither overwrites an existing authored entrypoint. See [Finalize Lesson](../../../shared/engine/scripts/finalizeLesson/README.md).
 
-**Operational E2E remains a separate post-merge acceptance gate:** after authorized deployment to main, use a safe synthetic Draft Lesson PR with real Stage 1–5 evidence; record the actual workflow run ID, source commit/blob, output commit and repeat/failure outcome. Do not use production Lesson #666 as a speculative test. Unit tests and an unmerged workflow are not proof of live GitHub Actions execution.
+**Operational E2E remains a separate post-merge acceptance gate:** after authorized deployment to the repository default branch, use a safe synthetic Draft Lesson PR with real Stage 1–5 evidence; record the actual workflow run ID, source commit/blob, output commit and repeat/failure outcome. Do not use production Lesson #666 as a speculative test. Unit tests and an unmerged workflow are not proof of live GitHub Actions execution.

@@ -98,9 +98,6 @@ function verifyPackage(pkg, changed) {
       run('npm', ['run', 'test:types', '--workspace', pkg.name]);
       run('npm', ['run', 'test:components', '--workspace', pkg.name]);
     }
-    if (pkg.name === '@svitlo/biology') {
-      run('npm', ['run', 'test', '--workspace', '@svitlo/engine']);
-    }
     const cwd = join(repo, pkg.path);
     const publisher = join(repo, 'scripts/textbook-tooling/publishTextbook/test-publish.mjs');
     const tests = pkg.name === '@svitlo/playground' ? [publisher, 'test-course-output.mjs'] : [publisher];
