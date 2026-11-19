@@ -227,9 +227,18 @@ test('planned Lesson is materialized with a stable UUID and complete methodology
     const artifacts = planArtifacts(input, 'content/math', root, { candidates: [], diagnostics: [] });
     assert.equal(artifacts.files.has('config.yaml'), false);
     assert.equal(artifacts.lessonFiles.size, 1);
+    assert.equal(artifacts.lessonAssignments.length, 1);
     const [filename, yaml] = [...artifacts.lessonFiles][0];
     const obj = YAML.parse(yaml);
     assert.equal(obj.config.id, artifacts.technical.config.content.items.review.config.lessonId);
+    assert.deepEqual(artifacts.lessonAssignments, [
+      {
+        id: obj.config.id,
+        slug: obj.config.slug,
+        title: obj.config.locale.title.en,
+        path: 'content/math/data/lessons/' + obj.config.id.at(-1) + '/' + obj.config.id + '/lesson.yaml',
+      },
+    ]);
     assert.equal(obj.config.type, 'lesson');
     assert.deepEqual(obj.config.section, { items: {}, order: [] });
     assert.equal(obj.config.params.requireQuiz, true);

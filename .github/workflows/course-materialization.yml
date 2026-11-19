@@ -81,7 +81,7 @@ jobs:
           cache-dependency-path: trusted/package-lock.json
       - name: Install trusted Engine dependencies without lifecycle scripts
         working-directory: trusted
-        run: npm ci --ignore-scripts --no-audit --no-fund
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --ignore-scripts --no-audit --no-fund
       - name: Validate reviewed Course, generate and verify only allowlisted sources
         env:
           GH_TOKEN: ${{ github.token }}
@@ -89,7 +89,7 @@ jobs:
           COURSE_META_B64: ${{ needs.resolve.outputs.meta }}
           COURSE_HEAD_ROOT: candidate
           COURSE_REPORT: ${{ runner.temp }}/course-materialization/report.json
-        run: node trusted/scripts/ci/courseMaterialization/course-materialization.mjs analyze
+        run: node trusted/scripts/ci/quietRun/quiet-run.mjs -- node trusted/scripts/ci/courseMaterialization/course-materialization.mjs analyze
       - name: Retain exact source and output evidence in this Actions run
         uses: actions/upload-artifact@v4
         with:
@@ -102,6 +102,9 @@ jobs:
     needs: [resolve, analyze]
     if: needs.analyze.result == 'success'
     runs-on: ubuntu-latest
+    outputs:
+      head: ${{ steps.publish.outputs.head }}
+      register: ${{ steps.publish.outputs.register }}
     timeout-minutes: 10
     permissions:
       contents: write
@@ -128,89 +131,26 @@ jobs:
           name: course-stage5-${{ needs.resolve.outputs.pr }}-${{ github.run_id }}
           path: report
       - name: Revalidate authorization, artifact bytes and SHA race; publish by Git API
+        id: publish
         env:
           GH_TOKEN: ${{ github.token }}
           COURSE_DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
           COURSE_META_B64: ${{ needs.resolve.outputs.meta }}
           COURSE_HEAD_ROOT: candidate
           COURSE_REPORT: report/report.json
-        run: node trusted/scripts/ci/courseMaterialization/course-materialization.mjs publish
+        run: node trusted/scripts/ci/quietRun/quiet-run.mjs -- node trusted/scripts/ci/courseMaterialization/course-materialization.mjs publish
 
-  refresh-analyze:
-    name: Analyze Course Lessons after Stage 5 commit
+  register-lessons:
+    name: Register generated Lesson IDs once
     needs: [resolve, publish]
-    if: needs.publish.result == 'success'
-    runs-on: ubuntu-latest
-    timeout-minutes: 20
-    permissions:
-      contents: read
-      pull-requests: read
-    outputs:
-      sha: ${{ steps.pin.outputs.sha }}
-    steps:
-      - name: Read the current Course PR head after Stage 5 publication
-        id: pin
-        env:
-          GH_TOKEN: ${{ github.token }}
-          COURSE_PR: ${{ needs.resolve.outputs.pr }}
-        run: |
-          SHA="$(gh api "repos/$GITHUB_REPOSITORY/pulls/$COURSE_PR" --jq .head.sha)"
-          if [[ ! "$SHA" =~ ^[a-f0-9]{40}$ ]]; then
-            echo "Invalid current Course head" >&2
-            exit 1
-          fi
-          echo "sha=$SHA" >> "$GITHUB_OUTPUT"
-      - name: Check out trusted status synchronizer from default branch
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.repository.default_branch }}
-          path: trusted
-          persist-credentials: false
-      - name: Check out newly committed Course head as data only
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ steps.pin.outputs.sha }}
-          path: course-head
-          persist-credentials: false
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '24'
-          cache: npm
-          cache-dependency-path: trusted/package-lock.json
-      - name: Install trusted dependencies without scripts
-        working-directory: trusted
-        run: npm ci --ignore-scripts --no-audit --no-fund
-      - name: Analyze Course Lesson identities, linked PRs and status
-        env:
-          GH_TOKEN: ${{ github.token }}
-          COURSE_PR: ${{ needs.resolve.outputs.pr }}
-          COURSE_SHA: ${{ steps.pin.outputs.sha }}
-        run: |
-          mkdir -p "$RUNNER_TEMP/course-lessons"
-          node trusted/scripts/syncCourseLessonStatus/sync-course-lessons.mjs analyze \
-            --repo "$GITHUB_REPOSITORY" --pr "$COURSE_PR" --sha "$COURSE_SHA" \
-            --root course-head --out "$RUNNER_TEMP/course-lessons/report.json"
-      - uses: actions/upload-artifact@v4
-        with:
-          name: course-stage5-lessons-${{ needs.resolve.outputs.pr }}-${{ github.run_id }}
-          path: ${{ runner.temp }}/course-lessons/report.json
-          retention-days: 7
-          if-no-files-found: error
-
-  refresh-update:
-    name: Refresh only the managed Lessons table
-    needs: [resolve, publish, refresh-analyze]
-    if: needs.refresh-analyze.result == 'success'
+    if: needs.publish.result == 'success' && needs.publish.outputs.register == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    concurrency:
-      group: course-lessons-description-${{ needs.resolve.outputs.pr }}
-      cancel-in-progress: false
     permissions:
       contents: read
       pull-requests: write
     steps:
-      - name: Check out trusted updater only
+      - name: Check out trusted registration script only
         uses: actions/checkout@v4
         with:
           ref: ${{ github.event.repository.default_branch }}
@@ -218,19 +158,19 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
-      - run: npm ci --ignore-scripts --no-audit --no-fund
-      - uses: actions/download-artifact@v4
+      - name: Download the exact verified materialization handoff
+        uses: actions/download-artifact@v4
         with:
-          name: course-stage5-lessons-${{ needs.resolve.outputs.pr }}-${{ github.run_id }}
+          name: course-stage5-${{ needs.resolve.outputs.pr }}-${{ github.run_id }}
           path: report
-      - name: Replace only validated Course PR Lessons block
+      - name: Write Lesson UUIDs and Not started placeholders to Course PR
         env:
           GH_TOKEN: ${{ github.token }}
-          COURSE_PR: ${{ needs.resolve.outputs.pr }}
-          COURSE_SHA: ${{ needs.refresh-analyze.outputs.sha }}
+          COURSE_DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+          COURSE_META_B64: ${{ needs.resolve.outputs.meta }}
+          COURSE_PUBLISHED_HEAD: ${{ needs.publish.outputs.head }}
+          COURSE_REPORT: report/report.json
         run: |
           test "$(find report -maxdepth 1 -type f | wc -l)" -eq 1
           test -f report/report.json
-          node scripts/syncCourseLessonStatus/sync-course-lessons.mjs update \
-            --repo "$GITHUB_REPOSITORY" --pr "$COURSE_PR" --sha "$COURSE_SHA" \
-            --report report/report.json
+          node scripts/ci/courseMaterialization/course-materialization.mjs register

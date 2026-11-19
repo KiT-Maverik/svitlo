@@ -245,6 +245,31 @@
     "description": "Migrates architecture, interfaces, or data"
   },
   {
+    "name": "work: course",
+    "color": "7C3AED",
+    "description": "Create or edit authored Courses, Course plans, or Course-specific educational content"
+  },
+  {
+    "name": "work: lesson",
+    "color": "7C3AED",
+    "description": "Create or edit authored Lessons, methodology, or Lesson-specific educational content"
+  },
+  {
+    "name": "work: questions",
+    "color": "7C3AED",
+    "description": "Create or edit Lesson Question Banks and assessment questions"
+  },
+  {
+    "name": "work: flashcards",
+    "color": "7C3AED",
+    "description": "Create or edit Lesson Flashcard Banks and learning flashcards"
+  },
+  {
+    "name": "work: media",
+    "color": "7C3AED",
+    "description": "Create or edit static educational media assets for Lessons"
+  },
+  {
     "name": "issue: needs-triage",
     "color": "EA580C",
     "description": "Issue has not yet been evaluated or classified"

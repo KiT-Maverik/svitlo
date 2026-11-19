@@ -22,9 +22,13 @@ Related: [Lesson](./lesson.md), [Lesson Content](./lesson-content.md).
 
 Use the appropriate Engine `define*Section` configurator from `@svitlo/engine/build`. `build.props({ languages })` returns invariant and locale-specific Props fragments; `build.overrides(patch, { languages })` returns scoped sparse patches. Section configurators do not write files, build Course TOCs, or own the Lesson's Question Bank.
 
-## Methodologist assessment requirements
+## Assessment Section decisions and source handoff
 
-For **new** Lessons, Stage 1 Methodologist intent lives in the single `lesson.yaml` `production.methodology`, including justified `assessmentPlan.quizRequired` and distinct required Quiz intentions with target Skills and canonical cognitive `AssessmentMethodKey` values. `defineQuizSection` configures runtime behavior; it does **not** decide educational necessity. Stage 2 Screenwriter places the intended Quiz Section(s) in the same `lesson.yaml` `config`/`production` source, and the Assessment Architect later owns bank validity, explicit UUID selections and scoring. Historical `methodology.md` frontmatter and `content.yaml` are migration inputs, not new-work prerequisites. No fixed one-Quiz-per-Lesson rule. A substantive teaching Lesson can have a full independent bank and **zero Quiz Sections**; an assessment-only Lesson at a Chapter/Module/Course boundary can have a Quiz and **zero own Question Bank**. Keep upstream slot/PR dependencies in Course methodology and Lesson PRs, not in new Config/Props properties. Actual cross-Lesson Quiz publication is gated on PR #668's integrated global UUID/locale resolver and verified resources.
+The Methodologist decides whether the Lesson eventually requires Quiz and/or Flashcards Sections using root `production.quizRequired` and `production.flashcardsRequired` (optional booleans). There is no mandatory YAML-fenced inventory, Section status marker, or fake bank selection.
+
+Stage 2 preserves each planned assessment Section as a normal `config.section.items/<slug>` node and its `order` entry, including stable UUID, title, navigation, nested ContentBlocks and authoring-only production notes. A Section whose independent bank selection or required Config params are incomplete must not be emitted as invalid `defineQuizSection` or `defineFlashcardsSection` TypeScript. The Lesson Builder defers it into the separate bank YAML `sectionDrafts` handoff and emits a real root `TODO (BLOCKER)` until integration. Complete Sections remain normally ordered.
+
+This handoff is Stage 6.1 of the ten-stage Lesson Flow; Stage 6.2–6.4 cover accessibility, offline and source validation, while parent Stages 7–8 own independent Question/Flashcard Banks. The bank/Section specialist later integrates actual verified resource references and mandatory Config params. Full validation and publication continue to enforce strict Engine Section schemas and independently reviewed bank ownership, locale availability and selected UUIDs. `config.params.quizRequiredForCompletion` is the distinct Lesson-completion requirement, not a bank-creation flag.
 
 ## YAML Config draft authoring
 

@@ -100,7 +100,7 @@ describe('Configurators', () => {
         type: 'lesson',
         skills: [],
         params: {
-          requireQuiz: false,
+          quizRequiredForCompletion: false,
           languages: ['uk', 'en'] as const,
           sections: { allowNavigation: true, allowSkipping: true, showIndexes: true },
         },

@@ -4,7 +4,7 @@ name: Agent CI Artifacts / clean
 # Configure this check as REQUIRED in main branch protection / rulesets.
 on:
   pull_request:
-    branches: [main, new-lesson, integration/italian-localization]
+    branches: [main, develop, integration-branch, new-lesson, integration/italian-localization]
     # An unchanged ready-for-review transition keeps the previously verified SHA.
     # Formatter and artifact cleanup commits recheck through synchronize.
     types: [opened, reopened, synchronize]

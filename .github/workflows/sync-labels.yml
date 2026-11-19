@@ -43,8 +43,16 @@ jobs:
               if (names.has(key)) throw new Error('Duplicate label: ' + label.name);
               names.add(key);
             }
+            // Rename the five previously published PR-deliverable labels in place:
+            // this preserves labels already assigned to Course and Lesson PRs.
+            const educationalWorkTypes = new Set([
+              'course', 'lesson', 'questions', 'flashcards', 'media'
+            ]);
             // Update labels IN PLACE so that existing Issue/PR assignments survive.
             const legacyName = name => {
+              if (name.startsWith('work: ') && educationalWorkTypes.has(name.slice(6))) {
+                return 'pr: ' + name.slice(6);
+              }
               if (name.startsWith('content: ')) return 'area: ' + name.slice(9);
               if (name.startsWith('shared: ')) return 'area: ' + name.slice(8);
               if (name === 'app: platform') return 'area: platform';
