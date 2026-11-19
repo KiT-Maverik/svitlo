@@ -22,7 +22,7 @@ export const events = defineSkillGroup({
     it: 'Eventi casuali',
     ja: '偶然の出来事',
     ka: 'შემთხვევითი მოვლენები',
-    kk: 'Кездейсоқ оқиғалар',
+    kk: 'Kezdeisoq oqiğalar',
     ko: '무작위 사건',
     lt: 'Atsitiktiniai įvykiai',
     lv: 'Nejauši notikumi',

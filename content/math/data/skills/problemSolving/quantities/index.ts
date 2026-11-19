@@ -22,7 +22,7 @@ export const quantities = defineSkillGroup({
     it: 'Problemi con grandezze',
     ja: '量に関する文章題',
     ka: 'სიდიდეების ამოცანები',
-    kk: 'Шамаларға арналған есептер',
+    kk: 'Şamalarğa arnalğan esepter',
     ko: '양에 관한 문제',
     lt: 'Dydžių uždaviniai',
     lv: 'Lielumu uzdevumi',

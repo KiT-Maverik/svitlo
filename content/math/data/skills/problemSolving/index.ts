@@ -26,7 +26,7 @@ export const problemSolving = defineSkillDomain({
     it: 'Risoluzione di problemi',
     ja: '問題解決',
     ka: 'ამოცანების ამოხსნა',
-    kk: 'Есептерді шешу',
+    kk: 'Esepterdı şeşu',
     ko: '문제 해결',
     lt: 'Uždavinių sprendimas',
     lv: 'Uzdevumu risināšana',
