@@ -8,10 +8,13 @@ import { spawnSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import {
   appendFileSync,
+  closeSync,
   existsSync,
   mkdirSync,
+  openSync,
   readFileSync,
   readdirSync,
+  readSync,
   renameSync,
   statSync,
   writeFileSync,
@@ -50,7 +53,10 @@ export function snapshotDist(root, workspacePath) {
   if (!existsSync(base) || !statSync(base).isDirectory()) {
     throw new Error('Missing compiled dist for ' + workspacePath);
   }
-  const files = [];
+  // Persist one digest instead of a potentially enormous content/locale file list.
+  const digest = createHash('sha256');
+  const buffer = Buffer.allocUnsafe(1024 * 1024);
+  let count = 0;
   function walk(directory, prefix = '') {
     for (const entry of readdirSync(directory, { withFileTypes: true }).sort((a, b) => a.name.localeCompare(b.name))) {
       const name = prefix ? prefix + '/' + entry.name : entry.name;
@@ -59,16 +65,27 @@ export function snapshotDist(root, workspacePath) {
         walk(join(directory, entry.name), name);
       } else if (entry.isFile()) {
         const file = join(directory, entry.name);
-        const hash = createHash('sha256').update(readFileSync(file)).digest('hex');
-        files.push([name, statSync(file).size, hash]);
+        const size = statSync(file).size;
+        const hash = createHash('sha256');
+        const descriptor = openSync(file, 'r');
+        try {
+          let read;
+          while ((read = readSync(descriptor, buffer, 0, buffer.length, null)) !== 0) {
+            hash.update(buffer.subarray(0, read));
+          }
+        } finally {
+          closeSync(descriptor);
+        }
+        digest.update(name + '\\0' + size + '\\0' + hash.digest('hex') + '\\0');
+        count++;
       } else {
         throw new Error('Unsupported compiled output: ' + workspacePath + '/dist/' + name);
       }
     }
   }
   walk(base);
-  if (!files.length) throw new Error('Empty compiled dist for ' + workspacePath);
-  return files;
+  if (!count) throw new Error('Empty compiled dist for ' + workspacePath);
+  return { count, digest: digest.digest('hex') };
 }
 
 function emptyState(root) {
