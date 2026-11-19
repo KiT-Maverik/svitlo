@@ -1,7 +1,7 @@
 {
   "schemaVersion": 3,
   "kind": "pr-scoped-agent-ci-artifacts",
-  "sourceCommit": "dbade5679e8c30cf3c0d1a72781806a678d49241",
+  "sourceCommit": "a865ca903239c3abe920696196e447a6a94187a1",
   "scope": {
     "kind": "skills",
     "package": "content/economics",

@@ -58,7 +58,7 @@ Skills: 3
 
 **Methodological description (English):** Analyze physical and economic access to food, stability of supplies, and why sufficient aggregate production does not ensure everyone can obtain food.
 
-**User-friendly description (kk):** Jetkılıktı azyq-tülık öndırılse de, onyñ barlyğyna qoljetımdı bolatynyna nege kepıldık joq ekenın zertte.
+**User-friendly description (kk):** Azyq-tülık jetkılıktı mölşerde öndırılse de, barlyq adamnyñ ony satyp aluyna nemese oğan qol jetkızuıne nege kepıldık joq ekenın zertte.
 
 #### Bılım beru ekonomikasy
 
@@ -400,7 +400,7 @@ Skills: 4
 
 **Methodological description (English):** Interpret a summary index of inequality and its limits in describing the shape of a distribution.
 
-**User-friendly description (kk):** Jini koeffitsientın taldap, onyn teñsızdık turaly tolyq aqparat bermeıtının esker.
+**User-friendly description (kk):** Jini koeffitsientın taldap, onyñ teñsızdık turaly tolyq aqparat bermeıtının esker.
 
 ##### Tabystyñ bölınısı
 
@@ -2084,7 +2084,7 @@ Skills: 4
 
 **Methodological description (English):** Assess how design, wording, size, labeling, and usability of packaging affect perceived value and costs; separate verifiable attributes from visual appeal, which Art analyzes independently.
 
-**User-friendly description (kk):** Qaptama kütu men önımnıñ täjıribelık qūnyna qalai äser etetının bıl.
+**User-friendly description (kk):** Qaptama satyp aluşynyñ önımnen ne kütetınıne jäne önımnıñ ıs jüzındegı qūndylyğyna qalai äser etetının bıl.
 
 ##### Önımnıñ ömırlık tsiklı
 
