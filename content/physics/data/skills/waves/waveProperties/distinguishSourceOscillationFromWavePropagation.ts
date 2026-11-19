@@ -53,7 +53,7 @@ export const distinguishSourceOscillationFromWavePropagation = defineSkill({
       it: 'Distingui una sorgente vibrante dalla perturbazione che si propaga lontano da essa.',
       ja: '振動する波源と、そこから離れて進む乱れを区別しよう。',
       ka: 'განასხვავე რხევადი წყარო და მისგან გავრცელებული შეშფოთება.',
-      kk: 'Terbeletın közdı odan taralatyn būzyludan ajyrat.',
+      kk: 'Terbeletın közdı odan taralatyn tolqynnan ajyrat.',
       ko: '진동하는 원천과 거기서 멀리 퍼지는 교란을 구별해 보세요.',
       lt: 'Atskirk virpantį šaltinį nuo nuo jo tolstančio trikdžio.',
       lv: 'Atšķir svārstīgu avotu no traucējuma, kas izplatās prom no tā.',
