@@ -1,16 +1,16 @@
 # Lesson Content
 
-**Entity category:** Educational Screenwriter-owned **machine-readable editorial plan** for one independently reusable Lesson.
+**Entity category:** historical Screenwriter-owned editorial plan for a Lesson. **Not a new-work source:** [Create Lesson Flow](../../skills/lesson-workflow/create-lesson-flow.skill.md) now uses a single temporary `lesson.yaml` with nested `config` and `production` through Stages 1–5; the old `content.yaml` and its hand-maintained schema are retained only for an audited, non-destructive legacy migration. Do not generate new `content.yaml` or represent it as a current canonical authoring requirement.
 
-A Lesson has two distinct editorial sources: `methodology.md` specifies **what, why, for whom** and the required Quiz/Assessment Method policy; `content.yaml` specifies **how to teach it**: ordered Sections, ContentBlocks, learner-facing source-language copy, experience design, required Quiz placements and production dependencies.
+## Historical editorial format (migration reference only)
 
-## Canonical file and ownership
+Earlier Lessons used two independent documents: a Methodologist `methodology.md` for educational intent and Screenwriter `content.yaml` for Section/ContentBlock plans, source locale, assessment placement and media handoffs. This is **not** a current new-work protocol or a second canonical source.
 
-**Canonical file:** `content/<textbook>/data/lessons/<bucket>/<lesson-uuid>/content.yaml`.
+Historical path: `content/<textbook>/data/lessons/<last-uuid-hex>/<lesson-uuid>/content.yaml`. Preserve original documents and SHA-linked independent reviews when migrating into the single, nested `lesson.yaml` `config` + `production`; never silently truncate approved prose, fabricate translations, or assume a legacy `status: approved` marker equals today's independent review.
 
-[Create Lesson Content](../../skills/lesson-workflow/create-lesson-content.skill.md) authors this YAML from an approved Methodologist Brief. Its [JSON Schema](../../skills/lesson-workflow/lesson-content.schema.json) checks structural format and known Section/ContentBlock and Assessment Method keys. The Lesson UUID is unchanged and is not inferred from title or slug. Existing `content.md` is a legacy Screenwriter document; it must be explicitly reviewed before editorial migration and should not remain a competing source of truth.
+For **new** Lesson authoring, [Create Lesson Flow](../../skills/lesson-workflow/create-lesson-flow.skill.md) owns Stages 1–5 on `lesson.yaml`. Methodologist `production.methodology` defines outcomes/subject/assessment obligations, Screenwriter authors actual ordered Section and ContentBlock `config` plus `production` specifications, and independent reviewers record decisions in the **Lesson Draft PR**. [Finalize Lesson](../../../shared/engine/scripts/finalizeLesson/README.md) checks completed technical schema and safely materializes source at Stage 6. `questions.yaml` and `flashcards.yaml` are separate Engine-shaped banks and not part of Lesson Config.
 
-`documentLanguage` is the single **source locale** of the Plan's learner-facing strings. `supportedLanguages` is the planned Lesson locale set, **not a translation completion report**. Plain strings are translatable source text; `{value, invariant: true}` is used only for truly locale-invariant titles. An authorized technical handoff **separately** projects the approved editorial plan into Config-shaped YAML: nested `type` discriminators, stable IDs/slugs, `items/order` for Section and block collections, and source-locale-only `locale` fields. The generic TypeScript scaffolder operates on that Config-shaped input, **not directly on this editorial schema**, and does not fabricate translations or validate approvals. Missing locales, compilation and publication are independent later gates; see the [Engine YAML handoff](../architecture/yaml-config-scaffolding.md).
+**Legacy schema note:** [lesson-content.schema.json](../../skills/lesson-workflow/lesson-content.schema.json) is retained solely to interpret older `content.yaml` data, never as a second current authoring schema. Engine-derived `lesson.scaffold.schema.json` and its real current Zod Config contract govern new structural source.
 
 ## Section and Quiz contracts
 
@@ -19,7 +19,6 @@ Regular Sections contain ordered ContentBlocks (current discriminant `type`; no 
 **A Quiz is a Section, never a ContentBlock.** A Lesson may have **no Quiz, one Quiz or several** according to the approved Methodologist `assessmentPlan`. Each Quiz Section references a unique approved `assessmentPlanKey` and repeats the exact target Skill IDs and `requiredAssessmentMethods` from that requirement. `AssessmentMethodKey` expresses a cognitive operation, not the UI Question type. The Assessment Architect owns Question correctness, distractors, grading and mastery; the Screenwriter places the Quiz and explains its teaching context.
 
 `content.yaml` is not a runtime Lesson Props object or a direct `defineLesson` Config. The Engine YAML → TypeScript draft scaffolder mechanically emits unfinished `define*` code **from the separate Config-shaped projection**, without editorial validation, TypeScript completeness guarantees or publishing. [Implement Scene](../../skills/lesson-workflow/implement-scene.skill.md) handles only approved Scene React behavior, tests, integration and source-locale text; translation agents complete other languages. [Lesson](./lesson.md), [Section](./section.md) and [Lesson editorial artifacts](../architecture/lesson-editorial-document.md) establish boundaries and review policy.
-
 
 ## Quest editorial blueprint
 

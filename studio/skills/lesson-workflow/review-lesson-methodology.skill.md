@@ -1,53 +1,33 @@
-# Review Lesson Methodology Skill
+# Review Lesson Methodology — Methodology Compliance
 
-**Persona:** [Methodologist](../../personas/methodist.persona.md). Read it fully before this skill, followed by root/applicable `AGENTS.md`, Studio Learning Experience Philosophy, current Lesson, Section, Quiz, AssessmentMethod and Question contracts. This is an **independent methodological review of a completed Screenwriter plan**: check factual and methodological correctness; do not write the storyboard yourself.
+**Persona:** independent [Methodologist](../../personas/methodist.persona.md) **other than the Stage 1 author**. **Coordinator:** [Create Lesson Flow](./create-lesson-flow.skill.md), Stage 5. This is the final _pedagogical compliance_ check, not an alternative Stage 1 Methodology authoring task.
 
-## Input and boundaries
+Read the latest complete `lesson.yaml` with its original `production.methodology`, each Section, block, user-facing explanation, worked example and full **Scene/image/audio/video/Quest production specifications**, the real approved Skills/reference sources and exact Content/Experience Review SHAs. Verify learning outcomes, prerequisites, scientific correctness, conceptual depth, misconceptions, formative feedback, progression, Quiz `assessmentPlan` coverage, accessibility and Course neutrality. Missing substantive teaching or vague necessary media/Scene specifications **block** Methodology Compliance even if a basic string schema permits them. A not-yet-created asset binary or future locale does **not** by itself block methodological review. Question answers and scoring remain the separate Assessment Architect's responsibility.
 
-The user or a [Lesson Production Issue](./manage-lesson-production.skill.md) selects one or many exact Lesson UUIDs. For each Lesson, read:
+Record source SHA, Skill/outcome-by-Section coverage, exact defects/paths, independent verdict, reviewer and sign-off in Lesson PR. Screenwriter repairs approved content fixes; independent reviews of changed source become stale as appropriate. Do not self-approve, introduce `draft`/`approved` frontmatter, create duplicate methodology-review.md or fabricate `review.ts` Props-digest approvals.
 
-- The **approved** original `methodology.md` (or verified approved legacy Brief) with target Skill source links/IDs, intended audience, entry prerequisites, outcomes, scope boundaries, misconceptions, verified factual references, planned languages and explicit `assessmentPlan`.
-- The current `content.yaml` with full ordered Sections, authored text, prompts, Quiz placements and relevant Scene specifications; use [Lesson Content schema](./lesson-content.schema.json).
-- The latest Experience Review PR/Issue evidence and authorized editorial sign-off for **the same `content.yaml` Git blob**. If that gate has not passed, do not pretend that this review completes the production stage. Flag its status; continue other ready Lessons.
+**Original-specification gate:** independently review `lesson.yaml` `production.methodology` against the [Lesson methodology completeness contract](../../docs/entities/lesson.md#lesson-methodology-completeness--pedagogical-technical-specification), in addition to evaluating its correct execution in Sections. Insufficient subject matter, Skill outcomes, dependencies, misconceptions, example boundaries or assessment evidence cannot be silently supplied by the reviewer/Screenwriter or excused by passing TypeScript. Request a Methodologist-owned amendment and re-review at the new source SHA.
 
-Work from **canonical source files**, not just previous agents' summaries or the Issue checklist. Never assert methodological approval from a created document alone. One Issue can contain several Lessons at different stages.
+## Detailed methodological audit
 
-## Methodological audit
-
-Assess every Section against the original approved goals and verified references:
+Assess every Section against the verified Stage 1 methodology and verified references:
 
 1. **Subject correctness:** facts, examples, explanations, analogies, diagrams and interactive Scene behavior are scientifically/academically correct within stated simplifications; identify unverified or contested claims.
 2. **Coverage:** all and only intended Skills and observable outcomes are appropriately taught. Distinguish exposure, active practice, assessment evidence and actual demonstrated mastery; no accidental omissions or unauthorized learning goals.
 3. **Prerequisites and progression:** assumed knowledge matches the approved learner profile, progression makes conceptual sense, misconceptions are corrected, and depth/complexity remains appropriate.
-4. **Assessment contract:** the Methodologist's `assessmentPlan.quizRequired` is respected. A Lesson may have zero, one, or multiple Quiz Sections. Every `assessmentPlan.quizzes[].key` corresponds to exactly one approved `content.yaml` Quiz `assessmentPlanKey`; each targets the approved Skill IDs and **all** specified `AssessmentMethodKey` values. Check that the cognitive operations are pedagogically appropriate and not confused with the Question UI type. A `checkpoint` is not a Quiz. Actual Questions/answers, validity of distractors, retry/grading/mastery policy belong to the Assessment Architect.
+4. **Assessment contract:** the Methodologist's `assessmentPlan.quizRequired` is respected. A Lesson may have zero, one, or multiple Quiz Sections. Every required Quiz intent must map to an actual planned Quiz Section in `lesson.yaml` and retain the approved Skill IDs and cognitive `AssessmentMethodKey` coverage. Review the current Engine Quiz parameters instead of relying on legacy `content.yaml` fields. Check that the cognitive operations are pedagogically appropriate and not confused with the Question UI type. A `checkpoint` is not a Quiz. Actual Questions/answers, validity of distractors, retry/grading/mastery policy belong to the Assessment Architect.
 5. **Role and autonomy boundaries:** Lesson remains usable independently of its Course, mascot, storyline or surrounding Lessons unless prerequisites were explicitly approved; Course-specific sequencing does not redefine a reusable Lesson's scope.
 6. **Accessibility/localization relevance:** meaningful learner outcomes remain attainable through the specified accommodations and language plan; note conceptual/cultural assumptions, but leave UI/engineering QA to specialists.
 7. **Production gaps:** missing media and scenes may remain explicit production dependencies when the educational specification is complete. Do not reject a draft merely because the asset does not exist yet. Do flag assets whose educational meaning, accuracy or acceptance criteria are too vague to implement.
 
 Review actual `AssessmentMethodKey` definitions in Engine and the generated `.agent-ci-artifacts/assessment-methods/en.md` reference if it exists; the reference is **optional and derived**, never an authority that overrides canonical source. Do not invent unsupported Assessment Method IDs.
 
-## Output
+## Coverage and evidence requirements
 
-For each Lesson, report in the review PR and coordination Issue: the Lesson UUID/path, reviewed `content.yaml` blob/commit, methodology revision, prerequisite Experience Review PR/revision, reviewer role, verdict (`pass` | `changes-requested` | `blocked`), explicit Skill/outcome coverage, correctness and Quiz/Assessment Method findings, exact affected Sections/blocks, severity, evidence, required corrections and sign-off blockers. **Do not generate a separate `methodology-review.md`.**
+The compliance report must identify each target **Skill and observable outcome** and where the latest authored Sections/blocks teach it, support appropriate practice, and, where justified, propose independent assessment evidence. Keep _exposure_, _active learning_ and _verified mastery_ distinct; do not assert that the learner has mastered something merely because a Section exists.
 
-## Review evidence and revision binding
+Check the scientific and academic truth of examples, demonstrations, analogies, diagrams and Scene invariants within explicitly approved simplifications. Confirm coherent progression and manageable depth for the intended audience, accurate prerequisite assumptions, misconceptions and feedback. Identify unauthorized objectives, missing essential examples, conceptual jumps, duplicate filler and incorrect terminology. Where a fact depends on an external reference, identify what was actually verified.
 
-For a Lesson, the durable per-entity review register is `review.ts` beside the Lesson root `index.ts`, typed as Engine `LessonReview` when Stage 6 is implemented. **Do not create or maintain `experience-review.md`, `methodology-review.md` or other standalone Lesson review narratives.** A review result points to its actual GitHub PR; detailed findings, corrections, the reviewed source commit/blob and responsible approver remain in that PR conversation and the coordination Issue, not a duplicate Markdown file.
+For each Methodologist `assessmentPlan` Quiz key, confirm exactly one intended Quiz Section maps to it, covering the relevant target Skills and **all** required `AssessmentMethodKey` cognitive operations. A Checkpoint is not a Quiz. Selection and validity of real Questions, correct answers, distractors, scoring, retry policies and mastery thresholds belong to #647's Question workflow, not this methodological review. An absent scored Quiz is acceptable only if the accepted Methodology explicitly justifies it.
 
-When the assembled Lesson Props revision is available and the relevant review/approval has actually been verified for **that revision**, record the PR in the matching direct `ai` field (for example `experienceReview` or `methodologyReview`) with `{ pr: number, language: LanguageCode }`. The review file does not export any value. Do not infer approval from a PR number alone, do not fill unrelated fields, and never carry results forward to changed Props without re-review.
-
-**Early editorial review is allowed before a Lesson can produce Props.** In that case `review.ts` may not exist or may still be a deliberately incomplete draft. Keep source-revision-specific review evidence and outstanding approval in the already required PR and Lesson Production Issue; do not invent a hash, PR number, approval, or substitute Markdown review document. After the reviewed compiled Lesson revision becomes available, the coordinator explicitly reconciles the earlier evidence with that revision before populating the corresponding `review.ts` field.
-
-Where a **review-specific decision** affects this Lesson or locale only, add a short TypeScript comment **immediately above the relevant PR-valued entry** in `review.ts` when recording it, explaining the actual decision and reason. General policy belongs in canonical Studio rules, not in repeated per-Lesson comments. Keep review failures, blockers, and recommendations in the PR/Issue until they are resolved; never turn an unapproved review into a completed entry.
-
-A `pass` is an **independent recommendation**, not editorial approval. Verified authorized sign-off for the reviewed source and its eventual assembled Props revision is required before the coordinator may mark `methodologyReview` as approved.
-
-The Methodologist reviewer **does not edit** `content.yaml` or silently revise an approved `methodology.md`. Return content changes to the author and substantive Brief amendments for explicit approval. Any material revision invalidates stale review evidence until it is checked again.
-
-## Batch execution and production tracking
-
-Process all Lessons at the requested stage that are ready, in one authorized run; do not ask the user to trigger each Lesson individually. Mark blocked/pending Lessons precisely, continue the rest. Use [Manage Lesson Production](./manage-lesson-production.skill.md) when there is a Production Issue: read latest state/PRs first, coordinate ownership, and update one per-Lesson status row and artifact links without deleting other agents' records.
-
-Use correctly labeled Draft PRs following [GitHub rules](../../rules/github-labels-and-naming.md) and reference the parent Issue with `Refs #<number>`. Do not auto-merge or prematurely close a multi-Lesson Issue.
-
-**Completion:** every independently ready Lesson has traceable PR/Issue review evidence and an actionable handoff; approved compiled revisions are recorded in `review.ts` when supported. Approvals never rely on stale revisions or a self-reported completed checklist.
+The reviewer must distinguish a production-stage dependency (for example, a not-yet-built Scene with a complete verifiable specification) from a pedagogical deficiency (such as unspecified intended feedback, unteachable sequence or mathematically incorrect invariant). Report exact source SHA, affected entity path, severity, outcome coverage, required correction and independent verdict; never silently edit the Screenwriter's source. If content changes, re-evaluate changed evidence instead of carrying forward stale review approval.

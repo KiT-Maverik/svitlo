@@ -209,12 +209,12 @@ test('Lesson constants use documentLanguage, preserving the full planned tuple f
     assert.equal(
       constants,
       [
-        "import type { LanguageCode } from '@svitlo/engine/build';",
+        "import type { SupportedLanguages } from '@svitlo/engine/build';",
         '',
-        '// Restore the complete language set when translations are ready:',
-        '// export const languages = ["en","uk","pl","qm"] as const satisfies readonly [LanguageCode, ...LanguageCode[]];',
+        '// TODO (BLOCKER): Restore the complete language set when translations are ready:',
+        '// export const languages = ["en","uk","pl","qm"] as const satisfies SupportedLanguages;',
         '',
-        'export const languages = ["uk"] as const satisfies readonly [LanguageCode, ...LanguageCode[]];',
+        'export const languages = ["uk"] as const satisfies SupportedLanguages;',
         'export type LessonLanguages = typeof languages;',
         '',
       ].join('\n'),
@@ -1096,7 +1096,7 @@ test('groups generated Lesson imports by package, alias and relative dependencie
           "import { languages } from './constants';",
           "import type { LessonLanguages } from './constants';",
           '',
-          'export const lightLesson_Lesson =',
+          'export const lightLesson =',
         ].join('\n'),
       ),
       root,
@@ -1134,4 +1134,14 @@ test('PascalCase Scene slug exports distinct Configurator with textbook-local im
     assert.match(scene, /#lessonsData\/2\/00000000-0000-4000-8000-000000000012\/constants/);
     assert.match(fs.readFileSync(f.generated('sections/intro/index.ts'), 'utf8'), /CompareCountersSceneConfig/);
     assertTypeScriptSyntax(readAll(f.lesson));
+  }));
+
+test('Lesson root exports reject reserved identifiers rather than producing invalid TypeScript', () =>
+  fixture(f => {
+    for (const slug of ['class', 'languages', 'defineLesson']) {
+      assert.throws(
+        () => renderLessonModules({ ...f.config, slug }, 'uk'),
+        /reserved or invalid Lesson export identifier/,
+      );
+    }
   }));
