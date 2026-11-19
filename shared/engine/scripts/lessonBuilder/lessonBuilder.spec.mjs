@@ -1209,7 +1209,7 @@ test('unfinished assessment Sections are omitted from runtime while YAML drafts 
       ['questions.yaml', ['quizOne', 'quizTwo']],
       ['flashcards.yaml', ['cardsOne', 'cardsTwo']],
     ]) {
-      const draft = yaml.parse(files.get(filename));
+      const draft = yaml.parse(fs.readFileSync(f.generated(filename), 'utf8'));
       assert.deepEqual(draft.sectionDrafts.order, names);
       assert.equal(draft.sectionDrafts.items[names[0]].config.id, f.config.section.items[names[0]].id);
       assert.equal(draft.sectionDrafts.items[names[0]].config.content.items.opening.config.locale.value.uk,
