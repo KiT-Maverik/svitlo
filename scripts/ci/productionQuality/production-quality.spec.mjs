@@ -13,8 +13,14 @@ test('every manifest-defined app and E2E suite is retained in the production mat
   const expectedApps = packages.filter(pkg => Object.hasOwn(pkg.scripts || {}, 'app:build'));
   const expectedE2E = packages.filter(pkg => Object.hasOwn(pkg.scripts || {}, 'test:e2e'));
   const actual = planProductionApps(packages).include;
-  assert.deepEqual(actual.map(app => app.workspace), expectedApps.map(pkg => pkg.name));
-  assert.deepEqual(actual.filter(app => app.e2e).map(app => app.workspace), expectedE2E.map(pkg => pkg.name));
+  assert.deepEqual(
+    actual.map(app => app.workspace),
+    expectedApps.map(pkg => pkg.name),
+  );
+  assert.deepEqual(
+    actual.filter(app => app.e2e).map(app => app.workspace),
+    expectedE2E.map(pkg => pkg.name),
+  );
   assert.ok(actual.length > 1, 'expected real independent application hosts');
   const desktop = actual.find(app => app.workspace === '@svitlo/desktop');
   assert.equal(desktop?.integration, true);
@@ -25,13 +31,18 @@ test('every manifest-defined app and E2E suite is retained in the production mat
 test('new E2E workspaces and invalid application matrices fail closed', () => {
   const ws = (name, path, scripts) => ({ name, path, scripts });
   assert.throws(() => planProductionApps([]), /No production applications/);
-  assert.throws(() => planProductionApps([
-    ws('@svitlo/app', 'apps/app', { 'app:build': 'build' }),
-    ws('@svitlo/unbuilt', 'content/unbuilt', { 'test:e2e': 'test' }),
-  ]), /E2E workspace without app:build/);
-  assert.throws(() => planProductionApps([
-    ws('@svitlo/app', 'apps/invalid path', { 'app:build': 'build' }),
-  ]), /Unsafe production application/);
+  assert.throws(
+    () =>
+      planProductionApps([
+        ws('@svitlo/app', 'apps/app', { 'app:build': 'build' }),
+        ws('@svitlo/unbuilt', 'content/unbuilt', { 'test:e2e': 'test' }),
+      ]),
+    /E2E workspace without app:build/,
+  );
+  assert.throws(
+    () => planProductionApps([ws('@svitlo/app', 'apps/invalid path', { 'app:build': 'build' })]),
+    /Unsafe production application/,
+  );
 });
 
 test('extra components use the existing graph without rerunning root-covered suites', () => {
@@ -40,7 +51,10 @@ test('extra components use the existing graph without rerunning root-covered sui
     onlyWorkspaces: additionalComponentWorkspaces,
   });
   assert.deepEqual(plan.selected, additionalComponentWorkspaces);
-  assert.ok(plan.steps.some(step => step.script === 'package:build'), 'must build prerequisite outputs');
+  assert.ok(
+    plan.steps.some(step => step.script === 'package:build'),
+    'must build prerequisite outputs',
+  );
   assert.equal(plan.steps.filter(step => step.script === 'test:components').length, 2);
 });
 

@@ -62,7 +62,9 @@ test('internal CI selection preserves dependency builds but leaves root operatio
     ws('@svitlo/engine', 'shared/engine', { 'package:build': 'tsc' }),
     ws('@svitlo/ui-kit', 'shared/ui-kit', { 'package:build': 'tsc', 'test:components': 'vitest' }, ['@svitlo/engine']),
     ws('@svitlo/math', 'content/math', { 'test:components': 'vitest' }, ['@svitlo/engine']),
-    ws('@svitlo/playground', 'content/playground', { 'package:build': 'build', 'test:components': 'vitest' }, ['@svitlo/ui-kit']),
+    ws('@svitlo/playground', 'content/playground', { 'package:build': 'build', 'test:components': 'vitest' }, [
+      '@svitlo/ui-kit',
+    ]),
     ws('@svitlo/web', 'apps/web', { 'test:components': 'vitest' }, ['@svitlo/playground']),
   ];
   const all = planWorkspaceOperation(packages, 'test:components');
@@ -71,22 +73,37 @@ test('internal CI selection preserves dependency builds but leaves root operatio
     onlyWorkspaces: ['@svitlo/playground', '@svitlo/web'],
   });
   assert.deepEqual(selected.selected, ['@svitlo/playground', '@svitlo/web']);
-  assert.deepEqual(selected.steps.map(step => step.name + '/' + step.script), [
-    '@svitlo/engine/package:build',
-    '@svitlo/ui-kit/package:build',
-    '@svitlo/playground/test:components',
-    '@svitlo/playground/package:build',
-    '@svitlo/web/test:components',
-  ]);
-  assert.throws(() => planWorkspaceOperation(packages, 'test:components', {
-    onlyWorkspaces: ['@svitlo/engine'],
-  }), /does not implement/);
-  assert.throws(() => planWorkspaceOperation(packages, 'test:components', {
-    onlyWorkspaces: ['@svitlo/web', '@svitlo/web'],
-  }), /unique/);
-  assert.throws(() => planWorkspaceOperation(packages, 'test:components', {
-    onlyWorkspaces: ['@svitlo/nonexistent'],
-  }), /does not implement/);
+  assert.deepEqual(
+    selected.steps.map(step => step.name + '/' + step.script),
+    [
+      '@svitlo/engine/package:build',
+      '@svitlo/ui-kit/package:build',
+      '@svitlo/playground/test:components',
+      '@svitlo/playground/package:build',
+      '@svitlo/web/test:components',
+    ],
+  );
+  assert.throws(
+    () =>
+      planWorkspaceOperation(packages, 'test:components', {
+        onlyWorkspaces: ['@svitlo/engine'],
+      }),
+    /does not implement/,
+  );
+  assert.throws(
+    () =>
+      planWorkspaceOperation(packages, 'test:components', {
+        onlyWorkspaces: ['@svitlo/web', '@svitlo/web'],
+      }),
+    /unique/,
+  );
+  assert.throws(
+    () =>
+      planWorkspaceOperation(packages, 'test:components', {
+        onlyWorkspaces: ['@svitlo/nonexistent'],
+      }),
+    /does not implement/,
+  );
 });
 
 const packageMetadataFields = new Set([

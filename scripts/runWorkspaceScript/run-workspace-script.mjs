@@ -36,7 +36,11 @@ export function planWorkspaceOperation(packages, operation, { onlyWorkspaces } =
   const byName = new Map(packages.map(pkg => [pkg.name, pkg]));
   if (byName.size !== packages.length) throw Error('Duplicate npm workspace names');
   if (onlyWorkspaces !== undefined) {
-    if (!Array.isArray(onlyWorkspaces) || !onlyWorkspaces.length || new Set(onlyWorkspaces).size !== onlyWorkspaces.length) {
+    if (
+      !Array.isArray(onlyWorkspaces) ||
+      !onlyWorkspaces.length ||
+      new Set(onlyWorkspaces).size !== onlyWorkspaces.length
+    ) {
       throw Error('Explicit workspace selection must be a nonempty unique list');
     }
     for (const name of onlyWorkspaces) {
@@ -46,7 +50,9 @@ export function planWorkspaceOperation(packages, operation, { onlyWorkspaces } =
     }
   }
   const selectedNames = onlyWorkspaces === undefined ? null : new Set(onlyWorkspaces);
-  const eligible = packages.filter(pkg => Object.hasOwn(pkg.scripts || {}, operation) && (!selectedNames || selectedNames.has(pkg.name)));
+  const eligible = packages.filter(
+    pkg => Object.hasOwn(pkg.scripts || {}, operation) && (!selectedNames || selectedNames.has(pkg.name)),
+  );
   if (!eligible.length) throw Error('No workspaces implement ' + operation);
   const order = [];
   const state = new Map();
