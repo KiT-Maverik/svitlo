@@ -121,3 +121,7 @@ availability does not imply every UI Kit Question renderer is complete.
 
 Custom Practice UI/scheduling, translation, editorial approvals and
 cross-asset media searches are outside this generator.
+
+## Pending Lesson Section handoff
+
+When Lesson Stage 6 defers an incomplete Quiz Section, its full accepted Section `config`/`production`, UUID, copy and relative order may appear in optional top-level `sectionDrafts: { items, order }` in `questions.yaml`. This is temporary source-only material for the independent Questions workflow, **not** a Question record, Quiz selection, validation bypass or approved bank. Complete the real `questions` bank first; the Section specialist uses the handoff to integrate an actual `defineQuizSection` later. The Questions Builder accepts and ignores this optional authoring handoff while continuing to strictly validate substantive Question records; it never generates Lesson Sections itself. An initially empty bank draft intentionally fails Question Bank preflight until authored.
