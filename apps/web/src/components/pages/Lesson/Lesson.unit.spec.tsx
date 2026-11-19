@@ -37,7 +37,7 @@ const response = {
   type: 'lesson',
   skills: [],
   params: {
-    requireQuiz: false,
+    quizRequiredForCompletion: false,
     languages: ['uk'],
     sections: { allowNavigation: true, allowSkipping: false, showIndexes: true },
   },

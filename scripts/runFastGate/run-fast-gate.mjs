@@ -2,7 +2,9 @@
 /** Run only relevant, supported fast checks; full Quality remains manual. */
 import fs from 'node:fs';
 import path from 'node:path';
-import { execFileSync, spawn, spawnSync } from 'node:child_process';
+import { spawn, spawnSync } from 'node:child_process';
+import { changedFiles } from '../ci/prDiff/changed-files.mjs';
+import { changedPublicContracts } from './public-contract-impact.mjs';
 import { fileURLToPath } from 'node:url';
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
@@ -83,42 +85,79 @@ function expandWorkspaces() {
 function packageFor(file, workspaces) {
   return workspaces.filter(w => file.startsWith(w.path + '/')).sort((a, b) => b.path.length - a.path.length)[0];
 }
-export function chooseChecks(changed, workspaces) {
+/**
+ * Select only edited owners and downstream consumers of changed public APIs or
+ * package manifests. Graph edges include declared development dependencies,
+ * which are required to typecheck many textbooks.
+ */
+export function workspaceDependents(workspaces) {
+  const packages = new Map(workspaces.map(pkg => [pkg.name, pkg]));
+  const edges = new Map(workspaces.map(pkg => [pkg.name, new Set()]));
+  const dependencies = new Map();
+  for (const pkg of workspaces) {
+    const deps = new Set(
+      ['dependencies', 'devDependencies', 'peerDependencies', 'optionalDependencies']
+        .flatMap(key => Object.keys(pkg[key] || {}))
+        .filter(name => packages.has(name)),
+    );
+    const missing = ['dependencies', 'devDependencies', 'peerDependencies', 'optionalDependencies']
+      .flatMap(key => Object.keys(pkg[key] || {}))
+      .filter(name => name.startsWith('@svitlo/') && !packages.has(name));
+    assert(!missing.length, 'Unknown workspace dependency in ' + pkg.name + ': ' + missing.join(', '));
+    dependencies.set(pkg.name, deps);
+    for (const dep of deps) edges.get(dep).add(pkg.name);
+  }
+  const done = new Set();
+  function checkCycle(name, visiting = new Set()) {
+    assert(!visiting.has(name), 'Cyclic workspace dependency: ' + [...visiting, name].join(' → '));
+    if (done.has(name)) return;
+    const next = new Set([...visiting, name]);
+    for (const dep of dependencies.get(name)) checkCycle(dep, next);
+    done.add(name);
+  }
+  for (const name of packages.keys()) checkCycle(name);
+  return edges;
+}
+
+export function chooseChecks(changed, workspaces, { publicChanges = [] } = {}) {
   const affected = new Set();
-  const packages = new Map(workspaces.map(w => [w.name, w]));
-  const global = changed.some(f => f === 'package.json' || f.startsWith('scripts/checkWorkspaces/check-workspaces'));
+  const packages = new Map(workspaces.map(pkg => [pkg.name, pkg]));
+  const global = changed.some(
+    file => file === 'package.json' || file.startsWith('scripts/checkWorkspaces/check-workspaces'),
+  );
   const lockChange = changed.includes('package-lock.json');
+  const triggers = new Set();
   for (const file of changed) {
     const pkg = packageFor(file, workspaces);
     if (pkg) affected.add(pkg.name);
+    if (pkg && file === pkg.path + '/package.json') triggers.add(pkg.name);
   }
-  if (global) for (const name of packages.keys()) affected.add(name);
-  if (lockChange)
-    for (const name of ['@svitlo/engine', '@svitlo/indexdb', '@svitlo/ui-kit']) {
-      if (packages.has(name)) affected.add(name);
+  for (const file of publicChanges) {
+    const pkg = packageFor(file, workspaces);
+    if (pkg) triggers.add(pkg.name);
+  }
+  const dependents = workspaceDependents(workspaces);
+  const visit = [...triggers];
+  while (visit.length) {
+    const parent = visit.pop();
+    for (const child of dependents.get(parent) || []) {
+      if (!affected.has(child)) affected.add(child);
+      if (!triggers.has(child)) {
+        triggers.add(child);
+        visit.push(child);
+      }
     }
-
-  // IndexDB depends on Engine runtime schemas, not just on its own source files.
-  // A changed upstream contract must validate the dependent package as well.
-  const indexdbRuntimeContractChanged = changed.some(
-    file =>
-      file === 'shared/engine/runtime.ts' ||
-      file === 'shared/engine/package.json' ||
-      file.startsWith('shared/engine/schemas/') ||
-      file.startsWith('shared/engine/types/') ||
-      file.startsWith('shared/engine/configurators/questions/') ||
-      file.startsWith('shared/engine/configurators/lessons/') ||
-      file.startsWith('shared/engine/configurators/sections/'),
-  );
-  if (indexdbRuntimeContractChanged && packages.has('@svitlo/indexdb')) {
-    affected.add('@svitlo/indexdb');
   }
-  // Markdown/KaTeX CSS is bundled by the Web host, even when only UI Kit changes.
+  // Root manifest/lockfile edits may alter dependency resolution everywhere.
+  // Validate all workspaces rather than pretending a changed external version
+  // affects only a hand-picked subset.
+  if (global || lockChange) for (const name of packages.keys()) affected.add(name);
+  // The host's CSS bundling is not represented by TypeScript declarations.
   if (changed.some(file => file.startsWith(markdownRendererPath)) && packages.has('@svitlo/web')) {
     affected.add('@svitlo/web');
   }
-  const jsFiles = changed.filter(f => /\.(?:mjs|cjs|js)$/.test(f) && fs.existsSync(path.join(repoRoot, f)));
-  const jsonFiles = changed.filter(f => f.endsWith('.json') && fs.existsSync(path.join(repoRoot, f)));
+  const jsFiles = changed.filter(file => /\.(?:mjs|cjs|js)$/.test(file) && fs.existsSync(path.join(repoRoot, file)));
+  const jsonFiles = changed.filter(file => file.endsWith('.json') && fs.existsSync(path.join(repoRoot, file)));
   return { affected, jsFiles, jsonFiles };
 }
 /** A host production build catches CSS dependencies that UI Kit's TS tests cannot. */
@@ -136,13 +175,6 @@ export function requiresWebBuild(changed) {
   );
 }
 
-function changedFiles(base, head) {
-  assert(/^[a-f0-9]{40}$/.test(base) && /^[a-f0-9]{40}$/.test(head), 'Base and head must be 40-character commit SHAs');
-  return execFileSync('git', ['diff', '--name-only', '-z', base, head], { cwd: repoRoot })
-    .toString('utf8')
-    .split('\0')
-    .filter(Boolean);
-}
 /** Build dependencies that a workspace typecheck consumes through published exports. */
 export function shouldBuildDependency(owner, dependency) {
   return (
@@ -152,13 +184,20 @@ export function shouldBuildDependency(owner, dependency) {
   );
 }
 
-async function runGate(changed) {
+async function runGate(changed, base, head) {
   const workspaces = expandWorkspaces();
   const all = new Map(workspaces.map(w => [w.name, w]));
-  const plan = chooseChecks(changed, workspaces);
+  const publicChanges = base && head ? changedPublicContracts(changed, workspaces, base, head) : [];
+  if (publicChanges.length) console.log('Changed public contracts: ' + publicChanges.join(', '));
+  const plan = chooseChecks(changed, workspaces, { publicChanges });
   for (const f of plan.jsFiles) exec('node', ['--check', f]);
   for (const f of plan.jsonFiles) json(f);
-  exec('node', ['--test', 'scripts/runFastGate/run-fast-gate.spec.mjs']);
+  exec('node', [
+    '--test',
+    'scripts/runFastGate/run-fast-gate.spec.mjs',
+    'scripts/runFastGate/public-contract-impact.spec.mjs',
+    'scripts/ci/prDiff/changed-files.spec.mjs',
+  ]);
   // A migration helper must never reintroduce deleted package imports.
   if (changed.some(file => file.startsWith('scripts/migrateEngineImports/'))) {
     exec('node', ['--test', 'scripts/migrateEngineImports/migrate-engine-imports.spec.mjs']);
@@ -403,7 +442,7 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
     if (args.length === 1 && args[0] === '--all') {
       await runGate(['package.json']);
     } else if (args.length === 2) {
-      await runGate(changedFiles(args[0], args[1]));
+      await runGate(changedFiles(args[0], args[1]), args[0], args[1]);
     } else throw new Error('Usage: node scripts/runFastGate/run-fast-gate.mjs <base-sha> <head-sha> | --all');
   } catch (error) {
     console.error(error.message);
