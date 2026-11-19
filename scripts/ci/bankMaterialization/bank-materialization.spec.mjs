@@ -1,11 +1,11 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import { fileURLToPath } from 'node:url';
 import {
   parseTrigger, parseIdentity, requireReviewedStages, safeBranch,
   allowedPath, gitBlob, sha256,
 } from './bank-gate.mjs';
+import { inspectManifest } from './bank-materialization.mjs';
 
 const id = 'd3048d21-8690-5255-b62c-984c69ac272c';
 const pkg = 'content/astronomy';
@@ -115,6 +115,26 @@ test('branch safety and pinned byte digests', () => {
   }
   assert.equal(gitBlob('hello'), 'b6fc4c620b67d95f953a5c1c1230aaab5db5a1b0');
   assert.equal(sha256('hello'), '2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824');
+});
+
+test('read-only manifest verifier rejects path injection, truncated and altered bytes', () => {
+  for (const bank of Object.keys(banks)) {
+    const identity = parseIdentity(body(bank), bank);
+    const info = { number: 100, head: 'a'.repeat(40), sourceBlob: 'b'.repeat(40),
+                   branch: 'agent/bank-100', base: 'agent/lesson', repo: 'KiT-Maverik/svitlo',
+                   bank, identity, actor: 'owner' };
+    const source = Buffer.from('export const example = 1;\n');
+    const files = [{ path: identity.folder + '/' + bank + '/index.ts',
+                     sha256: sha256(source), base64: source.toString('base64') }];
+    const report = { version: 1, meta: info, files };
+    assert.doesNotThrow(() => inspectManifest(report, info));
+    assert.throws(() => inspectManifest({ ...report, meta: { ...info, head: 'c'.repeat(40) } }, info));
+    assert.throws(() => inspectManifest({ ...report, files: [{ ...files[0], sha256: '0'.repeat(64) }] }, info));
+    assert.throws(() => inspectManifest({ ...report, files: [...files, ...files] }, info));
+    assert.throws(() => inspectManifest({
+      ...report, files: [{ ...files[0], path: identity.folder + '/lesson.yaml' }],
+    }, info));
+  }
 });
 
 test('workflow uses isolated default-branch code and narrow publish permissions', () => {
