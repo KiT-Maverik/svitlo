@@ -110,6 +110,12 @@ async function analyze(info) {
   const root = checkedRoot(info);
   const lessonRoot = path.join(root, info.identity.folder);
   const bankFolder = path.join(lessonRoot, info.bank);
+  // A bank is a child of an already generated, independently owned Lesson.
+  if (!fs.existsSync(path.join(lessonRoot, 'index.ts')) ||
+      !fs.existsSync(path.join(lessonRoot, 'constants.ts')))
+    throw Error('Bank materialization requires the existing typed Lesson entrypoint and language constants');
+  if (fs.existsSync(bankFolder) && fs.lstatSync(bankFolder).isSymbolicLink())
+    throw Error('Refusing bank output symlink');
   if (fs.existsSync(bankFolder) && fs.readdirSync(bankFolder).length)
     throw Error('Bank already has complete/partial authored source; will not overwrite');
   let expectedCount;
