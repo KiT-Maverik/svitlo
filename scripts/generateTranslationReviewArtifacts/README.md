@@ -37,6 +37,30 @@ node scripts/generateTranslationReviewArtifacts/generate-translation-review-arti
 node scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.mjs --kind education-standards --locale uk
 ```
 
+## Canonical Skills links and older PR source revisions
+
+Skills reference Markdown is generated from the textbook's canonical Code modules.
+The PR-scoped dispatcher rewrites links from the generator's
+`content/<book>/docs/generated/skills` location to
+`content/<book>/data/skills/**` relative to
+`.agent-ci-artifacts/taxonomies/<book>/<locale>.md`.
+This covers modern Domain/Group `index.ts`, Skill `<slug>.ts`,
+and legacy `*.data.ts` files. A generated reference with links under
+`../../../data/skills/` is stale: those paths do **not** point to authored
+Code from the PR-scoped reference location.
+
+The trusted publisher accepts an absent optional `manifest.scope.course`
+only for **non-Course** requests created by older translator branches.
+Course requests still require the explicit Course-aware manifest contract;
+other scope and document checks are unchanged. The publisher's validator stays
+inline in the trusted GitHub workflow and does not execute PR-branch scripts.
+
+PR comments execute the workflow from the repository's **default branch**,
+but the read-only generator runs from the **source PR head**. Therefore both
+the publisher fix must be merged into `main` **and** any older source PR
+must incorporate the dispatcher link fix before regenerating references.
+Do not treat generation or successful CI as linguistic review.
+
 ## Execution boundaries
 
 The workflow installs locked Node dependencies. It builds Engine **only for Lessons, Courses or fully translated EducationStandard catalogs**. For a complete EducationStandard catalog it verifies the authored UI Kit definitions against Engine's Build API in memory without publishing source JavaScript. For incomplete drafts it skips the TypeScript build and uses safe static Code inspection to render absent translations as `%%MISSING%%`, without bypassing Engine's strict publication rules. A locale can be ready for linguistic review even when other locales remain incomplete. Skills/UI Kit/Assessment Methods/Geography preview generators statically read Code and do not require an Engine build. Generator unit tests and unrelated Playground smoke tests belong in ordinary development CI, **not** in every document-generation request.
