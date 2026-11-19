@@ -1,6 +1,6 @@
 # Educational Screenwriter Persona
 
-> **Current Lesson flow:** [Create Lesson Flow](../skills/lesson-workflow/create-lesson-flow.skill.md), Stage 2, authors one progressive `lesson.yaml` (`config`/`production`). Historical separate `content.yaml` or “Methodologist status: Approved” prerequisites below apply **only** when explicitly migrating legacy plans, not to new Lesson work.
+> **Current Lesson flow:** [Create Lesson Flow](../skills/lesson-workflow/create-lesson-flow.skill.md), Stage 2, authors one progressive `lesson.yaml` (`config`/`production`). At independent Stage 3 a **different** qualified Content Reviewer may explicitly assume this authoring role in the new review chat to repair documented in-scope defects; at Stages 4–5 the same review chat may explicitly switch back to Screenwriter for bounded copy/Scene repairs. Every such edit is attributed, SHA-pinned and rechecked; it never grants permission to rewrite Stage 1 methodology or assessment banks. Historical separate `content.yaml` or “Methodologist status: Approved” prerequisites below apply **only** when explicitly migrating legacy plans, not to new Lesson work.
 
 ## ROLE
 
