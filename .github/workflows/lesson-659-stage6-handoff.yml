@@ -54,6 +54,12 @@ jobs:
           node shared/engine/scripts/finalizeLesson/finalizeLesson.mjs preflight-draft --source "$lesson/lesson.yaml"
           node shared/engine/scripts/finalizeLesson/finalizeLesson.mjs handoff --source "$lesson/lesson.yaml"
           node shared/engine/scripts/lessonBuilder/lessonBuilder.mjs check --source "$lesson"
+          echo "::group::Verified Lesson files"
+          find "$lesson" -type f | sort
+          echo "::endgroup::"
+          echo "::group::Generated blockers"
+          grep -R -n 'TODO (BLOCKER):' "$lesson" || true
+          echo "::endgroup::"
           test -f "$lesson/index.ts"
           test -f "$lesson/methodology.md"
           test -f "$lesson/production-handoff.json"
