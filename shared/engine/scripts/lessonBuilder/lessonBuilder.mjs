@@ -101,8 +101,13 @@ function targetFor(source, repo) {
 function combineSources(root) {
   const document = parseYaml(path.join(root, 'lesson.yaml'), 'lesson.yaml');
   const assessment = prepareAssessmentDraft(document);
-  const { config: lesson, documentLanguage, tasks } = splitScaffoldDocument({
-    ...document, config: assessment.lesson,
+  const {
+    config: lesson,
+    documentLanguage,
+    tasks,
+  } = splitScaffoldDocument({
+    ...document,
+    config: assessment.lesson,
   });
   if (typeof documentLanguage !== 'string' || !documentLanguage)
     fail('lesson.yaml', 'production.documentLanguage', 'required source-language provenance');
@@ -199,7 +204,9 @@ export function runOne(source, mode = 'check', repo = repoRoot) {
   }
   const nodeLocations = new Map();
   const output = renderLessonModules(lesson, language, {
-    bookRoot: target.bookRoot, outputFolder, nodeLocations,
+    bookRoot: target.bookRoot,
+    outputFolder,
+    nodeLocations,
     pendingAssessments: assessment.pending,
   });
   // Source handoffs precede the root entrypoint, which remains the last write.
@@ -279,8 +286,11 @@ function discover(repo) {
           const location = path.join(lessons, bucket.name, entry.name);
           if (fs.existsSync(path.join(location, 'lesson.yaml'))) roots.push(location);
           else if (fs.existsSync(path.join(location, 'config.yaml')))
-            console.warn('SKIP legacy technical Lesson config.yaml: ' + path.relative(repo, location) +
-              ' (migrate to lesson.yaml explicitly)');
+            console.warn(
+              'SKIP legacy technical Lesson config.yaml: ' +
+                path.relative(repo, location) +
+                ' (migrate to lesson.yaml explicitly)',
+            );
         }
       }
     }

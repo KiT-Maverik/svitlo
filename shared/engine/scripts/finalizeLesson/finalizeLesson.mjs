@@ -177,13 +177,16 @@ function verifyAssessmentSelections(document) {
     if (!config || !['quiz', 'flashcards'].includes(config.type)) continue;
     const field = config.type === 'quiz' ? 'questionIds' : 'flashcardIds';
     const ids = config.params?.selection?.[field];
-    if (Array.isArray(ids) && ids.some(id =>
-      typeof id !== 'string' || !uuid.test(id)))
-      fail('config.section.items.' + slug + '.config.params.selection.' + field,
-        'real non-placeholder assessment UUIDs are required');
+    if (Array.isArray(ids) && ids.some(id => typeof id !== 'string' || !uuid.test(id)))
+      fail(
+        'config.section.items.' + slug + '.config.params.selection.' + field,
+        'real non-placeholder assessment UUIDs are required',
+      );
     if (Array.isArray(ids) && ids.length !== new Set(ids).size)
-      fail('config.section.items.' + slug + '.config.params.selection.' + field,
-        'assessment selection UUIDs must be unique');
+      fail(
+        'config.section.items.' + slug + '.config.params.selection.' + field,
+        'assessment selection UUIDs must be unique',
+      );
   }
 }
 
@@ -231,8 +234,10 @@ export function preflightLesson(source, repo = repoRoot, { allowBankPending = fa
   const assessment = prepareAssessmentDraft(document);
   verifyAssessmentSelections(document);
   if (!allowBankPending && assessment.pending.length)
-    fail('config.section', 'assessment Section completion pending: ' +
-      assessment.pending.map(item => item.slug ?? item.type).join(', '));
+    fail(
+      'config.section',
+      'assessment Section completion pending: ' + assessment.pending.map(item => item.slug ?? item.type).join(', '),
+    );
   if (JSON.stringify(sourceAuthoringCopy(document.config, language)) !== JSON.stringify(document.config))
     fail(
       'config.locale',
@@ -325,20 +330,34 @@ export function handoffLesson(source, options = {}) {
 export function main(args = process.argv.slice(2), repo = repoRoot) {
   const [mode, flag, source] = args;
   const preserve = args.length === 4 && args[3] === '--preserve-config';
-  if (!['preflight', 'preflight-draft', 'handoff', 'finalize'].includes(mode) || flag !== '--source' || !source || (args.length !== 3 && !preserve) || (preserve && mode !== 'finalize'))
+  if (
+    !['preflight', 'preflight-draft', 'handoff', 'finalize'].includes(mode) ||
+    flag !== '--source' ||
+    !source ||
+    (args.length !== 3 && !preserve) ||
+    (preserve && mode !== 'finalize')
+  )
     throw new Error(
       'Usage: node shared/engine/scripts/finalizeLesson/finalizeLesson.mjs preflight|preflight-draft|handoff|finalize --source content/<book>/data/lessons/<bucket>/<uuid>/lesson.yaml [--preserve-config (finalize only)]',
     );
   const filename = path.resolve(repo, source);
   const result =
-    mode === 'preflight' ? preflightLesson(filename, repo) :
-    mode === 'preflight-draft' ? preflightLessonDraft(filename, repo) :
-    mode === 'handoff' ? handoffLesson(filename, { repo }) : finalizeLesson(filename, { repo, retainSource: preserve });
+    mode === 'preflight'
+      ? preflightLesson(filename, repo)
+      : mode === 'preflight-draft'
+        ? preflightLessonDraft(filename, repo)
+        : mode === 'handoff'
+          ? handoffLesson(filename, { repo })
+          : finalizeLesson(filename, { repo, retainSource: preserve });
   console.log(
     mode.startsWith('preflight')
       ? 'Lesson ' + result.lessonId + ': ' + mode + ' valid (read-only)'
-      : 'Lesson ' + result.lessonId + ': ' + result.files.length + ' persistent outputs verified; ' +
-        (result.removed ? 'lesson.yaml removed' : 'lesson.yaml preserved'),
+      : 'Lesson ' +
+          result.lessonId +
+          ': ' +
+          result.files.length +
+          ' persistent outputs verified; ' +
+          (result.removed ? 'lesson.yaml removed' : 'lesson.yaml preserved'),
   );
   return result;
 }

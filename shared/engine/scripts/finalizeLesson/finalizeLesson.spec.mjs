@@ -6,7 +6,15 @@ import { test } from 'node:test';
 import yaml from 'yaml';
 
 import { repoRoot } from '../lessonBuilder/lessonBuilder.mjs';
-import { finalizeLesson, preflightLesson, preflightLessonDraft, handoffLesson, productionHandoff, LessonHandoffError, main } from './finalizeLesson.mjs';
+import {
+  finalizeLesson,
+  preflightLesson,
+  preflightLessonDraft,
+  handoffLesson,
+  productionHandoff,
+  LessonHandoffError,
+  main,
+} from './finalizeLesson.mjs';
 import { scanSource } from '../../../../scripts/ci/checkBlockerTodos/check-blocker-todos.mjs';
 
 const id = tail => '00000000-0000-4000-8000-' + String(tail).padStart(12, '0');
@@ -251,7 +259,6 @@ test('empty source-language dictionaries block finalization even when editor sch
     assert.equal(fs.existsSync(f.source), true);
   }));
 
-
 function withAssessmentPlan(f, sections) {
   const configItems = f.document.config.section.items;
   f.document.production.quizRequired = sections.some(section => section.type === 'quiz');
@@ -259,7 +266,10 @@ function withAssessmentPlan(f, sections) {
   for (const [index, { type, slug, params = {} }] of sections.entries()) {
     configItems[slug] = {
       config: {
-        id: id(100 + index), slug, type, params,
+        id: id(100 + index),
+        slug,
+        type,
+        params,
         locale: { title: { en: 'Practice' }, navigationLabel: { en: 'Continue' } },
         content: { items: {}, order: [] },
       },
@@ -282,7 +292,10 @@ test('zero assessment flags and zero assessment Sections need no machine-readabl
 for (const types of [['quiz'], ['flashcards'], ['quiz', 'flashcards'], ['quiz', 'quiz', 'flashcards', 'flashcards']]) {
   test('draft preflight accepts deferred assessment Sections: ' + types.join(', '), () =>
     fixture(f => {
-      withAssessmentPlan(f, types.map((type, index) => ({ type, slug: type + index })));
+      withAssessmentPlan(
+        f,
+        types.map((type, index) => ({ type, slug: type + index })),
+      );
       const result = preflightLessonDraft(f.source, f.root);
       assert.equal(result.assessment.pending.length, types.length);
       assert.throws(() => preflightLesson(f.source, f.root), /lesson.yaml:schema:/);
@@ -292,16 +305,23 @@ for (const types of [['quiz'], ['flashcards'], ['quiz', 'flashcards'], ['quiz', 
       f.save();
       const deferred = preflightLessonDraft(f.source, f.root).assessment.pending;
       assert.ok(deferred.some(item => item.type === types[0]));
-    }));
+    }),
+  );
 }
 
 test('draft handoff creates bank YAML drafts and root TODO, without invalid assessment TS modules', () =>
   fixture(f => {
-    withAssessmentPlan(f, [{ type: 'quiz', slug: 'quizA' }, { type: 'flashcards', slug: 'cardsB' }]);
+    withAssessmentPlan(f, [
+      { type: 'quiz', slug: 'quizA' },
+      { type: 'flashcards', slug: 'cardsB' },
+    ]);
     const original = fs.readFileSync(f.source);
     const result = handoffLesson(f.source, { repo: f.root });
     assert.equal(result.removed, null);
-    assert.deepEqual(result.pending.map(item => item.slug), ['quizA', 'cardsB']);
+    assert.deepEqual(
+      result.pending.map(item => item.slug),
+      ['quizA', 'cardsB'],
+    );
     assert.equal(fs.readFileSync(f.source).equals(original), true);
     for (const slug of ['quizA', 'cardsB'])
       assert.equal(fs.existsSync(path.join(f.folder, 'sections', slug, 'index.ts')), false);
@@ -348,8 +368,10 @@ test('complete referenced Flashcards Section satisfies production obligation str
 test('deferred source preserves the original YAML when materialization is interrupted', () =>
   fixture(f => {
     withAssessmentPlan(f, [{ type: 'quiz', slug: 'quizA' }]);
-    assert.throws(() => handoffLesson(f.source, { repo: f.root, generate: fakeGenerator(f, 'partial') }),
-      /missing generated file/);
+    assert.throws(
+      () => handoffLesson(f.source, { repo: f.root, generate: fakeGenerator(f, 'partial') }),
+      /missing generated file/,
+    );
     assert.equal(fs.existsSync(f.source), true);
   }));
 
@@ -361,7 +383,10 @@ test('finalize --preserve-config retains exact YAML after verified strict source
     assert.equal(fs.readFileSync(f.source).equals(original), true);
     assert.equal(fs.existsSync(path.join(f.folder, 'index.ts')), true);
     assert.equal(fs.existsSync(path.join(f.folder, 'production-handoff.json')), true);
-    assert.throws(() => main(['finalize', '--source', path.relative(f.root, f.source), '--preserve-config'], f.root), /create-only skip/);
+    assert.throws(
+      () => main(['finalize', '--source', path.relative(f.root, f.source), '--preserve-config'], f.root),
+      /create-only skip/,
+    );
     assert.equal(fs.readFileSync(f.source).equals(original), true);
   }));
 
@@ -376,7 +401,8 @@ test('--preserve-config is strictly finalize-only and refuses malformed combinat
       ['finalize', '--source', source, '--unknown'],
       ['finalize', '--source', source, '--preserve-config', '--extra'],
       ['finalize', '--preserve-config', '--source', source],
-    ]) assert.throws(() => main(args, f.root), /Usage:/);
+    ])
+      assert.throws(() => main(args, f.root), /Usage:/);
     assert.equal(fs.readFileSync(f.source).equals(before), true);
     assert.equal(fs.existsSync(path.join(f.folder, 'index.ts')), false);
   }));

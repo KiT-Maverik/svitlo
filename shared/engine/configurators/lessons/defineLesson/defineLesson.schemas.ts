@@ -29,11 +29,13 @@ const sectionCollection = z.strictObject({
   order: z.array(z.string()),
 });
 /** Metadata and collection boundaries are owned by Lesson; children own internal validation. */
-export const lesson_Config_Schema = identity.extend({
-  ...addUnifiedLocale({ title: localizationSwitch.config }),
-  section: sectionCollection,
-  events: z.record(z.string(), z.json()).optional(),
-}).strict();
+export const lesson_Config_Schema = identity
+  .extend({
+    ...addUnifiedLocale({ title: localizationSwitch.config }),
+    section: sectionCollection,
+    events: z.record(z.string(), z.json()).optional(),
+  })
+  .strict();
 export type Lesson_Config = z.infer<typeof lesson_Config_Schema>;
 
 const sectionResolved = z
@@ -43,11 +45,13 @@ const sectionResolved = z
     type: z.enum(sectionTypes),
   })
   .catchall(z.unknown());
-export const lesson_Props_Schema = identity.extend({
-  ...addUnifiedLocale({ title: localizationSwitch.props }),
-  section: z.array(sectionResolved),
-  events: z.record(z.string(), z.json()).optional(),
-}).strict();
+export const lesson_Props_Schema = identity
+  .extend({
+    ...addUnifiedLocale({ title: localizationSwitch.props }),
+    section: z.array(sectionResolved),
+    events: z.record(z.string(), z.json()).optional(),
+  })
+  .strict();
 export type Lesson_Props = Omit<z.infer<typeof lesson_Props_Schema>, 'section'> & {
   section: Section_Props[];
 };

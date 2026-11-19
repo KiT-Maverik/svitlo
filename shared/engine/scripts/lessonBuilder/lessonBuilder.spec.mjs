@@ -1212,8 +1212,10 @@ test('unfinished assessment Sections are omitted from runtime while YAML drafts 
       const draft = yaml.parse(fs.readFileSync(f.generated(filename), 'utf8'));
       assert.deepEqual(draft.sectionDrafts.order, names);
       assert.equal(draft.sectionDrafts.items[names[0]].config.id, f.config.section.items[names[0]].id);
-      assert.equal(draft.sectionDrafts.items[names[0]].config.content.items.opening.config.locale.value.uk,
-        'Авторський текст зберігається.');
+      assert.equal(
+        draft.sectionDrafts.items[names[0]].config.content.items.opening.config.locale.value.uk,
+        'Авторський текст зберігається.',
+      );
       assert.ok(generated.files.includes(filename));
     }
     assert.equal(fs.readFileSync(f.generated('lesson.yaml')).equals(original), true);
@@ -1237,7 +1239,9 @@ test('required but not-yet-authored Quiz retains its completion rule and one blo
 test('fully specified Flashcards Section remains in the ordinary Section collection', () =>
   fixture(f => {
     f.config.section.items.cards = {
-      id: id(50), slug: 'cards', type: 'flashcards',
+      id: id(50),
+      slug: 'cards',
+      type: 'flashcards',
       params: { selection: { flashcardIds: [id(60)] } },
       locale: { title: { uk: 'Картки' }, navigationLabel: { uk: 'Почати' } },
       content: group({ opening: block('opening', 51, 'Пригадай.') }),

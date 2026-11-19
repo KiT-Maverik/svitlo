@@ -6,7 +6,9 @@
 import yaml from 'yaml';
 
 const isRecord = value => value !== null && typeof value === 'object' && !Array.isArray(value);
-const hasIds = ids => Array.isArray(ids) && ids.length > 0 &&
+const hasIds = ids =>
+  Array.isArray(ids) &&
+  ids.length > 0 &&
   ids.every(id => typeof id === 'string' && /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/.test(id)) &&
   new Set(ids).size === ids.length;
 
@@ -18,17 +20,26 @@ export function hasCompleteAssessmentParams(config) {
   const selection = params?.selection;
   const interaction = params?.interaction;
   const results = params?.results;
-  return hasIds(selection?.questionIds) &&
+  return (
+    hasIds(selection?.questionIds) &&
     ['all', 'sample'].includes(selection.mode) &&
-    (selection.mode !== 'sample' || (Number.isInteger(selection.count) && selection.count > 0 &&
-      selection.count <= selection.questionIds.length)) &&
+    (selection.mode !== 'sample' ||
+      (Number.isInteger(selection.count) && selection.count > 0 && selection.count <= selection.questionIds.length)) &&
     ['stack', 'stepper'].includes(params?.layout?.mode) &&
     ['immediate', 'after-completion'].includes(params?.feedbackMode) &&
-    Number.isInteger(interaction?.retries) && interaction.retries >= 0 &&
-    ['showErrors', 'showCorrectAnswers', 'allowExplanations', 'allowDeferring',
-      'allowQuestionNavigation', 'skippable'].every(key => typeof interaction[key] === 'boolean') &&
+    Number.isInteger(interaction?.retries) &&
+    interaction.retries >= 0 &&
+    [
+      'showErrors',
+      'showCorrectAnswers',
+      'allowExplanations',
+      'allowDeferring',
+      'allowQuestionNavigation',
+      'skippable',
+    ].every(key => typeof interaction[key] === 'boolean') &&
     ['immediate', 'after-review', 'hidden'].includes(results?.visibility) &&
-    typeof results?.showScore === 'boolean';
+    typeof results?.showScore === 'boolean'
+  );
 }
 
 /**
@@ -55,22 +66,28 @@ export function prepareAssessmentDraft(document) {
   const pending = [];
   const drafts = new Map();
   for (const type of ['quiz', 'flashcards']) {
-    const required = document.production?.[type === 'quiz' ? 'quizRequired' : 'flashcardsRequired'] === true ||
+    const required =
+      document.production?.[type === 'quiz' ? 'quizRequired' : 'flashcardsRequired'] === true ||
       (type === 'quiz' && document.config.params?.quizRequiredForCompletion === true);
-    const complete = Object.values(items).some(section => section?.config?.type === type &&
-      section.config.params?.disabled !== true);
+    const complete = Object.values(items).some(
+      section => section?.config?.type === type && section.config.params?.disabled !== true,
+    );
     const missing = required && !complete;
     for (const slug of deferred[type].order) pending.push({ type, slug, reason: 'incomplete Section' });
-    if (missing && !deferred[type].order.length)
-      pending.push({ type, slug: null, reason: 'required Section missing' });
+    if (missing && !deferred[type].order.length) pending.push({ type, slug: null, reason: 'required Section missing' });
     if (!deferred[type].order.length && !missing) continue;
     const handoff = { items: deferred[type].items, order: deferred[type].order };
     const sourceLanguage = document.production?.documentLanguage;
-    const bankDraft = type === 'quiz'
-      ? { documentLanguage: sourceLanguage, questions: {}, sectionDrafts: handoff }
-      : { lessonId: document.config.id, documentLanguage: sourceLanguage,
-          supportedLanguages: document.config.params.languages,
-          flashcards: { items: {}, order: [] }, sectionDrafts: handoff };
+    const bankDraft =
+      type === 'quiz'
+        ? { documentLanguage: sourceLanguage, questions: {}, sectionDrafts: handoff }
+        : {
+            lessonId: document.config.id,
+            documentLanguage: sourceLanguage,
+            supportedLanguages: document.config.params.languages,
+            flashcards: { items: {}, order: [] },
+            sectionDrafts: handoff,
+          };
     drafts.set(type === 'quiz' ? 'questions.yaml' : 'flashcards.yaml', yaml.stringify(bankDraft));
   }
   return { lesson, pending, drafts };

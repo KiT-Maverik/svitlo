@@ -12,11 +12,12 @@ import path from 'node:path';
 import { createHash } from 'node:crypto';
 import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
+import { inspect, requireActor, report, github, gitBlob, validateArtifactPath } from './lesson-gate.mjs';
 import {
-  inspect, requireActor, report, github, gitBlob, validateArtifactPath,
-} from './lesson-gate.mjs';
-import {
-  preflightLesson, preflightLessonDraft, finalizeLesson, handoffLesson,
+  preflightLesson,
+  preflightLessonDraft,
+  finalizeLesson,
+  handoffLesson,
 } from '../../../shared/engine/scripts/finalizeLesson/finalizeLesson.mjs';
 import { runOne } from '../../../shared/engine/scripts/lessonBuilder/lessonBuilder.mjs';
 
@@ -33,13 +34,20 @@ export function metadata(input = process.env.LESSON_META_B64) {
   if (typeof input !== 'string' || input.length > 8192 || !/^[A-Za-z0-9+/=]+$/.test(input))
     throw Error('Missing or invalid pinned Lesson authorization metadata');
   const meta = JSON.parse(Buffer.from(input, 'base64').toString('utf8'));
-  if (!Number.isSafeInteger(meta.number) || meta.number < 1 ||
-      !['materialize', 'finalize'].includes(meta.operation) ||
-      !SHA.test(meta.head ?? '') || !SHA.test(meta.sourceBlob ?? '') ||
-      !/^[A-Za-z0-9-]+$/.test(meta.actor ?? '') ||
-      !meta.identity?.id || !meta.identity?.pkg || !meta.identity?.yaml ||
-      meta.repo !== process.env.GITHUB_REPOSITORY ||
-      typeof meta.branch !== 'string' || typeof meta.base !== 'string')
+  if (
+    !Number.isSafeInteger(meta.number) ||
+    meta.number < 1 ||
+    !['materialize', 'finalize'].includes(meta.operation) ||
+    !SHA.test(meta.head ?? '') ||
+    !SHA.test(meta.sourceBlob ?? '') ||
+    !/^[A-Za-z0-9-]+$/.test(meta.actor ?? '') ||
+    !meta.identity?.id ||
+    !meta.identity?.pkg ||
+    !meta.identity?.yaml ||
+    meta.repo !== process.env.GITHUB_REPOSITORY ||
+    typeof meta.branch !== 'string' ||
+    typeof meta.base !== 'string'
+  )
     throw Error('Malformed Lesson authorization metadata');
   return meta;
 }
@@ -53,8 +61,11 @@ export function checkedRoot(meta) {
   const specified = process.env.LESSON_HEAD_ROOT;
   if (!specified) throw Error('LESSON_HEAD_ROOT is required');
   const root = fs.realpathSync(specified);
-  if (!fs.statSync(root).isDirectory() || !fs.existsSync(path.join(root, '.git')) ||
-      git(root, ['rev-parse', 'HEAD']) !== meta.head)
+  if (
+    !fs.statSync(root).isDirectory() ||
+    !fs.existsSync(path.join(root, '.git')) ||
+    git(root, ['rev-parse', 'HEAD']) !== meta.head
+  )
     throw Error('Candidate checkout is not the exact pinned Lesson PR commit');
   if (git(root, ['status', '--porcelain=v1', '--untracked-files=all']))
     throw Error('Candidate checkout must be clean before materialization');
@@ -76,8 +87,12 @@ function safeRelative(root, filename) {
 
 export function trackedFiles(root, pkg) {
   const entries = execFileSync('git', ['ls-files', '-s', '-z', '--', pkg], {
-    cwd: root, encoding: 'utf8', maxBuffer: 32 * 1024 * 1024,
-  }).split('\0').filter(Boolean);
+    cwd: root,
+    encoding: 'utf8',
+    maxBuffer: 32 * 1024 * 1024,
+  })
+    .split('\0')
+    .filter(Boolean);
   const tracked = new Set();
   for (const entry of entries) {
     const separator = entry.indexOf('\t');
@@ -93,7 +108,9 @@ export function trackedFiles(root, pkg) {
 
 export function changedFiles(root) {
   const status = execFileSync('git', ['status', '--porcelain=v1', '--untracked-files=all', '-z'], {
-    cwd: root, encoding: 'utf8', maxBuffer: 32 * 1024 * 1024,
+    cwd: root,
+    encoding: 'utf8',
+    maxBuffer: 32 * 1024 * 1024,
   });
   const result = new Map();
   for (const item of status.split('\0').filter(Boolean)) {
@@ -109,16 +126,23 @@ export function changedFiles(root) {
 function verifySource(root, meta) {
   const location = path.join(root, meta.identity.yaml);
   safeRelative(root, location);
-  if (!fs.existsSync(location) || !fs.statSync(location).isFile() ||
-      gitBlob(fs.readFileSync(location)) !== meta.sourceBlob)
+  if (
+    !fs.existsSync(location) ||
+    !fs.statSync(location).isFile() ||
+    gitBlob(fs.readFileSync(location)) !== meta.sourceBlob
+  )
     throw Error('Canonical Lesson YAML changed from its pinned Git blob');
   return location;
 }
 
 export function identicalSnapshot(a, b) {
-  return a.head === b.head && a.branch === b.branch && a.base === b.base &&
+  return (
+    a.head === b.head &&
+    a.branch === b.branch &&
+    a.base === b.base &&
     a.sourceBlob === b.sourceBlob &&
-    JSON.stringify(a.identity) === JSON.stringify(b.identity);
+    JSON.stringify(a.identity) === JSON.stringify(b.identity)
+  );
 }
 
 async function fresh(meta) {
@@ -133,8 +157,7 @@ export function chooseMode(source, root, trustedRoot = ROOT) {
     const strict = preflightLesson(source, root, {
       schemaRepo: trustedRoot,
     });
-    if (strict.assessment.pending.length)
-      throw Error('Strict preflight produced pending bank integration');
+    if (strict.assessment.pending.length) throw Error('Strict preflight produced pending bank integration');
     return { kind: 'strict', item: strict };
   } catch (strictError) {
     try {
@@ -142,8 +165,9 @@ export function chooseMode(source, root, trustedRoot = ROOT) {
       if (!draft.assessment.pending.length) throw Error('No explicit bank-pending Sections');
       return { kind: 'bank-pending', item: draft };
     } catch (draftError) {
-      throw Error('Strict Lesson preflight: ' + strictError.message +
-        '; bank-pending preflight: ' + draftError.message);
+      throw Error(
+        'Strict Lesson preflight: ' + strictError.message + '; bank-pending preflight: ' + draftError.message,
+      );
     }
   }
 }
@@ -163,23 +187,29 @@ export function verifyMaterializedForFinalize(root, meta, source, item) {
   const checked = runOne(source, 'check', root);
   for (const filename of checked.files) {
     const relative = safeRelative(root, path.join(folder, filename));
-    if (!tracked.has(relative))
-      throw Error('Finalize requires a committed generated source: ' + relative);
+    if (!tracked.has(relative)) throw Error('Finalize requires a committed generated source: ' + relative);
   }
   if (changedFiles(root).size) throw Error('Finalize verification must be read-only');
 }
 
 export function verifyManifest(manifest, meta, root) {
-  if (!manifest || manifest.version !== 1 || manifest.repo !== meta.repo ||
-      manifest.pr !== meta.number || manifest.head !== meta.head ||
-      manifest.operation !== meta.operation || manifest.sourceBlob !== meta.sourceBlob ||
-      manifest.base !== meta.base || manifest.branch !== meta.branch ||
-      JSON.stringify(manifest.identity) !== JSON.stringify(meta.identity) ||
-      !['strict', 'bank-pending'].includes(manifest.mode) ||
-      !Array.isArray(manifest.entries) || manifest.entries.length > MAX_FILES)
+  if (
+    !manifest ||
+    manifest.version !== 1 ||
+    manifest.repo !== meta.repo ||
+    manifest.pr !== meta.number ||
+    manifest.head !== meta.head ||
+    manifest.operation !== meta.operation ||
+    manifest.sourceBlob !== meta.sourceBlob ||
+    manifest.base !== meta.base ||
+    manifest.branch !== meta.branch ||
+    JSON.stringify(manifest.identity) !== JSON.stringify(meta.identity) ||
+    !['strict', 'bank-pending'].includes(manifest.mode) ||
+    !Array.isArray(manifest.entries) ||
+    manifest.entries.length > MAX_FILES
+  )
     throw Error('Artifact identity or authorizing Lesson snapshot differs');
-  if (!['materialize', 'finalize'].includes(meta.operation))
-    throw Error('Unrecognized Lesson operation');
+  if (!['materialize', 'finalize'].includes(meta.operation)) throw Error('Unrecognized Lesson operation');
   const tracked = trackedFiles(root, meta.identity.pkg);
   let total = 0;
   const paths = new Set();
@@ -188,20 +218,32 @@ export function verifyManifest(manifest, meta, root) {
       throw Error('Unallowlisted or duplicate Lesson file in manifest');
     paths.add(entry.path);
     if (meta.operation === 'finalize') {
-      if (entry.action !== 'delete' || entry.path !== meta.identity.yaml ||
-          !tracked.has(entry.path) || entry.data !== undefined)
+      if (
+        entry.action !== 'delete' ||
+        entry.path !== meta.identity.yaml ||
+        !tracked.has(entry.path) ||
+        entry.data !== undefined
+      )
         throw Error('Finalize may delete only the tracked canonical lesson.yaml');
       continue;
     }
-    if (entry.action !== 'create' || tracked.has(entry.path) || typeof entry.data !== 'string' ||
-        entry.data.length > MAX_FILE * 1.4 + 16 ||
-        !/^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/.test(entry.data))
+    if (
+      entry.action !== 'create' ||
+      tracked.has(entry.path) ||
+      typeof entry.data !== 'string' ||
+      entry.data.length > MAX_FILE * 1.4 + 16 ||
+      !/^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/.test(entry.data)
+    )
       throw Error('Unallowlisted or overwritten Lesson output');
     const bytes = Buffer.from(entry.data, 'base64');
-    if (!bytes.length || bytes.length > MAX_FILE ||
-        bytes.toString('base64') !== entry.data || !HASH.test(entry.sha256 ?? '') ||
-        sha256(bytes) !== entry.sha256 ||
-        !Buffer.from(bytes.toString('utf8'), 'utf8').equals(bytes))
+    if (
+      !bytes.length ||
+      bytes.length > MAX_FILE ||
+      bytes.toString('base64') !== entry.data ||
+      !HASH.test(entry.sha256 ?? '') ||
+      sha256(bytes) !== entry.sha256 ||
+      !Buffer.from(bytes.toString('utf8'), 'utf8').equals(bytes)
+    )
       throw Error('Invalid Lesson output bytes, UTF-8 or SHA256');
     total += bytes.length;
   }
@@ -210,18 +252,22 @@ export function verifyManifest(manifest, meta, root) {
     if (paths.size !== 1 || !paths.has(meta.identity.yaml))
       throw Error('Finalize manifest must contain exactly one YAML deletion');
   } else {
-    const expected = ['index.ts', 'constants.ts', 'review.ts', 'methodology.md', 'production-handoff.json']
-      .map(name => meta.identity.yaml.slice(0, -'lesson.yaml'.length) + name);
-    if (expected.some(filename => !paths.has(filename)))
-      throw Error('Incomplete Lesson root source handoff');
+    const expected = ['index.ts', 'constants.ts', 'review.ts', 'methodology.md', 'production-handoff.json'].map(
+      name => meta.identity.yaml.slice(0, -'lesson.yaml'.length) + name,
+    );
+    if (expected.some(filename => !paths.has(filename))) throw Error('Incomplete Lesson root source handoff');
   }
   return manifest.entries.length;
 }
 
 function readReport() {
   const location = process.env.LESSON_REPORT;
-  if (!location || !fs.existsSync(location) || fs.lstatSync(location).isSymbolicLink() ||
-      fs.statSync(location).size > MAX_REPORT)
+  if (
+    !location ||
+    !fs.existsSync(location) ||
+    fs.lstatSync(location).isSymbolicLink() ||
+    fs.statSync(location).size > MAX_REPORT
+  )
     throw Error('Missing/oversized/symlinked Lesson handoff report');
   return JSON.parse(fs.readFileSync(location, 'utf8'));
 }
@@ -239,18 +285,22 @@ async function analyze(root, meta) {
     if (fs.existsSync(path.join(path.dirname(source), 'index.ts')))
       throw Error('Lesson was already materialized. Remove confirmed generated outputs explicitly before retrying.');
     const schemaRepo = ROOT;
-    const validate = mode.kind === 'bank-pending'
-      ? (location, repo) => preflightLessonDraft(location, repo, { schemaRepo })
-      : (location, repo) => preflightLesson(location, repo, { schemaRepo });
-    const result = mode.kind === 'bank-pending'
-      ? handoffLesson(source, { repo: root, validate })
-      : finalizeLesson(source, { repo: root, validate, retainSource: true });
-    if (result.removed || !fs.existsSync(source) ||
-        gitBlob(fs.readFileSync(source)) !== meta.sourceBlob)
+    const validate =
+      mode.kind === 'bank-pending'
+        ? (location, repo) => preflightLessonDraft(location, repo, { schemaRepo })
+        : (location, repo) => preflightLesson(location, repo, { schemaRepo });
+    const result =
+      mode.kind === 'bank-pending'
+        ? handoffLesson(source, { repo: root, validate })
+        : finalizeLesson(source, { repo: root, validate, retainSource: true });
+    if (result.removed || !fs.existsSync(source) || gitBlob(fs.readFileSync(source)) !== meta.sourceBlob)
       throw Error('Source-preserving generation unexpectedly modified lesson.yaml');
     const changes = changedFiles(root);
-    const expected = new Set(result.files.map(filename =>
-      safeRelative(root, path.isAbsolute(filename) ? filename : path.join(path.dirname(source), filename))));
+    const expected = new Set(
+      result.files.map(filename =>
+        safeRelative(root, path.isAbsolute(filename) ? filename : path.join(path.dirname(source), filename)),
+      ),
+    );
     if (changes.size !== expected.size || [...changes.keys()].some(filename => !expected.has(filename)))
       throw Error('Builder output differs from its declared complete inventory');
     for (const filename of expected) {
@@ -264,10 +314,17 @@ async function analyze(root, meta) {
     }
   }
   const manifest = {
-    version: 1, repo: meta.repo, pr: meta.number, head: meta.head,
-    branch: meta.branch, base: meta.base, operation: meta.operation,
-    sourceBlob: meta.sourceBlob, identity: meta.identity,
-    mode: mode.kind, pending: mode.item.assessment.pending,
+    version: 1,
+    repo: meta.repo,
+    pr: meta.number,
+    head: meta.head,
+    branch: meta.branch,
+    base: meta.base,
+    operation: meta.operation,
+    sourceBlob: meta.sourceBlob,
+    identity: meta.identity,
+    mode: mode.kind,
+    pending: mode.item.assessment.pending,
     entries: entries.sort((a, b) => a.path.localeCompare(b.path)),
   };
   verifyManifest(manifest, meta, root);
@@ -277,8 +334,16 @@ async function analyze(root, meta) {
   if (!output) throw Error('LESSON_REPORT is required');
   fs.mkdirSync(path.dirname(output), { recursive: true });
   fs.writeFileSync(output, JSON.stringify(manifest), { flag: 'wx' });
-  report('Lesson Stage 6 ' + meta.operation + ' verified for PR #' + meta.number +
-    ' at ' + meta.head + ', source blob ' + meta.sourceBlob);
+  report(
+    'Lesson Stage 6 ' +
+      meta.operation +
+      ' verified for PR #' +
+      meta.number +
+      ' at ' +
+      meta.head +
+      ', source blob ' +
+      meta.sourceBlob,
+  );
 }
 
 async function publish(root, meta) {
@@ -294,34 +359,66 @@ async function publish(root, meta) {
   if (!SHA.test(commit?.tree?.sha ?? '')) throw Error('Missing pinned Git parent tree');
   const tree = await github('git/trees', 'POST', {
     base_tree: commit.tree.sha,
-    tree: manifest.entries.map(entry => entry.action === 'delete'
-      ? { path: entry.path, mode: '100644', type: 'blob', sha: null }
-      : { path: entry.path, mode: '100644', type: 'blob',
-          content: Buffer.from(entry.data, 'base64').toString('utf8') }),
+    tree: manifest.entries.map(entry =>
+      entry.action === 'delete'
+        ? { path: entry.path, mode: '100644', type: 'blob', sha: null }
+        : {
+            path: entry.path,
+            mode: '100644',
+            type: 'blob',
+            content: Buffer.from(entry.data, 'base64').toString('utf8'),
+          },
+    ),
   });
   if (!SHA.test(tree?.sha ?? '')) throw Error('Unable to create verified Lesson tree');
   const next = await github('git/commits', 'POST', {
-    message: (meta.operation === 'finalize' ? 'Finalize Lesson ' : 'Materialize Lesson ') +
-      meta.identity.id + '\n\n' +
-      'Lesson-PR: #' + meta.number + '\n' +
-      'Lesson-Source-Commit: ' + meta.head + '\n' +
-      'Lesson-Source-Blob: ' + meta.sourceBlob + '\n' +
-      'Lesson-Preflight: ' + manifest.mode,
-    tree: tree.sha, parents: [meta.head],
+    message:
+      (meta.operation === 'finalize' ? 'Finalize Lesson ' : 'Materialize Lesson ') +
+      meta.identity.id +
+      '\n\n' +
+      'Lesson-PR: #' +
+      meta.number +
+      '\n' +
+      'Lesson-Source-Commit: ' +
+      meta.head +
+      '\n' +
+      'Lesson-Source-Blob: ' +
+      meta.sourceBlob +
+      '\n' +
+      'Lesson-Preflight: ' +
+      manifest.mode,
+    tree: tree.sha,
+    parents: [meta.head],
   });
   if (!SHA.test(next?.sha ?? '')) throw Error('GitHub did not create the commit');
   const current = await github('pulls/' + meta.number);
-  if (current?.head?.sha !== meta.head || current.head.ref !== meta.branch ||
-      current.base?.ref !== meta.base || !current.draft || current.state !== 'open')
+  if (
+    current?.head?.sha !== meta.head ||
+    current.head.ref !== meta.branch ||
+    current.base?.ref !== meta.base ||
+    !current.draft ||
+    current.state !== 'open'
+  )
     throw Error('Lesson branch advanced before publish; refusing concurrent update');
   await fresh(meta);
   const updated = await github('git/refs/heads/' + meta.branch, 'PATCH', {
-    sha: next.sha, force: false,
+    sha: next.sha,
+    force: false,
   });
   if (updated?.object?.sha !== next.sha) throw Error('GitHub did not verify new Lesson HEAD');
-  report('Published Lesson ' + meta.operation + ' (' + count + ' file operations) to PR #' +
-    meta.number + ', commit ' + next.sha + ', pinned source ' + meta.sourceBlob +
-    '; Stage 6 remains in progress');
+  report(
+    'Published Lesson ' +
+      meta.operation +
+      ' (' +
+      count +
+      ' file operations) to PR #' +
+      meta.number +
+      ', commit ' +
+      next.sha +
+      ', pinned source ' +
+      meta.sourceBlob +
+      '; Stage 6 remains in progress',
+  );
 }
 
 async function main() {

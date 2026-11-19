@@ -163,7 +163,17 @@ export function validateArtifactPath(filename, identity, operation = 'materializ
   const base = identity.yaml.slice(0, -'lesson.yaml'.length);
   if (!filename.startsWith(base)) return false;
   const relative = filename.slice(base.length);
-  if (['index.ts', 'constants.ts', 'review.ts', 'methodology.md', 'production-handoff.json', 'questions.yaml', 'flashcards.yaml'].includes(relative))
+  if (
+    [
+      'index.ts',
+      'constants.ts',
+      'review.ts',
+      'methodology.md',
+      'production-handoff.json',
+      'questions.yaml',
+      'flashcards.yaml',
+    ].includes(relative)
+  )
     return true;
   return /^sections\/(?:[a-z][A-Za-z0-9]*\/)*(?:index\.ts|specification\.md|markdown\.md|[a-z]{2,3}(?:-[a-z0-9]+)?\.md|code\.[a-z0-9]+)$/.test(
     relative,
