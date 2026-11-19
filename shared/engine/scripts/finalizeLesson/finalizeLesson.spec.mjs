@@ -363,6 +363,21 @@ test('full production preflight cannot be bypassed by changing only the pending 
     assert.throws(() => preflightLesson(f.source, f.root), /must be unique/);
   }));
 
+test('required assessment Sections cannot be disabled or use placeholder bank UUIDs', () =>
+  fixture(f => {
+    withAssessmentPlan(f, [{ type: 'flashcards', slug: 'cardsB' }]);
+    f.document.config.section.items.cardsB.config.params.disabled = true;
+    f.save();
+    assert.throws(() => preflightLessonDraft(f.source, f.root), /required assessment Section cannot be disabled/);
+
+    delete f.document.config.section.items.cardsB.config.params.disabled;
+    f.document.config.section.items.cardsB.config.params.selection = {
+      flashcardIds: ['00000000-0000-0000-0000-000000000000'],
+    };
+    f.save();
+    assert.throws(() => preflightLessonDraft(f.source, f.root), /non-placeholder assessment UUIDs/);
+  }));
+
 test('bank-pending handoff retains YAML on interrupted or changed-source generation', () =>
   fixture(f => {
     withAssessmentPlan(f, [{ type: 'quiz', slug: 'quizA' }]);
