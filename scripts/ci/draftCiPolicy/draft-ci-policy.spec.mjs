@@ -94,9 +94,12 @@ test('Desktop bundle assertions execute after production builds, not in root npm
   assert.equal(scripts['test:integration'], 'node --test tests/packaged-content.spec.mjs');
 
   const quality = workflow('questions.yml');
-  const build = quality.indexOf('npm run app:build');
-  const integration = quality.indexOf('npm run test:integration --workspace @svitlo/desktop');
-  assert.ok(build !== -1 && integration > build, 'Desktop bundle test must follow production app builds');
+  const build = quality.indexOf('npm run app:build --workspace "$APP_WORKSPACE"');
+  const integration = quality.indexOf('npm run test:integration --workspace "$APP_WORKSPACE"');
+  assert.ok(build !== -1 && integration > build, 'Desktop bundle test must follow its app build');
+  assert.match(quality, /if: matrix.integration/);
+  // Matrix discovery assigns this gate only to apps declaring test:integration.
+  assert.match(quality, /plan-app-matrix\.mjs/);
 
   const desktop = workflow('desktop-ci.yml');
   assert.match(desktop, /npm run test --workspace @svitlo\/desktop/);
