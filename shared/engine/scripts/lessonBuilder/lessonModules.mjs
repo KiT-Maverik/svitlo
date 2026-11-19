@@ -237,7 +237,7 @@ function skillIndex(bookRoot) {
         !entry.isFile() ||
         !entry.name.endsWith('.ts') ||
         entry.name === 'index.ts' ||
-        /(?:\\.d|\\.spec|\\.test)\\.ts$/.test(entry.name)
+        /(?:\.d|\.spec|\.test)\.ts$/.test(entry.name)
       ) continue;
       const ast = ts.createSourceFile(absolute, fs.readFileSync(absolute, 'utf8'), ts.ScriptTarget.Latest, true);
       if (ast.parseDiagnostics.length) throw new Error('Invalid Skill source: ' + absolute);
