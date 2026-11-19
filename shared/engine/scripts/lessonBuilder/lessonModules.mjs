@@ -231,7 +231,14 @@ function skillIndex(bookRoot) {
         visit(absolute);
         continue;
       }
-      if (!entry.isFile() || !entry.name.endsWith('.data.ts')) continue;
+      // Canonical Skills use .ts; older packages also contain .data.ts modules.
+      // Inspect actual exported defineSkill calls, excluding declarations/tests.
+      if (
+        !entry.isFile() ||
+        !entry.name.endsWith('.ts') ||
+        ['.d.ts', '.spec.ts', '.test.ts'].some(suffix => entry.name.endsWith(suffix))
+      )
+        continue;
       const ast = ts.createSourceFile(absolute, fs.readFileSync(absolute, 'utf8'), ts.ScriptTarget.Latest, true);
       if (ast.parseDiagnostics.length) throw new Error('Invalid Skill source: ' + absolute);
       for (const statement of ast.statements) {
