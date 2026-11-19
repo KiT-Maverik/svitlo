@@ -2,6 +2,19 @@
 
 This is a **separate, opt-in Stage 6 handoff** for the [Create Lesson Flow](../../../../studio/skills/lesson-workflow/create-lesson-flow.skill.md). It is not the Lesson Builder, schema generator, Props publisher, assessment-bank creator, editor or approval gate. The existing `lessonBuilder.mjs` remains a **create-only draft scaffolder** that does not validate complete YAML.
 
+## Explicit bank-pending source-draft handoff
+
+The Methodologist records independent Quiz and Flashcards Section decisions in production.methodology using exactly one fenced "~~~yaml lesson-assessment-sections" block. Its assessmentSections map contains quiz and flashcards, each with decision: required | notRequired, a nonempty rationale, and a keyed intents map (empty when notRequired). Each required intent has purpose, placement and bankDependency; a Quiz intent also has actual Skill UUIDs in skills and actual AssessmentMethodKeys in assessmentMethods. Each matching Section carries two separate production.productionNotes lines: "Assessment intent: <key>" and "Bank integration: pending" (later "connected" after evidence). Missing/duplicate/mismatched Sections are rejected. No new Config/Props field or standalone plan file is introduced.
+
+For already independently reviewed Lesson YAML whose required Section's bank selections or Quiz-only params are intentionally pending, run:
+
+    node shared/engine/scripts/finalizeLesson/finalizeLesson.mjs preflight-draft --source content/<book>/data/lessons/<bucket>/<uuid>/lesson.yaml
+    node shared/engine/scripts/finalizeLesson/finalizeLesson.mjs handoff --source content/<book>/data/lessons/<bucket>/<uuid>/lesson.yaml
+
+The draft-only preflight uses the same Engine-derived schema, but relaxes the required assessment-specific params only at this isolated source-draft boundary. Every other existing structural, UUID, collection/order, production and source-locale check remains enforced. It requires an explicit two-type inventory and an actual pending Section; only explicitly pending Sections may have incomplete bank-dependent params. The "handoff" command invokes the **existing** creation-only Lesson Builder and its read-only fidelity check, verifies every generated file and production handoff, and **preserves unchanged lesson.yaml** as well as its independent questions.yaml/flashcards.yaml sidecars. It does not imply Stage 6 completion, a passing TypeScript check, a real Question/Flashcard Bank or permission to publish.
+
+After bank integration, complete the actual typed Section source, verify reviewed Question/Flashcard UUIDs, locale availability, approved cross-Lesson references, resource ownership and published metadata, and remove each local TODO (BLOCKER) only when evidence permits. The standard "preflight" remains strictly schema-validated and rejects pending Section markers. Because the generated entrypoint already exists, the original create-only "finalize" command **must not** be rerun against an edited draft: it will reject overwrite and retain YAML. Retain the source for manual SHA-pinned reconciliation; never delete YAML merely to bypass the guard. Production completion is verified through strict Engine Config/Props plus external bank checks and actual package publication, not by this draft handoff.
+
 ## Preconditions and commands
 
 Run only when Content Review, Experience Review and Methodology Compliance have independently accepted the exact authored `lesson.yaml` SHA in the Lesson Draft PR. Use the **canonical Lesson UUID path**; the builder can accept staged input, but this finalizer intentionally requires a canonical source so it can safely remove exactly one file. First build or check current Engine-derived YAML schema in the owning package and confirm it is not stale.
