@@ -149,6 +149,7 @@ function gitFixture(callback) {
     fs.mkdirSync(path.dirname(source), { recursive: true });
     fs.writeFileSync(source, 'test: fixture\n');
     git(root, ['add', '--', yaml]);
+    git(root, ['-c', 'user.name=Fixture', '-c', 'user.email=fixture@example.invalid', 'commit', '-qm', 'fixture']);
     return callback({ root, source });
   } finally {
     fs.rmSync(root, { recursive: true, force: true });
