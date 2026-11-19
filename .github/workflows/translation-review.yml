@@ -360,6 +360,10 @@ jobs:
             course: process.env.REQUEST_COURSE || null,
           };
           for (const [key, value] of Object.entries(requested)) {
+            // Existing non-Course PRs can use a generator predating scope.course.
+            // Accept only that absent optional field; never relax Course requests.
+            if (key === 'course' && value === null && requested.kind !== 'courses' &&
+                !Object.hasOwn(manifest.scope, 'course')) continue;
             if (manifest.scope[key] !== value) {
               throw Error('Manifest scope disagrees with authorized request: ' + key);
             }
