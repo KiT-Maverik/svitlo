@@ -566,7 +566,7 @@ const ka: QuestionFrame_Locale = {
 const kk: QuestionFrame_Locale = {
   check: 'Tekseru',
   retry: 'Qaitalap köru',
-  hint: 'Nūsqau',
+  hint: 'Keñes',
   explanation: 'Tüsındırme',
   correct: 'Dūrys!',
   incorrect: 'Älı dūrys emes. Tağy bır ret baiqap kör.',
