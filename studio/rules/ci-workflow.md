@@ -44,7 +44,7 @@ The default branch is now `develop`; the two active protection rulesets target t
 
 Dedicated EducationStandard catalog/reference GitHub workflows are removed. Existing UI Kit `test:locales` validates definitions and localized outputs; FastGate tests the reference generator only when implementation changes. The on-demand `/agent-artifacts generate education-standards` functionality remains available.
 
-**Actual branch-protection audit (2026-11-19):** GitHub already has `develop` as default and active literal-branch rulesets. Both `Protect main` and `Protect develop` now require a pull request before merging. The `Protect main` required contexts still omit `Production Quality / verify`, and `Protect develop` already requires `FastGate / verify`. The remaining main required context is exactly **`Production Quality / verify`** (not `Production quality / quality`). The owner must add it in GitHub Settings after a genuine Ready `develop → main` promotion emits it. Branch protection cannot be enforced by merely editing a workflow.
+**Actual branch-protection audit (2026-11-19):** GitHub already has `develop` as default and active literal-branch rulesets. Both `Protect main` and `Protect develop` now require a pull request before merging. `Protect main` now requires **`Production Quality / verify`** alongside Agent CI Artifacts, Affected content and Blocker TODOs; `Protect develop` requires **`FastGate / verify`** alongside the same three checks. Verified from active GitHub rulesets on 2026-11-19. GitHub ruleset state is an operational setting rather than a YAML guarantee.
 
 ## Production and nested-PR enforcement follow-ups
 

@@ -9,7 +9,7 @@
 - Production Quality no longer repeats per-textbook publisher/portability checks already enforced by the required full Content Build; its extra IndexedDB integration invocation was also redundant with `npm test`.
 - CI branch/default documentation and the remaining manual protections are updated.
 
-**Not yet demonstrated:** real Ready promotion, fault injection on GitHub branch protection, nested ruleset owner decision, authorized comment-command end-to-end executions, and comparable performance measurements. These remain open acceptance criteria.
+**Operational evidence:** `Protect main` now requires `Production Quality / verify` (owner configured; active GitHub ruleset verified 2026-11-19). The existing Ready production run on #716 failed closed on real TS errors. **Still not demonstrated:** green Ready production promotion after this branch is integrated, deliberate unauthorized-source failure against the live required context, nested ruleset owner decision, trusted command end-to-end executions, and comparable performance measurements.
 
 **Baseline:** PR #714 was merged into develop on 2026-11-19. Keep develop as the default development integration branch and main as production. Preserve nested Course → Lesson → Questions/Flashcards PR parentage and existing authorization boundaries.
 
@@ -24,9 +24,9 @@
 ## Verified starting state (not work to repeat)
 
 - Protect develop already requires FastGate / verify, Agent CI Artifacts / clean, Blocker TODOs / clean and Affected content / build, taxonomy and packaging. Do not describe FastGate as missing.
-- Protect main requires PRs and the latter three stable checks, but not yet Production Quality / verify. The job is in .github/workflows/questions.yml and is created only for Ready main PRs or manual dispatch. The similarly spelled Production quality / quality is NOT its check context.
+- Protect main requires PRs, the three stable checks, **and Production Quality / verify** as configured by the owner after this baseline was written. The job is in .github/workflows/questions.yml and is created only for Ready main PRs or manual dispatch. The similarly spelled Production quality / quality is NOT its check context.
 - Both active rulesets target their literal branches; develop is already the default branch. Neither requires an approving review (currently configured as zero), which is separate from requiring a PR.
-- The owner will add Production Quality / verify to Protect main after the first real Ready develop → main promotion emits it. This is a manual GitHub Settings action, not a YAML-only fix.
+- The owner added Production Quality / verify to Protect main. Current active ruleset was verified on 2026-11-19; the successful promotion exercise and release-source failure injection remain separate.
 - PR #714 removed the standalone Education Standards jobs and introduced quietRun, selective Content Build, Draft-warning/Ready-failing TODO guard, path-based educational labels, and scoped FastGate. Preserve those behaviors.
 
 ## Implementation scope
@@ -35,7 +35,7 @@
 
 - Add a small, deterministic, test-covered gate to reject Ready PRs targeting main when the source branch is not develop. Use a stable, meaningful required status if the gate is made independent; alternatively make the existing mandatory production status fail. Never make security dependent on mutable labels. Do not silently retarget or invalidate historical PRs; enumerate and reconcile existing non-develop → main PRs with owner approval before activating the restriction.
 - For valid Ready develop → main promotions, keep full monorepo typecheck, required package/component/browser suites, *all* textbook builds, source TODO scan, and content/asset publication readiness. No expensive full suite on push to main after an already validated merge.
-- Smoke-test an actual Ready develop → main promotion before adding the missing required context to Protect main. Verify both success and deliberate failure block the merge, and that the check is reported for the latest SHA. Do not merge the test promotion prematurely. Record manual ruleset action separately from committed code.
+- Smoke-test a real Ready develop → main promotion with the required context active. Verify both success and deliberate failure block the merge, and that the check is reported for the latest SHA. Do not merge the test promotion prematurely. Record manual ruleset action separately from committed code.
 - Preserve valid Draft semantics; Ready-only production checks must not accidentally report a misleading pass for unfinished Draft work.
 
 ### P0 — Cover affected downstream workspaces without running every workspace
@@ -87,7 +87,7 @@
 ## Out of scope / decisions
 
 - No new localization/Education Standards CI, no new blanket quality jobs, no broad change to approved content contracts.
-- A GitHub administrator/owner must adjust main required checks and optionally parent branch rulesets; GitHub Actions code alone cannot do this.
+- The owner has updated main's required check in GitHub Settings. Any optional parent-branch ruleset still requires explicit owner approval; GitHub Actions code alone cannot enforce branch protection.
 - Make any trade-off that increases checks or runner minutes explicit with measured benefit. Do not treat a reviewer's recommendations as instructions to add tests indiscriminately.
 
 ## Trigger and required-status matrix (implementation branch)
@@ -104,8 +104,8 @@
 | Push to main | Not emitted | Not emitted | Not emitted | Not emitted |
 
 Required contexts are enforced by the actual GitHub rulesets, not by these
-descriptions. As of 2026-11-19 `Production Quality / verify` still requires
-an owner GitHub Settings change on `Protect main` after a genuine Ready run.
+descriptions. As of 2026-11-19 `Production Quality / verify` is an active required
+status in the `Protect main` GitHub ruleset.
 The parent-branch requirement is an unapproved proposal.
 
 ## Baseline observations and limitations
