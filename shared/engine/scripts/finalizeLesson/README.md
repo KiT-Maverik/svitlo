@@ -15,6 +15,19 @@ The draft-only preflight uses the same Engine-derived schema, but relaxes the re
 
 After bank integration, complete the actual typed Section source, verify reviewed Question/Flashcard UUIDs, locale availability, approved cross-Lesson references, resource ownership and published metadata, and remove each local TODO (BLOCKER) only when evidence permits. The standard "preflight" remains strictly schema-validated and rejects pending Section markers. Because the generated entrypoint already exists, the original create-only "finalize" command **must not** be rerun against an edited draft: it will reject overwrite and retain YAML. Retain the source for manual SHA-pinned reconciliation; never delete YAML merely to bypass the guard. Production completion is verified through strict Engine Config/Props plus external bank checks and actual package publication, not by this draft handoff.
 
+## Source-preserving strict finalize and remote PR command
+
+For a completely specified Lesson being scaffolded for the **first time**, use the existing strict validation and full source-fidelity checks but retain the unchanged YAML:
+
+~~~sh
+node shared/engine/scripts/finalizeLesson/finalizeLesson.mjs preflight --source content/<book>/data/lessons/<bucket>/<uuid>/lesson.yaml
+node shared/engine/scripts/finalizeLesson/finalizeLesson.mjs finalize --source content/<book>/data/lessons/<bucket>/<uuid>/lesson.yaml --preserve-config
+~~~
+
+The `--preserve-config` flag is valid **only with `finalize`** and does not alter `preflight`, `preflight-draft` or `handoff`. The bank-pending `handoff` always preserves YAML and rejects this redundant flag. Without the flag, strict first-time `finalize` keeps its existing safe-delete behavior. Both modes reject an existing edited `index.ts` rather than overwriting. For an interrupted/partial handoff, retain YAML, inspect SHA-pinned source and outputs, and reconcile manually; never rerun create-only generation over existing authored TS. After a successful source-preserving handoff, independent bank integration and strict Props/publication checks do not authorize automatically deleting YAML.
+
+When the [Lesson Stage 6 PR-command workflow](../../../../scripts/ci/lessonMaterialization/README.md) has been deployed to `main`, prefer exact `/lesson materialize` on the existing Draft Lesson PR. It invokes trusted preflight and source-preserving generation against pinned PR data and commits verified new Lesson files. The optional `/lesson finalize` is disabled until a safe post-materialization existing-source verification/retirement mechanism exists. Neither command completes Stage 6 by itself.
+
 ## Preconditions and commands
 
 Run only when Content Review, Experience Review and Methodology Compliance have independently accepted the exact authored `lesson.yaml` SHA in the Lesson Draft PR. Use the **canonical Lesson UUID path**; the builder can accept staged input, but this finalizer intentionally requires a canonical source so it can safely remove exactly one file. First build or check current Engine-derived YAML schema in the owning package and confirm it is not stale.
