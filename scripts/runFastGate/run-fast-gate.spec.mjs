@@ -111,7 +111,23 @@ test('content build always reports required status and scopes package builds int
   assert.match(workflow, /name: Content packages build/);
   assert.match(workflow, /on:\n  pull_request:/);
   assert.doesNotMatch(workflow, /\n    paths:/, 'required status cannot use GitHub paths filters');
-  assert.match(workflow, /build-changed-content\.mjs/, 'content selection remains scoped in script');
+  assert.match(workflow, /plan-content-builds\.mjs/, 'content selection remains in the planner');
+  assert.match(workflow, /fromJSON\(needs\.prepare\.outputs\.shards\)/, 'only planned shards run');
+  assert.match(workflow, /toJSON\(matrix\.packages\)/, 'each shard receives its selected packages');
+  assert.match(workflow, /run: node scripts\/ci\/buildChangedContent\/content-shards\.mjs/);
+  assert.match(workflow, /name: Affected content \/ build, taxonomy and packaging/);
+  assert.match(workflow, /needs: \[prepare, build\]/, 'required verify depends on all shards');
+  const runner = readFileSync(
+    fileURLToPath(new URL('../ci/buildChangedContent/content-shards.mjs', import.meta.url)),
+    'utf8',
+  );
+  assert.match(runner, /build-changed-content\.mjs/, 'each shard runs the original per-package verifier');
+  const planner = readFileSync(
+    fileURLToPath(new URL('../ci/buildChangedContent/plan-content-builds.mjs', import.meta.url)),
+    'utf8',
+  );
+  assert.match(planner, /selectContentBuilds/, 'scope selection remains in the existing selector');
+  assert.match(planner, /planContentShards\(matrix\.include\)/, 'shards use the selected package scope');
   assert.match(workflow, /verify-production-assets\.mjs/, 'Ready PRs must check missing assets');
   assert.match(workflow, /!github\.event\.pull_request\.draft/, 'Drafts are allowed to be unfinished');
 });

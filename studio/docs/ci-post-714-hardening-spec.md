@@ -1,6 +1,6 @@
 # Harden development and production CI after PR #714
 
-**Status:** historical implementation checklist and evidence ledger for PR #717 (**merged into `develop` on 2026-11-19**). This records the original plan and evidence at the time; merge does not prove pending operational validation. Recheck the current code and live CI before relying on an outcome.
+**Document type:** historical implementation checklist and evidence ledger for the CI hardening work in [PR #717](https://github.com/KiT-Maverik/svitlo/pull/717). It records decisions and evidence from that review, **not** the PR's current lifecycle state. Query GitHub for PR status, SHA and checks; verify current workflow code before relying on historical outcomes.
 
 **Implemented by merged PR #717:**
 
@@ -10,7 +10,7 @@
 - Production Quality no longer repeats per-textbook publisher/portability checks already enforced by the required full Content Build; its extra IndexedDB integration invocation was also redundant with `npm test`.
 - CI branch/default documentation and the remaining manual protections are updated.
 
-**Operational evidence:** `Protect main` now requires `Production Quality / verify` (owner configured; active GitHub ruleset verified 2026-11-19). The existing Ready production run on #716 failed closed on real TS errors. **Still not demonstrated:** green Ready production promotion after this branch is integrated, deliberate unauthorized-source failure against the live required context, nested ruleset owner decision, trusted command end-to-end executions, and comparable performance measurements.
+**Operational evidence:** `Protect main` now requires `Production Quality / verify` (owner configured; active GitHub ruleset verified 2026-11-19). The existing Ready production run on #716 failed closed on real TS errors. **Still not demonstrated:** green Ready production promotion after this branch is integrated, deliberate unauthorized-source failure against the live required context, trusted command end-to-end executions, and comparable performance measurements.
 
 **Baseline:** PR #714 was merged into develop on 2026-11-19. Keep develop as the default development integration branch and main as production. Preserve nested Course → Lesson → Questions/Flashcards PR parentage and existing authorization boundaries.
 
@@ -59,11 +59,12 @@
 - Review Production Quality's use of if: !cancelled() for most expensive later steps: avoid needlessly running all release checks after an early definite failure, while preserving adequate actionable diagnostics. Keep manual deep-diagnostic runs possible.
 - Rename misleading workflow/artifact names (e.g. questions.yml and questions-test-results) if safe, without changing the stable external check context accidentally.
 
-### P1 — Enforce TODO policy at nested integration boundaries
+### Historical option — Protect nested integration branches (declined)
 
-- Current Blocker TODOs / clean runs on child PRs; a failure does not itself enforce branch protection on unprotected intermediate targets. Propose the smallest GitHub ruleset targeting verified parent branch patterns (e.g. integration/* or approved course/*) so Ready child PRs cannot merge with blockers.
-- **Owner decision required before applying any such ruleset.** Audit whether authorized bots must directly push to Course/Lesson working branches. Design minimal GitHub App bypass/branch exclusions; do NOT protect all agent/* branches or block legitimate materialization pushes. Keep Draft authored blockers warnings, Ready integration blockers failures, Ready main full-source failures.
-- Do not rely on PR work: course/lesson/questions/flashcards labels to select GitHub branch rulesets: rulesets target refs/patterns, not labels.
+- Child PRs can report failed `Blocker TODOs / clean` on intermediate integration branches, but unprotected targets do not enforce that check on merge.
+- **Final owner decision:** no additional rulesets for `integration/*`, legacy `integration-branch`, or `agent/*`; the enforcement overhead is not justified. This supersedes the historical proposal to add parent-branch protection.
+- Trusted materialization GitHub App writes to unprotected integration branches continue under existing workflow authorization; no new bypass permissions for `develop` or `main`. Leave historical integration branches and PR ancestry unchanged for later owner cleanup.
+- Draft blockers remain advisory; Ready checks may fail, but only protected targets can enforce them at merge. Do not infer branch rulesets from educational PR labels.
 
 ### P1 — Verify default-branch comment automation and legacy branch ancestry
 
@@ -88,7 +89,7 @@
 ## Out of scope / decisions
 
 - No new localization/Education Standards CI, no new blanket quality jobs, no broad change to approved content contracts.
-- The owner has updated main's required check in GitHub Settings. Any optional parent-branch ruleset still requires explicit owner approval; GitHub Actions code alone cannot enforce branch protection.
+- The owner configured `main`'s required checks. Intermediate integration branch protection was explicitly declined; GitHub Actions may report failures there without making those checks merge-blocking.
 - Make any trade-off that increases checks or runner minutes explicit with measured benefit. Do not treat a reviewer's recommendations as instructions to add tests indiscriminately.
 
 ## Trigger and required-status matrix (recorded during PR #717)

@@ -103,13 +103,13 @@ Use this sequence for PR diagnosis: **latest-head required check → failing job
 5. **Escalate only when evidence is insufficient.** Fetch a successful job's log only to resolve a concrete dependency or contradicted outcome, and name that reason. Prefer step duration/status and compact summary over logs. Retry the **individual job/check**, not the whole suite, only when current-head cancellation, transient failure or missing evidence warrants it. For a supported **manual diagnostic dispatch or controlled local reproduction**, opt in with `SVITLO_CI_VERBOSE=1`; ordinary GitHub "Re-run jobs" does **not** let agents inject a new environment variable into an existing workflow. Preserve process exit codes, GitHub annotations, security/trust boundaries and authorization; redact secrets before sharing excerpts. Quiet output is not a secret scrubber.
 6. **Report auditable evidence.** State the PR/base/state and inspected head SHA; required vs optional check name and conclusion; workflow/job/step links; decisive bounded error excerpt; whether a run was cancelled/superseded; exactly which reruns or local checks actually executed; and what remains unverified. No quantified token or runner-minute savings without a measured comparable before/after retrieval.
 
-This is a **diagnostic retrieval policy**, not a change to workflow triggers, required checks, test coverage, `quietRun` behavior or the production release trust boundary.
+This is a **diagnostic retrieval policy**, not a change to workflow triggers, required checks, test coverage, `quietRun` behavior or the production release trust boundary. Studio documentation defines stable procedures and decisions; GitHub is the sole source for individual PR lifecycle state, latest commit SHA and check results. Do not mirror live PR status in Studio files.
 
 ## Educational labels and TODO blockers
 
 - `work: course` is matched from authored `content/**/data/courses/**`. Lesson-owned source YAML/index/methodology/sections earns `work: lesson`. `questions.yaml` and `questions/**` match `work: questions`; `flashcards.yaml` and `flashcards/**` match `work: flashcards`. Bank-only changes must not receive Lesson label solely from path ancestry. Engine tooling changes do not imply an educational authoring label.
 - `Blocker TODOs / clean` always runs on PR events. Draft PRs changing Course/Lesson/bank sources report newly introduced blockers as warnings without failing; Ready PRs to develop or intermediate integration branches reject blockers in all source files changed by the PR (including inherited comments); Ready main promotion scans **all supported tracked source** including inherited TODOs. This guard deliberately does not parse Markdown.
-- A required GitHub status check, not the label itself, enforces the no-blocker merge rule. Nested intermediate branches require an enforceable ruleset if merges can occur without GitHub's protected-target checks.
+- On protected targets, a required GitHub status check (not a label) enforces the no-blocker rule. Intermediate integration branches are intentionally unprotected: a failed child PR check is diagnostic feedback, **not** a GitHub-enforced merge block.
 
 ## Verification
 
@@ -124,8 +124,9 @@ Dedicated EducationStandard catalog/reference GitHub workflows are removed. Exis
 ## Production and nested-PR enforcement follow-ups
 
 - Required `Affected content / build, taxonomy and packaging` runs the full
-  selected-content matrix on every Ready main PR, with publication and tarball
-  portability checks for each eligible textbook. Production Quality does **not**
+  selected-content workload across at most five deterministic shards on every Ready
+  main PR. Each shard installs dependencies once and preserves independent
+  publication and tarball portability checks for every eligible textbook. Production Quality does **not**
   rerun those publication/portability suites; it retains full TypeScript, root
   tests, app builds, package artifacts and Chromium E2E coverage.
 - FastGate determines changed files from the merge-base, compares the public
@@ -133,17 +134,19 @@ Dedicated EducationStandard catalog/reference GitHub workflows are removed. Exis
   typechecks through real dependencies, including transitive consumers.
   Private implementation-only edits remain scoped. Root manifest and lockfile
   edits conservatively check all workspaces.
-- An open child PR targeting an unprotected integration branch cannot be
-  blocked by a failing check alone. **Owner decision pending:** optionally
-  require `Blocker TODOs / clean` on a narrowly verified `integration/*`
-  parent-ref pattern, with explicit GitHub App bypass for authorized
-  materialization pushes. Do not apply it to all `agent/*` branches. GitHub
-  ruleset targets are refs, not educational labels.
+- **Owner decision:** do **not** introduce Rulesets for intermediate `integration/*`,
+  historical `integration-branch`, or `agent/*` branches. Their failed checks
+  remain visible to reviewers and agents but do not prevent a GitHub merge.
+  Authorized materialization GitHub App commits may continue directly to
+  unprotected integration branches under the existing trusted-workflow checks;
+  no new bypass is needed or permitted for protected `develop` and `main`.
+  Historical integration branches and PR ancestry are left unchanged for
+  eventual owner-managed cleanup.
 - Historical Course PR #653 targets `integration-branch`, while the trusted
   Course materialization gate requires the current repository default branch
-  (`develop`). This is a known legacy mismatch; do not broadly bypass the
-  gate or retarget any Course/Lesson PR without owner approval and ancestry
-  reconciliation.
+  (`develop`). Preserve this legacy mismatch as-is; the owner will retire old
+  integration branches later. Do not alter the gate, retarget historical PRs
+  or migrate their ancestry as part of CI optimization.
 - Required context provisioning, live Ready promotion/failure injection and
   comparable before/after runner-minute benchmarks remain operational owner
   handoffs, not claims established by committed workflow YAML.

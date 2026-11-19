@@ -20,10 +20,10 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     outputs:
-      matrix: ${{ steps.plan.outputs.matrix }}
       has_builds: ${{ steps.plan.outputs.has_builds }}
       all: ${{ steps.plan.outputs.all }}
       agent_mode: ${{ steps.plan.outputs.agent_mode }}
+      shards: ${{ steps.plan.outputs.shards }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -75,13 +75,13 @@ jobs:
           node scripts/ci/quietRun/quiet-run.mjs -- node --test scripts/checkBuiltPackageExports/check-built-package-exports.spec.mjs
 
   build:
-    name: Content / ${{ matrix.path }}
+    name: Content / ${{ matrix.id }}
     needs: prepare
     if: needs.prepare.outputs.has_builds == 'true'
     strategy:
       fail-fast: false
       max-parallel: 5
-      matrix: ${{ fromJSON(needs.prepare.outputs.matrix) }}
+      matrix: ${{ fromJSON(needs.prepare.outputs.shards) }}
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
@@ -93,19 +93,19 @@ jobs:
         with:
           node-version: '24'
           cache: npm
-      - run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --no-audit --no-fund
-      - name: Build and verify selected textbook or agent scope
+      - name: Install dependencies once per content shard
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --no-audit --no-fund
+      - name: Verify each selected textbook or agent scope
         env:
           BASE_SHA: ${{ github.event.pull_request.base.sha }}
           HEAD_SHA: ${{ github.event.pull_request.head.sha }}
           BASE_REF: ${{ github.base_ref }}
           HEAD_REF: ${{ github.head_ref }}
           CONTENT_BUILD_ALL: ${{ needs.prepare.outputs.all }}
-          CONTENT_PACKAGE_PATH: ${{ matrix.path }}
-          CONTENT_PACKAGE_KIND: ${{ matrix.kind }}
           SVITLO_MEDIA_MODE: ${{ (github.event_name == 'pull_request' && (github.base_ref != 'main' || github.event.pull_request.draft)) && 'draft' || 'production' }}
-          SVITLO_CI_LABEL: Build and verify ${{ matrix.path }}
-        run: node scripts/ci/quietRun/quiet-run.mjs -- node scripts/ci/buildChangedContent/build-changed-content.mjs --package "$CONTENT_PACKAGE_PATH" "$CONTENT_PACKAGE_KIND"
+          CONTENT_SHARD_PACKAGES: ${{ toJSON(matrix.packages) }}
+        run: node scripts/ci/buildChangedContent/content-shards.mjs
+
 
   verify:
     # Keep this exact required status context from the Protect main ruleset.
@@ -114,7 +114,7 @@ jobs:
     if: always()
     runs-on: ubuntu-latest
     steps:
-      - name: Require successful preparation and every selected package build
+      - name: Require successful preparation and every selected content shard
         env:
           PREPARE_RESULT: ${{ needs.prepare.result }}
           BUILD_RESULT: ${{ needs.build.result }}
@@ -125,7 +125,7 @@ jobs:
             exit 1
           fi
           if [ "$HAS_BUILDS" = "true" ] && [ "$BUILD_RESULT" != "success" ]; then
-            echo "::error::One or more selected content package jobs failed: $BUILD_RESULT"
+            echo "::error::One or more selected content shards failed: $BUILD_RESULT"
             exit 1
           fi
           if [ "$HAS_BUILDS" = "false" ] && [ "$BUILD_RESULT" != "skipped" ]; then
