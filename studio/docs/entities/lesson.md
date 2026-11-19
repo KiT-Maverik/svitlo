@@ -1,6 +1,6 @@
 # Lesson
 
-> New authoring follows [Create Lesson Flow](../../skills/lesson-workflow/create-lesson-flow.skill.md): one temporary `lesson.yaml` through editorial review, Draft Lesson PR for workflow status, Stage 6 safe finalization and independent bank subtasks. Historical separate `content.yaml`/`methodology.md` plans must be migrated without loss, not kept as duplicate new sources.
+> New authoring follows [Create Lesson Flow](../../skills/lesson-workflow/create-lesson-flow.skill.md): one temporary `lesson.yaml` through editorial review, Draft Lesson PR for workflow status, Stage 6 source preparation followed by parent Stages 7/8 for independently authored Questions/Flashcards child PRs. Historical separate `content.yaml`/`methodology.md` plans must be migrated without loss, not kept as duplicate new sources.
 
 **Entity category:** ordinary Lesson with Sections. Instructional Lessons are Course-neutral and reusable; a deliberately placed **assessment-only Lesson** may depend pedagogically on preceding Course Lessons and their Question Banks without a different Engine entity type.
 
