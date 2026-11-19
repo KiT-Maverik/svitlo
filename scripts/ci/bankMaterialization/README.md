@@ -64,8 +64,8 @@ translation, Ready, merge, bank-UUID assignment or YAML retirement.
    current PR HEAD SHA and current YAML Git blob SHA.
 2. **analyze (read-only):** load trusted default-branch Engine/scripts in
    a separate trusted checkout, install dependencies without lifecycle scripts,
-   build only trusted Engine, check out the immutable PR head as *untrusted
-   source data* (never import PR code), run the real bank builder preflight,
+   build only trusted Engine, check out the immutable PR head as _untrusted
+   source data_ (never import PR code), run the real bank builder preflight,
    create-only write and read-only check. Verify clean initial candidate,
    generated file inventory, UTF-8 bytes, exact scope, Git SHA, no modified
    tracked data, no symlinks and bounded counts/bytes. Upload a short-lived
@@ -78,7 +78,7 @@ translation, Ready, merge, bank-UUID assignment or YAML retirement.
 
 An existing, partial, manually edited or differing bank tree **fails closed**:
 the generator never overwrites it, and the job does not delete YAML or
-silently invent a restoration. The owner can reconcile and retry a *fresh*
+silently invent a restoration. The owner can reconcile and retry a _fresh_
 source tree only after review. This CI is intentionally limited to first-time
 materialization, not editing or final bank publication.
 

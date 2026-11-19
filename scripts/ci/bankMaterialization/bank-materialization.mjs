@@ -10,9 +10,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
-import {
-  allowedPath, github, inspect, requireActor, gitBlob, sha256, report, supportedBanks,
-} from './bank-gate.mjs';
+import { allowedPath, github, inspect, requireActor, gitBlob, sha256, report, supportedBanks } from './bank-gate.mjs';
 
 const MAX_COUNT = 512;
 const MAX_SINGLE = 256 * 1024;
@@ -20,30 +18,33 @@ const MAX_TOTAL = 6 * 1024 * 1024;
 const trustedRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../..');
 function meta() {
   const b64 = process.env.BANK_META_B64 || '';
-  if (!/^[A-Za-z0-9+/=]+$/.test(b64) || b64.length > 12000)
-    throw Error('Missing or malformed bank metadata');
+  if (!/^[A-Za-z0-9+/=]+$/.test(b64) || b64.length > 12000) throw Error('Missing or malformed bank metadata');
   const value = JSON.parse(Buffer.from(b64, 'base64').toString('utf8'));
-  if (!supportedBanks.includes(value.bank) || !Number.isSafeInteger(value.number) ||
-      !/^[a-f0-9]{40}$/.test(value.head || '') ||
-      !/^[a-f0-9]{40}$/.test(value.sourceBlob || '') ||
-      value.repo !== process.env.GITHUB_REPOSITORY ||
-      value.identity?.bank !== value.bank ||
-      value.identity?.yaml !== value.identity?.folder + '/' + value.bank + '.yaml' ||
-      !/^[A-Za-z0-9-]+$/.test(value.actor || ''))
+  if (
+    !supportedBanks.includes(value.bank) ||
+    !Number.isSafeInteger(value.number) ||
+    !/^[a-f0-9]{40}$/.test(value.head || '') ||
+    !/^[a-f0-9]{40}$/.test(value.sourceBlob || '') ||
+    value.repo !== process.env.GITHUB_REPOSITORY ||
+    value.identity?.bank !== value.bank ||
+    value.identity?.yaml !== value.identity?.folder + '/' + value.bank + '.yaml' ||
+    !/^[A-Za-z0-9-]+$/.test(value.actor || '')
+  )
     throw Error('Invalid pinned metadata');
   return value;
 }
 function git(root, ...args) {
   return execFileSync('git', args, {
-    cwd: root, encoding: 'utf8', maxBuffer: 64 * 1024 * 1024,
+    cwd: root,
+    encoding: 'utf8',
+    maxBuffer: 64 * 1024 * 1024,
   });
 }
 function checkedRoot(info) {
   const root = fs.realpathSync(process.env.BANK_CANDIDATE_ROOT || '');
   if (!fs.statSync(root).isDirectory() || !fs.existsSync(path.join(root, '.git')))
     throw Error('Requires immutable Git checkout');
-  if (git(root, 'rev-parse', 'HEAD').trim() !== info.head)
-    throw Error('Candidate is not at approved PR head');
+  if (git(root, 'rev-parse', 'HEAD').trim() !== info.head) throw Error('Candidate is not at approved PR head');
   if (git(root, 'status', '--porcelain=v1', '-z', '--untracked-files=all') !== '')
     throw Error('Candidate checkout dirty before operation');
   let current = root;
@@ -56,8 +57,7 @@ function checkedRoot(info) {
   return root;
 }
 function collect(root, info) {
-  const status = git(root, 'status', '--porcelain=v1', '-z', '--untracked-files=all')
-    .split('\0').filter(Boolean);
+  const status = git(root, 'status', '--porcelain=v1', '-z', '--untracked-files=all').split('\0').filter(Boolean);
   if (status.length > MAX_COUNT) throw Error('Too many generated files');
   const files = [];
   const seen = new Set();
@@ -82,22 +82,34 @@ function collect(root, info) {
   return files.sort((a, b) => a.path.localeCompare(b.path));
 }
 export function inspectManifest(result, info) {
-  if (result?.version !== 1 || !result.files || !Array.isArray(result.files) ||
-      result.files.length < 1 || result.files.length > MAX_COUNT ||
-      JSON.stringify(result.meta) !== JSON.stringify(info))
+  if (
+    result?.version !== 1 ||
+    !result.files ||
+    !Array.isArray(result.files) ||
+    result.files.length < 1 ||
+    result.files.length > MAX_COUNT ||
+    JSON.stringify(result.meta) !== JSON.stringify(info)
+  )
     throw Error('Invalid/mismatched analysis report');
   let total = 0;
   const unique = new Set();
   for (const f of result.files) {
-    if (!allowedPath(f.path, info.identity) || unique.has(f.path) ||
-        typeof f.base64 !== 'string' || !/^[a-zA-Z0-9+/]*={0,2}$/.test(f.base64))
+    if (
+      !allowedPath(f.path, info.identity) ||
+      unique.has(f.path) ||
+      typeof f.base64 !== 'string' ||
+      !/^[a-zA-Z0-9+/]*={0,2}$/.test(f.base64)
+    )
       throw Error('Unsafe or duplicate manifest entry');
     unique.add(f.path);
     const bytes = Buffer.from(f.base64, 'base64');
     total += bytes.length;
-    if (bytes.length > MAX_SINGLE || total > MAX_TOTAL ||
-        !Buffer.from(bytes.toString('utf8'), 'utf8').equals(bytes) ||
-        sha256(bytes) !== f.sha256)
+    if (
+      bytes.length > MAX_SINGLE ||
+      total > MAX_TOTAL ||
+      !Buffer.from(bytes.toString('utf8'), 'utf8').equals(bytes) ||
+      sha256(bytes) !== f.sha256
+    )
       throw Error('Manifest byte hash / UTF-8 mismatch: ' + f.path);
   }
   const entry = info.identity.folder + '/' + info.bank + '/index.ts';
@@ -111,8 +123,7 @@ async function analyze(info) {
   const lessonRoot = path.join(root, info.identity.folder);
   const bankFolder = path.join(lessonRoot, info.bank);
   // A bank is a child of an already generated, independently owned Lesson.
-  if (!fs.existsSync(path.join(lessonRoot, 'index.ts')) ||
-      !fs.existsSync(path.join(lessonRoot, 'constants.ts')))
+  if (!fs.existsSync(path.join(lessonRoot, 'index.ts')) || !fs.existsSync(path.join(lessonRoot, 'constants.ts')))
     throw Error('Bank materialization requires the existing typed Lesson entrypoint and language constants');
   if (fs.existsSync(bankFolder) && fs.lstatSync(bankFolder).isSymbolicLink())
     throw Error('Refusing bank output symlink');
@@ -147,8 +158,9 @@ async function analyze(info) {
   const filename = process.env.BANK_REPORT;
   fs.mkdirSync(path.dirname(filename), { recursive: true });
   fs.writeFileSync(filename, JSON.stringify(output) + '\n', { flag: 'wx' });
-  report('Verified ' + files.length + ' generated ' + info.bank +
-         ' bank sources for HEAD ' + info.head + '; YAML unchanged');
+  report(
+    'Verified ' + files.length + ' generated ' + info.bank + ' bank sources for HEAD ' + info.head + '; YAML unchanged',
+  );
 }
 async function publish(info) {
   checkedRoot(info);
@@ -163,8 +175,7 @@ async function publish(info) {
   if (index.truncated) throw Error('Cannot safely check truncated repository tree');
   const tracked = new Set();
   for (const item of index.tree) {
-    if (item.path.startsWith(info.identity.pkg + '/') &&
-        (item.type === 'commit' || item.mode === '120000'))
+    if (item.path.startsWith(info.identity.pkg + '/') && (item.type === 'commit' || item.mode === '120000'))
       throw Error('Symlink/submodule in textbook package: ' + item.path);
     tracked.add(item.path);
   }
@@ -175,20 +186,39 @@ async function publish(info) {
   const tree = await github('git/trees', 'POST', {
     base_tree: original.tree.sha,
     tree: files.map(f => ({
-      path: f.path, mode: '100644', type: 'blob',
+      path: f.path,
+      mode: '100644',
+      type: 'blob',
       content: Buffer.from(f.base64, 'base64').toString('utf8'),
     })),
   });
   const commit = await github('git/commits', 'POST', {
-    message: 'Materialize ' + info.bank + ' bank for PR #' + info.number +
-             '\n\nOriginal HEAD: ' + info.head + '\nSource YAML blob: ' + info.sourceBlob,
-    tree: tree.sha, parents: [info.head],
+    message:
+      'Materialize ' +
+      info.bank +
+      ' bank for PR #' +
+      info.number +
+      '\n\nOriginal HEAD: ' +
+      info.head +
+      '\nSource YAML blob: ' +
+      info.sourceBlob,
+    tree: tree.sha,
+    parents: [info.head],
   });
   // Re-check the read-only gate after constructing the detached commit.
   await inspect(info.number, info.bank, expected);
   await github('git/refs/heads/' + info.branch, 'PATCH', { sha: commit.sha, force: false });
-  report('Committed ' + files.length + ' ' + info.bank + ' bank file(s) to PR #' +
-         info.number + ': ' + commit.sha + '. No YAML, Lesson or other bank changes.');
+  report(
+    'Committed ' +
+      files.length +
+      ' ' +
+      info.bank +
+      ' bank file(s) to PR #' +
+      info.number +
+      ': ' +
+      commit.sha +
+      '. No YAML, Lesson or other bank changes.',
+  );
 }
 async function main() {
   const operation = process.argv[2];
@@ -199,5 +229,8 @@ async function main() {
   else await publish(info);
 }
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
-  main().catch(e => { report('Bank source materialization denied: ' + e.message); process.exitCode = 1; });
+  main().catch(e => {
+    report('Bank source materialization denied: ' + e.message);
+    process.exitCode = 1;
+  });
 }

@@ -38,8 +38,7 @@ export function parseTrigger(event, eventName, actor) {
   return { actor, number, bank };
 }
 export function parseIdentity(body, bank) {
-  if (typeof body !== 'string' || !supportedBanks.includes(bank) ||
-      body.split(MARKERS[bank]).length !== 2)
+  if (typeof body !== 'string' || !supportedBanks.includes(bank) || body.split(MARKERS[bank]).length !== 2)
     throw Error('Bank PR requires exactly one matching Flow marker');
   function value(label) {
     const expression = new RegExp('^- ' + label + ':\\s*(.+?)\\s*$', 'gm');
@@ -68,41 +67,62 @@ export function requireReviewedStages(body, bank) {
   for (let i = 0; i < STAGES[bank].length; i++) {
     const matches = entries.filter(m => Number(m[2]) === i + 1);
     const label = STAGES[bank][i];
-    if (matches.length !== 1 || matches[0][1].toLowerCase() !== 'x' ||
-        !(matches[0][3] === label ||
-          [' —', ' –', ' -', ':'].some(separator => matches[0][3].startsWith(label + separator))))
+    if (
+      matches.length !== 1 ||
+      matches[0][1].toLowerCase() !== 'x' ||
+      !(
+        matches[0][3] === label ||
+        [' —', ' –', ' -', ':'].some(separator => matches[0][3].startsWith(label + separator))
+      )
+    )
       throw Error('Stage ' + (i + 1) + ' ' + label + ' must be completed exactly once');
   }
   const fifth = entries.filter(m => Number(m[2]) === 5);
-  if (fifth.length !== 1 || !fifth[0][3].startsWith('Resource Production') ||
-      fifth[0][1].toLowerCase() === 'x')
+  if (fifth.length !== 1 || !fifth[0][3].startsWith('Resource Production') || fifth[0][1].toLowerCase() === 'x')
     throw Error('Expected one pending Stage 5 Resource Production item');
 }
 export function safeBranch(branch, base) {
-  return typeof branch === 'string' &&
-    /^[A-Za-z0-9][A-Za-z0-9._/-]*$/.test(branch) && branch !== base &&
-    !branch.includes('..') && !branch.includes('//') &&
-    !branch.includes('/.') && !branch.endsWith('/') &&
-    !branch.endsWith('.lock') && !branch.includes('@{');
+  return (
+    typeof branch === 'string' &&
+    /^[A-Za-z0-9][A-Za-z0-9._/-]*$/.test(branch) &&
+    branch !== base &&
+    !branch.includes('..') &&
+    !branch.includes('//') &&
+    !branch.includes('/.') &&
+    !branch.endsWith('/') &&
+    !branch.endsWith('.lock') &&
+    !branch.includes('@{')
+  );
 }
 export function allowedPath(filename, identity) {
-  if (typeof filename !== 'string' || filename.length > 450 ||
-      filename.includes('..') || filename.includes('//') ||
-      filename.includes('\\') || filename.includes('\0') || filename.startsWith('/'))
+  if (
+    typeof filename !== 'string' ||
+    filename.length > 450 ||
+    filename.includes('..') ||
+    filename.includes('//') ||
+    filename.includes('\\') ||
+    filename.includes('\0') ||
+    filename.startsWith('/')
+  )
     return false;
   const base = identity.folder + '/' + identity.bank + '/';
   if (!filename.startsWith(base)) return false;
   const relative = filename.slice(base.length);
   if (identity.bank === 'flashcards') return relative === 'index.ts';
   // Only the current Question renderer's recursively nested TS and local text.
-  return /^(?:[a-zA-Z][a-zA-Z0-9]*\/){0,16}(?:index\.ts|markdown\.md|[a-z]{2}(?:-[a-zA-Z0-9]+)?\.md|code\.[a-z0-9]+|specification\.md)$/.test(relative);
+  return /^(?:[a-zA-Z][a-zA-Z0-9]*\/){0,16}(?:index\.ts|markdown\.md|[a-z]{2}(?:-[a-zA-Z0-9]+)?\.md|code\.[a-z0-9]+|specification\.md)$/.test(
+    relative,
+  );
 }
 export function sha256(bytes) {
   return createHash('sha256').update(bytes).digest('hex');
 }
 export function gitBlob(bytes) {
   const buf = Buffer.isBuffer(bytes) ? bytes : Buffer.from(bytes);
-  return createHash('sha1').update('blob ' + buf.length + '\0').update(buf).digest('hex');
+  return createHash('sha1')
+    .update('blob ' + buf.length + '\0')
+    .update(buf)
+    .digest('hex');
 }
 export async function github(route, method = 'GET', data) {
   const token = process.env.GH_TOKEN || process.env.GITHUB_TOKEN;
@@ -127,33 +147,43 @@ export async function requireActor(actor) {
     throw Error('Write/maintain/admin permission required');
 }
 function parentIdentity(body) {
-  if (typeof body !== 'string' || !body.includes('<!-- svitlo-create-lesson-flow:v1 -->'))
-    return null;
-  const m = /^- Lesson UUID \/ textbook \/ slug:\s*\x60?([a-f0-9-]{36})\x60?\s*\/\s*\x60?(content\/(?:languages\/)?[a-z][a-z0-9-]*)/m.exec(body);
+  if (typeof body !== 'string' || !body.includes('<!-- svitlo-create-lesson-flow:v1 -->')) return null;
+  const m =
+    /^- Lesson UUID \/ textbook \/ slug:\s*\x60?([a-f0-9-]{36})\x60?\s*\/\s*\x60?(content\/(?:languages\/)?[a-z][a-z0-9-]*)/m.exec(
+      body,
+    );
   return m ? { id: m[1], pkg: m[2] } : null;
 }
 export async function inspect(number, bank, previous = undefined) {
   const repo = process.env.GITHUB_REPOSITORY;
   const pr = await github('pulls/' + number);
-  if (!pr || pr.state !== 'open' || !pr.draft ||
-      pr.head?.repo?.full_name !== repo || !SHA.test(pr.head?.sha || '') ||
-      !safeBranch(pr.head.ref, pr.base?.ref))
+  if (
+    !pr ||
+    pr.state !== 'open' ||
+    !pr.draft ||
+    pr.head?.repo?.full_name !== repo ||
+    !SHA.test(pr.head?.sha || '') ||
+    !safeBranch(pr.head.ref, pr.base?.ref)
+  )
     throw Error('Expected open same-repo Draft bank PR on a safe branch');
   const identity = parseIdentity(pr.body, bank);
   requireReviewedStages(pr.body, bank);
   if (number === identity.parent) throw Error('Bank PR cannot parent itself');
   const parent = await github('pulls/' + identity.parent);
   const parsed = parentIdentity(parent?.body);
-  if (!parent || parent.state === 'closed' && !parent.merged ||
-      !parsed || parsed.id !== identity.id || parsed.pkg !== identity.pkg)
+  if (
+    !parent ||
+    (parent.state === 'closed' && !parent.merged) ||
+    !parsed ||
+    parsed.id !== identity.id ||
+    parsed.pkg !== identity.pkg
+  )
     throw Error('Verified parent Lesson PR identity missing or mismatched');
   if (parent.state === 'open' && pr.base?.ref !== parent.head?.ref)
     throw Error('Child bank PR must target the actual parent Lesson branch');
   if (parent.merged) {
-    if (!SHA.test(parent.merge_commit_sha || ''))
-      throw Error('Merged Lesson parent has no verifiable merge commit');
-    if (pr.base?.ref !== parent.base?.ref &&
-        pr.base?.ref !== (process.env.BANK_DEFAULT_BRANCH || 'main'))
+    if (!SHA.test(parent.merge_commit_sha || '')) throw Error('Merged Lesson parent has no verifiable merge commit');
+    if (pr.base?.ref !== parent.base?.ref && pr.base?.ref !== (process.env.BANK_DEFAULT_BRANCH || 'main'))
       throw Error('Merged Lesson child must target former integration or current default branch');
     // A nested Course->Lesson branch may already have been merged to main.
     // Verify the actual parent merge is an ancestor of the bank target base.
@@ -161,23 +191,33 @@ export async function inspect(number, bank, previous = undefined) {
     if (!['ahead', 'identical'].includes(comparison?.status))
       throw Error('Bank base does not include the merged parent Lesson source');
   }
-  if (bank === 'flashcards' &&
-      !/Questions(?: \(own bank\))?:[ \t]*(?:Completed(?:[ \t]|@)|Not Applicable(?:[ \t]|—|:))/i.test(parent.body))
+  if (
+    bank === 'flashcards' &&
+    !/Questions(?: \(own bank\))?:[ \t]*(?:Completed(?:[ \t]|@)|Not Applicable(?:[ \t]|—|:))/i.test(parent.body)
+  )
     throw Error('Parent Lesson must record completed Questions or approved Questions N/A');
-  const source = await github('contents/' + identity.yaml.split('/').map(encodeURIComponent).join('/') +
-                              '?ref=' + pr.head.sha);
+  const source = await github(
+    'contents/' + identity.yaml.split('/').map(encodeURIComponent).join('/') + '?ref=' + pr.head.sha,
+  );
   if (source?.type !== 'file' || !SHA.test(source.sha || ''))
     throw Error('Canonical bank YAML not found as regular Git blob');
-  const result = { number, bank, repo, branch: pr.head.ref, base: pr.base.ref,
-                   head: pr.head.sha, sourceBlob: source.sha, identity };
+  const result = {
+    number,
+    bank,
+    repo,
+    branch: pr.head.ref,
+    base: pr.base.ref,
+    head: pr.head.sha,
+    sourceBlob: source.sha,
+    identity,
+  };
   if (previous && JSON.stringify(previous) !== JSON.stringify(result))
     throw Error('Bank PR head, source, identity or branch changed; re-run command');
   return result;
 }
 export function report(message) {
   console.log(message);
-  if (process.env.GITHUB_STEP_SUMMARY)
-    fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, message + '\n');
+  if (process.env.GITHUB_STEP_SUMMARY) fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, message + '\n');
 }
 async function resolve() {
   const event = JSON.parse(fs.readFileSync(process.env.GITHUB_EVENT_PATH, 'utf8'));
@@ -185,13 +225,24 @@ async function resolve() {
   await requireActor(command.actor);
   const info = await inspect(command.number, command.bank);
   const meta = { ...info, actor: command.actor };
-  fs.appendFileSync(process.env.GITHUB_OUTPUT,
-                    'meta=' + Buffer.from(JSON.stringify(meta)).toString('base64') +
-                    '\npr=' + info.number + '\nhead=' + info.head + '\n');
-  report('Authorized ' + info.bank + ' PR #' + info.number +
-         ': source blob ' + info.sourceBlob + ', head ' + info.head);
+  fs.appendFileSync(
+    process.env.GITHUB_OUTPUT,
+    'meta=' +
+      Buffer.from(JSON.stringify(meta)).toString('base64') +
+      '\npr=' +
+      info.number +
+      '\nhead=' +
+      info.head +
+      '\n',
+  );
+  report(
+    'Authorized ' + info.bank + ' PR #' + info.number + ': source blob ' + info.sourceBlob + ', head ' + info.head,
+  );
 }
 if (process.argv[1] && process.argv[1].endsWith('/bank-gate.mjs')) {
   if (process.argv[2] !== 'resolve' || process.argv.length !== 3) throw Error('Usage: bank-gate.mjs resolve');
-  resolve().catch(e => { report('Bank CI authorization denied: ' + e.message); process.exitCode = 1; });
+  resolve().catch(e => {
+    report('Bank CI authorization denied: ' + e.message);
+    process.exitCode = 1;
+  });
 }
