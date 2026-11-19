@@ -85,11 +85,15 @@ jobs:
         if: steps.scope.outputs.run == 'true' && (github.event_name == 'workflow_dispatch' || !github.event.pull_request.draft)
         run: node scripts/ci/quietRun/quiet-run.mjs -- node --test scripts/ci/quietRun/quiet-run.spec.mjs
       - name: Scoped quality checks
+        env:
+          SVITLO_WEB_TEST_SELECTION: web-fixture-alpha
         if: github.event_name == 'pull_request' && !github.event.pull_request.draft && steps.scope.outputs.run == 'true'
         env:
           BASE_SHA: ${{ github.event.pull_request.base.sha }}
           HEAD_SHA: ${{ github.event.pull_request.head.sha }}
         run: node scripts/runFastGate/run-fast-gate.mjs "$BASE_SHA" "$HEAD_SHA"
       - name: Manually requested FastGate
+        env:
+          SVITLO_WEB_TEST_SELECTION: web-fixture-alpha
         if: github.event_name == 'workflow_dispatch' && steps.scope.outputs.run == 'true'
         run: node scripts/runFastGate/run-fast-gate.mjs --all

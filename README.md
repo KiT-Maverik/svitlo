@@ -29,7 +29,7 @@ npm run code:check:types
 npm test
 ```
 
-Start the Web host with `npm run app:start:dev --workspace @svitlo/web`, or the Platform with `npm run app:start:dev --workspace @svitlo/platform`. Other checks and build commands are listed in the root `package.json`.
+Start the Web host with an explicitly installed content package, for example `SVITLO_TEXTBOOK=math npm run app:start:dev --workspace @svitlo/web`, or the Platform with `npm run app:start:dev --workspace @svitlo/platform`. Other checks and build commands are listed in the root `package.json`.
 
 ## Documentation
 

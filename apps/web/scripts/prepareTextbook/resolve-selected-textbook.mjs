@@ -4,7 +4,7 @@
  */
 import { existsSync, readFileSync, realpathSync, statSync } from 'node:fs';
 import { createRequire } from 'node:module';
-import { dirname, isAbsolute, join, resolve, sep } from 'node:path';
+import { dirname, join, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 export const webRoot = fileURLToPath(new URL('../..', import.meta.url));

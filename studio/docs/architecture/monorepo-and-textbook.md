@@ -5,8 +5,7 @@
 **2026-11-05 implementation update:** `apps/web` is the universal Next.js host for the
 build-selected textbook. `content/playground` is now a React DOM textbook
 package with authored `data/`, Scenes, generated static registry and explicit
-`@svitlo/playground` exports. `apps/web/textbooks.json` selects a declared
-workspace dependency before compilation; its build publishes textbook JSON,
+`@svitlo/playground` exports. an explicit `SVITLO_TEXTBOOK` package selection resolves public npm exports before compilation; its build publishes textbook JSON,
 UI Kit locales and assets into the host. Other textbooks and `apps/platform`
 retain their existing application architecture. The Next.js integration package
 resides at `shared/adapters/nextjs` but keeps its stable npm identity
@@ -134,7 +133,7 @@ npm run test:e2e:db --workspace @svitlo/indexdb                # after Playwrigh
 npm run test:e2e --workspace @svitlo/platform          # after building Platform
 ```
 
-Application entrypoints: `npm run app:start:dev --workspace @svitlo/web` (Web host with Playground content) or `npm run app:start:dev --workspace @svitlo/platform` (Platform). Content textbooks are buildable packages, not individual Next.js dev servers. The `Questions quality` workflow runs root checks and app E2E; the `Native IndexedDB browser controllers` workflow repeats real Chromium checks; `UI Kit Storybook` builds independently.
+Application entrypoints: `SVITLO_TEXTBOOK=math npm run app:start:dev --workspace @svitlo/web` (Web host with explicitly selected content) or `npm run app:start:dev --workspace @svitlo/platform` (Platform). Content textbooks are buildable packages, not individual Next.js dev servers. The `Questions quality` workflow runs root checks and app E2E; the `Native IndexedDB browser controllers` workflow repeats real Chromium checks; `UI Kit Storybook` builds independently.
 
 **Evidence limitations:** these checks inspect declared packages, compiled artifacts and running apps **inside the monorepo**. Independent `npm pack`/registry installation, clean-room source extraction, production deployment and real backend/offline services are separate, not-yet-proven tasks.
 

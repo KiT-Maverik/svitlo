@@ -6,11 +6,10 @@
  */
 import {
   existsSync, readFileSync, rmSync, mkdirSync, writeFileSync, readdirSync,
-  copyFileSync, lstatSync, realpathSync,
+  copyFileSync, lstatSync,
 } from 'node:fs';
 import { resolve, join, relative, isAbsolute, sep, dirname, parse } from 'node:path';
 import { spawnSync } from 'node:child_process';
-import { fileURLToPath } from 'node:url';
 import { mkdtempSync } from 'node:fs';
 import { resolveSelectedTextbook, assertSelectedArtifacts, webRoot } from './resolve-selected-textbook.mjs';
 
@@ -97,6 +96,14 @@ function buildSelected() {
   }
 }
 
+// The host consumes these shared public exports regardless of which content
+// package was selected. Build them once before UI Kit publication and Next.js.
+const reuse = join(repoRoot, 'scripts/ci/packageBuildReuse/package-build-reuse.mjs');
+if (existsSync(reuse)) {
+  for (const dependency of ['@svitlo/engine', '@svitlo/indexdb', '@svitlo/ui-kit', '@svitlo/adapter-nextjs']) {
+    run(process.execPath, [reuse, dependency]);
+  }
+}
 buildSelected();
 assertSelectedArtifacts(selected);
 mkdirSync(stagingParent, { recursive: true });
