@@ -4,6 +4,7 @@ import os from 'node:os';
 import path from 'node:path';
 import test from 'node:test';
 import yaml from 'yaml';
+import { scanSource } from '../../../../scripts/ci/checkBlockerTodos/check-blocker-todos.mjs';
 import ts from 'typescript';
 
 import { renderFlashcardBank, runOne } from './flashcardBuilder.mjs';
@@ -208,6 +209,8 @@ test('media Config drafts retain independently owned block UUIDs without inventi
     assert.match(source, new RegExp('define' + kind + '\\('));
   }
   assert.equal((source.match(/TODO\(asset\)/g) ?? []).length, 4);
+  assert.equal((source.match(/TODO \(BLOCKER\):/g) ?? []).length, 4);
+  assert.equal(scanSource('flashcards/index.ts', source).length, 4);
   assert.match(source, /locale\.fileName and posterFileName/);
   assert.doesNotMatch(source, /"fileName":|"posterFileName":/);
   assert.deepEqual(
