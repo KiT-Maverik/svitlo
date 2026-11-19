@@ -231,7 +231,15 @@ function skillIndex(bookRoot) {
         visit(absolute);
         continue;
       }
-      if (!entry.isFile() || !entry.name.endsWith('.data.ts')) continue;
+      // Skills in current textbook packages are authored as either *.ts or legacy *.data.ts.
+      // Skip declarations and tests; the defineSkill AST check below establishes real entries.
+      if (
+        !entry.isFile() ||
+        !entry.name.endsWith('.ts') ||
+        entry.name.endsWith('.d.ts') ||
+        entry.name.endsWith('.spec.ts') ||
+        entry.name.endsWith('.test.ts')
+      ) continue;
       const ast = ts.createSourceFile(absolute, fs.readFileSync(absolute, 'utf8'), ts.ScriptTarget.Latest, true);
       if (ast.parseDiagnostics.length) throw new Error('Invalid Skill source: ' + absolute);
       for (const statement of ast.statements) {

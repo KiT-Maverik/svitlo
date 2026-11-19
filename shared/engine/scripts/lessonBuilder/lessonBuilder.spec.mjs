@@ -427,6 +427,35 @@ test('Skill IDs resolve to imported source symbols rather than hard-coded UUIDs'
     assert.doesNotMatch(code, new RegExp(skillId));
   }));
 
+test('resolves canonical non-.data.ts Skill definitions without copying their UUID into Lesson source', () =>
+  fixture(f => {
+    const skillId = id(98);
+    const folder = path.join(f.workspace, 'data/skills/solarSystem/systemArchitecture');
+    fs.mkdirSync(folder, { recursive: true });
+    fs.writeFileSync(
+      path.join(folder, 'solarSystemComponents.ts'),
+      "import { defineSkill } from '@svitlo/engine/build';\n" +
+        "export const solarSystemComponents = defineSkill({ id: '" +
+        skillId +
+        "', slug: 'solarSystemComponents' });\n",
+    );
+    fs.writeFileSync(
+      path.join(folder, 'index.ts'),
+      "export { solarSystemComponents } from './solarSystemComponents';\n",
+    );
+    f.config.skills = [skillId];
+    f.save();
+    runOne(f.lesson, 'generate', f.root);
+    const code = fs.readFileSync(f.generated('index.ts'), 'utf8');
+    assert.match(
+      code,
+      /import \{ solarSystemComponents \} from "\.\.\/\.\.\/\.\.\/skills\/solarSystem\/systemArchitecture\/solarSystemComponents"/,
+    );
+    assert.match(code, /skills: \[solarSystemComponents\.id\]/);
+    assert.doesNotMatch(code, new RegExp(skillId));
+    assert.equal(runOne(f.lesson, 'check', f.root).changed, 0);
+  }));
+
 test('unknown Skill UUID produces a deterministic unresolved dependency instead of an invented import', () =>
   fixture(f => {
     f.config.skills = [id(88)];

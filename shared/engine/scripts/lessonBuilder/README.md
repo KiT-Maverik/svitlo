@@ -121,7 +121,7 @@ A Section not required by the Methodologist is never created by the generator. T
   not a claim that the planned translations already exist.
 
 - Real Skill imports instead of hardcoded UUID string expressions, resolved
-  strictly against the textbook's `data/skills/**/*.data.ts` exported `defineSkill`
+  strictly against the textbook's `data/skills/**/*.ts` exported `defineSkill` (canonical `*.ts` and legacy `*.data.ts` are both supported; test/declaration files are ignored)
   definitions; missing/ambiguous references are explicit diagnostics.
 - **Stage 3 file-backed source (creation-only):**
   - Authored Markdown with invariant `locale.value` string is materialized
