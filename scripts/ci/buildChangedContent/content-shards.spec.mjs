@@ -53,6 +53,7 @@ test('missing, duplicated, unexpected and invalid packages fail closed', () => {
     /Unexpected shard content package/,
   );
   assert.throws(() => planContentShards([pkg('content/math'), pkg('content/math')]), /Duplicate selected/);
+  assert.throws(() => planContentShards([pkg('content/math'), pkg('content/math', 'agent')]), /Duplicate selected/);
   assert.throws(() => planContentShards([pkg('../other')]), /Invalid content matrix package/);
   assert.throws(() => planContentShards([pkg('content/math', 'unknown')]), /Invalid content matrix package/);
 });
@@ -64,19 +65,27 @@ test('a failed package is identified but does not prevent other packages in that
     calls.push({ path, kind: args.at(-1), label: options.env.SVITLO_CI_LABEL });
     return { status: path === 'content/history' ? 1 : 0 };
   };
+  const errors = [];
+  const reporter = { log() {}, error(message) { errors.push(message); } };
   const failed = runContentShard(
     [pkg('content/art'), pkg('content/history'), pkg('content/math')],
     launch,
+    reporter,
   );
+  assert.ok(errors.some(message => message.includes('::error title=content/history::')));
   assert.deepEqual(failed, ['content/history']);
   assert.deepEqual(calls.map(item => item.path), ['content/art', 'content/history', 'content/math']);
   assert.deepEqual(calls.map(item => item.kind), ['content', 'content', 'content']);
   assert.ok(calls.every(item => item.label.startsWith('Build and verify content/')));
 });
 
-test('missing subprocess status is a failure, never a silent success', () => {
-  assert.deepEqual(runContentShard([pkg('content/missing')], () => ({ error: new Error('spawn failed') })), [
+test('a missing or throwing subprocess is a failure, never a silent success', () => {
+  const reporter = { log() {}, error() {} };
+  assert.deepEqual(runContentShard([pkg('content/missing')], () => ({ error: new Error('spawn failed') }), reporter), [
     'content/missing',
   ]);
-  assert.throws(() => runContentShard([], () => ({ status: 0 })), /empty content shard/);
+  assert.deepEqual(runContentShard([pkg('content/missing')], () => { throw new Error('launch failed'); }, reporter), [
+    'content/missing',
+  ]);
+  assert.throws(() => runContentShard([], () => ({ status: 0 }), reporter), /empty content shard/);
 });

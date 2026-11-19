@@ -46,20 +46,24 @@ function validatePackage(item) {
 export function validateShardCoverage(selected, shards) {
   if (!Array.isArray(selected) || !Array.isArray(shards)) throw new Error('Invalid shard coverage inputs');
   const expected = new Set();
+  const expectedPaths = new Set();
   for (const item of selected) {
     const { path, kind } = validatePackage(item);
     const key = path + '#' + kind;
-    if (expected.has(key)) throw new Error('Duplicate selected content package: ' + path);
+    if (expectedPaths.has(path)) throw new Error('Duplicate selected content package: ' + path);
+    expectedPaths.add(path);
     expected.add(key);
   }
   const actual = new Set();
+  const actualPaths = new Set();
   for (const shard of shards) {
     if (!Array.isArray(shard.packages) || !shard.packages.length) throw new Error('Empty or invalid shard');
     for (const item of shard.packages) {
       const { path, kind } = validatePackage(item);
       const key = path + '#' + kind;
-      if (actual.has(key)) throw new Error('Duplicate shard content package: ' + path);
+      if (actualPaths.has(path)) throw new Error('Duplicate shard content package: ' + path);
       if (!expected.has(key)) throw new Error('Unexpected shard content package: ' + path);
+      actualPaths.add(path);
       actual.add(key);
     }
   }
@@ -94,13 +98,15 @@ export function planContentShards(selected, maxShards = 5) {
 }
 
 /** Execute every selected package even if another one fails; the caller exits nonzero. */
-export function runContentShard(packages, launch = spawnSync) {
+export function runContentShard(packages, launch = spawnSync, reporter = console) {
   validateShardCoverage(packages, packages.map(item => ({ packages: [item] })));
   if (!packages.length) throw new Error('Refusing an empty content shard');
   const failed = [];
   for (const item of packages) {
-    console.log('::group::Benchmark package ' + item.path);
-    const result = launch(
+    reporter.log('::group::Benchmark package ' + item.path);
+    let result;
+    try {
+      result = launch(
       process.execPath,
       [
         'scripts/ci/quietRun/quiet-run.mjs',
@@ -116,15 +122,18 @@ export function runContentShard(packages, launch = spawnSync) {
         stdio: 'inherit',
         env: { ...process.env, SVITLO_CI_LABEL: 'Build and verify ' + item.path },
       },
-    );
-    console.log('::endgroup::');
+      );
+    } catch (error) {
+      result = { error };
+    }
+    reporter.log('::endgroup::');
     if (result?.error || result?.status !== 0) {
       failed.push(item.path);
-      console.error('::error title=' + item.path + '::Content verification failed; expand this package group for bounded diagnostics');
+      reporter.error('::error title=' + item.path + '::Content verification failed; expand this package group for bounded diagnostics');
     }
   }
-  if (failed.length) console.error('Failed content packages: ' + failed.join(', '));
-  else console.log('Verified ' + packages.length + ' content packages in this benchmark shard');
+  if (failed.length) reporter.error('Failed content packages: ' + failed.join(', '));
+  else reporter.log('Verified ' + packages.length + ' content packages in this benchmark shard');
   return failed;
 }
 
