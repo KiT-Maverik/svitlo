@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { planContentBuilds, shouldBuildAllContent } from './plan-content-builds.mjs';
+import { planContentBuilds, shouldBuildAllContent, shouldDeferContentBuilds } from './plan-content-builds.mjs';
 
 const workspaces = [
   { path: 'content/math', name: '@svitlo/math' },
@@ -87,4 +87,16 @@ test('a missing agent ownership mapping is an error rather than a skipped build'
       }),
     /No mapping for agent branch/,
   );
+});
+
+
+test('Draft PRs defer all content matrix builds; Ready and manual runs retain coverage', () => {
+  assert.equal(shouldDeferContentBuilds('pull_request', true), true);
+  assert.equal(shouldDeferContentBuilds('pull_request', false), false);
+  assert.equal(shouldDeferContentBuilds('workflow_dispatch', true), false);
+  assert.equal(shouldDeferContentBuilds('merge_group', true), false);
+  assert.equal(shouldDeferContentBuilds('push', true), false);
+  assert.equal(shouldBuildAllContent('pull_request', 'main', true), false);
+  assert.equal(shouldBuildAllContent('pull_request', 'main', false), true);
+  assert.equal(shouldBuildAllContent('workflow_dispatch', 'develop', true), true);
 });

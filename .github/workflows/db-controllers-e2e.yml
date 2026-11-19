@@ -2,6 +2,7 @@ name: Native IndexedDB browser controllers
 
 on:
   pull_request:
+    types: [opened, reopened, synchronize, ready_for_review]
     paths:
       - 'shared/indexdb/**'
       - '.github/workflows/db-controllers-e2e.yml'
@@ -16,6 +17,8 @@ concurrency:
 
 jobs:
   browser-controllers:
+    # Full host/browser/generator suites only at review boundary or explicitly on demand.
+    if: github.event_name == 'workflow_dispatch' || !github.event.pull_request.draft
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
