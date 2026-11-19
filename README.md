@@ -33,6 +33,8 @@ Start the Web host with `npm run app:start:dev --workspace @svitlo/web`, or the 
 
 ## Documentation
 
+- [CI, branch policy and quiet agent checks](studio/rules/ci-workflow.md)
+
 - [Architecture and package boundaries](studio/docs/architecture/monorepo-and-textbook.md)
 - [Architecture index](studio/docs/architecture/README.md)
 - [Playground](content/playground/README.md)

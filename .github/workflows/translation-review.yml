@@ -53,7 +53,7 @@ on:
         required: false
         type: string
   pull_request:
-    branches: [main, integration-branch, new-lesson, integration/italian-localization]
+    branches: [main, develop, integration-branch, new-lesson, integration/italian-localization]
     types: [ready_for_review]
 
 permissions:
@@ -232,7 +232,7 @@ jobs:
         with:
           node-version: '24'
       - name: Install dependencies for the requested generator
-        run: npm ci --ignore-scripts --no-audit --no-fund
+        run: npm ci --silent --ignore-scripts --no-audit --no-fund
       - name: Detect complete EducationStandard authoring matrix
         id: catalog_check
         if: needs.resolve.outputs.kind == 'education-standards'
@@ -252,10 +252,7 @@ jobs:
           NODE
       - name: Build Engine for typed Lesson/Course or complete EducationStandard generation
         if: needs.resolve.outputs.kind == 'lessons' || needs.resolve.outputs.kind == 'courses' || (needs.resolve.outputs.kind == 'education-standards' && steps.catalog_check.outputs.complete == 'true')
-        run: npm run package:build --workspace @svitlo/engine
-      - name: Build complete EducationStandard authoring catalog
-        if: needs.resolve.outputs.kind == 'education-standards' && steps.catalog_check.outputs.complete == 'true'
-        run: npm run package:build --workspace @svitlo/education-standards
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npm run package:build --workspace @svitlo/engine
       - name: Generate only the selected reference scope
         env:
           REQUEST_KIND: ${{ needs.resolve.outputs.kind }}

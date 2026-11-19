@@ -2,7 +2,7 @@
 /** Run only relevant, supported fast checks; full Quality remains manual. */
 import fs from 'node:fs';
 import path from 'node:path';
-import { execFileSync, spawnSync } from 'node:child_process';
+import { execFileSync, spawn, spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
@@ -13,12 +13,53 @@ function assert(ok, message) {
 function json(file) {
   return JSON.parse(fs.readFileSync(path.join(repoRoot, file), 'utf8'));
 }
+const quietRunner = path.join(repoRoot, 'scripts/ci/quietRun/quiet-run.mjs');
 function exec(command, args, cwd = repoRoot) {
-  const result = spawnSync(command, args, { cwd, stdio: 'inherit', shell: false });
+  const result = spawnSync(process.execPath, [quietRunner, '--', command, ...args], {
+    cwd,
+    stdio: 'inherit',
+    shell: false,
+  });
   assert(
     !result.error && result.status === 0,
     'FastGate command failed: ' + command + ' ' + args.join(' ') + (result.error ? ': ' + result.error.message : ''),
   );
+}
+function execAsync(command, args) {
+  return new Promise((resolve, reject) => {
+    const child = spawn(process.execPath, [quietRunner, '--', command, ...args], {
+      cwd: repoRoot,
+      stdio: 'inherit',
+      shell: false,
+    });
+    child.once('error', reject);
+    child.once('close', code =>
+      code === 0
+        ? resolve()
+        : reject(new Error('FastGate command failed: ' + command + ' ' + args.join(' ') + ' (exit ' + code + ')')),
+    );
+  });
+}
+async function runParallel(targets, action) {
+  const configured = Number(process.env.SVITLO_FASTGATE_PARALLELISM || 2);
+  assert(
+    Number.isInteger(configured) && configured >= 1 && configured <= 8,
+    'SVITLO_FASTGATE_PARALLELISM must be an integer from 1 to 8',
+  );
+  let index = 0;
+  const failures = [];
+  async function worker() {
+    while (index < targets.length) {
+      const name = targets[index++];
+      try {
+        await action(name);
+      } catch (error) {
+        failures.push(name + ': ' + error.message);
+      }
+    }
+  }
+  await Promise.all(Array.from({ length: Math.min(configured, targets.length) }, () => worker()));
+  if (failures.length) throw new Error('FastGate failed workspaces:\\n' + failures.join('\\n'));
 }
 function expandWorkspaces() {
   const result = [];
@@ -111,7 +152,7 @@ export function shouldBuildDependency(owner, dependency) {
   );
 }
 
-function runGate(changed) {
+async function runGate(changed) {
   const workspaces = expandWorkspaces();
   const all = new Map(workspaces.map(w => [w.name, w]));
   const plan = chooseChecks(changed, workspaces);
@@ -216,6 +257,7 @@ function runGate(changed) {
     exec('node', [
       '--test',
       'scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.spec.mjs',
+      'scripts/generateTranslationReviewArtifacts/education-standards-reference.spec.mjs',
       'shared/engine/scripts/generateLessonReviewArtifacts/generate-lesson-review-artifacts.spec.mjs',
     ]);
   }
@@ -269,29 +311,33 @@ function runGate(changed) {
   const targets = [...plan.affected].sort((a, b) => rank(a) - rank(b) || a.localeCompare(b));
   // Content package compilation, Skills validation and portability belong to
   // the dedicated Content Build workflow. FastGate validates workspace types.
+  // Prebuild each shared export once in dependency order before parallel checks.
   for (const name of targets) {
     const pkg = all.get(name);
     if (!pkg?.scripts?.['code:check:types']) continue;
     ensureSharedDependencies(name);
-    // Some shared packages typecheck their own public dist exports (e.g. IndexDB browser tests).
     if (pkg.path.startsWith('shared/') && pkg.scripts?.['package:build'] && !built.has(name)) {
       exec('npm', ['run', 'package:build', '--workspace', name]);
       built.add(name);
     }
-    exec('npm', ['run', 'code:check:types', '--workspace', name]);
-    // Validate shared package behavior before unrelated textbooks can fail on
-    // incomplete authored data. Dependencies are built in the same pass.
-    if (pkg.path.startsWith('shared/') && pkg.scripts?.test) {
-      exec('npm', ['run', 'test', '--workspace', name]);
-    }
-    // A Lesson/App Router extraction needs a real Next.js production build, not
-    // only TypeScript. Run it before unrelated textbook data checks can block CI.
-    if (name === '@svitlo/web' && requiresWebBuild(changed)) {
-      exec('npm', ['run', 'app:build', '--workspace', name]);
-      exec('npm', ['run', 'test:unit:selection', '--workspace', name]);
-      exec('npm', ['run', 'test:components', '--workspace', name]);
-    }
   }
+  // Independent workspace typechecks and tests run concurrently after dependencies
+  // exist. Checks within each workspace preserve their original order.
+  await runParallel(
+    targets.filter(name => all.get(name)?.scripts?.['code:check:types']),
+    async name => {
+      const pkg = all.get(name);
+      await execAsync('npm', ['run', 'code:check:types', '--workspace', name]);
+      if (pkg.path.startsWith('shared/') && pkg.scripts?.test) {
+        await execAsync('npm', ['run', 'test', '--workspace', name]);
+      }
+      if (name === '@svitlo/web' && requiresWebBuild(changed)) {
+        await execAsync('npm', ['run', 'app:build', '--workspace', name]);
+        await execAsync('npm', ['run', 'test:unit:selection', '--workspace', name]);
+        await execAsync('npm', ['run', 'test:components', '--workspace', name]);
+      }
+    },
+  );
   // Verify the on-demand coverage workflow itself when its implementation changes.
   // Ordinary Engine PRs do not pay for a second instrumented test run.
   if (
@@ -355,9 +401,9 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
   try {
     const args = process.argv.slice(2);
     if (args.length === 1 && args[0] === '--all') {
-      runGate(['package.json']);
+      await runGate(['package.json']);
     } else if (args.length === 2) {
-      runGate(changedFiles(args[0], args[1]));
+      await runGate(changedFiles(args[0], args[1]));
     } else throw new Error('Usage: node scripts/runFastGate/run-fast-gate.mjs <base-sha> <head-sha> | --all');
   } catch (error) {
     console.error(error.message);

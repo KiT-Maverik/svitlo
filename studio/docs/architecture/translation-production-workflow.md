@@ -4,7 +4,7 @@
 
 ## Frozen entity × locale scope
 
-- One integration PR targets `main` and freezes the complete entity UUID/field path × target locale set, underlying original/source-language SHA, actual file ownership, exclusions and editorial requirements.
+- One integration PR targets `develop` and freezes the complete entity UUID/field path × target locale set, underlying original/source-language SHA, actual file ownership, exclusions and editorial requirements.
 - Use verified data boundaries and languages; symbolic Course/Chapter/Lesson or Skill subtrees must resolve to exact, stable UUIDs before assigning agents. A later Course/taxonomy revision does not silently enlarge this matrix.
 - Plan disjoint file ownership. A batch/agent count is determined by verified work, not a universal quota. All source remains Git-authored canonical typed files; no workflow `status`, `approved` or `stage` state enters the educational YAML/Config/Props.
 - Track for each batch the translator PR, source SHA, independent reviewer, pinned review SHA, authorizations, locale coverage, distinct translation vs review state, owner and next blocker. The **integration PR body** carries current status, with source commits and actual checks as evidence.
@@ -13,7 +13,7 @@
 
 ```text
 main
- └─ Draft translation integration PR → main (PR body owns campaign matrix)
+ └─ Draft translation integration PR → develop (PR body owns campaign matrix)
       ├─ Translator 1 Draft PR → integration (may be independently reviewed here)
       ├─ Translator 2 Draft PR → integration
       └─ Optional independent reviewer Draft PR → integration (only when owner chooses)
