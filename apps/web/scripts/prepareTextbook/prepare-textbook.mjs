@@ -39,9 +39,9 @@ for (const workspace of [
   '@svitlo/ui-kit',
   '@svitlo/adapter-nextjs',
 ]) {
-  run('npm', ['run', 'package:build', '--workspace', workspace]);
+  run(process.execPath, [join(repoRoot, 'scripts/ci/packageBuildReuse/package-build-reuse.mjs'), workspace]);
 }
-run('npm', ['run', 'package:build', '--workspace', selection.package]);
+run(process.execPath, [join(repoRoot, 'scripts/ci/packageBuildReuse/package-build-reuse.mjs'), selection.package]);
 
 const targetPublic = join(webRoot, 'public');
 // Invoke the documented package binary after build. npm may not create a
