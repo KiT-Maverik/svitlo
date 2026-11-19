@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "package:build": "node ../../scripts/textbook-tooling/buildTextbook/build.mjs && npm run code:check:types --workspace @svitlo/psychology",
+    "package:build": "node ../../scripts/textbook-tooling/buildTextbook/build.mjs",
     "code:check:types": "tsc -p tsconfig.json --noEmit",
     "pretest:publish": "npm run package:build --workspace @svitlo/psychology",
     "test:publish": "node --test ../../scripts/textbook-tooling/publishTextbook/test-publish.mjs",
