@@ -117,7 +117,7 @@ test('ten-stage tracker requires editorial Stages 1–5, pending Stage 6 and fou
   assert.throws(() => requireStageSixPending(body().replace('  - [ ] 6.2 Accessibility source audit', '')));
   assert.throws(() => requireStageSixPending(body().replace('6.3 Offline source audit', '6.2 Offline source audit')));
   assert.throws(() => requireStageSixPending(body().replace('6.4 Validate source and handoff', '6.4 Fake')));
-  assert.throws(() => requireStageSixPending(body() + '\n- [ ] 10. Translation Review'));
+  assert.throws(() => requireStageSixPending(body().replace('## Audit evidence', '- [ ] 10. Translation Review\n## Audit evidence')));
 });
 
 test('existing eight-stage Lesson PRs may materialize while being migrated in place', () => {
