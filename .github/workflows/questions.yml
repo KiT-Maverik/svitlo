@@ -3,7 +3,7 @@ name: Production quality
 on:
   pull_request:
     branches: [main]
-    types: [opened, reopened, synchronize, ready_for_review]
+    types: [opened, reopened, synchronize, edited, ready_for_review]
   workflow_dispatch:
 permissions:
   contents: read
@@ -18,6 +18,15 @@ jobs:
     timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
+      - name: Test production source policy
+        run: node --test scripts/ci/releaseSource/check-release-source.spec.mjs
+      - name: Reject non-develop production source
+        if: github.event_name == 'pull_request'
+        env:
+          PR_BASE_REF: ${{ github.event.pull_request.base.ref }}
+          PR_HEAD_REF: ${{ github.event.pull_request.head.ref }}
+          PR_HEAD_REPO: ${{ github.event.pull_request.head.repo.full_name }}
+        run: node scripts/ci/releaseSource/check-release-source.mjs
       - uses: actions/setup-node@v4
         with:
           node-version: 24
@@ -31,13 +40,9 @@ jobs:
       - run: node scripts/ci/quietRun/quiet-run.mjs -- npm run test:components --workspace @svitlo/playground
       - run: node scripts/ci/quietRun/quiet-run.mjs -- npm run test:components --workspace @svitlo/web
       - run: node scripts/ci/quietRun/quiet-run.mjs -- npm run test:integration:db:coverage --workspace @svitlo/indexdb
-        if: ${{ !cancelled() }}
       - run: node scripts/ci/quietRun/quiet-run.mjs -- npm run code:lint:check
-        if: ${{ !cancelled() }}
       - run: node scripts/ci/quietRun/quiet-run.mjs -- npm run app:build
-        if: ${{ !cancelled() }}
       - name: Verify migrated textbook publishers and isolated ESM tarballs
-        if: ${{ !cancelled() }}
         run: |
           for subject in math physics psychology philosophy language-literature; do
             (cd "content/$subject" && node ../../scripts/ci/quietRun/quiet-run.mjs -- node --test ../../scripts/textbook-tooling/publishTextbook/test-publish.mjs)
@@ -46,16 +51,13 @@ jobs:
           (cd content/languages/ukrainian && node ../../../scripts/ci/quietRun/quiet-run.mjs -- node --test ../../../scripts/textbook-tooling/publishTextbook/test-publish.mjs)
           (cd content/languages/ukrainian && node ../../../scripts/ci/quietRun/quiet-run.mjs -- node ../../../scripts/textbook-tooling/checkPortability/check-portability.mjs)
       - name: Verify compiled public package artifacts
-        if: ${{ !cancelled() }}
         run: node scripts/ci/quietRun/quiet-run.mjs -- npm run repo:check:artifacts
       - run: node scripts/ci/quietRun/quiet-run.mjs -- npx playwright install chromium
-        if: ${{ !cancelled() }}
       - run: node scripts/ci/quietRun/quiet-run.mjs -- npm run test:e2e
-        if: ${{ !cancelled() }}
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: questions-test-results
+          name: production-quality-test-results
           path: |
             apps/web/test-results/
             content/math/test-results/
