@@ -95,13 +95,20 @@
 'work: lesson':
   - changed-files:
       - any-glob-to-any-file:
-          - 'content/**/data/lessons/**/lesson.yaml'
-          - 'content/**/data/lessons/**/methodology.md'
-          - 'content/**/data/lessons/**/constants.ts'
-          - 'content/**/data/lessons/**/index.ts'
-          - 'content/**/data/lessons/**/review.ts'
-          - 'content/**/data/lessons/**/sections/**'
-          - 'content/**/data/lessons/**/production-handoff.json'
+          - 'content/*/data/lessons/*/*/lesson.yaml'
+          - 'content/*/data/lessons/*/*/methodology.md'
+          - 'content/*/data/lessons/*/*/constants.ts'
+          - 'content/*/data/lessons/*/*/index.ts'
+          - 'content/*/data/lessons/*/*/review.ts'
+          - 'content/*/data/lessons/*/*/production-handoff.json'
+          - 'content/*/data/lessons/*/*/sections/**'
+          - 'content/languages/*/data/lessons/*/*/lesson.yaml'
+          - 'content/languages/*/data/lessons/*/*/methodology.md'
+          - 'content/languages/*/data/lessons/*/*/constants.ts'
+          - 'content/languages/*/data/lessons/*/*/index.ts'
+          - 'content/languages/*/data/lessons/*/*/review.ts'
+          - 'content/languages/*/data/lessons/*/*/production-handoff.json'
+          - 'content/languages/*/data/lessons/*/*/sections/**'
 'work: questions':
   - changed-files:
       - any-glob-to-any-file:
