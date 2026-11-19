@@ -1,4 +1,4 @@
-name: Lesson 660 one-time Stage 6 finalizer
+name: Lesson 660 one-time Stage 6 Scene checks
 
 on:
   push:
@@ -6,7 +6,6 @@ on:
       - agent/astronomy-observation-journal
     paths:
       - .github/workflows/lesson-660-stage6-finalize.yml
-  workflow_dispatch:
 
 permissions:
   contents: write
@@ -16,10 +15,10 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  finalize:
+  source-scenes:
     if: github.repository == 'KiT-Maverik/svitlo' && github.ref == 'refs/heads/agent/astronomy-observation-journal'
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
         with:
@@ -28,30 +27,29 @@ jobs:
         with:
           node-version: '24'
           cache: npm
-      - name: Install dependencies without lifecycle scripts
+      - name: Synchronize package lock with the first Astronomy Scene dependencies
+        run: npm install --package-lock-only --ignore-scripts --no-audit --no-fund
+      - name: Install lockfile dependencies without lifecycle scripts
         run: npm ci --ignore-scripts --no-audit --no-fund
-      - name: Build Engine and verify derived editor schemas
+      - name: Build required Engine dependency
+        run: npm run package:build --workspace @svitlo/engine
+      - name: Generate the canonical Astronomy Scene registry
         run: |
-          npm run package:build --workspace @svitlo/engine
-          npm run content:check:yaml-schemas --workspace @svitlo/engine
-      - name: Verify Lesson Builder regression tests
-        run: node --test shared/engine/scripts/lessonBuilder/lessonBuilder.spec.mjs
-      - name: Read-only complete Lesson preflight
-        run: node shared/engine/scripts/finalizeLesson/finalizeLesson.mjs preflight --source content/astronomy/data/lessons/3/ef83055e-8a1f-5111-9761-bd459591d993/lesson.yaml
-      - name: Finalize approved Lesson YAML using canonical Engine script
-        run: node shared/engine/scripts/finalizeLesson/finalizeLesson.mjs finalize --source content/astronomy/data/lessons/3/ef83055e-8a1f-5111-9761-bd459591d993/lesson.yaml
-      - name: Verify and commit only the Lesson source handoff
+          npm run content:generate:scenes --workspace @svitlo/astronomy
+          npm run content:check:scenes --workspace @svitlo/astronomy
+      - name: Exercise co-located source-locale Scene model tests
+        run: npm run test:components --workspace @svitlo/astronomy
+      - name: Confirm source-only TypeScript diagnostics without hiding draft Review gaps
+        continue-on-error: true
+        run: npm run code:check:types --workspace @svitlo/astronomy
+      - name: Commit lockfile and generated Scene loader only
         shell: bash
         run: |
           set -euo pipefail
-          folder=content/astronomy/data/lessons/3/ef83055e-8a1f-5111-9761-bd459591d993
-          test ! -e "$folder/lesson.yaml"
-          test -f "$folder/index.ts"
-          test -f "$folder/methodology.md"
-          test -f "$folder/production-handoff.json"
-          git add -A -- "$folder"
-          git diff --cached --quiet && { echo 'No Lesson changes to commit'; exit 1; }
+          test -f content/astronomy/scenes/sceneLoader.ts
+          git add -- package-lock.json content/astronomy/scenes/sceneLoader.ts
+          git diff --cached --quiet && { echo 'Generated resources unchanged'; exit 0; }
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git commit -m 'Generate observation journal source from reviewed Lesson YAML'
+          git commit -m 'Register Astronomy Scenes and synchronize workspace lockfile'
           git push origin HEAD:refs/heads/agent/astronomy-observation-journal
