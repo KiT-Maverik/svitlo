@@ -33,6 +33,10 @@ jobs:
         run: npm ci --ignore-scripts --no-audit --no-fund
       - name: Build required Engine dependency
         run: npm run package:build --workspace @svitlo/engine
+      - name: Verify canonical UUID bucket paths for both Scenes
+        run: |
+          test -f content/astronomy/scenes/f/43fdcc5a-8c6c-5b71-a2d8-9682c677b47f/index.ts
+          test -f content/astronomy/scenes/b/d1bb6314-6977-5bfa-897c-9b7124ca63ab/index.ts
       - name: Generate the canonical Astronomy Scene registry
         run: |
           npm run content:generate:scenes --workspace @svitlo/astronomy
