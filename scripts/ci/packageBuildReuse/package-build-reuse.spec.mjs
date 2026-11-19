@@ -1,9 +1,10 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
+import { spawnSync } from 'node:child_process';
 import { mkdtempSync, mkdirSync, readFileSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { createPackageBuildReuse, readBuildState, snapshotDist } from './package-build-reuse.mjs';
+import { cleanSourceRevision, createPackageBuildReuse, readBuildState, snapshotDist } from './package-build-reuse.mjs';
 
 const ws = (name, path, dependencies = []) => ({
   name,
@@ -133,4 +134,31 @@ test('a corrupted state is never trusted', t => {
   assert.throws(() => f.runner.ensure('a'), /JSON/);
   writeFileSync(f.stateFile, JSON.stringify({ version: 1, root: '/another-checkout', records: {}, stats: {} }));
   assert.throws(() => f.runner.ensure('a'), /foreign/);
+});
+
+test('a failed dependency build stops consumers and cannot be reused', t => {
+  const f = fixture(t);
+  f.setFailure('a');
+  assert.throws(() => f.runner.ensure('b'), /compilation failed/);
+  assert.deepEqual(f.calls, ['a']);
+  assert.deepEqual(readBuildState(f.stateFile, f.root).records, {});
+});
+
+test('source revision requires an unchanged tracked worktree', t => {
+  const temporary = mkdtempSync(join(tmpdir(), 'svitlo-reuse-git-'));
+  t.after(() => rmSync(temporary, { recursive: true, force: true }));
+  const git = args => {
+    const result = spawnSync('git', args, { cwd: temporary, encoding: 'utf8' });
+    assert.equal(result.status, 0, result.stderr);
+    return result.stdout.trim();
+  };
+  git(['init', '--quiet']);
+  git(['config', 'user.name', 'Build Reuse Test']);
+  git(['config', 'user.email', 'build-reuse@example.invalid']);
+  writeFileSync(join(temporary, 'source.txt'), 'original');
+  git(['add', 'source.txt']);
+  git(['commit', '--quiet', '-m', 'fixture']);
+  assert.equal(cleanSourceRevision(temporary), git(['rev-parse', 'HEAD']));
+  writeFileSync(join(temporary, 'source.txt'), 'modified');
+  assert.equal(cleanSourceRevision(temporary), null);
 });
