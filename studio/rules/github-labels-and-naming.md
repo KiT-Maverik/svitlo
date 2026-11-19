@@ -38,13 +38,13 @@
 
 Use the `pr: *` content-deliverable labels to identify the **kind of authored production artifact** in a PR. These labels are independent of the PR's topology (`pr: integration` vs `pr: agent-subtask`), scope (`content: *`) and work activity (`work: *`). They do not imply a particular review stage, approval or readiness.
 
-| Label | Apply when the PR delivers |
-| --- | --- |
-| `pr: course` | A Course definition, editorial plan, authored Course content or Course-specific implementation |
-| `pr: lesson` | A Lesson definition, methodology, canonical Lesson source or Lesson-specific implementation |
-| `pr: questions` | A Question Bank or authored assessment questions belonging to a Lesson |
-| `pr: flashcards` | A Flashcard Bank or authored flashcards belonging to a Lesson |
-| `pr: media` | Static educational media assets produced for Lessons, including illustrations, audio or video |
+| Label            | Apply when the PR delivers                                                                     |
+| ---------------- | ---------------------------------------------------------------------------------------------- |
+| `pr: course`     | A Course definition, editorial plan, authored Course content or Course-specific implementation |
+| `pr: lesson`     | A Lesson definition, methodology, canonical Lesson source or Lesson-specific implementation    |
+| `pr: questions`  | A Question Bank or authored assessment questions belonging to a Lesson                         |
+| `pr: flashcards` | A Flashcard Bank or authored flashcards belonging to a Lesson                                  |
+| `pr: media`      | Static educational media assets produced for Lessons, including illustrations, audio or video  |
 
 Apply the relevant deliverable label to new production PRs and backfill existing ones when their purpose is verified. Multiple type labels are permitted **only** when the same PR genuinely produces multiple kinds of artifacts. Do not propagate a parent's `pr: course` to Lesson or Question/Flashcard child PRs: each PR is classified by its **own deliverable**, not by its ancestry. Do not apply these labels to repository-wide tooling or CI changes merely because they support Course/Lesson/Question/Flashcard/Media workflows. The new type labels have distinct colors in the canonical catalog so they can be filtered and distinguished in PR lists.
 
