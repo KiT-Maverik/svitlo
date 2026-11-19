@@ -197,7 +197,7 @@ test('Draft TODO reports warnings without blocking authors or hiding errors', ()
     console.error = message => messages.push(message);
     try {
       assert.doesNotThrow(() => main(['report-diff', base, head], root));
-      assert.match(messages[0], /::warning file=content\\/math\\/data\\/lessons\\/a\\/id\\/lesson.yaml/);
+      assert.ok(messages[0].startsWith('::warning file=content/math/data/lessons/a/id/lesson.yaml'));
       assert.throws(() => main(['report-diff', base, 'bad'], root), /40-character/);
     } finally {
       console.error = previous;
