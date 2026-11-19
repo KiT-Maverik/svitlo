@@ -53,7 +53,7 @@ export const bceAndCeDating = defineSkill({
       it: 'Leggi le date prima dell’era comune e dell’era comune e calcola l’intervallo di tempo tra esse.',
       ja: '紀元前と紀元後の年代を読み、その間の年数を計算しよう。',
       ka: 'წაიკითხე ძველი და ახალი წელთაღრიცხვის თარიღები და გამოთვალე მათ შორის დრო.',
-      kk: 'Bızdıñ zamanymyzğa deiıngı jäne keiıngı jyldardy oqyp, olardyñ arasyndağy uaqytty esepte.',
+      kk: 'Bızdıñ zamanymyzğa deiıngı jäne bızdıñ zamanymyzdağy jyldardy oqyp, nölınşı jyldyñ joqtyğyn eskerıp, uaqyt aralyğyn esepte.',
       ko: '기원전과 기원후 날짜를 읽고 그 사이의 시간을 계산해 보세요.',
       lt: 'Skaityk datas prieš mūsų erą ir mūsų eroje bei apskaičiuok laiko tarpus.',
       lv: 'Lasi datumus pirms mūsu ēras un mūsu ērā un aprēķini laikposmus starp tiem.',
