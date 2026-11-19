@@ -53,7 +53,7 @@ export const relateSoundToVibration = defineSkill({
       it: 'Collega una sorgente vibrante alla perturbazione sonora che produce.',
       ja: '振動する音源と、それが生む音の乱れを結びつけよう。',
       ka: 'დააკავშირე რხევადი წყარო მის მიერ წარმოქმნილ ხმოვან შეშფოთებასთან.',
-      kk: 'Terbeletın közdı ol tudyratyn dybystyq būzylumen bailanystyr.',
+      kk: 'Terbeletın közdı ol tudyratyn dybys tolqynymen bailanystyr.',
       ko: '진동하는 소리의 원천과 그로 인한 소리의 교란을 연결해 보세요.',
       lt: 'Susiek virpantį šaltinį su jo sukeliama garso banga.',
       lv: 'Saisti svārstīgu avotu ar tā radīto skaņas traucējumu.',
