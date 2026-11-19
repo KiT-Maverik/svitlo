@@ -89,3 +89,26 @@
       - any-glob-to-any-file: 'scripts/**'
 'pr: agent-subtask':
   - head-branch: '(^|[-_/])agent[-_/]?[0-9]+($|[-_/])'
+'work: course':
+  - changed-files:
+      - any-glob-to-any-file: 'content/**/data/courses/**'
+'work: lesson':
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'content/**/data/lessons/**/lesson.yaml'
+          - 'content/**/data/lessons/**/methodology.md'
+          - 'content/**/data/lessons/**/constants.ts'
+          - 'content/**/data/lessons/**/index.ts'
+          - 'content/**/data/lessons/**/review.ts'
+          - 'content/**/data/lessons/**/sections/**'
+          - 'content/**/data/lessons/**/production-handoff.json'
+'work: questions':
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'content/**/data/lessons/**/questions.yaml'
+          - 'content/**/data/lessons/**/questions/**'
+'work: flashcards':
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'content/**/data/lessons/**/flashcards.yaml'
+          - 'content/**/data/lessons/**/flashcards/**'
