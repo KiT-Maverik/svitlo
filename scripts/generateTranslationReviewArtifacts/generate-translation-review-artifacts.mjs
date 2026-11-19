@@ -207,8 +207,13 @@ export async function generate(options) {
     const { generateQuestionReviewArtifacts } =
       await import('../../shared/engine/scripts/generateQuestionReviewArtifacts/generate-question-review-artifacts.mjs');
     generateQuestionReviewArtifacts({
-      root, output, manifest, saveManifest, packageName: options.package,
-      lessonId: options.lesson, languages,
+      root,
+      output,
+      manifest,
+      saveManifest,
+      packageName: options.package,
+      lessonId: options.lesson,
+      languages,
     });
   } else if (options.kind === 'courses') {
     const { generateCourseReviewArtifacts } =
