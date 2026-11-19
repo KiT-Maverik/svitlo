@@ -9,6 +9,7 @@ permissions:
   contents: read
 jobs:
   quality:
+    name: Production Quality / verify
     if: github.event_name == 'workflow_dispatch' || !github.event.pull_request.draft
     concurrency:
       group: production-quality-${{ github.event.pull_request.number || github.ref }}
@@ -25,7 +26,10 @@ jobs:
       - run: node scripts/ci/quietRun/quiet-run.mjs -- npm run repo:check:packages
       - run: node scripts/ci/quietRun/quiet-run.mjs -- npm run code:check:types
       - run: node scripts/ci/quietRun/quiet-run.mjs -- npm test
-      - run: node scripts/ci/quietRun/quiet-run.mjs -- npm run test:components
+      # npm test already covers UI Kit and Math component suites; only Web and
+      # Playground have separate component suites not included in npm test.
+      - run: node scripts/ci/quietRun/quiet-run.mjs -- npm run test:components --workspace @svitlo/playground
+      - run: node scripts/ci/quietRun/quiet-run.mjs -- npm run test:components --workspace @svitlo/web
       - run: node scripts/ci/quietRun/quiet-run.mjs -- npm run test:integration:db:coverage --workspace @svitlo/indexdb
         if: ${{ !cancelled() }}
       - run: node scripts/ci/quietRun/quiet-run.mjs -- npm run code:lint:check

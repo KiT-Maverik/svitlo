@@ -2,7 +2,7 @@ name: FastGate
 
 on:
   pull_request:
-    branches: [main, develop]
+    branches: [develop]
   workflow_dispatch:
 
 permissions:
@@ -42,10 +42,10 @@ jobs:
             fi
           fi
 
-      - name: Refuse temporary agent artifacts in a main-bound PR
+      - name: Refuse temporary agent artifacts in an integration-bound PR
         run: |
           if [ -d .agent-ci-artifacts ]; then
-            echo '::error::Remove .agent-ci-artifacts/ before merging into main.'
+            echo '::error::Remove .agent-ci-artifacts/ before merging into develop.'
             exit 1
           fi
       - name: Validate GitHub label catalogue, matchers and historical backfill

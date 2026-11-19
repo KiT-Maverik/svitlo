@@ -16,7 +16,7 @@
 | --- | --- |
 | Draft/Ready PR to `develop` | Changed/dependent workspace FastGate, focused tests, selected content build |
 | Child PR to a parent integration branch | Focused checks and new `TODO (BLOCKER):` authored-source diff validation |
-| Ready promotion PR to `main` | All textbook builds, complete package checks, E2E, full tracked-source blocker scan |
+| Ready promotion PR to `main` | All textbook builds, complete package checks, E2E, full tracked-source blocker scan; no redundant FastGate |
 | Manual `workflow_dispatch` | Full diagnostic, coverage, content or publication suites |
 | Push to `main` | Avoid duplicating expensive full validation already required before merge; run deployment-specific checks when needed |
 
@@ -43,3 +43,5 @@ Run actual validation before merging: `node --test scripts/ci/quietRun/quiet-run
 The default branch is now `develop`; the two active protection rulesets target their literal branches. Comment-triggered workflows use code deployed to the current default branch.
 
 Dedicated EducationStandard catalog/reference GitHub workflows are removed. Existing UI Kit `test:locales` validates definitions and localized outputs; FastGate tests the reference generator only when implementation changes. The on-demand `/agent-artifacts generate education-standards` functionality remains available.
+
+**Actual branch-protection audit (2026-11-19):** GitHub already has `develop` as default and active literal-branch rulesets. `Protect main` still lacks `Require a pull request before merging`, and its current required contexts omit `Production Quality / verify`. `Protect develop` currently omits `FastGate / verify`. These are **GitHub Settings operations** not implemented by this file. Set main PR requirement and the two missing status checks before treating the release and integration gates as enforced.
