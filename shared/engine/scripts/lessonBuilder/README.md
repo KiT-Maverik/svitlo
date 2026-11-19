@@ -156,6 +156,9 @@ A Section not required by the Methodologist is never created by the generator. T
   media. The Lesson Builder inserts a deterministic, reserved
   `00000000-0000-0000-0000-000000000000` filename (with a type-correct
   extension) and an adjacent `TODO(asset)` into each generated media Config.
+  Each generated media module also gets exactly one real `// TODO (BLOCKER):`
+  immediately above its export, covering any pending asset requirements
+  (including a Video poster). This comment is recognized by existing CI.
   This placeholder is **not** an assigned resource identity. A later media
   specialist replaces it in TypeScript with the real textbook-wide UUID
   filename. Draft Props can warn and preview unresolved media; Production

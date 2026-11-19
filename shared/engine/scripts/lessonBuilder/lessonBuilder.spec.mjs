@@ -5,6 +5,7 @@ import path from 'node:path';
 import { test } from 'node:test';
 import ts from 'typescript';
 import yaml from 'yaml';
+import { scanSource } from '../../../../scripts/ci/checkBlockerTodos/check-blocker-todos.mjs';
 
 import { BuilderDiagnostic, loadFactoryRegistry, runOne, main } from './lessonBuilder.mjs';
 import { renderLessonModules } from './lessonModules.mjs';
@@ -303,7 +304,13 @@ test('omitted media fields create deterministic TODO(asset) placeholders without
     for (const [i, ext] of ['webp', 'mp3', 'mp4', 'vtt'].entries()) {
       assert(files[i].includes('fileName: "00000000-0000-0000-0000-000000000000.' + ext + '"'));
       assert.match(files[i], /TODO\(asset\)/);
+      assert.equal((files[i].match(/TODO \(BLOCKER\):/g) ?? []).length, 1);
+      assert.equal(scanSource('media/index.ts', files[i]).length, 1);
     }
+    assert.equal(
+      scanSource('text/index.ts', fs.readFileSync(f.generated('sections/intro/prompt/index.ts'), 'utf8')).length,
+      0,
+    );
     assert(files[2].includes('posterFileName: "00000000-0000-0000-0000-000000000000.webp"'));
     assert.equal(fs.readFileSync(f.generated('lesson.yaml'), 'utf8'), before);
     assertTypeScriptSyntax(readAll(f.lesson));
@@ -1146,7 +1153,6 @@ test('Lesson root exports reject reserved identifiers rather than producing inva
     }
   }));
 
-
 test('assessment Sections use the ordinary nested Section path with exactly one real blocker per Section', () =>
   fixture(f => {
     const make = (slug, number, type) => ({
@@ -1176,9 +1182,17 @@ test('assessment Sections use the ordinary nested Section path with exactly one 
       const file = 'sections/' + slug + '/index.ts';
       const content = files.get(file);
       assert.ok(content, file);
-      assert.match(content, new RegExp('\/\/ TODO \\(BLOCKER\\): This ' + label +
-        ' Section is required by the Methodologist\\.\\n\/\/ Integrate[^\\n]+\\nexport const ' +
-        slug + ' = ' + factory));
+      assert.match(
+        content,
+        new RegExp(
+          '\/\/ TODO \\(BLOCKER\\): This ' +
+            label +
+            ' Section is required by the Methodologist\\.\\n\/\/ Integrate[^\\n]+\\nexport const ' +
+            slug +
+            ' = ' +
+            factory,
+        ),
+      );
       assert.match(content, /const content = \{/);
       assert.match(content, /typeof content\.items, LessonLanguages/);
       assert.equal((content.match(/TODO \(BLOCKER\):/g) ?? []).length, 1, file);
@@ -1198,13 +1212,15 @@ test('a Lesson without an assessment Section generates no assessment-specific bl
     runOne(f.lesson, 'generate', f.root);
     const files = readAll(f.lesson);
     assert.equal(
-      [...files].filter(([name, content]) =>
-        name.startsWith('sections/') && content.includes('This Quiz Section is required')).length,
+      [...files].filter(
+        ([name, content]) => name.startsWith('sections/') && content.includes('This Quiz Section is required'),
+      ).length,
       0,
     );
     assert.equal(
-      [...files].filter(([name, content]) =>
-        name.startsWith('sections/') && content.includes('This Flashcards Section is required')).length,
+      [...files].filter(
+        ([name, content]) => name.startsWith('sections/') && content.includes('This Flashcards Section is required'),
+      ).length,
       0,
     );
   }));
