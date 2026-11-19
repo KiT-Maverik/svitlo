@@ -43,6 +43,8 @@ jobs:
           npm run content:check:scenes --workspace @svitlo/astronomy
       - name: Exercise co-located source-locale Scene model tests
         run: npm run test:components --workspace @svitlo/astronomy
+      - name: Check both Scene component TypeScript contracts without the intentionally unfinished Lesson review digest
+        run: npm run code:check:scene-types --workspace @svitlo/astronomy
       - name: Confirm source-only TypeScript diagnostics without hiding draft Review gaps
         continue-on-error: true
         run: npm run code:check:types --workspace @svitlo/astronomy
