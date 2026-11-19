@@ -236,17 +236,22 @@ function escapeAnnotation(value) {
 export function main(args, root = path.resolve(fileURLToPath(new URL('../../..', import.meta.url)))) {
   const [mode, base, head] = args;
   if (
-    (mode !== 'full' && mode !== 'diff') ||
+    (mode !== 'full' && mode !== 'diff' && mode !== 'report-diff') ||
     (mode === 'full' && args.length !== 1) ||
-    (mode === 'diff' && args.length !== 3)
+    ((mode === 'diff' || mode === 'report-diff') && args.length !== 3)
   ) {
-    throw new Error('Usage: check-blocker-todos.mjs full | diff <base-sha> <head-sha>');
+    throw new Error('Usage: check-blocker-todos.mjs full | diff <base-sha> <head-sha> | report-diff <base-sha> <head-sha>');
   }
   const findings = mode === 'full' ? scanFull(root) : scanDiff(root, base, head);
+  const informational = mode === 'report-diff';
   for (const item of findings) {
     console.error(
-      '::error file=' + escapeAnnotation(item.file) + ',line=' + item.line + '::' + escapeAnnotation(item.text),
+      (informational ? '::warning file=' : '::error file=') + escapeAnnotation(item.file) + ',line=' + item.line + '::' + escapeAnnotation(item.text),
     );
+  }
+  if (informational) {
+    console.log('Draft TODO report: ' + findings.length + ' pending blocker comment(s); authoring may continue.');
+    return;
   }
   if (findings.length) {
     throw new Error(findings.length + ' unresolved TODO (BLOCKER) comment(s) in ' + mode + ' mode');

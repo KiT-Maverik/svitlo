@@ -246,6 +246,7 @@ async function runGate(changed) {
     exec('node', [
       '--test',
       'scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.spec.mjs',
+      'scripts/generateTranslationReviewArtifacts/education-standards-reference.spec.mjs',
       'shared/engine/scripts/generateLessonReviewArtifacts/generate-lesson-review-artifacts.spec.mjs',
     ]);
   }

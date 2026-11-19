@@ -41,7 +41,7 @@ jobs:
             # Check authored-source diffs even on Draft Course/Lesson/bank PRs.
             # Otherwise drafts remain editable until they become mergeable.
             if git diff --name-only "$BASE_SHA...$HEAD_SHA" | grep -Eq '^content/([^/]+|languages/[^/]+)/data/(courses|lessons)/'; then
-              node scripts/ci/checkBlockerTodos/check-blocker-todos.mjs diff "$BASE_SHA" "$HEAD_SHA"
+              node scripts/ci/checkBlockerTodos/check-blocker-todos.mjs report-diff "$BASE_SHA" "$HEAD_SHA"
             else
               echo 'Draft PR: no authored Course/Lesson/Bank paths; guard deferred.'
             fi

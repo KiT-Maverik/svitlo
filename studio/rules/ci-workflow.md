@@ -33,11 +33,13 @@ FastGate builds prerequisite public exports once in dependency order, then runs 
 ## Educational labels and TODO blockers
 
 - `work: course` is matched from authored `content/**/data/courses/**`. Lesson-owned source YAML/index/methodology/sections earns `work: lesson`. `questions.yaml` and `questions/**` match `work: questions`; `flashcards.yaml` and `flashcards/**` match `work: flashcards`. Bank-only changes must not receive Lesson label solely from path ancestry. Engine tooling changes do not imply an educational authoring label.
-- `Blocker TODOs / clean` always runs on PR events. Draft PRs changing Course/Lesson/bank sources scan newly introduced blockers in their diff; Ready PRs to develop or intermediate integration branches scan their diff; Ready main promotion scans **all supported tracked source** including inherited TODOs. This guard deliberately does not parse Markdown.
+- `Blocker TODOs / clean` always runs on PR events. Draft PRs changing Course/Lesson/bank sources report newly introduced blockers as warnings without failing; Ready PRs to develop or intermediate integration branches reject new blockers in their diff; Ready main promotion scans **all supported tracked source** including inherited TODOs. This guard deliberately does not parse Markdown.
 - A required GitHub status check, not the label itself, enforces the no-blocker merge rule. Nested intermediate branches require an enforceable ruleset if merges can occur without GitHub's protected-target checks.
 
 ## Verification
 
 Run actual validation before merging: `node --test scripts/ci/quietRun/quiet-run.spec.mjs`, `node --test scripts/runFastGate/run-fast-gate.spec.mjs`, `node --test scripts/ci/checkBlockerTodos/check-blocker-todos.spec.mjs`, `node --test scripts/ci/buildChangedContent/*.spec.mjs`, `node .github/scripts/verify-labels.cjs`, `npm run repo:check:packages`, and any affected workflow tests. Exercise zero-content Draft, changed-content Ready, authored-blocker child, and production-promotion cases; compare billed minutes, wall time and agent-visible log volume. These commands are instructions, **not claims of passing checks**.
 
-Until GitHub Settings/rulesets are changed, the default remains `main`. Comment-triggered workflows only use code actually deployed to that current default branch.
+The default branch is now `develop`; the two active protection rulesets target their literal branches. Comment-triggered workflows use code deployed to the current default branch.
+
+Dedicated EducationStandard catalog/reference GitHub workflows are removed. Existing UI Kit `test:locales` validates definitions and localized outputs; FastGate tests the reference generator only when implementation changes. The on-demand `/agent-artifacts generate education-standards` functionality remains available.

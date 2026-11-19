@@ -185,3 +185,22 @@ test('the workflow checks authored draft Course/Lesson/Bank diffs and full main 
   assert.match(wf, /TARGET_BRANCH.*main/);
   assert.match(wf, /check-blocker-todos\.mjs full/);
 });
+
+test('Draft TODO reports warnings without blocking authors or hiding errors', () => {
+  withRepo(({ root, put, commit }) => {
+    put('content/math/data/lessons/a/id/lesson.yaml', 'kind: lesson\n');
+    const base = commit();
+    put('content/math/data/lessons/a/id/lesson.yaml', '# TODO (BLOCKER): pending bank\n');
+    const head = commit();
+    const previous = console.error;
+    const messages = [];
+    console.error = message => messages.push(message);
+    try {
+      assert.doesNotThrow(() => main(['report-diff', base, head], root));
+      assert.match(messages[0], /::warning file=content\\/math\\/data\\/lessons\\/a\\/id\\/lesson.yaml/);
+      assert.throws(() => main(['report-diff', base, 'bad'], root), /40-character/);
+    } finally {
+      console.error = previous;
+    }
+  });
+});
