@@ -54,7 +54,7 @@ test('parallel production topology preserves every gate and produces one strict 
   assert.match(workflow, /if: matrix.e2e/);
   assert.match(workflow, /if: matrix.integration/);
   const required = ['policy', 'repository', 'types', 'unit', 'components', 'lint', 'packages', 'apps'];
-  assert.match(workflow, new RegExp('needs: \\[\' + required.join(', ') + '\\]'));
+  assert.ok(workflow.includes('needs: [' + required.join(', ') + ']'));
   for (const name of required) {
     assert.ok(workflow.includes("'" + name + "'"), 'aggregate must validate ' + name);
   }
