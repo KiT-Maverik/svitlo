@@ -1,20 +1,18 @@
 name: Questions quality
-# AGENT NOTE (temporary CI policy, 2026-10-30):
-# Automatic PR and main-branch push runs are intentionally paused while active
-# development is predominantly taxonomy/content authoring and agents push often.
-# This full-repository suite is expensive and overlaps with focused checks.
-# Keep the workflow available for manual runs in GitHub Actions.
-# RE-ENABLE automatic pull_request and push-to-main triggers when regular
-# executable-code development resumes, and ALWAYS before production releases.
-# When re-enabling, optimize redundant builds/E2E and consider concurrency.
-# Until then, agents changing executable code must run relevant local checks
-# when they have a runnable environment; manual CI remains available.
+# Full-repository validation is reserved for production promotion to main.
 on:
+  pull_request:
+    branches: [main]
+    types: [opened, reopened, synchronize, ready_for_review]
   workflow_dispatch:
 permissions:
   contents: read
 jobs:
   quality:
+    if: github.event_name == 'workflow_dispatch' || !github.event.pull_request.draft
+    concurrency:
+      group: production-quality-${{ github.event.pull_request.number || github.ref }}
+      cancel-in-progress: true
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:

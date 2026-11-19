@@ -38,7 +38,13 @@ jobs:
         run: |
           set -euo pipefail
           if [[ "$EVENT_NAME" == pull_request && "$IS_DRAFT" == true ]]; then
-            echo 'Draft PR: unfinished blockers are permitted.'
+            # Check authored-source diffs even on Draft Course/Lesson/bank PRs.
+            # Otherwise drafts remain editable until they become mergeable.
+            if git diff --name-only "$BASE_SHA" "$HEAD_SHA" | grep -Eq '^content/([^/]+|languages/[^/]+)/data/(courses|lessons)/'; then
+              node scripts/ci/checkBlockerTodos/check-blocker-todos.mjs diff "$BASE_SHA" "$HEAD_SHA"
+            else
+              echo 'Draft PR: no authored Course/Lesson/Bank paths; guard deferred.'
+            fi
           elif [[ "$TARGET_BRANCH" == main || "$TARGET_BRANCH" == refs/heads/main ]]; then
             node scripts/ci/checkBlockerTodos/check-blocker-todos.mjs full
           else

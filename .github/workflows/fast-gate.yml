@@ -2,7 +2,7 @@ name: FastGate
 
 on:
   pull_request:
-    branches: [main]
+    branches: [main, develop]
     paths:
       - '**/*.ts'
       - '**/*.tsx'

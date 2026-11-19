@@ -2,7 +2,7 @@ name: Engine generators
 
 on:
   pull_request:
-    branches: [main, integration-branch]
+    branches: [main, develop, integration-branch]
     paths:
       - 'shared/engine/generators/**'
       - 'shared/engine/scripts/lessonBuilder/**'

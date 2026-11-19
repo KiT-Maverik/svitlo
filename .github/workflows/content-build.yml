@@ -33,23 +33,7 @@ jobs:
         with:
           node-version: '24'
           cache: npm
-      - run: npm ci
-      - name: Test content build selection and artifacts
-        run: |
-          node --test scripts/ci/buildChangedContent/*.spec.mjs
-          node --test shared/engine/scripts/checkSkillsTaxonomyStructure/check-skills-taxonomy-structure.spec.mjs
-      - name: Test final resource readiness gate
-        run: node --test scripts/ci/verifyProductionAssets/verify-production-assets.spec.mjs
-      - name: Test Course Episode media draft handoff
-        run: node --test shared/engine/scripts/courseBuilder/courseBuilder.spec.mjs
-      - name: Test published assessment resource references
-        run: node --test scripts/textbook-tooling/verifyAssessmentSelections/verifyAssessmentSelections.spec.mjs
-      - name: Refuse unfinished Lesson, bank and Episode resources on review-ready PRs
-        if: github.event_name == 'pull_request' && !github.event.pull_request.draft
-        env:
-          BASE_SHA: ${{ github.event.pull_request.base.sha }}
-          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
-        run: node scripts/ci/verifyProductionAssets/verify-production-assets.mjs "$BASE_SHA" "$HEAD_SHA"
+      # Select scope before installing anything; docs-only PRs can skip npm ci.
       - name: Plan content builds
         id: plan
         env:
@@ -59,6 +43,29 @@ jobs:
           HEAD_REF: ${{ github.head_ref }}
           PR_DRAFT: ${{ github.event.pull_request.draft }}
         run: node scripts/ci/buildChangedContent/plan-content-builds.mjs
+      - name: Test content build selection
+        run: node --test scripts/ci/buildChangedContent/*.spec.mjs
+      - name: Install dependencies only for selected builds
+        if: steps.plan.outputs.has_builds == 'true'
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --no-audit --no-fund
+      - name: Test skills structure invariants
+        if: steps.plan.outputs.has_builds == 'true'
+        run: node --test shared/engine/scripts/checkSkillsTaxonomyStructure/check-skills-taxonomy-structure.spec.mjs
+      - name: Test final resource readiness gate
+        if: steps.plan.outputs.has_builds == 'true'
+        run: node --test scripts/ci/verifyProductionAssets/verify-production-assets.spec.mjs
+      - name: Test Course Episode media draft handoff
+        if: steps.plan.outputs.has_builds == 'true'
+        run: node --test shared/engine/scripts/courseBuilder/courseBuilder.spec.mjs
+      - name: Test published assessment resource references
+        if: steps.plan.outputs.has_builds == 'true'
+        run: node --test scripts/textbook-tooling/verifyAssessmentSelections/verifyAssessmentSelections.spec.mjs
+      - name: Refuse unfinished Lesson, bank and Episode resources on review-ready production PRs
+        if: github.event_name == 'pull_request' && github.base_ref == 'main' && !github.event.pull_request.draft
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: node scripts/ci/verifyProductionAssets/verify-production-assets.mjs "$BASE_SHA" "$HEAD_SHA"
       - name: Validate selected package graph and package-artifact guard
         if: steps.plan.outputs.has_builds == 'true' && steps.plan.outputs.agent_mode != 'true'
         run: |

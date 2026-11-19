@@ -4,7 +4,7 @@ on:
   pull_request:
     # Avoid running Prettier on every agent commit while the PR is a draft.
     types: [ready_for_review]
-    branches: [main]
+    branches: [main, develop]
   # Recheck the formatted head SHA explicitly: this workflow otherwise runs only
   # when a PR becomes ready for review.
   workflow_dispatch:
@@ -41,7 +41,7 @@ jobs:
           cache: npm
 
       - name: Install pinned Prettier without running package scripts
-        run: npm ci --ignore-scripts --no-audit --no-fund
+        run: npm ci --silent --ignore-scripts --no-audit --no-fund
 
       - name: Auto-format changed PR files
         if: github.event_name == 'pull_request'
@@ -51,7 +51,7 @@ jobs:
         run: |
           set -euo pipefail
           git diff --name-only --diff-filter=ACMR -z "$BASE_SHA...HEAD" \
-            | xargs -0 -r -n 100 ./node_modules/.bin/prettier --write --ignore-unknown --
+            | xargs -0 -r -n 100 ./node_modules/.bin/prettier --write --log-level warn --ignore-unknown --
 
       - name: Independently check formatting on the latest commit
         if: github.event_name == 'workflow_dispatch'
@@ -61,7 +61,7 @@ jobs:
         run: |
           set -euo pipefail
           git diff --name-only --diff-filter=ACMR -z "$BASE_SHA...HEAD" \
-            | xargs -0 -r -n 100 ./node_modules/.bin/prettier --check --ignore-unknown --
+            | xargs -0 -r -n 100 ./node_modules/.bin/prettier --check --log-level warn --ignore-unknown --
 
       - name: Stage formatting fixes
         if: github.event_name == 'pull_request'
