@@ -42,6 +42,15 @@ function execAsync(command, args) {
     );
   });
 }
+/** Keep npm host preparation that rewrites shared dist/ out of the parallel lane. */
+export function partitionBuildMutatingHosts(targets) {
+  const mutatingHosts = new Set(['@svitlo/web', '@svitlo/mobile']);
+  return {
+    parallel: targets.filter(name => !mutatingHosts.has(name)),
+    sequential: targets.filter(name => mutatingHosts.has(name)),
+  };
+}
+
 async function runParallel(targets, action) {
   const configured = Number(process.env.SVITLO_FASTGATE_PARALLELISM || 2);
   assert(
@@ -360,23 +369,27 @@ async function runGate(changed, base, head) {
       built.add(name);
     }
   }
-  // Independent workspace typechecks and tests run concurrently after dependencies
-  // exist. Checks within each workspace preserve their original order.
-  await runParallel(
-    targets.filter(name => all.get(name)?.scripts?.['code:check:types']),
-    async name => {
-      const pkg = all.get(name);
-      await execAsync('npm', ['run', 'code:check:types', '--workspace', name]);
-      if (pkg.path.startsWith('shared/') && pkg.scripts?.test) {
-        await execAsync('npm', ['run', 'test', '--workspace', name]);
-      }
-      if (name === '@svitlo/web' && requiresWebBuild(changed)) {
-        await execAsync('npm', ['run', 'app:build', '--workspace', name]);
-        await execAsync('npm', ['run', 'test:unit:selection', '--workspace', name]);
-        await execAsync('npm', ['run', 'test:components', '--workspace', name]);
-      }
-    },
-  );
+  // Package tests and app preparation can both delete/recreate shared dist/.
+  // Web/Mobile npm pre-hooks rebuild Engine/UI Kit/Playground, so running them
+  // concurrently with each other or shared workspace tests can make Next.js
+  // fail with transient missing public exports. Preserve parallel checks for
+  // independent workspaces, then validate these mutating hosts sequentially.
+  const typecheckTargets = targets.filter(name => all.get(name)?.scripts?.['code:check:types']);
+  const { parallel, sequential } = partitionBuildMutatingHosts(typecheckTargets);
+  async function checkWorkspace(name) {
+    const pkg = all.get(name);
+    await execAsync('npm', ['run', 'code:check:types', '--workspace', name]);
+    if (pkg.path.startsWith('shared/') && pkg.scripts?.test) {
+      await execAsync('npm', ['run', 'test', '--workspace', name]);
+    }
+    if (name === '@svitlo/web' && requiresWebBuild(changed)) {
+      await execAsync('npm', ['run', 'app:build', '--workspace', name]);
+      await execAsync('npm', ['run', 'test:unit:selection', '--workspace', name]);
+      await execAsync('npm', ['run', 'test:components', '--workspace', name]);
+    }
+  }
+  await runParallel(parallel, checkWorkspace);
+  for (const name of sequential) await checkWorkspace(name);
   // Verify the on-demand coverage workflow itself when its implementation changes.
   // Ordinary Engine PRs do not pay for a second instrumented test run.
   if (
