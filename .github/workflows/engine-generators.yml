@@ -70,6 +70,8 @@ jobs:
             shared/engine/scripts/generatorCliIntegration/generatorCliIntegration.spec.mjs \
             shared/engine/scripts/lessonBuilder/lessonBuilder.spec.mjs \
             shared/engine/scripts/sceneScaffolding/sceneScaffolding.spec.mjs \
+            shared/engine/scripts/generateQuestionReviewArtifacts/generate-question-review-artifacts.spec.mjs \
+            scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.spec.mjs \
             scripts/textbook-tooling/buildTextbook/stageTextbookAssets.spec.mjs
 
       - name: Test Course Flow regression suites
