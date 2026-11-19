@@ -232,7 +232,7 @@ jobs:
         with:
           node-version: '24'
       - name: Install dependencies for the requested generator
-        run: npm ci --ignore-scripts --no-audit --no-fund
+        run: npm ci --silent --ignore-scripts --no-audit --no-fund
       - name: Detect complete EducationStandard authoring matrix
         id: catalog_check
         if: needs.resolve.outputs.kind == 'education-standards'

@@ -91,7 +91,7 @@ jobs:
           cache: npm
 
       - name: Install pinned workspace dependencies
-        run: npm ci --ignore-scripts --no-audit --no-fund
+        run: npm ci --silent --ignore-scripts --no-audit --no-fund
 
       - name: Build Engine
         run: npm run package:build --workspace @svitlo/engine
