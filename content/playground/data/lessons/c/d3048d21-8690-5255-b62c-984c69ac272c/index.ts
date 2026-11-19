@@ -44,7 +44,7 @@ export const howLightMoves = defineLesson({
   type: 'lesson',
   skills: [testExplainLightTravel.id],
   params: {
-    requireQuiz: true,
+    quizRequiredForCompletion: true,
     languages: howLightMoves_languages,
     sections: {
       allowNavigation: true,

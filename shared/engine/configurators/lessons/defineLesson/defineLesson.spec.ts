@@ -40,7 +40,7 @@ describe('Configurators', () => {
           type: 'lesson',
           skills: [],
           params: {
-            requireQuiz: false,
+            quizRequiredForCompletion: false,
             languages: ['en', 'uk'] as const,
             sections: { allowNavigation: true, allowSkipping: false, showIndexes: true },
           },
@@ -81,7 +81,7 @@ describe('Configurators', () => {
           type: 'lesson' as const,
           skills: [],
           params: {
-            requireQuiz: false,
+            quizRequiredForCompletion: false,
             languages: ['en', 'uk'] as const,
             sections: { allowNavigation: true, allowSkipping: true, showIndexes: false },
           },
@@ -185,7 +185,7 @@ describe('Configurators', () => {
           type: 'lesson',
           skills: [],
           params: {
-            requireQuiz: false,
+            quizRequiredForCompletion: false,
             languages: ['en', 'uk'] as const,
             sections: { allowNavigation: true, allowSkipping: true, showIndexes: false },
           },
@@ -216,7 +216,7 @@ describe('Configurators', () => {
           type: 'lesson' as const,
           skills: [],
           params: {
-            requireQuiz: false,
+            quizRequiredForCompletion: false,
             languages: ['en', 'uk'] as const,
             sections: { allowNavigation: true, allowSkipping: true, showIndexes: true },
           },
@@ -364,7 +364,7 @@ describe('Configurators', () => {
               type: 'lesson',
               skills: [],
               params: {
-                requireQuiz: false,
+                quizRequiredForCompletion: false,
                 languages: ['en', 'uk'] as const,
                 sections: { allowNavigation: true, allowSkipping: true, showIndexes: false },
               },
@@ -375,14 +375,14 @@ describe('Configurators', () => {
         );
       });
 
-      test('requireQuiz demands an enabled Quiz when authored and after Section overrides', () => {
+      test('quizRequiredForCompletion demands an enabled Quiz when authored and after Section overrides', () => {
         const lessonInput = {
           id: id('07'),
           slug: 'quizRequiredLesson',
           type: 'lesson' as const,
           skills: [],
           params: {
-            requireQuiz: true,
+            quizRequiredForCompletion: true,
             languages: ['en', 'uk'] as const,
             sections: { allowNavigation: true, allowSkipping: false, showIndexes: true },
           },

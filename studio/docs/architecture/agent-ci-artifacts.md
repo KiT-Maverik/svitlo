@@ -25,6 +25,11 @@ Current folder contract:
   taxonomies/
     <textbook-name>/
       <language-key>.md
+  questions/
+    <textbook-name>/
+      <last-uuid-hex-digit>/
+        <lesson-uuid>/
+          <language-key>.md
   lessons/
     <textbook-name>/
       <last-uuid-hex-digit>/
@@ -34,7 +39,7 @@ Current folder contract:
 
 The `manifest.json` records the canonical **last non-artifact source commit**, exact requested scope, languages actually attempted, requested book path, successfully generated documents and failures. `generated` entries are limited to the explicitly requested family (`kind: taxonomy`, `kind: lesson`, `kind: assessment-method`, `kind: ui-kit-locale` or `kind: geography-home-copy`); `summary` counts the successful documents and discovered lessons. Repeated generation without source changes produces the same manifest (no changing timestamp). Taxonomy Markdown references actual Code Skills entities, localizes headings and frontend descriptions, and retains canonical English methodological descriptions. Lesson Markdown is one localized, read-only document per Lesson UUID and language: ordered Sections and ContentBlocks (including Quiz Section parameters), the complete Question Bank and Flashcard Bank, media descriptions/alt/captions/fallbacks, and source links pinned to the checked-out commit. Binary media and interactive Scene behavior are not embedded; Quiz selections reference the Question Bank without duplicating its content. Generated files are **not** writeback sources.
 
-## Progressive locale previews
+### Question-bank references\n\nThe `questions` request generates read-only `.agent-ci-artifacts/questions/<book>/<bucket>/<lesson-uuid>/<language>.md` from canonical `questions/index.ts` and the six (or other declared) typed Question modules. Each Question's UUID, assessment method, source link, ordered prompt, optional hint, explanation, correct option, distractors and incorrect answers appear as **English versus selected language**. The generator statically reads TypeScript declarations and rejects missing/unsupported Question types, dynamic authoring expressions, mismatched registry entries and unsafe paths. `manifest.generated[].kind = question`, with `questions`, `strings`, `missing`, `reviewReady`; the trusted publisher validates lesson/bucket/path and sourceCommit like other families. `missing=0` proves nonempty coverage, not translation accuracy.\n\n## Progressive locale previews
 
 The on-demand reference pipeline reads the language roster from the checked-out Engine source, **not** a hardcoded GitHub Actions language list. In PR-scoped Markdown, missing localized text is written as the literal technical marker `%%MISSING%%`. This is permitted **only for generated draft references**: never write this marker to typed authored content, production JSON, or user-visible UI. Strict taxonomy publication/typechecks still reject missing localizations.
 

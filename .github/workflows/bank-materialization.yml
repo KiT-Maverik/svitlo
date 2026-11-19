@@ -1,7 +1,7 @@
 name: Materialize reviewed Questions or Flashcards from PR command
 
 # issue_comment workflows are loaded from the repository default branch.
-# A comment works only after this workflow is merged into main.
+# A command is available only after this workflow is deployed to develop.
 on:
   issue_comment:
     types: [created]
@@ -83,14 +83,14 @@ jobs:
       - name: Install and compile only trusted Engine code
         working-directory: trusted
         run: |
-          npm ci --ignore-scripts --no-audit --no-fund
-          npm run package:build --workspace @svitlo/engine
+          node scripts/ci/quietRun/quiet-run.mjs -- npm ci --ignore-scripts --no-audit --no-fund
+          node scripts/ci/quietRun/quiet-run.mjs -- npm run package:build --workspace @svitlo/engine
       - name: Generate and verify the exact allowed bank source tree
         env:
           BANK_META_B64: ${{ needs.resolve.outputs.meta }}
           BANK_CANDIDATE_ROOT: candidate
           BANK_REPORT: ${{ runner.temp }}/bank-materialization/report.json
-        run: node trusted/scripts/ci/bankMaterialization/bank-materialization.mjs analyze
+        run: node trusted/scripts/ci/quietRun/quiet-run.mjs -- node trusted/scripts/ci/bankMaterialization/bank-materialization.mjs analyze
       - name: Upload immutable generated-source evidence
         uses: actions/upload-artifact@v4
         with:
@@ -135,4 +135,4 @@ jobs:
           BANK_META_B64: ${{ needs.resolve.outputs.meta }}
           BANK_CANDIDATE_ROOT: candidate
           BANK_REPORT: report/report.json
-        run: node trusted/scripts/ci/bankMaterialization/bank-materialization.mjs publish
+        run: node trusted/scripts/ci/quietRun/quiet-run.mjs -- node trusted/scripts/ci/bankMaterialization/bank-materialization.mjs publish

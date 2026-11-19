@@ -24,7 +24,7 @@ function resources() {
       locale: { title: 'Shared title' },
       params: {
         languages: ['en', 'uk'],
-        requireQuiz: false,
+        quizRequiredForCompletion: false,
         sections: { allowNavigation: true, allowSkipping: true, showIndexes: true },
       },
       section: [section],

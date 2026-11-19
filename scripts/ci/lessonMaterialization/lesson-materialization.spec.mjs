@@ -14,7 +14,7 @@ import {
   trackedFiles,
   changedFiles,
   chooseMode,
-  verifyNoop,
+  verifyMaterializedForFinalize,
 } from './lesson-materialization.mjs';
 import { preflightLesson, finalizeLesson } from '../../../shared/engine/scripts/finalizeLesson/finalizeLesson.mjs';
 import { repoRoot } from '../../../shared/engine/scripts/lessonBuilder/lessonBuilder.mjs';
@@ -176,12 +176,12 @@ test('allowlist preserves Quiz/Flashcards Section modules but forbids bank roots
     'sections/intro/text/uk.md',
     'sections/intro/codeSample/code.py',
     'sections/intro/checkpoint/itemA/question/index.ts',
+    'questions.yaml',
+    'flashcards.yaml',
   ])
     assert.equal(validateArtifactPath(base + relative, identity), true, relative);
   for (const relative of [
     'lesson.yaml',
-    'questions.yaml',
-    'flashcards.yaml',
     'questions/index.ts',
     'flashcards/index.ts',
     'assets/image.png',
@@ -266,7 +266,6 @@ test('manifest rejects stale SHA, unauthorized path, overwrite, duplicate, tampe
       sourceBlob: meta.sourceBlob,
       identity,
       mode: 'strict',
-      noop: false,
       entries,
     };
     assert.equal(verifyManifest(manifest, meta, root), 5);
@@ -290,9 +289,11 @@ test('manifest rejects stale SHA, unauthorized path, overwrite, duplicate, tampe
     assert.throws(() =>
       verifyManifest({ ...manifest, entries: [{ ...entries[0], action: 'delete' }, ...entries.slice(1)] }, meta, root),
     );
-    assert.throws(() => verifyManifest({ ...manifest, noop: true }, meta, root));
+    const finalizeMeta = { ...meta, operation: 'finalize' };
+    const finalize = { ...manifest, operation: 'finalize', entries: [{ path: yaml, action: 'delete' }] };
+    assert.equal(verifyManifest(finalize, finalizeMeta, root), 1);
     assert.throws(() =>
-      verifyManifest({ ...manifest, operation: 'finalize' }, { ...meta, operation: 'finalize' }, root),
+      verifyManifest({ ...finalize, entries: [{ path: base + 'index.ts', action: 'delete' }] }, finalizeMeta, root),
     );
     fs.writeFileSync(path.join(root, entries[0].path), Buffer.from(entries[0].data, 'base64'));
     git(root, ['add', '--', entries[0].path]);
@@ -311,13 +312,17 @@ test('special Git symlinks/submodules and modified files are not materializable 
     assert.equal(changedFiles(root).has(pkg + '/unexpected.txt'), true);
   }));
 
-test('existing edited Lesson source cannot be silently treated as a no-op', () =>
+test('finalize rejects uncommitted or edited generated source instead of deleting YAML', () =>
   gitFixture(({ root, source }) => {
     const folder = path.dirname(source);
-    for (const file of ['index.ts', 'constants.ts', 'review.ts', 'methodology.md'])
-      fs.writeFileSync(path.join(folder, file), '// user modified\n');
+    for (const filename of ['index.ts', 'constants.ts', 'review.ts', 'methodology.md', 'production-handoff.json'])
+      fs.writeFileSync(path.join(folder, filename), '// uncommitted\n');
     const meta = { number: 710, identity, sourceBlob: gitBlob(fs.readFileSync(source)) };
-    assert.throws(() => verifyNoop(root, meta, source, { handoff: '{}' }), /divergent/);
+    assert.throws(
+      () => verifyMaterializedForFinalize(root, meta, source, { handoff: '{}' }),
+      /committed materialized Lesson file/,
+    );
+    assert.equal(fs.existsSync(source), true);
   }));
 
 test('source-preserving strict transfer keeps YAML and never creates independent bank directories', () => {
@@ -335,7 +340,7 @@ test('source-preserving strict transfer keeps YAML and never creates independent
         skills: [],
         params: {
           languages: ['en'],
-          requireQuiz: false,
+          quizRequiredForCompletion: false,
           sections: { allowNavigation: true, allowSkipping: true, showIndexes: true },
         },
         locale: { title: { en: 'Example' } },
@@ -370,11 +375,9 @@ test('source-preserving strict transfer keeps YAML and never creates independent
       },
       production: {
         documentLanguage: 'en',
-        methodology:
-          '# Reviewed methodology\n\n' +
-          '~~~yaml lesson-assessment-sections\nassessmentSections:\n' +
-          '  quiz:\n    decision: notRequired\n    rationale: No Quiz in this Lesson.\n    intents: {}\n' +
-          '  flashcards:\n    decision: notRequired\n    rationale: No Flashcards Section.\n    intents: {}\n~~~\n',
+        methodology: '# Reviewed methodology\n\nFull learning goals and teaching intent.',
+        quizRequired: false,
+        flashcardsRequired: false,
       },
     };
     fs.writeFileSync(source, YAML.stringify(doc));
@@ -385,7 +388,6 @@ test('source-preserving strict transfer keeps YAML and never creates independent
       retainSource: true,
       validate: (location, repo) =>
         preflightLesson(location, repo, {
-          requireAssessmentPlan: true,
           schemaRepo: repoRoot,
         }),
     });

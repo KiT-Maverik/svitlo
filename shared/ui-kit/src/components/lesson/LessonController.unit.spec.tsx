@@ -51,7 +51,7 @@ function fixture(required: boolean, allowNavigation = true): Lesson_Props {
     type: 'lesson',
     skills: [],
     params: {
-      requireQuiz: false,
+      quizRequiredForCompletion: false,
       languages: ['en', 'uk'],
       sections: { allowNavigation, allowSkipping: true, showIndexes: true },
     },

@@ -16,6 +16,7 @@ test('main-ready PRs and manual dispatch check every textbook, including nested 
   assert.equal(shouldBuildAllContent('workflow_dispatch', '', false), true);
   assert.equal(shouldBuildAllContent('pull_request', 'main', true), false);
   assert.equal(shouldBuildAllContent('pull_request', 'integration/skills', false), false);
+  assert.equal(shouldBuildAllContent('pull_request', 'develop', false), false);
   assert.equal(shouldBuildAllContent('push', 'main', false), false);
   assert.deepEqual(planContentBuilds({ changed: [], workspaces, all: true }), {
     include: workspaces.map(({ path }) => ({ path, kind: 'content' })),

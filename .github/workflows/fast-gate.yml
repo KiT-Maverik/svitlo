@@ -2,21 +2,7 @@ name: FastGate
 
 on:
   pull_request:
-    branches: [main]
-    paths:
-      - '**/*.ts'
-      - '**/*.tsx'
-      # KaTeX styles can change without a JS/TS source change.
-      - 'shared/ui-kit/src/components/widgets/ContentBlockRenderer/blocks/Markdown/**'
-      - '**/*.mts'
-      - '**/*.js'
-      - '**/*.mjs'
-      - '**/*.cjs'
-      - '**/*.json'
-      - 'scripts/**'
-      - '.agent-ci-artifacts/**'
-      - '.github/workflows/**'
-      - '.github/labeler.yml'
+    branches: [develop]
   workflow_dispatch:
 
 permissions:
@@ -36,35 +22,62 @@ jobs:
         with:
           fetch-depth: 0
           persist-credentials: false
-      - name: Refuse temporary agent artifacts in a main-bound PR
+      - name: Detect whether this PR needs scoped checks
+        id: scope
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ "$GITHUB_EVENT_NAME" != pull_request ]]; then
+            echo "run=true" >> "$GITHUB_OUTPUT"
+          else
+            changed_files=$(git diff --no-renames --name-only "$BASE_SHA...$HEAD_SHA")
+            if grep -Eq '(^scripts/|^\.github/|^\.agent-ci-artifacts/|\.(ts|tsx|mts|js|mjs|cjs|json)$|^shared/ui-kit/src/components/widgets/ContentBlockRenderer/blocks/Markdown/)' <<< "$changed_files"; then
+              echo "run=true" >> "$GITHUB_OUTPUT"
+            else
+              echo "run=false" >> "$GITHUB_OUTPUT"
+              echo "No changed executable source or CI config; FastGate passed without npm install."
+            fi
+          fi
+
+      - name: Refuse temporary agent artifacts in an integration-bound PR
         run: |
           if [ -d .agent-ci-artifacts ]; then
-            echo '::error::Remove .agent-ci-artifacts/ before merging into main.'
+            echo '::error::Remove .agent-ci-artifacts/ before merging into develop.'
             exit 1
           fi
       - name: Validate GitHub label catalogue, matchers and historical backfill
+        if: steps.scope.outputs.run == 'true'
         run: |
           node .github/scripts/verify-labels.cjs
-          node --test .github/scripts/backfill-labels.test.cjs
+          node scripts/ci/quietRun/quiet-run.mjs -- node --test .github/scripts/backfill-labels.test.cjs
       - uses: actions/setup-node@v4
+        if: steps.scope.outputs.run == 'true'
         with:
           node-version: '24'
           cache: npm
-      - run: npm ci
+      - run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --no-audit --no-fund
+        if: steps.scope.outputs.run == 'true'
       - name: Enforce explicit Engine build/runtime entrypoints
+        if: steps.scope.outputs.run == 'true'
         run: |
-          node --test scripts/migrateEngineImports/migrate-engine-imports.spec.mjs
+          node scripts/ci/quietRun/quiet-run.mjs -- node --test scripts/migrateEngineImports/migrate-engine-imports.spec.mjs
           node scripts/migrateEngineImports/migrate-engine-imports.mjs --check
-          node --test scripts/migrateEngineEntrypoints/migrate-engine-entrypoints.spec.mjs
+          node scripts/ci/quietRun/quiet-run.mjs -- node --test scripts/migrateEngineEntrypoints/migrate-engine-entrypoints.spec.mjs
           node scripts/migrateEngineEntrypoints/migrate-engine-entrypoints.mjs --check
-          node --test scripts/checkEngineRuntimeGraph/check-engine-runtime-graph.spec.mjs
+          node scripts/ci/quietRun/quiet-run.mjs -- node --test scripts/checkEngineRuntimeGraph/check-engine-runtime-graph.spec.mjs
           node scripts/checkEngineRuntimeGraph/check-engine-runtime-graph.mjs
+      - name: Test quiet CI runner output and error handling
+        if: steps.scope.outputs.run == 'true'
+        run: node scripts/ci/quietRun/quiet-run.mjs -- node --test scripts/ci/quietRun/quiet-run.spec.mjs
       - name: Scoped quality checks
-        if: github.event_name == 'pull_request'
+        if: github.event_name == 'pull_request' && steps.scope.outputs.run == 'true'
         env:
           BASE_SHA: ${{ github.event.pull_request.base.sha }}
           HEAD_SHA: ${{ github.event.pull_request.head.sha }}
         run: node scripts/runFastGate/run-fast-gate.mjs "$BASE_SHA" "$HEAD_SHA"
       - name: Manually requested FastGate
-        if: github.event_name == 'workflow_dispatch'
+        if: github.event_name == 'workflow_dispatch' && steps.scope.outputs.run == 'true'
         run: node scripts/runFastGate/run-fast-gate.mjs --all
