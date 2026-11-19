@@ -47,3 +47,7 @@ percentage alone does not establish that the assertions detect realistic bugs.
 ## Lesson and Course generation
 
 The build-time CLI entrypoints are under `scripts/generateLessonProps/` and `scripts/generateCourseProps/`, each with its own tests. Lesson and Course publication modules live under `generators/{lessons,courses}/` with their unit tests. The shared textbook build invokes the named Engine CLIs without root-level generator wrappers. Build-time APIs belong to `@svitlo/engine/build`; `@svitlo/engine/runtime` remains free of Node filesystem and authored configurators.
+
+## EducationStandard authoring
+
+`defineEducationStandard` is a standalone Build-only, single-method configurator. The official name and English methodological explanation are invariant; the short frontend description must cover every canonical Engine language. `standard.build.props({ languages: ['uk'] })` publishes invariant `base` plus only the requested Props-shaped `locale.uk` fragment. Engine Runtime exports its schemas/types, not its factory. See the [EducationStandard entity contract](../../studio/docs/entities/education-standard.md). No authored production standards, default-locale package, Course alignment APIs or runtime registry are installed by this contract.
