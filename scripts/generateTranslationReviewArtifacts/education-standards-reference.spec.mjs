@@ -20,8 +20,8 @@ const SOURCE_SHA = 'a'.repeat(40);
 
 test('on-demand standard references do not build a nonexistent dedicated package', () => {
   const workflow = fs.readFileSync(new URL('../../.github/workflows/translation-review.yml', import.meta.url), 'utf8');
-  assert.doesNotMatch(workflow, /@svitlo\\/education-standards/);
-  assert.match(workflow, /shared\\/engine|@svitlo\\/engine/);
+  assert.ok(!workflow.includes('@svitlo/education-standards'));
+  assert.ok(workflow.includes('npm run package:build --workspace @svitlo/engine'));
 });
 
 
