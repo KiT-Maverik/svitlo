@@ -95,6 +95,7 @@ test('FastGate always emits a required status and scopes expensive checks, inclu
     'utf8',
   );
   assert.match(workflow, /name: FastGate \/ verify/);
+  assert.match(workflow, /git diff --no-renames --name-only/, 'renames must not hide deleted TS sources');
   assert.doesNotMatch(workflow, /\n    paths:/, 'required checks cannot use GitHub PR paths filters');
   assert.match(workflow, /ContentBlockRenderer\/blocks\/Markdown\//);
   assert.match(workflow, /steps\.scope\.outputs\.run == 'true'/);

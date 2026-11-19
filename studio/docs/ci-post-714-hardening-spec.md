@@ -124,3 +124,19 @@ The parent-branch requirement is an unapproved proposal.
 - No representative authorized comment materialization commands were executed
   by this PR. Source trust/default branch and pinned SHA are reviewed in YAML,
   not falsely reported as live end-to-end verification.
+
+## Live production baseline observation — PR #716
+
+The actual Ready `develop → main` [Production Quality run
+44596822108](https://github.com/KiT-Maverik/svitlo/actions/runs/44596822108)
+**failed** on 2026-11-19. The first material defect was the repository's
+UI Kit TypeScript test fixtures still using `requireQuiz` instead of
+`quizRequiredForCompletion`; Web fixture type errors were also reported.
+The old `if: !cancelled()` policy then continued into expensive app builds,
+publication checks and Playwright despite an earlier definitive failure,
+adding secondary errors such as missing generated package artifacts. This is
+evidence for the fail-fast change, **not** a production-promotion pass.
+The independently required [all-textbook Content Build
+44596822428](https://github.com/KiT-Maverik/svitlo/actions/runs/44596822428)
+completed successfully. Fixing unrelated Lesson fixture contract failures
+belongs to the owning packages, not this CI hardening change.
