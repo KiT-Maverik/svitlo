@@ -230,7 +230,11 @@ export function runOne(source, mode = 'check', repo = repoRoot) {
     const destination = path.join(outputFolder, relative);
     noSymlinks(destination);
     if (mode === 'generate' && fs.existsSync(destination)) {
-      fail(relative, '
+      fail(relative, '$', 'existing Lesson source or bank YAML; refusing to overwrite or mix drafts');
+    }
+  }
+  checkProductionFiles(artifacts, mode);
+
   if (mode === 'generate') fs.mkdirSync(outputFolder, { recursive: true });
   let changed = 0;
   for (const [relative, body] of modules) {
