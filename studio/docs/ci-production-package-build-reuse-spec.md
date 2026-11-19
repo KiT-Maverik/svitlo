@@ -1,11 +1,11 @@
 # Reuse package builds during production validation
 
-**Status:** implementation in Draft PR #728; performance/production acceptance pending.
+**Status:** job-local package reuse implemented; production performance acceptance pending after parallel orchestration.
 **Source of truth:** `studio/rules/ci-workflow.md`, `studio/rules/package-scripts.md`, actual scripts and GitHub Actions.
 
-## Problem
+## Historical problem
 
-`.github/workflows/questions.yml` sequentially invokes root `code:check:types`, `test`, `package:build`, `app:build`. `scripts/runWorkspaceScript/run-workspace-script.mjs` uses a new per-operation `built` set, so the same dependency builds may repeat in one runner; workspace `pretest` and app lifecycle hooks can introduce more builds. Avoid incorrectly attributing all repeated work to the root aggregator without measuring each source.
+Before parallelization, `.github/workflows/questions.yml` sequentially invoked root `code:check:types`, `test`, `package:build`, `app:build`. `scripts/runWorkspaceScript/run-workspace-script.mjs` uses a new per-operation `built` set, so the same dependency builds may repeat in one runner; workspace `pretest` and app lifecycle hooks can introduce more builds. Avoid incorrectly attributing all repeated work to the root aggregator without measuring each source.
 
 ## Implementation
 
@@ -30,8 +30,10 @@
   and Web/Mobile/Desktop textbook preparation use the helper. Without the
   production-only environment variable they still invoke normal
   `npm run package:build --workspace …`.
-- Full Production Quality commands, Content Build's matrix, the stable
-  `Production Quality / verify` context and #721 Draft policy are unchanged.
+- The full Production Quality coverage, Content Build matrix, stable
+  `Production Quality / verify` context and #721 Draft policy are preserved.
+  Production work now runs in independent jobs with strictly job-local build reuse;
+  see `scripts/ci/productionQuality/README.md`.
 - Added fixture tests for dependency ordering, clean reuse, missing/modified
   artifacts, changed sources, compiler failures, invalid state, symlinks
   and missing outputs. The standard root workspace integrity check includes
