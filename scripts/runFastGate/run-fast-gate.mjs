@@ -16,7 +16,9 @@ function json(file) {
 const quietRunner = path.join(repoRoot, 'scripts/ci/quietRun/quiet-run.mjs');
 function exec(command, args, cwd = repoRoot) {
   const result = spawnSync(process.execPath, [quietRunner, '--', command, ...args], {
-    cwd, stdio: 'inherit', shell: false,
+    cwd,
+    stdio: 'inherit',
+    shell: false,
   });
   assert(
     !result.error && result.status === 0,
@@ -26,25 +28,34 @@ function exec(command, args, cwd = repoRoot) {
 function execAsync(command, args) {
   return new Promise((resolve, reject) => {
     const child = spawn(process.execPath, [quietRunner, '--', command, ...args], {
-      cwd: repoRoot, stdio: 'inherit', shell: false,
+      cwd: repoRoot,
+      stdio: 'inherit',
+      shell: false,
     });
     child.once('error', reject);
-    child.once('close', code => code === 0 ? resolve() : reject(new Error(
-      'FastGate command failed: ' + command + ' ' + args.join(' ') + ' (exit ' + code + ')',
-    )));
+    child.once('close', code =>
+      code === 0
+        ? resolve()
+        : reject(new Error('FastGate command failed: ' + command + ' ' + args.join(' ') + ' (exit ' + code + ')')),
+    );
   });
 }
 async function runParallel(targets, action) {
   const configured = Number(process.env.SVITLO_FASTGATE_PARALLELISM || 2);
-  assert(Number.isInteger(configured) && configured >= 1 && configured <= 8,
-    'SVITLO_FASTGATE_PARALLELISM must be an integer from 1 to 8');
+  assert(
+    Number.isInteger(configured) && configured >= 1 && configured <= 8,
+    'SVITLO_FASTGATE_PARALLELISM must be an integer from 1 to 8',
+  );
   let index = 0;
   const failures = [];
   async function worker() {
     while (index < targets.length) {
       const name = targets[index++];
-      try { await action(name); }
-      catch (error) { failures.push(name + ': ' + error.message); }
+      try {
+        await action(name);
+      } catch (error) {
+        failures.push(name + ': ' + error.message);
+      }
     }
   }
   await Promise.all(Array.from({ length: Math.min(configured, targets.length) }, () => worker()));
@@ -312,18 +323,21 @@ async function runGate(changed) {
   }
   // Independent workspace typechecks and tests run concurrently after dependencies
   // exist. Checks within each workspace preserve their original order.
-  await runParallel(targets.filter(name => all.get(name)?.scripts?.['code:check:types']), async name => {
-    const pkg = all.get(name);
-    await execAsync('npm', ['run', 'code:check:types', '--workspace', name]);
-    if (pkg.path.startsWith('shared/') && pkg.scripts?.test) {
-      await execAsync('npm', ['run', 'test', '--workspace', name]);
-    }
-    if (name === '@svitlo/web' && requiresWebBuild(changed)) {
-      await execAsync('npm', ['run', 'app:build', '--workspace', name]);
-      await execAsync('npm', ['run', 'test:unit:selection', '--workspace', name]);
-      await execAsync('npm', ['run', 'test:components', '--workspace', name]);
-    }
-  });
+  await runParallel(
+    targets.filter(name => all.get(name)?.scripts?.['code:check:types']),
+    async name => {
+      const pkg = all.get(name);
+      await execAsync('npm', ['run', 'code:check:types', '--workspace', name]);
+      if (pkg.path.startsWith('shared/') && pkg.scripts?.test) {
+        await execAsync('npm', ['run', 'test', '--workspace', name]);
+      }
+      if (name === '@svitlo/web' && requiresWebBuild(changed)) {
+        await execAsync('npm', ['run', 'app:build', '--workspace', name]);
+        await execAsync('npm', ['run', 'test:unit:selection', '--workspace', name]);
+        await execAsync('npm', ['run', 'test:components', '--workspace', name]);
+      }
+    },
+  );
   // Verify the on-demand coverage workflow itself when its implementation changes.
   // Ordinary Engine PRs do not pay for a second instrumented test run.
   if (

@@ -258,13 +258,21 @@ export function main(args, root = path.resolve(fileURLToPath(new URL('../../..',
     (mode === 'full' && args.length !== 1) ||
     ((mode === 'diff' || mode === 'report-diff' || mode === 'changed') && args.length !== 3)
   ) {
-    throw new Error('Usage: check-blocker-todos.mjs full | diff <base-sha> <head-sha> | changed <base-sha> <head-sha> | report-diff <base-sha> <head-sha>');
+    throw new Error(
+      'Usage: check-blocker-todos.mjs full | diff <base-sha> <head-sha> | changed <base-sha> <head-sha> | report-diff <base-sha> <head-sha>',
+    );
   }
-  const findings = mode === 'full' ? scanFull(root) : mode === 'changed' ? scanChanged(root, base, head) : scanDiff(root, base, head);
+  const findings =
+    mode === 'full' ? scanFull(root) : mode === 'changed' ? scanChanged(root, base, head) : scanDiff(root, base, head);
   const informational = mode === 'report-diff';
   for (const item of findings) {
     console.error(
-      (informational ? '::warning file=' : '::error file=') + escapeAnnotation(item.file) + ',line=' + item.line + '::' + escapeAnnotation(item.text),
+      (informational ? '::warning file=' : '::error file=') +
+        escapeAnnotation(item.file) +
+        ',line=' +
+        item.line +
+        '::' +
+        escapeAnnotation(item.text),
     );
   }
   if (informational) {

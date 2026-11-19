@@ -10,9 +10,11 @@ import path from 'node:path';
 
 export function failureExcerpt(output, limit = 12000) {
   const lines = output.split(/\r?\n/);
-  const errors = lines.filter(line =>
-    /(?:^|\s)(?:error TS\d+|Error:|FAIL|not ok|fatal:)|::error|\[error\]/i.test(line)
-  ).slice(0, 25).join('\n').slice(0, 4000);
+  const errors = lines
+    .filter(line => /(?:^|\s)(?:error TS\d+|Error:|FAIL|not ok|fatal:)|::error|\[error\]/i.test(line))
+    .slice(0, 25)
+    .join('\n')
+    .slice(0, 4000);
   const tail = lines.slice(-65).join('\n').slice(-8000);
   return (errors ? errors + '\n...\n' + tail : tail).slice(0, limit);
 }
@@ -26,13 +28,18 @@ export function run(argv = process.argv.slice(2)) {
   // can otherwise leak into normal job summaries even when output is quiet.
   const executable = path.basename(command);
   const workspaceIndex = args.indexOf('--workspace');
-  const safeWorkspace = workspaceIndex >= 0 && /^[a-z0-9@/_-]+$/i.test(args[workspaceIndex + 1] || '')
-    ? ' --workspace ' + args[workspaceIndex + 1] : '';
-  const safeOperation = executable === 'npm' && args[0] === 'run' && /^[a-z0-9:_-]+$/i.test(args[1] || '')
-    ? ' run ' + args[1] + safeWorkspace
-    : executable === 'npm' && args[0] === 'ci' ? ' ci'
-    : executable === 'node' && args[0] === '--test' ? ' --test'
-    : '';
+  const safeWorkspace =
+    workspaceIndex >= 0 && /^[a-z0-9@/_-]+$/i.test(args[workspaceIndex + 1] || '')
+      ? ' --workspace ' + args[workspaceIndex + 1]
+      : '';
+  const safeOperation =
+    executable === 'npm' && args[0] === 'run' && /^[a-z0-9:_-]+$/i.test(args[1] || '')
+      ? ' run ' + args[1] + safeWorkspace
+      : executable === 'npm' && args[0] === 'ci'
+        ? ' ci'
+        : executable === 'node' && args[0] === '--test'
+          ? ' --test'
+          : '';
   const title = (process.env.SVITLO_CI_LABEL || executable + safeOperation).slice(0, 150);
   const verbose = process.env.SVITLO_CI_VERBOSE === '1';
   const started = Date.now();
@@ -62,7 +69,9 @@ export function run(argv = process.argv.slice(2)) {
     child.stdout.on('data', record);
     child.stderr.on('data', record);
   }
-  child.once('error', error => { failure = error; });
+  child.once('error', error => {
+    failure = error;
+  });
   child.once('close', (code, signal) => {
     const seconds = ((Date.now() - started) / 1000).toFixed(1);
     const passed = !failure && code === 0;
@@ -75,17 +84,27 @@ export function run(argv = process.argv.slice(2)) {
       }
     } else {
       console.error(message + ' (exit ' + String(code ?? signal ?? failure?.message) + ')');
-      if (!verbose) console.error(failureExcerpt(diagnostics.join('\n') + '\n' + output) || String(failure?.message || 'No child diagnostic output'));
+      if (!verbose)
+        console.error(
+          failureExcerpt(diagnostics.join('\n') + '\n' + output) ||
+            String(failure?.message || 'No child diagnostic output'),
+        );
     }
     if (process.env.GITHUB_STEP_SUMMARY) {
-      appendFileSync(process.env.GITHUB_STEP_SUMMARY,
-        '- ' + status + ' — `' + title.replaceAll('`', '') + '` (' + seconds + 's)\n');
+      appendFileSync(
+        process.env.GITHUB_STEP_SUMMARY,
+        '- ' + status + ' — `' + title.replaceAll('`', '') + '` (' + seconds + 's)\n',
+      );
     }
-    process.exitCode = passed ? 0 : (Number.isInteger(code) && code > 0 ? code : 1);
+    process.exitCode = passed ? 0 : Number.isInteger(code) && code > 0 ? code : 1;
   });
 }
 
 if (process.argv[1]?.endsWith('/quiet-run.mjs')) {
-  try { run(); }
-  catch (error) { console.error(error.message); process.exitCode = 1; }
+  try {
+    run();
+  } catch (error) {
+    console.error(error.message);
+    process.exitCode = 1;
+  }
 }

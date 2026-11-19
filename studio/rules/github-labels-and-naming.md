@@ -40,13 +40,13 @@
 
 Use the following `work: *` labels to classify the **educational artifact being created or edited**, independently of the PR's topology (`pr: integration` vs `pr: agent-subtask`), repository scope (`content: *`) and other kinds of work (`work: content`, `work: review`, etc.). Work labels may be used on both Issues and PRs, and do not imply a review stage, approval or readiness.
 
-| Label | Apply when the work delivers |
-| --- | --- |
-| `work: course` | An authored Course definition, editorial plan or Course-specific educational content |
-| `work: lesson` | An authored Lesson definition, methodology or canonical Lesson content |
-| `work: questions` | Authored Question Banks and assessment questions for Lessons |
-| `work: flashcards` | Authored Flashcard Banks and learning flashcards for Lessons |
-| `work: media` | Static Lesson media assets, including illustrations, audio and video |
+| Label              | Apply when the work delivers                                                         |
+| ------------------ | ------------------------------------------------------------------------------------ |
+| `work: course`     | An authored Course definition, editorial plan or Course-specific educational content |
+| `work: lesson`     | An authored Lesson definition, methodology or canonical Lesson content               |
+| `work: questions`  | Authored Question Banks and assessment questions for Lessons                         |
+| `work: flashcards` | Authored Flashcard Banks and learning flashcards for Lessons                         |
+| `work: media`      | Static Lesson media assets, including illustrations, audio and video                 |
 
 Apply the applicable work label to new production Issues/PRs and to existing ones when their actual deliverable is verified. Multiple work labels are permitted when work genuinely spans categories: for example, `work: content` + `work: lesson` can describe both the broad activity and the specific artifact. Do **not** apply a Course's `work: course` to its Lesson or Question/Flashcard child PRs simply because of ancestry; classify each work item by its own deliverable. Do **not** label generic tooling, CI or workflow changes with these educational deliverable labels merely because they enable educational authoring.
 

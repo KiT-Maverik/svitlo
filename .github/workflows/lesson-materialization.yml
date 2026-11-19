@@ -137,4 +137,3 @@ jobs:
           LESSON_HEAD_ROOT: candidate
           LESSON_REPORT: report/report.json
         run: node trusted/scripts/ci/quietRun/quiet-run.mjs -- node trusted/scripts/ci/lessonMaterialization/lesson-materialization.mjs publish
-

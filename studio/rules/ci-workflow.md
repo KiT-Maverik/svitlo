@@ -12,13 +12,13 @@
 
 ## Validation tiers
 
-| Event | Scope |
-| --- | --- |
-| Draft/Ready PR to `develop` | Changed/dependent workspace FastGate, focused tests, selected content build |
-| Child PR to a parent integration branch | Focused checks and new `TODO (BLOCKER):` authored-source diff validation |
-| Ready promotion PR to `main` | All textbook builds, complete package checks, E2E, full tracked-source blocker scan; no redundant FastGate |
-| Manual `workflow_dispatch` | Full diagnostic, coverage, content or publication suites |
-| Push to `main` | Avoid duplicating expensive full validation already required before merge; run deployment-specific checks when needed |
+| Event                                   | Scope                                                                                                                 |
+| --------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| Draft/Ready PR to `develop`             | Changed/dependent workspace FastGate, focused tests, selected content build                                           |
+| Child PR to a parent integration branch | Focused checks and new `TODO (BLOCKER):` authored-source diff validation                                              |
+| Ready promotion PR to `main`            | All textbook builds, complete package checks, E2E, full tracked-source blocker scan; no redundant FastGate            |
+| Manual `workflow_dispatch`              | Full diagnostic, coverage, content or publication suites                                                              |
+| Push to `main`                          | Avoid duplicating expensive full validation already required before merge; run deployment-specific checks when needed |
 
 FastGate builds prerequisite public exports once in dependency order, then runs independent workspace checks concurrently (default two; `SVITLO_FASTGATE_PARALLELISM=1..8`). Root `npm run code:check:types` checks all workspaces and is not the FastGate default. Content Build plans scope before npm install: `develop` selects impacted textbooks; Ready `main` PRs and manual dispatch build all. With zero selected textbooks, avoid `npm ci` but still return a stable required status. Do not run the full Engine suite again during an unrelated Biology build.
 

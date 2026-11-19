@@ -179,7 +179,10 @@ test('CLI rejects invalid modes and shorthand commit refs', () => {
 });
 
 test('the workflow checks authored draft Course/Lesson/Bank diffs and full main promotion', () => {
-  const wf = fs.readFileSync(path.join(path.resolve(fileURLToPath(new URL('../../..', import.meta.url))), '.github/workflows/blocker-todos.yml'), 'utf8');
+  const wf = fs.readFileSync(
+    path.join(path.resolve(fileURLToPath(new URL('../../..', import.meta.url))), '.github/workflows/blocker-todos.yml'),
+    'utf8',
+  );
   assert.match(wf, /grep -Eq.*data\/\(courses\|lessons\)/);
   assert.match(wf, /check-blocker-todos\.mjs report-diff/);
   assert.match(wf, /check-blocker-todos\.mjs changed/);

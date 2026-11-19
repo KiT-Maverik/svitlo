@@ -24,7 +24,6 @@ test('on-demand standard references do not build a nonexistent dedicated package
   assert.ok(workflow.includes('npm run package:build --workspace @svitlo/engine'));
 });
 
-
 function setup(records) {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-standards-review-'));
   const directory = path.join(root, 'shared/ui-kit/data/definitions/educationStandards/data/example');

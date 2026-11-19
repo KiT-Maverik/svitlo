@@ -5,9 +5,11 @@ import { fileURLToPath } from 'node:url';
 import { failureExcerpt } from './quiet-run.mjs';
 
 const script = fileURLToPath(new URL('./quiet-run.mjs', import.meta.url));
-const invoke = (source, extraEnv = {}) => spawnSync(process.execPath,
-  [script, '--', process.execPath, '-e', source],
-  { encoding: 'utf8', env: { ...process.env, ...extraEnv, GITHUB_STEP_SUMMARY: '' } });
+const invoke = (source, extraEnv = {}) =>
+  spawnSync(process.execPath, [script, '--', process.execPath, '-e', source], {
+    encoding: 'utf8',
+    env: { ...process.env, ...extraEnv, GITHUB_STEP_SUMMARY: '' },
+  });
 
 test('successful command emits summary without child stdout', () => {
   const result = invoke("console.log('many many lines')");
@@ -36,7 +38,9 @@ test('failure excerpt is bounded and contains earlier TypeScript errors', () => 
 });
 
 test('early failure diagnostic survives logs larger than the output tail buffer', () => {
-  const result = invoke("console.error('Error: early diagnostic'); console.log('noise\\n'.repeat(27000)); process.exit(1)");
+  const result = invoke(
+    "console.error('Error: early diagnostic'); console.log('noise\\n'.repeat(27000)); process.exit(1)",
+  );
   assert.equal(result.status, 1);
   assert.match(result.stderr, /Error: early diagnostic/);
   assert.ok(result.stderr.length < 14000);
