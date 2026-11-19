@@ -10,6 +10,7 @@ import {
   appendFileSync,
   closeSync,
   existsSync,
+  lstatSync,
   mkdirSync,
   openSync,
   readFileSync,
@@ -19,7 +20,7 @@ import {
   statSync,
   writeFileSync,
 } from 'node:fs';
-import { dirname, isAbsolute, join, relative, resolve } from 'node:path';
+import { dirname, isAbsolute, join, relative, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { discoverWorkspaces } from '../../runWorkspaceScript/run-workspace-script.mjs';
 
@@ -66,7 +67,7 @@ export function assertCompiledExports(root, workspacePath) {
   collect(manifest.bin);
   for (const exported of paths) {
     const absolute = resolve(directory, exported);
-    if (!absolute.startsWith(join(directory, 'dist') + '/')) {
+    if (!absolute.startsWith(join(directory, 'dist') + sep)) {
       throw new Error('Invalid public dist export: ' + workspacePath + '/' + exported);
     }
     if (!existsSync(absolute) || !statSync(absolute).isFile()) {
@@ -78,7 +79,7 @@ export function assertCompiledExports(root, workspacePath) {
 /** Complete content fingerprints detect deleted, truncated and modified artifacts. */
 export function snapshotDist(root, workspacePath) {
   const base = join(root, workspacePath, 'dist');
-  if (!existsSync(base) || !statSync(base).isDirectory()) {
+  if (!existsSync(base) || lstatSync(base).isSymbolicLink() || !statSync(base).isDirectory()) {
     throw new Error('Missing compiled dist for ' + workspacePath);
   }
   // Persist one digest instead of a potentially enormous content/locale file list.
