@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { describe, it } from 'node:test';
+import yaml from 'yaml';
 import { buildGapReport, collectCoverageTargets, isEngineCoverageTarget, parseLcov } from './report.mjs';
 import { engineTestPatterns } from './engineTestPatterns.mjs';
 
@@ -142,5 +143,37 @@ describe('Engine gap report', () => {
       () => buildGapReport({ targets: ['utils/parse.utils.ts'], lcov: 'TN:\n', engineRoot: '/tmp' }),
       /No targeted Engine source coverage/,
     );
+  });
+});
+
+
+describe('On-demand coverage GitHub workflow', () => {
+  it('commits gap artifacts to the PR branch without PR-result comments or write-token analysis', () => {
+    const file = path.resolve(import.meta.dirname, '../../../../.github/workflows/engine-coverage.yml');
+    const doc = yaml.parse(fs.readFileSync(file, 'utf8'));
+    assert.deepEqual(doc.on.issue_comment.types, ['created']);
+    assert.equal(doc.jobs.analyze.permissions.contents, 'read');
+    assert.equal(doc.jobs.publish.permissions.contents, 'write');
+    assert.equal(doc.jobs.publish.permissions.issues, undefined);
+    const analysis = JSON.stringify(doc.jobs.analyze);
+    assert.match(analysis, /persist-credentials/);
+    assert.match(analysis, /ignore-scripts/);
+    assert.doesNotMatch(analysis, /contents: write/);
+    const publisher = JSON.stringify(doc.jobs.publish);
+    assert.match(publisher, /\.agent-ci-artifacts\/engine-coverage/);
+    assert.match(publisher, /PR head changed since read-only coverage run/);
+    assert.match(publisher, /persist-credentials/);
+    assert.doesNotMatch(publisher, /issues\/.*comments/);
+    assert.doesNotMatch(publisher, /npm (?:ci|run)/);
+  });
+
+  it('keeps diagnostic artifacts when replacing generated reference documents', () => {
+    const file = path.resolve(import.meta.dirname, '../../../../.github/workflows/translation-review.yml');
+    const doc = yaml.parse(fs.readFileSync(file, 'utf8'));
+    const publish = JSON.stringify(doc.jobs.publish);
+    assert.match(publish, /! -name lesson-lookup ! -name engine-coverage/);
+    assert.doesNotMatch(publish, /rm -rf -- \.agent-ci-artifacts(?:\\n|")/);
+    assert.match(JSON.stringify(doc.jobs.generate), /Exclude other workflows' diagnostics/);
+    assert.equal(doc.jobs.publish.concurrency.group, doc.jobs.cleanup.concurrency.group);
   });
 });

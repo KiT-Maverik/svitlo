@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { disability_Schema, type Disability } from '../../schemas/disabilities.schemas';
 
 import { questionTypes, type Question_Type } from '../../configurators/questions/question.constants';
 import type { Question_Props } from '../../configurators/questions/question.types';
@@ -7,82 +8,87 @@ import { languageCode_Schema, type LanguageCode } from '../../schemas/languages.
 import { resolveEntityPath } from '../../utils/entityPath/resolveEntityPath.utils';
 
 /**
- * Data-only index for independent Question/Flashcard resources. The index is
- * build-time metadata and MUST NOT contain complete Question/Flashcard Props.
+ * Textbook-scoped, metadata-only index. A resource's authored Lesson remains
+ * provenance, not an addressing or eligibility constraint.
  */
 export const assessmentResourceEntry_Schema = z.strictObject({
-  lessonId: z.uuid(),
+  ownerLessonId: z.uuid(),
   kind: z.enum(['question', 'flashcard']),
   questionType: z.enum(questionTypes).optional(),
+  disabilities: z
+    .array(disability_Schema)
+    .refine(values => new Set(values).size === values.length, 'Duplicate Flashcard disability restriction')
+    .optional(),
   languages: z.array(languageCode_Schema).nonempty(),
-  /** Only the published locale fragments; invariant-only entries need no locale file. */
-  localeFiles: z.array(languageCode_Schema).optional(),
+  /** Actual published locale fragments; an invariant-only entry can have none. */
+  localeFiles: z.array(languageCode_Schema),
   contentHash: z.string().regex(/^[0-9a-f]{64}$/, 'Expected a SHA-256 content hash'),
 });
 export type AssessmentResourceEntry = z.infer<typeof assessmentResourceEntry_Schema>;
 
 export const assessmentResourceManifest_Schema = z.strictObject({
-  lessonId: z.uuid(),
   entries: z.record(z.uuid(), assessmentResourceEntry_Schema),
 });
 export type AssessmentResourceManifest = z.infer<typeof assessmentResourceManifest_Schema>;
 export type AssessmentResourceKind = AssessmentResourceEntry['kind'];
 
 export type AssessmentSelection = {
-  lessonId: string;
+  /** Context for actionable diagnostics, never an ownership restriction. */
+  lessonId?: string;
   sectionId?: string;
   kind: AssessmentResourceKind;
   ids: readonly string[];
-  language: LanguageCode;
+};
+
+export type AssessmentLanguageFallback = {
+  id: string;
+  requestedLanguage: LanguageCode;
+  resolvedLanguage: 'en';
+};
+export type AssessmentLoadResult<T> = {
+  items: readonly T[];
+  /** Explicit English fallback metadata; invariant content is not a fallback. */
+  fallbacks: readonly AssessmentLanguageFallback[];
 };
 
 /** A portable, host-injected loader: no Next.js paths, filesystem, or global fetch. */
 export interface AssessmentResourceLoader {
   loadQuestions(input: {
-    lessonId: string;
     language: LanguageCode;
     ids: readonly string[];
     signal?: AbortSignal;
-  }): Promise<readonly Question_Props[]>;
+  }): Promise<AssessmentLoadResult<Question_Props>>;
   loadFlashcards(input: {
-    lessonId: string;
     language: LanguageCode;
     ids: readonly string[];
     signal?: AbortSignal;
-  }): Promise<readonly Flashcard_Props[]>;
+    /** Voluntarily supplied access requirements. Never infer a diagnosis. */
+    accessNeeds?: readonly Disability[];
+  }): Promise<AssessmentLoadResult<Flashcard_Props>>;
 }
 
-/** The URL is a relative static publication path, not an application origin. */
-export function assessmentResourcePath(
-  lessonId: string,
-  kind: AssessmentResourceKind,
-  id: string,
-  language?: LanguageCode,
-): string {
-  const ownerPath = resolveEntityPath(lessonId);
-  const normalizedId = z.uuid().parse(id).toLowerCase();
+export const assessmentManifestPath = 'data/assessments/manifest.json';
+
+/** A relative static publication path using the same UUID bucket as Lessons. */
+export function assessmentResourcePath(kind: AssessmentResourceKind, id: string, language?: LanguageCode): string {
+  const resourcePath = resolveEntityPath(id);
   if (kind !== 'question' && kind !== 'flashcard') throw new Error('Unknown assessment resource kind');
   if (language !== undefined) languageCode_Schema.parse(language);
   const collection = kind === 'question' ? 'questions' : 'flashcards';
-  return 'data/lessons/' + ownerPath + '/' + collection + '/' + normalizedId + '/' + (language ?? 'base') + '.json';
+  return 'data/' + collection + '/' + resourcePath + '/' + (language ?? 'base') + '.json';
 }
 
-/**
- * Check every explicitly selected UUID against a published metadata index.
- * An unfinished draft may contain unresolved references; a complete publisher
- * calls this before emitting any selected resources or Lesson publication.
- */
+/** Validate every explicitly selected UUID, kind, and metadata before fetching. */
 export function validateAssessmentReferences(
   rawManifest: AssessmentResourceManifest,
   selection: AssessmentSelection,
 ): AssessmentResourceEntry[] {
   const manifest = assessmentResourceManifest_Schema.parse(rawManifest);
-  const lessonId = z.uuid().parse(selection.lessonId);
-  const context = selection.sectionId ? 'in Section ' + z.uuid().parse(selection.sectionId) : 'for Lesson ' + lessonId;
-  const language = languageCode_Schema.parse(selection.language);
-  if (manifest.lessonId !== lessonId) {
-    throw new Error('Assessment manifest belongs to a different Lesson: ' + lessonId);
-  }
+  const context = selection.sectionId
+    ? 'in Section ' + z.uuid().parse(selection.sectionId)
+    : selection.lessonId
+      ? 'for Lesson ' + z.uuid().parse(selection.lessonId)
+      : 'in Assessment selection';
   if (selection.kind !== 'question' && selection.kind !== 'flashcard') {
     throw new Error('Unknown assessment resource kind ' + context);
   }
@@ -94,11 +100,11 @@ export function validateAssessmentReferences(
     seen.add(id);
     const entry = manifest.entries[id];
     if (!entry) throw new Error('Missing assessment UUID ' + id + ' ' + context);
-    if (entry.lessonId !== lessonId) {
-      throw new Error('Assessment UUID ' + id + ' belongs to a different Lesson');
-    }
     if (entry.kind !== selection.kind) {
       throw new Error('Assessment UUID ' + id + ' has the wrong resource type ' + context);
+    }
+    if (entry.kind === 'question' && entry.disabilities !== undefined) {
+      throw new Error('Question UUID ' + id + ' cannot declare Flashcard disabilities');
     }
     if (entry.kind === 'question' && !entry.questionType) {
       throw new Error('Question UUID ' + id + ' is missing its Question type');
@@ -109,13 +115,31 @@ export function validateAssessmentReferences(
     if (entry.languages.length !== new Set(entry.languages).size) {
       throw new Error('Duplicate language for assessment UUID ' + id);
     }
-    if (entry.localeFiles?.some(code => !entry.languages.includes(code))) {
-      throw new Error('Unexpected locale fragment for assessment UUID ' + id);
-    }
-    if (!entry.languages.includes(language)) {
-      throw new Error('Assessment UUID ' + id + ' is unavailable in ' + language);
+    if (
+      entry.localeFiles.length !== new Set(entry.localeFiles).size ||
+      entry.localeFiles.some(code => !entry.languages.includes(code))
+    ) {
+      throw new Error('Unexpected or duplicated locale fragment for assessment UUID ' + id);
     }
     return entry;
+  });
+}
+
+/** Preserve explicit Section order while excluding incompatible retrieval modes. */
+export function selectAccessibleFlashcardIds(
+  entries: readonly AssessmentResourceEntry[],
+  ids: readonly string[],
+  accessNeeds: readonly Disability[],
+): string[] {
+  const needs = z.array(disability_Schema).parse([...accessNeeds]);
+  if (new Set(needs).size !== needs.length) throw new Error('Duplicate voluntarily selected access need');
+  if (entries.length !== ids.length) throw new Error('Flashcard selection metadata mismatch');
+  return ids.filter((id, index) => {
+    const entry = entries[index];
+    if (entry.kind !== 'flashcard') throw new Error('Expected Flashcard metadata for ' + id);
+    if (needs.length && entry.disabilities === undefined)
+      throw new Error('Missing accessibility metadata for Flashcard ' + id);
+    return !needs.some(need => entry.disabilities?.includes(need));
   });
 }
 

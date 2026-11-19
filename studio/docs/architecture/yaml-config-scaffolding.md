@@ -1,5 +1,9 @@
 # Unified YAML → TypeScript draft-scaffolder handoff
 
+> **New Lesson authoring:** [Create Lesson Flow](../../skills/lesson-workflow/create-lesson-flow.skill.md) is authoritative. Stage 1–5 progressively own one `lesson.yaml`, not a separate new `content.yaml` or “Approved” frontmatter. Stage 6 runs one complete YAML preflight and safe finalization, distinct from the create-only Lesson Builder. Historical authoring inputs below are for non-destructive legacy migration only.
+
+**Course Flow boundary:** new Course production follows [Create Course Flow](../../skills/course-workflow/create-course-flow.skill.md), which uses one reviewed temporary `course.yaml` and materializes TypeScript/Markdown directly, without a saved `config.yaml`. The Config-shaped Course scaffolder described below is a **separate existing technical/legacy tool**, not an extra step in new Course production.
+
 **Status:** New technical handoff contract built on the draft-only Engine scaffolders
 from [Issue #507](https://github.com/KiT-Maverik/svitlo/issues/507)
 and the creation-only / Build API update from PR #531. It does **not**

@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { test } from 'node:test';
-import { chooseChecks, requiresWebBuild } from './run-fast-gate.mjs';
+import { chooseChecks, requiresWebBuild, shouldBuildDependency } from './run-fast-gate.mjs';
 
 const packages = [
   { path: 'shared/engine', name: '@svitlo/engine' },
@@ -93,12 +93,26 @@ test('FastGate listens for Markdown-only CSS updates', () => {
   assert.ok(workflow.includes("'shared/ui-kit/src/components/widgets/ContentBlockRenderer/blocks/Markdown/**'"));
 });
 
-test('content builds have one dedicated workflow with scoped triggers', () => {
+test('content build always reports required status and scopes package builds internally', () => {
   const workflow = readFileSync(
     fileURLToPath(new URL('../../.github/workflows/content-build.yml', import.meta.url)),
     'utf8',
   );
   assert.match(workflow, /name: Content packages build/);
-  assert.match(workflow, /- 'content\/\*\*'/);
-  assert.doesNotMatch(workflow, /- 'shared\/\*\*'/);
+  assert.match(workflow, /on:\n  pull_request:/);
+  assert.doesNotMatch(workflow, /\n    paths:/, 'required status cannot use GitHub paths filters');
+  assert.match(workflow, /build-changed-content\.mjs/, 'content selection remains scoped in script');
+  assert.match(workflow, /verify-production-assets\.mjs/, 'Ready PRs must check missing assets');
+  assert.match(workflow, /!github\.event\.pull_request\.draft/, 'Drafts are allowed to be unfinished');
+});
+
+test('FastGate builds required content package exports for host typechecks only', () => {
+  const desktop = { path: 'apps/desktop', name: '@svitlo/desktop' };
+  const playground = { path: 'content/playground', scripts: { 'package:build': 'tsc' } };
+  const engine = { path: 'shared/engine', scripts: { 'package:build': 'tsc' } };
+  const math = { path: 'content/math', name: '@svitlo/math' };
+  assert.equal(shouldBuildDependency(desktop, playground), true);
+  assert.equal(shouldBuildDependency(desktop, engine), true);
+  assert.equal(shouldBuildDependency(math, playground), false);
+  assert.equal(shouldBuildDependency(desktop, { ...playground, scripts: {} }), false);
 });
