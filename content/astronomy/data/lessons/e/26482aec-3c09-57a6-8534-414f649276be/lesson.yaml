@@ -337,7 +337,10 @@ config:
         production:
           purpose: "Місце для одного обов'язкового Quiz `objectRoles` на Skill 2c404b38-fbad-47f6-a70c-fe12218ac240."
           pedagogicalIntent: "AssessmentMethods classification та relationshipMapping: розрізнити зорю/планету/супутник за природою й відобразити зв'язки Земля→Сонце та Місяць→Земля."
-          productionNotes: "Stage 2 навмисно не має params.selection.questionIds, grading, retries і формату оцінювання. Це НЕ повний Quiz Config. Assessment Architect та незалежний Question Bank мають забезпечити реальні переглянуті UUID, відбір, оцінювання і зворотний зв'язок, включно з keyboard/touch/screen-reader доступом, без колірної залежності й обов’язкового письма, з перевіркою офлайн. Не вигадувати заглушки чи політику оцінювання від Screenwriter. Stage 6 preflight блокуватиметься, доки банк не інтегровано."
+          productionNotes: |-
+            Assessment intent: objectRoles
+            Bank integration: pending
+            Stage 2 навмисно не має params.selection.questionIds, grading, retries і формату оцінювання. Це НЕ повний Quiz Config. Assessment Architect та незалежний Question Bank мають забезпечити реальні переглянуті UUID, відбір, оцінювання і зворотний зв'язок, включно з keyboard/touch/screen-reader доступом, без колірної залежності й обов’язкового письма, з перевіркою офлайн. Не вигадувати заглушки чи політику оцінювання від Screenwriter. Сувора Stage 6 production-перевірка залишатиметься заблокованою до інтеграції банку; bank-pending preflight-draft/handoff лише створює чесні незавершені джерела.
     order:
       - "meetThreeBodies"
       - "sunAmongStars"
@@ -391,6 +394,27 @@ production:
           requiredAssessmentMethods: [classification, relationshipMapping]
     ```
     Це методологічне обґрунтування Quiz, а не готові запитання, бали, способи введення відповідей чи реалізація Section. Різні методи оцінюють різні когнітивні операції; Assessment Architect визначить валідні завдання, критерії та банки.
+
+    ~~~yaml lesson-assessment-sections
+    assessmentSections:
+      quiz:
+        decision: required
+        rationale: "Після пояснення і безоцінкової практики потрібна окрема перевірка класифікації та спрямованих орбітальних зв'язків; її результати не можна підміняти виконанням Scene."
+        intents:
+          objectRoles:
+            purpose: "Розрізнити зорю, планету й природний супутник за визначальними ознаками та відобразити два спрямовані зв'язки Земля—Сонце і Місяць—Земля."
+            placement: "Наприкінці Lesson після transferAndRecall; Section objectRolesQuiz."
+            bankDependency: "Потрібен окремий Lesson-owned Question Bank, його незалежне рев'ю, дійсні обрані UUID і перевірка доступності ресурсів."
+            skills:
+              - 2c404b38-fbad-47f6-a70c-fe12218ac240
+            assessmentMethods:
+              - classification
+              - relationshipMapping
+      flashcards:
+        decision: notRequired
+        rationale: "Окрема Flashcards Section усередині цього короткого вступного Lesson не потрібна: вже передбачені вільне пригадування, текстова самоперевірка та обов'язковий Quiz. Це не рішення про відсутність окремого Flashcards Bank для повторення; його розробку розглядають після незалежного Question Bank."
+        intents: {}
+    ~~~
 
     ## Доступність, локалізація, офлайн
     Використовувати доступні текстові та тактильні/структурні описи замість необхідності розрізняти об'єкти лише візуально, уникати обов'язкових довгих назв і числових масштабів. Зберігати коректне пояснення міжкультурно і для uk/en/pl/qm.
