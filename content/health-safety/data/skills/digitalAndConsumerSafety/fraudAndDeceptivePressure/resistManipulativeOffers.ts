@@ -53,7 +53,7 @@ export const resistManipulativeOffers = defineSkill({
       it: "Fermati e verifica in modo indipendente le offerte che richiedono un'azione urgente.",
       ja: 'すぐ決断を迫る申し出は一度止まり、自分で確かめよう。',
       ka: 'შეჩერდი და დამოუკიდებლად გადაამოწმე შეთავაზებები, რომლებიც სწრაფ მოქმედებას ითხოვს.',
-      kk: 'Şūğyl äreket talap etetın ūsynystardy toqtap, öz betıñşe tekser.',
+      kk: 'Şūğyl şeşım talap etetın ūsynysqa kelısuge asyqpa; senımdı arna arqyly öz betıñşe tekser.',
       ko: '즉시 행동하라고 압박하는 제안은 일단 보류하고 믿을 만한 다른 경로로 확인하세요.',
       lt: 'Sustok ir savarankiškai patikrink pasiūlymus, reikalaujančius skubiai veikti.',
       lv: 'Apstājies un neatkarīgi pārbaudi piedāvājumus, kas prasa tūlītēju rīcību.',

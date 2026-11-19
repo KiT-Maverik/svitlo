@@ -53,7 +53,7 @@ export const carbonMonoxideSafety = defineSkill({
       it: 'Riconosci perché il monossido di carbonio può essere pericoloso anche senza odori di avvertimento.',
       ja: '一酸化炭素がにおいで気づけなくても危険な理由を学ぼう。',
       ka: 'გაიგე, რატომ არის ნახშირჟანგი სახიფათო, მიუხედავად გამაფრთხილებელი სუნის არარსებობისა.',
-      kk: 'Kömırtek totyğy eskertetın iıssız-aq nege qauıptı ekenın tüsın.',
+      kk: 'Kömırtek totyğy tüssız jäne iıssız. İıske senbe; dabyl belgısı bolsa, qauıpsız jerge şyğyp, şūğyl kömek şaqyr.',
       ko: '일산화탄소는 경고하는 냄새가 없어도 위험한 이유를 알아보세요.',
       lt: 'Suprask, kodėl anglies monoksidas pavojingas net be įspėjamojo kvapo.',
       lv: 'Saproti, kāpēc oglekļa monoksīds ir bīstams bez brīdinošas smakas.',

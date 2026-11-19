@@ -53,7 +53,7 @@ export const radiologicalEmergencyProtection = defineSkill({
       it: "Comprendi perché le emergenze radiologiche richiedono indicazioni sull'esposizione e la contaminazione.",
       ja: '放射線事故では被ばくと汚染に関する指示が必要な理由を理解しよう。',
       ka: 'გაიგე, რატომ მოითხოვს რადიოლოგიური ავარია მითითებებს დასხივებისა და დაბინძურების შესახებ.',
-      kk: 'Radiatsiialyq apatta säulelenu men lastanu turaly nūsqau nege kerek ekenın tüsın.',
+      kk: 'Syrtqy säulelenu men radioaktivtı lastanudy ajyrat; panalau, oryn auystyru jäne lastanudy ketıru jönındegı resmi nūsqaulardy orynda.',
       ko: '방사능 비상사태에 피폭과 오염에 관한 지침이 필요한 이유를 알아보세요.',
       lt: 'Suprask, kodėl radiologinės avarijos metu reikia nurodymų dėl apšvitos ir taršos.',
       lv: 'Saproti, kāpēc radioloģiskā avārijā vajag norādes par apstarošanu un piesārņojumu.',

@@ -53,7 +53,7 @@ export const respondToSeizures = defineSkill({
       it: 'Proteggi la persona durante una crisi convulsiva senza immobilizzarla.',
       ja: '発作中の人を安全に守り、無理に押さえつけないようにしよう。',
       ka: 'დაიცავი ადამიანი შეტევისას, მაგრამ ძალით არ შეაკავო მისი მოძრაობა.',
-      kk: 'Ūstama kezınde adamdy qauıpsız ūsta, bıraq qimylyn küşpen tejeme.',
+      kk: 'Ūstama kezınde adamnyñ ainalasyn qauıpsız etıp, jaraqat aludan qorğa, bıraq qimylyn küşpen tejeme.',
       ko: '발작하는 사람을 안전하게 보호하되 억지로 움직임을 막지 마세요.',
       lt: 'Saugok žmogų priepuolio metu, bet nevaržyk jo judesių jėga.',
       lv: 'Rūpējies par cilvēka drošību lēkmes laikā, nepiespiežot viņu nekustēties.',
