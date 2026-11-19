@@ -52,6 +52,9 @@ assert.ok(names.has('work: architecture'), 'Missing architecture work type');
 for (const type of ['course', 'lesson', 'questions', 'flashcards', 'media']) {
   assert.ok(names.has('pr: ' + type), 'Missing PR deliverable label: pr: ' + type);
 }
+for (const label of labels.filter(label => label.name.startsWith('pr: '))) {
+  assert.equal(label.color.toUpperCase(), '16A34A', 'Inconsistent PR label color: ' + label.name);
+}
 assert.ok(matcher.includes("'scripts/**'"), 'Missing repository scripts rule');
 assert.ok(matcher.includes("'studio/**'"), 'Missing Studio rule');
 assert.ok(!labels.some(label => label.name.startsWith('area: ')), 'Legacy area labels must be migrated');
