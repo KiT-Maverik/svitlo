@@ -21,17 +21,16 @@ jobs:
         with:
           node-version: 24
           cache: npm
-      - run: npm ci
-      - run: npm run repo:check:packages
-      - run: npm run code:check:types
+      - run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --no-audit --no-fund
+      - run: node scripts/ci/quietRun/quiet-run.mjs -- npm run repo:check:packages
+      - run: node scripts/ci/quietRun/quiet-run.mjs -- npm run code:check:types
       - run: npm test
-      - run: npm run test:components
-      - run: npm run test:components --workspace @svitlo/math
-      - run: npm run test:integration:db:coverage --workspace @svitlo/indexdb
+      - run: node scripts/ci/quietRun/quiet-run.mjs -- npm run test:components
+      - run: node scripts/ci/quietRun/quiet-run.mjs -- npm run test:integration:db:coverage --workspace @svitlo/indexdb
         if: ${{ !cancelled() }}
-      - run: npm run code:lint:check
+      - run: node scripts/ci/quietRun/quiet-run.mjs -- npm run code:lint:check
         if: ${{ !cancelled() }}
-      - run: npm run app:build
+      - run: node scripts/ci/quietRun/quiet-run.mjs -- npm run app:build
         if: ${{ !cancelled() }}
       - name: Verify migrated textbook publishers and isolated ESM tarballs
         if: ${{ !cancelled() }}
@@ -44,17 +43,11 @@ jobs:
           (cd content/languages/ukrainian && node ../../../scripts/textbook-tooling/checkPortability/check-portability.mjs)
       - name: Verify compiled public package artifacts
         if: ${{ !cancelled() }}
-        run: npm run repo:check:artifacts
-      - run: npx playwright install chromium
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npm run repo:check:artifacts
+      - run: node scripts/ci/quietRun/quiet-run.mjs -- npx playwright install chromium
         if: ${{ !cancelled() }}
-      - name: Universal Web lesson E2E (desktop and mobile)
+      - run: node scripts/ci/quietRun/quiet-run.mjs -- npm run test:e2e
         if: ${{ !cancelled() }}
-        run: npm run test:e2e --workspace @svitlo/web
-      - run: npm run test:e2e
-        if: ${{ !cancelled() }}
-      - name: Platform catalog smoke E2E (desktop and mobile)
-        if: ${{ !cancelled() }}
-        run: npm run test:e2e --workspace @svitlo/platform
       - uses: actions/upload-artifact@v4
         if: always()
         with:

@@ -44,22 +44,22 @@ jobs:
           PR_DRAFT: ${{ github.event.pull_request.draft }}
         run: node scripts/ci/buildChangedContent/plan-content-builds.mjs
       - name: Test content build selection
-        run: node --test scripts/ci/buildChangedContent/*.spec.mjs
+        run: node scripts/ci/quietRun/quiet-run.mjs -- node --test scripts/ci/buildChangedContent/*.spec.mjs
       - name: Install dependencies only for selected builds
         if: steps.plan.outputs.has_builds == 'true'
         run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --no-audit --no-fund
       - name: Test skills structure invariants
         if: steps.plan.outputs.has_builds == 'true'
-        run: node --test shared/engine/scripts/checkSkillsTaxonomyStructure/check-skills-taxonomy-structure.spec.mjs
+        run: node scripts/ci/quietRun/quiet-run.mjs -- node --test shared/engine/scripts/checkSkillsTaxonomyStructure/check-skills-taxonomy-structure.spec.mjs
       - name: Test final resource readiness gate
         if: steps.plan.outputs.has_builds == 'true'
-        run: node --test scripts/ci/verifyProductionAssets/verify-production-assets.spec.mjs
+        run: node scripts/ci/quietRun/quiet-run.mjs -- node --test scripts/ci/verifyProductionAssets/verify-production-assets.spec.mjs
       - name: Test Course Episode media draft handoff
         if: steps.plan.outputs.has_builds == 'true'
-        run: node --test shared/engine/scripts/courseBuilder/courseBuilder.spec.mjs
+        run: node scripts/ci/quietRun/quiet-run.mjs -- node --test shared/engine/scripts/courseBuilder/courseBuilder.spec.mjs
       - name: Test published assessment resource references
         if: steps.plan.outputs.has_builds == 'true'
-        run: node --test scripts/textbook-tooling/verifyAssessmentSelections/verifyAssessmentSelections.spec.mjs
+        run: node scripts/ci/quietRun/quiet-run.mjs -- node --test scripts/textbook-tooling/verifyAssessmentSelections/verifyAssessmentSelections.spec.mjs
       - name: Refuse unfinished Lesson, bank and Episode resources on review-ready production PRs
         if: github.event_name == 'pull_request' && github.base_ref == 'main' && !github.event.pull_request.draft
         env:
@@ -69,8 +69,8 @@ jobs:
       - name: Validate selected package graph and package-artifact guard
         if: steps.plan.outputs.has_builds == 'true' && steps.plan.outputs.agent_mode != 'true'
         run: |
-          npm run repo:check:packages
-          node --test scripts/checkBuiltPackageExports/check-built-package-exports.spec.mjs
+          node scripts/ci/quietRun/quiet-run.mjs -- npm run repo:check:packages
+          node scripts/ci/quietRun/quiet-run.mjs -- node --test scripts/checkBuiltPackageExports/check-built-package-exports.spec.mjs
 
   build:
     name: Content / ${{ matrix.path }}
@@ -91,7 +91,7 @@ jobs:
         with:
           node-version: '24'
           cache: npm
-      - run: npm ci
+      - run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --no-audit --no-fund
       - name: Build and verify selected textbook or agent scope
         env:
           BASE_SHA: ${{ github.event.pull_request.base.sha }}

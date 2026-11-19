@@ -2,7 +2,7 @@ name: EducationStandard review references
 
 on:
   pull_request:
-    branches: [main]
+    branches: [main, develop]
     paths:
       - 'scripts/generateTranslationReviewArtifacts/**'
       - 'shared/ui-kit/data/definitions/educationStandards/**'
@@ -29,18 +29,18 @@ jobs:
         with:
           node-version: '24'
           cache: npm
-      - run: npm ci --ignore-scripts --no-audit --no-fund
+      - run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --ignore-scripts --no-audit --no-fund
       - name: Verify source parser, publication cross-check, and locale manifest behavior
-        run: node --test scripts/generateTranslationReviewArtifacts/education-standards-reference.spec.mjs
+        run: node scripts/ci/quietRun/quiet-run.mjs -- node --test scripts/generateTranslationReviewArtifacts/education-standards-reference.spec.mjs
       - name: Verify existing scoped generator behavior
-        run: node --test scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.spec.mjs
+        run: node scripts/ci/quietRun/quiet-run.mjs -- node --test scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.spec.mjs
       - name: Verify real Code-derived UI Kit catalog
         if: hashFiles('shared/ui-kit/data/definitions/educationStandards/data/index.ts') != ''
         shell: bash
         run: |
           set -euo pipefail
-          npm run package:build --workspace @svitlo/engine
-          npm run code:check:types --workspace @svitlo/ui-kit
+          node scripts/ci/quietRun/quiet-run.mjs -- npm run package:build --workspace @svitlo/engine
+          node scripts/ci/quietRun/quiet-run.mjs -- npm run code:check:types --workspace @svitlo/ui-kit
           node scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.mjs --kind education-standards
           node --input-type=module <<'NODE'
           import assert from 'node:assert/strict';
@@ -97,7 +97,7 @@ jobs:
         shell: bash
         run: |
           if ! npx prettier --check scripts/generateTranslationReviewArtifacts/education-standards-reference.mjs scripts/generateTranslationReviewArtifacts/education-standards-reference.spec.mjs scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.mjs; then
-            npx prettier --write scripts/generateTranslationReviewArtifacts/education-standards-reference.mjs scripts/generateTranslationReviewArtifacts/education-standards-reference.spec.mjs scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.mjs
+            node scripts/ci/quietRun/quiet-run.mjs -- npx prettier --write scripts/generateTranslationReviewArtifacts/education-standards-reference.mjs scripts/generateTranslationReviewArtifacts/education-standards-reference.spec.mjs scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.mjs
             git --no-pager diff -- scripts/generateTranslationReviewArtifacts
             exit 1
           fi

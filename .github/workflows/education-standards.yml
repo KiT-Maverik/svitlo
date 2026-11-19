@@ -2,7 +2,7 @@ name: EducationStandard catalog
 
 on:
   pull_request:
-    branches: [main]
+    branches: [main, develop]
     paths:
       - 'shared/ui-kit/data/definitions/educationStandards/**'
       - 'shared/ui-kit/scripts/generateLocales/**'
@@ -29,14 +29,14 @@ jobs:
         with:
           node-version: '24'
           cache: npm
-      - run: npm ci
+      - run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --no-audit --no-fund
       - name: Build Engine
-        run: npm run package:build --workspace @svitlo/engine
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npm run package:build --workspace @svitlo/engine
       - name: Typecheck UI Kit definitions
-        run: npm run code:check:types --workspace @svitlo/ui-kit
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npm run code:check:types --workspace @svitlo/ui-kit
       - name: Validate catalog and publish locale resources
-        run: npm run test:locales --workspace @svitlo/ui-kit
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npm run test:locales --workspace @svitlo/ui-kit
       - name: Validate review reference generator
-        run: node --test scripts/generateTranslationReviewArtifacts/education-standards-reference.spec.mjs
+        run: node scripts/ci/quietRun/quiet-run.mjs -- node --test scripts/generateTranslationReviewArtifacts/education-standards-reference.spec.mjs
       - name: Check formatting
-        run: npx prettier --check shared/ui-kit/data/definitions/educationStandards shared/ui-kit/scripts/generateLocales scripts/generateTranslationReviewArtifacts/education-standards-reference.mjs scripts/generateTranslationReviewArtifacts/education-standards-reference.spec.mjs
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npx prettier --check shared/ui-kit/data/definitions/educationStandards shared/ui-kit/scripts/generateLocales scripts/generateTranslationReviewArtifacts/education-standards-reference.mjs scripts/generateTranslationReviewArtifacts/education-standards-reference.spec.mjs
