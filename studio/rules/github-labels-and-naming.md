@@ -2,6 +2,8 @@
 
 **Applies to:** all agents and contributors working with GitHub Issues, pull requests, branches, commits, and repository work items.
 
+**Development and production:** read [CI workflow and branch policy](./ci-workflow.md). New standalone and integration work normally targets `develop`; only release promotion targets `main`. Preserve existing PR branch ancestry.
+
 **Canonical label catalog:** [`.github/labels.json`](../../.github/labels.json). It defines the exact available names, descriptions, and colors. Consult this file before assigning labels; do not invent, rename, or approximate label names. If this guide and the catalog diverge, the catalog defines the available labels and the discrepancy must be reported.
 
 ## 1. Separate content from metadata
@@ -90,9 +92,9 @@ These are naming examples, not an instruction to rename existing PRs or replace 
 
 ## Translation production Draft PR topology
 
-For **new** entity × locale campaigns follow [Manage Translation Production](../skills/translation-workflow/manage-translation-production.skill.md): **one Draft integration PR → `main`**, labeled `pr: integration`, with an exact, immutable entity/locale/field matrix and evidence/status in its PR description. Translator and optional reviewer Draft PRs target this integration branch and carry `pr: agent-subtask`. No new fixed-scope Translation Production Issue is created as a competing tracker. Existing Translation Production Issues retain historical and active approvals and must be reconciled under [legacy recovery](../skills/translation-workflow/legacy-production-issues.md), not silently deleted or migrated.
+For **new** entity × locale campaigns follow [Manage Translation Production](../skills/translation-workflow/manage-translation-production.skill.md): **one Draft integration PR → `develop`**, labeled `pr: integration`, with an exact, immutable entity/locale/field matrix and evidence/status in its PR description. Translator and optional reviewer Draft PRs target this integration branch and carry `pr: agent-subtask`. No new fixed-scope Translation Production Issue is created as a competing tracker. Existing Translation Production Issues retain historical and active approvals and must be reconciled under [legacy recovery](../skills/translation-workflow/legacy-production-issues.md), not silently deleted or migrated.
 
-Independent review starts **only when the owner authorizes** reviewer, source PR/SHA and scope. Pre-integration review may happen on the same unmerged translator PR, or post-integration on a dedicated reviewer PR. Reviewer independence, scoped Code-derived Markdown/manifests, artifact cleanup, file ownership and actual CI/merge gates remain mandatory. Child review/merge permission never implies parent-to-`main` authorization. Ordinary GitHub Issues and PR conversation `issue_comment` commands remain supported; only the old **production status ledger** is retired for new campaigns.
+Independent review starts **only when the owner authorizes** reviewer, source PR/SHA and scope. Pre-integration review may happen on the same unmerged translator PR, or post-integration on a dedicated reviewer PR. Reviewer independence, scoped Code-derived Markdown/manifests, artifact cleanup, file ownership and actual CI/merge gates remain mandatory. Child review/merge permission never implies parent-to-`develop` authorization or release promotion to `main`. Ordinary GitHub Issues and PR conversation `issue_comment` commands remain supported; only the old **production status ledger** is retired for new campaigns.
 
 ## Lesson production Draft PR coordination
 
