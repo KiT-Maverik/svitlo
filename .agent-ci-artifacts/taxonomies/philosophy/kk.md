@@ -374,13 +374,13 @@ Skills: 5
 
 **User-friendly description (kk):** Kelısım aqparattandyrylğan, erıktı jäne tiıstı adam bergen be, tekser.
 
-##### Adamğa jatpaityn januarlarğa qatysty mındetterdı bağalau
+##### Adamnan özge januarlarğa qatysty mındetterdı bağalau
 
 [evaluateDutiesTowardNonhumanAnimals.ts](../../../content/philosophy/data/skills/ethicsAndMoralReasoning/appliedEthics/evaluateDutiesTowardNonhumanAnimals.ts)
 
 **Methodological description (English):** Compare grounds for considering animal welfare or moral status in choices that affect sentient beings.
 
-**User-friendly description (kk):** Adamğa jatpaityn januarlardyñ äl-auqatyn eskerudıñ moraldyq negızderın zertte.
+**User-friendly description (kk):** Adamnan özge januarlardyñ äl-auqatyn eskerudıñ moraldyq negızderın zertte.
 
 ##### Ekologiialyq mındetterdı bağalau
 
