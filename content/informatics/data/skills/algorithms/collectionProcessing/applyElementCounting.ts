@@ -52,7 +52,7 @@ export const applyElementCounting = defineSkill({
       it: 'Conta tutti gli elementi di una collezione che soddisfano una condizione specificata.',
       ja: '指定した条件を満たすコレクションの要素をすべて数えましょう。',
       ka: 'დათვალე კოლექციის ყველა ელემენტი, რომელიც მოცემულ პირობას აკმაყოფილებს.',
-      kk: 'Berılgen şartqa sai keletın jinaqtyñ barlyq elementterın sana.',
+      kk: 'Jinaqtağy berılgen şartqa sai keletın barlyq elementterdı sana.',
       ko: '주어진 조건을 만족하는 컬렉션의 모든 요소를 세어 보세요.',
       lt: 'Suskaičiuok visus rinkinio elementus, atitinkančius nurodytą sąlygą.',
       lv: 'Saskaiti visus kolekcijas elementus, kas atbilst noteiktam nosacījumam.',
