@@ -1,0 +1,40 @@
+{
+  "pr": 731,
+  "sha": "ea3a31f96af9b940680beb143f7647854b74feeb",
+  "query": {
+    "by": "skill",
+    "skills": [
+      "f93aa878-a1ad-4820-82a3-30f4b182f147",
+      "4f039591-11ed-4341-90ab-7389f7ce8efe",
+      "cadaea6e-bd81-441e-82f3-73389d1373bf",
+      "42bbcb35-f4d0-496b-b90c-495b08683e32",
+      "1ab60caa-36e7-4cc8-9e2e-64f13352717c"
+    ],
+    "match": "any",
+    "package": "content/informatics"
+  },
+  "result": {
+    "query": {
+      "by": "skill",
+      "skills": [
+        "f93aa878-a1ad-4820-82a3-30f4b182f147",
+        "4f039591-11ed-4341-90ab-7389f7ce8efe",
+        "cadaea6e-bd81-441e-82f3-73389d1373bf",
+        "42bbcb35-f4d0-496b-b90c-495b08683e32",
+        "1ab60caa-36e7-4cc8-9e2e-64f13352717c"
+      ],
+      "match": "any",
+      "package": "content/informatics"
+    },
+    "sourceSha": "ea3a31f96af9b940680beb143f7647854b74feeb",
+    "matches": [],
+    "scanned": {
+      "packages": 1,
+      "implemented": 0,
+      "drafts": 0,
+      "candidates": 0
+    },
+    "diagnostics": [],
+    "complete": true
+  }
+}
