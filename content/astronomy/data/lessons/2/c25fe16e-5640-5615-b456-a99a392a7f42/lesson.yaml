@@ -435,7 +435,7 @@ config:
         production:
           purpose: "Один обов'язковий Quiz за Methodologist assessmentPlan rotationAndIllumination: причинне тлумачення та передбачення."
           pedagogicalIntent: "Зібрати валідні свідчення за Skill faa8f11a-cc06-42c9-8864-8151732e690a із застосуванням AssessmentMethodKey interpretation і prediction. Формувальна сцена не замінює незалежного оцінювання."
-          productionNotes: "ЗАПЛАНОВАНО / НЕ ГОТОВО ДО BUILDER-ПУБЛІКАЦІЇ. У config.params навмисно залишено {}: реальний Engine Quiz вимагає selection.questionIds та політик layout/feedbackMode/interaction/results; жодних Question UUID наразі немає. Assessment Architect у незалежному Questions Flow має створити й рецензувати банк, обґрунтувати selection, scoring, retries, feedback і accessibility; після інтеграції Stage 6 підставить справжні UUID та завершить типізований Quiz. Немає фальшивих ID, порожнього selection.questionIds чи вигаданих порогів."
+          productionNotes: "ЗАПЛАНОВАНО / НЕ ГОТОВО ДО BUILDER-ПУБЛІКАЦІЇ. У config.params навмисно залишено {}: реальний Engine Quiz вимагає selection.questionIds та політик layout/feedbackMode/interaction/results; жодних Question UUID наразі немає. Assessment Architect у незалежному Questions Flow має створити й рецензувати банк, обґрунтувати selection, scoring, retries, feedback і accessibility; після інтеграції Stage 6 підставить справжні UUID та завершить типізований Quiz. Немає фальшивих ID, порожнього selection.questionIds чи вигаданих порогів.\nAssessment intent: rotationAndIllumination\nBank integration: pending"
     order:
       - "opening"
       - "model"
@@ -490,6 +490,25 @@ production:
           requiredAssessmentMethods: [interpretation, prediction]
     ```
     Один Quiz виправданий для відрізнення причинного пояснення від простого впізнавання. Це лише методологічний контракт: Assessment Architect окремо визначає завдання, докази, критерії, спосіб відповіді та фідбек. Не записувати Question Bank у Lesson.
+
+    ## Рішення щодо секцій Quiz і Flashcards (структурний опис схваленого плану)
+    ~~~yaml lesson-assessment-sections
+    assessmentSections:
+      quiz:
+        decision: required
+        rationale: Один Quiz для незалежної перевірки причинного розуміння дня та ночі, передбачений в Assessment Plan.
+        intents:
+          rotationAndIllumination:
+            purpose: Перевірити тлумачення освітлення та передбачення наслідку обертання Землі.
+            placement: rotationAndIlluminationQuiz після recallFeedback
+            bankDependency: Незалежний перевірений банк Questions та погоджена Assessment Architect вибірка UUID.
+            skills: [faa8f11a-cc06-42c9-8864-8151732e690a]
+            assessmentMethods: [interpretation, prediction]
+      flashcards:
+        decision: notRequired
+        rationale: Окрема секція Flashcards не передбачена схваленим планом. Самоперевірка через пригадування вже є у Sections; рішення не скасовує незалежний банк Questions.
+        intents: {}
+    ~~~
 
     ## Доступність, мови та безпека
     Єдине авторське джерело — українська; планові мови `uk`, `en`, `pl`, `qm` ще потребують справжньої локалізації. Надати текстовий і тактильний/просторовий опис будь-якої моделі, не робити колір чи зір єдиним каналом. Потрібна низька затримка й робота офлайн. Не призначати прямого сонячного спостереження й роботи з небезпечною оптикою.
