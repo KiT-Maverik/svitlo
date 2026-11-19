@@ -21,6 +21,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import yaml from 'yaml';
+import { prepareAssessmentDraft } from './lessonAssessmentDrafts.mjs';
 import { loadFactoryRegistry } from '../yamlScaffolding/yamlScaffolding.mjs';
 import { renderLessonModules } from './lessonModules.mjs';
 import {
@@ -99,12 +100,15 @@ function targetFor(source, repo) {
 /** The single YAML tree separates Engine Config from production guidance at every node. */
 function combineSources(root) {
   const document = parseYaml(path.join(root, 'lesson.yaml'), 'lesson.yaml');
-  const { config: lesson, documentLanguage, tasks } = splitScaffoldDocument(document);
+  const assessment = prepareAssessmentDraft(document);
+  const { config: lesson, documentLanguage, tasks } = splitScaffoldDocument({
+    ...document, config: assessment.lesson,
+  });
   if (typeof documentLanguage !== 'string' || !documentLanguage)
     fail('lesson.yaml', 'production.documentLanguage', 'required source-language provenance');
   if (typeof lesson.slug !== 'string' || !/^[a-zA-Z][a-zA-Z0-9]*$/.test(lesson.slug))
     fail('lesson.yaml', 'config.slug', 'a safe camelCase slug is required for the output filename');
-  return { lesson, language: documentLanguage, tasks };
+  return { lesson, language: documentLanguage, tasks, assessment };
 }
 
 /** Compare exact bytes, without injecting any generated provenance comment. */
@@ -176,7 +180,7 @@ export function runOne(source, mode = 'check', repo = repoRoot) {
 
   if (!fs.existsSync(path.join(target.root, 'lesson.yaml')) && fs.existsSync(path.join(target.root, 'config.yaml')))
     fail('config.yaml', '$', 'legacy technical Lesson source: migrate explicitly to lesson.yaml; no automatic rewrite');
-  const { lesson, language, tasks } = combineSources(target.root);
+  const { lesson, language, tasks, assessment } = combineSources(target.root);
   if (typeof lesson.id !== 'string' || !uuidPattern.test(lesson.id))
     fail('lesson.yaml', 'config.id', 'a Lesson UUID is required for ID-addressed output');
   const outputFolder = path.join(target.bookRoot, 'data/lessons', lesson.id.at(-1), lesson.id);
@@ -194,7 +198,16 @@ export function runOne(source, mode = 'check', repo = repoRoot) {
     fail(destinationData[0], '$', 'competing legacy Lesson entrypoint; modular layout requires a clean UUID folder');
   }
   const nodeLocations = new Map();
-  const modules = renderLessonModules(lesson, language, { bookRoot: target.bookRoot, outputFolder, nodeLocations });
+  const output = renderLessonModules(lesson, language, {
+    bookRoot: target.bookRoot, outputFolder, nodeLocations,
+    pendingAssessments: assessment.pending,
+  });
+  // Source handoffs precede the root entrypoint, which remains the last write.
+  const modules = new Map([
+    ...[...output].filter(([name]) => name !== 'index.ts'),
+    ...assessment.drafts,
+    ['index.ts', output.get('index.ts')],
+  ]);
   // Ordinary Text, Markdown and Code must contain authored learner-facing
   // content, never a generated specification instead of their real text.
   const artifacts = productionFiles(
@@ -217,7 +230,89 @@ export function runOne(source, mode = 'check', repo = repoRoot) {
     const destination = path.join(outputFolder, relative);
     noSymlinks(destination);
     if (mode === 'generate' && fs.existsSync(destination)) {
-      fail(relative, '$', 'existing Lesson source; refusing to overwrite or mix drafts');
+      fail(relative, '
+  }
+  checkProductionFiles(artifacts, mode);
+
+  if (mode === 'generate') fs.mkdirSync(outputFolder, { recursive: true });
+  let changed = 0;
+  for (const [relative, body] of modules) {
+    const destination = path.join(outputFolder, relative);
+    if (mode === 'generate') fs.mkdirSync(path.dirname(destination), { recursive: true });
+    changed +=
+      relative === 'review.ts'
+        ? writeReviewDraft(destination, body, mode)
+        : relative.endsWith('.ts')
+          ? writeDraft(destination, body, mode)
+          : writeAuthoredSource(destination, body, mode);
+  }
+  const specs = mode === 'generate' ? writeProductionFiles(artifacts) : 0;
+  return {
+    changed: changed + specs,
+    files: [...modules.keys(), ...artifacts.map(item => item.file)],
+    lessonId: lesson.id,
+  };
+}
+
+function discover(repo) {
+  const content = path.join(repo, 'content');
+  if (!fs.existsSync(content)) return [];
+  const roots = [];
+  for (const entry of fs.readdirSync(content, { withFileTypes: true })) {
+    if (!entry.isDirectory()) continue;
+    const folder = path.join(content, entry.name);
+    const workspaces =
+      entry.name === 'languages'
+        ? fs
+            .readdirSync(folder, { withFileTypes: true })
+            .filter(item => item.isDirectory())
+            .map(item => path.join(folder, item.name))
+        : [folder];
+    for (const workspace of workspaces) {
+      const lessons = path.join(workspace, 'data/lessons');
+      if (!fs.existsSync(lessons)) continue;
+      for (const bucket of fs.readdirSync(lessons, { withFileTypes: true })) {
+        if (!bucket.isDirectory() || !/^[0-9a-f]$/.test(bucket.name)) continue;
+        for (const entry of fs.readdirSync(path.join(lessons, bucket.name), { withFileTypes: true })) {
+          if (!entry.isDirectory()) continue;
+          const location = path.join(lessons, bucket.name, entry.name);
+          if (fs.existsSync(path.join(location, 'lesson.yaml'))) roots.push(location);
+          else if (fs.existsSync(path.join(location, 'config.yaml')))
+            console.warn('SKIP legacy technical Lesson config.yaml: ' + path.relative(repo, location) +
+              ' (migrate to lesson.yaml explicitly)');
+        }
+      }
+    }
+  }
+  return roots.sort();
+}
+
+export function main(args = process.argv.slice(2), repo = repoRoot) {
+  const [mode, ...rest] = args;
+  if (!['generate', 'check'].includes(mode) || (rest.length && !(rest.length === 2 && rest[0] === '--source')))
+    throw new Error(
+      'Usage: node shared/engine/scripts/lessonBuilder/lessonBuilder.mjs generate|check [--source content/<book>/.../lesson.yaml|<canonical-lesson-folder>]',
+    );
+  const roots = rest.length ? [path.resolve(repo, rest[1])] : discover(repo);
+  for (const root of roots) {
+    const result = runOne(root, mode, repo);
+    console.log(
+      result.skipped
+        ? 'SKIP Lesson ' + result.lessonId + ': existing ' + result.files.join(', ') + '; no files modified'
+        : result.lessonId + ': ' + (mode === 'check' ? 'up to date' : result.changed + ' file(s) written'),
+    );
+  }
+  console.log('Processed ' + roots.length + ' Lesson draft source(s)');
+}
+if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+  try {
+    main();
+  } catch (error) {
+    console.error(error.message);
+    process.exitCode = 1;
+  }
+}
+, 'existing Lesson source/bank YAML; refusing to overwrite or mix drafts');
     }
   }
   checkProductionFiles(artifacts, mode);

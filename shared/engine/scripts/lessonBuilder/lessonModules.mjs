@@ -807,7 +807,12 @@ export function renderLessonModules(lesson, language, options = {}) {
       continue;
     }
     if (key === 'section') {
-      rootFields.push('  ' + key);
+      const blockers = options.pendingAssessments ?? [];
+      const comments = blockers.map(({ type, slug }) =>
+        '  // TODO (BLOCKER): ' + (type === 'quiz' ? 'Quiz' : 'Flashcards') +
+        ' Section ' + (slug ? JSON.stringify(slug) + ' is unfinished' : 'is required') +
+        '; integrate its reviewed bank and completed Section before Lesson publication.');
+      rootFields.push((comments.length ? comments.join('\n') + '\n' : '') + '  section');
       continue;
     }
     if (key === 'params' && record(value) && hasLanguages) {

@@ -150,7 +150,7 @@ export function renderFlashcardBank(bank) {
   ensure(isRecord(bank), 'bank is not a mapping');
   ensure(
     Object.keys(bank).every(key =>
-      ['lessonId', 'documentLanguage', 'supportedLanguages', 'flashcards', 'relationships'].includes(key),
+      ['lessonId', 'documentLanguage', 'supportedLanguages', 'flashcards', 'relationships', 'sectionDrafts'].includes(key),
     ),
     'unknown top-level field',
   );
