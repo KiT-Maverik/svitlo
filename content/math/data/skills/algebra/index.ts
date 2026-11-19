@@ -66,7 +66,7 @@ export const algebra = defineSkillDomain({
       it: 'Scopri come equazioni, espressioni, lettere che rappresentano numeri e regolarità possono descrivere relazioni e aiutarti a trovare valori sconosciuti.',
       ja: '方程式・式・数を表す文字・数の規則が関係を示し、未知の値を求めるのにどう役立つかを学びます。',
       ka: 'გაიგე, როგორ აღწერს განტოლებები, გამოსახულებები, რიცხვების აღმნიშვნელი ასოები და კანონზომიერებები კავშირებს და როგორ ეხმარება უცნობი მნიშვნელობების პოვნაში.',
-      kk: 'Teñdeuler, örnekter, sandardy bıldıretın ärıpter men zañdylyqtardyñ bailanystardy qalai sipattap, belgısız mänderdı tabuğa kömektesetının zertte.',
+      kk: 'Teñdeuler, örnekter, sandardy bıldıretın ärıpter men zañdylyqtar bailanystardy qalai sipattap, belgısız mänderdı tabuğa kömektesetının zertte.',
       ko: '방정식, 식, 수를 나타내는 문자와 규칙이 관계를 어떻게 보여 주고 미지의 값을 찾는 데 도움이 되는지 알아봐요.',
       lt: 'Sužinok, kaip lygtys, reiškiniai, skaičius reiškiančios raidės ir dėsningumai nusako ryšius bei padeda rasti nežinomas vertes.',
       lv: 'Uzzini, kā vienādojumi, izteiksmes, burti, kas apzīmē skaitļus, un likumsakarības raksturo saiknes un palīdz atrast nezināmas vērtības.',
