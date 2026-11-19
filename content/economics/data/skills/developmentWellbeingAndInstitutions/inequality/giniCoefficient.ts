@@ -52,7 +52,7 @@ export const giniCoefficient = defineSkill({
       it: 'Interpreta un coefficiente di Gini senza supporre che racconti tutta la situazione.',
       ja: 'ジニ係数を読み取り、それだけでは全体像が分からないことを理解しよう。',
       ka: 'განმარტეთ ჯინის კოეფიციენტი ისე, რომ სრული სურათი არ ეგონოთ.',
-      kk: 'Jini koeffitsientın taldap, onyn teñsızdık turaly tolyq aqparat bermeıtının esker.',
+      kk: 'Jini koeffitsientın taldap, onyñ teñsızdık turaly tolyq aqparat bermeıtının esker.',
       ko: '지니 계수를 해석하되 이것만으로 모든 것을 알 수 없음을 이해하세요.',
       lt: 'Skaitykite Džinio koeficientą, bet nelaikykite jo visa istorija.',
       lv: 'Izproti Džini koeficientu, neuzskatot to par pilnīgu ainu.',
