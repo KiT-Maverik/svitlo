@@ -53,7 +53,7 @@ export const foodSecurityAsAnEconomicIssue = defineSkill({
       it: 'Scopri perché produrre cibo a sufficienza non significa che tutti possano permetterselo o procurarselo.',
       ja: '食料が十分に生産されても、全員が入手・購入できるとは限らない理由を考えましょう。',
       ka: 'შეისწავლე, რატომ არ ნიშნავს საკმარისი საკვების წარმოება, რომ ყველას შეუძლია მისი ყიდვა ან მიღება.',
-      kk: 'Jetkılıktı azyq-tülık öndırılse de, onyñ barlyğyna qoljetımdı bolatynyna nege kepıldık joq ekenın zertte.',
+      kk: 'Azyq-tülık jetkılıktı mölşerde öndırılse de, barlyq adamnyñ ony satyp aluyna nemese oğan qol jetkızuıne nege kepıldık joq ekenın zertte.',
       ko: '식량이 충분히 생산되어도 모두가 사거나 구할 수 있는 것은 아닌 이유를 알아보세요.',
       lt: 'Tyrinėk, kodėl pakankama maisto gamyba nereiškia, kad visi gali jo įpirkti ar gauti.',
       lv: 'Izpēti, kāpēc pietiekama pārtikas ražošana negarantē, ka ikviens to var nopirkt vai iegūt.',
