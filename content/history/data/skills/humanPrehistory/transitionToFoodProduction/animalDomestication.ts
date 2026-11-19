@@ -53,7 +53,7 @@ export const animalDomestication = defineSkill({
       it: 'Esplora come gli esseri umani iniziarono ad allevare animali domestici.',
       ja: '人々が動物を家畜として育て始めた経緯を探ろう。',
       ka: 'გაიგე, როგორ დაიწყეს ადამიანებმა მოშინაურებული ცხოველების მოშენება.',
-      kk: 'Adamdardyñ qolğa üiretılgen januarlardy ösırudı qalai bastağanyn zertte.',
+      kk: 'Adamdardyñ jabaiy januarlardy qalai qolğa üiretkenın jäne onyñ azyq, eñbek pen köşı-qonğa äserın zertte.',
       ko: '인간이 길들인 동물을 기르기 시작한 과정을 알아보세요.',
       lt: 'Sužinok, kaip žmonės pradėjo auginti prijaukintus gyvūnus.',
       lv: 'Uzzini, kā cilvēki sāka audzēt pieradinātus dzīvniekus.',
