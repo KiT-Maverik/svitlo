@@ -8,6 +8,7 @@ on:
       - agent/astronomy-first-look-at-sky
     paths:
       - .github/workflows/lesson-659-stage6-handoff.yml
+      - content/astronomy/data/lessons/7/c042698a-de5b-5055-9e10-ff5621f80ed7/lesson.yaml
 
 permissions:
   contents: write
