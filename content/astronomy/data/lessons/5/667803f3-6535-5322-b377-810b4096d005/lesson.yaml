@@ -474,7 +474,10 @@ config:
         production:
           purpose: "Місце одного окремого scored Quiz згідно з assessmentPlan.sunlitMoonAppearance, не замінюваного формувальною Scene."
           pedagogicalIntent: "Перевірити класифікацію та інтерпретацію нових образів видимої освітленої поверхні й зв'язку із сонячним світлом; не оцінювати геометрію орбіт, затемнення чи назви восьми фаз."
-          productionNotes: "Assessment Architect з окремого Questions Flow має створити, перевірити та інтегрувати справжній Question Bank для Skill 53bba831-1f84-4b25-8e05-33f54167cc98. Лише після цього заповнити обов'язкові поля Quiz params.selection.questionIds, layout, interaction, feedbackMode, results, визначені ним grading/retries та екранні посилання. Відсутність обов'язкових params зараз навмисна Stage 2 draft-залежність, а не дозвіл публікувати Quiz; не додавати фальшивих UUID або оцінювання від Screenwriter. Assessment methods: classification, interpretation. Перевірити локалі й доступні еквіваленти до публікації."
+          productionNotes: |-
+            Assessment intent: sunlitMoonAppearance
+            Bank integration: pending
+            Assessment Architect з окремого Questions Flow має створити, перевірити та інтегрувати справжній Question Bank для Skill 53bba831-1f84-4b25-8e05-33f54167cc98. Лише після цього заповнити обов'язкові поля Quiz params.selection.questionIds, layout, interaction, feedbackMode, results, визначені ним grading/retries та екранні посилання. Відсутність обов'язкових params зараз навмисна Stage 2 draft-залежність, а не дозвіл публікувати Quiz; не додавати фальшивих UUID або оцінювання від Screenwriter. Assessment methods: classification, interpretation. Перевірити локалі й доступні еквіваленти до публікації.
     order: ["noticeMoon", "moonLight", "practiceMoon", "reflection", "sunlitMoonAppearanceQuiz"]
 production:
   documentLanguage: uk
@@ -570,6 +573,25 @@ production:
     ```
     `classification` перевіряє розрізнення видів освітленої частини й незмінності самого тіла за суттєвими ознаками на нових прикладах; `interpretation` перевіряє пояснення змісту зображення та ролі сонячного світла, а не відтворення назви фази. Результати Quiz свідчать лише про продемонстроване розуміння в межах цього вступного уроку, не про опанування повної орбітальної геометрії.
     Один окремий Quiz потрібен як доказ розуміння ідеї освітлення, а не лише впізнавання картинки. Assessment Architect окремо добирає повноцінний Question Bank, адаптивність, варіанти відповіді й коректний feedback. Методологічний контракт не містить готових Questions чи реалізації Section.
+
+    ## Обов'язкові Section-рішення (формалізація затвердженого плану)
+    ~~~yaml lesson-assessment-sections
+    assessmentSections:
+      quiz:
+        decision: required
+        rationale: "Один Quiz потрібен для перевірки на нових прикладах, чи дитина розрізняє незмінну форму Місяця, його освітлену частину і відбите сонячне світло."
+        intents:
+          sunlitMoonAppearance:
+            purpose: "Перевірити класифікацію і тлумачення нових прикладів видимих фаз без вимоги знання геометрії орбіти або назв восьми фаз."
+            placement: "Після reflection як остання Section уроку."
+            bankDependency: "Окремо створений, незалежно перевірений і інтегрований Question Bank цього Lesson; Question UUID та політика Quiz залишаються pending."
+            skills: [53bba831-1f84-4b25-8e05-33f54167cc98]
+            assessmentMethods: [classification, interpretation]
+      flashcards:
+        decision: notRequired
+        rationale: "Окрему Flashcards Section у затвердженій послідовності цього вступного уроку не передбачено: коротке пригадування вже є у reflection. Це не рішення про Not Applicable для незалежного Flashcard Bank, який розглядають після Questions Flow."
+        intents: {}
+    ~~~
 
     ## Доступність, безпека та локалі
     Українська — джерельна мова; `en`, `pl`, `qm` не створені й не можуть імітуватися копіюванням. Не вимагати виходу вночі, розрізнення лише за кольором, вміння читати або складних схем. Надати словесні та аудіоописи освітлених ділянок, альтернативи для дітей із порушенням зору та офлайн-приклади. Не спрямовувати погляд чи оптику на Сонце.
