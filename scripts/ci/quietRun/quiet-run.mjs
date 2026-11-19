@@ -6,6 +6,7 @@
  */
 import { spawn } from 'node:child_process';
 import { appendFileSync } from 'node:fs';
+import path from 'node:path';
 
 export function failureExcerpt(output, limit = 12000) {
   const lines = output.split(/\r?\n/);
@@ -21,7 +22,18 @@ export function run(argv = process.argv.slice(2)) {
     throw new Error('Usage: node quiet-run.mjs -- <command> [args...]');
   }
   const [command, ...args] = argv.slice(1);
-  const title = (process.env.SVITLO_CI_LABEL || [command, ...args].join(' ')).slice(0, 150);
+  // Never echo arbitrary command arguments: inline scripts, tokens and secrets
+  // can otherwise leak into normal job summaries even when output is quiet.
+  const executable = path.basename(command);
+  const workspaceIndex = args.indexOf('--workspace');
+  const safeWorkspace = workspaceIndex >= 0 && /^[a-z0-9@/_-]+$/i.test(args[workspaceIndex + 1] || '')
+    ? ' --workspace ' + args[workspaceIndex + 1] : '';
+  const safeOperation = executable === 'npm' && args[0] === 'run' && /^[a-z0-9:_-]+$/i.test(args[1] || '')
+    ? ' run ' + args[1] + safeWorkspace
+    : executable === 'npm' && args[0] === 'ci' ? ' ci'
+    : executable === 'node' && args[0] === '--test' ? ' --test'
+    : '';
+  const title = (process.env.SVITLO_CI_LABEL || executable + safeOperation).slice(0, 150);
   const verbose = process.env.SVITLO_CI_VERBOSE === '1';
   const started = Date.now();
   let output = '';
