@@ -2,7 +2,8 @@
 /** Run only relevant, supported fast checks; full Quality remains manual. */
 import fs from 'node:fs';
 import path from 'node:path';
-import { execFileSync, spawn, spawnSync } from 'node:child_process';
+import { spawn, spawnSync } from 'node:child_process';
+import { changedFiles } from '../ci/prDiff/changed-files.mjs';
 import { fileURLToPath } from 'node:url';
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
@@ -136,13 +137,6 @@ export function requiresWebBuild(changed) {
   );
 }
 
-function changedFiles(base, head) {
-  assert(/^[a-f0-9]{40}$/.test(base) && /^[a-f0-9]{40}$/.test(head), 'Base and head must be 40-character commit SHAs');
-  return execFileSync('git', ['diff', '--name-only', '-z', base, head], { cwd: repoRoot })
-    .toString('utf8')
-    .split('\0')
-    .filter(Boolean);
-}
 /** Build dependencies that a workspace typecheck consumes through published exports. */
 export function shouldBuildDependency(owner, dependency) {
   return (
