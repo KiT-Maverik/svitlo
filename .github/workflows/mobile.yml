@@ -35,7 +35,7 @@ jobs:
       - run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --no-audit --no-fund
       - run: node scripts/ci/quietRun/quiet-run.mjs -- npm run app:build --workspace @svitlo/mobile
       - run: node scripts/ci/quietRun/quiet-run.mjs -- npm run app:check:bundle --workspace @svitlo/mobile
-      - run: node scripts/ci/quietRun/quiet-run.mjs -- npm run code:check:types --workspace @svitlo/mobile
+      - run: node scripts/ci/quietRun/quiet-run.mjs -- npm run code:check:types:prepared --workspace @svitlo/mobile
       - run: node scripts/ci/quietRun/quiet-run.mjs -- npm run code:lint:check --workspace @svitlo/adapter-capacitor
       - run: node scripts/ci/quietRun/quiet-run.mjs -- npm run test --workspace @svitlo/mobile
       - run: node scripts/ci/quietRun/quiet-run.mjs -- npm exec --workspace @svitlo/mobile -- playwright install chromium --with-deps
@@ -55,6 +55,8 @@ jobs:
         with:
           distribution: temurin
           java-version: '21'
+      # Cache the Gradle wrapper and resolved dependencies between native builds.
+      - uses: gradle/actions/setup-gradle@v4
       - run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --no-audit --no-fund
       - run: node scripts/ci/quietRun/quiet-run.mjs -- npm run app:build --workspace @svitlo/mobile
       - run: node scripts/ci/quietRun/quiet-run.mjs -- npm exec --workspace @svitlo/mobile -- cap sync android

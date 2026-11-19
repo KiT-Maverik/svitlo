@@ -42,6 +42,6 @@ jobs:
       - name: Run Electron smoke test under virtual display
         run: xvfb-run -a npm run test:smoke --workspace @svitlo/desktop
       - name: Package for Linux
-        run: node scripts/ci/quietRun/quiet-run.mjs -- npm run app:pack --workspace @svitlo/desktop
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npm run app:pack:prepared --workspace @svitlo/desktop
       - name: Start the packaged Linux executable without network
         run: xvfb-run -a npm run test:packaged --workspace @svitlo/desktop
