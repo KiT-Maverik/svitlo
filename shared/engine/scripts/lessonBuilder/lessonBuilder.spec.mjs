@@ -434,6 +434,30 @@ test('Skill IDs resolve to imported source symbols rather than hard-coded UUIDs'
     assert.doesNotMatch(code, new RegExp(skillId));
   }));
 
+test('canonical .ts Skill files resolve to real symbols without a .data suffix', () =>
+  fixture(f => {
+    const skillId = id(100);
+    const folder = path.join(f.workspace, 'data/skills/earthMoonAndSun/lunarAppearance');
+    fs.mkdirSync(folder, { recursive: true });
+    fs.writeFileSync(
+      path.join(folder, 'lunarPhases.ts'),
+      "import { defineSkill } from '@svitlo/engine/build';\n" +
+        "export const lunarPhases = defineSkill({ id: '" +
+        skillId +
+        "', slug: 'lunarPhases' });\n",
+    );
+    f.config.skills = [skillId];
+    f.save();
+    runOne(f.lesson, 'generate', f.root);
+    const code = fs.readFileSync(f.generated('index.ts'), 'utf8');
+    assert.ok(
+      code.includes('import { lunarPhases } from "../../../skills/earthMoonAndSun/lunarAppearance/lunarPhases";'),
+    );
+    assert.match(code, /skills: \[lunarPhases\.id\]/);
+    assert.doesNotMatch(code, new RegExp(skillId));
+    assert.equal(runOne(f.lesson, 'check', f.root).changed, 0);
+  }));
+
 test('unknown Skill UUID produces a deterministic unresolved dependency instead of an invented import', () =>
   fixture(f => {
     f.config.skills = [id(88)];
