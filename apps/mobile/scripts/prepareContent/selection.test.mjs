@@ -21,3 +21,20 @@ test('unknown textbook fails before generating or touching Web assets', () => {
   assert.notEqual(result.status, 0);
   assert.match(result.stderr, /Unknown SVITLO_TEXTBOOK/);
 });
+
+
+test('CI reuses prepared Mobile content for typechecking and preserves native coverage', () => {
+  const scripts = JSON.parse(readFileSync(resolve(root, 'apps/mobile/package.json'), 'utf8')).scripts;
+  const workflow = readFileSync(resolve(root, '.github/workflows/mobile.yml'), 'utf8');
+  // The normal public typecheck still prepares content for independent invocation.
+  assert.equal(scripts['precode:check:types'], 'node scripts/prepareContent/prepare.mjs');
+  assert.equal(scripts['code:check:types:prepared'], scripts['code:check:types']);
+  assert.doesNotMatch(scripts['code:lint:check'], /npm run code:check:types/);
+  assert.match(workflow, /npm run app:build --workspace @svitlo\/mobile/);
+  assert.match(workflow, /npm run code:check:types:prepared --workspace @svitlo\/mobile/);
+  assert.doesNotMatch(workflow, /npm run code:check:types --workspace @svitlo\/mobile/);
+  assert.match(workflow, /playwright install chromium --with-deps/);
+  assert.match(workflow, /gradle\/actions\/setup-gradle@v4/);
+  assert.match(workflow, /cap sync android/);
+  assert.match(workflow, /gradlew assembleDebug --no-daemon/);
+});
