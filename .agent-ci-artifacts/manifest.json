@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 3,
+  "kind": "pr-scoped-agent-ci-artifacts",
+  "sourceCommit": "c419ef1b4dc07031f2f7ad70eefe6d382d9b5a60",
+  "scope": {
+    "kind": "skills",
+    "package": "content/geography",
+    "locale": "kk",
+    "component": null,
+    "lesson": null,
+    "course": null
+  },
+  "packages": [
+    "content/geography"
+  ],
+  "locales": [
+    "kk"
+  ],
+  "generated": [
+    {
+      "kind": "taxonomy",
+      "textbook": "content/geography",
+      "locale": "kk",
+      "path": ".agent-ci-artifacts/taxonomies/geography/kk.md",
+      "domains": 11,
+      "groups": 41,
+      "skills": 159,
+      "missing": 0,
+      "reviewReady": true
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "documents": 1,
+    "failures": 0,
+    "missingTranslations": 0,
+    "incompleteDocuments": 0,
+    "taxonomyDocuments": 1,
+    "lessonDocuments": 0,
+    "courseDocuments": 0,
+    "assessmentMethodDocuments": 0,
+    "uiKitDocuments": 0,
+    "geographyHomeCopyDocuments": 0,
+    "educationStandardDocuments": 0
+  }
+}
