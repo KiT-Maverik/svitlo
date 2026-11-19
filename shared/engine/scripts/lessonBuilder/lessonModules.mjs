@@ -725,7 +725,9 @@ export function renderLessonModules(lesson, language, options = {}) {
     // Nil UUID filenames identify unfinished assets. Keep per-field TODO(asset)
     // hints and emit one CI-visible blocker for each media Configurator.
     const mediaBlocker = localMediaTypes.has(node.type)
-      ? '// TODO (BLOCKER): ' + node.type + ' media resource(s) unresolved.\n' +
+      ? '// TODO (BLOCKER): ' +
+        node.type +
+        ' media resource(s) unresolved.\n' +
         '// Produce or reuse verified asset files and replace Nil UUID filename(s) before merge.\n'
       : '';
     const result =
