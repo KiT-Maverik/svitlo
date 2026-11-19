@@ -53,7 +53,7 @@ export const commercialRoleOfPackaging = defineSkill({
       it: 'Scopri come il confezionamento influenza le aspettative e il valore pratico di un prodotto.',
       ja: '包装が期待や商品の実用的価値に与える影響を考えよう。',
       ka: 'შეისწავლე, როგორ მოქმედებს შეფუთვა მოლოდინებსა და პროდუქტის პრაქტიკულ ღირებულებაზე.',
-      kk: 'Qaptama kütu men önımnıñ täjıribelık qūnyna qalai äser etetının bıl.',
+      kk: 'Qaptama satyp aluşynyñ önımnen ne kütetınıne jäne önımnıñ ıs jüzındegı qūndylyğyna qalai äser etetının bıl.',
       ko: '포장이 기대와 제품의 실용적 가치를 어떻게 바꾸는지 살펴보세요.',
       lt: 'Tyrinėk, kaip pakuotė veikia lūkesčius ir praktinę produkto vertę.',
       lv: 'Izpēti, kā iepakojums ietekmē gaidas un produkta praktisko vērtību.',
