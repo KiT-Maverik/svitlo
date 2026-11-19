@@ -24,7 +24,7 @@ Groups: 5 · Skills: 16
 
 **Methodological description (English):** Mathematical expressions, equalities, inequalities, variables and unknowns, patterns, generalizations, and symbolic descriptions of relationships. The scope is not constrained to a particular age, numerical range, or notation.
 
-**User-friendly description (kk):** Teñdeuler, örnekter, sandardy bıldıretın ärıpter men zañdylyqtardyñ bailanystardy qalai sipattap, belgısız mänderdı tabuğa kömektesetının zertte.
+**User-friendly description (kk):** Teñdeuler, örnekter, sandardy bıldıretın ärıpter men zañdylyqtar bailanystardy qalai sipattap, belgısız mänderdı tabuğa kömektesetının zertte.
 
 #### Teñdıkter
 
@@ -110,7 +110,7 @@ Skills: 1
 
 **Methodological description (English):** Representing relationships in a short situation using arithmetic or simple algebraic notation.
 
-**User-friendly description (kk):** Naqty ne matematikalyq jağdailardy mağynasyn saqtap, sandarmen, amal tañbalarymen jäne qarapaiym teñdeulermen körsetudı üiren.
+**User-friendly description (kk):** Naqty ne matematikalyq jağdailardyñ mağynasyn saqtap, sandarmen, amal tañbalarymen jäne qarapaiym teñdeulermen körsetudı üiren.
 
 ##### Jağdaidy örnekpen nemese teñdeumen körsetu
 
@@ -1466,7 +1466,7 @@ Skills: 4
 
 **Methodological description (English):** The area of a rectangle is the product of adjacent side lengths expressed in a common length unit. A grid of congruent unit squares explains the formula through row and column counts.
 
-**User-friendly description (kk):** Tıktörtbūryştyñ audany — ūzyndyğy men enınıñ köbeitındısı. Bırdei şarşylardyñ joldary men bağandary sebebın körsetedı.
+**User-friendly description (kk):** Tıktörtbūryştyñ audany — ūzyndyğy men enınıñ köbeitındısı. Bırdei şarşylardan qūralğan qatarlar men bağandar būl formulanyñ nege dūrys ekenın körsetedı.
 
 #### Şeñberler men döñgelekter
 
