@@ -77,3 +77,18 @@ test('PR artifact auto-cleanup excludes protected production promotion without w
   assert.match(guard, /branches: \[main, develop, integration-branch, new-lesson, integration\/italian-localization\]/);
   assert.match(guard, /name: Agent CI Artifacts \/ clean/);
 });
+
+test('Desktop bundle assertions execute after production builds, not in root npm test', () => {
+  const scripts = JSON.parse(readFileSync(new URL('../../../apps/desktop/package.json', import.meta.url), 'utf8')).scripts;
+  assert.equal(scripts.test, 'node --test tests/engine-runtime-imports.spec.mjs');
+  assert.equal(scripts['test:integration'], 'node --test tests/packaged-content.spec.mjs');
+
+  const quality = workflow('questions.yml');
+  const build = quality.indexOf('npm run app:build');
+  const integration = quality.indexOf('npm run test:integration --workspace @svitlo/desktop');
+  assert.ok(build !== -1 && integration > build, 'Desktop bundle test must follow production app builds');
+
+  const desktop = workflow('desktop-ci.yml');
+  assert.match(desktop, /npm run test --workspace @svitlo\/desktop/);
+  assert.match(desktop, /npm run test:integration --workspace @svitlo\/desktop/);
+});
