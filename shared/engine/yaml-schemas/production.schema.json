@@ -39,9 +39,7 @@
           "description": "Authoring-only Methodologist decision: a Flashcards Section is eventually required; not a bank-existence or runtime status flag."
         }
       },
-      "required": [
-        "documentLanguage"
-      ]
+      "required": ["documentLanguage"]
     },
     "course": {
       "type": "object",
@@ -141,9 +139,7 @@
           "minLength": 1
         }
       },
-      "required": [
-        "specification"
-      ]
+      "required": ["specification"]
     },
     "image": {
       "type": "object",
@@ -163,10 +159,7 @@
           "minLength": 1
         }
       },
-      "required": [
-        "prompt",
-        "purpose"
-      ]
+      "required": ["prompt", "purpose"]
     },
     "audio": {
       "type": "object",
