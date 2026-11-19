@@ -38,11 +38,18 @@ test('scopes Skills and Lessons to the named textbook and optional locale', () =
 
 test('selects only the requested Course UUID and optional locale', () => {
   const course = '30ecbde1-97fd-5fe7-a353-ea89b9ef4a67';
-  assert.deepEqual(parseArguments(['--kind', 'courses', '--package', 'content/astronomy', '--course', course, '--locale', 'uk']), {
-    kind: 'courses', package: 'content/astronomy', course, locale: 'uk',
-  });
+  assert.deepEqual(
+    parseArguments(['--kind', 'courses', '--package', 'content/astronomy', '--course', course, '--locale', 'uk']),
+    {
+      kind: 'courses',
+      package: 'content/astronomy',
+      course,
+      locale: 'uk',
+    },
+  );
   assert.deepEqual(parseArguments(['--kind', 'courses', '--package', 'content/astronomy']), {
-    kind: 'courses', package: 'content/astronomy',
+    kind: 'courses',
+    package: 'content/astronomy',
   });
 });
 
@@ -149,8 +156,12 @@ test('Skills link rewriting handles modular .ts and legacy .data.ts without esca
     'example/legacy.data.ts',
   ]) {
     const canonical = path.join(root, 'content/economics/data/skills', source);
-    const input = '[' + path.basename(source) + '](' +
-      encodeURI(path.relative(original, canonical).split(path.sep).join('/')) + ')';
+    const input =
+      '[' +
+      path.basename(source) +
+      '](' +
+      encodeURI(path.relative(original, canonical).split(path.sep).join('/')) +
+      ')';
     const rendered = fixTaxonomyLinks(input, 'economics', output);
     const link = rendered.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
     assert.ok(link, rendered);
@@ -176,26 +187,34 @@ test('trusted publisher accepts pre-Course Skills manifests but rejects scope mi
   const match = workflow.slice(offset).match(/node --input-type=module <<'NODE'\n([\s\S]*?)\n\s+NODE/);
   assert.ok(match, 'Publisher must contain its inline trusted manifest validation');
   // Run the actual publisher's inline validator without privileged GitHub credentials.
-  const validator = match[1].split('\n').map(line => line.replace(/^ {10}/, '')).join('\n');
+  const validator = match[1]
+    .split('\n')
+    .map(line => line.replace(/^ {10}/, ''))
+    .join('\n');
   function validate(scope, overrides = {}) {
     const temp = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-artifact-publisher-'));
     const document = path.join(temp, '.agent-ci-artifacts/taxonomies/economics/kk.md');
     fs.mkdirSync(path.dirname(document), { recursive: true });
     fs.writeFileSync(document, '# Economics reference\n');
-    fs.writeFileSync(path.join(temp, '.agent-ci-artifacts/manifest.json'), JSON.stringify({
-      kind: 'pr-scoped-agent-ci-artifacts',
-      schemaVersion: 3,
-      scope,
-      generated: [{
-        kind: 'taxonomy',
-        textbook: 'content/economics',
-        locale: 'kk',
-        path: '.agent-ci-artifacts/taxonomies/economics/kk.md',
-        missing: 0,
-        reviewReady: true,
-      }],
-      failures: [],
-    }));
+    fs.writeFileSync(
+      path.join(temp, '.agent-ci-artifacts/manifest.json'),
+      JSON.stringify({
+        kind: 'pr-scoped-agent-ci-artifacts',
+        schemaVersion: 3,
+        scope,
+        generated: [
+          {
+            kind: 'taxonomy',
+            textbook: 'content/economics',
+            locale: 'kk',
+            path: '.agent-ci-artifacts/taxonomies/economics/kk.md',
+            missing: 0,
+            reviewReady: true,
+          },
+        ],
+        failures: [],
+      }),
+    );
     try {
       return spawnSync(process.execPath, ['--input-type=module', '--eval', validator], {
         cwd: temp,
