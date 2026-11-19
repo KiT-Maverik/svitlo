@@ -348,20 +348,21 @@ export function handoffLesson(source, options = {}) {
 
 export function main(args = process.argv.slice(2), repo = repoRoot) {
   const [mode, flag, source] = args;
-  if (!['preflight', 'preflight-draft', 'handoff', 'finalize'].includes(mode) || flag !== '--source' || !source || args.length !== 3)
+  const preserve = args.length === 4 && args[3] === '--preserve-config';
+  if (!['preflight', 'preflight-draft', 'handoff', 'finalize'].includes(mode) || flag !== '--source' || !source || (args.length !== 3 && !preserve) || (preserve && mode !== 'finalize'))
     throw new Error(
-      'Usage: node shared/engine/scripts/finalizeLesson/finalizeLesson.mjs preflight|preflight-draft|handoff|finalize --source content/<book>/data/lessons/<bucket>/<uuid>/lesson.yaml',
+      'Usage: node shared/engine/scripts/finalizeLesson/finalizeLesson.mjs preflight|preflight-draft|handoff|finalize --source content/<book>/data/lessons/<bucket>/<uuid>/lesson.yaml [--preserve-config (finalize only)]',
     );
   const filename = path.resolve(repo, source);
   const result =
     mode === 'preflight' ? preflightLesson(filename, repo) :
     mode === 'preflight-draft' ? preflightLessonDraft(filename, repo) :
-    mode === 'handoff' ? handoffLesson(filename, { repo }) : finalizeLesson(filename, { repo });
+    mode === 'handoff' ? handoffLesson(filename, { repo }) : finalizeLesson(filename, { repo, retainSource: preserve });
   console.log(
     mode.startsWith('preflight')
       ? 'Lesson ' + result.lessonId + ': ' + mode + ' valid (read-only)'
       : 'Lesson ' + result.lessonId + ': ' + result.files.length + ' persistent outputs verified; ' +
-        (result.removed ? 'lesson.yaml removed' : 'bank-pending lesson.yaml preserved'),
+        (result.removed ? 'lesson.yaml removed' : 'lesson.yaml preserved'),
   );
   return result;
 }
