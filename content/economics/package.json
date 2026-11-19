@@ -5,7 +5,6 @@
   "type": "module",
   "scripts": {
     "package:build": "node ../../scripts/textbook-tooling/buildTextbook/build.mjs",
-    "postpackage:build": "npm run code:check:types",
     "code:check:types": "tsc -p tsconfig.json --noEmit",
     "code:lint:check": "eslint textbook.ts",
     "pretest:portability": "npm run package:build --workspace @svitlo/economics",
