@@ -594,7 +594,7 @@ const kk: Lesson_Locale = {
   steps: { navigation: 'Sabaq kezeñderı' },
   celebration: {
     title: 'Qūttyqtaimyz! Būl sabaqty aiaqtadyñ!',
-    description: 'Teoriia, praktika, oqu kartotşkalary men test — barlyq kezeñder aiaqtaldy.',
+    description: 'Teoriia, praktika, oqu kartalary men test — barlyq kezeñder aiaqtaldy.',
     correctAnswers: 'Dūrys jauaptar:',
     scoreTemplate: '{score} / {total}',
     note: 'Sabaqty aiaqtau barlyq jauap dūrys boldy degendı bıldırmeidı — materialğa ärqaşan qaita orala alasyñ.',
