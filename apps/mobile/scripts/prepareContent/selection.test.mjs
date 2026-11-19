@@ -22,7 +22,6 @@ test('unknown textbook fails before generating or touching Web assets', () => {
   assert.match(result.stderr, /Unknown SVITLO_TEXTBOOK/);
 });
 
-
 test('CI reuses prepared Mobile content for typechecking and preserves native coverage', () => {
   const scripts = JSON.parse(readFileSync(resolve(root, 'apps/mobile/package.json'), 'utf8')).scripts;
   const workflow = readFileSync(resolve(root, '.github/workflows/mobile.yml'), 'utf8');

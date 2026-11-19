@@ -71,7 +71,6 @@ test('statically registered Scene modules are emitted as local JavaScript chunks
   assert.ok(javascript.some(name => name.startsWith('2abe959c-0908-4779-afbb-b2da6c1aa4d4-')));
 });
 
-
 test('CI packages the existing Desktop build while standalone packaging remains self-contained', () => {
   const scripts = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8')).scripts;
   const workflow = readFileSync(resolve(root, '../../.github/workflows/desktop-ci.yml'), 'utf8');
