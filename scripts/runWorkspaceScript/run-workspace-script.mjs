@@ -91,11 +91,18 @@ function execute(operation) {
   console.log('Running ' + operation + ' in ' + selected.length + ' eligible workspaces: ' + selected.join(', '));
   for (const { name, script } of steps) {
     console.log('\n▶ ' + name + ' / ' + script);
-    const result = spawnSync('npm', ['run', script, '--workspace', name], {
+    // Production Quality shares verified package outputs between separate root operations.
+    // Without its job-local state, preserve the exact canonical npm command.
+    const reuse = script === 'package:build' && Boolean(process.env.SVITLO_CI_PACKAGE_BUILD_STATE);
+    const command = reuse ? process.execPath : 'npm';
+    const args = reuse
+      ? ['scripts/ci/packageBuildReuse/package-build-reuse.mjs', name]
+      : ['run', script, '--workspace', name];
+    const result = spawnSync(command, args, {
       cwd: repo,
       env: process.env,
       stdio: 'inherit',
-      shell: process.platform === 'win32',
+      shell: !reuse && process.platform === 'win32',
     });
     if (result.error || result.status !== 0) {
       throw Error(name + ' / ' + script + ' failed' + (result.error ? ': ' + result.error.message : ''));
