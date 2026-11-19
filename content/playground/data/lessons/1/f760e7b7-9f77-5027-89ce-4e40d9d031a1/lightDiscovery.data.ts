@@ -8,7 +8,7 @@ export const lightDiscovery = defineLesson({
   slug: 'lightDiscovery',
   type: 'lesson',
   skills: howLightMoves.config.base.skills,
-  params: { ...howLightMoves.config.base.params, requireQuiz: false, languages: howLightMoves_languages },
+  params: { ...howLightMoves.config.base.params, quizRequiredForCompletion: false, languages: howLightMoves_languages },
   locale: { title: 'Light Lab · Discovery (demo)' },
   section: {
     items: { content: howLightMoves.section.items.content, practice: howLightMoves.section.items.practice },
