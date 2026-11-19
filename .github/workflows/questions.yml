@@ -41,6 +41,10 @@ jobs:
       - run: node scripts/ci/quietRun/quiet-run.mjs -- npm run test:components --workspace @svitlo/web
       # npm test already executes IndexedDB integration tests with coverage.
       - run: node scripts/ci/quietRun/quiet-run.mjs -- npm run code:lint:check
+      # Global artifact verification reads distributions from this runner.
+      # Content Build verifies its own full textbook matrix independently.
+      - name: Build all distributable packages
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npm run package:build
       - run: node scripts/ci/quietRun/quiet-run.mjs -- npm run app:build
       # All eligible textbook publishers and tarballs are verified by the
       # required Affected content / build, taxonomy and packaging check.

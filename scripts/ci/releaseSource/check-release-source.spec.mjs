@@ -57,3 +57,15 @@ test('production gate CLI propagates authorized and unauthorized exit statuses',
   assert.equal(denied.status, 1);
   assert.match(denied.stderr, /Production promotion requires/);
 });
+
+test('release compiles all distributable packages before host builds and artifact validation', () => {
+  const workflow = readFileSync(
+    fileURLToPath(new URL('../../../.github/workflows/questions.yml', import.meta.url)),
+    'utf8',
+  );
+  const packageBuild = workflow.indexOf('npm run package:build');
+  const appBuild = workflow.indexOf('npm run app:build');
+  const artifactCheck = workflow.indexOf('npm run repo:check:artifacts');
+  assert.ok(packageBuild > 0 && packageBuild < appBuild && packageBuild < artifactCheck);
+  assert.match(workflow, /name: Build all distributable packages/);
+});
