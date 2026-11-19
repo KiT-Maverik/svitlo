@@ -1,6 +1,8 @@
 # Methodologist-required Quiz and Flashcards Section scaffolding
 
-**Status:** Implementation proposal for the dedicated Draft PR; **not implemented**. The current Engine contracts, Stage 1/2 workflow, Stage 6 finalizer and CI are the implementation baseline. This document is an authorized implementation handoff, not evidence that the new behavior exists.
+**Status:** In progress in dedicated Draft PR #706; not reviewed, marked Ready or merged. New draft-only preflight/handoff and Section blockers are implementation work, not evidence of publication readiness.
+
+**Selected authoring representation:** One fenced "~~~yaml lesson-assessment-sections" block in the existing production.methodology string, with assessmentSections.quiz and assessmentSections.flashcards. Each decision is required or notRequired with explicit rationale and stable-keyed intents. Required intents carry purpose, placement and bankDependency; Quiz also requires skills and assessmentMethods. Matching Section production.productionNotes must include "Assessment intent: <key>" and "Bank integration: pending|connected". This information remains outside Engine Config and does not create new Lesson stages. Draft-only CLI modes "preflight-draft" and "handoff" retain YAML, while strict "preflight"/"finalize" remain separate. The current Engine contracts, Stage 1/2 workflow, Stage 6 finalizer and CI are the implementation baseline. This document is an authorized implementation handoff, not evidence that the new behavior exists.
 
 ## Goal and scope
 
