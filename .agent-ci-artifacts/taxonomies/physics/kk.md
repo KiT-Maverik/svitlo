@@ -1946,7 +1946,7 @@ Skills: 4
 
 **Methodological description (English):** Sound arises when an oscillating source disturbs an elastic medium; oscillation without a medium does not produce a mechanical sound wave.
 
-**User-friendly description (kk):** Terbeletın közdı ol tudyratyn dybystyq būzylumen bailanystyr.
+**User-friendly description (kk):** Terbeletın közdı ol tudyratyn dybys tolqynymen bailanystyr.
 
 #### Tolqyndyq qūbylystar
 
@@ -2022,7 +2022,7 @@ Skills: 6
 
 **Methodological description (English):** An oscillating source creates a disturbance that propagates through a medium, while the medium's particles do not necessarily move along with the wavefront.
 
-**User-friendly description (kk):** Terbeletın közdı odan taralatyn būzyludan ajyrat.
+**User-friendly description (kk):** Terbeletın közdı odan taralatyn tolqynnan ajyrat.
 
 ##### Tolqyn energiiasyn beru men zat tasymalyn ajyratu
 
