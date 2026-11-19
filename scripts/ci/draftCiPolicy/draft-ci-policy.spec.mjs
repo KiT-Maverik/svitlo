@@ -21,9 +21,13 @@ test('FastGate keeps cheap Draft guards but defers every expensive step', () => 
   const fast = workflow('fast-gate.yml');
   assert.match(fast, /Refuse temporary agent artifacts in an integration-bound PR/);
   assert.match(fast, /Validate GitHub label catalogue/);
-  const guard = "if: steps.scope.outputs.run == 'true' && (github.event_name == 'workflow_dispatch' || !github.event.pull_request.draft)";
+  const guard =
+    "if: steps.scope.outputs.run == 'true' && (github.event_name == 'workflow_dispatch' || !github.event.pull_request.draft)";
   assert.equal(fast.split(guard).length - 1, 4);
-  assert.match(fast, /if: github.event_name == 'pull_request' && !github.event.pull_request.draft && steps.scope.outputs.run == 'true'/);
+  assert.match(
+    fast,
+    /if: github.event_name == 'pull_request' && !github.event.pull_request.draft && steps.scope.outputs.run == 'true'/,
+  );
   assert.match(fast, /if: github.event_name == 'workflow_dispatch' && steps.scope.outputs.run == 'true'/);
   assert.match(fast, /Draft PR - expensive package builds and typechecks are deferred/);
 });
@@ -39,7 +43,11 @@ test('heavy PR suites run on Ready transition and can run manually on Draft bran
     assert.match(yaml, /types: \[opened, reopened, synchronize, ready_for_review\]/, file);
     assert.match(yaml, /\n  workflow_dispatch:/, file);
     assert.ok(
-      yaml.includes('  ' + job + ":\n    # Full host/browser/generator suites only at review boundary or explicitly on demand.\n    if: github.event_name == 'workflow_dispatch' || !github.event.pull_request.draft"),
+      yaml.includes(
+        '  ' +
+          job +
+          ":\n    # Full host/browser/generator suites only at review boundary or explicitly on demand.\n    if: github.event_name == 'workflow_dispatch' || !github.event.pull_request.draft",
+      ),
       file + ' must guard its expensive job while permitting manual runs',
     );
   }
@@ -79,7 +87,9 @@ test('PR artifact auto-cleanup excludes protected production promotion without w
 });
 
 test('Desktop bundle assertions execute after production builds, not in root npm test', () => {
-  const scripts = JSON.parse(readFileSync(new URL('../../../apps/desktop/package.json', import.meta.url), 'utf8')).scripts;
+  const scripts = JSON.parse(
+    readFileSync(new URL('../../../apps/desktop/package.json', import.meta.url), 'utf8'),
+  ).scripts;
   assert.equal(scripts.test, 'node --test tests/engine-runtime-imports.spec.mjs');
   assert.equal(scripts['test:integration'], 'node --test tests/packaged-content.spec.mjs');
 
