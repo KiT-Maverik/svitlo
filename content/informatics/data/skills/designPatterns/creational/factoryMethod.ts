@@ -53,7 +53,7 @@ export const factoryMethod = defineSkill({
       it: 'Consenti alle sottoclassi di scegliere quale oggetto concreto viene creato da un metodo di fabbrica.',
       ja: 'どの具体的なオブジェクトを生成するかをサブクラスに選ばせよう。',
       ka: 'მიეცი ქვეკლასებს არჩევანი, რომელი კონკრეტული ობიექტი შექმნას ფაბრიკის მეთოდმა.',
-      kk: 'Fabrika ädısı qandai naqty obekt jasaitynyn ışkı klasstar tañdasyn.',
+      kk: 'Tuyndy klasstar fabrika ädısı qandai naqty obekt jasaitynyn tañdasyn.',
       ko: '어떤 구체적인 객체를 만들지 하위 클래스가 선택하도록 해 보세요.',
       lt: 'Leisk poklasiams rinktis, kokį konkretų objektą sukurs gamyklinis metodas.',
       lv: 'Ļauj apakšklasēm izvēlēties, kādu konkrētu objektu izveido rūpnīcas metode.',
