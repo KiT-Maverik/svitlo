@@ -31,6 +31,8 @@ const storyBridge = defineContentSection({
 /**
  * Course-specific Lesson composition. Reuse universal content without
  * changing the original howLightMoves Lesson or introducing override factories.
+ * The canonical Lesson owns Quiz assessment resources, so this independently
+ * identified demo reuses only teaching Sections; no unresolved Quiz is published.
  */
 export const courseHowLightMoves = defineLesson({
   id: 'fb3b328a-0dd6-55f1-9bb9-7c80ea1ac91b',
@@ -39,6 +41,7 @@ export const courseHowLightMoves = defineLesson({
   skills: howLightMoves.config.base.skills,
   params: {
     ...howLightMoves.config.base.params,
+    requireQuiz: false,
     languages: howLightMoves_languages,
     sections: {
       ...howLightMoves.config.base.params.sections,
@@ -52,8 +55,7 @@ export const courseHowLightMoves = defineLesson({
       storyBridge,
       content: howLightMoves.section.items.content,
       contentBlockGallery,
-      quiz: howLightMoves.section.items.quiz,
     },
-    order: ['practice', 'storyBridge', 'content', 'contentBlockGallery', 'quiz'],
+    order: ['practice', 'storyBridge', 'content', 'contentBlockGallery'],
   },
 });

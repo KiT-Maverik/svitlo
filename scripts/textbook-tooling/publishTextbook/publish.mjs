@@ -32,7 +32,9 @@ function owned(name, allowRetiredAnalytics = false) {
   return (
     typeof name === 'string' &&
     !isAbsolute(name) &&
-    (/^(?:data\/(?:skills|lessons|courses)|textbooks\/[a-z][a-z-]*)\/[a-zA-Z0-9_./-]+$/.test(name) ||
+    (/^(?:data\/(?:skills|lessons|courses|questions|flashcards|assessments)|textbooks\/[a-z][a-z-]*)\/[a-zA-Z0-9_./-]+$/.test(
+      name,
+    ) ||
       (allowRetiredAnalytics &&
         /^(?:data\/pages\/(?:skillAnalytics|lessons|courses)\/[a-zA-Z0-9_./-]+|generated\/skills\/[a-z]{2,8}\.json|generated\/skills\/base\.json)$/.test(
           name,

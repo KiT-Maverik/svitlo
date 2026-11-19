@@ -69,11 +69,24 @@ Config nodes.
   They never instantiate new `defineLesson` objects. Missing import
   coordinates remain explicit unresolved references/TODOs.
 
-All generated TypeScript may be **invalid under TypeScript by design**
-until a later AI agent resolves explicit `null` media fields, imports,
-Scene implementations and translations. Required YAML Config structure
-must already be complete. The scaffolder must not attempt to
-make it typecheck with placeholders or type suppression.
+Episode media are **draft-only handoffs**: for each nested Image, Audio, Video,
+Subtitles or Video poster missing its `locale.fileName`/`posterFileName`, the
+Course Builder inserts a visible `TODO(asset)` with the reserved Nil UUID
+(`00000000-0000-0000-0000-000000000000`) and a kind-appropriate extension
+in generated TypeScript. This includes media nested in Carousel or Quest.
+Supplied real authored media references are preserved unchanged. The placeholder
+is **never** an allocated asset, does not create a file, and blocks production
+publication. A specialist replaces it with a verified textbook-wide UUID file
+under `content/<book>/assets/`. Keep production-only media specifications as
+authoring handoffs and do not add approval status to `defineEpisode` Config.
+
+All generated TypeScript may be **invalid under TypeScript by design** until a
+later specialist resolves media TODOs, imports, Scene implementations and
+translations. Except for intentionally omitted draft media references, required
+technical Config fields remain the author's responsibility. The scaffolder
+must not turn unfinished code green with invented physical resources or type
+suppression. Ready/merge requires a strict textbook production build and zero
+unresolved `TODO(asset)` markers.
 
 ## Usage
 
@@ -108,3 +121,7 @@ nothing. Files are created exclusively and never overwritten. Divergent
 pre-existing `specification.md` / `methodology.md` handoffs are protected.
 `--check` remains strict and read-only; no Zod, AJV, full TS validation,
 content approvals, localization or Props publishing is performed.
+
+## Separate approved editorial Course Flow
+
+The seven-stage Course methodology workflow has a dedicated, deterministic [modular materializer](../materializeCourseFlow/README.md). Run it for independently approved temporary editorial `course.yaml` plans; this general builder preserves its existing single-file technical `config.yaml` scaffolding contract and its non-destructive legacy behavior.

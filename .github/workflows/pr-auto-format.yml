@@ -4,6 +4,7 @@ on:
   pull_request:
     # Avoid running Prettier on every agent commit while the PR is a draft.
     types: [ready_for_review]
+    branches: [main]
   # Recheck the formatted head SHA explicitly: this workflow otherwise runs only
   # when a PR becomes ready for review.
   workflow_dispatch:
