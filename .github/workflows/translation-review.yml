@@ -252,10 +252,7 @@ jobs:
           NODE
       - name: Build Engine for typed Lesson/Course or complete EducationStandard generation
         if: needs.resolve.outputs.kind == 'lessons' || needs.resolve.outputs.kind == 'courses' || (needs.resolve.outputs.kind == 'education-standards' && steps.catalog_check.outputs.complete == 'true')
-        run: npm run package:build --workspace @svitlo/engine
-      - name: Build complete EducationStandard authoring catalog
-        if: needs.resolve.outputs.kind == 'education-standards' && steps.catalog_check.outputs.complete == 'true'
-        run: npm run package:build --workspace @svitlo/education-standards
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npm run package:build --workspace @svitlo/engine
       - name: Generate only the selected reference scope
         env:
           REQUEST_KIND: ${{ needs.resolve.outputs.kind }}
