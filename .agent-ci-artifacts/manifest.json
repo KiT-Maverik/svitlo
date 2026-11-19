@@ -3,7 +3,7 @@
   "kind": "pr-scoped-agent-ci-artifacts",
   "sourceCommit": "daa6c4d40eb4c289c6c8d564e3168173af1a3fa6",
   "scope": {
-    "kind": "ui-kit",
+    "kind": "assessment-methods",
     "package": null,
     "locale": "kk",
     "component": null,
@@ -15,96 +15,23 @@
   ],
   "generated": [
     {
-      "kind": "ui-kit-locale",
-      "component": "audio",
+      "kind": "assessment-method",
       "locale": "kk",
-      "path": ".agent-ci-artifacts/ui-kit/audio/kk.md",
-      "missing": 0,
-      "reviewReady": true
-    },
-    {
-      "kind": "ui-kit-locale",
-      "component": "checkpoint",
-      "locale": "kk",
-      "path": ".agent-ci-artifacts/ui-kit/checkpoint/kk.md",
-      "missing": 0,
-      "reviewReady": true
-    },
-    {
-      "kind": "ui-kit-locale",
-      "component": "flashcard",
-      "locale": "kk",
-      "path": ".agent-ci-artifacts/ui-kit/flashcard/kk.md",
-      "missing": 0,
-      "reviewReady": true
-    },
-    {
-      "kind": "ui-kit-locale",
-      "component": "image",
-      "locale": "kk",
-      "path": ".agent-ci-artifacts/ui-kit/image/kk.md",
-      "missing": 0,
-      "reviewReady": true
-    },
-    {
-      "kind": "ui-kit-locale",
-      "component": "learningLayout",
-      "locale": "kk",
-      "path": ".agent-ci-artifacts/ui-kit/learningLayout/kk.md",
-      "missing": 0,
-      "reviewReady": true
-    },
-    {
-      "kind": "ui-kit-locale",
-      "component": "lesson",
-      "locale": "kk",
-      "path": ".agent-ci-artifacts/ui-kit/lesson/kk.md",
-      "missing": 0,
-      "reviewReady": true
-    },
-    {
-      "kind": "ui-kit-locale",
-      "component": "navbarPreferences",
-      "locale": "kk",
-      "path": ".agent-ci-artifacts/ui-kit/navbarPreferences/kk.md",
-      "missing": 0,
-      "reviewReady": true
-    },
-    {
-      "kind": "ui-kit-locale",
-      "component": "questionFrame",
-      "locale": "kk",
-      "path": ".agent-ci-artifacts/ui-kit/questionFrame/kk.md",
-      "missing": 0,
-      "reviewReady": true
-    },
-    {
-      "kind": "ui-kit-locale",
-      "component": "video",
-      "locale": "kk",
-      "path": ".agent-ci-artifacts/ui-kit/video/kk.md",
-      "missing": 0,
-      "reviewReady": true
-    },
-    {
-      "kind": "ui-kit-locale",
-      "component": "youtube",
-      "locale": "kk",
-      "path": ".agent-ci-artifacts/ui-kit/youtube/kk.md",
+      "path": ".agent-ci-artifacts/assessment-methods/kk.md",
       "missing": 0,
       "reviewReady": true
     }
   ],
   "failures": [],
   "summary": {
-    "documents": 10,
+    "documents": 1,
     "failures": 0,
     "missingTranslations": 0,
     "incompleteDocuments": 0,
     "taxonomyDocuments": 0,
     "lessonDocuments": 0,
-    "assessmentMethodDocuments": 0,
-    "uiKitDocuments": 10,
+    "assessmentMethodDocuments": 1,
+    "uiKitDocuments": 0,
     "geographyHomeCopyDocuments": 0
   }
 }
