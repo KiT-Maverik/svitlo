@@ -227,7 +227,7 @@ test('source-preserving strict transfer keeps YAML and never creates independent
     const doc = {
       config: {
         id: lesson, slug: 'exampleLesson', type: 'lesson', skills: [],
-        params: { languages: ['en'], requireQuiz: false,
+        params: { languages: ['en'], quizRequiredForCompletion: false,
           sections: { allowNavigation: true, allowSkipping: true, showIndexes: true } },
         locale: { title: { en: 'Example' } },
         section: { items: {

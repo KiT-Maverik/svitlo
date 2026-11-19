@@ -29,7 +29,7 @@ function lessonConfig() {
     skills: [],
     params: {
       languages: ['uk', 'en'],
-      requireQuiz: false,
+      quizRequiredForCompletion: false,
       sections: { allowNavigation: true, allowSkipping: true, showIndexes: true },
     },
     locale: { title: { uk: 'Світло', en: 'Light' } },

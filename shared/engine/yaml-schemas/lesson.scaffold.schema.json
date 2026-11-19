@@ -32,7 +32,7 @@
             "disabled": {
               "$ref": "#/$defs/__schema2"
             },
-            "requireQuiz": {
+            "quizRequiredForCompletion": {
               "type": "boolean"
             },
             "languages": {
@@ -64,7 +64,7 @@
             }
           },
           "required": [
-            "requireQuiz",
+            "quizRequiredForCompletion",
             "languages",
             "sections"
           ],

@@ -20,7 +20,7 @@ config:
   skills: []
   params:
     languages: [en, uk]
-    requireQuiz: false
+    quizRequiredForCompletion: false
     sections: { allowNavigation: true, allowSkipping: true, showIndexes: true }
   locale:
     title: { en: Equality }

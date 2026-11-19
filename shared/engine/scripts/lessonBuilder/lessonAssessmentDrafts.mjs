@@ -55,7 +55,7 @@ export function prepareAssessmentDraft(document) {
   const drafts = new Map();
   for (const type of ['quiz', 'flashcards']) {
     const required = document.production?.[type === 'quiz' ? 'quizRequired' : 'flashcardsRequired'] === true ||
-      (type === 'quiz' && document.config.params?.requireQuiz === true);
+      (type === 'quiz' && document.config.params?.quizRequiredForCompletion === true);
     const complete = Object.values(items).some(section => section?.config?.type === type &&
       section.config.params?.disabled !== true);
     const missing = required && !complete;

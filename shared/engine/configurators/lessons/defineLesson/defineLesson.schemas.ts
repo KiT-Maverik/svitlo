@@ -11,7 +11,7 @@ const languages = z
   .nonempty()
   .refine(list => new Set(list).size === list.length, 'Lesson languages must be unique');
 const params = paramsBase_Schema.shape.params.extend({
-  requireQuiz: z.boolean(),
+  quizRequiredForCompletion: z.boolean(),
   languages,
   sections: z.strictObject({
     allowNavigation: z.boolean(),
