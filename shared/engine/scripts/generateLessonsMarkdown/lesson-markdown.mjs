@@ -106,7 +106,15 @@ export function sourceIndex(repositoryRoot, lessonRelativePath) {
   };
 }
 
-export function renderLessonMarkdown({ lesson, locale, languages, packagePath, sourceFiles, sourceRef = 'main' }) {
+export function renderLessonMarkdown({
+  lesson,
+  locale,
+  languages,
+  packagePath,
+  sourceFiles,
+  sourceRef = 'main',
+  purpose = 'review',
+}) {
   const record = value => value !== null && typeof value === 'object' && !Array.isArray(value);
   const escape = value =>
     String(value)
@@ -168,6 +176,7 @@ export function renderLessonMarkdown({ lesson, locale, languages, packagePath, s
     'image',
     'carousel',
     'scene',
+    'subtitles',
   ]);
   const mediaTypes = new Set(['image', 'audio', 'video', 'youtube', 'carousel']);
   const sourceEntry = `${lessonRoot}/index.ts`;
@@ -257,15 +266,26 @@ export function renderLessonMarkdown({ lesson, locale, languages, packagePath, s
       if (!record(section.params)) throw new Error(`Quiz Section ${section.slug} is missing params`);
       add('- **Quiz references independently published Question UUIDs; answer contents are not embedded.**');
       writeValue('Quiz parameters and selected Question UUIDs', section.params);
+      if (purpose === 'flashcards') {
+        if (!Array.isArray(section.content)) throw new Error('Quiz Section is missing ordered content');
+        section.content.forEach((block, i) => writeValue(`Block ${i + 1}`, block));
+      }
     } else {
       if (!Array.isArray(section.content)) throw new Error(`Section ${section.slug} is missing content`);
       section.content.forEach((block, i) => writeValue(`Block ${i + 1}`, block));
+      if (purpose === 'flashcards' && section.type === 'flashcards') {
+        if (!record(section.params?.selection) || !Array.isArray(section.params.selection.flashcardIds))
+          throw new Error('Flashcards Section is missing selected Flashcard UUIDs');
+        writeValue('Selected independent Flashcard UUIDs', section.params.selection.flashcardIds);
+      }
     }
     add('');
   }
   add('## Assessment resources');
   add('');
-  add('Question and Flashcard contents are published and reviewed independently; Section UUID selections appear above.');
+  add(
+    'Question and Flashcard contents are published and reviewed independently; Section UUID selections appear above.',
+  );
   add('');
   return lines.join('\n').trimEnd() + '\n';
 }

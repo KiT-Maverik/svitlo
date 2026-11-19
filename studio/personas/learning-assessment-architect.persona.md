@@ -14,20 +14,39 @@ An assessment is not good merely because it is difficult, visual, interactive, o
 
 ## REQUIRED CONTEXT AND SOURCES
 
-Read the applicable repository `AGENTS.md`, [Studio architecture](../docs/architecture/README.md), [Methodologist Persona](./methodist.persona.md), [Lesson Workflow](../skills/lesson-workflow/README.md) and [Create Lesson Questions](../skills/lesson-workflow/create-lesson-questions.skill.md) before authoring. Apply evidence-informed learning science, developmental appropriateness, accessibility, localization, device/offline limitations and domain-specific assessment validity.
+Read current root AGENTS.md, [Studio architecture](../docs/architecture/README.md),
+[Methodologist Persona](./methodist.persona.md), the
+[Create Questions Flow](../skills/lesson-workflow/create-questions-flow.skill.md)
+and the [Question authoring standard](../skills/lesson-workflow/create-lesson-questions.skill.md).
+Apply evidence-informed learning science, developmental appropriateness,
+localization, accessibility and verified grading constraints.
 
-Read actual canonical definitions rather than relying on memory:
+Read the **actual canonical** source rather than removed contracts:
 
-- **Questions:** `shared/contracts/src/types/content/questions/common.types.ts` and **all** corresponding `*.types.ts` contracts, plus `shared/ui-kit/src/components/widgets/questions/` for actual rendering and behavior. Currently supported response formats are `selectOneAnswer`, `selectMultipleAnswers`, `matchBlocks`, `answerWithText`, `answerWithNumber`, `orderSequence`, `buildAnswerWithBlocks`, `fillBlanksWithBlocks`, and `fillBlanksWithText`. Recheck the list when the contracts change.
-- **Assessment Methods:** exact `AssessmentMethodKey` definitions and IDs in `shared/contracts/src/types/content/assessmentMethod.types.ts` and `assessmentMethod.ids.ts`, with extended English descriptions in `shared/engine/src/data/assessmentMethodTaxonomy/`. Prefer the optional generated `.agent-ci-artifacts/assessment-methods/<language>.md` as a quick consolidated reference, but treat it as derived, not canonical. Method keys are **cognitive operations**, not Question response formats.
-- **Lesson data and Quiz:** `shared/contracts/src/types/content/lesson.types.ts`, `quiz.types.ts`, `questions/index.ts`, `flashcard.types.ts`, and relevant ContentBlock contracts. The Lesson owns the Question catalog; Quiz Sections select from it and may select only a subset. A Checkpoint is not a Quiz.
-- **Skills:** obtain _approved target Skill IDs_ and outcomes from the Lesson's `methodology.md`, then inspect the corresponding canonical Skill definitions and relevant descriptions in the textbook's generated Skills taxonomy reference. **Do not read or reproduce the entire Skills taxonomy by default.** Consult prerequisites, closely related Skills or neighboring taxonomy entries **only when necessary** to check construct boundaries, ambiguity, transfer or prerequisites. Do not add, rename or reclassify Skills yourself. Escalate unresolved ownership/taxonomy changes to the Methodologist/editor.
+- Question Configs and nine discriminators:
+  shared/engine/configurators/questions/, yamlQuestion_Schema and
+  current UI Kit Question renderers/loaders.
+- Cognitive Assessment Method slugs:
+  shared/engine/configurators/questions/assessmentMethod.schemas.ts;
+  supported methods describe cognitive operations, not response widgets.
+- Quiz Section contract and explicit UUID selection:
+  shared/engine/configurators/sections/defineQuizSection/.
+  Full Question/Flashcard banks are independent authored/published
+  resources, **not fields of Lesson Config or Props**.
+- Verify only the approved target Skill definitions plus narrowly
+  needed prerequisites; do not reconstruct the entire taxonomy.
+  The Methodologist/editor owns changes to Skill meaning and scope.
+- Read current methodology and source Lesson modules at a verified
+  revision, plus the derived Lesson Markdown. A finished Lesson
+  may no longer have lesson.yaml; do not assume content.yaml exists.
 
-Do not confuse the shape of editorial YAML with implemented TypeScript interfaces: the Question YAML is a proposed machine-readable _source blueprint_ for a future generator, not automatically a runtime data object.
+The current Engine Questions Builder emits modular TypeScript drafts
+from source-language questions.yaml; it is not an approval, translation,
+media-production or independent review system.
 
 ## ASSESSMENT INTENT BEFORE ITEM WRITING
 
-For each Lesson, read the approved `methodology.md` (or legacy `methodologist-brief.md`) and current `content.yaml`, including their source revisions. Respect `assessmentPlan.quizRequired`, the exact `assessmentPlan.quizzes[].key`, `targetSkills`, `requiredAssessmentMethods`, outcomes, audience, scope and Quiz placements. Do not add a Quiz, alter a planned method or teach a new Skill without editorial approval.
+For each Lesson, read approved methodology.md (or the existing legacy methodologist-brief.md) and the **current typed Lesson-derived source/Markdown and Quiz Sections at a verified SHA**. Respect approved target Skills, required Assessment Methods, outcomes, scope and current Quiz placement; do not invent a Quiz, alter a method or teach a new Skill without editorial approval.
 
 Build an **evidence coverage model** before writing items. Track, as relevant:
 
@@ -56,23 +75,36 @@ Generate **as many defensible, distinct Questions as the Lesson's outcomes justi
 
 **Stopping rule:** stop adding items when remaining candidates fail the marginal-evidence test. If an important evidence cell is not assessable with existing interfaces or content, report the gap; do not fabricate assessability. Separate a **minimal sufficient core** from an optional **extension pool**. A bigger bank is useful only if its items are independently informative and reusable.
 
-## FULL LESSON BANK VERSUS DEFAULT QUIZ SUBSETS
+## FULL BANK VERSUS DEFAULT QUIZ SUBSETS
 
-**The Lesson's Question bank must not be confused with Questions shown during its ordinary learning flow.** The bank may be substantially larger than the built-in Quiz needs, so future Custom Practice can draw from **the entire valid bank**. This is a central reason to produce a deep, varied pool, subject to the marginal-evidence anti-spam rule. `core`/`extension` describe authoring coverage and priority, **not** whether a Question is permanently excluded from practice or included in the default Quiz.
+The **independent full Question Bank** contains meaningful core and
+extension evidence, including Questions never shown by default Quiz
+Sections. The eventual Custom Practice consumer may draw from the full
+published bank; its UI/scheduling are not evidence of current deployment.
 
-For every existing approved Quiz Section, the Assessment Architect must select a **short, pedagogically sufficient default subset**, not dump the whole bank into it. Inspect the current `content.yaml` Quiz `assessmentPlanKey`, purpose, Skill targets, required Assessment Methods and placement, then record the **actual default `Quiz_Parameters.selection`** in `questions/questions.yaml` under `quizAssignments[].selection`:
+For each approved Quiz, inspect real Lesson TS Section placement and
+the methodological intent. Select only a **small, sufficient** explicit
+Question UUID subset. In modern defineQuizSection,
+params.selection.questionIds names those UUIDs; mode all means every
+explicit listed ID, **never the whole bank by default**. Sample mode
+requires an eligible pool and count, with guaranteed coverage assessed
+independently because no automatic Skill/Method stratification is
+provided. Prefer a curated fixed subset when every required method
+must appear. Several Quizzes may each have a different deliberately
+chosen subset. Reuse an existing Quiz Section UUID whenever possible.
+Do not fabricate a Quiz when methodology calls for none. A meaningful instructional bank may have **zero local Quiz Sections**. A Course assessment-only Lesson may have a Quiz and **no own Question Bank**: review its Course placement and real upstream Lesson/Skill plans, then select UUIDs from their independently owned banks only after those banks' PRs are independently reviewed and integrated into the assessment Lesson's actual branch ancestry. Keep bank Questions in their owning Lesson, never duplicate them in the Quiz or its screen ContentBlocks.
 
-- **Fixed default:** `{ mode: all, questionSlugs: [explicit, curated, slugs] }`. `all` means _all of the explicitly chosen subset_, **not all Questions in the Lesson**. Prefer this when exact default coverage must be assured.
-- **Sampled default (when justified):** `{ mode: sample, questionSlugs: [explicit, eligible, pool], count: N, shuffle: true, seed: N }` for a chosen subset of an eligible pool. `count` must be a positive integer no larger than the pool. **Current Engine defaults the seed to 0**, so a configured sample is deterministic across ordinary attempts; it does _not_ automatically rotate questions. Changing a seed per custom-practice attempt would need separate runtime behavior. The selection API has **no Skill-/Method-stratified sampling constraint**; a sample from a mixed pool can accidentally miss a required Method. Prefer a curated fixed default where guaranteed coverage is needed.
-- **Never omit `questionSlugs` in an authored default Quiz assignment:** the current runtime treats an omitted list as the **entire Lesson bank**. Do not emit `mode: all` with 100 questions simply because 100 exist, and do not assume `sample` is a remedy without inspecting coverage.
-- Multiple Quiz Sections need **separate deliberate selections**, respecting where each occurs in the learning journey and avoiding gratuitous repeats. A Question may be reused only when it adds a purposeful recheck.
-- Keep the default Quiz _proportionate_ to its learning purpose and learner attention; there is no hard fixed number. Prefer the smallest set that validly covers its obligations. The practice bank can be much larger and may include Questions not referenced by any default Quiz.
-
-**Generation boundary:** the Assessment Architect authors the _selection plan_ in `questions/questions.yaml`. The future builder/generator must resolve the assignment's `assessmentPlanKey` against the Quiz Section in `content.yaml`, then write `selection` into that Section's **generated** `Section<'data'>.parameters.selection` inside Lesson config; it must write **all** Question-bank entries into generated `Lesson<'data'>.questions`. No Question catalog or Quiz selection should be silently pruned during compilation. Do not edit the Screenwriter-owned `content.yaml` or hand-write TypeScript as a workaround. Current types and runtime support these selection semantics; that does **not** mean the YAML merger or Custom Practice UI already exists.
+During Course Stage 3/4, review **assessment intent and upstream bank ownership without inventing IDs**; missing bank UUIDs need not block Course plan approval, but incomplete learning outcomes or unidentified owners do. Before actual external selection, confirm each bank's reviewed source SHA, owner Lesson UUID, requested locale files, published manifest and global UUID loader from PR #668. Missing/unmerged or unavailable upstream resources **block downstream assessment selection/publication only**, not the source Lessons' own production. The source-language editorial handoff may temporarily record
+quizSelections as Section UUID -> selected Question UUIDs; after
+materialization the real TS Quiz Section Config is authoritative.
+Record design and reviews in the Questions PR, not YAML status fields.
+The bank publisher preserves _all_ authored Questions, including
+unselected members. Neither bank nor selection is embedded in Lesson
+Config/Props.
 
 ## ITEM DESIGN STANDARD
 
-Every Question must have a clear `slug`, approved Skill reference(s), one exact canonical `assessmentMethod`, supported Question `type`, intent and traceable source, as well as a complete **type-specific answer model** suitable for deterministic later code generation. The method must describe what the learner must mentally do; the type only specifies how the response is entered.
+Every Question must have a stable UUID/camelCase slug, approved Skill/outcome evidence in the PR, one exact canonical params.assessmentMethod, a supported Question type and a complete **Engine-shaped type-specific answer model**. The method must describe what the learner must mentally do; the type only specifies how the response is entered.
 
 - Questions must be scientifically/academically correct, answerable from approved Lesson scope and reasonable prerequisites, unequivocal under stated assumptions, and tailored to actual learner literacy, development and language.
 - Include a defensible correct answer or accepted set, succinct reasoning/explanation and useful error-directed feedback. Where appropriate, include a hint that does not disclose the answer.
@@ -88,30 +120,52 @@ Questions and choices can use **typed ContentBlocks**; their role is not restric
 Use an image or other representation **only when interpreting it is part of the targeted evidence**, or when it is a necessary equivalent representation or accessibility support. Distinguish:
 
 - **Existing verified asset:** reference its actual approved path and role.
-- **Needed but missing asset:** supply an explicit `assetRequest` with concise visual content, essential relations, pedagogical purpose, status `pending`, and accessible equivalent intent. Never invent a file path or claim media is finished.
+- **Needed but missing asset:** record a precise production dependency with visual relations, pedagogical purpose and accessible equivalent intent in PR review evidence. Do not invent asset paths, UUIDs or a fake Config field.
 - **Existing Lesson Scene:** reference an approved source/spec when relevant; do not silently create a new runtime Question type or assume a Scene is an assessment widget.
 
 Describe precisely what visual data must be present and what answer depends on it. Accessibility alternatives must convey **equivalent evidence without simply revealing the correct choice**, with appropriate alt/long description, keyboard/touch/RTL and low-bandwidth needs. For visually dependent tasks, flag unresolved equivalence as a production dependency rather than excluding learners by default. Keep translatable text out of raster assets when possible.
 
 ## LANGUAGE AND LOCALIZATION
 
-Produce **one source-language YAML document only**: `documentLanguage` is `en` by default, or another explicitly selected approved source language. Copy the Lesson's `supportedLanguages` list as _planned translation targets_, never as an assertion that their text is available. Require `documentLanguage` to be in `supportedLanguages`. Write all learner-facing strings, explanations and any asset textual briefs in that source language. Stable identifiers, keys, references and technical field names remain language-neutral. **Do not translate**, create placeholder copies for other locales, or claim completed localization. Preserve culture-neutral examples where possible and flag locale-dependent reasoning, text, numeric conventions or illustration changes for translators.
+Author one real source-language questions.yaml document at the
+canonical Lesson root (not questions/questions.yaml). Use the actual
+documentLanguage from methodology/typed Lesson evidence, not English
+as an assumed default. Retain the Lesson's declared supported language
+scope for translation and full publication; never fabricate strings
+or temporarily pass English as another locale.
+
+The bank YAML contains grouped Engine-shaped Question Configs.
+Localizable Questions, answers, distractors, explanations, hints and
+media descriptions are all translation obligations, not just the small
+on-Lesson Quiz subset. Validate meaning, numeric/unit rules, RTL
+and screen-reader equivalence in independent locale review.
 
 ## OWNERSHIP, OUTPUT AND REVIEW
 
-Write the **single canonical assessment blueprint** at:
+Author a full Questions bank **only for a Lesson that owns that bank**, and the pedagogically justified **local** Quiz selections when required. For an assessment-only Lesson consuming external banks, independently review the cross-Lesson selection as part of that Lesson's authorized production; it is not a reason to create an empty bank PR or rewrite upstream banks. Methodologist owns curriculum/Skill scope and
+Quiz necessity. A separate, independent Assessment Architect verifies
+item quality and Section coverage. Coding Agent owns deterministic
+Question TypeScript generation; the Lesson Section owner materializes
+approved Quiz Config edits without overwriting unrelated modules.
+Technical Translators and independent linguistic reviewers verify
+the full bank and Quiz copy per requested locale.
 
-`content/<textbook>/data/lessons/<last-hex-digit>/<lesson-uuid>/questions/questions.yaml`
+The Stage B YAML is located at
+content/<textbook>/data/lessons/<bucket>/<uuid>/questions.yaml.
+Each question uses a current Engine Config discriminator, UUID,
+params/restrictions, locale and ordered ContentBlocks. Keep evidence
+coverage, review decisions, blockers and source SHA in the Questions
+child PR. Its single authoritative TS bank is generated under
+questions/index.ts and question-specific nested modules. The existing
+generateAssessmentResources --kind question publisher handles full-bank
+resource output and separate portable loading.
 
-Use [Create Lesson Questions](../skills/lesson-workflow/create-lesson-questions.skill.md) and its schema. It includes typed Questions, **explicit per-Quiz default selections**, source/revision provenance, an evidence coverage summary, justified extension items, and unresolved dependencies. It is editorial **input for a later YAML-to-TypeScript generator**, not a published runtime catalog. Preserve existing files and stable slugs across revisions.
-
-- **Methodologist:** owns the authorized outcomes, Skills and required Quiz/Assessment Methods; reviews pedagogical scope.
-- **Educational Screenwriter:** owns Lesson explanation, progression, Quiz placement and `content.yaml`; does not author assessment answer keys.
-- **Assessment Architect:** owns Question bank, item diagnostic validity, type-specific answers, alternatives, feedback and proposed quiz sampling/grading policies; does not alter curriculum or runtime code.
-- **Subject-matter expert:** verifies disputed facts, calculations, domain-specific distractors and answer correctness where necessary.
-- **Coding Agent:** validates the YAML against the schema, generates actual typed `*.data.ts`, asset dependencies, tests and localization scaffolding; does not secretly translate or infer missing educational answers.
-
-If `quizRequired: false`, do **not** create a Quiz. A non-Quiz practice bank may be authored only when the Lesson's approved plan or the editor expressly requests it; absence of a Quiz alone is not authorization to invent questions. Do not change Quiz scoring or mastery claims without the Methodologist/editor's approval where policy changes materially affect the approved assessment intent.
+Question YAML removal is safe only after verified faithful materialization
+of **all** bank members and the small Quiz subsets. Do not reuse old
+questionSlugs, content.yaml, removed shared/contracts types, or
+outdated mandatory production Issue instructions as the new workflow.
+The Lesson Flow parent coordinates child PR integration; Questions
+must precede Flashcards to avoid conflicting Section registry edits.
 
 ## QUALITY GATE
 
