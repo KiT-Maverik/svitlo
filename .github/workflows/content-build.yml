@@ -33,6 +33,8 @@ jobs:
         with:
           node-version: '24'
           cache: npm
+      # Drafts keep a stable required verify status but defer content matrix builds.
+      # Ready transition and manual dispatch select full or affected content.
       # Select scope before installing anything; docs-only PRs can skip npm ci.
       - name: Plan content builds
         id: plan

@@ -7,20 +7,58 @@
 - `develop` is the integration branch for new development; new standalone and parent Course/Lesson/translation Draft PRs target it. Child PRs target their verified immediate integration parent, including nested Course → Lesson → Question/Flashcard work.
 - `main` is production. Promote through a separate Ready `develop → main` PR only after full validation and owner authorization. Deploy a pinned release commit/tag, not arbitrary Draft work.
 - Do not mass-retarget in-flight PRs. Their existing base/parent branch relationships and independent review evidence remain valid until individually reconciled.
-- **GitHub admin action required:** existing `Protect main` ruleset matches `~DEFAULT_BRANCH`, not literal `main`. Before changing default to `develop`, make that ruleset target literal `main`, add a separate `develop` ruleset, and set Settings → General → Default branch to `develop`. The connected GitHub App cannot change these settings.
+- The default branch is `develop`. Active branch-protection rulesets target literal `main` and `develop`; changing required checks is a separate GitHub Settings operation, not a workflow YAML change.
 - Require stable `Agent CI Artifacts / clean`, `Blocker TODOs / clean`, `Affected content / build, taxonomy and packaging` status contexts on protected branches, with FastGate on develop and full Quality on main as appropriate. Verify every required status is emitted for its target and enforce current-head checks. Labels alone cannot prevent merges.
 
 ## Validation tiers
 
 | Event                                   | Scope                                                                                                                 |
 | --------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
-| Draft/Ready PR to `develop`             | Changed/dependent workspace FastGate, focused tests, selected content build                                           |
-| Child PR to a parent integration branch | Focused checks and new `TODO (BLOCKER):` authored-source diff validation                                              |
-| Ready promotion PR to `main`            | All textbook builds, complete package checks, E2E, full tracked-source blocker scan; no redundant FastGate            |
-| Manual `workflow_dispatch`              | Full diagnostic, coverage, content or publication suites                                                              |
-| Push to `main`                          | Avoid duplicating expensive full validation already required before merge; run deployment-specific checks when needed |
+| Draft PR (any target)                  | Cheap source/security/artifact guards and authored `TODO (BLOCKER):` warnings; defer npm installs, builds and E2E |
+| Ready PR to `develop` or parent branch | Changed/dependent workspace FastGate, targeted generators/host/browser suites, selected content build, blocking TODO checks |
+| Ready promotion PR to `main`           | All textbook builds, complete package checks, E2E, full tracked-source blocker scan; no redundant FastGate |
+| Manual `workflow_dispatch`             | Explicit full diagnostics/builds on a selected branch, including a Draft branch |
+| Push to `main`                         | Avoid duplicating expensive pre-merge quality checks; run deployment-specific checks only when needed |
 
-FastGate builds prerequisite public exports once in dependency order, then runs independent workspace checks concurrently (default two; `SVITLO_FASTGATE_PARALLELISM=1..8`). Root `npm run code:check:types` checks all workspaces and is not the FastGate default. Content Build plans scope before npm install: `develop` selects impacted textbooks; Ready `main` PRs and manual dispatch build all. With zero selected textbooks, avoid `npm ci` but still return a stable required status. Do not run the full Engine suite again during an unrelated Biology build.
+### Why Draft is a first-class CI mode
+
+Svitlo is AI-native and Git-first: Coding Agents open **Draft PRs** and push
+frequent incremental commits while implementing, generating and revising
+content or code. During this phase incomplete files, temporary blockers, and
+quick successive commits are expected. Rebuilding every dependent package,
+installing browsers, packaging native apps and rerunning E2E for each commit
+would burn runner minutes, delay actionable feedback and create noisy,
+quickly obsolete CI results. Draft means **work in progress**, not a release
+candidate and not permission to merge unchecked code.
+
+Draft and target branch are independent dimensions: a Draft to `develop`,
+a nested Course/Lesson child Draft and a Draft targeting `main` all receive
+lightweight guards. Ready for review is the **explicit validation boundary**:
+`ready_for_review` must trigger the necessary checks even if no source SHA
+changes, and subsequent `synchronize` events on a Ready PR must rerun them
+for the latest revision. Draft PRs still report fast required contexts
+(`FastGate / verify`, `Affected content / build, taxonomy and packaging`)
+without pretending to have run the deferred suite; the logs must explicitly
+mark deferred coverage. Artifact safety, actor authorization, blocker TODO
+reporting and trustworthy source provenance cannot be disabled to save time.
+
+Use the **Actions → Run workflow** control (or `gh workflow run <workflow>.yml
+--ref <pr-branch>`) to request a deep suite on a Draft branch before Ready;
+`workflow_dispatch` must bypass Draft deferral while retaining normal security
+checks. The workflow must exist on the default branch for the manual control.
+Do not use a fake success job or a permanent Draft skip for any check that
+must execute before merge.
+
+### Validation on Ready
+
+FastGate builds prerequisite public exports once in dependency order, then
+runs independent workspace checks concurrently (default two;
+`SVITLO_FASTGATE_PARALLELISM=1..8`). Root `npm run code:check:types` checks all
+workspaces and is not the FastGate default. Content Build plans scope before
+npm install: Draft defers distribution builds, Ready `develop` selects impacted
+textbooks, and Ready `main` or manual dispatch builds all. With zero selected
+textbooks, avoid `npm ci` while emitting the same stable required status.
+Do not rerun the full Engine suite during an unrelated Biology build.
 
 ## Quiet logs and agents
 
@@ -44,4 +82,10 @@ The default branch is now `develop`; the two active protection rulesets target t
 
 Dedicated EducationStandard catalog/reference GitHub workflows are removed. Existing UI Kit `test:locales` validates definitions and localized outputs; FastGate tests the reference generator only when implementation changes. The on-demand `/agent-artifacts generate education-standards` functionality remains available.
 
-**Actual branch-protection audit (2026-11-19):** GitHub already has `develop` as default and active literal-branch rulesets. Both `Protect main` and `Protect develop` now require a pull request before merging. The `Protect main` required contexts still omit `Production Quality / verify`, and `Protect develop` omits `FastGate / verify`. These are **GitHub Settings operations** not implemented by this file. Add the missing required status checks after confirming their exact results; do not require a job before the relevant workflow can emit it.
+**Branch-protection audit (2026-11-19):** The active literal-target
+`Protect main` ruleset requires `Agent CI Artifacts / clean`,
+`Affected content / build, taxonomy and packaging`, `Blocker TODOs / clean`
+and `Production Quality / verify`. `Protect develop` requires the first
+three plus `FastGate / verify`. Both require PR-based integration.
+Verify this live GitHub Settings state before modifying any required check;
+workflow YAML alone does not update rulesets.
