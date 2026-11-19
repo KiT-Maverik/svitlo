@@ -239,10 +239,10 @@ export function productionHandoff(document) {
 }
 
 /** Read-only, complete validation at the Resource Production boundary only. */
-export function preflightLesson(source, repo = repoRoot, { allowBankPending = false, requireAssessmentPlan = false } = {}) {
+export function preflightLesson(source, repo = repoRoot, { allowBankPending = false, requireAssessmentPlan = false, schemaRepo = repo } = {}) {
   const location = sourceLocation(source, repo);
   const document = parseSource(location.filename);
-  validateSchema(document, repo, { allowBankPending });
+  validateSchema(document, schemaRepo, { allowBankPending });
   if (document.config.id !== location.lessonId) fail('config.id', 'YAML UUID differs from canonical directory');
   if (typeof document.production?.methodology !== 'string' || !document.production.methodology.trim())
     fail('production.methodology', 'complete Methodology must be authored before Resource Production');
@@ -266,8 +266,8 @@ export function preflightLesson(source, repo = repoRoot, { allowBankPending = fa
 }
 
 /** Read-only Stage 6 source-draft preflight. Strict production validation is unchanged. */
-export function preflightLessonDraft(source, repo = repoRoot) {
-  const item = preflightLesson(source, repo, { allowBankPending: true, requireAssessmentPlan: true });
+export function preflightLessonDraft(source, repo = repoRoot, { schemaRepo = repo } = {}) {
+  const item = preflightLesson(source, repo, { allowBankPending: true, requireAssessmentPlan: true, schemaRepo });
   if (!item.assessment.pending.length)
     fail('production.methodology', 'no pending bank integrations; use strict finalize instead');
   return item;
