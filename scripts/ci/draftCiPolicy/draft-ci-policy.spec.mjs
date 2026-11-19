@@ -63,7 +63,7 @@ test('PR auto-formatter fixes only development PRs, never protected release sour
   assert.match(formatter, /prettier --write --log-level warn/);
   assert.match(formatter, /github\.event\.pull_request\.head\.ref != 'develop'/);
   assert.match(formatter, /github\.event\.pull_request\.head\.ref != 'main'/);
-  assert.match(formatter, /name: PR Auto-format \/ check' \|\| 'PR Auto-format \/ fix'/);
+  assert.match(formatter, /PR Auto-format \/ check' \|\| 'PR Auto-format \/ fix'/);
   assert.match(formatter, /name: Independently check formatting on the latest commit/);
   assert.match(formatter, /prettier --check --log-level warn/);
 });
