@@ -12,7 +12,7 @@ on:
         type: number
         required: true
       operation:
-        description: Explicit authorized Stage 6 action
+        description: Explicit authorized Stage 6 action (finalize fails closed until audited retirement)
         type: choice
         options: [materialize, finalize]
         required: true
@@ -20,7 +20,7 @@ on:
 permissions: {}
 
 concurrency:
-  group: lesson-stage5-${{ github.event.issue.number || inputs.pr_number }}
+  group: lesson-stage6-${{ github.event.issue.number || inputs.pr_number }}
   cancel-in-progress: false
 
 jobs:
@@ -94,7 +94,7 @@ jobs:
       - name: Retain exact pinned Lesson source and output evidence in this Actions run
         uses: actions/upload-artifact@v4
         with:
-          name: lesson-stage5-${{ needs.resolve.outputs.pr }}-${{ github.run_id }}
+          name: lesson-stage6-${{ needs.resolve.outputs.pr }}-${{ github.run_id }}
           path: ${{ runner.temp }}/lesson-materialization/report.json
           retention-days: 7
           if-no-files-found: error
@@ -126,7 +126,7 @@ jobs:
       - name: Download artifact from the exact authorized read-only job
         uses: actions/download-artifact@v4
         with:
-          name: lesson-stage5-${{ needs.resolve.outputs.pr }}-${{ github.run_id }}
+          name: lesson-stage6-${{ needs.resolve.outputs.pr }}-${{ github.run_id }}
           path: report
       - name: Revalidate authorization, artifact bytes and SHA race; publish by Git API
         id: publish
