@@ -33,15 +33,10 @@ function run(command, args) {
     throw new Error(command + ' ' + args.join(' ') + ' failed (' + (result.error?.message ?? result.status) + ')');
   }
 }
-for (const workspace of [
-  '@svitlo/engine',
-  '@svitlo/indexdb',
-  '@svitlo/ui-kit',
-  '@svitlo/adapter-nextjs',
-]) {
-  run('npm', ['run', 'package:build', '--workspace', workspace]);
+for (const workspace of ['@svitlo/engine', '@svitlo/indexdb', '@svitlo/ui-kit', '@svitlo/adapter-nextjs']) {
+  run(process.execPath, [join(repoRoot, 'scripts/ci/packageBuildReuse/package-build-reuse.mjs'), workspace]);
 }
-run('npm', ['run', 'package:build', '--workspace', selection.package]);
+run(process.execPath, [join(repoRoot, 'scripts/ci/packageBuildReuse/package-build-reuse.mjs'), selection.package]);
 
 const targetPublic = join(webRoot, 'public');
 // Invoke the documented package binary after build. npm may not create a

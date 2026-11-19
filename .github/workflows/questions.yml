@@ -27,12 +27,17 @@ jobs:
           PR_HEAD_REF: ${{ github.event.pull_request.head.ref }}
           PR_HEAD_REPO: ${{ github.event.pull_request.head.repo.full_name }}
         run: node scripts/ci/releaseSource/check-release-source.mjs
+      - name: Initialize package build reuse state
+        shell: bash
+        # GITHUB_ENV takes effect only for subsequent steps; the state is never shared.
+        run: echo "SVITLO_CI_PACKAGE_BUILD_STATE=$RUNNER_TEMP/svitlo-production-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT.json" >> "$GITHUB_ENV"
       - uses: actions/setup-node@v4
         with:
           node-version: 24
           cache: npm
       - run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --no-audit --no-fund
       - run: node scripts/ci/quietRun/quiet-run.mjs -- npm run repo:check:packages
+      - run: node scripts/ci/quietRun/quiet-run.mjs -- node --test scripts/ci/packageBuildReuse/package-build-reuse.spec.mjs
       - run: node scripts/ci/quietRun/quiet-run.mjs -- npm run code:check:types
       - run: node scripts/ci/quietRun/quiet-run.mjs -- npm test
       # npm test already covers UI Kit and Math component suites; only Web and
@@ -52,6 +57,9 @@ jobs:
         run: node scripts/ci/quietRun/quiet-run.mjs -- npm run repo:check:artifacts
       - run: node scripts/ci/quietRun/quiet-run.mjs -- npx playwright install chromium
       - run: node scripts/ci/quietRun/quiet-run.mjs -- npm run test:e2e
+      - name: Report package build reuse
+        if: always()
+        run: node scripts/ci/packageBuildReuse/package-build-reuse.mjs --summary
       - uses: actions/upload-artifact@v4
         if: always()
         with:
