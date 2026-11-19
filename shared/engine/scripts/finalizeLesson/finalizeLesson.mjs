@@ -239,10 +239,10 @@ export function productionHandoff(document) {
 }
 
 /** Read-only, complete validation at the Resource Production boundary only. */
-export function preflightLesson(source, repo = repoRoot, { allowBankPending = false, requireAssessmentPlan = false } = {}) {
+export function preflightLesson(source, repo = repoRoot, { allowBankPending = false, requireAssessmentPlan = false, schemaRepo = repo } = {}) {
   const location = sourceLocation(source, repo);
   const document = parseSource(location.filename);
-  validateSchema(document, repo, { allowBankPending });
+  validateSchema(document, schemaRepo, { allowBankPending });
   if (document.config.id !== location.lessonId) fail('config.id', 'YAML UUID differs from canonical directory');
   if (typeof document.production?.methodology !== 'string' || !document.production.methodology.trim())
     fail('production.methodology', 'complete Methodology must be authored before Resource Production');
@@ -266,8 +266,8 @@ export function preflightLesson(source, repo = repoRoot, { allowBankPending = fa
 }
 
 /** Read-only Stage 6 source-draft preflight. Strict production validation is unchanged. */
-export function preflightLessonDraft(source, repo = repoRoot) {
-  const item = preflightLesson(source, repo, { allowBankPending: true, requireAssessmentPlan: true });
+export function preflightLessonDraft(source, repo = repoRoot, { schemaRepo = repo } = {}) {
+  const item = preflightLesson(source, repo, { allowBankPending: true, requireAssessmentPlan: true, schemaRepo });
   if (!item.assessment.pending.length)
     fail('production.methodology', 'no pending bank integrations; use strict finalize instead');
   return item;
@@ -348,20 +348,21 @@ export function handoffLesson(source, options = {}) {
 
 export function main(args = process.argv.slice(2), repo = repoRoot) {
   const [mode, flag, source] = args;
-  if (!['preflight', 'preflight-draft', 'handoff', 'finalize'].includes(mode) || flag !== '--source' || !source || args.length !== 3)
+  const preserve = args.length === 4 && args[3] === '--preserve-config';
+  if (!['preflight', 'preflight-draft', 'handoff', 'finalize'].includes(mode) || flag !== '--source' || !source || (args.length !== 3 && !preserve) || (preserve && mode !== 'finalize'))
     throw new Error(
-      'Usage: node shared/engine/scripts/finalizeLesson/finalizeLesson.mjs preflight|preflight-draft|handoff|finalize --source content/<book>/data/lessons/<bucket>/<uuid>/lesson.yaml',
+      'Usage: node shared/engine/scripts/finalizeLesson/finalizeLesson.mjs preflight|preflight-draft|handoff|finalize --source content/<book>/data/lessons/<bucket>/<uuid>/lesson.yaml [--preserve-config (finalize only)]',
     );
   const filename = path.resolve(repo, source);
   const result =
     mode === 'preflight' ? preflightLesson(filename, repo) :
     mode === 'preflight-draft' ? preflightLessonDraft(filename, repo) :
-    mode === 'handoff' ? handoffLesson(filename, { repo }) : finalizeLesson(filename, { repo });
+    mode === 'handoff' ? handoffLesson(filename, { repo }) : finalizeLesson(filename, { repo, retainSource: preserve });
   console.log(
     mode.startsWith('preflight')
       ? 'Lesson ' + result.lessonId + ': ' + mode + ' valid (read-only)'
       : 'Lesson ' + result.lessonId + ': ' + result.files.length + ' persistent outputs verified; ' +
-        (result.removed ? 'lesson.yaml removed' : 'bank-pending lesson.yaml preserved'),
+        (result.removed ? 'lesson.yaml removed' : 'lesson.yaml preserved'),
   );
   return result;
 }

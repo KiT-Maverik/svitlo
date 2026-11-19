@@ -11,6 +11,9 @@ on:
       - 'shared/engine/yaml-schemas/**'
       - 'scripts/ci/courseMaterialization/**'
       - 'scripts/ci/bankMaterialization/**'
+      - 'scripts/ci/lessonMaterialization/**'
+      - 'shared/engine/scripts/finalizeLesson/**'
+      - '.github/workflows/lesson-materialization.yml'
       - 'shared/engine/scripts/questionsBuilder/**'
       - 'shared/engine/scripts/flashcardBuilder/**'
       - '.github/workflows/bank-materialization.yml'
@@ -79,6 +82,12 @@ jobs:
             scripts/ci/bankMaterialization/bank-materialization.spec.mjs \
             shared/engine/scripts/questionsBuilder/questionsBuilder.spec.mjs \
             shared/engine/scripts/flashcardBuilder/flashcardBuilder.spec.mjs
+
+      - name: Test Lesson Stage 6 finalizer and PR-command security
+        run: |
+          node --test \
+            shared/engine/scripts/finalizeLesson/finalizeLesson.spec.mjs \
+            scripts/ci/lessonMaterialization/lesson-materialization.spec.mjs
 
       - name: Verify all checked-in Zod-derived YAML schemas
         run: npm run content:check:yaml-schemas --workspace @svitlo/engine

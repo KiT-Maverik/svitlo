@@ -6,7 +6,7 @@ import { test } from 'node:test';
 import yaml from 'yaml';
 
 import { repoRoot } from '../lessonBuilder/lessonBuilder.mjs';
-import { finalizeLesson, preflightLesson, preflightLessonDraft, handoffLesson, productionHandoff, LessonHandoffError } from './finalizeLesson.mjs';
+import { finalizeLesson, preflightLesson, preflightLessonDraft, handoffLesson, productionHandoff, LessonHandoffError, main } from './finalizeLesson.mjs';
 import { scanSource } from '../../../../scripts/ci/checkBlockerTodos/check-blocker-todos.mjs';
 
 const id = tail => '00000000-0000-4000-8000-' + String(tail).padStart(12, '0');
@@ -389,4 +389,32 @@ test('bank-pending handoff retains YAML on interrupted or changed-source generat
       /missing generated file/,
     );
     assert.equal(fs.existsSync(f.source), true);
+  }));
+
+test('finalize --preserve-config retains exact YAML after verified strict source transfer', () =>
+  fixture(f => {
+    const original = fs.readFileSync(f.source);
+    const result = main(['finalize', '--source', path.relative(f.root, f.source), '--preserve-config'], f.root);
+    assert.equal(result.removed, null);
+    assert.equal(fs.readFileSync(f.source).equals(original), true);
+    assert.equal(fs.existsSync(path.join(f.folder, 'index.ts')), true);
+    assert.equal(fs.existsSync(path.join(f.folder, 'production-handoff.json')), true);
+    assert.throws(() => main(['finalize', '--source', path.relative(f.root, f.source), '--preserve-config'], f.root), /create-only skip/);
+    assert.equal(fs.readFileSync(f.source).equals(original), true);
+  }));
+
+test('--preserve-config is strictly finalize-only and refuses malformed combinations without modifying files', () =>
+  fixture(f => {
+    const source = path.relative(f.root, f.source);
+    const before = fs.readFileSync(f.source);
+    for (const args of [
+      ['preflight', '--source', source, '--preserve-config'],
+      ['preflight-draft', '--source', source, '--preserve-config'],
+      ['handoff', '--source', source, '--preserve-config'],
+      ['finalize', '--source', source, '--unknown'],
+      ['finalize', '--source', source, '--preserve-config', '--extra'],
+      ['finalize', '--preserve-config', '--source', source],
+    ]) assert.throws(() => main(args, f.root), /Usage:/);
+    assert.equal(fs.readFileSync(f.source).equals(before), true);
+    assert.equal(fs.existsSync(path.join(f.folder, 'index.ts')), false);
   }));
