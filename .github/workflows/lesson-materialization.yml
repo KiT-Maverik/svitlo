@@ -12,7 +12,7 @@ on:
         type: number
         required: true
       operation:
-        description: Explicit authorized Stage 6 action (finalize fails closed until audited retirement)
+        description: Materialize once or finalize a previously verified Lesson handoff
         type: choice
         options: [materialize, finalize]
         required: true

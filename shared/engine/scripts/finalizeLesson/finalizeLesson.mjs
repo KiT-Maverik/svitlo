@@ -18,7 +18,7 @@ import Ajv2020 from 'ajv/dist/2020.js';
 import yaml from 'yaml';
 import { runOne, repoRoot } from '../lessonBuilder/lessonBuilder.mjs';
 import { sourceAuthoringCopy } from '../yamlScaffolding/yamlScaffolding.mjs';
-import { prepareAssessmentDraft, hasCompleteAssessmentParams } from '../lessonBuilder/lessonAssessmentDrafts.mjs';
+import { prepareAssessmentDraft } from '../lessonBuilder/lessonAssessmentDrafts.mjs';
 
 const uuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/;
 const record = value => value !== null && typeof value === 'object' && !Array.isArray(value);
