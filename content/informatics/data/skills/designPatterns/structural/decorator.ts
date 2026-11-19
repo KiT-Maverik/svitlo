@@ -53,7 +53,7 @@ export const decorator = defineSkill({
       it: 'Aggiungi comportamenti avvolgendo un oggetto anziché moltiplicare le sottoclassi.',
       ja: 'サブクラスを増やす代わりにオブジェクトを包んで振る舞いを追加しよう。',
       ka: 'ახალი ქცევა დაამატე ობიექტის შეფუთვით და არა ქვეკლასების გამრავლებით.',
-      kk: 'Işkı klasstardy köbeitpei, obektını orap jaña äreket qos.',
+      kk: 'Tuyndy klasstardy köbeitpei, obektını orap jaña äreket qos.',
       ko: '하위 클래스를 계속 늘리는 대신 객체를 감싸 동작을 추가해 보세요.',
       lt: 'Pridėk elgseną apgaubdamas objektą, užuot daugindamas poklasius.',
       lv: 'Pievieno uzvedību, ietverot objektu, nevis vairojot apakšklases.',
