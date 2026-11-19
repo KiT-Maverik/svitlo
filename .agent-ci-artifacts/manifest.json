@@ -3,7 +3,7 @@
   "kind": "pr-scoped-agent-ci-artifacts",
   "sourceCommit": "daa6c4d40eb4c289c6c8d564e3168173af1a3fa6",
   "scope": {
-    "kind": "skills",
+    "kind": "lessons",
     "package": "content/playground",
     "locale": "kk",
     "component": null,
@@ -17,25 +17,59 @@
   ],
   "generated": [
     {
-      "kind": "taxonomy",
+      "kind": "lesson",
       "textbook": "content/playground",
+      "lesson": "1/f760e7b7-9f77-5027-89ce-4e40d9d031a1",
       "locale": "kk",
-      "path": ".agent-ci-artifacts/taxonomies/playground/kk.md",
-      "domains": 3,
-      "groups": 5,
-      "skills": 9,
+      "path": ".agent-ci-artifacts/lessons/playground/1/f760e7b7-9f77-5027-89ce-4e40d9d031a1/kk.md",
+      "missing": 0,
+      "reviewReady": true
+    },
+    {
+      "kind": "lesson",
+      "textbook": "content/playground",
+      "lesson": "2/b256e7b2-9f7d-5a9a-a0cb-3f3c2734b8a2",
+      "locale": "kk",
+      "path": ".agent-ci-artifacts/lessons/playground/2/b256e7b2-9f7d-5a9a-a0cb-3f3c2734b8a2/kk.md",
+      "missing": 0,
+      "reviewReady": true
+    },
+    {
+      "kind": "lesson",
+      "textbook": "content/playground",
+      "lesson": "4/9f417177-1d07-5a9d-ad74-0146c5637e84",
+      "locale": "kk",
+      "path": ".agent-ci-artifacts/lessons/playground/4/9f417177-1d07-5a9d-ad74-0146c5637e84/kk.md",
+      "missing": 0,
+      "reviewReady": true
+    },
+    {
+      "kind": "lesson",
+      "textbook": "content/playground",
+      "lesson": "b/fb3b328a-0dd6-55f1-9bb9-7c80ea1ac91b",
+      "locale": "kk",
+      "path": ".agent-ci-artifacts/lessons/playground/b/fb3b328a-0dd6-55f1-9bb9-7c80ea1ac91b/kk.md",
+      "missing": 0,
+      "reviewReady": true
+    },
+    {
+      "kind": "lesson",
+      "textbook": "content/playground",
+      "lesson": "c/d3048d21-8690-5255-b62c-984c69ac272c",
+      "locale": "kk",
+      "path": ".agent-ci-artifacts/lessons/playground/c/d3048d21-8690-5255-b62c-984c69ac272c/kk.md",
       "missing": 0,
       "reviewReady": true
     }
   ],
   "failures": [],
   "summary": {
-    "documents": 1,
+    "documents": 5,
     "failures": 0,
     "missingTranslations": 0,
     "incompleteDocuments": 0,
-    "taxonomyDocuments": 1,
-    "lessonDocuments": 0,
+    "taxonomyDocuments": 0,
+    "lessonDocuments": 5,
     "assessmentMethodDocuments": 0,
     "uiKitDocuments": 0,
     "geographyHomeCopyDocuments": 0
