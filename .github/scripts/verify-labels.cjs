@@ -49,6 +49,20 @@ scope('shared', 'shared');
 assert.ok(names.has('repo: scripts'), 'Missing repo: scripts');
 assert.ok(names.has('studio'), 'Missing standalone studio label');
 assert.ok(names.has('work: architecture'), 'Missing architecture work type');
+const educationalTypes = ['course', 'lesson', 'questions', 'flashcards', 'media'];
+for (const type of educationalTypes) {
+  assert.ok(names.has('work: ' + type), 'Missing educational work label: work: ' + type);
+  assert.ok(!names.has('pr: ' + type), 'Obsolete PR deliverable label: pr: ' + type);
+}
+for (const label of labels.filter(label => label.name.startsWith('pr: '))) {
+  assert.equal(label.color.toUpperCase(), '16A34A', 'Inconsistent PR label color: ' + label.name);
+}
+for (const label of labels.filter(label => label.name.startsWith('work: '))) {
+  assert.equal(label.color.toUpperCase(), '7C3AED', 'Inconsistent work label color: ' + label.name);
+}
+const sync = fs.readFileSync(path.join(root, '.github/workflows/sync-labels.yml'), 'utf8');
+assert.ok(sync.includes("return 'pr: ' + name.slice(6)"), 'Missing legacy PR → work label migration');
+assert.ok(sync.includes('educationalWorkTypes.has(name.slice(6))'), 'Missing migration scope guard');
 assert.ok(matcher.includes("'scripts/**'"), 'Missing repository scripts rule');
 assert.ok(matcher.includes("'studio/**'"), 'Missing Studio rule');
 assert.ok(!labels.some(label => label.name.startsWith('area: ')), 'Legacy area labels must be migrated');

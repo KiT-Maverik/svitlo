@@ -1,6 +1,6 @@
 # Methodologist-required Quiz and Flashcards Section scaffolding
 
-**Status:** In progress in dedicated Draft PR #706; not reviewed, marked Ready or merged. New draft-only preflight/handoff and Section blockers are implementation work, not evidence of publication readiness.
+**Status:** Implemented in PR #706. Draft-only preflight/handoff and CI-detectable Section blockers are available; individual Lessons remain subject to independent bank integration and strict production validation.
 
 **Selected authoring representation:** One fenced "~~~yaml lesson-assessment-sections" block in the existing production.methodology string, with assessmentSections.quiz and assessmentSections.flashcards. Each decision is required or notRequired with explicit rationale and stable-keyed intents. Required intents carry purpose, placement and bankDependency; Quiz also requires skills and assessmentMethods. Matching Section production.productionNotes must include "Assessment intent: <key>" and "Bank integration: pending|connected". This information remains outside Engine Config and does not create new Lesson stages. Draft-only CLI modes "preflight-draft" and "handoff" retain YAML, while strict "preflight"/"finalize" remain separate. The current Engine contracts, Stage 1/2 workflow, Stage 6 finalizer and CI are the implementation baseline. This document is an authorized implementation handoff, not evidence that the new behavior exists.
 
@@ -91,6 +91,6 @@ Update at least the Methodologist persona and Create Lesson Brief, Create Lesson
 
 ## Ownership and non-goals
 
-Implementing roles: Methodologist/editorial Skill maintainer (decisions), Educational Screenwriter Skill maintainer (YAML Sections), Engine Coding Agent (builder/finalizer), independent Development/QA reviewers (validation). **This Draft PR contains the proposed handoff only.** It does not yet modify generator behavior, author Question/Flashcard banks, choose Quiz scores/retries, create placeholder records, change the Section type union, produce translations or approve any particular Lesson.
+Implementing roles: Methodologist/editorial Skill maintainer (decisions), Educational Screenwriter Skill maintainer (YAML Sections), Engine Coding Agent (builder/finalizer), independent Development/QA reviewers (validation). **This implementation provides only the source-draft handoff.** It does not author Question/Flashcard banks, choose Quiz scores/retries, create placeholder records, change the Section type union, produce translations or approve any particular Lesson.
 
 **Related evidence:** the Lesson #666 discussion exposed the unclear handoff, but implementation is repo-wide and must target `main`, **not** the Course #653 integration branch or Lesson #666's child branch.
