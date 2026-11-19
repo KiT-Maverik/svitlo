@@ -127,7 +127,8 @@ export async function inspect(number, expectedHead) {
     if (identity.parent.parentPr === number) throw Error('Lesson PR cannot be its parent');
     const parent = await github('pulls/' + identity.parent.parentPr);
     if (!parent || parent.state !== 'open' ||
-        parent.head?.repo?.full_name !== repo || parent.base?.ref !== defaultBranch ||
+        parent.head?.repo?.full_name !== repo || parent.base?.repo?.full_name !== repo ||
+        !safeBranch(parent.head?.ref, parent.base?.ref) ||
         pr.base?.ref !== parent.head?.ref ||
         !parent.body?.includes('<!-- svitlo-course-flow:v1 -->'))
       throw Error('Course Lesson must target its verified parent integration branch');
