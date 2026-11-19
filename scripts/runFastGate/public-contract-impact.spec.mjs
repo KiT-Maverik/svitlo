@@ -17,6 +17,24 @@ test('public signatures ignore a typed function body but detect interface and sc
   );
 });
 
+test('published signatures traverse local imports referenced by exported declarations', () => {
+  const root = mkdtempSync(join(tmpdir(), 'svitlo-public-types-'));
+  const dir = join(root, 'shared/demo/src');
+  try {
+    mkdirSync(dir, { recursive: true });
+    writeFileSync(join(dir, 'index.ts'), "export * from './api';\n");
+    writeFileSync(join(dir, 'api.ts'), "import type { Contract } from './types';\nimport { helper } from './private';\nexport type API = Contract;\nfunction internal() { return helper(); }\n");
+    writeFileSync(join(dir, 'types.ts'), "export interface Contract { value: string }\n");
+    writeFileSync(join(dir, 'private.ts'), 'export const helper = () => 1;\n');
+    const pkg = { path: 'shared/demo', exports: { '.': { types: './dist/src/index.d.ts' } } };
+    assert.deepEqual([...publicModules(pkg, root)].sort(), [
+      'shared/demo/src/api.ts', 'shared/demo/src/index.ts', 'shared/demo/src/types.ts',
+    ]);
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
 test('only exported modules reachable from package manifest are public', () => {
   const root = mkdtempSync(join(tmpdir(), 'svitlo-export-'));
   try {

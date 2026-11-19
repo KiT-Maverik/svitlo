@@ -58,10 +58,29 @@ export function publicModules(pkg, root = repoRoot) {
     if (visited.has(file)) continue;
     visited.add(file);
     const source = fs.readFileSync(file, 'utf8');
-    const expression = /\bexport\s+(?:type\s+)?(?:\*\s+from\s+|\{[^}]*\}\s+from\s+)['"]([^'"]+)['"]/g;
-    for (const match of source.matchAll(expression)) {
-      const next = resolveModule(file, match[1], packageRoot);
-      if (next && !visited.has(next)) stack.push(next);
+    const parsed = ts.createSourceFile(file, source, ts.ScriptTarget.Latest, true);
+    const publishedShape = surface(source, file);
+    for (const statement of parsed.statements) {
+      if (ts.isExportDeclaration(statement) && ts.isStringLiteral(statement.moduleSpecifier)) {
+        const next = resolveModule(file, statement.moduleSpecifier.text, packageRoot);
+        if (next && !visited.has(next)) stack.push(next);
+      }
+      if (!ts.isImportDeclaration(statement) || !ts.isStringLiteral(statement.moduleSpecifier)) continue;
+      // A non-exported imported type/schema may still appear in a published
+      // declaration. Follow only imports referenced by the exported shape,
+      // not unrelated dependencies used in private function bodies.
+      const clause = statement.importClause;
+      if (!clause) continue;
+      const bindings = [];
+      if (clause.name) bindings.push(clause.name.text);
+      if (clause.namedBindings) {
+        if (ts.isNamespaceImport(clause.namedBindings)) bindings.push(clause.namedBindings.name.text);
+        else bindings.push(...clause.namedBindings.elements.map(element => element.name.text));
+      }
+      if (bindings.some(name => new RegExp('\\\\b' + name + '\\\\b').test(publishedShape))) {
+        const next = resolveModule(file, statement.moduleSpecifier.text, packageRoot);
+        if (next && !visited.has(next)) stack.push(next);
+      }
     }
   }
   return new Set([...visited].map(file => path.relative(root, file).split(path.sep).join('/')));
