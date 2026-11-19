@@ -1,6 +1,6 @@
 # Methodologist-required Quiz and Flashcards Section scaffolding
 
-**Status:** Implemented in PR #706. Draft-only preflight/handoff and CI-detectable Section blockers are available; individual Lessons remain subject to independent bank integration and strict production validation.
+**Status:** Implemented in PR #706. Draft-only preflight/handoff and CI-detectable Section blockers are available; individual Lessons remain subject to independent bank integration and strict production validation. **Subsequent workflow clarification:** Stage 6 is four-part source preparation; parent Stages 7/8 coordinate Questions/Flashcards child PRs, and physical assets remain separate release blockers. The earlier Stage 6 completion language below is superseded by [Create Lesson Flow](../../skills/lesson-workflow/create-lesson-flow.skill.md).
 
 **Selected authoring representation:** One fenced "~~~yaml lesson-assessment-sections" block in the existing production.methodology string, with assessmentSections.quiz and assessmentSections.flashcards. Each decision is required or notRequired with explicit rationale and stable-keyed intents. Required intents carry purpose, placement and bankDependency; Quiz also requires skills and assessmentMethods. Matching Section production.productionNotes must include "Assessment intent: <key>" and "Bank integration: pending|connected". This information remains outside Engine Config and does not create new Lesson stages. Draft-only CLI modes "preflight-draft" and "handoff" retain YAML, while strict "preflight"/"finalize" remain separate. The current Engine contracts, Stage 1/2 workflow, Stage 6 finalizer and CI are the implementation baseline. This document is an authorized implementation handoff, not evidence that the new behavior exists.
 
@@ -44,19 +44,19 @@ Extend `shared/engine/scripts/lessonBuilder/lessonModules.mjs` in the shared `em
 
 The emitted comment must start exactly with `// TODO (BLOCKER):` so the existing guard recognizes it. Wording must explain the pedagogical requirement and the missing integration, for example:
 
-~~~ts
+```ts
 // TODO (BLOCKER): This Quiz Section is required by the Methodologist.
 // Connect independently reviewed Question UUIDs, complete Quiz params,
 // and verify selected resources before merge.
 export const knowledgeCheck = defineQuizSection(/* authored draft Config */);
-~~~
+```
 
-~~~ts
+```ts
 // TODO (BLOCKER): This Flashcards Section is required by the Methodologist.
 // Connect independently reviewed Flashcard UUIDs and verify selection
 // before merge.
 export const recallCards = defineFlashcardsSection(/* authored draft Config */);
-~~~
+```
 
 These are **illustrative snippets only**; actual emitted source must retain the existing factory imports, generics, nested content, authored params and exact symbol names. At minimum every pending authored Quiz/Flashcards Section must have its own blocker; an absent/not-required Section must not be synthesized. Idempotent deterministic generation: no duplicated blockers, no changes to unrelated Section output, and no clobber of an edited generated draft.
 
@@ -65,18 +65,19 @@ When real bank IDs, all required Quiz fields and referential/locale/ownership va
 ### 4. Resolve Stage 6 finalizer circularity safely
 
 Today `finalizeLesson preflight` requires a complete schema while the bank workflows intentionally start **after** a persistent Lesson source and Markdown reference exist. Implement an explicit, narrowly scoped **bank-pending source-draft handoff** that permits creating reviewed Section TypeScript drafts with unresolved selection/Quiz-only parameters without pretending they are publishable. It must:
+
 - validate every other existing structural, UUID, locale, source-copy, collection and production-spec invariant;
 - fail if a required Methodologist Section was omitted or mismatched;
 - preserve all reviewed authored copy, production handoffs and independent `questions.yaml` / `flashcards.yaml`;
 - preserve creation-only, source-SHA, no-overwrite and safe YAML deletion guarantees, including recovery after partial failure;
 - leave blocker comments and incomplete TypeScript visible, never insert `as any`, nil/fake Question or Flashcard IDs, bogus defaults or disabled CI;
-- require final strict `define*Section` Config/Zod checks and actual UUID/locale/ownership publication validation before Stage 6 completion and final acceptance.
+- require final strict `define*Section` Config/Zod checks and actual UUID/locale/ownership publication validation at **Stages 7/8 and final acceptance**, not as Stage 6 source-preparation checks.
 
-Select the precise CLI/API shape after reading existing finalizer and builder tests, but **do not globally weaken** the Engine schemas or declare Stage 6 complete while local or external banks remain unresolved.
+Select the precise CLI/API shape after reading existing finalizer and builder tests, but **do not globally weaken** the Engine schemas or declare bank Stage 7/8 or final publication ready while local or external banks remain unresolved.
 
 ### 5. Workflow/tracker coordination
 
-Keep the existing eight Lesson stages and separate seven-stage Questions/Flashcards workflows. Make the handoff **explicit** in the Lesson PR at Stages 1, 2 and 6: required Section inventory (type, slug, stable intent key, placement, owning bank type and pending/connected state), separate bank PR/status/SHA, next action and blockers. The first eligible bank is normally Questions; Flashcards are authored only after approved Questions or the documented allowed own-Questions N/A branch. No automatic launching of other agents or unauthorized PRs.
+Keep the current **ten parent Lesson stages** (including Questions Stage 7 and Flashcards Stage 8) and separate seven-stage Questions/Flashcards **child** workflows. Make the handoff **explicit** in the Lesson PR at Stages 1, 2 and 6: required Section inventory (type, slug, stable intent key, placement, owning bank type and pending/connected state), separate bank PR/status/SHA, next action and blockers. The first eligible bank is normally Questions; Flashcards are authored only after approved Questions or the documented allowed own-Questions N/A branch. No automatic launching of other agents or unauthorized PRs.
 
 Update at least the Methodologist persona and Create Lesson Brief, Create Lesson Content, Create Lesson Flow, Section entity reference, relevant architecture index/contract notes and Lesson Builder/finalizer README/JSDoc to reflect final implemented behavior.
 

@@ -1,6 +1,6 @@
 # Lesson Stage 6 — authorized PR-command source materialization
 
-This CI workflow materializes the already-reviewed canonical Lesson YAML into create-only TypeScript, Markdown/Code and production handoffs on the **existing Draft Lesson PR branch**. It is a **Stage 6 source handoff**, not Stage 6 completion, Question/Flashcard Bank creation, asset generation, publication, translation, review approval, Ready transition or merge.
+This CI workflow materializes the already-reviewed canonical Lesson YAML into create-only TypeScript, Markdown/Code and production handoffs on the **existing Draft Lesson PR branch**. After verifying the real run and commit, this proves only **Stage 6.1 Materialize Lesson sources**; Stage 6 also requires separate checked 6.2 Accessibility source audit, 6.3 Offline source audit, and 6.4 Validate source/handoff. It does not author or integrate Question/Flashcard Banks (parent Stages 7–8), produce Scenes/media (separate resource blockers), translate (Stages 9–10), publish, approve reviews, mark Ready or merge.
 
 ## Deploy before use
 
@@ -8,9 +8,9 @@ This CI workflow materializes the already-reviewed canonical Lesson YAML into cr
 
 An agent resuming a Lesson by PR number first reads [Create Lesson Flow](../../../studio/skills/lesson-workflow/create-lesson-flow.skill.md), checks the actual PR tracker and Stage 5 evidence, immutable UUID, canonical source/blob and linked Course PR. Once deployed, a collaborator with write/maintain/admin permissions posts this **exact top-level comment** to that Lesson PR:
 
-~~~text
+```text
 /lesson materialize
-~~~
+```
 
 An authorized maintainer may alternatively run default-branch workflow_dispatch with pr_number and operation=materialize. Neither interface accepts arbitrary paths, refs or commands. The workflow derives the canonical `content/<book>/data/lessons/<last-uuid-hex>/<uuid>/lesson.yaml` from the verified PR identity. Never run candidate PR code or create a second Lesson PR for a retry.
 
@@ -29,17 +29,17 @@ Only new Lesson-owned `index.ts`, `constants.ts`, `review.ts`, `methodology.md`,
 
 This command never creates, edits, deletes or commits `questions/**`, `flashcards/**`, `questions.yaml`, `flashcards.yaml`, bank TS modules, external assets, Scene implementations, translated files or unrelated Course/Lesson files. Independent bank builders own bank sources and approvals.
 
-Inspect actual Actions job output/artifact, pinned source HEAD/blob, published commit/diff and blockers. Record this evidence in the **same Draft Lesson PR** and continue **the same Stage 6**: real Scene/media/audio production, accessibility/offline testing, independently integrated Question/Flashcard banks and strict source/Props verification. A successful command alone never checks Stage 6, clears blockers, marks Ready, merges or publishes.
+Inspect actual Actions run/artifact, pinned YAML source/head/blob, generated commit/diff and blockers. Record output SHA evidence for **6.1**, then complete 6.2 source-level accessibility, 6.3 source-level offline requirements and 6.4 Engine/schema/Builder fidelity and scoped technical checks, each with an independent checkbox in the **same Draft Lesson PR**. Check the parent Stage 6 only after all four are verified. Missing physical Scenes/media remain separately owned resource blockers, and pending independent Question/Flashcard Bank selections are handled in Lesson Stages 7–8; neither blocks completion of the Stage 6 source-preparation checklist. Final Ready/merge still requires clearing physical/bank blockers and strict production validation. A successful command alone never marks Ready, merges or publishes.
 
 ## Verification
 
-~~~sh
+```sh
 node --test scripts/ci/lessonMaterialization/lesson-materialization.spec.mjs
 node --test shared/engine/scripts/finalizeLesson/finalizeLesson.spec.mjs
 node --test shared/engine/scripts/lessonBuilder/lessonBuilder.spec.mjs
 npm run package:build --workspace @svitlo/engine
 npm run content:check:yaml-schemas --workspace @svitlo/engine
-~~~
+```
 
 The standalone Lesson finalizer supports `finalize --source <canonical lesson.yaml> --preserve-config` for a **strict first-time** source-preserving transfer; the bank-pending `handoff` always preserves YAML. Neither overwrites an existing authored entrypoint. See [Finalize Lesson](../../../shared/engine/scripts/finalizeLesson/README.md).
 
