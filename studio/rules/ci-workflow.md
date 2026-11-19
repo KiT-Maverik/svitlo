@@ -61,28 +61,46 @@ textbooks, and Ready `main` or manual dispatch builds all. With zero selected
 textbooks, avoid `npm ci` while emitting the same stable required status.
 Do not rerun the full Engine suite during an unrelated Biology build.
 
-## Production package-build reuse
+## Parallel production validation and package-build reuse
 
-`Production Quality / verify` keeps its full root typecheck, unit/component tests,
-lint, distributable package builds, host builds, compiled-export checks and Chromium
-E2E. Its sequential job sets `SVITLO_CI_PACKAGE_BUILD_STATE` to a **runner-local**
-temporary JSON path. The root workspace aggregator, Engine/adapter test hooks,
-and Web/Mobile/Desktop textbook preparation use
-`scripts/ci/packageBuildReuse/package-build-reuse.mjs` when requesting a package
-build. Outside the opt-in job the helper runs the canonical npm build normally.
+Ready `develop → main` promotions execute the full existing coverage in
+**parallel jobs**, not as one serial, ten-minute-plus worker. Source provenance
+is checked before any installation. Independent repository integrity, root
+TypeScript, root tests, additional Web/Playground component suites, lint,
+full distributable package builds and public-artifact validation run on their
+own runners. Every application that declares `app:build` is discovered
+dynamically from its manifest and built in a separate job, with its declared
+`test:e2e` and `test:integration` in the **same runner after the build**.
+An application E2E capability without an app build fails discovery. The
+root `npm test` already covers UI Kit and Math components, so the additional
+component worker deliberately tests only Web and Playground.
 
-A reuse requires the same clean checked-out Git revision, unchanged dependency
-build generations and an exact SHA-256 match for every file in the package's
-`dist/`. Missing, modified, or invalid output triggers an actual rebuild;
-compilation failure remains fatal. State is never transferred between
-workflows, runners or commits. Keep this job sequential: the JSON state is not
-a concurrent build server and is not a substitute for Content Build's matrix.
+A stable, branch-protected `Production Quality / verify` aggregation job
+depends on **every** source, package, typecheck, test, lint and application
+result. It runs with `always()` on Ready/manual releases; missing, failed,
+cancelled or skipped jobs cannot yield success. Draft PRs do not appear fully
+validated. The app matrix disables GitHub Actions fail-fast to retain
+independent failures. All expensive checks remain required for release,
+although their completion order is no longer sequential.
 
-The always-run summary records build requests, real builds, verified reuses and
-build durations. Comparable successful Ready `develop → main` runs are still
-required to substantiate wall-clock, total runner-time and log-volume savings;
-a counterfactual request count is not a measured before/after improvement.
-Regression coverage: `node --test scripts/ci/packageBuildReuse/package-build-reuse.spec.mjs`.
+Each runner installs its own pinned dependencies and prepares only the
+required local build outputs. `SVITLO_CI_PACKAGE_BUILD_STATE` remains
+**strictly local to a job**. The root workspace aggregator, Engine/adapter
+test hooks and Web/Mobile/Desktop content preparation use
+`scripts/ci/packageBuildReuse/package-build-reuse.mjs` to reuse builds within
+that one runner. A reuse requires clean source, unchanged dependency
+generations and exact SHA-256 matches of every `dist/` file. Missing,
+modified or invalid output causes a real rebuild. Never share the state,
+`dist/` or runner caches between jobs to claim a checked build.
+
+Parallel jobs reduce critical-path latency and expose errors earlier but
+can increase billed runner minutes due to separate installs and builds.
+Do **not** claim a specific speed improvement until comparing fully
+successful Ready production runs; compare wall-clock, sum of runner time,
+build request/build/reuse counts and useful log volume. The full textbook
+publication/portability matrix remains independently verified by the required
+Affected Content status. Implementation details and validation commands:
+[scripts/ci/productionQuality/README.md](../../scripts/ci/productionQuality/README.md).
 
 ## Quiet logs and agents
 

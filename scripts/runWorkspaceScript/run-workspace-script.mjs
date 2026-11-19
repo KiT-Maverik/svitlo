@@ -32,10 +32,27 @@ function localDeps(pkg, byName) {
     .sort();
 }
 
-export function planWorkspaceOperation(packages, operation) {
+export function planWorkspaceOperation(packages, operation, { onlyWorkspaces } = {}) {
   const byName = new Map(packages.map(pkg => [pkg.name, pkg]));
   if (byName.size !== packages.length) throw Error('Duplicate npm workspace names');
-  const eligible = packages.filter(pkg => Object.hasOwn(pkg.scripts || {}, operation));
+  if (onlyWorkspaces !== undefined) {
+    if (
+      !Array.isArray(onlyWorkspaces) ||
+      !onlyWorkspaces.length ||
+      new Set(onlyWorkspaces).size !== onlyWorkspaces.length
+    ) {
+      throw Error('Explicit workspace selection must be a nonempty unique list');
+    }
+    for (const name of onlyWorkspaces) {
+      if (!byName.has(name) || !Object.hasOwn(byName.get(name).scripts || {}, operation)) {
+        throw Error('Selected workspace does not implement ' + operation + ': ' + name);
+      }
+    }
+  }
+  const selectedNames = onlyWorkspaces === undefined ? null : new Set(onlyWorkspaces);
+  const eligible = packages.filter(
+    pkg => Object.hasOwn(pkg.scripts || {}, operation) && (!selectedNames || selectedNames.has(pkg.name)),
+  );
   if (!eligible.length) throw Error('No workspaces implement ' + operation);
   const order = [];
   const state = new Map();
@@ -83,11 +100,13 @@ export function planWorkspaceOperation(packages, operation) {
   return { selected: eligible.map(pkg => pkg.name), steps: planned };
 }
 
-function execute(operation) {
+export function execute(operation, { onlyWorkspaces } = {}) {
   if (!/^[a-z][a-z0-9-]*(?::[a-z][a-z0-9-]*)*$/.test(operation)) {
     throw Error('Invalid script name: ' + operation);
   }
-  const { selected, steps } = planWorkspaceOperation(discoverWorkspaces(), operation);
+  // Root CLI remains exhaustive. An explicit selection is available only to
+  // CI callers importing this function; dependency builds remain topological.
+  const { selected, steps } = planWorkspaceOperation(discoverWorkspaces(), operation, { onlyWorkspaces });
   console.log('Running ' + operation + ' in ' + selected.length + ' eligible workspaces: ' + selected.join(', '));
   for (const { name, script } of steps) {
     console.log('\n▶ ' + name + ' / ' + script);

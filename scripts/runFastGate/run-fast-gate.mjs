@@ -184,6 +184,17 @@ export function requiresWebBuild(changed) {
   );
 }
 
+/** Catch Scene/CSS Module loading regressions in Ready integration CI, not ten minutes into a release. */
+export function requiresPlaygroundSceneTests(changed) {
+  return changed.some(
+    file =>
+      file.startsWith('content/playground/scenes/') ||
+      file === 'content/playground/vitest.config.ts' ||
+      file === 'content/playground/package.json' ||
+      file.startsWith('shared/ui-kit/src/'),
+  );
+}
+
 /** Build dependencies that a workspace typecheck consumes through published exports. */
 export function shouldBuildDependency(owner, dependency) {
   return (
@@ -402,6 +413,13 @@ async function runGate(changed, base, head) {
   }
   await runParallel(parallel, checkWorkspace);
   for (const name of sequential) await checkWorkspace(name);
+  // Vitest must load real Playground Scene modules through Vite (including UI
+  // Kit CSS Modules) on the integration branch. Root typecheck cannot catch a
+  // compiled CommonJS require() of CSS when these modules are preloaded.
+  if (requiresPlaygroundSceneTests(changed)) {
+    ensureSharedDependencies('@svitlo/playground');
+    exec('npm', ['run', 'test:components', '--workspace', '@svitlo/playground']);
+  }
   // Verify the on-demand coverage workflow itself when its implementation changes.
   // Ordinary Engine PRs do not pay for a second instrumented test run.
   if (

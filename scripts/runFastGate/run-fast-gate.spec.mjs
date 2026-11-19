@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { test } from 'node:test';
-import { chooseChecks, partitionBuildMutatingHosts, requiresWebBuild, shouldBuildDependency, workspaceDependents } from './run-fast-gate.mjs';
+import { chooseChecks, partitionBuildMutatingHosts, requiresPlaygroundSceneTests, requiresWebBuild, shouldBuildDependency, workspaceDependents } from './run-fast-gate.mjs';
 
 const packages = [
   { path: 'shared/engine', name: '@svitlo/engine' },
@@ -28,6 +28,20 @@ test('Markdown and KaTeX styles trigger the consuming Web production build', () 
   const unrelated = ['shared/ui-kit/src/components/widgets/ContentBlockRenderer/blocks/Text/Text.module.css'];
   assert.deepEqual([...chooseChecks(unrelated, withHosts).affected], ['@svitlo/ui-kit']);
   assert.equal(requiresWebBuild(unrelated), false);
+});
+
+test('Playground Scene loading runs in Ready FastGate when Scene, Vitest or shared UI code changes', () => {
+  for (const path of [
+    'content/playground/scenes/sceneLoader.ts',
+    'content/playground/vitest.config.ts',
+    'content/playground/package.json',
+    'shared/ui-kit/src/components/widgets/Flashcard/Flashcard.tsx',
+    'shared/ui-kit/src/components/widgets/Flashcard/Flashcard.module.css',
+  ]) {
+    assert.equal(requiresPlaygroundSceneTests([path]), true, path);
+  }
+  assert.equal(requiresPlaygroundSceneTests(['content/biology/data/skills/example.ts']), false);
+  assert.equal(requiresPlaygroundSceneTests(['.github/workflows/questions.yml']), false);
 });
 
 test('Math authored data gets ordinary workspace checks, not taxonomy checks in FastGate', () => {
