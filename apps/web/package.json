@@ -36,7 +36,6 @@
     "@svitlo/adapter-nextjs": "0.0.0",
     "@svitlo/engine": "0.0.0",
     "@svitlo/indexdb": "0.0.0",
-    "@svitlo/playground": "0.0.0",
     "@svitlo/ui-kit": "0.0.0",
     "next": "16.4.2",
     "react": "19.3.0",

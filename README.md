@@ -6,7 +6,7 @@ Svitlo is a modular interactive-learning project. The repository contains textbo
 
 | Directory                         | Contents                                                                       |
 | --------------------------------- | ------------------------------------------------------------------------------ |
-| `apps/web`                        | Next.js host for a build-selected textbook; currently uses Playground          |
+| `apps/web`                        | Next.js host for an explicitly build-selected content package          |
 | `apps/platform`                   | Next.js platform and external textbook catalog                                 |
 | `apps/mobile`, `apps/desktop`     | Mobile and desktop host workspaces                                             |
 | `content/playground`              | React DOM textbook package with authored data, Scenes, and generated resources |
