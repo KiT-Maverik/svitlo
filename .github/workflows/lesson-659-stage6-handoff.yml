@@ -44,6 +44,13 @@ jobs:
           cp "$lesson/lesson.yaml" "$RUNNER_TEMP/svitlo-main/$lesson/lesson.yaml"
           pushd "$RUNNER_TEMP/svitlo-main"
           npm ci --ignore-scripts --no-audit --no-fund
+          # The Lesson branch carries the narrowly scoped canonical .ts Skill
+          # import fix and regression test. Apply those exact reviewed sources
+          # over the trusted main worktree; all other generator code is main.
+          cp "$GITHUB_WORKSPACE/shared/engine/scripts/lessonBuilder/lessonModules.mjs" shared/engine/scripts/lessonBuilder/lessonModules.mjs
+          cp "$GITHUB_WORKSPACE/shared/engine/scripts/lessonBuilder/lessonBuilder.spec.mjs" shared/engine/scripts/lessonBuilder/lessonBuilder.spec.mjs
+          npx prettier --check shared/engine/scripts/lessonBuilder/lessonModules.mjs shared/engine/scripts/lessonBuilder/lessonBuilder.spec.mjs
+          node --test shared/engine/scripts/lessonBuilder/lessonBuilder.spec.mjs
           node shared/engine/scripts/finalizeLesson/finalizeLesson.mjs preflight-draft --source "$lesson/lesson.yaml"
           node shared/engine/scripts/finalizeLesson/finalizeLesson.mjs handoff --source "$lesson/lesson.yaml"
           node shared/engine/scripts/lessonBuilder/lessonBuilder.mjs check --source "$lesson"
