@@ -2,7 +2,7 @@
 
 `plan-content-builds.mjs` discovers buildable workspaces from `content/*` and
 `content/languages/*`, using their own `package.json` manifests. It produces
-GitHub Actions job outputs `matrix`, `has_builds`, `all` and `agent_mode`
+GitHub Actions job outputs `matrix`, `shards`, `has_builds`, `all` and `agent_mode`
 without performing a build or modifying authored files.
 
 - Pull requests promoting to production `main` **after** leaving Draft and manual workflow
@@ -50,9 +50,13 @@ scoped compiled-export validation. Each book receives bounded logs and a distinc
 failure annotation; other books in its shard still run. No dependencies or build
 artifacts cross runner boundaries.
 
-Use the same run's job timelines/logs to compare critical-path time, summed
-runner duration, dependency-install count/duration and log bytes. The benchmark
-costs extra runner minutes on purpose; run it only on demand. The selected-scope
+Use the same run's job timelines/logs to compare **each variant's own**
+critical path, summed runner duration, dependency-install count/duration and
+log bytes. The original and trial jobs can execute concurrently, so their
+shared workflow's total wall-clock duration is **not** either variant's runtime;
+runner scheduling and cache contention may affect the comparison. Repeat the
+trial if timings are too noisy to justify a cutover. The benchmark costs extra
+runner minutes on purpose; run it only on demand. The selected-scope
 planner remains unchanged for Draft/develop/agent PRs, including zero selected
 workspaces. Promotion to the sharded matrix requires a measured improvement and
 separate code review; this experiment deliberately cannot weaken protected checks.
