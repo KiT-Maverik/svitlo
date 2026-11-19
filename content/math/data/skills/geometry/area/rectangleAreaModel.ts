@@ -53,7 +53,7 @@ export const rectangleAreaModel = defineSkill({
       it: "Trova l'area di un rettangolo moltiplicando lunghezza e larghezza. Righe e colonne di quadrati uguali mostrano perché funziona.",
       ja: '長方形の面積は縦×横です。同じ正方形の行と列でその理由がわかります。',
       ka: 'მართკუთხედის ფართობი სიგრძე × სიგანეა. თანაბარი კვადრატების რიგები და სვეტები ამას ხსნის.',
-      kk: 'Tıktörtbūryştyñ audany — ūzyndyğy men enınıñ köbeitındısı. Bırdei şarşylardyñ joldary men bağandary sebebın körsetedı.',
+      kk: 'Tıktörtbūryştyñ audany — ūzyndyğy men enınıñ köbeitındısı. Bırdei şarşylardan qūralğan qatarlar men bağandar būl formulanyñ nege dūrys ekenın körsetedı.',
       ko: '직사각형의 넓이는 가로×세로입니다. 같은 크기 정사각형의 행과 열로 이유를 알 수 있습니다.',
       lt: 'Stačiakampio plotas yra ilgis kart plotis. Vienodų kvadratų eilutės ir stulpeliai paaiškina kodėl.',
       lv: 'Taisnstūra laukums ir garums reiz platums. Vienādu kvadrātu rindas un kolonnas izskaidro kāpēc.',
