@@ -1,4 +1,4 @@
-name: Questions quality
+name: Production quality
 # Full-repository validation is reserved for production promotion to main.
 on:
   pull_request:
@@ -24,7 +24,7 @@ jobs:
       - run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --no-audit --no-fund
       - run: node scripts/ci/quietRun/quiet-run.mjs -- npm run repo:check:packages
       - run: node scripts/ci/quietRun/quiet-run.mjs -- npm run code:check:types
-      - run: npm test
+      - run: node scripts/ci/quietRun/quiet-run.mjs -- npm test
       - run: node scripts/ci/quietRun/quiet-run.mjs -- npm run test:components
       - run: node scripts/ci/quietRun/quiet-run.mjs -- npm run test:integration:db:coverage --workspace @svitlo/indexdb
         if: ${{ !cancelled() }}
@@ -36,11 +36,11 @@ jobs:
         if: ${{ !cancelled() }}
         run: |
           for subject in math physics psychology philosophy language-literature; do
-            (cd "content/$subject" && node --test ../../scripts/textbook-tooling/publishTextbook/test-publish.mjs)
-            (cd "content/$subject" && node ../../scripts/textbook-tooling/checkPortability/check-portability.mjs)
+            (cd "content/$subject" && node ../../scripts/ci/quietRun/quiet-run.mjs -- node --test ../../scripts/textbook-tooling/publishTextbook/test-publish.mjs)
+            (cd "content/$subject" && node ../../scripts/ci/quietRun/quiet-run.mjs -- node ../../scripts/textbook-tooling/checkPortability/check-portability.mjs)
           done
-          (cd content/languages/ukrainian && node --test ../../../scripts/textbook-tooling/publishTextbook/test-publish.mjs)
-          (cd content/languages/ukrainian && node ../../../scripts/textbook-tooling/checkPortability/check-portability.mjs)
+          (cd content/languages/ukrainian && node ../../../scripts/ci/quietRun/quiet-run.mjs -- node --test ../../../scripts/textbook-tooling/publishTextbook/test-publish.mjs)
+          (cd content/languages/ukrainian && node ../../../scripts/ci/quietRun/quiet-run.mjs -- node ../../../scripts/textbook-tooling/checkPortability/check-portability.mjs)
       - name: Verify compiled public package artifacts
         if: ${{ !cancelled() }}
         run: node scripts/ci/quietRun/quiet-run.mjs -- npm run repo:check:artifacts

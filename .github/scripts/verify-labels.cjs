@@ -57,6 +57,10 @@ for (const type of educationalTypes) {
 for (const type of ['course', 'lesson', 'questions', 'flashcards']) {
   assert.ok(ruleNames.includes('work: ' + type), 'Missing educational PR auto-label: work: ' + type);
 }
+assert.ok(!matcher.includes("'content/**/data/lessons/**/index.ts'"),
+  'Lesson matcher must not match nested bank index files');
+assert.ok(matcher.includes("'content/*/data/lessons/*/*/index.ts'"),
+  'Lesson index matcher must be UUID-root limited');
 assert.ok(matcher.includes("'content/**/data/lessons/**/questions.yaml'"), 'Missing Question YAML matcher');
 assert.ok(matcher.includes("'content/**/data/lessons/**/flashcards.yaml'"), 'Missing Flashcard YAML matcher');
 for (const label of labels.filter(label => label.name.startsWith('pr: '))) {
