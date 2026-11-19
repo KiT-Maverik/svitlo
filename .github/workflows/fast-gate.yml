@@ -34,7 +34,7 @@ jobs:
           if [[ "$GITHUB_EVENT_NAME" != pull_request ]]; then
             echo "run=true" >> "$GITHUB_OUTPUT"
           else
-            changed_files=$(git diff --name-only "$BASE_SHA...$HEAD_SHA")
+            changed_files=$(git diff --no-renames --name-only "$BASE_SHA...$HEAD_SHA")
             if grep -Eq '(^scripts/|^\.github/|^\.agent-ci-artifacts/|\.(ts|tsx|mts|js|mjs|cjs|json)$|^shared/ui-kit/src/components/widgets/ContentBlockRenderer/blocks/Markdown/)' <<< "$changed_files"; then
               echo "run=true" >> "$GITHUB_OUTPUT"
             else

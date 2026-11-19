@@ -5,9 +5,9 @@
 ## Branch topology
 
 - `develop` is the integration branch for new development; new standalone and parent Course/Lesson/translation Draft PRs target it. Child PRs target their verified immediate integration parent, including nested Course → Lesson → Question/Flashcard work.
-- `main` is production. Promote through a separate Ready `develop → main` PR only after full validation and owner authorization. Deploy a pinned release commit/tag, not arbitrary Draft work.
+- `main` is production. Only same-repository Ready `develop → main` PRs are allowed by `Production Quality / verify`, including on edited/retargeted PRs. Full validation and owner authorization are required. Deploy a pinned release commit/tag, not arbitrary Draft work.
 - Do not mass-retarget in-flight PRs. Their existing base/parent branch relationships and independent review evidence remain valid until individually reconciled.
-- The default branch is `develop`. Active branch-protection rulesets target literal `main` and `develop`; changing required checks is a separate GitHub Settings operation, not a workflow YAML change.
+- **Verified 2026-11-19:** `develop` is already the default branch. Active `Protect develop` and `Protect main` rulesets target literal branches and require pull requests. Preserve historical nested PR ancestry; owner approval is needed for any individual reconciliation.
 - Require stable `Agent CI Artifacts / clean`, `Blocker TODOs / clean`, `Affected content / build, taxonomy and packaging` status contexts on protected branches, with FastGate on develop and full Quality on main as appropriate. Verify every required status is emitted for its target and enforce current-head checks. Labels alone cannot prevent merges.
 
 ## Validation tiers
@@ -77,16 +77,37 @@ Do not rerun the full Engine suite during an unrelated Biology build.
 
 ## Verification
 
-Run actual validation before merging: `node --test scripts/ci/quietRun/quiet-run.spec.mjs`, `node --test scripts/runFastGate/run-fast-gate.spec.mjs`, `node --test scripts/ci/checkBlockerTodos/check-blocker-todos.spec.mjs`, `node --test scripts/ci/buildChangedContent/*.spec.mjs`, `node .github/scripts/verify-labels.cjs`, `npm run repo:check:packages`, and any affected workflow tests. Exercise zero-content Draft, changed-content Ready, authored-blocker child, and production-promotion cases; compare billed minutes, wall time and agent-visible log volume. These commands are instructions, **not claims of passing checks**.
+Run actual validation before merging: `node --test scripts/ci/quietRun/quiet-run.spec.mjs`, `node --test scripts/runFastGate/run-fast-gate.spec.mjs scripts/runFastGate/public-contract-impact.spec.mjs scripts/ci/prDiff/changed-files.spec.mjs scripts/ci/releaseSource/check-release-source.spec.mjs`, `node --test scripts/ci/checkBlockerTodos/check-blocker-todos.spec.mjs`, `node --test scripts/ci/buildChangedContent/*.spec.mjs`, `node .github/scripts/verify-labels.cjs`, `npm run repo:check:packages`, and any affected workflow tests. Exercise zero-content Draft, changed-content Ready, authored-blocker child, and production-promotion cases; compare billed minutes, wall time and agent-visible log volume. These commands are instructions, **not claims of passing checks**.
 
 The default branch is now `develop`; the two active protection rulesets target their literal branches. Comment-triggered workflows use code deployed to the current default branch.
 
 Dedicated EducationStandard catalog/reference GitHub workflows are removed. Existing UI Kit `test:locales` validates definitions and localized outputs; FastGate tests the reference generator only when implementation changes. The on-demand `/agent-artifacts generate education-standards` functionality remains available.
 
-**Branch-protection audit (2026-11-19):** The active literal-target
-`Protect main` ruleset requires `Agent CI Artifacts / clean`,
-`Affected content / build, taxonomy and packaging`, `Blocker TODOs / clean`
-and `Production Quality / verify`. `Protect develop` requires the first
-three plus `FastGate / verify`. Both require PR-based integration.
-Verify this live GitHub Settings state before modifying any required check;
-workflow YAML alone does not update rulesets.
+**Actual branch-protection audit (2026-11-19):** GitHub already has `develop` as default and active literal-branch rulesets. Both `Protect main` and `Protect develop` now require a pull request before merging. `Protect main` now requires **`Production Quality / verify`** alongside Agent CI Artifacts, Affected content and Blocker TODOs; `Protect develop` requires **`FastGate / verify`** alongside the same three checks. Verified from active GitHub rulesets on 2026-11-19. GitHub ruleset state is an operational setting rather than a YAML guarantee.
+
+## Production and nested-PR enforcement follow-ups
+
+- Required `Affected content / build, taxonomy and packaging` runs the full
+  selected-content matrix on every Ready main PR, with publication and tarball
+  portability checks for each eligible textbook. Production Quality does **not**
+  rerun those publication/portability suites; it retains full TypeScript, root
+  tests, app builds, package artifacts and Chromium E2E coverage.
+- FastGate determines changed files from the merge-base, compares the public
+  declaration surface of re-exported modules and propagates affected workspace
+  typechecks through real dependencies, including transitive consumers.
+  Private implementation-only edits remain scoped. Root manifest and lockfile
+  edits conservatively check all workspaces.
+- An open child PR targeting an unprotected integration branch cannot be
+  blocked by a failing check alone. **Owner decision pending:** optionally
+  require `Blocker TODOs / clean` on a narrowly verified `integration/*`
+  parent-ref pattern, with explicit GitHub App bypass for authorized
+  materialization pushes. Do not apply it to all `agent/*` branches. GitHub
+  ruleset targets are refs, not educational labels.
+- Historical Course PR #653 targets `integration-branch`, while the trusted
+  Course materialization gate requires the current repository default branch
+  (`develop`). This is a known legacy mismatch; do not broadly bypass the
+  gate or retarget any Course/Lesson PR without owner approval and ancestry
+  reconciliation.
+- Required context provisioning, live Ready promotion/failure injection and
+  comparable before/after runner-minute benchmarks remain operational owner
+  handoffs, not claims established by committed workflow YAML.

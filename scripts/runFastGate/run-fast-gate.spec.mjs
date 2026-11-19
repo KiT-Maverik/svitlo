@@ -2,11 +2,11 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { test } from 'node:test';
-import { chooseChecks, requiresWebBuild, shouldBuildDependency } from './run-fast-gate.mjs';
+import { chooseChecks, requiresWebBuild, shouldBuildDependency, workspaceDependents } from './run-fast-gate.mjs';
 
 const packages = [
   { path: 'shared/engine', name: '@svitlo/engine' },
-  { path: 'shared/indexdb', name: '@svitlo/indexdb' },
+  { path: 'shared/indexdb', name: '@svitlo/indexdb', dependencies: { '@svitlo/engine': '0.0.0' } },
   { path: 'content/math', name: '@svitlo/math' },
   { path: 'content/biology', name: '@svitlo/biology' },
 ];
@@ -37,9 +37,13 @@ test('Math authored data gets ordinary workspace checks, not taxonomy checks in 
   assert.equal('mathComponents' in p, false);
 });
 
-test('shared Engine changes do not automatically select Math', () => {
-  const p = chooseChecks(['shared/engine/schemas/languages.schemas.ts'], packages);
-  assert.deepEqual([...p.affected].sort(), ['@svitlo/engine', '@svitlo/indexdb']);
+test('Engine public signature changes select graph consumers; private changes do not', () => {
+  const changes = ['shared/engine/schemas/languages.schemas.ts'];
+  assert.deepEqual([...chooseChecks(changes, packages).affected], ['@svitlo/engine']);
+  assert.deepEqual([...chooseChecks(changes, packages, { publicChanges: changes }).affected].sort(), [
+    '@svitlo/engine',
+    '@svitlo/indexdb',
+  ]);
 });
 
 test('IndexDB changes select only IndexDB for fast typecheck and unit/integration tests', () => {
@@ -56,7 +60,8 @@ test('unrelated Engine tooling does not select IndexDB browser or unit checks', 
 });
 
 test('Engine question contract changes select IndexDB dependent checks', () => {
-  const p = chooseChecks(['shared/engine/configurators/questions/question.schemas.ts'], packages);
+  const changes = ['shared/engine/configurators/questions/question.schemas.ts'];
+  const p = chooseChecks(changes, packages, { publicChanges: changes });
   assert.deepEqual([...p.affected].sort(), ['@svitlo/engine', '@svitlo/indexdb']);
 });
 
@@ -65,9 +70,9 @@ test('selects only changed subject workspaces', () => {
   assert.deepEqual([...p.affected].sort(), ['@svitlo/biology', '@svitlo/math']);
 });
 
-test('root package-lock changes select core workspaces without forcing Math', () => {
+test('root lockfile changes fail closed over all workspace dependency resolution', () => {
   const p = chooseChecks(['package-lock.json'], packages);
-  assert.deepEqual([...p.affected].sort(), ['@svitlo/engine', '@svitlo/indexdb']);
+  assert.equal(p.affected.size, packages.length);
 });
 
 test('shared textbook tooling changes do not automatically select Math', () => {
@@ -91,6 +96,7 @@ test('FastGate always emits a required status and scopes expensive checks, inclu
     'utf8',
   );
   assert.match(workflow, /name: FastGate \/ verify/);
+  assert.match(workflow, /git diff --no-renames --name-only/, 'renames must not hide deleted TS sources');
   assert.doesNotMatch(workflow, /\n    paths:/, 'required checks cannot use GitHub PR paths filters');
   assert.match(workflow, /ContentBlockRenderer\/blocks\/Markdown\//);
   assert.match(workflow, /steps\.scope\.outputs\.run == 'true'/);
@@ -119,4 +125,44 @@ test('FastGate builds required content package exports for host typechecks only'
   assert.equal(shouldBuildDependency(desktop, engine), true);
   assert.equal(shouldBuildDependency(math, playground), false);
   assert.equal(shouldBuildDependency(desktop, { ...playground, scripts: {} }), false);
+});
+
+test('transitive public impacts follow declared direct, development and peer dependencies only', () => {
+  const workspaces = [
+    { path: 'shared/engine', name: '@svitlo/engine' },
+    { path: 'shared/ui-kit', name: '@svitlo/ui-kit', dependencies: { '@svitlo/engine': '0.0.0' } },
+    { path: 'shared/adapters/nextjs', name: '@svitlo/adapter-nextjs', peerDependencies: { '@svitlo/ui-kit': '0.0.0' } },
+    { path: 'content/math', name: '@svitlo/math', devDependencies: { '@svitlo/ui-kit': '0.0.0' } },
+    { path: 'apps/web', name: '@svitlo/web', dependencies: { '@svitlo/adapter-nextjs': '0.0.0' } },
+    { path: 'apps/platform', name: '@svitlo/platform' },
+  ];
+  const file = 'shared/ui-kit/src/widgets/Widget.types.ts';
+  assert.deepEqual([...chooseChecks([file], workspaces, { publicChanges: [file] }).affected].sort(), [
+    '@svitlo/adapter-nextjs',
+    '@svitlo/math',
+    '@svitlo/ui-kit',
+    '@svitlo/web',
+  ]);
+  assert.deepEqual([...chooseChecks([file], workspaces).affected], ['@svitlo/ui-kit']);
+  assert.deepEqual([...chooseChecks(['shared/ui-kit/package.json'], workspaces).affected].sort(), [
+    '@svitlo/adapter-nextjs',
+    '@svitlo/math',
+    '@svitlo/ui-kit',
+    '@svitlo/web',
+  ]);
+});
+
+test('workspace graph rejects missing internal dependencies and cycles', () => {
+  assert.throws(
+    () => workspaceDependents([{ name: '@svitlo/a', dependencies: { '@svitlo/missing': '0.0.0' } }]),
+    /Unknown workspace dependency/,
+  );
+  assert.throws(
+    () =>
+      workspaceDependents([
+        { name: '@svitlo/a', dependencies: { '@svitlo/b': '0.0.0' } },
+        { name: '@svitlo/b', devDependencies: { '@svitlo/a': '0.0.0' } },
+      ]),
+    /Cyclic workspace dependency/,
+  );
 });
