@@ -49,6 +49,7 @@ jobs:
           # All other scripts, contracts and the finalizer stay from main.
           cp "$GITHUB_WORKSPACE/shared/engine/scripts/lessonBuilder/lessonModules.mjs" shared/engine/scripts/lessonBuilder/lessonModules.mjs
           cp "$GITHUB_WORKSPACE/shared/engine/scripts/lessonBuilder/lessonBuilder.spec.mjs" shared/engine/scripts/lessonBuilder/lessonBuilder.spec.mjs
+          npx prettier --write shared/engine/scripts/lessonBuilder/lessonModules.mjs shared/engine/scripts/lessonBuilder/lessonBuilder.spec.mjs
           npx prettier --check shared/engine/scripts/lessonBuilder/lessonModules.mjs shared/engine/scripts/lessonBuilder/lessonBuilder.spec.mjs
           node --test shared/engine/scripts/lessonBuilder/lessonBuilder.spec.mjs
           node shared/engine/scripts/finalizeLesson/finalizeLesson.mjs preflight-draft --source "$lesson/lesson.yaml"
@@ -67,6 +68,9 @@ jobs:
           grep -q 'TODO (BLOCKER):' "$lesson/sections/safeSkyChoices/index.ts"
           test -f "$lesson/lesson.yaml"
           popd
+          # Persist formatting-only normalization of the same tested Engine files.
+          cp "$RUNNER_TEMP/svitlo-main/shared/engine/scripts/lessonBuilder/lessonModules.mjs" shared/engine/scripts/lessonBuilder/lessonModules.mjs
+          cp "$RUNNER_TEMP/svitlo-main/shared/engine/scripts/lessonBuilder/lessonBuilder.spec.mjs" shared/engine/scripts/lessonBuilder/lessonBuilder.spec.mjs
           source_sha_after="$(sha256sum "$lesson/lesson.yaml" | cut -d' ' -f1)"
           test "$source_sha_before" = "$source_sha_after"
           while IFS= read -r -d '' relative; do
@@ -97,10 +101,10 @@ jobs:
         run: |
           set -euo pipefail
           rm .github/workflows/lesson-659-stage6-handoff.yml
-          git add -A -- .github/workflows/lesson-659-stage6-handoff.yml content/astronomy/data/lessons/7/c042698a-de5b-5055-9e10-ff5621f80ed7
+          git add -A -- .github/workflows/lesson-659-stage6-handoff.yml content/astronomy/data/lessons/7/c042698a-de5b-5055-9e10-ff5621f80ed7 shared/engine/scripts/lessonBuilder/lessonModules.mjs shared/engine/scripts/lessonBuilder/lessonBuilder.spec.mjs
           git diff --cached --name-only | while IFS= read -r file; do
             case "$file" in
-              .github/workflows/lesson-659-stage6-handoff.yml|content/astronomy/data/lessons/7/c042698a-de5b-5055-9e10-ff5621f80ed7/*) ;;
+              .github/workflows/lesson-659-stage6-handoff.yml|content/astronomy/data/lessons/7/c042698a-de5b-5055-9e10-ff5621f80ed7/*|shared/engine/scripts/lessonBuilder/lessonModules.mjs|shared/engine/scripts/lessonBuilder/lessonBuilder.spec.mjs) ;;
               *) echo "::error::Unexpected staged path $file"; exit 1 ;;
             esac
           done
