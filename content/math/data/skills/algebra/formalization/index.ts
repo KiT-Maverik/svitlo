@@ -57,7 +57,7 @@ export const formalization = defineSkillGroup({
       it: 'Impara a rappresentare situazioni reali o matematiche usando numeri, segni di operazione e semplici equazioni che ne conservano il significato.',
       ja: '実際の場面や数学的な状況を、数・計算記号・簡単な方程式で意味を保って表す方法を学びます。',
       ka: 'ისწავლე რეალური ან მათემატიკური სიტუაციების აღწერა რიცხვებით, მოქმედების ნიშნებითა და მარტივი განტოლებებით, მნიშვნელობის შენარჩუნებით.',
-      kk: 'Naqty ne matematikalyq jağdailardy mağynasyn saqtap, sandarmen, amal tañbalarymen jäne qarapaiym teñdeulermen körsetudı üiren.',
+      kk: 'Naqty ne matematikalyq jağdailardyñ mağynasyn saqtap, sandarmen, amal tañbalarymen jäne qarapaiym teñdeulermen körsetudı üiren.',
       ko: '실제 상황이나 수학적 관계를 수, 연산 기호, 간단한 방정식으로 뜻에 맞게 나타내는 방법을 배워요.',
       lt: 'Išmok realias ar matematines situacijas užrašyti skaičiais, veiksmų ženklais ir paprastomis lygtimis, išlaikydamas jų prasmę.',
       lv: 'Iemācies reālas vai matemātiskas situācijas izteikt ar skaitļiem, darbību zīmēm un vienkāršiem vienādojumiem, saglabājot to jēgu.',
