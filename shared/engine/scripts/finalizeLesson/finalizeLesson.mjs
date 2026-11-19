@@ -202,6 +202,9 @@ function verifyAssessmentSelections(document, assessment, allowBankPending) {
         'only explicitly bank-pending Sections may defer required assessment parameters');
     const field = config.type === 'quiz' ? 'questionIds' : 'flashcardIds';
     const ids = config.params?.selection?.[field];
+    if (Array.isArray(ids) && ids.some(id => !uuid.test(id)))
+      fail('config.section.items.' + slug + '.config.params.selection.' + field,
+        'real non-placeholder assessment UUIDs are required');
     if (Array.isArray(ids) && ids.length !== new Set(ids).size)
       fail('config.section.items.' + slug + '.config.params.selection.' + field,
         'assessment selection UUIDs must be unique');
