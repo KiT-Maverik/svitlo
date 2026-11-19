@@ -34,6 +34,11 @@ jobs:
         if: ${{ !cancelled() }}
       - run: node scripts/ci/quietRun/quiet-run.mjs -- npm run code:lint:check
         if: ${{ !cancelled() }}
+      # Host builds only compile their dependencies; all textbook distributions
+      # must be present before publisher and global artifact verification.
+      - name: Build all distributable packages
+        if: ${{ !cancelled() }}
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npm run package:build
       - run: node scripts/ci/quietRun/quiet-run.mjs -- npm run app:build
         if: ${{ !cancelled() }}
       - name: Verify migrated textbook publishers and isolated ESM tarballs
