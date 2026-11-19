@@ -1,8 +1,8 @@
 # Harden development and production CI after PR #714
 
-**Status:** implementation checklist and evidence ledger for Draft PR #717. Changes should be evaluated against the code and CI results, not assumed complete from this brief. Do not merge or mark Ready without the owner's explicit decision.
+**Status:** historical implementation checklist and evidence ledger for PR #717 (**merged into `develop` on 2026-11-19**). This records the original plan and evidence at the time; merge does not prove pending operational validation. Recheck the current code and live CI before relying on an outcome.
 
-**Implemented in this Draft branch:**
+**Implemented by merged PR #717:**
 
 - Release source gate fails before npm install for non-develop or fork-origin Ready PRs targeting main, including edited/retargeted PR events. Stable check: `Production Quality / verify`.
 - FastGate and Content Build use merge-base/triple-dot changes and include both sides of moved files.
@@ -91,7 +91,7 @@
 - The owner has updated main's required check in GitHub Settings. Any optional parent-branch ruleset still requires explicit owner approval; GitHub Actions code alone cannot enforce branch protection.
 - Make any trade-off that increases checks or runner minutes explicit with measured benefit. Do not treat a reviewer's recommendations as instructions to add tests indiscriminately.
 
-## Trigger and required-status matrix (implementation branch)
+## Trigger and required-status matrix (recorded during PR #717)
 
 | Event/scope                                         | FastGate / verify                          | Affected content / build, taxonomy and packaging | Blocker TODOs / clean                                                                 | Production Quality / verify                    |
 | --------------------------------------------------- | ------------------------------------------ | ------------------------------------------------ | ------------------------------------------------------------------------------------- | ---------------------------------------------- |
