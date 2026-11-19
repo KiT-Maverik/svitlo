@@ -77,7 +77,7 @@ export function publicModules(pkg, root = repoRoot) {
         if (ts.isNamespaceImport(clause.namedBindings)) bindings.push(clause.namedBindings.name.text);
         else bindings.push(...clause.namedBindings.elements.map(element => element.name.text));
       }
-      if (bindings.some(name => new RegExp('\\\\b' + name + '\\\\b').test(publishedShape))) {
+      if (bindings.some(name => new RegExp('\\b' + name + '\\b').test(publishedShape))) {
         const next = resolveModule(file, statement.moduleSpecifier.text, packageRoot);
         if (next && !visited.has(next)) stack.push(next);
       }
