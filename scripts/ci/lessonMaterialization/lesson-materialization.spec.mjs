@@ -7,17 +7,16 @@ import { fileURLToPath } from 'node:url';
 import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import YAML from 'yaml';
+import { parseIdentity, parseTrigger, requireStageSixPending, validateArtifactPath, gitBlob } from './lesson-gate.mjs';
 import {
-  parseIdentity, parseTrigger, requireStageSixPending,
-  validateArtifactPath, gitBlob,
-} from './lesson-gate.mjs';
-import {
-  identicalSnapshot, verifyManifest, trackedFiles, changedFiles,
-  chooseMode, verifyNoop,
+  identicalSnapshot,
+  verifyManifest,
+  trackedFiles,
+  changedFiles,
+  chooseMode,
+  verifyNoop,
 } from './lesson-materialization.mjs';
-import {
-  preflightLesson, finalizeLesson,
-} from '../../../shared/engine/scripts/finalizeLesson/finalizeLesson.mjs';
+import { preflightLesson, finalizeLesson } from '../../../shared/engine/scripts/finalizeLesson/finalizeLesson.mjs';
 import { repoRoot } from '../../../shared/engine/scripts/lessonBuilder/lessonBuilder.mjs';
 
 const id = '667803f3-6535-5322-b377-810b4096d005';
@@ -30,8 +29,22 @@ const head = 'b'.repeat(40);
 const sourceBlob = 'c'.repeat(40);
 const tick = String.fromCharCode(96);
 const stageNames = [
-  'Methodology', 'Content Creation', 'Content Review', 'Experience Review',
-  'Methodology Compliance', 'Resource Production', 'Translation', 'Translation Review',
+  'Methodology',
+  'Content Creation',
+  'Content Review',
+  'Experience Review',
+  'Methodology Compliance',
+  'Resource Production',
+  'Questions',
+  'Flashcards',
+  'Translation',
+  'Translation Review',
+];
+const stageSixSteps = [
+  'Materialize Lesson sources',
+  'Accessibility source audit',
+  'Offline source audit',
+  'Validate source and handoff',
 ];
 function body() {
   return [
@@ -41,12 +54,13 @@ function body() {
     'Parent PR: #653',
     '<!-- svitlo-create-lesson-flow:v1 -->',
     '## Lesson identity',
-    '- Lesson UUID / textbook / slug: ' + tick + id + tick + ' / ' +
-      tick + pkg + tick + ' / ' + tick + slug + tick,
+    '- Lesson UUID / textbook / slug: ' + tick + id + tick + ' / ' + tick + pkg + tick + ' / ' + tick + slug + tick,
     '- Canonical source: ' + tick + yaml + tick + ' (inherited)',
     '## Lesson stages',
-    ...stageNames.map((name, i) => '- [' + (i < 5 ? 'x' : ' ') + '] ' + (i + 1) + '. ' + name +
-      (i === 5 ? ' — IN PROGRESS' : '')),
+    ...stageNames.flatMap((name, i) => [
+      '- [' + (i < 5 ? 'x' : ' ') + '] ' + (i + 1) + '. ' + name + (i === 5 ? ' — IN PROGRESS' : ''),
+      ...(i === 5 ? stageSixSteps.map((step, j) => '  - [ ] 6.' + (j + 1) + ' ' + step) : []),
+    ]),
     '  - [ ] en',
     '## Audit evidence',
     'Sha-pinned review evidence is owned by the parent PR',
@@ -55,7 +69,8 @@ function body() {
 
 test('exact Course-Lesson marker, identity, UUID bucket and source are required', () => {
   assert.deepEqual(parseIdentity(body()), identity);
-  const standalone = body().replace('<!-- svitlo-course-lesson:v1 -->', '')
+  const standalone = body()
+    .replace('<!-- svitlo-course-lesson:v1 -->', '')
     .replace('Course: ' + courseId + '\nLesson: ' + id + '\nParent PR: #653\n', '');
   assert.deepEqual(parseIdentity(standalone).parent, null);
   for (const candidate of [
@@ -66,7 +81,8 @@ test('exact Course-Lesson marker, identity, UUID bucket and source are required'
     body().replace('/lessons/5/', '/lessons/a/'),
     body().replace(slug + tick, '../evil' + tick),
     body() + '\n- Canonical source: ' + tick + yaml + tick,
-  ]) assert.throws(() => parseIdentity(candidate));
+  ])
+    assert.throws(() => parseIdentity(candidate));
 });
 
 test('only exact PR top-level comments and enumerated dispatch operations are accepted', () => {
@@ -75,25 +91,42 @@ test('only exact PR top-level comments and enumerated dispatch operations are ac
     comment: { user: { login: 'maintainer' }, body: '/lesson materialize' },
   };
   assert.deepEqual(parseTrigger(event, 'issue_comment', 'maintainer'), {
-    number: 710, operation: 'materialize', actor: 'maintainer',
+    number: 710,
+    operation: 'materialize',
+    actor: 'maintainer',
   });
-  for (const command of ['/lesson materialize\n', ' /lesson materialize', '/lesson materialize #710',
-    '/lesson status', '/course materialize', '/lesson finalize please']) {
-    assert.throws(() => parseTrigger({ ...event, comment: { ...event.comment, body: command } },
-      'issue_comment', 'maintainer'));
+  for (const command of [
+    '/lesson materialize\n',
+    ' /lesson materialize',
+    '/lesson materialize #710',
+    '/lesson status',
+    '/course materialize',
+    '/lesson finalize please',
+  ]) {
+    assert.throws(() =>
+      parseTrigger({ ...event, comment: { ...event.comment, body: command } }, 'issue_comment', 'maintainer'),
+    );
   }
   assert.throws(() => parseTrigger(event, 'issue_comment', 'other'));
   assert.throws(() => parseTrigger({ ...event, issue: { number: 710 } }, 'issue_comment', 'maintainer'));
-  assert.deepEqual(parseTrigger({
-    inputs: { pr_number: '710', operation: 'finalize' },
-  }, 'workflow_dispatch', 'maintainer').operation, 'finalize');
+  assert.deepEqual(
+    parseTrigger(
+      {
+        inputs: { pr_number: '710', operation: 'finalize' },
+      },
+      'workflow_dispatch',
+      'maintainer',
+    ).operation,
+    'finalize',
+  );
   for (const n of ['0', '1e2', '../710', '-5', 'NaN']) {
-    assert.throws(() => parseTrigger({ inputs: { pr_number: n, operation: 'materialize' } },
-      'workflow_dispatch', 'maintainer'));
+    assert.throws(() =>
+      parseTrigger({ inputs: { pr_number: n, operation: 'materialize' } }, 'workflow_dispatch', 'maintainer'),
+    );
   }
 });
 
-test('Stages 1–5 are uniquely checked; Stage 6 must be pending', () => {
+test('ten-stage tracker requires editorial Stages 1–5, pending Stage 6 and four subchecks', () => {
   assert.equal(requireStageSixPending(body()), true);
   for (let stage = 1; stage <= 5; stage++) {
     const changed = body().replace('- [x] ' + stage + '.', '- [ ] ' + stage + '.');
@@ -102,28 +135,67 @@ test('Stages 1–5 are uniquely checked; Stage 6 must be pending', () => {
   assert.throws(() => requireStageSixPending(body().replace('- [ ] 6.', '- [x] 6.')));
   assert.throws(() => requireStageSixPending(body().replace('## Lesson stages', '## Fake')));
   assert.throws(() => requireStageSixPending(body() + '\n## Lesson stages'));
-  assert.throws(() => requireStageSixPending(body().replace('## Audit evidence', '- [x] 5. Methodology Compliance\n## Audit evidence')));
+  assert.throws(() =>
+    requireStageSixPending(body().replace('## Audit evidence', '- [x] 5. Methodology Compliance\n## Audit evidence')),
+  );
   assert.throws(() => requireStageSixPending(body().replace('2. Content Creation', '2. Fake label')));
+  assert.throws(() => requireStageSixPending(body().replace('7. Questions', '7. Translation')));
+  assert.throws(() => requireStageSixPending(body().replace('10. Translation Review', '10. Fake')));
+  assert.throws(() => requireStageSixPending(body().replace('  - [ ] 6.2 Accessibility source audit', '')));
+  assert.throws(() => requireStageSixPending(body().replace('6.3 Offline source audit', '6.2 Offline source audit')));
+  assert.throws(() => requireStageSixPending(body().replace('6.4 Validate source and handoff', '6.4 Fake')));
+  assert.throws(() =>
+    requireStageSixPending(body().replace('## Audit evidence', '- [ ] 10. Translation Review\n## Audit evidence')),
+  );
+});
+
+test('existing eight-stage Lesson PRs may materialize while being migrated in place', () => {
+  const legacy = body()
+    .replace(
+      /^- \[ \] 7\. Questions.*\n- \[ \] 8\. Flashcards.*\n- \[ \] 9\. Translation.*\n- \[ \] 10\. Translation Review.*$/m,
+      '- [ ] 7. Translation\n- [ ] 8. Translation Review',
+    )
+    .replace(/^  - \[ \] 6\.[1-4].*\n/gm, '');
+  assert.equal(requireStageSixPending(legacy), true);
+  assert.throws(() => requireStageSixPending(legacy.replace('7. Translation', '7. Questions')));
 });
 
 test('allowlist preserves Quiz/Flashcards Section modules but forbids bank roots and traversal', () => {
   const base = yaml.slice(0, -'lesson.yaml'.length);
   for (const relative of [
-    'index.ts', 'constants.ts', 'review.ts', 'methodology.md', 'production-handoff.json',
-    'sections/index.ts', 'sections/quiz/index.ts', 'sections/flashcards/index.ts',
+    'index.ts',
+    'constants.ts',
+    'review.ts',
+    'methodology.md',
+    'production-handoff.json',
+    'sections/index.ts',
+    'sections/quiz/index.ts',
+    'sections/flashcards/index.ts',
     'sections/intro/sceneDemo/index.ts',
     'sections/intro/sceneDemo/specification.md',
-    'sections/intro/text/uk.md', 'sections/intro/codeSample/code.py',
+    'sections/intro/text/uk.md',
+    'sections/intro/codeSample/code.py',
     'sections/intro/checkpoint/itemA/question/index.ts',
-  ]) assert.equal(validateArtifactPath(base + relative, identity), true, relative);
+  ])
+    assert.equal(validateArtifactPath(base + relative, identity), true, relative);
   for (const relative of [
-    'lesson.yaml', 'questions.yaml', 'flashcards.yaml', 'questions/index.ts',
-    'flashcards/index.ts', 'assets/image.png', 'scenes/abc/index.ts',
-    'other.ts', 'sections/intro/config.yaml', 'sections/../index.ts',
-    'sections/intro//index.ts', 'sections/.hidden/index.ts',
-    'sections/intro/audio.wav', 'sections/intro/index.ts.map',
+    'lesson.yaml',
+    'questions.yaml',
+    'flashcards.yaml',
+    'questions/index.ts',
+    'flashcards/index.ts',
+    'assets/image.png',
+    'scenes/abc/index.ts',
+    'other.ts',
+    'sections/intro/config.yaml',
+    'sections/../index.ts',
+    'sections/intro//index.ts',
+    'sections/.hidden/index.ts',
+    'sections/intro/audio.wav',
+    'sections/intro/index.ts.map',
     'specifications/a/index.ts',
-  ]) assert.equal(validateArtifactPath(base + relative, identity), false, relative);
+  ])
+    assert.equal(validateArtifactPath(base + relative, identity), false, relative);
   assert.equal(validateArtifactPath('content/math/data/lessons/5/' + id + '/index.ts', identity), false);
   assert.equal(validateArtifactPath(yaml, identity, 'finalize'), true);
   assert.equal(validateArtifactPath(base + 'questions.yaml', identity, 'finalize'), false);
@@ -133,9 +205,13 @@ test('HEAD/base/branch/source/parent identity changes reject pinned snapshots', 
   const snapshot = { head, branch: 'agent/lesson', base: 'course/example', sourceBlob, identity };
   assert.equal(identicalSnapshot(snapshot, { ...snapshot }), true);
   for (const [field, changed] of [
-    ['head', 'a'.repeat(40)], ['branch', 'agent/other'], ['base', 'main'],
-    ['sourceBlob', 'f'.repeat(40)], ['identity', { ...identity, id: courseId }],
-  ]) assert.equal(identicalSnapshot(snapshot, { ...snapshot, [field]: changed }), false);
+    ['head', 'a'.repeat(40)],
+    ['branch', 'agent/other'],
+    ['base', 'main'],
+    ['sourceBlob', 'f'.repeat(40)],
+    ['identity', { ...identity, id: courseId }],
+  ])
+    assert.equal(identicalSnapshot(snapshot, { ...snapshot, [field]: changed }), false);
 });
 
 function git(root, args) {
@@ -159,38 +235,65 @@ function gitFixture(callback) {
 test('manifest rejects stale SHA, unauthorized path, overwrite, duplicate, tampered bytes and missing inventory', () =>
   gitFixture(({ root }) => {
     const meta = {
-      number: 710, operation: 'materialize', repo: 'KiT-Maverik/svitlo',
-      identity, head, sourceBlob: gitBlob('test: fixture\n'), base: 'course/example', branch: 'agent/lesson',
+      number: 710,
+      operation: 'materialize',
+      repo: 'KiT-Maverik/svitlo',
+      identity,
+      head,
+      sourceBlob: gitBlob('test: fixture\n'),
+      base: 'course/example',
+      branch: 'agent/lesson',
     };
     const base = yaml.slice(0, -'lesson.yaml'.length);
     const files = ['index.ts', 'constants.ts', 'review.ts', 'methodology.md', 'production-handoff.json'];
     const entries = files.map(name => {
       const bytes = Buffer.from('test ' + name + '\n');
-      return { path: base + name, action: 'create', data: bytes.toString('base64'),
-        sha256: createHash('sha256').update(bytes).digest('hex') };
+      return {
+        path: base + name,
+        action: 'create',
+        data: bytes.toString('base64'),
+        sha256: createHash('sha256').update(bytes).digest('hex'),
+      };
     });
     const manifest = {
-      version: 1, repo: meta.repo, pr: meta.number, head: meta.head,
-      branch: meta.branch, base: meta.base, operation: meta.operation,
-      sourceBlob: meta.sourceBlob, identity, mode: 'strict', noop: false,
+      version: 1,
+      repo: meta.repo,
+      pr: meta.number,
+      head: meta.head,
+      branch: meta.branch,
+      base: meta.base,
+      operation: meta.operation,
+      sourceBlob: meta.sourceBlob,
+      identity,
+      mode: 'strict',
+      noop: false,
       entries,
     };
     assert.equal(verifyManifest(manifest, meta, root), 5);
     assert.throws(() => verifyManifest({ ...manifest, sourceBlob: head }, meta, root));
     assert.throws(() => verifyManifest({ ...manifest, entries: entries.slice(1) }, meta, root));
     assert.throws(() => verifyManifest({ ...manifest, entries: [...entries, entries[0]] }, meta, root));
-    assert.throws(() => verifyManifest({ ...manifest, entries: [
-      { ...entries[0], path: base + 'questions/index.ts' }, ...entries.slice(1),
-    ] }, meta, root));
-    assert.throws(() => verifyManifest({ ...manifest, entries: [
-      { ...entries[0], sha256: '0'.repeat(64) }, ...entries.slice(1),
-    ] }, meta, root));
-    assert.throws(() => verifyManifest({ ...manifest, entries: [
-      { ...entries[0], action: 'delete' }, ...entries.slice(1),
-    ] }, meta, root));
+    assert.throws(() =>
+      verifyManifest(
+        { ...manifest, entries: [{ ...entries[0], path: base + 'questions/index.ts' }, ...entries.slice(1)] },
+        meta,
+        root,
+      ),
+    );
+    assert.throws(() =>
+      verifyManifest(
+        { ...manifest, entries: [{ ...entries[0], sha256: '0'.repeat(64) }, ...entries.slice(1)] },
+        meta,
+        root,
+      ),
+    );
+    assert.throws(() =>
+      verifyManifest({ ...manifest, entries: [{ ...entries[0], action: 'delete' }, ...entries.slice(1)] }, meta, root),
+    );
     assert.throws(() => verifyManifest({ ...manifest, noop: true }, meta, root));
-    assert.throws(() => verifyManifest({ ...manifest, operation: 'finalize' },
-      { ...meta, operation: 'finalize' }, root));
+    assert.throws(() =>
+      verifyManifest({ ...manifest, operation: 'finalize' }, { ...meta, operation: 'finalize' }, root),
+    );
     fs.writeFileSync(path.join(root, entries[0].path), Buffer.from(entries[0].data, 'base64'));
     git(root, ['add', '--', entries[0].path]);
     assert.throws(() => verifyManifest(manifest, meta, root), /overwritten/);
@@ -226,37 +329,65 @@ test('source-preserving strict transfer keeps YAML and never creates independent
     fs.writeFileSync(path.join(root, 'content/math/package.json'), '{"name":"@svitlo/math"}\n');
     const doc = {
       config: {
-        id: lesson, slug: 'exampleLesson', type: 'lesson', skills: [],
-        params: { languages: ['en'], requireQuiz: false,
-          sections: { allowNavigation: true, allowSkipping: true, showIndexes: true } },
+        id: lesson,
+        slug: 'exampleLesson',
+        type: 'lesson',
+        skills: [],
+        params: {
+          languages: ['en'],
+          requireQuiz: false,
+          sections: { allowNavigation: true, allowSkipping: true, showIndexes: true },
+        },
         locale: { title: { en: 'Example' } },
-        section: { items: {
-          intro: { config: { id: '00000000-0000-4000-8000-000000000013',
-            slug: 'intro', type: 'content', params: {},
-            locale: { title: { en: 'Introduction' }, navigationLabel: { en: 'Start' } },
-            content: { items: { hello: { config: {
-              id: '00000000-0000-4000-8000-000000000014',
-              slug: 'hello', type: 'text', params: {},
-              locale: { value: { en: 'The sun lights our world.' } },
-            } } }, order: ['hello'] },
-          } },
-        }, order: ['intro'] },
+        section: {
+          items: {
+            intro: {
+              config: {
+                id: '00000000-0000-4000-8000-000000000013',
+                slug: 'intro',
+                type: 'content',
+                params: {},
+                locale: { title: { en: 'Introduction' }, navigationLabel: { en: 'Start' } },
+                content: {
+                  items: {
+                    hello: {
+                      config: {
+                        id: '00000000-0000-4000-8000-000000000014',
+                        slug: 'hello',
+                        type: 'text',
+                        params: {},
+                        locale: { value: { en: 'The sun lights our world.' } },
+                      },
+                    },
+                  },
+                  order: ['hello'],
+                },
+              },
+            },
+          },
+          order: ['intro'],
+        },
       },
-      production: { documentLanguage: 'en', methodology:
-        '# Reviewed methodology\n\n' +
-        '~~~yaml lesson-assessment-sections\nassessmentSections:\n' +
-        '  quiz:\n    decision: notRequired\n    rationale: No Quiz in this Lesson.\n    intents: {}\n' +
-        '  flashcards:\n    decision: notRequired\n    rationale: No Flashcards Section.\n    intents: {}\n~~~\n',
+      production: {
+        documentLanguage: 'en',
+        methodology:
+          '# Reviewed methodology\n\n' +
+          '~~~yaml lesson-assessment-sections\nassessmentSections:\n' +
+          '  quiz:\n    decision: notRequired\n    rationale: No Quiz in this Lesson.\n    intents: {}\n' +
+          '  flashcards:\n    decision: notRequired\n    rationale: No Flashcards Section.\n    intents: {}\n~~~\n',
       },
     };
     fs.writeFileSync(source, YAML.stringify(doc));
     const original = fs.readFileSync(source);
     assert.equal(chooseMode(source, root, repoRoot).kind, 'strict');
     const result = finalizeLesson(source, {
-      repo: root, retainSource: true,
-      validate: (location, repo) => preflightLesson(location, repo, {
-        requireAssessmentPlan: true, schemaRepo: repoRoot,
-      }),
+      repo: root,
+      retainSource: true,
+      validate: (location, repo) =>
+        preflightLesson(location, repo, {
+          requireAssessmentPlan: true,
+          schemaRepo: repoRoot,
+        }),
     });
     assert.equal(result.removed, null);
     assert.equal(fs.readFileSync(source).equals(original), true);
@@ -270,15 +401,22 @@ test('source-preserving strict transfer keeps YAML and never creates independent
 });
 
 test('workflow runs trusted default branch code only and isolates publish permission', () => {
-  const workflow = YAML.parse(fs.readFileSync(fileURLToPath(
-    new URL('../../../.github/workflows/lesson-materialization.yml', import.meta.url)), 'utf8'));
+  const workflow = YAML.parse(
+    fs.readFileSync(
+      fileURLToPath(new URL('../../../.github/workflows/lesson-materialization.yml', import.meta.url)),
+      'utf8',
+    ),
+  );
   assert.deepEqual(workflow.permissions, {});
   assert.deepEqual(workflow.on.issue_comment.types, ['created']);
   assert.equal(workflow.jobs.resolve.permissions.contents, 'read');
   assert.equal(workflow.jobs.analyze.permissions.contents, 'read');
   assert.equal(workflow.jobs.publish.permissions.contents, 'write');
   assert.equal(workflow.jobs.publish.permissions['pull-requests'], 'read');
-  assert.match(workflow.jobs.analyze.steps.find(step => step['working-directory'] === 'trusted')?.run ?? '', /--ignore-scripts/);
+  assert.match(
+    workflow.jobs.analyze.steps.find(step => step['working-directory'] === 'trusted')?.run ?? '',
+    /--ignore-scripts/,
+  );
   assert(workflow.jobs.analyze.steps.some(step => step.run?.includes('lesson-materialization.mjs analyze')));
   assert(workflow.jobs.publish.steps.some(step => step.run?.includes('lesson-materialization.mjs publish')));
   assert(!workflow.jobs['register-lessons']);
