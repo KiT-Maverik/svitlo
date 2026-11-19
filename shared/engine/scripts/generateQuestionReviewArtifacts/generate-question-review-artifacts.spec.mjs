@@ -87,7 +87,7 @@ test('rejects missing bank registry member without issuing partial Markdown', ()
     fs.writeFileSync(filename, fs.readFileSync(filename, 'utf8').replace('    lightTravelsStraight,\n', ''));
     run();
     assert.equal(manifest.generated.length, 0);
-    assert.match(manifest.failures[0]?.error ?? '', /index and canonical Question files disagree/);
+    assert.match(manifest.failures[0]?.error ?? '', /Question index is missing canonical entries/);
   }, true));
 
 test('rejects unsupported authoring constructs and symlinked inputs', () =>
