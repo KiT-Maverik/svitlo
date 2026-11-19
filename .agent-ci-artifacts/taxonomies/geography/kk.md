@@ -1150,7 +1150,7 @@ Skills: 4
 
 **Methodological description (English):** Trace removal and movement of loose material by flowing water, wind, ice or gravity, distinguishing the transport process from weathering at its source.
 
-**User-friendly description (kk):** Su, jel, mūz jäne auyrlyq küşı borpyldaq materialdardy qalai būzyp, tasymaldaitynyn sipatta.
+**User-friendly description (kk):** Su, jel, mūz jäne auyrlyq küşı borpyldaq materialdardy qalai ornynan qozğap, tasymaldaitynyn sipatta.
 
 ##### Özendık jer bederı pışınderınıñ tüzıluın tüsındıru
 
