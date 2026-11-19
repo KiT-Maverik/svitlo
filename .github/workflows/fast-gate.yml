@@ -32,13 +32,16 @@ jobs:
           set -euo pipefail
           if [[ "$GITHUB_EVENT_NAME" != pull_request ]]; then
             echo "run=true" >> "$GITHUB_OUTPUT"
-          elif git diff --name-only "$BASE_SHA...$HEAD_SHA" |
-            grep -Eq '(^scripts/|^\.github/|^\.agent-ci-artifacts/|\.(ts|tsx|mts|js|mjs|cjs|json)$|^shared/ui-kit/src/components/widgets/ContentBlockRenderer/blocks/Markdown/)'; then
-            echo "run=true" >> "$GITHUB_OUTPUT"
           else
-            echo "run=false" >> "$GITHUB_OUTPUT"
-            echo "No changed executable source or CI config; FastGate passed without npm install."
+            changed_files=$(git diff --name-only "$BASE_SHA...$HEAD_SHA")
+            if grep -Eq '(^scripts/|^\.github/|^\.agent-ci-artifacts/|\.(ts|tsx|mts|js|mjs|cjs|json)$|^shared/ui-kit/src/components/widgets/ContentBlockRenderer/blocks/Markdown/)' <<< "$changed_files"; then
+              echo "run=true" >> "$GITHUB_OUTPUT"
+            else
+              echo "run=false" >> "$GITHUB_OUTPUT"
+              echo "No changed executable source or CI config; FastGate passed without npm install."
+            fi
           fi
+
       - name: Refuse temporary agent artifacts in a main-bound PR
         run: |
           if [ -d .agent-ci-artifacts ]; then
