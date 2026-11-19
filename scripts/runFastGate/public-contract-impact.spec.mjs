@@ -99,3 +99,20 @@ test('a real git history distinguishes private edits from a changed re-exported 
     rmSync(root, { recursive: true, force: true });
   }
 });
+
+test('local named exports do not crash public module traversal', () => {
+  const root = mkdtempSync(join(tmpdir(), 'svitlo-local-export-'));
+  try {
+    const dir = join(root, 'shared/demo/src');
+    mkdirSync(dir, { recursive: true });
+    writeFileSync(
+      join(dir, 'index.ts'),
+      "const localValue = 1;\nexport { localValue };\nexport { remoteValue } from './remote';\n",
+    );
+    writeFileSync(join(dir, 'remote.ts'), 'export const remoteValue = 2;\n');
+    const pkg = { path: 'shared/demo', exports: { '.': { types: './dist/src/index.d.ts' } } };
+    assert.deepEqual([...publicModules(pkg, root)].sort(), ['shared/demo/src/index.ts', 'shared/demo/src/remote.ts']);
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
