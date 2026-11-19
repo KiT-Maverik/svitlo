@@ -8,9 +8,9 @@ This CI workflow materializes the already-reviewed canonical Lesson YAML into cr
 
 An agent resuming a Lesson by PR number first reads [Create Lesson Flow](../../../studio/skills/lesson-workflow/create-lesson-flow.skill.md), checks the actual PR tracker and Stage 5 evidence, immutable UUID, canonical source/blob and linked Course PR. Once deployed, a collaborator with write/maintain/admin permissions posts this **exact top-level comment** to that Lesson PR:
 
-~~~text
+```text
 /lesson materialize
-~~~
+```
 
 An authorized maintainer may alternatively run default-branch workflow_dispatch with pr_number and operation=materialize. Neither interface accepts arbitrary paths, refs or commands. The workflow derives the canonical `content/<book>/data/lessons/<last-uuid-hex>/<uuid>/lesson.yaml` from the verified PR identity. Never run candidate PR code or create a second Lesson PR for a retry.
 
@@ -33,13 +33,13 @@ Inspect actual Actions run/artifact, pinned YAML source/head/blob, generated com
 
 ## Verification
 
-~~~sh
+```sh
 node --test scripts/ci/lessonMaterialization/lesson-materialization.spec.mjs
 node --test shared/engine/scripts/finalizeLesson/finalizeLesson.spec.mjs
 node --test shared/engine/scripts/lessonBuilder/lessonBuilder.spec.mjs
 npm run package:build --workspace @svitlo/engine
 npm run content:check:yaml-schemas --workspace @svitlo/engine
-~~~
+```
 
 The standalone Lesson finalizer supports `finalize --source <canonical lesson.yaml> --preserve-config` for a **strict first-time** source-preserving transfer; the bank-pending `handoff` always preserves YAML. Neither overwrites an existing authored entrypoint. See [Finalize Lesson](../../../shared/engine/scripts/finalizeLesson/README.md).
 

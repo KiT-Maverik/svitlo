@@ -44,19 +44,19 @@ Extend `shared/engine/scripts/lessonBuilder/lessonModules.mjs` in the shared `em
 
 The emitted comment must start exactly with `// TODO (BLOCKER):` so the existing guard recognizes it. Wording must explain the pedagogical requirement and the missing integration, for example:
 
-~~~ts
+```ts
 // TODO (BLOCKER): This Quiz Section is required by the Methodologist.
 // Connect independently reviewed Question UUIDs, complete Quiz params,
 // and verify selected resources before merge.
 export const knowledgeCheck = defineQuizSection(/* authored draft Config */);
-~~~
+```
 
-~~~ts
+```ts
 // TODO (BLOCKER): This Flashcards Section is required by the Methodologist.
 // Connect independently reviewed Flashcard UUIDs and verify selection
 // before merge.
 export const recallCards = defineFlashcardsSection(/* authored draft Config */);
-~~~
+```
 
 These are **illustrative snippets only**; actual emitted source must retain the existing factory imports, generics, nested content, authored params and exact symbol names. At minimum every pending authored Quiz/Flashcards Section must have its own blocker; an absent/not-required Section must not be synthesized. Idempotent deterministic generation: no duplicated blockers, no changes to unrelated Section output, and no clobber of an edited generated draft.
 
@@ -65,6 +65,7 @@ When real bank IDs, all required Quiz fields and referential/locale/ownership va
 ### 4. Resolve Stage 6 finalizer circularity safely
 
 Today `finalizeLesson preflight` requires a complete schema while the bank workflows intentionally start **after** a persistent Lesson source and Markdown reference exist. Implement an explicit, narrowly scoped **bank-pending source-draft handoff** that permits creating reviewed Section TypeScript drafts with unresolved selection/Quiz-only parameters without pretending they are publishable. It must:
+
 - validate every other existing structural, UUID, locale, source-copy, collection and production-spec invariant;
 - fail if a required Methodologist Section was omitted or mismatched;
 - preserve all reviewed authored copy, production handoffs and independent `questions.yaml` / `flashcards.yaml`;
