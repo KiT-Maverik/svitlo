@@ -1,8 +1,10 @@
 # Astronomy textbook package
 
-Follow root `AGENTS.md` and applicable Studio architecture/rules.
-Keep authored `data/` and editorial `docs/` intact. This textbook has no authored
-Lessons or React Scenes yet; never fabricate them. Build from the shared Skills
-generator, ship only compiled metadata/resources, and test the isolated npm package
-and safe prebuilt-resource publisher. Host routing, Next.js and UI providers do not
-belong in this package.
+Follow root `AGENTS.md` and applicable Studio architecture/rules. Preserve Skill taxonomy,
+editorial documentation and the immutable UUID-addressed Lesson `observationJournal`.
+Do not invent Scene behavior, localizations or media beyond the accepted reviewed
+Lesson's production handoff. React Scenes live under textbook-owned `scenes/`,
+with default exports and a generated Scene registry. Run the actual Engine-owned
+generators and source checks; do not manually edit generated `sceneLoader.ts`.
+The Lesson is Ukrainian-only until the remaining translations are reviewed.
+Hosts own routing, Next.js, platform offline packaging and UI providers.

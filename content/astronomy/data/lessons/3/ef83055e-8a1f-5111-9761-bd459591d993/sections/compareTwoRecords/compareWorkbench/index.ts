@@ -18,6 +18,14 @@ export const CompareWorkbenchConfig = defineScene<"compareWorkbench", LessonLang
       source: {
         uk: "Обидва записи вигадані для вправи."
       },
+      // Stage 6 accessible field labels repeat the approved five question prompts.
+      labels: {
+        what: { uk: "Що?" },
+        when: { uk: "Коли?" },
+        where: { uk: "Де або звідки?" },
+        how: { uk: "Як отримано відомості?" },
+        conditions: { uk: "Які умови відомі?" }
+      },
       recordA: {
         title: {
           uk: "Запис А"

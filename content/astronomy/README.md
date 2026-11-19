@@ -1,39 +1,31 @@
 # Astronomy textbook package
 
-`@svitlo/astronomy` is a **platform-neutral textbook distribution**, not a Next.js application.
-The canonical authoring sources are `data/skills/`; editorial documentation remains in `docs/`.
-The currently authored taxonomy has **13 Domains**. No Lessons or React Scenes are
-authored in this textbook yet, so no Scene registry, stylesheet or fabricated lesson JSON is
-exported. Build and publish only resources that actually exist.
+`@svitlo/astronomy` is a platform-neutral textbook distribution, not a Next.js host.
+
+Canonical authoring sources include `data/skills/` and reviewed, UUID-addressed Lesson modules in `data/lessons/`. Source Lesson `observationJournal` / `ef83055e-8a1f-5111-9761-bd459591d993` was materialized by the strict Stage 6 Engine finalizer. The two React Scenes live in `scenes/` and are loaded by the generated registry. Their code is not included in the build-time authoring modules.
+
+The Lesson currently has Ukrainian educational text. Its declared `en/pl/qm` translations and typed review digest are **not complete**; a source-only Draft is not a full four-locale published Lesson. Do not fabricate locale dictionaries, media, or a successful production manifest. NASA source information is reproduced as offline-readable authored text; the NASA photograph itself has not been distributed.
 
 ## Build and verify
 
 From the repository root after `npm ci`:
 
 ```bash
-npm run package:build --workspace @svitlo/astronomy
+npm run content:generate:scenes --workspace @svitlo/astronomy
+npm run content:check:scenes --workspace @svitlo/astronomy
+npm run test:components --workspace @svitlo/astronomy
 npm run code:check:types --workspace @svitlo/astronomy
-npm run code:lint:check --workspace @svitlo/astronomy
+npm run package:build --workspace @svitlo/astronomy
 npm run test:publish --workspace @svitlo/astronomy
 npm run test:portability --workspace @svitlo/astronomy
 ```
 
-`build` generates localized JSON using the shared Engine-based Skills Analytics generator,
-compiles `textbook.ts` to ESM and declarations, and writes `dist/manifest.json`.
-Existing Skills, translations, UUIDs, review metadata and editorial documents are not rewritten.
-The package exports only `@svitlo/astronomy` for compiled metadata. It does not require Next.js,
-UI Kit providers, app-local TypeScript aliases or access to authored `*.data.ts` at runtime.
+Stage 6 can validate source locale independently, but complete production-mode Props publication and package builds require genuine translations and review evidence. The `package:build` script uses the shared Engine publisher and fails closed on missing required resources.
 
-## Publish prebuilt resources
+## Prebuilt resource publication
 
-```bash
+```sh
 svitlo-astronomy publish --output /absolute/path/to/host/public
 ```
 
-The public CLI is shipped in the npm package. It copies prebuilt
-`dist/static/data/pages/skillAnalytics/<language>.json` into the host's public directory
-and manages only its own `.svitlo/publish-astronomy.json` ownership manifest. Repeat runs clean
-stale owned files without erasing unrelated host resources. Publication does **not** compile
-TypeScript or regenerate Skills. The build also supports absent Lessons/Skills, including
-metadata-only distribution. A host owns routing, locale selection, UI Kit assets,
-Capacitor/Electron configuration and offline packaging.
+The package CLI publishes only legitimately generated resources from the build. A host owns routing, UI providers, offline packages and service workers; a Scene's lack of network calls alone does not establish host-wide offline readiness.
