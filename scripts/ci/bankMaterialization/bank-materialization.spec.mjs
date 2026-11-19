@@ -126,5 +126,5 @@ test('workflow uses isolated default-branch code and narrow publish permissions'
   assert.match(workflow, /needs: \[resolve, analyze\]/);
   assert.match(workflow, /contents: write/);
   assert.match(workflow, /persist-credentials: false/);
-  assert.match(workflow, /git/); // Workflow explicitly invokes pinned Git-backed publication.
+  assert.match(workflow, /Git API/i); // Explicit Git Data publication step.
 });
