@@ -1,0 +1,46 @@
+name: Blocker TODOs
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize, ready_for_review, converted_to_draft]
+  merge_group:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: blocker-todos-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  clean:
+    name: Blocker TODOs / clean
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Test blocker TODO guard
+        run: node --test scripts/ci/checkBlockerTodos/check-blocker-todos.spec.mjs
+      - name: Enforce blocking TODO guard
+        shell: bash
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          IS_DRAFT: ${{ github.event.pull_request.draft }}
+          TARGET_BRANCH: ${{ github.event.pull_request.base.ref || github.event.merge_group.base_ref }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.merge_group.base_sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha || github.event.merge_group.head_sha }}
+        run: |
+          set -euo pipefail
+          if [[ "$EVENT_NAME" == pull_request && "$IS_DRAFT" == true ]]; then
+            echo 'Draft PR: unfinished blockers are permitted.'
+          elif [[ "$TARGET_BRANCH" == main || "$TARGET_BRANCH" == refs/heads/main ]]; then
+            node scripts/ci/checkBlockerTodos/check-blocker-todos.mjs full
+          else
+            node scripts/ci/checkBlockerTodos/check-blocker-todos.mjs diff "$BASE_SHA" "$HEAD_SHA"
+          fi

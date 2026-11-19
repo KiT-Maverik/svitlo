@@ -30,6 +30,9 @@ const UUID = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/;
 const PACKAGE = /^content\/[a-z][a-z0-9-]*$/;
 const IDENTIFIER = /^[A-Za-z_$][A-Za-z0-9_$]*$/;
 const marker = '// SCAFFOLDED BY shared/engine/scripts/courseBuilder/courseBuilder.mjs; AI DRAFT.\n';
+// Draft-only identity: never treat this UUID as an allocated physical asset.
+const UNRESOLVED_RESOURCE_UUID = '00000000-0000-0000-0000-000000000000';
+const pendingMediaExtensions = { image: 'webp', audio: 'mp3', video: 'mp4', subtitles: 'vtt' };
 const factories = Object.freeze(loadFactoryRegistry());
 
 function fail(code, description) {
@@ -282,10 +285,44 @@ function renderQuestStageContent(value, state, indent, location) {
   );
 }
 
+function renderMediaLocale(value, missing, state, indent, location) {
+  const pad = '  '.repeat(indent);
+  const inner = '  '.repeat(indent + 1);
+  return (
+    '{\n' +
+    Object.entries(value)
+      .map(([key, entry]) => {
+        const todo = missing.has(key)
+          ? inner + '// TODO(asset): Replace the unresolved ' + location + '.' + key +
+            ' with an actual textbook-wide UUID media file before publication.\n'
+          : '';
+        return todo + inner + literal(key) + ': ' + renderValue(entry, state, indent + 1, location + '.' + key) + ',';
+      })
+      .join('\n') +
+    '\n' + pad + '}'
+  );
+}
+
 function renderConfigFields(node, state, indent, location) {
   const space = '  '.repeat(indent);
   const inner = '  '.repeat(indent + 1);
-  const fields = Object.entries(node);
+  // Episodes can contain arbitrary nested Sections, Carousel slides and Quest media.
+  // Generate visible incomplete media references instead of pretending an asset exists.
+  const missingMediaFields = new Set();
+  let effectiveNode = node;
+  if (Object.hasOwn(pendingMediaExtensions, node.type)) {
+    const locale = record(node.locale) ? { ...node.locale } : {};
+    const fields = node.type === 'video' ? ['fileName', 'posterFileName'] : ['fileName'];
+    for (const field of fields) {
+      if (!Object.hasOwn(locale, field) || locale[field] === null) {
+        const extension = field === 'posterFileName' ? 'webp' : pendingMediaExtensions[node.type];
+        locale[field] = UNRESOLVED_RESOURCE_UUID + '.' + extension;
+        missingMediaFields.add(field);
+      }
+    }
+    effectiveNode = { ...node, locale };
+  }
+  const fields = Object.entries(effectiveNode);
   return (
     '{\n' +
     fields
@@ -298,7 +335,9 @@ function renderConfigFields(node, state, indent, location) {
           }
         }
         let expression;
-        if (node.type === 'quest' && (key === 'stages' || key === 'tasks')) {
+        if (key === 'locale' && missingMediaFields.size) {
+          expression = renderMediaLocale(value, missingMediaFields, state, indent + 1, location + '.locale');
+        } else if (node.type === 'quest' && (key === 'stages' || key === 'tasks')) {
           expression = renderValue(value, state, indent + 1, location + '.' + key, true);
         } else if (node.type === 'questStage' && key === 'content') {
           expression = renderQuestStageContent(value, state, indent + 1, location + '.content');

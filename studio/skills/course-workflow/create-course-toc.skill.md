@@ -1,5 +1,7 @@
 # Create Course Table of Contents (TOC)
 
+> **New Course production:** [Create Course Flow](./create-course-flow.skill.md) is the authoritative seven-stage coordinator. For a new Course, Stage 1–2 use the temporary editorial `course.yaml`, Stage 3 introduces Lesson slots, and Stage 5 materializes durable `methodology.md` and technical Course sources. The legacy paths and prerequisites described below remain for independent maintenance of previously authored Courses; they do not override the new flow.
+
 **Mandatory first action:** Read [Methodologist Persona](../../personas/methodist.persona.md) in full. Then read the [Course entity](../../docs/entities/course.md), [Skill](../../docs/entities/skill.md), [SkillGroup](../../docs/entities/skill-group.md), [SkillDomain](../../docs/entities/skill-domain.md), [UUID addressing](../../docs/architecture/entity-uuid-addressing.md), and [Skill Taxonomy Workflow](../skill-taxonomy-workflow/README.md). This skill is a **course-level pedagogical planning task**, not Lesson authoring or runtime Course assembly.
 
 ## Purpose

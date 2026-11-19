@@ -1,4 +1,7 @@
-import { flashcard_Props_Schema, type Flashcard_Props } from '../../configurators/flashcards/defineFlashcard/defineFlashcard.schemas';
+import {
+  flashcard_Props_Schema,
+  type Flashcard_Props,
+} from '../../configurators/flashcards/defineFlashcard/defineFlashcard.schemas';
 import { selectOneAnswer_Props_Schema } from '../../configurators/questions/defineSelectOneAnswer/defineSelectOneAnswer.schemas';
 import { selectMultipleAnswers_Props_Schema } from '../../configurators/questions/defineSelectMultipleAnswers/defineSelectMultipleAnswers.schemas';
 import { matchBlocks_Props_Schema } from '../../configurators/questions/defineMatchBlocks/defineMatchBlocks.schemas';
@@ -9,12 +12,14 @@ import { buildAnswerWithBlocks_Props_Schema } from '../../configurators/question
 import { fillBlanksWithBlocks_Props_Schema } from '../../configurators/questions/defineFillBlanksWithBlocks/defineFillBlanksWithBlocks.schemas';
 import { fillBlanksWithText_Props_Schema } from '../../configurators/questions/defineFillBlanksWithText/defineFillBlanksWithText.schemas';
 import type { Question_Props } from '../../configurators/questions/question.types';
-import { resolveEntityPath } from '../../utils/entityPath/resolveEntityPath.utils';
 import {
   assessmentResourceManifest_Schema,
+  assessmentManifestPath,
   assessmentResourcePath,
   validateAssessmentReferences,
+  selectAccessibleFlashcardIds,
   type AssessmentResourceEntry,
+  type AssessmentLanguageFallback,
   type AssessmentResourceKind,
   type AssessmentResourceLoader,
   type AssessmentResourceManifest,
@@ -61,7 +66,13 @@ function isRecord(input: unknown): input is Record<string, unknown> {
 function parseResolved(kind: AssessmentResourceKind, id: string, entry: AssessmentResourceEntry, value: unknown) {
   if (!isRecord(value) || value.id !== id) throw new Error('Assessment resource UUID mismatch: ' + id);
   if (kind === 'flashcard') {
-    return flashcard_Props_Schema.parse(value) as Flashcard_Props;
+    const card = flashcard_Props_Schema.parse(value) as Flashcard_Props;
+    const indexed = entry.disabilities;
+    const authored = card.parameters.disabilities;
+    if (!indexed || indexed.length !== authored.length || indexed.some(value => !authored.includes(value))) {
+      throw new Error('Flashcard disability metadata mismatch for ' + id);
+    }
+    return card;
   }
   if (typeof value.type !== 'string' || !Object.hasOwn(questionSchemas, value.type)) {
     throw new Error('Unknown Question resource type for ' + id);
@@ -70,9 +81,29 @@ function parseResolved(kind: AssessmentResourceKind, id: string, entry: Assessme
   return questionSchemas[value.type as keyof typeof questionSchemas].parse(value) as Question_Props;
 }
 
-/** Read the smallest selected scope: one metadata index, then one batched resource request. */
+/**
+ * Pick an actually published language. Sparse invariant-only records may omit
+ * every locale file; a missing requested translation otherwise falls back to
+ * genuine English, not to an unrelated language or fabricated text.
+ */
+function resolveLanguage(
+  entry: AssessmentResourceEntry,
+  id: string,
+  requested: Parameters<AssessmentResourceLoader['loadQuestions']>[0]['language'],
+) {
+  if (entry.localeFiles.includes(requested)) return { language: requested, fallback: false };
+  if (!entry.localeFiles.length && entry.languages.includes(requested)) {
+    return { language: undefined, fallback: false };
+  }
+  if (entry.localeFiles.includes('en') || (!entry.localeFiles.length && entry.languages.includes('en'))) {
+    return { language: entry.localeFiles.includes('en') ? ('en' as const) : undefined, fallback: requested !== 'en' };
+  }
+  throw new Error('Missing assessment locale ' + requested + ' and English fallback for UUID ' + id);
+}
+
+/** Read only selected UUID resources. Cache by ID, kind and effective language. */
 export function createAssessmentResourceLoader(read: ReadAssessmentFiles): AssessmentResourceLoader {
-  const manifests = new Map<string, AssessmentResourceManifest>();
+  let manifest: AssessmentResourceManifest | undefined;
   const items = new Map<string, Question_Props | Flashcard_Props>();
 
   async function readFiles(paths: readonly string[], signal?: AbortSignal): Promise<ReadonlyMap<string, unknown>> {
@@ -84,55 +115,58 @@ export function createAssessmentResourceLoader(read: ReadAssessmentFiles): Asses
     return result;
   }
 
-  async function getManifest(lessonId: string, signal?: AbortSignal): Promise<AssessmentResourceManifest> {
-    const canonicalId = resolveEntityPath(lessonId).split('/')[1];
-    const cached = manifests.get(canonicalId);
-    if (cached) return cached;
-    const path = 'data/lessons/' + resolveEntityPath(canonicalId) + '/assessment-manifest.json';
-    const raw = (await readFiles([path], signal)).get(path);
-    const manifest = assessmentResourceManifest_Schema.parse(raw);
-    if (manifest.lessonId !== canonicalId) throw new Error('Assessment manifest Lesson mismatch: ' + canonicalId);
-    manifests.set(canonicalId, manifest);
-    return manifest;
+  async function getManifest(signal?: AbortSignal): Promise<AssessmentResourceManifest> {
+    if (manifest) return manifest;
+    const raw = (await readFiles([assessmentManifestPath], signal)).get(assessmentManifestPath);
+    const parsed = assessmentResourceManifest_Schema.parse(raw);
+    manifest = parsed;
+    return parsed;
   }
 
   async function load(
-    lessonId: string,
     language: Parameters<AssessmentResourceLoader['loadQuestions']>[0]['language'],
     ids: readonly string[],
     kind: AssessmentResourceKind,
     signal?: AbortSignal,
-  ): Promise<readonly (Question_Props | Flashcard_Props)[]> {
-    const manifest = await getManifest(lessonId, signal);
-    const entries = validateAssessmentReferences(manifest, { lessonId, kind, ids, language });
+    accessNeeds: Parameters<AssessmentResourceLoader['loadFlashcards']>[0]['accessNeeds'] = [],
+  ) {
+    const index = await getManifest(signal);
+    const entries = validateAssessmentReferences(index, { kind, ids });
+    const selectedIds = kind === 'flashcard' ? selectAccessibleFlashcardIds(entries, ids, accessNeeds ?? []) : [...ids];
+    const selectedEntries = selectedIds.map(id => entries[ids.indexOf(id)]);
+    const languages = selectedIds.map((id, n) => resolveLanguage(selectedEntries[n], id, language));
     const paths = new Set<string>();
-    for (const [index, id] of ids.entries()) {
-      const cacheKey = kind + ':' + lessonId + ':' + id + ':' + language;
+    for (const [i, id] of selectedIds.entries()) {
+      const effective = languages[i].language;
+      const cacheKey = kind + ':' + id + ':' + (effective ?? 'base');
       if (items.has(cacheKey)) continue;
-      paths.add(assessmentResourcePath(lessonId, kind, id));
-      if (entries[index].localeFiles?.includes(language)) paths.add(assessmentResourcePath(lessonId, kind, id, language));
+      paths.add(assessmentResourcePath(kind, id));
+      if (effective) paths.add(assessmentResourcePath(kind, id, effective));
     }
     const resources = paths.size ? await readFiles([...paths], signal) : new Map<string, unknown>();
     if (signal?.aborted) throw new Error('Assessment resource load aborted');
-    const response = ids.map((id, index) => {
-      const cacheKey = kind + ':' + lessonId + ':' + id + ':' + language;
-      const existing = items.get(cacheKey);
-      if (existing) return structuredClone(existing);
-      const base = resources.get(assessmentResourcePath(lessonId, kind, id));
-      const patch = entries[index].localeFiles?.includes(language)
-        ? resources.get(assessmentResourcePath(lessonId, kind, id, language))
-        : undefined;
-      const resolved = parseResolved(kind, id, entries[index], merge(base, patch));
-      items.set(cacheKey, resolved);
-      return structuredClone(resolved);
+    const fallbacks: AssessmentLanguageFallback[] = [];
+    const resolved = selectedIds.map((id, i) => {
+      const effective = languages[i].language;
+      if (languages[i].fallback) fallbacks.push({ id, requestedLanguage: language, resolvedLanguage: 'en' });
+      const cacheKey = kind + ':' + id + ':' + (effective ?? 'base');
+      const cached = items.get(cacheKey);
+      if (cached) return structuredClone(cached);
+      const base = resources.get(assessmentResourcePath(kind, id));
+      const patch = effective ? resources.get(assessmentResourcePath(kind, id, effective)) : undefined;
+      const value = parseResolved(kind, id, selectedEntries[i], merge(base, patch));
+      items.set(cacheKey, value);
+      return structuredClone(value);
     });
-    return response;
+    return { items: resolved, fallbacks };
   }
 
   return {
-    loadQuestions: async ({ lessonId, language, ids, signal }) =>
-      (await load(lessonId, language, ids, 'question', signal)) as Question_Props[],
-    loadFlashcards: async ({ lessonId, language, ids, signal }) =>
-      (await load(lessonId, language, ids, 'flashcard', signal)) as Flashcard_Props[],
+    loadQuestions: async ({ language, ids, signal }) =>
+      (await load(language, ids, 'question', signal)) as Awaited<ReturnType<AssessmentResourceLoader['loadQuestions']>>,
+    loadFlashcards: async ({ language, ids, signal, accessNeeds }) =>
+      (await load(language, ids, 'flashcard', signal, accessNeeds)) as Awaited<
+        ReturnType<AssessmentResourceLoader['loadFlashcards']>
+      >,
   };
 }

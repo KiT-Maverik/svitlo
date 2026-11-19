@@ -7,14 +7,7 @@ import {
   selectQuizQuestionIds,
   validateAssessmentReferences,
 } from '@svitlo/engine/build';
-import {
-  textbook,
-  lessonEntry,
-  lessonId,
-  questionId,
-  flashcardId,
-  lessonRelativePath,
-} from '../../testing/fixtures.mjs';
+import { textbook, lessonEntry, lessonId, questionId, flashcardId } from '../../testing/fixtures.mjs';
 
 const id = index => '00000000-0000-4000-8000-' + String(index).padStart(12, '0');
 const question = (key, number, type = 'selectOneAnswer') => ({
@@ -78,24 +71,24 @@ test('assessment stages reject wrong kinds, duplicate UUIDs, stale slugs, malfor
 });
 
 test('Engine fixture independently publishes localized Question and Flashcard bodies with metadata-only manifest', async () => {
-  const owner = lessonRelativePath;
   const files = await render(textbook, 'all');
-  const manifest = JSON.parse(files.get(owner + '/assessment-manifest.json'));
+  const manifest = JSON.parse(files.get('assessments/manifest.json'));
   const entries = Object.entries(manifest.entries);
-  assert.equal(manifest.lessonId, lessonId);
+  assert.equal(manifest.entries[questionId].ownerLessonId, lessonId);
   assert.deepEqual(entries.map(([uuid]) => uuid).sort(), [questionId, flashcardId].sort());
   assert.equal(entries.filter(([, value]) => value.kind === 'question').length, 1);
   assert.equal(entries.filter(([, value]) => value.kind === 'flashcard').length, 1);
-  assert.deepEqual(Object.keys(manifest).sort(), ['entries', 'lessonId']);
+  assert.deepEqual(Object.keys(manifest), ['entries']);
 
   for (const [, entry] of entries) {
     assert.equal(Object.hasOwn(entry, 'content'), false, 'manifest must not contain assessment bodies');
     assert.equal(Object.hasOwn(entry, 'answers'), false, 'no answer data in metadata');
   }
   for (const [uuid, entry] of entries) {
-    const prefix = owner + '/' + (entry.kind === 'question' ? 'questions' : 'flashcards') + '/' + uuid;
+    const prefix = (entry.kind === 'question' ? 'questions/' : 'flashcards/') + uuid.at(-1) + '/' + uuid;
     const base = JSON.parse(files.get(prefix + '/base.json'));
     assert.equal(base.id, uuid);
+    if (entry.kind === 'flashcard') assert.deepEqual(entry.disabilities, []);
     assert.equal(typeof entry.contentHash, 'string');
     assert.equal(entry.contentHash.length, 64);
     assert.deepEqual(entry.languages, ['en', 'uk']);
@@ -108,14 +101,13 @@ test('Engine fixture independently publishes localized Question and Flashcard bo
   assert.equal(files.size, 7, 'two assessments each publish base, en, uk plus one manifest');
   const onlyQuestions = await render(textbook, 'question');
   const onlyCards = await render(textbook, 'flashcard');
-  assert(onlyQuestions.has(owner + '/assessment-manifest.json'));
-  assert(onlyCards.has(owner + '/assessment-manifest.json'));
-  assert([...onlyQuestions.keys()].every(key => !key.includes('/flashcards/')));
-  assert([...onlyCards.keys()].every(key => !key.includes('/questions/')));
+  assert(onlyQuestions.has('assessments/manifest.json'));
+  assert(onlyCards.has('assessments/manifest.json'));
+  assert([...onlyQuestions.keys()].every(key => !key.startsWith('flashcards/')));
+  assert([...onlyCards.keys()].every(key => !key.startsWith('questions/')));
 });
 
 test('Engine fixture Quiz UUID references resolve against its independent Question manifest', async () => {
-  const owner = lessonRelativePath;
   const lesson = await loadLessonData(lessonEntry);
   const published = lesson.build.props({ languages: ['uk'] });
   const response = assembleLessonProps(published, 'uk');
@@ -126,7 +118,7 @@ test('Engine fixture Quiz UUID references resolve against its independent Questi
   const candidates = selectQuizQuestionIds(quiz.params.selection, quiz.id);
   assert.deepEqual(candidates, [questionId]);
   const files = await render(textbook, 'question');
-  const manifest = JSON.parse(files.get(owner + '/assessment-manifest.json'));
+  const manifest = JSON.parse(files.get('assessments/manifest.json'));
   const selected = validateAssessmentReferences(manifest, {
     lessonId,
     sectionId: quiz.id,

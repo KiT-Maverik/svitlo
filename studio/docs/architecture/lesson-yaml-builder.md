@@ -1,5 +1,7 @@
 # Deterministic Lesson YAML → TypeScript draft scaffolder
 
+> **Stage 6 boundary:** [Create Lesson Flow](../../skills/lesson-workflow/create-lesson-flow.skill.md) invokes separate [full preflight/finalization](../../../shared/engine/scripts/finalizeLesson/README.md) **outside** the create-only Lesson Builder. The Builder remains a draft-only emitter; no full Zod validation or YAML deletion is added to it.
+
 **Current input:** one `lesson.yaml` per Lesson UUID directory, with
 `{ config, production? }` at every nested entity node. See the
 [unified YAML authoring handoff](./yaml-config-scaffolding.md) and

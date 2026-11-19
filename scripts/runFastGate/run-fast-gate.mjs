@@ -102,6 +102,15 @@ function changedFiles(base, head) {
     .split('\0')
     .filter(Boolean);
 }
+/** Build dependencies that a workspace typecheck consumes through published exports. */
+export function shouldBuildDependency(owner, dependency) {
+  return (
+    Boolean(dependency.scripts?.['package:build']) &&
+    (dependency.path.startsWith('shared/') ||
+      (owner.path.startsWith('apps/') && dependency.path.startsWith('content/')))
+  );
+}
+
 function runGate(changed) {
   const workspaces = expandWorkspaces();
   const all = new Map(workspaces.map(w => [w.name, w]));
@@ -237,7 +246,7 @@ function runGate(changed) {
       if (!all.has(dep)) continue;
       ensureSharedDependencies(dep, next);
       const d = all.get(dep);
-      if (d.path.startsWith('shared/') && d.scripts?.['package:build'] && !built.has(dep)) {
+      if (shouldBuildDependency(pkg, d) && !built.has(dep)) {
         exec('npm', ['run', 'package:build', '--workspace', dep]);
         built.add(dep);
       }

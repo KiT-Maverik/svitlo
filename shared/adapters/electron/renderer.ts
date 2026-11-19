@@ -1,6 +1,7 @@
 import {
   resolveEntityPath,
   assembleLessonProps,
+  createAssessmentResourceLoader,
   languageCode_Schema,
   getLanguageCode,
   isLocale,
@@ -39,3 +40,19 @@ export async function loadPublishedUiKitMessages<T>(locale: Locale): Promise<T> 
   if (!isLocale(locale)) throw new Error('Unsupported locale');
   return (await loadJson('/data/uiKit/components/' + getLanguageCode(locale) + '.json')) as T;
 }
+
+/** Load only Engine-addressed, locally packaged assessment JSON, never remote resources. */
+export const packagedAssessmentLoader = createAssessmentResourceLoader(async (paths, signal) => {
+  const results = new Map<string, unknown>();
+  await Promise.all(
+    paths.map(async path => {
+      const response = await fetch('/' + path, { signal });
+      if (response.status === 404) return;
+      if (!response.ok) {
+        throw new Error('Missing packaged assessment resource: ' + path + ' (' + response.status + ')');
+      }
+      results.set(path, await response.json());
+    }),
+  );
+  return results;
+});

@@ -88,7 +88,6 @@ describe('Configurators', () => {
       >({
         id: id('07'),
         slug: 'card',
-        type: 'flashcard',
         parameters: { tags: [], flags: { items: { warningFlag: { type: 'warning' } }, order: ['warningFlag'] } },
         content: {
           front: defineFlashcardSide<{ front: typeof front }, ['uk', 'en']>({ items: { front }, order: ['front'] }),
@@ -124,7 +123,7 @@ describe('Configurators', () => {
         locale: { title: { uk: 'Модуль', en: 'Module' } },
         content: { items: { chapter }, order: ['chapter'] },
       });
-      const course = defineCourse<'course', ['uk'], { module: typeof courseModule }>({
+      const course = defineCourse<'course', { module: typeof courseModule }, ['uk']>({
         id: id('11'),
         slug: 'course',
         type: 'course',

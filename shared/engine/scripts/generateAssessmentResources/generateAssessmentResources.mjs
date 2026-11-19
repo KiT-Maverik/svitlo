@@ -192,10 +192,10 @@ export async function main(argv) {
     return;
   }
   if (mode === '--write') {
-    publishLessonProps(output, files);
+    publishLessonProps(output, files, 'assessment');
     console.log('Published ' + files.size + ' independent ' + kind + ' Assessment files');
   } else {
-    checkLessonProps(output, files);
+    checkLessonProps(output, files, 'assessment');
     console.log('Verified ' + files.size + ' independent ' + kind + ' Assessment files');
   }
 }

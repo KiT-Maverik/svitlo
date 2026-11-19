@@ -11,16 +11,23 @@ export { assertSafeDirectoryPath } from '../../generators/safeGeneratedPath/asse
 const lessonFile =
   /^([0-9a-f])\/([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})\/(base|[a-z]{2})\.json$/;
 const assessmentFile =
-  /^([0-9a-f])\/([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})\/(?:assessment-manifest\.json|(questions|flashcards)\/([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})\/(?:base|[a-z]{2})\.json)$/;
+  /^(?:assessments\/manifest\.json|(questions|flashcards)\/([0-9a-f])\/([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})\/(base|[a-z]{2})\.json)$/;
 
-function validateFiles(files) {
-  if (!(files instanceof Map)) throw new Error('Expected a Map of generated Lesson files');
+function validateFiles(files, mode = 'lesson') {
+  if (!(files instanceof Map)) throw new Error('Expected a Map of generated files');
+  if (mode !== 'lesson' && mode !== 'assessment') throw new Error('Unknown generated resource mode');
   for (const [relative, body] of files) {
-    const match = typeof relative === 'string' && (lessonFile.exec(relative) ?? assessmentFile.exec(relative));
-    if (!match || match[1] !== match[2].slice(-1)) {
-      throw new Error('Invalid generated Lesson path: ' + String(relative));
+    if (typeof relative !== 'string') throw new Error('Invalid generated path: ' + String(relative));
+    if (mode === 'lesson') {
+      const match = lessonFile.exec(relative);
+      if (!match || match[1] !== match[2].slice(-1)) throw new Error('Invalid generated Lesson path: ' + relative);
+    } else {
+      const match = assessmentFile.exec(relative);
+      if (!match || (relative !== 'assessments/manifest.json' && match[2] !== match[3].slice(-1)))
+        throw new Error('Invalid generated Assessment path: ' + relative);
     }
-    if (typeof body !== 'string') throw new Error('Invalid generated Lesson body: ' + relative);
+    if (typeof body !== 'string')
+      throw new Error('Invalid generated ' + (mode === 'lesson' ? 'Lesson' : 'Assessment') + ' body: ' + relative);
   }
 }
 
@@ -44,8 +51,8 @@ function currentFiles(root) {
 }
 
 /** Read-only, byte-exact verification including stale generated files. */
-export function checkLessonProps(root, files) {
-  validateFiles(files);
+export function checkLessonProps(root, files, mode = 'lesson') {
+  validateFiles(files, mode);
   const actual = currentFiles(root);
   const changed = [...files]
     .filter(
@@ -63,8 +70,8 @@ export function checkLessonProps(root, files) {
  * If the final rename fails, restore the previous output instead of leaving
  * a partially published directory. Files outside root are never touched.
  */
-export function publishLessonProps(root, files) {
-  validateFiles(files);
+export function publishLessonProps(root, files, mode = 'lesson') {
+  validateFiles(files, mode);
   currentFiles(root);
   const destination = path.resolve(root);
   const parent = path.dirname(destination);

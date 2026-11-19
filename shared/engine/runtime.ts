@@ -3,6 +3,7 @@ export * from './assemblers';
 export * from './schemas';
 export * from './configurators/_shared__configurators/common.schemas';
 export * from './configurators/assessmentMethods/defineAssessmentMethod.schemas';
+export * from './configurators/educationStandards/defineEducationStandard/defineEducationStandard.schemas';
 export * from './configurators/configurator.schemas';
 export * from './configurators/contentBlocks/_shared__contentBlocks/text.schemas';
 export { createContentBlockBaseSchema, contentBlockResolved_Schema, localizationSwitch as contentBlockLocalizationSwitch } from './configurators/contentBlocks/contentBlock.schemas';

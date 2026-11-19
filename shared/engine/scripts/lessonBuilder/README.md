@@ -76,7 +76,7 @@ authored source-locale dictionaries and never invents translations.
 ## Generated handoffs
 
 - `index.ts` inside the canonical Lesson UUID directory: one `defineLesson` call, referencing the `section` collection assembled by
-  `sections/index.ts`. Each nested Section, ContentBlock, Checkpoint Item,
+  `sections/index.ts`. The Lesson root exports the plain `config.slug` identifier (no `_Lesson` suffix). Each nested Section, ContentBlock, Checkpoint Item,
   Carousel Image/Scene slide, Quest Stage and Quest Task lives in its own `<slug>/index.ts` module. Generic
   arguments are based on the actual Engine Configurator signature.
 - `review.ts`: non-exported `LessonReview` skeleton with mandatory direct
@@ -96,12 +96,12 @@ authored source-locale dictionaries and never invents translations.
   planned `[en, uk, pl, qm]` with source language `uk` emits:
 
   ```ts
-  import type { LanguageCode } from '@svitlo/engine/build';
+  import type { SupportedLanguages } from '@svitlo/engine/build';
 
-  // Restore the complete language set when translations are ready:
-  // export const languages = ["en","uk","pl","qm"] as const satisfies readonly [LanguageCode, ...LanguageCode[]];
+  // TODO (BLOCKER): Restore the complete language set when translations are ready:
+  // export const languages = ["en","uk","pl","qm"] as const satisfies SupportedLanguages;
 
-  export const languages = ['uk'] as const satisfies readonly [LanguageCode, ...LanguageCode[]];
+  export const languages = ['uk'] as const satisfies SupportedLanguages;
   export type LessonLanguages = typeof languages;
   ```
 

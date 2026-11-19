@@ -71,33 +71,41 @@ test('Lesson publication swaps the complete tree, removes stale files, and prese
   }
 });
 
-test('independent assessment JSON publishes under the owning Lesson without changing its Props', () => {
+test('global Assessment JSON is published atomically without changing Lesson Props', () => {
   const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-assessment-publish-'));
   const owner = 'c/' + lessonId;
   const id = 'a4f1e4aa-3831-5e3f-aece-1df57f757d82';
-  const manifest = owner + '/assessment-manifest.json';
-  const base = owner + '/questions/' + id + '/base.json';
-  const locale = owner + '/questions/' + id + '/uk.json';
+  const manifest = 'assessments/manifest.json';
+  const base = 'questions/2/' + id + '/base.json';
+  const locale = 'questions/2/' + id + '/uk.json';
   const files = new Map([
-    [manifest, '{"lessonId":"' + lessonId + '","entries":{}}\\n'],
-    [base, '{"type":"selectOneAnswer","id":"' + id + '"}\\n'],
-    [locale, '{"locale":{"title":"Питання"}}\\n'],
+    [manifest, '{"entries":{}}\n'],
+    [base, '{"type":"selectOneAnswer","id":"' + id + '"}\n'],
+    [locale, '{"locale":{"title":"Питання"}}\n'],
   ]);
   try {
-    publishLessonProps(directory, new Map([[owner + '/base.json', '{"type":"lesson"}\\n']]));
+    publishLessonProps(directory, new Map([[owner + '/base.json', '{"type":"lesson"}\n']]));
     const assessmentRoot = path.join(directory, 'assessment');
-    publishLessonProps(assessmentRoot, files);
-    assert.doesNotThrow(() => check(assessmentRoot, files));
+    publishLessonProps(assessmentRoot, files, 'assessment');
+    assert.doesNotThrow(() => check(assessmentRoot, files, 'assessment'));
     assert.equal(fs.existsSync(path.join(directory, owner, 'questions', id, 'base.json')), false);
-    assert.equal(fs.readFileSync(path.join(directory, owner, 'base.json'), 'utf8'), '{"type":"lesson"}\\n');
+    assert.equal(fs.readFileSync(path.join(directory, owner, 'base.json'), 'utf8'), '{"type":"lesson"}\n');
     for (const bad of [
-      'b/' + lessonId + '/assessment-manifest.json',
-      owner + '/questions/../../secrets.json',
-      owner + '/questions/INVALID/base.json',
+      'assessments/../../secrets.json',
+      'questions/1/' + id + '/base.json',
+      'questions/2/INVALID/base.json',
+      owner + '/questions/' + id + '/base.json',
     ]) {
-      assert.throws(() => publishLessonProps(assessmentRoot, new Map([[bad, '{}']])), /Invalid generated Lesson path/);
+      assert.throws(
+        () => publishLessonProps(assessmentRoot, new Map([[bad, '{}']]), 'assessment'),
+        /Invalid generated Assessment path/,
+      );
     }
-    assert.doesNotThrow(() => check(assessmentRoot, files), 'invalid publication must leave previous files intact');
+    assert.throws(() => publishLessonProps(assessmentRoot, files), /Invalid generated Lesson path/);
+    assert.doesNotThrow(
+      () => check(assessmentRoot, files, 'assessment'),
+      'invalid publication must leave previous files intact',
+    );
   } finally {
     fs.rmSync(directory, { recursive: true, force: true });
   }

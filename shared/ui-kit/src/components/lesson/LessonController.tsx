@@ -306,7 +306,8 @@ const MemoSection = memo(function LessonSection({
   sceneRegistry,
   language,
   assessmentLoader,
-}: Pick<LessonProps, 'response' | 'messages' | 'sceneRegistry' | 'language' | 'assessmentLoader'>) {
+  accessNeeds,
+}: Pick<LessonProps, 'response' | 'messages' | 'sceneRegistry' | 'language' | 'assessmentLoader' | 'accessNeeds'>) {
   const { step, completedCheckpoints } = useLessonSection();
   const actions = useLessonActions();
   const section = response.section[step];
@@ -342,6 +343,7 @@ const MemoSection = memo(function LessonSection({
             lessonId={response.id}
             language={language}
             assessmentLoader={assessmentLoader}
+            accessNeeds={accessNeeds}
             section={section}
             messages={messages}
             sceneRegistry={sceneRegistry}
@@ -370,6 +372,7 @@ function LessonControllerRuntime({
   layout: Layout,
   sceneRegistry,
   assessmentLoader,
+  accessNeeds,
   contentLoading,
   editableSectionParams = EMPTY_EDITABLE,
   contentError,
@@ -615,7 +618,14 @@ function LessonControllerRuntime({
                     </StepperContext.Provider>
                     <SectionContext.Provider value={section}>
                       <ContentLanguageContext.Provider value={language}>
-                        <MemoSection response={response} language={language} assessmentLoader={assessmentLoader} messages={messages} sceneRegistry={sceneRegistry} />
+                        <MemoSection
+                          response={response}
+                          language={language}
+                          assessmentLoader={assessmentLoader}
+                          accessNeeds={accessNeeds}
+                          messages={messages}
+                          sceneRegistry={sceneRegistry}
+                        />
                       </ContentLanguageContext.Provider>
                     </SectionContext.Provider>
                   </>

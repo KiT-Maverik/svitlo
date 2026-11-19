@@ -14,7 +14,7 @@ function run(command, args, cwd = repo) {
     throw new Error(command + ' ' + args.join(' ') + ' failed' + (result.error ? ': ' + result.error.message : ''));
   }
 }
-function contentWorkspaces() {
+export function contentWorkspaces() {
   const result = [];
   for (const folder of ['content', 'content/languages']) {
     for (const entry of readdirSync(join(repo, folder), { withFileTypes: true })) {
@@ -29,7 +29,7 @@ function contentWorkspaces() {
   }
   return result.sort((a, b) => a.path.localeCompare(b.path));
 }
-function changedFiles(base, head) {
+export function changedFiles(base, head) {
   if (![base, head].every(sha => /^[a-f0-9]{40}$/.test(sha))) {
     throw new Error('BASE_SHA and HEAD_SHA must be 40-character SHA values');
   }
@@ -148,11 +148,52 @@ function execute(changed, all, baseRef, headRef) {
   run('npm', ['run', 'repo:check:artifacts', '--', '--packages', ...targets]);
 }
 
+function executePackage(path, kind, changed, all, baseRef, headRef) {
+  const workspaces = contentWorkspaces();
+  const agent = resolveAgentScope(
+    baseRef,
+    headRef,
+    changed,
+    workspaces,
+    readJson('scripts/ci/buildChangedContent/skills-agent-owners.json'),
+  );
+  if (agent) {
+    if (kind !== 'agent' || agent.workspace.path !== path) {
+      throw new Error('Unexpected matrix package for agent branch: ' + path);
+    }
+    validateAgent(agent);
+    return;
+  }
+  const pkg = workspaces.find(workspace => workspace.path === path);
+  if (kind !== 'content' || !pkg || !selectContentBuilds(changed, workspaces, all).includes(path)) {
+    throw new Error('Unselected or unknown content package: ' + path);
+  }
+  verifyPackage(pkg, changed);
+  run('npm', ['run', 'repo:check:artifacts', '--', '--packages', path]);
+}
+
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   try {
-    const all = process.argv[2] === '--all';
-    const changed = all ? [] : changedFiles(process.env.BASE_SHA, process.env.HEAD_SHA);
-    execute(changed, all, process.env.BASE_REF || '', process.env.HEAD_REF || '');
+    if (process.argv[2] === '--package') {
+      if (process.argv.length !== 5) throw new Error('Usage: --package <workspace-path> <content|agent>');
+      const all = process.env.CONTENT_BUILD_ALL === 'true';
+      const changed = all ? [] : changedFiles(process.env.BASE_SHA, process.env.HEAD_SHA);
+      executePackage(
+        process.argv[3],
+        process.argv[4],
+        changed,
+        all,
+        process.env.BASE_REF || '',
+        process.env.HEAD_REF || '',
+      );
+    } else {
+      if (process.argv.length > 3 || (process.argv.length === 3 && process.argv[2] !== '--all')) {
+        throw new Error('Usage: build-changed-content.mjs [--all|--package <workspace-path> <content|agent>]');
+      }
+      const all = process.argv[2] === '--all';
+      const changed = all ? [] : changedFiles(process.env.BASE_SHA, process.env.HEAD_SHA);
+      execute(changed, all, process.env.BASE_REF || '', process.env.HEAD_REF || '');
+    }
   } catch (error) {
     console.error(error);
     process.exitCode = 1;

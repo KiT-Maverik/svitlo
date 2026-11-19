@@ -1,13 +1,15 @@
 name: Agent CI Artifacts / clean
 
-# Always runs for PRs into main and the lesson integration branch, including docs-only changes.
+# Verify each new PR head for protected branches, including docs-only changes.
 # Configure this check as REQUIRED in main branch protection / rulesets.
 on:
   pull_request:
-    branches: [main, new-lesson, integration/italian-localization]
-    types: [opened, reopened, synchronize, ready_for_review]
+    branches: [main, integration-branch, new-lesson, integration/italian-localization]
+    # An unchanged ready-for-review transition keeps the previously verified SHA.
+    # Formatter and artifact cleanup commits recheck through synchronize.
+    types: [opened, reopened, synchronize]
   merge_group:
-  # Lets PR Auto-format re-run this required guard on the formatting commit.
+  # Optional manual invocation; formatter commits trigger the normal synchronize event.
   workflow_dispatch:
 
 permissions:

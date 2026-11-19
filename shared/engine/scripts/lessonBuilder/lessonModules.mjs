@@ -279,10 +279,20 @@ function skillIndex(bookRoot) {
 export function renderLessonModules(lesson, language, options = {}) {
   const factories = options.factories ?? loadFactoryRegistry();
   const filtered = sourceAuthoringCopy(lesson, language);
+  const questionBankOnly = options.questionBankOnly === true;
   if (!record(filtered) || filtered.type !== 'lesson')
     throw new Error('lesson.yaml:config.type: expected lesson type for the Lesson entrypoint');
+  // The root export is exactly config.slug; unlike the former _Lesson suffix,
+  // it must not shadow built-in imports or be a JavaScript keyword.
+  if (
+    !safeSlug.test(filtered.slug) ||
+    reserved.has(filtered.slug) ||
+    javascriptKeywords.has(filtered.slug) ||
+    filtered.slug === 'defineLesson'
+  )
+    throw new Error('lesson.yaml:config.slug: reserved or invalid Lesson export identifier');
   for (const field of ['questions', 'flashcards']) {
-    if (Object.hasOwn(filtered, field))
+    if (Object.hasOwn(filtered, field) && !(questionBankOnly && field === 'questions'))
       throw new Error(
         'lesson.yaml:config.' +
           field +
@@ -368,17 +378,17 @@ export function renderLessonModules(lesson, language, options = {}) {
     languageValues.every(value => typeof value === 'string');
   const languagesType = hasLanguages ? 'LessonLanguages' : null;
   const constantsSpecifier = '#lessonsData/' + filtered.id?.at(-1) + '/' + filtered.id + '/constants';
-  if (hasLanguages) {
+  if (hasLanguages && !questionBankOnly) {
     files.set(
       'constants.ts',
-      "import type { LanguageCode } from '@svitlo/engine/build';\n\n" +
-        '// Restore the complete language set when translations are ready:\n' +
+      "import type { SupportedLanguages } from '@svitlo/engine/build';\n\n" +
+        '// TODO (BLOCKER): Restore the complete language set when translations are ready:\n' +
         '// export const languages = ' +
         JSON.stringify(languageValues) +
-        ' as const satisfies readonly [LanguageCode, ...LanguageCode[]];\n\n' +
+        ' as const satisfies SupportedLanguages;\n\n' +
         'export const languages = ' +
         JSON.stringify([language]) +
-        ' as const satisfies readonly [LanguageCode, ...LanguageCode[]];\n' +
+        ' as const satisfies SupportedLanguages;\n' +
         'export type LessonLanguages = typeof languages;\n',
     );
   }
@@ -731,6 +741,17 @@ export function renderLessonModules(lesson, language, options = {}) {
     );
   }
 
+  if (questionBankOnly) {
+    if (!record(filtered.questions) || !Object.keys(filtered.questions).length)
+      throw new Error('questions.yaml:questions: expected nonempty Question type groups');
+    emitCollection('questions', 'questionBank', 'questions');
+    return new Map(
+      [...files.entries()].sort((a, b) =>
+        a[0] === 'questions/index.ts' ? 1 : b[0] === 'questions/index.ts' ? -1 : a[0].localeCompare(b[0]),
+      ),
+    );
+  }
+
   emitCollection('section', 'sectionCollection', 'sections');
 
   const rootImports = ["import { defineLesson } from '@svitlo/engine/build';"];
@@ -805,7 +826,7 @@ export function renderLessonModules(lesson, language, options = {}) {
     groupedImports([rootImports[0]], rootImports.slice(1)) +
     'export const ' +
     filtered.slug +
-    '_Lesson = defineLesson' +
+    ' = defineLesson' +
     langArgs +
     '({\n' +
     rootFields.join(',\n') +

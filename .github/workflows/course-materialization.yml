@@ -1,0 +1,176 @@
+name: Materialize reviewed Course from PR command
+
+# issue_comment workflows are dispatched from the default branch, not PR branches.
+on:
+  issue_comment:
+    types: [created]
+  workflow_dispatch:
+    inputs:
+      pr_number:
+        description: Open same-repository Draft Course PR number
+        type: number
+        required: true
+      operation:
+        description: Explicit authorized Stage 5 action
+        type: choice
+        options: [materialize, finalize]
+        required: true
+
+permissions: {}
+
+concurrency:
+  group: course-stage5-${{ github.event.issue.number || inputs.pr_number }}
+  cancel-in-progress: false
+
+jobs:
+  resolve:
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event.issue.pull_request &&
+       (github.event.comment.body == '/course materialize' ||
+        github.event.comment.body == '/course finalize'))
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      pull-requests: read
+    outputs:
+      meta: ${{ steps.gate.outputs.meta }}
+      pr: ${{ steps.gate.outputs.pr }}
+      head: ${{ steps.gate.outputs.head }}
+    steps:
+      - name: Check out trusted default-branch gate only
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Authorize actor, Course identity and Stage 4 checklist
+        id: gate
+        env:
+          GH_TOKEN: ${{ github.token }}
+          COURSE_DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+        run: node scripts/ci/courseMaterialization/course-gate.mjs resolve
+
+  analyze:
+    needs: resolve
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+      pull-requests: read
+    steps:
+      - name: Check out trusted implementation and Engine from default branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+          path: trusted
+          persist-credentials: false
+      - name: Check out pinned Course PR as untrusted data only
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.resolve.outputs.head }}
+          path: candidate
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: trusted/package-lock.json
+      - name: Install trusted Engine dependencies without lifecycle scripts
+        working-directory: trusted
+        run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Validate reviewed Course, generate and verify only allowlisted sources
+        env:
+          GH_TOKEN: ${{ github.token }}
+          COURSE_DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+          COURSE_META_B64: ${{ needs.resolve.outputs.meta }}
+          COURSE_HEAD_ROOT: candidate
+          COURSE_REPORT: ${{ runner.temp }}/course-materialization/report.json
+        run: node trusted/scripts/ci/courseMaterialization/course-materialization.mjs analyze
+      - name: Retain exact source and output evidence in this Actions run
+        uses: actions/upload-artifact@v4
+        with:
+          name: course-stage5-${{ needs.resolve.outputs.pr }}-${{ github.run_id }}
+          path: ${{ runner.temp }}/course-materialization/report.json
+          retention-days: 7
+          if-no-files-found: error
+
+  publish:
+    needs: [resolve, analyze]
+    if: needs.analyze.result == 'success'
+    runs-on: ubuntu-latest
+    outputs:
+      head: ${{ steps.publish.outputs.head }}
+      register: ${{ steps.publish.outputs.register }}
+    timeout-minutes: 10
+    permissions:
+      contents: write
+      pull-requests: read
+    steps:
+      - name: Check out trusted publisher only
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+          path: trusted
+          persist-credentials: false
+      - name: Check out pinned Course commit as data (never execute it)
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.resolve.outputs.head }}
+          path: candidate
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Download artifact from the exact authorized read-only job
+        uses: actions/download-artifact@v4
+        with:
+          name: course-stage5-${{ needs.resolve.outputs.pr }}-${{ github.run_id }}
+          path: report
+      - name: Revalidate authorization, artifact bytes and SHA race; publish by Git API
+        id: publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+          COURSE_DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+          COURSE_META_B64: ${{ needs.resolve.outputs.meta }}
+          COURSE_HEAD_ROOT: candidate
+          COURSE_REPORT: report/report.json
+        run: node trusted/scripts/ci/courseMaterialization/course-materialization.mjs publish
+
+  register-lessons:
+    name: Register generated Lesson IDs once
+    needs: [resolve, publish]
+    if: needs.publish.result == 'success' && needs.publish.outputs.register == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - name: Check out trusted registration script only
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Download the exact verified materialization handoff
+        uses: actions/download-artifact@v4
+        with:
+          name: course-stage5-${{ needs.resolve.outputs.pr }}-${{ github.run_id }}
+          path: report
+      - name: Write Lesson UUIDs and Not started placeholders to Course PR
+        env:
+          GH_TOKEN: ${{ github.token }}
+          COURSE_DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+          COURSE_META_B64: ${{ needs.resolve.outputs.meta }}
+          COURSE_PUBLISHED_HEAD: ${{ needs.publish.outputs.head }}
+          COURSE_REPORT: report/report.json
+        run: |
+          test "$(find report -maxdepth 1 -type f | wc -l)" -eq 1
+          test -f report/report.json
+          node scripts/ci/courseMaterialization/course-materialization.mjs register

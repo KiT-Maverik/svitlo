@@ -26,6 +26,7 @@
     "content:generate:lesson-props": "node shared/engine/scripts/generateLessonProps/generateLessonProps.mjs",
     "content:check:lesson-props": "node shared/engine/scripts/generateLessonProps/generateLessonProps.mjs",
     "test:unit:lesson-builder": "node --test shared/engine/scripts/lessonBuilder/lessonBuilder.spec.mjs",
+    "test:unit:lesson-finalize": "node --test shared/engine/scripts/finalizeLesson/finalizeLesson.spec.mjs",
     "repo:check:imports": "node scripts/migrateSharedImports/migrate-shared-imports.mjs --check",
     "repo:fix:imports": "node scripts/migrateSharedImports/migrate-shared-imports.mjs --write",
     "content:generate:skills": "node shared/engine/scripts/generateSkills/generateSkills.mjs",

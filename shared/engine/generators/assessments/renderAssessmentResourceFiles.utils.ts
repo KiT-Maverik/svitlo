@@ -1,6 +1,10 @@
 import { createHash } from 'node:crypto';
 
-import { assessmentResourceManifest_Schema, type AssessmentResourceEntry, type AssessmentResourceKind } from '../../assemblers/assessmentResources/assessmentResources';
+import {
+  assessmentResourceManifest_Schema,
+  type AssessmentResourceEntry,
+  type AssessmentResourceKind,
+} from '../../assemblers/assessmentResources/assessmentResources';
 import { questionTypes } from '../../configurators/questions/question.constants';
 import { languageCode_Schema, type LanguageCode } from '../../schemas/languages.schemas';
 import { resolveEntityPath } from '../../utils/entityPath/resolveEntityPath.utils';
@@ -34,8 +38,7 @@ function canonical(value: unknown, at: string, ancestors = new Set<object>()): s
   if (Object.getOwnPropertySymbols(value).length > 0) throw new Error('Symbol-keyed Assessment Props at ' + at);
   if (!Array.isArray(value)) {
     const prototype: unknown = Object.getPrototypeOf(value);
-    if (prototype !== Object.prototype && prototype !== null)
-      throw new Error('Non-plain Assessment Props at ' + at);
+    if (prototype !== Object.prototype && prototype !== null) throw new Error('Non-plain Assessment Props at ' + at);
   }
   ancestors.add(value);
   try {
@@ -57,7 +60,9 @@ function canonical(value: unknown, at: string, ancestors = new Set<object>()): s
         .sort(compare)
         .map(key => {
           if (forbiddenKeys.has(key)) throw new Error('Unsafe Assessment Props key at ' + at + '/' + key);
-          return JSON.stringify(key) + ':' + canonical((value as Record<string, unknown>)[key], at + '/' + key, ancestors);
+          return (
+            JSON.stringify(key) + ':' + canonical((value as Record<string, unknown>)[key], at + '/' + key, ancestors)
+          );
         })
         .join(',') +
       '}'
@@ -68,42 +73,45 @@ function canonical(value: unknown, at: string, ancestors = new Set<object>()): s
 }
 
 /**
- * Serialize independently built Question/Flashcard Props without inserting them
- * into Lesson output. Each Lesson receives a metadata-only manifest; no bank
- * bodies, answer keys, or locale contents appear in that manifest.
- *
- * Paths are relative to the publisher's data/lessons root.
+ * Serialize Question/Flashcard Props as globally addressed UUID resources.
+ * Only metadata lives in assessments/manifest.json, never Question answers.
+ * Keys are relative to the generated assessments root (the textbook build
+ * stages the entire tree at static/data/).
  */
-export function renderAssessmentResourceFiles(entries: readonly AssessmentPublicationEntry[]): AssessmentPublicationFiles {
+export function renderAssessmentResourceFiles(
+  entries: readonly AssessmentPublicationEntry[],
+): AssessmentPublicationFiles {
   const files: AssessmentPublicationFiles = new Map();
   const owners = new Map<string, string>();
-  const manifests = new Map<string, Record<string, AssessmentResourceEntry>>();
+  const index: Record<string, AssessmentResourceEntry> = {};
 
-  for (const entry of [...entries].sort((a, b) =>
-    compare(a.lessonId, b.lessonId) || compare(a.publication.base?.id ?? '', b.publication.base?.id ?? ''),
+  for (const entry of [...entries].sort(
+    (a, b) =>
+      compare(a.publication.base?.id ?? '', b.publication.base?.id ?? '') ||
+      compare(a.lessonId, b.lessonId) ||
+      compare(a.kind, b.kind),
   )) {
     const { source, lessonId, kind, publication } = entry;
-    const lessonPath = resolveEntityPath(lessonId);
+    resolveEntityPath(lessonId);
     if (!publication || !publication.base || typeof publication.base !== 'object')
       throw new Error('Missing built Assessment Props at ' + source);
-    const itemId = resolveEntityPath(publication.base.id).split('/')[1];
+    const itemPath = resolveEntityPath(publication.base.id);
+    const itemId = itemPath.split('/')[1];
     if (publication.base.id !== itemId) throw new Error('Assessment UUID is not canonical at ' + source);
-    const key = itemId; // UUID identity must not collide across Lessons or resource kinds.
-    const previous = owners.get(key);
+    const previous = owners.get(itemId);
     if (previous) throw new Error('Duplicate Assessment UUID ' + itemId + ': ' + previous + ' and ' + source);
-    owners.set(key, source);
+    owners.set(itemId, source);
     const type = publication.base.type;
     if (kind === 'question' && !questionTypes.some(candidate => candidate === type))
       throw new Error('Invalid Question kind at ' + source + ': ' + type);
-    if (kind === 'flashcard' && type !== 'flashcard')
-      throw new Error('Expected Flashcard Props at ' + source);
+    if (kind === 'flashcard' && type !== 'flashcard') throw new Error('Expected Flashcard Props at ' + source);
 
     const languages = [...entry.languages];
     for (const language of languages) languageCode_Schema.parse(language);
     if (!languages.length || new Set(languages).size !== languages.length)
       throw new Error('Assessment publication needs unique nonempty languages: ' + source);
 
-    const prefix = lessonPath + '/' + (kind === 'question' ? 'questions' : 'flashcards') + '/' + itemId;
+    const prefix = (kind === 'question' ? 'questions/' : 'flashcards/') + itemPath;
     const baseString = canonical(publication.base, source + '/base');
     files.set(prefix + '/base.json', JSON.stringify(JSON.parse(baseString), null, 2) + '\n');
     const locale: Record<string, unknown> = {};
@@ -120,113 +128,110 @@ export function renderAssessmentResourceFiles(entries: readonly AssessmentPublic
       files.set(prefix + '/' + language + '.json', JSON.stringify(locale[language], null, 2) + '\n');
     }
 
-    const hash = createHash('sha256').update(canonical({ base: JSON.parse(baseString), locale }, source)).digest('hex');
-    const item: AssessmentResourceEntry = {
-      lessonId,
+    const hash = createHash('sha256')
+      .update(canonical({ base: JSON.parse(baseString), locale }, source))
+      .digest('hex');
+    index[itemId] = {
+      ownerLessonId: lessonId,
       kind,
       ...(kind === 'question' ? { questionType: type as AssessmentResourceEntry['questionType'] } : {}),
+      ...(kind === 'flashcard'
+        ? {
+            disabilities:
+              (publication.base as { parameters?: { disabilities?: AssessmentResourceEntry['disabilities'] } })
+                .parameters?.disabilities ?? [],
+          }
+        : {}),
       languages,
       localeFiles: Object.keys(locale) as LanguageCode[],
       contentHash: hash,
     };
-    (manifests.get(lessonPath) ?? (manifests.set(lessonPath, {}), manifests.get(lessonPath)!))[itemId] = item;
   }
-  for (const [lessonPath, items] of [...manifests].sort(([a], [b]) => compare(a, b))) {
-    const lessonId = lessonPath.split('/')[1];
-    const manifest = assessmentResourceManifest_Schema.parse({ lessonId, entries: items });
-    files.set(lessonPath + '/assessment-manifest.json', JSON.stringify(manifest, null, 2) + '\n');
-  }
-  return files;
+  const manifest = assessmentResourceManifest_Schema.parse({
+    entries: Object.fromEntries(Object.entries(index).sort(([a], [b]) => compare(a, b))),
+  });
+  files.set('assessments/manifest.json', JSON.stringify(manifest, null, 2) + '\n');
+  return new Map([...files].sort(([a], [b]) => compare(a, b)));
 }
 
-
 /**
- * Compose separately generated Question and Flashcard batches without touching
- * their source files. A bank stage may emit only its own kind; the final static
- * publisher must merge metadata manifests rather than letting the last writer
- * replace another bank's manifest.
- *
- * Inputs are already-rendered, relative assessment file maps. All assets remain
- * individual immutable resources, not embedded inside the merged metadata.
+ * Merge two independently produced stages into one textbook-scoped manifest.
+ * Validate path/UUID/kind/locale completeness, global collisions, and content
+ * hashes before emitting even one publication file.
  */
 export function mergeAssessmentResourceFiles(
   batches: readonly ReadonlyMap<string, string>[],
 ): AssessmentPublicationFiles {
-  const merged = new Map<string, string>();
-  const owners = new Map<string, Record<string, AssessmentResourceEntry>>();
-  const globallyOwned = new Map<string, string>();
-  const assets: { filename: string; lessonId: string; itemId: string; kind: AssessmentResourceKind; locale: string }[] = [];
-
+  const files = new Map<string, string>();
+  const index: Record<string, AssessmentResourceEntry> = {};
   for (const batch of batches) {
     for (const [filename, body] of batch) {
       if (typeof body !== 'string') throw new Error('Invalid Assessment resource body: ' + filename);
-      const manifestMatch = /^([a-f0-9])\/([a-f0-9-]{36})\/assessment-manifest\.json$/.exec(filename);
-      if (manifestMatch) {
-        const [, bucket, lessonId] = manifestMatch;
-        if (resolveEntityPath(lessonId) !== bucket + '/' + lessonId) {
-          throw new Error('Invalid Assessment manifest path: ' + filename);
-        }
+      if (filename === 'assessments/manifest.json') {
         const manifest = assessmentResourceManifest_Schema.parse(JSON.parse(body));
-        if (manifest.lessonId !== lessonId) throw new Error('Assessment manifest owner mismatch: ' + filename);
-        const entries = owners.get(lessonId) ?? {};
-        for (const [id, item] of Object.entries(manifest.entries)) {
-          if (Object.hasOwn(entries, id)) throw new Error('Duplicate Assessment UUID across stages: ' + id);
-          if (globallyOwned.has(id) && globallyOwned.get(id) !== lessonId) {
-            throw new Error('Duplicate Assessment UUID across Lessons: ' + id);
-          }
-          globallyOwned.set(id, lessonId);
-          entries[id] = item;
+        for (const [id, entry] of Object.entries(manifest.entries)) {
+          if (Object.hasOwn(index, id)) throw new Error('Duplicate Assessment UUID across stages: ' + id);
+          resolveEntityPath(entry.ownerLessonId);
+          index[id] = entry;
         }
-        owners.set(lessonId, entries);
         continue;
       }
-      const assetMatch =
-        /^([a-f0-9])\/([a-f0-9-]{36})\/(questions|flashcards)\/([a-f0-9-]{36})\/(base|[a-z]{2})\.json$/.exec(
-          filename,
-        );
-      if (!assetMatch) throw new Error('Invalid Assessment resource path: ' + filename);
-      const [, bucket, lessonId, collection, itemId, locale] = assetMatch;
-      if (resolveEntityPath(lessonId) !== bucket + '/' + lessonId || resolveEntityPath(itemId).split('/')[1] !== itemId) {
-        throw new Error('Invalid Assessment UUID path: ' + filename);
+      const matched = /^(questions|flashcards)\/([0-9a-f])\/([0-9a-f-]{36})\/(base|[a-z]{2})\.json$/.exec(filename);
+      if (!matched) throw new Error('Invalid Assessment resource path: ' + filename);
+      const [, collection, bucket, id] = matched;
+      if (resolveEntityPath(id) !== bucket + '/' + id) throw new Error('Invalid Assessment UUID path: ' + filename);
+      if (files.has(filename)) throw new Error('Duplicate Assessment resource file: ' + filename);
+      const parsed = JSON.parse(body);
+      if (parsed === null || typeof parsed !== 'object' || Array.isArray(parsed)) {
+        throw new Error('Invalid Assessment resource JSON: ' + filename);
       }
-      if (merged.has(filename)) throw new Error('Duplicate Assessment resource file: ' + filename);
-      JSON.parse(body); // Refuse malformed input rather than publishing an apparently complete file.
-      merged.set(filename, body);
-      assets.push({
-        filename,
-        lessonId,
-        itemId,
-        kind: collection === 'questions' ? 'question' : 'flashcard',
-        locale,
-      });
+      if (collection !== 'questions' && collection !== 'flashcards')
+        throw new Error('Invalid Assessment resource kind: ' + filename);
+      files.set(filename, body);
     }
   }
-  const assetFiles = new Set(assets.map(asset => asset.filename));
-  for (const asset of assets) {
-    const entry = owners.get(asset.lessonId)?.[asset.itemId];
-    if (!entry || entry.kind !== asset.kind || entry.lessonId !== asset.lessonId) {
-      throw new Error('Unindexed Assessment resource file: ' + asset.filename);
+
+  for (const [filename] of files) {
+    const match = /^(questions|flashcards)\/[0-9a-f]\/([0-9a-f-]{36})\/(base|[a-z]{2})\.json$/.exec(filename)!;
+    const [, collection, id, language] = match;
+    const entry = index[id];
+    if (!entry || (collection === 'questions' ? 'question' : 'flashcard') !== entry.kind) {
+      throw new Error('Unindexed Assessment resource file: ' + filename);
     }
-    if (asset.locale !== 'base' && !entry.localeFiles?.includes(asset.locale as LanguageCode)) {
-      throw new Error('Assessment locale file is not declared in manifest: ' + asset.filename);
+    if (language !== 'base' && !entry.localeFiles.includes(language as LanguageCode)) {
+      throw new Error('Assessment locale file is not declared in manifest: ' + filename);
     }
   }
-  for (const [lessonId, entries] of owners) {
-    const lessonPath = resolveEntityPath(lessonId);
-    for (const [id, entry] of Object.entries(entries)) {
-      const folder = lessonPath + '/' + (entry.kind === 'question' ? 'questions' : 'flashcards') + '/' + id;
-      if (!assetFiles.has(folder + '/base.json')) throw new Error('Assessment resource base is missing: ' + folder);
-      for (const locale of entry.localeFiles ?? []) {
-        if (!assetFiles.has(folder + '/' + locale + '.json')) {
-          throw new Error('Assessment resource locale is missing: ' + folder + '/' + locale);
-        }
-      }
+
+  for (const [id, entry] of Object.entries(index)) {
+    const folder = (entry.kind === 'question' ? 'questions/' : 'flashcards/') + resolveEntityPath(id);
+    if (
+      new Set(entry.languages).size !== entry.languages.length ||
+      new Set(entry.localeFiles).size !== entry.localeFiles.length ||
+      entry.localeFiles.some(code => !entry.languages.includes(code))
+    ) {
+      throw new Error('Invalid Assessment publication languages: ' + id);
     }
-    const manifest = assessmentResourceManifest_Schema.parse({
-      lessonId,
-      entries: Object.fromEntries(Object.entries(entries).sort(([left], [right]) => compare(left, right))),
-    });
-    merged.set(lessonPath + '/assessment-manifest.json', JSON.stringify(manifest, null, 2) + '\n');
+    const baseFile = folder + '/base.json';
+    if (!files.has(baseFile)) throw new Error('Assessment resource base is missing: ' + folder);
+    const base = JSON.parse(files.get(baseFile)!);
+    if (base.id !== id) throw new Error('Assessment resource UUID mismatch: ' + id);
+    if (entry.kind === 'question' && base.type !== entry.questionType)
+      throw new Error('Assessment Question type mismatch: ' + id);
+    if (entry.kind === 'flashcard' && base.type !== 'flashcard')
+      throw new Error('Assessment Flashcard type mismatch: ' + id);
+    const locale: Record<string, unknown> = {};
+    for (const language of entry.localeFiles) {
+      const file = folder + '/' + language + '.json';
+      if (!files.has(file)) throw new Error('Assessment resource locale is missing: ' + folder + '/' + language);
+      locale[language] = JSON.parse(files.get(file)!);
+    }
+    const hash = createHash('sha256').update(canonical({ base, locale }, id)).digest('hex');
+    if (hash !== entry.contentHash) throw new Error('Assessment resource content hash mismatch: ' + id);
   }
-  return new Map([...merged].sort(([a], [b]) => compare(a, b)));
+  const manifest = assessmentResourceManifest_Schema.parse({
+    entries: Object.fromEntries(Object.entries(index).sort(([a], [b]) => compare(a, b))),
+  });
+  files.set('assessments/manifest.json', JSON.stringify(manifest, null, 2) + '\n');
+  return new Map([...files].sort(([a], [b]) => compare(a, b)));
 }

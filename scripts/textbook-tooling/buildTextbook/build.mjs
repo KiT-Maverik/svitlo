@@ -21,6 +21,7 @@ import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { build } from 'esbuild';
 import { stageTextbookAssets } from './stageTextbookAssets.mjs';
+import { verifyAssessmentSelections } from '../verifyAssessmentSelections/verifyAssessmentSelections.mjs';
 import { randomUUID } from 'node:crypto';
 
 const root = resolve(process.cwd());
@@ -212,8 +213,7 @@ try {
     mkdirSync(dirname(destination), { recursive: true });
     cpSync(generatedRoot, destination, { recursive: true });
   }
-  // Stage independently authored Question/Flashcard resources beside (never inside)
-  // Lesson Props. The static manifest and Publish CLI own their portable URLs.
+  // Stage globally UUID-addressed Questions and Flashcards beside Lesson Props. The static manifest and Publish CLI own their portable URLs.
   if (assessmentBank) {
     run(process.execPath, [
       'shared/engine/scripts/generateAssessmentResources/generateAssessmentResources.mjs',
@@ -225,13 +225,21 @@ try {
       ...(mediaMode === 'draft' ? ['--draft'] : []),
     ]);
     const generatedAssessmentRoot = join(root, 'generated/assessments');
-    const destination = join(resources, 'data/lessons');
+    const destination = join(resources, 'data');
     for (const name of filesUnder(generatedAssessmentRoot)) {
       const target = join(destination, name);
       if (existsSync(target)) throw new Error('Duplicate Assessment resource publication: ' + name);
       mkdirSync(dirname(target), { recursive: true });
       copyFileSync(join(generatedAssessmentRoot, name), target);
     }
+  }
+
+  // An authored Quiz/Flashcards Section may be valid even when its independent
+  // bank was never generated. Verify every candidate UUID against the published
+  // bank manifest and actual JSON/locale files before committing production.
+  if (mediaMode === 'production') {
+    const verified = verifyAssessmentSelections(resources);
+    console.log('Verified ' + verified + ' referenced Question/Flashcard resource(s) in production');
   }
 
   const sourcePublic = join(root, 'public');

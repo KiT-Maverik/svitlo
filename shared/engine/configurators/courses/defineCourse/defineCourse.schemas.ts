@@ -19,12 +19,41 @@ import { episode_Props_Schema } from '../../episodes/defineEpisode/defineEpisode
 import type { Episode_Configurator } from '../../episodes/defineEpisode/defineEpisode';
 import type { Episode_Props } from '../../episodes/defineEpisode/defineEpisode.schemas';
 
+/** Course audience and educational-standard references describe scope, never certification. */
+const audienceRange_Schema = (maximum: number) =>
+  z
+    .strictObject({
+      min: z.int().min(0).max(maximum),
+      max: z.int().min(0).max(maximum),
+    })
+    .refine(range => range.min <= range.max, 'Minimum must not exceed maximum');
+
+const ageRange_Schema = audienceRange_Schema(125);
+const gradeRange_Schema = audienceRange_Schema(40);
+
+const uniqueIds_Schema = z
+  .array(z.uuid())
+  .refine(values => new Set(values.map(value => value.toLowerCase())).size === values.length, 'IDs must be unique');
+
+const targetSkills_Schema = z.strictObject({
+  skills: uniqueIds_Schema.optional(),
+  skillGroups: uniqueIds_Schema.optional(),
+  skillDomains: uniqueIds_Schema.optional(),
+});
+
 const params = paramsBase_Schema.shape.params.extend({
   languages: z
     .array(languageCode_Schema)
     .nonempty()
     .refine(values => new Set(values).size === values.length, 'Course languages must be unique'),
   scenarioMode: z.enum(['none', 'story']).optional(),
+  /** Skills actually intended to be taught; distinct from entry requirements. */
+  outcomes: targetSkills_Schema.optional(),
+  /** Optional jurisdiction-dependent target learners; no assumed universal grade. */
+  age: ageRange_Schema.optional(),
+  grade: gradeRange_Schema.optional(),
+  /** References to reviewed EducationStandard UUIDs; no automatic compliance claim. */
+  educationStandards: uniqueIds_Schema.optional(),
   prerequisites: z
     .object({
       skills: z.array(z.uuid()).optional(),
@@ -42,6 +71,7 @@ const locale = <Mode extends Configurator_Mode>(mode: Mode) => ({
   title: localizationSwitch[mode],
   description: localizationSwitch[mode],
   prerequisitesText: localizationSwitch[mode].optional(),
+  outcomesText: localizationSwitch[mode].optional(),
 });
 export type Course_Locale<Mode extends Configurator_Mode> = z.infer<z.ZodObject<ReturnType<typeof locale<Mode>>>>;
 export type Course_Child = ConfiguratorChild<
@@ -62,10 +92,20 @@ export type Course_Metadata_Overrides = {
   params?: DeepPartial<Omit<Course_Config['params'], 'languages'>>;
   locale?: DeepPartial<Course_Config['locale']>;
 };
+/**
+ * Zod 4 deepPartial() cannot descend into refined object schemas. Reconstruct
+ * only the audience objects from the SAME Config fields before deriving sparse
+ * overrides; effective merged Course Config is still parsed against the
+ * original refined age/grade ranges by the Course Build validation lifecycle.
+ */
+const partializableParams_Schema = course_Config_Schema.shape.params.omit({ languages: true }).extend({
+  age: z.strictObject(ageRange_Schema.shape).optional(),
+  grade: z.strictObject(gradeRange_Schema.shape).optional(),
+});
 export const course_Override_Config_Schema: z.ZodType<Course_Metadata_Overrides> = z.deepPartial(
   deepStrict_Schema(
     z.object({
-      params: course_Config_Schema.shape.params.omit({ languages: true }),
+      params: partializableParams_Schema,
       locale: course_Config_Schema.shape.locale,
     }),
   ),

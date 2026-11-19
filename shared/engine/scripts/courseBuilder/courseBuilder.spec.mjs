@@ -147,6 +147,41 @@ test('modern Config tree dispatches Course, Module, Chapter, Episode, Section, B
   assert.deepEqual(tree.parseDiagnostics, []); // Parsing is NOT typechecking the incomplete draft.
 });
 
+test('Episode media drafts identify absent image, audio, video, subtitles and poster assets', () => {
+  const draft = structuredClone(source);
+  const blocks = draft.content.items.basics.content.items.first.content.items.episode.section.items.intro.content;
+  blocks.items.picture = {
+    type: 'image',
+    slug: 'picture',
+    params: { fill: true, aspectRatio: 1 },
+    locale: { alt: { uk: 'Ілюстрація' } },
+  };
+  blocks.items.sound = {
+    type: 'audio',
+    slug: 'sound',
+    locale: { title: { uk: 'Аудіо' } },
+  };
+  blocks.items.movie = {
+    type: 'video',
+    slug: 'movie',
+    locale: { label: { uk: 'Відео' } },
+  };
+  blocks.items.captions = { type: 'subtitles', slug: 'captions' };
+  blocks.order.push('picture', 'sound', 'movie', 'captions');
+  const generated = renderCourseSource(draft);
+  assert.equal((generated.match(/TODO\(asset\)/g) ?? []).length, 5);
+  for (const extension of ['webp', 'mp3', 'mp4', 'vtt']) {
+    assert(generated.includes('00000000-0000-0000-0000-000000000000.' + extension));
+  }
+  assert.match(generated, /posterFileName/);
+  assert.deepEqual(ts.createSourceFile('draft.ts', generated, ts.ScriptTarget.Latest, true).parseDiagnostics, []);
+  // A real file reference supplied by an author must not be replaced.
+  blocks.items.picture.locale.fileName = 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa.webp';
+  const withRealImage = renderCourseSource(draft);
+  assert.equal((withRealImage.match(/TODO\(asset\)/g) ?? []).length, 4);
+  assert(withRealImage.includes('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa.webp'));
+});
+
 test('source-language Course text stays source-only with no invented locales', () => {
   const rendered = renderCourseSource(source);
   assert(rendered.includes('"languages": ['));
