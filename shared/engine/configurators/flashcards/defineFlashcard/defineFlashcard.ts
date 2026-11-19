@@ -235,7 +235,8 @@ export function defineFlashcard<
   const { content: _content, ...metadataInput } = config;
   const authored = structuredClone(metadataInput);
   const copyAuthored = () => metadataSchema.parse(structuredClone(authored));
-  const { id, type, slug } = authored;
+  const { id, slug } = authored;
+  const type = 'flashcard' as const;
   const initialContent = {
     front: config.content.front,
     back: config.content.back,
@@ -249,6 +250,7 @@ export function defineFlashcard<
     type,
     parameters: {
       ...structuredClone(authored.parameters),
+      disabilities: authored.parameters.disabilities ?? [],
       flags: {
         order: [...authored.parameters.flags.order],
         items: Object.fromEntries(
@@ -256,7 +258,7 @@ export function defineFlashcard<
         ),
       },
     },
-  } satisfies DeepPartial<Flashcard_Config>;
+  } satisfies DeepPartial<Flashcard_Config> & { type: 'flashcard' };
 
   const buildSide = <Items extends Record<string, Block>>(
     side: FlashcardSide_Configurator<Items, Languages>,
@@ -313,6 +315,7 @@ export function defineFlashcard<
         type,
         parameters: {
           ...publishedParameters,
+          disabilities: publishedParameters.disabilities ?? [],
           flags: flags.bases,
           ...(source.parameters.relationships
             ? {
@@ -369,7 +372,7 @@ export function defineFlashcard<
       if (patch.parameters !== undefined && !isRecord(patch.parameters))
         throw new Error('parameters must be an object');
       for (const key of Object.keys(patch.parameters ?? {})) {
-        if (!['disabled', 'tags', 'flags', 'relationships'].includes(key)) {
+        if (!['disabled', 'tags', 'disabilities', 'flags', 'relationships'].includes(key)) {
           throw new Error('Unknown Flashcard parameter override field: ' + key);
         }
       }

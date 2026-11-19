@@ -3,6 +3,7 @@ import { test } from 'node:test';
 import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { allLanguageCodes } from '@svitlo/engine/runtime';
 
 const root = resolve(fileURLToPath(new URL('..', import.meta.url)));
 const renderer = join(root, 'dist-renderer');
@@ -23,7 +24,9 @@ test('build bundles the complete Lesson Props base and sparse selected locale', 
   assert.equal(lessonBase.id, id);
   assert.equal(lessonBase.type, 'lesson');
   assert.ok(Array.isArray(lessonBase.section));
-  assert.ok(Array.isArray(lessonBase.flashcards));
+  // Questions and Flashcards are separate resources, not embedded in Lesson Props.
+  assert.equal(Object.hasOwn(lessonBase, 'flashcards'), false);
+  assert.equal(Object.hasOwn(lessonBase, 'questions'), false);
   assert.ok(lessonBase.params.languages.includes('uk'));
   const ukFile = join(resources, 'uk.json');
   if (existsSync(ukFile)) assert.ok(JSON.parse(readFileSync(ukFile, 'utf8')));
@@ -38,7 +41,7 @@ test('build bundles the complete Lesson Props base and sparse selected locale', 
     assert.ok(base[method].id);
   }
   const languages = readdirSync(methodsRoot).filter(name => name !== 'base.json');
-  assert.equal(languages.length, 29);
+  assert.deepEqual(languages.sort(), allLanguageCodes.map(language => language + '.json').sort());
   assert.ok(languages.includes('uk.json'));
   assert.ok(languages.includes('qm.json'));
   for (const filename of languages) {
