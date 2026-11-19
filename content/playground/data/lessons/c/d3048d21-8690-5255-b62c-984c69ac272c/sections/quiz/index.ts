@@ -42,7 +42,10 @@ export const quizSection = defineQuizSection({
     skippable: true,
     isBlocker: true,
     timeLimitSeconds: 300,
-    selection: { mode: 'all', questionIds: Object.values(howLightMovesQuestions.selectOneAnswer).map(question => question.id) },
+    selection: {
+      mode: 'all',
+      questionIds: Object.values(howLightMovesQuestions.selectOneAnswer).map(question => question.id),
+    },
     layout: { mode: 'stepper', showProgress: true },
     feedbackMode: 'immediate',
     interaction: {

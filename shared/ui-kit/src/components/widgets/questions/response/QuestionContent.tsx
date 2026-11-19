@@ -1,6 +1,11 @@
 import type { UiKitMessages } from '#types/uiKitMessages';
 import type { ContentBlock_Props, LanguageCode } from '@svitlo/engine/runtime';
-import { assertNever, resolveLocalizedText, subtitlesResourceLabel, type LocalizedText } from '../../ContentBlockRenderer/utils';
+import {
+  assertNever,
+  resolveLocalizedText,
+  subtitlesResourceLabel,
+  type LocalizedText,
+} from '../../ContentBlockRenderer/utils';
 import { ContentBlockRenderer } from '../../ContentBlockRenderer';
 import type { SceneRegistry } from '../../ContentBlockRenderer';
 
@@ -45,8 +50,10 @@ export function questionBlockLabel(block: QuestionBlock, language?: LanguageCode
       return block.locale.alt;
     case 'carousel': {
       const firstSlide = block.locale.slides[0];
-      return optionalLabelText(block.locale.title, language, 'carousel.title') ??
-        (firstSlide ? questionBlockLabel(firstSlide, language) : '');
+      return (
+        optionalLabelText(block.locale.title, language, 'carousel.title') ??
+        (firstSlide ? questionBlockLabel(firstSlide, language) : '')
+      );
     }
     case 'audio':
       return labelText(block.locale.title, language, 'audio.title');
@@ -69,7 +76,10 @@ export function questionBlockLabel(block: QuestionBlock, language?: LanguageCode
   }
 }
 export function questionLabel(blocks: readonly QuestionBlock[], language?: LanguageCode): string {
-  return blocks.map(block => questionBlockLabel(block, language)).filter(Boolean).join(' ');
+  return blocks
+    .map(block => questionBlockLabel(block, language))
+    .filter(Boolean)
+    .join(' ');
 }
 
 export type QuestionItem = { id: string; block: QuestionBlock };

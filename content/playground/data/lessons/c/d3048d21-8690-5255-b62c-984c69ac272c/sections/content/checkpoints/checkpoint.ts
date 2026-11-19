@@ -1,4 +1,10 @@
-import { configuratorArrayToSlugMap, defineCheckpoint, defineCheckpointAnswer, defineCheckpointItem, defineText } from '@svitlo/engine/build';
+import {
+  configuratorArrayToSlugMap,
+  defineCheckpoint,
+  defineCheckpointAnswer,
+  defineCheckpointItem,
+  defineText,
+} from '@svitlo/engine/build';
 
 export const checkpoint = defineCheckpoint({
   id: 'cd65e160-da27-57e1-a58f-38b1276c4346',
@@ -133,7 +139,6 @@ export const checkpoint = defineCheckpoint({
               }),
             ]),
             order: ['lightSourcePositionAnswer'],
-
           },
         }),
       }),
@@ -153,7 +158,7 @@ export const checkpoint = defineCheckpoint({
               bn: 'অ্যানিমেশনের গতি বদলালে কি পথ বদলে যায়?',
               de: 'Ändert sich die Bahn, wenn du die Animationsgeschwindigkeit änderst?',
               en: 'Does the path change when you change the animation speed?',
-              it: 'Il percorso cambia quando modifichi la velocità dell\'animazione?',
+              it: "Il percorso cambia quando modifichi la velocità dell'animazione?",
               es: '¿Cambia la trayectoria al modificar la velocidad de la animación?',
               et: 'Kas valguse teekond muutub, kui muudad animatsiooni kiirust?',
               fr: "La trajectoire change-t-elle quand tu modifies la vitesse de l'animation ?",
@@ -199,7 +204,7 @@ export const checkpoint = defineCheckpoint({
                     bn: 'নিয়ন্ত্রণটি শুধু অ্যানিমেশনের গতি বদলায়; পথ সোজাই থাকে।',
                     de: 'Der Regler ändert nur die Animationsgeschwindigkeit; die Bahn bleibt gerade.',
                     en: 'The control changes only the animation speed; the path stays straight.',
-                    it: 'Il comando modifica soltanto la velocità dell\'animazione; il percorso rimane rettilineo.',
+                    it: "Il comando modifica soltanto la velocità dell'animazione; il percorso rimane rettilineo.",
                     es: 'El control solo cambia la velocidad de la animación; la trayectoria sigue siendo recta.',
                     et: 'Juhtnupp muudab ainult animatsiooni kiirust; valguse teekond jääb sirgeks.',
                     fr: "Le réglage change seulement la vitesse de l'animation ; la trajectoire reste droite.",
@@ -229,7 +234,6 @@ export const checkpoint = defineCheckpoint({
               }),
             ]),
             order: ['animationSpeedAnswer'],
-
           },
         }),
       }),
@@ -295,7 +299,7 @@ export const checkpoint = defineCheckpoint({
                     bn: 'অস্বচ্ছ বস্তু কিছু আলো আটকে দেয় এবং তার পেছনে ছায়া তৈরি হয়।',
                     de: 'Ein undurchsichtiger Gegenstand hält einen Teil des Lichts auf und wirft dahinter einen Schatten.',
                     en: 'An opaque object blocks some of the light and casts a shadow behind it.',
-                    it: 'Un oggetto opaco blocca parte della luce e proietta un\'ombra dietro di sé.',
+                    it: "Un oggetto opaco blocca parte della luce e proietta un'ombra dietro di sé.",
                     es: 'Un objeto opaco bloquea parte de la luz y produce una sombra detrás de él.',
                     et: 'Läbipaistmatu ese takistab osa valgusest ja selle taha tekib vari.',
                     fr: 'Un objet opaque bloque une partie de la lumière et crée une ombre derrière lui.',
@@ -325,7 +329,6 @@ export const checkpoint = defineCheckpoint({
               }),
             ]),
             order: ['opaqueObjectShadowAnswer'],
-
           },
         }),
       }),
