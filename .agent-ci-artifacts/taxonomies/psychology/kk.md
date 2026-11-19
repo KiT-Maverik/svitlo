@@ -2256,7 +2256,7 @@ Skills: 6
 
 **Methodological description (English):** Explain how nociceptive input, context, attention, and expectations interact in the experience of pain, without equating its intensity with a single tissue measurement.
 
-**User-friendly description (kk):** Auyrsynu täjıribesı bır ğana tın signalynan nege täuelsız ekenın zertte.
+**User-friendly description (kk):** Auyrsynu täjıribesı tınnen keletın bır signalğa ğana täueldı emes ekenın zertte.
 
 ##### Propriotseptsiia
 

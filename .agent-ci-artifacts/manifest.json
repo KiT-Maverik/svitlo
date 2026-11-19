@@ -1,7 +1,7 @@
 {
   "schemaVersion": 3,
   "kind": "pr-scoped-agent-ci-artifacts",
-  "sourceCommit": "5363081c7f54b40e6d2362a0c2f48fc7e7ba4176",
+  "sourceCommit": "851f12a4e4c00d940818fa1d694b786de4b393a7",
   "scope": {
     "kind": "skills",
     "package": "content/psychology",
