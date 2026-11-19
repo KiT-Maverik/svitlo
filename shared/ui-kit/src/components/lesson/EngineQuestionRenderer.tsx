@@ -387,31 +387,36 @@ export function EngineQuestionRenderer({
     identity: string;
     status: 'loading' | 'ready' | 'error';
     questions: Question[];
-  }>({ identity, status: 'loading', questions: [] });
+    fallbackIds: string[];
+  }>({ identity, status: 'loading', questions: [], fallbackIds: [] });
 
   useEffect(() => {
     const controller = new AbortController();
-    setLoad({ identity, status: 'loading', questions: [] });
+    setLoad({ identity, status: 'loading', questions: [], fallbackIds: [] });
     if (!assessmentLoader) {
-      setLoad({ identity, status: 'error', questions: [] });
+      setLoad({ identity, status: 'error', questions: [], fallbackIds: [] });
     } else {
-      assessmentLoader.loadQuestions({ lessonId, language, ids, signal: controller.signal })
-        .then(result => selectQuizQuestions(result, ids))
+      assessmentLoader
+        .loadQuestions({ language, ids, signal: controller.signal })
+        .then(result => ({
+          questions: selectQuizQuestions(result.items, ids),
+          fallbackIds: result.fallbacks.map(item => item.id),
+        }))
         .then(
-        questions => {
-          if (!controller.signal.aborted)
-            setLoad({ identity, status: 'ready', questions });
-        },
-        () => {
-          if (!controller.signal.aborted) setLoad({ identity, status: 'error', questions: [] });
-        },
-      );
+          ({ questions, fallbackIds }) => {
+            if (!controller.signal.aborted) setLoad({ identity, status: 'ready', questions, fallbackIds });
+          },
+          () => {
+            if (!controller.signal.aborted) setLoad({ identity, status: 'error', questions: [], fallbackIds: [] });
+          },
+        );
     }
     return () => controller.abort();
   }, [assessmentLoader, lessonId, language, identity, attempt]);
 
-  const current = load.identity === identity ? load : { status: 'loading' as const, questions: [] };
-  if (current.status === 'loading') return <Typography role="status">{messages.learningLayout.preparingLesson}</Typography>;
+  const current = load.identity === identity ? load : { status: 'loading' as const, questions: [], fallbackIds: [] };
+  if (current.status === 'loading')
+    return <Typography role="status">{messages.learningLayout.preparingLesson}</Typography>;
   if (current.status === 'error')
     return (
       <Stack spacing={2}>
@@ -423,6 +428,7 @@ export function EngineQuestionRenderer({
     <ResolvedQuiz
       key={identity}
       questions={current.questions}
+      fallbackIds={current.fallbackIds}
       section={section}
       messages={messages}
       sceneRegistry={sceneRegistry}
@@ -433,12 +439,14 @@ export function EngineQuestionRenderer({
 
 function ResolvedQuiz({
   questions,
+  fallbackIds,
   section,
   messages,
   sceneRegistry,
   onComplete,
 }: {
   questions: Question[];
+  fallbackIds: readonly string[];
   section: QuizSection_Props;
   messages: UiKitMessages;
   sceneRegistry?: SceneRegistry;
@@ -489,7 +497,11 @@ function ResolvedQuiz({
         />
       )}
       {questions.map((question, position) => (
-        <Box key={question.id} sx={{ display: stepper && index !== position ? 'none' : 'block' }}>
+        <Box
+          key={question.id}
+          lang={fallbackIds.includes(question.id) ? 'en' : undefined}
+          sx={{ display: stepper && index !== position ? 'none' : 'block' }}
+        >
           <QuestionCard
             question={question}
             messages={messages}

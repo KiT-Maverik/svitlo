@@ -40,7 +40,7 @@ describe('Configurators', () => {
         locale: { title: { en: 'Course', uk: 'Курс' }, description: 'Course introduction' },
         content: { items: { module: chapterModule }, order: ['module'] },
       };
-      const course = defineCourse<'course', typeof languages, { module: typeof chapterModule }>(courseInput);
+      const course = defineCourse<'course', { module: typeof chapterModule }, typeof languages>(courseInput);
 
       test('Course hierarchy retains literal slugs and publishes ordered plain Props', () => {
         assert.equal(course.slug, 'course');
@@ -262,4 +262,94 @@ describe('Configurators', () => {
       });
     });
   });
+});
+
+test('Course publishes optional outcomes, EducationStandard references and learner audience', () => {
+  const id = '30ecbde1-97fd-5fe7-a353-ea89b9ef4a67';
+  const skillId = 'd3048d21-8690-5255-b62c-984c69ac272c';
+  const standardId = '82104b25-1a51-4b24-8160-98c4ce912f10';
+  const input = {
+    id,
+    slug: 'courseOutcomes',
+    type: 'course' as const,
+    params: {
+      languages: ['en', 'uk'] as const,
+      outcomes: { skills: [skillId], skillGroups: [], skillDomains: [] },
+      prerequisites: { skills: [] },
+      educationStandards: [standardId],
+      age: { min: 6, max: 10 },
+      grade: { min: 1, max: 4 },
+    },
+    locale: {
+      title: { en: 'Learning', uk: 'Навчання' },
+      description: 'An accessible course',
+      outcomesText: { en: 'Explain light', uk: 'Пояснювати світло' },
+    },
+    content: { items: {}, order: [] },
+  };
+  assert.equal(course_Config_Schema.safeParse(input).success, true);
+  const course = defineCourse(input);
+  const published = course.build.props({ languages: ['uk'] });
+  assert.deepEqual(published.base.params.outcomes?.skills, [skillId]);
+  assert.deepEqual(published.base.params.educationStandards, [standardId]);
+  assert.deepEqual(published.base.params.age, { min: 6, max: 10 });
+  assert.equal(published.locale?.uk?.locale?.outcomesText, 'Пояснювати світло');
+  assert.equal(JSON.stringify(published).includes('Explain light'), false);
+  const patch = course.build.overrides(
+    {
+      params: { outcomes: { skills: [skillId] }, grade: { min: 2 } },
+      locale: { outcomesText: { uk: 'Нова мета' } },
+    },
+    { languages: ['uk'] },
+  );
+  assert.deepEqual(patch.base.params?.outcomes?.skills, [skillId]);
+  assert.equal(patch.locale?.uk?.locale?.outcomesText, 'Нова мета');
+  assert.equal(course.build.props({ languages: ['uk'] }).locale?.uk?.locale?.outcomesText, 'Пояснювати світло');
+
+  assert.equal(
+    course_Config_Schema.safeParse({
+      ...input,
+      params: { ...input.params, age: { min: 12, max: 7 } },
+    }).success,
+    false,
+  );
+  assert.equal(
+    course_Config_Schema.safeParse({
+      ...input,
+      params: { ...input.params, grade: { min: -1, max: 2 } },
+    }).success,
+    false,
+  );
+  assert.throws(
+    () =>
+      course.build.overrides(
+        {
+          params: { age: { min: 11, max: 9 } },
+        },
+        { languages: ['uk'] },
+      ),
+    /invalid|minimum|minimum must not exceed|greater/i,
+  );
+  assert.equal(
+    course_Config_Schema.safeParse({
+      ...input,
+      params: { ...input.params, educationStandards: [standardId, standardId] },
+    }).success,
+    false,
+  );
+  assert.equal(
+    course_Config_Schema.safeParse({
+      ...input,
+      params: { ...input.params, outcomes: { skills: ['not-a-uuid'] } },
+    }).success,
+    false,
+  );
+  assert.equal(
+    course_Config_Schema.safeParse({
+      ...input,
+      params: { ...input.params, outcomes: { skills: [skillId], courses: [id] } },
+    }).success,
+    false,
+    'Outcomes cannot implicitly mark a prerequisite Course as completed',
+  );
 });
