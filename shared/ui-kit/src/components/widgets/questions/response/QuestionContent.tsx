@@ -1,6 +1,6 @@
 import type { UiKitMessages } from '#types/uiKitMessages';
 import type { ContentBlock_Props, LanguageCode } from '@svitlo/engine/runtime';
-import { assertNever, resolveLocalizedText, type LocalizedText } from '../../ContentBlockRenderer/utils';
+import { assertNever, resolveLocalizedText, subtitlesResourceLabel, type LocalizedText } from '../../ContentBlockRenderer/utils';
 import { ContentBlockRenderer } from '../../ContentBlockRenderer';
 import type { SceneRegistry } from '../../ContentBlockRenderer';
 
@@ -63,7 +63,7 @@ export function questionBlockLabel(block: QuestionBlock, language?: LanguageCode
       return typeof value.title === 'string' ? value.title : '';
     }
     case 'subtitles':
-      throw new Error('Subtitles cannot be used as standalone question labels');
+      return subtitlesResourceLabel(block.locale.fileLocation);
     default:
       return assertNever(block);
   }

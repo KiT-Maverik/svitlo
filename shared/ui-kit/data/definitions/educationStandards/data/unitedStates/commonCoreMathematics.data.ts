@@ -1,0 +1,50 @@
+import { defineEducationStandard } from '@svitlo/engine/build';
+
+/** Authored cross-textbook reference, not a claim of Course alignment. */
+export const commonCoreMathematics = defineEducationStandard({
+  id: '9c17f954-8826-4760-8a44-39cd740ffd9b',
+  slug: 'commonCoreMathematics',
+  name: 'Common Core State Standards for Mathematics',
+  params: {
+    countries: ['US'],
+    nameLanguage: 'en',
+    sourceUrl: 'https://corestandards.org/mathematics-standards/',
+    version: '2010 original framework',
+  },
+  description: {
+    methodological:
+      "The Common Core State Standards Initiative's 2010 mathematics framework describes grade-specific mathematics content and cross-grade Standards for Mathematical Practice for US kindergarten through high school. It emphasises conceptual understanding, procedural fluency, reasoning and modelling. These are state-led standards; states and districts decide adoption, revision and implementation, so the framework does not constitute a universal federal requirement. Local implementation may deviate from the original 2010 document and alignment must be evaluated against the applicable state's adopted version.",
+    frontend: {
+      ar: 'يصف توقعات تعلم الرياضيات في المدارس الأمريكية من الروضة حتى الصف الثاني عشر.',
+      be: 'Апісвае патрабаваньні да матэматычнай адукацыі ў ЗША ад падрыхтоўчага клясу (K) да 12-й клясы.',
+      bn: 'যুক্তরাষ্ট্রে কিন্ডারগার্টেন থেকে দ্বাদশ শ্রেণি পর্যন্ত গণিত শেখার প্রত্যাশা তুলে ধরে।',
+      de: 'Beschreibt Mathematikstandards für US-Schulen von der Klasse K (Kindergarten) bis zur 12. Klasse.',
+      en: 'Outlines mathematics expectations for US schooling from kindergarten to grade 12.',
+      es: 'Describe las expectativas de matemáticas en EE. UU. desde kindergarten (grado K) hasta el 12.º grado.',
+      et: 'Kirjeldab USA matemaatika õpitulemusi lasteaiast kuni 12. klassini.',
+      fr: 'Présente les attentes en mathématiques aux États-Unis de la classe K (kindergarten) à la 12e année.',
+      he: 'מתאר ציפיות ללמידת מתמטיקה בארה״ב מהגן ועד כיתה י״ב.',
+      hi: 'अमेरिका में किंडरगार्टन से कक्षा 12 तक गणित सीखने की अपेक्षाएँ बताता है।',
+      id: 'Merinci harapan pembelajaran matematika di AS dari taman kanak-kanak sampai kelas 12.',
+      it: 'Descrive le competenze matematiche attese negli USA dalla classe K (kindergarten) al 12º anno.',
+      ja: '米国の幼稚園から高校最終学年までの数学の学習目標を示します。',
+      ka: 'აღწერს აშშ-ში მათემატიკის სწავლის მოლოდინებს საბავშვო ბაღიდან მე-12 კლასამდე.',
+      kk: 'АҚШ-та балабақшадан 12-сыныпқа дейінгі математикадан күтілетін нәтижелерді сипаттайды.',
+      ko: '미국 유치원부터 12학년까지의 수학 학습 기대 수준을 제시합니다.',
+      lt: 'Aprašo matematikos mokymosi lūkesčius JAV nuo darželio iki 12 klasės.',
+      lv: 'Apraksta matemātikas apguves prasības ASV no bērnudārza līdz 12. klasei.',
+      mr: 'अमेरिकेत बालवाडीपासून इयत्ता 12 पर्यंत गणित शिकण्याच्या अपेक्षा मांडते.',
+      ms: 'Menggariskan jangkaan pembelajaran matematik di AS dari tadika hingga gred 12.',
+      pl: 'Przedstawia wymagania z matematyki w USA od klasy K (kindergarten) do klasy 12.',
+      pt: 'Apresenta expectativas de aprendizagem de matemática nos EUA do kindergarten (ano K) ao 12º ano.',
+      qm: 'AQŞ mekteplerinde balalar bağçasından 12-nci sınıfqa qadar matematika ögrenüv maqsatlarını tasvirley.',
+      ta: 'அமெரிக்காவில் மழலையர் வகுப்பு முதல் 12 ஆம் வகுப்பு வரை கணிதக் கற்றல் எதிர்பார்ப்புகளை விளக்குகிறது.',
+      te: 'అమెరికాలో కిండర్‌గార్టెన్ నుంచి 12వ తరగతి వరకు గణిత అభ్యసన అంచనాలను వివరిస్తుంది.',
+      tr: "ABD'de K sınıfından (kindergarten) 12. sınıfa kadar matematik öğrenme beklentilerini açıklar.",
+      uk: 'Описує очікувані результати вивчення математики у США від підготовчого класу (kindergarten) до 12-го класу.',
+      ur: 'امریکہ میں کنڈرگارٹن سے جماعت 12 تک ریاضی سیکھنے کی توقعات بیان کرتا ہے۔',
+      vi: 'Mô tả yêu cầu học toán tại Hoa Kỳ từ mẫu giáo đến lớp 12.',
+      zh: '概述美国从幼儿园到12年级的数学学习要求。',
+    },
+  },
+});

@@ -1,0 +1,51 @@
+import { defineEducationStandard } from '@svitlo/engine/build';
+
+/** Global educational reference, not Course certification. */
+export const finlandBasicEducation2014 = defineEducationStandard({
+  id: 'e1d3ba06-b6f6-462a-a7e1-6cc497e3b702',
+  slug: 'finlandBasicEducation2014',
+  name: 'Perusopetuksen opetussuunnitelman perusteet 2014',
+  params: {
+    countries: ['FI'],
+    grade: { min: 1, max: 9 },
+    nameLanguage: 'fi',
+    version: '2014 core curriculum (subsequently amended)',
+    sourceUrl: 'https://www.oph.fi/fi/koulutus-ja-tutkinnot/perusopetuksen-opetussuunnitelman-perusteet',
+  },
+  description: {
+    methodological:
+      'The Finnish National Agency for Education adopted the National Core Curriculum for Basic Education in 2014, providing the national foundation for the nine-year comprehensive school system, with progressive local implementation from 2016. It describes curricular values, transversal competencies, learning environments, assessment principles, grade-level subject objectives and support for learning. Education providers develop their own local curricula under this national framework; the 2014 title denotes the underlying core curriculum and does not exclude subsequent amendments, including provisions on learning support effective in August 2025. It is a nationally normative curriculum basis, not an unchanged 2014 classroom textbook.',
+    frontend: {
+      ar: 'يوجه المناهج المحلية للتعليم الأساسي في فنلندا ويحدد أهداف التعلم والتقييم.',
+      be: 'Накіроўвае мясцовыя праграмы асноўнай адукацыі ў Фінляндыі і вызначае мэты навучаньня.',
+      bn: 'ফিনল্যান্ডে মৌলিক শিক্ষার স্থানীয় পাঠ্যক্রম ও শেখার লক্ষ্য নির্ধারণের ভিত্তি দেয়।',
+      de: 'Bietet die nationale Grundlage für lokale Lehrpläne der finnischen Grundbildung.',
+      en: "Provides the national basis for local curricula and learning goals in Finland's basic education.",
+      es: 'Establece la base nacional para los currículos locales de educación básica en Finlandia.',
+      et: 'Loob Soome põhihariduse kohalike õppekavade ja õpieesmärkide aluse.',
+      fr: "Établit le cadre national des programmes locaux et des apprentissages de l'école fondamentale finlandaise.",
+      he: 'מניח את הבסיס הארצי לתוכניות לימוד מקומיות בחינוך הבסיסי בפינלנד.',
+      hi: 'फ़िनलैंड की बुनियादी शिक्षा के स्थानीय पाठ्यक्रमों व अधिगम लक्ष्यों का राष्ट्रीय आधार देता है।',
+      id: 'Menjadi dasar nasional kurikulum lokal dan tujuan pembelajaran pendidikan dasar Finlandia.',
+      it: "Costituisce la base nazionale dei curricoli locali e degli obiettivi dell'istruzione di base finlandese.",
+      ja: 'フィンランドの基礎教育における地域の教育課程と学習目標の全国的基盤です。',
+      ka: 'ქმნის ფინეთის საბაზო განათლების ადგილობრივი პროგრამებისა და მიზნების ეროვნულ საფუძველს.',
+      kk: 'Финляндиядағы негізгі білімнің жергілікті бағдарламалары мен оқу мақсаттарына ұлттық негіз болады.',
+      ko: '핀란드 기초교육의 지역 교육과정 및 학습 목표에 대한 국가적 기반을 제시합니다.',
+      lt: 'Sudaro nacionalinį pagrindą Suomijos pagrindinio ugdymo vietinėms programoms ir mokymosi tikslams.',
+      lv: 'Veido valsts pamatu Somijas pamatizglītības vietējām programmām un mācību mērķiem.',
+      mr: 'फिनलंडमधील मूलभूत शिक्षणाच्या स्थानिक अभ्यासक्रमांना व अध्ययन उद्दिष्टांना राष्ट्रीय आधार देते.',
+      ms: 'Menjadi asas kebangsaan bagi kurikulum tempatan dan matlamat pendidikan asas di Finland.',
+      pl: 'Stanowi krajową podstawę lokalnych programów i celów nauczania w fińskiej edukacji podstawowej.',
+      pt: 'Serve de base nacional aos currículos locais e às metas do ensino básico finlandês.',
+      qm: 'Finlyandiyada esasiy talimniñ yerli programlarına ve ögrenüv maqsatlarına milliy temel ola.',
+      ta: 'பின்லாந்தின் அடிப்படைக் கல்விக்கான உள்ளூர்ப் பாடத்திட்டங்களுக்கும் கற்றல் இலக்குகளுக்கும் தேசிய அடித்தளமாக விளங்குகிறது.',
+      te: 'ఫిన్లాండ్‌లో 1–9 తరగతుల ప్రాథమిక, దిగువ మాధ్యమిక విద్యలో స్థానిక పాఠ్యప్రణాళికలు, అభ్యసన లక్ష్యాలకు జాతీయ పునాదిని అందిస్తుంది.',
+      tr: "Finlandiya'da temel eğitimin yerel müfredatlarına ve öğrenme hedeflerine ulusal temel sağlar.",
+      uk: 'Є національною основою місцевих програм і навчальних цілей дев’ятирічної базової освіти Фінляндії (1–9 класи).',
+      ur: 'فن لینڈ کی بنیادی تعلیم کے مقامی نصاب اور تدریسی مقاصد کے لیے قومی بنیاد فراہم کرتا ہے۔',
+      vi: 'Làm nền tảng quốc gia cho chương trình địa phương và mục tiêu học tập của giáo dục cơ bản Phần Lan.',
+      zh: '为芬兰基础教育的地方课程与学习目标提供国家框架。',
+    },
+  },
+});

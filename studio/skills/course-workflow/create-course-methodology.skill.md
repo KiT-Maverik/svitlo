@@ -1,5 +1,7 @@
 # Create Course Methodology
 
+> **New Course production:** [Create Course Flow](./create-course-flow.skill.md) is the authoritative seven-stage coordinator. For a new Course, Stage 1–2 use the temporary editorial `course.yaml`, Stage 3 introduces Lesson slots, and Stage 5 materializes durable `methodology.md` and technical Course sources. The legacy paths and prerequisites described below remain for independent maintenance of previously authored Courses; they do not override the new flow.
+
 **Mandatory first action:** Read and apply the [Methodologist Persona](../../personas/methodist.persona.md) in full. Read the [Course entity](../../docs/entities/course.md), [Skill](../../docs/entities/skill.md), [SkillGroup](../../docs/entities/skill-group.md), [SkillDomain](../../docs/entities/skill-domain.md), and [UUID-based entity addressing](../../docs/architecture/entity-uuid-addressing.md). The persona defines professional judgment; this skill defines the specific task.
 
 ## Purpose and scope
@@ -7,6 +9,8 @@
 Create or revise the **permanent methodological specification for exactly one Course** in a textbook content package. This document describes why the Course exists, whom it serves, what competencies it targets, its pedagogical approach, prerequisites, and which educational standards it demonstrably aligns with.
 
 **Do not create a Table of Contents, Module/Chapter plan, Lesson brief, story, scenario, assessment questions, UX, code, or a Course runtime data file.** Course Methodology is an editorial artifact for future specialists and maintainers, not a generated frontend resource. An existing course may use this skill to document or revise its rationale.
+
+**Mandatory quality standard (new Course and legacy maintenance):** apply [Course methodology completeness](../../docs/entities/course.md#course-methodology-completeness--pedagogical-technical-specification). The approved methodology must explain concrete scope, verified Skill outcomes, instructional progression, misconception handling, learner entry profile, sources/standards claims and assessment evidence at sufficient depth that downstream specialists do not invent requirements. For new Course production, build this progressively in `course.yaml` with the seven-stage Course Flow; do not create a separate permanent `methodology.md` before materialization. No arbitrary word or token quota, artificial approval frontmatter or early runtime field.
 
 ## Inputs
 

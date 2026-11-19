@@ -6,6 +6,7 @@ import { describe, it } from 'node:test';
 
 import { discoverLessons, generate, loadLesson, parseArguments } from './generate-lessons-markdown.mjs';
 import { localizeReviewValue, renderLessonMarkdown, sourceIndex, supportedLanguages } from './lesson-markdown.mjs';
+import { renderFlashcardReference } from './flashcard-reference.mjs';
 
 import {
   testingRoot,
@@ -349,4 +350,220 @@ it('requires an exact Lesson UUID for read-only language inventory', () => {
       parseArguments(['--package', 'content/engine-fixture', '--lesson', lessonId, '--locale', 'it', '--list-locales']),
     /Usage/,
   );
+});
+
+describe('Opt-in flashcard reference (independent of the existing review consumer)', () => {
+  const sha = 'a'.repeat(40);
+  const imgId = '10101010-1010-4010-8010-101010101010';
+  const audioId = '20202020-2020-4020-8020-202020202020';
+  const videoId = '30303030-3030-4030-8030-303030303030';
+  const unusedId = '40404040-4040-4040-8040-404040404040';
+
+  it('recognizes explicit CLI mode and refuses ambiguous or non-lesson invocations', () => {
+    assert.equal(
+      parseArguments([
+        '--package',
+        packagePath,
+        '--lesson',
+        lessonId,
+        '--locale',
+        'uk',
+        '--purpose',
+        'flashcards',
+        '--stdout',
+      ]).purpose,
+      'flashcards',
+    );
+    assert.throws(
+      () => parseArguments(['--package', packagePath, '--locale', 'uk', '--purpose', 'flashcards', '--output', 'out']),
+      /requires exactly one --lesson/,
+    );
+    assert.throws(
+      () =>
+        parseArguments(['--package', packagePath, '--lesson', lessonId, '--list-locales', '--purpose', 'flashcards']),
+      /Usage|requires exactly one/,
+    );
+    assert.throws(
+      () =>
+        parseArguments([
+          '--package',
+          packagePath,
+          '--lesson',
+          lessonId,
+          '--locale',
+          'uk',
+          '--stdout',
+          '--purpose',
+          'unknown',
+        ]),
+      /requires exactly one/,
+    );
+  });
+
+  it('keeps regular Markdown unchanged while opt-in mode includes Quiz and Flashcard Section details', () => {
+    const lesson = fixture('uk');
+    lesson.section[1].content = [
+      {
+        id: 'quiz-intro',
+        slug: 'quizIntro',
+        type: 'text',
+        params: {},
+        locale: { value: 'Read before the quiz.' },
+      },
+    ];
+    lesson.section.push({
+      id: 'cards-id',
+      slug: 'flashcards',
+      type: 'flashcards',
+      params: {
+        selection: { flashcardIds: ['00000000-0000-4000-8000-000000000002'] },
+      },
+      locale: { title: 'Flashcards', navigationLabel: 'Cards' },
+      content: [],
+    });
+    const args = { lesson, locale: 'uk', languages: ['en', 'uk'], packagePath };
+    const regular = renderLessonMarkdown(args);
+    const specialized = renderLessonMarkdown({ ...args, purpose: 'flashcards' });
+    assert.doesNotMatch(regular, /Read before the quiz/);
+    assert.match(specialized, /Read before the quiz/);
+    assert.match(specialized, /Selected independent Flashcard UUIDs/);
+    assert.match(specialized, /00000000-0000-4000-8000-000000000002/);
+    assert.match(regular, /Quiz references independently published Question UUIDs/);
+  });
+
+  it('indexes only referenced media UUIDs, authored contexts and direct source documents', () => {
+    const tmp = temporaryRepo();
+    try {
+      const createAsset = (type, fileName) => {
+        const file = path.join(tmp.root, 'content/engine-fixture/assets', type, fileName);
+        fs.mkdirSync(path.dirname(file), { recursive: true });
+        fs.writeFileSync(file, 'fixture binary');
+      };
+      createAsset('audio', audioId + '.ogg');
+      createAsset('images', imgId + '.png');
+      createAsset('audio', unusedId + '.mp3');
+      fs.writeFileSync(path.join(tmp.lessonDir, 'methodology.md'), 'Target: identify the role of an audio example.\n');
+      const authoredBlock = path.join(tmp.lessonDir, 'sections/theory/narration');
+      fs.mkdirSync(authoredBlock, { recursive: true });
+      fs.writeFileSync(path.join(authoredBlock, 'index.ts'), "export const narration = { id: 'audio-id' };\n");
+      fs.writeFileSync(
+        path.join(authoredBlock, 'specification.md'),
+        'A narrated demonstration of light. Human-authored production note.\n',
+      );
+      const lesson = fixture('uk');
+      const audio = lesson.section[0].content.find(block => block.type === 'audio');
+      audio.locale.fileLocation = audioId + '.ogg';
+      audio.locale.description = 'Explains light travelling through air.';
+      const image = lesson.section[0].content.find(block => block.type === 'image');
+      image.locale.src = imgId + '.png';
+      const video = lesson.section[0].content.find(block => block.type === 'video');
+      video.locale.fileLocation = videoId + '.mp4';
+      const carousel = lesson.section[0].content.find(block => block.type === 'carousel');
+      carousel.locale.slides = [
+        {
+          id: 'carousel-image-id',
+          slug: 'recallPicture',
+          type: 'image',
+          params: {},
+          locale: { src: imgId + '.png', alt: 'Repeated physical image in another role' },
+        },
+      ];
+      const subtitles = {
+        id: 'subtitle-block',
+        slug: 'captions',
+        type: 'subtitles',
+        params: {},
+        locale: { fileLocation: 'https://example.org/captions.vtt' },
+      };
+      const checkpoint = lesson.section[0].content.find(block => block.type === 'checkpoint');
+      const item = checkpoint.content[0];
+      Object.assign(item, { type: 'checkpointItem', id: 'checkpoint-item-id', slug: 'checkpointItem' });
+      item.answer.push({
+        id: 'checkpoint-audio-id',
+        slug: 'listenAgain',
+        type: 'audio',
+        params: {},
+        locale: { fileLocation: audioId + '.ogg', title: 'Listen and recall' },
+      });
+      lesson.section[0].content.push(subtitles);
+      const sources = sourceIndex(tmp.root, path.relative(tmp.root, tmp.lessonDir));
+      const props = {
+        lesson,
+        locale: 'uk',
+        packagePath,
+        root: tmp.root,
+        lessonDirectory: tmp.lessonDir,
+        sourceRef: sha,
+        sourceBranch: 'tooling/lesson-markdown-flashcard-reference',
+        sourceFiles: sources,
+        verifyAtSha: relative => relative.endsWith(audioId + '.ogg') || relative.endsWith(imgId + '.png'),
+      };
+      const output = renderFlashcardReference(props);
+      assert.equal(output, renderFlashcardReference(props), 'Source-pinned output must be deterministic');
+      assert.match(output, /Target: identify the role of an audio example/);
+      assert.match(output, /A narrated demonstration of light/);
+      assert.match(output, /Explains light travelling through air/);
+      assert.match(output, /20202020-2020-4020-8020-202020202020/);
+      assert.match(output, /10101010-1010-4010-8010-101010101010/);
+      assert.match(output, /Referenced file missing/);
+      assert.match(output, /File on disk and present at source SHA/);
+      assert.match(output, new RegExp('blob/' + sha + '/content/engine-fixture/assets/audio/' + audioId));
+      assert.match(output, /30303030-3030-4030-8030-303030303030/);
+      assert.match(output, /Section:.*theory/);
+      assert.match(output, /Owning block:.*narration/);
+      assert.match(output, /Previous instructional context/);
+      assert.match(output, /carousel-image-id/);
+      assert.match(output, /checkpoint \/ checkpointItem \/ listenAgain/);
+      assert.match(output, /checkpoint-audio-id/);
+      assert.match(output, /External authored URL/);
+      assert.match(output, /https:\/\/example.org\/captions\.vtt/);
+      assert.match(output, new RegExp('blob/' + sha));
+      assert.doesNotMatch(output, new RegExp(unusedId));
+      assert.match(output, /Active-recall stimulus: candidate only/);
+      assert.match(output, /cannot be inferred|not inferred/);
+      assert.equal(fs.existsSync(path.join(tmp.lessonDir, 'flashcards.md')), false);
+    } finally {
+      tmp.cleanup();
+    }
+  });
+
+  it('fails closed on invalid SHA, symlinked referenced media and oversized metadata', () => {
+    const tmp = temporaryRepo();
+    try {
+      const lesson = fixture('uk');
+      const img = lesson.section[0].content.find(block => block.type === 'image');
+      img.locale.src = imgId + '.png';
+      const src = sourceIndex(tmp.root, path.relative(tmp.root, tmp.lessonDir));
+      const args = {
+        lesson,
+        locale: 'uk',
+        packagePath,
+        root: tmp.root,
+        lessonDirectory: tmp.lessonDir,
+        sourceFiles: src,
+        sourceRef: sha,
+      };
+      assert.throws(() => renderFlashcardReference({ ...args, sourceRef: 'main' }), /exact Git source SHA/);
+      const asset = path.join(tmp.root, 'content/engine-fixture/assets/images', imgId + '.png');
+      fs.mkdirSync(path.dirname(asset), { recursive: true });
+      fs.symlinkSync(path.join(tmp.lessonDir, 'index.ts'), asset);
+      assert.throws(() => renderFlashcardReference(args), /Symlinked referenced media/);
+      fs.unlinkSync(asset);
+      fs.writeFileSync(path.join(tmp.lessonDir, 'methodology.md'), 'x'.repeat(65537));
+      assert.throws(() => renderFlashcardReference(args), /Oversized Lesson reference document/);
+    } finally {
+      tmp.cleanup();
+    }
+  });
+
+  it('refuses unverified source revisions for the opt-in document without writing output', async () => {
+    const tmp = temporaryRepo();
+    try {
+      const opts = { package: packagePath, lesson: lessonId, locale: 'uk', stdout: true, purpose: 'flashcards' };
+      const lesson = await loadLesson(lessonEntry, textbook);
+      await assert.rejects(generate(opts, { root: tmp.root, loader: async () => lesson }), /actual Git revision SHA/);
+    } finally {
+      tmp.cleanup();
+    }
+  });
 });

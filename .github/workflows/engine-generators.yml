@@ -2,16 +2,23 @@ name: Engine generators
 
 on:
   pull_request:
-    branches: [main]
+    branches: [main, integration-branch]
     paths:
       - 'shared/engine/generators/**'
       - 'shared/engine/scripts/lessonBuilder/**'
+      - 'shared/engine/scripts/materializeCourseFlow/**'
+      - 'shared/engine/scripts/validateCourseFlow/**'
+      - 'shared/engine/yaml-schemas/**'
+      - 'scripts/ci/courseMaterialization/**'
+      - '.github/workflows/course-materialization.yml'
       - 'shared/engine/scripts/sceneScaffolding/**'
       - 'shared/engine/index.ts'
       - 'shared/engine/package.json'
       - 'shared/engine/tsconfig*.json'
       - 'shared/engine/scripts/generateLessonProps/**'
       - 'shared/engine/scripts/generateCourseProps/**'
+      - 'shared/engine/scripts/generateCourseReviewArtifacts/**'
+      - 'scripts/generateTranslationReviewArtifacts/**'
       - 'shared/engine/scripts/loadAuthoredConfigurators/**'
       - 'shared/engine/scripts/generatorCliIntegration/**'
       - 'scripts/textbook-tooling/**'
@@ -57,3 +64,35 @@ jobs:
             shared/engine/scripts/lessonBuilder/lessonBuilder.spec.mjs \
             shared/engine/scripts/sceneScaffolding/sceneScaffolding.spec.mjs \
             scripts/textbook-tooling/buildTextbook/stageTextbookAssets.spec.mjs
+
+      - name: Test Course Flow regression suites
+        run: |
+          node --test \
+            shared/engine/scripts/materializeCourseFlow/materialize-course-flow.spec.mjs \
+            shared/engine/scripts/validateCourseFlow/validate-course-flow.spec.mjs \
+            shared/engine/scripts/courseBuilder/courseBuilder.spec.mjs \
+            scripts/ci/courseMaterialization/course-materialization.spec.mjs
+
+      - name: Verify all checked-in Zod-derived YAML schemas
+        run: npm run content:check:yaml-schemas --workspace @svitlo/engine
+
+      - name: Check formatting of Course Flow sources and generated schemas
+        run: |
+          npx prettier --check \
+            shared/engine/yaml-schemas/*.json \
+            studio/skills/course-workflow/*.md \
+            studio/docs/entities/course.md \
+            studio/docs/architecture/README.md \
+            shared/engine/scripts/README.md \
+            shared/engine/scripts/courseBuilder/README.md \
+            shared/engine/scripts/validateCourseFlow/README.md \
+            shared/engine/scripts/materializeCourseFlow/README.md \
+            scripts/ci/courseMaterialization/README.md \
+            scripts/ci/courseMaterialization/*.mjs \
+            .github/workflows/course-materialization.yml \
+            shared/engine/scripts/materializeCourseFlow/*.mjs \
+            shared/engine/scripts/validateCourseFlow/*.mjs \
+            shared/engine/configurators/courses/defineCourse/defineCourse.schemas.ts \
+            shared/engine/configurators/courses/defineCourse/courseHierarchy.spec.ts \
+            studio/skills/course-workflow/course-flow.schema.json \
+            package.json shared/engine/package.json
