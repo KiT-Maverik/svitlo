@@ -443,11 +443,12 @@ test('canonical .ts Skill sources resolve and test modules do not create duplica
     f.save();
     runOne(f.lesson, 'generate', f.root);
     const code = fs.readFileSync(f.generated('index.ts'), 'utf8');
-    assert.match(
-      code,
-      /import \\{ safeSolarObservation \\} from "\\.\\.\\/\\.\\.\\/\\.\\.\\/skills\\/observingTheSky\\/observationPractice\\/safeSolarObservation"/,
+    assert(
+      code.includes(
+        'import { safeSolarObservation } from "../../../skills/observingTheSky/observationPractice/safeSolarObservation"',
+      ),
     );
-    assert.match(code, /skills: \\[safeSolarObservation\\.id\\]/);
+    assert(code.includes('skills: [safeSolarObservation.id]'));
     assert.doesNotMatch(code, new RegExp(skillId));
   }));
 
