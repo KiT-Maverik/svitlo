@@ -1,6 +1,6 @@
 name: Materialize reviewed Lesson from PR command
 
-# Requires deployment to main: issue_comment workflows run from the default branch.
+# Requires deployment to develop: issue_comment workflows run from the default branch.
 # Never execute candidate PR code or install its dependencies.
 on:
   issue_comment:

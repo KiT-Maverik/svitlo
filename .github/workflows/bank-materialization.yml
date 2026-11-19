@@ -1,7 +1,7 @@
 name: Materialize reviewed Questions or Flashcards from PR command
 
 # issue_comment workflows are loaded from the repository default branch.
-# A comment works only after this workflow is merged into main.
+# A command is available only after this workflow is deployed to develop.
 on:
   issue_comment:
     types: [created]
