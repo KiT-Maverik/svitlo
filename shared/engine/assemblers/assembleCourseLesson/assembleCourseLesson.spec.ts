@@ -22,7 +22,7 @@ const createInput = (): AssembleCourseLessonInput =>
         slug: 'sampleLesson',
         skills: [],
         params: {
-          requireQuiz: false,
+          quizRequiredForCompletion: false,
           languages: ['uk', 'en'],
           sections: { allowNavigation: true, allowSkipping: true, showIndexes: true },
         },
