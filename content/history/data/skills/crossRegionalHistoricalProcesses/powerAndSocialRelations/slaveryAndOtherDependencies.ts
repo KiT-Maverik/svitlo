@@ -52,7 +52,7 @@ export const slaveryAndOtherDependencies = defineSkill({
       it: 'Riconosci le diverse forme di privazione della libertà nelle società antiche.',
       ja: '古代社会にあったさまざまな不自由や隷属の形を見分けましょう。',
       ka: 'ამოიცანი თავისუფლების არქონის სხვადასხვა ფორმა ძველ საზოგადოებებში.',
-      kk: 'Ejelgı qoğamdardağy erkındıkten aiyrudyñ ärtürlı türlerın tany.',
+      kk: 'Ejelgı qoğamdarda qūldyq pen erkındıktı şekteudıñ basqa zañdy jäne ekonomıkalyq türlerın ajyrat.',
       ko: '고대 사회에서 자유를 박탈당한 여러 형태를 구별해 보세요.',
       lt: 'Atpažink įvairias laisvės suvaržymo formas senovės visuomenėse.',
       lv: 'Atpazīsti dažādas nebrīvības formas senajās sabiedrībās.',
