@@ -85,15 +85,14 @@ function sourceCommit() {
   return info.stdout.trim();
 }
 
-function fixTaxonomyLinks(markdown, book, destination) {
+export function fixTaxonomyLinks(markdown, book, destination) {
   const original = path.join(root, 'content', book, 'docs/generated/skills');
-  return markdown.replace(/\[([^\]]+\.data\.ts)\]\(([^)]+)\)/g, (_, label, value) => {
+  const sourceRoot = path.join(root, 'content', book, 'data/skills') + path.sep;
+  return markdown.replace(/\[([^\]\n]+\.ts)\]\(([^)\n]+)\)/g, (_, label, value) => {
     const resolved = path.resolve(original, decodeURI(value));
-    if (
-      !resolved.startsWith(path.join(root, 'content', book, 'data/skills') + path.sep) ||
-      !resolved.endsWith('.data.ts')
-    )
+    if (!resolved.startsWith(sourceRoot) || path.basename(resolved) !== label) {
       throw new Error('Unsafe canonical taxonomy link: ' + value);
+    }
     return (
       '[' + label + '](' + encodeURI(path.relative(path.dirname(destination), resolved).split(path.sep).join('/')) + ')'
     );
