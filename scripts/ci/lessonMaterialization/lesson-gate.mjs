@@ -6,7 +6,7 @@
  */
 import fs from 'node:fs';
 import {
-  github, requireActor, report, safeBranch, gitBlob,
+  github, requireActor, report, safeBranch, gitBlob, parseIdentity as parseCourseIdentity,
 } from '../courseMaterialization/course-gate.mjs';
 
 const UUID = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/;
@@ -129,10 +129,12 @@ export async function inspect(number, expectedHead) {
     if (!parent || parent.state !== 'open' ||
         parent.head?.repo?.full_name !== repo || parent.base?.ref !== defaultBranch ||
         pr.base?.ref !== parent.head?.ref ||
-        !parent.body?.includes('<!-- svitlo-course-flow:v1 -->') ||
-        !parent.body.includes('Course UUID: ' + identity.parent.courseId))
-      throw Error('Course Lesson must target its verified parent integration branch and UUID');
-    // The parent must actually know the Lesson UUID, not merely share a Course label.
+        !parent.body?.includes('<!-- svitlo-course-flow:v1 -->'))
+      throw Error('Course Lesson must target its verified parent integration branch');
+    const courseIdentity = parseCourseIdentity(parent.body);
+    if (courseIdentity.id !== identity.parent.courseId || courseIdentity.pkg !== identity.pkg)
+      throw Error('Parent Course UUID/textbook does not match Lesson linkage');
+    // The Course-owned inventory must actually register this Lesson UUID.
     if (!parent.body.includes(identity.id))
       throw Error('Parent Course PR does not register this Lesson UUID');
   } else if (pr.base?.ref !== defaultBranch) {
