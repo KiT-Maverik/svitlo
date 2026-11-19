@@ -277,7 +277,7 @@ test('workflow runs trusted default branch code only and isolates publish permis
   assert.equal(workflow.jobs.analyze.permissions.contents, 'read');
   assert.equal(workflow.jobs.publish.permissions.contents, 'write');
   assert.equal(workflow.jobs.publish.permissions['pull-requests'], 'read');
-  assert.match(workflow.jobs.analyze.steps.find(step => step.working_directory === 'trusted')?.run ?? '', /--ignore-scripts/);
+  assert.match(workflow.jobs.analyze.steps.find(step => step['working-directory'] === 'trusted')?.run ?? '', /--ignore-scripts/);
   assert(workflow.jobs.analyze.steps.some(step => step.run?.includes('lesson-materialization.mjs analyze')));
   assert(workflow.jobs.publish.steps.some(step => step.run?.includes('lesson-materialization.mjs publish')));
   assert(!workflow.jobs['register-lessons']);
