@@ -33,7 +33,7 @@ FastGate builds prerequisite public exports once in dependency order, then runs 
 ## Educational labels and TODO blockers
 
 - `work: course` is matched from authored `content/**/data/courses/**`. Lesson-owned source YAML/index/methodology/sections earns `work: lesson`. `questions.yaml` and `questions/**` match `work: questions`; `flashcards.yaml` and `flashcards/**` match `work: flashcards`. Bank-only changes must not receive Lesson label solely from path ancestry. Engine tooling changes do not imply an educational authoring label.
-- `Blocker TODOs / clean` always runs on PR events. Draft PRs changing Course/Lesson/bank sources report newly introduced blockers as warnings without failing; Ready PRs to develop or intermediate integration branches reject new blockers in their diff; Ready main promotion scans **all supported tracked source** including inherited TODOs. This guard deliberately does not parse Markdown.
+- `Blocker TODOs / clean` always runs on PR events. Draft PRs changing Course/Lesson/bank sources report newly introduced blockers as warnings without failing; Ready PRs to develop or intermediate integration branches reject blockers in all source files changed by the PR (including inherited comments); Ready main promotion scans **all supported tracked source** including inherited TODOs. This guard deliberately does not parse Markdown.
 - A required GitHub status check, not the label itself, enforces the no-blocker merge rule. Nested intermediate branches require an enforceable ruleset if merges can occur without GitHub's protected-target checks.
 
 ## Verification

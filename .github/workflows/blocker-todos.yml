@@ -49,5 +49,5 @@ jobs:
           elif [[ "$TARGET_BRANCH" == main || "$TARGET_BRANCH" == refs/heads/main ]]; then
             node scripts/ci/checkBlockerTodos/check-blocker-todos.mjs full
           else
-            node scripts/ci/checkBlockerTodos/check-blocker-todos.mjs diff "$BASE_SHA" "$HEAD_SHA"
+            node scripts/ci/checkBlockerTodos/check-blocker-todos.mjs changed "$BASE_SHA" "$HEAD_SHA"
           fi
