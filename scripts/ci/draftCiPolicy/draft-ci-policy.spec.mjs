@@ -54,3 +54,26 @@ test('mobile and production already require Ready and preserve manual diagnostic
   }
   assert.ok(root.endsWith('/'));
 });
+
+test('PR auto-formatter fixes only development PRs, never protected release sources', () => {
+  const formatter = workflow('pr-auto-format.yml');
+  assert.match(formatter, /branches: \[develop\]/);
+  assert.doesNotMatch(formatter, /branches: \[main, develop\]/);
+  assert.match(formatter, /name: Auto-fix changed PR files/);
+  assert.match(formatter, /prettier --write --log-level warn/);
+  assert.match(formatter, /github\.event\.pull_request\.head\.ref != 'develop'/);
+  assert.match(formatter, /github\.event\.pull_request\.head\.ref != 'main'/);
+  assert.match(formatter, /name: PR Auto-format \/ check' \|\| 'PR Auto-format \/ fix'/);
+  assert.match(formatter, /name: Independently check formatting on the latest commit/);
+  assert.match(formatter, /prettier --check --log-level warn/);
+});
+
+test('PR artifact auto-cleanup excludes protected production promotion without weakening guard', () => {
+  const cleanup = workflow('translation-review.yml');
+  const guard = workflow('agent-ci-artifacts-guard.yml');
+  assert.match(cleanup, /branches: \[develop, integration-branch, new-lesson, integration\/italian-localization\]/);
+  assert.match(cleanup, /github\.event\.pull_request\.head\.ref != github\.event\.repository\.default_branch/);
+  assert.match(cleanup, /github\.event\.pull_request\.head\.ref != 'main'/);
+  assert.match(guard, /branches: \[main, develop, integration-branch, new-lesson, integration\/italian-localization\]/);
+  assert.match(guard, /name: Agent CI Artifacts \/ clean/);
+});
