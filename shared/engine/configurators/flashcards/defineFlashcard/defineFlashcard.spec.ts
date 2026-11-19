@@ -56,7 +56,6 @@ describe('Configurators', () => {
       };
 
       const source = {
-        type: 'flashcard' as const,
         id: id('a4'),
         slug: 'lightCard' as const,
         parameters: {
@@ -109,7 +108,6 @@ describe('Configurators', () => {
         const card = defineFlashcard({
           id: id('a7'),
           slug: 'invariantFlashcard',
-          type: 'flashcard',
           parameters: { tags: [], flags: { items: {}, order: [] } },
           content: {
             front: defineFlashcardSide({ items: { extra }, order: ['extra'] }),
@@ -118,7 +116,26 @@ describe('Configurators', () => {
         });
         const resource = card.build.props({ languages: ['en', 'uk'] });
         assert.deepEqual(resource.base.parameters.flags, []);
+        assert.deepEqual(resource.base.parameters.disabilities, []);
         assert.equal(resource.locale, undefined);
+      });
+
+      test('Flashcard validates disability restrictions and publishes safe overrides', () => {
+        const card = defineFlashcard({
+          ...source,
+          parameters: { ...source.parameters, disabilities: ['deafness'] },
+        });
+        assert.deepEqual(card.build.props({ languages: ['en'] }).base.parameters.disabilities, ['deafness']);
+        const patch = card.build.overrides({ parameters: { disabilities: ['blindness'] } }, { languages: ['en'] });
+        assert.deepEqual(patch.base.parameters?.disabilities, ['blindness']);
+        assert.deepEqual(card.build.props({ languages: ['en'] }).base.parameters.disabilities, ['deafness']);
+        assert.equal(
+          flashcard_Config_Schema.safeParse({
+            ...source,
+            parameters: { ...source.parameters, disabilities: ['blindness', 'blindness'] },
+          }).success,
+          false,
+        );
       });
 
       test('Flashcard composes ordered sides and named flags as JSON-only published Props', () => {
@@ -142,6 +159,7 @@ describe('Configurators', () => {
         assert.equal(flagValue(card.build.props({ languages: ['en', 'uk'] }).locale?.uk?.parameters?.flags, 1), 'АБВ');
         assert.doesNotThrow(() => JSON.stringify(card.build.props({ languages: ['en', 'uk'] })));
         assert.equal(flashcard_Config_Schema.safeParse(source).success, true);
+        assert.equal(flashcard_Config_Schema.safeParse({ ...source, type: 'flashcard' }).success, false);
         assert.equal(flashcardConfigurator_Schema.safeParse(card).success, true);
         assert.equal(flashcard_Props_Schema.safeParse(source).success, false);
         assert.equal('override' in card, false);

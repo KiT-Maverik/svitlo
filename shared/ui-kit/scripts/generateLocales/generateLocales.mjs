@@ -8,6 +8,7 @@ import { join, resolve, relative, sep, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createRequire, Module } from 'node:module';
 import ts from 'typescript';
+import { loadEducationStandards } from './loadEducationStandards.mjs';
 
 const require = createRequire(import.meta.url);
 const repoRoot = fileURLToPath(new URL('../../../../', import.meta.url));
@@ -142,6 +143,37 @@ function createAssessmentMethodResources() {
   return { base, localized, languages };
 }
 
+function createEducationStandardResources() {
+  const definitions = loadEducationStandards();
+  const languages = DEFAULT_SUPPORTED_LANGUAGES.map(({ language }) => language);
+  const { educationStandard_Props_Schema } = require('@svitlo/engine/runtime');
+  const ids = new Set();
+  const base = {};
+  const localized = Object.fromEntries(languages.map(language => [language, {}]));
+
+  for (const definition of definitions) {
+    const publication = definition.build.props({ languages });
+    const metadata = publication.base;
+    if (ids.has(metadata.id) || Object.hasOwn(base, metadata.slug) || metadata.slug !== definition.slug) {
+      throw new Error('Invalid or duplicated EducationStandard identity: ' + definition.slug);
+    }
+    ids.add(metadata.id);
+    base[metadata.slug] = metadata;
+    for (const language of languages) {
+      const fragment = publication.locale[language];
+      if (!fragment?.description?.frontend?.trim()) {
+        throw new Error('Missing EducationStandard translation: ' + metadata.slug + '/' + language);
+      }
+      educationStandard_Props_Schema.parse({
+        ...metadata,
+        description: { ...metadata.description, ...fragment.description },
+      });
+      localized[language][metadata.slug] = fragment;
+    }
+  }
+  return { base, localized, languages };
+}
+
 try {
   const whole = loadLocaleIndex();
   const components = Object.keys(whole);
@@ -183,6 +215,7 @@ try {
 
     // Validate every resource before replacing previously published output.
     const assessmentMethods = createAssessmentMethodResources();
+    const educationStandards = createEducationStandardResources();
     rmSync(output, { recursive: true, force: true });
     mkdirSync(output, { recursive: true });
     const componentsOutput = join(output, 'components');
@@ -199,8 +232,17 @@ try {
         JSON.stringify(assessmentMethods.localized[language], null, 2) + '\n',
       );
     }
+    const standardsOutput = join(output, 'educationStandards');
+    mkdirSync(standardsOutput, { recursive: true });
+    writeFileSync(join(standardsOutput, 'base.json'), JSON.stringify(educationStandards.base, null, 2) + '\n');
+    for (const language of educationStandards.languages) {
+      writeFileSync(
+        join(standardsOutput, language + '.json'),
+        JSON.stringify(educationStandards.localized[language], null, 2) + '\n',
+      );
+    }
     console.log(
-      `Generated ${published.length} UI Kit component dictionaries and Assessment Method resources in ${output}`,
+      `Generated ${published.length} UI Kit component dictionaries, Assessment Method and EducationStandard resources in ${output}`,
     );
   }
 } finally {
