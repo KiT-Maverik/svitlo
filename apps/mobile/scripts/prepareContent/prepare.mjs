@@ -35,12 +35,7 @@ function run(command, args, cwd = repoRoot) {
     throw new Error(command + ' ' + args.join(' ') + ' failed: ' + (result.error?.message ?? result.status));
   }
 }
-for (const workspace of [
-  '@svitlo/engine',
-  '@svitlo/indexdb',
-  '@svitlo/ui-kit',
-  '@svitlo/adapter-capacitor',
-]) {
+for (const workspace of ['@svitlo/engine', '@svitlo/indexdb', '@svitlo/ui-kit', '@svitlo/adapter-capacitor']) {
   run(process.execPath, [join(repoRoot, 'scripts/ci/packageBuildReuse/package-build-reuse.mjs'), workspace]);
 }
 run(process.execPath, [join(repoRoot, 'scripts/ci/packageBuildReuse/package-build-reuse.mjs'), selection.package]);

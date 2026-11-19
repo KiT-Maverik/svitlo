@@ -166,12 +166,14 @@ export function createPackageBuildReuse({ root, packages, stateFile, runBuild, s
 
     const state = readBuildState(stateFile, normalized);
     const source = sourceRevision();
-    const dependencyVersions = Object.fromEntries(
-      dependencies.map(dep => [dep, state.records[dep]?.sequence ?? null]),
-    );
+    const dependencyVersions = Object.fromEntries(dependencies.map(dep => [dep, state.records[dep]?.sequence ?? null]));
     const previous = state.records[name];
     state.stats.requested++;
-    if (source && previous?.source === source && JSON.stringify(previous.dependencies) === JSON.stringify(dependencyVersions)) {
+    if (
+      source &&
+      previous?.source === source &&
+      JSON.stringify(previous.dependencies) === JSON.stringify(dependencyVersions)
+    ) {
       let current = null;
       try {
         current = snapshotDist(normalized, pkg.path);
@@ -218,9 +220,17 @@ function summary(file) {
   const state = readBuildState(file, repoRoot);
   const stats = state.stats;
   const result =
-    'Package build reuse: ' + stats.requested + ' requests, ' + stats.built + ' builds, ' +
-    stats.reused + ' verified reuses, ' + stats.failed + ' failures; ' +
-    (stats.buildMs / 1000).toFixed(1) + 's in executed package builds.';
+    'Package build reuse: ' +
+    stats.requested +
+    ' requests, ' +
+    stats.built +
+    ' builds, ' +
+    stats.reused +
+    ' verified reuses, ' +
+    stats.failed +
+    ' failures; ' +
+    (stats.buildMs / 1000).toFixed(1) +
+    's in executed package builds.';
   console.log(result);
   if (process.env.GITHUB_STEP_SUMMARY) appendFileSync(process.env.GITHUB_STEP_SUMMARY, '\n- ' + result + '\n');
 }
