@@ -16,13 +16,12 @@ function baseLesson(lessonId = id) {
     type: 'lesson',
     skills: [],
     params: {
-      requireQuiz: false,
+      quizRequiredForCompletion: false,
       languages: ['en', 'uk'],
       sections: { allowNavigation: true, allowSkipping: false, showIndexes: true },
     },
     locale: { title: 'Invariant lesson' },
     section: [],
-    flashcards: [],
   };
 }
 
@@ -42,6 +41,8 @@ test('loads one UUID-bucketed base and the selected locale from an explicit root
   assert.equal(data.id, id);
   assert.equal(data.locale.title, 'Урок');
   assert.deepEqual(data.section, []);
+  assert.equal(data.params.quizRequiredForCompletion, false);
+  assert.equal('flashcards' in data, false);
 });
 
 test('allows a missing sparse locale file when invariant Props are complete', async t => {
