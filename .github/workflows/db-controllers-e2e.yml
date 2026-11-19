@@ -24,12 +24,12 @@ jobs:
         with:
           node-version: 24
           cache: npm
-      - run: npm ci
-      - run: npm run package:build --workspace @svitlo/engine
-      - run: npm run package:build --workspace @svitlo/indexdb
-      - run: npx playwright install chromium
+      - run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --no-audit --no-fund
+      - run: node scripts/ci/quietRun/quiet-run.mjs -- npm run package:build --workspace @svitlo/engine
+      - run: node scripts/ci/quietRun/quiet-run.mjs -- npm run package:build --workspace @svitlo/indexdb
+      - run: node scripts/ci/quietRun/quiet-run.mjs -- npx playwright install chromium
       - name: Native IndexedDB Chromium
-        run: npm run test:e2e:db --workspace @svitlo/indexdb
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npm run test:e2e:db --workspace @svitlo/indexdb
       - uses: actions/upload-artifact@v4
         if: always()
         with:

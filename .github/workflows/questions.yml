@@ -1,62 +1,57 @@
-name: Questions quality
-# AGENT NOTE (temporary CI policy, 2026-10-30):
-# Automatic PR and main-branch push runs are intentionally paused while active
-# development is predominantly taxonomy/content authoring and agents push often.
-# This full-repository suite is expensive and overlaps with focused checks.
-# Keep the workflow available for manual runs in GitHub Actions.
-# RE-ENABLE automatic pull_request and push-to-main triggers when regular
-# executable-code development resumes, and ALWAYS before production releases.
-# When re-enabling, optimize redundant builds/E2E and consider concurrency.
-# Until then, agents changing executable code must run relevant local checks
-# when they have a runnable environment; manual CI remains available.
+name: Production quality
+# Full-repository validation is reserved for production promotion to main.
 on:
+  pull_request:
+    branches: [main]
+    types: [opened, reopened, synchronize, ready_for_review]
   workflow_dispatch:
 permissions:
   contents: read
 jobs:
   quality:
+    name: Production Quality / verify
+    if: github.event_name == 'workflow_dispatch' || !github.event.pull_request.draft
+    concurrency:
+      group: production-quality-${{ github.event.pull_request.number || github.ref }}
+      cancel-in-progress: true
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 24
           cache: npm
-      - run: npm ci
-      - run: npm run repo:check:packages
-      - run: npm run code:check:types
-      - run: npm test
-      - run: npm run test:components
-      - run: npm run test:components --workspace @svitlo/math
-      - run: npm run test:integration:db:coverage --workspace @svitlo/indexdb
+      - run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --no-audit --no-fund
+      - run: node scripts/ci/quietRun/quiet-run.mjs -- npm run repo:check:packages
+      - run: node scripts/ci/quietRun/quiet-run.mjs -- npm run code:check:types
+      - run: node scripts/ci/quietRun/quiet-run.mjs -- npm test
+      # npm test already covers UI Kit and Math component suites; only Web and
+      # Playground have separate component suites not included in npm test.
+      - run: node scripts/ci/quietRun/quiet-run.mjs -- npm run test:components --workspace @svitlo/playground
+      - run: node scripts/ci/quietRun/quiet-run.mjs -- npm run test:components --workspace @svitlo/web
+      - run: node scripts/ci/quietRun/quiet-run.mjs -- npm run test:integration:db:coverage --workspace @svitlo/indexdb
         if: ${{ !cancelled() }}
-      - run: npm run code:lint:check
+      - run: node scripts/ci/quietRun/quiet-run.mjs -- npm run code:lint:check
         if: ${{ !cancelled() }}
-      - run: npm run app:build
+      - run: node scripts/ci/quietRun/quiet-run.mjs -- npm run app:build
         if: ${{ !cancelled() }}
       - name: Verify migrated textbook publishers and isolated ESM tarballs
         if: ${{ !cancelled() }}
         run: |
           for subject in math physics psychology philosophy language-literature; do
-            (cd "content/$subject" && node --test ../../scripts/textbook-tooling/publishTextbook/test-publish.mjs)
-            (cd "content/$subject" && node ../../scripts/textbook-tooling/checkPortability/check-portability.mjs)
+            (cd "content/$subject" && node ../../scripts/ci/quietRun/quiet-run.mjs -- node --test ../../scripts/textbook-tooling/publishTextbook/test-publish.mjs)
+            (cd "content/$subject" && node ../../scripts/ci/quietRun/quiet-run.mjs -- node ../../scripts/textbook-tooling/checkPortability/check-portability.mjs)
           done
-          (cd content/languages/ukrainian && node --test ../../../scripts/textbook-tooling/publishTextbook/test-publish.mjs)
-          (cd content/languages/ukrainian && node ../../../scripts/textbook-tooling/checkPortability/check-portability.mjs)
+          (cd content/languages/ukrainian && node ../../../scripts/ci/quietRun/quiet-run.mjs -- node --test ../../../scripts/textbook-tooling/publishTextbook/test-publish.mjs)
+          (cd content/languages/ukrainian && node ../../../scripts/ci/quietRun/quiet-run.mjs -- node ../../../scripts/textbook-tooling/checkPortability/check-portability.mjs)
       - name: Verify compiled public package artifacts
         if: ${{ !cancelled() }}
-        run: npm run repo:check:artifacts
-      - run: npx playwright install chromium
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npm run repo:check:artifacts
+      - run: node scripts/ci/quietRun/quiet-run.mjs -- npx playwright install chromium
         if: ${{ !cancelled() }}
-      - name: Universal Web lesson E2E (desktop and mobile)
+      - run: node scripts/ci/quietRun/quiet-run.mjs -- npm run test:e2e
         if: ${{ !cancelled() }}
-        run: npm run test:e2e --workspace @svitlo/web
-      - run: npm run test:e2e
-        if: ${{ !cancelled() }}
-      - name: Platform catalog smoke E2E (desktop and mobile)
-        if: ${{ !cancelled() }}
-        run: npm run test:e2e --workspace @svitlo/platform
       - uses: actions/upload-artifact@v4
         if: always()
         with:

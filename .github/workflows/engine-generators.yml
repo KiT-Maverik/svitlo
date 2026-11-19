@@ -2,7 +2,7 @@ name: Engine generators
 
 on:
   pull_request:
-    branches: [main, integration-branch]
+    branches: [main, develop, integration-branch]
     paths:
       - 'shared/engine/generators/**'
       - 'shared/engine/scripts/lessonBuilder/**'
@@ -51,16 +51,16 @@ jobs:
         with:
           node-version: '24'
           cache: npm
-      - run: npm ci
+      - run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --no-audit --no-fund
       - name: Build Engine
-        run: npm run package:build --workspace @svitlo/engine
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npm run package:build --workspace @svitlo/engine
       - name: Typecheck Engine and compile generator tests
         run: |
-          npm run code:check:types --workspace @svitlo/engine
-          npx tsc -p shared/engine/tsconfig.test.json
+          node scripts/ci/quietRun/quiet-run.mjs -- npm run code:check:types --workspace @svitlo/engine
+          node scripts/ci/quietRun/quiet-run.mjs -- npx tsc -p shared/engine/tsconfig.test.json
       - name: Run targeted generator and CLI regression tests
         run: |
-          node --test \
+          node scripts/ci/quietRun/quiet-run.mjs -- node --test \
             shared/engine/.test-build/generators/lessons/*.spec.js \
             shared/engine/generators/courses/publishCourseData.spec.mjs \
             shared/engine/generators/skills/publishSkillTree.spec.mjs \
@@ -76,7 +76,7 @@ jobs:
 
       - name: Test Course Flow regression suites
         run: |
-          node --test \
+          node scripts/ci/quietRun/quiet-run.mjs -- node --test \
             shared/engine/scripts/materializeCourseFlow/materialize-course-flow.spec.mjs \
             shared/engine/scripts/validateCourseFlow/validate-course-flow.spec.mjs \
             shared/engine/scripts/courseBuilder/courseBuilder.spec.mjs \
@@ -87,16 +87,16 @@ jobs:
 
       - name: Test Lesson Stage 6 finalizer and PR-command security
         run: |
-          node --test \
+          node scripts/ci/quietRun/quiet-run.mjs -- node --test \
             shared/engine/scripts/finalizeLesson/finalizeLesson.spec.mjs \
             scripts/ci/lessonMaterialization/lesson-materialization.spec.mjs
 
       - name: Verify all checked-in Zod-derived YAML schemas
-        run: npm run content:check:yaml-schemas --workspace @svitlo/engine
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npm run content:check:yaml-schemas --workspace @svitlo/engine
 
       - name: Check formatting of Course Flow sources and generated schemas
         run: |
-          npx prettier --check \
+          node scripts/ci/quietRun/quiet-run.mjs -- npx prettier --check \
             shared/engine/yaml-schemas/*.json \
             studio/skills/course-workflow/*.md \
             studio/docs/entities/course.md \
