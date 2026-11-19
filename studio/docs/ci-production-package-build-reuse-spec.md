@@ -1,6 +1,6 @@
 # Reuse package builds during production validation
 
-**Status:** implementation specification for a Draft PR. Not implemented by this document.
+**Status:** implementation in Draft PR #728; performance/production acceptance pending.
 **Source of truth:** `studio/rules/ci-workflow.md`, `studio/rules/package-scripts.md`, actual scripts and GitHub Actions.
 
 ## Problem
@@ -17,3 +17,35 @@
 - Test verifies each reusable dependency is built only as needed, in topological order, and a missing output fails closed; no skipped typechecks/tests/E2E.
 - Report before/after critical-path time, sum of runner/job time, package build count and log volume for equivalent inputs. If faster is not demonstrated, document the result instead of declaring savings.
 - Keep PR Draft until owner authorizes Ready; do not merge into `main` directly.
+
+## Implementation evidence (Draft)
+
+- Added a job-local, opt-in reuse helper with dependency-aware rebuild and
+  full `dist/` SHA-256 verification. State is outside the checkout and cannot
+  cross runner boundaries.
+- Root workspace aggregation, Engine/Next.js/Electron test lifecycle builds,
+  and Web/Mobile/Desktop textbook preparation use the helper. Without the
+  production-only environment variable they still invoke normal
+  `npm run package:build --workspace …`.
+- Full Production Quality commands, Content Build's matrix, the stable
+  `Production Quality / verify` context and #721 Draft policy are unchanged.
+- Added fixture tests for dependency ordering, clean reuse, missing/modified
+  artifacts, changed sources, compiler failures, invalid state, symlinks
+  and missing outputs. The standard root workspace integrity check includes
+  the new suite.
+
+## Measurement status
+
+Historical run [44609131674](https://github.com/KiT-Maverik/svitlo/actions/runs/44609131674)
+for Ready PR #716 failed during root tests (missing Desktop renderer files).
+Its available successful prefix includes `npm ci` 12.6s,
+`repo:check:packages` 6.2s and root `code:check:types` 132.3s.
+The earlier run [44596822108](https://github.com/KiT-Maverik/svitlo/actions/runs/44596822108)
+also failed. Neither is a valid completed baseline for the full critical path,
+runner minutes, output volume or package-build count.
+
+**Outstanding owner/CI acceptance:** run a clean successful Ready
+`develop → main` production promotion on a comparable revision, and compare
+with the instrumented production job's package-build summary, critical-path
+duration, total runner/job time and log volume. Do not claim savings without
+matched evidence. Keep #728 Draft until separate owner authorization.
