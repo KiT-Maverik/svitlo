@@ -1,6 +1,6 @@
-import { defineAssessmentMethod } from '@svitlo/engine/build';
+import { defineAssessmentMethod, type AllLanguageCodes } from '@svitlo/engine/build';
 
-export const justification = defineAssessmentMethod({
+export const justification = defineAssessmentMethod<'justification', AllLanguageCodes>({
   id: 'd322fb94-9fa8-4f09-9a88-d4fe93bff09d',
   slug: 'justification',
   title: {
@@ -18,7 +18,7 @@ export const justification = defineAssessmentMethod({
     id: 'Justifikasi',
     ja: '正当化',
     ka: 'დასაბუთება',
-    kk: 'Негіздеу',
+    kk: 'Negızdeu',
     ko: '정당화',
     lt: 'Pagrindimas',
     lv: 'Pamatošana',
@@ -50,7 +50,7 @@ export const justification = defineAssessmentMethod({
     id: 'Mendukung kesimpulan dengan penjelasan atau argumen yang logis. Penilaian mengukur proses berpikir ini, bukan bentuk jawabannya.',
     ja: '筋道の通った説明や論拠で結論を支えます。 評価するのは回答形式ではなく、この認知的な働きです。',
     ka: 'დასკვნის გამყარება თანმიმდევრული ლოგიკური ახსნით ან არგუმენტით. ფასდება ეს სააზროვნო მოქმედება და არა პასუხის ფორმატი.',
-    kk: 'Қорытындыны бірізді логикалық түсіндірмемен немесе дәлелмен негіздеу. Жауаптың пішімі емес, осы ойлау әрекеті бағаланады.',
+    kk: 'Qorytyndyny bırızdı logikalyq tüsındırmemen nemese dälelmen negızdeu. Jauaptyñ pışımı emes, osy oilau äreketı bağalanady.',
     ko: '논리적인 설명이나 근거로 결론을 뒷받침합니다. 평가는 답변 형식이 아니라 이러한 인지 활동을 측정합니다.',
     lt: 'Pagrįsti išvadą nuosekliu loginiu paaiškinimu arba argumentu. Vertinamas šis mąstymo veiksmas, o ne atsakymo pateikimo forma.',
     lv: 'Pamatot secinājumu ar loģiski secīgu skaidrojumu vai argumentu. Tiek vērtēta šī domāšanas darbība, nevis atbildes forma.',

@@ -3,6 +3,7 @@ name: Engine generators
 on:
   pull_request:
     branches: [main, develop, integration-branch]
+    types: [opened, reopened, synchronize, ready_for_review]
     paths:
       - 'shared/engine/generators/**'
       - 'shared/engine/scripts/lessonBuilder/**'
@@ -43,6 +44,8 @@ concurrency:
 
 jobs:
   generator-tests:
+    # Full host/browser/generator suites only at review boundary or explicitly on demand.
+    if: github.event_name == 'workflow_dispatch' || !github.event.pull_request.draft
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
