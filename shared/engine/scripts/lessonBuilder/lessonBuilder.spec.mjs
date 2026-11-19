@@ -427,6 +427,30 @@ test('Skill IDs resolve to imported source symbols rather than hard-coded UUIDs'
     assert.doesNotMatch(code, new RegExp(skillId));
   }));
 
+test('canonical .ts Skill sources resolve and test modules do not create duplicate Skill UUIDs', () =>
+  fixture(f => {
+    const skillId = id(98);
+    const folder = path.join(f.workspace, 'data/skills/observingTheSky/observationPractice');
+    fs.mkdirSync(folder, { recursive: true });
+    const skillSource =
+      "import { defineSkill } from '@svitlo/engine/build';\n" +
+      "export const safeSolarObservation = defineSkill({ id: '" +
+      skillId +
+      "', slug: 'safeSolarObservation' });\n";
+    fs.writeFileSync(path.join(folder, 'safeSolarObservation.ts'), skillSource);
+    fs.writeFileSync(path.join(folder, 'safeSolarObservation.spec.ts'), skillSource);
+    f.config.skills = [skillId];
+    f.save();
+    runOne(f.lesson, 'generate', f.root);
+    const code = fs.readFileSync(f.generated('index.ts'), 'utf8');
+    assert.match(
+      code,
+      /import \\{ safeSolarObservation \\} from "\\.\\.\\/\\.\\.\\/\\.\\.\\/skills\\/observingTheSky\\/observationPractice\\/safeSolarObservation"/,
+    );
+    assert.match(code, /skills: \\[safeSolarObservation\\.id\\]/);
+    assert.doesNotMatch(code, new RegExp(skillId));
+  }));
+
 test('unknown Skill UUID produces a deterministic unresolved dependency instead of an invented import', () =>
   fixture(f => {
     f.config.skills = [id(88)];
