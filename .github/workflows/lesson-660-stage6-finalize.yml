@@ -1,0 +1,55 @@
+name: Lesson 660 one-time Stage 6 finalizer
+
+on:
+  push:
+    branches:
+      - agent/astronomy-observation-journal
+    paths:
+      - .github/workflows/lesson-660-stage6-finalize.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: lesson-660-finalize
+  cancel-in-progress: false
+
+jobs:
+  finalize:
+    if: github.repository == 'KiT-Maverik/svitlo' && github.ref == 'refs/heads/agent/astronomy-observation-journal'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Install dependencies without lifecycle scripts
+        run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Build Engine and verify derived editor schemas
+        run: |
+          npm run package:build --workspace @svitlo/engine
+          npm run content:check:yaml-schemas --workspace @svitlo/engine
+      - name: Read-only complete Lesson preflight
+        run: node shared/engine/scripts/finalizeLesson/finalizeLesson.mjs preflight --source content/astronomy/data/lessons/3/ef83055e-8a1f-5111-9761-bd459591d993/lesson.yaml
+      - name: Finalize approved Lesson YAML using canonical Engine script
+        run: node shared/engine/scripts/finalizeLesson/finalizeLesson.mjs finalize --source content/astronomy/data/lessons/3/ef83055e-8a1f-5111-9761-bd459591d993/lesson.yaml
+      - name: Verify and commit only the Lesson source handoff
+        shell: bash
+        run: |
+          set -euo pipefail
+          folder=content/astronomy/data/lessons/3/ef83055e-8a1f-5111-9761-bd459591d993
+          test ! -e "$folder/lesson.yaml"
+          test -f "$folder/index.ts"
+          test -f "$folder/methodology.md"
+          test -f "$folder/production-handoff.json"
+          git add -A -- "$folder"
+          git diff --cached --quiet && { echo 'No Lesson changes to commit'; exit 1; }
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'Generate observation journal source from reviewed Lesson YAML'
+          git push origin HEAD:refs/heads/agent/astronomy-observation-journal
