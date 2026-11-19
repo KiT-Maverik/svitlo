@@ -1,4 +1,5 @@
 name: Lesson 662 Stage 6 draft source handoff (temporary)
+# Retry after canonical Astronomy *.ts Skill resolver fix; remove after successful handoff.
 # Temporary, branch-scoped workflow; remove this file once the GitHub runner
 # has verified and committed the actual Engine-generated draft inventory.
 on:
