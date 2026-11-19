@@ -248,8 +248,8 @@ describe('accessible Question labels', () => {
     expect(questionBlockLabel(block, 'ar')).toBe('Запис');
   });
 
-  it('rejects subtitles as question labels until a synchronized media renderer exists', () => {
-    expect(() =>
+  it('uses the WebVTT filename as the accessible label for standalone subtitles', () => {
+    expect(
       questionBlockLabel({
         id: uuid(102),
         slug: 'captions',
@@ -257,7 +257,7 @@ describe('accessible Question labels', () => {
         params: {},
         locale: { fileLocation: '/captions.en.vtt' },
       }),
-    ).toThrow('Subtitles cannot be used as standalone question labels');
+    ).toBe('captions.en.vtt');
   });
 
   it('strips Markdown syntax from a choice label using canonical locale Props', () => {

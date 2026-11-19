@@ -70,6 +70,8 @@ export const allLanguageCodes = [
 /** Canonical nonempty language tuple for default authoring scopes. */
 export type AllLanguageCodes = typeof allLanguageCodes;
 export type LanguageCode = (typeof allLanguageCodes)[number];
+/** Nonempty readonly language-code tuple; preserves the caller's literal scope. */
+export type SupportedLanguages = readonly [LanguageCode, ...LanguageCode[]];
 export const languageCode_Schema = z.enum(allLanguageCodes);
 
 export const allLanguageEnglishNames = [
