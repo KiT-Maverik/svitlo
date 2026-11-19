@@ -31,7 +31,12 @@ const sourceBlob = 'c'.repeat(40);
 const tick = String.fromCharCode(96);
 const stageNames = [
   'Methodology', 'Content Creation', 'Content Review', 'Experience Review',
-  'Methodology Compliance', 'Resource Production', 'Translation', 'Translation Review',
+  'Methodology Compliance', 'Resource Production', 'Questions', 'Flashcards',
+  'Translation', 'Translation Review',
+];
+const stageSixSteps = [
+  'Materialize Lesson sources', 'Accessibility source audit',
+  'Offline source audit', 'Validate source and handoff',
 ];
 function body() {
   return [
@@ -45,8 +50,11 @@ function body() {
       tick + pkg + tick + ' / ' + tick + slug + tick,
     '- Canonical source: ' + tick + yaml + tick + ' (inherited)',
     '## Lesson stages',
-    ...stageNames.map((name, i) => '- [' + (i < 5 ? 'x' : ' ') + '] ' + (i + 1) + '. ' + name +
-      (i === 5 ? ' — IN PROGRESS' : '')),
+    ...stageNames.flatMap((name, i) => [
+      '- [' + (i < 5 ? 'x' : ' ') + '] ' + (i + 1) + '. ' + name +
+        (i === 5 ? ' — IN PROGRESS' : ''),
+      ...(i === 5 ? stageSixSteps.map((step, j) => '  - [ ] 6.' + (j + 1) + ' ' + step) : []),
+    ]),
     '  - [ ] en',
     '## Audit evidence',
     'Sha-pinned review evidence is owned by the parent PR',
@@ -93,7 +101,7 @@ test('only exact PR top-level comments and enumerated dispatch operations are ac
   }
 });
 
-test('Stages 1–5 are uniquely checked; Stage 6 must be pending', () => {
+test('ten-stage tracker requires editorial Stages 1–5, pending Stage 6 and four subchecks', () => {
   assert.equal(requireStageSixPending(body()), true);
   for (let stage = 1; stage <= 5; stage++) {
     const changed = body().replace('- [x] ' + stage + '.', '- [ ] ' + stage + '.');
@@ -104,6 +112,21 @@ test('Stages 1–5 are uniquely checked; Stage 6 must be pending', () => {
   assert.throws(() => requireStageSixPending(body() + '\n## Lesson stages'));
   assert.throws(() => requireStageSixPending(body().replace('## Audit evidence', '- [x] 5. Methodology Compliance\n## Audit evidence')));
   assert.throws(() => requireStageSixPending(body().replace('2. Content Creation', '2. Fake label')));
+  assert.throws(() => requireStageSixPending(body().replace('7. Questions', '7. Translation')));
+  assert.throws(() => requireStageSixPending(body().replace('10. Translation Review', '10. Fake')));
+  assert.throws(() => requireStageSixPending(body().replace('  - [ ] 6.2 Accessibility source audit', '')));
+  assert.throws(() => requireStageSixPending(body().replace('6.3 Offline source audit', '6.2 Offline source audit')));
+  assert.throws(() => requireStageSixPending(body().replace('6.4 Validate source and handoff', '6.4 Fake')));
+  assert.throws(() => requireStageSixPending(body() + '\n- [ ] 10. Translation Review'));
+});
+
+test('existing eight-stage Lesson PRs may materialize while being migrated in place', () => {
+  const legacy = body()
+    .replace(/^- \[ \] 7\. Questions.*\n- \[ \] 8\. Flashcards.*\n- \[ \] 9\. Translation.*\n- \[ \] 10\. Translation Review.*$/m,
+      '- [ ] 7. Translation\n- [ ] 8. Translation Review')
+    .replace(/^  - \[ \] 6\.[1-4].*\n/gm, '');
+  assert.equal(requireStageSixPending(legacy), true);
+  assert.throws(() => requireStageSixPending(legacy.replace('7. Translation', '7. Questions')));
 });
 
 test('allowlist preserves Quiz/Flashcards Section modules but forbids bank roots and traversal', () => {

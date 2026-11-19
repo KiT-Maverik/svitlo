@@ -50,7 +50,10 @@ export function parseIdentity(body) {
   return { id, pkg, slug, yaml, parent };
 }
 
-/** Require the exact eight-stage tracker, Stages 1–5 completed, Stage 6 pending. */
+/** Require editorial Stages 1–5 and pending Stage 6. New PRs use ten stages with four
+ * explicit Stage 6 subchecks. Historical eight-stage PRs remain materializable
+ * during in-place tracker migration; old 7/8 translation ticks NEVER prove banks.
+ */
 export function requireStageSixPending(body) {
   const heading = exactlyOne(body, /^## Lesson stages[ \t]*$/gm, 'Lesson stages heading');
   const start = heading.index + heading[0].length;
@@ -59,18 +62,45 @@ export function requireStageSixPending(body) {
   const section = end < 0 ? after : after.slice(0, end);
   const stages = [
     'Methodology', 'Content Creation', 'Content Review', 'Experience Review',
+    'Methodology Compliance', 'Resource Production', 'Questions', 'Flashcards',
+    'Translation', 'Translation Review',
+  ];
+  const oldStages = [
+    'Methodology', 'Content Creation', 'Content Review', 'Experience Review',
     'Methodology Compliance', 'Resource Production', 'Translation', 'Translation Review',
   ];
-  const items = [...section.matchAll(/^-\s*\[([ xX])\]\s*([1-8])\.\s*([^\r\n]*)$/gm)];
-  for (let i = 0; i < stages.length; i++) {
+  const items = [...section.matchAll(/^-\s*\[([ xX])\]\s*(10|[1-9])\.\s*([^\r\n]*)$/gm)];
+  const isCurrent = items.some(item => Number(item[2]) >= 9);
+  const expected = isCurrent ? stages : oldStages;
+  if (items.length !== expected.length)
+    throw Error('Exactly one checkbox for each canonical Lesson stage is required');
+  for (let i = 0; i < expected.length; i++) {
     const current = items.filter(item => Number(item[2]) === i + 1);
-    if (current.length !== 1 || !current[0][3].startsWith(stages[i]) ||
-        !/^(?:$|[ \t]+(?:—|–|-|:))/.test(current[0][3].slice(stages[i].length)))
+    if (current.length !== 1 || !current[0][3].startsWith(expected[i]) ||
+        !/^(?:$|[ \t]+(?:—|–|-|:))/.test(current[0][3].slice(expected[i].length)))
       throw Error('Exactly one canonical Lesson Stage ' + (i + 1) + ' is required');
     if (i < 5 && current[0][1].toLowerCase() !== 'x')
       throw Error('Lesson Stage ' + (i + 1) + ' is not completed in the PR');
     if (i === 5 && current[0][1] !== ' ')
       throw Error('Stage 6 must be pending: materialization alone is not completion');
+  }
+
+  if (isCurrent) {
+    const subNames = [
+      'Materialize Lesson sources',
+      'Accessibility source audit',
+      'Offline source audit',
+      'Validate source and handoff',
+    ];
+    const subitems = [...section.matchAll(/^ {2,}-\s*\[([ xX])\]\s*6\.(\d+)\s+([^\r\n]*)$/gm)];
+    if (subitems.length !== subNames.length)
+      throw Error('Exactly four separate Stage 6 subchecks are required');
+    for (let i = 0; i < subNames.length; i++) {
+      const current = subitems.filter(item => Number(item[2]) === i + 1);
+      if (current.length !== 1 || !current[0][3].startsWith(subNames[i]) ||
+          !/^(?:$|[ \t]+(?:\(|—|–|-|:))/.test(current[0][3].slice(subNames[i].length)))
+        throw Error('Canonical Lesson Stage 6.' + (i + 1) + ' subcheck is required');
+    }
   }
   return true;
 }
@@ -101,7 +131,7 @@ export function parseTrigger(event, kind, actor) {
 export function validateArtifactPath(filename, identity, operation = 'materialize') {
   if (operation === 'finalize') return filename === identity.yaml;
   if (operation !== 'materialize' || typeof filename !== 'string' || filename.length > 450 ||
-      filename.includes('..') || filename.includes('\\') || filename.includes('//') ||
+      filename.includes('..') || filename.includes('\') || filename.includes('//') ||
       filename.includes('\0') || filename.startsWith('/')) return false;
   const base = identity.yaml.slice(0, -'lesson.yaml'.length);
   if (!filename.startsWith(base)) return false;
