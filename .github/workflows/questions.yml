@@ -16,9 +16,6 @@ jobs:
       cancel-in-progress: true
     runs-on: ubuntu-latest
     timeout-minutes: 45
-    # Scoped to this runner/job. No dist cache from Content Build or another run.
-    env:
-      SVITLO_CI_PACKAGE_BUILD_STATE: ${{ runner.temp }}/svitlo-production-package-builds.json
     steps:
       - uses: actions/checkout@v4
       - name: Test production source policy
@@ -30,6 +27,10 @@ jobs:
           PR_HEAD_REF: ${{ github.event.pull_request.head.ref }}
           PR_HEAD_REPO: ${{ github.event.pull_request.head.repo.full_name }}
         run: node scripts/ci/releaseSource/check-release-source.mjs
+      - name: Initialize package build reuse state
+        shell: bash
+        # GITHUB_ENV takes effect only for subsequent steps; the state is never shared.
+        run: echo "SVITLO_CI_PACKAGE_BUILD_STATE=$RUNNER_TEMP/svitlo-production-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT.json" >> "$GITHUB_ENV"
       - uses: actions/setup-node@v4
         with:
           node-version: 24
