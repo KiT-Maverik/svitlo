@@ -75,7 +75,7 @@ jobs:
             echo "Changed files are already formatted."
           else
             echo "changed=true" >> "$GITHUB_OUTPUT"
-            git diff --cached --stat
+            git diff --cached --name-only | awk 'END {printf "Prettier changed %d tracked files.\n", NR}'
           fi
 
       - name: Require fork contributors to format their own PRs
@@ -107,10 +107,10 @@ jobs:
           set -euo pipefail
           git config user.name "${{ steps.formatter-app.outputs.app-slug }}[bot]"
           git config user.email "${{ steps.formatter-app.outputs.app-slug }}[bot]@users.noreply.github.com"
-          git commit -m "style: auto-format changed PR files"
+          git commit --quiet -m "style: auto-format changed PR files"
           authorization=$(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w0)
           git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $authorization" \
-            push origin "HEAD:refs/heads/$PR_HEAD_REF"
+            push --quiet origin "HEAD:refs/heads/$PR_HEAD_REF"
 
       - name: Re-run required checks on formatted commit
         if: github.event_name == 'pull_request' && steps.changes.outputs.changed == 'true' && github.event.pull_request.head.repo.full_name == github.repository
