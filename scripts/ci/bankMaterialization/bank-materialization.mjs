@@ -81,7 +81,7 @@ function collect(root, info) {
   }
   return files.sort((a, b) => a.path.localeCompare(b.path));
 }
-function inspectManifest(result, info) {
+export function inspectManifest(result, info) {
   if (result?.version !== 1 || !result.files || !Array.isArray(result.files) ||
       result.files.length < 1 || result.files.length > MAX_COUNT ||
       JSON.stringify(result.meta) !== JSON.stringify(info))
