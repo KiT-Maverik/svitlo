@@ -25,7 +25,7 @@
 ## Verified starting state (not work to repeat)
 
 - Protect develop already requires FastGate / verify, Agent CI Artifacts / clean, Blocker TODOs / clean and Affected content / build, taxonomy and packaging. Do not describe FastGate as missing.
-- Protect main requires PRs, the three stable checks, **and Production Quality / verify** as configured by the owner after this baseline was written. The job is in .github/workflows/questions.yml and is created only for Ready main PRs or manual dispatch. The similarly spelled Production quality / quality is NOT its check context.
+- Protect main requires PRs, the three stable checks, **and Production Quality / verify** as configured by the owner after this baseline was written. The job is in .github/workflows/production-quality.yml and is created only for Ready main PRs or manual dispatch. The similarly spelled Production quality / quality is NOT its check context.
 - Both active rulesets target their literal branches; develop is already the default branch. Neither requires an approving review (currently configured as zero), which is separate from requiring a PR.
 - The owner added Production Quality / verify to Protect main. Current active ruleset was verified on 2026-11-19; the successful promotion exercise and release-source failure injection remain separate.
 - PR #714 removed the standalone Education Standards jobs and introduced quietRun, selective Content Build, Draft-warning/Ready-failing TODO guard, path-based educational labels, and scoped FastGate. Preserve those behaviors.
@@ -53,11 +53,11 @@
 
 ### P1 — Remove duplicated work based on real coverage
 
-- Compare .github/workflows/questions.yml with .github/workflows/content-build.yml and actual root/workspace npm scripts. Publication/tarball portability checks appear both in Production Quality and in each Content Build package job. Remove repeated execution only after verifying the required Content Build check on main covers the same content/workspaces/conditions and cannot be skipped.
+- Compare .github/workflows/production-quality.yml with .github/workflows/content-build.yml and actual root/workspace npm scripts. Publication/tarball portability checks appear both in Production Quality and in each Content Build package job. Remove repeated execution only after verifying the required Content Build check on main covers the same content/workspaces/conditions and cannot be skipped.
 - Audit FastGate vs Engine Generators vs ContentBlock Build API vs IndexedDB/host jobs. Retain a standalone runner only for unique tests, host/OS/browser environments or meaningful failure isolation; avoid recompiling the same Engine artifacts and rerunning the same suite merely because multiple workflows match a PR.
 - Evaluate overhead from per-textbook matrix jobs (independent npm ci, setup and builds). Benchmark current max-parallel=5 against fewer balanced shards/shared setup or caching without compromising isolation or successful package verification. Prefer observed runner-minute and wall-time savings, not assumed benefits.
 - Review Production Quality's use of if: !cancelled() for most expensive later steps: avoid needlessly running all release checks after an early definite failure, while preserving adequate actionable diagnostics. Keep manual deep-diagnostic runs possible.
-- Rename misleading workflow/artifact names (e.g. questions.yml and questions-test-results) if safe, without changing the stable external check context accidentally.
+- Rename misleading workflow/artifact names (e.g. production-quality.yml and questions-test-results) if safe, without changing the stable external check context accidentally.
 
 ### Historical option — Protect nested integration branches (declined)
 

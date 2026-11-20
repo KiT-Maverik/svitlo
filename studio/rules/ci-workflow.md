@@ -50,6 +50,42 @@ checks. The workflow must exist on the default branch for the manual control.
 Do not use a fake success job or a permanent Draft skip for any check that
 must execute before merge.
 
+### Repairing a failed production promotion
+
+When the Ready `develop → main` PR fails `Production Quality / verify`, a green
+FastGate on a separate fix PR is **not** evidence that the full release gate is
+fixed. Keep the existing protections and automatic CI triggers unchanged:
+
+1. Create a temporary, normally named fix branch from the **current `develop`
+   HEAD** and a Draft PR from that branch to `develop`. No special branch-name
+   prefix is required. Preserve the release promotion PR `develop → main`.
+2. Commit repairs on the fix branch. **After every candidate fix**, manually run
+   the exact full Production Quality workflow on that branch:
+
+   ```sh
+   gh workflow run production-quality.yml --ref <fix-branch>
+   gh run list --workflow production-quality.yml --branch <fix-branch> --event workflow_dispatch --limit 5
+   gh run view <run-id> --log-failed
+   ```
+
+   Find the run launched for the fix, wait for its completion and verify its
+   `head_sha` matches the **latest** fix branch commit. Require all production
+   jobs and the final `Production Quality / verify` aggregate to succeed; a
+   prior successful run becomes obsolete after a new push. Link the exact run
+   and tested SHA in the fix PR so the next agent can reproduce the evidence.
+3. Manual `workflow_dispatch` tests the selected branch HEAD, **not** the PR
+   merge commit or the eventual `develop → main` merge result. It does not
+   satisfy or replace required PR checks; source authorization applies to
+   production *PR* events, not manual diagnostics. After full manual success,
+   follow the ordinary Draft → Ready and owner-approved PR merge workflow into
+   `develop`. Finally require the real promotion PR's latest
+   `Production Quality / verify` check to pass before merging into `main`.
+
+The workflow must exist on the repository default branch before GitHub can
+dispatch it manually. Do not create a new ruleset, bypass branch protection,
+retarget the production PR or modify release-gate coverage to work around a
+failing build.
+
 ### Validation on Ready
 
 FastGate builds prerequisite public exports once in dependency order, then
