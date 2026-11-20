@@ -26,6 +26,11 @@ function TopicSymbol({ topic }: { topic: ReflectionTopic }) {
 }
 
 export function ReflectScene({ locales }: ReflectSceneProps) {
+  // TODO (BLOCKER): Provide verified offline Ukrainian clips and accessible
+  // listen/repeat/pause actions for BOTH independent reflection steps,
+  // complete prepared questions, own-question route, confirmations, feedback,
+  // skip and navigation controls. Do not treat text, screen-reader output,
+  // microphone recording or untested device/network TTS as prerecorded audio.
   const t = (key: string) => sceneText(locales, key);
   const [state, dispatch] = useReducer(reflectionReducer, initialReflectionState);
   const [draft, setDraft] = useState('');
