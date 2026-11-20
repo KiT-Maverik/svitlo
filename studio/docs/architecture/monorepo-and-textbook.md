@@ -2,11 +2,14 @@
 
 **Canonical implementation guide (Stage 8, 2026-10-29).** Always check manifests and CI for the commit under review. [Historical migration log](../../Monorepo%20Migration.md) is **not** a current directory map. [Final audit and remaining debt](./migration-stage-8-audit.md).
 
-**2026-11-05 implementation update:** `apps/web` is the universal Next.js host for the
-build-selected textbook. `content/playground` is now a React DOM textbook
-package with authored `data/`, Scenes, generated static registry and explicit
-`@svitlo/playground` exports. an explicit `SVITLO_TEXTBOOK` package selection resolves public npm exports before compilation; its build publishes textbook JSON,
-UI Kit locales and assets into the host. Other textbooks and `apps/platform`
+**2026-11-20 Web selection update (PR #734, Draft until verified):** `apps/web` is the
+universal Next.js host for an explicitly selected compiled content package. The
+build input `SVITLO_TEXTBOOK` resolves the installed package's public npm
+exports, optional Scenes/styles and Publish CLI. No package is selected by
+default. `content/playground` remains an independent React DOM content package
+with authored `data/`, Scenes, generated registry and its own
+`@svitlo/playground` exports. The selected package publishes content JSON and
+media; the Web host independently stages UI Kit translations and assets. Other textbooks and `apps/platform`
 retain their existing application architecture. The Next.js integration package
 resides at `shared/adapters/nextjs` but keeps its stable npm identity
 `@svitlo/adapter-nextjs`. The Stage 8 map and dependency
@@ -33,7 +36,7 @@ Svitlo **currently** combines independently deployable Next.js apps with explici
 
 At build time a host selects one or more textbook packages and statically bundles their registries/Scenes. Build-time authored-data publishing produces runtime JSON, not runtime imports of `*.data.ts`. The full target architecture continues to require stable public package exports, build selection and parity tests, and review of server/provider coupling. The current Web, Capacitor and Electron hosts are in `apps/web`, `apps/mobile` and `apps/desktop`; the repository does not use a `books/` root. SSR/SSG can remain in the Web host; interactive Lesson UI belongs in reusable React DOM code.
 
-See the canonical [Cross-Platform Lesson Runtime](./cross-platform-lesson-runtime.md) for target dependency/DI, licensing, PWA, offline, and client-state rules. The map, dependencies, scripts and Stage 8 audit below remain a **snapshot of the current standalone-app architecture** until a separate migration changes them.
+See the canonical [Cross-Platform Lesson Runtime](./cross-platform-lesson-runtime.md) for target dependency/DI, licensing, PWA, offline, and client-state rules. The map, dependencies, scripts and Stage 8 audit below remain a **historical snapshot of the standalone-app architecture**; check current manifests and implementation for active Web package selection.
 
 ## Current repository map
 
@@ -133,7 +136,7 @@ npm run test:e2e:db --workspace @svitlo/indexdb                # after Playwrigh
 npm run test:e2e --workspace @svitlo/platform          # after building Platform
 ```
 
-Application entrypoints: `SVITLO_TEXTBOOK=math npm run app:start:dev --workspace @svitlo/web` (Web host with explicitly selected content) or `npm run app:start:dev --workspace @svitlo/platform` (Platform). Content textbooks are buildable packages, not individual Next.js dev servers. The `Questions quality` workflow runs root checks and app E2E; the `Native IndexedDB browser controllers` workflow repeats real Chromium checks; `UI Kit Storybook` builds independently.
+Application entrypoints: `SVITLO_TEXTBOOK=math npm run app:start:dev --workspace @svitlo/web` (Web host with an explicitly installed content package) or `npm run app:start:dev --workspace @svitlo/platform` (Platform). Content textbooks are buildable packages, not individual Next.js dev servers. The `Questions quality` workflow runs root checks and app E2E; the `Native IndexedDB browser controllers` workflow repeats real Chromium checks; `UI Kit Storybook` builds independently.
 
 **Evidence limitations:** these checks inspect declared packages, compiled artifacts and running apps **inside the monorepo**. Independent `npm pack`/registry installation, clean-room source extraction, production deployment and real backend/offline services are separate, not-yet-proven tasks.
 
