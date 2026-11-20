@@ -134,13 +134,19 @@ function renderMediaLocale(value, missing, state, indent, location) {
     Object.entries(value)
       .map(([key, entry]) => {
         const todo = missing.has(key)
-          ? inner + '// TODO(asset): Replace the unresolved ' + location + '.' + key +
+          ? inner +
+            '// TODO(asset): Replace the unresolved ' +
+            location +
+            '.' +
+            key +
             ' with an actual textbook-wide UUID media file before publication.\n'
           : '';
         return todo + inner + literal(key) + ': ' + renderValue(entry, state, indent + 1, location + '.' + key) + ',';
       })
       .join('\n') +
-    '\n' + pad + '}'
+    '\n' +
+    pad +
+    '}'
   );
 }
 
@@ -228,4 +234,3 @@ export function renderEpisodeScaffoldSource(wrapper) {
     '',
   ].join('\n');
 }
-
