@@ -1,5 +1,5 @@
 <!-- GENERATED FROM CODE; DO NOT EDIT. -->
-# Question and Quiz translation reference — astronomy / c042698a-de5b-5055-9e10-ff5621f80ed7 / pl
+# Question and Quiz translation reference — astronomy / c042698a-de5b-5055-9e10-ff5621f80ed7 / qm
 
 Lesson UUID: c042698a-de5b-5055-9e10-ff5621f80ed7
 Source language: uk
@@ -22,37 +22,37 @@ Missing translations: 0
 
 #### question/prompt (b8a0eb4b-4824-5279-99e8-d2f51e1c5b7e)
 - Source (uk): Який із цих способів дізнаватися про Сонце небезпечний для очей?
-- pl: Który z tych sposobów poznawania Słońca jest niebezpieczny dla oczu?
+- qm: Küneş aqqında malümat aluvnıñ bu usullarından qaysısı közler içün telükeli?
 - Code: [index.ts](../../../../../content/astronomy/data/lessons/7/c042698a-de5b-5055-9e10-ff5621f80ed7/questions/selectOneAnswer/identifyUnsafeOptics/prompt/index.ts)
 
 #### hint/hintText (b7b266ea-417e-57aa-ad1c-b544f4836c6a)
 - Source (uk): Подумай, чи треба спрямовувати власні очі на справжнє Сонце, щоб отримати відомості.
-- pl: Zastanów się, czy musisz patrzeć własnymi oczami na prawdziwe Słońce, żeby dowiedzieć się o nim czegoś nowego.
+- qm: Küneş aqqında bilgi almaq içün oña öz közleriñnen baqmaq şartmı? Tüşün.
 - Code: [index.ts](../../../../../content/astronomy/data/lessons/7/c042698a-de5b-5055-9e10-ff5621f80ed7/questions/selectOneAnswer/identifyUnsafeOptics/hintText/index.ts)
 
 #### explanation/explanationText (fa51424d-b38b-5efe-8437-594e136461f0)
 - Source (uk): Бінокль без належного спеціального сонячного фільтра робить пряме споглядання Сонця особливо небезпечним. Готові перевірені знімки та описи дозволяють дізнаватися про Сонце без цього ризику.
-- pl: Bezpośrednie patrzenie na Słońce przez lornetkę bez odpowiedniego, specjalnego filtra słonecznego jest szczególnie niebezpieczne. Sprawdzone zdjęcia i opisy pozwalają poznawać Słońce bez takiego ryzyka.
+- qm: Mahsus küneş filtri olmağan dürbinnen Küneşke doğrudan-doğru baqmaq közler içün pek telükeli. Tekşirilgen azır ilmiy fotoresimler ve tarifler közlerni telükege atmayıp Küneş aqqında malümat almağa yardım ete.
 - Code: [index.ts](../../../../../content/astronomy/data/lessons/7/c042698a-de5b-5055-9e10-ff5621f80ed7/questions/selectOneAnswer/identifyUnsafeOptics/explanationText/index.ts)
 
 #### answers/correct/correctChoice (ae194194-48af-537c-beba-d9447e8528c6)
 - Source (uk): Подивитися на Сонце крізь бінокль без спеціального сонячного фільтра.
-- pl: Popatrzeć na Słońce przez lornetkę bez specjalnego filtra słonecznego.
+- qm: Mahsus küneş filtri olmağan dürbinnen Küneşke baqmaq.
 - Code: [index.ts](../../../../../content/astronomy/data/lessons/7/c042698a-de5b-5055-9e10-ff5621f80ed7/questions/selectOneAnswer/identifyUnsafeOptics/correct/correctChoice/index.ts)
 
 #### answers/incorrect/otherChoice1 (c05e2112-2754-590d-84fc-93086306986f)
 - Source (uk): Розглянути підписаний науковий знімок Сонця.
-- pl: Obejrzeć podpisane zdjęcie naukowe Słońca.
+- qm: İzaat yazısı olğan ilmiy Küneş fotoresmini körmek.
 - Code: [index.ts](../../../../../content/astronomy/data/lessons/7/c042698a-de5b-5055-9e10-ff5621f80ed7/questions/selectOneAnswer/identifyUnsafeOptics/incorrect/otherChoice1/index.ts)
 
 #### answers/incorrect/otherChoice2 (969d72e4-6382-54ee-bd8f-e9ef05a0a902)
 - Source (uk): Послухати опис готового знімка Сонця.
-- pl: Posłuchać opisu gotowego zdjęcia Słońca.
+- qm: Küneşniñ azır fotoresminiñ tarifini diñlemek.
 - Code: [index.ts](../../../../../content/astronomy/data/lessons/7/c042698a-de5b-5055-9e10-ff5621f80ed7/questions/selectOneAnswer/identifyUnsafeOptics/incorrect/otherChoice2/index.ts)
 
 #### answers/incorrect/otherChoice3 (9cb355c3-3b69-589b-8d8b-c1b8b5fa6060)
 - Source (uk): Прочитати науковий опис Сонця з дорослим.
-- pl: Przeczytać z dorosłym naukowy opis Słońca.
+- qm: Büyüklerden birinen beraber Küneş aqqında ilmiy tarifni oqumaq.
 - Code: [index.ts](../../../../../content/astronomy/data/lessons/7/c042698a-de5b-5055-9e10-ff5621f80ed7/questions/selectOneAnswer/identifyUnsafeOptics/incorrect/otherChoice3/index.ts)
 
 ## selectOneAnswer/replaceRiskyQuickLook
@@ -66,37 +66,37 @@ Missing translations: 0
 
 #### question/prompt (13c9adcb-f951-5168-acc6-c14931268f89)
 - Source (uk): Андрій хоче дізнатися, який вигляд має Сонце, і пропонує швидко глянути на нього крізь вікно. Що варто порадити?
-- pl: Andrij chce zobaczyć, jak wygląda Słońce, i proponuje szybko zerknąć na nie przez okno. Co warto mu poradzić?
+- qm: Andriy Küneşniñ nasıl körüngenini bilmek istey ve oña pencereden bir anlığına baqıp almaqnı teklif ete. Oña ne tevsiye etmek kerek?
 - Code: [index.ts](../../../../../content/astronomy/data/lessons/7/c042698a-de5b-5055-9e10-ff5621f80ed7/questions/selectOneAnswer/replaceRiskyQuickLook/prompt/index.ts)
 
 #### hint/hintText (5aa6ca06-b91e-54e8-8a3f-ef9c6ff20818)
 - Source (uk): Обери спосіб, який не потребує, щоб хтось дивився безпосередньо на Сонце.
-- pl: Wybierz sposób, który nie wymaga od nikogo bezpośredniego patrzenia na Słońce.
+- qm: Kimseniñ Küneşke doğrudan-doğru baqmasını talap etmegen usulnı seç.
 - Code: [index.ts](../../../../../content/astronomy/data/lessons/7/c042698a-de5b-5055-9e10-ff5621f80ed7/questions/selectOneAnswer/replaceRiskyQuickLook/hintText/index.ts)
 
 #### explanation/explanationText (61403fea-6a9a-5d06-97d3-419ac4a98bfb)
 - Source (uk): Ні скло звичайного вікна, ні сонцезахисні окуляри, ні короткий погляд не роблять пряме спостереження Сонця безпечним. Підготовлений знімок дає потрібні відомості без ризику для чиїхось очей.
-- pl: Ani zwykła szyba okienna, ani okulary przeciwsłoneczne, ani krótkie spojrzenie nie sprawiają, że bezpośrednie patrzenie na Słońce jest bezpieczne. Gotowe zdjęcie pozwala zdobyć potrzebne informacje bez narażania czyichkolwiek oczu.
+- qm: Ne adiy pencere camı, ne küneş közlükleri, ne de qısqa bir baqış Küneşke doğrudan-doğru baquvnı telükesiz etmez. Azır fotoresim kimseniñ közlerine zarar ketirmeden kerekli malümatnı bere.
 - Code: [index.ts](../../../../../content/astronomy/data/lessons/7/c042698a-de5b-5055-9e10-ff5621f80ed7/questions/selectOneAnswer/replaceRiskyQuickLook/explanationText/index.ts)
 
 #### answers/correct/correctChoice (5484d523-7aee-5bd2-94d4-774bcf2aa45f)
 - Source (uk): Розглянути разом перевірений науковий знімок Сонця.
-- pl: Wspólnie obejrzeć sprawdzone naukowe zdjęcie Słońca.
+- qm: Küneşniñ tekşirilgen ilmiy fotoresmini beraber körmek.
 - Code: [index.ts](../../../../../content/astronomy/data/lessons/7/c042698a-de5b-5055-9e10-ff5621f80ed7/questions/selectOneAnswer/replaceRiskyQuickLook/correct/correctChoice/index.ts)
 
 #### answers/incorrect/otherChoice1 (f74eb31d-17e7-5670-82cf-f1624f500566)
 - Source (uk): Подивитися на Сонце крізь вікно лише на мить.
-- pl: Spojrzeć na Słońce przez okno tylko na chwilę.
+- qm: Küneşke pencere camından tek bir an baqmaq.
 - Code: [index.ts](../../../../../content/astronomy/data/lessons/7/c042698a-de5b-5055-9e10-ff5621f80ed7/questions/selectOneAnswer/replaceRiskyQuickLook/incorrect/otherChoice1/index.ts)
 
 #### answers/incorrect/otherChoice2 (2cdb6754-9e75-5bc2-98ec-147c7872feaf)
 - Source (uk): Подивитися на Сонце у звичайних темних окулярах.
-- pl: Patrzeć na Słońce w zwykłych ciemnych okularach przeciwsłonecznych.
+- qm: Adiy qara küneş közlüklerini taqıp, Küneşke baqmaq.
 - Code: [index.ts](../../../../../content/astronomy/data/lessons/7/c042698a-de5b-5055-9e10-ff5621f80ed7/questions/selectOneAnswer/replaceRiskyQuickLook/incorrect/otherChoice2/index.ts)
 
 #### answers/incorrect/otherChoice3 (6b6eac82-4c33-5a83-b627-193c28914228)
 - Source (uk): Попросити друга подивитися замість нього й розповісти.
-- pl: Poprosić kolegę, żeby spojrzał zamiast niego i opowiedział, co widział.
+- qm: Arqadaşından özü yerine Küneşke baqıp, soñra anlatmasını istemek.
 - Code: [index.ts](../../../../../content/astronomy/data/lessons/7/c042698a-de5b-5055-9e10-ff5621f80ed7/questions/selectOneAnswer/replaceRiskyQuickLook/incorrect/otherChoice3/index.ts)
 
 ## selectOneAnswer/classifyCloudObservation
@@ -110,37 +110,37 @@ Missing translations: 0
 
 #### question/prompt (e61722c1-25d7-506e-bedb-813050420d57)
 - Source (uk): Яка дія допоможе дослідити денне небо, не дивлячись на Сонце?
-- pl: Które działanie pozwala badać dzienne niebo bez patrzenia na Słońce?
+- qm: Küneşke baqmadan kündüzgi semanı ögrenmege qaysı areket yardım ete?
 - Code: [index.ts](../../../../../content/astronomy/data/lessons/7/c042698a-de5b-5055-9e10-ff5621f80ed7/questions/selectOneAnswer/classifyCloudObservation/prompt/index.ts)
 
 #### hint/hintText (5d6244bc-7067-5734-8bb9-b10741412c81)
 - Source (uk): Перевір кожен варіант: чи стосується він денного неба і чи потребує погляду на Сонце?
-- pl: Sprawdź każdą odpowiedź: czy dotyczy dziennego nieba i czy wymaga patrzenia na Słońce?
+- qm: Er bir variantnı tekşir: o kündüzgi semağa aidmi ve onı yapmaq içün Küneşke baqmaq kerekmi?
 - Code: [index.ts](../../../../../content/astronomy/data/lessons/7/c042698a-de5b-5055-9e10-ff5621f80ed7/questions/selectOneAnswer/classifyCloudObservation/hintText/index.ts)
 
 #### explanation/explanationText (ce689630-d7a8-5e23-a39a-782d75271cfa)
 - Source (uk): Хмари є частиною денного неба, і їх можна порівнювати на готових знімках. Небо не обов'язково досліджувати вночі; небезпечні спроби подивитися на Сонце для цього не потрібні.
-- pl: Chmury są częścią dziennego nieba i można je porównywać na gotowych zdjęciach. Niebo można badać również w dzień, a nie tylko w nocy. Nie trzeba do tego ryzykować patrzenia na Słońce.
+- qm: Bulutlar kündüzgi semanıñ bir qısmıdır, olarnı azır fotoresimlerde teñeştirmek mümkün. Semanı tek geceleri degil, kündüz de ögrenmek mümkün; bunıñ içün Küneşke telükeli şekilde baqmaq kerek degil.
 - Code: [index.ts](../../../../../content/astronomy/data/lessons/7/c042698a-de5b-5055-9e10-ff5621f80ed7/questions/selectOneAnswer/classifyCloudObservation/explanationText/index.ts)
 
 #### answers/correct/correctChoice (8675b5fd-f59d-5b43-b1bc-055863ede5cb)
 - Source (uk): Порівняти форми хмар на двох готових фотографіях денного неба.
-- pl: Porównać kształty chmur na dwóch gotowych zdjęciach dziennego nieba.
+- qm: Kündüzgi semanıñ eki azır fotoresminde bulutlarnıñ şekillerini teñeştirmek.
 - Code: [index.ts](../../../../../content/astronomy/data/lessons/7/c042698a-de5b-5055-9e10-ff5621f80ed7/questions/selectOneAnswer/classifyCloudObservation/correct/correctChoice/index.ts)
 
 #### answers/incorrect/otherChoice1 (61aa6684-08b7-5266-ab8a-5a855c1a78a5)
 - Source (uk): Подивитися на Сонце крізь звичайні сонцезахисні окуляри.
-- pl: Popatrzeć na Słońce przez zwykłe okulary przeciwsłoneczne.
+- qm: Adiy küneş közlüklerini taqıp, Küneşke baqmaq.
 - Code: [index.ts](../../../../../content/astronomy/data/lessons/7/c042698a-de5b-5055-9e10-ff5621f80ed7/questions/selectOneAnswer/classifyCloudObservation/incorrect/otherChoice1/index.ts)
 
 #### answers/incorrect/otherChoice2 (9dfb0a7c-cecb-5609-890a-bce644f1894c)
 - Source (uk): Спрямувати бінокль на Сонце, щоб роздивитися його ближче.
-- pl: Skierować lornetkę na Słońce, żeby przyjrzeć mu się z bliska.
+- qm: Küneşni yaqından körmek içün dürbinni oña çevirip baqmaq.
 - Code: [index.ts](../../../../../content/astronomy/data/lessons/7/c042698a-de5b-5055-9e10-ff5621f80ed7/questions/selectOneAnswer/classifyCloudObservation/incorrect/otherChoice2/index.ts)
 
 #### answers/incorrect/otherChoice3 (a9de8af1-ca6b-5202-bec4-dc9d7139393f)
 - Source (uk): Відкласти дослідження неба до ночі, бо вдень це неможливо.
-- pl: Odłożyć badanie nieba do nocy, bo w dzień nie jest to możliwe.
+- qm: Kündüz semanı ögrenmek mümkün degil dep, onı gecege qaldırmaq.
 - Code: [index.ts](../../../../../content/astronomy/data/lessons/7/c042698a-de5b-5055-9e10-ff5621f80ed7/questions/selectOneAnswer/classifyCloudObservation/incorrect/otherChoice3/index.ts)
 
 ## selectOneAnswer/recognizeMakeshiftFilter
@@ -154,37 +154,37 @@ Missing translations: 0
 
 #### question/prompt (3ef7e26f-0b56-5d91-8965-be71cf987cc2)
 - Source (uk): Тато знайшов удома темну плівку й каже, що через неї можна дивитися на Сонце. Який висновок правильний?
-- pl: Tata znalazł w domu ciemną folię i mówi, że można przez nią patrzeć na Słońce. Który wniosek jest prawidłowy?
+- qm: Baba evde qoyu tüslü plönka taptı ve onıñ aşasından Küneşke baqmaq mümkün, dep ayta. Qaysı netice doğrudır?
 - Code: [index.ts](../../../../../content/astronomy/data/lessons/7/c042698a-de5b-5055-9e10-ff5621f80ed7/questions/selectOneAnswer/recognizeMakeshiftFilter/prompt/index.ts)
 
 #### hint/hintText (c5c7f415-1363-5dd7-8ec9-3f4d70c37c8c)
 - Source (uk): Подумай, чи можна визначити захисні властивості матеріалу лише за тим, наскільки темним він здається.
-- pl: Zastanów się, czy sam wygląd materiału i to, jak bardzo jest ciemny, pozwalają ocenić, czy chroni oczy.
+- qm: Materialnıñ közlerni qorçalağanını, onıñ ne qadar qoyu körüngenine baqıp, bilmek mümkünmi? Tüşün.
 - Code: [index.ts](../../../../../content/astronomy/data/lessons/7/c042698a-de5b-5055-9e10-ff5621f80ed7/questions/selectOneAnswer/recognizeMakeshiftFilter/hintText/index.ts)
 
 #### explanation/explanationText (1b3c037e-1ee2-5f95-ad62-aa7d70fa3f5d)
 - Source (uk): Саморобна темна плівка не є перевіреним сонячним фільтром. Темний вигляд матеріалу, короткий час і перебування за вікном не доводять безпеки прямого погляду на Сонце. Замість цього можна розглянути готовий науковий знімок.
-- pl: Samodzielnie przygotowana ciemna folia nie jest sprawdzonym filtrem słonecznym. Ciemny wygląd materiału, krótki czas patrzenia ani przebywanie za oknem nie dowodzą, że bezpośrednie patrzenie na Słońce jest bezpieczne. Zamiast tego można obejrzeć gotowe zdjęcie naukowe.
+- qm: Evdeki qoyu tüslü plönka tekşirilgen küneş filtri degil. Materialnıñ qoyu körünmesi, qısqa vaqıt baquv ya da pencere arqasında oluv Küneşke doğrudan-doğru baquvnı telükesiz etmez. Bunıñ yerine azır ilmiy fotoresimni körmek mümkün.
 - Code: [index.ts](../../../../../content/astronomy/data/lessons/7/c042698a-de5b-5055-9e10-ff5621f80ed7/questions/selectOneAnswer/recognizeMakeshiftFilter/explanationText/index.ts)
 
 #### answers/correct/correctChoice (cdabe3a7-30b1-56a2-a264-eba3a33e32a5)
 - Source (uk): Темна плівка не замінює спеціального захисту; дивитися крізь неї на Сонце не можна.
-- pl: Ciemna folia nie zastępuje specjalnej ochrony oczu. Nie wolno przez nią patrzeć na Słońce.
+- qm: Qoyu tüslü plönka mahsus köz qorçalavınıñ yerini tutmay; onıñ aşasından Küneşke baqmaq olmaz.
 - Code: [index.ts](../../../../../content/astronomy/data/lessons/7/c042698a-de5b-5055-9e10-ff5621f80ed7/questions/selectOneAnswer/recognizeMakeshiftFilter/correct/correctChoice/index.ts)
 
 #### answers/incorrect/otherChoice1 (60d68e48-db41-5ed1-97aa-8a864429ef90)
 - Source (uk): Якщо плівка дуже темна, вона обов'язково захищає очі.
-- pl: Jeśli folia jest bardzo ciemna, na pewno chroni oczy.
+- qm: Plönka pek qoyu olsa, közlerni mutlaqa qorçalay.
 - Code: [index.ts](../../../../../content/astronomy/data/lessons/7/c042698a-de5b-5055-9e10-ff5621f80ed7/questions/selectOneAnswer/recognizeMakeshiftFilter/incorrect/otherChoice1/index.ts)
 
 #### answers/incorrect/otherChoice2 (a8ad767b-138b-5a59-9f1c-ad3196c43919)
 - Source (uk): Через темну плівку безпечно дивитися на Сонце кілька секунд.
-- pl: Przez ciemną folię można bezpiecznie patrzeć na Słońce przez kilka sekund.
+- qm: Qoyu plönka aşasından Küneşke bir qaç saniye baqmaq telükesiz.
 - Code: [index.ts](../../../../../content/astronomy/data/lessons/7/c042698a-de5b-5055-9e10-ff5621f80ed7/questions/selectOneAnswer/recognizeMakeshiftFilter/incorrect/otherChoice2/index.ts)
 
 #### answers/incorrect/otherChoice3 (1e5de2c2-a438-541f-9eaf-b4c198f09ed8)
 - Source (uk): У приміщенні темна плівка робить прямий погляд на Сонце безпечним.
-- pl: W pomieszczeniu ciemna folia sprawia, że bezpośrednie patrzenie na Słońce jest bezpieczne.
+- qm: Ev içinde qoyu plönka Küneşke doğrudan-doğru baquvnı telükesiz ete.
 - Code: [index.ts](../../../../../content/astronomy/data/lessons/7/c042698a-de5b-5055-9e10-ff5621f80ed7/questions/selectOneAnswer/recognizeMakeshiftFilter/incorrect/otherChoice3/index.ts)
 
 ## selectOneAnswer/chooseRecordedProjection
@@ -198,37 +198,37 @@ Missing translations: 0
 
 #### question/prompt (5a99f567-ffe1-5497-a3df-17b2234fa48b)
 - Source (uk): На занятті розповіли, що фахівці можуть отримувати проєкцію Сонця. Тобі цікаво побачити результат. Як вчинити безпечно?
-- pl: Na zajęciach opowiedziano, że specjaliści potrafią uzyskać projekcję obrazu Słońca. Chcesz zobaczyć efekt. Co będzie bezpieczne?
+- qm: Derste mütehassıslarnıñ Küneş proyeksiyasını yapabilgenleri aqqında ayttılar. Sen neticeni körmek isteysiñ. Nasıl telükesiz davranmaq kerek?
 - Code: [index.ts](../../../../../content/astronomy/data/lessons/7/c042698a-de5b-5055-9e10-ff5621f80ed7/questions/selectOneAnswer/chooseRecordedProjection/prompt/index.ts)
 
 #### hint/hintText (ad42485a-664c-5255-88e1-5cd773cdc7cd)
 - Source (uk): Подумай, чи можна побачити результат, не спрямовуючи власні очі або прилади на Сонце.
-- pl: Zastanów się, czy możesz zobaczyć rezultat bez kierowania wzroku ani żadnych przyrządów na Słońce.
+- qm: Öz közleriñni ya da cihazlarnı Küneşke doğrultmadan neticeni körmek mümkünmi, tüşün.
 - Code: [index.ts](../../../../../content/astronomy/data/lessons/7/c042698a-de5b-5055-9e10-ff5621f80ed7/questions/selectOneAnswer/chooseRecordedProjection/hintText/index.ts)
 
 #### explanation/explanationText (e69b3bb6-2732-56c1-a195-07aa1fbf9ba5)
 - Source (uk): Готовий запис проєкції можна безпечно розглядати без прямого погляду на Сонце. Самостійно виготовляти чи налаштовувати сонячні пристрої дітям не потрібно. Через отвір проєктора на Сонце дивитися не можна.
-- pl: Można bezpiecznie obejrzeć gotowe nagranie projekcji, nie patrząc bezpośrednio na Słońce. Dzieci nie powinny samodzielnie budować ani ustawiać przyrządów do obserwacji Słońca. Nie wolno patrzeć na Słońce przez otwór projektora.
+- qm: Proyeksiyanıñ azır videosını Küneşke doğrudan-doğru baqmayıp telükesiz seyir etmek mümkün. Balalarğa Küneşni körsetken cihazlarnı özleri yapmaq ya da ayarlamaq kerek degil. Proyektornıñ teşiginden Küneşke baqmaq olmaz.
 - Code: [index.ts](../../../../../content/astronomy/data/lessons/7/c042698a-de5b-5055-9e10-ff5621f80ed7/questions/selectOneAnswer/chooseRecordedProjection/explanationText/index.ts)
 
 #### answers/correct/correctChoice (b4237ae4-3cb2-580f-8e52-3aed43f8a880)
 - Source (uk): Попросити показати готовий запис проєкції, підготовлений фахівцями.
-- pl: Poprosić o pokazanie gotowego nagrania projekcji przygotowanego przez specjalistów.
+- qm: Mütehassıslar azırlağan proyeksiyanıñ azır video yazuvını köstermelerini istemek.
 - Code: [index.ts](../../../../../content/astronomy/data/lessons/7/c042698a-de5b-5055-9e10-ff5621f80ed7/questions/selectOneAnswer/chooseRecordedProjection/correct/correctChoice/index.ts)
 
 #### answers/incorrect/otherChoice1 (37f99454-61f2-5807-84b0-5fa2fa82fac7)
 - Source (uk): Самостійно зібрати пристрій для проєкції та випробувати його на Сонці.
-- pl: Samodzielnie zbudować urządzenie do projekcji i wypróbować je na Słońcu.
+- qm: Proyeksiya cihazını öz başına yapıp, onı Küneşte sınamaq.
 - Code: [index.ts](../../../../../content/astronomy/data/lessons/7/c042698a-de5b-5055-9e10-ff5621f80ed7/questions/selectOneAnswer/chooseRecordedProjection/incorrect/otherChoice1/index.ts)
 
 #### answers/incorrect/otherChoice2 (8e076576-ca1c-5f68-8b1e-46c01ba835ba)
 - Source (uk): Подивитися на Сонце крізь отвір пристрою, схожого на той, що описали.
-- pl: Spojrzeć na Słońce przez otwór urządzenia podobnego do opisanego.
+- qm: Tarif etilgen cihazğa oşağan bir cihaznıñ teşiginden Küneşke baqmaq.
 - Code: [index.ts](../../../../../content/astronomy/data/lessons/7/c042698a-de5b-5055-9e10-ff5621f80ed7/questions/selectOneAnswer/chooseRecordedProjection/incorrect/otherChoice2/index.ts)
 
 #### answers/incorrect/otherChoice3 (7b6066a8-e400-5851-a076-c218ed2ea055)
 - Source (uk): Попросити друга зробити проєкцію без нагляду дорослого.
-- pl: Poprosić kolegę, żeby przygotował projekcję bez nadzoru dorosłego.
+- qm: Büyüklerniñ nezareti olmadan arqadaşından proyeksiya yapmasını istemek.
 - Code: [index.ts](../../../../../content/astronomy/data/lessons/7/c042698a-de5b-5055-9e10-ff5621f80ed7/questions/selectOneAnswer/chooseRecordedProjection/incorrect/otherChoice3/index.ts)
 
 ## Quiz Section / safeSkyChoices
@@ -239,20 +239,20 @@ Missing translations: 0
 
 #### title (2d844bab-f77e-5dc5-adb9-7891d5bb6b59)
 - Source (uk): Перевір безпечний вибір
-- pl: Sprawdź, czy wybierasz bezpiecznie
+- qm: Telükesiz seçimni tekşir
 - Code: [index.ts](../../../../../content/astronomy/data/lessons/7/c042698a-de5b-5055-9e10-ff5621f80ed7/sections/safeSkyChoices/index.ts)
 
 #### navigationLabel (2d844bab-f77e-5dc5-adb9-7891d5bb6b59)
 - Source (uk): Перевір знання
-- pl: Sprawdź wiedzę
+- qm: Bilgileriñni tekşir
 - Code: [index.ts](../../../../../content/astronomy/data/lessons/7/c042698a-de5b-5055-9e10-ff5621f80ed7/sections/safeSkyChoices/index.ts)
 
 #### Quiz content/quizIntro (2b550f05-8866-583f-a8f4-391e6d3eec4e)
 - Source (uk): # Чи вмієш обирати безпечні дії? ⏎  ⏎ Ти вже тренувався пояснювати ризики. Тепер буде **окрема перевірка**: розпізнай небезпечні способи й знайди безпечну заміну. ⏎  ⏎ Не потрібно дивитися на Сонце або користуватися приладами. Якщо ти ще не читаєш самостійно, дорослий може прочитати умову вголос. Ти можеш сказати свій вибір або показати на варіант за погодженим доступним способом. ⏎ 
-- pl: # Czy potrafisz wybierać bezpieczne działania? ⏎  ⏎ Wiesz już, jak wyjaśniać zagrożenia. Teraz czeka cię **osobne sprawdzenie wiedzy**: rozpoznaj niebezpieczne sposoby obserwowania Słońca i wybierz bezpieczną alternatywę. ⏎  ⏎ Nie musisz patrzeć na Słońce ani używać żadnych przyrządów. Jeśli jeszcze nie czytasz samodzielnie, dorosły może przeczytać pytanie na głos. Możesz powiedzieć, którą odpowiedź wybierasz, albo ją wskazać w uzgodniony, dostępny dla ciebie sposób. ⏎ 
+- qm: # Telükesiz areketlerni seçe bilesiñmi? ⏎  ⏎ Sen telükelerni nasıl añlatmaq kerekligini endi ögrendiñ. Şimdi ise **ayrı bir bilgi tekşirüvi** bar: telükeli usullarnı tanı ve telükesiz variantnı seç. ⏎  ⏎ Küneşke baqmaq ya da bir cihaz qullanmaq kerek degil. Eger alâ öz başıña oquy almasañ, büyüklerden biri sualni yüksek sesnen oquy bilir. Sen cevabıñnı ayta ya da kelişilgen, saña uyğun bir usulnen köstere bilesiñ. ⏎ 
 - Code: [index.ts](../../../../../content/astronomy/data/lessons/7/c042698a-de5b-5055-9e10-ff5621f80ed7/sections/safeSkyChoices/quizIntro/index.ts)
 - Source Markdown: [uk.md](../../../../../content/astronomy/data/lessons/7/c042698a-de5b-5055-9e10-ff5621f80ed7/sections/safeSkyChoices/quizIntro/uk.md)
-- pl Markdown: [pl.md](../../../../../content/astronomy/data/lessons/7/c042698a-de5b-5055-9e10-ff5621f80ed7/sections/safeSkyChoices/quizIntro/pl.md)
+- qm Markdown: [qm.md](../../../../../content/astronomy/data/lessons/7/c042698a-de5b-5055-9e10-ff5621f80ed7/sections/safeSkyChoices/quizIntro/qm.md)
 Source Markdown (uk):
 ~~~~
 # Чи вмієш обирати безпечні дії?
@@ -262,11 +262,11 @@ Source Markdown (uk):
 Не потрібно дивитися на Сонце або користуватися приладами. Якщо ти ще не читаєш самостійно, дорослий може прочитати умову вголос. Ти можеш сказати свій вибір або показати на варіант за погодженим доступним способом.
 ~~~~
 
-pl Markdown:
+qm Markdown:
 ~~~~
-# Czy potrafisz wybierać bezpieczne działania?
+# Telükesiz areketlerni seçe bilesiñmi?
 
-Wiesz już, jak wyjaśniać zagrożenia. Teraz czeka cię **osobne sprawdzenie wiedzy**: rozpoznaj niebezpieczne sposoby obserwowania Słońca i wybierz bezpieczną alternatywę.
+Sen telükelerni nasıl añlatmaq kerekligini endi ögrendiñ. Şimdi ise **ayrı bir bilgi tekşirüvi** bar: telükeli usullarnı tanı ve telükesiz variantnı seç.
 
-Nie musisz patrzeć na Słońce ani używać żadnych przyrządów. Jeśli jeszcze nie czytasz samodzielnie, dorosły może przeczytać pytanie na głos. Możesz powiedzieć, którą odpowiedź wybierasz, albo ją wskazać w uzgodniony, dostępny dla ciebie sposób.
+Küneşke baqmaq ya da bir cihaz qullanmaq kerek degil. Eger alâ öz başıña oquy almasañ, büyüklerden biri sualni yüksek sesnen oquy bilir. Sen cevabıñnı ayta ya da kelişilgen, saña uyğun bir usulnen köstere bilesiñ.
 ~~~~

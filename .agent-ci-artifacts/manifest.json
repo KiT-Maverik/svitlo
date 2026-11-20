@@ -1,11 +1,11 @@
 {
   "schemaVersion": 3,
   "kind": "pr-scoped-agent-ci-artifacts",
-  "sourceCommit": "377e7992ce661bd135b4dbf1e61ad786b83320e1",
+  "sourceCommit": "d55503d9bf903aeddf150207a54a039693752e18",
   "scope": {
     "kind": "questions",
     "package": "content/astronomy",
-    "locale": "pl",
+    "locale": "qm",
     "component": null,
     "lesson": null,
     "course": null
@@ -14,15 +14,15 @@
     "content/astronomy"
   ],
   "locales": [
-    "pl"
+    "qm"
   ],
   "generated": [
     {
       "kind": "question",
       "textbook": "content/astronomy",
       "lesson": "7/c042698a-de5b-5055-9e10-ff5621f80ed7",
-      "locale": "pl",
-      "path": ".agent-ci-artifacts/questions/astronomy/7/c042698a-de5b-5055-9e10-ff5621f80ed7/pl.md",
+      "locale": "qm",
+      "path": ".agent-ci-artifacts/questions/astronomy/7/c042698a-de5b-5055-9e10-ff5621f80ed7/qm.md",
       "questions": 5,
       "quizSections": 1,
       "questionStrings": 35,
