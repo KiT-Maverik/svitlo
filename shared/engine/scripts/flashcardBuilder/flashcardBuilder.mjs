@@ -174,8 +174,13 @@ export function renderFlashcardBank(bank) {
   for (const name of bank.flashcards.order) {
     const parsed = yamlFlashcard_Schema.parse(bank.flashcards.items[name]);
     ensure(parsed.slug === name, 'Flashcard slug/map mismatch: ' + name);
-    for (const [key, flag] of Object.entries(parsed.parameters.flags.items)) {
-      if ('value' in flag) validateSourceLocales(flag.value, sourceLanguage, name + '.flags.' + key);
+    const builtInFlags = new Set();
+    for (const [index, flag] of parsed.parameters.flags.entries()) {
+      if ('value' in flag) validateSourceLocales(flag.value, sourceLanguage, name + '.flags.' + index);
+      if (flag.type !== 'custom') {
+        ensure(!builtInFlags.has(flag.type), 'Duplicate built-in Flashcard flag: ' + flag.type);
+        builtInFlags.add(flag.type);
+      }
     }
     ensure(!ids.has(parsed.id), 'duplicate Flashcard UUID: ' + parsed.id);
     ids.add(parsed.id);

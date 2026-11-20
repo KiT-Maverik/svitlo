@@ -37,7 +37,7 @@ The proposed assessment should take a **specific Lesson UUID and revision/digest
 - **Editorial:** methodology/experience/assessment acceptance and locale-by-locale translation and human sign-off tied to the same reviewed source and assembled Props revision.
 - **Production progress:** per-resource/per-locale pending, blocked or verified work, allowing a Lesson to remain an incomplete draft without pretending whole-Lesson completion.
 
-A positive readiness outcome requires all mandatory facts **for the requested publication scope**. Missing evidence must be **unknown/not verified**, never implicitly approved. Changing source or Props revision invalidates only dependent evidence. The assessment belongs at the build/publishing boundary; no `completed` Configurator property or unconditional runtime flag is warranted. The existing source-only scaffolder, `SKIP` policy and review-template placeholders stay unchanged.
+A positive readiness outcome requires all mandatory facts **for the requested publication scope**. Missing evidence must be **unknown/not verified**, never implicitly approved. Changing source or Props revision invalidates only dependent evidence. The assessment belongs at the build/publishing boundary; no `completed` Configurator property or unconditional runtime flag is warranted. The source-only scaffolder and `SKIP`/no-overwrite policy remain intact. Generated review registers now use typed numeric `0` evidence placeholders plus a blocking review TODO; Ready/merge CI rejects zero references even if that TODO is removed. This is not an external-review verification or publication approval gate.
 
 ## API and acceptance decisions still required before enforcement
 

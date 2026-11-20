@@ -14,7 +14,7 @@ import ts from 'typescript';
 import YAML from 'yaml';
 import { parseYaml, checkPlan } from '../validateCourseFlow/validate-course-flow.mjs';
 import { buildLessonIndex } from '../generateLessonsBySkill/lesson-index.mjs';
-import { renderCourseSource } from '../courseBuilder/courseBuilder.mjs';
+import { renderEpisodeScaffoldSource } from './episode-draft-renderer.mjs';
 
 const rootDefault = path.resolve(fileURLToPath(new URL('../../../..', import.meta.url)));
 const UUID = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/;
@@ -319,9 +319,9 @@ function renderEpisodeDraft(episode, language, courseId) {
     locale: { title: { [language]: 'Episode draft' }, description: { [language]: 'Draft' } },
     content: { items: { [episode.slug]: episode }, order: [episode.slug] },
   };
-  const rendered = renderCourseSource(wrapper);
+  const rendered = renderEpisodeScaffoldSource(wrapper);
   const ast = ts.createSourceFile('episode-scaffold.ts', rendered, ts.ScriptTarget.Latest, true);
-  if (ast.parseDiagnostics.length) fail('Course Builder produced invalid Episode draft syntax');
+  if (ast.parseDiagnostics.length) fail('Episode renderer produced invalid draft syntax');
   const calls = [];
   const visit = node => {
     if (ts.isCallExpression(node) && ts.isIdentifier(node.expression) && node.expression.text === 'defineEpisode')
@@ -579,13 +579,14 @@ export function renderModularCourse(
     files.set(file, source);
   }
   // Use the real shared Review contract until a Course-specific review contract exists.
-  // Missing evidence intentionally produces TypeScript diagnostics, not fictitious approvals.
+  // Numeric zero is unreviewed; the TODO and zero-evidence guard preserve approval gates.
   files.set(
     'review.ts',
-    "import type { Review } from '@svitlo/engine/build';\n\n" +
+    '// TODO (BLOCKER): Conduct review. Zero is unreviewed; verify PR, revision and language evidence before Ready/merge.\n' +
+      "import type { Review } from '@svitlo/engine/build';\n\n" +
       'export const courseReview = {\n' +
-      '  ai: { locales: undefined },\n' +
-      '  human: { acceptance: undefined, locales: {} },\n' +
+      '  ai: { locales: 0 },\n' +
+      '  human: { acceptance: 0, locales: {} },\n' +
       '} satisfies Review;\n',
   );
   const planned = config.params.languages;
