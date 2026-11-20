@@ -133,6 +133,14 @@ function scaffoldParams(paramsInput, lessonId, type, slug) {
  */
 export function prepareAssessmentDraft(document) {
   const lesson = structuredClone(document.config);
+  const requiresAssessment = document.production?.quizRequired === true ||
+    document.production?.flashcardsRequired === true ||
+    lesson.params?.quizRequiredForCompletion === true;
+  // Preserve the existing partially authored Lesson behavior when it has
+  // neither Sections nor approved assessment intent.
+  if (!isRecord(lesson.section) && !requiresAssessment) {
+    return { lesson, pending: [], drafts: new Map() };
+  }
   if (!isRecord(lesson.section)) lesson.section = { items: {}, order: [] };
   if (!isRecord(lesson.section.items)) lesson.section.items = {};
   if (!Array.isArray(lesson.section.order)) lesson.section.order = [];
