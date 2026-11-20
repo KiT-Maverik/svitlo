@@ -2,12 +2,12 @@ import { defineSelectOneAnswer } from '@svitlo/engine/build';
 
 import type { LessonLanguages } from "#lessonsData/2/c25fe16e-5640-5615-b456-a99a392a7f42/constants";
 
-import { correctAnswer } from "./correct/correctAnswer";
-import { explanationText } from "./explanationText";
-import { hintText } from "./hintText";
-import { prompt } from "./prompt";
-import { wrong1 } from "./incorrect/wrong1";
-import { wrong2 } from "./incorrect/wrong2";
+import { correctAnswer } from "./newPlaceContinuesRotating/correct/correctAnswer";
+import { explanationText } from "./newPlaceContinuesRotating/explanationText";
+import { hintText } from "./newPlaceContinuesRotating/hintText";
+import { prompt } from "./newPlaceContinuesRotating/prompt";
+import { wrong1 } from "./newPlaceContinuesRotating/incorrect/wrong1";
+import { wrong2 } from "./newPlaceContinuesRotating/incorrect/wrong2";
 
 const content = {
   question: {
@@ -60,12 +60,12 @@ const content = {
   }
 };
 
-export const limitsOfGlobeModel = defineSelectOneAnswer<"limitsOfGlobeModel", typeof content, LessonLanguages>({
-  id: "7c4e3b90-ccf1-4f74-9c91-00000000001d",
-  slug: "limitsOfGlobeModel",
+export const newPlaceContinuesRotating = defineSelectOneAnswer<"newPlaceContinuesRotating", typeof content, LessonLanguages>({
+  id: "7c4e3b90-ccf1-4f74-9c91-000000000016",
+  slug: "newPlaceContinuesRotating",
   type: "selectOneAnswer",
   params: {
-    assessmentMethod: "interpretation",
+    assessmentMethod: "prediction",
     restrictions: []
   },
   locale: {},

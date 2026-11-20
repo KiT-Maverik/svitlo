@@ -1,8 +1,8 @@
-import { limitsOfGlobeModel } from "./selectOneAnswer/limitsOfGlobeModel";
-import { newPlaceContinuesRotating } from "./selectOneAnswer/newPlaceContinuesRotating";
-import { sameTimeDifferentPlaces } from "./selectOneAnswer/sameTimeDifferentPlaces";
-import { stoppedGlobeKeepsNight } from "./selectOneAnswer/stoppedGlobeKeepsNight";
-import { whyNightArrives } from "./selectOneAnswer/whyNightArrives";
+import { limitsOfGlobeModel } from "./selectOneAnswer";
+import { newPlaceContinuesRotating } from "./selectOneAnswer";
+import { sameTimeDifferentPlaces } from "./selectOneAnswer";
+import { stoppedGlobeKeepsNight } from "./selectOneAnswer";
+import { whyNightArrives } from "./selectOneAnswer";
 
 export const questions = {
   selectOneAnswer: {
