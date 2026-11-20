@@ -22,7 +22,7 @@ export const denominations = defineSkillGroup({
     it: 'Importi di denaro',
     ja: '金額',
     ka: 'ფულადი თანხები',
-    kk: 'Ақша сомалары',
+    kk: 'Aqşa somalary',
     ko: '금액',
     lt: 'Pinigų sumos',
     lv: 'Naudas summas',

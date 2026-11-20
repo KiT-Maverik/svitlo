@@ -1,6 +1,6 @@
-import { defineAssessmentMethod } from '@svitlo/engine/build';
+import { defineAssessmentMethod, type AllLanguageCodes } from '@svitlo/engine/build';
 
-export const structuralAnalysis = defineAssessmentMethod({
+export const structuralAnalysis = defineAssessmentMethod<'structuralAnalysis', AllLanguageCodes>({
   id: 'cf57b1e5-514d-4f74-9128-ab3ce5d33fcf',
   slug: 'structuralAnalysis',
   title: {
@@ -18,7 +18,7 @@ export const structuralAnalysis = defineAssessmentMethod({
     id: 'Analisis struktur',
     ja: '構造分析',
     ka: 'სტრუქტურული ანალიზი',
-    kk: 'Құрылымдық талдау',
+    kk: 'Qūrylymdyq taldau',
     ko: '구조 분석',
     lt: 'Struktūrinė analizė',
     lv: 'Strukturālā analīze',
@@ -50,7 +50,7 @@ export const structuralAnalysis = defineAssessmentMethod({
     id: 'Menguraikan keseluruhan yang kompleks menjadi bagian-bagian dan menjelaskan perannya. Penilaian mengukur proses berpikir ini, bukan bentuk jawabannya.',
     ja: '複雑な全体を要素に分け、各要素の役割を説明します。 評価するのは回答形式ではなく、この認知的な働きです。',
     ka: 'რთული მთლიანობის ნაწილებად დაყოფა და თითოეული ნაწილის როლის ახსნა. ფასდება ეს სააზროვნო მოქმედება და არა პასუხის ფორმატი.',
-    kk: 'Күрделі тұтастықты бөліктерге ажыратып, әр бөліктің рөлін түсіндіру. Жауаптың пішімі емес, осы ойлау әрекеті бағаланады.',
+    kk: 'Kürdelı tūtastyqty bölıkterge ajyratyp, är bölıktıñ rölın tüsındıru. Jauaptyñ pışımı emes, osy oilau äreketı bağalanady.',
     ko: '복잡한 전체를 구성 요소로 나누고 각 부분의 역할을 설명합니다. 평가는 답변 형식이 아니라 이러한 인지 활동을 측정합니다.',
     lt: 'Išskaidyti sudėtingą visumą į dalis ir paaiškinti kiekvienos jų vaidmenį. Vertinamas šis mąstymo veiksmas, o ne atsakymo pateikimo forma.',
     lv: 'Sadalīt sarežģītu veselumu daļās un izskaidrot katras daļas nozīmi. Tiek vērtēta šī domāšanas darbība, nevis atbildes forma.',

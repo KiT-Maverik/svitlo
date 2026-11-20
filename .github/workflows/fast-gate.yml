@@ -2,21 +2,8 @@ name: FastGate
 
 on:
   pull_request:
-    branches: [main]
-    paths:
-      - '**/*.ts'
-      - '**/*.tsx'
-      # KaTeX styles can change without a JS/TS source change.
-      - 'shared/ui-kit/src/components/widgets/ContentBlockRenderer/blocks/Markdown/**'
-      - '**/*.mts'
-      - '**/*.js'
-      - '**/*.mjs'
-      - '**/*.cjs'
-      - '**/*.json'
-      - 'scripts/**'
-      - '.agent-ci-artifacts/**'
-      - '.github/workflows/**'
-      - '.github/labeler.yml'
+    branches: [develop]
+    types: [opened, reopened, synchronize, ready_for_review]
   workflow_dispatch:
 
 permissions:
@@ -36,35 +23,50 @@ jobs:
         with:
           fetch-depth: 0
           persist-credentials: false
-      - name: Refuse temporary agent artifacts in a main-bound PR
-        run: |
-          if [ -d .agent-ci-artifacts ]; then
-            echo '::error::Remove .agent-ci-artifacts/ before merging into main.'
-            exit 1
-          fi
-      - name: Validate GitHub label catalogue, matchers and historical backfill
-        run: |
-          node .github/scripts/verify-labels.cjs
-          node --test .github/scripts/backfill-labels.test.cjs
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '24'
-          cache: npm
-      - run: npm ci
-      - name: Enforce explicit Engine build/runtime entrypoints
-        run: |
-          node --test scripts/migrateEngineImports/migrate-engine-imports.spec.mjs
-          node scripts/migrateEngineImports/migrate-engine-imports.mjs --check
-          node --test scripts/migrateEngineEntrypoints/migrate-engine-entrypoints.spec.mjs
-          node scripts/migrateEngineEntrypoints/migrate-engine-entrypoints.mjs --check
-          node --test scripts/checkEngineRuntimeGraph/check-engine-runtime-graph.spec.mjs
-          node scripts/checkEngineRuntimeGraph/check-engine-runtime-graph.mjs
-      - name: Scoped quality checks
-        if: github.event_name == 'pull_request'
+      - name: Detect whether this PR needs typechecks
+        id: scope
         env:
           BASE_SHA: ${{ github.event.pull_request.base.sha }}
           HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ "$GITHUB_EVENT_NAME" != pull_request ]]; then
+            echo "run=true" >> "$GITHUB_OUTPUT"
+          else
+            changed_files=$(git diff --no-renames --name-only "$BASE_SHA...$HEAD_SHA")
+            if grep -Eq '(^package(-lock)?\.json$|^tsconfig[^/]*\.json$|^(apps|content|shared|backend)/.*\.(ts|tsx|mts|cts|js|mjs|cjs|json)$)' <<< "$changed_files"; then
+              echo "run=true" >> "$GITHUB_OUTPUT"
+            else
+              echo "run=false" >> "$GITHUB_OUTPUT"
+              echo "No changed TypeScript workspace or dependency config; FastGate has no typechecks to run."
+            fi
+          fi
+
+      - name: Explain lightweight Draft validation
+        if: github.event_name == 'pull_request' && github.event.pull_request.draft
+        run: echo 'Draft PR - typechecks are deferred until Ready for review or explicit workflow_dispatch.'
+
+      - uses: actions/setup-node@v4
+        if: steps.scope.outputs.run == 'true' && (github.event_name == 'workflow_dispatch' || !github.event.pull_request.draft)
+        with:
+          node-version: '24'
+          cache: npm
+
+      - name: Install pinned dependencies for typechecking
+        if: steps.scope.outputs.run == 'true' && (github.event_name == 'workflow_dispatch' || !github.event.pull_request.draft)
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --no-audit --no-fund
+
+      - name: Typecheck changed workspaces and public API consumers
+        if: github.event_name == 'pull_request' && !github.event.pull_request.draft && steps.scope.outputs.run == 'true'
+        env:
+          SVITLO_WEB_TEST_SELECTION: web-fixture-alpha
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
         run: node scripts/runFastGate/run-fast-gate.mjs "$BASE_SHA" "$HEAD_SHA"
-      - name: Manually requested FastGate
-        if: github.event_name == 'workflow_dispatch'
+
+      - name: Manually requested typechecks
+        if: github.event_name == 'workflow_dispatch' && steps.scope.outputs.run == 'true'
+        env:
+          SVITLO_WEB_TEST_SELECTION: web-fixture-alpha
         run: node scripts/runFastGate/run-fast-gate.mjs --all

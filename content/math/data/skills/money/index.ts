@@ -21,7 +21,7 @@ export const money = defineSkillDomain({
     it: 'Denaro',
     ja: 'お金',
     ka: 'ფული',
-    kk: 'Ақша',
+    kk: 'Aqşa',
     ko: '돈',
     lt: 'Pinigai',
     lv: 'Nauda',

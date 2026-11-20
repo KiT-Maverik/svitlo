@@ -229,6 +229,24 @@ export function scanDiff(root, base, head) {
   return findings;
 }
 
+/** Inspect the current contents of every added, modified or renamed PR source
+ * file, including blocker comments inherited from the base revision. */
+export function scanChanged(root, base, head) {
+  if (!commitSha.test(base) || !commitSha.test(head)) {
+    throw new Error('Changed mode requires two full 40-character commit SHAs');
+  }
+  const files = git(root, 'diff', '--name-only', '-z', '--diff-filter=ACMR', base + '...' + head, '--')
+    .split('\0')
+    .filter(isSourceFile);
+  const findings = [];
+  for (const file of files) {
+    const location = path.join(root, file);
+    if (!fs.existsSync(location) || !fs.lstatSync(location).isFile()) continue;
+    findings.push(...scanSource(file, fs.readFileSync(location, 'utf8')));
+  }
+  return findings;
+}
+
 function escapeAnnotation(value) {
   return String(value).replace(/%/g, '%25').replace(/\r/g, '%0D').replace(/\n/g, '%0A').replace(/,/g, '%2C');
 }
@@ -236,17 +254,30 @@ function escapeAnnotation(value) {
 export function main(args, root = path.resolve(fileURLToPath(new URL('../../..', import.meta.url)))) {
   const [mode, base, head] = args;
   if (
-    (mode !== 'full' && mode !== 'diff') ||
+    (mode !== 'full' && mode !== 'diff' && mode !== 'report-diff' && mode !== 'changed') ||
     (mode === 'full' && args.length !== 1) ||
-    (mode === 'diff' && args.length !== 3)
+    ((mode === 'diff' || mode === 'report-diff' || mode === 'changed') && args.length !== 3)
   ) {
-    throw new Error('Usage: check-blocker-todos.mjs full | diff <base-sha> <head-sha>');
+    throw new Error(
+      'Usage: check-blocker-todos.mjs full | diff <base-sha> <head-sha> | changed <base-sha> <head-sha> | report-diff <base-sha> <head-sha>',
+    );
   }
-  const findings = mode === 'full' ? scanFull(root) : scanDiff(root, base, head);
+  const findings =
+    mode === 'full' ? scanFull(root) : mode === 'changed' ? scanChanged(root, base, head) : scanDiff(root, base, head);
+  const informational = mode === 'report-diff';
   for (const item of findings) {
     console.error(
-      '::error file=' + escapeAnnotation(item.file) + ',line=' + item.line + '::' + escapeAnnotation(item.text),
+      (informational ? '::warning file=' : '::error file=') +
+        escapeAnnotation(item.file) +
+        ',line=' +
+        item.line +
+        '::' +
+        escapeAnnotation(item.text),
     );
+  }
+  if (informational) {
+    console.log('Draft TODO report: ' + findings.length + ' pending blocker comment(s); authoring may continue.');
+    return;
   }
   if (findings.length) {
     throw new Error(findings.length + ' unresolved TODO (BLOCKER) comment(s) in ' + mode + ' mode');
