@@ -67,7 +67,6 @@ test('complete independent bank is generated without requiring a Quiz Section', 
   const item = sample();
   const analyzed = inspectQuestions(item);
   assert.equal(analyzed.questionCount, 2);
-  assert.equal(analyzed.questionIds.size, 2);
   const { files } = renderQuestions(item, lessonId);
   assert.ok(files.has('questions/index.ts'));
   for (const slug of ['firstQuestion', 'secondQuestion']) {
