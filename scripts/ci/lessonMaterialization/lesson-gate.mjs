@@ -54,7 +54,7 @@ export function parseIdentity(body) {
   return { id, pkg, slug, yaml, parent };
 }
 
-/** Require editorial Stages 1–5 and pending Stage 6. New PRs use ten stages with four
+/** Require editorial Stages 1–5 and pending Stage 6. New PRs use ten stages with three
  * explicit Stage 6 subchecks. Historical eight-stage PRs remain materializable
  * during in-place tracker migration; old 7/8 translation ticks NEVER prove banks.
  */
@@ -109,10 +109,9 @@ export function requireStageSixPending(body) {
       'Materialize Lesson sources',
       'Accessibility source audit',
       'Offline source audit',
-      'Validate source and handoff',
     ];
     const subitems = [...section.matchAll(/^ {2,}-\s*\[([ xX])\]\s*6\.(\d+)\s+([^\r\n]*)$/gm)];
-    if (subitems.length !== subNames.length) throw Error('Exactly four separate Stage 6 subchecks are required');
+    if (subitems.length !== subNames.length) throw Error('Exactly three separate Stage 6 subchecks are required');
     for (let i = 0; i < subNames.length; i++) {
       const current = subitems.filter(item => Number(item[2]) === i + 1);
       if (

@@ -62,6 +62,8 @@ jobs:
     permissions:
       contents: read
       pull-requests: read
+    outputs:
+      report_sha256: ${{ steps.analysis.outputs.report_sha256 }}
     steps:
       - name: Check out trusted implementation and Engine from default branch
         uses: actions/checkout@v4
@@ -84,6 +86,7 @@ jobs:
         working-directory: trusted
         run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --ignore-scripts --no-audit --no-fund
       - name: Validate reviewed Lesson, generate and verify only allowlisted sources
+        id: analysis
         env:
           GH_TOKEN: ${{ github.token }}
           LESSON_DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
@@ -123,9 +126,6 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
-      - name: Install trusted publisher dependencies without lifecycle scripts
-        working-directory: trusted
-        run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --ignore-scripts --no-audit --no-fund
       - name: Download artifact from the exact authorized read-only job
         uses: actions/download-artifact@v4
         with:
@@ -139,4 +139,5 @@ jobs:
           LESSON_META_B64: ${{ needs.resolve.outputs.meta }}
           LESSON_HEAD_ROOT: candidate
           LESSON_REPORT: report/report.json
+          LESSON_REPORT_SHA256: ${{ needs.analyze.outputs.report_sha256 }}
         run: node trusted/scripts/ci/quietRun/quiet-run.mjs -- node trusted/scripts/ci/lessonMaterialization/lesson-materialization.mjs publish
