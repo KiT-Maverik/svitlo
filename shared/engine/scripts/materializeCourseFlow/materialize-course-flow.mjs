@@ -647,15 +647,13 @@ export function renderModularCourse(
       ', typeof items, CourseLanguages>({\n' +
       fields.join(',\n') +
       '\n});\n' +
-      (node.type === 'course' && Object.keys(lessonPatches).length
-        ? '\n// Course-owned patch: does not mutate independently authored Lessons.\n' +
-          'export const ' +
-          symbolOf(node) +
-          'Overrides = ' +
-          symbolOf(node) +
-          '.build.overrides(' +
+      (node.type === 'course' && lessonOverride
+        ? '\n// Course-owned *input* patch. The publisher passes this through the stateless Build API.\n' +
+          'export const authoredCourseOverrides = ' +
           lessonOverride.expression +
-          ', { languages });\n'
+          ' satisfies Parameters<typeof ' +
+          symbolOf(node) +
+          '.build.overrides>[0];\n'
         : '');
     files.set(file, source);
   }
