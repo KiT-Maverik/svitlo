@@ -4,6 +4,7 @@ id: 42316a78-f682-4ba2-a24a-5cc6191f2113
 type: course
 slug: littleITInventors
 title: "Маленькі ІТ-винахідники"
+description: "Разом із дорослим досліджуємо цифрові пристрої, складаємо прості інструкції, знайомимося зі штучним інтелектом, перевіряємо відповіді та вчимося берегти особисті дані."
 documentLanguage: uk
 supportedLanguages:
   - uk
