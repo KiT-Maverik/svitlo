@@ -6,7 +6,7 @@ Svitlo is a modular interactive-learning project. The repository contains textbo
 
 | Directory                         | Contents                                                                       |
 | --------------------------------- | ------------------------------------------------------------------------------ |
-| `apps/web`                        | Next.js host for an explicitly build-selected content package          |
+| `apps/web`                        | Next.js host for an explicitly build-selected content package                  |
 | `apps/platform`                   | Next.js platform and external textbook catalog                                 |
 | `apps/mobile`, `apps/desktop`     | Mobile and desktop host workspaces                                             |
 | `content/playground`              | React DOM textbook package with authored data, Scenes, and generated resources |
@@ -25,7 +25,7 @@ The root [package.json](package.json) defines npm workspaces and scripts. `packa
 ```bash
 npm ci
 npm run repo:check:packages
-npm run code:check:types
+SVITLO_TEXTBOOK=math npm run code:check:types
 npm test
 ```
 
@@ -41,3 +41,5 @@ Start the Web host with an explicitly installed content package, for example `SV
 - [Math](content/math/README.md)
 - [Platform](apps/platform/README.md)
 - [Engine](shared/engine/README.md)
+
+The Web host never chooses a textbook implicitly. For Web build, typecheck, development, or root typechecks, set `SVITLO_TEXTBOOK` to an installed package exposing the Svitlo compiled public contract. Web-owned contract fixtures are test-only: they are explicitly selected by the Web CI and browser suites, not used as a production fallback. See [`apps/web/scripts/prepareTextbook/README.md`](apps/web/scripts/prepareTextbook/README.md).
