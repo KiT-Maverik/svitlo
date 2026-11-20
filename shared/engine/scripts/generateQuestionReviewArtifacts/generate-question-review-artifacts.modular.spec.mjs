@@ -163,6 +163,8 @@ test('existing flat Question modules and canonical Object.values Quiz selections
     fs.writeFileSync(filename, content);
   };
   try {
+    put('constants.ts', "import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine/runtime';\n" +
+      "export const howLightMoves_languages = DEFAULT_SUPPORTED_LANGUAGES.map(x => x.language);\n");
     put('questions/index.ts', "import { questionOne } from './questionOne';\nexport const someQuestions = {selectOneAnswer: {questionOne}};\n");
     const block = (slug, id) => `defineText({id:'${uuid(id)}',slug:'${slug}',type:'text',params:{},locale:{value:{en:'${slug} English',kk:'${slug} Kazakh'}}})`;
     const group = (slug, id) => `{items:{${slug}: ${block(slug, id)}},order:['${slug}']}`;

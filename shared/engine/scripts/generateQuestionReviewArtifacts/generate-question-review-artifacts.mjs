@@ -390,13 +390,32 @@ function emitLocalized(lines, values, label, id, origin, locale, sourceFile, out
   lines.push('');
   return { strings: 1, missing: Number(!present) };
 }
-function sourceLanguage(resolver, lessonRoot) {
+function sourceLanguage(_resolver, lessonRoot) {
   const file = path.join(lessonRoot, 'constants.ts');
   if (!fs.existsSync(file)) return 'en';
-  const module = resolver.module(file);
-  if (!module.exports.has('languages')) return 'en';
-  const codes = resolver.value(module, 'languages', true);
-  return Array.isArray(codes) && codes.length === 1 && /^[a-z]{2,4}$/.test(codes[0]) ? codes[0] : 'en';
+  safePath(lessonRoot, file);
+  const ast = ts.createSourceFile(file, fs.readFileSync(file, 'utf8'), ts.ScriptTarget.Latest, true);
+  if (ast.parseDiagnostics.length) throw Error('Invalid Lesson constants TypeScript: ' + file);
+  // An older Playground Lesson exports a dynamic all-language roster under a
+  // different name and imports Engine runtime. No code is executed or imported
+  // just to determine the original language of its English Question bank.
+  const registrations = [];
+  for (const stmt of ast.statements) {
+    if (!ts.isVariableStatement(stmt) || !stmt.modifiers?.some(x => x.kind === ts.SyntaxKind.ExportKeyword)) continue;
+    for (const decl of stmt.declarationList.declarations) {
+      if (ts.isIdentifier(decl.name) && decl.name.text === 'languages') registrations.push(decl.initializer);
+    }
+  }
+  if (!registrations.length) return 'en';
+  if (registrations.length !== 1) throw Error('Duplicate source language declarations: ' + file);
+  const value = unwrap(registrations[0]);
+  if (!ts.isArrayLiteralExpression(value)) throw Error('Non-static source language declaration: ' + file);
+  if (value.elements.length !== 1) return 'en';
+  const code = unwrap(value.elements[0]);
+  if (!ts.isStringLiteral(code) || !/^[a-z]{2,4}$/.test(code.text)) {
+    throw Error('Unsupported source language: ' + file);
+  }
+  return code.text;
 }
 function readLessons(root, book, lessonId) {
   if (!BOOK.test(book)) throw Error('Invalid textbook name');
