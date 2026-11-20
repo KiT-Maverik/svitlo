@@ -156,8 +156,7 @@ function escapeMarkdown(value) {
 export function renderUiKitComponentReference(options) {
   const info = readUiKitComponentReference(options);
   const destination = path.join(
-    options.root ?? repoRoot,
-    ...(options.output ? [options.output] : [path.join(options.root ?? repoRoot, 'temp/agent-reference-library')]),
+    options.output ?? path.join(options.root ?? repoRoot, 'temp/agent-reference-library'),
     'ui-kit',
     info.component,
     info.locale + '.md',

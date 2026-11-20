@@ -200,7 +200,7 @@ test('missing English descriptions are not repaired using localized content', ()
 
 test('PR-artifact manifest records success, failures and only allowed temporary paths', () =>
   withFixture(root => {
-    const output = path.join(root, '.agent-ci-artifacts');
+    const output = path.join(root, 'temp/agent-reference-library');
     fs.mkdirSync(output, { recursive: true });
     const manifest = { generated: [], failures: [] };
     let saves = 0;
@@ -216,9 +216,9 @@ test('PR-artifact manifest records success, failures and only allowed temporary 
     assert.deepEqual(manifest.failures, []);
     for (const item of manifest.generated) {
       assert.equal(item.kind, 'assessment-method');
-      assert.equal(item.path, '.agent-ci-artifacts/assessment-methods/' + item.locale + '.md');
+      assert.equal(item.path, 'assessment-methods/' + item.locale + '.md');
       assert.equal(
-        fs.readFileSync(path.join(root, item.path), 'utf8'),
+        fs.readFileSync(path.join(output, item.path), 'utf8'),
         renderAssessmentMethodsReference({ root, locale: item.locale }),
       );
     }
@@ -231,7 +231,7 @@ test('PR-artifact manifest records success, failures and only allowed temporary 
           manifest,
           saveManifest,
         }),
-      /PR-scoped .agent-ci-artifacts/,
+      /Output must remain under ignored temp/,
     );
     replaceFile(root, sources[1], text => text.replace(/    uk: [^\n]+\n/, ''));
     const before = manifest.generated.length;
@@ -268,7 +268,7 @@ test('Italian draft reference marks missing titles while strict generation rejec
     assert.match(markdown, /Methodological description \(English\)/);
   }));
 
-test('temporary paths are governed by existing Agent CI Artifacts cleanup, not a new workflow', () => {
+test('retained legacy merge guard does not affect run-scoped report generation', () => {
   const generator = fs.readFileSync(
     path.join(repoRoot, 'scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.mjs'),
     'utf8',

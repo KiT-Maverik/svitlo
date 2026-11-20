@@ -95,7 +95,7 @@ function fixture(fn) {
   try {
     const {expected, put} = setup(root);
     const manifest = {generated: [], failures: [], sourceCommit: 'f'.repeat(40)};
-    const output = path.join(root, '.agent-ci-artifacts');
+    const output = path.join(root, 'temp/agent-reference-library');
     const run = (languages = ['en','pl','qm']) => generateQuestionReviewArtifacts({
       root, output, manifest, saveManifest() {}, lessonId, packageName:'content/astronomy', languages,
     });
