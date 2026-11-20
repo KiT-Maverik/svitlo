@@ -2,13 +2,13 @@ import { defineSelectOneAnswer } from '@svitlo/engine/build';
 
 import type { LessonLanguages } from "#lessonsData/7/c042698a-de5b-5055-9e10-ff5621f80ed7/constants";
 
-import { correctChoice } from "./correct/correctChoice";
-import { explanationText } from "./explanationText";
-import { hintText } from "./hintText";
-import { otherChoice1 } from "./incorrect/otherChoice1";
-import { otherChoice2 } from "./incorrect/otherChoice2";
-import { otherChoice3 } from "./incorrect/otherChoice3";
-import { prompt } from "./prompt";
+import { correctChoice } from "./recognizeMakeshiftFilter/correct/correctChoice";
+import { explanationText } from "./recognizeMakeshiftFilter/explanationText";
+import { hintText } from "./recognizeMakeshiftFilter/hintText";
+import { otherChoice1 } from "./recognizeMakeshiftFilter/incorrect/otherChoice1";
+import { otherChoice2 } from "./recognizeMakeshiftFilter/incorrect/otherChoice2";
+import { otherChoice3 } from "./recognizeMakeshiftFilter/incorrect/otherChoice3";
+import { prompt } from "./recognizeMakeshiftFilter/prompt";
 
 const content = {
   question: {
@@ -63,9 +63,9 @@ const content = {
   }
 };
 
-export const identifyUnsafeOptics = defineSelectOneAnswer<"identifyUnsafeOptics", typeof content, LessonLanguages>({
-  id: "6ea474dd-2cec-5927-992c-9220b6d2b68f",
-  slug: "identifyUnsafeOptics",
+export const recognizeMakeshiftFilter = defineSelectOneAnswer<"recognizeMakeshiftFilter", typeof content, LessonLanguages>({
+  id: "2fe79ced-70c0-54b5-b40a-a99145ac0670",
+  slug: "recognizeMakeshiftFilter",
   type: "selectOneAnswer",
   params: {
     assessmentMethod: "classification",
