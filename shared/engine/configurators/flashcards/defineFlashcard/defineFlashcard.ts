@@ -100,14 +100,12 @@ const validate = (config: Flashcard_Config): void => {
       throw new Error('Flashcard side must be a Configurator: ' + side);
     (collection as FlashcardSide_Configurator).validate(side !== 'hint');
   }
-  for (const name of ['flags', 'relationships'] as const) {
-    const collection = config.parameters[name];
-    if (!collection) continue;
-    const issues = validateOrderedKeys(collection, { path: 'parameters.' + name });
+  if (config.parameters.relationships) {
+    const issues = validateOrderedKeys(config.parameters.relationships, { path: 'parameters.relationships' });
     if (issues.length) throw new Error(issues.map(issue => issue.message).join('; '));
   }
   const flags = new Set<string>();
-  for (const flag of Object.values(config.parameters.flags.items)) {
+  for (const flag of config.parameters.flags) {
     if (flag.type !== 'custom') {
       if (flags.has(flag.type)) throw new Error('Duplicate built-in Flashcard flag: ' + flag.type);
       flags.add(flag.type);
@@ -214,14 +212,14 @@ export function defineFlashcard<
   const Front extends Record<string, Block>,
   const Back extends Record<string, Block>,
   const Hint extends Record<string, Block> = {},
-  const Flags extends Record<string, Flashcard_Flag_Config> = Record<string, Flashcard_Flag_Config>,
+  const Flags extends Flashcard_Flag_Config[] = Flashcard_Flag_Config[],
   const Relationships extends Record<string, Flashcard_Relationship> = Record<string, Flashcard_Relationship>,
   const Languages extends readonly LanguageCode[] = AllLanguageCodes,
 >(
   config: Omit<Flashcard_Config, 'slug' | 'content' | 'parameters'> & {
     slug: Slug;
     parameters: Omit<Flashcard_Config['parameters'], 'flags' | 'relationships'> & {
-      flags: { items: Flags & { [Key in keyof Flags]: RequireLanguages<Flags[Key], Languages> }; order: string[] };
+      flags: Flags & RequireLanguages<Flags, Languages>;
       relationships?: { items: Relationships; order: string[] };
     };
     content: {
@@ -251,12 +249,7 @@ export function defineFlashcard<
     parameters: {
       ...structuredClone(authored.parameters),
       disabilities: authored.parameters.disabilities ?? [],
-      flags: {
-        order: [...authored.parameters.flags.order],
-        items: Object.fromEntries(
-          Object.entries(authored.parameters.flags.items).map(([key, flag]) => [key, splitLocalizedFields(flag).base]),
-        ),
-      },
+      flags: authored.parameters.flags.map(flag => splitLocalizedFields(flag).base),
     },
   } satisfies DeepPartial<Flashcard_Config> & { type: 'flashcard' };
 
@@ -266,7 +259,7 @@ export function defineFlashcard<
   ): SidePublication => (side.build.props as (options: PublicationLanguageOptions) => SidePublication)({ languages });
 
   const buildFlags = (flags: Flashcard_Config['parameters']['flags'], languages: readonly LanguageCode[]) => {
-    const entries = flags.order.map(key => splitLocalizedFields(flags.items[key]));
+    const entries = flags.map(flag => splitLocalizedFields(flag));
     const bases = entries.map(entry => entry.base) as FlagFragment[];
     const locales: Partial<Record<LanguageCode, FlagFragment[]>> = {};
     for (const code of languages) {
@@ -339,19 +332,16 @@ export function defineFlashcard<
     const AddedFront extends Record<string, Block> = {},
     const AddedBack extends Record<string, Block> = {},
     const AddedHint extends Record<string, Block> = {},
-    const AddedFlags extends Record<string, Flashcard_Flag_Config> = {},
     const AddedRelationships extends Record<string, Flashcard_Relationship> = {},
   >(
     patch: Flashcard_Overrides<
       Front,
       Back,
       Hint,
-      Flags,
       Relationships,
       AddedFront,
       AddedBack,
       AddedHint,
-      AddedFlags,
       AddedRelationships
     > & {
       content?: {
@@ -397,36 +387,10 @@ export function defineFlashcard<
         locale: undefined,
       };
       const files: Files = {};
-      const flagChange = patch.parameters?.flags as NamedPatch | undefined;
-      const flagSource = candidate.parameters.flags;
-      const flags = resolveNamed(
-        'flags',
-        flagSource,
-        flagChange,
-        value => flashcardFlag_Config_Schema.parse(value),
-        (previous, value) => {
-          if (!isRecord(value)) throw new Error('Flag patch must be an object');
-          // Select the original schema branch before deriving an identity-free sparse patch.
-          const branches = flashcardFlag_Config_Schema.options;
-          const sparse = (() => {
-            switch (previous.type) {
-              case 'list':
-                return z.deepPartial(branches[0].omit({ type: true }).strict()).parse(value);
-              case 'warning':
-                return z.deepPartial(branches[1].omit({ type: true }).strict()).parse(value);
-              case 'acronym':
-                return z.deepPartial(branches[2].omit({ type: true }).strict()).parse(value);
-              case 'custom':
-                return z.deepPartial(branches[3].omit({ type: true }).strict()).parse(value);
-              default:
-                throw new Error('Unknown Flashcard flag type');
-            }
-          })();
-          return flashcardFlag_Config_Schema.parse(mergeForValidation(previous, sparse));
-        },
-      );
-      newParams.flags = { items: flags.items as Record<string, Flashcard_Flag_Config>, order: flags.order };
-      if (flags.changed) {
+      // Flags have no identity or meaningful order: override the entire array.
+      // Relationships retain their independently keyed patch contract.
+      if (patch.parameters?.flags !== undefined) {
+        newParams.flags = z.array(flashcardFlag_Config_Schema).parse(patch.parameters.flags);
         const built = buildFlags(newParams.flags, languages);
         (output.base.parameters ??= {}).flags = built.bases;
         addFlagFiles(files, built);
@@ -496,7 +460,7 @@ export function defineFlashcard<
     config: {
       base,
       locales: () => ({
-        parameters: { flags: { items: onlyLocales(copyAuthored().parameters.flags.items) } },
+        parameters: { flags: onlyLocales(copyAuthored().parameters.flags) },
       }),
       validate,
     },
