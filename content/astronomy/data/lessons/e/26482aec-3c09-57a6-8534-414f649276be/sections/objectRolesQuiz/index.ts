@@ -2,11 +2,13 @@ import { defineQuizSection } from '@svitlo/engine/build';
 
 import type { LessonLanguages } from "#lessonsData/e/26482aec-3c09-57a6-8534-414f649276be/constants";
 
-import { sunEmitsOwnLight } from "../../questions/selectOneAnswer/sunEmitsOwnLight";
-import { naturalSatelliteOfAnotherPlanet } from "../../questions/selectOneAnswer/naturalSatelliteOfAnotherPlanet";
-import { arrowDirectionBodies } from "../../questions/selectOneAnswer/arrowDirectionBodies";
-import { marsSiriusContrast } from "../../questions/selectOneAnswer/marsSiriusContrast";
-import { moonAndEarthAroundSun } from "../../questions/selectOneAnswer/moonAndEarthAroundSun";
+import {
+  sunEmitsOwnLight,
+  naturalSatelliteOfAnotherPlanet,
+  arrowDirectionBodies,
+  marsSiriusContrast,
+  moonAndEarthAroundSun
+} from "../../questions/selectOneAnswer";
 
 import { quizIntroduction } from "./quizIntroduction";
 
