@@ -143,7 +143,12 @@ export function prepareAssessmentDraft(document) {
   }
   if (!isRecord(lesson.section)) lesson.section = { items: {}, order: [] };
   if (!isRecord(lesson.section.items)) lesson.section.items = {};
-  if (!Array.isArray(lesson.section.order)) lesson.section.order = [];
+  if (!Array.isArray(lesson.section.order)) {
+    if (Object.keys(lesson.section.items).length) {
+      throw new Error('Approved Lesson section.order is missing; cannot infer Section placement');
+    }
+    lesson.section.order = [];
+  }
   const items = lesson.section.items;
   const order = lesson.section.order;
   const pending = [];
@@ -216,6 +221,12 @@ export function prepareAssessmentDraft(document) {
         }
       }
       if (!isRecord(section.content)) section.content = { items: {}, order: [] };
+      if (!isRecord(section.content.items)) section.content.items = {};
+      if (!Array.isArray(section.content.order)) {
+        if (Object.keys(section.content.items).length)
+          throw new Error('Approved assessment content.order missing in Section ' + slug);
+        section.content.order = [];
+      }
       pending.push({
         type, slug, reason: 'pending reviewed assessment Section',
         provisionalFields,
