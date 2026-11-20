@@ -22,7 +22,10 @@ export const skyChangesOverview = defineLesson<"skyChangesOverview", LessonLangu
   },
   locale: {
     title: {
-      uk: "Як помітити зміни на небі"
+      uk: "Як помітити зміни на небі",
+      en: "How to Notice Changes in the Sky",
+      pl: "Jak zauważać zmiany na niebie",
+      qm: "Kökteki deñişmelerni farq etmek"
     }
   },
   section
