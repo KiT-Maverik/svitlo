@@ -9,7 +9,10 @@ export const shrank = defineText<"shrank", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Місяць тепер справді має розмір лише серпа."
+      uk: "Місяць тепер справді має розмір лише серпа.",
+      en: "The Moon really is only as big as the crescent now.",
+      pl: "Księżyc naprawdę ma teraz rozmiar tylko takiego sierpa.",
+      qm: "Ay şimdi kerçekten yalnız oraq qadar büyüklikte."
     }
   }
 });

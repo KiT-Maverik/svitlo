@@ -9,7 +9,10 @@ export const flattened = defineText<"flattened", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Місяць перетворився з кулі на плоску смужку."
+      uk: "Місяць перетворився з кулі на плоску смужку.",
+      en: "The Moon changed from a sphere into a flat strip.",
+      pl: "Księżyc zmienił się z kuli w płaski pasek.",
+      qm: "Ay şardan yassı bir şeritke çevirildi."
     }
   }
 });

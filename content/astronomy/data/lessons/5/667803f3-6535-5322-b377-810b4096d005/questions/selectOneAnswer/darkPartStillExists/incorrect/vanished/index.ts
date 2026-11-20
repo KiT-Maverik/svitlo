@@ -9,7 +9,10 @@ export const vanished = defineText<"vanished", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Решта Місяця повністю зникла з космосу."
+      uk: "Решта Місяця повністю зникла з космосу.",
+      en: "The rest of the Moon completely vanished from space.",
+      pl: "Reszta Księżyca całkowicie zniknęła z kosmosu.",
+      qm: "Ayniñ qalğan qısmı uzaydan bütünley yoq oldı."
     }
   }
 });

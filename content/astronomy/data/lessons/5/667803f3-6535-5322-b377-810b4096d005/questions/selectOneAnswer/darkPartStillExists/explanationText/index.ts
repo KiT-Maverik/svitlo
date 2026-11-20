@@ -9,7 +9,10 @@ export const explanationText = defineText<"explanationText", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Темна частина Місяця фізично залишається на місці. Ми просто бачимо освітленою лише певну частину його поверхні."
+      uk: "Темна частина Місяця фізично залишається на місці. Ми просто бачимо освітленою лише певну частину його поверхні.",
+      en: "The dark part of the Moon is still physically there. We simply see only some of its surface illuminated.",
+      pl: "Ciemna część Księżyca nadal istnieje. Po prostu widzimy oświetloną tylko pewną część jego powierzchni.",
+      qm: "Ayniñ qarañğı qısmı kerçekte yerinde qala. Biz yüzüniñ yalnız belli bir qısmını aydın olaraq köremiz."
     }
   }
 });

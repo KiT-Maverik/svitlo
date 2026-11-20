@@ -9,7 +9,10 @@ export const hintText = defineText<"hintText", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Спробуй уявити кулю, половина якої лишається в тіні."
+      uk: "Спробуй уявити кулю, половина якої лишається в тіні.",
+      en: "Try to imagine a ball with one half in shadow.",
+      pl: "Spróbuj wyobrazić sobie kulę, której połowa znajduje się w cieniu.",
+      qm: "Yarısı kölegede qalğan şarnı tasavvur et."
     }
   }
 });

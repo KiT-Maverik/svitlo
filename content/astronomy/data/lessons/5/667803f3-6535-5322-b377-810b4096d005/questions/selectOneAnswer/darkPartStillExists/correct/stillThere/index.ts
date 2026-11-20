@@ -9,7 +9,10 @@ export const stillThere = defineText<"stillThere", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Решта кулі нікуди не зникла, просто не виглядає так само освітленою."
+      uk: "Решта кулі нікуди не зникла, просто не виглядає так само освітленою.",
+      en: "The rest of the sphere has not disappeared; it just does not look as brightly illuminated.",
+      pl: "Reszta kuli nie zniknęła — po prostu nie wygląda na tak samo oświetloną.",
+      qm: "Şarnıñ qalğan qısmı yoq olmadı, sadece aynı derecede aydın körünmey."
     }
   }
 });
