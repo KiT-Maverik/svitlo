@@ -9,7 +9,10 @@ export const prompt = defineText<"prompt", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Лампа освітлює одну половину нерухомої кулі. Двоє дітей дивляться на кулю з різних місць і бачать різну величину її світлої частини. Чому?"
+      uk: "Лампа освітлює одну половину нерухомої кулі. Двоє дітей дивляться на кулю з різних місць і бачать різну величину її світлої частини. Чому?",
+      en: "A lamp illuminates one half of a ball that is not moving. Two children look at the ball from different places and see different amounts of its bright part. Why?",
+      pl: "Lampa oświetla jedną połowę nieruchomej kuli. Dwoje dzieci patrzy na kulę z różnych miejsc i widzi różnej wielkości jasną część. Dlaczego?",
+      qm: "Lampa qıymıldamağan şarnıñ bir yarısını aydınlata. Eki bala şarğa türlü yerlerden baqıp, aydın qısımnıñ farqlı paylarını köre. Niçün?"
     }
   }
 });

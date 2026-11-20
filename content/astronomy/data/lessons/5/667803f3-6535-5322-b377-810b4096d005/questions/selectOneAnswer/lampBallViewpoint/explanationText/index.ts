@@ -9,7 +9,10 @@ export const explanationText = defineText<"explanationText", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Освітлена половина кулі залишається тією самою, але спостерігачі бачать різні її частини. Таку ідею використовують для пояснення вигляду Місяця."
+      uk: "Освітлена половина кулі залишається тією самою, але спостерігачі бачать різні її частини. Таку ідею використовують для пояснення вигляду Місяця.",
+      en: "The illuminated half of the ball stays the same, but the observers see different parts of it. This idea also helps explain how the Moon looks.",
+      pl: "Oświetlona połowa kuli pozostaje taka sama, ale obserwatorzy widzą różne jej części. Ta zasada pomaga też wyjaśnić wygląd Księżyca.",
+      qm: "Şarnıñ aydınlatılğan yarısı aynı qala, amma közeticiler onıñ türlü qısımlarını köre. Bu fikir Ayniñ körünişini añlatmağa da yardım ete."
     }
   }
 });

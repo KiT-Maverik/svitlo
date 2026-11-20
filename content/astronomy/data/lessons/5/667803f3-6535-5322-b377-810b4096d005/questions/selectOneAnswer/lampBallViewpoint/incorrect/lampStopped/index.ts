@@ -9,7 +9,10 @@ export const lampStopped = defineText<"lampStopped", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Лампа зовсім перестає освітлювати кулю для однієї дитини."
+      uk: "Лампа зовсім перестає освітлювати кулю для однієї дитини.",
+      en: "The lamp stops illuminating the ball altogether for one of the children.",
+      pl: "Dla jednego z dzieci lampa zupełnie przestaje oświetlać kulę.",
+      qm: "Balalardan biri içün lampa şarnı bütünley aydınlatmaqnı toqtata."
     }
   }
 });

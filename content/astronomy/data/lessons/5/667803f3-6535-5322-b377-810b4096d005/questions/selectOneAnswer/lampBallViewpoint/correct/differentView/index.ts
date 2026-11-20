@@ -9,7 +9,10 @@ export const differentView = defineText<"differentView", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Діти бачать різні частини освітленої половини тієї самої кулі."
+      uk: "Діти бачать різні частини освітленої половини тієї самої кулі.",
+      en: "The children see different parts of the illuminated half of the same ball.",
+      pl: "Dzieci widzą różne części oświetlonej połowy tej samej kuli.",
+      qm: "Balalar aynı şarnıñ aydınlatılğan yarısınıñ türlü qısımlarını köre."
     }
   }
 });

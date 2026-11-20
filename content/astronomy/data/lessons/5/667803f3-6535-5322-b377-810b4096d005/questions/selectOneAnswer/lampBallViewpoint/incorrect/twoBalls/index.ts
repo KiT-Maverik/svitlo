@@ -9,7 +9,10 @@ export const twoBalls = defineText<"twoBalls", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Кожній дитині показали іншу кулю."
+      uk: "Кожній дитині показали іншу кулю.",
+      en: "Each child was shown a different ball.",
+      pl: "Każdemu dziecku pokazano inną kulę.",
+      qm: "Er balağa başqa şar kösterildi."
     }
   }
 });

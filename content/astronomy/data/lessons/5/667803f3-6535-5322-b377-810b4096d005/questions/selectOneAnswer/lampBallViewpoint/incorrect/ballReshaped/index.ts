@@ -9,7 +9,10 @@ export const ballReshaped = defineText<"ballReshaped", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Куля змінює свою форму залежно від погляду."
+      uk: "Куля змінює свою форму залежно від погляду.",
+      en: "The ball changes shape depending on where you look from.",
+      pl: "Kula zmienia kształt zależnie od miejsca, z którego się na nią patrzy.",
+      qm: "Şar oña qaydan baqqanıña köre şeklini deñiştire."
     }
   }
 });
