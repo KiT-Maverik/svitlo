@@ -236,10 +236,6 @@
       },
       "required": ["items", "order"],
       "additionalProperties": false
-    },
-    "documentLanguage": {
-      "type": "string",
-      "minLength": 2
     }
   },
   "required": ["id", "slug", "type", "params", "locale", "content"],
@@ -2157,21 +2153,6 @@
         },
         "slug": {
           "$ref": "#/$defs/__schema1"
-        },
-        "source": {
-          "type": "object",
-          "properties": {
-            "path": {
-              "type": "string",
-              "minLength": 1
-            },
-            "export": {
-              "type": "string",
-              "minLength": 1
-            }
-          },
-          "required": ["path", "export"],
-          "additionalProperties": false
         }
       },
       "required": ["type", "lessonId"],

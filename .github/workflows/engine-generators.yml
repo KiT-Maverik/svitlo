@@ -9,6 +9,7 @@ on:
       - 'shared/engine/scripts/lessonBuilder/**'
       - 'shared/engine/scripts/materializeCourseFlow/**'
       - 'shared/engine/scripts/validateCourseFlow/**'
+      - 'shared/engine/scripts/generateYamlSchemas/**'
       - 'shared/engine/yaml-schemas/**'
       - 'scripts/ci/courseMaterialization/**'
       - 'scripts/ci/bankMaterialization/**'
@@ -82,7 +83,6 @@ jobs:
           node scripts/ci/quietRun/quiet-run.mjs -- node --test \
             shared/engine/scripts/materializeCourseFlow/materialize-course-flow.spec.mjs \
             shared/engine/scripts/validateCourseFlow/validate-course-flow.spec.mjs \
-            shared/engine/scripts/courseBuilder/courseBuilder.spec.mjs \
             scripts/ci/courseMaterialization/course-materialization.spec.mjs \
             scripts/ci/bankMaterialization/bank-materialization.spec.mjs \
             shared/engine/scripts/questionsBuilder/questionsBuilder.spec.mjs \
@@ -105,7 +105,6 @@ jobs:
             studio/docs/entities/course.md \
             studio/docs/architecture/README.md \
             shared/engine/scripts/README.md \
-            shared/engine/scripts/courseBuilder/README.md \
             shared/engine/scripts/validateCourseFlow/README.md \
             shared/engine/scripts/materializeCourseFlow/README.md \
             scripts/ci/courseMaterialization/README.md \
