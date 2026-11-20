@@ -194,6 +194,19 @@ export function prepareAssessmentDraft(document) {
       }
       section.params = params;
       if (!isRecord(section.locale)) section.locale = {};
+      // Section titles/navigation labels are schema-required. An undefined
+      // editorial label gets an unmistakable, language-invariant draft marker,
+      // never a fabricated translation or learner-facing instructional copy.
+      const language = document.production?.documentLanguage;
+      for (const field of ['title', 'navigationLabel']) {
+        const value = section.locale[field];
+        const valid = typeof value === 'string' ? value.trim().length > 0 :
+          isRecord(value) && typeof value[language] === 'string' && value[language].trim().length > 0;
+        if (!valid) {
+          section.locale[field] = type === 'quiz' ? 'PENDING QUIZ' : 'PENDING FLASHCARDS';
+          provisionalFields.push('$.locale.' + field);
+        }
+      }
       if (!isRecord(section.content)) section.content = { items: {}, order: [] };
       pending.push({
         type, slug, reason: 'pending reviewed assessment Section',
