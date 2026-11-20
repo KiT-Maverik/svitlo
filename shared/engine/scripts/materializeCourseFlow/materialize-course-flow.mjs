@@ -428,6 +428,39 @@ const reservedNames = new Set([
   'in',
 ]);
 
+/** Collect ONLY explicitly requested Course-local edits from reused Lesson slots.
+ * The key path follows Course placement aliases; it never patches the reusable
+ * Lesson's immutable UUID, slug, Skills, authored source or supported languages.
+ */
+export function courseLessonPatchesFromEditorial(collection, parent = []) {
+  const items = {};
+  for (const slug of collection?.order ?? []) {
+    const child = collection.items[slug];
+    const position = [...parent, slug].join('/');
+    if (child.type === 'lesson') {
+      const patch = {};
+      for (const field of ['params', 'locale', 'events', 'section']) {
+        if (Object.hasOwn(child, field)) patch[field] = structuredClone(child[field]);
+      }
+      if (Object.keys(patch).length) {
+        if (!child.lessonId) fail('Course-local Lesson override requires existing lessonId at ' + position);
+        if (patch.section?.additionalItems && Object.keys(patch.section.additionalItems).length) {
+          fail(
+            'Course-local Section additions at ' +
+              position +
+              '/section/additionalItems require typed standalone Section configurators; cannot serialize YAML into Build items',
+          );
+        }
+        items[slug] = patch;
+      }
+    } else if (child.type === 'module' || child.type === 'chapter') {
+      const nested = courseLessonPatchesFromEditorial(child.content, [...parent, slug]);
+      if (Object.keys(nested).length) items[slug] = { content: { items: nested } };
+    }
+  }
+  return items;
+}
+
 /** Generate a modular, acyclic authoring draft, never a standalone Lesson implementation. */
 export function renderModularCourse(
   technical,
@@ -436,6 +469,7 @@ export function renderModularCourse(
   resolveDraftSlug = (_id, slug) => slug,
 ) {
   const { config } = technical;
+  const lessonPatches = courseLessonPatchesFromEditorial(technical.authored.content);
   const nodes = [{ node: config, file: 'index.ts' }];
   const paths = new Set(['index.ts']);
   const files = new Map();
@@ -575,7 +609,17 @@ export function renderModularCourse(
       JSON.stringify(node.slug) +
       ', typeof items, CourseLanguages>({\n' +
       fields.join(',\n') +
-      '\n});\n';
+      '\n});\n' +
+      (node.type === 'course' && Object.keys(lessonPatches).length
+        ? '\n// Course-owned patch: does not mutate independently authored Lessons.\n' +
+          'export const ' +
+          symbolOf(node) +
+          'Overrides = ' +
+          symbolOf(node) +
+          '.build.overrides(' +
+          tsLiteral({ content: { items: lessonPatches } }) +
+          ', { languages });\n'
+        : '');
     files.set(file, source);
   }
   // Use the real shared Review contract until a Course-specific review contract exists.
