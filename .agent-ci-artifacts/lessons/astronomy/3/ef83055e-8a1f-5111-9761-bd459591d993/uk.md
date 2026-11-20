@@ -2,7 +2,7 @@
 
 - Lesson: `ef83055e-8a1f-5111-9761-bd459591d993` (observationJournal)
 - Language: `uk` (supported: `uk`)
-- Canonical: [source](https://github.com/KiT-Maverik/svitlo/blob/c2c6402545d2bb6764988cc60221bf1031e3885d/content/astronomy/data/lessons/3/ef83055e-8a1f-5111-9761-bd459591d993/index.ts)
+- Canonical: [source](https://github.com/KiT-Maverik/svitlo/blob/629ccb16292ba223975efb817f116bc9e66067fc/content/astronomy/data/lessons/3/ef83055e-8a1f-5111-9761-bd459591d993/index.ts)
 - **Media representations:** descriptive metadata only; binary media and interactive Scenes are not rendered.
 
 - **Target Skills** (1)
@@ -20,11 +20,11 @@
 
 - ID: `603dbc63-be9c-5a5a-92fe-c877090cecfe`
 - Navigation: Що я помітив?
-- Canonical: [source](https://github.com/KiT-Maverik/svitlo/blob/c2c6402545d2bb6764988cc60221bf1031e3885d/content/astronomy/data/lessons/3/ef83055e-8a1f-5111-9761-bd459591d993/sections/noticeOrGuess/index.ts)
+- Canonical: [source](https://github.com/KiT-Maverik/svitlo/blob/629ccb16292ba223975efb817f116bc9e66067fc/content/astronomy/data/lessons/3/ef83055e-8a1f-5111-9761-bd459591d993/sections/noticeOrGuess/index.ts)
 - **locale**
   - **title:** Що я помітив?
   - **navigationLabel:** Що я помітив?
-- **Block 1 · markdown** (`welcome`, `ab32a0f0-49e0-5c69-a34f-cec8436c33cd`; [source](https://github.com/KiT-Maverik/svitlo/blob/c2c6402545d2bb6764988cc60221bf1031e3885d/content/astronomy/data/lessons/3/ef83055e-8a1f-5111-9761-bd459591d993/sections/noticeOrGuess/welcome/index.ts))
+- **Block 1 · markdown** (`welcome`, `ab32a0f0-49e0-5c69-a34f-cec8436c33cd`; [source](https://github.com/KiT-Maverik/svitlo/blob/629ccb16292ba223975efb817f116bc9e66067fc/content/astronomy/data/lessons/3/ef83055e-8a1f-5111-9761-bd459591d993/sections/noticeOrGuess/welcome/index.ts))
   - **params:** (none)
   - **locale**
     - **value:**
@@ -37,7 +37,7 @@
       
       Якщо власного спостереження немає, працюй з підписаним навчальним описом. Виходити вночі, мати телескоп, робити фото чи повідомляти адресу не потрібно. Якщо дивишся на справжнє небо, **ніколи не дивися прямо на Сонце, зокрема через оптичні прилади без спеціального захисту**.
       ~~~~
-- **Block 2 · markdown** (`noticeExample`, `7f19ac6f-2907-5889-aff3-ce29fe24f7a1`; [source](https://github.com/KiT-Maverik/svitlo/blob/c2c6402545d2bb6764988cc60221bf1031e3885d/content/astronomy/data/lessons/3/ef83055e-8a1f-5111-9761-bd459591d993/sections/noticeOrGuess/noticeExample/index.ts))
+- **Block 2 · markdown** (`noticeExample`, `7f19ac6f-2907-5889-aff3-ce29fe24f7a1`; [source](https://github.com/KiT-Maverik/svitlo/blob/629ccb16292ba223975efb817f116bc9e66067fc/content/astronomy/data/lessons/3/ef83055e-8a1f-5111-9761-bd459591d993/sections/noticeOrGuess/noticeExample/index.ts))
   - **params:** (none)
   - **locale**
     - **value:**
@@ -62,11 +62,11 @@
 
 - ID: `7d07f12a-bdaa-55d5-bb9a-b85bb06974e9`
 - Navigation: П'ять підказок
-- Canonical: [source](https://github.com/KiT-Maverik/svitlo/blob/c2c6402545d2bb6764988cc60221bf1031e3885d/content/astronomy/data/lessons/3/ef83055e-8a1f-5111-9761-bd459591d993/sections/makeARecord/index.ts)
+- Canonical: [source](https://github.com/KiT-Maverik/svitlo/blob/629ccb16292ba223975efb817f116bc9e66067fc/content/astronomy/data/lessons/3/ef83055e-8a1f-5111-9761-bd459591d993/sections/makeARecord/index.ts)
 - **locale**
   - **title:** П'ять підказок
   - **navigationLabel:** П'ять підказок
-- **Block 1 · markdown** (`recordGuide`, `940cef95-fe46-5e87-bd83-0ad989163439`; [source](https://github.com/KiT-Maverik/svitlo/blob/c2c6402545d2bb6764988cc60221bf1031e3885d/content/astronomy/data/lessons/3/ef83055e-8a1f-5111-9761-bd459591d993/sections/makeARecord/recordGuide/index.ts))
+- **Block 1 · markdown** (`recordGuide`, `940cef95-fe46-5e87-bd83-0ad989163439`; [source](https://github.com/KiT-Maverik/svitlo/blob/629ccb16292ba223975efb817f116bc9e66067fc/content/astronomy/data/lessons/3/ef83055e-8a1f-5111-9761-bd459591d993/sections/makeARecord/recordGuide/index.ts))
   - **params:** (none)
   - **locale**
     - **value:**
@@ -83,7 +83,7 @@
       
       Якщо чогось не знаєш, чесно познач **«не вказано»**, а не вигадуй. Значки, малюнок або коротка розповідь теж можуть бути хорошим записом.
       ~~~~
-- **Block 2 · markdown** (`workedRecord`, `e637e30e-06c0-54ae-a1eb-98a66b0f70c1`; [source](https://github.com/KiT-Maverik/svitlo/blob/c2c6402545d2bb6764988cc60221bf1031e3885d/content/astronomy/data/lessons/3/ef83055e-8a1f-5111-9761-bd459591d993/sections/makeARecord/workedRecord/index.ts))
+- **Block 2 · markdown** (`workedRecord`, `e637e30e-06c0-54ae-a1eb-98a66b0f70c1`; [source](https://github.com/KiT-Maverik/svitlo/blob/629ccb16292ba223975efb817f116bc9e66067fc/content/astronomy/data/lessons/3/ef83055e-8a1f-5111-9761-bd459591d993/sections/makeARecord/workedRecord/index.ts))
   - **params:** (none)
   - **locale**
     - **value:**
@@ -102,7 +102,7 @@
       
       Інша людина може зрозуміти **що стало відомо і звідки**, не сплутавши опис із власним спостереженням.
       ~~~~
-- **Block 3 · markdown** (`recordMistakes`, `1cbca476-86d5-55c7-8247-b9f8b096f3c0`; [source](https://github.com/KiT-Maverik/svitlo/blob/c2c6402545d2bb6764988cc60221bf1031e3885d/content/astronomy/data/lessons/3/ef83055e-8a1f-5111-9761-bd459591d993/sections/makeARecord/recordMistakes/index.ts))
+- **Block 3 · markdown** (`recordMistakes`, `1cbca476-86d5-55c7-8247-b9f8b096f3c0`; [source](https://github.com/KiT-Maverik/svitlo/blob/629ccb16292ba223975efb817f116bc9e66067fc/content/astronomy/data/lessons/3/ef83055e-8a1f-5111-9761-bd459591d993/sections/makeARecord/recordMistakes/index.ts))
   - **params:** (none)
   - **locale**
     - **value:**
@@ -124,11 +124,11 @@
 
 - ID: `2891b2b8-469d-5772-af1d-af309d5b6fb0`
 - Navigation: Мій запис
-- Canonical: [source](https://github.com/KiT-Maverik/svitlo/blob/c2c6402545d2bb6764988cc60221bf1031e3885d/content/astronomy/data/lessons/3/ef83055e-8a1f-5111-9761-bd459591d993/sections/yourSkyJournal/index.ts)
+- Canonical: [source](https://github.com/KiT-Maverik/svitlo/blob/629ccb16292ba223975efb817f116bc9e66067fc/content/astronomy/data/lessons/3/ef83055e-8a1f-5111-9761-bd459591d993/sections/yourSkyJournal/index.ts)
 - **locale**
   - **title:** Мій запис
   - **navigationLabel:** Мій запис
-- **Block 1 · markdown** (`recordTask`, `52d283ad-a994-5329-8845-6b542a48f49d`; [source](https://github.com/KiT-Maverik/svitlo/blob/c2c6402545d2bb6764988cc60221bf1031e3885d/content/astronomy/data/lessons/3/ef83055e-8a1f-5111-9761-bd459591d993/sections/yourSkyJournal/recordTask/index.ts))
+- **Block 1 · markdown** (`recordTask`, `52d283ad-a994-5329-8845-6b542a48f49d`; [source](https://github.com/KiT-Maverik/svitlo/blob/629ccb16292ba223975efb817f116bc9e66067fc/content/astronomy/data/lessons/3/ef83055e-8a1f-5111-9761-bd459591d993/sections/yourSkyJournal/recordTask/index.ts))
   - **params:** (none)
   - **locale**
     - **value:**
@@ -144,7 +144,7 @@
       **Твоє завдання:** склади *власними словами* запис про відомості з цього джерела. Назви, що зображено, дату, загальне місце та джерело, поясни, що ти прочитав або прочитала підпис фотографії, і чесно познач невідомі умови. Не приписуй собі зйомку або пряме спостереження. Якщо обрав чи обрала власний спогад про небо, користуйся тим самим шаблоном і явно зазнач спосіб.
       Заповни п'ять підказок. Якщо ти ще не читаєш, попроси людину поруч **вголос прочитати саме наведений підпис NASA і підказки**; відомості не можна змінювати чи додумувати. Відповідай своїми словами, значками або малюнком. Не потрібні адреса, фото, мікрофон чи довгий текст.
       ~~~~
-- **Block 2 · scene** (`recordWorkbench`, `43fdcc5a-8c6c-5b71-a2d8-9682c677b47f`; [source](https://github.com/KiT-Maverik/svitlo/blob/c2c6402545d2bb6764988cc60221bf1031e3885d/content/astronomy/data/lessons/3/ef83055e-8a1f-5111-9761-bd459591d993/sections/yourSkyJournal/recordWorkbench/index.ts))
+- **Block 2 · scene** (`recordWorkbench`, `43fdcc5a-8c6c-5b71-a2d8-9682c677b47f`; [source](https://github.com/KiT-Maverik/svitlo/blob/629ccb16292ba223975efb817f116bc9e66067fc/content/astronomy/data/lessons/3/ef83055e-8a1f-5111-9761-bd459591d993/sections/yourSkyJournal/recordWorkbench/index.ts))
   - **params:** (none)
   - **locale**
     - **value**
@@ -196,7 +196,7 @@
         - **wrongSource:** Фото NASA зробив Білл Інголлс. Ти використовуєш його фото й підпис, а не власне спостереження. Познач спосіб і джерело правильно.
         - **guess:** Це схоже на здогад про причину; запиши тільки помічене.
         - **noScore:** Тут немає оцінок. Можна виправляти.
-- **Block 3 · markdown** (`recordChecklist`, `8c9db21f-d9ed-59a0-80d3-4a2a5979eadc`; [source](https://github.com/KiT-Maverik/svitlo/blob/c2c6402545d2bb6764988cc60221bf1031e3885d/content/astronomy/data/lessons/3/ef83055e-8a1f-5111-9761-bd459591d993/sections/yourSkyJournal/recordChecklist/index.ts))
+- **Block 3 · markdown** (`recordChecklist`, `8c9db21f-d9ed-59a0-80d3-4a2a5979eadc`; [source](https://github.com/KiT-Maverik/svitlo/blob/629ccb16292ba223975efb817f116bc9e66067fc/content/astronomy/data/lessons/3/ef83055e-8a1f-5111-9761-bd459591d993/sections/yourSkyJournal/recordChecklist/index.ts))
   - **params:** (none)
   - **locale**
     - **value:**
@@ -222,11 +222,11 @@
 
 - ID: `a8f88fac-026b-5767-b167-b14e7060e180`
 - Navigation: Порівняй записи
-- Canonical: [source](https://github.com/KiT-Maverik/svitlo/blob/c2c6402545d2bb6764988cc60221bf1031e3885d/content/astronomy/data/lessons/3/ef83055e-8a1f-5111-9761-bd459591d993/sections/compareTwoRecords/index.ts)
+- Canonical: [source](https://github.com/KiT-Maverik/svitlo/blob/629ccb16292ba223975efb817f116bc9e66067fc/content/astronomy/data/lessons/3/ef83055e-8a1f-5111-9761-bd459591d993/sections/compareTwoRecords/index.ts)
 - **locale**
   - **title:** Порівняй записи
   - **navigationLabel:** Порівняй записи
-- **Block 1 · markdown** (`compareExample`, `ed86e7e9-b945-526c-8c88-dcf00571d2d6`; [source](https://github.com/KiT-Maverik/svitlo/blob/c2c6402545d2bb6764988cc60221bf1031e3885d/content/astronomy/data/lessons/3/ef83055e-8a1f-5111-9761-bd459591d993/sections/compareTwoRecords/compareExample/index.ts))
+- **Block 1 · markdown** (`compareExample`, `ed86e7e9-b945-526c-8c88-dcf00571d2d6`; [source](https://github.com/KiT-Maverik/svitlo/blob/629ccb16292ba223975efb817f116bc9e66067fc/content/astronomy/data/lessons/3/ef83055e-8a1f-5111-9761-bd459591d993/sections/compareTwoRecords/compareExample/index.ts))
   - **params:** (none)
   - **locale**
     - **value:**
@@ -246,7 +246,7 @@
       
       **Твоя спроба:** назви одну відмінність і покажи або скажи, які слова це підтверджують.
       ~~~~
-- **Block 2 · scene** (`compareWorkbench`, `d1bb6314-6977-5bfa-897c-9b7124ca63ab`; [source](https://github.com/KiT-Maverik/svitlo/blob/c2c6402545d2bb6764988cc60221bf1031e3885d/content/astronomy/data/lessons/3/ef83055e-8a1f-5111-9761-bd459591d993/sections/compareTwoRecords/compareWorkbench/index.ts))
+- **Block 2 · scene** (`compareWorkbench`, `d1bb6314-6977-5bfa-897c-9b7124ca63ab`; [source](https://github.com/KiT-Maverik/svitlo/blob/629ccb16292ba223975efb817f116bc9e66067fc/content/astronomy/data/lessons/3/ef83055e-8a1f-5111-9761-bd459591d993/sections/compareTwoRecords/compareWorkbench/index.ts))
   - **params:** (none)
   - **locale**
     - **value**
@@ -290,7 +290,7 @@
         - **unknown:** «Не згадано» не означає «не було».
         - **causal:** Це здогад про причину, а не факт із запису.
         - **retry:** Зістав час, деталі та умови. Балів немає.
-- **Block 3 · markdown** (`finalReflection`, `3ae15609-4ae4-5966-a4a7-89fc7e48e5d3`; [source](https://github.com/KiT-Maverik/svitlo/blob/c2c6402545d2bb6764988cc60221bf1031e3885d/content/astronomy/data/lessons/3/ef83055e-8a1f-5111-9761-bd459591d993/sections/compareTwoRecords/finalReflection/index.ts))
+- **Block 3 · markdown** (`finalReflection`, `3ae15609-4ae4-5966-a4a7-89fc7e48e5d3`; [source](https://github.com/KiT-Maverik/svitlo/blob/629ccb16292ba223975efb817f116bc9e66067fc/content/astronomy/data/lessons/3/ef83055e-8a1f-5111-9761-bd459591d993/sections/compareTwoRecords/finalReflection/index.ts))
   - **params:** (none)
   - **locale**
     - **value:**
