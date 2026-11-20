@@ -61,6 +61,9 @@ export function parseArguments(args) {
     throw new Error('--course requires Courses and a canonical UUID');
   }
   if (options.locale && !/^[a-z]{2,4}$/.test(options.locale)) throw new Error('Invalid language code');
+  if (options.kind === 'flashcards' && (!options.lesson || !options.locale)) {
+    throw new Error('Flashcard review requires exactly one --lesson UUID and --locale code');
+  }
   return options;
 }
 
