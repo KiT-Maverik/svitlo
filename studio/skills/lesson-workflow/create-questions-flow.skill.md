@@ -65,6 +65,8 @@ Before integration, the next action is the required final QA/owner-authorized re
 
 **Terminal state:** when all seven Questions stages are verified complete, explicitly say **"All seven Questions workflow stages are complete. There is no next Questions stage. You can assign new work."** Stop; report outstanding integration, independent Flashcards, Lesson QA, publication or merge separately rather than inventing stage eight or continuing automatically. An unmerged or unpublished bank does not satisfy downstream integration/readiness gates.
 
+**Authoring validation boundary:** Stages 1–4 require authentic pedagogical/Assessment Architect content and independent review, not a repeated manual Zod/JSON-Schema or TypeScript check on unfinished `questions.yaml`. The existing Stage 5 Questions Builder preflight/materialization validates the final reviewed input before any writes; subsequently verify actual Question/Quiz references, source SHA, locale resources, media and production CI. Optional editor diagnostics are not a stage gate. See the [four-flow validation audit](../../docs/architecture/yaml-config-scaffolding.md#validation-boundaries-across-the-four-entity-workflows).
+
 ## Stage 1 — Lesson Analysis
 
 Collect approved outcomes, target Skills, required cognitive Assessment
