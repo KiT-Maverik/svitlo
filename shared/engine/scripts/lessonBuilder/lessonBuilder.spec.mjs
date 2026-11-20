@@ -1460,3 +1460,42 @@ test('missing source-language assessment labels retain approved other-language l
   assert.deepEqual(locale.navigationLabel, { en: 'Reviewed navigation', uk: 'PENDING FLASHCARDS' });
   assert.ok(result.pending[0].provisionalFields.includes('$.locale.title'));
 });
+
+
+test('mixed assessment selections preserve real UUIDs and block every incomplete entry', () => {
+  const config = lessonConfig();
+  config.section.items.quizMixed = {
+    id: id(108), slug: 'quizMixed', type: 'quiz',
+    params: {
+      selection: { mode: 'sample', questionIds: [id(109), 'unresolved', id(109)] },
+    },
+    locale: { title: { uk: 'Завдання' }, navigationLabel: { uk: 'Почати' } },
+    content: group({}),
+  };
+  config.section.order.push('quizMixed');
+  const original = wrap(config);
+  const document = { config: original.config, production: { documentLanguage: 'uk', quizRequired: true } };
+  const draft = prepareAssessmentDraft(document);
+  const ids = draft.lesson.section.items.quizMixed.config.params.selection.questionIds;
+  assert.equal(ids[0], id(109), 'An approved real UUID must never be discarded');
+  assert.equal(ids.length, 3);
+  assert.equal(new Set(ids).size, 3);
+  assert.match(ids[1], /^feedc0de-/);
+  assert.match(ids[2], /^feedc0de-/);
+  assert.deepEqual(
+    ids,
+    prepareAssessmentDraft(document).lesson.section.items.quizMixed.config.params.selection.questionIds,
+    'Every synthetic candidate must be stable on deterministic re-generation',
+  );
+  assert.deepEqual(
+    original.config.section.items.quizMixed.config.params.selection.questionIds,
+    [id(109), 'unresolved', id(109)],
+    'Pending scaffolding must never mutate approved YAML input',
+  );
+  const files = renderLessonModules(draft.lesson, 'uk', { pendingAssessments: draft.pending });
+  const section = files.get('sections/quizMixed/index.ts');
+  assert.match(section, /Replace \$\.params\.selection\.questionIds\[1\]/);
+  assert.match(section, /Replace \$\.params\.selection\.questionIds\[2\]/);
+  assert.ok(scanSource('sections/quizMixed/index.ts', section).length >= 4);
+  assertTypeScriptSyntax(files);
+});
