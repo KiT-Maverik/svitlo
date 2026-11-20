@@ -10,7 +10,7 @@ config:
       - en
       - pl
       - qm
-    requireQuiz: true
+    quizRequiredForCompletion: true
     sections:
       allowNavigation: true
       allowSkipping: true
@@ -19,10 +19,648 @@ config:
     title:
       uk: Почнімо досліджувати небо
   section:
-    items: {}
-    order: []
+    items:
+      skyAroundUs:
+        config:
+          id: "3e911ad2-0530-57f8-8aa5-10819d205c59"
+          slug: "skyAroundUs"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              uk: "Що можна помітити на небі?"
+            navigationLabel:
+              uk: "Помічаємо небо"
+          content:
+            items:
+              welcome:
+                config:
+                  id: "18ba7cd1-b973-57a6-bee5-86b50328a4da"
+                  slug: "welcome"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      uk: |-
+                        # Небо можна досліджувати без приладів
+                        Уяви готовий підписаний знімок неба. На ньому — світлі хмари й синій простір. Що ти помічаєш? Можна назвати колір, форму хмар і те, де небо світліше.
+                        
+                        **Спостерігати** — означає уважно помічати й описувати. Для цього не завжди потрібно виходити надвір, бачити на власні очі чи мати телескоп. Фото або точний опис теж допомагають досліджувати небо.
+                        
+                        **Спробуй:** назви дві ознаки з опису. Наприклад: «Я чую про світлі хмари й синій простір». Твоя фраза може бути іншою.
+                        
+                        **Важливо:** ми не шукаємо Сонце поглядом. Його зображення можна побачити без прямого погляду на Сонце.
+                production:
+                  purpose: "Ввести визначення спостереження та першу доступну дію."
+                  productionNotes: "Stage 2: повний український текст готовий; переклади, незалежне рев'ю і перевірка рендерингу — пізніші етапи."
+              skyExamples:
+                config:
+                  id: "827b5df7-917c-5e7e-9e21-65048f89e8a9"
+                  slug: "skyExamples"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      uk: |-
+                        ## Порівнюємо два уявні описи неба
+                        Уяви **перший опис**: майже все синє небо закривають хмари. А тепер **другий опис**: на синьому небі лише три маленькі хмари. Це вигадані приклади для роздумів, а не фотографії, які зараз відкриті на екрані.
+                        
+                        **Спробуй сам:** у якому описі хмари закривають більшу частину неба? Назви слова, які допомогли тобі це визначити. Спочатку подумай або скажи відповідь, а тоді розгорни картку «Перевір порівняння» нижче.
+                        
+                        Якщо хочеш дізнатися про **саме Сонце**, користуйся підготовленим науковим зображенням. Опис хмар — це вивчення неба, а не спосіб роздивлятися сонячний диск.
+                        
+                        **Подумай:** чи можна досліджувати небо вдень або вдома? Можна за готовими знімками та точними словесними описами, без нічного виходу.
+                production:
+                  purpose: "Пояснити різницю між розгляданням неба й готовим зображенням Сонця."
+                  productionNotes: "Stage 2: повний український текст готовий; переклади, незалежне рев'ю і перевірка рендерингу — пізніші етапи."
+              skyCompareCheck:
+                config:
+                  id: "0121e00a-ab04-57f1-be3a-ea1f5571895d"
+                  slug: "skyCompareCheck"
+                  type: "checkpoint"
+                  params:
+                    headingLevel: 3
+                    showIndices: true
+                    showChevron: true
+                    enableChecks: false
+                    requireCompletion: false
+                  locale:
+                    title:
+                      uk: "Перевір порівняння"
+                  content:
+                    items:
+                      twoSkyDescriptions:
+                        config:
+                          id: "155f2765-cca3-54f9-b8cc-1f012312919e"
+                          slug: "twoSkyDescriptions"
+                          type: "checkpointItem"
+                          question:
+                            config:
+                              id: "962bdb05-54a6-5e60-b774-5e5d7e9ac4cf"
+                              slug: "twoSkyDescriptionsQuestion"
+                              type: "text"
+                              params: {}
+                              locale:
+                                value:
+                                  uk: "У першому уявному описі хмари закривають майже все небо, а в другому на синьому небі — три маленькі хмари. У якому описі хмари займають більшу частину неба? За якими словами ти це визначив?"
+                          answer:
+                            config:
+                              id: "31f4461b-62ab-50e1-b0fd-215764c09447"
+                              slug: "twoSkyDescriptionsAnswer"
+                              type: "checkpointAnswer"
+                              content:
+                                items:
+                                  twoSkyDescriptionsExplanation:
+                                    config:
+                                      id: "f5c927f5-6dc0-5aeb-8797-e8bda45420c3"
+                                      slug: "twoSkyDescriptionsExplanation"
+                                      type: "text"
+                                      params: {}
+                                      locale:
+                                        value:
+                                          uk: "У першому описі хмари закривають більшу частину неба — сказано «майже все небо». У другому три маленькі хмари займають меншу частину синього неба. Ми порівняли, яку частину неба закривають хмари, а не їхню кількість. Дивитися на Сонце для цього не потрібно."
+                                order:
+                                  - "twoSkyDescriptionsExplanation"
+                    order:
+                      - "twoSkyDescriptions"
+                production:
+                  purpose: "Змістовно відокремити дитячу спробу порівняння від розкриття пояснення."
+                  productionNotes: "Read-aloud: дорослий читає обидва уявні описи, робить паузу для усної/жестової відповіді, а потім відкриває пояснення. Лише accordion; оцінок та кнопки виконання немає."
+            order:
+              - "welcome"
+              - "skyExamples"
+              - "skyCompareCheck"
+        production:
+          purpose: "Від знайомого опису хмар перейти до питання, як отримувати відомості про Сонце безпечно."
+          pedagogicalIntent: "Активне осмислення науково коректного правила із доступним feedback; не вимагати читання, письма, нічних спостережень або приладів."
+          productionNotes: |-
+            Доступ для дитини, яка не читає: дорослий послідовно читає welcome й skyExamples українською та описує два уявні неба; робить паузу після «назви дві ознаки» і «у якому описі хмари закривають більшу частину неба», приймає усну/жестову відповідь, тільки після неї розкриває skyCompareCheck і читає пояснення. Не потребує фотографії, відео, нічного виходу чи приладу. Stage 6 перевіряє клавіатурне розкриття Checkpoint. TTS/аудіозаписи не створені й не обіцяні.
+      solarSafety:
+        config:
+          id: "12936be4-a2f0-5b31-b6eb-79a63b90687f"
+          slug: "solarSafety"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              uk: "Чому потрібно берегти очі?"
+            navigationLabel:
+              uk: "Бережемо очі"
+          content:
+            items:
+              whyProtectEyes:
+                config:
+                  id: "5ae8cf30-7084-5d1f-aa8a-79701cca070c"
+                  slug: "whyProtectEyes"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      uk: |-
+                        # Сонце не можна перевіряти поглядом
+                        Сонце дуже яскраве. **Навіть короткий прямий погляд на Сонце може пошкодити очі.** Тому не пробуй так робити й не пропонуй іншим.
+                        
+                        Звичайні сонцезахисні окуляри не роблять погляд на Сонце безпечним. Бінокль або телескоп без належного спеціального сонячного захисту особливо небезпечні. У цьому уроці ми **не виконуємо** прямі сонячні спостереження.
+                        
+                        **Порівняй:**
+                        - «Я швидко погляну на Сонце». **Небезпечно:** короткий погляд теж ризикований.
+                        - «Я розгляну перевірений знімок Сонця». **Безпечно:** можна дізнатися, який вигляд має Сонце, не дивлячись на нього.
+                        
+                        Цікавість дослідника — це добре. Потрібно лише обрати безпечний спосіб.
+                production:
+                  purpose: "Правило сонячної безпеки, причинне пояснення, протиставлення ризикованого й безпечного."
+                  productionNotes: "Stage 2: повний український текст готовий; переклади, незалежне рев'ю і перевірка рендерингу — пізніші етапи."
+              safeWays:
+                config:
+                  id: "62dfa921-fff7-5b31-b975-882f8ce70b8a"
+                  slug: "safeWays"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      uk: |-
+                        ## Як дізнатися про Сонце без ризику?
+                        Попроси дорослого показати **готове фото або запис**, підготовлений науковцями. За таким зображенням можна описати Сонце, не дивлячись на нього на небі.
+                        
+                        Фахівці іноді отримують зображення Сонця спеціальними пристроями — наприклад, проєкцією на поверхню. У цьому уроці можна лише переглянути **готовий запис**. Ми не майструємо та не випробовуємо такі пристрої і ніколи не дивимося через отвір проєктора.
+                        
+                        **Поширена помилка:** «Дуже темні окуляри захищають». **Виправлення:** колір окулярів не доводить захист для прямого погляду на Сонце.
+                        
+                        **Інша помилка:** «Небо можна досліджувати тільки вночі». **Виправлення:** навіть вдень можна описувати готовий знімок хмар.
+                        
+                        **Коротко:** для знань про Сонце обирай наукові знімки, а не ризикований погляд.
+                production:
+                  purpose: "Сформувати позитивні безпечні альтернативи без небезпечних інструкцій."
+                  productionNotes: "Stage 2: повний український текст готовий; переклади, незалежне рев'ю і перевірка рендерингу — пізніші етапи."
+            order:
+              - "whyProtectEyes"
+              - "safeWays"
+        production:
+          purpose: "Науково коректно розрізнити небезпечний прямий погляд і перегляд готового фото/запису."
+          pedagogicalIntent: "Активне осмислення науково коректного правила із доступним feedback; не вимагати читання, письма, нічних спостережень або приладів."
+          productionNotes: |-
+            Дорослий або доступний читач екрана читає whyProtectEyes і safeWays вголос з паузою після двох протилежних намірів. Дитина показує або називає «безпечний»/«небезпечний», тоді слухає і пояснює різницю. Жодної демонстрації прямого погляду, оптики чи проєктора; це лише словесне обговорення. Наукові джерела NASA/AAS закріплені в Stage 1; озвучення автоматичним TTS/медіа на Stage 2 не реалізоване.
+      safeChoices:
+        config:
+          id: "382eacbe-b1a2-5988-9469-2dc6ed35d707"
+          slug: "safeChoices"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              uk: "Обираємо безпечні дії"
+            navigationLabel:
+              uk: "Тренуємо вибір"
+          content:
+            items:
+              practiceIntro:
+                config:
+                  id: "d172d47e-8c5b-57e5-95d5-590783750974"
+                  slug: "practiceIntro"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      uk: |-
+                        # Обери дію, яка береже очі
+                        Перед кожним рішенням подумай: **«Чи потрібно мені для цього дивитися прямо на Сонце?»** Якщо так — шукай інший спосіб. Фото чи словесний опис часто дають потрібні відомості без ризику.
+                        
+                        Нижче — **три короткі ситуації у картках**. Після прочитання чи прослуховування вибери безпечну дію подумки, вголос або показом. Лише потім відкрий пояснення в картці. Це тренування, а не оцінка; ти можеш передумати і спробувати знову. Виходити надвір, дивитися на Сонце, брати прилади чи писати не потрібно.
+                production:
+                  purpose: "Підвести до неоцінюваної ситуаційної практики."
+                  productionNotes: "Stage 2: повний український текст готовий; переклади, незалежне рев'ю і перевірка рендерингу — пізніші етапи."
+              safeChoiceLab:
+                config:
+                  id: "98f915af-6818-5dba-a461-9756c578dd1b"
+                  slug: "safeChoiceLab"
+                  type: "scene"
+                  params:
+                    disabled: true
+                  locale:
+                    value:
+                      intro:
+                        uk: "Три ситуації. Обери дію, прочитай пояснення. Можна змінювати вибір: це тренування, не оцінка."
+                      controls:
+                        next:
+                          uk: "Далі"
+                        restart:
+                          uk: "Спробувати з початку"
+                        textAlternative:
+                          uk: "Відкрити текстову вправу"
+                        feedbackHeading:
+                          uk: "Пояснення вибору"
+                        progressPhoto:
+                          uk: "Ситуація 1 з 3"
+                        progressGlasses:
+                          uk: "Ситуація 2 з 3"
+                        progressClouds:
+                          uk: "Ситуація 3 з 3"
+                      photo:
+                        prompt:
+                          uk: "Марійка хоче побачити, який вигляд має Сонце. Що порадиш?"
+                        risk:
+                          uk: "Поглянути просто на Сонце лише на мить"
+                        safe:
+                          uk: "Розглянути підписане наукове фото Сонця"
+                        safeFeedback:
+                          uk: "Добре! На готовому знімку можна вивчати Сонце, не дивлячись на нього."
+                        riskFeedback:
+                          uk: "Небезпечно. Навіть швидкий прямий погляд на Сонце може пошкодити очі. Обери фото."
+                      glasses:
+                        prompt:
+                          uk: "Богдан має звичайні темні окуляри. Чи можна дивитися на Сонце?"
+                        safe:
+                          uk: "Не дивитися; попросити перевірене зображення"
+                        risk:
+                          uk: "Надягти окуляри й подивитися на Сонце"
+                        safeFeedback:
+                          uk: "Так! Звичайні окуляри не захищають для прямого спостереження Сонця."
+                        riskFeedback:
+                          uk: "Ні. Темні окуляри не є спеціальним сонячним захистом. Дивись на готовий знімок."
+                      clouds:
+                        prompt:
+                          uk: "Оля не має телескопа й не може вийти надвір. Чи може вона дослідити денне небо?"
+                        risk:
+                          uk: "Ні, досліджувати небо можна лише вночі"
+                        safe:
+                          uk: "Описати хмари на готовій фотографії"
+                        safeFeedback:
+                          uk: "Правильно! Достатньо готових фото й описів. Дивитися на Сонце не потрібно."
+                        riskFeedback:
+                          uk: "Досліджувати небо можна і вдень за фотографією чи словесним описом."
+                      done:
+                        uk: "Молодець, ти потренувався обирати безпечні джерела відомостей про небо."
+                      retry:
+                        uk: "Подумай: чи можна отримати ті самі відомості без погляду на Сонце?"
+                production:
+                  purpose: "Формувальна практика безпечних рішень із негайним поясненням."
+                  specification: |-
+                    # «Безпечний вибір»: Scene — editorial specification (not implemented)
+                    Status: Scene configurator is authored, but the local Scene and its registry do not exist. The Stage 2/3 draft keeps config.params.disabled: true; the UI Kit ContentBlockRenderer skips disabled items before dispatching the Scene block. Content remains valid as a fully accessible text-first practiceReveal Checkpoint even if Scene is never mounted. No Scene playback or network-independent Scene code is claimed.
+                    
+                    ## Learning experience and invariant truth
+                    Three situations in fixed order photo, glasses, clouds, each with a prompt, one safe and one risk action, and distinct safeFeedback/riskFeedback, sourced from this node's locale.value. All cases are unscored formative learning, not Question Bank data. Key safe is always the safe action. A mistake must lead only to explanatory feedback, never an instruction to perform an unsafe physical action or emulate a solar view.
+                    
+                    ## Explicit displayed option order
+                    For photo render [risk, safe]; for glasses render [safe, risk]; for clouds render [risk, safe]. These stable per-case sequences are part of the design: do not derive them from alphabetical keys, implicit map iteration, side color or a rule that always puts safe first. Preserve logical keyboard/screen-reader order equal to the visible order and semantically stable option labels. The separate text-first Checkpoint uses the matching A/B order.
+                    
+                    ## Localized control copy
+                    Read the exact Ukrainian keys from locale.value.controls: next, restart, textAlternative, feedbackHeading and progressPhoto/progressGlasses/progressClouds. Do not hardcode «Далі» or other visible/assistive copy inside React. Resolve all future declared languages from real reviewed translations only; no English fallback masquerading as a translation.
+                    
+                    ## States, actions and feedback
+                    Initial state: intro, progressPhoto, first case prompt and two action buttons with neither selected. Activating either action by touch, Enter or Space reveals the matching safeFeedback/riskFeedback next to the buttons and announces it once politely for screen readers. The child can activate the other option to change their mind, with a fresh explanation and no penalty. After any response next appears; require no timer, score, grade or forced-success gate. Move to the next case, then done with restart available. Restart resets all local Scene selections to case one. Maintain predictable focus and allow learner navigation to the textAlternative pathway. Avoid duplication of visible Scene and complete text practice when both are enabled; the equivalent Checkpoint must always remain independently reachable.
+                    
+                    ## Accessibility and non-reader facilitation
+                    Use native labelled buttons, no drag/drop, flashing light, color-only coding or animated staring at Sun. Announce progress and feedback accessibly, keep focus order visible and keyboard/touch-screen-reader parity, scale content 200%, honor reduced motion and RTL semantics. For a pre-reader: the facilitator reads the prompt and the two options aloud, accepts a spoken or pointing answer, reads the distinct feedback, and pauses so the child can choose again. Recorded narration/TTS is not implemented; the source text is the approved read-aloud script. No webcam, GPS, live Sun exposure, browser audio requirement or special equipment.
+                    
+                    ## Nonvisual and low-end route, crash guard
+                    The text-first afterPractice + practiceReveal Checkpoint precedes this disabled Scene in section.order. It is the *primary* Draft exercise, not a fallback that appears only after a crash. Current UI Kit Scene.tsx throws on an unknown Scene ID and Suspense fallback=null does not catch that throw. At Stage 6 the Coding Agent must implement/register the real Scene and guard attempted mounting with a real error boundary or Scene-aware routing that renders the same independent text practice on missing/chunk-error/offline failure; only then may disabled be removed. Verify that children can always reach practiceReveal, including no script/network and slow devices, rather than relying on the next Markdown sibling to survive a render crash. No renderer/platform change is authored at this stage.
+                    
+                    ## Visual constraints and Stage 6 evidence
+                    Use quiet 2D icons (photo, ordinary sunglasses, clouds), never simulated direct looking or sunlit bright-flash effects, DIY projector instructions, live camera or forbidden magnifiers. All graphics have explanatory text; preserve lesson neutrality. Scene acceptance requires real code+registry, keyboard/touch/screen reader, accessible live region, deterministic option order, all localized labels, explicit fallback, offline package/low-end verification and all three distinct feedback sets. Do not claim a CI-green YAML or successful text practice proves Scene completion.
+                  productionNotes: "Readiness: editorial source/specification only. Scene is intentionally disabled in current Config to avoid mounting an unregistered Scene. Text-first practiceReveal is available as the required learning-equivalent route. Stage 6 must register and verify Scene, implement an error fallback, and only then enable it; no runtime behavior is claimed."
+              afterPractice:
+                config:
+                  id: "15501927-9c5e-570d-aee6-8b22efa0ef31"
+                  slug: "afterPractice"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      uk: |-
+                        ## Три ситуації — текстова вправа
+                        Ця вправа **працює без спеціальної Scene**. У наступних трьох картках є коротка ситуація і два варіанти дії. Спочатку обери варіант подумки, назви його вголос або покажи на нього. **Лише після власної спроби** відкрий картку й порівняй пояснення.
+                        
+                        Картки мають різний порядок відповідей, тому не вгадуй за місцем кнопки: подумай, який спосіб безпечний для очей.
+                        
+                        Якщо ти ще не читаєш, дорослий може прочитати ситуацію та обидва варіанти, зачекати на твій вибір і тільки тоді розкрити та прочитати пояснення. Жодних виходів на вулицю, поглядів на Сонце або приладів не потрібно.
+                production:
+                  purpose: "Рівноцінна текстова альтернатива кожному стану Scene."
+                  productionNotes: "Stage 6 має показувати цей fallback замість Scene або на вибір, щоб не перевантажувати дублюванням."
+              practiceReveal:
+                config:
+                  id: "470bc5ac-4631-56ab-970c-7416ad1f338f"
+                  slug: "practiceReveal"
+                  type: "checkpoint"
+                  params:
+                    headingLevel: 3
+                    showIndices: true
+                    showChevron: true
+                    enableChecks: false
+                    requireCompletion: false
+                  locale:
+                    title:
+                      uk: "Розкрий пояснення після вибору"
+                  content:
+                    items:
+                      photoPractice:
+                        config:
+                          id: "f4501e02-5b1f-5bc5-91a1-caf24ae056fd"
+                          slug: "photoPractice"
+                          type: "checkpointItem"
+                          question:
+                            config:
+                              id: "0b1d1aba-98c1-5f23-b05d-6e84d7ead9dc"
+                              slug: "photoPracticeQuestion"
+                              type: "text"
+                              params: {}
+                              locale:
+                                value:
+                                  uk: "Марійка хоче побачити Сонце. А: поглянути на нього одну мить. Б: розглянути готовий науковий знімок. Який варіант безпечний?"
+                          answer:
+                            config:
+                              id: "06f9e319-bc2b-53ba-9276-6250efc33c5f"
+                              slug: "photoPracticeAnswer"
+                              type: "checkpointAnswer"
+                              content:
+                                items:
+                                  photoPracticeExplanation:
+                                    config:
+                                      id: "289a8465-2c9d-57e4-b238-975298f78193"
+                                      slug: "photoPracticeExplanation"
+                                      type: "text"
+                                      params: {}
+                                      locale:
+                                        value:
+                                          uk: "Безпечний варіант Б: готове наукове фото дозволяє побачити зображення Сонця без прямого погляду. А небезпечний, бо навіть короткий погляд може пошкодити очі."
+                                order:
+                                  - "photoPracticeExplanation"
+                      glassesPractice:
+                        config:
+                          id: "b9c22837-6b9b-54e7-bac0-ebb8ed7d80ab"
+                          slug: "glassesPractice"
+                          type: "checkpointItem"
+                          question:
+                            config:
+                              id: "0300243b-c887-58a4-a791-f15233cd0cd1"
+                              slug: "glassesPracticeQuestion"
+                              type: "text"
+                              params: {}
+                              locale:
+                                value:
+                                  uk: "Богдан знайшов темні окуляри. А: не дивитися на Сонце і попросити готове наукове фото. Б: одягнути окуляри й подивитися. Що безпечно?"
+                          answer:
+                            config:
+                              id: "8bb50daa-f060-5d12-b9a0-193e5e2773f8"
+                              slug: "glassesPracticeAnswer"
+                              type: "checkpointAnswer"
+                              content:
+                                items:
+                                  glassesPracticeExplanation:
+                                    config:
+                                      id: "6cb7b211-df98-532e-9796-463c15bfd6e4"
+                                      slug: "glassesPracticeExplanation"
+                                      type: "text"
+                                      params: {}
+                                      locale:
+                                        value:
+                                          uk: "Безпечний варіант А: подивитися на готове фото, а не на Сонце. Звичайні темні окуляри не дають належного захисту для прямого сонячного спостереження."
+                                order:
+                                  - "glassesPracticeExplanation"
+                      cloudsPractice:
+                        config:
+                          id: "8bd54f37-7309-5f5a-96ee-26b818c72e44"
+                          slug: "cloudsPractice"
+                          type: "checkpointItem"
+                          question:
+                            config:
+                              id: "436b735b-710b-5afa-a997-4a925fd91a43"
+                              slug: "cloudsPracticeQuestion"
+                              type: "text"
+                              params: {}
+                              locale:
+                                value:
+                                  uk: "Оля не може вийти надвір. А: чекати ночі й нічого не досліджувати. Б: описати хмари за готовою фотографією. Який варіант допоможе безпечно дізнатися про небо?"
+                          answer:
+                            config:
+                              id: "80a53494-62b7-59d3-b4d5-20bcf9c521c7"
+                              slug: "cloudsPracticeAnswer"
+                              type: "checkpointAnswer"
+                              content:
+                                items:
+                                  cloudsPracticeExplanation:
+                                    config:
+                                      id: "ffd1af12-e015-5685-a189-5519ca54b52d"
+                                      slug: "cloudsPracticeExplanation"
+                                      type: "text"
+                                      params: {}
+                                      locale:
+                                        value:
+                                          uk: "Варіант Б: готова фотографія або її словесний опис допомагають дізнатися про хмари вдень і вдома. Вихід надвір і телескоп не потрібні."
+                                order:
+                                  - "cloudsPracticeExplanation"
+                    order:
+                      - "photoPractice"
+                      - "glassesPractice"
+                      - "cloudsPractice"
+                production:
+                  purpose: "Основна доступна тренувальна вправа з трьома навчальними рішеннями та змістовними поясненнями, відкриваними лише після відповіді."
+                  productionNotes: "Read-aloud: дорослий читає ситуацію і варіанти А/Б, приймає усну або жестову відповідь, потім відкриває картку і читає пояснення. Усі три ситуації доступні в українському Text, без Scene, з кнопками Accordion, без балів, таймера і перевірки правильності. Stage 6 перевіряє keyboard/touch/screen reader/офлайн."
+            order:
+              - "practiceIntro"
+              - "afterPractice"
+              - "practiceReveal"
+              - "safeChoiceLab"
+        production:
+          purpose: "Три безпечні рішення у відмінних контекстах, із зворотним зв'язком та можливістю виправлення."
+          pedagogicalIntent: "Активне осмислення науково коректного правила із доступним feedback; не вимагати читання, письма, нічних спостережень або приладів."
+          productionNotes: |-
+            Текстова вправа afterPractice + practiceReveal є первинним доступним маршрутом: дорослий читає кожну ситуацію/варіанти, чекає на усну, жестову або вказівну відповідь, лише потім розкриває правильне пояснення. Ніякої оцінки або потреби самостійного читання. Scene safeChoiceLab лишається disabled: true і стоїть останньою в order. Stage 6 окремо забезпечує реєстрацію, error boundary та справжній рівноцінний fallback до активації Scene; перевірити кейси, підписи, офлайн і слабкі пристрої.
+      reflectAndRemember:
+        config:
+          id: "48cf58e9-bac2-503c-9c03-397eb753c765"
+          slug: "reflectAndRemember"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              uk: "Поясни своїми словами"
+            navigationLabel:
+              uk: "Пригадай"
+          content:
+            items:
+              reflectIntro:
+                config:
+                  id: "0e3caedf-62b9-530b-a656-997e62720845"
+                  slug: "reflectIntro"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      uk: |-
+                        # Перевір пояснення
+                        Спробуй сказати, **чому** один спосіб безпечний, а інший ні. Можна відповісти подумки, вголос чи жестом; писати не потрібно.
+                        
+                        У наступних двох запитаннях спершу сформулюй власну відповідь, а потім відкрий пояснення. Якщо помилився, порівняй й спробуй інакше. Це не контрольна робота.
+                production:
+                  purpose: "Перехід від вибору до пояснення й виправлення помилки."
+                  productionNotes: "Stage 2: повний український текст готовий; переклади, незалежне рев'ю і перевірка рендерингу — пізніші етапи."
+              reflectionCheck:
+                config:
+                  id: "1c9b440c-58f2-5fa0-b9fb-a293122f7d95"
+                  slug: "reflectionCheck"
+                  type: "checkpoint"
+                  params:
+                    headingLevel: 3
+                    showIndices: true
+                    showChevron: true
+                    enableChecks: false
+                    requireCompletion: false
+                  locale:
+                    title:
+                      uk: "Перевір свої пояснення"
+                  content:
+                    items:
+                      sunglasses:
+                        config:
+                          id: "271d90d1-d7e9-58ee-a771-caa913e6cd00"
+                          slug: "sunglasses"
+                          type: "checkpointItem"
+                          question:
+                            config:
+                              id: "b389f9a9-8575-5c60-86a3-83cdc17f8e70"
+                              slug: "sunglassesQuestion"
+                              type: "text"
+                              params: {}
+                              locale:
+                                value:
+                                  uk: "Чи достатньо звичайних темних окулярів для погляду на Сонце? Що обрати натомість?"
+                          answer:
+                            config:
+                              id: "8dea9292-8741-5f40-a7d2-4a2433e6a2ec"
+                              slug: "sunglassesAnswer"
+                              type: "checkpointAnswer"
+                              content:
+                                items:
+                                  sunglassesExplanation:
+                                    config:
+                                      id: "d2112e9b-5516-58bb-a94a-6307252346a8"
+                                      slug: "sunglassesExplanation"
+                                      type: "text"
+                                      params: {}
+                                      locale:
+                                        value:
+                                          uk: "Ні. Звичайні темні окуляри не захищають для прямого спостереження Сонця. Замість цього розглянь готовий науковий знімок."
+                                order:
+                                  - "sunglassesExplanation"
+                      onlyNight:
+                        config:
+                          id: "a6a6a46c-0ab0-5e19-ab26-d24f73c54774"
+                          slug: "onlyNight"
+                          type: "checkpointItem"
+                          question:
+                            config:
+                              id: "e3d0a9c0-4439-57dc-89c0-c5e387f1d7e8"
+                              slug: "onlyNightQuestion"
+                              type: "text"
+                              params: {}
+                              locale:
+                                value:
+                                  uk: "Друг каже: «Досліджувати небо можна лише вночі». Поясни, чи має він рацію."
+                          answer:
+                            config:
+                              id: "359e20f9-4074-5254-9f4d-e14dbb290961"
+                              slug: "onlyNightAnswer"
+                              type: "checkpointAnswer"
+                              content:
+                                items:
+                                  onlyNightExplanation:
+                                    config:
+                                      id: "eed8fbd6-6570-5ea5-a23e-6adc072a27f3"
+                                      slug: "onlyNightExplanation"
+                                      type: "text"
+                                      params: {}
+                                      locale:
+                                        value:
+                                          uk: "Ні. Про небо можна дізнаватися вдень і вдома: за готовими фото хмар або словесними описами. Дивитися на Сонце для цього не потрібно."
+                                order:
+                                  - "onlyNightExplanation"
+                    order:
+                      - "sunglasses"
+                      - "onlyNight"
+                production:
+                  purpose: "Дві неоцінювані рефлексивні перевірки з відповідями для порівняння після власної спроби."
+                  productionNotes: "Stage 2: checkpoint Config-shaped, не Quiz/Question Bank; Stage 6 перевірити семантичне розкриття і screen-reader feedback. Усна відповідь, вказування або обдумування замінюють письмо."
+              closingMessage:
+                config:
+                  id: "ed026657-d710-5376-bf67-6668ba8b5f5d"
+                  slug: "closingMessage"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      uk: |-
+                        ## Тепер ти знаєш
+                        Можна досліджувати хмари, світло і небо за готовими фотографіями та описами. Щоб вивчати Сонце, **не треба дивитися просто на нього**. Наукове зображення допоможе зробити це безпечно.
+                        
+                        **Заверши фразу:** «Коли я хочу дізнатися про Сонце, я…». Наприклад: «…попросив би показати підписане наукове фото».
+                        
+                        Добрий дослідник дбає про себе й обирає спосіб, який не шкодить очам.
+                production:
+                  purpose: "Закріплення переносного правила і м'який перехід до Quiz."
+                  productionNotes: "Stage 2: повний український текст готовий; переклади, незалежне рев'ю і перевірка рендерингу — пізніші етапи."
+            order:
+              - "reflectIntro"
+              - "reflectionCheck"
+              - "closingMessage"
+        production:
+          purpose: "Закріпити правило через неоцінюваний Checkpoint і лаконічну рефлексію."
+          pedagogicalIntent: "Активне осмислення науково коректного правила із доступним feedback; не вимагати читання, письма, нічних спостережень або приладів."
+          productionNotes: |-
+            Для дітей, які не читають, ведучий читає reflectIntro та обидві теми reflectionCheck, приймає усні відповіді/жести без вимоги письма і відкриває кожне пояснення лише після відповіді; closingMessage читається вголос і дитина завершує фразу. Немає балів, обов'язкових check-кнопок чи блокування. Майбутня коротка Note «Дізнаватися про Сонце можна, не дивлячись на нього» планується після reflectionCheck, до closingMessage; runtime Notes-unlock ще не існує.
+      safeSkyChoices:
+        config:
+          id: "2d844bab-f77e-5dc5-adb9-7891d5bb6b59"
+          slug: "safeSkyChoices"
+          type: "quiz"
+          params: {}
+          locale:
+            title:
+              uk: "Перевір безпечний вибір"
+            navigationLabel:
+              uk: "Перевір знання"
+          content:
+            items:
+              quizIntro:
+                config:
+                  id: "2b550f05-8866-583f-a8f4-391e6d3eec4e"
+                  slug: "quizIntro"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      uk: |-
+                        # Чи вмієш обирати безпечні дії?
+                        Ти вже тренувався пояснювати ризики. Тепер буде **окрема перевірка**: розпізнай небезпечні способи й знайди безпечну заміну.
+                        
+                        Не потрібно дивитися на Сонце або користуватися приладами. Якщо ти ще не читаєш самостійно, дорослий може прочитати умову вголос. Ти можеш сказати свій вибір або показати на варіант за погодженим доступним способом.
+                production:
+                  purpose: "Готовий вступний екран, без вигаданих Question IDs або grading."
+                  productionNotes: "Stage 2: повний український текст готовий; переклади, незалежне рев'ю і перевірка рендерингу — пізніші етапи."
+            order:
+              - "quizIntro"
+        production:
+          purpose: "Один обов'язковий оцінюваний Quiz із Stage 1 для Skill safeSolarObservation."
+          pedagogicalIntent: "Активне осмислення науково коректного правила із доступним feedback; не вимагати читання, письма, нічних спостережень або приладів."
+          productionNotes: |-
+            Quiz placement only: assessmentPlanKey=safeSkyChoices; Skill=b4b9b469-391d-40f8-b11d-6884c76ed106; methods=classification,application. params: {} deliberately incomplete pending independently reviewed Question Bank, genuine questionIds, grading, interaction and screen selection from Assessment Architect. Stage 6 preflight/publication blocked until completed. Для дитини, що не читає: ведучий читає quizIntro й майбутні реальні формулювання Questions, описує усі зображення словами, надає можливість дати усну/вказівну відповідь за валідним погодженим способом. До публікації Assessment Architect + Coding Agent мають перевірити доступність справжніх форматів Questions і відсутність допомоги, яка підказує відповідь. Аудіо/TTS та Question Bank наразі відсутні, жодного оцінювання ще немає.
+            Assessment intent: safeSkyChoices
+            Bank integration: pending
+    order:
+      - skyAroundUs
+      - solarSafety
+      - safeChoices
+      - reflectAndRemember
+      - safeSkyChoices
 production:
   documentLanguage: uk
+  quizRequired: true
+  purpose: "Навчити дитину 6–8 років безпечно дізнаватися про небо й Сонце."
+  audience: "6–8 років; читання, письмо, телескоп і вихід на вулицю не є передумовами."
+  productionNotes: |-
+    Screenwriter correction of Stage 3 CR-01–CR-06. Four Content Sections, one Quiz Section, a draft-only disabled Scene and text-first practice with three case disclosures, plus reflection and comparison Checkpoints. The Skill, Stage 1 methodology and intended locales uk/en/pl/qm remain unchanged.
+    Non-reader plan applies to every Content Section: the existing Ukrainian learner copy is the read-aloud script. An adult/facilitator (or separately verified accessible text-to-speech if ever implemented) reads short paragraphs and instructions in authored order, pauses before each prompt, accepts spoken/gesture/pointing responses and reveals feedback only afterward. No camera, equipment, live solar observations, written response, internet or preinstalled assistive voice are required. This is an editorial facilitation plan, not a claim that the platform implements narration, offline packages or live human assistance automatically. Stage 6 specialists must verify that actual published interactions are independently accessible to keyboard/touch/screen-reader users.
+    Stage 3 independent re-review, Stage 4–5 reviews, Scene registration, full Question Bank selection/Quiz config, production build and real en/pl/qm translations remain outstanding. No fake IDs, media or locales have been authored; Lesson remains Course-neutral and Notes remain future-only.
   methodology: |-
     # Почнімо досліджувати небо
 
@@ -46,13 +684,23 @@ production:
     - Небо можна описувати і без спостережень Сонця: хмари, освітленість, видимі об'єкти на перевірених фото; нічні виходи не потрібні.
     - Використовувати спеціальні методи сонячних спостережень можна лише за визначеними правилами з відповідним захистом і під відповідальним наглядом; для цього віку не призначати прямі сонячні спостереження.
 
+    ## Поняття, коректні приклади та рівень опанування
+    - «Спостерігати небо» — помічати доступні ознаки довкілля (хмари, світло, тіні) або працювати з достовірними зображеннями; це не означає дивитися безпосередньо на Сонце. Хмари й тіні — приклади безпечного дослідження неба, але самі по собі не є методами розглядання сонячного диска.
+    - «Непряме спостереження Сонця» — бачити його вже отримане зображення: перевірене фото, запис або проєкцію сонячного зображення на поверхню. Проєкцію як принцип можна показувати лише в підготовленому матеріалі чи під наглядом компетентного дорослого; дивитися крізь отвір проєктора або спрямовувати власні очі на Сонце не можна. Діти не повинні самостійно виготовляти, налаштовувати чи випробовувати сонячні пристрої.
+    - Спеціалізовані належні сонячні фільтри існують, але звичайні окуляри, затемнені матеріали й фільтри, не призначені для конкретної оптики, їх не замінюють. Вивчення або практичне застосування захисної оптики й спостереження затемнень не належить до цього вступного Lesson.
+    - Позитивні зразки вибору: розглядати підписаний науковий знімок Сонця, описувати хмари без пошуку Сонця поглядом, розглядати запис проєкції, підготовлений фахівцем. Контрприклади для обговорення, але ніколи для виконання: «глянути на мить», дивитися крізь бінокль, звичайні окуляри чи отвір проєктора.
+    - Очікувана глибина: дитина впізнає безпечний/небезпечний спосіб та обирає безпечну заміну з коротким поясненням «це захищає очі»; знання будови ока, типів фільтрів, оптики й механіки затемнень не вимагати. Не вважати одну правильну відповідь підтвердженням стійкої майстерності.
+
     ## Типові помилкові уявлення
     - «На Сонце можна швидко поглянути без ризику» — ні, таке завдання не пропонуємо.
     - «Темні окуляри або звичайний телескоп захищають» — ні; не рекомендувати жодної імпровізованої оптики.
     - «Досліджувати небо можна лише вночі» — ні.
 
     ## Принципова навчальна прогресія
-    Спочатку поставити запитання «що можна помітити на небі?»; потім відокремити безпечні способи отримання інформації від небезпечних і лише після цього розглядати прості спостережні приклади. Автор Screenwriter окремо визначить форми практики.
+    Від уже знайомих денного світла, хмар і тіней перейти до питання «що можна помітити на небі?». Далі розрізнити: (1) опис довкілля без погляду на Сонце, (2) роботу з готовими науковими зображеннями/записом непрямого спостереження Сонця, (3) небезпечний прямий погляд або непідготовлену оптику. Після порівняння безпечних і небезпечних прикладів перейти до вибору безпечної альтернативи в новій ситуації та короткого пояснення причини. Автор Screenwriter визначить форму практики й доступні еквіваленти; навчальна діяльність не повинна провокувати реальні небезпечні спроби.
+
+    ## Межі перенесення та перевірка розуміння
+    Можливі контексти: дитина хоче дізнатися, який вигляд має Сонце; бачить незнайомий прилад; має тільки фото або усний опис. Критерій успіху — обирає безпечне джерело інформації замість ризикованої дії та розпізнає, чому прямий погляд або нефільтрована оптика небезпечні. Не змішувати цей результат із навичкою ведення щоденника спостережень, яку опрацьовує інший Lesson у Course. Для майбутньої короткої Note придатна опорна ідея «Дізнаватися про Сонце можна, не дивлячись на нього»; точне формулювання і момент подачі визначить Screenwriter, механізм Notes не вважати реалізованим.
 
     ## Assessment plan
     ```yaml
@@ -64,12 +712,17 @@ production:
           skills: [b4b9b469-391d-40f8-b11d-6884c76ed106]
           requiredAssessmentMethods: [classification, application]
     ```
-    Це методологічне обґрунтування Quiz, а не готові запитання, бали, способи введення відповідей чи реалізація Section. Різні методи оцінюють різні когнітивні операції; Assessment Architect визначить валідні завдання, критерії та банки.
+    Один Quiz потрібен, бо сама демонстрація правила не засвідчує, що дитина може безпечно діяти в новій ситуації. `classification` перевіряє розрізнення безпечних/небезпечних способів на прикладах; `application` — вибір безпечної альтернативи в зміненому контексті. Обидва методи прив'язані до одного перевіреного Skill; не замінювати їх типами UI-відповідей. Для змістовного навчального Lesson потрібен окремий повноцінний Question Bank; на Stage 1 його ще не існує. Це методологічне обґрунтування Quiz, а не готові запитання, бали, способи введення відповідей чи реалізація Section. Assessment Architect визначить валідні завдання, критерії та банки.
 
     ## Доступність, локалізація, офлайн
     Усе має працювати без доступу до вулиці й без апаратури; зображення супроводжуються словами і доступним текстом; не вимагати читання або розпізнавання лише за кольором.
     Планові мови Lesson: uk, en, pl, qm; українська — єдина авторська мова на цьому етапі. Жодних невиконаних перекладів не імітувати. Однакові цілі мають бути досяжними у слабкій мережі/офлайн та без обов'язкових органів чуття чи письма.
 
     ## Механізми перевірки достовірності і межі
-    Канонічний предметний орієнтир: `content/astronomy/docs/skills/taxonomy.md` та верифіковані Code визначення вище; освітній стандарт із країною/версією не заявляється. Цей вступний Lesson не засвідчує повної майстерності всієї таксономічної компетентності.
+    Канонічний предметний орієнтир: `content/astronomy/docs/skills/taxonomy.md` та верифіковані Code визначення вище. Для правил захисту очей і непрямого спостереження: NASA, Eclipse Viewing Safety — https://science.nasa.gov/eclipses/safety/ ; American Astronomical Society, How to View a Solar Eclipse Safely — https://eclipse.aas.org/eye-safety . Це довідкові правила безпеки, а не запрошення практикувати спостереження затемнень. Освітній стандарт із країною/версією не заявляється. Цей вступний Lesson не засвідчує повної майстерності всієї таксономічної компетентності.
     Сценарій, персонажі Course, Епізоди, конкретні Sections, Questions, мультимедіа та scoring є окремими наступними рішеннями спеціалістів.
+
+    ## Рішення про обов'язкові Section-и оцінювання і повторення
+
+    У цьому вступному уроці потрібна одна підсумкова Quiz Section `safeSkyChoices` після рефлексії. Окрему Flashcards Section у послідовність цього короткого уроку не додаємо: первинне закріплення безпечних дій вже забезпечують три доступні ситуації, розкриття пояснень та рефлексія. Це рішення **лише про розміщення Section у Lesson**; потребу в окремому банку флешкарт можна оцінити пізніше за незалежним процесом, після готового Question Bank. Не підмінювати ним Quiz або окремий банк запитань.
+
