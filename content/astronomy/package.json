@@ -6,7 +6,7 @@
   "scripts": {
     "package:build": "node ../../scripts/textbook-tooling/buildTextbook/build.mjs",
     "code:check:types": "tsc -p tsconfig.json --noEmit",
-    "code:lint:check": "eslint textbook.ts",
+    "code:lint:check": "eslint textbook.ts scenes",
     "pretest:publish": "npm run package:build --workspace @svitlo/astronomy",
     "test:publish": "node --test ../../scripts/textbook-tooling/publishTextbook/test-publish.mjs",
     "pretest:portability": "npm run package:build --workspace @svitlo/astronomy",
@@ -14,10 +14,14 @@
     "prepack": "npm run package:build",
     "code:format:check": "prettier --check . --ignore-path ../../.prettierignore",
     "code:format:fix": "prettier --write . --ignore-path ../../.prettierignore",
-    "code:lint:fix": "eslint textbook.ts --fix"
+    "code:lint:fix": "eslint textbook.ts scenes --fix",
+    "content:generate:scenes": "node ../../scripts/textbook-tooling/generateScenes/generate-scenes.mjs --write",
+    "content:check:scenes": "node ../../scripts/textbook-tooling/generateScenes/generate-scenes.mjs --check",
+    "test:components": "vitest run"
   },
   "dependencies": {
-    "@svitlo/engine": "0.0.0"
+    "@svitlo/engine": "0.0.0",
+    "@svitlo/ui-kit": "0.0.0"
   },
   "devDependencies": {
     "@types/node": "^20",
@@ -25,7 +29,13 @@
     "typescript": "^5",
     "eslint": "^9",
     "@typescript-eslint/parser": "^8.72.0",
-    "@typescript-eslint/eslint-plugin": "^8.72.0"
+    "@typescript-eslint/eslint-plugin": "^8.72.0",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "vitest": "^3.2.4",
+    "prettier": "3.9.10"
   },
   "bin": {
     "svitlo-astronomy": "./dist/publish.mjs"
@@ -37,10 +47,21 @@
     ".": {
       "types": "./dist/textbook/index.d.ts",
       "default": "./dist/textbook/index.js"
+    },
+    "./scenes": {
+      "types": "./dist/scenes/index.d.ts",
+      "default": "./dist/scenes/index.js"
+    },
+    "./styles": {
+      "default": "./dist/styles.css"
     }
   },
   "imports": {
     "#lessonsData/*": "./data/lessons/*.ts",
     "#coursesData/*": "./data/courses/*.ts"
+  },
+  "peerDependencies": {
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0"
   }
 }
