@@ -2,7 +2,7 @@
  * @fileoverview Resolve a build-selected Svitlo content package through its
  * installed npm identity and compiled public contract, never a Web catalog.
  */
-import { existsSync, readFileSync, realpathSync, statSync } from 'node:fs';
+import { existsSync, lstatSync, readFileSync, realpathSync, statSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { dirname, join, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -61,19 +61,29 @@ export function resolveSelectedTextbook(input = process.env.SVITLO_TEXTBOOK, sea
 }
 
 export function assertSelectedArtifacts(selected) {
+  const dist = join(selected.root, 'dist');
+  if (!existsSync(dist) || lstatSync(dist).isSymbolicLink() || !statSync(dist).isDirectory()) {
+    throw new Error('Missing or unsafe compiled dist for ' + selected.name);
+  }
+  const base = realpathSync(dist) + sep;
+  function assertFile(artifact, label) {
+    const target = resolve(selected.root, artifact);
+    if (
+      !target.startsWith(resolve(dist) + sep) ||
+      !existsSync(target) ||
+      lstatSync(target).isSymbolicLink() ||
+      !statSync(target).isFile() ||
+      !realpathSync(target).startsWith(base)
+    ) {
+      throw new Error('Missing or unsafe compiled ' + label + ' of ' + selected.name + ': ' + artifact);
+    }
+  }
   const entries = ['.', ...(selected.hasScenes ? ['./scenes'] : []), ...(selected.hasStyles ? ['./styles'] : [])];
   for (const key of entries) {
     const entry = selected.manifest.exports[key];
     for (const artifact of [entry.default, ...(entry.types ? [entry.types] : [])]) {
-      const target = resolve(selected.root, artifact);
-      const base = resolve(selected.root, 'dist') + sep;
-      if (!target.startsWith(base) || !existsSync(target) || !statSync(target).isFile()) {
-        throw new Error('Missing or invalid compiled ' + key + ' export of ' + selected.name + ': ' + artifact);
-      }
+      assertFile(artifact, key + ' export');
     }
   }
-  const cli = resolve(selected.root, selected.manifest.bin[selected.cli]);
-  if (!cli.startsWith(resolve(selected.root, 'dist') + sep) || !existsSync(cli) || !statSync(cli).isFile()) {
-    throw new Error('Missing compiled Publish CLI for ' + selected.name);
-  }
+  assertFile(selected.manifest.bin[selected.cli], 'Publish CLI');
 }
