@@ -95,6 +95,8 @@ node scripts/generateTranslationReviewArtifacts/generate-translation-review-arti
 
 This generates only the requested scope into `.agent-ci-artifacts/` locally. Omit `--locale` only when the assigned review needs all languages available in that scope. The agent may use these documents in the local checkout. If GitHub access is only via a file-reading connector and no workflow has been activated, do **not** pretend local execution occurred.
 
+For Flashcard Bank translation, use the scoped [Flashcard Bank reference adapter](../../../shared/engine/scripts/generateFlashcardReviewArtifacts/README.md), not the separate Lesson `--purpose flashcards` design context. Verify every bank card, including front/back/hint, localized flags, source UUIDs and missing fields at the pinned source SHA. Check real default-branch Action support before issuing `/agent-artifacts generate flashcards`; if not yet deployed, run the local read-only adapter or record the exact scoped blocker.
+
 ## REVIEW PROCESS
 
 1. **Resolve scope and source.** Confirm the owner's specific review authorization, reviewer independence, assigned entity IDs, locale, working PR, and current head SHA. For entity-owned work, review the **same existing Course/Lesson/Questions/Flashcards PR** at its expressly selected unmerged source SHA. Generate/refresh the relevant manifest and documents only when needed; validate source provenance and the scoped hard stop.
