@@ -140,8 +140,16 @@ test('real Skills and UI Kit requests generate only their requested Markdown fil
     }
     assert.equal(fs.existsSync(path.join(workspace, 'lessons')), false);
 
-    const questions = request(['--kind', 'questions', '--package', 'content/playground',
-      '--lesson', 'd3048d21-8690-5255-b62c-984c69ac272c', '--locale', 'kk']);
+    const questions = request([
+      '--kind',
+      'questions',
+      '--package',
+      'content/playground',
+      '--lesson',
+      'd3048d21-8690-5255-b62c-984c69ac272c',
+      '--locale',
+      'kk',
+    ]);
     assert.equal(questions.scope.kind, 'questions');
     assert.equal(questions.scope.package, 'content/playground');
     assert.equal(questions.summary.questionDocuments, 1);
