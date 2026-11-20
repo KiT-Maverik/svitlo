@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 3,
+  "kind": "pr-scoped-agent-ci-artifacts",
+  "sourceCommit": "dcc231d4cc046f3177900c78f2fecbc249cde347",
+  "scope": {
+    "kind": "questions",
+    "package": "content/astronomy",
+    "locale": "en",
+    "component": null,
+    "lesson": null,
+    "course": null
+  },
+  "packages": [
+    "content/astronomy"
+  ],
+  "locales": [
+    "en"
+  ],
+  "generated": [
+    {
+      "kind": "question",
+      "textbook": "content/astronomy",
+      "lesson": "7/c042698a-de5b-5055-9e10-ff5621f80ed7",
+      "locale": "en",
+      "path": ".agent-ci-artifacts/questions/astronomy/7/c042698a-de5b-5055-9e10-ff5621f80ed7/en.md",
+      "questions": 5,
+      "quizSections": 1,
+      "questionStrings": 35,
+      "quizStrings": 3,
+      "strings": 38,
+      "missing": 0,
+      "reviewReady": true
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "documents": 1,
+    "failures": 0,
+    "missingTranslations": 0,
+    "incompleteDocuments": 0,
+    "taxonomyDocuments": 0,
+    "lessonDocuments": 0,
+    "questionDocuments": 1,
+    "courseDocuments": 0,
+    "assessmentMethodDocuments": 0,
+    "uiKitDocuments": 0,
+    "geographyHomeCopyDocuments": 0,
+    "educationStandardDocuments": 0
+  }
+}
