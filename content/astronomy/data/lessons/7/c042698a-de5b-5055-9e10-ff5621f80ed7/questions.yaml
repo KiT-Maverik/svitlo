@@ -46,42 +46,42 @@ questions:
         answers: 
           correct: 
             items: 
-              safeChoice: 
+              correctChoice: 
                 id: "ae194194-48af-537c-beba-d9447e8528c6"
-                slug: "safeChoice"
+                slug: "correctChoice"
                 type: "text"
                 params: {}
                 locale: 
                   value: 
                     uk: "Подивитися на Сонце крізь бінокль без спеціального сонячного фільтра."
-            order: ["safeChoice"]
+            order: ["correctChoice"]
           incorrect: 
             items: 
-              unsafeAlternative1: 
+              otherChoice1: 
                 id: "c05e2112-2754-590d-84fc-93086306986f"
-                slug: "unsafeAlternative1"
+                slug: "otherChoice1"
                 type: "text"
                 params: {}
                 locale: 
                   value: 
                     uk: "Розглянути підписаний науковий знімок Сонця."
-              unsafeAlternative2: 
+              otherChoice2: 
                 id: "969d72e4-6382-54ee-bd8f-e9ef05a0a902"
-                slug: "unsafeAlternative2"
+                slug: "otherChoice2"
                 type: "text"
                 params: {}
                 locale: 
                   value: 
                     uk: "Послухати опис готового знімка Сонця."
-              unsafeAlternative3: 
+              otherChoice3: 
                 id: "9cb355c3-3b69-589b-8d8b-c1b8b5fa6060"
-                slug: "unsafeAlternative3"
+                slug: "otherChoice3"
                 type: "text"
                 params: {}
                 locale: 
                   value: 
                     uk: "Прочитати науковий опис Сонця з дорослим."
-            order: ["unsafeAlternative1", "unsafeAlternative2", "unsafeAlternative3"]
+            order: ["otherChoice1", "otherChoice2", "otherChoice3"]
           distractors: 
             items: {}
             order: []
@@ -130,42 +130,42 @@ questions:
         answers: 
           correct: 
             items: 
-              safeChoice: 
+              correctChoice: 
                 id: "5484d523-7aee-5bd2-94d4-774bcf2aa45f"
-                slug: "safeChoice"
+                slug: "correctChoice"
                 type: "text"
                 params: {}
                 locale: 
                   value: 
                     uk: "Розглянути разом перевірений науковий знімок Сонця."
-            order: ["safeChoice"]
+            order: ["correctChoice"]
           incorrect: 
             items: 
-              unsafeAlternative1: 
+              otherChoice1: 
                 id: "f74eb31d-17e7-5670-82cf-f1624f500566"
-                slug: "unsafeAlternative1"
+                slug: "otherChoice1"
                 type: "text"
                 params: {}
                 locale: 
                   value: 
                     uk: "Подивитися на Сонце крізь вікно лише на мить."
-              unsafeAlternative2: 
+              otherChoice2: 
                 id: "2cdb6754-9e75-5bc2-98ec-147c7872feaf"
-                slug: "unsafeAlternative2"
+                slug: "otherChoice2"
                 type: "text"
                 params: {}
                 locale: 
                   value: 
                     uk: "Подивитися на Сонце у звичайних темних окулярах."
-              unsafeAlternative3: 
+              otherChoice3: 
                 id: "6b6eac82-4c33-5a83-b627-193c28914228"
-                slug: "unsafeAlternative3"
+                slug: "otherChoice3"
                 type: "text"
                 params: {}
                 locale: 
                   value: 
                     uk: "Попросити друга подивитися замість нього й розповісти."
-            order: ["unsafeAlternative1", "unsafeAlternative2", "unsafeAlternative3"]
+            order: ["otherChoice1", "otherChoice2", "otherChoice3"]
           distractors: 
             items: {}
             order: []
@@ -214,42 +214,42 @@ questions:
         answers: 
           correct: 
             items: 
-              safeChoice: 
+              correctChoice: 
                 id: "8675b5fd-f59d-5b43-b1bc-055863ede5cb"
-                slug: "safeChoice"
+                slug: "correctChoice"
                 type: "text"
                 params: {}
                 locale: 
                   value: 
                     uk: "Порівняти форми хмар на двох готових фотографіях денного неба."
-            order: ["safeChoice"]
+            order: ["correctChoice"]
           incorrect: 
             items: 
-              unsafeAlternative1: 
+              otherChoice1: 
                 id: "61aa6684-08b7-5266-ab8a-5a855c1a78a5"
-                slug: "unsafeAlternative1"
+                slug: "otherChoice1"
                 type: "text"
                 params: {}
                 locale: 
                   value: 
                     uk: "Подивитися на Сонце крізь звичайні сонцезахисні окуляри."
-              unsafeAlternative2: 
+              otherChoice2: 
                 id: "9dfb0a7c-cecb-5609-890a-bce644f1894c"
-                slug: "unsafeAlternative2"
+                slug: "otherChoice2"
                 type: "text"
                 params: {}
                 locale: 
                   value: 
                     uk: "Спрямувати бінокль на Сонце, щоб роздивитися його ближче."
-              unsafeAlternative3: 
+              otherChoice3: 
                 id: "a9de8af1-ca6b-5202-bec4-dc9d7139393f"
-                slug: "unsafeAlternative3"
+                slug: "otherChoice3"
                 type: "text"
                 params: {}
                 locale: 
                   value: 
                     uk: "Відкласти дослідження неба до ночі, бо вдень це неможливо."
-            order: ["unsafeAlternative1", "unsafeAlternative2", "unsafeAlternative3"]
+            order: ["otherChoice1", "otherChoice2", "otherChoice3"]
           distractors: 
             items: {}
             order: []
