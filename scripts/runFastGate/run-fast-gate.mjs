@@ -1,24 +1,76 @@
 #!/usr/bin/env node
-/** Run only relevant, supported fast checks; full Quality remains manual. */
+/** Typecheck changed workspaces and consumers of changed public contracts only. */
 import fs from 'node:fs';
 import path from 'node:path';
-import { execFileSync, spawnSync } from 'node:child_process';
+import { spawn, spawnSync } from 'node:child_process';
+import { changedFiles } from '../ci/prDiff/changed-files.mjs';
+import { changedPublicContracts } from './public-contract-impact.mjs';
 import { fileURLToPath } from 'node:url';
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
-const markdownRendererPath = 'shared/ui-kit/src/components/widgets/ContentBlockRenderer/blocks/Markdown/';
 function assert(ok, message) {
   if (!ok) throw new Error(message);
 }
 function json(file) {
   return JSON.parse(fs.readFileSync(path.join(repoRoot, file), 'utf8'));
 }
+const quietRunner = path.join(repoRoot, 'scripts/ci/quietRun/quiet-run.mjs');
 function exec(command, args, cwd = repoRoot) {
-  const result = spawnSync(command, args, { cwd, stdio: 'inherit', shell: false });
+  const result = spawnSync(process.execPath, [quietRunner, '--', command, ...args], {
+    cwd,
+    stdio: 'inherit',
+    shell: false,
+  });
   assert(
     !result.error && result.status === 0,
     'FastGate command failed: ' + command + ' ' + args.join(' ') + (result.error ? ': ' + result.error.message : ''),
   );
+}
+function execAsync(command, args, environment = process.env) {
+  return new Promise((resolve, reject) => {
+    const child = spawn(process.execPath, [quietRunner, '--', command, ...args], {
+      cwd: repoRoot,
+      stdio: 'inherit',
+      shell: false,
+      env: environment,
+    });
+    child.once('error', reject);
+    child.once('close', code =>
+      code === 0
+        ? resolve()
+        : reject(new Error('FastGate command failed: ' + command + ' ' + args.join(' ') + ' (exit ' + code + ')')),
+    );
+  });
+}
+/** Keep npm host preparation that rewrites shared dist/ out of the parallel lane. */
+export function partitionBuildMutatingHosts(targets) {
+  const mutatingHosts = new Set(['@svitlo/web', '@svitlo/mobile']);
+  return {
+    parallel: targets.filter(name => !mutatingHosts.has(name)),
+    sequential: targets.filter(name => mutatingHosts.has(name)),
+  };
+}
+
+async function runParallel(targets, action) {
+  const configured = Number(process.env.SVITLO_FASTGATE_PARALLELISM || 2);
+  assert(
+    Number.isInteger(configured) && configured >= 1 && configured <= 8,
+    'SVITLO_FASTGATE_PARALLELISM must be an integer from 1 to 8',
+  );
+  let index = 0;
+  const failures = [];
+  async function worker() {
+    while (index < targets.length) {
+      const name = targets[index++];
+      try {
+        await action(name);
+      } catch (error) {
+        failures.push(name + ': ' + error.message);
+      }
+    }
+  }
+  await Promise.all(Array.from({ length: Math.min(configured, targets.length) }, () => worker()));
+  if (failures.length) throw new Error('FastGate failed workspaces:\\n' + failures.join('\\n'));
 }
 function expandWorkspaces() {
   const result = [];
@@ -42,72 +94,74 @@ function expandWorkspaces() {
 function packageFor(file, workspaces) {
   return workspaces.filter(w => file.startsWith(w.path + '/')).sort((a, b) => b.path.length - a.path.length)[0];
 }
-export function chooseChecks(changed, workspaces) {
+/**
+ * Select only edited owners and downstream consumers of changed public APIs or
+ * package manifests. Graph edges include declared development dependencies,
+ * which are required to typecheck many textbooks.
+ */
+export function workspaceDependents(workspaces) {
+  const packages = new Map(workspaces.map(pkg => [pkg.name, pkg]));
+  const edges = new Map(workspaces.map(pkg => [pkg.name, new Set()]));
+  const dependencies = new Map();
+  for (const pkg of workspaces) {
+    const deps = new Set(
+      ['dependencies', 'devDependencies', 'peerDependencies', 'optionalDependencies']
+        .flatMap(key => Object.keys(pkg[key] || {}))
+        .filter(name => packages.has(name)),
+    );
+    const missing = ['dependencies', 'devDependencies', 'peerDependencies', 'optionalDependencies']
+      .flatMap(key => Object.keys(pkg[key] || {}))
+      .filter(name => name.startsWith('@svitlo/') && !packages.has(name));
+    assert(!missing.length, 'Unknown workspace dependency in ' + pkg.name + ': ' + missing.join(', '));
+    dependencies.set(pkg.name, deps);
+    for (const dep of deps) edges.get(dep).add(pkg.name);
+  }
+  const done = new Set();
+  function checkCycle(name, visiting = new Set()) {
+    assert(!visiting.has(name), 'Cyclic workspace dependency: ' + [...visiting, name].join(' → '));
+    if (done.has(name)) return;
+    const next = new Set([...visiting, name]);
+    for (const dep of dependencies.get(name)) checkCycle(dep, next);
+    done.add(name);
+  }
+  for (const name of packages.keys()) checkCycle(name);
+  return edges;
+}
+
+export function chooseChecks(changed, workspaces, { publicChanges = [] } = {}) {
   const affected = new Set();
-  const packages = new Map(workspaces.map(w => [w.name, w]));
-  const global = changed.some(f => f === 'package.json' || f.startsWith('scripts/checkWorkspaces/check-workspaces'));
+  const packages = new Map(workspaces.map(pkg => [pkg.name, pkg]));
+  const global = changed.some(
+    file => file === 'package.json' || /^tsconfig[^/]*\.json$/.test(file),
+  );
   const lockChange = changed.includes('package-lock.json');
+  const triggers = new Set();
   for (const file of changed) {
     const pkg = packageFor(file, workspaces);
     if (pkg) affected.add(pkg.name);
+    if (pkg && file === pkg.path + '/package.json') triggers.add(pkg.name);
   }
-  if (global) for (const name of packages.keys()) affected.add(name);
-  if (lockChange)
-    for (const name of ['@svitlo/engine', '@svitlo/indexdb', '@svitlo/ui-kit']) {
-      if (packages.has(name)) affected.add(name);
+  for (const file of publicChanges) {
+    const pkg = packageFor(file, workspaces);
+    if (pkg) triggers.add(pkg.name);
+  }
+  const dependents = workspaceDependents(workspaces);
+  const visit = [...triggers];
+  while (visit.length) {
+    const parent = visit.pop();
+    for (const child of dependents.get(parent) || []) {
+      if (!affected.has(child)) affected.add(child);
+      if (!triggers.has(child)) {
+        triggers.add(child);
+        visit.push(child);
+      }
     }
-
-  // IndexDB depends on Engine runtime schemas, not just on its own source files.
-  // A changed upstream contract must validate the dependent package as well.
-  const indexdbRuntimeContractChanged = changed.some(
-    file =>
-      file === 'shared/engine/runtime.ts' ||
-      file === 'shared/engine/package.json' ||
-      file.startsWith('shared/engine/schemas/') ||
-      file.startsWith('shared/engine/types/') ||
-      file.startsWith('shared/engine/configurators/questions/') ||
-      file.startsWith('shared/engine/configurators/lessons/') ||
-      file.startsWith('shared/engine/configurators/sections/'),
-  );
-  if (indexdbRuntimeContractChanged && packages.has('@svitlo/indexdb')) {
-    affected.add('@svitlo/indexdb');
   }
-  // Markdown/KaTeX CSS is bundled by the Web host, even when only UI Kit changes.
-  if (changed.some(file => file.startsWith(markdownRendererPath)) && packages.has('@svitlo/web')) {
-    affected.add('@svitlo/web');
-  }
-  const jsFiles = changed.filter(f => /\.(?:mjs|cjs|js)$/.test(f) && fs.existsSync(path.join(repoRoot, f)));
-  const jsonFiles = changed.filter(f => f.endsWith('.json') && fs.existsSync(path.join(repoRoot, f)));
-  return { affected, jsFiles, jsonFiles };
-}
-/** A host production build catches CSS dependencies that UI Kit's TS tests cannot. */
-/** Course synchronizer PR tests must execute before new trusted code reaches main. */
-export function requiresCourseStatusTests(changed) {
-  return changed.some(
-    file => file.startsWith('scripts/syncCourseLessonStatus/') || file === '.github/workflows/sync-course-lessons.yml',
-  );
-}
-
-export function requiresWebBuild(changed) {
-  return changed.some(
-    file =>
-      file.startsWith('shared/adapters/nextjs/') ||
-      file.startsWith('shared/ui-kit/src/components/lesson/') ||
-      file.startsWith('shared/ui-kit/src/components/widgets/ContentBlockRenderer/blocks/Image/') ||
-      file.startsWith(markdownRendererPath) ||
-      file.startsWith('content/playground/scenes/') ||
-      file.startsWith('content/playground/scripts/') ||
-      file === 'content/playground/package.json' ||
-      file.startsWith('apps/web/'),
-  );
-}
-
-function changedFiles(base, head) {
-  assert(/^[a-f0-9]{40}$/.test(base) && /^[a-f0-9]{40}$/.test(head), 'Base and head must be 40-character commit SHAs');
-  return execFileSync('git', ['diff', '--name-only', '-z', base, head], { cwd: repoRoot })
-    .toString('utf8')
-    .split('\0')
-    .filter(Boolean);
+  // Root manifest/lockfile edits may alter dependency resolution everywhere.
+  // Validate all workspaces rather than pretending a changed external version
+  // affects only a hand-picked subset.
+  if (global || lockChange) for (const name of packages.keys()) affected.add(name);
+  return { affected };
 }
 /** Build dependencies that a workspace typecheck consumes through published exports. */
 export function shouldBuildDependency(owner, dependency) {
@@ -118,138 +172,12 @@ export function shouldBuildDependency(owner, dependency) {
   );
 }
 
-function runGate(changed) {
+async function runGate(changed, base, head) {
   const workspaces = expandWorkspaces();
-  const all = new Map(workspaces.map(w => [w.name, w]));
-  const plan = chooseChecks(changed, workspaces);
-  for (const f of plan.jsFiles) exec('node', ['--check', f]);
-  for (const f of plan.jsonFiles) json(f);
-  exec('node', ['--test', 'scripts/runFastGate/run-fast-gate.spec.mjs']);
-  if (requiresCourseStatusTests(changed)) {
-    const suite = fs
-      .readdirSync(path.join(repoRoot, 'scripts/syncCourseLessonStatus'))
-      .filter(name => name.endsWith('.spec.mjs'))
-      .sort()
-      .map(name => 'scripts/syncCourseLessonStatus/' + name);
-    exec('node', ['--test', ...suite]);
-  }
-  // A migration helper must never reintroduce deleted package imports.
-  if (changed.some(file => file.startsWith('scripts/migrateEngineImports/'))) {
-    exec('node', ['--test', 'scripts/migrateEngineImports/migrate-engine-imports.spec.mjs']);
-  }
-  // Engine build-only filesystem use must be distinguished from runtime leakage.
-  // Exercise the canonical package boundary guard when it or Engine changes.
-  if (changed.some(file => file.startsWith('scripts/checkPackageBoundaries/') || file.startsWith('shared/engine/'))) {
-    exec('node', ['scripts/checkPackageBoundaries/check-package-boundaries.mjs']);
-  }
-  // Validate editorial Course composition independently of unrelated workspace
-  // typecheck errors; the Course builder is deterministic repository tooling.
-  if (
-    changed.some(
-      f =>
-        f.startsWith('shared/engine/scripts/courseBuilder/') ||
-        f === 'studio/skills/course-workflow/course-toc.schema.json',
-    )
-  ) {
-    exec('node', ['--test', 'shared/engine/scripts/courseBuilder/courseBuilder.spec.mjs']);
-  }
-
-  if (
-    changed.some(file => file === 'package.json' || file.startsWith('scripts/runWorkspaceScript/run-workspace-script.'))
-  ) {
-    exec('node', ['--test', 'scripts/runWorkspaceScript/run-workspace-script.spec.mjs']);
-  }
-  if (
-    changed.some(
-      f => f.startsWith('shared/engine/scripts/generateSkills/') || f.startsWith('content/playground/data/skills/'),
-    )
-  ) {
-    exec('node', [
-      '--test',
-      'shared/engine/scripts/generateSkills/prepareSkillsPublication.spec.mjs',
-      'shared/engine/generators/skills/publishSkillTree.spec.mjs',
-    ]);
-  }
-
-  if (
-    changed.some(
-      f =>
-        f.startsWith('shared/engine/scripts/implementSkillsTaxonomy/') ||
-        f.startsWith('shared/engine/scripts/generateSkillsTaxonomy/'),
-    )
-  ) {
-    exec('node', [
-      '--test',
-      'shared/engine/scripts/implementSkillsTaxonomy/implement-skills-taxonomy.spec.mjs',
-      'shared/engine/scripts/generateSkillsTaxonomy/generate-skills-taxonomy.spec.mjs',
-      'shared/engine/scripts/generateSkillsTaxonomy/generate-skills-taxonomy.roundtrip.spec.mjs',
-    ]);
-  }
-
-  if (
-    changed.some(
-      file =>
-        file.startsWith(
-          'shared/ui-kit/scripts/generateAssessmentMethodsReference/generate-assessment-methods-reference.',
-        ) ||
-        file === 'scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.mjs' ||
-        file.startsWith('shared/ui-kit/data/definitions/assessmentMethods/'),
-    )
-  ) {
-    exec('node', [
-      '--test',
-      'shared/ui-kit/scripts/generateAssessmentMethodsReference/generate-assessment-methods-reference.spec.mjs',
-    ]);
-  }
-
-  // Keep review-reference generators testable independently of incomplete textbooks.
-  if (
-    changed.some(
-      file =>
-        file.startsWith('shared/ui-kit/scripts/generateUiKitLocaleReference/') ||
-        file.startsWith('content/geography/scripts/generateHomeCopyReference/') ||
-        file.startsWith('shared/engine/scripts/readSupportedLanguages/') ||
-        file === 'scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.mjs',
-    )
-  ) {
-    exec('node', [
-      '--test',
-      'shared/ui-kit/scripts/generateUiKitLocaleReference/generate-ui-kit-locale-reference.spec.mjs',
-      'content/geography/scripts/generateHomeCopyReference/generate-home-copy-reference.spec.mjs',
-    ]);
-  }
-
-  // Markdown reference tests run when their code changes, not on each agent-artifacts request.
-  if (
-    changed.some(
-      file =>
-        file.startsWith('scripts/generateTranslationReviewArtifacts/') ||
-        file.startsWith('shared/engine/scripts/generateLessonReviewArtifacts/') ||
-        file === 'shared/engine/scripts/generateLessonsMarkdown/generate-lessons-markdown.mjs',
-    )
-  ) {
-    exec('node', [
-      '--test',
-      'scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.spec.mjs',
-      'shared/engine/scripts/generateLessonReviewArtifacts/generate-lesson-review-artifacts.spec.mjs',
-    ]);
-  }
-
-  // Lesson builder is Engine-owned deterministic tooling: test it only when its
-  // implementation, dependency, or canonical editorial input schemas change.
-  if (
-    changed.some(
-      file =>
-        file.startsWith('shared/engine/scripts/lessonBuilder/') ||
-        file === 'package.json' ||
-        file === 'package-lock.json' ||
-        /^studio\/skills\/lesson-workflow\/lesson-(?:content|questions|methodology-frontmatter)\.schema\.json$/.test(
-          file,
-        ),
-    )
-  ) {
-    exec('node', ['--test', 'shared/engine/scripts/lessonBuilder/lessonBuilder.spec.mjs']);
-  }
+  const all = new Map(workspaces.map(workspace => [workspace.name, workspace]));
+  const publicChanges = base && head ? changedPublicContracts(changed, workspaces, base, head) : [];
+  if (publicChanges.length) console.log('Changed public contracts: ' + publicChanges.join(', '));
+  const plan = chooseChecks(changed, workspaces, { publicChanges });
 
   const built = new Set();
   function ensureSharedDependencies(name, visiting = new Set()) {
@@ -260,15 +188,14 @@ function runGate(changed) {
     for (const dep of Object.keys(pkg.dependencies || {})) {
       if (!all.has(dep)) continue;
       ensureSharedDependencies(dep, next);
-      const d = all.get(dep);
-      if (shouldBuildDependency(pkg, d) && !built.has(dep)) {
+      const dependency = all.get(dep);
+      if (shouldBuildDependency(pkg, dependency) && !built.has(dep)) {
         exec('npm', ['run', 'package:build', '--workspace', dep]);
         built.add(dep);
       }
     }
   }
-  // Validate the foundational runtime first. An unrelated textbook's unfinished
-  // content translations must not hide failures in a changed shared package.
+
   const priority = [
     '@svitlo/engine',
     '@svitlo/indexdb',
@@ -281,101 +208,40 @@ function runGate(changed) {
     const index = priority.indexOf(name);
     return index < 0 ? priority.length : index;
   };
-  const targets = [...plan.affected].sort((a, b) => rank(a) - rank(b) || a.localeCompare(b));
-  // Content package compilation, Skills validation and portability belong to
-  // the dedicated Content Build workflow. FastGate validates workspace types.
-  for (const name of targets) {
-    const pkg = all.get(name);
-    if (!pkg?.scripts?.['code:check:types']) continue;
-    ensureSharedDependencies(name);
-    // Some shared packages typecheck their own public dist exports (e.g. IndexDB browser tests).
-    if (pkg.path.startsWith('shared/') && pkg.scripts?.['package:build'] && !built.has(name)) {
-      exec('npm', ['run', 'package:build', '--workspace', name]);
-      built.add(name);
-    }
-    exec('npm', ['run', 'code:check:types', '--workspace', name]);
-    // Validate shared package behavior before unrelated textbooks can fail on
-    // incomplete authored data. Dependencies are built in the same pass.
-    if (pkg.path.startsWith('shared/') && pkg.scripts?.test) {
-      exec('npm', ['run', 'test', '--workspace', name]);
-    }
-    // A Lesson/App Router extraction needs a real Next.js production build, not
-    // only TypeScript. Run it before unrelated textbook data checks can block CI.
-    if (name === '@svitlo/web' && requiresWebBuild(changed)) {
-      exec('npm', ['run', 'app:build', '--workspace', name]);
-      exec('npm', ['run', 'test:unit:selection', '--workspace', name]);
-      exec('npm', ['run', 'test:components', '--workspace', name]);
-    }
-  }
-  // Verify the on-demand coverage workflow itself when its implementation changes.
-  // Ordinary Engine PRs do not pay for a second instrumented test run.
-  if (
-    changed.some(
-      file =>
-        file === '.github/workflows/engine-coverage.yml' ||
-        file === 'shared/engine/tsconfig.test.json' ||
-        file.startsWith('shared/engine/scripts/coverage/'),
-    )
-  ) {
-    ensureSharedDependencies('@svitlo/engine');
-    if (!built.has('@svitlo/engine')) {
-      exec('npm', ['run', 'package:build', '--workspace', '@svitlo/engine']);
-      built.add('@svitlo/engine');
-    }
-    exec('npm', ['run', 'test:coverage', '--workspace', '@svitlo/engine']);
-  }
+  const targets = [...plan.affected]
+    .filter(name => all.get(name)?.scripts?.['code:check:types'])
+    .sort((a, b) => rank(a) - rank(b) || a.localeCompare(b));
+  console.log('FastGate typecheck targets: ' + (targets.join(', ') || '(none)'));
 
-  if (
-    changed.some(
-      f =>
-        f.startsWith('scripts/textbook-tooling/generate-scenes') ||
-        f.startsWith('content/playground/scenes/') ||
-        f === 'content/playground/package.json',
-    )
-  ) {
-    ensureSharedDependencies('@svitlo/engine');
-    if (!built.has('@svitlo/engine')) {
-      exec('npm', ['run', 'package:build', '--workspace', '@svitlo/engine']);
-      built.add('@svitlo/engine');
-    }
-    exec('node', ['--test', 'scripts/textbook-tooling/generateScenes/generate-scenes.spec.mjs']);
+  // Dependency artifacts are required by TypeScript package resolution.
+  // Build them before starting parallel checks; this is not package validation.
+  for (const name of targets) ensureSharedDependencies(name);
+
+  // Web/Mobile npm precode hooks rebuild shared dist/ and must not race
+  // with consumers. Other independent workspace typechecks run in parallel.
+  const { parallel, sequential } = partitionBuildMutatingHosts(targets);
+  async function checkWorkspace(name) {
+    const environment = name === '@svitlo/web' && process.env.SVITLO_WEB_TEST_SELECTION
+      ? { ...process.env, SVITLO_TEXTBOOK: process.env.SVITLO_WEB_TEST_SELECTION }
+      : process.env;
+    await execAsync('npm', ['run', 'code:check:types', '--workspace', name], environment);
   }
-  if (
-    changed.some(
-      file =>
-        file.startsWith('shared/engine/scripts/generateLessonsMarkdown/generate-lessons-markdown.') ||
-        file.startsWith('shared/engine/scripts/generateLessonReviewArtifacts/generate-lesson-review-artifacts.') ||
-        file.startsWith('shared/engine/scripts/generateLessonsBySkill/generate-lessons-by-skill.') ||
-        file === 'scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.mjs' ||
-        file.startsWith('shared/engine/scripts/generateLessonsMarkdown/lesson-markdown.') ||
-        file.startsWith('shared/engine/src/utils/generators/lessons/') ||
-        file.startsWith('content/playground/data/lessons/'),
-    )
-  ) {
-    ensureSharedDependencies('@svitlo/engine');
-    if (!built.has('@svitlo/engine')) {
-      exec('npm', ['run', 'package:build', '--workspace', '@svitlo/engine']);
-      built.add('@svitlo/engine');
-    }
-    exec('node', [
-      '--test',
-      'shared/engine/scripts/generateLessonsMarkdown/generate-lessons-markdown.spec.mjs',
-      'shared/engine/scripts/generateLessonReviewArtifacts/generate-lesson-review-artifacts.spec.mjs',
-      'shared/engine/scripts/generateLessonsBySkill/generate-lessons-by-skill.spec.mjs',
-    ]);
-  }
+  await runParallel(parallel, checkWorkspace);
+  for (const name of sequential) await checkWorkspace(name);
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   try {
     const args = process.argv.slice(2);
     if (args.length === 1 && args[0] === '--all') {
-      runGate(['package.json']);
+      await runGate(['package.json']);
     } else if (args.length === 2) {
-      runGate(changedFiles(args[0], args[1]));
-    } else throw new Error('Usage: node scripts/runFastGate/run-fast-gate.mjs <base-sha> <head-sha> | --all');
+      await runGate(changedFiles(args[0], args[1]), args[0], args[1]);
+    } else {
+      throw new Error('Usage: run-fast-gate.mjs <base-sha> <head-sha> | --all');
+    }
   } catch (error) {
-    console.error(error.message);
+    console.error(error.stack || error.message);
     process.exitCode = 1;
   }
 }

@@ -1,8 +1,9 @@
 import { test, expect } from '@playwright/test';
 
-const redSkillId = '00000000-0000-4000-8000-000000000001';
+/** Web-owned fixture package metadata, not Playground content. */
+const skillId = '11111111-1111-4111-8111-00000000011a';
 
-test('Skill Analytics renders from the published base tree and requested locale', async ({ page, request }) => {
+test('Skill Analytics resolves the selected package published base and locale', async ({ page, request }) => {
   const [baseResponse, localeResponse] = await Promise.all([
     request.get('/data/skills/base.json'),
     request.get('/data/skills/uk.json'),
@@ -11,22 +12,22 @@ test('Skill Analytics renders from the published base tree and requested locale'
   expect(localeResponse.ok()).toBe(true);
   const base = await baseResponse.json();
   const uk = await localeResponse.json();
-  expect(base.testColors.slug).toBe('testColors');
-  expect(base.testColors.groups[0].skills[0].id).toBe(redSkillId);
-  expect(uk.testColors.groups[0].skills[0].name).toContain('[TEST uk]');
+  expect(base.fixtureDomain.slug).toBe('fixtureDomain');
+  expect(base.fixtureDomain.groups[0].skills[0].id).toBe(skillId);
+  expect(uk.fixtureDomain.groups[0].skills[0].name).toBe('Контрольна навичка');
 
   const requested: string[] = [];
   page.on('request', resource => {
     if (resource.url().includes('/data/skills/')) requested.push(new URL(resource.url()).pathname);
   });
   await page.goto('/skillAnalytics?lang=uk');
-  await expect(page.getByTestId('skill-node-testColors')).toBeVisible();
-  await expect(page.getByTestId('skill-node-testRecognizeRed')).toBeVisible();
-  // Sparse resources are read and merged on the Next.js server, not fetched by the browser.
+  await expect(page.getByTestId('skill-node-fixtureDomain')).toBeVisible();
+  await expect(page.getByTestId('skill-node-fixtureSkill')).toBeVisible();
+  // The selected package's sparse Skills are merged on the server.
   expect(requested).toEqual([]);
 });
 
-test('Skill landing page resolves its UUID from the same published tree', async ({ page }) => {
-  await page.goto('/skills/' + redSkillId + '/learn?lang=uk');
-  await expect(page.getByRole('heading', { name: '[TEST uk] Recognize red' })).toBeVisible();
+test('Skill landing resolves the selected fixture Skill UUID', async ({ page }) => {
+  await page.goto('/skills/' + skillId + '/learn?lang=uk');
+  await expect(page.getByRole('heading', { name: 'Контрольна навичка' })).toBeVisible();
 });

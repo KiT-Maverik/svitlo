@@ -231,15 +231,8 @@ function skillIndex(bookRoot) {
         visit(absolute);
         continue;
       }
-      // Skills in current textbook packages are authored as either *.ts or legacy *.data.ts.
-      // Skip declarations and tests; the defineSkill AST check below establishes real entries.
-      if (
-        !entry.isFile() ||
-        !entry.name.endsWith('.ts') ||
-        entry.name.endsWith('.d.ts') ||
-        entry.name.endsWith('.spec.ts') ||
-        entry.name.endsWith('.test.ts')
-      ) continue;
+      // Current Skill authoring uses <slug>.ts; legacy *.data.ts remains readable.
+      if (!entry.isFile() || !entry.name.endsWith('.ts') || entry.name.endsWith('.d.ts')) continue;
       const ast = ts.createSourceFile(absolute, fs.readFileSync(absolute, 'utf8'), ts.ScriptTarget.Latest, true);
       if (ast.parseDiagnostics.length) throw new Error('Invalid Skill source: ' + absolute);
       for (const statement of ast.statements) {
@@ -730,10 +723,19 @@ export function renderLessonModules(lesson, language, options = {}) {
           ? '// TODO (BLOCKER): This Flashcards Section is required by the Methodologist.\n' +
             '// Integrate reviewed Flashcard UUIDs and verify their selection before merge.\n'
           : '';
+    // Nil UUID filenames identify unfinished assets. Keep per-field TODO(asset)
+    // hints and emit one CI-visible blocker for each media Configurator.
+    const mediaBlocker = localMediaTypes.has(node.type)
+      ? '// TODO (BLOCKER): ' +
+        node.type +
+        ' media resource(s) unresolved.\n' +
+        '// Produce or reuse verified asset files and replace Nil UUID filename(s) before merge.\n'
+      : '';
     const result =
       importHead +
       (extra.length ? extra.join('') + '\n' : '') +
       assessmentBlocker +
+      mediaBlocker +
       'export const ' +
       name +
       ' = ' +
@@ -805,7 +807,16 @@ export function renderLessonModules(lesson, language, options = {}) {
       continue;
     }
     if (key === 'section') {
-      rootFields.push('  ' + key);
+      const blockers = options.pendingAssessments ?? [];
+      const comments = blockers.map(
+        ({ type, slug }) =>
+          '  // TODO (BLOCKER): ' +
+          (type === 'quiz' ? 'Quiz' : 'Flashcards') +
+          ' Section ' +
+          (slug ? JSON.stringify(slug) + ' is unfinished' : 'is required') +
+          '; integrate its reviewed bank and completed Section before Lesson publication.',
+      );
+      rootFields.push((comments.length ? comments.join('\n') + '\n' : '') + '  section');
       continue;
     }
     if (key === 'params' && record(value) && hasLanguages) {

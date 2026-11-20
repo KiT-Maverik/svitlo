@@ -1,6 +1,6 @@
-import { defineAssessmentMethod } from '@svitlo/engine/build';
+import { defineAssessmentMethod, type AllLanguageCodes } from '@svitlo/engine/build';
 
-export const retrieval = defineAssessmentMethod({
+export const retrieval = defineAssessmentMethod<'retrieval', AllLanguageCodes>({
   id: 'db75ef83-f99d-4a93-940c-9402abc908d5',
   slug: 'retrieval',
   title: {
@@ -18,7 +18,7 @@ export const retrieval = defineAssessmentMethod({
     id: 'Mengingat kembali',
     ja: '知識の想起',
     ka: 'ცოდნის გახსენება',
-    kk: 'Білімді еске түсіру',
+    kk: 'Bılımdı eske tüsıru',
     ko: '기억 인출',
     lt: 'Žinių atkūrimas',
     lv: 'Zināšanu atsaukšana atmiņā',
@@ -50,7 +50,7 @@ export const retrieval = defineAssessmentMethod({
     id: 'Mengingat fakta atau definisi yang telah dipelajari tanpa memerlukan penalaran baru yang berarti. Penilaian mengukur proses berpikir ini, bukan bentuk jawabannya.',
     ja: '大きな新しい推論をせずに、学習済みの事実や定義を記憶から思い出します。 評価するのは回答形式ではなく、この認知的な働きです。',
     ka: 'მეხსიერებიდან ადრე ნასწავლი ფაქტების ან განმარტებების გახსენება მნიშვნელოვანი ახალი დასკვნების გარეშე. ფასდება სწორედ ეს სააზროვნო მოქმედება და არა პასუხის ფორმატი.',
-    kk: 'Бұрын меңгерілген деректер мен анықтамаларды елеулі жаңа қорытынды жасамай, жадтан жаңғырту. Жауаптың пішімі емес, дәл осы ойлау әрекеті бағаланады.',
+    kk: 'Būryn meñgerılgen derekter men anyqtamalardy eleulı jaña qorytyndy jasamai, jadtan jañğyrtu. Jauaptyñ pışımı emes, däl osy oilau äreketı bağalanady.',
     ko: '새로운 추론을 많이 하지 않고 이미 배운 사실이나 정의를 기억에서 떠올립니다. 평가는 답변 형식이 아니라 이러한 인지 활동을 측정합니다.',
     lt: 'Prisiminti anksčiau išmoktus faktus ar apibrėžimus be sudėtingesnių naujų išvadų. Vertinamas būtent šis mąstymo veiksmas, o ne atsakymo pateikimo forma.',
     lv: 'Atsaukt atmiņā iepriekš apgūtus faktus vai definīcijas bez būtisku jaunu secinājumu izdarīšanas. Tiek vērtēta tieši šī domāšanas darbība, nevis atbildes forma.',

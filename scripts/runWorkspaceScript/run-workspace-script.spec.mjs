@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { discoverWorkspaces, planWorkspaceOperation } from './run-workspace-script.mjs';
+import { discoverWorkspaces, planWorkspaceOperation, environmentForWorkspace } from './run-workspace-script.mjs';
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 
@@ -57,6 +57,54 @@ test('workspace cycles and missing capabilities fail loudly', () => {
   assert.throws(() => planWorkspaceOperation([ws('x', 'apps/x', {})], 'app:build'), /No workspaces/);
 });
 
+test('internal CI selection preserves dependency builds but leaves root operations exhaustive', () => {
+  const packages = [
+    ws('@svitlo/engine', 'shared/engine', { 'package:build': 'tsc' }),
+    ws('@svitlo/ui-kit', 'shared/ui-kit', { 'package:build': 'tsc', 'test:components': 'vitest' }, ['@svitlo/engine']),
+    ws('@svitlo/math', 'content/math', { 'test:components': 'vitest' }, ['@svitlo/engine']),
+    ws('@svitlo/playground', 'content/playground', { 'package:build': 'build', 'test:components': 'vitest' }, [
+      '@svitlo/ui-kit',
+    ]),
+    ws('@svitlo/web', 'apps/web', { 'test:components': 'vitest' }, ['@svitlo/ui-kit']),
+  ];
+  const all = planWorkspaceOperation(packages, 'test:components');
+  assert.equal(all.selected.length, 4);
+  const selected = planWorkspaceOperation(packages, 'test:components', {
+    onlyWorkspaces: ['@svitlo/playground', '@svitlo/web'],
+  });
+  assert.deepEqual(selected.selected, ['@svitlo/playground', '@svitlo/web']);
+  assert.deepEqual(
+    selected.steps.map(step => step.name + '/' + step.script),
+    [
+      '@svitlo/engine/package:build',
+      '@svitlo/ui-kit/package:build',
+      '@svitlo/playground/test:components',
+      '@svitlo/web/test:components',
+    ],
+  );
+  assert.throws(
+    () =>
+      planWorkspaceOperation(packages, 'test:components', {
+        onlyWorkspaces: ['@svitlo/engine'],
+      }),
+    /does not implement/,
+  );
+  assert.throws(
+    () =>
+      planWorkspaceOperation(packages, 'test:components', {
+        onlyWorkspaces: ['@svitlo/web', '@svitlo/web'],
+      }),
+    /unique/,
+  );
+  assert.throws(
+    () =>
+      planWorkspaceOperation(packages, 'test:components', {
+        onlyWorkspaces: ['@svitlo/nonexistent'],
+      }),
+    /does not implement/,
+  );
+});
+
 const packageMetadataFields = new Set([
   'name',
   'version',
@@ -105,7 +153,10 @@ test('root and workspace package manifests group metadata, scripts, dependencies
 test('real manifests use canonical operation names and preserve npm pre-hooks', () => {
   const root = JSON.parse(readFileSync(fileURLToPath(new URL('../../package.json', import.meta.url)), 'utf8'));
   const packages = discoverWorkspaces();
-  assert.equal(packages.length, 28);
+  assert.equal(packages.length, 30);
+  for (const fixture of ['@svitlo/web-fixture-alpha', '@svitlo/web-fixture-beta']) {
+    assert(packages.some(pkg => pkg.name === fixture), 'Missing independent Web contract fixture ' + fixture);
+  }
   assert.equal(Object.hasOwn(root.scripts, 'storybook:start'), false);
   assert.equal(Object.hasOwn(root.scripts, 'app:start:dev'), false);
   assert.equal(Object.hasOwn(root.scripts, 'app:start'), false);
@@ -128,4 +179,18 @@ test('real manifests use canonical operation names and preserve npm pre-hooks', 
       assert(Object.hasOwn(scripts, key.slice(3)), pkg.name + ' orphaned npm hook ' + key);
     }
   }
+});
+
+test('only Web receives the explicitly selected test content; no hidden release default', () => {
+  const configured = { SVITLO_WEB_TEST_SELECTION: 'web-fixture-alpha', NODE_ENV: 'test' };
+  const selected = environmentForWorkspace('@svitlo/web', configured);
+  assert.equal(selected.SVITLO_TEXTBOOK, 'web-fixture-alpha');
+  assert.equal(environmentForWorkspace('@svitlo/mobile', configured), configured);
+  assert.equal(environmentForWorkspace('@svitlo/desktop', configured), configured);
+  assert.equal(environmentForWorkspace('@svitlo/playground', configured), configured);
+  assert.equal(environmentForWorkspace('@svitlo/web', { NODE_ENV: 'production' }).SVITLO_TEXTBOOK, undefined);
+  assert.equal(
+    environmentForWorkspace('@svitlo/web', { SVITLO_TEXTBOOK: 'math', SVITLO_WEB_TEST_SELECTION: 'web-fixture-alpha' }).SVITLO_TEXTBOOK,
+    'math',
+  );
 });

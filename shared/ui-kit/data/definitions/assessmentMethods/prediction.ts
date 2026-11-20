@@ -1,6 +1,6 @@
-import { defineAssessmentMethod } from '@svitlo/engine/build';
+import { defineAssessmentMethod, type AllLanguageCodes } from '@svitlo/engine/build';
 
-export const prediction = defineAssessmentMethod({
+export const prediction = defineAssessmentMethod<'prediction', AllLanguageCodes>({
   id: 'b8b7463d-2a27-40d7-b082-a79df1833f52',
   slug: 'prediction',
   title: {
@@ -18,7 +18,7 @@ export const prediction = defineAssessmentMethod({
     id: 'Prediksi',
     ja: '予測',
     ka: 'პროგნოზირება',
-    kk: 'Болжау',
+    kk: 'Boljau',
     ko: '예측',
     lt: 'Prognozavimas',
     lv: 'Prognozēšana',
@@ -50,7 +50,7 @@ export const prediction = defineAssessmentMethod({
     id: 'Memperkirakan akibat saat kondisi berubah berdasarkan prinsip yang diketahui. Penilaian mengukur proses berpikir ini, bukan bentuk jawabannya.',
     ja: '既知の原理に基づき、条件の変化による結果を予測します。 評価するのは回答形式ではなく、この認知的な働きです。',
     ka: 'ცნობილ პრინციპებზე დაყრდნობით შედეგების წინასწარ განსაზღვრა მნიშვნელოვანი პირობების შეცვლისას. ფასდება ეს სააზროვნო მოქმედება და არა პასუხის ფორმატი.',
-    kk: 'Маңызды шарттар өзгергенде, белгілі қағидаларға сүйеніп ықтимал нәтижелерді алдын ала анықтау. Жауаптың пішімі емес, осы ойлау әрекеті бағаланады.',
+    kk: 'Mañyzdy şarttar özgergende, belgılı qağidalarğa süienıp yqtimal nätijelerdı aldyn ala anyqtau. Jauaptyñ pışımı emes, osy oilau äreketı bağalanady.',
     ko: '알려진 원리를 바탕으로 조건 변화에 따른 결과를 예상합니다. 평가는 답변 형식이 아니라 이러한 인지 활동을 측정합니다.',
     lt: 'Remiantis žinomais principais numatyti pasekmes pasikeitus reikšmingoms sąlygoms. Vertinamas šis mąstymo veiksmas, o ne atsakymo pateikimo forma.',
     lv: 'Paredzēt sekas, balstoties uz zināmiem principiem, ja mainās būtiski apstākļi. Tiek vērtēta šī domāšanas darbība, nevis atbildes forma.',

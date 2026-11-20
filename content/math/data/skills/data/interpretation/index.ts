@@ -22,7 +22,7 @@ export const interpretation = defineSkillGroup({
     it: 'Interpretazione dei dati',
     ja: 'データの解釈',
     ka: 'მონაცემების ინტერპრეტაცია',
-    kk: 'Деректерді түсіндіру',
+    kk: 'Derekterdı tüsındıru',
     ko: '자료 해석',
     lt: 'Duomenų aiškinimas',
     lv: 'Datu interpretācija',

@@ -1,26 +1,44 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 
-import type { ContentBlock_Checkpoint_Props, ContentBlock_Markdown_Props, ContentBlock_Text_Props } from '@svitlo/engine/runtime';
+import type {
+  ContentBlock_Checkpoint_Props,
+  ContentBlock_Markdown_Props,
+  ContentBlock_Subtitles_Props,
+  ContentBlock_Text_Props,
+} from '@svitlo/engine/runtime';
 import type { ContentBlockResponse, SceneRegistry } from './types';
 import { ContentBlockRenderer } from './ContentBlockRenderer';
+import { questionBlockLabel } from '../questions/response/QuestionContent';
 import { enUiKitMessages } from '../../../testing/uiKitMessages.unit.fx';
 
 const textBlock = (id: string, value: string): ContentBlock_Text_Props => ({
-  id, slug: 'textBlock', type: 'text', params: {}, locale: { value },
+  id,
+  slug: 'textBlock',
+  type: 'text',
+  params: {},
+  locale: { value },
 });
 const first = textBlock('first', 'First block');
 const last = textBlock('last', 'Last block');
 const markdown = (id: string, value: string): ContentBlock_Markdown_Props => ({
-  id, slug: 'markdown', type: 'markdown', params: {}, locale: { value },
+  id,
+  slug: 'markdown',
+  type: 'markdown',
+  params: {},
+  locale: { value },
 });
 const checkpoint = (id: string, question: string, answer: ContentBlock_Text_Props): ContentBlock_Checkpoint_Props => ({
-  id, slug: 'checkpoint', type: 'checkpoint',
+  id,
+  slug: 'checkpoint',
+  type: 'checkpoint',
   params: {},
   locale: { title: 'Review' },
   content: [
     {
-      id: id + '-item', slug: 'checkpointItem', type: 'checkpointItem',
+      id: id + '-item',
+      slug: 'checkpointItem',
+      type: 'checkpointItem',
       question: textBlock(id + '-question', question),
       answer: [answer],
     },
@@ -39,11 +57,7 @@ describe('ContentBlockRenderer', () => {
     const { container } = render(
       <ContentBlockRenderer
         messages={enUiKitMessages}
-        blocks={[
-          first,
-          markdown('middle', '**Middle block**'),
-          last,
-        ]}
+        blocks={[first, markdown('middle', '**Middle block**'), last]}
       />,
     );
     expect([...container.querySelectorAll('p')].map(element => element.textContent)).toEqual([
@@ -58,9 +72,7 @@ describe('ContentBlockRenderer', () => {
       <ContentBlockRenderer
         messages={enUiKitMessages}
         language="ar"
-        blocks={[
-          markdown('rtl-markdown', '# عنوان الدرس\n\n**نص عربي**'),
-        ]}
+        blocks={[markdown('rtl-markdown', '# عنوان الدرس\n\n**نص عربي**')]}
       />,
     );
     const article = screen.getByRole('article');
@@ -71,12 +83,7 @@ describe('ContentBlockRenderer', () => {
 
   it('renders checkpoint answers through the same dispatcher', () => {
     render(
-      <ContentBlockRenderer
-        messages={enUiKitMessages}
-        blocks={[
-          checkpoint('checkpoint', 'What is first?', first),
-        ]}
-      />,
+      <ContentBlockRenderer messages={enUiKitMessages} blocks={[checkpoint('checkpoint', 'What is first?', first)]} />,
     );
     fireEvent.click(screen.getByText('What is first?'));
     expect(screen.getByText('First block')).toBeVisible();
@@ -110,17 +117,20 @@ describe('ContentBlockRenderer', () => {
     expect(screen.getByRole('img', { name: 'Diagram' })).toBeVisible();
   });
 
-  it('rejects standalone WebVTT tracks rather than silently discarding captions', () => {
-    const subtitles: Extract<ContentBlockResponse, { type: 'subtitles' }> = {
+  it('exposes a standalone WebVTT captions asset as an accessible link and question label', () => {
+    const captions: ContentBlock_Subtitles_Props = {
       id: 'captions',
       slug: 'captions',
       type: 'subtitles',
       params: {},
-      locale: { fileLocation: '/captions.en.vtt' },
+      locale: { fileLocation: '/captions/uk.vtt?download=1' },
     };
-    expect(() =>
-      render(<ContentBlockRenderer messages={enUiKitMessages} blocks={[subtitles]} />),
-    ).toThrow('Subtitles require a media player');
+    render(<ContentBlockRenderer messages={enUiKitMessages} language="uk" blocks={[captions]} />);
+    const link = screen.getByRole('link', { name: 'uk.vtt' });
+    expect(link).toHaveAttribute('href', '/captions/uk.vtt?download=1');
+    expect(link).toHaveAttribute('lang', 'uk-UA');
+    expect(link).toHaveAttribute('dir', 'ltr');
+    expect(questionBlockLabel(captions)).toBe('uk.vtt');
   });
 
   it('does not dispatch quiz entries as content blocks', () => {
@@ -145,13 +155,18 @@ describe('ContentBlockRenderer guard and state coverage', () => {
       ...originalCheckpoint,
       params: { enableChecks: true },
     };
-    const { rerender } = render(<ContentBlockRenderer messages={enUiKitMessages} blocks={[first, persistentCheckpoint]} />);
+    const { rerender } = render(
+      <ContentBlockRenderer messages={enUiKitMessages} blocks={[first, persistentCheckpoint]} />,
+    );
     fireEvent.click(screen.getByText('What did you learn?'));
     fireEvent.click(screen.getByRole('button', { name: 'Check' }));
     expect(screen.getByRole('button', { name: 'Checked' })).toBeDisabled();
 
     rerender(
-      <ContentBlockRenderer messages={enUiKitMessages} blocks={[textBlock('first', 'Updated opening'), persistentCheckpoint]} />,
+      <ContentBlockRenderer
+        messages={enUiKitMessages}
+        blocks={[textBlock('first', 'Updated opening'), persistentCheckpoint]}
+      />,
     );
     expect(screen.getByText('Updated opening')).toBeVisible();
     expect(screen.getByRole('button', { name: 'Checked' })).toBeDisabled();

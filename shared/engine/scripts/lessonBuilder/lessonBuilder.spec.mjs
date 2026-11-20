@@ -5,6 +5,7 @@ import path from 'node:path';
 import { test } from 'node:test';
 import ts from 'typescript';
 import yaml from 'yaml';
+import { scanSource } from '../../../../scripts/ci/checkBlockerTodos/check-blocker-todos.mjs';
 
 import { BuilderDiagnostic, loadFactoryRegistry, runOne, main } from './lessonBuilder.mjs';
 import { renderLessonModules } from './lessonModules.mjs';
@@ -28,7 +29,7 @@ function lessonConfig() {
     skills: [],
     params: {
       languages: ['uk', 'en'],
-      requireQuiz: false,
+      quizRequiredForCompletion: false,
       sections: { allowNavigation: true, allowSkipping: true, showIndexes: true },
     },
     locale: { title: { uk: 'Світло', en: 'Light' } },
@@ -303,7 +304,13 @@ test('omitted media fields create deterministic TODO(asset) placeholders without
     for (const [i, ext] of ['webp', 'mp3', 'mp4', 'vtt'].entries()) {
       assert(files[i].includes('fileName: "00000000-0000-0000-0000-000000000000.' + ext + '"'));
       assert.match(files[i], /TODO\(asset\)/);
+      assert.equal((files[i].match(/TODO \(BLOCKER\):/g) ?? []).length, 1);
+      assert.equal(scanSource('media/index.ts', files[i]).length, 1);
     }
+    assert.equal(
+      scanSource('text/index.ts', fs.readFileSync(f.generated('sections/intro/prompt/index.ts'), 'utf8')).length,
+      0,
+    );
     assert(files[2].includes('posterFileName: "00000000-0000-0000-0000-000000000000.webp"'));
     assert.equal(fs.readFileSync(f.generated('lesson.yaml'), 'utf8'), before);
     assertTypeScriptSyntax(readAll(f.lesson));
@@ -427,31 +434,26 @@ test('Skill IDs resolve to imported source symbols rather than hard-coded UUIDs'
     assert.doesNotMatch(code, new RegExp(skillId));
   }));
 
-test('resolves canonical non-.data.ts Skill definitions without copying their UUID into Lesson source', () =>
+test('canonical .ts Skill files resolve to real symbols without a .data suffix', () =>
   fixture(f => {
-    const skillId = id(98);
-    const folder = path.join(f.workspace, 'data/skills/solarSystem/systemArchitecture');
+    const skillId = id(100);
+    const folder = path.join(f.workspace, 'data/skills/earthMoonAndSun/lunarAppearance');
     fs.mkdirSync(folder, { recursive: true });
     fs.writeFileSync(
-      path.join(folder, 'solarSystemComponents.ts'),
+      path.join(folder, 'lunarPhases.ts'),
       "import { defineSkill } from '@svitlo/engine/build';\n" +
-        "export const solarSystemComponents = defineSkill({ id: '" +
+        "export const lunarPhases = defineSkill({ id: '" +
         skillId +
-        "', slug: 'solarSystemComponents' });\n",
-    );
-    fs.writeFileSync(
-      path.join(folder, 'index.ts'),
-      "export { solarSystemComponents } from './solarSystemComponents';\n",
+        "', slug: 'lunarPhases' });\n",
     );
     f.config.skills = [skillId];
     f.save();
     runOne(f.lesson, 'generate', f.root);
     const code = fs.readFileSync(f.generated('index.ts'), 'utf8');
-    assert.match(
-      code,
-      /import \{ solarSystemComponents \} from "\.\.\/\.\.\/\.\.\/skills\/solarSystem\/systemArchitecture\/solarSystemComponents"/,
+    assert.ok(
+      code.includes('import { lunarPhases } from "../../../skills/earthMoonAndSun/lunarAppearance/lunarPhases";'),
     );
-    assert.match(code, /skills: \[solarSystemComponents\.id\]/);
+    assert.match(code, /skills: \[lunarPhases\.id\]/);
     assert.doesNotMatch(code, new RegExp(skillId));
     assert.equal(runOne(f.lesson, 'check', f.root).changed, 0);
   }));
@@ -1175,8 +1177,7 @@ test('Lesson root exports reject reserved identifiers rather than producing inva
     }
   }));
 
-
-test('assessment Sections use the ordinary nested Section path with exactly one real blocker per Section', () =>
+test('unfinished assessment Sections are omitted from runtime while YAML drafts retain their full source', () =>
   fixture(f => {
     const make = (slug, number, type) => ({
       id: id(number),
@@ -1184,56 +1185,79 @@ test('assessment Sections use the ordinary nested Section path with exactly one 
       type,
       params: {},
       locale: { title: { uk: 'Перевірка' }, navigationLabel: { uk: 'Почати' } },
-      content: group({ opening: block('opening', number + 20, 'Уважно прочитайте інструкцію.') }),
+      content: group({ opening: block('opening', number + 20, 'Авторський текст зберігається.') }),
     });
     f.config.section.items.quizOne = make('quizOne', 50, 'quiz');
     f.config.section.items.cardsOne = make('cardsOne', 51, 'flashcards');
     f.config.section.items.quizTwo = make('quizTwo', 52, 'quiz');
     f.config.section.items.cardsTwo = make('cardsTwo', 53, 'flashcards');
     f.config.section.order = ['cardsOne', 'intro', 'quizOne', 'quizTwo', 'cardsTwo'];
+    f.config.__production = { quizRequired: true, flashcardsRequired: true };
+    f.config.params.quizRequiredForCompletion = true;
     f.save();
-    const first = runOne(f.lesson, 'generate', f.root);
+    const original = fs.readFileSync(f.generated('lesson.yaml'));
+    const generated = runOne(f.lesson, 'generate', f.root);
     const files = readAll(f.lesson);
-    const ordered = files.get('sections/index.ts');
-    assert.match(ordered, /order: \[\s*"cardsOne",\s*"intro",\s*"quizOne",\s*"quizTwo",\s*"cardsTwo"/);
-    for (const [slug, factory, label] of [
-      ['quizOne', 'defineQuizSection', 'Quiz'],
-      ['quizTwo', 'defineQuizSection', 'Quiz'],
-      ['cardsOne', 'defineFlashcardsSection', 'Flashcards'],
-      ['cardsTwo', 'defineFlashcardsSection', 'Flashcards'],
+    const root = files.get('index.ts');
+    assert.match(root, /quizRequiredForCompletion: true/);
+    assert.match(files.get('sections/index.ts'), /order: \[\s*"intro"\s*\]/);
+    assert.equal(files.has('sections/quizOne/index.ts'), false);
+    assert.equal(files.has('sections/cardsOne/index.ts'), false);
+    assert.equal((root.match(/TODO \(BLOCKER\):/g) ?? []).length, 4);
+    assert.equal(scanSource('index.ts', root).length, 4);
+    for (const [filename, names] of [
+      ['questions.yaml', ['quizOne', 'quizTwo']],
+      ['flashcards.yaml', ['cardsOne', 'cardsTwo']],
     ]) {
-      const file = 'sections/' + slug + '/index.ts';
-      const content = files.get(file);
-      assert.ok(content, file);
-      assert.match(content, new RegExp('\/\/ TODO \\(BLOCKER\\): This ' + label +
-        ' Section is required by the Methodologist\\.\\n\/\/ Integrate[^\\n]+\\nexport const ' +
-        slug + ' = ' + factory));
-      assert.match(content, /const content = \{/);
-      assert.match(content, /typeof content\.items, LessonLanguages/);
-      assert.equal((content.match(/TODO \(BLOCKER\):/g) ?? []).length, 1, file);
-      assert.ok(files.has('sections/' + slug + '/opening/index.ts'));
+      const draft = yaml.parse(fs.readFileSync(f.generated(filename), 'utf8'));
+      assert.deepEqual(draft.sectionDrafts.order, names);
+      assert.equal(draft.sectionDrafts.items[names[0]].config.id, f.config.section.items[names[0]].id);
+      assert.equal(
+        draft.sectionDrafts.items[names[0]].config.content.items.opening.config.locale.value.uk,
+        'Авторський текст зберігається.',
+      );
+      assert.ok(generated.files.includes(filename));
     }
-    assert.doesNotMatch(files.get('sections/intro/index.ts'), /TODO \(BLOCKER\):/);
-    assert.equal(files.get('sections/quizOne/opening/index.ts').includes('Уважно прочитайте'), true);
+    assert.equal(fs.readFileSync(f.generated('lesson.yaml')).equals(original), true);
+    assert.equal(runOne(f.lesson, 'check', f.root).changed, 0);
     assertTypeScriptSyntax(files);
-    const second = runOne(f.lesson, 'generate', f.root);
-    assert.equal(second.skipped, true, 'never overwrite a finished draft on a repeat run');
-    assert.deepEqual(readAll(f.lesson), files);
-    assert.ok(first.files.includes('sections/quizOne/index.ts'));
   }));
 
-test('a Lesson without an assessment Section generates no assessment-specific blocker', () =>
+test('required but not-yet-authored Quiz retains its completion rule and one blocker', () =>
+  fixture(f => {
+    f.config.params.quizRequiredForCompletion = true;
+    f.config.__production = { quizRequired: true };
+    f.save();
+    runOne(f.lesson, 'generate', f.root);
+    const root = fs.readFileSync(f.generated('index.ts'), 'utf8');
+    assert.match(root, /quizRequiredForCompletion: true/);
+    assert.equal(scanSource('index.ts', root).length, 1);
+    assert.deepEqual(yaml.parse(fs.readFileSync(f.generated('questions.yaml'), 'utf8')).sectionDrafts.order, []);
+    assert.equal(fs.existsSync(f.generated('sections/quizOne/index.ts')), false);
+  }));
+
+test('fully specified Flashcards Section remains in the ordinary Section collection', () =>
+  fixture(f => {
+    f.config.section.items.cards = {
+      id: id(50),
+      slug: 'cards',
+      type: 'flashcards',
+      params: { selection: { flashcardIds: [id(60)] } },
+      locale: { title: { uk: 'Картки' }, navigationLabel: { uk: 'Почати' } },
+      content: group({ opening: block('opening', 51, 'Пригадай.') }),
+    };
+    f.config.section.order.push('cards');
+    f.save();
+    runOne(f.lesson, 'generate', f.root);
+    assert.equal(fs.existsSync(f.generated('sections/cards/index.ts')), true);
+    assert.equal(fs.existsSync(f.generated('flashcards.yaml')), false);
+    assert.match(fs.readFileSync(f.generated('sections/index.ts'), 'utf8'), /"cards"/);
+  }));
+
+test('no assessment requirement creates neither bank YAML nor assessment blocker', () =>
   fixture(f => {
     runOne(f.lesson, 'generate', f.root);
-    const files = readAll(f.lesson);
-    assert.equal(
-      [...files].filter(([name, content]) =>
-        name.startsWith('sections/') && content.includes('This Quiz Section is required')).length,
-      0,
-    );
-    assert.equal(
-      [...files].filter(([name, content]) =>
-        name.startsWith('sections/') && content.includes('This Flashcards Section is required')).length,
-      0,
-    );
+    assert.equal(fs.existsSync(f.generated('questions.yaml')), false);
+    assert.equal(fs.existsSync(f.generated('flashcards.yaml')), false);
+    assert.doesNotMatch(fs.readFileSync(f.generated('index.ts'), 'utf8'), /Quiz Section|Flashcards Section/);
   }));

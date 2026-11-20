@@ -1,3 +1,3 @@
 <aside>
-  <strong>Есіңде болсын.</strong> Анимация әдейі баяулатылған. Вакуумда жарық шамамен <mark>секундына 300 000 километр</mark> жылдамдықпен таралады. Сары белгі нақты жылдамдықты немесе бөлшектің өлшемін емес, бағытты көрсетеді.
+  <strong>Esıñde bolsyn.</strong> Animatsiia ädeiı baiaulatylğan. Vakuumda jaryq şamamen <mark>sekundyna 300 000 kilometr</mark> jyldamdyqpen taralady. Sary belgı naqty jyldamdyqty nemese bölşektıñ ölşemın emes, bağytty körsetedı.
 </aside>
