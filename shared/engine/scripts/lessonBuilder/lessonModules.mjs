@@ -714,7 +714,7 @@ export function renderLessonModules(lesson, language, options = {}) {
           imports,
           1,
           '$.' + key,
-          key === 'params' ? pending : null,
+          key === 'params' || key === 'locale' ? pending : null,
         );
       if (key === 'id' && pending?.generatedIdentity)
         fields.push('  // TODO (BLOCKER): Generated Section UUID needs explicit editorial ownership before publication.');
