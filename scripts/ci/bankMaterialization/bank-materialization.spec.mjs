@@ -1,6 +1,10 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
+import { spawnSync } from 'node:child_process';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import {
   parseTrigger,
   parseIdentity,
@@ -232,4 +236,44 @@ test('Questions and Flashcards publishers do not load Engine builders or install
   assert.ok(publishJob, 'separate publish job must exist');
   assert.doesNotMatch(publishJob, /npm ci|npm run package:build/, 'bank publisher must run without npm dependencies');
   assert.match(publishJob, /contents: write/);
+});
+
+test('both bank publish modes load without installed packages or Engine code', () => {
+  const root = fileURLToPath(new URL('../../..', import.meta.url));
+  const isolated = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-bank-dependency-free-'));
+  try {
+    const files = [
+      'scripts/ci/bankMaterialization/bank-materialization.mjs',
+      'scripts/ci/bankMaterialization/bank-gate.mjs',
+    ];
+    for (const filename of files) {
+      const destination = path.join(isolated, filename);
+      fs.mkdirSync(path.dirname(destination), { recursive: true });
+      fs.copyFileSync(path.join(root, filename), destination);
+    }
+    const entry = path.join(isolated, files[0]);
+    assert.equal(fs.existsSync(path.join(isolated, 'node_modules')), false);
+    assert.equal(fs.existsSync(path.join(isolated, 'shared/engine')), false);
+    const baseEnv = { PATH: process.env.PATH ?? '', GITHUB_REPOSITORY: 'KiT-Maverik/svitlo' };
+    const imported = spawnSync(process.execPath, [
+      '--input-type=module', '-e', 'await import(' + JSON.stringify(pathToFileURL(entry).href) + ')',
+    ], { cwd: isolated, env: baseEnv, encoding: 'utf8' });
+    assert.equal(imported.status, 0, imported.stderr);
+    for (const bank of ['questions', 'flashcards']) {
+      const identity = parseIdentity(body(bank), bank);
+      const metadata = {
+        number: 100, head: 'a'.repeat(40), sourceBlob: 'b'.repeat(40),
+        branch: 'agent/assessment', base: 'agent/lesson', repo: 'KiT-Maverik/svitlo',
+        bank, identity, actor: 'owner',
+      };
+      const env = { ...baseEnv, BANK_META_B64: Buffer.from(JSON.stringify(metadata)).toString('base64'),
+        BANK_CANDIDATE_ROOT: path.join(isolated, 'absent-candidate') };
+      const result = spawnSync(process.execPath, [entry, 'publish'], { cwd: isolated, env, encoding: 'utf8' });
+      assert.equal(result.status, 1, bank + ': ' + result.stderr);
+      assert.doesNotMatch(result.stdout + result.stderr, /ERR_MODULE_NOT_FOUND|Cannot find package|node_modules/);
+      assert.match(result.stdout + result.stderr, /ENOENT|immutable Git checkout/);
+    }
+  } finally {
+    fs.rmSync(isolated, { recursive: true, force: true });
+  }
 });
