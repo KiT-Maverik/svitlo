@@ -64,6 +64,18 @@ test('requires explicitly scoped Question reference generation', () => {
   assert.throws(() => parseArguments(['--kind', 'questions', '--package', 'content/playground', '--course', lesson]));
 });
 
+
+test('Flashcard review accepts exactly one bank and locale while refusing unrelated selectors', () => {
+  const lesson = 'd3048d21-8690-5255-b62c-984c69ac272c';
+  assert.deepEqual(
+    parseArguments(['--kind', 'flashcards', '--package', 'content/playground', '--lesson', lesson, '--locale', 'uk']),
+    { kind: 'flashcards', package: 'content/playground', lesson, locale: 'uk' },
+  );
+  assert.throws(() => parseArguments(['--kind', 'flashcards']), /require --package/);
+  assert.throws(() => parseArguments(['--kind', 'flashcards', '--package', 'content/playground', '--lesson', '../x']));
+  assert.throws(() => parseArguments(['--kind', 'flashcards', '--package', 'content/playground', '--course', lesson]));
+});
+
 test('rejects unsafe paths, invalid combinations and duplicate options before writing anything', () => {
   for (const args of [
     ['--kind', 'skills', '--package', '../outside'],
