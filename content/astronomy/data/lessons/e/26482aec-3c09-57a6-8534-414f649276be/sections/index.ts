@@ -1,4 +1,5 @@
 import { meetThreeBodies } from "./meetThreeBodies";
+import { objectRolesQuiz } from "./objectRolesQuiz";
 import { pathsAndRoles } from "./pathsAndRoles";
 import { sunAmongStars } from "./sunAmongStars";
 import { transferAndRecall } from "./transferAndRecall";
@@ -8,12 +9,14 @@ export const section = {
     meetThreeBodies,
     sunAmongStars,
     pathsAndRoles,
-    transferAndRecall
+    transferAndRecall,
+    objectRolesQuiz
   },
   order: [
     "meetThreeBodies",
     "sunAmongStars",
     "pathsAndRoles",
-    "transferAndRecall"
+    "transferAndRecall",
+    "objectRolesQuiz"
   ]
 };
