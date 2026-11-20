@@ -62,8 +62,8 @@ assert(
   Object.keys(platform.dependencies ?? {}).every(p => !p.startsWith('@svitlo/')),
   'Platform cannot depend on learning apps or shared packages until integration is scoped',
 );
-// Production Quality runs the root E2E aggregator, not a Platform-only npm command.
-// Verify that the aggregate still includes Platform rather than matching obsolete CI text.
+// The root E2E aggregator must still include Platform. Production Quality runs
+// declared application E2E suites via its manifest-derived matrix instead.
 assert(
   rootManifest.scripts?.['test:e2e'] === 'node scripts/runWorkspaceScript/run-workspace-script.mjs test:e2e',
   'Root E2E must aggregate eligible workspaces',
@@ -72,10 +72,13 @@ assert(
   planWorkspaceOperation(discoverWorkspaces(root), 'test:e2e').selected.includes('@svitlo/platform'),
   'Root E2E must include Platform smoke tests',
 );
-const quality = readFileSync(resolve(root, '.github/workflows/questions.yml'), 'utf8');
+const quality = readFileSync(resolve(root, '.github/workflows/production-quality.yml'), 'utf8');
 assert(
-  quality.includes('npm run test:e2e') && quality.includes('npm run repo:check:artifacts'),
-  'Production Quality must verify root E2E (including Platform) and built exports',
+  quality.includes('matrix: ${{ fromJSON(needs.policy.outputs.apps) }}') &&
+    quality.includes('if: matrix.e2e') &&
+    quality.includes('npm run test:e2e --workspace "$APP_WORKSPACE"') &&
+    quality.includes('npm run repo:check:artifacts'),
+  'Production Quality must run declared app E2E suites (including Platform) and verify built exports',
 );
 const db = readFileSync(resolve(root, '.github/workflows/db-controllers-e2e.yml'), 'utf8');
 assert(db.includes('test:e2e:db'), 'Native Chromium workflow missing');

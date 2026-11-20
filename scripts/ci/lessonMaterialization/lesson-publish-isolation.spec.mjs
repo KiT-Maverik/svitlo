@@ -123,7 +123,6 @@ function fixture(root, operation) {
     '  - [ ] 6.1 Materialize Lesson sources',
     '  - [ ] 6.2 Accessibility source audit',
     '  - [ ] 6.3 Offline source audit',
-    '  - [ ] 6.4 Validate source and handoff',
     '## Evidence',
   ].join('\n');
   return { meta, manifest, body, source, evidence };
