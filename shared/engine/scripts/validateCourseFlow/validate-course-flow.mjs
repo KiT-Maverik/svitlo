@@ -16,6 +16,13 @@ const schemaPath = fileURLToPath(
 const schema = JSON.parse(fs.readFileSync(schemaPath, 'utf8'));
 const ajv = new Ajv2020({ allErrors: true, strict: true, validateFormats: false });
 const validateStructural = ajv.compile(schema);
+// The same Zod-derived schema used by Engine YAML scaffolding validates
+// new authored Sections; do not invent a parallel Course-specific Section contract.
+const engineSectionSchema = JSON.parse(
+  fs.readFileSync(fileURLToPath(new URL('../../yaml-schemas/section.schema.json', import.meta.url)), 'utf8'),
+);
+const sectionAjv = new Ajv2020({ allErrors: true, strict: false, validateFormats: false });
+const validateSection = sectionAjv.compile(engineSectionSchema);
 const uuid = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i;
 const collection = x => x !== null && typeof x === 'object' && !Array.isArray(x);
 const allowed = {
@@ -61,6 +68,34 @@ export function checkPlan(plan, stage) {
           for (const field of ['params', 'locale', 'events', 'section']) {
             if (Object.hasOwn(child, field)) {
               errors.push(position + '/' + field + ': Course-local Lesson edits require an existing lessonId');
+            }
+          }
+        }
+        if (stage === '3-complete' && child.lessonId && child.section?.additionalItems) {
+          const added = child.section.additionalItems;
+          if (Object.keys(added).length && !Array.isArray(child.section.order)) {
+            errors.push(position + '/section/order: full Section order is required when adding Course-local Sections');
+          }
+          for (const [sectionKey, section] of Object.entries(added)) {
+            const at = position + '/section/additionalItems/' + sectionKey;
+            if (section.slug !== sectionKey) errors.push(at + '/slug: must match additionalItems collection key');
+            if (!validateSection(section)) {
+              const branch = engineSectionSchema.oneOf.findIndex(
+                entry => entry.properties?.type?.const === section.type,
+              );
+              const errorsForType = (validateSection.errors ?? []).filter(
+                issue => issue.schemaPath.startsWith('#/oneOf/' + branch + '/'),
+              );
+              const issue = errorsForType.find(issue => issue.keyword !== 'oneOf') ??
+                (validateSection.errors ?? [])[0];
+              if (issue) {
+                const suffix = issue.keyword === 'required' && issue.params?.missingProperty
+                  ? '/' + issue.params.missingProperty
+                  : issue.instancePath ?? '';
+                errors.push(at + suffix + ': ' + issue.message + ' (Engine Section schema)');
+              } else {
+                errors.push(at + ': invalid Engine Section config');
+              }
             }
           }
         }
