@@ -12,6 +12,12 @@ const uuid = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/;
 // It may not become a published Section or Question/Flashcard identity.
 const pendingId = id => typeof id === 'string' && id.startsWith('feedc0de-');
 const isRecord = value => value !== null && typeof value === 'object' && !Array.isArray(value);
+const pendingLabels = new Set(['PENDING QUIZ', 'PENDING FLASHCARDS']);
+function containsPendingAssessmentLabel(value) {
+  if (typeof value === 'string') return pendingLabels.has(value);
+  if (!value || typeof value !== 'object') return false;
+  return Object.values(value).some(containsPendingAssessmentLabel);
+}
 
 function json(filename) {
   const value = JSON.parse(fs.readFileSync(filename, 'utf8'));
@@ -112,10 +118,17 @@ export function verifyAssessmentSelections(staticRoot) {
       if (lesson.section.some(section => pendingId(section.id))) {
         throw new Error('Unresolved generated assessment Section UUID in Lesson ' + id);
       }
-      if (lesson.section.some(section =>
-        ['PENDING QUIZ', 'PENDING FLASHCARDS'].includes(section.locale?.title) ||
-        ['PENDING QUIZ', 'PENDING FLASHCARDS'].includes(section.locale?.navigationLabel))) {
+      // The Builder can preserve authored non-source translations alongside
+      // a pending source-language label. That marker then lives in a sparse
+      // language fragment, not necessarily in the base Section JSON.
+      if (containsPendingAssessmentLabel(lesson)) {
         throw new Error('Unresolved assessment Section draft label in Lesson ' + id);
+      }
+      for (const language of languages) {
+        const localePath = path.join(owner, language + '.json');
+        if (fs.existsSync(localePath) && containsPendingAssessmentLabel(json(localePath))) {
+          throw new Error('Unresolved assessment Section draft label in Lesson ' + id + ' / ' + language);
+        }
       }
       const sections = lesson.section.filter(
         section => ['quiz', 'flashcards'].includes(section.type) && section.params?.disabled !== true,
