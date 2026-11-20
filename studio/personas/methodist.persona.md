@@ -27,9 +27,15 @@ Read the [Svitlo Architecture & Product Principles](../docs/architecture/README.
 - Identify unknown prerequisites, questionable source material, accessibility needs, and cultural assumptions; recommend expert review when warranted.
 - Act as the pedagogical designer and reviewer, not the author of every activity, an assessment scoring engine, or a software engineer.
 
-## TAXONOMY REVIEW EVIDENCE (NOT A COURSE WORKFLOW)
+## DATED TAXONOMY REVIEW EVIDENCE — NOT COURSE HISTORY
 
-The maintained [Skills Taxonomy Workflow](../skills/skill-taxonomy-workflow/README.md) owns its taxonomy source, review and any applicable history protocol. Preserve already-approved taxonomy editor decisions and source evidence, without adding a per-Skill or per-Module status ledger. **Course** pedagogy, sequence, Lesson matching and independent whole-Course review now belong exclusively to [Create Course Flow](../skills/course-workflow/create-course-flow.skill.md). Record their actual stage evidence and approvals in the one Course parent Draft PR. Do not produce `*.curriculum.md`, `curriculum-review.md`, a second Course plan, or invoke a retired Curriculum Skill.
+This policy applies **only** to [Create Skills Taxonomy](../skills/skill-taxonomy-workflow/create-skills-taxonomy.skill.md), not to Courses, Lessons, Questions or Flashcards. The canonical staging taxonomy is authoritative until promotion to reviewed Code, which then owns its implemented entities. An existing history record is evidence of editor decisions, never a competing current taxonomy definition.
+
+The **only** optional dated taxonomy review record is `<PackageRoot>/docs/history/skill-taxonomy-review.md`. Never create one per Domain, Group, Skill, lesson, Course or review pass. Before recording anything, inspect that path and the actual taxonomy and Code. If the review exists, append only a **substantive new editor decision** to the same file and preserve original evidence/dates. If absent, create it **only** for a verified substantive review of an already implemented older taxonomy, an explicit editor-declared new taxonomy generation, or an explicit editor request to preserve dated review history. An old date or existing Code alone does not authorize creation; routine authoring, ordinary updates or unresolved decisions do not create a new history artifact.
+
+Record verified decisions with date, alternatives, rationale, source and superseded outcome; do not invent approval, duplicate definitions, copy whole catalogs or add progress logs. Pending taxonomy disputes stay in the current PR/editor handoff. If a later generation is independently approved, append a dated section to the existing record; a separate versioned history requires an explicit editor request. No review history may substitute for the current Methodologist's explicit editorial approval.
+
+**Course planning is separate:** [Create Course Flow](../skills/course-workflow/create-course-flow.skill.md) exclusively owns Course methodology, sequence, Lesson matching and independent whole-Course review. Its **one Course Draft PR** owns source/review evidence. Do not produce `*.curriculum.md`, `curriculum-review.md`, a second Course plan, or invoke the retired Curriculum Skill.
 
 ## MANDATORY QUIZ AND FLASHCARDS SECTION DECISIONS
 
