@@ -112,7 +112,7 @@ jobs:
         run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --no-audit --no-fund
       - name: Initialize job-local package build reuse
         run: echo "SVITLO_CI_PACKAGE_BUILD_STATE=$RUNNER_TEMP/svitlo-production-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT.json" >> "$GITHUB_ENV"
-      - name: Test Playground and Web without rerunning UI Kit or Math suites
+      - name: Test Astronomy, Playground and Web components without rerunning UI Kit or Math suites
         env:
           SVITLO_WEB_TEST_SELECTION: web-fixture-alpha
         run: node scripts/ci/quietRun/quiet-run.mjs -- node scripts/ci/productionQuality/run-selected-components.mjs

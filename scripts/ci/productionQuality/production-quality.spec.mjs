@@ -50,7 +50,7 @@ test('new E2E workspaces and invalid application matrices fail closed', () => {
 });
 
 test('extra components use the existing graph without rerunning root-covered suites', () => {
-  assert.deepEqual(additionalComponentWorkspaces, ['@svitlo/playground', '@svitlo/web']);
+  assert.deepEqual(additionalComponentWorkspaces, ['@svitlo/astronomy', '@svitlo/playground', '@svitlo/web']);
   const plan = planWorkspaceOperation(discoverWorkspaces(), 'test:components', {
     onlyWorkspaces: additionalComponentWorkspaces,
   });
@@ -59,7 +59,7 @@ test('extra components use the existing graph without rerunning root-covered sui
     plan.steps.some(step => step.script === 'package:build'),
     'must build prerequisite outputs',
   );
-  assert.equal(plan.steps.filter(step => step.script === 'test:components').length, 2);
+  assert.equal(plan.steps.filter(step => step.script === 'test:components').length, 3);
 });
 
 test('parallel production topology preserves every gate and produces one strict protected context', () => {

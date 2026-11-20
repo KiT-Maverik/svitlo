@@ -7,7 +7,7 @@
 import { fileURLToPath } from 'node:url';
 import { execute } from '../../runWorkspaceScript/run-workspace-script.mjs';
 
-export const additionalComponentWorkspaces = ['@svitlo/playground', '@svitlo/web'];
+export const additionalComponentWorkspaces = ['@svitlo/astronomy', '@svitlo/playground', '@svitlo/web'];
 
 if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
   try {
