@@ -15,6 +15,7 @@ import {
   changedFiles,
   chooseMode,
   verifyMaterializedForFinalize,
+  readReport,
 } from './lesson-materialization.mjs';
 import { preflightLesson, finalizeLesson } from '../../../shared/engine/scripts/finalizeLesson/finalizeLesson.mjs';
 import { repoRoot } from '../../../shared/engine/scripts/lessonBuilder/lessonBuilder.mjs';
@@ -217,7 +218,7 @@ test('HEAD/base/branch/source/parent identity changes reject pinned snapshots', 
 function git(root, args) {
   execFileSync('git', args, { cwd: root });
 }
-function gitFixture(callback) {
+async function gitFixture(callback) {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-lesson-materialize-'));
   try {
     git(root, ['init', '-q']);
@@ -226,7 +227,7 @@ function gitFixture(callback) {
     fs.writeFileSync(source, 'test: fixture\n');
     git(root, ['add', '--', yaml]);
     git(root, ['-c', 'user.name=Fixture', '-c', 'user.email=fixture@example.invalid', 'commit', '-qm', 'fixture']);
-    return callback({ root, source });
+    return await callback({ root, source });
   } finally {
     fs.rmSync(root, { recursive: true, force: true });
   }
@@ -266,6 +267,8 @@ test('manifest rejects stale SHA, unauthorized path, overwrite, duplicate, tampe
       sourceBlob: meta.sourceBlob,
       identity,
       mode: 'strict',
+      pending: [],
+      verifiedFiles: [],
       entries,
     };
     assert.equal(verifyManifest(manifest, meta, root), 5);
@@ -291,12 +294,36 @@ test('manifest rejects stale SHA, unauthorized path, overwrite, duplicate, tampe
     );
     const finalizeMeta = { ...meta, operation: 'finalize' };
     const finalize = { ...manifest, operation: 'finalize', entries: [{ path: yaml, action: 'delete' }] };
-    assert.equal(verifyManifest(finalize, finalizeMeta, root), 1);
+    assert.throws(() => verifyManifest(finalize, finalizeMeta, root), /Incomplete committed/);
     assert.throws(() =>
       verifyManifest({ ...finalize, entries: [{ path: base + 'index.ts', action: 'delete' }] }, finalizeMeta, root),
     );
-    fs.writeFileSync(path.join(root, entries[0].path), Buffer.from(entries[0].data, 'base64'));
-    git(root, ['add', '--', entries[0].path]);
+    for (const entry of entries) {
+      fs.writeFileSync(path.join(root, entry.path), Buffer.from(entry.data, 'base64'));
+      git(root, ['add', '--', entry.path]);
+    }
+    git(root, ['-c', 'user.name=Fixture', '-c', 'user.email=fixture@example.invalid', 'commit', '-qm', 'materialized']);
+    const verifiedFiles = entries.map(({ path, sha256 }) => ({ path, sha256 }));
+    assert.equal(verifyManifest({ ...finalize, verifiedFiles }, finalizeMeta, root), 1);
+    assert.throws(
+      () => verifyManifest({ ...finalize, verifiedFiles: verifiedFiles.slice(1) }, finalizeMeta, root),
+      /Incomplete/,
+    );
+    assert.throws(
+      () =>
+        verifyManifest(
+          { ...finalize, verifiedFiles: [{ ...verifiedFiles[0], sha256: '0'.repeat(64) }, ...verifiedFiles.slice(1)] },
+          finalizeMeta,
+          root,
+        ),
+      /differs/,
+    );
+    assert.throws(
+      () => verifyManifest({ ...finalize, verifiedFiles: [...verifiedFiles, verifiedFiles[0]] }, finalizeMeta, root),
+      /Invalid or uncommitted/,
+    );
+    fs.writeFileSync(path.join(root, entries[0].path), 'tampered source');
+    assert.throws(() => verifyManifest({ ...finalize, verifiedFiles }, finalizeMeta, root), /differs/);
     assert.throws(() => verifyManifest(manifest, meta, root), /overwritten/);
   }));
 
@@ -313,19 +340,19 @@ test('special Git symlinks/submodules and modified files are not materializable 
   }));
 
 test('finalize rejects uncommitted or edited generated source instead of deleting YAML', () =>
-  gitFixture(({ root, source }) => {
+  gitFixture(async ({ root, source }) => {
     const folder = path.dirname(source);
     for (const filename of ['index.ts', 'constants.ts', 'review.ts', 'methodology.md', 'production-handoff.json'])
       fs.writeFileSync(path.join(folder, filename), '// uncommitted\n');
     const meta = { number: 710, identity, sourceBlob: gitBlob(fs.readFileSync(source)) };
-    assert.throws(
+    await assert.rejects(
       () => verifyMaterializedForFinalize(root, meta, source, { handoff: '{}' }),
       /committed materialized Lesson file/,
     );
     assert.equal(fs.existsSync(source), true);
   }));
 
-test('source-preserving strict transfer keeps YAML and never creates independent bank directories', () => {
+test('source-preserving strict transfer keeps YAML and never creates independent bank directories', async () => {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-lesson-trusted-schema-'));
   const lesson = '00000000-0000-4000-8000-000000000012';
   const source = path.join(root, 'content/math/data/lessons/2', lesson, 'lesson.yaml');
@@ -382,7 +409,7 @@ test('source-preserving strict transfer keeps YAML and never creates independent
     };
     fs.writeFileSync(source, YAML.stringify(doc));
     const original = fs.readFileSync(source);
-    assert.equal(chooseMode(source, root, repoRoot).kind, 'strict');
+    assert.equal((await chooseMode(source, root, repoRoot)).kind, 'strict');
     const result = finalizeLesson(source, {
       repo: root,
       retainSource: true,
@@ -424,18 +451,40 @@ test('workflow runs trusted default branch code only and isolates publish permis
   assert(!workflow.jobs['register-lessons']);
 });
 
-test('trusted Lesson publisher installs dependencies before loading the Engine verifier', () => {
+test('trusted analyze attests the artifact; dependency-free publish verifies that digest', () => {
   const workflow = fs.readFileSync(
     fileURLToPath(new URL('../../../.github/workflows/lesson-materialization.yml', import.meta.url)),
     'utf8',
   );
   const publish = workflow.split('\n  publish:\n')[1];
   assert.ok(publish, 'Lesson materialization must retain an isolated publish job');
-  const installAt = publish.indexOf('name: Install trusted publisher dependencies without lifecycle scripts');
-  const executeAt = publish.indexOf('name: Revalidate authorization, artifact bytes and SHA race');
-  assert.ok(installAt >= 0 && executeAt > installAt, 'publisher dependencies must be installed before verification');
-  const install = publish.slice(installAt, executeAt);
-  assert.match(install, /working-directory: trusted/);
-  assert.match(install, /npm ci --ignore-scripts --no-audit --no-fund/);
-  assert.doesNotMatch(install, /GH_TOKEN|github\.token/, 'dependency installation must not receive the write token');
+  assert.doesNotMatch(publish, /npm ci|npm run package:build/, 'publish must require only Node built-ins');
+  assert.match(workflow, /report_sha256: \$\{\{ steps\.analysis\.outputs\.report_sha256 \}\}/);
+  assert.match(publish, /LESSON_REPORT_SHA256: \$\{\{ needs\.analyze\.outputs\.report_sha256 \}\}/);
+  assert.match(workflow, /id: analysis/);
+});
+
+test('report reader rejects a forged, mutated or unattested analyzer artifact', () => {
+  const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-lesson-report-'));
+  const oldReport = process.env.LESSON_REPORT;
+  const oldDigest = process.env.LESSON_REPORT_SHA256;
+  try {
+    const filename = path.join(tmp, 'report.json');
+    const bytes = Buffer.from(JSON.stringify({ mode: 'strict', entries: [] }));
+    fs.writeFileSync(filename, bytes);
+    process.env.LESSON_REPORT = filename;
+    process.env.LESSON_REPORT_SHA256 = createHash('sha256').update(bytes).digest('hex');
+    assert.deepEqual(readReport(), JSON.parse(bytes.toString('utf8')));
+    fs.appendFileSync(filename, '\n');
+    assert.throws(() => readReport(), /SHA256 attestation/);
+    fs.writeFileSync(filename, bytes);
+    delete process.env.LESSON_REPORT_SHA256;
+    assert.throws(() => readReport(), /SHA256 attestation/);
+  } finally {
+    if (oldReport === undefined) delete process.env.LESSON_REPORT;
+    else process.env.LESSON_REPORT = oldReport;
+    if (oldDigest === undefined) delete process.env.LESSON_REPORT_SHA256;
+    else process.env.LESSON_REPORT_SHA256 = oldDigest;
+    fs.rmSync(tmp, { recursive: true, force: true });
+  }
 });

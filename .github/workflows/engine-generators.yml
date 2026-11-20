@@ -44,6 +44,20 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  publisher-isolation:
+    name: Publisher isolation / no npm dependencies
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Prove Lesson and both bank publishers load without installed packages
+        run: node --test scripts/ci/lessonMaterialization/lesson-publish-isolation.spec.mjs scripts/ci/bankMaterialization/bank-materialization.spec.mjs
+
   generator-tests:
     # Full host/browser/generator suites only at review boundary or explicitly on demand.
     if: github.event_name == 'workflow_dispatch' || !github.event.pull_request.draft
