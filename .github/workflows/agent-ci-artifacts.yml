@@ -332,6 +332,7 @@ jobs:
           REQUEST_COMPONENT: ${{ needs.resolve.outputs.component }}
           REQUEST_LESSON: ${{ needs.resolve.outputs.lesson }}
           REQUEST_COURSE: ${{ needs.resolve.outputs.course }}
+          SOURCE_HEAD_SHA: ${{ needs.resolve.outputs.head_sha }}
         shell: bash
         run: |
           set -euo pipefail
@@ -354,6 +355,12 @@ jobs:
               !manifest.scope || !['skills', 'lessons', 'questions', 'courses', 'ui-kit', 'assessment-methods', 'geography-home-copy', 'education-standards'].includes(manifest.scope.kind) ||
               !Array.isArray(manifest.generated) || !Array.isArray(manifest.failures) ||
               manifest.generated.length === 0) throw Error('Invalid or empty agent artifact manifest');
+          if (manifest.scope.kind === 'questions' &&
+              (!/^[0-9a-f]{40}$/.test(manifest.sourceCommit ?? '') ||
+                manifest.sourceCommit !== process.env.SOURCE_HEAD_SHA ||
+                manifest.failures.length)) {
+            throw Error('Question manifest must match pinned source SHA and contain no failures');
+          }
           const requested = {
             kind: process.env.REQUEST_KIND,
             package: process.env.REQUEST_BOOK || null,

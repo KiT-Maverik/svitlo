@@ -41,7 +41,7 @@ function withTemp(callback, copySource = false) {
   }
 }
 
-test('renders all six real Questions and 30 English/Kazakh strings with canonical links', () =>
+test('renders all six real Questions, 30 Text values and Quiz labels with canonical links', () =>
   withTemp(({ run, manifest, output }) => {
     run();
     assert.equal(manifest.failures.length, 0);
@@ -50,13 +50,15 @@ test('renders all six real Questions and 30 English/Kazakh strings with canonica
     assert.equal(entry.path, '.agent-ci-artifacts/questions/playground/c/' + lesson + '/kk.md');
     assert.equal(entry.lesson, 'c/' + lesson);
     assert.equal(entry.questions, 6);
-    assert.equal(entry.strings, 30);
+    assert.equal(entry.strings, 32);
     assert.equal(entry.missing, 0);
+    assert.equal(entry.quizSections, 1);
+    assert.equal(entry.quizStrings, 2);
     assert.equal(entry.reviewReady, true);
     const markdown = fs.readFileSync(path.join(output, 'questions/playground/c', lesson, 'kk.md'), 'utf8');
     assert.match(markdown, /<!-- GENERATED FROM CODE; DO NOT EDIT\. -->/);
     assert.match(markdown, /Missing translations: 0/);
-    assert.equal((markdown.match(/^- kk:/gm) || []).length, 30);
+    assert.equal((markdown.match(/^- kk:/gm) || []).length, 32);
     assert.equal((markdown.match(/^- English:/gm) || []).length, 30);
     assert.equal((markdown.match(/^## [a-zA-Z]+$/gm) || []).length, 6);
     for (const uuid of questionIds) assert.ok(markdown.includes(uuid), uuid);
