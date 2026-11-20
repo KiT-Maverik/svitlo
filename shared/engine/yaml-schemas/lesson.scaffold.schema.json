@@ -2099,50 +2099,6 @@
           },
           "required": ["documentLanguage"]
         },
-        "course": {
-          "type": "object",
-          "additionalProperties": false,
-          "properties": {
-            "documentLanguage": {
-              "type": "string",
-              "minLength": 2
-            },
-            "methodology": {
-              "type": "string",
-              "minLength": 1
-            },
-            "purpose": {
-              "type": "string",
-              "minLength": 1
-            },
-            "audience": {
-              "type": "string",
-              "minLength": 1
-            },
-            "productionNotes": {
-              "type": "string",
-              "minLength": 1
-            }
-          }
-        },
-        "episode": {
-          "type": "object",
-          "additionalProperties": false,
-          "properties": {
-            "purpose": {
-              "type": "string",
-              "minLength": 1
-            },
-            "specification": {
-              "type": "string",
-              "minLength": 1
-            },
-            "productionNotes": {
-              "type": "string",
-              "minLength": 1
-            }
-          }
-        },
         "section": {
           "type": "object",
           "additionalProperties": false,
@@ -2282,20 +2238,6 @@
           "additionalProperties": false,
           "properties": {
             "rationale": {
-              "type": "string",
-              "minLength": 1
-            },
-            "productionNotes": {
-              "type": "string",
-              "minLength": 1
-            }
-          }
-        },
-        "lessonReference": {
-          "type": "object",
-          "additionalProperties": false,
-          "properties": {
-            "placementReason": {
               "type": "string",
               "minLength": 1
             },
