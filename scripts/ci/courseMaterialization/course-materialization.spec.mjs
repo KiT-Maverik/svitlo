@@ -15,7 +15,13 @@ import {
   gitBlob,
   safeBranch,
 } from './course-gate.mjs';
-import { verifyManifest, identicalSnapshot } from './course-materialization.mjs';
+import {
+  verifyManifest,
+  identicalSnapshot,
+  validateLessonAssignments,
+  renderLessonRegistry,
+  registerLessonRegistry,
+} from './course-materialization.mjs';
 
 const id = '1e79d8fc-2223-4fa7-bc64-70d8172d3e8b';
 const lesson = 'd3048d21-8690-5255-b62c-984c69ac272c';
@@ -119,21 +125,39 @@ test('Stage 4 checklist fails closed on incomplete, absent, duplicate or ambiguo
 });
 
 test('allowlist blocks arbitrary files, traversal and incorrect UUID buckets', () => {
+  const root = pkg + '/data/courses/b/' + id + '/';
   for (const filename of [
-    pkg + '/data/courses/b/' + id + '/index.ts',
-    pkg + '/data/courses/b/' + id + '/episodes/example.ts',
+    root + 'index.ts',
+    root + 'constants.ts',
+    root + 'review.ts',
+    root + 'methodology.md',
+    root + 'content/safeObservation/index.ts',
+    root + 'content/safeObservation/methodology.md',
+    root + 'content/skyCycles/dayAndNight/index.ts',
+    root + 'content/skyCycles/dayAndNight/methodology.md',
+    root + 'content/skyCycles/dayAndNight/nightSkyEpisode/index.ts',
+    root + 'content/skyCycles/dayAndNight/nightSkyEpisode/methodology.md',
     pkg + '/data/lessons/c/' + lesson + '/lesson.yaml',
   ])
-    assert.equal(validateArtifactPath(filename, identity, 'materialize'), true);
+    assert.equal(validateArtifactPath(filename, identity, 'materialize'), true, filename);
   for (const filename of [
     '.github/workflows/evil.yml',
-    pkg + '/data/courses/b/' + id + '/../secrets',
+    root + '../secrets',
     pkg + '/data/lessons/b/' + lesson + '/lesson.yaml',
-    pkg + '/data/courses/b/' + id + '/config.yaml',
-    pkg + '/data/courses/b/' + id + '/README.md',
-    pkg + '/data/courses/b/' + id + '/episodes/../../evil.ts',
+    root + 'config.yaml',
+    root + 'README.md',
+    root + 'modules/skyCycles.ts',
+    root + 'chapters/dayAndNight.ts',
+    root + 'episodes/nightSkyEpisode.ts',
+    root + 'content/index.ts',
+    root + 'content/safeObservation/config.yaml',
+    root + 'content/skyCycles/other.ts',
+    root + 'content/sky_cycles/index.ts',
+    root + 'content/skyCycles/dayAndNight/nightSkyEpisode/deeper/index.ts',
+    root + 'content/skyCycles/../../evil.ts',
+    root + 'content/skyCycles//index.ts',
   ])
-    assert.equal(validateArtifactPath(filename, identity, 'materialize'), false);
+    assert.equal(validateArtifactPath(filename, identity, 'materialize'), false, filename);
   assert.equal(validateArtifactPath(yaml, identity, 'finalize'), true);
   assert.equal(validateArtifactPath(yaml, identity, 'materialize'), false);
   assert.equal(validateArtifactPath('.github/workflows/evil.yml', identity, 'finalize'), false);
@@ -182,6 +206,7 @@ test('artifact verification enforces exact path/hash, create-only and one-file f
       head,
       identity,
       sourceBlob: blob,
+      lessonAssignments: [],
       entries: [validEntry],
     };
     assert.equal(verifyManifest(manifest, meta, root), 1);
@@ -213,27 +238,76 @@ test('artifact verification enforces exact path/hash, create-only and one-file f
   }
 });
 
-test('Stage 5 workflow refreshes the managed Lessons block using isolated GitHub permissions', () => {
+test('Stage 5 directly registers each generated Lesson UUID, slug and title', () => {
+  const assignment = {
+    id: lesson,
+    slug: 'dayNightBasics',
+    title: 'Чому змінюються день і ніч',
+    path: pkg + '/data/lessons/' + lesson.at(-1) + '/' + lesson + '/lesson.yaml',
+  };
+  const meta = { identity, operation: 'materialize' };
+  const entry = { path: assignment.path, action: 'create' };
+  const manifest = { entries: [entry], lessonAssignments: [assignment] };
+  assert.deepEqual(validateLessonAssignments(manifest, meta), [assignment]);
+  assert.throws(() => validateLessonAssignments({ ...manifest, lessonAssignments: [] }, meta));
+  assert.throws(() =>
+    validateLessonAssignments({ ...manifest, lessonAssignments: [{ ...assignment, id: 'f'.repeat(36) }] }, meta),
+  );
+  assert.throws(() =>
+    validateLessonAssignments({ ...manifest, lessonAssignments: [{ ...assignment, title: 'Bad\nTitle' }] }, meta),
+  );
+  assert.throws(() => validateLessonAssignments({ ...manifest, lessonAssignments: [assignment, assignment] }, meta));
+  assert.throws(() => validateLessonAssignments(manifest, { ...meta, operation: 'finalize' }));
+});
+
+test('one-time Lesson table uses Not started and preserves agent-added PR links', () => {
+  const assignment = {
+    id: lesson,
+    slug: 'dayNightBasics',
+    title: 'День | ніч <safe>',
+    path: pkg + '/data/lessons/' + lesson.at(-1) + '/' + lesson + '/lesson.yaml',
+  };
+  const body = [
+    '<!-- svitlo-course-flow:v1 -->',
+    '## Workflow',
+    '- [x] 4. Review Course Plan',
+    '<!-- svitlo-course-lessons:start -->',
+    '## Lessons',
+    'Lesson inventory not allocated yet.',
+    '<!-- svitlo-course-lessons:end -->',
+    'Preserve other PR content',
+  ].join('\n');
+  const registered = registerLessonRegistry(body, [assignment]);
+  const tick = String.fromCharCode(96);
+  assert(registered.includes('| Not started |'));
+  assert(registered.includes('День &#124; ніч &lt;safe&gt;'));
+  assert(registered.includes(tick + 'dayNightBasics' + tick));
+  assert(registered.includes(tick + lesson + tick));
+  assert(registered.endsWith('Preserve other PR content'));
+  const linked = registered.replace('| Not started |', '| [PR #700](https://github.com/KiT-Maverik/svitlo/pull/700) |');
+  assert.equal(registerLessonRegistry(linked, [assignment]), linked);
+  assert.throws(() => registerLessonRegistry(linked, [{ ...assignment, id: '0'.repeat(36) }]));
+  assert.throws(() => registerLessonRegistry(body.replace('<!-- svitlo-course-lessons:end -->', ''), [assignment]));
+  assert.throws(() =>
+    registerLessonRegistry(body.replace('Lesson inventory not allocated yet.', 'Agent link: #700'), [assignment]),
+  );
+  assert(renderLessonRegistry([assignment]).includes('Not started'));
+});
+
+test('Stage 5 uses a separate trusted, one-time Lesson registration job', () => {
   const workflowPath = fileURLToPath(new URL('../../../.github/workflows/course-materialization.yml', import.meta.url));
   const workflow = YAML.parse(fs.readFileSync(workflowPath, 'utf8'));
   assert.deepEqual(workflow.permissions, {});
-  assert.equal(workflow.jobs.analyze.permissions['contents'], 'read');
-  assert.match(workflow.jobs.resolve.steps.find(s => s.id === 'gate').name, /Stage 4 checklist/);
-  assert.equal(workflow.jobs.publish.permissions['contents'], 'write');
-  assert.equal(workflow.jobs['refresh-analyze'].permissions['pull-requests'], 'read');
-  assert.equal(workflow.jobs['refresh-update'].permissions['pull-requests'], 'write');
-  assert.equal(workflow.jobs['refresh-update'].permissions.contents, 'read');
-  assert.ok(workflow.jobs['refresh-analyze'].needs.includes('publish'));
-  assert.ok(workflow.jobs['refresh-update'].needs.includes('refresh-analyze'));
-  assert.equal(workflow.jobs['refresh-update'].concurrency['cancel-in-progress'], false);
-  assert.ok(workflow.jobs['refresh-update'].concurrency.group.includes('course-lessons-description-'));
-  for (const job of ['analyze', 'refresh-analyze']) {
-    const checkouts = workflow.jobs[job].steps.filter(s => s.uses === 'actions/checkout@v4');
-    assert.ok(checkouts.length >= 2);
-    assert.ok(checkouts.every(s => s.with['persist-credentials'] === false));
-  }
-  const trustedUpdater = workflow.jobs['refresh-update'].steps;
-  assert.equal(trustedUpdater.filter(s => s.uses === 'actions/checkout@v4').length, 1);
-  assert.ok(trustedUpdater.some(s => s.run?.includes('sync-course-lessons.mjs update')));
-  assert.ok(workflow.jobs['refresh-analyze'].steps.some(s => s.run?.includes('sync-course-lessons.mjs analyze')));
+  assert.equal(workflow.jobs.analyze.permissions.contents, 'read');
+  assert.equal(workflow.jobs.publish.permissions.contents, 'write');
+  assert.equal(workflow.jobs.publish.permissions['pull-requests'], 'read');
+  assert.equal(workflow.jobs['register-lessons'].permissions.contents, 'read');
+  assert.equal(workflow.jobs['register-lessons'].permissions['pull-requests'], 'write');
+  assert.equal(workflow.jobs.publish.outputs.register, '$' + '{{ steps.publish.outputs.register }}');
+  assert.ok(workflow.jobs['register-lessons'].needs.includes('publish'));
+  assert.ok(workflow.jobs['register-lessons'].steps.some(s => s.run?.includes('course-materialization.mjs register')));
+  assert.ok(!workflow.jobs['refresh-analyze'] && !workflow.jobs['refresh-update']);
+  assert.ok(
+    !fs.existsSync(fileURLToPath(new URL('../../../.github/workflows/sync-course-lessons.yml', import.meta.url))),
+  );
 });

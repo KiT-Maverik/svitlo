@@ -20,7 +20,7 @@ config:
   skills: []
   params:
     languages: [en, uk]
-    requireQuiz: false
+    quizRequiredForCompletion: false
     sections: { allowNavigation: true, allowSkipping: true, showIndexes: true }
   locale:
     title: { en: Equality }
@@ -73,11 +73,15 @@ authored source-locale dictionaries and never invents translations.
 
 **Independent editorial sidecars:** `questions.yaml` and `flashcards.yaml` may be authored directly next to `lesson.yaml` when their separate stages are approved. No `questions/` or `flashcards/` directory is required at YAML creation time. This builder never reads either sidecar, creates bank TS modules, or overwrites existing bank source directories. Embedded `config.questions` / `config.flashcards` cause an explicit error.
 
-## Required assessment Section drafts
+## Quiz and Flashcards Section source drafts
 
-The Lesson Builder already dispatches Quiz and Flashcards Sections via its ordinary recursive Section emitter. Every authored assessment Section creates sections/<slug>/index.ts with the real defineQuizSection or defineFlashcardsSection factory, existing TypeScript generics and nested content; its collection order is preserved exactly. It also places **one actual "// TODO (BLOCKER):" comment immediately above the Section export** explaining that the independently reviewed Question/Flashcard integration must be verified. This is intentionally creation-only: a UUID-shaped selection does not prove that the bank was reviewed, integrated, owned and available in the Lesson's effective locales. Only the responsible bank/Section specialist removes that comment after verifying real resources and complete Quiz params. On subsequent generate runs the builder skips all previously authored source, never clobbering verified edits.
+The accepted `lesson.yaml` preserves ordinary, ordered Quiz and Flashcards Sections including their stable UUIDs, authored copy, `content` and `production`. Root authoring-only `production.quizRequired` and `production.flashcardsRequired` are optional Methodologist decisions; no mandatory fenced inventory is consumed.
 
-A Section not required by the Methodologist is never created by the generator. The Stage 1 inventory and Stage 2 mapping reside in production.methodology and per-Section production.productionNotes, respectively, and are checked by the **separate** Stage 6 finalizer, not this draft-only builder. The existing Blocker TODOs workflow tolerates Draft PRs and blocks unresolved source blockers for Ready-to-main PRs.
+During **one-time materialization**, an unfinished assessment Section (missing reviewed UUID selection or mandatory Config params) is intentionally **not emitted** as an invalid TypeScript Configurator. It is excluded only from the generated runtime-facing `sections/**` and `sections/index.ts` collection; the complete original Section is copied into `sectionDrafts: { items, order }` of the corresponding temporary Lesson-root `questions.yaml` or `flashcards.yaml`. The independent bank workflow completes these YAML drafts and later integrates real Sections. Such bank YAML drafts are intentionally not eligible for bank materialization until their actual bank entries exist. The Lesson Builder does not generate Questions/Flashcards bank TypeScript or invent IDs.
+
+Each outstanding requirement or deferred Section produces a **real** `// TODO (BLOCKER):` immediately above the Lesson root `section` field. An already complete Section stays in the normal collection; it still requires independently verified bank resources before its own blocker can be removed. The root `config.params.quizRequiredForCompletion` always keeps its authored value, including `true`; it is never temporarily replaced with `false` or bypassed.
+
+There is no repeat/no-op regeneration: existing authored Lesson entrypoints are never overwritten. If materialization was incorrect, review and explicitly remove only known generated files before running the generator again. The trusted PR workflow uses `/lesson materialize` once and offers a separate `/lesson finalize` after fully verified committed source transfer. A successful source handoff is not a production Lesson build or Stage 6 completion.
 
 ## Generated handoffs
 
@@ -121,7 +125,7 @@ A Section not required by the Methodologist is never created by the generator. T
   not a claim that the planned translations already exist.
 
 - Real Skill imports instead of hardcoded UUID string expressions, resolved
-  strictly against the textbook's `data/skills/**/*.ts` exported `defineSkill` (canonical `*.ts` and legacy `*.data.ts` are both supported; test/declaration files are ignored)
+  strictly against the textbook's `data/skills/**/*.data.ts` exported `defineSkill`
   definitions; missing/ambiguous references are explicit diagnostics.
 - **Stage 3 file-backed source (creation-only):**
   - Authored Markdown with invariant `locale.value` string is materialized
@@ -156,6 +160,9 @@ A Section not required by the Methodologist is never created by the generator. T
   media. The Lesson Builder inserts a deterministic, reserved
   `00000000-0000-0000-0000-000000000000` filename (with a type-correct
   extension) and an adjacent `TODO(asset)` into each generated media Config.
+  Each generated media module also gets exactly one real `// TODO (BLOCKER):`
+  immediately above its export, covering any pending asset requirements
+  (including a Video poster). This comment is recognized by existing CI.
   This placeholder is **not** an assigned resource identity. A later media
   specialist replaces it in TypeScript with the real textbook-wide UUID
   filename. Draft Props can warn and preview unresolved media; Production

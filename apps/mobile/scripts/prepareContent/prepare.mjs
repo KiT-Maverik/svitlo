@@ -29,22 +29,16 @@ if (
 if (manifest.bin?.['svitlo-' + id] !== './dist/publish.mjs') {
   throw new Error('Selected textbook ' + id + ' must expose its Publish CLI');
 }
-const npm = process.platform === 'win32' ? 'npm.cmd' : 'npm';
 function run(command, args, cwd = repoRoot) {
   const result = spawnSync(command, args, { cwd, env: process.env, stdio: 'inherit' });
   if (result.error || result.status !== 0) {
     throw new Error(command + ' ' + args.join(' ') + ' failed: ' + (result.error?.message ?? result.status));
   }
 }
-for (const workspace of [
-  '@svitlo/engine',
-  '@svitlo/indexdb',
-  '@svitlo/ui-kit',
-  '@svitlo/adapter-capacitor',
-]) {
-  run(npm, ['run', 'package:build', '--workspace', workspace]);
+for (const workspace of ['@svitlo/engine', '@svitlo/indexdb', '@svitlo/ui-kit', '@svitlo/adapter-capacitor']) {
+  run(process.execPath, [join(repoRoot, 'scripts/ci/packageBuildReuse/package-build-reuse.mjs'), workspace]);
 }
-run(npm, ['run', 'package:build', '--workspace', selection.package]);
+run(process.execPath, [join(repoRoot, 'scripts/ci/packageBuildReuse/package-build-reuse.mjs'), selection.package]);
 // Resolve Engine only after building the shared workspace from a fresh checkout.
 const { assembleLessonProps } = await import('@svitlo/engine/runtime');
 const publicRoot = join(mobileRoot, 'public');

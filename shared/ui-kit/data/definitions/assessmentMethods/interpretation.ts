@@ -1,6 +1,6 @@
-import { defineAssessmentMethod } from '@svitlo/engine/build';
+import { defineAssessmentMethod, type AllLanguageCodes } from '@svitlo/engine/build';
 
-export const interpretation = defineAssessmentMethod({
+export const interpretation = defineAssessmentMethod<'interpretation', AllLanguageCodes>({
   id: '89f33fe0-5efd-4213-869a-df9ee5a6fa4c',
   slug: 'interpretation',
   title: {
@@ -18,7 +18,7 @@ export const interpretation = defineAssessmentMethod({
     id: 'Interpretasi',
     ja: '解釈',
     ka: 'ინტერპრეტაცია',
-    kk: 'Түсіндіру',
+    kk: 'Tüsındıru',
     ko: '해석',
     lt: 'Interpretavimas',
     lv: 'Interpretācija',
@@ -50,7 +50,7 @@ export const interpretation = defineAssessmentMethod({
     id: 'Menjelaskan makna konsep, pernyataan, simbol, atau representasi. Penilaian mengukur proses berpikir ini, bukan bentuk jawabannya.',
     ja: '概念、文、記号、表現が持つ意味を説明します。 評価するのは回答形式ではなく、この認知的な働きです。',
     ka: 'ცნების, დებულების, სიმბოლოს ან ინფორმაციის წარმოდგენის მნიშვნელობის ახსნა. ფასდება ეს სააზროვნო მოქმედება და არა პასუხის ფორმატი.',
-    kk: 'Ұғымның, тұжырымның, таңбаның немесе ақпаратты ұсыну тәсілінің мағынасын түсіндіру. Жауаптың пішімі емес, осы ойлау әрекеті бағаланады.',
+    kk: 'Ūğymnyñ, tūjyrymnyñ, tañbanyñ nemese aqparatty ūsynu täsılınıñ mağynasyn tüsındıru. Jauaptyñ pışımı emes, osy oilau äreketı bağalanady.',
     ko: '개념, 문장, 기호 또는 표현의 의미를 설명합니다. 평가는 답변 형식이 아니라 이러한 인지 활동을 측정합니다.',
     lt: 'Paaiškinti sąvokos, teiginio, simbolio ar informacijos vaizdavimo prasmę. Vertinamas šis mąstymo veiksmas, o ne atsakymo pateikimo forma.',
     lv: 'Izskaidrot jēdziena, apgalvojuma, simbola vai informācijas attēlojuma nozīmi. Tiek vērtēta šī domāšanas darbība, nevis atbildes forma.',

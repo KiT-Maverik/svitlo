@@ -60,7 +60,7 @@ export function readQuestionsYaml(source) {
   if (parsed.errors.length) reject('$', parsed.errors.map(error => error.message).join('; '));
   const document = parsed.toJS({ maxAliasCount: 0 });
   if (!record(document)) reject('$', 'expected a mapping');
-  const allowed = ['documentLanguage', 'questions', 'quizSelections'];
+  const allowed = ['documentLanguage', 'questions', 'quizSelections', 'sectionDrafts'];
   const unknown = Object.keys(document).filter(key => !allowed.includes(key));
   if (unknown.length) reject('$', 'unsupported top-level fields: ' + unknown.join(', '));
   if (typeof document.documentLanguage !== 'string' || !document.documentLanguage.trim())

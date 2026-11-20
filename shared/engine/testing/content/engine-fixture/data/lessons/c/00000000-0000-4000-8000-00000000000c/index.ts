@@ -52,7 +52,7 @@ export const fixtureLesson = defineLesson({
   type: 'lesson',
   skills: [],
   params: {
-    requireQuiz: true,
+    quizRequiredForCompletion: true,
     languages: ['en', 'uk'] as const,
     sections: { allowNavigation: true, allowSkipping: true, showIndexes: true },
   },

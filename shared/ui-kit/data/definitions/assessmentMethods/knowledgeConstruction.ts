@@ -1,6 +1,6 @@
-import { defineAssessmentMethod } from '@svitlo/engine/build';
+import { defineAssessmentMethod, type AllLanguageCodes } from '@svitlo/engine/build';
 
-export const knowledgeConstruction = defineAssessmentMethod({
+export const knowledgeConstruction = defineAssessmentMethod<'knowledgeConstruction', AllLanguageCodes>({
   id: '685db37b-ae0b-4d3d-a773-68b8dbfe9e72',
   slug: 'knowledgeConstruction',
   title: {
@@ -18,7 +18,7 @@ export const knowledgeConstruction = defineAssessmentMethod({
     id: 'Konstruksi pengetahuan',
     ja: '知識の構築',
     ka: 'ცოდნის აგება',
-    kk: 'Білімді құрастыру',
+    kk: 'Bılımdı qūrastyru',
     ko: '지식 구성',
     lt: 'Žinių konstravimas',
     lv: 'Zināšanu konstruēšana',
@@ -50,7 +50,7 @@ export const knowledgeConstruction = defineAssessmentMethod({
     id: 'Menciptakan sendiri contoh, model, penjelasan, atau solusi yang valid. Penilaian mengukur proses berpikir ini, bukan bentuk jawabannya.',
     ja: '妥当な例、モデル、説明、解法を自力で作ります。 評価するのは回答形式ではなく、この認知的な働きです。',
     ka: 'სწორი მაგალითის, მოდელის, ახსნის ან ამოხსნის დამოუკიდებლად შექმნა. ფასდება ეს სააზროვნო მოქმედება და არა პასუხის ფორმატი.',
-    kk: 'Дұрыс мысалды, модельді, түсіндірмені немесе шешімді өз бетінше жасау. Жауаптың пішімі емес, осы ойлау әрекеті бағаланады.',
+    kk: 'Dūrys mysaldy, modeldı, tüsındırmenı nemese şeşımdı öz betınşe jasau. Jauaptyñ pışımı emes, osy oilau äreketı bağalanady.',
     ko: '타당한 예시, 모형, 설명 또는 해결책을 스스로 만듭니다. 평가는 답변 형식이 아니라 이러한 인지 활동을 측정합니다.',
     lt: 'Savarankiškai sukurti teisingą pavyzdį, modelį, paaiškinimą arba sprendimą. Vertinamas šis mąstymo veiksmas, o ne atsakymo pateikimo forma.',
     lv: 'Patstāvīgi izveidot pareizu piemēru, modeli, skaidrojumu vai risinājumu. Tiek vērtēta šī domāšanas darbība, nevis atbildes forma.',

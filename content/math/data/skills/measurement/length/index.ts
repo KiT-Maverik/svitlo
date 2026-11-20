@@ -30,7 +30,7 @@ export const length = defineSkillGroup({
     it: 'Lunghezza',
     ja: '長さ',
     ka: 'სიგრძე',
-    kk: 'Ұзындық',
+    kk: 'Ūzyndyq',
     ko: '길이',
     lt: 'Ilgis',
     lv: 'Garums',

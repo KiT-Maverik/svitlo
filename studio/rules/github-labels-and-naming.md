@@ -2,6 +2,8 @@
 
 **Applies to:** all agents and contributors working with GitHub Issues, pull requests, branches, commits, and repository work items.
 
+**Development and production:** read [CI workflow and branch policy](./ci-workflow.md). New standalone and integration work normally targets `develop`; only release promotion targets `main`. Preserve existing PR branch ancestry.
+
 **Canonical label catalog:** [`.github/labels.json`](../../.github/labels.json). It defines the exact available names, descriptions, and colors. Consult this file before assigning labels; do not invent, rename, or approximate label names. If this guide and the catalog diverge, the catalog defines the available labels and the discrepancy must be reported.
 
 ## 1. Separate content from metadata
@@ -34,7 +36,23 @@
 | `source: *`    | Origin of the Issue                               | Issues only. Choose the factual source: `internal`, `expert-review`, `user-report`, `agent`, or `automation`. Do not confuse a project-owner request (`internal`) with a report submitted through the product's user-report UI (`user-report`).                                |
 | `attention: *` | Special action still required                     | Issues and PRs, only when applicable: `decision`, `blocked`, `manual-qa`. Remove a transient label after the underlying condition is resolved.                                                                                                                                 |
 
-Consult the catalog for exact label names and colors. Content scopes use parchment yellow (`#D9C48B`), applications teal, backend rust, shared packages blue, Studio classic amber (`#B7791F`), and repository tooling/fallback slate. The `work` values are `feature`, `architecture`, `fix`, `refactor`, `content`, `translation`, `review`, `tests`, `ci`, `docs`, and `tooling`.
+### Educational production work types
+
+Use the following `work: *` labels to classify the **educational artifact being created or edited**, independently of the PR's topology (`pr: integration` vs `pr: agent-subtask`), repository scope (`content: *`) and other kinds of work (`work: content`, `work: review`, etc.). Work labels may be used on both Issues and PRs, and do not imply a review stage, approval or readiness.
+
+| Label              | Apply when the work delivers                                                         |
+| ------------------ | ------------------------------------------------------------------------------------ |
+| `work: course`     | An authored Course definition, editorial plan or Course-specific educational content |
+| `work: lesson`     | An authored Lesson definition, methodology or canonical Lesson content               |
+| `work: questions`  | Authored Question Banks and assessment questions for Lessons                         |
+| `work: flashcards` | Authored Flashcard Banks and learning flashcards for Lessons                         |
+| `work: media`      | Static Lesson media assets, including illustrations, audio and video                 |
+
+Apply the applicable work label to new production Issues/PRs and to existing ones when their actual deliverable is verified. Multiple work labels are permitted when work genuinely spans categories: for example, `work: content` + `work: lesson` can describe both the broad activity and the specific artifact. Do **not** apply a Course's `work: course` to its Lesson or Question/Flashcard child PRs simply because of ancestry; classify each work item by its own deliverable. Do **not** label generic tooling, CI or workflow changes with these educational deliverable labels merely because they enable educational authoring.
+
+All `work: *` labels, including the five educational production types, share purple (`#7C3AED`). All `pr: *` labels continue to share green (`#16A34A`) and describe PR role or change characteristics only. The canonical `.github/labels.json` owns exact names, colors and descriptions.
+
+Consult the catalog for exact label names and colors. Content scopes use parchment yellow (`#D9C48B`), applications teal, backend rust, shared packages blue, Studio classic amber (`#B7791F`), and repository tooling/fallback slate. The `work` group includes activity labels (`feature`, `architecture`, `fix`, `refactor`, `content`, `translation`, `review`, `tests`, `ci`, `docs`, `tooling`) and the five educational deliverable labels (`course`, `lesson`, `questions`, `flashcards`, `media`).
 
 **Distinguish architecture from feature and refactor:** Use `work: architecture` for system design or architectural changes to module boundaries, contracts, data models, composition, dependency direction, or runtime data flows. Use `work: feature` for new user-facing or technical capabilities, and `work: refactor` for reorganizing implementation without intentionally changing its architecture or behavior. Architecture-only work must not be labeled `work: feature` solely because it adds technical infrastructure. Apply both labels only when the change genuinely includes both architecture work and a new capability.
 
@@ -44,12 +62,12 @@ Coding Agents **must create every PR as a GitHub Draft** (`draft: true`), whethe
 
 ## 3. Application requirements
 
-1. **At creation:** classify each new Issue and PR with the applicable scope label(s) (`content: *`, `app: *`, `backend: *`, `shared: *`, `studio`, `repo: *`) and `work: *` labels. Add relevant labels from other groups when appropriate. Creating labels in GitHub or adding names to the catalog does **not** apply them automatically to existing items.
+1. **At creation:** classify each new Issue and PR with the applicable scope label(s) (`content: *`, `app: *`, `backend: *`, `shared: *`, `studio`, `repo: *`) and `work: *` labels. Apply the applicable `work: course`, `work: lesson`, `work: questions`, `work: flashcards` or `work: media` label for the produced educational deliverable; add relevant labels from other groups when appropriate. Creating labels in GitHub or adding names to the catalog does **not** apply them automatically to existing items.
 2. **While updating:** re-evaluate labels when scope, status, blockers, or change characteristics evolve; remove stale labels. Never add mutually exclusive `priority: *` levels or both PR role labels.
 3. **For multi-agent work:** the central PR receives `pr: integration`; each agent's PR receives `pr: agent-subtask` and targets the integration branch. Preserve the mandated integration hierarchy. The actual scope/agent partition belongs in the PR body or work plan rather than boilerplate title prefixes.
 4. **For normal PRs:** omit `pr: integration` and `pr: agent-subtask`; they are not generic PR types. Assign `pr: migration` and/or `pr: breaking-change` only if the changes warrant them.
 5. **When labels cannot be applied:** report the limitation and the exact labels needed. Do not claim the Issue or PR is labeled until GitHub confirms the update.
-6. **For existing Issues/PRs:** the sync workflow renames former `area: *` labels to their `content:`, `shared:`, `app:`, `backend:`, `studio`, or `repo:` equivalents in place, retaining their Issue/PR assignments; it never deletes other labels. The backfill runs after a successful sync to add missing scope labels to historical Issues/PRs.
+6. **For existing Issues/PRs:** the sync workflow renames former `area: *` scope labels and the five previously issued `pr: course|lesson|questions|flashcards|media` labels to their canonical `work: *` or scope equivalents in place, retaining Issue/PR assignments; it does not delete unrelated labels. The backfill runs after a successful sync to add missing scope labels to historical Issues/PRs.
 
 ## 4. Naming examples
 
@@ -74,9 +92,9 @@ These are naming examples, not an instruction to rename existing PRs or replace 
 
 ## Translation production Draft PR topology
 
-For **new** entity × locale campaigns follow [Manage Translation Production](../skills/translation-workflow/manage-translation-production.skill.md): **one Draft integration PR → `main`**, labeled `pr: integration`, with an exact, immutable entity/locale/field matrix and evidence/status in its PR description. Translator and optional reviewer Draft PRs target this integration branch and carry `pr: agent-subtask`. No new fixed-scope Translation Production Issue is created as a competing tracker. Existing Translation Production Issues retain historical and active approvals and must be reconciled under [legacy recovery](../skills/translation-workflow/legacy-production-issues.md), not silently deleted or migrated.
+For **new** entity × locale campaigns follow [Manage Translation Production](../skills/translation-workflow/manage-translation-production.skill.md): **one Draft integration PR → `develop`**, labeled `pr: integration`, with an exact, immutable entity/locale/field matrix and evidence/status in its PR description. Translator and optional reviewer Draft PRs target this integration branch and carry `pr: agent-subtask`. No new fixed-scope Translation Production Issue is created as a competing tracker. Existing Translation Production Issues retain historical and active approvals and must be reconciled under [legacy recovery](../skills/translation-workflow/legacy-production-issues.md), not silently deleted or migrated.
 
-Independent review starts **only when the owner authorizes** reviewer, source PR/SHA and scope. Pre-integration review may happen on the same unmerged translator PR, or post-integration on a dedicated reviewer PR. Reviewer independence, scoped Code-derived Markdown/manifests, artifact cleanup, file ownership and actual CI/merge gates remain mandatory. Child review/merge permission never implies parent-to-`main` authorization. Ordinary GitHub Issues and PR conversation `issue_comment` commands remain supported; only the old **production status ledger** is retired for new campaigns.
+Independent review starts **only when the owner authorizes** reviewer, source PR/SHA and scope. Pre-integration review may happen on the same unmerged translator PR, or post-integration on a dedicated reviewer PR. Reviewer independence, scoped Code-derived Markdown/manifests, artifact cleanup, file ownership and actual CI/merge gates remain mandatory. Child review/merge permission never implies parent-to-`develop` authorization or release promotion to `main`. Ordinary GitHub Issues and PR conversation `issue_comment` commands remain supported; only the old **production status ledger** is retired for new campaigns.
 
 ## Lesson production Draft PR coordination
 

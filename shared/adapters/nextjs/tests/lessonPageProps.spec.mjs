@@ -11,13 +11,12 @@ test('Lesson page metadata reads the canonical Engine Props locale title', async
     type: 'lesson',
     skills: [],
     params: {
-      requireQuiz: false,
+      quizRequiredForCompletion: false,
       languages: ['en'],
       sections: { allowNavigation: true, allowSkipping: false, showIndexes: true },
     },
     locale: { title: 'Localized published lesson' },
     section: [],
-    flashcards: [],
   };
   assert.equal(Object.hasOwn(lesson, 'title'), false);
 

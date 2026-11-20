@@ -36,7 +36,7 @@ jobs:
           node-version: '24'
 
       - name: Verify the read-only audit collector
-        run: node --test scripts/gitAudit/git-audit.spec.mjs
+        run: node scripts/ci/quietRun/quiet-run.mjs -- node --test scripts/gitAudit/git-audit.spec.mjs
 
       - name: Analyze reachable objects and snapshot history
         run: node scripts/gitAudit/git-audit.mjs --output "$RUNNER_TEMP/git-audit"

@@ -2,15 +2,22 @@ name: Engine generators
 
 on:
   pull_request:
-    branches: [main]
+    branches: [main, develop, integration-branch]
+    types: [opened, reopened, synchronize, ready_for_review]
     paths:
       - 'shared/engine/generators/**'
       - 'shared/engine/scripts/lessonBuilder/**'
       - 'shared/engine/scripts/materializeCourseFlow/**'
       - 'shared/engine/scripts/validateCourseFlow/**'
       - 'shared/engine/yaml-schemas/**'
-      - 'scripts/syncCourseLessonStatus/**'
       - 'scripts/ci/courseMaterialization/**'
+      - 'scripts/ci/bankMaterialization/**'
+      - 'scripts/ci/lessonMaterialization/**'
+      - 'shared/engine/scripts/finalizeLesson/**'
+      - '.github/workflows/lesson-materialization.yml'
+      - 'shared/engine/scripts/questionsBuilder/**'
+      - 'shared/engine/scripts/flashcardBuilder/**'
+      - '.github/workflows/bank-materialization.yml'
       - '.github/workflows/course-materialization.yml'
       - 'shared/engine/scripts/sceneScaffolding/**'
       - 'shared/engine/index.ts'
@@ -18,6 +25,8 @@ on:
       - 'shared/engine/tsconfig*.json'
       - 'shared/engine/scripts/generateLessonProps/**'
       - 'shared/engine/scripts/generateCourseProps/**'
+      - 'shared/engine/scripts/generateCourseReviewArtifacts/**'
+      - 'scripts/generateTranslationReviewArtifacts/**'
       - 'shared/engine/scripts/loadAuthoredConfigurators/**'
       - 'shared/engine/scripts/generatorCliIntegration/**'
       - 'scripts/textbook-tooling/**'
@@ -35,6 +44,8 @@ concurrency:
 
 jobs:
   generator-tests:
+    # Full host/browser/generator suites only at review boundary or explicitly on demand.
+    if: github.event_name == 'workflow_dispatch' || !github.event.pull_request.draft
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
@@ -43,16 +54,16 @@ jobs:
         with:
           node-version: '24'
           cache: npm
-      - run: npm ci
+      - run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --no-audit --no-fund
       - name: Build Engine
-        run: npm run package:build --workspace @svitlo/engine
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npm run package:build --workspace @svitlo/engine
       - name: Typecheck Engine and compile generator tests
         run: |
-          npm run code:check:types --workspace @svitlo/engine
-          npx tsc -p shared/engine/tsconfig.test.json
+          node scripts/ci/quietRun/quiet-run.mjs -- npm run code:check:types --workspace @svitlo/engine
+          node scripts/ci/quietRun/quiet-run.mjs -- npx tsc -p shared/engine/tsconfig.test.json
       - name: Run targeted generator and CLI regression tests
         run: |
-          node --test \
+          node scripts/ci/quietRun/quiet-run.mjs -- node --test \
             shared/engine/.test-build/generators/lessons/*.spec.js \
             shared/engine/generators/courses/publishCourseData.spec.mjs \
             shared/engine/generators/skills/publishSkillTree.spec.mjs \
@@ -62,26 +73,33 @@ jobs:
             shared/engine/scripts/generatorCliIntegration/generatorCliIntegration.spec.mjs \
             shared/engine/scripts/lessonBuilder/lessonBuilder.spec.mjs \
             shared/engine/scripts/sceneScaffolding/sceneScaffolding.spec.mjs \
+            shared/engine/scripts/generateQuestionReviewArtifacts/generate-question-review-artifacts.spec.mjs \
+            scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.spec.mjs \
             scripts/textbook-tooling/buildTextbook/stageTextbookAssets.spec.mjs
 
       - name: Test Course Flow regression suites
         run: |
-          node --test \
+          node scripts/ci/quietRun/quiet-run.mjs -- node --test \
             shared/engine/scripts/materializeCourseFlow/materialize-course-flow.spec.mjs \
             shared/engine/scripts/validateCourseFlow/validate-course-flow.spec.mjs \
             shared/engine/scripts/courseBuilder/courseBuilder.spec.mjs \
-            scripts/syncCourseLessonStatus/synchronizer.spec.mjs \
-            scripts/syncCourseLessonStatus/course-ts-inventory.spec.mjs \
-            scripts/syncCourseLessonStatus/sync-course-lessons.spec.mjs \
-            scripts/syncCourseLessonStatus/workflow.spec.mjs \
-            scripts/ci/courseMaterialization/course-materialization.spec.mjs
+            scripts/ci/courseMaterialization/course-materialization.spec.mjs \
+            scripts/ci/bankMaterialization/bank-materialization.spec.mjs \
+            shared/engine/scripts/questionsBuilder/questionsBuilder.spec.mjs \
+            shared/engine/scripts/flashcardBuilder/flashcardBuilder.spec.mjs
+
+      - name: Test Lesson Stage 6 finalizer and PR-command security
+        run: |
+          node scripts/ci/quietRun/quiet-run.mjs -- node --test \
+            shared/engine/scripts/finalizeLesson/finalizeLesson.spec.mjs \
+            scripts/ci/lessonMaterialization/lesson-materialization.spec.mjs
 
       - name: Verify all checked-in Zod-derived YAML schemas
-        run: npm run content:check:yaml-schemas --workspace @svitlo/engine
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npm run content:check:yaml-schemas --workspace @svitlo/engine
 
       - name: Check formatting of Course Flow sources and generated schemas
         run: |
-          npx prettier --check \
+          node scripts/ci/quietRun/quiet-run.mjs -- npx prettier --check \
             shared/engine/yaml-schemas/*.json \
             studio/skills/course-workflow/*.md \
             studio/docs/entities/course.md \
@@ -90,8 +108,6 @@ jobs:
             shared/engine/scripts/courseBuilder/README.md \
             shared/engine/scripts/validateCourseFlow/README.md \
             shared/engine/scripts/materializeCourseFlow/README.md \
-            scripts/syncCourseLessonStatus/*.mjs \
-            scripts/syncCourseLessonStatus/README.md \
             scripts/ci/courseMaterialization/README.md \
             scripts/ci/courseMaterialization/*.mjs \
             .github/workflows/course-materialization.yml \
@@ -100,5 +116,4 @@ jobs:
             shared/engine/configurators/courses/defineCourse/defineCourse.schemas.ts \
             shared/engine/configurators/courses/defineCourse/courseHierarchy.spec.ts \
             studio/skills/course-workflow/course-flow.schema.json \
-            .github/workflows/sync-course-lessons.yml \
             package.json shared/engine/package.json
