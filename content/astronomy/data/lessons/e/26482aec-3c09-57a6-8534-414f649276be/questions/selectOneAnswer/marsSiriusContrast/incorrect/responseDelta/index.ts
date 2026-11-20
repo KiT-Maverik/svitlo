@@ -9,7 +9,10 @@ export const responseDelta = defineText<"responseDelta", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Обидва — планети, бо вони можуть здаватися цятками."
+      uk: "Обидва — планети, бо вони можуть здаватися цятками.",
+      en: "Both are planets because they can look like dots.",
+      pl: "Oba ciała są planetami, bo mogą wyglądać jak małe punkty.",
+      qm: "Ekisi de seyyaredir, çünki noqtalar kibi körüne bileler."
     }
   }
 });

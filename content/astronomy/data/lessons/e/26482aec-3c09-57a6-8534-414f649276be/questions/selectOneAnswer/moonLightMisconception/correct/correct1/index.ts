@@ -9,7 +9,10 @@ export const correct1 = defineText<"correct1", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Місяць — природний супутник Землі; ми бачимо сонячне світло, відбите ним, а не його власне світло."
+      uk: "Місяць — природний супутник Землі; ми бачимо сонячне світло, відбите ним, а не його власне світло.",
+      en: "The Moon is Earth's natural satellite; we see sunlight reflected by it, not its own light.",
+      pl: "Księżyc jest naturalnym satelitą Ziemi. Widzimy odbite od niego światło słoneczne, a nie jego własne światło.",
+      qm: "Ay — Yerniñ tabiiy yoldaşıdır; biz onıñ öz yarığını degil, ondan qaytqan Küneş yarığını köremiz."
     }
   }
 });

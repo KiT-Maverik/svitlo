@@ -9,7 +9,10 @@ export const prompt = defineText<"prompt", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Дитина каже: «Місяць яскравий уночі, отже він зоря». Яка відповідь найточніше виправляє помилку?"
+      uk: "Дитина каже: «Місяць яскравий уночі, отже він зоря». Яка відповідь найточніше виправляє помилку?",
+      en: "A child says, “The Moon is bright at night, so it must be a star.” Which answer most accurately corrects the mistake?",
+      pl: "Dziecko mówi: „Księżyc jasno świeci w nocy, więc jest gwiazdą”. Która odpowiedź najtrafniej poprawia ten błąd?",
+      qm: "Bir bala: «Ay gece parlaq körüne, demek ki yıldızdır», — dey. Angi cevap bu hatanı eñ doğru tüzete?"
     }
   }
 });

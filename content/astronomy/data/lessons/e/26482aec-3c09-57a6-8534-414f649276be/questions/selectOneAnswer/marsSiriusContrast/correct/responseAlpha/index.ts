@@ -9,7 +9,10 @@ export const responseAlpha = defineText<"responseAlpha", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Сіріус — зоря, що випромінює світло; Марс — планета, яку ми бачимо завдяки відбитому сонячному світлу."
+      uk: "Сіріус — зоря, що випромінює світло; Марс — планета, яку ми бачимо завдяки відбитому сонячному світлу.",
+      en: "Sirius is a star that gives off light; Mars is a planet we can see because it reflects sunlight.",
+      pl: "Syriusz jest gwiazdą, która wysyła światło; Mars jest planetą widoczną dzięki odbijaniu światła słonecznego.",
+      qm: "Sirius — öz yarığını saçqan yıldızdır; Merih ise Küneş yarığını qaytarğanı içün körüngen seyyaredir."
     }
   }
 });

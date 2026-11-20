@@ -9,7 +9,10 @@ export const incorrect2 = defineText<"incorrect2", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Місяць — планета, бо він має круглу форму."
+      uk: "Місяць — планета, бо він має круглу форму.",
+      en: "The Moon is a planet because it is round.",
+      pl: "Księżyc jest planetą, ponieważ ma okrągły kształt.",
+      qm: "Ay yuvarlaq şeklinde olğanı içün seyyaredir."
     }
   }
 });

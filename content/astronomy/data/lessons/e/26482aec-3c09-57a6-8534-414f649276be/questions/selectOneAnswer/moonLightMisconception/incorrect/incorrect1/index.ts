@@ -9,7 +9,10 @@ export const incorrect1 = defineText<"incorrect1", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Усе, що виглядає яскравим уночі, обов’язково є зорею."
+      uk: "Усе, що виглядає яскравим уночі, обов’язково є зорею.",
+      en: "Everything that looks bright at night must be a star.",
+      pl: "Wszystko, co jasno świeci w nocy, na pewno jest gwiazdą.",
+      qm: "Gece parlaq körüngen er şey mıtlaqa yıldızdır."
     }
   }
 });

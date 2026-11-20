@@ -9,7 +9,10 @@ export const responseGamma = defineText<"responseGamma", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Обидва — зорі, адже їх видно світними."
+      uk: "Обидва — зорі, адже їх видно світними.",
+      en: "Both are stars because we can see them shining.",
+      pl: "Oba ciała są gwiazdami, bo widać, że świecą.",
+      qm: "Ekisi de yıldızdır, çünki parlaq körüneler."
     }
   }
 });

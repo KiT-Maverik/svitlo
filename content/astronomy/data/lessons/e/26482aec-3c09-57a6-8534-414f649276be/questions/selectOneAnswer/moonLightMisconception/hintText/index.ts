@@ -9,7 +9,10 @@ export const hintText = defineText<"hintText", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Сам вигляд «світиться» ще не показує, чи тіло саме випромінює світло."
+      uk: "Сам вигляд «світиться» ще не показує, чи тіло саме випромінює світло.",
+      en: "Looking as though it shines does not tell us whether a body produces its own light.",
+      pl: "Sam wygląd świecącego ciała nie oznacza, że wytwarza ono własne światło.",
+      qm: "Cisimniñ «parlay» dep körünmesi onıñ öz yarığını saçıp saçmağanını bildirmey."
     }
   }
 });

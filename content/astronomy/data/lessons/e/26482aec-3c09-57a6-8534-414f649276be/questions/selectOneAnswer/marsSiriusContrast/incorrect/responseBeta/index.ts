@@ -9,7 +9,10 @@ export const responseBeta = defineText<"responseBeta", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Марс — зоря, а Сіріус — планета, бо Сіріус дуже далеко."
+      uk: "Марс — зоря, а Сіріус — планета, бо Сіріус дуже далеко.",
+      en: "Mars is a star and Sirius is a planet because Sirius is very far away.",
+      pl: "Mars jest gwiazdą, a Syriusz planetą, bo Syriusz znajduje się bardzo daleko.",
+      qm: "Merih yıldız, Sirius ise seyyaredir, çünki Sirius pek uzaqtadır."
     }
   }
 });

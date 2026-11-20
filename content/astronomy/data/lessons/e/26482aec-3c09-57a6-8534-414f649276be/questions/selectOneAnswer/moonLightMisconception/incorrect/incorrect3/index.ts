@@ -9,7 +9,10 @@ export const incorrect3 = defineText<"incorrect3", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Місяць — дуже маленька зоря, бо його видно біля Землі."
+      uk: "Місяць — дуже маленька зоря, бо його видно біля Землі.",
+      en: "The Moon is a very small star because we can see it near Earth.",
+      pl: "Księżyc jest bardzo małą gwiazdą, bo widać go blisko Ziemi.",
+      qm: "Ay pek kiçik yıldızdır, çünki onı Yerge yaqın köremiz."
     }
   }
 });

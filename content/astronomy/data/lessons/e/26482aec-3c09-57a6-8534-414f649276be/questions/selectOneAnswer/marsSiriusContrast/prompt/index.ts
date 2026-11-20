@@ -9,7 +9,10 @@ export const prompt = defineText<"prompt", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Марс і Сіріус на небі можуть здаватися світлими цятками. Яке твердження правильно розрізняє їх?"
+      uk: "Марс і Сіріус на небі можуть здаватися світлими цятками. Яке твердження правильно розрізняє їх?",
+      en: "Mars and Sirius can both look like bright dots in the sky. Which statement correctly distinguishes them?",
+      pl: "Mars i Syriusz mogą wyglądać na niebie jak jasne punkty. Które stwierdzenie poprawnie je rozróżnia?",
+      qm: "Merih ve Sirius kökte parlaq noqtalar kibi körüne bileler. Angi fikir olarnı doğru ayıra?"
     }
   }
 });

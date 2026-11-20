@@ -9,7 +9,10 @@ export const hintText = defineText<"hintText", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Згадай, хто світить власним світлом, а хто відбиває сонячне."
+      uk: "Згадай, хто світить власним світлом, а хто відбиває сонячне.",
+      en: "Recall which bodies produce their own light and which reflect sunlight.",
+      pl: "Przypomnij sobie, które ciała wysyłają własne światło, a które odbijają światło słoneczne.",
+      qm: "Angi cisimler öz yarığını saçqanını, angileri ise Küneş yarığını qaytarğanını hatırla."
     }
   }
 });
