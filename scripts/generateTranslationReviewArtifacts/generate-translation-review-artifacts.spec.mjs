@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import crypto from 'node:crypto';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
@@ -146,4 +147,62 @@ test('refuses a report output path outside ignored temp/ and does not modify the
     { cwd: root, encoding: 'utf8', env: { ...process.env, SVITLO_AGENT_REPORT_OUTPUT: root } });
   assert.notEqual(result.status, 0);
   assert.match(result.stderr, /Review output must be in repo temp/);
+});
+
+test('trusted Actions report validator rejects stale SHA, wrong scope, wrong run, modified and unlisted documents', () => {
+  const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
+  const workflow = fs.readFileSync(path.join(root, '.github/workflows/agent-ci-artifacts.yml'), 'utf8');
+  const step = workflow.split('      - name: Validate pinned manifest, scope, checksums and archive inventory\n')[1];
+  assert.ok(step, 'Report validation step must be present');
+  const match = step.match(/node --input-type=module <<'NODE'\n([\s\S]*?)\n\s+NODE/);
+  assert.ok(match, 'Trusted inline validator must be present');
+  const validator = match[1].split('\n').map(line => line.replace(/^ {10}/, '')).join('\n');
+  assert.doesNotMatch(workflow, /^  (?:publish|cleanup):/m, 'No privileged report jobs');
+  assert.doesNotMatch(workflow, /\/agent-artifacts cleanup/, 'No report cleanup command');
+  const output = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-report-validation-'));
+  const relative = 'questions/playground/c/lesson/en.md';
+  const sha = '0123456789abcdef0123456789abcdef01234567';
+  const content = '# Question and Quiz source\n';
+  const bytes = Buffer.byteLength(content);
+  const base = {
+    schemaVersion: 3, kind: 'pr-scoped-agent-ci-artifacts', sourceCommit: sha,
+    pr: 766, runId: 12345, status: 'complete', filesBytes: bytes,
+    scope: { kind: 'questions', package: 'content/playground', locale: 'en',
+      component: null, lesson: null, course: null },
+    generated: [{kind:'question',path:relative,locale:'en',
+      bytes,sha256:crypto.createHash('sha256').update(content).digest('hex'),reviewReady:true}],
+    failures: [],
+  };
+  const env = { ...process.env, SVITLO_AGENT_REPORT_OUTPUT: output,
+    SVITLO_AGENT_REPORT_PR:'766', GITHUB_RUN_ID:'12345', SOURCE_HEAD_SHA:sha,
+    REQUEST_KIND:'questions', REQUEST_BOOK:'content/playground', REQUEST_LOCALE:'en',
+    REQUEST_COMPONENT:'', REQUEST_LESSON:'', REQUEST_COURSE:'' };
+  function verify(mutate, extraFile = false) {
+    fs.rmSync(output, {recursive:true, force:true});
+    fs.mkdirSync(path.join(output, path.dirname(relative)), {recursive:true});
+    fs.writeFileSync(path.join(output, relative), content);
+    const manifest = structuredClone(base);
+    if (mutate) mutate(manifest);
+    fs.writeFileSync(path.join(output, 'manifest.json'), JSON.stringify(manifest));
+    if (extraFile) fs.writeFileSync(path.join(output, 'unlisted.txt'), 'unlisted');
+    return spawnSync(process.execPath, ['--input-type=module', '--eval', validator],
+      { cwd:root,encoding:'utf8',env });
+  }
+  try {
+    const good = verify();
+    assert.equal(good.status, 0, good.stderr);
+    for (const [label, result] of [
+      ['stale HEAD', verify(m => m.sourceCommit = 'f'.repeat(40))],
+      ['wrong scope', verify(m => m.scope.locale = 'uk')],
+      ['wrong run', verify(m => m.runId = 54321)],
+      ['modified hash', verify(m => m.generated[0].sha256 = '0'.repeat(64))],
+      ['missing file', verify(m => m.generated[0].path = 'questions/missing.md')],
+      ['unlisted file', verify(null, true)],
+      ['traversal', verify(m => m.generated[0].path = '../escaped.md')],
+    ]) {
+      assert.notEqual(result.status, 0, label + ': validator accepted invalid archive');
+    }
+  } finally {
+    fs.rmSync(output, {recursive:true,force:true});
+  }
 });
