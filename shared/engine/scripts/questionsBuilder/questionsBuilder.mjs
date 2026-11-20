@@ -92,7 +92,7 @@ export function inspectQuestions(document) {
     }
     return total + Object.keys(items).length;
   }, 0);
-  return { questionCount, questionIds };
+  return { questionCount };
 }
 
 function verifyLocation(source, root) {
