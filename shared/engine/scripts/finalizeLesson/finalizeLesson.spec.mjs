@@ -309,7 +309,7 @@ for (const types of [['quiz'], ['flashcards'], ['quiz', 'flashcards'], ['quiz', 
   );
 }
 
-test('draft handoff creates bank YAML drafts and root TODO, without invalid assessment TS modules', () =>
+test('draft handoff creates registered blocked assessment Sections and original bank YAML handoffs', () =>
   fixture(f => {
     withAssessmentPlan(f, [
       { type: 'quiz', slug: 'quizA' },
@@ -323,8 +323,18 @@ test('draft handoff creates bank YAML drafts and root TODO, without invalid asse
       ['quizA', 'cardsB'],
     );
     assert.equal(fs.readFileSync(f.source).equals(original), true);
-    for (const slug of ['quizA', 'cardsB'])
-      assert.equal(fs.existsSync(path.join(f.folder, 'sections', slug, 'index.ts')), false);
+    for (const [slug, factory] of [['quizA', 'defineQuizSection'], ['cardsB', 'defineFlashcardsSection']]) {
+      const filename = path.join(f.folder, 'sections', slug, 'index.ts');
+      assert.equal(fs.existsSync(filename), true, 'Missing assessment Section ' + slug);
+      const section = fs.readFileSync(filename, 'utf8');
+      assert.match(section, new RegExp(factory));
+      assert.match(section, /TODO \(BLOCKER\):/);
+      assert.match(section, /feedc0de-[0-9a-f]{4}-8[0-9a-f]{3}-a[0-9a-f]{3}-[0-9a-f]{12}/);
+      assert.ok(scanSource('sections/' + slug + '/index.ts', section).length >= 2);
+    }
+    const sectionIndex = fs.readFileSync(path.join(f.folder, 'sections/index.ts'), 'utf8');
+    for (const slug of ['intro', 'quizA', 'cardsB'])
+      assert.ok(sectionIndex.includes('"' + slug + '"'), 'Assessment order must retain ' + slug);
     const root = fs.readFileSync(path.join(f.folder, 'index.ts'), 'utf8');
     assert.equal(scanSource('index.ts', root).length, 2);
     const quiz = yaml.parse(fs.readFileSync(path.join(f.folder, 'questions.yaml'), 'utf8'));
