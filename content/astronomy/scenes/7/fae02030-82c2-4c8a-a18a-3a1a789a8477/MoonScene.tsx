@@ -35,6 +35,11 @@ function MoonDisk({ phase, description, cloud = false }: {
 }
 
 export function MoonScene({ locales }: MoonSceneProps) {
+  // TODO (BLOCKER): Supply real offline Ukrainian speech clips and wire
+  // listen/repeat/pause controls for each dated disk, question, answer,
+  // cloud state, explanation and feedback in the approved moonScene spec.
+  // Verify spoken phase dates, device offline use and nonreading-learner flow;
+  // textual/SR labels alone do not satisfy required optional audio access.
   const t = (key: string) => sceneText(locales, key);
   const [state, dispatch] = useReducer(moonReducer, initialMoonState);
   const first = state.view === 'both' || state.view === 'first';
