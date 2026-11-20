@@ -11,7 +11,8 @@ export const otherChoice3 = defineText<"otherChoice3", LessonLanguages>({
     value: {
       uk: "Попросити друга зробити проєкцію без нагляду дорослого.",
       en: "Ask a friend to make a projection without adult supervision.",
-      pl: "Poprosić kolegę, żeby przygotował projekcję bez nadzoru dorosłego."
+      pl: "Poprosić kolegę, żeby przygotował projekcję bez nadzoru dorosłego.",
+      qm: "Büyüklerniñ nezareti olmadan arqadaşından proyeksiya yapmasını istemek."
     }
   }
 });

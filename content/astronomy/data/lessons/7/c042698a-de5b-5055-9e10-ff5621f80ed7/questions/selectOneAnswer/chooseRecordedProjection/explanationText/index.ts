@@ -11,7 +11,8 @@ export const explanationText = defineText<"explanationText", LessonLanguages>({
     value: {
       uk: "Готовий запис проєкції можна безпечно розглядати без прямого погляду на Сонце. Самостійно виготовляти чи налаштовувати сонячні пристрої дітям не потрібно. Через отвір проєктора на Сонце дивитися не можна.",
       en: "You can safely watch an existing recording of a projection without looking directly at the Sun. Children do not need to build or adjust solar-viewing equipment themselves. You must not look at the Sun through an opening in a projector.",
-      pl: "Można bezpiecznie obejrzeć gotowe nagranie projekcji, nie patrząc bezpośrednio na Słońce. Dzieci nie powinny samodzielnie budować ani ustawiać przyrządów do obserwacji Słońca. Nie wolno patrzeć na Słońce przez otwór projektora."
+      pl: "Można bezpiecznie obejrzeć gotowe nagranie projekcji, nie patrząc bezpośrednio na Słońce. Dzieci nie powinny samodzielnie budować ani ustawiać przyrządów do obserwacji Słońca. Nie wolno patrzeć na Słońce przez otwór projektora.",
+      qm: "Proyeksiyanıñ azır videosını Küneşke doğrudan-doğru baqmayıp telükesiz seyir etmek mümkün. Balalarğa Küneşni körsetken cihazlarnı özleri yapmaq ya da ayarlamaq kerek degil. Proyektornıñ teşiginden Küneşke baqmaq olmaz."
     }
   }
 });

@@ -67,12 +67,14 @@ export const safeSkyChoices = defineQuizSection<"safeSkyChoices", typeof content
     title: {
       uk: "Перевір безпечний вибір",
       en: "Check your safe choices",
-      pl: "Sprawdź, czy wybierasz bezpiecznie"
+      pl: "Sprawdź, czy wybierasz bezpiecznie",
+      qm: "Telükesiz seçimni tekşir"
     },
     navigationLabel: {
       uk: "Перевір знання",
       en: "Check your knowledge",
-      pl: "Sprawdź wiedzę"
+      pl: "Sprawdź wiedzę",
+      qm: "Bilgileriñni tekşir"
     }
   },
   content

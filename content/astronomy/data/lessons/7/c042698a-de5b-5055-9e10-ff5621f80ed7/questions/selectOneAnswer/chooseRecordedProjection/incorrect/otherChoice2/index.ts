@@ -11,7 +11,8 @@ export const otherChoice2 = defineText<"otherChoice2", LessonLanguages>({
     value: {
       uk: "Подивитися на Сонце крізь отвір пристрою, схожого на той, що описали.",
       en: "Look at the Sun through an opening in a device like the one described.",
-      pl: "Spojrzeć na Słońce przez otwór urządzenia podobnego do opisanego."
+      pl: "Spojrzeć na Słońce przez otwór urządzenia podobnego do opisanego.",
+      qm: "Tarif etilgen cihazğa oşağan bir cihaznıñ teşiginden Küneşke baqmaq."
     }
   }
 });
