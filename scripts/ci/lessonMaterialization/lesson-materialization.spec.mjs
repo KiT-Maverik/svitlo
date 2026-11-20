@@ -426,7 +426,10 @@ test('workflow runs trusted default branch code only and isolates publish permis
   );
   assert.match(installStep?.run ?? '', /--ignore-scripts/);
   assert.equal(installStep?.env?.GH_TOKEN, undefined);
-  assert(publishSteps.indexOf(installStep) < publishSteps.findIndex(step => step.run?.includes('lesson-materialization.mjs publish')));
+  assert(
+    publishSteps.indexOf(installStep) <
+      publishSteps.findIndex(step => step.run?.includes('lesson-materialization.mjs publish')),
+  );
   assert(publishSteps.some(step => step.run?.includes('lesson-materialization.mjs publish')));
   assert(!workflow.jobs['register-lessons']);
 });
