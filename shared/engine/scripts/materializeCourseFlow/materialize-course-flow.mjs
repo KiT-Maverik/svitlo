@@ -196,6 +196,30 @@ export function technicalFromEditorial(plan, resolveLesson = () => null) {
           newLessons.set(child.lessonId, { node: structuredClone(child), placement });
         }
         const source = resolveLesson(child.lessonId);
+        if (child.lessonId && source) {
+          if (Array.isArray(source.skills)) {
+            const knownSkills = new Set(source.skills.map(value => value.toLowerCase()));
+            for (const skill of child.skills) {
+              if (!knownSkills.has(skill.toLowerCase())) {
+                fail(placement + '/skills: reused Lesson ' + child.lessonId + ' does not teach verified Skill ' + skill);
+              }
+            }
+          }
+          if (Array.isArray(source.languages)) {
+            for (const language of plan.supportedLanguages) {
+              if (!source.languages.includes(language)) {
+                fail(placement + '/lessonId: reused Lesson ' + child.lessonId + ' does not support Course locale ' + language);
+              }
+            }
+          }
+        }
+        if (child.locale?.title && record(child.locale.title)) {
+          for (const code of Object.keys(child.locale.title)) {
+            if (!plan.supportedLanguages.includes(code)) {
+              fail(placement + '/locale/title/' + code + ': override locale is outside Course supportedLanguages');
+            }
+          }
+        }
         const config = { type: 'lesson', slug, lessonId: child.lessonId };
         if (source) config.source = source;
         items[slug] = { config };
@@ -303,7 +327,13 @@ function lessonSourceCoordinates(root, pkg, courseId, lessonId, index) {
     );
   if (candidates.length !== 1) return null;
   const courseFolder = path.posix.join(pkg, 'data/courses', courseId.at(-1), courseId);
-  return { path: path.posix.relative(courseFolder, entries[0].source), export: candidates[0] };
+  return {
+    path: path.posix.relative(courseFolder, entries[0].source),
+    export: candidates[0],
+    slug: entries[0].slug,
+    skills: entries[0].skills,
+    languages: entries[0].languages,
+  };
 }
 /**
  * Extract the nested Episode Config without creating a second Course.
