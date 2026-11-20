@@ -472,7 +472,7 @@ test('Course-only Lesson patches remain scoped to existing Lesson placements', (
   assert(!original.includes('spaceCourse.build.overrides('));
 });
 
-test('Course-only override rejects unsupported identities, new Lesson patches and raw added Sections', () => {
+test('Course-only override rejects unsupported identities and new Lesson patches', () => {
   const withEdit = structuredClone(plan);
   withEdit.content.items.review.params = { sections: { allowSkipping: false } };
 
@@ -483,16 +483,6 @@ test('Course-only override rejects unsupported identities, new Lesson patches an
   );
   delete withEdit.content.items.review.params.languages;
 
-  withEdit.content.items.review.section = {
-    additionalItems: {
-      addedSection: { type: 'content', slug: 'addedSection' },
-    },
-  };
-  assert.throws(
-    () => renderModularCourse(technicalFromEditorial(withEdit), 'content/math'),
-    /review\/section\/additionalItems require typed standalone Section configurators/,
-  );
-  delete withEdit.content.items.review.section;
   delete withEdit.content.items.review.lessonId;
   withEdit.content.items.review.methodology = 'New Lesson needs independently authored methodology.';
   assert.throws(
@@ -528,5 +518,75 @@ test('Reuse source metadata must cover requested Skills and Course locales witho
   assert.throws(
     () => technicalFromEditorial(changed, () => actualLesson),
     /locale\/title\/pl: override locale is outside Course supportedLanguages/,
+  );
+});
+
+test('Course-local Section additions render real typed configurators and nested ContentBlocks', () => {
+  const configured = structuredClone(plan);
+  configured.content.items.review.section = {
+    additionalItems: {
+      fieldNotes: {
+        id: '3f648844-4951-4f17-99d2-6dbe5fbb016e',
+        slug: 'fieldNotes',
+        type: 'content',
+        params: {},
+        locale: {
+          title: { en: 'Field notes' },
+          navigationLabel: { en: 'Notes' },
+        },
+        content: {
+          items: {
+            paragraph: {
+              id: '9b3b5b32-5e02-4653-a4ac-c4fdf734586d',
+              slug: 'paragraph',
+              type: 'markdown',
+              params: {},
+              locale: { value: { en: 'Observe the sky.' } },
+            },
+          },
+          order: ['paragraph'],
+        },
+      },
+    },
+    order: ['fieldNotes'],
+  };
+  const output = renderModularCourse(technicalFromEditorial(configured), 'content/math').get('index.ts');
+  assert.match(output, /import \{[^}]*defineContentSection[^}]*defineMarkdown[^}]*\} from '@svitlo\/engine\/build';/);
+  assert.match(output, /fieldNotes:\s*defineContentSection\(/);
+  assert.match(output, /paragraph:\s*defineMarkdown\(/);
+  assert.match(output, /order:\s*\[\s*"fieldNotes"/);
+  assert.match(output, /spaceCourse\.build\.overrides\(/);
+  assert.equal(ts.createSourceFile('CourseOverride.ts', output, ts.ScriptTarget.Latest, true).parseDiagnostics.length, 0);
+  assert(!output.includes('raw YAML'));
+  assert(!output.includes('config.yaml'));
+});
+
+test('Course-local Section additions reject missing canonical Engine fields and mismatched keys', () => {
+  const configured = structuredClone(plan);
+  configured.content.items.review.section = {
+    additionalItems: { fieldNotes: { type: 'content', slug: 'fieldNotes' } },
+    order: ['fieldNotes'],
+  };
+  assert.throws(
+    () => technicalFromEditorial(configured),
+    /section\/additionalItems\/fieldNotes.*Engine Section schema/,
+  );
+  configured.content.items.review.section.additionalItems.fieldNotes = {
+    id: '3f648844-4951-4f17-99d2-6dbe5fbb016e',
+    slug: 'wrongSlug',
+    type: 'content',
+    params: {},
+    locale: { title: { en: 'Field notes' }, navigationLabel: { en: 'Notes' } },
+    content: { items: {}, order: [] },
+  };
+  assert.throws(
+    () => technicalFromEditorial(configured),
+    /section\/additionalItems\/fieldNotes\/slug: must match/,
+  );
+  configured.content.items.review.section.additionalItems.fieldNotes.slug = 'fieldNotes';
+  delete configured.content.items.review.section.order;
+  assert.throws(
+    () => technicalFromEditorial(configured),
+    /section\/order: full Section order is required/,
   );
 });
