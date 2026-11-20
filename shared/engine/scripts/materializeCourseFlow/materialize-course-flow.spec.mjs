@@ -295,8 +295,14 @@ test('approved Course Episode generates a standalone typed Episode module with i
           content: {
             items: {
               greeting: { type: 'markdown', slug: 'greeting', locale: { value: { en: 'Look up at the sky' } } },
+              illustration: {
+                type: 'image',
+                slug: 'illustration',
+                params: { fill: true, aspectRatio: 1.5 },
+                locale: { alt: { en: 'Diagram of the sky' } },
+              },
             },
-            order: ['greeting'],
+            order: ['greeting', 'illustration'],
           },
         },
       },
@@ -311,6 +317,9 @@ test('approved Course Episode generates a standalone typed Episode module with i
   const episodeCode = artifacts.files.get('content/story/index.ts');
   assert(episodeCode.includes('defineEpisode<'));
   assert(episodeCode.includes('defineMarkdown('), 'preserve authored nested Episode content');
+  assert(episodeCode.includes('defineImage('), 'preserve authored Episode image Config');
+  assert(episodeCode.includes('TODO(asset)'), 'missing Episode media retains an explicit source blocker');
+  assert(episodeCode.includes('00000000-0000-0000-0000-000000000000.webp'));
   assert(episodeCode.includes('export const story = defineEpisode<"story", CourseLanguages, typeof section.items>'));
   assert(
     episodeCode.includes(

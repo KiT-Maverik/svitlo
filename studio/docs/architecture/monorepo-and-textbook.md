@@ -1,8 +1,8 @@
 # Svitlo — Monorepo & Independent Textbooks
 
-**Canonical implementation guide (Stage 8, 2026-10-29).** Always check manifests and CI for the commit under review. [Historical migration log](../../Monorepo%20Migration.md) is **not** a current directory map. [Final audit and remaining debt](./migration-stage-8-audit.md).
+**Canonical implementation guide.** Always check current manifests, code and CI for the commit under review. [Historical migration log](../../Monorepo%20Migration.md) preserves the original migration stages but is **not** a current directory map.
 
-**2026-11-20 Web selection update (PR #734, Draft until verified):** `apps/web` is the
+**2026-11-20 Web selection update (merged PR #734):** `apps/web` is the
 universal Next.js host for an explicitly selected compiled content package. The
 build input `SVITLO_TEXTBOOK` resolves the installed package's public npm
 exports, optional Scenes/styles and Publish CLI. No package is selected by

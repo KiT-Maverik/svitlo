@@ -2,7 +2,7 @@
 
 > **Current Lesson flow:** [Create Lesson Flow](./create-lesson-flow.skill.md), Stage 6, owns **only source materialization and accessibility/offline source audits plus validation**. Scene implementation is a **separately authorized specialist resource-blocker task outside Stage 6**, normally assigned to a human or Scene specialist and required before final QA/Ready. New mandatory Lesson Production Issues and prior `content.yaml` approval gates are superseded. Real Scene specs, typed code, accessibility and testing remain essential; existing Issue approvals must be reconciled, never discarded.
 
-**Persona:** [Coding Agent](../../personas/coding-agent.persona.md) — read it fully before any work. Also read applicable root/package `AGENTS.md`, [Lesson Production](../../docs/architecture/lesson-production-workflow.md), [Lesson Content](../../docs/entities/lesson-content.md), accessibility/offline architecture and the **actual current** Engine schemas and UI Kit renderer, textbook Scene registry, tests and package scripts.
+**Persona:** [Coding Agent](../../personas/coding-agent.persona.md) — read it fully before any work. Also read applicable root/package `AGENTS.md`, [Lesson entity](../../docs/entities/lesson.md), [Lesson Content](../../docs/entities/lesson-content.md), accessibility/offline architecture and the **actual current** Engine schemas and UI Kit renderer, textbook Scene registry, tests and package scripts.
 
 **Purpose:** Implement, integrate and test one or a batch of bespoke React Scenes from already-approved Educational Screenwriter specifications. This is an engineering specialization, **not the YAML-to-typed-Lesson generator**.
 
