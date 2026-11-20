@@ -125,7 +125,14 @@ jobs:
                 }
                 textbook = parts[3];
                 locale = parts[4] || '';
-              } else if (kind === 'questions' || kind === 'flashcards') {
+              } else if (kind === 'flashcards') {
+                if (parts.length !== 6) {
+                  throw Error('Usage: /agent-artifacts generate flashcards content/<book> <lesson-uuid> <locale>');
+                }
+                textbook = parts[3];
+                lesson = parts[4].toLowerCase();
+                locale = parts[5];
+              } else if (kind === 'questions') {
                 if (![4, 5, 6].includes(parts.length)) {
                   throw Error('Usage: /agent-artifacts generate ' + kind + ' content/<book> [lesson-uuid] [locale]');
                 }
@@ -175,6 +182,9 @@ jobs:
               throw Error('Only Skills, Lessons, Questions, Flashcards and Courses require content/<book>');
             }
             if (locale && !/^[a-z]{2,4}$/.test(locale)) throw Error('Invalid locale');
+            if (kind === 'flashcards' && (!lesson || !locale)) {
+              throw Error('Flashcard reference requires one Lesson UUID and one locale');
+            }
             if (component && (kind !== 'ui-kit' || !/^[A-Za-z][A-Za-z0-9]*$/.test(component))) {
               throw Error('Invalid UI Kit component');
             }
