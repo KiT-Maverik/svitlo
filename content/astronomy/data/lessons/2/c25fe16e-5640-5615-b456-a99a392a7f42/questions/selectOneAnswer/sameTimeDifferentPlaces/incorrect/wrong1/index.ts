@@ -9,7 +9,10 @@ export const wrong1 = defineText<"wrong1", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Якщо Сонце світить, у всіх місцях Землі має бути день."
+      uk: "Якщо Сонце світить, у всіх місцях Землі має бути день.",
+      en: "If the Sun is shining, it must be daytime everywhere on Earth.",
+      pl: "Jeśli Słońce świeci, to wszędzie na Ziemi musi być dzień.",
+      qm: "Küneş ışıq bere ise, Yerniñ er yerinde kündüz olmaq kerek."
     }
   }
 });

@@ -9,7 +9,10 @@ export const prompt = defineText<"prompt", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Біля одного будинку вдень було світло, а згодом настала ніч. Яка зміна це пояснює?"
+      uk: "Біля одного будинку вдень було світло, а згодом настала ніч. Яка зміна це пояснює?",
+      en: "It was light near a house during the day, but later night came. What change explains this?",
+      pl: "W ciągu dnia obok pewnego domu było jasno, ale później zapadła noc. Jaka zmiana to wyjaśnia?",
+      qm: "Bir evniñ yanında kündüz yarıq edi, soñra gece oldı. Bunı angi deñişiklik añlata?"
     }
   }
 });

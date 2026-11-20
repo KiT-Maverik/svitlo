@@ -9,7 +9,10 @@ export const wrong2 = defineText<"wrong2", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Земля за кілька годин облетіла навколо Сонця."
+      uk: "Земля за кілька годин облетіла навколо Сонця.",
+      en: "Earth travelled all the way around the Sun in just a few hours.",
+      pl: "Ziemia okrążyła Słońce w ciągu kilku godzin.",
+      qm: "Yer bir qaç saat içinde Küneş etrafında bir kere aylanıp çıqtı."
     }
   }
 });

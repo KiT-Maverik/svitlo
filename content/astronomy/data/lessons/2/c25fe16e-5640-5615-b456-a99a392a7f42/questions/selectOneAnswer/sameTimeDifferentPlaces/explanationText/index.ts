@@ -9,7 +9,10 @@ export const explanationText = defineText<"explanationText", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Сонце освітлює не всю Землю одночасно. Місце К зараз на освітленому боці, а місце Л — на неосвітленому."
+      uk: "Сонце освітлює не всю Землю одночасно. Місце К зараз на освітленому боці, а місце Л — на неосвітленому.",
+      en: "The Sun does not light up all of Earth at once. K is currently on the sunlit side, while L is on the unlit side.",
+      pl: "Słońce nie oświetla całej Ziemi jednocześnie. Miejsce K znajduje się teraz po oświetlonej stronie, a miejsce L — po nieoświetlonej.",
+      qm: "Küneş aynı vaqıtta bütün Yerni aydınlatmay. K yeri şimdi ışıq tüşken tarafta, L yeri ise ışıq tüşmegen tarafta."
     }
   }
 });

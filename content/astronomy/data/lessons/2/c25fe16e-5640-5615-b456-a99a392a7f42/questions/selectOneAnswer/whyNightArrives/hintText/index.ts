@@ -9,7 +9,10 @@ export const hintText = defineText<"hintText", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Уяви кульку з позначкою будинку й лампу. Що має змінитися, щоб біля будинку стало темніше?"
+      uk: "Уяви кульку з позначкою будинку й лампу. Що має змінитися, щоб біля будинку стало темніше?",
+      en: "Imagine a ball marked with a house and a lamp. What would need to change for it to become darker near the house?",
+      pl: "Wyobraź sobie kulę z zaznaczonym domem i lampę. Co musi się zmienić, żeby w pobliżu domu zrobiło się ciemniej?",
+      qm: "Üzerinde ev belgisi olğan küreni ve lampanı tasavur et. Ev yanında qarañğı olmaq içün ne deñişmeli?"
     }
   }
 });

@@ -9,7 +9,10 @@ export const wrong1 = defineText<"wrong1", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Сонце перестало світити всій Землі до ранку."
+      uk: "Сонце перестало світити всій Землі до ранку.",
+      en: "The Sun stopped shining on all of Earth until morning.",
+      pl: "Słońce przestało świecić na całą Ziemię aż do rana.",
+      qm: "Küneş sabağa qadar bütün Yerge ışıq bermege toqtadı."
     }
   }
 });

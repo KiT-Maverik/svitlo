@@ -9,7 +9,10 @@ export const wrong2 = defineText<"wrong2", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Сонце вимкнулося тільки для місця Л."
+      uk: "Сонце вимкнулося тільки для місця Л.",
+      en: "The Sun has switched off only for place L.",
+      pl: "Słońce zgasło tylko dla miejsca L.",
+      qm: "Küneş faqat L yeri içün sönip qaldı."
     }
   }
 });

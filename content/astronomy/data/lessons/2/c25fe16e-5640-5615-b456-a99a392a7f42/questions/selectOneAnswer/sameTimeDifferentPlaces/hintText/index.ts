@@ -9,7 +9,10 @@ export const hintText = defineText<"hintText", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Уяви кульку й ліхтарик. Поміркуй, що відрізняє два місця, якщо в них одночасно по-різному світло."
+      uk: "Уяви кульку й ліхтарик. Поміркуй, що відрізняє два місця, якщо в них одночасно по-різному світло.",
+      en: "Imagine a ball and a flashlight. Think about what makes the two places receive different light at the same time.",
+      pl: "Wyobraź sobie kulę i latarkę. Pomyśl, dlaczego w tych dwóch miejscach o tej samej porze jest inaczej jasno.",
+      qm: "Bir küre ve fenerni tasavur et. Eki yerde aynı vaqıtta ne içün farqlı ışıq olğanını tüşün."
     }
   }
 });

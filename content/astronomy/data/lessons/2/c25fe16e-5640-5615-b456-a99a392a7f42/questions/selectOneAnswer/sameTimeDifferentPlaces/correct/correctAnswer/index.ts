@@ -9,7 +9,10 @@ export const correctAnswer = defineText<"correctAnswer", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Місце К повернене до Сонця, а місце Л — від Сонця."
+      uk: "Місце К повернене до Сонця, а місце Л — від Сонця.",
+      en: "Place K faces the Sun, while place L faces away from it.",
+      pl: "Miejsce K jest zwrócone ku Słońcu, a miejsce L — w przeciwną stronę.",
+      qm: "K yeri Küneşke doğru qaratılğan, L yeri ise Küneşten ters tarafqa qaratılğan."
     }
   }
 });

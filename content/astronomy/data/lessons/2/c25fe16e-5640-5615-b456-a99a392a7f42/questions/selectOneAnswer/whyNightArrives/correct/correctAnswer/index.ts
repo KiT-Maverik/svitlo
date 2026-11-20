@@ -9,7 +9,10 @@ export const correctAnswer = defineText<"correctAnswer", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Будинок разом із Землею повернувся від сонячного світла."
+      uk: "Будинок разом із Землею повернувся від сонячного світла.",
+      en: "The house moved with Earth to face away from the sunlight.",
+      pl: "Dom wraz z Ziemią obrócił się w stronę przeciwną do światła słonecznego.",
+      qm: "Ev Yer ile beraber Küneş ışığından ters tarafqa aylanıp keçti."
     }
   }
 });
