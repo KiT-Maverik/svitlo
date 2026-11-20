@@ -269,7 +269,7 @@ test('generator write/check is deterministic and rejects stale files', () => {
   try {
     assert.throws(() => generateYamlSchemas('--check', root), /Outdated YAML JSON Schema/);
     const written = generateYamlSchemas('--write', root);
-    assert.equal(written.length, 10);
+    assert.equal(written.length, 9);
     assert.deepEqual(generateYamlSchemas('--write', root), written);
     assert.deepEqual(generateYamlSchemas('--check', root), written);
     // Formatting is not semantic schema drift: Prettier may compact arrays.
