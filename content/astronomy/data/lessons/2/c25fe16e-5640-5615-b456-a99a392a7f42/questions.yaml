@@ -1,0 +1,61 @@
+documentLanguage: uk
+questions: {}
+sectionDrafts:
+  items:
+    rotationAndIlluminationQuiz:
+      config:
+        id: 622e900a-4f7e-47dc-9c3e-4946444cea9f
+        slug: rotationAndIlluminationQuiz
+        type: quiz
+        params: {}
+        locale:
+          title:
+            uk: "Чому змінюються день і ніч: перевірка"
+          navigationLabel:
+            uk: Перевір знання
+        content:
+          items:
+            quizIntro:
+              config:
+                id: c96a7b8f-dce5-4b59-97f5-dd7ed2720464
+                slug: quizIntro
+                type: markdown
+                params: {}
+                locale:
+                  value:
+                    uk: >-
+                      **Перевір своє пояснення дня й ночі.** У запитаннях
+                      потрібно буде зрозуміти, який бік Землі освітлений, і
+                      передбачити, що зміниться після її повороту.
+
+
+                      Можна поміркувати не поспішаючи. Важливо пояснити причину,
+                      а не просто впізнати картинку.
+              production:
+                purpose: Вступний текст до запланованого Quiz, без самостійного створення банку
+                  питань.
+          order:
+            - quizIntro
+      production:
+        purpose: "Один обов'язковий Quiz за Methodologist assessmentPlan
+          rotationAndIllumination: причинне тлумачення та передбачення."
+        pedagogicalIntent: Зібрати валідні свідчення за Skill
+          faa8f11a-cc06-42c9-8864-8151732e690a із застосуванням
+          AssessmentMethodKey interpretation і prediction. Формувальна сцена не
+          замінює незалежного оцінювання.
+        productionNotes: >-
+          ЗАПЛАНОВАНО / НЕ ГОТОВО ДО BUILDER-ПУБЛІКАЦІЇ. У config.params
+          навмисно залишено {}: реальний Engine Quiz вимагає
+          selection.questionIds та політик
+          layout/feedbackMode/interaction/results; жодних Question UUID наразі
+          немає. Assessment Architect у незалежному Questions Flow має створити
+          й рецензувати банк, обґрунтувати selection, scoring, retries, feedback
+          і accessibility; після інтеграції Stage 6 підставить справжні UUID та
+          завершить типізований Quiz. Немає фальшивих ID, порожнього
+          selection.questionIds чи вигаданих порогів.
+
+          Assessment intent: rotationAndIllumination
+
+          Bank integration: pending
+  order:
+    - rotationAndIlluminationQuiz
