@@ -70,11 +70,16 @@ test('complete independent bank is generated without requiring a Quiz Section', 
   const { files } = renderQuestions(item, lessonId);
   assert.ok(files.has('questions/index.ts'));
   for (const slug of ['firstQuestion', 'secondQuestion']) {
-    const code = files.get('questions/selectOneAnswer/' + slug + '/index.ts');
+    const code = files.get('questions/selectOneAnswer/' + slug + '.ts');
     assert.match(code, /defineSelectOneAnswer/);
+    assert.equal(files.has('questions/selectOneAnswer/' + slug + '/index.ts'), false);
   }
   assert.match(files.get('questions/index.ts'), /firstQuestion/);
   assert.match(files.get('questions/index.ts'), /secondQuestion/);
+  const typeIndex = files.get('questions/selectOneAnswer/index.ts');
+  assert.match(typeIndex, /export \{ firstQuestion \} from "\.\/firstQuestion"/);
+  assert.match(typeIndex, /export \{ secondQuestion \} from "\.\/secondQuestion"/);
+  assert.match(files.get('questions/index.ts'), /from "\.\/selectOneAnswer"/);
   assert.ok(
     [...files].every(
       ([, content]) =>

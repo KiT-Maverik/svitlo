@@ -17,6 +17,7 @@ on:
       - 'shared/engine/scripts/finalizeLesson/**'
       - '.github/workflows/lesson-materialization.yml'
       - 'shared/engine/scripts/questionsBuilder/**'
+      - 'shared/engine/scripts/generateQuestionReviewArtifacts/**'
       - 'shared/engine/scripts/flashcardBuilder/**'
       - '.github/workflows/bank-materialization.yml'
       - '.github/workflows/course-materialization.yml'
@@ -89,7 +90,7 @@ jobs:
             shared/engine/scripts/generatorCliIntegration/generatorCliIntegration.spec.mjs \
             shared/engine/scripts/lessonBuilder/lessonBuilder.spec.mjs \
             shared/engine/scripts/sceneScaffolding/sceneScaffolding.spec.mjs \
-            shared/engine/scripts/generateQuestionReviewArtifacts/generate-question-review-artifacts.spec.mjs \
+            shared/engine/scripts/generateQuestionReviewArtifacts/*.spec.mjs \
             shared/engine/scripts/generateFlashcardReviewArtifacts/generate-flashcard-review-artifacts.spec.mjs \
             scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.spec.mjs \
             scripts/textbook-tooling/buildTextbook/stageTextbookAssets.spec.mjs

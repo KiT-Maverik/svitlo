@@ -740,7 +740,10 @@ export function renderLessonModules(lesson, language, options = {}) {
     }
     const content = fields.length ? '{\n' + fields.join(',\n') + '\n}' : '{}';
     const name = symbolFor(node, context);
-    const importHead = moduleImports(directory, imports, factory, true, false);
+    // Question leaves live at <type>/<slug>.ts; nested blocks remain under <slug>/.
+    const moduleDirectory = questionBankOnly && context === 'question'
+      ? path.posix.dirname(directory) : directory;
+    const importHead = moduleImports(moduleDirectory, imports, factory, true, false);
     // Every assessment Section starts blocked until its independent bank is verified.
     // UUID-shaped strings alone are not evidence of approval; do not auto-remove the blocker.
     const assessmentBlocker =
@@ -772,7 +775,10 @@ export function renderLessonModules(lesson, language, options = {}) {
       '(' +
       content +
       ');\n';
-    put(join(directory, 'index.ts'), result);
+    const destination = questionBankOnly && context === 'question'
+      ? path.posix.join(moduleDirectory, authored.slug + '.ts')
+      : join(directory, 'index.ts');
+    put(destination, result);
   }
 
   function emitCollection(field, context, directory) {
@@ -793,12 +799,33 @@ export function renderLessonModules(lesson, language, options = {}) {
   if (questionBankOnly) {
     if (!record(filtered.questions) || !Object.keys(filtered.questions).length)
       throw new Error('questions.yaml:questions: expected nonempty Question type groups');
-    emitCollection('questions', 'questionBank', 'questions');
-    return new Map(
-      [...files.entries()].sort((a, b) =>
-        a[0] === 'questions/index.ts' ? 1 : b[0] === 'questions/index.ts' ? -1 : a[0].localeCompare(b[0]),
-      ),
-    );
+    // The only bank shape is questions/index.ts -> questions/<type>/index.ts
+    // -> questions/<type>/<slug>.ts. A slug directory may contain nested blocks.
+    render(filtered.questions, 'questionBank', 'questions', new Map(), 0, '$.questions');
+    const bankImports = [];
+    const bankGroups = [];
+    for (const [type, group] of Object.entries(filtered.questions)) {
+      if (!safeSlug.test(type) || !record(group) || !Object.keys(group).length)
+        throw new Error('questions.yaml:questions: invalid Question type group: ' + type);
+      const namedExports = [], namedImports = [], fields = [];
+      for (const [slug, question] of Object.entries(group)) {
+        if (!safeSlug.test(slug) || question.type !== type || question.slug !== slug)
+          throw new Error('questions.yaml:questions: mismatched type/slug: ' + type + '/' + slug);
+        const name = symbolFor(question, 'question');
+        namedExports.push('export { ' + name + (name !== slug ? ' as ' + slug : '') +
+          ' } from ' + JSON.stringify('./' + slug) + ';');
+        const alias = type + '_' + slug;
+        namedImports.push(slug + ' as ' + alias);
+        fields.push(indent(2) + asProperty(slug) + ': ' + alias);
+      }
+      put(join('questions', type, 'index.ts'), namedExports.join('\n') + '\n');
+      bankImports.push('import { ' + namedImports.join(', ') + ' } from ' + JSON.stringify('./' + type) + ';');
+      bankGroups.push(indent(1) + asProperty(type) + ': {\n' + fields.join(',\n') + '\n' + indent(1) + '}');
+    }
+    put('questions/index.ts', bankImports.join('\n') + '\n\n' +
+      'export const questions = {\n' + bankGroups.join(',\n') + '\n};\n');
+    return new Map([...files.entries()].sort((a, b) =>
+      a[0] === 'questions/index.ts' ? 1 : b[0] === 'questions/index.ts' ? -1 : a[0].localeCompare(b[0])));
   }
 
   emitCollection('section', 'sectionCollection', 'sections');

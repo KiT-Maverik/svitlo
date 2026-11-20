@@ -164,25 +164,7 @@ test('real Skills and UI Kit requests generate only their requested Markdown fil
     }
     assert.equal(fs.existsSync(path.join(workspace, 'lessons')), false);
 
-    const questions = request([
-      '--kind',
-      'questions',
-      '--package',
-      'content/playground',
-      '--lesson',
-      'd3048d21-8690-5255-b62c-984c69ac272c',
-      '--locale',
-      'kk',
-    ]);
-    assert.equal(questions.scope.kind, 'questions');
-    assert.equal(questions.scope.package, 'content/playground');
-    assert.equal(questions.summary.questionDocuments, 1);
-    assert.equal(questions.generated[0].questions, 6);
-    assert.equal(questions.generated[0].strings, 30);
-    assert.equal(questions.generated[0].missing, 0);
-    assert.equal(questions.generated[0].reviewReady, true);
-    assert.equal(questions.failures.length, 0);
-    assert.equal(fs.existsSync(path.join(workspace, 'ui-kit')), false);
+    assert.equal(fs.existsSync(path.join(workspace, 'questions')), false);
 
     const ui = request(['--kind', 'ui-kit', '--component', 'audio', '--locale', 'uk']);
     assert.equal(ui.scope.kind, 'ui-kit');
@@ -362,4 +344,49 @@ test('trusted Agent CI publisher accepts only a correctly scoped Flashcard bank 
   } finally {
     fs.rmSync(temp, { recursive: true, force: true });
   }
+});
+
+test('trusted Question publisher rejects stale source SHA and failed references', () => {
+  const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
+  const workflow = fs.readFileSync(path.join(root, '.github/workflows/agent-ci-artifacts.yml'), 'utf8');
+  const marker = '      - name: Validate downloaded files and commit only agent artifacts';
+  const offset = workflow.indexOf(marker);
+  assert.ok(offset > 0);
+  const match = workflow.slice(offset).match(/node --input-type=module <<'NODE'\n([\s\S]*?)\n\s+NODE/);
+  assert.ok(match, 'Trusted publisher validator exists');
+  const validator = match[1].split('\n').map(line => line.replace(/^ {10}/, '')).join('\n');
+  const sha = '0123456789abcdef0123456789abcdef01234567';
+  const lesson = 'd3048d21-8690-5255-b62c-984c69ac272c';
+  const relative = '.agent-ci-artifacts/questions/playground/c/' + lesson + '/kk.md';
+  function run({ sourceCommit = sha, failures = [], pinned = sha } = {}) {
+    const temp = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-question-publisher-'));
+    try {
+      fs.mkdirSync(path.dirname(path.join(temp, relative)), { recursive: true });
+      fs.writeFileSync(path.join(temp, relative), '# Question review\n');
+      fs.writeFileSync(path.join(temp, '.agent-ci-artifacts/manifest.json'), JSON.stringify({
+        kind: 'pr-scoped-agent-ci-artifacts', schemaVersion: 3, sourceCommit,
+        scope: { kind: 'questions', package: 'content/playground', locale: 'kk',
+          component: null, lesson, course: null },
+        generated: [{ kind: 'question', textbook: 'content/playground', lesson: 'c/' + lesson,
+          locale: 'kk', path: relative, questions: 6, missing: 0, reviewReady: true }],
+        failures,
+      }));
+      return spawnSync(process.execPath, ['--input-type=module', '--eval', validator], {
+        cwd: temp, encoding: 'utf8',
+        env: { ...process.env, REQUEST_KIND: 'questions', REQUEST_BOOK: 'content/playground',
+          REQUEST_LOCALE: 'kk', REQUEST_COMPONENT: '', REQUEST_LESSON: lesson,
+          REQUEST_COURSE: '', SOURCE_HEAD_SHA: pinned },
+      });
+    } finally {
+      fs.rmSync(temp, { recursive: true, force: true });
+    }
+  }
+  const valid = run();
+  assert.equal(valid.status, 0, valid.stderr);
+  const stale = run({ sourceCommit: 'abcdef0123456789abcdef0123456789abcdef01' });
+  assert.notEqual(stale.status, 0);
+  assert.match(stale.stderr, /source SHA/);
+  const failed = run({ failures: [{ kind: 'question', error: 'Missing Text module' }] });
+  assert.notEqual(failed.status, 0);
+  assert.match(failed.stderr, /source SHA/);
 });

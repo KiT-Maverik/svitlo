@@ -11,7 +11,7 @@ After the owner authorizes the relevant review, a GitHub user with repository `w
 /agent-artifacts generate skills content/astronomy
 /agent-artifacts generate lessons content/math it
 /agent-artifacts generate lessons content/math
-/agent-artifacts generate questions content/playground kk
+/agent-artifacts generate questions content/astronomy qm
 /agent-artifacts generate questions content/playground d3048d21-8690-5255-b62c-984c69ac272c kk
 /agent-artifacts generate flashcards content/playground d3048d21-8690-5255-b62c-984c69ac272c uk
 /agent-artifacts generate courses content/astronomy 1e79d8fc-2223-4fa7-bc64-70d8172d3e8b uk
@@ -30,7 +30,45 @@ For Courses, an omitted UUID selects all authored Courses in the textbook and an
 
 For Flashcards, `/agent-artifacts generate flashcards content/<book> <lesson-uuid> <locale>` creates a source-SHA-pinned, bounded reference covering **every** statically authored Flashcard in the bank: front, back, optional hint, flags, ContentBlock IDs, locale dictionaries, missing-field diagnostics and canonical source links. It does not confuse Lesson Flashcards Section selections or Lesson-level Flashcard design context with an independent bank review. Dynamic/unsupported source expressions fail closed. Output is `.agent-ci-artifacts/flashcards/<book>/<bucket>/<lesson-uuid>/<locale>.md`. The independent reviewer reads this complete document on the **same Flashcards entity PR**; generated Markdown is never canonical localized source.
 
-For Questions, `/agent-artifacts generate questions content/playground kk` selects the six canonical Question-bank members of a Playground Lesson. The optional `--lesson <uuid>` limits to one canonical bank, and the locale chooses the translated text to display next to English. The adapter statically reads the `questions/index.ts` registry and each `defineSelectOneAnswer`/`defineText` resource. It renders every prompt, hint when present, explanation, scoring-group answer option, content UUID and original file link. Unsupported types, unknown files or dynamic expressions fail the requested reference rather than silently omitting them; `missing` and `reviewReady` are authoritative for supported data. The publisher creates `.agent-ci-artifacts/questions/<book>/<bucket>/<lesson-uuid>/<locale>.md` (one document per Question bank), and artifacts must be cleaned before merge. This is an **independent linguistic review aid**, never a substitute for review itself.\n\nFor Skills, an omitted locale selects the registered textbook language roster; for Lessons, it selects **each discovered Lesson's own `params.languages`**. With a locale specified, only that locale is requested. Selecting one textbook never traverses or generates Markdown for another textbook. `ui-kit all` is an explicit request for all UI Kit component dictionaries; omitting its locale selects every registered language, and specifying a component selects only that component. Standalone references similarly accept an optional locale. EducationStandard is a global catalog owned by `shared/ui-kit/data/definitions/educationStandards`, and its omission selects precisely the canonical language roster. The build-time source catalog is owned by UI Kit definitions. There is intentionally **no** no-argument `/agent-artifacts generate` command.
+For Questions, `/agent-artifacts generate questions content/astronomy qm` uses
+the **single canonical three-file-level Question layout**:
+
+```text
+questions/index.ts
+questions/<questionType>/index.ts
+questions/<questionType>/<questionSlug>.ts
+```
+
+The root `questions/index.ts` imports each Question from the relevant type-level
+index and exports the complete grouped `questions` bank. Each
+`questions/<questionType>/index.ts` re-exports all direct `<slug>.ts` Question
+modules belonging to that type. Child ContentBlocks may live under sibling
+`<questionSlug>/` directories, but the Question itself **must** be
+`<questionSlug>.ts`; flat banks and `<slug>/index.ts` Question entrypoints are
+unsupported. Both indexes and physical Question files must agree exactly.
+The generator discovers all Engine Question types in the bank, including
+`selectOneAnswer`, `selectMultipleAnswers` and `matchBlocks`. It never
+silently omits an unsupported type or an unregistered member.
+
+The review document retains all question prompts, hints, explanations,
+scoring/answer identities, ordered selections, matching pairs, localized Text
+and Markdown, and relevant Quiz title/navigation/intro ContentBlocks with
+canonical Code/Markdown links. It renders the unambiguous source language
+(`uk` for single-source Ukrainian Lessons) alongside the requested locale,
+without treating generated references as translations or editorial approvals.
+`--lesson <uuid>` restricts the request to a specific bank.
+`manifest.json` records `questionStrings`, `quizStrings`, missing strings,
+`reviewReady` and the pinned source HEAD. Missing localized values are marked
+`%%MISSING%%`, while malformed or incomplete banks fail without partial
+approval. Review documents are temporary and must be cleaned before merging.
+
+**Migration boundary:** Older authored Lesson banks, including the existing
+Playground flat layout and older Astronomy `<type>/<slug>/index.ts`
+handoffs, require a separate source-layout migration before their Questions
+can be reviewed with this strict generator. This PR does not silently
+rewrite approved Question assets or reviewer evidence.
+
+For Skills, an omitted locale selects the registered textbook language roster; for Lessons, it selects **each discovered Lesson's own `params.languages`**. With a locale specified, only that locale is requested. Selecting one textbook never traverses or generates Markdown for another textbook. `ui-kit all` is an explicit request for all UI Kit component dictionaries; omitting its locale selects every registered language, and specifying a component selects only that component. Standalone references similarly accept an optional locale. EducationStandard is a global catalog owned by `shared/ui-kit/data/definitions/educationStandards`, and its omission selects precisely the canonical language roster. The build-time source catalog is owned by UI Kit definitions. There is intentionally **no** no-argument `/agent-artifacts generate` command.
 
 The workflow's manual dispatch inputs select the same fields and additionally support an optional single Lesson UUID. Local equivalent:
 
@@ -40,6 +78,7 @@ node scripts/generateTranslationReviewArtifacts/generate-translation-review-arti
 node scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.mjs --kind lessons --package content/math
 node scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.mjs --kind courses --package content/astronomy --course 1e79d8fc-2223-4fa7-bc64-70d8172d3e8b --locale uk
 node scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.mjs --kind lessons --package content/playground --locale uk --lesson d3048d21-8690-5255-b62c-984c69ac272c
+node scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.mjs --kind questions --package content/astronomy --lesson <migrated-lesson-uuid> --locale qm
 node scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.mjs --kind education-standards --locale uk
 ```
 
