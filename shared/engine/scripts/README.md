@@ -10,9 +10,8 @@ The independent [flashcardBuilder](./flashcardBuilder/README.md) converts one En
 
 ## React Scene implementation handoff
 
-See [sceneScaffolding](./sceneScaffolding/README.md) for a separate, opted-in
-React Scene draft generator. It never changes the Lesson Builder's Config
-emission or auto-registers incomplete Scene components.
+See [sceneScaffolding](./sceneScaffolding/README.md) for the separate, opted-in
+React Scene draft generator used when helpful in **Lesson Stage 6.3**. The required work is governed by [Implement Scene](../../../studio/skills/lesson-workflow/implement-scene.skill.md): complete the generated React drafts, register executable components and verify their behavior in the Lesson's owning package. The generator never changes the Lesson Builder's Config emission or auto-registers incomplete Scene components.
 
 ## Unused media audit
 

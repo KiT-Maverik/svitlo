@@ -1,5 +1,7 @@
 # React Scene draft scaffolding
 
+**Lesson workflow:** this is an optional create-only helper within [Lesson Stage 6.3 Implement and integrate Scenes](../../../../studio/skills/lesson-workflow/create-lesson-flow.skill.md); the required implementation, registration and tests are governed by [Implement Scene](../../../../studio/skills/lesson-workflow/implement-scene.skill.md). Stage 6.1 still generates only `defineScene` Config/specification source, and Stage 6.2 completes strict typed Lesson resources. The helper alone never completes Stage 6.3.
+
 An **opt-in, separate** Engine workflow for executable React Scene drafts. It reads
 a single Lesson technical `lesson.yaml` (including nested Carousel/Quest Scenes)
 and the authored `production.specification` belonging to each Scene's UUID.
@@ -20,7 +22,7 @@ Scene directory so implementers can work at that location.
 UUID directory already exists, including partially created or manually edited
 trees. It never replaces a file. `check` verifies expected file presence only;
 it does **not** compare human-completed implementation bytes to a draft template.
-No discovery or generation occurs without an explicitly selected Lesson source.
+No discovery or generation occurs without an explicitly selected Lesson source. **Run this optional scaffold before an authorized `/lesson finalize` removes the original `lesson.yaml`; the generator currently reads that file rather than a derived `specification.md`.**
 
 New executable Scenes use the safe PascalCase component name from the authored
 Scene slug; legacy `lightRayDiagram` becomes `LightRayDiagram`. The intended
