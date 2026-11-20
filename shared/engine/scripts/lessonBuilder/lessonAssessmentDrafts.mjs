@@ -178,7 +178,7 @@ export function prepareAssessmentDraft(document) {
     for (const slug of order) {
       const wrapper = items[slug];
       const section = wrapper?.config;
-      if (section?.type !== type || section.params?.disabled === true || hasCompleteAssessmentParams(section)) continue;
+      if (section?.type !== type || (section.params?.disabled !== true && hasCompleteAssessmentParams(section))) continue;
       if (document.config.section?.items?.[slug]) {
         handoffs[type].items[slug] = structuredClone(document.config.section.items[slug]);
       } else {
