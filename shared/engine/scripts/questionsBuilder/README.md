@@ -75,8 +75,9 @@ only absent files with exclusive flags; an authored questions/index.ts
 causes a full SKIP before stale YAML is parsed. An orphan/partial tree
 is a blocker, never a reason to overwrite. --check compares generated
 bytes only for untouched drafts; do not run it against subsequently
-human-edited or completed TypeScript. Section selection uses normal TypeScript/Engine Build and production
-publication checks, not source AST parsing or a separate verifier.
+human-edited or completed TypeScript. Section selection uses normal
+TypeScript/Engine Build and production publication checks, not source AST
+parsing or a separate verifier.
 
 Generated tree:
 
