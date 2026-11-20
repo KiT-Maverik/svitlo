@@ -208,3 +208,10 @@ test('build-mutating host checks run after independent workspace checks', () => 
     sequential: [],
   });
 });
+
+test('changing experimental Playground Scenes no longer forces the universal Web host to build', () => {
+  assert.equal(requiresWebBuild(['content/playground/scenes/sceneLoader.ts']), false);
+  assert.equal(requiresWebBuild(['content/playground/package.json']), false);
+  assert.equal(requiresWebBuild(['apps/web-fixture-alpha/package.json']), true);
+  assert.equal(requiresWebBuild(['apps/web/src/app/page.tsx']), true);
+});
