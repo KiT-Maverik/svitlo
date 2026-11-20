@@ -2,13 +2,13 @@ import { defineSelectOneAnswer } from '@svitlo/engine/build';
 
 import type { LessonLanguages } from "#lessonsData/e/26482aec-3c09-57a6-8534-414f649276be/constants";
 
-import { explanationText } from "./explanationText";
-import { hintText } from "./hintText";
-import { prompt } from "./prompt";
-import { responseAlpha } from "./correct/responseAlpha";
-import { responseBeta } from "./incorrect/responseBeta";
-import { responseDelta } from "./incorrect/responseDelta";
-import { responseGamma } from "./incorrect/responseGamma";
+import { explanationText } from "./marsSiriusContrast/explanationText";
+import { hintText } from "./marsSiriusContrast/hintText";
+import { prompt } from "./marsSiriusContrast/prompt";
+import { responseAlpha } from "./marsSiriusContrast/correct/responseAlpha";
+import { responseBeta } from "./marsSiriusContrast/incorrect/responseBeta";
+import { responseDelta } from "./marsSiriusContrast/incorrect/responseDelta";
+import { responseGamma } from "./marsSiriusContrast/incorrect/responseGamma";
 
 const content = {
   question: {
@@ -63,9 +63,9 @@ const content = {
   }
 };
 
-export const naturalSatelliteOfAnotherPlanet = defineSelectOneAnswer<"naturalSatelliteOfAnotherPlanet", typeof content, LessonLanguages>({
-  id: "78303144-3bed-4a89-9610-75ae49ae65cd",
-  slug: "naturalSatelliteOfAnotherPlanet",
+export const marsSiriusContrast = defineSelectOneAnswer<"marsSiriusContrast", typeof content, LessonLanguages>({
+  id: "53b10c2c-1120-42c2-a62a-1d63ed539d3b",
+  slug: "marsSiriusContrast",
   type: "selectOneAnswer",
   params: {
     assessmentMethod: "classification",

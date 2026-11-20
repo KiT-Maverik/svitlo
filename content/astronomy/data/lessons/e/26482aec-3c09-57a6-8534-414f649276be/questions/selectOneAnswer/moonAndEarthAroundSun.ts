@@ -2,13 +2,13 @@ import { defineSelectOneAnswer } from '@svitlo/engine/build';
 
 import type { LessonLanguages } from "#lessonsData/e/26482aec-3c09-57a6-8534-414f649276be/constants";
 
-import { explanationText } from "./explanationText";
-import { hintText } from "./hintText";
-import { prompt } from "./prompt";
-import { responseAlpha } from "./correct/responseAlpha";
-import { responseBeta } from "./incorrect/responseBeta";
-import { responseDelta } from "./incorrect/responseDelta";
-import { responseGamma } from "./incorrect/responseGamma";
+import { explanationText } from "./moonAndEarthAroundSun/explanationText";
+import { hintText } from "./moonAndEarthAroundSun/hintText";
+import { prompt } from "./moonAndEarthAroundSun/prompt";
+import { responseAlpha } from "./moonAndEarthAroundSun/correct/responseAlpha";
+import { responseBeta } from "./moonAndEarthAroundSun/incorrect/responseBeta";
+import { responseDelta } from "./moonAndEarthAroundSun/incorrect/responseDelta";
+import { responseGamma } from "./moonAndEarthAroundSun/incorrect/responseGamma";
 
 const content = {
   question: {
@@ -63,12 +63,12 @@ const content = {
   }
 };
 
-export const marsSiriusContrast = defineSelectOneAnswer<"marsSiriusContrast", typeof content, LessonLanguages>({
-  id: "53b10c2c-1120-42c2-a62a-1d63ed539d3b",
-  slug: "marsSiriusContrast",
+export const moonAndEarthAroundSun = defineSelectOneAnswer<"moonAndEarthAroundSun", typeof content, LessonLanguages>({
+  id: "2165dc36-c878-48e8-b589-d20ac332b86d",
+  slug: "moonAndEarthAroundSun",
   type: "selectOneAnswer",
   params: {
-    assessmentMethod: "classification",
+    assessmentMethod: "relationshipMapping",
     restrictions: []
   },
   locale: {},

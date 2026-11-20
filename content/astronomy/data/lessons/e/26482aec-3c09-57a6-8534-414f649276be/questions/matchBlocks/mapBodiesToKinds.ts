@@ -2,15 +2,15 @@ import { defineMatchBlocks } from '@svitlo/engine/build';
 
 import type { LessonLanguages } from "#lessonsData/e/26482aec-3c09-57a6-8534-414f649276be/constants";
 
-import { earthLeft } from "./earth/left/earthLeft";
-import { earthRight } from "./earth/right/earthRight";
-import { explanationText } from "./explanationText";
-import { hintText } from "./hintText";
-import { moonLeft } from "./moon/left/moonLeft";
-import { moonRight } from "./moon/right/moonRight";
-import { prompt } from "./prompt";
-import { sunLeft } from "./sun/left/sunLeft";
-import { sunRight } from "./sun/right/sunRight";
+import { earthLeft } from "./mapBodiesToKinds/earth/left/earthLeft";
+import { earthRight } from "./mapBodiesToKinds/earth/right/earthRight";
+import { explanationText } from "./mapBodiesToKinds/explanationText";
+import { hintText } from "./mapBodiesToKinds/hintText";
+import { moonLeft } from "./mapBodiesToKinds/moon/left/moonLeft";
+import { moonRight } from "./mapBodiesToKinds/moon/right/moonRight";
+import { prompt } from "./mapBodiesToKinds/prompt";
+import { sunLeft } from "./mapBodiesToKinds/sun/left/sunLeft";
+import { sunRight } from "./mapBodiesToKinds/sun/right/sunRight";
 
 const content = {
   question: {

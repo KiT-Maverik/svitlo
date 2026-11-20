@@ -2,13 +2,13 @@ import { defineMatchBlocks } from '@svitlo/engine/build';
 
 import type { LessonLanguages } from "#lessonsData/e/26482aec-3c09-57a6-8534-414f649276be/constants";
 
-import { earthLeft } from "./earth/left/earthLeft";
-import { earthRight } from "./earth/right/earthRight";
-import { explanationText } from "./explanationText";
-import { hintText } from "./hintText";
-import { moonLeft } from "./moon/left/moonLeft";
-import { moonRight } from "./moon/right/moonRight";
-import { prompt } from "./prompt";
+import { earthLeft } from "./mapBodiesToCenters/earth/left/earthLeft";
+import { earthRight } from "./mapBodiesToCenters/earth/right/earthRight";
+import { explanationText } from "./mapBodiesToCenters/explanationText";
+import { hintText } from "./mapBodiesToCenters/hintText";
+import { moonLeft } from "./mapBodiesToCenters/moon/left/moonLeft";
+import { moonRight } from "./mapBodiesToCenters/moon/right/moonRight";
+import { prompt } from "./mapBodiesToCenters/prompt";
 
 const content = {
   question: {

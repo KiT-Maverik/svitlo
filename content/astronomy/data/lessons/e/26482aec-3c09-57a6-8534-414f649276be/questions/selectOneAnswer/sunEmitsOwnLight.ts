@@ -2,13 +2,13 @@ import { defineSelectOneAnswer } from '@svitlo/engine/build';
 
 import type { LessonLanguages } from "#lessonsData/e/26482aec-3c09-57a6-8534-414f649276be/constants";
 
-import { explanationText } from "./explanationText";
-import { hintText } from "./hintText";
-import { prompt } from "./prompt";
-import { responseAlpha } from "./correct/responseAlpha";
-import { responseBeta } from "./incorrect/responseBeta";
-import { responseDelta } from "./incorrect/responseDelta";
-import { responseGamma } from "./incorrect/responseGamma";
+import { explanationText } from "./sunEmitsOwnLight/explanationText";
+import { hintText } from "./sunEmitsOwnLight/hintText";
+import { prompt } from "./sunEmitsOwnLight/prompt";
+import { responseAlpha } from "./sunEmitsOwnLight/correct/responseAlpha";
+import { responseBeta } from "./sunEmitsOwnLight/incorrect/responseBeta";
+import { responseDelta } from "./sunEmitsOwnLight/incorrect/responseDelta";
+import { responseGamma } from "./sunEmitsOwnLight/incorrect/responseGamma";
 
 const content = {
   question: {
@@ -63,12 +63,12 @@ const content = {
   }
 };
 
-export const moonAndEarthAroundSun = defineSelectOneAnswer<"moonAndEarthAroundSun", typeof content, LessonLanguages>({
-  id: "2165dc36-c878-48e8-b589-d20ac332b86d",
-  slug: "moonAndEarthAroundSun",
+export const sunEmitsOwnLight = defineSelectOneAnswer<"sunEmitsOwnLight", typeof content, LessonLanguages>({
+  id: "2cac0cd9-d965-4aab-af33-2506aa0f8619",
+  slug: "sunEmitsOwnLight",
   type: "selectOneAnswer",
   params: {
-    assessmentMethod: "relationshipMapping",
+    assessmentMethod: "classification",
     restrictions: []
   },
   locale: {},

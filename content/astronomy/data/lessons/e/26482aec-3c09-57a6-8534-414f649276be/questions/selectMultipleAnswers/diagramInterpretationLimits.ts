@@ -2,14 +2,14 @@ import { defineSelectMultipleAnswers } from '@svitlo/engine/build';
 
 import type { LessonLanguages } from "#lessonsData/e/26482aec-3c09-57a6-8534-414f649276be/constants";
 
-import { correct1 } from "./correct/correct1";
-import { correct2 } from "./correct/correct2";
-import { correct3 } from "./correct/correct3";
-import { explanationText } from "./explanationText";
-import { hintText } from "./hintText";
-import { incorrect1 } from "./incorrect/incorrect1";
-import { incorrect2 } from "./incorrect/incorrect2";
-import { prompt } from "./prompt";
+import { correct1 } from "./diagramInterpretationLimits/correct/correct1";
+import { correct2 } from "./diagramInterpretationLimits/correct/correct2";
+import { correct3 } from "./diagramInterpretationLimits/correct/correct3";
+import { explanationText } from "./diagramInterpretationLimits/explanationText";
+import { hintText } from "./diagramInterpretationLimits/hintText";
+import { incorrect1 } from "./diagramInterpretationLimits/incorrect/incorrect1";
+import { incorrect2 } from "./diagramInterpretationLimits/incorrect/incorrect2";
+import { prompt } from "./diagramInterpretationLimits/prompt";
 
 const content = {
   question: {

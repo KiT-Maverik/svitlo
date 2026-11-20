@@ -1,14 +1,6 @@
-import { arrowDirectionBodies } from "./selectOneAnswer/arrowDirectionBodies";
-import { diagramInterpretationLimits } from "./selectMultipleAnswers/diagramInterpretationLimits";
-import { distantStarApparentSize } from "./selectOneAnswer/distantStarApparentSize";
-import { mapBodiesToCenters } from "./matchBlocks/mapBodiesToCenters";
-import { mapBodiesToKinds } from "./matchBlocks/mapBodiesToKinds";
-import { marsSiriusContrast } from "./selectOneAnswer/marsSiriusContrast";
-import { moonAndEarthAroundSun } from "./selectOneAnswer/moonAndEarthAroundSun";
-import { moonLightMisconception } from "./selectOneAnswer/moonLightMisconception";
-import { naturalSatelliteOfAnotherPlanet } from "./selectOneAnswer/naturalSatelliteOfAnotherPlanet";
-import { sunEmitsOwnLight } from "./selectOneAnswer/sunEmitsOwnLight";
-import { whichBodiesReflectSunlight } from "./selectMultipleAnswers/whichBodiesReflectSunlight";
+import { mapBodiesToCenters, mapBodiesToKinds } from "./matchBlocks";
+import { diagramInterpretationLimits, whichBodiesReflectSunlight } from "./selectMultipleAnswers";
+import { arrowDirectionBodies, distantStarApparentSize, marsSiriusContrast, moonAndEarthAroundSun, moonLightMisconception, naturalSatelliteOfAnotherPlanet, sunEmitsOwnLight } from "./selectOneAnswer";
 
 export const questions = {
   matchBlocks: {
