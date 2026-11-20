@@ -10,7 +10,7 @@ config:
       - en
       - pl
       - qm
-    requireQuiz: true
+    quizRequiredForCompletion: true
     sections:
       allowNavigation: true
       allowSkipping: true
@@ -446,6 +446,8 @@ config:
       - "rotationAndIlluminationQuiz"
 production:
   documentLanguage: uk
+  quizRequired: true
+  flashcardsRequired: false
   methodology: |-
     # Чому змінюються день і ніч
 
