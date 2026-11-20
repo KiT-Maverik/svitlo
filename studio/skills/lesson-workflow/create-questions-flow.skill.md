@@ -34,22 +34,14 @@ Do **not** create an empty Questions PR for an assessment-only Lesson whose appr
 
 Use a single **Draft Questions child PR** targeting the open parent
 Lesson PR head branch; if the Lesson was merged, use its verified
-current integration/main base. Reuse an existing work PR rather than
+current integration branch (normally `develop`, not implicitly `main`). Reuse an existing work PR rather than
 creating duplicates. Record source SHA and review SHA. When nested
 in a Course/Lesson integration hierarchy, follow actual GitHub
 label rules; pr: integration and pr: agent-subtask are mutually
 exclusive. Do not alter the parent Lesson's unrelated content,
 Screenwriter sections, Flashcards bank, or other child branches.
 
-The parent [Create Lesson Flow #643](https://github.com/KiT-Maverik/svitlo/pull/643)
-is merged and orders **per-Lesson** Questions before Flashcards.
-[Flashcards Flow #646](https://github.com/KiT-Maverik/svitlo/pull/646)
-is a **downstream consumer, never a dependency or merge gate of this
-Create Questions Flow PR**. Finish, review and merge #647 independently;
-afterwards #646 can incorporate the available Question authoring contract.
-For a bank-owning Lesson, finish and integrate its Question bank and any approved **local** Quiz Section registry edits before the Flashcards child edits the same Section registry. Downstream assessment Lessons do not force local Quiz Sections or create backward dependencies on upstream bank PRs. A genuinely reviewed Questions-N/A decision is
-different from an unfinished Question Bank. Do not wait for #646 to
-merge before completing #647.
+The canonical [Lesson Flow](./create-lesson-flow.skill.md) orders each Lesson's own Questions before Flashcards. Finish the independently reviewed bank and any justified **local** Quiz Section registry edits, and integrate them into the actual parent Lesson branch before a Flashcards child edits that registry. This is an **entity-specific dependency**, not a requirement to reopen, merge or wait on historical workflow-implementation PR numbers. Downstream assessment-only Lessons must handle their own verified upstream Question selection without forcing Quiz Sections or reverse dependencies onto source Lessons.
 
 ## Mandatory user-facing stage report and next-action handoff
 
@@ -194,8 +186,7 @@ text and grading-sensitive answer meaning. Check RTL, bidirectional
 math/text, units, accessibility labels and only verified media refs.
 Use real generated review artifacts; missing artifacts are blockers,
 not evidence of a successful review. Keep stage/locale evidence in
-the Questions PR. Follow separately applicable Translation Production
-Issue coordination when relevant.
+the Questions PR. Follow the current [Translation Workflow](../translation-workflow/README.md) when a separately authorized locale campaign is needed; do not create a mandatory bank Production Issue.
 
 ## Completion evidence and PR template
 
@@ -221,7 +212,7 @@ staged textbook manifest. Inspect the entire changed Lesson UUID root for any
 `TODO(asset)`, reserved Nil media filename, temporary `questions.yaml` or
 missing referenced media, captions and accessible alternative. The strict
 textbook `package:build` must succeed for the full required language scope,
-including the post-generation check that every explicitly selected **local** Quiz candidate resolves to the correct published Question, body and locale file. For an external downstream assessment Lesson, separately verify that the completed bank is integrated into its actual branch ancestry and published with the correct owning Lesson/UUID/locale; **PR #668** must be integrated and verified for global selection across banks.
+including the post-generation check that every explicitly selected **local** Quiz candidate resolves to the correct published Question, body and locale file. For an external downstream assessment Lesson, separately verify that the completed bank is integrated into its actual branch ancestry and published with the correct owning Lesson/UUID/locale; verify the merged global UUID resolver, manifest, and downstream branch ancestry actually provide the requested upstream resources.
 Passing the Questions YAML→TS builder alone is not resource completion; do not
 mark the Questions child PR complete until the real generated resources exist.
 A missing or unfinished **required** Question Bank is never marked Questions-N/A; an approved assessment-only Lesson's absent **own** bank is a separate documented exception, conditional on verified external Question resources. Do not modify Flashcards

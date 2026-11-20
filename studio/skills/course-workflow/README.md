@@ -1,5 +1,7 @@
 # Course Workflow
 
+The old separate Curriculum authoring Skill is retired. Course audience, prerequisites, taxonomy mapping, pedagogy, sequencing, localization and review are part of the **one seven-stage Course Flow** and its sole temporary `course.yaml`; never create `*.curriculum.md`, a parallel Course plan or a second curriculum review ledger.
+
 **Single authoritative entry:** [Create Course Flow](./create-course-flow.skill.md). It owns every new Course's editorial production, seven-stage checklist, exact source/review SHAs and next-action handoffs. The Course entity and methodology completeness contract are in [Course](../../docs/entities/course.md); the [Methodologist](../../personas/methodist.persona.md) and [Learning Assessment Architect](../../personas/learning-assessment-architect.persona.md) provide specialist judgment, not competing source files.
 
 ## One source and one production record

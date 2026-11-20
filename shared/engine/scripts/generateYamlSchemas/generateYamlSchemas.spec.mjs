@@ -240,6 +240,15 @@ test('Zod -> JSON Schema exports every root without opaque Configurator nodes', 
   }
 });
 
+test('Zod-derived Flashcard YAML Config requires arrays of typed flags', () => {
+  const document = JSON.parse(yamlJsonSchemaDocuments()['flashcard.schema.json']);
+  const flags = document.properties.parameters.properties.flags;
+  assert.equal(flags.type, 'array');
+  assert.equal(flags.items.oneOf.length, 4);
+  assert(document.properties.parameters.required.includes('flags'));
+  assert.equal(Object.hasOwn(flags, 'properties'), false, 'no legacy named items/order collection');
+});
+
 test('Lesson YAML envelope and current Course Config/Build patch schemas remain separate', () => {
   const docs = yamlJsonSchemaDocuments();
   const lesson = JSON.parse(docs['lesson.schema.json']);

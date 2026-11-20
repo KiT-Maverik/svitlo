@@ -8,7 +8,7 @@ const lightTravelsStraightFlashcard = defineFlashcard({
   slug: 'lightTravelsStraightFlashcard',
   parameters: {
     tags: ['lightPropagation'],
-    flags: { items: {}, order: [] },
+    flags: [],
   },
   content: {
     front: defineFlashcardSide({
@@ -27,7 +27,7 @@ const fastestMediumFlashcard = defineFlashcard({
   slug: 'fastestMediumFlashcard',
   parameters: {
     tags: ['lightSpeed'],
-    flags: { items: {}, order: [] },
+    flags: [],
   },
   content: {
     front: defineFlashcardSide({
@@ -46,7 +46,7 @@ const opaqueObjectShadowFlashcard = defineFlashcard({
   slug: 'opaqueObjectShadowFlashcard',
   parameters: {
     tags: ['shadow'],
-    flags: { items: {}, order: [] },
+    flags: [],
   },
   content: {
     front: defineFlashcardSide({
