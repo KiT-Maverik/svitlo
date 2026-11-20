@@ -423,3 +423,19 @@ test('workflow runs trusted default branch code only and isolates publish permis
   assert(workflow.jobs.publish.steps.some(step => step.run?.includes('lesson-materialization.mjs publish')));
   assert(!workflow.jobs['register-lessons']);
 });
+
+test('trusted Lesson publisher installs dependencies before loading the Engine verifier', () => {
+  const workflow = fs.readFileSync(
+    fileURLToPath(new URL('../../../.github/workflows/lesson-materialization.yml', import.meta.url)),
+    'utf8',
+  );
+  const publish = workflow.split('\n  publish:\n')[1];
+  assert.ok(publish, 'Lesson materialization must retain an isolated publish job');
+  const installAt = publish.indexOf('name: Install trusted publisher dependencies without lifecycle scripts');
+  const executeAt = publish.indexOf('name: Revalidate authorization, artifact bytes and SHA race');
+  assert.ok(installAt >= 0 && executeAt > installAt, 'publisher dependencies must be installed before verification');
+  const install = publish.slice(installAt, executeAt);
+  assert.match(install, /working-directory: trusted/);
+  assert.match(install, /npm ci --ignore-scripts --no-audit --no-fund/);
+  assert.doesNotMatch(install, /GH_TOKEN|github\.token/, 'dependency installation must not receive the write token');
+});
