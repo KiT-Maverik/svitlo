@@ -458,6 +458,27 @@ test('canonical .ts Skill files resolve to real symbols without a .data suffix',
     assert.equal(runOne(f.lesson, 'check', f.root).changed, 0);
   }));
 
+test('Lesson and Skill with the same slug receive noncolliding root symbols', () =>
+  fixture(f => {
+    const skillId = id(101);
+    const folder = path.join(f.workspace, 'data/skills/digitalDevices');
+    fs.mkdirSync(folder, { recursive: true });
+    fs.writeFileSync(
+      path.join(folder, 'lightLesson.ts'),
+      "import { defineSkill } from '@svitlo/engine/build';\\n" +
+        "export const lightLesson = defineSkill({ id: '" + skillId + "', slug: 'lightLesson' });\\n",
+    );
+    f.config.skills = [skillId];
+    f.save();
+    runOne(f.lesson, 'generate', f.root);
+    const code = fs.readFileSync(f.generated('index.ts'), 'utf8');
+    assert.match(code, /import \\{ lightLesson as lightLessonSkill \\}/);
+    assert.match(code, /skills: \\[lightLessonSkill\\.id\\]/);
+    assert.match(code, /export const lightLesson = defineLesson/);
+    assert.equal(ts.createSourceFile('index.ts', code, ts.ScriptTarget.Latest, true).parseDiagnostics.length, 0);
+    assert.equal(runOne(f.lesson, 'check', f.root).changed, 0);
+  }));
+
 test('unknown Skill UUID produces a deterministic unresolved dependency instead of an invented import', () =>
   fixture(f => {
     f.config.skills = [id(88)];
