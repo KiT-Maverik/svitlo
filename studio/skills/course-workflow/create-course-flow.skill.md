@@ -92,7 +92,7 @@ content:
     TMP_lesson_1:
       type: lesson
       skills:
-        - faa8f11a-cc06-42c9-8864-8151732e690a # replace with an actual verified taxonomy UUID
+        - 00000000-0000-4000-8000-000000000015 # verified Playground test Skill; use your textbook's real UUID
     TMP_episode_1:
       type: episode
   order: [TMP_lesson_1, TMP_episode_1]
