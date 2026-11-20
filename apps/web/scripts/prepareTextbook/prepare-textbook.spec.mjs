@@ -63,7 +63,7 @@ test('installed public contract recognizes Scene support as optional', t => {
   assert.equal(selected.name, simple.manifest.name);
   assert.equal(selected.hasScenes, false);
   assert.equal(selected.hasStyles, false);
-  assert.throws(() => assertSelectedArtifacts(selected), /Missing or invalid compiled/);
+  assert.throws(() => assertSelectedArtifacts(selected), /Missing or unsafe compiled/);
   for (const file of ['textbook/index.d.ts', 'textbook/index.js', 'publish.mjs']) {
     const path = join(simple.path, 'dist', file);
     mkdirSync(join(path, '..'), { recursive: true });
