@@ -27,12 +27,13 @@ function exec(command, args, cwd = repoRoot) {
     'FastGate command failed: ' + command + ' ' + args.join(' ') + (result.error ? ': ' + result.error.message : ''),
   );
 }
-function execAsync(command, args) {
+function execAsync(command, args, environment = process.env) {
   return new Promise((resolve, reject) => {
     const child = spawn(process.execPath, [quietRunner, '--', command, ...args], {
       cwd: repoRoot,
       stdio: 'inherit',
       shell: false,
+      env: environment,
     });
     child.once('error', reject);
     child.once('close', code =>
@@ -177,9 +178,6 @@ export function requiresWebBuild(changed) {
       file.startsWith('shared/ui-kit/src/components/lesson/') ||
       file.startsWith('shared/ui-kit/src/components/widgets/ContentBlockRenderer/blocks/Image/') ||
       file.startsWith(markdownRendererPath) ||
-      file.startsWith('content/playground/scenes/') ||
-      file.startsWith('content/playground/scripts/') ||
-      file === 'content/playground/package.json' ||
       file.startsWith('apps/web/'),
   );
 }
@@ -401,14 +399,17 @@ async function runGate(changed, base, head) {
   const { parallel, sequential } = partitionBuildMutatingHosts(typecheckTargets);
   async function checkWorkspace(name) {
     const pkg = all.get(name);
-    await execAsync('npm', ['run', 'code:check:types', '--workspace', name]);
+    const environment = name === '@svitlo/web' && process.env.SVITLO_WEB_TEST_SELECTION
+      ? { ...process.env, SVITLO_TEXTBOOK: process.env.SVITLO_WEB_TEST_SELECTION }
+      : process.env;
+    await execAsync('npm', ['run', 'code:check:types', '--workspace', name], environment);
     if (pkg.path.startsWith('shared/') && pkg.scripts?.test) {
       await execAsync('npm', ['run', 'test', '--workspace', name]);
     }
     if (name === '@svitlo/web' && requiresWebBuild(changed)) {
-      await execAsync('npm', ['run', 'app:build', '--workspace', name]);
-      await execAsync('npm', ['run', 'test:unit:selection', '--workspace', name]);
-      await execAsync('npm', ['run', 'test:components', '--workspace', name]);
+      await execAsync('npm', ['run', 'app:build', '--workspace', name], environment);
+      await execAsync('npm', ['run', 'test:unit:selection', '--workspace', name], environment);
+      await execAsync('npm', ['run', 'test:components', '--workspace', name], environment);
     }
   }
   await runParallel(parallel, checkWorkspace);

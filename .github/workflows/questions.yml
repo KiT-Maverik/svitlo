@@ -69,6 +69,8 @@ jobs:
       - name: Initialize job-local package build reuse
         run: echo "SVITLO_CI_PACKAGE_BUILD_STATE=$RUNNER_TEMP/svitlo-production-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT.json" >> "$GITHUB_ENV"
       - name: Typecheck all eligible workspaces
+        env:
+          SVITLO_WEB_TEST_SELECTION: web-fixture-alpha
         run: node scripts/ci/quietRun/quiet-run.mjs -- npm run code:check:types
       - name: Report package build reuse
         if: always()
@@ -111,6 +113,8 @@ jobs:
       - name: Initialize job-local package build reuse
         run: echo "SVITLO_CI_PACKAGE_BUILD_STATE=$RUNNER_TEMP/svitlo-production-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT.json" >> "$GITHUB_ENV"
       - name: Test Playground and Web without rerunning UI Kit or Math suites
+        env:
+          SVITLO_WEB_TEST_SELECTION: web-fixture-alpha
         run: node scripts/ci/quietRun/quiet-run.mjs -- node scripts/ci/productionQuality/run-selected-components.mjs
       - name: Report package build reuse
         if: always()
@@ -176,6 +180,9 @@ jobs:
         run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --no-audit --no-fund
       - name: Initialize job-local package build reuse
         run: echo "SVITLO_CI_PACKAGE_BUILD_STATE=$RUNNER_TEMP/svitlo-production-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT.json" >> "$GITHUB_ENV"
+      - name: Select explicit controlled content for the universal Web host
+        if: matrix.workspace == '@svitlo/web'
+        run: echo 'SVITLO_TEXTBOOK=web-fixture-alpha' >> "$GITHUB_ENV"
       - name: Build application and all needed workspace dependencies
         run: node scripts/ci/quietRun/quiet-run.mjs -- npm run app:build --workspace "$APP_WORKSPACE"
       - name: Validate compiled application resources

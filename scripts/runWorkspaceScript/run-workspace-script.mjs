@@ -100,6 +100,14 @@ export function planWorkspaceOperation(packages, operation, { onlyWorkspaces } =
   return { selected: eligible.map(pkg => pkg.name), steps: planned };
 }
 
+/** CI may explicitly choose Web-only fixture content without changing native hosts. */
+export function environmentForWorkspace(name, environment = process.env) {
+  if (name === '@svitlo/web' && !environment.SVITLO_TEXTBOOK && environment.SVITLO_WEB_TEST_SELECTION) {
+    return { ...environment, SVITLO_TEXTBOOK: environment.SVITLO_WEB_TEST_SELECTION };
+  }
+  return environment;
+}
+
 export function execute(operation, { onlyWorkspaces } = {}) {
   if (!/^[a-z][a-z0-9-]*(?::[a-z][a-z0-9-]*)*$/.test(operation)) {
     throw Error('Invalid script name: ' + operation);
@@ -119,7 +127,7 @@ export function execute(operation, { onlyWorkspaces } = {}) {
       : ['run', script, '--workspace', name];
     const result = spawnSync(command, args, {
       cwd: repo,
-      env: process.env,
+      env: environmentForWorkspace(name),
       stdio: 'inherit',
       shell: !reuse && process.platform === 'win32',
     });

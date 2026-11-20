@@ -42,6 +42,7 @@
   },
   "workspaces": [
     "apps/*",
+    "apps/web/fixtures/*",
     "backend/*",
     "content/*",
     "content/languages/*",
