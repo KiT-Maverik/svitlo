@@ -7,6 +7,6 @@
     "rootDir": ".",
     "outDir": "./dist/.declarations"
   },
-  "include": ["textbook.ts"],
+  "include": ["textbook.ts", "scenes/index.ts", "scenes/sceneLoader.ts"],
   "exclude": ["node_modules", "dist"]
 }
