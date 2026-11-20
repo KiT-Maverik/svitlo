@@ -4,6 +4,7 @@ import os from 'node:os';
 import path from 'node:path';
 import test from 'node:test';
 import yaml from 'yaml';
+import { scanSource } from '../../../../scripts/ci/checkBlockerTodos/check-blocker-todos.mjs';
 import ts from 'typescript';
 
 import { renderFlashcardBank, runOne } from './flashcardBuilder.mjs';
@@ -23,7 +24,7 @@ const card = (slug, index, front, back) => ({
   parameters: {
     tags: ['recall'],
     disabilities: [],
-    flags: { items: {}, order: [] },
+    flags: [],
   },
   content: {
     front: { items: { front: block('front', index + 100, front) }, order: ['front'] },
@@ -118,6 +119,39 @@ test('rejects invalid IDs, unapproved metadata and stale or ambiguous relationsh
   assert.throws(() => renderFlashcardBank(unsupported), /invalid|Invalid|code|type|Required/i);
 });
 
+test('accepts Flashcard flag arrays, rejects duplicate types, and preserves authored locales', () => {
+  const bank = createBank();
+  bank.flashcards.items.first.parameters.flags = [
+    { type: 'list', count: 3 },
+    { type: 'acronym', value: { en: 'ABC' } },
+    { type: 'custom', value: { en: 'Reminder' }, color: 'info' },
+    { type: 'custom', value: { en: 'Note' }, color: 'success' },
+  ];
+  const output = renderFlashcardBank(bank);
+  assert(output.includes('"flags": ['), 'builder emits a plain array');
+  assert.deepEqual(
+    bank.flashcards.items.first.parameters.flags.map(flag => flag.type),
+    ['list', 'acronym', 'custom', 'custom'],
+    'source is unchanged',
+  );
+
+  const legacy = structuredClone(bank);
+  legacy.flashcards.items.first.parameters.flags = { items: {}, order: [] };
+  assert.throws(() => renderFlashcardBank(legacy));
+
+  const duplicate = structuredClone(bank);
+  duplicate.flashcards.items.first.parameters.flags.push({ type: 'list', count: 2 });
+  assert.throws(() => renderFlashcardBank(duplicate), /Duplicate built-in Flashcard flag/);
+
+  const foreign = structuredClone(bank);
+  foreign.flashcards.items.first.parameters.flags[1].value.uk = 'АБВ';
+  assert.throws(() => renderFlashcardBank(foreign), /must author only documentLanguage en/);
+
+  const malformed = structuredClone(bank);
+  malformed.flashcards.items.first.parameters.flags[0].count = 1;
+  assert.throws(() => renderFlashcardBank(malformed));
+});
+
 test('create-only builder never overwrites TS, retains YAML and strictly checks drift', () => {
   const folder = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-flashcard-builder-'));
   try {
@@ -208,6 +242,8 @@ test('media Config drafts retain independently owned block UUIDs without inventi
     assert.match(source, new RegExp('define' + kind + '\\('));
   }
   assert.equal((source.match(/TODO\(asset\)/g) ?? []).length, 4);
+  assert.equal((source.match(/TODO \(BLOCKER\):/g) ?? []).length, 4);
+  assert.equal(scanSource('flashcards/index.ts', source).length, 4);
   assert.match(source, /locale\.fileName and posterFileName/);
   assert.doesNotMatch(source, /"fileName":|"posterFileName":/);
   assert.deepEqual(

@@ -82,13 +82,13 @@ describe('Configurators', () => {
         { front: typeof front },
         { back: typeof back },
         {},
-        { warningFlag: { type: 'warning' } },
+        [{ type: 'warning' }],
         {},
         ['uk', 'en']
       >({
         id: id('07'),
         slug: 'card',
-        parameters: { tags: [], flags: { items: { warningFlag: { type: 'warning' } }, order: ['warningFlag'] } },
+        parameters: { tags: [], flags: [{ type: 'warning' }] },
         content: {
           front: defineFlashcardSide<{ front: typeof front }, ['uk', 'en']>({ items: { front }, order: ['front'] }),
           back: defineFlashcardSide<{ back: typeof back }, ['uk', 'en']>({ items: { back }, order: ['back'] }),
@@ -100,7 +100,7 @@ describe('Configurators', () => {
         type: 'lesson',
         skills: [],
         params: {
-          requireQuiz: false,
+          quizRequiredForCompletion: false,
           languages: ['uk', 'en'] as const,
           sections: { allowNavigation: true, allowSkipping: true, showIndexes: true },
         },

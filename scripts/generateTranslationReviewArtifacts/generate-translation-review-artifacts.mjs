@@ -17,6 +17,8 @@ const output = path.join(root, '.agent-ci-artifacts');
 const families = new Set([
   'skills',
   'lessons',
+  'questions',
+  'courses',
   'assessment-methods',
   'ui-kit',
   'geography-home-copy',
@@ -29,30 +31,33 @@ export function parseArguments(args) {
   for (let i = 0; i < args.length; ++i) {
     const key = args[i];
     if (
-      !['--kind', '--package', '--locale', '--component', '--lesson'].includes(key) ||
+      !['--kind', '--package', '--locale', '--component', '--lesson', '--course'].includes(key) ||
       Object.hasOwn(options, key.slice(2)) ||
       !args[i + 1] ||
       args[i + 1].startsWith('--')
     ) {
       throw new Error(
-        'Usage: --kind <skills|lessons|assessment-methods|ui-kit|geography-home-copy|education-standards> ' +
-          '[--package content/<textbook>] [--locale <code>] [--component <name>] [--lesson <uuid>]',
+        'Usage: --kind <skills|lessons|questions|courses|assessment-methods|ui-kit|geography-home-copy|education-standards> ' +
+          '[--package content/<textbook>] [--locale <code>] [--component <name>] [--lesson <uuid>] [--course <uuid>]',
       );
     }
     options[key.slice(2)] = args[++i];
   }
   if (!families.has(options.kind)) throw new Error('An explicit supported --kind is required');
-  const hasPackage = ['skills', 'lessons'].includes(options.kind);
+  const hasPackage = ['skills', 'lessons', 'questions', 'courses'].includes(options.kind);
   if (hasPackage !== Boolean(options.package))
-    throw new Error('Only Skills and Lessons require --package content/<textbook>');
+    throw new Error('Only Skills, Lessons, Questions and Courses require --package content/<textbook>');
   if (options.package && !/^content\/[a-z][a-z0-9-]*$/.test(options.package)) {
     throw new Error('Unsafe textbook path: ' + options.package);
   }
   if (options.component && (options.kind !== 'ui-kit' || !/^[a-zA-Z][a-zA-Z0-9]*$/.test(options.component))) {
     throw new Error('--component is only available for UI Kit dictionaries');
   }
-  if (options.lesson && (options.kind !== 'lessons' || !uuidPattern.test(options.lesson))) {
-    throw new Error('--lesson requires Lessons and a canonical UUID');
+  if (options.lesson && (!['lessons', 'questions'].includes(options.kind) || !uuidPattern.test(options.lesson))) {
+    throw new Error('--lesson requires Lessons/Questions and a canonical UUID');
+  }
+  if (options.course && (options.kind !== 'courses' || !uuidPattern.test(options.course))) {
+    throw new Error('--course requires Courses and a canonical UUID');
   }
   if (options.locale && !/^[a-z]{2,4}$/.test(options.locale)) throw new Error('Invalid language code');
   return options;
@@ -61,7 +66,10 @@ export function parseArguments(args) {
 function checkTextbook(options) {
   if (!options.package) return;
   const directory = path.join(root, options.package);
-  const target = path.join(directory, options.kind === 'skills' ? 'data/skills' : 'data/lessons');
+  const target = path.join(
+    directory,
+    options.kind === 'skills' ? 'data/skills' : options.kind === 'courses' ? 'data/courses' : 'data/lessons',
+  );
   for (const location of [directory, target]) {
     if (!fs.existsSync(location) || !fs.statSync(location).isDirectory() || fs.lstatSync(location).isSymbolicLink()) {
       throw new Error('Missing or unsafe requested textbook directory: ' + location);
@@ -78,15 +86,22 @@ function sourceCommit() {
   return info.stdout.trim();
 }
 
-function fixTaxonomyLinks(markdown, book, destination) {
+function sourceHead() {
+  const info = spawnSync('git', ['rev-parse', 'HEAD'], { cwd: root, encoding: 'utf8' });
+  if (info.status !== 0 || !/^[0-9a-f]{40}$/.test(info.stdout.trim())) {
+    throw new Error('Cannot determine reviewed source HEAD');
+  }
+  return info.stdout.trim();
+}
+
+export function fixTaxonomyLinks(markdown, book, destination) {
   const original = path.join(root, 'content', book, 'docs/generated/skills');
-  return markdown.replace(/\[([^\]]+\.data\.ts)\]\(([^)]+)\)/g, (_, label, value) => {
+  const sourceRoot = path.join(root, 'content', book, 'data/skills') + path.sep;
+  return markdown.replace(/\[([^\]\n]+\.ts)\]\(([^)\n]+)\)/g, (_, label, value) => {
     const resolved = path.resolve(original, decodeURI(value));
-    if (
-      !resolved.startsWith(path.join(root, 'content', book, 'data/skills') + path.sep) ||
-      !resolved.endsWith('.data.ts')
-    )
+    if (!resolved.startsWith(sourceRoot) || path.basename(resolved) !== label) {
       throw new Error('Unsafe canonical taxonomy link: ' + value);
+    }
     return (
       '[' + label + '](' + encodeURI(path.relative(path.dirname(destination), resolved).split(path.sep).join('/')) + ')'
     );
@@ -103,13 +118,14 @@ export async function generate(options) {
   const manifest = {
     schemaVersion: 3,
     kind: 'pr-scoped-agent-ci-artifacts',
-    sourceCommit: sourceCommit(),
+    sourceCommit: options.kind === 'questions' ? sourceHead() : sourceCommit(),
     scope: {
       kind: options.kind,
       package: options.package ?? null,
       locale: options.locale ?? null,
       component: options.component ?? null,
       lesson: options.lesson ?? null,
+      course: options.course ?? null,
     },
     packages: options.package ? [options.package] : [],
     locales: options.locale ? [options.locale] : [],
@@ -195,6 +211,31 @@ export async function generate(options) {
       languages: options.locale ? languages : null,
       supportedLanguages: registered,
     });
+  } else if (options.kind === 'questions') {
+    const { generateQuestionReviewArtifacts } =
+      await import('../../shared/engine/scripts/generateQuestionReviewArtifacts/generate-question-review-artifacts.mjs');
+    generateQuestionReviewArtifacts({
+      root,
+      output,
+      manifest,
+      saveManifest,
+      packageName: options.package,
+      lessonId: options.lesson,
+      languages,
+    });
+  } else if (options.kind === 'courses') {
+    const { generateCourseReviewArtifacts } =
+      await import('../../shared/engine/scripts/generateCourseReviewArtifacts/generate-course-review-artifacts.mjs');
+    await generateCourseReviewArtifacts({
+      root,
+      output,
+      manifest,
+      saveManifest,
+      packageName: options.package,
+      courseId: options.course,
+      languages: options.locale ? languages : null,
+      supportedLanguages: registered,
+    });
   } else if (options.kind === 'assessment-methods') {
     const { generateAssessmentMethodsReviewArtifacts } =
       await import('../../shared/ui-kit/scripts/generateAssessmentMethodsReference/generate-assessment-methods-reference.mjs');
@@ -245,12 +286,17 @@ export async function generate(options) {
     incompleteDocuments: manifest.generated.filter(item => item.reviewReady === false).length,
     taxonomyDocuments: manifest.generated.filter(item => item.kind === 'taxonomy').length,
     lessonDocuments: manifest.generated.filter(item => item.kind === 'lesson').length,
+    questionDocuments: manifest.generated.filter(item => item.kind === 'question').length,
+    courseDocuments: manifest.generated.filter(item => item.kind === 'course').length,
     assessmentMethodDocuments: manifest.generated.filter(item => item.kind === 'assessment-method').length,
     uiKitDocuments: manifest.generated.filter(item => item.kind === 'ui-kit-locale').length,
     geographyHomeCopyDocuments: manifest.generated.filter(item => item.kind === 'geography-home-copy').length,
     educationStandardDocuments: manifest.generated.filter(item => item.kind === 'education-standard').length,
   };
   saveManifest();
+  if (options.kind === 'questions' && manifest.failures.length) {
+    throw new Error('Incomplete Question/Quiz references: ' + manifest.failures.length + ' failed documents.');
+  }
   if (manifest.generated.length === 0) {
     throw new Error('No requested Markdown was generated. Inspect .agent-ci-artifacts/manifest.json failures.');
   }

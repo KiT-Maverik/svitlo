@@ -21,14 +21,19 @@ a duplicate declaration.
 The questions values are **exact current Engine Question Config shapes**,
 grouped by Question type and camelCase slug with stable UUIDs. Nested
 ContentBlocks use exact Engine Config shapes and { items, order } collections.
+The Question Bank root `index.ts` imports each type's `index.ts` and exports the full
+`questions` map. Every type `index.ts` re-exports **all** its Question
+`<slug>.ts` modules. The former flat `questions/<slug>.ts` and nested
+Question entrypoint `questions/<type>/<slug>/index.ts` layouts are retired;
+only child ContentBlocks may remain in `<type>/<slug>/` subdirectories.
+
 The source locale is explicit; target locales are completed later without
 fake translations.
 
-The optional quizSelections is a temporary reviewed handoff mapping
-Quiz Section UUIDs to explicitly selected Question UUID arrays. It is
-not a second bank, a Section Config, a new selection algorithm, or a
-runtime artifact. Sampling and pedagogical coverage require independent
-review.
+Quiz selection and pedagogical coverage are reviewed as separate Section
+editorial decisions. Once authored TypeScript is available, the Quiz Section
+imports the selected Question Configurators and reads their stable `.id` values;
+this YAML does not maintain a second selection UUID ledger.
 
 Example (illustrative only; replace with approved IDs and content):
 
@@ -55,14 +60,10 @@ Example (illustrative only; replace with approved IDs and content):
                   params: {}
                   locale: { value: { en: What is 1 + 1? } }
               order: [prompt]
-    quizSelections:
-      00000000-0000-4000-8000-000000000012:
-        - 00000000-0000-4000-8000-000000000010
 
-quizSelections may be omitted when no embedded Quiz is approved. Use
-shared/engine/yaml-schemas/question.schema.json to author _individual_
-Question Configs; the minimal wrapper groups them, identifies source
-language, and optionally records the reviewed Section mapping.
+Use shared/engine/yaml-schemas/question.schema.json to author _individual_
+Question Configs; the minimal wrapper groups them and identifies source
+language. An independent Question Bank is valid even without any Quiz.
 
 ## Commands
 
@@ -72,7 +73,6 @@ From the repository root after npm ci and Engine build:
     node shared/engine/scripts/questionsBuilder/questionsBuilder.mjs --preflight --source content/<book>/data/lessons/<bucket>/<uuid>/questions.yaml
     node shared/engine/scripts/questionsBuilder/questionsBuilder.mjs --write --source content/<book>/data/lessons/<bucket>/<uuid>/questions.yaml
     node shared/engine/scripts/questionsBuilder/questionsBuilder.mjs --check --source content/<book>/data/lessons/<bucket>/<uuid>/questions.yaml
-    node shared/engine/scripts/questionsBuilder/questionsBuilder.mjs --verify-sections --source content/<book>/data/lessons/<bucket>/<uuid>/questions.yaml
     node --test shared/engine/scripts/questionsBuilder/questionsBuilder.spec.mjs
 
 --preflight validates complete current Engine Question authoring shapes
@@ -81,18 +81,21 @@ only absent files with exclusive flags; an authored questions/index.ts
 causes a full SKIP before stale YAML is parsed. An orphan/partial tree
 is a blocker, never a reason to overwrite. --check compares generated
 bytes only for untouched drafts; do not run it against subsequently
-human-edited or completed TypeScript. --verify-sections reads real modular
-Section sources and verifies explicit Question UUID selections and static
-Section registration/order. Custom/dynamic composition needs manual review.
+human-edited or completed TypeScript. Section selection uses normal
+TypeScript/Engine Build and production publication checks, not source AST
+parsing or a separate verifier.
 
 Generated tree:
 
     <lesson-uuid>/questions/index.ts
-    <lesson-uuid>/questions/<questionType>/<questionSlug>/index.ts
+    <lesson-uuid>/questions/<questionType>/index.ts
+    <lesson-uuid>/questions/<questionType>/<questionSlug>.ts
     <lesson-uuid>/questions/<questionType>/<questionSlug>/<blockSlug>/index.ts
 
 Markdown/Code source handling and missing-media draft markers are reused
-from the Lesson renderer. The resulting grouped questions export is
+from the Lesson renderer. Each pending media block inherits one real
+`TODO (BLOCKER):` source comment above its export as well as the field-level
+`TODO(asset)` hints; no separate Question media logic is introduced. The resulting grouped questions export is
 consumable by the existing generateAssessmentResources --kind question
 publisher. **Every Question remains in the independent bank**, including
 unselected members. Publication is separate; it validates the full
@@ -104,18 +107,27 @@ availability does not imply every UI Kit Question renderer is complete.
 1. Verify Lesson SHA, approved methodology, derived Lesson Markdown,
    target Skills, all existing Quizzes, and source/target locales. Author
    and independently review the full bank and intentional small subsets.
-2. Generate the bank on the existing Questions child PR. The Lesson
-   Section owner reuses/creates only approved Quiz modules and adjusts
-   the minimal Section registry/order. This tool does NOT edit Sections.
-3. Run --verify-sections and the independent assessment publisher,
-   then scoped TypeScript, UI Kit and content build checks.
+2. Generate the bank on the existing Questions child PR. For an approved Quiz,
+   the Lesson Section owner imports the selected Question Configurators, uses
+   `questionIds: [firstQuestion.id, secondQuestion.id]` (a deliberate subset),
+   and integrates the Section through normal Lesson composition. This tool does
+   NOT edit Sections. Cross-Lesson selections may reference already approved,
+   integrated Question sources from earlier Lessons.
+3. Run normal TypeScript/Engine checks, the independent assessment publisher,
+   the strict `verifyAssessmentSelections` production gate, UI Kit checks and
+   the relevant textbook build. Published Quiz Props retain UUID strings only.
 4. Remove questions.yaml _manually only after_ full source transfer,
    actual selection materialization, assets and locales are verified.
    Skipped/failed/partial generation must retain YAML. There is no
    automatic deletion that could lose editorial source.
 5. Integrate Questions before starting/rebasing Flashcards Section work
-   to avoid concurrent sections/index.ts edits. #643 is merged upstream;
-   #646 is downstream of Questions and must not block this PR.
+   to avoid concurrent sections/index.ts edits. The actual owning Lesson's
+   Flashcards workflow is downstream of its Questions integration, not a
+   dependency blocking the Questions PR.
 
 Custom Practice UI/scheduling, translation, editorial approvals and
 cross-asset media searches are outside this generator.
+
+## Pending Lesson Section handoff
+
+When Lesson Stage 6 defers an incomplete Quiz Section, its full accepted Section `config`/`production`, UUID, copy and relative order may appear in optional top-level `sectionDrafts: { items, order }` in `questions.yaml`. This is temporary source-only material for the independent Questions workflow, **not** a Question record, Quiz selection, validation bypass or approved bank. Complete the real `questions` bank first; the Section specialist uses the handoff to integrate an actual `defineQuizSection` later. The Questions Builder accepts and ignores this optional authoring handoff while continuing to strictly validate substantive Question records; it never generates Lesson Sections itself. An initially empty bank draft intentionally fails Question Bank preflight until authored.

@@ -1,6 +1,6 @@
 # Blocking TODO CI guard
 
-This read-only repository-wide check rejects unresolved `TODO (BLOCKER):` source comments. Ordinary `TODO:` and `TODO(asset):` markers are not part of this guard; existing content and asset checks remain separate.
+This read-only repository-wide check rejects unresolved `TODO (BLOCKER):` source comments **and numeric `0` evidence in canonical Lesson/Course `review.ts` files**. Ordinary `TODO:` and `TODO(asset):` markers are not part of this guard; existing content and asset checks remain separate.
 
 ## CLI
 
@@ -12,7 +12,8 @@ node scripts/ci/checkBlockerTodos/check-blocker-todos.mjs diff <base-sha> <head-
 
 - `full`: scan **all Git-tracked source files** in the checkout; ignore Markdown documentation, binary assets, and untracked output.
 - `diff`: scan **added lines only** in the full merge-base PR diff (`git diff base...head`). Unchanged inherited blockers, including unchanged files renamed in the PR, do not fail this mode.
-- The scanner ignores markers inside quoted string/template values and recognizes source comment delimiters such as `//`, `/*`, `*`, `#`, and JSX block comments. The exact canonical marker has a space: `TODO (BLOCKER):`.
+- The scanner ignores TODO markers inside quoted string/template values and recognizes source comment delimiters such as `//`, `/*`, `*`, `#`, and JSX block comments. The exact canonical marker has a space: `TODO (BLOCKER):`.
+- In canonical `content/<book>/data/{courses,lessons}/<bucket>/<uuid>/review.ts` files, numeric `0` means unreviewed (stage PR, AI locales, human acceptance or optional human locale/scientific evidence). Ready/merge is blocked even if the TODO comment is removed. Unrelated Skill taxonomy review files are unaffected.
 - Failures emit GitHub Actions annotations with file and line numbers.
 
 ## GitHub Actions

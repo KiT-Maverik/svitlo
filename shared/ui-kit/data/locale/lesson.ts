@@ -591,22 +591,22 @@ const ka: Lesson_Locale = {
 };
 
 const kk: Lesson_Locale = {
-  steps: { navigation: 'Сабақ кезеңдері' },
+  steps: { navigation: 'Sabaq kezeñderı' },
   celebration: {
-    title: 'Құттықтаймыз! Сіз бұл сабақты аяқтадыңыз!',
-    description: 'Теория, практика, оқу карточкалары мен тест — барлық кезеңдер аяқталды.',
-    correctAnswers: 'Дұрыс жауаптар:',
+    title: 'Qūttyqtaimyz! Būl sabaqty aiaqtadyñ!',
+    description: 'Teoriia, praktika, oqu kartalary men test — barlyq kezeñder aiaqtaldy.',
+    correctAnswers: 'Dūrys jauaptar:',
     scoreTemplate: '{score} / {total}',
-    note: 'Сабақты аяқтау барлық жауап дұрыс болды дегенді білдірмейді — материалға әрқашан қайта орала аласыз.',
-    home: 'Басты бетке',
+    note: 'Sabaqty aiaqtau barlyq jauap dūrys boldy degendı bıldırmeidı — materialğa ärqaşan qaita orala alasyñ.',
+    home: 'Basty betke',
   },
   questionProgress: {
-    navigation: 'Сұрақтар күйі',
+    navigation: 'Sūraqtar küiı',
     status: {
-      correct: 'Дұрыс жауап',
-      incorrect: 'Қате жауап',
-      unanswered: 'Әлі жауап берілмеген',
-      deferred: 'Кейінге қалдырылған',
+      correct: 'Dūrys jauap',
+      incorrect: 'Qate jauap',
+      unanswered: 'Älı jauap berılmegen',
+      deferred: 'Keiınge qaldyrylğan',
     },
   },
 };

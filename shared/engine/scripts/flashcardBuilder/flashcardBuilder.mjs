@@ -150,7 +150,9 @@ export function renderFlashcardBank(bank) {
   ensure(isRecord(bank), 'bank is not a mapping');
   ensure(
     Object.keys(bank).every(key =>
-      ['lessonId', 'documentLanguage', 'supportedLanguages', 'flashcards', 'relationships'].includes(key),
+      ['lessonId', 'documentLanguage', 'supportedLanguages', 'flashcards', 'relationships', 'sectionDrafts'].includes(
+        key,
+      ),
     ),
     'unknown top-level field',
   );
@@ -172,8 +174,13 @@ export function renderFlashcardBank(bank) {
   for (const name of bank.flashcards.order) {
     const parsed = yamlFlashcard_Schema.parse(bank.flashcards.items[name]);
     ensure(parsed.slug === name, 'Flashcard slug/map mismatch: ' + name);
-    for (const [key, flag] of Object.entries(parsed.parameters.flags.items)) {
-      if ('value' in flag) validateSourceLocales(flag.value, sourceLanguage, name + '.flags.' + key);
+    const builtInFlags = new Set();
+    for (const [index, flag] of parsed.parameters.flags.entries()) {
+      if ('value' in flag) validateSourceLocales(flag.value, sourceLanguage, name + '.flags.' + index);
+      if (flag.type !== 'custom') {
+        ensure(!builtInFlags.has(flag.type), 'Duplicate built-in Flashcard flag: ' + flag.type);
+        builtInFlags.add(flag.type);
+      }
     }
     ensure(!ids.has(parsed.id), 'duplicate Flashcard UUID: ' + parsed.id);
     ids.add(parsed.id);
@@ -219,6 +226,9 @@ export function renderFlashcardBank(bank) {
     // the typed Config incomplete is safer than inventing a filename or UUID.
     const fields = block.type === 'video' ? 'fileName and posterFileName' : 'fileName';
     return (
+      '/* TODO (BLOCKER): ' +
+      block.type +
+      ' media resource(s) unresolved. Verify physical assets and complete filename fields before merge. */\n' +
       '/* TODO(asset): Verify an existing ' +
       block.type +
       ' resource at the pinned Lesson SHA; populate locale.' +

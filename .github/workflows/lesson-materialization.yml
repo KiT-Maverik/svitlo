@@ -1,0 +1,143 @@
+name: Materialize reviewed Lesson from PR command
+
+# Requires deployment to develop: issue_comment workflows run from the default branch.
+# Never execute candidate PR code or install its dependencies.
+on:
+  issue_comment:
+    types: [created]
+  workflow_dispatch:
+    inputs:
+      pr_number:
+        description: Open same-repository Draft Lesson PR number
+        type: number
+        required: true
+      operation:
+        description: Materialize once or finalize a previously verified Lesson handoff
+        type: choice
+        options: [materialize, finalize]
+        required: true
+
+permissions: {}
+
+concurrency:
+  group: lesson-stage6-${{ github.event.issue.number || inputs.pr_number }}
+  cancel-in-progress: false
+
+jobs:
+  resolve:
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event.issue.pull_request &&
+       (github.event.comment.body == '/lesson materialize' ||
+        github.event.comment.body == '/lesson finalize'))
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      pull-requests: read
+    outputs:
+      meta: ${{ steps.gate.outputs.meta }}
+      pr: ${{ steps.gate.outputs.pr }}
+      head: ${{ steps.gate.outputs.head }}
+    steps:
+      - name: Check out trusted default-branch gate only
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Authorize actor, Lesson identity and Stages 1–5 checklist
+        id: gate
+        env:
+          GH_TOKEN: ${{ github.token }}
+          LESSON_DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+        run: node scripts/ci/lessonMaterialization/lesson-gate.mjs resolve
+
+  analyze:
+    needs: resolve
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+      pull-requests: read
+    outputs:
+      report_sha256: ${{ steps.analysis.outputs.report_sha256 }}
+    steps:
+      - name: Check out trusted implementation and Engine from default branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+          path: trusted
+          persist-credentials: false
+      - name: Check out pinned Lesson PR as untrusted data only
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.resolve.outputs.head }}
+          path: candidate
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: trusted/package-lock.json
+      - name: Install trusted Engine dependencies without lifecycle scripts
+        working-directory: trusted
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --ignore-scripts --no-audit --no-fund
+      - name: Validate reviewed Lesson, generate and verify only allowlisted sources
+        id: analysis
+        env:
+          GH_TOKEN: ${{ github.token }}
+          LESSON_DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+          LESSON_META_B64: ${{ needs.resolve.outputs.meta }}
+          LESSON_HEAD_ROOT: candidate
+          LESSON_REPORT: ${{ runner.temp }}/lesson-materialization/report.json
+        run: node trusted/scripts/ci/quietRun/quiet-run.mjs -- node trusted/scripts/ci/lessonMaterialization/lesson-materialization.mjs analyze
+      - name: Retain exact pinned Lesson source and output evidence in this Actions run
+        uses: actions/upload-artifact@v4
+        with:
+          name: lesson-stage6-${{ needs.resolve.outputs.pr }}-${{ github.run_id }}
+          path: ${{ runner.temp }}/lesson-materialization/report.json
+          retention-days: 7
+          if-no-files-found: error
+
+  publish:
+    needs: [resolve, analyze]
+    if: needs.analyze.result == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+      pull-requests: read
+    steps:
+      - name: Check out trusted publisher only
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+          path: trusted
+          persist-credentials: false
+      - name: Check out pinned Lesson commit as data (never execute it)
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.resolve.outputs.head }}
+          path: candidate
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Download artifact from the exact authorized read-only job
+        uses: actions/download-artifact@v4
+        with:
+          name: lesson-stage6-${{ needs.resolve.outputs.pr }}-${{ github.run_id }}
+          path: report
+      - name: Revalidate authorization, artifact bytes and SHA race; publish by Git API
+        id: publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+          LESSON_DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+          LESSON_META_B64: ${{ needs.resolve.outputs.meta }}
+          LESSON_HEAD_ROOT: candidate
+          LESSON_REPORT: report/report.json
+          LESSON_REPORT_SHA256: ${{ needs.analyze.outputs.report_sha256 }}
+        run: node trusted/scripts/ci/quietRun/quiet-run.mjs -- node trusted/scripts/ci/lessonMaterialization/lesson-materialization.mjs publish

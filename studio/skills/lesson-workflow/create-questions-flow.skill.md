@@ -34,22 +34,36 @@ Do **not** create an empty Questions PR for an assessment-only Lesson whose appr
 
 Use a single **Draft Questions child PR** targeting the open parent
 Lesson PR head branch; if the Lesson was merged, use its verified
-current integration/main base. Reuse an existing work PR rather than
+current integration branch (normally `develop`, not implicitly `main`). Reuse an existing work PR rather than
 creating duplicates. Record source SHA and review SHA. When nested
 in a Course/Lesson integration hierarchy, follow actual GitHub
 label rules; pr: integration and pr: agent-subtask are mutually
 exclusive. Do not alter the parent Lesson's unrelated content,
 Screenwriter sections, Flashcards bank, or other child branches.
 
-The parent [Create Lesson Flow #643](https://github.com/KiT-Maverik/svitlo/pull/643)
-is merged and orders **per-Lesson** Questions before Flashcards.
-[Flashcards Flow #646](https://github.com/KiT-Maverik/svitlo/pull/646)
-is a **downstream consumer, never a dependency or merge gate of this
-Create Questions Flow PR**. Finish, review and merge #647 independently;
-afterwards #646 can incorporate the available Question authoring contract.
-For a bank-owning Lesson, finish and integrate its Question bank and any approved **local** Quiz Section registry edits before the Flashcards child edits the same Section registry. Downstream assessment Lessons do not force local Quiz Sections or create backward dependencies on upstream bank PRs. A genuinely reviewed Questions-N/A decision is
-different from an unfinished Question Bank. Do not wait for #646 to
-merge before completing #647.
+The canonical [Lesson Flow](./create-lesson-flow.skill.md) orders each Lesson's own Questions before Flashcards. Finish the independently reviewed bank and any justified **local** Quiz Section registry edits, and integrate them into the actual parent Lesson branch before a Flashcards child edits that registry. This is an **entity-specific dependency**, not a requirement to reopen, merge or wait on historical workflow-implementation PR numbers. Downstream assessment-only Lessons must handle their own verified upstream Question selection without forcing Quiz Sections or reverse dependencies onto source Lessons.
+
+## Mandatory user-facing stage report and next-action handoff
+
+After each completed or paused stage, at a blocker, and on a status/resume request (including a message containing only the Questions child PR number), **inspect and reconcile first**. Read the current child PR body, head/base, actual Lesson UUID and parent Lesson PR, the latest Lesson content/reference Markdown, verified bank/Quiz Section files, reviewers, SHA-scoped evidence and applicable CI. A bare PR number requests a report and recommendation, **not** execution, PR creation, review approval or merge. The child PR description is the only bank workflow tracker. Do not add stage/status fields to `questions.yaml`, Lesson Config/Props or another ledger. **If invoked from a parent Lesson PR and no Questions child PR yet exists**, report `Questions PR: Not started` and all seven bank stages as not started (no invented child PR ID). After verifying that an own bank is required, recommend the separately authorized starting instruction `do questions for lesson <lesson-uuid> related to PR #<lesson-pr-number>`; do not create the PR until the user actually requests that action.
+
+Always end the user-facing response with:
+
+1. **Question Bank identity:** verified Lesson UUID and title/slug, parent Lesson PR `#N`, Questions child PR `#M`, and evidence/head SHA where known.
+2. **All seven Questions stages in order:** 1. Lesson Analysis; 2. Question Design; 3. Quiz Section Design; 4. Independent Assessment Review; 5. Resource Production; 6. Translation; 7. Independent Translation Review. Mark each `✅ completed`, `▶ in progress`, `⬜ not started`, `⛔ blocked` or `↻ stale`, reflecting verified deliverables, required independent approvals, current source revisions and per-locale coverage. Distinguish `Quiz selections: Not Applicable` for a bank-owning Lesson with no approved Quiz from **`Questions (own bank): Not Applicable`**, which means **do not start this Questions workflow at all** unless an actual, separately authorized bank scope later changes.
+3. **Last completed stage:** explicitly `Stage N — <name> completed` with actual evidence, or `No new stage completed`; specify blockers/stale SHAs.
+4. **Next Questions stage:** the first eligible pending stage, or explicitly `None — all seven Questions stages are complete`.
+5. **Recommended next action:** one grounded, copyable **chat instruction**, on its own fenced `text` line, such as `do questions stage 2 for PR #<questions-pr-number>`. State why this is the appropriate next action. The command is **not an existing CLI syntax** or permission to execute immediately. The user may paste it, give another clear instruction, or reply `go` to **one unambiguous proposal in this chat**; a bare PR number or a contextless `go` never authorizes work. If blocked, recommend an actual authorized unblock/review action instead of self-reviewing or fabricating evidence.
+
+**Parent Lesson Stage 7 handoff:** when all seven Questions child stages are complete, independently reviewed, and **actually integrated into the parent Lesson branch**, verify and check the **parent Lesson Stage 7 — Questions** with exact child PR, source/review and integration SHAs. Then recommend Lesson Stage 8, which starts or resumes [Create Flashcards Flow](./create-flashcards-flow.skill.md) **only if a real Flashcard bank is justified**; otherwise record pedagogically verified Flashcards N/A and check parent Stage 8. If an existing Flashcards PR matches this Lesson UUID, recommend resuming it. Use a verified identifier and relationship:
+
+```text
+do flashcards for lesson <lesson-uuid> related to PR #<lesson-pr-number>
+```
+
+Before integration, the next action is the required final QA/owner-authorized review and integration of the Questions PR, **not** Flashcard authoring. If Flashcards are documented `Not Applicable`, recommend parent Stage 8 N/A evidence reconciliation and Lesson Stage 9 Translation or final gates when applicable. Never skip Questions by treating `no Quiz` as `Questions: Not Applicable`; a bank-owning Lesson may have `Quiz selections: Not Applicable` while still needing all seven Questions stages.
+
+**Terminal state:** when all seven Questions stages are verified complete, explicitly say **"All seven Questions workflow stages are complete. There is no next Questions stage. You can assign new work."** Stop; report outstanding integration, independent Flashcards, Lesson QA, publication or merge separately rather than inventing stage eight or continuing automatically. An unmerged or unpublished bank does not satisfy downstream integration/readiness gates.
 
 ## Stage 1 — Lesson Analysis
 
@@ -92,7 +106,7 @@ Only reuse verified Lesson media UUIDs or document an unmet media need.
 ## Stage 3 — Quiz Section Design
 
 Inspect actual Lesson/index.ts, sections/index.ts, each current Quiz
-Section module and the order. If the bank-owning Lesson has **no approved Quiz**, record `Quiz selections: Not Applicable — bank preserved for later assessment/Custom Practice`, skip Section mutations and continue the bank review/production stages. **Reuse** a suitable existing Quiz
+Section module and the order. Stage 6 may already have materialized an **enabled, schema-valid but blocked** Quiz with its approved Section ID, original screen ContentBlocks and a reserved `feedc0de-` synthetic `questionIds` entry. Treat that UUID as an unresolved draft marker, never as a real Question; reuse the existing Section and placement, replace all provisional fields with reviewed Question selections/interaction/results choices and remove TODOs only after strict Props and resource/locale verification. If the bank-owning Lesson has **no approved Quiz**, record `Quiz selections: Not Applicable — bank preserved for later assessment/Custom Practice`, skip Section mutations and continue the bank review/production stages. **Reuse** a suitable existing Quiz
 Section and stable UUID whenever possible; create one only when
 approved methodology requires it and none exists. Multiple Quizzes
 are allowed. An independent Question Bank does not force a Quiz.
@@ -106,11 +120,11 @@ respect required outcome/method coverage; there is no guaranteed
 stratified sampler. Review placement, interaction/retry policy,
 time limits, feedback, accessibility and learner attention.
 
-Before materialization, the source may carry a temporary
-quizSelections mapping from Section UUID to selected Question UUIDs.
-The actual TS Section Config will become authoritative once the
-Coding Agent materializes it; never keep competing permanent
-Quiz selection sources.
+Record the intended Quiz subsets and rationale in the Questions PR review
+evidence before materialization. After typed Questions exist, the owning
+Section imports the selected Question Configurators and uses their `.id`
+values in `params.selection.questionIds`. The actual authored TS Section
+Config is the only selection source; do not maintain a second YAML UUID map.
 
 ## Stage 4 — Independent Assessment Review
 
@@ -122,6 +136,10 @@ of media and supported grading behavior. For every selected Quiz,
 review that its small subset actually covers the Methodologist's
 intent. Re-review after material edits. Record the verdict in the
 Questions PR, not YAML/Config status flags.
+
+## Stage 5 CI command for approved bank YAML
+
+After Stage 4 Independent Assessment Review has accepted the current complete `questions.yaml` source (and its findings are corrected), the Coding Agent can use the opt-in [bank materialization workflow](../../../scripts/ci/bankMaterialization/README.md) **when deployed on `main`**. Verify the actual existing Questions child Draft PR identity, parent Lesson ancestry, authored canonical YAML blob and Stage 1–4 checklist. Post exactly `/questions materialize` as a top-level comment on **that Questions child PR**, or dispatch the workflow with its PR number and `bank=questions`; do not post to the Lesson PR. The job runs the existing Questions Builder `--preflight` → `--write` → `--check` with trusted Engine code and commits only verified `questions/**` files into the child PR branch. The original `questions.yaml` remains; no Lesson/Quiz Section sources or Flashcards are generated or altered. Verify the actual Actions run, source blob and new HEAD SHA before marking the source scaffold produced; a comment or green generic CI run alone is not evidence. Continue the same Stage 5 to complete Quiz selection integration, assets, verification, and publication; **never** mark Stage 5 complete from the draft scaffold alone. If the comment runner is not yet on `main`, use the documented local Builder and report the exact execution limitation instead of claiming it ran.
 
 ## Stage 5 — Resource Production
 
@@ -135,7 +153,7 @@ at the authorized handoff:
   questions/index.ts bank. No existing source is overwritten.
 - **If** this bank-owning Lesson has approved Quiz Section(s), its Section owner edits only those Quiz module(s), sections/index.ts and necessary root Lesson imports/order, preserving all unrelated Sections/UUIDs. A bank with no Quiz must not acquire a Quiz merely to satisfy this stage. This work is intentionally not performed
   by a bank generator on an existing hand-authored Lesson.
-- For **actual local Quiz Sections**, use --verify-sections to verify static Section UUID selections and registration; review custom dynamic Composition manually. Do not require a nonexistent local Quiz to pass this optional check.
+- For **actual local Quiz Sections**, use stable IDs from imported typed Question Configurators in `params.selection.questionIds`; use normal TypeScript, Engine validation, publication and complete textbook builds. Do not invoke a separate AST/static Section verifier. A bank without a Quiz remains valid.
 - Publish **all** Questions with the existing Engine
   generateAssessmentResources --kind question publisher and test
   selected resource loading, real UI Kit support, full intended Lesson
@@ -168,8 +186,7 @@ text and grading-sensitive answer meaning. Check RTL, bidirectional
 math/text, units, accessibility labels and only verified media refs.
 Use real generated review artifacts; missing artifacts are blockers,
 not evidence of a successful review. Keep stage/locale evidence in
-the Questions PR. Follow separately applicable Translation Production
-Issue coordination when relevant.
+the Questions PR. Follow the current [Translation Workflow](../translation-workflow/README.md) when a separately authorized locale campaign is needed; do not create a mandatory bank Production Issue.
 
 ## Completion evidence and PR template
 
@@ -195,7 +212,7 @@ staged textbook manifest. Inspect the entire changed Lesson UUID root for any
 `TODO(asset)`, reserved Nil media filename, temporary `questions.yaml` or
 missing referenced media, captions and accessible alternative. The strict
 textbook `package:build` must succeed for the full required language scope,
-including the post-generation check that every explicitly selected **local** Quiz candidate resolves to the correct published Question, body and locale file. For an external downstream assessment Lesson, separately verify that the completed bank is integrated into its actual branch ancestry and published with the correct owning Lesson/UUID/locale; **PR #668** must be integrated and verified for global selection across banks.
+including the post-generation check that every explicitly selected **local** Quiz candidate resolves to the correct published Question, body and locale file. For an external downstream assessment Lesson, separately verify that the completed bank is integrated into its actual branch ancestry and published with the correct owning Lesson/UUID/locale; verify the merged global UUID resolver, manifest, and downstream branch ancestry actually provide the requested upstream resources.
 Passing the Questions YAML→TS builder alone is not resource completion; do not
 mark the Questions child PR complete until the real generated resources exist.
 A missing or unfinished **required** Question Bank is never marked Questions-N/A; an approved assessment-only Lesson's absent **own** bank is a separate documented exception, conditional on verified external Question resources. Do not modify Flashcards

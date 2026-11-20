@@ -47,6 +47,14 @@ If scope, source meaning or essential reader context is ambiguous, isolate and r
 4. Verify all required locale keys and nonempty, genuine localized values against the actual contract. Run applicable localization/schema tests and focused tests when available. TypeScript proves structural safety, **not** translation accuracy, and must not replace linguistic review.
 5. Never suppress diagnostic errors, mark absent translations optional, remove imported resources from the project, or alter production code to create a superficial green result. **Correcting a misconfigured `tsconfig` to INCLUDE authored `data/**/*.ts` is required, not prohibited.** Do not weaken compiler options or exclude translated files to make checks pass.
 
+## KAZAKH (`kk`) — LATIN-SCRIPT TRANSLATION GATE
+
+Svitlo publishes one Kazakh language key `kk`, with BCP 47 locale `kk-Latn-KZ`. **Read and apply the Kazakh editorial standard in the Technical Translator Persona** before changing any `kk` field. Follow Kazakhstan's **2021 improved 31-letter Latin-alphabet proposal** as an explicit provisional Svitlo convention, not a legally finalized Kazakh orthography. Do not create `kk-Cyrl-KZ` files or a second Cyrillic dictionary.
+
+For each affected source field, first verify it contains genuine Kazakh rather than Russian text or a placeholder. Convert/rewrite into natural **Latin-script Kazakh**, preserving scientific meaning, grammar, learner address, formatting tokens and stable IDs. Review distinct characters `Ä, Ö, Ü, Ū, Ğ, Ş, Ñ`, dotted/dotless `I` forms, names, inflection and unsettled loanword spelling. Mechanical Cyrillic-to-Latin substitution alone does not pass translation/review. Confirm no unintended Kazakh Cyrillic remains in learner-facing `kk` values; quotations of original sources may remain if explicitly educational and marked.
+
+Record unresolved orthographic choices as `file → field → kk`, with sources and provisional status; involve independent linguistic review. TypeScript/schema green tests validate the `kk` key and `kk-Latn-KZ` locale, **not** the orthographic quality of existing source values. If the official Kazakh standard changes, revise this policy in a dedicated reviewed PR rather than silently mixing alphabet versions.
+
 ## CRIMEAN TATAR (`qm`) — REQUIRED TERMINOLOGY SEARCH ORDER
 
 For **every uncertain specialized term**, apply the **same mandatory sequence** as [Technical Translator Persona](../../personas/technical-translator.persona.md). This hierarchy is valid for **all Svitlo subjects**, not only Astronomy:

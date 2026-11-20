@@ -7,7 +7,6 @@ const engine = readJson('shared/engine/package.json');
 const indexdb = readJson('shared/indexdb/package.json');
 const playground = readJson('content/playground/package.json');
 const web = readJson('apps/web/package.json');
-const selectableTextbooks = new Set(Object.values(readJson('apps/web/textbooks.json')).map(entry => entry.package));
 const platform = readJson('apps/platform/package.json');
 const math = readJson('content/math/package.json');
 const biology = readJson('content/biology/package.json');
@@ -122,10 +121,7 @@ assert(
   !existsSync(resolve(root, 'content/playground/src/app')) && !playground.dependencies?.next,
   'Playground must be a framework-independent textbook package',
 );
-assert(
-  playground.exports?.['./scenes'] && web.dependencies?.[playground.name] === playground.version,
-  'Web must consume the public Playground Scene registry',
-);
+assert(!web.dependencies?.[playground.name] && !web.devDependencies?.[playground.name], 'Web must not depend on Playground');
 assert(
   ['.', './scenes'].every(
     key =>
@@ -321,9 +317,7 @@ for (const applicationRoot of applicationSourceRoots) {
     for (const match of code.matchAll(/\bfrom\s*['"]([^'"]+)['"]/g)) {
       const specifier = match[1];
       assert(
-        (applicationRoot === resolve(root, 'apps/web/src') &&
-          selectableTextbooks.has(specifier.split('/').slice(0, 2).join('/'))) ||
-          !/^@svitlo\/(?:playground|math|biology|physics|informatics|geography|language-literature|ukrainian|chemistry|astronomy|history|philosophy|psychology|economics|art|health-safety|engineering|platform)(?:\/|$)/.test(
+        !/^@svitlo\/(?:playground|math|biology|physics|informatics|geography|language-literature|ukrainian|chemistry|astronomy|history|philosophy|psychology|economics|art|health-safety|engineering|platform)(?:\/|$)/.test(
             specifier,
           ),
         'Applications must not import another application by package name: ' + relative(root, file),

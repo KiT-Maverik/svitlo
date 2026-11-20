@@ -418,15 +418,15 @@ const ka: Flashcard_Locale = {
 
 const kk: Flashcard_Locale = {
   flashcard: {
-    region: 'Оқу карточкасы',
-    noCompatibleCards: 'Қолжетімділік параметрлеріңізге сәйкес келетін флешкарталар жоқ.',
-    flags: { warning: 'Назар аударыңыз' },
+    region: 'Oqu kartasy',
+    noCompatibleCards: 'Qoljetımdılık parametrlerıñe säikes keletın oqu kartalary joq.',
+    flags: { warning: 'Nazar audar' },
     actions: {
-      menu: 'Карточка әрекеттері',
-      reveal: 'Жауапты көрсету',
-      forgot: 'Есімде жоқ',
-      remembered: 'Есімде',
-      addLabel: 'Белгі қосу',
+      menu: 'Kartamen äreketter',
+      reveal: 'Jauapty körsetu',
+      forgot: 'Esımde joq',
+      remembered: 'Esımde',
+      addLabel: 'Belgı qosu',
     },
   },
 };

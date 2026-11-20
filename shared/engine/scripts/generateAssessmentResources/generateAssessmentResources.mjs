@@ -54,6 +54,11 @@ export function collectAssessmentConfigurators(exports, kind) {
       throw new Error('Expected slug-keyed ' + kind + ' bank at ' + pathParts.join('/'));
     }
     if (typeof node.build?.props === 'function') {
+      // A Lesson draft's feedc0de UUIDv8 cannot be laundered into an
+      // independently published real bank merely by adding a source object.
+      if (typeof node.id === 'string' && node.id.startsWith('feedc0de-')) {
+        throw new Error('Reserved pending assessment UUID cannot be published: ' + node.id);
+      }
       if (seen.has(node.id)) throw new Error('Duplicate authored Assessment UUID: ' + node.id);
       if (kind === 'question' ? !questionTypes.includes(node.type) : node.type !== 'flashcard') {
         throw new Error('Invalid ' + kind + ' Configurator type at ' + pathParts.join('/'));

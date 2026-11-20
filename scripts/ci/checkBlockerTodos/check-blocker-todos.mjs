@@ -31,6 +31,21 @@ const sourceExtensions = new Set([
   '.sql',
 ]);
 const commitSha = /^[0-9a-f]{40}$/i;
+const reviewPath = /^content\/(?:[^/]+|languages\/[^/]+)\/data\/(?:courses|lessons)\/[^/]+\/[^/]+\/review\.ts$/;
+
+/** Pending numeric Review references are not approvals, even without TODOs. */
+export function scanPendingReview(file, source) {
+  if (!reviewPath.test(file)) return [];
+  const pending = [];
+  const propertyZero = /(?:^|[{,])\s*(?:[A-Za-z_$][\w$]*|['"][^'"\n]+['"])\s*:\s*0(?=\s*[,}])/g;
+  for (const [index, line] of source.split(/\r?\n/).entries()) {
+    if (/^\s*(?:\/\/|\/\*|\*)/.test(line)) continue;
+    propertyZero.lastIndex = 0;
+    if (propertyZero.test(line))
+      pending.push(finding(file, index + 1, 'Pending Review evidence (0 is not approval): ' + line.trim()));
+  }
+  return pending;
+}
 
 function isSourceFile(file) {
   return sourceExtensions.has(path.extname(file).toLowerCase());
@@ -149,7 +164,7 @@ export function scanSource(file, source) {
     // Template strings can always span lines.
     if (quoted && quoted !== String.fromCharCode(96) && !/\\$/.test(line)) quoted = null;
   }
-  return findings;
+  return [...findings, ...scanPendingReview(file, source)];
 }
 
 /** Scan tracked source, excluding untracked outputs, binary assets, and Markdown. */
@@ -229,6 +244,24 @@ export function scanDiff(root, base, head) {
   return findings;
 }
 
+/** Inspect the current contents of every added, modified or renamed PR source
+ * file, including blocker comments inherited from the base revision. */
+export function scanChanged(root, base, head) {
+  if (!commitSha.test(base) || !commitSha.test(head)) {
+    throw new Error('Changed mode requires two full 40-character commit SHAs');
+  }
+  const files = git(root, 'diff', '--name-only', '-z', '--diff-filter=ACMR', base + '...' + head, '--')
+    .split('\0')
+    .filter(isSourceFile);
+  const findings = [];
+  for (const file of files) {
+    const location = path.join(root, file);
+    if (!fs.existsSync(location) || !fs.lstatSync(location).isFile()) continue;
+    findings.push(...scanSource(file, fs.readFileSync(location, 'utf8')));
+  }
+  return findings;
+}
+
 function escapeAnnotation(value) {
   return String(value).replace(/%/g, '%25').replace(/\r/g, '%0D').replace(/\n/g, '%0A').replace(/,/g, '%2C');
 }
@@ -236,20 +269,35 @@ function escapeAnnotation(value) {
 export function main(args, root = path.resolve(fileURLToPath(new URL('../../..', import.meta.url)))) {
   const [mode, base, head] = args;
   if (
-    (mode !== 'full' && mode !== 'diff') ||
+    (mode !== 'full' && mode !== 'diff' && mode !== 'report-diff' && mode !== 'changed') ||
     (mode === 'full' && args.length !== 1) ||
-    (mode === 'diff' && args.length !== 3)
+    ((mode === 'diff' || mode === 'report-diff' || mode === 'changed') && args.length !== 3)
   ) {
-    throw new Error('Usage: check-blocker-todos.mjs full | diff <base-sha> <head-sha>');
-  }
-  const findings = mode === 'full' ? scanFull(root) : scanDiff(root, base, head);
-  for (const item of findings) {
-    console.error(
-      '::error file=' + escapeAnnotation(item.file) + ',line=' + item.line + '::' + escapeAnnotation(item.text),
+    throw new Error(
+      'Usage: check-blocker-todos.mjs full | diff <base-sha> <head-sha> | changed <base-sha> <head-sha> | report-diff <base-sha> <head-sha>',
     );
   }
+  const findings =
+    mode === 'full' ? scanFull(root) : mode === 'changed' ? scanChanged(root, base, head) : scanDiff(root, base, head);
+  const informational = mode === 'report-diff';
+  for (const item of findings) {
+    console.error(
+      (informational ? '::warning file=' : '::error file=') +
+        escapeAnnotation(item.file) +
+        ',line=' +
+        item.line +
+        '::' +
+        escapeAnnotation(item.text),
+    );
+  }
+  if (informational) {
+    console.log('Draft TODO report: ' + findings.length + ' pending blocker comment(s); authoring may continue.');
+    return;
+  }
   if (findings.length) {
-    throw new Error(findings.length + ' unresolved TODO (BLOCKER) comment(s) in ' + mode + ' mode');
+    throw new Error(
+      findings.length + ' unresolved TODO (BLOCKER) comment(s) or pending Review evidence in ' + mode + ' mode',
+    );
   }
   console.log('Blocker TODOs / clean (' + mode + '): no blocking comments found.');
 }

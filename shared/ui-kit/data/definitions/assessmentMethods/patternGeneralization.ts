@@ -1,6 +1,6 @@
-import { defineAssessmentMethod } from '@svitlo/engine/build';
+import { defineAssessmentMethod, type AllLanguageCodes } from '@svitlo/engine/build';
 
-export const patternGeneralization = defineAssessmentMethod({
+export const patternGeneralization = defineAssessmentMethod<'patternGeneralization', AllLanguageCodes>({
   id: 'd26486ad-f49b-4f7c-b10b-7e9e87d62621',
   slug: 'patternGeneralization',
   title: {
@@ -18,7 +18,7 @@ export const patternGeneralization = defineAssessmentMethod({
     id: 'Generalisasi pola',
     ja: '規則性の一般化',
     ka: 'კანონზომიერებების განზოგადება',
-    kk: 'Заңдылықтарды жалпылау',
+    kk: 'Zañdylyqtardy jalpylau',
     ko: '패턴 일반화',
     lt: 'Dėsningumų apibendrinimas',
     lv: 'Likumsakarību vispārināšana',
@@ -50,7 +50,7 @@ export const patternGeneralization = defineAssessmentMethod({
     id: 'Mengenali pola berulang dan menyusun aturan yang berlaku di luar contoh yang diamati. Penilaian mengukur proses berpikir ini, bukan bentuk jawabannya.',
     ja: '繰り返すパターンを見つけ、観察例を超えて通用する規則を導きます。 評価するのは回答形式ではなく、この認知的な働きです。',
     ka: 'განმეორებადი კანონზომიერების აღმოჩენა და წესის ჩამოყალიბება, რომელიც მოცემულ მაგალითებსაც სცდება. ფასდება ეს სააზროვნო მოქმედება და არა პასუხის ფორმატი.',
-    kk: 'Қайталанатын заңдылықты тауып, берілген мысалдардан тыс та қолданылатын ережені тұжырымдау. Жауаптың пішімі емес, осы ойлау әрекеті бағаланады.',
+    kk: 'Qaitalanatyn zañdylyqty tauyp, berılgen mysaldardan tys ta qoldanylatyn erejenı tūjyrymdau. Jauaptyñ pışımı emes, osy oilau äreketı bağalanady.',
     ko: '반복되는 패턴을 찾아 사례를 넘어 적용되는 규칙을 이끌어 냅니다. 평가는 답변 형식이 아니라 이러한 인지 활동을 측정합니다.',
     lt: 'Atpažinti pasikartojantį dėsningumą ir suformuluoti taisyklę, taikomą ne tik pateiktiems pavyzdžiams. Vertinamas šis mąstymo veiksmas, o ne atsakymo pateikimo forma.',
     lv: 'Saskatīt atkārtojošos likumsakarību un formulēt noteikumu, kas darbojas arī ārpus dotajiem piemēriem. Tiek vērtēta šī domāšanas darbība, nevis atbildes forma.',

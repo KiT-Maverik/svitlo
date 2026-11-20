@@ -1,77 +1,74 @@
 import { test, expect } from '@playwright/test';
 
-const id = 'd3048d21-8690-5255-b62c-984c69ac272c';
+const id = '11111111-1111-4111-8111-00000000011c';
 
-test('lesson renders sections, scenes and quiz in the selected content language', async ({ page }) => {
-  await page.goto(`/uk/lesson/uk/${id}`);
+test('Lesson renders selected content Scene and a separately published Quiz', async ({ page }) => {
+  await page.goto('/uk/lesson/uk/' + id);
   await expect(page.locator('html')).toHaveAttribute('lang', 'uk-UA');
   await expect(page.locator('html')).toHaveAttribute('dir', 'ltr');
-  await expect(page.getByRole('heading', { name: 'Як рухається світло', exact: true })).toBeVisible();
-  await expect(page.getByRole('img', { name: 'Світловий промінь' })).toBeVisible();
-  await expect(page.getByRole('region', { name: 'Анімація поширення світла від джерела до екрана' })).toBeVisible();
-
+  await expect(page.getByRole('heading', { name: 'Контрольний урок', exact: true })).toBeVisible();
+  await expect(page.getByRole('img', { name: 'Контрольна інтерактивна сцена' })).toBeVisible();
+  await expect(page.getByRole('region', { name: 'Контрольна інтерактивна сцена' })).toBeVisible();
   const next = page
     .getByRole('navigation', { name: 'Нижня навігація навчання' })
     .getByRole('button', { name: 'Далі →', exact: true });
   await next.click();
-  await expect(page.getByRole('heading', { name: 'Одне світло. Різні середовища.' })).toBeVisible();
+  await expect(page.getByText('Контрольний навчальний вміст')).toBeVisible();
   await next.click();
-  await expect(page.locator('fieldset')).toHaveCount(2);
+  await expect(page.getByText('Яка відповідь правильна?')).toBeVisible();
+  await expect(page.getByRole('radio')).toHaveCount(2);
 });
 
-test('the requested lesson language selects localized published JSON and scene props', async ({ page }) => {
+test('localized published JSON selects the corresponding Scene props', async ({ page }) => {
   const root = '/data/lessons/c/' + id + '/';
-  const [baseResource, localizedResource] = await Promise.all([
+  const [baseResponse, enResponse] = await Promise.all([
     page.request.get(root + 'base.json'),
     page.request.get(root + 'en.json'),
   ]);
-  expect(baseResource.ok()).toBe(true);
-  expect(localizedResource.ok()).toBe(true);
-  const base = await baseResource.json();
-  const json = await localizedResource.json();
+  expect(baseResponse.ok()).toBe(true);
+  expect(enResponse.ok()).toBe(true);
+  const base = await baseResponse.json();
+  const json = await enResponse.json();
   expect(base.type).toBe('lesson');
   expect(base.params.languages).toContain('en');
   expect(base.section.map((section: { type: string }) => section.type)).toEqual(['content', 'practice', 'quiz']);
-  expect(json.locale.title).toBe('How Light Travels');
-  expect(json.section[0].locale.title).toBeDefined();
-
-  await page.goto(`/uk/lesson/en/${id}`);
+  expect(json.locale.title).toBe('Controlled Lesson');
+  expect(json.section[0].locale.title).toBe('Explore');
+  await page.goto('/uk/lesson/en/' + id);
   await expect(page.locator('html')).toHaveAttribute('lang', 'uk-UA');
   await expect(page.locator('#learning-content [lang="en-US"]').first()).toBeVisible();
-  await expect(page.getByRole('img', { name: 'Trace the path of light' })).toBeVisible();
-  await expect(
-    page.getByRole('region', { name: 'Animation of light traveling from the source to the screen' }),
-  ).toBeVisible();
-  await expect(page.getByRole('heading', { name: 'How light travels', exact: true })).toBeVisible();
+  await expect(page.getByRole('img', { name: 'Controlled interactive scene' })).toBeVisible();
+  await expect(page.getByRole('region', { name: 'Controlled interactive scene' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Controlled Lesson', exact: true })).toBeVisible();
 });
 
-test('interface language selection does not change the lesson language', async ({ page }) => {
-  await page.goto(`/uk/lesson/uk/${id}`);
+test('interface language selection leaves the Lesson language unchanged', async ({ page }) => {
+  await page.goto('/uk/lesson/uk/' + id);
   await page.getByRole('button', { name: 'Відкрити налаштування' }).click();
   await expect(page.getByRole('heading', { name: 'Швидкі налаштування' })).toBeVisible();
   await page.getByRole('combobox', { name: 'Мова інтерфейсу' }).click();
   await page.getByRole('option', { name: 'English' }).click();
-  await expect(page).toHaveURL(`/en/lesson/uk/${id}`);
+  await expect(page).toHaveURL('/en/lesson/uk/' + id);
   await expect(page.locator('html')).toHaveAttribute('lang', 'en-US');
-  await expect(page.getByRole('main').getByRole('heading', { name: 'Як рухається світло', exact: true })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Контрольний урок', exact: true, level: 1 })).toBeVisible();
   await expect(page.getByRole('navigation', { name: 'Top learning navigation' })).toBeVisible();
 });
 
-test('lesson language selection does not change the interface language', async ({ page }) => {
-  await page.goto(`/uk/lesson/uk/${id}`);
+test('Lesson language selection leaves the interface language unchanged', async ({ page }) => {
+  await page.goto('/uk/lesson/uk/' + id);
   await page.getByRole('button', { name: 'Відкрити налаштування' }).click();
   await page.getByRole('combobox', { name: 'Мова уроку' }).click();
   await page.getByRole('option', { name: 'English' }).click();
-  await expect(page).toHaveURL(`/uk/lesson/en/${id}`);
+  await expect(page).toHaveURL('/uk/lesson/en/' + id);
   await expect(page.locator('html')).toHaveAttribute('lang', 'uk-UA');
   await expect(page.locator('#learning-content [lang="en-US"]').first()).toHaveAttribute('dir', 'ltr');
-  await expect(page.getByRole('heading', { name: 'How light travels', exact: true })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Controlled Lesson' })).toBeVisible();
   await expect(page.getByRole('navigation', { name: 'Верхня навігація навчання' })).toBeVisible();
 });
 
-test('mobile quick settings fills the content width and provides a close button', async ({ page }) => {
+test('mobile Quick Settings fits the content width and closes', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 720 });
-  await page.goto(`/uk/lesson/uk/${id}`);
+  await page.goto('/uk/lesson/uk/' + id);
   await page.getByRole('button', { name: 'Відкрити налаштування' }).click();
   const settings = page.getByRole('complementary', { name: 'Швидкі налаштування' });
   await expect(settings.getByRole('heading', { name: 'Швидкі налаштування' })).toBeVisible();
@@ -84,27 +81,25 @@ test('mobile quick settings fills the content width and provides a close button'
   await expect(settings.getByRole('button', { name: 'Закрити панель налаштувань' })).toBeHidden();
 });
 
-test('RTL interface and content directions remain independent', async ({ page }) => {
-  await page.goto(`/ar/lesson/en/${id}`);
+test('RTL interface and RTL content remain independent', async ({ page }) => {
+  await page.goto('/ar/lesson/en/' + id);
   await expect(page.locator('html')).toHaveAttribute('lang', 'ar-SA');
   await expect(page.locator('html')).toHaveAttribute('dir', 'rtl');
   await expect(page.locator('#learning-content [lang="en-US"]').first()).toHaveAttribute('dir', 'ltr');
-
-  await page.goto(`/uk/lesson/ar/${id}`);
+  await page.goto('/uk/lesson/ar/' + id);
   await expect(page.locator('html')).toHaveAttribute('lang', 'uk-UA');
   await expect(page.locator('html')).toHaveAttribute('dir', 'ltr');
   await expect(page.locator('#learning-content [lang="ar-SA"]').first()).toHaveAttribute('dir', 'rtl');
-
-  await page.goto(`/qm/lesson/qm/${id}`);
+  await page.goto('/qm/lesson/qm/' + id);
   await expect(page.locator('html')).toHaveAttribute('lang', 'crh-Latn-UA');
 });
 
-test('legacy lesson URLs redirect without losing the content language or query', async ({ page }) => {
-  await page.goto(`/uk/lesson/${id}?ref=example`);
-  await expect(page).toHaveURL(`/uk/lesson/uk/${id}?ref=example`);
+test('legacy Lesson URLs preserve locale and query', async ({ page }) => {
+  await page.goto('/uk/lesson/' + id + '?ref=example');
+  await expect(page).toHaveURL('/uk/lesson/uk/' + id + '?ref=example');
 });
 
-test('unsupported and removed lesson URLs return 404', async ({ request }) => {
+test('unsupported and removed Lesson routes return 404', async ({ request }) => {
   for (const path of [
     '/topics/light',
     '/topics/demo',
@@ -112,41 +107,32 @@ test('unsupported and removed lesson URLs return 404', async ({ request }) => {
     '/xx/lesson/uk/' + id,
     '/uk/lesson/xx/' + id,
     '/xx/lesson/' + id,
-  ]) {
-    const response = await request.get(path, { maxRedirects: 0 });
-    expect(response.status()).toBe(404);
-  }
+  ])
+    expect((await request.get(path, { maxRedirects: 0 })).status()).toBe(404);
 });
 
-test('Quick Settings switches the actual page colors and persists the theme', async ({ page }) => {
+test('Quick Settings toggles actual theme colors and persists', async ({ page }) => {
   await page.goto('/');
   await page.evaluate(() => window.localStorage.setItem('mui-mode', 'light'));
-  await page.goto(`/uk/lesson/uk/${id}`);
-
+  await page.goto('/uk/lesson/uk/' + id);
   const html = page.locator('html');
   const surface = page.locator('#learning-content:visible').first().locator('..').locator('..');
   const background = () => surface.evaluate(node => getComputedStyle(node).backgroundColor);
-
   await expect(html).toHaveAttribute('data-light', '');
-  const lightBackground = await background();
-
+  const initial = await background();
   await page.getByRole('button', { name: 'Відкрити налаштування' }).click();
   const toggle = page.getByRole('switch', { name: 'Темна тема' });
   await expect(toggle).not.toBeChecked();
-
   await toggle.click();
   await expect(toggle).toBeChecked();
   await expect(html).toHaveAttribute('data-dark', '');
-  await expect.poll(background).not.toBe(lightBackground);
-
+  await expect.poll(background).not.toBe(initial);
   await page.reload();
   await expect(html).toHaveAttribute('data-dark', '');
-  await expect.poll(background).not.toBe(lightBackground);
-
+  await expect.poll(background).not.toBe(initial);
   await page.getByRole('button', { name: 'Відкрити налаштування' }).click();
-  await expect(toggle).toBeChecked();
   await toggle.click();
   await expect(toggle).not.toBeChecked();
   await expect(html).toHaveAttribute('data-light', '');
-  await expect.poll(background).toBe(lightBackground);
+  await expect.poll(background).toBe(initial);
 });

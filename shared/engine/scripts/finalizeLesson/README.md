@@ -1,35 +1,36 @@
-# Complete Lesson blueprint preflight and finalization
+# Finalize Lesson — Stage 6 source handoff
 
-This is a **separate, opt-in Stage 6 handoff** for the [Create Lesson Flow](../../../../studio/skills/lesson-workflow/create-lesson-flow.skill.md). It is not the Lesson Builder, schema generator, Props publisher, assessment-bank creator, editor or approval gate. The existing `lessonBuilder.mjs` remains a **create-only draft scaffolder** that does not validate complete YAML.
+This command is the trusted, explicit preflight/orchestration boundary for the canonical Lesson `lesson.yaml`. It validates the accepted technical source and creates the existing Lesson Builder output; it is not a bank author, Props publisher, translator or reviewer.
 
-## Preconditions and commands
+## Authoring decision contract
 
-Run only when Content Review, Experience Review and Methodology Compliance have independently accepted the exact authored `lesson.yaml` SHA in the Lesson Draft PR. Use the **canonical Lesson UUID path**; the builder can accept staged input, but this finalizer intentionally requires a canonical source so it can safely remove exactly one file. First build or check current Engine-derived YAML schema in the owning package and confirm it is not stale.
+The root optional `production.quizRequired` and `production.flashcardsRequired` booleans describe whether the eventual Lesson needs at least one Quiz/Flashcards Section. A missing or false flag creates no Section obligation. The Methodologist explains reasoning in `production.methodology`; no `lesson-assessment-sections` fenced inventory, Section intent key or integration-status string is required. A substantive Question Bank may be created even with no in-Lesson Quiz.
 
-Read-only structural preflight:
+`config.params.quizRequiredForCompletion` remains the actual Lesson Engine completion-contract property. Its authored value is never rewritten by this finalizer. Current Engine validation checks an enabled Quiz Section when the Lesson is built; future frontend learner-completion logic may strengthen the runtime behavior independently.
 
-```sh
-node shared/engine/scripts/finalizeLesson/finalizeLesson.mjs preflight --source content/math/data/lessons/<last-hex>/<lesson-uuid>/lesson.yaml
-```
-
-When editorial acceptance is recorded, perform **preflight → create-only Lesson Builder → read-only Builder check → complete generated inventory/source verification → persistent production handoff → delete unchanged YAML**:
+## CLI
 
 ```sh
-node shared/engine/scripts/finalizeLesson/finalizeLesson.mjs finalize --source content/math/data/lessons/<last-hex>/<lesson-uuid>/lesson.yaml
+node shared/engine/scripts/finalizeLesson/finalizeLesson.mjs preflight --source content/<book>/data/lessons/<bucket>/<uuid>/lesson.yaml
+node shared/engine/scripts/finalizeLesson/finalizeLesson.mjs preflight-draft --source content/<book>/data/lessons/<bucket>/<uuid>/lesson.yaml
+node shared/engine/scripts/finalizeLesson/finalizeLesson.mjs handoff --source content/<book>/data/lessons/<bucket>/<uuid>/lesson.yaml
+node shared/engine/scripts/finalizeLesson/finalizeLesson.mjs finalize --source content/<book>/data/lessons/<bucket>/<uuid>/lesson.yaml --preserve-config
 ```
 
-The preflight validates strict YAML 1.2 with unique keys, full `shared/engine/yaml-schemas/lesson.scaffold.schema.json` (derived from Engine Zod Config plus manual production schema) using the existing Ajv 2020 dependency, canonical Lesson UUID/slug, ordered enabled keys, unique nested Configurator IDs, complete Methodology, and source `production.documentLanguage` in planned `config.params.languages`. It refuses real non-source locale values which the source-only Builder would otherwise silently prune, **and empty locale dictionaries that would silently emit no authored source-language content**. It **does not** run on incomplete editorial drafts in Stages 1–5, judge scientific/pedagogical quality, or alter the Zod Config schema.
+Strict `preflight` applies the complete Engine-derived YAML schema and rejects outstanding assessment Section obligations. `preflight-draft` is isolated to authored incomplete assessments and relaxes only their draft source parameters while retaining all other schema, UUID, ordering, source-locale and collection checks. `handoff` invokes the existing create-only Lesson Builder and always preserves `lesson.yaml`. Strict first-time `finalize --preserve-config` is likewise source-preserving; strict local `finalize` without that flag retains the legacy safe-delete behavior **only for a first-time full and verified transfer**, never on an existing Lesson tree. Do not invoke it on an edited generated Lesson.
 
-The finalizer preserves all nested `production` fields in deterministic **`production-handoff.json`** (no Config duplication or workflow statuses), while the existing Builder creates `methodology.md`, TypeScript modules, source Markdown/Code and Scene/media `specification.md`. The handoff file is permanent source-production guidance, not a new canonical Lesson blueprint or a review acceptance token. Use that guidance to complete real Scene/media/accessibility work. Generated TypeScript may legitimately be incomplete or fail TypeScript until assets, imports, locales and real Questions/Flashcards are finished.
+Incomplete Quiz/Flashcards Sections are **retained in build-facing TS**, with all mandatory Config fields present and reserved `feedc0de-` UUIDv8 selection placeholders instead of unreviewed bank entities. Root, Section and field-level `TODO (BLOCKER)` comments remain active; the original accepted Section source is separately preserved without data loss in temporary `questions.yaml`/`flashcards.yaml` `sectionDrafts` specialist handoffs. Production publishing rejects the reserved IDs and draft labels even if TODOs are removed. No fabricated Question or Flashcard bank record is emitted. Other unfinished media/Scene drafts may still have TypeScript diagnostics and source blockers. `production-handoff.json` stores production guidance, not a second canonical Lesson Config.
 
-**Safety:** existing `index.ts` always blocks finalization, even if the Builder would SKIP. Existing divergent specs/handoffs block without overwrite. A skipped, partial, stale or inconsistent Builder check, missing output/methodology, noncanonical/symlink path, source changed during generation or incomplete transfer **never deletes `lesson.yaml`**. Partial generated files can remain after a failure; compare/reconcile manually rather than retrying blindly or overwriting authored source. The only removed file on success is the exact `lesson.yaml`; `questions.yaml`/`flashcards.yaml` and their separate approval/materialization processes are untouched.
+## Trusted GitHub flow
 
-## Tests
+Prefer `/lesson materialize` on the existing Draft Lesson PR after Stages 1–5 are accepted. The trusted resolve/analyze/publish workflow pins the original source blob, commits new files without overwriting them and retains identical YAML. No repeat/no-op integration is supported. An explicit `/lesson finalize` on the same PR performs an **entirely separate read-only source-fidelity and committed-output check**, then publishes exactly one allowlisted deletion: the unchanged `lesson.yaml`. The independent `questions.yaml` and `flashcards.yaml`, generated TS, Markdown, specifications, handoff, bank sources, media and authored Scene implementations are never removed by it. Pinned HEAD/blob, actor authorization, symlink protection and non-force Git ref update remain mandatory. An edited, divergent, partial or uncommitted source fails closed; it must be reconciled explicitly rather than auto-regenerated.
+
+Neither source handoff nor YAML retirement marks Stage 6 complete, clears unresolved blockers or proves independently reviewed/published assessment banks. Completion and final release still require actual Section/Question/Flashcard integration, appropriate media/Scene work, required locales, typed Props and production asset/manifest validation.
+
+## Scoped checks
 
 ```sh
 node --test shared/engine/scripts/finalizeLesson/finalizeLesson.spec.mjs
 node --test shared/engine/scripts/lessonBuilder/lessonBuilder.spec.mjs
-npm run content:check:yaml-schemas --workspace @svitlo/engine
+node --test scripts/ci/lessonMaterialization/lesson-materialization.spec.mjs
 ```
-
-The schema check requires the actual Engine build output; run `npm run package:build --workspace @svitlo/engine` first when necessary. Test coverage includes representative full YAML/real Builder source handoff, source locale safety, distinct production fields, duplicate UUID/order validation, create-only skip, missing/partial/divergent outputs, changed YAML and independent assessment sidecars. This tool deliberately does not verify the final runtime publisher, Lesson Props digest, independent reviewer acceptance or production media availability.
