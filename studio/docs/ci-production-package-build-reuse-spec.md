@@ -5,7 +5,7 @@
 
 ## Historical problem
 
-Before parallelization, `.github/workflows/questions.yml` sequentially invoked root `code:check:types`, `test`, `package:build`, `app:build`. `scripts/runWorkspaceScript/run-workspace-script.mjs` uses a new per-operation `built` set, so the same dependency builds may repeat in one runner; workspace `pretest` and app lifecycle hooks can introduce more builds. Avoid incorrectly attributing all repeated work to the root aggregator without measuring each source.
+Before parallelization, the workflow now called `.github/workflows/production-quality.yml` (at that time `questions.yml`) sequentially invoked root `code:check:types`, `test`, `package:build`, `app:build`. `scripts/runWorkspaceScript/run-workspace-script.mjs` uses a new per-operation `built` set, so the same dependency builds may repeat in one runner; workspace `pretest` and app lifecycle hooks can introduce more builds. Avoid incorrectly attributing all repeated work to the root aggregator without measuring each source.
 
 ## Implementation
 
