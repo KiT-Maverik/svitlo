@@ -58,33 +58,13 @@ Every `front`, `back` and optional `hint` is a named `{ items, order }` collecti
 - Avoid decorative videos, scenes, carousels or checklists inside a small flashcard. If a valid card needs a ContentBlock that this editorial schema cannot yet describe with enough type safety, report a specific generator extension rather than silently replacing it with prose.
 - Use `hint` for helpful cues that are not already supplied by typed flags; never repeat the list count there or leak the answer. Preserve meaningful LTR/RTL and literacy adaptations.
 
-## Step 4 — Author typed flags, including optional acronyms
+## Step 4 — Author Flashcard-owned typed flags
 
-Use the discriminated `flags` array on each card. The canonical output contract has four variants:
+Flags belong to **Flashcards**, not to Lessons, Quizzes or Questions. The four current variants are `list` (integer `count >= 2`), `warning`, `acronym` (localized `value`), and `custom` (localized `value`, approved palette `color`, optional icon). A card's flags have **no pedagogically meaningful order**.
 
-```yaml
-flags:
-  - { type: list, count: 4 }
-  - { type: warning }
-  - type: acronym
-    value: PaRFUME
-    localePolicy: needsLocalizedVersion
-    parts:
-      - { kind: source, item: Paper, letters: P }
-      - { kind: connector, letters: a }
-      - { kind: source, item: Rope, letters: R }
-      # Include all remaining pieces to spell the complete value.
-  - { type: custom, value: 'Review this', color: info, icon: star }
-```
+**Source/runtime boundary:** Published Flashcard Props already expose a flags array, matching the owner's unordered-array design. The current Engine Flashcard **Config** and `yamlFlashcard_Schema` still require `parameters.flags: { items, order }`. Until Engine Config, Builder and existing sources are deliberately migrated together, author YAML against that real schema without claiming a flat Config array is accepted. Temporary `order` is a structural source obligation, not an instructional sequence.
 
-This shows shape only: an actual acronym's complete `parts` MUST concatenate to its `value`, and uppercase source letters must actually match the remembered list. Do not force an acronym if it does not improve memory. Connector letters added for pronounceability must be lowercase; actual first one or two letters must be uppercase, preserving list meaning and intended sequence.
-
-- `list`: `count` integer >= 2. One list count flag, not duplicated in the front, hints or separate fields.
-- `warning`: a predefined caution chip; its learner-facing text comes from UI Kit's localized messages.
-- `acronym`: required editorial `value`, `localePolicy` and `parts`; generated runtime flag only needs `{type: 'acronym', value}`. `localePolicy: needsLocalizedVersion` blocks publication until a valid mnemonic exists for every supported locale. `invariant` is acceptable only if the same mnemonic genuinely applies to every locale. Never use a blanket fallback to the source language.
-- `custom`: `value` (learner-facing string), `color` (one canonical MUI Chip palette value) and optional `icon` (one known serialized icon token). Its text must be translated by the normal Lesson localization workflow unless truly invariant. Do not emit `ReactElement`, arbitrary SVG, import expressions or unsanitized CSS in authored data.
-
-The four flag variants are **serialized data**, not ad hoc Storybook `labels`. The UI Kit's Flashcard flag adapter renders their icons, fixed colors and labels. Do not duplicate generated flag metadata or alter the Card's actual answer to show a flag.
+Use a single `list` count for an actual multi-element answer, not a duplicated `(N)` in front or hint. `warning` renders UI Kit's localized label. For `acronym`, verify capitalization, complete source-word mapping, and genuine localized mnemonics; keep letter decomposition and localization strategy in the **Flashcards PR editorial evidence**, not unsupported `parts` or `localePolicy` Config properties. Custom values are translatable learner text, not JSX, arbitrary SVG, CSS or raw React elements. Confirm all typed variants against current Engine and UI Kit before approval.
 
 ## Step 5 — Author one canonical typed relationship graph
 
@@ -108,7 +88,7 @@ flashcards:
       parameters:
         tags: [astronomy]
         disabilities: []
-        flags: { items: {}, order: [] }
+        flags: { items: {}, order: [] } # current Engine source shape; unordered array is the target
       content:
         front:
           items:
@@ -136,7 +116,7 @@ This example uses placeholder UUIDs and **must not be placed into a real Lesson*
 
 **Reference source:** read the purpose-`flashcards` Lesson Markdown output from #645 at the exact Lesson SHA. Its curated media references are the **only** broad media candidate index. Verify a specific referenced source file if needed; do not inventory arbitrary assets. Source language, supported languages, verified Questions/Methodologist N/A and media review belong in the PR production record.
 
-**Typed Question references:** never copy localized Question facts into literal Flashcard strings. Read the actual typed Question exports and source SHA, validate exact existing properties, then emit imports and direct type-safe references. The currently implemented Flashcard builder deliberately **rejects** Question/media-driven fields until verified integration, rather than generating broken placeholders or fabricated values; keep such authoring cases blocked until the converter supports them. Source-only TS is not final translation or approval.
+**Typed Question references:** never copy localized Question facts into literal Flashcard strings. Read the actual typed Question exports and source SHA, validate exact existing properties, then emit imports and direct type-safe references. The currently implemented Flashcard builder deliberately **rejects** unsupported Question-field pseudo-references and cannot complete unresolved physical media without real assets, rather than generating broken placeholders or fabricated values; keep such authoring cases blocked until the converter supports them. Source-only TS is not final translation or approval.
 
 ## Semantic validation and review handoff
 

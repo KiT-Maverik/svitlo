@@ -116,8 +116,9 @@ availability does not imply every UI Kit Question renderer is complete.
    Skipped/failed/partial generation must retain YAML. There is no
    automatic deletion that could lose editorial source.
 5. Integrate Questions before starting/rebasing Flashcards Section work
-   to avoid concurrent sections/index.ts edits. #643 is merged upstream;
-   #646 is downstream of Questions and must not block this PR.
+   to avoid concurrent sections/index.ts edits. The actual owning Lesson's
+   Flashcards workflow is downstream of its Questions integration, not a
+   dependency blocking the Questions PR.
 
 Custom Practice UI/scheduling, translation, editorial approvals and
 cross-asset media searches are outside this generator.
