@@ -253,7 +253,8 @@ test('planned Lesson is materialized with a stable UUID and complete methodology
     ]);
     assert.equal(obj.config.type, 'lesson');
     assert.deepEqual(obj.config.section, { items: {}, order: [] });
-    assert.equal(obj.config.params.requireQuiz, true);
+    assert.equal(obj.config.params.quizRequiredForCompletion, true);
+    assert.equal(Object.hasOwn(obj.config.params, 'requireQuiz'), false);
     assert.equal(obj.production.methodology, input.content.items.review.methodology);
     assert(filename.endsWith('/data/lessons/' + obj.config.id.at(-1) + '/' + obj.config.id + '/lesson.yaml'));
     materialize(['--package', 'content/math', '--course', id, '--write'], root);
@@ -302,12 +303,22 @@ test('approved Course Episode generates a standalone typed Episode module with i
     section: {
       items: {
         introduction: {
+          id: '8a9f6c0b-7d11-432a-9f8e-9e6ee1a6ac11',
           type: 'content',
           slug: 'introduction',
+          params: {},
+          locale: { title: { en: 'Welcome' }, navigationLabel: { en: 'Start' } },
           content: {
             items: {
-              greeting: { type: 'markdown', slug: 'greeting', locale: { value: { en: 'Look up at the sky' } } },
+              greeting: {
+                id: '8a9f6c0b-7d11-432a-9f8e-9e6ee1a6ac12',
+                type: 'markdown',
+                slug: 'greeting',
+                params: {},
+                locale: { value: { en: 'Look up at the sky' } },
+              },
               illustration: {
+                id: '8a9f6c0b-7d11-432a-9f8e-9e6ee1a6ac13',
                 type: 'image',
                 slug: 'illustration',
                 params: { fill: true, aspectRatio: 1.5 },
@@ -583,4 +594,53 @@ test('Course-local Section additions reject missing canonical Engine fields and 
   configured.content.items.review.section.additionalItems.fieldNotes.slug = 'fieldNotes';
   delete configured.content.items.review.section.order;
   assert.throws(() => technicalFromEditorial(configured), /section\/order: full Section order is required/);
+});
+
+test('Course Stage 5 rejects the unmodified E2E Episode three null params with an exact field path', () => {
+  const source = path.resolve(
+    'content/playground/data/courses/e/7c4e6d20-5ad3-4af8-b9d7-d1f3587b0a8e/course.yaml',
+  );
+  const fixture = YAML.parse(fs.readFileSync(source, 'utf8'));
+  assert.equal(fixture.content.items.labPrologue.section.items.welcome.params, null);
+  assert.equal(fixture.content.items.labPrologue.section.items.welcome.content.items.greeting.params, null);
+  assert.equal(fixture.content.items.labPrologue.section.items.welcome.content.items.choosePath.params, null);
+  assert.throws(
+    () => technicalFromEditorial(fixture),
+    /labPrologue\/section\/items\/welcome\/params: expected an Engine params object/,
+  );
+});
+
+test('Course Stage 5 rejects malformed nested Episode params before any source writes', () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-episode-invalid-'));
+  const folder = path.join(root, 'content/math/data/courses', id.at(-1), id);
+  const configured = structuredClone(plan);
+  configured.content.items.story = {
+    type: 'episode',
+    slug: 'story',
+    title: 'Story',
+    section: {
+      items: {
+        welcome: {
+          type: 'content',
+          slug: 'welcome',
+          params: null,
+          content: { items: {}, order: [] },
+        },
+      },
+      order: ['welcome'],
+    },
+  };
+  configured.content.order.push('story');
+  try {
+    fs.mkdirSync(folder, { recursive: true });
+    fs.writeFileSync(path.join(folder, 'course.yaml'), YAML.stringify(configured));
+    assert.throws(
+      () => materialize(['--package', 'content/math', '--course', id, '--write'], root),
+      /story\/section\/items\/welcome\/params: expected an Engine params object/,
+    );
+    assert.equal(fs.existsSync(path.join(folder, 'index.ts')), false);
+    assert.equal(fs.readdirSync(folder).join(','), 'course.yaml');
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
 });
