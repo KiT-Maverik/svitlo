@@ -421,6 +421,11 @@ questions:
           distractors:
             items: {}
             order: []
+quizSelections:
+  2d844bab-f77e-5dc5-adb9-7891d5bb6b59:
+    - 6ea474dd-2cec-5927-992c-9220b6d2b68f
+    - ae44c3d6-f62e-56ce-9679-acf4daec8da9
+    - 07e1b3a0-5450-5937-b763-66950c254d34
 sectionDrafts:
   items:
     safeSkyChoices:
@@ -428,7 +433,42 @@ sectionDrafts:
         id: 2d844bab-f77e-5dc5-adb9-7891d5bb6b59
         slug: safeSkyChoices
         type: quiz
-        params: {}
+        params:
+          isBlocker: true
+          skippable: false
+          selection:
+            mode: all
+            questionIds:
+              - 6ea474dd-2cec-5927-992c-9220b6d2b68f
+              - ae44c3d6-f62e-56ce-9679-acf4daec8da9
+              - 07e1b3a0-5450-5937-b763-66950c254d34
+            shuffle: false
+          layout:
+            mode: stepper
+            showProgress: true
+          feedbackMode: immediate
+          grading:
+            mode: percentage
+            successThreshold: 100
+          interaction:
+            retries: 1
+            showErrors: true
+            showCorrectAnswers: false
+            allowExplanations: true
+            allowDeferring: false
+            allowQuestionNavigation: false
+            skippable: false
+          questionOptions:
+            selectOneAnswer:
+              shuffleAnswers: true
+          results:
+            visibility: immediate
+            showScore: false
+          screen:
+            starting:
+              showDefaultContent: false
+              content:
+                - quizIntro
         locale:
           title:
             uk: Перевір безпечний вибір
@@ -471,17 +511,19 @@ sectionDrafts:
         productionNotes: >-
           Quiz placement only: assessmentPlanKey=safeSkyChoices;
           Skill=b4b9b469-391d-40f8-b11d-6884c76ed106;
-          methods=classification,application. params: {} deliberately incomplete
-          pending independently reviewed Question Bank, genuine questionIds,
-          grading, interaction and screen selection from Assessment Architect.
-          Stage 6 preflight/publication blocked until completed. Для дитини, що
+          methods=classification,application. Stage 3 design: explicit candidate
+          questionIds/selection, grading, interaction, layout and starting-screen
+          reference are authored in this sectionDrafts handoff and temporary
+          quizSelections. These are NOT active Lesson Section TypeScript and NOT
+          independently approved or published Question resources. The actual
+          Section integration and bank publication remain pending Stage 5. Для дитини, що
           не читає: ведучий читає quizIntro й майбутні реальні формулювання
           Questions, описує усі зображення словами, надає можливість дати
           усну/вказівну відповідь за валідним погодженим способом. До публікації
           Assessment Architect + Coding Agent мають перевірити доступність
           справжніх форматів Questions і відсутність допомоги, яка підказує
-          відповідь. Аудіо/TTS та Question Bank наразі відсутні, жодного
-          оцінювання ще немає.
+          відповідь. Аудіо/TTS не додано; Question Bank існує лише як неперевірена
+          YAML-чернетка. Реальні оцінювані Question Props не опубліковано.
 
           Assessment intent: safeSkyChoices
 
