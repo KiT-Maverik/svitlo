@@ -6,6 +6,8 @@ import path from 'node:path';
 import ts from 'typescript';
 import YAML from 'yaml';
 import { technicalFromEditorial, renderModularCourse, planArtifacts, materialize } from './materialize-course-flow.mjs';
+import { scanSource } from '../../../../scripts/ci/checkBlockerTodos/check-blocker-todos.mjs';
+import { reviewTypeDiagnostics } from '../lessonBuilder/reviewTypecheck.test-utils.mjs';
 
 const id = '30ecbde1-97fd-5fe7-a353-ea89b9ef4a67';
 const moduleId = '12ecbde1-97fd-5fe7-a353-ea89b9ef4a67';
@@ -125,7 +127,14 @@ test('editorial -> technical draft preserves UUIDs, order, intent and evidence',
   assert(drafts.get('review.ts').includes("import type { Review } from '@svitlo/engine/build';"));
   assert(drafts.get('review.ts').includes('export const courseReview = {'));
   assert(drafts.get('review.ts').includes('} satisfies Review;'));
-  assert(drafts.get('review.ts').includes('acceptance: undefined'));
+  const review = drafts.get('review.ts');
+  assert.match(review, /^\/\/ TODO \(BLOCKER\): Conduct review/);
+  assert(review.includes('ai: { locales: 0 }'));
+  assert(review.includes('human: { acceptance: 0, locales: {} }'));
+  assert(!review.includes('undefined'));
+  assert.deepEqual(reviewTypeDiagnostics(review), []);
+  assert.equal(scanSource('content/math/data/courses/a/id/review.ts', review).length, 3);
+  assert.equal(scanSource('content/math/data/courses/a/id/review.ts', review.replace(/^\/\/ TODO \(BLOCKER\):.*\n/, '')).length, 2);
   assert(!drafts.get('review.ts').includes('methodology: null'));
   const constants = drafts.get('constants.ts');
   assert(constants.includes("import type { SupportedLanguages } from '@svitlo/engine/build';"));

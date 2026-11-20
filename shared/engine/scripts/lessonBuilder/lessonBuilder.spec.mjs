@@ -10,6 +10,7 @@ import { scanSource } from '../../../../scripts/ci/checkBlockerTodos/check-block
 import { BuilderDiagnostic, loadFactoryRegistry, runOne, main } from './lessonBuilder.mjs';
 import { renderLessonModules } from './lessonModules.mjs';
 import { lessonReviewStageSlugs, renderReviewDraft } from './reviewTemplate.mjs';
+import { reviewTypeDiagnostics } from './reviewTypecheck.test-utils.mjs';
 
 const id = suffix => '00000000-0000-4000-8000-' + String(suffix).padStart(12, '0');
 const lessonId = id(12);
@@ -125,8 +126,7 @@ function readAll(lesson) {
 }
 function assertTypeScriptSyntax(files) {
   for (const [name, content] of files) {
-    // An unfilled review.ts intentionally fails TypeScript parsing until review evidence is recorded.
-    if (!name.endsWith('.ts') || name === 'review.ts') continue;
+    if (!name.endsWith('.ts')) continue;
     const ast = ts.createSourceFile(name, content, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS);
     assert.deepEqual(ast.parseDiagnostics, [], name);
   }
@@ -336,10 +336,9 @@ test('Carousel draft rejects unsupported children without writing anything', () 
 test('Lesson Review draft and Studio stage names match the Engine camelCase contract', () => {
   const source = fs.readFileSync(new URL('../../types/review.types.ts', import.meta.url), 'utf8');
   const ast = ts.createSourceFile('review.types.ts', source, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS);
-  const declaration = ast.statements.find(
-    statement => ts.isTypeAliasDeclaration(statement) && statement.name.text === 'LessonReviewStage',
-  );
-  assert.ok(declaration, 'Engine must declare the canonical LessonReviewStage union');
+  const declaration = ast.statements.find(statement =>
+    ts.isTypeAliasDeclaration(statement) && statement.name.text === 'LessonReviewStage');
+  assert.ok(declaration);
   assert.ok(ts.isUnionTypeNode(declaration.type));
   const stages = declaration.type.types.map(member => {
     assert.ok(ts.isLiteralTypeNode(member) && ts.isStringLiteral(member.literal));
@@ -347,58 +346,45 @@ test('Lesson Review draft and Studio stage names match the Engine camelCase cont
   });
   assert.deepEqual(stages, lessonReviewStageSlugs);
   assert.equal(new Set(stages).size, stages.length);
-  assert.ok(stages.every(stage => /^[a-z][a-zA-Z0-9]*$/.test(stage)));
-  assert.doesNotMatch(source, /lessonProductionStageToReviewStage|['"]experience-review['"]/);
-
-  const pending = renderReviewDraft();
-  const fields = [...pending.matchAll(/^    ([A-Za-z]+): \{ pr: , language: , \},$/gm)].map(match => match[1]);
-  assert.deepEqual(fields, stages);
-  assert.doesNotMatch(
-    pending,
-    /\bstages:|["'](?:experienceReview|methodologyReview|generateSources|resourceProduction)["']:/,
-  );
-  assert.match(pending, /^    locales: ,$/m);
-  assert.match(pending, /^    acceptance: ,$/m);
-  const filled = pending
-    .replace('const = {', 'const revision = {')
-    .replaceAll('pr: , language: ,', "pr: 10, language: 'en',")
-    .replace('    locales: ,', '    locales: 11,')
-    .replace('    acceptance: ,', '    acceptance: 12,');
-  assert.deepEqual(
-    ts.createSourceFile('review.ts', filled, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS).parseDiagnostics,
-    [],
-  );
+  for (const language of ['uk', 'en', 'qm']) {
+    const pending = renderReviewDraft(language);
+    const fields = [...pending.matchAll(/^    ([A-Za-z]+): \{ pr: 0, language: "[a-z]+" \},$/gm)].map(m => m[1]);
+    assert.deepEqual(fields, stages);
+    assert.match(pending, /^const lessonReview = \{$/m);
+    assert.match(pending, /^    locales: 0,$/m);
+    assert.match(pending, /^    acceptance: 0,$/m);
+    assert.doesNotMatch(pending, /scientific:|export const|\bstages:/);
+    assert.deepEqual(ts.createSourceFile('review.ts', pending, ts.ScriptTarget.Latest, true).parseDiagnostics, []);
+    assert.deepEqual(reviewTypeDiagnostics(pending), []);
+    assert.equal(scanSource('content/math/data/lessons/c/id/review.ts', pending).length, 13);
+  }
+  assert(reviewTypeDiagnostics(renderReviewDraft('notALanguage')).some(d => /not assignable/.test(d)));
 });
 
-test('review.ts starts with mandatory unfilled evidence and is not overwritten', () =>
+test('review.ts starts with valid unreviewed evidence and is not overwritten', () =>
   fixture(f => {
     const result = runOne(f.lesson, 'generate', f.root);
     assert(result.files.includes('review.ts'));
-    const reviewFile = f.generated('review.ts');
-    const pending = fs.readFileSync(reviewFile, 'utf8');
+    const file = f.generated('review.ts');
+    const pending = fs.readFileSync(file, 'utf8');
+    assert.match(pending, /^\/\/ TODO \(BLOCKER\): Conduct review/);
     assert.match(pending, /import type \{ LessonReview \} from '@svitlo\/engine\/build'/);
-    assert.match(pending, /const = \{/);
-    assert.match(pending, /experienceReview: \{ pr: , language: , \}/);
-    assert.match(pending, /methodologyReview: \{ pr: , language: , \}/);
-    assert.match(pending, /generateSources: \{ pr: , language: , \}/);
-    assert.match(pending, /resourceProduction: \{ pr: , language: , \}/);
-    assert.doesNotMatch(
-      pending,
-      /\bstages:|["'](?:experienceReview|methodologyReview|generateSources|resourceProduction)["']:/,
-    );
-    assert.match(pending, /locales: ,/);
-    assert.match(pending, /acceptance: ,/);
+    assert.match(pending, /experienceReview: \{ pr: 0, language: "uk" \}/);
+    assert.match(pending, /methodologyReview: \{ pr: 0, language: "uk" \}/);
+    assert.match(pending, /generateSources: \{ pr: 0, language: "uk" \}/);
+    assert.match(pending, /resourceProduction: \{ pr: 0, language: "uk" \}/);
+    assert.match(pending, /acceptance: 0/);
     assert.match(pending, /locales: \{\}/);
     assert.doesNotMatch(pending, /scientific:|export const|review_/);
-    const parsed = ts.createSourceFile('review.ts', pending, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS);
-    assert(parsed.parseDiagnostics.length > 0, 'Generated Review must fail TypeScript parsing');
+    assert.equal(ts.createSourceFile('review.ts', pending, ts.ScriptTarget.Latest, true).parseDiagnostics.length, 0);
+    assert.deepEqual(reviewTypeDiagnostics(pending), []);
     assert.equal(runOne(f.lesson, 'check', f.root).changed, 0);
-    const edited = pending.replace('acceptance: ,', 'acceptance: 123,');
-    fs.writeFileSync(reviewFile, edited);
-    assert.equal(runOne(f.lesson, 'check', f.root).changed, 0, 'Do not reset manually recorded reviews');
+    const edited = pending.replace('acceptance: 0,', 'acceptance: 123,');
+    fs.writeFileSync(file, edited);
+    assert.equal(runOne(f.lesson, 'check', f.root).changed, 0);
     assert.equal(runOne(f.lesson, 'generate', f.root).skipped, true);
-    assert.equal(fs.readFileSync(reviewFile, 'utf8'), edited);
-    fs.unlinkSync(reviewFile);
+    assert.equal(fs.readFileSync(file, 'utf8'), edited);
+    fs.unlinkSync(file);
     assert.throws(() => runOne(f.lesson, 'check', f.root), /missing Lesson review record/);
     assert.equal(runOne(f.lesson, 'generate', f.root).skipped, true);
   }));

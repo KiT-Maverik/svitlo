@@ -31,6 +31,21 @@ const sourceExtensions = new Set([
   '.sql',
 ]);
 const commitSha = /^[0-9a-f]{40}$/i;
+const reviewPath = /^content\/(?:[^/]+|languages\/[^/]+)\/data\/(?:courses|lessons)\/[^/]+\/[^/]+\/review\.ts$/;
+
+/** Pending numeric Review references are not approvals, even without TODOs. */
+export function scanPendingReview(file, source) {
+  if (!reviewPath.test(file)) return [];
+  const pending = [];
+  const propertyZero = /(?:^|[{,])\s*(?:[A-Za-z_$][\w$]*|['"][^'"\n]+['"])\s*:\s*0(?=\s*[,}])/g;
+  for (const [index, line] of source.split(/\r?\n/).entries()) {
+    if (/^\s*(?:\/\/|\/\*|\*)/.test(line)) continue;
+    propertyZero.lastIndex = 0;
+    if (propertyZero.test(line))
+      pending.push(finding(file, index + 1, 'Pending Review evidence (0 is not approval): ' + line.trim()));
+  }
+  return pending;
+}
 
 function isSourceFile(file) {
   return sourceExtensions.has(path.extname(file).toLowerCase());
@@ -149,7 +164,7 @@ export function scanSource(file, source) {
     // Template strings can always span lines.
     if (quoted && quoted !== String.fromCharCode(96) && !/\\$/.test(line)) quoted = null;
   }
-  return findings;
+  return [...findings, ...scanPendingReview(file, source)];
 }
 
 /** Scan tracked source, excluding untracked outputs, binary assets, and Markdown. */
@@ -280,7 +295,7 @@ export function main(args, root = path.resolve(fileURLToPath(new URL('../../..',
     return;
   }
   if (findings.length) {
-    throw new Error(findings.length + ' unresolved TODO (BLOCKER) comment(s) in ' + mode + ' mode');
+    throw new Error(findings.length + ' unresolved TODO (BLOCKER) comment(s) or pending Review evidence in ' + mode + ' mode');
   }
   console.log('Blocker TODOs / clean (' + mode + '): no blocking comments found.');
 }
