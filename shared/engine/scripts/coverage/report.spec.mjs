@@ -168,7 +168,7 @@ describe('On-demand coverage GitHub workflow', () => {
   });
 
   it('keeps diagnostic artifacts when replacing generated reference documents', () => {
-    const file = path.resolve(import.meta.dirname, '../../../../.github/workflows/translation-review.yml');
+    const file = path.resolve(import.meta.dirname, '../../../../.github/workflows/agent-ci-artifacts.yml');
     const doc = yaml.parse(fs.readFileSync(file, 'utf8'));
     const publish = JSON.stringify(doc.jobs.publish);
     assert.match(publish, /! -name lesson-lookup ! -name engine-coverage/);

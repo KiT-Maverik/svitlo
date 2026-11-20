@@ -9,7 +9,8 @@ test('Lesson renders selected content Scene and a separately published Quiz', as
   await expect(page.getByRole('heading', { name: 'Контрольний урок', exact: true })).toBeVisible();
   await expect(page.getByRole('img', { name: 'Контрольна інтерактивна сцена' })).toBeVisible();
   await expect(page.getByRole('region', { name: 'Контрольна інтерактивна сцена' })).toBeVisible();
-  const next = page.getByRole('navigation', { name: 'Нижня навігація навчання' })
+  const next = page
+    .getByRole('navigation', { name: 'Нижня навігація навчання' })
     .getByRole('button', { name: 'Далі →', exact: true });
   await next.click();
   await expect(page.getByText('Контрольний навчальний вміст')).toBeVisible();
@@ -21,7 +22,8 @@ test('Lesson renders selected content Scene and a separately published Quiz', as
 test('localized published JSON selects the corresponding Scene props', async ({ page }) => {
   const root = '/data/lessons/c/' + id + '/';
   const [baseResponse, enResponse] = await Promise.all([
-    page.request.get(root + 'base.json'), page.request.get(root + 'en.json'),
+    page.request.get(root + 'base.json'),
+    page.request.get(root + 'en.json'),
   ]);
   expect(baseResponse.ok()).toBe(true);
   expect(enResponse.ok()).toBe(true);
@@ -29,7 +31,7 @@ test('localized published JSON selects the corresponding Scene props', async ({ 
   const json = await enResponse.json();
   expect(base.type).toBe('lesson');
   expect(base.params.languages).toContain('en');
-  expect(base.section.map((section: { type: string }) => section.type)).toEqual(['content','practice','quiz']);
+  expect(base.section.map((section: { type: string }) => section.type)).toEqual(['content', 'practice', 'quiz']);
   expect(json.locale.title).toBe('Controlled Lesson');
   expect(json.section[0].locale.title).toBe('Explore');
   await page.goto('/uk/lesson/en/' + id);
@@ -48,7 +50,7 @@ test('interface language selection leaves the Lesson language unchanged', async 
   await page.getByRole('option', { name: 'English' }).click();
   await expect(page).toHaveURL('/en/lesson/uk/' + id);
   await expect(page.locator('html')).toHaveAttribute('lang', 'en-US');
-  await expect(page.getByRole('main').getByRole('heading', { name: 'Контрольний урок' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Контрольний урок', exact: true, level: 1 })).toBeVisible();
   await expect(page.getByRole('navigation', { name: 'Top learning navigation' })).toBeVisible();
 });
 
@@ -99,9 +101,14 @@ test('legacy Lesson URLs preserve locale and query', async ({ page }) => {
 
 test('unsupported and removed Lesson routes return 404', async ({ request }) => {
   for (const path of [
-    '/topics/light', '/topics/demo', '/lesson/' + id,
-    '/xx/lesson/uk/' + id, '/uk/lesson/xx/' + id, '/xx/lesson/' + id,
-  ]) expect((await request.get(path, { maxRedirects: 0 })).status()).toBe(404);
+    '/topics/light',
+    '/topics/demo',
+    '/lesson/' + id,
+    '/xx/lesson/uk/' + id,
+    '/uk/lesson/xx/' + id,
+    '/xx/lesson/' + id,
+  ])
+    expect((await request.get(path, { maxRedirects: 0 })).status()).toBe(404);
 });
 
 test('Quick Settings toggles actual theme colors and persists', async ({ page }) => {
