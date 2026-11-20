@@ -35,4 +35,4 @@ The [queryLessons](./queryLessons/README.md) CLI provides deterministic searches
 
 ## Course Flow Stage 5
 
-[materializeCourseFlow](./materializeCourseFlow/README.md) consumes a single reviewed temporary Course YAML and directly creates Course-owned TypeScript/Markdown drafts and new methodology-only Lesson YAMLs with stable UUIDs; it never writes an intermediate Course `config.yaml`. The general Config-shaped Course Builder remains independent.
+[materializeCourseFlow](./materializeCourseFlow/README.md) consumes a single reviewed temporary Course YAML and directly creates Course-owned TypeScript/Markdown drafts and new methodology-only Lesson YAMLs with stable UUIDs; it never writes an intermediate Course `config.yaml`. The dedicated Stage 5 Episode renderer is part of the materializer; no alternative Course YAML authoring or Builder CLI is supported.
