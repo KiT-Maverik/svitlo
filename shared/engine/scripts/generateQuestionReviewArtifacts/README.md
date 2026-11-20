@@ -11,6 +11,12 @@ Supported Question sources:
   `questions/selectOneAnswer/<slug>/index.ts` and locally imported Text
   modules, including grouped answer options.
 
+Source-language selection reads only an explicitly declared single `languages`
+value from Lesson `constants.ts`. The legacy Playground's computed roster
+imports Engine runtime values; these are **never executed** to infer the
+comparison language, and the adapter uses the verified `en` Text source.
+An unsupported dynamic declaration named `languages` fails explicitly.
+
 The only supported Question type is `selectOneAnswer`; unsupported kinds,
 unexpected imports, dynamic expressions, unsafe paths, duplicate IDs and invalid
 ordered collections fail the requested locale document. For a relevant local
