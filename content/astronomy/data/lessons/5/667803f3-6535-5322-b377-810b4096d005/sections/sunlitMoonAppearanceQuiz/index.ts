@@ -2,11 +2,7 @@ import { defineQuizSection } from '@svitlo/engine/build';
 
 import type { LessonLanguages } from "#lessonsData/5/667803f3-6535-5322-b377-810b4096d005/constants";
 import { quizInvitation } from "./quizInvitation";
-import { compareIlluminatedPortions } from "../../questions/selectOneAnswer/compareIlluminatedPortions";
-import { whatChangedBetweenDays } from "../../questions/selectOneAnswer/whatChangedBetweenDays";
-import { moonlightSource } from "../../questions/selectOneAnswer/moonlightSource";
-import { lampBallViewpoint } from "../../questions/selectOneAnswer/lampBallViewpoint";
-import { daylightMoon } from "../../questions/selectOneAnswer/daylightMoon";
+import { compareIlluminatedPortions, whatChangedBetweenDays, moonlightSource, lampBallViewpoint, daylightMoon } from "../../questions/selectOneAnswer";
 
 const content = {
   items: {
