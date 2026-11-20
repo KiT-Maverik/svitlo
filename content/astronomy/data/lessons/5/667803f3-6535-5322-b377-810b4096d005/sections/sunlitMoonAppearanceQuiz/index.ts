@@ -2,6 +2,11 @@ import { defineQuizSection } from '@svitlo/engine/build';
 
 import type { LessonLanguages } from "#lessonsData/5/667803f3-6535-5322-b377-810b4096d005/constants";
 import { quizInvitation } from "./quizInvitation";
+import { compareIlluminatedPortions } from "../../questions/selectOneAnswer/compareIlluminatedPortions";
+import { whatChangedBetweenDays } from "../../questions/selectOneAnswer/whatChangedBetweenDays";
+import { moonlightSource } from "../../questions/selectOneAnswer/moonlightSource";
+import { lampBallViewpoint } from "../../questions/selectOneAnswer/lampBallViewpoint";
+import { daylightMoon } from "../../questions/selectOneAnswer/daylightMoon";
 
 const content = {
   items: {
@@ -21,11 +26,11 @@ export const sunlitMoonAppearanceQuiz = defineQuizSection<"sunlitMoonAppearanceQ
     selection: {
       mode: "all",
       questionIds: [
-        "c861263c-30a1-4d91-bf1b-6c2f1df429b8",
-        "2b37e984-7602-44c2-b7f3-cacad6bc252f",
-        "cfae194e-1692-42c6-8d57-53ccda07054e",
-        "e5a42ad5-d117-420f-89f4-ec5ab4b7d1ea",
-        "8fb42da9-0601-43e9-9887-b8836fb6fbdb"
+        compareIlluminatedPortions.id,
+        whatChangedBetweenDays.id,
+        moonlightSource.id,
+        lampBallViewpoint.id,
+        daylightMoon.id
       ]
     },
     layout: {
