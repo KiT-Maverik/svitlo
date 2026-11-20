@@ -136,8 +136,9 @@ to validate and generate typed Question modules. It does not overwrite
 the Lesson or embedded Quiz and it does not silently prune any bank
 member. The Lesson Section owner materializes approved Quiz selections
 in existing/new modular Sections through normal typed Lesson composition
-and validates published selections using Engine and the textbook build. The existing generateAssessmentResources --kind question
-publisher publishes all authored Question resources separately.
+and validates published selections using Engine and the textbook build.
+The existing generateAssessmentResources --kind question publisher publishes
+all authored Question resources separately.
 Do not claim Custom Practice UI exists merely because those resources
 are now publishable.
 
