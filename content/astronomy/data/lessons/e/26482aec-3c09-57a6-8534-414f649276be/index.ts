@@ -24,5 +24,7 @@ export const sunEarthMoonRoles = defineLesson<"sunEarthMoonRoles", LessonLanguag
       uk: "Сонце, Земля і Місяць — хто є хто?"
     }
   },
+  // TODO (BLOCKER): Restore required objectRolesQuiz after the independently reviewed
+  // Question Bank supplies real UUID selections and complete Quiz parameters.
   section
 });
