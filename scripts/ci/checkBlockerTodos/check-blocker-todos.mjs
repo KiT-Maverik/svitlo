@@ -295,7 +295,9 @@ export function main(args, root = path.resolve(fileURLToPath(new URL('../../..',
     return;
   }
   if (findings.length) {
-    throw new Error(findings.length + ' unresolved TODO (BLOCKER) comment(s) or pending Review evidence in ' + mode + ' mode');
+    throw new Error(
+      findings.length + ' unresolved TODO (BLOCKER) comment(s) or pending Review evidence in ' + mode + ' mode',
+    );
   }
   console.log('Blocker TODOs / clean (' + mode + '): no blocking comments found.');
 }

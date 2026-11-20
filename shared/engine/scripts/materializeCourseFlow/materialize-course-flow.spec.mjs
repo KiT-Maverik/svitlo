@@ -134,7 +134,10 @@ test('editorial -> technical draft preserves UUIDs, order, intent and evidence',
   assert(!review.includes('undefined'));
   assert.deepEqual(reviewTypeDiagnostics(review), []);
   assert.equal(scanSource('content/math/data/courses/a/id/review.ts', review).length, 3);
-  assert.equal(scanSource('content/math/data/courses/a/id/review.ts', review.replace(/^\/\/ TODO \(BLOCKER\):.*\n/, '')).length, 2);
+  assert.equal(
+    scanSource('content/math/data/courses/a/id/review.ts', review.replace(/^\/\/ TODO \(BLOCKER\):.*\n/, '')).length,
+    2,
+  );
   assert(!drafts.get('review.ts').includes('methodology: null'));
   const constants = drafts.get('constants.ts');
   assert(constants.includes("import type { SupportedLanguages } from '@svitlo/engine/build';"));

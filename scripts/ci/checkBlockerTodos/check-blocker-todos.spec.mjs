@@ -232,7 +232,8 @@ test('canonical Lesson/Course Review zeros block Ready even without TODO markers
   const lesson = 'content/math/data/lessons/a/lesson-id/review.ts';
   const course = 'content/math/data/courses/b/course-id/review.ts';
   const accepted = 'export const review = { ai: { locales: 13 }, human: { acceptance: 14, locales: { uk: 15 } } };\n';
-  const unreviewed = 'export const review = { ai: { stage: { pr: 0, language: "uk" }, locales: 0 }, human: { acceptance: 0, locales: { uk: 0 } } };\n';
+  const unreviewed =
+    'export const review = { ai: { stage: { pr: 0, language: "uk" }, locales: 0 }, human: { acceptance: 0, locales: { uk: 0 } } };\n';
   assert.deepEqual(scanPendingReview(lesson, accepted), []);
   assert.deepEqual(scanPendingReview(course, accepted), []);
   assert.equal(scanPendingReview(lesson, unreviewed).length, 1);

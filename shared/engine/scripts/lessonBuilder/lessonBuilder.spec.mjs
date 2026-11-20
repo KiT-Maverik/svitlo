@@ -336,8 +336,9 @@ test('Carousel draft rejects unsupported children without writing anything', () 
 test('Lesson Review draft and Studio stage names match the Engine camelCase contract', () => {
   const source = fs.readFileSync(new URL('../../types/review.types.ts', import.meta.url), 'utf8');
   const ast = ts.createSourceFile('review.types.ts', source, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS);
-  const declaration = ast.statements.find(statement =>
-    ts.isTypeAliasDeclaration(statement) && statement.name.text === 'LessonReviewStage');
+  const declaration = ast.statements.find(
+    statement => ts.isTypeAliasDeclaration(statement) && statement.name.text === 'LessonReviewStage',
+  );
   assert.ok(declaration);
   assert.ok(ts.isUnionTypeNode(declaration.type));
   const stages = declaration.type.types.map(member => {

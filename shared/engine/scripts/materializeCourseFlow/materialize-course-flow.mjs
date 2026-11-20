@@ -582,7 +582,7 @@ export function renderModularCourse(
   // Numeric zero is unreviewed; the TODO and zero-evidence guard preserve approval gates.
   files.set(
     'review.ts',
-    "// TODO (BLOCKER): Conduct review. Zero is unreviewed; verify PR, revision and language evidence before Ready/merge.\n" +
+    '// TODO (BLOCKER): Conduct review. Zero is unreviewed; verify PR, revision and language evidence before Ready/merge.\n' +
       "import type { Review } from '@svitlo/engine/build';\n\n" +
       'export const courseReview = {\n' +
       '  ai: { locales: 0 },\n' +
