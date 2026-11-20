@@ -9,7 +9,10 @@ export const hintText = defineText<"hintText", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Простеж подумки за позначкою Д, поки кулька обертається, а лампа стоїть на місці."
+      uk: "Простеж подумки за позначкою Д, поки кулька обертається, а лампа стоїть на місці.",
+      en: "Imagine following the mark «Д» while the ball turns and the lamp stays in one place.",
+      pl: "Wyobraź sobie, że śledzisz oznaczenie «Д», gdy kula się obraca, a lampa stoi w miejscu.",
+      qm: "Küre aylanğanda, lampa yerinde qalğanda, «Д» belgisini köz ögüñde tut."
     }
   }
 });

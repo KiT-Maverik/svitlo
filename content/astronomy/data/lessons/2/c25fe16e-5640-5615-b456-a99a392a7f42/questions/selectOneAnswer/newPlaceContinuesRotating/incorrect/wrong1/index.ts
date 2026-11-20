@@ -9,7 +9,10 @@ export const wrong1 = defineText<"wrong1", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "У місті Д день залишиться назавжди, бо воно вже стало освітленим."
+      uk: "У місті Д день залишиться назавжди, бо воно вже стало освітленим.",
+      en: "It will stay daytime in «Д» forever, because the town has already been lit up.",
+      pl: "W mieście «Д» dzień pozostanie na zawsze, bo zostało już oświetlone.",
+      qm: "«Д» şeerinde daima kündüz olacaq, çünki anda bir kere yarıq oldı."
     }
   }
 });

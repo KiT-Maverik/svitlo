@@ -9,7 +9,10 @@ export const correctAnswer = defineText<"correctAnswer", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Згодом настане ніч: місто Д разом із кулькою повернеться від світла."
+      uk: "Згодом настане ніч: місто Д разом із кулькою повернеться від світла.",
+      en: "Night will come later: the town «Д» will turn away from the light along with the ball.",
+      pl: "Później nastanie noc: miasto «Д» wraz z kulą odwróci się od światła.",
+      qm: "Soñra gece olacaq: «Д» şeeri küre ile beraber ışıqnıñ ters tarafına aylanacaq."
     }
   }
 });

@@ -9,7 +9,10 @@ export const hintText = defineText<"hintText", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Уяви, що час іде, але положення кульки та лампи не змінюється."
+      uk: "Уяви, що час іде, але положення кульки та лампи не змінюється.",
+      en: "Imagine that time passes, but the positions of the ball and the lamp do not change.",
+      pl: "Wyobraź sobie, że czas płynie, ale położenie kuli i lampy się nie zmienia.",
+      qm: "Vaqıt keçe, amma küre ve lampanıñ vaziyeti deñişmey dep tasavur et."
     }
   }
 });

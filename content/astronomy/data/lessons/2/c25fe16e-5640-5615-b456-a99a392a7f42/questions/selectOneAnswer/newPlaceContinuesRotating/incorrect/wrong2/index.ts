@@ -9,7 +9,10 @@ export const wrong2 = defineText<"wrong2", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Місто Д стане темним лише тоді, коли вимкнуть лампу."
+      uk: "Місто Д стане темним лише тоді, коли вимкнуть лампу.",
+      en: "The town «Д» will become dark only when the lamp is switched off.",
+      pl: "W mieście «Д» zrobi się ciemno dopiero wtedy, gdy ktoś wyłączy lampę.",
+      qm: "«Д» şeeri faqat lampa söndürilgende qarañğı olacaq."
     }
   }
 });

@@ -9,7 +9,10 @@ export const wrong2 = defineText<"wrong2", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Нерухома лампа поступово освітить усі боки кульки."
+      uk: "Нерухома лампа поступово освітить усі боки кульки.",
+      en: "The unmoving lamp will gradually light up every side of the ball.",
+      pl: "Nieruchoma lampa stopniowo oświetli wszystkie strony kuli.",
+      qm: "Areketsiz lampa vaqt keçkeninen küreniñ er tarafını aydınlatacaq."
     }
   }
 });

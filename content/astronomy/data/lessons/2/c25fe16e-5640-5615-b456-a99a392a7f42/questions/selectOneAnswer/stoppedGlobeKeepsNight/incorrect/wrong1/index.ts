@@ -9,7 +9,10 @@ export const wrong1 = defineText<"wrong1", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "У місці Г з часом настане день, навіть якщо нічого не рухати."
+      uk: "У місці Г з часом настане день, навіть якщо нічого не рухати.",
+      en: "Day will come to «Г» after some time, even if nothing moves.",
+      pl: "Po pewnym czasie w miejscu «Г» nastanie dzień, nawet jeśli nic się nie poruszy.",
+      qm: "Biraz vaqt keçkenden soñ «Г» yerinde kündüz olacaq, iç bir şey areket etmese bile."
     }
   }
 });

@@ -9,7 +9,10 @@ export const prompt = defineText<"prompt", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Уяви нове місто Д, позначене на колі посередині кульки, як у моделі уроку. Щойно в місті Д настав день. Лампа нерухома, а кулька продовжує обертатися. Що згодом станеться в місті Д?"
+      uk: "Уяви нове місто Д, позначене на колі посередині кульки, як у моделі уроку. Щойно в місті Д настав день. Лампа нерухома, а кулька продовжує обертатися. Що згодом станеться в місті Д?",
+      en: "Imagine a new town «Д», marked on a circle around the middle of the ball, as in the lesson's model. Day has just begun in «Д». The lamp is still, and the ball keeps turning. What will happen in «Д» later?",
+      pl: "Wyobraź sobie nowe miasto «Д», zaznaczone na okręgu pośrodku kuli, tak jak w modelu z lekcji. W mieście «Д» właśnie nastał dzień. Lampa stoi nieruchomo, a kula nadal się obraca. Co stanie się później w mieście «Д»?",
+      qm: "Derste qullanılğan modeldeki kibi, küreniñ ortasındaki dairede belgilenmiş yañı «Д» şeerini tasavur et. «Д» şeerinde yañı kündüz başlandı. Lampa areketsiz, küre ise aylanmağa devam ete. Soñra «Д» şeerinde ne olacaq?"
     }
   }
 });

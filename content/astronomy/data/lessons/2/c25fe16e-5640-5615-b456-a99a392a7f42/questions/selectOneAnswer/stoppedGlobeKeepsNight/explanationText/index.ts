@@ -9,7 +9,10 @@ export const explanationText = defineText<"explanationText", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Коли кулька й лампа нерухомі, позначка Г залишається на тому самому темному боці. Зміна дня і ночі в моделі потребує повороту кульки."
+      uk: "Коли кулька й лампа нерухомі, позначка Г залишається на тому самому темному боці. Зміна дня і ночі в моделі потребує повороту кульки.",
+      en: "When the ball and lamp stay still, the mark «Г» stays on the same dark side. In this model, day can change into night only if the ball turns.",
+      pl: "Kiedy kula i lampa są nieruchome, oznaczenie «Г» pozostaje po tej samej ciemnej stronie. W tym modelu zmiana dnia i nocy wymaga obrotu kuli.",
+      qm: "Küre ve lampa areketsiz olğanda, «Г» belgisi aynı qarañğı tarafta qala. Modelde kündüz ve geceniñ deñişmesi içün küre aylanmalı."
     }
   }
 });

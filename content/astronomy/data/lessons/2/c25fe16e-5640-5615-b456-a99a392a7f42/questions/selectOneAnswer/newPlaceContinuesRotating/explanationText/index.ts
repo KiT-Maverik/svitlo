@@ -9,7 +9,10 @@ export const explanationText = defineText<"explanationText", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Коли кулька продовжує обертатися, позначка Д згодом переходить з освітленого боку на неосвітлений. Тоді в місті Д настане ніч, хоча лампа не вимикалася."
+      uk: "Коли кулька продовжує обертатися, позначка Д згодом переходить з освітленого боку на неосвітлений. Тоді в місті Д настане ніч, хоча лампа не вимикалася.",
+      en: "As the ball continues to turn, the mark «Д» eventually moves from the lit side to the unlit side. Then night comes to «Д», even though the lamp has not been switched off.",
+      pl: "Gdy kula nadal się obraca, oznaczenie «Д» z czasem przechodzi ze strony oświetlonej na nieoświetloną. Wtedy w mieście «Д» nastaje noc, chociaż lampy nie wyłączono.",
+      qm: "Küre aylanmağa devam etkende, «Д» belgisi vaqt keçkeninen ışıq tüşken taraftan qarañğı tarafqa keçe. O vaqıt «Д» şeerinde gece olacaq, lampa ise sönmeycek."
     }
   }
 });

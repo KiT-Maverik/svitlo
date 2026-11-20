@@ -9,7 +9,10 @@ export const correctAnswer = defineText<"correctAnswer", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "У місці Г залишатиметься ніч, доки кульку не повернуть."
+      uk: "У місці Г залишатиметься ніч, доки кульку не повернуть.",
+      en: "It will remain nighttime at «Г» until the ball is turned.",
+      pl: "W miejscu «Г» nadal będzie noc, dopóki kula nie zostanie obrócona.",
+      qm: "Küre aylantırılmağance «Г» yerinde gece devam etecek."
     }
   }
 });
