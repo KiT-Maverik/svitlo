@@ -5,8 +5,8 @@
  * Reads only an approved, Lesson-root questions.yaml. Reuses the Lesson
  * source renderer, Engine's Question Zod projections and type/factory registry.
  * Does not create/edit Lesson Sections, publish Props, translate, delete YAML,
- * perform editorial approval, or mutate an existing bank. A reviewed Quiz
- * selection is a handoff for the Section owner, not a bank-filtering operation.
+ * perform editorial approval, or mutate an existing bank. Quiz selections
+ * belong to authored Section Configurators, never the YAML bank draft.
  */
 import fs from 'node:fs';
 import path from 'node:path';
@@ -16,7 +16,6 @@ import yaml from 'yaml';
 
 import { renderLessonModules } from '../lessonBuilder/lessonModules.mjs';
 import { loadFactoryRegistry } from '../yamlScaffolding/yamlScaffolding.mjs';
-import { verifyQuizSelections } from './verifyQuizSelections.mjs';
 
 const require = createRequire(import.meta.url);
 const { questionTypes, yamlQuestion_Schema } = require('../../dist/build.js');
@@ -60,7 +59,7 @@ export function readQuestionsYaml(source) {
   if (parsed.errors.length) reject('$', parsed.errors.map(error => error.message).join('; '));
   const document = parsed.toJS({ maxAliasCount: 0 });
   if (!record(document)) reject('$', 'expected a mapping');
-  const allowed = ['documentLanguage', 'questions', 'quizSelections', 'sectionDrafts'];
+  const allowed = ['documentLanguage', 'questions', 'sectionDrafts'];
   const unknown = Object.keys(document).filter(key => !allowed.includes(key));
   if (unknown.length) reject('$', 'unsupported top-level fields: ' + unknown.join(', '));
   if (typeof document.documentLanguage !== 'string' || !document.documentLanguage.trim())
@@ -93,19 +92,7 @@ export function inspectQuestions(document) {
     }
     return total + Object.keys(items).length;
   }, 0);
-  const selections = document.quizSelections ?? {};
-  if (!record(selections)) reject('quizSelections', 'expected Section UUID to Question UUID map');
-  for (const [sectionId, ids] of Object.entries(selections)) {
-    if (!uuid.test(sectionId)) reject('quizSelections', 'Section key must be UUID: ' + sectionId);
-    if (!Array.isArray(ids) || !ids.length || ids.some(id => !uuid.test(id ?? '')))
-      reject('quizSelections.' + sectionId, 'expected nonempty Question UUID array');
-    if (new Set(ids).size !== ids.length) reject('quizSelections.' + sectionId, 'duplicate selected Question UUID');
-    for (const id of ids) {
-      if (!questionIds.has(id))
-        reject('quizSelections.' + sectionId, 'selected Question not present in full bank: ' + id);
-    }
-  }
-  return { questionCount, questionIds, selections };
+  return { questionCount, questionIds };
 }
 
 function verifyLocation(source, root) {
@@ -147,7 +134,7 @@ function existingFiles(directory) {
 
 /** Return a deterministic bank-only file map, reusing canonical Lesson rendering. */
 export function renderQuestions(document, lessonId, factories = loadFactoryRegistry()) {
-  const { questionCount, selections } = inspectQuestions(document);
+  const { questionCount } = inspectQuestions(document);
   const synthetic = {
     id: lessonId,
     slug: 'questionBankDraft',
@@ -160,7 +147,7 @@ export function renderQuestions(document, lessonId, factories = loadFactoryRegis
     questionBankOnly: true,
   });
   if (!files.has('questions/index.ts')) reject('questions', 'renderer did not emit bank entrypoint');
-  return { files, questionCount, selections };
+  return { files, questionCount };
 }
 
 /**
@@ -168,7 +155,7 @@ export function renderQuestions(document, lessonId, factories = loadFactoryRegis
  * On an existing bank --write skips before reading stale YAML. On a partial
  * bank without entrypoint, fail rather than mixing old and new sources.
  * YAML is never deleted here; removal requires independent verification of
- * the complete generated bank and all materialized Quiz Section selections.
+ * the full authored bank and any approved Section selection transfer.
  */
 export function runOne(source, mode = '--check', root = repoRoot) {
   if (!['--write', '--check', '--preflight'].includes(mode))
@@ -180,7 +167,7 @@ export function runOne(source, mode = '--check', root = repoRoot) {
   if (mode === '--write' && filesAlready.length)
     throw new Error('Partial Question Bank tree exists; refusing to mix generated drafts: ' + output);
   const document = readQuestionsYaml(source);
-  const { files, questionCount, selections } = renderQuestions(document, lessonId);
+  const { files, questionCount } = renderQuestions(document, lessonId);
   const expected = new Map(
     [...files].map(([relative, body]) => {
       if (!relative.startsWith('questions/') || relative.split('/').includes('..'))
@@ -207,7 +194,6 @@ export function runOne(source, mode = '--check', root = repoRoot) {
     lessonId,
     changed: mode === '--write' ? expected.size : 0,
     count: questionCount,
-    selections,
     skipped: false,
   };
 }
@@ -215,25 +201,13 @@ export function runOne(source, mode = '--check', root = repoRoot) {
 export function main(argv = process.argv.slice(2), root = repoRoot) {
   if (
     argv.length !== 3 ||
-    !['--write', '--check', '--preflight', '--verify-sections'].includes(argv[0]) ||
+    !['--write', '--check', '--preflight'].includes(argv[0]) ||
     argv[1] !== '--source'
   )
     throw new Error(
-      'Usage: questionsBuilder.mjs --write|--check|--preflight|--verify-sections --source content/<book>/data/lessons/<bucket>/<uuid>/questions.yaml',
+      'Usage: questionsBuilder.mjs --write|--check|--preflight --source content/<book>/data/lessons/<bucket>/<uuid>/questions.yaml',
     );
   const source = path.resolve(root, argv[2]);
-  if (argv[0] === '--verify-sections') {
-    const { folder, output } = verifyLocation(source, root);
-    const document = readQuestionsYaml(source);
-    const { files, selections } = renderQuestions(document, path.basename(folder));
-    for (const relative of files.keys()) {
-      const target = path.join(path.dirname(output), relative);
-      assertNoSymlinks(target);
-      if (!fs.existsSync(target)) throw new Error('Missing generated Question module: ' + target);
-    }
-    console.log(JSON.stringify(verifyQuizSelections(folder, selections), null, 2));
-    return;
-  }
   const result = runOne(source, argv[0], root);
   console.log(JSON.stringify(result, null, 2));
 }
