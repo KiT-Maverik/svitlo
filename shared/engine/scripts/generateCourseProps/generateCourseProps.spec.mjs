@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import test from 'node:test';
-import { publish, readCurrent } from './generateCourseProps.mjs';
+import { publish, readCurrent, discoverCourseSources } from './generateCourseProps.mjs';
 
 const id = '30ecbde1-97fd-5fe7-a353-ea89b9ef4a67';
 
@@ -52,6 +52,44 @@ test('Course batch publisher rejects a symlink in an output ancestor', () => {
     assert.throws(() => publish(output, new Map([[id + '/base.json', '{}']])), /Symlink in generated path/);
     assert.throws(() => readCurrent(output), /Symlink in generated path/);
     assert.equal(fs.existsSync(path.join(real, 'generated')), false);
+  } finally {
+    fs.rmSync(home, { recursive: true, force: true });
+  }
+});
+
+test('Course publisher discovers UUID-bucketed materialized roots but ignores unfinished editorial YAML', () => {
+  const home = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-course-discovery-'));
+  const root = path.join(home, 'data/courses');
+  const active = '7c4e6d20-5ad3-4af8-b9d7-d1f3587b0a8e';
+  const pending = '2bc5cf15-9f26-4a16-885b-33c3fa904e8e';
+  try {
+    fs.mkdirSync(path.join(root, 'e', active), { recursive: true });
+    fs.mkdirSync(path.join(root, 'e', pending), { recursive: true });
+    fs.mkdirSync(path.join(root, 'sections'), { recursive: true });
+    fs.writeFileSync(path.join(root, 'legacyCourse.data.ts'), 'export const course = {};');
+    fs.writeFileSync(path.join(root, 'e', active, 'index.ts'), 'export const course = {};');
+    fs.writeFileSync(path.join(root, 'e', pending, 'course.yaml'), 'id: ' + pending);
+    assert.deepEqual(discoverCourseSources(root), [
+      path.join(root, 'e', active, 'index.ts'),
+      path.join(root, 'legacyCourse.data.ts'),
+    ]);
+    assert.deepEqual(discoverCourseSources(path.join(home, 'does-not-exist')), []);
+  } finally {
+    fs.rmSync(home, { recursive: true, force: true });
+  }
+});
+
+test('Course publisher will not resolve a symlinked UUID entrypoint', () => {
+  const home = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-course-symlink-'));
+  const id = '7c4e6d20-5ad3-4af8-b9d7-d1f3587b0a8e';
+  try {
+    const root = path.join(home, 'data/courses');
+    const folder = path.join(root, 'e', id);
+    fs.mkdirSync(folder, { recursive: true });
+    const outside = path.join(home, 'outside.ts');
+    fs.writeFileSync(outside, 'export default {};');
+    fs.symlinkSync(outside, path.join(folder, 'index.ts'));
+    assert.throws(() => discoverCourseSources(root), /Symlink|symlink/i);
   } finally {
     fs.rmSync(home, { recursive: true, force: true });
   }
