@@ -215,14 +215,7 @@ async function runGate(changed, base, head) {
 
   // Dependency artifacts are required by TypeScript package resolution.
   // Build them before starting parallel checks; this is not package validation.
-  for (const name of targets) {
-    const pkg = all.get(name);
-    ensureSharedDependencies(name);
-    if (pkg.path.startsWith('shared/') && pkg.scripts?.['package:build'] && !built.has(name)) {
-      exec('npm', ['run', 'package:build', '--workspace', name]);
-      built.add(name);
-    }
-  }
+  for (const name of targets) ensureSharedDependencies(name);
 
   // Web/Mobile npm precode hooks rebuild shared dist/ and must not race
   // with consumers. Other independent workspace typechecks run in parallel.
