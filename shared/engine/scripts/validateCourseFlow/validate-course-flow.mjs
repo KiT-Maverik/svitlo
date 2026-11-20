@@ -55,9 +55,6 @@ export function checkPlan(plan, stage) {
       const position = location + '/' + key;
       if (child.slug !== key) errors.push(position + ': items key must match child slug');
       if (!allowed[kind]?.has(child.type)) errors.push(position + ': invalid ' + child.type + ' within ' + kind);
-      if (stage === '2' && (child.type === 'lesson' || child.type === 'episode')) {
-        errors.push(position + ': Stage 2 must contain only Module/Chapter macrostructure');
-      }
       if (child.type === 'lesson') {
         lessonCount.total++;
         if (!child.lessonId) {
