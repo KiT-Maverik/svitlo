@@ -62,7 +62,7 @@ Every `front`, `back` and optional `hint` is a named `{ items, order }` collecti
 
 Flags belong to **Flashcards**, not to Lessons, Quizzes or Questions. The four current variants are `list` (integer `count >= 2`), `warning`, `acronym` (localized `value`), and `custom` (localized `value`, approved palette `color`, optional icon). A card's flags have **no pedagogically meaningful order**.
 
-**Source/runtime boundary:** Published Flashcard Props already expose a flags array, matching the owner's unordered-array design. The current Engine Flashcard **Config** and `yamlFlashcard_Schema` still require `parameters.flags: { items, order }`. Until Engine Config, Builder and existing sources are deliberately migrated together, author YAML against that real schema without claiming a flat Config array is accepted. Temporary `order` is a structural source obligation, not an instructional sequence.
+**Engine source and publication contract:** `parameters.flags` is a plain array of discriminated typed flags in both Config/YAML and published Props. Use `flags: []` when absent or a list of typed flag objects; there is **no** `items`, `order`, slug, or named flag patch. A Flashcard Build override replaces the entire flags array. Preserve strict localization of each flag's `value` and validate built-in flag uniqueness; multiple `custom` flags are permitted.
 
 Use a single `list` count for an actual multi-element answer, not a duplicated `(N)` in front or hint. `warning` renders UI Kit's localized label. For `acronym`, verify capitalization, complete source-word mapping, and genuine localized mnemonics; keep letter decomposition and localization strategy in the **Flashcards PR editorial evidence**, not unsupported `parts` or `localePolicy` Config properties. Custom values are translatable learner text, not JSX, arbitrary SVG, CSS or raw React elements. Confirm all typed variants against current Engine and UI Kit before approval.
 
@@ -88,7 +88,7 @@ flashcards:
       parameters:
         tags: [astronomy]
         disabilities: []
-        flags: { items: {}, order: [] } # current Engine source shape; unordered array is the target
+        flags: []
       content:
         front:
           items:
