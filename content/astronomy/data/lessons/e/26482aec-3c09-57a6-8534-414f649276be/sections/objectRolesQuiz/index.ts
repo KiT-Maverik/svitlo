@@ -13,9 +13,9 @@ const content = {
   ]
 };
 
-// TODO (BLOCKER): Stage 4 independent assessment review and Stage 5 bank publication are pending.
-// These five IDs are real authored Question candidates, not yet independently approved
-// or published. Remove this blocker only after verified bank and Quiz integration.
+// TODO (BLOCKER): Stage 5 Question publication, real Quiz rendering and locale coverage remain pending.
+// Stage 4 independently accepted the five real selected UUIDs at commit 1473c833;
+// the generated TypeScript bank is not proof of published or accessible Questions.
 export const objectRolesQuiz = defineQuizSection<"objectRolesQuiz", typeof content.items, LessonLanguages>({
   id: "742ca5c5-d2c1-4cc2-a268-ef50ce3f07e8",
   slug: "objectRolesQuiz",
