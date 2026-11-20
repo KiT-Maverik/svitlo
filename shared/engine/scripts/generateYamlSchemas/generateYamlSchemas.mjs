@@ -82,11 +82,10 @@ export function scaffoldYamlSchema(kind, authoredConfig) {
     return undefined;
   };
   const productionName = (type, properties) => {
-    if (type === 'lesson' && properties.lessonId) return 'lessonReference';
     if (sectionKinds.has(type) || type === 'quest') return 'section';
     if (['questStage', 'questTask', 'subtitles'].includes(type)) return type;
     if (questionKinds.has(type)) return 'question';
-    if (['lesson', 'course', 'episode', 'image', 'audio', 'video', 'scene', 'flashcard'].includes(type)) return type;
+    if (['lesson', 'image', 'audio', 'video', 'scene', 'flashcard'].includes(type)) return type;
     return 'default';
   };
   function wrap(node) {
