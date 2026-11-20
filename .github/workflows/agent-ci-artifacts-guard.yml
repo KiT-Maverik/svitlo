@@ -1,6 +1,7 @@
 name: Agent CI Artifacts / clean
 
-# Verify each new PR head for protected branches, including docs-only changes.
+# Transitional legacy cleanup check, retained until protected rulesets are updated.
+# New report workflows are read-only and do not create tracked reference directories.
 # Configure this check as REQUIRED in main branch protection / rulesets.
 on:
   pull_request:
@@ -30,7 +31,7 @@ jobs:
           set -euo pipefail
           if [ -d .agent-ci-artifacts ]; then
             echo '::error::Remove .agent-ci-artifacts/ from this PR before merging.'
-            echo 'On an open same-repo PR, use: /agent-artifacts cleanup'
+            echo 'Old tracked reports require a regular deletion commit; the cleanup command is retired.'
             exit 1
           fi
           echo 'No PR-scoped agent artifacts in merge candidate.'

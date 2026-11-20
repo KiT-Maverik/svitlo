@@ -157,6 +157,8 @@ publication/portability matrix remains independently verified by the required
 Affected Content status. Implementation details and validation commands:
 [scripts/ci/productionQuality/README.md](../../scripts/ci/productionQuality/README.md).
 
+**Diagnostic report transport:** `/agent-artifacts generate`, `/get lesson`, `/engine-coverage` and `/repo-audit` upload one-day Actions artifacts; no report publisher commits to PR branches. See [Agent CI reports](../docs/architecture/agent-ci-artifacts.md). The legacy required `Agent CI Artifacts / clean` status must remain until branch rulesets are deliberately updated.
+
 ## Quiet logs and agents
 
 - Prefer `node scripts/ci/quietRun/quiet-run.mjs -- <command> [args...]` for installs, tests, builds and typechecks. Success prints status and duration, failure preserves the nonzero exit and bounded useful diagnostics; `SVITLO_CI_VERBOSE=1` enables full output on an intentional rerun.
