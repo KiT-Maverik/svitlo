@@ -12,6 +12,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import ts from 'typescript';
 import YAML from 'yaml';
+import Ajv2020 from 'ajv/dist/2020.js';
 import { parseYaml, checkPlan } from '../validateCourseFlow/validate-course-flow.mjs';
 import { buildLessonIndex } from '../generateLessonsBySkill/lesson-index.mjs';
 import { renderEpisodeScaffoldSource, renderCourseLessonOverrideSource } from './episode-draft-renderer.mjs';
@@ -21,6 +22,40 @@ const UUID = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/;
 const PACKAGE = /^content\/[a-z][a-z0-9-]*$/;
 const SLUG = /^[a-z][A-Za-z0-9]*$/;
 const record = value => !!value && typeof value === 'object' && !Array.isArray(value);
+
+const episodeSchema = JSON.parse(
+  fs.readFileSync(fileURLToPath(new URL('../../yaml-schemas/episode.schema.json', import.meta.url)), 'utf8'),
+);
+const validateEpisodeConfig = new Ajv2020({ allErrors: true, strict: false, validateFormats: false }).compile(
+  episodeSchema,
+);
+
+/** Fail before normalization can hide null YAML mappings or invalid nested Engine values. */
+function assertEpisodeConfig(config, location) {
+  function walk(node, field) {
+    if (Array.isArray(node)) {
+      node.forEach((child, index) => walk(child, field + '[' + index + ']'));
+      return;
+    }
+    if (!record(node)) return;
+    for (const [key, value] of Object.entries(node)) {
+      if (key === 'params' && !record(value)) {
+        fail(field + '/params: expected an Engine params object; received ' + String(value));
+      }
+      if (record(value) || Array.isArray(value)) walk(value, field + '/' + key);
+    }
+  }
+  walk(config, location);
+  if (!validateEpisodeConfig(config)) {
+    const errors = (validateEpisodeConfig.errors ?? []).filter(issue => issue.keyword !== 'oneOf');
+    const issue = errors.find(issue => issue.keyword === 'type' && issue.instancePath.includes('/params')) ??
+      errors.find(issue => issue.keyword === 'required') ?? errors[0] ?? (validateEpisodeConfig.errors ?? [])[0];
+    const missing = issue?.keyword === 'required' ? '/' + issue.params.missingProperty : '';
+    fail(location + (issue?.instancePath ?? '') + missing + ': invalid Engine Episode Config: ' +
+      (issue?.message ?? 'unknown schema violation'));
+  }
+}
+
 
 function fail(message) {
   throw new Error('Course Flow materialization: ' + message);
@@ -238,6 +273,9 @@ export function technicalFromEditorial(plan, resolveLesson = () => null) {
         fail('duplicate generated entity UUID at ' + placement);
       generated.add(child.id);
       if (child.type === 'episode') {
+        if (Object.hasOwn(child, 'params') && !record(child.params)) {
+          fail(placement + '/params: expected an Engine params object');
+        }
         const config = {
           id: child.id,
           type: 'episode',
@@ -247,6 +285,7 @@ export function technicalFromEditorial(plan, resolveLesson = () => null) {
           section: child.section ?? { items: {}, order: [] },
           ...(child.events ? { events: child.events } : {}),
         };
+        assertEpisodeConfig(config, placement);
         items[slug] = { config };
         continue;
       }
@@ -717,7 +756,7 @@ export function planArtifacts(plan, pkg, root, lessonIndex) {
         skills: [...node.skills],
         params: {
           languages: [...plan.supportedLanguages],
-          requireQuiz: node.quizRequired ?? false,
+          quizRequiredForCompletion: node.quizRequired ?? false,
           sections: { allowNavigation: true, allowSkipping: true, showIndexes: true },
         },
         locale: { title: { [plan.documentLanguage]: node.title } },
