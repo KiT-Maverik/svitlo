@@ -86,6 +86,14 @@ function sourceCommit() {
   return info.stdout.trim();
 }
 
+function sourceHead() {
+  const info = spawnSync('git', ['rev-parse', 'HEAD'], { cwd: root, encoding: 'utf8' });
+  if (info.status !== 0 || !/^[0-9a-f]{40}$/.test(info.stdout.trim())) {
+    throw new Error('Cannot determine reviewed source HEAD');
+  }
+  return info.stdout.trim();
+}
+
 export function fixTaxonomyLinks(markdown, book, destination) {
   const original = path.join(root, 'content', book, 'docs/generated/skills');
   const sourceRoot = path.join(root, 'content', book, 'data/skills') + path.sep;
@@ -110,7 +118,7 @@ export async function generate(options) {
   const manifest = {
     schemaVersion: 3,
     kind: 'pr-scoped-agent-ci-artifacts',
-    sourceCommit: sourceCommit(),
+    sourceCommit: options.kind === 'questions' ? sourceHead() : sourceCommit(),
     scope: {
       kind: options.kind,
       package: options.package ?? null,
@@ -286,6 +294,9 @@ export async function generate(options) {
     educationStandardDocuments: manifest.generated.filter(item => item.kind === 'education-standard').length,
   };
   saveManifest();
+  if (options.kind === 'questions' && manifest.failures.length) {
+    throw new Error('Incomplete Question/Quiz references: ' + manifest.failures.length + ' failed documents.');
+  }
   if (manifest.generated.length === 0) {
     throw new Error('No requested Markdown was generated. Inspect .agent-ci-artifacts/manifest.json failures.');
   }

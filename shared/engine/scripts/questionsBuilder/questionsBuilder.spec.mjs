@@ -8,7 +8,6 @@ import yaml from 'yaml';
 import { scanSource } from '../../../../scripts/ci/checkBlockerTodos/check-blocker-todos.mjs';
 
 import { inspectQuestions, readQuestionsYaml, renderQuestions, runOne } from './questionsBuilder.mjs';
-import { verifyQuizSelections } from './verifyQuizSelections.mjs';
 
 const uuid = n => '00000000-0000-4000-8000-' + String(n).padStart(12, '0');
 const lessonId = uuid(1);
@@ -45,7 +44,6 @@ function sample() {
         secondQuestion: question('secondQuestion', 11, 110),
       },
     },
-    quizSelections: { [uuid(20)]: [uuid(10)] },
   };
 }
 
@@ -65,19 +63,23 @@ function fixture() {
   return { root, lesson, source, remove: () => fs.rmSync(root, { recursive: true, force: true }) };
 }
 
-test('complete bank is generated, while Quiz selection remains a small UUID handoff', () => {
+test('complete independent bank is generated without requiring a Quiz Section', () => {
   const item = sample();
   const analyzed = inspectQuestions(item);
   assert.equal(analyzed.questionCount, 2);
-  assert.deepEqual(analyzed.selections[uuid(20)], [uuid(10)]);
   const { files } = renderQuestions(item, lessonId);
   assert.ok(files.has('questions/index.ts'));
   for (const slug of ['firstQuestion', 'secondQuestion']) {
-    const code = files.get('questions/selectOneAnswer/' + slug + '/index.ts');
+    const code = files.get('questions/selectOneAnswer/' + slug + '.ts');
     assert.match(code, /defineSelectOneAnswer/);
+    assert.equal(files.has('questions/selectOneAnswer/' + slug + '/index.ts'), false);
   }
   assert.match(files.get('questions/index.ts'), /firstQuestion/);
   assert.match(files.get('questions/index.ts'), /secondQuestion/);
+  const typeIndex = files.get('questions/selectOneAnswer/index.ts');
+  assert.match(typeIndex, /export \{ firstQuestion \} from "\.\/firstQuestion"/);
+  assert.match(typeIndex, /export \{ secondQuestion \} from "\.\/secondQuestion"/);
+  assert.match(files.get('questions/index.ts'), /from "\.\/selectOneAnswer"/);
   assert.ok(
     [...files].every(
       ([, content]) =>
@@ -147,7 +149,7 @@ test('conflicts, orphan trees and unsafe filesystem destinations are rejected be
   }
 });
 
-test('duplicate IDs, wrong types, invalid selections and unknown fields fail at handoff', () => {
+test('duplicate stable UUIDs, wrong types and malformed Question configs fail at handoff', () => {
   const first = sample();
   first.questions.selectOneAnswer.secondQuestion.id = uuid(10);
   assert.throws(() => inspectQuestions(first), /duplicate Question UUID/);
@@ -155,14 +157,6 @@ test('duplicate IDs, wrong types, invalid selections and unknown fields fail at 
   const wrong = sample();
   wrong.questions.selectOneAnswer.firstQuestion.type = 'answerWithText';
   assert.throws(() => inspectQuestions(wrong), /Question type\/group\/slug mismatch/);
-
-  const missing = sample();
-  missing.quizSelections[uuid(20)].push(uuid(999));
-  assert.throws(() => inspectQuestions(missing), /not present in full bank/);
-
-  const duplicate = sample();
-  duplicate.quizSelections[uuid(20)] = [uuid(10), uuid(10)];
-  assert.throws(() => inspectQuestions(duplicate), /duplicate selected/);
 
   const bad = sample();
   bad.questions.selectOneAnswer.firstQuestion.params.restrictions = ['notARealDisability'];
@@ -180,49 +174,11 @@ test('YAML is preserved and strict parsing rejects obsolete nested source paths'
       /Expected Lesson-root questions.yaml/,
     );
     const sourceBytes = fs.readFileSync(f.source, 'utf8');
+    fs.writeFileSync(f.source, sourceBytes + '\nquizSelections:\n  legacy: []\n');
+    assert.throws(() => readQuestionsYaml(f.source), /unsupported top-level fields: quizSelections/);
+    fs.writeFileSync(f.source, sourceBytes);
     runOne(f.source, '--write', f.root);
     assert.equal(fs.readFileSync(f.source, 'utf8'), sourceBytes);
-  } finally {
-    f.remove();
-  }
-});
-
-test('actual Quiz Section and registry must contain exactly the reviewed subset', () => {
-  const f = fixture();
-  try {
-    const section = path.join(f.lesson, 'sections', 'introQuiz');
-    fs.mkdirSync(section, { recursive: true });
-    fs.writeFileSync(
-      path.join(f.lesson, 'sections', 'index.ts'),
-      "import { introQuiz } from './introQuiz';\n" +
-        "export const section = { items: { introQuiz }, order: ['introQuiz'] };\n",
-    );
-    const sectionFile = path.join(section, 'index.ts');
-    const writeSelection = id =>
-      fs.writeFileSync(
-        sectionFile,
-        "import { defineQuizSection } from '@svitlo/engine/build';\n" +
-          'export const introQuiz = defineQuizSection({\n' +
-          "  id: '" +
-          uuid(20) +
-          "', slug: 'introQuiz', type: 'quiz',\n" +
-          "  params: { selection: { mode: 'all', questionIds: ['" +
-          id +
-          "'] } },\n" +
-          '  locale: {}, content: { items: {}, order: [] }\n' +
-          '});\n',
-      );
-    writeSelection(uuid(10));
-    const selections = sample().quizSelections;
-    assert.deepEqual(verifyQuizSelections(f.lesson, selections), { sections: 1, questionIds: 1 });
-    writeSelection(uuid(11));
-    assert.throws(() => verifyQuizSelections(f.lesson, selections), /differ from reviewed/);
-    writeSelection(uuid(10));
-    fs.writeFileSync(
-      path.join(f.lesson, 'sections', 'index.ts'),
-      "import { introQuiz } from './introQuiz';\nexport const section = { items: {}, order: [] };\n",
-    );
-    assert.throws(() => verifyQuizSelections(f.lesson, selections), /absent from static Section registry/);
   } finally {
     f.remove();
   }

@@ -13,16 +13,16 @@ test('selected content package publishes Course and Lesson Engine Props, not leg
   const published = await courseResource.json();
   expect(published.type).toBe('course');
   expect(published.content.order).toEqual(['fixtureModule']);
-  const module = published.content.items.fixtureModule;
-  expect(module.type).toBe('module');
-  expect(module.content.order).toEqual(['fixtureChapter']);
-  const chapter = module.content.items.fixtureChapter;
+  const fixtureModule = published.content.items.fixtureModule;
+  expect(fixtureModule.type).toBe('module');
+  expect(fixtureModule.content.order).toEqual(['fixtureChapter']);
+  const chapter = fixtureModule.content.items.fixtureChapter;
   expect(chapter.type).toBe('chapter');
   expect(chapter.content.items.fixtureLesson).toEqual({ type: 'lesson', id: lessonId });
   const lesson = await lessonResource.json();
   expect(lesson.type).toBe('lesson');
-  expect(lesson.section.map((section: { type: string }) => section.type)).toEqual(['content','practice','quiz']);
-  expect(lesson.params.languages).toEqual(expect.arrayContaining(['uk','en','ar','qm']));
+  expect(lesson.section.map((section: { type: string }) => section.type)).toEqual(['content', 'practice', 'quiz']);
+  expect(lesson.params.languages).toEqual(expect.arrayContaining(['uk', 'en', 'ar', 'qm']));
 });
 
 test('Course detail renders the selected package hierarchy and opens a published Lesson', async ({ page }) => {
@@ -31,7 +31,8 @@ test('Course detail renders the selected package hierarchy and opens a published
   await expect(page.getByText('Контрольний модуль')).toBeVisible();
   await expect(page.getByText('Контрольна глава')).toBeVisible();
   await expect(page.getByRole('link', { name: /Контрольний урок/ })).toHaveAttribute(
-    'href', '/uk/course/' + courseId + '/lesson/uk/' + lessonId,
+    'href',
+    '/uk/course/' + courseId + '/lesson/uk/' + lessonId,
   );
   await page.goto('/uk/course/' + courseId + '/lesson/uk/' + lessonId);
   await expect(page.getByRole('heading', { name: 'Контрольний урок', level: 1 })).toBeVisible();
@@ -71,15 +72,14 @@ test('Unknown Course membership and removed Episode URL return 404', async ({ re
   for (const route of [
     '/uk/course/' + courseId + '/lesson/uk/ffffffff-ffff-ffff-ffff-ffffffffffff',
     '/uk/course/' + courseId + '/episode/11111111-1111-4111-8111-000000000129',
-  ]) expect((await request.get(route)).status()).toBe(404);
+  ])
+    expect((await request.get(route)).status()).toBe(404);
 });
 
 test('Course catalog includes only actual selected package publications', async ({ page }) => {
   await page.goto('/uk/courses');
   await expect(page.getByRole('heading', { name: 'Обирай свою наступну пригоду', level: 1 })).toBeVisible();
-  await expect(page.getByRole('link', { name: /Контрольний курс/ })).toHaveAttribute(
-    'href', '/uk/course/' + courseId,
-  );
+  await expect(page.getByRole('link', { name: /Контрольний курс/ })).toHaveAttribute('href', '/uk/course/' + courseId);
   await expect(page.getByText('Математика навколо нас')).toHaveCount(0);
   await expect(page.getByText('Таємниці космосу')).toHaveCount(0);
 });

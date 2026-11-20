@@ -84,6 +84,47 @@ test('wrong resource kind is rejected, but another authored Lesson may own a sel
     assert.throws(() => verifyAssessmentSelections(root), /Missing or wrong-kind question/);
   }));
 
+test('a Quiz may select a deliberate subset from multiple approved Question banks', () =>
+  withFixture((root, { lesson, manifest }) => {
+    const upstreamQuestion = '00000000-0000-4000-8000-000000000004';
+    const upstreamPath = 'data/questions/4/' + upstreamQuestion;
+    manifest.entries[upstreamQuestion] = {
+      ...manifest.entries[questionId],
+      ownerLessonId: otherLessonId,
+    };
+    put(root, manifestPath, manifest);
+    put(root, upstreamPath + '/base.json', { id: upstreamQuestion, type: 'selectOneAnswer' });
+    for (const language of ['en', 'uk'])
+      put(root, upstreamPath + '/' + language + '.json', { locale: { title: language } });
+    lesson.section[0].params.selection = {
+      mode: 'all',
+      questionIds: [questionId, upstreamQuestion],
+    };
+    put(root, owner + '/base.json', lesson);
+    assert.equal(verifyAssessmentSelections(root), 3, 'both Question candidates and the Flashcard resolve');
+    // The independent manifest may also contain Question candidates not selected by any Quiz.
+    manifest.entries['00000000-0000-4000-8000-000000000005'] = {
+      ...manifest.entries[questionId],
+      ownerLessonId: otherLessonId,
+    };
+    put(root, manifestPath, manifest);
+    assert.equal(verifyAssessmentSelections(root), 3, 'unselected bank members impose no dependencies');
+  }));
+
+test('independent Question banks remain valid even when no Lesson has a Quiz', () =>
+  withFixture((root, { lesson }) => {
+    lesson.section = [];
+    put(root, owner + '/base.json', lesson);
+    assert.equal(verifyAssessmentSelections(root), 0);
+  }));
+
+test('duplicate selected UUIDs are rejected by the actual publication gate', () =>
+  withFixture((root, { lesson }) => {
+    lesson.section[0].params.selection.questionIds = [questionId, questionId];
+    put(root, owner + '/base.json', lesson);
+    assert.throws(() => verifyAssessmentSelections(root), /Duplicate selected questionIds/);
+  }));
+
 test('every selected candidate ID is checked, including Quiz candidates not sampled in play', () =>
   withFixture((root, { lesson }) => {
     const missing = '00000000-0000-4000-8000-000000000009';
@@ -131,4 +172,41 @@ test('disabled Sections and unselected bank items do not impose publication depe
     put(root, owner + '/base.json', lesson);
     put(root, manifestPath, manifest);
     assert.equal(verifyAssessmentSelections(root), 1);
+  }));
+
+test('unresolved provisional UUID cannot publish even with a forged manifest entry and files', () =>
+  withFixture((root, { lesson, manifest }) => {
+    const pending = 'feedc0de-1234-8abc-abcd-0123456789ab';
+    lesson.section[0].params.selection.questionIds = [pending];
+    put(root, owner + '/base.json', lesson);
+    manifest.entries[pending] = {
+      ...manifest.entries[questionId],
+    };
+    put(root, manifestPath, manifest);
+    put(root, 'data/questions/b/' + pending + '/base.json', { id: pending, type: 'selectOneAnswer' });
+    for (const language of ['en', 'uk'])
+      put(root, 'data/questions/b/' + pending + '/' + language + '.json', { locale: { title: language } });
+    assert.throws(() => verifyAssessmentSelections(root), /Unresolved placeholder question UUID/);
+  }));
+
+test('an unresolved draft Section label cannot reach production despite real bank references', () =>
+  withFixture((root, { lesson }) => {
+    lesson.section[0].locale = { title: 'PENDING QUIZ', navigationLabel: 'PENDING QUIZ' };
+    put(root, owner + '/base.json', lesson);
+    assert.throws(() => verifyAssessmentSelections(root), /Unresolved assessment Section draft label/);
+  }));
+
+test('reserved generated Section identity cannot pass publication even with real selected resources', () =>
+  withFixture((root, { lesson }) => {
+    lesson.section[0].id = 'feedc0de-1234-8abc-abcd-0123456789ab';
+    put(root, owner + '/base.json', lesson);
+    assert.throws(() => verifyAssessmentSelections(root), /Unresolved generated assessment Section UUID/);
+  }));
+
+test('sparse source-language Section labels cannot bypass production checks with real UUIDs', () =>
+  withFixture(root => {
+    put(root, owner + '/uk.json', {
+      section: [{ locale: { title: 'PENDING QUIZ', navigationLabel: 'PENDING QUIZ' } }],
+    });
+    assert.throws(() => verifyAssessmentSelections(root), /Unresolved assessment Section draft label/);
   }));

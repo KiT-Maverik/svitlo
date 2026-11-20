@@ -116,7 +116,12 @@ test('Engine fixture Quiz UUID references resolve against its independent Questi
   const quiz = response.section.find(item => item.type === 'quiz');
   assert(quiz, 'fixture Lesson requires a Quiz Section');
   const candidates = selectQuizQuestionIds(quiz.params.selection, quiz.id);
+  assert.deepEqual(quiz.params.selection.questionIds, [questionId]);
   assert.deepEqual(candidates, [questionId]);
+  assert(
+    candidates.every(candidate => typeof candidate === 'string'),
+    'published Quiz contains UUIDs, not Configurators',
+  );
   const files = await render(textbook, 'question');
   const manifest = JSON.parse(files.get('assessments/manifest.json'));
   const selected = validateAssessmentReferences(manifest, {

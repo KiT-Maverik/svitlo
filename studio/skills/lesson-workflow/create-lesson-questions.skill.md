@@ -30,7 +30,7 @@ minimal envelope is documented in
 [Questions Builder](../../../shared/engine/scripts/questionsBuilder/README.md).
 Do not maintain a separate, contradictory editorial Question schema,
 stage flags or status/approval properties on the authored Config.
-The legacy lesson-questions.schema.json is not authoritative.
+Do not restore the removed Studio editorial `lesson-questions.schema.json` with `status`, `questionSlugs` or parallel Quiz assignment fields. Current Engine-derived `question.schema.json` and the Questions Builder own technical validation; reviews belong in the child PR.
 
 Use actual Engine code for the nine Question discriminators, all
 Assessment Method slugs, params.restrictions Disability[] and nested
@@ -117,10 +117,10 @@ coverage, use a fixed curated subset. Evaluate each Quiz separately
 for appropriate outcomes, methods, item pace and cognitive load.
 Unselected bank Questions remain for future Custom Practice.
 
-The temporary questions.yaml may contain a single
-quizSelections: SectionUUID -> QuestionUUID[] map for reviewed handoff.
-The Section owner's actual TS Section Config becomes authoritative after
-Resource Production. No permanent duplicate selection map is retained;
+Record proposed Quiz candidate subsets and rationale in the existing Questions
+PR evidence. Once authored TS is materialized, the Section owner imports
+approved Question Configurators and uses their stable `.id` values in the
+actual Section Config. No duplicate selection map is kept in questions.yaml;
 there is no legacy questionSlugs API or quizAssignments operation DSL.
 
 ## 5. Independent review and transfer
@@ -135,9 +135,10 @@ The Coding Agent uses the existing [Questions Builder](../../../shared/engine/sc
 to validate and generate typed Question modules. It does not overwrite
 the Lesson or embedded Quiz and it does not silently prune any bank
 member. The Lesson Section owner materializes approved Quiz selections
-in existing/new modular Sections and validates their actual registry
-and order. The existing generateAssessmentResources --kind question
-publisher publishes all authored Question resources separately.
+in existing/new modular Sections through normal typed Lesson composition
+and validates published selections using Engine and the textbook build.
+The existing generateAssessmentResources --kind question publisher publishes
+all authored Question resources separately.
 Do not claim Custom Practice UI exists merely because those resources
 are now publishable.
 
