@@ -2,7 +2,7 @@
 
 - Lesson: `26482aec-3c09-57a6-8534-414f649276be` (sunEarthMoonRoles)
 - Language: `uk` (supported: `uk`)
-- Canonical: [source](https://github.com/KiT-Maverik/svitlo/blob/1a20f3a8ee4380b23acaa96fe5773a0abb29fc88/content/astronomy/data/lessons/e/26482aec-3c09-57a6-8534-414f649276be/index.ts)
+- Canonical: [source](https://github.com/KiT-Maverik/svitlo/blob/b47a66e793e46d66fb97550ed9801cbac3e9cd61/content/astronomy/data/lessons/e/26482aec-3c09-57a6-8534-414f649276be/index.ts)
 - **Media representations:** descriptive metadata only; binary media and interactive Scenes are not rendered.
 
 - **Target Skills** (1)
@@ -20,15 +20,15 @@
 
 - ID: `c63a00b7-83ef-4c34-9f7e-91109480f2a8`
 - Navigation: Три знайомі небесні тіла
-- Canonical: [source](https://github.com/KiT-Maverik/svitlo/blob/1a20f3a8ee4380b23acaa96fe5773a0abb29fc88/content/astronomy/data/lessons/e/26482aec-3c09-57a6-8534-414f649276be/sections/meetThreeBodies/index.ts)
+- Canonical: [source](https://github.com/KiT-Maverik/svitlo/blob/b47a66e793e46d66fb97550ed9801cbac3e9cd61/content/astronomy/data/lessons/e/26482aec-3c09-57a6-8534-414f649276be/sections/meetThreeBodies/index.ts)
 - **locale**
   - **title:** Три знайомі небесні тіла
   - **navigationLabel:** Три знайомі небесні тіла
-- **Block 1 · text** (`firstThought`, `d5e3459d-9807-4f5f-9833-bc835864c0d0`; [source](https://github.com/KiT-Maverik/svitlo/blob/1a20f3a8ee4380b23acaa96fe5773a0abb29fc88/content/astronomy/data/lessons/e/26482aec-3c09-57a6-8534-414f649276be/sections/meetThreeBodies/firstThought/index.ts))
+- **Block 1 · text** (`firstThought`, `d5e3459d-9807-4f5f-9833-bc835864c0d0`; [source](https://github.com/KiT-Maverik/svitlo/blob/b47a66e793e46d66fb97550ed9801cbac3e9cd61/content/astronomy/data/lessons/e/26482aec-3c09-57a6-8534-414f649276be/sections/meetThreeBodies/firstThought/index.ts))
   - **params:** (none)
   - **locale**
     - **value:** Сонце, Земля і Місяць — три різні небесні тіла. Чи однакову роботу вони виконують у космосі? Спробуй назвати їхні ролі, перш ніж читати далі. Дивитися на Сонце для цього не потрібно: ми працюємо з описами й моделями.
-- **Block 2 · markdown** (`threeRoles`, `21a62cc4-3710-423e-b21d-caf490461429`; [source](https://github.com/KiT-Maverik/svitlo/blob/1a20f3a8ee4380b23acaa96fe5773a0abb29fc88/content/astronomy/data/lessons/e/26482aec-3c09-57a6-8534-414f649276be/sections/meetThreeBodies/threeRoles/index.ts))
+- **Block 2 · markdown** (`threeRoles`, `21a62cc4-3710-423e-b21d-caf490461429`; [source](https://github.com/KiT-Maverik/svitlo/blob/b47a66e793e46d66fb97550ed9801cbac3e9cd61/content/astronomy/data/lessons/e/26482aec-3c09-57a6-8534-414f649276be/sections/meetThreeBodies/threeRoles/index.ts))
   - **params:** (none)
   - **locale**
     - **value:**
@@ -48,11 +48,11 @@
 
 - ID: `eadc40d8-f950-44a5-9bc0-b96c7b239045`
 - Navigation: Сонце й далекі зорі
-- Canonical: [source](https://github.com/KiT-Maverik/svitlo/blob/1a20f3a8ee4380b23acaa96fe5773a0abb29fc88/content/astronomy/data/lessons/e/26482aec-3c09-57a6-8534-414f649276be/sections/sunAmongStars/index.ts)
+- Canonical: [source](https://github.com/KiT-Maverik/svitlo/blob/b47a66e793e46d66fb97550ed9801cbac3e9cd61/content/astronomy/data/lessons/e/26482aec-3c09-57a6-8534-414f649276be/sections/sunAmongStars/index.ts)
 - **locale**
   - **title:** Сонце й далекі зорі
   - **navigationLabel:** Сонце й далекі зорі
-- **Block 1 · markdown** (`starsAtNight`, `3ecfd6b7-7485-4702-bc58-5c133204e558`; [source](https://github.com/KiT-Maverik/svitlo/blob/1a20f3a8ee4380b23acaa96fe5773a0abb29fc88/content/astronomy/data/lessons/e/26482aec-3c09-57a6-8534-414f649276be/sections/sunAmongStars/starsAtNight/index.ts))
+- **Block 1 · markdown** (`starsAtNight`, `3ecfd6b7-7485-4702-bc58-5c133204e558`; [source](https://github.com/KiT-Maverik/svitlo/blob/b47a66e793e46d66fb97550ed9801cbac3e9cd61/content/astronomy/data/lessons/e/26482aec-3c09-57a6-8534-414f649276be/sections/sunAmongStars/starsAtNight/index.ts))
   - **params:** (none)
   - **locale**
     - **value:**
@@ -63,7 +63,7 @@
       
       **Головна думка:** Сонце та далекі зорі — один тип небесних тіл. За тим, наскільки маленькою виглядає зоря, не можна визначити її справжній розмір. Для цього пояснення не потрібно ані бачити малюнок, ані спостерігати нічне небо.
       ~~~~
-- **Block 2 · markdown** (`starPrediction`, `5534a30b-4e23-4625-99d0-3f0b04c8e46c`; [source](https://github.com/KiT-Maverik/svitlo/blob/1a20f3a8ee4380b23acaa96fe5773a0abb29fc88/content/astronomy/data/lessons/e/26482aec-3c09-57a6-8534-414f649276be/sections/sunAmongStars/starPrediction/index.ts))
+- **Block 2 · markdown** (`starPrediction`, `5534a30b-4e23-4625-99d0-3f0b04c8e46c`; [source](https://github.com/KiT-Maverik/svitlo/blob/b47a66e793e46d66fb97550ed9801cbac3e9cd61/content/astronomy/data/lessons/e/26482aec-3c09-57a6-8534-414f649276be/sections/sunAmongStars/starPrediction/index.ts))
   - **params:** (none)
   - **locale**
     - **value:**
@@ -77,11 +77,11 @@
 
 - ID: `5156d545-ab20-424d-88f8-ee586a52e38f`
 - Navigation: Хто навколо кого рухається?
-- Canonical: [source](https://github.com/KiT-Maverik/svitlo/blob/1a20f3a8ee4380b23acaa96fe5773a0abb29fc88/content/astronomy/data/lessons/e/26482aec-3c09-57a6-8534-414f649276be/sections/pathsAndRoles/index.ts)
+- Canonical: [source](https://github.com/KiT-Maverik/svitlo/blob/b47a66e793e46d66fb97550ed9801cbac3e9cd61/content/astronomy/data/lessons/e/26482aec-3c09-57a6-8534-414f649276be/sections/pathsAndRoles/index.ts)
 - **locale**
   - **title:** Хто навколо кого рухається?
   - **navigationLabel:** Хто навколо кого рухається?
-- **Block 1 · markdown** (`modelExplained`, `3cb62087-ee57-4bc8-a994-631a37aa249c`; [source](https://github.com/KiT-Maverik/svitlo/blob/1a20f3a8ee4380b23acaa96fe5773a0abb29fc88/content/astronomy/data/lessons/e/26482aec-3c09-57a6-8534-414f649276be/sections/pathsAndRoles/modelExplained/index.ts))
+- **Block 1 · markdown** (`modelExplained`, `3cb62087-ee57-4bc8-a994-631a37aa249c`; [source](https://github.com/KiT-Maverik/svitlo/blob/b47a66e793e46d66fb97550ed9801cbac3e9cd61/content/astronomy/data/lessons/e/26482aec-3c09-57a6-8534-414f649276be/sections/pathsAndRoles/modelExplained/index.ts))
   - **params:** (none)
   - **locale**
     - **value:**
@@ -92,7 +92,7 @@
       
       Це спрощена схема зв'язків, **не карта справжніх розмірів, відстаней або швидкостей**. У реальному космосі відстані дуже великі. Тут важливо правильно назвати тіла й напрямок їхніх зв'язків.
       ~~~~
-- **Block 2 · scene** (`relationshipWorkbench`, `b0886d5a-a5c3-48c9-998b-fe5a94439f4a`; [source](https://github.com/KiT-Maverik/svitlo/blob/1a20f3a8ee4380b23acaa96fe5773a0abb29fc88/content/astronomy/data/lessons/e/26482aec-3c09-57a6-8534-414f649276be/sections/pathsAndRoles/relationshipWorkbench/index.ts))
+- **Block 2 · scene** (`relationshipWorkbench`, `b0886d5a-a5c3-48c9-998b-fe5a94439f4a`; [source](https://github.com/KiT-Maverik/svitlo/blob/b47a66e793e46d66fb97550ed9801cbac3e9cd61/content/astronomy/data/lessons/e/26482aec-3c09-57a6-8534-414f649276be/sections/pathsAndRoles/relationshipWorkbench/index.ts))
   - **params:** (none)
   - **locale**
     - **value**
@@ -120,7 +120,7 @@
         - **reset:** Почати спочатку
         - **scale:** Схема не показує справжні розміри та відстані.
         - **textMode:** Текстова вправа
-- **Block 3 · markdown** (`textAlternative`, `cf394958-7885-45e5-b2ea-bd3176d1dd88`; [source](https://github.com/KiT-Maverik/svitlo/blob/1a20f3a8ee4380b23acaa96fe5773a0abb29fc88/content/astronomy/data/lessons/e/26482aec-3c09-57a6-8534-414f649276be/sections/pathsAndRoles/textAlternative/index.ts))
+- **Block 3 · markdown** (`textAlternative`, `cf394958-7885-45e5-b2ea-bd3176d1dd88`; [source](https://github.com/KiT-Maverik/svitlo/blob/b47a66e793e46d66fb97550ed9801cbac3e9cd61/content/astronomy/data/lessons/e/26482aec-3c09-57a6-8534-414f649276be/sections/pathsAndRoles/textAlternative/index.ts))
   - **params:** (none)
   - **locale**
     - **value:**
@@ -143,11 +143,11 @@
 
 - ID: `05a79a36-771c-45f9-aab1-c70bc77af902`
 - Navigation: Що ще можна впізнати?
-- Canonical: [source](https://github.com/KiT-Maverik/svitlo/blob/1a20f3a8ee4380b23acaa96fe5773a0abb29fc88/content/astronomy/data/lessons/e/26482aec-3c09-57a6-8534-414f649276be/sections/transferAndRecall/index.ts)
+- Canonical: [source](https://github.com/KiT-Maverik/svitlo/blob/b47a66e793e46d66fb97550ed9801cbac3e9cd61/content/astronomy/data/lessons/e/26482aec-3c09-57a6-8534-414f649276be/sections/transferAndRecall/index.ts)
 - **locale**
   - **title:** Що ще можна впізнати?
   - **navigationLabel:** Що ще можна впізнати?
-- **Block 1 · markdown** (`marsExample`, `ee6fba9c-8f02-4dc9-8b2d-fbec71e2462b`; [source](https://github.com/KiT-Maverik/svitlo/blob/1a20f3a8ee4380b23acaa96fe5773a0abb29fc88/content/astronomy/data/lessons/e/26482aec-3c09-57a6-8534-414f649276be/sections/transferAndRecall/marsExample/index.ts))
+- **Block 1 · markdown** (`marsExample`, `ee6fba9c-8f02-4dc9-8b2d-fbec71e2462b`; [source](https://github.com/KiT-Maverik/svitlo/blob/b47a66e793e46d66fb97550ed9801cbac3e9cd61/content/astronomy/data/lessons/e/26482aec-3c09-57a6-8534-414f649276be/sections/transferAndRecall/marsExample/index.ts))
   - **params:** (none)
   - **locale**
     - **value:**
@@ -162,7 +162,7 @@
       
       Порівняй: «Марс — планета, бо червоний» і «Марс — одна з планет Сонячної системи. Як і Земля, він рухається навколо Сонця». **Другий вислів точніший**: колір не визначає тип тіла. Самого руху навколо Сонця також замало, щоб назвати будь-яке тіло планетою: там рухаються й менші небесні тіла. Зараз нам достатньо впізнати Марс як приклад іншої планети.
       ~~~~
-- **Block 2 · markdown** (`misconceptions`, `ab4356a1-d73b-4928-b0f1-d2c6269266f0`; [source](https://github.com/KiT-Maverik/svitlo/blob/1a20f3a8ee4380b23acaa96fe5773a0abb29fc88/content/astronomy/data/lessons/e/26482aec-3c09-57a6-8534-414f649276be/sections/transferAndRecall/misconceptions/index.ts))
+- **Block 2 · markdown** (`misconceptions`, `ab4356a1-d73b-4928-b0f1-d2c6269266f0`; [source](https://github.com/KiT-Maverik/svitlo/blob/b47a66e793e46d66fb97550ed9801cbac3e9cd61/content/astronomy/data/lessons/e/26482aec-3c09-57a6-8534-414f649276be/sections/transferAndRecall/misconceptions/index.ts))
   - **params:** (none)
   - **locale**
     - **value:**
@@ -175,7 +175,7 @@
       
       **Перевір пояснення:** Сонце — зоря, а не планета. Роль небесного тіла визначає не те, як воно виглядає на малюнку.
       ~~~~
-- **Block 3 · markdown** (`recallPrompt`, `e5a48469-ec9c-4f65-9b63-4bcd50eb8a0b`; [source](https://github.com/KiT-Maverik/svitlo/blob/1a20f3a8ee4380b23acaa96fe5773a0abb29fc88/content/astronomy/data/lessons/e/26482aec-3c09-57a6-8534-414f649276be/sections/transferAndRecall/recallPrompt/index.ts))
+- **Block 3 · markdown** (`recallPrompt`, `e5a48469-ec9c-4f65-9b63-4bcd50eb8a0b`; [source](https://github.com/KiT-Maverik/svitlo/blob/b47a66e793e46d66fb97550ed9801cbac3e9cd61/content/astronomy/data/lessons/e/26482aec-3c09-57a6-8534-414f649276be/sections/transferAndRecall/recallPrompt/index.ts))
   - **params:** (none)
   - **locale**
     - **value:**
@@ -198,7 +198,7 @@
 
 - ID: `742ca5c5-d2c1-4cc2-a268-ef50ce3f07e8`
 - Navigation: Перевір себе
-- Canonical: [source](https://github.com/KiT-Maverik/svitlo/blob/1a20f3a8ee4380b23acaa96fe5773a0abb29fc88/content/astronomy/data/lessons/e/26482aec-3c09-57a6-8534-414f649276be/sections/objectRolesQuiz/index.ts)
+- Canonical: [source](https://github.com/KiT-Maverik/svitlo/blob/b47a66e793e46d66fb97550ed9801cbac3e9cd61/content/astronomy/data/lessons/e/26482aec-3c09-57a6-8534-414f649276be/sections/objectRolesQuiz/index.ts)
 - **locale**
   - **title:** Перевір, хто є хто
   - **navigationLabel:** Перевір себе
