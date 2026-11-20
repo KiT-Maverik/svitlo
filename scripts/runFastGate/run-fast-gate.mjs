@@ -178,7 +178,6 @@ export function requiresWebBuild(changed) {
       file.startsWith('shared/ui-kit/src/components/lesson/') ||
       file.startsWith('shared/ui-kit/src/components/widgets/ContentBlockRenderer/blocks/Image/') ||
       file.startsWith(markdownRendererPath) ||
-      file.startsWith('apps/web-fixture-') ||
       file.startsWith('apps/web/'),
   );
 }

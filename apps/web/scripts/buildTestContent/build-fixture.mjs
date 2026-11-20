@@ -9,7 +9,7 @@ import { basename, dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root = resolve(process.cwd());
-const id = basename(root);
+const id = 'web-fixture-' + basename(root);
 if (!['web-fixture-alpha', 'web-fixture-beta'].includes(id)) throw Error('Not a Web contract fixture workspace');
 const repo = resolve(dirname(fileURLToPath(import.meta.url)), '../../../..');
 const dist = join(root, 'dist');
