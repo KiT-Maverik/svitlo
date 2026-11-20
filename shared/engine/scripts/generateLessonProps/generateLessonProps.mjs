@@ -105,6 +105,23 @@ async function render(packageDirectory, mode) {
     if (publication?.base?.id !== id) {
       throw new Error('Built Lesson ID differs from authored ID: ' + source);
     }
+    if (mode === 'production') {
+      // Do not write even intermediate Lesson JSON containing the reserved
+      // assessment-draft namespace. The textbook build has a second, strict
+      // resource/locale verifier after independent banks are staged.
+      for (const section of publication.base.section ?? []) {
+        if (typeof section.id === 'string' && section.id.startsWith('feedc0de-')) {
+          throw new Error('Unresolved generated Section UUID in Lesson ' + id + ': ' + section.id);
+        }
+        const key = section.type === 'quiz' ? 'questionIds' : section.type === 'flashcards' ? 'flashcardIds' : null;
+        if (!key) continue;
+        for (const selectedId of section.params?.selection?.[key] ?? []) {
+          if (typeof selectedId === 'string' && selectedId.startsWith('feedc0de-')) {
+            throw new Error('Unresolved assessment placeholder in Lesson ' + id + ': ' + selectedId);
+          }
+        }
+      }
+    }
     const relativeSource = path.relative(repoRoot, source);
     entries.push({
       source: relativeSource,
