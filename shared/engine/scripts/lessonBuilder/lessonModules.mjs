@@ -304,6 +304,9 @@ export function renderLessonModules(lesson, language, options = {}) {
   }
   const files = new Map();
   const nodeLocations = options.nodeLocations;
+  const pendingSections = new Map(
+    (options.pendingAssessments ?? []).filter(item => item.slug).map(item => [item.slug, item]),
+  );
 
   /**
    * Extract only actually authored learner text. There is no mechanical
@@ -434,7 +437,7 @@ export function renderLessonModules(lesson, language, options = {}) {
 
   // Render plain source values and move every Configurator position into a
   // child module. Its containing object's ordinary metadata remains untouched.
-  function render(value, context, ownerDirectory, imported, depth = 0, field = '$') {
+  function render(value, context, ownerDirectory, imported, depth = 0, field = '$', pending = null) {
     if (value && typeof value === 'object' && value[rawExpression]) return value[rawExpression];
     if (value === null && context.startsWith('pendingMedia:')) {
       const kind = context.slice('pendingMedia:'.length);
@@ -479,10 +482,21 @@ export function renderLessonModules(lesson, language, options = {}) {
       return (
         '[\n' +
         value
-          .map(
-            (item, index) =>
-              indent(depth + 1) + render(item, 'plain', ownerDirectory, imported, depth + 1, field + '[' + index + ']'),
-          )
+          .map((item, index) => {
+            const provisional = pending?.syntheticIds?.includes(item)
+              ? indent(depth + 1) +
+                '// TODO (BLOCKER): Replace ' +
+                field +
+                '[' +
+                index +
+                '] with a reviewed resource UUID.\n'
+              : '';
+            return (
+              provisional +
+              indent(depth + 1) +
+              render(item, 'plain', ownerDirectory, imported, depth + 1, field + '[' + index + ']', pending)
+            );
+          })
           .join(',\n') +
         '\n' +
         indent(depth) +
@@ -538,7 +552,14 @@ export function renderLessonModules(lesson, language, options = {}) {
             imported.set(key, { symbol: key, location: nextDirectory });
             return indent(depth + 1) + key;
           }
-          const rendered = render(child, nextContext, nextDirectory, imported, depth + 1, field + '.' + key);
+          const nextField = field + '.' + key;
+          const rendered = render(child, nextContext, nextDirectory, imported, depth + 1, nextField, pending);
+          const assessmentComment = pending?.provisionalFields?.includes(nextField)
+            ? indent(depth + 1) +
+              '// TODO (BLOCKER): Provisional assessment ' +
+              nextField +
+              '; specialist must approve and replace before publication.\n'
+            : '';
           const pendingComment =
             child === null && nextContext.startsWith('pendingMedia:')
               ? indent(depth + 1) +
@@ -547,6 +568,7 @@ export function renderLessonModules(lesson, language, options = {}) {
                 '// Replace with actual UUID.extension before production.\n'
               : '';
           return (
+            assessmentComment +
             pendingComment +
             indent(depth + 1) +
             (identifier.test(key) && rendered === key ? key : asProperty(key) + ': ' + rendered)
@@ -683,6 +705,7 @@ export function renderLessonModules(lesson, language, options = {}) {
     if (!factory) throw new Error('lesson.yaml: unknown factory for ' + node.type);
     const imports = new Map();
     const bindings = generateParameters(authored, context, directory, imports);
+    const pending = context === 'section' ? pendingSections.get(authored.slug) : null;
     // All bound children are rendered with real source names but are never
     // inserted as an extra authored field into the Config.
     const extra = [];
@@ -707,13 +730,21 @@ export function renderLessonModules(lesson, language, options = {}) {
           imports,
           1,
           '$.' + key,
+          key === 'params' || key === 'locale' ? pending : null,
+        );
+      if (key === 'id' && pending?.generatedIdentity)
+        fields.push(
+          '  // TODO (BLOCKER): Generated Section UUID needs explicit editorial ownership before publication.',
         );
       fields.push('  ' + (identifier.test(key) && rendered === key ? key : asProperty(key) + ': ' + rendered));
     }
     const content = fields.length ? '{\n' + fields.join(',\n') + '\n}' : '{}';
     const name = symbolFor(node, context);
-    const importHead = moduleImports(directory, imports, factory, true, false);
-    // Every authored assessment Section starts blocked until its independent bank is verified.
+    // Question leaves live at <type>/<slug>.ts; nested blocks remain under <slug>/.
+    const moduleDirectory = questionBankOnly && context === 'question'
+      ? path.posix.dirname(directory) : directory;
+    const importHead = moduleImports(moduleDirectory, imports, factory, true, false);
+    // Every assessment Section starts blocked until its independent bank is verified.
     // UUID-shaped strings alone are not evidence of approval; do not auto-remove the blocker.
     const assessmentBlocker =
       context === 'section' && node.type === 'quiz'
@@ -744,7 +775,10 @@ export function renderLessonModules(lesson, language, options = {}) {
       '(' +
       content +
       ');\n';
-    put(join(directory, 'index.ts'), result);
+    const destination = questionBankOnly && context === 'question'
+      ? path.posix.join(moduleDirectory, authored.slug + '.ts')
+      : join(directory, 'index.ts');
+    put(destination, result);
   }
 
   function emitCollection(field, context, directory) {
@@ -765,12 +799,33 @@ export function renderLessonModules(lesson, language, options = {}) {
   if (questionBankOnly) {
     if (!record(filtered.questions) || !Object.keys(filtered.questions).length)
       throw new Error('questions.yaml:questions: expected nonempty Question type groups');
-    emitCollection('questions', 'questionBank', 'questions');
-    return new Map(
-      [...files.entries()].sort((a, b) =>
-        a[0] === 'questions/index.ts' ? 1 : b[0] === 'questions/index.ts' ? -1 : a[0].localeCompare(b[0]),
-      ),
-    );
+    // The only bank shape is questions/index.ts -> questions/<type>/index.ts
+    // -> questions/<type>/<slug>.ts. A slug directory may contain nested blocks.
+    render(filtered.questions, 'questionBank', 'questions', new Map(), 0, '$.questions');
+    const bankImports = [];
+    const bankGroups = [];
+    for (const [type, group] of Object.entries(filtered.questions)) {
+      if (!safeSlug.test(type) || !record(group) || !Object.keys(group).length)
+        throw new Error('questions.yaml:questions: invalid Question type group: ' + type);
+      const namedExports = [], namedImports = [], fields = [];
+      for (const [slug, question] of Object.entries(group)) {
+        if (!safeSlug.test(slug) || question.type !== type || question.slug !== slug)
+          throw new Error('questions.yaml:questions: mismatched type/slug: ' + type + '/' + slug);
+        const name = symbolFor(question, 'question');
+        namedExports.push('export { ' + name + (name !== slug ? ' as ' + slug : '') +
+          ' } from ' + JSON.stringify('./' + slug) + ';');
+        const alias = type + '_' + slug;
+        namedImports.push(slug + ' as ' + alias);
+        fields.push(indent(2) + asProperty(slug) + ': ' + alias);
+      }
+      put(join('questions', type, 'index.ts'), namedExports.join('\n') + '\n');
+      bankImports.push('import { ' + namedImports.join(', ') + ' } from ' + JSON.stringify('./' + type) + ';');
+      bankGroups.push(indent(1) + asProperty(type) + ': {\n' + fields.join(',\n') + '\n' + indent(1) + '}');
+    }
+    put('questions/index.ts', bankImports.join('\n') + '\n\n' +
+      'export const questions = {\n' + bankGroups.join(',\n') + '\n};\n');
+    return new Map([...files.entries()].sort((a, b) =>
+      a[0] === 'questions/index.ts' ? 1 : b[0] === 'questions/index.ts' ? -1 : a[0].localeCompare(b[0])));
   }
 
   emitCollection('section', 'sectionCollection', 'sections');
@@ -813,8 +868,8 @@ export function renderLessonModules(lesson, language, options = {}) {
           '  // TODO (BLOCKER): ' +
           (type === 'quiz' ? 'Quiz' : 'Flashcards') +
           ' Section ' +
-          (slug ? JSON.stringify(slug) + ' is unfinished' : 'is required') +
-          '; integrate its reviewed bank and completed Section before Lesson publication.',
+          JSON.stringify(slug) +
+          ' awaits independently reviewed resources and approved selection before Lesson publication.',
       );
       rootFields.push((comments.length ? comments.join('\n') + '\n' : '') + '  section');
       continue;
@@ -861,7 +916,7 @@ export function renderLessonModules(lesson, language, options = {}) {
     '({\n' +
     rootFields.join(',\n') +
     '\n});\n';
-  put('review.ts', renderReviewDraft());
+  put('review.ts', renderReviewDraft(language));
   put('index.ts', root);
   // Write the entrypoint last. A process interruption before this point
   // leaves an orphan tree, which runOne rejects rather than treating it as a

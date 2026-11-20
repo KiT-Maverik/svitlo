@@ -77,9 +77,11 @@ authored source-locale dictionaries and never invents translations.
 
 The accepted `lesson.yaml` preserves ordinary, ordered Quiz and Flashcards Sections including their stable UUIDs, authored copy, `content` and `production`. Root authoring-only `production.quizRequired` and `production.flashcardsRequired` are optional Methodologist decisions; no mandatory fenced inventory is consumed.
 
-During **one-time materialization**, an unfinished assessment Section (missing reviewed UUID selection or mandatory Config params) is intentionally **not emitted** as an invalid TypeScript Configurator. It is excluded only from the generated runtime-facing `sections/**` and `sections/index.ts` collection; the complete original Section is copied into `sectionDrafts: { items, order }` of the corresponding temporary Lesson-root `questions.yaml` or `flashcards.yaml`. The independent bank workflow completes these YAML drafts and later integrates real Sections. Such bank YAML drafts are intentionally not eligible for bank materialization until their actual bank entries exist. The Lesson Builder does not generate Questions/Flashcards bank TypeScript or invent IDs.
+During **one-time materialization**, an incomplete Quiz or Flashcards Section **remains enabled in the generated `sections/**` collection** at its approved position. The Builder preserves the canonical authored Section UUID, slug, locale copy and screen ContentBlocks, and fills only missing mandatory Config fields. A required Section absent altogether receives one deterministic, minimal Section appended after existing Sections; assigning its proper placement/identity remains an explicit editorial blocker. A required Section is decided only by `production.quizRequired`, `production.flashcardsRequired` or `params.quizRequiredForCompletion`, never inferred from bank existence. Multiple authored assessment Sections remain independently ordered.
 
-Each outstanding requirement or deferred Section produces a **real** `// TODO (BLOCKER):` immediately above the Lesson root `section` field. An already complete Section stays in the normal collection; it still requires independently verified bank resources before its own blocker can be removed. The root `config.params.quizRequiredForCompletion` always keeps its authored value, including `true`; it is never temporarily replaced with `false` or bypassed.
+Temporary IDs use SHA-256-derived, deterministic **UUIDv8** values in the reserved `feedc0de-` prefix namespace (scoped by Lesson UUID, Section slug, assessment kind and field). These are **syntactically valid UUIDs, not actual Questions or Flashcards**; they cannot be published, even after removing TODO comments or fabricating matching bank entities. Missing labels receive explicit `PENDING QUIZ`/`PENDING FLASHCARDS` draft markers, not invented translations. The full unmodified, accepted Section is also transferred to `sectionDrafts: { items, order }` of the temporary Lesson-root `questions.yaml`/`flashcards.yaml` as a **handoff only**, not a second permanent source of truth. The Builder does not generate either bank's entities or overwrite separately authored bank sidecars.
+
+Each provisional field/selection gets an adjacent `// TODO (BLOCKER):` in its generated Section module; the Section itself and root Lesson `section` property have separate blockers. An already complete real-ID Section is not rewritten, and still needs independent bank review before its existing blocker can be removed. `config.params.quizRequiredForCompletion` remains unchanged, including `true`, so the Engine can validate a structurally complete draft. `generateLessonProps` refuses the reserved namespace in production mode; the portable textbook build additionally verifies every selected real bank resource, language and actual JSON file before publication. Schema-valid draft generation is **never** publication or approval. The Questions/Flashcards specialist must replace synthetic IDs and unapproved interaction/results defaults with reviewed choices, resolve the TODOs, and demonstrate real resource validation.
 
 There is no repeat/no-op regeneration: existing authored Lesson entrypoints are never overwritten. If materialization was incorrect, review and explicitly remove only known generated files before running the generator again. The trusted PR workflow uses `/lesson materialize` once and offers a separate `/lesson finalize` after fully verified committed source transfer. A successful source handoff is not a production Lesson build or Stage 6 completion.
 
@@ -94,11 +96,14 @@ There is no repeat/no-op regeneration: existing authored Lesson entrypoints are 
   camelCase identifiers in Lesson Production trackers, plus a single
   `ai.locales` integration PR, and required `human.acceptance` and
   `human.locales` fields. Optional `human.scientific` is initially absent.
-  **The const identifier and mandatory values are deliberately blank and
-  syntactically invalid.** The specialist must first hash assembled Lesson
-  Props, then confirm review evidence for that revision; this builder cannot
-  hash an unfinished Lesson or fabricate sign-offs. A rerun never overwrites
-  recorded reviews; `check` only requires the file to exist.
+  The initial non-exported `lessonReview` identifier and numeric `0`
+  placeholders are **valid TypeScript**, not approvals. The typed `language`
+  uses `production.documentLanguage` only for source provenance, not as
+  evidence that anyone reviewed that language. The top-of-file
+  `TODO (BLOCKER): Conduct review` and numeric-zero CI guard block Ready/merge,
+  even when the TODO is removed prematurely. The specialist must hash assembled
+  Lesson Props and verify review evidence tied to that revision. Reruns never
+  overwrite recorded reviews; `check` only requires the file to exist.
 - `constants.ts`: exactly one active, Engine-checked `languages` readonly tuple,
   initially `[production.documentLanguage]`, plus `LessonLanguages = typeof languages`.
   The original **full** YAML `config.params.languages` tuple is retained only as
@@ -254,9 +259,7 @@ editorial artifacts remain valuable input references for migration. The new
 technical `lesson.yaml` is authored explicitly from reviewed sources: this
 scaffolder does not silently perform pedagogical migrations.
 
-**Never run TypeScript validation as a scaffolder acceptance test.** Tests
-must instead cover deterministic output, factory dispatch, source-language
-filtering, safety and preservation of unresolved production work.
+**Distinguish draft validity from production readiness.** Builder tests verify deterministic output, factory dispatch, source-language filtering and no-overwrite safety. Assessment regression coverage must also verify TypeScript syntax and real Engine Config/Props validation of provisional Sections. Such tests are not evidence of reviewed banks, localization or permission to publish; production preflight and strict resource verification remain mandatory.
 
 ## Carousel child modules
 
