@@ -141,8 +141,18 @@ function safeText(value) {
 }
 function localizedValues(value, place, sourceLanguage, locale, lines, result) {
   if (!record(value)) {
-    if (Array.isArray(value)) value.forEach((child, i) =>
-      localizedValues(child, place + '[' + i + ']', sourceLanguage, locale, lines, result));
+    if (Array.isArray(value)) {
+      value.forEach((child, i) =>
+        localizedValues(child, place + '[' + i + ']', sourceLanguage, locale, lines, result));
+    } else if (typeof value === 'string' &&
+      (/\/locale\/(?:value|alt|title|navigationLabel|instruction|description)$/.test(place) ||
+       /\/parameters\/flags\[\d+\]\/value$/.test(place))) {
+      // Engine permits invariant learner-facing copy. Surface it to independent
+      // reviewers instead of silently omitting it from "complete bank" coverage.
+      lines.push('#### ' + safeText(place), '',
+        '- Invariant authored copy (verify intent across requested locales): ' + safeText(value), '');
+      result.strings++;
+    }
     return;
   }
   const keys = Object.keys(value);
