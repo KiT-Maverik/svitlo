@@ -72,6 +72,18 @@ test('Flashcard review accepts exactly one bank and locale while refusing unrela
     { kind: 'flashcards', package: 'content/playground', lesson, locale: 'uk' },
   );
   assert.throws(() => parseArguments(['--kind', 'flashcards']), /require --package/);
+  assert.throws(
+    () => parseArguments(['--kind', 'flashcards', '--package', 'content/playground']),
+    /requires exactly one --lesson UUID and --locale/,
+  );
+  assert.throws(
+    () => parseArguments(['--kind', 'flashcards', '--package', 'content/playground', '--locale', 'uk']),
+    /requires exactly one --lesson UUID and --locale/,
+  );
+  assert.throws(
+    () => parseArguments(['--kind', 'flashcards', '--package', 'content/playground', '--lesson', lesson]),
+    /requires exactly one --lesson UUID and --locale/,
+  );
   assert.throws(() => parseArguments(['--kind', 'flashcards', '--package', 'content/playground', '--lesson', '../x']));
   assert.throws(() => parseArguments(['--kind', 'flashcards', '--package', 'content/playground', '--course', lesson]));
 });
