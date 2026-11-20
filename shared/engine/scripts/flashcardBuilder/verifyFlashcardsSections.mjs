@@ -19,7 +19,7 @@ function property(node, key) {
 }
 
 function literal(node) {
-  return node && (ts.isStringLiteral(node) || ts.isNoSubstitutionTemplateLiteral(node) ? node.text : undefined;
+  return node && (ts.isStringLiteral(node) || ts.isNoSubstitutionTemplateLiteral(node)) ? node.text : undefined;
 }
 
 function stringArray(node) {
