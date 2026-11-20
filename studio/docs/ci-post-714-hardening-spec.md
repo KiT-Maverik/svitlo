@@ -57,7 +57,7 @@
 - Audit FastGate vs Engine Generators vs ContentBlock Build API vs IndexedDB/host jobs. Retain a standalone runner only for unique tests, host/OS/browser environments or meaningful failure isolation; avoid recompiling the same Engine artifacts and rerunning the same suite merely because multiple workflows match a PR.
 - Evaluate overhead from per-textbook matrix jobs (independent npm ci, setup and builds). Benchmark current max-parallel=5 against fewer balanced shards/shared setup or caching without compromising isolation or successful package verification. Prefer observed runner-minute and wall-time savings, not assumed benefits.
 - Review Production Quality's use of if: !cancelled() for most expensive later steps: avoid needlessly running all release checks after an early definite failure, while preserving adequate actionable diagnostics. Keep manual deep-diagnostic runs possible.
-- Rename misleading workflow/artifact names (e.g. production-quality.yml and questions-test-results) if safe, without changing the stable external check context accidentally.
+- The former `questions.yml` workflow has been renamed to `production-quality.yml` while preserving the required `Production Quality / verify` context. Audit any genuinely remaining legacy artifact names separately before renaming.
 
 ### Historical option — Protect nested integration branches (declined)
 
