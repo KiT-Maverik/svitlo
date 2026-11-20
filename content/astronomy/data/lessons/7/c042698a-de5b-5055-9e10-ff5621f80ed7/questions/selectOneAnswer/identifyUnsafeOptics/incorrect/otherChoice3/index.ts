@@ -11,7 +11,8 @@ export const otherChoice3 = defineText<"otherChoice3", LessonLanguages>({
     value: {
       uk: "Прочитати науковий опис Сонця з дорослим.",
       en: "Read a scientific description of the Sun with an adult.",
-      pl: "Przeczytać z dorosłym naukowy opis Słońca."
+      pl: "Przeczytać z dorosłym naukowy opis Słońca.",
+      qm: "Büyüklerden birinen beraber Küneş aqqında ilmiy tarifni oqumaq."
     }
   }
 });

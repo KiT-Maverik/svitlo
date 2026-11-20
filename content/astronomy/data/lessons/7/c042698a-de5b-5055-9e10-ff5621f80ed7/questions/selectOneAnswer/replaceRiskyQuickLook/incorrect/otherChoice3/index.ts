@@ -11,7 +11,8 @@ export const otherChoice3 = defineText<"otherChoice3", LessonLanguages>({
     value: {
       uk: "Попросити друга подивитися замість нього й розповісти.",
       en: "Ask a friend to look at it instead and describe it.",
-      pl: "Poprosić kolegę, żeby spojrzał zamiast niego i opowiedział, co widział."
+      pl: "Poprosić kolegę, żeby spojrzał zamiast niego i opowiedział, co widział.",
+      qm: "Arqadaşından özü yerine Küneşke baqıp, soñra anlatmasını istemek."
     }
   }
 });

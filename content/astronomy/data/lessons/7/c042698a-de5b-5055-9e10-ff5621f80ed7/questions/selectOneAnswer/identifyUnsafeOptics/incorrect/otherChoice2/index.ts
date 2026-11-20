@@ -11,7 +11,8 @@ export const otherChoice2 = defineText<"otherChoice2", LessonLanguages>({
     value: {
       uk: "Послухати опис готового знімка Сонця.",
       en: "Listen to a description of an existing photograph of the Sun.",
-      pl: "Posłuchać opisu gotowego zdjęcia Słońca."
+      pl: "Posłuchać opisu gotowego zdjęcia Słońca.",
+      qm: "Küneşniñ azır fotoresminiñ tarifini diñlemek."
     }
   }
 });

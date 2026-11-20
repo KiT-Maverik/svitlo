@@ -11,7 +11,8 @@ export const otherChoice1 = defineText<"otherChoice1", LessonLanguages>({
     value: {
       uk: "Подивитися на Сонце крізь вікно лише на мить.",
       en: "Look at the Sun through a window for just a moment.",
-      pl: "Spojrzeć na Słońce przez okno tylko na chwilę."
+      pl: "Spojrzeć na Słońce przez okno tylko na chwilę.",
+      qm: "Küneşke pencere camından tek bir an baqmaq."
     }
   }
 });

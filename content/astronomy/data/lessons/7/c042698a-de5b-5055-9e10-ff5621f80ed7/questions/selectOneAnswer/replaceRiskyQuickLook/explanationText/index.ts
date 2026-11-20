@@ -11,7 +11,8 @@ export const explanationText = defineText<"explanationText", LessonLanguages>({
     value: {
       uk: "Ні скло звичайного вікна, ні сонцезахисні окуляри, ні короткий погляд не роблять пряме спостереження Сонця безпечним. Підготовлений знімок дає потрібні відомості без ризику для чиїхось очей.",
       en: "Ordinary window glass, sunglasses, and a quick glance do not make looking directly at the Sun safe. A prepared photograph provides the information you need without risking anyone's eyesight.",
-      pl: "Ani zwykła szyba okienna, ani okulary przeciwsłoneczne, ani krótkie spojrzenie nie sprawiają, że bezpośrednie patrzenie na Słońce jest bezpieczne. Gotowe zdjęcie pozwala zdobyć potrzebne informacje bez narażania czyichkolwiek oczu."
+      pl: "Ani zwykła szyba okienna, ani okulary przeciwsłoneczne, ani krótkie spojrzenie nie sprawiają, że bezpośrednie patrzenie na Słońce jest bezpieczne. Gotowe zdjęcie pozwala zdobyć potrzebne informacje bez narażania czyichkolwiek oczu.",
+      qm: "Ne adiy pencere camı, ne küneş közlükleri, ne de qısqa bir baqış Küneşke doğrudan-doğru baquvnı telükesiz etmez. Azır fotoresim kimseniñ közlerine zarar ketirmeden kerekli malümatnı bere."
     }
   }
 });

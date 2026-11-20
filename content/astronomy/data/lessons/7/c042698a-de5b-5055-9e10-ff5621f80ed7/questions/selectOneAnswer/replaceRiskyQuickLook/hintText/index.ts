@@ -11,7 +11,8 @@ export const hintText = defineText<"hintText", LessonLanguages>({
     value: {
       uk: "Обери спосіб, який не потребує, щоб хтось дивився безпосередньо на Сонце.",
       en: "Choose a way that does not require anyone to look directly at the Sun.",
-      pl: "Wybierz sposób, który nie wymaga od nikogo bezpośredniego patrzenia na Słońce."
+      pl: "Wybierz sposób, który nie wymaga od nikogo bezpośredniego patrzenia na Słońce.",
+      qm: "Kimseniñ Küneşke doğrudan-doğru baqmasını talap etmegen usulnı seç."
     }
   }
 });

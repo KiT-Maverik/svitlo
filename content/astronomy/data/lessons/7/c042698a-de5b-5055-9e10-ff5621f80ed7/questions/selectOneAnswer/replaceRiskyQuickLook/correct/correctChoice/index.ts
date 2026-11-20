@@ -11,7 +11,8 @@ export const correctChoice = defineText<"correctChoice", LessonLanguages>({
     value: {
       uk: "Розглянути разом перевірений науковий знімок Сонця.",
       en: "Look at a verified scientific photograph of the Sun together.",
-      pl: "Wspólnie obejrzeć sprawdzone naukowe zdjęcie Słońca."
+      pl: "Wspólnie obejrzeć sprawdzone naukowe zdjęcie Słońca.",
+      qm: "Küneşniñ tekşirilgen ilmiy fotoresmini beraber körmek."
     }
   }
 });
