@@ -22,7 +22,7 @@ const incorrect = defineText({
   locale: { value: { en: 'Incorrect', uk: 'Неправильно' } },
 });
 
-const sampleQuestion = defineSelectOneAnswer({
+export const sampleQuestion = defineSelectOneAnswer({
   id: '00000000-0000-4000-8000-000000000001',
   slug: 'sampleQuestion',
   type: 'selectOneAnswer',
@@ -38,6 +38,3 @@ const sampleQuestion = defineSelectOneAnswer({
   },
 });
 
-export const fixtureQuestions = {
-  selectOneAnswer: { sampleQuestion },
-};
