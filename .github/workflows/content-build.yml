@@ -34,6 +34,41 @@ jobs:
           node-version: '24'
           cache: npm
       - run: npm ci
+      - name: Verify changed UI Kit lesson runtime
+        if: github.event_name == 'pull_request'
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          if git diff --name-only "$BASE_SHA" "$HEAD_SHA" | grep -q '^shared/ui-kit/'; then
+            npm run package:build --workspace @svitlo/engine
+            npm run code:check:types --workspace @svitlo/ui-kit
+            npm exec --workspace @svitlo/ui-kit -- vitest run src/components/lesson/LessonController.unit.spec.tsx
+          fi
+      - name: Typecheck translated Astronomy Lesson sources
+        if: github.event_name == 'pull_request'
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          if git diff --name-only "$BASE_SHA" "$HEAD_SHA" | grep -q '^content/astronomy/data/lessons/'; then
+            npm run package:build --workspace @svitlo/engine
+            # Full workspace tsc is blocked by an inherited, syntactically invalid
+            # Lesson review.ts; verify all translated Question/Quiz modules instead.
+            scoped_config=content/astronomy/tsconfig.questions-translation.tmp.json
+            trap 'rm -f "$scoped_config"' EXIT
+            cat > "$scoped_config" <<'JSON'
+          {
+            "extends": "./tsconfig.json",
+            "include": [
+              "data/lessons/2/c25fe16e-5640-5615-b456-a99a392a7f42/questions/**/*.ts",
+              "data/lessons/2/c25fe16e-5640-5615-b456-a99a392a7f42/sections/rotationAndIlluminationQuiz/**/*.ts"
+            ],
+            "exclude": []
+          }
+          JSON
+            npm exec --workspace @svitlo/astronomy -- tsc -p tsconfig.questions-translation.tmp.json --noEmit
+          fi
       - name: Test content build selection and artifacts
         run: |
           node --test scripts/ci/buildChangedContent/*.spec.mjs

@@ -1,0 +1,18 @@
+import { defineText } from '@svitlo/engine/build';
+
+import type { LessonLanguages } from "#lessonsData/2/c25fe16e-5640-5615-b456-a99a392a7f42/constants";
+
+export const wrong1 = defineText<"wrong1", LessonLanguages>({
+  id: "7c4e3b90-ccf1-4f74-9c91-000000000022",
+  slug: "wrong1",
+  type: "text",
+  params: {},
+  locale: {
+    value: {
+      uk: "Кулька й ліхтарик показують справжні розміри Сонця та Землі.",
+      en: "The ball and flashlight show the real sizes of the Sun and Earth.",
+      pl: "Kula i latarka pokazują prawdziwe rozmiary Słońca i Ziemi.",
+      qm: "Küre ve fener Küneş ve Yerniñ aqiqiy ölçülerini köstere."
+    }
+  }
+});

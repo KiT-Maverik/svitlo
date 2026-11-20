@@ -1,4 +1,4 @@
-import { existsSync, readFileSync } from 'node:fs';
+import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { resolve } from 'node:path';
 
 const root = process.cwd();
@@ -42,6 +42,28 @@ if (cli.length) {
     'Unknown workspace in artifact check: ' + selected.join(', '),
   );
   assert(new Set(selected).size === selected.length, 'Duplicate workspace in artifact check');
+}
+
+/**
+ * Only UUID-addressed Lesson sources may contribute published Lesson JSON.
+ * A textbook with no authored Lesson still cannot fabricate Lesson resources.
+ */
+function authoredLessonRoots(workspacePath) {
+  const folder = resolve(root, workspacePath, 'data/lessons');
+  const authored = new Set();
+  const uuid = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/;
+  if (!existsSync(folder)) return authored;
+  for (const bucket of readdirSync(folder, { withFileTypes: true })) {
+    if (!bucket.isDirectory() || !/^[0-9a-f]$/.test(bucket.name)) continue;
+    for (const entry of readdirSync(resolve(folder, bucket.name), { withFileTypes: true })) {
+      if (!entry.isDirectory() || !uuid.test(entry.name) || entry.name.at(-1) !== bucket.name) continue;
+      const lessonFiles = readdirSync(resolve(folder, bucket.name, entry.name));
+      if (lessonFiles.includes('index.ts') || lessonFiles.some(file => file.endsWith('.data.ts'))) {
+        authored.add('data/lessons/' + bucket.name + '/' + entry.name);
+      }
+    }
+  }
+  return authored;
 }
 
 let checked = 0;
@@ -142,10 +164,21 @@ for (const path of selected) {
       manifest.files.some(file => file.startsWith('data/skills/')),
       'Missing authored Skill taxonomy: ' + name,
     );
-    assert(
-      !manifest.files.some(file => file.startsWith('data/lessons/')),
-      'Unexpected non-authored Lesson JSON: ' + name,
-    );
+    const authoredLessons = authoredLessonRoots(path);
+    const lessonFiles = manifest.files.filter(file => file.startsWith('data/lessons/'));
+    for (const file of lessonFiles) {
+      const match = /^data\/lessons\/([0-9a-f])\/([0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12})\/(?:base|[a-z]{2}(?:-[a-z0-9]+)*)\.json$/.exec(file);
+      assert(
+        match && authoredLessons.has('data/lessons/' + match[1] + '/' + match[2]),
+        'Unexpected non-authored Lesson JSON: ' + name + '/' + file,
+      );
+    }
+    for (const lessonRoot of authoredLessons) {
+      assert(
+        manifest.files.includes(lessonRoot + '/base.json'),
+        'Missing authored Lesson JSON: ' + name + '/' + lessonRoot,
+      );
+    }
     for (const file of manifest.files)
       assert(
         existsSync(resolve(root, path, 'dist/static', file)),

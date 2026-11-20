@@ -1,61 +1,419 @@
 documentLanguage: uk
-questions: {}
-sectionDrafts:
-  items:
-    rotationAndIlluminationQuiz:
-      config:
-        id: 622e900a-4f7e-47dc-9c3e-4946444cea9f
-        slug: rotationAndIlluminationQuiz
-        type: quiz
-        params: {}
-        locale:
-          title:
-            uk: "Чому змінюються день і ніч: перевірка"
-          navigationLabel:
-            uk: Перевір знання
-        content:
+questions:
+  selectOneAnswer:
+    sameTimeDifferentPlaces:
+      id: "7c4e3b90-ccf1-4f74-9c91-000000000001"
+      slug: "sameTimeDifferentPlaces"
+      type: "selectOneAnswer"
+      params:
+        assessmentMethod: "interpretation"
+        restrictions: []
+      locale: {}
+      content:
+        question:
           items:
-            quizIntro:
-              config:
-                id: c96a7b8f-dce5-4b59-97f5-dd7ed2720464
-                slug: quizIntro
-                type: markdown
+            prompt:
+              id: "7c4e3b90-ccf1-4f74-9c91-000000000002"
+              slug: "prompt"
+              type: "text"
+              params: {}
+              locale:
+                value:
+                  uk: "У двох далеких місцях Землі зараз по-різному: у місці К — день, а в місці Л — ніч. Сонце продовжує світити. Чому так може бути?"
+          order:
+            - "prompt"
+        hint:
+          items:
+            hintText:
+              id: "7c4e3b90-ccf1-4f74-9c91-000000000003"
+              slug: "hintText"
+              type: "text"
+              params: {}
+              locale:
+                value:
+                  uk: "Уяви кульку й ліхтарик. Поміркуй, що відрізняє два місця, якщо в них одночасно по-різному світло."
+          order:
+            - "hintText"
+        explanation:
+          items:
+            explanationText:
+              id: "7c4e3b90-ccf1-4f74-9c91-000000000004"
+              slug: "explanationText"
+              type: "text"
+              params: {}
+              locale:
+                value:
+                  uk: "Сонце освітлює не всю Землю одночасно. Місце К зараз на освітленому боці, а місце Л — на неосвітленому."
+          order:
+            - "explanationText"
+        answers:
+          correct:
+            items:
+              correctAnswer:
+                id: "7c4e3b90-ccf1-4f74-9c91-000000000005"
+                slug: "correctAnswer"
+                type: "text"
                 params: {}
                 locale:
                   value:
-                    uk: >-
-                      **Перевір своє пояснення дня й ночі.** У запитаннях
-                      потрібно буде зрозуміти, який бік Землі освітлений, і
-                      передбачити, що зміниться після її повороту.
-
-
-                      Можна поміркувати не поспішаючи. Важливо пояснити причину,
-                      а не просто впізнати картинку.
-              production:
-                purpose: Вступний текст до запланованого Quiz, без самостійного створення банку
-                  питань.
+                    uk: "Місце К повернене до Сонця, а місце Л — від Сонця."
+            order:
+              - "correctAnswer"
+          incorrect:
+            items:
+              wrong1:
+                id: "7c4e3b90-ccf1-4f74-9c91-000000000006"
+                slug: "wrong1"
+                type: "text"
+                params: {}
+                locale:
+                  value:
+                    uk: "Якщо Сонце світить, у всіх місцях Землі має бути день."
+              wrong2:
+                id: "7c4e3b90-ccf1-4f74-9c91-000000000007"
+                slug: "wrong2"
+                type: "text"
+                params: {}
+                locale:
+                  value:
+                    uk: "Сонце вимкнулося тільки для місця Л."
+            order:
+              - "wrong1"
+              - "wrong2"
+          distractors:
+            items: {}
+            order: []
+    whyNightArrives:
+      id: "7c4e3b90-ccf1-4f74-9c91-000000000008"
+      slug: "whyNightArrives"
+      type: "selectOneAnswer"
+      params:
+        assessmentMethod: "interpretation"
+        restrictions: []
+      locale: {}
+      content:
+        question:
+          items:
+            prompt:
+              id: "7c4e3b90-ccf1-4f74-9c91-000000000009"
+              slug: "prompt"
+              type: "text"
+              params: {}
+              locale:
+                value:
+                  uk: "Біля одного будинку вдень було світло, а згодом настала ніч. Яка зміна це пояснює?"
           order:
-            - quizIntro
-      production:
-        purpose: "Один обов'язковий Quiz за Methodologist assessmentPlan
-          rotationAndIllumination: причинне тлумачення та передбачення."
-        pedagogicalIntent: Зібрати валідні свідчення за Skill
-          faa8f11a-cc06-42c9-8864-8151732e690a із застосуванням
-          AssessmentMethodKey interpretation і prediction. Формувальна сцена не
-          замінює незалежного оцінювання.
-        productionNotes: >-
-          ЗАПЛАНОВАНО / НЕ ГОТОВО ДО BUILDER-ПУБЛІКАЦІЇ. У config.params
-          навмисно залишено {}: реальний Engine Quiz вимагає
-          selection.questionIds та політик
-          layout/feedbackMode/interaction/results; жодних Question UUID наразі
-          немає. Assessment Architect у незалежному Questions Flow має створити
-          й рецензувати банк, обґрунтувати selection, scoring, retries, feedback
-          і accessibility; після інтеграції Stage 6 підставить справжні UUID та
-          завершить типізований Quiz. Немає фальшивих ID, порожнього
-          selection.questionIds чи вигаданих порогів.
-
-          Assessment intent: rotationAndIllumination
-
-          Bank integration: pending
-  order:
-    - rotationAndIlluminationQuiz
+            - "prompt"
+        hint:
+          items:
+            hintText:
+              id: "7c4e3b90-ccf1-4f74-9c91-00000000000a"
+              slug: "hintText"
+              type: "text"
+              params: {}
+              locale:
+                value:
+                  uk: "Уяви кульку з позначкою будинку й лампу. Що має змінитися, щоб біля будинку стало темніше?"
+          order:
+            - "hintText"
+        explanation:
+          items:
+            explanationText:
+              id: "7c4e3b90-ccf1-4f74-9c91-00000000000b"
+              slug: "explanationText"
+              type: "text"
+              params: {}
+              locale:
+                value:
+                  uk: "День змінюється ніччю, бо Земля обертається навколо своєї осі. Місце разом із Землею переходить на неосвітлений бік."
+          order:
+            - "explanationText"
+        answers:
+          correct:
+            items:
+              correctAnswer:
+                id: "7c4e3b90-ccf1-4f74-9c91-00000000000c"
+                slug: "correctAnswer"
+                type: "text"
+                params: {}
+                locale:
+                  value:
+                    uk: "Будинок разом із Землею повернувся від сонячного світла."
+            order:
+              - "correctAnswer"
+          incorrect:
+            items:
+              wrong1:
+                id: "7c4e3b90-ccf1-4f74-9c91-00000000000d"
+                slug: "wrong1"
+                type: "text"
+                params: {}
+                locale:
+                  value:
+                    uk: "Сонце перестало світити всій Землі до ранку."
+              wrong2:
+                id: "7c4e3b90-ccf1-4f74-9c91-00000000000e"
+                slug: "wrong2"
+                type: "text"
+                params: {}
+                locale:
+                  value:
+                    uk: "Земля за кілька годин облетіла навколо Сонця."
+            order:
+              - "wrong1"
+              - "wrong2"
+          distractors:
+            items: {}
+            order: []
+    stoppedGlobeKeepsNight:
+      id: "7c4e3b90-ccf1-4f74-9c91-00000000000f"
+      slug: "stoppedGlobeKeepsNight"
+      type: "selectOneAnswer"
+      params:
+        assessmentMethod: "prediction"
+        restrictions: []
+      locale: {}
+      content:
+        question:
+          items:
+            prompt:
+              id: "7c4e3b90-ccf1-4f74-9c91-000000000010"
+              slug: "prompt"
+              type: "text"
+              params: {}
+              locale:
+                value:
+                  uk: "На кульці є позначка Г, яка зараз на темному боці. Лампа світить, але ні лампу, ні кульку більше не рухають. Що буде в місці Г, доки модель залишається нерухомою?"
+          order:
+            - "prompt"
+        hint:
+          items:
+            hintText:
+              id: "7c4e3b90-ccf1-4f74-9c91-000000000011"
+              slug: "hintText"
+              type: "text"
+              params: {}
+              locale:
+                value:
+                  uk: "Уяви, що час іде, але положення кульки та лампи не змінюється."
+          order:
+            - "hintText"
+        explanation:
+          items:
+            explanationText:
+              id: "7c4e3b90-ccf1-4f74-9c91-000000000012"
+              slug: "explanationText"
+              type: "text"
+              params: {}
+              locale:
+                value:
+                  uk: "Коли кулька й лампа нерухомі, позначка Г залишається на тому самому темному боці. Зміна дня і ночі в моделі потребує повороту кульки."
+          order:
+            - "explanationText"
+        answers:
+          correct:
+            items:
+              correctAnswer:
+                id: "7c4e3b90-ccf1-4f74-9c91-000000000013"
+                slug: "correctAnswer"
+                type: "text"
+                params: {}
+                locale:
+                  value:
+                    uk: "У місці Г залишатиметься ніч, доки кульку не повернуть."
+            order:
+              - "correctAnswer"
+          incorrect:
+            items:
+              wrong1:
+                id: "7c4e3b90-ccf1-4f74-9c91-000000000014"
+                slug: "wrong1"
+                type: "text"
+                params: {}
+                locale:
+                  value:
+                    uk: "У місці Г з часом настане день, навіть якщо нічого не рухати."
+              wrong2:
+                id: "7c4e3b90-ccf1-4f74-9c91-000000000015"
+                slug: "wrong2"
+                type: "text"
+                params: {}
+                locale:
+                  value:
+                    uk: "Нерухома лампа поступово освітить усі боки кульки."
+            order:
+              - "wrong1"
+              - "wrong2"
+          distractors:
+            items: {}
+            order: []
+    newPlaceContinuesRotating:
+      id: "7c4e3b90-ccf1-4f74-9c91-000000000016"
+      slug: "newPlaceContinuesRotating"
+      type: "selectOneAnswer"
+      params:
+        assessmentMethod: "prediction"
+        restrictions: []
+      locale: {}
+      content:
+        question:
+          items:
+            prompt:
+              id: "7c4e3b90-ccf1-4f74-9c91-000000000017"
+              slug: "prompt"
+              type: "text"
+              params: {}
+              locale:
+                value:
+                  uk: "Уяви нове місто Д, позначене на колі посередині кульки, як у моделі уроку. Щойно в місті Д настав день. Лампа нерухома, а кулька продовжує обертатися. Що згодом станеться в місті Д?"
+          order:
+            - "prompt"
+        hint:
+          items:
+            hintText:
+              id: "7c4e3b90-ccf1-4f74-9c91-000000000018"
+              slug: "hintText"
+              type: "text"
+              params: {}
+              locale:
+                value:
+                  uk: "Простеж подумки за позначкою Д, поки кулька обертається, а лампа стоїть на місці."
+          order:
+            - "hintText"
+        explanation:
+          items:
+            explanationText:
+              id: "7c4e3b90-ccf1-4f74-9c91-000000000019"
+              slug: "explanationText"
+              type: "text"
+              params: {}
+              locale:
+                value:
+                  uk: "Коли кулька продовжує обертатися, позначка Д згодом переходить з освітленого боку на неосвітлений. Тоді в місті Д настане ніч, хоча лампа не вимикалася."
+          order:
+            - "explanationText"
+        answers:
+          correct:
+            items:
+              correctAnswer:
+                id: "7c4e3b90-ccf1-4f74-9c91-00000000001a"
+                slug: "correctAnswer"
+                type: "text"
+                params: {}
+                locale:
+                  value:
+                    uk: "Згодом настане ніч: місто Д разом із кулькою повернеться від світла."
+            order:
+              - "correctAnswer"
+          incorrect:
+            items:
+              wrong1:
+                id: "7c4e3b90-ccf1-4f74-9c91-00000000001b"
+                slug: "wrong1"
+                type: "text"
+                params: {}
+                locale:
+                  value:
+                    uk: "У місті Д день залишиться назавжди, бо воно вже стало освітленим."
+              wrong2:
+                id: "7c4e3b90-ccf1-4f74-9c91-00000000001c"
+                slug: "wrong2"
+                type: "text"
+                params: {}
+                locale:
+                  value:
+                    uk: "Місто Д стане темним лише тоді, коли вимкнуть лампу."
+            order:
+              - "wrong1"
+              - "wrong2"
+          distractors:
+            items: {}
+            order: []
+    limitsOfGlobeModel:
+      id: "7c4e3b90-ccf1-4f74-9c91-00000000001d"
+      slug: "limitsOfGlobeModel"
+      type: "selectOneAnswer"
+      params:
+        assessmentMethod: "interpretation"
+        restrictions: []
+      locale: {}
+      content:
+        question:
+          items:
+            prompt:
+              id: "7c4e3b90-ccf1-4f74-9c91-00000000001e"
+              slug: "prompt"
+              type: "text"
+              params: {}
+              locale:
+                value:
+                  uk: "Дитина показує день і ніч на кульці з ліхтариком. Який висновок із цієї моделі справедливий?"
+          order:
+            - "prompt"
+        hint:
+          items:
+            hintText:
+              id: "7c4e3b90-ccf1-4f74-9c91-00000000001f"
+              slug: "hintText"
+              type: "text"
+              params: {}
+              locale:
+                value:
+                  uk: "Подумай, для чого потрібна ця модель і які подробиці справжнього Сонця та Землі вона може не відтворювати."
+          order:
+            - "hintText"
+        explanation:
+          items:
+            explanationText:
+              id: "7c4e3b90-ccf1-4f74-9c91-000000000020"
+              slug: "explanationText"
+              type: "text"
+              params: {}
+              locale:
+                value:
+                  uk: "Ліхтарик і кулька допомагають зрозуміти освітлений бік та обертання. Але їхні розміри й відстань не відповідають справжнім Сонцю та Землі."
+          order:
+            - "explanationText"
+        answers:
+          correct:
+            items:
+              correctAnswer:
+                id: "7c4e3b90-ccf1-4f74-9c91-000000000021"
+                slug: "correctAnswer"
+                type: "text"
+                params: {}
+                locale:
+                  value:
+                    uk: "Поворот кульки пояснює зміну освітлення, але модель не показує справжніх розмірів Сонця й Землі."
+            order:
+              - "correctAnswer"
+          incorrect:
+            items:
+              wrong1:
+                id: "7c4e3b90-ccf1-4f74-9c91-000000000022"
+                slug: "wrong1"
+                type: "text"
+                params: {}
+                locale:
+                  value:
+                    uk: "Кулька й ліхтарик показують справжні розміри Сонця та Землі."
+              wrong2:
+                id: "7c4e3b90-ccf1-4f74-9c91-000000000023"
+                slug: "wrong2"
+                type: "text"
+                params: {}
+                locale:
+                  value:
+                    uk: "Сонце щоночі вимикається, так само як можна вимкнути ліхтарик."
+            order:
+              - "wrong1"
+              - "wrong2"
+          distractors:
+            items: {}
+            order: []
+quizSelections:
+  "622e900a-4f7e-47dc-9c3e-4946444cea9f":
+    - "7c4e3b90-ccf1-4f74-9c91-000000000001"
+    - "7c4e3b90-ccf1-4f74-9c91-000000000008"
+    - "7c4e3b90-ccf1-4f74-9c91-00000000000f"
+    - "7c4e3b90-ccf1-4f74-9c91-000000000016"

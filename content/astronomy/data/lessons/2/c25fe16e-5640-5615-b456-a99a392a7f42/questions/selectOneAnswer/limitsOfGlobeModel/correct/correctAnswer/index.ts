@@ -1,0 +1,18 @@
+import { defineText } from '@svitlo/engine/build';
+
+import type { LessonLanguages } from "#lessonsData/2/c25fe16e-5640-5615-b456-a99a392a7f42/constants";
+
+export const correctAnswer = defineText<"correctAnswer", LessonLanguages>({
+  id: "7c4e3b90-ccf1-4f74-9c91-000000000021",
+  slug: "correctAnswer",
+  type: "text",
+  params: {},
+  locale: {
+    value: {
+      uk: "Поворот кульки пояснює зміну освітлення, але модель не показує справжніх розмірів Сонця й Землі.",
+      en: "Turning the ball explains why the lighting changes, but the model does not show the real sizes of the Sun and Earth.",
+      pl: "Obrót kuli wyjaśnia zmianę oświetlenia, ale model nie pokazuje prawdziwych rozmiarów Słońca i Ziemi.",
+      qm: "Küreniñ aylanması ışıqnıñ ne içün deñişkenini añlata, amma model Küneş ve Yerniñ aqiqiy ölçülerini köstermey."
+    }
+  }
+});

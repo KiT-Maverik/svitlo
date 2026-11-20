@@ -430,6 +430,7 @@ export function EngineQuestionRenderer({
       questions={current.questions}
       fallbackIds={current.fallbackIds}
       section={section}
+      language={language}
       messages={messages}
       sceneRegistry={sceneRegistry}
       onComplete={onComplete}
@@ -441,6 +442,7 @@ function ResolvedQuiz({
   questions,
   fallbackIds,
   section,
+  language,
   messages,
   sceneRegistry,
   onComplete,
@@ -448,11 +450,13 @@ function ResolvedQuiz({
   questions: Question[];
   fallbackIds: readonly string[];
   section: QuizSection_Props;
+  language: LanguageCode;
   messages: UiKitMessages;
   sceneRegistry?: SceneRegistry;
   onComplete?: (result: { passed: boolean; correct: number; total: number; timedOut: boolean }) => void;
 }) {
   const [statuses, setStatuses] = useState<Readonly<Record<string, boolean>>>({});
+  const [started, setStarted] = useState(!section.params.screen?.starting);
   const [index, setIndex] = useState(0);
   const [remaining, setRemaining] = useState(section.params.timeLimitSeconds);
   const emitted = useRef(false);
@@ -463,20 +467,49 @@ function ResolvedQuiz({
   const passed = section.params.grading ? score >= section.params.grading.successThreshold : count === questions.length;
 
   useEffect(() => {
-    if (remaining === undefined || emitted.current) return;
+    if (!started || remaining === undefined || emitted.current) return;
     const timer = setInterval(
       () => setRemaining(value => (value === undefined ? undefined : Math.max(0, value - 1))),
       1000,
     );
     return () => clearInterval(timer);
-  }, [remaining === undefined]);
+  }, [started, remaining === undefined]);
   useEffect(() => {
-    if (emitted.current || (!completed && !timedOut)) return;
+    if (!started || emitted.current || (!completed && !timedOut)) return;
     emitted.current = true;
     onComplete?.({ passed: !timedOut && passed, correct: count, total: questions.length, timedOut });
-  }, [completed, timedOut, passed, count, questions.length, onComplete]);
+  }, [started, completed, timedOut, passed, count, questions.length, onComplete]);
 
   if (!questions.length) throw new Error('Quiz has no selected Questions: ' + section.id);
+  const contentForScreen = (slugs: readonly string[] = []): ContentBlock_Props[] =>
+    slugs.map(slug => {
+      const block = section.content.find(item => item.slug === slug);
+      if (!block) throw new Error('Quiz screen references missing ContentBlock: ' + slug);
+      return block;
+    });
+  const startingScreen = section.params.screen?.starting;
+  if (!started) {
+    return (
+      <Stack spacing={2} role="region" aria-label={section.locale.title}>
+        {startingScreen?.showDefaultContent !== false && (
+          <Typography component="h2" variant="h5">
+            {section.locale.title}
+          </Typography>
+        )}
+        {startingScreen?.content?.length ? (
+          <EngineContentBlockRenderer
+            blocks={contentForScreen(startingScreen.content)}
+            messages={messages}
+            sceneRegistry={sceneRegistry}
+            language={language}
+          />
+        ) : null}
+        <Button variant="contained" onClick={() => setStarted(true)}>
+          {messages.learningLayout.actions.next}
+        </Button>
+      </Stack>
+    );
+  }
   const stepper = section.params.layout.mode === 'stepper';
   return (
     <Stack spacing={2}>
@@ -536,6 +569,16 @@ function ResolvedQuiz({
         </Stack>
       )}
       {timedOut && <Typography role="status">{messages.questionFrame.incorrect}</Typography>}
+      {(completed || timedOut) &&
+        section.params.results.visibility === 'immediate' &&
+        section.params.results.showScore && (
+          <Typography role="status">
+            {messages.lesson.celebration.correctAnswers}{' '}
+            {messages.lesson.celebration.scoreTemplate
+              .replace('{score}', String(count))
+              .replace('{total}', String(questions.length))}
+          </Typography>
+        )}
     </Stack>
   );
 }
