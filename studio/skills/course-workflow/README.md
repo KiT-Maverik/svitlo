@@ -16,7 +16,7 @@ The Stage 5 [Course materializer](../../../shared/engine/scripts/materializeCour
 | Stage                         | Owner                                                       | Required deliverable                                                                                                                             |
 | ----------------------------- | ----------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
 | 1. Create Course Methodology  | Methodologist                                               | Broad pedagogy, prerequisites, verified Skills, target audience/depth, language/standards intent in `course.yaml`                                |
-| 2. Design Course Structure    | Methodologist                                               | Ordered meaningful Course/Module/Chapter macrostructure, no Lesson slots yet                                                                     |
+| 2. Design Course Structure    | Methodologist                                               | Ordered macrostructure with optional `TMP_lesson_N` (type + real Skills) and `TMP_episode_N` (type only) placements                                                                     |
 | 3. Design & Match Lessons     | Methodologist + Assessment Architect                        | Complete Course Lesson-slot methodology; verified reused Lesson IDs or in-place new Lesson specifications, without premature UUIDs or Lesson PRs |
 | 4. Review Course Plan         | Independent Methodologist/Assessment review in another chat | Full Course coverage, sequencing, per-Lesson suitability, assessment ownership and revised-source approval recorded in the parent PR             |
 | 5. Materialize Course         | Coding Agent                                                | Verified generated TypeScript/Markdown and independently authored Lesson YAML shells; source-preserving check/finalization                       |
@@ -27,15 +27,9 @@ The exact acceptance gates, required user-facing seven-stage report, authorizati
 
 ## Stage validation and source creation
 
-Use the read-only stage-aware validator on the one Course YAML:
+Stage 2 may contain deliberately incomplete `TMP_lesson_N` and `TMP_episode_N` collection keys, included in `content.order`. These are **editorial-only** placements, not final-schema-valid Course children: do not require a standalone Stage 2 validator/CI check or add dummy titles, slugs or IDs to pass one. During Stage 3, replace every temporary key and every dependent order/reference with a stable placement key after actual Lesson matching or authorized Episode design; **zero `TMP_*` markers may reach Stage 4 or materialization**.
 
-```sh
-node shared/engine/scripts/validateCourseFlow/validate-course-flow.mjs \
-  --file content/<book>/data/courses/<bucket>/<uuid>/course.yaml --stage 1
-# Later use --stage 2, --stage 3 or --stage 3-complete as appropriate.
-```
-
-`3-complete` accepts new Lesson slots with complete inline methodology and **no Lesson UUID**. The reviewer must still inspect the actual educational content: schema validity is not pedagogical approval. Stage 5 uses `materialize-course-flow.mjs --write`, then a verified `--check`, followed by independently authorized `--finalize`. Read its [runbook](../../../shared/engine/scripts/materializeCourseFlow/README.md) before acting. Generated TS may be an intentionally incomplete Draft; never fabricate assets, missing Lessons or other-language content to silence expected diagnostics.
+The read-only Course validator remains available for **complete** Course authoring sources. The canonical materializer validates final input before generating output. `--stage 3-complete` accepts new Lesson slots with complete inline methodology and **no Lesson UUID**. The reviewer must still inspect the actual educational content: schema validity is not pedagogical approval. Stage 5 uses `materialize-course-flow.mjs --write`, then a verified `--check`, followed by independently authorized `--finalize`. Read its [runbook](../../../shared/engine/scripts/materializeCourseFlow/README.md) before acting. Generated TS may be an intentionally incomplete Draft; never fabricate assets, missing Lessons or other-language content to silence expected diagnostics.
 
 ## Independent work outside the seven stages
 
