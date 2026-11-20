@@ -2145,21 +2145,6 @@
         },
         "slug": {
           "$ref": "#/$defs/__schema1"
-        },
-        "source": {
-          "type": "object",
-          "properties": {
-            "path": {
-              "type": "string",
-              "minLength": 1
-            },
-            "export": {
-              "type": "string",
-              "minLength": 1
-            }
-          },
-          "required": ["path", "export"],
-          "additionalProperties": false
         }
       },
       "required": ["type", "lessonId"],
