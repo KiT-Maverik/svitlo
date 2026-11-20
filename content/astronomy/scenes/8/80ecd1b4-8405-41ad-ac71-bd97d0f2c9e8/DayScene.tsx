@@ -39,6 +39,11 @@ function Landscape({ time, description }: { time: LandscapeTime; description: st
 const verifiedDayNightPhotographs: null = null;
 
 export function DayScene({ locales }: DaySceneProps) {
+  // TODO (BLOCKER): Add verified, locally packaged Ukrainian narration and
+  // per-item listen/repeat/pause controls for every approved dayScene label,
+  // description, prompt, choice and feedback, including both real photo records.
+  // Do not ship network TTS, fake audio files or claim prereader parity without
+  // real offline playback and accessibility verification.
   const t = (key: string) => sceneText(locales, key);
   const [state, dispatch] = useReducer(dayReducer, initialDayState);
   const visibleDay = state.view === 'day' || state.view === 'both';
