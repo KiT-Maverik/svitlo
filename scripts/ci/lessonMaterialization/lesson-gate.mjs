@@ -112,6 +112,8 @@ export function requireStageSixPending(body) {
     ];
     const subitems = [...section.matchAll(/^ {2,}-\s*\[([ xX])\]\s*6\.(\d+)\s+([^\r\n]*)$/gm)];
     if (subitems.length !== subNames.length) throw Error('Exactly three separate Stage 6 subchecks are required');
+    let previousPosition = items.find(item => Number(item[2]) === 6).index;
+    const nextStagePosition = items.find(item => Number(item[2]) === 7).index;
     for (let i = 0; i < subNames.length; i++) {
       const current = subitems.filter(item => Number(item[2]) === i + 1);
       if (
@@ -120,6 +122,9 @@ export function requireStageSixPending(body) {
         !/^(?:$|[ \t]+(?:\(|—|–|-|:))/.test(current[0][3].slice(subNames[i].length))
       )
         throw Error('Canonical Lesson Stage 6.' + (i + 1) + ' subcheck is required');
+      if (current[0].index <= previousPosition || current[0].index >= nextStagePosition)
+        throw Error('Stage 6 subchecks must appear in order between Stage 6 and Stage 7');
+      previousPosition = current[0].index;
     }
   }
   return true;
