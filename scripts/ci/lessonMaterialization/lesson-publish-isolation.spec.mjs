@@ -121,8 +121,8 @@ function fixture(root, operation) {
       'Translation Review',
     ].map((name, i) => '- [' + (i < 5 ? 'x' : ' ') + '] ' + (i + 1) + '. ' + name),
     '  - [ ] 6.1 Materialize Lesson sources',
-    '  - [ ] 6.2 Accessibility source audit',
-    '  - [ ] 6.3 Offline source audit',
+    '  - [ ] 6.2 Complete generated Lesson resources',
+    '  - [ ] 6.3 Implement and integrate Scenes',
     '## Evidence',
   ].join('\n');
   return { meta, manifest, body, source, evidence };
