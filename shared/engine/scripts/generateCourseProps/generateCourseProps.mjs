@@ -74,7 +74,8 @@ export function discoverCourseSources(directory) {
         continue;
       const source = path.join(bucket, candidate.name, 'index.ts');
       if (fs.existsSync(source)) {
-        assertSafeDirectoryPath(source);
+        assertSafeDirectoryPath(path.dirname(source));
+        if (fs.lstatSync(source).isSymbolicLink()) throw new Error('Symlinked Course entrypoint: ' + source);
         if (!fs.statSync(source).isFile()) throw new Error('Course entrypoint is not a file: ' + source);
         sources.push(source);
       }
