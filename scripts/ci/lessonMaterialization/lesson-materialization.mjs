@@ -384,7 +384,7 @@ async function analyze(root, meta) {
   );
 }
 
-async function publish(root, meta) {
+export async function publish(root, meta) {
   await fresh(meta);
   verifySource(root, meta);
   const manifest = readReport();
