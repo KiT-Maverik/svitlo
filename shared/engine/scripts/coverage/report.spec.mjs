@@ -147,33 +147,47 @@ describe('Engine gap report', () => {
 });
 
 
-describe('On-demand coverage GitHub workflow', () => {
-  it('commits gap artifacts to the PR branch without PR-result comments or write-token analysis', () => {
-    const file = path.resolve(import.meta.dirname, '../../../../.github/workflows/engine-coverage.yml');
-    const doc = yaml.parse(fs.readFileSync(file, 'utf8'));
-    assert.deepEqual(doc.on.issue_comment.types, ['created']);
-    assert.equal(doc.jobs.analyze.permissions.contents, 'read');
-    assert.equal(doc.jobs.publish.permissions.contents, 'write');
-    assert.equal(doc.jobs.publish.permissions.issues, undefined);
-    const analysis = JSON.stringify(doc.jobs.analyze);
-    assert.match(analysis, /persist-credentials/);
-    assert.match(analysis, /ignore-scripts/);
-    assert.doesNotMatch(analysis, /contents: write/);
-    const publisher = JSON.stringify(doc.jobs.publish);
-    assert.match(publisher, /\.agent-ci-artifacts\/engine-coverage/);
-    assert.match(publisher, /PR head changed since read-only coverage run/);
-    assert.match(publisher, /persist-credentials/);
-    assert.doesNotMatch(publisher, /issues\/.*comments/);
-    assert.doesNotMatch(publisher, /npm (?:ci|run)/);
+describe('On-demand diagnostic Actions artifacts', () => {
+  const repoRoot = path.resolve(import.meta.dirname, '../../../..');
+  const parseWorkflow = name => yaml.parse(fs.readFileSync(path.join(repoRoot, '.github/workflows', name), 'utf8'));
+
+  it('uploads a single SHA-bound, run-scoped Engine coverage JSON with no privileged publisher', () => {
+    const workflow = parseWorkflow('engine-coverage.yml');
+    assert.deepEqual(workflow.on.issue_comment.types, ['created']);
+    assert.equal(workflow.jobs.analyze.permissions.contents, 'read');
+    assert.equal(Object.hasOwn(workflow.jobs, 'publish'), false);
+    const analyzer = JSON.stringify(workflow.jobs.analyze);
+    assert.match(analyzer, /ignore-scripts/);
+    assert.match(analyzer, /sourceCommit/);
+    assert.match(analyzer, /RUN_ID/);
+    assert.match(analyzer, /gap\\.file/);
+    assert.doesNotMatch(analyzer, /git push|\.agent-ci-artifacts/);
+    const upload = workflow.jobs.analyze.steps.find(step => step.uses?.startsWith('actions/upload-artifact@'));
+    assert.equal(upload.with['retention-days'], 1);
+    assert.match(upload.with.name, /run_id/);
+    assert.match(upload.with.path, /engine-gaps\\.json$/);
   });
 
-  it('keeps diagnostic artifacts when replacing generated reference documents', () => {
-    const file = path.resolve(import.meta.dirname, '../../../../.github/workflows/agent-ci-artifacts.yml');
-    const doc = yaml.parse(fs.readFileSync(file, 'utf8'));
-    const publish = JSON.stringify(doc.jobs.publish);
-    assert.match(publish, /! -name lesson-lookup ! -name engine-coverage/);
-    assert.doesNotMatch(publish, /rm -rf -- \.agent-ci-artifacts(?:\\n|")/);
-    assert.match(JSON.stringify(doc.jobs.generate), /Exclude other workflows' diagnostics/);
-    assert.equal(doc.jobs.publish.concurrency.group, doc.jobs.cleanup.concurrency.group);
+  it('delivers the Lesson lookup as a one-day JSON artifact without changing PR HEAD', () => {
+    const workflow = parseWorkflow('get-lesson.yml');
+    assert.equal(Object.hasOwn(workflow.jobs, 'publish'), false);
+    assert.equal(workflow.jobs.analyze.permissions.contents, 'read');
+    const analyzer = JSON.stringify(workflow.jobs.analyze);
+    assert.match(analyzer, /schemaVersion: 1/);
+    assert.match(analyzer, /GITHUB_RUN_ID/);
+    assert.doesNotMatch(analyzer, /git push|\.agent-ci-artifacts/);
+    const upload = workflow.jobs.analyze.steps.find(step => step.uses?.startsWith('actions/upload-artifact@'));
+    assert.equal(upload.with['retention-days'], 1);
+    assert.match(upload.with.name, /run_id/);
+    assert.match(upload.with.path, /result\\.json$/);
+  });
+
+  it('retains human-readable Git audit alongside machine JSON for one day', () => {
+    const workflow = parseWorkflow('repository-git-audit.yml');
+    const upload = workflow.jobs.audit.steps.find(step => step.uses?.startsWith('actions/upload-artifact@'));
+    assert.equal(upload.with['retention-days'], 1);
+    assert.match(upload.with.name, /run_id/);
+    assert.equal(workflow.jobs.audit.permissions?.contents, undefined);
+    assert.doesNotMatch(JSON.stringify(workflow.jobs.audit), /git push|\.agent-ci-artifacts/);
   });
 });

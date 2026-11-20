@@ -120,137 +120,51 @@ jobs:
         shell: bash
         run: |
           mkdir -p "$RUNNER_TEMP/engine-coverage-report"
-          cp shared/engine/.coverage-engine/engine-gaps.md "$RUNNER_TEMP/engine-coverage-report/"
           cp shared/engine/.coverage-engine/engine-gaps.json "$RUNNER_TEMP/engine-coverage-report/"
 
-      - name: Upload gap-only diagnostics
-        uses: actions/upload-artifact@v4
-        with:
-          name: engine-coverage-gaps-pr-${{ steps.pr.outputs.pr_number }}
-          path: ${{ runner.temp }}/engine-coverage-report/
-          if-no-files-found: error
-          retention-days: 7
-
-  publish:
-    name: Engine coverage / publish to PR-scoped Agent CI Artifacts
-    needs: analyze
-    if: needs.analyze.result == 'success'
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    concurrency:
-      group: agent-ci-publish-${{ needs.analyze.outputs.pr_number }}
-      cancel-in-progress: false
-    permissions:
-      contents: write
-      pull-requests: read
-    steps:
-      - name: Check out pinned PR commit as data only
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ needs.analyze.outputs.head_sha }}
-          persist-credentials: true
-      - name: Download gap-only report from this run
-        uses: actions/download-artifact@v4
-        with:
-          name: engine-coverage-gaps-pr-${{ needs.analyze.outputs.pr_number }}
-          path: report
-      - name: Validate report and stage only coverage artifacts
+      - name: Validate and bind the gap report to this run
         env:
-          GH_TOKEN: ${{ github.token }}
-          PR_NUMBER: ${{ needs.analyze.outputs.pr_number }}
-          TARGET_BRANCH: ${{ needs.analyze.outputs.branch }}
-          HEAD_SHA: ${{ needs.analyze.outputs.head_sha }}
+          SOURCE_SHA: ${{ steps.pr.outputs.head_sha }}
+          PR_NUMBER: ${{ steps.pr.outputs.pr_number }}
+        shell: bash
         run: |
           node --input-type=module <<'NODE'
           import fs from 'node:fs';
-          import { execFileSync } from 'node:child_process';
-          const repo = process.env.GITHUB_REPOSITORY;
-          const pr = Number(process.env.PR_NUMBER);
-          const sha = process.env.HEAD_SHA;
-          const branch = process.env.TARGET_BRANCH;
-          const latest = JSON.parse(execFileSync('gh', ['api', 'repos/' + repo + '/pulls/' + pr], { encoding: 'utf8' }));
-          if (latest.state !== 'open' || latest.head?.repo?.full_name !== repo ||
-              latest.head?.sha !== sha || latest.head?.ref !== branch)
-            throw Error('PR head changed since read-only coverage run; rerun coverage');
-          const names = fs.readdirSync('report').sort();
-          if (names.join(',') !== 'engine-gaps.json,engine-gaps.md')
-            throw Error('Unexpected coverage artifact entries');
-          for (const name of names) {
-            const stat = fs.lstatSync('report/' + name);
-            if (!stat.isFile() || stat.isSymbolicLink() || stat.size > 4 * 1024 * 1024)
-              throw Error('Unsafe coverage artifact: ' + name);
+          const file = process.env.RUNNER_TEMP + '/engine-coverage-report/engine-gaps.json';
+          const raw = fs.readFileSync(file);
+          if (raw.length > 4 * 1024 * 1024) throw Error('Coverage report exceeds 4 MiB');
+          const report = JSON.parse(raw.toString('utf8'));
+          if (report.schemaVersion !== 1 || report.scope !== 'engine' ||
+              report.sourceCommit !== process.env.SOURCE_SHA ||
+              !Array.isArray(report.gaps) || report.gaps.length > 5000 ||
+              ![report.targetFiles, report.filesWithGaps, report.notExecutedFiles, report.completeFiles]
+                .every(value => Number.isSafeInteger(value) && value >= 0) ||
+              report.filesWithGaps !== report.gaps.length) {
+            throw Error('Invalid Engine coverage source/schema');
           }
-          const data = JSON.parse(fs.readFileSync('report/engine-gaps.json', 'utf8'));
-          const markdown = fs.readFileSync('report/engine-gaps.md', 'utf8');
-          if (data.schemaVersion !== 1 || data.scope !== 'engine' || data.sourceCommit !== sha ||
-              !Array.isArray(data.gaps) || data.gaps.length > 5000 ||
-              ![data.targetFiles, data.filesWithGaps, data.notExecutedFiles, data.completeFiles]
-                .every(n => Number.isSafeInteger(n) && n >= 0) ||
-              data.filesWithGaps !== data.gaps.length ||
-              !markdown.startsWith('<!-- svitlo-engine-coverage-gaps -->\n'))
-            throw Error('Coverage artifact source/schema mismatch');
-          for (const gap of data.gaps) {
-            if (typeof gap.file !== 'string' || !/^shared\/engine\/[a-zA-Z0-9._/-]+\.(ts|mjs)$/.test(gap.file) ||
-                gap.file.split('/').includes('..') || !['partial', 'not-executed'].includes(gap.status) ||
-                !Array.isArray(gap.lines) || !Array.isArray(gap.branches) || !Array.isArray(gap.functions))
-              throw Error('Unsafe coverage gap entry');
+          for (const gap of report.gaps) {
+            if (typeof gap.file !== 'string' ||
+                !/^shared\\/engine\\/[a-zA-Z0-9._/-]+\\.(?:ts|mjs)$/.test(gap.file) ||
+                gap.file.split('/').includes('..') ||
+                !['partial', 'not-executed'].includes(gap.status) ||
+                ![gap.lines, gap.branches, gap.functions].every(Array.isArray)) {
+              throw Error('Unsafe Engine coverage gap entry');
+            }
           }
-          const dirs = ['.agent-ci-artifacts', '.agent-ci-artifacts/engine-coverage'];
-          for (const dir of dirs) {
-            if (fs.existsSync(dir) && (fs.lstatSync(dir).isSymbolicLink() || !fs.lstatSync(dir).isDirectory()))
-              throw Error('Unsafe Agent CI Artifacts path');
-            fs.mkdirSync(dir, { recursive: true });
-          }
-          // The read-only job may execute untrusted PR code: render the Markdown
-          // from verified JSON here instead of copying PR-controlled Markdown.
-          const escape = value => String(value ?? '').slice(0, 180)
-            .replace(/[\x00-\x1f\x7f]/g, ' ')
-            .replace(/[<>&*_[\]()!#|\x60]/g, ch => '\\' + ch);
-          const lines = ['# Engine coverage gaps', '',
-            'Analyzed PR head: ' + sha, '',
-            '| Files considered | With gaps | Not executed | Fully covered |',
-            '| ---: | ---: | ---: | ---: |',
-            '| ' + data.targetFiles + ' | ' + data.filesWithGaps + ' | ' +
-              data.notExecutedFiles + ' | ' + data.completeFiles + ' |', '',
-            'Only missing coverage is reported; this is not a test-quality assertion.', ''];
-          for (const gap of data.gaps.slice(0, 100)) {
-            const link = 'https://github.com/' + repo + '/blob/' + sha + '/' +
-              gap.file.split('/').map(encodeURIComponent).join('/');
-            const locations = gap.status === 'not-executed' ? 'Not executed' :
-              'lines ' + gap.lines.filter(Number.isSafeInteger).join(', ') +
-              '; branches ' + gap.branches.filter(Number.isSafeInteger).join(', ');
-            lines.push('- [' + escape(gap.file) + '](' + link + ') — ' + locations +
-              (gap.changed === true ? ' (changed)' : ''));
-          }
-          if (data.gaps.length > 100)
-            lines.push('Additional gaps in JSON: ' + (data.gaps.length - 100));
-          const safeMarkdown = lines.join('\n').slice(0, 30000) + '\n';
-          for (const name of names) {
-            const dest = '.agent-ci-artifacts/engine-coverage/' + name;
-            if (fs.existsSync(dest) && !fs.lstatSync(dest).isFile())
-              throw Error('Unsafe existing coverage artifact');
-            if (name === 'engine-gaps.md') fs.writeFileSync(dest, safeMarkdown);
-            else fs.copyFileSync('report/' + name, dest);
-          }
+          report.runId = Number(process.env.GITHUB_RUN_ID);
+          report.pr = Number(process.env.PR_NUMBER);
+          report.request = 'engine-coverage';
+          report.complete = true;
+          const output = JSON.stringify(report) + '\\n';
+          if (Buffer.byteLength(output) > 4 * 1024 * 1024)
+            throw Error('Coverage report exceeds size limit');
+          fs.writeFileSync(file, output);
           NODE
-      - name: Commit coverage result to the source PR branch
-        env:
-          GH_TOKEN: ${{ github.token }}
-          TARGET_BRANCH: ${{ needs.analyze.outputs.branch }}
-          HEAD_SHA: ${{ needs.analyze.outputs.head_sha }}
-          PR_NUMBER: ${{ needs.analyze.outputs.pr_number }}
-        shell: bash
-        run: |
-          set -euo pipefail
-          latest=$(gh api "repos/$GITHUB_REPOSITORY/pulls/$PR_NUMBER")
-          test "$(jq -r '.head.sha' <<<"$latest")" = "$HEAD_SHA"
-          test "$(jq -r '.head.ref' <<<"$latest")" = "$TARGET_BRANCH"
-          git add -- .agent-ci-artifacts/engine-coverage/
-          if git diff --cached --quiet; then
-            echo 'Engine coverage artifact is unchanged'
-            exit 0
-          fi
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git commit -m 'chore(agent-ci): save Engine coverage gaps'
-          git push origin "HEAD:refs/heads/$TARGET_BRANCH"
+      - name: Upload gap-only diagnostics
+        uses: actions/upload-artifact@v4
+        with:
+          name: engine-coverage-gaps-pr-${{ steps.pr.outputs.pr_number }}-${{ github.run_id }}
+          path: ${{ runner.temp }}/engine-coverage-report/engine-gaps.json
+          if-no-files-found: error
+          retention-days: 1
+
