@@ -1,0 +1,75 @@
+{
+  "schemaVersion": 3,
+  "kind": "pr-scoped-agent-ci-artifacts",
+  "sourceCommit": "f3de126e7bbeb476325491387d4298c3e6ad0f35",
+  "scope": {
+    "kind": "lessons",
+    "package": "content/astronomy",
+    "locale": null,
+    "component": null,
+    "lesson": null,
+    "course": null
+  },
+  "packages": [
+    "content/astronomy"
+  ],
+  "locales": [
+    "en",
+    "pl",
+    "qm",
+    "uk"
+  ],
+  "generated": [
+    {
+      "kind": "lesson",
+      "textbook": "content/astronomy",
+      "lesson": "5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915",
+      "locale": "uk",
+      "path": ".agent-ci-artifacts/lessons/astronomy/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/uk.md",
+      "missing": 0,
+      "reviewReady": true
+    },
+    {
+      "kind": "lesson",
+      "textbook": "content/astronomy",
+      "lesson": "5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915",
+      "locale": "en",
+      "path": ".agent-ci-artifacts/lessons/astronomy/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/en.md",
+      "missing": 0,
+      "reviewReady": true
+    },
+    {
+      "kind": "lesson",
+      "textbook": "content/astronomy",
+      "lesson": "5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915",
+      "locale": "pl",
+      "path": ".agent-ci-artifacts/lessons/astronomy/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/pl.md",
+      "missing": 0,
+      "reviewReady": true
+    },
+    {
+      "kind": "lesson",
+      "textbook": "content/astronomy",
+      "lesson": "5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915",
+      "locale": "qm",
+      "path": ".agent-ci-artifacts/lessons/astronomy/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/qm.md",
+      "missing": 0,
+      "reviewReady": true
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "documents": 4,
+    "failures": 0,
+    "missingTranslations": 0,
+    "incompleteDocuments": 0,
+    "taxonomyDocuments": 0,
+    "lessonDocuments": 4,
+    "questionDocuments": 0,
+    "courseDocuments": 0,
+    "assessmentMethodDocuments": 0,
+    "uiKitDocuments": 0,
+    "geographyHomeCopyDocuments": 0,
+    "educationStandardDocuments": 0
+  }
+}
