@@ -8,6 +8,6 @@ export const welcome = defineMarkdown<"welcome", LessonLanguages>({
   type: "markdown",
   params: {},
   locale: {
-    value: readMarkdown(import.meta.url, ["uk", "en", "pl"])
+    value: readMarkdown(import.meta.url, ["uk", "en", "pl", "qm"])
   }
 });

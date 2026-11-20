@@ -1,7 +1,5 @@
 import type { SupportedLanguages } from '@svitlo/engine/build';
 
-// TODO (BLOCKER): Restore the complete language set when translations are ready:
-// export const languages = ["uk","en","pl","qm"] as const satisfies SupportedLanguages;
-
-export const languages = ["uk"] as const satisfies SupportedLanguages;
+// TODO (BLOCKER): Obtain independent Crimean Tatar linguistic review before Ready; authoring is a draft.
+export const languages = ["uk","en","pl","qm"] as const satisfies SupportedLanguages;
 export type LessonLanguages = typeof languages;
