@@ -9,7 +9,10 @@ export const hintText = defineText<"hintText", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Порівняй не розмір Місяця, а частину його диска, яку можна назвати світлою."
+      uk: "Порівняй не розмір Місяця, а частину його диска, яку можна назвати світлою.",
+      en: "Compare not the Moon's size, but how much of its disk looks bright.",
+      pl: "Porównaj nie wielkość Księżyca, lecz to, jak duża część jego tarczy jest jasna.",
+      qm: "Ayniñ büyükligini degil, diskiniñ ne qadar qısmı aydın körüngenini teñeştir."
     }
   }
 });

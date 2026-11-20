@@ -9,7 +9,10 @@ export const almostWhole = defineText<"almostWhole", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Дитина, яка бачила майже весь освітлений диск."
+      uk: "Дитина, яка бачила майже весь освітлений диск.",
+      en: "The child who saw nearly the whole lit disk.",
+      pl: "Dziecko, które widziało prawie całą oświetloną tarczę.",
+      qm: "Emen bütün aydın diskni körgen bala."
     }
   }
 });

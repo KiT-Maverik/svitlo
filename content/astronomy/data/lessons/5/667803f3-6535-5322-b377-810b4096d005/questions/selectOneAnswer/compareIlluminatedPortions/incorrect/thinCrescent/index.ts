@@ -9,7 +9,10 @@ export const thinCrescent = defineText<"thinCrescent", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Дитина, яка бачила тонкий світлий серп."
+      uk: "Дитина, яка бачила тонкий світлий серп.",
+      en: "The child who saw a thin bright crescent.",
+      pl: "Dziecko, które widziało cienki jasny sierp.",
+      qm: "İnce aydın oraqnı körgen bala."
     }
   }
 });

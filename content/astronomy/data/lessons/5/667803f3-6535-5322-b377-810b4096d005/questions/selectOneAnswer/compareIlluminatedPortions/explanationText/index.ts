@@ -9,7 +9,10 @@ export const explanationText = defineText<"explanationText", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "На третьому описі видно найбільшу частку освітленої поверхні. Сам Місяць у всіх трьох випадках залишається тим самим."
+      uk: "На третьому описі видно найбільшу частку освітленої поверхні. Сам Місяць у всіх трьох випадках залишається тим самим.",
+      en: "In the third description, the largest portion of the lit surface is visible. It is the same Moon in all three cases.",
+      pl: "W trzecim opisie widać największą część oświetlonej powierzchni. We wszystkich trzech przypadkach jest to ten sam Księżyc.",
+      qm: "Üçünci tarifte aydınlatılğan yüzniñ eñ büyük payı körüne. Üçünde de Ay aynı şar olaraq qala."
     }
   }
 });

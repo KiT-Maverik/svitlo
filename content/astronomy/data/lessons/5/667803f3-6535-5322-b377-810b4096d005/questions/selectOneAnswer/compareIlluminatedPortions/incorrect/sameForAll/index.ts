@@ -9,7 +9,10 @@ export const sameForAll = defineText<"sameForAll", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Усі троє бачили однакову освітлену частину."
+      uk: "Усі троє бачили однакову освітлену частину.",
+      en: "All three saw the same amount of the lit part.",
+      pl: "Wszyscy troje widzieli tak samo dużą oświetloną część.",
+      qm: "Üçü de aydın qısımnı aynı miqdarda kördi."
     }
   }
 });

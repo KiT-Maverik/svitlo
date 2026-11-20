@@ -9,7 +9,10 @@ export const halfDisk = defineText<"halfDisk", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Дитина, яка бачила приблизно половину диска."
+      uk: "Дитина, яка бачила приблизно половину диска.",
+      en: "The child who saw about half the disk.",
+      pl: "Dziecko, które widziało mniej więcej połowę tarczy.",
+      qm: "Diskniñ taqriben yarısını körgen bala."
     }
   }
 });
