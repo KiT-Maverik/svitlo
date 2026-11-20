@@ -18,6 +18,7 @@ const families = new Set([
   'skills',
   'lessons',
   'questions',
+  'flashcards',
   'courses',
   'assessment-methods',
   'ui-kit',
@@ -37,24 +38,24 @@ export function parseArguments(args) {
       args[i + 1].startsWith('--')
     ) {
       throw new Error(
-        'Usage: --kind <skills|lessons|questions|courses|assessment-methods|ui-kit|geography-home-copy|education-standards> ' +
+        'Usage: --kind <skills|lessons|questions|flashcards|courses|assessment-methods|ui-kit|geography-home-copy|education-standards> ' +
           '[--package content/<textbook>] [--locale <code>] [--component <name>] [--lesson <uuid>] [--course <uuid>]',
       );
     }
     options[key.slice(2)] = args[++i];
   }
   if (!families.has(options.kind)) throw new Error('An explicit supported --kind is required');
-  const hasPackage = ['skills', 'lessons', 'questions', 'courses'].includes(options.kind);
+  const hasPackage = ['skills', 'lessons', 'questions', 'flashcards', 'courses'].includes(options.kind);
   if (hasPackage !== Boolean(options.package))
-    throw new Error('Only Skills, Lessons, Questions and Courses require --package content/<textbook>');
+    throw new Error('Only Skills, Lessons, Questions, Flashcards and Courses require --package content/<textbook>');
   if (options.package && !/^content\/[a-z][a-z0-9-]*$/.test(options.package)) {
     throw new Error('Unsafe textbook path: ' + options.package);
   }
   if (options.component && (options.kind !== 'ui-kit' || !/^[a-zA-Z][a-zA-Z0-9]*$/.test(options.component))) {
     throw new Error('--component is only available for UI Kit dictionaries');
   }
-  if (options.lesson && (!['lessons', 'questions'].includes(options.kind) || !uuidPattern.test(options.lesson))) {
-    throw new Error('--lesson requires Lessons/Questions and a canonical UUID');
+  if (options.lesson && (!['lessons', 'questions', 'flashcards'].includes(options.kind) || !uuidPattern.test(options.lesson))) {
+    throw new Error('--lesson requires Lessons/Questions/Flashcards and a canonical UUID');
   }
   if (options.course && (options.kind !== 'courses' || !uuidPattern.test(options.course))) {
     throw new Error('--course requires Courses and a canonical UUID');
@@ -215,6 +216,18 @@ export async function generate(options) {
       lessonId: options.lesson,
       languages,
     });
+  } else if (options.kind === 'flashcards') {
+    const { generateFlashcardReviewArtifacts } =
+      await import('../../shared/engine/scripts/generateFlashcardReviewArtifacts/generate-flashcard-review-artifacts.mjs');
+    generateFlashcardReviewArtifacts({
+      root,
+      output,
+      manifest,
+      saveManifest,
+      packageName: options.package,
+      lessonId: options.lesson,
+      languages,
+    });
   } else if (options.kind === 'courses') {
     const { generateCourseReviewArtifacts } =
       await import('../../shared/engine/scripts/generateCourseReviewArtifacts/generate-course-review-artifacts.mjs');
@@ -279,6 +292,7 @@ export async function generate(options) {
     taxonomyDocuments: manifest.generated.filter(item => item.kind === 'taxonomy').length,
     lessonDocuments: manifest.generated.filter(item => item.kind === 'lesson').length,
     questionDocuments: manifest.generated.filter(item => item.kind === 'question').length,
+    flashcardDocuments: manifest.generated.filter(item => item.kind === 'flashcard').length,
     courseDocuments: manifest.generated.filter(item => item.kind === 'course').length,
     assessmentMethodDocuments: manifest.generated.filter(item => item.kind === 'assessment-method').length,
     uiKitDocuments: manifest.generated.filter(item => item.kind === 'ui-kit-locale').length,
