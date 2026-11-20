@@ -19,7 +19,7 @@ questions:
               params: {}
               locale:
                 value:
-                  uk: "У моделі Землі місце А звернене до Сонця, а Б — відвернене. Сонце продовжує світити. Що правильне?"
+                  uk: "У двох далеких місцях Землі зараз по-різному: у місці К — день, а в місці Л — ніч. Сонце продовжує світити. Чому так може бути?"
           order:
             - "prompt"
         hint:
@@ -31,7 +31,7 @@ questions:
               params: {}
               locale:
                 value:
-                  uk: "Згадай, який бік кульки освітлює лампа, а який залишається темним."
+                  uk: "Уяви кульку й ліхтарик. Поміркуй, що відрізняє два місця, якщо в них одночасно по-різному світло."
           order:
             - "hintText"
         explanation:
@@ -43,7 +43,7 @@ questions:
               params: {}
               locale:
                 value:
-                  uk: "В одному місці може бути день, а в іншому одночасно ніч: усе залежить від того, який бік Землі повернений до Сонця."
+                  uk: "Сонце освітлює не всю Землю одночасно. Місце К зараз на освітленому боці, а місце Л — на неосвітленому."
           order:
             - "explanationText"
         answers:
@@ -56,7 +56,7 @@ questions:
                 params: {}
                 locale:
                   value:
-                    uk: "У місці А день, а в місці Б ніч."
+                    uk: "Місце К повернене до Сонця, а місце Л — від Сонця."
             order:
               - "correctAnswer"
           incorrect:
@@ -68,7 +68,7 @@ questions:
                 params: {}
                 locale:
                   value:
-                    uk: "В обох місцях зараз день, бо Сонце світить."
+                    uk: "Якщо Сонце світить, у всіх місцях Землі має бути день."
               wrong2:
                 id: "7c4e3b90-ccf1-4f74-9c91-000000000007"
                 slug: "wrong2"
@@ -76,7 +76,7 @@ questions:
                 params: {}
                 locale:
                   value:
-                    uk: "В обох місцях зараз ніч, бо вони на одній Землі."
+                    uk: "Сонце вимкнулося тільки для місця Л."
             order:
               - "wrong1"
               - "wrong2"
@@ -113,7 +113,7 @@ questions:
               params: {}
               locale:
                 value:
-                  uk: "Поміркуй, що обертається навколо власної осі: Сонце чи Земля?"
+                  uk: "Уяви кульку з позначкою будинку й лампу. Що має змінитися, щоб біля будинку стало темніше?"
           order:
             - "hintText"
         explanation:
@@ -165,9 +165,9 @@ questions:
           distractors:
             items: {}
             order: []
-    halfTurnSwapsPlaces:
+    stoppedGlobeKeepsNight:
       id: "7c4e3b90-ccf1-4f74-9c91-00000000000f"
-      slug: "halfTurnSwapsPlaces"
+      slug: "stoppedGlobeKeepsNight"
       type: "selectOneAnswer"
       params:
         assessmentMethod: "prediction"
@@ -183,7 +183,7 @@ questions:
               params: {}
               locale:
                 value:
-                  uk: "На кульці є дві протилежні позначки: у місці А день, у Б ніч. Кульку повернули на півоберту, лампа не рухалася. Що тепер?"
+                  uk: "На кульці є позначка Г, яка зараз на темному боці. Лампа світить, але ні лампу, ні кульку більше не рухають. Що буде в місці Г, доки модель залишається нерухомою?"
           order:
             - "prompt"
         hint:
@@ -195,7 +195,7 @@ questions:
               params: {}
               locale:
                 value:
-                  uk: "Після півоберту кожна позначка опиняється на протилежному боці від свого початкового положення."
+                  uk: "Уяви, що час іде, але положення кульки та лампи не змінюється."
           order:
             - "hintText"
         explanation:
@@ -207,7 +207,7 @@ questions:
               params: {}
               locale:
                 value:
-                  uk: "За півоберту освітлений і темний боки для двох протилежних місць міняються. А стає темним, а Б — освітленим."
+                  uk: "Коли кулька й лампа нерухомі, позначка Г залишається на тому самому темному боці. Зміна дня і ночі в моделі потребує повороту кульки."
           order:
             - "explanationText"
         answers:
@@ -220,7 +220,7 @@ questions:
                 params: {}
                 locale:
                   value:
-                    uk: "У місці А ніч, а в місці Б день."
+                    uk: "У місці Г залишатиметься ніч, доки кульку не повернуть."
             order:
               - "correctAnswer"
           incorrect:
@@ -232,7 +232,7 @@ questions:
                 params: {}
                 locale:
                   value:
-                    uk: "У місці А день, а в місці Б ніч, нічого не змінилося."
+                    uk: "У місці Г з часом настане день, навіть якщо нічого не рухати."
               wrong2:
                 id: "7c4e3b90-ccf1-4f74-9c91-000000000015"
                 slug: "wrong2"
@@ -240,16 +240,16 @@ questions:
                 params: {}
                 locale:
                   value:
-                    uk: "У місцях А і Б тепер одночасно день."
+                    uk: "Нерухома лампа поступово освітить усі боки кульки."
             order:
               - "wrong1"
               - "wrong2"
           distractors:
             items: {}
             order: []
-    newPlaceTurnsTowardSun:
+    newPlaceContinuesRotating:
       id: "7c4e3b90-ccf1-4f74-9c91-000000000016"
-      slug: "newPlaceTurnsTowardSun"
+      slug: "newPlaceContinuesRotating"
       type: "selectOneAnswer"
       params:
         assessmentMethod: "prediction"
@@ -265,7 +265,7 @@ questions:
               params: {}
               locale:
                 value:
-                  uk: "Уявне місце В зараз на темному боці Землі. Земля повертається, і місце В переходить на бік, звернений до Сонця. Що там настане?"
+                  uk: "На іншій кульці позначка Д щойно перейшла з темного боку на освітлений. Ліхтарик залишається на місці. Кульку повертають далі ще на півоберту. Що тепер буде в місці Д?"
           order:
             - "prompt"
         hint:
@@ -277,7 +277,7 @@ questions:
               params: {}
               locale:
                 value:
-                  uk: "Чи достатньо повернути місце до світла, щоб змінити його освітленість?"
+                  uk: "Пригадай, як змінюється освітлення однієї позначки під час обертання кульки."
           order:
             - "hintText"
         explanation:
@@ -289,7 +289,7 @@ questions:
               params: {}
               locale:
                 value:
-                  uk: "Коли місце В разом із Землею повернеться до сонячного світла, там настане день. Сонце світило весь цей час."
+                  uk: "Позначка Д була на освітленому боці. Після наступного півоберту вона опиниться на протилежному, неосвітленому боці: у місці Д настане ніч. Ліхтарик весь час світить."
           order:
             - "explanationText"
         answers:
@@ -302,7 +302,7 @@ questions:
                 params: {}
                 locale:
                   value:
-                    uk: "У місці В настане день, хоча Сонце не вмикалося заново."
+                    uk: "У місці Д настане ніч, хоча ліхтарик продовжує світити."
             order:
               - "correctAnswer"
           incorrect:
@@ -314,7 +314,7 @@ questions:
                 params: {}
                 locale:
                   value:
-                    uk: "У місці В залишиться ніч, бо Сонце не змінювалося."
+                    uk: "У місці Д й далі буде день, адже воно вже було освітлене."
               wrong2:
                 id: "7c4e3b90-ccf1-4f74-9c91-00000000001c"
                 slug: "wrong2"
@@ -322,7 +322,7 @@ questions:
                 params: {}
                 locale:
                   value:
-                    uk: "В усіх місцях Землі водночас настане ніч."
+                    uk: "У всіх місцях кульки одночасно стане день."
             order:
               - "wrong1"
               - "wrong2"
@@ -359,7 +359,7 @@ questions:
               params: {}
               locale:
                 value:
-                  uk: "Модель допомагає пояснити одну причину. Чи обов’язково вона показує справжні розміри?"
+                  uk: "Подумай, для чого потрібна ця модель і які подробиці справжнього Сонця та Землі вона може не відтворювати."
           order:
             - "hintText"
         explanation:
@@ -405,88 +405,6 @@ questions:
                 locale:
                   value:
                     uk: "Сонце щоночі вимикається, так само як можна вимкнути ліхтарик."
-            order:
-              - "wrong1"
-              - "wrong2"
-          distractors:
-            items: {}
-            order: []
-    secondHalfTurnReturnsDay:
-      id: "7c4e3b90-ccf1-4f74-9c91-000000000024"
-      slug: "secondHalfTurnReturnsDay"
-      type: "selectOneAnswer"
-      params:
-        assessmentMethod: "prediction"
-        restrictions: []
-      locale: {}
-      content:
-        question:
-          items:
-            prompt:
-              id: "7c4e3b90-ccf1-4f74-9c91-000000000025"
-              slug: "prompt"
-              type: "text"
-              params: {}
-              locale:
-                value:
-                  uk: "Спочатку в місці А був день. Після одного півоберту Землі там стала ніч. Якщо Земля повернеться ще на півоберту, а Сонце світитиме так само, що буде в А?"
-          order:
-            - "prompt"
-        hint:
-          items:
-            hintText:
-              id: "7c4e3b90-ccf1-4f74-9c91-000000000026"
-              slug: "hintText"
-              type: "text"
-              params: {}
-              locale:
-                value:
-                  uk: "Після двох півобертів позначка повертається до початкового положення."
-          order:
-            - "hintText"
-        explanation:
-          items:
-            explanationText:
-              id: "7c4e3b90-ccf1-4f74-9c91-000000000027"
-              slug: "explanationText"
-              type: "text"
-              params: {}
-              locale:
-                value:
-                  uk: "Два послідовні півоберти повертають позначку А на бік, звернений до Сонця. Це пояснює повторюваність дня й ночі."
-          order:
-            - "explanationText"
-        answers:
-          correct:
-            items:
-              correctAnswer:
-                id: "7c4e3b90-ccf1-4f74-9c91-000000000028"
-                slug: "correctAnswer"
-                type: "text"
-                params: {}
-                locale:
-                  value:
-                    uk: "У місці А знову буде день."
-            order:
-              - "correctAnswer"
-          incorrect:
-            items:
-              wrong1:
-                id: "7c4e3b90-ccf1-4f74-9c91-000000000029"
-                slug: "wrong1"
-                type: "text"
-                params: {}
-                locale:
-                  value:
-                    uk: "У місці А назавжди залишиться ніч."
-              wrong2:
-                id: "7c4e3b90-ccf1-4f74-9c91-00000000002a"
-                slug: "wrong2"
-                type: "text"
-                params: {}
-                locale:
-                  value:
-                    uk: "Сонце перестане світити, тому ніде не буде дня."
             order:
               - "wrong1"
               - "wrong2"
