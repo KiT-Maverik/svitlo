@@ -9,6 +9,9 @@ import { scanSource } from '../../../../scripts/ci/checkBlockerTodos/check-block
 
 import { BuilderDiagnostic, loadFactoryRegistry, runOne, main } from './lessonBuilder.mjs';
 import { renderLessonModules } from './lessonModules.mjs';
+import { defineLesson, defineQuizSection, defineFlashcardsSection } from '@svitlo/engine/build';
+import { assembleLessonProps } from '@svitlo/engine/runtime';
+import { renderLessonMarkdown } from '../generateLessonsMarkdown/lesson-markdown.mjs';
 import { pendingAssessmentUuid, prepareAssessmentDraft } from './lessonAssessmentDrafts.mjs';
 import { lessonReviewStageSlugs, renderReviewDraft } from './reviewTemplate.mjs';
 import { reviewTypeDiagnostics } from './reviewTypecheck.test-utils.mjs';
@@ -1345,4 +1348,42 @@ test('an authored complete Quiz remains untouched and no placeholder handoff is 
   assert.deepEqual(result.lesson.section.order, ['intro', 'quiz']);
   assert.deepEqual(result.pending, []);
   assert.equal(result.drafts.size, 0);
+});
+
+
+test('pending Quiz and Flashcards Section drafts pass actual Engine build.props and render readable Lesson Markdown', () => {
+  const config = lessonConfig();
+  config.params.languages = ['uk'];
+  config.params.quizRequiredForCompletion = true;
+  config.locale.title = { uk: 'Світло' };
+  config.section = { items: {}, order: [] };
+  const document = {
+    config,
+    production: { quizRequired: true, flashcardsRequired: true, documentLanguage: 'uk' },
+  };
+  const prepared = prepareAssessmentDraft(document);
+  const quiz = defineQuizSection(prepared.lesson.section.items.assessmentQuiz.config);
+  const flashcards = defineFlashcardsSection(prepared.lesson.section.items.assessmentFlashcards.config);
+  const authored = defineLesson({
+    ...prepared.lesson,
+    section: {
+      items: { assessmentQuiz: quiz, assessmentFlashcards: flashcards },
+      order: prepared.lesson.section.order,
+    },
+  });
+  const publication = authored.build.props({ languages: ['uk'] });
+  const resolved = assembleLessonProps(publication, 'uk');
+  assert.equal(resolved.params.quizRequiredForCompletion, true);
+  assert.deepEqual(resolved.section.map(section => section.type), ['quiz', 'flashcards']);
+  assert.equal(resolved.section[0].params.selection.questionIds.length, 1);
+  assert.equal(resolved.section[1].params.selection.flashcardIds.length, 1);
+  assert.ok(resolved.section[0].params.selection.questionIds[0].startsWith('feedc0de-'));
+  const markdown = renderLessonMarkdown({
+    lesson: resolved, locale: 'uk', languages: ['uk'], packagePath: 'content/playground',
+    sourceFiles: { files: [] }, sourceRef: 'test',
+  });
+  assert.match(markdown, /PENDING QUIZ/);
+  assert.match(markdown, /PENDING FLASHCARDS/);
+  assert.match(markdown, /feedc0de-/);
+  assert.match(markdown, /Question UUIDs/);
 });
