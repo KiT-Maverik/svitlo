@@ -12,6 +12,10 @@ const LANGUAGE = /^[a-z]{2,4}$/;
 const BOOK = /^[a-z][a-z0-9-]*$/;
 const SLUG = /^[a-z][A-Za-z0-9]*$/;
 const MAX_FILE = 2 * 1024 * 1024;
+const supportedFactories = new Set([
+  'defineFlashcard', 'defineFlashcardSide', 'defineText', 'defineMarkdown', 'defineCode',
+  'defineImage', 'defineAudio', 'defineVideo', 'defineSubtitles',
+]);
 
 function record(value) {
   return value !== null && typeof value === 'object' && !Array.isArray(value);
@@ -75,7 +79,7 @@ function staticValue(node, definitions, location, active = new Set()) {
     return output;
   }
   if (ts.isCallExpression(node) && ts.isIdentifier(node.expression) && node.arguments.length === 1 &&
-      /^define[A-Z][A-Za-z0-9]*$/.test(node.expression.text)) {
+      supportedFactories.has(node.expression.text)) {
     return staticValue(node.arguments[0], definitions, location, active);
   }
   throw new Error('Non-static Flashcard expression: ' + location + ' (' + ts.SyntaxKind[node.kind] + ')');
@@ -166,9 +170,15 @@ function discover(root, book, requested) {
   const output = [];
   for (const bucket of fs.readdirSync(source).sort()) {
     if (!/^[0-9a-f]$/.test(bucket)) continue;
-    for (const id of fs.readdirSync(path.join(source, bucket)).sort()) {
+    const bucketDirectory = path.join(source, bucket);
+    if (fs.lstatSync(bucketDirectory).isSymbolicLink() || !fs.statSync(bucketDirectory).isDirectory())
+      throw new Error('Symlinked or non-directory Flashcard bucket: ' + bucketDirectory);
+    for (const id of fs.readdirSync(bucketDirectory).sort()) {
       if (!UUID.test(id) || id.at(-1) !== bucket || (requested && id !== requested)) continue;
-      const file = path.join(source, bucket, id, 'flashcards', 'index.ts');
+      const lessonDirectory = path.join(bucketDirectory, id);
+      if (fs.lstatSync(lessonDirectory).isSymbolicLink() || !fs.statSync(lessonDirectory).isDirectory())
+        throw new Error('Symlinked or non-directory Flashcard Lesson: ' + lessonDirectory);
+      const file = path.join(lessonDirectory, 'flashcards', 'index.ts');
       if (fs.existsSync(file)) output.push({ bucket, id, file });
     }
   }
