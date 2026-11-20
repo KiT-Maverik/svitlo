@@ -11,7 +11,7 @@ export const prompt = defineText<"prompt", LessonLanguages>({
     value: {
       uk: "Після кількох різних виглядів Місяць знову здається тонким світлим серпом. Що це допомагає зрозуміти?",
       en: "After appearing in several different ways, the Moon looks like a thin bright crescent again. What does this help us understand?",
-      pl: "Po kilku różnych wyglądach Księżyc znów wydaje się cienkim, jasnym sierpem. Co pomaga nam to zrozumieć?",
+      pl: "Po kilku zmianach wyglądu Księżyc znów przypomina cienki, jasny sierp. Co możemy dzięki temu zrozumieć?",
       qm: "Bir qaç türlü körünişten soñ Ay kene ince aydın oraq kibi körüne. Bu bizge neni añlamağa yardım ete?"
     }
   }
