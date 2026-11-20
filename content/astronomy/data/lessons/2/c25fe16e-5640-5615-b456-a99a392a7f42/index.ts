@@ -12,7 +12,7 @@ export const dayNightBasics = defineLesson<"dayNightBasics", LessonLanguages, ty
   skills: [dayAndNight.id],
   params: {
     languages,
-    quizRequiredForCompletion: true,
+    requireQuiz: true,
     sections: {
       allowNavigation: true,
       allowSkipping: true,
