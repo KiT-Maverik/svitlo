@@ -117,10 +117,10 @@ coverage, use a fixed curated subset. Evaluate each Quiz separately
 for appropriate outcomes, methods, item pace and cognitive load.
 Unselected bank Questions remain for future Custom Practice.
 
-The temporary questions.yaml may contain a single
-quizSelections: SectionUUID -> QuestionUUID[] map for reviewed handoff.
-The Section owner's actual TS Section Config becomes authoritative after
-Resource Production. No permanent duplicate selection map is retained;
+Record proposed Quiz candidate subsets and rationale in the existing Questions
+PR evidence. Once authored TS is materialized, the Section owner imports
+approved Question Configurators and uses their stable `.id` values in the
+actual Section Config. No duplicate selection map is kept in questions.yaml;
 there is no legacy questionSlugs API or quizAssignments operation DSL.
 
 ## 5. Independent review and transfer
@@ -135,9 +135,10 @@ The Coding Agent uses the existing [Questions Builder](../../../shared/engine/sc
 to validate and generate typed Question modules. It does not overwrite
 the Lesson or embedded Quiz and it does not silently prune any bank
 member. The Lesson Section owner materializes approved Quiz selections
-in existing/new modular Sections and validates their actual registry
-and order. The existing generateAssessmentResources --kind question
-publisher publishes all authored Question resources separately.
+in existing/new modular Sections through normal typed Lesson composition
+and validates published selections using Engine and the textbook build.
+The existing generateAssessmentResources --kind question publisher publishes
+all authored Question resources separately.
 Do not claim Custom Practice UI exists merely because those resources
 are now publishable.
 
