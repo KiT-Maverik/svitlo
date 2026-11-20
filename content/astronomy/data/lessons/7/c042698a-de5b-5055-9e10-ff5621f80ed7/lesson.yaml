@@ -10,7 +10,7 @@ config:
       - en
       - pl
       - qm
-    requireQuiz: true
+    quizRequiredForCompletion: true
     sections:
       allowNavigation: true
       allowSkipping: true
@@ -654,6 +654,7 @@ config:
       - safeSkyChoices
 production:
   documentLanguage: uk
+  quizRequired: true
   purpose: "Навчити дитину 6–8 років безпечно дізнаватися про небо й Сонце."
   audience: "6–8 років; читання, письмо, телескоп і вихід на вулицю не є передумовами."
   productionNotes: |-
@@ -725,23 +726,3 @@ production:
 
     У цьому вступному уроці потрібна одна підсумкова Quiz Section `safeSkyChoices` після рефлексії. Окрему Flashcards Section у послідовність цього короткого уроку не додаємо: первинне закріплення безпечних дій вже забезпечують три доступні ситуації, розкриття пояснень та рефлексія. Це рішення **лише про розміщення Section у Lesson**; потребу в окремому банку флешкарт можна оцінити пізніше за незалежним процесом, після готового Question Bank. Не підмінювати ним Quiz або окремий банк запитань.
 
-    ~~~yaml lesson-assessment-sections
-    assessmentSections:
-      quiz:
-        decision: required
-        rationale: "Потрібна одна підсумкова перевірка перенесення правил безпечного спостереження на нові ситуації, а не лише повторення пояснень."
-        intents:
-          safeSkyChoices:
-            purpose: "Перевірити класифікацію ризикованих дій та застосування безпечної альтернативи за справжніми незалежно перевіреними запитаннями."
-            placement: "Наприкінці уроку після reflectAndRemember, п'ята Section у config.section.order."
-            bankDependency: "Потрібен окремо створений і незалежно перевірений Question Bank цього Lesson, відібрані Question UUIDs, Quiz params і валідація ресурсів."
-            skills:
-              - b4b9b469-391d-40f8-b11d-6884c76ed106
-            assessmentMethods:
-              - classification
-              - application
-      flashcards:
-        decision: notRequired
-        rationale: "У цій першій короткій темі немає вимоги включати окрему Flashcards Section: практика, зворотний зв'язок і рефлексія вже в Section-ах; окремий банк флешкарт не ототожнювати з Section."
-        intents: {}
-    ~~~
