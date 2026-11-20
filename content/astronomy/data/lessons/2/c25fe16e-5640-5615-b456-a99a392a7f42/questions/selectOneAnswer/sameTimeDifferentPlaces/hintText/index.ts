@@ -11,7 +11,7 @@ export const hintText = defineText<"hintText", LessonLanguages>({
     value: {
       uk: "Уяви кульку й ліхтарик. Поміркуй, що відрізняє два місця, якщо в них одночасно по-різному світло.",
       en: "Imagine a ball and a flashlight. Think about what makes the two places receive different light at the same time.",
-      pl: "Wyobraź sobie kulę i latarkę. Pomyśl, dlaczego w tych dwóch miejscach o tej samej porze jest inaczej jasno.",
+      pl: "Wyobraź sobie kulę i latarkę. Zastanów się, dlaczego w tym samym czasie w jednym miejscu jest jasno, a w drugim ciemno.",
       qm: "Bir küre ve fenerni tasavur et. Eki yerde aynı vaqıtta ne içün farqlı ışıq olğanını tüşün."
     }
   }
