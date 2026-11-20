@@ -1,2 +1,39 @@
 documentLanguage: uk
 questions: {}
+sectionDrafts:
+  items:
+    objectRolesQuiz:
+      config:
+        id: "742ca5c5-d2c1-4cc2-a268-ef50ce3f07e8"
+        slug: "objectRolesQuiz"
+        type: "quiz"
+        params: {}
+        locale:
+          title:
+            uk: "Перевір, хто є хто"
+          navigationLabel:
+            uk: "Перевір себе"
+        content:
+          items:
+            quizIntroduction:
+              config:
+                id: "4948081a-8514-4e25-8d85-c5890c419799"
+                slug: "quizIntroduction"
+                type: "text"
+                params: {}
+                locale:
+                  value:
+                    uk: "Перевір, чи вмієш розрізняти зорю, планету й природний супутник за їхніми ознаками та пояснювати, хто навколо кого рухається. Це не перевірка пам'яті про колір чи картинку. Якщо помилишся, згадай попередні пояснення."
+              production:
+                purpose: "Пояснити мету Quiz без вигадування конкретних запитань."
+          order:
+            - "quizIntroduction"
+      production:
+        purpose: "Місце для одного обов'язкового Quiz `objectRoles` на Skill 2c404b38-fbad-47f6-a70c-fe12218ac240."
+        pedagogicalIntent: "AssessmentMethods classification та relationshipMapping: розрізнити зорю/планету/супутник за природою й відобразити зв'язки Земля→Сонце та Місяць→Земля."
+        productionNotes: |-
+          Assessment intent: objectRoles
+          Bank integration: pending
+          Stage 2 навмисно не має params.selection.questionIds, grading, retries і формату оцінювання. Це НЕ повний Quiz Config. Assessment Architect та незалежний Question Bank мають забезпечити реальні переглянуті UUID, відбір, оцінювання і зворотний зв'язок, включно з keyboard/touch/screen-reader доступом, без колірної залежності й обов’язкового письма, з перевіркою офлайн. Не вигадувати заглушки чи політику оцінювання від Screenwriter. Сувора Stage 6 production-перевірка залишатиметься заблокованою до інтеграції банку; bank-pending preflight-draft/handoff лише створює чесні незавершені джерела.
+  order:
+    - objectRolesQuiz
