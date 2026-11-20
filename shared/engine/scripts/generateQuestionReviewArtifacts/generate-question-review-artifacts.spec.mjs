@@ -2,108 +2,160 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
 import { test } from 'node:test';
 import { generateQuestionReviewArtifacts } from './generate-question-review-artifacts.mjs';
 
-const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../../..');
-const lesson = 'd3048d21-8690-5255-b62c-984c69ac272c';
-const sourceDir = path.join(root, 'content/playground/data/lessons/c', lesson, 'questions');
-const questionIds = [
-  'a4f1e4aa-3831-5e3f-aece-1df57f757d82',
-  '26b09f82-f8db-5b7a-9a0f-7e7937fba45c',
-  '08c3bae5-081a-5afc-bccf-e44078e137f2',
-  'f42370dc-1de2-59bf-93a0-0e304f9021f0',
-  '21733db1-2e1a-55cc-80c2-08e68fec1d90',
-  'fbc29fba-d44d-5658-b6e7-ef1733ce81b5',
-];
-
-function withTemp(callback, copySource = false) {
-  const temp = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-question-ref-'));
-  try {
-    let input = root;
-    if (copySource) {
-      input = temp;
-      const target = path.join(temp, 'content/playground/data/lessons/c', lesson, 'questions');
-      fs.mkdirSync(target, { recursive: true });
-      for (const name of fs.readdirSync(sourceDir)) fs.copyFileSync(path.join(sourceDir, name), path.join(target, name));
+const lessonId = '26482aec-3c09-57a6-8534-414f649276be';
+const uuid = n => '00000000-0000-4000-8000-' + String(n).padStart(12, '0');
+const locales = ['uk', 'en', 'pl', 'qm'];
+const names = {
+  selectOneAnswer: Array.from({length: 7}, (_, i) => 'single' + (i + 1)),
+  selectMultipleAnswers: ['multipleOne', 'multipleTwo'],
+  matchBlocks: ['matchOne', 'matchTwo'],
+};
+const base = root => path.join(root, 'content/astronomy/data/lessons/e', lessonId);
+function setup(root) {
+  const expected = new Map();
+  const put = (relative, value) => {
+    const file = path.join(base(root), relative);
+    fs.mkdirSync(path.dirname(file), {recursive: true});
+    fs.writeFileSync(file, value);
+    return file;
+  };
+  let sequence = 100;
+  const block = (question, slug) => {
+    const id = uuid(++sequence);
+    const values = Object.fromEntries(locales.map(locale =>
+      [locale, `${locale} actual ${question}/${slug}/${id}`]));
+    expected.set(id, values);
+    return `defineText({id:'${id}',slug:'${slug}',type:'text',params:{},locale:{value:${JSON.stringify(values)}}})`;
+  };
+  const group = entries =>
+    `{items:{${entries.map(([key, value]) => `${key}:${value}`).join(',')}},order:[${entries.map(([key]) => `'${key}'`).join(',')}]}`;
+  const common = (question, extraExplanation = false) => ({
+    question: group([['prompt', block(question, 'prompt')]]),
+    hint: group([['hintText', block(question, 'hintText')]]),
+    explanation: group([['explanation1', block(question, 'explanation1')],
+      ...(extraExplanation ? [['explanation2', block(question, 'explanation2')]] : [])]),
+  });
+  put('constants.ts', "export const languages = ['uk'] as const;\n");
+  const rootImports = [], registered = [];
+  for (const [type, slugs] of Object.entries(names)) {
+    put(`questions/${type}/index.ts`, slugs.map(slug => `export { ${slug} } from './${slug}';`).join('\n') + '\n');
+    rootImports.push(`import { ${slugs.join(', ')} } from './${type}';`);
+    registered.push(`${type}:{${slugs.join(',')}}`);
+    for (const [i, slug] of slugs.entries()) {
+      const core = common(slug, type === 'matchBlocks' && i === 1);
+      let answerField;
+      if (type === 'matchBlocks') {
+        const pairs = Array.from({length: i === 0 ? 4 : 2}, (_, j) => {
+          const pair = 'pair' + (j + 1);
+          return [pair, `{left:${block(slug, pair + 'Left')},right:${block(slug, pair + 'Right')}}`];
+        });
+        answerField = `pairs:${group(pairs)}`;
+      } else {
+        const correct = type === 'selectMultipleAnswers' ? 2 : 1;
+        const incorrect = type === 'selectMultipleAnswers' ? 2 : 3;
+        const values = {
+          correct: group(Array.from({length: correct}, (_, j) =>
+            ['correct' + (j + 1), block(slug, 'correct' + (j + 1))])),
+          incorrect: group(Array.from({length: incorrect}, (_, j) =>
+            ['incorrect' + (j + 1), block(slug, 'incorrect' + (j + 1))])),
+          distractors: group([]),
+        };
+        answerField = `answers:{${Object.entries(values).map(([k,v]) => `${k}:${v}`).join(',')}}`;
+      }
+      const id = uuid(1 + Object.values(names).flat().indexOf(slug));
+      put(`questions/${type}/${slug}.ts`,
+        `import { define${type[0].toUpperCase() + type.slice(1)}, defineText } from '@svitlo/engine/build';\n` +
+        `export const ${slug} = define${type[0].toUpperCase() + type.slice(1)}({` +
+        `id:'${id}',slug:'${slug}',type:'${type}',params:{assessmentMethod:'classification',restrictions:[]},` +
+        `locale:{},content:{question:${core.question},hint:${core.hint},explanation:${core.explanation},${answerField}}});\n`);
     }
-    const output = path.join(temp, 'artifacts');
-    fs.mkdirSync(output, { recursive: true });
-    const manifest = { generated: [], failures: [] };
-    const run = (extra = {}) => generateQuestionReviewArtifacts({
-      root: input, output, packageName: 'content/playground', lessonId: lesson, languages: ['kk'],
-      manifest, saveManifest() {}, ...extra,
-    });
-    return callback({ run, manifest, output, input });
-  } finally {
-    fs.rmSync(temp, { recursive: true, force: true });
   }
+  put('questions/index.ts', rootImports.join('\n') +
+    `\nexport const questions={${registered.join(',')}};\n`);
+  put('sections/testQuiz/index.ts',
+    "import { defineQuizSection } from '@svitlo/engine/build';\nimport { intro } from './intro';\n" +
+    "const content={items:{intro},order:['intro']};\n" +
+    `export const testQuiz = defineQuizSection({id:'${uuid(95)}',slug:'testQuiz',type:'quiz',` +
+    `params:{selection:{mode:'all',questionIds:['${uuid(1)}']}},` +
+    `locale:{title:{uk:'Тест',en:'Quiz',pl:'Test',qm:'Sınav'},` +
+    `navigationLabel:{uk:'Перевірка',en:'Check',pl:'Sprawdź',qm:'Teşkerüv'}},content});\n`);
+  put('sections/testQuiz/intro/index.ts',
+    "import { defineMarkdown, readMarkdown } from '@svitlo/engine/build';\n" +
+    `export const intro=defineMarkdown({id:'${uuid(96)}',slug:'intro',type:'markdown',` +
+    "params:{},locale:{value:readMarkdown(import.meta.url,['uk','en','pl','qm'])}});\n");
+  for (const locale of locales) put(`sections/testQuiz/intro/${locale}.md`,
+    `# ${locale} full introduction\n\nLocalized paragraph in ${locale}.\n`);
+  return {expected, put};
+}
+function fixture(fn) {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-strict-question-'));
+  try {
+    const {expected, put} = setup(root);
+    const manifest = {generated: [], failures: [], sourceCommit: 'f'.repeat(40)};
+    const output = path.join(root, '.agent-ci-artifacts');
+    const run = (languages = ['en','pl','qm']) => generateQuestionReviewArtifacts({
+      root, output, manifest, saveManifest() {}, lessonId, packageName:'content/astronomy', languages,
+    });
+    return fn({root, expected, put, manifest, output, run});
+  } finally {fs.rmSync(root, {recursive: true, force: true});}
 }
 
-test('renders all six real Questions, 30 Text values and Quiz labels with canonical links', () =>
-  withTemp(({ run, manifest, output }) => {
+test('canonical two-level indexes enumerate all 11 mixed Questions, 82 Text values and Quiz fields', () =>
+  fixture(({run,manifest,output,expected}) => {
+    assert.equal(expected.size, 82);
     run();
     assert.equal(manifest.failures.length, 0);
-    assert.equal(manifest.generated.length, 1);
-    const [entry] = manifest.generated;
-    assert.equal(entry.path, '.agent-ci-artifacts/questions/playground/c/' + lesson + '/kk.md');
-    assert.equal(entry.lesson, 'c/' + lesson);
-    assert.equal(entry.questions, 6);
-    assert.equal(entry.strings, 32);
-    assert.equal(entry.missing, 0);
-    assert.equal(entry.quizSections, 1);
-    assert.equal(entry.quizStrings, 2);
-    assert.equal(entry.reviewReady, true);
-    const markdown = fs.readFileSync(path.join(output, 'questions/playground/c', lesson, 'kk.md'), 'utf8');
-    assert.match(markdown, /<!-- GENERATED FROM CODE; DO NOT EDIT\. -->/);
-    assert.match(markdown, /Missing translations: 0/);
-    assert.equal((markdown.match(/^- kk:/gm) || []).length, 32);
-    assert.equal((markdown.match(/^- English:/gm) || []).length, 30);
-    assert.equal((markdown.match(/^## [a-zA-Z]+$/gm) || []).length, 6);
-    for (const uuid of questionIds) assert.ok(markdown.includes(uuid), uuid);
-    for (const filename of fs.readdirSync(sourceDir).filter(f => f !== 'index.ts')) {
-      const fragment = markdown.match(new RegExp('\\[' + filename + '\\]\\(([^)]+)\\)'));
-      assert.ok(fragment, 'Missing canonical link for ' + filename);
-      const dest = path.join(output, 'questions/playground/c', lesson, 'kk.md');
-      assert.equal(path.resolve(path.dirname(dest), decodeURI(fragment[1])), path.join(sourceDir, filename));
+    assert.equal(manifest.generated.length, 3);
+    for (const entry of manifest.generated) {
+      assert.equal(entry.questions, 11);
+      assert.equal(entry.questionStrings, 82);
+      assert.equal(entry.quizStrings, 3);
+      assert.equal(entry.quizSections, 1);
+      assert.equal(entry.missing, 0);
+      assert.equal(entry.reviewReady, true);
+      const md = fs.readFileSync(path.join(output,'questions/astronomy/e',lessonId,entry.locale+'.md'),'utf8');
+      assert.match(md,/Correct options \(2\):/);
+      assert.match(md,/Pair pair1:.*→/);
+      assert.match(md,/Type: matchBlocks/);
+      assert.match(md,/Type: selectMultipleAnswers/);
+      assert.match(md,/Quiz Section \/ testQuiz/);
+      for (const [id,values] of expected) {
+        assert.ok(md.includes(id), id);
+        assert.ok(md.includes(values.uk), id + ' original');
+        assert.ok(md.includes(values[entry.locale]), id + ' target');
+      }
+      assert.ok(md.includes(`# ${entry.locale} full introduction`));
     }
   }));
 
-test('missing target locale yields explicit marker and reviewReady=false, without fallback', () =>
-  withTemp(({ input, run, manifest, output }) => {
-    const source = path.join(input, 'content/playground/data/lessons/c', lesson, 'questions/lightTravelsStraight.ts');
-    const before = fs.readFileSync(source, 'utf8');
-    const after = before.replace(/\bkk: '[^']+'/u, "kk: ''");
-    assert.notEqual(after, before);
-    fs.writeFileSync(source, after);
-    run();
-    assert.equal(manifest.generated[0].missing, 1);
-    assert.equal(manifest.generated[0].reviewReady, false);
-    assert.match(fs.readFileSync(path.join(output, 'questions/playground/c', lesson, 'kk.md'), 'utf8'), /%%MISSING%%/);
-  }, true));
+test('missing type-level export fails the entire requested bank', () =>
+  fixture(({root,run,manifest}) => {
+    fs.writeFileSync(path.join(base(root),'questions/matchBlocks/index.ts'),
+      "export { matchOne } from './matchOne';\n");
+    run(['en']);
+    assert.equal(manifest.generated.length,0);
+    assert.match(manifest.failures[0].error,/Missing canonical export|Question type index/);
+  }));
 
-test('rejects missing bank registry member without issuing partial Markdown', () =>
-  withTemp(({ input, run, manifest }) => {
-    const filename = path.join(input, 'content/playground/data/lessons/c', lesson, 'questions/index.ts');
-    fs.writeFileSync(filename, fs.readFileSync(filename, 'utf8').replace('    lightTravelsStraight,\n', ''));
-    run();
-    assert.equal(manifest.generated.length, 0);
-    assert.match(manifest.failures[0]?.error ?? '', /Question index is missing canonical entries/);
-  }, true));
+test('legacy root flat file or nested Question entrypoint fails without partial output', () =>
+  fixture(({put,run,manifest}) => {
+    put('questions/legacyQuestion.ts', '// Old unsupported layout\n');
+    run(['pl']);
+    assert.equal(manifest.generated.length,0);
+    assert.match(manifest.failures[0].error,/Legacy|unregistered/);
+  }));
 
-test('rejects unsupported authoring constructs and symlinked inputs', () =>
-  withTemp(({ input, run, manifest }) => {
-    const file = path.join(input, 'content/playground/data/lessons/c', lesson, 'questions/lightTravelsStraight.ts');
-    fs.writeFileSync(file, fs.readFileSync(file, 'utf8').replace('defineSelectOneAnswer({', 'defineSelectMultipleAnswers({'));
-    run();
-    assert.equal(manifest.generated.length, 0);
-    assert.match(manifest.failures[0]?.error ?? '', /Unsupported Question type/);
-  }, true));
-
-test('rejects unsafe textbook scope and unknown Lesson', () =>
-  withTemp(({ run, manifest }) => {
-    assert.throws(() => run({ packageName: 'content/../playground' }), /Invalid Question review scope/);
-    assert.throws(() => run({ lessonId: '00000000-0000-5000-8000-000000000000' }), /No canonical Question bank/);
-    assert.equal(manifest.generated.length, 0);
+test('missing target language shows MISSING and rejects review readiness, not source content', () =>
+  fixture(({root,run,manifest,output}) => {
+    const file = path.join(base(root),'questions/selectOneAnswer/single1.ts');
+    const original = fs.readFileSync(file,'utf8');
+    fs.writeFileSync(file, original.replace(/"qm":"qm actual single1\/prompt\/[^"]+"/, '"qm":""'));
+    run(['qm']);
+    assert.equal(manifest.generated.length,1);
+    assert.equal(manifest.generated[0].reviewReady,false);
+    assert.equal(manifest.generated[0].missing,1);
+    assert.match(fs.readFileSync(path.join(output,'questions/astronomy/e',lessonId,'qm.md'),'utf8'), /%%MISSING%%/);
   }));

@@ -21,6 +21,12 @@ a duplicate declaration.
 The questions values are **exact current Engine Question Config shapes**,
 grouped by Question type and camelCase slug with stable UUIDs. Nested
 ContentBlocks use exact Engine Config shapes and { items, order } collections.
+The Question Bank root `index.ts` imports each type's `index.ts` and exports the full
+`questions` map. Every type `index.ts` re-exports **all** its Question
+`<slug>.ts` modules. The former flat `questions/<slug>.ts` and nested
+Question entrypoint `questions/<type>/<slug>/index.ts` layouts are retired;
+only child ContentBlocks may remain in `<type>/<slug>/` subdirectories.
+
 The source locale is explicit; target locales are completed later without
 fake translations.
 
@@ -82,7 +88,8 @@ parsing or a separate verifier.
 Generated tree:
 
     <lesson-uuid>/questions/index.ts
-    <lesson-uuid>/questions/<questionType>/<questionSlug>/index.ts
+    <lesson-uuid>/questions/<questionType>/index.ts
+    <lesson-uuid>/questions/<questionType>/<questionSlug>.ts
     <lesson-uuid>/questions/<questionType>/<questionSlug>/<blockSlug>/index.ts
 
 Markdown/Code source handling and missing-media draft markers are reused

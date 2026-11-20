@@ -1,47 +1,38 @@
-# Question and Quiz translation review references
+# Canonical Question/Quiz review references
 
-`generate-question-review-artifacts.mjs` statically reads the complete canonical
-Question registry and directly relevant Quiz Sections for one Lesson. It does
-not execute authored TypeScript or publish assessment resources.
+The read-only adapter `generate-question-review-artifacts.mjs` statically
+resolves Question and Quiz TypeScript (without evaluating authored code).
 
-Supported Question sources:
+The only supported bank directory layout is:
 
-- Flat Playground bank: `questions/index.ts` with `questions/<slug>.ts`.
-- Modular Lesson bank: `questions/index.ts` with
-  `questions/selectOneAnswer/<slug>/index.ts` and locally imported Text
-  modules, including grouped answer options.
-
-Source-language selection reads only an explicitly declared single `languages`
-value from Lesson `constants.ts`. The legacy Playground's computed roster
-imports Engine runtime values; these are **never executed** to infer the
-comparison language, and the adapter uses the verified `en` Text source.
-An unsupported dynamic declaration named `languages` fails explicitly.
-
-The only supported Question type is `selectOneAnswer`; unsupported kinds,
-unexpected imports, dynamic expressions, unsafe paths, duplicate IDs and invalid
-ordered collections fail the requested locale document. For a relevant local
-`defineQuizSection`, the reference also shows its `title`,
-`navigationLabel`, Section-owned Text or Markdown content, selected question IDs,
-source links and complete physical Markdown. Quiz-only strings are tracked
-separately from Question strings. All Question bank members are included even
-when a Quiz selects a subset.
-
-Invoke via the repository dispatcher, for example:
-
-```sh
-node scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.mjs --kind questions --package content/astronomy --lesson c042698a-de5b-5055-9e10-ff5621f80ed7 --locale qm
+```text
+questions/
+  index.ts                   # imports every type and exports the complete questions map
+  <questionType>/
+    index.ts                 # re-exports every Question of this type
+    <questionSlug>.ts        # actual define* Question Configurator
+    <questionSlug>/          # optional nested ContentBlock modules (not a Question entrypoint)
 ```
 
-Output: `.agent-ci-artifacts/questions/<book>/<uuid-bucket>/<lesson-uuid>/<locale>.md`.
-References are temporary read-only review inputs, not localized authored data or
-translation approval. A missing requested target value is shown as
-`%%MISSING%%` and marks that document `reviewReady: false`. Any unresolved
-source or missing physical Markdown is a manifest failure, and Question
-generation exits nonzero if any requested document fails.
+The type names are the canonical Engine questionTypes slugs. The adapter
+validates both indexes against the physical files. It discovers all Question
+types and renders type-specific grading data, matching pairs, and source/target
+locale content including Quiz screens. Unsupported data fails rather than
+getting skipped. Old flat and `questions/<type>/<slug>/index.ts` Question
+entrypoints are intentionally unsupported.
 
-Test the generator with:
+Run through the scoped dispatcher:
 
 ```sh
-node --test shared/engine/scripts/generateQuestionReviewArtifacts/*.spec.mjs
-node --test scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.spec.mjs
+node scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.mjs --kind questions --package content/astronomy --lesson <lesson-uuid> --locale qm
 ```
+
+The output is a temporary `.agent-ci-artifacts/questions/<book>/<bucket>/<uuid>/<locale>.md`
+reference accompanied by a manifest. Its `sourceCommit` is the reviewed
+source HEAD. Missing target text receives `%%MISSING%%` and
+`reviewReady: false`. Generator success does not grant linguistic approval.
+Use `/agent-artifacts cleanup` to remove these temporary files before merge.
+
+A bank that still uses an older authoring layout must first be migrated through
+the owning Questions workflow. Do not add compatibility parsing to this review
+adapter.

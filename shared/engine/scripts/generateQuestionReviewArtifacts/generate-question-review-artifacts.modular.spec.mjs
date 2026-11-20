@@ -20,9 +20,10 @@ function write(root, relative, value) {
 }
 function makeFixture(root) {
   write(root, 'constants.ts', "export const languages = ['uk'] as const;\n");
-  const registry = names.map(name => `import { ${name} } from './selectOneAnswer/${name}';`).join('\n') +
+  const registry = `import { ${names.join(', ')} } from './selectOneAnswer';` +
     '\nexport const questions = { selectOneAnswer: { ' + names.join(', ') + ' } };\n';
   write(root, 'questions/index.ts', registry);
+  write(root, 'questions/selectOneAnswer/index.ts', names.map(name => `export { ${name} } from './${name}';`).join('\n') + '\n');
   const expected = new Map();
   for (let i = 0; i < names.length; i++) {
     const name = names[i];
@@ -40,7 +41,7 @@ function makeFixture(root) {
       write(root, full, `import { defineText } from '@svitlo/engine/build';\nexport const ${field} = defineText<"${field}", string>({\n` +
         `  id: '${uuid(100 + i * 10 + j)}', slug: '${field}', type: 'text', params: {},\n` +
         `  locale: { value: ${JSON.stringify(translations)} }\n});\n`);
-      imports.push(`import { ${field} } from './${folder}/${field}';`);
+      imports.push(`import { ${field} } from './${name}/${folder}/${field}';`);
       items[field] = field;
     }
     const content = `const content = {
@@ -54,7 +55,7 @@ function makeFixture(root) {
     distractors: { items: {}, order: [] },
   },
 };`;
-    write(root, `${dir}/index.ts`, "import { defineSelectOneAnswer } from '@svitlo/engine/build';\n" +
+    write(root, `questions/selectOneAnswer/${name}.ts`, "import { defineSelectOneAnswer } from '@svitlo/engine/build';\n" +
       imports.join('\n') + '\n' + content + '\n' +
       `export const ${name} = defineSelectOneAnswer<"${name}", typeof content, string>({\n` +
       `id: '${uuid(i + 1)}', slug: '${name}', type: 'selectOneAnswer',\n` +
@@ -107,7 +108,7 @@ test('modular bank preserves all five Questions, 35 Text fields and three Quiz f
         assert.ok(md.includes(field.translations[entry.locale]), key + ' target');
         assert.ok(md.includes(field.path), key + ' path');
       }
-      assert.match(md, /Correct option: correctChoice/);
+      assert.match(md, /Correct options \\(1\\): correctChoice/);
       assert.match(md, /Quiz Section \/ safeSkyChoices/);
       assert.match(md, /# uk quiz introduction/);
       assert.match(md, new RegExp('# ' + entry.locale + ' quiz introduction'));
@@ -136,13 +137,13 @@ for (const [name, mutate, pattern] of [
     fs.writeFileSync(filename, data.replace(uuid(101), uuid(100)));
   }, /Duplicate UUID/],
   ['invalid answer order', root => {
-    const filename = sourceRoot(root) + '/questions/selectOneAnswer/identifyUnsafeOptics/index.ts';
+    const filename = sourceRoot(root) + '/questions/selectOneAnswer/identifyUnsafeOptics.ts';
     fs.writeFileSync(filename, fs.readFileSync(filename, 'utf8').replace("order: ['correctChoice']", 'order: []'));
-  }, /Invalid ordered Question blocks/],
+  }, /Invalid ordered Question collection/],
   ['unsafe imported runtime', root => {
-    const filename = sourceRoot(root) + '/questions/selectOneAnswer/identifyUnsafeOptics/index.ts';
-    fs.writeFileSync(filename, fs.readFileSync(filename, 'utf8').replace("./prompt/prompt'", "../../../outside'"));
-  }, /Unsupported runtime import|Unresolved canonical import/],
+    const filename = sourceRoot(root) + '/questions/selectOneAnswer/identifyUnsafeOptics.ts';
+    fs.writeFileSync(filename, fs.readFileSync(filename, 'utf8').replace("./identifyUnsafeOptics/prompt/prompt'", "../../../outside'"));
+  }, /Unsupported runtime import|Unresolved canonical import|Import escapes owned source tree/],
 ]) {
   test('fail-closed: ' + name, () => fixture(({ root, run, manifest }) => {
     mutate(root);
@@ -153,37 +154,13 @@ for (const [name, mutate, pattern] of [
   }));
 }
 
-test('existing flat Question modules and canonical Object.values Quiz selections are statically resolved', () => {
-  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-flat-qreview-'));
-  const flatLesson = 'd3048d21-8690-5255-b62c-984c69ac272c';
-  const base = path.join(root, 'content/playground/data/lessons/c', flatLesson);
-  const put = (rel, content) => {
-    const filename = path.join(base, rel);
-    fs.mkdirSync(path.dirname(filename), { recursive: true });
-    fs.writeFileSync(filename, content);
-  };
-  try {
-    put('constants.ts', "import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine/runtime';\n" +
-      "export const howLightMoves_languages = DEFAULT_SUPPORTED_LANGUAGES.map(x => x.language);\n");
-    put('questions/index.ts', "import { questionOne } from './questionOne';\nexport const someQuestions = {selectOneAnswer: {questionOne}};\n");
-    const block = (slug, id) => `defineText({id:'${uuid(id)}',slug:'${slug}',type:'text',params:{},locale:{value:{en:'${slug} English',kk:'${slug} Kazakh'}}})`;
-    const group = (slug, id) => `{items:{${slug}: ${block(slug, id)}},order:['${slug}']}`;
-    put('questions/questionOne.ts', "import { defineSelectOneAnswer, defineText } from '@svitlo/engine/build';\n" +
-      `export const questionOne = defineSelectOneAnswer({id:'${uuid(1)}',slug:'questionOne',type:'selectOneAnswer',params:{assessmentMethod:'retrieval'},locale:{},content:{` +
-      `question:${group('question', 2)},explanation:${group('explanation', 3)},answers:{correct:${group('correct', 4)},` +
-      `distractors:{items:{},order:[]},incorrect:${group('incorrect', 5)}}}});`);
-    put('sections/quiz/index.ts', "import { defineQuizSection } from '@svitlo/engine/build';\n" +
-      "import { someQuestions } from '../../questions';\n" +
-      "const title = {en:'Quiz',kk:'Test'};\nexport const quizSection = defineQuizSection({" +
-      `id:'${uuid(6)}',slug:'quiz',type:'quiz',params:{selection:{mode:'all',questionIds:Object.values(someQuestions.selectOneAnswer).map(question => question.id)}},` +
-      "locale:{title,navigationLabel:title},content:{items:{},order:[]}});");
-    const output = path.join(root, '.agent-ci-artifacts');
-    const manifest = { generated: [], failures: [] };
-    generateQuestionReviewArtifacts({root, output, manifest, saveManifest() {}, packageName:'content/playground',
-      lessonId:flatLesson, languages:['kk']});
-    assert.deepEqual(manifest.failures, []);
-    assert.equal(manifest.generated[0].questionStrings, 4);
-    assert.equal(manifest.generated[0].quizStrings, 2);
-    assert.equal(manifest.generated[0].reviewReady, true);
-  } finally { fs.rmSync(root, {recursive:true,force:true}); }
+test('legacy flat Question entries fail instead of silently being accepted', () => {
+  fixture(({root,manifest,run}) => {
+    const type = path.join(sourceRoot(root), 'questions/selectOneAnswer');
+    fs.renameSync(path.join(type, names[0] + '.ts'),
+      path.join(sourceRoot(root), 'questions', names[0] + '.ts'));
+    run(['en']);
+    assert.equal(manifest.generated.length, 0);
+    assert.match(manifest.failures[0].error, /Legacy|unregistered|Question/);
+  });
 });

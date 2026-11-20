@@ -13,7 +13,10 @@ const NAME = /^[A-Za-z][A-Za-z0-9]*$/;
 const BOOK = /^[a-z][a-z0-9-]*$/;
 const groups = ['question', 'hint', 'explanation'];
 const answerGroups = ['correct', 'distractors', 'incorrect'];
-const factories = new Set(['defineSelectOneAnswer', 'defineText', 'defineQuizSection', 'defineMarkdown']);
+// Matches the canonical Engine questionTypes discriminator list.
+const questionTypes = ["selectOneAnswer","selectMultipleAnswers","matchBlocks","answerWithText","answerWithNumber","orderSequence","buildAnswerWithBlocks","fillBlanksWithBlocks","fillBlanksWithText"];
+const factories = new Set([...questionTypes.map(type => 'define' + type[0].toUpperCase() + type.slice(1)),
+  'defineText', 'defineQuizSection', 'defineMarkdown']);
 const sourceOf = Symbol('canonical source');
 const markdownOf = Symbol('Markdown file sources');
 
@@ -103,7 +106,24 @@ class StaticModules {
           if (exported) state.exports.add(d.name.text);
         }
       } else if (ts.isExportDeclaration(stmt) && !stmt.isTypeOnly) {
-        throw Error('Re-export is not a canonical authored module: ' + file);
+        // The canonical type index has explicit, named re-exports of
+        // <type>/<slug>.ts; there is no star export or runtime execution.
+        if (!stmt.moduleSpecifier || !ts.isStringLiteral(stmt.moduleSpecifier) ||
+            !stmt.exportClause || !ts.isNamedExports(stmt.exportClause) ||
+            !/^\.[/][A-Za-z][A-Za-z0-9]*$/.test(stmt.moduleSpecifier.text)) {
+          throw Error('Unsupported Question re-export: ' + file);
+        }
+        const target = path.resolve(path.dirname(file), stmt.moduleSpecifier.text) + '.ts';
+        safePath(this.root, target);
+        for (const entry of stmt.exportClause.elements) {
+          if (entry.isTypeOnly) continue;
+          const localName = entry.propertyName?.text ?? entry.name.text;
+          const exportedName = entry.name.text;
+          if (state.exports.has(exportedName) || state.imports.has(exportedName))
+            throw Error('Duplicate Question re-export: ' + exportedName);
+          state.exports.add(exportedName);
+          state.imports.set(exportedName, { file: target, exportName: localName });
+        }
       }
     }
     return state;
@@ -144,26 +164,6 @@ class StaticModules {
         } else throw Error('Unsupported object member: ' + context);
       }
       return value;
-    }
-    // Current flat Playground Quiz selects all bank entries using this one
-    // explicit static expression. Model that expression, not arbitrary JS.
-    if (ts.isCallExpression(node) && ts.isPropertyAccessExpression(node.expression) &&
-        node.expression.name.text === 'map' && node.arguments.length === 1 &&
-        ts.isArrowFunction(node.arguments[0])) {
-      const values = node.expression.expression;
-      const arrow = node.arguments[0];
-      const param = arrow.parameters[0]?.name;
-      if (ts.isCallExpression(values) && values.expression.getText(state.ast) === 'Object.values' &&
-          values.arguments.length === 1 && arrow.parameters.length === 1 && ts.isIdentifier(param) &&
-          ts.isPropertyAccessExpression(arrow.body) && ts.isIdentifier(arrow.body.expression) &&
-          arrow.body.expression.text === param.text && arrow.body.name.text === 'id') {
-        const registry = this.literal(values.arguments[0], state, context + '.registry');
-        if (!record(registry)) throw Error('Invalid static Object.values registry: ' + context);
-        return Object.values(registry).map(value => {
-          if (!record(value) || !UUID.test(value.id ?? '')) throw Error('Invalid static Question ID: ' + context);
-          return value.id;
-        });
-      }
     }
     if (ts.isPropertyAccessExpression(node)) {
       const container = this.literal(node.expression, state, context + '.owner');
@@ -207,83 +207,187 @@ class StaticModules {
   }
 }
 
+/**
+ * Sole canonical layout:
+ * questions/index.ts → questions/<type>/index.ts → questions/<type>/<slug>.ts.
+ * Each index is complete. Flat files, Question-folder index.ts and hidden
+ * unregistered Questions are intentionally rejected.
+ */
 function readBank(resolver, directory) {
   const index = resolver.module(path.join(directory, 'index.ts'));
-  const candidates = [...index.exports].filter(name => name === 'questions' || name.endsWith('Questions'));
-  if (candidates.length !== 1) throw Error('Expected one canonical Question bank export');
-  const bank = resolver.value(index, candidates[0], true);
-  exactKeys(bank, ['selectOneAnswer'], 'Question bank');
-  if (!record(bank.selectOneAnswer)) throw Error('Invalid Question registry');
+  if (!index.exports.has('questions')) throw Error('Missing canonical questions export');
+  const bank = resolver.value(index, 'questions', true);
+  if (!record(bank) || !Object.keys(bank).length) throw Error('Empty canonical Question registry');
+  for (const type of Object.keys(bank)) {
+    if (!questionTypes.includes(type)) throw Error('Unsupported Question type: ' + type);
+  }
+  const rootEntries = fs.readdirSync(directory, { withFileTypes: true }).filter(e => e.name !== 'index.ts');
+  if (rootEntries.length !== Object.keys(bank).length || rootEntries.some(e =>
+      e.isSymbolicLink() || !e.isDirectory() || !Object.hasOwn(bank, e.name))) {
+    throw Error('Legacy or unregistered root Question bank entry: ' + directory);
+  }
   const questions = [];
-  const names = Object.keys(bank.selectOneAnswer);
-  if (!names.length) throw Error('Empty canonical Question registry');
-  for (const name of names) {
-    if (!NAME.test(name)) throw Error('Unsafe Question slug: ' + name);
-    const q = bank.selectOneAnswer[name];
-    const modulePath = q?.[sourceOf];
-    const flat = path.join(directory, name + '.ts');
-    const modular = path.join(directory, 'selectOneAnswer', name, 'index.ts');
-    if (modulePath !== flat && modulePath !== modular) throw Error('Noncanonical Question import for ' + name);
-    if (!q || q.slug !== name || q.type !== 'selectOneAnswer' || !UUID.test(q.id ?? '') ||
-        typeof q.params?.assessmentMethod !== 'string' || !q.params.assessmentMethod.trim()) {
-      throw Error('Invalid canonical Question metadata: ' + name);
+  for (const [type, members] of Object.entries(bank)) {
+    const dir = path.join(directory, type);
+    validDirectory(dir);
+    if (!record(members) || !Object.keys(members).length) throw Error('Empty Question type: ' + type);
+    const typeIndex = resolver.module(path.join(dir, 'index.ts'));
+    const names = Object.keys(members);
+    if (names.some(n => !NAME.test(n)) || typeIndex.exports.size !== names.length ||
+        names.some(n => !typeIndex.exports.has(n))) {
+      throw Error('Question type index does not export every Question: ' + type);
     }
-    questions.push(q);
-  }
-  // No extra physical canonical entities can be omitted from the registry.
-  const flat = fs.readdirSync(directory, { withFileTypes: true }).filter(e => e.name.endsWith('.ts') && e.name !== 'index.ts');
-  for (const entry of flat) {
-    if (!entry.isFile() || !names.includes(entry.name.slice(0, -3))) throw Error('Unlisted/unsafe Question module: ' + entry.name);
-  }
-  const types = path.join(directory, 'selectOneAnswer');
-  if (fs.existsSync(types)) {
-    validDirectory(types);
-    for (const entry of fs.readdirSync(types, { withFileTypes: true })) {
-      if (!entry.isDirectory() || !names.includes(entry.name) || !fs.existsSync(path.join(types, entry.name, 'index.ts'))) {
-        throw Error('Unlisted/unsafe modular Question: ' + entry.name);
+    const physical = new Set();
+    for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+      const candidate = path.join(dir, entry.name);
+      if (entry.isSymbolicLink()) throw Error('Symlinked Question member: ' + candidate);
+      if (entry.name === 'index.ts' && entry.isFile()) continue;
+      if (entry.isFile() && entry.name.endsWith('.ts') && NAME.test(entry.name.slice(0, -3))) {
+        physical.add(entry.name.slice(0, -3));
+      } else if (entry.isDirectory() && names.includes(entry.name)) {
+        // ContentBlocks may be nested beside Question files under <slug>/,
+        // but these directories must not contain old Question entrypoints.
+        if (fs.existsSync(path.join(candidate, 'index.ts')))
+          throw Error('Legacy nested Question entrypoint: ' + candidate);
+      } else throw Error('Unexpected Question type entry: ' + candidate);
+    }
+    if (physical.size !== names.length || names.some(name => !physical.has(name))) {
+      throw Error('Question registry and physical type members disagree: ' + type);
+    }
+    for (const slug of names) {
+      const leaf = path.join(dir, slug + '.ts');
+      const typeExport = typeIndex.imports.get(slug);
+      if (!typeExport || typeExport.file !== leaf || !NAME.test(typeExport.exportName)) {
+        throw Error('Question type index must re-export ' + type + '/' + slug + '.ts');
       }
+      // The bank root must consume that type-level index, not leaf files.
+      const imports = [...index.imports.values()].filter(e =>
+        e.file === path.join(dir, 'index.ts') && e.exportName === slug);
+      if (imports.length !== 1) throw Error('Question bank index bypasses type index: ' + type + '/' + slug);
+      const question = members[slug];
+      if (!record(question) || question[sourceOf] !== leaf || question.slug !== slug ||
+          question.type !== type || !UUID.test(question.id ?? '') ||
+          typeof question.params?.assessmentMethod !== 'string') {
+        throw Error('Invalid canonical Question metadata: ' + type + '/' + slug);
+      }
+      questions.push(question);
     }
-  }
-  if (flat.length + (fs.existsSync(types) ? fs.readdirSync(types).length : 0) !== questions.length) {
-    throw Error('Question index is missing canonical entries or canonical modules disagree');
   }
   return questions;
 }
-function verifyCollection(group, context, seen, { empty = false } = {}) {
-  exactKeys(group, ['items', 'order'], context);
-  if (!record(group.items) || !Array.isArray(group.order) || (!empty && !group.order.length) ||
-      group.order.some(key => typeof key !== 'string' || !NAME.test(key)) ||
-      new Set(group.order).size !== group.order.length || Object.keys(group.items).length !== group.order.length ||
-      group.order.some(key => !Object.hasOwn(group.items, key))) {
-    throw Error('Invalid ordered Question blocks: ' + context);
-  }
-  for (const key of group.order) {
-    const block = group.items[key];
-    if (!block || block.type !== 'text' || block.slug !== key || !UUID.test(block.id ?? '') ||
-        !record(block.locale?.value) || typeof block.locale.value.en !== 'string' || !block.locale.value.en.trim()) {
-      throw Error('Unsupported/missing English Question Text: ' + context + '.' + key);
-    }
-    addId(seen, block.id, context + '.' + key);
-  }
-}
+
 function addId(seen, uuid, context) {
   if (typeof uuid !== 'string' || !UUID.test(uuid)) throw Error('Invalid UUID at ' + context);
   const id = uuid.toLowerCase();
   if (seen.has(id)) throw Error('Duplicate UUID ' + uuid + ' at ' + context + ' (was ' + seen.get(id) + ')');
   seen.set(id, context);
 }
-function verifyQuestions(questions, seen) {
+function verifyLocalized(locale, origin, context) {
+  if (!record(locale) || typeof locale[origin] !== 'string' || !locale[origin].trim())
+    throw Error('Missing original-language Question text at ' + context);
+}
+function verifyBlock(block, origin, seen, context) {
+  if (!record(block) || !['text', 'markdown'].includes(block.type) || !NAME.test(block.slug ?? '') ||
+      !record(block.locale) || !record(block.locale.value)) {
+    throw Error('Unsupported Question ContentBlock: ' + context);
+  }
+  verifyLocalized(block.locale.value, origin, context);
+  addId(seen, block.id, context);
+}
+function verifyCollection(group, context, origin, seen, { empty = false, item } = {}) {
+  exactKeys(group, ['items', 'order'], context);
+  if (!record(group.items) || !Array.isArray(group.order) ||
+      (!empty && !group.order.length) || new Set(group.order).size !== group.order.length ||
+      Object.keys(group.items).length !== group.order.length || group.order.some(key =>
+        !NAME.test(key) || !Object.hasOwn(group.items, key))) {
+    throw Error('Invalid ordered Question collection: ' + context);
+  }
+  for (const slug of group.order) {
+    const value = group.items[slug];
+    if (item) item(value, context + '.' + slug);
+    else {
+      if (value?.slug !== slug) throw Error('Question ContentBlock slug mismatch: ' + context + '.' + slug);
+      verifyBlock(value, origin, seen, context + '.' + slug);
+    }
+  }
+}
+function verifyQuestions(questions, seen, origin) {
+  const specialized = {
+    selectOneAnswer: ['answers'], selectMultipleAnswers: ['answers'],
+    matchBlocks: ['pairs'], answerWithText: [], answerWithNumber: [],
+    orderSequence: ['sequence'], buildAnswerWithBlocks: ['correctSequence', 'distractors'],
+    fillBlanksWithBlocks: ['slots', 'distractors'], fillBlanksWithText: ['slots'],
+  };
   for (const q of questions) {
-    addId(seen, q.id, 'Question ' + q.slug);
-    exactKeys(q.content, ['question', 'explanation', 'answers'], q.slug + '.content',
-      ['question', 'hint', 'explanation', 'answers']);
-    exactKeys(q.content.answers, answerGroups, q.slug + '.answers');
-    for (const key of groups) if (q.content[key]) verifyCollection(q.content[key], q.slug + '.' + key, seen);
-    for (const key of answerGroups) verifyCollection(q.content.answers[key], q.slug + '.answers.' + key, seen,
-      { empty: key !== 'correct' });
-    if (q.content.answers.correct.order.length !== 1 ||
-        q.content.answers.distractors.order.length + q.content.answers.incorrect.order.length === 0) {
-      throw Error('Invalid select-one-answer choices: ' + q.slug);
+    const context = q.type + '/' + q.slug;
+    addId(seen, q.id, 'Question ' + context);
+    exactKeys(q.content, ['question', ...specialized[q.type]], context + '.content',
+      ['question', 'hint', 'explanation', ...specialized[q.type]]);
+    for (const field of groups) {
+      if (q.content[field]) verifyCollection(q.content[field], context + '.' + field,
+        origin, seen, { empty: field !== 'question' });
+    }
+    if (q.type === 'selectOneAnswer' || q.type === 'selectMultipleAnswers') {
+      exactKeys(q.content.answers, answerGroups, context + '.answers');
+      for (const field of answerGroups) verifyCollection(q.content.answers[field],
+        context + '.answers.' + field, origin, seen, { empty: field !== 'correct' });
+      const correct = q.content.answers.correct.order.length;
+      if ((q.type === 'selectOneAnswer' && correct !== 1) ||
+          (q.type === 'selectMultipleAnswers' && correct < 1)) {
+        throw Error('Incorrect answer cardinality: ' + context);
+      }
+    } else if (q.type === 'matchBlocks') {
+      verifyCollection(q.content.pairs, context + '.pairs', origin, seen, {
+        item: (pair, location) => {
+          exactKeys(pair, ['left', 'right'], location);
+          verifyBlock(pair.left, origin, seen, location + '.left');
+          verifyBlock(pair.right, origin, seen, location + '.right');
+        },
+      });
+    } else if (q.type === 'orderSequence') {
+      verifyCollection(q.content.sequence, context + '.sequence', origin, seen);
+    } else if (q.type === 'buildAnswerWithBlocks') {
+      verifyCollection(q.content.correctSequence, context + '.correctSequence', origin, seen);
+      verifyCollection(q.content.distractors, context + '.distractors', origin, seen, { empty: true });
+    } else if (q.type === 'fillBlanksWithText' || q.type === 'fillBlanksWithBlocks') {
+      verifyCollection(q.content.slots, context + '.slots', origin, seen, {
+        item: (slot, location) => {
+          if (q.type === 'fillBlanksWithBlocks') {
+            exactKeys(slot, ['correctAnswer'], location);
+            verifyBlock(slot.correctAnswer, origin, seen, location + '.correctAnswer');
+          } else {
+            exactKeys(slot, ['correctAnswers'], location);
+            if (!record(slot.correctAnswers) || !Object.keys(slot.correctAnswers).length) {
+              throw Error('Missing slot text answers: ' + location);
+            }
+            for (const [key, locale] of Object.entries(slot.correctAnswers)) {
+              if (!NAME.test(key)) throw Error('Unsafe slot key: ' + location);
+              verifyLocalized(locale, origin, location + '.' + key);
+            }
+          }
+        },
+      });
+      if (q.type === 'fillBlanksWithBlocks') {
+        verifyCollection(q.content.distractors, context + '.distractors', origin, seen, { empty: true });
+      }
+    }
+    if (q.type === 'answerWithText') {
+      if (!record(q.locale?.correctAnswers) || !Object.keys(q.locale.correctAnswers).length) {
+        throw Error('Missing localized correct answers: ' + context);
+      }
+      for (const [key, locale] of Object.entries(q.locale.correctAnswers)) {
+        if (!NAME.test(key)) throw Error('Unsafe correct answer key: ' + context);
+        verifyLocalized(locale, origin, context + '.correctAnswers.' + key);
+      }
+    }
+    if (q.type === 'answerWithNumber' && (!Array.isArray(q.params?.correctAnswers) ||
+        !q.params.correctAnswers.length || q.params.correctAnswers.some(value =>
+          typeof value !== 'number' || !Number.isFinite(value)))) {
+      throw Error('Invalid numeric answers: ' + context);
+    }
+    if (['answerWithText','answerWithNumber','fillBlanksWithText',
+         'fillBlanksWithBlocks','buildAnswerWithBlocks'].includes(q.type)) {
+      verifyLocalized(q.locale?.placeholder, origin, context + '.placeholder');
     }
   }
 }
@@ -455,9 +559,10 @@ export function generateQuestionReviewArtifacts({ root, output, manifest, saveMa
         const resolver = new StaticModules(lesson.lesson);
         const questions = readBank(resolver, lesson.questions);
         const seen = new Map();
-        verifyQuestions(questions, seen);
-        const quiz = readQuizSections(resolver, lesson.lesson, new Set(questions.map(q => q.id.toLowerCase())), seen);
         const origin = sourceLanguage(resolver, lesson.lesson);
+        verifyQuestions(questions, seen, origin);
+        const quiz = readQuizSections(resolver, lesson.lesson, new Set(questions.map(q => q.id.toLowerCase())), seen);
+
         const lines = [
           '<!-- GENERATED FROM CODE; DO NOT EDIT. -->',
           '# Question and Quiz translation reference — ' + book + ' / ' + lesson.id + ' / ' + locale,
@@ -470,27 +575,61 @@ export function generateQuestionReviewArtifacts({ root, output, manifest, saveMa
           missing += gaps;
           if (quizField) quizStrings += count;
         };
+
         for (const q of questions) {
-          lines.push('## ' + q.slug, '', '- Question UUID: ' + q.id, '- Type: ' + q.type,
+          const context = q.type + '/' + q.slug;
+          lines.push('## ' + context, '', '- Question UUID: ' + q.id, '- Type: ' + q.type,
             '- Assessment method: ' + text(q.params.assessmentMethod),
-            '- Code: ' + link(destination, root, q[sourceOf]), '',
-            '- Correct option: ' + q.content.answers.correct.order[0] + ' (' +
-            q.content.answers.correct.items[q.content.answers.correct.order[0]].id + ')', '');
-          for (const group of groups) {
-            if (!q.content[group]) continue;
-            lines.push('### ' + group, '');
-            for (const name of q.content[group].order) {
-              accumulate(emitField(lines, q.content[group].items[name], group + '/' + name,
-                origin, locale, destination, root));
-            }
+            '- Canonical Code: ' + link(destination, root, q[sourceOf]), '');
+          if (q.content.answers) {
+            const answer = q.content.answers.correct;
+            lines.push('- Correct options (' + answer.order.length + '): ' +
+              answer.order.map(slug => slug + ' (' + answer.items[slug].id + ')').join(', '), '');
           }
-          for (const group of answerGroups) {
-            lines.push('### answers / ' + group, '');
-            for (const name of q.content.answers[group].order) {
-              accumulate(emitField(lines, q.content.answers[group].items[name], 'answers/' + group + '/' + name,
-                origin, locale, destination, root));
+          if (q.content.pairs) {
+            lines.push('- Matching pairs (ordered): ' + q.content.pairs.order.length, '');
+            for (const slug of q.content.pairs.order) {
+              const pair = q.content.pairs.items[slug];
+              lines.push('- Pair ' + slug + ': ' + pair.left.id + ' → ' + pair.right.id);
             }
+            lines.push('');
           }
+          if (q.params?.correctAnswers && q.type === 'answerWithNumber') {
+            lines.push('- Correct numeric answers: ' + q.params.correctAnswers.join(', '), '');
+          }
+          // All localized text ContentBlocks and slot answer dictionaries are
+          // traversed in their authored order; no unsupported type is skipped.
+          const emitNode = (node, label) => {
+            if (record(node) && (node.type === 'text' || node.type === 'markdown')) {
+              accumulate(emitField(lines, node, label, origin, locale, destination, root));
+              return;
+            }
+            if (record(node) && Object.hasOwn(node, 'items') && Object.hasOwn(node, 'order')) {
+              for (const slug of node.order) emitNode(node.items[slug], label + '/' + slug);
+              return;
+            }
+            if (record(node) && typeof node[origin] === 'string') {
+              accumulate(emitLocalized(lines, node, label, q.id, origin, locale,
+                q[sourceOf], destination, root));
+              return;
+            }
+            if (record(node)) {
+              for (const [key, child] of Object.entries(node)) {
+                emitNode(child, label + '/' + key);
+              }
+              return;
+            }
+            throw Error('Unsupported Question review field: ' + context + '/' + label);
+          };
+          // Stable ordering: prompt/hint/explanation before answers or pairs.
+          for (const name of groups) {
+            if (q.content[name]) emitNode(q.content[name], name);
+          }
+          for (const [key, value] of Object.entries(q.content)) {
+            if (!groups.includes(key)) emitNode(value, key);
+          }
+          if (q.locale?.placeholder) emitNode(q.locale.placeholder, 'locale/placeholder');
+          if (q.locale?.correctAnswers) emitNode(q.locale.correctAnswers, 'locale/correctAnswers');
         }
         for (const section of quiz) {
           lines.push('## Quiz Section / ' + section.slug, '', '- Section UUID: ' + section.id,
