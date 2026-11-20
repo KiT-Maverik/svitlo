@@ -18,7 +18,8 @@
     "content:generate:scenes": "node ../../scripts/textbook-tooling/generateScenes/generate-scenes.mjs --write",
     "content:check:scenes": "node ../../scripts/textbook-tooling/generateScenes/generate-scenes.mjs --check",
     "test:components": "vitest run",
-    "code:check:scenes": "tsc -p tsconfig.scenes.json --noEmit"
+    "code:check:scenes": "tsc -p tsconfig.scenes.json --noEmit",
+    "test": "npm run code:check:scenes && vitest run"
   },
   "dependencies": {
     "@svitlo/engine": "0.0.0",
