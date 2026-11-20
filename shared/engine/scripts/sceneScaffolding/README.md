@@ -1,5 +1,7 @@
 # React Scene draft scaffolding
 
+**Lesson workflow:** this is an optional create-only helper within [Lesson Stage 6.3 Implement and integrate Scenes](../../../../studio/skills/lesson-workflow/create-lesson-flow.skill.md); the required implementation, registration and tests are governed by [Implement Scene](../../../../studio/skills/lesson-workflow/implement-scene.skill.md). Stage 6.1 still generates only `defineScene` Config/specification source, and Stage 6.2 completes strict typed Lesson resources. The helper alone never completes Stage 6.3.
+
 An **opt-in, separate** Engine workflow for executable React Scene drafts. It reads
 a single Lesson technical `lesson.yaml` (including nested Carousel/Quest Scenes)
 and the authored `production.specification` belonging to each Scene's UUID.
