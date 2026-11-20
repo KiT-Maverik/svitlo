@@ -77,8 +77,8 @@ test('complete independent bank is generated without requiring a Quiz Section', 
   assert.match(files.get('questions/index.ts'), /firstQuestion/);
   assert.match(files.get('questions/index.ts'), /secondQuestion/);
   const typeIndex = files.get('questions/selectOneAnswer/index.ts');
-  assert.match(typeIndex, /export \{ firstQuestion \} from '\.\/firstQuestion'/);
-  assert.match(typeIndex, /export \{ secondQuestion \} from '\.\/secondQuestion'/);
+  assert.match(typeIndex, /export \{ firstQuestion \} from "\.\/firstQuestion"/);
+  assert.match(typeIndex, /export \{ secondQuestion \} from "\.\/secondQuestion"/);
   assert.match(files.get('questions/index.ts'), /from "\.\/selectOneAnswer"/);
   assert.ok(
     [...files].every(
