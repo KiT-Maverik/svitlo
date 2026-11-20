@@ -9,7 +9,10 @@ export const responseBeta = defineText<"responseBeta", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Сонце відбиває світло Місяця."
+      uk: "Сонце відбиває світло Місяця.",
+      en: "The Sun reflects the Moon's light.",
+      pl: "Słońce odbija światło Księżyca.",
+      qm: "Küneş Aynıñ yarığını qaytara."
     }
   }
 });

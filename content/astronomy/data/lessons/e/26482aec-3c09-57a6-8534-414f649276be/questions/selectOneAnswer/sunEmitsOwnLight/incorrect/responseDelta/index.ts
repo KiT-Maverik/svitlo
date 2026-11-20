@@ -9,7 +9,10 @@ export const responseDelta = defineText<"responseDelta", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Сонце — одна з планет, бо навколо нього є інші планети."
+      uk: "Сонце — одна з планет, бо навколо нього є інші планети.",
+      en: "The Sun is one of the planets because other planets are near it.",
+      pl: "Słońce jest jedną z planet, bo wokół niego znajdują się inne planety.",
+      qm: "Küneş seyyarelerden biridir, çünki onıñ etrafında başqa seyyareler bar."
     }
   }
 });

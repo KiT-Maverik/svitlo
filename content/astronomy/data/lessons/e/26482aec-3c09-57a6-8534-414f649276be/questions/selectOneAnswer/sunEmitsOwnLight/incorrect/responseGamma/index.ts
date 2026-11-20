@@ -9,7 +9,10 @@ export const responseGamma = defineText<"responseGamma", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Сонце виглядає найбільшим на малюнку."
+      uk: "Сонце виглядає найбільшим на малюнку.",
+      en: "The Sun looks the largest in the drawing.",
+      pl: "Słońce wygląda na największe na rysunku.",
+      qm: "Küneş resimde eñ büyük körüne."
     }
   }
 });

@@ -9,7 +9,10 @@ export const hintText = defineText<"hintText", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Не переплутай тіло, яке рухається, з тілом, навколо якого воно рухається."
+      uk: "Не переплутай тіло, яке рухається, з тілом, навколо якого воно рухається.",
+      en: "Do not confuse the body that moves with the body it moves around.",
+      pl: "Nie pomyl ciała, które się porusza, z ciałem, wokół którego ono krąży.",
+      qm: "Areket etken cisim ile o cisim etrafında aylanğan merkezni qarıştırma."
     }
   }
 });

@@ -9,7 +9,10 @@ export const earthRight = defineText<"earthRight", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Сонце"
+      uk: "Сонце",
+      en: "Sun",
+      pl: "Słońce",
+      qm: "Küneş"
     }
   }
 });

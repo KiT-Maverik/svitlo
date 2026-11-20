@@ -9,7 +9,10 @@ export const prompt = defineText<"prompt", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Яке твердження найкраще пояснює, чому Сонце є зорею?"
+      uk: "Яке твердження найкраще пояснює, чому Сонце є зорею?",
+      en: "Which statement best explains why the Sun is a star?",
+      pl: "Które stwierdzenie najlepiej wyjaśnia, dlaczego Słońce jest gwiazdą?",
+      qm: "Küneşniñ yıldız olğanını angi fikir eñ yahşı añlata?"
     }
   }
 });

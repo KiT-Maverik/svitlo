@@ -9,7 +9,10 @@ export const hintText = defineText<"hintText", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Згадай відмінність між світлом, яке тіло випромінює саме, і світлом, яке воно відбиває."
+      uk: "Згадай відмінність між світлом, яке тіло випромінює саме, і світлом, яке воно відбиває.",
+      en: "Recall the difference between light a body produces itself and light it reflects.",
+      pl: "Przypomnij sobie różnicę między światłem, które ciało samo wysyła, a światłem, które odbija.",
+      qm: "Cisimniñ özü saçqan yarıq ile qaytarğan yarıq arasındaki farqnı hatırla."
     }
   }
 });

@@ -9,7 +9,10 @@ export const explanationText = defineText<"explanationText", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Земля рухається навколо Сонця; Місяць рухається навколо Землі. Водночас Місяць разом із Землею подорожує навколо Сонця — це не скасовує його руху навколо Землі."
+      uk: "Земля рухається навколо Сонця; Місяць рухається навколо Землі. Водночас Місяць разом із Землею подорожує навколо Сонця — це не скасовує його руху навколо Землі.",
+      en: "Earth travels around the Sun; the Moon travels around Earth. At the same time, the Moon travels around the Sun together with Earth. This does not cancel out its motion around Earth.",
+      pl: "Ziemia krąży wokół Słońca, a Księżyc wokół Ziemi. Jednocześnie Księżyc razem z Ziemią wędruje wokół Słońca. Nie oznacza to, że przestaje krążyć wokół Ziemi.",
+      qm: "Yer Küneş etrafında, Ay ise Yer etrafında aylana. Aynı vaqıtta Ay Yer ile beraber Küneş etrafında da areket ete. Bu, Aynıñ Yer etrafındaki areketini yoqqa çıqarmay."
     }
   }
 });

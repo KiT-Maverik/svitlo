@@ -9,7 +9,10 @@ export const responseAlpha = defineText<"responseAlpha", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Сонце саме випромінює світло."
+      uk: "Сонце саме випромінює світло.",
+      en: "The Sun produces its own light.",
+      pl: "Słońce wysyła własne światło.",
+      qm: "Küneş öz yarığını saça."
     }
   }
 });

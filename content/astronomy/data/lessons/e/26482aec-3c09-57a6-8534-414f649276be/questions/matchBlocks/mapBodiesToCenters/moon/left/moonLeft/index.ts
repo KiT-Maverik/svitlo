@@ -9,7 +9,10 @@ export const moonLeft = defineText<"moonLeft", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Місяць"
+      uk: "Місяць",
+      en: "Moon",
+      pl: "Księżyc",
+      qm: "Ay"
     }
   }
 });
