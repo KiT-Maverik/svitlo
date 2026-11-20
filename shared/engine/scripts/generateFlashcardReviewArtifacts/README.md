@@ -1,0 +1,11 @@
+# Source-pinned Flashcard Bank translation references
+
+This named, read-only adapter renders **the complete statically authored Flashcard bank**, not just the Lesson's selected `flashcardIds`, as a bounded Markdown reference for one requested `content/<book>/data/lessons/<bucket>/<uuid>/flashcards/index.ts` and language.
+
+The canonical entrypoint is [generate-translation-review-artifacts.mjs](../../../../scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.mjs), invoked via `--kind flashcards --package content/<book> --lesson <uuid> --locale <language>` or the authorized `/agent-artifacts generate flashcards content/<book> <uuid> <language>` command on the **existing Flashcards entity PR**. The adapter is not a publisher, translator, authoring tool or review-approval system.
+
+It uses the current TypeScript AST **without executing arbitrary bank code**. Supports the generated `defineFlashcard`, `defineFlashcardSide` and nested `define*` literal structure, including source-language metadata spread and full bank registry. Traverses all card sides and nested locale dictionaries, displays source/target text, IDs, flags and source links tied to `manifest.sourceCommit`, and produces `missing`/`reviewReady` diagnostics. Dynamic expressions, unrecognized imports, incomplete/mismatched identifiers, symlinks, oversized files and missing authoring context fail the requested scope instead of silently omitting cards or declaring review readiness. Other entity/locales are not touched.
+
+The shared manifest records the requested kind/textbook/Lesson UUID/locale, exact source SHA, generated document, count of card and localized fields, missing translations and failures. Reviewers independently verify the scoped document and perform any authorized fixes **on that same Flashcards PR branch**, followed by regenerated/reviewed evidence. `/agent-artifacts cleanup` removes temporary Markdown before integration. Source language, meanings, reviewed vocabulary, locale completeness, typechecks, physical media and real publication are still independent requirements. A passing artifact generator is **not** linguistic approval.
+
+Regression tests: `node --test shared/engine/scripts/generateFlashcardReviewArtifacts/generate-flashcard-review-artifacts.spec.mjs`.
