@@ -4,6 +4,8 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "content:generate:scenes": "node ../../scripts/textbook-tooling/generateScenes/generate-scenes.mjs --write",
+    "content:check:scenes": "node ../../scripts/textbook-tooling/generateScenes/generate-scenes.mjs --check",
     "package:build": "node ../../scripts/textbook-tooling/buildTextbook/build.mjs",
     "code:check:types": "tsc -p tsconfig.json --noEmit",
     "code:lint:check": "eslint textbook.ts",
@@ -14,10 +16,13 @@
     "prepack": "npm run package:build",
     "code:format:check": "prettier --check . --ignore-path ../../.prettierignore",
     "code:format:fix": "prettier --write . --ignore-path ../../.prettierignore",
-    "code:lint:fix": "eslint textbook.ts --fix"
+    "code:lint:fix": "eslint textbook.ts --fix",
+    "test:components": "vitest run",
+    "code:check:scene-types": "tsc -p tsconfig.scenes.json --noEmit"
   },
   "dependencies": {
-    "@svitlo/engine": "0.0.0"
+    "@svitlo/engine": "0.0.0",
+    "@svitlo/ui-kit": "0.0.0"
   },
   "devDependencies": {
     "@types/node": "^20",
@@ -25,7 +30,13 @@
     "typescript": "^5",
     "eslint": "^9",
     "@typescript-eslint/parser": "^8.72.0",
-    "@typescript-eslint/eslint-plugin": "^8.72.0"
+    "@typescript-eslint/eslint-plugin": "^8.72.0",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "vitest": "^3.2.4",
+    "jsdom": "^26.1.0"
   },
   "bin": {
     "svitlo-astronomy": "./dist/publish.mjs"
@@ -37,10 +48,18 @@
     ".": {
       "types": "./dist/textbook/index.d.ts",
       "default": "./dist/textbook/index.js"
+    },
+    "./scenes": {
+      "types": "./dist/scenes/index.d.ts",
+      "default": "./dist/scenes/index.js"
     }
   },
   "imports": {
     "#lessonsData/*": "./data/lessons/*.ts",
     "#coursesData/*": "./data/courses/*.ts"
+  },
+  "peerDependencies": {
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0"
   }
 }

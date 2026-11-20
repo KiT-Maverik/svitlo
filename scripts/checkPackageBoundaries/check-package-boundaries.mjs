@@ -52,10 +52,16 @@ for (const path of migratedTextbookPaths) {
       pkg.exports?.['.']?.types === './dist/textbook/index.d.ts',
     'Book must expose compiled metadata: ' + path,
   );
+  const sceneExport = pkg.exports?.['./scenes'];
   assert(
-    !pkg.exports?.['./scenes'] && !pkg.exports?.['./styles'],
-    'Do not publish fabricated Scenes or styles: ' + path,
+    !sceneExport ||
+      (sceneExport.default === './dist/scenes/index.js' &&
+        sceneExport.types === './dist/scenes/index.d.ts' &&
+        existsSync(resolve(root, path, 'scenes/index.ts')) &&
+        existsSync(resolve(root, path, 'scenes/sceneLoader.ts'))),
+    'Only publish implemented, compiled Scenes: ' + path,
   );
+  assert(!pkg.exports?.['./styles'], 'Do not publish fabricated styles: ' + path);
 }
 assert(platform.name === '@svitlo/platform', 'Unexpected Platform package name');
 assert(

@@ -434,6 +434,30 @@ test('Skill IDs resolve to imported source symbols rather than hard-coded UUIDs'
     assert.doesNotMatch(code, new RegExp(skillId));
   }));
 
+test('canonical .ts Skill modules resolve without relying on legacy .data.ts names', () =>
+  fixture(f => {
+    const skillId = id(98);
+    const folder = path.join(f.workspace, 'data/skills/observingTheSky/observationPractice');
+    fs.mkdirSync(folder, { recursive: true });
+    fs.writeFileSync(
+      path.join(folder, 'astronomicalObservationRecords.ts'),
+      "import { defineSkill } from '@svitlo/engine/build';\n" +
+        "export const astronomicalObservationRecords = defineSkill({ slug: 'astronomicalObservationRecords', id: '" +
+        skillId + "' });\n",
+    );
+    fs.writeFileSync(
+      path.join(folder, 'index.ts'),
+      "export { astronomicalObservationRecords } from './astronomicalObservationRecords';\n",
+    );
+    f.config.skills = [skillId];
+    f.save();
+    runOne(f.lesson, 'generate', f.root);
+    const code = fs.readFileSync(f.generated('index.ts'), 'utf8');
+    assert.match(code, /import \{ astronomicalObservationRecords \} from/);
+    assert.match(code, /skills: \[astronomicalObservationRecords\.id\]/);
+    assert.doesNotMatch(code, new RegExp(skillId));
+  }));
+
 test('canonical .ts Skill files resolve to real symbols without a .data suffix', () =>
   fixture(f => {
     const skillId = id(100);
