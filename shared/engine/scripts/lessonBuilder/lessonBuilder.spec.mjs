@@ -1437,3 +1437,26 @@ test('do not silently infer approved ordering for nested Section ContentBlocks',
     /Approved assessment content.order missing/,
   );
 });
+
+
+test('missing source-language assessment labels retain approved other-language labels', () => {
+  const config = lessonConfig();
+  config.section.items.cards = {
+    id: id(107), slug: 'cards', type: 'flashcards',
+    params: {},
+    locale: {
+      title: { en: 'Reviewed flashcard title' },
+      navigationLabel: { en: 'Reviewed navigation' },
+    },
+    content: { items: {}, order: [] },
+  };
+  config.section.order.push('cards');
+  const result = prepareAssessmentDraft({
+    config: wrap(config).config,
+    production: { documentLanguage: 'uk', flashcardsRequired: true },
+  });
+  const locale = result.lesson.section.items.cards.config.locale;
+  assert.deepEqual(locale.title, { en: 'Reviewed flashcard title', uk: 'PENDING FLASHCARDS' });
+  assert.deepEqual(locale.navigationLabel, { en: 'Reviewed navigation', uk: 'PENDING FLASHCARDS' });
+  assert.ok(result.pending[0].provisionalFields.includes('$.locale.title'));
+});
