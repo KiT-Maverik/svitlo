@@ -420,6 +420,13 @@ test('workflow runs trusted default branch code only and isolates publish permis
     /--ignore-scripts/,
   );
   assert(workflow.jobs.analyze.steps.some(step => step.run?.includes('lesson-materialization.mjs analyze')));
-  assert(workflow.jobs.publish.steps.some(step => step.run?.includes('lesson-materialization.mjs publish')));
+  const publishSteps = workflow.jobs.publish.steps;
+  const installStep = publishSteps.find(
+    step => step['working-directory'] === 'trusted' && step.run?.includes('npm ci'),
+  );
+  assert.match(installStep?.run ?? '', /--ignore-scripts/);
+  assert.equal(installStep?.env?.GH_TOKEN, undefined);
+  assert(publishSteps.indexOf(installStep) < publishSteps.findIndex(step => step.run?.includes('lesson-materialization.mjs publish')));
+  assert(publishSteps.some(step => step.run?.includes('lesson-materialization.mjs publish')));
   assert(!workflow.jobs['register-lessons']);
 });
