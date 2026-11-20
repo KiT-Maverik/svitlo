@@ -99,7 +99,6 @@ test('Fully specified Episodes are not forbidden at Stage 2, while TMP placehold
   assert.equal(checkPlan(temporary, '3-complete').valid, false);
 });
 
-
 test('Stage 3 complete accepts inline Course-specific Lesson edits only for verified reuse', () => {
   const existing = {
     ...lesson,
@@ -121,10 +120,7 @@ test('Stage 3 complete accepts inline Course-specific Lesson edits only for veri
   assert.equal(newResult.valid, false);
   assert.match(newResult.errors.join('; '), /Course-local Lesson edits require an existing lessonId/);
 
-  const illegalLanguages = checkPlan(
-    wrapped({ ...existing, params: { languages: ['en'] } }),
-    '3-complete',
-  );
+  const illegalLanguages = checkPlan(wrapped({ ...existing, params: { languages: ['en'] } }), '3-complete');
   assert.equal(illegalLanguages.valid, false);
 
   const illegalIdentity = checkPlan(wrapped({ ...existing, id: skillId }), '3-complete');

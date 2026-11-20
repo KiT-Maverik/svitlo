@@ -83,15 +83,15 @@ export function checkPlan(plan, stage) {
               const branch = engineSectionSchema.oneOf.findIndex(
                 entry => entry.properties?.type?.const === section.type,
               );
-              const errorsForType = (validateSection.errors ?? []).filter(
-                issue => issue.schemaPath.startsWith('#/oneOf/' + branch + '/'),
+              const errorsForType = (validateSection.errors ?? []).filter(issue =>
+                issue.schemaPath.startsWith('#/oneOf/' + branch + '/'),
               );
-              const issue = errorsForType.find(issue => issue.keyword !== 'oneOf') ??
-                (validateSection.errors ?? [])[0];
+              const issue = errorsForType.find(issue => issue.keyword !== 'oneOf') ?? (validateSection.errors ?? [])[0];
               if (issue) {
-                const suffix = issue.keyword === 'required' && issue.params?.missingProperty
-                  ? '/' + issue.params.missingProperty
-                  : issue.instancePath ?? '';
+                const suffix =
+                  issue.keyword === 'required' && issue.params?.missingProperty
+                    ? '/' + issue.params.missingProperty
+                    : (issue.instancePath ?? '');
                 errors.push(at + suffix + ': ' + issue.message + ' (Engine Section schema)');
               } else {
                 errors.push(at + ': invalid Engine Section config');

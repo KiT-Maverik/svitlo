@@ -485,10 +485,7 @@ test('Course-only override rejects unsupported identities and new Lesson patches
 
   delete withEdit.content.items.review.lessonId;
   withEdit.content.items.review.methodology = 'New Lesson needs independently authored methodology.';
-  assert.throws(
-    () => technicalFromEditorial(withEdit),
-    /Course-local Lesson edits require an existing lessonId/,
-  );
+  assert.throws(() => technicalFromEditorial(withEdit), /Course-local Lesson edits require an existing lessonId/);
 });
 
 test('Reuse source metadata must cover requested Skills and Course locales without owning placement slugs', () => {
@@ -556,7 +553,10 @@ test('Course-local Section additions render real typed configurators and nested 
   assert.match(output, /paragraph:\s*defineMarkdown\(/);
   assert.match(output, /order:\s*\[\s*"fieldNotes"/);
   assert.match(output, /spaceCourse\.build\.overrides\(/);
-  assert.equal(ts.createSourceFile('CourseOverride.ts', output, ts.ScriptTarget.Latest, true).parseDiagnostics.length, 0);
+  assert.equal(
+    ts.createSourceFile('CourseOverride.ts', output, ts.ScriptTarget.Latest, true).parseDiagnostics.length,
+    0,
+  );
   assert(!output.includes('raw YAML'));
   assert(!output.includes('config.yaml'));
 });
@@ -579,14 +579,8 @@ test('Course-local Section additions reject missing canonical Engine fields and 
     locale: { title: { en: 'Field notes' }, navigationLabel: { en: 'Notes' } },
     content: { items: {}, order: [] },
   };
-  assert.throws(
-    () => technicalFromEditorial(configured),
-    /section\/additionalItems\/fieldNotes\/slug: must match/,
-  );
+  assert.throws(() => technicalFromEditorial(configured), /section\/additionalItems\/fieldNotes\/slug: must match/);
   configured.content.items.review.section.additionalItems.fieldNotes.slug = 'fieldNotes';
   delete configured.content.items.review.section.order;
-  assert.throws(
-    () => technicalFromEditorial(configured),
-    /section\/order: full Section order is required/,
-  );
+  assert.throws(() => technicalFromEditorial(configured), /section\/order: full Section order is required/);
 });

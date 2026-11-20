@@ -201,14 +201,22 @@ export function technicalFromEditorial(plan, resolveLesson = () => null) {
             const knownSkills = new Set(source.skills.map(value => value.toLowerCase()));
             for (const skill of child.skills) {
               if (!knownSkills.has(skill.toLowerCase())) {
-                fail(placement + '/skills: reused Lesson ' + child.lessonId + ' does not teach verified Skill ' + skill);
+                fail(
+                  placement + '/skills: reused Lesson ' + child.lessonId + ' does not teach verified Skill ' + skill,
+                );
               }
             }
           }
           if (Array.isArray(source.languages)) {
             for (const language of plan.supportedLanguages) {
               if (!source.languages.includes(language)) {
-                fail(placement + '/lessonId: reused Lesson ' + child.lessonId + ' does not support Course locale ' + language);
+                fail(
+                  placement +
+                    '/lessonId: reused Lesson ' +
+                    child.lessonId +
+                    ' does not support Course locale ' +
+                    language,
+                );
               }
             }
           }
@@ -493,9 +501,7 @@ export function renderModularCourse(
 ) {
   const { config } = technical;
   const lessonPatches = courseLessonPatchesFromEditorial(technical.authored.content);
-  const lessonOverride = Object.keys(lessonPatches).length
-    ? renderCourseLessonOverrideSource(lessonPatches)
-    : null;
+  const lessonOverride = Object.keys(lessonPatches).length ? renderCourseLessonOverrideSource(lessonPatches) : null;
   const nodes = [{ node: config, file: 'index.ts' }];
   const paths = new Set(['index.ts']);
   const files = new Map();
