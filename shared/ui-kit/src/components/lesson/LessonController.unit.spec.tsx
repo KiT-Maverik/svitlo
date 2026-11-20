@@ -364,10 +364,10 @@ describe('Engine Props Lesson Controller', () => {
           skippable: false,
         },
         results: { visibility: 'immediate', showScore: true },
-        screen: {},
+        screen: { starting: { content: ['quizIntro'] } },
       },
       locale: { title: 'Quiz', navigationLabel: 'Quiz' },
-      content: [],
+      content: [{ ...text(105, 'Read the directions before answering.'), slug: 'quizIntro' }],
     };
     // Published Question Props arrive as JSON, without source-only TypeScript metadata.
     response.section = [quiz, response.section[1]];
@@ -381,9 +381,14 @@ describe('Engine Props Lesson Controller', () => {
     };
     showLesson(response, [], loader);
     expect(navigationButton('next')).toBeDisabled();
+    const intro = await screen.findByRole('region', { name: 'Quiz' });
+    expect(within(intro).getByText('Read the directions before answering.')).toBeVisible();
+    expect(screen.queryByText('Question about light')).toBeNull();
+    fireEvent.click(within(intro).getByRole('button', { name: enUiKitMessages.learningLayout.actions.next }));
     fireEvent.click(await screen.findByRole('radio', { name: /Radiation/i }));
     fireEvent.click(screen.getByRole('button', { name: enUiKitMessages.questionFrame.check }));
     await waitFor(() => expect(navigationButton('next')).toBeEnabled());
+    expect(screen.getByText('Correct answers: 1 of 1')).toBeVisible();
     expect(received).toContain('quizCompleted');
     fireEvent.click(navigationButton('next'));
     expect(screen.getByText('Second section content')).toBeVisible();
