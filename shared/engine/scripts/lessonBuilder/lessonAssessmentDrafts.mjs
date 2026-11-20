@@ -29,9 +29,20 @@ const hasIds = ids =>
   ids.every(id => typeof id === 'string' && uuid.test(id) && !isPendingAssessmentUuid(id)) &&
   new Set(ids).size === ids.length;
 
-export function hasCompleteAssessmentParams(config) {
+export function hasCompleteAssessmentParams(config, sourceLanguage) {
   const params = config?.params;
   if (params?.disabled === true) return false;
+  const textIsPresent = value =>
+    typeof value === 'string'
+      ? value.trim().length > 0
+      : isRecord(value) && (
+          sourceLanguage
+            ? typeof value[sourceLanguage] === 'string' && value[sourceLanguage].trim().length > 0
+            : Object.values(value).some(text => typeof text === 'string' && text.trim().length > 0)
+        );
+  if (!textIsPresent(config?.locale?.title) || !textIsPresent(config?.locale?.navigationLabel)) return false;
+  if (!isRecord(config?.content) || !isRecord(config.content.items) || !Array.isArray(config.content.order))
+    return false;
   if (config?.type === 'flashcards') return hasIds(params?.selection?.flashcardIds);
   if (config?.type !== 'quiz') return true;
   const selection = params?.selection;
@@ -191,7 +202,9 @@ export function prepareAssessmentDraft(document) {
     for (const slug of order) {
       const wrapper = items[slug];
       const section = wrapper?.config;
-      if (section?.type !== type || (section.params?.disabled !== true && hasCompleteAssessmentParams(section))) continue;
+      if (section?.type !== type ||
+          (section.params?.disabled !== true &&
+            hasCompleteAssessmentParams(section, document.production?.documentLanguage))) continue;
       if (document.config.section?.items?.[slug]) {
         handoffs[type].items[slug] = structuredClone(document.config.section.items[slug]);
       } else {
