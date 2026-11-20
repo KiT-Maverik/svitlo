@@ -22,7 +22,7 @@ Scene directory so implementers can work at that location.
 UUID directory already exists, including partially created or manually edited
 trees. It never replaces a file. `check` verifies expected file presence only;
 it does **not** compare human-completed implementation bytes to a draft template.
-No discovery or generation occurs without an explicitly selected Lesson source.
+No discovery or generation occurs without an explicitly selected Lesson source. **Run this optional scaffold before an authorized `/lesson finalize` removes the original `lesson.yaml`; the generator currently reads that file rather than a derived `specification.md`.**
 
 New executable Scenes use the safe PascalCase component name from the authored
 Scene slug; legacy `lightRayDiagram` becomes `LightRayDiagram`. The intended
