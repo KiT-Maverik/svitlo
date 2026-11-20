@@ -14,7 +14,7 @@ import ts from 'typescript';
 import YAML from 'yaml';
 import { parseYaml, checkPlan } from '../validateCourseFlow/validate-course-flow.mjs';
 import { buildLessonIndex } from '../generateLessonsBySkill/lesson-index.mjs';
-import { renderEpisodeScaffoldSource } from './episode-draft-renderer.mjs';
+import { renderEpisodeScaffoldSource, renderCourseLessonOverrideSource } from './episode-draft-renderer.mjs';
 
 const rootDefault = path.resolve(fileURLToPath(new URL('../../../..', import.meta.url)));
 const UUID = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/;
@@ -474,13 +474,6 @@ export function courseLessonPatchesFromEditorial(collection, parent = []) {
       }
       if (Object.keys(patch).length) {
         if (!child.lessonId) fail('Course-local Lesson override requires existing lessonId at ' + position);
-        if (patch.section?.additionalItems && Object.keys(patch.section.additionalItems).length) {
-          fail(
-            'Course-local Section additions at ' +
-              position +
-              '/section/additionalItems require typed standalone Section configurators; cannot serialize YAML into Build items',
-          );
-        }
         items[slug] = patch;
       }
     } else if (child.type === 'module' || child.type === 'chapter') {
@@ -500,6 +493,9 @@ export function renderModularCourse(
 ) {
   const { config } = technical;
   const lessonPatches = courseLessonPatchesFromEditorial(technical.authored.content);
+  const lessonOverride = Object.keys(lessonPatches).length
+    ? renderCourseLessonOverrideSource(lessonPatches)
+    : null;
   const nodes = [{ node: config, file: 'index.ts' }];
   const paths = new Set(['index.ts']);
   const files = new Map();
@@ -609,8 +605,14 @@ export function renderModularCourse(
           ([specifier, bindings]) =>
             'import { ' + bindings.sort().join(', ') + ' } from ' + JSON.stringify(specifier) + ';',
         );
+    const factoryName = 'define' + node.type[0].toUpperCase() + node.type.slice(1);
     const packageImports = [
-      'import { define' + node.type[0].toUpperCase() + node.type.slice(1) + " } from '@svitlo/engine/build';",
+      'import { ' +
+        [factoryName, ...(node.type === 'course' ? (lessonOverride?.factories ?? []) : [])]
+          .filter((name, index, names) => names.indexOf(name) === index)
+          .sort()
+          .join(', ') +
+        " } from '@svitlo/engine/build';",
     ];
     const aliasImports = renderImports('#');
     const constants = '#coursesData/' + config.id.at(-1) + '/' + config.id + '/constants';
@@ -623,7 +625,6 @@ export function renderModularCourse(
       .filter(group => group.length)
       .map(group => group.join('\n'))
       .join('\n\n');
-    const factoryName = 'define' + node.type[0].toUpperCase() + node.type.slice(1);
     const source =
       imported +
       '\n\n' +
@@ -647,7 +648,7 @@ export function renderModularCourse(
           'Overrides = ' +
           symbolOf(node) +
           '.build.overrides(' +
-          tsLiteral({ content: { items: lessonPatches } }) +
+          lessonOverride.expression +
           ', { languages });\n'
         : '');
     files.set(file, source);
