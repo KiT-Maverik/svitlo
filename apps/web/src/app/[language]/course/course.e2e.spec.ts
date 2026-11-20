@@ -13,10 +13,10 @@ test('selected content package publishes Course and Lesson Engine Props, not leg
   const published = await courseResource.json();
   expect(published.type).toBe('course');
   expect(published.content.order).toEqual(['fixtureModule']);
-  const module = published.content.items.fixtureModule;
-  expect(module.type).toBe('module');
-  expect(module.content.order).toEqual(['fixtureChapter']);
-  const chapter = module.content.items.fixtureChapter;
+  const fixtureModule = published.content.items.fixtureModule;
+  expect(fixtureModule.type).toBe('module');
+  expect(fixtureModule.content.order).toEqual(['fixtureChapter']);
+  const chapter = fixtureModule.content.items.fixtureChapter;
   expect(chapter.type).toBe('chapter');
   expect(chapter.content.items.fixtureLesson).toEqual({ type: 'lesson', id: lessonId });
   const lesson = await lessonResource.json();
