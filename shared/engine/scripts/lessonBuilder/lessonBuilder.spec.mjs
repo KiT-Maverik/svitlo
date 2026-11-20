@@ -7,11 +7,12 @@ import ts from 'typescript';
 import yaml from 'yaml';
 import { scanSource } from '../../../../scripts/ci/checkBlockerTodos/check-blocker-todos.mjs';
 
-import { BuilderDiagnostic, loadFactoryRegistry, runOne, main } from './lessonBuilder.mjs';
+import { BuilderDiagnostic, loadFactoryRegistry, runOne, main, repoRoot } from './lessonBuilder.mjs';
 import { renderLessonModules } from './lessonModules.mjs';
 import { defineLesson, defineQuizSection, defineFlashcardsSection } from '@svitlo/engine/build';
 import { assembleLessonProps } from '@svitlo/engine/runtime';
 import { renderLessonMarkdown } from '../generateLessonsMarkdown/lesson-markdown.mjs';
+import { generate as generateLessonMarkdown } from '../generateLessonsMarkdown/generate-lessons-markdown.mjs';
 import { pendingAssessmentUuid, prepareAssessmentDraft } from './lessonAssessmentDrafts.mjs';
 import { splitScaffoldDocument } from '../yamlScaffolding/productionScaffolding.mjs';
 import { lessonReviewStageSlugs, renderReviewDraft } from './reviewTemplate.mjs';
@@ -1352,7 +1353,7 @@ test('an authored complete Quiz remains untouched and no placeholder handoff is 
 });
 
 
-test('pending Quiz and Flashcards Section drafts pass actual Engine build.props and render readable Lesson Markdown', () => {
+test('pending Quiz and Flashcards Section drafts pass actual Engine Props and read-only Lesson Markdown CLI', async () => {
   const config = lessonConfig();
   config.params.languages = ['uk'];
   config.params.quizRequiredForCompletion = true;
@@ -1387,6 +1388,31 @@ test('pending Quiz and Flashcards Section drafts pass actual Engine build.props 
   assert.match(markdown, /PENDING FLASHCARDS/);
   assert.match(markdown, /feedc0de-/);
   assert.match(markdown, /Question UUIDs/);
+
+  // Exercise the actual read-only Markdown generator, not only its renderer.
+  // The loader is injected solely to avoid executing code from an unfinished
+  // source draft; all discovery, locale/Props assembly and rendering paths run.
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-pending-lesson-markdown-'));
+  try {
+    const schema = path.join(root, 'shared/engine/schemas/languages.schemas.ts');
+    fs.mkdirSync(path.dirname(schema), { recursive: true });
+    fs.copyFileSync(path.join(repoRoot, 'shared/engine/schemas/languages.schemas.ts'), schema);
+    const lessonDirectory = path.join(root, 'content/playground/data/lessons', lessonId.at(-1), lessonId);
+    fs.mkdirSync(lessonDirectory, { recursive: true });
+    fs.writeFileSync(path.join(root, 'content/playground/package.json'), '{"name":"@svitlo/playground"}');
+    fs.writeFileSync(path.join(lessonDirectory, 'index.ts'), '// Unfinished source is intentionally not executed.\n');
+    const sourceMarkdown = await generateLessonMarkdown(
+      { package: 'content/playground', lesson: lessonId, locale: 'uk', stdout: true },
+      { root, loader: async () => authored },
+    );
+    assert.match(sourceMarkdown, /PENDING QUIZ/);
+    assert.match(sourceMarkdown, /PENDING FLASHCARDS/);
+    assert.match(sourceMarkdown, /feedc0de-/);
+    assert.equal(fs.existsSync(path.join(root, '.agent-ci-artifacts')), false);
+    assert.equal(fs.readdirSync(lessonDirectory).join(','), 'index.ts', 'Read-only Markdown must not modify the source tree');
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
 });
 
 
