@@ -90,6 +90,30 @@ test('dynamic authoring expressions fail closed without emitting partial referen
     fs.rmSync(state.root, { recursive: true, force: true });
   }
 });
+test('invariant Flashcard flag and learner text remain visible for linguistic review', () => {
+  const state = fixture();
+  try {
+    const source = path.join(state.directory, 'index.ts');
+    fs.writeFileSync(
+      source,
+      fs.readFileSync(source, 'utf8')
+        .replace('"value":{"en":"ABC","uk":"АБВ"}', '"value":"ABC"')
+        .replace('value: {en: "Greeting", uk: "Вітання"}', 'value: "Greeting"'),
+    );
+    state.run();
+    assert.equal(state.manifest.failures.length, 0);
+    assert.equal(state.manifest.generated[0].strings, 3);
+    const markdown = fs.readFileSync(
+      path.join(state.output, state.manifest.generated[0].path.slice('.agent-ci-artifacts/'.length)), 'utf8',
+    );
+    assert.match(markdown, /Invariant authored copy.*ABC/);
+    assert.match(markdown, /Invariant authored copy.*Greeting/);
+    assert.match(markdown, /content\/back\/answer\/locale\/value/);
+    assert.match(markdown, /parameters\/flags\[0\]\/value/);
+  } finally {
+    fs.rmSync(state.root, { recursive: true, force: true });
+  }
+});
 test('Flashcard review refuses symlinked bank source', () => {
   const state = fixture();
   try {
