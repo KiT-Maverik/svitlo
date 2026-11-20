@@ -179,15 +179,18 @@ test('Lesson YAML emits nested source drafts without mutating independent bank Y
     assert.equal(fs.readFileSync(path.join(lessonDir, 'flashcards.yaml'), 'utf8'), '# independent flashcard source\n');
     assert.equal(fs.existsSync(path.join(lessonDir, 'questions')), false);
     assert.equal(fs.existsSync(path.join(lessonDir, 'flashcards')), false);
-    // The Review register is an intentionally invalid, human-completed TypeScript draft.
-    // Test its unfinished shape separately; every actual configurator module must parse.
+    // Review register must parse, with unresolved evidence and a blocking TODO.
+    // Syntactically valid TypeScript is not evidence of independent approval.
     assert(sourceFiles.includes('review.ts'), 'Lesson Builder must scaffold the Review register');
     const reviewDraft = fs.readFileSync(path.join(lessonDir, 'review.ts'), 'utf8');
-    assert(
+    assert.equal(
       ts.createSourceFile('review.ts', reviewDraft, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS)
-        .parseDiagnostics.length > 0,
-      'Review draft must retain unresolved TypeScript syntax until review evidence is verified',
+        .parseDiagnostics.length,
+      0,
+      'Review register must be syntax-valid until verified review evidence is supplied',
     );
+    assert.match(reviewDraft, /TODO \(BLOCKER\): Conduct review/);
+    assert.match(reviewDraft, /acceptance: 0/);
     const modules = sourceFiles
       .filter(file => file !== 'review.ts')
       .map(file => fs.readFileSync(path.join(lessonDir, file), 'utf8'));
