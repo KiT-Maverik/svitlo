@@ -37,7 +37,7 @@ export const ReflectSceneConfig = defineScene<"reflectScene", LessonLanguages>({
         uk: "У різні дні видно різну освітлену частину Місяця.",
         en: "On different days, different parts of the Moon's disk appear illuminated.",
         pl: "W różne dni widzimy różne oświetlone części tarczy Księżyca.",
-        qm: "Türlü künlerde Aynıñ diskiñ türlü aydın qısımları körüne."
+        qm: "Türlü künlerde Aynıñ aydınlatılğan yüzüniñ türlü qısımları körüne."
       },
       dayQuestion: {
         uk: "Чому змінюються день і ніч?",
@@ -138,7 +138,7 @@ export const ReflectSceneConfig = defineScene<"reflectScene", LessonLanguages>({
       ownQuestionFeedback: {
         uk: "Позначено твоє підтвердження, що власне запитання для цієї теми поставлене. Саме запитання не записується.",
         en: "You confirmed that you asked your own question about this topic. The question itself is not recorded.",
-        pl: "Potwierdzono, że zadałeś lub zadałaś własne pytanie na ten temat. Treść pytania nie jest zapisywana.",
+        pl: "Zapisano Twoje potwierdzenie, że pytanie na ten temat zostało zadane. Treść pytania nie jest zapisywana.",
         qm: "Bu mevzu aqqında öz sualıñnı sorğanıñnı tasdiq ettiñ. Sualnıñ metni yazılmay."
       },
       bothQuestionsFeedback: {
