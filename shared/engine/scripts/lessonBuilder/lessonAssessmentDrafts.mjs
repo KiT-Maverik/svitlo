@@ -229,7 +229,10 @@ export function prepareAssessmentDraft(document) {
         const valid = typeof value === 'string' ? value.trim().length > 0 :
           isRecord(value) && typeof value[language] === 'string' && value[language].trim().length > 0;
         if (!valid) {
-          section.locale[field] = type === 'quiz' ? 'PENDING QUIZ' : 'PENDING FLASHCARDS';
+          const marker = type === 'quiz' ? 'PENDING QUIZ' : 'PENDING FLASHCARDS';
+          section.locale[field] = isRecord(value) && typeof language === 'string'
+            ? { ...value, [language]: marker }
+            : marker;
           provisionalFields.push('$.locale.' + field);
         }
       }
