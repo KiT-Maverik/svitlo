@@ -201,7 +201,6 @@ jobs:
     permissions:
       contents: read
     env:
-      SVITLO_AGENT_REPORT_OUTPUT: ${{ runner.temp }}/agent-reference-library
       SVITLO_AGENT_REPORT_PR: ${{ needs.resolve.outputs.pr }}
     steps:
       - uses: actions/checkout@v4
@@ -236,6 +235,7 @@ jobs:
         run: node scripts/ci/quietRun/quiet-run.mjs -- npm run package:build --workspace @svitlo/engine
       - name: Generate only the selected reference scope
         env:
+          SVITLO_AGENT_REPORT_OUTPUT: ${{ runner.temp }}/agent-reference-library
           REQUEST_KIND: ${{ needs.resolve.outputs.kind }}
           REQUEST_BOOK: ${{ needs.resolve.outputs.textbook }}
           REQUEST_LOCALE: ${{ needs.resolve.outputs.locale }}
@@ -254,6 +254,7 @@ jobs:
           node scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.mjs "${args[@]}"
       - name: Validate pinned manifest, scope, checksums and archive inventory
         env:
+          SVITLO_AGENT_REPORT_OUTPUT: ${{ runner.temp }}/agent-reference-library
           SOURCE_HEAD_SHA: ${{ needs.resolve.outputs.head_sha }}
           REQUEST_KIND: ${{ needs.resolve.outputs.kind }}
           REQUEST_BOOK: ${{ needs.resolve.outputs.textbook }}
