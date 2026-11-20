@@ -1,12 +1,5 @@
-import { compareIlluminatedPortions } from "./selectOneAnswer/compareIlluminatedPortions";
-import { crescentDirectionNotShape } from "./selectOneAnswer/crescentDirectionNotShape";
-import { darkPartStillExists } from "./selectOneAnswer/darkPartStillExists";
-import { daylightMoon } from "./selectOneAnswer/daylightMoon";
-import { lampBallViewpoint } from "./selectOneAnswer/lampBallViewpoint";
-import { moonlightSource } from "./selectOneAnswer/moonlightSource";
-import { repeatingAppearances } from "./selectOneAnswer/repeatingAppearances";
-import { twoCorrectMoonExplanations } from "./selectMultipleAnswers/twoCorrectMoonExplanations";
-import { whatChangedBetweenDays } from "./selectOneAnswer/whatChangedBetweenDays";
+import { twoCorrectMoonExplanations } from "./selectMultipleAnswers";
+import { compareIlluminatedPortions, crescentDirectionNotShape, darkPartStillExists, daylightMoon, lampBallViewpoint, moonlightSource, repeatingAppearances, whatChangedBetweenDays } from "./selectOneAnswer";
 
 export const questions = {
   selectOneAnswer: {

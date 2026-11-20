@@ -2,13 +2,13 @@ import { defineSelectOneAnswer } from '@svitlo/engine/build';
 
 import type { LessonLanguages } from "#lessonsData/5/667803f3-6535-5322-b377-810b4096d005/constants";
 
-import { almostWhole } from "./correct/almostWhole";
-import { explanationText } from "./explanationText";
-import { halfDisk } from "./incorrect/halfDisk";
-import { hintText } from "./hintText";
-import { prompt } from "./prompt";
-import { sameForAll } from "./incorrect/sameForAll";
-import { thinCrescent } from "./incorrect/thinCrescent";
+import { almostWhole } from "./compareIlluminatedPortions/correct/almostWhole";
+import { explanationText } from "./compareIlluminatedPortions/explanationText";
+import { halfDisk } from "./compareIlluminatedPortions/incorrect/halfDisk";
+import { hintText } from "./compareIlluminatedPortions/hintText";
+import { prompt } from "./compareIlluminatedPortions/prompt";
+import { sameForAll } from "./compareIlluminatedPortions/incorrect/sameForAll";
+import { thinCrescent } from "./compareIlluminatedPortions/incorrect/thinCrescent";
 
 const content = {
   question: {

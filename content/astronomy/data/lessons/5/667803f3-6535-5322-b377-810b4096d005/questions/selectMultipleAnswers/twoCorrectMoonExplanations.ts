@@ -2,13 +2,13 @@ import { defineSelectMultipleAnswers } from '@svitlo/engine/build';
 
 import type { LessonLanguages } from "#lessonsData/5/667803f3-6535-5322-b377-810b4096d005/constants";
 
-import { explanationText } from "./explanationText";
-import { hintText } from "./hintText";
-import { moonProducesLight } from "./incorrect/moonProducesLight";
-import { physicalMoonGrows } from "./incorrect/physicalMoonGrows";
-import { prompt } from "./prompt";
-import { sameSphere } from "./correct/sameSphere";
-import { visibleFraction } from "./correct/visibleFraction";
+import { explanationText } from "./twoCorrectMoonExplanations/explanationText";
+import { hintText } from "./twoCorrectMoonExplanations/hintText";
+import { moonProducesLight } from "./twoCorrectMoonExplanations/incorrect/moonProducesLight";
+import { physicalMoonGrows } from "./twoCorrectMoonExplanations/incorrect/physicalMoonGrows";
+import { prompt } from "./twoCorrectMoonExplanations/prompt";
+import { sameSphere } from "./twoCorrectMoonExplanations/correct/sameSphere";
+import { visibleFraction } from "./twoCorrectMoonExplanations/correct/visibleFraction";
 
 const content = {
   question: {

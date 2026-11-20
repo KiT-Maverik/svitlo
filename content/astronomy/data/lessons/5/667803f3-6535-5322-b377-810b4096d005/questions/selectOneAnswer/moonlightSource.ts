@@ -2,13 +2,13 @@ import { defineSelectOneAnswer } from '@svitlo/engine/build';
 
 import type { LessonLanguages } from "#lessonsData/5/667803f3-6535-5322-b377-810b4096d005/constants";
 
-import { differentMoon } from "./incorrect/differentMoon";
-import { explanationText } from "./explanationText";
-import { hintText } from "./hintText";
-import { moonSwitches } from "./incorrect/moonSwitches";
-import { prompt } from "./prompt";
-import { reflectsInDay } from "./correct/reflectsInDay";
-import { sunTurnsOff } from "./incorrect/sunTurnsOff";
+import { earthProduces } from "./moonlightSource/incorrect/earthProduces";
+import { explanationText } from "./moonlightSource/explanationText";
+import { hintText } from "./moonlightSource/hintText";
+import { moonLamp } from "./moonlightSource/incorrect/moonLamp";
+import { ownStarLight } from "./moonlightSource/incorrect/ownStarLight";
+import { prompt } from "./moonlightSource/prompt";
+import { sunReflected } from "./moonlightSource/correct/sunReflected";
 
 const content = {
   question: {
@@ -38,22 +38,22 @@ const content = {
   answers: {
     correct: {
       items: {
-        reflectsInDay
+        sunReflected
       },
       order: [
-        "reflectsInDay"
+        "sunReflected"
       ]
     },
     incorrect: {
       items: {
-        sunTurnsOff,
-        moonSwitches,
-        differentMoon
+        ownStarLight,
+        earthProduces,
+        moonLamp
       },
       order: [
-        "sunTurnsOff",
-        "moonSwitches",
-        "differentMoon"
+        "ownStarLight",
+        "earthProduces",
+        "moonLamp"
       ]
     },
     distractors: {
@@ -63,9 +63,9 @@ const content = {
   }
 };
 
-export const daylightMoon = defineSelectOneAnswer<"daylightMoon", typeof content, LessonLanguages>({
-  id: "8fb42da9-0601-43e9-9887-b8836fb6fbdb",
-  slug: "daylightMoon",
+export const moonlightSource = defineSelectOneAnswer<"moonlightSource", typeof content, LessonLanguages>({
+  id: "cfae194e-1692-42c6-8d57-53ccda07054e",
+  slug: "moonlightSource",
   type: "selectOneAnswer",
   params: {
     assessmentMethod: "interpretation",

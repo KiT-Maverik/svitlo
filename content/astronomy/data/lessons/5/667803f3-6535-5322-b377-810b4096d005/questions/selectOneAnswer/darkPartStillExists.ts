@@ -2,13 +2,13 @@ import { defineSelectOneAnswer } from '@svitlo/engine/build';
 
 import type { LessonLanguages } from "#lessonsData/5/667803f3-6535-5322-b377-810b4096d005/constants";
 
-import { explanationText } from "./explanationText";
-import { hintText } from "./hintText";
-import { newBody } from "./incorrect/newBody";
-import { orientationNotShape } from "./correct/orientationNotShape";
-import { prompt } from "./prompt";
-import { sphereBecameFlat } from "./incorrect/sphereBecameFlat";
-import { sunAbsent } from "./incorrect/sunAbsent";
+import { explanationText } from "./darkPartStillExists/explanationText";
+import { flattened } from "./darkPartStillExists/incorrect/flattened";
+import { hintText } from "./darkPartStillExists/hintText";
+import { prompt } from "./darkPartStillExists/prompt";
+import { shrank } from "./darkPartStillExists/incorrect/shrank";
+import { stillThere } from "./darkPartStillExists/correct/stillThere";
+import { vanished } from "./darkPartStillExists/incorrect/vanished";
 
 const content = {
   question: {
@@ -38,22 +38,22 @@ const content = {
   answers: {
     correct: {
       items: {
-        orientationNotShape
+        stillThere
       },
       order: [
-        "orientationNotShape"
+        "stillThere"
       ]
     },
     incorrect: {
       items: {
-        newBody,
-        sphereBecameFlat,
-        sunAbsent
+        vanished,
+        shrank,
+        flattened
       },
       order: [
-        "newBody",
-        "sphereBecameFlat",
-        "sunAbsent"
+        "vanished",
+        "shrank",
+        "flattened"
       ]
     },
     distractors: {
@@ -63,9 +63,9 @@ const content = {
   }
 };
 
-export const crescentDirectionNotShape = defineSelectOneAnswer<"crescentDirectionNotShape", typeof content, LessonLanguages>({
-  id: "d2e34417-4c9e-4005-a818-a24f9b424245",
-  slug: "crescentDirectionNotShape",
+export const darkPartStillExists = defineSelectOneAnswer<"darkPartStillExists", typeof content, LessonLanguages>({
+  id: "8d7a8f8c-99c1-457d-a6fe-15c7a44b7e30",
+  slug: "darkPartStillExists",
   type: "selectOneAnswer",
   params: {
     assessmentMethod: "classification",
