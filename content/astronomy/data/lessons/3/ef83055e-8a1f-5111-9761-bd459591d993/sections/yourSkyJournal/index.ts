@@ -27,15 +27,15 @@ export const yourSkyJournal = defineContentSection<"yourSkyJournal", typeof cont
   locale: {
     title: {
       uk: "Мій запис",
-        en: "My Record",
-        pl: "Mój zapis",
-        qm: "Meniñ qaydım"
+      en: "My Record",
+      pl: "Mój zapis",
+      qm: "Meniñ qaydım"
     },
     navigationLabel: {
       uk: "Мій запис",
-        en: "My Record",
-        pl: "Mój zapis",
-        qm: "Meniñ qaydım"
+      en: "My Record",
+      pl: "Mój zapis",
+      qm: "Meniñ qaydım"
     }
   },
   content
