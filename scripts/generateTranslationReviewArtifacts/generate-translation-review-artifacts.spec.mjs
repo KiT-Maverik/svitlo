@@ -298,3 +298,56 @@ test('trusted publisher accepts pre-Course Skills manifests but rejects scope mi
   assert.notEqual(wrongPackage.status, 0);
   assert.match(wrongPackage.stderr, /Manifest scope disagrees with authorized request: package/);
 });
+
+
+test('trusted Agent CI publisher accepts only a correctly scoped Flashcard bank reference document', () => {
+  const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
+  const workflow = fs.readFileSync(path.join(root, '.github/workflows/agent-ci-artifacts.yml'), 'utf8');
+  const marker = '      - name: Validate downloaded files and commit only agent artifacts';
+  const offset = workflow.indexOf(marker);
+  assert.ok(offset >= 0, 'trusted publisher validation must remain present');
+  const match = workflow.slice(offset).match(/node --input-type=module <<'NODE'\n([\s\S]*?)\n\s+NODE/);
+  assert.ok(match);
+  const validator = match[1].split('\n').map(line => line.replace(/^ {10}/, '')).join('\n');
+  const temp = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-flashcard-manifest-'));
+  const lesson = 'bb75647f-203d-481a-a1c7-4d331c779d34';
+  const relative = 'flashcards/playground/' + lesson.at(-1) + '/' + lesson + '/uk.md';
+  const dest = path.join(temp, '.agent-ci-artifacts', relative);
+  try {
+    fs.mkdirSync(path.dirname(dest), { recursive: true });
+    fs.writeFileSync(dest, '# Flashcard Bank\n');
+    const manifest = {
+      kind: 'pr-scoped-agent-ci-artifacts',
+      schemaVersion: 3,
+      scope: {
+        kind: 'flashcards', package: 'content/playground', locale: 'uk',
+        component: null, lesson, course: null,
+      },
+      generated: [{
+        kind: 'flashcard', textbook: 'content/playground',
+        lesson: lesson.at(-1) + '/' + lesson, locale: 'uk',
+        path: '.agent-ci-artifacts/' + relative, missing: 0, reviewReady: true,
+      }],
+      failures: [],
+    };
+    const manifestPath = path.join(temp, '.agent-ci-artifacts/manifest.json');
+    function verify() {
+      fs.writeFileSync(manifestPath, JSON.stringify(manifest));
+      return spawnSync(process.execPath, ['--input-type=module', '--eval', validator], {
+        cwd: temp, encoding: 'utf8', env: {
+          ...process.env,
+          REQUEST_KIND: 'flashcards', REQUEST_BOOK: 'content/playground', REQUEST_LOCALE: 'uk',
+          REQUEST_COMPONENT: '', REQUEST_LESSON: lesson, REQUEST_COURSE: '',
+        },
+      });
+    }
+    const correct = verify();
+    assert.equal(correct.status, 0, correct.stderr);
+    manifest.generated[0].lesson = 'e/' + lesson;
+    const wrong = verify();
+    assert.notEqual(wrong.status, 0);
+    assert.match(wrong.stderr, /Invalid generated artifact entry|outside requested Lesson UUID/);
+  } finally {
+    fs.rmSync(temp, { recursive: true, force: true });
+  }
+});
