@@ -52,10 +52,33 @@ for (const path of migratedTextbookPaths) {
       pkg.exports?.['.']?.types === './dist/textbook/index.d.ts',
     'Book must expose compiled metadata: ' + path,
   );
-  assert(
-    !pkg.exports?.['./scenes'] && !pkg.exports?.['./styles'],
-    'Do not publish fabricated Scenes or styles: ' + path,
+  // A formerly Skills-only textbook may expose Scenes only after real
+  // UUID-addressed implementations and a generated registry are committed.
+  // Never allow a metadata-only package to publish invented Scene exports.
+  const sceneRoot = resolve(root, path, 'scenes');
+  const sceneSourceFiles = walk(sceneRoot);
+  const sceneIndexes = sceneSourceFiles.filter(file =>
+    /[/\\]scenes[/\\][0-9a-f][/\\][0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}[/\\]index\.ts$/.test(file),
   );
+  if (sceneIndexes.length) {
+    assert(
+      pkg.exports?.['./scenes']?.default === './dist/scenes/index.js' &&
+        pkg.exports?.['./scenes']?.types === './dist/scenes/index.d.ts' &&
+        pkg.exports?.['./styles']?.default === './dist/styles.css' &&
+        pkg.scripts?.['content:check:scenes'] &&
+        existsSync(resolve(sceneRoot, 'sceneLoader.ts')) &&
+        existsSync(resolve(sceneRoot, 'createSceneRegistry.ts')) &&
+        sceneIndexes.every(file => sceneSourceFiles.some(candidate =>
+          candidate.startsWith(file.slice(0, -'index.ts'.length)) && candidate.endsWith('.tsx'),
+        )),
+      'Published Scene exports require implemented UUID-addressed Scenes, registry and styles: ' + path,
+    );
+  } else {
+    assert(
+      !pkg.exports?.['./scenes'] && !pkg.exports?.['./styles'],
+      'Do not publish fabricated Scenes or styles: ' + path,
+    );
+  }
 }
 assert(platform.name === '@svitlo/platform', 'Unexpected Platform package name');
 assert(
