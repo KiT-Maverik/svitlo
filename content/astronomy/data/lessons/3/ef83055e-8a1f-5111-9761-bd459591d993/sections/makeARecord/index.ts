@@ -26,10 +26,16 @@ export const makeARecord = defineContentSection<"makeARecord", typeof content.it
   params: {},
   locale: {
     title: {
-      uk: "П'ять підказок"
+      uk: "П'ять підказок",
+      en: "Five Helpful Questions",
+      pl: "Pięć pomocnych pytań",
+      qm: "Beş yardımcı sual"
     },
     navigationLabel: {
-      uk: "П'ять підказок"
+      uk: "П'ять підказок",
+      en: "Five Helpful Questions",
+      pl: "Pięć pomocnych pytań",
+      qm: "Beş yardımcı sual"
     }
   },
   content

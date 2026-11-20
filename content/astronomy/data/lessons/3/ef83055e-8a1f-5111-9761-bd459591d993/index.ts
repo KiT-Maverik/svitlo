@@ -12,7 +12,7 @@ export const observationJournal = defineLesson<"observationJournal", LessonLangu
   skills: [astronomicalObservationRecords.id],
   params: {
     languages,
-    requireQuiz: false,
+    quizRequiredForCompletion: false,
     sections: {
       allowNavigation: true,
       allowSkipping: true,
@@ -21,7 +21,10 @@ export const observationJournal = defineLesson<"observationJournal", LessonLangu
   },
   locale: {
     title: {
-      uk: "Мій перший щоденник неба"
+      uk: "Мій перший щоденник неба",
+      en: "My First Sky Journal",
+      pl: "Mój pierwszy dziennik nieba",
+      qm: "Meniñ ilk kök kündeligim"
     }
   },
   section

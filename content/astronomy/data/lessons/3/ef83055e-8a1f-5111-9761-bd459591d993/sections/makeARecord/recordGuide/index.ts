@@ -8,6 +8,6 @@ export const recordGuide = defineMarkdown<"recordGuide", LessonLanguages>({
   type: "markdown",
   params: {},
   locale: {
-    value: readMarkdown(import.meta.url, ["uk"])
+    value: readMarkdown(import.meta.url, ["uk", "en", "pl", "qm"])
   }
 });
