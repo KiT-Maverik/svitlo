@@ -220,6 +220,20 @@ function renderEntity(node, state, indent, location) {
   return factory + '(' + renderConfigFields(node, state, indent, location) + ')';
 }
 
+/**
+ * Render a Course-local Lesson patch using the exact same Engine factory registry
+ * as nested Episode/Section drafts. In particular, section.additionalItems
+ * contains actual define* configurators, never untyped YAML object literals.
+ * This is source rendering only: final Build/Props validation remains owned by
+ * the corresponding Engine configurators at the materialization boundary.
+ */
+export function renderCourseLessonOverrideSource(items) {
+  if (!record(items)) fail('TYPE', 'Course Lesson override items must be a slug-keyed object');
+  const state = { imports: new Set() };
+  const expression = renderValue({ content: { items } }, state, 0, 'courseOverrides');
+  return { expression, factories: [...state.imports].sort() };
+}
+
 /** Produce one parseable, ephemeral draft used to extract defineEpisode nodes. */
 export function renderEpisodeScaffoldSource(wrapper) {
   if (!record(wrapper) || wrapper.type !== 'course') fail('TYPE', 'expected a Course wrapper');
