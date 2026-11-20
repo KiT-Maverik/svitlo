@@ -1,0 +1,292 @@
+<!-- GENERATED FROM CODE; DO NOT EDIT. -->
+# Question and Quiz translation reference — playground / d3048d21-8690-5255-b62c-984c69ac272c / kk
+
+Lesson UUID: d3048d21-8690-5255-b62c-984c69ac272c
+Source language: en
+Questions: 6
+Quiz Sections: 1
+Localized fields: 32
+Question fields: 30
+Quiz fields: 2
+Missing translations: 0
+
+
+## lightTravelsStraight
+
+- Question UUID: a4f1e4aa-3831-5e3f-aece-1df57f757d82
+- Type: selectOneAnswer
+- Assessment method: retrieval
+- Code: [lightTravelsStraight.ts](../../../../../content/playground/data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/questions/lightTravelsStraight.ts)
+
+- Correct option: straightLine (4431da6c-745c-5eda-8dfb-7443e99d16ee)
+
+### question
+
+#### question/question (42b21cc4-14a5-5159-8c28-aa1fb0309c95)
+- English: How does light travel in a uniform transparent medium?
+- kk: Bırtektı möldır ortada jaryq qalai taralady?
+- Code: [lightTravelsStraight.ts](../../../../../content/playground/data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/questions/lightTravelsStraight.ts)
+
+### explanation
+
+#### explanation/straightLine (7c16616c-d8b5-54d5-bb17-7257f8289c52)
+- English: In a uniform transparent medium, light travels in a straight line.
+- kk: Bırtektı möldır ortada jaryq tüzu syzyq boiymen taralady.
+- Code: [lightTravelsStraight.ts](../../../../../content/playground/data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/questions/lightTravelsStraight.ts)
+
+### answers / correct
+
+#### answers/correct/straightLine (4431da6c-745c-5eda-8dfb-7443e99d16ee)
+- English: In a straight line.
+- kk: Tüzu syzyq boiymen.
+- Code: [lightTravelsStraight.ts](../../../../../content/playground/data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/questions/lightTravelsStraight.ts)
+
+### answers / distractors
+
+#### answers/distractors/curve (b32eb866-d619-5cad-9a89-bd4b96470385)
+- English: Always along a curve.
+- kk: Ärqaşan qisyq boiymen.
+- Code: [lightTravelsStraight.ts](../../../../../content/playground/data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/questions/lightTravelsStraight.ts)
+
+### answers / incorrect
+
+#### answers/incorrect/circle (e63111e7-011e-5294-9a18-c43e8d093f41)
+- English: In a circle.
+- kk: Şeñber boiymen.
+- Code: [lightTravelsStraight.ts](../../../../../content/playground/data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/questions/lightTravelsStraight.ts)
+
+## lightRayDirection
+
+- Question UUID: 26b09f82-f8db-5b7a-9a0f-7e7937fba45c
+- Type: selectOneAnswer
+- Assessment method: interpretation
+- Code: [lightRayDirection.ts](../../../../../content/playground/data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/questions/lightRayDirection.ts)
+
+- Correct option: direction (1c7f5a04-96e4-5ffa-9f50-7f92b20a78cb)
+
+### question
+
+#### question/question (8fbda15a-7184-519c-a6c1-a7da64575a05)
+- English: What does a light ray show?
+- kk: Jaryq säulesı nenı körsetedı?
+- Code: [lightRayDirection.ts](../../../../../content/playground/data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/questions/lightRayDirection.ts)
+
+### explanation
+
+#### explanation/direction (a0954fb2-7acf-5943-bafe-7d0b3e4b784e)
+- English: A light ray shows the direction in which light travels.
+- kk: Jaryq säulesı jaryqtyñ taralu bağytyn körsetedı.
+- Code: [lightRayDirection.ts](../../../../../content/playground/data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/questions/lightRayDirection.ts)
+
+### answers / correct
+
+#### answers/correct/direction (1c7f5a04-96e4-5ffa-9f50-7f92b20a78cb)
+- English: The direction light travels.
+- kk: Jaryqtyñ taralu bağytyn.
+- Code: [lightRayDirection.ts](../../../../../content/playground/data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/questions/lightRayDirection.ts)
+
+### answers / distractors
+
+#### answers/distractors/particleSize (9bf58589-f3c2-523c-8d9e-5900989b3711)
+- English: The size of a light particle.
+- kk: Jaryq bölşegınıñ ölşemın.
+- Code: [lightRayDirection.ts](../../../../../content/playground/data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/questions/lightRayDirection.ts)
+
+### answers / incorrect
+
+#### answers/incorrect/sourceTemperature (a718aef4-1ea6-5ac8-ba77-84aa4417a5db)
+- English: The temperature of the source.
+- kk: Jaryq közınıñ temperaturasyn.
+- Code: [lightRayDirection.ts](../../../../../content/playground/data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/questions/lightRayDirection.ts)
+
+## fastestMedium
+
+- Question UUID: 08c3bae5-081a-5afc-bccf-e44078e137f2
+- Type: selectOneAnswer
+- Assessment method: retrieval
+- Code: [fastestMedium.ts](../../../../../content/playground/data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/questions/fastestMedium.ts)
+
+- Correct option: vacuum (c0985811-54b5-5a43-9382-2726a24923ea)
+
+### question
+
+#### question/question (f671bcff-e9a1-5d7a-afd0-f28b4d591078)
+- English: Where does light travel fastest: in a vacuum, air, or water?
+- kk: Jaryq qaida eñ jyldam taralady: vakuumda, auada älde suda ma?
+- Code: [fastestMedium.ts](../../../../../content/playground/data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/questions/fastestMedium.ts)
+
+### explanation
+
+#### explanation/vacuumFastest (03aa97f3-2e49-56b0-b3ae-a3d289eb1dcd)
+- English: Light travels fastest in a vacuum—about 300,000 km/s.
+- kk: Jaryq vakuumda eñ jyldam taralady — şamamen 300 000 km/s.
+- Code: [fastestMedium.ts](../../../../../content/playground/data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/questions/fastestMedium.ts)
+
+### answers / correct
+
+#### answers/correct/vacuum (c0985811-54b5-5a43-9382-2726a24923ea)
+- English: In a vacuum.
+- kk: Vakuumda.
+- Code: [fastestMedium.ts](../../../../../content/playground/data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/questions/fastestMedium.ts)
+
+### answers / distractors
+
+#### answers/distractors/water (2235c6a8-ce3e-5d2c-a987-ab1702e88420)
+- English: In water.
+- kk: Suda.
+- Code: [fastestMedium.ts](../../../../../content/playground/data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/questions/fastestMedium.ts)
+
+### answers / incorrect
+
+#### answers/incorrect/air (c37f2103-b856-5bd3-81b7-c4f8af9a0203)
+- English: In air.
+- kk: Auada.
+- Code: [fastestMedium.ts](../../../../../content/playground/data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/questions/fastestMedium.ts)
+
+## lightSpeedInWater
+
+- Question UUID: f42370dc-1de2-59bf-93a0-0e304f9021f0
+- Type: selectOneAnswer
+- Assessment method: interpretation
+- Code: [lightSpeedInWater.ts](../../../../../content/playground/data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/questions/lightSpeedInWater.ts)
+
+- Correct option: decreases (71d00332-0a6a-57ee-b4a0-1b790b861383)
+
+### question
+
+#### question/question (802c89a1-87bc-5f24-9190-92b8f145b5e0)
+- English: How does the speed of light change in water compared with a vacuum?
+- kk: Vakuummen salystyrğanda suda jaryq jyldamdyğy qalai özgeredı?
+- Code: [lightSpeedInWater.ts](../../../../../content/playground/data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/questions/lightSpeedInWater.ts)
+
+### explanation
+
+#### explanation/decreases (3cff3b68-c893-58e4-a32c-72a291f6b324)
+- English: Light travels more slowly in water than in a vacuum.
+- kk: Suda jaryq vakuumğa qarağanda baiau taralady.
+- Code: [lightSpeedInWater.ts](../../../../../content/playground/data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/questions/lightSpeedInWater.ts)
+
+### answers / correct
+
+#### answers/correct/decreases (71d00332-0a6a-57ee-b4a0-1b790b861383)
+- English: It decreases.
+- kk: Azaiady.
+- Code: [lightSpeedInWater.ts](../../../../../content/playground/data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/questions/lightSpeedInWater.ts)
+
+### answers / distractors
+
+#### answers/distractors/unchanged (72ba744e-7ec1-5692-9408-da33f99343a9)
+- English: It does not change.
+- kk: Özgermeidı.
+- Code: [lightSpeedInWater.ts](../../../../../content/playground/data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/questions/lightSpeedInWater.ts)
+
+### answers / incorrect
+
+#### answers/incorrect/increases (95a775a8-abfc-5305-8eed-64f6ce715d0f)
+- English: It increases.
+- kk: Artady.
+- Code: [lightSpeedInWater.ts](../../../../../content/playground/data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/questions/lightSpeedInWater.ts)
+
+## airVacuumSpeed
+
+- Question UUID: 21733db1-2e1a-55cc-80c2-08e68fec1d90
+- Type: selectOneAnswer
+- Assessment method: retrieval
+- Code: [airVacuumSpeed.ts](../../../../../content/playground/data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/questions/airVacuumSpeed.ts)
+
+- Correct option: slowerInAir (8c031b64-fcae-5197-9ba4-0b0f42d4b386)
+
+### question
+
+#### question/question (4a239502-091e-59a4-b57f-0c4c059de468)
+- English: Is the speed of light the same in air and in a vacuum?
+- kk: Aua men vakuumdağy jaryq jyldamdyğy bırdei me?
+- Code: [airVacuumSpeed.ts](../../../../../content/playground/data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/questions/airVacuumSpeed.ts)
+
+### explanation
+
+#### explanation/slowerInAir (e83e3897-1eac-532f-bc5c-6639bf5d29e9)
+- English: Light travels slightly slower in air than in a vacuum.
+- kk: Auada jaryq vakuumğa qarağanda säl baiau taralady.
+- Code: [airVacuumSpeed.ts](../../../../../content/playground/data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/questions/airVacuumSpeed.ts)
+
+### answers / correct
+
+#### answers/correct/slowerInAir (8c031b64-fcae-5197-9ba4-0b0f42d4b386)
+- English: No, it is slightly slower in air.
+- kk: Joq, auada säl baiau.
+- Code: [airVacuumSpeed.ts](../../../../../content/playground/data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/questions/airVacuumSpeed.ts)
+
+### answers / distractors
+
+#### answers/distractors/fasterInAir (68d0a7e2-8813-5a2b-b620-a7ccf562e703)
+- English: No, it is twice as fast in air.
+- kk: Joq, auada ekı ese jyldam.
+- Code: [airVacuumSpeed.ts](../../../../../content/playground/data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/questions/airVacuumSpeed.ts)
+
+### answers / incorrect
+
+#### answers/incorrect/sameSpeed (76e70b25-0fef-519e-89df-6350c8feea41)
+- English: Yes, it is exactly the same.
+- kk: İä, däl bırdei.
+- Code: [airVacuumSpeed.ts](../../../../../content/playground/data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/questions/airVacuumSpeed.ts)
+
+## opaqueObjectShadow
+
+- Question UUID: fbc29fba-d44d-5658-b6e7-ef1733ce81b5
+- Type: selectOneAnswer
+- Assessment method: prediction
+- Code: [opaqueObjectShadow.ts](../../../../../content/playground/data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/questions/opaqueObjectShadow.ts)
+
+- Correct option: shadow (a2eb0999-1548-5369-b2ec-2cf4c4b79a71)
+
+### question
+
+#### question/question (449b5f02-dcf0-50c9-9c18-a379fd78589c)
+- English: What forms behind an opaque object that blocks light?
+- kk: Jaryqty bögeitın möldır emes zattyñ artynda ne paida bolady?
+- Code: [opaqueObjectShadow.ts](../../../../../content/playground/data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/questions/opaqueObjectShadow.ts)
+
+### explanation
+
+#### explanation/shadow (9096e740-cc30-58df-80d2-bc6e42789fc6)
+- English: A shadow forms behind an opaque object.
+- kk: Möldır emes zattyñ artynda köleñke paida bolady.
+- Code: [opaqueObjectShadow.ts](../../../../../content/playground/data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/questions/opaqueObjectShadow.ts)
+
+### answers / correct
+
+#### answers/correct/shadow (a2eb0999-1548-5369-b2ec-2cf4c4b79a71)
+- English: A shadow.
+- kk: Köleñke.
+- Code: [opaqueObjectShadow.ts](../../../../../content/playground/data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/questions/opaqueObjectShadow.ts)
+
+### answers / distractors
+
+#### answers/distractors/vacuum (175d4b62-a7b2-57ac-9551-1653840cc9ac)
+- English: A vacuum.
+- kk: Vakuum.
+- Code: [opaqueObjectShadow.ts](../../../../../content/playground/data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/questions/opaqueObjectShadow.ts)
+
+### answers / incorrect
+
+#### answers/incorrect/newLightSource (916bb013-5312-5d6b-8faa-ca665f89bdd6)
+- English: A new light source.
+- kk: Jaña jaryq közı.
+- Code: [opaqueObjectShadow.ts](../../../../../content/playground/data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/questions/opaqueObjectShadow.ts)
+
+## Quiz Section / quiz
+
+- Section UUID: 2a02b81f-dbd6-58d8-9711-4deb97312a56
+- Selected Question UUIDs: a4f1e4aa-3831-5e3f-aece-1df57f757d82, 26b09f82-f8db-5b7a-9a0f-7e7937fba45c, 08c3bae5-081a-5afc-bccf-e44078e137f2, f42370dc-1de2-59bf-93a0-0e304f9021f0, 21733db1-2e1a-55cc-80c2-08e68fec1d90, fbc29fba-d44d-5658-b6e7-ef1733ce81b5
+- Code: [index.ts](../../../../../content/playground/data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/sections/quiz/index.ts)
+
+#### title (2a02b81f-dbd6-58d8-9711-4deb97312a56)
+- Source (en): Quiz
+- kk: Test
+- Code: [index.ts](../../../../../content/playground/data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/sections/quiz/index.ts)
+
+#### navigationLabel (2a02b81f-dbd6-58d8-9711-4deb97312a56)
+- Source (en): Quiz
+- kk: Test
+- Code: [index.ts](../../../../../content/playground/data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/sections/quiz/index.ts)
