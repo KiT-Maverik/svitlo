@@ -12,7 +12,7 @@ export const sunEarthMoonRoles = defineLesson<"sunEarthMoonRoles", LessonLanguag
   skills: [solarSystemComponents.id],
   params: {
     languages,
-    requireQuiz: true,
+    quizRequiredForCompletion: true,
     sections: {
       allowNavigation: true,
       allowSkipping: true,
