@@ -155,7 +155,7 @@ export const DaySceneConfig = defineScene<"dayScene", LessonLanguages>({
       },
       showEvidenceDetails: {
         uk: "Показати місце, дату, час і джерело знімків",
-        en: "Show where, when and by whom the photographs were taken",
+        en: "Show the photographs’ locations, dates, times and sources",
         pl: "Pokaż miejsce, datę, godzinę i źródło zdjęć",
         qm: "Fotolarnıñ yerini, tarihini, vaqtını ve menbasını köster"
       },
