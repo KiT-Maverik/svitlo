@@ -11,7 +11,7 @@ config:
       - en
       - pl
       - qm
-    requireQuiz: false
+    quizRequiredForCompletion: false
     sections:
       allowNavigation: true
       allowSkipping: true
