@@ -480,10 +480,14 @@ export function renderLessonModules(lesson, language, options = {}) {
       return (
         '[\n' +
         value
-          .map(
-            (item, index) =>
-              indent(depth + 1) + render(item, 'plain', ownerDirectory, imported, depth + 1, field + '[' + index + ']', pending),
-          )
+          .map((item, index) => {
+            const provisional = pending?.syntheticIds?.includes(item)
+              ? indent(depth + 1) +
+                '// TODO (BLOCKER): Replace ' + field + '[' + index + '] with a reviewed resource UUID.\n'
+              : '';
+            return provisional + indent(depth + 1) +
+              render(item, 'plain', ownerDirectory, imported, depth + 1, field + '[' + index + ']', pending);
+          })
           .join(',\n') +
         '\n' +
         indent(depth) +
