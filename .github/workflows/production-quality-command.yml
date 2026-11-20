@@ -1,0 +1,66 @@
+name: Production quality command
+
+# Read-only PR command router: the existing Production quality workflow owns all checks.
+# issue_comment workflows run from the default branch; never checkout PR code here.
+on:
+  issue_comment:
+    types: [created]
+
+permissions:
+  contents: read
+
+jobs:
+  dispatch:
+    name: Dispatch Production Quality for PR head
+    if: >-
+      github.event.issue.pull_request &&
+      github.event.comment.body == '/production-quality' &&
+      contains(fromJSON('["OWNER","MEMBER","COLLABORATOR"]'), github.event.comment.author_association)
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      pull-requests: read
+      actions: write
+    steps:
+      - name: Resolve PR and dispatch full Production Quality
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ github.event.issue.number }}
+        run: |
+          set -euo pipefail
+          [[ "$PR_NUMBER" =~ ^[0-9]+$ ]] || { echo '::error::Invalid PR number'; exit 1; }
+
+          actor=$(jq -r '.comment.user.login' "$GITHUB_EVENT_PATH")
+          [[ "$actor" =~ ^[a-zA-Z0-9-]+$ ]] || { echo '::error::Invalid comment author'; exit 1; }
+          access=$(gh api "repos/$GITHUB_REPOSITORY/collaborators/$actor/permission" --jq '.permission')
+          [[ "$access" == 'write' || "$access" == 'maintain' || "$access" == 'admin' ]] || {
+            echo '::error::Workflow requires repository write permission'; exit 1;
+          }
+
+          pr=$(gh api "repos/$GITHUB_REPOSITORY/pulls/$PR_NUMBER")
+          [[ "$(jq -r '.state' <<< "$pr")" == 'open' ]] || {
+            echo '::error::PR must be open'; exit 1;
+          }
+          [[ "$(jq -r '.head.repo.full_name' <<< "$pr")" == "$GITHUB_REPOSITORY" ]] || {
+            echo '::error::Only same-repository PRs are supported'; exit 1;
+          }
+          branch=$(jq -r '.head.ref' <<< "$pr")
+          head_sha=$(jq -r '.head.sha' <<< "$pr")
+          [[ "$branch" =~ ^[a-zA-Z0-9][a-zA-Z0-9._/-]*$ && "$branch" != *..* && "$branch" != *//* && "$branch" != */ && "$branch" != *.lock ]] || {
+            echo '::error::Unsafe PR branch name'; exit 1;
+          }
+          [[ "$head_sha" =~ ^[a-f0-9]{40}$ ]] || {
+            echo '::error::Invalid PR head SHA'; exit 1;
+          }
+
+          gh workflow run production-quality.yml --ref "$branch" --repo "$GITHUB_REPOSITORY"
+          {
+            echo '### Production Quality dispatched'
+            echo "PR: #$PR_NUMBER"
+            echo "Branch: \`$branch\`"
+            echo "PR HEAD at request: \`$head_sha\`"
+            echo "Workflow: https://github.com/$GITHUB_REPOSITORY/actions/workflows/production-quality.yml"
+            echo 'Verify the resulting workflow_dispatch run HEAD SHA and the final Production Quality / verify result.'
+          } >> "$GITHUB_STEP_SUMMARY"

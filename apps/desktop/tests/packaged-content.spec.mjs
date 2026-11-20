@@ -77,6 +77,7 @@ test('CI packages the existing Desktop build while standalone packaging remains 
   assert.equal(scripts['app:pack'], 'npm run app:build && npm run app:pack:prepared');
   assert.equal(scripts['app:pack:prepared'], 'electron-builder --dir --publish never');
   assert.match(workflow, /npm run app:build --workspace @svitlo\/desktop/);
+  assert.match(workflow, /npm run test:integration --workspace @svitlo\/desktop/);
   assert.match(workflow, /npm run app:pack:prepared --workspace @svitlo\/desktop/);
   assert.doesNotMatch(workflow, /npm run app:pack --workspace @svitlo\/desktop/);
   assert.match(workflow, /test:packaged --workspace @svitlo\/desktop/);

@@ -4,9 +4,11 @@ on:
   pull_request:
     # Avoid running Prettier on every agent commit while the PR is a draft.
     types: [ready_for_review]
-    branches: [main, develop]
+    # Release promotion is immutable: formatting fixes belong in PRs to develop.
+    branches: [develop]
   # Recheck the formatted head SHA explicitly: this workflow otherwise runs only
-  # when a PR becomes ready for review.
+  # when a PR to develop becomes ready for review. Production promotion does not
+  # auto-format or push to its protected develop source branch.
   workflow_dispatch:
     inputs:
       base_sha:
@@ -24,7 +26,7 @@ concurrency:
 
 jobs:
   format:
-    name: PR Auto-format / check
+    name: ${{ github.event_name == 'workflow_dispatch' && 'PR Auto-format / check' || 'PR Auto-format / fix' }}
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -43,8 +45,13 @@ jobs:
       - name: Install pinned Prettier without running package scripts
         run: npm ci --silent --ignore-scripts --no-audit --no-fund
 
-      - name: Auto-format changed PR files
-        if: github.event_name == 'pull_request'
+      - name: Auto-fix changed PR files
+        # Only ordinary feature branches may be updated. Protected branches are
+        # never formatter write targets, including on a manually retargeted PR.
+        if: >-
+          github.event_name == 'pull_request' &&
+          github.event.pull_request.head.ref != 'develop' &&
+          github.event.pull_request.head.ref != 'main'
         shell: bash
         env:
           BASE_SHA: ${{ github.event.pull_request.base.sha }}
@@ -64,7 +71,10 @@ jobs:
             | xargs -0 -r -n 100 ./node_modules/.bin/prettier --check --log-level warn --ignore-unknown --
 
       - name: Stage formatting fixes
-        if: github.event_name == 'pull_request'
+        if: >-
+          github.event_name == 'pull_request' &&
+          github.event.pull_request.head.ref != 'develop' &&
+          github.event.pull_request.head.ref != 'main'
         id: changes
         shell: bash
         run: |

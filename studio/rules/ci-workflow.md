@@ -12,14 +12,14 @@
 
 ## Validation tiers
 
-| Event                                   | Scope                                                                                                                 |
-| --------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
-| Draft PR (any target)                  | Cheap source/security/artifact guards and authored `TODO (BLOCKER):` warnings; defer npm installs, builds and E2E |
-| Ready PR to `develop`                | Changed/dependent workspace FastGate, targeted generators/host/browser suites, selected content build, blocking TODO checks |
+| Event                                   | Scope                                                                                                                          |
+| --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| Draft PR (any target)                   | Cheap source/security/artifact guards and authored `TODO (BLOCKER):` warnings; defer npm installs, builds and E2E              |
+| Ready PR to `develop`                   | Scoped typechecks in FastGate; separate Ready generator/host/browser suites, selected content build, blocking TODO checks       |
 | Ready child PR to an integration parent | Applicable targeted checks and selected content builds, blocking authored TODO checks; FastGate is only required for `develop` |
-| Ready promotion PR to `main`           | All textbook builds, complete package checks, E2E, full tracked-source blocker scan; no redundant FastGate |
-| Manual `workflow_dispatch`             | Explicit full diagnostics/builds on a selected branch, including a Draft branch |
-| Push to `main`                         | Avoid duplicating expensive pre-merge quality checks; run deployment-specific checks only when needed |
+| Ready promotion PR to `main`            | All textbook builds, complete package checks, E2E, full tracked-source blocker scan; no redundant FastGate                     |
+| Manual `workflow_dispatch`              | Explicit full diagnostics/builds on a selected branch, including a Draft branch                                                |
+| Push to `main`                          | Avoid duplicating expensive pre-merge quality checks; run deployment-specific checks only when needed                          |
 
 ### Why Draft is a first-class CI mode
 
@@ -44,45 +44,118 @@ mark deferred coverage. Artifact safety, actor authorization, blocker TODO
 reporting and trustworthy source provenance cannot be disabled to save time.
 
 Use the **Actions → Run workflow** control (or `gh workflow run <workflow>.yml
---ref <pr-branch>`) to request a deep suite on a Draft branch before Ready;
+--ref <pr-branch>`) to request a deep suite on a Draft branch before Ready. A
+manual `fast-gate.yml` run checks all workspace types only; use the separate
+production-quality, test or generator workflows for deeper diagnostics;
 `workflow_dispatch` must bypass Draft deferral while retaining normal security
 checks. The workflow must exist on the default branch for the manual control.
 Do not use a fake success job or a permanent Draft skip for any check that
 must execute before merge.
 
+### Repairing a failed production promotion
+
+When the Ready `develop → main` PR fails `Production Quality / verify`, a green
+FastGate on a separate fix PR is **not** evidence that the full release gate is
+fixed. Keep the existing protections and automatic CI triggers unchanged:
+
+1. Create a temporary, normally named fix branch from the **current `develop`
+   HEAD** and a Draft PR from that branch to `develop`. No special branch-name
+   prefix is required. Preserve the release promotion PR `develop → main`.
+2. Commit repairs on the fix branch. **After every candidate fix**, post
+   `/production-quality` as an exact comment on the fix PR. The
+   default-branch `production-quality-command.yml` workflow resolves the open
+   same-repository PR and dispatches the **existing full**
+   `production-quality.yml` on that PR's head branch. This uses the existing
+   PR-comment permission pattern and GitHub Actions `GITHUB_TOKEN`; an agent
+   with PR-comment access does not need a local `gh` CLI or new credential.
+   The command is available after the command workflow reaches `develop`.
+
+   The Actions UI or CLI remains an equivalent manual option:
+
+   ```sh
+   gh workflow run production-quality.yml --ref <fix-branch>
+   gh run list --workflow production-quality.yml --branch <fix-branch> --event workflow_dispatch --limit 5
+   gh run view <run-id> --log-failed
+   ```
+
+   Find the `workflow_dispatch` run launched for the fix, wait for completion
+   and verify its `head_sha` matches the **latest** fix branch commit. Require
+   all production jobs and the final `Production Quality / verify` aggregate
+   to succeed; a prior successful run becomes obsolete after a new push.
+   Link the exact run and tested SHA in the fix PR so the next agent can
+   reproduce the evidence.
+
+3. Manual `workflow_dispatch` tests the selected branch HEAD, **not** the PR
+   merge commit or the eventual `develop → main` merge result. It does not
+   satisfy or replace required PR checks; source authorization applies to
+   production _PR_ events, not manual diagnostics. After full manual success,
+   follow the ordinary Draft → Ready and owner-approved PR merge workflow into
+   `develop`. Finally require the real promotion PR's latest
+   `Production Quality / verify` check to pass before merging into `main`.
+
+The workflow must exist on the repository default branch before GitHub can
+dispatch it manually. Do not create a new ruleset, bypass branch protection,
+retarget the production PR or modify release-gate coverage to work around a
+failing build.
+
 ### Validation on Ready
 
-FastGate builds prerequisite public exports once in dependency order, then
-runs independent workspace checks concurrently (default two;
-`SVITLO_FASTGATE_PARALLELISM=1..8`). Root `npm run code:check:types` checks all
-workspaces and is not the FastGate default. Content Build plans scope before
+FastGate is a **typechecking gate**, not a test, coverage, lint, package-validation,
+or production application-build gate. It selects changed workspaces plus consumers
+of changed public TypeScript contracts, builds only the prerequisite published
+exports required for TypeScript resolution in dependency order, then runs
+independent `code:check:types` checks concurrently (default two;
+`SVITLO_FASTGATE_PARALLELISM=1..8`). Web/Mobile typechecks remain sequential
+because their npm pre-hooks may rewrite shared `dist/`, making concurrent checks
+unsafe without first separating preparation from compilation. Root
+`npm run code:check:types` checks all workspaces and is not the FastGate default.
+The separate `/engine-coverage` PR comment invokes optional, diagnostic-only
+Engine coverage; FastGate never invokes coverage automatically. Content Build plans scope before
 npm install: Draft defers distribution builds, Ready `develop` selects impacted
 textbooks, and Ready `main` or manual dispatch builds all. With zero selected
 textbooks, avoid `npm ci` while emitting the same stable required status.
 Do not rerun the full Engine suite during an unrelated Biology build.
 
-## Production package-build reuse
+## Parallel production validation and package-build reuse
 
-`Production Quality / verify` keeps its full root typecheck, unit/component tests,
-lint, distributable package builds, host builds, compiled-export checks and Chromium
-E2E. Its sequential job sets `SVITLO_CI_PACKAGE_BUILD_STATE` to a **runner-local**
-temporary JSON path. The root workspace aggregator, Engine/adapter test hooks,
-and Web/Mobile/Desktop textbook preparation use
-`scripts/ci/packageBuildReuse/package-build-reuse.mjs` when requesting a package
-build. Outside the opt-in job the helper runs the canonical npm build normally.
+Ready `develop → main` promotions execute the full existing coverage in
+**parallel jobs**, not as one serial, ten-minute-plus worker. Source provenance
+is checked before any installation. Independent repository integrity, root
+TypeScript, root tests, additional Web/Playground component suites, lint,
+full distributable package builds and public-artifact validation run on their
+own runners. Every application that declares `app:build` is discovered
+dynamically from its manifest and built in a separate job, with its declared
+`test:e2e` and `test:integration` in the **same runner after the build**.
+An application E2E capability without an app build fails discovery. The
+root `npm test` already covers UI Kit and Math components, so the additional
+component worker deliberately tests only Web and Playground.
 
-A reuse requires the same clean checked-out Git revision, unchanged dependency
-build generations and an exact SHA-256 match for every file in the package's
-`dist/`. Missing, modified, or invalid output triggers an actual rebuild;
-compilation failure remains fatal. State is never transferred between
-workflows, runners or commits. Keep this job sequential: the JSON state is not
-a concurrent build server and is not a substitute for Content Build's matrix.
+A stable, branch-protected `Production Quality / verify` aggregation job
+depends on **every** source, package, typecheck, test, lint and application
+result. It runs with `always()` on Ready/manual releases; missing, failed,
+cancelled or skipped jobs cannot yield success. Draft PRs do not appear fully
+validated. The app matrix disables GitHub Actions fail-fast to retain
+independent failures. All expensive checks remain required for release,
+although their completion order is no longer sequential.
 
-The always-run summary records build requests, real builds, verified reuses and
-build durations. Comparable successful Ready `develop → main` runs are still
-required to substantiate wall-clock, total runner-time and log-volume savings;
-a counterfactual request count is not a measured before/after improvement.
-Regression coverage: `node --test scripts/ci/packageBuildReuse/package-build-reuse.spec.mjs`.
+Each runner installs its own pinned dependencies and prepares only the
+required local build outputs. `SVITLO_CI_PACKAGE_BUILD_STATE` remains
+**strictly local to a job**. The root workspace aggregator, Engine/adapter
+test hooks and Web/Mobile/Desktop content preparation use
+`scripts/ci/packageBuildReuse/package-build-reuse.mjs` to reuse builds within
+that one runner. A reuse requires clean source, unchanged dependency
+generations and exact SHA-256 matches of every `dist/` file. Missing,
+modified or invalid output causes a real rebuild. Never share the state,
+`dist/` or runner caches between jobs to claim a checked build.
+
+Parallel jobs reduce critical-path latency and expose errors earlier but
+can increase billed runner minutes due to separate installs and builds.
+Do **not** claim a specific speed improvement until comparing fully
+successful Ready production runs; compare wall-clock, sum of runner time,
+build request/build/reuse counts and useful log volume. The full textbook
+publication/portability matrix remains independently verified by the required
+Affected Content status. Implementation details and validation commands:
+[scripts/ci/productionQuality/README.md](../../scripts/ci/productionQuality/README.md).
 
 ## Quiet logs and agents
 
@@ -90,7 +163,7 @@ Regression coverage: `node --test scripts/ci/packageBuildReuse/package-build-reu
 - Never wrap a command whose stdout is consumed by another process or by GitHub, including structured JSON, workflow-command output, a shell pipeline, GitHub API/token operations and source generation. Preserve `GITHUB_OUTPUT`, error annotations and all security checks. Do not upload potentially sensitive full successful logs.
 - Agents follow the **latest-head failure-triage procedure** below rather than fetching full successful or multi-job logs. Check status/step summaries first, then bounded relevant diagnostics. See [Quiet CI command execution](../../scripts/ci/quietRun/README.md) for output and safety exceptions.
 - On-demand comment jobs (`/course`, `/lesson`, `/questions`, `/flashcards`, `/agent-artifacts`, `/get lesson`, `/engine-coverage`, `/repo-audit`) must use **trusted default-branch code** and pinned PR source, preserving actor authorization, source SHA and staged artifact verification. Quiet output must not modify this trust boundary.
-- PR Auto-format still runs on Ready transitions and only changed files. Prettier `--log-level warn` removes per-file success chatter while preserving errors and App-authenticated post-format recheck.
+- PR Auto-format **fixes** changed files on Ready PRs targeting `develop`, using an App-authenticated commit to the unprotected PR source branch and a read-only `workflow_dispatch` recheck. It does **not** run on `develop → main` release promotions: no automation may push formatting commits directly to protected `develop` or `main`. Manual formatting checks remain available. Prettier `--log-level warn` removes per-file success chatter while preserving errors.
 
 ## Agent CI failure triage (low-token default)
 
@@ -117,7 +190,7 @@ Run actual validation before merging: `node --test scripts/ci/quietRun/quiet-run
 
 The default branch is now `develop`; the two active protection rulesets target their literal branches. Comment-triggered workflows use code deployed to the current default branch.
 
-Dedicated EducationStandard catalog/reference GitHub workflows are removed. Existing UI Kit `test:locales` validates definitions and localized outputs; FastGate tests the reference generator only when implementation changes. The on-demand `/agent-artifacts generate education-standards` functionality remains available.
+Dedicated EducationStandard catalog/reference GitHub workflows are removed. Existing UI Kit `test:locales` validates definitions and localized outputs in its separate test suite; FastGate does not run generator tests. The on-demand `/agent-artifacts generate education-standards` functionality remains available.
 
 **Actual branch-protection audit (2026-11-19):** GitHub already has `develop` as default and active literal-branch rulesets. Both `Protect main` and `Protect develop` now require a pull request before merging. `Protect main` now requires **`Production Quality / verify`** alongside Agent CI Artifacts, Affected content and Blocker TODOs; `Protect develop` requires **`FastGate / verify`** alongside the same three checks. Verified from active GitHub rulesets on 2026-11-19. GitHub ruleset state is an operational setting rather than a YAML guarantee.
 
