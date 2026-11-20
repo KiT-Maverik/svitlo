@@ -67,3 +67,4 @@ Svitlo is a broad, international, **AI-assisted, accessible, offline-capable int
 These principles must be read **before** choosing a lesson design, introducing educational entities, implementing interactive scenes, changing localization, or defining persistence/offline behavior.
 
 **Maintenance rule:** when a product decision changes, update the relevant focused document and its implementation status. Do not rewrite the historical Overture as if it were a mutable live specification.
+
