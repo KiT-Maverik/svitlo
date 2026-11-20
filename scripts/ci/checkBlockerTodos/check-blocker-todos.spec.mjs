@@ -5,7 +5,7 @@ import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { test } from 'node:test';
-import { scanDiff, scanFull, scanSource, scanChanged, main } from './check-blocker-todos.mjs';
+import { scanDiff, scanFull, scanSource, scanChanged, scanPendingReview, main } from './check-blocker-todos.mjs';
 
 const blocker = '// ' + 'TODO (BLOCKER): Complete translations';
 const ordinary = '// TODO: Refactor later';
@@ -222,6 +222,36 @@ test('Ready gate rejects an inherited blocker inside a changed authored source f
     console.error = () => {};
     try {
       assert.throws(() => main(['changed', base, head], root), /unresolved TODO/);
+    } finally {
+      console.error = previous;
+    }
+  });
+});
+
+test('canonical Lesson/Course Review zeros block Ready even without TODO markers', () => {
+  const lesson = 'content/math/data/lessons/a/lesson-id/review.ts';
+  const course = 'content/math/data/courses/b/course-id/review.ts';
+  const accepted = 'export const review = { ai: { locales: 13 }, human: { acceptance: 14, locales: { uk: 15 } } };\n';
+  const unreviewed =
+    'export const review = { ai: { stage: { pr: 0, language: "uk" }, locales: 0 }, human: { acceptance: 0, locales: { uk: 0 } } };\n';
+  assert.deepEqual(scanPendingReview(lesson, accepted), []);
+  assert.deepEqual(scanPendingReview(course, accepted), []);
+  assert.equal(scanPendingReview(lesson, unreviewed).length, 1);
+  assert.equal(scanPendingReview(course, unreviewed).length, 1);
+  assert.deepEqual(scanPendingReview('content/math/data/skills/review.ts', unreviewed), []);
+  assert.deepEqual(scanPendingReview(lesson, '// pr: 0 is unreviewed\n' + accepted), []);
+  withRepo(({ root, put, commit }) => {
+    put(lesson, accepted);
+    const base = commit();
+    put(lesson, unreviewed);
+    const head = commit();
+    assert.equal(scanChanged(root, base, head).length, 1);
+    assert.equal(scanDiff(root, base, head).length, 1);
+    const previous = console.error;
+    console.error = () => {};
+    try {
+      assert.throws(() => main(['changed', base, head], root), /pending Review evidence/);
+      assert.throws(() => main(['full'], root), /pending Review evidence/);
     } finally {
       console.error = previous;
     }

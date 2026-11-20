@@ -579,13 +579,14 @@ export function renderModularCourse(
     files.set(file, source);
   }
   // Use the real shared Review contract until a Course-specific review contract exists.
-  // Missing evidence intentionally produces TypeScript diagnostics, not fictitious approvals.
+  // Numeric zero is unreviewed; the TODO and zero-evidence guard preserve approval gates.
   files.set(
     'review.ts',
-    "import type { Review } from '@svitlo/engine/build';\n\n" +
+    '// TODO (BLOCKER): Conduct review. Zero is unreviewed; verify PR, revision and language evidence before Ready/merge.\n' +
+      "import type { Review } from '@svitlo/engine/build';\n\n" +
       'export const courseReview = {\n' +
-      '  ai: { locales: undefined },\n' +
-      '  human: { acceptance: undefined, locales: {} },\n' +
+      '  ai: { locales: 0 },\n' +
+      '  human: { acceptance: 0, locales: {} },\n' +
       '} satisfies Review;\n',
   );
   const planned = config.params.languages;
