@@ -9,7 +9,10 @@ export const differentMoon = defineText<"differentMoon", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Удень з’являється інший, денний Місяць."
+      uk: "Удень з’являється інший, денний Місяць.",
+      en: "A different, daytime Moon appears during the day.",
+      pl: "W dzień pojawia się inny, dzienny Księżyc.",
+      qm: "Küntüz başqa, küntüz Ayi peyda ola."
     }
   }
 });

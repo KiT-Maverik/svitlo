@@ -9,7 +9,10 @@ export const reflectsInDay = defineText<"reflectsInDay", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Місяць іноді буває на денному небі, а його поверхня відбиває світло Сонця."
+      uk: "Місяць іноді буває на денному небі, а його поверхня відбиває світло Сонця.",
+      en: "The Moon is sometimes in the daytime sky, and its surface reflects sunlight.",
+      pl: "Księżyc bywa widoczny na dziennym niebie, a jego powierzchnia odbija światło Słońca.",
+      qm: "Ay bazan küntüz kökte körüne ve yüzü Küneş yarığını aks ettire."
     }
   }
 });

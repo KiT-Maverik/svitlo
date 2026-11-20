@@ -9,7 +9,10 @@ export const moonSwitches = defineText<"moonSwitches", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Місяць може світитися лише після заходу Сонця."
+      uk: "Місяць може світитися лише після заходу Сонця.",
+      en: "The Moon can glow only after sunset.",
+      pl: "Księżyc może świecić tylko po zachodzie Słońca.",
+      qm: "Ay yalnız Küneş batqandan soñ yarqıray bile."
     }
   }
 });

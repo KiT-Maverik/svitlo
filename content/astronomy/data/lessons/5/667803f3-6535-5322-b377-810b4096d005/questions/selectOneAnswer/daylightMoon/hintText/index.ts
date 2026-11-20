@@ -9,7 +9,10 @@ export const hintText = defineText<"hintText", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Подумай, чи обов’язково має настати ніч, щоб Місяць відбивав сонячне світло."
+      uk: "Подумай, чи обов’язково має настати ніч, щоб Місяць відбивав сонячне світло.",
+      en: "Think about whether it has to be night for the Moon to reflect sunlight.",
+      pl: "Zastanów się, czy musi być noc, żeby Księżyc odbijał światło Słońca.",
+      qm: "Ay Küneş yarığını aks ettirsin dep gece olmaq şartmı? Tüşün."
     }
   }
 });

@@ -9,7 +9,10 @@ export const explanationText = defineText<"explanationText", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Місяць відбиває сонячне світло і вдень, і вночі. Його видимість залежить від положення на небі й умов спостереження."
+      uk: "Місяць відбиває сонячне світло і вдень, і вночі. Його видимість залежить від положення на небі й умов спостереження.",
+      en: "The Moon reflects sunlight both during the day and at night. Whether we can see it depends on its position in the sky and the viewing conditions.",
+      pl: "Księżyc odbija światło Słońca zarówno w dzień, jak i w nocy. To, czy go widzimy, zależy od jego położenia na niebie i warunków obserwacji.",
+      qm: "Ay küntüz de, gece de Küneş yarığını aks ettire. Onı körmek kökteki vaziyetine ve közetüv şartlarına bağlı."
     }
   }
 });

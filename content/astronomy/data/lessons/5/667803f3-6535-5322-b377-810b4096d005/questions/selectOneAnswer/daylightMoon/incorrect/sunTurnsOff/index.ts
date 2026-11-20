@@ -9,7 +9,10 @@ export const sunTurnsOff = defineText<"sunTurnsOff", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Сонце на мить вимкнуло своє світло."
+      uk: "Сонце на мить вимкнуло своє світло.",
+      en: "The Sun briefly turned off its light.",
+      pl: "Słońce na chwilę przestało świecić.",
+      qm: "Küneş bir anğa yarığını söndürdi."
     }
   }
 });

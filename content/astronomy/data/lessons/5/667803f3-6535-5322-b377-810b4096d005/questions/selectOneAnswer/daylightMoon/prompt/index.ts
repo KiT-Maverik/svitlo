@@ -9,7 +9,10 @@ export const prompt = defineText<"prompt", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Дитина помітила Місяць удень, коли ще світило Сонце. Чому це не дивно?"
+      uk: "Дитина помітила Місяць удень, коли ще світило Сонце. Чому це не дивно?",
+      en: "A child noticed the Moon during the day, while the Sun was still shining. Why is this not surprising?",
+      pl: "Dziecko zauważyło Księżyc w dzień, gdy wciąż świeciło Słońce. Dlaczego nie jest to nic dziwnego?",
+      qm: "Bala Küneş daa yarıq bergen küntüz Ayni kördi. Bu niçün şaşırtıcı degil?"
     }
   }
 });
