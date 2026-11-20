@@ -64,6 +64,29 @@ test('requires explicitly scoped Question reference generation', () => {
   assert.throws(() => parseArguments(['--kind', 'questions', '--package', 'content/playground', '--course', lesson]));
 });
 
+test('Flashcard review accepts exactly one bank and locale while refusing unrelated selectors', () => {
+  const lesson = 'd3048d21-8690-5255-b62c-984c69ac272c';
+  assert.deepEqual(
+    parseArguments(['--kind', 'flashcards', '--package', 'content/playground', '--lesson', lesson, '--locale', 'uk']),
+    { kind: 'flashcards', package: 'content/playground', lesson, locale: 'uk' },
+  );
+  assert.throws(() => parseArguments(['--kind', 'flashcards']), /require --package/);
+  assert.throws(
+    () => parseArguments(['--kind', 'flashcards', '--package', 'content/playground']),
+    /requires exactly one --lesson UUID and --locale/,
+  );
+  assert.throws(
+    () => parseArguments(['--kind', 'flashcards', '--package', 'content/playground', '--locale', 'uk']),
+    /requires exactly one --lesson UUID and --locale/,
+  );
+  assert.throws(
+    () => parseArguments(['--kind', 'flashcards', '--package', 'content/playground', '--lesson', lesson]),
+    /requires exactly one --lesson UUID and --locale/,
+  );
+  assert.throws(() => parseArguments(['--kind', 'flashcards', '--package', 'content/playground', '--lesson', '../x']));
+  assert.throws(() => parseArguments(['--kind', 'flashcards', '--package', 'content/playground', '--course', lesson]));
+});
+
 test('rejects unsafe paths, invalid combinations and duplicate options before writing anything', () => {
   for (const args of [
     ['--kind', 'skills', '--package', '../outside'],
@@ -269,6 +292,77 @@ test('trusted publisher accepts pre-Course Skills manifests but rejects scope mi
   assert.match(wrongPackage.stderr, /Manifest scope disagrees with authorized request: package/);
 });
 
+test('trusted Agent CI publisher accepts only a correctly scoped Flashcard bank reference document', () => {
+  const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
+  const workflow = fs.readFileSync(path.join(root, '.github/workflows/agent-ci-artifacts.yml'), 'utf8');
+  const marker = '      - name: Validate downloaded files and commit only agent artifacts';
+  const offset = workflow.indexOf(marker);
+  assert.ok(offset >= 0, 'trusted publisher validation must remain present');
+  const match = workflow.slice(offset).match(/node --input-type=module <<'NODE'\n([\s\S]*?)\n\s+NODE/);
+  assert.ok(match);
+  const validator = match[1]
+    .split('\n')
+    .map(line => line.replace(/^ {10}/, ''))
+    .join('\n');
+  const temp = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-flashcard-manifest-'));
+  const lesson = 'bb75647f-203d-481a-a1c7-4d331c779d34';
+  const relative = 'flashcards/playground/' + lesson.at(-1) + '/' + lesson + '/uk.md';
+  const dest = path.join(temp, '.agent-ci-artifacts', relative);
+  try {
+    fs.mkdirSync(path.dirname(dest), { recursive: true });
+    fs.writeFileSync(dest, '# Flashcard Bank\n');
+    const manifest = {
+      kind: 'pr-scoped-agent-ci-artifacts',
+      schemaVersion: 3,
+      scope: {
+        kind: 'flashcards',
+        package: 'content/playground',
+        locale: 'uk',
+        component: null,
+        lesson,
+        course: null,
+      },
+      generated: [
+        {
+          kind: 'flashcard',
+          textbook: 'content/playground',
+          lesson: lesson.at(-1) + '/' + lesson,
+          locale: 'uk',
+          path: '.agent-ci-artifacts/' + relative,
+          missing: 0,
+          reviewReady: true,
+        },
+      ],
+      failures: [],
+    };
+    const manifestPath = path.join(temp, '.agent-ci-artifacts/manifest.json');
+    function verify() {
+      fs.writeFileSync(manifestPath, JSON.stringify(manifest));
+      return spawnSync(process.execPath, ['--input-type=module', '--eval', validator], {
+        cwd: temp,
+        encoding: 'utf8',
+        env: {
+          ...process.env,
+          REQUEST_KIND: 'flashcards',
+          REQUEST_BOOK: 'content/playground',
+          REQUEST_LOCALE: 'uk',
+          REQUEST_COMPONENT: '',
+          REQUEST_LESSON: lesson,
+          REQUEST_COURSE: '',
+        },
+      });
+    }
+    const correct = verify();
+    assert.equal(correct.status, 0, correct.stderr);
+    manifest.generated[0].lesson = 'e/' + lesson;
+    const wrong = verify();
+    assert.notEqual(wrong.status, 0);
+    assert.match(wrong.stderr, /Invalid generated artifact entry|outside requested Lesson UUID/);
+  } finally {
+    fs.rmSync(temp, { recursive: true, force: true });
+  }
+});
+
 test('trusted Question publisher rejects stale source SHA and failed references', () => {
   const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
   const workflow = fs.readFileSync(path.join(root, '.github/workflows/agent-ci-artifacts.yml'), 'utf8');
@@ -277,7 +371,10 @@ test('trusted Question publisher rejects stale source SHA and failed references'
   assert.ok(offset > 0);
   const match = workflow.slice(offset).match(/node --input-type=module <<'NODE'\n([\s\S]*?)\n\s+NODE/);
   assert.ok(match, 'Trusted publisher validator exists');
-  const validator = match[1].split('\n').map(line => line.replace(/^ {10}/, '')).join('\n');
+  const validator = match[1]
+    .split('\n')
+    .map(line => line.replace(/^ {10}/, ''))
+    .join('\n');
   const sha = '0123456789abcdef0123456789abcdef01234567';
   const lesson = 'd3048d21-8690-5255-b62c-984c69ac272c';
   const relative = '.agent-ci-artifacts/questions/playground/c/' + lesson + '/kk.md';
@@ -286,19 +383,48 @@ test('trusted Question publisher rejects stale source SHA and failed references'
     try {
       fs.mkdirSync(path.dirname(path.join(temp, relative)), { recursive: true });
       fs.writeFileSync(path.join(temp, relative), '# Question review\n');
-      fs.writeFileSync(path.join(temp, '.agent-ci-artifacts/manifest.json'), JSON.stringify({
-        kind: 'pr-scoped-agent-ci-artifacts', schemaVersion: 3, sourceCommit,
-        scope: { kind: 'questions', package: 'content/playground', locale: 'kk',
-          component: null, lesson, course: null },
-        generated: [{ kind: 'question', textbook: 'content/playground', lesson: 'c/' + lesson,
-          locale: 'kk', path: relative, questions: 6, missing: 0, reviewReady: true }],
-        failures,
-      }));
+      fs.writeFileSync(
+        path.join(temp, '.agent-ci-artifacts/manifest.json'),
+        JSON.stringify({
+          kind: 'pr-scoped-agent-ci-artifacts',
+          schemaVersion: 3,
+          sourceCommit,
+          scope: {
+            kind: 'questions',
+            package: 'content/playground',
+            locale: 'kk',
+            component: null,
+            lesson,
+            course: null,
+          },
+          generated: [
+            {
+              kind: 'question',
+              textbook: 'content/playground',
+              lesson: 'c/' + lesson,
+              locale: 'kk',
+              path: relative,
+              questions: 6,
+              missing: 0,
+              reviewReady: true,
+            },
+          ],
+          failures,
+        }),
+      );
       return spawnSync(process.execPath, ['--input-type=module', '--eval', validator], {
-        cwd: temp, encoding: 'utf8',
-        env: { ...process.env, REQUEST_KIND: 'questions', REQUEST_BOOK: 'content/playground',
-          REQUEST_LOCALE: 'kk', REQUEST_COMPONENT: '', REQUEST_LESSON: lesson,
-          REQUEST_COURSE: '', SOURCE_HEAD_SHA: pinned },
+        cwd: temp,
+        encoding: 'utf8',
+        env: {
+          ...process.env,
+          REQUEST_KIND: 'questions',
+          REQUEST_BOOK: 'content/playground',
+          REQUEST_LOCALE: 'kk',
+          REQUEST_COMPONENT: '',
+          REQUEST_LESSON: lesson,
+          REQUEST_COURSE: '',
+          SOURCE_HEAD_SHA: pinned,
+        },
       });
     } finally {
       fs.rmSync(temp, { recursive: true, force: true });

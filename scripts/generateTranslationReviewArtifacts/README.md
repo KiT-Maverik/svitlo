@@ -1,10 +1,10 @@
 # Scoped PR review Markdown generation
 
-`generate-translation-review-artifacts.mjs` creates **only** the requested reference family and scope. It never implicitly generates all textbooks, Lessons, UI Kit strings or supported languages at once. The only write target is `.agent-ci-artifacts/` on an agent PR branch.
+`generate-translation-review-artifacts.mjs` creates **only** the requested reference family and scope. It never implicitly generates all textbooks, Lessons, UI Kit strings or supported languages at once. The only write target is `.agent-ci-artifacts/` on the **existing entity PR branch**, without creating a separate translation or review PR.
 
 ## Commands for PR comments
 
-After the owner authorizes the relevant review, a GitHub user with repository `write`, `maintain`, or `admin` permission may post the following commands on a same-repository **Draft agent PR**. The workflow checks real repository permissions through GitHub's API, not the commenter's `author_association`:
+After the owner authorizes the relevant review, a GitHub user with repository `write`, `maintain`, or `admin` permission may post the following commands on a same-repository **entity PR**. The workflow checks real repository permissions through GitHub's API, not the commenter's `author_association`:
 
 ```text
 /agent-artifacts generate skills content/astronomy it
@@ -12,6 +12,8 @@ After the owner authorizes the relevant review, a GitHub user with repository `w
 /agent-artifacts generate lessons content/math it
 /agent-artifacts generate lessons content/math
 /agent-artifacts generate questions content/astronomy qm
+/agent-artifacts generate questions content/playground d3048d21-8690-5255-b62c-984c69ac272c kk
+/agent-artifacts generate flashcards content/playground d3048d21-8690-5255-b62c-984c69ac272c uk
 /agent-artifacts generate courses content/astronomy 1e79d8fc-2223-4fa7-bc64-70d8172d3e8b uk
 /agent-artifacts generate courses content/astronomy 1e79d8fc-2223-4fa7-bc64-70d8172d3e8b
 /agent-artifacts generate courses content/astronomy
@@ -25,6 +27,8 @@ After the owner authorizes the relevant review, a GitHub user with repository `w
 ```
 
 For Courses, an omitted UUID selects all authored Courses in the textbook and an omitted locale selects each Course's own declared or Stage-5-planned languages. Planned, untranslated locales yield `%%MISSING%%` preview references with `reviewReady: false`; they are not considered published. Course documents contain Course/Module/Chapter localized copy and Episode-owned Sections; standalone Lessons appear only as UUID references. Modular Course references are read statically from authored TypeScript, even if standalone Lesson imports are not yet implemented; dynamic expressions fail explicitly. Course output is scoped to `.agent-ci-artifacts/courses/<book>/<bucket>/<uuid>/<locale>.md`.
+
+For Flashcards, `/agent-artifacts generate flashcards content/<book> <lesson-uuid> <locale>` creates a source-SHA-pinned, bounded reference covering **every** statically authored Flashcard in the bank: front, back, optional hint, flags, ContentBlock IDs, locale dictionaries, missing-field diagnostics and canonical source links. It does not confuse Lesson Flashcards Section selections or Lesson-level Flashcard design context with an independent bank review. Dynamic/unsupported source expressions fail closed. Output is `.agent-ci-artifacts/flashcards/<book>/<bucket>/<lesson-uuid>/<locale>.md`. The independent reviewer reads this complete document on the **same Flashcards entity PR**; generated Markdown is never canonical localized source.
 
 For Questions, `/agent-artifacts generate questions content/astronomy qm` uses
 the **single canonical three-file-level Question layout**:
@@ -70,6 +74,7 @@ The workflow's manual dispatch inputs select the same fields and additionally su
 
 ```sh
 node scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.mjs --kind skills --package content/astronomy --locale it
+node scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.mjs --kind flashcards --package content/playground --lesson d3048d21-8690-5255-b62c-984c69ac272c --locale uk
 node scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.mjs --kind lessons --package content/math
 node scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.mjs --kind courses --package content/astronomy --course 1e79d8fc-2223-4fa7-bc64-70d8172d3e8b --locale uk
 node scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.mjs --kind lessons --package content/playground --locale uk --lesson d3048d21-8690-5255-b62c-984c69ac272c

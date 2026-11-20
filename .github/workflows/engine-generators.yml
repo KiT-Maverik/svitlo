@@ -28,6 +28,7 @@ on:
       - 'shared/engine/scripts/generateLessonProps/**'
       - 'shared/engine/scripts/generateCourseProps/**'
       - 'shared/engine/scripts/generateCourseReviewArtifacts/**'
+      - 'shared/engine/scripts/generateFlashcardReviewArtifacts/**'
       - 'scripts/generateTranslationReviewArtifacts/**'
       - 'shared/engine/scripts/loadAuthoredConfigurators/**'
       - 'shared/engine/scripts/generatorCliIntegration/**'
@@ -90,6 +91,7 @@ jobs:
             shared/engine/scripts/lessonBuilder/lessonBuilder.spec.mjs \
             shared/engine/scripts/sceneScaffolding/sceneScaffolding.spec.mjs \
             shared/engine/scripts/generateQuestionReviewArtifacts/*.spec.mjs \
+            shared/engine/scripts/generateFlashcardReviewArtifacts/generate-flashcard-review-artifacts.spec.mjs \
             scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.spec.mjs \
             scripts/textbook-tooling/buildTextbook/stageTextbookAssets.spec.mjs
 
@@ -127,6 +129,8 @@ jobs:
             .github/workflows/course-materialization.yml \
             shared/engine/scripts/materializeCourseFlow/*.mjs \
             shared/engine/scripts/validateCourseFlow/*.mjs \
+            shared/engine/scripts/generateFlashcardReviewArtifacts/*.mjs \
+            shared/engine/scripts/generateFlashcardReviewArtifacts/README.md \
             shared/engine/configurators/courses/defineCourse/defineCourse.schemas.ts \
             shared/engine/configurators/courses/defineCourse/courseHierarchy.spec.ts \
             studio/skills/course-workflow/course-flow.schema.json \

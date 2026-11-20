@@ -253,7 +253,8 @@ test('planned Lesson is materialized with a stable UUID and complete methodology
     ]);
     assert.equal(obj.config.type, 'lesson');
     assert.deepEqual(obj.config.section, { items: {}, order: [] });
-    assert.equal(obj.config.params.requireQuiz, true);
+    assert.equal(obj.config.params.quizRequiredForCompletion, true);
+    assert.equal(Object.hasOwn(obj.config.params, 'requireQuiz'), false);
     assert.equal(obj.production.methodology, input.content.items.review.methodology);
     assert(filename.endsWith('/data/lessons/' + obj.config.id.at(-1) + '/' + obj.config.id + '/lesson.yaml'));
     materialize(['--package', 'content/math', '--course', id, '--write'], root);
@@ -302,12 +303,22 @@ test('approved Course Episode generates a standalone typed Episode module with i
     section: {
       items: {
         introduction: {
+          id: '8a9f6c0b-7d11-432a-9f8e-9e6ee1a6ac11',
           type: 'content',
           slug: 'introduction',
+          params: {},
+          locale: { title: { en: 'Welcome' }, navigationLabel: { en: 'Start' } },
           content: {
             items: {
-              greeting: { type: 'markdown', slug: 'greeting', locale: { value: { en: 'Look up at the sky' } } },
+              greeting: {
+                id: '8a9f6c0b-7d11-432a-9f8e-9e6ee1a6ac12',
+                type: 'markdown',
+                slug: 'greeting',
+                params: {},
+                locale: { value: { en: 'Look up at the sky' } },
+              },
               illustration: {
+                id: '8a9f6c0b-7d11-432a-9f8e-9e6ee1a6ac13',
                 type: 'image',
                 slug: 'illustration',
                 params: { fill: true, aspectRatio: 1.5 },
@@ -451,4 +462,183 @@ test('Course source exports reject reserved identifiers', () => {
     () => renderModularCourse(technicalFromEditorial(input), 'content/math'),
     /Reserved Course source export identifier/,
   );
+});
+
+test('Course-only Lesson patches remain scoped to existing Lesson placements', () => {
+  const patched = structuredClone(plan);
+  patched.content.items.review.locale = { title: { en: 'Course-only review title' } };
+  patched.content.items.review.params = { sections: { allowSkipping: false } };
+  const technical = technicalFromEditorial(patched);
+  assert.equal(technical.config.content.items.review.config.lessonId, lessonId);
+  assert(!Object.hasOwn(technical.config.content.items.review.config, 'locale'));
+
+  const source = renderModularCourse(technical, 'content/math').get('index.ts');
+  assert(source.includes('export const authoredCourseOverrides = '));
+  assert(source.includes('review:'));
+  assert(source.includes('Course-only review title'));
+  assert(source.includes('allowSkipping: false'));
+  assert(source.includes('satisfies Parameters<typeof spaceCourse.build.overrides>[0]'));
+  assert(source.includes('import { review } from "#lessonsData/'));
+  const original = renderModularCourse(technicalFromEditorial(plan), 'content/math').get('index.ts');
+  assert(!original.includes('export const authoredCourseOverrides = '));
+});
+
+test('Course-only override rejects unsupported identities and new Lesson patches', () => {
+  const withEdit = structuredClone(plan);
+  withEdit.content.items.review.params = { sections: { allowSkipping: false } };
+
+  withEdit.content.items.review.params.languages = ['en'];
+  assert.throws(
+    () => technicalFromEditorial(withEdit),
+    /languages|additional properties|must NOT have additional properties/i,
+  );
+  delete withEdit.content.items.review.params.languages;
+
+  delete withEdit.content.items.review.lessonId;
+  withEdit.content.items.review.methodology = 'New Lesson needs independently authored methodology.';
+  assert.throws(() => technicalFromEditorial(withEdit), /Course-local Lesson edits require an existing lessonId/);
+});
+
+test('Reuse source metadata must cover requested Skills and Course locales without owning placement slugs', () => {
+  const actualLesson = {
+    path: '../../../lessons/c/' + lessonId + '/index.ts',
+    export: 'standaloneOrbit',
+    slug: 'standaloneOrbit',
+    skills: [lessonId],
+    languages: ['en', 'uk'],
+  };
+  const reused = technicalFromEditorial(plan, () => actualLesson);
+  assert.equal(reused.config.content.items.review.config.slug, 'review');
+  assert.equal(reused.config.content.items.review.config.source.slug, 'standaloneOrbit');
+
+  assert.throws(
+    () => technicalFromEditorial(plan, () => ({ ...actualLesson, languages: ['en'] })),
+    /lessonId: reused Lesson .* does not support Course locale uk/,
+  );
+  const changed = structuredClone(plan);
+  changed.content.items.review.skills = ['faa8f11a-cc06-42c9-8864-8151732e690a'];
+  assert.throws(
+    () => technicalFromEditorial(changed, () => actualLesson),
+    /skills: reused Lesson .* does not teach verified Skill/,
+  );
+  changed.content.items.review.skills = [lessonId];
+  changed.content.items.review.locale = { title: { pl: 'Not a Course language' } };
+  assert.throws(
+    () => technicalFromEditorial(changed, () => actualLesson),
+    /locale\/title\/pl: override locale is outside Course supportedLanguages/,
+  );
+});
+
+test('Course-local Section additions render real typed configurators and nested ContentBlocks', () => {
+  const configured = structuredClone(plan);
+  configured.content.items.review.section = {
+    additionalItems: {
+      fieldNotes: {
+        id: '3f648844-4951-4f17-99d2-6dbe5fbb016e',
+        slug: 'fieldNotes',
+        type: 'content',
+        params: {},
+        locale: {
+          title: { en: 'Field notes' },
+          navigationLabel: { en: 'Notes' },
+        },
+        content: {
+          items: {
+            paragraph: {
+              id: '9b3b5b32-5e02-4653-a4ac-c4fdf734586d',
+              slug: 'paragraph',
+              type: 'markdown',
+              params: {},
+              locale: { value: { en: 'Observe the sky.' } },
+            },
+          },
+          order: ['paragraph'],
+        },
+      },
+    },
+    order: ['fieldNotes'],
+  };
+  const output = renderModularCourse(technicalFromEditorial(configured), 'content/math').get('index.ts');
+  assert.match(output, /import \{[^}]*defineContentSection[^}]*defineMarkdown[^}]*\} from '@svitlo\/engine\/build';/);
+  assert.match(output, /fieldNotes:\s*defineContentSection\(/);
+  assert.match(output, /paragraph:\s*defineMarkdown\(/);
+  assert.match(output, /order:\s*\[\s*"fieldNotes"/);
+  assert.match(output, /export const authoredCourseOverrides = /);
+  assert.equal(
+    ts.createSourceFile('CourseOverride.ts', output, ts.ScriptTarget.Latest, true).parseDiagnostics.length,
+    0,
+  );
+  assert(!output.includes('raw YAML'));
+  assert(!output.includes('config.yaml'));
+});
+
+test('Course-local Section additions reject missing canonical Engine fields and mismatched keys', () => {
+  const configured = structuredClone(plan);
+  configured.content.items.review.section = {
+    additionalItems: { fieldNotes: { type: 'content', slug: 'fieldNotes' } },
+    order: ['fieldNotes'],
+  };
+  assert.throws(
+    () => technicalFromEditorial(configured),
+    /section\/additionalItems\/fieldNotes.*Engine Section schema/,
+  );
+  configured.content.items.review.section.additionalItems.fieldNotes = {
+    id: '3f648844-4951-4f17-99d2-6dbe5fbb016e',
+    slug: 'wrongSlug',
+    type: 'content',
+    params: {},
+    locale: { title: { en: 'Field notes' }, navigationLabel: { en: 'Notes' } },
+    content: { items: {}, order: [] },
+  };
+  assert.throws(() => technicalFromEditorial(configured), /section\/additionalItems\/fieldNotes\/slug: must match/);
+  configured.content.items.review.section.additionalItems.fieldNotes.slug = 'fieldNotes';
+  delete configured.content.items.review.section.order;
+  assert.throws(() => technicalFromEditorial(configured), /section\/order: full Section order is required/);
+});
+
+test('Course Stage 5 rejects the unmodified E2E Episode three null params with an exact field path', () => {
+  const source = path.resolve('content/playground/data/courses/e/7c4e6d20-5ad3-4af8-b9d7-d1f3587b0a8e/course.yaml');
+  const fixture = YAML.parse(fs.readFileSync(source, 'utf8'));
+  assert.equal(fixture.content.items.labPrologue.section.items.welcome.params, null);
+  assert.equal(fixture.content.items.labPrologue.section.items.welcome.content.items.greeting.params, null);
+  assert.equal(fixture.content.items.labPrologue.section.items.welcome.content.items.choosePath.params, null);
+  assert.throws(
+    () => technicalFromEditorial(fixture),
+    /labPrologue\/section\/items\/welcome\/params: expected an Engine params object/,
+  );
+});
+
+test('Course Stage 5 rejects malformed nested Episode params before any source writes', () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-episode-invalid-'));
+  const folder = path.join(root, 'content/math/data/courses', id.at(-1), id);
+  const configured = structuredClone(plan);
+  configured.content.items.story = {
+    type: 'episode',
+    slug: 'story',
+    title: 'Story',
+    section: {
+      items: {
+        welcome: {
+          type: 'content',
+          slug: 'welcome',
+          params: null,
+          content: { items: {}, order: [] },
+        },
+      },
+      order: ['welcome'],
+    },
+  };
+  configured.content.order.push('story');
+  try {
+    fs.mkdirSync(folder, { recursive: true });
+    fs.writeFileSync(path.join(folder, 'course.yaml'), YAML.stringify(configured));
+    assert.throws(
+      () => materialize(['--package', 'content/math', '--course', id, '--write'], root),
+      /story\/section\/items\/welcome\/params: expected an Engine params object/,
+    );
+    assert.equal(fs.existsSync(path.join(folder, 'index.ts')), false);
+    assert.equal(fs.readdirSync(folder).join(','), 'course.yaml');
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
 });

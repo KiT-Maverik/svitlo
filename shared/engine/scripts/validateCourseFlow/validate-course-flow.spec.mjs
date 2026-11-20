@@ -18,10 +18,10 @@ test('Stage 1 accepts a complete editorial plan without structure', () => {
   assert.equal(checkPlan(plan(), '1').valid, true);
   assert.equal(checkPlan({ ...plan(), content: { items: {}, order: [] } }, '1').valid, false);
 });
-test('Stage 2 requires macrostructure and rejects Lesson slots', () => {
+test('Stage 2 validates fully described Course hierarchy without prohibiting Lesson placements', () => {
   assert.equal(checkPlan(plan(), '2').valid, false);
   const withLesson = { ...plan(), content: { items: { intro: lesson }, order: ['intro'] } };
-  assert.equal(checkPlan(withLesson, '2').valid, false);
+  assert.equal(checkPlan(withLesson, '2').valid, true);
   assert.equal(checkPlan(withLesson, '3').valid, true);
   assert.equal(checkPlan(withLesson, '3-complete').valid, false);
   assert.equal(
@@ -76,10 +76,96 @@ test('Stage 3 is complete for a fully specified planned Lesson without any UUID'
     false,
   );
 });
-test('Stage 3 allows specifically authored Episodes but Stage 2 remains macrostructure-only', () => {
+test('Fully specified Episodes are not forbidden at Stage 2, while TMP placeholders remain editorial only', () => {
   const episode = { type: 'episode', slug: 'story', title: 'Story', section: { items: {}, order: [] } };
   const source = { ...plan(), content: { items: { story: episode }, order: ['story'] } };
   assert.equal(checkPlan(source, '3-complete').valid, true);
   assert.equal(checkPlan(source, '3-complete').episodes, 1);
-  assert.equal(checkPlan(source, '2').valid, false);
+  assert.equal(checkPlan(source, '2').valid, true);
+
+  // Final-schema validation is not a Stage 2 drafting gate; temporary keys have
+  // no slug/title/methodology and must be replaced before Stage 3 completion.
+  const temporary = {
+    ...plan(),
+    content: {
+      items: {
+        TMP_lesson_1: { type: 'lesson', skills: [skillId] },
+        TMP_episode_1: { type: 'episode' },
+      },
+      order: ['TMP_lesson_1', 'TMP_episode_1'],
+    },
+  };
+  assert.equal(checkPlan(temporary, '2').valid, false);
+  assert.equal(checkPlan(temporary, '3-complete').valid, false);
+});
+
+test('Stage 3 complete accepts inline Course-specific Lesson edits only for verified reuse', () => {
+  const existing = {
+    ...lesson,
+    lessonId: skillId,
+    locale: { title: { en: 'A Course-only lesson title' } },
+    params: { sections: { allowSkipping: false } },
+    events: { onStart: false },
+  };
+  const wrapped = child => ({
+    ...plan(),
+    content: { items: { intro: child }, order: ['intro'] },
+  });
+  const valid = checkPlan(wrapped(existing), '3-complete');
+  assert.equal(valid.valid, true, valid.errors.join('; '));
+
+  const { lessonId: _unused, ...newLesson } = existing;
+  const planned = { ...newLesson, methodology: 'New Lesson methodology with evidence and outcomes.' };
+  const newResult = checkPlan(wrapped(planned), '3-complete');
+  assert.equal(newResult.valid, false);
+  assert.match(newResult.errors.join('; '), /Course-local Lesson edits require an existing lessonId/);
+
+  const illegalLanguages = checkPlan(wrapped({ ...existing, params: { languages: ['en'] } }), '3-complete');
+  assert.equal(illegalLanguages.valid, false);
+
+  const illegalIdentity = checkPlan(wrapped({ ...existing, id: skillId }), '3-complete');
+  assert.equal(illegalIdentity.valid, false);
+
+  const withoutEdits = checkPlan(wrapped({ ...lesson, lessonId: skillId }), '3-complete');
+  assert.equal(withoutEdits.valid, true);
+});
+
+test('final Course validation uses canonical Engine Section schema for Course-local additions', () => {
+  const addedSection = {
+    id: '3f648844-4951-4f17-99d2-6dbe5fbb016e',
+    slug: 'fieldNotes',
+    type: 'content',
+    params: {},
+    locale: { title: { en: 'Field notes' }, navigationLabel: { en: 'Notes' } },
+    content: { items: {}, order: [] },
+  };
+  const reused = {
+    ...lesson,
+    lessonId: skillId,
+    section: { additionalItems: { fieldNotes: addedSection }, order: ['fieldNotes'] },
+  };
+  const wrap = source => ({
+    ...plan(),
+    content: { items: { intro: source }, order: ['intro'] },
+  });
+  const good = checkPlan(wrap(reused), '3-complete');
+  assert.equal(good.valid, true, good.errors.join('; '));
+
+  const missingId = structuredClone(reused);
+  delete missingId.section.additionalItems.fieldNotes.id;
+  const missingIdResult = checkPlan(wrap(missingId), '3-complete');
+  assert.equal(missingIdResult.valid, false);
+  assert.match(missingIdResult.errors.join('; '), /intro\/section\/additionalItems\/fieldNotes/);
+
+  const wrongKey = structuredClone(reused);
+  wrongKey.section.additionalItems.fieldNotes.slug = 'another';
+  assert.match(checkPlan(wrap(wrongKey), '3-complete').errors.join('; '), /fieldNotes\/slug: must match/);
+
+  const invalidNested = structuredClone(reused);
+  invalidNested.section.additionalItems.fieldNotes.params = null;
+  assert.equal(checkPlan(wrap(invalidNested), '3-complete').valid, false);
+
+  const noOrder = structuredClone(reused);
+  delete noOrder.section.order;
+  assert.match(checkPlan(wrap(noOrder), '3-complete').errors.join('; '), /section\/order/);
 });
