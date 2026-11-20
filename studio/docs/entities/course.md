@@ -44,11 +44,7 @@ the Zod Config change; the independent generator is authoritative.
 
 `defineCourse` composes independently authored `defineModule`, `defineChapter`,
 `defineEpisode`, and **existing standalone `defineLesson` configurators**.
-A Course `type: lesson` node in YAML is a `lessonId` reference, not an embedded
-Lesson Config. The Course TypeScript draft scaffolder imports the existing
-Lesson when its optional `source` import coordinates are known, or leaves an
-explicit unresolved reference for a separate Lesson Production handoff.
-It must never create or overwrite files in a standalone Lesson directory.
+A Course `type: lesson` slot in temporary YAML reuses an existing standalone Lesson by its verified `lessonId`, or holds a complete new Lesson methodology without an ID. The Stage 5 materializer resolves implemented Lesson sources where possible and allocates stable UUIDs plus minimal `lesson.yaml` handoffs for genuinely new Lessons. It never overwrites already authored standalone Lessons or opens their production PRs.
 
 The **only** current override mechanism is the stateless nested Build API:
 
@@ -131,7 +127,7 @@ configurators via the Build API. A Course's supported languages must be
 a subset of those supported by every included Lesson. A reusable instructional Lesson remains standalone regardless of Course ownership or patching; an assessment-only Lesson with external bank dependencies is **not** represented as independently deployable until those dependencies actually resolve.
 
 The Course publisher emits Course-local resources and sparse overrides
-separately from standalone Lesson resources. The Course YAML scaffolder
+separately from standalone Lesson resources. The Course Stage 5 materializer
 does not publish them. An editor must complete and typecheck authored
 TypeScript before normal validation and publication.
 
