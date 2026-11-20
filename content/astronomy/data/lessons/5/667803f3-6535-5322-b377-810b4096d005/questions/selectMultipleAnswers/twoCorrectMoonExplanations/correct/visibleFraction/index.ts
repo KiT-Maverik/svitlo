@@ -9,7 +9,10 @@ export const visibleFraction = defineText<"visibleFraction", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Із Землі видно іншу частину освітленої Сонцем поверхні."
+      uk: "Із Землі видно іншу частину освітленої Сонцем поверхні.",
+      en: "A different part of the Sun-lit surface is visible from Earth.",
+      pl: "Z Ziemi widać inną część powierzchni oświetlonej przez Słońce.",
+      qm: "Yerden Küneş aydınlatqan yüzniñ başqa payı körüne."
     }
   }
 });

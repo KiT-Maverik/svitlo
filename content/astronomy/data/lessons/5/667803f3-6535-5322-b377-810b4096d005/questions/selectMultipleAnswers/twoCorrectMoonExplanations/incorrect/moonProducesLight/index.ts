@@ -9,7 +9,10 @@ export const moonProducesLight = defineText<"moonProducesLight", LessonLanguages
   params: {},
   locale: {
     value: {
-      uk: "Місяць сам виробляє світло, як Сонце."
+      uk: "Місяць сам виробляє світло, як Сонце.",
+      en: "The Moon makes its own light, just like the Sun.",
+      pl: "Księżyc wytwarza własne światło, tak jak Słońce.",
+      qm: "Ay Küneş kibi öz yarığını çıqara."
     }
   }
 });

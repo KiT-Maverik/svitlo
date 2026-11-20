@@ -9,7 +9,10 @@ export const physicalMoonGrows = defineText<"physicalMoonGrows", LessonLanguages
   params: {},
   locale: {
     value: {
-      uk: "Фізичний розмір Місяця збільшується між цими спостереженнями."
+      uk: "Фізичний розмір Місяця збільшується між цими спостереженнями.",
+      en: "The Moon's physical size increases between these observations.",
+      pl: "Między tymi obserwacjami Księżyc rzeczywiście staje się większy.",
+      qm: "Bu közetüvler arasında Ayniñ kerçek büyükligi arta."
     }
   }
 });

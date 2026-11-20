@@ -9,7 +9,10 @@ export const hintText = defineText<"hintText", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Перевір окремо, чи змінюється саме тіло і звідки береться його світло."
+      uk: "Перевір окремо, чи змінюється саме тіло і звідки береться його світло.",
+      en: "Check separately whether the Moon itself changes and where its light comes from.",
+      pl: "Sprawdź osobno, czy zmienia się samo ciało niebieskie i skąd pochodzi jego światło.",
+      qm: "Ayniñ özü deñişemi ve yarığı qaydan kele? Er birini ayrı-ayrı teşker."
     }
   }
 });

@@ -9,7 +9,10 @@ export const sameSphere = defineText<"sameSphere", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Місяць залишається тим самим кулястим небесним тілом."
+      uk: "Місяць залишається тим самим кулястим небесним тілом.",
+      en: "The Moon remains the same spherical celestial body.",
+      pl: "Księżyc pozostaje tym samym kulistym ciałem niebieskim.",
+      qm: "Ay aynı şar şeklindeki kök cisimi olaraq qala."
     }
   }
 });
