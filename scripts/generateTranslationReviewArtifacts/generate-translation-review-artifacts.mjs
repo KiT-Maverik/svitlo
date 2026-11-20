@@ -6,6 +6,7 @@
  * Draft %%MISSING%% markers never enter authored data or published resources.
  */
 import fs from 'node:fs';
+import crypto from 'node:crypto';
 import path from 'node:path';
 import process from 'node:process';
 import { fileURLToPath } from 'node:url';
@@ -13,7 +14,13 @@ import { spawnSync } from 'node:child_process';
 import { readSupportedLanguageCodes } from '../../shared/engine/scripts/readSupportedLanguages/read-supported-languages.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
-const output = path.join(root, '.agent-ci-artifacts');
+// Disposable report data may only live under the ignored repo temp/ or Actions runner temp.
+const output = path.resolve(process.env.SVITLO_AGENT_REPORT_OUTPUT || path.join(root, 'temp/agent-reference-library'));
+const localTemp = path.join(root, 'temp') + path.sep;
+const runnerTemp = process.env.RUNNER_TEMP ? path.resolve(process.env.RUNNER_TEMP) + path.sep : null;
+if (!output.startsWith(localTemp) && !(runnerTemp && output.startsWith(runnerTemp))) {
+  throw new Error('Review output must be in repo temp/ or RUNNER_TEMP');
+}
 const families = new Set([
   'skills',
   'lessons',
@@ -77,15 +84,6 @@ function checkTextbook(options) {
   }
 }
 
-function sourceCommit() {
-  const info = spawnSync('git', ['log', '-1', '--format=%H', '--', '.', ':(exclude).agent-ci-artifacts/**'], {
-    cwd: root,
-    encoding: 'utf8',
-  });
-  if (info.status !== 0 || !/^[0-9a-f]{40}$/.test(info.stdout.trim())) throw new Error('Cannot determine source SHA');
-  return info.stdout.trim();
-}
-
 function sourceHead() {
   const info = spawnSync('git', ['rev-parse', 'HEAD'], { cwd: root, encoding: 'utf8' });
   if (info.status !== 0 || !/^[0-9a-f]{40}$/.test(info.stdout.trim())) {
@@ -118,7 +116,9 @@ export async function generate(options) {
   const manifest = {
     schemaVersion: 3,
     kind: 'pr-scoped-agent-ci-artifacts',
-    sourceCommit: options.kind === 'questions' ? sourceHead() : sourceCommit(),
+    sourceCommit: sourceHead(),
+    pr: process.env.SVITLO_AGENT_REPORT_PR ? Number(process.env.SVITLO_AGENT_REPORT_PR) : null,
+    runId: process.env.GITHUB_RUN_ID ? Number(process.env.GITHUB_RUN_ID) : null,
     scope: {
       kind: options.kind,
       package: options.package ?? null,
@@ -132,24 +132,11 @@ export async function generate(options) {
     generated: [],
     failures: [],
   };
-  // Replace only reference documents; Lesson lookup and coverage diagnostics have separate owners.
-  // Do not let a local generator invocation destroy their PR-scoped handoffs.
-  if (fs.existsSync(output)) {
-    if (fs.lstatSync(output).isSymbolicLink() || !fs.lstatSync(output).isDirectory()) {
-      throw new Error('Unsafe Agent CI Artifacts root');
-    }
-    for (const entry of fs.readdirSync(output, { withFileTypes: true })) {
-      if (['lesson-lookup', 'engine-coverage'].includes(entry.name)) {
-        if (!entry.isDirectory() || entry.isSymbolicLink()) {
-          throw new Error('Unsafe diagnostic artifact directory: ' + entry.name);
-        }
-        continue;
-      }
-      fs.rmSync(path.join(output, entry.name), { recursive: true, force: true });
-    }
-  } else {
-    fs.mkdirSync(output, { recursive: true });
-  }
+  // Runner-local regeneration must never touch tracked review content or a symlink.
+  if (fs.existsSync(output) && (fs.lstatSync(output).isSymbolicLink() || !fs.lstatSync(output).isDirectory()))
+    throw new Error('Unsafe review artifact output directory');
+  fs.rmSync(output, { recursive: true, force: true });
+  fs.mkdirSync(output, { recursive: true });
   const saveManifest = () =>
     fs.writeFileSync(path.join(output, 'manifest.json'), JSON.stringify(manifest, null, 2) + '\n');
   saveManifest();
@@ -183,7 +170,7 @@ export async function generate(options) {
           kind: 'taxonomy',
           textbook: options.package,
           locale,
-          path: '.agent-ci-artifacts/' + relative,
+          path: relative,
           domains: count('Domains'),
           groups: count('Groups'),
           skills: count('Skills'),
@@ -293,12 +280,50 @@ export async function generate(options) {
     geographyHomeCopyDocuments: manifest.generated.filter(item => item.kind === 'geography-home-copy').length,
     educationStandardDocuments: manifest.generated.filter(item => item.kind === 'education-standard').length,
   };
+  // Archive contents are read away from the repository; pin local Code links to the source SHA.
+  const repoName = process.env.GITHUB_REPOSITORY ?? 'KiT-Maverik/svitlo';
+  if (!/^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/.test(repoName))
+    throw new Error('Invalid GitHub repository identity');
+  const observed = new Set();
+  let totalBytes = 0;
+  for (const entry of manifest.generated) {
+    if (typeof entry.path !== 'string' || !/^[a-zA-Z0-9._/-]+\.md$/.test(entry.path) ||
+        entry.path.startsWith('/') || entry.path.split('/').some(part => part === '..' || part === '.') ||
+        observed.has(entry.path)) throw new Error('Unsafe duplicate reference path');
+    observed.add(entry.path);
+    const file = path.join(output, entry.path);
+    if (!file.startsWith(output + path.sep) || !fs.existsSync(file) ||
+        !fs.lstatSync(file).isFile() || fs.lstatSync(file).isSymbolicLink())
+      throw new Error('Unlisted, missing or unsafe generated reference');
+    const markdown = fs.readFileSync(file, 'utf8').replace(/\]\(([^)\n]+)\)/g, (link, uri) => {
+      if (/^(?:https?:|mailto:|#)/.test(uri)) return link;
+      const [reference, anchor] = uri.split('#', 2);
+      const resolved = path.resolve(path.dirname(file), decodeURI(reference));
+      if (!resolved.startsWith(root + path.sep) || !fs.existsSync(resolved)) {
+        throw new Error('Unresolvable Markdown source link in ' + entry.path + ': ' + uri);
+      }
+      const relative = path.relative(root, resolved).split(path.sep).map(encodeURIComponent).join('/');
+      return '](' + 'https://github.com/' + repoName +
+        (fs.statSync(resolved).isDirectory() ? '/tree/' : '/blob/') + manifest.sourceCommit + '/' +
+        relative + (anchor ? '#' + anchor : '') + ')';
+    });
+    fs.writeFileSync(file, markdown, 'utf8');
+    const bytes = Buffer.byteLength(markdown);
+    if (bytes > 16 * 1024 * 1024) throw new Error('Review reference exceeds 16 MiB: ' + entry.path);
+    totalBytes += bytes;
+    if (totalBytes > 128 * 1024 * 1024 || observed.size > 10000)
+      throw new Error('Review corpus exceeds resource limits; request a narrower scope');
+    entry.bytes = bytes;
+    entry.sha256 = crypto.createHash('sha256').update(markdown).digest('hex');
+  }
+  manifest.status = manifest.failures.length || manifest.summary.incompleteDocuments ? 'incomplete' : 'complete';
+  manifest.filesBytes = totalBytes;
   saveManifest();
   if (options.kind === 'questions' && manifest.failures.length) {
     throw new Error('Incomplete Question/Quiz references: ' + manifest.failures.length + ' failed documents.');
   }
   if (manifest.generated.length === 0) {
-    throw new Error('No requested Markdown was generated. Inspect .agent-ci-artifacts/manifest.json failures.');
+    throw new Error('No requested Markdown was generated. Inspect the run artifact manifest.json failures.');
   }
   process.stdout.write(
     'Generated ' +

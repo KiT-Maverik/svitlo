@@ -27,11 +27,7 @@ Run through the scoped dispatcher:
 node scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.mjs --kind questions --package content/astronomy --lesson <lesson-uuid> --locale qm
 ```
 
-The output is a temporary `.agent-ci-artifacts/questions/<book>/<bucket>/<uuid>/<locale>.md`
-reference accompanied by a manifest. Its `sourceCommit` is the reviewed
-source HEAD. Missing target text receives `%%MISSING%%` and
-`reviewReady: false`. Generator success does not grant linguistic approval.
-Use `/agent-artifacts cleanup` to remove these temporary files before merge.
+The output is a temporary `questions/<book>/<bucket>/<uuid>/<locale>.md` reference in the **one-day GitHub Actions ZIP**, accompanied by `manifest.json`. Its `sourceCommit` is the reviewed PR HEAD; `runId` and `pr` identify the exact Actions run and PR, and each document has integrity metadata. Missing text receives `%%MISSING%%` and `reviewReady: false`. Generator success does not grant linguistic approval. There is no PR report commit or cleanup command.
 
 A bank that still uses an older authoring layout must first be migrated through
 the owning Questions workflow. Do not add compatibility parsing to this review

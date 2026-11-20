@@ -68,11 +68,11 @@ test('renders only Course-owned hierarchy/locale and Episode Sections, not stand
 test('generates exactly one localized Course artifact for selected UUID, preserving outside scopes', async () => {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-course-review-'));
   const owned = path.join(root, 'content/math/data/courses', id.course.slice(-1), id.course);
-  const output = path.join(root, '.agent-ci-artifacts');
+  const output = path.join(root, 'temp/agent-reference-library');
   const manifest = { sourceCommit: 'a'.repeat(40), generated: [], failures: [] };
   try {
     fs.mkdirSync(owned, { recursive: true });
-    fs.mkdirSync(output);
+    fs.mkdirSync(output, { recursive: true });
     fs.writeFileSync(path.join(owned, 'index.ts'), "export const c = { id: '" + id.course + "' };\n");
     assert.equal(discoverCourses(root, 'content/math').length, 1);
     const fake = {

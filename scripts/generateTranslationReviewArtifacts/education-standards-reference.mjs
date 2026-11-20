@@ -320,7 +320,7 @@ export function generateEducationStandardReviewArtifacts({
       manifest.generated.push({
         kind: 'education-standard',
         locale,
-        path: '.agent-ci-artifacts/' + relative,
+        path: relative,
         standards: result.standards,
         missing: result.missing,
         reviewReady: result.reviewReady,

@@ -8,7 +8,7 @@ comment must be created after the workflow has landed on the default branch.
 
 The workflow checks out the **default branch** with `fetch-depth: 0`, installs
 no npm dependencies, runs the collector's isolated fixture test, then writes
-`git-audit.json` and `git-audit.md` to a seven-day Actions artifact. The Markdown
+`git-audit.json` and `git-audit.md` to a one-day Actions artifact. The Markdown
 report is also written to the run's Job Summary, readable through GitHub Actions
 logs/API. Unmatched comments do not run the job; no scheduled or push trigger.
 

@@ -84,7 +84,7 @@ function escapeMarkdown(value) {
 
 export function renderHomeCopyReference(options) {
   const info = readHomeCopyReference(options);
-  const destination = path.join(options.root ?? repoRoot, '.agent-ci-artifacts', 'geography-home-copy', info.locale + '.md');
+  const destination = path.join(options.output ?? path.join(options.root ?? repoRoot, 'temp/agent-reference-library'), 'geography-home-copy', info.locale + '.md');
   const source = path.join(options.root ?? repoRoot, sourcePath);
   const link = encodeURI(path.relative(path.dirname(destination), source).split(path.sep).join('/'));
   const lines = [
@@ -107,9 +107,6 @@ export function renderHomeCopyReference(options) {
 }
 
 export function generateHomeCopyReviewArtifacts({ root, output, languages, manifest, saveManifest, allowMissing = false }) {
-  if (path.resolve(output) !== path.resolve(root, '.agent-ci-artifacts')) {
-    throw new Error('Geography review output must be .agent-ci-artifacts');
-  }
   const stats = { generated: 0, failures: 0 };
   for (const locale of languages) {
     try {
@@ -117,9 +114,9 @@ export function generateHomeCopyReviewArtifacts({ root, output, languages, manif
       const relative = 'geography-home-copy/' + locale + '.md';
       const dest = path.join(output, relative);
       fs.mkdirSync(path.dirname(dest), { recursive: true });
-      fs.writeFileSync(dest, renderHomeCopyReference({ root, locale, allowMissing }), 'utf8');
+      fs.writeFileSync(dest, renderHomeCopyReference({ root, output, locale, allowMissing }), 'utf8');
       manifest.generated.push({
-        kind: 'geography-home-copy', locale, path: '.agent-ci-artifacts/' + relative,
+        kind: 'geography-home-copy', locale, path: relative,
         missing: info.missing, reviewReady: info.missing === 0,
       });
       stats.generated++;
