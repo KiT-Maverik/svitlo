@@ -35,6 +35,7 @@ Inspect actual Actions run/artifact, pinned YAML source/head/blob, generated com
 
 ```sh
 node --test scripts/ci/lessonMaterialization/lesson-materialization.spec.mjs
+node --test scripts/ci/lessonMaterialization/lesson-publish-isolation.spec.mjs
 node --test shared/engine/scripts/finalizeLesson/finalizeLesson.spec.mjs
 node --test shared/engine/scripts/lessonBuilder/lessonBuilder.spec.mjs
 npm run package:build --workspace @svitlo/engine
