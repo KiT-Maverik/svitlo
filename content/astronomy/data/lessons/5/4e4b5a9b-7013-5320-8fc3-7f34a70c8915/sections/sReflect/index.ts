@@ -29,10 +29,16 @@ export const sReflect = defineContentSection<"sReflect", typeof content.items, L
   params: {},
   locale: {
     title: {
-      uk: "Дві зміни — два запитання"
+      uk: "Дві зміни — два запитання",
+      en: "Two Changes, Two Questions",
+      pl: "Dwie zmiany — dwa pytania",
+      qm: "Eki deñişme — eki sual"
     },
     navigationLabel: {
-      uk: "Наші запитання"
+      uk: "Наші запитання",
+      en: "Our Questions",
+      pl: "Nasze pytania",
+      qm: "Bizim suallerimiz"
     }
   },
   content
