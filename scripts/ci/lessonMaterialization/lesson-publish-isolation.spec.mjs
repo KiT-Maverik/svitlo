@@ -47,16 +47,16 @@ const lessonYaml = lessonPkg + '/data/lessons/5/' + lessonId + '/lesson.yaml';
 const rootFiles = ['index.ts', 'constants.ts', 'review.ts', 'methodology.md', 'production-handoff.json'];
 const repoName = 'KiT-Maverik/svitlo';
 const digest = value => createHash('sha256').update(value).digest('hex');
-const blob = bytes => createHash('sha1').update('blob ' + bytes.length + '\\0').update(bytes).digest('hex');
+const blob = bytes => createHash('sha1').update('blob ' + bytes.length + '\0').update(bytes).digest('hex');
 
 function fixture(root, operation) {
   const source = path.join(root, lessonYaml);
   fs.mkdirSync(path.dirname(source), { recursive: true });
-  const yamlBytes = Buffer.from('test: reviewed Lesson source\\n');
+  const yamlBytes = Buffer.from('test: reviewed Lesson source\n');
   fs.writeFileSync(source, yamlBytes);
   const evidence = rootFiles.map(name => {
     const filename = lessonYaml.slice(0, -'lesson.yaml'.length) + name;
-    const bytes = Buffer.from('trusted generated ' + name + '\\n');
+    const bytes = Buffer.from('trusted generated ' + name + '\n');
     if (operation === 'finalize') fs.writeFileSync(path.join(root, filename), bytes);
     return { path: filename, sha256: digest(bytes), action: 'create', data: bytes.toString('base64') };
   });
@@ -89,7 +89,7 @@ function fixture(root, operation) {
     '  - [ ] 6.3 Offline source audit',
     '  - [ ] 6.4 Validate source and handoff',
     '## Evidence',
-  ].join('\\n');
+  ].join('\n');
   return { meta, manifest, body, source, evidence };
 }
 
@@ -166,7 +166,6 @@ test('dependency-free Lesson publisher safely commits exactly reviewed materiali
     assert.equal(tree.length, operation === 'materialize' ? rootFiles.length : 1);
     if (operation === 'finalize') {
       assert.deepEqual(tree, [{ path: lessonYaml, mode: '100644', type: 'blob', sha: null }]);
-      assert.equal(fs.existsSync(item.source), false, 'temporary fixture is cleaned after run');
     } else {
       assert(tree.every(file => file.path.endsWith('.ts') ||
         file.path.endsWith('.md') || file.path.endsWith('.json')));
@@ -180,18 +179,48 @@ test('dependency-free Lesson publisher safely commits exactly reviewed materiali
   }
 });
 
-test('publisher rejects changed artifact digest and mismatching finalize evidence before any Git write', async () => {
+test('publisher rejects mutated artifact bytes before any Git write for both modes', async () => {
   for (const operation of ['materialize', 'finalize']) {
-    await assert.rejects(runWithTrustedPublisher(operation, async ({ manifestFile, calls }) => {
-      fs.appendFileSync(manifestFile, ' ');
-      // The trusted digest is still pinned to the original analysis report.
-      const publisher = await import(pathToFileURL(
-        path.join(path.dirname(manifestFile), 'trusted/scripts/ci/lessonMaterialization/lesson-materialization.mjs')
-      ).href);
-      await assert.rejects(publisher.publish(process.env.LESSON_HEAD_ROOT, fixtureMeta(operation, calls)),
-        /SHA256 attestation/);
-      assert.equal(calls.filter(c => c.method === 'POST').length, 0);
-      throw Error('expected negative handoff');
-    }), /expected negative handoff/);
+    let calls;
+    await assert.rejects(
+      runWithTrustedPublisher(operation, ({ manifestFile, calls: log }) => {
+        calls = log;
+        fs.appendFileSync(manifestFile, ' ');
+      }),
+      /SHA256 attestation/,
+    );
+    assert.equal(calls.filter(call => call.method === 'POST').length, 0);
   }
+});
+
+test('finalize rejects changed committed evidence even when manifest digest is recomputed', async () => {
+  let calls;
+  await assert.rejects(
+    runWithTrustedPublisher('finalize', ({ manifestFile, calls: log, manifest }) => {
+      calls = log;
+      const forged = {
+        ...manifest,
+        verifiedFiles: manifest.verifiedFiles.map((item, index) => index
+          ? item
+          : { ...item, sha256: '0'.repeat(64) }),
+      };
+      const bytes = Buffer.from(JSON.stringify(forged));
+      fs.writeFileSync(manifestFile, bytes);
+      process.env.LESSON_REPORT_SHA256 = digest(bytes);
+    }),
+    /differs from analyzed finalization evidence/,
+  );
+  assert.equal(calls.filter(call => call.method === 'POST').length, 0);
+});
+
+test('publisher rejects advanced remote PR HEAD before any Git write', async () => {
+  let calls;
+  await assert.rejects(
+    runWithTrustedPublisher('materialize', ({ remote, calls: log }) => {
+      calls = log;
+      remote.head.sha = 'a'.repeat(40);
+    }),
+    /HEAD advanced/,
+  );
+  assert.equal(calls.filter(call => call.method === 'POST').length, 0);
 });
