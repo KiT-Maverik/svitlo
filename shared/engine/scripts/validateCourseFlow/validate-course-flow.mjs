@@ -57,6 +57,13 @@ export function checkPlan(plan, stage) {
       if (!allowed[kind]?.has(child.type)) errors.push(position + ': invalid ' + child.type + ' within ' + kind);
       if (child.type === 'lesson') {
         lessonCount.total++;
+        if (!child.lessonId && stage === '3-complete') {
+          for (const field of ['params', 'locale', 'events', 'section']) {
+            if (Object.hasOwn(child, field)) {
+              errors.push(position + '/' + field + ': Course-local Lesson edits require an existing lessonId');
+            }
+          }
+        }
         if (!child.lessonId) {
           lessonCount.unidentified++;
           if (typeof child.methodology === 'string' && child.methodology.trim()) lessonCount.planned++;
