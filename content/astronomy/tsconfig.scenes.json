@@ -1,0 +1,5 @@
+{
+  "extends": "./tsconfig.json",
+  "include": ["scenes/**/*.ts", "scenes/**/*.tsx"],
+  "exclude": ["node_modules", "dist"]
+}

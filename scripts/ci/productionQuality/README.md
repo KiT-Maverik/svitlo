@@ -9,8 +9,8 @@ aggregate: any failed, cancelled, missing or skipped dependency must fail it.
   apps that implement `app:build`. Only that job publishes the app matrix.
 - `repository`, `types`, `unit`, `components`, `lint`, `packages`, and
   per-app `apps` jobs depend on `policy` and run independently.
-- `components` selects Playground and Web only. The root `npm test` already
-  covers UI Kit and Math component suites. The existing workspace planner builds
+- `components` selects Astronomy Scenes, Playground and Web. The root `npm test`
+  already covers UI Kit and Math component suites. The existing workspace planner builds
   exactly the selected tests' dependency closure; root npm script semantics
   remain **exhaustive**, without new partial-root aliases.
 - The manifest-derived `apps` matrix runs every `app:build` and its declared
