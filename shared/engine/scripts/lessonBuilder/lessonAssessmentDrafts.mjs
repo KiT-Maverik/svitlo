@@ -18,14 +18,22 @@ export function pendingAssessmentUuid(lessonId, type, slug, field) {
   const digest = createHash('sha256')
     .update(['svitlo', 'pending-assessment', 'v1', lessonId, type, slug, field].join(':'))
     .digest('hex');
-  return 'feedc0de-' + digest.slice(0, 4) + '-8' + digest.slice(4, 7) +
-    '-a' + digest.slice(7, 10) + '-' + digest.slice(10, 22);
+  return (
+    'feedc0de-' +
+    digest.slice(0, 4) +
+    '-8' +
+    digest.slice(4, 7) +
+    '-a' +
+    digest.slice(7, 10) +
+    '-' +
+    digest.slice(10, 22)
+  );
 }
-export const isPendingAssessmentUuid = id =>
-  typeof id === 'string' && id.startsWith(PENDING_ASSESSMENT_UUID_PREFIX);
+export const isPendingAssessmentUuid = id => typeof id === 'string' && id.startsWith(PENDING_ASSESSMENT_UUID_PREFIX);
 
 const hasIds = ids =>
-  Array.isArray(ids) && ids.length > 0 &&
+  Array.isArray(ids) &&
+  ids.length > 0 &&
   ids.every(id => typeof id === 'string' && uuid.test(id) && !isPendingAssessmentUuid(id)) &&
   new Set(ids).size === ids.length;
 
@@ -35,11 +43,10 @@ export function hasCompleteAssessmentParams(config, sourceLanguage) {
   const textIsPresent = value =>
     typeof value === 'string'
       ? value.trim().length > 0
-      : isRecord(value) && (
-          sourceLanguage
-            ? typeof value[sourceLanguage] === 'string' && value[sourceLanguage].trim().length > 0
-            : Object.values(value).some(text => typeof text === 'string' && text.trim().length > 0)
-        );
+      : isRecord(value) &&
+        (sourceLanguage
+          ? typeof value[sourceLanguage] === 'string' && value[sourceLanguage].trim().length > 0
+          : Object.values(value).some(text => typeof text === 'string' && text.trim().length > 0));
   if (!textIsPresent(config?.locale?.title) || !textIsPresent(config?.locale?.navigationLabel)) return false;
   if (!isRecord(config?.content) || !isRecord(config.content.items) || !Array.isArray(config.content.order))
     return false;
@@ -56,15 +63,22 @@ export function hasCompleteAssessmentParams(config, sourceLanguage) {
       : Number.isInteger(selection.count) && selection.count > 0 && selection.count <= selection.questionIds.length) &&
     ['stack', 'stepper'].includes(params?.layout?.mode) &&
     ['immediate', 'after-completion'].includes(params?.feedbackMode) &&
-    Number.isInteger(interaction?.retries) && interaction.retries >= 0 &&
-    ['showErrors', 'showCorrectAnswers', 'allowExplanations', 'allowDeferring',
-      'allowQuestionNavigation', 'skippable'].every(key => typeof interaction[key] === 'boolean') &&
+    Number.isInteger(interaction?.retries) &&
+    interaction.retries >= 0 &&
+    [
+      'showErrors',
+      'showCorrectAnswers',
+      'allowExplanations',
+      'allowDeferring',
+      'allowQuestionNavigation',
+      'skippable',
+    ].every(key => typeof interaction[key] === 'boolean') &&
     ['immediate', 'after-review', 'hidden'].includes(results?.visibility) &&
     typeof results?.showScore === 'boolean'
   );
 }
 
-const selectedField = type => type === 'quiz' ? 'questionIds' : 'flashcardIds';
+const selectedField = type => (type === 'quiz' ? 'questionIds' : 'flashcardIds');
 
 /**
  * Only unapproved/missing fields receive provisional values. All authored
@@ -92,8 +106,12 @@ function scaffoldParams(paramsInput, lessonId, type, slug) {
     ? originalIds
     : originalIds.length
       ? originalIds.map((candidate, index) => {
-          if (typeof candidate === 'string' && uuid.test(candidate) &&
-              !isPendingAssessmentUuid(candidate) && !seenReal.has(candidate)) {
+          if (
+            typeof candidate === 'string' &&
+            uuid.test(candidate) &&
+            !isPendingAssessmentUuid(candidate) &&
+            !seenReal.has(candidate)
+          ) {
             seenReal.add(candidate);
             return candidate;
           }
@@ -118,8 +136,10 @@ function scaffoldParams(paramsInput, lessonId, type, slug) {
   selection.mode = choose('selection.mode', originalSelection.mode, v => ['all', 'sample'].includes(v), 'all');
   if (selection.mode === 'sample') {
     selection.count = choose(
-      'selection.count', originalSelection.count,
-      v => Number.isInteger(v) && v > 0 && v <= ids.length, 1,
+      'selection.count',
+      originalSelection.count,
+      v => Number.isInteger(v) && v > 0 && v <= ids.length,
+      1,
     );
   } else if (Object.hasOwn(selection, 'count')) {
     delete selection.count;
@@ -129,10 +149,20 @@ function scaffoldParams(paramsInput, lessonId, type, slug) {
   const originalInteraction = isRecord(original.interaction) ? original.interaction : {};
   const originalResults = isRecord(original.results) ? original.results : {};
   const interaction = { ...originalInteraction };
-  interaction.retries = choose('interaction.retries', originalInteraction.retries,
-    v => Number.isInteger(v) && v >= 0, 0);
-  for (const key of ['showErrors', 'showCorrectAnswers', 'allowExplanations',
-    'allowDeferring', 'allowQuestionNavigation', 'skippable']) {
+  interaction.retries = choose(
+    'interaction.retries',
+    originalInteraction.retries,
+    v => Number.isInteger(v) && v >= 0,
+    0,
+  );
+  for (const key of [
+    'showErrors',
+    'showCorrectAnswers',
+    'allowExplanations',
+    'allowDeferring',
+    'allowQuestionNavigation',
+    'skippable',
+  ]) {
     interaction[key] = choose('interaction.' + key, originalInteraction[key], v => typeof v === 'boolean', false);
   }
   return {
@@ -143,15 +173,22 @@ function scaffoldParams(paramsInput, lessonId, type, slug) {
         ...originalLayout,
         mode: choose('layout.mode', originalLayout.mode, v => ['stack', 'stepper'].includes(v), 'stack'),
       },
-      feedbackMode: choose('feedbackMode', original.feedbackMode,
-        v => ['immediate', 'after-completion'].includes(v), 'after-completion'),
+      feedbackMode: choose(
+        'feedbackMode',
+        original.feedbackMode,
+        v => ['immediate', 'after-completion'].includes(v),
+        'after-completion',
+      ),
       interaction,
       results: {
         ...originalResults,
-        visibility: choose('results.visibility', originalResults.visibility,
-          v => ['immediate', 'after-review', 'hidden'].includes(v), 'hidden'),
-        showScore: choose('results.showScore', originalResults.showScore,
-          v => typeof v === 'boolean', false),
+        visibility: choose(
+          'results.visibility',
+          originalResults.visibility,
+          v => ['immediate', 'after-review', 'hidden'].includes(v),
+          'hidden',
+        ),
+        showScore: choose('results.showScore', originalResults.showScore, v => typeof v === 'boolean', false),
       },
     },
     provisionalFields: fields,
@@ -166,7 +203,8 @@ function scaffoldParams(paramsInput, lessonId, type, slug) {
  */
 export function prepareAssessmentDraft(document) {
   const lesson = structuredClone(document.config);
-  const requiresAssessment = document.production?.quizRequired === true ||
+  const requiresAssessment =
+    document.production?.quizRequired === true ||
     document.production?.flashcardsRequired === true ||
     lesson.params?.quizRequiredForCompletion === true;
   // Preserve the existing partially authored Lesson behavior when it has
@@ -201,7 +239,8 @@ export function prepareAssessmentDraft(document) {
     return id;
   };
   for (const type of ['quiz', 'flashcards']) {
-    const required = document.production?.[type === 'quiz' ? 'quizRequired' : 'flashcardsRequired'] === true ||
+    const required =
+      document.production?.[type === 'quiz' ? 'quizRequired' : 'flashcardsRequired'] === true ||
       (type === 'quiz' && lesson.params?.quizRequiredForCompletion === true);
     const authored = order.filter(slug => items[slug]?.config?.type === type);
     if (required && authored.length && authored.every(slug => items[slug].config.params?.disabled === true)) {
@@ -211,12 +250,17 @@ export function prepareAssessmentDraft(document) {
     // approved Section identity/position, append a single minimal scaffold.
     if (required && !authored.some(slug => items[slug]?.config?.params?.disabled !== true)) {
       const baseSlug = type === 'quiz' ? 'assessmentQuiz' : 'assessmentFlashcards';
-      let slug = baseSlug, n = 2;
+      let slug = baseSlug,
+        n = 2;
       while (Object.hasOwn(items, slug)) slug = baseSlug + n++;
       items[slug] = {
         config: {
-          id: allocate(type, slug, 'section-id'), slug, type,
-          params: {}, locale: {}, content: { items: {}, order: [] },
+          id: allocate(type, slug, 'section-id'),
+          slug,
+          type,
+          params: {},
+          locale: {},
+          content: { items: {}, order: [] },
         },
       };
       order.push(slug);
@@ -224,17 +268,24 @@ export function prepareAssessmentDraft(document) {
     for (const slug of order) {
       const wrapper = items[slug];
       const section = wrapper?.config;
-      if (section?.type !== type ||
-          (section.params?.disabled !== true &&
-            hasCompleteAssessmentParams(section, document.production?.documentLanguage))) continue;
+      if (
+        section?.type !== type ||
+        (section.params?.disabled !== true &&
+          hasCompleteAssessmentParams(section, document.production?.documentLanguage))
+      )
+        continue;
       if (document.config.section?.items?.[slug]) {
         handoffs[type].items[slug] = structuredClone(document.config.section.items[slug]);
       } else {
         handoffs[type].items[slug] = structuredClone(wrapper);
       }
       handoffs[type].order.push(slug);
-      const { params, provisionalFields, syntheticSelection, syntheticIds } =
-        scaffoldParams(section.params, lesson.id, type, slug);
+      const { params, provisionalFields, syntheticSelection, syntheticIds } = scaffoldParams(
+        section.params,
+        lesson.id,
+        type,
+        slug,
+      );
       for (const id of syntheticIds) {
         // A pending UUID never belongs to a real bank, irrespective of syntax.
         if (seenIds.has(id)) throw new Error('Pending assessment UUID collision: ' + id);
@@ -248,13 +299,14 @@ export function prepareAssessmentDraft(document) {
       const language = document.production?.documentLanguage;
       for (const field of ['title', 'navigationLabel']) {
         const value = section.locale[field];
-        const valid = typeof value === 'string' ? value.trim().length > 0 :
-          isRecord(value) && typeof value[language] === 'string' && value[language].trim().length > 0;
+        const valid =
+          typeof value === 'string'
+            ? value.trim().length > 0
+            : isRecord(value) && typeof value[language] === 'string' && value[language].trim().length > 0;
         if (!valid) {
           const marker = type === 'quiz' ? 'PENDING QUIZ' : 'PENDING FLASHCARDS';
-          section.locale[field] = isRecord(value) && typeof language === 'string'
-            ? { ...value, [language]: marker }
-            : marker;
+          section.locale[field] =
+            isRecord(value) && typeof language === 'string' ? { ...value, [language]: marker } : marker;
           provisionalFields.push('$.locale.' + field);
         }
       }
@@ -266,7 +318,9 @@ export function prepareAssessmentDraft(document) {
         section.content.order = [];
       }
       pending.push({
-        type, slug, reason: 'pending reviewed assessment Section',
+        type,
+        slug,
+        reason: 'pending reviewed assessment Section',
         provisionalFields,
         syntheticSelection,
         syntheticIds,
@@ -276,15 +330,16 @@ export function prepareAssessmentDraft(document) {
     if (!handoffs[type].order.length) continue;
     const sourceLanguage = document.production?.documentLanguage;
     const handoff = handoffs[type];
-    const bankDraft = type === 'quiz'
-      ? { documentLanguage: sourceLanguage, questions: {}, sectionDrafts: handoff }
-      : {
-          lessonId: document.config.id,
-          documentLanguage: sourceLanguage,
-          supportedLanguages: document.config.params?.languages,
-          flashcards: { items: {}, order: [] },
-          sectionDrafts: handoff,
-        };
+    const bankDraft =
+      type === 'quiz'
+        ? { documentLanguage: sourceLanguage, questions: {}, sectionDrafts: handoff }
+        : {
+            lessonId: document.config.id,
+            documentLanguage: sourceLanguage,
+            supportedLanguages: document.config.params?.languages,
+            flashcards: { items: {}, order: [] },
+            sectionDrafts: handoff,
+          };
     drafts.set(type === 'quiz' ? 'questions.yaml' : 'flashcards.yaml', yaml.stringify(bankDraft));
   }
   return { lesson, pending, drafts };

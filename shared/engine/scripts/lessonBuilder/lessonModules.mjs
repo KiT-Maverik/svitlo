@@ -304,7 +304,9 @@ export function renderLessonModules(lesson, language, options = {}) {
   }
   const files = new Map();
   const nodeLocations = options.nodeLocations;
-  const pendingSections = new Map((options.pendingAssessments ?? []).filter(item => item.slug).map(item => [item.slug, item]));
+  const pendingSections = new Map(
+    (options.pendingAssessments ?? []).filter(item => item.slug).map(item => [item.slug, item]),
+  );
 
   /**
    * Extract only actually authored learner text. There is no mechanical
@@ -483,10 +485,17 @@ export function renderLessonModules(lesson, language, options = {}) {
           .map((item, index) => {
             const provisional = pending?.syntheticIds?.includes(item)
               ? indent(depth + 1) +
-                '// TODO (BLOCKER): Replace ' + field + '[' + index + '] with a reviewed resource UUID.\n'
+                '// TODO (BLOCKER): Replace ' +
+                field +
+                '[' +
+                index +
+                '] with a reviewed resource UUID.\n'
               : '';
-            return provisional + indent(depth + 1) +
-              render(item, 'plain', ownerDirectory, imported, depth + 1, field + '[' + index + ']', pending);
+            return (
+              provisional +
+              indent(depth + 1) +
+              render(item, 'plain', ownerDirectory, imported, depth + 1, field + '[' + index + ']', pending)
+            );
           })
           .join(',\n') +
         '\n' +
@@ -546,7 +555,10 @@ export function renderLessonModules(lesson, language, options = {}) {
           const nextField = field + '.' + key;
           const rendered = render(child, nextContext, nextDirectory, imported, depth + 1, nextField, pending);
           const assessmentComment = pending?.provisionalFields?.includes(nextField)
-            ? indent(depth + 1) + '// TODO (BLOCKER): Provisional assessment ' + nextField + '; specialist must approve and replace before publication.\n'
+            ? indent(depth + 1) +
+              '// TODO (BLOCKER): Provisional assessment ' +
+              nextField +
+              '; specialist must approve and replace before publication.\n'
             : '';
           const pendingComment =
             child === null && nextContext.startsWith('pendingMedia:')
@@ -721,7 +733,9 @@ export function renderLessonModules(lesson, language, options = {}) {
           key === 'params' || key === 'locale' ? pending : null,
         );
       if (key === 'id' && pending?.generatedIdentity)
-        fields.push('  // TODO (BLOCKER): Generated Section UUID needs explicit editorial ownership before publication.');
+        fields.push(
+          '  // TODO (BLOCKER): Generated Section UUID needs explicit editorial ownership before publication.',
+        );
       fields.push('  ' + (identifier.test(key) && rendered === key ? key : asProperty(key) + ': ' + rendered));
     }
     const content = fields.length ? '{\n' + fields.join(',\n') + '\n}' : '{}';
@@ -826,7 +840,8 @@ export function renderLessonModules(lesson, language, options = {}) {
         ({ type, slug }) =>
           '  // TODO (BLOCKER): ' +
           (type === 'quiz' ? 'Quiz' : 'Flashcards') +
-          ' Section ' + JSON.stringify(slug) +
+          ' Section ' +
+          JSON.stringify(slug) +
           ' awaits independently reviewed resources and approved selection before Lesson publication.',
       );
       rootFields.push((comments.length ? comments.join('\n') + '\n' : '') + '  section');

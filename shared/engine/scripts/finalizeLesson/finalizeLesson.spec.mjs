@@ -323,7 +323,10 @@ test('draft handoff creates registered blocked assessment Sections and original 
       ['quizA', 'cardsB'],
     );
     assert.equal(fs.readFileSync(f.source).equals(original), true);
-    for (const [slug, factory] of [['quizA', 'defineQuizSection'], ['cardsB', 'defineFlashcardsSection']]) {
+    for (const [slug, factory] of [
+      ['quizA', 'defineQuizSection'],
+      ['cardsB', 'defineFlashcardsSection'],
+    ]) {
       const filename = path.join(f.folder, 'sections', slug, 'index.ts');
       assert.equal(fs.existsSync(filename), true, 'Missing assessment Section ' + slug);
       const section = fs.readFileSync(filename, 'utf8');

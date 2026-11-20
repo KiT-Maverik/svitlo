@@ -130,11 +130,15 @@ test('Lesson YAML emits nested source drafts without mutating independent bank Y
               id: id(3),
               type: 'carousel',
               slug: 'gallery',
-              slides: group({ slide: {
-                id: id(4), type: 'image', slug: 'slide',
-                params: { fill: true, aspectRatio: 1.5 },
-                locale: { src: null, alt: { uk: 'Діаграма' } },
-              } }),
+              slides: group({
+                slide: {
+                  id: id(4),
+                  type: 'image',
+                  slug: 'slide',
+                  params: { fill: true, aspectRatio: 1.5 },
+                  locale: { src: null, alt: { uk: 'Діаграма' } },
+                },
+              }),
             },
             checkpoint: {
               id: id(5),
@@ -184,8 +188,8 @@ test('Lesson YAML emits nested source drafts without mutating independent bank Y
     assert(sourceFiles.includes('review.ts'), 'Lesson Builder must scaffold the Review register');
     const reviewDraft = fs.readFileSync(path.join(lessonDir, 'review.ts'), 'utf8');
     assert.equal(
-      ts.createSourceFile('review.ts', reviewDraft, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS)
-        .parseDiagnostics.length,
+      ts.createSourceFile('review.ts', reviewDraft, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS).parseDiagnostics
+        .length,
       0,
       'Review register must be syntax-valid until verified review evidence is supplied',
     );

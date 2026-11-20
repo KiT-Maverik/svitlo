@@ -1202,8 +1202,10 @@ test('unfinished assessment Sections remain enabled, typed and ordered while YAM
       ['cardsOne', 'intro', 'quizOne', 'quizTwo', 'cardsTwo'],
     );
     for (const [slug, type, number] of [
-      ['quizOne', 'quiz', 50], ['cardsOne', 'flashcards', 51],
-      ['quizTwo', 'quiz', 52], ['cardsTwo', 'flashcards', 53],
+      ['quizOne', 'quiz', 50],
+      ['cardsOne', 'flashcards', 51],
+      ['quizTwo', 'quiz', 52],
+      ['cardsTwo', 'flashcards', 53],
     ]) {
       const section = files.get('sections/' + slug + '/index.ts');
       assert.ok(section, 'Missing typed Section ' + slug);
@@ -1250,7 +1252,9 @@ test('required but not-yet-authored Quiz gets deterministic Section identity and
     assert.ok(section.includes(expectedQuestionId));
     assert.match(section, /TODO \(BLOCKER\): Generated Section UUID/);
     assert.match(section, /TODO \(BLOCKER\): Provisional assessment/);
-    assert.deepEqual(yaml.parse(fs.readFileSync(f.generated('questions.yaml'), 'utf8')).sectionDrafts.order, ['assessmentQuiz']);
+    assert.deepEqual(yaml.parse(fs.readFileSync(f.generated('questions.yaml'), 'utf8')).sectionDrafts.order, [
+      'assessmentQuiz',
+    ]);
     assert.equal(runOne(f.lesson, 'check', f.root).changed, 0);
     assert.equal(runOne(f.lesson, 'generate', f.root).skipped, true);
     assertTypeScriptSyntax(readAll(f.lesson));
@@ -1281,7 +1285,6 @@ test('no assessment requirement creates neither bank YAML nor assessment blocker
     assert.equal(fs.existsSync(f.generated('flashcards.yaml')), false);
     assert.doesNotMatch(fs.readFileSync(f.generated('index.ts'), 'utf8'), /Quiz Section|Flashcards Section/);
   }));
-
 
 test('provisional assessment UUIDs are deterministic, unique, Zod-format UUIDv8, and reserved', () => {
   const one = pendingAssessmentUuid(lessonId, 'quiz', 'assessmentQuiz', 'questionIds');
@@ -1327,15 +1330,23 @@ test('negative requirements do not create assessment Sections or synthetic bank 
 test('an authored complete Quiz remains untouched and no placeholder handoff is produced', () => {
   const doc = { config: lessonConfig(), production: { quizRequired: true, documentLanguage: 'uk' } };
   doc.config.section.items.quiz = {
-    id: id(101), slug: 'quiz', type: 'quiz', locale: { title: 'Quiz', navigationLabel: 'Quiz' },
+    id: id(101),
+    slug: 'quiz',
+    type: 'quiz',
+    locale: { title: 'Quiz', navigationLabel: 'Quiz' },
     content: { items: {}, order: [] },
     params: {
       selection: { mode: 'all', questionIds: [id(102)] },
-      layout: { mode: 'stack' }, feedbackMode: 'after-completion',
+      layout: { mode: 'stack' },
+      feedbackMode: 'after-completion',
       interaction: {
-        retries: 0, showErrors: false, showCorrectAnswers: false,
-        allowExplanations: false, allowDeferring: false,
-        allowQuestionNavigation: false, skippable: false,
+        retries: 0,
+        showErrors: false,
+        showCorrectAnswers: false,
+        allowExplanations: false,
+        allowDeferring: false,
+        allowQuestionNavigation: false,
+        skippable: false,
       },
       results: { visibility: 'hidden', showScore: false },
     },
@@ -1351,7 +1362,6 @@ test('an authored complete Quiz remains untouched and no placeholder handoff is 
   assert.deepEqual(result.pending, []);
   assert.equal(result.drafts.size, 0);
 });
-
 
 test('pending Quiz and Flashcards Section drafts pass actual Engine Props and read-only Lesson Markdown CLI', async () => {
   const config = lessonConfig();
@@ -1376,13 +1386,20 @@ test('pending Quiz and Flashcards Section drafts pass actual Engine Props and re
   const publication = authored.build.props({ languages: ['uk'] });
   const resolved = assembleLessonProps(publication, 'uk');
   assert.equal(resolved.params.quizRequiredForCompletion, true);
-  assert.deepEqual(resolved.section.map(section => section.type), ['quiz', 'flashcards']);
+  assert.deepEqual(
+    resolved.section.map(section => section.type),
+    ['quiz', 'flashcards'],
+  );
   assert.equal(resolved.section[0].params.selection.questionIds.length, 1);
   assert.equal(resolved.section[1].params.selection.flashcardIds.length, 1);
   assert.ok(resolved.section[0].params.selection.questionIds[0].startsWith('feedc0de-'));
   const markdown = renderLessonMarkdown({
-    lesson: resolved, locale: 'uk', languages: ['uk'], packagePath: 'content/playground',
-    sourceFiles: { files: [] }, sourceRef: 'test',
+    lesson: resolved,
+    locale: 'uk',
+    languages: ['uk'],
+    packagePath: 'content/playground',
+    sourceFiles: { files: [] },
+    sourceRef: 'test',
   });
   assert.match(markdown, /PENDING QUIZ/);
   assert.match(markdown, /PENDING FLASHCARDS/);
@@ -1409,23 +1426,34 @@ test('pending Quiz and Flashcards Section drafts pass actual Engine Props and re
     assert.match(sourceMarkdown, /PENDING FLASHCARDS/);
     assert.match(sourceMarkdown, /feedc0de-/);
     assert.equal(fs.existsSync(path.join(root, '.agent-ci-artifacts')), false);
-    assert.equal(fs.readdirSync(lessonDirectory).join(','), 'index.ts', 'Read-only Markdown must not modify the source tree');
+    assert.equal(
+      fs.readdirSync(lessonDirectory).join(','),
+      'index.ts',
+      'Read-only Markdown must not modify the source tree',
+    );
   } finally {
     fs.rmSync(root, { recursive: true, force: true });
   }
 });
 
-
 test('even with real Question IDs, missing mandatory Section labels/content remain visibly blocked', () => {
   const config = lessonConfig();
   config.section.items.quizPending = {
-    id: id(103), slug: 'quizPending', type: 'quiz',
+    id: id(103),
+    slug: 'quizPending',
+    type: 'quiz',
     params: {
       selection: { mode: 'all', questionIds: [id(104)] },
-      layout: { mode: 'stack' }, feedbackMode: 'after-completion',
+      layout: { mode: 'stack' },
+      feedbackMode: 'after-completion',
       interaction: {
-        retries: 1, showErrors: true, showCorrectAnswers: false, allowExplanations: true,
-        allowDeferring: false, allowQuestionNavigation: true, skippable: false,
+        retries: 1,
+        showErrors: true,
+        showCorrectAnswers: false,
+        allowExplanations: true,
+        allowDeferring: false,
+        allowQuestionNavigation: true,
+        skippable: false,
       },
       results: { visibility: 'after-review', showScore: true },
     },
@@ -1450,26 +1478,30 @@ test('even with real Question IDs, missing mandatory Section labels/content rema
 test('do not silently infer approved ordering for nested Section ContentBlocks', () => {
   const config = lessonConfig();
   config.section.items.quizPending = {
-    id: id(105), slug: 'quizPending', type: 'quiz',
+    id: id(105),
+    slug: 'quizPending',
+    type: 'quiz',
     params: {},
     locale: { title: 'Quiz', navigationLabel: 'Quiz' },
     content: { items: { screen: block('screen', 106) } },
   };
   config.section.order.push('quizPending');
   assert.throws(
-    () => prepareAssessmentDraft({
-      config: wrap(config).config,
-      production: { documentLanguage: 'uk', quizRequired: true },
-    }),
+    () =>
+      prepareAssessmentDraft({
+        config: wrap(config).config,
+        production: { documentLanguage: 'uk', quizRequired: true },
+      }),
     /Approved assessment content.order missing/,
   );
 });
 
-
 test('missing source-language assessment labels retain approved other-language labels', () => {
   const config = lessonConfig();
   config.section.items.cards = {
-    id: id(107), slug: 'cards', type: 'flashcards',
+    id: id(107),
+    slug: 'cards',
+    type: 'flashcards',
     params: {},
     locale: {
       title: { en: 'Reviewed flashcard title' },
@@ -1488,11 +1520,12 @@ test('missing source-language assessment labels retain approved other-language l
   assert.ok(result.pending[0].provisionalFields.includes('$.locale.title'));
 });
 
-
 test('mixed assessment selections preserve real UUIDs and block every incomplete entry', () => {
   const config = lessonConfig();
   config.section.items.quizMixed = {
-    id: id(108), slug: 'quizMixed', type: 'quiz',
+    id: id(108),
+    slug: 'quizMixed',
+    type: 'quiz',
     params: {
       selection: { mode: 'sample', questionIds: [id(109), 'unresolved', id(109)] },
     },

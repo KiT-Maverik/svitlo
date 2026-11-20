@@ -116,8 +116,7 @@ async function render(packageDirectory, mode) {
       // Localized Section labels can live only in publication.locale, not in
       // base.section. Inspect both fragments so a valid real UUID cannot hide
       // unfinished editorial copy from the strict publisher.
-      if (containsPendingAssessmentLabel(publication.base) ||
-          containsPendingAssessmentLabel(publication.locale)) {
+      if (containsPendingAssessmentLabel(publication.base) || containsPendingAssessmentLabel(publication.locale)) {
         throw new Error('Unresolved assessment Section draft label in Lesson ' + id);
       }
       // Do not write even intermediate Lesson JSON containing the reserved
