@@ -45,7 +45,7 @@ export const dayAudio = defineAudio<"dayAudio", LessonLanguages>({
         uk: "Спробувати знову",
         en: "Try again",
         pl: "Spróbuj ponownie",
-        qm: "Tekrar deñe"
+        qm: "Tekrar sınap baq"
       }
     },
     // TODO(asset): Auto-generated unresolved media placeholder; no physical asset exists.
