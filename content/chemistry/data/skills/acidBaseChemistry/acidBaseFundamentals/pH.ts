@@ -53,7 +53,7 @@ export const pH = defineSkill({
       it: "Interpreta il pH come misura logaritmica dell'acidità di una soluzione.",
       ja: 'pH を溶液の酸性度を表す対数尺度として読もう。',
       ka: 'გაიგე pH, როგორც ხსნარის მჟავიანობის ლოგარითმული საზომი.',
-      kk: 'pH-ты ерітінді қышқылдығының логарифмдік өлшемі ретінде оқы.',
+      kk: 'pH-ty erıtındı qyşqyldyğynyñ logarifmdık ölşemı retınde oqy.',
       ko: 'pH를 용액의 산성도를 나타내는 로그 척도로 이해하세요.',
       lt: 'Suprask pH kaip logaritminį tirpalo rūgštingumo matą.',
       lv: 'Lasi pH kā šķīduma skābuma logaritmisku mēru.',

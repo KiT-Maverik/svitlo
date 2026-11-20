@@ -1,5 +1,6 @@
 import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { resolve } from 'node:path';
+import { discoverWorkspaces, planWorkspaceOperation } from '../runWorkspaceScript/run-workspace-script.mjs';
 
 const root = process.cwd();
 // Each executable script lives in a named workflow directory alongside tests and fixtures.
@@ -61,10 +62,23 @@ assert(
   Object.keys(platform.dependencies ?? {}).every(p => !p.startsWith('@svitlo/')),
   'Platform cannot depend on learning apps or shared packages until integration is scoped',
 );
-const quality = readFileSync(resolve(root, '.github/workflows/questions.yml'), 'utf8');
+// The root E2E aggregator must still include Platform. Production Quality runs
+// declared application E2E suites via its manifest-derived matrix instead.
 assert(
-  quality.includes('test:e2e --workspace @svitlo/platform') && quality.includes('repo:check:artifacts'),
-  'Questions CI must verify Platform smoke and built exports',
+  rootManifest.scripts?.['test:e2e'] === 'node scripts/runWorkspaceScript/run-workspace-script.mjs test:e2e',
+  'Root E2E must aggregate eligible workspaces',
+);
+assert(
+  planWorkspaceOperation(discoverWorkspaces(root), 'test:e2e').selected.includes('@svitlo/platform'),
+  'Root E2E must include Platform smoke tests',
+);
+const quality = readFileSync(resolve(root, '.github/workflows/production-quality.yml'), 'utf8');
+assert(
+  quality.includes('matrix: ${{ fromJSON(needs.policy.outputs.apps) }}') &&
+    quality.includes('if: matrix.e2e') &&
+    quality.includes('npm run test:e2e --workspace "$APP_WORKSPACE"') &&
+    quality.includes('npm run repo:check:artifacts'),
+  'Production Quality must run declared app E2E suites (including Platform) and verify built exports',
 );
 const db = readFileSync(resolve(root, '.github/workflows/db-controllers-e2e.yml'), 'utf8');
 assert(db.includes('test:e2e:db'), 'Native Chromium workflow missing');

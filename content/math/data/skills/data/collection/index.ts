@@ -23,7 +23,7 @@ export const collection = defineSkillGroup({
     it: 'Raccolta dei dati',
     ja: 'データの収集',
     ka: 'მონაცემების შეგროვება',
-    kk: 'Деректерді жинау',
+    kk: 'Derekterdı jinau',
     ko: '자료 수집',
     lt: 'Duomenų rinkimas',
     lv: 'Datu vākšana',

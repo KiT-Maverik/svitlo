@@ -11,7 +11,7 @@ describe('Language definitions', () => {
   });
 
   it('registers extended locale variants with unique language codes', () => {
-    const expected = ['it-IT', 'lt-LT', 'lv-LV', 'et-EE', 'be-tarask', 'ka-GE', 'kk-Cyrl-KZ', 'crh-Latn-UA'];
+    const expected = ['it-IT', 'lt-LT', 'lv-LV', 'et-EE', 'be-tarask', 'ka-GE', 'kk-Latn-KZ', 'crh-Latn-UA'];
     for (const locale of expected) {
       expect(DEFAULT_SUPPORTED_LANGUAGES.some(language => language.locale === locale)).toBe(true);
     }

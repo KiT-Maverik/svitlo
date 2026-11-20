@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://svitlo.dev/engine/yaml-schemas/lesson.scaffold.schema.json",
-  "title": "Svitlo lesson unified config.yaml authoring draft",
+  "title": "Svitlo Lesson YAML authoring draft",
   "description": "Config is derived from Engine Zod; production references manually owned production.schema.json. Technical YAML omits physical media filenames; Lesson Builder inserts reserved Nil UUID placeholders and TODO(asset) comments in generated TypeScript for resource production.",
   "type": "object",
   "properties": {
@@ -32,7 +32,7 @@
             "disabled": {
               "$ref": "#/$defs/__schema2"
             },
-            "requireQuiz": {
+            "quizRequiredForCompletion": {
               "type": "boolean"
             },
             "languages": {
@@ -59,7 +59,7 @@
               "additionalProperties": false
             }
           },
-          "required": ["requireQuiz", "languages", "sections"],
+          "required": ["quizRequiredForCompletion", "languages", "sections"],
           "additionalProperties": false
         },
         "locale": {
@@ -2087,53 +2087,17 @@
             "productionNotes": {
               "type": "string",
               "minLength": 1
+            },
+            "quizRequired": {
+              "type": "boolean",
+              "description": "Authoring-only Methodologist decision: a Quiz Section is eventually required; not a bank-existence or runtime status flag."
+            },
+            "flashcardsRequired": {
+              "type": "boolean",
+              "description": "Authoring-only Methodologist decision: a Flashcards Section is eventually required; not a bank-existence or runtime status flag."
             }
           },
           "required": ["documentLanguage"]
-        },
-        "course": {
-          "type": "object",
-          "additionalProperties": false,
-          "properties": {
-            "documentLanguage": {
-              "type": "string",
-              "minLength": 2
-            },
-            "methodology": {
-              "type": "string",
-              "minLength": 1
-            },
-            "purpose": {
-              "type": "string",
-              "minLength": 1
-            },
-            "audience": {
-              "type": "string",
-              "minLength": 1
-            },
-            "productionNotes": {
-              "type": "string",
-              "minLength": 1
-            }
-          }
-        },
-        "episode": {
-          "type": "object",
-          "additionalProperties": false,
-          "properties": {
-            "purpose": {
-              "type": "string",
-              "minLength": 1
-            },
-            "specification": {
-              "type": "string",
-              "minLength": 1
-            },
-            "productionNotes": {
-              "type": "string",
-              "minLength": 1
-            }
-          }
         },
         "section": {
           "type": "object",
@@ -2274,20 +2238,6 @@
           "additionalProperties": false,
           "properties": {
             "rationale": {
-              "type": "string",
-              "minLength": 1
-            },
-            "productionNotes": {
-              "type": "string",
-              "minLength": 1
-            }
-          }
-        },
-        "lessonReference": {
-          "type": "object",
-          "additionalProperties": false,
-          "properties": {
-            "placementReason": {
               "type": "string",
               "minLength": 1
             },

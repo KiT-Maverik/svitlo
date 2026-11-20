@@ -34,7 +34,7 @@ export const lightStory = defineLesson({
   type: 'lesson',
   skills: [],
   params: {
-    requireQuiz: false,
+    quizRequiredForCompletion: false,
     languages: howLightMoves_languages,
     sections: {
       allowNavigation: true,

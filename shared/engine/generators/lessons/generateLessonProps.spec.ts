@@ -14,7 +14,7 @@ const makeLesson = (title: string | { en: string; uk: string } = { en: 'Light', 
     type: 'lesson',
     skills: [],
     params: {
-      requireQuiz: false,
+      quizRequiredForCompletion: false,
       languages: ['en', 'uk'] as const,
       sections: { allowNavigation: true, allowSkipping: true, showIndexes: true },
     },

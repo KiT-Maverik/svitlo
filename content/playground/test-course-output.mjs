@@ -73,7 +73,7 @@ test('Course demonstration Lessons never expose a Quiz without their own publish
     'fb3b328a-0dd6-55f1-9bb9-7c80ea1ac91b',
   ]) {
     const base = read('data', 'lessons', id.slice(-1), id, 'base.json');
-    assert.equal(base.params.requireQuiz, false, 'demo Lesson ' + id + ' must not claim a required unowned Quiz');
+    assert.equal(base.params.quizRequiredForCompletion, false, 'demo Lesson ' + id + ' must not claim a required unowned Quiz');
     assert(!base.section.some(section => section.type === 'quiz' || section.type === 'flashcards'),
       'demo Lesson ' + id + ' must not refer to independently owned assessment banks');
   }
