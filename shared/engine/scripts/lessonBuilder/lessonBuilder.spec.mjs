@@ -7,8 +7,14 @@ import ts from 'typescript';
 import yaml from 'yaml';
 import { scanSource } from '../../../../scripts/ci/checkBlockerTodos/check-blocker-todos.mjs';
 
-import { BuilderDiagnostic, loadFactoryRegistry, runOne, main } from './lessonBuilder.mjs';
+import { BuilderDiagnostic, loadFactoryRegistry, runOne, main, repoRoot } from './lessonBuilder.mjs';
 import { renderLessonModules } from './lessonModules.mjs';
+import { defineLesson, defineQuizSection, defineFlashcardsSection } from '@svitlo/engine/build';
+import { assembleLessonProps } from '@svitlo/engine/runtime';
+import { renderLessonMarkdown } from '../generateLessonsMarkdown/lesson-markdown.mjs';
+import { generate as generateLessonMarkdown } from '../generateLessonsMarkdown/generate-lessons-markdown.mjs';
+import { pendingAssessmentUuid, prepareAssessmentDraft } from './lessonAssessmentDrafts.mjs';
+import { splitScaffoldDocument } from '../yamlScaffolding/productionScaffolding.mjs';
 import { lessonReviewStageSlugs, renderReviewDraft } from './reviewTemplate.mjs';
 import { reviewTypeDiagnostics } from './reviewTypecheck.test-utils.mjs';
 
@@ -1164,7 +1170,7 @@ test('Lesson root exports reject reserved identifiers rather than producing inva
     }
   }));
 
-test('unfinished assessment Sections are omitted from runtime while YAML drafts retain their full source', () =>
+test('unfinished assessment Sections remain enabled, typed and ordered while YAML handoffs retain their approved source', () =>
   fixture(f => {
     const make = (slug, number, type) => ({
       id: id(number),
@@ -1187,9 +1193,29 @@ test('unfinished assessment Sections are omitted from runtime while YAML drafts 
     const files = readAll(f.lesson);
     const root = files.get('index.ts');
     assert.match(root, /quizRequiredForCompletion: true/);
-    assert.match(files.get('sections/index.ts'), /order: \[\s*"intro"\s*\]/);
-    assert.equal(files.has('sections/quizOne/index.ts'), false);
-    assert.equal(files.has('sections/cardsOne/index.ts'), false);
+    assert.match(files.get('sections/index.ts'), /"cardsOne"/);
+    const sectionIndex = files.get('sections/index.ts');
+    for (const slug of ['cardsOne', 'intro', 'quizOne', 'quizTwo', 'cardsTwo'])
+      assert.ok(sectionIndex.includes('"' + slug + '"'), 'preserved order includes ' + slug);
+    assert.deepEqual(
+      [...sectionIndex.matchAll(/"((?:cards|quiz)(?:One|Two)|intro)"/g)].map(match => match[1]),
+      ['cardsOne', 'intro', 'quizOne', 'quizTwo', 'cardsTwo'],
+    );
+    for (const [slug, type, number] of [
+      ['quizOne', 'quiz', 50],
+      ['cardsOne', 'flashcards', 51],
+      ['quizTwo', 'quiz', 52],
+      ['cardsTwo', 'flashcards', 53],
+    ]) {
+      const section = files.get('sections/' + slug + '/index.ts');
+      assert.ok(section, 'Missing typed Section ' + slug);
+      assert.match(section, new RegExp('id: "' + id(number) + '"'));
+      assert.match(section, /Авторський текст зберігається|const content =/);
+      assert.match(section, /TODO \(BLOCKER\):/);
+      assert.ok(scanSource('sections/' + slug + '/index.ts', section).length >= 2);
+      assert.match(section, type === 'quiz' ? /defineQuizSection/ : /defineFlashcardsSection/);
+      assert.match(section, /feedc0de-[0-9a-f]{4}-8[0-9a-f]{3}-a[0-9a-f]{3}-[0-9a-f]{12}/);
+    }
     assert.equal((root.match(/TODO \(BLOCKER\):/g) ?? []).length, 4);
     assert.equal(scanSource('index.ts', root).length, 4);
     for (const [filename, names] of [
@@ -1210,7 +1236,7 @@ test('unfinished assessment Sections are omitted from runtime while YAML drafts 
     assertTypeScriptSyntax(files);
   }));
 
-test('required but not-yet-authored Quiz retains its completion rule and one blocker', () =>
+test('required but not-yet-authored Quiz gets deterministic Section identity and retains completion gate', () =>
   fixture(f => {
     f.config.params.quizRequiredForCompletion = true;
     f.config.__production = { quizRequired: true };
@@ -1219,8 +1245,19 @@ test('required but not-yet-authored Quiz retains its completion rule and one blo
     const root = fs.readFileSync(f.generated('index.ts'), 'utf8');
     assert.match(root, /quizRequiredForCompletion: true/);
     assert.equal(scanSource('index.ts', root).length, 1);
-    assert.deepEqual(yaml.parse(fs.readFileSync(f.generated('questions.yaml'), 'utf8')).sectionDrafts.order, []);
-    assert.equal(fs.existsSync(f.generated('sections/quizOne/index.ts')), false);
+    const section = fs.readFileSync(f.generated('sections/assessmentQuiz/index.ts'), 'utf8');
+    const expectedId = pendingAssessmentUuid(lessonId, 'quiz', 'assessmentQuiz', 'section-id');
+    const expectedQuestionId = pendingAssessmentUuid(lessonId, 'quiz', 'assessmentQuiz', 'questionIds');
+    assert.ok(section.includes(expectedId));
+    assert.ok(section.includes(expectedQuestionId));
+    assert.match(section, /TODO \(BLOCKER\): Generated Section UUID/);
+    assert.match(section, /TODO \(BLOCKER\): Provisional assessment/);
+    assert.deepEqual(yaml.parse(fs.readFileSync(f.generated('questions.yaml'), 'utf8')).sectionDrafts.order, [
+      'assessmentQuiz',
+    ]);
+    assert.equal(runOne(f.lesson, 'check', f.root).changed, 0);
+    assert.equal(runOne(f.lesson, 'generate', f.root).skipped, true);
+    assertTypeScriptSyntax(readAll(f.lesson));
   }));
 
 test('fully specified Flashcards Section remains in the ordinary Section collection', () =>
@@ -1248,3 +1285,278 @@ test('no assessment requirement creates neither bank YAML nor assessment blocker
     assert.equal(fs.existsSync(f.generated('flashcards.yaml')), false);
     assert.doesNotMatch(fs.readFileSync(f.generated('index.ts'), 'utf8'), /Quiz Section|Flashcards Section/);
   }));
+
+test('provisional assessment UUIDs are deterministic, unique, Zod-format UUIDv8, and reserved', () => {
+  const one = pendingAssessmentUuid(lessonId, 'quiz', 'assessmentQuiz', 'questionIds');
+  const section = pendingAssessmentUuid(lessonId, 'quiz', 'assessmentQuiz', 'section-id');
+  const other = pendingAssessmentUuid(lessonId, 'flashcards', 'assessmentFlashcards', 'flashcardIds');
+  assert.equal(one, pendingAssessmentUuid(lessonId, 'quiz', 'assessmentQuiz', 'questionIds'));
+  assert.equal(new Set([one, section, other]).size, 3);
+  for (const value of [one, section, other])
+    assert.match(value, /^feedc0de-[0-9a-f]{4}-8[0-9a-f]{3}-a[0-9a-f]{3}-[0-9a-f]{12}$/);
+});
+
+test('a required Flashcards Section without an approved identity is generated once, in order', () =>
+  fixture(f => {
+    f.config.__production = { flashcardsRequired: true };
+    f.save();
+    const accepted = fs.readFileSync(f.generated('lesson.yaml'));
+    runOne(f.lesson, 'generate', f.root);
+    const sections = fs.readFileSync(f.generated('sections/index.ts'), 'utf8');
+    assert.match(sections, /"assessmentFlashcards"/);
+    const section = fs.readFileSync(f.generated('sections/assessmentFlashcards/index.ts'), 'utf8');
+    assert.match(section, /defineFlashcardsSection/);
+    assert.match(section, /PENDING FLASHCARDS/);
+    assert.match(section, /flashcardIds/);
+    assert.match(section, /TODO \(BLOCKER\): Provisional assessment/);
+    assert.equal(fs.readFileSync(f.generated('lesson.yaml')).equals(accepted), true);
+    assert.equal(runOne(f.lesson, 'check', f.root).changed, 0);
+    assertTypeScriptSyntax(readAll(f.lesson));
+  }));
+
+test('negative requirements do not create assessment Sections or synthetic bank resources', () =>
+  fixture(f => {
+    f.config.__production = { quizRequired: false, flashcardsRequired: false };
+    f.save();
+    runOne(f.lesson, 'generate', f.root);
+    assert.ok(!fs.existsSync(f.generated('sections/assessmentQuiz/index.ts')));
+    assert.ok(!fs.existsSync(f.generated('sections/assessmentFlashcards/index.ts')));
+    assert.equal(fs.existsSync(f.generated('questions.yaml')), false);
+    assert.equal(fs.existsSync(f.generated('flashcards.yaml')), false);
+    assert.ok(!fs.existsSync(f.generated('questions/index.ts')));
+    assert.ok(!fs.existsSync(f.generated('flashcards/index.ts')));
+  }));
+
+test('an authored complete Quiz remains untouched and no placeholder handoff is produced', () => {
+  const doc = { config: lessonConfig(), production: { quizRequired: true, documentLanguage: 'uk' } };
+  doc.config.section.items.quiz = {
+    id: id(101),
+    slug: 'quiz',
+    type: 'quiz',
+    locale: { title: 'Quiz', navigationLabel: 'Quiz' },
+    content: { items: {}, order: [] },
+    params: {
+      selection: { mode: 'all', questionIds: [id(102)] },
+      layout: { mode: 'stack' },
+      feedbackMode: 'after-completion',
+      interaction: {
+        retries: 0,
+        showErrors: false,
+        showCorrectAnswers: false,
+        allowExplanations: false,
+        allowDeferring: false,
+        allowQuestionNavigation: false,
+        skippable: false,
+      },
+      results: { visibility: 'hidden', showScore: false },
+    },
+  };
+  doc.config.section.order.push('quiz');
+  const normalized = wrap(doc.config);
+  const result = prepareAssessmentDraft({
+    config: normalized.config,
+    production: doc.production,
+  });
+  assert.deepEqual(result.lesson.section.items.quiz.config, doc.config.section.items.quiz);
+  assert.deepEqual(result.lesson.section.order, ['intro', 'quiz']);
+  assert.deepEqual(result.pending, []);
+  assert.equal(result.drafts.size, 0);
+});
+
+test('pending Quiz and Flashcards Section drafts pass actual Engine Props and read-only Lesson Markdown CLI', async () => {
+  const config = lessonConfig();
+  config.params.languages = ['uk'];
+  config.params.quizRequiredForCompletion = true;
+  config.locale.title = { uk: 'Світло' };
+  config.section = { items: {}, order: [] };
+  const document = {
+    config,
+    production: { quizRequired: true, flashcardsRequired: true, documentLanguage: 'uk' },
+  };
+  const prepared = prepareAssessmentDraft(document);
+  const quiz = defineQuizSection(prepared.lesson.section.items.assessmentQuiz.config);
+  const flashcards = defineFlashcardsSection(prepared.lesson.section.items.assessmentFlashcards.config);
+  const authored = defineLesson({
+    ...prepared.lesson,
+    section: {
+      items: { assessmentQuiz: quiz, assessmentFlashcards: flashcards },
+      order: prepared.lesson.section.order,
+    },
+  });
+  const publication = authored.build.props({ languages: ['uk'] });
+  const resolved = assembleLessonProps(publication, 'uk');
+  assert.equal(resolved.params.quizRequiredForCompletion, true);
+  assert.deepEqual(
+    resolved.section.map(section => section.type),
+    ['quiz', 'flashcards'],
+  );
+  assert.equal(resolved.section[0].params.selection.questionIds.length, 1);
+  assert.equal(resolved.section[1].params.selection.flashcardIds.length, 1);
+  assert.ok(resolved.section[0].params.selection.questionIds[0].startsWith('feedc0de-'));
+  const markdown = renderLessonMarkdown({
+    lesson: resolved,
+    locale: 'uk',
+    languages: ['uk'],
+    packagePath: 'content/playground',
+    sourceFiles: { files: [] },
+    sourceRef: 'test',
+  });
+  assert.match(markdown, /PENDING QUIZ/);
+  assert.match(markdown, /PENDING FLASHCARDS/);
+  assert.match(markdown, /feedc0de-/);
+  assert.match(markdown, /Question UUIDs/);
+
+  // Exercise the actual read-only Markdown generator, not only its renderer.
+  // The loader is injected solely to avoid executing code from an unfinished
+  // source draft; all discovery, locale/Props assembly and rendering paths run.
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-pending-lesson-markdown-'));
+  try {
+    const schema = path.join(root, 'shared/engine/schemas/languages.schemas.ts');
+    fs.mkdirSync(path.dirname(schema), { recursive: true });
+    fs.copyFileSync(path.join(repoRoot, 'shared/engine/schemas/languages.schemas.ts'), schema);
+    const lessonDirectory = path.join(root, 'content/playground/data/lessons', lessonId.at(-1), lessonId);
+    fs.mkdirSync(lessonDirectory, { recursive: true });
+    fs.writeFileSync(path.join(root, 'content/playground/package.json'), '{"name":"@svitlo/playground"}');
+    fs.writeFileSync(path.join(lessonDirectory, 'index.ts'), '// Unfinished source is intentionally not executed.\n');
+    const sourceMarkdown = await generateLessonMarkdown(
+      { package: 'content/playground', lesson: lessonId, locale: 'uk', stdout: true },
+      { root, loader: async () => authored },
+    );
+    assert.match(sourceMarkdown, /PENDING QUIZ/);
+    assert.match(sourceMarkdown, /PENDING FLASHCARDS/);
+    assert.match(sourceMarkdown, /feedc0de-/);
+    assert.equal(fs.existsSync(path.join(root, '.agent-ci-artifacts')), false);
+    assert.equal(
+      fs.readdirSync(lessonDirectory).join(','),
+      'index.ts',
+      'Read-only Markdown must not modify the source tree',
+    );
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test('even with real Question IDs, missing mandatory Section labels/content remain visibly blocked', () => {
+  const config = lessonConfig();
+  config.section.items.quizPending = {
+    id: id(103),
+    slug: 'quizPending',
+    type: 'quiz',
+    params: {
+      selection: { mode: 'all', questionIds: [id(104)] },
+      layout: { mode: 'stack' },
+      feedbackMode: 'after-completion',
+      interaction: {
+        retries: 1,
+        showErrors: true,
+        showCorrectAnswers: false,
+        allowExplanations: true,
+        allowDeferring: false,
+        allowQuestionNavigation: true,
+        skippable: false,
+      },
+      results: { visibility: 'after-review', showScore: true },
+    },
+  };
+  config.section.order.push('quizPending');
+  const original = wrap(config);
+  const draft = prepareAssessmentDraft({
+    config: original.config,
+    production: { documentLanguage: 'uk' },
+  });
+  assert.deepEqual(draft.lesson.section.order, ['intro', 'quizPending']);
+  const pending = draft.lesson.section.items.quizPending.config;
+  assert.deepEqual(pending.params.selection.questionIds, [id(104)]);
+  assert.equal(pending.locale.title, 'PENDING QUIZ');
+  assert.equal(pending.locale.navigationLabel, 'PENDING QUIZ');
+  assert.deepEqual(pending.content, { items: {}, order: [] });
+  assert.ok(draft.pending.some(item => item.slug === 'quizPending'));
+  assert.ok(draft.pending[0].provisionalFields.includes('$.locale.title'));
+  assert.deepEqual(original.config.section.items.quizPending.config.locale, undefined);
+});
+
+test('do not silently infer approved ordering for nested Section ContentBlocks', () => {
+  const config = lessonConfig();
+  config.section.items.quizPending = {
+    id: id(105),
+    slug: 'quizPending',
+    type: 'quiz',
+    params: {},
+    locale: { title: 'Quiz', navigationLabel: 'Quiz' },
+    content: { items: { screen: block('screen', 106) } },
+  };
+  config.section.order.push('quizPending');
+  assert.throws(
+    () =>
+      prepareAssessmentDraft({
+        config: wrap(config).config,
+        production: { documentLanguage: 'uk', quizRequired: true },
+      }),
+    /Approved assessment content.order missing/,
+  );
+});
+
+test('missing source-language assessment labels retain approved other-language labels', () => {
+  const config = lessonConfig();
+  config.section.items.cards = {
+    id: id(107),
+    slug: 'cards',
+    type: 'flashcards',
+    params: {},
+    locale: {
+      title: { en: 'Reviewed flashcard title' },
+      navigationLabel: { en: 'Reviewed navigation' },
+    },
+    content: { items: {}, order: [] },
+  };
+  config.section.order.push('cards');
+  const result = prepareAssessmentDraft({
+    config: wrap(config).config,
+    production: { documentLanguage: 'uk', flashcardsRequired: true },
+  });
+  const locale = result.lesson.section.items.cards.config.locale;
+  assert.deepEqual(locale.title, { en: 'Reviewed flashcard title', uk: 'PENDING FLASHCARDS' });
+  assert.deepEqual(locale.navigationLabel, { en: 'Reviewed navigation', uk: 'PENDING FLASHCARDS' });
+  assert.ok(result.pending[0].provisionalFields.includes('$.locale.title'));
+});
+
+test('mixed assessment selections preserve real UUIDs and block every incomplete entry', () => {
+  const config = lessonConfig();
+  config.section.items.quizMixed = {
+    id: id(108),
+    slug: 'quizMixed',
+    type: 'quiz',
+    params: {
+      selection: { mode: 'sample', questionIds: [id(109), 'unresolved', id(109)] },
+    },
+    locale: { title: { uk: 'Завдання' }, navigationLabel: { uk: 'Почати' } },
+    content: group({}),
+  };
+  config.section.order.push('quizMixed');
+  const original = wrap(config);
+  const document = { config: original.config, production: { documentLanguage: 'uk', quizRequired: true } };
+  const draft = prepareAssessmentDraft(document);
+  const ids = draft.lesson.section.items.quizMixed.config.params.selection.questionIds;
+  assert.equal(ids[0], id(109), 'An approved real UUID must never be discarded');
+  assert.equal(ids.length, 3);
+  assert.equal(new Set(ids).size, 3);
+  assert.match(ids[1], /^feedc0de-/);
+  assert.match(ids[2], /^feedc0de-/);
+  assert.deepEqual(
+    ids,
+    prepareAssessmentDraft(document).lesson.section.items.quizMixed.config.params.selection.questionIds,
+    'Every synthetic candidate must be stable on deterministic re-generation',
+  );
+  assert.deepEqual(
+    original.config.section.items.quizMixed.config.params.selection.questionIds,
+    [id(109), 'unresolved', id(109)],
+    'Pending scaffolding must never mutate approved YAML input',
+  );
+  const source = splitScaffoldDocument({ ...document, config: draft.lesson }).config;
+  const files = renderLessonModules(source, 'uk', { pendingAssessments: draft.pending });
+  const section = files.get('sections/quizMixed/index.ts');
+  assert.match(section, /Replace \$\.params\.selection\.questionIds\[1\]/);
+  assert.match(section, /Replace \$\.params\.selection\.questionIds\[2\]/);
+  assert.ok(scanSource('sections/quizMixed/index.ts', section).length >= 4);
+  assertTypeScriptSyntax(files);
+});

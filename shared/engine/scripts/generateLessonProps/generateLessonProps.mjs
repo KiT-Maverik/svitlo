@@ -68,6 +68,13 @@ function assertRepositoryLessonIdsUnique() {
   }
 }
 
+const pendingLabels = new Set(['PENDING QUIZ', 'PENDING FLASHCARDS']);
+function containsPendingAssessmentLabel(value) {
+  if (typeof value === 'string') return pendingLabels.has(value);
+  if (!value || typeof value !== 'object') return false;
+  return Object.values(value).some(containsPendingAssessmentLabel);
+}
+
 function lessonSource(directory) {
   const authoredFiles = fs.readdirSync(directory).filter(name => name.endsWith('.data.ts'));
   const index = path.join(directory, 'index.ts');
@@ -104,6 +111,29 @@ async function render(packageDirectory, mode) {
     }
     if (publication?.base?.id !== id) {
       throw new Error('Built Lesson ID differs from authored ID: ' + source);
+    }
+    if (mode === 'production') {
+      // Localized Section labels can live only in publication.locale, not in
+      // base.section. Inspect both fragments so a valid real UUID cannot hide
+      // unfinished editorial copy from the strict publisher.
+      if (containsPendingAssessmentLabel(publication.base) || containsPendingAssessmentLabel(publication.locale)) {
+        throw new Error('Unresolved assessment Section draft label in Lesson ' + id);
+      }
+      // Do not write even intermediate Lesson JSON containing the reserved
+      // assessment-draft namespace. The textbook build has a second, strict
+      // resource/locale verifier after independent banks are staged.
+      for (const section of publication.base.section ?? []) {
+        if (typeof section.id === 'string' && section.id.startsWith('feedc0de-')) {
+          throw new Error('Unresolved generated Section UUID in Lesson ' + id + ': ' + section.id);
+        }
+        const key = section.type === 'quiz' ? 'questionIds' : section.type === 'flashcards' ? 'flashcardIds' : null;
+        if (!key) continue;
+        for (const selectedId of section.params?.selection?.[key] ?? []) {
+          if (typeof selectedId === 'string' && selectedId.startsWith('feedc0de-')) {
+            throw new Error('Unresolved assessment placeholder in Lesson ' + id + ': ' + selectedId);
+          }
+        }
+      }
     }
     const relativeSource = path.relative(repoRoot, source);
     entries.push({
