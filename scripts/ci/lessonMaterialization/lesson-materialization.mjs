@@ -288,7 +288,7 @@ export function verifyManifest(manifest, meta, root) {
   return manifest.entries.length;
 }
 
-function readReport() {
+export function readReport() {
   const location = process.env.LESSON_REPORT;
   if (
     !location ||
