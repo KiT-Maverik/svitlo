@@ -144,7 +144,8 @@ jobs:
           }
           for (const gap of report.gaps) {
             if (typeof gap.file !== 'string' ||
-                !/^shared\\/engine\\/[a-zA-Z0-9._/-]+\\.(?:ts|mjs)$/.test(gap.file) ||
+                !gap.file.startsWith('shared/engine/') ||
+                !/([.]ts|[.]mjs)$/.test(gap.file) ||
                 gap.file.split('/').includes('..') ||
                 !['partial', 'not-executed'].includes(gap.status) ||
                 ![gap.lines, gap.branches, gap.functions].every(Array.isArray)) {
@@ -155,7 +156,7 @@ jobs:
           report.pr = Number(process.env.PR_NUMBER);
           report.request = 'engine-coverage';
           report.complete = true;
-          const output = JSON.stringify(report) + '\\n';
+          const output = JSON.stringify(report) + String.fromCharCode(10);
           if (Buffer.byteLength(output) > 4 * 1024 * 1024)
             throw Error('Coverage report exceeds size limit');
           fs.writeFileSync(file, output);
