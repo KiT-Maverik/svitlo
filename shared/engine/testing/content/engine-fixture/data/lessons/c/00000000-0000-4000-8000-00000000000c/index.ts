@@ -1,4 +1,5 @@
 import { defineLesson, defineText, defineContentSection, defineQuizSection } from '@svitlo/engine/build';
+import { sampleQuestion } from './questions';
 
 const introText = defineText({
   id: '00000000-0000-4000-8000-000000000010',
@@ -25,7 +26,7 @@ const quiz = defineQuizSection({
   slug: 'quiz',
   type: 'quiz',
   params: {
-    selection: { mode: 'all', questionIds: ['00000000-0000-4000-8000-000000000001'] },
+    selection: { mode: 'all', questionIds: [sampleQuestion.id] },
     layout: { mode: 'stepper' },
     feedbackMode: 'after-completion',
     interaction: {
