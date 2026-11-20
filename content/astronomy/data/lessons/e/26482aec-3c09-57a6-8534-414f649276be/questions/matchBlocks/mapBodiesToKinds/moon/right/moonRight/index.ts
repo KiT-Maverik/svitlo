@@ -9,7 +9,10 @@ export const moonRight = defineText<"moonRight", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "природний супутник Землі"
+      uk: "природний супутник Землі",
+      en: "Earth's natural satellite",
+      pl: "naturalny satelita Ziemi",
+      qm: "Yerniñ tabiiy yoldaşı"
     }
   }
 });

@@ -9,7 +9,10 @@ export const prompt = defineText<"prompt", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Поєднай кожне небесне тіло з його природою. Вибирай категорію за знанням про тіло, а не за кольором чи яскравістю."
+      uk: "Поєднай кожне небесне тіло з його природою. Вибирай категорію за знанням про тіло, а не за кольором чи яскравістю.",
+      en: "Match each celestial body to its type. Choose the category based on what you know about it, not its color or brightness.",
+      pl: "Połącz każde ciało niebieskie z jego rodzajem. Wybierz kategorię na podstawie wiedzy o nim, a nie jego koloru czy jasności.",
+      qm: "Er bir kök cismini onıñ türünen eşleştir. Rengine ya da parlaqlığına degil, o cisim aqqında bilgenleriñe esaslan."
     }
   }
 });

@@ -9,7 +9,10 @@ export const sunRight = defineText<"sunRight", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "зоря"
+      uk: "зоря",
+      en: "star",
+      pl: "gwiazda",
+      qm: "yıldız"
     }
   }
 });

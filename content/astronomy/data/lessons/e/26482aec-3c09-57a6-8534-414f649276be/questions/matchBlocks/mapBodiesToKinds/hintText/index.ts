@@ -9,7 +9,10 @@ export const hintText = defineText<"hintText", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Зоря сама випромінює світло, планета рухається навколо зорі, а природний супутник — навколо планети."
+      uk: "Зоря сама випромінює світло, планета рухається навколо зорі, а природний супутник — навколо планети.",
+      en: "A star gives off its own light, a planet travels around a star, and a natural satellite travels around a planet.",
+      pl: "Gwiazda wysyła własne światło, planeta krąży wokół gwiazdy, a naturalny satelita — wokół planety.",
+      qm: "Yıldız öz yarığını saça, seyyare yıldız etrafında, tabiiy yoldaş ise seyyare etrafında aylana."
     }
   }
 });

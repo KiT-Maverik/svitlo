@@ -9,7 +9,10 @@ export const earthLeft = defineText<"earthLeft", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Земля"
+      uk: "Земля",
+      en: "Earth",
+      pl: "Ziemia",
+      qm: "Yer"
     }
   }
 });
