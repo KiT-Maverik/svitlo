@@ -30,6 +30,8 @@ Always include:
 
 **Handoff/terminal state:** when all seven Flashcards stages are independently verified complete, explicitly say **"All seven Flashcards workflow stages are complete. There is no next Flashcards stage. You can assign new work."** If the child PR is not yet integrated, recommend the authorized final QA/review/integration action; once actually integrated, recommend returning to the Lesson parent for its remaining stage(s) or final acceptance. After real child review and integration, the parent agent may check **Lesson Stage 8 — Flashcards**, then propose `do lesson stage 9 for PR #<lesson-pr-number>` for Translation or the final gates if already completed. Show one concrete chat instruction **only when that stage is truly next and authorized**. Bank stage completion is not by itself permission to mark Ready, merge, publish or auto-continue the Lesson.
 
+**Authoring validation boundary:** Stages 1–4 do not require a separate manual technical-schema or TypeScript check for every incomplete `flashcards.yaml` edit; the existing Stage 5 Flashcard Builder validates the reviewed final bank before creating any files. Preserve Stage 4 independent Memory Design Review, real Question/Lesson dependencies, source SHA, safe creation, all required media/locale checks and production CI. See the [four-flow validation audit](../../docs/architecture/yaml-config-scaffolding.md#validation-boundaries-across-the-four-entity-workflows).
+
 ## Seven-stage production
 
 ### 1. Lesson Analysis — Flashcard Learning Architect
