@@ -1,5 +1,258 @@
 documentLanguage: uk
-questions: {}
+questions:
+  selectOneAnswer: 
+    identifyUnsafeOptics: 
+      id: "6ea474dd-2cec-5927-992c-9220b6d2b68f"
+      slug: "identifyUnsafeOptics"
+      type: "selectOneAnswer"
+      params: 
+        assessmentMethod: "classification"
+        restrictions: []
+      locale: {}
+      content: 
+        question: 
+          items: 
+            prompt: 
+              id: "b8a0eb4b-4824-5279-99e8-d2f51e1c5b7e"
+              slug: "prompt"
+              type: "text"
+              params: {}
+              locale: 
+                value: 
+                  uk: "Який із цих способів дізнаватися про Сонце небезпечний для очей?"
+          order: ["prompt"]
+        hint: 
+          items: 
+            hintText: 
+              id: "b7b266ea-417e-57aa-ad1c-b544f4836c6a"
+              slug: "hintText"
+              type: "text"
+              params: {}
+              locale: 
+                value: 
+                  uk: "Подумай, чи треба спрямовувати власні очі на справжнє Сонце, щоб отримати відомості."
+          order: ["hintText"]
+        explanation: 
+          items: 
+            explanationText: 
+              id: "fa51424d-b38b-5efe-8437-594e136461f0"
+              slug: "explanationText"
+              type: "text"
+              params: {}
+              locale: 
+                value: 
+                  uk: "Бінокль без належного спеціального сонячного фільтра робить пряме споглядання Сонця особливо небезпечним. Готові перевірені знімки та описи дозволяють дізнаватися про Сонце без цього ризику."
+          order: ["explanationText"]
+        answers: 
+          correct: 
+            items: 
+              safeChoice: 
+                id: "ae194194-48af-537c-beba-d9447e8528c6"
+                slug: "safeChoice"
+                type: "text"
+                params: {}
+                locale: 
+                  value: 
+                    uk: "Подивитися на Сонце крізь бінокль без спеціального сонячного фільтра."
+            order: ["safeChoice"]
+          incorrect: 
+            items: 
+              unsafeAlternative1: 
+                id: "c05e2112-2754-590d-84fc-93086306986f"
+                slug: "unsafeAlternative1"
+                type: "text"
+                params: {}
+                locale: 
+                  value: 
+                    uk: "Розглянути підписаний науковий знімок Сонця."
+              unsafeAlternative2: 
+                id: "969d72e4-6382-54ee-bd8f-e9ef05a0a902"
+                slug: "unsafeAlternative2"
+                type: "text"
+                params: {}
+                locale: 
+                  value: 
+                    uk: "Послухати опис готового знімка Сонця."
+              unsafeAlternative3: 
+                id: "9cb355c3-3b69-589b-8d8b-c1b8b5fa6060"
+                slug: "unsafeAlternative3"
+                type: "text"
+                params: {}
+                locale: 
+                  value: 
+                    uk: "Прочитати науковий опис Сонця з дорослим."
+            order: ["unsafeAlternative1", "unsafeAlternative2", "unsafeAlternative3"]
+          distractors: 
+            items: {}
+            order: []
+    replaceRiskyQuickLook: 
+      id: "ae44c3d6-f62e-56ce-9679-acf4daec8da9"
+      slug: "replaceRiskyQuickLook"
+      type: "selectOneAnswer"
+      params: 
+        assessmentMethod: "application"
+        restrictions: []
+      locale: {}
+      content: 
+        question: 
+          items: 
+            prompt: 
+              id: "13c9adcb-f951-5168-acc6-c14931268f89"
+              slug: "prompt"
+              type: "text"
+              params: {}
+              locale: 
+                value: 
+                  uk: "Андрій хоче дізнатися, який вигляд має Сонце, і пропонує швидко глянути на нього крізь вікно. Що варто порадити?"
+          order: ["prompt"]
+        hint: 
+          items: 
+            hintText: 
+              id: "5aa6ca06-b91e-54e8-8a3f-ef9c6ff20818"
+              slug: "hintText"
+              type: "text"
+              params: {}
+              locale: 
+                value: 
+                  uk: "Обери спосіб, який не потребує, щоб хтось дивився безпосередньо на Сонце."
+          order: ["hintText"]
+        explanation: 
+          items: 
+            explanationText: 
+              id: "61403fea-6a9a-5d06-97d3-419ac4a98bfb"
+              slug: "explanationText"
+              type: "text"
+              params: {}
+              locale: 
+                value: 
+                  uk: "Ні скло звичайного вікна, ні сонцезахисні окуляри, ні короткий погляд не роблять пряме спостереження Сонця безпечним. Підготовлений знімок дає потрібні відомості без ризику для чиїхось очей."
+          order: ["explanationText"]
+        answers: 
+          correct: 
+            items: 
+              safeChoice: 
+                id: "5484d523-7aee-5bd2-94d4-774bcf2aa45f"
+                slug: "safeChoice"
+                type: "text"
+                params: {}
+                locale: 
+                  value: 
+                    uk: "Розглянути разом перевірений науковий знімок Сонця."
+            order: ["safeChoice"]
+          incorrect: 
+            items: 
+              unsafeAlternative1: 
+                id: "f74eb31d-17e7-5670-82cf-f1624f500566"
+                slug: "unsafeAlternative1"
+                type: "text"
+                params: {}
+                locale: 
+                  value: 
+                    uk: "Подивитися на Сонце крізь вікно лише на мить."
+              unsafeAlternative2: 
+                id: "2cdb6754-9e75-5bc2-98ec-147c7872feaf"
+                slug: "unsafeAlternative2"
+                type: "text"
+                params: {}
+                locale: 
+                  value: 
+                    uk: "Подивитися на Сонце у звичайних темних окулярах."
+              unsafeAlternative3: 
+                id: "6b6eac82-4c33-5a83-b627-193c28914228"
+                slug: "unsafeAlternative3"
+                type: "text"
+                params: {}
+                locale: 
+                  value: 
+                    uk: "Попросити друга подивитися замість нього й розповісти."
+            order: ["unsafeAlternative1", "unsafeAlternative2", "unsafeAlternative3"]
+          distractors: 
+            items: {}
+            order: []
+    classifyCloudObservation: 
+      id: "07e1b3a0-5450-5937-b763-66950c254d34"
+      slug: "classifyCloudObservation"
+      type: "selectOneAnswer"
+      params: 
+        assessmentMethod: "classification"
+        restrictions: []
+      locale: {}
+      content: 
+        question: 
+          items: 
+            prompt: 
+              id: "e61722c1-25d7-506e-bedb-813050420d57"
+              slug: "prompt"
+              type: "text"
+              params: {}
+              locale: 
+                value: 
+                  uk: "Яка дія допоможе дослідити денне небо, не дивлячись на Сонце?"
+          order: ["prompt"]
+        hint: 
+          items: 
+            hintText: 
+              id: "5d6244bc-7067-5734-8bb9-b10741412c81"
+              slug: "hintText"
+              type: "text"
+              params: {}
+              locale: 
+                value: 
+                  uk: "Подумай, які ознаки неба можна вивчати за готовими матеріалами навіть удень."
+          order: ["hintText"]
+        explanation: 
+          items: 
+            explanationText: 
+              id: "ce689630-d7a8-5e23-a39a-782d75271cfa"
+              slug: "explanationText"
+              type: "text"
+              params: {}
+              locale: 
+                value: 
+                  uk: "Хмари є частиною денного неба, і їх можна порівнювати на готових знімках. Небо не обов'язково досліджувати вночі; небезпечні спроби подивитися на Сонце для цього не потрібні."
+          order: ["explanationText"]
+        answers: 
+          correct: 
+            items: 
+              safeChoice: 
+                id: "8675b5fd-f59d-5b43-b1bc-055863ede5cb"
+                slug: "safeChoice"
+                type: "text"
+                params: {}
+                locale: 
+                  value: 
+                    uk: "Порівняти форми хмар на двох готових фотографіях денного неба."
+            order: ["safeChoice"]
+          incorrect: 
+            items: 
+              unsafeAlternative1: 
+                id: "61aa6684-08b7-5266-ab8a-5a855c1a78a5"
+                slug: "unsafeAlternative1"
+                type: "text"
+                params: {}
+                locale: 
+                  value: 
+                    uk: "Подивитися на Сонце крізь звичайні сонцезахисні окуляри."
+              unsafeAlternative2: 
+                id: "9dfb0a7c-cecb-5609-890a-bce644f1894c"
+                slug: "unsafeAlternative2"
+                type: "text"
+                params: {}
+                locale: 
+                  value: 
+                    uk: "Спрямувати бінокль на Сонце, щоб роздивитися його ближче."
+              unsafeAlternative3: 
+                id: "a9de8af1-ca6b-5202-bec4-dc9d7139393f"
+                slug: "unsafeAlternative3"
+                type: "text"
+                params: {}
+                locale: 
+                  value: 
+                    uk: "Відкласти дослідження неба до ночі, бо вдень це неможливо."
+            order: ["unsafeAlternative1", "unsafeAlternative2", "unsafeAlternative3"]
+          distractors: 
+            items: {}
+            order: []
 sectionDrafts:
   items:
     safeSkyChoices:
