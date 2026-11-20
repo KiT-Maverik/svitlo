@@ -3,7 +3,7 @@ name: Mobile host checks
 on:
   pull_request:
     types: [ready_for_review, reopened, synchronize]
-    branches: [main]
+    branches: [main, develop]
     paths:
       - 'apps/mobile/**'
       - 'shared/adapters/capacitor/**'
@@ -14,6 +14,11 @@ on:
 
 permissions:
   contents: read
+
+# A formatter push supersedes the review-ready source revision.
+concurrency:
+  group: mobile-host-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   web:
@@ -27,14 +32,14 @@ jobs:
         with:
           node-version: '24'
           cache: npm
-      - run: npm ci
-      - run: npm run app:build --workspace @svitlo/mobile
-      - run: npm run app:check:bundle --workspace @svitlo/mobile
-      - run: npm run code:check:types --workspace @svitlo/mobile
-      - run: npm run code:lint:check --workspace @svitlo/adapter-capacitor
-      - run: npm run test --workspace @svitlo/mobile
-      - run: npm exec --workspace @svitlo/mobile -- playwright install chromium --with-deps
-      - run: npm run test:e2e --workspace @svitlo/mobile
+      - run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --no-audit --no-fund
+      - run: node scripts/ci/quietRun/quiet-run.mjs -- npm run app:build --workspace @svitlo/mobile
+      - run: node scripts/ci/quietRun/quiet-run.mjs -- npm run app:check:bundle --workspace @svitlo/mobile
+      - run: node scripts/ci/quietRun/quiet-run.mjs -- npm run code:check:types:prepared --workspace @svitlo/mobile
+      - run: node scripts/ci/quietRun/quiet-run.mjs -- npm run code:lint:check --workspace @svitlo/adapter-capacitor
+      - run: node scripts/ci/quietRun/quiet-run.mjs -- npm run test --workspace @svitlo/mobile
+      - run: node scripts/ci/quietRun/quiet-run.mjs -- npm exec --workspace @svitlo/mobile -- playwright install chromium --with-deps
+      - run: node scripts/ci/quietRun/quiet-run.mjs -- npm run test:e2e --workspace @svitlo/mobile
   android:
     name: Android debug build
     if: github.event_name == 'workflow_dispatch' || !github.event.pull_request.draft
@@ -50,9 +55,11 @@ jobs:
         with:
           distribution: temurin
           java-version: '21'
-      - run: npm ci
-      - run: npm run app:build --workspace @svitlo/mobile
-      - run: npm exec --workspace @svitlo/mobile -- cap sync android
+      # Cache the Gradle wrapper and resolved dependencies between native builds.
+      - uses: gradle/actions/setup-gradle@v4
+      - run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --no-audit --no-fund
+      - run: node scripts/ci/quietRun/quiet-run.mjs -- npm run app:build --workspace @svitlo/mobile
+      - run: node scripts/ci/quietRun/quiet-run.mjs -- npm exec --workspace @svitlo/mobile -- cap sync android
       - name: Compile debug APK without signing
         working-directory: apps/mobile/android
         run: ./gradlew assembleDebug --no-daemon
@@ -67,8 +74,8 @@ jobs:
         with:
           node-version: '24'
           cache: npm
-      - run: npm ci
-      - run: npm run app:build --workspace @svitlo/mobile
-      - run: npm exec --workspace @svitlo/mobile -- cap sync ios
+      - run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --no-audit --no-fund
+      - run: node scripts/ci/quietRun/quiet-run.mjs -- npm run app:build --workspace @svitlo/mobile
+      - run: node scripts/ci/quietRun/quiet-run.mjs -- npm exec --workspace @svitlo/mobile -- cap sync ios
       - name: Build simulator application without code signing
         run: xcodebuild -workspace apps/mobile/ios/App/App.xcworkspace -scheme App -configuration Debug -sdk iphonesimulator -destination 'generic/platform=iOS Simulator' CODE_SIGNING_ALLOWED=NO build

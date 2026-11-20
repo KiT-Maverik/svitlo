@@ -31,12 +31,12 @@ test('cold-start desktop opens its packaged Playground lesson without remote acc
     await page.getByRole('combobox', { name: 'Мова інтерфейсу' }).click();
     await page.getByRole('option', { name: 'English' }).click();
     await expect(page).toHaveURL(/^svitlo:\/\/app\/en\/lesson\/uk\//);
-    await expect(page.getByRole('heading', { name: 'Як рухається світло' })).toBeVisible();
+    await expect(page.locator('#learning-content').getByRole('heading', { name: 'Як рухається світло' })).toBeVisible();
     await page.getByRole('button', { name: 'Open settings' }).click();
     await page.getByRole('combobox', { name: 'Lesson language' }).click();
     await page.getByRole('option', { name: 'English' }).click();
     await expect(page).toHaveURL(/^svitlo:\/\/app\/en\/lesson\/en\//);
-    await expect(page.getByRole('heading', { name: 'How Light Travels' })).toBeVisible();
+    await expect(page.locator('#learning-content').getByRole('heading', { name: 'How Light Travels' })).toBeVisible();
     await page.reload();
     await expect(page.locator('#learning-content')).toBeVisible();
     expect(page.url()).toMatch(/^svitlo:\/\/app\/en\/lesson\/en\//);

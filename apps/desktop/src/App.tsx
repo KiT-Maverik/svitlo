@@ -9,7 +9,7 @@ import {
 import { type Locale } from '@svitlo/engine/runtime';
 import { getLocaleDirection, type Lesson_Props } from '@svitlo/engine/runtime';
 import { resolveScene } from '@svitlo/playground/scenes';
-import { loadPublishedLesson, loadPublishedUiKitMessages } from '@svitlo/adapter-electron';
+import { loadPublishedLesson, loadPublishedUiKitMessages, packagedAssessmentLoader } from '@svitlo/adapter-electron';
 import { changeLessonLocale, changeContentLocale, initialLessonRoute, lessonHref, type LessonRoute } from './routing';
 
 type RouteContextValue = {
@@ -127,6 +127,7 @@ export default function App() {
               messages={data.messages}
               layout={LessonLayout}
               sceneRegistry={resolveScene}
+              assessmentLoader={packagedAssessmentLoader}
             />
           </SceneLocaleProvider>
         </RouteContext.Provider>

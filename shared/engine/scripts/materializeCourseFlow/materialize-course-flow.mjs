@@ -592,7 +592,7 @@ export function renderModularCourse(
   files.set(
     'constants.ts',
     "import type { SupportedLanguages } from '@svitlo/engine/build';\n\n" +
-      '// TODO: Restore the complete language set when translations are ready:\n' +
+      '// TODO (BLOCKER): Restore the complete language set when translations are ready:\n' +
       '// export const languages = ' +
       JSON.stringify(planned) +
       ' as const satisfies SupportedLanguages;\n\n' +
@@ -625,6 +625,7 @@ export function planArtifacts(plan, pkg, root, lessonIndex) {
   const drafts = renderModularCourse(technical, pkg, lookup, draftSlug);
   const files = new Map([['methodology.md', technical.production.methodology], ...drafts]);
   const lessonFiles = new Map();
+  const lessonAssignments = [];
   for (const [id, { node }] of technical.newLessons) {
     if (!node.methodology?.trim()) fail('planned Lesson lacks complete methodology: ' + node.slug);
     const lessonFolder = path.join(root, pkg, 'data/lessons', id.at(-1), id);
@@ -648,8 +649,14 @@ export function planArtifacts(plan, pkg, root, lessonIndex) {
       },
     };
     lessonFiles.set(path.join(lessonFolder, 'lesson.yaml'), YAML.stringify(lessonConfig, { lineWidth: 0 }));
+    lessonAssignments.push({
+      id,
+      slug: node.slug,
+      title: node.title,
+      path: pkg + '/data/lessons/' + id.at(-1) + '/' + id + '/lesson.yaml',
+    });
   }
-  return { folder: path.join(root, coursePath), files, lessonFiles, technical };
+  return { folder: path.join(root, coursePath), files, lessonFiles, lessonAssignments, technical };
 }
 function artifactEntries(artifacts) {
   return [

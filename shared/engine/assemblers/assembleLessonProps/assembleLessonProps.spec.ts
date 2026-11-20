@@ -45,7 +45,7 @@ function resource(): PublishedLessonPropsResource {
       type: 'lesson',
       skills: [],
       params: {
-        requireQuiz: false,
+        quizRequiredForCompletion: false,
         languages: ['en', 'uk'],
         sections: { allowNavigation: true, allowSkipping: false, showIndexes: true },
       },

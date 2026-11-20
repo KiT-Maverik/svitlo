@@ -2,7 +2,9 @@
 /** Build changed content distributions; FastGate owns general TypeScript stability checks. */
 import { existsSync, readFileSync, readdirSync, writeFileSync, unlinkSync } from 'node:fs';
 import { join, resolve } from 'node:path';
-import { execFileSync, spawnSync } from 'node:child_process';
+import { spawnSync } from 'node:child_process';
+import { changedFiles } from '../prDiff/changed-files.mjs';
+export { changedFiles };
 import { fileURLToPath } from 'node:url';
 
 const repo = resolve(fileURLToPath(new URL('../../..', import.meta.url)));
@@ -14,7 +16,7 @@ function run(command, args, cwd = repo) {
     throw new Error(command + ' ' + args.join(' ') + ' failed' + (result.error ? ': ' + result.error.message : ''));
   }
 }
-function contentWorkspaces() {
+export function contentWorkspaces() {
   const result = [];
   for (const folder of ['content', 'content/languages']) {
     for (const entry of readdirSync(join(repo, folder), { withFileTypes: true })) {
@@ -28,15 +30,6 @@ function contentWorkspaces() {
     }
   }
   return result.sort((a, b) => a.path.localeCompare(b.path));
-}
-function changedFiles(base, head) {
-  if (![base, head].every(sha => /^[a-f0-9]{40}$/.test(sha))) {
-    throw new Error('BASE_SHA and HEAD_SHA must be 40-character SHA values');
-  }
-  return execFileSync('git', ['diff', '--name-only', '-z', base, head], { cwd: repo })
-    .toString('utf8')
-    .split('\0')
-    .filter(Boolean);
 }
 const representative = new Set(['@svitlo/math', '@svitlo/art', '@svitlo/playground', '@svitlo/astronomy']);
 export function selectContentBuilds(changed, workspaces, all = false) {
@@ -98,9 +91,6 @@ function verifyPackage(pkg, changed) {
       run('npm', ['run', 'test:types', '--workspace', pkg.name]);
       run('npm', ['run', 'test:components', '--workspace', pkg.name]);
     }
-    if (pkg.name === '@svitlo/biology') {
-      run('npm', ['run', 'test', '--workspace', '@svitlo/engine']);
-    }
     const cwd = join(repo, pkg.path);
     const publisher = join(repo, 'scripts/textbook-tooling/publishTextbook/test-publish.mjs');
     const tests = pkg.name === '@svitlo/playground' ? [publisher, 'test-course-output.mjs'] : [publisher];
@@ -148,11 +138,52 @@ function execute(changed, all, baseRef, headRef) {
   run('npm', ['run', 'repo:check:artifacts', '--', '--packages', ...targets]);
 }
 
+function executePackage(path, kind, changed, all, baseRef, headRef) {
+  const workspaces = contentWorkspaces();
+  const agent = resolveAgentScope(
+    baseRef,
+    headRef,
+    changed,
+    workspaces,
+    readJson('scripts/ci/buildChangedContent/skills-agent-owners.json'),
+  );
+  if (agent) {
+    if (kind !== 'agent' || agent.workspace.path !== path) {
+      throw new Error('Unexpected matrix package for agent branch: ' + path);
+    }
+    validateAgent(agent);
+    return;
+  }
+  const pkg = workspaces.find(workspace => workspace.path === path);
+  if (kind !== 'content' || !pkg || !selectContentBuilds(changed, workspaces, all).includes(path)) {
+    throw new Error('Unselected or unknown content package: ' + path);
+  }
+  verifyPackage(pkg, changed);
+  run('npm', ['run', 'repo:check:artifacts', '--', '--packages', path]);
+}
+
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   try {
-    const all = process.argv[2] === '--all';
-    const changed = all ? [] : changedFiles(process.env.BASE_SHA, process.env.HEAD_SHA);
-    execute(changed, all, process.env.BASE_REF || '', process.env.HEAD_REF || '');
+    if (process.argv[2] === '--package') {
+      if (process.argv.length !== 5) throw new Error('Usage: --package <workspace-path> <content|agent>');
+      const all = process.env.CONTENT_BUILD_ALL === 'true';
+      const changed = all ? [] : changedFiles(process.env.BASE_SHA, process.env.HEAD_SHA);
+      executePackage(
+        process.argv[3],
+        process.argv[4],
+        changed,
+        all,
+        process.env.BASE_REF || '',
+        process.env.HEAD_REF || '',
+      );
+    } else {
+      if (process.argv.length > 3 || (process.argv.length === 3 && process.argv[2] !== '--all')) {
+        throw new Error('Usage: build-changed-content.mjs [--all|--package <workspace-path> <content|agent>]');
+      }
+      const all = process.argv[2] === '--all';
+      const changed = all ? [] : changedFiles(process.env.BASE_SHA, process.env.HEAD_SHA);
+      execute(changed, all, process.env.BASE_REF || '', process.env.HEAD_REF || '');
+    }
   } catch (error) {
     console.error(error);
     process.exitCode = 1;

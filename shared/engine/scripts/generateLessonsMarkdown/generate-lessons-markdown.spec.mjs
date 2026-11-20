@@ -31,7 +31,7 @@ function fixture(locale = 'uk') {
     slug: 'fixtureLesson',
     type: 'lesson',
     skills: ['skill-1'],
-    params: { languages: ['en', 'uk'], requireQuiz: true, sections: { showIndexes: true } },
+    params: { languages: ['en', 'uk'], quizRequiredForCompletion: true, sections: { showIndexes: true } },
     locale: { title: t('Engine Test Lesson', 'Тестовий урок Engine') },
     section: [
       {

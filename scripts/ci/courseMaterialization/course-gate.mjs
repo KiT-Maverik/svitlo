@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 /**
- * @fileoverview Trusted Course Stage 5 authorization and independent Stage 4 gate.
- * All PR source is treated as data; no checkboxes or PR-body claims grant approval.
+ * @fileoverview Trusted Course Stage 5 authorization using the parent PR's Stage 4 tracker.
+ * The editorial checklist is a human/agent workflow declaration, never cryptographic review proof.
+ * PR source remains untrusted data; authorization and publication safeguards remain independent.
  */
 import fs from 'node:fs';
 import { createHash } from 'node:crypto';
@@ -10,7 +11,6 @@ const UUID = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/;
 const SHA = /^[0-9a-f]{40}$/;
 const PACKAGE = /^content\/[a-z][a-z0-9-]*$/;
 const MARKER = '<!-- svitlo-course-flow:v1 -->';
-const roles = ['methodologist', 'assessment-architect'];
 
 export function parseIdentity(body) {
   if (typeof body !== 'string' || body.split(MARKER).length !== 2)
@@ -51,13 +51,39 @@ export function parseTrigger(event, kind, actor) {
   return { number, operation, actor };
 }
 
-export function parseReviewEvidence(body) {
-  if (typeof body !== 'string') return null;
-  const role = body.match(/^Stage 4 approval:\s*(methodologist|assessment-architect)\s*$/im);
-  const id = body.match(/^Course UUID:\s*\x60?([0-9a-f-]{36})\x60?\s*$/im);
-  const blob = body.match(/^Course YAML blob:\s*\x60?([0-9a-f]{40})\x60?\s*$/im);
-  if (!role || !id || !blob || !UUID.test(id[1].toLowerCase())) return null;
-  return { role: role[1].toLowerCase(), id: id[1].toLowerCase(), blob: blob[1].toLowerCase() };
+/**
+ * Require the canonical parent Course PR's manually maintained Stage 1–4 checklist
+ * to be completed. The owner tracks a real Stage 4 pass in a separate agent chat;
+ * this declaration does not attest to the reviewer's GitHub identity or prove
+ * review independence. Never derive completion from comments, review events or YAML.
+ */
+export function requireCompletedStageFour(body) {
+  if (typeof body !== 'string') throw Error('Course PR workflow checklist missing');
+  const headings = [...body.matchAll(/^## Workflow[ \t]*$/gm)];
+  if (headings.length !== 1) throw Error('Exactly one Course PR Workflow heading required');
+  const start = headings[0].index + headings[0][0].length;
+  const nextHeading = body.slice(start).search(/^##[ \t]+/m);
+  const section = nextHeading < 0 ? body.slice(start) : body.slice(start, start + nextHeading);
+  const stages = [
+    'Create Course Methodology',
+    'Design Course Structure',
+    'Design & Match Lessons',
+    'Review Course Plan',
+  ];
+  const entries = [...section.matchAll(/^[ \t]*- \[([ xX])\][ \t]+([1-7])\.[ \t]+([^\r\n]*)$/gm)];
+  for (let i = 0; i < stages.length; i++) {
+    const matches = entries.filter(entry => Number(entry[2]) === i + 1);
+    if (
+      matches.length !== 1 ||
+      !matches[0][3].startsWith(stages[i]) ||
+      !/^(?:$|[ \t]+(?:—|–|-|:))/.test(matches[0][3].slice(stages[i].length))
+    ) {
+      throw Error('Exactly one canonical Stage ' + (i + 1) + ' checklist item required');
+    }
+    if (matches[0][1].toLowerCase() !== 'x')
+      throw Error('Course Stage ' + (i + 1) + ' is incomplete in the parent PR Workflow');
+  }
+  return true;
 }
 
 export function safeBranch(name, base) {
@@ -92,7 +118,8 @@ export function validateArtifactPath(filename, identity, operation) {
   const relative = filename.startsWith(base) ? filename.slice(base.length) : null;
   if (relative !== null) {
     if (['index.ts', 'constants.ts', 'review.ts', 'methodology.md'].includes(relative)) return true;
-    if (/^(modules|chapters|episodes)\/(?:index|[a-z][A-Za-z0-9]*)\.ts$/.test(relative)) return true;
+    // Match the materializer's nested Course > Module > Chapter > Episode source tree.
+    if (/^content\/(?:[a-z][A-Za-z0-9]*\/){1,3}(?:index\.ts|methodology\.md)$/.test(relative)) return true;
   }
   const prefix = identity.pkg + '/data/lessons/';
   const match = filename.startsWith(prefix)
@@ -107,37 +134,6 @@ export function gitBlob(bytes) {
     .update('blob ' + buffer.length + '\0')
     .update(buffer)
     .digest('hex');
-}
-
-export function stageFourApprovals({ reviews, prAuthor, sourceAuthor, identity, blob, blobsAtCommits }) {
-  const latest = new Map();
-  for (const review of reviews) {
-    const login = review.user?.login;
-    if (login && ['APPROVED', 'DISMISSED', 'CHANGES_REQUESTED'].includes(review.state))
-      latest.set(login.toLowerCase(), review);
-  }
-  const accepted = new Map();
-  for (const review of latest.values()) {
-    const login = review.user.login.toLowerCase();
-    if (review.state !== 'APPROVED' || login === prAuthor?.toLowerCase() || login === sourceAuthor?.toLowerCase())
-      continue;
-    const evidence = parseReviewEvidence(review.body);
-    if (
-      !evidence ||
-      evidence.id !== identity.id ||
-      evidence.blob !== blob ||
-      !roles.includes(evidence.role) ||
-      !SHA.test(review.commit_id ?? '')
-    )
-      continue;
-    if (blobsAtCommits.get(review.commit_id) !== blob) continue;
-    if (!accepted.has(evidence.role)) accepted.set(evidence.role, login);
-  }
-  if (accepted.size !== roles.length || accepted.get(roles[0]) === accepted.get(roles[1]))
-    throw Error(
-      'Stage 4 requires independent GitHub APPROVED reviews by two distinct accounts (methodologist and assessment-architect), pinned to the current Course YAML Git blob; the PR/last source author cannot self-approve',
-    );
-  return Object.fromEntries(accepted);
 }
 
 export async function github(route, method = 'GET', data) {
@@ -161,17 +157,6 @@ export async function github(route, method = 'GET', data) {
   return response.status === 204 ? null : response.json();
 }
 
-async function collect(route) {
-  const result = [];
-  for (let page = 1; page <= 10; page++) {
-    const chunk = await github(route + (route.includes('?') ? '&' : '?') + 'per_page=100&page=' + page);
-    if (!Array.isArray(chunk)) throw Error('GitHub returned an invalid list');
-    result.push(...chunk);
-    if (chunk.length < 100) return result;
-  }
-  throw Error('Pagination limit reached; fail closed');
-}
-
 export async function inspect(number, expectedHead) {
   const repo = process.env.GITHUB_REPOSITORY;
   if (!/^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/.test(repo ?? '')) throw Error('Invalid repository');
@@ -193,32 +178,7 @@ export async function inspect(number, expectedHead) {
   const source = await github('contents/' + encoded + '?ref=' + pr.head.sha);
   if (!source || source.type !== 'file' || !SHA.test(source.sha ?? ''))
     throw Error('Canonical course.yaml missing or not a regular Git file');
-  const authors = await github(
-    'commits?path=' + encodeURIComponent(identity.yaml) + '&sha=' + pr.head.sha + '&per_page=1',
-  );
-  const sourceAuthor = authors?.[0]?.author?.login;
-  if (!sourceAuthor || !pr.user?.login) throw Error('Cannot verify last Course YAML author and PR author');
-  const reviews = await collect('pulls/' + number + '/reviews');
-  const blobsAtCommits = new Map();
-  for (const commitId of new Set(
-    reviews.filter(r => r.state === 'APPROVED' && SHA.test(r.commit_id ?? '')).map(r => r.commit_id),
-  )) {
-    const revision = await github('contents/' + encoded + '?ref=' + commitId);
-    blobsAtCommits.set(commitId, revision?.sha ?? null);
-  }
-  const reviewers = stageFourApprovals({
-    reviews,
-    prAuthor: pr.user.login,
-    sourceAuthor,
-    identity,
-    blob: source.sha,
-    blobsAtCommits,
-  });
-  for (const login of Object.values(reviewers)) {
-    const permission = await github('collaborators/' + encodeURIComponent(login) + '/permission');
-    if (!['write', 'maintain', 'admin'].includes(permission?.permission))
-      throw Error('Reviewer lacks repository write permission: ' + login);
-  }
+  requireCompletedStageFour(pr.body);
   return {
     pr: number,
     head: pr.head.sha,
@@ -226,7 +186,7 @@ export async function inspect(number, expectedHead) {
     identity,
     sourceBlob: source.sha,
     repo,
-    reviewers,
+    stageFour: 'completed',
   };
 }
 

@@ -20,7 +20,7 @@ export const representations = defineSkillGroup({
     it: 'Rappresentazioni matematiche',
     ja: '数学的な表現',
     ka: 'მათემატიკური წარმოდგენები',
-    kk: 'Математикалық бейнелеулер',
+    kk: 'Matematikalyq beineleuler',
     ko: '수학적 표현',
     lt: 'Matematiniai vaizdavimo būdai',
     lv: 'Matemātiskie attēlojumi',

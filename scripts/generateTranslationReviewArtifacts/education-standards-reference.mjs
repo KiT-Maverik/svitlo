@@ -5,11 +5,10 @@
  */
 import fs from 'node:fs';
 import path from 'node:path';
-import { createRequire } from 'node:module';
+import { loadEducationStandards } from '../../shared/ui-kit/scripts/generateLocales/loadEducationStandards.mjs';
 import ts from 'typescript';
 
-const require = createRequire(import.meta.url);
-const dataDirectory = 'shared/education-standards/data';
+const dataDirectory = 'shared/ui-kit/data/definitions/educationStandards/data';
 const UUID = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i;
 const MISSING = '%%MISSING%%';
 const tick = String.fromCharCode(96);
@@ -294,7 +293,7 @@ export function renderEducationStandardMarkdown(entries, locale, sourceCommit) {
 
 /** Only the build-only published entrypoint may supply the executable catalog. */
 export function loadBuildCatalog() {
-  return require('@svitlo/education-standards/build').educationStandards;
+  return loadEducationStandards();
 }
 
 export function generateEducationStandardReviewArtifacts({

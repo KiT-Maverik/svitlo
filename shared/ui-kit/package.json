@@ -12,7 +12,7 @@
     "prepack": "npm run package:build",
     "storybook:start": "storybook dev -p 6006",
     "storybook:build": "storybook build",
-    "test:locales": "vitest run scripts/generateLocales/generateLocales.spec.ts && node --test scripts/syncFlags/syncFlags.spec.mjs",
+    "test:locales": "vitest run scripts/generateLocales/generateLocales.spec.ts data/definitions/educationStandards/catalog.spec.ts && node --test scripts/syncFlags/syncFlags.spec.mjs",
     "code:format:check": "prettier --check . --ignore-path ../../.prettierignore",
     "code:format:fix": "prettier --write . --ignore-path ../../.prettierignore"
   },

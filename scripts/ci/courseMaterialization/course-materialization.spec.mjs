@@ -10,13 +10,18 @@ import { createHash } from 'node:crypto';
 import {
   parseIdentity,
   parseTrigger,
-  parseReviewEvidence,
-  stageFourApprovals,
+  requireCompletedStageFour,
   validateArtifactPath,
   gitBlob,
   safeBranch,
 } from './course-gate.mjs';
-import { verifyManifest, identicalSnapshot } from './course-materialization.mjs';
+import {
+  verifyManifest,
+  identicalSnapshot,
+  validateLessonAssignments,
+  renderLessonRegistry,
+  registerLessonRegistry,
+} from './course-materialization.mjs';
 
 const id = '1e79d8fc-2223-4fa7-bc64-70d8172d3e8b';
 const lesson = 'd3048d21-8690-5255-b62c-984c69ac272c';
@@ -26,25 +31,23 @@ const identity = { id, pkg, yaml };
 const sha = 'a'.repeat(40);
 const head = 'b'.repeat(40);
 const blob = gitBlob('id: ' + id + '\n');
-const sourceEvidence = (role, value = blob) =>
-  'Stage 4 approval: ' + role + '\nCourse UUID: ' + id + '\nCourse YAML blob: ' + value;
-const reviews = [
-  { user: { login: 'methodologist' }, state: 'APPROVED', commit_id: sha, body: sourceEvidence('methodologist') },
-  {
-    user: { login: 'assessment-agent' },
-    state: 'APPROVED',
-    commit_id: sha,
-    body: sourceEvidence('assessment-architect'),
-  },
-];
-const reviewInput = {
-  reviews,
-  prAuthor: 'author',
-  sourceAuthor: 'editor',
-  identity,
-  blob,
-  blobsAtCommits: new Map([[sha, blob]]),
-};
+const courseWorkflow = (s1 = 'x', s2 = 'x', s3 = 'x', s4 = 'x') =>
+  [
+    '<!-- svitlo-course-flow:v1 -->',
+    '## Course identity',
+    '- Course UUID: ' + id,
+    '- Textbook: ' + pkg,
+    '- Single temporary source plan: ' + yaml,
+    '## Workflow',
+    '- [' + s1 + '] 1. Create Course Methodology — approved scope',
+    '- [' + s2 + '] 2. Design Course Structure',
+    '- [' + s3 + '] 3. Design & Match Lessons',
+    '  - [x] Module skyCycles',
+    '- [' + s4 + '] 4. Review Course Plan — separate-chat review completed',
+    '- [ ] 5. Materialize Course',
+    '## Handoffs / blockers',
+    '- Stage 4 findings resolved in the PR; no separate account required',
+  ].join('\n');
 
 test('exact marker, UUID, package and canonical Course YAML are mandatory', () => {
   const body =
@@ -92,53 +95,69 @@ test('only exact top-level same-actor PR comments or enumerated dispatch can aut
   assert.throws(() => parseTrigger({ inputs: { pr_number: '42', operation: 'rm -rf' } }, 'workflow_dispatch', 'owner'));
 });
 
-test('Stage 4 requires independently evidenced, role-distinct, source-pinned approvals', () => {
-  assert.deepEqual(stageFourApprovals(reviewInput), {
-    methodologist: 'methodologist',
-    'assessment-architect': 'assessment-agent',
-  });
-  assert.deepEqual(parseReviewEvidence(sourceEvidence('methodologist')), {
-    id,
-    role: 'methodologist',
-    blob,
-  });
-  assert.throws(() => stageFourApprovals({ ...reviewInput, reviews: reviews.slice(0, 1) }));
-  assert.throws(() => stageFourApprovals({ ...reviewInput, prAuthor: 'methodologist' }));
-  assert.throws(() => stageFourApprovals({ ...reviewInput, sourceAuthor: 'assessment-agent' }));
-  assert.throws(() =>
-    stageFourApprovals({ ...reviewInput, reviews: [reviews[0], { ...reviews[1], user: { login: 'methodologist' } }] }),
-  );
-  assert.throws(() =>
-    stageFourApprovals({
-      ...reviewInput,
-      reviews: [reviews[0], { ...reviews[1], body: sourceEvidence('assessment-architect', 'c'.repeat(40)) }],
-    }),
-  );
-  assert.throws(() => stageFourApprovals({ ...reviewInput, blobsAtCommits: new Map([[sha, 'c'.repeat(40)]]) }));
-  assert.throws(() =>
-    stageFourApprovals({ ...reviewInput, reviews: [...reviews, { ...reviews[0], state: 'CHANGES_REQUESTED' }] }),
-  );
-  assert.throws(() =>
-    stageFourApprovals({ ...reviewInput, reviews: [{ ...reviews[0], state: 'COMMENTED' }, reviews[1]] }),
+test('Stage 4 authorizes same-account separate-chat review using the parent Course PR checklist', () => {
+  assert.equal(requireCompletedStageFour(courseWorkflow()), true);
+  // The reviewing agent may commit through the Course PR author's own account.
+  // No GitHub reviews, review-specific comments, approval roles or blob signatures are needed.
+  assert.equal(
+    requireCompletedStageFour(courseWorkflow().replace('separate-chat review completed', 'review completed')),
+    true,
   );
 });
 
+test('Stage 4 checklist fails closed on incomplete, absent, duplicate or ambiguous stages', () => {
+  for (const body of [
+    courseWorkflow(' ', 'x', 'x', 'x'),
+    courseWorkflow('x', ' ', 'x', 'x'),
+    courseWorkflow('x', 'x', ' ', 'x'),
+    courseWorkflow('x', 'x', 'x', ' '),
+    courseWorkflow().replace('## Workflow', '## Progress'),
+    courseWorkflow() + '\n## Workflow',
+    courseWorkflow().replace('- [x] 4. Review Course Plan', '- [x] 4. Review Course Planner'),
+    courseWorkflow().replace('- [x] 3. Design & Match Lessons', '- [x] 3. Review Course Plan'),
+    courseWorkflow().replace('## Handoffs / blockers', '- [ ] 4. Review Course Plan\n## Handoffs / blockers'),
+    courseWorkflow().replace('## Handoffs / blockers', '- [x] 4. Review Course Plan\n## Handoffs / blockers'),
+  ])
+    assert.throws(() => requireCompletedStageFour(body));
+  // A lookalike checklist outside the canonical Workflow section is not a gate.
+  assert.throws(() => requireCompletedStageFour('## Notes\n- [x] 4. Review Course Plan\n## Workflow\n'));
+  assert.equal(requireCompletedStageFour(courseWorkflow() + '\n## Notes\n- [ ] 4. Review Course Plan'), true);
+});
+
 test('allowlist blocks arbitrary files, traversal and incorrect UUID buckets', () => {
+  const root = pkg + '/data/courses/b/' + id + '/';
   for (const filename of [
-    pkg + '/data/courses/b/' + id + '/index.ts',
-    pkg + '/data/courses/b/' + id + '/episodes/example.ts',
+    root + 'index.ts',
+    root + 'constants.ts',
+    root + 'review.ts',
+    root + 'methodology.md',
+    root + 'content/safeObservation/index.ts',
+    root + 'content/safeObservation/methodology.md',
+    root + 'content/skyCycles/dayAndNight/index.ts',
+    root + 'content/skyCycles/dayAndNight/methodology.md',
+    root + 'content/skyCycles/dayAndNight/nightSkyEpisode/index.ts',
+    root + 'content/skyCycles/dayAndNight/nightSkyEpisode/methodology.md',
     pkg + '/data/lessons/c/' + lesson + '/lesson.yaml',
   ])
-    assert.equal(validateArtifactPath(filename, identity, 'materialize'), true);
+    assert.equal(validateArtifactPath(filename, identity, 'materialize'), true, filename);
   for (const filename of [
     '.github/workflows/evil.yml',
-    pkg + '/data/courses/b/' + id + '/../secrets',
+    root + '../secrets',
     pkg + '/data/lessons/b/' + lesson + '/lesson.yaml',
-    pkg + '/data/courses/b/' + id + '/config.yaml',
-    pkg + '/data/courses/b/' + id + '/README.md',
-    pkg + '/data/courses/b/' + id + '/episodes/../../evil.ts',
+    root + 'config.yaml',
+    root + 'README.md',
+    root + 'modules/skyCycles.ts',
+    root + 'chapters/dayAndNight.ts',
+    root + 'episodes/nightSkyEpisode.ts',
+    root + 'content/index.ts',
+    root + 'content/safeObservation/config.yaml',
+    root + 'content/skyCycles/other.ts',
+    root + 'content/sky_cycles/index.ts',
+    root + 'content/skyCycles/dayAndNight/nightSkyEpisode/deeper/index.ts',
+    root + 'content/skyCycles/../../evil.ts',
+    root + 'content/skyCycles//index.ts',
   ])
-    assert.equal(validateArtifactPath(filename, identity, 'materialize'), false);
+    assert.equal(validateArtifactPath(filename, identity, 'materialize'), false, filename);
   assert.equal(validateArtifactPath(yaml, identity, 'finalize'), true);
   assert.equal(validateArtifactPath(yaml, identity, 'materialize'), false);
   assert.equal(validateArtifactPath('.github/workflows/evil.yml', identity, 'finalize'), false);
@@ -187,6 +206,7 @@ test('artifact verification enforces exact path/hash, create-only and one-file f
       head,
       identity,
       sourceBlob: blob,
+      lessonAssignments: [],
       entries: [validEntry],
     };
     assert.equal(verifyManifest(manifest, meta, root), 1);
@@ -218,26 +238,76 @@ test('artifact verification enforces exact path/hash, create-only and one-file f
   }
 });
 
-test('Stage 5 workflow refreshes the managed Lessons block using isolated GitHub permissions', () => {
+test('Stage 5 directly registers each generated Lesson UUID, slug and title', () => {
+  const assignment = {
+    id: lesson,
+    slug: 'dayNightBasics',
+    title: 'Чому змінюються день і ніч',
+    path: pkg + '/data/lessons/' + lesson.at(-1) + '/' + lesson + '/lesson.yaml',
+  };
+  const meta = { identity, operation: 'materialize' };
+  const entry = { path: assignment.path, action: 'create' };
+  const manifest = { entries: [entry], lessonAssignments: [assignment] };
+  assert.deepEqual(validateLessonAssignments(manifest, meta), [assignment]);
+  assert.throws(() => validateLessonAssignments({ ...manifest, lessonAssignments: [] }, meta));
+  assert.throws(() =>
+    validateLessonAssignments({ ...manifest, lessonAssignments: [{ ...assignment, id: 'f'.repeat(36) }] }, meta),
+  );
+  assert.throws(() =>
+    validateLessonAssignments({ ...manifest, lessonAssignments: [{ ...assignment, title: 'Bad\nTitle' }] }, meta),
+  );
+  assert.throws(() => validateLessonAssignments({ ...manifest, lessonAssignments: [assignment, assignment] }, meta));
+  assert.throws(() => validateLessonAssignments(manifest, { ...meta, operation: 'finalize' }));
+});
+
+test('one-time Lesson table uses Not started and preserves agent-added PR links', () => {
+  const assignment = {
+    id: lesson,
+    slug: 'dayNightBasics',
+    title: 'День | ніч <safe>',
+    path: pkg + '/data/lessons/' + lesson.at(-1) + '/' + lesson + '/lesson.yaml',
+  };
+  const body = [
+    '<!-- svitlo-course-flow:v1 -->',
+    '## Workflow',
+    '- [x] 4. Review Course Plan',
+    '<!-- svitlo-course-lessons:start -->',
+    '## Lessons',
+    'Lesson inventory not allocated yet.',
+    '<!-- svitlo-course-lessons:end -->',
+    'Preserve other PR content',
+  ].join('\n');
+  const registered = registerLessonRegistry(body, [assignment]);
+  const tick = String.fromCharCode(96);
+  assert(registered.includes('| Not started |'));
+  assert(registered.includes('День &#124; ніч &lt;safe&gt;'));
+  assert(registered.includes(tick + 'dayNightBasics' + tick));
+  assert(registered.includes(tick + lesson + tick));
+  assert(registered.endsWith('Preserve other PR content'));
+  const linked = registered.replace('| Not started |', '| [PR #700](https://github.com/KiT-Maverik/svitlo/pull/700) |');
+  assert.equal(registerLessonRegistry(linked, [assignment]), linked);
+  assert.throws(() => registerLessonRegistry(linked, [{ ...assignment, id: '0'.repeat(36) }]));
+  assert.throws(() => registerLessonRegistry(body.replace('<!-- svitlo-course-lessons:end -->', ''), [assignment]));
+  assert.throws(() =>
+    registerLessonRegistry(body.replace('Lesson inventory not allocated yet.', 'Agent link: #700'), [assignment]),
+  );
+  assert(renderLessonRegistry([assignment]).includes('Not started'));
+});
+
+test('Stage 5 uses a separate trusted, one-time Lesson registration job', () => {
   const workflowPath = fileURLToPath(new URL('../../../.github/workflows/course-materialization.yml', import.meta.url));
   const workflow = YAML.parse(fs.readFileSync(workflowPath, 'utf8'));
   assert.deepEqual(workflow.permissions, {});
-  assert.equal(workflow.jobs.analyze.permissions['contents'], 'read');
-  assert.equal(workflow.jobs.publish.permissions['contents'], 'write');
-  assert.equal(workflow.jobs['refresh-analyze'].permissions['pull-requests'], 'read');
-  assert.equal(workflow.jobs['refresh-update'].permissions['pull-requests'], 'write');
-  assert.equal(workflow.jobs['refresh-update'].permissions.contents, 'read');
-  assert.ok(workflow.jobs['refresh-analyze'].needs.includes('publish'));
-  assert.ok(workflow.jobs['refresh-update'].needs.includes('refresh-analyze'));
-  assert.equal(workflow.jobs['refresh-update'].concurrency['cancel-in-progress'], false);
-  assert.ok(workflow.jobs['refresh-update'].concurrency.group.includes('course-lessons-description-'));
-  for (const job of ['analyze', 'refresh-analyze']) {
-    const checkouts = workflow.jobs[job].steps.filter(s => s.uses === 'actions/checkout@v4');
-    assert.ok(checkouts.length >= 2);
-    assert.ok(checkouts.every(s => s.with['persist-credentials'] === false));
-  }
-  const trustedUpdater = workflow.jobs['refresh-update'].steps;
-  assert.equal(trustedUpdater.filter(s => s.uses === 'actions/checkout@v4').length, 1);
-  assert.ok(trustedUpdater.some(s => s.run?.includes('sync-course-lessons.mjs update')));
-  assert.ok(workflow.jobs['refresh-analyze'].steps.some(s => s.run?.includes('sync-course-lessons.mjs analyze')));
+  assert.equal(workflow.jobs.analyze.permissions.contents, 'read');
+  assert.equal(workflow.jobs.publish.permissions.contents, 'write');
+  assert.equal(workflow.jobs.publish.permissions['pull-requests'], 'read');
+  assert.equal(workflow.jobs['register-lessons'].permissions.contents, 'read');
+  assert.equal(workflow.jobs['register-lessons'].permissions['pull-requests'], 'write');
+  assert.equal(workflow.jobs.publish.outputs.register, '$' + '{{ steps.publish.outputs.register }}');
+  assert.ok(workflow.jobs['register-lessons'].needs.includes('publish'));
+  assert.ok(workflow.jobs['register-lessons'].steps.some(s => s.run?.includes('course-materialization.mjs register')));
+  assert.ok(!workflow.jobs['refresh-analyze'] && !workflow.jobs['refresh-update']);
+  assert.ok(
+    !fs.existsSync(fileURLToPath(new URL('../../../.github/workflows/sync-course-lessons.yml', import.meta.url))),
+  );
 });

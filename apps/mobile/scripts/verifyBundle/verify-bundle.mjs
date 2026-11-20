@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { allLanguageCodes } from '@svitlo/engine/runtime';
 
 const root = resolve(fileURLToPath(new URL('../..', import.meta.url)));
 const dist = join(root, 'dist');
@@ -21,7 +22,9 @@ for (const lesson of index.lessons) {
   assert.equal(base.type, 'lesson');
   assert.deepEqual(base.params.languages, lesson.languages);
   assert.ok(Array.isArray(base.section));
-  assert.ok(Array.isArray(base.flashcards));
+  // Assessment banks are published independently; Lesson Props must not embed them.
+  assert.equal(Object.hasOwn(base, 'flashcards'), false);
+  assert.equal(Object.hasOwn(base, 'questions'), false);
   for (const language of lesson.languages) {
     const localeFile = join(directory, language + '.json');
     if (existsSync(localeFile)) JSON.parse(readFileSync(localeFile, 'utf8'));
@@ -45,7 +48,7 @@ for (const method of methods) {
   assert.ok(methodsBase[method].id);
 }
 const methodLanguages = readdirSync(methodsRoot).filter(name => name !== 'base.json');
-assert.equal(methodLanguages.length, 29);
+assert.deepEqual(methodLanguages.sort(), allLanguageCodes.map(language => language + '.json').sort());
 assert.ok(methodLanguages.includes('uk.json'));
 assert.ok(methodLanguages.includes('qm.json'));
 for (const filename of methodLanguages) {

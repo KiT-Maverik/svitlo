@@ -18,9 +18,15 @@ const UUID_B = '70e88fb1-15e6-49fe-a3d2-455ebe274816';
 const LANGUAGES = ['en', 'uk'];
 const SOURCE_SHA = 'a'.repeat(40);
 
+test('on-demand standard references do not build a nonexistent dedicated package', () => {
+  const workflow = fs.readFileSync(new URL('../../.github/workflows/translation-review.yml', import.meta.url), 'utf8');
+  assert.ok(!workflow.includes('@svitlo/education-standards'));
+  assert.ok(workflow.includes('npm run package:build --workspace @svitlo/engine'));
+});
+
 function setup(records) {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-standards-review-'));
-  const directory = path.join(root, 'shared/education-standards/data/example');
+  const directory = path.join(root, 'shared/ui-kit/data/definitions/educationStandards/data/example');
   fs.mkdirSync(directory, { recursive: true });
   const index = [];
   for (const record of records) {
@@ -46,7 +52,10 @@ function setup(records) {
     ].join('\n');
     fs.writeFileSync(path.join(directory, filename), source);
   }
-  fs.writeFileSync(path.join(root, 'shared/education-standards/data/index.ts'), index.join('\n') + '\n');
+  fs.writeFileSync(
+    path.join(root, 'shared/ui-kit/data/definitions/educationStandards/data/index.ts'),
+    index.join('\n') + '\n',
+  );
   return root;
 }
 
@@ -118,7 +127,10 @@ test('generates deterministic source-linked Markdown for one requested language'
     assert.match(first.markdown, /English methodological description \(not translated\)/);
     assert.match(first.markdown, /Результати навчання/);
     assert.match(first.markdown, /https:\/\/example.org\/standards\/2026/);
-    assert.match(first.markdown, /shared\/education-standards\/data\/example\/sampleOne\.data\.ts/);
+    assert.match(
+      first.markdown,
+      /shared\/ui-kit\/data\/definitions\/educationStandards\/data\/example\/sampleOne\.data\.ts/,
+    );
     assert.doesNotMatch(first.markdown, /%%MISSING%%/);
   } finally {
     fs.rmSync(root, { recursive: true, force: true });
@@ -208,13 +220,13 @@ test('duplicate IDs, missing index entries and invalid built references fail clo
   const root = setup([a, b]);
   try {
     assert.throws(() => readEducationStandardSources(root, LANGUAGES), /Duplicate EducationStandard UUID/);
-    const bPath = path.join(root, 'shared/education-standards/data/example/sampleTwo.data.ts');
+    const bPath = path.join(root, 'shared/ui-kit/data/definitions/educationStandards/data/example/sampleTwo.data.ts');
     fs.writeFileSync(bPath, fs.readFileSync(bPath, 'utf8').replace(UUID_A, UUID_B));
     const entries = readEducationStandardSources(root, LANGUAGES);
     assert.throws(() => verifyBuiltStandards(entries, built([a]), LANGUAGES), /size mismatch/);
     assert.throws(() => verifyBuiltStandards(entries, built([a, a]), LANGUAGES), /duplicated/);
     fs.writeFileSync(
-      path.join(root, 'shared/education-standards/data/index.ts'),
+      path.join(root, 'shared/ui-kit/data/definitions/educationStandards/data/index.ts'),
       "export { sampleOne } from './example/sampleOne.data';\n",
     );
     assert.throws(() => readEducationStandardSources(root, LANGUAGES), /omits authored data files/);
@@ -229,7 +241,10 @@ test('invalid source metadata causes a per-locale manifest failure, not a review
   const output = path.join(root, '.agent-ci-artifacts');
   fs.mkdirSync(output);
   try {
-    const filename = path.join(root, 'shared/education-standards/data/example/sampleOne.data.ts');
+    const filename = path.join(
+      root,
+      'shared/ui-kit/data/definitions/educationStandards/data/example/sampleOne.data.ts',
+    );
     fs.writeFileSync(
       filename,
       fs.readFileSync(filename, 'utf8').replace('https://example.org/standards/2026', 'javascript:invalid'),
@@ -266,7 +281,10 @@ test('incomplete previews still reject bad jurisdictions, original language, and
   for (const [before, after, expected] of changes) {
     const root = setup([record('sampleOne', UUID_A, { en: 'Learning outcomes' })]);
     try {
-      const filename = path.join(root, 'shared/education-standards/data/example/sampleOne.data.ts');
+      const filename = path.join(
+        root,
+        'shared/ui-kit/data/definitions/educationStandards/data/example/sampleOne.data.ts',
+      );
       const source = fs.readFileSync(filename, 'utf8');
       assert.ok(source.includes(before));
       fs.writeFileSync(filename, source.replace(before, after));

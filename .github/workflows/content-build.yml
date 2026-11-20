@@ -2,6 +2,8 @@ name: Content packages build
 
 on:
   pull_request:
+    # Ready-for-review requires production resource checks not run on draft PRs.
+    # Keep this event even when the formatter makes no source changes.
     types: [opened, synchronize, reopened, ready_for_review]
   workflow_dispatch:
 
@@ -13,8 +15,73 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  prepare:
+    name: Content / prepare
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    outputs:
+      has_builds: ${{ steps.plan.outputs.has_builds }}
+      all: ${{ steps.plan.outputs.all }}
+      agent_mode: ${{ steps.plan.outputs.agent_mode }}
+      shards: ${{ steps.plan.outputs.shards }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      # Drafts keep a stable required verify status but defer content matrix builds.
+      # Ready transition and manual dispatch select full or affected content.
+      # Select scope before installing anything; docs-only PRs can skip npm ci.
+      - name: Plan content builds
+        id: plan
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          BASE_REF: ${{ github.base_ref }}
+          HEAD_REF: ${{ github.head_ref }}
+          PR_DRAFT: ${{ github.event.pull_request.draft }}
+        run: node scripts/ci/buildChangedContent/plan-content-builds.mjs
+      - name: Test content build selection
+        run: node scripts/ci/quietRun/quiet-run.mjs -- node --test scripts/ci/buildChangedContent/*.spec.mjs
+      - name: Install dependencies only for selected builds
+        if: steps.plan.outputs.has_builds == 'true'
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --no-audit --no-fund
+      - name: Test skills structure invariants
+        if: steps.plan.outputs.has_builds == 'true'
+        run: node scripts/ci/quietRun/quiet-run.mjs -- node --test shared/engine/scripts/checkSkillsTaxonomyStructure/check-skills-taxonomy-structure.spec.mjs
+      - name: Test final resource readiness gate
+        if: steps.plan.outputs.has_builds == 'true'
+        run: node scripts/ci/quietRun/quiet-run.mjs -- node --test scripts/ci/verifyProductionAssets/verify-production-assets.spec.mjs
+      - name: Test Course Episode media draft handoff
+        if: steps.plan.outputs.has_builds == 'true'
+        run: node scripts/ci/quietRun/quiet-run.mjs -- node --test shared/engine/scripts/courseBuilder/courseBuilder.spec.mjs
+      - name: Test published assessment resource references
+        if: steps.plan.outputs.has_builds == 'true'
+        run: node scripts/ci/quietRun/quiet-run.mjs -- node --test scripts/textbook-tooling/verifyAssessmentSelections/verifyAssessmentSelections.spec.mjs
+      - name: Refuse unfinished Lesson, bank and Episode resources on review-ready production PRs
+        if: github.event_name == 'pull_request' && github.base_ref == 'main' && !github.event.pull_request.draft
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: node scripts/ci/verifyProductionAssets/verify-production-assets.mjs "$BASE_SHA" "$HEAD_SHA"
+      - name: Validate selected package graph and package-artifact guard
+        if: steps.plan.outputs.has_builds == 'true' && steps.plan.outputs.agent_mode != 'true'
+        run: |
+          node scripts/ci/quietRun/quiet-run.mjs -- npm run repo:check:packages
+          node scripts/ci/quietRun/quiet-run.mjs -- node --test scripts/checkBuiltPackageExports/check-built-package-exports.spec.mjs
+
   build:
-    name: Affected content / build, taxonomy and packaging
+    name: Content / ${{ matrix.id }}
+    needs: prepare
+    if: needs.prepare.outputs.has_builds == 'true'
+    strategy:
+      fail-fast: false
+      max-parallel: 5
+      matrix: ${{ fromJSON(needs.prepare.outputs.shards) }}
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
@@ -26,30 +93,43 @@ jobs:
         with:
           node-version: '24'
           cache: npm
-      - run: npm ci
-      - name: Test final resource readiness gate
-        run: node --test scripts/ci/verifyProductionAssets/verify-production-assets.spec.mjs
-      - name: Test Course Episode media draft handoff
-        run: node --test shared/engine/scripts/courseBuilder/courseBuilder.spec.mjs
-      - name: Test published assessment resource references
-        run: node --test scripts/textbook-tooling/verifyAssessmentSelections/verifyAssessmentSelections.spec.mjs
-      - name: Refuse unfinished Lesson, bank and Episode resources on review-ready PRs
-        if: github.event_name == 'pull_request' && !github.event.pull_request.draft
-        env:
-          BASE_SHA: ${{ github.event.pull_request.base.sha }}
-          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
-        run: node scripts/ci/verifyProductionAssets/verify-production-assets.mjs "$BASE_SHA" "$HEAD_SHA"
-      - name: Verify changed content packages
-        if: github.event_name == 'pull_request'
+      - name: Install dependencies once per content shard
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --no-audit --no-fund
+      - name: Verify each selected textbook or agent scope
         env:
           BASE_SHA: ${{ github.event.pull_request.base.sha }}
           HEAD_SHA: ${{ github.event.pull_request.head.sha }}
           BASE_REF: ${{ github.base_ref }}
           HEAD_REF: ${{ github.head_ref }}
-          # Nested subtask PRs may depend on unfinished parent Lessons. Only a
-          # review-ready main-bound PR is a full textbook release boundary.
-          SVITLO_MEDIA_MODE: ${{ (github.base_ref == 'main' && !github.event.pull_request.draft) && 'production' || 'draft' }}
-        run: node scripts/ci/buildChangedContent/build-changed-content.mjs
-      - name: Manually build every content package
-        if: github.event_name == 'workflow_dispatch'
-        run: node scripts/ci/buildChangedContent/build-changed-content.mjs --all
+          CONTENT_BUILD_ALL: ${{ needs.prepare.outputs.all }}
+          SVITLO_MEDIA_MODE: ${{ (github.event_name == 'pull_request' && (github.base_ref != 'main' || github.event.pull_request.draft)) && 'draft' || 'production' }}
+          CONTENT_SHARD_PACKAGES: ${{ toJSON(matrix.packages) }}
+        run: node scripts/ci/buildChangedContent/content-shards.mjs
+
+
+  verify:
+    # Keep this exact required status context from the Protect main ruleset.
+    name: Affected content / build, taxonomy and packaging
+    needs: [prepare, build]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Require successful preparation and every selected content shard
+        env:
+          PREPARE_RESULT: ${{ needs.prepare.result }}
+          BUILD_RESULT: ${{ needs.build.result }}
+          HAS_BUILDS: ${{ needs.prepare.outputs.has_builds }}
+        run: |
+          if [ "$PREPARE_RESULT" != "success" ]; then
+            echo "::error::Content build preparation did not succeed: $PREPARE_RESULT"
+            exit 1
+          fi
+          if [ "$HAS_BUILDS" = "true" ] && [ "$BUILD_RESULT" != "success" ]; then
+            echo "::error::One or more selected content shards failed: $BUILD_RESULT"
+            exit 1
+          fi
+          if [ "$HAS_BUILDS" = "false" ] && [ "$BUILD_RESULT" != "skipped" ]; then
+            echo "::error::Unexpected content matrix result with no selected packages: $BUILD_RESULT"
+            exit 1
+          fi
+          echo "Content package checks passed."

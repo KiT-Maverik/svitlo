@@ -36,6 +36,8 @@ const config = {
     '.webp': 'file',
     '.gif': 'file',
     '.woff2': 'file',
+    '.woff': 'file',
+    '.ttf': 'file',
   },
   metafile: true,
   logLevel: 'info',
