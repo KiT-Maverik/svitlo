@@ -30,7 +30,7 @@ minimal envelope is documented in
 [Questions Builder](../../../shared/engine/scripts/questionsBuilder/README.md).
 Do not maintain a separate, contradictory editorial Question schema,
 stage flags or status/approval properties on the authored Config.
-The legacy lesson-questions.schema.json is not authoritative.
+Do not restore the removed Studio editorial `lesson-questions.schema.json` with `status`, `questionSlugs` or parallel Quiz assignment fields. Current Engine-derived `question.schema.json` and the Questions Builder own technical validation; reviews belong in the child PR.
 
 Use actual Engine code for the nine Question discriminators, all
 Assessment Method slugs, params.restrictions Disability[] and nested

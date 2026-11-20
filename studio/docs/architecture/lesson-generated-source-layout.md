@@ -21,7 +21,7 @@ These are **historical inventories, not runnable generated trees**: the technica
 
 ## Source-of-truth and scope
 
-1. **Input:** one technical `lesson.yaml` with paired `config` and optional `production` at every Configurator node. `config.id` is the permanent ID; `production.documentLanguage` is source-language provenance. This is the current Lesson-only contract; Course `config.yaml` is unchanged.
+1. **Input:** one technical `lesson.yaml` with paired `config` and optional `production` at every Configurator node. `config.id` is the permanent ID; `production.documentLanguage` is source-language provenance. This is the current Lesson-only contract; the separate [Create Course Flow](../../skills/course-workflow/create-course-flow.skill.md) now materializes one reviewed temporary `course.yaml` directly at Stage 5, with **no** Course `config.yaml` handoff.
 2. **Mechanical output:** reproducible, statically typed `define*` **source drafts**, source-relative content files and explicit specialist handoffs. The scaffolder must not infer educational semantics, approve content, translate, fabricate assets or call `build.props()`.
 3. **Publication:** a separate Engine Props generator validates completed configurators, and textbook tooling stages JSON and media. Engine `runtime` must never import authoring source, Node file readers or `@svitlo/engine/build`.
 4. **Safety:** existing authored work is immutable by default; maintain creation-only / `SKIP` behavior until a separately designed overwrite/migration contract replaces it.

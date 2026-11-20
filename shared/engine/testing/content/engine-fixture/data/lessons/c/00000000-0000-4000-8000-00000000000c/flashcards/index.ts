@@ -18,7 +18,7 @@ const back = defineText({
 const sampleFlashcard = defineFlashcard({
   id: '00000000-0000-4000-8000-000000000002',
   slug: 'sampleFlashcard',
-  parameters: { tags: [], flags: { items: {}, order: [] } },
+  parameters: { tags: [], flags: [] },
   content: {
     front: defineFlashcardSide({ items: { front }, order: ['front'] }),
     back: defineFlashcardSide({ items: { back }, order: ['back'] }),
