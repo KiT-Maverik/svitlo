@@ -59,8 +59,16 @@ fixed. Keep the existing protections and automatic CI triggers unchanged:
 1. Create a temporary, normally named fix branch from the **current `develop`
    HEAD** and a Draft PR from that branch to `develop`. No special branch-name
    prefix is required. Preserve the release promotion PR `develop → main`.
-2. Commit repairs on the fix branch. **After every candidate fix**, manually run
-   the exact full Production Quality workflow on that branch:
+2. Commit repairs on the fix branch. **After every candidate fix**, post
+   `/production-quality` as an exact comment on the fix PR. The
+   default-branch `production-quality-command.yml` workflow resolves the open
+   same-repository PR and dispatches the **existing full**
+   `production-quality.yml` on that PR's head branch. This uses the existing
+   PR-comment permission pattern and GitHub Actions `GITHUB_TOKEN`; an agent
+   with PR-comment access does not need a local `gh` CLI or new credential.
+   The command is available after the command workflow reaches `develop`.
+
+   The Actions UI or CLI remains an equivalent manual option:
 
    ```sh
    gh workflow run production-quality.yml --ref <fix-branch>
@@ -68,11 +76,12 @@ fixed. Keep the existing protections and automatic CI triggers unchanged:
    gh run view <run-id> --log-failed
    ```
 
-   Find the run launched for the fix, wait for its completion and verify its
-   `head_sha` matches the **latest** fix branch commit. Require all production
-   jobs and the final `Production Quality / verify` aggregate to succeed; a
-   prior successful run becomes obsolete after a new push. Link the exact run
-   and tested SHA in the fix PR so the next agent can reproduce the evidence.
+   Find the `workflow_dispatch` run launched for the fix, wait for completion
+   and verify its `head_sha` matches the **latest** fix branch commit. Require
+   all production jobs and the final `Production Quality / verify` aggregate
+   to succeed; a prior successful run becomes obsolete after a new push.
+   Link the exact run and tested SHA in the fix PR so the next agent can
+   reproduce the evidence.
 
 3. Manual `workflow_dispatch` tests the selected branch HEAD, **not** the PR
    merge commit or the eventual `develop → main` merge result. It does not
