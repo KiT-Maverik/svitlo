@@ -9,7 +9,10 @@ export const moonCutApart = defineText<"moonCutApart", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Від Місяця відрізали частину його кулі."
+      uk: "Від Місяця відрізали частину його кулі.",
+      en: "A piece of the Moon's sphere was cut off.",
+      pl: "Od kuli Księżyca odcięto kawałek.",
+      qm: "Ay şarından bir parça kesilip alındı."
     }
   }
 });

@@ -9,7 +9,10 @@ export const newMoonBorn = defineText<"newMoonBorn", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Кожного разу народжується нове небесне тіло замість старого."
+      uk: "Кожного разу народжується нове небесне тіло замість старого.",
+      en: "A new celestial body is born each time to replace the old one.",
+      pl: "Za każdym razem zamiast starego powstaje nowe ciało niebieskie.",
+      qm: "Er sefer eskisiniñ yerine yañı kök cisimi peyda ola."
     }
   }
 });

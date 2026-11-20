@@ -9,7 +9,10 @@ export const cycleRepeats = defineText<"cycleRepeats", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Схожі вигляди освітленої частини Місяця з часом повторюються."
+      uk: "Схожі вигляди освітленої частини Місяця з часом повторюються.",
+      en: "Similar appearances of the Moon's sunlit part repeat over time.",
+      pl: "Podobne wyglądy oświetlonej części Księżyca powtarzają się z czasem.",
+      qm: "Ayniñ aydın qısmınıñ oşağan körünişleri vaqıtnen tekrarlana."
     }
   }
 });

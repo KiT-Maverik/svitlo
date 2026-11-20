@@ -9,7 +9,10 @@ export const moonAlwaysCrescent = defineText<"moonAlwaysCrescent", LessonLanguag
   params: {},
   locale: {
     value: {
-      uk: "Відтепер Місяць назавжди залишиться тонким серпом."
+      uk: "Відтепер Місяць назавжди залишиться тонким серпом.",
+      en: "From now on, the Moon will stay a thin crescent forever.",
+      pl: "Od teraz Księżyc na zawsze pozostanie cienkim sierpem.",
+      qm: "Bundan soñ Ay ebediy ince oraq olaraq qala."
     }
   }
 });
