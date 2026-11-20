@@ -12,7 +12,7 @@ export const observationJournal = defineLesson<"observationJournal", LessonLangu
   skills: [astronomicalObservationRecords.id],
   params: {
     languages,
-    requireQuiz: false,
+    quizRequiredForCompletion: false,
     sections: {
       allowNavigation: true,
       allowSkipping: true,
