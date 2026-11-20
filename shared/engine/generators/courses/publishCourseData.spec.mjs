@@ -383,13 +383,11 @@ test('Course publication preserves contextual aliases and distinct Lesson patche
   assert.equal(directLesson.overrides.locale.title, 'Course direct title');
   const localized = mergeCourseProps(base, uk);
   assert.equal(
-    localized.content.items.contextualModule.content.items.contextualChapter.content.items.chapterUse.overrides.locale.title,
+    localized.content.items.contextualModule.content.items.contextualChapter.content.items.chapterUse.overrides.locale
+      .title,
     'Розділ курсу',
   );
-  assert.equal(
-    localized.content.items.directUse.overrides.locale.title,
-    'Course direct title',
-  );
+  assert.equal(localized.content.items.directUse.overrides.locale.title, 'Course direct title');
   assert.equal(lesson.slug, 'independentLesson');
   assert.equal(lesson.build.props({ languages }).base.slug, 'independentLesson');
 });

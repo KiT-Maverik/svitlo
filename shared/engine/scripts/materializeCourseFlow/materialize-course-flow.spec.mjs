@@ -597,9 +597,7 @@ test('Course-local Section additions reject missing canonical Engine fields and 
 });
 
 test('Course Stage 5 rejects the unmodified E2E Episode three null params with an exact field path', () => {
-  const source = path.resolve(
-    'content/playground/data/courses/e/7c4e6d20-5ad3-4af8-b9d7-d1f3587b0a8e/course.yaml',
-  );
+  const source = path.resolve('content/playground/data/courses/e/7c4e6d20-5ad3-4af8-b9d7-d1f3587b0a8e/course.yaml');
   const fixture = YAML.parse(fs.readFileSync(source, 'utf8'));
   assert.equal(fixture.content.items.labPrologue.section.items.welcome.params, null);
   assert.equal(fixture.content.items.labPrologue.section.items.welcome.content.items.greeting.params, null);

@@ -223,10 +223,13 @@ export const defineModule = <
     // Child resources are already validated; avoid recursive generic inference on
     // the whole nested Course/Lesson union while merging sparse published fragments.
     const base = entries.map(({ key, resource, patch }) =>
-      embedAtPlacement(mergeForValidation<Record<string, unknown>>(
-        resource.base as Record<string, unknown>,
-        (patch?.base ?? {}) as Record<string, unknown>,
-      ), key),
+      embedAtPlacement(
+        mergeForValidation<Record<string, unknown>>(
+          resource.base as Record<string, unknown>,
+          (patch?.base ?? {}) as Record<string, unknown>,
+        ),
+        key,
+      ),
     );
     const locale: Partial<Record<LanguageCode, Module_Child_Props[]>> = {};
     for (const language of languages) {
@@ -340,7 +343,7 @@ export const defineModule = <
       const addedIssues = validateSluggedConfiguratorMap(additions, allowedChildren, {
         path: 'content.additionalItems',
         itemLabel: 'Module child',
-      allowAliasForTypes: ['lesson'],
+        allowAliasForTypes: ['lesson'],
       });
       if (addedIssues.length) throw new Error(addedIssues.map(issue => issue.message).join('; '));
 

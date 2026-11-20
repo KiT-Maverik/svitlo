@@ -48,14 +48,21 @@ function assertEpisodeConfig(config, location) {
   walk(config, location);
   if (!validateEpisodeConfig(config)) {
     const errors = (validateEpisodeConfig.errors ?? []).filter(issue => issue.keyword !== 'oneOf');
-    const issue = errors.find(issue => issue.keyword === 'type' && issue.instancePath.includes('/params')) ??
-      errors.find(issue => issue.keyword === 'required') ?? errors[0] ?? (validateEpisodeConfig.errors ?? [])[0];
+    const issue =
+      errors.find(issue => issue.keyword === 'type' && issue.instancePath.includes('/params')) ??
+      errors.find(issue => issue.keyword === 'required') ??
+      errors[0] ??
+      (validateEpisodeConfig.errors ?? [])[0];
     const missing = issue?.keyword === 'required' ? '/' + issue.params.missingProperty : '';
-    fail(location + (issue?.instancePath ?? '') + missing + ': invalid Engine Episode Config: ' +
-      (issue?.message ?? 'unknown schema violation'));
+    fail(
+      location +
+        (issue?.instancePath ?? '') +
+        missing +
+        ': invalid Engine Episode Config: ' +
+        (issue?.message ?? 'unknown schema violation'),
+    );
   }
 }
-
 
 function fail(message) {
   throw new Error('Course Flow materialization: ' + message);

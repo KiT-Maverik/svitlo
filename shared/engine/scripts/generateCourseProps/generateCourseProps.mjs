@@ -70,8 +70,7 @@ export function discoverCourseSources(directory) {
     const bucket = path.join(directory, entry.name);
     assertSafeDirectoryPath(bucket);
     for (const candidate of fs.readdirSync(bucket, { withFileTypes: true })) {
-      if (!candidate.isDirectory() || !UUID.test(candidate.name) || candidate.name.at(-1) !== entry.name)
-        continue;
+      if (!candidate.isDirectory() || !UUID.test(candidate.name) || candidate.name.at(-1) !== entry.name) continue;
       const source = path.join(bucket, candidate.name, 'index.ts');
       if (fs.existsSync(source)) {
         assertSafeDirectoryPath(path.dirname(source));
