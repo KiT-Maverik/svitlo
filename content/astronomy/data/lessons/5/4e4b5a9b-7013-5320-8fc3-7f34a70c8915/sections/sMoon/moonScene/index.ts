@@ -145,7 +145,7 @@ export const MoonSceneConfig = defineScene<"moonScene", LessonLanguages>({
         uk: "Ні, це просто хмара",
         en: "No, it's just a cloud",
         pl: "Nie, to tylko chmura",
-        qm: "Yoq, bu sadece bulut"
+        qm: "Yoq, bu faqat bulut"
       },
       cloudIsPhase: {
         uk: "Так, це нова фаза",
@@ -157,7 +157,7 @@ export const MoonSceneConfig = defineScene<"moonScene", LessonLanguages>({
         uk: "Так, хмара лише затуляє Місяць. Це не нова фаза.",
         en: "Yes, the cloud only hides part of the Moon. It isn't a new phase.",
         pl: "Tak, chmura tylko zasłania Księżyc. To nie jest nowa faza.",
-        qm: "Ebet, bulut Ay'nıñ bir qısmını qapata. Bu yañı faza degil."
+        qm: "Ebet, bulut Aynıñ bir qısmını qapata. Bu yañı faza degil."
       },
       cloudIsPhaseFeedback: {
         uk: "Хмара закрила наш погляд на Місяць. Саме по собі це не змінює фазу.",
