@@ -1387,3 +1387,53 @@ test('pending Quiz and Flashcards Section drafts pass actual Engine build.props 
   assert.match(markdown, /feedc0de-/);
   assert.match(markdown, /Question UUIDs/);
 });
+
+
+test('even with real Question IDs, missing mandatory Section labels/content remain visibly blocked', () => {
+  const config = lessonConfig();
+  config.section.items.quizPending = {
+    id: id(103), slug: 'quizPending', type: 'quiz',
+    params: {
+      selection: { mode: 'all', questionIds: [id(104)] },
+      layout: { mode: 'stack' }, feedbackMode: 'after-completion',
+      interaction: {
+        retries: 1, showErrors: true, showCorrectAnswers: false, allowExplanations: true,
+        allowDeferring: false, allowQuestionNavigation: true, skippable: false,
+      },
+      results: { visibility: 'after-review', showScore: true },
+    },
+  };
+  config.section.order.push('quizPending');
+  const original = wrap(config);
+  const draft = prepareAssessmentDraft({
+    config: original.config,
+    production: { documentLanguage: 'uk' },
+  });
+  assert.deepEqual(draft.lesson.section.order, ['intro', 'quizPending']);
+  const pending = draft.lesson.section.items.quizPending.config;
+  assert.deepEqual(pending.params.selection.questionIds, [id(104)]);
+  assert.equal(pending.locale.title, 'PENDING QUIZ');
+  assert.equal(pending.locale.navigationLabel, 'PENDING QUIZ');
+  assert.deepEqual(pending.content, { items: {}, order: [] });
+  assert.ok(draft.pending.some(item => item.slug === 'quizPending'));
+  assert.ok(draft.pending[0].provisionalFields.includes('$.locale.title'));
+  assert.deepEqual(original.config.section.items.quizPending.config.locale, undefined);
+});
+
+test('do not silently infer approved ordering for nested Section ContentBlocks', () => {
+  const config = lessonConfig();
+  config.section.items.quizPending = {
+    id: id(105), slug: 'quizPending', type: 'quiz',
+    params: {},
+    locale: { title: 'Quiz', navigationLabel: 'Quiz' },
+    content: { items: { screen: block('screen', 106) } },
+  };
+  config.section.order.push('quizPending');
+  assert.throws(
+    () => prepareAssessmentDraft({
+      config: wrap(config).config,
+      production: { documentLanguage: 'uk', quizRequired: true },
+    }),
+    /Approved assessment content.order missing/,
+  );
+});
