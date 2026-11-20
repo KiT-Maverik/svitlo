@@ -10,8 +10,8 @@ export const hintText = defineText<"hintText", LessonLanguages>({
   locale: {
     value: {
       uk: "Подумай, чи можна побачити результат, не спрямовуючи власні очі або прилади на Сонце.",
-      en: "Think about whether you can see the result without pointing your eyes or any equipment at the Sun.",
-      pl: "Zastanów się, czy możesz zobaczyć rezultat bez kierowania wzroku ani żadnych przyrządów na Słońce.",
+      en: "Think about whether you can see the result without looking at the Sun or pointing equipment at it.",
+      pl: "Zastanów się, czy możesz zobaczyć rezultat bez patrzenia na Słońce i bez kierowania na nie żadnych przyrządów.",
       qm: "Öz közleriñni ya da cihazlarnı Küneşke doğrultmadan neticeni körmek mümkünmi, tüşün."
     }
   }
