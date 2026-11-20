@@ -9,7 +9,10 @@ export const anotherBody = defineText<"anotherBody", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Замість першого Місяця з’явився інший Місяць."
+      uk: "Замість першого Місяця з’явився інший Місяць.",
+      en: "A different Moon appeared in place of the first one.",
+      pl: "Zamiast pierwszego Księżyca pojawił się inny.",
+      qm: "Birinci Ayniñ yerine başqa Ay peyda oldı."
     }
   }
 });

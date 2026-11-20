@@ -9,7 +9,10 @@ export const hintText = defineText<"hintText", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Подумай, чи може одна й та сама куля мати різний освітлений вигляд."
+      uk: "Подумай, чи може одна й та сама куля мати різний освітлений вигляд.",
+      en: "Think about whether the same ball can look differently lit.",
+      pl: "Zastanów się, czy ta sama kula może wyglądać inaczej, gdy jest oświetlona.",
+      qm: "Aynı şar türlü şekilde aydın körüne bilirmi? Şunı tüşün."
     }
   }
 });

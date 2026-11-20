@@ -9,7 +9,10 @@ export const physicalShape = defineText<"physicalShape", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Кулястий Місяць перетворився на круглу пластину."
+      uk: "Кулястий Місяць перетворився на круглу пластину.",
+      en: "The spherical Moon turned into a flat round disk.",
+      pl: "Kulisty Księżyc zmienił się w płaski, okrągły krążek.",
+      qm: "Şar şeklindeki Ay yassı yuvarlaq diskke çevirildi."
     }
   }
 });

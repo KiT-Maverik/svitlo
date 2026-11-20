@@ -9,7 +9,10 @@ export const physicalSize = defineText<"physicalSize", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Справжній розмір Місяця став більшим."
+      uk: "Справжній розмір Місяця став більшим.",
+      en: "The Moon's actual size became larger.",
+      pl: "Rzeczywisty rozmiar Księżyca się zwiększył.",
+      qm: "Ayniñ kerçek büyükligi arttı."
     }
   }
 });

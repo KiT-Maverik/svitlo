@@ -9,7 +9,10 @@ export const visibleLitSurface = defineText<"visibleLitSurface", LessonLanguages
   params: {},
   locale: {
     value: {
-      uk: "Скільки освітленої поверхні Місяця видно із Землі."
+      uk: "Скільки освітленої поверхні Місяця видно із Землі.",
+      en: "How much of the Moon's sunlit surface is visible from Earth.",
+      pl: "To, jak duża część oświetlonej powierzchni Księżyca jest widoczna z Ziemi.",
+      qm: "Yerden Ayniñ Küneş aydınlatqan yüzüniñ ne qadar payı körüngeni."
     }
   }
 });
