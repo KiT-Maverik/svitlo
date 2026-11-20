@@ -72,7 +72,7 @@ test('generates exactly one localized Course artifact for selected UUID, preserv
   const manifest = { sourceCommit: 'a'.repeat(40), generated: [], failures: [] };
   try {
     fs.mkdirSync(owned, { recursive: true });
-    fs.mkdirSync(output);
+    fs.mkdirSync(output, { recursive: true });
     fs.writeFileSync(path.join(owned, 'index.ts'), "export const c = { id: '" + id.course + "' };\n");
     assert.equal(discoverCourses(root, 'content/math').length, 1);
     const fake = {

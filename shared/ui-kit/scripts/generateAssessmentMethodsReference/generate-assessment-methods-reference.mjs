@@ -304,6 +304,12 @@ export function generateAssessmentMethodsReviewArtifacts({
   allowMissing = false,
 }) {
   const destinationRoot = path.join(output, 'assessment-methods');
+  const localTemp = path.join(root, 'temp') + path.sep;
+  const runnerTemp = process.env.RUNNER_TEMP ? path.resolve(process.env.RUNNER_TEMP) + path.sep : null;
+  const resolved = path.resolve(output);
+  if (!resolved.startsWith(localTemp) && !(runnerTemp && resolved.startsWith(runnerTemp))) {
+    throw new Error('Output must remain under ignored temp/ or RUNNER_TEMP');
+  }
   fs.mkdirSync(destinationRoot, { recursive: true });
   const stats = { generated: 0, failures: 0 };
   for (const locale of languages) {

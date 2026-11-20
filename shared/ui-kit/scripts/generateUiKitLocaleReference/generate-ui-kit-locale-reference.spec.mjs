@@ -72,7 +72,7 @@ test('missing Italian fields are visible in draft preview, not accepted in stric
     assert.match(markdown, /English: Play/);
     const all = { generated: [], failures: [] };
     const output = path.join(root, 'temp/agent-reference-library');
-    fs.mkdirSync(output);
+    fs.mkdirSync(output, { recursive: true });
     const stats = generateUiKitLocaleReviewArtifacts({
       root,
       output,
