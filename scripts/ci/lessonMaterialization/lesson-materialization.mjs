@@ -386,7 +386,7 @@ async function analyze(root, meta) {
 
 async function publish(root, meta) {
   await fresh(meta);
-  const source = verifySource(root, meta);
+  verifySource(root, meta);
   const manifest = readReport();
   const count = verifyManifest(manifest, meta, root);
   // All Engine-backed schema/source-fidelity checks ran in trusted analyze.
