@@ -276,7 +276,11 @@ export function verifyManifest(manifest, meta, root) {
       verified.add(item.path);
       const absolute = path.join(root, item.path);
       safeRelative(root, absolute);
-      if (!fs.existsSync(absolute) || !fs.lstatSync(absolute).isFile() || sha256(fs.readFileSync(absolute)) !== item.sha256)
+      if (
+        !fs.existsSync(absolute) ||
+        !fs.lstatSync(absolute).isFile() ||
+        sha256(fs.readFileSync(absolute)) !== item.sha256
+      )
         throw Error('Committed Lesson source differs from analyzed finalization evidence: ' + item.path);
     }
     if (rootFiles.some(filename => !verified.has(filename)))

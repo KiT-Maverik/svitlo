@@ -29,8 +29,11 @@ test('Lesson publish loads and rejects invalid authorization without installed p
     assert.equal(fs.existsSync(path.join(isolated, 'node_modules')), false);
     assert.equal(fs.existsSync(path.join(isolated, 'shared', 'engine')), false);
     const env = { PATH: process.env.PATH ?? '', GITHUB_REPOSITORY: 'KiT-Maverik/svitlo' };
-    const imported = spawnSync(process.execPath, ['--input-type=module', '-e',
-      'await import(' + JSON.stringify(pathToFileURL(entry).href) + ')'], { cwd: isolated, env, encoding: 'utf8' });
+    const imported = spawnSync(
+      process.execPath,
+      ['--input-type=module', '-e', 'await import(' + JSON.stringify(pathToFileURL(entry).href) + ')'],
+      { cwd: isolated, env, encoding: 'utf8' },
+    );
     assert.equal(imported.status, 0, imported.stderr);
     const result = spawnSync(process.execPath, [entry, 'publish'], { cwd: isolated, env, encoding: 'utf8' });
     assert.equal(result.status, 1, result.stdout + result.stderr);
@@ -47,7 +50,11 @@ const lessonYaml = lessonPkg + '/data/lessons/5/' + lessonId + '/lesson.yaml';
 const rootFiles = ['index.ts', 'constants.ts', 'review.ts', 'methodology.md', 'production-handoff.json'];
 const repoName = 'KiT-Maverik/svitlo';
 const digest = value => createHash('sha256').update(value).digest('hex');
-const blob = bytes => createHash('sha1').update('blob ' + bytes.length + '\0').update(bytes).digest('hex');
+const blob = bytes =>
+  createHash('sha1')
+    .update('blob ' + bytes.length + '\0')
+    .update(bytes)
+    .digest('hex');
 
 function fixture(root, operation) {
   const source = path.join(root, lessonYaml);
@@ -62,28 +69,57 @@ function fixture(root, operation) {
   });
   execFileSync('git', ['init', '-q'], { cwd: root });
   execFileSync('git', ['add', '.'], { cwd: root });
-  execFileSync('git', ['-c', 'user.name=Fixture', '-c', 'user.email=fixture@example.invalid',
-    'commit', '-qm', 'reviewed source'], { cwd: root });
+  execFileSync(
+    'git',
+    ['-c', 'user.name=Fixture', '-c', 'user.email=fixture@example.invalid', 'commit', '-qm', 'reviewed source'],
+    { cwd: root },
+  );
   const head = execFileSync('git', ['rev-parse', 'HEAD'], { cwd: root, encoding: 'utf8' }).trim();
   const identity = { id: lessonId, pkg: lessonPkg, slug: 'moonAppearanceBasics', yaml: lessonYaml, parent: null };
-  const meta = { number: 710, repo: repoName, operation, head, branch: 'agent/lesson-710',
-    base: 'develop', sourceBlob: blob(yamlBytes), actor: 'maintainer', identity };
-  const manifest = { version: 1, repo: meta.repo, pr: meta.number, head, branch: meta.branch,
-    base: meta.base, operation, sourceBlob: meta.sourceBlob, identity, mode: 'strict',
-    pending: [], verifiedFiles: operation === 'finalize'
-      ? evidence.map(({ path: filename, sha256 }) => ({ path: filename, sha256 })) : [],
-    entries: operation === 'finalize'
-      ? [{ path: lessonYaml, action: 'delete' }] : evidence,
+  const meta = {
+    number: 710,
+    repo: repoName,
+    operation,
+    head,
+    branch: 'agent/lesson-710',
+    base: 'develop',
+    sourceBlob: blob(yamlBytes),
+    actor: 'maintainer',
+    identity,
+  };
+  const manifest = {
+    version: 1,
+    repo: meta.repo,
+    pr: meta.number,
+    head,
+    branch: meta.branch,
+    base: meta.base,
+    operation,
+    sourceBlob: meta.sourceBlob,
+    identity,
+    mode: 'strict',
+    pending: [],
+    verifiedFiles:
+      operation === 'finalize' ? evidence.map(({ path: filename, sha256 }) => ({ path: filename, sha256 })) : [],
+    entries: operation === 'finalize' ? [{ path: lessonYaml, action: 'delete' }] : evidence,
   };
   const body = [
     '<!-- svitlo-create-lesson-flow:v1 -->',
     '- Lesson UUID / textbook / slug: \`' + lessonId + '\` / \`' + lessonPkg + '\` / \`moonAppearanceBasics\`',
     '- Canonical source: \`' + lessonYaml + '\`',
     '## Lesson stages',
-    ...['Methodology', 'Content Creation', 'Content Review', 'Experience Review',
-      'Methodology Compliance', 'Resource Production', 'Questions', 'Flashcards',
-      'Translation', 'Translation Review'].map((name, i) =>
-      '- [' + (i < 5 ? 'x' : ' ') + '] ' + (i + 1) + '. ' + name),
+    ...[
+      'Methodology',
+      'Content Creation',
+      'Content Review',
+      'Experience Review',
+      'Methodology Compliance',
+      'Resource Production',
+      'Questions',
+      'Flashcards',
+      'Translation',
+      'Translation Review',
+    ].map((name, i) => '- [' + (i < 5 ? 'x' : ' ') + '] ' + (i + 1) + '. ' + name),
     '  - [ ] 6.1 Materialize Lesson sources',
     '  - [ ] 6.2 Accessibility source audit',
     '  - [ ] 6.3 Offline source audit',
@@ -95,15 +131,24 @@ function fixture(root, operation) {
 
 async function runWithTrustedPublisher(operation, mutate = () => {}) {
   const originalFetch = globalThis.fetch;
-  const previous = Object.fromEntries(['LESSON_REPORT', 'LESSON_REPORT_SHA256',
-    'LESSON_HEAD_ROOT', 'LESSON_DEFAULT_BRANCH', 'GH_TOKEN', 'GITHUB_REPOSITORY']
-    .map(key => [key, process.env[key]]));
+  const previous = Object.fromEntries(
+    [
+      'LESSON_REPORT',
+      'LESSON_REPORT_SHA256',
+      'LESSON_HEAD_ROOT',
+      'LESSON_DEFAULT_BRANCH',
+      'GH_TOKEN',
+      'GITHUB_REPOSITORY',
+    ].map(key => [key, process.env[key]]),
+  );
   const isolated = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-lesson-publish-artifact-'));
   try {
     const root = fileURLToPath(new URL('../../..', import.meta.url));
-    for (const filename of ['scripts/ci/lessonMaterialization/lesson-materialization.mjs',
+    for (const filename of [
+      'scripts/ci/lessonMaterialization/lesson-materialization.mjs',
       'scripts/ci/lessonMaterialization/lesson-gate.mjs',
-      'scripts/ci/courseMaterialization/course-gate.mjs']) {
+      'scripts/ci/courseMaterialization/course-gate.mjs',
+    ]) {
       const destination = path.join(isolated, 'trusted', filename);
       fs.mkdirSync(path.dirname(destination), { recursive: true });
       fs.copyFileSync(path.join(root, filename), destination);
@@ -115,15 +160,20 @@ async function runWithTrustedPublisher(operation, mutate = () => {}) {
     const bytes = Buffer.from(JSON.stringify(item.manifest));
     fs.writeFileSync(manifestFile, bytes);
     Object.assign(process.env, {
-      LESSON_REPORT: manifestFile, LESSON_REPORT_SHA256: digest(bytes),
-      LESSON_HEAD_ROOT: candidate, LESSON_DEFAULT_BRANCH: 'develop',
-      GH_TOKEN: 'fixture-token', GITHUB_REPOSITORY: repoName,
+      LESSON_REPORT: manifestFile,
+      LESSON_REPORT_SHA256: digest(bytes),
+      LESSON_HEAD_ROOT: candidate,
+      LESSON_DEFAULT_BRANCH: 'develop',
+      GH_TOKEN: 'fixture-token',
+      GITHUB_REPOSITORY: repoName,
     });
     const calls = [];
     const remote = {
-      state: 'open', draft: true,
+      state: 'open',
+      draft: true,
       head: { sha: item.meta.head, ref: item.meta.branch, repo: { full_name: repoName } },
-      base: { ref: 'develop', repo: { full_name: repoName } }, body: item.body,
+      base: { ref: 'develop', repo: { full_name: repoName } },
+      body: item.body,
     };
     globalThis.fetch = async (url, options = {}) => {
       const route = url.split('/repos/' + repoName + '/')[1];
@@ -167,8 +217,7 @@ test('dependency-free Lesson publisher safely commits exactly reviewed materiali
     if (operation === 'finalize') {
       assert.deepEqual(tree, [{ path: lessonYaml, mode: '100644', type: 'blob', sha: null }]);
     } else {
-      assert(tree.every(file => file.path.endsWith('.ts') ||
-        file.path.endsWith('.md') || file.path.endsWith('.json')));
+      assert(tree.every(file => file.path.endsWith('.ts') || file.path.endsWith('.md') || file.path.endsWith('.json')));
       assert(tree.every(file => !Object.hasOwn(file, 'sha') && typeof file.content === 'string'));
     }
     const commits = calls.filter(call => call.route === 'git/commits' && call.method === 'POST');
@@ -200,9 +249,9 @@ test('finalize rejects changed committed evidence even when manifest digest is r
       calls = log;
       const forged = {
         ...manifest,
-        verifiedFiles: manifest.verifiedFiles.map((item, index) => index
-          ? item
-          : { ...item, sha256: '0'.repeat(64) }),
+        verifiedFiles: manifest.verifiedFiles.map((item, index) =>
+          index ? item : { ...item, sha256: '0'.repeat(64) },
+        ),
       };
       const bytes = Buffer.from(JSON.stringify(forged));
       fs.writeFileSync(manifestFile, bytes);

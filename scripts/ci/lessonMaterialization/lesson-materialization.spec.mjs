@@ -305,27 +305,25 @@ test('manifest rejects stale SHA, unauthorized path, overwrite, duplicate, tampe
     git(root, ['-c', 'user.name=Fixture', '-c', 'user.email=fixture@example.invalid', 'commit', '-qm', 'materialized']);
     const verifiedFiles = entries.map(({ path, sha256 }) => ({ path, sha256 }));
     assert.equal(verifyManifest({ ...finalize, verifiedFiles }, finalizeMeta, root), 1);
-    assert.throws(() =>
-      verifyManifest({ ...finalize, verifiedFiles: verifiedFiles.slice(1) }, finalizeMeta, root),
+    assert.throws(
+      () => verifyManifest({ ...finalize, verifiedFiles: verifiedFiles.slice(1) }, finalizeMeta, root),
       /Incomplete/,
     );
-    assert.throws(() =>
-      verifyManifest(
-        { ...finalize, verifiedFiles: [{ ...verifiedFiles[0], sha256: '0'.repeat(64) }, ...verifiedFiles.slice(1)] },
-        finalizeMeta,
-        root,
-      ),
+    assert.throws(
+      () =>
+        verifyManifest(
+          { ...finalize, verifiedFiles: [{ ...verifiedFiles[0], sha256: '0'.repeat(64) }, ...verifiedFiles.slice(1)] },
+          finalizeMeta,
+          root,
+        ),
       /differs/,
     );
-    assert.throws(() =>
-      verifyManifest({ ...finalize, verifiedFiles: [...verifiedFiles, verifiedFiles[0]] }, finalizeMeta, root),
+    assert.throws(
+      () => verifyManifest({ ...finalize, verifiedFiles: [...verifiedFiles, verifiedFiles[0]] }, finalizeMeta, root),
       /Invalid or uncommitted/,
     );
     fs.writeFileSync(path.join(root, entries[0].path), 'tampered source');
-    assert.throws(
-      () => verifyManifest({ ...finalize, verifiedFiles }, finalizeMeta, root),
-      /differs/,
-    );
+    assert.throws(() => verifyManifest({ ...finalize, verifiedFiles }, finalizeMeta, root), /differs/);
     assert.throws(() => verifyManifest(manifest, meta, root), /overwritten/);
   }));
 
