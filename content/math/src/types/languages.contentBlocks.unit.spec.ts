@@ -7,7 +7,7 @@ import { navbarPreferences as preferences } from '../../../../shared/ui-kit/data
 
 const root = process.cwd();
 const newLanguages = ['lt', 'lv', 'et', 'be', 'ka', 'kk'] as const;
-const newLocales = ['lt-LT', 'lv-LV', 'et-EE', 'be-tarask', 'ka-GE', 'kk-Cyrl-KZ'] as const;
+const newLocales = ['lt-LT', 'lv-LV', 'et-EE', 'be-tarask', 'ka-GE', 'kk-Latn-KZ'] as const;
 
 function collectFiles(folder: string): string[] {
   return readdirSync(folder, { withFileTypes: true }).flatMap(entry => {

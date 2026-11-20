@@ -1,0 +1,23 @@
+{
+  "name": "@svitlo/web-fixture-beta",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "package:build": "node ../../scripts/buildTestContent/build-fixture.mjs",
+    "code:format:check": "prettier --check . --ignore-path ../../../../.prettierignore",
+    "code:format:fix": "prettier --write . --ignore-path ../../../../.prettierignore"
+  },
+  "bin": {
+    "svitlo-web-fixture-beta": "./dist/publish.mjs"
+  },
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/textbook/index.d.ts",
+      "default": "./dist/textbook/index.js"
+    }
+  }
+}

@@ -66,7 +66,7 @@ function lesson(): Lesson_Props {
     type: 'lesson',
     skills: [],
     params: {
-      requireQuiz: false,
+      quizRequiredForCompletion: false,
       languages: ['en'],
       sections: { allowNavigation: true, allowSkipping: true, showIndexes: true },
     },
@@ -110,9 +110,7 @@ function lesson(): Lesson_Props {
         ],
       },
     ],
-    questions: {},
-    flashcards: [],
-  } as Lesson_Props;
+  };
 }
 
 function showLesson(overrides?: Record<string, ContentBlock_Scene_Props | false>, response = lesson()) {

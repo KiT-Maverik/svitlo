@@ -113,3 +113,26 @@ test('validates the current Playground Props publication paths rather than legac
   assert.notEqual(incomplete.status, 0);
   assert.match(incomplete.stderr, /Compiled lesson JSON missing/);
 });
+
+test('validates the packaged UI Kit flags synchronizer at its canonical path', t => {
+  const root = mkdtempSync(join(tmpdir(), 'svitlo-ui-kit-artifacts-'));
+  t.after(() => rmSync(root, { recursive: true, force: true }));
+  const workspace = join(root, 'shared/ui-kit');
+  const synchronizer = join(workspace, 'scripts/syncFlags/syncFlags.mjs');
+  for (const file of ['assets/flags/ua.svg', 'scripts/syncFlags/syncFlags.mjs']) {
+    const target = join(workspace, file);
+    mkdirSync(dirname(target), { recursive: true });
+    writeFileSync(target, '');
+  }
+  writeFileSync(join(workspace, 'package.json'), JSON.stringify({ name: '@svitlo/ui-kit' }));
+  const verify = () =>
+    spawnSync(process.execPath, [script, '--packages', 'shared/ui-kit'], { cwd: root, encoding: 'utf8' });
+
+  const valid = verify();
+  assert.equal(valid.status, 0, valid.stderr);
+
+  rmSync(synchronizer);
+  const invalid = verify();
+  assert.notEqual(invalid.status, 0);
+  assert.match(invalid.stderr, /UI Kit packaged flag synchronization script missing/);
+});

@@ -2,28 +2,57 @@
 
 `plan-content-builds.mjs` discovers buildable workspaces from `content/*` and
 `content/languages/*`, using their own `package.json` manifests. It produces
-GitHub Actions job outputs `matrix`, `has_builds`, `all` and `agent_mode`
+GitHub Actions job outputs `shards`, `has_builds`, `all` and `agent_mode`
 without performing a build or modifying authored files.
 
-- Pull requests targeting `main` **after** leaving Draft and manual workflow
+- Pull requests promoting to production `main` **after** leaving Draft and manual workflow
   dispatch build every currently eligible content workspace. This remains true
   on later `synchronize` events while the PR is review-ready.
-- Draft `main` PRs and PRs targeting another branch build only touched
-  textbooks, with representative smoke packages for shared textbook tooling.
+- **All Draft PRs** defer content package compilation/publication. The planner
+  emits an empty matrix and the same stable required verification status; it
+  does not install dependencies. Draft authored-blocker reporting is still
+  enforced independently by `Blocker TODOs / clean`.
+- **Ready PRs** targeting `develop` or intermediate integration branches build
+  touched textbooks, with representative smoke packages for shared tooling.
+  Ready `main` promotions build every eligible textbook.
 - The existing `feat/<subject>-skills-agent-N` child branch contract retains
   its assigned-domain TypeScript/structure check instead of a full package build.
 - If nothing is selected, the matrix skips and the stable final required check
   succeeds only if the prepare job passed.
-- Each matrix runner invokes `build-changed-content.mjs --package <path> <kind>`,
-  which rechecks selection, validates its own distribution, publishing and
-  portability, and runs the scoped built-artifact check. Each runner owns its
-  ephemeral `dist/` and generated outputs; no artifacts are shared across jobs.
+- The selected packages are grouped deterministically into at most **five shards**.
+  Each runner installs dependencies once, then invokes
+  `build-changed-content.mjs --package <path> <kind>` independently for every
+  package in its shard. Publication, taxonomy, portability and compiled-export
+  checks remain per package. A failed package is annotated; remaining packages
+  in the shard still run and its job fails at the end.
+  Runner outputs and generated resources remain isolated between shards.
 - The prepare job owns common tests, review-ready resource readiness,
   `repo:check:packages` and artifact-guard regression tests. The final
   `Affected content / build, taxonomy and packaging` job preserves the
   existing Protect main required-status context and fails if preparation or any
   required selected matrix build fails.
 
-`workflow_dispatch` is the explicit full-build entrypoint. Use the workflow
-rather than invoking the planner locally without the `BASE_SHA`, `HEAD_SHA`
-and GitHub event environment variables.
+`workflow_dispatch` is the explicit full-build entrypoint, including for a
+still-Draft PR branch selected manually in the Actions UI or via
+`gh workflow run content-build.yml --ref <branch>`. It bypasses Draft deferral
+and checks all content packages. Use the workflow rather than invoking the
+planner locally without `BASE_SHA`, `HEAD_SHA` and GitHub event variables.
+
+## Verified five-shard cutover
+
+Same-commit comparison from
+[run 44613383307](https://github.com/KiT-Maverik/svitlo/actions/runs/44613383307)
+confirmed 17/17 packages passing with both layouts. The shard matrix took
+about 68 seconds versus 183 seconds for the original, with about 103 seconds
+versus 282 seconds in summed installs. These are measurements of runner logs,
+not assumptions about billed minutes.
+
+`Content / prepare` still fails closed. Draft PRs create no build shards;
+Ready develop PRs build only the selected packages (one shard if one package
+is affected); Ready main PRs and manual dispatch cover all eligible packages.
+The required `Affected content / build, taxonomy and packaging` job depends
+on successful preparation and **all selected shards**. A failed package
+produces a bounded `::error` annotation, all other packages in the shard
+still run, and the shard returns a nonzero status. The failure regression
+test executes real child processes, deliberately fails one, and asserts that
+the rest are attempted and that the resulting shard status is nonzero.

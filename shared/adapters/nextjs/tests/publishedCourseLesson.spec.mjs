@@ -15,13 +15,12 @@ const lesson = () => ({
   type: 'lesson',
   skills: [],
   params: {
-    requireQuiz: false,
+    quizRequiredForCompletion: false,
     languages: ['uk', 'en'],
     sections: { allowNavigation: true, allowSkipping: true, showIndexes: false },
   },
   locale: { title: 'Lesson title' },
   section: [],
-  flashcards: [],
 });
 
 const course = () => ({
@@ -64,6 +63,8 @@ test('loads both publications and applies selected Course locale after Lesson lo
   assert.equal(result.id, lessonId);
   assert.equal(result.locale.title, 'Назва програми');
   assert.equal(result.params.sections.allowNavigation, true);
+  assert.equal(result.params.quizRequiredForCompletion, false);
+  assert.equal('flashcards' in result, false);
 });
 
 test('missing Course locale applies the invariant override after the standalone locale', async t => {

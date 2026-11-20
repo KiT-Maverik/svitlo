@@ -6,9 +6,18 @@ import { test } from 'node:test';
 import yaml from 'yaml';
 
 import { repoRoot } from '../lessonBuilder/lessonBuilder.mjs';
-import { finalizeLesson, preflightLesson, productionHandoff, LessonHandoffError } from './finalizeLesson.mjs';
+import {
+  finalizeLesson,
+  preflightLesson,
+  preflightLessonDraft,
+  handoffLesson,
+  productionHandoff,
+  LessonHandoffError,
+  main,
+} from './finalizeLesson.mjs';
+import { scanSource } from '../../../../scripts/ci/checkBlockerTodos/check-blocker-todos.mjs';
 
-const id = tail => '00000000-0000-4000-8000-' + tail.padStart(12, '0');
+const id = tail => '00000000-0000-4000-8000-' + String(tail).padStart(12, '0');
 const lessonId = id('12');
 const sectionId = id('13');
 const textId = id('14');
@@ -22,7 +31,7 @@ function validDocument() {
       skills: [],
       params: {
         languages: ['en', 'uk'],
-        requireQuiz: false,
+        quizRequiredForCompletion: false,
         sections: { allowNavigation: true, allowSkipping: true, showIndexes: true },
       },
       locale: { title: { en: 'Test Lesson' } },
@@ -248,4 +257,152 @@ test('empty source-language dictionaries block finalization even when editor sch
     f.save();
     assert.throws(() => preflightLesson(f.source, f.root), /config.locale.value: empty locale dictionary/);
     assert.equal(fs.existsSync(f.source), true);
+  }));
+
+function withAssessmentPlan(f, sections) {
+  const configItems = f.document.config.section.items;
+  f.document.production.quizRequired = sections.some(section => section.type === 'quiz');
+  f.document.production.flashcardsRequired = sections.some(section => section.type === 'flashcards');
+  for (const [index, { type, slug, params = {} }] of sections.entries()) {
+    configItems[slug] = {
+      config: {
+        id: id(100 + index),
+        slug,
+        type,
+        params,
+        locale: { title: { en: 'Practice' }, navigationLabel: { en: 'Continue' } },
+        content: { items: {}, order: [] },
+      },
+      production: { purpose: 'Use the reviewed bank before Lesson publication.' },
+    };
+    f.document.config.section.order.push(slug);
+  }
+  f.save();
+}
+
+test('zero assessment flags and zero assessment Sections need no machine-readable inventory', () =>
+  fixture(f => {
+    f.document.production.quizRequired = false;
+    f.document.production.flashcardsRequired = false;
+    f.save();
+    assert.equal(preflightLesson(f.source, f.root).assessment.pending.length, 0);
+    assert.throws(() => preflightLessonDraft(f.source, f.root), /no deferred assessment/);
+  }));
+
+for (const types of [['quiz'], ['flashcards'], ['quiz', 'flashcards'], ['quiz', 'quiz', 'flashcards', 'flashcards']]) {
+  test('draft preflight accepts deferred assessment Sections: ' + types.join(', '), () =>
+    fixture(f => {
+      withAssessmentPlan(
+        f,
+        types.map((type, index) => ({ type, slug: type + index })),
+      );
+      const result = preflightLessonDraft(f.source, f.root);
+      assert.equal(result.assessment.pending.length, types.length);
+      assert.throws(() => preflightLesson(f.source, f.root), /lesson.yaml:schema:/);
+      const key = types[0] + '0';
+      delete f.document.config.section.items[key];
+      f.document.config.section.order = f.document.config.section.order.filter(name => name !== key);
+      f.save();
+      const deferred = preflightLessonDraft(f.source, f.root).assessment.pending;
+      assert.ok(deferred.some(item => item.type === types[0]));
+    }),
+  );
+}
+
+test('draft handoff creates bank YAML drafts and root TODO, without invalid assessment TS modules', () =>
+  fixture(f => {
+    withAssessmentPlan(f, [
+      { type: 'quiz', slug: 'quizA' },
+      { type: 'flashcards', slug: 'cardsB' },
+    ]);
+    const original = fs.readFileSync(f.source);
+    const result = handoffLesson(f.source, { repo: f.root });
+    assert.equal(result.removed, null);
+    assert.deepEqual(
+      result.pending.map(item => item.slug),
+      ['quizA', 'cardsB'],
+    );
+    assert.equal(fs.readFileSync(f.source).equals(original), true);
+    for (const slug of ['quizA', 'cardsB'])
+      assert.equal(fs.existsSync(path.join(f.folder, 'sections', slug, 'index.ts')), false);
+    const root = fs.readFileSync(path.join(f.folder, 'index.ts'), 'utf8');
+    assert.equal(scanSource('index.ts', root).length, 2);
+    const quiz = yaml.parse(fs.readFileSync(path.join(f.folder, 'questions.yaml'), 'utf8'));
+    const cards = yaml.parse(fs.readFileSync(path.join(f.folder, 'flashcards.yaml'), 'utf8'));
+    assert.deepEqual(quiz.sectionDrafts.order, ['quizA']);
+    assert.deepEqual(cards.sectionDrafts.order, ['cardsB']);
+    assert.equal(quiz.sectionDrafts.items.quizA.config.id, f.document.config.section.items.quizA.config.id);
+    assert.equal(fs.existsSync(path.join(f.folder, 'production-handoff.json')), true);
+    assert.throws(() => handoffLesson(f.source, { repo: f.root }), /create-only skip/);
+  }));
+
+test('bank drafts never overwrite independently authored YAML', () =>
+  fixture(f => {
+    withAssessmentPlan(f, [{ type: 'quiz', slug: 'quizA' }]);
+    const filename = path.join(f.folder, 'questions.yaml');
+    fs.writeFileSync(filename, 'independent: already authored\n');
+    assert.throws(() => handoffLesson(f.source, { repo: f.root }), /refusing overwrite|refusing to overwrite/);
+    assert.equal(fs.readFileSync(filename, 'utf8'), 'independent: already authored\n');
+    assert.equal(fs.existsSync(f.source), true);
+  }));
+
+test('draft preflight still rejects malformed non-assessment structures', () =>
+  fixture(f => {
+    withAssessmentPlan(f, [{ type: 'quiz', slug: 'quizA' }]);
+    delete f.document.config.section.items.intro.config.locale.title;
+    f.save();
+    assert.throws(() => preflightLessonDraft(f.source, f.root), /lesson.yaml:schema:/);
+  }));
+
+test('complete referenced Flashcards Section satisfies production obligation structurally', () =>
+  fixture(f => {
+    withAssessmentPlan(f, [{ type: 'flashcards', slug: 'cardsB' }]);
+    f.document.config.section.items.cardsB.config.params.selection = { flashcardIds: [id(200)] };
+    f.save();
+    assert.equal(preflightLesson(f.source, f.root).assessment.pending.length, 0);
+    f.document.config.section.items.cardsB.config.params.selection.flashcardIds.push(id(200));
+    f.save();
+    assert.throws(() => preflightLesson(f.source, f.root), /unique/);
+  }));
+
+test('deferred source preserves the original YAML when materialization is interrupted', () =>
+  fixture(f => {
+    withAssessmentPlan(f, [{ type: 'quiz', slug: 'quizA' }]);
+    assert.throws(
+      () => handoffLesson(f.source, { repo: f.root, generate: fakeGenerator(f, 'partial') }),
+      /missing generated file/,
+    );
+    assert.equal(fs.existsSync(f.source), true);
+  }));
+
+test('finalize --preserve-config retains exact YAML after verified strict source transfer', () =>
+  fixture(f => {
+    const original = fs.readFileSync(f.source);
+    const result = main(['finalize', '--source', path.relative(f.root, f.source), '--preserve-config'], f.root);
+    assert.equal(result.removed, null);
+    assert.equal(fs.readFileSync(f.source).equals(original), true);
+    assert.equal(fs.existsSync(path.join(f.folder, 'index.ts')), true);
+    assert.equal(fs.existsSync(path.join(f.folder, 'production-handoff.json')), true);
+    assert.throws(
+      () => main(['finalize', '--source', path.relative(f.root, f.source), '--preserve-config'], f.root),
+      /create-only skip/,
+    );
+    assert.equal(fs.readFileSync(f.source).equals(original), true);
+  }));
+
+test('--preserve-config is strictly finalize-only and refuses malformed combinations without modifying files', () =>
+  fixture(f => {
+    const source = path.relative(f.root, f.source);
+    const before = fs.readFileSync(f.source);
+    for (const args of [
+      ['preflight', '--source', source, '--preserve-config'],
+      ['preflight-draft', '--source', source, '--preserve-config'],
+      ['handoff', '--source', source, '--preserve-config'],
+      ['finalize', '--source', source, '--unknown'],
+      ['finalize', '--source', source, '--preserve-config', '--extra'],
+      ['finalize', '--preserve-config', '--source', source],
+    ])
+      assert.throws(() => main(args, f.root), /Usage:/);
+    assert.equal(fs.readFileSync(f.source).equals(before), true);
+    assert.equal(fs.existsSync(path.join(f.folder, 'index.ts')), false);
   }));

@@ -41,7 +41,7 @@ export const courseHowLightMoves = defineLesson({
   skills: howLightMoves.config.base.skills,
   params: {
     ...howLightMoves.config.base.params,
-    requireQuiz: false,
+    quizRequiredForCompletion: false,
     languages: howLightMoves_languages,
     sections: {
       ...howLightMoves.config.base.params.sections,

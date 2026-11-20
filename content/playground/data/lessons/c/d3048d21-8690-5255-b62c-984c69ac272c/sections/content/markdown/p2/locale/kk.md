@@ -1,5 +1,5 @@
-> Сәуле — жарықтың таралу бағытын көрсететін модель. Нақты жарық шоғының ені болады және ол көптеген сәуледен тұруы мүмкін.
+> Säule — jaryqtyñ taralu bağytyn körsetetın model. Naqty jaryq şoğynyñ enı bolady jäne ol köptegen säuleden tūruy mümkın.
 
-## Қозғалысты бақыла
+## Qozğalysty baqyla
 
-Көріністегі сары белгі жарық көзінен экранға қарай қозғалады. Бағытты бақылау үшін анимацияны тоқтат немесе жылдамдығын өзгерт.
+Körınıstegı sary belgı jaryq közınen ekranğa qarai qozğalady. Bağytty baqylau üşın animatsiiany toqtat nemese jyldamdyğyn özgert.
