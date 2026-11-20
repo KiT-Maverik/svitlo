@@ -23,7 +23,8 @@ export const observationJournal = defineLesson<"observationJournal", LessonLangu
     title: {
       uk: "Мій перший щоденник неба",
         en: "My First Sky Journal",
-        pl: "Mój pierwszy dziennik nieba"
+        pl: "Mój pierwszy dziennik nieba",
+        qm: "Meniñ ilk kök kündeligim"
     }
   },
   section

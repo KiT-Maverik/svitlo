@@ -28,12 +28,14 @@ export const compareTwoRecords = defineContentSection<"compareTwoRecords", typeo
     title: {
       uk: "Порівняй записи",
         en: "Compare the Records",
-        pl: "Porównaj zapisy"
+        pl: "Porównaj zapisy",
+        qm: "Qaydlarnı qıyasla"
     },
     navigationLabel: {
       uk: "Порівняй записи",
         en: "Compare the Records",
-        pl: "Porównaj zapisy"
+        pl: "Porównaj zapisy",
+        qm: "Qaydlarnı qıyasla"
     }
   },
   content

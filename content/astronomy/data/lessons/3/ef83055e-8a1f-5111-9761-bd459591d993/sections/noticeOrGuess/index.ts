@@ -25,12 +25,14 @@ export const noticeOrGuess = defineContentSection<"noticeOrGuess", typeof conten
     title: {
       uk: "Що я помітив?",
         en: "What Did I Notice?",
-        pl: "Co udało mi się zauważyć?"
+        pl: "Co udało mi się zauważyć?",
+        qm: "Ne kördim?"
     },
     navigationLabel: {
       uk: "Що я помітив?",
         en: "What Did I Notice?",
-        pl: "Co udało mi się zauważyć?"
+        pl: "Co udało mi się zauważyć?",
+        qm: "Ne kördim?"
     }
   },
   content
