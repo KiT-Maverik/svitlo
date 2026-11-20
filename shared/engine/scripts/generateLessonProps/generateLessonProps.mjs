@@ -110,6 +110,10 @@ async function render(packageDirectory, mode) {
       // assessment-draft namespace. The textbook build has a second, strict
       // resource/locale verifier after independent banks are staged.
       for (const section of publication.base.section ?? []) {
+        if (['PENDING QUIZ', 'PENDING FLASHCARDS'].includes(section.locale?.title) ||
+            ['PENDING QUIZ', 'PENDING FLASHCARDS'].includes(section.locale?.navigationLabel)) {
+          throw new Error('Unresolved assessment Section draft label in Lesson ' + id);
+        }
         if (typeof section.id === 'string' && section.id.startsWith('feedc0de-')) {
           throw new Error('Unresolved generated Section UUID in Lesson ' + id + ': ' + section.id);
         }
