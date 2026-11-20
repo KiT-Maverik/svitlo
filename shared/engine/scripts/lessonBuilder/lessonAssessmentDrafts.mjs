@@ -81,17 +81,38 @@ function scaffoldParams(paramsInput, lessonId, type, slug) {
   };
   const originalSelection = isRecord(original.selection) ? original.selection : {};
   const key = selectedField(type);
-  const realIds = hasIds(originalSelection[key]);
+  const originalIds = Array.isArray(originalSelection[key]) ? originalSelection[key] : [];
+  const realIds = hasIds(originalIds);
+  const syntheticIds = [];
+  const seenReal = new Set();
+  // Retain already-approved real candidates, even in an otherwise incomplete
+  // selection. Invalid/duplicate entries get distinct role-and-index UUIDv8
+  // placeholders; an absent selection gets one deterministic placeholder.
   const ids = realIds
-    ? originalSelection[key]
-    : [pendingAssessmentUuid(lessonId, type, slug, key)];
-  if (!realIds) fields.push('$.params.selection.' + key);
+    ? originalIds
+    : originalIds.length
+      ? originalIds.map((candidate, index) => {
+          if (typeof candidate === 'string' && uuid.test(candidate) &&
+              !isPendingAssessmentUuid(candidate) && !seenReal.has(candidate)) {
+            seenReal.add(candidate);
+            return candidate;
+          }
+          const synthetic = pendingAssessmentUuid(lessonId, type, slug, key + '-' + index);
+          syntheticIds.push(synthetic);
+          return synthetic;
+        })
+      : [pendingAssessmentUuid(lessonId, type, slug, key)];
+  if (!realIds) {
+    if (!originalIds.length) syntheticIds.push(ids[0]);
+    fields.push('$.params.selection.' + key);
+  }
   const selection = { ...originalSelection, [key]: ids };
   if (type === 'flashcards') {
     return {
       params: { ...original, selection },
       provisionalFields: fields,
-      syntheticSelection: !realIds,
+      syntheticSelection: syntheticIds.length > 0,
+      syntheticIds,
     };
   }
   selection.mode = choose('selection.mode', originalSelection.mode, v => ['all', 'sample'].includes(v), 'all');
@@ -134,7 +155,8 @@ function scaffoldParams(paramsInput, lessonId, type, slug) {
       },
     },
     provisionalFields: fields,
-    syntheticSelection: !realIds,
+    syntheticSelection: syntheticIds.length > 0,
+    syntheticIds,
   };
 }
 
@@ -211,10 +233,10 @@ export function prepareAssessmentDraft(document) {
         handoffs[type].items[slug] = structuredClone(wrapper);
       }
       handoffs[type].order.push(slug);
-      const { params, provisionalFields, syntheticSelection } = scaffoldParams(section.params, lesson.id, type, slug);
-      if (syntheticSelection) {
+      const { params, provisionalFields, syntheticSelection, syntheticIds } =
+        scaffoldParams(section.params, lesson.id, type, slug);
+      for (const id of syntheticIds) {
         // A pending UUID never belongs to a real bank, irrespective of syntax.
-        const id = params.selection[selectedField(type)][0];
         if (seenIds.has(id)) throw new Error('Pending assessment UUID collision: ' + id);
         seenIds.add(id);
       }
@@ -247,6 +269,7 @@ export function prepareAssessmentDraft(document) {
         type, slug, reason: 'pending reviewed assessment Section',
         provisionalFields,
         syntheticSelection,
+        syntheticIds,
         generatedIdentity: !document.config.section?.items?.[slug],
       });
     }
