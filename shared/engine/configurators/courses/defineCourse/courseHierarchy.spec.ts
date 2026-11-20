@@ -4,6 +4,7 @@ import test from 'node:test';
 
 import { defineChapter } from '../defineChapter';
 import { defineModule } from '../defineModule';
+import { defineLesson } from '../../lessons/defineLesson';
 import { defineCourse } from './defineCourse';
 import { mergeForValidation } from '../../_shared__configurators';
 import { course_Config_Schema, course_Props_Schema } from './defineCourse.schemas';
@@ -352,4 +353,77 @@ test('Course publishes optional outcomes, EducationStandard references and learn
     false,
     'Outcomes cannot implicitly mark a prerequisite Course as completed',
   );
+});
+
+test('Course, Module and Chapter embed independent Lesson under contextual placement keys', () => {
+  const languages = ['en', 'uk'] as const;
+  const lesson = defineLesson({
+    id: 'bb75647f-203d-481a-a1c7-4d331c779d21',
+    slug: 'standaloneLesson',
+    type: 'lesson',
+    skills: [],
+    params: {
+      languages,
+      quizRequiredForCompletion: false,
+      sections: { allowNavigation: true, allowSkipping: true, showIndexes: true },
+    },
+    locale: { title: { en: 'Standalone', uk: 'Самостійний' } },
+    section: { items: {}, order: [] },
+  });
+  const chapter = defineChapter({
+    id: 'bb75647f-203d-481a-a1c7-4d331c779d22',
+    slug: 'chapterContext',
+    type: 'chapter',
+    params: {},
+    locale: { title: { en: 'Chapter', uk: 'Розділ' } },
+    content: { items: { caseStudy: lesson }, order: ['caseStudy'] },
+  });
+  const module = defineModule({
+    id: 'bb75647f-203d-481a-a1c7-4d331c779d23',
+    slug: 'moduleContext',
+    type: 'module',
+    params: {},
+    locale: { title: { en: 'Module', uk: 'Модуль' } },
+    content: { items: { chapterContext: chapter }, order: ['chapterContext'] },
+  });
+  const course = defineCourse({
+    id: 'bb75647f-203d-481a-a1c7-4d331c779d24',
+    slug: 'courseContext',
+    type: 'course',
+    params: { languages },
+    locale: { title: { en: 'Course', uk: 'Курс' }, description: 'Testing placement aliases' },
+    content: { items: { moduleContext: module, courseReview: lesson }, order: ['moduleContext', 'courseReview'] },
+  });
+  const original = lesson.build.props({ languages });
+  const embedded = course.build.props({ languages });
+  assert.equal(original.base.slug, 'standaloneLesson');
+  assert.equal(lesson.slug, 'standaloneLesson');
+  assert.equal(embedded.base.content[0]?.slug, 'moduleContext');
+  assert.equal(embedded.base.content[0]?.content?.[0]?.content?.[0]?.slug, 'caseStudy');
+  assert.equal(embedded.base.content[1]?.slug, 'courseReview');
+  assert.equal(embedded.base.content[0]?.content?.[0]?.content?.[0]?.id, lesson.id);
+  assert.equal(embedded.base.content[1]?.id, lesson.id);
+  const patch = course.build.overrides(
+    {
+      content: {
+        items: {
+          moduleContext: {
+            content: {
+              items: {
+                chapterContext: {
+                  content: { items: { caseStudy: { locale: { title: { uk: 'Інша назва' } } } } },
+                },
+              },
+            },
+          },
+          courseReview: { locale: { title: { en: 'Course review' } } },
+        },
+      },
+    },
+    { languages },
+  );
+  assert.equal(patch.base.content?.[1]?.slug, 'courseReview');
+  assert.equal(patch.locale?.uk?.content?.[0]?.content?.[0]?.content?.[0]?.slug, 'caseStudy');
+  assert.equal(patch.locale?.uk?.content?.[0]?.content?.[0]?.content?.[0]?.locale?.title, 'Інша назва');
+  assert.equal(original.locale?.uk?.locale?.title, 'Самостійний', 'standalone Lesson title is immutable');
 });
