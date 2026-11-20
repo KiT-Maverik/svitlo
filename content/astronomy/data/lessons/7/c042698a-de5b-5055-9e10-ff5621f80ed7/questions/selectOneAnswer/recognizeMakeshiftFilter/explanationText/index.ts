@@ -12,7 +12,7 @@ export const explanationText = defineText<"explanationText", LessonLanguages>({
       uk: "Саморобна темна плівка не є перевіреним сонячним фільтром. Темний вигляд матеріалу, короткий час і перебування за вікном не доводять безпеки прямого погляду на Сонце. Замість цього можна розглянути готовий науковий знімок.",
       en: "Homemade dark film is not a verified solar filter. How dark a material looks, a short viewing time, and being behind a window do not make looking directly at the Sun safe. Instead, look at an existing scientific photograph.",
       pl: "Samodzielnie przygotowana ciemna folia nie jest sprawdzonym filtrem słonecznym. Ciemny wygląd materiału, krótki czas patrzenia ani przebywanie za oknem nie dowodzą, że bezpośrednie patrzenie na Słońce jest bezpieczne. Zamiast tego można obejrzeć gotowe zdjęcie naukowe.",
-      qm: "Evdeki qoyu tüslü plönka tekşirilgen küneş filtri degil. Materialnıñ qoyu körünmesi, qısqa vaqıt baquv ya da pencere arqasında oluv Küneşke doğrudan-doğru baquvnı telükesiz etmez. Bunıñ yerine azır ilmiy fotoresimni körmek mümkün."
+      qm: "Evde azırlanğan qoyu tüslü plönka tekşirilgen küneş filtri degil. Materialnıñ qoyu körünmesi, qısqa vaqıt baquv ya da pencere arqasında oluv Küneşke doğrudan-doğru baquvnı telükesiz etmez. Bunıñ yerine azır ilmiy fotoresimni körmek mümkün."
     }
   }
 });
