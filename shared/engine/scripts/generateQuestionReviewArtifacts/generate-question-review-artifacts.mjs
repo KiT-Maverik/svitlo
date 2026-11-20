@@ -650,10 +650,10 @@ export function generateQuestionReviewArtifacts({ root, output, manifest, saveMa
         fs.writeFileSync(destination, lines.join('\n').trimEnd() + '\n');
         manifest.generated.push({ kind: 'question', textbook: packageName,
           lesson: lesson.bucket + '/' + lesson.id, locale,
-          path: '.agent-ci-artifacts/' + relative, questions: questions.length,
+          path: relative, questions: questions.length,
           quizSections: quiz.length, questionStrings: strings - quizStrings, quizStrings,
           strings, missing, reviewReady: missing === 0 });
-        process.stdout.write('Generated .agent-ci-artifacts/' + relative + '\n');
+        process.stdout.write('Generated ' + relative + '\n');
       } catch (error) {
         const message = String(error.message || error).slice(0, 1500);
         manifest.failures.push({ kind: 'question', textbook: packageName,

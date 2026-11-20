@@ -234,7 +234,7 @@ export async function generateCourseReviewArtifacts({
           fs.writeFileSync(destination, md);
           manifest.generated.push({ kind: 'course', textbook: packageName,
             course: entity.id.slice(-1) + '/' + entity.id, locale,
-            path: '.agent-ci-artifacts/' + relative, missing, reviewReady: missing === 0 });
+            path: relative, missing, reviewReady: missing === 0 });
           generated++;
           saveManifest();
         } catch (error) { fail(entity.id, locale, error); }

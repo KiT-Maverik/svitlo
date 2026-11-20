@@ -5,7 +5,7 @@
  *
  * node shared/ui-kit/scripts/generateAssessmentMethodsReference/generate-assessment-methods-reference.mjs --locale uk --stdout
  * node shared/ui-kit/scripts/generateAssessmentMethodsReference/generate-assessment-methods-reference.mjs --locale uk \
- *   --output .agent-ci-artifacts/assessment-methods
+ *   --output temp/agent-reference-library/assessment-methods
  *
  * This script does not execute authored TypeScript and never falls back to en.
  */
@@ -239,8 +239,9 @@ function escapeMarkdown(text) {
 
 export function renderAssessmentMethodsReference(options) {
   const { locale, methods, missing } = readAssessmentMethodsReference(options);
+  const directory = path.join(options.output ?? path.join(options.root ?? repoRoot, 'temp/agent-reference-library'), 'assessment-methods');
   const links = {
-    descriptions: '../../' + sourcePaths.descriptions,
+    descriptions: path.relative(directory, path.join(options.root ?? repoRoot, sourcePaths.descriptions)).split(path.sep).join('/'),
   };
   const lines = [
     '<!-- GENERATED FROM CODE; DO NOT EDIT. -->',
@@ -293,7 +294,7 @@ export function renderAssessmentMethodsReference(options) {
   return lines.join('\n');
 }
 
-/** Integrates with the existing Agent CI Artifacts manifest and cleanup policy. */
+/** Generates run-scoped Assessment Method references and manifest entries. */
 export function generateAssessmentMethodsReviewArtifacts({
   root,
   output,
@@ -303,21 +304,18 @@ export function generateAssessmentMethodsReviewArtifacts({
   allowMissing = false,
 }) {
   const destinationRoot = path.join(output, 'assessment-methods');
-  if (path.resolve(output) !== path.resolve(root, '.agent-ci-artifacts')) {
-    throw new Error('Assessment Methods output must be the PR-scoped .agent-ci-artifacts directory');
-  }
   fs.mkdirSync(destinationRoot, { recursive: true });
   const stats = { generated: 0, failures: 0 };
   for (const locale of languages) {
     try {
-      const markdown = renderAssessmentMethodsReference({ root, locale, allowMissing });
+      const markdown = renderAssessmentMethodsReference({ root, output, locale, allowMissing });
       const missing = Number(markdown.match(/^Missing translations: (\d+)$/m)?.[1] ?? 0);
       const relative = 'assessment-methods/' + locale + '.md';
       fs.writeFileSync(path.join(output, relative), markdown, 'utf8');
       manifest.generated.push({
         kind: 'assessment-method',
         locale,
-        path: '.agent-ci-artifacts/' + relative,
+        path: relative,
         missing,
         reviewReady: missing === 0,
       });
@@ -358,8 +356,8 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
     if (options.stdout) process.stdout.write(markdown);
     else {
       const output = path.resolve(repoRoot, options.output);
-      if (output !== path.join(repoRoot, '.agent-ci-artifacts', 'assessment-methods')) {
-        throw new Error('Output must be .agent-ci-artifacts/assessment-methods');
+      if (!output.startsWith(path.join(repoRoot, 'temp') + path.sep)) {
+        throw new Error('Output must remain under ignored temp/');
       }
       fs.mkdirSync(output, { recursive: true });
       fs.writeFileSync(path.join(output, options.locale + '.md'), markdown, 'utf8');

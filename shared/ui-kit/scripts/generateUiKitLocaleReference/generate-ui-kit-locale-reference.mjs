@@ -157,7 +157,7 @@ export function renderUiKitComponentReference(options) {
   const info = readUiKitComponentReference(options);
   const destination = path.join(
     options.root ?? repoRoot,
-    '.agent-ci-artifacts',
+    ...(options.output ? [options.output] : [path.join(options.root ?? repoRoot, 'temp/agent-reference-library')]),
     'ui-kit',
     info.component,
     info.locale + '.md',
@@ -198,9 +198,6 @@ export function generateUiKitLocaleReviewArtifacts({
   allowMissing = false,
   components = uiKitComponents(root),
 }) {
-  if (path.resolve(output) !== path.resolve(root, '.agent-ci-artifacts')) {
-    throw new Error('UI Kit references must use the PR-scoped .agent-ci-artifacts directory');
-  }
   const stats = { generated: 0, failures: 0 };
   for (const component of components) {
     for (const locale of languages) {
@@ -208,14 +205,14 @@ export function generateUiKitLocaleReviewArtifacts({
         const relative = 'ui-kit/' + component + '/' + locale + '.md';
         const destination = path.join(output, relative);
         const info = readUiKitComponentReference({ root, component, locale, allowMissing });
-        const markdown = renderUiKitComponentReference({ root, component, locale, allowMissing });
+        const markdown = renderUiKitComponentReference({ root, output, component, locale, allowMissing });
         fs.mkdirSync(path.dirname(destination), { recursive: true });
         fs.writeFileSync(destination, markdown, 'utf8');
         manifest.generated.push({
           kind: 'ui-kit-locale',
           component,
           locale,
-          path: '.agent-ci-artifacts/' + relative,
+          path: relative,
           missing: info.missing,
           reviewReady: info.missing === 0,
         });
