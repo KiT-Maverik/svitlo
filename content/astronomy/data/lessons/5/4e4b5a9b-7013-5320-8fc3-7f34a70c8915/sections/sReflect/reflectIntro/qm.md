@@ -1,7 +1,7 @@
 ## Biz ne farq ettik?
 **Kündüz ve gece:** aynı yer üstündeki kök yüzü kündüz yarığınen aydın, gece ise daha qaranlıq ola bile.
 
-**Ay:** türlü künlerde onıñ aydınlatılğan diskiñ türlü qısımlarını köremiz.
+**Ay:** türlü künlerde onıñ aydınlatılğan yüzüniñ türlü qısımlarını köremiz.
 
 Bular **eki ayrı közetüv**. Şu sebepten eki sual soramaq mümkün:
 - «Ne içün kündüz ve gece biri-birini deñiştire?»
