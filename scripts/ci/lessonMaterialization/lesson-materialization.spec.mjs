@@ -142,9 +142,15 @@ test('ten-stage tracker requires editorial Stages 1–5, pending Stage 6 and thr
   assert.throws(() => requireStageSixPending(body().replace('7. Questions', '7. Translation')));
   assert.throws(() => requireStageSixPending(body().replace('10. Translation Review', '10. Fake')));
   assert.throws(() => requireStageSixPending(body().replace('  - [ ] 6.2 Complete generated Lesson resources', '')));
-  assert.throws(() => requireStageSixPending(body().replace('6.2 Complete generated Lesson resources', '6.2 Accessibility source audit')));
-  assert.throws(() => requireStageSixPending(body().replace('6.3 Implement and integrate Scenes', '6.3 Offline source audit')));
-  assert.throws(() => requireStageSixPending(body().replace('6.3 Implement and integrate Scenes', '6.2 Implement and integrate Scenes')));
+  assert.throws(() =>
+    requireStageSixPending(body().replace('6.2 Complete generated Lesson resources', '6.2 Accessibility source audit')),
+  );
+  assert.throws(() =>
+    requireStageSixPending(body().replace('6.3 Implement and integrate Scenes', '6.3 Offline source audit')),
+  );
+  assert.throws(() =>
+    requireStageSixPending(body().replace('6.3 Implement and integrate Scenes', '6.2 Implement and integrate Scenes')),
+  );
   const swapped = body().replace(
     '  - [ ] 6.2 Complete generated Lesson resources\n  - [ ] 6.3 Implement and integrate Scenes',
     '  - [ ] 6.3 Implement and integrate Scenes\n  - [ ] 6.2 Complete generated Lesson resources',
@@ -157,7 +163,11 @@ test('ten-stage tracker requires editorial Stages 1–5, pending Stage 6 and thr
   );
   assert.notEqual(detached, body());
   assert.throws(() => requireStageSixPending(detached));
-  assert.throws(() => requireStageSixPending(body().replace('## Audit evidence', '  - [ ] 6.4 Validate source and handoff\n## Audit evidence')));
+  assert.throws(() =>
+    requireStageSixPending(
+      body().replace('## Audit evidence', '  - [ ] 6.4 Validate source and handoff\n## Audit evidence'),
+    ),
+  );
   assert.throws(() =>
     requireStageSixPending(body().replace('## Audit evidence', '- [ ] 10. Translation Review\n## Audit evidence')),
   );
