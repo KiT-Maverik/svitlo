@@ -36,31 +36,11 @@ const schemas = {
 
 /* Draft source envelopes are distinct from the complete Engine Config. */
 export function draftYamlSchema(kind, configSchema) {
-  if (kind !== 'lesson' && kind !== 'course') return configSchema;
+  if (kind !== 'lesson') return configSchema;
   const schema = structuredClone(configSchema);
   // Keep Zod-derived required fields. Media filenames are omitted from
   // technical YAML and inserted as unresolved placeholders by Lesson Builder.
   schema.properties.documentLanguage = { type: 'string', minLength: 2 };
-  if (kind === 'course') {
-    const importSource = {
-      type: 'object',
-      properties: {
-        path: { type: 'string', minLength: 1 },
-        export: { type: 'string', minLength: 1 },
-      },
-      required: ['path', 'export'],
-      additionalProperties: false,
-    };
-    function addImportSource(node) {
-      if (Array.isArray(node)) return void node.forEach(addImportSource);
-      if (!node || typeof node !== 'object') return;
-      if (node.properties?.type?.const === 'lesson' && node.properties.lessonId) {
-        node.properties.source = structuredClone(importSource);
-      }
-      for (const value of Object.values(node)) addImportSource(value);
-    }
-    addImportSource(schema);
-  }
   if (kind === 'lesson') schema.required = [...new Set([...(schema.required ?? []), 'documentLanguage'])];
   return schema;
 }
@@ -71,10 +51,12 @@ export function draftYamlSchema(kind, configSchema) {
  * config (single identity) and an optional production handoff.
  *
  * The original *.schema.json remains a Config-only editor guide.
- * This separate *.scaffold.schema.json is the actual config.yaml editor guide.
- * No Zod/AJV validation is performed inside either TypeScript scaffolder.
+ * Only Lesson has a composed source/editor schema. Course authoring uses the
+ * separate Stage-aware studio/skills/course-workflow/course-flow.schema.json.
+ * This generator does not validate Lesson or Course editorial approval.
  */
 export function scaffoldYamlSchema(kind, authoredConfig) {
+  if (kind !== 'lesson') throw new Error('Only Lesson has a Config/Production scaffold schema');
   // Production definitions remain manually authored. Embed a snapshot into
   // the composed editor schema so nested $refs work without network access.
   const productionPath = path.join(yamlSchemaOutputRoot, 'production.schema.json');
@@ -100,11 +82,10 @@ export function scaffoldYamlSchema(kind, authoredConfig) {
     return undefined;
   };
   const productionName = (type, properties) => {
-    if (type === 'lesson' && properties.lessonId) return 'lessonReference';
     if (sectionKinds.has(type) || type === 'quest') return 'section';
     if (['questStage', 'questTask', 'subtitles'].includes(type)) return type;
     if (questionKinds.has(type)) return 'question';
-    if (['lesson', 'course', 'episode', 'image', 'audio', 'video', 'scene', 'flashcard'].includes(type)) return type;
+    if (['lesson', 'image', 'audio', 'video', 'scene', 'flashcard'].includes(type)) return type;
     return 'default';
   };
   function wrap(node) {
@@ -130,34 +111,10 @@ export function scaffoldYamlSchema(kind, authoredConfig) {
   const envelope = wrap(raw);
   // The Lesson source language is required for deterministic locale pruning.
   if (kind === 'lesson') envelope.required = ['config', 'production'];
-  // Embed the separate Course Build patch guide so the editor never needs
-  // another JSON Schema file. Rebase its own $defs, not production pointers.
-  let embeddedOverrides;
-  if (kind === 'course') {
-    const overrides = courseOverridesSchema(original);
-    for (const key of ['$schema', '$id', 'title', 'description']) delete overrides[key];
-    function scopeOverrideRefs(node) {
-      if (Array.isArray(node)) return node.map(scopeOverrideRefs);
-      if (!node || typeof node !== 'object') return node;
-      return Object.fromEntries(
-        Object.entries(node).map(([key, value]) => [
-          key,
-          key === '$ref' &&
-          typeof value === 'string' &&
-          value.startsWith('#/$defs/') &&
-          !value.startsWith('#/$defs/__production/')
-            ? '#/$defs/__overrides/$defs/' + value.slice('#/$defs/'.length)
-            : scopeOverrideRefs(value),
-        ]),
-      );
-    }
-    embeddedOverrides = scopeOverrideRefs(wrap(overrides));
-    envelope.properties.overrides = { $ref: '#/$defs/__overrides' };
-  }
   return {
     $schema,
     $id: 'https://svitlo.dev/engine/yaml-schemas/' + kind + '.scaffold.schema.json',
-    title: 'Svitlo ' + kind + ' unified config.yaml authoring draft',
+    title: 'Svitlo Lesson YAML authoring draft',
     description:
       'Config is derived from Engine Zod; production references manually owned production.schema.json. ' +
       'Technical YAML omits physical media filenames; Lesson Builder inserts reserved Nil UUID placeholders ' +
@@ -166,7 +123,6 @@ export function scaffoldYamlSchema(kind, authoredConfig) {
     $defs: {
       ...Object.fromEntries(Object.entries($defs).map(([name, schema]) => [name, wrap(schema)])),
       __production: { $defs: structuredClone(production.$defs) },
-      ...(embeddedOverrides ? { __overrides: embeddedOverrides } : {}),
     },
   };
 }
@@ -201,9 +157,9 @@ export function courseOverridesSchema(course) {
   return {
     $schema: 'https://json-schema.org/draft/2020-12/schema',
     $id: 'https://svitlo.dev/engine/yaml-schemas/courseOverrides.schema.json',
-    title: 'Svitlo Course Build Overrides YAML draft',
+    title: 'Svitlo Course Build API override patch',
     description:
-      'Direct stateless build.overrides patch. Legacy ordered operation lists are unsupported. Configurator-level checks still run when TypeScript is completed.',
+      'Stateless Course build.overrides patch. Actual typed configurators and TypeScript compilation validate the authored implementation.',
     type: 'object',
     properties: { params, locale, content: courseContent },
     additionalProperties: false,
@@ -256,10 +212,8 @@ export function yamlJsonSchemaDocuments() {
   );
   const course = JSON.parse(documents['course.schema.json']);
   documents['courseOverrides.schema.json'] = JSON.stringify(courseOverridesSchema(course), null, 2) + '\n';
-  for (const kind of ['lesson', 'course']) {
-    documents[kind + '.scaffold.schema.json'] =
-      JSON.stringify(scaffoldYamlSchema(kind, JSON.parse(documents[kind + '.schema.json'])), null, 2) + '\n';
-  }
+  documents['lesson.scaffold.schema.json'] =
+    JSON.stringify(scaffoldYamlSchema('lesson', JSON.parse(documents['lesson.schema.json'])), null, 2) + '\n';
   return documents;
 }
 

@@ -1,6 +1,6 @@
-import { defineAssessmentMethod } from '@svitlo/engine/build';
+import { defineAssessmentMethod, type AllLanguageCodes } from '@svitlo/engine/build';
 
-export const analogicalReasoning = defineAssessmentMethod({
+export const analogicalReasoning = defineAssessmentMethod<'analogicalReasoning', AllLanguageCodes>({
   id: '91734986-923d-4072-9f82-72bc3c099538',
   slug: 'analogicalReasoning',
   title: {
@@ -18,7 +18,7 @@ export const analogicalReasoning = defineAssessmentMethod({
     id: 'Penalaran analogis',
     ja: '類推',
     ka: 'ანალოგიით მსჯელობა',
-    kk: 'Ұқсастық бойынша пайымдау',
+    kk: 'Ūqsastyq boiynşa paiymdau',
     ko: '유추 추론',
     lt: 'Samprotavimas pagal analogiją',
     lv: 'Spriešana pēc analoģijas',
@@ -50,7 +50,7 @@ export const analogicalReasoning = defineAssessmentMethod({
     id: 'Menggunakan kesamaan struktur antara situasi untuk memahami kasus baru. Penilaian mengukur proses berpikir ini, bukan bentuk jawabannya.',
     ja: '異なる状況の構造的な類似性を利用し、未知の事例を考察します。 評価するのは回答形式ではなく、この認知的な働きです。',
     ka: 'სხვადასხვა სიტუაციის სტრუქტურული მსგავსების გამოყენება ახალი შემთხვევის გასააზრებლად. ფასდება ეს სააზროვნო მოქმედება და არა პასუხის ფორმატი.',
-    kk: 'Жаңа жағдайды түсіну үшін әртүрлі жағдайлардың құрылымдық ұқсастықтарын пайдалану. Жауаптың пішімі емес, осы ойлау әрекеті бағаланады.',
+    kk: 'Jaña jağdaidy tüsınu üşın ärtürlı jağdailardyñ qūrylymdyq ūqsastyqtaryn paidalanu. Jauaptyñ pışımı emes, osy oilau äreketı bağalanady.',
     ko: '서로 다른 상황의 구조적 유사성을 이용해 새로운 사례를 이해합니다. 평가는 답변 형식이 아니라 이러한 인지 활동을 측정합니다.',
     lt: 'Remtis skirtingų situacijų struktūriniu panašumu, kad būtų galima suprasti naują atvejį. Vertinamas šis mąstymo veiksmas, o ne atsakymo pateikimo forma.',
     lv: 'Izmantot dažādu situāciju strukturālo līdzību, lai izprastu jaunu gadījumu. Tiek vērtēta šī domāšanas darbība, nevis atbildes forma.',

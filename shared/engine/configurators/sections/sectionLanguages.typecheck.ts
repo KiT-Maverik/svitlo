@@ -86,7 +86,7 @@ function authoringLanguageContracts() {
     type: 'lesson',
     skills: [],
     params: {
-      requireQuiz: false,
+      quizRequiredForCompletion: false,
       languages: ['uk'] as const,
       sections: { allowNavigation: true, allowSkipping: true, showIndexes: false },
     },

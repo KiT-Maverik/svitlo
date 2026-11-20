@@ -18,3 +18,5 @@ node --test scripts/generateTranslationReviewArtifacts/education-standards-refer
 ```
 
 Code-derived review references remain available via `/agent-artifacts generate education-standards` and must be cleaned with `/agent-artifacts cleanup` before merging a PR that materializes temporary artifacts.
+
+**CI:** EducationStandard definitions are checked by UI Kit's ordinary `test:locales` suite. Reference-generator regression tests belong in scoped FastGate checks; the separate EducationStandard catalog/reference GitHub workflows have been removed. On-demand agent reference generation is unchanged.

@@ -122,7 +122,7 @@ jobs:
           node-version: '24'
           cache: npm
       - name: Install pinned parser dependencies safely
-        run: npm ci --ignore-scripts --no-audit --no-fund
+        run: npm ci --silent --ignore-scripts --no-audit --no-fund
       - name: Run immutable-source static scan
         env:
           QUERY_B64: ${{ needs.resolve.outputs.query }}

@@ -21,6 +21,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import yaml from 'yaml';
+import { prepareAssessmentDraft } from './lessonAssessmentDrafts.mjs';
 import { loadFactoryRegistry } from '../yamlScaffolding/yamlScaffolding.mjs';
 import { renderLessonModules } from './lessonModules.mjs';
 import {
@@ -99,12 +100,20 @@ function targetFor(source, repo) {
 /** The single YAML tree separates Engine Config from production guidance at every node. */
 function combineSources(root) {
   const document = parseYaml(path.join(root, 'lesson.yaml'), 'lesson.yaml');
-  const { config: lesson, documentLanguage, tasks } = splitScaffoldDocument(document);
+  const assessment = prepareAssessmentDraft(document);
+  const {
+    config: lesson,
+    documentLanguage,
+    tasks,
+  } = splitScaffoldDocument({
+    ...document,
+    config: assessment.lesson,
+  });
   if (typeof documentLanguage !== 'string' || !documentLanguage)
     fail('lesson.yaml', 'production.documentLanguage', 'required source-language provenance');
   if (typeof lesson.slug !== 'string' || !/^[a-zA-Z][a-zA-Z0-9]*$/.test(lesson.slug))
     fail('lesson.yaml', 'config.slug', 'a safe camelCase slug is required for the output filename');
-  return { lesson, language: documentLanguage, tasks };
+  return { lesson, language: documentLanguage, tasks, assessment };
 }
 
 /** Compare exact bytes, without injecting any generated provenance comment. */
@@ -176,7 +185,7 @@ export function runOne(source, mode = 'check', repo = repoRoot) {
 
   if (!fs.existsSync(path.join(target.root, 'lesson.yaml')) && fs.existsSync(path.join(target.root, 'config.yaml')))
     fail('config.yaml', '$', 'legacy technical Lesson source: migrate explicitly to lesson.yaml; no automatic rewrite');
-  const { lesson, language, tasks } = combineSources(target.root);
+  const { lesson, language, tasks, assessment } = combineSources(target.root);
   if (typeof lesson.id !== 'string' || !uuidPattern.test(lesson.id))
     fail('lesson.yaml', 'config.id', 'a Lesson UUID is required for ID-addressed output');
   const outputFolder = path.join(target.bookRoot, 'data/lessons', lesson.id.at(-1), lesson.id);
@@ -194,7 +203,18 @@ export function runOne(source, mode = 'check', repo = repoRoot) {
     fail(destinationData[0], '$', 'competing legacy Lesson entrypoint; modular layout requires a clean UUID folder');
   }
   const nodeLocations = new Map();
-  const modules = renderLessonModules(lesson, language, { bookRoot: target.bookRoot, outputFolder, nodeLocations });
+  const output = renderLessonModules(lesson, language, {
+    bookRoot: target.bookRoot,
+    outputFolder,
+    nodeLocations,
+    pendingAssessments: assessment.pending,
+  });
+  // Source handoffs precede the root entrypoint, which remains the last write.
+  const modules = new Map([
+    ...[...output].filter(([name]) => name !== 'index.ts'),
+    ...assessment.drafts,
+    ['index.ts', output.get('index.ts')],
+  ]);
   // Ordinary Text, Markdown and Code must contain authored learner-facing
   // content, never a generated specification instead of their real text.
   const artifacts = productionFiles(
@@ -217,7 +237,7 @@ export function runOne(source, mode = 'check', repo = repoRoot) {
     const destination = path.join(outputFolder, relative);
     noSymlinks(destination);
     if (mode === 'generate' && fs.existsSync(destination)) {
-      fail(relative, '$', 'existing Lesson source; refusing to overwrite or mix drafts');
+      fail(relative, '$', 'existing Lesson source or bank YAML; refusing to overwrite or mix drafts');
     }
   }
   checkProductionFiles(artifacts, mode);
@@ -266,8 +286,11 @@ function discover(repo) {
           const location = path.join(lessons, bucket.name, entry.name);
           if (fs.existsSync(path.join(location, 'lesson.yaml'))) roots.push(location);
           else if (fs.existsSync(path.join(location, 'config.yaml')))
-            console.warn('SKIP legacy technical Lesson config.yaml: ' + path.relative(repo, location) +
-              ' (migrate to lesson.yaml explicitly)');
+            console.warn(
+              'SKIP legacy technical Lesson config.yaml: ' +
+                path.relative(repo, location) +
+                ' (migrate to lesson.yaml explicitly)',
+            );
         }
       }
     }

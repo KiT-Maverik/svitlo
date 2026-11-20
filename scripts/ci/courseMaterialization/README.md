@@ -2,12 +2,12 @@
 
 **Implemented:** .github/workflows/course-materialization.yml invokes the maintained
 Engine materializer at shared/engine/scripts/materializeCourseFlow/materialize-course-flow.mjs.
-This workflow **must be merged to main before issue_comment events can trigger it**.
+This workflow **must be merged to the repository default branch before issue_comment events can trigger it**.
 Do not run Stage 5 on Course #653 without separate owner authorization and valid Stage 4 evidence.
 
 ## Maintainer commands
 
-On an open same-repository **Draft Course parent PR targeting main**, an actor with
+On an open same-repository **Draft Course parent PR targeting the development branch (`develop` for new work)**, an actor with
 write/maintain/admin permission may post one exact top-level comment:
 
 - **/course materialize:** run the existing materializer with --package, --course,
@@ -121,6 +121,6 @@ resolve differences manually; the tool does not overwrite authored work.
 is deployed on main, and a synthetic Course PR needs a completed Stage 4 checklist. Complete the
 safe synthetic-PR run after deployment and
 record its exact run and commit SHAs before claiming production E2E validation.
-Deploy this workflow to `main` before attempting new Stage 5 registration.
+Deploy this workflow to the repository default branch before attempting new Stage 5 registration.
 The change does not retroactively populate already-finalized Course PRs,
 mark PRs Ready or merge anything.

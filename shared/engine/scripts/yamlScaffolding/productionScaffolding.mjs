@@ -1,5 +1,5 @@
 /**
- * Build-time handoff for a single authored config.yaml tree.
+ * Build-time handoff for a standalone Lesson's single authored lesson.yaml tree.
  *
  * Each entity is { config: EngineConfig, production?: authoringRequirements }.
  * Identity lives ONLY in config; production is never passed to define*.
@@ -14,7 +14,7 @@ const uuid = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/;
 /** Split the single file while preserving all authored, possibly incomplete Config fields. */
 export function splitScaffoldDocument(document) {
   if (!record(document) || !record(document.config) || typeof document.config.type !== 'string') {
-    throw new Error('config.yaml: root config.type is required for factory dispatch');
+    throw new Error('lesson.yaml: root config.type is required for factory dispatch');
   }
   const tasks = [];
   function visit(value, location) {
@@ -24,7 +24,7 @@ export function splitScaffoldDocument(document) {
     // YAML map key. Non-entity objects (including arbitrary "type" values) stay data.
     if (record(value.config) && typeof value.config.type === 'string') {
       if (value.production !== undefined && !record(value.production)) {
-        throw new Error('config.yaml:' + location + '.production must be an object');
+        throw new Error('lesson.yaml:' + location + '.production must be an object');
       }
       const { config, production } = value;
       if (production !== undefined) tasks.push({ id: config.id, type: config.type, production, location });
@@ -67,8 +67,7 @@ function markdownForTask(task) {
 
 /**
  * For modular Lesson sources, scene/media specifications are written next to
- * their generated slug modules via UUID-to-path mapping. Course/legacy callers
- * keep ID-addressed paths until they adopt the same contract.
+ * their generated slug modules via UUID-to-path mapping.
  * This does NOT create Scene implementations or actual media assets.
  */
 export function productionFiles(entityFolder, tasks, { nodeLocations } = {}) {
@@ -87,12 +86,12 @@ export function productionFiles(entityFolder, tasks, { nodeLocations } = {}) {
       }
       return path.join(entityFolder, folder, 'specification.md');
     }
-    if (['lesson', 'course'].includes(type) && text(production.methodology)) {
+    if (type === 'lesson' && text(production.methodology)) {
       destination = path.join(entityFolder, 'methodology.md');
       body = production.methodology.trimEnd() + '\n';
     } else if (type === 'scene' && text(production.specification)) {
       if (!uuid.test(id ?? ''))
-        throw new Error('config.yaml:' + task.location + '.config.id: Scene specification requires UUID');
+        throw new Error('lesson.yaml:' + task.location + '.config.id: Scene specification requires UUID');
       destination = colocated
         ? colocatedSpecification()
         : path.join(textbookRoot, 'scenes', id.at(-1), id, 'specification.md');
@@ -102,14 +101,14 @@ export function productionFiles(entityFolder, tasks, { nodeLocations } = {}) {
       [production.prompt, production.specification, production.script, production.storyboard].some(text)
     ) {
       if (!uuid.test(id ?? ''))
-        throw new Error('config.yaml:' + task.location + '.config.id: media specification requires UUID');
+        throw new Error('lesson.yaml:' + task.location + '.config.id: media specification requires UUID');
       destination = colocated
         ? colocatedSpecification()
         : path.join(textbookRoot, 'data/assets', id.at(-1), id, 'specification.md');
       body = markdownForTask(task);
     } else if (text(production.specification)) {
       if (!uuid.test(id ?? ''))
-        throw new Error('config.yaml:' + task.location + '.config.id: specification requires UUID');
+        throw new Error('lesson.yaml:' + task.location + '.config.id: specification requires UUID');
       destination = path.join(entityFolder, 'specifications', id.at(-1), id, 'specification.md');
       body = markdownForTask(task);
     }

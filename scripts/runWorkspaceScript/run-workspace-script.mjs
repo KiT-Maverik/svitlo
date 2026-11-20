@@ -32,10 +32,27 @@ function localDeps(pkg, byName) {
     .sort();
 }
 
-export function planWorkspaceOperation(packages, operation) {
+export function planWorkspaceOperation(packages, operation, { onlyWorkspaces } = {}) {
   const byName = new Map(packages.map(pkg => [pkg.name, pkg]));
   if (byName.size !== packages.length) throw Error('Duplicate npm workspace names');
-  const eligible = packages.filter(pkg => Object.hasOwn(pkg.scripts || {}, operation));
+  if (onlyWorkspaces !== undefined) {
+    if (
+      !Array.isArray(onlyWorkspaces) ||
+      !onlyWorkspaces.length ||
+      new Set(onlyWorkspaces).size !== onlyWorkspaces.length
+    ) {
+      throw Error('Explicit workspace selection must be a nonempty unique list');
+    }
+    for (const name of onlyWorkspaces) {
+      if (!byName.has(name) || !Object.hasOwn(byName.get(name).scripts || {}, operation)) {
+        throw Error('Selected workspace does not implement ' + operation + ': ' + name);
+      }
+    }
+  }
+  const selectedNames = onlyWorkspaces === undefined ? null : new Set(onlyWorkspaces);
+  const eligible = packages.filter(
+    pkg => Object.hasOwn(pkg.scripts || {}, operation) && (!selectedNames || selectedNames.has(pkg.name)),
+  );
   if (!eligible.length) throw Error('No workspaces implement ' + operation);
   const order = [];
   const state = new Map();
@@ -83,19 +100,36 @@ export function planWorkspaceOperation(packages, operation) {
   return { selected: eligible.map(pkg => pkg.name), steps: planned };
 }
 
-function execute(operation) {
+/** CI may explicitly choose Web-only fixture content without changing native hosts. */
+export function environmentForWorkspace(name, environment = process.env) {
+  if (name === '@svitlo/web' && !environment.SVITLO_TEXTBOOK && environment.SVITLO_WEB_TEST_SELECTION) {
+    return { ...environment, SVITLO_TEXTBOOK: environment.SVITLO_WEB_TEST_SELECTION };
+  }
+  return environment;
+}
+
+export function execute(operation, { onlyWorkspaces } = {}) {
   if (!/^[a-z][a-z0-9-]*(?::[a-z][a-z0-9-]*)*$/.test(operation)) {
     throw Error('Invalid script name: ' + operation);
   }
-  const { selected, steps } = planWorkspaceOperation(discoverWorkspaces(), operation);
+  // Root CLI remains exhaustive. An explicit selection is available only to
+  // CI callers importing this function; dependency builds remain topological.
+  const { selected, steps } = planWorkspaceOperation(discoverWorkspaces(), operation, { onlyWorkspaces });
   console.log('Running ' + operation + ' in ' + selected.length + ' eligible workspaces: ' + selected.join(', '));
   for (const { name, script } of steps) {
     console.log('\n▶ ' + name + ' / ' + script);
-    const result = spawnSync('npm', ['run', script, '--workspace', name], {
+    // Production Quality shares verified package outputs between separate root operations.
+    // Without its job-local state, preserve the exact canonical npm command.
+    const reuse = script === 'package:build' && Boolean(process.env.SVITLO_CI_PACKAGE_BUILD_STATE);
+    const command = reuse ? process.execPath : 'npm';
+    const args = reuse
+      ? ['scripts/ci/packageBuildReuse/package-build-reuse.mjs', name]
+      : ['run', script, '--workspace', name];
+    const result = spawnSync(command, args, {
       cwd: repo,
-      env: process.env,
+      env: environmentForWorkspace(name),
       stdio: 'inherit',
-      shell: process.platform === 'win32',
+      shell: !reuse && process.platform === 'win32',
     });
     if (result.error || result.status !== 0) {
       throw Error(name + ' / ' + script + ' failed' + (result.error ? ': ' + result.error.message : ''));

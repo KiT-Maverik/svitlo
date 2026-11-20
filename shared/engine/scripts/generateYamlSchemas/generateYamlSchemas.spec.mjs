@@ -200,7 +200,6 @@ test('generated JSON Schemas omit media filenames and preserve required learner 
     'lesson.schema.json',
     'course.schema.json',
     'lesson.scaffold.schema.json',
-    'course.scaffold.schema.json',
   ]) {
     assert(!docs[name].includes('"fileName"'), name);
     assert(!docs[name].includes('"posterFileName"'), name);
@@ -223,7 +222,6 @@ test('Zod -> JSON Schema exports every root without opaque Configurator nodes', 
   const docs = yamlJsonSchemaDocuments();
   assert.deepEqual(Object.keys(docs).sort(), [
     'contentBlock.schema.json',
-    'course.scaffold.schema.json',
     'course.schema.json',
     'courseOverrides.schema.json',
     'episode.schema.json',
@@ -242,7 +240,16 @@ test('Zod -> JSON Schema exports every root without opaque Configurator nodes', 
   }
 });
 
-test('Lesson/Course draft envelopes document source language, import coordinates and direct overrides', () => {
+test('Zod-derived Flashcard YAML Config requires arrays of typed flags', () => {
+  const document = JSON.parse(yamlJsonSchemaDocuments()['flashcard.schema.json']);
+  const flags = document.properties.parameters.properties.flags;
+  assert.equal(flags.type, 'array');
+  assert.equal(flags.items.oneOf.length, 4);
+  assert(document.properties.parameters.required.includes('flags'));
+  assert.equal(Object.hasOwn(flags, 'properties'), false, 'no legacy named items/order collection');
+});
+
+test('Lesson YAML envelope and current Course Config/Build patch schemas remain separate', () => {
   const docs = yamlJsonSchemaDocuments();
   const lesson = JSON.parse(docs['lesson.schema.json']);
   const course = JSON.parse(docs['course.schema.json']);
@@ -250,7 +257,7 @@ test('Lesson/Course draft envelopes document source language, import coordinates
   assert(lesson.required.includes('documentLanguage'));
   assert(lesson.required.includes('type'));
   assert(!lesson.required.includes('flashcards'), 'A Lesson without Flashcards must remain authorable');
-  assert.equal(course.properties.documentLanguage.type, 'string');
+  assert.equal(Object.hasOwn(course.properties, 'documentLanguage'), false, 'Course uses the separate single-file Flow schema');
   for (const field of ['id', 'slug', 'type', 'skills', 'params', 'locale', 'section']) {
     assert(lesson.required.includes(field), 'Missing Lesson required field: ' + field);
   }
@@ -263,19 +270,15 @@ test('Lesson/Course draft envelopes document source language, import coordinates
   assert.equal(overrides.properties.content.properties.items.type, 'object');
   assert.equal(Object.hasOwn(overrides.$defs.buildPatch.properties, 'questions'), false);
   assert.equal(Object.hasOwn(overrides.$defs.buildPatch.properties, 'flashcards'), false);
-  const courseScaffold = JSON.parse(docs['course.scaffold.schema.json']);
-  const nested = courseScaffold.$defs.__overrides.$defs.buildPatch.properties;
-  assert.equal(Object.hasOwn(nested, 'questions'), false);
-  assert.equal(Object.hasOwn(nested, 'flashcards'), false);
   assert(!Object.hasOwn(overrides.properties, 'operations'));
-  assert(JSON.stringify(course).includes('"source"'));
+  assert.equal(Object.hasOwn(docs, 'course.scaffold.schema.json'), false);
 });
 test('generator write/check is deterministic and rejects stale files', () => {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-yaml-schemas-'));
   try {
     assert.throws(() => generateYamlSchemas('--check', root), /Outdated YAML JSON Schema/);
     const written = generateYamlSchemas('--write', root);
-    assert.equal(written.length, 10);
+    assert.equal(written.length, 9);
     assert.deepEqual(generateYamlSchemas('--write', root), written);
     assert.deepEqual(generateYamlSchemas('--check', root), written);
     // Formatting is not semantic schema drift: Prettier may compact arrays.
@@ -306,7 +309,7 @@ test('editor schemas are generated from current Engine Zod source before validat
   try {
     const generated = yamlJsonSchemaDocuments();
     const names = generateYamlSchemas('--write', output);
-    assert.equal(names.length, 10);
+    assert.equal(names.length, 9);
     for (const name of names) {
       assert.deepEqual(
         JSON.parse(fs.readFileSync(path.join(output, name), 'utf8')),
@@ -320,17 +323,12 @@ test('editor schemas are generated from current Engine Zod source before validat
   }
 });
 
-test('unified scaffold composes manual production schema beside Engine Config at every node', () => {
+test('Lesson scaffold composes production schema beside Engine Config at every node', () => {
   const docs = yamlJsonSchemaDocuments();
-  for (const kind of ['lesson', 'course']) {
+  for (const kind of ['lesson']) {
     const scaffold = JSON.parse(docs[kind + '.scaffold.schema.json']);
     assert.equal(scaffold.type, 'object');
-    assert.deepEqual(scaffold.required, kind === 'lesson' ? ['config', 'production'] : ['config']);
-    if (kind === 'course') {
-      assert.equal(scaffold.properties.overrides.$ref, '#/$defs/__overrides');
-      assert.equal(scaffold.$defs.__overrides.type, 'object');
-      assert.equal(scaffold.$defs.__overrides.properties.content.type, 'object');
-    }
+    assert.deepEqual(scaffold.required, ['config', 'production']);
     const refs = [];
     function collectRefs(value) {
       if (!value || typeof value !== 'object') return;
@@ -448,7 +446,7 @@ test('Quest editor schema projects every named Stage/Task child without physical
   const questType = json.oneOf.find(branch => branch.properties?.type?.const === 'quest');
   assert(questType, 'JSON Schema must advertise Quest Section');
   assert(questType.required.includes('stages') && questType.required.includes('tasks'));
-  for (const kind of ['lesson', 'episode', 'course', 'lesson.scaffold', 'course.scaffold']) {
+  for (const kind of ['lesson', 'episode', 'course', 'lesson.scaffold']) {
     const schema = JSON.parse(yamlJsonSchemaDocuments()[kind + '.schema.json']);
     assert(JSON.stringify(schema).includes('"quest"'), kind + ': missing Quest Config tree');
   }

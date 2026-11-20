@@ -1,6 +1,6 @@
-import { defineAssessmentMethod } from '@svitlo/engine/build';
+import { defineAssessmentMethod, type AllLanguageCodes } from '@svitlo/engine/build';
 
-export const errorDiagnosis = defineAssessmentMethod({
+export const errorDiagnosis = defineAssessmentMethod<'errorDiagnosis', AllLanguageCodes>({
   id: 'fab328dc-1556-4c0a-994b-d186c5bc75bb',
   slug: 'errorDiagnosis',
   title: {
@@ -18,7 +18,7 @@ export const errorDiagnosis = defineAssessmentMethod({
     id: 'Diagnosis kesalahan',
     ja: '誤りの診断',
     ka: 'შეცდომების დიაგნოსტიკა',
-    kk: 'Қателердің себебін анықтау',
+    kk: 'Qatelerdıñ sebebın anyqtau',
     ko: '오류 진단',
     lt: 'Klaidų diagnostika',
     lv: 'Kļūdu diagnostika',
@@ -50,7 +50,7 @@ export const errorDiagnosis = defineAssessmentMethod({
     id: 'Menemukan hasil atau asumsi yang salah dan menentukan penyebabnya. Penilaian mengukur proses berpikir ini, bukan bentuk jawabannya.',
     ja: '間違った結果や前提を特定し、その原因を説明します。 評価するのは回答形式ではなく、この認知的な働きです。',
     ka: 'მცდარი შედეგის ან დაშვების პოვნა და შეცდომის ძირეული მიზეზის დადგენა. ფასდება ეს სააზროვნო მოქმედება და არა პასუხის ფორმატი.',
-    kk: 'Қате нәтижені немесе болжамды тауып, оның түпкі себебін анықтау. Жауаптың пішімі емес, осы ойлау әрекеті бағаланады.',
+    kk: 'Qate nätijenı nemese boljamdy tauyp, onyñ tüpkı sebebın anyqtau. Jauaptyñ pışımı emes, osy oilau äreketı bağalanady.',
     ko: '잘못된 결과나 가정을 찾아 그 원인을 밝힙니다. 평가는 답변 형식이 아니라 이러한 인지 활동을 측정합니다.',
     lt: 'Rasti neteisingą rezultatą ar prielaidą ir nustatyti pagrindinę klaidos priežastį. Vertinamas šis mąstymo veiksmas, o ne atsakymo pateikimo forma.',
     lv: 'Atrast nepareizu rezultātu vai pieņēmumu un noteikt kļūdas pamatcēloni. Tiek vērtēta šī domāšanas darbība, nevis atbildes forma.',

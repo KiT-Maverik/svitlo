@@ -15,7 +15,7 @@ export default defineConfig({
     { name: 'mobile', use: devices['Pixel 7'] },
   ],
   webServer: {
-    command: `npm run start -- --hostname 127.0.0.1 --port ${port}`,
+    command: `npm run app:start -- --hostname 127.0.0.1 --port ${port}`,
     url: `http://127.0.0.1:${port}/`,
     reuseExistingServer: !process.env.CI,
     timeout: 120_000,

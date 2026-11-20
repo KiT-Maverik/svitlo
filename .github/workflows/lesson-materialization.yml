@@ -1,6 +1,6 @@
 name: Materialize reviewed Lesson from PR command
 
-# Requires deployment to main: issue_comment workflows run from the default branch.
+# Requires deployment to develop: issue_comment workflows run from the default branch.
 # Never execute candidate PR code or install its dependencies.
 on:
   issue_comment:
@@ -12,7 +12,7 @@ on:
         type: number
         required: true
       operation:
-        description: Explicit authorized Stage 6 action (finalize fails closed until audited retirement)
+        description: Materialize once or finalize a previously verified Lesson handoff
         type: choice
         options: [materialize, finalize]
         required: true
@@ -62,6 +62,8 @@ jobs:
     permissions:
       contents: read
       pull-requests: read
+    outputs:
+      report_sha256: ${{ steps.analysis.outputs.report_sha256 }}
     steps:
       - name: Check out trusted implementation and Engine from default branch
         uses: actions/checkout@v4
@@ -82,15 +84,16 @@ jobs:
           cache-dependency-path: trusted/package-lock.json
       - name: Install trusted Engine dependencies without lifecycle scripts
         working-directory: trusted
-        run: npm ci --ignore-scripts --no-audit --no-fund
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --ignore-scripts --no-audit --no-fund
       - name: Validate reviewed Lesson, generate and verify only allowlisted sources
+        id: analysis
         env:
           GH_TOKEN: ${{ github.token }}
           LESSON_DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
           LESSON_META_B64: ${{ needs.resolve.outputs.meta }}
           LESSON_HEAD_ROOT: candidate
           LESSON_REPORT: ${{ runner.temp }}/lesson-materialization/report.json
-        run: node trusted/scripts/ci/lessonMaterialization/lesson-materialization.mjs analyze
+        run: node trusted/scripts/ci/quietRun/quiet-run.mjs -- node trusted/scripts/ci/lessonMaterialization/lesson-materialization.mjs analyze
       - name: Retain exact pinned Lesson source and output evidence in this Actions run
         uses: actions/upload-artifact@v4
         with:
@@ -136,5 +139,5 @@ jobs:
           LESSON_META_B64: ${{ needs.resolve.outputs.meta }}
           LESSON_HEAD_ROOT: candidate
           LESSON_REPORT: report/report.json
-        run: node trusted/scripts/ci/lessonMaterialization/lesson-materialization.mjs publish
-
+          LESSON_REPORT_SHA256: ${{ needs.analyze.outputs.report_sha256 }}
+        run: node trusted/scripts/ci/quietRun/quiet-run.mjs -- node trusted/scripts/ci/lessonMaterialization/lesson-materialization.mjs publish

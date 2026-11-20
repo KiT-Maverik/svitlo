@@ -82,6 +82,12 @@ silently invent a restoration. The owner can reconcile and retry a _fresh_
 source tree only after review. This CI is intentionally limited to first-time
 materialization, not editing or final bank publication.
 
+## Dependency-isolation audit (Questions and Flashcards)
+
+The two bank modes share the same trusted controller but have separate Engine Builders. Source tracing confirms that `bank-materialization.mjs` statically imports only Node built-ins and `bank-gate.mjs` (also built-ins). The `questionsBuilder.mjs` and `flashcardBuilder.mjs` imports occur **only inside `analyze`**, where the workflow installs trusted npm dependencies and builds Engine. The Questions Builder imports `yaml`, the Lesson renderer/factory registry and Engine `dist/build.js`; the Flashcard Builder imports `yaml` and Engine `dist/build.js`. Neither is reachable from the publisher startup or its `publish` function. The `publish` job installs no npm packages, never runs PR code and uses only the trusted gate, pinned checkout, checksummed allowlisted manifest and Git Data API.
+
+Both modes check the source blob and the authorizing Lesson/PR linkage again before publication. The publisher also reads the pinned parent Git tree, rejects symlinks/submodules and occupied paths, and uses a non-force branch update to reject concurrent writes. Questions outputs are limited to the reviewed `questions/**` source inventory; Flashcards can create only `flashcards/index.ts`. This audit found **no corresponding eager-import regression**, so no bank architecture refactor is warranted. The adjacent test suite now executes both publishers from a temporary source tree **without `node_modules` or Engine**. These source and isolated-process tests do not substitute for the post-deployment PR-command end-to-end check.
+
 ## Validation
 
     node --test scripts/ci/bankMaterialization/bank-materialization.spec.mjs

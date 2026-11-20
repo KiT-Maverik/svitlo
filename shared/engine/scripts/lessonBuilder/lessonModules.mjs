@@ -231,7 +231,8 @@ function skillIndex(bookRoot) {
         visit(absolute);
         continue;
       }
-      if (!entry.isFile() || !entry.name.endsWith('.data.ts')) continue;
+      // Current Skill authoring uses <slug>.ts; legacy *.data.ts remains readable.
+      if (!entry.isFile() || !entry.name.endsWith('.ts') || entry.name.endsWith('.d.ts')) continue;
       const ast = ts.createSourceFile(absolute, fs.readFileSync(absolute, 'utf8'), ts.ScriptTarget.Latest, true);
       if (ast.parseDiagnostics.length) throw new Error('Invalid Skill source: ' + absolute);
       for (const statement of ast.statements) {
@@ -303,6 +304,9 @@ export function renderLessonModules(lesson, language, options = {}) {
   }
   const files = new Map();
   const nodeLocations = options.nodeLocations;
+  const pendingSections = new Map(
+    (options.pendingAssessments ?? []).filter(item => item.slug).map(item => [item.slug, item]),
+  );
 
   /**
    * Extract only actually authored learner text. There is no mechanical
@@ -433,7 +437,7 @@ export function renderLessonModules(lesson, language, options = {}) {
 
   // Render plain source values and move every Configurator position into a
   // child module. Its containing object's ordinary metadata remains untouched.
-  function render(value, context, ownerDirectory, imported, depth = 0, field = '$') {
+  function render(value, context, ownerDirectory, imported, depth = 0, field = '$', pending = null) {
     if (value && typeof value === 'object' && value[rawExpression]) return value[rawExpression];
     if (value === null && context.startsWith('pendingMedia:')) {
       const kind = context.slice('pendingMedia:'.length);
@@ -478,10 +482,21 @@ export function renderLessonModules(lesson, language, options = {}) {
       return (
         '[\n' +
         value
-          .map(
-            (item, index) =>
-              indent(depth + 1) + render(item, 'plain', ownerDirectory, imported, depth + 1, field + '[' + index + ']'),
-          )
+          .map((item, index) => {
+            const provisional = pending?.syntheticIds?.includes(item)
+              ? indent(depth + 1) +
+                '// TODO (BLOCKER): Replace ' +
+                field +
+                '[' +
+                index +
+                '] with a reviewed resource UUID.\n'
+              : '';
+            return (
+              provisional +
+              indent(depth + 1) +
+              render(item, 'plain', ownerDirectory, imported, depth + 1, field + '[' + index + ']', pending)
+            );
+          })
           .join(',\n') +
         '\n' +
         indent(depth) +
@@ -537,7 +552,14 @@ export function renderLessonModules(lesson, language, options = {}) {
             imported.set(key, { symbol: key, location: nextDirectory });
             return indent(depth + 1) + key;
           }
-          const rendered = render(child, nextContext, nextDirectory, imported, depth + 1, field + '.' + key);
+          const nextField = field + '.' + key;
+          const rendered = render(child, nextContext, nextDirectory, imported, depth + 1, nextField, pending);
+          const assessmentComment = pending?.provisionalFields?.includes(nextField)
+            ? indent(depth + 1) +
+              '// TODO (BLOCKER): Provisional assessment ' +
+              nextField +
+              '; specialist must approve and replace before publication.\n'
+            : '';
           const pendingComment =
             child === null && nextContext.startsWith('pendingMedia:')
               ? indent(depth + 1) +
@@ -546,6 +568,7 @@ export function renderLessonModules(lesson, language, options = {}) {
                 '// Replace with actual UUID.extension before production.\n'
               : '';
           return (
+            assessmentComment +
             pendingComment +
             indent(depth + 1) +
             (identifier.test(key) && rendered === key ? key : asProperty(key) + ': ' + rendered)
@@ -682,6 +705,7 @@ export function renderLessonModules(lesson, language, options = {}) {
     if (!factory) throw new Error('lesson.yaml: unknown factory for ' + node.type);
     const imports = new Map();
     const bindings = generateParameters(authored, context, directory, imports);
+    const pending = context === 'section' ? pendingSections.get(authored.slug) : null;
     // All bound children are rendered with real source names but are never
     // inserted as an extra authored field into the Config.
     const extra = [];
@@ -706,13 +730,18 @@ export function renderLessonModules(lesson, language, options = {}) {
           imports,
           1,
           '$.' + key,
+          key === 'params' || key === 'locale' ? pending : null,
+        );
+      if (key === 'id' && pending?.generatedIdentity)
+        fields.push(
+          '  // TODO (BLOCKER): Generated Section UUID needs explicit editorial ownership before publication.',
         );
       fields.push('  ' + (identifier.test(key) && rendered === key ? key : asProperty(key) + ': ' + rendered));
     }
     const content = fields.length ? '{\n' + fields.join(',\n') + '\n}' : '{}';
     const name = symbolFor(node, context);
     const importHead = moduleImports(directory, imports, factory, true, false);
-    // Every authored assessment Section starts blocked until its independent bank is verified.
+    // Every assessment Section starts blocked until its independent bank is verified.
     // UUID-shaped strings alone are not evidence of approval; do not auto-remove the blocker.
     const assessmentBlocker =
       context === 'section' && node.type === 'quiz'
@@ -806,7 +835,16 @@ export function renderLessonModules(lesson, language, options = {}) {
       continue;
     }
     if (key === 'section') {
-      rootFields.push('  ' + key);
+      const blockers = options.pendingAssessments ?? [];
+      const comments = blockers.map(
+        ({ type, slug }) =>
+          '  // TODO (BLOCKER): ' +
+          (type === 'quiz' ? 'Quiz' : 'Flashcards') +
+          ' Section ' +
+          JSON.stringify(slug) +
+          ' awaits independently reviewed resources and approved selection before Lesson publication.',
+      );
+      rootFields.push((comments.length ? comments.join('\n') + '\n' : '') + '  section');
       continue;
     }
     if (key === 'params' && record(value) && hasLanguages) {
@@ -851,7 +889,7 @@ export function renderLessonModules(lesson, language, options = {}) {
     '({\n' +
     rootFields.join(',\n') +
     '\n});\n';
-  put('review.ts', renderReviewDraft());
+  put('review.ts', renderReviewDraft(language));
   put('index.ts', root);
   // Write the entrypoint last. A process interruption before this point
   // leaves an orphan tree, which runOne rejects rather than treating it as a

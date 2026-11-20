@@ -81,7 +81,7 @@ jobs:
           cache-dependency-path: trusted/package-lock.json
       - name: Install trusted Engine dependencies without lifecycle scripts
         working-directory: trusted
-        run: npm ci --ignore-scripts --no-audit --no-fund
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --ignore-scripts --no-audit --no-fund
       - name: Validate reviewed Course, generate and verify only allowlisted sources
         env:
           GH_TOKEN: ${{ github.token }}
@@ -89,7 +89,7 @@ jobs:
           COURSE_META_B64: ${{ needs.resolve.outputs.meta }}
           COURSE_HEAD_ROOT: candidate
           COURSE_REPORT: ${{ runner.temp }}/course-materialization/report.json
-        run: node trusted/scripts/ci/courseMaterialization/course-materialization.mjs analyze
+        run: node trusted/scripts/ci/quietRun/quiet-run.mjs -- node trusted/scripts/ci/courseMaterialization/course-materialization.mjs analyze
       - name: Retain exact source and output evidence in this Actions run
         uses: actions/upload-artifact@v4
         with:
@@ -138,7 +138,7 @@ jobs:
           COURSE_META_B64: ${{ needs.resolve.outputs.meta }}
           COURSE_HEAD_ROOT: candidate
           COURSE_REPORT: report/report.json
-        run: node trusted/scripts/ci/courseMaterialization/course-materialization.mjs publish
+        run: node trusted/scripts/ci/quietRun/quiet-run.mjs -- node trusted/scripts/ci/courseMaterialization/course-materialization.mjs publish
 
   register-lessons:
     name: Register generated Lesson IDs once

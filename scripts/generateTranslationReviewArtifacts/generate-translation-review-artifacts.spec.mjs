@@ -53,6 +53,17 @@ test('selects only the requested Course UUID and optional locale', () => {
   });
 });
 
+test('requires explicitly scoped Question reference generation', () => {
+  const lesson = 'd3048d21-8690-5255-b62c-984c69ac272c';
+  assert.deepEqual(
+    parseArguments(['--kind', 'questions', '--package', 'content/playground', '--lesson', lesson, '--locale', 'kk']),
+    { kind: 'questions', package: 'content/playground', lesson, locale: 'kk' },
+  );
+  assert.throws(() => parseArguments(['--kind', 'questions']), /require --package/);
+  assert.throws(() => parseArguments(['--kind', 'questions', '--package', 'content/playground', '--lesson', '../x']));
+  assert.throws(() => parseArguments(['--kind', 'questions', '--package', 'content/playground', '--course', lesson]));
+});
+
 test('rejects unsafe paths, invalid combinations and duplicate options before writing anything', () => {
   for (const args of [
     ['--kind', 'skills', '--package', '../outside'],
@@ -129,6 +140,26 @@ test('real Skills and UI Kit requests generate only their requested Markdown fil
     }
     assert.equal(fs.existsSync(path.join(workspace, 'lessons')), false);
 
+    const questions = request([
+      '--kind',
+      'questions',
+      '--package',
+      'content/playground',
+      '--lesson',
+      'd3048d21-8690-5255-b62c-984c69ac272c',
+      '--locale',
+      'kk',
+    ]);
+    assert.equal(questions.scope.kind, 'questions');
+    assert.equal(questions.scope.package, 'content/playground');
+    assert.equal(questions.summary.questionDocuments, 1);
+    assert.equal(questions.generated[0].questions, 6);
+    assert.equal(questions.generated[0].strings, 30);
+    assert.equal(questions.generated[0].missing, 0);
+    assert.equal(questions.generated[0].reviewReady, true);
+    assert.equal(questions.failures.length, 0);
+    assert.equal(fs.existsSync(path.join(workspace, 'ui-kit')), false);
+
     const ui = request(['--kind', 'ui-kit', '--component', 'audio', '--locale', 'uk']);
     assert.equal(ui.scope.kind, 'ui-kit');
     assert.equal(ui.scope.component, 'audio');
@@ -180,7 +211,7 @@ test('Skills link rewriting handles modular .ts and legacy .data.ts without esca
 
 test('trusted publisher accepts pre-Course Skills manifests but rejects scope mismatches', () => {
   const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
-  const workflow = fs.readFileSync(path.join(root, '.github/workflows/translation-review.yml'), 'utf8');
+  const workflow = fs.readFileSync(path.join(root, '.github/workflows/agent-ci-artifacts.yml'), 'utf8');
   const marker = '      - name: Validate downloaded files and commit only agent artifacts';
   const offset = workflow.indexOf(marker);
   assert.ok(offset > 0, 'Publisher validation step must be present');

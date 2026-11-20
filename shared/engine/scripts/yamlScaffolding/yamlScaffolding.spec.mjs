@@ -8,10 +8,8 @@ import yaml from 'yaml';
 
 import { runOne } from '../lessonBuilder/lessonBuilder.mjs';
 import { productionFiles, splitScaffoldDocument } from './productionScaffolding.mjs';
-import { parseCourseYaml, renderCourseSource, verifyOrWriteGenerated } from '../courseBuilder/courseBuilder.mjs';
 
 const lessonId = '00000000-0000-4000-8000-00000000000c';
-const courseId = '30ecbde1-97fd-5fe7-a353-ea89b9ef4a67';
 const id = suffix => '00000000-0000-4000-8000-' + String(suffix).padStart(12, '0');
 const group = items => ({ items, order: Object.keys(items) });
 
@@ -102,13 +100,11 @@ function questNode(slug, offset) {
   };
 }
 
-test('Studio editorial YAML remains intact while both builders emit nested TS drafts', () => {
+test('Lesson YAML emits nested source drafts without mutating independent bank YAMLs', () => {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-yaml-integrated-'));
   const workspace = path.join(root, 'content/playground');
   const lessonDir = path.join(workspace, 'data/lessons/c', lessonId);
-  const courseDir = path.join(workspace, 'data/courses/7', courseId);
   fs.mkdirSync(lessonDir, { recursive: true });
-  fs.mkdirSync(courseDir, { recursive: true });
   fs.writeFileSync(path.join(workspace, 'package.json'), '{"name":"@svitlo/playground"}\n');
   try {
     const sourceBlock = {
@@ -134,11 +130,15 @@ test('Studio editorial YAML remains intact while both builders emit nested TS dr
               id: id(3),
               type: 'carousel',
               slug: 'gallery',
-              slides: group({ slide: {
-                id: id(4), type: 'image', slug: 'slide',
-                params: { fill: true, aspectRatio: 1.5 },
-                locale: { src: null, alt: { uk: 'Діаграма' } },
-              } }),
+              slides: group({
+                slide: {
+                  id: id(4),
+                  type: 'image',
+                  slug: 'slide',
+                  params: { fill: true, aspectRatio: 1.5 },
+                  locale: { src: null, alt: { uk: 'Діаграма' } },
+                },
+              }),
             },
             checkpoint: {
               id: id(5),
@@ -173,28 +173,28 @@ test('Studio editorial YAML remains intact while both builders emit nested TS dr
         production: { documentLanguage: lessonLanguage },
       }),
     );
-    const editorial = 'kind: lesson-content-plan\nstatus: draft\nsections: []\n';
-    fs.writeFileSync(path.join(lessonDir, 'content.yaml'), editorial);
     fs.writeFileSync(path.join(lessonDir, 'questions.yaml'), '# independent question source\n');
     fs.writeFileSync(path.join(lessonDir, 'flashcards.yaml'), '# independent flashcard source\n');
     const lessonDraft = runOne(lessonDir, 'generate', root);
     const sourceFiles = lessonDraft.files.filter(file => file.endsWith('.ts'));
     assert(sourceFiles.length > 1, 'Lesson Builder must emit multiple named draft modules');
     assert.equal(lessonDraft.changed, sourceFiles.length);
-    assert.equal(fs.readFileSync(path.join(lessonDir, 'content.yaml'), 'utf8'), editorial);
     assert.equal(fs.readFileSync(path.join(lessonDir, 'questions.yaml'), 'utf8'), '# independent question source\n');
     assert.equal(fs.readFileSync(path.join(lessonDir, 'flashcards.yaml'), 'utf8'), '# independent flashcard source\n');
     assert.equal(fs.existsSync(path.join(lessonDir, 'questions')), false);
     assert.equal(fs.existsSync(path.join(lessonDir, 'flashcards')), false);
-    // The Review register is an intentionally invalid, human-completed TypeScript draft.
-    // Test its unfinished shape separately; every actual configurator module must parse.
+    // Review register must parse, with unresolved evidence and a blocking TODO.
+    // Syntactically valid TypeScript is not evidence of independent approval.
     assert(sourceFiles.includes('review.ts'), 'Lesson Builder must scaffold the Review register');
     const reviewDraft = fs.readFileSync(path.join(lessonDir, 'review.ts'), 'utf8');
-    assert(
-      ts.createSourceFile('review.ts', reviewDraft, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS)
-        .parseDiagnostics.length > 0,
-      'Review draft must retain unresolved TypeScript syntax until review evidence is verified',
+    assert.equal(
+      ts.createSourceFile('review.ts', reviewDraft, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS).parseDiagnostics
+        .length,
+      0,
+      'Review register must be syntax-valid until verified review evidence is supplied',
     );
+    assert.match(reviewDraft, /TODO \(BLOCKER\): Conduct review/);
+    assert.match(reviewDraft, /acceptance: 0/);
     const modules = sourceFiles
       .filter(file => file !== 'review.ts')
       .map(file => fs.readFileSync(path.join(lessonDir, file), 'utf8'));
@@ -223,96 +223,6 @@ test('Studio editorial YAML remains intact while both builders emit nested TS dr
     assert(lessonCode.includes('import { '));
     assert(lessonCode.includes("from '@svitlo/engine/build'"));
 
-    const lessonImport = '../../../lessons/c/' + lessonId + '/index.ts';
-    assert(fs.existsSync(path.resolve(courseDir, lessonImport)));
-    const course = {
-      documentLanguage: 'uk',
-      type: 'course',
-      id: courseId,
-      slug: 'lightCourse',
-      params: { languages: ['uk', 'en'] },
-      locale: { title: { uk: 'Курс світла', en: 'EN_COURSE' } },
-      content: group({
-        module: {
-          id: id(7),
-          slug: 'module',
-          type: 'module',
-          content: group({
-            chapter: {
-              id: id(8),
-              slug: 'chapter',
-              type: 'chapter',
-              content: group({
-                episode: {
-                  id: id(9),
-                  slug: 'episode',
-                  type: 'episode',
-                  section: group({
-                    section: {
-                      id: id(10),
-                      slug: 'section',
-                      type: 'content',
-                      content: group({
-                        gallery: {
-                          id: id(11),
-                          slug: 'gallery',
-                          type: 'carousel',
-                          slides: group({ slide: {
-                             id: id(12), slug: 'slide', type: 'image',
-                             params: { fill: true, aspectRatio: 1.5 },
-                             locale: { src: null, alt: { uk: 'Діаграма' } },
-                           } }),
-                        },
-                      }),
-                    },
-                  }),
-                },
-                lesson: { type: 'lesson', lessonId, source: { path: lessonImport, export: 'lightLesson_Lesson' } },
-              }),
-            },
-          }),
-        },
-      }),
-    };
-    const episodeSections = course.content.items.module.content.items.chapter.content.items.episode.section;
-    episodeSections.items.guided = questNode('guided', 90);
-    episodeSections.order.push('guided');
-    const { documentLanguage: courseLanguage, ...courseConfig } = course;
-    const courseYaml = yaml.stringify({
-      ...wrapNode(courseConfig),
-      production: { documentLanguage: courseLanguage },
-    });
-    fs.writeFileSync(path.join(courseDir, 'config.yaml'), courseYaml);
-    const courseCode = renderCourseSource(parseCourseYaml(courseYaml));
-    const courseOutput = path.join(courseDir, 'lightCourse.data.ts');
-    assert.equal(verifyOrWriteGenerated(courseOutput, courseCode, '--write'), true);
-    assert.equal(verifyOrWriteGenerated(courseOutput, courseCode, '--check'), false);
-    assert.equal(verifyOrWriteGenerated(courseOutput, courseCode, '--write'), false);
-    const courseCalls = calls(courseCode);
-    for (const name of [
-      'defineCourse',
-      'defineModule',
-      'defineChapter',
-      'defineEpisode',
-      'defineContentSection',
-      'defineCarousel',
-      'defineQuestSection',
-      'defineStage',
-      'defineTask',
-      'defineVideo',
-      'defineAudio',
-      'defineImage',
-      'defineSubtitles',
-      'defineScene',
-    ]) {
-      assert(courseCalls.includes(name), name + ' missing in Course draft');
-    }
-    assert(courseCode.includes('lightLesson_Lesson as standaloneLesson0'));
-    assert(!courseCode.includes('UNRESOLVED_LESSON'));
-    assert(!courseCode.includes('EN_COURSE'));
-    assert(!courseCode.includes('"documentLanguage"'));
-    assert.equal(fs.readFileSync(path.join(courseDir, 'config.yaml'), 'utf8'), courseYaml);
-    assert(!fs.existsSync(path.join(courseDir, 'generated')));
     assert(!fs.existsSync(path.join(lessonDir, 'generated')));
   } finally {
     fs.rmSync(root, { recursive: true, force: true });
