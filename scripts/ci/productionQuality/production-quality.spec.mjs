@@ -7,6 +7,10 @@ import { planProductionApps } from './plan-app-matrix.mjs';
 import { additionalComponentWorkspaces } from './run-selected-components.mjs';
 
 const workflow = readFileSync(new URL('../../../.github/workflows/production-quality.yml', import.meta.url), 'utf8');
+const commandWorkflow = readFileSync(
+  new URL('../../../.github/workflows/production-quality-command.yml', import.meta.url),
+  'utf8',
+);
 
 test('every manifest-defined app and E2E suite is retained in the production matrix', () => {
   const packages = discoverWorkspaces();
@@ -78,4 +82,21 @@ test('parallel production topology preserves every gate and produces one strict 
   assert.equal(workflow.split('name: Production Quality / verify').length - 1, 1);
   // The source guard and unit test run before any use of npm ci.
   assert.ok(workflow.indexOf('check-release-source.mjs') < workflow.indexOf('npm ci'));
+});
+
+test('PR comment command dispatches the unchanged full production workflow', () => {
+  assert.match(commandWorkflow, /issue_comment:\s*\n\s*types: \[created\]/);
+  assert.match(commandWorkflow, /github\.event\.issue\.pull_request/);
+  assert.match(commandWorkflow, /github\.event\.comment\.body == '\/production-quality'/);
+  assert.match(commandWorkflow, /collaborators\/\$actor\/permission/);
+  assert.match(commandWorkflow, /\.head\.repo\.full_name/);
+  assert.match(commandWorkflow, /\.head\.sha/);
+  assert.match(commandWorkflow, /actions: write/);
+  assert.match(
+    commandWorkflow,
+    /gh workflow run production-quality\.yml --ref "\$branch" --repo "\$GITHUB_REPOSITORY"/,
+  );
+  assert.doesNotMatch(commandWorkflow, /actions\/checkout@|npm ci/);
+  assert.match(workflow, /workflow_dispatch:/);
+  assert.match(workflow, /name: Production Quality \/ verify/);
 });

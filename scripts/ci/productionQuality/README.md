@@ -27,6 +27,21 @@ aggregate: any failed, cancelled, missing or skipped dependency must fail it.
 - Logs remain bounded by quietRun; on failures, inspect the failed job/step,
   not full successful logs. E2E results upload per-app artifacts.
 
+## Agent-triggered full diagnostics
+
+Comment `/production-quality` on an open same-repository fix PR to launch the
+existing full `production-quality.yml` against its head branch. The
+`production-quality-command.yml` router runs from the default branch, checks
+the same PR-comment author permissions as existing on-demand commands and
+calls `gh workflow run production-quality.yml --ref <pr-branch>` using the
+Actions `GITHUB_TOKEN`. It does not check out the PR, change the production
+workflow or modify branch rules. It must first be merged into `develop`.
+
+Locate the resulting `workflow_dispatch` run and confirm its `head_sha`
+matches the latest fix PR head. Every production job and the final
+`Production Quality / verify` must pass. A comment-triggered run does not
+replace standard Ready PR checks or the real `develop → main` promotion gate.
+
 This optimizes **wall-clock latency and time to first actionable failure** by
 trading extra npm installations and possibly more billed runner-minutes for
 parallelism. It does not promise a particular duration: only comparable,
