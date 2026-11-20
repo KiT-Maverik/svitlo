@@ -126,7 +126,7 @@ test('Stage 3 complete accepts inline Course-specific Lesson edits only for veri
   const illegalIdentity = checkPlan(wrapped({ ...existing, id: skillId }), '3-complete');
   assert.equal(illegalIdentity.valid, false);
 
-  const withoutEdits = checkPlan(wrapped({ ...lesson, lessonId }), '3-complete');
+  const withoutEdits = checkPlan(wrapped({ ...lesson, lessonId: skillId }), '3-complete');
   assert.equal(withoutEdits.valid, true);
 });
 
