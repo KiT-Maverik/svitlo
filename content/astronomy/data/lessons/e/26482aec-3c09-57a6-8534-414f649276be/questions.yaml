@@ -1,5 +1,1040 @@
 documentLanguage: uk
-questions: {}
+questions:
+  matchBlocks:
+    mapBodiesToKinds:
+      id: "838247d7-ca38-47a3-8d35-ba0908894ae7"
+      slug: "mapBodiesToKinds"
+      type: "matchBlocks"
+      params:
+        assessmentMethod: "classification"
+        restrictions: []
+      locale: {}
+      content:
+        question:
+          items:
+            prompt:
+              id: "411f6d34-3d33-4089-bab0-bd56ca530efb"
+              slug: "prompt"
+              type: "text"
+              params: {}
+              locale:
+                value:
+                  uk: "Поєднай кожне небесне тіло з його природою. Вибирай категорію за знанням про тіло, а не за кольором чи яскравістю."
+          order:
+            - "prompt"
+        hint:
+          items:
+            hintText:
+              id: "faef47b7-dc42-4dd6-8e58-4d5d70fa87a7"
+              slug: "hintText"
+              type: "text"
+              params: {}
+              locale:
+                value:
+                  uk: "Зоря сама випромінює світло, планета рухається навколо зорі, а природний супутник — навколо планети."
+          order:
+            - "hintText"
+        explanation:
+          items:
+            explanationText:
+              id: "41b12332-eb94-44d9-a348-a662527b51ee"
+              slug: "explanationText"
+              type: "text"
+              params: {}
+              locale:
+                value:
+                  uk: "Сонце — зоря; Земля — планета; Місяць — природний супутник Землі. Природу небесного тіла не визначають його колір чи вигляд на малюнку."
+          order:
+            - "explanationText"
+        pairs:
+          items:
+            sun:
+              left:
+                id: "22761951-2511-47b8-8a46-02c91d359bf3"
+                slug: "sunLeft"
+                type: "text"
+                params: {}
+                locale:
+                  value:
+                    uk: "Сонце"
+              right:
+                id: "1001a42c-6de8-45f6-954f-0bb90d1be215"
+                slug: "sunRight"
+                type: "text"
+                params: {}
+                locale:
+                  value:
+                    uk: "зоря"
+            earth:
+              left:
+                id: "b65a65fe-fc71-4bad-b5bb-38da729ba945"
+                slug: "earthLeft"
+                type: "text"
+                params: {}
+                locale:
+                  value:
+                    uk: "Земля"
+              right:
+                id: "0d027f55-b88d-489a-acc9-01fc77ba5b08"
+                slug: "earthRight"
+                type: "text"
+                params: {}
+                locale:
+                  value:
+                    uk: "планета"
+            moon:
+              left:
+                id: "f41b0e78-6f1e-48d2-9ee9-39a0f43fb217"
+                slug: "moonLeft"
+                type: "text"
+                params: {}
+                locale:
+                  value:
+                    uk: "Місяць"
+              right:
+                id: "46ceed32-6f00-48ad-8a9f-bb87e6c21c67"
+                slug: "moonRight"
+                type: "text"
+                params: {}
+                locale:
+                  value:
+                    uk: "природний супутник Землі"
+          order:
+            - "sun"
+            - "earth"
+            - "moon"
+    mapBodiesToCenters:
+      id: "db71cbc6-f666-4278-bf52-46ce6a271d15"
+      slug: "mapBodiesToCenters"
+      type: "matchBlocks"
+      params:
+        assessmentMethod: "relationshipMapping"
+        restrictions: []
+      locale: {}
+      content:
+        question:
+          items:
+            prompt:
+              id: "75786229-78e9-4de4-b0f1-6f221745199c"
+              slug: "prompt"
+              type: "text"
+              params: {}
+              locale:
+                value:
+                  uk: "Для кожного тіла обери те, навколо якого воно безпосередньо рухається в нашій схемі. Ми позначаємо найближчий головний орбітальний зв’язок."
+          order:
+            - "prompt"
+        hint:
+          items:
+            hintText:
+              id: "ef8d3631-3dd0-42cd-85d4-01d81ae8863b"
+              slug: "hintText"
+              type: "text"
+              params: {}
+              locale:
+                value:
+                  uk: "Планета Земля рухається навколо центральної зорі, а Місяць — природний супутник Землі."
+          order:
+            - "hintText"
+        explanation:
+          items:
+            explanationText:
+              id: "90233a6b-8a75-48d5-8616-a1a08ad38dd6"
+              slug: "explanationText"
+              type: "text"
+              params: {}
+              locale:
+                value:
+                  uk: "Земля рухається навколо Сонця; Місяць рухається навколо Землі. Водночас Місяць разом із Землею подорожує навколо Сонця — це не скасовує його руху навколо Землі."
+          order:
+            - "explanationText"
+        pairs:
+          items:
+            earth:
+              left:
+                id: "518d458d-0fd6-4d2a-8b7c-a597d1c817a2"
+                slug: "earthLeft"
+                type: "text"
+                params: {}
+                locale:
+                  value:
+                    uk: "Земля"
+              right:
+                id: "6a97766f-29c0-4c40-93b6-2f41b12f130a"
+                slug: "earthRight"
+                type: "text"
+                params: {}
+                locale:
+                  value:
+                    uk: "Сонце"
+            moon:
+              left:
+                id: "59da50e7-8902-4e56-ad65-a0cc3adf48af"
+                slug: "moonLeft"
+                type: "text"
+                params: {}
+                locale:
+                  value:
+                    uk: "Місяць"
+              right:
+                id: "3ad9b3de-39c7-416d-8c4a-39007782e75b"
+                slug: "moonRight"
+                type: "text"
+                params: {}
+                locale:
+                  value:
+                    uk: "Земля"
+          order:
+            - "earth"
+            - "moon"
+  selectOneAnswer:
+    sunEmitsOwnLight:
+      id: "2cac0cd9-d965-4aab-af33-2506aa0f8619"
+      slug: "sunEmitsOwnLight"
+      type: "selectOneAnswer"
+      params:
+        assessmentMethod: "classification"
+        restrictions: []
+      locale: {}
+      content:
+        question:
+          items:
+            prompt:
+              id: "42f159fe-3f77-450e-8b6f-1e1155ddeea6"
+              slug: "prompt"
+              type: "text"
+              params: {}
+              locale:
+                value:
+                  uk: "Яке твердження найкраще пояснює, чому Сонце є зорею?"
+          order:
+            - "prompt"
+        hint:
+          items:
+            hintText:
+              id: "73a0bec3-6c82-4a83-a19f-026c9ec704b0"
+              slug: "hintText"
+              type: "text"
+              params: {}
+              locale:
+                value:
+                  uk: "Згадай відмінність між світлом, яке тіло випромінює саме, і світлом, яке воно відбиває."
+          order:
+            - "hintText"
+        explanation:
+          items:
+            explanationText:
+              id: "55663329-e549-4462-8bca-acef47f94ccd"
+              slug: "explanationText"
+              type: "text"
+              params: {}
+              locale:
+                value:
+                  uk: "Зорі самі випромінюють світло. Сонце — зоря; те, що воно велике або яскраве на нашому небі, не є визначенням зорі."
+          order:
+            - "explanationText"
+        answers:
+          correct:
+            items:
+              correct1:
+                id: "8323f633-127b-4ee5-9db7-fef5348d00e0"
+                slug: "correct1"
+                type: "text"
+                params: {}
+                locale:
+                  value:
+                    uk: "Сонце саме випромінює світло."
+            order:
+              - "correct1"
+          incorrect:
+            items:
+              incorrect1:
+                id: "a5ece195-796f-4f1f-9174-298cbab1320c"
+                slug: "incorrect1"
+                type: "text"
+                params: {}
+                locale:
+                  value:
+                    uk: "Сонце відбиває світло Місяця."
+              incorrect2:
+                id: "bbf7f7b6-0253-4480-b95b-3597e560460b"
+                slug: "incorrect2"
+                type: "text"
+                params: {}
+                locale:
+                  value:
+                    uk: "Сонце виглядає найбільшим на малюнку."
+              incorrect3:
+                id: "c3493d28-68e3-46c8-bfec-79866b8aabfd"
+                slug: "incorrect3"
+                type: "text"
+                params: {}
+                locale:
+                  value:
+                    uk: "Сонце — одна з планет, бо навколо нього є інші планети."
+            order:
+              - "incorrect1"
+              - "incorrect2"
+              - "incorrect3"
+          distractors:
+            items: {}
+            order: []
+    distantStarApparentSize:
+      id: "3f9c0c65-63a7-4782-a20e-97c32150a9a4"
+      slug: "distantStarApparentSize"
+      type: "selectOneAnswer"
+      params:
+        assessmentMethod: "classification"
+        restrictions: []
+      locale: {}
+      content:
+        question:
+          items:
+            prompt:
+              id: "54fcb103-ff1a-445b-abe2-b6d97d11f628"
+              slug: "prompt"
+              type: "text"
+              params: {}
+              locale:
+                value:
+                  uk: "Далека зоря на нічному небі здається маленькою світною цяткою. Який висновок правильний?"
+          order:
+            - "prompt"
+        hint:
+          items:
+            hintText:
+              id: "05b3d724-d607-4b46-86b3-cdbfda307fae"
+              slug: "hintText"
+              type: "text"
+              params: {}
+              locale:
+                value:
+                  uk: "Уяви однакові за розміром предмети: близький і дуже далекий."
+          order:
+            - "hintText"
+        explanation:
+          items:
+            explanationText:
+              id: "8f0cf9fe-727b-4433-bc0b-97d687967b3e"
+              slug: "explanationText"
+              type: "text"
+              params: {}
+              locale:
+                value:
+                  uk: "Зоря може здаватися маленькою через величезну відстань. Сонце теж зоря; видимий розмір сам по собі не доводить ні справжнього розміру, ні типу небесного тіла."
+          order:
+            - "explanationText"
+        answers:
+          correct:
+            items:
+              correct1:
+                id: "cf5e4d92-4d0a-4f95-9185-320d3049d2a1"
+                slug: "correct1"
+                type: "text"
+                params: {}
+                locale:
+                  value:
+                    uk: "Вона все одно зоря; за тим, якою маленькою вона здається, не можна визначити її справжній розмір."
+            order:
+              - "correct1"
+          incorrect:
+            items:
+              incorrect1:
+                id: "9a8cefa0-d98b-4554-8227-bdd1931ddd38"
+                slug: "incorrect1"
+                type: "text"
+                params: {}
+                locale:
+                  value:
+                    uk: "Вона обов’язково менша за Сонце, бо здається крихітною."
+              incorrect2:
+                id: "cc13f0b2-2d71-4307-a181-db4ea277bac1"
+                slug: "incorrect2"
+                type: "text"
+                params: {}
+                locale:
+                  value:
+                    uk: "Вона не може бути зорею, бо Сонце виглядає інакше."
+              incorrect3:
+                id: "32c72d19-87ba-48c9-81e1-49dc53d1860b"
+                slug: "incorrect3"
+                type: "text"
+                params: {}
+                locale:
+                  value:
+                    uk: "Вона обов’язково планета, бо на небі є маленькою цяткою."
+            order:
+              - "incorrect1"
+              - "incorrect2"
+              - "incorrect3"
+          distractors:
+            items: {}
+            order: []
+    arrowDirectionBodies:
+      id: "a2e493f2-e579-4baa-8f85-2171d78afb10"
+      slug: "arrowDirectionBodies"
+      type: "selectOneAnswer"
+      params:
+        assessmentMethod: "relationshipMapping"
+        restrictions: []
+      locale: {}
+      content:
+        question:
+          items:
+            prompt:
+              id: "735db355-5c80-44e8-838f-33a5e478a64e"
+              slug: "prompt"
+              type: "text"
+              params: {}
+              locale:
+                value:
+                  uk: "У записі «А → Б» стрілка означає «А рухається навколо Б». Які ДВА записи правильно показують основні зв’язки Землі та Місяця?"
+          order:
+            - "prompt"
+        hint:
+          items:
+            hintText:
+              id: "4574f397-5fb4-4d9a-a877-57177f46ab0c"
+              slug: "hintText"
+              type: "text"
+              params: {}
+              locale:
+                value:
+                  uk: "Спочатку назви рухоме тіло, потім центр його орбіти. Стрілка починається з рухомого тіла."
+          order:
+            - "hintText"
+        explanation:
+          items:
+            explanationText:
+              id: "a8518513-c747-45ed-a97b-4cfc9478877c"
+              slug: "explanationText"
+              type: "text"
+              params: {}
+              locale:
+                value:
+                  uk: "Основні спрямовані зв’язки: Земля → Сонце та Місяць → Земля. Обернені стрілки хибно міняють місцями тіло й центр орбіти."
+          order:
+            - "explanationText"
+        answers:
+          correct:
+            items:
+              correct1:
+                id: "0227dcd7-ad99-4eee-9c9c-e00ccaee00cf"
+                slug: "correct1"
+                type: "text"
+                params: {}
+                locale:
+                  value:
+                    uk: "Земля → Сонце; Місяць → Земля."
+            order:
+              - "correct1"
+          incorrect:
+            items:
+              incorrect1:
+                id: "f8a3e749-f5dd-488a-a426-e762f4304ba2"
+                slug: "incorrect1"
+                type: "text"
+                params: {}
+                locale:
+                  value:
+                    uk: "Сонце → Земля; Земля → Місяць."
+              incorrect2:
+                id: "1f3fca44-bf66-4456-9465-02ccb081548f"
+                slug: "incorrect2"
+                type: "text"
+                params: {}
+                locale:
+                  value:
+                    uk: "Земля → Місяць; Місяць → Сонце."
+              incorrect3:
+                id: "c42e5338-86a7-43dc-a107-a792da153ca1"
+                slug: "incorrect3"
+                type: "text"
+                params: {}
+                locale:
+                  value:
+                    uk: "Сонце → Місяць; Місяць → Земля."
+            order:
+              - "incorrect1"
+              - "incorrect2"
+              - "incorrect3"
+          distractors:
+            items: {}
+            order: []
+    moonLightMisconception:
+      id: "ba4b4f37-723d-4336-a1dc-0599f97c081a"
+      slug: "moonLightMisconception"
+      type: "selectOneAnswer"
+      params:
+        assessmentMethod: "errorDiagnosis"
+        restrictions: []
+      locale: {}
+      content:
+        question:
+          items:
+            prompt:
+              id: "64f78553-7f2d-47f9-8ba0-df60d81e18c0"
+              slug: "prompt"
+              type: "text"
+              params: {}
+              locale:
+                value:
+                  uk: "Дитина каже: «Місяць яскравий уночі, отже він зоря». Яка відповідь найточніше виправляє помилку?"
+          order:
+            - "prompt"
+        hint:
+          items:
+            hintText:
+              id: "baf7f966-8ae9-425d-bd0f-ac193a95aa65"
+              slug: "hintText"
+              type: "text"
+              params: {}
+              locale:
+                value:
+                  uk: "Сам вигляд «світиться» ще не показує, чи тіло саме випромінює світло."
+          order:
+            - "hintText"
+        explanation:
+          items:
+            explanationText:
+              id: "a1075ddf-b374-44db-90bb-614dd98a19e3"
+              slug: "explanationText"
+              type: "text"
+              params: {}
+              locale:
+                value:
+                  uk: "Місяць не є зорею, адже не випромінює власного світла, як Сонце. Він відбиває сонячне світло та обертається навколо Землі."
+          order:
+            - "explanationText"
+        answers:
+          correct:
+            items:
+              correct1:
+                id: "d7a2b9d0-6488-4674-afce-38ccd9332484"
+                slug: "correct1"
+                type: "text"
+                params: {}
+                locale:
+                  value:
+                    uk: "Місяць — природний супутник Землі; ми бачимо сонячне світло, відбите ним, а не його власне світло."
+            order:
+              - "correct1"
+          incorrect:
+            items:
+              incorrect1:
+                id: "ecf6f8ba-a1c3-47ba-97f8-edf19bcaafbe"
+                slug: "incorrect1"
+                type: "text"
+                params: {}
+                locale:
+                  value:
+                    uk: "Усе, що виглядає яскравим уночі, обов’язково є зорею."
+              incorrect2:
+                id: "44271cfa-2dba-4a55-b4b4-e1e69f1b9ab1"
+                slug: "incorrect2"
+                type: "text"
+                params: {}
+                locale:
+                  value:
+                    uk: "Місяць — планета, бо він має круглу форму."
+              incorrect3:
+                id: "a87a44bb-285b-4f3b-a8aa-882c35fd1ecd"
+                slug: "incorrect3"
+                type: "text"
+                params: {}
+                locale:
+                  value:
+                    uk: "Місяць — дуже маленька зоря, бо його видно біля Землі."
+            order:
+              - "incorrect1"
+              - "incorrect2"
+              - "incorrect3"
+          distractors:
+            items: {}
+            order: []
+    marsSiriusContrast:
+      id: "53b10c2c-1120-42c2-a62a-1d63ed539d3b"
+      slug: "marsSiriusContrast"
+      type: "selectOneAnswer"
+      params:
+        assessmentMethod: "classification"
+        restrictions: []
+      locale: {}
+      content:
+        question:
+          items:
+            prompt:
+              id: "1f712bef-e31b-4908-b2fe-fdc70496dfe3"
+              slug: "prompt"
+              type: "text"
+              params: {}
+              locale:
+                value:
+                  uk: "Марс і Сіріус на небі можуть здаватися світлими цятками. Яке твердження правильно розрізняє їх?"
+          order:
+            - "prompt"
+        hint:
+          items:
+            hintText:
+              id: "edca3448-f423-4403-93cc-0d300834f8fa"
+              slug: "hintText"
+              type: "text"
+              params: {}
+              locale:
+                value:
+                  uk: "Згадай, хто світить власним світлом, а хто відбиває сонячне."
+          order:
+            - "hintText"
+        explanation:
+          items:
+            explanationText:
+              id: "076a0475-6789-400a-93db-3e21aadccb88"
+              slug: "explanationText"
+              type: "text"
+              params: {}
+              locale:
+                value:
+                  uk: "Сіріус — зоря, а Марс — планета Сонячної системи. Вони можуть виглядати схоже з великої відстані, але їхня природа різна."
+          order:
+            - "explanationText"
+        answers:
+          correct:
+            items:
+              correct1:
+                id: "cef5cbf5-65ed-4d1c-8382-098c1cf6e972"
+                slug: "correct1"
+                type: "text"
+                params: {}
+                locale:
+                  value:
+                    uk: "Сіріус — зоря, що випромінює світло; Марс — планета, яку ми бачимо завдяки відбитому сонячному світлу."
+            order:
+              - "correct1"
+          incorrect:
+            items:
+              incorrect1:
+                id: "5a22a382-ad3d-4cdc-9bd3-68589fa118de"
+                slug: "incorrect1"
+                type: "text"
+                params: {}
+                locale:
+                  value:
+                    uk: "Марс — зоря, а Сіріус — планета, бо Сіріус дуже далеко."
+              incorrect2:
+                id: "89e4112d-b84f-4c97-872b-10d76b639d97"
+                slug: "incorrect2"
+                type: "text"
+                params: {}
+                locale:
+                  value:
+                    uk: "Обидва — зорі, адже їх видно світними."
+              incorrect3:
+                id: "74b7108b-006a-470e-80f4-20bc4bec8129"
+                slug: "incorrect3"
+                type: "text"
+                params: {}
+                locale:
+                  value:
+                    uk: "Обидва — планети, бо вони можуть здаватися цятками."
+            order:
+              - "incorrect1"
+              - "incorrect2"
+              - "incorrect3"
+          distractors:
+            items: {}
+            order: []
+    naturalSatelliteOfAnotherPlanet:
+      id: "78303144-3bed-4a89-9610-75ae49ae65cd"
+      slug: "naturalSatelliteOfAnotherPlanet"
+      type: "selectOneAnswer"
+      params:
+        assessmentMethod: "classification"
+        restrictions: []
+      locale: {}
+      content:
+        question:
+          items:
+            prompt:
+              id: "182396b2-441b-457b-94bf-1a2bb538b386"
+              slug: "prompt"
+              type: "text"
+              params: {}
+              locale:
+                value:
+                  uk: "Уяви природне небесне тіло, яке рухається навколо іншої планети, а не навколо Землі. Як називають таке тіло?"
+          order:
+            - "prompt"
+        hint:
+          items:
+            hintText:
+              id: "1cd74c89-d19b-49e1-9b7d-570d7c4ef2fc"
+              slug: "hintText"
+              type: "text"
+              params: {}
+              locale:
+                value:
+                  uk: "У різних планет теж можуть бути природні супутники."
+          order:
+            - "hintText"
+        explanation:
+          items:
+            explanationText:
+              id: "d360e67c-ee81-4ab5-babf-af36a4e87a78"
+              slug: "explanationText"
+              type: "text"
+              params: {}
+              locale:
+                value:
+                  uk: "Природний супутник — не обов’язково наш Місяць. Це природне тіло, що рухається навколо планети; супутники інших планет теж належать до цієї категорії."
+          order:
+            - "explanationText"
+        answers:
+          correct:
+            items:
+              correct1:
+                id: "c0c2c713-f05a-411a-9255-a7001e88479b"
+                slug: "correct1"
+                type: "text"
+                params: {}
+                locale:
+                  value:
+                    uk: "Природний супутник тієї планети."
+            order:
+              - "correct1"
+          incorrect:
+            items:
+              incorrect1:
+                id: "83ab6212-08fb-4e47-ae93-58d16f373e51"
+                slug: "incorrect1"
+                type: "text"
+                params: {}
+                locale:
+                  value:
+                    uk: "Тільки Місяць Землі, незалежно від того, навколо чого воно рухається."
+              incorrect2:
+                id: "481164f1-fb07-4c6e-83cc-858b9443fcba"
+                slug: "incorrect2"
+                type: "text"
+                params: {}
+                locale:
+                  value:
+                    uk: "Зоря, адже воно знаходиться в космосі."
+              incorrect3:
+                id: "ea346523-31f1-4bfb-b78d-9f2ec72f2e88"
+                slug: "incorrect3"
+                type: "text"
+                params: {}
+                locale:
+                  value:
+                    uk: "Планета, бо будь-який рух у космосі означає, що тіло є планетою."
+            order:
+              - "incorrect1"
+              - "incorrect2"
+              - "incorrect3"
+          distractors:
+            items: {}
+            order: []
+    moonAndEarthAroundSun:
+      id: "2165dc36-c878-48e8-b589-d20ac332b86d"
+      slug: "moonAndEarthAroundSun"
+      type: "selectOneAnswer"
+      params:
+        assessmentMethod: "relationshipMapping"
+        restrictions: []
+      locale: {}
+      content:
+        question:
+          items:
+            prompt:
+              id: "eb02241b-29f6-4477-9a45-82c61da792fa"
+              slug: "prompt"
+              type: "text"
+              params: {}
+              locale:
+                value:
+                  uk: "Місяць рухається навколо Землі, а Земля — навколо Сонця. Яке твердження правильно поєднує ці рухи?"
+          order:
+            - "prompt"
+        hint:
+          items:
+            hintText:
+              id: "beacfe83-9e7c-4f41-9827-4ccb0ba35bc3"
+              slug: "hintText"
+              type: "text"
+              params: {}
+              locale:
+                value:
+                  uk: "Подумай про тіло, яке рухається навколо іншого тіла, а те — навколо Сонця."
+          order:
+            - "hintText"
+        explanation:
+          items:
+            explanationText:
+              id: "115105b2-14e4-48fa-a089-f7df0bd99468"
+              slug: "explanationText"
+              type: "text"
+              params: {}
+              locale:
+                value:
+                  uk: "Обидва зв’язки правильні одночасно: Місяць обертається навколо Землі, а система Земля—Місяць рухається навколо Сонця."
+          order:
+            - "explanationText"
+        answers:
+          correct:
+            items:
+              correct1:
+                id: "617d9c6c-ace1-4190-849e-d1c7d4881f31"
+                slug: "correct1"
+                type: "text"
+                params: {}
+                locale:
+                  value:
+                    uk: "Місяць рухається навколо Землі й разом із нею подорожує навколо Сонця."
+            order:
+              - "correct1"
+          incorrect:
+            items:
+              incorrect1:
+                id: "b4a126d9-6521-48e7-be15-16d9f4ea0c60"
+                slug: "incorrect1"
+                type: "text"
+                params: {}
+                locale:
+                  value:
+                    uk: "Місяць може рухатися тільки навколо Землі й ніколи разом із нею навколо Сонця."
+              incorrect2:
+                id: "94b34eb3-39dc-4240-a11d-a897fe12a777"
+                slug: "incorrect2"
+                type: "text"
+                params: {}
+                locale:
+                  value:
+                    uk: "Місяць рухається тільки навколо Сонця й зовсім не рухається навколо Землі."
+              incorrect3:
+                id: "ab502be8-ef79-4306-8f03-1bb6443c2566"
+                slug: "incorrect3"
+                type: "text"
+                params: {}
+                locale:
+                  value:
+                    uk: "Земля рухається навколо Місяця, а Місяць стоїть на місці."
+            order:
+              - "incorrect1"
+              - "incorrect2"
+              - "incorrect3"
+          distractors:
+            items: {}
+            order: []
+  selectMultipleAnswers:
+    whichBodiesReflectSunlight:
+      id: "d83a3db5-4abb-4718-876e-25a0b1685975"
+      slug: "whichBodiesReflectSunlight"
+      type: "selectMultipleAnswers"
+      params:
+        assessmentMethod: "classification"
+        restrictions: []
+      locale: {}
+      content:
+        question:
+          items:
+            prompt:
+              id: "61fc200e-c226-45ab-85fe-95f4c7f4a2f1"
+              slug: "prompt"
+              type: "text"
+              params: {}
+              locale:
+                value:
+                  uk: "Обери ВСІ правильні твердження про джерело світла, яке ми бачимо від різних небесних тіл."
+          order:
+            - "prompt"
+        hint:
+          items:
+            hintText:
+              id: "3f7a848e-6892-4b22-96fe-3ff448871f13"
+              slug: "hintText"
+              type: "text"
+              params: {}
+              locale:
+                value:
+                  uk: "Обирай за джерелом світла, а не за тим, наскільки яскравим здається тіло."
+          order:
+            - "hintText"
+        explanation:
+          items:
+            explanationText:
+              id: "9e711e60-e442-4af0-ba4b-4f00cc5952de"
+              slug: "explanationText"
+              type: "text"
+              params: {}
+              locale:
+                value:
+                  uk: "Сонце й Сіріус — зорі, які самі випромінюють світло. Земля, Марс і Місяць не є зорями; їхні видимі освітлені частини відбивають сонячне світло."
+          order:
+            - "explanationText"
+        answers:
+          correct:
+            items:
+              correct1:
+                id: "dfc3b998-5fe3-47ff-892b-2871193493b1"
+                slug: "correct1"
+                type: "text"
+                params: {}
+                locale:
+                  value:
+                    uk: "Сонце саме випромінює світло."
+              correct2:
+                id: "d593df2a-41a8-41d2-80b7-3c64873e6e48"
+                slug: "correct2"
+                type: "text"
+                params: {}
+                locale:
+                  value:
+                    uk: "Місяць видно завдяки сонячному світлу, яке він відбиває."
+              correct3:
+                id: "c152402d-7508-4bde-89ae-0197defcf34c"
+                slug: "correct3"
+                type: "text"
+                params: {}
+                locale:
+                  value:
+                    uk: "Марс видно завдяки відбитому сонячному світлу."
+              correct4:
+                id: "01f67d7d-319f-4663-bc7a-2e6be3862a7c"
+                slug: "correct4"
+                type: "text"
+                params: {}
+                locale:
+                  value:
+                    uk: "Землю з космосу можна бачити освітленою Сонцем."
+            order:
+              - "correct1"
+              - "correct2"
+              - "correct3"
+              - "correct4"
+          incorrect:
+            items:
+              incorrect1:
+                id: "4684278c-7601-4fba-8bfe-8570b7b604c6"
+                slug: "incorrect1"
+                type: "text"
+                params: {}
+                locale:
+                  value:
+                    uk: "Земля — зоря, бо на фотографіях вона яскрава."
+              incorrect2:
+                id: "9739d695-3065-4436-a96c-74ddd8881e27"
+                slug: "incorrect2"
+                type: "text"
+                params: {}
+                locale:
+                  value:
+                    uk: "Сіріус світиться тільки завдяки відбитому світлу Сонця."
+            order:
+              - "incorrect1"
+              - "incorrect2"
+          distractors:
+            items: {}
+            order: []
+    diagramInterpretationLimits:
+      id: "69a596d4-d22c-4e15-bee1-9558f2adc6c3"
+      slug: "diagramInterpretationLimits"
+      type: "selectMultipleAnswers"
+      params:
+        assessmentMethod: "classification"
+        restrictions: []
+      locale: {}
+      content:
+        question:
+          items:
+            prompt:
+              id: "a61181ee-b267-43e8-8f21-37af3d2b8fa9"
+              slug: "prompt"
+              type: "text"
+              params: {}
+              locale:
+                value:
+                  uk: "Навчальна схема Сонця, Землі та Місяця НЕ показує справжній масштаб. Обери ВСІ правильні висновки, які можна зробити без довіри до намальованих розмірів і кольорів."
+          order:
+            - "prompt"
+        hint:
+          items:
+            hintText:
+              id: "191dd0f2-192f-438f-bdde-cd5c778444b7"
+              slug: "hintText"
+              type: "text"
+              params: {}
+              locale:
+                value:
+                  uk: "Подумай, які відомості схема пояснює, а які вона свідомо не передає в реальному масштабі."
+          order:
+            - "hintText"
+        explanation:
+          items:
+            explanationText:
+              id: "c6567197-0c00-494c-aab8-e6cdc2a8f0c8"
+              slug: "explanationText"
+              type: "text"
+              params: {}
+              locale:
+                value:
+                  uk: "Навчальна схема може відображати правильні зв’язки між тілами, але не гарантує реальних відстаней і розмірів. Колір чи намальована величина не визначають тип небесного тіла."
+          order:
+            - "explanationText"
+        answers:
+          correct:
+            items:
+              correct1:
+                id: "f3115e18-aa6d-4c93-829b-8816de5fa377"
+                slug: "correct1"
+                type: "text"
+                params: {}
+                locale:
+                  value:
+                    uk: "Схема може правильно показувати, хто навколо кого рухається."
+              correct2:
+                id: "20d7cea5-fb29-4959-bb02-08fe9488f95b"
+                slug: "correct2"
+                type: "text"
+                params: {}
+                locale:
+                  value:
+                    uk: "За намальованими відстанями не можна визначити справжні відстані в космосі."
+              correct3:
+                id: "b9ea52dd-a8ba-4c1d-ae84-3309cf82111c"
+                slug: "correct3"
+                type: "text"
+                params: {}
+                locale:
+                  value:
+                    uk: "Тіло не стає зорею чи планетою лише через колір на малюнку."
+            order:
+              - "correct1"
+              - "correct2"
+              - "correct3"
+          incorrect:
+            items:
+              incorrect1:
+                id: "423c511a-e5d4-4cff-8933-afdbce1beb62"
+                slug: "incorrect1"
+                type: "text"
+                params: {}
+                locale:
+                  value:
+                    uk: "Якщо Місяць намальований майже як Сонце, насправді вони майже однакового розміру."
+              incorrect2:
+                id: "5d867a8d-9275-4182-ba6b-a42e96cb20ca"
+                slug: "incorrect2"
+                type: "text"
+                params: {}
+                locale:
+                  value:
+                    uk: "Колір Землі на схемі сам по собі доводить, що Земля — планета."
+            order:
+              - "incorrect1"
+              - "incorrect2"
+          distractors:
+            items: {}
+            order: []
 sectionDrafts:
   items:
     objectRolesQuiz:
