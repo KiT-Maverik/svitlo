@@ -1,7 +1,6 @@
 import type { SupportedLanguages } from '@svitlo/engine/build';
 
-// TODO (BLOCKER): Restore the complete language set when translations are ready:
-// export const languages = ["uk","en","pl","qm"] as const satisfies SupportedLanguages;
-
-export const languages = ["uk"] as const satisfies SupportedLanguages;
+// Stage 9: source-language and three authored translations are present.
+// Real Scene/media resources and independent translation reviews remain pending.
+export const languages = ["uk", "en", "pl", "qm"] as const satisfies SupportedLanguages;
 export type LessonLanguages = typeof languages;
