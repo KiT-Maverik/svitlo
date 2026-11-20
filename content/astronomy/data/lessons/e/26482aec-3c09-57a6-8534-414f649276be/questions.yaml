@@ -236,46 +236,46 @@ questions:
         answers:
           correct:
             items:
-              correct1:
+              responseAlpha:
                 id: "8323f633-127b-4ee5-9db7-fef5348d00e0"
-                slug: "correct1"
+                slug: "responseAlpha"
                 type: "text"
                 params: {}
                 locale:
                   value:
                     uk: "Сонце саме випромінює світло."
             order:
-              - "correct1"
+              - "responseAlpha"
           incorrect:
             items:
-              incorrect1:
+              responseBeta:
                 id: "a5ece195-796f-4f1f-9174-298cbab1320c"
-                slug: "incorrect1"
+                slug: "responseBeta"
                 type: "text"
                 params: {}
                 locale:
                   value:
                     uk: "Сонце відбиває світло Місяця."
-              incorrect2:
+              responseGamma:
                 id: "bbf7f7b6-0253-4480-b95b-3597e560460b"
-                slug: "incorrect2"
+                slug: "responseGamma"
                 type: "text"
                 params: {}
                 locale:
                   value:
                     uk: "Сонце виглядає найбільшим на малюнку."
-              incorrect3:
+              responseDelta:
                 id: "c3493d28-68e3-46c8-bfec-79866b8aabfd"
-                slug: "incorrect3"
+                slug: "responseDelta"
                 type: "text"
                 params: {}
                 locale:
                   value:
                     uk: "Сонце — одна з планет, бо навколо нього є інші планети."
             order:
-              - "incorrect1"
-              - "incorrect2"
-              - "incorrect3"
+              - "responseBeta"
+              - "responseGamma"
+              - "responseDelta"
           distractors:
             items: {}
             order: []
@@ -418,46 +418,46 @@ questions:
         answers:
           correct:
             items:
-              correct1:
+              responseAlpha:
                 id: "0227dcd7-ad99-4eee-9c9c-e00ccaee00cf"
-                slug: "correct1"
+                slug: "responseAlpha"
                 type: "text"
                 params: {}
                 locale:
                   value:
                     uk: "Земля → Сонце; Місяць → Земля."
             order:
-              - "correct1"
+              - "responseAlpha"
           incorrect:
             items:
-              incorrect1:
+              responseBeta:
                 id: "f8a3e749-f5dd-488a-a426-e762f4304ba2"
-                slug: "incorrect1"
+                slug: "responseBeta"
                 type: "text"
                 params: {}
                 locale:
                   value:
                     uk: "Сонце → Земля; Земля → Місяць."
-              incorrect2:
+              responseGamma:
                 id: "1f3fca44-bf66-4456-9465-02ccb081548f"
-                slug: "incorrect2"
+                slug: "responseGamma"
                 type: "text"
                 params: {}
                 locale:
                   value:
                     uk: "Земля → Місяць; Місяць → Сонце."
-              incorrect3:
+              responseDelta:
                 id: "c42e5338-86a7-43dc-a107-a792da153ca1"
-                slug: "incorrect3"
+                slug: "responseDelta"
                 type: "text"
                 params: {}
                 locale:
                   value:
                     uk: "Сонце → Місяць; Місяць → Земля."
             order:
-              - "incorrect1"
-              - "incorrect2"
-              - "incorrect3"
+              - "responseBeta"
+              - "responseGamma"
+              - "responseDelta"
           distractors:
             items: {}
             order: []
@@ -600,46 +600,46 @@ questions:
         answers:
           correct:
             items:
-              correct1:
+              responseAlpha:
                 id: "cef5cbf5-65ed-4d1c-8382-098c1cf6e972"
-                slug: "correct1"
+                slug: "responseAlpha"
                 type: "text"
                 params: {}
                 locale:
                   value:
                     uk: "Сіріус — зоря, що випромінює світло; Марс — планета, яку ми бачимо завдяки відбитому сонячному світлу."
             order:
-              - "correct1"
+              - "responseAlpha"
           incorrect:
             items:
-              incorrect1:
+              responseBeta:
                 id: "5a22a382-ad3d-4cdc-9bd3-68589fa118de"
-                slug: "incorrect1"
+                slug: "responseBeta"
                 type: "text"
                 params: {}
                 locale:
                   value:
                     uk: "Марс — зоря, а Сіріус — планета, бо Сіріус дуже далеко."
-              incorrect2:
+              responseGamma:
                 id: "89e4112d-b84f-4c97-872b-10d76b639d97"
-                slug: "incorrect2"
+                slug: "responseGamma"
                 type: "text"
                 params: {}
                 locale:
                   value:
                     uk: "Обидва — зорі, адже їх видно світними."
-              incorrect3:
+              responseDelta:
                 id: "74b7108b-006a-470e-80f4-20bc4bec8129"
-                slug: "incorrect3"
+                slug: "responseDelta"
                 type: "text"
                 params: {}
                 locale:
                   value:
                     uk: "Обидва — планети, бо вони можуть здаватися цятками."
             order:
-              - "incorrect1"
-              - "incorrect2"
-              - "incorrect3"
+              - "responseBeta"
+              - "responseGamma"
+              - "responseDelta"
           distractors:
             items: {}
             order: []
@@ -691,46 +691,46 @@ questions:
         answers:
           correct:
             items:
-              correct1:
+              responseAlpha:
                 id: "c0c2c713-f05a-411a-9255-a7001e88479b"
-                slug: "correct1"
+                slug: "responseAlpha"
                 type: "text"
                 params: {}
                 locale:
                   value:
                     uk: "Природний супутник тієї планети."
             order:
-              - "correct1"
+              - "responseAlpha"
           incorrect:
             items:
-              incorrect1:
+              responseBeta:
                 id: "83ab6212-08fb-4e47-ae93-58d16f373e51"
-                slug: "incorrect1"
+                slug: "responseBeta"
                 type: "text"
                 params: {}
                 locale:
                   value:
                     uk: "Тільки Місяць Землі, незалежно від того, навколо чого воно рухається."
-              incorrect2:
+              responseGamma:
                 id: "481164f1-fb07-4c6e-83cc-858b9443fcba"
-                slug: "incorrect2"
+                slug: "responseGamma"
                 type: "text"
                 params: {}
                 locale:
                   value:
                     uk: "Зоря, адже воно знаходиться в космосі."
-              incorrect3:
+              responseDelta:
                 id: "ea346523-31f1-4bfb-b78d-9f2ec72f2e88"
-                slug: "incorrect3"
+                slug: "responseDelta"
                 type: "text"
                 params: {}
                 locale:
                   value:
                     uk: "Планета, бо будь-який рух у космосі означає, що тіло є планетою."
             order:
-              - "incorrect1"
-              - "incorrect2"
-              - "incorrect3"
+              - "responseBeta"
+              - "responseGamma"
+              - "responseDelta"
           distractors:
             items: {}
             order: []
@@ -782,46 +782,46 @@ questions:
         answers:
           correct:
             items:
-              correct1:
+              responseAlpha:
                 id: "617d9c6c-ace1-4190-849e-d1c7d4881f31"
-                slug: "correct1"
+                slug: "responseAlpha"
                 type: "text"
                 params: {}
                 locale:
                   value:
                     uk: "Місяць рухається навколо Землі й разом із нею подорожує навколо Сонця."
             order:
-              - "correct1"
+              - "responseAlpha"
           incorrect:
             items:
-              incorrect1:
+              responseBeta:
                 id: "b4a126d9-6521-48e7-be15-16d9f4ea0c60"
-                slug: "incorrect1"
+                slug: "responseBeta"
                 type: "text"
                 params: {}
                 locale:
                   value:
                     uk: "Місяць може рухатися тільки навколо Землі й ніколи разом із нею навколо Сонця."
-              incorrect2:
+              responseGamma:
                 id: "94b34eb3-39dc-4240-a11d-a897fe12a777"
-                slug: "incorrect2"
+                slug: "responseGamma"
                 type: "text"
                 params: {}
                 locale:
                   value:
                     uk: "Місяць рухається тільки навколо Сонця й зовсім не рухається навколо Землі."
-              incorrect3:
+              responseDelta:
                 id: "ab502be8-ef79-4306-8f03-1bb6443c2566"
-                slug: "incorrect3"
+                slug: "responseDelta"
                 type: "text"
                 params: {}
                 locale:
                   value:
                     uk: "Земля рухається навколо Місяця, а Місяць стоїть на місці."
             order:
-              - "incorrect1"
-              - "incorrect2"
-              - "incorrect3"
+              - "responseBeta"
+              - "responseGamma"
+              - "responseDelta"
           distractors:
             items: {}
             order: []

@@ -13,35 +13,55 @@ const content = {
   ]
 };
 
-// TODO (BLOCKER): TEMPORARY Questions Stage 1 reference scaffold only.
-// Replace this synthetic Question UUID with approved Question Bank UUID(s),
-// review all provisional Quiz parameters, and verify publication before Ready.
+// TODO (BLOCKER): Stage 4 independent assessment review and Stage 5 bank publication are pending.
+// These five IDs are real authored Question candidates, not yet independently approved
+// or published. Remove this blocker only after verified bank and Quiz integration.
 export const objectRolesQuiz = defineQuizSection<"objectRolesQuiz", typeof content.items, LessonLanguages>({
   id: "742ca5c5-d2c1-4cc2-a268-ef50ce3f07e8",
   slug: "objectRolesQuiz",
   type: "quiz",
   params: {
     isBlocker: true,
-    // TODO (BLOCKER): Not a real Question! Synthetic UUID used only to build review Markdown.
     selection: {
       mode: "all",
-      questionIds: ["ee3b5c97-6ea0-4ca0-a2bd-1a8cf7e72451"]
+      questionIds: [
+        "2cac0cd9-d965-4aab-af33-2506aa0f8619",
+        "78303144-3bed-4a89-9610-75ae49ae65cd",
+        "a2e493f2-e579-4baa-8f85-2171d78afb10",
+        "53b10c2c-1120-42c2-a62a-1d63ed539d3b",
+        "2165dc36-c878-48e8-b589-d20ac332b86d"
+      ]
     },
-    // TODO (BLOCKER): Provisional interaction/results choices; Assessment Architect must approve.
-    layout: { mode: "stack" },
-    feedbackMode: "after-completion",
+    layout: {
+      mode: "stepper",
+      showProgress: true
+    },
+    feedbackMode: "immediate",
+    questionOptions: {
+      selectOneAnswer: {
+        shuffleAnswers: true
+      }
+    },
     interaction: {
-      retries: 0,
-      showErrors: false,
+      retries: 1,
+      showErrors: true,
       showCorrectAnswers: false,
-      allowExplanations: false,
+      allowExplanations: true,
       allowDeferring: false,
-      allowQuestionNavigation: false,
+      allowQuestionNavigation: true,
       skippable: false
     },
+    // Diagnostic feedback, not a claim of mastery or a numerical pass threshold.
     results: {
-      visibility: "hidden",
+      visibility: "after-review",
       showScore: false
+    },
+    // TODO (BLOCKER): Verify the intro screen is actually rendered by the UI Kit;
+    // current EngineQuestionRenderer does not read Quiz screen content.
+    screen: {
+      starting: {
+        content: ["quizIntroduction"]
+      }
     }
   },
   locale: {

@@ -24,7 +24,8 @@ export const sunEarthMoonRoles = defineLesson<"sunEarthMoonRoles", LessonLanguag
       uk: "Сонце, Земля і Місяць — хто є хто?"
     }
   },
-  // TODO (BLOCKER): Temporary objectRolesQuiz contains a synthetic Question UUID.
-  // Replace with independently reviewed bank UUIDs and approved Quiz parameters before Ready.
+  // TODO (BLOCKER): The required objectRolesQuiz now selects five real authored Question UUIDs,
+  // but independent assessment review, bank publication, locale coverage and runtime intro verification
+  // are still pending. Do not mark the Lesson Ready or publish unresolved resources.
   section
 });
