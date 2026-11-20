@@ -8,6 +8,9 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const uuid = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/;
+// Reserved UUIDv8 namespace allocated only by the Lesson draft scaffolder.
+// It may not become a published Section or Question/Flashcard identity.
+const pendingId = id => typeof id === 'string' && id.startsWith('feedc0de-');
 const isRecord = value => value !== null && typeof value === 'object' && !Array.isArray(value);
 
 function json(filename) {
@@ -106,6 +109,9 @@ export function verifyAssessmentSelections(staticRoot) {
       const languages = lesson.params?.languages;
       if (!Array.isArray(languages) || !languages.length)
         throw new Error('Missing generated Lesson languages: ' + owner);
+      if (lesson.section.some(section => pendingId(section.id))) {
+        throw new Error('Unresolved generated assessment Section UUID in Lesson ' + id);
+      }
       const sections = lesson.section.filter(
         section => ['quiz', 'flashcards'].includes(section.type) && section.params?.disabled !== true,
       );
@@ -120,6 +126,9 @@ export function verifyAssessmentSelections(staticRoot) {
         if (new Set(ids).size !== ids.length)
           throw new Error('Duplicate selected ' + key + ' in Section ' + section.id);
         for (const selectedId of ids) {
+          if (pendingId(selectedId)) {
+            throw new Error('Unresolved placeholder ' + kind + ' UUID ' + selectedId + ' in Section ' + section.id);
+          }
           if (typeof selectedId !== 'string' || !uuid.test(selectedId))
             throw new Error('Invalid ' + kind + ' UUID in Section ' + section.id);
           const entry = manifest.entries[selectedId];
