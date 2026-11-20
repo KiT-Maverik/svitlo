@@ -1,4 +1,4 @@
-import { existsSync, readFileSync } from 'node:fs';
+import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { resolve } from 'node:path';
 
 const root = process.cwd();
@@ -42,6 +42,30 @@ if (cli.length) {
     'Unknown workspace in artifact check: ' + selected.join(', '),
   );
   assert(new Set(selected).size === selected.length, 'Duplicate workspace in artifact check');
+}
+
+/** Locate only real authored Lesson roots, not empty editorial UUID folders. */
+function authoredLessons(workspace) {
+  const source = resolve(workspace, 'data/lessons');
+  if (!existsSync(source)) return [];
+  const result = [];
+  for (const bucket of readdirSync(source, { withFileTypes: true })) {
+    if (!bucket.isDirectory() || !/^[0-9a-f]$/.test(bucket.name)) continue;
+    const bucketPath = resolve(source, bucket.name);
+    for (const folder of readdirSync(bucketPath, { withFileTypes: true })) {
+      if (
+        !folder.isDirectory() ||
+        !/^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/.test(folder.name) ||
+        !folder.name.endsWith(bucket.name)
+      ) continue;
+      const lessonDir = resolve(bucketPath, folder.name);
+      if (
+        existsSync(resolve(lessonDir, 'index.ts')) ||
+        readdirSync(lessonDir).some(name => name.endsWith('.data.ts'))
+      ) result.push('data/lessons/' + bucket.name + '/' + folder.name);
+    }
+  }
+  return result;
 }
 
 let checked = 0;
@@ -142,10 +166,18 @@ for (const path of selected) {
       manifest.files.some(file => file.startsWith('data/skills/')),
       'Missing authored Skill taxonomy: ' + name,
     );
+    const lessonSources = authoredLessons(resolve(root, path));
+    const lessonFiles = manifest.files.filter(file => file.startsWith('data/lessons/'));
     assert(
-      !manifest.files.some(file => file.startsWith('data/lessons/')),
+      lessonFiles.every(file => lessonSources.some(source => file.startsWith(source + '/'))),
       'Unexpected non-authored Lesson JSON: ' + name,
     );
+    for (const source of lessonSources) {
+      assert(
+        lessonFiles.includes(source + '/base.json'),
+        'Missing authored Lesson JSON: ' + name + '/' + source,
+      );
+    }
     for (const file of manifest.files)
       assert(
         existsSync(resolve(root, path, 'dist/static', file)),

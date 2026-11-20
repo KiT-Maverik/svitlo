@@ -1,5 +1,431 @@
 documentLanguage: uk
-questions: {}
+questions:
+  selectOneAnswer: 
+    identifyUnsafeOptics: 
+      id: "6ea474dd-2cec-5927-992c-9220b6d2b68f"
+      slug: "identifyUnsafeOptics"
+      type: "selectOneAnswer"
+      params: 
+        assessmentMethod: "classification"
+        restrictions: []
+      locale: {}
+      content: 
+        question: 
+          items: 
+            prompt: 
+              id: "b8a0eb4b-4824-5279-99e8-d2f51e1c5b7e"
+              slug: "prompt"
+              type: "text"
+              params: {}
+              locale: 
+                value: 
+                  uk: "Який із цих способів дізнаватися про Сонце небезпечний для очей?"
+          order: ["prompt"]
+        hint: 
+          items: 
+            hintText: 
+              id: "b7b266ea-417e-57aa-ad1c-b544f4836c6a"
+              slug: "hintText"
+              type: "text"
+              params: {}
+              locale: 
+                value: 
+                  uk: "Подумай, чи треба спрямовувати власні очі на справжнє Сонце, щоб отримати відомості."
+          order: ["hintText"]
+        explanation: 
+          items: 
+            explanationText: 
+              id: "fa51424d-b38b-5efe-8437-594e136461f0"
+              slug: "explanationText"
+              type: "text"
+              params: {}
+              locale: 
+                value: 
+                  uk: "Бінокль без належного спеціального сонячного фільтра робить пряме споглядання Сонця особливо небезпечним. Готові перевірені знімки та описи дозволяють дізнаватися про Сонце без цього ризику."
+          order: ["explanationText"]
+        answers: 
+          correct: 
+            items: 
+              correctChoice: 
+                id: "ae194194-48af-537c-beba-d9447e8528c6"
+                slug: "correctChoice"
+                type: "text"
+                params: {}
+                locale: 
+                  value: 
+                    uk: "Подивитися на Сонце крізь бінокль без спеціального сонячного фільтра."
+            order: ["correctChoice"]
+          incorrect: 
+            items: 
+              otherChoice1: 
+                id: "c05e2112-2754-590d-84fc-93086306986f"
+                slug: "otherChoice1"
+                type: "text"
+                params: {}
+                locale: 
+                  value: 
+                    uk: "Розглянути підписаний науковий знімок Сонця."
+              otherChoice2: 
+                id: "969d72e4-6382-54ee-bd8f-e9ef05a0a902"
+                slug: "otherChoice2"
+                type: "text"
+                params: {}
+                locale: 
+                  value: 
+                    uk: "Послухати опис готового знімка Сонця."
+              otherChoice3: 
+                id: "9cb355c3-3b69-589b-8d8b-c1b8b5fa6060"
+                slug: "otherChoice3"
+                type: "text"
+                params: {}
+                locale: 
+                  value: 
+                    uk: "Прочитати науковий опис Сонця з дорослим."
+            order: ["otherChoice1", "otherChoice2", "otherChoice3"]
+          distractors: 
+            items: {}
+            order: []
+    replaceRiskyQuickLook: 
+      id: "ae44c3d6-f62e-56ce-9679-acf4daec8da9"
+      slug: "replaceRiskyQuickLook"
+      type: "selectOneAnswer"
+      params: 
+        assessmentMethod: "application"
+        restrictions: []
+      locale: {}
+      content: 
+        question: 
+          items: 
+            prompt: 
+              id: "13c9adcb-f951-5168-acc6-c14931268f89"
+              slug: "prompt"
+              type: "text"
+              params: {}
+              locale: 
+                value: 
+                  uk: "Андрій хоче дізнатися, який вигляд має Сонце, і пропонує швидко глянути на нього крізь вікно. Що варто порадити?"
+          order: ["prompt"]
+        hint: 
+          items: 
+            hintText: 
+              id: "5aa6ca06-b91e-54e8-8a3f-ef9c6ff20818"
+              slug: "hintText"
+              type: "text"
+              params: {}
+              locale: 
+                value: 
+                  uk: "Обери спосіб, який не потребує, щоб хтось дивився безпосередньо на Сонце."
+          order: ["hintText"]
+        explanation: 
+          items: 
+            explanationText: 
+              id: "61403fea-6a9a-5d06-97d3-419ac4a98bfb"
+              slug: "explanationText"
+              type: "text"
+              params: {}
+              locale: 
+                value: 
+                  uk: "Ні скло звичайного вікна, ні сонцезахисні окуляри, ні короткий погляд не роблять пряме спостереження Сонця безпечним. Підготовлений знімок дає потрібні відомості без ризику для чиїхось очей."
+          order: ["explanationText"]
+        answers: 
+          correct: 
+            items: 
+              correctChoice: 
+                id: "5484d523-7aee-5bd2-94d4-774bcf2aa45f"
+                slug: "correctChoice"
+                type: "text"
+                params: {}
+                locale: 
+                  value: 
+                    uk: "Розглянути разом перевірений науковий знімок Сонця."
+            order: ["correctChoice"]
+          incorrect: 
+            items: 
+              otherChoice1: 
+                id: "f74eb31d-17e7-5670-82cf-f1624f500566"
+                slug: "otherChoice1"
+                type: "text"
+                params: {}
+                locale: 
+                  value: 
+                    uk: "Подивитися на Сонце крізь вікно лише на мить."
+              otherChoice2: 
+                id: "2cdb6754-9e75-5bc2-98ec-147c7872feaf"
+                slug: "otherChoice2"
+                type: "text"
+                params: {}
+                locale: 
+                  value: 
+                    uk: "Подивитися на Сонце у звичайних темних окулярах."
+              otherChoice3: 
+                id: "6b6eac82-4c33-5a83-b627-193c28914228"
+                slug: "otherChoice3"
+                type: "text"
+                params: {}
+                locale: 
+                  value: 
+                    uk: "Попросити друга подивитися замість нього й розповісти."
+            order: ["otherChoice1", "otherChoice2", "otherChoice3"]
+          distractors: 
+            items: {}
+            order: []
+    classifyCloudObservation: 
+      id: "07e1b3a0-5450-5937-b763-66950c254d34"
+      slug: "classifyCloudObservation"
+      type: "selectOneAnswer"
+      params: 
+        assessmentMethod: "classification"
+        restrictions: []
+      locale: {}
+      content: 
+        question: 
+          items: 
+            prompt: 
+              id: "e61722c1-25d7-506e-bedb-813050420d57"
+              slug: "prompt"
+              type: "text"
+              params: {}
+              locale: 
+                value: 
+                  uk: "Яка дія допоможе дослідити денне небо, не дивлячись на Сонце?"
+          order: ["prompt"]
+        hint: 
+          items: 
+            hintText: 
+              id: "5d6244bc-7067-5734-8bb9-b10741412c81"
+              slug: "hintText"
+              type: "text"
+              params: {}
+              locale: 
+                value: 
+                  uk: "Перевір кожен варіант: чи стосується він денного неба і чи потребує погляду на Сонце?"
+          order: ["hintText"]
+        explanation: 
+          items: 
+            explanationText: 
+              id: "ce689630-d7a8-5e23-a39a-782d75271cfa"
+              slug: "explanationText"
+              type: "text"
+              params: {}
+              locale: 
+                value: 
+                  uk: "Хмари є частиною денного неба, і їх можна порівнювати на готових знімках. Небо не обов'язково досліджувати вночі; небезпечні спроби подивитися на Сонце для цього не потрібні."
+          order: ["explanationText"]
+        answers: 
+          correct: 
+            items: 
+              correctChoice: 
+                id: "8675b5fd-f59d-5b43-b1bc-055863ede5cb"
+                slug: "correctChoice"
+                type: "text"
+                params: {}
+                locale: 
+                  value: 
+                    uk: "Порівняти форми хмар на двох готових фотографіях денного неба."
+            order: ["correctChoice"]
+          incorrect: 
+            items: 
+              otherChoice1: 
+                id: "61aa6684-08b7-5266-ab8a-5a855c1a78a5"
+                slug: "otherChoice1"
+                type: "text"
+                params: {}
+                locale: 
+                  value: 
+                    uk: "Подивитися на Сонце крізь звичайні сонцезахисні окуляри."
+              otherChoice2: 
+                id: "9dfb0a7c-cecb-5609-890a-bce644f1894c"
+                slug: "otherChoice2"
+                type: "text"
+                params: {}
+                locale: 
+                  value: 
+                    uk: "Спрямувати бінокль на Сонце, щоб роздивитися його ближче."
+              otherChoice3: 
+                id: "a9de8af1-ca6b-5202-bec4-dc9d7139393f"
+                slug: "otherChoice3"
+                type: "text"
+                params: {}
+                locale: 
+                  value: 
+                    uk: "Відкласти дослідження неба до ночі, бо вдень це неможливо."
+            order: ["otherChoice1", "otherChoice2", "otherChoice3"]
+          distractors: 
+            items: {}
+            order: []
+    recognizeMakeshiftFilter:
+      id: "2fe79ced-70c0-54b5-b40a-a99145ac0670"
+      slug: "recognizeMakeshiftFilter"
+      type: "selectOneAnswer"
+      params:
+        assessmentMethod: "classification"
+        restrictions: []
+      locale: {}
+      content:
+        question:
+          items:
+            prompt:
+              id: "3ef7e26f-0b56-5d91-8965-be71cf987cc2"
+              slug: "prompt"
+              type: "text"
+              params: {}
+              locale:
+                value:
+                  uk: "Тато знайшов удома темну плівку й каже, що через неї можна дивитися на Сонце. Який висновок правильний?"
+          order: ["prompt"]
+        hint:
+          items:
+            hintText:
+              id: "c5c7f415-1363-5dd7-8ec9-3f4d70c37c8c"
+              slug: "hintText"
+              type: "text"
+              params: {}
+              locale:
+                value:
+                  uk: "Подумай, чи можна визначити захисні властивості матеріалу лише за тим, наскільки темним він здається."
+          order: ["hintText"]
+        explanation:
+          items:
+            explanationText:
+              id: "1b3c037e-1ee2-5f95-ad62-aa7d70fa3f5d"
+              slug: "explanationText"
+              type: "text"
+              params: {}
+              locale:
+                value:
+                  uk: "Саморобна темна плівка не є перевіреним сонячним фільтром. Темний вигляд матеріалу, короткий час і перебування за вікном не доводять безпеки прямого погляду на Сонце. Замість цього можна розглянути готовий науковий знімок."
+          order: ["explanationText"]
+        answers:
+          correct:
+            items:
+              correctChoice:
+                id: "cdabe3a7-30b1-56a2-a264-eba3a33e32a5"
+                slug: "correctChoice"
+                type: "text"
+                params: {}
+                locale:
+                  value:
+                    uk: "Темна плівка не замінює спеціального захисту; дивитися крізь неї на Сонце не можна."
+            order: ["correctChoice"]
+          incorrect:
+            items:
+              otherChoice1:
+                id: "60d68e48-db41-5ed1-97aa-8a864429ef90"
+                slug: "otherChoice1"
+                type: "text"
+                params: {}
+                locale:
+                  value:
+                    uk: "Якщо плівка дуже темна, вона обов'язково захищає очі."
+              otherChoice2:
+                id: "a8ad767b-138b-5a59-9f1c-ad3196c43919"
+                slug: "otherChoice2"
+                type: "text"
+                params: {}
+                locale:
+                  value:
+                    uk: "Через темну плівку безпечно дивитися на Сонце кілька секунд."
+              otherChoice3:
+                id: "1e5de2c2-a438-541f-9eaf-b4c198f09ed8"
+                slug: "otherChoice3"
+                type: "text"
+                params: {}
+                locale:
+                  value:
+                    uk: "У приміщенні темна плівка робить прямий погляд на Сонце безпечним."
+            order: ["otherChoice1", "otherChoice2", "otherChoice3"]
+          distractors:
+            items: {}
+            order: []
+    chooseRecordedProjection:
+      id: "c13961b9-4282-5ddd-ab30-bf20ef2c785a"
+      slug: "chooseRecordedProjection"
+      type: "selectOneAnswer"
+      params:
+        assessmentMethod: "application"
+        restrictions: []
+      locale: {}
+      content:
+        question:
+          items:
+            prompt:
+              id: "5a99f567-ffe1-5497-a3df-17b2234fa48b"
+              slug: "prompt"
+              type: "text"
+              params: {}
+              locale:
+                value:
+                  uk: "На занятті розповіли, що фахівці можуть отримувати проєкцію Сонця. Тобі цікаво побачити результат. Як вчинити безпечно?"
+          order: ["prompt"]
+        hint:
+          items:
+            hintText:
+              id: "ad42485a-664c-5255-88e1-5cd773cdc7cd"
+              slug: "hintText"
+              type: "text"
+              params: {}
+              locale:
+                value:
+                  uk: "Подумай, чи можна побачити результат, не спрямовуючи власні очі або прилади на Сонце."
+          order: ["hintText"]
+        explanation:
+          items:
+            explanationText:
+              id: "e69b3bb6-2732-56c1-a195-07aa1fbf9ba5"
+              slug: "explanationText"
+              type: "text"
+              params: {}
+              locale:
+                value:
+                  uk: "Готовий запис проєкції можна безпечно розглядати без прямого погляду на Сонце. Самостійно виготовляти чи налаштовувати сонячні пристрої дітям не потрібно. Через отвір проєктора на Сонце дивитися не можна."
+          order: ["explanationText"]
+        answers:
+          correct:
+            items:
+              correctChoice:
+                id: "b4237ae4-3cb2-580f-8e52-3aed43f8a880"
+                slug: "correctChoice"
+                type: "text"
+                params: {}
+                locale:
+                  value:
+                    uk: "Попросити показати готовий запис проєкції, підготовлений фахівцями."
+            order: ["correctChoice"]
+          incorrect:
+            items:
+              otherChoice1:
+                id: "37f99454-61f2-5807-84b0-5fa2fa82fac7"
+                slug: "otherChoice1"
+                type: "text"
+                params: {}
+                locale:
+                  value:
+                    uk: "Самостійно зібрати пристрій для проєкції та випробувати його на Сонці."
+              otherChoice2:
+                id: "8e076576-ca1c-5f68-8b1e-46c01ba835ba"
+                slug: "otherChoice2"
+                type: "text"
+                params: {}
+                locale:
+                  value:
+                    uk: "Подивитися на Сонце крізь отвір пристрою, схожого на той, що описали."
+              otherChoice3:
+                id: "7b6066a8-e400-5851-a076-c218ed2ea055"
+                slug: "otherChoice3"
+                type: "text"
+                params: {}
+                locale:
+                  value:
+                    uk: "Попросити друга зробити проєкцію без нагляду дорослого."
+            order: ["otherChoice1", "otherChoice2", "otherChoice3"]
+          distractors:
+            items: {}
+            order: []
+quizSelections:
+  2d844bab-f77e-5dc5-adb9-7891d5bb6b59:
+    - 6ea474dd-2cec-5927-992c-9220b6d2b68f
+    - ae44c3d6-f62e-56ce-9679-acf4daec8da9
+    - 07e1b3a0-5450-5937-b763-66950c254d34
 sectionDrafts:
   items:
     safeSkyChoices:
@@ -7,7 +433,42 @@ sectionDrafts:
         id: 2d844bab-f77e-5dc5-adb9-7891d5bb6b59
         slug: safeSkyChoices
         type: quiz
-        params: {}
+        params:
+          isBlocker: true
+          skippable: false
+          selection:
+            mode: all
+            questionIds:
+              - 6ea474dd-2cec-5927-992c-9220b6d2b68f
+              - ae44c3d6-f62e-56ce-9679-acf4daec8da9
+              - 07e1b3a0-5450-5937-b763-66950c254d34
+            shuffle: false
+          layout:
+            mode: stepper
+            showProgress: true
+          feedbackMode: immediate
+          grading:
+            mode: percentage
+            successThreshold: 100
+          interaction:
+            retries: 1
+            showErrors: true
+            showCorrectAnswers: false
+            allowExplanations: true
+            allowDeferring: false
+            allowQuestionNavigation: false
+            skippable: false
+          questionOptions:
+            selectOneAnswer:
+              shuffleAnswers: true
+          results:
+            visibility: immediate
+            showScore: false
+          screen:
+            starting:
+              showDefaultContent: false
+              content:
+                - quizIntro
         locale:
           title:
             uk: Перевір безпечний вибір
@@ -50,17 +511,19 @@ sectionDrafts:
         productionNotes: >-
           Quiz placement only: assessmentPlanKey=safeSkyChoices;
           Skill=b4b9b469-391d-40f8-b11d-6884c76ed106;
-          methods=classification,application. params: {} deliberately incomplete
-          pending independently reviewed Question Bank, genuine questionIds,
-          grading, interaction and screen selection from Assessment Architect.
-          Stage 6 preflight/publication blocked until completed. Для дитини, що
+          methods=classification,application. Stage 3 design: explicit candidate
+          questionIds/selection, grading, interaction, layout and starting-screen
+          reference are authored in this sectionDrafts handoff and temporary
+          quizSelections. These are NOT active Lesson Section TypeScript and NOT
+          independently approved or published Question resources. The actual
+          Section integration and bank publication remain pending Stage 5. Для дитини, що
           не читає: ведучий читає quizIntro й майбутні реальні формулювання
           Questions, описує усі зображення словами, надає можливість дати
           усну/вказівну відповідь за валідним погодженим способом. До публікації
           Assessment Architect + Coding Agent мають перевірити доступність
           справжніх форматів Questions і відсутність допомоги, яка підказує
-          відповідь. Аудіо/TTS та Question Bank наразі відсутні, жодного
-          оцінювання ще немає.
+          відповідь. Аудіо/TTS не додано; Question Bank існує лише як неперевірена
+          YAML-чернетка. Реальні оцінювані Question Props не опубліковано.
 
           Assessment intent: safeSkyChoices
 

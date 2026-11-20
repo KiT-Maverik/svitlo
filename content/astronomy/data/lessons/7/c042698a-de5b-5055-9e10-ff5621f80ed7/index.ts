@@ -12,7 +12,7 @@ export const firstLookAtSky = defineLesson<"firstLookAtSky", LessonLanguages, ty
   skills: [safeSolarObservation.id],
   params: {
     languages,
-    quizRequiredForCompletion: true,
+    requireQuiz: true,
     sections: {
       allowNavigation: true,
       allowSkipping: true,
@@ -24,6 +24,6 @@ export const firstLookAtSky = defineLesson<"firstLookAtSky", LessonLanguages, ty
       uk: "Почнімо досліджувати небо"
     }
   },
-  // TODO (BLOCKER): Quiz Section "safeSkyChoices" is unfinished; integrate its reviewed bank and completed Section before Lesson publication.
+  // TODO (BLOCKER): Verify Quiz intro rendering and pass/fail navigation in UI Kit before Lesson publication.
   section
 });
