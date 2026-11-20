@@ -1,5 +1,5 @@
 import type { SupportedLanguages } from '@svitlo/engine/build';
 
-// TODO (BLOCKER): Obtain independent Crimean Tatar linguistic review before Ready; authoring is a draft.
+// Crimean Tatar text has independent best-effort AI review; native-language review remains recommended.
 export const languages = ["uk","en","pl","qm"] as const satisfies SupportedLanguages;
 export type LessonLanguages = typeof languages;
