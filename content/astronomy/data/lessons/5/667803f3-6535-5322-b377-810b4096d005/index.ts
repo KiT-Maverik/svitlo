@@ -24,6 +24,5 @@ export const moonAppearanceBasics = defineLesson<"moonAppearanceBasics", LessonL
       uk: "Чому Місяць виглядає по-різному"
     }
   },
-  // TODO (BLOCKER): Quiz Section "sunlitMoonAppearanceQuiz" is unfinished; integrate its reviewed bank and completed Section before Lesson publication.
   section
 });
