@@ -108,7 +108,7 @@ export function MoonScene({ locales }: MoonSceneProps) {
             <button type="button" className={styles.button} aria-pressed={!state.cloudy}
               onClick={() => dispatch({ type: 'cloud', visible: false })}>{t('hideCloud')}</button>
           </div>
-          <fieldset className={styles.card}>
+          {state.cloudy && <fieldset className={styles.card}>
             <legend>{t('cloudPrompt')}</legend>
             <div className={styles.controls}>
               <button type="button" className={styles.button} aria-pressed={state.cloudAnswer === 'cloudNotPhase'}
@@ -123,7 +123,7 @@ export function MoonScene({ locales }: MoonSceneProps) {
             {state.cloudAnswer && (
               <p className={styles.feedback} role="status" aria-live="polite">{t(cloudFeedback)}</p>
             )}
-          </fieldset>
+          </fieldset>}
         </div>
         <button type="button" className={styles.button}
           onClick={() => dispatch({ type: 'reset' })}>{t('again')}</button>
