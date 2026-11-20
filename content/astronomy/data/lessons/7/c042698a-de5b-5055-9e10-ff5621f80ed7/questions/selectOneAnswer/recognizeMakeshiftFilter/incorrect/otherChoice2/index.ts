@@ -11,7 +11,8 @@ export const otherChoice2 = defineText<"otherChoice2", LessonLanguages>({
     value: {
       uk: "Через темну плівку безпечно дивитися на Сонце кілька секунд.",
       en: "It is safe to look at the Sun through dark film for a few seconds.",
-      pl: "Przez ciemną folię można bezpiecznie patrzeć na Słońce przez kilka sekund."
+      pl: "Przez ciemną folię można bezpiecznie patrzeć na Słońce przez kilka sekund.",
+      qm: "Qoyu plönka aşasından Küneşke bir qaç saniye baqmaq telükesiz."
     }
   }
 });

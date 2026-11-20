@@ -11,7 +11,8 @@ export const correctChoice = defineText<"correctChoice", LessonLanguages>({
     value: {
       uk: "Порівняти форми хмар на двох готових фотографіях денного неба.",
       en: "Compare the shapes of clouds in two existing photographs of the daytime sky.",
-      pl: "Porównać kształty chmur na dwóch gotowych zdjęciach dziennego nieba."
+      pl: "Porównać kształty chmur na dwóch gotowych zdjęciach dziennego nieba.",
+      qm: "Kündüzgi semanıñ eki azır fotoresminde bulutlarnıñ şekillerini teñeştirmek."
     }
   }
 });

@@ -11,7 +11,8 @@ export const explanationText = defineText<"explanationText", LessonLanguages>({
     value: {
       uk: "Хмари є частиною денного неба, і їх можна порівнювати на готових знімках. Небо не обов'язково досліджувати вночі; небезпечні спроби подивитися на Сонце для цього не потрібні.",
       en: "Clouds are part of the daytime sky, and you can compare them in photographs that have already been taken. You can study the sky during the day, not just at night. There is no need to risk looking at the Sun.",
-      pl: "Chmury są częścią dziennego nieba i można je porównywać na gotowych zdjęciach. Niebo można badać również w dzień, a nie tylko w nocy. Nie trzeba do tego ryzykować patrzenia na Słońce."
+      pl: "Chmury są częścią dziennego nieba i można je porównywać na gotowych zdjęciach. Niebo można badać również w dzień, a nie tylko w nocy. Nie trzeba do tego ryzykować patrzenia na Słońce.",
+      qm: "Bulutlar kündüzgi semanıñ bir qısmıdır, olarnı azır fotoresimlerde teñeştirmek mümkün. Semanı tek geceleri degil, kündüz de ögrenmek mümkün; bunıñ içün Küneşke telükeli şekilde baqmaq kerek degil."
     }
   }
 });

@@ -11,7 +11,8 @@ export const otherChoice3 = defineText<"otherChoice3", LessonLanguages>({
     value: {
       uk: "Відкласти дослідження неба до ночі, бо вдень це неможливо.",
       en: "Wait until night to study the sky because it is impossible during the day.",
-      pl: "Odłożyć badanie nieba do nocy, bo w dzień nie jest to możliwe."
+      pl: "Odłożyć badanie nieba do nocy, bo w dzień nie jest to możliwe.",
+      qm: "Kündüz semanı ögrenmek mümkün degil dep, onı gecege qaldırmaq."
     }
   }
 });

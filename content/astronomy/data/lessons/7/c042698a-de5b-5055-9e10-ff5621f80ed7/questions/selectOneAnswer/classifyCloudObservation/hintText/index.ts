@@ -11,7 +11,8 @@ export const hintText = defineText<"hintText", LessonLanguages>({
     value: {
       uk: "Перевір кожен варіант: чи стосується він денного неба і чи потребує погляду на Сонце?",
       en: "Check each option: is it about the daytime sky, and does it require looking at the Sun?",
-      pl: "Sprawdź każdą odpowiedź: czy dotyczy dziennego nieba i czy wymaga patrzenia na Słońce?"
+      pl: "Sprawdź każdą odpowiedź: czy dotyczy dziennego nieba i czy wymaga patrzenia na Słońce?",
+      qm: "Er bir variantnı tekşir: o kündüzgi semağa aidmi ve onı yapmaq içün Küneşke baqmaq kerekmi?"
     }
   }
 });

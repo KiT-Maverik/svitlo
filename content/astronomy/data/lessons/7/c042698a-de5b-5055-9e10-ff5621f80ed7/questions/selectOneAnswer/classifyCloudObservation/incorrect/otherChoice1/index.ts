@@ -11,7 +11,8 @@ export const otherChoice1 = defineText<"otherChoice1", LessonLanguages>({
     value: {
       uk: "Подивитися на Сонце крізь звичайні сонцезахисні окуляри.",
       en: "Look at the Sun through ordinary sunglasses.",
-      pl: "Popatrzeć na Słońce przez zwykłe okulary przeciwsłoneczne."
+      pl: "Popatrzeć na Słońce przez zwykłe okulary przeciwsłoneczne.",
+      qm: "Adiy küneş közlüklerini taqıp, Küneşke baqmaq."
     }
   }
 });

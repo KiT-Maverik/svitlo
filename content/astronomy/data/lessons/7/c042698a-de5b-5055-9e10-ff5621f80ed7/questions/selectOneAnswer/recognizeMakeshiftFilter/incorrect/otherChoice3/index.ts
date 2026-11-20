@@ -11,7 +11,8 @@ export const otherChoice3 = defineText<"otherChoice3", LessonLanguages>({
     value: {
       uk: "У приміщенні темна плівка робить прямий погляд на Сонце безпечним.",
       en: "Indoors, dark film makes looking directly at the Sun safe.",
-      pl: "W pomieszczeniu ciemna folia sprawia, że bezpośrednie patrzenie na Słońce jest bezpieczne."
+      pl: "W pomieszczeniu ciemna folia sprawia, że bezpośrednie patrzenie na Słońce jest bezpieczne.",
+      qm: "Ev içinde qoyu plönka Küneşke doğrudan-doğru baquvnı telükesiz ete."
     }
   }
 });

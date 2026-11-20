@@ -11,7 +11,8 @@ export const otherChoice2 = defineText<"otherChoice2", LessonLanguages>({
     value: {
       uk: "Спрямувати бінокль на Сонце, щоб роздивитися його ближче.",
       en: "Point binoculars at the Sun to see it more closely.",
-      pl: "Skierować lornetkę na Słońce, żeby przyjrzeć mu się z bliska."
+      pl: "Skierować lornetkę na Słońce, żeby przyjrzeć mu się z bliska.",
+      qm: "Küneşni yaqından körmek içün dürbinni oña çevirip baqmaq."
     }
   }
 });
