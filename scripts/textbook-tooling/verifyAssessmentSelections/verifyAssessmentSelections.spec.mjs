@@ -148,6 +148,13 @@ test('unresolved provisional UUID cannot publish even with a forged manifest ent
     assert.throws(() => verifyAssessmentSelections(root), /Unresolved placeholder question UUID/);
   }));
 
+test('an unresolved draft Section label cannot reach production despite real bank references', () =>
+  withFixture((root, { lesson }) => {
+    lesson.section[0].locale = { title: 'PENDING QUIZ', navigationLabel: 'PENDING QUIZ' };
+    put(root, owner + '/base.json', lesson);
+    assert.throws(() => verifyAssessmentSelections(root), /Unresolved assessment Section draft label/);
+  }));
+
 test('reserved generated Section identity cannot pass publication even with real selected resources', () =>
   withFixture((root, { lesson }) => {
     lesson.section[0].id = 'feedc0de-1234-8abc-abcd-0123456789ab';
