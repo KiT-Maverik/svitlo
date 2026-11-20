@@ -462,14 +462,14 @@ test('Course-only Lesson patches remain scoped to existing Lesson placements', (
   assert(!Object.hasOwn(technical.config.content.items.review.config, 'locale'));
 
   const source = renderModularCourse(technical, 'content/math').get('index.ts');
-  assert(source.includes('spaceCourse.build.overrides('));
+  assert(source.includes('export const authoredCourseOverrides = '));
   assert(source.includes('review:'));
   assert(source.includes('Course-only review title'));
   assert(source.includes('allowSkipping: false'));
-  assert(source.includes('{ languages });'));
+  assert(source.includes('satisfies Parameters<typeof spaceCourse.build.overrides>[0]'));
   assert(source.includes('import { review } from "#lessonsData/'));
   const original = renderModularCourse(technicalFromEditorial(plan), 'content/math').get('index.ts');
-  assert(!original.includes('spaceCourse.build.overrides('));
+  assert(!original.includes('export const authoredCourseOverrides = '));
 });
 
 test('Course-only override rejects unsupported identities and new Lesson patches', () => {
@@ -552,7 +552,7 @@ test('Course-local Section additions render real typed configurators and nested 
   assert.match(output, /fieldNotes:\s*defineContentSection\(/);
   assert.match(output, /paragraph:\s*defineMarkdown\(/);
   assert.match(output, /order:\s*\[\s*"fieldNotes"/);
-  assert.match(output, /spaceCourse\.build\.overrides\(/);
+  assert.match(output, /export const authoredCourseOverrides = /);
   assert.equal(
     ts.createSourceFile('CourseOverride.ts', output, ts.ScriptTarget.Latest, true).parseDiagnostics.length,
     0,
