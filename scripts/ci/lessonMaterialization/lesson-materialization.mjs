@@ -13,13 +13,6 @@ import { createHash } from 'node:crypto';
 import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { inspect, requireActor, report, github, gitBlob, validateArtifactPath } from './lesson-gate.mjs';
-import {
-  preflightLesson,
-  preflightLessonDraft,
-  finalizeLesson,
-  handoffLesson,
-} from '../../../shared/engine/scripts/finalizeLesson/finalizeLesson.mjs';
-import { runOne } from '../../../shared/engine/scripts/lessonBuilder/lessonBuilder.mjs';
 
 const SHA = /^[a-f0-9]{40}$/;
 const HASH = /^[a-f0-9]{64}$/;
@@ -151,8 +144,10 @@ async function fresh(meta) {
   if (!identicalSnapshot(live, meta)) throw Error('Lesson PR identity, source or branch changed');
 }
 
-/** Choose only the existing strict or bank-pending preflight; no schema bypass. */
-export function chooseMode(source, root, trustedRoot = ROOT) {
+/** Schema and Builder code load only in the read-only analyze job, never at publish startup. */
+export async function chooseMode(source, root, trustedRoot = ROOT) {
+  const { preflightLesson, preflightLessonDraft } =
+    await import('../../../shared/engine/scripts/finalizeLesson/finalizeLesson.mjs');
   try {
     const strict = preflightLesson(source, root, {
       schemaRepo: trustedRoot,
@@ -172,24 +167,32 @@ export function chooseMode(source, root, trustedRoot = ROOT) {
   }
 }
 
-/** Trusted finalization verifies source transfer; it never reruns generation. */
-export function verifyMaterializedForFinalize(root, meta, source, item) {
+/** Analyzer-only fidelity check. Return hashes of the exact committed source inventory. */
+export async function verifyMaterializedForFinalize(root, meta, source, item) {
+  const { runOne } = await import('../../../shared/engine/scripts/lessonBuilder/lessonBuilder.mjs');
   const folder = path.dirname(source);
   const tracked = trackedFiles(root, meta.identity.pkg);
+  const verified = new Set();
   for (const filename of ['index.ts', 'constants.ts', 'review.ts', 'methodology.md', 'production-handoff.json']) {
     const absolute = path.join(folder, filename);
     const relative = safeRelative(root, absolute);
-    if (!tracked.has(relative) || !fs.existsSync(absolute) || fs.lstatSync(absolute).isSymbolicLink())
+    if (!tracked.has(relative) || !fs.existsSync(absolute) || !fs.lstatSync(absolute).isFile())
       throw Error('Finalize requires a committed materialized Lesson file: ' + relative);
+    verified.add(relative);
   }
   if (fs.readFileSync(path.join(folder, 'production-handoff.json'), 'utf8') !== item.handoff)
     throw Error('Production handoff differs from the pinned Lesson YAML');
   const checked = runOne(source, 'check', root);
   for (const filename of checked.files) {
     const relative = safeRelative(root, path.join(folder, filename));
-    if (!tracked.has(relative)) throw Error('Finalize requires a committed generated source: ' + relative);
+    if (!tracked.has(relative) || !fs.lstatSync(path.join(root, relative)).isFile())
+      throw Error('Finalize requires a committed generated source: ' + relative);
+    verified.add(relative);
   }
   if (changedFiles(root).size) throw Error('Finalize verification must be read-only');
+  return [...verified]
+    .sort()
+    .map(filename => ({ path: filename, sha256: sha256(fs.readFileSync(path.join(root, filename))) }));
 }
 
 export function verifyManifest(manifest, meta, root) {
@@ -205,6 +208,12 @@ export function verifyManifest(manifest, meta, root) {
     manifest.branch !== meta.branch ||
     JSON.stringify(manifest.identity) !== JSON.stringify(meta.identity) ||
     !['strict', 'bank-pending'].includes(manifest.mode) ||
+    !Array.isArray(manifest.pending) ||
+    manifest.pending.length > MAX_FILES ||
+    (manifest.mode === 'strict' && manifest.pending.length !== 0) ||
+    (manifest.mode === 'bank-pending' && manifest.pending.length === 0) ||
+    !Array.isArray(manifest.verifiedFiles) ||
+    manifest.verifiedFiles.length > MAX_FILES ||
     !Array.isArray(manifest.entries) ||
     manifest.entries.length > MAX_FILES
   )
@@ -248,14 +257,33 @@ export function verifyManifest(manifest, meta, root) {
     total += bytes.length;
   }
   if (total > MAX_BYTES) throw Error('Lesson output inventory exceeds 24MiB');
+  const rootFiles = ['index.ts', 'constants.ts', 'review.ts', 'methodology.md', 'production-handoff.json'].map(
+    name => meta.identity.yaml.slice(0, -'lesson.yaml'.length) + name,
+  );
   if (meta.operation === 'finalize') {
     if (paths.size !== 1 || !paths.has(meta.identity.yaml))
       throw Error('Finalize manifest must contain exactly one YAML deletion');
+    const verified = new Set();
+    for (const item of manifest.verifiedFiles) {
+      if (
+        !item ||
+        !validateArtifactPath(item.path, meta.identity, 'materialize') ||
+        !HASH.test(item.sha256 ?? '') ||
+        !tracked.has(item.path) ||
+        verified.has(item.path)
+      )
+        throw Error('Invalid or uncommitted Lesson finalization evidence');
+      verified.add(item.path);
+      const absolute = path.join(root, item.path);
+      safeRelative(root, absolute);
+      if (!fs.existsSync(absolute) || !fs.lstatSync(absolute).isFile() || sha256(fs.readFileSync(absolute)) !== item.sha256)
+        throw Error('Committed Lesson source differs from analyzed finalization evidence: ' + item.path);
+    }
+    if (rootFiles.some(filename => !verified.has(filename)))
+      throw Error('Incomplete committed Lesson finalization evidence');
   } else {
-    const expected = ['index.ts', 'constants.ts', 'review.ts', 'methodology.md', 'production-handoff.json'].map(
-      name => meta.identity.yaml.slice(0, -'lesson.yaml'.length) + name,
-    );
-    if (expected.some(filename => !paths.has(filename))) throw Error('Incomplete Lesson root source handoff');
+    if (manifest.verifiedFiles.length) throw Error('Materialize must not contain finalization evidence');
+    if (rootFiles.some(filename => !paths.has(filename))) throw Error('Incomplete Lesson root source handoff');
   }
   return manifest.entries.length;
 }
@@ -269,17 +297,24 @@ function readReport() {
     fs.statSync(location).size > MAX_REPORT
   )
     throw Error('Missing/oversized/symlinked Lesson handoff report');
-  return JSON.parse(fs.readFileSync(location, 'utf8'));
+  const bytes = fs.readFileSync(location);
+  const expected = process.env.LESSON_REPORT_SHA256;
+  if (!HASH.test(expected ?? '') || sha256(bytes) !== expected)
+    throw Error('Lesson analysis artifact changed or lacks trusted SHA256 attestation');
+  return JSON.parse(bytes.toString('utf8'));
 }
 
 async function analyze(root, meta) {
   await fresh(meta);
   const source = verifySource(root, meta);
   trackedFiles(root, meta.identity.pkg);
-  const mode = chooseMode(source, root);
+  const { preflightLesson, preflightLessonDraft, finalizeLesson, handoffLesson } =
+    await import('../../../shared/engine/scripts/finalizeLesson/finalizeLesson.mjs');
+  const mode = await chooseMode(source, root);
   const entries = [];
+  const verifiedFiles =
+    meta.operation === 'finalize' ? await verifyMaterializedForFinalize(root, meta, source, mode.item) : [];
   if (meta.operation === 'finalize') {
-    verifyMaterializedForFinalize(root, meta, source, mode.item);
     entries.push({ path: meta.identity.yaml, action: 'delete' });
   } else {
     if (fs.existsSync(path.join(path.dirname(source), 'index.ts')))
@@ -325,6 +360,7 @@ async function analyze(root, meta) {
     identity: meta.identity,
     mode: mode.kind,
     pending: mode.item.assessment.pending,
+    verifiedFiles,
     entries: entries.sort((a, b) => a.path.localeCompare(b.path)),
   };
   verifyManifest(manifest, meta, root);
@@ -333,7 +369,9 @@ async function analyze(root, meta) {
   const output = process.env.LESSON_REPORT;
   if (!output) throw Error('LESSON_REPORT is required');
   fs.mkdirSync(path.dirname(output), { recursive: true });
-  fs.writeFileSync(output, JSON.stringify(manifest), { flag: 'wx' });
+  const bytes = Buffer.from(JSON.stringify(manifest));
+  fs.writeFileSync(output, bytes, { flag: 'wx' });
+  if (process.env.GITHUB_OUTPUT) fs.appendFileSync(process.env.GITHUB_OUTPUT, 'report_sha256=' + sha256(bytes) + '\n');
   report(
     'Lesson Stage 6 ' +
       meta.operation +
@@ -351,9 +389,8 @@ async function publish(root, meta) {
   const source = verifySource(root, meta);
   const manifest = readReport();
   const count = verifyManifest(manifest, meta, root);
-  const mode = chooseMode(source, root);
-  if (mode.kind !== manifest.mode) throw Error('Lesson preflight changed during handoff');
-  if (meta.operation === 'finalize') verifyMaterializedForFinalize(root, meta, source, mode.item);
+  // All Engine-backed schema/source-fidelity checks ran in trusted analyze.
+  // The SHA-attested report and rehashed committed evidence bind them to this exact HEAD.
   if (changedFiles(root).size) throw Error('Publisher checkout must remain clean');
   const commit = await github('git/commits/' + meta.head);
   if (!SHA.test(commit?.tree?.sha ?? '')) throw Error('Missing pinned Git parent tree');
