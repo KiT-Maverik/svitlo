@@ -9,7 +9,9 @@ export const prompt = defineText<"prompt", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "На занятті розповіли, що фахівці можуть отримувати проєкцію Сонця. Тобі цікаво побачити результат. Як вчинити безпечно?"
+      uk: "На занятті розповіли, що фахівці можуть отримувати проєкцію Сонця. Тобі цікаво побачити результат. Як вчинити безпечно?",
+      en: "In class, you learned that specialists can create a projection of the Sun. You would like to see the result. What is the safe choice?",
+      pl: "Na zajęciach opowiedziano, że specjaliści potrafią uzyskać projekcję obrazu Słońca. Chcesz zobaczyć efekt. Co będzie bezpieczne?"
     }
   }
 });

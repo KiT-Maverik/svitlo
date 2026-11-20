@@ -9,7 +9,9 @@ export const hintText = defineText<"hintText", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Подумай, чи треба спрямовувати власні очі на справжнє Сонце, щоб отримати відомості."
+      uk: "Подумай, чи треба спрямовувати власні очі на справжнє Сонце, щоб отримати відомості.",
+      en: "Think about whether you need to look at the real Sun with your own eyes to learn about it.",
+      pl: "Zastanów się, czy musisz patrzeć własnymi oczami na prawdziwe Słońce, żeby dowiedzieć się o nim czegoś nowego."
     }
   }
 });

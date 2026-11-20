@@ -9,7 +9,9 @@ export const prompt = defineText<"prompt", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Тато знайшов удома темну плівку й каже, що через неї можна дивитися на Сонце. Який висновок правильний?"
+      uk: "Тато знайшов удома темну плівку й каже, що через неї можна дивитися на Сонце. Який висновок правильний?",
+      en: "Dad found some dark film at home and says you can look at the Sun through it. Which conclusion is correct?",
+      pl: "Tata znalazł w domu ciemną folię i mówi, że można przez nią patrzeć na Słońce. Który wniosek jest prawidłowy?"
     }
   }
 });

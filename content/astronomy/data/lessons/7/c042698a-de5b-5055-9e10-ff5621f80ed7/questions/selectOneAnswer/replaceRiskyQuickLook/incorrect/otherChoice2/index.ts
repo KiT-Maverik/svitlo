@@ -9,7 +9,9 @@ export const otherChoice2 = defineText<"otherChoice2", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Подивитися на Сонце у звичайних темних окулярах."
+      uk: "Подивитися на Сонце у звичайних темних окулярах.",
+      en: "Look at the Sun while wearing ordinary dark sunglasses.",
+      pl: "Patrzeć na Słońce w zwykłych ciemnych okularach przeciwsłonecznych."
     }
   }
 });

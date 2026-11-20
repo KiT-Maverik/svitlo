@@ -9,7 +9,9 @@ export const otherChoice1 = defineText<"otherChoice1", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Якщо плівка дуже темна, вона обов'язково захищає очі."
+      uk: "Якщо плівка дуже темна, вона обов'язково захищає очі.",
+      en: "If the film is very dark, it must protect your eyes.",
+      pl: "Jeśli folia jest bardzo ciemna, na pewno chroni oczy."
     }
   }
 });

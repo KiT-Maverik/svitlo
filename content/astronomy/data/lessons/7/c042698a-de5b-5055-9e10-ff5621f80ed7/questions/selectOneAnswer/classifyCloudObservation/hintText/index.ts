@@ -9,7 +9,9 @@ export const hintText = defineText<"hintText", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Перевір кожен варіант: чи стосується він денного неба і чи потребує погляду на Сонце?"
+      uk: "Перевір кожен варіант: чи стосується він денного неба і чи потребує погляду на Сонце?",
+      en: "Check each option: is it about the daytime sky, and does it require looking at the Sun?",
+      pl: "Sprawdź każdą odpowiedź: czy dotyczy dziennego nieba i czy wymaga patrzenia na Słońce?"
     }
   }
 });

@@ -9,7 +9,9 @@ export const otherChoice2 = defineText<"otherChoice2", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Через темну плівку безпечно дивитися на Сонце кілька секунд."
+      uk: "Через темну плівку безпечно дивитися на Сонце кілька секунд.",
+      en: "It is safe to look at the Sun through dark film for a few seconds.",
+      pl: "Przez ciemną folię można bezpiecznie patrzeć na Słońce przez kilka sekund."
     }
   }
 });

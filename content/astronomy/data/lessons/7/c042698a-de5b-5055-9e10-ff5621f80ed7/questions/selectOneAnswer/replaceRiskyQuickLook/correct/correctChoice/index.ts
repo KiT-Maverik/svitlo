@@ -9,7 +9,9 @@ export const correctChoice = defineText<"correctChoice", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Розглянути разом перевірений науковий знімок Сонця."
+      uk: "Розглянути разом перевірений науковий знімок Сонця.",
+      en: "Look at a verified scientific photograph of the Sun together.",
+      pl: "Wspólnie obejrzeć sprawdzone naukowe zdjęcie Słońca."
     }
   }
 });

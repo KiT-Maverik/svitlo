@@ -9,7 +9,9 @@ export const otherChoice3 = defineText<"otherChoice3", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Попросити друга подивитися замість нього й розповісти."
+      uk: "Попросити друга подивитися замість нього й розповісти.",
+      en: "Ask a friend to look at it instead and describe it.",
+      pl: "Poprosić kolegę, żeby spojrzał zamiast niego i opowiedział, co widział."
     }
   }
 });

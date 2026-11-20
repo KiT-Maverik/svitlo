@@ -9,7 +9,9 @@ export const prompt = defineText<"prompt", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Яка дія допоможе дослідити денне небо, не дивлячись на Сонце?"
+      uk: "Яка дія допоможе дослідити денне небо, не дивлячись на Сонце?",
+      en: "Which activity helps you study the daytime sky without looking at the Sun?",
+      pl: "Które działanie pozwala badać dzienne niebo bez patrzenia na Słońce?"
     }
   }
 });

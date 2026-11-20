@@ -9,7 +9,9 @@ export const prompt = defineText<"prompt", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Який із цих способів дізнаватися про Сонце небезпечний для очей?"
+      uk: "Який із цих способів дізнаватися про Сонце небезпечний для очей?",
+      en: "Which of these ways of learning about the Sun is dangerous for your eyes?",
+      pl: "Który z tych sposobów poznawania Słońca jest niebezpieczny dla oczu?"
     }
   }
 });

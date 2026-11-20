@@ -9,7 +9,9 @@ export const otherChoice3 = defineText<"otherChoice3", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Прочитати науковий опис Сонця з дорослим."
+      uk: "Прочитати науковий опис Сонця з дорослим.",
+      en: "Read a scientific description of the Sun with an adult.",
+      pl: "Przeczytać z dorosłym naukowy opis Słońca."
     }
   }
 });

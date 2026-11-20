@@ -9,7 +9,9 @@ export const otherChoice1 = defineText<"otherChoice1", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Самостійно зібрати пристрій для проєкції та випробувати його на Сонці."
+      uk: "Самостійно зібрати пристрій для проєкції та випробувати його на Сонці.",
+      en: "Build a projection device yourself and try it out on the Sun.",
+      pl: "Samodzielnie zbudować urządzenie do projekcji i wypróbować je na Słońcu."
     }
   }
 });

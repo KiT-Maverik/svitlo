@@ -9,7 +9,9 @@ export const otherChoice3 = defineText<"otherChoice3", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "У приміщенні темна плівка робить прямий погляд на Сонце безпечним."
+      uk: "У приміщенні темна плівка робить прямий погляд на Сонце безпечним.",
+      en: "Indoors, dark film makes looking directly at the Sun safe.",
+      pl: "W pomieszczeniu ciemna folia sprawia, że bezpośrednie patrzenie na Słońce jest bezpieczne."
     }
   }
 });

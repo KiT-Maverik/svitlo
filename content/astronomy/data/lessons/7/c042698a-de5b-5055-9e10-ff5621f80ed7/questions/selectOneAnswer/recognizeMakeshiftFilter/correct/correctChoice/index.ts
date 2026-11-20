@@ -9,7 +9,9 @@ export const correctChoice = defineText<"correctChoice", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Темна плівка не замінює спеціального захисту; дивитися крізь неї на Сонце не можна."
+      uk: "Темна плівка не замінює спеціального захисту; дивитися крізь неї на Сонце не можна.",
+      en: "Dark film cannot replace special eye protection. You must not look at the Sun through it.",
+      pl: "Ciemna folia nie zastępuje specjalnej ochrony oczu. Nie wolno przez nią patrzeć na Słońce."
     }
   }
 });

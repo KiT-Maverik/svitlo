@@ -9,7 +9,9 @@ export const prompt = defineText<"prompt", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Андрій хоче дізнатися, який вигляд має Сонце, і пропонує швидко глянути на нього крізь вікно. Що варто порадити?"
+      uk: "Андрій хоче дізнатися, який вигляд має Сонце, і пропонує швидко глянути на нього крізь вікно. Що варто порадити?",
+      en: "Andrii wants to see what the Sun looks like and suggests taking a quick look at it through a window. What should you advise him to do?",
+      pl: "Andrij chce zobaczyć, jak wygląda Słońce, i proponuje szybko zerknąć na nie przez okno. Co warto mu poradzić?"
     }
   }
 });

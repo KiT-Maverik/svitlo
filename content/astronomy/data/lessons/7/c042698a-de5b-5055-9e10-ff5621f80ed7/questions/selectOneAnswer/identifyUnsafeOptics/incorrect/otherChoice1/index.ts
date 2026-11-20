@@ -9,7 +9,9 @@ export const otherChoice1 = defineText<"otherChoice1", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Розглянути підписаний науковий знімок Сонця."
+      uk: "Розглянути підписаний науковий знімок Сонця.",
+      en: "Look at a labeled scientific photograph of the Sun.",
+      pl: "Obejrzeć podpisane zdjęcie naukowe Słońca."
     }
   }
 });

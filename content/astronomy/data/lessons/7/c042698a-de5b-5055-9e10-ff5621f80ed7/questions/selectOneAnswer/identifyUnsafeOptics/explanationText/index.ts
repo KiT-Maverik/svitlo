@@ -9,7 +9,9 @@ export const explanationText = defineText<"explanationText", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Бінокль без належного спеціального сонячного фільтра робить пряме споглядання Сонця особливо небезпечним. Готові перевірені знімки та описи дозволяють дізнаватися про Сонце без цього ризику."
+      uk: "Бінокль без належного спеціального сонячного фільтра робить пряме споглядання Сонця особливо небезпечним. Готові перевірені знімки та описи дозволяють дізнаватися про Сонце без цього ризику.",
+      en: "Looking directly at the Sun through binoculars without a proper, specially designed solar filter is especially dangerous. Verified photographs and descriptions let us learn about the Sun without taking that risk.",
+      pl: "Bezpośrednie patrzenie na Słońce przez lornetkę bez odpowiedniego, specjalnego filtra słonecznego jest szczególnie niebezpieczne. Sprawdzone zdjęcia i opisy pozwalają poznawać Słońce bez takiego ryzyka."
     }
   }
 });

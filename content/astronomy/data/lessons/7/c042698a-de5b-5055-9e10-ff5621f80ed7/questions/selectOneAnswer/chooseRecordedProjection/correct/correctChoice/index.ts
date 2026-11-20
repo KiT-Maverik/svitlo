@@ -9,7 +9,9 @@ export const correctChoice = defineText<"correctChoice", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Попросити показати готовий запис проєкції, підготовлений фахівцями."
+      uk: "Попросити показати готовий запис проєкції, підготовлений фахівцями.",
+      en: "Ask to watch a recording of the projection prepared by specialists.",
+      pl: "Poprosić o pokazanie gotowego nagrania projekcji przygotowanego przez specjalistów."
     }
   }
 });

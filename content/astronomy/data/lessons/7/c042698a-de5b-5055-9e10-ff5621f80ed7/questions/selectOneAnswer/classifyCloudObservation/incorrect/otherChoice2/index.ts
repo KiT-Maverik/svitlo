@@ -9,7 +9,9 @@ export const otherChoice2 = defineText<"otherChoice2", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Спрямувати бінокль на Сонце, щоб роздивитися його ближче."
+      uk: "Спрямувати бінокль на Сонце, щоб роздивитися його ближче.",
+      en: "Point binoculars at the Sun to see it more closely.",
+      pl: "Skierować lornetkę na Słońce, żeby przyjrzeć mu się z bliska."
     }
   }
 });

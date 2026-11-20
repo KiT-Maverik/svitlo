@@ -9,7 +9,9 @@ export const otherChoice2 = defineText<"otherChoice2", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Подивитися на Сонце крізь отвір пристрою, схожого на той, що описали."
+      uk: "Подивитися на Сонце крізь отвір пристрою, схожого на той, що описали.",
+      en: "Look at the Sun through an opening in a device like the one described.",
+      pl: "Spojrzeć na Słońce przez otwór urządzenia podobnego do opisanego."
     }
   }
 });
