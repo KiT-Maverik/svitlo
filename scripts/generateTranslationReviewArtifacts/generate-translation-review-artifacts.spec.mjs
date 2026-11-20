@@ -140,8 +140,16 @@ test('real Skills and UI Kit requests generate only their requested Markdown fil
     }
     assert.equal(fs.existsSync(path.join(workspace, 'lessons')), false);
 
-    const questions = request(['--kind', 'questions', '--package', 'content/playground',
-      '--lesson', 'd3048d21-8690-5255-b62c-984c69ac272c', '--locale', 'kk']);
+    const questions = request([
+      '--kind',
+      'questions',
+      '--package',
+      'content/playground',
+      '--lesson',
+      'd3048d21-8690-5255-b62c-984c69ac272c',
+      '--locale',
+      'kk',
+    ]);
     assert.equal(questions.scope.kind, 'questions');
     assert.equal(questions.scope.package, 'content/playground');
     assert.equal(questions.summary.questionDocuments, 1);
@@ -203,7 +211,7 @@ test('Skills link rewriting handles modular .ts and legacy .data.ts without esca
 
 test('trusted publisher accepts pre-Course Skills manifests but rejects scope mismatches', () => {
   const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
-  const workflow = fs.readFileSync(path.join(root, '.github/workflows/translation-review.yml'), 'utf8');
+  const workflow = fs.readFileSync(path.join(root, '.github/workflows/agent-ci-artifacts.yml'), 'utf8');
   const marker = '      - name: Validate downloaded files and commit only agent artifacts';
   const offset = workflow.indexOf(marker);
   assert.ok(offset > 0, 'Publisher validation step must be present');

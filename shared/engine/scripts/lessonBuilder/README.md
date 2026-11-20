@@ -94,11 +94,14 @@ There is no repeat/no-op regeneration: existing authored Lesson entrypoints are 
   camelCase identifiers in Lesson Production trackers, plus a single
   `ai.locales` integration PR, and required `human.acceptance` and
   `human.locales` fields. Optional `human.scientific` is initially absent.
-  **The const identifier and mandatory values are deliberately blank and
-  syntactically invalid.** The specialist must first hash assembled Lesson
-  Props, then confirm review evidence for that revision; this builder cannot
-  hash an unfinished Lesson or fabricate sign-offs. A rerun never overwrites
-  recorded reviews; `check` only requires the file to exist.
+  The initial non-exported `lessonReview` identifier and numeric `0`
+  placeholders are **valid TypeScript**, not approvals. The typed `language`
+  uses `production.documentLanguage` only for source provenance, not as
+  evidence that anyone reviewed that language. The top-of-file
+  `TODO (BLOCKER): Conduct review` and numeric-zero CI guard block Ready/merge,
+  even when the TODO is removed prematurely. The specialist must hash assembled
+  Lesson Props and verify review evidence tied to that revision. Reruns never
+  overwrite recorded reviews; `check` only requires the file to exist.
 - `constants.ts`: exactly one active, Engine-checked `languages` readonly tuple,
   initially `[production.documentLanguage]`, plus `LessonLanguages = typeof languages`.
   The original **full** YAML `config.params.languages` tuple is retained only as

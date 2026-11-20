@@ -1,34 +1,12 @@
 # Unified YAML → TypeScript draft-scaffolder handoff
 
-> **New Lesson authoring:** [Create Lesson Flow](../../skills/lesson-workflow/create-lesson-flow.skill.md) is authoritative. Stage 1–5 progressively own one `lesson.yaml`, not a separate new `content.yaml` or “Approved” frontmatter. Stage 6 runs one complete YAML preflight and safe finalization, distinct from the create-only Lesson Builder. Historical authoring inputs below are for non-destructive legacy migration only.
+**Canonical authoring boundaries:** [Create Lesson Flow](../../skills/lesson-workflow/create-lesson-flow.skill.md) owns one `lesson.yaml` through its editorial review and independently authorized Stage 6 source preparation. [Create Course Flow](../../skills/course-workflow/create-course-flow.skill.md) owns **one temporary `course.yaml`** through Course Stages 1–4, then [materializes it directly](../../../shared/engine/scripts/materializeCourseFlow/README.md) to permanent Course TypeScript/Markdown and new Lesson YAML handoffs at Stage 5. The Course plan is never converted to a second editable YAML source.
 
-**Course Flow boundary:** new Course production follows [Create Course Flow](../../skills/course-workflow/create-course-flow.skill.md), which uses one reviewed temporary `course.yaml` and materializes TypeScript/Markdown directly, without a saved `config.yaml`. The Config-shaped Course scaffolder described below is a **separate existing technical/legacy tool**, not an extra step in new Course production.
+## Technical Lesson YAML authoring
 
-**Status:** New technical handoff contract built on the draft-only Engine scaffolders
-from [Issue #507](https://github.com/KiT-Maverik/svitlo/issues/507)
-and the creation-only / Build API update from PR #531. It does **not**
-replace independent specialist review or publish Lessons/Courses.
+A Lesson uses the one `lesson.yaml` at `data/lessons/<last-uuid-hex>/<uuid>/`. Its root and nested Configurator nodes have a `config` with Engine-derived `type`, immutable `id`, `slug`, `params`, `locale` and typed collections; optional `production` fields contain editorial-only requirements for the same entity. Production metadata never flows into `define*`, `build.overrides` or published Props.
 
-## One technical source, one entity identity
-
-A technical Lesson has one `lesson.yaml`; a Course retains `config.yaml`. The canonical entity directory is immutable under `data/{lessons,courses}/<last-uuid-hex>/<uuid>/`. A new source may be prepared in a textbook staging directory; the scaffolder reads its single `config.id` and writes only into the canonical UUID directory. Neither entity directory names nor extra CLI ID parameters are independent sources of identity. At the root
-**and at each nested Configurator node**:
-
-- `config`: current, Engine-derived Zod Config, using the existing
-  `type` discriminator, `id`, `slug`, `params`, `locale` and
-  nested `{ items, order }` collections.
-- `production`: optional, manually specified, **authoring-only**
-  requirements for this _same_ entity. It does not duplicate the ID,
-  does not flow into `define*`, `build.overrides` or published Props,
-  and may generate human-readable handoff files.
-
-The generated Config-only schemas under
-`shared/engine/yaml-schemas/{lesson,course,...}.schema.json` are
-derived from live Engine Zod. The independently **hand-maintained**
-`production.schema.json` defines per-kind requirements. The generator
-combines them into `lesson.scaffold.schema.json` and
-`course.scaffold.schema.json` to guide authors editing the respective technical YAML.
-The scaffolder does **not** use these schemas to validate YAML.
+The Engine Zod-derived `shared/engine/yaml-schemas/lesson.schema.json`, manual `production.schema.json` and composed `lesson.scaffold.schema.json` are editing aids; generation alone is **not approval**. The Lesson Builder remains create-only with stable IDs, safe paths, syntax validity and no fabricated translations, media or Lessons. No generic Course Config YAML Builder is part of this architecture.
 
 ### Illustrative Lesson-only `lesson.yaml` draft
 
@@ -120,37 +98,19 @@ Quest remains **authoring/Build-only**. Neither Lesson/Episode runtime
 Section integration nor a Quest player is implemented by this contract;
 authoring a Quest must not be mistaken for a publishable activity.
 
-### Course and Build overrides
+### Course composition and overrides
 
-A Course uses the same `config.yaml` node form for Course, Module, Chapter,
-Episode, Section and ContentBlock. A Course `type: lesson` child is a
-**reference** containing `config: { type: lesson, lessonId: ... }` and
-optional safe source import coordinates, not an embedded Lesson definition.
-No duplicated standalone Lesson exists in the Course. The Course's
-`config.params.languages` and `config.params.prerequisites` remain
-ordinary Engine fields.
-
-Course-specific, sparse authoring changes belong to optional **root
-`overrides`**, in the **same** `config.yaml` as the Course tree. They use
-only current `course.build.overrides(patch, { languages })`. The former
-ordered editorial `overrides.yaml` operation DSL and `createLessonOverrides`
-must never be recreated. Newly added `additionalItems` can use paired
-Config/production nodes, but only the Config is passed to Build.
+Course/Module/Chapter/Episode composition and Lesson reuse are reviewed together in the **same** Course `course.yaml` and directly materialized through the dedicated Stage 5 utility. Referenced Lessons remain independent entities. Subsequent Course-specific overrides use the **typed** `course.build.overrides(patch, { languages })` API in authored Course code; there is no intermediate Course Config YAML, separate overrides YAML or compatibility operations language. Such patches never mutate an independent Lesson and require independent pedagogical/scenario review.
 
 ### Production outputs
 
 The authoring agent does not implement assets. When production text is
 provided, scaffolders create:
 
-- `<Lesson|Course UUID folder>/methodology.md` from
-  `production.methodology`, without overwriting an existing approved file;
+- `<Lesson UUID folder>/methodology.md` from verified `production.methodology`, without overwriting existing approved content; Course/Module/Chapter Markdown is generated separately by the Course Stage 5 materializer;
 - For **modular Lesson source**, `specification.md` beside each nested Scene,
   Image, Video, Audio, Subtitles or CarouselSlide Config `index.ts`, with
-  the Config UUID preserved and no `sceneSpecKey`. For **Course/legacy**
-  production, Scene specs still use `content/<book>/scenes/<bucket>/<uuid>/`
-  and media specs use `data/assets/<bucket>/<uuid>/` until independently
-  migrated. Executable Scene code continues to live under the UUID-addressed
-  registered `scenes/` subtree.
+  the Config UUID preserved and no `sceneSpecKey`. Executable Scene code continues to live under the UUID-addressed registered `scenes/` subtree. Course-owned Episodes retain their own materializer's typed content and unresolved media handoffs.
 
 A Scene implementer and media specialist receive the generated handoff files and
 the original technical YAML. For **Lesson drafts**, authored YAML contains no
@@ -170,10 +130,7 @@ the complete assets tree. Neither Lesson Builder nor `build.props()` creates
 media binaries or copies assets. The retired module-relative
 `resolveLessonMedia(import.meta.url, ...)` API is **not** used for media.
 
-**Course Builder is separate and not yet refactored**: the Course editor
-JSON Schemas omit media filenames, but this does not establish the Lesson
-Builder's Nil-placeholder behavior for Course TypeScript emission. Address
-Course-specific media authoring and publishing in its own implementation.
+**Course Episode rendering** uses the dedicated Stage 5 Episode renderer for its current typed authoring contract; required physical media remain explicit Draft blockers and require independent source, accessibility and production checks.
 
 Existing `*.data.ts` causes a whole-entity `SKIP` without writes; for
 modular Lesson drafts, an existing root `index.ts` does the same. A canonical
@@ -181,41 +138,12 @@ UUID directory is skipped before stale YAML is parsed; staged single-ID
 YAML is parsed only to derive the destination ID. Existing user-edited
 `specification.md` files remain protected; `check` is read-only and strict.
 
-## Scope versus the specialist editorial workflow
+## Editorial ownership and approval
 
-Historical independent `methodologist-brief.md`, `content.md`,
-`content.yaml`, Question Bank, Flashcard Bank, Course Methodology and TOC
-may remain source material in existing Lessons/Courses. **Migration to the
-new authoring source must be explicitly authorized**, with the approved
-meaning and source revisions preserved. An agent does not silently declare
-a Draft editorial document approved or fabricate Quiz requirements.
-
-The technical Lesson `lesson.yaml` (or Course `config.yaml`) may carry the approved methodology passport
-under `production.methodology` for a **newly authored** entity; its
-`methodology.md` output is then derivative, not a second independently
-editable authoring source. For existing independently edited Methodology
-documents, keep the original authoritative and avoid creating a competing
-YAML copy until an explicit editorial migration is authorized.
-
-Lesson `questions.yaml` and `flashcards.yaml` live in the same Lesson UUID root as `lesson.yaml` but remain independently owned and reviewed. Neither is embedded in the Lesson technical YAML, and their future TypeScript directories need not exist when these files are written. A Quiz is a Section, not a ContentBlock. Only the authoring
-source locale is present in the draft, even if planned languages include more.
+Educational methodology and Course/Lesson plans are reviewed through their **respective canonical Skills**, not alternate Markdown, TOC or Config-YAML trackers. Source-side `production.methodology` is the approved authoring input, while generated `methodology.md` is its durable output. Independently authored Question and Flashcard banks retain separate Lesson-root YAML and review/production workflows. A valid draft or generated file is not a review approval, release readiness or translation evidence.
 
 ## Non-goals and verification
 
-The **purpose** of the Lesson/Course Builder is to save AI effort by
-mechanically emitting deterministic `define*` TypeScript drafts. It may
-(and for missing assets/translations **should**) generate code that does not
-typecheck yet. Successful generation does **not** mean compile-ready,
-validated, approved, translated, or published.
+A Lesson Builder emits typed but potentially incomplete Draft modules, source-language content and production handoffs; it does not claim a publishable Lesson, create physical assets, invent missing translations or execute the full validation/approval workflow. The Course Stage 5 materializer emits Course-specific typed Drafts and initial Lesson YAMLs **directly from the approved one-file Course plan**, and never initiates Lesson production or publishes Course Props. Source integrity, stable UUIDs, deterministic output, no-clobber and syntax checking belong to those scripts; typechecking, asset supply, independent reviews and production publication occur later.
 
-The builder does not run Zod/AJV/TypeScript, find all Lessons, infer
-unknown types, generate Scene React implementations/media, produce Props,
-or start publication. Only factory dispatch, source-language selection,
-safe paths/no overwrite, syntactically sound emitted code, and specified
-handoff files are tested here. The next AI coding/asset specialist performs
-completion and TypeScript diagnostics.
-
-See [Lesson Builder README](../../../shared/engine/scripts/lessonBuilder/README.md),
-[Course Builder README](../../../shared/engine/scripts/courseBuilder/README.md)
-and [Engine script instructions](../../../shared/engine/scripts/AGENTS.md)
-for current executable behavior.
+See [Lesson Builder](../../../shared/engine/scripts/lessonBuilder/README.md), [Course Flow materializer](../../../shared/engine/scripts/materializeCourseFlow/README.md) and [Engine script instructions](../../../shared/engine/scripts/AGENTS.md).
