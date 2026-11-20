@@ -8,4 +8,4 @@ node content/geography/scripts/generateHomeCopyReference/generate-home-copy-refe
 node --test content/geography/scripts/generateHomeCopyReference/generate-home-copy-reference.spec.mjs
 ```
 
-The optional `--allow-missing` mode is a read-only draft preview: absent translated strings appear only as `%%MISSING%%`. Strict mode fails closed. The PR-scoped orchestrator writes `.agent-ci-artifacts/geography-home-copy/<language>.md` with a `missing` count and `reviewReady` indicator. This does not bypass the campaign's all-translator integration gate.
+The optional `--allow-missing` mode is a read-only draft preview: absent translated strings appear only as `%%MISSING%%`. Strict mode fails closed. The PR-scoped orchestrator writes `geography-home-copy/<language>.md` to a one-day Actions ZIP with a `manifest.json` containing `missing`, `reviewReady` and SHA-pinned source identity. Independent review is permitted only for a complete, authorized entity/locale at its verified source SHA; unrelated incomplete locales do not automatically block that review.
