@@ -73,10 +73,11 @@ fixed. Keep the existing protections and automatic CI triggers unchanged:
    jobs and the final `Production Quality / verify` aggregate to succeed; a
    prior successful run becomes obsolete after a new push. Link the exact run
    and tested SHA in the fix PR so the next agent can reproduce the evidence.
+
 3. Manual `workflow_dispatch` tests the selected branch HEAD, **not** the PR
    merge commit or the eventual `develop → main` merge result. It does not
    satisfy or replace required PR checks; source authorization applies to
-   production *PR* events, not manual diagnostics. After full manual success,
+   production _PR_ events, not manual diagnostics. After full manual success,
    follow the ordinary Draft → Ready and owner-approved PR merge workflow into
    `develop`. Finally require the real promotion PR's latest
    `Production Quality / verify` check to pass before merging into `main`.
