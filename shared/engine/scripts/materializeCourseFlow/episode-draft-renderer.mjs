@@ -231,7 +231,7 @@ export function renderCourseLessonOverrideSource(items) {
   if (!record(items)) fail('TYPE', 'Course Lesson override items must be a slug-keyed object');
   const state = { imports: new Set() };
   const expression = renderValue({ content: { items } }, state, 0, 'courseOverrides').replace(
-    /(^|\\n)([ \\t]*)"([A-Za-z_$][A-Za-z0-9_$]*)":/g,
+    /(^|\n)([ \t]*)"([A-Za-z_$][A-Za-z0-9_$]*)":/g,
     (full, line, space, key) => (key === '__proto__' ? full : line + space + key + ':'),
   );
   return { expression, factories: [...state.imports].sort() };
