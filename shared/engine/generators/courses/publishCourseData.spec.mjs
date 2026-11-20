@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import test from 'node:test';
+import { defineChapter, defineCourse, defineLesson, defineModule } from '@svitlo/engine/build';
 import { mergeCourseProps, renderCourseFiles, publishCourse } from './publishCourseData.mjs';
 
 const ids = {
@@ -312,4 +313,83 @@ test('Course publisher rejects symlink ancestors before creating generated files
   } finally {
     fs.rmSync(home, { recursive: true, force: true });
   }
+});
+
+test('Course publication preserves contextual aliases and distinct Lesson patches by placement', () => {
+  const languages = ['en', 'uk'];
+  const lesson = defineLesson({
+    id: 'bb75647f-203d-481a-a1c7-4d331c779d31',
+    slug: 'independentLesson',
+    type: 'lesson',
+    skills: [],
+    params: {
+      languages,
+      quizRequiredForCompletion: false,
+      sections: { allowNavigation: true, allowSkipping: true, showIndexes: true },
+    },
+    locale: { title: { en: 'Independent title', uk: 'Самостійний урок' } },
+    section: { items: {}, order: [] },
+  });
+  const chapter = defineChapter({
+    id: 'bb75647f-203d-481a-a1c7-4d331c779d32',
+    slug: 'contextualChapter',
+    type: 'chapter',
+    params: {},
+    locale: { title: 'Chapter' },
+    content: { items: { chapterUse: lesson }, order: ['chapterUse'] },
+  });
+  const module = defineModule({
+    id: 'bb75647f-203d-481a-a1c7-4d331c779d33',
+    slug: 'contextualModule',
+    type: 'module',
+    params: {},
+    locale: { title: 'Module' },
+    content: { items: { contextualChapter: chapter }, order: ['contextualChapter'] },
+  });
+  const course = defineCourse({
+    id: 'bb75647f-203d-481a-a1c7-4d331c779d34',
+    slug: 'contextualCourse',
+    type: 'course',
+    params: { languages },
+    locale: { title: 'Course', description: 'Course-specific nested and direct reuse' },
+    content: { items: { contextualModule: module, directUse: lesson }, order: ['contextualModule', 'directUse'] },
+  });
+  const overrides = {
+    content: {
+      items: {
+        contextualModule: {
+          content: {
+            items: {
+              contextualChapter: {
+                content: { items: { chapterUse: { locale: { title: { uk: 'Розділ курсу' } } } } },
+              },
+            },
+          },
+        },
+        directUse: { locale: { title: { en: 'Course direct title' } } },
+      },
+    },
+  };
+  const files = renderCourseFiles(course, { overrides });
+  const base = JSON.parse(files.get('base.json'));
+  const uk = JSON.parse(files.get('uk.json'));
+  const chapterLesson = base.content.items.contextualModule.content.items.contextualChapter.content.items.chapterUse;
+  const directLesson = base.content.items.directUse;
+  assert.equal(chapterLesson.id, lesson.id);
+  assert.equal(directLesson.id, lesson.id);
+  assert.equal(chapterLesson.type, 'lesson');
+  assert.equal(directLesson.type, 'lesson');
+  assert.equal(Object.hasOwn(chapterLesson, 'overrides'), false, 'uk-only nested edit stays in locale fragment');
+  assert.equal(directLesson.overrides.locale.title, 'Course direct title');
+  const localized = mergeCourseProps(base, uk);
+  assert.equal(
+    localized.content.items.contextualModule.content.items.contextualChapter.content.items.chapterUse.overrides.locale.title,
+    'Розділ курсу',
+  );
+  assert.equal(
+    localized.content.items.directUse.overrides.locale.title,
+    'Course direct title',
+  );
+  assert.equal(lesson.slug, 'independentLesson');
+  assert.equal(lesson.build.props({ languages }).base.slug, 'independentLesson');
 });
