@@ -2,7 +2,7 @@
 
 - Lesson: `4e4b5a9b-7013-5320-8fc3-7f34a70c8915` (skyChangesOverview)
 - Language: `uk` (supported: `uk`)
-- Canonical: [source](https://github.com/KiT-Maverik/svitlo/blob/da091d74c881479f4ead87bce478ce07af4b0c3e/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/index.ts)
+- Canonical: [source](https://github.com/KiT-Maverik/svitlo/blob/d35f73c40104f5c1c90321ad162ea75cee5c7ff5/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/index.ts)
 - **Media representations:** descriptive metadata only; binary media and interactive Scenes are not rendered.
 
 - **Target Skills** (2)
@@ -21,11 +21,11 @@
 
 - ID: `f25202e1-6ea2-4c61-b281-fb1e15ea9d31`
 - Navigation: День і ніч
-- Canonical: [source](https://github.com/KiT-Maverik/svitlo/blob/da091d74c881479f4ead87bce478ce07af4b0c3e/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sDay/index.ts)
+- Canonical: [source](https://github.com/KiT-Maverik/svitlo/blob/d35f73c40104f5c1c90321ad162ea75cee5c7ff5/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sDay/index.ts)
 - **locale**
   - **title:** Що видно вдень і вночі?
   - **navigationLabel:** День і ніч
-- **Block 1 · markdown** (`dayIntro`, `cd9659dc-1a6c-444f-a402-4800645b2fc6`; [source](https://github.com/KiT-Maverik/svitlo/blob/da091d74c881479f4ead87bce478ce07af4b0c3e/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sDay/dayIntro/index.ts))
+- **Block 1 · markdown** (`dayIntro`, `cd9659dc-1a6c-444f-a402-4800645b2fc6`; [source](https://github.com/KiT-Maverik/svitlo/blob/d35f73c40104f5c1c90321ad162ea75cee5c7ff5/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sDay/dayIntro/index.ts))
   - **params:** (none)
   - **locale**
     - **value:**
@@ -37,7 +37,7 @@
       
       Помічати та називати відмінність — це **спостерігати**. Зараз не треба пояснювати, чому приходить ніч. І не потрібно дивитися прямо на Сонце.
       ~~~~
-- **Block 2 · audio** (`dayAudio`, `fd3c34f6-58a3-4738-b035-045bc27bffbe`; [source](https://github.com/KiT-Maverik/svitlo/blob/da091d74c881479f4ead87bce478ce07af4b0c3e/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sDay/dayAudio/index.ts))
+- **Block 2 · audio** (`dayAudio`, `fd3c34f6-58a3-4738-b035-045bc27bffbe`; [source](https://github.com/KiT-Maverik/svitlo/blob/d35f73c40104f5c1c90321ad162ea75cee5c7ff5/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sDay/dayAudio/index.ts))
   - *Media is not embedded. Paths, accessible descriptions, captions and display/fallback metadata are shown below.*
   - **params:** (none)
   - **locale**
@@ -49,7 +49,7 @@
       - **unavailable:** Запис наразі недоступний. Той самий зміст є в тексті уроку.
       - **playbackError:** Запис не відтворився. Можна прочитати текст поруч.
       - **retry:** Спробувати знову
-- **Block 3 · scene** (`dayScene`, `80ecd1b4-8405-41ad-ac71-bd97d0f2c9e8`; [source](https://github.com/KiT-Maverik/svitlo/blob/da091d74c881479f4ead87bce478ce07af4b0c3e/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sDay/dayScene/index.ts))
+- **Block 3 · scene** (`dayScene`, `80ecd1b4-8405-41ad-ac71-bd97d0f2c9e8`; [source](https://github.com/KiT-Maverik/svitlo/blob/d35f73c40104f5c1c90321ad162ea75cee5c7ff5/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sDay/dayScene/index.ts))
   - **params:** (none)
   - **locale**
     - **value**
@@ -85,7 +85,7 @@
         - **speak:** Прослухати підпис, вибір або відгук
         - **repeat:** Повторити озвучення
         - **pause:** Зупинити озвучення
-- **Block 4 · markdown** (`dayExplain`, `f7ac388e-f6b5-4521-a67c-18a80ab96ac2`; [source](https://github.com/KiT-Maverik/svitlo/blob/da091d74c881479f4ead87bce478ce07af4b0c3e/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sDay/dayExplain/index.ts))
+- **Block 4 · markdown** (`dayExplain`, `f7ac388e-f6b5-4521-a67c-18a80ab96ac2`; [source](https://github.com/KiT-Maverik/svitlo/blob/d35f73c40104f5c1c90321ad162ea75cee5c7ff5/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sDay/dayExplain/index.ts))
   - **params:** (none)
   - **locale**
     - **value:**
@@ -97,7 +97,7 @@
       
       Ми вже помітили зміну освітленості. Пізніше можна поставити інше запитання: **чому змінюються день і ніч?**
       ~~~~
-- **Block 5 · text** (`dayRecap`, `63dc6b4b-c9e7-4b20-b424-8a0811b443d0`; [source](https://github.com/KiT-Maverik/svitlo/blob/da091d74c881479f4ead87bce478ce07af4b0c3e/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sDay/dayRecap/index.ts))
+- **Block 5 · text** (`dayRecap`, `63dc6b4b-c9e7-4b20-b424-8a0811b443d0`; [source](https://github.com/KiT-Maverik/svitlo/blob/d35f73c40104f5c1c90321ad162ea75cee5c7ff5/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sDay/dayRecap/index.ts))
   - **params:** (none)
   - **locale**
     - **value:** Скажи або покажи: «На одному зображенні світліше, на іншому — темніше». Це спостереження.
@@ -106,11 +106,11 @@
 
 - ID: `d4fa419e-75bf-4df7-a414-e2613e4227c8`
 - Navigation: Місяць
-- Canonical: [source](https://github.com/KiT-Maverik/svitlo/blob/da091d74c881479f4ead87bce478ce07af4b0c3e/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sMoon/index.ts)
+- Canonical: [source](https://github.com/KiT-Maverik/svitlo/blob/d35f73c40104f5c1c90321ad162ea75cee5c7ff5/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sMoon/index.ts)
 - **locale**
   - **title:** Один Місяць — різні вигляди
   - **navigationLabel:** Місяць
-- **Block 1 · markdown** (`moonIntro`, `a3abf8be-5714-4a13-96ed-b864e60f9fff`; [source](https://github.com/KiT-Maverik/svitlo/blob/da091d74c881479f4ead87bce478ce07af4b0c3e/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sMoon/moonIntro/index.ts))
+- **Block 1 · markdown** (`moonIntro`, `a3abf8be-5714-4a13-96ed-b864e60f9fff`; [source](https://github.com/KiT-Maverik/svitlo/blob/d35f73c40104f5c1c90321ad162ea75cee5c7ff5/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sMoon/moonIntro/index.ts))
   - **params:** (none)
   - **locale**
     - **value:**
@@ -124,7 +124,7 @@
       
       **Що ти помічаєш?** Не треба поки пояснювати, чому видима освітлена частина Місяця змінюється.
       ~~~~
-- **Block 2 · audio** (`moonAudio`, `1e81a98a-95a0-4f7f-869c-7baa12631075`; [source](https://github.com/KiT-Maverik/svitlo/blob/da091d74c881479f4ead87bce478ce07af4b0c3e/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sMoon/moonAudio/index.ts))
+- **Block 2 · audio** (`moonAudio`, `1e81a98a-95a0-4f7f-869c-7baa12631075`; [source](https://github.com/KiT-Maverik/svitlo/blob/d35f73c40104f5c1c90321ad162ea75cee5c7ff5/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sMoon/moonAudio/index.ts))
   - *Media is not embedded. Paths, accessible descriptions, captions and display/fallback metadata are shown below.*
   - **params:** (none)
   - **locale**
@@ -136,7 +136,7 @@
       - **unavailable:** Запис наразі недоступний. Той самий зміст є в тексті уроку.
       - **playbackError:** Запис не відтворився. Можна прочитати текст поруч.
       - **retry:** Спробувати знову
-- **Block 3 · scene** (`moonScene`, `fae02030-82c2-4c8a-a18a-3a1a789a8477`; [source](https://github.com/KiT-Maverik/svitlo/blob/da091d74c881479f4ead87bce478ce07af4b0c3e/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sMoon/moonScene/index.ts))
+- **Block 3 · scene** (`moonScene`, `fae02030-82c2-4c8a-a18a-3a1a789a8477`; [source](https://github.com/KiT-Maverik/svitlo/blob/d35f73c40104f5c1c90321ad162ea75cee5c7ff5/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sMoon/moonScene/index.ts))
   - **params:** (none)
   - **locale**
     - **value**
@@ -172,7 +172,7 @@
         - **speak:** Прослухати підпис, вибір або відгук
         - **repeat:** Повторити озвучення
         - **pause:** Зупинити озвучення
-- **Block 4 · markdown** (`moonExplain`, `be948409-31e8-4d41-a417-a6b864c9ba6a`; [source](https://github.com/KiT-Maverik/svitlo/blob/da091d74c881479f4ead87bce478ce07af4b0c3e/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sMoon/moonExplain/index.ts))
+- **Block 4 · markdown** (`moonExplain`, `be948409-31e8-4d41-a417-a6b864c9ba6a`; [source](https://github.com/KiT-Maverik/svitlo/blob/d35f73c40104f5c1c90321ad162ea75cee5c7ff5/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sMoon/moonExplain/index.ts))
   - **params:** (none)
   - **locale**
     - **value:**
@@ -184,7 +184,7 @@
       
       Можна запитати: **«Чому освітлена частина Місяця виглядає по-різному?»** Поки достатньо помітити різницю.
       ~~~~
-- **Block 5 · text** (`moonRecap`, `1c4140b2-4f03-44cf-af46-13aab27eda4b`; [source](https://github.com/KiT-Maverik/svitlo/blob/da091d74c881479f4ead87bce478ce07af4b0c3e/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sMoon/moonRecap/index.ts))
+- **Block 5 · text** (`moonRecap`, `1c4140b2-4f03-44cf-af46-13aab27eda4b`; [source](https://github.com/KiT-Maverik/svitlo/blob/d35f73c40104f5c1c90321ad162ea75cee5c7ff5/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sMoon/moonRecap/index.ts))
   - **params:** (none)
   - **locale**
     - **value:** Скажи або покажи: «На першій схемі освітлена приблизно половина видимого диска Місяця, а на другій — майже весь видимий диск».
@@ -193,11 +193,11 @@
 
 - ID: `f9396c00-0956-4938-8551-f9d0638cd998`
 - Navigation: Наші запитання
-- Canonical: [source](https://github.com/KiT-Maverik/svitlo/blob/da091d74c881479f4ead87bce478ce07af4b0c3e/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sReflect/index.ts)
+- Canonical: [source](https://github.com/KiT-Maverik/svitlo/blob/d35f73c40104f5c1c90321ad162ea75cee5c7ff5/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sReflect/index.ts)
 - **locale**
   - **title:** Дві зміни — два запитання
   - **navigationLabel:** Наші запитання
-- **Block 1 · markdown** (`reflectIntro`, `c1505ae0-7006-4e33-bcf6-2c1fd354876f`; [source](https://github.com/KiT-Maverik/svitlo/blob/da091d74c881479f4ead87bce478ce07af4b0c3e/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sReflect/reflectIntro/index.ts))
+- **Block 1 · markdown** (`reflectIntro`, `c1505ae0-7006-4e33-bcf6-2c1fd354876f`; [source](https://github.com/KiT-Maverik/svitlo/blob/d35f73c40104f5c1c90321ad162ea75cee5c7ff5/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sReflect/reflectIntro/index.ts))
   - **params:** (none)
   - **locale**
     - **value:**
@@ -213,7 +213,7 @@
       
       Спочатку **постав або познач запитання про день і ніч**, а потім **окреме запитання про вигляд Місяця**. Для кожної теми можеш обрати готове повне запитання або **скласти своє** — сказати вголос або за бажанням записати. Якщо тобі незручно говорити чи писати, обери готове ПОВНЕ запитання на картці з малюнком і озвученням. Якщо обираєш своє, спершу постав запитання, **потім окремо підтвердь**, що воно вже поставлене. Сам вибір «хочу своє» ще не означає, що запитання прозвучало. **Відповіді поки не потрібні.** Писати необов’язково; якщо не хочеш відповідати, можна перейти далі.
       ~~~~
-- **Block 2 · audio** (`reflectAudio`, `67fcca8b-ec8a-4fa1-ba18-a3b1df3e99f2`; [source](https://github.com/KiT-Maverik/svitlo/blob/da091d74c881479f4ead87bce478ce07af4b0c3e/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sReflect/reflectAudio/index.ts))
+- **Block 2 · audio** (`reflectAudio`, `67fcca8b-ec8a-4fa1-ba18-a3b1df3e99f2`; [source](https://github.com/KiT-Maverik/svitlo/blob/d35f73c40104f5c1c90321ad162ea75cee5c7ff5/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sReflect/reflectAudio/index.ts))
   - *Media is not embedded. Paths, accessible descriptions, captions and display/fallback metadata are shown below.*
   - **params:** (none)
   - **locale**
@@ -225,7 +225,7 @@
       - **unavailable:** Запис наразі недоступний. Той самий зміст є в тексті уроку.
       - **playbackError:** Запис не відтворився. Можна прочитати текст поруч.
       - **retry:** Спробувати знову
-- **Block 3 · scene** (`reflectScene`, `14cd71cf-f81d-44fd-ba4b-9346384ba037`; [source](https://github.com/KiT-Maverik/svitlo/blob/da091d74c881479f4ead87bce478ce07af4b0c3e/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sReflect/reflectScene/index.ts))
+- **Block 3 · scene** (`reflectScene`, `14cd71cf-f81d-44fd-ba4b-9346384ba037`; [source](https://github.com/KiT-Maverik/svitlo/blob/d35f73c40104f5c1c90321ad162ea75cee5c7ff5/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sReflect/reflectScene/index.ts))
   - **params:** (none)
   - **locale**
     - **value**
@@ -265,7 +265,7 @@
         - **speak:** Прослухати підпис, вибір або відгук
         - **repeat:** Повторити озвучення
         - **pause:** Зупинити озвучення
-- **Block 4 · markdown** (`reflectClose`, `de3f8a21-132e-4f9d-a287-b124daf381a5`; [source](https://github.com/KiT-Maverik/svitlo/blob/da091d74c881479f4ead87bce478ce07af4b0c3e/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sReflect/reflectClose/index.ts))
+- **Block 4 · markdown** (`reflectClose`, `de3f8a21-132e-4f9d-a287-b124daf381a5`; [source](https://github.com/KiT-Maverik/svitlo/blob/d35f73c40104f5c1c90321ad162ea75cee5c7ff5/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sReflect/reflectClose/index.ts))
   - **params:** (none)
   - **locale**
     - **value:**

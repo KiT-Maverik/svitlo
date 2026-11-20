@@ -2,7 +2,7 @@
 
 - Lesson: `4e4b5a9b-7013-5320-8fc3-7f34a70c8915` (skyChangesOverview)
 - Language: `qm` (supported: `qm`)
-- Canonical: [source](https://github.com/KiT-Maverik/svitlo/blob/da091d74c881479f4ead87bce478ce07af4b0c3e/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/index.ts)
+- Canonical: [source](https://github.com/KiT-Maverik/svitlo/blob/d35f73c40104f5c1c90321ad162ea75cee5c7ff5/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/index.ts)
 - **Media representations:** descriptive metadata only; binary media and interactive Scenes are not rendered.
 
 - **Target Skills** (2)
@@ -21,11 +21,11 @@
 
 - ID: `f25202e1-6ea2-4c61-b281-fb1e15ea9d31`
 - Navigation: Kündüz ve gece
-- Canonical: [source](https://github.com/KiT-Maverik/svitlo/blob/da091d74c881479f4ead87bce478ce07af4b0c3e/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sDay/index.ts)
+- Canonical: [source](https://github.com/KiT-Maverik/svitlo/blob/d35f73c40104f5c1c90321ad162ea75cee5c7ff5/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sDay/index.ts)
 - **locale**
   - **title:** Kündüz ve gece neler körüne?
   - **navigationLabel:** Kündüz ve gece
-- **Block 1 · markdown** (`dayIntro`, `cd9659dc-1a6c-444f-a402-4800645b2fc6`; [source](https://github.com/KiT-Maverik/svitlo/blob/da091d74c881479f4ead87bce478ce07af4b0c3e/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sDay/dayIntro/index.ts))
+- **Block 1 · markdown** (`dayIntro`, `cd9659dc-1a6c-444f-a402-4800645b2fc6`; [source](https://github.com/KiT-Maverik/svitlo/blob/d35f73c40104f5c1c90321ad162ea75cee5c7ff5/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sDay/dayIntro/index.ts))
   - **params:** (none)
   - **locale**
     - **value:**
@@ -38,7 +38,7 @@
       Farqnı körip adlandırmaq — **közetüv** demek. Gece ne içün kele ekenini şimdi izah etmek şart degil. Küneşke doğrudan baqma.
       
       ~~~~
-- **Block 2 · audio** (`dayAudio`, `fd3c34f6-58a3-4738-b035-045bc27bffbe`; [source](https://github.com/KiT-Maverik/svitlo/blob/da091d74c881479f4ead87bce478ce07af4b0c3e/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sDay/dayAudio/index.ts))
+- **Block 2 · audio** (`dayAudio`, `fd3c34f6-58a3-4738-b035-045bc27bffbe`; [source](https://github.com/KiT-Maverik/svitlo/blob/d35f73c40104f5c1c90321ad162ea75cee5c7ff5/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sDay/dayAudio/index.ts))
   - *Media is not embedded. Paths, accessible descriptions, captions and display/fallback metadata are shown below.*
   - **params:** (none)
   - **locale**
@@ -50,7 +50,7 @@
       - **unavailable:** Ses yazuvı şimdi açılmay. Aynı malümat dersniñ metninde bar.
       - **playbackError:** Ses yazuvı çalınmadı. Yanındaki metinni oqumaq mümkün.
       - **retry:** Tekrar sınap baq
-- **Block 3 · scene** (`dayScene`, `80ecd1b4-8405-41ad-ac71-bd97d0f2c9e8`; [source](https://github.com/KiT-Maverik/svitlo/blob/da091d74c881479f4ead87bce478ce07af4b0c3e/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sDay/dayScene/index.ts))
+- **Block 3 · scene** (`dayScene`, `80ecd1b4-8405-41ad-ac71-bd97d0f2c9e8`; [source](https://github.com/KiT-Maverik/svitlo/blob/d35f73c40104f5c1c90321ad162ea75cee5c7ff5/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sDay/dayScene/index.ts))
   - **params:** (none)
   - **locale**
     - **value**
@@ -86,7 +86,7 @@
         - **speak:** Yazını, saylavnı ya da cevabını diñle
         - **repeat:** Sesni tekrar diñle
         - **pause:** Sesni toqtat
-- **Block 4 · markdown** (`dayExplain`, `f7ac388e-f6b5-4521-a67c-18a80ab96ac2`; [source](https://github.com/KiT-Maverik/svitlo/blob/da091d74c881479f4ead87bce478ce07af4b0c3e/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sDay/dayExplain/index.ts))
+- **Block 4 · markdown** (`dayExplain`, `f7ac388e-f6b5-4521-a67c-18a80ab96ac2`; [source](https://github.com/KiT-Maverik/svitlo/blob/d35f73c40104f5c1c90321ad162ea75cee5c7ff5/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sDay/dayExplain/index.ts))
   - **params:** (none)
   - **locale**
     - **value:**
@@ -99,7 +99,7 @@
       Biz artıq yarıqnıñ deñişkenini farq ettik. Soñra başqa bir sual soramaq mümkün: **ne içün kündüz ve gece biri-birini deñiştire?**
       
       ~~~~
-- **Block 5 · text** (`dayRecap`, `63dc6b4b-c9e7-4b20-b424-8a0811b443d0`; [source](https://github.com/KiT-Maverik/svitlo/blob/da091d74c881479f4ead87bce478ce07af4b0c3e/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sDay/dayRecap/index.ts))
+- **Block 5 · text** (`dayRecap`, `63dc6b4b-c9e7-4b20-b424-8a0811b443d0`; [source](https://github.com/KiT-Maverik/svitlo/blob/d35f73c40104f5c1c90321ad162ea75cee5c7ff5/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sDay/dayRecap/index.ts))
   - **params:** (none)
   - **locale**
     - **value:** Söyle ya da köster: «Bir resimde daha aydın, digerinde ise daha qaranlıq». Bu — közetüv.
@@ -108,11 +108,11 @@
 
 - ID: `d4fa419e-75bf-4df7-a414-e2613e4227c8`
 - Navigation: Ay
-- Canonical: [source](https://github.com/KiT-Maverik/svitlo/blob/da091d74c881479f4ead87bce478ce07af4b0c3e/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sMoon/index.ts)
+- Canonical: [source](https://github.com/KiT-Maverik/svitlo/blob/d35f73c40104f5c1c90321ad162ea75cee5c7ff5/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sMoon/index.ts)
 - **locale**
   - **title:** Bir Ay — türlü körünişler
   - **navigationLabel:** Ay
-- **Block 1 · markdown** (`moonIntro`, `a3abf8be-5714-4a13-96ed-b864e60f9fff`; [source](https://github.com/KiT-Maverik/svitlo/blob/da091d74c881479f4ead87bce478ce07af4b0c3e/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sMoon/moonIntro/index.ts))
+- **Block 1 · markdown** (`moonIntro`, `a3abf8be-5714-4a13-96ed-b864e60f9fff`; [source](https://github.com/KiT-Maverik/svitlo/blob/d35f73c40104f5c1c90321ad162ea75cee5c7ff5/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sMoon/moonIntro/index.ts))
   - **params:** (none)
   - **locale**
     - **value:**
@@ -127,7 +127,7 @@
       **Ne farq ettiñ?** Aynıñ körüngen aydın qısmı ne içün deñişkenini şimdi izah etmek şart degil.
       
       ~~~~
-- **Block 2 · audio** (`moonAudio`, `1e81a98a-95a0-4f7f-869c-7baa12631075`; [source](https://github.com/KiT-Maverik/svitlo/blob/da091d74c881479f4ead87bce478ce07af4b0c3e/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sMoon/moonAudio/index.ts))
+- **Block 2 · audio** (`moonAudio`, `1e81a98a-95a0-4f7f-869c-7baa12631075`; [source](https://github.com/KiT-Maverik/svitlo/blob/d35f73c40104f5c1c90321ad162ea75cee5c7ff5/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sMoon/moonAudio/index.ts))
   - *Media is not embedded. Paths, accessible descriptions, captions and display/fallback metadata are shown below.*
   - **params:** (none)
   - **locale**
@@ -139,7 +139,7 @@
       - **unavailable:** Ses yazuvı şimdi açılmay. Aynı malümat dersniñ metninde bar.
       - **playbackError:** Ses yazuvı çalınmadı. Yanındaki metinni oqumaq mümkün.
       - **retry:** Tekrar sınap baq
-- **Block 3 · scene** (`moonScene`, `fae02030-82c2-4c8a-a18a-3a1a789a8477`; [source](https://github.com/KiT-Maverik/svitlo/blob/da091d74c881479f4ead87bce478ce07af4b0c3e/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sMoon/moonScene/index.ts))
+- **Block 3 · scene** (`moonScene`, `fae02030-82c2-4c8a-a18a-3a1a789a8477`; [source](https://github.com/KiT-Maverik/svitlo/blob/d35f73c40104f5c1c90321ad162ea75cee5c7ff5/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sMoon/moonScene/index.ts))
   - **params:** (none)
   - **locale**
     - **value**
@@ -175,7 +175,7 @@
         - **speak:** Yazını, saylavnı ya da cevabını diñle
         - **repeat:** Sesni tekrar diñle
         - **pause:** Sesni toqtat
-- **Block 4 · markdown** (`moonExplain`, `be948409-31e8-4d41-a417-a6b864c9ba6a`; [source](https://github.com/KiT-Maverik/svitlo/blob/da091d74c881479f4ead87bce478ce07af4b0c3e/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sMoon/moonExplain/index.ts))
+- **Block 4 · markdown** (`moonExplain`, `be948409-31e8-4d41-a417-a6b864c9ba6a`; [source](https://github.com/KiT-Maverik/svitlo/blob/d35f73c40104f5c1c90321ad162ea75cee5c7ff5/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sMoon/moonExplain/index.ts))
   - **params:** (none)
   - **locale**
     - **value:**
@@ -188,20 +188,20 @@
       Şöyle sual soramaq mümkün: **«Ne içün Aynıñ aydın qısmı türlü körüne?»** Şimdilik farqnı körmek yeterli.
       
       ~~~~
-- **Block 5 · text** (`moonRecap`, `1c4140b2-4f03-44cf-af46-13aab27eda4b`; [source](https://github.com/KiT-Maverik/svitlo/blob/da091d74c881479f4ead87bce478ce07af4b0c3e/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sMoon/moonRecap/index.ts))
+- **Block 5 · text** (`moonRecap`, `1c4140b2-4f03-44cf-af46-13aab27eda4b`; [source](https://github.com/KiT-Maverik/svitlo/blob/d35f73c40104f5c1c90321ad162ea75cee5c7ff5/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sMoon/moonRecap/index.ts))
   - **params:** (none)
   - **locale**
-    - **value:** Söyle ya da köster: «Birinci şemada Aynıñ körüngen diskiñ yaqlaşık yarısı, ekincisinde ise hemen-hemen episi aydınlatılğan».
+    - **value:** Söyle ya da köster: «Birinci şemada körüngen diskniñ yaqlaşık yarısı, ekincisinde ise hemen-hemen episi aydınlatılğan».
 
 ### 3. Eki deñişme — eki sual · sReflect (content)
 
 - ID: `f9396c00-0956-4938-8551-f9d0638cd998`
 - Navigation: Bizim suallerimiz
-- Canonical: [source](https://github.com/KiT-Maverik/svitlo/blob/da091d74c881479f4ead87bce478ce07af4b0c3e/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sReflect/index.ts)
+- Canonical: [source](https://github.com/KiT-Maverik/svitlo/blob/d35f73c40104f5c1c90321ad162ea75cee5c7ff5/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sReflect/index.ts)
 - **locale**
   - **title:** Eki deñişme — eki sual
   - **navigationLabel:** Bizim suallerimiz
-- **Block 1 · markdown** (`reflectIntro`, `c1505ae0-7006-4e33-bcf6-2c1fd354876f`; [source](https://github.com/KiT-Maverik/svitlo/blob/da091d74c881479f4ead87bce478ce07af4b0c3e/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sReflect/reflectIntro/index.ts))
+- **Block 1 · markdown** (`reflectIntro`, `c1505ae0-7006-4e33-bcf6-2c1fd354876f`; [source](https://github.com/KiT-Maverik/svitlo/blob/d35f73c40104f5c1c90321ad162ea75cee5c7ff5/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sReflect/reflectIntro/index.ts))
   - **params:** (none)
   - **locale**
     - **value:**
@@ -209,7 +209,7 @@
       ## Biz ne farq ettik?
       **Kündüz ve gece:** aynı yer üstündeki kök yüzü kündüz yarığınen aydın, gece ise daha qaranlıq ola bile.
       
-      **Ay:** türlü künlerde onıñ aydınlatılğan diskiñ türlü qısımlarını köremiz.
+      **Ay:** türlü künlerde onıñ aydınlatılğan yüzüniñ türlü qısımlarını köremiz.
       
       Bular **eki ayrı közetüv**. Şu sebepten eki sual soramaq mümkün:
       - «Ne içün kündüz ve gece biri-birini deñiştire?»
@@ -218,7 +218,7 @@
       Evvel **kündüz ve gece aqqında sual sor ya da sayla**, soñ **Aynıñ körünişi aqqında ayrı sual sor**. Er mevzu içün azır tam sualnı saylap ya da **öz sualıñnı tüzüp**, onı sesli söylemek veya isteseñ yazmaq mümkün. Söylemek ya da yazmaq qıyın olsa, resim ve sesnen berilgen karttaki azır tam sualnı sayla. Öz sualıñnı saylasañ, evvel sualnı sor, **soñ ayrı tasdiq et**, sual sorulğanını bildir. «Öz sualımnı tüzem» degen saylav tek başına sual sorulğanını añlatmay. **Şimdi cevap bermek şart degil.** Yazmaq mecburiy degil; istameseñ bu adımnı keçmek mümkün.
       
       ~~~~
-- **Block 2 · audio** (`reflectAudio`, `67fcca8b-ec8a-4fa1-ba18-a3b1df3e99f2`; [source](https://github.com/KiT-Maverik/svitlo/blob/da091d74c881479f4ead87bce478ce07af4b0c3e/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sReflect/reflectAudio/index.ts))
+- **Block 2 · audio** (`reflectAudio`, `67fcca8b-ec8a-4fa1-ba18-a3b1df3e99f2`; [source](https://github.com/KiT-Maverik/svitlo/blob/d35f73c40104f5c1c90321ad162ea75cee5c7ff5/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sReflect/reflectAudio/index.ts))
   - *Media is not embedded. Paths, accessible descriptions, captions and display/fallback metadata are shown below.*
   - **params:** (none)
   - **locale**
@@ -230,7 +230,7 @@
       - **unavailable:** Ses yazuvı şimdi açılmay. Aynı malümat dersniñ metninde bar.
       - **playbackError:** Ses yazuvı çalınmadı. Yanındaki metinni oqumaq mümkün.
       - **retry:** Tekrar sınap baq
-- **Block 3 · scene** (`reflectScene`, `14cd71cf-f81d-44fd-ba4b-9346384ba037`; [source](https://github.com/KiT-Maverik/svitlo/blob/da091d74c881479f4ead87bce478ce07af4b0c3e/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sReflect/reflectScene/index.ts))
+- **Block 3 · scene** (`reflectScene`, `14cd71cf-f81d-44fd-ba4b-9346384ba037`; [source](https://github.com/KiT-Maverik/svitlo/blob/d35f73c40104f5c1c90321ad162ea75cee5c7ff5/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sReflect/reflectScene/index.ts))
   - **params:** (none)
   - **locale**
     - **value**
@@ -270,7 +270,7 @@
         - **speak:** Yazını, saylavnı ya da cevabını diñle
         - **repeat:** Sesni tekrar diñle
         - **pause:** Sesni toqtat
-- **Block 4 · markdown** (`reflectClose`, `de3f8a21-132e-4f9d-a287-b124daf381a5`; [source](https://github.com/KiT-Maverik/svitlo/blob/da091d74c881479f4ead87bce478ce07af4b0c3e/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sReflect/reflectClose/index.ts))
+- **Block 4 · markdown** (`reflectClose`, `de3f8a21-132e-4f9d-a287-b124daf381a5`; [source](https://github.com/KiT-Maverik/svitlo/blob/d35f73c40104f5c1c90321ad162ea75cee5c7ff5/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sReflect/reflectClose/index.ts))
   - **params:** (none)
   - **locale**
     - **value:**
