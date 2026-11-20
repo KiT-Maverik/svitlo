@@ -33,15 +33,6 @@ outcomes:
   explanation: "Teach observable light propagation, polygon identification and selected color classification. Group/Domain references define broad scope, not mastery of every nested Skill."
 content:
   items:
-    lightDiscovery:
-      type: "lesson"
-      slug: "lightDiscovery"
-      lessonId: "f760e7b7-9f77-5027-89ce-4e40d9d031a1"
-      title: "Light Lab · Discovery (existing Lesson)"
-      objective: "Reuse a verified standalone teaching Lesson without copying its source; establish a known Lesson reference for matching and localization tests."
-      skills: ["00000000-0000-4000-8000-000000000015"]
-      sequenceReason: "Root-level existing-Lesson reference to exercise matching and reuse before any Course-specific modules."
-      matchingRationale: "Reuses the authored Playground lightDiscovery Lesson and its verified Light Skill; its supported language tuple includes en and uk. The Course does not modify or re-author its Sections or bank."
     labPrologue:
       type: "episode"
       slug: "labPrologue"
@@ -296,6 +287,15 @@ content:
                   quizRequired: false
               order: ["patternMaker"]
         order: ["shapeWarmup", "recognition", "patterns"]
+    lightDiscovery:
+      type: "lesson"
+      slug: "lightDiscovery"
+      lessonId: "f760e7b7-9f77-5027-89ce-4e40d9d031a1"
+      title: "Light Lab · Discovery (existing Lesson)"
+      objective: "Reuse a verified standalone teaching Lesson without copying its source; establish a known Lesson reference for matching and localization tests."
+      skills: ["00000000-0000-4000-8000-000000000015"]
+      sequenceReason: "Root-level Lesson reuse after Shape Studio and before Color and Light, exercising direct Course placement without a Module wrapper."
+      matchingRationale: "Reuses the authored Playground lightDiscovery Lesson and its verified Light Skill; its supported language tuple includes en and uk. The Course does not modify or re-author its Sections or bank."
     colorLight:
       type: "module"
       slug: "colorLight"
@@ -479,4 +479,4 @@ content:
               External assessment dependency: Question Bank owners: shapeStudio/recognition/polygonIntro; shapeStudio/recognition/circleAndOval; colorLight/illumination/lightPath; colorLight/illumination/colorTransfer. These are Course slot keys, not Question UUIDs. Real Question selections can be integrated only after source-bank validation and approved localization.
             quizRequired: true
         order: ["integratedAssessment"]
-  order: ["lightDiscovery", "labPrologue", "shapeStudio", "colorLight", "capstone"]
+  order: ["labPrologue", "shapeStudio", "lightDiscovery", "colorLight", "capstone"]
