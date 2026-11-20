@@ -150,7 +150,9 @@ export function renderFlashcardBank(bank) {
   ensure(isRecord(bank), 'bank is not a mapping');
   ensure(
     Object.keys(bank).every(key =>
-      ['lessonId', 'documentLanguage', 'supportedLanguages', 'flashcards', 'relationships'].includes(key),
+      ['lessonId', 'documentLanguage', 'supportedLanguages', 'flashcards', 'relationships', 'sectionDrafts'].includes(
+        key,
+      ),
     ),
     'unknown top-level field',
   );
@@ -219,6 +221,9 @@ export function renderFlashcardBank(bank) {
     // the typed Config incomplete is safer than inventing a filename or UUID.
     const fields = block.type === 'video' ? 'fileName and posterFileName' : 'fileName';
     return (
+      '/* TODO (BLOCKER): ' +
+      block.type +
+      ' media resource(s) unresolved. Verify physical assets and complete filename fields before merge. */\n' +
       '/* TODO(asset): Verify an existing ' +
       block.type +
       ' resource at the pinned Lesson SHA; populate locale.' +

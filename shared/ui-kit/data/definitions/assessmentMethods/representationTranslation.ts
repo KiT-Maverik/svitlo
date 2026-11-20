@@ -1,6 +1,6 @@
-import { defineAssessmentMethod } from '@svitlo/engine/build';
+import { defineAssessmentMethod, type AllLanguageCodes } from '@svitlo/engine/build';
 
-export const representationTranslation = defineAssessmentMethod({
+export const representationTranslation = defineAssessmentMethod<'representationTranslation', AllLanguageCodes>({
   id: '5a541172-d7be-452a-a860-d52294af838c',
   slug: 'representationTranslation',
   title: {
@@ -18,7 +18,7 @@ export const representationTranslation = defineAssessmentMethod({
     id: 'Alih representasi',
     ja: '表現の変換',
     ka: 'წარმოდგენის ფორმის შეცვლა',
-    kk: 'Ұсыну түрін өзгерту',
+    kk: 'Ūsynu türın özgertu',
     ko: '표현 변환',
     lt: 'Vaizdavimo būdo keitimas',
     lv: 'Attēlojuma pārveidošana',
@@ -50,7 +50,7 @@ export const representationTranslation = defineAssessmentMethod({
     id: 'Menyajikan pengetahuan yang setara dalam bentuk lain tanpa mengubah maknanya. Penilaian mengukur proses berpikir ini, bukan bentuk jawabannya.',
     ja: '意味を変えずに、同じ知識を別の表現形式に置き換えます。 評価するのは回答形式ではなく、この認知的な働きです。',
     ka: 'ერთი და იმავე ცოდნის სხვა ფორმით გადმოცემა მისი მნიშვნელობის შენარჩუნებით. ფასდება ეს სააზროვნო მოქმედება და არა პასუხის ფორმატი.',
-    kk: 'Бір білімді мағынасын сақтай отырып, басқа түрде көрсету. Жауаптың пішімі емес, осы ойлау әрекеті бағаланады.',
+    kk: 'Bır bılımdı mağynasyn saqtai otyryp, basqa türde körsetu. Jauaptyñ pışımı emes, osy oilau äreketı bağalanady.',
     ko: '의미를 유지하면서 동일한 지식을 다른 표현으로 나타냅니다. 평가는 답변 형식이 아니라 이러한 인지 활동을 측정합니다.',
     lt: 'Pateikti tas pačias žinias kita forma, išsaugant jų prasmę. Vertinamas šis mąstymo veiksmas, o ne atsakymo pateikimo forma.',
     lv: 'Izteikt tās pašas zināšanas citā formā, saglabājot to nozīmi. Tiek vērtēta šī domāšanas darbība, nevis atbildes forma.',

@@ -20,7 +20,8 @@
     "app:prepare:assets": "node scripts/prepareAppAssets/prepare-app-assets.mjs",
     "code:format:check": "prettier --check . --ignore-path ../../.prettierignore",
     "code:format:fix": "prettier --write . --ignore-path ../../.prettierignore",
-    "code:lint:fix": "eslint --fix"
+    "code:lint:fix": "eslint --fix",
+    "test:integration": "node --test scripts/prepareTextbook/content-selection.integration.spec.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.9.0",
@@ -36,7 +37,6 @@
     "@svitlo/adapter-nextjs": "0.0.0",
     "@svitlo/engine": "0.0.0",
     "@svitlo/indexdb": "0.0.0",
-    "@svitlo/playground": "0.0.0",
     "@svitlo/ui-kit": "0.0.0",
     "next": "16.4.2",
     "react": "19.3.0",

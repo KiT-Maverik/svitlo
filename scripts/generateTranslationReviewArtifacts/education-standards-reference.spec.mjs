@@ -18,6 +18,12 @@ const UUID_B = '70e88fb1-15e6-49fe-a3d2-455ebe274816';
 const LANGUAGES = ['en', 'uk'];
 const SOURCE_SHA = 'a'.repeat(40);
 
+test('on-demand standard references do not build a nonexistent dedicated package', () => {
+  const workflow = fs.readFileSync(new URL('../../.github/workflows/translation-review.yml', import.meta.url), 'utf8');
+  assert.ok(!workflow.includes('@svitlo/education-standards'));
+  assert.ok(workflow.includes('npm run package:build --workspace @svitlo/engine'));
+});
+
 function setup(records) {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-standards-review-'));
   const directory = path.join(root, 'shared/ui-kit/data/definitions/educationStandards/data/example');

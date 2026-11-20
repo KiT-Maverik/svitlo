@@ -24,7 +24,7 @@ export const planning = defineSkillGroup({
     it: 'Pianificare la soluzione',
     ja: '解決手順の計画',
     ka: 'ამოხსნის დაგეგმვა',
-    kk: 'Шешімді жоспарлау',
+    kk: 'Şeşımdı josparlau',
     ko: '풀이 계획',
     lt: 'Sprendimo planavimas',
     lv: 'Risinājuma plānošana',
