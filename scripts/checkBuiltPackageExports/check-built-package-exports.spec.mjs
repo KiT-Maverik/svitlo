@@ -113,3 +113,50 @@ test('validates the current Playground Props publication paths rather than legac
   assert.notEqual(incomplete.status, 0);
   assert.match(incomplete.stderr, /Compiled lesson JSON missing/);
 });
+
+test('taxonomy-first textbooks publish only genuinely authored Lesson UUIDs', t => {
+  const root = mkdtempSync(join(tmpdir(), 'svitlo-authored-lesson-artifacts-'));
+  t.after(() => rmSync(root, { recursive: true, force: true }));
+  const workspace = join(root, 'content/astronomy');
+  const skill = 'data/skills/base.json';
+  const lesson = 'data/lessons/7/c042698a-de5b-5055-9e10-ff5621f80ed7';
+  const lessonResource = lesson + '/base.json';
+  for (const file of [
+    'dist/textbook/index.js',
+    'dist/textbook/index.d.ts',
+    'dist/publish.mjs',
+    'dist/static/' + skill,
+    'dist/static/' + lessonResource,
+  ]) {
+    const target = join(workspace, file);
+    mkdirSync(dirname(target), { recursive: true });
+    writeFileSync(target, file.endsWith('.json') ? '{}' : '');
+  }
+  writeFileSync(join(workspace, 'package.json'), JSON.stringify({
+    name: '@svitlo/astronomy',
+    bin: { 'svitlo-astronomy': './dist/publish.mjs' },
+    exports: { '.': { default: './dist/textbook/index.js', types: './dist/textbook/index.d.ts' } },
+  }));
+  const manifestPath = join(workspace, 'dist/manifest.json');
+  const verify = files => {
+    writeFileSync(manifestPath, JSON.stringify({ version: 1, textbook: 'astronomy', files }));
+    return spawnSync(process.execPath, [script, '--packages', 'content/astronomy'], {
+      cwd: root,
+      encoding: 'utf8',
+    });
+  };
+
+  const invented = verify([skill, lessonResource]);
+  assert.notEqual(invented.status, 0);
+  assert.match(invented.stderr, /Unexpected non-authored Lesson JSON/);
+
+  const source = join(workspace, lesson, 'index.ts');
+  mkdirSync(dirname(source), { recursive: true });
+  writeFileSync(source, '// Real authored Lesson entrypoint\n');
+  const authored = verify([skill, lessonResource]);
+  assert.equal(authored.status, 0, authored.stderr);
+
+  const missing = verify([skill]);
+  assert.notEqual(missing.status, 0);
+  assert.match(missing.stderr, /Missing authored Lesson JSON/);
+});
