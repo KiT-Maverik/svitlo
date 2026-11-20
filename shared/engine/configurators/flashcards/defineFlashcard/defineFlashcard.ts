@@ -460,7 +460,7 @@ export function defineFlashcard<
     config: {
       base,
       locales: () => ({
-        parameters: { flags: onlyLocales(copyAuthored().parameters.flags) },
+        parameters: { flags: copyAuthored().parameters.flags.map(flag => onlyLocales(flag)) },
       }),
       validate,
     },

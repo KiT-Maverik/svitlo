@@ -60,13 +60,10 @@ describe('Configurators', () => {
         slug: 'lightCard' as const,
         parameters: {
           tags: ['math'],
-          flags: {
-            items: {
-              list: { type: 'list' as const, count: 4 },
-              acronym: { type: 'acronym' as const, value: { en: 'ABC', uk: 'АБВ' } },
-            },
-            order: ['list', 'acronym'],
-          },
+          flags: [
+            { type: 'list' as const, count: 4 },
+            { type: 'acronym' as const, value: { en: 'ABC', uk: 'АБВ' } },
+          ],
           relationships: {
             items: {
               reverseLink: {
@@ -99,7 +96,7 @@ describe('Configurators', () => {
           typeof source.content.front.items,
           typeof source.content.back.items,
           typeof source.content.hint.items,
-          typeof source.parameters.flags.items,
+          typeof source.parameters.flags,
           typeof source.parameters.relationships.items,
           ['en', 'uk']
         >(config);
@@ -108,7 +105,7 @@ describe('Configurators', () => {
         const card = defineFlashcard({
           id: id('a7'),
           slug: 'invariantFlashcard',
-          parameters: { tags: [], flags: { items: {}, order: [] } },
+          parameters: { tags: [], flags: [] },
           content: {
             front: defineFlashcardSide({ items: { extra }, order: ['extra'] }),
             back: defineFlashcardSide({ items: { extra }, order: ['extra'] }),
@@ -118,6 +115,38 @@ describe('Configurators', () => {
         assert.deepEqual(resource.base.parameters.flags, []);
         assert.deepEqual(resource.base.parameters.disabilities, []);
         assert.equal(resource.locale, undefined);
+      });
+
+      test('Flashcard rejects old keyed flags and supports whole-array replacement', () => {
+        const card = defineBilingualFlashcard(source);
+        const legacy = { items: { list: { type: 'list', count: 3 } }, order: ['list'] };
+        assert.equal(
+          flashcard_Config_Schema.safeParse({
+            ...source,
+            parameters: { ...source.parameters, flags: legacy },
+          }).success,
+          false,
+        );
+        assert.throws(
+          () => card.build.overrides({ parameters: { flags: legacy } } as never, { languages: ['en'] }),
+          /Invalid Flashcard overrides/,
+        );
+        assert.throws(
+          () => card.build.overrides({
+            parameters: { flags: [{ type: 'warning' }, { type: 'warning' }] },
+          }, { languages: ['en'] }),
+          /Duplicate built-in Flashcard flag/,
+        );
+        const changed = card.build.overrides(
+          { parameters: { flags: [
+            { type: 'custom', value: { en: 'First', uk: 'Перший' }, color: 'info' },
+            { type: 'custom', value: { en: 'Second', uk: 'Другий' }, color: 'success' },
+          ] } },
+          { languages: ['en', 'uk'] },
+        );
+        assert.deepEqual(changed.base.parameters?.flags?.map(flag => flag?.type), ['custom', 'custom']);
+        assert.equal(flagValue(changed.locale?.uk?.parameters?.flags, 1), 'Другий');
+        assert.deepEqual(card.build.props({ languages: ['en'] }).base.parameters.flags.map(x => x!.type), ['list', 'acronym']);
       });
 
       test('Flashcard validates disability restrictions and publishes safe overrides', () => {
@@ -138,7 +167,7 @@ describe('Configurators', () => {
         );
       });
 
-      test('Flashcard composes ordered sides and named flags as JSON-only published Props', () => {
+      test('Flashcard composes ordered sides and unordered flag arrays as JSON-only published Props', () => {
         const card = defineBilingualFlashcard(source);
         assert.equal(card.content.front.items.front, front);
         assert.equal(card.build.props({ languages: ['en', 'uk'] }).base.slug, 'lightCard');
@@ -187,7 +216,10 @@ describe('Configurators', () => {
           {
             parameters: {
               tags: ['science'],
-              flags: { items: { acronym: { value: { uk: 'НОВЕ' } } } },
+              flags: [
+                { type: 'list', count: 4 },
+                { type: 'acronym', value: { en: 'ABC', uk: 'НОВЕ' } },
+              ],
             },
           },
           { languages: ['en', 'uk'] },
@@ -196,20 +228,18 @@ describe('Configurators', () => {
         assert.equal(flagValue(second.locale?.uk?.parameters?.flags, 1), 'НОВЕ');
         assert.equal(flagValue(second.locale?.en?.parameters?.flags, 1), 'ABC');
         assert.deepEqual(card.build.props({ languages: ['en', 'uk'] }).base.parameters.tags, ['math']);
-        const reordered = card.build.overrides(
+        const cleared = card.build.overrides(
           {
-            parameters: { flags: { order: ['acronym', 'list'] } },
+            parameters: { flags: [] },
           },
           { languages: ['en', 'uk'] },
         );
-        assert.deepEqual(
-          reordered.base.parameters?.flags?.map(x => x!.type),
-          ['acronym', 'list'],
-        );
+        assert.deepEqual(cleared.base.parameters?.flags, []);
+        assert.equal(cleared.locale, undefined);
         assert.equal(card.content.front.items.front, front);
       });
 
-      test('Flashcard rejects invalid metadata, identity, duplicate flags, orphan ordering and empty mandatory side', () => {
+      test('Flashcard rejects invalid metadata, identity, duplicate flags and empty mandatory side', () => {
         const card = defineBilingualFlashcard(source);
         assert.throws(
           () => card.build.overrides({ slug: 'wrong' } as never, { languages: ['en', 'uk'] }),
@@ -239,7 +269,7 @@ describe('Configurators', () => {
           () =>
             card.build.overrides(
               {
-                parameters: { flags: { items: { acronym: { type: 'custom' } } } },
+                parameters: { flags: [{ type: 'custom' }] },
               } as never,
               { languages: ['en', 'uk'] },
             ),
@@ -261,11 +291,8 @@ describe('Configurators', () => {
               ...source,
               parameters: {
                 ...source.parameters,
-                flags: {
-                  // Intentionally add an invalid duplicate flag to exercise the runtime validator.
-                  items: { ...source.parameters.flags.items, duplicate: { type: 'list', count: 3 } } as never,
-                  order: ['list', 'acronym', 'duplicate'],
-                },
+                // Intentionally add an invalid duplicate flag to exercise the runtime validator.
+                flags: [...source.parameters.flags, { type: 'list', count: 3 }] as never,
               },
             }).build.props({ languages: ['en'] }),
           /Duplicate built-in Flashcard flag/,
@@ -302,7 +329,10 @@ describe('Configurators', () => {
         assert.equal(single.locale?.en, undefined);
         const patch = card.build.overrides(
           {
-            parameters: { flags: { items: { acronym: { value: { uk: 'НОВЕ' } } } } },
+            parameters: { flags: [
+              { type: 'list', count: 4 },
+              { type: 'acronym', value: { uk: 'НОВЕ' } },
+            ] },
           },
           { languages: ['uk'] },
         );

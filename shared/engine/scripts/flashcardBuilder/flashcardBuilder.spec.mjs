@@ -24,7 +24,7 @@ const card = (slug, index, front, back) => ({
   parameters: {
     tags: ['recall'],
     disabilities: [],
-    flags: { items: {}, order: [] },
+    flags: [],
   },
   content: {
     front: { items: { front: block('front', index + 100, front) }, order: ['front'] },
@@ -117,6 +117,36 @@ test('rejects invalid IDs, unapproved metadata and stale or ambiguous relationsh
   const unsupported = createBank();
   unsupported.flashcards.items.first.content.front.items.front.type = 'image';
   assert.throws(() => renderFlashcardBank(unsupported), /invalid|Invalid|code|type|Required/i);
+});
+
+test('accepts Flashcard flag arrays, rejects duplicate types, and preserves authored locales', () => {
+  const bank = createBank();
+  bank.flashcards.items.first.parameters.flags = [
+    { type: 'list', count: 3 },
+    { type: 'acronym', value: { en: 'ABC' } },
+    { type: 'custom', value: { en: 'Reminder' }, color: 'info' },
+    { type: 'custom', value: { en: 'Note' }, color: 'success' },
+  ];
+  const output = renderFlashcardBank(bank);
+  assert(output.includes('"flags": ['), 'builder emits a plain array');
+  assert.deepEqual(bank.flashcards.items.first.parameters.flags.map(flag => flag.type),
+    ['list', 'acronym', 'custom', 'custom'], 'source is unchanged');
+
+  const legacy = structuredClone(bank);
+  legacy.flashcards.items.first.parameters.flags = { items: {}, order: [] };
+  assert.throws(() => renderFlashcardBank(legacy));
+
+  const duplicate = structuredClone(bank);
+  duplicate.flashcards.items.first.parameters.flags.push({ type: 'list', count: 2 });
+  assert.throws(() => renderFlashcardBank(duplicate), /Duplicate built-in Flashcard flag/);
+
+  const foreign = structuredClone(bank);
+  foreign.flashcards.items.first.parameters.flags[1].value.uk = 'АБВ';
+  assert.throws(() => renderFlashcardBank(foreign), /must author only documentLanguage en/);
+
+  const malformed = structuredClone(bank);
+  malformed.flashcards.items.first.parameters.flags[0].count = 1;
+  assert.throws(() => renderFlashcardBank(malformed));
 });
 
 test('create-only builder never overwrites TS, retains YAML and strictly checks drift', () => {
