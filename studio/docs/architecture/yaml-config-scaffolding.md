@@ -2,6 +2,17 @@
 
 **Canonical authoring boundaries:** [Create Lesson Flow](../../skills/lesson-workflow/create-lesson-flow.skill.md) owns one `lesson.yaml` through its editorial review and independently authorized Stage 6 source preparation. [Create Course Flow](../../skills/course-workflow/create-course-flow.skill.md) owns **one temporary `course.yaml`** through Course Stages 1–4, then [materializes it directly](../../../shared/engine/scripts/materializeCourseFlow/README.md) to permanent Course TypeScript/Markdown and new Lesson YAML handoffs at Stage 5. The Course plan is never converted to a second editable YAML source.
 
+## Validation boundaries across the four entity workflows
+
+| Entity flow | What is **not** a separate authoring-stage gate | One authoritative materialization boundary | Required checks that remain |
+| --- | --- | --- | --- |
+| **Course** | Re-running `validateCourseFlow --stage 1|2|3|3-complete` during Stages 1–4; temporary `TMP_*` placements need not satisfy the complete final schema | Stage 5 `materializeCourseFlow` calls `checkPlan('3-complete')` on its one parsed `course.yaml` before output, then checks the derived Engine Course/Episode contracts | Stage 4 independent whole-Course review, source SHA, UUID/Skill/locale safety, no-clobber, complete publisher/Ready checks |
+| **Lesson** | Stage-by-stage technical Zod/TypeScript validation of incomplete methodology, Sections or media before authoring review | Stage 6.1 `lessonBuilder`/`finalizeLesson` validates the actual Lesson input, with strict typed/resource checks in Stage 6.2 and later publication | Independent editorial review Stages 3–5, scene implementation, identity/paths/asset safety, SHA and strict production checks |
+| **Questions** | Separate schema-check CLI as a prerequisite to Stages 1–4 or to assessment specialist sign-off | Questions Stage 5 `questionsBuilder` preflight/materialization validates the actual reviewed `questions.yaml` and bank shape before writing | Stage 4 independent Assessment Review, no-overwrite, real Quiz/Question UUID/locale, source SHA, publisher/production checks |
+| **Flashcards** | Repeated Zod/TypeScript validation of an intentionally incomplete early `flashcards.yaml` in Stages 1–4 | Flashcards Stage 5 `flashcardBuilder` preflight/materialization validates the reviewed bank and typed nested objects before writing | Stage 4 Memory Design Review, Lesson/Question dependencies, safe paths, source SHA, media/resource/locale/production checks |
+
+Use Engine-derived schemas as **editor aids and final-boundary inputs**, not mandatory manual gates for every partially written draft. All four flows must fail closed on invalid completed materialization input before writes. Existing optional `--preflight`, `--check` and diagnostic commands remain available; final materialization and production CI must still run as specified. The final validation boundary never replaces an independent editorial or linguistic review, and `Ready for review` still triggers the scoped TypeScript/build/format and safety checks. Do not create a new per-commit YAML-validation workflow, duplicate CLI job, source format, review stage or status file.
+
 ## Technical Lesson YAML authoring
 
 A Lesson uses the one `lesson.yaml` at `data/lessons/<last-uuid-hex>/<uuid>/`. Its root and nested Configurator nodes have a `config` with Engine-derived `type`, immutable `id`, `slug`, `params`, `locale` and typed collections; optional `production` fields contain editorial-only requirements for the same entity. Production metadata never flows into `define*`, `build.overrides` or published Props.
@@ -18,7 +29,7 @@ config:
   skills: [] # real Skill UUIDs must be supplied
   params:
     languages: [en, uk] # planned locales, not completed translations
-    requireQuiz: false
+    quizRequiredForCompletion: false
     sections: { allowNavigation: true, allowSkipping: true, showIndexes: true }
   locale:
     title: { en: Equality }
