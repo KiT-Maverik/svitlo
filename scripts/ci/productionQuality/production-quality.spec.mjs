@@ -84,7 +84,6 @@ test('parallel production topology preserves every gate and produces one strict 
   assert.ok(workflow.indexOf('check-release-source.mjs') < workflow.indexOf('npm ci'));
 });
 
-
 test('PR comment command dispatches the unchanged full production workflow', () => {
   assert.match(commandWorkflow, /issue_comment:\s*\n\s*types: \[created\]/);
   assert.match(commandWorkflow, /github\.event\.issue\.pull_request/);
@@ -93,7 +92,10 @@ test('PR comment command dispatches the unchanged full production workflow', () 
   assert.match(commandWorkflow, /\.head\.repo\.full_name/);
   assert.match(commandWorkflow, /\.head\.sha/);
   assert.match(commandWorkflow, /actions: write/);
-  assert.match(commandWorkflow, /gh workflow run production-quality\.yml --ref "\$branch" --repo "\$GITHUB_REPOSITORY"/);
+  assert.match(
+    commandWorkflow,
+    /gh workflow run production-quality\.yml --ref "\$branch" --repo "\$GITHUB_REPOSITORY"/,
+  );
   assert.doesNotMatch(commandWorkflow, /actions\/checkout@|npm ci/);
   assert.match(workflow, /workflow_dispatch:/);
   assert.match(workflow, /name: Production Quality \/ verify/);
