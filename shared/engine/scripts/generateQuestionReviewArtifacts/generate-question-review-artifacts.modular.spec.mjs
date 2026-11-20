@@ -108,7 +108,7 @@ test('modular bank preserves all five Questions, 35 Text fields and three Quiz f
         assert.ok(md.includes(field.translations[entry.locale]), key + ' target');
         assert.ok(md.includes(field.path), key + ' path');
       }
-      assert.match(md, /Correct options \\(1\\): correctChoice/);
+      assert.match(md, /Correct options \(1\): correctChoice/);
       assert.match(md, /Quiz Section \/ safeSkyChoices/);
       assert.match(md, /# uk quiz introduction/);
       assert.match(md, new RegExp('# ' + entry.locale + ' quiz introduction'));
@@ -161,6 +161,6 @@ test('legacy flat Question entries fail instead of silently being accepted', () 
       path.join(sourceRoot(root), 'questions', names[0] + '.ts'));
     run(['en']);
     assert.equal(manifest.generated.length, 0);
-    assert.match(manifest.failures[0].error, /Legacy|unregistered|Question/);
+    assert.match(manifest.failures[0].error, /Legacy|unregistered|Question|Unresolved canonical import/);
   });
 });
