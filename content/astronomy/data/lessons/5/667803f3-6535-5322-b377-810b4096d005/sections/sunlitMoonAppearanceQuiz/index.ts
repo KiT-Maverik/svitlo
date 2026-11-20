@@ -60,10 +60,16 @@ export const sunlitMoonAppearanceQuiz = defineQuizSection<"sunlitMoonAppearanceQ
   },
   locale: {
     title: {
-      uk: "Перевір своє розуміння"
+      uk: "Перевір своє розуміння",
+      en: "Check your understanding",
+      pl: "Sprawdź, czy rozumiesz",
+      qm: "Añlağanıñnı teşker"
     },
     navigationLabel: {
-      uk: "Перевірка"
+      uk: "Перевірка",
+      en: "Check",
+      pl: "Sprawdź",
+      qm: "Teşkerüv"
     }
   },
   content
