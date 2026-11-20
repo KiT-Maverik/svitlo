@@ -9,7 +9,10 @@ export const correct3 = defineText<"correct3", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Марс видно завдяки відбитому сонячному світлу."
+      uk: "Марс видно завдяки відбитому сонячному світлу.",
+      en: "We can see Mars because it reflects sunlight.",
+      pl: "Mars jest widoczny dzięki odbitemu światłu słonecznemu.",
+      qm: "Biz Merihni köremiz, çünki o Küneş yarığını qaytara."
     }
   }
 });

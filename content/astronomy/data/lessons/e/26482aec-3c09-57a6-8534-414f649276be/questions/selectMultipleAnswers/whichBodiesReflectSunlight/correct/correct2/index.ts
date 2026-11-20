@@ -9,7 +9,10 @@ export const correct2 = defineText<"correct2", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Місяць видно завдяки сонячному світлу, яке він відбиває."
+      uk: "Місяць видно завдяки сонячному світлу, яке він відбиває.",
+      en: "We can see the Moon because it reflects sunlight.",
+      pl: "Księżyc jest widoczny dzięki temu, że odbija światło słoneczne.",
+      qm: "Biz Aynı köremiz, çünki o Küneş yarığını qaytara."
     }
   }
 });

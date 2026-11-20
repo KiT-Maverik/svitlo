@@ -9,7 +9,10 @@ export const correct4 = defineText<"correct4", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Землю з космосу можна бачити освітленою Сонцем."
+      uk: "Землю з космосу можна бачити освітленою Сонцем.",
+      en: "From space, Earth can be seen lit by the Sun.",
+      pl: "Z kosmosu można zobaczyć Ziemię oświetloną przez Słońce.",
+      qm: "Kosmostan Küneş yarığınen aydınlatılğan Yerni körmek mümkün."
     }
   }
 });

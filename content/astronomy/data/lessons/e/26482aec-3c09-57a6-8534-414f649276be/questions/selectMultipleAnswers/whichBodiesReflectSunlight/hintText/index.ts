@@ -9,7 +9,10 @@ export const hintText = defineText<"hintText", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Обирай за джерелом світла, а не за тим, наскільки яскравим здається тіло."
+      uk: "Обирай за джерелом світла, а не за тим, наскільки яскравим здається тіло.",
+      en: "Choose based on the source of the light, not on how bright the body looks.",
+      pl: "Kieruj się źródłem światła, a nie tym, jak jasno dane ciało wygląda.",
+      qm: "Cisim ne qadar parlaq körüngenine degil, yarıqnıñ menbasına esaslanıp sayla."
     }
   }
 });

@@ -9,7 +9,10 @@ export const prompt = defineText<"prompt", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Обери ВСІ правильні твердження про джерело світла, яке ми бачимо від різних небесних тіл."
+      uk: "Обери ВСІ правильні твердження про джерело світла, яке ми бачимо від різних небесних тіл.",
+      en: "Choose ALL correct statements about the source of the light we see from different celestial bodies.",
+      pl: "Wybierz WSZYSTKIE poprawne stwierdzenia o źródle światła, które widzimy od różnych ciał niebieskich.",
+      qm: "Çeşitli kök cisimlerinden körgen yarıqnıñ menbası aqqındaki BÜTÜN doğru fikirlerni sayla."
     }
   }
 });

@@ -9,7 +9,10 @@ export const incorrect1 = defineText<"incorrect1", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Земля — зоря, бо на фотографіях вона яскрава."
+      uk: "Земля — зоря, бо на фотографіях вона яскрава.",
+      en: "Earth is a star because it looks bright in photographs.",
+      pl: "Ziemia jest gwiazdą, bo na zdjęciach wygląda jasno.",
+      qm: "Yer yıldızdır, çünki resimlerde parlaq körüne."
     }
   }
 });

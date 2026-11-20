@@ -9,7 +9,10 @@ export const incorrect2 = defineText<"incorrect2", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Сіріус світиться тільки завдяки відбитому світлу Сонця."
+      uk: "Сіріус світиться тільки завдяки відбитому світлу Сонця.",
+      en: "Sirius shines only because it reflects the Sun's light.",
+      pl: "Syriusz świeci wyłącznie dlatego, że odbija światło Słońca.",
+      qm: "Sirius faqat Küneş yarığını qaytarğanı içün parlay."
     }
   }
 });
