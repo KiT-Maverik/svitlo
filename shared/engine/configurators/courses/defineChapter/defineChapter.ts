@@ -70,6 +70,7 @@ const validate = (config: Chapter_Config): void => {
     ...validateSluggedConfiguratorMap(config.content?.items, allowedChildren, {
       path: 'content.items',
       itemLabel: 'Chapter child',
+      allowAliasForTypes: ['lesson'],
     }).map(issue => issue.path + ': ' + issue.message),
   ];
   if (isRecord(config.content) && isRecord(config.content.items)) {
@@ -87,7 +88,7 @@ const validate = (config: Chapter_Config): void => {
         !isRecord(child.config) ||
         !isRecord(child.config.base) ||
         child.config.base.id !== child.id ||
-        child.config.base.slug !== slug ||
+        (child.type === 'lesson' ? child.config.base.slug !== child.slug : child.config.base.slug !== slug) ||
         child.config.base.type !== child.type
       ) {
         errors.push('content.items.' + slug + ': immutable child identity does not match its authored metadata');
@@ -208,19 +209,22 @@ export const defineChapter = <
       }
       const resource = build.props({ languages });
       const patch = Object.hasOwn(patches, key) ? build.overrides(patches[key] as never, { languages }) : undefined;
-      return { resource, patch };
+      return { key, resource, patch };
     });
+    // Course placement keys may alias standalone Lessons, without editing their immutable source identity.
+    const embedAtPlacement = (value: Record<string, unknown>, key: string): Record<string, unknown> =>
+      value.type === 'lesson' ? { ...value, slug: key } : value;
     // Child resources are already validated; avoid recursive generic inference on
     // the whole nested Course/Lesson union while merging sparse published fragments.
-    const base = entries.map(({ resource, patch }) =>
-      mergeForValidation<Record<string, unknown>>(
+    const base = entries.map(({ key, resource, patch }) =>
+      embedAtPlacement(mergeForValidation<Record<string, unknown>>(
         resource.base as Record<string, unknown>,
         (patch?.base ?? {}) as Record<string, unknown>,
-      ),
+      ), key),
     );
     const locale: Partial<Record<LanguageCode, Chapter_Child_Props[]>> = {};
     for (const language of languages) {
-      const resolved = entries.map(({ resource, patch }) => {
+      const resolved = entries.map(({ key, resource, patch }) => {
         const original = mergeForValidation<Record<string, unknown>>(
           resource.base as Record<string, unknown>,
           (resource.locale?.[language] ?? {}) as Record<string, unknown>,
@@ -233,7 +237,7 @@ export const defineChapter = <
           withBasePatch,
           (patch?.locale?.[language] ?? {}) as Record<string, unknown>,
         );
-        return parseChild(effective);
+        return parseChild(embedAtPlacement(effective, key));
       });
       // Inspect the published envelope without recursively expanding nested Lesson unions.
       const hasTranslatedChild = entries.some(({ resource, patch }) => {
@@ -330,6 +334,7 @@ export const defineChapter = <
       const addedIssues = validateSluggedConfiguratorMap(additions, allowedChildren, {
         path: 'content.additionalItems',
         itemLabel: 'Chapter child',
+      allowAliasForTypes: ['lesson'],
       });
       if (addedIssues.length) throw new Error(addedIssues.map(issue => issue.message).join('; '));
 
@@ -346,7 +351,7 @@ export const defineChapter = <
           !isRecord(child.config) ||
           !isRecord(child.config.base) ||
           child.config.base.id !== child.id ||
-          child.config.base.slug !== key ||
+          (child.type === 'lesson' ? child.config.base.slug !== child.slug : child.config.base.slug !== key) ||
           child.config.base.type !== child.type
         ) {
           throw new Error('New Chapter child must expose a matching immutable Build identity: ' + key);
