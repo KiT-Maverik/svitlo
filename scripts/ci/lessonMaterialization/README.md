@@ -14,7 +14,7 @@ An agent resuming a Lesson by PR number first reads [Create Lesson Flow](../../.
 
 An authorized maintainer may alternatively run default-branch workflow_dispatch with pr_number and operation=materialize. Neither interface accepts arbitrary paths, refs or commands. The workflow derives the canonical `content/<book>/data/lessons/<last-uuid-hex>/<uuid>/lesson.yaml` from the verified PR identity. Never run candidate PR code or create a second Lesson PR for a retry.
 
-A separately authorized `/lesson finalize` (dispatch operation=finalize) checks the original unchanged YAML against fully committed materialized source and removes **only** that `lesson.yaml`. It does not regenerate, overwrite source files or assert bank/Stage 6 completion.
+The internal `finalize` operation checks the original unchanged YAML against fully committed materialized source and would remove **only** that `lesson.yaml`. **The trusted resolve gate currently disables `/lesson finalize` and dispatch `finalize`** until separate YAML-retirement authorization is approved. This refactor preserves that restriction; it does not regenerate, overwrite source files or assert bank/Stage 6 completion.
 
 ## Trusted job isolation
 
