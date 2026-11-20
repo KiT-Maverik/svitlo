@@ -9,7 +9,10 @@ export const orientationNotShape = defineText<"orientationNotShape", LessonLangu
   params: {},
   locale: {
     value: {
-      uk: "Поворот серпа на фото сам по собі не означає, що змінилася форма Місяця."
+      uk: "Поворот серпа на фото сам по собі не означає, що змінилася форма Місяця.",
+      en: "The way the crescent is turned in a photo does not by itself mean that the Moon has changed shape.",
+      pl: "Sam obrót sierpa na zdjęciu nie oznacza, że Księżyc zmienił swój kształt.",
+      qm: "Fotoda oraqnıñ çevrilgeni, tek başına, Ayniñ şekli deñişkenini bildirmey."
     }
   }
 });

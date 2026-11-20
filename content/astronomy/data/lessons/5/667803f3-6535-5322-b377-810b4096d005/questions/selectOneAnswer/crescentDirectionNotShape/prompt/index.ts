@@ -9,7 +9,10 @@ export const prompt = defineText<"prompt", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "На двох фотографіях світлий серп Місяця повернутий у різні боки. Який висновок правильний?"
+      uk: "На двох фотографіях світлий серп Місяця повернутий у різні боки. Який висновок правильний?",
+      en: "In two photographs, the Moon's bright crescent points in different directions. Which conclusion is correct?",
+      pl: "Na dwóch zdjęciach jasny sierp Księżyca jest skierowany w różne strony. Który wniosek jest poprawny?",
+      qm: "Eki fotoda Ayniñ aydın orağı türlü yönlerge baqa. Qaysı netice doğru?"
     }
   }
 });

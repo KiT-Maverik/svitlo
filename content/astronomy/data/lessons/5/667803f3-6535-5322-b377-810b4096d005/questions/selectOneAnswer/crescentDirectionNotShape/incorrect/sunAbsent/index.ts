@@ -9,7 +9,10 @@ export const sunAbsent = defineText<"sunAbsent", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Сонце більше зовсім не освітлює Місяць."
+      uk: "Сонце більше зовсім не освітлює Місяць.",
+      en: "The Sun no longer illuminates the Moon at all.",
+      pl: "Słońce już w ogóle nie oświetla Księżyca.",
+      qm: "Küneş artıq Ayni bütünley aydınlatmay."
     }
   }
 });

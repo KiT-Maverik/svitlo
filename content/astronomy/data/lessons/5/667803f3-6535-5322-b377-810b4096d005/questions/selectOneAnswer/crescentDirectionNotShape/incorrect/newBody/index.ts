@@ -9,7 +9,10 @@ export const newBody = defineText<"newBody", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "На другій фотографії показано нове небесне тіло."
+      uk: "На другій фотографії показано нове небесне тіло.",
+      en: "The second photograph shows a new celestial body.",
+      pl: "Drugie zdjęcie przedstawia nowe ciało niebieskie.",
+      qm: "Ekinci fotoda yañı bir kök cisimi kösterilgen."
     }
   }
 });

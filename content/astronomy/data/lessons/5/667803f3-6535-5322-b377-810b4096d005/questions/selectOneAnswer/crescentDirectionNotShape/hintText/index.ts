@@ -9,7 +9,10 @@ export const hintText = defineText<"hintText", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Поміркуй, чи може той самий предмет на двох знімках бути повернутим по-різному."
+      uk: "Поміркуй, чи може той самий предмет на двох знімках бути повернутим по-різному.",
+      en: "Think about whether the same object can be turned differently in two pictures.",
+      pl: "Zastanów się, czy ten sam przedmiot może być inaczej obrócony na dwóch zdjęciach.",
+      qm: "Aynı cisim eki resimde türlüce çevrilgen ola bilirmi? Tüşün."
     }
   }
 });

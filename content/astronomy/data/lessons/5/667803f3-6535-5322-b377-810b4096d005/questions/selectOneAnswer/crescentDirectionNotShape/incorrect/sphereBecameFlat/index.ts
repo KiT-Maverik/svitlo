@@ -9,7 +9,10 @@ export const sphereBecameFlat = defineText<"sphereBecameFlat", LessonLanguages>(
   params: {},
   locale: {
     value: {
-      uk: "Місяць перестав бути кулею й став плоским."
+      uk: "Місяць перестав бути кулею й став плоским.",
+      en: "The Moon stopped being a sphere and became flat.",
+      pl: "Księżyc przestał być kulą i stał się płaski.",
+      qm: "Ay şar olmaqnı toqtatıp yassı oldı."
     }
   }
 });

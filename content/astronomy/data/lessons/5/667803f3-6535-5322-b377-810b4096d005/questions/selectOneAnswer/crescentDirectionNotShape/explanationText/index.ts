@@ -9,7 +9,10 @@ export const explanationText = defineText<"explanationText", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Напрямок світлого серпа залежить від умов і способу спостереження. Він не доводить зміни справжньої кулястої форми Місяця."
+      uk: "Напрямок світлого серпа залежить від умов і способу спостереження. Він не доводить зміни справжньої кулястої форми Місяця.",
+      en: "The crescent's direction depends on how and where it is observed. It does not mean that the Moon's real spherical shape has changed.",
+      pl: "Kierunek jasnego sierpa zależy od warunków i sposobu obserwacji. Nie oznacza to, że prawdziwy, kulisty kształt Księżyca się zmienił.",
+      qm: "Oraqnıñ yönü közetüv şartlarına ve usulına bağlı. Bu, Ayniñ kerçek şar şekli deñişkenini köstermey."
     }
   }
 });
