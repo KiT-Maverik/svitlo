@@ -500,3 +500,33 @@ test('Course-only override rejects unsupported identities, new Lesson patches an
     /Course-local Lesson edits require an existing lessonId/,
   );
 });
+
+test('Reuse source metadata must cover requested Skills and Course locales without owning placement slugs', () => {
+  const actualLesson = {
+    path: '../../../lessons/c/' + lessonId + '/index.ts',
+    export: 'standaloneOrbit',
+    slug: 'standaloneOrbit',
+    skills: [lessonId],
+    languages: ['en', 'uk'],
+  };
+  const reused = technicalFromEditorial(plan, () => actualLesson);
+  assert.equal(reused.config.content.items.review.config.slug, 'review');
+  assert.equal(reused.config.content.items.review.config.source.slug, 'standaloneOrbit');
+
+  assert.throws(
+    () => technicalFromEditorial(plan, () => ({ ...actualLesson, languages: ['en'] })),
+    /lessonId: reused Lesson .* does not support Course locale uk/,
+  );
+  const changed = structuredClone(plan);
+  changed.content.items.review.skills = ['faa8f11a-cc06-42c9-8864-8151732e690a'];
+  assert.throws(
+    () => technicalFromEditorial(changed, () => actualLesson),
+    /skills: reused Lesson .* does not teach verified Skill/,
+  );
+  changed.content.items.review.skills = [lessonId];
+  changed.content.items.review.locale = { title: { pl: 'Not a Course language' } };
+  assert.throws(
+    () => technicalFromEditorial(changed, () => actualLesson),
+    /locale\/title\/pl: override locale is outside Course supportedLanguages/,
+  );
+});
