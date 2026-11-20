@@ -132,21 +132,33 @@ describe('Configurators', () => {
           /Invalid Flashcard overrides/,
         );
         assert.throws(
-          () => card.build.overrides({
-            parameters: { flags: [{ type: 'warning' }, { type: 'warning' }] },
-          }, { languages: ['en'] }),
+          () =>
+            card.build.overrides(
+              { parameters: { flags: [{ type: 'warning' }, { type: 'warning' }] } },
+              { languages: ['en'] },
+            ),
           /Duplicate built-in Flashcard flag/,
         );
         const changed = card.build.overrides(
-          { parameters: { flags: [
-            { type: 'custom', value: { en: 'First', uk: 'Перший' }, color: 'info' },
-            { type: 'custom', value: { en: 'Second', uk: 'Другий' }, color: 'success' },
-          ] } },
+          {
+            parameters: {
+              flags: [
+                { type: 'custom', value: { en: 'First', uk: 'Перший' }, color: 'info' },
+                { type: 'custom', value: { en: 'Second', uk: 'Другий' }, color: 'success' },
+              ],
+            },
+          },
           { languages: ['en', 'uk'] },
         );
-        assert.deepEqual(changed.base.parameters?.flags?.map(flag => flag?.type), ['custom', 'custom']);
+        assert.deepEqual(
+          changed.base.parameters?.flags?.map(flag => flag?.type),
+          ['custom', 'custom'],
+        );
         assert.equal(flagValue(changed.locale?.uk?.parameters?.flags, 1), 'Другий');
-        assert.deepEqual(card.build.props({ languages: ['en'] }).base.parameters.flags.map(x => x!.type), ['list', 'acronym']);
+        assert.deepEqual(
+          card.build.props({ languages: ['en'] }).base.parameters.flags.map(x => x!.type),
+          ['list', 'acronym'],
+        );
       });
 
       test('Flashcard validates disability restrictions and publishes safe overrides', () => {
@@ -195,7 +207,7 @@ describe('Configurators', () => {
         assert.equal('overrides' in card.config, false);
       });
 
-      test('Flashcard applies independent side changes and sparse flag updates without mutating authored input', () => {
+      test('Flashcard applies independent side changes and flag array replacements without mutating authored input', () => {
         const card = defineBilingualFlashcard(source);
         const first = card.build.overrides(
           {
@@ -329,10 +341,12 @@ describe('Configurators', () => {
         assert.equal(single.locale?.en, undefined);
         const patch = card.build.overrides(
           {
-            parameters: { flags: [
-              { type: 'list', count: 4 },
-              { type: 'acronym', value: { uk: 'НОВЕ' } },
-            ] },
+            parameters: {
+              flags: [
+                { type: 'list', count: 4 },
+                { type: 'acronym', value: { uk: 'НОВЕ' } },
+              ],
+            },
           },
           { languages: ['uk'] },
         );

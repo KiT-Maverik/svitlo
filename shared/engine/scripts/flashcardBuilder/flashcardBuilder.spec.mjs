@@ -129,8 +129,11 @@ test('accepts Flashcard flag arrays, rejects duplicate types, and preserves auth
   ];
   const output = renderFlashcardBank(bank);
   assert(output.includes('"flags": ['), 'builder emits a plain array');
-  assert.deepEqual(bank.flashcards.items.first.parameters.flags.map(flag => flag.type),
-    ['list', 'acronym', 'custom', 'custom'], 'source is unchanged');
+  assert.deepEqual(
+    bank.flashcards.items.first.parameters.flags.map(flag => flag.type),
+    ['list', 'acronym', 'custom', 'custom'],
+    'source is unchanged',
+  );
 
   const legacy = structuredClone(bank);
   legacy.flashcards.items.first.parameters.flags = { items: {}, order: [] };

@@ -43,10 +43,7 @@
                     "maximum": 9007199254740991
                   }
                 },
-                "required": [
-                  "type",
-                  "count"
-                ],
+                "required": ["type", "count"],
                 "additionalProperties": false
               },
               {
@@ -57,9 +54,7 @@
                     "const": "warning"
                   }
                 },
-                "required": [
-                  "type"
-                ],
+                "required": ["type"],
                 "additionalProperties": false
               },
               {
@@ -73,10 +68,7 @@
                     "$ref": "#/$defs/__schema4"
                   }
                 },
-                "required": [
-                  "type",
-                  "value"
-                ],
+                "required": ["type", "value"],
                 "additionalProperties": false
               },
               {
@@ -91,36 +83,14 @@
                   },
                   "color": {
                     "type": "string",
-                    "enum": [
-                      "default",
-                      "primary",
-                      "secondary",
-                      "error",
-                      "info",
-                      "success",
-                      "warning"
-                    ]
+                    "enum": ["default", "primary", "secondary", "error", "info", "success", "warning"]
                   },
                   "icon": {
                     "type": "string",
-                    "enum": [
-                      "list",
-                      "warning",
-                      "acronym",
-                      "info",
-                      "star",
-                      "bookmark",
-                      "lightbulb",
-                      "code",
-                      "check"
-                    ]
+                    "enum": ["list", "warning", "acronym", "info", "star", "bookmark", "lightbulb", "code", "check"]
                   }
                 },
-                "required": [
-                  "type",
-                  "value",
-                  "color"
-                ],
+                "required": ["type", "value", "color"],
                 "additionalProperties": false
               }
             ]

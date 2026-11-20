@@ -125,7 +125,7 @@ const validate = (config: Flashcard_Config): void => {
  * each completed entry; patch field validation is derived from the original schema.
  */
 const resolveNamed = (
-  label: 'flags' | 'relationships',
+  label: 'relationships',
   source: NamedInput,
   patch: NamedPatch | undefined,
   parseItem: (value: unknown) => unknown,
@@ -241,7 +241,7 @@ export function defineFlashcard<
     ...(config.content.hint ? { hint: config.content.hint } : {}),
   };
   const content = { ...initialContent };
-  // Transitional projection keeps invariant flag metadata separate from locale files.
+  // Keep invariant flag fields in base; localized values belong in locale files.
   const base = {
     id,
     slug,
