@@ -72,11 +72,11 @@ Complete authored assets as needed, then use `generateAssessmentResources --kind
 
 ### 6. Translation — Technical Translator
 
-Translate all required actual learner-facing card text, alt/caption/hint, custom flag, accessible alternatives and culturally valid acronyms to the **Lesson's actual language plan**. Reuse already-localized Question fields via references rather than cloning them. A Course may request a verified subset at publication without shrinking a globally reusable Flashcard or Lesson.
+Translate all required actual learner-facing card text, alt/caption/hint, custom flag, accessible alternatives and culturally valid acronyms to the **Lesson's actual language plan** directly on the **existing Flashcards PR branch**. Track each card/field × locale, translator and exact source SHA there; **do not create an extra translation PR, reviewer PR, integration branch or Issue**. Reuse localized Question fields by reference rather than cloning them. A Course may request a verified subset without narrowing the globally reusable bank or Lesson.
 
 ### 7. Translation Review — independent Linguistic Reviewer
 
-Review Code-derived localized references against current source revision and target language, including RTL, punctuation, scientific sense, terminology, alt and hints, media parity, text/image/audio answer leakage and acronym reconstruction. Record verifiable per-language and per-SHA evidence in the PR. Missing or stale reviews are blockers.
+An **independent authorized reviewer in a different chat/context and linguistic persona** reviews complete Code-derived localized **Flashcard Bank** references and a manifest pinned to the **same Flashcards PR source SHA**. The source must include all bank members (front/back/optional hint and flags), not just Lesson Section `flashcardIds`; existing Lesson Markdown `--purpose flashcards` is a *design context*, **not proof of reviewed card translations**. If a complete bank adapter is unavailable, report a scoped review blocker instead of inventing evidence. Check scientific meaning, RTL, punctuation, terminology, alt/hints, media parity, answer leakage and acronym reconstruction. Owner-authorized fixes occur **on the same Flashcards PR**, then re-generate/review affected content; record distinct reviewer identity, source/fix/final SHAs, findings and language decision in its tracker. No separate reviewer PR.
 
 ### Publication and missing-asset release requirement
 
