@@ -861,7 +861,7 @@ export function renderLessonModules(lesson, language, options = {}) {
     '({\n' +
     rootFields.join(',\n') +
     '\n});\n';
-  put('review.ts', renderReviewDraft());
+  put('review.ts', renderReviewDraft(language));
   put('index.ts', root);
   // Write the entrypoint last. A process interruption before this point
   // leaves an orphan tree, which runOne rejects rather than treating it as a

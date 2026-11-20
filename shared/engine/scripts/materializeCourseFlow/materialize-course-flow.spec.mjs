@@ -6,6 +6,8 @@ import path from 'node:path';
 import ts from 'typescript';
 import YAML from 'yaml';
 import { technicalFromEditorial, renderModularCourse, planArtifacts, materialize } from './materialize-course-flow.mjs';
+import { scanSource } from '../../../../scripts/ci/checkBlockerTodos/check-blocker-todos.mjs';
+import { reviewTypeDiagnostics } from '../lessonBuilder/reviewTypecheck.test-utils.mjs';
 
 const id = '30ecbde1-97fd-5fe7-a353-ea89b9ef4a67';
 const moduleId = '12ecbde1-97fd-5fe7-a353-ea89b9ef4a67';
@@ -125,7 +127,17 @@ test('editorial -> technical draft preserves UUIDs, order, intent and evidence',
   assert(drafts.get('review.ts').includes("import type { Review } from '@svitlo/engine/build';"));
   assert(drafts.get('review.ts').includes('export const courseReview = {'));
   assert(drafts.get('review.ts').includes('} satisfies Review;'));
-  assert(drafts.get('review.ts').includes('acceptance: undefined'));
+  const review = drafts.get('review.ts');
+  assert.match(review, /^\/\/ TODO \(BLOCKER\): Conduct review/);
+  assert(review.includes('ai: { locales: 0 }'));
+  assert(review.includes('human: { acceptance: 0, locales: {} }'));
+  assert(!review.includes('undefined'));
+  assert.deepEqual(reviewTypeDiagnostics(review), []);
+  assert.equal(scanSource('content/math/data/courses/a/id/review.ts', review).length, 3);
+  assert.equal(
+    scanSource('content/math/data/courses/a/id/review.ts', review.replace(/^\/\/ TODO \(BLOCKER\):.*\n/, '')).length,
+    2,
+  );
   assert(!drafts.get('review.ts').includes('methodology: null'));
   const constants = drafts.get('constants.ts');
   assert(constants.includes("import type { SupportedLanguages } from '@svitlo/engine/build';"));
@@ -295,8 +307,14 @@ test('approved Course Episode generates a standalone typed Episode module with i
           content: {
             items: {
               greeting: { type: 'markdown', slug: 'greeting', locale: { value: { en: 'Look up at the sky' } } },
+              illustration: {
+                type: 'image',
+                slug: 'illustration',
+                params: { fill: true, aspectRatio: 1.5 },
+                locale: { alt: { en: 'Diagram of the sky' } },
+              },
             },
-            order: ['greeting'],
+            order: ['greeting', 'illustration'],
           },
         },
       },
@@ -311,6 +329,9 @@ test('approved Course Episode generates a standalone typed Episode module with i
   const episodeCode = artifacts.files.get('content/story/index.ts');
   assert(episodeCode.includes('defineEpisode<'));
   assert(episodeCode.includes('defineMarkdown('), 'preserve authored nested Episode content');
+  assert(episodeCode.includes('defineImage('), 'preserve authored Episode image Config');
+  assert(episodeCode.includes('TODO(asset)'), 'missing Episode media retains an explicit source blocker');
+  assert(episodeCode.includes('00000000-0000-0000-0000-000000000000.webp'));
   assert(episodeCode.includes('export const story = defineEpisode<"story", CourseLanguages, typeof section.items>'));
   assert(
     episodeCode.includes(
