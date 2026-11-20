@@ -2,7 +2,12 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { test } from 'node:test';
-import { chooseChecks, partitionBuildMutatingHosts, shouldBuildDependency, workspaceDependents } from './run-fast-gate.mjs';
+import {
+  chooseChecks,
+  partitionBuildMutatingHosts,
+  shouldBuildDependency,
+  workspaceDependents,
+} from './run-fast-gate.mjs';
 
 const packages = [
   { path: 'shared/engine', name: '@svitlo/engine' },
@@ -196,4 +201,3 @@ test('build-mutating host checks run after independent workspace checks', () => 
     sequential: [],
   });
 });
-

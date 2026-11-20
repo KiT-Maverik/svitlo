@@ -22,7 +22,10 @@ test('FastGate limits Ready checks to TypeScript and defers installs for Drafts'
   const guard =
     "if: steps.scope.outputs.run == 'true' && (github.event_name == 'workflow_dispatch' || !github.event.pull_request.draft)";
   assert.equal(fast.split(guard).length - 1, 2);
-  assert.match(fast, /if: github.event_name == 'pull_request' && !github.event.pull_request.draft && steps.scope.outputs.run == 'true'/);
+  assert.match(
+    fast,
+    /if: github.event_name == 'pull_request' && !github.event.pull_request.draft && steps.scope.outputs.run == 'true'/,
+  );
   assert.match(fast, /if: github.event_name == 'workflow_dispatch' && steps.scope.outputs.run == 'true'/);
   assert.match(fast, /Draft PR - typechecks are deferred/);
   assert.doesNotMatch(fast, /node --test|test:coverage|test:components|app:build/);

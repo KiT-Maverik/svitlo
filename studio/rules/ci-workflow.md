@@ -15,7 +15,7 @@
 | Event                                   | Scope                                                                                                                          |
 | --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
 | Draft PR (any target)                   | Cheap source/security/artifact guards and authored `TODO (BLOCKER):` warnings; defer npm installs, builds and E2E              |
-| Ready PR to `develop`                   | Scoped typechecks in FastGate; separate Ready generator/host/browser suites, selected content build, blocking TODO checks       |
+| Ready PR to `develop`                   | Scoped typechecks in FastGate; separate Ready generator/host/browser suites, selected content build, blocking TODO checks      |
 | Ready child PR to an integration parent | Applicable targeted checks and selected content builds, blocking authored TODO checks; FastGate is only required for `develop` |
 | Ready promotion PR to `main`            | All textbook builds, complete package checks, E2E, full tracked-source blocker scan; no redundant FastGate                     |
 | Manual `workflow_dispatch`              | Explicit full diagnostics/builds on a selected branch, including a Draft branch                                                |
