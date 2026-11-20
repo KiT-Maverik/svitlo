@@ -1,5 +1,833 @@
 documentLanguage: uk
-questions: {}
+questions:
+  selectOneAnswer:
+    compareIlluminatedPortions:
+      id: c861263c-30a1-4d91-bf1b-6c2f1df429b8
+      slug: compareIlluminatedPortions
+      type: selectOneAnswer
+      params:
+        assessmentMethod: classification
+        restrictions: []
+      locale: {}
+      content:
+        question:
+          items:
+            prompt:
+              id: a7aea976-f775-4ea9-94a0-696740af4551
+              slug: prompt
+              type: text
+              params: {}
+              locale:
+                value:
+                  uk: "Троє дітей описали Місяць у різні дні: одна бачила тонкий світлий серп, друга — приблизно половину освітленого диска, третя — майже весь освітлений диск. Хто бачив найбільшу світлу частину?"
+          order:
+            - prompt
+        hint:
+          items:
+            hintText:
+              id: 28f07343-10e8-4db3-b62f-0357cda78098
+              slug: hintText
+              type: text
+              params: {}
+              locale:
+                value:
+                  uk: "Порівняй не розмір Місяця, а частину його диска, яку можна назвати світлою."
+          order:
+            - hintText
+        explanation:
+          items:
+            explanationText:
+              id: 4b35625d-5d35-4684-9590-caf3d4819dc1
+              slug: explanationText
+              type: text
+              params: {}
+              locale:
+                value:
+                  uk: "На третьому описі видно найбільшу частку освітленої поверхні. Сам Місяць у всіх трьох випадках залишається тим самим."
+          order:
+            - explanationText
+        answers:
+          correct:
+            items:
+              almostWhole:
+                id: aee2f720-944d-429f-be68-2ea52edf6657
+                slug: almostWhole
+                type: text
+                params: {}
+                locale:
+                  value:
+                    uk: "Дитина, яка бачила майже весь освітлений диск."
+            order:
+              - almostWhole
+          incorrect:
+            items:
+              thinCrescent:
+                id: 20d33c81-8410-4f72-8885-879046d91a7f
+                slug: thinCrescent
+                type: text
+                params: {}
+                locale:
+                  value:
+                    uk: "Дитина, яка бачила тонкий світлий серп."
+              halfDisk:
+                id: b1622226-1239-4437-ba71-b7540962701b
+                slug: halfDisk
+                type: text
+                params: {}
+                locale:
+                  value:
+                    uk: "Дитина, яка бачила приблизно половину диска."
+              sameForAll:
+                id: 08ab3c96-c31a-4a46-8d2d-d9a4f203b7bd
+                slug: sameForAll
+                type: text
+                params: {}
+                locale:
+                  value:
+                    uk: "Усі троє бачили однакову освітлену частину."
+            order:
+              - thinCrescent
+              - halfDisk
+              - sameForAll
+          distractors:
+            items: {}
+            order: []
+    whatChangedBetweenDays:
+      id: 2b37e984-7602-44c2-b7f3-cacad6bc252f
+      slug: whatChangedBetweenDays
+      type: selectOneAnswer
+      params:
+        assessmentMethod: classification
+        restrictions: []
+      locale: {}
+      content:
+        question:
+          items:
+            prompt:
+              id: d94b6eb7-acf0-4a85-8131-8137e0faf589
+              slug: prompt
+              type: text
+              params: {}
+              locale:
+                value:
+                  uk: "У понеділок з Землі видно тонкий серп Місяця, а через кілька днів — майже весь світлий диск. Що насправді змінилося?"
+          order:
+            - prompt
+        hint:
+          items:
+            hintText:
+              id: 4600cddd-27b3-4fd8-a70b-c97a54e43657
+              slug: hintText
+              type: text
+              params: {}
+              locale:
+                value:
+                  uk: "Подумай, чи може одна й та сама куля мати різний освітлений вигляд."
+          order:
+            - hintText
+        explanation:
+          items:
+            explanationText:
+              id: 542a1bbf-efbd-4354-9ce6-50d6bcc86d18
+              slug: explanationText
+              type: text
+              params: {}
+              locale:
+                value:
+                  uk: "Вигляд змінюється, бо ми бачимо іншу частку освітленої Сонцем поверхні. Форма й саме небесне тіло не змінюються."
+          order:
+            - explanationText
+        answers:
+          correct:
+            items:
+              visibleLitSurface:
+                id: de88544d-830c-486d-ad35-78753148a7ba
+                slug: visibleLitSurface
+                type: text
+                params: {}
+                locale:
+                  value:
+                    uk: "Скільки освітленої поверхні Місяця видно із Землі."
+            order:
+              - visibleLitSurface
+          incorrect:
+            items:
+              physicalSize:
+                id: 6152e078-630b-4f82-8354-7b0e070ee41d
+                slug: physicalSize
+                type: text
+                params: {}
+                locale:
+                  value:
+                    uk: "Справжній розмір Місяця став більшим."
+              physicalShape:
+                id: a67c3a10-8343-417a-959d-d41c874466b9
+                slug: physicalShape
+                type: text
+                params: {}
+                locale:
+                  value:
+                    uk: "Кулястий Місяць перетворився на круглу пластину."
+              anotherBody:
+                id: 1fa623cd-98da-42df-bbc9-597b2585837d
+                slug: anotherBody
+                type: text
+                params: {}
+                locale:
+                  value:
+                    uk: "Замість першого Місяця з’явився інший Місяць."
+            order:
+              - physicalSize
+              - physicalShape
+              - anotherBody
+          distractors:
+            items: {}
+            order: []
+    moonlightSource:
+      id: cfae194e-1692-42c6-8d57-53ccda07054e
+      slug: moonlightSource
+      type: selectOneAnswer
+      params:
+        assessmentMethod: interpretation
+        restrictions: []
+      locale: {}
+      content:
+        question:
+          items:
+            prompt:
+              id: ed0ffd2f-d32e-4e2a-b4cb-7365f3d2f5cd
+              slug: prompt
+              type: text
+              params: {}
+              locale:
+                value:
+                  uk: "На вечірньому небі світиться Місяць. Звідки береться світло, яке ми бачимо від Місяця?"
+          order:
+            - prompt
+        hint:
+          items:
+            hintText:
+              id: f4b51b2b-7c73-4c15-a5ee-5d2b6c6e6c92
+              slug: hintText
+              type: text
+              params: {}
+              locale:
+                value:
+                  uk: "Згадай різницю між джерелом світла і предметом, який це світло відбиває."
+          order:
+            - hintText
+        explanation:
+          items:
+            explanationText:
+              id: 3ddc564a-8271-4124-ad89-3cdf56b5907b
+              slug: explanationText
+              type: text
+              params: {}
+              locale:
+                value:
+                  uk: "Сонце освітлює Місяць. Його поверхня відбиває частину сонячного світла до наших очей."
+          order:
+            - explanationText
+        answers:
+          correct:
+            items:
+              sunReflected:
+                id: 602cd9c3-706b-47df-890a-2a7d3764d581
+                slug: sunReflected
+                type: text
+                params: {}
+                locale:
+                  value:
+                    uk: "Місяць відбиває світло Сонця."
+            order:
+              - sunReflected
+          incorrect:
+            items:
+              ownStarLight:
+                id: d1f4d34e-9902-4191-a8fb-fbb28980ab2c
+                slug: ownStarLight
+                type: text
+                params: {}
+                locale:
+                  value:
+                    uk: "Місяць виробляє власне світло, як зоря."
+              earthProduces:
+                id: 54db9869-60e7-44cd-892d-ff24ff22a030
+                slug: earthProduces
+                type: text
+                params: {}
+                locale:
+                  value:
+                    uk: "Місяць відбиває світло лише далеких зір, а не Сонця."
+              moonLamp:
+                id: ffd9dd71-233f-422d-9459-00964c317954
+                slug: moonLamp
+                type: text
+                params: {}
+                locale:
+                  value:
+                    uk: "Місяць світиться, бо його каміння дуже гаряче."
+            order:
+              - ownStarLight
+              - earthProduces
+              - moonLamp
+          distractors:
+            items: {}
+            order: []
+    lampBallViewpoint:
+      id: e5a42ad5-d117-420f-89f4-ec5ab4b7d1ea
+      slug: lampBallViewpoint
+      type: selectOneAnswer
+      params:
+        assessmentMethod: interpretation
+        restrictions: []
+      locale: {}
+      content:
+        question:
+          items:
+            prompt:
+              id: 78440d3b-cadb-4dd6-bf0d-ae0ae0a8649a
+              slug: prompt
+              type: text
+              params: {}
+              locale:
+                value:
+                  uk: "Лампа освітлює одну половину нерухомої кулі. Двоє дітей дивляться на кулю з різних місць і бачать різну величину її світлої частини. Чому?"
+          order:
+            - prompt
+        hint:
+          items:
+            hintText:
+              id: d3b95d3e-11a1-4b8e-83e7-48888ae09aaa
+              slug: hintText
+              type: text
+              params: {}
+              locale:
+                value:
+                  uk: "Поглянь подумки на предмет із двох боків. Чи мусить змінитися сам предмет?"
+          order:
+            - hintText
+        explanation:
+          items:
+            explanationText:
+              id: d8381ba6-9a5e-40df-a932-3d7e458ce07d
+              slug: explanationText
+              type: text
+              params: {}
+              locale:
+                value:
+                  uk: "Освітлена половина кулі залишається тією самою, але спостерігачі бачать різні її частини. Таку ідею використовують для пояснення вигляду Місяця."
+          order:
+            - explanationText
+        answers:
+          correct:
+            items:
+              differentView:
+                id: aa286095-4718-4cf9-9416-410f41eacb3c
+                slug: differentView
+                type: text
+                params: {}
+                locale:
+                  value:
+                    uk: "Діти бачать різні частини освітленої половини тієї самої кулі."
+            order:
+              - differentView
+          incorrect:
+            items:
+              ballReshaped:
+                id: d6e1621e-e429-4b9a-a3c8-a62f8fd867d8
+                slug: ballReshaped
+                type: text
+                params: {}
+                locale:
+                  value:
+                    uk: "Куля змінює свою форму залежно від погляду."
+              twoBalls:
+                id: 8b3ef332-e351-46aa-9efe-f2b9116881ef
+                slug: twoBalls
+                type: text
+                params: {}
+                locale:
+                  value:
+                    uk: "Кожній дитині показали іншу кулю."
+              lampStopped:
+                id: 23c96cb5-9a6a-4cb9-9c4a-0b13ab829b23
+                slug: lampStopped
+                type: text
+                params: {}
+                locale:
+                  value:
+                    uk: "Лампа зовсім перестає освітлювати кулю для однієї дитини."
+            order:
+              - ballReshaped
+              - twoBalls
+              - lampStopped
+          distractors:
+            items: {}
+            order: []
+    daylightMoon:
+      id: 8fb42da9-0601-43e9-9887-b8836fb6fbdb
+      slug: daylightMoon
+      type: selectOneAnswer
+      params:
+        assessmentMethod: interpretation
+        restrictions: []
+      locale: {}
+      content:
+        question:
+          items:
+            prompt:
+              id: c616d007-6469-40ea-b0be-2c54e22b1304
+              slug: prompt
+              type: text
+              params: {}
+              locale:
+                value:
+                  uk: "Дитина помітила Місяць удень, коли ще світило Сонце. Чому це не дивно?"
+          order:
+            - prompt
+        hint:
+          items:
+            hintText:
+              id: 4ce584ae-24a0-430d-8b23-bfca7b51cdce
+              slug: hintText
+              type: text
+              params: {}
+              locale:
+                value:
+                  uk: "Подумай, чи обов’язково має настати ніч, щоб Місяць відбивав сонячне світло."
+          order:
+            - hintText
+        explanation:
+          items:
+            explanationText:
+              id: 85ec3447-fa30-4ebf-8cd8-85b8fbeee499
+              slug: explanationText
+              type: text
+              params: {}
+              locale:
+                value:
+                  uk: "Місяць відбиває сонячне світло і вдень, і вночі. Його видимість залежить від положення на небі й умов спостереження."
+          order:
+            - explanationText
+        answers:
+          correct:
+            items:
+              reflectsInDay:
+                id: b9a0bf0c-f61d-47d5-a1ec-5eccb3860467
+                slug: reflectsInDay
+                type: text
+                params: {}
+                locale:
+                  value:
+                    uk: "Місяць іноді буває на денному небі, а його поверхня відбиває світло Сонця."
+            order:
+              - reflectsInDay
+          incorrect:
+            items:
+              sunTurnsOff:
+                id: 549f7348-7b68-42c6-a1b2-d3fc9b8cd1d7
+                slug: sunTurnsOff
+                type: text
+                params: {}
+                locale:
+                  value:
+                    uk: "Сонце на мить вимкнуло своє світло."
+              moonSwitches:
+                id: 6f5735b0-d9eb-4e8d-b78e-438f47de71bb
+                slug: moonSwitches
+                type: text
+                params: {}
+                locale:
+                  value:
+                    uk: "Місяць може світитися лише після заходу Сонця."
+              differentMoon:
+                id: 9a6b8d92-991d-466d-8614-1a397b1aaae5
+                slug: differentMoon
+                type: text
+                params: {}
+                locale:
+                  value:
+                    uk: "Удень з’являється інший, денний Місяць."
+            order:
+              - sunTurnsOff
+              - moonSwitches
+              - differentMoon
+          distractors:
+            items: {}
+            order: []
+    crescentDirectionNotShape:
+      id: d2e34417-4c9e-4005-a818-a24f9b424245
+      slug: crescentDirectionNotShape
+      type: selectOneAnswer
+      params:
+        assessmentMethod: classification
+        restrictions: []
+      locale: {}
+      content:
+        question:
+          items:
+            prompt:
+              id: 9f56cc20-0a37-4168-92a6-a19a60681df3
+              slug: prompt
+              type: text
+              params: {}
+              locale:
+                value:
+                  uk: "На двох фотографіях світлий серп Місяця повернутий у різні боки. Який висновок правильний?"
+          order:
+            - prompt
+        hint:
+          items:
+            hintText:
+              id: ce19d62b-3114-4231-8e53-0be9d2c26cb4
+              slug: hintText
+              type: text
+              params: {}
+              locale:
+                value:
+                  uk: "Поміркуй, чи може той самий предмет на двох знімках бути повернутим по-різному."
+          order:
+            - hintText
+        explanation:
+          items:
+            explanationText:
+              id: d7aab809-4c70-46d9-96e0-7562d733db28
+              slug: explanationText
+              type: text
+              params: {}
+              locale:
+                value:
+                  uk: "Напрямок світлого серпа залежить від умов і способу спостереження. Він не доводить зміни справжньої кулястої форми Місяця."
+          order:
+            - explanationText
+        answers:
+          correct:
+            items:
+              orientationNotShape:
+                id: f683275f-a1ad-4ff5-938f-41575fe4a14d
+                slug: orientationNotShape
+                type: text
+                params: {}
+                locale:
+                  value:
+                    uk: "Поворот серпа на фото сам по собі не означає, що змінилася форма Місяця."
+            order:
+              - orientationNotShape
+          incorrect:
+            items:
+              newBody:
+                id: fc0ddbd6-5fe8-4818-965b-6dfde39207bc
+                slug: newBody
+                type: text
+                params: {}
+                locale:
+                  value:
+                    uk: "На другій фотографії показано нове небесне тіло."
+              sphereBecameFlat:
+                id: 8e4f270b-559f-40bf-8bec-137367af152c
+                slug: sphereBecameFlat
+                type: text
+                params: {}
+                locale:
+                  value:
+                    uk: "Місяць перестав бути кулею й став плоским."
+              sunAbsent:
+                id: d72f62a3-ea42-48b0-bc0b-74e1854586de
+                slug: sunAbsent
+                type: text
+                params: {}
+                locale:
+                  value:
+                    uk: "Сонце більше зовсім не освітлює Місяць."
+            order:
+              - newBody
+              - sphereBecameFlat
+              - sunAbsent
+          distractors:
+            items: {}
+            order: []
+    repeatingAppearances:
+      id: 1aeda0cb-e76f-416b-b68a-c55ba489ad30
+      slug: repeatingAppearances
+      type: selectOneAnswer
+      params:
+        assessmentMethod: interpretation
+        restrictions: []
+      locale: {}
+      content:
+        question:
+          items:
+            prompt:
+              id: 7904629a-dcfb-464f-bb97-3b5b06c0d62d
+              slug: prompt
+              type: text
+              params: {}
+              locale:
+                value:
+                  uk: "Після кількох різних виглядів Місяць знову здається тонким світлим серпом. Що це допомагає зрозуміти?"
+          order:
+            - prompt
+        hint:
+          items:
+            hintText:
+              id: b2387413-9bc0-4946-b638-4e28cd037a66
+              slug: hintText
+              type: text
+              params: {}
+              locale:
+                value:
+                  uk: "Згадай, що один і той самий вигляд може з’явитися знову після інших."
+          order:
+            - hintText
+        explanation:
+          items:
+            explanationText:
+              id: 8cc7d5b7-c4e9-4198-8091-1692ae9d5661
+              slug: explanationText
+              type: text
+              params: {}
+              locale:
+                value:
+                  uk: "Оскільки видима освітлена частина змінюється протягом повторюваного циклу, серп може з’являтися знову. Сама куля Місяця не руйнується."
+          order:
+            - explanationText
+        answers:
+          correct:
+            items:
+              cycleRepeats:
+                id: 9e92efbd-82fb-444d-87c5-57d192480196
+                slug: cycleRepeats
+                type: text
+                params: {}
+                locale:
+                  value:
+                    uk: "Схожі вигляди освітленої частини Місяця з часом повторюються."
+            order:
+              - cycleRepeats
+          incorrect:
+            items:
+              newMoonBorn:
+                id: 6f8ed492-7822-4ce6-ae4a-eb552f94cdee
+                slug: newMoonBorn
+                type: text
+                params: {}
+                locale:
+                  value:
+                    uk: "Кожного разу народжується нове небесне тіло замість старого."
+              moonAlwaysCrescent:
+                id: b4b89665-a725-4c50-9888-ed41a342250d
+                slug: moonAlwaysCrescent
+                type: text
+                params: {}
+                locale:
+                  value:
+                    uk: "Відтепер Місяць назавжди залишиться тонким серпом."
+              moonCutApart:
+                id: 4d7b5a2c-e656-417e-a3f8-8809d1d61d31
+                slug: moonCutApart
+                type: text
+                params: {}
+                locale:
+                  value:
+                    uk: "Від Місяця відрізали частину його кулі."
+            order:
+              - newMoonBorn
+              - moonAlwaysCrescent
+              - moonCutApart
+          distractors:
+            items: {}
+            order: []
+    darkPartStillExists:
+      id: 8d7a8f8c-99c1-457d-a6fe-15c7a44b7e30
+      slug: darkPartStillExists
+      type: selectOneAnswer
+      params:
+        assessmentMethod: classification
+        restrictions: []
+      locale: {}
+      content:
+        question:
+          items:
+            prompt:
+              id: f316acd8-055e-4190-b8ed-132cbaa07e6c
+              slug: prompt
+              type: text
+              params: {}
+              locale:
+                value:
+                  uk: "На зображенні Місяця яскраво видно лише вузький серп. Що можна сказати про решту його кулі?"
+          order:
+            - prompt
+        hint:
+          items:
+            hintText:
+              id: f0697588-1637-4074-a3f8-b648e0cf2f70
+              slug: hintText
+              type: text
+              params: {}
+              locale:
+                value:
+                  uk: "Спробуй уявити кулю, половина якої лишається в тіні."
+          order:
+            - hintText
+        explanation:
+          items:
+            explanationText:
+              id: fe6f03b8-bab0-4e47-a800-d963b69b0c2e
+              slug: explanationText
+              type: text
+              params: {}
+              locale:
+                value:
+                  uk: "Темна частина Місяця фізично залишається на місці. Ми просто бачимо освітленою лише певну частину його поверхні."
+          order:
+            - explanationText
+        answers:
+          correct:
+            items:
+              stillThere:
+                id: e24be10b-4f44-4213-8e96-b20df63801c7
+                slug: stillThere
+                type: text
+                params: {}
+                locale:
+                  value:
+                    uk: "Решта кулі нікуди не зникла, просто не виглядає так само освітленою."
+            order:
+              - stillThere
+          incorrect:
+            items:
+              vanished:
+                id: bc471139-36cb-4bf5-bbe3-1a63da417721
+                slug: vanished
+                type: text
+                params: {}
+                locale:
+                  value:
+                    uk: "Решта Місяця повністю зникла з космосу."
+              shrank:
+                id: c082794e-6faf-4994-ad59-898b203fcac0
+                slug: shrank
+                type: text
+                params: {}
+                locale:
+                  value:
+                    uk: "Місяць тепер справді має розмір лише серпа."
+              flattened:
+                id: b4a0d33d-b9a6-4018-9860-e385022d2e48
+                slug: flattened
+                type: text
+                params: {}
+                locale:
+                  value:
+                    uk: "Місяць перетворився з кулі на плоску смужку."
+            order:
+              - vanished
+              - shrank
+              - flattened
+          distractors:
+            items: {}
+            order: []
+  selectMultipleAnswers:
+    twoCorrectMoonExplanations:
+      id: 3b0ccb4e-49e2-4acc-8304-b758016a1571
+      slug: twoCorrectMoonExplanations
+      type: selectMultipleAnswers
+      params:
+        assessmentMethod: interpretation
+        restrictions: []
+      locale: {}
+      content:
+        question:
+          items:
+            prompt:
+              id: 5bd310c0-e266-411a-bd11-b0c01271407c
+              slug: prompt
+              type: text
+              params: {}
+              locale:
+                value:
+                  uk: "У перший день видно вузький серп, а через кілька днів — більшу світлу частину Місяця. Обери всі правильні твердження про Місяць у цих спостереженнях."
+          order:
+            - prompt
+        hint:
+          items:
+            hintText:
+              id: cbedb75a-1581-4afb-a404-1bfd48125060
+              slug: hintText
+              type: text
+              params: {}
+              locale:
+                value:
+                  uk: "Перевір окремо, чи змінюється саме тіло і звідки береться його світло."
+          order:
+            - hintText
+        explanation:
+          items:
+            explanationText:
+              id: 6812c42f-46cc-4307-a182-73b0548ad944
+              slug: explanationText
+              type: text
+              params: {}
+              locale:
+                value:
+                  uk: "Справжній Місяць залишається тією самою кулею, а Сонце освітлює її поверхню. Спостерігач із Землі бачить різну частку освітленої половини."
+          order:
+            - explanationText
+        answers:
+          correct:
+            items:
+              sameSphere:
+                id: d5c546fa-fb43-4cb7-a03b-66b212ae964a
+                slug: sameSphere
+                type: text
+                params: {}
+                locale:
+                  value:
+                    uk: "Місяць залишається тим самим кулястим небесним тілом."
+              visibleFraction:
+                id: 600c7d31-b84d-495c-97ba-6a0536b080d2
+                slug: visibleFraction
+                type: text
+                params: {}
+                locale:
+                  value:
+                    uk: "Із Землі видно іншу частину освітленої Сонцем поверхні."
+            order:
+              - sameSphere
+              - visibleFraction
+          incorrect:
+            items:
+              moonProducesLight:
+                id: c747dd0b-8235-4505-a23e-7b9e1d6961a9
+                slug: moonProducesLight
+                type: text
+                params: {}
+                locale:
+                  value:
+                    uk: "Місяць сам виробляє світло, як Сонце."
+              physicalMoonGrows:
+                id: 190a48a3-39cf-4703-89f0-c85a57d5baa8
+                slug: physicalMoonGrows
+                type: text
+                params: {}
+                locale:
+                  value:
+                    uk: "Фізичний розмір Місяця збільшується між цими спостереженнями."
+            order:
+              - moonProducesLight
+              - physicalMoonGrows
+          distractors:
+            items: {}
+            order: []
+quizSelections:
+  aeb987c1-704e-4ef6-8a93-000000000005:
+    - c861263c-30a1-4d91-bf1b-6c2f1df429b8
+    - 2b37e984-7602-44c2-b7f3-cacad6bc252f
+    - cfae194e-1692-42c6-8d57-53ccda07054e
+    - e5a42ad5-d117-420f-89f4-ec5ab4b7d1ea
+    - 8fb42da9-0601-43e9-9887-b8836fb6fbdb
 sectionDrafts:
   items:
     sunlitMoonAppearanceQuiz:
