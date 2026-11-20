@@ -73,10 +73,16 @@ export const objectRolesQuiz = defineQuizSection<"objectRolesQuiz", typeof conte
   },
   locale: {
     title: {
-      uk: "Перевір, хто є хто"
+      uk: "Перевір, хто є хто",
+      en: "Check who's who",
+      pl: "Sprawdź, kto jest kim",
+      qm: "Kim kim ekenini tekşir"
     },
     navigationLabel: {
-      uk: "Перевір себе"
+      uk: "Перевір себе",
+      en: "Test yourself",
+      pl: "Sprawdź się",
+      qm: "Özüñni sına"
     }
   },
   content
