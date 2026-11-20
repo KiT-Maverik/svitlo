@@ -171,7 +171,7 @@ function localizedValues(value, place, sourceLanguage, locale, lines, result) {
     } else if (
       typeof value === 'string' &&
       (/\/locale\/(?:value|alt|title|navigationLabel|instruction|description)$/.test(place) ||
-        /\/parameters\/flags\[\d+\]\/value$/.test(place))
+        /(?:^|\/)parameters\/flags\[\d+\]\/value$/.test(place))
     ) {
       // Engine permits invariant learner-facing copy. Surface it to independent
       // reviewers instead of silently omitting it from "complete bank" coverage.
