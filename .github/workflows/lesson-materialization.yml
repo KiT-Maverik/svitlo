@@ -123,6 +123,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
+      - name: Install trusted Engine dependencies without lifecycle scripts
+        working-directory: trusted
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --ignore-scripts --no-audit --no-fund
       - name: Download artifact from the exact authorized read-only job
         uses: actions/download-artifact@v4
         with:
