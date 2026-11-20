@@ -32,10 +32,16 @@ export const sDay = defineContentSection<"sDay", typeof content.items, LessonLan
   params: {},
   locale: {
     title: {
-      uk: "Що видно вдень і вночі?"
+      uk: "Що видно вдень і вночі?",
+      en: "What Can We See by Day and at Night?",
+      pl: "Co widać w dzień i w nocy?",
+      qm: "Kündüz ve gece neler körüne?"
     },
     navigationLabel: {
-      uk: "День і ніч"
+      uk: "День і ніч",
+      en: "Day and Night",
+      pl: "Dzień i noc",
+      qm: "Kündüz ve gece"
     }
   },
   content
