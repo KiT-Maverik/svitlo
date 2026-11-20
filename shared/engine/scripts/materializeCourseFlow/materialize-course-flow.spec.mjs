@@ -452,3 +452,51 @@ test('Course source exports reject reserved identifiers', () => {
     /Reserved Course source export identifier/,
   );
 });
+
+test('Course-only Lesson patches remain scoped to existing Lesson placements', () => {
+  const patched = structuredClone(plan);
+  patched.content.items.review.locale = { title: { en: 'Course-only review title' } };
+  patched.content.items.review.params = { sections: { allowSkipping: false } };
+  const technical = technicalFromEditorial(patched);
+  assert.equal(technical.config.content.items.review.config.lessonId, lessonId);
+  assert(!Object.hasOwn(technical.config.content.items.review.config, 'locale'));
+
+  const source = renderModularCourse(technical, 'content/math').get('index.ts');
+  assert(source.includes('spaceCourse.build.overrides('));
+  assert(source.includes('review:'));
+  assert(source.includes('Course-only review title'));
+  assert(source.includes('allowSkipping: false'));
+  assert(source.includes('{ languages });'));
+  assert(source.includes('import { review } from "#lessonsData/'));
+  const original = renderModularCourse(technicalFromEditorial(plan), 'content/math').get('index.ts');
+  assert(!original.includes('spaceCourse.build.overrides('));
+});
+
+test('Course-only override rejects unsupported identities, new Lesson patches and raw added Sections', () => {
+  const withEdit = structuredClone(plan);
+  withEdit.content.items.review.params = { sections: { allowSkipping: false } };
+
+  withEdit.content.items.review.params.languages = ['en'];
+  assert.throws(
+    () => technicalFromEditorial(withEdit),
+    /languages|additional properties|must NOT have additional properties/i,
+  );
+  delete withEdit.content.items.review.params.languages;
+
+  withEdit.content.items.review.section = {
+    additionalItems: {
+      addedSection: { type: 'content', slug: 'addedSection' },
+    },
+  };
+  assert.throws(
+    () => renderModularCourse(technicalFromEditorial(withEdit), 'content/math'),
+    /review\/section\/additionalItems require typed standalone Section configurators/,
+  );
+  delete withEdit.content.items.review.section;
+  delete withEdit.content.items.review.lessonId;
+  withEdit.content.items.review.methodology = 'New Lesson needs independently authored methodology.';
+  assert.throws(
+    () => technicalFromEditorial(withEdit),
+    /Course-local Lesson edits require an existing lessonId/,
+  );
+});
