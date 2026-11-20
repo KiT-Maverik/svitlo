@@ -9,7 +9,10 @@ export const correct3 = defineText<"correct3", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Тіло не стає зорею чи планетою лише через колір на малюнку."
+      uk: "Тіло не стає зорею чи планетою лише через колір на малюнку.",
+      en: "A body does not become a star or planet just because of its color in the drawing.",
+      pl: "Ciało nie staje się gwiazdą ani planetą tylko z powodu swojego koloru na rysunku.",
+      qm: "Cisim resimdeki rengine köre yıldız ya da seyyare olup qalmay."
     }
   }
 });

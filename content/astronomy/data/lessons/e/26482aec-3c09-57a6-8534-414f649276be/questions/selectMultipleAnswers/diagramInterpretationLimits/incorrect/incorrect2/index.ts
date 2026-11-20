@@ -9,7 +9,10 @@ export const incorrect2 = defineText<"incorrect2", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Колір Землі на схемі сам по собі доводить, що Земля — планета."
+      uk: "Колір Землі на схемі сам по собі доводить, що Земля — планета.",
+      en: "Earth's color in the diagram proves by itself that Earth is a planet.",
+      pl: "Kolor Ziemi na schemacie sam w sobie dowodzi, że Ziemia jest planetą.",
+      qm: "Şemada Yerniñ rengi tek başına onıñ seyyare olğanını isbatlay."
     }
   }
 });

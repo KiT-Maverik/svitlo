@@ -9,7 +9,10 @@ export const correct1 = defineText<"correct1", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Схема може правильно показувати, хто навколо кого рухається."
+      uk: "Схема може правильно показувати, хто навколо кого рухається.",
+      en: "The diagram can correctly show which body moves around which.",
+      pl: "Schemat może poprawnie pokazywać, które ciało krąży wokół którego.",
+      qm: "Şema angi cisimniñ angi cisim etrafında aylanğanını doğru köstere bile."
     }
   }
 });

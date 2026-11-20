@@ -9,7 +9,10 @@ export const incorrect1 = defineText<"incorrect1", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Якщо Місяць намальований майже як Сонце, насправді вони майже однакового розміру."
+      uk: "Якщо Місяць намальований майже як Сонце, насправді вони майже однакового розміру.",
+      en: "If the Moon is drawn almost as large as the Sun, they must really be nearly the same size.",
+      pl: "Jeśli Księżyc jest narysowany prawie tak duży jak Słońce, w rzeczywistości są niemal tej samej wielkości.",
+      qm: "Eger Ay resimde Küneş qadar büyük körsetilse, kerçekte de olarnıñ büyüklükleri deyerli aynı."
     }
   }
 });

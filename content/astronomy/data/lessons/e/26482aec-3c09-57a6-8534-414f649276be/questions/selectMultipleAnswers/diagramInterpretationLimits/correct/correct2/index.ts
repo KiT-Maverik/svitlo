@@ -9,7 +9,10 @@ export const correct2 = defineText<"correct2", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "За намальованими відстанями не можна визначити справжні відстані в космосі."
+      uk: "За намальованими відстанями не можна визначити справжні відстані в космосі.",
+      en: "The distances shown in the drawing cannot tell us the real distances in space.",
+      pl: "Z odległości przedstawionych na rysunku nie można określić rzeczywistych odległości w kosmosie.",
+      qm: "Resimde kösterilgen uzaqlıqlarğa köre kosmostaki kerçek uzaqlıqlarnı bilip olmay."
     }
   }
 });

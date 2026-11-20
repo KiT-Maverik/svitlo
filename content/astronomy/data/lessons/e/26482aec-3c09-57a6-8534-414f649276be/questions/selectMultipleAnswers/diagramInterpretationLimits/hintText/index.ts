@@ -9,7 +9,10 @@ export const hintText = defineText<"hintText", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Подумай, які відомості схема пояснює, а які вона свідомо не передає в реальному масштабі."
+      uk: "Подумай, які відомості схема пояснює, а які вона свідомо не передає в реальному масштабі.",
+      en: "Think about which facts the diagram explains and which it deliberately does not show to scale.",
+      pl: "Zastanów się, jakie informacje wyjaśnia schemat, a czego celowo nie pokazuje w rzeczywistej skali.",
+      qm: "Şema angi malümatnı añlata, angi şeylerni ise kerçek ölçekte köstermey, tüşün."
     }
   }
 });
