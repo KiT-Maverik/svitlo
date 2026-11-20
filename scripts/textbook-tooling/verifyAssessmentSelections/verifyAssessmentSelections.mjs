@@ -112,6 +112,11 @@ export function verifyAssessmentSelections(staticRoot) {
       if (lesson.section.some(section => pendingId(section.id))) {
         throw new Error('Unresolved generated assessment Section UUID in Lesson ' + id);
       }
+      if (lesson.section.some(section =>
+        ['PENDING QUIZ', 'PENDING FLASHCARDS'].includes(section.locale?.title) ||
+        ['PENDING QUIZ', 'PENDING FLASHCARDS'].includes(section.locale?.navigationLabel))) {
+        throw new Error('Unresolved assessment Section draft label in Lesson ' + id);
+      }
       const sections = lesson.section.filter(
         section => ['quiz', 'flashcards'].includes(section.type) && section.params?.disabled !== true,
       );
