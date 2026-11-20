@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useReducer, useRef, useState } from 'react';
+import { useEffect, useReducer, useRef, useState, useId } from 'react';
 import type { SceneLocales } from '../../sceneText';
 import { sceneText } from '../../sceneText';
 import styles from '../../Scene.module.css';
@@ -30,6 +30,7 @@ export function ReflectScene({ locales }: ReflectSceneProps) {
   const [state, dispatch] = useReducer(reflectionReducer, initialReflectionState);
   const [draft, setDraft] = useState('');
   const heading = useRef<HTMLHeadingElement>(null);
+  const ownQuestionInputId = useId();
   useEffect(() => { heading.current?.focus(); }, [state.step]);
 
   const topic = state.step === 'moon' ? 'moon' : 'day';
@@ -84,8 +85,8 @@ export function ReflectScene({ locales }: ReflectSceneProps) {
               <div className={styles.card}>
                 <p>{t('ownQuestionPrompt')}</p>
                 <p>{t('sayQuestion')}</p>
-                <label htmlFor="own-reflection">{t('writeQuestion')}</label>
-                <textarea id="own-reflection" className={styles.field} value={draft}
+                <label htmlFor={ownQuestionInputId}>{t('writeQuestion')}</label>
+                <textarea id={ownQuestionInputId} className={styles.field} value={draft}
                   onChange={event => setDraft(event.target.value)} rows={3} />
                 <div className={styles.controls}>
                   <button type="button" className={styles.button}
