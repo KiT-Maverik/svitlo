@@ -17,7 +17,7 @@
     "code:lint:fix": "eslint textbook.ts scenes --fix",
     "content:generate:scenes": "node ../../scripts/textbook-tooling/generateScenes/generate-scenes.mjs --write",
     "content:check:scenes": "node ../../scripts/textbook-tooling/generateScenes/generate-scenes.mjs --check",
-    "test:components": "vitest run",
+    "test:components": "npm run code:check:scenes && vitest run",
     "code:check:scenes": "tsc -p tsconfig.scenes.json --noEmit",
     "test": "npm run code:check:scenes && vitest run"
   },
