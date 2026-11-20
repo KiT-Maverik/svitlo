@@ -2,7 +2,70 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import ts from 'typescript';
-import { property, literal, stringArray, parse, registered } from '../questionsBuilder/verifyQuizSelections.mjs';
+/**
+ * Keep Flashcards-only static Section checks self-contained. The Questions
+ * verifier was retired in PR #759; Flashcards retains its existing Stage 5
+ * source check without importing deleted Questions tooling.
+ */
+function property(node, key) {
+  if (!node || !ts.isObjectLiteralExpression(node)) return undefined;
+  const entry = node.properties.find(
+    item =>
+      ts.isPropertyAssignment(item) &&
+      (ts.isIdentifier(item.name) || ts.isStringLiteral(item.name)) &&
+      item.name.text === key,
+  );
+  return entry?.initializer;
+}
+
+function literal(node) {
+  return node && (ts.isStringLiteral(node) || ts.isNoSubstitutionTemplateLiteral(node) ? node.text : undefined;
+}
+
+function stringArray(node) {
+  if (!node || !ts.isArrayLiteralExpression(node)) return undefined;
+  const values = node.elements.map(literal);
+  return values.every(value => value !== undefined) ? values : undefined;
+}
+
+function parse(file) {
+  if (fs.lstatSync(file).isSymbolicLink()) throw new Error('Refusing symlink: ' + file);
+  const source = ts.createSourceFile(file, fs.readFileSync(file, 'utf8'), ts.ScriptTarget.Latest, true);
+  if (source.parseDiagnostics.length) throw new Error('Invalid TypeScript: ' + file);
+  return source;
+}
+
+function registered(sectionIndex, sectionSlug) {
+  const source = parse(sectionIndex);
+  const imported = source.statements.some(
+    statement => ts.isImportDeclaration(statement) && literal(statement.moduleSpecifier) === './' + sectionSlug,
+  );
+  if (!imported) return false;
+  const hasOrder = source.statements.some(
+    statement =>
+      ts.isVariableStatement(statement) &&
+      statement.declarationList.declarations.some(
+        item =>
+          ts.isIdentifier(item.name) &&
+          item.name.text === 'section' &&
+          (stringArray(property(item.initializer, 'order')) ?? []).includes(sectionSlug) &&
+          (() => {
+            const items = property(item.initializer, 'items');
+            return (
+              !!items &&
+              ts.isObjectLiteralExpression(items) &&
+              items.properties.some(
+                entry =>
+                  (ts.isPropertyAssignment(entry) || ts.isShorthandPropertyAssignment(entry)) &&
+                  (ts.isIdentifier(entry.name) || ts.isStringLiteral(entry.name)) &&
+                  entry.name.text === sectionSlug,
+              )
+            );
+          })(),
+      ),
+  );
+  return hasOrder;
+}
 
 /** Parse a single, literal defineFlashcardsSection expression. Dynamic sections require independent review. */
 function inspect(file) {
