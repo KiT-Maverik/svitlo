@@ -17,7 +17,8 @@ its identity, literal unique ordered `flashcardIds`, membership in the **full**
 bank and registration in `sections/index.ts`. No embedded Section is allowed
 and reported as zero. This is not editorial approval, full publication or
 evidence that translations and linked media exist. Dynamic Section definitions
-require manual review. It reuses the Questions Flow #647 static registry parser.
+require manual review. Its static Section parser is local to the Flashcard
+Builder and does not depend on the retired Questions verifier (PR #759).
 
 After the Engine build:
 
@@ -27,7 +28,7 @@ node shared/engine/scripts/flashcardBuilder/flashcardBuilder.mjs --package conte
 node shared/engine/scripts/flashcardBuilder/flashcardBuilder.mjs --package content/playground --lesson <uuid> --check
 ```
 
-The single input is `content/<textbook>/data/lessons/<bucket>/<uuid>/flashcards.yaml`. Its envelope is `lessonId`, `documentLanguage`, `supportedLanguages`, `flashcards: {items, order}`, and optional `relationships: {items, order}`. Each card is validated with Engine's actual `yamlFlashcard_Schema`; **no authored card-level `type`**. Each relationship is authored once as `{relationshipId,type,source,target}`, keyed by a stable slug; the converter materializes two typed endpoint links with preserved direction.
+The single input is `content/<textbook>/data/lessons/<bucket>/<uuid>/flashcards.yaml`. Its envelope is `lessonId`, `documentLanguage`, `supportedLanguages`, `flashcards: {items, order}`, and optional `relationships: {items, order}`. Each card is validated with Engine's actual `yamlFlashcard_Schema`; **no authored card-level `type`**. `parameters.flags` is an array of typed flag entries (`[]` when none), **not** a named `items/order` collection. Non-custom built-in flags may appear only once per card; multiple custom flags are allowed. Flashcard `build.overrides` replaces the complete flags array. Each relationship is authored once as `{relationshipId,type,source,target}`, keyed by a stable slug; the converter materializes two typed endpoint links with preserved direction.
 
 All front/back/hint blocks are nested canonical Engine-shaped Config maps. The generator emits usable Text/Markdown/Code Config drafts. It also scaffolds Audio/Image/Video/Subtitles Config nodes **without physical filenames**, inserting a visible `TODO(asset)` beside each factory invocation and one
 real `TODO (BLOCKER):` comment per pending media ContentBlock. Existing
