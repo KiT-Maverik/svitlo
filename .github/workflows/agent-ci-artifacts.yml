@@ -1,6 +1,6 @@
 name: Agent CI Artifacts
 
-# One scoped, on-demand reference generator. PR ready-for-review triggers artifact cleanup only.
+# One scoped, opt-in report generator. Results exist only as one-day run-scoped Actions ZIP artifacts.
 # This workflow must exist on the default branch before comment/manual triggers work.
 on:
   issue_comment:
@@ -11,14 +11,6 @@ on:
         description: 'Existing same-repository pull request number to operate on'
         required: true
         type: number
-      operation:
-        description: 'Generate only the requested reference scope, or clean up'
-        required: true
-        type: choice
-        default: generate
-        options:
-          - generate
-          - cleanup
       kind:
         description: 'Reference family (required when generating)'
         required: false
@@ -53,18 +45,11 @@ on:
         description: 'Optional Course UUID (requires kind=courses)'
         required: false
         type: string
-  # Cleanup is a write operation on the PR head. Release promotions originate
-  # from protected develop and must never attempt automated source commits.
-  # The independent Agent CI Artifacts / clean merge guard still runs on main.
-  pull_request:
-    branches: [develop, integration-branch, new-lesson, integration/italian-localization]
-    types: [ready_for_review]
-
 permissions:
   contents: read
 
 concurrency:
-  group: agent-ci-artifacts-${{ github.event.issue.number || github.event.pull_request.number || inputs.pr_number }}
+  group: agent-ci-artifacts-${{ github.event.issue.number || inputs.pr_number }}
   cancel-in-progress: false
 
 jobs:
@@ -72,13 +57,9 @@ jobs:
     name: Authorize command and resolve source PR
     if: >-
       github.event_name == 'workflow_dispatch' ||
-      (github.event_name == 'pull_request' &&
-       github.event.pull_request.head.ref != github.event.repository.default_branch &&
-       github.event.pull_request.head.ref != 'main') ||
       (github.event_name == 'issue_comment' &&
        github.event.issue.pull_request &&
-       (startsWith(github.event.comment.body, '/agent-artifacts generate') ||
-        github.event.comment.body == '/agent-artifacts cleanup'))
+       startsWith(github.event.comment.body, '/agent-artifacts generate'))
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -87,7 +68,6 @@ jobs:
       pr: ${{ steps.request.outputs.pr }}
       head_sha: ${{ steps.request.outputs.head_sha }}
       branch: ${{ steps.request.outputs.branch }}
-      operation: ${{ steps.request.outputs.operation }}
       kind: ${{ steps.request.outputs.kind }}
       textbook: ${{ steps.request.outputs.textbook }}
       locale: ${{ steps.request.outputs.locale }}
@@ -105,18 +85,13 @@ jobs:
           import fs from 'node:fs';
           const event = JSON.parse(fs.readFileSync(process.env.GITHUB_EVENT_PATH, 'utf8'));
           const isComment = process.env.GITHUB_EVENT_NAME === 'issue_comment';
-          const isPR = process.env.GITHUB_EVENT_NAME === 'pull_request';
-          const pr = isComment ? event.issue.number : isPR ? event.pull_request.number : Number(event.inputs.pr_number);
+          const pr = isComment ? event.issue.number : Number(event.inputs.pr_number);
           if (!Number.isSafeInteger(pr) || pr < 1) throw Error('Valid PR number required');
           const parts = isComment ? event.comment.body.trim().split(/\s+/) : [];
-          const operation = isPR ? 'cleanup' : isComment ? parts[1] : event.inputs.operation;
-          if (!['generate', 'cleanup'].includes(operation)) throw Error('Invalid operation');
+          const operation = 'generate';
           let kind = '', textbook = '', locale = '', component = '', lesson = '', course = '';
           if (isComment) {
-            if (parts[0] !== '/agent-artifacts') throw Error('Unknown command');
-            if (operation === 'cleanup') {
-              if (parts.length !== 2) throw Error('Cleanup accepts no scope');
-            } else {
+            if (parts[0] !== '/agent-artifacts' || parts[1] !== 'generate') throw Error('Unknown command');
               kind = parts[2] || '';
               if (kind === 'skills' || kind === 'lessons' || kind === 'questions') {
                 if (![4, 5].includes(parts.length)) {
@@ -149,13 +124,11 @@ jobs:
               } else {
                 throw Error('Explicit kind required: skills, lessons, questions, courses, ui-kit, assessment-methods, geography-home-copy, education-standards');
               }
-            }
-          } else if (operation === 'generate') {
+          } else {
             ({ kind = '', textbook = '', locale = '', component = '', lesson = '', course = '' } = event.inputs);
           }
           const allowed = ['skills', 'lessons', 'questions', 'courses', 'ui-kit', 'assessment-methods', 'geography-home-copy', 'education-standards'];
-          if (operation === 'generate') {
-            if (!allowed.includes(kind)) throw Error('Unsupported reference family');
+          if (!allowed.includes(kind)) throw Error('Unsupported reference family');
             if ((kind === 'skills' || kind === 'lessons' || kind === 'questions' || kind === 'courses') !== Boolean(textbook) ||
                 (textbook && !/^content\/[a-z][a-z0-9-]*$/.test(textbook))) {
               throw Error('Only Skills, Lessons, Questions and Courses require content/<book>');
@@ -172,7 +145,6 @@ jobs:
                 !/^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i.test(course))) {
               throw Error('Invalid Course UUID');
             }
-          }
           const headers = {
             authorization: 'Bearer ' + process.env.GH_TOKEN,
             accept: 'application/vnd.github+json',
@@ -207,14 +179,14 @@ jobs:
             throw Error('Only PR branches from this repository are allowed');
           }
           if (pull.head.ref === pull.base.repo.default_branch) {
-            throw Error('Cannot write artifacts to the default branch');
+            throw Error('Cannot analyze the default branch as a PR source');
           }
           if (!/^[a-zA-Z0-9][a-zA-Z0-9._\/-]*$/.test(pull.head.ref) ||
               pull.head.ref.includes('..') || pull.head.ref.endsWith('/') ||
               pull.head.ref.startsWith('-')) throw Error('Unsafe branch ref');
           const entries = {
             pr: String(pr), head_sha: pull.head.sha,
-            branch: pull.head.ref, operation, kind, textbook, locale, component, lesson, course,
+            branch: pull.head.ref, kind, textbook, locale, component, lesson, course,
           };
           fs.appendFileSync(process.env.GITHUB_OUTPUT,
             Object.entries(entries).map(([k,v]) => k + '=' + v).join('\n') + '\n');
@@ -223,11 +195,14 @@ jobs:
   generate:
     name: Generate selected Markdown references
     needs: resolve
-    if: needs.resolve.outputs.operation == 'generate'
+    if: needs.resolve.result == 'success'
     runs-on: ubuntu-latest
     timeout-minutes: 60
     permissions:
       contents: read
+    env:
+      SVITLO_AGENT_REPORT_OUTPUT: ${{ runner.temp }}/agent-reference-library
+      SVITLO_AGENT_REPORT_PR: ${{ needs.resolve.outputs.pr }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -277,209 +252,77 @@ jobs:
           if [[ -n "$REQUEST_LESSON" ]]; then args+=(--lesson "$REQUEST_LESSON"); fi
           if [[ -n "$REQUEST_COURSE" ]]; then args+=(--course "$REQUEST_COURSE"); fi
           node scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.mjs "${args[@]}"
-      - name: Exclude other workflows' diagnostics from this runner-only handoff
-        # Preserve those files on the PR branch; the trusted publisher retains them.
-        run: rm -rf -- .agent-ci-artifacts/lesson-lookup .agent-ci-artifacts/engine-coverage
-      - name: Upload isolated CI result for trusted publish job
-        uses: actions/upload-artifact@v4
-        with:
-          name: agent-reference-library
-          path: .agent-ci-artifacts/
-          include-hidden-files: true
-          if-no-files-found: error
-          retention-days: 1
-      - name: Remove runner-only data
-        if: always()
-        run: rm -rf -- .agent-ci-artifacts
-
-  publish:
-    name: Commit review documents to source PR branch
-    needs: [resolve, generate]
-    if: needs.resolve.outputs.operation == 'generate' && needs.generate.result == 'success'
-    runs-on: ubuntu-latest
-    concurrency:
-      group: agent-ci-publish-${{ needs.resolve.outputs.pr }}
-      cancel-in-progress: false
-    permissions:
-      contents: write
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: ${{ needs.resolve.outputs.head_sha }}
-          persist-credentials: true
-      - name: Replace only generated reference documents, preserving diagnostics
-        shell: bash
-        run: |
-          set -euo pipefail
-          mkdir -p .agent-ci-artifacts
-          for dir in .agent-ci-artifacts/lesson-lookup .agent-ci-artifacts/engine-coverage; do
-            if [ -L "$dir" ] || { [ -e "$dir" ] && [ ! -d "$dir" ]; }; then
-              echo "::error::Unsafe diagnostic artifact directory: $dir"; exit 1
-            fi
-          done
-          find .agent-ci-artifacts -mindepth 1 -maxdepth 1 \
-            ! -name lesson-lookup ! -name engine-coverage -exec rm -rf -- {} +
-      - uses: actions/download-artifact@v4
-        with:
-          name: agent-reference-library
-          path: .agent-ci-artifacts/
-      - name: Validate downloaded files and commit only agent artifacts
+      - name: Validate pinned manifest, scope, checksums and archive inventory
         env:
-          TARGET_BRANCH: ${{ needs.resolve.outputs.branch }}
+          SOURCE_HEAD_SHA: ${{ needs.resolve.outputs.head_sha }}
           REQUEST_KIND: ${{ needs.resolve.outputs.kind }}
           REQUEST_BOOK: ${{ needs.resolve.outputs.textbook }}
           REQUEST_LOCALE: ${{ needs.resolve.outputs.locale }}
           REQUEST_COMPONENT: ${{ needs.resolve.outputs.component }}
           REQUEST_LESSON: ${{ needs.resolve.outputs.lesson }}
           REQUEST_COURSE: ${{ needs.resolve.outputs.course }}
-          SOURCE_HEAD_SHA: ${{ needs.resolve.outputs.head_sha }}
-        shell: bash
         run: |
-          set -euo pipefail
-          test -s .agent-ci-artifacts/manifest.json
-          test -n "$(find .agent-ci-artifacts -type f -name '*.md' -print -quit)"
-          if find .agent-ci-artifacts -type l -print -quit | grep -q .; then
-            echo 'Refusing symlinks in agent artifacts'; exit 1
-          fi
-          if find .agent-ci-artifacts -type f ! -name '*.md' ! -name 'manifest.json' -print -quit | grep -q .; then
-            echo 'Refusing unexpected artifact file type'; exit 1
-          fi
-          # Validate the manifest and transport payload using trusted inline code.
-          # Never execute repository scripts in this contents:write publish job.
           node --input-type=module <<'NODE'
           import fs from 'node:fs';
           import path from 'node:path';
-          const root = '.agent-ci-artifacts';
-          const manifest = JSON.parse(fs.readFileSync(path.join(root, 'manifest.json'), 'utf8'));
-          if (manifest.kind !== 'pr-scoped-agent-ci-artifacts' || manifest.schemaVersion !== 3 ||
-              !manifest.scope || !['skills', 'lessons', 'questions', 'courses', 'ui-kit', 'assessment-methods', 'geography-home-copy', 'education-standards'].includes(manifest.scope.kind) ||
-              !Array.isArray(manifest.generated) || !Array.isArray(manifest.failures) ||
-              manifest.generated.length === 0) throw Error('Invalid or empty agent artifact manifest');
-          if (manifest.scope.kind === 'questions' &&
-              (!/^[0-9a-f]{40}$/.test(manifest.sourceCommit ?? '') ||
-                manifest.sourceCommit !== process.env.SOURCE_HEAD_SHA ||
-                manifest.failures.length)) {
-            throw Error('Question manifest must match pinned source SHA and contain no failures');
+          import crypto from 'node:crypto';
+          const output = process.env.SVITLO_AGENT_REPORT_OUTPUT;
+          const manifest = JSON.parse(fs.readFileSync(path.join(output, 'manifest.json'), 'utf8'));
+          const request = {kind:process.env.REQUEST_KIND,package:process.env.REQUEST_BOOK || null,
+            locale:process.env.REQUEST_LOCALE || null,component:process.env.REQUEST_COMPONENT || null,
+            lesson:process.env.REQUEST_LESSON || null,course:process.env.REQUEST_COURSE || null};
+          if (manifest.schemaVersion !== 3 || manifest.kind !== 'pr-scoped-agent-ci-artifacts' ||
+              manifest.sourceCommit !== process.env.SOURCE_HEAD_SHA ||
+              manifest.pr !== Number(process.env.SVITLO_AGENT_REPORT_PR) ||
+              manifest.runId !== Number(process.env.GITHUB_RUN_ID) ||
+              !manifest.scope || !Array.isArray(manifest.generated) ||
+              !Array.isArray(manifest.failures) || manifest.generated.length === 0 ||
+              manifest.generated.length > 10000 ||
+              !['complete','incomplete'].includes(manifest.status)) {
+            throw Error('Invalid, missing or stale report manifest');
           }
-          const requested = {
-            kind: process.env.REQUEST_KIND,
-            package: process.env.REQUEST_BOOK || null,
-            locale: process.env.REQUEST_LOCALE || null,
-            component: process.env.REQUEST_COMPONENT || null,
-            lesson: process.env.REQUEST_LESSON || null,
-            course: process.env.REQUEST_COURSE || null,
-          };
-          for (const [key, value] of Object.entries(requested)) {
-            // Existing non-Course PRs can use a generator predating scope.course.
-            // Accept only that absent optional field; never relax Course requests.
-            if (key === 'course' && value === null && requested.kind !== 'courses' &&
-                !Object.hasOwn(manifest.scope, 'course')) continue;
-            if (manifest.scope[key] !== value) {
-              throw Error('Manifest scope disagrees with authorized request: ' + key);
-            }
+          for (const [key, value] of Object.entries(request)) {
+            if (manifest.scope[key] !== value) throw Error('Report scope does not match authorized request: ' + key);
           }
-          const expectedKinds = { skills: 'taxonomy', lessons: 'lesson', questions: 'question', courses: 'course',
-            'ui-kit': 'ui-kit-locale', 'assessment-methods': 'assessment-method',
-            'geography-home-copy': 'geography-home-copy',
-            'education-standards': 'education-standard' };
-          const expected = new Set();
-          for (const entry of manifest.generated) {
-            if (entry.kind !== expectedKinds[manifest.scope.kind]) {
-              throw Error('Generated document outside requested family: ' + entry.kind);
+          const expected = new Set(['manifest.json']);
+          let total = 0;
+          for (const item of manifest.generated) {
+            if (typeof item.path !== 'string' ||
+                !/^[a-zA-Z0-9._/-]+\.md$/.test(item.path) ||
+                item.path.startsWith('/') || item.path.split('/').some(part => part === '..' || part === '.') ||
+                expected.has(item.path) || !/^[a-f0-9]{64}$/.test(item.sha256)) {
+              throw Error('Unsafe or duplicate document in report manifest');
             }
-            if (manifest.scope.locale && entry.locale !== manifest.scope.locale) {
-              throw Error('Generated document outside requested locale');
-            }
-            if (manifest.scope.package && entry.textbook !== manifest.scope.package) {
-              throw Error('Generated document outside requested textbook');
-            }
-            if (manifest.scope.component && entry.component !== manifest.scope.component) {
-              throw Error('Generated document outside requested UI Kit component');
-            }
-            if (manifest.scope.lesson && entry.lesson !==
-                manifest.scope.lesson.slice(-1) + '/' + manifest.scope.lesson) {
-              throw Error('Generated document outside requested Lesson UUID');
-            }
-            if (manifest.scope.course && entry.course !==
-                manifest.scope.course.slice(-1) + '/' + manifest.scope.course) {
-              throw Error('Generated document outside requested Course UUID');
-            }
-            const name = entry.path;
-            const segments = typeof name === 'string' ? name.split('/') : [];
-            const depth = segments[1] === 'taxonomies' ? 4 : segments[1] === 'lessons' ? 6
-              : segments[1] === 'courses' ? 6 : segments[1] === 'questions' ? 6 : segments[1] === 'lessons-by-skill' ? 3 : segments[1] === 'assessment-methods' ? 3
-              : segments[1] === 'ui-kit' ? 4 : segments[1] === 'geography-home-copy' ? 3
-              : segments[1] === 'education-standards' ? 3 : -1;
-            if (typeof name !== 'string' ||
-                segments[0] !== root || segments.length !== depth ||
-                segments.slice(2).some(part => !/^[a-zA-Z0-9._-]+$/.test(part) || part === '..') ||
-                !name.endsWith('.md') ||
-                (segments[1] === 'questions' && (!/^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/.test(segments[4]) ||
-                   segments[3] !== segments[4].slice(-1) ||
-                   entry.lesson !== segments[3] + '/' + segments[4] ||
-                   entry.textbook !== 'content/' + segments[2] ||
-                   segments[5] !== entry.locale + '.md')) ||
-                (segments[1] === 'courses' && (!/^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/.test(segments[4]) ||
-                   segments[3] !== segments[4].slice(-1) ||
-                   entry.course !== segments[3] + '/' + segments[4] ||
-                   entry.textbook !== 'content/' + segments[2] ||
-                   segments[5] !== entry.locale + '.md')) ||
-                (segments[1] === 'lessons-by-skill' && !/^[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}\.md$/.test(segments[2])) ||
-                expected.has(name) || !fs.statSync(name).isFile()) {
-              throw Error('Invalid generated artifact entry: ' + String(name));
-            }
-            if (Object.hasOwn(entry, 'missing') &&
-                (!Number.isSafeInteger(entry.missing) || entry.missing < 0 ||
-                 entry.reviewReady !== (entry.missing === 0))) {
-              throw Error('Invalid missing-translation status: ' + name);
-            }
-            expected.add(name);
+            const filename = path.join(output, item.path);
+            const stat = fs.lstatSync(filename);
+            if (!stat.isFile() || stat.isSymbolicLink() ||
+                stat.size !== item.bytes || stat.size > 16 * 1024 * 1024) throw Error('Unsafe report document');
+            if (crypto.createHash('sha256').update(fs.readFileSync(filename)).digest('hex') !== item.sha256)
+              throw Error('Review report checksum mismatch: ' + item.path);
+            total += stat.size;
+            expected.add(item.path);
           }
-          function walk(dir) {
-            for (const item of fs.readdirSync(dir, { withFileTypes: true })) {
-              const name = path.join(dir, item.name);
-              if (item.isDirectory()) walk(name);
-              else if (name.endsWith('.md') && !expected.has(name.replaceAll(path.sep, '/')))
-                throw Error('Unlisted Markdown artifact: ' + name);
+          if (total !== manifest.filesBytes || total > 128 * 1024 * 1024)
+            throw Error('Invalid reference corpus size');
+          const actual = new Set();
+          function walk(directory, prefix = '') {
+            for (const entry of fs.readdirSync(directory, {withFileTypes:true})) {
+              const relative = prefix ? prefix + '/' + entry.name : entry.name;
+              if (entry.isSymbolicLink()) throw Error('Symlink in report archive');
+              if (entry.isDirectory()) walk(path.join(directory, entry.name), relative);
+              else if (entry.isFile()) actual.add(relative);
+              else throw Error('Unsupported report archive file type');
             }
           }
-          walk(root);
+          walk(output);
+          if (actual.size !== expected.size || [...actual].some(item => !expected.has(item)))
+            throw Error('Unlisted files in report archive');
           NODE
-          git add -A -- .agent-ci-artifacts
-          if git diff --cached --quiet; then
-            echo 'Agent reference library is unchanged'; exit 0
-          fi
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git commit -m 'chore(agent-ci): refresh temporary review reference library'
-          git push origin "HEAD:refs/heads/$TARGET_BRANCH"
-
-  cleanup:
-    name: Remove PR-scoped artifacts before merge
-    needs: resolve
-    if: needs.resolve.outputs.operation == 'cleanup'
-    runs-on: ubuntu-latest
-    concurrency:
-      group: agent-ci-publish-${{ needs.resolve.outputs.pr }}
-      cancel-in-progress: false
-    permissions:
-      contents: write
-    steps:
-      - uses: actions/checkout@v4
+      - name: Upload run-scoped reference corpus
+        uses: actions/upload-artifact@v4
         with:
-          ref: ${{ needs.resolve.outputs.head_sha }}
-          persist-credentials: true
-      - name: Delete tracked reference library from the PR branch
-        env:
-          TARGET_BRANCH: ${{ needs.resolve.outputs.branch }}
-        shell: bash
-        run: |
-          set -euo pipefail
-          git rm -r --ignore-unmatch -- .agent-ci-artifacts
-          if git diff --cached --quiet; then
-            echo 'No tracked agent artifacts remain'; exit 0
-          fi
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git commit -m 'chore(agent-ci): clean temporary review artifacts before merge'
-          git push origin "HEAD:refs/heads/$TARGET_BRANCH"
+          name: agent-reference-pr-${{ needs.resolve.outputs.pr }}-${{ github.run_id }}
+          path: ${{ runner.temp }}/agent-reference-library/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 1
