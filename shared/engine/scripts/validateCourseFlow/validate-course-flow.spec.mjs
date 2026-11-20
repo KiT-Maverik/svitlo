@@ -18,10 +18,10 @@ test('Stage 1 accepts a complete editorial plan without structure', () => {
   assert.equal(checkPlan(plan(), '1').valid, true);
   assert.equal(checkPlan({ ...plan(), content: { items: {}, order: [] } }, '1').valid, false);
 });
-test('Stage 2 requires macrostructure and rejects Lesson slots', () => {
+test('Stage 2 validates fully described Course hierarchy without prohibiting Lesson placements', () => {
   assert.equal(checkPlan(plan(), '2').valid, false);
   const withLesson = { ...plan(), content: { items: { intro: lesson }, order: ['intro'] } };
-  assert.equal(checkPlan(withLesson, '2').valid, false);
+  assert.equal(checkPlan(withLesson, '2').valid, true);
   assert.equal(checkPlan(withLesson, '3').valid, true);
   assert.equal(checkPlan(withLesson, '3-complete').valid, false);
   assert.equal(
@@ -76,10 +76,26 @@ test('Stage 3 is complete for a fully specified planned Lesson without any UUID'
     false,
   );
 });
-test('Stage 3 allows specifically authored Episodes but Stage 2 remains macrostructure-only', () => {
+test('Fully specified Episodes are not forbidden at Stage 2, while TMP placeholders remain editorial only', () => {
   const episode = { type: 'episode', slug: 'story', title: 'Story', section: { items: {}, order: [] } };
   const source = { ...plan(), content: { items: { story: episode }, order: ['story'] } };
   assert.equal(checkPlan(source, '3-complete').valid, true);
   assert.equal(checkPlan(source, '3-complete').episodes, 1);
-  assert.equal(checkPlan(source, '2').valid, false);
+  assert.equal(checkPlan(source, '2').valid, true);
+
+  // Final-schema validation is not a Stage 2 drafting gate; temporary keys have
+  // no slug/title/methodology and must be replaced before Stage 3 completion.
+  const temporary = {
+    ...plan(),
+    content: {
+      items: {
+        TMP_lesson_1: { type: 'lesson', skills: [skillId] },
+        TMP_episode_1: { type: 'episode' },
+      },
+      order: ['TMP_lesson_1', 'TMP_episode_1'],
+    },
+  };
+  assert.equal(checkPlan(temporary, '2').valid, false);
+  assert.equal(checkPlan(temporary, '3-complete').valid, false);
 });
+
