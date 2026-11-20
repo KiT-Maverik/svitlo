@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 3,
+  "kind": "pr-scoped-agent-ci-artifacts",
+  "sourceCommit": "1af6b1467c060d3ffbf0446bfcd1b04423bf06e6",
+  "scope": {
+    "kind": "lessons",
+    "package": "content/astronomy",
+    "locale": "uk",
+    "component": null,
+    "lesson": null,
+    "course": null
+  },
+  "packages": [
+    "content/astronomy"
+  ],
+  "locales": [
+    "uk"
+  ],
+  "generated": [
+    {
+      "kind": "lesson",
+      "textbook": "content/astronomy",
+      "lesson": "e/26482aec-3c09-57a6-8534-414f649276be",
+      "locale": "uk",
+      "path": ".agent-ci-artifacts/lessons/astronomy/e/26482aec-3c09-57a6-8534-414f649276be/uk.md",
+      "missing": 0,
+      "reviewReady": true
+    }
+  ],
+  "failures": [],
+  "summary": {
+    "documents": 1,
+    "failures": 0,
+    "missingTranslations": 0,
+    "incompleteDocuments": 0,
+    "taxonomyDocuments": 0,
+    "lessonDocuments": 1,
+    "questionDocuments": 0,
+    "courseDocuments": 0,
+    "assessmentMethodDocuments": 0,
+    "uiKitDocuments": 0,
+    "geographyHomeCopyDocuments": 0,
+    "educationStandardDocuments": 0
+  }
+}
