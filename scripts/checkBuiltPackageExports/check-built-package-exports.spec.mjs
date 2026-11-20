@@ -113,3 +113,63 @@ test('validates the current Playground Props publication paths rather than legac
   assert.notEqual(incomplete.status, 0);
   assert.match(incomplete.stderr, /Compiled lesson JSON missing/);
 });
+
+test('allows Astronomy Lesson JSON only for actually authored UUID-addressed Lessons', t => {
+  const root = mkdtempSync(join(tmpdir(), 'svitlo-astronomy-artifacts-'));
+  t.after(() => rmSync(root, { recursive: true, force: true }));
+  const workspace = join(root, 'content/astronomy');
+  const lessonId = 'c25fe16e-5640-5615-b456-a99a392a7f42';
+  const lessonRoot = 'data/lessons/2/' + lessonId;
+  const skill = 'data/skills/base.json';
+  const lesson = lessonRoot + '/base.json';
+  const uk = lessonRoot + '/uk.json';
+  const extra = 'data/lessons/2/11111111-1111-4111-8111-111111111112/base.json';
+  const source = join(workspace, lessonRoot, 'index.ts');
+
+  for (const file of [
+    'dist/textbook/index.js',
+    'dist/textbook/index.d.ts',
+    'dist/publish.mjs',
+    'dist/static/' + skill,
+    'dist/static/' + lesson,
+    'dist/static/' + uk,
+    'dist/static/' + extra,
+    lessonRoot + '/index.ts',
+  ]) {
+    const target = join(workspace, file);
+    mkdirSync(dirname(target), { recursive: true });
+    writeFileSync(target, file.endsWith('.json') ? '{}' : '');
+  }
+  writeFileSync(
+    join(workspace, 'package.json'),
+    JSON.stringify({
+      name: '@svitlo/astronomy',
+      bin: { 'svitlo-astronomy': './dist/publish.mjs' },
+      exports: { '.': { default: './dist/textbook/index.js', types: './dist/textbook/index.d.ts' } },
+    }),
+  );
+  const manifest = join(workspace, 'dist/manifest.json');
+  const run = files => {
+    writeFileSync(manifest, JSON.stringify({ version: 1, textbook: 'astronomy', files }));
+    return spawnSync(process.execPath, [script, '--packages', 'content/astronomy'], {
+      cwd: root,
+      encoding: 'utf8',
+    });
+  };
+
+  const valid = run([skill, lesson, uk]);
+  assert.equal(valid.status, 0, valid.stderr);
+
+  const unknown = run([skill, lesson, uk, extra]);
+  assert.notEqual(unknown.status, 0);
+  assert.match(unknown.stderr, /Unexpected non-authored Lesson JSON/);
+
+  const incomplete = run([skill, uk]);
+  assert.notEqual(incomplete.status, 0);
+  assert.match(incomplete.stderr, /Missing authored Lesson JSON/);
+
+  rmSync(source);
+  const withoutSource = run([skill, lesson, uk]);
+  assert.notEqual(withoutSource.status, 0);
+  assert.match(withoutSource.stderr, /Unexpected non-authored Lesson JSON/);
+});
