@@ -45,7 +45,6 @@ const stageSixSteps = [
   'Materialize Lesson sources',
   'Accessibility source audit',
   'Offline source audit',
-  'Validate source and handoff',
 ];
 function body() {
   return [
@@ -127,7 +126,7 @@ test('only exact PR top-level comments and enumerated dispatch operations are ac
   }
 });
 
-test('ten-stage tracker requires editorial Stages 1–5, pending Stage 6 and four subchecks', () => {
+test('ten-stage tracker requires editorial Stages 1–5, pending Stage 6 and three subchecks', () => {
   assert.equal(requireStageSixPending(body()), true);
   for (let stage = 1; stage <= 5; stage++) {
     const changed = body().replace('- [x] ' + stage + '.', '- [ ] ' + stage + '.');
@@ -144,7 +143,7 @@ test('ten-stage tracker requires editorial Stages 1–5, pending Stage 6 and fou
   assert.throws(() => requireStageSixPending(body().replace('10. Translation Review', '10. Fake')));
   assert.throws(() => requireStageSixPending(body().replace('  - [ ] 6.2 Accessibility source audit', '')));
   assert.throws(() => requireStageSixPending(body().replace('6.3 Offline source audit', '6.2 Offline source audit')));
-  assert.throws(() => requireStageSixPending(body().replace('6.4 Validate source and handoff', '6.4 Fake')));
+  assert.throws(() => requireStageSixPending(body().replace('## Audit evidence', '  - [ ] 6.4 Validate source and handoff\n## Audit evidence')));
   assert.throws(() =>
     requireStageSixPending(body().replace('## Audit evidence', '- [ ] 10. Translation Review\n## Audit evidence')),
   );
@@ -156,7 +155,7 @@ test('existing eight-stage Lesson PRs may materialize while being migrated in pl
       /^- \[ \] 7\. Questions.*\n- \[ \] 8\. Flashcards.*\n- \[ \] 9\. Translation.*\n- \[ \] 10\. Translation Review.*$/m,
       '- [ ] 7. Translation\n- [ ] 8. Translation Review',
     )
-    .replace(/^  - \[ \] 6\.[1-4].*\n/gm, '');
+    .replace(/^  - \[ \] 6\.[1-3].*\n/gm, '');
   assert.equal(requireStageSixPending(legacy), true);
   assert.throws(() => requireStageSixPending(legacy.replace('7. Translation', '7. Questions')));
 });
