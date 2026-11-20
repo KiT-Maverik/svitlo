@@ -1,11 +1,11 @@
 {
   "schemaVersion": 3,
   "kind": "pr-scoped-agent-ci-artifacts",
-  "sourceCommit": "23a0df6f61d0032874c32f5dc90a6928b4cbe6f2",
+  "sourceCommit": "9d2fad88da053bc4a1ec9cd1cd06d9d0e2498b7c",
   "scope": {
-    "kind": "lessons",
+    "kind": "questions",
     "package": "content/astronomy",
-    "locale": "uk",
+    "locale": "en",
     "component": null,
     "lesson": null,
     "course": null
@@ -14,15 +14,20 @@
     "content/astronomy"
   ],
   "locales": [
-    "uk"
+    "en"
   ],
   "generated": [
     {
-      "kind": "lesson",
+      "kind": "question",
       "textbook": "content/astronomy",
       "lesson": "e/26482aec-3c09-57a6-8534-414f649276be",
-      "locale": "uk",
-      "path": ".agent-ci-artifacts/lessons/astronomy/e/26482aec-3c09-57a6-8534-414f649276be/uk.md",
+      "locale": "en",
+      "path": ".agent-ci-artifacts/questions/astronomy/e/26482aec-3c09-57a6-8534-414f649276be/en.md",
+      "questions": 11,
+      "quizSections": 1,
+      "questionStrings": 82,
+      "quizStrings": 3,
+      "strings": 85,
       "missing": 0,
       "reviewReady": true
     }
@@ -34,8 +39,8 @@
     "missingTranslations": 0,
     "incompleteDocuments": 0,
     "taxonomyDocuments": 0,
-    "lessonDocuments": 1,
-    "questionDocuments": 0,
+    "lessonDocuments": 0,
+    "questionDocuments": 1,
     "courseDocuments": 0,
     "assessmentMethodDocuments": 0,
     "uiKitDocuments": 0,
