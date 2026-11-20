@@ -163,7 +163,7 @@ export const MoonSceneConfig = defineScene<"moonScene", LessonLanguages>({
         uk: "Хмара закрила наш погляд на Місяць. Саме по собі це не змінює фазу.",
         en: "The cloud blocked our view of the Moon. That alone doesn't change its phase.",
         pl: "Chmura zasłoniła nam widok Księżyca. Samo to nie zmienia jego fazy.",
-        qm: "Bulut Ay'nı körmemizge mani oldı. Bu, tek başına, onıñ fazasını deñiştirmey."
+        qm: "Bulut Aynı körmemizge mani oldı. Bu, tek başına, onıñ fazasını deñiştirmey."
       },
       sourceNote: {
         uk: "Це схеми фаз за даними астрономічного календаря, не фотографії.",
