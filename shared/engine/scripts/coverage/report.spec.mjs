@@ -160,12 +160,12 @@ describe('On-demand diagnostic Actions artifacts', () => {
     assert.match(analyzer, /ignore-scripts/);
     assert.match(analyzer, /sourceCommit/);
     assert.match(analyzer, /RUN_ID/);
-    assert.match(analyzer, /gap\\.file/);
+    assert.match(analyzer, /gap\.file/);
     assert.doesNotMatch(analyzer, /git push|\.agent-ci-artifacts/);
     const upload = workflow.jobs.analyze.steps.find(step => step.uses?.startsWith('actions/upload-artifact@'));
     assert.equal(upload.with['retention-days'], 1);
     assert.match(upload.with.name, /run_id/);
-    assert.match(upload.with.path, /engine-gaps\\.json$/);
+    assert.match(upload.with.path, /engine-gaps\.json$/);
   });
 
   it('delivers the Lesson lookup as a one-day JSON artifact without changing PR HEAD', () => {
@@ -179,7 +179,7 @@ describe('On-demand diagnostic Actions artifacts', () => {
     const upload = workflow.jobs.analyze.steps.find(step => step.uses?.startsWith('actions/upload-artifact@'));
     assert.equal(upload.with['retention-days'], 1);
     assert.match(upload.with.name, /run_id/);
-    assert.match(upload.with.path, /result\\.json$/);
+    assert.match(upload.with.path, /result\.json$/);
   });
 
   it('retains human-readable Git audit alongside machine JSON for one day', () => {
