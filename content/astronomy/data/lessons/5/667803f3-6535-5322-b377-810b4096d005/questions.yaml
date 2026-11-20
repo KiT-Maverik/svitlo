@@ -1,0 +1,66 @@
+documentLanguage: uk
+questions: {}
+sectionDrafts:
+  items:
+    sunlitMoonAppearanceQuiz:
+      config:
+        id: aeb987c1-704e-4ef6-8a93-000000000005
+        slug: sunlitMoonAppearanceQuiz
+        type: quiz
+        params: {}
+        locale:
+          title:
+            uk: Перевір своє розуміння
+          navigationLabel:
+            uk: Перевірка
+        content:
+          items:
+            quizInvitation:
+              config:
+                id: aeb987c1-704e-4ef6-8a93-000000000051
+                slug: quizInvitation
+                type: markdown
+                params: {}
+                locale:
+                  value:
+                    uk: >-
+                      # Нова перевірка
+
+                      Тепер спробуй пояснити **нові** приклади. Важливо не
+                      вгадати назву фази, а відрізнити незмінну форму Місяця від
+                      того, яку освітлену Сонцем частину видно з Землі.
+
+
+                      Якщо відповідь важка, ти можеш пригадати модель із
+                      попередніх розділів. Ця перевірка не вимагає виходити
+                      надвір, бачити кольори чи знати точні положення тіл на
+                      орбіті.
+              production:
+                purpose: Вступ до передбаченого Методологом Quiz, без написання самих Question
+                  items.
+          order:
+            - quizInvitation
+      production:
+        purpose: Місце одного окремого scored Quiz згідно з
+          assessmentPlan.sunlitMoonAppearance, не замінюваного формувальною
+          Scene.
+        pedagogicalIntent: Перевірити класифікацію та інтерпретацію нових образів
+          видимої освітленої поверхні й зв'язку із сонячним світлом; не
+          оцінювати геометрію орбіт, затемнення чи назви восьми фаз.
+        productionNotes: >-
+          Assessment intent: sunlitMoonAppearance
+
+          Bank integration: pending
+
+          Assessment Architect з окремого Questions Flow має створити,
+          перевірити та інтегрувати справжній Question Bank для Skill
+          53bba831-1f84-4b25-8e05-33f54167cc98. Лише після цього заповнити
+          обов'язкові поля Quiz params.selection.questionIds, layout,
+          interaction, feedbackMode, results, визначені ним grading/retries та
+          екранні посилання. Відсутність обов'язкових params зараз навмисна
+          Stage 2 draft-залежність, а не дозвіл публікувати Quiz; не додавати
+          фальшивих UUID або оцінювання від Screenwriter. Assessment methods:
+          classification, interpretation. Перевірити локалі й доступні
+          еквіваленти до публікації.
+  order:
+    - sunlitMoonAppearanceQuiz
