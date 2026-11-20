@@ -366,7 +366,7 @@ test('Course publication preserves contextual aliases and distinct Lesson patche
             },
           },
         },
-        directUse: { locale: { title: { en: 'Course direct title' } } },
+        directUse: { locale: { title: 'Course direct title' } },
       },
     },
   };
