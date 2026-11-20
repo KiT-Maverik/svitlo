@@ -13,23 +13,19 @@ test('required statuses remain present and are not skipped for Draft PRs', () =>
   assert.match(content, /name: Affected content \/ build, taxonomy and packaging/);
   assert.match(content, /verify:\n[\s\S]*?if: always\(\)/);
   assert.match(fast, /types: \[opened, reopened, synchronize, ready_for_review\]/);
-  assert.match(fast, /Verify Draft\/Ready CI policy without npm installation/);
+  assert.match(fast, /Typecheck changed workspaces and public API consumers/);
   assert.match(content, /types: \[opened, synchronize, reopened, ready_for_review\]/);
 });
 
-test('FastGate keeps cheap Draft guards but defers every expensive step', () => {
+test('FastGate limits Ready checks to TypeScript and defers installs for Drafts', () => {
   const fast = workflow('fast-gate.yml');
-  assert.match(fast, /Refuse temporary agent artifacts in an integration-bound PR/);
-  assert.match(fast, /Validate GitHub label catalogue/);
   const guard =
     "if: steps.scope.outputs.run == 'true' && (github.event_name == 'workflow_dispatch' || !github.event.pull_request.draft)";
-  assert.equal(fast.split(guard).length - 1, 4);
-  assert.match(
-    fast,
-    /if: github.event_name == 'pull_request' && !github.event.pull_request.draft && steps.scope.outputs.run == 'true'/,
-  );
+  assert.equal(fast.split(guard).length - 1, 2);
+  assert.match(fast, /if: github.event_name == 'pull_request' && !github.event.pull_request.draft && steps.scope.outputs.run == 'true'/);
   assert.match(fast, /if: github.event_name == 'workflow_dispatch' && steps.scope.outputs.run == 'true'/);
-  assert.match(fast, /Draft PR - expensive package builds and typechecks are deferred/);
+  assert.match(fast, /Draft PR - typechecks are deferred/);
+  assert.doesNotMatch(fast, /node --test|test:coverage|test:components|app:build/);
 });
 
 test('heavy PR suites run on Ready transition and can run manually on Draft branches', () => {
