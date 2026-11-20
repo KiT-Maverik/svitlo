@@ -370,7 +370,7 @@ test('Course, Module and Chapter embed independent Lesson under contextual place
     locale: { title: { en: 'Standalone', uk: 'Самостійний' } },
     section: { items: {}, order: [] },
   });
-  const chapter = defineChapter({
+  const chapter = defineChapter<'chapterContext', { caseStudy: typeof lesson }, typeof languages>({
     id: 'bb75647f-203d-481a-a1c7-4d331c779d22',
     slug: 'chapterContext',
     type: 'chapter',
@@ -378,7 +378,7 @@ test('Course, Module and Chapter embed independent Lesson under contextual place
     locale: { title: { en: 'Chapter', uk: 'Розділ' } },
     content: { items: { caseStudy: lesson }, order: ['caseStudy'] },
   });
-  const module = defineModule({
+  const module = defineModule<'moduleContext', { chapterContext: typeof chapter }, typeof languages>({
     id: 'bb75647f-203d-481a-a1c7-4d331c779d23',
     slug: 'moduleContext',
     type: 'module',
@@ -386,7 +386,11 @@ test('Course, Module and Chapter embed independent Lesson under contextual place
     locale: { title: { en: 'Module', uk: 'Модуль' } },
     content: { items: { chapterContext: chapter }, order: ['chapterContext'] },
   });
-  const course = defineCourse({
+  const course = defineCourse<
+    'courseContext',
+    { moduleContext: typeof module; courseReview: typeof lesson },
+    typeof languages
+  >({
     id: 'bb75647f-203d-481a-a1c7-4d331c779d24',
     slug: 'courseContext',
     type: 'course',
