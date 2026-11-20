@@ -1,0 +1,413 @@
+documentLanguage: "uk"
+questions: 
+  selectOneAnswer: 
+    calculatorProcessesNumbers: 
+      id: "a7e7c904-3da7-4cf0-8c13-000000000001"
+      slug: "calculatorProcessesNumbers"
+      type: "selectOneAnswer"
+      params: 
+        assessmentMethod: "classification"
+        restrictions: []
+      locale: {}
+      content: 
+        question: 
+          items: 
+            prompt: 
+              id: "a7e7c904-3da7-4cf0-8c13-000000000002"
+              slug: "prompt"
+              type: "text"
+              params: {}
+              locale: 
+                value: 
+                  uk: "Калькулятор отримав числа 2 і 3 та знак «+» і показав 5. Яке пояснення найкраще показує, що це цифровий пристрій?"
+          order: 
+            - "prompt"
+        hint: 
+          items: 
+            hint: 
+              id: "a7e7c904-3da7-4cf0-8c13-000000000003"
+              slug: "hint"
+              type: "text"
+              params: {}
+              locale: 
+                value: 
+                  uk: "Подумай, що калькулятор робить із числами, а не як виглядає."
+          order: 
+            - "hint"
+        explanation: 
+          items: 
+            explanation: 
+              id: "a7e7c904-3da7-4cf0-8c13-000000000004"
+              slug: "explanation"
+              type: "text"
+              params: {}
+              locale: 
+                value: 
+                  uk: "Калькулятор опрацьовує цифрові дані за правилом. Екран і батарейка самі по собі не визначають цифровий пристрій."
+          order: 
+            - "explanation"
+        answers: 
+          correct: 
+            items: 
+              correctAnswer: 
+                id: "a7e7c904-3da7-4cf0-8c13-000000000005"
+                slug: "correctAnswer"
+                type: "text"
+                params: {}
+                locale: 
+                  value: 
+                    uk: "Він отримує числа, обробляє їх за правилом і показує результат."
+            order: 
+              - "correctAnswer"
+          incorrect: 
+            items: 
+              incorrectAnswer: 
+                id: "a7e7c904-3da7-4cf0-8c13-000000000006"
+                slug: "incorrectAnswer"
+                type: "text"
+                params: {}
+                locale: 
+                  value: 
+                    uk: "Він цифровий лише тому, що має екран."
+            order: 
+              - "incorrectAnswer"
+          distractors: 
+            items: 
+              distractor: 
+                id: "a7e7c904-3da7-4cf0-8c13-000000000007"
+                slug: "distractor"
+                type: "text"
+                params: {}
+                locale: 
+                  value: 
+                    uk: "Він цифровий лише тому, що працює від батарейки."
+            order: 
+              - "distractor"
+    screenlessPlayerClue: 
+      id: "a7e7c904-3da7-4cf0-8c13-000000000008"
+      slug: "screenlessPlayerClue"
+      type: "selectOneAnswer"
+      params: 
+        assessmentMethod: "classification"
+        restrictions: []
+      locale: {}
+      content: 
+        question: 
+          items: 
+            prompt: 
+              id: "a7e7c904-3da7-4cf0-8c13-000000000009"
+              slug: "prompt"
+              type: "text"
+              params: {}
+              locale: 
+                value: 
+                  uk: "Плеєр не має екрана, але зберігає цифрові записи й за вибраною командою відтворює потрібну пісню. Що це означає?"
+          order: 
+            - "prompt"
+        hint: 
+          items: 
+            hint: 
+              id: "a7e7c904-3da7-4cf0-8c13-000000000010"
+              slug: "hint"
+              type: "text"
+              params: {}
+              locale: 
+                value: 
+                  uk: "Екран не обов’язковий. Зверни увагу на записи та команди."
+          order: 
+            - "hint"
+        explanation: 
+          items: 
+            explanation: 
+              id: "a7e7c904-3da7-4cf0-8c13-000000000011"
+              slug: "explanation"
+              type: "text"
+              params: {}
+              locale: 
+                value: 
+                  uk: "Безекранний плеєр може зберігати й опрацьовувати цифрові записи. Сам звук не є достатньою ознакою."
+          order: 
+            - "explanation"
+        answers: 
+          correct: 
+            items: 
+              correctAnswer: 
+                id: "a7e7c904-3da7-4cf0-8c13-000000000012"
+                slug: "correctAnswer"
+                type: "text"
+                params: {}
+                locale: 
+                  value: 
+                    uk: "Це цифровий пристрій: він опрацьовує цифрові записи за командами."
+            order: 
+              - "correctAnswer"
+          incorrect: 
+            items: 
+              incorrectAnswer: 
+                id: "a7e7c904-3da7-4cf0-8c13-000000000013"
+                slug: "incorrectAnswer"
+                type: "text"
+                params: {}
+                locale: 
+                  value: 
+                    uk: "Він не може бути цифровим, бо не має екрана."
+            order: 
+              - "incorrectAnswer"
+          distractors: 
+            items: 
+              distractor: 
+                id: "a7e7c904-3da7-4cf0-8c13-000000000014"
+                slug: "distractor"
+                type: "text"
+                params: {}
+                locale: 
+                  value: 
+                    uk: "Він цифровий, бо будь-який предмет зі звуком цифровий."
+            order: 
+              - "distractor"
+    batteryFlashlightReason: 
+      id: "a7e7c904-3da7-4cf0-8c13-000000000015"
+      slug: "batteryFlashlightReason"
+      type: "selectOneAnswer"
+      params: 
+        assessmentMethod: "justification"
+        restrictions: []
+      locale: {}
+      content: 
+        question: 
+          items: 
+            prompt: 
+              id: "a7e7c904-3da7-4cf0-8c13-000000000016"
+              slug: "prompt"
+              type: "text"
+              params: {}
+              locale: 
+                value: 
+                  uk: "Простий ліхтарик світить від батарейки, коли натискаєш вимикач. Чому батарейка не доводить, що ліхтарик цифровий?"
+          order: 
+            - "prompt"
+        hint: 
+          items: 
+            hint: 
+              id: "a7e7c904-3da7-4cf0-8c13-000000000017"
+              slug: "hint"
+              type: "text"
+              params: {}
+              locale: 
+                value: 
+                  uk: "Живлення та опрацювання інформації — різні речі."
+          order: 
+            - "hint"
+        explanation: 
+          items: 
+            explanation: 
+              id: "a7e7c904-3da7-4cf0-8c13-000000000018"
+              slug: "explanation"
+              type: "text"
+              params: {}
+              locale: 
+                value: 
+                  uk: "Простий вимикач і батарейка не означають, що прилад обробляє цифрову інформацію."
+          order: 
+            - "explanation"
+        answers: 
+          correct: 
+            items: 
+              correctAnswer: 
+                id: "a7e7c904-3da7-4cf0-8c13-000000000019"
+                slug: "correctAnswer"
+                type: "text"
+                params: {}
+                locale: 
+                  value: 
+                    uk: "Батарейка дає енергію, але тут немає опису цифрового опрацювання даних."
+            order: 
+              - "correctAnswer"
+          incorrect: 
+            items: 
+              incorrectAnswer: 
+                id: "a7e7c904-3da7-4cf0-8c13-000000000020"
+                slug: "incorrectAnswer"
+                type: "text"
+                params: {}
+                locale: 
+                  value: 
+                    uk: "Усі прилади з батарейками обов’язково цифрові."
+            order: 
+              - "incorrectAnswer"
+          distractors: 
+            items: 
+              distractor: 
+                id: "a7e7c904-3da7-4cf0-8c13-000000000021"
+                slug: "distractor"
+                type: "text"
+                params: {}
+                locale: 
+                  value: 
+                    uk: "Ліхтарик не цифровий лише тому, що в нього немає клавіатури."
+            order: 
+              - "distractor"
+    unknownLampEvidence: 
+      id: "a7e7c904-3da7-4cf0-8c13-000000000022"
+      slug: "unknownLampEvidence"
+      type: "selectOneAnswer"
+      params: 
+        assessmentMethod: "justification"
+        restrictions: []
+      locale: {}
+      content: 
+        question: 
+          items: 
+            prompt: 
+              id: "a7e7c904-3da7-4cf0-8c13-000000000023"
+              slug: "prompt"
+              type: "text"
+              params: {}
+              locale: 
+                value: 
+                  uk: "Тобі сказали тільки слово «лампа», але не розповіли, як вона працює. Яка відповідь найобґрунтованіша?"
+          order: 
+            - "prompt"
+        hint: 
+          items: 
+            hint: 
+              id: "a7e7c904-3da7-4cf0-8c13-000000000024"
+              slug: "hint"
+              type: "text"
+              params: {}
+              locale: 
+                value: 
+                  uk: "Одна назва предмета не розповідає, як він працює."
+          order: 
+            - "hint"
+        explanation: 
+          items: 
+            explanation: 
+              id: "a7e7c904-3da7-4cf0-8c13-000000000025"
+              slug: "explanation"
+              type: "text"
+              params: {}
+              locale: 
+                value: 
+                  uk: "Лампи можуть мати різну будову. Без відомостей про спосіб роботи не слід вгадувати категорію."
+          order: 
+            - "explanation"
+        answers: 
+          correct: 
+            items: 
+              correctAnswer: 
+                id: "a7e7c904-3da7-4cf0-8c13-000000000026"
+                slug: "correctAnswer"
+                type: "text"
+                params: {}
+                locale: 
+                  value: 
+                    uk: "Потрібно дізнатися, чи лампа опрацьовує цифрові дані."
+            order: 
+              - "correctAnswer"
+          incorrect: 
+            items: 
+              incorrectAnswer: 
+                id: "a7e7c904-3da7-4cf0-8c13-000000000027"
+                slug: "incorrectAnswer"
+                type: "text"
+                params: {}
+                locale: 
+                  value: 
+                    uk: "Будь-яка лампа цифрова, бо світиться."
+            order: 
+              - "incorrectAnswer"
+          distractors: 
+            items: 
+              distractor: 
+                id: "a7e7c904-3da7-4cf0-8c13-000000000028"
+                slug: "distractor"
+                type: "text"
+                params: {}
+                locale: 
+                  value: 
+                    uk: "Будь-яка лампа не цифрова, бо це лампа."
+            order: 
+              - "distractor"
+    thermometerTransfer: 
+      id: "a7e7c904-3da7-4cf0-8c13-000000000029"
+      slug: "thermometerTransfer"
+      type: "selectOneAnswer"
+      params: 
+        assessmentMethod: "knowledgeTransfer"
+        restrictions: []
+      locale: {}
+      content: 
+        question: 
+          items: 
+            prompt: 
+              id: "a7e7c904-3da7-4cf0-8c13-000000000030"
+              slug: "prompt"
+              type: "text"
+              params: {}
+              locale: 
+                value: 
+                  uk: "Новий термометр вимірює температуру, обробляє числове значення всередині за заданим правилом і показує результат. Що найкраще обґрунтовує висновок?"
+          order: 
+            - "prompt"
+        hint: 
+          items: 
+            hint: 
+              id: "a7e7c904-3da7-4cf0-8c13-000000000031"
+              slug: "hint"
+              type: "text"
+              params: {}
+              locale: 
+                value: 
+                  uk: "Спробуй застосувати правило, яке вивчив на калькуляторі, до іншого предмета."
+          order: 
+            - "hint"
+        explanation: 
+          items: 
+            explanation: 
+              id: "a7e7c904-3da7-4cf0-8c13-000000000032"
+              slug: "explanation"
+              type: "text"
+              params: {}
+              locale: 
+                value: 
+                  uk: "Важлива цифрова обробка даних, а не розмір чи призначення. Рідинний термометр без такого опрацювання — інший випадок."
+          order: 
+            - "explanation"
+        answers: 
+          correct: 
+            items: 
+              correctAnswer: 
+                id: "a7e7c904-3da7-4cf0-8c13-000000000033"
+                slug: "correctAnswer"
+                type: "text"
+                params: {}
+                locale: 
+                  value: 
+                    uk: "Він обробляє виміряні дані за правилом; це ознака цифрового пристрою."
+            order: 
+              - "correctAnswer"
+          incorrect: 
+            items: 
+              incorrectAnswer: 
+                id: "a7e7c904-3da7-4cf0-8c13-000000000034"
+                slug: "incorrectAnswer"
+                type: "text"
+                params: {}
+                locale: 
+                  value: 
+                    uk: "Він цифровий тільки тому, що невеликий."
+            order: 
+              - "incorrectAnswer"
+          distractors: 
+            items: 
+              distractor: 
+                id: "a7e7c904-3da7-4cf0-8c13-000000000035"
+                slug: "distractor"
+                type: "text"
+                params: {}
+                locale: 
+                  value: 
+                    uk: "Він цифровий тільки тому, що вимірює температуру."
+            order: 
+              - "distractor"
