@@ -39,3 +39,5 @@ The read-only Course validator remains available for **complete** Course authori
 - Final readiness requires actual complete Lesson references, genuine media/locales, verifiable source and review evidence, and required CI/production checks. Seven completed editorial stages alone are not a release or merge authorization.
 
 There is **no second Course TOC/matching workflow, editor source format, or backward-compatibility contract**. Read the current schema, Engine materializer and code/tests rather than inventing a migration from an old Course protocol.
+
+**Authoring-stage validation:** Course Stages 1–4 do not require manual Stage-specific JSON Schema or CLI checks. The reviewed source is validated once by Stage 5 materialization; independent Stage 4 review and all real production gates remain mandatory. See the [four-flow audit](../../docs/architecture/yaml-config-scaffolding.md#validation-boundaries-across-the-four-entity-workflows).
