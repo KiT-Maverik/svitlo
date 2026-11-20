@@ -794,16 +794,32 @@ export function renderLessonModules(lesson, language, options = {}) {
       skillNames.set(match.symbol, match.file);
     }
   }
+  // A Skill often shares the Lesson slug. Imported identifiers must not
+  // shadow the Lesson export or any of its root module bindings.
+  const usedRootBindings = new Set(['defineLesson', 'section', 'languages', 'LessonLanguages', filtered.slug]);
+  const skillBindings = new Map();
   for (const [symbol, absolute] of [...skillNames.entries()].sort((a, b) => a[0].localeCompare(b[0]))) {
+    let local = symbol;
+    if (usedRootBindings.has(local)) {
+      local = symbol + 'Skill';
+      for (let suffix = 2; usedRootBindings.has(local); suffix++) local = symbol + 'Skill' + suffix;
+    }
+    usedRootBindings.add(local);
+    skillBindings.set(symbol, local);
     const target = path.relative(options.outputFolder, absolute).split(path.sep).join('/').replace(/\.ts$/, '');
     rootImports.push(
-      'import { ' + symbol + ' } from ' + JSON.stringify(target.startsWith('.') ? target : './' + target) + ';',
+      'import { ' +
+        symbol +
+        (local === symbol ? '' : ' as ' + local) +
+        ' } from ' +
+        JSON.stringify(target.startsWith('.') ? target : './' + target) +
+        ';',
     );
   }
   const rootFields = [];
   for (const [key, value] of Object.entries(filtered)) {
     if (key === 'skills' && Array.isArray(value)) {
-      rootFields.push('  skills: [' + value.map(id => skills.get(id).symbol + '.id').join(', ') + ']');
+      rootFields.push('  skills: [' + value.map(id => skillBindings.get(skills.get(id).symbol) + '.id').join(', ') + ']');
       continue;
     }
     if (key === 'section') {
