@@ -44,7 +44,7 @@ the Zod Config change; the independent generator is authoritative.
 
 `defineCourse` composes independently authored `defineModule`, `defineChapter`,
 `defineEpisode`, and **existing standalone `defineLesson` configurators**.
-A Course `type: lesson` slot in temporary YAML reuses an existing standalone Lesson by its verified `lessonId`, or holds a complete new Lesson methodology without an ID. The Stage 5 materializer resolves implemented Lesson sources where possible and allocates stable UUIDs plus minimal `lesson.yaml` handoffs for genuinely new Lessons. It never overwrites already authored standalone Lessons or opens their production PRs.
+Stage 2 may first reserve ordered Lesson placements as `TMP_lesson_N: { type: lesson, skills: [<real Skill UUIDs>] }` and optional Episodes as `TMP_episode_N: { type: episode }`, **without** authoring a Lesson slug/title/objective, searching existing Lessons or producing Episode narrative. These are intentionally incomplete **editorial** placeholders, never valid final Config or materializer inputs. Stage 3 resolves every temporary collection key, its order/reference usage and the existing-vs-new Lesson decision. A final Course `type: lesson` slot reuses an existing standalone Lesson by its verified `lessonId`, or holds a complete new Lesson methodology without an ID. The Stage 5 materializer resolves implemented Lesson sources where possible and allocates stable UUIDs plus minimal `lesson.yaml` handoffs for genuinely new Lessons. It never overwrites already authored standalone Lessons or opens their production PRs.
 
 The **only** current override mechanism is the stateless nested Build API:
 
