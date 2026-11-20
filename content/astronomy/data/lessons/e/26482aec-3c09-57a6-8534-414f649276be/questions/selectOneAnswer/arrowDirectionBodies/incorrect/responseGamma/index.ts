@@ -9,7 +9,10 @@ export const responseGamma = defineText<"responseGamma", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Земля → Місяць; Місяць → Сонце."
+      uk: "Земля → Місяць; Місяць → Сонце.",
+      en: "Earth → Moon; Moon → Sun.",
+      pl: "Ziemia → Księżyc; Księżyc → Słońce.",
+      qm: "Yer → Ay; Ay → Küneş."
     }
   }
 });

@@ -9,7 +9,10 @@ export const correct1 = defineText<"correct1", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Вона все одно зоря; за тим, якою маленькою вона здається, не можна визначити її справжній розмір."
+      uk: "Вона все одно зоря; за тим, якою маленькою вона здається, не можна визначити її справжній розмір.",
+      en: "It is still a star; the fact that it looks tiny does not tell us its real size.",
+      pl: "Nadal jest gwiazdą; to, że wydaje się malutka, nie pozwala określić jej rzeczywistej wielkości.",
+      qm: "O yene de yıldızdır; kiçik körüngenine köre kerçek büyüklügini bilip olmay."
     }
   }
 });

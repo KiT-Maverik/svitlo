@@ -9,7 +9,10 @@ export const incorrect3 = defineText<"incorrect3", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Вона обов’язково планета, бо на небі є маленькою цяткою."
+      uk: "Вона обов’язково планета, бо на небі є маленькою цяткою.",
+      en: "It must be a planet because it looks like a tiny dot in the sky.",
+      pl: "Na pewno jest planetą, bo na niebie wygląda jak mała kropka.",
+      qm: "O mıtlaqa seyyaredir, çünki kökte kiçik noqta kibi körüne."
     }
   }
 });

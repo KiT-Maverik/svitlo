@@ -9,7 +9,10 @@ export const incorrect1 = defineText<"incorrect1", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Вона обов’язково менша за Сонце, бо здається крихітною."
+      uk: "Вона обов’язково менша за Сонце, бо здається крихітною.",
+      en: "It must be smaller than the Sun because it looks tiny.",
+      pl: "Na pewno jest mniejsza od Słońca, bo wydaje się malutka.",
+      qm: "O, Küneşten mıtlaqa kiçiktir, çünki pek kiçik körüne."
     }
   }
 });

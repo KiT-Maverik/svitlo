@@ -9,7 +9,10 @@ export const explanationText = defineText<"explanationText", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Основні спрямовані зв’язки: Земля → Сонце та Місяць → Земля. Обернені стрілки хибно міняють місцями тіло й центр орбіти."
+      uk: "Основні спрямовані зв’язки: Земля → Сонце та Місяць → Земля. Обернені стрілки хибно міняють місцями тіло й центр орбіти.",
+      en: "The main directed relationships are Earth → Sun and Moon → Earth. Reversed arrows incorrectly swap the moving body and the center of its orbit.",
+      pl: "Główne zależności pokazane strzałkami to Ziemia → Słońce i Księżyc → Ziemia. Odwrócone strzałki błędnie zamieniają miejscami ciało i środek jego orbity.",
+      qm: "Esas yöneltilgen bağlar: Yer → Küneş ve Ay → Yer. Ters oqlar areket etken cisim ile orbitasınıñ merkezini yanlış yerlerge qoya."
     }
   }
 });

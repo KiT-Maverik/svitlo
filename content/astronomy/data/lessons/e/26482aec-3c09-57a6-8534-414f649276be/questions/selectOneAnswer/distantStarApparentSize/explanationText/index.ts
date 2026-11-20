@@ -9,7 +9,10 @@ export const explanationText = defineText<"explanationText", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Зоря може здаватися маленькою через величезну відстань. Сонце теж зоря; видимий розмір сам по собі не доводить ні справжнього розміру, ні типу небесного тіла."
+      uk: "Зоря може здаватися маленькою через величезну відстань. Сонце теж зоря; видимий розмір сам по собі не доводить ні справжнього розміру, ні типу небесного тіла.",
+      en: "A star can look small because it is extremely far away. The Sun is also a star; apparent size alone does not show a body's real size or what kind of celestial body it is.",
+      pl: "Gwiazda może wydawać się mała, ponieważ jest bardzo daleko. Słońce też jest gwiazdą; sam pozorny rozmiar nie mówi ani o rzeczywistej wielkości, ani o rodzaju ciała niebieskiego.",
+      qm: "Yıldız pek uzaqta olğanı içün kiçik körüne bile. Küneş de yıldızdır; körüngen büyüklük cisimniñ kerçek ölçüsini ya da kök cisminiñ türüni tek başına belli etmey."
     }
   }
 });

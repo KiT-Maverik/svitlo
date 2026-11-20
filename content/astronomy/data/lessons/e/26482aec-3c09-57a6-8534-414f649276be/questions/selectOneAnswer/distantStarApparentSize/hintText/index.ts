@@ -9,7 +9,10 @@ export const hintText = defineText<"hintText", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Уяви однакові за розміром предмети: близький і дуже далекий."
+      uk: "Уяви однакові за розміром предмети: близький і дуже далекий.",
+      en: "Imagine two objects of the same size: one nearby and one very far away.",
+      pl: "Wyobraź sobie dwa przedmioty tej samej wielkości: jeden blisko, a drugi bardzo daleko.",
+      qm: "Aynı büyüklükte eki eşyanı tasavur et: biri yaqında, ekincisi pek uzaqta."
     }
   }
 });

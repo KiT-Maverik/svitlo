@@ -9,7 +9,10 @@ export const incorrect2 = defineText<"incorrect2", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Вона не може бути зорею, бо Сонце виглядає інакше."
+      uk: "Вона не може бути зорею, бо Сонце виглядає інакше.",
+      en: "It cannot be a star because the Sun looks different.",
+      pl: "Nie może być gwiazdą, bo Słońce wygląda inaczej.",
+      qm: "O yıldız olamaz, çünki Küneş başqa türlü körüne."
     }
   }
 });

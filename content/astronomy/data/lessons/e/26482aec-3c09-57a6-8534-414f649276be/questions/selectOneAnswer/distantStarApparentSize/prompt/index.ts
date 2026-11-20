@@ -9,7 +9,10 @@ export const prompt = defineText<"prompt", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Далека зоря на нічному небі здається маленькою світною цяткою. Який висновок правильний?"
+      uk: "Далека зоря на нічному небі здається маленькою світною цяткою. Який висновок правильний?",
+      en: "A distant star looks like a tiny point of light in the night sky. Which conclusion is correct?",
+      pl: "Odległa gwiazda wygląda na nocnym niebie jak maleńki świecący punkt. Który wniosek jest poprawny?",
+      qm: "Uzaqtaki yıldız gece kökte kiçik yarıq noqtası kibi körüne. Angi netice doğrudır?"
     }
   }
 });
