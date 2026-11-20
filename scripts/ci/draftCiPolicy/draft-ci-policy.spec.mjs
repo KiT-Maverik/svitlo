@@ -54,7 +54,7 @@ test('heavy PR suites run on Ready transition and can run manually on Draft bran
 });
 
 test('mobile and production already require Ready and preserve manual diagnostics', () => {
-  for (const file of ['mobile.yml', 'questions.yml']) {
+  for (const file of ['mobile.yml', 'production-quality.yml']) {
     const yaml = workflow(file);
     assert.match(yaml, /ready_for_review/, file);
     assert.match(yaml, /workflow_dispatch:/, file);
@@ -77,7 +77,7 @@ test('PR auto-formatter fixes only development PRs, never protected release sour
 });
 
 test('PR artifact auto-cleanup excludes protected production promotion without weakening guard', () => {
-  const cleanup = workflow('translation-review.yml');
+  const cleanup = workflow('agent-ci-artifacts.yml');
   const guard = workflow('agent-ci-artifacts-guard.yml');
   assert.match(cleanup, /branches: \[develop, integration-branch, new-lesson, integration\/italian-localization\]/);
   assert.match(cleanup, /github\.event\.pull_request\.head\.ref != github\.event\.repository\.default_branch/);
@@ -93,7 +93,7 @@ test('Desktop bundle assertions execute after production builds, not in root npm
   assert.equal(scripts.test, 'node --test tests/engine-runtime-imports.spec.mjs');
   assert.equal(scripts['test:integration'], 'node --test tests/packaged-content.spec.mjs');
 
-  const quality = workflow('questions.yml');
+  const quality = workflow('production-quality.yml');
   const build = quality.indexOf('npm run app:build --workspace "$APP_WORKSPACE"');
   const integration = quality.indexOf('npm run test:integration --workspace "$APP_WORKSPACE"');
   assert.ok(build !== -1 && integration > build, 'Desktop bundle test must follow its app build');

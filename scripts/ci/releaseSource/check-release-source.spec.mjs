@@ -30,7 +30,7 @@ test('only same-repository develop → main is an authorized release', () => {
 
 test('Ready production check is rerun on edited PRs and checks source before installation', () => {
   const workflow = readFileSync(
-    fileURLToPath(new URL('../../../.github/workflows/questions.yml', import.meta.url)),
+    fileURLToPath(new URL('../../../.github/workflows/production-quality.yml', import.meta.url)),
     'utf8',
   );
   assert.match(workflow, /opened, reopened, synchronize, edited, ready_for_review/);
@@ -60,7 +60,7 @@ test('production gate CLI propagates authorized and unauthorized exit statuses',
 
 test('production builds packages and apps independently, verifying each in its own runner', () => {
   const workflow = readFileSync(
-    fileURLToPath(new URL('../../../.github/workflows/questions.yml', import.meta.url)),
+    fileURLToPath(new URL('../../../.github/workflows/production-quality.yml', import.meta.url)),
     'utf8',
   );
   assert.match(workflow, /name: Build all distributable packages/);

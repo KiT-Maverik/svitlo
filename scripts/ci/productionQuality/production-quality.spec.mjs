@@ -6,7 +6,7 @@ import { discoverWorkspaces, planWorkspaceOperation } from '../../runWorkspaceSc
 import { planProductionApps } from './plan-app-matrix.mjs';
 import { additionalComponentWorkspaces } from './run-selected-components.mjs';
 
-const workflow = readFileSync(new URL('../../../.github/workflows/questions.yml', import.meta.url), 'utf8');
+const workflow = readFileSync(new URL('../../../.github/workflows/production-quality.yml', import.meta.url), 'utf8');
 
 test('every manifest-defined app and E2E suite is retained in the production matrix', () => {
   const packages = discoverWorkspaces();
