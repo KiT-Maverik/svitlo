@@ -10,7 +10,7 @@ config:
       - en
       - pl
       - qm
-    requireQuiz: true
+    quizRequiredForCompletion: true
     sections:
       allowNavigation: true
       allowSkipping: true
@@ -481,6 +481,7 @@ config:
     order: ["noticeMoon", "moonLight", "practiceMoon", "reflection", "sunlitMoonAppearanceQuiz"]
 production:
   documentLanguage: uk
+  quizRequired: true
   purpose: "Допомогти дитині самостійно помічати зміни освітленої частини Місяця й пояснювати їх сонячним світлом."
   audience: "Діти 6–8 років; читання необов'язкове за наявності читання вголос або іншої доступної форми."
   productionNotes: |-
