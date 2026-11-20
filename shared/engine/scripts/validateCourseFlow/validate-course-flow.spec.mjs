@@ -133,3 +133,43 @@ test('Stage 3 complete accepts inline Course-specific Lesson edits only for veri
   const withoutEdits = checkPlan(wrapped({ ...lesson, lessonId }), '3-complete');
   assert.equal(withoutEdits.valid, true);
 });
+
+test('final Course validation uses canonical Engine Section schema for Course-local additions', () => {
+  const addedSection = {
+    id: '3f648844-4951-4f17-99d2-6dbe5fbb016e',
+    slug: 'fieldNotes',
+    type: 'content',
+    params: {},
+    locale: { title: { en: 'Field notes' }, navigationLabel: { en: 'Notes' } },
+    content: { items: {}, order: [] },
+  };
+  const reused = {
+    ...lesson,
+    lessonId: skillId,
+    section: { additionalItems: { fieldNotes: addedSection }, order: ['fieldNotes'] },
+  };
+  const wrap = source => ({
+    ...plan(),
+    content: { items: { intro: source }, order: ['intro'] },
+  });
+  const good = checkPlan(wrap(reused), '3-complete');
+  assert.equal(good.valid, true, good.errors.join('; '));
+
+  const missingId = structuredClone(reused);
+  delete missingId.section.additionalItems.fieldNotes.id;
+  const missingIdResult = checkPlan(wrap(missingId), '3-complete');
+  assert.equal(missingIdResult.valid, false);
+  assert.match(missingIdResult.errors.join('; '), /intro\/section\/additionalItems\/fieldNotes/);
+
+  const wrongKey = structuredClone(reused);
+  wrongKey.section.additionalItems.fieldNotes.slug = 'another';
+  assert.match(checkPlan(wrap(wrongKey), '3-complete').errors.join('; '), /fieldNotes\/slug: must match/);
+
+  const invalidNested = structuredClone(reused);
+  invalidNested.section.additionalItems.fieldNotes.params = null;
+  assert.equal(checkPlan(wrap(invalidNested), '3-complete').valid, false);
+
+  const noOrder = structuredClone(reused);
+  delete noOrder.section.order;
+  assert.match(checkPlan(wrap(noOrder), '3-complete').errors.join('; '), /section\/order/);
+});
