@@ -2,7 +2,7 @@
 
 - Lesson: `4e4b5a9b-7013-5320-8fc3-7f34a70c8915` (skyChangesOverview)
 - Language: `pl` (supported: `pl`)
-- Canonical: [source](https://github.com/KiT-Maverik/svitlo/blob/f3de126e7bbeb476325491387d4298c3e6ad0f35/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/index.ts)
+- Canonical: [source](https://github.com/KiT-Maverik/svitlo/blob/da091d74c881479f4ead87bce478ce07af4b0c3e/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/index.ts)
 - **Media representations:** descriptive metadata only; binary media and interactive Scenes are not rendered.
 
 - **Target Skills** (2)
@@ -21,11 +21,11 @@
 
 - ID: `f25202e1-6ea2-4c61-b281-fb1e15ea9d31`
 - Navigation: Dzień i noc
-- Canonical: [source](https://github.com/KiT-Maverik/svitlo/blob/f3de126e7bbeb476325491387d4298c3e6ad0f35/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sDay/index.ts)
+- Canonical: [source](https://github.com/KiT-Maverik/svitlo/blob/da091d74c881479f4ead87bce478ce07af4b0c3e/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sDay/index.ts)
 - **locale**
   - **title:** Co widać w dzień i w nocy?
   - **navigationLabel:** Dzień i noc
-- **Block 1 · markdown** (`dayIntro`, `cd9659dc-1a6c-444f-a402-4800645b2fc6`; [source](https://github.com/KiT-Maverik/svitlo/blob/f3de126e7bbeb476325491387d4298c3e6ad0f35/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sDay/dayIntro/index.ts))
+- **Block 1 · markdown** (`dayIntro`, `cd9659dc-1a6c-444f-a402-4800645b2fc6`; [source](https://github.com/KiT-Maverik/svitlo/blob/da091d74c881479f4ead87bce478ce07af4b0c3e/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sDay/dayIntro/index.ts))
   - **params:** (none)
   - **locale**
     - **value:**
@@ -38,7 +38,7 @@
       Zauważanie i nazywanie różnic to **obserwowanie**. Na razie nie trzeba wyjaśniać, dlaczego zapada noc. Nie wolno też patrzeć prosto na Słońce.
       
       ~~~~
-- **Block 2 · audio** (`dayAudio`, `fd3c34f6-58a3-4738-b035-045bc27bffbe`; [source](https://github.com/KiT-Maverik/svitlo/blob/f3de126e7bbeb476325491387d4298c3e6ad0f35/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sDay/dayAudio/index.ts))
+- **Block 2 · audio** (`dayAudio`, `fd3c34f6-58a3-4738-b035-045bc27bffbe`; [source](https://github.com/KiT-Maverik/svitlo/blob/da091d74c881479f4ead87bce478ce07af4b0c3e/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sDay/dayAudio/index.ts))
   - *Media is not embedded. Paths, accessible descriptions, captions and display/fallback metadata are shown below.*
   - **params:** (none)
   - **locale**
@@ -50,7 +50,7 @@
       - **unavailable:** Nagranie jest na razie niedostępne. Te same informacje znajdziesz w tekście lekcji.
       - **playbackError:** Nagranie nie zostało odtworzone. Możesz przeczytać tekst obok.
       - **retry:** Spróbuj ponownie
-- **Block 3 · scene** (`dayScene`, `80ecd1b4-8405-41ad-ac71-bd97d0f2c9e8`; [source](https://github.com/KiT-Maverik/svitlo/blob/f3de126e7bbeb476325491387d4298c3e6ad0f35/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sDay/dayScene/index.ts))
+- **Block 3 · scene** (`dayScene`, `80ecd1b4-8405-41ad-ac71-bd97d0f2c9e8`; [source](https://github.com/KiT-Maverik/svitlo/blob/da091d74c881479f4ead87bce478ce07af4b0c3e/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sDay/dayScene/index.ts))
   - **params:** (none)
   - **locale**
     - **value**
@@ -86,7 +86,7 @@
         - **speak:** Posłuchaj podpisu, odpowiedzi lub informacji zwrotnej
         - **repeat:** Odtwórz dźwięk ponownie
         - **pause:** Wstrzymaj odtwarzanie
-- **Block 4 · markdown** (`dayExplain`, `f7ac388e-f6b5-4521-a67c-18a80ab96ac2`; [source](https://github.com/KiT-Maverik/svitlo/blob/f3de126e7bbeb476325491387d4298c3e6ad0f35/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sDay/dayExplain/index.ts))
+- **Block 4 · markdown** (`dayExplain`, `f7ac388e-f6b5-4521-a67c-18a80ab96ac2`; [source](https://github.com/KiT-Maverik/svitlo/blob/da091d74c881479f4ead87bce478ce07af4b0c3e/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sDay/dayExplain/index.ts))
   - **params:** (none)
   - **locale**
     - **value:**
@@ -99,7 +99,7 @@
       Zauważyliśmy już zmianę oświetlenia. Później możemy zadać inne pytanie: **dlaczego dzień i noc się zmieniają?**
       
       ~~~~
-- **Block 5 · text** (`dayRecap`, `63dc6b4b-c9e7-4b20-b424-8a0811b443d0`; [source](https://github.com/KiT-Maverik/svitlo/blob/f3de126e7bbeb476325491387d4298c3e6ad0f35/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sDay/dayRecap/index.ts))
+- **Block 5 · text** (`dayRecap`, `63dc6b4b-c9e7-4b20-b424-8a0811b443d0`; [source](https://github.com/KiT-Maverik/svitlo/blob/da091d74c881479f4ead87bce478ce07af4b0c3e/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sDay/dayRecap/index.ts))
   - **params:** (none)
   - **locale**
     - **value:** Powiedz albo pokaż: „Na jednym obrazku jest jaśniej, na drugim — ciemniej”. To jest obserwacja.
@@ -108,11 +108,11 @@
 
 - ID: `d4fa419e-75bf-4df7-a414-e2613e4227c8`
 - Navigation: Księżyc
-- Canonical: [source](https://github.com/KiT-Maverik/svitlo/blob/f3de126e7bbeb476325491387d4298c3e6ad0f35/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sMoon/index.ts)
+- Canonical: [source](https://github.com/KiT-Maverik/svitlo/blob/da091d74c881479f4ead87bce478ce07af4b0c3e/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sMoon/index.ts)
 - **locale**
   - **title:** Jeden Księżyc — różne wyglądy
   - **navigationLabel:** Księżyc
-- **Block 1 · markdown** (`moonIntro`, `a3abf8be-5714-4a13-96ed-b864e60f9fff`; [source](https://github.com/KiT-Maverik/svitlo/blob/f3de126e7bbeb476325491387d4298c3e6ad0f35/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sMoon/moonIntro/index.ts))
+- **Block 1 · markdown** (`moonIntro`, `a3abf8be-5714-4a13-96ed-b864e60f9fff`; [source](https://github.com/KiT-Maverik/svitlo/blob/da091d74c881479f4ead87bce478ce07af4b0c3e/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sMoon/moonIntro/index.ts))
   - **params:** (none)
   - **locale**
     - **value:**
@@ -127,7 +127,7 @@
       **Co zauważasz?** Nie musisz jeszcze wyjaśniać, dlaczego zmienia się widoczna oświetlona część Księżyca.
       
       ~~~~
-- **Block 2 · audio** (`moonAudio`, `1e81a98a-95a0-4f7f-869c-7baa12631075`; [source](https://github.com/KiT-Maverik/svitlo/blob/f3de126e7bbeb476325491387d4298c3e6ad0f35/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sMoon/moonAudio/index.ts))
+- **Block 2 · audio** (`moonAudio`, `1e81a98a-95a0-4f7f-869c-7baa12631075`; [source](https://github.com/KiT-Maverik/svitlo/blob/da091d74c881479f4ead87bce478ce07af4b0c3e/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sMoon/moonAudio/index.ts))
   - *Media is not embedded. Paths, accessible descriptions, captions and display/fallback metadata are shown below.*
   - **params:** (none)
   - **locale**
@@ -139,7 +139,7 @@
       - **unavailable:** Nagranie jest na razie niedostępne. Te same informacje znajdziesz w tekście lekcji.
       - **playbackError:** Nagranie nie zostało odtworzone. Możesz przeczytać tekst obok.
       - **retry:** Spróbuj ponownie
-- **Block 3 · scene** (`moonScene`, `fae02030-82c2-4c8a-a18a-3a1a789a8477`; [source](https://github.com/KiT-Maverik/svitlo/blob/f3de126e7bbeb476325491387d4298c3e6ad0f35/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sMoon/moonScene/index.ts))
+- **Block 3 · scene** (`moonScene`, `fae02030-82c2-4c8a-a18a-3a1a789a8477`; [source](https://github.com/KiT-Maverik/svitlo/blob/da091d74c881479f4ead87bce478ce07af4b0c3e/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sMoon/moonScene/index.ts))
   - **params:** (none)
   - **locale**
     - **value**
@@ -175,7 +175,7 @@
         - **speak:** Posłuchaj podpisu, odpowiedzi lub informacji zwrotnej
         - **repeat:** Odtwórz dźwięk ponownie
         - **pause:** Wstrzymaj odtwarzanie
-- **Block 4 · markdown** (`moonExplain`, `be948409-31e8-4d41-a417-a6b864c9ba6a`; [source](https://github.com/KiT-Maverik/svitlo/blob/f3de126e7bbeb476325491387d4298c3e6ad0f35/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sMoon/moonExplain/index.ts))
+- **Block 4 · markdown** (`moonExplain`, `be948409-31e8-4d41-a417-a6b864c9ba6a`; [source](https://github.com/KiT-Maverik/svitlo/blob/da091d74c881479f4ead87bce478ce07af4b0c3e/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sMoon/moonExplain/index.ts))
   - **params:** (none)
   - **locale**
     - **value:**
@@ -188,7 +188,7 @@
       Możesz zapytać: **„Dlaczego oświetlona część Księżyca wygląda inaczej?”** Na razie wystarczy zauważyć różnicę.
       
       ~~~~
-- **Block 5 · text** (`moonRecap`, `1c4140b2-4f03-44cf-af46-13aab27eda4b`; [source](https://github.com/KiT-Maverik/svitlo/blob/f3de126e7bbeb476325491387d4298c3e6ad0f35/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sMoon/moonRecap/index.ts))
+- **Block 5 · text** (`moonRecap`, `1c4140b2-4f03-44cf-af46-13aab27eda4b`; [source](https://github.com/KiT-Maverik/svitlo/blob/da091d74c881479f4ead87bce478ce07af4b0c3e/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sMoon/moonRecap/index.ts))
   - **params:** (none)
   - **locale**
     - **value:** Powiedz albo pokaż: „Na pierwszym schemacie oświetlona jest mniej więcej połowa widocznej tarczy Księżyca, a na drugim — prawie cała tarcza”.
@@ -197,11 +197,11 @@
 
 - ID: `f9396c00-0956-4938-8551-f9d0638cd998`
 - Navigation: Nasze pytania
-- Canonical: [source](https://github.com/KiT-Maverik/svitlo/blob/f3de126e7bbeb476325491387d4298c3e6ad0f35/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sReflect/index.ts)
+- Canonical: [source](https://github.com/KiT-Maverik/svitlo/blob/da091d74c881479f4ead87bce478ce07af4b0c3e/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sReflect/index.ts)
 - **locale**
   - **title:** Dwie zmiany — dwa pytania
   - **navigationLabel:** Nasze pytania
-- **Block 1 · markdown** (`reflectIntro`, `c1505ae0-7006-4e33-bcf6-2c1fd354876f`; [source](https://github.com/KiT-Maverik/svitlo/blob/f3de126e7bbeb476325491387d4298c3e6ad0f35/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sReflect/reflectIntro/index.ts))
+- **Block 1 · markdown** (`reflectIntro`, `c1505ae0-7006-4e33-bcf6-2c1fd354876f`; [source](https://github.com/KiT-Maverik/svitlo/blob/da091d74c881479f4ead87bce478ce07af4b0c3e/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sReflect/reflectIntro/index.ts))
   - **params:** (none)
   - **locale**
     - **value:**
@@ -218,7 +218,7 @@
       Najpierw **zadaj lub wybierz pytanie o dzień i noc**, a potem **osobne pytanie o wygląd Księżyca**. W każdym temacie możesz wybrać gotowe pełne pytanie albo **ułożyć własne** — powiedzieć na głos lub, jeśli chcesz, zapisać. Jeśli trudno ci mówić lub pisać, wybierz pełne gotowe pytanie na karcie z obrazkiem i nagraniem. Gdy wybierasz własne pytanie, najpierw je zadaj, **a potem osobno potwierdź**, że zostało zadane. Sam wybór „chcę ułożyć własne” nie znaczy jeszcze, że pytanie padło. **Na razie nie musisz odpowiadać.** Pisanie nie jest obowiązkowe. Możesz też przejść dalej.
       
       ~~~~
-- **Block 2 · audio** (`reflectAudio`, `67fcca8b-ec8a-4fa1-ba18-a3b1df3e99f2`; [source](https://github.com/KiT-Maverik/svitlo/blob/f3de126e7bbeb476325491387d4298c3e6ad0f35/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sReflect/reflectAudio/index.ts))
+- **Block 2 · audio** (`reflectAudio`, `67fcca8b-ec8a-4fa1-ba18-a3b1df3e99f2`; [source](https://github.com/KiT-Maverik/svitlo/blob/da091d74c881479f4ead87bce478ce07af4b0c3e/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sReflect/reflectAudio/index.ts))
   - *Media is not embedded. Paths, accessible descriptions, captions and display/fallback metadata are shown below.*
   - **params:** (none)
   - **locale**
@@ -230,7 +230,7 @@
       - **unavailable:** Nagranie jest na razie niedostępne. Te same informacje znajdziesz w tekście lekcji.
       - **playbackError:** Nagranie nie zostało odtworzone. Możesz przeczytać tekst obok.
       - **retry:** Spróbuj ponownie
-- **Block 3 · scene** (`reflectScene`, `14cd71cf-f81d-44fd-ba4b-9346384ba037`; [source](https://github.com/KiT-Maverik/svitlo/blob/f3de126e7bbeb476325491387d4298c3e6ad0f35/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sReflect/reflectScene/index.ts))
+- **Block 3 · scene** (`reflectScene`, `14cd71cf-f81d-44fd-ba4b-9346384ba037`; [source](https://github.com/KiT-Maverik/svitlo/blob/da091d74c881479f4ead87bce478ce07af4b0c3e/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sReflect/reflectScene/index.ts))
   - **params:** (none)
   - **locale**
     - **value**
@@ -255,7 +255,7 @@
       - **dayQuestionFeedback:** Wybrano pytanie o dzień i noc. Teraz pomyśl o Księżycu.
       - **moonQuestionFeedback:** Wybrano pytanie o Księżyc. Możesz porównać oba pytania.
       - **ownQuestionRouteFeedback:** Wybrano sposób ułożenia własnego pytania. Nie zostało ono jeszcze oznaczone jako zadane.
-      - **ownQuestionFeedback:** Potwierdzono, że zadałeś lub zadałaś własne pytanie na ten temat. Treść pytania nie jest zapisywana.
+      - **ownQuestionFeedback:** Zapisano Twoje potwierdzenie, że pytanie na ten temat zostało zadane. Treść pytania nie jest zapisywana.
       - **bothQuestionsFeedback:** Osobno oznaczono pytania o oba tematy: dzień i noc oraz Księżyc.
       - **topicFeedback:** Możesz przyjrzeć się temu tematowi. Wybierz gotowe pytanie albo zaproponuj własne.
       - **continueToMoon:** Przejdź do pytania o Księżyc
@@ -270,7 +270,7 @@
         - **speak:** Posłuchaj podpisu, odpowiedzi lub informacji zwrotnej
         - **repeat:** Odtwórz dźwięk ponownie
         - **pause:** Wstrzymaj odtwarzanie
-- **Block 4 · markdown** (`reflectClose`, `de3f8a21-132e-4f9d-a287-b124daf381a5`; [source](https://github.com/KiT-Maverik/svitlo/blob/f3de126e7bbeb476325491387d4298c3e6ad0f35/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sReflect/reflectClose/index.ts))
+- **Block 4 · markdown** (`reflectClose`, `de3f8a21-132e-4f9d-a287-b124daf381a5`; [source](https://github.com/KiT-Maverik/svitlo/blob/da091d74c881479f4ead87bce478ce07af4b0c3e/content/astronomy/data/lessons/5/4e4b5a9b-7013-5320-8fc3-7f34a70c8915/sections/sReflect/reflectClose/index.ts))
   - **params:** (none)
   - **locale**
     - **value:**

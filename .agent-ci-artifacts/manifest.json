@@ -1,7 +1,7 @@
 {
   "schemaVersion": 3,
   "kind": "pr-scoped-agent-ci-artifacts",
-  "sourceCommit": "f3de126e7bbeb476325491387d4298c3e6ad0f35",
+  "sourceCommit": "da091d74c881479f4ead87bce478ce07af4b0c3e",
   "scope": {
     "kind": "lessons",
     "package": "content/astronomy",
