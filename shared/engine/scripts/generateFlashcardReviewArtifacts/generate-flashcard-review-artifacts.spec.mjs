@@ -37,10 +37,16 @@ function fixture({ missing = false, dynamic = false } = {}) {
   fs.writeFileSync(path.join(directory, 'index.ts'), source);
   const manifest = { sourceCommit: sha, generated: [], failures: [] };
   const output = path.join(root, '.agent-ci-artifacts');
-  const run = () => generateFlashcardReviewArtifacts({
-    root, output, manifest, saveManifest: () => {},
-    packageName: 'content/playground', lessonId: id, languages: ['uk'],
-  });
+  const run = () =>
+    generateFlashcardReviewArtifacts({
+      root,
+      output,
+      manifest,
+      saveManifest: () => {},
+      packageName: 'content/playground',
+      lessonId: id,
+      languages: ['uk'],
+    });
   return { root, directory, manifest, output, run };
 }
 test('one bounded Flashcard bank reference includes both sides, flags and pinned source links', () => {
@@ -73,7 +79,10 @@ test('missing translated text marks only the requested bank locale as not review
     assert.equal(state.manifest.generated.length, 1);
     assert.equal(state.manifest.generated[0].missing, 1);
     assert.equal(state.manifest.generated[0].reviewReady, false);
-    const md = fs.readFileSync(path.join(state.output, state.manifest.generated[0].path.slice('.agent-ci-artifacts/'.length)), 'utf8');
+    const md = fs.readFileSync(
+      path.join(state.output, state.manifest.generated[0].path.slice('.agent-ci-artifacts/'.length)),
+      'utf8',
+    );
     assert.match(md, /%%MISSING%%/);
   } finally {
     fs.rmSync(state.root, { recursive: true, force: true });
@@ -96,7 +105,8 @@ test('invariant Flashcard flag and learner text remain visible for linguistic re
     const source = path.join(state.directory, 'index.ts');
     fs.writeFileSync(
       source,
-      fs.readFileSync(source, 'utf8')
+      fs
+        .readFileSync(source, 'utf8')
         .replace('"value":{"en":"ABC","uk":"АБВ"}', '"value":"ABC"')
         .replace('value: {en: "Greeting", uk: "Вітання"}', 'value: "Greeting"'),
     );
@@ -104,7 +114,8 @@ test('invariant Flashcard flag and learner text remain visible for linguistic re
     assert.equal(state.manifest.failures.length, 0);
     assert.equal(state.manifest.generated[0].strings, 3);
     const markdown = fs.readFileSync(
-      path.join(state.output, state.manifest.generated[0].path.slice('.agent-ci-artifacts/'.length)), 'utf8',
+      path.join(state.output, state.manifest.generated[0].path.slice('.agent-ci-artifacts/'.length)),
+      'utf8',
     );
     assert.match(markdown, /Invariant authored copy.*ABC/);
     assert.match(markdown, /Invariant authored copy.*Greeting/);

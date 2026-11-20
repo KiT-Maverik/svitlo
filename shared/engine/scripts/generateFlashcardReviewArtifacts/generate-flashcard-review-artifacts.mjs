@@ -13,8 +13,15 @@ const BOOK = /^[a-z][a-z0-9-]*$/;
 const SLUG = /^[a-z][A-Za-z0-9]*$/;
 const MAX_FILE = 2 * 1024 * 1024;
 const supportedFactories = new Set([
-  'defineFlashcard', 'defineFlashcardSide', 'defineText', 'defineMarkdown', 'defineCode',
-  'defineImage', 'defineAudio', 'defineVideo', 'defineSubtitles',
+  'defineFlashcard',
+  'defineFlashcardSide',
+  'defineText',
+  'defineMarkdown',
+  'defineCode',
+  'defineImage',
+  'defineAudio',
+  'defineVideo',
+  'defineSubtitles',
 ]);
 
 function record(value) {
@@ -78,8 +85,12 @@ function staticValue(node, definitions, location, active = new Set()) {
     }
     return output;
   }
-  if (ts.isCallExpression(node) && ts.isIdentifier(node.expression) && node.arguments.length === 1 &&
-      supportedFactories.has(node.expression.text)) {
+  if (
+    ts.isCallExpression(node) &&
+    ts.isIdentifier(node.expression) &&
+    node.arguments.length === 1 &&
+    supportedFactories.has(node.expression.text)
+  ) {
     return staticValue(node.arguments[0], definitions, location, active);
   }
   throw new Error('Non-static Flashcard expression: ' + location + ' (' + ts.SyntaxKind[node.kind] + ')');
@@ -94,33 +105,42 @@ function loadBank(filename, root, lessonId) {
   const definitions = new Map();
   for (const statement of ast.statements) {
     if (ts.isImportDeclaration(statement)) {
-      if (!ts.isStringLiteral(statement.moduleSpecifier) ||
-          statement.moduleSpecifier.text !== '@svitlo/engine/build') {
+      if (!ts.isStringLiteral(statement.moduleSpecifier) || statement.moduleSpecifier.text !== '@svitlo/engine/build') {
         throw new Error('Noncanonical import in Flashcard bank: ' + filename);
       }
     }
     if (!ts.isVariableStatement(statement)) continue;
     for (const declaration of statement.declarationList.declarations) {
-      if (!ts.isIdentifier(declaration.name) || !declaration.initializer ||
-          definitions.has(declaration.name.text)) throw new Error('Invalid Flashcard declaration');
+      if (!ts.isIdentifier(declaration.name) || !declaration.initializer || definitions.has(declaration.name.text))
+        throw new Error('Invalid Flashcard declaration');
       definitions.set(declaration.name.text, declaration.initializer);
     }
   }
   if (!definitions.has('flashcards')) throw new Error('Missing canonical flashcards export');
   const registry = staticValue(definitions.get('flashcards'), definitions, 'flashcards');
-  if (!record(registry) || !record(registry.items) || !Object.keys(registry.items).length ||
-      Object.keys(registry).some(key => key !== 'items')) throw new Error('Invalid Flashcard bank registry');
+  if (
+    !record(registry) ||
+    !record(registry.items) ||
+    !Object.keys(registry.items).length ||
+    Object.keys(registry).some(key => key !== 'items')
+  )
+    throw new Error('Invalid Flashcard bank registry');
   const cards = Object.entries(registry.items).map(([name, card]) => {
     if (!SLUG.test(name) || !record(card) || card.slug !== name || !UUID.test(card.id ?? ''))
       throw new Error('Flashcard slug or UUID mismatch at ' + name);
-    if (!record(card.content) || !record(card.parameters) || !record(card.content.front) ||
-        !record(card.content.back)) throw new Error('Flashcard missing front/back/parameters: ' + name);
+    if (!record(card.content) || !record(card.parameters) || !record(card.content.front) || !record(card.content.back))
+      throw new Error('Flashcard missing front/back/parameters: ' + name);
     for (const side of ['front', 'back', 'hint']) {
       const group = card.content[side];
       if (!group) continue;
-      if (!record(group.items) || !Array.isArray(group.order) || (side !== 'hint' && !group.order.length) ||
-          new Set(group.order).size !== group.order.length || group.order.length !== Object.keys(group.items).length ||
-          group.order.some(slug => !Object.hasOwn(group.items, slug))) {
+      if (
+        !record(group.items) ||
+        !Array.isArray(group.order) ||
+        (side !== 'hint' && !group.order.length) ||
+        new Set(group.order).size !== group.order.length ||
+        group.order.length !== Object.keys(group.items).length ||
+        group.order.some(slug => !Object.hasOwn(group.items, slug))
+      ) {
         throw new Error('Invalid ordered Flashcard ' + name + '/' + side);
       }
       for (const slug of group.order) {
@@ -136,21 +156,31 @@ function loadBank(filename, root, lessonId) {
   return { cards, sourceLanguage: meta[2] };
 }
 function safeText(value) {
-  return String(value).replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;')
-    .replaceAll('|', '\\|').replaceAll('\r', '').replaceAll('\n', ' ⏎ ');
+  return String(value)
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('|', '\\|')
+    .replaceAll('\r', '')
+    .replaceAll('\n', ' ⏎ ');
 }
 function localizedValues(value, place, sourceLanguage, locale, lines, result) {
   if (!record(value)) {
     if (Array.isArray(value)) {
-      value.forEach((child, i) =>
-        localizedValues(child, place + '[' + i + ']', sourceLanguage, locale, lines, result));
-    } else if (typeof value === 'string' &&
+      value.forEach((child, i) => localizedValues(child, place + '[' + i + ']', sourceLanguage, locale, lines, result));
+    } else if (
+      typeof value === 'string' &&
       (/\/locale\/(?:value|alt|title|navigationLabel|instruction|description)$/.test(place) ||
-       /\/parameters\/flags\[\d+\]\/value$/.test(place))) {
+        /\/parameters\/flags\[\d+\]\/value$/.test(place))
+    ) {
       // Engine permits invariant learner-facing copy. Surface it to independent
       // reviewers instead of silently omitting it from "complete bank" coverage.
-      lines.push('#### ' + safeText(place), '',
-        '- Invariant authored copy (verify intent across requested locales): ' + safeText(value), '');
+      lines.push(
+        '#### ' + safeText(place),
+        '',
+        '- Invariant authored copy (verify intent across requested locales): ' + safeText(value),
+        '',
+      );
       result.strings++;
     }
     return;
@@ -162,9 +192,13 @@ function localizedValues(value, place, sourceLanguage, locale, lines, result) {
       throw new Error('Missing source-language Flashcard text at ' + place + '/' + sourceLanguage);
     const translated = value[locale];
     const valid = typeof translated === 'string' && Boolean(translated.trim());
-    lines.push('#### ' + safeText(place), '',
+    lines.push(
+      '#### ' + safeText(place),
+      '',
       '- ' + sourceLanguage + ': ' + safeText(source),
-      '- ' + locale + ': ' + (valid ? safeText(translated) : '%%MISSING%%'), '');
+      '- ' + locale + ': ' + (valid ? safeText(translated) : '%%MISSING%%'),
+      '',
+    );
     result.strings++;
     if (!valid) result.missing++;
     return;
@@ -196,11 +230,22 @@ function discover(root, book, requested) {
   return output;
 }
 export function generateFlashcardReviewArtifacts({
-  root, output, manifest, saveManifest, packageName, lessonId = null, languages,
+  root,
+  output,
+  manifest,
+  saveManifest,
+  packageName,
+  lessonId = null,
+  languages,
 }) {
-  if (typeof packageName !== 'string' || !/^content\/[a-z][a-z0-9-]*$/.test(packageName) ||
-      !Array.isArray(languages) || !languages.length ||
-      languages.some(code => !LANGUAGE.test(code))) throw new Error('Invalid scoped Flashcard request');
+  if (
+    typeof packageName !== 'string' ||
+    !/^content\/[a-z][a-z0-9-]*$/.test(packageName) ||
+    !Array.isArray(languages) ||
+    !languages.length ||
+    languages.some(code => !LANGUAGE.test(code))
+  )
+    throw new Error('Invalid scoped Flashcard request');
   const book = packageName.slice('content/'.length);
   for (const { bucket, id, file } of discover(root, book, lessonId)) {
     for (const locale of languages) {
@@ -212,11 +257,13 @@ export function generateFlashcardReviewArtifacts({
         const lines = [
           '<!-- GENERATED FROM CODE; DO NOT EDIT. -->',
           '# Flashcard Bank translation reference — ' + book + ' / ' + id + ' / ' + locale,
-          '', 'Lesson UUID: ' + id,
+          '',
+          'Lesson UUID: ' + id,
           'Source language: ' + sourceLanguage,
           'Source SHA: ' + manifest.sourceCommit,
           'All Flashcards: ' + cards.length,
-          'Canonical Code: [' + rel + '](' + link + ')', '',
+          'Canonical Code: [' + rel + '](' + link + ')',
+          '',
         ];
         for (const card of cards) {
           lines.push('## ' + safeText(card.slug) + ' (' + card.id + ')', '');
@@ -232,8 +279,7 @@ export function generateFlashcardReviewArtifacts({
           }
           localizedValues(card.parameters.flags ?? [], 'parameters/flags', sourceLanguage, locale, lines, result);
         }
-        lines.splice(8, 0, 'Localized fields: ' + result.strings,
-          'Missing locale fields: ' + result.missing, '');
+        lines.splice(8, 0, 'Localized fields: ' + result.strings, 'Missing locale fields: ' + result.missing, '');
         if (!result.strings) throw new Error('Flashcard bank has no statically reviewable localized text');
         const relative = path.posix.join('flashcards', book, bucket, id, locale + '.md');
         const target = path.join(output, relative);
@@ -242,14 +288,23 @@ export function generateFlashcardReviewArtifacts({
         if (Buffer.byteLength(markdown, 'utf8') > MAX_FILE) throw new Error('Oversized Flashcard review reference');
         fs.writeFileSync(target, markdown, 'utf8');
         manifest.generated.push({
-          kind: 'flashcard', textbook: packageName, lesson: bucket + '/' + id, locale,
-          path: '.agent-ci-artifacts/' + relative, flashcards: cards.length,
-          strings: result.strings, missing: result.missing, reviewReady: result.missing === 0,
+          kind: 'flashcard',
+          textbook: packageName,
+          lesson: bucket + '/' + id,
+          locale,
+          path: '.agent-ci-artifacts/' + relative,
+          flashcards: cards.length,
+          strings: result.strings,
+          missing: result.missing,
+          reviewReady: result.missing === 0,
         });
         saveManifest();
       } catch (error) {
         manifest.failures.push({
-          kind: 'flashcard', textbook: packageName, lesson: bucket + '/' + id, locale,
+          kind: 'flashcard',
+          textbook: packageName,
+          lesson: bucket + '/' + id,
+          locale,
           error: String(error?.message ?? error).slice(0, 1500),
         });
         saveManifest();

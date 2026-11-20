@@ -54,7 +54,10 @@ export function parseArguments(args) {
   if (options.component && (options.kind !== 'ui-kit' || !/^[a-zA-Z][a-zA-Z0-9]*$/.test(options.component))) {
     throw new Error('--component is only available for UI Kit dictionaries');
   }
-  if (options.lesson && (!['lessons', 'questions', 'flashcards'].includes(options.kind) || !uuidPattern.test(options.lesson))) {
+  if (
+    options.lesson &&
+    (!['lessons', 'questions', 'flashcards'].includes(options.kind) || !uuidPattern.test(options.lesson))
+  ) {
     throw new Error('--lesson requires Lessons/Questions/Flashcards and a canonical UUID');
   }
   if (options.course && (options.kind !== 'courses' || !uuidPattern.test(options.course))) {
