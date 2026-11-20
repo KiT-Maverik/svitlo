@@ -210,3 +210,23 @@ test('workflow uses isolated default-branch code and narrow publish permissions'
   assert.match(workflow, /persist-credentials: false/);
   assert.match(workflow, /Git API/i); // Explicit Git Data publication step.
 });
+
+test('Questions and Flashcards publishers do not load Engine builders or install npm packages', () => {
+  const script = fs.readFileSync(new URL('./bank-materialization.mjs', import.meta.url), 'utf8');
+  const analyzeAt = script.indexOf('async function analyze(info)');
+  const publishAt = script.indexOf('async function publish(info)');
+  assert.ok(analyzeAt > 0 && publishAt > analyzeAt, 'expected separate analyze and publish operations');
+
+  const moduleImports = script.slice(0, script.indexOf('const MAX_COUNT'));
+  assert.doesNotMatch(moduleImports, /shared\/engine\//, 'bank CLI must not eagerly load Engine builders');
+  const analyzeBody = script.slice(analyzeAt, publishAt);
+  assert.match(analyzeBody, /await import\([^\n]*questionsBuilder\/questionsBuilder\.mjs/);
+  assert.match(analyzeBody, /await import\([^\n]*flashcardBuilder\/flashcardBuilder\.mjs/);
+  assert.doesNotMatch(script.slice(publishAt), /shared\/engine\//, 'publisher must not load either builder');
+
+  const workflow = fs.readFileSync(new URL('../../../.github/workflows/bank-materialization.yml', import.meta.url), 'utf8');
+  const publishJob = workflow.split('\n  publish:\n')[1];
+  assert.ok(publishJob, 'separate publish job must exist');
+  assert.doesNotMatch(publishJob, /npm ci|npm run package:build/, 'bank publisher must run without npm dependencies');
+  assert.match(publishJob, /contents: write/);
+});
