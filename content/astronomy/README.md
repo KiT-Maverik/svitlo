@@ -35,10 +35,13 @@ After `npm ci`, from the repository root:
 npm run content:generate:scenes --workspace @svitlo/astronomy
 npm run content:check:scenes --workspace @svitlo/astronomy
 npm run test:components --workspace @svitlo/astronomy
+npm run code:check:scenes --workspace @svitlo/astronomy
 npm run code:check:types --workspace @svitlo/astronomy
 npm run code:lint:check --workspace @svitlo/astronomy
 SVITLO_MEDIA_MODE=draft npm run package:build --workspace @svitlo/astronomy
 ```
+
+The `code:check:scenes` command is an actual strict scoped TypeScript project for the Scene TSX/modules and their imported runtime contracts, without weakening compiler options. It separates Scene correctness from unrelated missing Course sibling Lesson imports; success does **not** certify all authored Course/Lesson sources.
 
 **Do not present a draft-mode package build as production validation.** Production
 media verification correctly rejects missing Lesson Audio assets, incomplete
