@@ -199,11 +199,7 @@ export function runOne(source, mode = '--check', root = repoRoot) {
 }
 
 export function main(argv = process.argv.slice(2), root = repoRoot) {
-  if (
-    argv.length !== 3 ||
-    !['--write', '--check', '--preflight'].includes(argv[0]) ||
-    argv[1] !== '--source'
-  )
+  if (argv.length !== 3 || !['--write', '--check', '--preflight'].includes(argv[0]) || argv[1] !== '--source')
     throw new Error(
       'Usage: questionsBuilder.mjs --write|--check|--preflight --source content/<book>/data/lessons/<bucket>/<uuid>/questions.yaml',
     );
