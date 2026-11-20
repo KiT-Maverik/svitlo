@@ -83,7 +83,7 @@ A Scene may still have pending illustrations, meshes, media, captions, interacti
 
 ## Execution, PR and acceptance
 
-1. **Require** the verified Lesson Draft PR (Course parent PR when applicable), exact UUID, verified Stage 6.1 materialization and 6.2 typed resource handoff, current independent editorial approvals and generated Scene Configs/specifications. Reconcile historical Issues, but do **not** create a mandatory new Issue. Missing Config/specification blocks 6.3 and returns to the owning Stage 6.1/6.2 repair; do not independently fabricate Lesson source.
+1. **Require** the verified Lesson Draft PR (Course parent PR when applicable), exact UUID, verified Stage 6.1 materialization and 6.2 typed resource handoff, current Stage 3–5 editorial review evidence and generated Scene Configs/specifications. Reconcile historical Issues, but do **not** create a mandatory new Issue. Missing Config/specification blocks 6.3 and returns to the owning Stage 6.1/6.2 repair; do not independently fabricate Lesson source.
 2. Inspect exact current Scene contracts, renderer, lazy registry, textbook directories and locale conventions. Identify the type/shape of all source text, pending resources and unanswered questions before coding.
 3. Implement all **unblocked** assigned Scenes in owned code paths, with typed source-locale content only, source-visible TODOs for unresolved dependencies, meaningful accessibility/RTL behavior and co-located tests.
 4. Generate/verify registration, run focused checks, categorize expected missing-locale errors distinctly from actual engineering defects, and audit/remove resolved TODOs.
