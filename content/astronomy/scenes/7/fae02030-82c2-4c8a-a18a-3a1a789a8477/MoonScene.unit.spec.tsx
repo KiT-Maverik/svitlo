@@ -3,7 +3,7 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
 import { MoonScene } from './MoonScene';
 import { initialMoonState, moonReducer } from './moonModel';
-import { fixture } from '../../testing/sceneFixtures';
+import { fixture } from '../../sceneFixtures';
 
 describe('MoonScene: two dated phases and an independent cloud example', () => {
   it('renders equal disk sizes, dated labels, accessible descriptions and cloud controls', () => {

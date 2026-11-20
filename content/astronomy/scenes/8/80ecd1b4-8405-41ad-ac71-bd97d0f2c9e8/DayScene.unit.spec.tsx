@@ -3,7 +3,7 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
 import { DayScene } from './DayScene';
 import { dayReducer, initialDayState } from './dayModel';
-import { fixture } from '../../testing/sceneFixtures';
+import { fixture } from '../../sceneFixtures';
 
 describe('DayScene: observation without invented photographic proof', () => {
   it('renders two diagram states with the same landscape and described skies', () => {

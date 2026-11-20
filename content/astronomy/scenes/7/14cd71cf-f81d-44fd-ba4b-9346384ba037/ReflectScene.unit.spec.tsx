@@ -3,7 +3,7 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
 import { ReflectScene } from './ReflectScene';
 import { initialReflectionState, reflectionReducer } from './reflectModel';
-import { fixture } from '../../testing/sceneFixtures';
+import { fixture } from '../../sceneFixtures';
 
 describe('ReflectScene: voluntary independent question acknowledgement', () => {
   it('shows the whole ready-made day question and independent alternatives', () => {
