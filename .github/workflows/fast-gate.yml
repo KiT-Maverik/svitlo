@@ -57,6 +57,7 @@ jobs:
           scripts/ci/productionQuality/production-quality.spec.mjs
           scripts/ci/releaseSource/check-release-source.spec.mjs
           scripts/runWorkspaceScript/run-workspace-script.spec.mjs
+          apps/web/scripts/prepareTextbook/prepare-textbook.spec.mjs
       - name: Explain lightweight Draft validation
         if: github.event_name == 'pull_request' && github.event.pull_request.draft
         run: echo 'Draft PR - expensive package builds and typechecks are deferred until Ready for review or manual workflow_dispatch.'
