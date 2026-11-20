@@ -6,7 +6,7 @@
   "scripts": {
     "package:build": "tsc -p tsconfig.build.json",
     "code:check:types": "tsc -p tsconfig.json --noEmit",
-    "test": "npm run package:build && node --test tests/*.spec.mjs",
+    "test": "node ../../../scripts/ci/packageBuildReuse/package-build-reuse.mjs @svitlo/adapter-electron && node --test tests/*.spec.mjs",
     "code:format:check": "prettier --check . --ignore-path ../../../.prettierignore",
     "code:format:fix": "prettier --write . --ignore-path ../../../.prettierignore"
   },

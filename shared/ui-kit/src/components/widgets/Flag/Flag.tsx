@@ -43,7 +43,7 @@ export const flagCountryByLocale = {
   'et-EE': 'ee',
   'be-tarask': 'by',
   'ka-GE': 'ge',
-  'kk-Cyrl-KZ': 'kz',
+  'kk-Latn-KZ': 'kz',
   'crh-Latn-UA': 'qm',
 } as const satisfies Record<FlagLocale, string>;
 

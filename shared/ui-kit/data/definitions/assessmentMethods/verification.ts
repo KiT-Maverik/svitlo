@@ -1,6 +1,6 @@
-import { defineAssessmentMethod } from '@svitlo/engine/build';
+import { defineAssessmentMethod, type AllLanguageCodes } from '@svitlo/engine/build';
 
-export const verification = defineAssessmentMethod({
+export const verification = defineAssessmentMethod<'verification', AllLanguageCodes>({
   id: '92a26fdc-e206-4b3d-bf63-093c59217ac1',
   slug: 'verification',
   title: {
@@ -18,7 +18,7 @@ export const verification = defineAssessmentMethod({
     id: 'Verifikasi',
     ja: '検証',
     ka: 'შემოწმება',
-    kk: 'Тексеру',
+    kk: 'Tekseru',
     ko: '검증',
     lt: 'Tikrinimas',
     lv: 'Pārbaude',
@@ -50,7 +50,7 @@ export const verification = defineAssessmentMethod({
     id: 'Memeriksa secara mandiri apakah hasil, solusi, atau pernyataan benar. Penilaian mengukur proses berpikir ini, bukan bentuk jawabannya.',
     ja: '結果、解法、主張の正しさを独立して確かめます。 評価するのは回答形式ではなく、この認知的な働きです。',
     ka: 'შემოთავაზებული შედეგის, ამოხსნის ან დებულების სისწორის დამოუკიდებლად შემოწმება. ფასდება ეს სააზროვნო მოქმედება და არა პასუხის ფორმატი.',
-    kk: 'Ұсынылған нәтиженің, шешімнің немесе тұжырымның дұрыстығын тәуелсіз тексеру. Жауаптың пішімі емес, осы ойлау әрекеті бағаланады.',
+    kk: 'Ūsynylğan nätijenıñ, şeşımnıñ nemese tūjyrymnyñ dūrystyğyn täuelsız tekseru. Jauaptyñ pışımı emes, osy oilau äreketı bağalanady.',
     ko: '결과, 해결책 또는 진술이 올바른지 독립적으로 확인합니다. 평가는 답변 형식이 아니라 이러한 인지 활동을 측정합니다.',
     lt: 'Nepriklausomai patikrinti, ar siūlomas rezultatas, sprendimas arba teiginys yra teisingas. Vertinamas šis mąstymo veiksmas, o ne atsakymo pateikimo forma.',
     lv: 'Neatkarīgi pārbaudīt, vai piedāvātais rezultāts, risinājums vai apgalvojums ir pareizs. Tiek vērtēta šī domāšanas darbība, nevis atbildes forma.',

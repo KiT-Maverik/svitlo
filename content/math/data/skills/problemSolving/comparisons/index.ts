@@ -23,7 +23,7 @@ export const comparisons = defineSkillGroup({
     it: 'Problemi di confronto',
     ja: '比較の文章題',
     ka: 'შედარების ამოცანები',
-    kk: 'Салыстыру есептері',
+    kk: 'Salystyru esepterı',
     ko: '비교 문제',
     lt: 'Palyginimo uždaviniai',
     lv: 'Salīdzināšanas uzdevumi',

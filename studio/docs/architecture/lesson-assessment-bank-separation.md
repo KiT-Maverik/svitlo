@@ -89,7 +89,7 @@ review.ts                     # unchanged review record; not part of Props
 
 ## Engine Config, Props and Section API changes
 
-**Lesson:** remove `flashcards` and `questions` from `lesson_Config_Schema`, `lesson_Props_Schema`, `Lesson_Props`, `Lesson_PropsBase`, Config generic parameters, `defineLesson` implementation, `validate`, `build.props`, `build.overrides`, metadata and public bank types that are Lesson-specific. Retain reusable Question and Flashcard Configurators, their own schemas/Build APIs and independent published Props. Maintain the Lesson Section collection and `params.requireQuiz` constraint on enabled Quiz Sections, but validate bank references **externally** at build/publish time rather than requiring banks as Lesson children.
+**Lesson:** remove `flashcards` and `questions` from `lesson_Config_Schema`, `lesson_Props_Schema`, `Lesson_Props`, `Lesson_PropsBase`, Config generic parameters, `defineLesson` implementation, `validate`, `build.props`, `build.overrides`, metadata and public bank types that are Lesson-specific. Retain reusable Question and Flashcard Configurators, their own schemas/Build APIs and independent published Props. Maintain the Lesson Section collection and `params.quizRequiredForCompletion` constraint on enabled Quiz Sections, but validate bank references **externally** at build/publish time rather than requiring banks as Lesson children.
 
 **Quiz Section:** replace slug-based selection with a UUID-based explicit candidate list. Proposed authoring shape (final field spelling to be finalized consistently throughout schemas/tests):
 

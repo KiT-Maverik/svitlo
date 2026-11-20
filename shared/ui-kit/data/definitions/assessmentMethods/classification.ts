@@ -1,6 +1,6 @@
-import { defineAssessmentMethod } from '@svitlo/engine/build';
+import { defineAssessmentMethod, type AllLanguageCodes } from '@svitlo/engine/build';
 
-export const classification = defineAssessmentMethod({
+export const classification = defineAssessmentMethod<'classification', AllLanguageCodes>({
   id: '522d5989-39ec-4d58-b321-78ce293cda39',
   slug: 'classification',
   title: {
@@ -18,7 +18,7 @@ export const classification = defineAssessmentMethod({
     id: 'Klasifikasi',
     ja: '分類',
     ka: 'კლასიფიკაცია',
-    kk: 'Жіктеу',
+    kk: 'Jıkteu',
     ko: '분류',
     lt: 'Klasifikavimas',
     lv: 'Klasifikācija',
@@ -50,7 +50,7 @@ export const classification = defineAssessmentMethod({
     id: 'Mengenali ciri utama dan mengelompokkan objek atau konsep ke dalam kategori. Penilaian mengukur proses berpikir ini, bukan bentuk jawabannya.',
     ja: '決定的な特徴を見分け、物事や概念を適切な分類に当てはめます。 評価するのは回答形式ではなく、この認知的な働きです。',
     ka: 'განმსაზღვრელი ნიშნების ამოცნობა და ობიექტების ან ცნებების შესაბამის კატეგორიებად დაჯგუფება. ფასდება ეს სააზროვნო მოქმედება და არა პასუხის ფორმატი.',
-    kk: 'Негізгі белгілерді анықтап, нысандарды немесе ұғымдарды тиісті санаттарға бөлу. Жауаптың пішімі емес, осы ойлау әрекеті бағаланады.',
+    kk: 'Negızgı belgılerdı anyqtap, nysandardy nemese ūğymdardy tiıstı sanattarğa bölu. Jauaptyñ pışımı emes, osy oilau äreketı bağalanady.',
     ko: '핵심 특징을 파악하여 대상이나 개념을 적절한 범주에 배치합니다. 평가는 답변 형식이 아니라 이러한 인지 활동을 측정합니다.',
     lt: 'Atpažinti esminius požymius ir priskirti objektus ar sąvokas tinkamoms kategorijoms. Vertinamas šis mąstymo veiksmas, o ne atsakymo pateikimo forma.',
     lv: 'Atpazīt raksturīgās pazīmes un iedalīt objektus vai jēdzienus atbilstošās kategorijās. Tiek vērtēta šī domāšanas darbība, nevis atbildes forma.',

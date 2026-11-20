@@ -132,7 +132,7 @@ const validate = (config: Lesson_Config): void => {
     }
   }
   if (
-    config.params.requireQuiz &&
+    config.params.quizRequiredForCompletion &&
     !hasEnabledQuiz(
       config.section.order.map(
         key => config.section.items[key].build.props({ languages: config.params.languages }).base,
@@ -151,7 +151,7 @@ const validate = (config: Lesson_Config): void => {
  * build Props, or Course overrides. A publisher resolves these references
  * against each independent Lesson-owned bank before complete publication.
  *
- * `params.requireQuiz` requires at least one enabled Quiz Section; navigation
+ * `params.quizRequiredForCompletion` requires at least one enabled Quiz Section; navigation
  * and skipping are governed by Lesson and Section policies.
  */
 export function defineLesson<
@@ -384,7 +384,7 @@ export function defineLesson<
       });
       // Child overrides can disable a Quiz without removing its configurator from the map.
       if (
-        own.params.requireQuiz &&
+        own.params.quizRequiredForCompletion &&
         !hasEnabledQuiz(
           sections.changed
             ? (output.base.section ?? [])

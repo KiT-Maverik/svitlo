@@ -719,9 +719,29 @@ export function renderLessonModules(lesson, language, options = {}) {
     const content = fields.length ? '{\n' + fields.join(',\n') + '\n}' : '{}';
     const name = symbolFor(node, context);
     const importHead = moduleImports(directory, imports, factory, true, false);
+    // Every authored assessment Section starts blocked until its independent bank is verified.
+    // UUID-shaped strings alone are not evidence of approval; do not auto-remove the blocker.
+    const assessmentBlocker =
+      context === 'section' && node.type === 'quiz'
+        ? '// TODO (BLOCKER): This Quiz Section is required by the Methodologist.\n' +
+          '// Integrate reviewed Question UUIDs and complete Quiz parameters before merge.\n'
+        : context === 'section' && node.type === 'flashcards'
+          ? '// TODO (BLOCKER): This Flashcards Section is required by the Methodologist.\n' +
+            '// Integrate reviewed Flashcard UUIDs and verify their selection before merge.\n'
+          : '';
+    // Nil UUID filenames identify unfinished assets. Keep per-field TODO(asset)
+    // hints and emit one CI-visible blocker for each media Configurator.
+    const mediaBlocker = localMediaTypes.has(node.type)
+      ? '// TODO (BLOCKER): ' +
+        node.type +
+        ' media resource(s) unresolved.\n' +
+        '// Produce or reuse verified asset files and replace Nil UUID filename(s) before merge.\n'
+      : '';
     const result =
       importHead +
       (extra.length ? extra.join('') + '\n' : '') +
+      assessmentBlocker +
+      mediaBlocker +
       'export const ' +
       name +
       ' = ' +
@@ -793,7 +813,16 @@ export function renderLessonModules(lesson, language, options = {}) {
       continue;
     }
     if (key === 'section') {
-      rootFields.push('  ' + key);
+      const blockers = options.pendingAssessments ?? [];
+      const comments = blockers.map(
+        ({ type, slug }) =>
+          '  // TODO (BLOCKER): ' +
+          (type === 'quiz' ? 'Quiz' : 'Flashcards') +
+          ' Section ' +
+          (slug ? JSON.stringify(slug) + ' is unfinished' : 'is required') +
+          '; integrate its reviewed bank and completed Section before Lesson publication.',
+      );
+      rootFields.push((comments.length ? comments.join('\n') + '\n' : '') + '  section');
       continue;
     }
     if (key === 'params' && record(value) && hasLanguages) {

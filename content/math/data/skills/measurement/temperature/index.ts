@@ -20,7 +20,7 @@ export const temperature = defineSkillGroup({
     it: 'Temperatura',
     ja: '温度',
     ka: 'ტემპერატურა',
-    kk: 'Температура',
+    kk: 'Temperatura',
     ko: '온도',
     lt: 'Temperatūra',
     lv: 'Temperatūra',

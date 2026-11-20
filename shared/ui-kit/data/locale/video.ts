@@ -199,10 +199,10 @@ const ka: Video_Locale = {
 };
 
 const kk: Video_Locale = {
-  offline: 'Бұл бейне интернетсіз қолжетімсіз.',
-  unavailable: 'Бұл бейне қолжетімсіз.',
-  playbackError: 'Бейнені ойнату мүмкін болмады.',
-  retry: 'Қайта көру',
+  offline: 'Būl beine internetsız qoljetımsız.',
+  unavailable: 'Būl beine qoljetımsız.',
+  playbackError: 'Beinenı oinatu mümkın bolmady.',
+  retry: 'Qaitalap köru',
 };
 
 const qm: Video_Locale = {
