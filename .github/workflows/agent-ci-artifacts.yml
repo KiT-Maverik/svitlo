@@ -28,13 +28,14 @@ on:
           - skills
           - lessons
           - questions
+          - flashcards
           - courses
           - assessment-methods
           - ui-kit
           - geography-home-copy
           - education-standards
       textbook:
-        description: 'For Skills/Lessons/Questions/Courses: content/<book>'
+        description: 'For Skills/Lessons/Questions/Flashcards/Courses: content/<book>'
         required: false
         type: string
       locale:
@@ -46,7 +47,7 @@ on:
         required: false
         type: string
       lesson:
-        description: 'Optional Lesson UUID (requires kind=lessons or questions)'
+        description: 'Optional Lesson UUID (requires kind=lessons, questions or flashcards)'
         required: false
         type: string
       course:
@@ -118,12 +119,25 @@ jobs:
               if (parts.length !== 2) throw Error('Cleanup accepts no scope');
             } else {
               kind = parts[2] || '';
-              if (kind === 'skills' || kind === 'lessons' || kind === 'questions') {
+              if (kind === 'skills' || kind === 'lessons') {
                 if (![4, 5].includes(parts.length)) {
                   throw Error('Usage: /agent-artifacts generate ' + kind + ' content/<book> [locale]');
                 }
                 textbook = parts[3];
                 locale = parts[4] || '';
+              } else if (kind === 'questions' || kind === 'flashcards') {
+                if (![4, 5, 6].includes(parts.length)) {
+                  throw Error('Usage: /agent-artifacts generate ' + kind + ' content/<book> [lesson-uuid] [locale]');
+                }
+                textbook = parts[3];
+                const extra = parts.slice(4);
+                if (extra.length === 1) {
+                  if (/^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i.test(extra[0])) lesson = extra[0].toLowerCase();
+                  else locale = extra[0];
+                } else if (extra.length === 2) {
+                  lesson = extra[0].toLowerCase();
+                  locale = extra[1];
+                }
               } else if (kind === 'courses') {
                 if (![4, 5, 6].includes(parts.length)) throw Error('Usage: /agent-artifacts generate courses content/<book> [course-uuid] [locale]');
                 textbook = parts[3];
@@ -147,24 +161,24 @@ jobs:
                 }
                 locale = parts[3] || '';
               } else {
-                throw Error('Explicit kind required: skills, lessons, questions, courses, ui-kit, assessment-methods, geography-home-copy, education-standards');
+                throw Error('Explicit kind required: skills, lessons, questions, flashcards, courses, ui-kit, assessment-methods, geography-home-copy, education-standards');
               }
             }
           } else if (operation === 'generate') {
             ({ kind = '', textbook = '', locale = '', component = '', lesson = '', course = '' } = event.inputs);
           }
-          const allowed = ['skills', 'lessons', 'questions', 'courses', 'ui-kit', 'assessment-methods', 'geography-home-copy', 'education-standards'];
+          const allowed = ['skills', 'lessons', 'questions', 'flashcards', 'courses', 'ui-kit', 'assessment-methods', 'geography-home-copy', 'education-standards'];
           if (operation === 'generate') {
             if (!allowed.includes(kind)) throw Error('Unsupported reference family');
-            if ((kind === 'skills' || kind === 'lessons' || kind === 'questions' || kind === 'courses') !== Boolean(textbook) ||
+            if ((kind === 'skills' || kind === 'lessons' || kind === 'questions' || kind === 'flashcards' || kind === 'courses') !== Boolean(textbook) ||
                 (textbook && !/^content\/[a-z][a-z0-9-]*$/.test(textbook))) {
-              throw Error('Only Skills, Lessons, Questions and Courses require content/<book>');
+              throw Error('Only Skills, Lessons, Questions, Flashcards and Courses require content/<book>');
             }
             if (locale && !/^[a-z]{2,4}$/.test(locale)) throw Error('Invalid locale');
             if (component && (kind !== 'ui-kit' || !/^[A-Za-z][A-Za-z0-9]*$/.test(component))) {
               throw Error('Invalid UI Kit component');
             }
-            if (lesson && (!['lessons', 'questions'].includes(kind) ||
+            if (lesson && (!['lessons', 'questions', 'flashcards'].includes(kind) ||
                 !/^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i.test(lesson))) {
               throw Error('Invalid Lesson UUID');
             }
@@ -351,7 +365,7 @@ jobs:
           const root = '.agent-ci-artifacts';
           const manifest = JSON.parse(fs.readFileSync(path.join(root, 'manifest.json'), 'utf8'));
           if (manifest.kind !== 'pr-scoped-agent-ci-artifacts' || manifest.schemaVersion !== 3 ||
-              !manifest.scope || !['skills', 'lessons', 'questions', 'courses', 'ui-kit', 'assessment-methods', 'geography-home-copy', 'education-standards'].includes(manifest.scope.kind) ||
+              !manifest.scope || !['skills', 'lessons', 'questions', 'flashcards', 'courses', 'ui-kit', 'assessment-methods', 'geography-home-copy', 'education-standards'].includes(manifest.scope.kind) ||
               !Array.isArray(manifest.generated) || !Array.isArray(manifest.failures) ||
               manifest.generated.length === 0) throw Error('Invalid or empty agent artifact manifest');
           const requested = {
@@ -371,7 +385,7 @@ jobs:
               throw Error('Manifest scope disagrees with authorized request: ' + key);
             }
           }
-          const expectedKinds = { skills: 'taxonomy', lessons: 'lesson', questions: 'question', courses: 'course',
+          const expectedKinds = { skills: 'taxonomy', lessons: 'lesson', questions: 'question', flashcards: 'flashcard', courses: 'course',
             'ui-kit': 'ui-kit-locale', 'assessment-methods': 'assessment-method',
             'geography-home-copy': 'geography-home-copy',
             'education-standards': 'education-standard' };
@@ -400,14 +414,14 @@ jobs:
             const name = entry.path;
             const segments = typeof name === 'string' ? name.split('/') : [];
             const depth = segments[1] === 'taxonomies' ? 4 : segments[1] === 'lessons' ? 6
-              : segments[1] === 'courses' ? 6 : segments[1] === 'questions' ? 6 : segments[1] === 'lessons-by-skill' ? 3 : segments[1] === 'assessment-methods' ? 3
+              : segments[1] === 'courses' ? 6 : segments[1] === 'questions' ? 6 : segments[1] === 'flashcards' ? 6 : segments[1] === 'lessons-by-skill' ? 3 : segments[1] === 'assessment-methods' ? 3
               : segments[1] === 'ui-kit' ? 4 : segments[1] === 'geography-home-copy' ? 3
               : segments[1] === 'education-standards' ? 3 : -1;
             if (typeof name !== 'string' ||
                 segments[0] !== root || segments.length !== depth ||
                 segments.slice(2).some(part => !/^[a-zA-Z0-9._-]+$/.test(part) || part === '..') ||
                 !name.endsWith('.md') ||
-                (segments[1] === 'questions' && (!/^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/.test(segments[4]) ||
+                ((segments[1] === 'questions' || segments[1] === 'flashcards') && (!/^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/.test(segments[4]) ||
                    segments[3] !== segments[4].slice(-1) ||
                    entry.lesson !== segments[3] + '/' + segments[4] ||
                    entry.textbook !== 'content/' + segments[2] ||
