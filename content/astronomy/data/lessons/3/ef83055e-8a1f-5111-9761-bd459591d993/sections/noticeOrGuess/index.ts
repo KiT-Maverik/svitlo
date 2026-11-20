@@ -23,10 +23,14 @@ export const noticeOrGuess = defineContentSection<"noticeOrGuess", typeof conten
   params: {},
   locale: {
     title: {
-      uk: "Що я помітив?"
+      uk: "Що я помітив?",
+        en: "What Did I Notice?",
+        pl: "Co udało mi się zauważyć?"
     },
     navigationLabel: {
-      uk: "Що я помітив?"
+      uk: "Що я помітив?",
+        en: "What Did I Notice?",
+        pl: "Co udało mi się zauważyć?"
     }
   },
   content
