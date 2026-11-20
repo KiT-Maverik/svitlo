@@ -173,3 +173,40 @@ test('disabled Sections and unselected bank items do not impose publication depe
     put(root, manifestPath, manifest);
     assert.equal(verifyAssessmentSelections(root), 1);
   }));
+
+test('unresolved provisional UUID cannot publish even with a forged manifest entry and files', () =>
+  withFixture((root, { lesson, manifest }) => {
+    const pending = 'feedc0de-1234-8abc-abcd-0123456789ab';
+    lesson.section[0].params.selection.questionIds = [pending];
+    put(root, owner + '/base.json', lesson);
+    manifest.entries[pending] = {
+      ...manifest.entries[questionId],
+    };
+    put(root, manifestPath, manifest);
+    put(root, 'data/questions/b/' + pending + '/base.json', { id: pending, type: 'selectOneAnswer' });
+    for (const language of ['en', 'uk'])
+      put(root, 'data/questions/b/' + pending + '/' + language + '.json', { locale: { title: language } });
+    assert.throws(() => verifyAssessmentSelections(root), /Unresolved placeholder question UUID/);
+  }));
+
+test('an unresolved draft Section label cannot reach production despite real bank references', () =>
+  withFixture((root, { lesson }) => {
+    lesson.section[0].locale = { title: 'PENDING QUIZ', navigationLabel: 'PENDING QUIZ' };
+    put(root, owner + '/base.json', lesson);
+    assert.throws(() => verifyAssessmentSelections(root), /Unresolved assessment Section draft label/);
+  }));
+
+test('reserved generated Section identity cannot pass publication even with real selected resources', () =>
+  withFixture((root, { lesson }) => {
+    lesson.section[0].id = 'feedc0de-1234-8abc-abcd-0123456789ab';
+    put(root, owner + '/base.json', lesson);
+    assert.throws(() => verifyAssessmentSelections(root), /Unresolved generated assessment Section UUID/);
+  }));
+
+test('sparse source-language Section labels cannot bypass production checks with real UUIDs', () =>
+  withFixture(root => {
+    put(root, owner + '/uk.json', {
+      section: [{ locale: { title: 'PENDING QUIZ', navigationLabel: 'PENDING QUIZ' } }],
+    });
+    assert.throws(() => verifyAssessmentSelections(root), /Unresolved assessment Section draft label/);
+  }));

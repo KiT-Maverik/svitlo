@@ -106,7 +106,7 @@ Only reuse verified Lesson media UUIDs or document an unmet media need.
 ## Stage 3 — Quiz Section Design
 
 Inspect actual Lesson/index.ts, sections/index.ts, each current Quiz
-Section module and the order. If the bank-owning Lesson has **no approved Quiz**, record `Quiz selections: Not Applicable — bank preserved for later assessment/Custom Practice`, skip Section mutations and continue the bank review/production stages. **Reuse** a suitable existing Quiz
+Section module and the order. Stage 6 may already have materialized an **enabled, schema-valid but blocked** Quiz with its approved Section ID, original screen ContentBlocks and a reserved `feedc0de-` synthetic `questionIds` entry. Treat that UUID as an unresolved draft marker, never as a real Question; reuse the existing Section and placement, replace all provisional fields with reviewed Question selections/interaction/results choices and remove TODOs only after strict Props and resource/locale verification. If the bank-owning Lesson has **no approved Quiz**, record `Quiz selections: Not Applicable — bank preserved for later assessment/Custom Practice`, skip Section mutations and continue the bank review/production stages. **Reuse** a suitable existing Quiz
 Section and stable UUID whenever possible; create one only when
 approved methodology requires it and none exists. Multiple Quizzes
 are allowed. An independent Question Bank does not force a Quiz.
