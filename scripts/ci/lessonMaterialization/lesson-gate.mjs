@@ -107,8 +107,8 @@ export function requireStageSixPending(body) {
   if (isCurrent) {
     const subNames = [
       'Materialize Lesson sources',
-      'Accessibility source audit',
-      'Offline source audit',
+      'Complete generated Lesson resources',
+      'Implement and integrate Scenes',
     ];
     const subitems = [...section.matchAll(/^ {2,}-\s*\[([ xX])\]\s*6\.(\d+)\s+([^\r\n]*)$/gm)];
     if (subitems.length !== subNames.length) throw Error('Exactly three separate Stage 6 subchecks are required');
