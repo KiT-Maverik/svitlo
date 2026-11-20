@@ -1,4 +1,4 @@
-import type { SceneLocales } from '../sceneText';
+import type { SceneLocales } from './sceneText';
 
 /** TEST ONLY: unique synthetic copy identifies which locale key was rendered.
  * These values are NEVER authored or published as educational translations. */
