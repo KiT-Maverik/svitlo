@@ -12,8 +12,9 @@ node shared/engine/scripts/generateAssessmentResources/generateAssessmentResourc
 
 The portable textbook `package:build` invokes the combined publication when authored typed bank entrypoints exist, and includes each generated file in the textbook manifest. The current implementation consumes completed existing TypeScript banks from each Lesson's `questions/index.ts` and `flashcards/index.ts`, and their owner's configured publication languages. The separate [Questions Builder](../questionsBuilder/README.md) now scaffolds
 approved Lesson-root `questions.yaml` into independent TypeScript Question modules.
-It does not edit Quiz Sections, publish Props, or delete source YAML; use the
-read-only Section selection verification before completing the Question child PR.
+It does not edit Quiz Sections, publish Props, or delete source YAML. Approved
+Quiz Sections import typed Question Configurators and select stable `.id` values;
+normal TypeScript/Engine and strict textbook publication checks validate them.
 Flashcard YAML conversion exists via the independent [Flashcard Builder](../flashcardBuilder/README.md), but this publisher does not run it. Bank source is never modified. UUID, kind, locale and duplicate identity validation is performed before publication, and generated trees are replaced atomically.
 
 Media inside authored Question/Flashcard ContentBlocks is validated and resolved

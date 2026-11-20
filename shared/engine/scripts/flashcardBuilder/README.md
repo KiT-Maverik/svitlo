@@ -17,7 +17,8 @@ its identity, literal unique ordered `flashcardIds`, membership in the **full**
 bank and registration in `sections/index.ts`. No embedded Section is allowed
 and reported as zero. This is not editorial approval, full publication or
 evidence that translations and linked media exist. Dynamic Section definitions
-require manual review. It reuses the Questions Flow #647 static registry parser.
+require manual review. Its static Section parser is local to the Flashcard
+Builder and does not depend on the retired Questions verifier (PR #759).
 
 After the Engine build:
 

@@ -106,7 +106,7 @@ Only reuse verified Lesson media UUIDs or document an unmet media need.
 ## Stage 3 — Quiz Section Design
 
 Inspect actual Lesson/index.ts, sections/index.ts, each current Quiz
-Section module and the order. If the bank-owning Lesson has **no approved Quiz**, record `Quiz selections: Not Applicable — bank preserved for later assessment/Custom Practice`, skip Section mutations and continue the bank review/production stages. **Reuse** a suitable existing Quiz
+Section module and the order. Stage 6 may already have materialized an **enabled, schema-valid but blocked** Quiz with its approved Section ID, original screen ContentBlocks and a reserved `feedc0de-` synthetic `questionIds` entry. Treat that UUID as an unresolved draft marker, never as a real Question; reuse the existing Section and placement, replace all provisional fields with reviewed Question selections/interaction/results choices and remove TODOs only after strict Props and resource/locale verification. If the bank-owning Lesson has **no approved Quiz**, record `Quiz selections: Not Applicable — bank preserved for later assessment/Custom Practice`, skip Section mutations and continue the bank review/production stages. **Reuse** a suitable existing Quiz
 Section and stable UUID whenever possible; create one only when
 approved methodology requires it and none exists. Multiple Quizzes
 are allowed. An independent Question Bank does not force a Quiz.
@@ -120,11 +120,11 @@ respect required outcome/method coverage; there is no guaranteed
 stratified sampler. Review placement, interaction/retry policy,
 time limits, feedback, accessibility and learner attention.
 
-Before materialization, the source may carry a temporary
-quizSelections mapping from Section UUID to selected Question UUIDs.
-The actual TS Section Config will become authoritative once the
-Coding Agent materializes it; never keep competing permanent
-Quiz selection sources.
+Record the intended Quiz subsets and rationale in the Questions PR review
+evidence before materialization. After typed Questions exist, the owning
+Section imports the selected Question Configurators and uses their `.id`
+values in `params.selection.questionIds`. The actual authored TS Section
+Config is the only selection source; do not maintain a second YAML UUID map.
 
 ## Stage 4 — Independent Assessment Review
 
@@ -153,7 +153,7 @@ at the authorized handoff:
   questions/index.ts bank. No existing source is overwritten.
 - **If** this bank-owning Lesson has approved Quiz Section(s), its Section owner edits only those Quiz module(s), sections/index.ts and necessary root Lesson imports/order, preserving all unrelated Sections/UUIDs. A bank with no Quiz must not acquire a Quiz merely to satisfy this stage. This work is intentionally not performed
   by a bank generator on an existing hand-authored Lesson.
-- For **actual local Quiz Sections**, use --verify-sections to verify static Section UUID selections and registration; review custom dynamic Composition manually. Do not require a nonexistent local Quiz to pass this optional check.
+- For **actual local Quiz Sections**, use stable IDs from imported typed Question Configurators in `params.selection.questionIds`; use normal TypeScript, Engine validation, publication and complete textbook builds. Do not invoke a separate AST/static Section verifier. A bank without a Quiz remains valid.
 - Publish **all** Questions with the existing Engine
   generateAssessmentResources --kind question publisher and test
   selected resource loading, real UI Kit support, full intended Lesson

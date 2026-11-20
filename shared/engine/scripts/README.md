@@ -26,8 +26,9 @@ The [Questions Builder](./questionsBuilder/README.md) creates scoped, modular
 Engine Question TypeScript drafts from a validated Lesson-root questions.yaml.
 It reuses the Lesson modular renderer, does not modify Lesson or Quiz Sections,
 and leaves the separate assessment resource publisher responsible for Props.
-The temporary Section-UUID selection handoff is checked against real modular
-Quiz source with a read-only command, not silently copied into the Lesson.
+Reviewed Quiz selections belong to actual typed Section sources using stable
+Question Configurator `.id` references, verified by normal TypeScript/Engine
+and strict textbook resource publication; there is no separate YAML ID map.
 
 ## Read-only Lesson discovery
 
