@@ -1,5 +1,5 @@
 <!-- GENERATED FROM CODE; DO NOT EDIT. -->
-# Question and Quiz translation reference — astronomy / c25fe16e-5640-5615-b456-a99a392a7f42 / en
+# Question and Quiz translation reference — astronomy / c25fe16e-5640-5615-b456-a99a392a7f42 / pl
 
 Lesson UUID: c25fe16e-5640-5615-b456-a99a392a7f42
 Source language: uk
@@ -22,32 +22,32 @@ Missing translations: 0
 
 #### question/prompt (7c4e3b90-ccf1-4f74-9c91-000000000002)
 - Source (uk): У двох далеких місцях Землі зараз по-різному: у місці К — день, а в місці Л — ніч. Сонце продовжує світити. Чому так може бути?
-- en: Right now, two places far apart on Earth have different conditions: it is daytime at K, but nighttime at L. The Sun is still shining. How is that possible?
+- pl: W dwóch odległych miejscach na Ziemi jest teraz inaczej: w miejscu K trwa dzień, a w miejscu L — noc. Słońce nadal świeci. Dlaczego tak się dzieje?
 - Code: [index.ts](../../../../../content/astronomy/data/lessons/2/c25fe16e-5640-5615-b456-a99a392a7f42/questions/selectOneAnswer/sameTimeDifferentPlaces/prompt/index.ts)
 
 #### hint/hintText (7c4e3b90-ccf1-4f74-9c91-000000000003)
 - Source (uk): Уяви кульку й ліхтарик. Поміркуй, що відрізняє два місця, якщо в них одночасно по-різному світло.
-- en: Imagine a ball and a flashlight. Think about what makes the two places receive different light at the same time.
+- pl: Wyobraź sobie kulę i latarkę. Zastanów się, dlaczego w tym samym czasie w jednym miejscu jest jasno, a w drugim ciemno.
 - Code: [index.ts](../../../../../content/astronomy/data/lessons/2/c25fe16e-5640-5615-b456-a99a392a7f42/questions/selectOneAnswer/sameTimeDifferentPlaces/hintText/index.ts)
 
 #### explanation/explanationText (7c4e3b90-ccf1-4f74-9c91-000000000004)
 - Source (uk): Сонце освітлює не всю Землю одночасно. Місце К зараз на освітленому боці, а місце Л — на неосвітленому.
-- en: The Sun does not light up all of Earth at once. K is currently on the sunlit side, while L is on the unlit side.
+- pl: Słońce nie oświetla całej Ziemi jednocześnie. Miejsce K znajduje się teraz po oświetlonej stronie, a miejsce L — po nieoświetlonej.
 - Code: [index.ts](../../../../../content/astronomy/data/lessons/2/c25fe16e-5640-5615-b456-a99a392a7f42/questions/selectOneAnswer/sameTimeDifferentPlaces/explanationText/index.ts)
 
 #### answers/correct/correctAnswer (7c4e3b90-ccf1-4f74-9c91-000000000005)
 - Source (uk): Місце К повернене до Сонця, а місце Л — від Сонця.
-- en: Place K faces the Sun, while place L faces away from it.
+- pl: Miejsce K jest zwrócone ku Słońcu, a miejsce L — w przeciwną stronę.
 - Code: [index.ts](../../../../../content/astronomy/data/lessons/2/c25fe16e-5640-5615-b456-a99a392a7f42/questions/selectOneAnswer/sameTimeDifferentPlaces/correct/correctAnswer/index.ts)
 
 #### answers/incorrect/wrong1 (7c4e3b90-ccf1-4f74-9c91-000000000006)
 - Source (uk): Якщо Сонце світить, у всіх місцях Землі має бути день.
-- en: If the Sun is shining, it must be daytime everywhere on Earth.
+- pl: Jeśli Słońce świeci, to wszędzie na Ziemi musi być dzień.
 - Code: [index.ts](../../../../../content/astronomy/data/lessons/2/c25fe16e-5640-5615-b456-a99a392a7f42/questions/selectOneAnswer/sameTimeDifferentPlaces/incorrect/wrong1/index.ts)
 
 #### answers/incorrect/wrong2 (7c4e3b90-ccf1-4f74-9c91-000000000007)
 - Source (uk): Сонце вимкнулося тільки для місця Л.
-- en: The Sun has switched off only for place L.
+- pl: Słońce zgasło tylko dla miejsca L.
 - Code: [index.ts](../../../../../content/astronomy/data/lessons/2/c25fe16e-5640-5615-b456-a99a392a7f42/questions/selectOneAnswer/sameTimeDifferentPlaces/incorrect/wrong2/index.ts)
 
 ## selectOneAnswer/whyNightArrives
@@ -61,32 +61,32 @@ Missing translations: 0
 
 #### question/prompt (7c4e3b90-ccf1-4f74-9c91-000000000009)
 - Source (uk): Біля одного будинку вдень було світло, а згодом настала ніч. Яка зміна це пояснює?
-- en: It was light near a house during the day, but later night came. What change explains this?
+- pl: W ciągu dnia obok pewnego domu było jasno, ale później zapadła noc. Jaka zmiana to wyjaśnia?
 - Code: [index.ts](../../../../../content/astronomy/data/lessons/2/c25fe16e-5640-5615-b456-a99a392a7f42/questions/selectOneAnswer/whyNightArrives/prompt/index.ts)
 
 #### hint/hintText (7c4e3b90-ccf1-4f74-9c91-00000000000a)
 - Source (uk): Уяви кульку з позначкою будинку й лампу. Що має змінитися, щоб біля будинку стало темніше?
-- en: Imagine a ball marked with a house and a lamp. What would need to change for it to become darker near the house?
+- pl: Wyobraź sobie kulę z zaznaczonym domem i lampę. Co musi się zmienić, żeby w pobliżu domu zrobiło się ciemniej?
 - Code: [index.ts](../../../../../content/astronomy/data/lessons/2/c25fe16e-5640-5615-b456-a99a392a7f42/questions/selectOneAnswer/whyNightArrives/hintText/index.ts)
 
 #### explanation/explanationText (7c4e3b90-ccf1-4f74-9c91-00000000000b)
 - Source (uk): День змінюється ніччю, бо Земля обертається навколо своєї осі. Місце разом із Землею переходить на неосвітлений бік.
-- en: Day turns into night because Earth rotates on its axis. The place moves with Earth onto the side that is not lit by the Sun.
+- pl: Dzień zmienia się w noc, ponieważ Ziemia obraca się wokół własnej osi. Miejsce wraz z Ziemią przechodzi na stronę nieoświetloną przez Słońce.
 - Code: [index.ts](../../../../../content/astronomy/data/lessons/2/c25fe16e-5640-5615-b456-a99a392a7f42/questions/selectOneAnswer/whyNightArrives/explanationText/index.ts)
 
 #### answers/correct/correctAnswer (7c4e3b90-ccf1-4f74-9c91-00000000000c)
 - Source (uk): Будинок разом із Землею повернувся від сонячного світла.
-- en: The house moved with Earth to face away from the sunlight.
+- pl: Dom wraz z Ziemią obrócił się w stronę przeciwną do światła słonecznego.
 - Code: [index.ts](../../../../../content/astronomy/data/lessons/2/c25fe16e-5640-5615-b456-a99a392a7f42/questions/selectOneAnswer/whyNightArrives/correct/correctAnswer/index.ts)
 
 #### answers/incorrect/wrong1 (7c4e3b90-ccf1-4f74-9c91-00000000000d)
 - Source (uk): Сонце перестало світити всій Землі до ранку.
-- en: The Sun stopped shining on all of Earth until morning.
+- pl: Słońce przestało świecić na całą Ziemię aż do rana.
 - Code: [index.ts](../../../../../content/astronomy/data/lessons/2/c25fe16e-5640-5615-b456-a99a392a7f42/questions/selectOneAnswer/whyNightArrives/incorrect/wrong1/index.ts)
 
 #### answers/incorrect/wrong2 (7c4e3b90-ccf1-4f74-9c91-00000000000e)
 - Source (uk): Земля за кілька годин облетіла навколо Сонця.
-- en: Earth travelled all the way around the Sun in just a few hours.
+- pl: Ziemia okrążyła Słońce w ciągu kilku godzin.
 - Code: [index.ts](../../../../../content/astronomy/data/lessons/2/c25fe16e-5640-5615-b456-a99a392a7f42/questions/selectOneAnswer/whyNightArrives/incorrect/wrong2/index.ts)
 
 ## selectOneAnswer/stoppedGlobeKeepsNight
@@ -100,32 +100,32 @@ Missing translations: 0
 
 #### question/prompt (7c4e3b90-ccf1-4f74-9c91-000000000010)
 - Source (uk): На кульці є позначка Г, яка зараз на темному боці. Лампа світить, але ні лампу, ні кульку більше не рухають. Що буде в місці Г, доки модель залишається нерухомою?
-- en: There is a mark «Г» on a ball, currently on its dark side. A lamp is shining, but neither the lamp nor the ball is moved anymore. What will happen at «Г» while the model stays still?
+- pl: Na kuli jest oznaczenie «Г», które znajduje się teraz po ciemnej stronie. Lampa świeci, ale ani lampa, ani kula już się nie poruszają. Co będzie się działo w miejscu «Г», dopóki model pozostanie nieruchomy?
 - Code: [index.ts](../../../../../content/astronomy/data/lessons/2/c25fe16e-5640-5615-b456-a99a392a7f42/questions/selectOneAnswer/stoppedGlobeKeepsNight/prompt/index.ts)
 
 #### hint/hintText (7c4e3b90-ccf1-4f74-9c91-000000000011)
 - Source (uk): Уяви, що час іде, але положення кульки та лампи не змінюється.
-- en: Imagine that time passes, but the positions of the ball and the lamp do not change.
+- pl: Wyobraź sobie, że czas płynie, ale położenie kuli i lampy się nie zmienia.
 - Code: [index.ts](../../../../../content/astronomy/data/lessons/2/c25fe16e-5640-5615-b456-a99a392a7f42/questions/selectOneAnswer/stoppedGlobeKeepsNight/hintText/index.ts)
 
 #### explanation/explanationText (7c4e3b90-ccf1-4f74-9c91-000000000012)
 - Source (uk): Коли кулька й лампа нерухомі, позначка Г залишається на тому самому темному боці. Зміна дня і ночі в моделі потребує повороту кульки.
-- en: When the ball and lamp stay still, the mark «Г» stays on the same dark side. For day and night to alternate in this model, the ball must turn.
+- pl: Kiedy kula i lampa są nieruchome, oznaczenie «Г» pozostaje po tej samej ciemnej stronie. W tym modelu zmiana dnia i nocy wymaga obrotu kuli.
 - Code: [index.ts](../../../../../content/astronomy/data/lessons/2/c25fe16e-5640-5615-b456-a99a392a7f42/questions/selectOneAnswer/stoppedGlobeKeepsNight/explanationText/index.ts)
 
 #### answers/correct/correctAnswer (7c4e3b90-ccf1-4f74-9c91-000000000013)
 - Source (uk): У місці Г залишатиметься ніч, доки кульку не повернуть.
-- en: It will remain nighttime at «Г» until the ball is turned.
+- pl: W miejscu «Г» nadal będzie noc, dopóki kula nie zostanie obrócona.
 - Code: [index.ts](../../../../../content/astronomy/data/lessons/2/c25fe16e-5640-5615-b456-a99a392a7f42/questions/selectOneAnswer/stoppedGlobeKeepsNight/correct/correctAnswer/index.ts)
 
 #### answers/incorrect/wrong1 (7c4e3b90-ccf1-4f74-9c91-000000000014)
 - Source (uk): У місці Г з часом настане день, навіть якщо нічого не рухати.
-- en: Day will come to «Г» after some time, even if nothing moves.
+- pl: Po pewnym czasie w miejscu «Г» nastanie dzień, nawet jeśli nic się nie poruszy.
 - Code: [index.ts](../../../../../content/astronomy/data/lessons/2/c25fe16e-5640-5615-b456-a99a392a7f42/questions/selectOneAnswer/stoppedGlobeKeepsNight/incorrect/wrong1/index.ts)
 
 #### answers/incorrect/wrong2 (7c4e3b90-ccf1-4f74-9c91-000000000015)
 - Source (uk): Нерухома лампа поступово освітить усі боки кульки.
-- en: The unmoving lamp will gradually light up every side of the ball.
+- pl: Nieruchoma lampa stopniowo oświetli wszystkie strony kuli.
 - Code: [index.ts](../../../../../content/astronomy/data/lessons/2/c25fe16e-5640-5615-b456-a99a392a7f42/questions/selectOneAnswer/stoppedGlobeKeepsNight/incorrect/wrong2/index.ts)
 
 ## selectOneAnswer/newPlaceContinuesRotating
@@ -139,32 +139,32 @@ Missing translations: 0
 
 #### question/prompt (7c4e3b90-ccf1-4f74-9c91-000000000017)
 - Source (uk): Уяви нове місто Д, позначене на колі посередині кульки, як у моделі уроку. Щойно в місті Д настав день. Лампа нерухома, а кулька продовжує обертатися. Що згодом станеться в місті Д?
-- en: Imagine a new town «Д», marked on a circle around the middle of the ball, as in the lesson's model. Day has just begun in «Д». The lamp is still, and the ball keeps turning. What will happen in «Д» later?
+- pl: Wyobraź sobie nowe miasto «Д», zaznaczone na okręgu pośrodku kuli, tak jak w modelu z lekcji. W mieście «Д» właśnie nastał dzień. Lampa stoi nieruchomo, a kula nadal się obraca. Co stanie się później w mieście «Д»?
 - Code: [index.ts](../../../../../content/astronomy/data/lessons/2/c25fe16e-5640-5615-b456-a99a392a7f42/questions/selectOneAnswer/newPlaceContinuesRotating/prompt/index.ts)
 
 #### hint/hintText (7c4e3b90-ccf1-4f74-9c91-000000000018)
 - Source (uk): Простеж подумки за позначкою Д, поки кулька обертається, а лампа стоїть на місці.
-- en: Imagine following the mark «Д» while the ball turns and the lamp stays in one place.
+- pl: Wyobraź sobie, że śledzisz oznaczenie «Д», gdy kula się obraca, a lampa stoi w miejscu.
 - Code: [index.ts](../../../../../content/astronomy/data/lessons/2/c25fe16e-5640-5615-b456-a99a392a7f42/questions/selectOneAnswer/newPlaceContinuesRotating/hintText/index.ts)
 
 #### explanation/explanationText (7c4e3b90-ccf1-4f74-9c91-000000000019)
 - Source (uk): Коли кулька продовжує обертатися, позначка Д згодом переходить з освітленого боку на неосвітлений. Тоді в місті Д настане ніч, хоча лампа не вимикалася.
-- en: As the ball continues to turn, the mark «Д» eventually moves from the lit side to the unlit side. Then night comes to «Д», even though the lamp has not been switched off.
+- pl: Gdy kula nadal się obraca, oznaczenie «Д» z czasem przechodzi ze strony oświetlonej na nieoświetloną. Wtedy w mieście «Д» nastaje noc, chociaż lampy nie wyłączono.
 - Code: [index.ts](../../../../../content/astronomy/data/lessons/2/c25fe16e-5640-5615-b456-a99a392a7f42/questions/selectOneAnswer/newPlaceContinuesRotating/explanationText/index.ts)
 
 #### answers/correct/correctAnswer (7c4e3b90-ccf1-4f74-9c91-00000000001a)
 - Source (uk): Згодом настане ніч: місто Д разом із кулькою повернеться від світла.
-- en: Night will come later: the town «Д» will turn away from the light along with the ball.
+- pl: Później nastanie noc: miasto «Д» wraz z kulą odwróci się od światła.
 - Code: [index.ts](../../../../../content/astronomy/data/lessons/2/c25fe16e-5640-5615-b456-a99a392a7f42/questions/selectOneAnswer/newPlaceContinuesRotating/correct/correctAnswer/index.ts)
 
 #### answers/incorrect/wrong1 (7c4e3b90-ccf1-4f74-9c91-00000000001b)
 - Source (uk): У місті Д день залишиться назавжди, бо воно вже стало освітленим.
-- en: It will stay daytime in «Д» forever, because the town has already been lit up.
+- pl: W mieście «Д» dzień pozostanie na zawsze, bo zostało już oświetlone.
 - Code: [index.ts](../../../../../content/astronomy/data/lessons/2/c25fe16e-5640-5615-b456-a99a392a7f42/questions/selectOneAnswer/newPlaceContinuesRotating/incorrect/wrong1/index.ts)
 
 #### answers/incorrect/wrong2 (7c4e3b90-ccf1-4f74-9c91-00000000001c)
 - Source (uk): Місто Д стане темним лише тоді, коли вимкнуть лампу.
-- en: The town «Д» will become dark only when the lamp is switched off.
+- pl: W mieście «Д» zrobi się ciemno dopiero wtedy, gdy ktoś wyłączy lampę.
 - Code: [index.ts](../../../../../content/astronomy/data/lessons/2/c25fe16e-5640-5615-b456-a99a392a7f42/questions/selectOneAnswer/newPlaceContinuesRotating/incorrect/wrong2/index.ts)
 
 ## selectOneAnswer/limitsOfGlobeModel
@@ -178,32 +178,32 @@ Missing translations: 0
 
 #### question/prompt (7c4e3b90-ccf1-4f74-9c91-00000000001e)
 - Source (uk): Дитина показує день і ніч на кульці з ліхтариком. Який висновок із цієї моделі справедливий?
-- en: A child is showing day and night using a ball and a flashlight. Which conclusion from this model is correct?
+- pl: Dziecko pokazuje dzień i noc za pomocą kuli i latarki. Jaki wniosek z tego modelu jest poprawny?
 - Code: [index.ts](../../../../../content/astronomy/data/lessons/2/c25fe16e-5640-5615-b456-a99a392a7f42/questions/selectOneAnswer/limitsOfGlobeModel/prompt/index.ts)
 
 #### hint/hintText (7c4e3b90-ccf1-4f74-9c91-00000000001f)
 - Source (uk): Подумай, для чого потрібна ця модель і які подробиці справжнього Сонця та Землі вона може не відтворювати.
-- en: Think about what this model helps explain and what details of the real Sun and Earth it might not show.
+- pl: Pomyśl, do czego służy ten model i jakich szczegółów dotyczących prawdziwego Słońca i Ziemi może nie pokazywać.
 - Code: [index.ts](../../../../../content/astronomy/data/lessons/2/c25fe16e-5640-5615-b456-a99a392a7f42/questions/selectOneAnswer/limitsOfGlobeModel/hintText/index.ts)
 
 #### explanation/explanationText (7c4e3b90-ccf1-4f74-9c91-000000000020)
 - Source (uk): Ліхтарик і кулька допомагають зрозуміти освітлений бік та обертання. Але їхні розміри й відстань не відповідають справжнім Сонцю та Землі.
-- en: The flashlight and ball help us understand the lit side and rotation. But their sizes and the distance between them do not match the real Sun and Earth.
+- pl: Latarka i kula pomagają zrozumieć, która strona jest oświetlona, oraz na czym polega obrót. Jednak ich rozmiary i odległość między nimi nie odpowiadają rzeczywistym rozmiarom i odległości Słońca i Ziemi.
 - Code: [index.ts](../../../../../content/astronomy/data/lessons/2/c25fe16e-5640-5615-b456-a99a392a7f42/questions/selectOneAnswer/limitsOfGlobeModel/explanationText/index.ts)
 
 #### answers/correct/correctAnswer (7c4e3b90-ccf1-4f74-9c91-000000000021)
 - Source (uk): Поворот кульки пояснює зміну освітлення, але модель не показує справжніх розмірів Сонця й Землі.
-- en: Turning the ball explains why the lighting changes, but the model does not show the real sizes of the Sun and Earth.
+- pl: Obrót kuli wyjaśnia zmianę oświetlenia, ale model nie pokazuje prawdziwych rozmiarów Słońca i Ziemi.
 - Code: [index.ts](../../../../../content/astronomy/data/lessons/2/c25fe16e-5640-5615-b456-a99a392a7f42/questions/selectOneAnswer/limitsOfGlobeModel/correct/correctAnswer/index.ts)
 
 #### answers/incorrect/wrong1 (7c4e3b90-ccf1-4f74-9c91-000000000022)
 - Source (uk): Кулька й ліхтарик показують справжні розміри Сонця та Землі.
-- en: The ball and flashlight show the real sizes of the Sun and Earth.
+- pl: Kula i latarka pokazują prawdziwe rozmiary Słońca i Ziemi.
 - Code: [index.ts](../../../../../content/astronomy/data/lessons/2/c25fe16e-5640-5615-b456-a99a392a7f42/questions/selectOneAnswer/limitsOfGlobeModel/incorrect/wrong1/index.ts)
 
 #### answers/incorrect/wrong2 (7c4e3b90-ccf1-4f74-9c91-000000000023)
 - Source (uk): Сонце щоночі вимикається, так само як можна вимкнути ліхтарик.
-- en: The Sun switches off every night, just like a flashlight can be switched off.
+- pl: Słońce gaśnie każdej nocy, tak jak można wyłączyć latarkę.
 - Code: [index.ts](../../../../../content/astronomy/data/lessons/2/c25fe16e-5640-5615-b456-a99a392a7f42/questions/selectOneAnswer/limitsOfGlobeModel/incorrect/wrong2/index.ts)
 
 ## Quiz Section / rotationAndIlluminationQuiz
@@ -214,20 +214,20 @@ Missing translations: 0
 
 #### title (622e900a-4f7e-47dc-9c3e-4946444cea9f)
 - Source (uk): Чому змінюються день і ніч: перевірка
-- en: Why day and night alternate: check your understanding
+- pl: Dlaczego zmieniają się dzień i noc? Sprawdź wiedzę
 - Code: [index.ts](../../../../../content/astronomy/data/lessons/2/c25fe16e-5640-5615-b456-a99a392a7f42/sections/rotationAndIlluminationQuiz/index.ts)
 
 #### navigationLabel (622e900a-4f7e-47dc-9c3e-4946444cea9f)
 - Source (uk): Перевір знання
-- en: Check your understanding
+- pl: Sprawdź wiedzę
 - Code: [index.ts](../../../../../content/astronomy/data/lessons/2/c25fe16e-5640-5615-b456-a99a392a7f42/sections/rotationAndIlluminationQuiz/index.ts)
 
 #### Quiz content/quizIntro (c96a7b8f-dce5-4b59-97f5-dd7ed2720464)
 - Source (uk): **Перевір своє пояснення дня й ночі.** У запитаннях потрібно буде зрозуміти, який бік Землі освітлений, і передбачити, що зміниться після її повороту. ⏎  ⏎ Можна поміркувати не поспішаючи. Важливо пояснити причину, а не просто впізнати картинку. ⏎ 
-- en: **Check your explanation of day and night.** In these questions, you will work out which side of Earth is lit by the Sun and predict what changes when Earth turns. ⏎  ⏎ Take your time to think. Explaining why matters more than just recognizing a picture. ⏎ 
+- pl: **Sprawdź, jak wyjaśniasz dzień i noc.** W pytaniach ustalisz, która strona Ziemi jest oświetlona, i przewidzisz, co się zmieni, gdy Ziemia się obróci. ⏎  ⏎ Możesz spokojnie się zastanowić. Ważne jest wyjaśnienie przyczyny, a nie tylko rozpoznanie obrazka. ⏎ 
 - Code: [index.ts](../../../../../content/astronomy/data/lessons/2/c25fe16e-5640-5615-b456-a99a392a7f42/sections/rotationAndIlluminationQuiz/quizIntro/index.ts)
 - Source Markdown: [uk.md](../../../../../content/astronomy/data/lessons/2/c25fe16e-5640-5615-b456-a99a392a7f42/sections/rotationAndIlluminationQuiz/quizIntro/uk.md)
-- en Markdown: [en.md](../../../../../content/astronomy/data/lessons/2/c25fe16e-5640-5615-b456-a99a392a7f42/sections/rotationAndIlluminationQuiz/quizIntro/en.md)
+- pl Markdown: [pl.md](../../../../../content/astronomy/data/lessons/2/c25fe16e-5640-5615-b456-a99a392a7f42/sections/rotationAndIlluminationQuiz/quizIntro/pl.md)
 Source Markdown (uk):
 ~~~~
 **Перевір своє пояснення дня й ночі.** У запитаннях потрібно буде зрозуміти, який бік Землі освітлений, і передбачити, що зміниться після її повороту.
@@ -235,9 +235,9 @@ Source Markdown (uk):
 Можна поміркувати не поспішаючи. Важливо пояснити причину, а не просто впізнати картинку.
 ~~~~
 
-en Markdown:
+pl Markdown:
 ~~~~
-**Check your explanation of day and night.** In these questions, you will work out which side of Earth is lit by the Sun and predict what changes when Earth turns.
+**Sprawdź, jak wyjaśniasz dzień i noc.** W pytaniach ustalisz, która strona Ziemi jest oświetlona, i przewidzisz, co się zmieni, gdy Ziemia się obróci.
 
-Take your time to think. Explaining why matters more than just recognizing a picture.
+Możesz spokojnie się zastanowić. Ważne jest wyjaśnienie przyczyny, a nie tylko rozpoznanie obrazka.
 ~~~~
