@@ -1,0 +1,69 @@
+documentLanguage: uk
+questions: {}
+sectionDrafts:
+  items:
+    safeSkyChoices:
+      config:
+        id: 2d844bab-f77e-5dc5-adb9-7891d5bb6b59
+        slug: safeSkyChoices
+        type: quiz
+        params: {}
+        locale:
+          title:
+            uk: Перевір безпечний вибір
+          navigationLabel:
+            uk: Перевір знання
+        content:
+          items:
+            quizIntro:
+              config:
+                id: 2b550f05-8866-583f-a8f4-391e6d3eec4e
+                slug: quizIntro
+                type: markdown
+                params: {}
+                locale:
+                  value:
+                    uk: >-
+                      # Чи вмієш обирати безпечні дії?
+
+                      Ти вже тренувався пояснювати ризики. Тепер буде **окрема
+                      перевірка**: розпізнай небезпечні способи й знайди
+                      безпечну заміну.
+
+
+                      Не потрібно дивитися на Сонце або користуватися приладами.
+                      Якщо ти ще не читаєш самостійно, дорослий може прочитати
+                      умову вголос. Ти можеш сказати свій вибір або показати на
+                      варіант за погодженим доступним способом.
+              production:
+                purpose: Готовий вступний екран, без вигаданих Question IDs або grading.
+                productionNotes: "Stage 2: повний український текст готовий; переклади,
+                  незалежне рев'ю і перевірка рендерингу — пізніші етапи."
+          order:
+            - quizIntro
+      production:
+        purpose: Один обов'язковий оцінюваний Quiz із Stage 1 для Skill
+          safeSolarObservation.
+        pedagogicalIntent: Активне осмислення науково коректного правила із доступним
+          feedback; не вимагати читання, письма, нічних спостережень або
+          приладів.
+        productionNotes: >-
+          Quiz placement only: assessmentPlanKey=safeSkyChoices;
+          Skill=b4b9b469-391d-40f8-b11d-6884c76ed106;
+          methods=classification,application. params: {} deliberately incomplete
+          pending independently reviewed Question Bank, genuine questionIds,
+          grading, interaction and screen selection from Assessment Architect.
+          Stage 6 preflight/publication blocked until completed. Для дитини, що
+          не читає: ведучий читає quizIntro й майбутні реальні формулювання
+          Questions, описує усі зображення словами, надає можливість дати
+          усну/вказівну відповідь за валідним погодженим способом. До публікації
+          Assessment Architect + Coding Agent мають перевірити доступність
+          справжніх форматів Questions і відсутність допомоги, яка підказує
+          відповідь. Аудіо/TTS та Question Bank наразі відсутні, жодного
+          оцінювання ще немає.
+
+          Assessment intent: safeSkyChoices
+
+          Bank integration: pending
+  order:
+    - safeSkyChoices
