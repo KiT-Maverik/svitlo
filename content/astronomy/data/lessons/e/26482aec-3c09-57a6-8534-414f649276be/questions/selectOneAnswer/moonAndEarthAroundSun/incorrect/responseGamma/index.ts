@@ -9,7 +9,10 @@ export const responseGamma = defineText<"responseGamma", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Місяць рухається тільки навколо Сонця й зовсім не рухається навколо Землі."
+      uk: "Місяць рухається тільки навколо Сонця й зовсім не рухається навколо Землі.",
+      en: "The Moon travels only around the Sun and does not orbit Earth at all.",
+      pl: "Księżyc krąży tylko wokół Słońca i wcale nie krąży wokół Ziemi.",
+      qm: "Ay faqat Küneş etrafında aylana ve Yer etrafında asla aylamay."
     }
   }
 });

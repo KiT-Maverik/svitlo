@@ -9,7 +9,10 @@ export const responseDelta = defineText<"responseDelta", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Планета, бо будь-який рух у космосі означає, що тіло є планетою."
+      uk: "Планета, бо будь-який рух у космосі означає, що тіло є планетою.",
+      en: "A planet, because anything moving through space must be a planet.",
+      pl: "Planetą, ponieważ wszystko, co porusza się w kosmosie, musi być planetą.",
+      qm: "Seyyare, çünki kosmosta areket etken er cisim seyyare ola."
     }
   }
 });

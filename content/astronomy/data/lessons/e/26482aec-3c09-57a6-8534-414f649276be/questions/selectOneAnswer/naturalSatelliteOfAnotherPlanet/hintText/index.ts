@@ -9,7 +9,10 @@ export const hintText = defineText<"hintText", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Не всі небесні тіла такого типу рухаються навколо Землі. Подумай, яку роль це тіло має біля іншої планети."
+      uk: "Не всі небесні тіла такого типу рухаються навколо Землі. Подумай, яку роль це тіло має біля іншої планети.",
+      en: "Not every body of this kind orbits Earth. Think about the role it has near another planet.",
+      pl: "Nie każde ciało tego rodzaju krąży wokół Ziemi. Pomyśl, jaką rolę odgrywa ono przy innej planecie.",
+      qm: "Bu türdeki bütün cisimler Yer etrafında aylanmay. O, başqa seyyare yanında nasıl bir rol oynay, tüşün."
     }
   }
 });

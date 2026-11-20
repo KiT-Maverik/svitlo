@@ -9,7 +9,10 @@ export const explanationText = defineText<"explanationText", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Природний супутник — не обов’язково наш Місяць. Це природне тіло, що рухається навколо планети; супутники інших планет теж належать до цієї категорії."
+      uk: "Природний супутник — не обов’язково наш Місяць. Це природне тіло, що рухається навколо планети; супутники інших планет теж належать до цієї категорії.",
+      en: "A natural satellite is not necessarily our Moon. It is a natural body that travels around a planet; satellites of other planets belong to the same category.",
+      pl: "Naturalny satelita nie musi być naszym Księżycem. Jest to naturalne ciało krążące wokół planety. Satelity innych planet także należą do tej kategorii.",
+      qm: "Tabiiy yoldaş mıtlaqa bizim Ayımız olmaq zorunda degil. O, seyyare etrafında aylanğan tabiiy cisimdir; başqa seyyarelerniñ yoldaşları da bu türge kirer."
     }
   }
 });

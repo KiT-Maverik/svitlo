@@ -9,7 +9,10 @@ export const responseDelta = defineText<"responseDelta", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Земля рухається навколо Місяця, а Місяць стоїть на місці."
+      uk: "Земля рухається навколо Місяця, а Місяць стоїть на місці.",
+      en: "Earth orbits the Moon, while the Moon stays still.",
+      pl: "Ziemia krąży wokół Księżyca, a Księżyc pozostaje w miejscu.",
+      qm: "Yer Ay etrafında aylana, Ay ise yerinde areketsiz tura."
     }
   }
 });

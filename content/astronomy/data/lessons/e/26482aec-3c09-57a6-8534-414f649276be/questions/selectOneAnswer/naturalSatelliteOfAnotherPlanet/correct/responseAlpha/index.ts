@@ -9,7 +9,10 @@ export const responseAlpha = defineText<"responseAlpha", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Природний супутник тієї планети."
+      uk: "Природний супутник тієї планети.",
+      en: "A natural satellite of that planet.",
+      pl: "Naturalnym satelitą tej planety.",
+      qm: "O seyyareniñ tabiiy yoldaşı."
     }
   }
 });

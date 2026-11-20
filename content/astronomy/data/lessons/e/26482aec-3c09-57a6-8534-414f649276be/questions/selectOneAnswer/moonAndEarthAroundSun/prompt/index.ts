@@ -9,7 +9,10 @@ export const prompt = defineText<"prompt", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Місяць рухається навколо Землі, а Земля — навколо Сонця. Яке твердження правильно поєднує ці рухи?"
+      uk: "Місяць рухається навколо Землі, а Земля — навколо Сонця. Яке твердження правильно поєднує ці рухи?",
+      en: "The Moon travels around Earth, and Earth travels around the Sun. Which statement correctly combines these motions?",
+      pl: "Księżyc krąży wokół Ziemi, a Ziemia wokół Słońca. Które stwierdzenie poprawnie łączy te ruchy?",
+      qm: "Ay Yer etrafında, Yer ise Küneş etrafında aylana. Angi fikir bu areketlerni doğru birleştire?"
     }
   }
 });

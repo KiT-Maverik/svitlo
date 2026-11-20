@@ -9,7 +9,10 @@ export const explanationText = defineText<"explanationText", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Обидва зв’язки правильні одночасно: Місяць обертається навколо Землі, а система Земля—Місяць рухається навколо Сонця."
+      uk: "Обидва зв’язки правильні одночасно: Місяць обертається навколо Землі, а система Земля—Місяць рухається навколо Сонця.",
+      en: "Both relationships are true at the same time: the Moon orbits Earth, and the Earth–Moon system travels around the Sun.",
+      pl: "Obie zależności są jednocześnie prawdziwe: Księżyc krąży wokół Ziemi, a układ Ziemia–Księżyc porusza się wokół Słońca.",
+      qm: "Eki bağ da aynı vaqıtta doğrudır: Ay Yer etrafında aylana, Yer–Ay sisteması ise Küneş etrafında areket ete."
     }
   }
 });

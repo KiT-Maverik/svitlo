@@ -9,7 +9,10 @@ export const responseGamma = defineText<"responseGamma", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Зоря, адже воно знаходиться в космосі."
+      uk: "Зоря, адже воно знаходиться в космосі.",
+      en: "A star, because it is in space.",
+      pl: "Gwiazdą, ponieważ znajduje się w kosmosie.",
+      qm: "Yıldız, çünki kosmosta buluna."
     }
   }
 });

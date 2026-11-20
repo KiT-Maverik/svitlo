@@ -9,7 +9,10 @@ export const responseBeta = defineText<"responseBeta", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Місяць може рухатися тільки навколо Землі й ніколи разом із нею навколо Сонця."
+      uk: "Місяць може рухатися тільки навколо Землі й ніколи разом із нею навколо Сонця.",
+      en: "The Moon can only orbit Earth and never travel around the Sun together with it.",
+      pl: "Księżyc może krążyć tylko wokół Ziemi i nigdy razem z nią wokół Słońca.",
+      qm: "Ay faqat Yer etrafında aylana bile ve onıñnen beraber Küneş etrafında iç bir vaqıt areket etmey."
     }
   }
 });

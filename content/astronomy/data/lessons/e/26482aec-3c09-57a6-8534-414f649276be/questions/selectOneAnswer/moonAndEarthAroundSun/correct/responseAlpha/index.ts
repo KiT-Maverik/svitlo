@@ -9,7 +9,10 @@ export const responseAlpha = defineText<"responseAlpha", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Місяць рухається навколо Землі й разом із нею подорожує навколо Сонця."
+      uk: "Місяць рухається навколо Землі й разом із нею подорожує навколо Сонця.",
+      en: "The Moon travels around Earth and also goes around the Sun together with Earth.",
+      pl: "Księżyc krąży wokół Ziemi, a także wraz z nią wokół Słońca.",
+      qm: "Ay Yer etrafında aylana ve Yer ile beraber Küneş etrafında da areket ete."
     }
   }
 });

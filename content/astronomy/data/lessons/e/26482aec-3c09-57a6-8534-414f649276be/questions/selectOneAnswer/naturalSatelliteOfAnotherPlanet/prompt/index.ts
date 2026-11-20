@@ -9,7 +9,10 @@ export const prompt = defineText<"prompt", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Уяви природне небесне тіло, яке рухається навколо іншої планети, а не навколо Землі. Як називають таке тіло?"
+      uk: "Уяви природне небесне тіло, яке рухається навколо іншої планети, а не навколо Землі. Як називають таке тіло?",
+      en: "Imagine a natural celestial body that orbits a planet other than Earth. What is such a body called?",
+      pl: "Wyobraź sobie naturalne ciało niebieskie krążące wokół innej planety niż Ziemia. Jak nazywamy takie ciało?",
+      qm: "Yer degil, başqa bir seyyare etrafında aylanğan tabiiy kök cismini tasavur et. Böyle cisim nasıl adlandırıla?"
     }
   }
 });

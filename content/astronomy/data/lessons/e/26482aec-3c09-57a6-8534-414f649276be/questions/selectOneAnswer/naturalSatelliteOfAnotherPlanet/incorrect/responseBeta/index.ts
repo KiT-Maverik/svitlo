@@ -9,7 +9,10 @@ export const responseBeta = defineText<"responseBeta", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Місяцем Землі, бо так нібито називають усі невеликі тіла біля планет."
+      uk: "Місяцем Землі, бо так нібито називають усі невеликі тіла біля планет.",
+      en: "Earth's Moon, because supposedly all small bodies near planets are called that.",
+      pl: "Księżycem Ziemi, bo podobno tak nazywa się wszystkie małe ciała w pobliżu planet.",
+      qm: "Yerniñ Ayı, çünki güya seyyareler yanındaki bütün kiçik cisimler böyle adlandırıla."
     }
   }
 });

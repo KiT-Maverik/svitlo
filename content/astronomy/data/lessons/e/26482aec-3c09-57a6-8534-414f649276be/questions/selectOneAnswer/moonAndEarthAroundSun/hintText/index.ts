@@ -9,7 +9,10 @@ export const hintText = defineText<"hintText", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Подумай про тіло, яке рухається навколо іншого тіла, а те — навколо Сонця."
+      uk: "Подумай про тіло, яке рухається навколо іншого тіла, а те — навколо Сонця.",
+      en: "Think of a body that travels around another body while that second body travels around the Sun.",
+      pl: "Pomyśl o ciele, które krąży wokół innego ciała, a ono z kolei krąży wokół Słońca.",
+      qm: "Başqa bir cisim etrafında aylanğan, o ekinci cisim ise Küneş etrafında aylanağan cisimni tasavur et."
     }
   }
 });
