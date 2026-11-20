@@ -15,7 +15,7 @@
 | Event                                   | Scope                                                                                                                          |
 | --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
 | Draft PR (any target)                   | Cheap source/security/artifact guards and authored `TODO (BLOCKER):` warnings; defer npm installs, builds and E2E              |
-| Ready PR to `develop`                   | Changed/dependent workspace FastGate, targeted generators/host/browser suites, selected content build, blocking TODO checks    |
+| Ready PR to `develop`                   | Scoped typechecks in FastGate; separate Ready generator/host/browser suites, selected content build, blocking TODO checks       |
 | Ready child PR to an integration parent | Applicable targeted checks and selected content builds, blocking authored TODO checks; FastGate is only required for `develop` |
 | Ready promotion PR to `main`            | All textbook builds, complete package checks, E2E, full tracked-source blocker scan; no redundant FastGate                     |
 | Manual `workflow_dispatch`              | Explicit full diagnostics/builds on a selected branch, including a Draft branch                                                |
@@ -44,7 +44,9 @@ mark deferred coverage. Artifact safety, actor authorization, blocker TODO
 reporting and trustworthy source provenance cannot be disabled to save time.
 
 Use the **Actions → Run workflow** control (or `gh workflow run <workflow>.yml
---ref <pr-branch>`) to request a deep suite on a Draft branch before Ready;
+--ref <pr-branch>`) to request a deep suite on a Draft branch before Ready. A
+manual `fast-gate.yml` run checks all workspace types only; use the separate
+production-quality, test or generator workflows for deeper diagnostics;
 `workflow_dispatch` must bypass Draft deferral while retaining normal security
 checks. The workflow must exist on the default branch for the manual control.
 Do not use a fake success job or a permanent Draft skip for any check that
@@ -98,10 +100,17 @@ failing build.
 
 ### Validation on Ready
 
-FastGate builds prerequisite public exports once in dependency order, then
-runs independent workspace checks concurrently (default two;
-`SVITLO_FASTGATE_PARALLELISM=1..8`). Root `npm run code:check:types` checks all
-workspaces and is not the FastGate default. Content Build plans scope before
+FastGate is a **typechecking gate**, not a test, coverage, lint, package-validation,
+or production application-build gate. It selects changed workspaces plus consumers
+of changed public TypeScript contracts, builds only the prerequisite published
+exports required for TypeScript resolution in dependency order, then runs
+independent `code:check:types` checks concurrently (default two;
+`SVITLO_FASTGATE_PARALLELISM=1..8`). Web/Mobile typechecks remain sequential
+because their npm pre-hooks may rewrite shared `dist/`, making concurrent checks
+unsafe without first separating preparation from compilation. Root
+`npm run code:check:types` checks all workspaces and is not the FastGate default.
+The separate `/engine-coverage` PR comment invokes optional, diagnostic-only
+Engine coverage; FastGate never invokes coverage automatically. Content Build plans scope before
 npm install: Draft defers distribution builds, Ready `develop` selects impacted
 textbooks, and Ready `main` or manual dispatch builds all. With zero selected
 textbooks, avoid `npm ci` while emitting the same stable required status.
@@ -181,7 +190,7 @@ Run actual validation before merging: `node --test scripts/ci/quietRun/quiet-run
 
 The default branch is now `develop`; the two active protection rulesets target their literal branches. Comment-triggered workflows use code deployed to the current default branch.
 
-Dedicated EducationStandard catalog/reference GitHub workflows are removed. Existing UI Kit `test:locales` validates definitions and localized outputs; FastGate tests the reference generator only when implementation changes. The on-demand `/agent-artifacts generate education-standards` functionality remains available.
+Dedicated EducationStandard catalog/reference GitHub workflows are removed. Existing UI Kit `test:locales` validates definitions and localized outputs in its separate test suite; FastGate does not run generator tests. The on-demand `/agent-artifacts generate education-standards` functionality remains available.
 
 **Actual branch-protection audit (2026-11-19):** GitHub already has `develop` as default and active literal-branch rulesets. Both `Protect main` and `Protect develop` now require a pull request before merging. `Protect main` now requires **`Production Quality / verify`** alongside Agent CI Artifacts, Affected content and Blocker TODOs; `Protect develop` requires **`FastGate / verify`** alongside the same three checks. Verified from active GitHub rulesets on 2026-11-19. GitHub ruleset state is an operational setting rather than a YAML guarantee.
 
