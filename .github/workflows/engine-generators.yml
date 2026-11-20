@@ -54,6 +54,8 @@ jobs:
         with:
           node-version: '24'
           cache: npm
+      - name: Test dependency-free Lesson and bank publishers before installing packages
+        run: node --test scripts/ci/lessonMaterialization/lesson-publish-isolation.spec.mjs scripts/ci/bankMaterialization/bank-materialization.spec.mjs
       - run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --no-audit --no-fund
       - name: Build Engine
         run: node scripts/ci/quietRun/quiet-run.mjs -- npm run package:build --workspace @svitlo/engine
