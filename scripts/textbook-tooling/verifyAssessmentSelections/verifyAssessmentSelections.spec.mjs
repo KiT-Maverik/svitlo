@@ -161,3 +161,14 @@ test('reserved generated Section identity cannot pass publication even with real
     put(root, owner + '/base.json', lesson);
     assert.throws(() => verifyAssessmentSelections(root), /Unresolved generated assessment Section UUID/);
   }));
+
+
+test('sparse source-language Section labels cannot bypass production checks with real UUIDs', () =>
+  withFixture(root => {
+    put(root, owner + '/uk.json', {
+      section: [
+        { locale: { title: 'PENDING QUIZ', navigationLabel: 'PENDING QUIZ' } },
+      ],
+    });
+    assert.throws(() => verifyAssessmentSelections(root), /Unresolved assessment Section draft label/);
+  }));
