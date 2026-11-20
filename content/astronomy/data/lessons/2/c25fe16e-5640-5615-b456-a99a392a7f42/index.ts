@@ -24,6 +24,5 @@ export const dayNightBasics = defineLesson<"dayNightBasics", LessonLanguages, ty
       uk: "Чому змінюються день і ніч"
     }
   },
-  // TODO (BLOCKER): Quiz Section "rotationAndIlluminationQuiz" is unfinished; integrate its reviewed bank and completed Section before Lesson publication.
   section
 });

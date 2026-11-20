@@ -1,6 +1,7 @@
 import { model } from "./model";
 import { opening } from "./opening";
 import { recallFeedback } from "./recallFeedback";
+import { rotationAndIlluminationQuiz } from "./rotationAndIlluminationQuiz";
 import { rotation } from "./rotation";
 import { transfer } from "./transfer";
 import { transferFeedback } from "./transferFeedback";
@@ -12,7 +13,8 @@ export const section = {
     rotation,
     transfer,
     transferFeedback,
-    recallFeedback
+    recallFeedback,
+    rotationAndIlluminationQuiz
   },
   order: [
     "opening",
@@ -20,6 +22,7 @@ export const section = {
     "rotation",
     "transfer",
     "transferFeedback",
-    "recallFeedback"
+    "recallFeedback",
+    "rotationAndIlluminationQuiz"
   ]
 };
