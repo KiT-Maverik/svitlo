@@ -158,9 +158,9 @@ export function courseOverridesSchema(course) {
   return {
     $schema: 'https://json-schema.org/draft/2020-12/schema',
     $id: 'https://svitlo.dev/engine/yaml-schemas/courseOverrides.schema.json',
-    title: 'Svitlo Course Build Overrides YAML draft',
+    title: 'Svitlo Course Build API override patch',
     description:
-      'Direct stateless build.overrides patch. Legacy ordered operation lists are unsupported. Configurator-level checks still run when TypeScript is completed.',
+      'Stateless Course build.overrides patch. Actual typed configurators and TypeScript compilation validate the authored implementation.',
     type: 'object',
     properties: { params, locale, content: courseContent },
     additionalProperties: false,
