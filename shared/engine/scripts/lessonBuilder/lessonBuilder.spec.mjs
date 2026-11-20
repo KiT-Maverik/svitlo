@@ -13,6 +13,7 @@ import { defineLesson, defineQuizSection, defineFlashcardsSection } from '@svitl
 import { assembleLessonProps } from '@svitlo/engine/runtime';
 import { renderLessonMarkdown } from '../generateLessonsMarkdown/lesson-markdown.mjs';
 import { pendingAssessmentUuid, prepareAssessmentDraft } from './lessonAssessmentDrafts.mjs';
+import { splitScaffoldDocument } from '../yamlScaffolding/productionScaffolding.mjs';
 import { lessonReviewStageSlugs, renderReviewDraft } from './reviewTemplate.mjs';
 import { reviewTypeDiagnostics } from './reviewTypecheck.test-utils.mjs';
 
@@ -1492,7 +1493,8 @@ test('mixed assessment selections preserve real UUIDs and block every incomplete
     [id(109), 'unresolved', id(109)],
     'Pending scaffolding must never mutate approved YAML input',
   );
-  const files = renderLessonModules(draft.lesson, 'uk', { pendingAssessments: draft.pending });
+  const source = splitScaffoldDocument({ ...document, config: draft.lesson }).config;
+  const files = renderLessonModules(source, 'uk', { pendingAssessments: draft.pending });
   const section = files.get('sections/quizMixed/index.ts');
   assert.match(section, /Replace \$\.params\.selection\.questionIds\[1\]/);
   assert.match(section, /Replace \$\.params\.selection\.questionIds\[2\]/);
