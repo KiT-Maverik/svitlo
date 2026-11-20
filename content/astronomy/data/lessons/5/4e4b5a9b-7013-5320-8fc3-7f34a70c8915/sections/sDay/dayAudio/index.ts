@@ -11,23 +11,41 @@ export const dayAudio = defineAudio<"dayAudio", LessonLanguages>({
   params: {},
   locale: {
     title: {
-      uk: "Послухай: день і ніч"
+      uk: "Послухай: день і ніч",
+      en: "Listen: Day and Night",
+      pl: "Posłuchaj: dzień i noc",
+      qm: "Diñle: kündüz ve gece"
     },
     description: {
-      uk: "Прослухай пояснення і за бажанням повтори."
+      uk: "Прослухай пояснення і за бажанням повтори.",
+      en: "Listen to the explanation, then play it again if you like.",
+      pl: "Posłuchaj wyjaśnienia i, jeśli chcesz, odtwórz je jeszcze raz.",
+      qm: "İzahını diñle, isteseñ tekrar diñley bilirsin."
     },
     fallback: {
       unavailable: {
-        uk: "Запис наразі недоступний. Той самий зміст є в тексті уроку."
+        uk: "Запис наразі недоступний. Той самий зміст є в тексті уроку.",
+        en: "The recording is not available yet. You can find the same information in the lesson text.",
+        pl: "Nagranie jest na razie niedostępne. Te same informacje znajdziesz w tekście lekcji.",
+        qm: "Ses yazuvı şimdi açılmay. Aynı malümat dersniñ metninde bar."
       },
       offline: {
-        uk: "Слухай після завантаження уроку або скористайся текстом."
+        uk: "Слухай після завантаження уроку або скористайся текстом.",
+        en: "Listen after downloading the lesson, or use the text.",
+        pl: "Posłuchaj po pobraniu lekcji albo skorzystaj z tekstu.",
+        qm: "Ders yüklengenden soñ diñle ya da metnini oqu."
       },
       playbackError: {
-        uk: "Запис не відтворився. Можна прочитати текст поруч."
+        uk: "Запис не відтворився. Можна прочитати текст поруч.",
+        en: "The recording did not play. You can read the text beside it.",
+        pl: "Nagranie nie zostało odtworzone. Możesz przeczytać tekst obok.",
+        qm: "Ses yazuvı çalınmadı. Yanındaki metinni oqumaq mümkün."
       },
       retry: {
-        uk: "Спробувати знову"
+        uk: "Спробувати знову",
+        en: "Try again",
+        pl: "Spróbuj ponownie",
+        qm: "Tekrar sınap baq"
       }
     },
     // TODO(asset): Auto-generated unresolved media placeholder; no physical asset exists.

@@ -9,7 +9,10 @@ export const moonRecap = defineText<"moonRecap", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Скажи або покажи: «На першій схемі освітлена приблизно половина видимого диска Місяця, а на другій — майже весь видимий диск»."
+      uk: "Скажи або покажи: «На першій схемі освітлена приблизно половина видимого диска Місяця, а на другій — майже весь видимий диск».",
+      en: "Say or point out: “In the first diagram, about half of the Moon’s visible disk is lit; in the second, almost all of it is lit.”",
+      pl: "Powiedz albo pokaż: „Na pierwszym schemacie oświetlona jest mniej więcej połowa widocznej tarczy Księżyca, a na drugim — prawie cała tarcza”.",
+      qm: "Söyle ya da köster: «Birinci şemada körüngen diskniñ yaqlaşık yarısı, ekincisinde ise hemen-hemen episi aydınlatılğan»."
     }
   }
 });

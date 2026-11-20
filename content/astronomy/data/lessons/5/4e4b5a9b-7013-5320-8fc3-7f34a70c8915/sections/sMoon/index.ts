@@ -32,10 +32,16 @@ export const sMoon = defineContentSection<"sMoon", typeof content.items, LessonL
   params: {},
   locale: {
     title: {
-      uk: "Один Місяць — різні вигляди"
+      uk: "Один Місяць — різні вигляди",
+      en: "One Moon, Different Appearances",
+      pl: "Jeden Księżyc — różne wyglądy",
+      qm: "Bir Ay — türlü körünişler"
     },
     navigationLabel: {
-      uk: "Місяць"
+      uk: "Місяць",
+      en: "The Moon",
+      pl: "Księżyc",
+      qm: "Ay"
     }
   },
   content

@@ -9,7 +9,10 @@ export const dayRecap = defineText<"dayRecap", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Скажи або покажи: «На одному зображенні світліше, на іншому — темніше». Це спостереження."
+      uk: "Скажи або покажи: «На одному зображенні світліше, на іншому — темніше». Це спостереження.",
+      en: "Say or point out: “One picture is brighter, the other is darker.” That is an observation.",
+      pl: "Powiedz albo pokaż: „Na jednym obrazku jest jaśniej, na drugim — ciemniej”. To jest obserwacja.",
+      qm: "Söyle ya da köster: «Bir resimde daha aydın, digerinde ise daha qaranlıq». Bu — közetüv."
     }
   }
 });
