@@ -14,7 +14,7 @@ The portable textbook `package:build` invokes the combined publication when auth
 approved Lesson-root `questions.yaml` into independent TypeScript Question modules.
 It does not edit Quiz Sections, publish Props, or delete source YAML; use the
 read-only Section selection verification before completing the Question child PR.
-Flashcard YAML conversion remains a separate dependency. Bank source is never modified. UUID, kind, locale and duplicate identity validation is performed before publication, and generated trees are replaced atomically.
+Flashcard YAML conversion exists via the independent [Flashcard Builder](../flashcardBuilder/README.md), but this publisher does not run it. Bank source is never modified. UUID, kind, locale and duplicate identity validation is performed before publication, and generated trees are replaced atomically.
 
 Media inside authored Question/Flashcard ContentBlocks is validated and resolved
 using the same textbook-wide UUID asset rules as Lesson/Course Props.

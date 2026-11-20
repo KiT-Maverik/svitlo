@@ -80,10 +80,7 @@ export const flashcard_Config_Schema = identityBase_Schema
     parameters: paramsBase_Schema.shape.params.extend({
       tags: z.array(z.string()),
       disabilities: flashcardDisabilities_Schema.optional(),
-      flags: z.strictObject({
-        items: z.record(z.string(), flashcardFlag_Config_Schema),
-        order: z.array(z.string()),
-      }),
+      flags: z.array(flashcardFlag_Config_Schema),
       relationships: z
         .strictObject({
           items: z.record(z.string(), flashcardRelationship_Schema),
@@ -160,16 +157,15 @@ export type Flashcard_Overrides<
   Front extends Record<string, ContentBlock_Configurator>,
   Back extends Record<string, ContentBlock_Configurator>,
   Hint extends Record<string, ContentBlock_Configurator>,
-  Flags extends Record<string, Flashcard_Flag_Config>,
   Relationships extends Record<string, Flashcard_Relationship>,
   AddedFront extends Record<string, ContentBlock_Configurator> = {},
   AddedBack extends Record<string, ContentBlock_Configurator> = {},
   AddedHint extends Record<string, ContentBlock_Configurator> = {},
-  AddedFlags extends Record<string, Flashcard_Flag_Config> = {},
   AddedRelationships extends Record<string, Flashcard_Relationship> = {},
 > = {
   parameters?: Flashcard_Metadata_Overrides & {
-    flags?: Flashcard_Named_Overrides<Flags, AddedFlags, 'type'>;
+    /** Replace the full, unordered array. Flags do not have stable slug/order identities. */
+    flags?: Flashcard_Flag_Config[];
     relationships?: Flashcard_Named_Overrides<Relationships, AddedRelationships, 'type' | 'relationshipId'>;
   };
   content?: {
