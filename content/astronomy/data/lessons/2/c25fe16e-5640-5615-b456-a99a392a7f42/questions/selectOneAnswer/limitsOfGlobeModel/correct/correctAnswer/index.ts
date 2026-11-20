@@ -9,7 +9,10 @@ export const correctAnswer = defineText<"correctAnswer", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Поворот кульки пояснює зміну освітлення, але модель не показує справжніх розмірів Сонця й Землі."
+      uk: "Поворот кульки пояснює зміну освітлення, але модель не показує справжніх розмірів Сонця й Землі.",
+      en: "Turning the ball explains why the lighting changes, but the model does not show the real sizes of the Sun and Earth.",
+      pl: "Obrót kuli wyjaśnia zmianę oświetlenia, ale model nie pokazuje prawdziwych rozmiarów Słońca i Ziemi.",
+      qm: "Küreniñ aylanması ışıqnıñ ne içün deñişkenini añlata, amma model Küneş ve Yerniñ aqiqiy ölçülerini köstermey."
     }
   }
 });

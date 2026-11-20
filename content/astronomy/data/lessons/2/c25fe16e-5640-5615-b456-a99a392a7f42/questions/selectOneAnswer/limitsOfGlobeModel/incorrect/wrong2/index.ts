@@ -9,7 +9,10 @@ export const wrong2 = defineText<"wrong2", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Сонце щоночі вимикається, так само як можна вимкнути ліхтарик."
+      uk: "Сонце щоночі вимикається, так само як можна вимкнути ліхтарик.",
+      en: "The Sun switches off every night, just like a flashlight can be switched off.",
+      pl: "Słońce gaśnie każdej nocy, tak jak można wyłączyć latarkę.",
+      qm: "Küneş er gece fener kibi söne."
     }
   }
 });

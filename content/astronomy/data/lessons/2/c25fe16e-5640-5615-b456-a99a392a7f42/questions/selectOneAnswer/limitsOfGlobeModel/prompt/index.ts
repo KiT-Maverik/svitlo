@@ -9,7 +9,10 @@ export const prompt = defineText<"prompt", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Дитина показує день і ніч на кульці з ліхтариком. Який висновок із цієї моделі справедливий?"
+      uk: "Дитина показує день і ніч на кульці з ліхтариком. Який висновок із цієї моделі справедливий?",
+      en: "A child is showing day and night using a ball and a flashlight. Which conclusion from this model is correct?",
+      pl: "Dziecko pokazuje dzień i noc za pomocą kuli i latarki. Jaki wniosek z tego modelu jest poprawny?",
+      qm: "Bir bala küre ve fener yardımınen kündüz ve geceni köstere. Bu modelden qanday doğru netice çıqarmaq mümkün?"
     }
   }
 });

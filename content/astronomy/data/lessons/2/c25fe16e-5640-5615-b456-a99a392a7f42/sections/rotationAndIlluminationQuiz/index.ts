@@ -48,8 +48,18 @@ export const rotationAndIlluminationQuiz = defineQuizSection<
     screen: { starting: { content: ['quizIntro'] } },
   },
   locale: {
-    title: { uk: 'Чому змінюються день і ніч: перевірка' },
-    navigationLabel: { uk: 'Перевір знання' },
+    title: {
+      uk: 'Чому змінюються день і ніч: перевірка',
+      en: 'Why day and night alternate: check your understanding',
+      pl: 'Dlaczego zmieniają się dzień i noc? Sprawdź wiedzę',
+      qm: 'Kündüz ve gece ne içün deñişe: bilgiñni tekşer',
+    },
+    navigationLabel: {
+      uk: 'Перевір знання',
+      en: 'Check your understanding',
+      pl: 'Sprawdź wiedzę',
+      qm: 'Bilgiñni tekşer',
+    },
   },
   content,
 });

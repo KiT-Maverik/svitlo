@@ -9,7 +9,10 @@ export const hintText = defineText<"hintText", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Подумай, для чого потрібна ця модель і які подробиці справжнього Сонця та Землі вона може не відтворювати."
+      uk: "Подумай, для чого потрібна ця модель і які подробиці справжнього Сонця та Землі вона може не відтворювати.",
+      en: "Think about what this model helps explain and what details of the real Sun and Earth it might not show.",
+      pl: "Pomyśl, do czego służy ten model i jakich szczegółów dotyczących prawdziwego Słońca i Ziemi może nie pokazywać.",
+      qm: "Bu model ne içün kerek ve aqiqiy Küneş ile Yer aqqında angi tafsilâtlarnı köstermey bile, tüşün."
     }
   }
 });

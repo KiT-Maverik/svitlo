@@ -9,7 +9,10 @@ export const wrong1 = defineText<"wrong1", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Кулька й ліхтарик показують справжні розміри Сонця та Землі."
+      uk: "Кулька й ліхтарик показують справжні розміри Сонця та Землі.",
+      en: "The ball and flashlight show the real sizes of the Sun and Earth.",
+      pl: "Kula i latarka pokazują prawdziwe rozmiary Słońca i Ziemi.",
+      qm: "Küre ve fener Küneş ve Yerniñ aqiqiy ölçülerini köstere."
     }
   }
 });
