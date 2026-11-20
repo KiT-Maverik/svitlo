@@ -4,12 +4,7 @@
   "title": "Svitlo single temporary Course authoring specification (removed after materialization)",
   "type": "object",
   "additionalProperties": false,
-  "required": [
-    "id",
-    "documentLanguage",
-    "supportedLanguages",
-    "methodology"
-  ],
+  "required": ["id", "documentLanguage", "supportedLanguages", "methodology"],
   "properties": {
     "id": {
       "$ref": "#/$defs/uuid"
@@ -40,11 +35,7 @@
       "type": "object",
       "minProperties": 1,
       "additionalProperties": false,
-      "required": [
-        "purpose",
-        "audience",
-        "approach"
-      ],
+      "required": ["purpose", "audience", "approach"],
       "properties": {
         "purpose": {
           "type": "string",
@@ -177,21 +168,13 @@
     "standardAlignment": {
       "type": "object",
       "additionalProperties": false,
-      "required": [
-        "standardId",
-        "status",
-        "evidence"
-      ],
+      "required": ["standardId", "status", "evidence"],
       "properties": {
         "standardId": {
           "$ref": "#/$defs/uuid"
         },
         "status": {
-          "enum": [
-            "intended",
-            "partial",
-            "verified"
-          ]
+          "enum": ["intended", "partial", "verified"]
         },
         "version": {
           "type": "string",
@@ -220,10 +203,7 @@
     "collection": {
       "type": "object",
       "additionalProperties": false,
-      "required": [
-        "items",
-        "order"
-      ],
+      "required": ["items", "order"],
       "properties": {
         "items": {
           "type": "object",
@@ -262,12 +242,7 @@
     "module": {
       "type": "object",
       "additionalProperties": false,
-      "required": [
-        "type",
-        "slug",
-        "title",
-        "methodology"
-      ],
+      "required": ["type", "slug", "title", "methodology"],
       "properties": {
         "type": {
           "const": "module"
@@ -302,12 +277,7 @@
     "chapter": {
       "type": "object",
       "additionalProperties": false,
-      "required": [
-        "type",
-        "slug",
-        "title",
-        "methodology"
-      ],
+      "required": ["type", "slug", "title", "methodology"],
       "properties": {
         "type": {
           "const": "chapter"
@@ -342,13 +312,7 @@
     "lesson": {
       "type": "object",
       "additionalProperties": false,
-      "required": [
-        "type",
-        "slug",
-        "title",
-        "objective",
-        "skills"
-      ],
+      "required": ["type", "slug", "title", "objective", "skills"],
       "properties": {
         "type": {
           "const": "lesson"
@@ -510,10 +474,7 @@
     "ageRange": {
       "type": "object",
       "additionalProperties": false,
-      "required": [
-        "min",
-        "max"
-      ],
+      "required": ["min", "max"],
       "properties": {
         "min": {
           "type": "integer",
@@ -530,10 +491,7 @@
     "gradeRange": {
       "type": "object",
       "additionalProperties": false,
-      "required": [
-        "min",
-        "max"
-      ],
+      "required": ["min", "max"],
       "properties": {
         "min": {
           "type": "integer",
@@ -550,11 +508,7 @@
     "episode": {
       "type": "object",
       "additionalProperties": false,
-      "required": [
-        "type",
-        "slug",
-        "title"
-      ],
+      "required": ["type", "slug", "title"],
       "properties": {
         "type": {
           "const": "episode"
@@ -590,10 +544,7 @@
         "section": {
           "type": "object",
           "additionalProperties": false,
-          "required": [
-            "items",
-            "order"
-          ],
+          "required": ["items", "order"],
           "properties": {
             "items": {
               "type": "object",
