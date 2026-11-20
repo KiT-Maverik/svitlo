@@ -9,7 +9,10 @@ export const hintText = defineText<"hintText", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Згадай різницю між джерелом світла і предметом, який це світло відбиває."
+      uk: "Згадай різницю між джерелом світла і предметом, який це світло відбиває.",
+      en: "Remember the difference between a light source and an object that reflects light.",
+      pl: "Przypomnij sobie różnicę między źródłem światła a przedmiotem, który odbija światło.",
+      qm: "Yarıq menbası ile yarıqnı aks ettirgen cisim arasındaki farqnı hatırla."
     }
   }
 });

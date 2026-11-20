@@ -9,7 +9,10 @@ export const explanationText = defineText<"explanationText", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Сонце освітлює Місяць. Його поверхня відбиває частину сонячного світла до наших очей."
+      uk: "Сонце освітлює Місяць. Його поверхня відбиває частину сонячного світла до наших очей.",
+      en: "The Sun illuminates the Moon. The Moon's surface reflects some of that sunlight toward our eyes.",
+      pl: "Słońce oświetla Księżyc. Jego powierzchnia odbija część światła słonecznego w stronę naszych oczu.",
+      qm: "Küneş Ayni aydınlata. Ayniñ yüzü Küneş yarığınıñ bir qısmını közlerimizge doğru aks ettire."
     }
   }
 });

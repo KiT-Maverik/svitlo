@@ -9,7 +9,10 @@ export const sunReflected = defineText<"sunReflected", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Місяць відбиває світло Сонця."
+      uk: "Місяць відбиває світло Сонця.",
+      en: "The Moon reflects sunlight.",
+      pl: "Księżyc odbija światło Słońca.",
+      qm: "Ay Küneş yarığını aks ettire."
     }
   }
 });

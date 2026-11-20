@@ -9,7 +9,10 @@ export const prompt = defineText<"prompt", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "На вечірньому небі світиться Місяць. Звідки береться світло, яке ми бачимо від Місяця?"
+      uk: "На вечірньому небі світиться Місяць. Звідки береться світло, яке ми бачимо від Місяця?",
+      en: "The Moon glows in the evening sky. Where does the light we see coming from the Moon originate?",
+      pl: "Księżyc świeci na wieczornym niebie. Skąd pochodzi światło, które widzimy od Księżyca?",
+      qm: "Aqşam kökte Ay yarqıray. Biz Aydan körgen yarıq qaydan kele?"
     }
   }
 });

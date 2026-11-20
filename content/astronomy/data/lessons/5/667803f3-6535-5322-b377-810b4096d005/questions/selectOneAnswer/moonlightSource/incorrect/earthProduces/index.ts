@@ -9,7 +9,10 @@ export const earthProduces = defineText<"earthProduces", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Місяць відбиває світло лише далеких зір, а не Сонця."
+      uk: "Місяць відбиває світло лише далеких зір, а не Сонця.",
+      en: "The Moon reflects light only from distant stars, not the Sun.",
+      pl: "Księżyc odbija światło tylko od odległych gwiazd, a nie od Słońca.",
+      qm: "Ay Küneşniñ degil, yalnız uzaq yıldızlarnıñ yarığını aks ettire."
     }
   }
 });

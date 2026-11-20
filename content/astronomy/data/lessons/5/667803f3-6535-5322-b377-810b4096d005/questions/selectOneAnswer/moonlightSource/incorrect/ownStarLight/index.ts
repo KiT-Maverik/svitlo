@@ -9,7 +9,10 @@ export const ownStarLight = defineText<"ownStarLight", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Місяць виробляє власне світло, як зоря."
+      uk: "Місяць виробляє власне світло, як зоря.",
+      en: "The Moon produces its own light, like a star.",
+      pl: "Księżyc wytwarza własne światło, tak jak gwiazda.",
+      qm: "Ay yıldız kibi öz yarığını çıqara."
     }
   }
 });

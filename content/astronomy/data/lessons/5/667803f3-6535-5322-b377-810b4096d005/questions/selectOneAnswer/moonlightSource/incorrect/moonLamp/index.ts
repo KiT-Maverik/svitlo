@@ -9,7 +9,10 @@ export const moonLamp = defineText<"moonLamp", LessonLanguages>({
   params: {},
   locale: {
     value: {
-      uk: "Місяць світиться, бо його каміння дуже гаряче."
+      uk: "Місяць світиться, бо його каміння дуже гаряче.",
+      en: "The Moon glows because its rocks are very hot.",
+      pl: "Księżyc świeci, ponieważ jego skały są bardzo gorące.",
+      qm: "Ay taşları pek sıcaq olğanı içün yarqıray."
     }
   }
 });
