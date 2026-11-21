@@ -832,34 +832,37 @@ export function parseArgs(argv) {
       if (opts[key] || !value) fail('duplicate/missing option ' + key);
       opts[key] = value;
       i++;
-    } else if (['--write', '--check', '--finalize'].includes(key)) {
+    } else if (['--write', '--check'].includes(key)) {
       if (opts.action) fail('choose exactly one mode');
       opts.action = key;
-    } else if (key === '--preserve-config') {
-      if (opts.preserveConfig) fail('duplicate option ' + key);
-      opts.preserveConfig = true;
     } else fail('unknown option ' + key);
   }
   if (!PACKAGE.test(opts['--package'] ?? '') || !UUID.test(opts['--course'] ?? '') || !opts.action)
-    fail('usage: --package content/<book> --course <uuid> --write|--check|--finalize [--preserve-config]');
-  if (opts.preserveConfig && opts.action !== '--finalize') fail('--preserve-config is only valid with --finalize');
-  return { pkg: opts['--package'], id: opts['--course'], mode: opts.action, preserveConfig: !!opts.preserveConfig };
+    fail('usage: --package content/<book> --course <uuid> --write|--check');
+  return { pkg: opts['--package'], id: opts['--course'], mode: opts.action };
 }
 export function materialize(argv, root = rootDefault) {
-  const { pkg, id, mode, preserveConfig } = parseArgs(argv);
+  const { pkg, id, mode } = parseArgs(argv);
   const folder = path.join(root, pkg, 'data/courses', id.at(-1), id);
   const source = path.join(folder, 'course.yaml');
   assertPath(source);
   if (!fs.existsSync(source)) fail('missing approved temporary course.yaml: ' + source);
+  if (!fs.lstatSync(source).isFile()) fail('course.yaml must be a regular file');
   if (fs.statSync(source).size > 2 * 1024 * 1024) fail('course.yaml exceeds 2MiB');
-  const plan = parseYaml(fs.readFileSync(source, 'utf8'));
+  const sourceBytes = fs.readFileSync(source);
+  const plan = parseYaml(sourceBytes.toString('utf8'));
   if (plan.id !== id) fail('Course UUID in plan does not match canonical folder');
   const lessonIndex = buildLessonIndex(root, pkg);
   const artifacts = planArtifacts(plan, pkg, root, lessonIndex);
   checkArtifacts(artifacts, mode);
-  if (mode === '--write') writeArtifacts(artifacts);
-  else if (mode === '--finalize' && !preserveConfig) {
-    // Only after a separate successful check/commit; Git retains the plan history.
+  if (mode === '--write') {
+    writeArtifacts(artifacts);
+    // Verification is part of the one write operation, not a second CLI phase.
+    checkArtifacts(artifacts, '--check');
+    assertPath(source);
+    if (!fs.lstatSync(source).isFile() || !fs.readFileSync(source).equals(sourceBytes))
+      fail('Course YAML changed during materialization; source retained');
+    // This exact temporary input is deleted only after the complete verified write.
     fs.unlinkSync(source);
   }
   console.log(

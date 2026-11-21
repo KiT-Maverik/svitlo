@@ -7,7 +7,13 @@ import { fileURLToPath } from 'node:url';
 import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import YAML from 'yaml';
-import { parseIdentity, parseTrigger, requireStageSixPending, validateArtifactPath, gitBlob } from './lesson-gate.mjs';
+import {
+  parseIdentity,
+  parseTrigger,
+  requireStageSixPending,
+  validateArtifactPath,
+  gitBlob,
+} from './lesson-gate.mjs';
 import {
   identicalSnapshot,
   verifyManifest,

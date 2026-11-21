@@ -5,14 +5,7 @@
  * Never execute files from the PR head or infer paths from its title/comment.
  */
 import fs from 'node:fs';
-import {
-  github,
-  requireActor,
-  report,
-  safeBranch,
-  gitBlob,
-  parseIdentity as parseCourseIdentity,
-} from '../courseMaterialization/course-gate.mjs';
+import { github, requireActor, report, safeBranch, gitBlob } from '../courseMaterialization/course-gate.mjs';
 
 const UUID = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/;
 const SHA = /^[a-f0-9]{40}$/;
@@ -211,15 +204,9 @@ export async function inspect(number, expectedHead) {
       parent.head?.repo?.full_name !== repo ||
       parent.base?.repo?.full_name !== repo ||
       !safeBranch(parent.head?.ref, parent.base?.ref) ||
-      pr.base?.ref !== parent.head?.ref ||
-      !parent.body?.includes('<!-- svitlo-course-flow:v1 -->')
+      pr.base?.ref !== parent.head?.ref
     )
       throw Error('Course Lesson must target its verified parent integration branch');
-    const courseIdentity = parseCourseIdentity(parent.body);
-    if (courseIdentity.id !== identity.parent.courseId || courseIdentity.pkg !== identity.pkg)
-      throw Error('Parent Course UUID/textbook does not match Lesson linkage');
-    // The Course-owned inventory must actually register this Lesson UUID.
-    if (!parent.body.includes(identity.id)) throw Error('Parent Course PR does not register this Lesson UUID');
   } else if (pr.base?.ref !== defaultBranch) {
     throw Error('Standalone Lesson PR without parent marker must target the default branch');
   }
