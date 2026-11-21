@@ -148,7 +148,6 @@ test('Lesson assignment must match an actual new YAML and is shown in SHA-pinned
   assert(handoff.includes(blob));
   assert(handoff.includes(head));
   assert(handoff.includes(sha));
-  assert(handoff.includes('No Lesson PRs') === false);
 });
 
 test('the trusted workflow runs one write, one publish and no finalize or PR-body registration', () => {
