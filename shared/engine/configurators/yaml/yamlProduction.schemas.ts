@@ -28,8 +28,8 @@ const courseMethodology_Schema = z.strictObject({
 
 export const yamlProduction_Schemas = {
   course: z.strictObject({
-    documentLanguage: languageCode_Schema.optional(),
-    methodology: courseMethodology_Schema.optional(),
+    documentLanguage: languageCode_Schema,
+    methodology: courseMethodology_Schema,
     openDecisions: z.record(z.string(), prose).optional(),
     productionNotes: prose.optional(),
   }),
