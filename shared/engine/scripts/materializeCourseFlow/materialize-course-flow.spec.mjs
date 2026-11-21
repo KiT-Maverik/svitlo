@@ -165,7 +165,7 @@ test('missing Course-owned identities are deterministically allocated, malformed
   const courses = { ...plan, outcomes: { courses: [id] } };
   assert.throws(() => technicalFromEditorial(courses), /outcomes.courses/);
 });
-test('non-clobbering lifecycle and explicit finalization', () => {
+test('one write validates and removes only course.yaml, safe re-invocation cannot overwrite', () => {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-course-flow-'));
   const folder = path.join(root, 'content/math/data/courses', id.at(-1), id);
   const args = ['--package', 'content/math', '--course', id];
@@ -175,17 +175,15 @@ test('non-clobbering lifecycle and explicit finalization', () => {
     const artifacts = planArtifacts(plan, 'content/math', root, { candidates: [], diagnostics: [] });
     assert.equal(artifacts.files.has('config.yaml'), false);
     assert.equal(artifacts.lessonFiles.size, 0);
+    assert.throws(() => materialize([...args, '--check'], root), /missing materialized source/);
     materialize([...args, '--write'], root);
     assert(fs.existsSync(path.join(folder, 'index.ts')));
-    materialize([...args, '--check'], root);
-    assert.equal(materialize([...args, '--write'], root).skipped, false);
-    assert.throws(() => materialize([...args, '--check', '--preserve-config'], root), /only valid with --finalize/);
-    materialize([...args, '--finalize', '--preserve-config'], root);
-    assert(fs.existsSync(path.join(folder, 'course.yaml')), 'preserved for local debugging');
     assert.equal(fs.existsSync(path.join(folder, 'config.yaml')), false);
-    assert(fs.existsSync(path.join(folder, 'course.yaml')));
-    materialize([...args, '--finalize'], root);
     assert.equal(fs.existsSync(path.join(folder, 'course.yaml')), false);
+    assert.throws(() => materialize([...args, '--write'], root), /missing approved temporary course.yaml/);
+    assert.throws(() => materialize([...args, '--check'], root), /missing approved temporary course.yaml/);
+    assert.throws(() => materialize([...args, '--finalize'], root), /unknown option/);
+    assert.throws(() => materialize([...args, '--write', '--preserve-config'], root), /unknown option/);
     assert(fs.existsSync(path.join(folder, 'methodology.md')));
     assert(fs.existsSync(path.join(folder, 'content/foundations/methodology.md')));
     assert(fs.existsSync(path.join(folder, 'content/foundations/first/methodology.md')));
@@ -193,6 +191,7 @@ test('non-clobbering lifecycle and explicit finalization', () => {
     fs.rmSync(root, { recursive: true, force: true });
   }
 });
+
 test('divergent authored handoffs never get overwritten', () => {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-course-protection-'));
   const folder = path.join(root, 'content/math/data/courses', id.at(-1), id);
@@ -258,10 +257,8 @@ test('planned Lesson is materialized with a stable UUID and complete methodology
     assert.equal(obj.production.methodology, input.content.items.review.methodology);
     assert(filename.endsWith('/data/lessons/' + obj.config.id.at(-1) + '/' + obj.config.id + '/lesson.yaml'));
     materialize(['--package', 'content/math', '--course', id, '--write'], root);
-    materialize(['--package', 'content/math', '--course', id, '--check'], root);
     assert.equal(fs.readFileSync(filename, 'utf8'), yaml);
     assert(!fs.existsSync(path.join(folder, 'config.yaml')));
-    materialize(['--package', 'content/math', '--course', id, '--finalize'], root);
     assert(!fs.existsSync(path.join(folder, 'course.yaml')));
     assert(fs.existsSync(filename), 'standalone Lesson YAML is not removed by Course finalization');
   } finally {
