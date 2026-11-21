@@ -3,3 +3,5 @@ export * from './yamlSection.schemas';
 export * from './yamlQuestion.schemas';
 export * from './yamlLessonCourse.schemas';
 export * from './yamlFactoryByType';
+export * from './yamlProduction.schemas';
+export * from './yamlAuthoring.schemas';
