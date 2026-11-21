@@ -9,14 +9,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { createHash } from 'node:crypto';
 import { execFileSync } from 'node:child_process';
-import {
-  github,
-  inspect,
-  requireActor,
-  report,
-  gitBlob,
-  validateArtifactPath,
-} from './course-gate.mjs';
+import { github, inspect, requireActor, report, gitBlob, validateArtifactPath } from './course-gate.mjs';
 
 function sha256(bytes) {
   return createHash('sha256').update(bytes).digest('hex');
@@ -109,87 +102,142 @@ const SLUG = /^[a-z][A-Za-z0-9]*$/;
 /** Verify each newly allocated Lesson against an actual new YAML source. */
 function validateLessonAssignments(manifest, meta) {
   const assignments = manifest.lessonAssignments;
-  if (!Array.isArray(assignments) || assignments.length > 500)
-    throw Error('Invalid generated Lesson assignment list');
-  const ids = new Set(), filenames = new Set();
+  if (!Array.isArray(assignments) || assignments.length > 500) throw Error('Invalid generated Lesson assignment list');
+  const ids = new Set(),
+    filenames = new Set();
   for (const lesson of assignments) {
-    if (!lesson || typeof lesson.id !== 'string' || !UUID.test(lesson.id) ||
-      typeof lesson.slug !== 'string' || !SLUG.test(lesson.slug) ||
-      typeof lesson.title !== 'string' || !lesson.title.trim() ||
-      lesson.title.length > 300 || /[\r\n\x00-\x1f]/.test(lesson.title) ||
+    if (
+      !lesson ||
+      typeof lesson.id !== 'string' ||
+      !UUID.test(lesson.id) ||
+      typeof lesson.slug !== 'string' ||
+      !SLUG.test(lesson.slug) ||
+      typeof lesson.title !== 'string' ||
+      !lesson.title.trim() ||
+      lesson.title.length > 300 ||
+      /[\r\n\x00-\x1f]/.test(lesson.title) ||
       lesson.path !== meta.identity.pkg + '/data/lessons/' + lesson.id.at(-1) + '/' + lesson.id + '/lesson.yaml' ||
-      ids.has(lesson.id) || filenames.has(lesson.path))
+      ids.has(lesson.id) ||
+      filenames.has(lesson.path)
+    )
       throw Error('Invalid or duplicated generated Lesson identity');
-    ids.add(lesson.id); filenames.add(lesson.path);
+    ids.add(lesson.id);
+    filenames.add(lesson.path);
     if (!manifest.entries.some(entry => entry.action === 'create' && entry.path === lesson.path))
       throw Error('Generated Lesson identity has no newly written source');
   }
   for (const entry of manifest.entries)
-    if (entry.action === 'create' && entry.path.startsWith(meta.identity.pkg + '/data/lessons/') &&
-      entry.path.endsWith('/lesson.yaml') && !filenames.has(entry.path))
+    if (
+      entry.action === 'create' &&
+      entry.path.startsWith(meta.identity.pkg + '/data/lessons/') &&
+      entry.path.endsWith('/lesson.yaml') &&
+      !filenames.has(entry.path)
+    )
       throw Error('Generated Lesson YAML lacks a registered identity');
   return assignments;
 }
 
 /** Append-only Actions summary; never read or rewrite the Course PR description. */
 export function renderLessonHandoff(manifest, commitSha) {
-  const safe = value => value.replaceAll('&', '&amp;').replaceAll('<', '&lt;')
-    .replaceAll('>', '&gt;').replaceAll('|', '&#124;');
-  const rows = manifest.lessonAssignments.map(lesson =>
-    '| ' + safe(lesson.title) + ' | ' + lesson.slug + ' | ' + lesson.id +
-    ' | [lesson.yaml](https://github.com/' + manifest.repo + '/blob/' + commitSha + '/' + lesson.path + ') |');
+  const safe = value =>
+    value.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('|', '&#124;');
+  const rows = manifest.lessonAssignments.map(
+    lesson =>
+      '| ' +
+      safe(lesson.title) +
+      ' | ' +
+      lesson.slug +
+      ' | ' +
+      lesson.id +
+      ' | [lesson.yaml](https://github.com/' +
+      manifest.repo +
+      '/blob/' +
+      commitSha +
+      '/' +
+      lesson.path +
+      ') |',
+  );
   return [
-    '### Course Stage 5 — source-pinned Lesson handoff', '',
-    'Course PR: #' + manifest.pr + '; Course UUID: ' + manifest.identity.id, '',
-    'Original PR HEAD: ' + manifest.head, '',
-    'Original course.yaml Git blob SHA: ' + manifest.sourceBlob, '',
-    'One atomic materialization commit: ' + commitSha, '',
+    '### Course Stage 5 — source-pinned Lesson handoff',
+    '',
+    'Course PR: #' + manifest.pr + '; Course UUID: ' + manifest.identity.id,
+    '',
+    'Original PR HEAD: ' + manifest.head,
+    '',
+    'Original course.yaml Git blob SHA: ' + manifest.sourceBlob,
+    '',
+    'One atomic materialization commit: ' + commitSha,
+    '',
     '| Source title | Slug | UUID | Committed Lesson YAML |',
     '| --- | --- | --- | --- |',
-    ...(rows.length ? rows : ['| No new Lessons | — | — | — |']), '',
+    ...(rows.length ? rows : ['| No new Lessons | — | — | — |']),
+    '',
     'Stage 5 does not start Lesson PRs or certify Lessons, Scenes, translations or publication.',
   ].join('\n');
 }
 
 /** All create and delete entries form a single Git Data API tree and commit. */
 export function publicationTreeEntries(entries) {
-  return entries.map(entry => entry.action === 'delete'
-    ? { path: entry.path, mode: '100644', type: 'blob', sha: null }
-    : { path: entry.path, mode: '100644', type: 'blob', content: Buffer.from(entry.data, 'base64').toString('utf8') });
+  return entries.map(entry =>
+    entry.action === 'delete'
+      ? { path: entry.path, mode: '100644', type: 'blob', sha: null }
+      : { path: entry.path, mode: '100644', type: 'blob', content: Buffer.from(entry.data, 'base64').toString('utf8') },
+  );
 }
 
 function verifyManifest(manifest, meta, root) {
   if (
-    !manifest || manifest.version !== 1 || manifest.pr !== meta.number ||
-    manifest.operation !== 'materialize' || meta.operation !== 'materialize' ||
-    manifest.head !== meta.head || manifest.repo !== meta.repo ||
+    !manifest ||
+    manifest.version !== 1 ||
+    manifest.pr !== meta.number ||
+    manifest.operation !== 'materialize' ||
+    meta.operation !== 'materialize' ||
+    manifest.head !== meta.head ||
+    manifest.repo !== meta.repo ||
     manifest.sourceBlob !== meta.sourceBlob ||
     JSON.stringify(manifest.identity) !== JSON.stringify(meta.identity) ||
-    !Array.isArray(manifest.entries) || manifest.entries.length > 2500
-  ) throw Error('Artifact metadata differs from authorized PR and source');
+    !Array.isArray(manifest.entries) ||
+    manifest.entries.length > 2500
+  )
+    throw Error('Artifact metadata differs from authorized PR and source');
   const tracked = trackedFiles(root, meta.identity.pkg);
   if (!tracked.has(meta.identity.yaml)) throw Error('Pinned Course YAML is not tracked');
-  let total = 0, creates = 0, deletes = 0;
+  let total = 0,
+    creates = 0,
+    deletes = 0;
   const seen = new Set();
   for (const entry of manifest.entries) {
     if (!entry || !validateArtifactPath(entry.path, meta.identity, meta.operation) || seen.has(entry.path))
       throw Error('Unallowlisted or duplicated artifact path');
     seen.add(entry.path);
     if (entry.action === 'delete') {
-      if (entry.path !== meta.identity.yaml || !tracked.has(entry.path) ||
-        Object.hasOwn(entry, 'data') || Object.hasOwn(entry, 'sha256'))
+      if (
+        entry.path !== meta.identity.yaml ||
+        !tracked.has(entry.path) ||
+        Object.hasOwn(entry, 'data') ||
+        Object.hasOwn(entry, 'sha256')
+      )
         throw Error('Only the tracked Course YAML may be deleted');
       deletes++;
     } else if (entry.action === 'create') {
-      if (entry.path === meta.identity.yaml || tracked.has(entry.path) ||
-        typeof entry.data !== 'string' || entry.data.length > 12 * 1024 * 1024 ||
-        !/^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/.test(entry.data))
+      if (
+        entry.path === meta.identity.yaml ||
+        tracked.has(entry.path) ||
+        typeof entry.data !== 'string' ||
+        entry.data.length > 12 * 1024 * 1024 ||
+        !/^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/.test(entry.data)
+      )
         throw Error('Artifact must create a new allowlisted source file');
       const bytes = Buffer.from(entry.data, 'base64');
-      if (bytes.toString('base64') !== entry.data || !bytes.length ||
-        sha256(bytes) !== entry.sha256 || !Buffer.from(bytes.toString('utf8'), 'utf8').equals(bytes))
+      if (
+        bytes.toString('base64') !== entry.data ||
+        !bytes.length ||
+        sha256(bytes) !== entry.sha256 ||
+        !Buffer.from(bytes.toString('utf8'), 'utf8').equals(bytes)
+      )
         throw Error('Invalid artifact bytes/hash');
-      total += bytes.length; creates++;
+      total += bytes.length;
+      creates++;
     } else throw Error('Unsupported Course file operation');
   }
   if (total > 32 * 1024 * 1024) throw Error('Generated artifact exceeds 32MiB safe handoff limit');
@@ -236,40 +284,61 @@ async function analyze(root, meta) {
     await import('../../../shared/engine/scripts/materializeCourseFlow/materialize-course-flow.mjs');
   // Exactly one Engine --write invocation. Preflight, output verification,
   // source-fidelity checking, and YAML deletion are internal to that call.
-  const { artifacts } = materialize([
-    '--package', meta.identity.pkg, '--course', meta.identity.id, '--write',
-  ], root);
+  const { artifacts } = materialize(['--package', meta.identity.pkg, '--course', meta.identity.id, '--write'], root);
   const entries = [];
   for (const [relative, content] of artifacts.files) {
     const local = relativeSafe(root, path.join(artifacts.folder, relative));
     if (tracked.has(local)) continue;
-    entries.push({ path: local, action: 'create',
-      data: Buffer.from(content).toString('base64'), sha256: sha256(Buffer.from(content)) });
+    entries.push({
+      path: local,
+      action: 'create',
+      data: Buffer.from(content).toString('base64'),
+      sha256: sha256(Buffer.from(content)),
+    });
   }
   for (const [filename, content] of artifacts.lessonFiles) {
     const local = relativeSafe(root, filename);
     if (tracked.has(local)) continue;
-    entries.push({ path: local, action: 'create',
-      data: Buffer.from(content).toString('base64'), sha256: sha256(Buffer.from(content)) });
+    entries.push({
+      path: local,
+      action: 'create',
+      data: Buffer.from(content).toString('base64'),
+      sha256: sha256(Buffer.from(content)),
+    });
   }
   entries.push({ path: meta.identity.yaml, action: 'delete' });
   const manifest = {
-    version: 1, repo: meta.repo, pr: meta.number, operation: 'materialize',
-    head: meta.head, identity: meta.identity, sourceBlob: meta.sourceBlob,
+    version: 1,
+    repo: meta.repo,
+    pr: meta.number,
+    operation: 'materialize',
+    head: meta.head,
+    identity: meta.identity,
+    sourceBlob: meta.sourceBlob,
     lessonAssignments: artifacts.lessonAssignments,
     entries: entries.sort((a, b) => a.path.localeCompare(b.path)),
   };
   verifyManifest(manifest, meta, root);
   const changed = changedFiles(root);
-  if (changed.size !== entries.length ||
-    entries.some(entry => changed.get(entry.path) !== (entry.action === 'create' ? '??' : ' D')))
+  if (
+    changed.size !== entries.length ||
+    entries.some(entry => changed.get(entry.path) !== (entry.action === 'create' ? '??' : ' D'))
+  )
     throw Error('Unapproved generated or modified files detected');
   const output = process.env.COURSE_REPORT;
   if (!output) throw Error('COURSE_REPORT is required');
   fs.mkdirSync(path.dirname(output), { recursive: true });
   fs.writeFileSync(output, JSON.stringify(manifest));
-  report('Analyzed atomic Course materialization at PR #' + meta.number +
-    ' / ' + meta.head + ': ' + entries.length + ' allowlisted changes; source blob ' + meta.sourceBlob);
+  report(
+    'Analyzed atomic Course materialization at PR #' +
+      meta.number +
+      ' / ' +
+      meta.head +
+      ': ' +
+      entries.length +
+      ' allowlisted changes; source blob ' +
+      meta.sourceBlob,
+  );
 }
 
 async function publish(root, meta) {
@@ -287,24 +356,37 @@ async function publish(root, meta) {
   });
   if (!/^[a-f0-9]{40}$/.test(tree?.sha ?? '')) throw Error('Git tree creation failed');
   const next = await github('git/commits', 'POST', {
-    message: 'Materialize Course ' + meta.identity.id +
-      '\n\nCourse-PR: #' + meta.number +
-      '\nCourse-Source-Commit: ' + meta.head +
-      '\nCourse-Source-Blob: ' + meta.sourceBlob,
+    message:
+      'Materialize Course ' +
+      meta.identity.id +
+      '\n\nCourse-PR: #' +
+      meta.number +
+      '\nCourse-Source-Commit: ' +
+      meta.head +
+      '\nCourse-Source-Blob: ' +
+      meta.sourceBlob,
     tree: tree.sha,
     parents: [meta.head],
   });
   if (!/^[a-f0-9]{40}$/.test(next?.sha ?? '')) throw Error('Git commit creation failed');
   const beforeWrite = await github('pulls/' + meta.number);
-  if (beforeWrite?.head?.sha !== meta.head || beforeWrite.head.ref !== meta.branch ||
-    beforeWrite.state !== 'open')
+  if (beforeWrite?.head?.sha !== meta.head || beforeWrite.head.ref !== meta.branch || beforeWrite.state !== 'open')
     throw Error('PR HEAD advanced before write; no branch ref updated');
   const fresh = await inspect(meta.number, meta.head);
   if (!identicalSnapshot(fresh, meta)) throw Error('Course identity/source changed before ref update');
   const updated = await github('git/refs/heads/' + meta.branch, 'PATCH', { sha: next.sha, force: false });
   if (updated?.object?.sha !== next.sha) throw Error('GitHub did not confirm the exact new branch ref');
-  report('Committed ' + count + ' verified Course Stage 5 changes to PR #' + meta.number +
-    ': ' + next.sha + ' (pinned source blob ' + meta.sourceBlob + ')');
+  report(
+    'Committed ' +
+      count +
+      ' verified Course Stage 5 changes to PR #' +
+      meta.number +
+      ': ' +
+      next.sha +
+      ' (pinned source blob ' +
+      meta.sourceBlob +
+      ')',
+  );
   report(renderLessonHandoff(manifest, next.sha));
 }
 

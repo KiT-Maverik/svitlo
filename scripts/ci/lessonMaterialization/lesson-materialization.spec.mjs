@@ -7,7 +7,14 @@ import { fileURLToPath } from 'node:url';
 import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import YAML from 'yaml';
-import { parseIdentity, parseTrigger, requireStageSixPending, validateArtifactPath, verifyCourseParentSources, gitBlob } from './lesson-gate.mjs';
+import {
+  parseIdentity,
+  parseTrigger,
+  requireStageSixPending,
+  validateArtifactPath,
+  verifyCourseParentSources,
+  gitBlob,
+} from './lesson-gate.mjs';
 import {
   identicalSnapshot,
   verifyManifest,
@@ -86,22 +93,42 @@ test('Course Lesson parent membership uses immutable Git sources, never parent d
     if (route.startsWith('git/blobs/')) return { encoding: 'base64', content: buffer.toString('base64') };
     throw Error('unexpected route: ' + route);
   };
-  const identity = { id: lessonId, pkg: packagePath, yaml: lessonSource,
-    parent: { courseId, parentPr: 764 } };
-  assert.deepEqual(
-    await verifyCourseParentSources(parent, identity, get),
-    { courseId, parentHead: parent.head.sha, courseRoot, lesson: lessonSource },
+  const identity = { id: lessonId, pkg: packagePath, yaml: lessonSource, parent: { courseId, parentPr: 764 } };
+  assert.deepEqual(await verifyCourseParentSources(parent, identity, get), {
+    courseId,
+    parentHead: parent.head.sha,
+    courseRoot,
+    lesson: lessonSource,
+  });
+  await assert.rejects(
+    () =>
+      verifyCourseParentSources(
+        parent,
+        {
+          ...identity,
+          id: 'e'.repeat(8) + '-1111-4111-8111-111111111111',
+        },
+        get,
+      ),
+    /does not reference/,
   );
-  await assert.rejects(() => verifyCourseParentSources(parent, {
-    ...identity, id: 'e'.repeat(8) + '-1111-4111-8111-111111111111',
-  }, get), /does not reference/);
-  await assert.rejects(() => verifyCourseParentSources(parent, { ...identity,
-    yaml: lessonSource.replace('/lessons/', '/lessons/other/'),
-  }, get), /lacks the generated/);
-  await assert.rejects(() => verifyCourseParentSources(parent, identity, async route => {
-    if (route.startsWith('git/trees/')) return { truncated: true, tree: files };
-    return get(route);
-  }), /Incomplete parent/);
+  await assert.rejects(
+    () =>
+      verifyCourseParentSources(
+        parent,
+        { ...identity, yaml: lessonSource.replace('/lessons/', '/lessons/other/') },
+        get,
+      ),
+    /lacks the generated/,
+  );
+  await assert.rejects(
+    () =>
+      verifyCourseParentSources(parent, identity, async route => {
+        if (route.startsWith('git/trees/')) return { truncated: true, tree: files };
+        return get(route);
+      }),
+    /Incomplete parent/,
+  );
 });
 
 test('exact Course-Lesson marker, identity, UUID bucket and source are required', () => {

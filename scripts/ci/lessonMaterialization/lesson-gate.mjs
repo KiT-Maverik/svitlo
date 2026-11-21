@@ -5,13 +5,7 @@
  * Never execute files from the PR head or infer paths from its title/comment.
  */
 import fs from 'node:fs';
-import {
-  github,
-  requireActor,
-  report,
-  safeBranch,
-  gitBlob,
-} from '../courseMaterialization/course-gate.mjs';
+import { github, requireActor, report, safeBranch, gitBlob } from '../courseMaterialization/course-gate.mjs';
 
 const UUID = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/;
 const SHA = /^[a-f0-9]{40}$/;
@@ -202,17 +196,14 @@ export async function verifyCourseParentSources(parent, identity, get = github) 
   const files = new Map();
   for (const item of response.tree) {
     if (item.type !== 'blob' || !SHA.test(item.sha ?? '')) continue;
-    if (item.path.startsWith(prefix) || item.path === identity.yaml)
-      files.set(item.path, item);
+    if (item.path.startsWith(prefix) || item.path === identity.yaml) files.set(item.path, item);
   }
   if (!files.has(prefix + 'index.ts') || !files.has(identity.yaml))
     throw Error('Parent Course lacks the generated Course source or this Lesson YAML');
-  const candidates = [...files.values()].filter(item =>
-    item.path === prefix + 'index.ts' ||
-      (item.path.startsWith(prefix) && item.path.endsWith('/index.ts')),
+  const candidates = [...files.values()].filter(
+    item => item.path === prefix + 'index.ts' || (item.path.startsWith(prefix) && item.path.endsWith('/index.ts')),
   );
-  if (!candidates.length || candidates.length > 500)
-    throw Error('Invalid parent Course source inventory');
+  if (!candidates.length || candidates.length > 500) throw Error('Invalid parent Course source inventory');
   const needle = '#lessonsData/' + identity.id.at(-1) + '/' + identity.id + '/';
   let found = false;
   for (const candidate of candidates) {
@@ -224,7 +215,10 @@ export async function verifyCourseParentSources(parent, identity, get = github) 
     const bytes = Buffer.from(blob.content.replace(/\s/g, ''), 'base64');
     if (bytes.length !== candidate.size || bytes.toString('base64') !== blob.content.replace(/\s/g, ''))
       throw Error('Malformed parent Course source blob');
-    if (bytes.toString('utf8').includes(needle)) { found = true; break; }
+    if (bytes.toString('utf8').includes(needle)) {
+      found = true;
+      break;
+    }
   }
   if (!found) throw Error('Parent Course source does not reference this Lesson UUID');
   return { courseId, parentHead: parent.head.sha, courseRoot: prefix, lesson: identity.yaml };

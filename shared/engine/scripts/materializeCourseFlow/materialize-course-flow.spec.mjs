@@ -193,25 +193,31 @@ test('one write validates and removes only course.yaml, safe re-invocation canno
 });
 
 test('three explicit YAML null params in nested Episode drafts fail before any output or cleanup', () => {
-  const locations = [
-    ['welcome'],
-    ['welcome', 'greeting'],
-    ['welcome', 'choosePath'],
-  ];
+  const locations = [['welcome'], ['welcome', 'greeting'], ['welcome', 'choosePath']];
   for (const location of locations) {
     const root = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-course-null-'));
     const folder = path.join(root, 'content/math/data/courses', id.at(-1), id);
     const input = structuredClone(plan);
     input.content.items.story = {
-      type: 'episode', slug: 'story', title: 'Course intro',
-      section: { items: { welcome: {
-        type: 'content', slug: 'welcome', content: {
-          items: {
-            greeting: { type: 'markdown', slug: 'greeting', locale: { value: { en: 'Welcome' } } },
-            choosePath: { type: 'scene', slug: 'choosePath', locale: { value: { prompt: { en: 'Choose' } } } },
-          }, order: ['greeting', 'choosePath'],
+      type: 'episode',
+      slug: 'story',
+      title: 'Course intro',
+      section: {
+        items: {
+          welcome: {
+            type: 'content',
+            slug: 'welcome',
+            content: {
+              items: {
+                greeting: { type: 'markdown', slug: 'greeting', locale: { value: { en: 'Welcome' } } },
+                choosePath: { type: 'scene', slug: 'choosePath', locale: { value: { prompt: { en: 'Choose' } } } },
+              },
+              order: ['greeting', 'choosePath'],
+            },
+          },
         },
-      } }, order: ['welcome'] },
+        order: ['welcome'],
+      },
     };
     input.content.order.push('story');
     const welcome = input.content.items.story.section.items.welcome;
@@ -222,8 +228,10 @@ test('three explicit YAML null params in nested Episode drafts fail before any o
       const source = path.join(folder, 'course.yaml');
       const yaml = YAML.stringify(input);
       fs.writeFileSync(source, yaml);
-      assert.throws(() => materialize(['--package', 'content/math', '--course', id, '--write'], root),
-        /params must be a non-null object/);
+      assert.throws(
+        () => materialize(['--package', 'content/math', '--course', id, '--write'], root),
+        /params must be a non-null object/,
+      );
       assert.equal(fs.readFileSync(source, 'utf8'), yaml, 'original Course source retained');
       assert(!fs.existsSync(path.join(folder, 'index.ts')), 'no Course outputs written');
       assert(!fs.existsSync(path.join(folder, 'content/story/index.ts')), 'no Episode outputs written');
