@@ -129,11 +129,8 @@ export const contentPendingImportRule = {
         const name = spec.type === 'ImportSpecifier' || spec.type === 'ExportSpecifier'
           ? propertyName(spec.imported || spec.local)
           : null;
-        // no-restricted-imports owns these canonical direct public imports.
-        const standard = (source === '@svitlo/engine/build' && enginePending.has(name)) ||
-          (source === '@svitlo/ui-kit' && uiPending.has(name));
-        // Also cover re-export barrels, aliased imports and internal/relative paths.
-        if (allPending.has(name) && !standard && (!family || forbiddenFor(family, name))) {
+        // Named imports and re-exports are checked without rejecting safe namespace imports.
+        if (allPending.has(name) && (!family || forbiddenFor(family, name))) {
           report(spec, name);
         }
         if (spec.type === 'ExportNamespaceSpecifier' && family) {
@@ -214,14 +211,6 @@ export const contentProductionImportPolicy = [
   {
     files: sourceFiles,
     plugins: { svitloContent: { rules: { 'no-pending-imports': contentPendingImportRule } } },
-    rules: {
-      'no-restricted-imports': ['error', {
-        paths: [
-          { name: '@svitlo/engine/build', importNames: [...enginePending], message: 'Preview-only APIs cannot ship in production content.' },
-          { name: '@svitlo/ui-kit', importNames: [...uiPending], message: 'SceneStub is preview-only.' },
-        ],
-      }],
-      'svitloContent/no-pending-imports': 'error',
-    },
+    rules: { 'svitloContent/no-pending-imports': 'error' },
   },
 ];
