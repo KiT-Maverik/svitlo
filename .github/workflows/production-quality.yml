@@ -133,6 +133,8 @@ jobs:
           cache: npm
       - name: Install pinned dependencies
         run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --no-audit --no-fund
+      - name: Verify content lint policy and workspace coverage
+        run: node --test eslint/content-production-imports.spec.mjs
       - name: Lint all eligible workspaces
         run: node scripts/ci/quietRun/quiet-run.mjs -- npm run code:lint:check
 

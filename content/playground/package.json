@@ -16,7 +16,9 @@
     "test:publish": "node --test ../../scripts/textbook-tooling/publishTextbook/test-publish.mjs test-course-output.mjs",
     "prepack": "npm run package:build",
     "code:format:check": "prettier --check . --ignore-path ../../.prettierignore",
-    "code:format:fix": "prettier --write . --ignore-path ../../.prettierignore"
+    "code:format:fix": "prettier --write . --ignore-path ../../.prettierignore",
+    "code:lint:check": "eslint .",
+    "code:lint:fix": "eslint . --fix"
   },
   "dependencies": {
     "@svitlo/engine": "0.0.0",
