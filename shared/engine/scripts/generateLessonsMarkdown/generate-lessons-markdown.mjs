@@ -5,7 +5,7 @@
  * node shared/engine/scripts/generateLessonsMarkdown/generate-lessons-markdown.mjs --package content/playground \
  *   --lesson d3048d21-8690-5255-b62c-984c69ac272c --locale uk --stdout
  * node shared/engine/scripts/generateLessonsMarkdown/generate-lessons-markdown.mjs --package content/playground \
- *   --locale uk --output .agent-ci-artifacts/lessons
+ *   --locale uk --output temp/agent-reference-library/lessons
  */
 import fs from 'node:fs';
 import path from 'node:path';

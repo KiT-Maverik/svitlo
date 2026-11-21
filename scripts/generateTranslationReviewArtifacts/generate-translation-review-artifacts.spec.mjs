@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import crypto from 'node:crypto';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
@@ -95,221 +96,174 @@ test('allows only explicitly selected standalone reference families and optional
   assert.deepEqual(parseArguments(['--kind', 'geography-home-copy']), { kind: 'geography-home-copy' });
 });
 
-test('real Skills and UI Kit requests generate only their requested Markdown files', () => {
+test('Skills and UI Kit requests replace only an ignored, run-scoped corpus', () => {
   const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
-  const workspace = path.join(root, '.agent-ci-artifacts');
-  assert.equal(fs.existsSync(workspace), false, 'Tests must not overwrite existing PR artifact files');
-  function request(args) {
-    const response = spawnSync(
-      process.execPath,
-      ['scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.mjs', ...args],
-      { cwd: root, encoding: 'utf8', timeout: 180_000, maxBuffer: 32 * 1024 * 1024 },
-    );
-    assert.equal(response.status, 0, response.error?.message || response.stderr);
-    const manifest = JSON.parse(fs.readFileSync(path.join(workspace, 'manifest.json'), 'utf8'));
-    return manifest;
+  const workspace = path.join(root, 'temp/agent-reference-library');
+  assert.equal(fs.existsSync(workspace), false, 'Test must not overwrite another report');
+  const script = 'scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.mjs';
+  function generate(args) {
+    const result = spawnSync(process.execPath, [script, ...args], {
+      cwd: root,
+      encoding: 'utf8',
+      timeout: 180_000,
+      maxBuffer: 32 * 1024 * 1024,
+    });
+    assert.equal(result.status, 0, result.stderr || result.error?.message);
+    return JSON.parse(fs.readFileSync(path.join(workspace, 'manifest.json'), 'utf8'));
   }
   try {
-    // Independent diagnostics must survive both reference-family refreshes.
-    const lookupFile = path.join(workspace, 'lesson-lookup', 'sample.md');
-    const coverageFile = path.join(workspace, 'engine-coverage', 'engine-gaps.json');
-    fs.mkdirSync(path.dirname(lookupFile), { recursive: true });
-    fs.mkdirSync(path.dirname(coverageFile), { recursive: true });
-    fs.writeFileSync(lookupFile, 'Lesson lookup fixture\n');
-    fs.writeFileSync(coverageFile, '{"scope":"engine"}\n');
-    const skills = request(['--kind', 'skills', '--package', 'content/art', '--locale', 'en']);
+    const skills = generate(['--kind', 'skills', '--package', 'content/art', '--locale', 'en']);
     assert.equal(skills.scope.kind, 'skills');
-    assert.equal(skills.scope.package, 'content/art');
-    assert.deepEqual(skills.locales, ['en']);
     assert.deepEqual(
-      skills.generated.map(item => item.path),
-      ['.agent-ci-artifacts/taxonomies/art/en.md'],
+      skills.generated.map(entry => entry.path),
+      ['taxonomies/art/en.md'],
     );
     assert.equal(skills.failures.length, 0);
-    const taxonomyDocument = path.join(workspace, 'taxonomies/art/en.md');
-    const taxonomyMarkdown = fs.readFileSync(taxonomyDocument, 'utf8');
-    const links = [...taxonomyMarkdown.matchAll(/^\[([^\]\n]+\.ts)\]\(([^)\n]+)\)$/gm)];
-    const entityCount = skills.generated[0].domains + skills.generated[0].groups + skills.generated[0].skills;
-    assert.equal(links.length, entityCount, 'Every Domain, Group and Skill must have a canonical source link');
-    const taxonomyRoot = path.join(root, 'content/art/data/skills') + path.sep;
-    for (const [, label, target] of links) {
-      const resolved = path.resolve(path.dirname(taxonomyDocument), decodeURI(target));
-      assert.ok(resolved.startsWith(taxonomyRoot), 'Link escaped the Art Skills source tree: ' + target);
-      assert.equal(path.basename(resolved), label);
-      assert.ok(fs.existsSync(resolved), 'Generated link does not resolve: ' + target);
-    }
-    assert.equal(fs.existsSync(path.join(workspace, 'lessons')), false);
-
-    assert.equal(fs.existsSync(path.join(workspace, 'questions')), false);
-
-    const ui = request(['--kind', 'ui-kit', '--component', 'audio', '--locale', 'uk']);
-    assert.equal(ui.scope.kind, 'ui-kit');
-    assert.equal(ui.scope.component, 'audio');
+    const markdown = fs.readFileSync(path.join(workspace, 'taxonomies/art/en.md'), 'utf8');
+    assert.match(
+      markdown,
+      /https:\/\/github\.com\/KiT-Maverik\/svitlo\/blob\/[0-9a-f]{40}\/content\/art\/data\/skills\//,
+    );
+    assert.ok(skills.generated[0].bytes > 0);
+    assert.match(skills.generated[0].sha256, /^[a-f0-9]{64}$/);
+    assert.equal(
+      skills.sourceCommit,
+      spawnSync('git', ['rev-parse', 'HEAD'], { cwd: root, encoding: 'utf8' }).stdout.trim(),
+    );
+    const ui = generate(['--kind', 'ui-kit', '--component', 'audio', '--locale', 'uk']);
     assert.deepEqual(
-      ui.generated.map(item => item.path),
-      ['.agent-ci-artifacts/ui-kit/audio/uk.md'],
+      ui.generated.map(entry => entry.path),
+      ['ui-kit/audio/uk.md'],
     );
     assert.equal(ui.failures.length, 0);
     assert.equal(fs.existsSync(path.join(workspace, 'taxonomies')), false);
-    assert.equal(fs.readFileSync(lookupFile, 'utf8'), 'Lesson lookup fixture\n');
-    assert.equal(fs.readFileSync(coverageFile, 'utf8'), '{"scope":"engine"}\n');
+    assert.equal(ui.generated[0].bytes, Buffer.byteLength(fs.readFileSync(path.join(workspace, ui.generated[0].path))));
   } finally {
     fs.rmSync(workspace, { recursive: true, force: true });
   }
 });
 
-test('Skills link rewriting handles modular .ts and legacy .data.ts without escaping the owned textbook', () => {
+test('Skills URL rewriting rejects paths outside the owned taxonomy', () => {
   const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
-  const output = path.join(root, '.agent-ci-artifacts/taxonomies/economics/kk.md');
+  const destination = path.join(root, 'temp/agent-reference-library/taxonomies/economics/kk.md');
+  const source = path.join(root, 'content/economics/data/skills/appliedEconomics/index.ts');
   const original = path.join(root, 'content/economics/docs/generated/skills');
-  for (const source of [
-    'appliedEconomics/index.ts',
-    'appliedEconomics/agriculturalEconomics/index.ts',
-    'appliedEconomics/agriculturalEconomics/agriculturalMarkets.ts',
-    'example/legacy.data.ts',
-  ]) {
-    const canonical = path.join(root, 'content/economics/data/skills', source);
-    const input =
-      '[' +
-      path.basename(source) +
-      '](' +
-      encodeURI(path.relative(original, canonical).split(path.sep).join('/')) +
-      ')';
-    const rendered = fixTaxonomyLinks(input, 'economics', output);
-    const link = rendered.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
-    assert.ok(link, rendered);
-    assert.equal(link[1], path.basename(source));
-    assert.equal(path.resolve(path.dirname(output), decodeURI(link[2])), canonical);
-  }
+  const href = encodeURI(path.relative(original, source).split(path.sep).join('/'));
+  const rewritten = fixTaxonomyLinks('[index.ts](' + href + ')', 'economics', destination);
+  assert.match(rewritten, /^\[index\.ts\]\(\.\.\/.*\)$/);
   assert.throws(
-    () => fixTaxonomyLinks('[index.ts](../../../data/lessons/index.ts)', 'economics', output),
-    /Unsafe canonical taxonomy link/,
-  );
-  assert.throws(
-    () => fixTaxonomyLinks('[incorrect.ts](../../../data/skills/appliedEconomics/index.ts)', 'economics', output),
+    () => fixTaxonomyLinks('[index.ts](../../../data/lessons/index.ts)', 'economics', destination),
     /Unsafe canonical taxonomy link/,
   );
 });
 
-test('trusted publisher accepts pre-Course Skills manifests but rejects scope mismatches', () => {
+test('refuses a report output path outside ignored temp/ and does not modify the root', () => {
+  const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
+  const result = spawnSync(
+    process.execPath,
+    [
+      'scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.mjs',
+      '--kind',
+      'skills',
+      '--package',
+      'content/art',
+      '--locale',
+      'en',
+    ],
+    { cwd: root, encoding: 'utf8', env: { ...process.env, SVITLO_AGENT_REPORT_OUTPUT: root } },
+  );
+  assert.notEqual(result.status, 0);
+  assert.match(result.stderr, /Review output must be in repo temp/);
+});
+
+test('trusted Actions report validator rejects stale SHA, wrong scope, wrong run, modified and unlisted documents', () => {
   const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
   const workflow = fs.readFileSync(path.join(root, '.github/workflows/agent-ci-artifacts.yml'), 'utf8');
-  const marker = '      - name: Validate downloaded files and commit only agent artifacts';
-  const offset = workflow.indexOf(marker);
-  assert.ok(offset > 0, 'Publisher validation step must be present');
-  const match = workflow.slice(offset).match(/node --input-type=module <<'NODE'\n([\s\S]*?)\n\s+NODE/);
-  assert.ok(match, 'Publisher must contain its inline trusted manifest validation');
-  // Run the actual publisher's inline validator without privileged GitHub credentials.
+  const step = workflow.split('      - name: Validate pinned manifest, scope, checksums and archive inventory\n')[1];
+  assert.ok(step, 'Report validation step must be present');
+  const match = step.match(/node --input-type=module <<'NODE'\n([\s\S]*?)\n\s+NODE/);
+  assert.ok(match, 'Trusted inline validator must be present');
   const validator = match[1]
     .split('\n')
     .map(line => line.replace(/^ {10}/, ''))
     .join('\n');
-  function validate(scope, overrides = {}) {
-    const temp = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-artifact-publisher-'));
-    const document = path.join(temp, '.agent-ci-artifacts/taxonomies/economics/kk.md');
-    fs.mkdirSync(path.dirname(document), { recursive: true });
-    fs.writeFileSync(document, '# Economics reference\n');
-    fs.writeFileSync(
-      path.join(temp, '.agent-ci-artifacts/manifest.json'),
-      JSON.stringify({
-        kind: 'pr-scoped-agent-ci-artifacts',
-        schemaVersion: 3,
-        scope,
-        generated: [
-          {
-            kind: 'taxonomy',
-            textbook: 'content/economics',
-            locale: 'kk',
-            path: '.agent-ci-artifacts/taxonomies/economics/kk.md',
-            missing: 0,
-            reviewReady: true,
-          },
-        ],
-        failures: [],
-      }),
-    );
-    try {
-      return spawnSync(process.execPath, ['--input-type=module', '--eval', validator], {
-        cwd: temp,
-        encoding: 'utf8',
-        env: {
-          ...process.env,
-          REQUEST_KIND: 'skills',
-          REQUEST_BOOK: 'content/economics',
-          REQUEST_LOCALE: 'kk',
-          REQUEST_COMPONENT: '',
-          REQUEST_LESSON: '',
-          REQUEST_COURSE: '',
-          ...overrides,
-        },
-      });
-    } finally {
-      fs.rmSync(temp, { recursive: true, force: true });
-    }
-  }
-  const legacy = {
-    kind: 'skills',
-    package: 'content/economics',
-    locale: 'kk',
-    component: null,
-    lesson: null,
-  };
-  const older = validate(legacy);
-  assert.equal(older.status, 0, older.stderr);
-  const current = validate({ ...legacy, course: null });
-  assert.equal(current.status, 0, current.stderr);
-  const unrelatedCourse = validate({ ...legacy, course: 'aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee' });
-  assert.notEqual(unrelatedCourse.status, 0);
-  assert.match(unrelatedCourse.stderr, /Manifest scope disagrees with authorized request: course/);
-  const requestedCourse = validate({ ...legacy, kind: 'courses' }, { REQUEST_KIND: 'courses' });
-  assert.notEqual(requestedCourse.status, 0);
-  assert.match(requestedCourse.stderr, /Manifest scope disagrees with authorized request: course/);
-  const wrongPackage = validate({ ...legacy, package: 'content/art' });
-  assert.notEqual(wrongPackage.status, 0);
-  assert.match(wrongPackage.stderr, /Manifest scope disagrees with authorized request: package/);
-});
-
-test('trusted Question publisher rejects stale source SHA and failed references', () => {
-  const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
-  const workflow = fs.readFileSync(path.join(root, '.github/workflows/agent-ci-artifacts.yml'), 'utf8');
-  const marker = '      - name: Validate downloaded files and commit only agent artifacts';
-  const offset = workflow.indexOf(marker);
-  assert.ok(offset > 0);
-  const match = workflow.slice(offset).match(/node --input-type=module <<'NODE'\n([\s\S]*?)\n\s+NODE/);
-  assert.ok(match, 'Trusted publisher validator exists');
-  const validator = match[1].split('\n').map(line => line.replace(/^ {10}/, '')).join('\n');
+  assert.doesNotMatch(workflow, /^  (?:publish|cleanup):/m, 'No privileged report jobs');
+  assert.doesNotMatch(workflow, /\/agent-artifacts cleanup/, 'No report cleanup command');
+  const output = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-report-validation-'));
+  const relative = 'questions/playground/c/lesson/en.md';
   const sha = '0123456789abcdef0123456789abcdef01234567';
-  const lesson = 'd3048d21-8690-5255-b62c-984c69ac272c';
-  const relative = '.agent-ci-artifacts/questions/playground/c/' + lesson + '/kk.md';
-  function run({ sourceCommit = sha, failures = [], pinned = sha } = {}) {
-    const temp = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-question-publisher-'));
-    try {
-      fs.mkdirSync(path.dirname(path.join(temp, relative)), { recursive: true });
-      fs.writeFileSync(path.join(temp, relative), '# Question review\n');
-      fs.writeFileSync(path.join(temp, '.agent-ci-artifacts/manifest.json'), JSON.stringify({
-        kind: 'pr-scoped-agent-ci-artifacts', schemaVersion: 3, sourceCommit,
-        scope: { kind: 'questions', package: 'content/playground', locale: 'kk',
-          component: null, lesson, course: null },
-        generated: [{ kind: 'question', textbook: 'content/playground', lesson: 'c/' + lesson,
-          locale: 'kk', path: relative, questions: 6, missing: 0, reviewReady: true }],
-        failures,
-      }));
-      return spawnSync(process.execPath, ['--input-type=module', '--eval', validator], {
-        cwd: temp, encoding: 'utf8',
-        env: { ...process.env, REQUEST_KIND: 'questions', REQUEST_BOOK: 'content/playground',
-          REQUEST_LOCALE: 'kk', REQUEST_COMPONENT: '', REQUEST_LESSON: lesson,
-          REQUEST_COURSE: '', SOURCE_HEAD_SHA: pinned },
-      });
-    } finally {
-      fs.rmSync(temp, { recursive: true, force: true });
-    }
+  const content = '# Question and Quiz source\n';
+  const bytes = Buffer.byteLength(content);
+  const base = {
+    schemaVersion: 3,
+    kind: 'pr-scoped-agent-ci-artifacts',
+    sourceCommit: sha,
+    pr: 766,
+    runId: 12345,
+    status: 'complete',
+    filesBytes: bytes,
+    scope: {
+      kind: 'questions',
+      package: 'content/playground',
+      locale: 'en',
+      component: null,
+      lesson: null,
+      course: null,
+    },
+    generated: [
+      {
+        kind: 'question',
+        path: relative,
+        locale: 'en',
+        bytes,
+        sha256: crypto.createHash('sha256').update(content).digest('hex'),
+        reviewReady: true,
+      },
+    ],
+    failures: [],
+  };
+  const env = {
+    ...process.env,
+    SVITLO_AGENT_REPORT_OUTPUT: output,
+    SVITLO_AGENT_REPORT_PR: '766',
+    GITHUB_RUN_ID: '12345',
+    SOURCE_HEAD_SHA: sha,
+    REQUEST_KIND: 'questions',
+    REQUEST_BOOK: 'content/playground',
+    REQUEST_LOCALE: 'en',
+    REQUEST_COMPONENT: '',
+    REQUEST_LESSON: '',
+    REQUEST_COURSE: '',
+  };
+  function verify(mutate, extraFile = false) {
+    fs.rmSync(output, { recursive: true, force: true });
+    fs.mkdirSync(path.join(output, path.dirname(relative)), { recursive: true });
+    fs.writeFileSync(path.join(output, relative), content);
+    const manifest = structuredClone(base);
+    if (mutate) mutate(manifest);
+    fs.writeFileSync(path.join(output, 'manifest.json'), JSON.stringify(manifest));
+    if (extraFile) fs.writeFileSync(path.join(output, 'unlisted.txt'), 'unlisted');
+    return spawnSync(process.execPath, ['--input-type=module', '--eval', validator], {
+      cwd: root,
+      encoding: 'utf8',
+      env,
+    });
   }
-  const valid = run();
-  assert.equal(valid.status, 0, valid.stderr);
-  const stale = run({ sourceCommit: 'abcdef0123456789abcdef0123456789abcdef01' });
-  assert.notEqual(stale.status, 0);
-  assert.match(stale.stderr, /source SHA/);
-  const failed = run({ failures: [{ kind: 'question', error: 'Missing Text module' }] });
-  assert.notEqual(failed.status, 0);
-  assert.match(failed.stderr, /source SHA/);
+  try {
+    const good = verify();
+    assert.equal(good.status, 0, good.stderr);
+    for (const [label, result] of [
+      ['stale HEAD', verify(m => (m.sourceCommit = 'f'.repeat(40)))],
+      ['wrong scope', verify(m => (m.scope.locale = 'uk'))],
+      ['wrong run', verify(m => (m.runId = 54321))],
+      ['modified hash', verify(m => (m.generated[0].sha256 = '0'.repeat(64)))],
+      ['missing file', verify(m => (m.generated[0].path = 'questions/missing.md'))],
+      ['unlisted file', verify(null, true)],
+      ['traversal', verify(m => (m.generated[0].path = '../escaped.md'))],
+    ]) {
+      assert.notEqual(result.status, 0, label + ': validator accepted invalid archive');
+    }
+  } finally {
+    fs.rmSync(output, { recursive: true, force: true });
+  }
 });

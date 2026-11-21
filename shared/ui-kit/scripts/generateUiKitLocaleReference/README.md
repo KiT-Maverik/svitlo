@@ -8,4 +8,4 @@ node shared/ui-kit/scripts/generateUiKitLocaleReference/generate-ui-kit-locale-r
 node --test shared/ui-kit/scripts/generateUiKitLocaleReference/generate-ui-kit-locale-reference.spec.mjs
 ```
 
-`--allow-missing` is read-only draft mode: missing target fields are emitted as `%%MISSING%%` with `Missing translations: N`. Strict mode rejects absent fields. The orchestrator writes temporary documents to `.agent-ci-artifacts/ui-kit/<component>/<language>.md` and records `missing` and `reviewReady` in the manifest. Never treat a document with missing fields as approved or perform independent review before the full translation integration barrier.
+`--allow-missing` is read-only draft mode: missing target fields are emitted as `%%MISSING%%` with `Missing translations: N`. Strict mode rejects absent fields. The orchestrator writes `ui-kit/<component>/<language>.md` to a one-day Actions ZIP with manifest metadata (`sourceCommit`, PR/run IDs, `missing`, `reviewReady`, per-document digest). Never treat incomplete files as approved; the owner may authorize independent review of any complete, precisely identified entity/locale without waiting for unrelated translations.

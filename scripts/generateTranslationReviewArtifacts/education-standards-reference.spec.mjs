@@ -140,8 +140,8 @@ test('generates deterministic source-linked Markdown for one requested language'
 test('one locale produces one document; omitted locale produces both with no cross-family data', () => {
   const value = record();
   const root = setup([value]);
-  const output = path.join(root, '.agent-ci-artifacts');
-  fs.mkdirSync(output);
+  const output = path.join(root, 'temp/agent-reference-library');
+  fs.mkdirSync(output, { recursive: true });
   const manifest = { sourceCommit: SOURCE_SHA, generated: [], failures: [] };
   let saves = 0;
   const options = {
@@ -161,7 +161,7 @@ test('one locale produces one document; omitted locale produces both with no cro
     );
     assert.deepEqual(
       manifest.generated.map(item => item.path),
-      ['.agent-ci-artifacts/education-standards/uk.md'],
+      ['education-standards/uk.md'],
     );
     assert.deepEqual(manifest.failures, []);
     assert.equal(fs.existsSync(path.join(output, 'education-standards/en.md')), false);
@@ -238,8 +238,8 @@ test('duplicate IDs, missing index entries and invalid built references fail clo
 test('invalid source metadata causes a per-locale manifest failure, not a review-ready document', () => {
   const value = record();
   const root = setup([value]);
-  const output = path.join(root, '.agent-ci-artifacts');
-  fs.mkdirSync(output);
+  const output = path.join(root, 'temp/agent-reference-library');
+  fs.mkdirSync(output, { recursive: true });
   try {
     const filename = path.join(
       root,
@@ -298,8 +298,8 @@ test('incomplete previews still reject bad jurisdictions, original language, and
 test('incomplete authoring skips the unavailable compiled package and still generates review previews', () => {
   const value = record('sampleOne', UUID_A, { en: 'Learning outcomes' });
   const root = setup([value]);
-  const output = path.join(root, '.agent-ci-artifacts');
-  fs.mkdirSync(output);
+  const output = path.join(root, 'temp/agent-reference-library');
+  fs.mkdirSync(output, { recursive: true });
   const manifest = { sourceCommit: SOURCE_SHA, generated: [], failures: [] };
   try {
     const entries = readEducationStandardSources(root, LANGUAGES);

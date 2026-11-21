@@ -8,14 +8,14 @@
 - `main` is production. Only same-repository Ready `develop → main` PRs are allowed by `Production Quality / verify`, including on edited/retargeted PRs. Full validation and owner authorization are required. Deploy a pinned release commit/tag, not arbitrary Draft work.
 - Do not mass-retarget in-flight PRs. Their existing base/parent branch relationships and independent review evidence remain valid until individually reconciled.
 - **Verified 2026-11-19:** `develop` is already the default branch. Active `Protect develop` and `Protect main` rulesets target literal branches and require pull requests. Preserve historical nested PR ancestry; owner approval is needed for any individual reconciliation.
-- Require stable `Agent CI Artifacts / clean`, `Blocker TODOs / clean`, `Affected content / build, taxonomy and packaging` status contexts on protected branches, with FastGate on develop and full Quality on main as appropriate. Verify every required status is emitted for its target and enforce current-head checks. Labels alone cannot prevent merges.
+- Require stable `Blocker TODOs / clean`, `Affected content / build, taxonomy and packaging` status contexts on protected branches, with FastGate on develop and full Quality on main as appropriate. The obsolete `Agent CI Artifacts / clean` workflow was deleted; any live ruleset still requiring it must be updated by the owner **before merge**. Verify actual current-head required checks; labels alone cannot prevent merges.
 
 ## Validation tiers
 
 | Event                                   | Scope                                                                                                                          |
 | --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
 | Draft PR (any target)                   | Cheap source/security/artifact guards and authored `TODO (BLOCKER):` warnings; defer npm installs, builds and E2E              |
-| Ready PR to `develop`                   | Scoped typechecks in FastGate; separate Ready generator/host/browser suites, selected content build, blocking TODO checks       |
+| Ready PR to `develop`                   | Scoped typechecks in FastGate; separate Ready generator/host/browser suites, selected content build, blocking TODO checks      |
 | Ready child PR to an integration parent | Applicable targeted checks and selected content builds, blocking authored TODO checks; FastGate is only required for `develop` |
 | Ready promotion PR to `main`            | All textbook builds, complete package checks, E2E, full tracked-source blocker scan; no redundant FastGate                     |
 | Manual `workflow_dispatch`              | Explicit full diagnostics/builds on a selected branch, including a Draft branch                                                |
@@ -157,6 +157,8 @@ publication/portability matrix remains independently verified by the required
 Affected Content status. Implementation details and validation commands:
 [scripts/ci/productionQuality/README.md](../../scripts/ci/productionQuality/README.md).
 
+**Diagnostic report transport:** `/agent-artifacts generate`, `/get lesson`, `/engine-coverage` and `/repo-audit` upload one-day Actions artifacts; no report publisher commits to PR branches. See [Agent CI reports](../docs/architecture/agent-ci-artifacts.md). The obsolete `Agent CI Artifacts / clean` workflow is deleted. Remove that required context from branch rulesets before merging, while preserving all other required checks.
+
 ## Quiet logs and agents
 
 - Prefer `node scripts/ci/quietRun/quiet-run.mjs -- <command> [args...]` for installs, tests, builds and typechecks. Success prints status and duration, failure preserves the nonzero exit and bounded useful diagnostics; `SVITLO_CI_VERBOSE=1` enables full output on an intentional rerun.
@@ -192,7 +194,7 @@ The default branch is now `develop`; the two active protection rulesets target t
 
 Dedicated EducationStandard catalog/reference GitHub workflows are removed. Existing UI Kit `test:locales` validates definitions and localized outputs in its separate test suite; FastGate does not run generator tests. The on-demand `/agent-artifacts generate education-standards` functionality remains available.
 
-**Actual branch-protection audit (2026-11-19):** GitHub already has `develop` as default and active literal-branch rulesets. Both `Protect main` and `Protect develop` now require a pull request before merging. `Protect main` now requires **`Production Quality / verify`** alongside Agent CI Artifacts, Affected content and Blocker TODOs; `Protect develop` requires **`FastGate / verify`** alongside the same three checks. Verified from active GitHub rulesets on 2026-11-19. GitHub ruleset state is an operational setting rather than a YAML guarantee.
+**Historical branch-protection audit (2026-11-19):** GitHub had `develop` as default, with `Protect main` and `Protect develop` rulesets requiring pull requests. At that time both required the now-deleted `Agent CI Artifacts / clean` check alongside Affected content and Blocker TODOs. `main` also required `Production Quality / verify`, and `develop` required `FastGate / verify`. **This is a historical snapshot, not the current ruleset state.** Deleting workflow YAML does not alter GitHub rulesets; the owner must remove the obsolete required context before any merge that would otherwise wait for it. Verify current rulesets directly.
 
 ## Production and nested-PR enforcement follow-ups
 
