@@ -78,6 +78,7 @@ export const playgroundE2eLearningLab = defineCourse<"playgroundE2eLearningLab",
   }
 });
 
+// agent no. this is no go. overrides stored away from the entities. does current configurator allow us to pass overrides where it is called?
 export const authoredCourseOverrides = {
   content: {
     items: {
