@@ -91,6 +91,20 @@ export const contentPendingImportRule = {
         const variable = scopeVariable(node, node.name);
         if (variable?.defs.length !== 1) return null;
         const def = variable.defs[0];
+        // import().then(module => module.api) binds its callback parameter to the module.
+        if (def.type === 'Parameter') {
+          const callback = def.node;
+          const call = callback.parent;
+          if (
+            callback.params?.[0] === def.name &&
+            call?.type === 'CallExpression' &&
+            call.arguments[0] === callback &&
+            call.callee.type === 'MemberExpression' &&
+            (call.callee.property.name === 'then' || staticText(call.callee.property) === 'then')
+          ) {
+            return namespaceFamily(call.callee.object, visited);
+          }
+        }
         if (def.type === 'ImportBinding') {
           if (['ImportNamespaceSpecifier', 'ImportDefaultSpecifier'].includes(def.node.type)) {
             return familyFor(def.parent?.source?.value, filename);
