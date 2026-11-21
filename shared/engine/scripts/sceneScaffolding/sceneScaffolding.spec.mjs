@@ -93,15 +93,14 @@ function compileDraft(folder, name, repo) {
     "declare module 'vitest' {",
     '  export const describe: (name:string, callback:()=>void)=>void;',
     '  export const it: { (name:string, callback:()=>void):void; todo(name:string):void };',
-    '  export const expect: (value:unknown)=>{toBe(expected:unknown):void};',
+    '  export const expect: (value:unknown)=>{toContain(expected:unknown):void};',
     '}',
-    "declare module '@testing-library/react' {",
-    '  export const render: (node:unknown)=>void;',
-    '  export const screen: { getByRole(role:string):{textContent:string|null} };',
+    "declare module 'react-dom/server' {",
+    '  export const renderToStaticMarkup: (node:unknown)=>string;',
     '}',
     '',
   ].join('\n'));
-  const files = ['index.ts', name + '.tsx', name + '.constants.ts', name + '.stories.tsx', name + '.spec.tsx']
+  const files = ['index.ts', name + '.tsx', name + '.constants.ts', name + '.stories.tsx', name + '.unit.spec.tsx']
     .map(file => path.join(folder, file));
   const program = ts.createProgram([...files, declarations], {
     strict: true, noEmit: true, jsx: ts.JsxEmit.ReactJSX,
@@ -122,7 +121,7 @@ test('generates a valid accessible React stub, deterministic handoff, story/test
   const names = [
     'index.ts', 'specification.md', 'CompareGroupsScene.tsx',
     'CompareGroupsScene.module.css', 'CompareGroupsScene.stories.tsx',
-    'CompareGroupsScene.spec.tsx', 'CompareGroupsScene.constants.ts',
+    'CompareGroupsScene.unit.spec.tsx', 'CompareGroupsScene.constants.ts',
   ];
   assert.deepEqual(fs.readdirSync(folder).sort(), names.sort());
   assert.equal(fs.readFileSync(path.join(folder, 'specification.md'), 'utf8'), '# Original instruction\n');
@@ -134,8 +133,8 @@ test('generates a valid accessible React stub, deterministic handoff, story/test
   const story = fs.readFileSync(path.join(folder, 'CompareGroupsScene.stories.tsx'), 'utf8');
   assert.match(story, /locales: \{\}/);
   assert.doesNotMatch(story, /sceneSourceLocaleRequired/);
-  assert.match(fs.readFileSync(path.join(folder, 'CompareGroupsScene.spec.tsx'), 'utf8'),
-    /getByRole\('status'\)/);
+  assert.match(fs.readFileSync(path.join(folder, 'CompareGroupsScene.unit.spec.tsx'), 'utf8'),
+    /renderToStaticMarkup/);
   compileDraft(folder, 'CompareGroupsScene', f.repo);
 
   const loader = fs.readFileSync(path.join(f.book, 'scenes/sceneLoader.ts'), 'utf8');
@@ -219,7 +218,7 @@ test('reruns preserve existing implementation, story, test and edited specificat
   await runOne(f.lessonDir, 'generate', f.repo);
   const folder = f.folder(sceneId);
   const custom = ['CompareGroupsScene.tsx', 'CompareGroupsScene.stories.tsx',
-    'CompareGroupsScene.spec.tsx', 'specification.md'];
+    'CompareGroupsScene.unit.spec.tsx', 'specification.md'];
   custom.forEach((file, index) => fs.writeFileSync(path.join(folder, file), 'authored ' + index + '\n'));
   assert.deepEqual(await runOne(f.lessonDir, 'generate', f.repo),
     [{ id: sceneId, changed: 0, skipped: true }]);
