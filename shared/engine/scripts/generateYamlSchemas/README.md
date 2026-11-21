@@ -49,6 +49,57 @@ LessonReference, Module accepts Chapter/Episode/Lesson/LessonReference and
 Chapter accepts Episode/Lesson/LessonReference. An Episode and Lesson both
 embed the identical Section/ContentBlock authoring nodes.
 
+## Typed API for materialization
+
+The public `@svitlo/engine/build` entrypoint re-exports
+`yamlAuthoringSchemas` (a typed map of complete roots),
+`yamlCourseAuthoring_Schema`, `yamlLessonAuthoring_Schema`,
+`yamlEpisodeAuthoring_Schema`, `yamlSectionAuthoring_Schema`,
+`yamlContentBlockAuthoring_Schema`, `yamlQuestionAuthoring_Schema`,
+`yamlFlashcardAuthoring_Schema`, `yamlLessonReferenceAuthoring_Schema`
+and `yamlProduction_Schemas`. All concrete ContentBlock, Section and Question
+node schemas are also exported for targeted tests and tools.
+
+A Course materializer's source node may contain:
+
+```yaml
+config:
+  type: course
+  id: 00000000-0000-4000-8000-000000000003
+  slug: foundationalCourse
+  params: { languages: [en] }
+  locale: { title: Foundations, description: An introductory course }
+  content:
+    items:
+      existingLesson:
+        config:
+          type: lessonReference
+          lessonId: 00000000-0000-4000-8000-000000000010
+          slug: existingLesson
+      narrativeEpisode:
+        config:
+          type: episode
+          id: 00000000-0000-4000-8000-000000000004
+          slug: narrativeEpisode
+          params: { languages: [en] }
+          locale: { title: The discovery }
+          section: { items: {}, order: [] }
+    order: [existingLesson, narrativeEpisode]
+production:
+  documentLanguage: en
+  methodology:
+    purpose: Establish foundational knowledge
+    audience: Beginning learners
+    approach: Guided practice
+```
+
+The example illustrates the contract, not evidence of a completed or
+pedagogically approved Course. Every nested `section.items` or
+`content.items` child has the same `{config, production?}` envelope shown
+above. In particular, the Lesson Builder and Course Episode renderer must
+unwrap nodes recursively and keep metadata out of Engine Config; no implicit
+`type: lesson` reference compatibility is allowed.
+
 All Config fields come from Engine Zod. Media draft Configs omit physical
 `fileName`/`posterFileName`; actual TypeScript Configs still require verified
 asset names. Missing Scene implementation and physical assets remain blockers.
