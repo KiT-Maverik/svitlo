@@ -133,7 +133,7 @@ test('Course placements may reuse one verified standalone Lesson without materia
     },
   });
   assert.deepEqual(requested, [lessonId, lessonId]);
-  assert.equal(output.files.filter(item => item.path.endsWith('/index.ts')).length, 3);
+  assert.equal(output.files.filter(item => item.path === 'index.ts' || item.path.endsWith('/index.ts')).length, 3);
   for (const slug of ['first', 'second']) {
     assert.match(output.files.find(file => file.path === 'content/items/' + slug + '/index.ts').content,
       new RegExp('export \\{ sharedLesson as ' + slug + ' \\} from'));
