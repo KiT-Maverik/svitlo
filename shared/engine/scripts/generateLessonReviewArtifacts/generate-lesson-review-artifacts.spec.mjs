@@ -33,7 +33,7 @@ process.stdout.write('# ' + lookup('--lesson') + ': ' + lookup('--locale') + '\\
   );
 }
 function run(root, languages = ['en', 'uk']) {
-  const output = path.join(root, '.agent-ci-artifacts');
+  const output = path.join(root, 'temp/agent-reference-library');
   const manifest = { generated: [], failures: [] };
   const saveManifest = () => fs.writeFileSync(path.join(output, 'manifest.json'), JSON.stringify(manifest));
   fs.mkdirSync(output, { recursive: true });
@@ -72,16 +72,13 @@ test('discovers composed index.ts Lessons without retired data files', () =>
     assert.equal(manifest.generated[0].lesson, 'c/' + id);
   }));
 
-test('generates locale-specific Markdown and records PR-scoped paths', () =>
+test('generates locale-specific Markdown and records ZIP-root-relative paths', () =>
   setup(root => {
     createLesson(root);
     createGenerator(root);
     const { result, manifest, output } = run(root);
     assert.deepEqual(result, { discoveredLessons: 1, generated: 2, failures: 0 });
-    assert.equal(
-      manifest.generated[0].path,
-      '.agent-ci-artifacts/lessons/playground/c/d3048d21-8690-5255-b62c-984c69ac272c/en.md',
-    );
+    assert.equal(manifest.generated[0].path, 'lessons/playground/c/d3048d21-8690-5255-b62c-984c69ac272c/en.md');
     assert.equal(manifest.generated[0].kind, 'lesson');
     assert.equal(
       fs.readFileSync(path.join(output, 'lessons/playground/c/d3048d21-8690-5255-b62c-984c69ac272c/uk.md'), 'utf8'),
@@ -151,7 +148,7 @@ test('scoped Lesson generation visits only the selected textbook and locale', ()
     createLesson(root, 'playground');
     createLesson(root, 'math', '00000000-0000-5000-8000-000000000003', 'numbers');
     createGenerator(root);
-    const output = path.join(root, '.agent-ci-artifacts');
+    const output = path.join(root, 'temp/agent-reference-library');
     fs.mkdirSync(output, { recursive: true });
     const manifest = { generated: [], failures: [] };
     const result = generateLessonReviewArtifacts({
@@ -165,7 +162,7 @@ test('scoped Lesson generation visits only the selected textbook and locale', ()
     assert.deepEqual(result, { discoveredLessons: 1, generated: 1, failures: 0 });
     assert.deepEqual(
       manifest.generated.map(x => x.path),
-      ['.agent-ci-artifacts/lessons/math/3/00000000-0000-5000-8000-000000000003/it.md'],
+      ['lessons/math/3/00000000-0000-5000-8000-000000000003/it.md'],
     );
     assert.equal(fs.existsSync(path.join(output, 'lessons/playground')), false);
   }));
@@ -174,7 +171,7 @@ test('omitting locale enumerates only the languages declared by a scoped Lesson'
   setup(root => {
     createLesson(root, 'playground');
     createGenerator(root);
-    const output = path.join(root, '.agent-ci-artifacts');
+    const output = path.join(root, 'temp/agent-reference-library');
     fs.mkdirSync(output, { recursive: true });
     const manifest = { generated: [], failures: [] };
     const result = generateLessonReviewArtifacts({

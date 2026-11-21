@@ -58,8 +58,8 @@ test('Italian preview contains two explicit missing fields; strict mode rejects 
     assert.match(view, /it: %%MISSING%%/);
     assert.match(view, /English: Geography/);
     const manifest = { generated: [], failures: [] };
-    const output = path.join(temp, '.agent-ci-artifacts');
-    fs.mkdirSync(output);
+    const output = path.join(temp, 'temp/agent-reference-library');
+    fs.mkdirSync(output, { recursive: true });
     const result = generateHomeCopyReviewArtifacts({
       root: temp,
       output,
