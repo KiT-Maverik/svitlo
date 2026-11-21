@@ -152,8 +152,27 @@ export function deriveCourseEntityId(courseId, kind, placement) {
   return h.slice(0, 8) + '-' + h.slice(8, 12) + '-' + h.slice(12, 16) + '-' + h.slice(16, 20) + '-' + h.slice(20);
 }
 
+/**
+ * Explicit null params are never an empty Engine Config object. In particular,
+ * blank YAML "params:" in nested Episode Sections/ContentBlocks must not be
+ * silently normalized to {}, even when an editor-facing schema allows drafts.
+ * Reject before any generated file is created or the reviewed source is deleted.
+ */
+function rejectNullParams(value, location = 'course') {
+  if (Array.isArray(value)) {
+    value.forEach((item, index) => rejectNullParams(item, location + '[' + index + ']'));
+  } else if (record(value)) {
+    if (Object.hasOwn(value, 'params') && value.params === null)
+      fail(location + '.params must be a non-null object; use {} or omit params');
+    for (const [key, child] of Object.entries(value)) {
+      rejectNullParams(child, location + '.' + key);
+    }
+  }
+}
+
 /** One approved Course YAML directly produces a typed in-memory Course tree. */
 export function technicalFromEditorial(plan, resolveLesson = () => null) {
+  rejectNullParams(plan);
   const check = checkPlan(plan, '3-complete');
   if (!check.valid) fail('unapproved/incomplete Stage 3 source: ' + check.errors.join('; '));
   if (!SLUG.test(plan.slug ?? '') || !plan.title?.trim() || !plan.description?.trim())
@@ -707,34 +726,38 @@ export function parseArgs(argv) {
       if (opts[key] || !value) fail('duplicate/missing option ' + key);
       opts[key] = value;
       i++;
-    } else if (['--write', '--check', '--finalize'].includes(key)) {
+    } else if (['--write', '--check'].includes(key)) {
       if (opts.action) fail('choose exactly one mode');
       opts.action = key;
-    } else if (key === '--preserve-config') {
-      if (opts.preserveConfig) fail('duplicate option ' + key);
-      opts.preserveConfig = true;
     } else fail('unknown option ' + key);
   }
   if (!PACKAGE.test(opts['--package'] ?? '') || !UUID.test(opts['--course'] ?? '') || !opts.action)
-    fail('usage: --package content/<book> --course <uuid> --write|--check|--finalize [--preserve-config]');
-  if (opts.preserveConfig && opts.action !== '--finalize') fail('--preserve-config is only valid with --finalize');
-  return { pkg: opts['--package'], id: opts['--course'], mode: opts.action, preserveConfig: !!opts.preserveConfig };
+    fail('usage: --package content/<book> --course <uuid> --write|--check');
+  return { pkg: opts['--package'], id: opts['--course'], mode: opts.action };
 }
 export function materialize(argv, root = rootDefault) {
-  const { pkg, id, mode, preserveConfig } = parseArgs(argv);
+  const { pkg, id, mode } = parseArgs(argv);
   const folder = path.join(root, pkg, 'data/courses', id.at(-1), id);
   const source = path.join(folder, 'course.yaml');
   assertPath(source);
   if (!fs.existsSync(source)) fail('missing approved temporary course.yaml: ' + source);
+  if (!fs.lstatSync(source).isFile()) fail('course.yaml must be a regular file');
   if (fs.statSync(source).size > 2 * 1024 * 1024) fail('course.yaml exceeds 2MiB');
-  const plan = parseYaml(fs.readFileSync(source, 'utf8'));
+  const sourceBytes = fs.readFileSync(source);
+  const plan = parseYaml(sourceBytes.toString('utf8'));
+  rejectNullParams(plan);
   if (plan.id !== id) fail('Course UUID in plan does not match canonical folder');
   const lessonIndex = buildLessonIndex(root, pkg);
   const artifacts = planArtifacts(plan, pkg, root, lessonIndex);
   checkArtifacts(artifacts, mode);
-  if (mode === '--write') writeArtifacts(artifacts);
-  else if (mode === '--finalize' && !preserveConfig) {
-    // Only after a separate successful check/commit; Git retains the plan history.
+  if (mode === '--write') {
+    writeArtifacts(artifacts);
+    // Verification is part of the one write operation, not a second CLI phase.
+    checkArtifacts(artifacts, '--check');
+    assertPath(source);
+    if (!fs.lstatSync(source).isFile() || !fs.readFileSync(source).equals(sourceBytes))
+      fail('Course YAML changed during materialization; source retained');
+    // This exact temporary input is deleted only after the complete verified write.
     fs.unlinkSync(source);
   }
   console.log(
