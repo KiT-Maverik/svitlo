@@ -22,6 +22,12 @@ const {
   yamlQuestSection_Schema,
   yamlCheckpointItem_Schema,
   yamlCheckpointAnswerConfigurator_Schema,
+  yamlCourseAuthoring_Schema,
+  yamlLessonAuthoring_Schema,
+  yamlEpisodeAuthoring_Schema,
+  yamlContentBlockAuthoring_Schema,
+  yamlLessonReferenceAuthoring_Schema,
+  yamlProduction_Schemas,
   audio_Config_Schema,
   image_Config_Schema,
   video_Config_Schema,
@@ -221,14 +227,24 @@ test('generated JSON Schemas omit media filenames and preserve required learner 
 test('Zod -> JSON Schema exports every root without opaque Configurator nodes', () => {
   const docs = yamlJsonSchemaDocuments();
   assert.deepEqual(Object.keys(docs).sort(), [
+    'chapter.scaffold.schema.json',
+    'contentBlock.scaffold.schema.json',
     'contentBlock.schema.json',
+    'course-flow.schema.json',
+    'course.scaffold.schema.json',
     'course.schema.json',
     'courseOverrides.schema.json',
+    'episode.scaffold.schema.json',
     'episode.schema.json',
+    'flashcard.scaffold.schema.json',
     'flashcard.schema.json',
     'lesson.scaffold.schema.json',
     'lesson.schema.json',
+    'module.scaffold.schema.json',
+    'production.schema.json',
+    'question.scaffold.schema.json',
     'question.schema.json',
+    'section.scaffold.schema.json',
     'section.schema.json',
   ]);
   for (const source of Object.values(docs)) {
@@ -254,10 +270,10 @@ test('Lesson YAML envelope and current Course Config/Build patch schemas remain 
   const lesson = JSON.parse(docs['lesson.schema.json']);
   const course = JSON.parse(docs['course.schema.json']);
   const overrides = JSON.parse(docs['courseOverrides.schema.json']);
-  assert(lesson.required.includes('documentLanguage'));
+  assert(!lesson.required.includes('documentLanguage'), 'Source language belongs in production, not Config');
   assert(lesson.required.includes('type'));
   assert(!lesson.required.includes('flashcards'), 'A Lesson without Flashcards must remain authorable');
-  assert.equal(Object.hasOwn(course.properties, 'documentLanguage'), false, 'Course uses the separate single-file Flow schema');
+  assert.equal(Object.hasOwn(course.properties, 'documentLanguage'), false);
   for (const field of ['id', 'slug', 'type', 'skills', 'params', 'locale', 'section']) {
     assert(lesson.required.includes(field), 'Missing Lesson required field: ' + field);
   }
@@ -271,14 +287,14 @@ test('Lesson YAML envelope and current Course Config/Build patch schemas remain 
   assert.equal(Object.hasOwn(overrides.$defs.buildPatch.properties, 'questions'), false);
   assert.equal(Object.hasOwn(overrides.$defs.buildPatch.properties, 'flashcards'), false);
   assert(!Object.hasOwn(overrides.properties, 'operations'));
-  assert.equal(Object.hasOwn(docs, 'course.scaffold.schema.json'), false);
+  assert.equal(Object.hasOwn(docs, 'course.scaffold.schema.json'), true);
 });
 test('generator write/check is deterministic and rejects stale files', () => {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-yaml-schemas-'));
   try {
     assert.throws(() => generateYamlSchemas('--check', root), /Outdated YAML JSON Schema/);
     const written = generateYamlSchemas('--write', root);
-    assert.equal(written.length, 9);
+    assert.equal(written.length, 19);
     assert.deepEqual(generateYamlSchemas('--write', root), written);
     assert.deepEqual(generateYamlSchemas('--check', root), written);
     // Formatting is not semantic schema drift: Prettier may compact arrays.
@@ -309,7 +325,7 @@ test('editor schemas are generated from current Engine Zod source before validat
   try {
     const generated = yamlJsonSchemaDocuments();
     const names = generateYamlSchemas('--write', output);
-    assert.equal(names.length, 9);
+    assert.equal(names.length, 19);
     for (const name of names) {
       assert.deepEqual(
         JSON.parse(fs.readFileSync(path.join(output, name), 'utf8')),
@@ -323,44 +339,92 @@ test('editor schemas are generated from current Engine Zod source before validat
   }
 });
 
-test('Lesson scaffold composes production schema beside Engine Config at every node', () => {
+test('Lesson and Course source envelopes are generated from one nested Zod authoring contract', () => {
   const docs = yamlJsonSchemaDocuments();
-  for (const kind of ['lesson']) {
-    const scaffold = JSON.parse(docs[kind + '.scaffold.schema.json']);
-    assert.equal(scaffold.type, 'object');
-    assert.deepEqual(scaffold.required, ['config', 'production']);
-    const refs = [];
-    function collectRefs(value) {
-      if (!value || typeof value !== 'object') return;
-      if (typeof value.$ref === 'string') refs.push(value.$ref);
-      for (const child of Object.values(value)) collectRefs(child);
-    }
-    collectRefs(scaffold);
-    for (const ref of refs) {
-      assert(ref.startsWith('#/'), 'external editor schema reference: ' + ref);
-      let resolved = scaffold;
-      for (const key of ref.slice(2).split('/')) {
-        resolved = resolved?.[key.replace(/~1/g, '/').replace(/~0/g, '~')];
-      }
-      assert.notEqual(resolved, undefined, 'unresolved editor schema reference: ' + ref);
-    }
-    assert.equal(scaffold.additionalProperties, false);
-    assert.equal(scaffold.properties.config.properties.type.const, kind);
-    assert(scaffold.properties.config.required.includes('id'));
-    assert.equal(scaffold.properties.production.$ref, '#/$defs/__production/$defs/' + kind);
-    assert(!Object.hasOwn(scaffold.properties.config.properties, 'documentLanguage'));
-    const text = JSON.stringify(scaffold);
-    assert(text.includes('#/$defs/__production/$defs/scene'));
-    assert(text.includes('#/$defs/__production/$defs/image'));
-    assert(text.includes('#/$defs/__production/$defs/section'));
-  }
-  const manuallyOwned = JSON.parse(
-    fs.readFileSync(new URL('../../yaml-schemas/production.schema.json', import.meta.url), 'utf8'),
+  const lesson = JSON.parse(docs['lesson.scaffold.schema.json']);
+  const course = JSON.parse(docs['course.scaffold.schema.json']);
+  const flow = JSON.parse(docs['course-flow.schema.json']);
+  const production = JSON.parse(docs['production.schema.json']);
+  assert.equal(lesson.type, 'object');
+  assert(lesson.required.includes('config'));
+  assert(lesson.required.includes('production'), 'Lesson requires its source language');
+  assert.equal(lesson.additionalProperties, false);
+  assert.equal(lesson.properties.config.properties.type.const, 'lesson');
+  assert(!Object.hasOwn(lesson.properties.config.properties, 'documentLanguage'));
+  assert.equal(course.properties.config.properties.type.const, 'course');
+  assert.deepEqual(
+    { ...flow, $id: course.$id, title: course.title },
+    course,
+    'Course Flow is exactly the generated Course authoring schema',
   );
-  assert.deepEqual(JSON.parse(docs['lesson.scaffold.schema.json']).$defs.__production.$defs, manuallyOwned.$defs);
-  assert.deepEqual(manuallyOwned.$defs.scene.required, ['specification']);
-  assert.deepEqual(manuallyOwned.$defs.image.required, ['prompt', 'purpose']);
+  assert(production.$defs.lesson.required.includes('documentLanguage'));
+  assert(production.$defs.scene.required.includes('specification'));
+  assert.deepEqual(production.$defs.image.required.slice().sort(), ['prompt', 'purpose']);
+  assert(docs['course.scaffold.schema.json'].includes('lessonReference'));
+  assert(docs['course.scaffold.schema.json'].includes('scene'));
   assert(!docs['lesson.scaffold.schema.json'].includes('"sceneSpecKey"'));
+});
+
+test('full Lesson, reference and nested Scene have distinct consistent authoring shapes', () => {
+  const config = (type, slug, suffix, locale = {}, params = {}) => ({
+    id: '00000000-0000-4000-8000-' + String(suffix).padStart(12, '0'),
+    slug,
+    type,
+    params,
+    locale,
+  });
+  const scene = { config: config('scene', 'diagram', 11, { value: { instruction: { en: 'Try it' } } }),
+    production: { specification: 'Interactive accessible demonstration' } };
+  const section = {
+    config: {
+      ...config('content', 'intro', 12, { title: 'Intro', navigationLabel: 'Intro' }),
+      content: { items: { diagram: scene }, order: ['diagram'] },
+    },
+  };
+  const lesson = {
+    config: {
+      ...config('lesson', 'lesson', 13, { title: 'Lesson' }, {
+        languages: ['en'], quizRequiredForCompletion: false,
+        sections: { allowNavigation: true, allowSkipping: true, showIndexes: true },
+      }),
+      skills: [],
+      section: { items: { intro: section }, order: ['intro'] },
+    },
+    production: { documentLanguage: 'en', methodology: 'Real lesson methodology' },
+  };
+  const episode = {
+    config: {
+      ...config('episode', 'episode', 14, { title: 'Episode' }, { languages: ['en'] }),
+      section: { items: { intro: section }, order: ['intro'] },
+    },
+  };
+  const reference = { config: { type: 'lessonReference', lessonId: lesson.config.id, slug: 'linkedLesson' } };
+  assert.equal(yamlContentBlockAuthoring_Schema.safeParse(scene).success, true);
+  assert.equal(yamlLessonAuthoring_Schema.safeParse(lesson).success, true);
+  assert.equal(yamlEpisodeAuthoring_Schema.safeParse(episode).success, true);
+  assert.equal(yamlLessonReferenceAuthoring_Schema.safeParse(reference).success, true);
+  assert.equal(yamlLessonReferenceAuthoring_Schema.safeParse({ config: {
+    ...reference.config, type: 'lesson',
+  } }).success, false);
+  assert.equal(yamlLessonAuthoring_Schema.safeParse(reference).success, false);
+  assert.equal(yamlProduction_Schemas.lesson.safeParse({ documentLanguage: 'en' }).success, true);
+  const course = {
+    config: {
+      ...config('course', 'course', 15, { title: 'Course', description: 'Course description' },
+        { languages: ['en'] }),
+      content: { items: { lesson: lesson, linkedLesson: reference, episode }, order: [
+        'lesson', 'linkedLesson', 'episode',
+      ] },
+    },
+    production: { documentLanguage: 'en' },
+  };
+  assert.equal(yamlCourseAuthoring_Schema.safeParse(course).success, true);
+  assert.equal(yamlCourseAuthoring_Schema.safeParse({
+    ...course, config: { ...course.config, content: {
+      items: { lesson: { config: { ...reference.config, type: 'lesson' } } },
+      order: ['lesson'],
+    } },
+  }).success, false);
 });
 
 test('Quest editor schema projects every named Stage/Task child without physical media filenames', () => {
