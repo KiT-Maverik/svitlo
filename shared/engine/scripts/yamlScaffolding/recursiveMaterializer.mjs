@@ -103,14 +103,15 @@ const childFields = {
   lesson: ['section'], episode: ['section'], quest: ['stages', 'tasks'],
   questStage: ['content'], questTask: ['scene'], carousel: ['slides'],
   checkpoint: ['content'], checkpointItem: ['question', 'answer'],
-  checkpointAnswer: ['content'], flashcard: ['content'],
+  checkpointAnswer: ['content'], flashcard: ['content', 'parameters'],
 };
 for (const type of sections.filter(type => type !== 'quest')) childFields[type] = ['content'];
 for (const type of questions) childFields[type] = ['content'];
 
-const asKey = name => identifier.test(name) ? name : JSON.stringify(name);
+const asKey = name => identifier.test(name) && name !== '__proto__' ? name : JSON.stringify(name);
 const isSafePart = part => slugPattern.test(part) && part !== '__proto__' && part !== 'constructor';
-const exportName = slug => identifier.test(slug) && !['default', 'class', 'import', 'export', 'const', 'function', 'return', 'new', 'this', 'super', 'let', 'var', 'null', 'true', 'false'].includes(slug) ? slug : 'config_' + slug;
+const reservedWords = new Set(['await', 'break', 'case', 'catch', 'class', 'const', 'continue', 'debugger', 'default', 'delete', 'do', 'else', 'enum', 'export', 'extends', 'false', 'finally', 'for', 'function', 'if', 'import', 'in', 'instanceof', 'new', 'null', 'return', 'super', 'switch', 'this', 'throw', 'true', 'try', 'typeof', 'var', 'void', 'while', 'with', 'yield', 'let', 'static']);
+const exportName = slug => identifier.test(slug) && !reservedWords.has(slug) && slug !== 'languages' && slug !== 'content' && slug !== 'section' ? slug : 'config_' + slug;
 const relative = (from, to) => {
   const result = path.posix.relative(from || '.', to || '.');
   return result.startsWith('.') ? result : './' + result;
@@ -315,19 +316,7 @@ export function materialize(document, context = {}) {
         config.params.codeAsText = { __materializerExpression: 'readCodeSource(import.meta.url, ' + JSON.stringify(extension) + ')' };
         imports.set('buildReader', "import { readCodeSource } from '@svitlo/engine/build';");
       }
-      // Plain serializer sees expressions only after the explicit reader rewrite.
-      function valueSource(value, key, innerParts = []) {
-        if (isRecord(value) && Object.keys(value).length === 1 && typeof value.__materializerExpression === 'string')
-          return value.__materializerExpression;
-        if (Array.isArray(value)) return '[' + value.map(item => valueSource(item, key, innerParts)).join(', ') + ']';
-        if (!isRecord(value)) return serialize(value, { type, location }, [key, ...innerParts], directory, imports);
-        const parts = [key, ...innerParts];
-        if ((orderedPaths[type] ?? []).includes(parts.join('.'))) assertCollection(value, location + '.config.' + parts.join('.'));
-        return '{\n' + Object.entries(value).map(([k, v]) =>
-          '  ' + asKey(k) + ': ' + valueSource(v, key, [...innerParts, k])).join(',\n') + '\n}';
-      }
-      // Child boundaries use the normal schema-directed serializer; readers are
-      // explicitly replaced inside valueSource without double traversal.
+      // Traverse only declared Config child boundaries. Reader expressions remain opaque.
       function renderField(value, parts, level = 0) {
         if (isRecord(value) && Object.keys(value).length === 1 && typeof value.__materializerExpression === 'string')
           return value.__materializerExpression;
@@ -347,6 +336,8 @@ export function materialize(document, context = {}) {
           const content = config.content;
           if (!isRecord(content) || !isRecord(content.front) || !isRecord(content.back))
             fail(location + '.config.content', 'Flashcard requires front and back');
+          if (!isRecord(config.parameters) || !Array.isArray(config.parameters.flags))
+            fail(location + '.config.parameters.flags', 'Flashcard flags array is required');
           for (const side of ['front', 'back', 'hint']) {
             if (content[side] === undefined) continue;
             const sideItems = renderField(content[side].items, ['content', side, 'items']);
@@ -388,9 +379,7 @@ export function materialize(document, context = {}) {
         generic = [slugType, collection(type === 'carousel' ? 'slides' : 'content'), langType];
       else if (questions.includes(type)) generic = [slugType, 'typeof content', langType];
       else generic = [slugType, langType];
-      // Flashcard flags are plain authored arrays and cannot be converted into
-      // a fictitious configurator. Let defineFlashcard infer their exact tuple.
-      if (type === 'flashcard') generic = null;
+      // Flags remain an authored array; the generic references the real parameters declaration.
       const factory = registry[type];
       imports.set('factory', 'import { ' + factory + " } from '@svitlo/engine/build';");
       imports.set('languages', 'import { languages } from ' + JSON.stringify(relative(directory, 'languages')) + ';');
@@ -461,7 +450,9 @@ export function writeMaterialized(files, directory, mode = 'check') {
     seen.add(relativePath);
     checkNoSymlinks(path.join(root, ...relativePath.split('/')));
   }
-  if (mode === 'generate' && fs.existsSync(path.join(root, 'index.ts')))
+  if (mode === 'generate' && fs.existsSync(root) &&
+      (fs.existsSync(path.join(root, 'index.ts')) ||
+        fs.readdirSync(root).some(filename => filename.endsWith('.data.ts'))))
     return { changed: 0, skipped: true };
   for (const item of files) {
     const dest = path.join(root, ...item.path.split('/'));
