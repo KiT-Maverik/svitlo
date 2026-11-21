@@ -87,7 +87,7 @@ function compileDraft(folder, name, repo) {
     "declare module 'react/jsx-runtime' {",
     '  export namespace JSX {',
     '    interface Element {}',
-    '    interface IntrinsicElements { [name:string]: any; }',
+    '    interface IntrinsicElements { div: Record<string, unknown>; }',
     '  }',
     '}',
     "declare module 'vitest' {",
