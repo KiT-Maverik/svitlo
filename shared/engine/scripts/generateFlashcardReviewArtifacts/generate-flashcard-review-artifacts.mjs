@@ -190,10 +190,14 @@ function staticModules(lessonRoot) {
 
   const resolveExport = (module, exported, active) => {
     if (exported.target) {
+      const key = module.filename + '#reexport:' + exported.sourceName;
+      if (active.has(key)) throw new Error('Cyclic Flashcard re-export: ' + key);
+      const next = new Set(active);
+      next.add(key);
       const source = moduleFor(exported.target);
       const entry = source.exports.get(exported.sourceName);
       if (!entry) throw new Error('Unknown re-exported Flashcard symbol: ' + exported.sourceName);
-      return resolveExport(source, entry, active);
+      return resolveExport(source, entry, next);
     }
     return resolveSymbol(module, exported.local, active);
   };
@@ -283,8 +287,9 @@ function staticModules(lessonRoot) {
     );
     const registry = candidates[0].value;
     const cardIds = new Set(Object.values(registry.items).map(card => card?.id));
-    if (declared.some(([name]) => !cardIds.has(resolveSymbol(module, name, new Set()).id))) {
-      throw new Error('Unregistered Flashcard declaration: review cannot prove complete bank coverage');
+    const declaredIds = declared.map(([name]) => resolveSymbol(module, name, new Set()).id);
+    if (new Set(declaredIds).size !== declaredIds.length || declaredIds.some(id => !cardIds.has(id))) {
+      throw new Error('Unregistered or duplicated Flashcard declaration: review cannot prove complete bank coverage');
     }
     return { registry, dependencies: [...modules.keys()].filter(file => file !== filename) };
   };
