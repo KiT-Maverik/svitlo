@@ -8,6 +8,8 @@ describe('SceneStub', () => {
     const status = screen.getByRole('status');
     expect(status).toBeVisible();
     expect(status).toHaveTextContent('Not implemented');
+    expect(status).toHaveAttribute('lang', 'en');
+    expect(status).toHaveAttribute('dir', 'ltr');
     expect(screen.queryByText('Перевірка')).not.toBeInTheDocument();
   });
 
