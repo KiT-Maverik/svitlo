@@ -46,9 +46,15 @@ function safeFile(filename, root) {
  * Question source paths without granting legacy layouts special treatment.
  */
 const questionFactories = [
-  'defineSelectOneAnswer', 'defineSelectMultipleAnswers', 'defineMatchBlocks',
-  'defineAnswerWithText', 'defineAnswerWithNumber', 'defineOrderSequence',
-  'defineBuildAnswerWithBlocks', 'defineFillBlanksWithBlocks', 'defineFillBlanksWithText',
+  'defineSelectOneAnswer',
+  'defineSelectMultipleAnswers',
+  'defineMatchBlocks',
+  'defineAnswerWithText',
+  'defineAnswerWithNumber',
+  'defineOrderSequence',
+  'defineBuildAnswerWithBlocks',
+  'defineFillBlanksWithBlocks',
+  'defineFillBlanksWithText',
 ];
 const allowedFactories = new Set([...supportedFactories, ...questionFactories]);
 const MAX_DEPENDENCIES = 48;
@@ -95,9 +101,13 @@ function staticModules(lessonRoot) {
     modules.set(filename, module);
     for (const statement of ast.statements) {
       if (ts.isImportDeclaration(statement)) {
-        if (!ts.isStringLiteral(statement.moduleSpecifier) ||
-          !statement.importClause || !statement.importClause.namedBindings ||
-          !ts.isNamedImports(statement.importClause.namedBindings) || statement.importClause.name) {
+        if (
+          !ts.isStringLiteral(statement.moduleSpecifier) ||
+          !statement.importClause ||
+          !statement.importClause.namedBindings ||
+          !ts.isNamedImports(statement.importClause.namedBindings) ||
+          statement.importClause.name
+        ) {
           throw new Error('Unverifiable Flashcard import: ' + filename);
         }
         const specifier = statement.moduleSpecifier.text;
@@ -123,9 +133,13 @@ function staticModules(lessonRoot) {
       if (ts.isVariableStatement(statement)) {
         const exported = statement.modifiers?.some(mod => mod.kind === ts.SyntaxKind.ExportKeyword);
         for (const item of statement.declarationList.declarations) {
-          if (!ts.isIdentifier(item.name) || !item.initializer ||
-            module.definitions.has(item.name.text) || module.imports.has(item.name.text) ||
-            module.factories.has(item.name.text)) {
+          if (
+            !ts.isIdentifier(item.name) ||
+            !item.initializer ||
+            module.definitions.has(item.name.text) ||
+            module.imports.has(item.name.text) ||
+            module.factories.has(item.name.text)
+          ) {
             throw new Error('Invalid Flashcard source declaration: ' + filename);
           }
           module.definitions.set(item.name.text, item.initializer);
@@ -137,7 +151,8 @@ function staticModules(lessonRoot) {
         if (!statement.exportClause || !ts.isNamedExports(statement.exportClause)) {
           throw new Error('Unverifiable Flashcard re-export: ' + filename);
         }
-        const target = statement.moduleSpecifier &&
+        const target =
+          statement.moduleSpecifier &&
           (ts.isStringLiteral(statement.moduleSpecifier)
             ? resolveImport(filename, statement.moduleSpecifier.text)
             : null);
@@ -145,9 +160,12 @@ function staticModules(lessonRoot) {
         for (const item of statement.exportClause.elements) {
           const name = item.name.text;
           if (module.exports.has(name)) throw new Error('Duplicate Flashcard export: ' + name);
-          module.exports.set(name, target
-            ? { target, sourceName: item.propertyName?.text ?? name }
-            : { local: item.propertyName?.text ?? name });
+          module.exports.set(
+            name,
+            target
+              ? { target, sourceName: item.propertyName?.text ?? name }
+              : { local: item.propertyName?.text ?? name },
+          );
         }
       }
     }
@@ -182,8 +200,14 @@ function staticModules(lessonRoot) {
 
   const staticValue = (input, module, location, active = new Set()) => {
     let node = input;
-    while (node && (ts.isParenthesizedExpression(node) || ts.isAsExpression(node) ||
-        ts.isSatisfiesExpression(node) || ts.isNonNullExpression(node))) node = node.expression;
+    while (
+      node &&
+      (ts.isParenthesizedExpression(node) ||
+        ts.isAsExpression(node) ||
+        ts.isSatisfiesExpression(node) ||
+        ts.isNonNullExpression(node))
+    )
+      node = node.expression;
     if (!node) throw new Error('Missing static Flashcard value: ' + location);
     if (ts.isStringLiteral(node) || ts.isNoSubstitutionTemplateLiteral(node)) return node.text;
     if (ts.isNumericLiteral(node)) return Number(node.text);
@@ -194,7 +218,9 @@ function staticModules(lessonRoot) {
     if (ts.isPropertyAccessExpression(node) || ts.isElementAccessExpression(node)) {
       const name = ts.isPropertyAccessExpression(node)
         ? node.name.text
-        : (ts.isStringLiteral(node.argumentExpression) ? node.argumentExpression.text : null);
+        : ts.isStringLiteral(node.argumentExpression)
+          ? node.argumentExpression.text
+          : null;
       if (!name || unsafeKeys.has(name)) throw new Error('Non-static Flashcard member: ' + location);
       const value = staticValue(node.expression, module, location + '/object', active);
       if (!record(value) || !Object.hasOwn(value, name)) {
@@ -220,14 +246,20 @@ function staticModules(lessonRoot) {
           if (Object.hasOwn(result, key)) throw new Error('Duplicate Flashcard field: ' + location + '/' + key);
           result[key] = staticValue(
             ts.isShorthandPropertyAssignment(property) ? property.name : property.initializer,
-            module, location + '/' + key, active,
+            module,
+            location + '/' + key,
+            active,
           );
         } else throw new Error('Non-static Flashcard property: ' + location);
       }
       return result;
     }
-    if (ts.isCallExpression(node) && ts.isIdentifier(node.expression) && node.arguments.length === 1 &&
-      module.factories.has(node.expression.text)) {
+    if (
+      ts.isCallExpression(node) &&
+      ts.isIdentifier(node.expression) &&
+      node.arguments.length === 1 &&
+      module.factories.has(node.expression.text)
+    ) {
       return staticValue(node.arguments[0], module, location, active);
     }
     throw new Error('Non-static Flashcard expression: ' + location + ' (' + ts.SyntaxKind[node.kind] + ')');
@@ -238,14 +270,16 @@ function staticModules(lessonRoot) {
     const candidates = [];
     for (const [name, entry] of module.exports) {
       const value = resolveExport(module, entry, new Set());
-      if (record(value) && record(value.items) &&
-        Object.keys(value).every(key => key === 'items')) candidates.push({ name, value });
+      if (record(value) && record(value.items) && Object.keys(value).every(key => key === 'items'))
+        candidates.push({ name, value });
     }
     if (candidates.length !== 1) throw new Error('Expected exactly one exported Flashcard bank registry');
     // A declared card left out of the bank would otherwise yield a deceptively complete review.
-    const declared = [...module.definitions.entries()].filter(([, node]) =>
-      ts.isCallExpression(node) && ts.isIdentifier(node.expression) &&
-      module.factories.get(node.expression.text) === 'defineFlashcard',
+    const declared = [...module.definitions.entries()].filter(
+      ([, node]) =>
+        ts.isCallExpression(node) &&
+        ts.isIdentifier(node.expression) &&
+        module.factories.get(node.expression.text) === 'defineFlashcard',
     );
     const registry = candidates[0].value;
     const cardIds = new Set(Object.values(registry.items).map(card => card?.id));
@@ -270,21 +304,24 @@ function loadBank(filename, lessonRoot, lessonId) {
     if (!SLUG.test(name) || !record(card) || card.slug !== name || !UUID.test(card.id ?? '')) {
       throw new Error('Flashcard slug or UUID mismatch at ' + name);
     }
-    if (!record(card.content) || !record(card.parameters) || !record(card.content.front) ||
-        !record(card.content.back)) throw new Error('Flashcard missing front/back/parameters: ' + name);
+    if (!record(card.content) || !record(card.parameters) || !record(card.content.front) || !record(card.content.back))
+      throw new Error('Flashcard missing front/back/parameters: ' + name);
     for (const side of ['front', 'back', 'hint']) {
       const group = card.content[side];
       if (!group) continue;
-      if (!record(group.items) || !Array.isArray(group.order) || (side !== 'hint' && !group.order.length) ||
-          new Set(group.order).size !== group.order.length ||
-          group.order.length !== Object.keys(group.items).length ||
-          group.order.some(key => !Object.hasOwn(group.items, key))) {
+      if (
+        !record(group.items) ||
+        !Array.isArray(group.order) ||
+        (side !== 'hint' && !group.order.length) ||
+        new Set(group.order).size !== group.order.length ||
+        group.order.length !== Object.keys(group.items).length ||
+        group.order.some(key => !Object.hasOwn(group.items, key))
+      ) {
         throw new Error('Invalid ordered Flashcard ' + name + '/' + side);
       }
       for (const slug of group.order) {
         const block = group.items[slug];
-        if (!record(block) || block.slug !== slug || !UUID.test(block.id ?? '') ||
-            typeof block.type !== 'string') {
+        if (!record(block) || block.slug !== slug || !UUID.test(block.id ?? '') || typeof block.type !== 'string') {
           throw new Error('Invalid Flashcard block: ' + name + '/' + side + '/' + slug);
         }
       }
@@ -408,8 +445,16 @@ export function generateFlashcardReviewArtifacts({
           '',
           ...dependencies.flatMap(dependency => {
             const sourcePath = path.relative(root, dependency).split(path.sep).join('/');
-            return ['- Referenced authoring source: [' + sourcePath + '](' +
-              'https://github.com/KiT-Maverik/svitlo/blob/' + manifest.sourceCommit + '/' + sourcePath + ')'];
+            return [
+              '- Referenced authoring source: [' +
+                sourcePath +
+                '](' +
+                'https://github.com/KiT-Maverik/svitlo/blob/' +
+                manifest.sourceCommit +
+                '/' +
+                sourcePath +
+                ')',
+            ];
           }),
           '',
         ];

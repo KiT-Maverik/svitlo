@@ -152,8 +152,13 @@ test('actual authored Playground bank resolves all reused Question fronts and ba
   const manifest = { sourceCommit: sha, generated: [], failures: [] };
   try {
     generateFlashcardReviewArtifacts({
-      root: REPO_ROOT, output, manifest, saveManifest: () => {},
-      packageName: 'content/playground', lessonId: REAL_LESSON, languages: ['uk'],
+      root: REPO_ROOT,
+      output,
+      manifest,
+      saveManifest: () => {},
+      packageName: 'content/playground',
+      lessonId: REAL_LESSON,
+      languages: ['uk'],
     });
     assert.deepEqual(manifest.failures, []);
     assert.equal(manifest.generated.length, 1);
@@ -162,9 +167,7 @@ test('actual authored Playground bank resolves all reused Question fronts and ba
     assert.equal(entry.flashcards, 3);
     assert.equal(entry.strings, 6, 'three cards with localized fronts and backs');
     assert.equal(entry.missing, 0);
-    const markdown = fs.readFileSync(
-      path.join(output, entry.path.slice('.agent-ci-artifacts/'.length)), 'utf8',
-    );
+    const markdown = fs.readFileSync(path.join(output, entry.path.slice('.agent-ci-artifacts/'.length)), 'utf8');
     assert.equal((markdown.match(/^## .*?\([0-9a-f-]{36}\)$/gm) ?? []).length, 3);
     assert.equal((markdown.match(/^### front \(/gm) ?? []).length, 3);
     assert.equal((markdown.match(/^### back \(/gm) ?? []).length, 3);
@@ -205,13 +208,19 @@ test('copied real bank marks missing imported Question locale as not review-read
     const target = path.join(questionsDir, 'lightTravelsStraight.ts');
     const source = fs.readFileSync(target, 'utf8');
     const incomplete = source.replace(
-      "              uk: 'Як поширюється світло в прозорому однорідному середовищі?',\n", '',
+      "              uk: 'Як поширюється світло в прозорому однорідному середовищі?',\n",
+      '',
     );
     assert.notEqual(incomplete, source, 'test uses actual authored source, not synthetic text');
     fs.writeFileSync(target, incomplete);
     generateFlashcardReviewArtifacts({
-      root, output, manifest, saveManifest: () => {},
-      packageName: 'content/playground', lessonId: REAL_LESSON, languages: ['uk'],
+      root,
+      output,
+      manifest,
+      saveManifest: () => {},
+      packageName: 'content/playground',
+      lessonId: REAL_LESSON,
+      languages: ['uk'],
     });
     assert.deepEqual(manifest.failures, []);
     assert.equal(manifest.generated.length, 1);
@@ -219,7 +228,8 @@ test('copied real bank marks missing imported Question locale as not review-read
     assert.equal(manifest.generated[0].missing, 1);
     assert.equal(manifest.generated[0].reviewReady, false);
     const markdown = fs.readFileSync(
-      path.join(output, manifest.generated[0].path.slice('.agent-ci-artifacts/'.length)), 'utf8',
+      path.join(output, manifest.generated[0].path.slice('.agent-ci-artifacts/'.length)),
+      'utf8',
     );
     assert.match(markdown, /%%MISSING%%/);
     assert.match(markdown, /Source SHA: a{40}/);
@@ -233,15 +243,21 @@ test('unresolvable Question imports cannot yield review-ready Flashcard output',
   try {
     const file = path.join(state.directory, 'index.ts');
     const source = fs.readFileSync(file, 'utf8');
-    fs.writeFileSync(file, source.replace(
-      "import { defineFlashcard, defineFlashcardSide, defineText } from '@svitlo/engine/build';",
-      "import { defineFlashcard, defineFlashcardSide, defineText } from '@svitlo/engine/build';\n" +
-        "import { stolen } from '../../../../unowned/question';",
-    ));
+    fs.writeFileSync(
+      file,
+      source.replace(
+        "import { defineFlashcard, defineFlashcardSide, defineText } from '@svitlo/engine/build';",
+        "import { defineFlashcard, defineFlashcardSide, defineText } from '@svitlo/engine/build';\n" +
+          "import { stolen } from '../../../../unowned/question';",
+      ),
+    );
     state.run();
     assert.equal(state.manifest.generated.length, 0);
     assert.equal(state.manifest.failures.length, 1);
-    assert.match(state.manifest.failures[0].error, /Missing or ambiguous Flashcard import|Unsafe Flashcard source path/);
+    assert.match(
+      state.manifest.failures[0].error,
+      /Missing or ambiguous Flashcard import|Unsafe Flashcard source path/,
+    );
   } finally {
     fs.rmSync(state.root, { recursive: true, force: true });
   }
