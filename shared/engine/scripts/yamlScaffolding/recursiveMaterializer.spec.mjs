@@ -117,6 +117,31 @@ test('one recursive renderer emits ordered Course → Module → Chapter → Epi
   assert.deepEqual(repeat, output, 'same input must produce byte-identical output and diagnostics');
 });
 
+test('Course placements may reuse one verified standalone Lesson without materializing it twice', () => {
+  const lessonId = id(150);
+  const placement = slug => ({ config: { type: 'lessonReference', lessonId, slug } });
+  const tree = source(node('course', 'reusableCourse', 1, {
+    params: { languages: ['uk'] },
+    content: group({ first: placement('first'), second: placement('second') }),
+  }).config);
+  const requested = [];
+  const output = materialize(tree, {
+    registry,
+    resolveLessonReference: config => {
+      requested.push(config.lessonId);
+      return { module: '#lessonsData/0/' + lessonId, exportName: 'sharedLesson' };
+    },
+  });
+  assert.deepEqual(requested, [lessonId, lessonId]);
+  assert.equal(output.files.filter(item => item.path.endsWith('/index.ts')).length, 3);
+  for (const slug of ['first', 'second']) {
+    assert.match(output.files.find(file => file.path === 'content/items/' + slug + '/index.ts').content,
+      new RegExp('export \\{ sharedLesson as ' + slug + ' \\} from'));
+  }
+  assert(!output.files.some(file => file.content.includes('definePendingLesson')));
+  assert(!output.files.some(file => file.content.includes('defineLesson(')));
+});
+
 test('nested Carousel, Checkpoint, Quest and file-backed Markdown/Code preserve Config identity', () => {
   const carousel = node('carousel', 'gallery', 10, {
     slides: group({
