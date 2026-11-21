@@ -208,7 +208,10 @@ test('Question and Flashcard child boundaries emit independent blocks', () => {
   });
   const f = materialize(source(card.config), { registry });
   assert(f.files.some(file => file.path === 'content/front/items/heading/index.ts'));
-  assert.match(f.files.find(file => file.path === 'index.ts').content, /defineFlashcardSide/);
+  assert(f.files.some(file => file.path === 'content/front/index.ts'));
+  assert(f.files.some(file => file.path === 'content/back/index.ts'));
+  assert.match(f.files.find(file => file.path === 'content/front/index.ts').content, /defineFlashcardSide/);
+  assert.match(f.files.find(file => file.path === 'index.ts').content, /from "\.\/content\/front"/);
   compile(f.files);
 });
 
