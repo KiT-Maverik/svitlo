@@ -117,12 +117,18 @@ test('one recursive renderer emits ordered Course → Module → Chapter → Epi
   assert.deepEqual(repeat, output, 'same input must produce byte-identical output and diagnostics');
 });
 
-test('Course placements may reuse one verified standalone Lesson without materializing it twice', () => {
+test('Course placements may reuse a verified Lesson across separate Chapters', () => {
   const lessonId = id(150);
   const placement = slug => ({ config: { type: 'lessonReference', lessonId, slug } });
+  const chapter = (slug, number, leaf) => node('chapter', slug, number, {
+    content: group({ [leaf]: placement(leaf) }),
+  });
   const tree = source(node('course', 'reusableCourse', 1, {
     params: { languages: ['uk'] },
-    content: group({ first: placement('first'), second: placement('second') }),
+    content: group({
+      firstChapter: chapter('firstChapter', 2, 'first'),
+      secondChapter: chapter('secondChapter', 3, 'second'),
+    }),
   }).config);
   const requested = [];
   const output = materialize(tree, {
@@ -133,13 +139,21 @@ test('Course placements may reuse one verified standalone Lesson without materia
     },
   });
   assert.deepEqual(requested, [lessonId, lessonId]);
-  assert.equal(output.files.filter(item => item.path === 'index.ts' || item.path.endsWith('/index.ts')).length, 3);
-  for (const slug of ['first', 'second']) {
-    assert.match(output.files.find(file => file.path === 'content/items/' + slug + '/index.ts').content,
-      new RegExp('export \\{ sharedLesson as ' + slug + ' \\} from'));
+  assert.equal(output.files.filter(item => item.path === 'index.ts' || item.path.endsWith('/index.ts')).length, 5);
+  for (const [parent, slug] of [['firstChapter', 'first'], ['secondChapter', 'second']]) {
+    const file = output.files.find(item =>
+      item.path === 'content/items/' + parent + '/content/items/' + slug + '/index.ts');
+    assert.match(file.content, new RegExp('export \\{ sharedLesson as ' + slug + ' \\} from'));
   }
   assert(!output.files.some(file => file.content.includes('definePendingLesson')));
   assert(!output.files.some(file => file.content.includes('defineLesson(')));
+
+  // The real Course API rejects the same child UUID twice in one parent.
+  const invalid = source(node('course', 'duplicateCourse', 1, {
+    params: { languages: ['uk'] },
+    content: group({ first: placement('first'), second: placement('second') }),
+  }).config);
+  assert.throws(() => materialize(invalid, { registry }), /duplicate child UUID/);
 });
 
 test('nested Carousel, Checkpoint, Quest and file-backed Markdown/Code preserve Config identity', () => {
