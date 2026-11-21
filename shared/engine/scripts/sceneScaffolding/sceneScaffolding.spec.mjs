@@ -239,9 +239,6 @@ test('refuses invalid textbook setup, missing specs and identity collisions befo
   await assert.rejects(runOne(f.lessonDir, 'generate', f.repo), /needs its own production.specification/);
   assert.equal(fs.existsSync(f.folder(sceneId)), false);
   second.production.specification = 'Approved';
-  second.config.slug = 'CompareGroupsScene';
-  f.save();
-  await assert.rejects(runOne(f.lessonDir, 'generate', f.repo), /Colliding Scene component name/);
   second.config.slug = '../traversal';
   f.save();
   await assert.rejects(runOne(f.lessonDir, 'generate', f.repo), /Unsafe Scene slug/);
@@ -254,6 +251,34 @@ test('refuses invalid textbook setup, missing specs and identity collisions befo
   const manifest = path.join(f.book, 'package.json');
   fs.writeFileSync(manifest, JSON.stringify({ name: '@svitlo/playground' }));
   await assert.rejects(runOne(f.lessonDir, 'generate', f.repo), /not Scene-ready/);
+});
+
+test('allows identical Scene component slugs in different parent Sections with separate UUIDs', async t => {
+  const f = fixture(t);
+  const duplicateSlugScene = f.scene(anotherId, 'CompareGroupsScene', 'Independent Scene specification');
+  f.lesson.config.section.items.second = {
+    config: {
+      id: '99999999-9999-4999-8999-999999999999',
+      slug: 'second',
+      type: 'content',
+      content: {
+        items: { CompareGroupsScene: duplicateSlugScene },
+        order: ['CompareGroupsScene'],
+      },
+    },
+  };
+  f.lesson.config.section.order.push('second');
+  f.save();
+  const found = readScenes(path.join(f.lessonDir, 'lesson.yaml'));
+  assert.equal(found.length, 2);
+  assert.ok(found.every(scene => scene.component === 'CompareGroupsScene'));
+  const generated = await runOne(f.lessonDir, 'generate', f.repo);
+  assert.equal(generated.length, 2);
+  for (const id of [sceneId, anotherId]) {
+    assert.equal(fs.existsSync(path.join(f.folder(id), 'CompareGroupsScene.tsx')), true);
+    assert.match(fs.readFileSync(path.join(f.book, 'scenes/sceneLoader.ts'), 'utf8'), new RegExp(id));
+  }
+  assert.equal((await runOne(f.lessonDir, 'check', f.repo)).length, 2);
 });
 
 test('rejects symlinks, malicious locales, invalid YAML and implicit sources', async t => {
