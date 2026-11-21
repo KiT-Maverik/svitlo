@@ -15,7 +15,9 @@
     "test:types": "npm run code:check:types && tsc -p tsconfig.types.json --noEmit",
     "test:components": "vitest run src/types/languages.unit.spec.ts src/types/languages.contentBlocks.unit.spec.ts",
     "code:format:check": "prettier --check . --ignore-path ../../.prettierignore",
-    "code:format:fix": "prettier --write . --ignore-path ../../.prettierignore"
+    "code:format:fix": "prettier --write . --ignore-path ../../.prettierignore",
+    "code:lint:check": "eslint .",
+    "code:lint:fix": "eslint . --fix"
   },
   "dependencies": {
     "@svitlo/engine": "0.0.0"
