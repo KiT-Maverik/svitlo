@@ -140,6 +140,18 @@ function assertCollection(value, location) {
       order.some(key => typeof key !== 'string' || !Object.hasOwn(value.items, key))) {
     fail(location + '.order', 'order must include each items key exactly once');
   }
+  // The Engine rejects duplicate child identities in a single ordered
+  // collection, even when Course Lesson placements use different aliases.
+  const seenIds = new Map();
+  for (const [key, entry] of Object.entries(value.items)) {
+    if (!isRecord(entry) || !isRecord(entry.config)) continue;
+    const child = entry.config;
+    const id = child.type === 'lessonReference' ? child.lessonId : child.id;
+    if (typeof id !== 'string') continue;
+    if (seenIds.has(id))
+      fail(location + '.items.' + key, 'duplicate child UUID ' + id + ' also at ' + seenIds.get(id));
+    seenIds.set(id, key);
+  }
 }
 
 function safeOutput(relativePath) {
