@@ -269,6 +269,13 @@ test('rejects symlinks, malicious locales, invalid YAML and implicit sources', a
   fs.symlinkSync(f.book, target, 'dir');
   await assert.rejects(runOne(f.lessonDir, 'generate', f.repo), /Refusing symlink/);
   fs.rmSync(target);
+  const loader = path.join(f.book, 'scenes/sceneLoader.ts');
+  fs.rmSync(loader);
+  fs.symlinkSync(path.join(f.book, 'package.json'), loader, 'file');
+  await assert.rejects(runOne(f.lessonDir, 'generate', f.repo), /Refusing symlink/);
+  assert.equal(fs.existsSync(target), false, 'must reject symlink before creating Scene');
+  fs.rmSync(loader);
+  fs.writeFileSync(loader, '');
   fs.writeFileSync(path.join(f.lessonDir, 'lesson.yaml'), 'config: [bad\n');
   await assert.rejects(runOne(f.lessonDir, 'generate', f.repo));
   await assert.rejects(main(['generate'], f.repo), /explicit --source/);
