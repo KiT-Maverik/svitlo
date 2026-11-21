@@ -25,7 +25,7 @@ const sectionCollection = lesson_Config_Schema.shape.section.extend({
   items: z.record(z.string(), yamlSection_Schema),
 });
 /** Standalone Lesson YAML is a serializable Config tree, never published Props. */
-export const yamlLesson_Schema: z.ZodType = lesson_Config_Schema.extend({
+export const yamlLesson_Schema = lesson_Config_Schema.extend({
   section: sectionCollection,
 }).strict();
 
