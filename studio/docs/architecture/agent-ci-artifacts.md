@@ -28,6 +28,8 @@ This workflow is **not** a Lesson/Course/Question/Flashcard *source materializat
 
 ## Legacy tracked reports and branch rulesets
 
-A previous mechanism created a tracked `.agent-ci-artifacts/` directory. New reports never write there. The stable `Agent CI Artifacts / clean` required check remains temporarily to stop those legacy files from reaching `develop` or `main`. The owner must reconcile already-open PRs containing tracked reports and remove/replace this required context in the protected-branch rulesets **before** deleting the guard workflow. Do not silently bypass protection.
+The previous mechanism created a Git-tracked `.agent-ci-artifacts/` directory. The new report workflow does not write there, and the separate `Agent CI Artifacts / clean` workflow has been **deleted**. Existing historical PRs may still contain tracked reports; inspect their tree and remove those files via explicit normal commits before merging.
 
-There is no new `/agent-artifacts cleanup` operation, Ready-for-review cleanup, or privileged report publisher. Old tracked files, where present, require a normal explicit deletion commit. The agent must not claim they vanished automatically.
+**Owner action required for branch protection:** GitHub's `Protect develop` and `Protect main` rulesets may still require the deleted `Agent CI Artifacts / clean` status. Repository commits cannot change these rulesets. Remove that requirement **before merge**; otherwise GitHub can block the merge indefinitely waiting for a missing context. Keep all other mandatory checks and branch protections unchanged. Do not introduce a fake green replacement check.
+
+There is no `/agent-artifacts cleanup` operation, no cleanup-on-Ready, and no privileged diagnostic report publisher. One-day Actions artifact expiration never changes tracked source files.

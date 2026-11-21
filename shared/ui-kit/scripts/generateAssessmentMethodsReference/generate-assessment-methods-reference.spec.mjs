@@ -268,15 +268,20 @@ test('Italian draft reference marks missing titles while strict generation rejec
     assert.match(markdown, /Methodological description \(English\)/);
   }));
 
-test('retained legacy merge guard does not affect run-scoped report generation', () => {
+test('Assessment Method references use only disposable Actions reports without the retired clean guard', () => {
   const generator = fs.readFileSync(
     path.join(repoRoot, 'scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.mjs'),
     'utf8',
   );
-  const guard = fs.readFileSync(path.join(repoRoot, '.github/workflows/agent-ci-artifacts-guard.yml'), 'utf8');
+  const workflow = fs.readFileSync(
+    path.join(repoRoot, '.github/workflows/agent-ci-artifacts.yml'),
+    'utf8',
+  );
   assert.match(generator, /generateAssessmentMethodsReviewArtifacts/);
   assert.match(generator, /assessmentMethodDocuments:/);
   assert.match(generator, /allowMissing: true/);
   assert.match(generator, /missingTranslations:/);
-  assert.match(guard, /if \[ -d \.agent-ci-artifacts \]/);
+  assert.match(workflow, /SVITLO_AGENT_REPORT_OUTPUT/);
+  assert.match(workflow, /retention-days: 1/);
+  assert.equal(fs.existsSync(path.join(repoRoot, '.github/workflows/agent-ci-artifacts-guard.yml')), false);
 });

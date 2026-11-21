@@ -93,7 +93,7 @@ Local references are written to ignored `temp/agent-reference-library/`; in CI t
 
 New reference reports are never committed. There is **no `/agent-artifacts cleanup` command or Ready-for-review cleanup hook**; the ZIP expires from GitHub Actions after one day. Keep only canonical source corrections and verified review evidence in the PR. Never merge generated Markdown or an extracted report ZIP into source history.
 
-The old required [Agent CI Artifacts / clean](../../../.github/workflows/agent-ci-artifacts-guard.yml) guard remains temporarily to prevent **previously tracked** reports from merging. For legacy PR branches that already contain those files, explicitly remove them in a regular commit; the diagnostic workflow no longer edits PR HEAD. The owner must first update protected-branch rulesets before retiring the required guard. Never bypass that check to merge stale files.
+The standalone `Agent CI Artifacts / clean` workflow has been deleted. For legacy PR branches with **previously tracked** report files, remove them in an ordinary source commit before merging; new diagnostic jobs do not edit PR HEAD. The owner must remove the deleted status from protected-branch rulesets **before merge** while retaining all other checks and protection.
 
 ## ACCEPTANCE AND LIMITATIONS
 

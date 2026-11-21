@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
+import { readFileSync, existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 
 const root = fileURLToPath(new URL('../../..', import.meta.url));
@@ -72,14 +72,17 @@ test('PR auto-formatter fixes only development PRs, never protected release sour
   assert.match(formatter, /prettier --check --log-level warn/);
 });
 
-test('PR artifact auto-cleanup excludes protected production promotion without weakening guard', () => {
-  const cleanup = workflow('agent-ci-artifacts.yml');
-  const guard = workflow('agent-ci-artifacts-guard.yml');
-  assert.match(cleanup, /branches: \[develop, integration-branch, new-lesson, integration\/italian-localization\]/);
-  assert.match(cleanup, /github\.event\.pull_request\.head\.ref != github\.event\.repository\.default_branch/);
-  assert.match(cleanup, /github\.event\.pull_request\.head\.ref != 'main'/);
-  assert.match(guard, /branches: \[main, develop, integration-branch, new-lesson, integration\/italian-localization\]/);
-  assert.match(guard, /name: Agent CI Artifacts \/ clean/);
+test('on-demand agent report generation uses read-only Actions artifacts, without any clean guard', () => {
+  const references = workflow('agent-ci-artifacts.yml');
+  const oldGuard = new URL('../../../.github/workflows/agent-ci-artifacts-guard.yml', import.meta.url);
+  assert.equal(existsSync(oldGuard), false, 'Obsolete check workflow must remain removed');
+  assert.match(references, /issue_comment:/);
+  assert.match(references, /actions\/upload-artifact@v4/);
+  assert.match(references, /retention-days: 1/);
+  assert.match(references, /persist-credentials: false/);
+  assert.match(references, /SVITLO_AGENT_REPORT_OUTPUT/);
+  assert.doesNotMatch(references, /\n  pull_request:|\n  publish:|\n  cleanup:|contents: write|git push/);
+  assert.doesNotMatch(references, /\.agent-ci-artifacts\//);
 });
 
 test('Desktop bundle assertions execute after production builds, not in root npm test', () => {
