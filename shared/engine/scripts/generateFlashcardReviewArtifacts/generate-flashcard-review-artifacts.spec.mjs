@@ -95,7 +95,10 @@ test('dynamic authoring expressions fail closed without emitting partial referen
     state.run();
     assert.equal(state.manifest.generated.length, 0);
     assert.equal(state.manifest.failures.length, 1);
-    assert.match(state.manifest.failures[0].error, /Non-static Flashcard expression|Unknown Flashcard source reference|Unknown or cyclic/);
+    assert.match(
+      state.manifest.failures[0].error,
+      /Non-static Flashcard expression|Unknown Flashcard source reference|Unknown or cyclic/,
+    );
   } finally {
     fs.rmSync(state.root, { recursive: true, force: true });
   }
@@ -269,11 +272,16 @@ test('cyclic named Question re-exports fail closed without reading partial card 
     const file = path.join(state.directory, 'index.ts');
     const source = fs.readFileSync(file, 'utf8');
     assert(source.includes('locale: {value: {en: "Hello", uk: "Привіт"}}'));
-    fs.writeFileSync(file, source
-      .replace("import { defineFlashcard, defineFlashcardSide, defineText } from '@svitlo/engine/build';",
-        "import { defineFlashcard, defineFlashcardSide, defineText } from '@svitlo/engine/build';\n" +
-        "import { value } from './a';")
-      .replace('locale: {value: {en: "Hello", uk: "Привіт"}}', 'locale: value'));
+    fs.writeFileSync(
+      file,
+      source
+        .replace(
+          "import { defineFlashcard, defineFlashcardSide, defineText } from '@svitlo/engine/build';",
+          "import { defineFlashcard, defineFlashcardSide, defineText } from '@svitlo/engine/build';\n" +
+            "import { value } from './a';",
+        )
+        .replace('locale: {value: {en: "Hello", uk: "Привіт"}}', 'locale: value'),
+    );
     fs.writeFileSync(path.join(state.directory, 'a.ts'), "export { value } from './b';\n");
     fs.writeFileSync(path.join(state.directory, 'b.ts'), "export { value } from './a';\n");
     state.run();
