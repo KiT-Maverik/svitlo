@@ -82,17 +82,16 @@ function findLessonPatches(course, overrides, languages) {
     if (!entity || typeof entity.id !== 'string' || !uuid.test(entity.id)) {
       throw new Error('Invalid Course entity identity at ' + location);
     }
+    if (entity.type === 'lesson') {
+      if (change === false) throw new Error('Disabled Lesson reached at ' + location);
+      const patch = change === undefined ? undefined : entity.build.overrides(change, { languages });
+      lessons.set(location, patch);
+      return;
+    }
     if (visited.has(entity.id)) {
       throw new Error('Duplicate Course entity ID ' + entity.id + ' at ' + location);
     }
     visited.add(entity.id);
-
-    if (entity.type === 'lesson') {
-      if (change === false) throw new Error('Disabled Lesson reached at ' + location);
-      const patch = change === undefined ? undefined : entity.build.overrides(change, { languages });
-      lessons.set(entity.id, patch);
-      return;
-    }
     if (!['course', 'module', 'chapter'].includes(entity.type)) {
       throw new Error('Unsupported Course entity type at ' + location + ': ' + String(entity.type));
     }
@@ -114,7 +113,9 @@ function findLessonPatches(course, overrides, languages) {
     }
     for (const key of order) {
       const child = items[key];
-      if (!child || child.slug !== key) throw new Error('Invalid Course child ' + location + '/' + key);
+      if (!child || (child.slug !== key && child.type !== 'lesson')) {
+        throw new Error('Invalid Course child ' + location + '/' + key);
+      }
       visit(child, own(changes, key) ? changes[key] : undefined, location + '/' + key);
     }
   }
@@ -123,13 +124,13 @@ function findLessonPatches(course, overrides, languages) {
   return lessons;
 }
 
-function compactEntity(value, lessonPatches, language) {
+function compactEntity(value, lessonPatches, language, location) {
   if (!isObject(value) || typeof value.id !== 'string') {
     throw new Error('Invalid resolved Course Props entity');
   }
   if (value.type === 'lesson') {
-    if (!lessonPatches.has(value.id)) throw new Error('Unregistered Course Lesson: ' + value.id);
-    const patch = lessonPatches.get(value.id);
+    if (!lessonPatches.has(location)) throw new Error('Unregistered Course Lesson at ' + location + ': ' + value.id);
+    const patch = lessonPatches.get(location);
     const base = patch?.base ?? {};
     const effective = language ? mergeCourseProps(base, patch?.locale?.[language]) : clone(base);
     assertJson(effective, 'Lesson override ' + value.id);
@@ -149,7 +150,7 @@ function compactEntity(value, lessonPatches, language) {
       throw new Error('Course child must have a valid slug in ' + value.id);
     }
     if (own(items, child.slug)) throw new Error('Duplicate Course child slug: ' + child.slug);
-    items[child.slug] = compactEntity(child, lessonPatches, language);
+    items[child.slug] = compactEntity(child, lessonPatches, language, location + '/' + child.slug);
     order.push(child.slug);
   }
   return {
@@ -220,7 +221,7 @@ export function renderCourseFiles(
     }
   }
   const baseResolved = mergeCourseProps(resource.base, patch?.base);
-  const baseRaw = compactEntity(baseResolved, lessonPatches);
+  const baseRaw = compactEntity(baseResolved, lessonPatches, undefined, course.slug);
   const base = projectMedia ? projectMedia(baseRaw, 'base') : baseRaw;
   assertJson(base, 'Course base ' + course.id);
 
@@ -230,7 +231,7 @@ export function renderCourseFiles(
       mergeCourseProps(mergeCourseProps(resource.base, resource.locale?.[language]), patch?.base),
       patch?.locale?.[language],
     );
-    const localizedRaw = compactEntity(resolved, lessonPatches, language);
+    const localizedRaw = compactEntity(resolved, lessonPatches, language, course.slug);
     const localized = projectMedia ? projectMedia(localizedRaw, language) : localizedRaw;
     assertSameCourseStructure(base, localized);
     const delta = difference(base, localized);

@@ -65,6 +65,8 @@ Before integration, the next action is the required final QA/owner-authorized re
 
 **Terminal state:** when all seven Questions stages are verified complete, explicitly say **"All seven Questions workflow stages are complete. There is no next Questions stage. You can assign new work."** Stop; report outstanding integration, independent Flashcards, Lesson QA, publication or merge separately rather than inventing stage eight or continuing automatically. An unmerged or unpublished bank does not satisfy downstream integration/readiness gates.
 
+**Authoring validation boundary:** Stages 1–4 require authentic pedagogical/Assessment Architect content and independent review, not a repeated manual Zod/JSON-Schema or TypeScript check on unfinished `questions.yaml`. The existing Stage 5 Questions Builder preflight/materialization validates the final reviewed input before any writes; subsequently verify actual Question/Quiz references, source SHA, locale resources, media and production CI. Optional editor diagnostics are not a stage gate. See the [four-flow validation audit](../../docs/architecture/yaml-config-scaffolding.md#validation-boundaries-across-the-four-entity-workflows).
+
 ## Stage 1 — Lesson Analysis
 
 Collect approved outcomes, target Skills, required cognitive Assessment
@@ -171,7 +173,7 @@ consumer, not evidence of a shipped UI or scheduling system.
 
 ## Stage 6 — Translation
 
-Translate the **entire Question Bank**, not only default Quiz items,
+Translate the **entire Question Bank on the existing Questions PR branch**, not only default Quiz items, and do **not** create another translation integration/translator PR, branch or Issue. Record the exact locale × Question/answer field inventory, author and source SHA in the Questions tracker.
 including accepted answer variants, distractors, hints, explanations,
 media alternatives and accessible names, plus Quiz Section titles and
 learner-facing content. Preserve IDs, answer semantics, source locale,
@@ -181,12 +183,11 @@ bank or invent fallback translations.
 
 ## Stage 7 — Independent Translation Review
 
-Per target language/source SHA, review all bank items plus actual Quiz
+A **different authorized reviewer agent/context** reviews Code-derived Question-bank Markdown + manifest generated for the owning Lesson UUID/locale **on the same Questions PR** at a pinned source SHA. Verify `manifest.sourceCommit`, full Question selection and `reviewReady`/missing diagnostics. Per target language/source SHA, review all bank items plus actual Quiz
 text and grading-sensitive answer meaning. Check RTL, bidirectional
 math/text, units, accessibility labels and only verified media refs.
 Use real generated review artifacts; missing artifacts are blockers,
-not evidence of a successful review. Keep stage/locale evidence in
-the Questions PR. Follow the current [Translation Workflow](../translation-workflow/README.md) when a separately authorized locale campaign is needed; do not create a mandatory bank Production Issue.
+not evidence of a successful review. An independent reviewer can make **owner-authorized corrections in that Questions PR branch**, followed by regenerated SHA-pinned artifacts and focused re-review. Record source/review SHAs, identity, findings and locale approval there. Follow [Translation Workflow](../translation-workflow/README.md) **without** starting separate translation/reviewer PRs, branches or a bank Production Issue. Cleanup is required before owner-authorized integration into the parent Lesson PR.
 
 ## Completion evidence and PR template
 

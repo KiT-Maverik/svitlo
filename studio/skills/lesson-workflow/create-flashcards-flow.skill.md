@@ -30,6 +30,8 @@ Always include:
 
 **Handoff/terminal state:** when all seven Flashcards stages are independently verified complete, explicitly say **"All seven Flashcards workflow stages are complete. There is no next Flashcards stage. You can assign new work."** If the child PR is not yet integrated, recommend the authorized final QA/review/integration action; once actually integrated, recommend returning to the Lesson parent for its remaining stage(s) or final acceptance. After real child review and integration, the parent agent may check **Lesson Stage 8 — Flashcards**, then propose `do lesson stage 9 for PR #<lesson-pr-number>` for Translation or the final gates if already completed. Show one concrete chat instruction **only when that stage is truly next and authorized**. Bank stage completion is not by itself permission to mark Ready, merge, publish or auto-continue the Lesson.
 
+**Authoring validation boundary:** Stages 1–4 do not require a separate manual technical-schema or TypeScript check for every incomplete `flashcards.yaml` edit; the existing Stage 5 Flashcard Builder validates the reviewed final bank before creating any files. Preserve Stage 4 independent Memory Design Review, real Question/Lesson dependencies, source SHA, safe creation, all required media/locale checks and production CI. See the [four-flow validation audit](../../docs/architecture/yaml-config-scaffolding.md#validation-boundaries-across-the-four-entity-workflows).
+
 ## Seven-stage production
 
 ### 1. Lesson Analysis — Flashcard Learning Architect
@@ -70,11 +72,11 @@ Complete authored assets as needed, then use `generateAssessmentResources --kind
 
 ### 6. Translation — Technical Translator
 
-Translate all required actual learner-facing card text, alt/caption/hint, custom flag, accessible alternatives and culturally valid acronyms to the **Lesson's actual language plan**. Reuse already-localized Question fields via references rather than cloning them. A Course may request a verified subset at publication without shrinking a globally reusable Flashcard or Lesson.
+Translate all required actual learner-facing card text, alt/caption/hint, custom flag, accessible alternatives and culturally valid acronyms to the **Lesson's actual language plan** directly on the **existing Flashcards PR branch**. Track each card/field × locale, translator and exact source SHA there; **do not create an extra translation PR, reviewer PR, integration branch or Issue**. Reuse localized Question fields by reference rather than cloning them. A Course may request a verified subset without narrowing the globally reusable bank or Lesson.
 
 ### 7. Translation Review — independent Linguistic Reviewer
 
-Review Code-derived localized references against current source revision and target language, including RTL, punctuation, scientific sense, terminology, alt and hints, media parity, text/image/audio answer leakage and acronym reconstruction. Record verifiable per-language and per-SHA evidence in the PR. Missing or stale reviews are blockers.
+An **independent authorized reviewer in a different chat/context and linguistic persona** reviews complete Code-derived localized **Flashcard Bank** references and a manifest pinned to the **same Flashcards PR source SHA**. The source must include all bank members (front/back/optional hint and flags), not just Lesson Section `flashcardIds`; existing Lesson Markdown `--purpose flashcards` is a _design context_, **not proof of reviewed card translations**. Use the [Flashcard Bank Code-derived reference adapter](../../../shared/engine/scripts/generateFlashcardReviewArtifacts/README.md) with `--kind flashcards` and an explicit Lesson UUID/locale; check each generated manifest and source SHA, and fail closed if the script or trusted workflow is not actually available in the selected branch. The slash command requires default-branch deployment; otherwise use a verified local run or report that scoped prerequisite. Check scientific meaning, RTL, punctuation, terminology, alt/hints, media parity, answer leakage and acronym reconstruction. Owner-authorized fixes occur **on the same Flashcards PR**, then re-generate/review affected content; record distinct reviewer identity, source/fix/final SHAs, findings and language decision in its tracker. No separate reviewer PR.
 
 ### Publication and missing-asset release requirement
 

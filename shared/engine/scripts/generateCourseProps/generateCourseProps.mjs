@@ -52,6 +52,37 @@ export function readCurrent(root, prefix = '', files = new Map()) {
   return files;
 }
 
+const UUID = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/;
+
+/** Discover both legacy one-file Courses and canonical Stage 5 UUID-bucketed Course roots.
+ * Unmaterialized editorial course.yaml files are never loaded as executable content.
+ */
+export function discoverCourseSources(directory) {
+  if (!fs.existsSync(directory)) return [];
+  assertSafeDirectoryPath(directory);
+  const sources = [];
+  const entries = fs.readdirSync(directory, { withFileTypes: true });
+  for (const entry of entries) {
+    if (entry.isFile() && entry.name.endsWith('.data.ts')) {
+      sources.push(path.join(directory, entry.name));
+    }
+    if (!entry.isDirectory() || !/^[0-9a-f]$/.test(entry.name)) continue;
+    const bucket = path.join(directory, entry.name);
+    assertSafeDirectoryPath(bucket);
+    for (const candidate of fs.readdirSync(bucket, { withFileTypes: true })) {
+      if (!candidate.isDirectory() || !UUID.test(candidate.name) || candidate.name.at(-1) !== entry.name) continue;
+      const source = path.join(bucket, candidate.name, 'index.ts');
+      if (fs.existsSync(source)) {
+        assertSafeDirectoryPath(path.dirname(source));
+        if (fs.lstatSync(source).isSymbolicLink()) throw new Error('Symlinked Course entrypoint: ' + source);
+        if (!fs.statSync(source).isFile()) throw new Error('Course entrypoint is not a file: ' + source);
+        sources.push(source);
+      }
+    }
+  }
+  return sources.sort();
+}
+
 async function render(pkg, mode) {
   const diagnostics = [];
   const textbookId = path.basename(pkg);
@@ -59,17 +90,23 @@ async function render(pkg, mode) {
   const files = new Map();
   if (!fs.existsSync(directory)) return files;
   const ids = new Set();
-  for (const name of fs
-    .readdirSync(directory)
-    .filter(name => name.endsWith('.data.ts'))
-    .sort()) {
-    const source = path.join(directory, name);
-    const courses = await loadAuthoredConfigurators(source, 'course');
-    if (courses.length !== 1) throw new Error('Expected one Course per source: ' + source);
-    const course = courses[0];
+  for (const source of discoverCourseSources(directory)) {
+    const { configurators, moduleExports } = await loadAuthoredConfigurators(source, 'course', {
+      includeExports: true,
+    });
+    if (configurators.length !== 1) throw new Error('Expected one Course per source: ' + source);
+    const course = configurators[0];
+    if (path.basename(source) === 'index.ts' && path.basename(path.dirname(source)) !== course.id) {
+      throw new Error('UUID-bucketed Course ID does not match exported configurator: ' + source);
+    }
+    const overrides = moduleExports.authoredCourseOverrides;
+    if (overrides !== undefined && (overrides === null || typeof overrides !== 'object' || Array.isArray(overrides))) {
+      throw new Error('authoredCourseOverrides must be a stateless Course Build patch: ' + source);
+    }
     if (ids.has(course.id)) throw new Error('Duplicate Course ID: ' + course.id);
     ids.add(course.id);
     for (const [file, body] of renderCourseFiles(course, {
+      overrides,
       projectMedia: (entry, language) =>
         projectTextbookMedia(entry, {
           textbookRoot: pkg,
