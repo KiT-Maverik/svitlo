@@ -19,9 +19,9 @@ methodology:
   approach: 'Progress from recognition through comparison, guided manipulation and independent assessment: first shapes, then light and colors, finally a cross-topic check. A Course-owned Episode adds optional narrative without changing standalone Lesson meaning. Contrast optional/required quizzes, external bank selection, flashcard-only work and media-rich Scenes. Every Lesson slot specifies exact intended Section types and ContentBlock types; the Lesson Flow, not Course Stage 3, authors their final Configs.'
   depth: 'Broad synthetic coverage with narrowly defined, observable recognition and explanation. Exercise all currently runtime-supported Section kinds (content, practice, learningFlow, codingTask, flashcards, quiz) across different Lessons; cover the ten ContentBlocks (text, markdown, code, image, audio, video, youtube, carousel, checkpoint, scene). Build-only Quest is explicitly not treated as operational runtime coverage.'
   accessibility: 'Keyboard and switch-compatible interaction, visual contrast, alt text, audio descriptions or transcripts, captions for videos, a nonvisual equivalent for each Scene, reduced motion, and small-screen responsive layout are required at Lesson implementation. Missing media must be visible unresolved TODO blockers rather than invented finished assets.'
-  scope: 'Exactly two Modules (one with two Chapters and one with one Chapter), one root Chapter, one root Episode, direct root and module Lessons, chapter Lessons, a reused existing Lesson, new Lesson slots with future UUID allocation, distinct Quiz/Flashcards bank decisions, and assessment-only Lessons referencing upstream banks. Educational copy is minimal, but functional block and section coverage is mandatory later.'
+  scope: 'Exactly two Modules (one with two Chapters and one with one Chapter), one root Chapter, one root Episode, direct root and module Lessons, chapter Lessons, two distinct reused existing Lessons (one unchanged, one Course-only override), eight new Lesson slots with future UUID allocation, distinct Quiz/Flashcards bank decisions, and assessment-only Lessons referencing upstream banks. Educational copy is minimal, but functional block and section coverage is mandatory later.'
   entryConditions: "Basic ability to recognize familiar red objects and circles, follow short instructions, and choose accessible input controls. The Course's prerequisite UUIDs represent a test of skill prerequisite propagation; this fixture must not pretend mastery of every taxonomy descendant."
-  sourceNotes: 'Only English is authored at this point. Ukrainian is planned, not translated or approved. No verified EducationStandard is claimed. Source Skill/Group/Domain UUIDs are from content/playground/data/skills/testColors, testShapes and testLight. Existing Lesson lightDiscovery is reused by exact UUID. Future Question/Flashcard IDs must come from approved actual banks; do not insert fake UUIDs here. Course-owned overrides, if later desired, belong in the final stateless build.overrides API, not in YAML.'
+  sourceNotes: 'Only English is authored at this point. Ukrainian is planned, not translated or approved. No verified EducationStandard is claimed. Source Skill/Group/Domain UUIDs are from content/playground/data/skills/testColors, testShapes and testLight. Existing Lessons lightDiscovery and howLightMoves are reused by exact UUID; the first is pure reuse and the second has explicit inline Course-only edits that Stage 5 transforms into a stateless Build API override. Future Question/Flashcard IDs must come from approved actual banks; do not insert fake UUIDs here.'
 prerequisites:
   skills: ['00000000-0000-4000-8000-000000000001', '00000000-0000-4000-8000-000000000008']
   skillGroups: ['00000000-0000-4000-8000-000000000003']
@@ -358,7 +358,7 @@ content:
             type: 'chapter'
             slug: 'illumination'
             title: 'Light and color experiments'
-            methodology: 'Contrast a blocking Quiz owned by its Lesson with a nonblocking Quiz plus Flashcards Section. Cover video, YouTube, audio elsewhere, Scene handoffs, media TODOs and localized source/target workflows. Use full Question Bank vs selected Quiz subset.'
+            methodology: 'Contrast the canonical reused Lesson with a blocking Quiz/independent Question Bank against a new Lesson with a nonblocking Quiz plus Flashcards Section. Video, YouTube and audio are exercised by other planned Lessons; retain Course-wide Section/ContentBlock coverage, Scene handoffs, media TODOs, and localized source/target workflows. Use full Question Banks vs selected Quiz subsets.'
             prerequisites:
               skills: ['00000000-0000-4000-8000-000000000004']
               explanation: 'Introductory color identification is established in the direct Module Lesson.'
@@ -371,37 +371,19 @@ content:
                 lightPath:
                   type: 'lesson'
                   slug: 'lightPath'
+                  lessonId: 'd3048d21-8690-5255-b62c-984c69ac272c'
                   title: 'Where light travels'
-                  objective: 'Explain straight-line light propagation with observations and a shadow example.'
+                  objective: 'Revisit straight-line light propagation, shadows and light-speed evidence through a real existing Lesson and its own Quiz.'
                   skills: ['00000000-0000-4000-8000-000000000015']
-                  depth: 'Guided first; independent demonstration by the end. Minimal sample content is acceptable, but named structures and behavior must be real.'
-                  sequenceReason: "First Chapter Lesson. Builds on Course entry knowledge and the prior Module's shape vocabulary only for representations."
-                  methodology: |-
-                    Instructional purpose: Explain straight-line light propagation with observations and a shadow example.
-
-                    Audience/depth: ages 8–11, guided exploration to independent recognition or explanation as appropriate; synthetic Playground demonstration, not a production curriculum.
-
-                    Target Skills: 00000000-0000-4000-8000-000000000015 (verified Playground taxonomy).
-
-                    Sequence and prerequisites: First Chapter Lesson. Builds on Course entry knowledge and the prior Module's shape vocabulary only for representations.. Distinguish the broader Course entry conditions from the knowledge taught in this Lesson.
-
-                    Planned Sections (ordered authoring requirements; the separate Lesson Flow later materializes their actual Configs):
-                    1. content — explanation, illustrative Scene and embedded media
-                    2. practice — learner predicts a shadow then checks the result
-                    3. quiz — own-Question-Bank scored evidence
-
-                    Planned ContentBlock coverage: scene, image, video, youtube, checkpoint, markdown. These are implementation requirements, not already-authored blocks. Reuse shared UI Kit components; no fabricated files.
-
-                    Assessment decisions: requiresQuestionBank=true; requiresFlashcardBank=false; requiresQuizSection=true; requiresFlashcardsSection=false; quizRequiredForCompletion=true. Bank presence, section presence and completion gate are independent decisions.
-
-                    Assessment evidence: Bank covers directional propagation, shadow prediction and a misconception counterexample; Quiz selects an approved subset and blocks progression when required.. Questions need meaningful core and extension evidence; each Quiz must select explicit real Question IDs from independently reviewed banks. Flashcards should have one idea each and no filler.
-
-                    Media and Scenes: any planned physical media or Scene receives an explicit handoff/specification; missing assets remain visible TODO (BLOCKER) obligations, not invented final media.
-
-                    Accessibility and localization: English is the source; Ukrainian is a required later genuine translation. Every interaction needs keyboard, nonvisual equivalent, captions/transcripts for media, reduced motion and mobile layouts.
-
-                    Verification: separate Lesson/Question/Flashcard workflows own construction and approval. Structural validity or TODO placeholders are not approval.
-                  quizRequired: true
+                  depth: 'Reinforcement and independent evidence after the root-level Light Discovery demonstration.'
+                  sequenceReason: 'First Chapter Lesson. Intentionally revisits the same propagation Skill after the root lightDiscovery placement, now with the canonical Lesson Quiz and Question Bank. Distinct Lesson reuse and contextual overrides are explicit E2E coverage goals; this is not a claim that repeating instruction is necessary in a production curriculum.'
+                  matchingRationale: 'Reuses the genuine Playground howLightMoves Lesson (d3048d21-8690-5255-b62c-984c69ac272c), whose source defines testExplainLightTravel.id, a content Section with Markdown, Scenes and checkpoint, a practice Section, and a Quiz with its own Question Bank. Source declarations include en and uk; source-backed review and locale readiness remain separate. No copy or change to standalone Lesson identity or Sections. The Course-only patch below changes the English displayed title and disables skipping here; canonical authored content and other locales are inherited. Course-wide video and YouTube tests remain assigned to other planned Lessons.'
+                  locale:
+                    title:
+                      en: 'Where light travels'
+                  params:
+                    sections:
+                      allowSkipping: false
                 colorTransfer:
                   type: 'lesson'
                   slug: 'colorTransfer'
