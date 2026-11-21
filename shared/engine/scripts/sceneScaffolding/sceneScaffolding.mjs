@@ -1,27 +1,25 @@
 #!/usr/bin/env node
 /**
- * @fileoverview Opt-in React Scene draft scaffolder.
+ * @fileoverview Create-only, source-owned executable React Scene scaffolding.
  *
- * Reads a Lesson's paired config/production YAML but does NOT generate
- * defineScene modules, mutate Lesson sources, validate/publish Props, or
- * register unfinished React components. The Lesson Builder owns the first
- * boundary; this separate specialist handoff owns executable Scene drafts.
- *
- * An existing Scene UUID directory is always SKIP (no merge/no overwrite).
- * Every newly created TS/TSX module parses, but unfinished components and
- * Storybook locale fixtures deliberately retain unresolved TypeScript names.
+ * Accepts a Scene, Lesson, Episode or Course YAML authoring document. Scene
+ * identity belongs to its config and implementation guidance belongs to its
+ * own production.specification; neither is inferred from a Lesson filename.
+ * Generates Draft-only, compilable React stubs and explicitly synchronizes
+ * the existing textbook lazy Scene registry. Never writes authored Config.
  */
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import yaml from 'yaml';
-import { splitScaffoldDocument } from '../yamlScaffolding/productionScaffolding.mjs';
+import { syncSceneRegistry } from '../../../../scripts/textbook-tooling/generateScenes/generate-scenes.mjs';
 
 export const repoRoot = path.resolve(fileURLToPath(new URL('../../../..', import.meta.url)));
 
 const isRecord = value => value !== null && typeof value === 'object' && !Array.isArray(value);
 const uuid = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/;
 const slug = /^[A-Za-z][A-Za-z0-9]*$/;
+const language = /^[a-z]{2,3}(?:-[A-Za-z0-9]{2,8})?$/;
 
 function noSymlinks(location) {
   let current = path.parse(path.resolve(location)).root;
@@ -35,32 +33,38 @@ function noSymlinks(location) {
   }
 }
 
-/** Do not infer identities or choose a textbook from the current directory. */
+/** Select an explicit authoring source without guessing a textbook or Lesson. */
 function resolveSource(source, repo) {
   const location = path.resolve(repo, source);
   noSymlinks(location);
-  const file = fs.statSync(location).isDirectory() ? path.join(location, 'lesson.yaml') : location;
-  if (path.basename(file) !== 'lesson.yaml') throw new Error('Expected a Lesson lesson.yaml');
+  const stat = fs.statSync(location);
+  let file = location;
+  if (stat.isDirectory()) {
+    const candidates = ['scene.yaml', 'lesson.yaml', 'course.yaml']
+      .map(name => path.join(location, name))
+      .filter(candidate => fs.existsSync(candidate));
+    if (candidates.length !== 1)
+      throw new Error('Source directory must contain exactly one scene.yaml, lesson.yaml or course.yaml: ' + location);
+    file = candidates[0];
+  }
   noSymlinks(file);
-  if (!fs.statSync(file).isFile()) throw new Error('Expected a regular lesson.yaml');
+  if (!fs.statSync(file).isFile() || !/\.ya?ml$/.test(file))
+    throw new Error('Expected a regular YAML Scene authoring source: ' + file);
   const relative = path.relative(repo, file).split(path.sep).join('/');
-  const match = /^content\/((?:languages\/)?[a-z][a-z-]*)\/.+\/lesson\.yaml$/.exec(relative);
-  if (!match) throw new Error('Lesson lesson.yaml must be inside content/<book>/');
-  const bookRoot = path.join(repo, 'content', match[1]);
-  return { file, bookRoot };
+  const match = /^content\/((?:languages\/)?[a-z][a-z-]*)\/.+\.ya?ml$/.exec(relative);
+  if (!match) throw new Error('Scene source must be inside content/<book>/');
+  return { file, bookRoot: path.join(repo, 'content', match[1]) };
 }
 
-/**
- * An executable Scene requires an actual textbook Scene registry and TSX
- * workspace support. Never silently introduce app-level dependencies.
- */
+/** Prevent accidentally adding Scenes to an unrelated textbook workspace. */
 function assertSceneWorkspace(bookRoot) {
   noSymlinks(bookRoot);
   const manifest = JSON.parse(fs.readFileSync(path.join(bookRoot, 'package.json'), 'utf8'));
   const tsconfig = JSON.parse(fs.readFileSync(path.join(bookRoot, 'tsconfig.json'), 'utf8'));
   const includes = tsconfig.include ?? [];
   const covers = ext => includes.some(value =>
-    value === 'scenes/**/*' || value === 'scenes/**' || value === 'scenes/**/*.{' + (ext === 'ts' ? 'ts,tsx' : 'tsx,ts') + '}' ||
+    value === 'scenes/**/*' || value === 'scenes/**' ||
+    value === 'scenes/**/*.{ts,tsx}' || value === 'scenes/**/*.{tsx,ts}' ||
     value === 'scenes/**/*.' + ext
   );
   if (!manifest.exports?.['./scenes'] ||
@@ -74,54 +78,82 @@ function assertSceneWorkspace(bookRoot) {
       !(manifest.devDependencies?.vitest || manifest.dependencies?.vitest)) {
     throw new Error(
       'Textbook is not Scene-ready: requires ./scenes export, registry/generator, ' +
-      'TS/TSX tsconfig inclusion, React, Engine, UI Kit, and Vitest: ' + bookRoot,
+      'TS/TSX tsconfig inclusion, React, Engine, UI Kit and Vitest: ' + bookRoot,
     );
   }
+  return manifest.name;
 }
 
-/** PascalCase executable name; existing lowerCamelCase Config slugs remain usable. */
 export function sceneComponentName(authoredSlug) {
   if (typeof authoredSlug !== 'string' || !slug.test(authoredSlug))
-    throw new Error('Unsafe Scene slug (expected PascalCase or legacy lowerCamelCase): ' + String(authoredSlug));
+    throw new Error('Unsafe Scene slug (expected PascalCase or lowerCamelCase): ' + String(authoredSlug));
   return authoredSlug[0].toUpperCase() + authoredSlug.slice(1);
 }
 
-/** Keep Configurator and executable component symbols distinct at the handoff. */
 export function sceneSymbols(authoredSlug) {
   const component = sceneComponentName(authoredSlug);
   return { component, configurator: component + 'Config' };
 }
 
-function readScenes(file) {
+/**
+ * Recognize the same {config, production} authoring nodes in both parent
+ * trees, including nested Carousel and Quest Scenes. An unwrapped Engine
+ * Config node may instead carry its own production sibling (Course Episode).
+ */
+export function readScenes(file, selectedLanguage) {
   const document = yaml.parseDocument(fs.readFileSync(file, 'utf8'), {
     strict: true, uniqueKeys: true, version: '1.2',
   });
-  if (document.errors.length) throw new Error('lesson.yaml: ' + document.errors.map(x => x.message).join('; '));
-  const { config, documentLanguage, tasks } = splitScaffoldDocument(document.toJS({ maxAliasCount: 0 }));
-  if (config.type !== 'lesson') throw new Error('lesson.yaml: expected a Lesson root');
-  if (typeof documentLanguage !== 'string' || !/^[a-z]{2}(?:-[A-Z]{2})?$/.test(documentLanguage))
-    throw new Error('lesson.yaml: production.documentLanguage is required');
-  const specs = new Map();
-  for (const task of tasks) {
-    if (task.type !== 'scene') continue;
-    if (specs.has(task.id)) throw new Error('Duplicate Scene production identity: ' + task.id);
-    specs.set(task.id, task.production.specification);
-  }
+  if (document.errors.length)
+    throw new Error(path.basename(file) + ': ' + document.errors.map(x => x.message).join('; '));
+  const root = document.toJS({ maxAliasCount: 0 });
+  if (!isRecord(root)) throw new Error('Scene source must be a YAML object');
+
+  const declaredLanguage = root.production?.documentLanguage ?? root.documentLanguage;
+  if (selectedLanguage !== undefined && declaredLanguage !== undefined && selectedLanguage !== declaredLanguage)
+    throw new Error('--document-language conflicts with source documentLanguage');
+  const documentLanguage = selectedLanguage ?? declaredLanguage;
+  if (typeof documentLanguage !== 'string' || !language.test(documentLanguage))
+    throw new Error('Scene source requires a valid documentLanguage or explicit --document-language');
+
   const scenes = [];
-  function visit(value) {
-    if (!isRecord(value)) {
-      if (Array.isArray(value)) value.forEach(visit);
+  function addScene(config, production, location) {
+    if (!uuid.test(config.id ?? '')) throw new Error('Invalid Scene UUID at ' + location);
+    const symbols = sceneSymbols(config.slug);
+    if (!isRecord(production) || typeof production.specification !== 'string' ||
+        !production.specification.trim()) {
+      throw new Error('Scene ' + config.id + ' needs its own production.specification at ' + location);
+    }
+    scenes.push({
+      id: config.id,
+      slug: config.slug,
+      ...symbols,
+      specification: production.specification,
+      documentLanguage,
+    });
+  }
+  function visit(node, location) {
+    if (Array.isArray(node)) {
+      node.forEach((entry, index) => visit(entry, location + '[' + index + ']'));
       return;
     }
-    if (value.type === 'scene' && Object.hasOwn(value, 'id')) {
-      if (!uuid.test(value.id)) throw new Error('Invalid Scene UUID: ' + String(value.id));
-      const symbols = sceneSymbols(value.slug);
-      const specification = specs.get(value.id);
-      scenes.push({ id: value.id, slug: value.slug, ...symbols, specification, documentLanguage });
+    if (!isRecord(node)) return;
+    if (isRecord(node.config) && typeof node.config.type === 'string') {
+      if (node.config.type === 'scene') addScene(node.config, node.production, location);
+      else visit(node.config, location + '.config');
+      return;
     }
-    for (const entry of Object.values(value)) visit(entry);
+    if (node.type === 'scene') {
+      addScene(node, node.production, location);
+      return;
+    }
+    // Do not search localized values and editorial text for entities.
+    for (const [key, value] of Object.entries(node)) {
+      if (!['production', 'locale', 'params', 'events', 'review'].includes(key))
+        visit(value, location + '.' + key);
+    }
   }
-  visit(config);
+  visit(root, '$');
   const ids = new Set();
   const names = new Set();
   for (const scene of scenes) {
@@ -133,22 +165,17 @@ function readScenes(file) {
   return scenes.sort((a, b) => a.id.localeCompare(b.id));
 }
 
-/**
- * Pure template rendering: no fabricated learning content, translations,
- * accessible labels, or test outcomes. The source specification is verbatim
- * apart from a single normalized final newline, as in Lesson Builder.
- */
+/** No fabricated learning content, translations, interactions or test evidence. */
 export function renderSceneFiles(scene) {
   const { id, component: name, documentLanguage, specification } = scene;
   if (typeof specification !== 'string' || !specification.trim())
     throw new Error('Scene ' + id + ' needs production.specification; refusing to invent it');
-  const rootTestId = 'scene-' + id;
   const files = new Map();
   files.set('specification.md', specification.trimEnd() + '\n');
   files.set('index.ts', "export { " + name + " as default } from './" + name + "';\n");
   files.set(name + '.constants.ts', [
     'export const testIds = {',
-    '  root: ' + JSON.stringify(rootTestId) + ',',
+    '  root: ' + JSON.stringify('scene-' + id) + ',',
     '} as const;',
     '',
   ].join('\n'));
@@ -163,6 +190,7 @@ export function renderSceneFiles(scene) {
     "'use client';",
     '',
     "import type { ContentBlock_Scene_Props } from '@svitlo/engine/runtime';",
+    "import { SceneStub } from '@svitlo/ui-kit';",
     "import { testIds } from './" + name + ".constants';",
     "import styles from './" + name + ".module.css';",
     '',
@@ -171,11 +199,13 @@ export function renderSceneFiles(scene) {
     '};',
     '',
     'export function ' + name + '({ locales }: ' + name + 'Props) {',
-    '  void locales;',
-    '  // TODO(scene): implement the approved Scene specification and its accessible,',
-    '  // source-language (' + documentLanguage + ') interactions before building this textbook.',
-    '  // The unresolved identifier deliberately prevents an incomplete Scene from typechecking.',
-    '  return <section className={styles.root} data-testid={testIds.root}>{sceneImplementationRequired}</section>;',
+    '  // TODO (BLOCKER): Implement Scene ' + id + ' using specification.md.',
+    '  // Author only verified ' + documentLanguage + ' content and accessible interactions.',
+    '  return (',
+    '    <div className={styles.root} data-testid={testIds.root}>',
+    '      <SceneStub locales={locales} />',
+    '    </div>',
+    '  );',
     '}',
     '',
   ].join('\n'));
@@ -185,20 +215,24 @@ export function renderSceneFiles(scene) {
     '',
     'export default { title: ' + JSON.stringify('Scenes/' + name) + ', component: ' + name + ' };',
     '',
-    'export const SourceLanguage = {',
-    '  args: {',
-    '    // TODO(i18n): use a verified ' + documentLanguage + ' fixture from the Lesson source, not invented copy.',
-    '    locales: sceneSourceLocaleRequired,',
-    '  },',
+    '// Empty locale input is used only to preview the invariant Draft placeholder.',
+    'export const DraftPreview = {',
+    '  args: { locales: {} },',
     '} satisfies { args: ComponentProps<typeof ' + name + '> };',
     '',
   ].join('\n'));
   files.set(name + '.spec.tsx', [
-    "import { describe, it } from 'vitest';",
+    "import { render, screen } from '@testing-library/react';",
+    "import { describe, expect, it } from 'vitest';",
+    "import { " + name + " } from './" + name + "';",
     '',
     "describe('" + name + "', () => {",
+    "  it('renders an accessible Draft placeholder', () => {",
+    '    render(<' + name + ' locales={{}} />);',
+    "    expect(screen.getByRole('status').textContent).toBe('Not implemented');",
+    '  });',
     "  it.todo('implements the approved Scene interactions and state transitions');",
-    "  it.todo('provides source-locale accessibility and keyboard/touch parity');",
+    "  it.todo('provides source-language accessibility and keyboard/touch parity');",
     '});',
     '',
   ].join('\n'));
@@ -206,22 +240,22 @@ export function renderSceneFiles(scene) {
 }
 
 /**
- * Creation-only. check mode verifies handoff file presence, not byte identity:
- * implementation/stories/specification become human-owned after creation.
+ * Generate only new UUID folders; existing Scene implementation/spec/story/test
+ * always wins. Registry update is explicit here, not in unrelated builds.
  */
-export function runOne(source, mode = 'check', repo = repoRoot, selectedSceneId) {
+export async function runOne(source, mode = 'check', repo = repoRoot, selectedSceneId, selectedLanguage) {
   if (!['generate', 'check'].includes(mode)) throw new Error('Mode must be generate or check');
   const { file, bookRoot } = resolveSource(source, repo);
-  assertSceneWorkspace(bookRoot);
+  const packageName = assertSceneWorkspace(bookRoot);
   if (selectedSceneId !== undefined && !uuid.test(selectedSceneId))
     throw new Error('Expected --scene-id to be a canonical Scene UUID');
-  const all = readScenes(file);
+  const all = readScenes(file, selectedLanguage);
   const scenes = selectedSceneId === undefined ? all : all.filter(x => x.id === selectedSceneId);
   if (selectedSceneId && !scenes.length)
-    throw new Error('Scene UUID is not present in this Lesson: ' + selectedSceneId);
+    throw new Error('Scene UUID is not present in the selected source: ' + selectedSceneId);
+  if (!scenes.length) throw new Error('No Scene nodes found in the selected source');
   const plans = [];
   const results = [];
-  // Validate all pending scenes before the first write.
   for (const scene of scenes) {
     const directory = path.join(bookRoot, 'scenes', scene.id.at(-1), scene.id);
     noSymlinks(directory);
@@ -250,33 +284,39 @@ export function runOne(source, mode = 'check', repo = repoRoot, selectedSceneId)
       results.push({ id: scene.id, changed: files.size, skipped: false });
     }
   }
+  // The canonical generator produces the only runtime registry format.
+  await syncSceneRegistry(bookRoot, mode === 'generate' ? '--write' : '--check', packageName);
+  if (mode === 'generate') await syncSceneRegistry(bookRoot, '--check', packageName);
   return results.sort((a, b) => a.id.localeCompare(b.id));
 }
 
-export function main(args = process.argv.slice(2), repo = repoRoot) {
+export async function main(args = process.argv.slice(2), repo = repoRoot) {
   const [mode, ...rest] = args;
   if (!['generate', 'check'].includes(mode)) throw new Error('Expected generate|check');
   let source;
   let selectedSceneId;
+  let selectedLanguage;
   for (let i = 0; i < rest.length; i += 2) {
     if (rest[i] === '--source' && rest[i + 1] && source === undefined) source = rest[i + 1];
     else if (rest[i] === '--scene-id' && rest[i + 1] && selectedSceneId === undefined)
       selectedSceneId = rest[i + 1];
-    else throw new Error('Usage: sceneScaffolding.mjs generate|check --source content/<book>/.../lesson.yaml [--scene-id UUID]');
+    else if (rest[i] === '--document-language' && rest[i + 1] && selectedLanguage === undefined)
+      selectedLanguage = rest[i + 1];
+    else throw new Error('Usage: sceneScaffolding.mjs generate|check --source content/<book>/.../source.yaml [--scene-id UUID] [--document-language LANG]');
   }
-  if (!source) throw new Error('Scene scaffolding needs an explicit --source Lesson lesson.yaml');
-  const results = runOne(source, mode, repo, selectedSceneId);
+  if (!source) throw new Error('Scene scaffolding needs an explicit --source YAML file');
+  const results = await runOne(source, mode, repo, selectedSceneId, selectedLanguage);
   for (const result of results)
     console.log(result.skipped
-      ? 'SKIP Scene ' + result.id + ': existing UUID directory; no files modified'
-      : 'Scene ' + result.id + ': ' + (mode === 'check' ? 'scaffold files present' : result.changed + ' files written'));
-  console.log('Processed ' + results.length + ' Scene(s); registry not modified');
+      ? 'SKIP Scene ' + result.id + ': existing UUID directory; no authored files modified'
+      : 'Scene ' + result.id + ': ' + (mode === 'check' ? 'scaffold files and registry verified' : result.changed + ' files written'));
+  console.log('Processed ' + results.length + ' Scene(s); canonical registry verified');
   return results;
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
-  try { main(); } catch (error) {
+  main().catch(error => {
     console.error(error.message);
     process.exitCode = 1;
-  }
+  });
 }

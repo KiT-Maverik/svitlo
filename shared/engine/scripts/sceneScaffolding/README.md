@@ -1,68 +1,69 @@
-# React Scene draft scaffolding
+# React Scene Draft scaffolding
 
-**Lesson workflow:** this is an optional create-only helper within [Lesson Stage 6.3 Implement and integrate Scenes](../../../../studio/skills/lesson-workflow/create-lesson-flow.skill.md); the required implementation, registration and tests are governed by [Implement Scene](../../../../studio/skills/lesson-workflow/implement-scene.skill.md). Stage 6.1 still generates only `defineScene` Config/specification source, and Stage 6.2 completes strict typed Lesson resources. The helper alone never completes Stage 6.3.
+This is an **opt-in, create-only** executable Scene handoff. It does not
+implement the educational Scene, translate content, publish Props, validate
+editorial approval or modify authored Lesson/Course Config. The Scene's own
+immutable UUID and production.specification are the source of truth.
 
-An **opt-in, separate** Engine workflow for executable React Scene drafts. It reads
-a single Lesson technical `lesson.yaml` (including nested Carousel/Quest Scenes)
-and the authored `production.specification` belonging to each Scene's UUID.
-Unlike `lessonBuilder`, this workflow **never** emits `defineScene` sources,
-mutates Lesson files, runs Config validation, translates text, registers Scenes,
-or publishes Props. The Lesson's colocated `specification.md` is the authoring
-handoff; this workflow copies the same source specification into the executable
-Scene directory so implementers can work at that location.
+## Source contract
+
+Supply an explicitly selected YAML source under content/<book>/:
+
+- a Scene-owned scene.yaml containing a {config, production} node,
+- a standalone Lesson lesson.yaml with nested {config, production} Scene nodes,
+- a Course course.yaml containing Episodes and nested Scenes, including
+  unwrapped Engine Config-shaped Scene nodes with a production sibling.
+
+The root must declare production.documentLanguage or documentLanguage, or
+the caller must explicitly supply --document-language. A conflicting CLI
+language is rejected. Nested Carousel/Quest Scenes are discovered recursively.
+Each Scene must have its own config.id, config.slug, and nonempty
+production.specification. Missing specifications are explicit blockers,
+never fabricated. The Course/Engine source is not copied or overwritten.
 
 ## Invocation
 
-    node shared/engine/scripts/sceneScaffolding/sceneScaffolding.mjs generate --source content/<book>/data/lessons/<bucket>/<uuid>/lesson.yaml
-    node shared/engine/scripts/sceneScaffolding/sceneScaffolding.mjs generate --source content/<book>/staging/lesson.yaml --scene-id <scene-uuid>
-    node shared/engine/scripts/sceneScaffolding/sceneScaffolding.mjs check --source content/<book>/staging/lesson.yaml
+    node shared/engine/scripts/sceneScaffolding/sceneScaffolding.mjs generate --source content/<book>/data/.../scene.yaml
+    node shared/engine/scripts/sceneScaffolding/sceneScaffolding.mjs generate --source content/<book>/data/.../lesson.yaml --scene-id <scene-uuid>
+    node shared/engine/scripts/sceneScaffolding/sceneScaffolding.mjs generate --source content/<book>/data/.../course.yaml
+    node shared/engine/scripts/sceneScaffolding/sceneScaffolding.mjs check --source content/<book>/data/.../course.yaml
     node --test shared/engine/scripts/sceneScaffolding/sceneScaffolding.spec.mjs
 
-`generate` is deterministic, create-only and logs `SKIP` whenever the Scene's
-UUID directory already exists, including partially created or manually edited
-trees. It never replaces a file. `check` verifies expected file presence only;
-it does **not** compare human-completed implementation bytes to a draft template.
-No discovery or generation occurs without an explicitly selected Lesson source. **Run this optional scaffold before an authorized `/lesson finalize` removes the original `lesson.yaml`; the generator currently reads that file rather than a derived `specification.md`.**
+The generator accepts no implicit source or textbook selection. Textbooks
+without React, UI Kit, Engine, TSX, the exported ./scenes entry, and the
+canonical registry are rejected with a Scene-ready diagnostic; Math is not
+implicitly Scene-enabled.
 
-New executable Scenes use the safe PascalCase component name from the authored
-Scene slug; legacy `lightRayDiagram` becomes `LightRayDiagram`. The intended
-separate configurator symbol convention is `LightRayDiagramConfig` (owned by
-Lesson source generation). Identity and registry lookup **always** use the
-original Scene UUID, not the filename/slug. Case-folding collisions are rejected.
+## Created layout
 
-The workflow requires an already Scene-enabled textbook with an exported
-`./scenes` package entrypoint, generated lazy Scene registry tooling, TS+TSX
-coverage, and React/UI Kit/Engine/Vitest dependencies. In particular, Math
-currently lacks this support: enabling Math's Scene registry and package
-exports is a **separate integration task**, not silently done here.
-
-## Newly created files
-
-    scenes/<last-scene-uuid-hex>/<scene-uuid>/
-      index.ts                     (default export for lazy registry)
-      specification.md             (authored source handoff)
-      SceneName.tsx                (typed locales, intentionally unresolved implementation)
+    scenes/<last-uuid-hex>/<scene-uuid>/
+      index.ts
+      specification.md
+      SceneName.tsx
       SceneName.module.css
-      SceneName.stories.tsx        (CSF-style story, intentionally unresolved source-locale fixture)
-      SceneName.spec.tsx           (Vitest pending tests, no fake assertions)
-      SceneName.constants.ts      (testIds ONLY; never ARIA copy)
+      SceneName.constants.ts
+      SceneName.stories.tsx
+      SceneName.spec.tsx
 
-All TS/TSX scaffolds parse; incomplete TSX deliberately references unresolved
-`sceneImplementationRequired` and `sceneSourceLocaleRequired` symbols so missing
-work is visible to TypeScript. This is **not** a successful typecheck or a
-working Scene. Do not suppress those errors or inject errors into later human-
-completed code. Do not fabricate locales, accessible names, animations, media,
-interactions or test evidence.
+SceneName is deterministically PascalCased from the existing slug; lookup
+always uses the UUID. The .tsx is a real lazy-registry-compatible React
+component that displays the accessible UI Kit SceneStub, with a visible
+TODO (BLOCKER): Implement Scene marker. The story uses an empty Draft-only
+locale object, not fake translation. The generated test asserts the real
+placeholder status and leaves implementation tests pending.
 
-After the specialist implements the approved Scene and source-locale content,
-runs the package's component/type tests and completes accessibility review,
-run the existing `content:generate:scenes` command in that textbook workspace
-to update its lazy registry. No generator call is made automatically here.
-Storybook discovery/configuration must be provided by the textbook as needed;
-the CSF story uses React types without a new Storybook runtime dependency.
+Every existing Scene UUID directory is SKIP, even if partial or edited. Never
+replace an authored specification, implementation, story, or test. The
+existing scripts/textbook-tooling/generateScenes/generate-scenes.mjs workflow
+is called in generate mode and immediately checked; check mode verifies files
+and registry without writing. The registry remains the existing lazy-import
+format; unrelated builds do not opportunistically re-register Scenes.
 
-**Integration boundary:** The existing Lesson Builder still uses camelCase
-folder slugs and currently exports raw Scene slug symbols. The separate agent
-responsible for shared Lesson Builder emission must align its Scene-only
-`safeSlug` and `*Config` export naming with this convention. This PR does not
-change `lessonBuilder` or its source handoff behavior.
+SceneStub is **Draft-only preview UI** exported as SceneStub from
+@svitlo/ui-kit. Production imports of SceneStub must be prohibited by the
+separate Agent G lint work. A completed Scene must replace the stub in place,
+author true source-language content, implement real interactions and satisfy
+the Implement Scene skill's accessibility/QA gates. A passing scaffold or
+typecheck is never proof that a Scene is complete.
+
+See the Implement Scene skill and the Engine scripts AGENTS.md for boundaries.
