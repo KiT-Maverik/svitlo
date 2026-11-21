@@ -11,7 +11,6 @@ import {
   report,
   safeBranch,
   gitBlob,
-  parseIdentity as parseCourseIdentity,
 } from '../courseMaterialization/course-gate.mjs';
 
 const UUID = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/;
@@ -184,6 +183,52 @@ export function validateArtifactPath(filename, identity, operation = 'materializ
   );
 }
 
+/**
+ * Verify a Course-originated Lesson from immutable parent Git sources, not from
+ * the parent Course PR's editable body/identity marker or obsolete Lessons table.
+ * The parent must contain both the Lesson handoff and a Course-owned source
+ * import actually referring to that standalone Lesson UUID.
+ */
+export async function verifyCourseParentSources(parent, identity, get = github) {
+  const courseId = identity.parent?.courseId;
+  if (!UUID.test(courseId ?? '') || !SHA.test(parent.head?.sha ?? ''))
+    throw Error('Invalid pinned parent Course identity');
+  const prefix = identity.pkg + '/data/courses/' + courseId.at(-1) + '/' + courseId + '/';
+  const commit = await get('git/commits/' + parent.head.sha);
+  if (!SHA.test(commit?.tree?.sha ?? '')) throw Error('Missing pinned parent Course tree');
+  const response = await get('git/trees/' + commit.tree.sha + '?recursive=1');
+  if (!response || response.truncated || !Array.isArray(response.tree) || response.tree.length > 100000)
+    throw Error('Incomplete parent Course source tree');
+  const files = new Map();
+  for (const item of response.tree) {
+    if (item.type !== 'blob' || !SHA.test(item.sha ?? '')) continue;
+    if (item.path.startsWith(prefix) || item.path === identity.yaml)
+      files.set(item.path, item);
+  }
+  if (!files.has(prefix + 'index.ts') || !files.has(identity.yaml))
+    throw Error('Parent Course lacks the generated Course source or this Lesson YAML');
+  const candidates = [...files.values()].filter(item =>
+    item.path.startsWith(prefix) && item.path.endsWith('/index.ts') || item.path === prefix + 'index.ts',
+  );
+  if (!candidates.length || candidates.length > 500)
+    throw Error('Invalid parent Course source inventory');
+  const needle = '#lessonsData/' + identity.id.at(-1) + '/' + identity.id + '/';
+  let found = false;
+  for (const candidate of candidates) {
+    if (!Number.isSafeInteger(candidate.size) || candidate.size < 1 || candidate.size > 1024 * 1024)
+      throw Error('Oversized parent Course TypeScript source');
+    const blob = await get('git/blobs/' + candidate.sha);
+    if (!blob || blob.encoding !== 'base64' || typeof blob.content !== 'string')
+      throw Error('Cannot verify parent Course source blob');
+    const bytes = Buffer.from(blob.content.replace(/\s/g, ''), 'base64');
+    if (bytes.length !== candidate.size || bytes.toString('base64') !== blob.content.replace(/\s/g, ''))
+      throw Error('Malformed parent Course source blob');
+    if (bytes.toString('utf8').includes(needle)) { found = true; break; }
+  }
+  if (!found) throw Error('Parent Course source does not reference this Lesson UUID');
+  return { courseId, parentHead: parent.head.sha, courseRoot: prefix, lesson: identity.yaml };
+}
+
 export async function inspect(number, expectedHead) {
   const repo = process.env.GITHUB_REPOSITORY;
   if (!/^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/.test(repo ?? '')) throw Error('Invalid repository');
@@ -211,15 +256,13 @@ export async function inspect(number, expectedHead) {
       parent.head?.repo?.full_name !== repo ||
       parent.base?.repo?.full_name !== repo ||
       !safeBranch(parent.head?.ref, parent.base?.ref) ||
-      pr.base?.ref !== parent.head?.ref ||
-      !parent.body?.includes('<!-- svitlo-course-flow:v1 -->')
+      pr.base?.ref !== parent.head?.ref
     )
       throw Error('Course Lesson must target its verified parent integration branch');
-    const courseIdentity = parseCourseIdentity(parent.body);
-    if (courseIdentity.id !== identity.parent.courseId || courseIdentity.pkg !== identity.pkg)
-      throw Error('Parent Course UUID/textbook does not match Lesson linkage');
-    // The Course-owned inventory must actually register this Lesson UUID.
-    if (!parent.body.includes(identity.id)) throw Error('Parent Course PR does not register this Lesson UUID');
+    await verifyCourseParentSources(parent, identity);
+    const latestParent = await github('pulls/' + identity.parent.parentPr);
+    if (latestParent?.head?.sha !== parent.head.sha || latestParent.state !== 'open')
+      throw Error('Parent Course HEAD advanced during Lesson source validation');
   } else if (pr.base?.ref !== defaultBranch) {
     throw Error('Standalone Lesson PR without parent marker must target the default branch');
   }
