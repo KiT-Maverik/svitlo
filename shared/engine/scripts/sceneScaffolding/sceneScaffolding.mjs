@@ -159,12 +159,9 @@ export function readScenes(file, selectedLanguage) {
   }
   visit(root, '$');
   const ids = new Set();
-  const names = new Set();
   for (const scene of scenes) {
     if (ids.has(scene.id)) throw new Error('Duplicate Scene UUID: ' + scene.id);
-    if (names.has(scene.component)) throw new Error('Colliding Scene component name: ' + scene.component);
     ids.add(scene.id);
-    names.add(scene.component);
   }
   return scenes.sort((a, b) => a.id.localeCompare(b.id));
 }
