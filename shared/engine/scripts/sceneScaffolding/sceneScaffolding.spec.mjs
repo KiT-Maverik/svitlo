@@ -227,7 +227,8 @@ test('reruns preserve existing implementation, story, test and edited specificat
     assert.equal(fs.readFileSync(path.join(folder, file), 'utf8'), 'authored ' + index + '\n'));
   await runOne(f.lessonDir, 'check', f.repo);
   fs.rmSync(path.join(folder, 'index.ts'));
-  assert.deepEqual((await runOne(f.lessonDir, 'generate', f.repo))[0].skipped, true);
+  // A partial authored Scene is never rewritten; registry verification must fail visibly.
+  await assert.rejects(runOne(f.lessonDir, 'generate', f.repo), /ENOENT/);
   await assert.rejects(runOne(f.lessonDir, 'check', f.repo), /Missing Scene scaffold file/);
 });
 
