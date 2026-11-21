@@ -1,3 +1,4 @@
+// Lesson UUID: d3048d21-8690-5255-b62c-984c69ac272c; documentLanguage: en
 import { defineFlashcard, defineFlashcardSide } from '@svitlo/engine/build';
 import { lightTravelsStraight } from '../questions/lightTravelsStraight';
 import { fastestMedium } from '../questions/fastestMedium';

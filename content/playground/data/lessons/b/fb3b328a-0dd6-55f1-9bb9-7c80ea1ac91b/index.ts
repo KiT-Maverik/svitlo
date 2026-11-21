@@ -1,6 +1,7 @@
 import { defineContentSection, defineLesson, defineMarkdown } from '@svitlo/engine/build';
 import { howLightMoves, howLightMovesTitle } from '../../c/d3048d21-8690-5255-b62c-984c69ac272c';
 import { howLightMoves_languages } from '../../c/d3048d21-8690-5255-b62c-984c69ac272c/constants';
+import { testExplainLightTravel } from '../../../skills/testLight/testLightPropagation/testExplainLightTravel';
 import { contentBlockGallery } from '../../../courses/sections/contentBlockGallery.data';
 
 const storyBridge = defineContentSection({
@@ -38,7 +39,7 @@ export const courseHowLightMoves = defineLesson({
   id: 'fb3b328a-0dd6-55f1-9bb9-7c80ea1ac91b',
   slug: 'courseHowLightMoves',
   type: 'lesson',
-  skills: howLightMoves.config.base.skills,
+  skills: [testExplainLightTravel.id],
   params: {
     ...howLightMoves.config.base.params,
     quizRequiredForCompletion: false,

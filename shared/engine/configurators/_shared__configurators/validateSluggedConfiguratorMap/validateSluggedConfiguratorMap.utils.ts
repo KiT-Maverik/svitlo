@@ -10,6 +10,8 @@ type Options = {
   path?: string;
   itemLabel?: string;
   allowDisabled?: boolean;
+  /** Course placement keys may alias only explicitly permitted child entity types. */
+  allowAliasForTypes?: readonly string[];
 };
 
 const isRecord = (value: unknown): value is Record<string, unknown> =>
@@ -22,7 +24,7 @@ const isRecord = (value: unknown): value is Record<string, unknown> =>
 export function validateSluggedConfiguratorMap(
   items: unknown,
   allowedTypes: readonly string[],
-  { path = 'items', itemLabel = 'child', allowDisabled = false }: Options = {},
+  { path = 'items', itemLabel = 'child', allowDisabled = false, allowAliasForTypes = [] }: Options = {},
 ): SlugMapValidationIssue[] {
   if (!isRecord(items)) {
     return [{ check: 'item', path, message: 'Expected a slug-keyed configurator map' }];
@@ -43,7 +45,7 @@ export function validateSluggedConfiguratorMap(
       });
       continue;
     }
-    if (child.slug !== slug) {
+    if (child.slug !== slug && !(typeof child.type === 'string' && allowAliasForTypes.includes(child.type))) {
       issues.push({
         check: 'slug',
         path: at,
