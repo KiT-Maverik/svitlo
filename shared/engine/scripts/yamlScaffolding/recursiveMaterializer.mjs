@@ -278,6 +278,10 @@ export function materialize(document, context = {}) {
         'export const ' + named + ' = ' + factory + '({ id: ' + JSON.stringify(id) +
         ', slug: ' + JSON.stringify(slug) + ' });\n';
     } else {
+      if (type === 'scene' && context.isPending?.(authored, production) === true) {
+        todos.push('// TODO (BLOCKER): Complete and register this Scene; Draft Preview uses Agent F\'s SceneStub.');
+        warn(location, 'pending-scene', 'Scene implementation and UUID registration remain pending');
+      }
       const config = sourceAuthoringCopy(authored, language);
       if (isRecord(config.params) && Array.isArray(config.params.languages)) {
         if (!config.params.languages.includes(language)) fail(location + '.config.params.languages', 'source language is not supported');
