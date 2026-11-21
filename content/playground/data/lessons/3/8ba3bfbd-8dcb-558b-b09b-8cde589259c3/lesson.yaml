@@ -1,0 +1,49 @@
+config:
+  id: 8ba3bfbd-8dcb-558b-b09b-8cde589259c3
+  slug: patternMaker
+  type: lesson
+  skills:
+    - 00000000-0000-4000-8000-000000000011
+    - 00000000-0000-4000-8000-000000000008
+  params:
+    languages:
+      - en
+      - uk
+    quizRequiredForCompletion: false
+    sections:
+      allowNavigation: true
+      allowSkipping: true
+      showIndexes: true
+  locale:
+    title:
+      en: Make a shape pattern
+  section:
+    items: {}
+    order: []
+production:
+  documentLanguage: en
+  methodology: |-
+    Instructional purpose: Construct a short repeatable visual or symbolic sequence using triangles and circles.
+
+    Audience/depth: ages 8–11, guided exploration to independent recognition or explanation as appropriate; synthetic Playground demonstration, not a production curriculum.
+
+    Target Skills: 00000000-0000-4000-8000-000000000011 (verified Playground taxonomy); 00000000-0000-4000-8000-000000000008 (verified Playground taxonomy).
+
+    Sequence and prerequisites: Second Chapter applies previously recognized shapes without introducing a new recognition Skill. The coding interaction is an alternative representation, not a new programming-learning outcome.. Distinguish the broader Course entry conditions from the knowledge taught in this Lesson.
+
+    Planned Sections (ordered authoring requirements; the separate Lesson Flow later materializes their actual Configs):
+    1. content — pattern concept
+    2. codingTask — small step-by-step algorithmic pattern representation
+    3. learningFlow — Scene-assisted pattern creation
+
+    Planned ContentBlock coverage: code, scene, video, text, markdown. These are implementation requirements, not already-authored blocks. Reuse shared UI Kit components; no fabricated files.
+
+    Assessment decisions: requiresQuestionBank=false; requiresFlashcardBank=true; requiresQuizSection=false; requiresFlashcardsSection=false; quizRequiredForCompletion=false. Bank presence, section presence and completion gate are independent decisions.
+
+    Assessment evidence: No scored Question Bank or Quiz; Flashcard Bank targets the key patterning vocabulary only. Verify keyboard and nonvisual equivalents.. Questions need meaningful core and extension evidence; each Quiz must select explicit real Question IDs from independently reviewed banks. Flashcards should have one idea each and no filler.
+
+    Media and Scenes: any planned physical media or Scene receives an explicit handoff/specification; missing assets remain visible TODO (BLOCKER) obligations, not invented final media.
+
+    Accessibility and localization: English is the source; Ukrainian is a required later genuine translation. Every interaction needs keyboard, nonvisual equivalent, captions/transcripts for media, reduced motion and mobile layouts.
+
+    Verification: separate Lesson/Question/Flashcard workflows own construction and approval. Structural validity or TODO placeholders are not approval.

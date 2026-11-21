@@ -1,0 +1,48 @@
+config:
+  id: 5b9ec1a5-821e-597f-973a-7dfd15e4a4d3
+  slug: shapeWarmup
+  type: lesson
+  skills:
+    - 00000000-0000-4000-8000-000000000008
+    - 00000000-0000-4000-8000-000000000012
+  params:
+    languages:
+      - en
+      - uk
+    quizRequiredForCompletion: false
+    sections:
+      allowNavigation: true
+      allowSkipping: true
+      showIndexes: true
+  locale:
+    title:
+      en: Shape warm-up
+  section:
+    items: {}
+    order: []
+production:
+  documentLanguage: en
+  methodology: |-
+    Instructional purpose: Recognize a circle and a square in everyday objects without relying on color alone.
+
+    Audience/depth: ages 8–11, guided exploration to independent recognition or explanation as appropriate; synthetic Playground demonstration, not a production curriculum.
+
+    Target Skills: 00000000-0000-4000-8000-000000000008 (verified Playground taxonomy); 00000000-0000-4000-8000-000000000012 (verified Playground taxonomy).
+
+    Sequence and prerequisites: Direct Module Lesson before both Chapters; prerequisites are basic visual matching and descriptive language.. Distinguish the broader Course entry conditions from the knowledge taught in this Lesson.
+
+    Planned Sections (ordered authoring requirements; the separate Lesson Flow later materializes their actual Configs):
+    1. content — contrast outlines with an accessible text alternative; source examples
+    2. flashcards — review concise shape vocabulary from this Lesson's own bank
+
+    Planned ContentBlock coverage: text, markdown, image, checkpoint. These are implementation requirements, not already-authored blocks. Reuse shared UI Kit components; no fabricated files.
+
+    Assessment decisions: requiresQuestionBank=false; requiresFlashcardBank=true; requiresQuizSection=false; requiresFlashcardsSection=true; quizRequiredForCompletion=false. Bank presence, section presence and completion gate are independent decisions.
+
+    Assessment evidence: No Question Bank and no Quiz; recognition is observed informally through a Checkpoint, while Flashcards reinforce terminology.. Questions need meaningful core and extension evidence; each Quiz must select explicit real Question IDs from independently reviewed banks. Flashcards should have one idea each and no filler.
+
+    Media and Scenes: any planned physical media or Scene receives an explicit handoff/specification; missing assets remain visible TODO (BLOCKER) obligations, not invented final media.
+
+    Accessibility and localization: English is the source; Ukrainian is a required later genuine translation. Every interaction needs keyboard, nonvisual equivalent, captions/transcripts for media, reduced motion and mobile layouts.
+
+    Verification: separate Lesson/Question/Flashcard workflows own construction and approval. Structural validity or TODO placeholders are not approval.
