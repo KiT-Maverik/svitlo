@@ -49,6 +49,15 @@ One-time `/lesson materialize` preserves `lesson.yaml`. A separately authorized 
 
 **Authoring validation boundary:** During editorial Stages 1–5, an incomplete `lesson.yaml` is not required to pass a separate manual technical-schema, TypeScript or CI validation gate merely to advance a stage. The Stage 6.1 Lesson Builder/finalizer validates the real source as it materializes, then Stage 6.2/6.3 and production CI enforce typed resources, Scenes, assets and complete-locale rules. Semantic reviewer approvals, exact source SHAs and owner authorization are never waived. See the [four-flow validation audit](../../docs/architecture/yaml-config-scaffolding.md#validation-boundaries-across-the-four-entity-workflows).
 
+### Stage 6.2 — Direct Skill references in authored Lessons
+
+Every Lesson defines its **own** `skills` array by referencing verified, standalone Skill definitions (`skill.id`, the canonical immutable Skill UUID), or verified Skill UUIDs when writing editorial YAML. **Never derive or copy the Skills array from another Lesson's Config**, even if the Lessons teach identical Skills; this rule also applies to Playground fixtures. Reusing the same canonical Skill definition is correct; depending on another Lesson's `skills` property is not.
+
+- **Correct:** `skills: [testExplainLightTravel.id]` (a direct import of that Skill definition).
+- **Incorrect:** `skills: otherLesson.config.base.skills` (a dependency on another Lesson rather than the Skill source).
+
+This is an **authoring instruction**, not a request for regex/AST/ESLint validation or migration of existing content. It does not prohibit intentional cross-Lesson Question Bank references.
+
 ## Stage 6 resource and Scene blockers
 
 **Stage 6 owns completing generated Lesson resources and implementing all required Scenes.** Track each physical illustration/audio/video/3D, transcript and Scene with its exact Section/Block/asset identity, approved specification, responsible agent/specialist, status and verification SHA in the parent Lesson PR. In 6.2, resolve generated code/type errors and necessary media references through verified real resources; do not remove `TODO(asset)` or Nil UUID placeholders to fabricate progress. In 6.3, actually implement, test and register Scenes using [Implement Scene](./implement-scene.skill.md); an unimplemented Scene is a **Stage 6.3 blocker**, not an optional Final QA handoff. Missing essential media and equivalent accessibility/offline paths block the affected completion checkbox. Final QA independently validates deployed/runtime behavior and required locales; Stage 6 source-level checks alone do not prove release readiness.
