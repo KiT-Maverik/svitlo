@@ -596,18 +596,48 @@ test('Course-local Section additions reject missing canonical Engine fields and 
   assert.throws(() => technicalFromEditorial(configured), /section\/order: full Section order is required/);
 });
 
-test('Course Stage 5 rejects the unmodified E2E Episode three null params with an exact field path', () => {
-  const source = path.resolve('content/playground/data/courses/e/7c4e6d20-5ad3-4af8-b9d7-d1f3587b0a8e/course.yaml');
-  const fixture = YAML.parse(fs.readFileSync(source, 'utf8'));
-  assert.equal(fixture.content.items.labPrologue.section.items.welcome.params, null);
-  assert.equal(fixture.content.items.labPrologue.section.items.welcome.content.items.greeting.params, null);
-  assert.equal(fixture.content.items.labPrologue.section.items.welcome.content.items.choosePath.params, null);
+test('Course Stage 5 rejects three nested Episode null params with exact field paths', () => {
+  // Self-contained fixture: infrastructure tests must not depend on a pending Course PR YAML.
+  const fixture = structuredClone(plan);
+  fixture.content.items.labPrologue = {
+    type: 'episode',
+    slug: 'labPrologue',
+    title: 'A laboratory invitation',
+    section: {
+      items: {
+        welcome: {
+          type: 'content',
+          slug: 'welcome',
+          params: null,
+          content: {
+            items: {
+              greeting: { type: 'markdown', slug: 'greeting', params: null },
+              choosePath: { type: 'scene', slug: 'choosePath', params: null },
+            },
+            order: ['greeting', 'choosePath'],
+          },
+        },
+      },
+      order: ['welcome'],
+    },
+  };
+  fixture.content.order.push('labPrologue');
+  const welcome = fixture.content.items.labPrologue.section.items.welcome;
   assert.throws(
     () => technicalFromEditorial(fixture),
     /labPrologue\/section\/items\/welcome\/params: expected an Engine params object/,
   );
+  welcome.params = {};
+  assert.throws(
+    () => technicalFromEditorial(fixture),
+    /labPrologue\/section\/items\/welcome\/content\/items\/greeting\/params: expected an Engine params object/,
+  );
+  welcome.content.items.greeting.params = {};
+  assert.throws(
+    () => technicalFromEditorial(fixture),
+    /labPrologue\/section\/items\/welcome\/content\/items\/choosePath\/params: expected an Engine params object/,
+  );
 });
-
 test('Course Stage 5 rejects malformed nested Episode params before any source writes', () => {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-episode-invalid-'));
   const folder = path.join(root, 'content/math/data/courses', id.at(-1), id);
