@@ -56,6 +56,8 @@ Every Lesson defines its **own** `skills` array by referencing verified, standal
 - **Correct:** `skills: [testExplainLightTravel.id]` (a direct import of that Skill definition).
 - **Incorrect:** `skills: otherLesson.config.base.skills` (a dependency on another Lesson rather than the Skill source).
 
+The Stage 6 generator already supplies real Skill UUIDs in generated scaffolds: preserve those direct references when completing the Lesson. If an existing Lesson uses the same Skill, import the **Skill definition itself**, not the other Lesson's `config.base.skills`. Legitimate reuse of Sections or other Lesson-owned resources does not change this rule for the Lesson's Skills metadata.
+
 This is an **authoring instruction**, not a request for regex/AST/ESLint validation or migration of existing content. It does not prohibit intentional cross-Lesson Question Bank references.
 
 ## Stage 6 resource and Scene blockers
