@@ -349,7 +349,7 @@ export const yamlCourseAuthoring_Schema = yamlAuthoringNode(
     }),
   }),
   yamlProduction_Schemas.course,
-);
+).required({ production: true });
 
 export const yamlAuthoringSchemas = {
   contentBlock: yamlContentBlockAuthoring_Schema,
