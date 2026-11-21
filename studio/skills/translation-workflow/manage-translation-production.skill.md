@@ -1,10 +1,10 @@
-# Manage Translation Production — Draft PR coordination
+# Manage Translation Production — non-entity Draft PR campaigns
 
-**Current protocol for new work:** one `Draft` Translation integration PR is the **sole current coordination record** for one frozen entity × locale campaign. Follow this Skill alongside [Technical Translation](./technical-translation.skill.md), [Review Translation](./review-translation.skill.md), the Technical Translator Persona, GitHub label rules and current repository source. **Do not create a Translation Production Issue for new work.** Issues remain appropriate for bugs, investigations and independent technical requests; unrelated GitHub PR slash commands must remain operational.
+**Scope and precedence:** This Skill coordinates **separately authorized, non-entity localization campaigns** (such as Skill taxonomy or UI Kit batches) using one Draft integration PR with nonoverlapping subtasks. **For new Course, Lesson, Questions and Flashcards translation and independent review, do not use the campaign PR topology below:** the existing entity PR, its branch and its workflow's translation/review stages are the only production tracker. Independent reviewers use different agents/contexts and pinned source SHA, with authorized fixes on that same entity PR; no new translation integration PR, translator/reviewer subtask PR/branch or Production Issue. The entity's Stage/Skill has precedence. Use [Technical Translation](./technical-translation.skill.md), [Review Translation](./review-translation.skill.md), the Translator Persona, GitHub rules and real source for both modes. No new Translation Production Issue is needed for new work; ordinary bug/investigation Issues and unrelated PR slash commands remain valid.
 
 **Existing Issue campaigns:** if an owner resumes an Issue opened under the old workflow, read its live body/comments, linked PRs, source SHAs, assignments and [historical recovery procedure](./legacy-production-issues.md). Keep its documented owner permissions and evidence intact. **Do not automatically migrate, close, erase or re-scope an active Issue** because this guide changed. A future owner-authorized move to PR-only must first copy and cross-check the full fixed inventory, owner/agent/reviewer assignments, exact stage outcomes, source/review SHAs, branch ancestry, unresolved blockers and next actions; leave historical links accessible.
 
-## One campaign and exact frozen inventory
+## Non-entity campaign and exact frozen inventory
 
 1. Check existing integration/agent PRs and historic Issues for overlapping scope; reuse the real existing branch/PR when continuing work rather than duplicating a campaign.
 2. Define the owning packages, source entity family, exact source-language revision and target locale set. Resolve every symbolic selection (Course subtree, Skill subtree, Lesson list) to the complete concrete, ordered **entity UUID × locale × editable field/path matrix**. Record inclusions, exclusions, counts, immutable IDs and source SHA in the integration PR; later source expansion requires an owner-approved amendment.
@@ -12,7 +12,7 @@
 4. Create **one Draft integration PR → `develop`** (`pr: integration`, real scope labels, `work: translation` and `work: review` when applicable). Each authorized translator/reviewer subtask is a **Draft PR → that integration branch**, labeled `pr: agent-subtask`. No arbitrary number of Issue/PRs per language, no status fields in Runtime Config/YAML/Props.
 5. The integration PR body is the only manually maintained status matrix, including entity × locale coverage, reviewer identity (independent of the translator), source PR and immutable SHA, approvals, blocked scope, exact next action and authorizations. Update the matrix from Git evidence rather than optimistic checkmarks; the coordinator reconciles concurrent edits and does not let subtasks overwrite the parent PR body.
 
-## Translation → independent review
+## Non-entity translation → independent review
 
 - Translators change only assigned canonical `*.data.ts`/`*.locale.ts` localized fields, never identifiers, nonlocalizable English methodology, generated Markdown, untranslated targets or unrelated sources. Record files, entities/locales, exact SHA and scoped validation in their PR. No automatic merge.
 - The owner **explicitly selects** when independent review begins, reviewer, source PR/SHA and precise entity × locale scope. There is **no global all-translators-merged prerequisite**. Independent reviewers do not review their own translations.
@@ -21,7 +21,7 @@
 - Document actual scientific/linguistic/terminology/a11y findings and source SHA in the working PR. A `reviewReady` manifest or passing typecheck **is not linguistic approval**. Re-run review on materially changed source. Review starts read-only; only owner-authorized fixes are allowed.
 - After approved independent review, verify the exact run-scoped artifact, diff and source SHA, scoped tests/CI and current GitHub mergeability. New report generation never modifies the PR HEAD; if a legacy PR already contains tracked reports, remove them via an explicit regular commit before merging. Merge the reviewed subtask to integration **only with owner permission**; record merged SHA in the parent PR. Other translation batches may remain in progress.
 
-## PR-body resumption contract
+## Non-entity PR-body resumption contract
 
 The integration PR must be sufficient to restart from a new chat/agent without the prior conversation. Record at least:
 
@@ -33,7 +33,7 @@ The integration PR must be sufficient to restart from a new chat/agent without t
 
 For `Continue Translation PR #N`, re-read the PR body and comments, linked live agent PRs, real Git branches, current source files, tracked artifact manifest and CI. Compare evidence and inventory at current SHAs. Resume only the first assigned authorized unfinished scope. Status values distinguish `planned`, `in-progress`, `ready-for-review`, `reviewed`, `merged`, `blocked`, `complete`; translations merged without review remain **unreviewed**.
 
-## Final acceptance and release
+## Non-entity final acceptance and release
 
 All required entity-locale pairs must have canonical authored translations, independent qualified review evidence, correct owner/branch provenance, complete artifacts cleaned, TypeScript/build/test/localization/resource gates actually passed and no overlapping unreviewed edits. For Lesson `review.ts`, the verified integration AI review PR may be stored in `ai.locales`; independent human review references remain per-language in `human.locales`, with owner-controlled acceptance. Do not fabricate an unsupported review schema.
 
