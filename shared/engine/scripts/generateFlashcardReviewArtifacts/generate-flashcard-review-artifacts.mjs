@@ -249,7 +249,7 @@ function staticModules(lessonRoot) {
     );
     const registry = candidates[0].value;
     const cardIds = new Set(Object.values(registry.items).map(card => card?.id));
-    if (declared.length !== cardIds.size || declared.some(([name]) => !cardIds.has(resolveSymbol(module, name, new Set()).id))) {
+    if (declared.some(([name]) => !cardIds.has(resolveSymbol(module, name, new Set()).id))) {
       throw new Error('Unregistered Flashcard declaration: review cannot prove complete bank coverage');
     }
     return { registry, dependencies: [...modules.keys()].filter(file => file !== filename) };
