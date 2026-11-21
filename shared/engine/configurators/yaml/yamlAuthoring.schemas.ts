@@ -272,7 +272,7 @@ export const yamlSelectOneAnswerAuthoring_Schema = yamlAuthoringNode(
   }),
   yamlProduction_Schemas.question,
 );
-export const yamlQuestionAuthoring_Schema = z.union([
+export const yamlQuestionAuthoring_Schema: z.ZodType = z.union([
   yamlAnswerWithNumberAuthoring_Schema, yamlAnswerWithTextAuthoring_Schema,
   yamlBuildAnswerWithBlocksAuthoring_Schema, yamlFillBlanksWithBlocksAuthoring_Schema,
   yamlFillBlanksWithTextAuthoring_Schema, yamlMatchBlocksAuthoring_Schema,
@@ -342,7 +342,7 @@ const courseChildren = z.union([
   yamlModuleAuthoring_Schema, yamlChapterAuthoring_Schema, yamlEpisodeAuthoring_Schema,
   yamlLessonAuthoring_Schema, yamlLessonReferenceAuthoring_Schema,
 ]);
-export const yamlCourseAuthoring_Schema = yamlAuthoringNode(
+export const yamlCourseAuthoring_Schema: z.ZodType = yamlAuthoringNode(
   course_Config_Schema.extend({
     content: course_Config_Schema.shape.content.extend({
       items: z.record(z.string(), courseChildren),
@@ -351,7 +351,10 @@ export const yamlCourseAuthoring_Schema = yamlAuthoringNode(
   yamlProduction_Schemas.course,
 ).required({ production: true });
 
-export const yamlAuthoringSchemas = {
+export const yamlAuthoringSchemas: Record<
+  'contentBlock' | 'section' | 'question' | 'flashcard' | 'lesson' |
+  'episode' | 'chapter' | 'module' | 'course', z.ZodType
+> = {
   contentBlock: yamlContentBlockAuthoring_Schema,
   section: yamlSectionAuthoring_Schema,
   question: yamlQuestionAuthoring_Schema,
