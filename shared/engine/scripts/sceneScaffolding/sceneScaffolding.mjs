@@ -221,15 +221,16 @@ export function renderSceneFiles(scene) {
     '} satisfies { args: ComponentProps<typeof ' + name + '> };',
     '',
   ].join('\n'));
-  files.set(name + '.spec.tsx', [
-    "import { render, screen } from '@testing-library/react';",
+  files.set(name + '.unit.spec.tsx', [
+    "import { renderToStaticMarkup } from 'react-dom/server';",
     "import { describe, expect, it } from 'vitest';",
     "import { " + name + " } from './" + name + "';",
     '',
     "describe('" + name + "', () => {",
     "  it('renders an accessible Draft placeholder', () => {",
-    '    render(<' + name + ' locales={{}} />);',
-    "    expect(screen.getByRole('status').textContent).toBe('Not implemented');",
+    '    const html = renderToStaticMarkup(<' + name + ' locales={{}} />);',
+    "    expect(html).toContain('role=\"status\"');",
+    "    expect(html).toContain('Not implemented');",
     '  });',
     "  it.todo('implements the approved Scene interactions and state transitions');",
     "  it.todo('provides source-language accessibility and keyboard/touch parity');",
