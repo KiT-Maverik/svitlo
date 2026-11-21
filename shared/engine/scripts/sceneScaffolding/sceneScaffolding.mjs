@@ -81,6 +81,10 @@ function assertSceneWorkspace(bookRoot) {
       'TS/TSX tsconfig inclusion, React, Engine, UI Kit and Vitest: ' + bookRoot,
     );
   }
+  // The canonical registry generator writes this path. Never follow a
+  // textbook-owned symlink to a file outside the authorized package.
+  noSymlinks(path.join(bookRoot, 'scenes/sceneLoader.ts'));
+  noSymlinks(path.join(bookRoot, 'scenes/createSceneRegistry.ts'));
   return manifest.name;
 }
 
