@@ -21,3 +21,6 @@ export type {
   MediaPublicationMode,
   MediaPublicationOptions,
 } from './generators/lessons/projectTextbookMedia.utils';
+
+// Draft-only, real Engine configurators (never exported from Runtime).
+export { definePendingLesson, definePendingQuizSection, definePendingFlashcardsSection } from './configurators/pending';
