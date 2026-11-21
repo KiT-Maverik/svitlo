@@ -352,13 +352,32 @@ export function materialize(document, context = {}) {
             fail(location + '.config.parameters.flags', 'Flashcard flags array is required');
           for (const side of ['front', 'back', 'hint']) {
             if (content[side] === undefined) continue;
+            assertCollection(content[side], location + '.config.content.' + side);
             const sideItems = renderField(content[side].items, ['content', side, 'items']);
             const sideOrder = renderField(content[side].order, ['content', side, 'order']);
-            fields.push('const ' + side + 'Items = ' + sideItems + ';');
-            fields.push('const ' + side + ' = defineFlashcardSide<typeof ' + side + 'Items, typeof languages>({ items: ' +
-              side + 'Items, order: ' + sideOrder + ' });');
+            const sideDirectory = path.posix.join(directory, 'content', side);
+            const sideImports = [];
+            for (const [key, value] of Object.entries(content[side].items)) {
+              const alias = 'child_content_' + side + '_items_' + key;
+              if (!imports.has(alias)) fail(location + '.config.content.' + side, 'missing nested Flashcard block import ' + key);
+              imports.delete(alias);
+              const childDirectory = path.posix.join(sideDirectory, 'items', key);
+              sideImports.push(
+                'import { ' + exportName(value.config.slug) + ' as ' + alias + ' } from ' +
+                  JSON.stringify(relative(sideDirectory, childDirectory)) + ';',
+              );
+            }
+            addFile(path.posix.join(sideDirectory, 'index.ts'),
+              "import { defineFlashcardSide } from '@svitlo/engine/build';\n" +
+                'import { languages } from ' + JSON.stringify(relative(sideDirectory, 'languages')) + ';\n' +
+                sideImports.sort().join('\n') + '\n\n' +
+                'const sideItems = ' + sideItems + ';\n\n' +
+                'export const ' + side + ' = defineFlashcardSide<typeof sideItems, typeof languages>({ ' +
+                  'items: sideItems, order: ' + sideOrder + ' });\n',
+            );
+            imports.set('flashcardSide:' + side,
+              'import { ' + side + ' } from ' + JSON.stringify(relative(directory, sideDirectory)) + ';');
           }
-          imports.set('sideFactory', "import { defineFlashcardSide } from '@svitlo/engine/build';");
           fields.push('const content = { ' + ['front', 'back', 'hint'].filter(side => content[side] !== undefined).join(', ') + ' };');
         } else {
           fields.push('const ' + field + ' = ' + renderField(config[field], [field]) + ';');
