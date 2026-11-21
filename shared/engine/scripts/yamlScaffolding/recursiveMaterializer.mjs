@@ -291,6 +291,13 @@ export function materialize(document, context = {}) {
         warn(location, 'pending-scene', 'Scene implementation and UUID registration remain pending');
       }
       const config = sourceAuthoringCopy(authored, language);
+      // An unfinished Scene still needs a real, type-correct Config. Its visible
+      // Not implemented UI is owned by the separate SceneStub implementation.
+      if (type === 'scene' && context.isPending?.(authored, production) === true) {
+        if (!isRecord(config.params)) config.params = {};
+        if (!isRecord(config.locale)) config.locale = {};
+        if (config.locale.value === undefined) config.locale.value = {};
+      }
       if (isRecord(config.params) && Array.isArray(config.params.languages)) {
         if (!config.params.languages.includes(language)) fail(location + '.config.params.languages', 'source language is not supported');
         if (config.params.languages.length > 1) todos.push('// TODO (BLOCKER): Restore reviewed languages: ' + JSON.stringify(config.params.languages));
