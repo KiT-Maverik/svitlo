@@ -24,7 +24,7 @@ const engineRoot = fileURLToPath(new URL('../..', import.meta.url));
 export const yamlSchemaOutputRoot = path.join(engineRoot, 'yaml-schemas');
 
 /** These JSON documents are typed Config guides, not the editorial methodology plans. */
-const schemas = {
+const configSchemas = {
   contentBlock: engine.yamlContentBlock_Schema,
   section: engine.yamlSection_Schema,
   question: engine.yamlQuestion_Schema,
@@ -34,96 +34,43 @@ const schemas = {
   course: engine.yamlCourse_Schema,
 };
 
-/* Draft source envelopes are distinct from the complete Engine Config. */
-export function draftYamlSchema(kind, configSchema) {
-  if (kind !== 'lesson') return configSchema;
-  const schema = structuredClone(configSchema);
-  // Keep Zod-derived required fields. Media filenames are omitted from
-  // technical YAML and inserted as unresolved placeholders by Lesson Builder.
-  schema.properties.documentLanguage = { type: 'string', minLength: 2 };
-  if (kind === 'lesson') schema.required = [...new Set([...(schema.required ?? []), 'documentLanguage'])];
-  return schema;
-}
+const studioCourseFlowPath = path.join(engineRoot, '..', '..', 'studio', 'skills', 'course-workflow', 'course-flow.schema.json');
 
 /**
- * Compose the checked-in hand-authored production.schema.json with the
- * Engine-derived Config schema. Each entity node receives exactly one
- * config (single identity) and an optional production handoff.
- *
- * The original *.schema.json remains a Config-only editor guide.
- * Only Lesson has a composed source/editor schema. Course authoring uses the
- * separate Stage-aware studio/skills/course-workflow/course-flow.schema.json.
- * This generator does not validate Lesson or Course editorial approval.
+ * An authoring document is one recursively composed Zod node tree. Nested
+ * content receives exactly the same schema under Course, Episode and Lesson.
+ * The separate Config guides are retained for the Engine Build API only.
  */
-export function scaffoldYamlSchema(kind, authoredConfig) {
-  if (kind !== 'lesson') throw new Error('Only Lesson has a Config/Production scaffold schema');
-  // Production definitions remain manually authored. Embed a snapshot into
-  // the composed editor schema so nested $refs work without network access.
-  const productionPath = path.join(yamlSchemaOutputRoot, 'production.schema.json');
-  const production = JSON.parse(fs.readFileSync(productionPath, 'utf8'));
-  if (!production.$defs || typeof production.$defs !== 'object') {
-    throw new Error('Missing manual production schema definitions: ' + productionPath);
-  }
-  const original = structuredClone(authoredConfig);
-  const { $schema, $defs = {}, ...raw } = original;
-  delete raw.$id;
-  delete raw.title;
-  // A source-language marker belongs in production, never defineLesson/defineCourse.
-  if (raw.properties) delete raw.properties.documentLanguage;
-  if (Array.isArray(raw.required)) raw.required = raw.required.filter(key => key !== 'documentLanguage');
-
-  const sectionKinds = new Set(engine.sectionTypes ?? []);
-  const questionKinds = new Set(engine.questionTypes ?? []);
-  const resolveType = schema => {
-    if (typeof schema?.const === 'string') return schema.const;
-    if (typeof schema?.$ref === 'string' && schema.$ref.startsWith('#/$defs/')) {
-      return $defs[schema.$ref.slice('#/$defs/'.length)]?.const;
-    }
-    return undefined;
-  };
-  const productionName = (type, properties) => {
-    if (sectionKinds.has(type) || type === 'quest') return 'section';
-    if (['questStage', 'questTask', 'subtitles'].includes(type)) return type;
-    if (questionKinds.has(type)) return 'question';
-    if (['lesson', 'image', 'audio', 'video', 'scene', 'flashcard'].includes(type)) return type;
-    return 'default';
-  };
-  function wrap(node) {
-    if (Array.isArray(node)) return node.map(wrap);
-    if (!node || typeof node !== 'object') return node;
-    const properties = node.properties;
-    const type = resolveType(properties?.type);
-    const entity = type && (properties?.id || properties?.lessonId);
-    const config = Object.fromEntries(Object.entries(node).map(([key, value]) => [key, wrap(value)]));
-    if (!entity) return config;
-    const identity = properties?.lessonId ? 'lessonId' : 'id';
-    config.required = [...new Set([...(config.required ?? []), identity, 'type'])];
-    return {
-      type: 'object',
-      properties: {
-        config,
-        production: { $ref: '#/$defs/__production/$defs/' + productionName(type, properties) },
-      },
-      required: ['config'],
-      additionalProperties: false,
-    };
-  }
-  const envelope = wrap(raw);
-  // The Lesson source language is required for deterministic locale pruning.
-  if (kind === 'lesson') envelope.required = ['config', 'production'];
+export function scaffoldYamlSchema(kind) {
+  const schema = engine.yamlAuthoringSchemas?.[kind];
+  if (!schema) throw new Error('Missing Engine authoring schema: ' + kind);
+  const jsonSchema = z.toJSONSchema(schema, {
+    target: 'draft-2020-12',
+    unrepresentable: 'throw',
+    reused: 'ref',
+  });
   return {
-    $schema,
+    ...jsonSchema,
     $id: 'https://svitlo.dev/engine/yaml-schemas/' + kind + '.scaffold.schema.json',
-    title: 'Svitlo Lesson YAML authoring draft',
-    description:
-      'Config is derived from Engine Zod; production references manually owned production.schema.json. ' +
-      'Technical YAML omits physical media filenames; Lesson Builder inserts reserved Nil UUID placeholders ' +
-      'and TODO(asset) comments in generated TypeScript for resource production.',
-    ...envelope,
-    $defs: {
-      ...Object.fromEntries(Object.entries($defs).map(([name, schema]) => [name, wrap(schema)])),
-      __production: { $defs: structuredClone(production.$defs) },
-    },
+    title: 'Svitlo ' + kind + ' YAML authoring source',
+    description: 'Single Zod-derived {config, production?} source tree; production is authoring metadata only.',
+  };
+}
+
+/** No hand-maintained JSON counterpart to the typed production metadata. */
+export function productionYamlSchema() {
+  const source = engine.yamlProduction_Schemas;
+  if (!source) throw new Error('Missing typed YAML production metadata');
+  return {
+    $schema: 'https://json-schema.org/draft/2020-12/schema',
+    $id: 'https://svitlo.dev/engine/yaml-schemas/production.schema.json',
+    title: 'Svitlo authoring-only production metadata',
+    $defs: Object.fromEntries(
+      Object.entries(source).map(([kind, schema]) => [
+        kind,
+        z.toJSONSchema(schema, { target: 'draft-2020-12', unrepresentable: 'throw', reused: 'ref' }),
+      ]),
+    ),
   };
 }
 
@@ -181,39 +128,31 @@ export function courseOverridesSchema(course) {
 }
 
 export function yamlJsonSchemaDocuments() {
+  const options = { target: 'draft-2020-12', unrepresentable: 'throw', reused: 'ref' };
   const documents = Object.fromEntries(
-    Object.entries(schemas).map(([kind, schema]) => {
-      if (!schema) throw new Error('Missing Engine YAML authoring schema: ' + kind);
-      // Do not downgrade z.custom children to {}. All configurator boundaries
-      // must be replaced by the concrete schema before JSON Schema conversion.
-      const jsonSchema = draftYamlSchema(
-        kind,
-        z.toJSONSchema(schema, {
-          target: 'draft-2020-12',
-          unrepresentable: 'throw',
-          // Reuse identical Zod child schemas via $defs/$ref instead of
-          // recursively inlining megabytes of repeated Config tree fragments.
-          reused: 'ref',
-        }),
-      );
-      return [
-        kind + '.schema.json',
-        JSON.stringify(
-          {
-            ...jsonSchema,
-            $id: 'https://svitlo.dev/engine/yaml-schemas/' + kind + '.schema.json',
-            title: 'Svitlo ' + kind + ' authored YAML Config draft',
-          },
-          null,
-          2,
-        ) + '\n',
-      ];
+    Object.entries(configSchemas).map(([kind, schema]) => {
+      if (!schema) throw new Error('Missing Engine YAML Config schema: ' + kind);
+      const config = z.toJSONSchema(schema, options);
+      const filename = kind + '.schema.json';
+      return [filename, JSON.stringify({
+        ...config,
+        $id: 'https://svitlo.dev/engine/yaml-schemas/' + filename,
+        title: 'Svitlo ' + kind + ' authored Engine Config guide',
+      }, null, 2) + '\n'];
     }),
   );
+
   const course = JSON.parse(documents['course.schema.json']);
   documents['courseOverrides.schema.json'] = JSON.stringify(courseOverridesSchema(course), null, 2) + '\n';
-  documents['lesson.scaffold.schema.json'] =
-    JSON.stringify(scaffoldYamlSchema('lesson', JSON.parse(documents['lesson.schema.json'])), null, 2) + '\n';
+  for (const kind of Object.keys(engine.yamlAuthoringSchemas)) {
+    documents[kind + '.scaffold.schema.json'] = JSON.stringify(scaffoldYamlSchema(kind), null, 2) + '\n';
+  }
+  documents['production.schema.json'] = JSON.stringify(productionYamlSchema(), null, 2) + '\n';
+
+  const flow = structuredClone(scaffoldYamlSchema('course'));
+  flow.$id = 'https://svitlo.org/studio/schemas/course-flow.schema.json';
+  flow.title = 'Svitlo single temporary Course authoring source';
+  documents['course-flow.schema.json'] = JSON.stringify(flow, null, 2) + '\n';
   return documents;
 }
 
@@ -227,19 +166,26 @@ function schemaMatches(target, contents) {
   }
 }
 
-export function generateYamlSchemas(mode, outputRoot = yamlSchemaOutputRoot) {
-  if (mode !== '--write' && mode !== '--check') {
-    throw new Error('Expected --write or --check');
-  }
+export function generateYamlSchemas(
+  mode,
+  outputRoot = yamlSchemaOutputRoot,
+  courseFlowPath = outputRoot === yamlSchemaOutputRoot
+    ? studioCourseFlowPath
+    : path.join(outputRoot, 'course-flow.schema.json'),
+) {
+  if (mode !== '--write' && mode !== '--check') throw new Error('Expected --write or --check');
   const documents = yamlJsonSchemaDocuments();
   if (mode === '--write') fs.mkdirSync(outputRoot, { recursive: true });
   for (const [filename, contents] of Object.entries(documents)) {
-    const target = path.join(outputRoot, filename);
+    const target = filename === 'course-flow.schema.json'
+      ? courseFlowPath
+      : path.join(outputRoot, filename);
     if (mode === '--check') {
       if (!schemaMatches(target, contents)) {
         throw new Error('Outdated YAML JSON Schema: ' + target + '. Run with --write.');
       }
     } else if (!schemaMatches(target, contents)) {
+      fs.mkdirSync(path.dirname(target), { recursive: true });
       fs.writeFileSync(target, contents);
     }
   }
