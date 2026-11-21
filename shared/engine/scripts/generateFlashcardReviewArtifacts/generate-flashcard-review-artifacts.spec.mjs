@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import test from 'node:test';
 import { generateFlashcardReviewArtifacts } from './generate-flashcard-review-artifacts.mjs';
 
@@ -136,6 +137,111 @@ test('Flashcard review refuses symlinked bank source', () => {
     state.run();
     assert.equal(state.manifest.generated.length, 0);
     assert.match(state.manifest.failures[0].error, /Symlinked Flashcard source/);
+  } finally {
+    fs.rmSync(state.root, { recursive: true, force: true });
+  }
+});
+
+const REAL_LESSON = 'd3048d21-8690-5255-b62c-984c69ac272c';
+const REPO_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../../..');
+const REAL_LESSON_ROOT = path.join(REPO_ROOT, 'content/playground/data/lessons', REAL_LESSON.at(-1), REAL_LESSON);
+const QUESTION_FILES = ['lightTravelsStraight', 'fastestMedium', 'opaqueObjectShadow'];
+
+test('actual authored Playground bank resolves all reused Question fronts and backs with pinned source links', () => {
+  const output = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-real-flashcard-review-'));
+  const manifest = { sourceCommit: sha, generated: [], failures: [] };
+  try {
+    generateFlashcardReviewArtifacts({
+      root: REPO_ROOT, output, manifest, saveManifest: () => {},
+      packageName: 'content/playground', lessonId: REAL_LESSON, languages: ['uk'],
+    });
+    assert.deepEqual(manifest.failures, []);
+    assert.equal(manifest.generated.length, 1);
+    const entry = manifest.generated[0];
+    assert.equal(entry.reviewReady, true);
+    assert.equal(entry.flashcards, 3);
+    assert.equal(entry.strings, 6, 'three cards with localized fronts and backs');
+    assert.equal(entry.missing, 0);
+    const markdown = fs.readFileSync(
+      path.join(output, entry.path.slice('.agent-ci-artifacts/'.length)), 'utf8',
+    );
+    assert.equal((markdown.match(/^## .*?\([0-9a-f-]{36}\)$/gm) ?? []).length, 3);
+    assert.equal((markdown.match(/^### front \(/gm) ?? []).length, 3);
+    assert.equal((markdown.match(/^### back \(/gm) ?? []).length, 3);
+    assert.match(markdown, /How does light travel in a uniform transparent medium\?/);
+    assert.match(markdown, /Як поширюється світло в прозорому однорідному середовищі\?/);
+    assert.match(markdown, /In a straight line\./);
+    assert.match(markdown, /Прямолінійно\./);
+    assert.match(markdown, /Where does light travel fastest/);
+    assert.match(markdown, /Де світло поширюється найшвидше/);
+    assert.match(markdown, /opaqueObjectShadowFlashcard/);
+    assert.match(markdown, /Source SHA: a{40}/);
+    for (const question of QUESTION_FILES) {
+      assert.match(markdown, new RegExp('questions/' + question + '\\.ts'));
+    }
+    assert(!markdown.includes('%%MISSING%%'));
+    assert(!markdown.includes('### hint ('), 'do not invent absent hint ContentBlocks');
+    assert(!markdown.includes('parameters/flags'), 'do not invent absent flags');
+    assert.equal((markdown.match(/Referenced authoring source:/g) ?? []).length, QUESTION_FILES.length);
+  } finally {
+    fs.rmSync(output, { recursive: true, force: true });
+  }
+});
+
+test('copied real bank marks missing imported Question locale as not review-ready', () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-real-flashcard-missing-'));
+  const lessonRoot = path.join(root, 'content/playground/data/lessons', REAL_LESSON.at(-1), REAL_LESSON);
+  const bankDir = path.join(lessonRoot, 'flashcards');
+  const questionsDir = path.join(lessonRoot, 'questions');
+  const output = path.join(root, '.agent-ci-artifacts');
+  const manifest = { sourceCommit: sha, generated: [], failures: [] };
+  try {
+    fs.mkdirSync(bankDir, { recursive: true });
+    fs.mkdirSync(questionsDir, { recursive: true });
+    fs.copyFileSync(path.join(REAL_LESSON_ROOT, 'flashcards/index.ts'), path.join(bankDir, 'index.ts'));
+    for (const name of QUESTION_FILES) {
+      fs.copyFileSync(path.join(REAL_LESSON_ROOT, 'questions', name + '.ts'), path.join(questionsDir, name + '.ts'));
+    }
+    const target = path.join(questionsDir, 'lightTravelsStraight.ts');
+    const source = fs.readFileSync(target, 'utf8');
+    const incomplete = source.replace(
+      "              uk: 'Як поширюється світло в прозорому однорідному середовищі?',\n", '',
+    );
+    assert.notEqual(incomplete, source, 'test uses actual authored source, not synthetic text');
+    fs.writeFileSync(target, incomplete);
+    generateFlashcardReviewArtifacts({
+      root, output, manifest, saveManifest: () => {},
+      packageName: 'content/playground', lessonId: REAL_LESSON, languages: ['uk'],
+    });
+    assert.deepEqual(manifest.failures, []);
+    assert.equal(manifest.generated.length, 1);
+    assert.equal(manifest.generated[0].flashcards, 3);
+    assert.equal(manifest.generated[0].missing, 1);
+    assert.equal(manifest.generated[0].reviewReady, false);
+    const markdown = fs.readFileSync(
+      path.join(output, manifest.generated[0].path.slice('.agent-ci-artifacts/'.length)), 'utf8',
+    );
+    assert.match(markdown, /%%MISSING%%/);
+    assert.match(markdown, /Source SHA: a{40}/);
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test('unresolvable Question imports cannot yield review-ready Flashcard output', () => {
+  const state = fixture();
+  try {
+    const file = path.join(state.directory, 'index.ts');
+    const source = fs.readFileSync(file, 'utf8');
+    fs.writeFileSync(file, source.replace(
+      "import { defineFlashcard, defineFlashcardSide, defineText } from '@svitlo/engine/build';",
+      "import { defineFlashcard, defineFlashcardSide, defineText } from '@svitlo/engine/build';\n" +
+        "import { stolen } from '../../../../unowned/question';",
+    ));
+    state.run();
+    assert.equal(state.manifest.generated.length, 0);
+    assert.equal(state.manifest.failures.length, 1);
+    assert.match(state.manifest.failures[0].error, /Missing or ambiguous Flashcard import|Unsafe Flashcard source path/);
   } finally {
     fs.rmSync(state.root, { recursive: true, force: true });
   }
