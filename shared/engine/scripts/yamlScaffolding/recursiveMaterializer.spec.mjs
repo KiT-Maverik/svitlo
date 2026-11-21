@@ -239,6 +239,32 @@ test('metadata objects named type are not interpreted as nested factories', () =
   compile(result.files);
 });
 
+test('YAML metadata cannot smuggle raw TypeScript expressions or unknown envelopes', () => {
+  const unsafe = source(node('text', 'copy', 1, {
+    params: {
+      opaque: { __materializerExpression: 'process.exit(1)' },
+    },
+  }).config);
+  const output = materialize(unsafe, { registry });
+  const tsSource = output.files.find(file => file.path === 'index.ts').content;
+  assert.match(tsSource, /__materializerExpression: "process.exit\(1\)"/);
+  assert(!tsSource.includes('opaque: process.exit(1)'));
+  compile(output.files);
+  assert.throws(
+    () => materialize({ ...unsafe, overrides: { content: {} } }, { registry }),
+    /unexpected root authoring field/,
+  );
+  assert.throws(
+    () => materialize(source(node('lesson', 'lessonOne', 1, {
+      section: group({
+        intro: { ...node('content', 'intro', 2, { content: group({}) }), another: true },
+      }),
+      params: { languages: ['uk'] },
+    }).config), { registry }),
+    /unexpected nested authoring field/,
+  );
+});
+
 test('write/check are atomic-preflight, create-only and idempotent', () => {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-recursive-write-'));
   try {
