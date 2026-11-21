@@ -49,8 +49,7 @@ content:
             id: '8a9f6c0b-7d11-432a-9f8e-9e6ee1a6ac01'
             slug: 'welcome'
             type: 'content'
-            params:
-
+            params: {}
             locale:
               title:
                 en: 'Welcome to the lab'
@@ -62,8 +61,7 @@ content:
                   id: '8a9f6c0b-7d11-432a-9f8e-9e6ee1a6ac02'
                   slug: 'greeting'
                   type: 'markdown'
-                  params:
-
+                  params: {}
                   locale:
                     value:
                       en: 'A curious laboratory awaits. Choose a safe way to explore shapes, light, and color.'
@@ -71,8 +69,7 @@ content:
                   id: '8a9f6c0b-7d11-432a-9f8e-9e6ee1a6ac03'
                   slug: 'choosePath'
                   type: 'scene'
-                  params:
-
+                  params: {}
                   locale:
                     value:
                       prompt:
