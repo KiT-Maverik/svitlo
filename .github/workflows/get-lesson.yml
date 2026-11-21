@@ -171,4 +171,3 @@ jobs:
           path: ${{ runner.temp }}/get-lesson/result.json
           retention-days: 1
           if-no-files-found: error
-

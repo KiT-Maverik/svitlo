@@ -37,18 +37,21 @@ export function readHomeCopyReference({ root = repoRoot, locale, allowMissing = 
       }
     }
   }
-  if (!dictionary || !ts.isObjectLiteralExpression(dictionary)) throw new Error('Missing static geographyHomeCopy dictionary');
+  if (!dictionary || !ts.isObjectLiteralExpression(dictionary))
+    throw new Error('Missing static geographyHomeCopy dictionary');
   const entries = Object.create(null);
   for (const property of dictionary.properties) {
-    if (!ts.isPropertyAssignment(property) ||
-        !(ts.isIdentifier(property.name) || ts.isStringLiteral(property.name))) {
+    if (!ts.isPropertyAssignment(property) || !(ts.isIdentifier(property.name) || ts.isStringLiteral(property.name))) {
       throw new Error('Dynamic geography locale is not reviewable');
     }
     const key = property.name.text;
     if (Object.hasOwn(entries, key)) throw new Error('Duplicate geography language: ' + key);
     const values = unwrap(property.initializer);
-    if (!ts.isArrayLiteralExpression(values) || values.elements.length !== 2 ||
-        !values.elements.every(v => ts.isStringLiteral(v) || ts.isNoSubstitutionTemplateLiteral(v))) {
+    if (
+      !ts.isArrayLiteralExpression(values) ||
+      values.elements.length !== 2 ||
+      !values.elements.every(v => ts.isStringLiteral(v) || ts.isNoSubstitutionTemplateLiteral(v))
+    ) {
       throw new Error('Invalid geography home copy tuple: ' + key);
     }
     entries[key] = values.elements.map(v => v.text);
@@ -69,7 +72,9 @@ export function readHomeCopyReference({ root = repoRoot, locale, allowMissing = 
     throw new Error('Missing/invalid geography copy: ' + locale);
   }
   return {
-    locale, missing, sourcePath,
+    locale,
+    missing,
+    sourcePath,
     fields: [
       { key: 'title', english: english[0], translation: target[0] || marker },
       { key: 'description', english: english[1], translation: target[1] || marker },
@@ -78,13 +83,20 @@ export function readHomeCopyReference({ root = repoRoot, locale, allowMissing = 
 }
 
 function escapeMarkdown(value) {
-  return value.replace(/\\/g, '\\\\').replace(/\r/g, '\\r').replace(/\n/g, '\\n')
+  return value
+    .replace(/\\/g, '\\\\')
+    .replace(/\r/g, '\\r')
+    .replace(/\n/g, '\\n')
     .replace(/([*_()[\]<>|])/g, '\\$1');
 }
 
 export function renderHomeCopyReference(options) {
   const info = readHomeCopyReference(options);
-  const destination = path.join(options.output ?? path.join(options.root ?? repoRoot, 'temp/agent-reference-library'), 'geography-home-copy', info.locale + '.md');
+  const destination = path.join(
+    options.output ?? path.join(options.root ?? repoRoot, 'temp/agent-reference-library'),
+    'geography-home-copy',
+    info.locale + '.md',
+  );
   const source = path.join(options.root ?? repoRoot, sourcePath);
   const link = encodeURI(path.relative(path.dirname(destination), source).split(path.sep).join('/'));
   const lines = [
@@ -96,17 +108,28 @@ export function renderHomeCopyReference(options) {
     'Fields: 2',
     'Missing translations: ' + info.missing,
     '',
-    ...(options.allowMissing && info.missing > 0 ? ['> DRAFT REFERENCE: missing localized fields; not approved for independent review.', ''] : []),
+    ...(options.allowMissing && info.missing > 0
+      ? ['> DRAFT REFERENCE: missing localized fields; not approved for independent review.', '']
+      : []),
   ];
   for (const field of info.fields) {
-    lines.push('- **' + field.key + '**',
+    lines.push(
+      '- **' + field.key + '**',
       '  - English: ' + escapeMarkdown(field.english),
-      '  - ' + info.locale + ': ' + escapeMarkdown(field.translation));
+      '  - ' + info.locale + ': ' + escapeMarkdown(field.translation),
+    );
   }
   return lines.join('\n') + '\n';
 }
 
-export function generateHomeCopyReviewArtifacts({ root, output, languages, manifest, saveManifest, allowMissing = false }) {
+export function generateHomeCopyReviewArtifacts({
+  root,
+  output,
+  languages,
+  manifest,
+  saveManifest,
+  allowMissing = false,
+}) {
   const stats = { generated: 0, failures: 0 };
   for (const locale of languages) {
     try {
@@ -116,8 +139,11 @@ export function generateHomeCopyReviewArtifacts({ root, output, languages, manif
       fs.mkdirSync(path.dirname(dest), { recursive: true });
       fs.writeFileSync(dest, renderHomeCopyReference({ root, output, locale, allowMissing }), 'utf8');
       manifest.generated.push({
-        kind: 'geography-home-copy', locale, path: relative,
-        missing: info.missing, reviewReady: info.missing === 0,
+        kind: 'geography-home-copy',
+        locale,
+        path: relative,
+        missing: info.missing,
+        reviewReady: info.missing === 0,
       });
       stats.generated++;
     } catch (error) {
@@ -136,8 +162,12 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
     const args = process.argv.slice(2);
     const allowMissing = args.includes('--allow-missing');
     const tokens = args.filter(arg => arg !== '--allow-missing');
-    if (tokens.length !== 3 || tokens[0] !== '--locale' || tokens[2] !== '--stdout' ||
-        args.filter(arg => arg === '--allow-missing').length > 1) {
+    if (
+      tokens.length !== 3 ||
+      tokens[0] !== '--locale' ||
+      tokens[2] !== '--stdout' ||
+      args.filter(arg => arg === '--allow-missing').length > 1
+    ) {
       throw new Error('Usage: --locale <language-code> --stdout [--allow-missing]');
     }
     process.stdout.write(renderHomeCopyReference({ locale: tokens[1], allowMissing }));

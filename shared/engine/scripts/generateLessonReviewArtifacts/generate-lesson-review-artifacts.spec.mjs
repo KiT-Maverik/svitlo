@@ -78,10 +78,7 @@ test('generates locale-specific Markdown and records ZIP-root-relative paths', (
     createGenerator(root);
     const { result, manifest, output } = run(root);
     assert.deepEqual(result, { discoveredLessons: 1, generated: 2, failures: 0 });
-    assert.equal(
-      manifest.generated[0].path,
-      'lessons/playground/c/d3048d21-8690-5255-b62c-984c69ac272c/en.md',
-    );
+    assert.equal(manifest.generated[0].path, 'lessons/playground/c/d3048d21-8690-5255-b62c-984c69ac272c/en.md');
     assert.equal(manifest.generated[0].kind, 'lesson');
     assert.equal(
       fs.readFileSync(path.join(output, 'lessons/playground/c/d3048d21-8690-5255-b62c-984c69ac272c/uk.md'), 'utf8'),

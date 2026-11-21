@@ -282,18 +282,26 @@ export async function generate(options) {
   };
   // Archive contents are read away from the repository; pin local Code links to the source SHA.
   const repoName = process.env.GITHUB_REPOSITORY ?? 'KiT-Maverik/svitlo';
-  if (!/^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/.test(repoName))
-    throw new Error('Invalid GitHub repository identity');
+  if (!/^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/.test(repoName)) throw new Error('Invalid GitHub repository identity');
   const observed = new Set();
   let totalBytes = 0;
   for (const entry of manifest.generated) {
-    if (typeof entry.path !== 'string' || !/^[a-zA-Z0-9._/-]+\.md$/.test(entry.path) ||
-        entry.path.startsWith('/') || entry.path.split('/').some(part => part === '..' || part === '.') ||
-        observed.has(entry.path)) throw new Error('Unsafe duplicate reference path');
+    if (
+      typeof entry.path !== 'string' ||
+      !/^[a-zA-Z0-9._/-]+\.md$/.test(entry.path) ||
+      entry.path.startsWith('/') ||
+      entry.path.split('/').some(part => part === '..' || part === '.') ||
+      observed.has(entry.path)
+    )
+      throw new Error('Unsafe duplicate reference path');
     observed.add(entry.path);
     const file = path.join(output, entry.path);
-    if (!file.startsWith(output + path.sep) || !fs.existsSync(file) ||
-        !fs.lstatSync(file).isFile() || fs.lstatSync(file).isSymbolicLink())
+    if (
+      !file.startsWith(output + path.sep) ||
+      !fs.existsSync(file) ||
+      !fs.lstatSync(file).isFile() ||
+      fs.lstatSync(file).isSymbolicLink()
+    )
       throw new Error('Unlisted, missing or unsafe generated reference');
     const markdown = fs.readFileSync(file, 'utf8').replace(/\]\(([^)\n]+)\)/g, (link, uri) => {
       if (/^(?:https?:|mailto:|#)/.test(uri)) return link;
@@ -303,9 +311,17 @@ export async function generate(options) {
         throw new Error('Unresolvable Markdown source link in ' + entry.path + ': ' + uri);
       }
       const relative = path.relative(root, resolved).split(path.sep).map(encodeURIComponent).join('/');
-      return '](' + 'https://github.com/' + repoName +
-        (fs.statSync(resolved).isDirectory() ? '/tree/' : '/blob/') + manifest.sourceCommit + '/' +
-        relative + (anchor ? '#' + anchor : '') + ')';
+      return (
+        '](' +
+        'https://github.com/' +
+        repoName +
+        (fs.statSync(resolved).isDirectory() ? '/tree/' : '/blob/') +
+        manifest.sourceCommit +
+        '/' +
+        relative +
+        (anchor ? '#' + anchor : '') +
+        ')'
+      );
     });
     fs.writeFileSync(file, markdown, 'utf8');
     const bytes = Buffer.byteLength(markdown);

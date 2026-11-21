@@ -258,9 +258,7 @@ test('Italian draft reference marks missing titles while strict generation rejec
     const draft = readAssessmentMethodsReference({ root, locale: 'it', allowMissing: true });
     assert.equal(draft.missing, 32);
     assert.ok(
-      draft.methods.every(
-        method => method.title === '%%MISSING%%' && method.localizedDescription === '%%MISSING%%',
-      ),
+      draft.methods.every(method => method.title === '%%MISSING%%' && method.localizedDescription === '%%MISSING%%'),
     );
     const markdown = renderAssessmentMethodsReference({ root, locale: 'it', allowMissing: true });
     assert.match(markdown, /Missing translations: 32/);
@@ -273,10 +271,7 @@ test('Assessment Method references use only disposable Actions reports without t
     path.join(repoRoot, 'scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.mjs'),
     'utf8',
   );
-  const workflow = fs.readFileSync(
-    path.join(repoRoot, '.github/workflows/agent-ci-artifacts.yml'),
-    'utf8',
-  );
+  const workflow = fs.readFileSync(path.join(repoRoot, '.github/workflows/agent-ci-artifacts.yml'), 'utf8');
   assert.match(generator, /generateAssessmentMethodsReviewArtifacts/);
   assert.match(generator, /assessmentMethodDocuments:/);
   assert.match(generator, /allowMissing: true/);

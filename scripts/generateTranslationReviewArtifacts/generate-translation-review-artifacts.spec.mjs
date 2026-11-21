@@ -103,7 +103,10 @@ test('Skills and UI Kit requests replace only an ignored, run-scoped corpus', ()
   const script = 'scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.mjs';
   function generate(args) {
     const result = spawnSync(process.execPath, [script, ...args], {
-      cwd: root, encoding: 'utf8', timeout: 180_000, maxBuffer: 32 * 1024 * 1024,
+      cwd: root,
+      encoding: 'utf8',
+      timeout: 180_000,
+      maxBuffer: 32 * 1024 * 1024,
     });
     assert.equal(result.status, 0, result.stderr || result.error?.message);
     return JSON.parse(fs.readFileSync(path.join(workspace, 'manifest.json'), 'utf8'));
@@ -111,15 +114,27 @@ test('Skills and UI Kit requests replace only an ignored, run-scoped corpus', ()
   try {
     const skills = generate(['--kind', 'skills', '--package', 'content/art', '--locale', 'en']);
     assert.equal(skills.scope.kind, 'skills');
-    assert.deepEqual(skills.generated.map(entry => entry.path), ['taxonomies/art/en.md']);
+    assert.deepEqual(
+      skills.generated.map(entry => entry.path),
+      ['taxonomies/art/en.md'],
+    );
     assert.equal(skills.failures.length, 0);
     const markdown = fs.readFileSync(path.join(workspace, 'taxonomies/art/en.md'), 'utf8');
-    assert.match(markdown, /https:\/\/github\.com\/KiT-Maverik\/svitlo\/blob\/[0-9a-f]{40}\/content\/art\/data\/skills\//);
+    assert.match(
+      markdown,
+      /https:\/\/github\.com\/KiT-Maverik\/svitlo\/blob\/[0-9a-f]{40}\/content\/art\/data\/skills\//,
+    );
     assert.ok(skills.generated[0].bytes > 0);
     assert.match(skills.generated[0].sha256, /^[a-f0-9]{64}$/);
-    assert.equal(skills.sourceCommit, spawnSync('git', ['rev-parse', 'HEAD'], {cwd:root,encoding:'utf8'}).stdout.trim());
+    assert.equal(
+      skills.sourceCommit,
+      spawnSync('git', ['rev-parse', 'HEAD'], { cwd: root, encoding: 'utf8' }).stdout.trim(),
+    );
     const ui = generate(['--kind', 'ui-kit', '--component', 'audio', '--locale', 'uk']);
-    assert.deepEqual(ui.generated.map(entry => entry.path), ['ui-kit/audio/uk.md']);
+    assert.deepEqual(
+      ui.generated.map(entry => entry.path),
+      ['ui-kit/audio/uk.md'],
+    );
     assert.equal(ui.failures.length, 0);
     assert.equal(fs.existsSync(path.join(workspace, 'taxonomies')), false);
     assert.equal(ui.generated[0].bytes, Buffer.byteLength(fs.readFileSync(path.join(workspace, ui.generated[0].path))));
@@ -136,15 +151,27 @@ test('Skills URL rewriting rejects paths outside the owned taxonomy', () => {
   const href = encodeURI(path.relative(original, source).split(path.sep).join('/'));
   const rewritten = fixTaxonomyLinks('[index.ts](' + href + ')', 'economics', destination);
   assert.match(rewritten, /^\[index\.ts\]\(\.\.\/.*\)$/);
-  assert.throws(() => fixTaxonomyLinks('[index.ts](../../../data/lessons/index.ts)', 'economics', destination),
-    /Unsafe canonical taxonomy link/);
+  assert.throws(
+    () => fixTaxonomyLinks('[index.ts](../../../data/lessons/index.ts)', 'economics', destination),
+    /Unsafe canonical taxonomy link/,
+  );
 });
 
 test('refuses a report output path outside ignored temp/ and does not modify the root', () => {
   const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
-  const result = spawnSync(process.execPath,
-    ['scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.mjs', '--kind', 'skills', '--package', 'content/art', '--locale', 'en'],
-    { cwd: root, encoding: 'utf8', env: { ...process.env, SVITLO_AGENT_REPORT_OUTPUT: root } });
+  const result = spawnSync(
+    process.execPath,
+    [
+      'scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.mjs',
+      '--kind',
+      'skills',
+      '--package',
+      'content/art',
+      '--locale',
+      'en',
+    ],
+    { cwd: root, encoding: 'utf8', env: { ...process.env, SVITLO_AGENT_REPORT_OUTPUT: root } },
+  );
   assert.notEqual(result.status, 0);
   assert.match(result.stderr, /Review output must be in repo temp/);
 });
@@ -156,7 +183,10 @@ test('trusted Actions report validator rejects stale SHA, wrong scope, wrong run
   assert.ok(step, 'Report validation step must be present');
   const match = step.match(/node --input-type=module <<'NODE'\n([\s\S]*?)\n\s+NODE/);
   assert.ok(match, 'Trusted inline validator must be present');
-  const validator = match[1].split('\n').map(line => line.replace(/^ {10}/, '')).join('\n');
+  const validator = match[1]
+    .split('\n')
+    .map(line => line.replace(/^ {10}/, ''))
+    .join('\n');
   assert.doesNotMatch(workflow, /^  (?:publish|cleanup):/m, 'No privileged report jobs');
   assert.doesNotMatch(workflow, /\/agent-artifacts cleanup/, 'No report cleanup command');
   const output = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-report-validation-'));
@@ -165,44 +195,75 @@ test('trusted Actions report validator rejects stale SHA, wrong scope, wrong run
   const content = '# Question and Quiz source\n';
   const bytes = Buffer.byteLength(content);
   const base = {
-    schemaVersion: 3, kind: 'pr-scoped-agent-ci-artifacts', sourceCommit: sha,
-    pr: 766, runId: 12345, status: 'complete', filesBytes: bytes,
-    scope: { kind: 'questions', package: 'content/playground', locale: 'en',
-      component: null, lesson: null, course: null },
-    generated: [{kind:'question',path:relative,locale:'en',
-      bytes,sha256:crypto.createHash('sha256').update(content).digest('hex'),reviewReady:true}],
+    schemaVersion: 3,
+    kind: 'pr-scoped-agent-ci-artifacts',
+    sourceCommit: sha,
+    pr: 766,
+    runId: 12345,
+    status: 'complete',
+    filesBytes: bytes,
+    scope: {
+      kind: 'questions',
+      package: 'content/playground',
+      locale: 'en',
+      component: null,
+      lesson: null,
+      course: null,
+    },
+    generated: [
+      {
+        kind: 'question',
+        path: relative,
+        locale: 'en',
+        bytes,
+        sha256: crypto.createHash('sha256').update(content).digest('hex'),
+        reviewReady: true,
+      },
+    ],
     failures: [],
   };
-  const env = { ...process.env, SVITLO_AGENT_REPORT_OUTPUT: output,
-    SVITLO_AGENT_REPORT_PR:'766', GITHUB_RUN_ID:'12345', SOURCE_HEAD_SHA:sha,
-    REQUEST_KIND:'questions', REQUEST_BOOK:'content/playground', REQUEST_LOCALE:'en',
-    REQUEST_COMPONENT:'', REQUEST_LESSON:'', REQUEST_COURSE:'' };
+  const env = {
+    ...process.env,
+    SVITLO_AGENT_REPORT_OUTPUT: output,
+    SVITLO_AGENT_REPORT_PR: '766',
+    GITHUB_RUN_ID: '12345',
+    SOURCE_HEAD_SHA: sha,
+    REQUEST_KIND: 'questions',
+    REQUEST_BOOK: 'content/playground',
+    REQUEST_LOCALE: 'en',
+    REQUEST_COMPONENT: '',
+    REQUEST_LESSON: '',
+    REQUEST_COURSE: '',
+  };
   function verify(mutate, extraFile = false) {
-    fs.rmSync(output, {recursive:true, force:true});
-    fs.mkdirSync(path.join(output, path.dirname(relative)), {recursive:true});
+    fs.rmSync(output, { recursive: true, force: true });
+    fs.mkdirSync(path.join(output, path.dirname(relative)), { recursive: true });
     fs.writeFileSync(path.join(output, relative), content);
     const manifest = structuredClone(base);
     if (mutate) mutate(manifest);
     fs.writeFileSync(path.join(output, 'manifest.json'), JSON.stringify(manifest));
     if (extraFile) fs.writeFileSync(path.join(output, 'unlisted.txt'), 'unlisted');
-    return spawnSync(process.execPath, ['--input-type=module', '--eval', validator],
-      { cwd:root,encoding:'utf8',env });
+    return spawnSync(process.execPath, ['--input-type=module', '--eval', validator], {
+      cwd: root,
+      encoding: 'utf8',
+      env,
+    });
   }
   try {
     const good = verify();
     assert.equal(good.status, 0, good.stderr);
     for (const [label, result] of [
-      ['stale HEAD', verify(m => m.sourceCommit = 'f'.repeat(40))],
-      ['wrong scope', verify(m => m.scope.locale = 'uk')],
-      ['wrong run', verify(m => m.runId = 54321)],
-      ['modified hash', verify(m => m.generated[0].sha256 = '0'.repeat(64))],
-      ['missing file', verify(m => m.generated[0].path = 'questions/missing.md')],
+      ['stale HEAD', verify(m => (m.sourceCommit = 'f'.repeat(40)))],
+      ['wrong scope', verify(m => (m.scope.locale = 'uk'))],
+      ['wrong run', verify(m => (m.runId = 54321))],
+      ['modified hash', verify(m => (m.generated[0].sha256 = '0'.repeat(64)))],
+      ['missing file', verify(m => (m.generated[0].path = 'questions/missing.md'))],
       ['unlisted file', verify(null, true)],
-      ['traversal', verify(m => m.generated[0].path = '../escaped.md')],
+      ['traversal', verify(m => (m.generated[0].path = '../escaped.md'))],
     ]) {
       assert.notEqual(result.status, 0, label + ': validator accepted invalid archive');
     }
   } finally {
-    fs.rmSync(output, {recursive:true,force:true});
+    fs.rmSync(output, { recursive: true, force: true });
   }
 });

@@ -36,11 +36,13 @@ education-standards/<locale>.md
 Paths in `generated[]` are relative to the ZIP root. Verify `sourceCommit` equals the reviewed PR HEAD, `runId` and `pr` match the actual Actions run and PR, `scope` matches the precise request, and each document hash, size, `missing`, `reviewReady`, failures and corpus status are consistent. Missing `%%MISSING%%` markers permit draft preview only. A failed, expired, stale or absent artifact is a **hard stop for the assigned linguistic review**; do not invent translated text or claim the generator proves language accuracy.
 
 Question Banks use the canonical three-level layout:
+
 ```text
 questions/index.ts
 questions/<questionType>/index.ts
 questions/<questionType>/<questionSlug>.ts
 ```
+
 Root and type indexes must agree with the actual Question files. Child ContentBlocks may live in sibling directories, but the Question module itself is the direct `<questionSlug>.ts`. Reviews include prompts, answer correctness, distractors, hints, explanation, source Ukrainian and requested locale, and related Quiz fields. The generator rejects unsupported/mismatched bank layouts rather than silently skipping Questions.
 
 Course references contain Course/Module/Chapter/Episode-owned content; standalone Lessons appear by UUID reference rather than duplicating a different author's Lesson. Skills, UI Kit, Assessment Methods and EducationStandard have distinct family generators. The archive is not a new publication format. Preserve the existing source/materialization, editorial and independent review gates.

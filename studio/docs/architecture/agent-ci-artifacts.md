@@ -13,18 +13,18 @@ Agents with the GitHub connector can list and download actual run artifacts and 
 
 ## Artifact contracts
 
-| Workflow / command | ZIP files | Artifact name |
-| --- | --- | --- |
-| `/agent-artifacts generate <family> ...` | `manifest.json` plus only the requested entity/locale `*.md` views | `agent-reference-pr-<pr>-<run>` |
-| `/get lesson by id|skill ...` | Single `result.json` (query, PR, run, SHA, result and diagnostics) | `get-lesson-<pr>-<run>` |
-| `/engine-coverage` | Single `engine-gaps.json` (gaps, PR, run and analyzed SHA) | `engine-coverage-gaps-pr-<pr>-<run>` |
-| `/repo-audit` | `git-audit.json` and concise `git-audit.md`, also an Actions Job Summary | `repository-git-audit-<run>` |
+| Workflow / command                       | ZIP files                                                                | Artifact name                                                      |
+| ---------------------------------------- | ------------------------------------------------------------------------ | ------------------------------------------------------------------ |
+| `/agent-artifacts generate <family> ...` | `manifest.json` plus only the requested entity/locale `*.md` views       | `agent-reference-pr-<pr>-<run>`                                    |
+| `/get lesson by id                       | skill ...`                                                               | Single `result.json` (query, PR, run, SHA, result and diagnostics) | `get-lesson-<pr>-<run>` |
+| `/engine-coverage`                       | Single `engine-gaps.json` (gaps, PR, run and analyzed SHA)               | `engine-coverage-gaps-pr-<pr>-<run>`                               |
+| `/repo-audit`                            | `git-audit.json` and concise `git-audit.md`, also an Actions Job Summary | `repository-git-audit-<run>`                                       |
 
 Machine JSON alone is enough for lookup/coverage; no second duplicate Markdown is needed. Git audit retains readable Markdown for the on-run human summary.
 
 The reference generator writes only under `$RUNNER_TEMP/agent-reference-library/` (or ignored local `temp/agent-reference-library/`). `manifest.json` schemaVersion 3 includes `sourceCommit`, `pr`, `runId`, exact `scope`, `generated[]` relative ZIP-root paths, `failures[]`, `summary`, `status` and per-document `bytes` and `sha256`. Markdown hyperlinks are permalinks to source Code at that SHA. The generator supports one selected reference family and named textbook/locale/UUID component scope; missing localized `%%MISSING%%` values yield non-review-ready previews.
 
-This workflow is **not** a Lesson/Course/Question/Flashcard *source materialization* workflow. Those commands intentionally create authorized real source files and are not replaced by report artifacts.
+This workflow is **not** a Lesson/Course/Question/Flashcard _source materialization_ workflow. Those commands intentionally create authorized real source files and are not replaced by report artifacts.
 
 ## Legacy tracked reports and branch rulesets
 

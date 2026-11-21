@@ -239,9 +239,15 @@ function escapeMarkdown(text) {
 
 export function renderAssessmentMethodsReference(options) {
   const { locale, methods, missing } = readAssessmentMethodsReference(options);
-  const directory = path.join(options.output ?? path.join(options.root ?? repoRoot, 'temp/agent-reference-library'), 'assessment-methods');
+  const directory = path.join(
+    options.output ?? path.join(options.root ?? repoRoot, 'temp/agent-reference-library'),
+    'assessment-methods',
+  );
   const links = {
-    descriptions: path.relative(directory, path.join(options.root ?? repoRoot, sourcePaths.descriptions)).split(path.sep).join('/'),
+    descriptions: path
+      .relative(directory, path.join(options.root ?? repoRoot, sourcePaths.descriptions))
+      .split(path.sep)
+      .join('/'),
   };
   const lines = [
     '<!-- GENERATED FROM CODE; DO NOT EDIT. -->',
