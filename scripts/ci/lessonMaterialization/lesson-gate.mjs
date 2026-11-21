@@ -208,7 +208,8 @@ export async function verifyCourseParentSources(parent, identity, get = github) 
   if (!files.has(prefix + 'index.ts') || !files.has(identity.yaml))
     throw Error('Parent Course lacks the generated Course source or this Lesson YAML');
   const candidates = [...files.values()].filter(item =>
-    item.path.startsWith(prefix) && item.path.endsWith('/index.ts') || item.path === prefix + 'index.ts',
+    item.path === prefix + 'index.ts' ||
+      (item.path.startsWith(prefix) && item.path.endsWith('/index.ts')),
   );
   if (!candidates.length || candidates.length > 500)
     throw Error('Invalid parent Course source inventory');
