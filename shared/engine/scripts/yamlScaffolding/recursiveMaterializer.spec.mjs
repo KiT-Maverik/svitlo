@@ -258,6 +258,36 @@ test('write/check are atomic-preflight, create-only and idempotent', () => {
   }
 });
 
+test('existing authored *.data.ts prevents generating a competing entrypoint', () => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-recursive-authored-'));
+  try {
+    fs.writeFileSync(path.join(dir, 'existing.data.ts'), '// reviewed human source\n');
+    const output = materialize(source(node('text', 'copy', 1).config), { registry });
+    assert.deepEqual(writeMaterialized(output.files, dir, 'generate'), { changed: 0, skipped: true });
+    assert.equal(fs.existsSync(path.join(dir, 'index.ts')), false);
+    assert.equal(fs.readFileSync(path.join(dir, 'existing.data.ts'), 'utf8'), '// reviewed human source\n');
+  } finally {
+    fs.rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+test('pending Scene is a Configurator with an external React stub handoff', () => {
+  const sourceDocument = source(node('scene', 'interaction', 1, {
+    params: {},
+    locale: { value: { uk: { instruction: 'Зроби вибір' } } },
+  }).config);
+  const output = materialize(sourceDocument, {
+    registry,
+    isPending: config => config.type === 'scene',
+  });
+  const generated = output.files.find(item => item.path === 'index.ts').content;
+  assert.match(generated, /defineScene/);
+  assert.match(generated, /TODO \(BLOCKER\): Complete and register this Scene/);
+  assert(!generated.includes('sceneImplementationRequired'));
+  assert(output.diagnostics.some(item => item.code === 'pending-scene'));
+  compile(output.files);
+});
+
 test('unsafe generated paths and symlink targets are rejected', () => {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-recursive-safe-'));
   try {
