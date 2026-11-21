@@ -10,5 +10,5 @@ export type SceneStubProps = {
 export function SceneStub({ locales }: SceneStubProps) {
   // Never pretend draft data is learner-ready copy or an implemented interaction.
   void locales;
-  return <div role="status">Not implemented</div>;
+  return <div role="status" lang="en" dir="ltr">Not implemented</div>;
 }
