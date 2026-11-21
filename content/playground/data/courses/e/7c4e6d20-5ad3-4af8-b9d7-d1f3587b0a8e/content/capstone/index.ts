@@ -1,10 +1,12 @@
 import { defineChapter } from '@svitlo/engine/build';
 
-import { integratedAssessment } from "#lessonsData/f/f465f0d6-4ebf-5add-9a25-ff24e5fefbdf/index";
+// TODO (BLOCKER): Uncomment when lesson is ready:
+// import { integratedAssessment } from "#lessonsData/f/f465f0d6-4ebf-5add-9a25-ff24e5fefbdf/index";
 import type { CourseLanguages } from "#coursesData/e/7c4e6d20-5ad3-4af8-b9d7-d1f3587b0a8e/constants";
 
 const items = {
-  integratedAssessment,
+  // TODO (BLOCKER): Uncomment when lesson is ready:
+  // integratedAssessment,
 };
 
 export const capstone = defineChapter<"capstone", typeof items, CourseLanguages>({

@@ -1,11 +1,13 @@
 import { defineModule } from '@svitlo/engine/build';
 
-import { illumination } from "#coursesData/e/7c4e6d20-5ad3-4af8-b9d7-d1f3587b0a8e/content/colorLight/illumination/index";
-import { colorReflection } from "#lessonsData/3/536f09dd-ec29-535a-94c6-ae629e3149f3/index";
+// TODO (BLOCKER): Uncomment when lesson is ready:
+// import { colorReflection } from "#lessonsData/3/536f09dd-ec29-535a-94c6-ae629e3149f3/index";
 import type { CourseLanguages } from "#coursesData/e/7c4e6d20-5ad3-4af8-b9d7-d1f3587b0a8e/constants";
 
+import { illumination } from "./illumination/index";
+
 const items = {
-  colorReflection,
+  // colorReflection,
   illumination,
 };
 

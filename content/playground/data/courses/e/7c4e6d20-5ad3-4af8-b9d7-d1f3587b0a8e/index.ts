@@ -78,7 +78,6 @@ export const playgroundE2eLearningLab = defineCourse<"playgroundE2eLearningLab",
   }
 });
 
-// Course-owned *input* patch. The publisher passes this through the stateless Build API.
 export const authoredCourseOverrides = {
   content: {
     items: {
