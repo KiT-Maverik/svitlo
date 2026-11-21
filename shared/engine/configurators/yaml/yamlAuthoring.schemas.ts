@@ -16,6 +16,7 @@ import { module_Config_Schema } from '../courses/defineModule/defineModule.schem
 import { episode_Config_Schema } from '../episodes/defineEpisode/defineEpisode.schemas';
 import { flashcard_Config_Schema } from '../flashcards/defineFlashcard/defineFlashcard.schemas';
 import { lesson_Config_Schema } from '../lessons/defineLesson/defineLesson.schemas';
+import { questionBlockCollection_Config_Schema } from '../questions/question.schemas';
 import { stage_Config_Schema } from '../sections/defineQuestSection/defineStage/defineStage.schemas';
 import { task_Config_Schema } from '../sections/defineQuestSection/defineTask/defineTask.schemas';
 import {
@@ -181,9 +182,8 @@ export const yamlSectionAuthoring_Schema = z.union([
   yamlQuizSectionAuthoring_Schema,
 ]);
 
-const questionBlocks = z.object({
+const questionBlocks = questionBlockCollection_Config_Schema.extend({
   items: z.record(z.string(), yamlContentBlockAuthoring_Schema),
-  order: z.array(z.string()),
 });
 const questionCommon = {
   question: questionBlocks,
@@ -300,7 +300,7 @@ const sectionCollection = lesson_Config_Schema.shape.section.extend({
 export const yamlLessonAuthoring_Schema = yamlAuthoringNode(
   lesson_Config_Schema.extend({ section: sectionCollection }),
   yamlProduction_Schemas.lesson,
-);
+).required({ production: true });
 export const yamlEpisodeAuthoring_Schema = yamlAuthoringNode(
   episode_Config_Schema.extend({
     section: episode_Config_Schema.shape.section.extend({
