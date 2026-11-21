@@ -1,8 +1,10 @@
+import { contentProductionImportPolicy } from '../../eslint/content-production-imports.mjs';
 import parser from '@typescript-eslint/parser';
 import plugin from '@typescript-eslint/eslint-plugin';
 
 // Authored Skills are validated by TypeScript; lint the maintained runtime and tooling.
 export default [
+  ...contentProductionImportPolicy,
   { ignores: ['dist/**', 'node_modules/**'] },
   {
     files: ['textbook.ts', 'data/homeCopy.ts'],
