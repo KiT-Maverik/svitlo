@@ -416,7 +416,7 @@ test('full Lesson, reference and nested Scene have distinct consistent authoring
         'lesson', 'linkedLesson', 'episode',
       ] },
     },
-    production: { documentLanguage: 'en' },
+    production: { documentLanguage: 'en', methodology: { purpose: 'Teach', audience: 'Learners', approach: 'Practice' } },
   };
   assert.equal(yamlCourseAuthoring_Schema.safeParse(course).success, true);
   assert.equal(yamlCourseAuthoring_Schema.safeParse({
