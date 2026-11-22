@@ -51,12 +51,14 @@ function ordered(value: unknown, at: string): { items: Record<string, unknown>; 
   if (!isRecord(value) || !isRecord(value.items) || !Array.isArray(value.order)) {
     throw new Error(at + ': expected ordered Config collection');
   }
-  const keys = Object.keys(value.items);
-  if (new Set(value.order).size !== keys.length || keys.length !== value.order.length ||
-      value.order.some(key => typeof key !== 'string' || !Object.hasOwn(value.items, key))) {
+  const items = value.items;
+  const order = value.order;
+  const keys = Object.keys(items);
+  if (new Set(order).size !== keys.length || keys.length !== order.length ||
+      order.some(key => typeof key !== 'string' || !Object.hasOwn(items, key))) {
     throw new Error(at + ': every item must be ordered exactly once');
   }
-  return { items: value.items, order: value.order as string[] };
+  return { items, order: order as string[] };
 }
 function relativeLanguages(directory: string, moduleName: string): string {
   assertBankPath(directory);
