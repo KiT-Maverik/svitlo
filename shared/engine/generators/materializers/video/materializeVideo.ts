@@ -6,8 +6,10 @@
 import type { ContentBlock_Video_Config } from '../../../configurators/contentBlocks/defineVideo';
 
 
-export type VideoDraftConfig = Pick<ContentBlock_Video_Config, 'id' | 'slug' | 'type'> &
-  Partial<Pick<ContentBlock_Video_Config, 'params' | 'locale'>>;
+export type VideoDraftConfig = Pick<ContentBlock_Video_Config, 'id' | 'slug' | 'type'> & {
+  params?: Partial<ContentBlock_Video_Config['params']>;
+  locale?: Partial<ContentBlock_Video_Config['locale']>;
+};
 
 export interface VideoMaterializationOptions {
   documentLanguage: string;

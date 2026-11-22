@@ -6,8 +6,10 @@
 import type { ContentBlock_Audio_Config } from '../../../configurators/contentBlocks/defineAudio';
 
 
-export type AudioDraftConfig = Pick<ContentBlock_Audio_Config, 'id' | 'slug' | 'type'> &
-  Partial<Pick<ContentBlock_Audio_Config, 'params' | 'locale'>>;
+export type AudioDraftConfig = Pick<ContentBlock_Audio_Config, 'id' | 'slug' | 'type'> & {
+  params?: Partial<ContentBlock_Audio_Config['params']>;
+  locale?: Partial<ContentBlock_Audio_Config['locale']>;
+};
 
 export interface AudioMaterializationOptions {
   documentLanguage: string;

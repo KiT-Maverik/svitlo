@@ -23,7 +23,7 @@ test('code: exact source, imports, locale pruning, deterministic non-writing pla
   const module = one.files.find(file => file.path === 'index.ts')?.content ?? '';
   assert.match(module, /defineCode<"sourceCode", typeof languages>/);
   assert(module.includes(id), 'original immutable UUID retained');
-  assert(!module.includes(''Ada''), 'unreviewed locale is not materialized');
+  assert(!module.includes("'Ada'"), 'unreviewed locale is not materialized');
   const parsed = ts.createSourceFile('index.ts', module, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS);
   assert.equal(parsed.parseDiagnostics.length, 0, 'emitted TS must parse');
   assert(one.diagnostics.some(item => item.code === 'pending-locales'));

@@ -6,8 +6,10 @@
 import type { ContentBlock_Subtitles_Config } from '../../../configurators/contentBlocks/defineSubtitles';
 
 
-export type SubtitlesDraftConfig = Pick<ContentBlock_Subtitles_Config, 'id' | 'slug' | 'type'> &
-  Partial<Pick<ContentBlock_Subtitles_Config, 'params' | 'locale'>>;
+export type SubtitlesDraftConfig = Pick<ContentBlock_Subtitles_Config, 'id' | 'slug' | 'type'> & {
+  params?: Partial<ContentBlock_Subtitles_Config['params']>;
+  locale?: Partial<ContentBlock_Subtitles_Config['locale']>;
+};
 
 export interface SubtitlesMaterializationOptions {
   documentLanguage: string;

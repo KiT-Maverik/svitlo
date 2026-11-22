@@ -6,8 +6,10 @@
 import type { ContentBlock_Markdown_Config } from '../../../configurators/contentBlocks/defineMarkdown';
 import { validateReplacementVariables } from '../../../configurators/contentBlocks/_shared__contentBlocks';
 
-export type MarkdownDraftConfig = Pick<ContentBlock_Markdown_Config, 'id' | 'slug' | 'type'> &
-  Partial<Pick<ContentBlock_Markdown_Config, 'params' | 'locale'>>;
+export type MarkdownDraftConfig = Pick<ContentBlock_Markdown_Config, 'id' | 'slug' | 'type'> & {
+  params?: Partial<ContentBlock_Markdown_Config['params']>;
+  locale?: Partial<ContentBlock_Markdown_Config['locale']>;
+};
 
 export interface MarkdownMaterializationOptions {
   documentLanguage: string;

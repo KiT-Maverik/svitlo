@@ -6,8 +6,10 @@
 import type { ContentBlock_Code_Config } from '../../../configurators/contentBlocks/defineCode';
 import { validateReplacementVariables } from '../../../configurators/contentBlocks/_shared__contentBlocks';
 
-export type CodeDraftConfig = Pick<ContentBlock_Code_Config, 'id' | 'slug' | 'type'> &
-  Partial<Pick<ContentBlock_Code_Config, 'params' | 'locale'>>;
+export type CodeDraftConfig = Pick<ContentBlock_Code_Config, 'id' | 'slug' | 'type'> & {
+  params?: Partial<ContentBlock_Code_Config['params']>;
+  locale?: Partial<ContentBlock_Code_Config['locale']>;
+};
 
 export interface CodeMaterializationOptions {
   documentLanguage: string;

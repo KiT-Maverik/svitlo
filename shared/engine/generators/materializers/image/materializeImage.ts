@@ -6,8 +6,10 @@
 import type { ContentBlock_Image_Config } from '../../../configurators/contentBlocks/defineImage';
 
 
-export type ImageDraftConfig = Pick<ContentBlock_Image_Config, 'id' | 'slug' | 'type'> &
-  Partial<Pick<ContentBlock_Image_Config, 'params' | 'locale'>>;
+export type ImageDraftConfig = Pick<ContentBlock_Image_Config, 'id' | 'slug' | 'type'> & {
+  params?: Partial<ContentBlock_Image_Config['params']>;
+  locale?: Partial<ContentBlock_Image_Config['locale']>;
+};
 
 export interface ImageMaterializationOptions {
   documentLanguage: string;

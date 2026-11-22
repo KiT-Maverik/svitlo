@@ -7,8 +7,10 @@ import type { ContentBlock_Text_Config } from '../../../configurators/contentBlo
 import { text_Config_Schema } from '../../../configurators/contentBlocks/defineText';
 import { validateTextVariables } from '../../../configurators/contentBlocks/defineText/defineText.utils';
 
-export type TextDraftConfig = Pick<ContentBlock_Text_Config, 'id' | 'slug' | 'type'> &
-  Partial<Pick<ContentBlock_Text_Config, 'params' | 'locale'>>;
+export type TextDraftConfig = Pick<ContentBlock_Text_Config, 'id' | 'slug' | 'type'> & {
+  params?: Partial<ContentBlock_Text_Config['params']>;
+  locale?: Partial<ContentBlock_Text_Config['locale']>;
+};
 
 export interface TextMaterializationOptions {
   documentLanguage: string;

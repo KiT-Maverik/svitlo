@@ -6,8 +6,10 @@
 import type { ContentBlock_Youtube_Config } from '../../../configurators/contentBlocks/defineYoutube';
 
 
-export type YoutubeDraftConfig = Pick<ContentBlock_Youtube_Config, 'id' | 'slug' | 'type'> &
-  Partial<Pick<ContentBlock_Youtube_Config, 'params' | 'locale'>>;
+export type YoutubeDraftConfig = Pick<ContentBlock_Youtube_Config, 'id' | 'slug' | 'type'> & {
+  params?: Partial<ContentBlock_Youtube_Config['params']>;
+  locale?: Partial<ContentBlock_Youtube_Config['locale']>;
+};
 
 export interface YoutubeMaterializationOptions {
   documentLanguage: string;
