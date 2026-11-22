@@ -33,7 +33,7 @@ const handoff = () => ({
       referenceSha: sha('b'), methodologyPath: 'references/methodology.md',
       title: 'Mathematics lesson',
     },
-    assessment, ownershipRationale: 'The independent Question Bank supports recall',
+    assessment: { ...assessment }, ownershipRationale: 'The independent Question Bank supports recall',
     audience: 'Grade 3', scope: 'Basic arithmetic', prerequisites: 'Counting',
     evidenceIntent: [evidence], misconceptions: 'Order of operations',
     mediaNeeds: 'No media needed', sourcesAndDependencies: 'Approved Lesson source',
