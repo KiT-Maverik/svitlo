@@ -7,7 +7,7 @@ import type { LessonWorkflowMaterializerInput } from '../../../types/workflow/le
 import { defineLesson } from '../../../configurators/lessons/defineLesson/defineLesson';
 import { defineContentSection } from '../../../configurators/sections/defineContentSection/defineContentSection';
 import { defineText } from '../../../configurators/contentBlocks/defineText/defineText';
-import { posix, resolve } from 'node:path';
+import { posix, resolve, sep } from 'node:path';
 import vm from 'node:vm';
 
 const id = (n: string) => '12345678-1234-4234-8234-1234567890' + n;
@@ -130,8 +130,11 @@ test('generated Lesson source passes the real TypeScript semantic checker', () =
   const host = ts.createCompilerHost(options);
   const readFile = host.readFile.bind(host);
   const fileExists = host.fileExists.bind(host);
+  const directoryExists = host.directoryExists?.bind(host);
   host.readFile = filename => files.get(resolve(filename)) ?? readFile(filename);
   host.fileExists = filename => files.has(resolve(filename)) || fileExists(filename);
+  host.directoryExists = dirname => [...files.keys()].some(filename =>
+    filename.startsWith(resolve(dirname) + sep)) || directoryExists?.(dirname) === true;
   const program = ts.createProgram([...files.keys()], options, host);
   const errors = ts.getPreEmitDiagnostics(program).filter(issue =>
     issue.category === ts.DiagnosticCategory.Error);
