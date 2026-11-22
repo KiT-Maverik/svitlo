@@ -105,8 +105,8 @@ export function materializeEpisode(input,context={}){
   message:'Stage 3 Episode focus/purpose is only editorial intent; scenario and Sections require separate review'});
  const sectionMap='{ '+Object.entries(items).map(([key,alias])=>JSON.stringify(key)+': '+alias).join(', ')+' }';
  const pending=provisional?
-  '// TODO (BLOCKER): Not implemented — Episode scenario and Sections require separate authorization; do not publish.\\n':'';
- const result=pending+"import { defineEpisode } from '@svitlo/engine/build';\\n"+
+  '// TODO (BLOCKER): Not implemented — Episode scenario and Sections require separate authorization; do not publish.\n':'';
+ const result=pending+"import { defineEpisode } from '@svitlo/engine/build';\n"+
  "import type { SupportedLanguages } from '@svitlo/engine/build';\n"+imports.join('\n')+'\n\n'+
  'const languages = '+JSON.stringify([lang])+' as const satisfies SupportedLanguages;\n'+
  'const section = { items: '+sectionMap+', order: '+JSON.stringify(order)+' };\n\n'+warning+
