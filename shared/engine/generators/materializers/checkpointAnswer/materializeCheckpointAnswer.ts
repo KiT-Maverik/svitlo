@@ -3,7 +3,7 @@ import type { ContentBlock_Audio_Config } from '../../../configurators/contentBl
 import type { ContentBlock_Code_Config } from '../../../configurators/contentBlocks/defineCode/defineCode.schemas';
 import type { ContentBlock_Image_Config } from '../../../configurators/contentBlocks/defineImage/defineImage.schemas';
 import type { ContentBlock_Markdown_Config } from '../../../configurators/contentBlocks/defineMarkdown/defineMarkdown.schemas';
-import type { ContentBlock_Scene_Config } from '../../../configurators/contentBlocks/defineScene/defineScene.schemas';
+import type { SceneSource } from '../scene/materializeScene';
 import type { ContentBlock_Subtitles_Config } from '../../../configurators/contentBlocks/defineSubtitles/defineSubtitles.schemas';
 import type { ContentBlock_Text_Config } from '../../../configurators/contentBlocks/defineText/defineText.schemas';
 import type { ContentBlock_Video_Config } from '../../../configurators/contentBlocks/defineVideo/defineVideo.schemas';
@@ -12,7 +12,7 @@ import type { CarouselSource } from '../carousel/materializeCarousel';
 
 export type CheckpointAnswerBlockSource =
   | ContentBlock_Audio_Config | CarouselSource | ContentBlock_Code_Config | ContentBlock_Image_Config
-  | ContentBlock_Markdown_Config | ContentBlock_Scene_Config | ContentBlock_Subtitles_Config
+  | ContentBlock_Markdown_Config | SceneSource | ContentBlock_Subtitles_Config
   | ContentBlock_Text_Config | ContentBlock_Video_Config | ContentBlock_Youtube_Config;
 export type CheckpointAnswerSource = Omit<ContentBlock_CheckpointAnswer_Config, 'content'> & {
   content: { items: Record<string, CheckpointAnswerBlockSource | false>; order: string[] };
@@ -96,6 +96,9 @@ export function materializeCheckpointAnswer(config: CheckpointAnswerSource, cont
     imports.push('import { ' + result.exportName + ' as ' + alias + ' } from ' + JSON.stringify('./content/items/' + key) + ';');
     items.push('    ' + JSON.stringify(key) + ': ' + alias + ',');
     for (const file of result.files) {
+      if (!file.path.startsWith(target + '/')) {
+        throw new Error('CheckpointAnswer.content.items.' + key + ': child emitted a file outside its owned directory: ' + file.path);
+      }
       if (paths.has(file.path) || file.path === (at ? at + '/' : '') + 'index.ts') {
         throw new Error('CheckpointAnswer: duplicate generated path ' + file.path);
       }
