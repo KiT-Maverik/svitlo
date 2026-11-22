@@ -53,6 +53,21 @@ test('text: refuses unsafe identity or unsupported source language', () => {
     /unsafe or missing slug/);
 });
 
+test('text: rejects unsupported nested Config properties instead of discarding them', () => {
+  const draft = valid();
+  assert.throws(() => materializeText(
+    { ...draft, params: { ...draft.params, unexpected: 'not part of Config' } as never },
+    { documentLanguage: 'uk' },
+  ), /unsupported authored fields/);
+});
+
+test('text: absent reviewed source locale cannot produce a partial Config', () => {
+  assert.throws(() => materializeText(
+    { ...valid(), locale: { value: { en: 'Only unreviewed translation' } } },
+    { documentLanguage: 'uk' },
+  ), /Cannot materialize type-valid Text Config/);
+});
+
 test('text: composed nested source paths and Course language handoff', () => {
   const directory = 'sections/intro/content/items/text';
   const nested = materializeText(valid(), {
