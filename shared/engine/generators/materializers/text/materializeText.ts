@@ -4,6 +4,7 @@
  * This is not a Props/JSON publisher, and never executes the YAML builder.
  */
 import type { ContentBlock_Text_Config } from '../../../configurators/contentBlocks/defineText';
+
 import { text_Config_Schema } from '../../../configurators/contentBlocks/defineText';
 import { validateTextVariables } from '../../../configurators/contentBlocks/defineText/defineText.utils';
 
@@ -157,6 +158,27 @@ export function materializeText(config: TextDraftConfig, options: TextMaterializ
     block('locale.value', 'pending-text', 'Supply reviewed source-language Text value');
   }
 
+
+  // The returned index.ts must satisfy the *actual* defineText Config type.
+  // A TODO cannot make a missing required field type-valid. Refuse to emit
+  // executable source until reviewed mandatory fields exist. Media's reserved
+  // Nil UUID filename is the single explicitly permitted pending Config value.
+  const incomplete = diagnostics.filter(item =>
+    item.code !== 'pending-locales' && item.code !== 'pending-media');
+  if (incomplete.length) {
+    throw new Error('Cannot materialize type-valid Text Config (TODO (BLOCKER)): ' +
+      incomplete.map(item => item.path + ': ' + item.message).join('; '));
+  }
+  const checked = text_Config_Schema.safeParse(fields);
+  if (!checked.success) {
+    throw new Error('Cannot materialize type-valid Text Config (TODO (BLOCKER)): ' +
+      checked.error.message);
+  }
+  // Non-strict Zod objects may strip unknown keys. Never emit those extra
+  // fields (invalid at TS call sites) or silently discard reviewed input.
+  if (JSON.stringify(checked.data) !== JSON.stringify(fields)) {
+    throw new Error('Cannot materialize type-valid Text Config: unsupported authored fields');
+  }
 
   if (options.production !== undefined) {
     if (!isRecord(options.production)) throw new Error('$.production: expected plain authoring notes');
