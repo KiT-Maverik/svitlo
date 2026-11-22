@@ -5,6 +5,10 @@ Engine Zod configurator schemas. It expands nested Configurator boundaries so
 editors can surface actual required types and fields. The output is **not**
 editorial approval, data publication or runtime validation.
 
+## Typed-workflow migration notice
+
+New Lesson/Questions/Flashcards editorial sources are moving to staged TypeScript in Draft #782/#783/#784, with #775 responsible for trusted orchestration. These editor schemas still have active YAML build/test/CI consumers, including the Lesson `lesson.scaffold.schema.json` and Question/Flashcard Config projections. Generating schemas does **not** validate a staged TS plan or publish Props. Do not delete schema generation or shared Config projections until caller-by-caller migration is verified; other entity consumers may still need them.
+
 ## Separate Lesson and Course authoring contracts
 
 - **Lesson:** one independently owned `lesson.yaml` contains Engine Config
