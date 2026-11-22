@@ -1,3 +1,4 @@
+import ts from 'typescript';
 import { materializeCourse } from './materialize.mjs';
 import { materializeModule } from '../module/materialize.mjs';
 import { materializeChapter } from '../chapter/materialize.mjs';
@@ -9,7 +10,6 @@ const uuid = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i;
 const sha = /^[0-9a-f]{40}$/i;
 const slug = /^[A-Za-z][A-Za-z0-9]*$/;
 const record = value => value !== null && typeof value === 'object' && !Array.isArray(value);
-const own = (value, key) => Object.prototype.hasOwnProperty.call(value, key);
 const sourceKinds = new Set(['typescript', 'markdown', 'specification', 'code']);
 const safePath = value => typeof value === 'string' && !value.startsWith('/') &&
   !value.includes('\\') && !value.split('/').some(p => !p || p === '.' || p === '..') &&
@@ -79,7 +79,8 @@ export function materializeCourseStage5(input, options = {}) {
       options.verifyReviewedSource({ input, review, textbookRoot }) !== true)
     throw new Error('Stage 5 reviewed source/provenance was not independently authorized');
   const newIds = new Set([rootId]), knownExistingIds = new Set();
-  const overrides = {};
+  const overrides = new Map();
+  const patchImports = new Set();
   const diagnostics = [];
   const deriveId = (kind, directory) => {
     const relative = directory.replace(/^content\//, '');
@@ -90,20 +91,50 @@ export function materializeCourseStage5(input, options = {}) {
     newIds.add(id);
     return id;
   };
-  const addPatch = (directory, patch) => {
+  const addPatch = (directory, patchSource) => {
     const relative = directory.replace(/^content\//, '');
     if (relative === directory || !relative) throw new Error('Invalid Course override placement');
     const parts = relative.split('/');
-    let cursor = overrides;
-    for (const part of parts) {
-      if (!slug.test(part) || ['constructor', '__proto__', 'prototype'].includes(part))
-        throw new Error('Unsafe Course patch placement');
-      cursor.content ??= { items: {} };
-      cursor.content.items[part] ??= {};
-      cursor = cursor.content.items[part];
+    if (parts.some(part => !slug.test(part) ||
+        ['constructor', '__proto__', 'prototype'].includes(part)))
+      throw new Error('Unsafe Course patch placement');
+    if (overrides.has(relative))
+      throw new Error('Duplicate Course patch placement: ' + relative);
+    overrides.set(relative, { parts, patchSource });
+  };
+  const singleExpression = expression => {
+    if (typeof expression !== 'string' || !expression.trim())
+      throw new Error('Reviewed Course patch expression must be nonempty TypeScript');
+    const ast = ts.createSourceFile('reviewedPatch.ts',
+      'const reviewedPatch = (' + expression + ');',
+      ts.ScriptTarget.Latest, true, ts.ScriptKind.TS);
+    if (ast.parseDiagnostics.length || ast.statements.length !== 1 ||
+        !ts.isVariableStatement(ast.statements[0]) ||
+        ast.statements[0].declarationList.declarations.length !== 1 ||
+        !ast.statements[0].declarationList.declarations[0].initializer)
+      throw new Error('Reviewed Course patch is not a single valid TypeScript expression');
+    return expression;
+  };
+  const renderPatchTree = () => {
+    const tree = { children: new Map() };
+    for (const { parts, patchSource } of overrides.values()) {
+      let node = tree;
+      for (const part of parts) {
+        if (node.source !== undefined)
+          throw new Error('Course patch placement overlaps an existing ancestor');
+        if (!node.children.has(part)) node.children.set(part, { children: new Map() });
+        node = node.children.get(part);
+      }
+      if (node.source !== undefined || node.children.size)
+        throw new Error('Course patch placement overlaps another patch');
+      node.source = patchSource;
     }
-    if (Object.keys(cursor).length) throw new Error('Duplicate Course patch placement: ' + relative);
-    Object.assign(cursor, patch);
+    const emit = node => node.source !== undefined
+      ? node.source
+      : '{ content: { items: { ' +
+          [...node.children].map(([key, child]) => JSON.stringify(key) + ': ' + emit(child)).join(', ') +
+        ' } } }';
+    return emit(tree);
   };
   const resolvePlacement = (node, context) => {
     const production = node.production;
@@ -144,10 +175,32 @@ export function materializeCourseStage5(input, options = {}) {
     if (hasPatch) {
       if (!record(lesson.rawPatch) || !production.overrideRationale?.trim())
         throw new Error(context.directory + ': built sparse override requires verified original raw Build expression and editorial rationale');
-      serialize(lesson.rawPatch);
+      const patchLanguages = [...new Set([sourceLanguage, ...Object.keys(existing.locale ?? {})])];
+      if (patchLanguages.some(code => !planned.includes(code) || !lesson.languages.includes(code)))
+        throw new Error(context.directory + ': override languages require reviewed Course/Lesson support');
+      let patchSource;
+      if (lesson.rawPatchSource === undefined) {
+        serialize(lesson.rawPatch);
+        patchSource = JSON.stringify(lesson.rawPatch, null, 2);
+      } else {
+        if (lesson.rawPatchSourceSha !== review.sourceBlobSha)
+          throw new Error(context.directory + ': raw patch TypeScript expression is not pinned to reviewed Course source');
+        patchSource = singleExpression(lesson.rawPatchSource);
+        if (!Array.isArray(lesson.rawPatchImports))
+          throw new Error(context.directory + ': explicit reviewed TypeScript imports required for patch expression');
+        for (const item of lesson.rawPatchImports) {
+          const parsed = ts.createSourceFile('reviewedImport.ts', item, ts.ScriptTarget.Latest, true);
+          if (parsed.parseDiagnostics.length || parsed.statements.length !== 1 ||
+              !ts.isImportDeclaration(parsed.statements[0]) ||
+              !ts.isStringLiteral(parsed.statements[0].moduleSpecifier) ||
+              !item.trim().endsWith(';'))
+            throw new Error(context.directory + ': invalid reviewed patch import declaration');
+          patchImports.add(item.trim());
+        }
+      }
       let built;
       try {
-        built = lesson.configurator.build.overrides(lesson.rawPatch, { languages: [sourceLanguage] });
+        built = lesson.configurator.build.overrides(lesson.rawPatch, { languages: patchLanguages });
       } catch (error) {
         throw new Error(context.directory + ': raw Lesson patch is invalid against real Build API', { cause: error });
       }
@@ -155,7 +208,7 @@ export function materializeCourseStage5(input, options = {}) {
         throw new Error(context.directory + ': original raw patch does not reproduce reviewed built sparse override');
       if (record(existing.locale) && Object.keys(existing.locale).some(code => !planned.includes(code)))
         throw new Error(context.directory + ': Lesson override uses an unplanned locale');
-      addPatch(context.directory, lesson.rawPatch);
+      addPatch(context.directory, patchSource);
     }
     const placementSlug = node.config.slug;
     const exportName = ['class', 'default', 'export', 'import', 'const', 'new', 'return', 'let', 'var'].includes(placementSlug)
@@ -199,12 +252,13 @@ export function materializeCourseStage5(input, options = {}) {
     'export const languages = ' + JSON.stringify([sourceLanguage]) +
     ' as const satisfies SupportedLanguages;\n';
   files.push({ path: root + '/languages.ts', kind: 'typescript', content: languageSource });
-  if (Object.keys(overrides).length) {
+  if (overrides.size) {
     files.push({
       path: root + '/authoredCourseOverrides.ts',
       kind: 'typescript',
-      content: '// The raw nested Config patches were independently replayed against each imported Lesson Build API.\n' +
-        'export const authoredCourseOverrides = ' + JSON.stringify(overrides, null, 2) + ';\n',
+      content: '// Reviewed raw Config expressions; independently replayed through the real Lesson Build API.\n' +
+        [...patchImports].sort().join('\n') + '\n' +
+        'export const authoredCourseOverrides = ' + renderPatchTree() + ';\n',
     });
     const indexFile = files.find(file => file.path === expectedSource);
     if (!indexFile) throw new Error('Course root module not generated');
