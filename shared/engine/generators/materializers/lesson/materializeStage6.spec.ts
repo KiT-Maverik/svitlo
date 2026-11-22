@@ -272,9 +272,19 @@ test('authored enabled Quiz and Flashcards Sections pass separate source materia
   input.production.assessment.quizSectionRequired = true;
   input.production.assessment.flashcardsSectionRequired = true;
   const sourceFor = (value: LessonWorkflowMaterializerInput) => {
-    const sourceText = "import type { LessonWorkflowStage2 } from '@svitlo/engine/build';\n" +
-      'export const stage2 = ' + JSON.stringify(value, null, 2) +
-      ' satisfies LessonWorkflowStage2;\n';
+    // These are executable Configurator imports, not handwritten bank UUIDs.
+    const reviewedObject = JSON.stringify(value, null, 2)
+      .replace(/"questionIds": \[\s*"[^"]+"\s*\]/,
+        '"questionIds": [reviewQuestion.id]')
+      .replace(/"flashcardIds": \[\s*"[^"]+"\s*\]/,
+        '"flashcardIds": [memoryCard.id]');
+    const sourceText = [
+      "import type { LessonWorkflowStage2 } from '@svitlo/engine/build';",
+      "import { reviewQuestion } from './questions/multipleChoice/example';",
+      "import { reviewCard as memoryCard } from './flashcards/example';",
+      'export const stage2 = ' + reviewedObject + ' satisfies LessonWorkflowStage2;',
+      '',
+    ].join('\n');
     return {
       ...options, sourceText, review: { ...reviewed, sourceBlobSha: blobSha(sourceText) },
     };
@@ -282,6 +292,14 @@ test('authored enabled Quiz and Flashcards Sections pass separate source materia
   const plan = materializeLessonStage6(input, sourceFor(input));
   assert(plan.files.some(file => file.path === folder + 'sections/reviewQuiz/index.ts'));
   assert(plan.files.some(file => file.path === folder + 'sections/reviewCards/index.ts'));
+  const quizSource = plan.files.find(file => file.path === folder + 'sections/reviewQuiz/index.ts')!.content;
+  const cardsSource = plan.files.find(file => file.path === folder + 'sections/reviewCards/index.ts')!.content;
+  assert(quizSource.includes('import { reviewQuestion as stage6_ref_0 } from "../../questions/multipleChoice/example";'));
+  assert(cardsSource.includes('import { reviewCard as stage6_ref_0 } from "../../flashcards/example";'));
+  assert(quizSource.includes('"questionIds": [stage6_ref_0.id]'));
+  assert(cardsSource.includes('"flashcardIds": [stage6_ref_0.id]'));
+  assert(!quizSource.includes(id('07')), 'bank UUID must not replace Configurator reference');
+  assert(!cardsSource.includes(id('08')), 'bank UUID must not replace Configurator reference');
   assert.equal(plan.diagnostics.some(diagnostic => diagnostic.code.startsWith('pending-')), false);
   assert.doesNotThrow(() => assertLessonStage6ReleaseReady(plan));
   const provisional = structuredClone(input);
@@ -291,6 +309,31 @@ test('authored enabled Quiz and Flashcards Sections pass separate source materia
   quiz.config.params.selection.questionIds = ['feedc0de-1234-4234-8234-123456789007'];
   const blocked = materializeLessonStage6(provisional, sourceFor(provisional));
   assert.throws(() => assertLessonStage6ReleaseReady(blocked), /publication blocked/);
+
+  // Fail closed on handwritten UUIDs or nonimported expressions in a reviewed
+  // nonempty selection, rather than silently producing magic UUID literals.
+  const literal = [
+    "import type { LessonWorkflowStage2 } from '@svitlo/engine/build';",
+    'export const stage2 = ' + JSON.stringify(input, null, 2) +
+      ' satisfies LessonWorkflowStage2;',
+    '',
+  ].join('\n');
+  assert.throws(() => materializeLessonStage6(input, {
+    ...options, sourceText: literal,
+    review: { ...reviewed, sourceBlobSha: blobSha(literal) },
+  }), /requires imported Question\\/Flashcard Configurator \\.id/);
+  const unbound = sourceFor(input).sourceText
+    .replace('reviewQuestion.id', 'notImported.id');
+  assert.throws(() => materializeLessonStage6(input, {
+    ...options, sourceText: unbound,
+    review: { ...reviewed, sourceBlobSha: blobSha(unbound) },
+  }), /without an executable Configurator import/);
+  const expression = sourceFor(input).sourceText
+    .replace('reviewQuestion.id', 'getQuestion().id');
+  assert.throws(() => materializeLessonStage6(input, {
+    ...options, sourceText: expression,
+    review: { ...reviewed, sourceBlobSha: blobSha(expression) },
+  }), /requires imported Question\\/Flashcard Configurator \\.id/);
 });
 
 test('duplicate UUID, wrong slug, invalid order and unsanctioned identity are rejected', () => {
