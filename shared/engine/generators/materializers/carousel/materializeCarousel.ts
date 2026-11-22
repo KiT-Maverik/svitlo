@@ -1,8 +1,8 @@
 import type { ContentBlock_Carousel_Config } from '../../../configurators/contentBlocks/defineCarousel/defineCarousel.schemas';
 import type { ContentBlock_Image_Config } from '../../../configurators/contentBlocks/defineImage/defineImage.schemas';
-import type { ContentBlock_Scene_Config } from '../../../configurators/contentBlocks/defineScene/defineScene.schemas';
+import type { SceneSource } from '../scene/materializeScene';
 
-export type CarouselSlideSource = ContentBlock_Image_Config | ContentBlock_Scene_Config;
+export type CarouselSlideSource = ContentBlock_Image_Config | SceneSource;
 export type CarouselSource = Omit<ContentBlock_Carousel_Config, 'slides'> & {
   slides: { items: Record<string, CarouselSlideSource | false>; order: string[] };
 };
@@ -96,6 +96,9 @@ export function materializeCarousel(config: CarouselSource, context: CarouselCon
     imports.push('import { ' + result.exportName + ' as ' + alias + ' } from ' + JSON.stringify('./slides/items/' + key) + ';');
     entries.push('    ' + JSON.stringify(key) + ': ' + alias + ',');
     for (const f of result.files) {
+      if (!f.path.startsWith(childDirectory + '/')) {
+        throw new Error('Carousel.slides.items.' + key + ': child emitted a file outside its owned directory: ' + f.path);
+      }
       if (emitted.has(f.path) || f.path === (directory ? directory + '/' : '') + 'index.ts') {
         throw new Error('Carousel: duplicate child source destination ' + f.path);
       }
