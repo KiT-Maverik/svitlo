@@ -131,7 +131,19 @@ const choice = {
       question: { items: { prompt: choicePrompt }, order: ['prompt'] },
       answers: {
         correct: { items: { correct }, order: ['correct'] },
-        incorrect: { items: { incorrect: { ...correct, config: { ...correct.config, id: '663572e7-bd85-4516-86e2-3de07d209e0a', slug: 'incorrect' } } }, order: ['incorrect'] },
+        incorrect: {
+          items: {
+            incorrect: {
+              config: {
+                ...correct.config,
+                id: '663572e7-bd85-4516-86e2-3de07d209e0a',
+                slug: 'incorrect',
+                locale: { value: { uk: 'Три' } },
+              },
+            },
+          },
+          order: ['incorrect'],
+        },
         distractors: { items: {}, order: [] },
       },
     },
