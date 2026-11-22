@@ -138,12 +138,15 @@ const courseStage3 = {
   ...courseStage2,
   config: {
     ...courseStage2.config,
-    content: { items: { firstObservation: reusedSlot }, order: ['firstObservation'] },
+    content: {
+      ...courseStage2.config.content,
+      items: { ...courseStage2.config.content.items, firstObservation: reusedSlot },
+    },
   },
 } satisfies CourseWorkflowStage3;
 ```
 
-The import path and variables are illustrative: resolve them from the real textbook's aliases and source evidence. The replacement Course example intentionally uses a single placement, **not** a license to drop reviewed Stage 2 items. Keep every intended item and order in real work. The two outcomes can be reviewed as `CourseWorkflowStage3NewLesson`/`CourseWorkflowStage3ExistingLesson` types; the single final whole-Course source must satisfy `CourseWorkflowStage3`.
+The import path and variables are illustrative: resolve them from the real textbook's aliases and source evidence. The replacement Course example preserves the Stage 2 Episode and its order. In real work, replace **every** unresolved Lesson slot throughout nested Modules/Chapters, not only the illustrated root slot. The two outcomes can be reviewed as `CourseWorkflowStage3NewLesson`/`CourseWorkflowStage3ExistingLesson` types; the single final whole-Course source must satisfy `CourseWorkflowStage3`.
 
 **Course-wide assessment design:** decide meaningful instructional Quiz locations vs a justified ordinary assessment-only Lesson at Chapter/Module/Course boundaries; define target Skills, the learner evidence, feedback and item/bank ownership without prematurely generating Quiz/Question/Flashcard Configs or IDs. A full independent Question Bank normally belongs to each nontrivial teaching Lesson even when its own Quiz is absent. Cross-Lesson Quiz publication requires the upstream reviewed banks in the actual branch ancestry and working global Question resolver; this *publication* dependency does not block Stage 4 methodology review if ownership and planned coverage are already sound.
 
