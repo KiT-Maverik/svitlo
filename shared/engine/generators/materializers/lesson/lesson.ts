@@ -107,6 +107,19 @@ export function materializeLesson(config: Source, options: Options): Result {
   if (!planned.includes(options.documentLanguage))
     throw new Error('lesson.params.languages: source language must be in planned languages');
   validateSections(config);
+  // A completed Lesson must not be emitted with a missing required Section.
+  // A comment alone cannot satisfy defineLesson.build.props()'s enabled-Quiz
+  // invariant. Course-originated Stage 1 handoffs never invoke this materializer.
+  const enabled = config.section.order.map(key => sourceNode(config.section.items[key]).config)
+    .filter(section => !(isObject(section.params) && section.params.disabled === true));
+  const hasQuiz = enabled.some(section => section.type === 'quiz');
+  const hasFlashcards = enabled.some(section => section.type === 'flashcards');
+  if ((config.params.quizRequiredForCompletion === true ||
+       options.production?.assessment?.quizSectionRequired === true) && !hasQuiz)
+    throw new Error('TODO (BLOCKER): Cannot emit complete Lesson source: an enabled Quiz Section is required before standalone materialization; author it in the Lesson workflow without changing quizRequiredForCompletion.');
+  if (options.production?.assessment?.flashcardsSectionRequired === true && !hasFlashcards)
+    throw new Error('TODO (BLOCKER): Cannot emit complete Lesson source: an enabled Flashcards Section is required before standalone materialization; author it in the Lesson workflow.');
+
   const files:GeneratedFile[] = [], diagnostics:Diagnostic[] = [];
   const seen=new Set<string>(),imports:string[] = [];
   const add=(file:GeneratedFile):void=>{
@@ -115,11 +128,9 @@ export function materializeLesson(config: Source, options: Options): Result {
     files.push(file);
   };
   const items:Record<string,Reference>={};
-  let pendingAssessment=false,hasQuiz=false,hasFlashcards=false,hasQuest=false;
+  let pendingAssessment=false,hasQuest=false;
   for (const key of Object.keys(config.section.items).sort()) {
     const node=sourceNode(config.section.items[key]);
-    if(node.config.type==='quiz')hasQuiz=true;
-    if(node.config.type==='flashcards')hasFlashcards=true;
     if(node.config.type==='quest')hasQuest=true;
     const childDir=destination(dir,'sections/'+key);
     const languagesImport='../../languages';
@@ -146,10 +157,6 @@ export function materializeLesson(config: Source, options: Options): Result {
     'export const languages = '+JSON.stringify([options.documentLanguage])+' as const satisfies SupportedLanguages;',''
   ].join('\n');
   add({path:destination(dir,'languages.ts'),kind:'typescript',content:sourceLanguages});
-  if((config.params.quizRequiredForCompletion===true||options.production?.assessment?.quizSectionRequired===true)&&!hasQuiz)
-    blockers.push('// TODO (BLOCKER): Add the editorially required Quiz Section with real reviewed Question IDs.');
-  if(options.production?.assessment?.flashcardsSectionRequired===true&&!hasFlashcards)
-    blockers.push('// TODO (BLOCKER): Add the editorially required Flashcards Section with real reviewed Flashcard IDs.');
   if(pendingAssessment)
     blockers.push('// TODO (BLOCKER): Resolve pending Quiz/Flashcards selections in the owned Section modules before publication.');
   if(hasQuest)blockers.push('// TODO (BLOCKER): Quest is Build-only and cannot be published by defineLesson or Lesson runtime yet.');
@@ -173,4 +180,19 @@ export function materializeLesson(config: Source, options: Options): Result {
     '# '+key+'\n\n'+(typeof value==='string'?value.trimEnd():JSON.stringify(value,null,2))).join('\n\n')+'\n'});
   add({path:destination(dir,'index.ts'),kind:'typescript',content:source});
   return{exportName:exported(config.slug),files,diagnostics};
+}
+
+/**
+ * Explicit source-release preflight for callers that publish materialized
+ * Lessons. Block pending editorial/media/bank dependencies even if someone
+ * removes TODO comments from the emitted source text. Parent #775 must wire
+ * this into the actual publish/release path and validate real bank membership.
+ */
+export function assertLessonSourceReleaseReady(result: Result): void {
+  const reserved = /\bfeedc0de-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\b/i;
+  if (result.files.some(file => file.kind === 'typescript' && reserved.test(file.content)))
+    throw new Error('Lesson source publication blocked: reserved provisional assessment UUID (feedc0de-)');
+  if (result.diagnostics.length)
+    throw new Error('Lesson source publication blocked: unresolved materializer diagnostics (' +
+      result.diagnostics.map(item => item.code).join(', ') + ')');
 }

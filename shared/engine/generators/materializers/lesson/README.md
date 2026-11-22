@@ -94,18 +94,22 @@ canonical booleans**:
 `questionBankRequired`, `flashcardBankRequired`,
 `quizSectionRequired`, `flashcardsSectionRequired`. Bank requirements
 initiate independent authoring work; they do **not** imply Section presence.
-Quiz/Flashcards Section requirements cause explicit blockers if the fully
-authored Section tree lacks them. The separate
-`params.quizRequiredForCompletion` gate remains unchanged and likewise
-requires an actual enabled Quiz; no automatic disabled Quiz, reserved
-`feedc0de-` references or fictitious content is created at Course Stage 5.
+Quiz/Flashcards Section requirements **fail closed before any complete
+Lesson files are emitted** if the later standalone workflow has not authored
+an enabled Section. A TODO in an otherwise invalid `defineLesson` is not
+sufficient: `defineLesson.build.props()` must be able to build valid
+Section collections. The separate `params.quizRequiredForCompletion` gate
+remains unchanged and likewise requires an enabled Quiz. No automatic
+disabled Quiz, reserved `feedc0de-` references or fictitious content
+is created at Course Stage 5.
 Question/Flashcard bank materializers in #780 run only after their own
 independent production/review stage, never to satisfy a Lesson handoff.
 
-Tests now reject both Stage 3 and Stage 1-like draft shapes and check the
-seven relevant assessment combinations (including bank-only decisions) without
-creating child files, changing completion policy or injecting production-only
-assessment flags into a final `defineLesson` Config. Full Engine compilation
+Tests now reject both Stage 3 and Stage 1-like draft shapes and check seven
+assessment combinations (including bank-only decisions) to prove required
+Sections fail before source output, while standalone bank-only requirements do
+not invent Sections or change completion policy. A separate executable
+emitted-source fixture validates the actual `defineLesson.build.props()` path. Full Engine compilation
 and run-time publication guard integration remain parent-owned verification.
 
 ## Compatibility with updated #775 Course stages
@@ -162,6 +166,31 @@ Parent must supply: (1) dispatching concrete child functions by verified
 plus `--check`; (5) CLI integration with source documents; (6) targeted
 test inclusion in the package's test command. **Quest remains unpublishable
 through `defineLesson`/`defineEpisode` until the separate runtime work.**
+
+## Review #777 — required enabled Sections and release boundary
+
+The review on [current source at `354dc0af`](https://github.com/KiT-Maverik/svitlo/pull/777#issuecomment-7083044852)
+correctly identified that comment-only missing Quiz/Flashcards requirements
+allowed output that would fail the real Build API or omit a required visible
+Section. **This implementation uses the explicitly allowed fail-closed
+alternative** for later standalone Lesson source emission. It checks
+`config.params.quizRequiredForCompletion` and the two independent editorial
+Section requirements against *enabled* Sections at the ordered collection
+boundary, before delegating child source. Missing or disabled required
+Sections throw actionable `TODO (BLOCKER)` diagnostics as errors and return
+no misleading final Lesson manifest. The Lesson workflow must author the
+required Section (or an explicitly approved pending Section with full real
+Config parameters) before rerunning. No fake bank content or reserved IDs
+are synthesized here. Course Stage 5 still writes **only typed Lesson Stage 1**.
+
+`assertLessonSourceReleaseReady(result)` is an optional, narrow
+source-release preflight over the generated manifest: it blocks any unresolved
+diagnostics and scans all emitted TypeScript for reserved `feedc0de-` UUIDs,
+independent of TODO comments. The parent must wire it into the authorized
+source release path and independently verify bank manifests and reviewed
+locales. **No claim that the existing JSON publisher already uses it.**
+A real emitted-`defineLesson` test exercises `build.props()` on a
+complete Lesson containing an enabled authored Quiz Section.
 
 ## Verification
 

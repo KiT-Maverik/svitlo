@@ -12,13 +12,13 @@ editorial approval, data publication or runtime validation.
   `lesson.scaffold.schema.json` combines Engine Zod structure with the
   manually maintained `production.schema.json`. Only the Lesson Builder
   consumes this source format.
-- **Course:** [Create Course Flow](../../../../studio/skills/course-workflow/create-course-flow.skill.md)
-  owns one temporary `course.yaml`, guided by
-  [course-flow.schema.json](../../../../studio/skills/course-workflow/course-flow.schema.json)
-  and its stage-aware validator. Stage 5 directly materializes that reviewed
-  plan to typed Course/Module/Chapter/Episode sources and initial Lesson YAMLs.
-  There is no alternate Course editor envelope, `course.scaffold.schema.json`,
-  `config.yaml` pipeline or editorial TOC source.
+- **Course (new workflow):** [Create Course Flow](../../../../studio/skills/course-workflow/create-course-flow.skill.md)
+  uses one typed Stage 1–3 object and independent corrective Stage 4 review. There is
+  no Course editorial YAML or JSON Schema validation gate in that workflow.
+  The older [course-flow.schema.json](../../../../studio/skills/course-workflow/course-flow.schema.json),
+  `validateCourseFlow` and YAML-based Stage 5 are still **active legacy dependencies**
+  until the new typed Stage 5 and its trusted CI path are verified and integrated.
+  Do not treat generated Course API schemas as a replacement typed production input.
 - **Engine Config/overrides:** `course.schema.json` describes the current
   Engine Course configurator shape; `courseOverrides.schema.json` describes
   its stateless `build.overrides(patch, { languages })` shape. These are API

@@ -46,14 +46,14 @@ test('Section subtree source is byte-identical whether invoked by Lesson or by E
  const sub=fromLesson.files.filter(f=>f.path.startsWith('sections/introduction/'));
  assert.deepEqual(sub,fromEpisode.files);
 });
-test('Missing required Quiz produces an explicit blocker, never a fabricated bank',()=>{
+test('Missing enabled Quiz refuses complete Lesson emission before delegating child files',()=>{
  const l=lesson();
  l.params.quizRequiredForCompletion=true;
- const out=materializeLesson(l as Parameters<typeof materializeLesson>[0],{
-  documentLanguage:'en',renderSection:(child,opts)=>renderSection(child as ContentSource,{...opts,renderContentBlock})
- });
- assert.match(out.files.at(-1)?.content??'',/TODO \(BLOCKER\).*required Quiz/);
- assert.doesNotMatch(out.files.at(-1)?.content??'',/feedc0de-/);
+ let called=0;
+ assert.throws(()=>materializeLesson(l as Parameters<typeof materializeLesson>[0],{
+  documentLanguage:'en',renderSection:()=>{called++;throw Error('not reached');}
+ }),/TODO \(BLOCKER\).*enabled Quiz Section/);
+ assert.equal(called,0,'fail closed before producing even child source');
 });
 test('Rejects duplicate order, mismatched Section slug and unsafe paths',()=>{
  const l=lesson();l.section.order=[];
@@ -117,22 +117,51 @@ test('Independent Lesson materialization uses exact editorial Section decisions,
  for(const scenario of cases){
   const config=lesson();
   if('completion' in scenario && scenario.completion)config.params.quizRequiredForCompletion=true;
-  const produced=materializeLesson(config as Parameters<typeof materializeLesson>[0],{
+  let delegated=0;
+  const options={
    documentLanguage:'en',production:{assessment:scenario.assessment},
-   renderSection:(child,opts)=>renderSection(child as ContentSource,{...opts,renderContentBlock})
-  });
-  const root=produced.files.find(f=>f.path==='index.ts')?.content??'';
-  const blockerQuiz=/TODO \(BLOCKER\): Add the editorially required Quiz Section/.test(root);
-  const blockerFlashcards=/TODO \(BLOCKER\): Add the editorially required Flashcards Section/.test(root);
-  assert.equal(blockerQuiz,scenario.quiz,scenario.name+' quiz');
-  assert.equal(blockerFlashcards,scenario.flashcards,scenario.name+' flashcards');
-  assert.equal(produced.files.filter(f=>f.path.startsWith('sections/')).length,2,
+   renderSection:(child:Parameters<Parameters<typeof materializeLesson>[1]['renderSection']>[0],
+    opts:Parameters<Parameters<typeof materializeLesson>[1]['renderSection']>[1])=>{
+     delegated++;
+     return renderSection(child as ContentSource,{...opts,renderContentBlock});
+    },
+  };
+  if (scenario.quiz || scenario.flashcards) {
+   const required = scenario.quiz ? /enabled Quiz Section/ : /enabled Flashcards Section/;
+   assert.throws(()=>materializeLesson(config as Parameters<typeof materializeLesson>[0],options),required,
+    scenario.name+' must fail closed until its required Section is authored');
+   assert.equal(delegated,0,scenario.name+' must not emit partial final source');
+  } else {
+   const produced=materializeLesson(config as Parameters<typeof materializeLesson>[0],options);
+   const root=produced.files.find(f=>f.path==='index.ts')?.content??'';
+   assert.equal(produced.files.filter(f=>f.path.startsWith('sections/')).length,2,
     scenario.name+' only the authored Content Section and child block were materialized');
-  assert.doesNotMatch(root,/feedc0de-|Not implemented/,
+   assert.doesNotMatch(root,/feedc0de-|Not implemented/,
     scenario.name+' must not invent bank IDs or Section placeholders');
-  assert.equal(/"quizRequiredForCompletion": true/.test(root),
-    'completion' in scenario && !!scenario.completion,scenario.name+' completion invariant unchanged');
-  assert.doesNotMatch(root,/"questionBankRequired"|"flashcardBankRequired"|"quizSectionRequired"|"flashcardsSectionRequired"/,
+   assert.equal(/"quizRequiredForCompletion": true/.test(root),false);
+   assert.doesNotMatch(root,/"questionBankRequired"|"flashcardBankRequired"|"quizSectionRequired"|"flashcardsSectionRequired"/,
     scenario.name+' production decisions must not enter Config');
+  }
  }
+});
+
+test('Disabled Quiz/Flashcards do not satisfy mandatory enabled-Section requirements',()=>{
+ const l=lesson();
+ const disabledQuiz={id:id('12'),slug:'pendingQuiz',type:'quiz',params:{disabled:true}};
+ const disabledFlashcards={id:id('13'),slug:'pendingCards',type:'flashcards',params:{disabled:true}};
+ const input={...l,section:{
+   items:{...l.section.items,pendingQuiz:disabledQuiz,pendingCards:disabledFlashcards},
+   order:['introduction','pendingQuiz','pendingCards']
+ }};
+ const noDelegate=()=>{throw Error('must not emit incomplete Section');};
+ input.params.quizRequiredForCompletion=true;
+ assert.throws(()=>materializeLesson(input as unknown as Parameters<typeof materializeLesson>[0],{
+   documentLanguage:'en',renderSection:noDelegate
+ }),/enabled Quiz Section/);
+ input.params.quizRequiredForCompletion=false;
+ assert.throws(()=>materializeLesson(input as unknown as Parameters<typeof materializeLesson>[0],{
+   documentLanguage:'en',production:{assessment:{
+      questionBankRequired:false,flashcardBankRequired:false,quizSectionRequired:false,flashcardsSectionRequired:true
+   }},renderSection:noDelegate
+ }),/enabled Flashcards Section/);
 });
