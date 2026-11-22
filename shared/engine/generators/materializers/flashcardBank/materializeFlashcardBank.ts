@@ -12,7 +12,8 @@ import type {
 import { materializeFlashcard } from '../flashcard/materializeFlashcard';
 import {
   assertBankLanguages, assertBankOrder, assertBankPath, assertBankSha,
-  assertBankStatement, assertBankUuid, assertUniqueBankEntityIds, authoredBankLiteral, preflightBankSource,
+  assertBankStatement, assertBankUuid, assertUniqueBankEntityIds, assertReviewedBankInput,
+  authoredBankLiteral, preflightBankSource,
   type BankReviewedSource, type BankSourceSnapshot, type BankSourceResult,
   type BankSourceFile, type BankSourceDiagnostic,
 } from '../bankSource/bankSourceSafety';
@@ -201,6 +202,7 @@ export function materializeFlashcardBank(
   authorization: FlashcardBankFinalAuthorization,
 ): BankSourceResult {
   validateStage1(input, authorization);
+  assertReviewedBankInput(input, authorization.reviewed);
   const inventory = input.config.flashcards;
   assertBankOrder(inventory.items, inventory.order, 'Flashcard inventory', true);
   assertUniqueBankEntityIds(inventory);
