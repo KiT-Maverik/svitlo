@@ -104,7 +104,7 @@ export function materializeLesson(config: Source, options: Options): Result {
   if (!Array.isArray(planned) || !planned.length || planned.some(language => typeof language !== 'string' || !localeKey.test(language)) ||
       new Set(planned).size !== planned.length)
     throw new Error('lesson.params.languages: invalid planned language set');
-  if (!planned.includes(options.documentLanguage))
+  if (!planned.some(language => language === options.documentLanguage))
     throw new Error('lesson.params.languages: source language must be in planned languages');
   validateSections(config);
   // A completed Lesson must not be emitted with a missing required Section.

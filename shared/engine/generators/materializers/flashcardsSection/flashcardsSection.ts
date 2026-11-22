@@ -148,7 +148,7 @@ export function materializeFlashcardsSection(config: Source, options: Options): 
   const own = { ...metadata, content: imported('content') };
   const name = exportName(config.slug);
   const blocker: string[] = [];
-  const params = isObject(config.params) ? config.params : {};
+  const params: Record<string, unknown> = isObject(config.params) ? config.params : {};
   const select = isObject(params.selection) ? params.selection : {};
   const ids = select.flashcardIds;
   if (!Array.isArray(ids) || !ids.length) {

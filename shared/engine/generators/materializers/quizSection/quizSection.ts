@@ -148,7 +148,7 @@ export function materializeQuizSection(config: Source, options: Options): Result
   const own = { ...metadata, content: imported('content') };
   const name = exportName(config.slug);
   const blocker: string[] = [];
-  const params = isObject(config.params) ? config.params : {};
+  const params: Record<string, unknown> = isObject(config.params) ? config.params : {};
   const select = isObject(params.selection) ? params.selection : {};
   const ids = select.questionIds;
   for (const field of ['selection', 'layout', 'feedbackMode', 'interaction', 'results']) {
