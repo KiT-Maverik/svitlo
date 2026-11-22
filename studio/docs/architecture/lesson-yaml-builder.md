@@ -1,5 +1,9 @@
 # Deterministic Lesson YAML → TypeScript draft scaffolder
 
+> **Typed-production migration (parent #775; Lesson #782, Questions #783, Flashcards #784 remain separate Drafts):** New editorial work progresses through one TypeScript source per entity. Existing YAML builders and trusted PR commands remain operational **legacy paths** until an integrated, source-SHA-pinned typed replacement is tested. Stage type declarations are not proof that the corresponding materializer or CI handoff is deployed. Never replace a source converter with a Props publisher.
+
+**Scope:** this is the **existing** `shared/engine/scripts/lessonBuilder/` YAML-to-TS draft converter and historical layout, not new Lesson authoring. #782 proposes one progressively typed `LessonWorkflowStage1/2` source, reviewed at Stages 3–5; only a later authorized Stage 6 orchestrator may materialize full Lesson/Section/Block source. Course Stage 5 creates **only** a typed Lesson Stage 1 handoff. The concrete Lesson, Section, ContentBlock and assessment source renderers from merged #777–#780 now exist in `shared/engine/generators/materializers/` and are registered in the Engine test runner, but they do **not** yet form the reviewed Stage 6 orchestrator/writer. No legacy conversion or pure source rendering implies approval, Scene integration or published Props.
+
 > **Stage 6 boundary:** [Create Lesson Flow](../../skills/lesson-workflow/create-lesson-flow.skill.md) invokes separate [full preflight/finalization](../../../shared/engine/scripts/finalizeLesson/README.md) **outside** the create-only Lesson Builder. The Builder remains a draft-only emitter; no full Zod validation or YAML deletion is added to it.
 
 **Current input:** one `lesson.yaml` per Lesson UUID directory, with
