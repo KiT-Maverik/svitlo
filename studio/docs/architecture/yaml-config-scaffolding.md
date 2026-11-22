@@ -1,4 +1,4 @@
-# Unified YAML → TypeScript draft-scaffolder handoff
+# Legacy YAML → TypeScript draft scaffolding (active non-Course consumers)
 
 **Canonical authoring boundaries:** [Create Lesson Flow](../../skills/lesson-workflow/create-lesson-flow.skill.md) and independent bank workflows still have live YAML source/tooling dependencies. [Create Course Flow](../../skills/course-workflow/create-course-flow.skill.md) now authors Stages 1–3 in **one typed TS object** and independently corrects that source in Stage 4. The existing [Course YAML materializer](../../../shared/engine/scripts/materializeCourseFlow/README.md) is a **legacy implementation retained for live consumers** until the replacement typed Stage 5 and protected trusted command path in #775 are verified; it is not the new Course workflow.
 
