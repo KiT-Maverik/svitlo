@@ -11,6 +11,7 @@ import type {
   CourseWorkflowStage2Chapter,
   CourseWorkflowStage2LessonSlot,
   CourseWorkflowStage2EpisodeSlot,
+  CourseWorkflowStage2EpisodeProduction,
 } from './courseWorkflow.types';
 
 const config = {
@@ -112,7 +113,20 @@ const lessonSlot = {
 
 const episodeSlot = {
   config: { type: 'episode' },
+  production: {
+    focus: 'Introduce the observation problem motivating the next chapter',
+    purpose: 'Connect the previous Lessons to the upcoming application',
+  },
 } satisfies CourseWorkflowStage2EpisodeSlot;
+
+const incompleteEpisodeProduction: CourseWorkflowStage2EpisodeProduction = {
+  focus: 'Transition from sky observations to patterns',
+  // @ts-expect-error An Episode slot must explain why it belongs in this sequence.
+  purpose: undefined,
+};
+
+// @ts-expect-error An Episode slot needs an explicit purpose and a focus.
+const episodeWithoutProduction: CourseWorkflowStage2EpisodeSlot = { config: { type: 'episode' } };
 
 const chapter = {
   config: {
@@ -256,6 +270,8 @@ export type Stage2NestingChecks = [
 
 void lessonSlot;
 void episodeSlot;
+void incompleteEpisodeProduction;
+void episodeWithoutProduction;
 void chapter;
 void module;
 void planned;

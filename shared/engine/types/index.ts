@@ -13,6 +13,7 @@ export type {
   CourseWorkflowStage2Chapter,
   CourseWorkflowStage2LessonSlot,
   CourseWorkflowStage2EpisodeSlot,
+  CourseWorkflowStage2EpisodeProduction,
   CourseWorkflowStage2UnitProduction,
 } from './workflow';
 export type {

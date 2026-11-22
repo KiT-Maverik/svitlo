@@ -89,11 +89,22 @@ export type CourseWorkflowStage2LessonSlot = {
   };
 };
 
+/** An Episode plan only states the intended situation and why this placement
+ * serves Course progression; plot, dialogue, Scene and Section design come later.
+ */
+export type CourseWorkflowStage2EpisodeProduction = {
+  /** What learning context or situation the Episode should address; not a script outline. */
+  focus: string;
+  /** Why an Episode is needed here rather than another Lesson or no content. */
+  purpose: string;
+};
+
 /** The Episode script and authored Sections belong to later work.
- * Stage 2 only reserves its position in the ordered Course hierarchy.
+ * Stage 2 only reserves its position and educational/narrative intent.
  */
 export type CourseWorkflowStage2EpisodeSlot = {
   config: Pick<Episode_Config, 'type'>;
+  production: CourseWorkflowStage2EpisodeProduction;
 };
 
 /** Chapter can contain only provisional Lessons and Episodes. */
