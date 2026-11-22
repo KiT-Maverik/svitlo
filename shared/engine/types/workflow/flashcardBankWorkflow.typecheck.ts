@@ -1,6 +1,11 @@
 import type { FlashcardNode, FlashcardContext } from '../../generators/materializers/flashcard/materializeFlashcard';
 import type { FlashcardSideSource } from '../../generators/materializers/flashcardSide/materializeFlashcardSide';
 import type { Flashcard_Relationship } from '../../configurators/flashcards/defineFlashcard/defineFlashcard.schemas';
+import type { ContentBlock_Image_Config } from '../../configurators/contentBlocks/defineImage/defineImage.schemas';
+import type { CarouselSource } from '../../generators/materializers/carousel/materializeCarousel';
+import type { CheckpointSource } from '../../generators/materializers/checkpoint/materializeCheckpoint';
+import type { CheckpointItemSource } from '../../generators/materializers/checkpointItem/materializeCheckpointItem';
+import type { CheckpointAnswerSource } from '../../generators/materializers/checkpointAnswer/materializeCheckpointAnswer';
 import type { ContentBlock_Text_Config } from '../../configurators/contentBlocks/defineText/defineText.schemas';
 import type { ContentBlock_Code_Config } from '../../configurators/contentBlocks/defineCode/defineCode.schemas';
 import type { ContentBlock_Markdown_Config } from '../../configurators/contentBlocks/defineMarkdown/defineMarkdown.schemas';
@@ -194,6 +199,45 @@ const stage3WithSection = {
  * Flashcard / Side renderer without a parallel Config dialect.
  */
 const materializerSide: FlashcardSideSource = front;
+
+/** #779 composite sources retain real nested Config objects, not opaque
+ * CarouselSlide/CheckpointItem Configurator instances from final Build API.
+ */
+declare const reviewedImage: ContentBlock_Image_Config;
+const carouselSource: CarouselSource = {
+  id: 'b775647f-203d-481a-a1c7-4d331c000030',
+  slug: 'gallery',
+  type: 'carousel',
+  params: {},
+  locale: {},
+  slides: { items: { slide: reviewedImage }, order: ['slide'] },
+};
+const checkpointAnswerSource: CheckpointAnswerSource = {
+  id: 'b775647f-203d-481a-a1c7-4d331c000031',
+  slug: 'answer',
+  type: 'checkpointAnswer',
+  content: { items: { example: code }, order: ['example'] },
+};
+const checkpointItemSource: CheckpointItemSource = {
+  id: 'b775647f-203d-481a-a1c7-4d331c000032',
+  slug: 'item',
+  type: 'checkpointItem',
+  question: first,
+  answer: checkpointAnswerSource,
+};
+const checkpointSource: CheckpointSource = {
+  id: 'b775647f-203d-481a-a1c7-4d331c000033',
+  slug: 'checkpoint',
+  type: 'checkpoint',
+  params: {},
+  locale: { title: { uk: 'Самоперевірка' } },
+  content: { items: { item: checkpointItemSource }, order: ['item'] },
+};
+const compositeSide: FlashcardBankWorkflowSideSource = {
+  items: { gallery: carouselSource, checkpoint: checkpointSource },
+  order: ['gallery', 'checkpoint'],
+};
+const compatibleCompositeSide: FlashcardSideSource = compositeSide;
 const expandedRelation: Flashcard_Relationship = {
   relationshipId: edge.relationshipId,
   type: edge.type,
@@ -298,6 +342,12 @@ const badReferenceBlock: ContentBlock_Text_Config = {
 };
 
 void materializerSide;
+void carouselSource;
+void checkpointAnswerSource;
+void checkpointItemSource;
+void checkpointSource;
+void compositeSide;
+void compatibleCompositeSide;
 void materializerCard;
 void materializerLanguages;
 void emptyInventory;
