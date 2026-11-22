@@ -48,6 +48,23 @@ describe('Configurators', () => {
           section: { items: { intro: section }, order: ['intro'] },
         });
 
+      test('Lesson Build overrides carry the owning ID outside the sparse Props patch', () => {
+        const lesson = makeLesson();
+        const noChanges = lesson.build.overrides({}, { languages: ['en'] });
+        assert.deepEqual(noChanges, { id: lesson.id, base: {}, locale: undefined });
+        assert.equal('id' in noChanges.base, false);
+
+        const adapted = lesson.build.overrides(
+          { params: { sections: { allowSkipping: true } } },
+          { languages: ['uk'] },
+        );
+        assert.equal(adapted.id, lesson.id);
+        assert.equal('id' in adapted.base, false);
+        assert.equal('id' in (adapted.locale?.uk ?? {}), false);
+        assert.equal(lesson.build.props({ languages: ['uk'] }).base.id, lesson.id);
+        assert.deepEqual(lesson.build.overrides({}, { languages: ['en'] }), noChanges);
+      });
+
       test('Lesson accepts optional audience ranges and validates their publication and sparse overrides', () => {
         const input = {
           id: id('70'),
