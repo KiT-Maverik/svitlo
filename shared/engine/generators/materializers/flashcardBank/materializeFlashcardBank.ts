@@ -12,7 +12,7 @@ import type {
 import { materializeFlashcard } from '../flashcard/materializeFlashcard';
 import {
   assertBankLanguages, assertBankOrder, assertBankPath, assertBankSha,
-  assertBankStatement, assertBankUuid, authoredBankLiteral, preflightBankSource,
+  assertBankStatement, assertBankUuid, assertUniqueBankEntityIds, authoredBankLiteral, preflightBankSource,
   type BankReviewedSource, type BankSourceSnapshot, type BankSourceResult,
   type BankSourceFile, type BankSourceDiagnostic,
 } from '../bankSource/bankSourceSafety';
@@ -27,6 +27,8 @@ export type FlashcardBankDraftAuthorization = {
   questionSourceSha?: string;
   questionReviewSha?: string;
   methodologySourceSha?: string;
+  /** Explicit Lesson owner exception when a standalone bank is not otherwise required. */
+  independentBankAuthorization?: { sourceSha: string; rationale: string };
   snapshot: BankSourceSnapshot;
 };
 export type FlashcardBankFinalAuthorization = Omit<FlashcardBankDraftAuthorization, 'authorized'> & {
@@ -64,6 +66,13 @@ function validateStage1(
       typeof lesson.assessment.quizSectionRequired !== 'boolean' ||
       typeof lesson.assessment.flashcardsSectionRequired !== 'boolean') {
     throw new Error('All four Lesson assessment decisions must be preserved');
+  }
+  if (lesson.assessment.flashcardBankRequired !== true) {
+    const independent = auth.independentBankAuthorization;
+    if (!independent) throw new Error('Flashcards N/A: independent bank authorization required');
+    assertBankSha(independent.sourceSha, 'Independent Flashcard Bank authorization');
+    assertBankStatement(independent.rationale, 'Independent Flashcard Bank rationale');
+    if (independent.sourceSha !== lesson.sourceSha) throw new Error('Stale independent Flashcard Bank authorization');
   }
   if (!questions || (questions.kind !== 'completed' && questions.kind !== 'notApplicable')) {
     throw new Error('Explicit Questions-first prerequisite required');
@@ -194,6 +203,7 @@ export function materializeFlashcardBank(
   validateStage1(input, authorization);
   const inventory = input.config.flashcards;
   assertBankOrder(inventory.items, inventory.order, 'Flashcard inventory', true);
+  assertUniqueBankEntityIds(inventory);
   const ids = new Set<string>();
   for (const slug of inventory.order) {
     const card = inventory.items[slug];
