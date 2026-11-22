@@ -117,7 +117,7 @@ const choice = {
       question: { items: { prompt }, order: ['prompt'] },
       answers: {
         correct: { items: { correct }, order: ['correct'] },
-        incorrect: { items: { incorrect: { ...correct, config: { ...correct.config, slug: 'incorrect' } } }, order: ['incorrect'] },
+        incorrect: { items: { incorrect: { ...correct, config: { ...correct.config, id: '663572e7-bd85-4516-86e2-3de07d209e0a', slug: 'incorrect' } } }, order: ['incorrect'] },
         distractors: { items: {}, order: [] },
       },
     },
@@ -144,9 +144,9 @@ const stage2 = {
 // @ts-expect-error No empty bank passes a completed Stage 2 shape.
 const emptyGroups: QuestionBankWorkflowStage2['config']['questions'] = {};
 
-// @ts-expect-error A Question must have type-specific correct numeric answers.
 const missingNumericAnswers: QuestionBankWorkflowAnswerWithNumberConfig = {
   ...oneAnswer.config,
+  // @ts-expect-error A Question must have type-specific correct numeric answers.
   params: { assessmentMethod: 'application', restrictions: [] },
 };
 
@@ -162,11 +162,11 @@ const wrongBlock: QuestionBankWorkflowBlockConfig = {
   type: 'unknownQuestionBlock',
 };
 
-// @ts-expect-error Slot text answers are part of the actual fillBlanksWithText Config shape.
 const missingTextSlots: QuestionBankWorkflowFillBlanksWithTextConfig = {
   ...oneAnswer.config,
   type: 'fillBlanksWithText',
   params: { assessmentMethod: 'application', restrictions: [] },
+  // @ts-expect-error Slot collection is required by fillBlanksWithText.
   content: { question: { items: { prompt }, order: ['prompt'] } },
 };
 
