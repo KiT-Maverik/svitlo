@@ -67,9 +67,10 @@ export function materializeFlashcardSide(source:FlashcardSideSource,context:Flas
   for(const key of source.order){
     const node=source.items[key];
     if (!record(node)) fail('items.'+key,'plain ContentBlock Config required');
-    const child=record(node.config)?node.config:node;
-    if (!record(child) || typeof child.type!=='string' || !allowed.has(child.type))
+    const candidate: unknown = record(node.config) ? node.config : node;
+    if (!record(candidate) || typeof candidate.type!=='string' || !allowed.has(candidate.type))
       fail('items.'+key,'unsupported concrete ContentBlock');
+    const child = candidate;
     if (typeof child.id!=='string'||!validUUID.test(child.id))
       fail('items.'+key+'.id','existing block UUID required');
     if (safeSlug(child.slug,'items.'+key+'.slug')!==key)

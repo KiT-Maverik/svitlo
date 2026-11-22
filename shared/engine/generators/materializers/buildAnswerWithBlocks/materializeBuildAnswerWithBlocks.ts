@@ -56,9 +56,11 @@ function checkPath(value: string): void {
 function assertCollection(value: unknown, location: string): asserts value is { items: Record<string, unknown>; order: string[] } {
   if (!isRecord(value) || !isRecord(value.items) || !Array.isArray(value.order))
     fail(location,'expected items/order collection');
-  const keys=Object.keys(value.items);
-  if (keys.length!==value.order.length || new Set(value.order).size!==keys.length ||
-      value.order.some(key=>typeof key!=='string' || !Object.hasOwn(value.items,key)))
+  const items = value.items;
+  const order = value.order;
+  const keys=Object.keys(items);
+  if (keys.length!==order.length || new Set(order).size!==keys.length ||
+      order.some(key=>typeof key!=='string' || !Object.hasOwn(items,key)))
     fail(location+'.order','order must include each item exactly once');
   for (const key of keys) safeSlug(key,location+'.items.'+key);
 }
