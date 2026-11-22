@@ -30,11 +30,11 @@ test('invalid child slug and unresolved dependency fail explicitly',()=>{
 });
 
 test('skillDomain rejects escaped destination directories',()=>{
- assert.throws(()=>materializeSkillDomain(value(),{sourceLanguage:'uk',directory:'../unsafe'}),/unsafe generated directory/);
+ assert.throws(()=>materializeSkillDomain(config(),{sourceLanguage:'uk',directory:'../unsafe'}),/unsafe generated directory/);
 });
 
 test('missing direct Skill identity is allocated through delegated deterministic ID',()=>{
- const v=value();delete v.skills.skillOne.id;delete v.skills.skillOne.slug;
+ const v=config();delete v.skills.skillOne.id;delete v.skills.skillOne.slug;
  const result=materializeSkillDomain(v,{sourceLanguage:'uk',materializeSkill,materializeSkillGroup,deriveId:(kind,location)=>kind==='skill'?childId:rootId});
  assert.ok(result.files.some(file=>file.path==='skills/skillOne/index.ts'));
 });

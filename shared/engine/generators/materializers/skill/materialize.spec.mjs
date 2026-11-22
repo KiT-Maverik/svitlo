@@ -21,5 +21,5 @@ test('skill refuses fake identity and path traversal',()=>{
 });
 
 test('skill rejects escaped destination directories',()=>{
- assert.throws(()=>materializeSkill(fixture(),{sourceLanguage:'uk',directory:'../unsafe'}),/unsafe generated directory/);
+ assert.throws(()=>materializeSkill(example(),{sourceLanguage:'uk',directory:'../unsafe'}),/unsafe generated directory/);
 });

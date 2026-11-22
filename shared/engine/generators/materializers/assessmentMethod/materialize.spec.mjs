@@ -21,5 +21,5 @@ test('assessmentMethod refuses fake identity and path traversal',()=>{
 });
 
 test('assessmentMethod rejects escaped destination directories',()=>{
- assert.throws(()=>materializeAssessmentMethod(fixture(),{sourceLanguage:'uk',directory:'../unsafe'}),/unsafe generated directory/);
+ assert.throws(()=>materializeAssessmentMethod(example(),{sourceLanguage:'uk',directory:'../unsafe'}),/unsafe generated directory/);
 });

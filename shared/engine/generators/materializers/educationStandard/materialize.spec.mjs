@@ -21,5 +21,5 @@ test('educationStandard refuses fake identity and path traversal',()=>{
 });
 
 test('educationStandard rejects escaped destination directories',()=>{
- assert.throws(()=>materializeEducationStandard(fixture(),{sourceLanguage:'uk',directory:'../unsafe'}),/unsafe generated directory/);
+ assert.throws(()=>materializeEducationStandard(example(),{sourceLanguage:'uk',directory:'../unsafe'}),/unsafe generated directory/);
 });
