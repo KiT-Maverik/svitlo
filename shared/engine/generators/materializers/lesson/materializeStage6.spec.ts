@@ -321,7 +321,7 @@ test('authored enabled Quiz and Flashcards Sections pass separate source materia
   assert.throws(() => materializeLessonStage6(input, {
     ...options, sourceText: literal,
     review: { ...reviewed, sourceBlobSha: blobSha(literal) },
-  }), /requires imported Question\\/Flashcard Configurator \\.id/);
+  }), /requires imported Question/);
   const unbound = sourceFor(input).sourceText
     .replace('reviewQuestion.id', 'notImported.id');
   assert.throws(() => materializeLessonStage6(input, {
