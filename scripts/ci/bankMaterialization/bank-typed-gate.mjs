@@ -78,9 +78,34 @@ export async function inspectTyped(number, bank, expected) {
       throw Error('Typed Bank target excludes merged Lesson');
     }
   }
-  if (bank === 'flashcards' &&
-      !/^.*Questions(?: \(own bank\))?:\s*(?:Completed|Not Applicable)\b/im.test(parent.body)) {
-    throw Error('Flashcards need declared parent Questions-first completion or N/A');
+  let parentQuestions = null;
+  let parentHeadSha = null;
+  if (bank === 'flashcards') {
+    const decision = /^.*Questions(?: \(own bank\))?:\s*(Completed|Not Applicable)\b/im.exec(parent.body);
+    if (!decision || !SHA.test(parent.head?.sha || '')) {
+      throw Error('Flashcards need a pinned parent Questions-first completion or N/A');
+    }
+    parentQuestions = decision[1] === 'Completed' ? 'completed' : 'notApplicable';
+    parentHeadSha = parent.head.sha;
+    if (parentQuestions === 'notApplicable') {
+      // N/A needs a real independently reviewed Lesson/Methodologist decision:
+      // a mutable PR-description assertion is not authorization.
+      const reviews = await github('pulls/' + identity.parent + '/reviews?per_page=100');
+      if (!Array.isArray(reviews) || reviews.length === 100) {
+        throw Error('Incomplete Questions N/A parent review inventory');
+      }
+      const latestParent = new Map();
+      for (const review of reviews) {
+        if (review.user?.login && review.submitted_at) latestParent.set(review.user.login, review);
+      }
+      const approvedParent = [...latestParent.values()].filter(review =>
+        review.state === 'APPROVED' && review.commit_id === parent.head.sha &&
+        review.user.login !== parent.user?.login);
+      if (approvedParent.length !== 1) {
+        throw Error('Questions N/A requires one independent approval on parent Lesson HEAD');
+      }
+      await requireActor(approvedParent[0].user.login);
+    }
   }
   const sourcePath = identity.folder + '/' + bank + '/index.ts';
   const sourceFile = await github('contents/' + sourcePath.split('/').map(encodeURIComponent).join('/') +
@@ -111,6 +136,7 @@ export async function inspectTyped(number, bank, expected) {
     branch: pr.head.ref, base: pr.base.ref, head: pr.head.sha,
     sourceBlob: sourceFile.sha, sourcePath,
     reviewer, reviewCommitSha: approved[0].commit_id,
+    parentQuestions, parentHeadSha,
     identity: {
       id: identity.id, pkg: identity.pkg, parent: identity.parent,
       folder: identity.folder, bank,
