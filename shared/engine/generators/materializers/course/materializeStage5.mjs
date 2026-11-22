@@ -282,6 +282,18 @@ export function materializeCourseStage5(input, options = {}) {
   const materialized = materializeCourse(input, context);
   const files = [...materialized.files.map(file => file.path.startsWith(textbookRoot + '/data/lessons/')
     ? file : { ...file, path: root + '/' + file.path })];
+  const rootIndex = files.find(file => file.path === expectedSource);
+  if (!rootIndex || rootIndex.kind !== 'typescript')
+    throw new Error('Course Stage 5 failed to emit the canonical root source');
+  // The legacy Course publisher discovers UUID-root index.ts automatically.
+  // Persist a fail-closed marker IN the generated source; returning a transient
+  // {publishable:false} flag alone cannot stop an unrelated publication job.
+  rootIndex.content =
+    '// TODO (BLOCKER): Course Stage 5 source is not publication approval. ' +
+      'Verify independent Lesson, Episode, locale, assessment and source-review gates before release.\\n' +
+    '// Reviewed Course source blob: ' + review.sourceBlobSha + '\\n' +
+    '// Independent Stage 4 review commit: ' + review.reviewCommitSha + '\\n' +
+    rootIndex.content;
   const languageSource = "import type { SupportedLanguages } from '@svitlo/engine/build';\n" +
     'export const languages = ' + JSON.stringify([sourceLanguage]) +
     ' as const satisfies SupportedLanguages;\n';
