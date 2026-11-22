@@ -132,7 +132,7 @@ export function materializeImage(config: ImageDraftConfig, options: ImageMateria
       (isRecord(prior) && (Object.keys(prior).length === 0 || prior[language] === undefined));
     const placeholder = nilUuid + '.' + ext;
     if (missing) {
-      locale[field] = isRecord(config.locale) && isRecord(config.locale[field])
+      locale[field] = isRecord(config.locale) && isRecord((config.locale as Record<string, unknown>)[field])
         ? { [language]: placeholder } : placeholder;
     }
     const current = locale[field];

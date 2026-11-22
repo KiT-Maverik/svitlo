@@ -132,7 +132,7 @@ export function materializeMarkdown(config: MarkdownDraftConfig, options: Markdo
       (isRecord(prior) && (Object.keys(prior).length === 0 || prior[language] === undefined));
     const placeholder = nilUuid + '.' + ext;
     if (missing) {
-      locale[field] = isRecord(config.locale) && isRecord(config.locale[field])
+      locale[field] = isRecord(config.locale) && isRecord((config.locale as Record<string, unknown>)[field])
         ? { [language]: placeholder } : placeholder;
     }
     const current = locale[field];
@@ -208,12 +208,12 @@ export function materializeMarkdown(config: MarkdownDraftConfig, options: Markdo
   }
 
   const name = reserved.has(config.slug) ? 'config_' + config.slug : config.slug;
-  const source = 'import { ' + [...new Set(imports)].join(', ') + " } from '@svitlo/engine/build';\n" +
+  const sourceModule = 'import { ' + [...new Set(imports)].join(', ') + " } from '@svitlo/engine/build';\n" +
     'import { languages } from ' + JSON.stringify(languagesImport) + ';\n\n' +
     (blockers.length ? blockers.join('\n') + '\n' : '') +
     'export const ' + name + ' = defineMarkdown<' + JSON.stringify(config.slug) +
     ', typeof languages>(' + printValue(fields, expressions) + ');\n';
-  files.unshift({ path: 'index.ts', content: source, kind: 'typescript' });
+  files.unshift({ path: 'index.ts', content: sourceModule, kind: 'typescript' });
   return {
     exportName: name,
     files: files.map(file => ({ ...file, path: directory ? directory + '/' + file.path : file.path })),
