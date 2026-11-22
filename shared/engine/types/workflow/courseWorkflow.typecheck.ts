@@ -24,6 +24,7 @@ import type {
   CourseWorkflowStage3ExistingLesson,
   CourseWorkflowStage3NewLessonConfig,
   CourseWorkflowStage3ExistingLessonConfig,
+  CourseWorkflowStage3ExistingLessonReference,
 } from './courseWorkflow.types';
 
 const config = {
@@ -335,14 +336,13 @@ const newLesson = {
 
 const existingConfig = {
   type: 'lesson',
-  id: importedLesson.id,
   slug: 'reusedDayNight',
   skills: lessonSlot.config.skills,
 } satisfies CourseWorkflowStage3ExistingLessonConfig;
 
 const existingLesson = {
   config: existingConfig,
-  production: { kind: 'existing', matching: match },
+  production: { kind: 'existing', existing: importedLesson.id, matching: match },
 } satisfies CourseWorkflowStage3ExistingLesson;
 
 const patch = importedLesson.build.overrides(
@@ -353,11 +353,15 @@ const existingWithOverrides = {
   config: { ...existingConfig, slug: 'dayNightPractice' },
   production: {
     kind: 'existing',
+    existing: patch,
     matching: match,
-    overrides: patch,
     overrideRationale: 'Course progression requires this navigation constraint',
   },
 } satisfies CourseWorkflowStage3ExistingLesson;
+
+const typedReference: CourseWorkflowStage3ExistingLessonReference = patch;
+const typedIdReference: CourseWorkflowStage3ExistingLessonReference = importedLesson.id;
+const patchId: Lesson_Config['id'] = patch.id;
 
 const resolvedChapter = {
   ...chapter,
@@ -420,28 +424,34 @@ const newWithLanguages: CourseWorkflowStage3NewLessonConfig = {
   },
 };
 
-const existingMissingId: CourseWorkflowStage3ExistingLesson = {
-  // @ts-expect-error Reuse needs the existing Lesson's real Config identity.
-  config: { type: 'lesson', slug: 'missingId', skills: lessonSlot.config.skills },
-  production: existingLesson.production,
+const existingConfigWithId: CourseWorkflowStage3ExistingLessonConfig = {
+  ...existingConfig,
+  // @ts-expect-error Existing Lesson references belong in production.existing only.
+  id: importedLesson.id,
+};
+
+// @ts-expect-error Existing Lesson placement must include a direct ID or a validated override result.
+const missingExistingReference: CourseWorkflowStage3ExistingLesson = {
+  config: existingConfig,
+  production: { kind: 'existing', matching: match },
 };
 
 const existingMissingMatch: CourseWorkflowStage3ExistingLesson = {
   config: existingConfig,
   // @ts-expect-error Reuse needs verified matching evidence.
-  production: { kind: 'existing' },
+  production: { kind: 'existing', existing: importedLesson.id },
 };
 
-// @ts-expect-error Supplying overrides without an override rationale is invalid.
+// @ts-expect-error The override result requires an explicit rationale.
 const missingOverrideRationale: CourseWorkflowStage3ExistingLesson = {
   config: existingConfig,
-  production: { kind: 'existing', matching: match, overrides: patch },
+  production: { kind: 'existing', matching: match, existing: patch },
 };
 
-// @ts-expect-error A rationale without actual overrides is also invalid.
+// @ts-expect-error A rationale without an override result is invalid.
 const rationaleWithoutOverrides: CourseWorkflowStage3ExistingLesson = {
   config: existingConfig,
-  production: { kind: 'existing', matching: match, overrideRationale: 'Not needed' },
+  production: { kind: 'existing', matching: match, existing: importedLesson.id, overrideRationale: 'Not needed' },
 };
 
 const rawOverridesAreInvalid: CourseWorkflowStage3ExistingLesson = {
@@ -449,16 +459,27 @@ const rawOverridesAreInvalid: CourseWorkflowStage3ExistingLesson = {
   production: {
     kind: 'existing',
     matching: match,
-    // @ts-expect-error Raw params patches are not the result of lesson.build.overrides().
-    overrides: { params: { sections: { allowSkipping: false } } },
+    // @ts-expect-error Raw params patches are not validated {id,base,locale} results.
+    existing: { params: { sections: { allowSkipping: false } } },
     overrideRationale: 'Use validated Build output',
+  },
+};
+
+const patchWithoutId: CourseWorkflowStage3ExistingLesson = {
+  config: existingConfig,
+  production: {
+    kind: 'existing',
+    matching: match,
+    // @ts-expect-error A built override reference must include the owning Lesson id.
+    existing: { base: {}, locale: undefined },
+    overrideRationale: 'Required identity',
   },
 };
 
 const unexpectedExistingLocale: CourseWorkflowStage3ExistingLesson = {
   config: {
     ...existingConfig,
-    // @ts-expect-error Course-local title edits require explicit overrides, not Config mutation.
+    // @ts-expect-error Course-local title edits require explicit Build overrides, not Config mutation.
     locale: { title: 'Implicit Course-local mutation' },
   },
   production: existingLesson.production,
@@ -476,7 +497,7 @@ const unexpectedExistingMethodology: CourseWorkflowStage3ExistingLesson = {
 // @ts-expect-error The old third discriminator no longer exists.
 const obsoleteThirdVariant: CourseWorkflowStage3LessonSlot = {
   config: existingConfig,
-  production: { kind: 'existingWithOverrides', matching: match, overrides: patch, overrideRationale: 'Old shape' },
+  production: { kind: 'existingWithOverrides', existing: patch, matching: match },
 };
 
 void importedLesson;
@@ -488,6 +509,9 @@ void existingConfig;
 void existingLesson;
 void patch;
 void existingWithOverrides;
+void typedReference;
+void typedIdReference;
+void patchId;
 void resolvedChapter;
 void resolvedModule;
 void resolvedCourse;
@@ -497,11 +521,13 @@ void unresolvedCourse;
 void missingNewMethodology;
 void newWithId;
 void newWithLanguages;
-void existingMissingId;
+void existingConfigWithId;
+void missingExistingReference;
 void existingMissingMatch;
 void missingOverrideRationale;
 void rationaleWithoutOverrides;
 void rawOverridesAreInvalid;
+void patchWithoutId;
 void unexpectedExistingLocale;
 void unexpectedExistingMethodology;
 void obsoleteThirdVariant;

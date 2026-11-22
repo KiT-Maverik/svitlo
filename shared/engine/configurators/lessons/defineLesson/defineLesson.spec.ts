@@ -74,6 +74,8 @@ describe('Configurators', () => {
           { params: { age: { min: 7 }, grade: { max: 5 } } },
           { languages: ['en'] },
         );
+        assert.equal(patch.id, lesson.id);
+        assert.equal('id' in patch.base, false, 'identity must never enter the sparse Props patch');
         assert.deepEqual(patch.base.params, { age: { min: 7 }, grade: { max: 5 } });
         assert.equal(patch.locale, undefined);
         assert.throws(() =>
@@ -366,6 +368,8 @@ describe('Configurators', () => {
           lessonCompleted: { action: 'notify' },
         };
         const patch = lesson.build.overrides({ events }, { languages: ['uk'] });
+        assert.equal(patch.id, lesson.id);
+        assert.deepEqual(Object.keys(patch).sort(), ['base', 'id', 'locale']);
         assert.deepEqual(patch.base.events, events);
         assert.equal(lesson.build.props({ languages: ['uk'] }).base.events, undefined);
         assert.equal(patch.locale, undefined);

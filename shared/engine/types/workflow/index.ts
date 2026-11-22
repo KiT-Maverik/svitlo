@@ -26,4 +26,5 @@ export type {
   CourseWorkflowStage3ExistingLesson,
   CourseWorkflowStage3NewLessonConfig,
   CourseWorkflowStage3ExistingLessonConfig,
+  CourseWorkflowStage3ExistingLessonReference,
 } from './courseWorkflow.types';

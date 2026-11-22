@@ -4,6 +4,8 @@
 
 **Entity category:** ordinary Lesson with Sections.
 
+**Lesson override identity:** `defineLesson.build.overrides(patch, { languages })` returns `{ id, base, locale }`, with `id` equal to the original Lesson UUID. The top-level `id` identifies a Lesson for Course planning; it is **not** an identity patch and is never merged into sparse Props. Direct Course reuse needs only the existing Lesson UUID; Course-specific adaptation can reference the same Lesson by the validated override result.
+
 **Optional target audience in Engine Config:** `params.age` and `params.grade` use the same range contracts as Course (`{ min, max }`, age 0–125, grade 0–40, `min <= max`). They describe intended learners; neither proves individual learner eligibility nor changes Skills, Course ownership, or Lesson independence. Instructional Lessons are Course-neutral and reusable; a deliberately placed **assessment-only Lesson** may depend pedagogically on preceding Course Lessons and their Question Banks without a different Engine entity type.
 
 An **instructional Lesson** independently teaches **one or more approved Skills** and must make sense without a Course, Curriculum, mascot, quest, reward system, external plot or special learner history. An **assessment-only Lesson** can instead measure approved Skills from earlier Course Lessons; its methodology may be Course-placement-dependent and should **not** pretend to teach or be independently reusable without its prerequisites. The Lesson owns its ordered instructional or assessment Sections and their content; a Course places it into a larger journey without duplicating that source.

@@ -31,6 +31,7 @@ export type {
   CourseWorkflowStage3ExistingLesson,
   CourseWorkflowStage3NewLessonConfig,
   CourseWorkflowStage3ExistingLessonConfig,
+  CourseWorkflowStage3ExistingLessonReference,
   Review,
   ReviewEvidence,
   LessonReview,

@@ -177,14 +177,23 @@ export type CourseWorkflowStage3NewLessonConfig = CourseWorkflowStage3PlacementC
     events?: never;
   };
 
-/** Reuse refers to the real existing Lesson by ID, never a copied Config. */
-export type CourseWorkflowStage3ExistingLessonConfig = CourseWorkflowStage3PlacementConfig &
-  Pick<Lesson_Config, 'id'> & {
-    params?: never;
-    locale?: never;
-    section?: never;
-    events?: never;
-  };
+/** Reuse keeps the planned Course placement; the referenced ID is held
+ * only by production.existing, either directly or in an override result.
+ */
+export type CourseWorkflowStage3ExistingLessonConfig = CourseWorkflowStage3PlacementConfig & {
+  id?: never;
+  params?: never;
+  locale?: never;
+  section?: never;
+  events?: never;
+};
+
+/** A single reference covers both immutable Lesson reuse and validated
+ * Course-specific overrides, which now carry their owning Lesson UUID.
+ */
+export type CourseWorkflowStage3ExistingLessonReference =
+  | Lesson_Config['id']
+  | ReturnType<Lesson_Configurator['build']['overrides']>;
 
 /** Course-specific intent for a genuinely new Lesson; editorial, not Props. */
 export type CourseWorkflowStage3LessonIntent = {
@@ -199,7 +208,7 @@ export type CourseWorkflowStage3LessonIntent = {
 };
 
 /** Verification evidence for reusing an independent Lesson.
- * The Lesson UUID is already config.id; do not store it twice.
+ * The Lesson UUID is carried by production.existing; do not store it twice.
  */
 export type CourseWorkflowStage3LessonMatch = {
   /** Canonical Lesson methodology file inspected during candidate matching. */
@@ -229,24 +238,31 @@ export type CourseWorkflowStage3NewLesson = {
 };
 
 /** There are only TWO Lesson outcomes: new or existing.
- * Overrides are an optional Course-local adaptation of the same existing Lesson.
- * The internal pair requires a rationale exactly when overrides are supplied.
+ * Existing references are either the Lesson UUID or its validated Build override
+ * result. A justification is mandatory only when the reference contains a patch.
  */
 export type CourseWorkflowStage3ExistingLesson = {
   config: CourseWorkflowStage3ExistingLessonConfig;
   production: {
     kind: 'existing';
-    /** Evidence that the referenced Lesson was actually inspected for reuse. */
+    /** Evidence that the referenced Lesson was inspected for pedagogical reuse. */
     matching: CourseWorkflowStage3LessonMatch;
     methodology?: never;
     lessonId?: never;
+    overrides?: never;
   } & (
-    | { overrides?: never; overrideRationale?: never }
     | {
-        /** Real {base, locale} returned by importedLesson.build.overrides().
-         * Never pass this directly as a raw patch to course.build.overrides().
+        /** Direct reuse: import the existing Lesson and pass existingLesson.id. */
+        existing: Lesson_Config['id'];
+        overrideRationale?: never;
+      }
+    | {
+        /** Reuse with Course-only changes: pass existingLesson.build.overrides().
+         * Its top-level id identifies the Lesson; its base/locale remain sparse
+         * Props patches and must not be passed to course.build.overrides() raw.
          */
-        overrides: ReturnType<Lesson_Configurator['build']['overrides']>;
+        existing: ReturnType<Lesson_Configurator['build']['overrides']>;
+        /** Required whenever the Course modifies the reused Lesson. */
         overrideRationale: string;
       }
   );
