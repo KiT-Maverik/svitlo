@@ -132,7 +132,12 @@ export function materializeAssessmentBlock(
       return asChildResult(materializeScene(source as Parameters<typeof materializeScene>[0], {
         directory: context.directory, documentLanguage, languagesImport,
         registered: true,
-        production: node.production,
+        production: node.production === undefined ? undefined : {
+          ...(typeof node.production.specification === 'string'
+            ? { specification: node.production.specification } : {}),
+          ...(typeof node.production.pending === 'boolean'
+            ? { pending: node.production.pending } : {}),
+        },
       }));
     }
     case 'carousel': {
