@@ -182,7 +182,7 @@ test('Reject duplicate and broken graph links, pending Cards and incompatible se
   assert.throws(() => materializeFlashcardBank(self as never, finalAuthorization(self)), /Unknown\/self relation endpoint/);
   const pending = completed();
   Object.assign(pending.config.flashcards.items.alpha.production, { pending: true });
-  assert.throws(() => materializeFlashcardBank(pending as never, finalAuthorization(pending)), /Pending Flashcard/);
+  assert.throws(() => materializeFlashcardBank(pending as never, finalAuthorization(pending)), /bank\.items\.alpha: pending bank authoring source cannot be finalized/);
   const badOrder = completed();
   badOrder.config.flashcards.order = ['alpha', 'alpha'];
   assert.throws(() => materializeFlashcardBank(badOrder as never, finalAuthorization(badOrder)), /order must enumerate/);
