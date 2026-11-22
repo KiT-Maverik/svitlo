@@ -235,6 +235,56 @@ test('four independent assessment decisions, enabled required Sections and compl
   delete (noPolicy.production.assessment as Partial<typeof assessment>).flashcardsSectionRequired;
   assert.throws(() => produce(noPolicy), /four independent assessment decisions/);
 });
+test('authored enabled Quiz and Flashcards Sections pass separate source materializers', () => {
+  const input = structuredClone(valid()) as unknown as LessonWorkflowMaterializerInput;
+  input.config.section.items.reviewQuiz = {
+    config: {
+      type: 'quiz', id: id('05'), slug: 'reviewQuiz',
+      params: {
+        selection: { mode: 'all', questionIds: [id('07')] },
+        layout: { mode: 'stack' },
+        feedbackMode: 'immediate',
+        interaction: {
+          retries: 0, showErrors: true, showCorrectAnswers: true,
+          allowExplanations: false, allowDeferring: false,
+          allowQuestionNavigation: false, skippable: false,
+        },
+        results: { visibility: 'immediate', showScore: true },
+      },
+      locale: { title: 'Quiz', navigationLabel: 'Q' },
+      content: { items: {}, order: [] },
+    },
+    production: { purpose: 'Reviewed assessment' },
+  } as LessonWorkflowMaterializerInput['config']['section']['items'][string];
+  input.config.section.items.reviewCards = {
+    config: {
+      type: 'flashcards', id: id('06'), slug: 'reviewCards',
+      params: { selection: { flashcardIds: [id('08')] } },
+      locale: { title: 'Cards', navigationLabel: 'C' },
+      content: { items: {}, order: [] },
+    },
+    production: { purpose: 'Reviewed recall practice' },
+  } as LessonWorkflowMaterializerInput['config']['section']['items'][string];
+  input.config.section.order.push('reviewQuiz', 'reviewCards');
+  input.config.params = {
+    ...input.config.params, quizRequiredForCompletion: true,
+  };
+  input.production.assessment.quizSectionRequired = true;
+  input.production.assessment.flashcardsSectionRequired = true;
+  const plan = materializeLessonStage6(input, options);
+  assert(plan.files.some(file => file.path === folder + 'sections/reviewQuiz/index.ts'));
+  assert(plan.files.some(file => file.path === folder + 'sections/reviewCards/index.ts'));
+  assert.equal(plan.diagnostics.some(diagnostic => diagnostic.code.startsWith('pending-')), false);
+  assert.doesNotThrow(() => assertLessonStage6ReleaseReady(plan));
+  const provisional = structuredClone(input);
+  const quiz = provisional.config.section.items.reviewQuiz as {
+    config: { params: { selection: { questionIds: string[] } } };
+  };
+  quiz.config.params.selection.questionIds = ['feedc0de-1234-4234-8234-123456789007'];
+  const blocked = materializeLessonStage6(provisional, options);
+  assert.throws(() => assertLessonStage6ReleaseReady(blocked), /publication blocked/);
+});
+
 test('duplicate UUID, wrong slug, invalid order and unsanctioned identity are rejected', () => {
   const duplicate = valid();
   duplicate.config.section.items.introduction.config.id = id('01');
