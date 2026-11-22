@@ -52,7 +52,7 @@ export function materializeModule(input,context={}){
   throw Error(dir+'.content.order: each child key must appear exactly once');
  const planned=context.plannedLanguages??[lang];
  if(!Array.isArray(planned)||!planned.includes(lang)||new Set(planned).size!==planned.length)throw Error(dir+'.params.languages: source language missing or duplicate');
- const imports=[],items={},files=[],diagnostics=[],placements=[],seenIds=new Set();
+ const imports=[],items={},files=[],diagnostics=[],placements=[],pendingPlacements=[],seenIds=new Set();
  for(const key of order){
   ensure(key,dir+'.content.items.'+key);
   const node=collection.items[key],raw=unwrap(node);
@@ -68,8 +68,6 @@ export function materializeModule(input,context={}){
     if(typeof context.materializeChapter!=='function')throw Error(childFolder+': Chapter materializer missing');
     child=context.materializeChapter(nested,childContext);break;
    case 'episode':
-    if(!record(raw.section)||!record(raw.section.items)||!Array.isArray(raw.section.order))
-     throw Error(childFolder+': TODO (BLOCKER): provisional Episode requires authorized Sections');
     if(typeof context.materializeEpisode!=='function')throw Error(childFolder+': Episode materializer missing');
     child=context.materializeEpisode(nested,childContext);break;
    case 'lesson': {
@@ -81,6 +79,10 @@ export function materializeModule(input,context={}){
       throw Error(childFolder+'.config: Lesson identity and sparse overrides belong to production');
     if(!Array.isArray(raw.skills)||!raw.skills.length)
       throw Error(childFolder+'.config.skills: nonempty verified Skills required');
+    if(!record(lessonProduction.assessment)||
+       ['questionBankRequired','flashcardBankRequired','quizSectionRequired','flashcardsSectionRequired']
+        .some(field=>typeof lessonProduction.assessment[field]!=='boolean'))
+      throw Error(childFolder+'.production.assessment: four explicit assessment decisions are required');
     if(typeof context.materializeLessonPlacement!=='function')
       throw Error(childFolder+': parent Lesson placement bridge required');
     let existing;
@@ -124,24 +126,45 @@ export function materializeModule(input,context={}){
     if(seenIds.has(refId))throw Error(childFolder+': duplicate child UUID');
     seenIds.add(refId);
     placements.push({path:childFolder,slug:key,kind:lessonProduction.kind,lessonId:refId,
+      assessment:lessonProduction.assessment,
       ...(existing===undefined?{}:{existing})});
+    if(lessonProduction.kind==='new'){
+      // The parent-owned handoff must write ONLY the independent Lesson Stage 1 authored source.
+      // It is not a Lesson Configurator and must never be imported into defineCourse/Module/Chapter.
+      if(!Array.isArray(child?.files)||child.files.length!==1||child.files[0].kind!=='typescript'||
+         typeof child.files[0].path!=='string'||typeof child.files[0].content!=='string'||
+         !child.files[0].path.endsWith('/'+refId.slice(-1)+'/'+refId+'/index.ts')||
+         !child.files[0].path.includes('/data/lessons/'))
+        throw Error(childFolder+': new Lesson bridge must return only the UUID-addressed Stage 1 index.ts');
+      if(/\bdefineLesson\s*[(<]|TODO \(BLOCKER\): Not implemented — Lesson Sections/.test(child.files[0].content))
+        throw Error(childFolder+': Stage 1 handoff cannot contain defineLesson or fabricated Sections');
+      pendingPlacements.push({path:childFolder,slug:key,lessonId:refId,
+        handoffPath:child.files[0].path,orderIndex:order.indexOf(key)});
+      diagnostics.push({path:childFolder,code:'pending-lesson-stage1',severity:'blocker',
+       message:'Lesson Stage 1 handoff is not a Configurator; parent publisher must wait for an independently authorized Lesson'});
+    }
     break;
    }
    default:throw Error(childFolder+': disallowed child type '+raw.type);
   }
-  if(!child?.exportName||!Array.isArray(child.files))throw Error(childFolder+': invalid child materializer result');
+  if(!Array.isArray(child?.files))throw Error(childFolder+': invalid child materializer result');
+  const stage1Lesson=raw.type==='lesson'&&production(node)?.kind==='new';
+  if(!stage1Lesson&&!child.exportName)throw Error(childFolder+': completed child must export a Configurator');
   if(raw.type!=='lesson'){
    const resolvedId=raw.id??child.id;
    if(typeof resolvedId!=='string'||!uuid.test(resolvedId))throw Error(childFolder+': child immutable UUID missing');
    if(seenIds.has(resolvedId))throw Error(childFolder+': duplicate child UUID');
    seenIds.add(resolvedId);
   }
-  const alias='child_'+key;
-  imports.push('import { '+child.exportName+' as '+alias+' } from "./content/'+key+'";');
-  items[key]=alias;
+  if(!stage1Lesson){
+   const alias='child_'+key;
+   imports.push('import { '+child.exportName+' as '+alias+' } from "./content/'+key+'";');
+   items[key]=alias;
+  }
   files.push(...child.files);
   diagnostics.push(...(child.diagnostics??[]));
   placements.push(...(child.placements??[]));
+  pendingPlacements.push(...(child.pendingPlacements??[]));
  }
  const fields={...config,id,slug};
  delete fields.content;
@@ -154,7 +177,8 @@ export function materializeModule(input,context={}){
  }
  const languageTodo=todo({plannedLanguages:planned},context,lang);
  if(languageTodo)diagnostics.push({path:dir,code:'pending-locales',severity:'warning'});
- const orderSource=JSON.stringify(order);
+ const orderSource=JSON.stringify(order.filter(key=>Object.hasOwn(items,key)));
+ const blocker=pendingPlacements.length?'// TODO (BLOCKER): New Lesson Stage 1 handoffs are not completed Lesson Configurators. Do not publish.\n// Reviewed original content order: '+JSON.stringify(order)+'\n// Pending handoffs: '+JSON.stringify(pendingPlacements.map(x=>({slug:x.slug,lessonId:x.lessonId,handoffPath:x.handoffPath})))+'\n':'';
  const itemsSource='{ '+Object.entries(items).map(([key,alias])=>JSON.stringify(key)+': '+alias).join(', ')+' }';
  const attrs=Object.entries(fields).map(([key,value])=>'  '+JSON.stringify(key)+': '+JSON.stringify(value,null,2)+',').join('\n');
  const params=config.params??{};
@@ -166,12 +190,12 @@ export function materializeModule(input,context={}){
   "import type { SupportedLanguages } from '@svitlo/engine/build';\n"+
   imports.join('\n')+'\n\n'+
   'const languages = '+JSON.stringify([lang])+' as const satisfies SupportedLanguages;\n'+
-  'const content = { items: '+itemsSource+', order: '+orderSource+' };\n\n'+languageTodo+
+  'const content = { items: '+itemsSource+', order: '+orderSource+' };\n\n'+languageTodo+blocker+
   'export const '+exportName(slug)+' = defineModule<'+
   [JSON.stringify(slug),'typeof content.items','typeof languages'].join(', ')+
   '>({\n'+attrs+'\n  params: '+paramsSource+',\n  content,\n});\n';
  const produced=[...files,...sidecars(meta,dir),{path:[dir,'index.ts'].filter(Boolean).join('/'),kind:'typescript',content:result}];
  const paths=new Set();
  for(const file of produced){if(paths.has(file.path))throw Error('duplicate generated file: '+file.path);paths.add(file.path)}
- return {id,exportName:exportName(slug),files:produced,diagnostics,placements};
+ return {id,exportName:exportName(slug),files:produced,diagnostics,placements,pendingPlacements};
 }
