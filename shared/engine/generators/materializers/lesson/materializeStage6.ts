@@ -25,6 +25,7 @@ import { materializeCarousel } from '../carousel/materializeCarousel';
 import { materializeCheckpoint } from '../checkpoint/materializeCheckpoint';
 import { materializeCheckpointItem } from '../checkpointItem/materializeCheckpointItem';
 import { materializeCheckpointAnswer } from '../checkpointAnswer/materializeCheckpointAnswer';
+import { preserveAssessmentReferences } from './preserveAssessmentReferences';
 
 /**
  * An authorization must originate at a trusted PR/source reader, never from
@@ -335,7 +336,8 @@ export function materializeLessonStage6(
     reviewCommitSha: review.reviewCommitSha,
     reviewEvidenceSha: review.reviewEvidenceSha,
     publishable: false,
-    files: result.files.map(file => ({ ...file, path: root + file.path })),
+    files: preserveAssessmentReferences(options.sourceText, review.sourcePath, input,
+      result.files.map(file => ({ ...file, path: root + file.path }))),
     diagnostics: result.diagnostics,
   };
 }
