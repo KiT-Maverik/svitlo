@@ -2,6 +2,8 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import ts from 'typescript';
 import { materializeSelectOneAnswer } from './materializeSelectOneAnswer';
+import type { CourseWorkflowStage1Languages } from '../../../types/workflow/courseWorkflow.types';
+const stageLanguages = { document:'uk', planned:['uk','en'] } as const satisfies CourseWorkflowStage1Languages;
 const id=(n:number)=>'b775647f-203d-481a-a1c7-4d331c'+String(n).padStart(6,'0');
 const block=(slug:string,n:number)=>({config:{id:id(n),slug,type:'text',params:{},locale:{value:{uk:'Текст'}}}});
 const collection=<T>(items:Record<string,T>)=>({items,order:Object.keys(items)});
@@ -12,7 +14,7 @@ const fixture=()=>({config:{
   content:{question:collection({prompt:block('prompt',2)}),hint:collection({hint:block('hint',8)}), answers: { correct: collection({ yes: block('yes', 3) }), incorrect: collection({ no: block('no', 4) }), distractors: collection({ maybe: block('maybe', 5) }) }},
 }});
 const context={
-  directory:'questions/selectOneAnswer',documentLanguage:'uk',plannedLanguages:['uk','en'],
+  directory:'questions/selectOneAnswer',languages:stageLanguages,
   materializeBlock:(node:{config:{slug:string}},props:{directory:string})=>({
     exportName:node.config.slug,
     files:[{path:props.directory+'/index.ts',content:'export const '+node.config.slug+' = {};\n',kind:'typescript' as const}],
@@ -31,8 +33,12 @@ test('selectOneAnswer: deterministic modular source, nested imports, source loca
   assert.doesNotMatch(main.content,/NOT REVIEWED/);
   assert(a.files.some(file=>file.path.endsWith('content/question/items/prompt/index.ts')));
   for(const file of a.files.filter(file=>file.kind==='typescript')){
-    const source=ts.createSourceFile(file.path,file.content,ts.ScriptTarget.Latest,true);
-    assert.deepEqual(source.parseDiagnostics.map(error=>ts.flattenDiagnosticMessageText(error.messageText,'\n')),[]);
+    const parsed=ts.transpileModule(file.content,{
+      fileName:file.path,
+      reportDiagnostics:true,
+      compilerOptions:{module:ts.ModuleKind.ESNext,target:ts.ScriptTarget.ES2022},
+    });
+    assert.deepEqual((parsed.diagnostics??[]).map(issue=>ts.flattenDiagnosticMessageText(issue.messageText,'\n')),[]);
   }
 });
 test('selectOneAnswer: rejects missing questions, incorrect order, and pre-existing authored outputs',()=>{

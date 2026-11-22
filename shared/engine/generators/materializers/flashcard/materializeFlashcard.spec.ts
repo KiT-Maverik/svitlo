@@ -2,6 +2,8 @@ import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import ts from 'typescript';
 import { materializeFlashcard } from './materializeFlashcard';
+import type { CourseWorkflowStage1Languages } from '../../../types/workflow/courseWorkflow.types';
+const stageLanguages = { document:'uk', planned:['uk','en'] } as const satisfies CourseWorkflowStage1Languages;
 const id=(n:number)=>'b775647f-203d-481a-a1c7-4d331c'+String(n).padStart(6,'0');
 const block=(slug:string,n:number)=>({config:{id:id(n),slug,type:'text',params:{},locale:{value:{uk:'Слово'}}}});
 const side=(slug:string,n:number)=>({items:{[slug]:block(slug,n)},order:[slug]});
@@ -16,7 +18,7 @@ const fixture=()=>({config:{
  },content:{front:side('frontText',1),back:side('backText',2),hint:side('hintText',3)},
 },production:{pending:true,specification:'## Reviewed card production\n'}});
 const context={
- directory:'flashcards',documentLanguage:'uk',plannedLanguages:['uk','en'],
+ directory:'flashcards',languages:stageLanguages,
  materializeBlock:(node:{config:{slug:string}},ctx:{directory:string})=>({
   exportName:node.config.slug,
   files:[{path:ctx.directory+'/index.ts',kind:'typescript' as const,content:'export const '+node.config.slug+' = 0;\n'}],
@@ -39,8 +41,12 @@ test('Flashcard: three standalone sides, ordered flags, relationships, source lo
    assert(output.files.some(file=>file.path==='flashcards/cardOne/content/'+role+'/index.ts'));
  assert(output.files.some(file=>file.path==='flashcards/cardOne/specification.md'));
  for(const file of output.files.filter(file=>file.kind==='typescript')){
-  const ast=ts.createSourceFile(file.path,file.content,ts.ScriptTarget.Latest,true);
-  assert.deepEqual(ast.parseDiagnostics.map(e=>ts.flattenDiagnosticMessageText(e.messageText,'\n')),[]);
+  const parsed=ts.transpileModule(file.content,{
+      fileName:file.path,
+      reportDiagnostics:true,
+      compilerOptions:{module:ts.ModuleKind.ESNext,target:ts.ScriptTarget.ES2022},
+    });
+    assert.deepEqual((parsed.diagnostics??[]).map(issue=>ts.flattenDiagnosticMessageText(issue.messageText,'\n')),[]);
  }
 });
 test('Flashcard: source locale, duplicate flags, missing bank and pre-existing content blockages',()=>{

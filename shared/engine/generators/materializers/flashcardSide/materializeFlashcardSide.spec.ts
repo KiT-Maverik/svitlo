@@ -22,8 +22,12 @@ test('FlashcardSide: correct child module paths, original order, no invented UUI
   assert(output.files.some(file=>file.path.endsWith('/front/items/first/index.ts')));
   assert.deepEqual(output,materializeFlashcardSide(source,context));
   for(const file of output.files.filter(file=>file.kind==='typescript')){
-    const ast=ts.createSourceFile(file.path,file.content,ts.ScriptTarget.Latest,true);
-    assert.equal(ast.parseDiagnostics.length,0);
+    const parsed=ts.transpileModule(file.content,{
+      fileName:file.path,
+      reportDiagnostics:true,
+      compilerOptions:{module:ts.ModuleKind.ESNext,target:ts.ScriptTarget.ES2022},
+    });
+    assert.deepEqual((parsed.diagnostics??[]).map(issue=>ts.flattenDiagnosticMessageText(issue.messageText,'\n')),[]);
   }
 });
 test('FlashcardSide: order/role/slug and create-only protections',()=>{

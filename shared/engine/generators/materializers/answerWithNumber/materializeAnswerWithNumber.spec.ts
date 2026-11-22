@@ -31,8 +31,12 @@ test('answerWithNumber: deterministic modular source, nested imports, source loc
   assert.doesNotMatch(main.content,/NOT REVIEWED/);
   assert(a.files.some(file=>file.path.endsWith('content/question/items/prompt/index.ts')));
   for(const file of a.files.filter(file=>file.kind==='typescript')){
-    const source=ts.createSourceFile(file.path,file.content,ts.ScriptTarget.Latest,true);
-    assert.deepEqual(source.parseDiagnostics.map(error=>ts.flattenDiagnosticMessageText(error.messageText,'\n')),[]);
+    const parsed=ts.transpileModule(file.content,{
+      fileName:file.path,
+      reportDiagnostics:true,
+      compilerOptions:{module:ts.ModuleKind.ESNext,target:ts.ScriptTarget.ES2022},
+    });
+    assert.deepEqual((parsed.diagnostics??[]).map(issue=>ts.flattenDiagnosticMessageText(issue.messageText,'\n')),[]);
   }
 });
 test('answerWithNumber: rejects missing questions, incorrect order, and pre-existing authored outputs',()=>{
