@@ -1,3 +1,6 @@
+import type { FlashcardNode, FlashcardContext } from '../../generators/materializers/flashcard/materializeFlashcard';
+import type { FlashcardSideSource } from '../../generators/materializers/flashcardSide/materializeFlashcardSide';
+import type { Flashcard_Relationship } from '../../configurators/flashcards/defineFlashcard/defineFlashcard.schemas';
 import type { ContentBlock_Text_Config } from '../../configurators/contentBlocks/defineText/defineText.schemas';
 import type { ContentBlock_Code_Config } from '../../configurators/contentBlocks/defineCode/defineCode.schemas';
 import type { ContentBlock_Markdown_Config } from '../../configurators/contentBlocks/defineMarkdown/defineMarkdown.schemas';
@@ -186,6 +189,35 @@ const stage3WithSection = {
   },
 } satisfies FlashcardBankWorkflowStage3;
 
+/** #780 integration contract: after expanding ONE reviewed bank edge to the
+ * real endpoint UUID, an authored Card node can be passed to the concrete
+ * Flashcard / Side renderer without a parallel Config dialect.
+ */
+const materializerSide: FlashcardSideSource = front;
+const expandedRelation: Flashcard_Relationship = {
+  relationshipId: edge.relationshipId,
+  type: edge.type,
+  relatedFlashcardId: otherUuid,
+  position: 'peer',
+};
+const materializerCard: FlashcardNode = {
+  config: {
+    ...card,
+    parameters: {
+      ...card.parameters,
+      relationships: { items: { orbitReverse: expandedRelation }, order: ['orbitReverse'] },
+    },
+  },
+  production: { pending: false },
+};
+const materializerLanguages: FlashcardContext['languages'] = stage1.production.lesson.languages;
+
+const emptyInventory: FlashcardBankWorkflowStage2['config']['flashcards'] = {
+  items: {},
+  // @ts-expect-error Stage 2 must have a nonempty ordered actual Card inventory.
+  order: [],
+};
+
 const materializerNoSection: FlashcardBankWorkflowMaterializerInput = stage3NoSection;
 const materializerWithSection: FlashcardBankWorkflowMaterializerInput = stage3WithSection;
 // @ts-expect-error Stage 1 has no Card collection and cannot be passed to a complete bank materializer.
@@ -265,6 +297,10 @@ const badReferenceBlock: ContentBlock_Text_Config = {
   },
 };
 
+void materializerSide;
+void materializerCard;
+void materializerLanguages;
+void emptyInventory;
 void materializerNoSection;
 void materializerWithSection;
 void tooEarly1;
