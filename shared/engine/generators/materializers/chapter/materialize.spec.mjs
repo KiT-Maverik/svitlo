@@ -72,8 +72,8 @@ test('Chapter preserves one direct Episode and an existing Lesson placement',()=
  value.config.content.items.extraLesson=lesson('extraLesson','Урок');
  value.config.content.order.push('extraLesson');
  const result=materializeChapter(value,ctx());
- assert.ok(result.files.some(file=>file.path==='content/episodeOne/sections/opening/index.ts'));
- assert.ok(result.files.some(file=>file.path==='content/extraLesson/index.ts'));
+ assert.ok(result.files.some(file=>file.path==='episodeOne/sections/opening/index.ts'));
+ assert.ok(result.files.some(file=>file.path==='extraLesson/index.ts'));
  assert.match(result.files.find(file=>file.path==='index.ts').content,/defineChapter</);
  assert.equal(result.id,IDs.chapter);
  syntax(result.files);

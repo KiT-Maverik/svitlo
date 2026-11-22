@@ -70,7 +70,7 @@ const syntax=files=>{for(const file of files.filter(file=>file.kind==='typescrip
 test('full Course > Module > Chapter > Episode, direct placements and Stage 1 language metadata',()=>{
  const first=materializeCourse(course(),ctx());
  const paths=first.files.map(f=>f.path);
- assert.ok(paths.includes('content/moduleOne/content/chapterOne/content/episodeOne/index.ts'));
+ assert.ok(paths.includes('content/moduleOne/chapterOne/episodeOne/index.ts'));
  assert.ok(paths.includes('content/directEpisode/index.ts'));
  assert.ok(paths.includes('content/directLesson/index.ts'));
  const method=first.files.find(f=>f.path==='methodology.md');
@@ -154,7 +154,7 @@ test('Methodology Markdown is ordered, preserves evidence and never JSON dumps C
  const result=materializeCourse(input,ctx());
  const courseMarkdown=result.files.find(f=>f.path==='methodology.md').content;
  const moduleMarkdown=result.files.find(f=>f.path==='content/moduleOne/methodology.md').content;
- const chapterMarkdown=result.files.find(f=>f.path==='content/moduleOne/content/chapterOne/methodology.md').content;
+ const chapterMarkdown=result.files.find(f=>f.path==='content/moduleOne/chapterOne/methodology.md').content;
  assert.match(courseMarkdown,/## Standards alignment[\s\S]*Reviewed scientific alignment/);
  assert.match(courseMarkdown,/## Open decisions[\s\S]*Await expert review/);
  assert.ok(courseMarkdown.indexOf('## Purpose')<courseMarkdown.indexOf('## Intended learning outcomes'));

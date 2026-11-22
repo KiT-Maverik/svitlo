@@ -79,7 +79,7 @@ export function materializeChapter(input,context={}){
   if(raw.slug!==undefined&&raw.slug!==key)throw Error(dir+'.content.items.'+key+': child slug mismatch');
   const nodeConfig={...raw,slug:raw.type==='lesson'?(raw.slug??key):key};
   const nested=record(node?.config)?{...node,config:nodeConfig}:nodeConfig;
-  const childFolder=[dir,'content',key].filter(Boolean).join('/');
+  const childFolder=[dir,key].filter(Boolean).join('/');
   const childContext={...context,sourceLanguage:lang,directory:childFolder,placement:key,plannedLanguages:planned};
   let child;
   switch(raw.type){
@@ -174,7 +174,7 @@ export function materializeChapter(input,context={}){
   }
   if(!stage1Lesson){
    const alias='child_'+key;
-   imports.push('import { '+child.exportName+' as '+alias+' } from "./content/'+key+'";');
+   imports.push('import { '+child.exportName+' as '+alias+' } from "./'+key+'";');
    items[key]=alias;
   }
   files.push(...child.files);

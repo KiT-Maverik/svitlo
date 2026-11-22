@@ -72,8 +72,8 @@ test('Module uses Stage 2/3 wrapped Chapter/Lesson nodes and optional params and
  value.config.content.items.directLesson=lesson('directLesson','Додано');
  value.config.content.order.push('directLesson');
  const out=materializeModule(value,ctx());
- assert.ok(out.files.some(file=>file.path==='content/chapterOne/index.ts'));
- assert.ok(out.files.some(file=>file.path==='content/directLesson/index.ts'));
+ assert.ok(out.files.some(file=>file.path==='chapterOne/index.ts'));
+ assert.ok(out.files.some(file=>file.path==='directLesson/index.ts'));
  const main=out.files.find(file=>file.path==='index.ts').content;
  assert.match(main,/defineModule</);
  assert.match(main,/params: \{  \}/);
