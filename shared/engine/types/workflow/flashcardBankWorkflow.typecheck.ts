@@ -38,6 +38,27 @@ const code: ContentBlock_Code_Config = {
   locale: { variables: { NAME: { uk: 'orbit' } } },
 };
 
+const hintBlock: ContentBlock_Text_Config = {
+  id: 'b775647f-203d-481a-a1c7-4d331c000014',
+  slug: 'cue',
+  type: 'text',
+  params: {},
+  locale: { value: { uk: 'Згадай рух тіла' } },
+};
+const reversePrompt: ContentBlock_Text_Config = {
+  id: 'b775647f-203d-481a-a1c7-4d331c000015',
+  slug: 'prompt',
+  type: 'text',
+  params: {},
+  locale: { value: { uk: 'Який термін означає шлях тіла навколо іншого?' } },
+};
+const reverseAnswer: ContentBlock_Text_Config = {
+  id: 'b775647f-203d-481a-a1c7-4d331c000016',
+  slug: 'answer',
+  type: 'text',
+  params: {},
+  locale: { value: { uk: 'Орбіта.' } },
+};
 const front = { items: { prompt: first }, order: ['prompt'] } satisfies FlashcardBankWorkflowSideSource;
 const back = { items: { answer, example: code }, order: ['answer', 'example'] } satisfies FlashcardBankWorkflowSideSource;
 const flags = [
@@ -51,7 +72,7 @@ const card: FlashcardBankWorkflowCardConfig = {
   id: uuid,
   slug: 'orbitRecall',
   parameters: { tags: ['astronomy'], disabilities: [], flags },
-  content: { front, back, hint: { items: { hint: first }, order: ['hint'] } },
+  content: { front, back, hint: { items: { cue: hintBlock }, order: ['cue'] } },
 };
 
 const prerequisite = {
@@ -110,7 +131,16 @@ const stage2 = {
           },
         },
         orbitReverse: {
-          config: { ...card, id: otherUuid, slug: 'orbitReverse' },
+          config: {
+            ...card,
+            id: otherUuid,
+            slug: 'orbitReverse',
+            parameters: { ...card.parameters, flags: [] },
+            content: {
+              front: { items: { prompt: reversePrompt }, order: ['prompt'] },
+              back: { items: { answer: reverseAnswer }, order: ['answer'] },
+            },
+          },
           production: {
             recallObjective: 'Identify an orbit',
             grounding: 'Approved Lesson',
