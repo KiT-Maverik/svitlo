@@ -55,7 +55,10 @@ function assertSide(source:FlashcardSideSource,role:FlashcardSideContext['role']
 export function materializeFlashcardSide(source:FlashcardSideSource,context:FlashcardSideContext):ChildResult {
   assertSide(source,context.role);
   if (!context.languages || !validLocale.test(context.languages.document)) fail('languages.document','invalid source language');
-  if (!Array.isArray(context.languages.planned) || context.languages.planned.length===0 || !context.languages.planned.includes(context.languages.document)) fail('languages.planned','source language must be planned');
+  const planned=context.languages.planned;
+  if (!Array.isArray(planned) || planned.length===0 || new Set(planned).size!==planned.length ||
+      !planned.includes(context.languages.document) || planned.some(code=>!validLocale.test(code)))
+    fail('languages.planned','unique nonempty planned languages must include the source language');
   safePath(context.directory);
   const files:SourceFile[]=[];
   const diagnostics:SourceDiagnostic[]=[];

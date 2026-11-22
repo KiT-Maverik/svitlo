@@ -34,4 +34,7 @@ test('FlashcardSide: order/role/slug and create-only protections',()=>{
   assert.throws(()=>materializeFlashcardSide({items:{first},order:['first']},{
     ...context,existingPaths:new Set(['flashcards/cardOne/content/front/index.ts']),
   }),/no clobber/);
+  assert.throws(()=>materializeFlashcardSide({items:{first},order:['first']},{
+    ...context,languages:{document:'uk' as const,planned:['en'] as const},
+  }),/languages.planned/);
 });
