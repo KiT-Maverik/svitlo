@@ -1,10 +1,11 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import ts from 'typescript';
+import { createHash } from 'node:crypto';
 import {
   materializeQuestionBankDraft, materializeQuestionBank,
 } from './materializeQuestionBank';
-import { gitBlobSha, type BankSourceSnapshot } from '../bankSource/bankSourceSafety';
+import { gitBlobSha, authoredBankLiteral, type BankSourceSnapshot } from '../bankSource/bankSourceSafety';
 
 const sha = (char: string) => char.repeat(40);
 const id = (num: number) => 'b775647f-203d-481a-a1c7-4d331c' + String(num).padStart(6, '0');
@@ -85,6 +86,7 @@ const finalAuth = () => ({
     approved: true as const, reviewer: 'Qualified independent reviewer',
     content: editorial, blobSha: gitBlobSha(editorial),
     reviewedSourceBlobSha: gitBlobSha(editorial), reviewCommitSha: sha('e'),
+    reviewedInputSha256: createHash('sha256').update(authoredBankLiteral(completeBank())).digest('hex'),
   },
   snapshot: snapshot(editorial),
   blocks: { registeredSceneIds: new Set<string>(), approvedMediaBlockIds: new Set<string>() },
