@@ -13,11 +13,11 @@ const ch=(slug='chapterOne')=>({type:'chapter',id:IDs.chapter,slug,params:{},loc
 const mod=(slug='moduleOne')=>({type:'module',id:IDs.module,slug,params:{},locale:{title:{uk:'Модуль'}},content:{items:{chapterOne:ch()},order:['chapterOne']}});
 const lesson=(slug,tag)=>({type:'lesson',slug,lessonId:IDs.lesson,overrides:{base:{locale:{title:tag}},locale:{uk:{locale:{title:tag}}}}});
 const course=()=>({type:'course',id:IDs.course,slug:'rootCourse',params:{languages:['uk','en'],scenarioMode:'story'},locale:{title:{uk:'Курс',en:'Course'},description:{uk:'Про курс',en:'Description'}},content:{items:{moduleOne:mod(),directEpisode:{...ep('directEpisode'),id:'ec4a2e1f-5f42-40ef-a879-e668b59b8d04'},directLesson:lesson('directLesson','А')},order:['moduleOne','directEpisode','directLesson']}});
-const sectionRenderer=(node,ctx)=>({id:node.id,exportName:node.slug,files:[{path:ctx.directory+'/index.ts',kind:'typescript',content:'export const '+node.slug+' = {};\\n'}]});
+const sectionRenderer=(node,ctx)=>({id:node.id,exportName:node.slug,files:[{path:ctx.directory+'/index.ts',kind:'typescript',content:'export const '+node.slug+' = {};\n'}]});
 const reused=[];
 const lessonBridge=(node,ctx)=>{
  reused.push({location:ctx.directory,lessonId:node.lessonId,overrides:ctx.overrides});
- return {lessonId:node.lessonId,exportName:node.slug,files:[{path:ctx.directory+'/index.ts',kind:'typescript',content:'export const '+node.slug+' = {};\\n'}]};
+ return {lessonId:node.lessonId,exportName:node.slug,files:[{path:ctx.directory+'/index.ts',kind:'typescript',content:'export const '+node.slug+' = {};\n'}]};
 };
 
 const ctx=()=>({sourceLanguage:'uk',materializeCourse,materializeModule,materializeChapter,materializeEpisode,materializeSection:sectionRenderer,materializeLessonPlacement:lessonBridge});
