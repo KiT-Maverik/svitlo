@@ -313,7 +313,7 @@ async function analyze(root, meta) {
     '; generated source remains nonpublishable pending separate gates');
 }
 
-async function publish(root, meta) {
+export async function publish(root, meta) {
   await fresh(meta);
   const original = sourceBytes(root, meta);
   const tracked = indexed(root, meta.identity.pkg);
