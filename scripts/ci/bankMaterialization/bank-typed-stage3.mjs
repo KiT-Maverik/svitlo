@@ -5,6 +5,7 @@
  */
 import { createRequire } from 'node:module';
 import { mkdtempSync, rmSync, writeFileSync } from 'node:fs';
+import { execFileSync } from 'node:child_process';
 import path from 'node:path';
 import { tmpdir } from 'node:os';
 
@@ -136,5 +137,48 @@ export function typecheckTypedBankStage3(content, trustedRoot) {
     }
   } finally {
     rmSync(directory, { recursive: true, force: true });
+  }
+}
+
+/**
+ * Compile the actual emitted bank modules (not only the Stage 3 input).
+ * A detached local worktree at the trusted Engine transaction's new commit
+ * contains the complete Lesson context. Only TypeScript's static checker
+ * touches it; no generated module is imported or executed.
+ */
+export function typecheckGeneratedBankModules(candidateRoot, committedSha, outputPaths, trustedRoot) {
+  if (!/^[a-f0-9]{40}$/.test(committedSha) || !Array.isArray(outputPaths) ||
+      outputPaths.some(p => !/^content\/[a-z][a-z0-9-]*\/data\/lessons\/[a-f0-9]\/[a-f0-9-]{36}\/[^.][^\\]*$/.test(p) ||
+        p.includes('..') || p.includes('//'))) {
+    throw Error('Unsafe generated Bank semantic-check source paths');
+  }
+  const stage = mkdtempSync(path.join(tmpdir(), 'svitlo-bank-stage5-typecheck-'));
+  let attached = false;
+  try {
+    execFileSync('git', ['-C', candidateRoot, 'worktree', 'add', '--detach', stage, committedSha],
+      { stdio: ['ignore', 'pipe', 'pipe'] });
+    attached = true;
+    const rootNames = outputPaths.filter(p => p.endsWith('.ts')).map(p => path.join(stage, p));
+    if (!rootNames.length) throw Error('No generated bank TypeScript modules to check');
+    const program = ts.createProgram(rootNames, {
+      target: ts.ScriptTarget.ES2022,
+      module: ts.ModuleKind.ESNext,
+      moduleResolution: ts.ModuleResolutionKind.Bundler,
+      strict: true, noEmit: true, skipLibCheck: true,
+      esModuleInterop: true,
+      resolveJsonModule: true,
+      baseUrl: stage,
+      paths: { '@svitlo/engine/build': [path.join(trustedRoot, 'shared/engine/dist/build.d.ts')] },
+      types: [],
+    });
+    const errors = ts.getPreEmitDiagnostics(program).filter(d => d.category === ts.DiagnosticCategory.Error);
+    if (errors.length) {
+      throw Error('Generated ' + rootNames.length + ' bank TypeScript modules failed semantic Build check: ' +
+        errors.slice(0, 8).map(d => ts.flattenDiagnosticMessageText(d.messageText, ' ')).join(' | '));
+    }
+  } finally {
+    if (attached) execFileSync('git', ['-C', candidateRoot, 'worktree', 'remove', '--force', stage],
+      { stdio: ['ignore', 'pipe', 'pipe'] });
+    rmSync(stage, { recursive: true, force: true });
   }
 }
