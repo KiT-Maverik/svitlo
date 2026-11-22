@@ -1,41 +1,46 @@
-# Agent D materializer workstream — carousel
+# Composite and Scene source materializers — Agent D
 
-**Status:** Assignment and integration contract only; no implementation is present in this bootstrap commit.
+This PR delivers five **independent authored-source renderers** inside their own kind folders:
 
-## Owned kinds
+| Materializer | Factory | Owned child boundary | Source file |
+| --- | --- | --- | --- |
+| Carousel | \`defineCarousel\` | \`slides.items/<slug>\` → Image/Scene | \`carousel/materializeCarousel.ts\` |
+| Checkpoint | \`defineCheckpoint\` | \`content.items/<slug>\` → CheckpointItem | \`checkpoint/materializeCheckpoint.ts\` |
+| CheckpointItem | \`defineCheckpointItem\` | \`question\` → Text, \`answer\` → CheckpointAnswer | \`checkpointItem/materializeCheckpointItem.ts\` |
+| CheckpointAnswer | \`defineCheckpointAnswer\` | \`content.items/<slug>\` → supported non-Checkpoint ContentBlocks | \`checkpointAnswer/materializeCheckpointAnswer.ts\` |
+| Scene | \`defineScene\` | none; production specification beside authored Config | \`scene/materializeScene.ts\` |
 
-- `carousel` -> `shared/engine/generators/materializers/carousel/`
-- `checkpoint` -> `shared/engine/generators/materializers/checkpoint/`
-- `checkpointItem` -> `shared/engine/generators/materializers/checkpointItem/`
-- `checkpointAnswer` -> `shared/engine/generators/materializers/checkpointAnswer/`
-- `scene` -> `shared/engine/generators/materializers/scene/`
+All paths are relative to the **parent-approved entity source root**. Each renderer returns \`{ exportName, files: [{ path, content, kind }], diagnostics }\`, never writing files or publishing Props. The parent is responsible for invoking each renderer, verifying collocated source and required imports, allocating any still-missing UUID once, and applying the final safe create-only file writer. The per-kind callbacks are **explicit delegation seams**, not a global registry or generic materializer.
 
-## Work to implement
+## Historical YAML → TypeScript feature-parity review
 
-Compound ContentBlocks and Scene. Carousel delegates its Image/Scene slides to their actual materializers, Checkpoint delegates nested Item/Answer and supported ContentBlocks. For Scene retain specification/registry/SceneStub behavior without modifying UI Kit or Scene runtime; avoid an invented standalone CarouselSlide Configurator.
+Read actual \`shared/engine/scripts/yamlScaffolding/{recursiveMaterializer.mjs,recursiveMaterializer.spec.mjs,yamlScaffolding.mjs,productionScaffolding.mjs,README.md}\` on \`integration/unified-yaml-materialization-preview\`, the current Engine Config/Zod/build tests, existing Course/Lesson materializers and PR #773 Scene scaffolding. This replacement never imports the YAML implementation.
 
-## Mandatory historical behavior audit
+- **Factories/generics:** Uses actual \`defineCarousel<Slug, Items, Languages>\`, \`defineCheckpoint<Slug, Items, Languages>\`, \`defineCheckpointItem<Slug, Answer, Question, Languages>\`, \`defineCheckpointAnswer<Slug, Items, Languages>\`, and \`defineScene<Slug, Languages>\` with source names and named child imports. There is **no** \`CarouselSlide\` factory.
+- **Collection order & boundaries:** Only the Engine-defined \`slides.items/order\`, \`content.items/order\`, \`question\` and \`answer\` paths are traversed; ordered modules preserve every enabled child exactly once and omit draft-disabled \`false\` nodes. Explicit owner callbacks emit nested source, preventing parent serializers from inventing their child's Code/Markdown/media/Scene implementation.
+- **Identity & locations:** Validates canonical UUIDs, camelCase slugs, allowed kinds, local duplicate IDs, and safe relative module directory components; the final Config has stable authored IDs, never runtime-generated IDs. Repeated calls on identical input are byte-stable. Parent must also detect **cross-subtree UUID collisions** and perform filesystem symlink/path/no-clobber preflight before writing.
+- **Source languages:** The owning plain Config metadata/Scene locale dictionary retains reviewed \`documentLanguage\`, not other fabricated translations. Parent owns \`languages.ts\` and the \`TODO (BLOCKER)\` for the *complete planned language set*; each child references the parent-supplied tuple. Missing source-language translations error instead of substituting placeholders.
+- **Scene:** Emits a canonical \`defineScene\` Config and the exact source \`production.specification\` beside it. Unregistered/pending Scenes receive a visible \`TODO (BLOCKER)\`, and missing specifications receive a separate blocker. Does **not** touch SceneStub, React Scene TSX, lazy UUID registry or existing sceneScaffolding/registry scripts. Parent must coordinate explicit, verified Scene staging/registration with that existing workflow and treat these as separate outputs.
+- **Pending source details:** \`readMarkdown\`/\`readCodeSource\`, Code file extensions, media nil-UUID placeholders/spec sidecars and non-Scene pending cases belong to the delegated *concrete primitive materializers*, not composite parents. Quiz/Flashcard pending helpers are not emitted from these five types. The parent production stage must reject incomplete materialization and pending TODOs. Raw TypeScript expressions/source imports that cannot be round-tripped through plain JavaScript Config are **not reconstructed** here: the parent preserves those source expressions through the approved authoring/integration seam.
+- **Overrides:** Parent #775 owns the Course reuse/built sparse \`{base, locale}\` patch bridge and staged \`additionalItems\`/nested \`build.overrides\` expression handling; concrete composite renderers emit only the final ordered authored Config tree after approved source projection. The \`false\` exclusions are draft authoring filters, **not** permission to mutate an existing configurator or publish a disabled child.
 
-Read the **actual** existing YAML -> TypeScript implementation on branch `integration/unified-yaml-materialization-preview` (parent PR #769; agent PR #772):
-- `shared/engine/scripts/yamlScaffolding/recursiveMaterializer.mjs`
-- `shared/engine/scripts/yamlScaffolding/recursiveMaterializer.spec.mjs`
-- `shared/engine/scripts/yamlScaffolding/yamlScaffolding.mjs`
-- `shared/engine/scripts/yamlScaffolding/productionScaffolding.mjs`
-- `shared/engine/scripts/yamlScaffolding/README.md`
-Also inspect current develop `materializeCourseFlow`, `lessonBuilder`, `questionsBuilder`, `flashcardBuilder` only for the applicable kinds and relevant actual configurator/Zod/test contracts. **Do not import the YAML materializer or move YAML dependencies into the new source materializer.**
+## Parent integration contracts still required
 
-For **each assigned kind**, explicitly map and port applicable existing behaviors: exact factory selection and type-specific TS generics; slug-based variable/export names and stable nested imports; correct child-boundary paths and ordered collections; locale-source pruning and planned-language TODOs; location-qualified validation; TODO (BLOCKER) placement and pending semantics; external Markdown/Code text readers; source/specification sidecars; nil-UUID reserved media placeholders (never real assets); Scene/assessment pending safeguards; correct handling of special source values/expressions; no loss of authored values; syntactically valid emitted TS; deterministic, create-only behavior. Some cases do not apply to every kind; record N/A where appropriate. Also fix observed defects rather than duplicating them and add regression tests.
+1. Confirm and wire the uniform \`renderChild\`/specific \`renderQuestion\`, \`renderAnswer\`, \`renderItem\` callback contracts into parent #775; callers must supply reviewed \`documentLanguage\`, stable \`languagesImport\`, verified Scene \`registered\`, and Scene-owned production specification.
+2. Use the parent-only source UUID allocator and **global** ID collision check, source import/expression preservation, planned-language tuple, nested override projection, and safe atomic create-only/check file writer. No local filesystem writes or shared helpers have been introduced in this child PR.
+3. Run strict TypeScript compilation **against actual \`@svitlo/engine/build\` definitions**, end-to-end Stage-5 materialization, Scene stub registration, a cross-parent Lesson/Episode invocation and no-clobber tests after the shared producer is integrated. Synthetic delegate-only fixtures are not full integration validation.
+4. Parent updates \`shared/engine/generators/AGENTS.md\` to distinguish source materializers from existing Props/JSON publishers. These five renderers do not change the existing Config/build/Props contracts.
 
-## Independence and collaboration
+## Verification
 
-- Base/head ancestry: target `architecture/typed-production-materializers` (parent Draft PR #775), not `develop` or #769. All five agents work on branches created from the same parent head.
-- All implementations belong under `shared/engine/generators/materializers/<concreteKind>/`, one folder per concrete kind. Your branch owns only its assigned folders. Keep tests adjacent to each concrete kind. **Do not edit shared indexes, `package.json`, tsconfig, Studio, rules, production contracts, global generator helpers, UUID/path/writer code, original Configurators, existing YAML scripts or another agent's folders.** Integration of exports, entrypoints, production types, shared primitives and workflows belongs to parent #775.
-- Input is **already-authored, typed, plain Config object data** plus separate production metadata, not a `define*` Configurator and not a YAML document. Final Config may be incomplete during staged authoring; do not weaken real Config/Zod validators. Emit authored TypeScript/TSX/Markdown modules and sidecars, **not published JSON/Props**. Never add `build.files` to a Configurator.
-- Each kind's materializer should be simple, explicit and standalone; duplication is preferable to generic factories/registries/base classes, complex AST abstractions or cross-sibling coupling. A parent delegates to its child's materializer and never reimplements child logic. Avoid circular imports; if a child kind belongs to another agent, produce a narrow delegation boundary and test it with a fixture/test double rather than implementing that sibling.
-- The parent will implement canonical derived Production stage types and any minimal shared UUID/path/file writer contract. **Do not invent competing canonical shared types**; use local types derived from real `*_Config` where possible, and list any requested parent exports/contracts in your PR. Coordinate the final function signature through #775; keep self-contained tests passing now and state explicitly which integration checks remain pending.
-- Respect `shared/engine/generators/AGENTS.md` as the existing JSON publication guidance; it currently assumes generators only serialize Props. Source materializers are intentionally distinct, and parent #775 must update that instruction to distinguish them. Do not change it in this subtask.
-- Protect invariant IDs, explicit source identity, human-edited files and real localization/asset validation. Do not suppress TypeScript diagnostics with `as any` or `@ts-ignore`. No invented approved content or silently fabricated translations.
+Adjacent \`*.spec.ts\` files exercise each kind, strict ordering, forbidden types, stable identities, source-locale pruning, explicit Scene blocking/specification, delegation, syntactic TS AST parsing, and a deep Checkpoint → Item → Answer → Carousel → Scene nesting fixture. Tests only assert generated code syntax and fake delegate behavior where the parent API is missing.
 
-## Required evidence
+**Test execution status:** The agent's GitHub-connected environment lacks a checked-out repository and installed workspace dependencies. The following commands were **not executed** and must not be treated as passing:
 
-Implement all owned kinds with adjacent unit tests and a cross-nesting fixture when relevant. Demonstrate exact generated module paths, imports/exports, immutable identifiers, source-language behavior, TODO blockages, warnings/errors, deterministic re-runs, and no-clobber behavior. Run the actual applicable tests/types/format where possible and report commands and results. Distinguish unit tests that passed from parent integration tests that cannot yet run because the shared Production API is still being authored. Keep the PR in Draft; do not merge without the project owner's instruction.
+\`\`\`sh
+node --test shared/engine/generators/materializers/{carousel,checkpoint,checkpointItem,checkpointAnswer,scene}/*.spec.ts
+npm test --workspace @svitlo/engine
+npm run code:check:types --workspace @svitlo/engine
+\`\`\`
+
+Run with the repository's actual TypeScript test runner/package scripts after parent integration; \`node --test\` alone may require the configured TS loader. Check CI on the **latest PR head**, not a historical merge SHA. Draft remains Draft; no Ready/merge authorization is implied.
