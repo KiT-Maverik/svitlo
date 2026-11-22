@@ -42,6 +42,8 @@ const course=()=>({config:{type:'course',id:IDs.course,slug:'rootCourse',
 const sectionRenderer=(node,ctx)=>({id:node.config?.id??node.id,exportName:node.config?.slug??node.slug,
  files:[{path:ctx.directory+'/index.ts',kind:'typescript',content:'export const opening = {};\n'}]});
 const reused=[];
+// Test double for parent-owned LessonWorkflowStage1 emitter: its placeholder body is deliberately NOT a valid authored Lesson.
+// These scenarios cover only the UUID path/metadata handoff; they do NOT establish Stage 1 type compatibility.
 const lessonBridge=(node,ctx)=>{
  reused.push({location:ctx.directory,lessonId:ctx.lessonId,kind:ctx.kind,existing:ctx.existing,
   assessment:ctx.production.assessment,reviewedMethodology:ctx.production.methodology,language:ctx.sourceLanguage});
