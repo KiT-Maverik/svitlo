@@ -189,8 +189,18 @@ test('strict publication rejects reserved Draft identities anywhere in real buil
 test('production blocks known pending Lesson/Quiz scaffolds and pending assessment labels, not ordinary copy', () =>
   fixture(root => {
     const blocked = [
-      { base: { type: 'lesson', section: [{ type: 'content', slug: 'pendingContent', locale: { title: 'Not implemented' } }] } },
-      { base: { type: 'lesson', section: [{ type: 'content', content: [{ type: 'text', slug: 'pendingNotice', locale: { value: 'Not implemented' } }] }] } },
+      {
+        base: {
+          type: 'lesson',
+          section: [{ type: 'content', slug: 'pendingContent', locale: { title: 'Not implemented' } }],
+        },
+      },
+      {
+        base: {
+          type: 'lesson',
+          section: [{ type: 'content', content: [{ type: 'text', slug: 'pendingNotice', locale: { value: 'Not implemented' } }] }],
+        },
+      },
       { base: { type: 'lesson', section: [{ type: 'quiz', locale: { title: 'PENDING QUIZ' } }] } },
       { base: { type: 'course', content: { items: { activity: { type: 'quest' } }, order: ['activity'] } } },
     ];
@@ -199,7 +209,10 @@ test('production blocks known pending Lesson/Quiz scaffolds and pending assessme
       assert.throws(() => publish(root, source, 'production'), /Preview scaffold|Preview value|Unimplemented Quest/);
     }
     const complete = {
-      base: { type: 'lesson', section: [{ type: 'content', slug: 'realSection', locale: { title: 'Not implemented yet in the history of this topic' } }] },
+      base: {
+        type: 'lesson',
+        section: [{ type: 'content', slug: 'realSection', locale: { title: 'Not implemented yet in the history of this topic' } }],
+      },
     };
     assert.deepEqual(publish(root, complete, 'production').diagnostics, []);
   }));
@@ -207,14 +220,14 @@ test('production blocks known pending Lesson/Quiz scaffolds and pending assessme
 
 test('complete typed Lesson source publishes all authored locales without Preview false positives', () =>
   fixture(root => {
-    const paragraph = defineText({
+    const paragraph = defineText<'paragraph', ['en', 'uk']>({
       id: '550e8400-e29b-41d4-a716-446655440005',
       slug: 'paragraph',
       type: 'text',
       params: {},
       locale: { value: { en: 'A real explanation', uk: 'Справжнє пояснення' } },
     });
-    const section = defineContentSection({
+    const section = defineContentSection<'introduction', { paragraph: typeof paragraph }, ['en', 'uk']>({
       id: '550e8400-e29b-41d4-a716-446655440006',
       slug: 'introduction',
       type: 'content',
