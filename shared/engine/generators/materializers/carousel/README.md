@@ -54,6 +54,20 @@ This changes **when** the orchestrator may invoke the materializers, not the fiv
 3. Run strict TypeScript compilation **against actual `@svitlo/engine/build` definitions**, end-to-end Stage-5 materialization, Scene stub registration, a cross-parent Lesson/Episode invocation and no-clobber tests after the shared producer is integrated. Synthetic delegate-only fixtures are not full integration validation.
 4. Parent updates `shared/engine/generators/AGENTS.md` to distinguish source materializers from existing Props/JSON publishers. These five renderers do not change the existing Config/build/Props contracts.
 
+## Review response — parent reconciliation and semantic TS coverage
+
+- Reconciled the current #775 integration branch through merge commit `471120d800388fe818750656bdf106c1de82f140`, preserving all parent files and only this child's owned materializer files. The GitHub compare showed no overlapping paths; it is a real two-parent merge, not a documentation-only comparison.
+- Added `checkpoint/semanticSourceTypecheck.spec.ts`: a nested Checkpoint → CheckpointItem → CheckpointAnswer → Carousel → Scene fixture that emits independent real `define*` modules, imports a reviewed single-language tuple, and asks the TypeScript compiler to check them against **actual `shared/engine/build.ts` and actual Engine `tsconfig.json`**. It also asserts the Scene specification is preserved and that a verified Scene produces no pending diagnostics.
+- **Runner invocation (from `shared/engine` after installing workspace dependencies):**
+  ```sh
+  npm run code:check:types
+  npx tsc -p tsconfig.test.json
+  node --test .test-build/generators/materializers/{carousel,checkpoint,checkpointItem,checkpointAnswer,scene}/*.spec.js
+  ```
+  The shell brace pattern expands one directory per concrete kind; `checkpoint/*.spec.js` includes the new semantic fixture.
+- **Parent-owned CI gap:** `shared/engine/package.json` currently hardcodes its `node --test` file list and does **not** include `.test-build/generators/materializers/**/*.spec.js`. Parent #775 must register the new tests in the appropriate Engine test/CI manifest after integration. A green legacy `npm test` without that update is not evidence that these suites ran.
+- **Execution evidence remains unavailable in the current GitHub-connector-only execution environment:** there is no local Svitlo checkout or installed Engine workspace. Attempted `git ls-remote https://github.com/KiT-Maverik/svitlo.git HEAD` failed with `Could not resolve host: github.com`. Thus no actual Engine typecheck, materializer `node --test` run or semantic fixture run may be claimed as passing. This outstanding verification is a true gate to a merge recommendation; Draft CI checks do not substitute for it.
+
 ## Verification
 
 Adjacent `*.spec.ts` files exercise each kind, strict ordering, forbidden types, stable identities, source-locale pruning, explicit Scene blocking/specification, delegation, syntactic TS AST parsing, and a deep Checkpoint → Item → Answer → Carousel → Scene nesting fixture. Tests only assert generated code syntax and fake delegate behavior where the parent API is missing.
