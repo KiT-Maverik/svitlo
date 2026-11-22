@@ -46,8 +46,7 @@ test('Carousel delegates Image/Scene children in authored order without manufact
   assert.doesNotMatch(code, /CarouselSlide|Gallery/);
   assert.match(code, /"uk": "Галерея"/);
   assert.deepEqual(actual, materializeCarousel(carousel(), context().renderer));
-  const file = ts.createSourceFile('index.ts', code, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS);
-  assert.equal(file.parseDiagnostics.length, 0);
+  assert.equal(syntaxErrorCount(code), 0);
 });
 
 test('Carousel omits explicitly disabled draft children, but requires exact active order', () => {
@@ -87,3 +86,14 @@ test('Carousel child Scene can remain a pending Config draft without pretending 
   } }, context().renderer);
   assert.equal(output.files.length, 3);
 });
+
+
+/** Public TypeScript API: syntactic diagnostics without relying on internal SourceFile fields. */
+function syntaxErrorCount(source: string, fileName = 'index.ts'): number {
+  const result = ts.transpileModule(source, {
+    fileName,
+    reportDiagnostics: true,
+    compilerOptions: { target: ts.ScriptTarget.ES2022 },
+  });
+  return (result.diagnostics ?? []).filter(d => d.category === ts.DiagnosticCategory.Error).length;
+}
