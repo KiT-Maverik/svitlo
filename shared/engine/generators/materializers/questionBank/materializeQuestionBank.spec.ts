@@ -157,3 +157,24 @@ test('Question Bank final refuses source/review drift, missing groups and malfor
   wrong.config.questions.selectOneAnswer.promptOne.config.type = 'otherKind' as never;
   assert.throws(() => materializeQuestionBank(wrong as never, finalAuth(wrong)), /kind\/slug mismatch/);
 });
+
+
+test('Question Bank N/A cannot start without a separately verified exception', () => {
+  const noBank = handoff();
+  noBank.production.assessment.questionBankRequired = false;
+  assert.throws(() => materializeQuestionBankDraft(noBank as never, draftAuth), /Questions N\/A/);
+  assert.doesNotThrow(() => materializeQuestionBankDraft(noBank as never, {
+    ...draftAuth,
+    independentBankAuthorization: {
+      sourceSha: sha('a'), rationale: 'Independent upstream evidence requires a bank',
+    },
+  }));
+});
+test('Question Bank rejects pending nested Blocks even if the parent Question is complete', () => {
+  const input = completeBank();
+  Object.assign(input.config.questions.selectOneAnswer.promptOne.config.content.question.items.prompt, {
+    production: { pending: true },
+  });
+  assert.throws(() => materializeQuestionBank(input as never, finalAuth(input)),
+    /pending bank authoring source/);
+});
