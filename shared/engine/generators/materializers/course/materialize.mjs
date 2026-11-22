@@ -30,21 +30,46 @@ const todo=(production,ctx,language)=>{
 const exportName=slug=>['class','default','export','import','const','new','return','let','var','await','content','languages','section'].includes(slug)?'config_'+slug:slug;
 const sidecars=(meta,dir)=>{
  if(meta===undefined)return [];
- if(!record(meta))throw Error(dir+'.production: object expected');
- const outputs=[];
- if(typeof meta.methodology==='string'&&meta.methodology.trim())outputs.push({path:[dir,'methodology.md'].filter(Boolean).join('/'),kind:'markdown',content:meta.methodology.trimEnd()+'\n'});
+ if(!record(meta))throw Error(dir+'.production: typed production object required');
+ const files=[];
  if(record(meta.methodology)){
-  const titles={purpose:'Purpose',audience:'Audience',approach:'Approach',depth:'Depth',accessibility:'Accessibility',scope:'Scope',entryConditions:'Entry conditions',sourceNotes:'Source notes'};
-  for(const key of Object.keys(titles))
+  const headings=[['purpose','Purpose'],['audience','Audience'],['approach','Approach'],
+   ['depth','Depth'],['accessibility','Accessibility'],['scope','Scope'],
+   ['entryConditions','Entry conditions'],['sourceNotes','Source notes']];
+  for(const [key] of headings)
    if(typeof meta.methodology[key]!=='string'||!meta.methodology[key].trim())
-    throw Error(dir+'.production.methodology.'+key+': methodology field missing');
-  const result='# Course methodology\n\n'+Object.entries(meta.methodology)
-   .map(([key,value])=>'## '+(titles[key]??key)+'\n\n'+String(value).trimEnd()).join('\n\n')+'\n';
-  outputs.push({path:[dir,'methodology.md'].filter(Boolean).join('/'),kind:'markdown',content:result});
+    throw Error(dir+'.production.methodology.'+key+': reviewed methodology required');
+  if(typeof meta.outcomes?.explanation!=='string'||typeof meta.prerequisites?.explanation!=='string'||
+     !Array.isArray(meta.standardsAlignment)||!record(meta.openDecisions))
+    throw Error(dir+'.production: reviewed outcomes, prerequisites, standard alignment and decisions are required');
+  const paragraphs=['# Course methodology',
+   ...headings.flatMap(([key,title])=>['## '+title,meta.methodology[key].trimEnd()]),
+   '## Intended learning outcomes',meta.outcomes.explanation.trimEnd(),
+   '## Entry prerequisites',meta.prerequisites.explanation.trimEnd(),
+   '## Standards alignment',
+   meta.standardsAlignment.length?meta.standardsAlignment.map(item=>{
+    if(!record(item)||typeof item.standardId!=='string'||typeof item.evidence!=='string')
+     throw Error(dir+'.production.standardsAlignment: reviewed standard evidence required');
+    return '- **'+item.standardId+'** ('+String(item.status)+') — '+item.evidence+
+     ['version','sourceUrl','jurisdiction'].filter(key=>item[key]!==undefined)
+       .map(key=>'\n  - '+key+': '+String(item[key])).join('');
+   }).join('\n'):'None recorded',
+   '## Open decisions',
+   Object.keys(meta.openDecisions).length?Object.entries(meta.openDecisions)
+    .map(([key,value])=>'- **'+key+'**: '+String(value)).join('\n'):'None recorded'];
+  files.push({path:[dir,'methodology.md'].filter(Boolean).join('/'),kind:'markdown',content:paragraphs.join('\n\n')+'\n'});
+ }else if(typeof meta.methodology==='string'&&meta.methodology.trim()){
+  // Raw non-workflow data is supported for other per-kind callers, never used for typed Course Stage 5.
+  files.push({path:[dir,'methodology.md'].filter(Boolean).join('/'),kind:'markdown',
+   content:meta.methodology.trimEnd()+'\n'});
  }
- const rest=Object.entries(meta).filter(([key])=>!['documentLanguage','methodology','plannedLanguages','languages','pending'].includes(key));
- if(rest.length)outputs.push({path:[dir,'specification.md'].filter(Boolean).join('/'),kind:'specification',content:rest.map(([key,value])=>'# '+key+'\n\n'+(typeof value==='string'?value.trimEnd():JSON.stringify(value,null,2))).join('\n\n')+'\n'});
- return outputs;
+ const covered=['documentLanguage','methodology','plannedLanguages','languages','pending',
+  'outcomes','prerequisites','standardsAlignment','openDecisions'];
+ const remaining=Object.entries(meta).filter(([key])=>!covered.includes(key));
+ if(remaining.length)files.push({path:[dir,'specification.md'].filter(Boolean).join('/'),
+  kind:'specification',content:remaining.map(([key,value])=>'# '+key+'\n\n'+
+   (typeof value==='string'?value.trimEnd():JSON.stringify(value,null,2))).join('\n\n')+'\n'});
+ return files;
 };
 
 

@@ -30,12 +30,31 @@ const todo=(production,ctx,language)=>{
 const exportName=slug=>['class','default','export','import','const','new','return','let','var','await','content','languages','section'].includes(slug)?'config_'+slug:slug;
 const sidecars=(meta,dir)=>{
  if(meta===undefined)return [];
- if(!record(meta))throw Error(dir+'.production: object expected');
- const outputs=[];
- if(typeof meta.methodology==='string'&&meta.methodology.trim())outputs.push({path:[dir,'methodology.md'].filter(Boolean).join('/'),kind:'markdown',content:meta.methodology.trimEnd()+'\n'});
- const rest=Object.entries(meta).filter(([key])=>!['documentLanguage','methodology','plannedLanguages','pending'].includes(key));
- if(rest.length)outputs.push({path:[dir,'specification.md'].filter(Boolean).join('/'),kind:'specification',content:rest.map(([key,value])=>'# '+key+'\n\n'+(typeof value==='string'?value.trimEnd():JSON.stringify(value,null,2))).join('\n\n')+'\n'});
- return outputs;
+ if(!record(meta))throw Error(dir+'.production: typed production object required');
+ const files=[];
+ if(meta.methodology!==undefined){
+  if(typeof meta.methodology!=='string'||!meta.methodology.trim()||
+     !record(meta.outcomes)||!record(meta.prerequisites)||
+     typeof meta.depth!=='string'||typeof meta.sequenceReason!=='string')
+   throw Error(dir+'.production: unit methodology, outcomes, prerequisites, depth and rationale required');
+  const scope=value=>Object.keys(value).length?Object.entries(value).map(([key,ids])=>
+   '- **'+key+'**: '+(Array.isArray(ids)?ids.length?ids.map(id=>'\x60'+id+'\x60').join(', '):'None':String(ids))
+  ).join('\n'):'None recorded';
+  const body=['# Module methodology',
+   '## Methodology',meta.methodology.trimEnd(),
+   '## Intended learning outcomes',scope(meta.outcomes),
+   '## Entry prerequisites',scope(meta.prerequisites),
+   '## Depth',meta.depth.trimEnd(),
+   '## Sequence rationale',meta.sequenceReason.trimEnd()];
+  files.push({path:[dir,'methodology.md'].filter(Boolean).join('/'),kind:'markdown',content:body.join('\n\n')+'\n'});
+ }
+ const covered=['documentLanguage','methodology','plannedLanguages','languages','pending',
+  'outcomes','prerequisites','depth','sequenceReason'];
+ const remaining=Object.entries(meta).filter(([key])=>!covered.includes(key));
+ if(remaining.length)files.push({path:[dir,'specification.md'].filter(Boolean).join('/'),
+  kind:'specification',content:remaining.map(([key,value])=>'# '+key+'\n\n'+
+   (typeof value==='string'?value.trimEnd():JSON.stringify(value,null,2))).join('\n\n')+'\n'});
+ return files;
 };
 
 
