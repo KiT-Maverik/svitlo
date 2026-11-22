@@ -32,7 +32,7 @@ function setup(t) {
   const sourceBlobSha = git(root, 'rev-parse', 'HEAD:' + sourcePath);
   const plan = {
     lessonId: id, sourcePath, archivePath, sourceBlobSha,
-    reviewCommitSha: reviewed, publishable: false,
+    reviewCommitSha: reviewed, reviewEvidenceSha: '2'.repeat(40), publishable: false,
     files: [
       { path: folder + '/languages.ts', content: 'export const languages = ["en"] as const;\n',
         kind: 'typescript' },
@@ -79,6 +79,8 @@ test('refuses stale review, modified source and untrusted output paths', t => {
   const { root, plan } = setup(t);
   assert.throws(() => preflightLessonStage6Commit({ ...plan,
     reviewCommitSha: 'a'.repeat(40) }, { repoRoot: root }), /stale/);
+  assert.throws(() => preflightLessonStage6Commit({ ...plan,
+    reviewEvidenceSha: 'invalid' }, { repoRoot: root }), /Invalid reviewed/);
   assert.throws(() => preflightLessonStage6Commit({ ...plan,
     sourceBlobSha: 'a'.repeat(40) }, { repoRoot: root }), /blob differs/);
   for (const pathName of ['../other/index.ts', '/tmp/index.ts', folder + '/sub/../outside.ts',
