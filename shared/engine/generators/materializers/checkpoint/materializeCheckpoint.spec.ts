@@ -77,7 +77,7 @@ test('Checkpoint recursively materializes Item → Text + Answer → Carousel �
   assert.equal(result.diagnostics.some(d => d.code === 'pending-scene'), true);
   assert.equal(new Set(paths).size, paths.length, 'each file belongs to one materializer');
   for (const file of result.files.filter(file => file.kind === 'typescript')) {
-    assert.equal(ts.createSourceFile(file.path, file.content, ts.ScriptTarget.Latest, true).parseDiagnostics.length, 0, file.path);
+    assert.equal(syntaxErrorCount(file.content, file.path), 0, file.path);
   }
 });
 
@@ -114,3 +114,14 @@ test('Checkpoint rejects a delegated item that writes into another module', () =
     }),
   }), /outside its owned directory/);
 });
+
+
+/** Public TypeScript API: syntactic diagnostics without relying on internal SourceFile fields. */
+function syntaxErrorCount(source: string, fileName = 'index.ts'): number {
+  const result = ts.transpileModule(source, {
+    fileName,
+    reportDiagnostics: true,
+    compilerOptions: { target: ts.ScriptTarget.ES2022 },
+  });
+  return (result.diagnostics ?? []).filter(d => d.category === ts.DiagnosticCategory.Error).length;
+}
