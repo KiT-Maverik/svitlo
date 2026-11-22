@@ -114,12 +114,12 @@ test('FastGate is strictly typecheck-only and still always emits the required st
     'utf8',
   );
   assert.match(workflow, /name: FastGate \/ verify/);
-  assert.match(workflow, /on:\\n  pull_request:\\n    types: \\[opened, reopened, synchronize, ready_for_review, edited\\]/);
-  assert.doesNotMatch(workflow, /branches: \\[develop\\]/, 'FastGate runs for every PR target');
-  assert.match(workflow, /!github\\.event\\.pull_request\\.draft/, 'Draft PRs must defer typechecking');
-  assert.match(workflow, /TARGET_BRANCH: \\$\\{\\{ github\\.event\\.pull_request\\.base\\.ref \\}\\}/);
+  assert.match(workflow, /on:\n  pull_request:\n    types: \[opened, reopened, synchronize, ready_for_review, edited\]/);
+  assert.doesNotMatch(workflow, /branches: \[develop\]/, 'FastGate runs for every PR target');
+  assert.match(workflow, /!github\.event\.pull_request\.draft/, 'Draft PRs must defer typechecking');
+  assert.match(workflow, /TARGET_BRANCH: \$\{\{ github\.event\.pull_request\.base\.ref \}\}/);
   assert.match(workflow, /--changed-only/, 'non-develop PRs must use direct-workspace checks');
-  assert.match(runner, /changedOnly: args\\.length === 3/, 'new CLI flag reaches the workspace selector');
+  assert.match(runner, /changedOnly: args\.length === 3/, 'new CLI flag reaches the workspace selector');
   assert.match(workflow, /git diff --no-renames --name-only/);
   assert.doesNotMatch(workflow, /\n    paths:/, 'required check must run even for irrelevant changes');
   assert.match(workflow, /Typecheck changed workspaces and public API consumers/);
