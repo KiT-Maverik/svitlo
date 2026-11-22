@@ -59,7 +59,7 @@ test('CheckpointItem rejects an incorrect or disabled question, missing answer a
   assert.throws(() => materializeCheckpointItem(item(), { ...context(), directory: 'content/../escape' }), /unsafe/);
 });
 
-test('CheckpointItem refuses duplicated delegate destinations rather than silently overwrite', () => {
+test('CheckpointItem refuses an answer delegate that claims the question file', () => {
   assert.throws(() => materializeCheckpointItem(item(), {
     ...context(),
     renderAnswer: (_config: unknown, _directory: string) => ({
@@ -67,7 +67,7 @@ test('CheckpointItem refuses duplicated delegate destinations rather than silent
       files: [{ path: 'content/items/first/question/index.ts', content: '', kind: 'typescript' as const }],
       diagnostics: [],
     }),
-  }), /duplicate child file/);
+  }), /outside its owned directory/);
 });
 
 
