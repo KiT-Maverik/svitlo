@@ -225,8 +225,8 @@ export type CourseWorkflowStage3ExistingLessonConfig = CourseWorkflowStage3Place
 export type CourseWorkflowStage3ExistingLessonReference = Pick<Lesson_Config, 'id'> &
   Partial<Pick<ReturnType<Lesson_Configurator['build']['overrides']>, 'base' | 'locale'>>;
 
-/** Reuse the shared four explicit decisions: Question Bank, Flashcard Bank, Quiz Section,
- * Flashcards Section. These plan independently owned child work; they are not Config/Props.
+/** Course uses the same editorial assessment decisions as standalone Lessons.
+ * Only the Course's stage sequencing is Course-specific.
  */
 export type CourseWorkflowStage3AssessmentRequirements = LessonProductionAssessmentRequirements;
 
@@ -239,9 +239,8 @@ export type CourseWorkflowStage3LessonIntent = {
   /** Why this Lesson belongs at this position in the Course sequence. */
   sequenceReason: string;
   /** How the intended learning will be evaluated, without inventing Question IDs. */
-  /** Explain observable evidence and actual assessment owners, not fictitious IDs. */
   assessmentEvidence: string;
-  /** Decide each bank and Section independently, justify exceptions and upstream owners in methodology. */
+  /** Explicit assessment banks/Sections plan; each is an independent decision. */
   assessment: CourseWorkflowStage3AssessmentRequirements;
 };
 
@@ -286,7 +285,7 @@ export type CourseWorkflowStage3ExistingLesson = {
     existing: CourseWorkflowStage3ExistingLessonReference;
     /** Evidence that the referenced Lesson was inspected for pedagogical reuse. */
     matching: CourseWorkflowStage3LessonMatch;
-    /** Independently decide four requirements for Course reuse; verify real existing resources and avoid edits to their owner. */
+    /** Required explicit assessment decisions for the reused Lesson placement. */
     assessment: CourseWorkflowStage3AssessmentRequirements;
     /** Editorial explanation of Course-local changes, when there are any.
      * The Course Workflow Skill/review enforces justification for real patches.
