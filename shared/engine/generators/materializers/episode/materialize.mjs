@@ -41,12 +41,27 @@ const sidecars=(meta,dir)=>{
 
 /** An Episode owns narrative Sections and delegates their concrete rendering to Agent B. */
 export function materializeEpisode(input,context={}){
- const config=unwrap(input),meta=production(input),dir=context.directory??'';
+ const authored=unwrap(input),meta=production(input),dir=context.directory??'';
  if(dir&&dir.split('/').some(part=>!slugPattern.test(part)))throw Error(dir+': unsafe generated directory');
+ const lang=source(context);
+ if(authored?.type!=='episode')throw Error(dir+': expected episode Config');
+ const provisional=!record(authored.section)&&record(meta)&&meta.focus!==undefined&&meta.purpose!==undefined;
+ if(provisional){
+  if(!String(meta.focus).trim()||!String(meta.purpose).trim())
+   throw Error(dir+'.production: provisional Episode needs nonempty reviewed focus and purpose');
+  if(Object.keys(authored).some(key=>!['type','slug'].includes(key)))
+   throw Error(dir+'.config: provisional Episode cannot contain invented full Config fields');
+ }
+ const config=provisional?{
+  ...authored,
+  params:{languages:[lang]},
+  // This is a marked non-publishable source placeholder, NOT a reviewed Episode script.
+  locale:{title:{[lang]:'Not implemented'}},
+  section:{items:{},order:[]},
+ }:authored;
  if(!record(config.section)||!record(config.section.items)||!Array.isArray(config.section.order))
-  throw Error(dir+'.section: TODO (BLOCKER): provisional Episode requires authorized Sections before materialization');
- const {id,slug}=identity(config,context,dir,'episode'),lang=source(context);
- if(config.type!=='episode')throw Error(dir+': expected episode Config');
+  throw Error(dir+'.section: missing complete Episode Sections');
+ const {id,slug}=identity(config,context,dir,'episode');
  const collection=config.section;
  if(!record(collection)||!record(collection.items)||!Array.isArray(collection.order))throw Error(dir+'.section: expected {items,order}');
  const keys=Object.keys(collection.items),order=collection.order;
@@ -86,8 +101,12 @@ export function materializeEpisode(input,context={}){
   .map(([key,value])=>JSON.stringify(key)+': '+JSON.stringify(value)+',').join(' ');
  const warning=todo({plannedLanguages:planned},context,lang);
  if(warning)diagnostics.push({path:dir,code:'pending-locales',severity:'warning'});
+ if(provisional)diagnostics.push({path:dir,code:'pending-episode-scenario',severity:'blocker',
+  message:'Stage 3 Episode focus/purpose is only editorial intent; scenario and Sections require separate review'});
  const sectionMap='{ '+Object.entries(items).map(([key,alias])=>JSON.stringify(key)+': '+alias).join(', ')+' }';
- const result="import { defineEpisode } from '@svitlo/engine/build';\n"+
+ const pending=provisional?
+  '// TODO (BLOCKER): Not implemented — Episode scenario and Sections require separate authorization; do not publish.\\n':'';
+ const result=pending+"import { defineEpisode } from '@svitlo/engine/build';\\n"+
  "import type { SupportedLanguages } from '@svitlo/engine/build';\n"+imports.join('\n')+'\n\n'+
  'const languages = '+JSON.stringify([lang])+' as const satisfies SupportedLanguages;\n'+
  'const section = { items: '+sectionMap+', order: '+JSON.stringify(order)+' };\n\n'+warning+
