@@ -5,7 +5,7 @@ import { tmpdir } from 'node:os';
 import { spawnSync } from 'node:child_process';
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
-import { typedCommand } from './bank-typed-gate.mjs';
+import { typedCommand, inspectTyped } from './bank-typed-gate.mjs';
 import { verifyTypedManifest } from './bank-typed-materialization.mjs';
 import { gitBlob, sha256 } from './bank-gate.mjs';
 
@@ -143,3 +143,90 @@ test('workflow separates tokenless candidate analysis from scoped trusted public
 function requireWorkflow(root) {
   return readFileSync(path.join(root, '.github/workflows/bank-materialization.yml'), 'utf8');
 }
+
+test('GitHub typed gate requires real independent exact-HEAD review and Lesson branch', async () => {
+  const prevFetch = globalThis.fetch;
+  const oldRepo = process.env.GITHUB_REPOSITORY;
+  const oldToken = process.env.GH_TOKEN;
+  process.env.GITHUB_REPOSITORY = 'KiT-Maverik/svitlo';
+  process.env.GH_TOKEN = 'unit-test-token-not-used-on-network';
+  const head = 'a'.repeat(40);
+  const source = 'c'.repeat(40);
+  const identity = [
+    '<!-- svitlo-create-questions-flow:v1 -->',
+    '- Lesson UUID: ' + owner,
+    '- Textbook: content/math',
+    '- Parent Lesson PR: #777',
+    '## Workflow',
+    '- [x] 1. Lesson Analysis',
+    '- [x] 2. Question Design',
+    '- [x] 3. Quiz Section Design',
+    '- [x] 4. Independent Assessment Review',
+    '- [ ] 5. Resource Production',
+    '## Review',
+  ].join('\n');
+  const child = {
+    state: 'open', draft: true, user: { login: 'author' },
+    body: identity,
+    head: { sha: head, ref: 'agent/assessment-bank', repo: { full_name: process.env.GITHUB_REPOSITORY } },
+    base: { ref: 'agent/lesson', sha: 'b'.repeat(40) },
+  };
+  const parent = {
+    state: 'open', head: { ref: 'agent/lesson' },
+    body: '<!-- svitlo-create-lesson-flow:v1 -->\n- Lesson UUID / textbook / slug: `' +
+      owner + '` / `content/math` / `unitLesson`',
+  };
+  const review = {
+    state: 'APPROVED', commit_id: head, submitted_at: '2026-11-23T00:00:00Z',
+    user: { login: 'independent' },
+  };
+  let overrides = {};
+  const resources = () => ({
+    'pulls/888': child, 'pulls/777': parent,
+    ['contents/' + folder + '/questions/index.ts?ref=' + head]: { type: 'file', sha: source },
+    'pulls/888/reviews?per_page=100': [review],
+    'collaborators/independent/permission': { permission: 'write' },
+    ...overrides,
+  });
+  globalThis.fetch = async url => {
+    const raw = String(url).split('/repos/KiT-Maverik/svitlo/')[1];
+    const endpoint = decodeURI(raw).replace(/%2F/gi, '/');
+    const value = resources()[endpoint];
+    if (value === undefined) return new Response('not found', { status: 404 });
+    return new Response(JSON.stringify(value), { status: 200,
+      headers: { 'Content-Type': 'application/json' } });
+  };
+  try {
+    const ok = await inspectTyped(888, 'questions');
+    assert.equal(ok.sourceBlob, source);
+    assert.equal(ok.reviewCommitSha, head);
+    assert.equal(ok.reviewer, 'independent');
+    assert.equal(ok.sourcePath, folder + '/questions/index.ts');
+    const base = { ...ok, head: 'd'.repeat(40) };
+    await assert.rejects(inspectTyped(888, 'questions', base), /changed/);
+
+    overrides = { 'pulls/888/reviews?per_page=100': [{ ...review, commit_id: 'e'.repeat(40) }] };
+    await assert.rejects(inspectTyped(888, 'questions'), /approval/);
+
+    overrides = { 'pulls/888/reviews?per_page=100': [{ ...review, user: { login: 'author' } }] };
+    await assert.rejects(inspectTyped(888, 'questions'), /approval/);
+
+    overrides = { 'pulls/888/reviews?per_page=100': [
+      review, { ...review, state: 'CHANGES_REQUESTED', submitted_at: '2026-11-23T01:00:00Z' },
+    ] };
+    await assert.rejects(inspectTyped(888, 'questions'), /approval/);
+
+    overrides = { 'pulls/888': { ...child, base: { ref: 'develop', sha: 'b'.repeat(40) } } };
+    await assert.rejects(inspectTyped(888, 'questions'), /Lesson parent branch/);
+    overrides = { 'pulls/888': { ...child, draft: false } };
+    await assert.rejects(inspectTyped(888, 'questions'), /Draft bank PR/);
+    overrides = { 'pulls/888': { ...child, body: identity.replace('- [x] 4.', '- [ ] 4.') } };
+    await assert.rejects(inspectTyped(888, 'questions'), /Stage 4/);
+  } finally {
+    globalThis.fetch = prevFetch;
+    if (oldRepo === undefined) delete process.env.GITHUB_REPOSITORY;
+    else process.env.GITHUB_REPOSITORY = oldRepo;
+    if (oldToken === undefined) delete process.env.GH_TOKEN;
+    else process.env.GH_TOKEN = oldToken;
+  }
+});
