@@ -37,9 +37,11 @@ const production = {
     sourcePath: 'content/math/data/lessons/3/663572e7-bd85-4516-86e2-3de07d209e03/index.ts',
     sourceSha: 'verified-lesson-sha',
     referencePath: 'verified-lesson-reference.md',
+    referenceSha: 'verified-reference-sha',
     methodologyPath: 'verified-methodology.md',
     title: 'Verified Lesson',
   },
+  course: { id: '663572e7-bd85-4516-86e2-3de07d209e01', sourceSha: 'pinned-course-sha', placementPath: 'module/lesson' },
   assessment: {
     questionBankRequired: true,
     flashcardBankRequired: false,
