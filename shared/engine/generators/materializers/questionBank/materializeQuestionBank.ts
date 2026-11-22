@@ -17,7 +17,8 @@ import { materializeFillBlanksWithBlocks } from '../fillBlanksWithBlocks/materia
 import { materializeFillBlanksWithText } from '../fillBlanksWithText/materializeFillBlanksWithText';
 import {
   assertBankLanguages, assertBankOrder, assertBankPath, assertBankSha,
-  assertBankStatement, assertBankUuid, assertUniqueBankEntityIds, assertReviewedBankInput,
+  assertBankStatement, assertBankUuid, assertUniqueBankEntityIds, assertNoPendingBankSources,
+  assertReviewedBankInput,
   authoredBankLiteral, preflightBankSource,
   type BankReviewedSource, type BankSourceSnapshot, type BankSourceResult,
   type BankSourceFile, type BankSourceDiagnostic,
@@ -200,6 +201,7 @@ export function materializeQuestionBank(
     }
   }
   assertUniqueBankEntityIds(questions);
+  assertNoPendingBankSources(questions);
   const source = input.production.languages;
   const files: BankSourceFile[] = [];
   const diagnostics: BankSourceDiagnostic[] = [];
