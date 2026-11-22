@@ -78,9 +78,9 @@ function verifyCandidate(meta) {
   return { root, source: bytes.toString('utf8') };
 }
 function assertAncestor(root, sha, label) {
-  if (!SHA.test(sha || '')) throw Error(label + ': 40-char source SHA required');
-  const kind = git(root, 'cat-file', '-t', sha);
-  if (kind !== 'commit') throw Error(label + ': expected Git revision, not unverified blob');
+  if (!SHA.test(sha || '') || git(root, 'cat-file', '-t', sha) !== 'commit') {
+    throw Error(label + ': ancestor commit SHA required');
+  }
   git(root, 'merge-base', '--is-ancestor', sha, 'HEAD');
 }
 function assertTracked(root, sourcePath, meta, label) {
@@ -88,7 +88,23 @@ function assertTracked(root, sourcePath, meta, label) {
       sourcePath.split('/').some(x => !/^[A-Za-z0-9_.-]+$/.test(x) || x === '..' || x === '.')) {
     throw Error(label + ' outside owning Lesson');
   }
-  git(root, 'cat-file', '-e', 'HEAD:' + sourcePath);
+  if (git(root, 'cat-file', '-t', 'HEAD:' + sourcePath) !== 'blob') {
+    throw Error(label + ': tracked regular source blob required');
+  }
+}
+function assertSourceRevision(root, sha, pathname, meta, label) {
+  assertTracked(root, pathname, meta, label);
+  if (!SHA.test(sha || '')) throw Error(label + ': reviewed source SHA required');
+  const type = git(root, 'cat-file', '-t', sha);
+  const headBlob = git(root, 'rev-parse', 'HEAD:' + pathname);
+  if (type === 'blob') {
+    if (headBlob !== sha) throw Error(label + ': reviewed source blob has changed');
+  } else if (type === 'commit') {
+    git(root, 'merge-base', '--is-ancestor', sha, 'HEAD');
+    if (git(root, 'rev-parse', sha + ':' + pathname) !== headBlob) {
+      throw Error(label + ': source changed after approved revision');
+    }
+  } else throw Error(label + ': SHA must identify source blob or ancestor commit');
 }
 function authorizations(meta, input, root) {
   const lessonDirectory = meta.identity.folder;
@@ -113,10 +129,8 @@ function authorizations(meta, input, root) {
     if (input?.config?.ownerLessonId !== meta.identity.id || !lesson) {
       throw Error('Question Bank is not owned by the verified Lesson');
     }
-    assertAncestor(root, lesson.sourceSha, 'Question Lesson source');
-    assertAncestor(root, lesson.referenceSha, 'Question reference');
-    assertTracked(root, lesson.sourcePath, meta, 'Lesson source');
-    assertTracked(root, lesson.referencePath, meta, 'Question reference');
+    assertSourceRevision(root, lesson.sourceSha, lesson.sourcePath, meta, 'Question Lesson source');
+    assertSourceRevision(root, lesson.referenceSha, lesson.referencePath, meta, 'Question reference');
     assertTracked(root, lesson.methodologyPath, meta, 'Lesson methodology');
     if (input.production.assessment?.questionBankRequired !== true) {
       throw Error('Question Bank N/A needs a distinct Methodologist-reviewed exception; no blanket authorization');
@@ -128,9 +142,8 @@ function authorizations(meta, input, root) {
   if (!lesson || lesson.id !== meta.identity.id || !questions) {
     throw Error('Flashcards require the verified Lesson and Questions-first source');
   }
-  assertAncestor(root, lesson.sourceSha, 'Flashcards Lesson source');
-  assertAncestor(root, lesson.reference.sourceSha, 'Flashcards reference revision');
-  assertTracked(root, lesson.reference.path, meta, 'Flashcards reference');
+  assertSourceRevision(root, lesson.sourceSha, lessonDirectory + '/index.ts', meta, 'Flashcards Lesson source');
+  assertSourceRevision(root, lesson.reference.sourceSha, lesson.reference.path, meta, 'Flashcards reference');
   if (lesson.assessment?.flashcardBankRequired !== true) {
     throw Error('Flashcard Bank N/A requires separate independently approved exception');
   }
@@ -253,9 +266,7 @@ async function analyze(meta) {
     throw Error('Trusted Bank writer disagrees with checked atomic source plan');
   }
   const files = committed.changedPaths.map(filename => {
-    const content = git(root, 'show', committed.commitSha + ':' + filename);
-    const bytes = Buffer.from(content + '\n', 'utf8');
-    // execFileSync().trimEnd() is for Git metadata; read exact blob bytes here.
+    // Preserve exact Git blob bytes, including trailing newlines.
     const exact = execFileSync('git', ['-C', root, 'show', committed.commitSha + ':' + filename]);
     if (!Buffer.from(exact.toString('utf8'), 'utf8').equals(exact)) {
       throw Error('Generated Bank source is not valid UTF-8');
