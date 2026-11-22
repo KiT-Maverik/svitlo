@@ -6,7 +6,7 @@ import ts from 'typescript';
 import { assertSafeDirectoryPath } from '../../safeGeneratedPath/assertSafeDirectoryPath.mjs';
 
 const sha = /^[0-9a-f]{40}$/i;
-const branchPattern = /^[a-z][a-z0-9/-]*$/;
+const branchPattern = /^[A-Za-z0-9][A-Za-z0-9._/-]*$/;
 const permitted = new Set(['typescript', 'markdown', 'specification', 'code']);
 const valid = value => typeof value === 'string' && value.length > 0 &&
   !path.isAbsolute(value) && !value.includes('\\') &&
@@ -47,9 +47,13 @@ const assertSafeTarget = (root, relative) => {
   const absolute = path.resolve(root, relative);
   if (!absolute.startsWith(root + path.sep)) throw new Error('Path escape: ' + relative);
   assertSafeDirectoryPath(path.dirname(absolute));
-  if (fs.existsSync(absolute) && (!fs.lstatSync(absolute).isFile() ||
-      fs.lstatSync(absolute).isSymbolicLink()))
-    throw new Error('Generated target is not an ordinary file: ' + relative);
+  try {
+    const stat = fs.lstatSync(absolute);
+    if (!stat.isFile() || stat.isSymbolicLink())
+      throw new Error('Generated target is not an ordinary file: ' + relative);
+  } catch (error) {
+    if (error.code !== 'ENOENT') throw error;
+  }
   return absolute;
 };
 const assertTypescript = file => {
@@ -75,8 +79,8 @@ export function preflightCourseSourceCommit(plan, { repoRoot } = {}) {
     throw new Error('Invalid Course Stage 5 source-preserving manifest');
   const root = path.resolve(repoRoot ?? '');
   assertSafeDirectoryPath(root);
-  if (!fs.existsSync(path.join(root, '.git')))
-    throw new Error('Stage 5 writer requires a real Git checkout');
+  if (git(root, ['rev-parse', '--show-toplevel']) !== root)
+    throw new Error('Stage 5 writer requires the exact Git checkout root');
   const head = git(root, ['rev-parse', 'HEAD']);
   const all = new Map();
   for (const file of plan.files) {
@@ -152,10 +156,9 @@ export function commitCourseSourcePlan(plan, options = {}) {
     throw new Error('Course Stage 5 Git commit was not explicitly authorized');
   const root = path.resolve(options.repoRoot ?? '');
   const branch = options.branch;
-  if (typeof branch !== 'string' || !branchPattern.test(branch) ||
-      branch.includes('//') || branch.endsWith('/') || branch.includes('/.') ||
-      !branch.startsWith('agent/') && !branch.startsWith('course/'))
+  if (typeof branch !== 'string' || !branchPattern.test(branch))
     throw new Error('Stage 5 requires a verified, explicit source branch');
+  git(root, ['check-ref-format', '--branch', branch]);
   const attached = spawnSync('git', ['symbolic-ref', '--quiet', 'HEAD'],
     { cwd: root, encoding: 'utf8' });
   if (attached.status === 0) throw new Error('Refusing to advance the active checkout branch');
