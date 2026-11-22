@@ -58,3 +58,17 @@ test('Scene refuses unsafe paths, missing source locale and array-valued authore
   }, context()), /arrays/);
   assert.throws(() => materializeScene({ ...scene(), id: '../../path' }, context()), /immutable UUID/);
 });
+
+test('Incomplete Scene staging retains an explicitly blocking, type-correct Config skeleton', () => {
+  const draft = { id: sceneId, slug: 'chooseShape', type: 'scene' as const };
+  const result = materializeScene(draft, context());
+  const code = result.files.at(-1)!.content;
+  assert.match(code, /"params": \{\}/);
+  assert.match(code, /"value": \{\}/);
+  assert.match(code, /TODO \(BLOCKER\): Complete Scene params\/locale.value/);
+  assert.equal(result.diagnostics[0]?.code, 'incomplete-scene-source');
+  parse(code);
+  assert.throws(() => materializeScene(draft, {
+    ...context(), registered: true, production: { specification: '# Reviewed' },
+  }), /completed Scene/);
+});
