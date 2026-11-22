@@ -49,7 +49,7 @@ const snapshot = (contents?: string): BankSourceSnapshot => ({
   },
 });
 const draftAuth = {
-  authorized: true as const, ownerLessonId,
+  authorized: true as const, ownerLessonId: lessonId,
   lessonSourceSha: sha('a'), referenceSha: sha('b'),
   methodologistReviewSha: sha('d'), snapshot: snapshot(),
 };
@@ -81,7 +81,7 @@ const question = () => ({
 });
 const editorial = 'export const reviewedBank = { reviewedAtStage3: true };\n';
 const finalAuth = (input: unknown = completeBank()) => ({
-  ownerLessonId,
+  ownerLessonId: lessonId,
   reviewed: {
     approved: true as const, reviewer: 'Qualified independent reviewer',
     content: editorial, blobSha: gitBlobSha(editorial),
