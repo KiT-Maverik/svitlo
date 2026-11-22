@@ -160,7 +160,9 @@ function reuseOptions() {
     exportName: 'actualLesson',
     importPath: '#lessonsData/1/' + reusedLessonId + '/index',
     configurator: {
-      id: reusedLessonId,
+      id: reusedLessonId, type: 'lesson',
+      config: { base: { id: reusedLessonId, type: 'lesson',
+        skills: [skill], params: { languages: ['uk'] } } },
       build: {
         props: () => ({ base: {}, locale: undefined }),
         overrides: (raw, selection) => {
@@ -252,4 +254,21 @@ test('verified built sparse Lesson override round-trips through real Lesson and 
   const actualCourseBuild = actualCourse.build.overrides(actualPatch, { languages: ['uk'] });
   assert.equal(actualCourseBuild.base.content[0].params.sections.allowSkipping, true);
   assert.equal(realLesson.build.props({ languages: ['uk'] }).base.params.sections.allowSkipping, false);
+});
+
+test('existing Lesson fails closed for a mismatched Course Skill even if resolver claims same SHA', () => {
+  const input = patchedSource();
+  input.config.content.items.directLesson.config.skills =
+    ['663572e7-bd85-4516-86e2-3de07d209e05'];
+  assert.throws(() => materializeCourseStage5(input, reuseOptions()), /identity, SHA, Build API or source locale not verified/);
+});
+test('reviewed patch expression rejects executable side-effect imports', () => {
+  const input = patchedSource();
+  const opts = reuseOptions();
+  const resolver = opts.resolveExistingLesson;
+  opts.resolveExistingLesson = (...args) => ({
+    ...resolver(...args),
+    rawPatchImports: ['import "unsafe-side-effect";'],
+  });
+  assert.throws(() => materializeCourseStage5(input, opts), /side-effect-only patch import/);
 });
