@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import ts from 'typescript';
 import test from 'node:test';
 import { materializeQuestTask } from './questTask';
 const id=(n:string)=>'12345678-1234-4234-8234-1234567890'+n;
@@ -9,6 +10,8 @@ test('Quest Task: one Scene delegation, typed import and a visible pending block
  renderScene:(child,ctx)=>({exportName:child.slug,files:[{path:ctx.directory+'/index.ts',kind:'typescript',content:'//scene'}],diagnostics:[]})
  });
  const src=out.files.at(-1)?.content??'';
+  const ast = ts.createSourceFile('source.ts', src, ts.ScriptTarget.Latest, true);
+  assert.equal(ast.parseDiagnostics.length, 0, 'generated TS must parse without errors');
  assert.match(src,/defineTask<"start", typeof languages>/);
  assert.match(src,/TODO \(BLOCKER\)/);
  assert.match(src,/child_scene/);

@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import ts from 'typescript';
 import test from 'node:test';
 import { materializeQuestSection } from './questSection';
 const id=(n:string)=>'12345678-1234-4234-8234-1234567890'+n;
@@ -11,6 +12,8 @@ test('Quest Section: independent start maps, no invented order, Build-only block
  const first=materializeQuestSection(q() as Parameters<typeof materializeQuestSection>[0],ctx);
  assert.deepEqual(materializeQuestSection(q() as Parameters<typeof materializeQuestSection>[0],ctx),first);
  const src=first.files.at(-1)?.content??'';
+  const ast = ts.createSourceFile('source.ts', src, ts.ScriptTarget.Latest, true);
+  assert.equal(ast.parseDiagnostics.length, 0, 'generated TS must parse without errors');
  assert.match(src,/defineQuestSection<"mission", typeof stages, typeof tasks, typeof languages>/);
  assert.match(src,/TODO \(BLOCKER\).*Build-only/);
  assert.doesNotMatch(src,/"order"/);

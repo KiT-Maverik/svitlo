@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import ts from 'typescript';
 import test from 'node:test';
 import { materializeContentSection, type ChildConfig } from './contentSection';
 
@@ -22,6 +23,8 @@ test('content: delegates exact subtree and preserves explicit collection/order/s
   assert.deepEqual(materializeContentSection(config as Parameters<typeof materializeContentSection>[0], options), first);
   assert.equal(first.files.find(file => file.path === 'sections/introduction/content/items/prompt/index.ts')?.content, '// child\n');
   const root = first.files.find(file => file.path === 'sections/introduction/index.ts')?.content ?? '';
+  const ast = ts.createSourceFile('source.ts', root, ts.ScriptTarget.Latest, true);
+  assert.equal(ast.parseDiagnostics.length, 0, 'generated TS must parse without errors');
   assert.match(root, /defineContentSection|defineContentSection/);
   assert.match(root, /typeof content.items, typeof languages/);
   assert.match(root, /"order": \["prompt"\]/);

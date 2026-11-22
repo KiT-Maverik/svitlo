@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import ts from 'typescript';
 import test from 'node:test';
 import { materializeLesson } from './lesson';
 import { materializeContentSection, type Source as ContentSource } from '../contentSection/contentSection';
@@ -24,6 +25,8 @@ test('Lesson source retains immutable ID, order and source-only active languages
  const first=materializeLesson(lesson() as Parameters<typeof materializeLesson>[0],options);
  assert.deepEqual(materializeLesson(lesson() as Parameters<typeof materializeLesson>[0],options),first);
  const root=first.files.at(-1)?.content??'';
+  const ast = ts.createSourceFile('source.ts', root, ts.ScriptTarget.Latest, true);
+  assert.equal(ast.parseDiagnostics.length, 0, 'generated TS must parse without errors');
  assert.match(root,/defineLesson<"basics", typeof languages, typeof section.items>/);
  assert.match(root,/"order": \["introduction"\]/);
  assert.match(root,new RegExp(id('01')));

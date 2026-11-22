@@ -104,6 +104,7 @@ export function materializeQuestSection(config: Source, options: Options): Resul
   const files:GeneratedFile[]=[],diagnostics:Diagnostic[]=[];
   const seen=new Set<string>(),imports:string[]=[];
   const values:Record<string,unknown>={};
+  const identities = new Set<string>([config.id]);
   for(const category of ['stages','tasks'] as const){
     const source=config[category];
     if(!isObject(source)||!Object.hasOwn(source,'start')) throw new Error('quest.'+category+': mandatory start child missing');
@@ -115,6 +116,8 @@ export function materializeQuestSection(config: Source, options: Options): Resul
       const raw=verifyChild(source[key],category==='stages'?'questStage':'questTask',key);
       if(ids.has(raw.config.id))throw new Error('quest.'+category+': duplicate UUID '+raw.config.id);
       ids.add(raw.config.id);
+      if (identities.has(raw.config.id)) throw new Error('quest: UUID reused across stages/tasks: '+raw.config.id);
+      identities.add(raw.config.id);
       const childDir=[dir,category,key].filter(Boolean).join('/');
       const child=(category==='stages'?options.renderStage:options.renderTask)(raw.config,{
         directory:childDir,documentLanguage:options.documentLanguage,languagesImport:options.languagesImport,

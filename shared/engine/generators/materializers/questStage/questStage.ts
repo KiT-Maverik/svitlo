@@ -106,6 +106,7 @@ export function materializeQuestStage(config: Source, options: Options): Result 
   const seen = new Set<string>(), imports: string[] = [];
   if (!isObject(config.content) || !isObject(config.content.video) || !isObject(config.content.audio))
     throw new Error('questStage.content: video and audio records required');
+  const mediaIds = new Set<string>([config.id]);
   const typePaths: Array<{path: string[]; expected: string; source: SourceChild | null}> = [
     { path: ['video','medium'], expected: 'video', source: config.content.video.medium },
     { path: ['video','small'], expected: 'video', source: config.content.video.small },
@@ -127,6 +128,8 @@ export function materializeQuestStage(config: Source, options: Options): Result 
     if (!isObject(raw.config) || raw.config.type !== entry.expected || !uuid.test(raw.config.id))
       throw new Error('questStage.content.' + entry.path.join('.') + ': invalid expected ' + entry.expected + ' Config');
     part(raw.config.slug, 'questStage.content.' + slot + '.slug');
+    if (mediaIds.has(raw.config.id)) throw new Error('questStage.content.' + slot + ': duplicate UUID');
+    mediaIds.add(raw.config.id);
     const childDir = [dir, 'content', ...entry.path].filter(Boolean).join('/');
     const result = options.renderMedia(raw.config, {
       directory: childDir, documentLanguage: options.documentLanguage,

@@ -99,6 +99,7 @@ export function materializeQuestTask(config: Source, options: Options): Result {
   if (!isObject(node.config) || node.config.type !== 'scene' || !uuid.test(node.config.id))
     throw new Error('questTask.scene: exactly one Scene Config with UUID required');
   part(node.config.slug, 'questTask.scene.slug');
+  if (node.config.id === config.id) throw new Error('questTask.scene: duplicate UUID');
   const childDir = [dir, 'scene'].filter(Boolean).join('/');
   const child = options.renderScene(node.config,{
     directory: childDir, documentLanguage: options.documentLanguage,
