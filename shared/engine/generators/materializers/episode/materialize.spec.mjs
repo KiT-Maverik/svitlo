@@ -38,3 +38,7 @@ test('Episode refuses unsupported child order and missing Section renderer',()=>
  assert.throws(()=>materializeEpisode(v,ctx()),/section.order/);
  assert.throws(()=>materializeEpisode(ep(),{sourceLanguage:'uk'}),/concrete Section renderer required/);
 });
+
+test('refuses directory traversal before source emission',()=>{
+ assert.throws(()=>materializeEpisode(ep(),{sourceLanguage:'uk',directory:'../unsafe'}),/unsafe generated directory/);
+});

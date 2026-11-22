@@ -32,3 +32,7 @@ test('Chapter renders Episode and reused Lesson at direct placement',()=>{
  assert.match(result.files.find(file=>file.path==='index.ts').content,/defineChapter</);
  syntax(result.files);
 });
+
+test('refuses directory traversal before source emission',()=>{
+ assert.throws(()=>materializeChapter(ch(),{sourceLanguage:'uk',directory:'../unsafe'}),/unsafe generated directory/);
+});

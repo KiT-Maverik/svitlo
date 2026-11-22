@@ -60,3 +60,7 @@ test('invalid ordering, unsafe placements and built override shape fail without 
  const patch=course();patch.content.items.directLesson.overrides={locale:{uk:{}}};
  assert.throws(()=>materializeCourse(patch,ctx()),/sparse/);
 });
+
+test('refuses directory traversal before source emission',()=>{
+ assert.throws(()=>materializeCourse(course(),{sourceLanguage:'uk',directory:'../unsafe'}),/unsafe generated directory/);
+});

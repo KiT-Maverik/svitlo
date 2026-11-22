@@ -32,3 +32,7 @@ test('Module handles direct Chapters, Episodes and Lesson placements',()=>{
  assert.match(first.files.find(file=>file.path==='index.ts').content,/defineModule</);
  syntax(first.files);
 });
+
+test('refuses directory traversal before source emission',()=>{
+ assert.throws(()=>materializeModule(mod(),{sourceLanguage:'uk',directory:'../unsafe'}),/unsafe generated directory/);
+});
