@@ -250,3 +250,23 @@ export function assertUniqueBankEntityIds(input: unknown): void {
   }
   visit(input, 'bank');
 }
+
+/** Production-pending nested editorial nodes must not be silently unwrapped. */
+export function assertNoPendingBankSources(input: unknown): void {
+  const visited = new WeakSet<object>();
+  function visit(value: unknown, at: string): void {
+    if (value === null || typeof value !== 'object') return;
+    if (visited.has(value)) return;
+    visited.add(value);
+    if (!Array.isArray(value)) {
+      const record = value as Record<string, unknown>;
+      const production = record.production;
+      if (production !== null && typeof production === 'object' &&
+          !Array.isArray(production) && (production as Record<string, unknown>).pending === true) {
+        throw new Error(at + ': pending bank authoring source cannot be finalized');
+      }
+    }
+    for (const [key, child] of Object.entries(value)) visit(child, at + '.' + key);
+  }
+  visit(input, 'bank');
+}
