@@ -43,14 +43,18 @@ Historical migration reference actually inspected on `integration/unified-yaml-m
 
 ## Verification and parent integration
 
-Each materializer has adjacent Node tests exercising deterministic filenames/source, nested delegated imports and type-specific constraints, TypeScript syntax parsing, ordered source, blocker preservation and create-only rejection. The Flashcard tests exercise side generation, flags, relationships and locale filtering.
+All **11 independently owned concrete materializers** have adjacent Node regression suites for deterministic source paths, blocked and incomplete states, exact collections/ordering, source locales, child delegation and create-only/no-clobber rejection. These tests are now included in the standard `@svitlo/engine` `test` command via `.test-build/generators/materializers/*/*.spec.js`, not merely compiled.
 
-**Manual verification commands after parent merges this branch and dependencies are installed:**
+The separate `selectOneAnswer/materializedTypecheck.spec.ts` **semantic TypeScript integration test** invokes real Question, Flashcard and FlashcardSide materializers, uses real `defineText` ContentBlock source fixtures, writes the generated modules to a safely cleaned ignored `temp/` directory, and compiles all emitted TypeScript with `ts.createProgram` against the real `@svitlo/engine/build` authoring type declarations. Unlike `ts.transpileModule`, this checks imported module types, child type constraints and explicit `define*` generic compatibility. It is a representative smoke test, **not** exhaustive typechecking of every Question variant or a claim of production publication readiness.
+
+**Verified in GitHub Actions on `34886e73`:** [Engine coverage run #45052061817](https://github.com/KiT-Maverik/svitlo/actions/runs/45052061817) completed successfully after executing the registered materializer specs and semantic compilation fixture, alongside the existing Engine suite. It also passed Engine build and test TypeScript compilation. Earlier [run #45051762425](https://github.com/KiT-Maverik/svitlo/actions/runs/45051762425) exposed incorrect empty-prompt and FlashcardSide diagnostic test fixtures, corrected at `34886e73`; those tests now execute and pass. The run is evidence for the pinned SHA, not automatically for later parent changes.
+
+Local reproduction with installed workspace dependencies:
 
 ```sh
-npm run code:check:types --workspace @svitlo/engine
+npm run package:build --workspace @svitlo/engine
 npx tsc -p shared/engine/tsconfig.test.json
 node --test shared/engine/.test-build/generators/materializers/*/*.spec.js
 ```
 
-The current Draft GitHub workflows are lightweight and may defer these type/test suites. They must **not** be marked passed until actually executed. The parent must also confirm full Engine Config validation of emitted complete source, correct generic constraints, GitHub SHA-pinned review evidence, exact writers and materialization/publisher integration. No Ready transition or merge is authorized by this subtask.
+The **parent #775 integration** still owns complete generator-to-production Stage 5 wiring, all-kind final Config validation, GitHub SHA-pinned editorial review, safe atomic filesystem writing and source eligibility gates. The new Stage 1 bank handoff types and Lesson→bank orchestration are also parent/#777 responsibilities. No Ready transition or merge is authorized by this subtask.

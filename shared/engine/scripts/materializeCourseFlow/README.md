@@ -1,4 +1,6 @@
-# Materialize a reviewed Course plan (Stage 5)
+# Legacy YAML Course materializer (retained during typed Stage 5 migration)
+
+**Migration status:** This command still consumes reviewed `course.yaml`. The new [typed Course production Skill](../../../../studio/skills/course-workflow/create-course-flow.skill.md) uses `CourseWorkflowStage1/2/3` TypeScript objects and **cannot** invoke this YAML-only materializer. Retain this script and its tests until the replacement typed Stage 5 and trusted CI command have demonstrated equivalent safety and consumers are migrated. The following instructions describe **legacy implementation behavior only**, not how to author a new Course.
 
 This Engine utility consumes **one temporary Course YAML** under content/<book>/data/courses/<bucket>/<course-uuid>/course.yaml. It creates Course-owned TypeScript/Markdown drafts and any required Lesson methodology-only YAML handoffs. It never writes intermediate config.yaml and never opens Lesson PRs. The resulting Course TS/Markdown files are the durable source of truth.
 
