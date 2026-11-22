@@ -139,8 +139,9 @@ function authorizations(meta, input, root) {
   }
   const lesson = input?.production?.lesson;
   const questions = input?.production?.questions;
-  if (!lesson || lesson.id !== meta.identity.id || !questions) {
-    throw Error('Flashcards require the verified Lesson and Questions-first source');
+  if (!lesson || lesson.id !== meta.identity.id || !questions ||
+      questions.kind !== meta.parentQuestions || !SHA.test(meta.parentHeadSha || '')) {
+    throw Error('Flashcards require the pinned parent Lesson Questions-first decision and source');
   }
   assertSourceRevision(root, lesson.sourceSha, lessonDirectory + '/index.ts', meta, 'Flashcards Lesson source');
   assertSourceRevision(root, lesson.reference.sourceSha, lesson.reference.path, meta, 'Flashcards reference');
