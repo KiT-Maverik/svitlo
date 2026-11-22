@@ -6,33 +6,71 @@ import {materializeModule} from './materialize.mjs';
 import {materializeChapter} from '../chapter/materialize.mjs';
 import {materializeEpisode} from '../episode/materialize.mjs';
 const ts=createRequire(import.meta.url)('typescript');
-const IDs={"course":"50d8cd6f-41f1-4cb4-a156-d6f898d552a7","module":"f1ac35c6-19e3-49ab-af76-4105b02412b2","chapter":"b2d91c34-5847-48cb-bc88-1721ef7055ea","episode":"fe1042c9-9b4a-4b8d-af84-a1b7b036bc89","lesson":"778597bc-a34a-472d-a317-69c97ff452e6"};
+const IDs={course:'50d8cd6f-41f1-4cb4-a156-d6f898d552a7',
+ module:'f1ac35c6-19e3-49ab-af76-4105b02412b2',chapter:'b2d91c34-5847-48cb-bc88-1721ef7055ea',
+ episode:'fe1042c9-9b4a-4b8d-af84-a1b7b036bc89',lesson:'778597bc-a34a-472d-a317-69c97ff452e6'};
+const skillId='00000000-0000-4000-8000-000000000015';
+const methodology={purpose:'Teaching',audience:'Learners',approach:'Explore',depth:'Introductory',
+ accessibility:'Accessible delivery',scope:'Core',entryConditions:'None',sourceNotes:'Verified sources'};
+const matching={methodologySourcePath:'content/book/data/lessons/6/lesson-id/methodology.md',
+ sourceSha:'verified-source-sha',matchingRationale:'Same Skills and intended depth',languageEvidence:'uk reviewed'};
 const section=(slug,id)=>({type:'content',id,slug,params:{},locale:{title:{uk:'Розділ'}},content:{items:{},order:[]}});
-const ep=(slug='episodeOne')=>({type:'episode',id:IDs.episode,slug,params:{languages:['uk','en']},locale:{title:{uk:'Пригода',en:'Journey'}},section:{items:{opening:section('opening','1e2e9488-6304-4d87-b597-f13ac724c3b5')},order:['opening']}});
-const ch=(slug='chapterOne')=>({type:'chapter',id:IDs.chapter,slug,params:{},locale:{title:{uk:'Глава'}},content:{items:{episodeOne:ep()},order:['episodeOne']}});
-const mod=(slug='moduleOne')=>({type:'module',id:IDs.module,slug,params:{},locale:{title:{uk:'Модуль'}},content:{items:{chapterOne:ch()},order:['chapterOne']}});
-const lesson=(slug,tag)=>({type:'lesson',slug,lessonId:IDs.lesson,overrides:{base:{locale:{title:tag}},locale:{uk:{locale:{title:tag}}}}});
-const course=()=>({type:'course',id:IDs.course,slug:'rootCourse',params:{languages:['uk','en'],scenarioMode:'story'},locale:{title:{uk:'Курс',en:'Course'},description:{uk:'Про курс',en:'Description'}},content:{items:{moduleOne:mod(),directEpisode:{...ep('directEpisode'),id:'ec4a2e1f-5f42-40ef-a879-e668b59b8d04'},directLesson:lesson('directLesson','А')},order:['moduleOne','directEpisode','directLesson']}});
-const sectionRenderer=(node,ctx)=>({id:node.id,exportName:node.slug,files:[{path:ctx.directory+'/index.ts',kind:'typescript',content:'export const '+node.slug+' = {};\\n'}]});
+const ep=(slug='episodeOne',id=IDs.episode)=>({config:{type:'episode',id,slug,
+ params:{languages:['uk','en']},locale:{title:{uk:'Пригода',en:'Journey'}},
+ section:{items:{opening:section('opening','1e2e9488-6304-4d87-b597-f13ac724c3b5')},order:['opening']}},
+ production:{focus:'Narrative situation',purpose:'Contextual transition'}});
+const lesson=(slug,tag,lessonId=IDs.lesson)=>({config:{type:'lesson',slug,skills:[skillId]},
+ production:{kind:'existing',existing:{id:lessonId,base:{locale:{title:tag}},locale:{uk:{locale:{title:tag}}}},
+ matching,overrideRationale:'Adapt title to Course sequence'}});
+const newLesson=slug=>({config:{type:'lesson',slug,skills:[skillId],locale:{title:{uk:'Новий урок'}}},
+ production:{kind:'new',methodology:'Reviewed comprehensive independent methodology',objective:'Describe observations',
+ depth:'Introductory',sequenceReason:'Introduce facts before applying',assessmentEvidence:'Practical checkpoint'}});
+const unitProduction={methodology:'Methodologically reviewed unit',outcomes:{skills:[skillId]},
+ prerequisites:{skills:[]},depth:'Introductory',sequenceReason:'Prerequisite order'};
+const ch=(slug='chapterOne')=>({config:{type:'chapter',slug,locale:{title:{uk:'Глава'}},
+ content:{items:{episodeOne:ep()},order:['episodeOne']}},production:{...unitProduction}});
+const mod=(slug='moduleOne')=>({config:{type:'module',slug,locale:{title:{uk:'Модуль'}},
+ content:{items:{chapterOne:ch()},order:['chapterOne']}},production:{...unitProduction}});
+const course=()=>({config:{type:'course',id:IDs.course,slug:'rootCourse',
+ params:{age:{min:6,max:10}},locale:{title:{uk:'Курс',en:'Course'},description:{uk:'Про курс',en:'Description'}},
+ content:{items:{moduleOne:mod(),directEpisode:ep('directEpisode','ec4a2e1f-5f42-40ef-a879-e668b59b8d04'),
+ directLesson:lesson('directLesson','Зміна')},order:['moduleOne','directEpisode','directLesson']}},
+ production:{languages:{document:'uk',planned:['uk','en']},methodology,
+ outcomes:{explanation:'Recognize observable patterns'},prerequisites:{explanation:'None'},
+ standardsAlignment:[],openDecisions:{}}});
+const sectionRenderer=(node,ctx)=>({id:node.config?.id??node.id,exportName:node.config?.slug??node.slug,
+ files:[{path:ctx.directory+'/index.ts',kind:'typescript',content:'export const opening = {};\n'}]});
 const reused=[];
 const lessonBridge=(node,ctx)=>{
- reused.push({location:ctx.directory,lessonId:node.lessonId,overrides:ctx.overrides});
- return {lessonId:node.lessonId,exportName:node.slug,files:[{path:ctx.directory+'/index.ts',kind:'typescript',content:'export const '+node.slug+' = {};\\n'}]};
+ reused.push({location:ctx.directory,lessonId:ctx.lessonId,kind:ctx.kind,existing:ctx.existing});
+ return {lessonId:ctx.lessonId??'80d31f41-75ac-4210-9a6d-7b4c75ad698e',
+ exportName:node.config.slug,files:[{path:ctx.directory+'/index.ts',kind:'typescript',
+ content:'export const '+node.config.slug+' = {};\n'}]};
 };
+const ctx=()=>({sourceLanguage:'uk',deriveId:(kind,placement)=>kind==='module'?IDs.module:kind==='chapter'?IDs.chapter:IDs.episode,
+ materializeCourse,materializeModule,materializeChapter,materializeEpisode,
+ materializeSection:sectionRenderer,materializeLessonPlacement:lessonBridge});
+const syntax=files=>{for(const file of files.filter(file=>file.kind==='typescript'))
+ assert.equal(ts.createSourceFile(file.path,file.content,ts.ScriptTarget.Latest,true,ts.ScriptKind.TS).parseDiagnostics.length,0,file.path)};
 
-const ctx=()=>({sourceLanguage:'uk',materializeCourse,materializeModule,materializeChapter,materializeEpisode,materializeSection:sectionRenderer,materializeLessonPlacement:lessonBridge});
-const syntax=files=>{for(const file of files.filter(file=>file.kind==='typescript'))assert.equal(ts.createSourceFile(file.path,file.content,ts.ScriptTarget.Latest,true,ts.ScriptKind.TS).parseDiagnostics.length,0,file.path)};
-test('Module handles direct Chapters, Episodes and Lesson placements',()=>{
+test('Module uses Stage 2/3 wrapped Chapter/Lesson nodes and optional params and UUIDs',()=>{
  const value=mod();
- value.content.items.directLesson=lesson('directLesson','Додано');
- value.content.order.push('directLesson');
- const first=materializeModule(value,ctx());
- assert.ok(first.files.some(file=>file.path==='content/chapterOne/index.ts'));
- assert.ok(first.files.some(file=>file.path==='content/directLesson/index.ts'));
- assert.match(first.files.find(file=>file.path==='index.ts').content,/defineModule</);
- syntax(first.files);
+ value.config.content.items.directLesson=lesson('directLesson','Додано');
+ value.config.content.order.push('directLesson');
+ const out=materializeModule(value,ctx());
+ assert.ok(out.files.some(file=>file.path==='content/chapterOne/index.ts'));
+ assert.ok(out.files.some(file=>file.path==='content/directLesson/index.ts'));
+ const main=out.files.find(file=>file.path==='index.ts').content;
+ assert.match(main,/defineModule</);
+ assert.match(main,/params: \{  \}/);
+ assert.equal(out.id,IDs.module);
+ syntax(out.files);
 });
-
-test('refuses directory traversal before source emission',()=>{
+test('Module rejects Stage 2 unresolved Lesson slots',()=>{
+ const value=mod();value.config.content.items.placeholder={config:{type:'lesson',skills:[skillId]}};
+ value.config.content.order.push('placeholder');
+ assert.throws(()=>materializeModule(value,ctx()),/production.kind/);
+});
+test('Module refuses unsafe source directory',()=>{
  assert.throws(()=>materializeModule(mod(),{sourceLanguage:'uk',directory:'../unsafe'}),/unsafe generated directory/);
 });
