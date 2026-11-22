@@ -138,6 +138,8 @@ test('typed gate re-checks review blobs, genealogy, parent and source SHA', asyn
     };
     const parent = {
       state: 'open',
+      body: '<!-- svitlo-course-flow:v1 -->\n- Course UUID: ' +
+        courseId + '\n- Textbook: ' + pkg + '\n',
       head: { sha: sha('f'), ref: 'course/integration', repo: { full_name: 'KiT-Maverik/svitlo' } },
       base: { ref: 'develop', repo: { full_name: 'KiT-Maverik/svitlo' } },
     };
