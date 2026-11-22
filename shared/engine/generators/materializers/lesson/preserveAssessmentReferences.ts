@@ -96,7 +96,7 @@ function pickSelections(
     if (node.config.type !== 'quiz' && node.config.type !== 'flashcards') continue;
     const kind = node.config.type;
     const field = kind === 'quiz' ? 'questionIds' : 'flashcardIds';
-    const params = node.config.params as Record<string, unknown> | undefined;
+    const params = node.config.params as unknown as Record<string, unknown> | undefined;
     const selection = params?.selection as Record<string, unknown> | undefined;
     const ids = selection?.[field];
     if (!Array.isArray(ids) || !ids.length) continue; // Unresolved selection stays a TODO blocker.
@@ -170,7 +170,7 @@ export function preserveAssessmentReferences(
 ): Result['files'] {
   const selections = pickSelections(sourceText, sourcePath, input);
   if (!selections.length) return files;
-  const replacements = new Map(selections.map(selection => [
+  const replacements = new Map<string, Selection>(selections.map(selection => [
     posix.join(posix.dirname(sourcePath), 'sections', selection.sectionKey, 'index.ts'),
     selection,
   ]));
