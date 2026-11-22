@@ -131,6 +131,17 @@ function treeEntries(context: BankGitContext): BankSourceSnapshot['entries'] {
     if (!record.startsWith('040000 tree ') || !record.endsWith('\t' + ancestor)) {
       throw new Error('Non-directory or symlink Git ancestor: ' + ancestor);
     }
+    const parent = pieces.slice(0, i - 1).join('/');
+    const parentTree = context.expectedHeadSha + (parent ? ':' + parent : '');
+    const siblings = git(context, ['ls-tree', '-z', parentTree]).split('\0');
+    for (const sibling of siblings) {
+      if (!sibling) continue;
+      const name = sibling.slice(sibling.indexOf('\t') + 1);
+      if (name.toLowerCase() === pieces[i - 1].toLowerCase() &&
+          name !== pieces[i - 1]) {
+        throw new Error('Case-insensitive Git Lesson path collision: ' + parent + '/' + name);
+      }
+    }
   }
   return entries;
 }
@@ -196,7 +207,7 @@ function assertNoExternalEntityCollisions(context: BankGitContext, plan: BankSou
   const ids = new Set<string>();
   const declaration = /["']?id["']?\s*:\s*["']([a-fA-F0-9]{8}-(?:[a-fA-F0-9]{4}-){3}[a-fA-F0-9]{12})["']/g;
   for (const file of plan.files) {
-    if (file.kind !== 'typescript' || file.path.endsWith('/index.ts')) continue;
+    if (file.kind !== 'typescript') continue;
     for (const match of file.content.matchAll(declaration)) ids.add(match[1].toLowerCase());
   }
   if (!ids.size) return;
