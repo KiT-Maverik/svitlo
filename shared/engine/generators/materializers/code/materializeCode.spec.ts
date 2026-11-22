@@ -2,9 +2,12 @@ import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import ts from 'typescript';
 import { materializeCode } from './materializeCode';
+import type { CourseWorkflowStage1Languages } from '../../../types/workflow';
 
 const id = 'c2cc84f3-f057-493d-b1b6-1880aad8023b';
-const options = { documentLanguage: 'uk', plannedLanguages: ['uk', 'en'] };
+// The reviewed Course Stage 1 source is typed with production.languages.
+const productionLanguages: CourseWorkflowStage1Languages = { document: 'uk', planned: ['uk', 'en'] };
+const options = { documentLanguage: productionLanguages.document, plannedLanguages: productionLanguages.planned };
 const valid = () => ({
   id, slug: 'sourceCode' as const, type: 'code' as const,
   params: { language: 'python', codeAsText: 'print(%_%NAME%_%)\n' },
@@ -27,6 +30,7 @@ test('code: exact source, imports, locale pruning, deterministic non-writing pla
   const parsed = ts.createSourceFile('index.ts', module, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS);
   assert.equal(parsed.parseDiagnostics.length, 0, 'emitted TS must parse');
   assert(one.diagnostics.some(item => item.code === 'pending-locales'));
+  assert(one.diagnostics.every(item => item.severity === 'warning'));
   assert.match(module, /readCodeSource\(import.meta.url, "py"\)/);
   assert.equal(one.files.find(file => file.path === 'code.py')?.content, 'print(%_%NAME%_%)\n');
   assert.throws(() => materializeCode({ ...valid(), params: { language: 'unknown', codeAsText: 'x' } },
@@ -50,4 +54,18 @@ test('code: refuses unsafe identity or unsupported source language', () => {
     /missing source language/);
   assert.throws(() => materializeCode({ ...valid(), slug: '../bad' }, { documentLanguage: 'uk' }),
     /unsafe or missing slug/);
+});
+
+test('code: composed nested source paths and Course language handoff', () => {
+  const directory = 'sections/intro/content/items/code';
+  const nested = materializeCode(valid(), {
+    ...options, directory, languagesImport: '../../../../../languages',
+    production: { specification: 'Reviewed source brief' },
+  });
+  assert(nested.files.every(file => file.path.startsWith(directory + '/')));
+  assert(nested.files.some(file => file.path === directory + '/index.ts'));
+  assert(nested.files.some(file => file.path === directory + '/specification.md'));
+  assert(nested.files.find(file => file.path.endsWith('/index.ts'))?.content.includes('from "../../../../../languages"'));
+  assert.throws(() => materializeCode(valid(), { ...options, directory: '../escape' }), /unsafe output path/);
+  assert.throws(() => materializeCode(valid(), { ...options, directory }), /explicit root languages module/);
 });
