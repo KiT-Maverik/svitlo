@@ -9,6 +9,10 @@ These instructions apply to permanent scripts under `shared/engine/scripts/`. Re
 3. Distinguish **observed implementation**, **explicit intended contract**, **historical editorial workflows**, and **proposed changes**. When they differ, report the difference. Do not reinterpret a documented non-goal as missing functionality.
 4. Keep each permanent script in a named directory with nearby tests. Never move build-only imports into `@svitlo/engine/runtime`. For temporary one-off transformations use the owning package's ignored `temp/` instead.
 
+## Legacy converter scope during typed-production migration
+
+The YAML-centric instructions below are the **observed existing scripts' contracts**, not the canonical starting format for **new** Course/Lesson/Questions/Flashcards work. New staged editorial sources and Stage 1 handoffs are owned by #775/#782/#783/#784. Keep YAML consumers and required schemas until source-SHA-verified Stage 5/Stage 6 typed orchestration and trusted CI are actually installed. Never feed incomplete editorial `index.ts` files directly to Props publication or use a publisher as a source materializer. Existing Scene/specification, Section draft and no-clobber requirements stay mandatory for legacy PRs.
+
 ## Independent assessment resource publication
 
 The new `generateAssessmentResources/` command compiles already-authored typed Question/Flashcard banks into separate generated resources and metadata manifests. It does not consume or generate `questions.yaml` or `flashcards.yaml`; those are approved editorial sources requiring separate conversion. The named `flashcardBuilder/` now supports a narrowly scoped create-only typed TS scaffold for reviewed, Engine-shaped source-language Flashcard YAML (Text/Markdown/Code and incomplete Audio/Image/Video/Subtitles placeholders). It is NOT an assessment publisher, media resolver, Question-reference resolver, translator or approval system. Every generated media draft contains a visible `TODO(asset)`, plus

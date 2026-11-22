@@ -44,6 +44,12 @@ Reviewers should start from the compact PR comment, inspect the gap-only JSON
 artifact for the remaining locations, and design behavioral tests. A high
 percentage alone does not establish that the assertions detect realistic bugs.
 
+## Staged educational production versus resource generation
+
+Parent #775 contains `CourseWorkflowStage1/2/3` and `CourseWorkflowMaterializerInput` **editorial TypeScript types**. Draft PRs #782–#784 develop corresponding Lesson, Question Bank and Flashcard Bank stages. A `LessonWorkflowStage1`, `QuestionBankWorkflowStage1` or `FlashcardBankWorkflowStage1` `index.ts` handoff is **not** `defineLesson`, a Question/Card Configurator, reviewed production output or published Props. The trusted orchestrators replacing `lesson.yaml`/`questions.yaml`/`flashcards.yaml` workflows have not yet been integrated and tested. See [Studio's typed/YAML boundary](../../studio/docs/architecture/yaml-config-scaffolding.md).
+
+The current `scripts/{lessonBuilder,questionsBuilder,flashcardBuilder,finalizeLesson,generateYamlSchemas}/` are live **legacy editor/source-conversion tools** with package and CI callers. Retire them only after proven replacement; their purpose differs from `generateLessonProps`, `generateCourseProps`, `generateAssessmentResources` and the review-reference generators, which must continue publishing and validating completed authored Configs. Never send a Stage 1 draft directly to the Props pipeline.
+
 ## Lesson and Course generation
 
 The build-time CLI entrypoints are under `scripts/generateLessonProps/` and `scripts/generateCourseProps/`, each with its own tests. Lesson and Course publication modules live under `generators/{lessons,courses}/` with their unit tests. The shared textbook build invokes the named Engine CLIs without root-level generator wrappers. Build-time APIs belong to `@svitlo/engine/build`; `@svitlo/engine/runtime` remains free of Node filesystem and authored configurators.
