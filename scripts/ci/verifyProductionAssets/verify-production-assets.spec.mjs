@@ -96,3 +96,26 @@ test('Episode Course source media TODOs block release but not unrelated Lessons'
 test('Git comparison requires full SHAs', () => {
   assert.throws(() => changedPaths('main', 'HEAD', '/tmp'), /full Git commit SHAs/);
 });
+
+test('typed Preview UUIDs and Draft-only factories block Ready source, but not unrelated entities or completed source', () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-provisional-ready-'));
+  try {
+    const draftId = 'feedc0de-abcd-8abc-abcd-0123456789ab';
+    file(root, lesson + '/index.ts',
+      "import { definePendingLesson } from '@svitlo/engine/build';\n" +
+      'const draft = "' + draftId + '";\n');
+    file(root, course + '/index.ts', 'export const course = true;\n');
+    const findings = verifyChangedEntities(root, [lesson + '/index.ts']);
+    assert.equal(findings.filter(item => item.includes('unresolved Preview UUID')).length, 2);
+    assert(findings.every(item => item.includes(lesson)), 'the unchanged Course is outside this scope');
+    file(root, lesson + '/index.ts', 'export const authoredLesson = true;\n');
+    assert.deepEqual(verifyChangedEntities(root, [lesson + '/index.ts']), []);
+    file(root, lesson + '/questions/index.ts', 'export const question = "' + draftId + '";\n');
+    file(root, lesson + '/flashcards/index.ts', '// sibling unfinished bank; not checked here\n');
+    assert(verifyChangedEntities(root, [lesson + '/questions/index.ts'])
+      .some(item => item.includes('questions/index.ts:1')));
+    assert.deepEqual(verifyChangedEntities(root, [lesson + '/flashcards/index.ts']), []);
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
+});
