@@ -91,6 +91,9 @@ export function materializeCheckpoint(config: CheckpointSource, context: Checkpo
     imports.push('import { ' + result.exportName + ' as ' + alias + ' } from ' + JSON.stringify('./content/items/' + key) + ';');
     entries.push('    ' + JSON.stringify(key) + ': ' + alias + ',');
     for (const f of result.files) {
+      if (!f.path.startsWith(target + '/')) {
+        throw new Error('Checkpoint.content.items.' + key + ': child emitted a file outside its owned directory: ' + f.path);
+      }
       if (paths.has(f.path) || f.path === (directory ? directory + '/' : '') + 'index.ts') {
         throw new Error('Checkpoint: duplicate output path ' + f.path);
       }
