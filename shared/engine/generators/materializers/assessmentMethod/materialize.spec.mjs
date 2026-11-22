@@ -19,3 +19,7 @@ test('assessmentMethod refuses fake identity and path traversal',()=>{
  assert.throws(()=>materializeAssessmentMethod({...example(),id:undefined},{sourceLanguage:'uk'}),/immutable UUID/);
  assert.throws(()=>materializeAssessmentMethod({...example(),slug:'../bad'},{sourceLanguage:'uk'}),/unsafe slug/);
 });
+
+test('assessmentMethod rejects escaped destination directories',()=>{
+ assert.throws(()=>materializeAssessmentMethod(fixture(),{sourceLanguage:'uk',directory:'../unsafe'}),/unsafe generated directory/);
+});

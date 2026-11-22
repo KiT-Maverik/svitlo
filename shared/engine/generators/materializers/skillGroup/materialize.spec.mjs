@@ -28,3 +28,13 @@ test('invalid child slug and unresolved dependency fail explicitly',()=>{
  assert.throws(()=>materializeSkillGroup(raw,{sourceLanguage:'uk',materializeSkill,materializeSkillGroup:undefined}),/slug mismatch/);
  assert.throws(()=>materializeSkillGroup(config(),{sourceLanguage:'uk'}),/missing .* renderer/);
 });
+
+test('skillGroup rejects escaped destination directories',()=>{
+ assert.throws(()=>materializeSkillGroup(value(),{sourceLanguage:'uk',directory:'../unsafe'}),/unsafe generated directory/);
+});
+
+test('missing Skill ID and slug are filled by parent-scoped deterministic materialization',()=>{
+ const v=value();delete v.skills.skillOne.id;delete v.skills.skillOne.slug;
+ const result=materializeSkillGroup(v,{sourceLanguage:'uk',materializeSkill,deriveId:(kind,placement)=>childId});
+ assert.ok(result.files.some(file=>file.path==='skills/skillOne/index.ts'));
+});

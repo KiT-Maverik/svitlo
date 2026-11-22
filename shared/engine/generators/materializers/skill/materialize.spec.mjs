@@ -19,3 +19,7 @@ test('skill refuses fake identity and path traversal',()=>{
  assert.throws(()=>materializeSkill({...example(),id:undefined},{sourceLanguage:'uk'}),/immutable UUID/);
  assert.throws(()=>materializeSkill({...example(),slug:'../bad'},{sourceLanguage:'uk'}),/unsafe slug/);
 });
+
+test('skill rejects escaped destination directories',()=>{
+ assert.throws(()=>materializeSkill(fixture(),{sourceLanguage:'uk',directory:'../unsafe'}),/unsafe generated directory/);
+});

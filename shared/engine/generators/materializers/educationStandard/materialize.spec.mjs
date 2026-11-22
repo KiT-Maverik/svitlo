@@ -19,3 +19,7 @@ test('educationStandard refuses fake identity and path traversal',()=>{
  assert.throws(()=>materializeEducationStandard({...example(),id:undefined},{sourceLanguage:'uk'}),/immutable UUID/);
  assert.throws(()=>materializeEducationStandard({...example(),slug:'../bad'},{sourceLanguage:'uk'}),/unsafe slug/);
 });
+
+test('educationStandard rejects escaped destination directories',()=>{
+ assert.throws(()=>materializeEducationStandard(fixture(),{sourceLanguage:'uk',directory:'../unsafe'}),/unsafe generated directory/);
+});
