@@ -26,6 +26,8 @@ export type {
   CourseWorkflowStage3Chapter,
   CourseWorkflowStage3LessonSlot,
   CourseWorkflowStage3LessonIntent,
+  CourseWorkflowStage3AssessmentRequirements,
+  CourseWorkflowMaterializerInput,
   CourseWorkflowStage3LessonMatch,
   CourseWorkflowStage3NewLesson,
   CourseWorkflowStage3ExistingLesson,
