@@ -18,6 +18,22 @@ const pendingEpisode = {
   config: { type: 'episode' },
   production: { focus: 'Reviewed story context', purpose: 'Pedagogical transition' },
 };
+const pendingLesson = {
+  config: { type: 'lesson', slug: 'lessonOne',
+    skills: ['663572e7-bd85-4516-86e2-3de07d209e04'],
+    params: { quizRequiredForCompletion: true },
+    locale: { title: { uk: 'Спостереження' } } },
+  production: {
+    kind: 'new',
+    methodology: 'Reviewed complete objective, pedagogy, cognitive depth and misconception handling',
+    objective: 'Independently describe and compare observed changes',
+    depth: 'Introductory',
+    sequenceReason: 'Introduces direct observation before narrative application',
+    assessmentEvidence: 'Observable comparison',
+    assessment: { questionBankRequired: true, flashcardBankRequired: false,
+      quizSectionRequired: true, flashcardsSectionRequired: false },
+  },
+};
 const input = {
   config: {
     id, slug: 'skyBasics', type: 'course',
@@ -31,7 +47,7 @@ const input = {
               items: { chapterOne: {
                 config: { type: 'chapter', slug: 'chapterOne',
                   locale: { title: { uk: 'Розділ' } },
-                  content: { items: { episodeOne: pendingEpisode }, order: ['episodeOne'] } },
+                  content: { items: { lessonOne: pendingLesson, episodeOne: pendingEpisode }, order: ['lessonOne', 'episodeOne'] } },
                 production: unit(),
               } }, order: ['chapterOne'],
             },
@@ -78,7 +94,7 @@ function diagnostics(files) {
     : oldFile(file, language, onError, createNew);
   return ts.getPreEmitDiagnostics(ts.createProgram([...virtual.keys()], opts, host));
 }
-test('canonical reviewed Stage3 Course/Module/Chapter/provisional Episode source typechecks against actual Engine Build', () => {
+test('canonical Stage3 Course hierarchy and UUID Lesson Stage1 handoff typecheck against actual Engine Build', () => {
   const root = 'content/playground/data/courses/3/' + id;
   const source = materializeCourseStage5(input, {
     textbookRoot: 'content/playground',
@@ -90,7 +106,12 @@ test('canonical reviewed Stage3 Course/Module/Chapter/provisional Episode source
   });
   assert.equal(source.publishable, false);
   assert.ok(source.diagnostics.some(d => d.code === 'pending-episode-scenario'));
-  assert.equal(source.files.filter(file => file.kind === 'typescript').length, 5);
+  assert.ok(source.diagnostics.some(d => d.code === 'pending-lesson-stage1'));
+  const handoff = source.files.filter(file => file.path.includes('/data/lessons/') && file.kind === 'typescript');
+  assert.equal(handoff.length, 1);
+  assert.match(handoff[0].content, /satisfies LessonWorkflowStage1 & LessonWorkflowStage1CourseHandoff/);
+  assert.doesNotMatch(handoff[0].content, /defineLesson\\s*\\(/);
+  assert.equal(source.files.filter(file => file.kind === 'typescript').length, 6);
   const errors = diagnostics(source.files);
   assert.deepEqual(errors.map(error => {
     const loc = error.file?.getLineAndCharacterOfPosition(error.start ?? 0);
