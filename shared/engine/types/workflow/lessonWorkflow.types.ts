@@ -239,5 +239,12 @@ export type LessonWorkflowStage2 = Omit<LessonWorkflowStage1, 'config'> & {
   config: LessonWorkflowStage2Config;
 };
 
-/** Stage 6 materializers consume only the final Stage 5 reviewed Stage 2 source. */
+/**
+ * The reviewed Stage 2 object is the final editorial INPUT to the trusted
+ * Stage 6 orchestrator, not directly to materializeLesson(Source). That concrete
+ * renderer requires a complete Lesson_Config, including params.languages and
+ * independently completed Section Configs; the orchestrator must derive/verify
+ * them and fail closed on incomplete bank selections. The original Lesson
+ * root index.ts must never be silently overwritten by emitted root index.ts.
+ */
 export type LessonWorkflowMaterializerInput = LessonWorkflowStage2;
