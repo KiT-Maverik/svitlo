@@ -17,6 +17,10 @@ Reusable agent report workflow: [Agent CI Artifacts](../../../.github/workflows/
 
 **Never edit generated Markdown to change translations.** The one-day Actions ZIP is a disposable preview of canonical Code. There is no repository reference directory, new report cleanup commit or automatic cleanup at Ready; only canonical source and review evidence belong in Git.
 
+## Typed Stage 1 handoffs are not translation reference sources
+
+Course Stage 5 and Lesson Stage 7/8 may hand off only typed Stage 1 Lesson/Question/Flashcard `index.ts` plans. Those do **not** yet contain complete source-language ContentBlocks, Question/Card banks or localized Props. Do not request complete generated Lesson/Bank Markdown or record linguistic approval from these files. Wait for the owning Lesson Stage 6 or each bank Stage 5 **completed source** and verify the exact SHA and requested locale before invoking the existing reference-artifact generators. Preserve the same entity-owned PR and distinct reviewer context, one-day scoped artifacts, translation completeness and accessibility/RTL checks. Existing YAML-sourced completed entities still use their deployed review path.
+
 ## Lesson translation review references
 
 Canonical implemented Lessons are discovered under `content/<textbook>/data/lessons/<last-uuid-hex-digit>/<lesson-uuid>/*.data.ts`. The same on-demand command includes `lessons/<textbook>/<bucket>/<lesson-uuid>/<language>.md` in the ZIP. Each document includes Lesson Sections, the complete Question Bank, Flashcard Bank and descriptive metadata for non-text media, without embedding media. Reviewers should select the assigned Lesson and language, verify `manifest.json` for missing documents/failures, compare the source meaning, and make changes only to canonical authored code. Do not edit temporary Markdown.

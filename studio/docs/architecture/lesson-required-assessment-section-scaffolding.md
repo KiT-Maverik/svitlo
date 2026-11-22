@@ -1,10 +1,14 @@
 # Required Quiz and Flashcards Section source handoff
 
+> **Legacy Stage 6.1 contract:** `lesson.yaml`, `sectionDrafts`, `feedc0de-` and `/lesson materialize` below remain for existing PRs, not new typed authoring. #782 owns the typed Lesson successor; #775 must implement and verify an SHA-pinned replacement before retirement. **Course Stage 5 and bank Stage 1 do not generate assessment Sections.**
+
 **Status:** PR #706 introduced the historical mandatory `lesson-assessment-sections` fence. PR #712 supersedes that mechanism. This document records the intended source-handoff contract; actual implementation and tests remain authoritative.
 
 ## Methodologist decisions
 
-The root `lesson.yaml` authoring-only `production.quizRequired` and `production.flashcardsRequired` booleans indicate whether the completed Lesson eventually needs at least one Section of that kind. Omitted and `false` mean no such requirement. The Methodologist justifies these choices in normal `production.methodology` prose; no separate machine-readable inventory is required. Multiple Quiz or Flashcards Sections may be planned, each with its own canonical UUID and ordered placement. A separate Question Bank need not imply a local Quiz Section; bank ownership and Section requirements are distinct.
+The approved typed contract `LessonProductionAssessmentRequirements` separately records `questionBankRequired`, `flashcardBankRequired`, `quizSectionRequired`, and `flashcardsSectionRequired`. Banks and in-Lesson Sections are independent. Engine `quizRequiredForCompletion` additionally requires an enabled Quiz Section; do not disable it or change the setting to hide unfinished selection. These production requirements survive Course→Lesson handoff.
+
+**Legacy YAML only:** the root `lesson.yaml` authoring-only `production.quizRequired` and `production.flashcardsRequired` booleans indicate whether the completed Lesson eventually needs at least one Section of that kind. Omitted and `false` mean no such requirement. The Methodologist justifies these choices in normal `production.methodology` prose; no separate machine-readable inventory is required. Multiple Quiz or Flashcards Sections may be planned, each with its own canonical UUID and ordered placement. A separate Question Bank need not imply a local Quiz Section; bank ownership and Section requirements are distinct.
 
 ## Canonical source and one-time materialization
 
@@ -16,7 +20,7 @@ Each generated pending Section has a `// TODO (BLOCKER):` above its export; ever
 
 ## Finalize and safety
 
-`/lesson materialize` is create-only and does not support repeat/no-op regeneration. On failure, review and explicitly remove only confirmed generated outputs before re-running; no automatic overwrite. `/lesson finalize` is a separately authorized operation that verifies the pinned canonical YAML, previously committed deterministic generated files and handoffs, then deletes **only unchanged `lesson.yaml`**. It does not delete bank YAML, edited TS, Scenes, media, review or handoff files. Source drift, uncommitted files, incomplete transfer and concurrent branch updates fail closed. Finalize is not Stage 6 completion or production publication.
+`/lesson materialize` is create-only and does not support repeat/no-op regeneration. On failure, review and explicitly remove only confirmed generated outputs before re-running; no automatic overwrite. The **planned** `/lesson finalize` safety protocol would verify the pinned YAML, committed generated outputs and handoffs before deleting **only an unchanged `lesson.yaml`**. **The current trusted `lesson-gate.mjs` explicitly disables `/lesson finalize`**, so no YAML retirement via that command is available. It does not delete bank YAML, edited TS, Scenes, media, review or handoff files. Source drift, uncommitted files, incomplete transfer and concurrent branch updates fail closed. Finalize is not Stage 6 completion or production publication.
 
 ## Readiness
 

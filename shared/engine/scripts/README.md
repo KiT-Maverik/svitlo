@@ -4,6 +4,14 @@ Entity authoring, editorial YAML builders, taxonomy migration, publishing, and r
 
 The named Lesson and Course CLIs are in `generateLessonProps/` and `generateCourseProps/`, and delegate publication to `../generators/`. Their CLI regression tests stay beside them. The cross-generator npm smoke test is in `generatorCliIntegration/`.
 
+## Migration status: active legacy YAML conversion
+
+New production targets one progressively typed editorial source per Course/Lesson/Question Bank/Flashcard Bank (parent #775 and Draft #782/#783/#784). Existing `lessonBuilder`, `questionsBuilder`, `flashcardBuilder`, `finalizeLesson`, `yamlScaffolding` and `generateYamlSchemas` remain callable **legacy** converters/editor tools; no typed trusted CI equivalent is yet proved. Their README commands document existing PR safety, not the recommended format for a new authoring task. `generateLessonProps`, `generateAssessmentResources`, Scene work and source-SHA/locale review generators are distinct production/evidence dependencies. See [Studio boundary](../../../studio/docs/architecture/yaml-config-scaffolding.md).
+
+## New source-renderer layer: integrated, but not yet an end-to-end generator
+
+The merged #776–#780 kind-level materializers live under `../generators/materializers/<kind>/`, with adjacent tests included by the current Engine test runner. They receive plain typed Config-like source and production metadata and **return** deterministic files/diagnostics without writing them. The parent #775 must still connect staged Course/Lesson/Bank source adapters, SHA-protected `index.ts` handoffs, no-clobber writer, CI authorization and release validation. Do not repurpose these functions as a drop-in replacement for the still-live `scripts/lessonBuilder`, `questionsBuilder`, `flashcardBuilder` or trusted YAML PR commands; nor confuse them with the Props-generating `../generators/lessons/` and `../generators/courses/`.
+
 ## Flashcard bank TypeScript scaffolding
 
 The independent [flashcardBuilder](./flashcardBuilder/README.md) converts one Engine-validated source-language Flashcard bank YAML to create-only typed Draft TS. It never overwrites authored banks, generates translations or publishes Props. The existing assessment-resource publisher still consumes completed typed TS separately.
@@ -19,7 +27,7 @@ The read-only [auditTextbookMedia](./auditTextbookMedia/README.md) CLI reports p
 
 The one-time pre-configurator `migrateSkillsConfigurators` conversion has been retired after the canonical Skills migration in PR #625. Editorial Markdown-to-Code creation continues through `implementSkillsTaxonomy`; Code-to-Markdown review uses `generateSkillsTaxonomy`.
 
-## Independent Question Bank authoring
+## Legacy Question Bank YAML conversion (active callers)
 
 The [Questions Builder](./questionsBuilder/README.md) creates scoped, modular
 Engine Question TypeScript drafts from a validated Lesson-root questions.yaml.
@@ -33,6 +41,6 @@ and strict textbook resource publication; there is no separate YAML ID map.
 
 The [queryLessons](./queryLessons/README.md) CLI provides deterministic searches by Lesson UUID or verified Skill UUIDs, distinguishing implemented TS sources from editorial `lesson.yaml` drafts. The GitHub [Get Lessons by Skill or ID](../../../.github/workflows/get-lesson.yml) PR-comment command runs this lookup at a pinned SHA and stores its report as an Actions artifact, never in the PR tree. The historical `generateLessonsBySkill` Markdown CLI shares this static index and remains operational.
 
-## Course Flow Stage 5
+## Legacy YAML Course Stage 5 (active callers until typed replacement)
 
 [materializeCourseFlow](./materializeCourseFlow/README.md) consumes a single reviewed temporary Course YAML and directly creates Course-owned TypeScript/Markdown drafts and new methodology-only Lesson YAMLs with stable UUIDs; it never writes an intermediate Course `config.yaml`. The dedicated Stage 5 Episode renderer is part of the materializer; no alternative Course YAML authoring or Builder CLI is supported.
