@@ -4,7 +4,7 @@
 The input to `materializeCourseStage5(input, options)` is the **canonical**
 `CourseWorkflowMaterializerInput = CourseWorkflowStage3`, verified and approved
 by an independent Course Stage 4 reviewer. No local redefinition of Course,
-Lesson, Episode or bank production stage types is introduced.
+Lesson, Episode or bank production stage types is introduced.\n\n**Integration topology:** #787 now targets #786 (which already integrates #782–#785),\nwhile #786 targets #775. The canonical `LessonWorkflowStage1` and\n`LessonWorkflowStage1CourseHandoff` are available from\n`@svitlo/engine/build` in the immediate parent, and the generated handoff\nis checked against **both** types. #787 does not merge #786 into #775.
 
 ## Entrypoints and ownership
 
@@ -12,7 +12,7 @@ Lesson, Episode or bank production stage types is introduced.
   `materializeCourse`, Module, Chapter, Episode, and the single shared Section
   callback. It is a **pure planner**, emitting a manifest of authored sources.
 - `lessonDraft.mjs`: `materializeLessonDraft()` creates exactly one typed
-  Lesson Stage 1 `index.ts` at the Lesson's permanent UUID path from approved
+  Lesson Stage 1 `index.ts` at the Lesson's permanent UUID path, typechecked\n  against both canonical #786 Lesson source/handoff types, from approved
   Course methodology, planned Skills, reviewed source language, optional
   age/grade and all four independent bank/Section assessment decisions. It
   does not generate `defineLesson`, Sections, banks, Scene content or assets.
@@ -88,7 +88,7 @@ source writer as a production command prematurely.
 
 Adjacent tests:
 ```sh
-node --test shared/engine/generators/materializers/course/materializeStage5.spec.mjs
+node --test shared/engine/generators/materializers/course/materializeStage5.spec.mjs\nnode --test shared/engine/generators/materializers/course/materializeStage5.build.spec.mjs
 node --test shared/engine/generators/materializers/course/sourceCommit.spec.mjs
 npm run package:build --workspace @svitlo/engine
 npm run code:check:types --workspace @svitlo/engine
@@ -99,8 +99,6 @@ These tests cover deterministic parent-child paths, provisional Episode blockers
 Lesson Stage1 handoffs, explicit review failure, generated UUIDs, atomic one-commit
 no-clobber behavior, read-only checks, Git SHA drift and symlink/collision
 rejection. Real standalone Lesson Stage6 conversion and downstream bank-root
-flows are separately owned by #775 and #788. Engine TypeScript's new canonical
-`LessonWorkflowStage1` build export is in #782 via #786 and must be present
-before claiming the generated Lesson Stage1 `satisfies` check passes.
+flows are separately owned by #775 and #788. The canonical Lesson Stage 1 build exports are now **in #787's integrated\nparent #786**. The real-Engine semantic compiler fixture includes a newly\nmaterialized Lesson Stage 1 handoff and checks `satisfies LessonWorkflowStage1\n& LessonWorkflowStage1CourseHandoff`; only a completed test run at the exact\nhead SHA may be claimed as verification.
 
 **Import aliases:** `#lessonsData/*` maps to `./data/lessons/*.ts`, so a UUID-owned source is imported as `#lessonsData/<bucket>/<uuid>/index`, never `#lessonsData/<bucket>/<uuid>` (which would resolve to a missing `<uuid>.ts`). These canonical references are checked by the resolver.
