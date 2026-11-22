@@ -1,0 +1,237 @@
+import { materializeCourse } from './materialize.mjs';
+import { materializeModule } from '../module/materialize.mjs';
+import { materializeChapter } from '../chapter/materialize.mjs';
+import { materializeEpisode } from '../episode/materialize.mjs';
+import { materializeLessonDraft } from './lessonDraft.mjs';
+import { deriveCourseEntityId } from './deriveCourseEntityId.mjs';
+
+const uuid = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i;
+const sha = /^[0-9a-f]{40}$/i;
+const slug = /^[A-Za-z][A-Za-z0-9]*$/;
+const record = value => value !== null && typeof value === 'object' && !Array.isArray(value);
+const own = (value, key) => Object.prototype.hasOwnProperty.call(value, key);
+const sourceKinds = new Set(['typescript', 'markdown', 'specification', 'code']);
+const safePath = value => typeof value === 'string' && !value.startsWith('/') &&
+  !value.includes('\\') && !value.split('/').some(p => !p || p === '.' || p === '..') &&
+  !value.split('/').some(p => ['__proto__', 'prototype', 'constructor'].includes(p));
+const serialize = value => {
+  if (value === null || typeof value === 'string' || typeof value === 'boolean' ||
+      (typeof value === 'number' && Number.isFinite(value))) return;
+  if (Array.isArray(value)) { for (const item of value) serialize(item); return; }
+  if (!record(value) || Object.getOwnPropertySymbols(value).length ||
+      ![Object.prototype, null].includes(Object.getPrototypeOf(value)) ||
+      Object.keys(value).some(key => ['__proto__', 'prototype', 'constructor'].includes(key)))
+    throw new Error('Course override must be JSON-safe Config patch, not a Configurator or built Props');
+  for (const child of Object.values(value)) serialize(child);
+};
+const canonical = value => {
+  if (Array.isArray(value)) return value.map(canonical);
+  if (record(value)) return Object.fromEntries(Object.entries(value)
+    .filter(([, child]) => child !== undefined)
+    .sort(([a], [b]) => a.localeCompare(b))
+    .map(([key, child]) => [key, canonical(child)]));
+  return value;
+};
+const equal = (a, b) => JSON.stringify(canonical(a)) === JSON.stringify(canonical(b));
+
+/**
+ * Plan reviewed Course Stage 5 authored sources. The Course source index.ts is
+ * preserved: complete candidates are emitted under the deliberately disjoint
+ * draftSources/ tree. A later separately authorized source transition is needed
+ * before a Course publisher can discover the finished root Configurator.
+ *
+ * The trusted caller must pin the evaluated TS input to the exact Git blob,
+ * verify independent review/authorization, and resolve each imported Lesson
+ * from its verified source revision. This planner never reads YAML or writes.
+ *
+ * @param {import('../../../types/workflow/courseWorkflow.types').CourseWorkflowMaterializerInput} input
+ * @param {object} options
+ */
+export function materializeCourseStage5(input, options = {}) {
+  if (!record(input?.config) || input.config.type !== 'course' ||
+      !record(input.production) || !uuid.test(input.config.id ?? '') ||
+      !slug.test(input.config.slug ?? ''))
+    throw new Error('Expected canonical reviewed CourseWorkflowMaterializerInput');
+  const rootId = input.config.id.toLowerCase();
+  const sourceLanguage = input.production.languages?.document;
+  const planned = input.production.languages?.planned;
+  if (!/^[a-z]{2}(?:-[A-Z]{2})?$/.test(sourceLanguage ?? '') ||
+      !Array.isArray(planned) || !planned.length || !planned.includes(sourceLanguage) ||
+      new Set(planned).size !== planned.length)
+    throw new Error('Course Stage 5 requires reviewed production.languages');
+  if (!record(input.production.methodology) ||
+      !record(input.config.content) || !record(input.config.content.items) ||
+      !Array.isArray(input.config.content.order))
+    throw new Error('Incomplete Course Stage 3 hierarchy or methodology');
+  const textbookRoot = options.textbookRoot;
+  if (typeof textbookRoot !== 'string' || !/^content\/[a-z][a-z0-9-]*$/.test(textbookRoot))
+    throw new Error('Stage 5 requires canonical content/<book> textbook root');
+  const root = textbookRoot + '/data/courses/' + rootId.at(-1) + '/' + rootId;
+  const expectedSource = root + '/index.ts';
+  const review = options.review;
+  if (!record(review) || review.sourcePath !== expectedSource ||
+      !sha.test(review.sourceBlobSha ?? '') || !sha.test(review.reviewCommitSha ?? '') ||
+      typeof review.reviewer !== 'string' || !review.reviewer.trim() ||
+      typeof review.evidenceUrl !== 'string' || !/^https:\/\//.test(review.evidenceUrl))
+    throw new Error('Stage 5 requires verified source path, blob SHA, reviewer and review commit evidence');
+  // Do not trust a TypeScript "satisfies" assertion as an authorization signal.
+  if (typeof options.verifyReviewedSource !== 'function' ||
+      options.verifyReviewedSource({ input, review, textbookRoot }) !== true)
+    throw new Error('Stage 5 reviewed source/provenance was not independently authorized');
+  const newIds = new Set([rootId]), knownExistingIds = new Set();
+  const overrides = {};
+  const diagnostics = [];
+  const deriveId = (kind, directory) => {
+    const relative = directory.replace(/^draftSources\/content\//, '');
+    if (relative === directory || !relative) throw new Error('Unexpected Course child placement: ' + directory);
+    const id = deriveCourseEntityId(rootId, kind, relative);
+    if (newIds.has(id) || knownExistingIds.has(id))
+      throw new Error('Duplicate/reserved generated UUID at ' + directory);
+    newIds.add(id);
+    return id;
+  };
+  const addPatch = (directory, patch) => {
+    const relative = directory.replace(/^draftSources\/content\//, '');
+    if (relative === directory || !relative) throw new Error('Invalid Course override placement');
+    const parts = relative.split('/');
+    let cursor = overrides;
+    for (const part of parts) {
+      if (!slug.test(part) || ['constructor', '__proto__', 'prototype'].includes(part))
+        throw new Error('Unsafe Course patch placement');
+      cursor.content ??= { items: {} };
+      cursor.content.items[part] ??= {};
+      cursor = cursor.content.items[part];
+    }
+    if (Object.keys(cursor).length) throw new Error('Duplicate Course patch placement: ' + relative);
+    Object.assign(cursor, patch);
+  };
+  const resolvePlacement = (node, context) => {
+    const production = node.production;
+    if (production.kind === 'new') {
+      const lessonId = deriveId('lesson', context.directory);
+      return materializeLessonDraft(node, {
+        lessonId, sourceLanguage, plannedLanguages: planned,
+        textbookRoot, reviewedSourceSha: review.sourceBlobSha,
+      });
+    }
+    const existing = production.existing;
+    const match = production.matching;
+    if (!record(existing) || !uuid.test(existing.id ?? '') ||
+        !record(match) || !sha.test(match.sourceSha ?? '') ||
+        typeof options.resolveExistingLesson !== 'function')
+      throw new Error(context.directory + ': verified existing Lesson resolver required');
+    const lesson = options.resolveExistingLesson({
+      id: existing.id, matching: match, placement: context.directory,
+      languages: [sourceLanguage],
+    });
+    if (!record(lesson) || lesson.id !== existing.id ||
+        lesson.sourceSha !== match.sourceSha ||
+        !record(lesson.configurator) || lesson.configurator.id !== existing.id ||
+        typeof lesson.configurator.build?.props !== 'function' ||
+        typeof lesson.configurator.build?.overrides !== 'function' ||
+        typeof lesson.exportName !== 'string' || !slug.test(lesson.exportName) ||
+        typeof lesson.importPath !== 'string' ||
+        lesson.importPath !== '#lessonsData/' + existing.id.at(-1).toLowerCase() + '/' + existing.id ||
+        !Array.isArray(lesson.languages) || !lesson.languages.includes(sourceLanguage))
+      throw new Error(context.directory + ': imported Lesson identity, SHA, Build API or source locale not verified');
+    if (knownExistingIds.has(existing.id)) {
+      // Repeat placements are permitted in different parents; the immutable
+      // Lesson source is never rewritten or reallocated.
+    }
+    knownExistingIds.add(existing.id);
+    if (newIds.has(existing.id)) throw new Error('Course generated/imported UUID collision');
+    const hasPatch = existing.base !== undefined || existing.locale !== undefined;
+    if (hasPatch) {
+      if (!record(lesson.rawPatch) || !production.overrideRationale?.trim())
+        throw new Error(context.directory + ': built sparse override requires verified original raw Build expression and editorial rationale');
+      serialize(lesson.rawPatch);
+      let built;
+      try {
+        built = lesson.configurator.build.overrides(lesson.rawPatch, { languages: [sourceLanguage] });
+      } catch (error) {
+        throw new Error(context.directory + ': raw Lesson patch is invalid against real Build API', { cause: error });
+      }
+      if (!equal({ id: built.id, base: built.base, locale: built.locale }, existing))
+        throw new Error(context.directory + ': original raw patch does not reproduce reviewed built sparse override');
+      if (record(existing.locale) && Object.keys(existing.locale).some(code => !planned.includes(code)))
+        throw new Error(context.directory + ': Lesson override uses an unplanned locale');
+      addPatch(context.directory, lesson.rawPatch);
+    }
+    const placementSlug = node.config.slug;
+    const exportName = ['class', 'default', 'export', 'import', 'const', 'new', 'return', 'let', 'var'].includes(placementSlug)
+      ? 'config_' + placementSlug : placementSlug;
+    return {
+      id: existing.id, lessonId: existing.id, exportName,
+      files: [{
+        path: context.directory + '/index.ts',
+        kind: 'typescript',
+        content: 'export { ' + lesson.exportName + ' as ' + exportName +
+          ' } from ' + JSON.stringify(lesson.importPath) + ';\n',
+      }],
+      diagnostics: [],
+    };
+  };
+
+  const context = {
+    directory: 'draftSources',
+    sourceLanguage,
+    plannedLanguages: planned,
+    deriveId,
+    materializeModule,
+    materializeChapter,
+    materializeEpisode,
+    materializeLessonPlacement: resolvePlacement,
+    materializeSection(node, sectionContext) {
+      // Must be the SAME concrete Section dispatcher used by standalone Lessons.
+      if (typeof options.materializeSection !== 'function')
+        throw new Error(sectionContext.directory + ': real Section materializer required');
+      return options.materializeSection(node, {
+        ...sectionContext,
+        documentLanguage: sourceLanguage,
+        languagesImport: '#coursesData/' + rootId.at(-1) + '/' + rootId + '/draftSources/languages',
+      });
+    },
+  };
+  const materialized = materializeCourse(input, context);
+  const files = [...materialized.files.map(file => file.path.startsWith(textbookRoot + '/data/lessons/')
+    ? file : { ...file, path: root + '/' + file.path })];
+  const languageSource = "import type { SupportedLanguages } from '@svitlo/engine/build';\n" +
+    'export const languages = ' + JSON.stringify([sourceLanguage]) +
+    ' as const satisfies SupportedLanguages;\n';
+  files.push({ path: root + '/draftSources/languages.ts', kind: 'typescript', content: languageSource });
+  if (Object.keys(overrides).length) {
+    files.push({
+      path: root + '/draftSources/authoredCourseOverrides.ts',
+      kind: 'typescript',
+      content: '// The raw nested Config patches were independently replayed against each imported Lesson Build API.\n' +
+        'export const authoredCourseOverrides = ' + JSON.stringify(overrides, null, 2) + ';\n',
+    });
+    diagnostics.push({ path: root, code: 'pending-course-overrides-transition', severity: 'blocker',
+      message: 'Draft patch sources must be integrated into the final Course publisher after verified source transition' });
+  }
+  const paths = new Set([expectedSource]);
+  for (const file of files) {
+    if (!record(file) || !sourceKinds.has(file.kind) || !safePath(file.path) ||
+        typeof file.content !== 'string' || paths.has(file.path))
+      throw new Error('Stage 5 generated duplicate, unsafe, colliding or invalid file: ' + String(file?.path));
+    paths.add(file.path);
+  }
+  const allDiagnostics = [...(materialized.diagnostics ?? []), ...diagnostics];
+  if (Object.keys(input.production.openDecisions ?? {}).length)
+    allDiagnostics.push({ path: root, code: 'pending-methodology-decisions', severity: 'blocker',
+      message: 'Reviewed Course still contains unresolved openDecisions' });
+  if (planned.length > 1)
+    allDiagnostics.push({ path: root, code: 'pending-locales', severity: 'blocker',
+      message: 'Planned locales do not establish translated or reviewed source' });
+  allDiagnostics.push({ path: root, code: 'pending-source-transition', severity: 'blocker',
+    message: 'Course Stage 3 reviewed index.ts remains canonical until a separate SHA-pinned final transition' });
+  return Object.freeze({
+    sourcePath: expectedSource, sourceBlobSha: review.sourceBlobSha,
+    reviewCommitSha: review.reviewCommitSha,
+    courseId: rootId, root, files: Object.freeze(files),
+    diagnostics: Object.freeze(allDiagnostics),
+    placements: materialized.placements ?? [],
+    pendingPlacements: materialized.pendingPlacements ?? [],
+    publishable: false,
+  });
+}
