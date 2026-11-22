@@ -1,4 +1,8 @@
 import type { Course_Config } from '../../configurators/courses/defineCourse/defineCourse.schemas';
+import type { Module_Config } from '../../configurators/courses/defineModule/defineModule.schemas';
+import type { Chapter_Config } from '../../configurators/courses/defineChapter/defineChapter.schemas';
+import type { Lesson_Config } from '../../configurators/lessons/defineLesson/defineLesson.schemas';
+import type { Episode_Config } from '../../configurators/episodes/defineEpisode/defineEpisode.schemas';
 
 /** Stage 1 is a plain editorial config, not a built Course Configurator. */
 export type CourseWorkflowStage1Config = Pick<Course_Config, 'id' | 'type' | 'slug'> & {
@@ -57,9 +61,91 @@ export type CourseWorkflowStage1Production = {
 };
 
 /** Completed Stage 1: TypeScript requires each methodological deliverable.
- * Stage 2 will add a typed authoring content tree to this same object.
+ * Stage 2 adds a separate, explicitly typed hierarchy to this same object.
  */
 export type CourseWorkflowStage1 = {
   config: CourseWorkflowStage1Config;
   production: CourseWorkflowStage1Production;
 };
+
+/**
+ * Stage 2 owns the pedagogical hierarchy, not materialized Configurators.
+ * Reuse the Config contracts for authored metadata, but defer UUID allocation
+ * for newly planned Modules, Chapters, Lessons and Episodes until Stage 5.
+ */
+/** Stage 2 records scope and sequencing rationale for each planned unit.
+ * Detailed methodology completeness is defined by the Course Workflow Skill.
+ */
+export type CourseWorkflowStage2UnitProduction = {
+  methodology: string;
+  outcomes: NonNullable<Course_Config['params']['outcomes']>;
+  prerequisites: NonNullable<Course_Config['params']['prerequisites']>;
+  depth: string;
+  sequenceReason: string;
+};
+
+/** A provisional Lesson slot: real verified Skill IDs, but no Lesson identity,
+ * title, matching result, methodology or Configurator yet.
+ * Only Stage 3 resolves the slot to an existing or newly planned Lesson.
+ */
+export type CourseWorkflowStage2LessonSlot = {
+  config: Pick<Lesson_Config, 'type'> & {
+    skills: readonly [Lesson_Config['skills'][number], ...Lesson_Config['skills'][number][]];
+  };
+};
+
+/** The Episode script and authored Sections belong to later work.
+ * Stage 2 only reserves its position in the ordered Course hierarchy.
+ */
+export type CourseWorkflowStage2EpisodeSlot = {
+  config: Pick<Episode_Config, 'type'>;
+};
+
+/** Chapter can contain only provisional Lessons and Episodes. */
+export type CourseWorkflowStage2Chapter = {
+  config: Pick<Chapter_Config, 'type' | 'slug' | 'locale'> & {
+    id?: never;
+    params?: Partial<Chapter_Config['params']>;
+    content: Omit<Chapter_Config['content'], 'items'> & {
+      items: Record<string, CourseWorkflowStage2LessonSlot | CourseWorkflowStage2EpisodeSlot>;
+    };
+  };
+  production: CourseWorkflowStage2UnitProduction;
+};
+
+/** Module can contain Chapters and provisional Lessons/Episodes, but no Module. */
+export type CourseWorkflowStage2Module = {
+  config: Pick<Module_Config, 'type' | 'slug' | 'locale'> & {
+    id?: never;
+    params?: Partial<Module_Config['params']>;
+    content: Omit<Module_Config['content'], 'items'> & {
+      items: Record<
+        string,
+        CourseWorkflowStage2Chapter | CourseWorkflowStage2LessonSlot | CourseWorkflowStage2EpisodeSlot
+      >;
+    };
+  };
+  production: CourseWorkflowStage2UnitProduction;
+};
+
+/** Only the Course root may contain Modules. Direct Chapters, Lesson slots and
+ * Episode slots are also permitted; no artificial wrapper is required.
+ */
+export type CourseWorkflowStage2Content = Omit<Course_Config['content'], 'items'> & {
+  items: Record<
+    string,
+    | CourseWorkflowStage2Module
+    | CourseWorkflowStage2Chapter
+    | CourseWorkflowStage2LessonSlot
+    | CourseWorkflowStage2EpisodeSlot
+  >;
+};
+
+/** All Stage 1 authoring data remains required; Stage 2 adds only content. */
+export type CourseWorkflowStage2Config = CourseWorkflowStage1Config & {
+  content: CourseWorkflowStage2Content;
+};
+
+export interface CourseWorkflowStage2 extends CourseWorkflowStage1 {
+  config: CourseWorkflowStage2Config;
+}
