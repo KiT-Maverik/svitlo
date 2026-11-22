@@ -48,7 +48,7 @@ const relationshipTypes = new Set<Flashcard_Relationship_Type>([
 const safeName = /^[a-z][A-Za-z0-9]*$/;
 
 function validateStage1(
-  input: FlashcardBankWorkflowStage1,
+  input: Pick<FlashcardBankWorkflowStage1, 'production'>,
   auth: FlashcardBankDraftAuthorization | FlashcardBankFinalAuthorization,
 ): void {
   if (!input?.production?.lesson) throw new Error('Owning Lesson Stage 8 handoff required');
