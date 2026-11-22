@@ -12,6 +12,7 @@ const reviewed = {
   reviewer: 'Independent reviewer',
   blobSha: gitBlobSha(editor),
   reviewedSourceBlobSha: gitBlobSha(editor),
+  reviewedInputSha256: 'f'.repeat(64),
   content: editor,
   reviewCommitSha: 'a'.repeat(40),
 };
