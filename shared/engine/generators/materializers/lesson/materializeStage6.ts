@@ -338,8 +338,18 @@ export function materializeLessonStage6(
   };
 }
 
-/** Explicit release preflight; Stage 6 source emission itself never publishes. */
+/**
+ * The Stage 6 result is never a publication certificate. Refuse all visible
+ * editorial/media placeholders even if one concrete renderer omitted a
+ * diagnostic. Downstream asset, bank, localization and provenance validation
+ * remains the independent publication boundary.
+ */
 export function assertLessonStage6ReleaseReady(plan: LessonStage6Plan): void {
+  const pending = plan.files.filter(file =>
+    /TODO\\s*\\(BLOCKER\\)|TODO\\(asset\\)|00000000-0000-0000-0000-000000000000/i.test(file.content));
+  if (pending.length)
+    throw new Error('Lesson source publication blocked by unresolved placeholders in ' +
+      pending.map(file => file.path).join(', '));
   assertLessonSourceReleaseReady({
     exportName: '',
     files: plan.files,
