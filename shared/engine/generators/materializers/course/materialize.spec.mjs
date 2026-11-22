@@ -47,7 +47,14 @@ const lessonBridge=(node,ctx)=>{
  exportName:node.config.slug,files:[{path:ctx.directory+'/index.ts',kind:'typescript',
  content:'export const '+node.config.slug+' = {};\n'}]};
 };
-const ctx=()=>({sourceLanguage:'uk',deriveId:(kind,placement)=>kind==='module'?IDs.module:kind==='chapter'?IDs.chapter:IDs.episode,
+const deriveId=(kind,placement)=>{
+ if(kind==='module'&&placement.endsWith('moduleOne'))return IDs.module;
+ if(kind==='chapter'&&placement.endsWith('chapterOne'))return IDs.chapter;
+ let hash=2166136261;
+ for(const c of kind+':'+placement)hash=Math.imul(hash^c.charCodeAt(0),16777619)>>>0;
+ return '00000000-0000-4000-8000-'+hash.toString(16).padStart(12,'0');
+};
+const ctx=()=>({sourceLanguage:'uk',deriveId,
  materializeCourse,materializeModule,materializeChapter,materializeEpisode,
  materializeSection:sectionRenderer,materializeLessonPlacement:lessonBridge});
 const syntax=files=>{for(const file of files.filter(file=>file.kind==='typescript'))
@@ -92,7 +99,7 @@ test('Stage 3 provisional Episode, obsolete Lesson keys, invalid order and unsaf
  const draft=course();draft.config.content.items.directEpisode={config:{type:'episode'},production:{focus:'Situation',purpose:'Transition'}};
  assert.throws(()=>materializeCourse(draft,ctx()),/provisional Episode/);
  const old=course();old.config.content.items.directLesson.config.lessonId=IDs.lesson;
- assert.throws(()=>materializeCourse(old,ctx()),/belongs to production/);
+ assert.throws(()=>materializeCourse(old,ctx()),/belong to production/);
  const invalid=course();invalid.config.content.order=['moduleOne'];
  assert.throws(()=>materializeCourse(invalid,ctx()),/content.order/);
  const unsafe=course();unsafe.config.content.items['../bad']=unsafe.config.content.items.directLesson;unsafe.config.content.order.push('../bad');
@@ -104,7 +111,7 @@ test('the same imported Lesson must keep a verified ID, not an unvalidated raw p
  const bad=course();bad.config.content.items.directLesson.production.existing={base:{params:{}}};
  assert.throws(()=>materializeCourse(bad,ctx()),/existing.id/);
  const patch=course();patch.config.content.items.directLesson.production.existing={id:IDs.lesson,params:{sections:{allowSkipping:false}}};
- assert.throws(()=>materializeCourse(patch,ctx()),/sparse/);
+ assert.throws(()=>materializeCourse(patch,ctx()),/not raw patches/);
 });
 test('refuses traversal in requested source directory',()=>{
  assert.throws(()=>materializeCourse(course(),{sourceLanguage:'uk',directory:'../unsafe'}),/unsafe generated directory/);

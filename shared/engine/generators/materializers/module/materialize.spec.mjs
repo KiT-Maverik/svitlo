@@ -47,7 +47,14 @@ const lessonBridge=(node,ctx)=>{
  exportName:node.config.slug,files:[{path:ctx.directory+'/index.ts',kind:'typescript',
  content:'export const '+node.config.slug+' = {};\n'}]};
 };
-const ctx=()=>({sourceLanguage:'uk',deriveId:(kind,placement)=>kind==='module'?IDs.module:kind==='chapter'?IDs.chapter:IDs.episode,
+const deriveId=(kind,placement)=>{
+ if(kind==='module'&&placement.endsWith('moduleOne'))return IDs.module;
+ if(kind==='chapter'&&placement.endsWith('chapterOne'))return IDs.chapter;
+ let hash=2166136261;
+ for(const c of kind+':'+placement)hash=Math.imul(hash^c.charCodeAt(0),16777619)>>>0;
+ return '00000000-0000-4000-8000-'+hash.toString(16).padStart(12,'0');
+};
+const ctx=()=>({sourceLanguage:'uk',deriveId,
  materializeCourse,materializeModule,materializeChapter,materializeEpisode,
  materializeSection:sectionRenderer,materializeLessonPlacement:lessonBridge});
 const syntax=files=>{for(const file of files.filter(file=>file.kind==='typescript'))
