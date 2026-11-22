@@ -39,14 +39,10 @@ test('markdown: exact source, imports, locale pruning, deterministic non-writing
     { documentLanguage: 'uk' }), /empty Markdown/);
 });
 
-test('markdown: missing resources are blocked; no fictional resource files created', () => {
-  const result = materializeMarkdown(
+test('markdown: missing mandatory Config input must not emit an invalid defineMarkdown call', () => {
+  assert.throws(() => materializeMarkdown(
     { id, slug: 'prose', type: 'markdown', params: {}, locale: {} }, { documentLanguage: 'uk' },
-  );
-  assert(result.diagnostics.some(item => item.code.startsWith('pending-')));
-  assert.match(result.files[0].content, /TODO \(BLOCKER\):/);
-  assert(!result.files.some(file => file.path.endsWith('.md')));
-  assert.equal(result.files.filter(file => file.kind === 'typescript').length, 1);
+  ), /Cannot materialize type-valid Markdown Config.*TODO \\(BLOCKER\\)/);
 });
 
 test('markdown: refuses unsafe identity or unsupported source language', () => {

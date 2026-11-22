@@ -10,7 +10,7 @@ const productionLanguages: CourseWorkflowStage1Languages = { document: 'uk', pla
 const options = { documentLanguage: productionLanguages.document, plannedLanguages: productionLanguages.planned };
 const valid = () => ({
   id, slug: 'clip' as const, type: 'video' as const, params: {},
-  locale: { fileName: 'clip.mp4', posterFileName: 'poster.webp',
+  locale: { fileName: `${id}.mp4`, posterFileName: '01f1d8b8-e409-4cf3-bd64-1e76f2be9db2.webp',
     label: { uk: 'Відео', en: 'English-only' } },
 });
 
@@ -31,20 +31,15 @@ test('video: exact source, imports, locale pruning, deterministic non-writing pl
   assert.equal(parsed.parseDiagnostics.length, 0, 'emitted TS must parse');
   assert(one.diagnostics.some(item => item.code === 'pending-locales'));
   assert(one.diagnostics.every(item => item.severity === 'warning'));
-  assert.match(module, /poster.webp/);
-  assert.match(module, /clip.mp4/);
+  assert.match(module, /01f1d8b8-e409-4cf3-bd64-1e76f2be9db2.webp/);
+  assert.match(module, new RegExp(id + '\\.mp4'));
   assert(!one.diagnostics.some(item => item.code === 'pending-media'));
 });
 
-test('video: missing resources are blocked; no fictional resource files created', () => {
-  const result = materializeVideo(
+test('video: missing mandatory Config input must not emit an invalid defineVideo call', () => {
+  assert.throws(() => materializeVideo(
     { id, slug: 'clip', type: 'video', params: {}, locale: {} }, { documentLanguage: 'uk' },
-  );
-  assert(result.diagnostics.some(item => item.code.startsWith('pending-')));
-  assert.match(result.files[0].content, /TODO \(BLOCKER\):/);
-  assert.match(result.files[0].content, /00000000-0000-0000-0000-000000000000.mp4/);
-  assert.match(result.files[0].content, /00000000-0000-0000-0000-000000000000.webp/);
-  assert.equal(result.files.filter(file => file.kind === 'typescript').length, 1);
+  ), /Cannot materialize type-valid Video Config.*TODO \\(BLOCKER\\)/);
 });
 
 test('video: refuses unsafe identity or unsupported source language', () => {
@@ -68,4 +63,13 @@ test('video: composed nested source paths and Course language handoff', () => {
   assert(nested.files.find(file => file.path.endsWith('/index.ts'))?.content.includes('from "../../../../../languages"'));
   assert.throws(() => materializeVideo(valid(), { ...options, directory: '../escape' }), /unsafe output path/);
   assert.throws(() => materializeVideo(valid(), { ...options, directory }), /explicit root languages module/);
+});
+
+test('video: pending media preserves required reviewed accessible label', () => {
+  const result = materializeVideo(
+    { ...valid(), locale: { label: { uk: 'Відео' } } }, { documentLanguage: 'uk' },
+  );
+  assert.equal(result.diagnostics.filter(item => item.code === 'pending-media').length, 2);
+  assert.match(result.files[0].content, /00000000-0000-0000-0000-000000000000.mp4/);
+  assert.match(result.files[0].content, /00000000-0000-0000-0000-000000000000.webp/);
 });

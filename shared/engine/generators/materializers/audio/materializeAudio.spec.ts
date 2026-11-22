@@ -10,7 +10,7 @@ const productionLanguages: CourseWorkflowStage1Languages = { document: 'uk', pla
 const options = { documentLanguage: productionLanguages.document, plannedLanguages: productionLanguages.planned };
 const valid = () => ({
   id, slug: 'narration' as const, type: 'audio' as const, params: {},
-  locale: { fileName: 'audio-uk.mp3',
+  locale: { fileName: `${id}.mp3`,
     title: { uk: 'Оповідь', en: 'English-only' } },
 });
 
@@ -31,19 +31,14 @@ test('audio: exact source, imports, locale pruning, deterministic non-writing pl
   assert.equal(parsed.parseDiagnostics.length, 0, 'emitted TS must parse');
   assert(one.diagnostics.some(item => item.code === 'pending-locales'));
   assert(one.diagnostics.every(item => item.severity === 'warning'));
-  assert.match(module, /audio-uk.mp3/);
+  assert.match(module, new RegExp(id + '\\.mp3'));
   assert(!one.diagnostics.some(item => item.code === 'pending-media'));
 });
 
-test('audio: missing resources are blocked; no fictional resource files created', () => {
-  const result = materializeAudio(
+test('audio: missing mandatory Config input must not emit an invalid defineAudio call', () => {
+  assert.throws(() => materializeAudio(
     { id, slug: 'narration', type: 'audio', params: {}, locale: {} }, { documentLanguage: 'uk' },
-  );
-  assert(result.diagnostics.some(item => item.code.startsWith('pending-')));
-  assert.match(result.files[0].content, /TODO \(BLOCKER\):/);
-  assert.match(result.files[0].content, /00000000-0000-0000-0000-000000000000.mp3/);
-  assert(!result.files.some(file => file.path.endsWith('.mp3')));
-  assert.equal(result.files.filter(file => file.kind === 'typescript').length, 1);
+  ), /Cannot materialize type-valid Audio Config.*TODO \\(BLOCKER\\)/);
 });
 
 test('audio: refuses unsafe identity or unsupported source language', () => {
@@ -67,4 +62,12 @@ test('audio: composed nested source paths and Course language handoff', () => {
   assert(nested.files.find(file => file.path.endsWith('/index.ts'))?.content.includes('from "../../../../../languages"'));
   assert.throws(() => materializeAudio(valid(), { ...options, directory: '../escape' }), /unsafe output path/);
   assert.throws(() => materializeAudio(valid(), { ...options, directory }), /explicit root languages module/);
+});
+
+test('audio: pending media retains a valid Config and explicit asset blocker', () => {
+  const result = materializeAudio(
+    { ...valid(), locale: { title: { uk: 'Оповідь' } } }, { documentLanguage: 'uk' },
+  );
+  assert(result.diagnostics.some(item => item.code === 'pending-media'));
+  assert.match(result.files[0].content, /00000000-0000-0000-0000-000000000000.mp3/);
 });

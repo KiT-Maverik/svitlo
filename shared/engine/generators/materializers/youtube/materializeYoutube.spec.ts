@@ -37,14 +37,10 @@ test('youtube: exact source, imports, locale pruning, deterministic non-writing 
   assert(!one.files.some(file => file.kind !== 'typescript'));
 });
 
-test('youtube: missing resources are blocked; no fictional resource files created', () => {
-  const result = materializeYoutube(
+test('youtube: missing mandatory Config input must not emit an invalid defineYoutube call', () => {
+  assert.throws(() => materializeYoutube(
     { id, slug: 'watch', type: 'youtube', params: {}, locale: {} }, { documentLanguage: 'uk' },
-  );
-  assert(result.diagnostics.some(item => item.code.startsWith('pending-')));
-  assert.match(result.files[0].content, /TODO \(BLOCKER\):/);
-  assert(!result.files.some(file => file.path.endsWith('.mp4')));
-  assert.equal(result.files.filter(file => file.kind === 'typescript').length, 1);
+  ), /Cannot materialize type-valid Youtube Config.*TODO \\(BLOCKER\\)/);
 });
 
 test('youtube: refuses unsafe identity or unsupported source language', () => {

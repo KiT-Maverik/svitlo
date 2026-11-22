@@ -38,14 +38,10 @@ test('text: exact source, imports, locale pruning, deterministic non-writing pla
     { documentLanguage: 'uk' }), /Text variables validation failed/);
 });
 
-test('text: missing resources are blocked; no fictional resource files created', () => {
-  const result = materializeText(
+test('text: missing mandatory Config input must not emit an invalid defineText call', () => {
+  assert.throws(() => materializeText(
     { id, slug: 'intro', type: 'text', params: {}, locale: {} }, { documentLanguage: 'uk' },
-  );
-  assert(result.diagnostics.some(item => item.code.startsWith('pending-')));
-  assert.match(result.files[0].content, /TODO \(BLOCKER\):/);
-  assert(!result.files.some(file => file.path.endsWith('.md') || file.path.startsWith('code.')));
-  assert.equal(result.files.filter(file => file.kind === 'typescript').length, 1);
+  ), /Cannot materialize type-valid Text Config.*TODO \\(BLOCKER\\)/);
 });
 
 test('text: refuses unsafe identity or unsupported source language', () => {

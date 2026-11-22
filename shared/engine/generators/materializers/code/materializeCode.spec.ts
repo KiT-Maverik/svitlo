@@ -37,14 +37,10 @@ test('code: exact source, imports, locale pruning, deterministic non-writing pla
     { documentLanguage: 'uk' }), /unsupported Code language/);
 });
 
-test('code: missing resources are blocked; no fictional resource files created', () => {
-  const result = materializeCode(
+test('code: missing mandatory Config input must not emit an invalid defineCode call', () => {
+  assert.throws(() => materializeCode(
     { id, slug: 'sourceCode', type: 'code', params: {}, locale: {} }, { documentLanguage: 'uk' },
-  );
-  assert(result.diagnostics.some(item => item.code.startsWith('pending-')));
-  assert.match(result.files[0].content, /TODO \(BLOCKER\):/);
-  assert(!result.files.some(file => file.path.startsWith('code.')));
-  assert.equal(result.files.filter(file => file.kind === 'typescript').length, 1);
+  ), /Cannot materialize type-valid Code Config.*TODO \\(BLOCKER\\)/);
 });
 
 test('code: refuses unsafe identity or unsupported source language', () => {

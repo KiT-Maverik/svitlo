@@ -34,15 +34,18 @@ test('subtitles: exact source, imports, locale pruning, deterministic non-writin
   assert(!one.diagnostics.some(item => item.code === 'pending-media'));
 });
 
-test('subtitles: missing resources are blocked; no fictional resource files created', () => {
+test('subtitles: missing media uses a valid reserved Nil UUID without inventing an asset', () => {
   const result = materializeSubtitles(
     { id, slug: 'captions', type: 'subtitles', params: {}, locale: {} }, { documentLanguage: 'uk' },
   );
-  assert(result.diagnostics.some(item => item.code.startsWith('pending-')));
-  assert.match(result.files[0].content, /TODO \(BLOCKER\):/);
+  assert(result.diagnostics.some(item => item.code === 'pending-media'));
+  assert.match(result.files[0].content, /TODO \\(BLOCKER\\):/);
   assert.match(result.files[0].content, /00000000-0000-0000-0000-000000000000.vtt/);
   assert(!result.files.some(file => file.path.endsWith('.vtt')));
-  assert.equal(result.files.filter(file => file.kind === 'typescript').length, 1);
+  assert.throws(() => materializeSubtitles(
+    { id, slug: 'captions', type: 'subtitles', params: { disabled: false as never }, locale: {} },
+    { documentLanguage: 'uk' },
+  ), /type-valid Subtitles Config/);
 });
 
 test('subtitles: refuses unsafe identity or unsupported source language', () => {

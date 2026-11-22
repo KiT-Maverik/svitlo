@@ -11,7 +11,7 @@ const options = { documentLanguage: productionLanguages.document, plannedLanguag
 const valid = () => ({
   id, slug: 'figure' as const, type: 'image' as const,
   params: { width: 640, height: 480 },
-  locale: { fileName: { uk: 'image-uk.webp', en: 'image-en.webp' },
+  locale: { fileName: { uk: `${id}.webp`, en: '01f1d8b8-e409-4cf3-bd64-1e76f2be9db2.webp' },
     alt: { uk: 'Українська схема', en: 'English-only' } },
 });
 
@@ -32,21 +32,16 @@ test('image: exact source, imports, locale pruning, deterministic non-writing pl
   assert.equal(parsed.parseDiagnostics.length, 0, 'emitted TS must parse');
   assert(one.diagnostics.some(item => item.code === 'pending-locales'));
   assert(one.diagnostics.every(item => item.severity === 'warning'));
-  assert.match(module, /image-uk.webp/);
-  assert(!module.includes('image-en.webp'));
+  assert.match(module, new RegExp(id + '\\.webp'));
+  assert(!module.includes('01f1d8b8-e409-4cf3-bd64-1e76f2be9db2.webp'));
   assert(!one.diagnostics.some(item => item.code === 'pending-media'));
   assert.equal(one.files.length, 1);
 });
 
-test('image: missing resources are blocked; no fictional resource files created', () => {
-  const result = materializeImage(
+test('image: missing mandatory Config input must not emit an invalid defineImage call', () => {
+  assert.throws(() => materializeImage(
     { id, slug: 'figure', type: 'image', params: {}, locale: {} }, { documentLanguage: 'uk' },
-  );
-  assert(result.diagnostics.some(item => item.code.startsWith('pending-')));
-  assert.match(result.files[0].content, /TODO \(BLOCKER\):/);
-  assert.match(result.files[0].content, /00000000-0000-0000-0000-000000000000.webp/);
-  assert(!result.files.some(file => file.path.endsWith('.webp')));
-  assert.equal(result.files.filter(file => file.kind === 'typescript').length, 1);
+  ), /Cannot materialize type-valid Image Config.*TODO \\(BLOCKER\\)/);
 });
 
 test('image: refuses unsafe identity or unsupported source language', () => {
@@ -70,4 +65,13 @@ test('image: composed nested source paths and Course language handoff', () => {
   assert(nested.files.find(file => file.path.endsWith('/index.ts'))?.content.includes('from "../../../../../languages"'));
   assert.throws(() => materializeImage(valid(), { ...options, directory: '../escape' }), /unsafe output path/);
   assert.throws(() => materializeImage(valid(), { ...options, directory }), /explicit root languages module/);
+});
+
+test('image: pending asset is a typed Nil UUID placeholder, not a fabricated file', () => {
+  const result = materializeImage(
+    { ...valid(), locale: { alt: { uk: 'Українська схема' } } }, { documentLanguage: 'uk' },
+  );
+  assert(result.diagnostics.some(item => item.code === 'pending-media'));
+  assert.match(result.files[0].content, /00000000-0000-0000-0000-000000000000.webp/);
+  assert(!result.files.some(file => file.kind !== 'typescript'));
 });
