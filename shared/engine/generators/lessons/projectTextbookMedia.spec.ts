@@ -172,12 +172,14 @@ test('Nil UUID media remains a Draft placeholder and always blocks Production ev
     assert.throws(() => assertMediaPublicationReady(diagnostics, 'production'), /unresolved resource placeholder/);
   }));
 
-test('strict publication rejects reserved Draft identities anywhere in real built Props without affecting Preview', () =>
+test('strict publication rejects reserved Draft identities in built Props, not Preview', () =>
   fixture(root => {
     const pending = 'feedc0de-12ab-8cab-abcd-0123456789ab';
     const sources = [
       { base: { type: 'lesson', section: [{ type: 'quiz', params: { selection: { questionIds: [pending] } } }] } },
-      { base: { type: 'course', content: { items: { blocked: { type: 'lesson', id: pending } }, order: ['blocked'] } } },
+      {
+        base: { type: 'course', content: { items: { blocked: { type: 'lesson', id: pending } }, order: ['blocked'] } },
+      },
       { base: { type: 'flashcard', locale: { value: { reference: pending } } } },
       { base: { type: 'image', locale: { src: pending + '.webp' } } },
     ];
@@ -199,7 +201,9 @@ test('production blocks known pending Lesson/Quiz scaffolds and pending assessme
       {
         base: {
           type: 'lesson',
-          section: [{ type: 'content', content: [{ type: 'text', slug: 'pendingNotice', locale: { value: 'Not implemented' } }] }],
+          section: [
+            { type: 'content', content: [{ type: 'text', slug: 'pendingNotice', locale: { value: 'Not implemented' } }] },
+          ],
         },
       },
       { base: { type: 'lesson', section: [{ type: 'quiz', locale: { title: 'PENDING QUIZ' } }] } },
@@ -212,7 +216,9 @@ test('production blocks known pending Lesson/Quiz scaffolds and pending assessme
     const complete = {
       base: {
         type: 'lesson',
-        section: [{ type: 'content', slug: 'realSection', locale: { title: 'Not implemented yet in the history of this topic' } }],
+        section: [
+          { type: 'content', slug: 'realSection', locale: { title: 'Not implemented yet in the history of this topic' } },
+        ],
       },
     };
     assert.deepEqual(publish(root, complete, 'production').diagnostics, []);
@@ -235,7 +241,11 @@ test('complete typed Lesson source publishes all authored locales without Previe
       params: { width: 640, height: 480 },
       locale: { fileName: image, alt: 'Real diagram' },
     });
-    const section = defineContentSection<'introduction', { paragraph: typeof paragraph; diagram: typeof diagram }, ['en', 'uk']>({
+    const section = defineContentSection<
+      'introduction',
+      { paragraph: typeof paragraph; diagram: typeof diagram },
+      ['en', 'uk']
+    >({
       id: '550e8400-e29b-41d4-a716-446655440006',
       slug: 'introduction',
       type: 'content',
@@ -262,7 +272,10 @@ test('complete typed Lesson source publishes all authored locales without Previe
     const publishedImage = result.base.section[0]?.content?.[1];
     const originalImage = publication.base.section[0]?.content?.[1];
     assert.equal(publishedImage?.type, 'image');
-    assert.equal((publishedImage?.locale as { src?: string } | undefined)?.src, '/textbooks/math/assets/images/' + image);
+    assert.equal(
+      (publishedImage?.locale as { src?: string } | undefined)?.src,
+      '/textbooks/math/assets/images/' + image,
+    );
     assert.equal((originalImage?.locale as { src?: string } | undefined)?.src, image, 'authored Props stay unchanged');
     const translatedText = result.locale?.uk?.section?.[0]?.content?.[0];
     assert.equal((translatedText?.locale as { value?: string } | undefined)?.value, 'Справжнє пояснення');
