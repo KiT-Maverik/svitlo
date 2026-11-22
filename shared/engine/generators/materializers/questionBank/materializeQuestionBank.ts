@@ -17,7 +17,8 @@ import { materializeFillBlanksWithBlocks } from '../fillBlanksWithBlocks/materia
 import { materializeFillBlanksWithText } from '../fillBlanksWithText/materializeFillBlanksWithText';
 import {
   assertBankLanguages, assertBankOrder, assertBankPath, assertBankSha,
-  assertBankStatement, assertBankUuid, assertUniqueBankEntityIds, authoredBankLiteral, preflightBankSource,
+  assertBankStatement, assertBankUuid, assertUniqueBankEntityIds, assertReviewedBankInput,
+  authoredBankLiteral, preflightBankSource,
   type BankReviewedSource, type BankSourceSnapshot, type BankSourceResult,
   type BankSourceFile, type BankSourceDiagnostic,
 } from '../bankSource/bankSourceSafety';
