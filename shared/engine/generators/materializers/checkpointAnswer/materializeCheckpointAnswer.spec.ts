@@ -73,3 +73,15 @@ test('CheckpointAnswer rejects nested Checkpoint, duplicate UUIDs and unsafe des
   }, context().renderer), /duplicate UUID/);
   assert.throws(() => materializeCheckpointAnswer(source, { ...context().renderer, directory: '../escape' }), /unsafe destination/);
 });
+
+
+test('CheckpointAnswer forbids a child delegate from writing outside its assigned item folder', () => {
+  assert.throws(() => materializeCheckpointAnswer(answer(), {
+    ...context().renderer,
+    renderChild: child => ({
+      exportName: child.slug,
+      files: [{ path: 'content/items/first/answer/index.ts', content: 'unowned', kind: 'typescript' as const }],
+      diagnostics: [],
+    }),
+  }), /outside its owned directory/);
+});
