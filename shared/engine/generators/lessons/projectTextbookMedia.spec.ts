@@ -3,6 +3,9 @@ import { mkdtempSync, mkdirSync, rmSync, symlinkSync, writeFileSync } from 'node
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { test } from 'node:test';
+import { defineText } from '../../configurators/contentBlocks/defineText/defineText';
+import { defineContentSection } from '../../configurators/sections/defineContentSection';
+import { defineLesson } from '../../configurators/lessons/defineLesson/defineLesson';
 import { assertMediaPublicationReady, projectTextbookMedia, type MediaDiagnostic } from './projectTextbookMedia.utils';
 
 const image = '550e8400-e29b-41d4-a716-446655440000.webp';
@@ -168,7 +171,6 @@ test('Nil UUID media remains a Draft placeholder and always blocks Production ev
     assert.throws(() => assertMediaPublicationReady(diagnostics, 'production'), /unresolved resource placeholder/);
   }));
 
-
 test('strict publication rejects reserved Draft identities anywhere in real built Props without affecting Preview', () =>
   fixture(root => {
     const pending = 'feedc0de-12ab-8cab-abcd-0123456789ab';
@@ -200,4 +202,42 @@ test('production blocks known pending Lesson/Quiz scaffolds and pending assessme
       base: { type: 'lesson', section: [{ type: 'content', slug: 'realSection', locale: { title: 'Not implemented yet in the history of this topic' } }] },
     };
     assert.deepEqual(publish(root, complete, 'production').diagnostics, []);
+  }));
+
+
+test('complete typed Lesson source publishes all authored locales without Preview false positives', () =>
+  fixture(root => {
+    const paragraph = defineText({
+      id: '550e8400-e29b-41d4-a716-446655440005',
+      slug: 'paragraph',
+      type: 'text',
+      params: {},
+      locale: { value: { en: 'A real explanation', uk: 'Справжнє пояснення' } },
+    });
+    const section = defineContentSection({
+      id: '550e8400-e29b-41d4-a716-446655440006',
+      slug: 'introduction',
+      type: 'content',
+      params: {},
+      locale: { title: { en: 'Introduction', uk: 'Вступ' } },
+      content: { items: { paragraph }, order: ['paragraph'] },
+    });
+    const lesson = defineLesson({
+      id: '550e8400-e29b-41d4-a716-446655440007',
+      slug: 'completedLesson',
+      type: 'lesson',
+      skills: [],
+      params: {
+        quizRequiredForCompletion: false,
+        languages: ['en', 'uk'] as const,
+        sections: { allowNavigation: true, allowSkipping: false, showIndexes: true },
+      },
+      locale: { title: { en: 'Real lesson', uk: 'Справжній урок' } },
+      section: { items: { introduction: section }, order: ['introduction'] },
+    });
+    const publication = lesson.build.props({ languages: ['en', 'uk'] });
+    const { result, diagnostics } = publish(root, publication, 'production');
+    assert.deepEqual(diagnostics, []);
+    assert.deepEqual(result, publication, 'the strict guard is read-only for completed Props');
+    assert.equal(result.locale?.uk?.section?.[0]?.content?.[0]?.locale?.value, 'Справжнє пояснення');
   }));
