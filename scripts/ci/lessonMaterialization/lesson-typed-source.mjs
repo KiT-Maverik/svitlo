@@ -110,9 +110,7 @@ function resolveBankId(root, binding, cache) {
       if (ts.isCallExpression(init) && init.arguments.length >= 1 &&
           ts.isIdentifier(init.expression) && /^define[A-Z]/.test(init.expression.text))
         value = property(init.arguments[0], 'id');
-      else if (ts.isObjectLiteralExpression(init))
-        value = property(init, 'id');
-      else throw Error('Imported bank member has no static Configurator id');
+      else throw Error('Imported bank member must be a real define* Configurator with static id');
       const literal = unwrap(value);
       if (!ts.isStringLiteral(literal) || !uuid.test(literal.text))
         throw Error('Imported bank member lacks a real static UUID');
