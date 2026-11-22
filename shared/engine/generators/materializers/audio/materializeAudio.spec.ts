@@ -38,7 +38,7 @@ test('audio: exact source, imports, locale pruning, deterministic non-writing pl
 test('audio: missing mandatory Config input must not emit an invalid defineAudio call', () => {
   assert.throws(() => materializeAudio(
     { id, slug: 'narration', type: 'audio', params: {}, locale: {} }, { documentLanguage: 'uk' },
-  ), /Cannot materialize type-valid Audio Config.*TODO \\(BLOCKER\\)/);
+  ), /Cannot materialize type-valid Audio Config.*TODO \(BLOCKER\)/);
 });
 
 test('audio: refuses unsafe identity or unsupported source language', () => {

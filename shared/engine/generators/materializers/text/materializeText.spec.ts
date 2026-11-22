@@ -41,7 +41,7 @@ test('text: exact source, imports, locale pruning, deterministic non-writing pla
 test('text: missing mandatory Config input must not emit an invalid defineText call', () => {
   assert.throws(() => materializeText(
     { id, slug: 'intro', type: 'text', params: {}, locale: {} }, { documentLanguage: 'uk' },
-  ), /Cannot materialize type-valid Text Config.*TODO \\(BLOCKER\\)/);
+  ), /Cannot materialize type-valid Text Config.*TODO \(BLOCKER\)/);
 });
 
 test('text: refuses unsafe identity or unsupported source language', () => {

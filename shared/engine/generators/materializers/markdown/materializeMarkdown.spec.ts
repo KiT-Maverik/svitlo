@@ -42,7 +42,7 @@ test('markdown: exact source, imports, locale pruning, deterministic non-writing
 test('markdown: missing mandatory Config input must not emit an invalid defineMarkdown call', () => {
   assert.throws(() => materializeMarkdown(
     { id, slug: 'prose', type: 'markdown', params: {}, locale: {} }, { documentLanguage: 'uk' },
-  ), /Cannot materialize type-valid Markdown Config.*TODO \\(BLOCKER\\)/);
+  ), /Cannot materialize type-valid Markdown Config.*TODO \(BLOCKER\)/);
 });
 
 test('markdown: refuses unsafe identity or unsupported source language', () => {

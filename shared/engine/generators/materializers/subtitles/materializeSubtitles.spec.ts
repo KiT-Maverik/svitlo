@@ -39,7 +39,7 @@ test('subtitles: missing media uses a valid reserved Nil UUID without inventing 
     { id, slug: 'captions', type: 'subtitles', params: {}, locale: {} }, { documentLanguage: 'uk' },
   );
   assert(result.diagnostics.some(item => item.code === 'pending-media'));
-  assert.match(result.files[0].content, /TODO \\(BLOCKER\\):/);
+  assert.match(result.files[0].content, /TODO \(BLOCKER\):/);
   assert.match(result.files[0].content, /00000000-0000-0000-0000-000000000000.vtt/);
   assert(!result.files.some(file => file.path.endsWith('.vtt')));
   assert.throws(() => materializeSubtitles(

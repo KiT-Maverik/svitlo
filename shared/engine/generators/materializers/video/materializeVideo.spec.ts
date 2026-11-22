@@ -39,7 +39,7 @@ test('video: exact source, imports, locale pruning, deterministic non-writing pl
 test('video: missing mandatory Config input must not emit an invalid defineVideo call', () => {
   assert.throws(() => materializeVideo(
     { id, slug: 'clip', type: 'video', params: {}, locale: {} }, { documentLanguage: 'uk' },
-  ), /Cannot materialize type-valid Video Config.*TODO \\(BLOCKER\\)/);
+  ), /Cannot materialize type-valid Video Config.*TODO \(BLOCKER\)/);
 });
 
 test('video: refuses unsafe identity or unsupported source language', () => {

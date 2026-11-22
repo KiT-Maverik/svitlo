@@ -41,7 +41,7 @@ test('image: exact source, imports, locale pruning, deterministic non-writing pl
 test('image: missing mandatory Config input must not emit an invalid defineImage call', () => {
   assert.throws(() => materializeImage(
     { id, slug: 'figure', type: 'image', params: {}, locale: {} }, { documentLanguage: 'uk' },
-  ), /Cannot materialize type-valid Image Config.*TODO \\(BLOCKER\\)/);
+  ), /Cannot materialize type-valid Image Config.*TODO \(BLOCKER\)/);
 });
 
 test('image: refuses unsafe identity or unsupported source language', () => {

@@ -40,7 +40,7 @@ test('code: exact source, imports, locale pruning, deterministic non-writing pla
 test('code: missing mandatory Config input must not emit an invalid defineCode call', () => {
   assert.throws(() => materializeCode(
     { id, slug: 'sourceCode', type: 'code', params: {}, locale: {} }, { documentLanguage: 'uk' },
-  ), /Cannot materialize type-valid Code Config.*TODO \\(BLOCKER\\)/);
+  ), /Cannot materialize type-valid Code Config.*TODO \(BLOCKER\)/);
 });
 
 test('code: refuses unsafe identity or unsupported source language', () => {

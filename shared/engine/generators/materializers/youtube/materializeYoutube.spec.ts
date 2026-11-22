@@ -40,7 +40,7 @@ test('youtube: exact source, imports, locale pruning, deterministic non-writing 
 test('youtube: missing mandatory Config input must not emit an invalid defineYoutube call', () => {
   assert.throws(() => materializeYoutube(
     { id, slug: 'watch', type: 'youtube', params: {}, locale: {} }, { documentLanguage: 'uk' },
-  ), /Cannot materialize type-valid Youtube Config.*TODO \\(BLOCKER\\)/);
+  ), /Cannot materialize type-valid Youtube Config.*TODO \(BLOCKER\)/);
 });
 
 test('youtube: refuses unsafe identity or unsupported source language', () => {

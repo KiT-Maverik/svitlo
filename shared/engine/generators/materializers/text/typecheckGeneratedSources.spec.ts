@@ -31,7 +31,7 @@ const full = [
     id, slug: 'sampleMarkdown', type: 'markdown', params: {}, locale: { value: { uk: '**Reviewed**' } },
   }, options)],
   ['code', () => materializeCode({
-    id, slug: 'sampleCode', type: 'code', params: { language: 'typescript', codeAsText: 'const x = 1;\\n' }, locale: {},
+    id, slug: 'sampleCode', type: 'code', params: { language: 'typescript', codeAsText: 'const x = 1;\n' }, locale: {},
   }, options)],
   ['image', () => materializeImage({
     id, slug: 'sampleImage', type: 'image', params: { width: 160, height: 120 },
@@ -82,7 +82,7 @@ test('all eight emitted complete sources and permitted pending-media sources typ
     for (const [label, materialize] of [...full, ...pendingMedia]) {
       const dir = join(tempRoot, label + '-' + roots.length);
       mkdirSync(dir);
-      writeFileSync(join(dir, 'languages.ts'), "export const languages = ['uk'] as const;\\n");
+      writeFileSync(join(dir, 'languages.ts'), "export const languages = ['uk'] as const;\n");
       const result = materialize();
       const index = result.files.find(file => file.path === 'index.ts');
       assert(index, label + ': missing index.ts');
@@ -93,7 +93,7 @@ test('all eight emitted complete sources and permitted pending-media sources typ
         writeFileSync(fullPath, file.content);
       }
       if (label === 'image' && result.diagnostics.some(d => d.code === 'pending-media')) {
-        assert.match(index.content, /TODO \\(BLOCKER\\)/);
+        assert.match(index.content, /TODO \(BLOCKER\)/);
       }
       roots.push(join(dir, 'index.ts'));
     }
@@ -112,7 +112,7 @@ test('all eight emitted complete sources and permitted pending-media sources typ
     const printable = ts.formatDiagnosticsWithColorAndContext(errors, {
       getCanonicalFileName: file => file,
       getCurrentDirectory: () => engineRoot,
-      getNewLine: () => '\\n',
+      getNewLine: () => '\n',
     });
     assert.equal(errors.length, 0, printable);
   } finally {
