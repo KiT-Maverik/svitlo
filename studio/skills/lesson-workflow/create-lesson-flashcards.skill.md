@@ -1,136 +1,103 @@
 # Create Lesson Flashcards — Question-first memory authoring
 
-> **Current precedence:** [Create Lesson Flow](./create-lesson-flow.skill.md) is the owning Lesson coordinator; the separate seven-stage [Create Flashcards Flow](./create-flashcards-flow.skill.md) owns the child Draft PR, independent bank, reviewed small Section selection, production and translation reviews. A complete approved Question bank is required unless the owning Lesson PR explicitly records **Questions: Not Applicable** with Methodologist rationale. Do not require a new Lesson Production Issue or a separate `content.yaml` for new work; historical sources remain evidence, not duplicate authority.
+**Persona:** [Flashcard Learning Architect](../../personas/flashcard-learning-architect.persona.md), using the [Methodologist](../../personas/methodist.persona.md)'s approved methodology. Read root `AGENTS.md`, [Create Flashcards Flow](./create-flashcards-flow.skill.md), [Lesson Flow](./create-lesson-flow.skill.md), [Questions Flow](./create-questions-flow.skill.md), real Engine Flashcard/Side/ContentBlock Config/Build schemas, and current UI Kit renderer support. This is the **pedagogical design standard**, not an independent stage tracker or a substitute for Coding Agent/materializer validation.
 
-**Persona:** [Flashcard Learning Architect](../../personas/flashcard-learning-architect.persona.md). Read it fully, the [Methodologist Persona](../../personas/methodist.persona.md), root/applicable `AGENTS.md`, current Lesson/ContentBlock/Flashcard contracts, actual Text and Code renderers, [Lesson Workflow](./README.md), and [Lesson production coordinator](./manage-lesson-production.skill.md) when working in an authorized production scope.
+## Ownership and the typed source
 
-## Purpose, ownership and storage
+Author one Lesson-owned, **source-language**, progressively enriched TypeScript bank at:
 
-For each authorized Lesson, write or revise exactly one source-language editorial bank:
+`content/<textbook>/data/lessons/<last-hex-digit>/<lesson-uuid>/flashcards/index.ts`
 
-`content/<textbook>/data/lessons/<last-hex-digit>/<lesson-uuid>/flashcards.yaml`
+Start with a minimal `FlashcardBankWorkflowStage1`; extend the **same** `{config?, production}` authoring object to `FlashcardBankWorkflowStage2` and `FlashcardBankWorkflowStage3`. Do not create another bank UUID, a Card/Side at Stage 1, `flashcards.yaml` as a second source, a separate plan, a second source ledger or approver fields in Engine Config. The bank is **not** serialized into Lesson Props. Stage 5 materializes the independently reviewed final Stage 3 into real `defineFlashcard`/`defineFlashcardSide` modules and the complete bank export; translation and independent review follow in the **same Flashcards Draft PR**. Existing typed bank source must be preserved and non-destructively reconciled, never overwritten with a new Stage 1 object.
 
-Use the actual resolved Lesson UUID path, not a guessed slug. This is a **single complete Engine-shaped technical bank YAML**, not a second editorial-only format or published Props. Validate each card with `yamlFlashcard_Schema`, based directly on Engine `flashcard_Config_Schema`; use the [Create Flashcards Flow](./create-flashcards-flow.skill.md) PR stage tracker and [Flashcard converter](../../../shared/engine/scripts/flashcardBuilder/README.md). Do not overwrite existing Questions, methodology, Screenwriter content or generated data.
+**Question-first hard blocker:** before Stage 1, verify approved Lesson methodology and complete independently reviewed/integrated Question Bank at the exact source SHA, *or* the parent Lesson PR's explicit Methodologist-backed `Questions: Not Applicable` with rationale and revision. No local Quiz, missing Questions or blank Question YAML are **not** an exemption. If a Question changes, revalidate every dependent Card/field/locale before approval. Read the complete bank, not just a Quiz selection.
 
-**HARD QUESTION-FIRST BLOCKER:** Before authoring, verify the completed and independently approved full Question bank for this exact Lesson (source revision, identities and language alignment). **Only exception:** the owning Lesson PR explicitly records `Questions = Not Applicable` with verified Methodologist rationale; then design from approved Lesson content without Question references. Pending, missing, unreviewed, empty and blocked Questions do not qualify, and the absence of a built-in Quiz does not imply `Not Applicable`. Continue independently ready Lessons instead of bypassing this gate.
+The original Lesson `documentLanguage` and `supportedLanguages` are recorded as shared `production.lesson.languages: {document,planned}`; only real source-language copy is initially authored. The Methodologist's `LessonProductionAssessmentRequirements` records four **independent** requirements: Question Bank, Flashcard Bank, Quiz Section and Flashcards Section. A full Flashcard Bank may be used for later practice without any in-Lesson Flashcards Section. Assessment-only Lessons can use approved upstream banks with explicit source ownership.
 
-**Draft versus completion:** use real approved Question identities and pinned SHA. The current Flashcard Builder accepts **concrete Engine-shaped ContentBlock Config**, not an editorial Question-field pseudo-reference or invented `TODO(question)` placeholder in YAML. Cards requiring unsupported Question-field reuse remain explicitly blocked pending verified typed imports; independently valid bank content can still use the create-only generator. Completion, Section verification and publishing require real Question exports, fields and locales. Never duplicate an existing Question's localized value simply to make compilation pass.
+## Stage 1 — Identify the right recall targets
 
-Inputs: approved Lesson `lesson.yaml` and its Methodologist/Screenwriter source at exact revisions (or explicitly migrated legacy `content.yaml`), approved Question bank (including actual authored Question data when available), relevant existing Flashcards, locale plan, current Flashcard/ContentBlock contracts and renderers. Use the relevant target Skill descriptions; do not scan all taxonomy by default.
+Inspect approved objectives, facts, definitions, distinctions, misconceptions, formulas, important names/dates and conceptual links. Collect source-grounded `production.analysis.recallObjectives`, `sourceFactsAndConcepts`, `misconceptionsAndContrasts`, `exclusions`, `cardCountRationale` and `sourceGrounding`. These are editorial production fields, not Flashcard Config or another Markdown/YAML file. Exclude material needing rich explanation, open-ended proof, complex teaching or Question-style evidence. There is no automatic card count per Skill, paragraph or Question. Stage 1 has **no Card inventory, fake UUID, empty Side or embedded Section**.
 
-## Step 1 — Choose worthwhile recall targets
+## Stage 2 — Design atomic and independently useful Cards
 
-Read Lesson objectives, concepts, processes, distinctions, terminology, formulas, concrete examples and potential interference. Compare with the existing **full Question bank**, not just Question slugs selected into default Quiz Sections. A Flashcard may reuse any appropriate Question, including one available only through extra practice.
+Add `config.flashcards: {items,order}`. Each entry has `config.id/slug`, real `parameters.tags`, optional `disabilities`, `flags` array and `content.front/back/hint` typed Side collections, plus `production` rationale and factual grounding. Create **one** concise, unambiguous recall target per Card. Validate actual immutable UUIDs and slug keys; do not import new identities from fabricated placeholders. Each front/back must be understandable without having completed the matching Quiz.
 
-Select atomic recall targets. Do not demand one card per Question, per paragraph or per Skill. Reject duplicate, vague or unsafely simplified cards. Consider reverse retrieval, contrast or relationships only when they add genuine retention value.
+**Atomicity and punctuation audit.** Examine every `and`, `or`, comma, semicolon, slash, colon, parenthetical aside and list on both sides: do they conceal independent facts that deserve separate retrieval? Split where independently retrievable; retain a group only if remembering the group, count, meaningful order or relationship is the objective. This is a semantic test, not automatic splitting on every punctuation mark. Remove filler, introductions, narrative, incidental qualifications and long explanations while retaining conditions, units and important exceptions. Never simplify a fact into an incorrect one or accept an ambiguous answer key.
 
-### Atomicity and concise writing
+**Retrieval directions.** Two Cards may target the same concept in opposite directions only when each direction teaches useful independent retrieval. Connect meaningful reverse Cards using a canonical `reverse` edge. Avoid repeated same-direction prompts with cosmetic rewording or answer interference. Relationship edges do not merge review, scheduling or progress. For code Cards, ask about structure, context, behavior or useful writing, not arbitrary identifiers/syntax trivia. Back of a write-code Card contains the minimum working template/snippet; predicting output requires exact output and minimal causal explanation. Use a Code ContentBlock for actual syntax, not a prose text block.
 
-- The `front` and `back` must be as short as possible while retaining an unambiguous educational target and all scientifically necessary qualifiers. No filler, introductions, rhetorical padding, unrelated examples or long summaries.
-- **Mandatory punctuation/conjunction audit** for each `and`, `or`, comma, semicolon, slash, colon, parenthetical aside and enumeration on either side. Ask whether two independently recallable facts are being merged. If yes, split into distinct cards. Keep one list card when the _set_, its number or meaningful order is the learning target.
-- A definition should rarely require a paragraph. When two directional cards target the same concept, each must be useful on its own.
-- Do not put a long explanation on the back merely because the Lesson provides one; reserve explanation-heavy work for Lessons/Questions.
-- When two cards retrieve the same concept in opposite directions, keep both only if each direction is independently useful, and connect them with `reverse`. Avoid duplicating the same direction with superficial rewording.
-- For code cards, assess structure, context, behavior or actual writing competence rather than accidental variable names. For write-code prompts, back with the minimum working code/template. For predict-output prompts, provide the exact output and a one-sentence causal reason when needed. Use `code` ContentBlocks for code, not prose TextBlocks.
+### Real ContentBlock Side structure and language
 
-### Count flag for a list answer
+Every `front`/`back` and optional `hint` is **exactly** `{items,order}` containing real Engine Config ContentBlock nodes; a **Side has no independent UUID, slug or type**, whereas each new ContentBlock owns a real UUID. Materialized side Configurators compose these ordered blocks. Use typed Text/Markdown/Code/Image/other available Configs **only when actually supported by the chosen renderer/materializer**. Source-language content is legitimate; duplicate placeholder translations are not.
 
-When the back is a genuine multi-element enumeration, put one **typed list flag** in the card's `flags`: `{type: list, count: N}`, with integer N >= 2. Do not put an artificial `(N)` in the question, a duplicate `listAnswerCount` field, or a redundant numeral hint. The UI derives the list-count chip from this single canonical field. Enumerate answer items clearly when helpful, preserve meaningful order, and confirm the count after edits or Question source updates. A conjunction or incidental comma does **not** justify inventing a list.
+- **Text:** concise prompts/answers, with the current `%_%id: personName; value: Марія%_%` inline-fragment syntax and matching camelCase variable styling IDs (`personName`, `year`). The displayed value is inside the marker; this is **not** implemented random substitution.
+- **Code:** actual programming code with the correct syntax `%_%VARIABLE_NAME%_%` and uppercase snake-case replacement IDs in `locale.variables`; `params.codeAsText` contains the code. Unlike Text, the marker contains only the identifier. Do not use retired `{{...}}` placeholders.
+- **Markdown:** concise structured, mathematical or LaTeX notation when needed; inline `$...$` and display `$$...$$` formulas follow [Markdown ContentBlock guidance](../../docs/entities/markdown-content-block.md).
+- **Images/media:** only when recognition of the stimulus or an accessibility-equivalent cue is the target. Check curated purpose-`flashcards` media from the pinned Lesson reference, file identity/extension, meaningful accessible alternative, captions/transcripts and offline availability. Never invent assets, fileName, Nil UUID or file placeholders to pass publication. Decorative video/Scene/Carousel is usually poor memory design.
 
-## Step 2 — Reuse Question data, never duplicate its localized facts
+Hints must help retrieval without giving away the back or redundantly encoding a `list` count. Assess RTL and other supported reading/accessibility requirements; do not assume a complex widget is necessary for a simple fact. If a genuine concept requires an unsupported block shape, mark the Card blocked and request a justified concrete renderer/materializer extension rather than substituting fabricated copy.
 
-Inspect the approved **full** Question bank and each reusable current typed export at the verified Question SHA. Prefer a direct, typed reference over a translated copy when a Question already owns the same fact or response. A selected Quiz subset does not limit the pool available for Flashcard memory targets.
+### Real Flashcard flags — an unordered array
 
-**Current implemented pattern (Playground):** Question entrypoints export typed Configurators, not the obsolete `*_Question_Data` contract. The existing Lesson-owned Flashcard source imports the real `lightTravelsStraight` Question Configurator and accesses `lightTravelsStraight.content.question.items.question` and `lightTravelsStraight.content.answers.correct.items.straightLine`. Verify the current export/property structure before reusing it; do not rely on examples from prior versions.
+Use `parameters.flags: Flashcard_Flag_Config[]` **directly**. The actual Config and published Props both use an array; **no `items/order` flag map or stable flag slug** exists. A Build override replaces the entire array. The exact variants are:
 
-**Authoring boundary:** Engine's current `yamlFlashcard_Schema` requires concrete, typed ContentBlock Config values. It does **not** support an editorial `{ kind: questionField, questionSlug, fieldPath }` placeholder as a localized Text/Code/Markdown value. Until the generator validates and emits type-safe Question imports, record the exact target export, intended field, Question SHA and expected locales in the child PR's source/reuse plan, and **block dependent card materialization**. Do not inject pseudo-references into `flashcards.yaml`, substitute an English literal or fabricate a new Question entity to satisfy a draft generator.
+- `{type:'list',count:N}` for **one** cohesive answer list with integer `N >= 2`. The UI shows count automatically; do not duplicate `(N)` in front, hint, or another property. Verify distinct list items after every revision.
+- `{type:'warning'}` when a real learner caution merits a visible built-in localized warning.
+- `{type:'acronym',value}` with genuine localized mnemonic value, when justified.
+- `{type:'custom',value,color,icon?}` with supported palette color and optional serialized icon token, not JSX, SVG, CSS or an asset path.
 
-Where code deliberately reuses an **existing** Question-owned ContentBlock Configurator, it also reuses its identity; a **new** Flashcard-owned ContentBlock instead requires a distinct UUID even if it uses the same factual text or media UUID. Respect the current Engine ownership/collision checks and clarify which pattern is intended before generating code. Reject unresolved exports, mismatched fields, distracting/wrong answers, unsupported locales and stale Question sources. Independent concise Flashcard copy is permitted only when no Question owns that exact learner-facing value.
+Built-in variants may occur at most once each; multiple custom flags are allowed. Flag order has no pedagogical meaning. Taxonomy belongs in `tags`, not flags. No speculative flags, `localePolicy`, `parts` or `rationale` fields may be inserted into Engine Config.
 
-## Step 3 — Use ContentBlocks purposefully
+**Acronym audit:** consider one/two initial letters from each remembered list item (in meaningful order); actual item letters are **UPPERCASE**, invented pronunciation connector letters **lowercase**. Verify the source word-to-segment mapping, connector meaning, uniqueness and cultural suitability in the Flashcards PR evidence. Do not distort facts/reorder items to force a mnemonic. `value` may require **new culturally accurate localized mnemonics** for different Lesson languages; never declare it invariant without validating the words in every locale.
 
-Every `front`, `back` and optional `hint` is a named `{ items, order }` collection of real Engine ContentBlock Configs; publishing resolves it to ordered Props arrays. Know all available block types from current Engine schemas and UI Kit; avoid promising renderer support based merely on a type's presence.
+### Content accessibility restrictions are per retrieval direction
 
-- `text`: plain brief prompts/answers; use `%_%id: personName; value: Maria%_%` for named inline fragments. The identifier must be `camelCase` (e.g. `personName`, `year`, `planetName`) and must match a key in the `variables` object when styling is configured (e.g. `variables: { personName: { applyStyle: ['variable'] } }`). Text keeps the visible value directly inside the marker. This emphasizes a generalizable variable, **not automatic random replacement**.
-- `code`: actual programming syntax/algorithms, with correct `language` and optional localized `variables`. Use `%_%VARIABLE_NAME%_%` with UPPER_SNAKE_CASE identifiers matching keys of the `variables` object (not an array of `{ id, value }` entries). Code substitutes values before highlighting; unlike Text, it does not embed an `id`/`value` pair in the source marker.
-- `markdown`: only when concise mathematical/structured notation benefits from it.
-- `image`/other media: only when the stimulus itself is the recall target or needed for access, with real approved asset or explicit pending `assetRequest`/dependency and a non-revealing accessible alternative.
-- Avoid decorative videos, scenes, carousels or checklists inside a small flashcard. If a valid card needs a ContentBlock that this editorial schema cannot yet describe with enough type safety, report a specific generator extension rather than silently replacing it with prose.
-- Use `hint` for helpful cues that are not already supplied by typed flags; never repeat the list count there or leak the answer. Preserve meaningful LTR/RTL and literacy adaptations.
+Use the real `parameters.disabilities: Disability[]` union only to mark a task that **cannot** be made equivalently accessible in that mode. `[]` is the unrestrictive default. An image-first prompt and a text-first reverse prompt can have different restrictions. Never use disability metadata as diagnosis or blanket multimedia exclusion; explain every restriction in `production.accessibilityRationale`/PR review. Separate eligibility filtering occurs **before fetching** published Cards; excluded Cards cannot count as completed.
 
-## Step 4 — Author Flashcard-owned typed flags
+### Question-source reuse and canonical identity
 
-Flags belong to **Flashcards**, not to Lessons, Quizzes or Questions. The four current variants are `list` (integer `count >= 2`), `warning`, `acronym` (localized `value`), and `custom` (localized `value`, approved palette `color`, optional icon). A card's flags have **no pedagogically meaningful order**.
+Read current verified typed Question exports and the complete Question Bank, not historical `*_Question_Data` or positional paths. Prefer referencing existing Question-owned ContentBlock Configurators **directly** when a matching fact/answer has the same meaning; never copy localized Question text into a second independent Flashcard value. The observed Playground pattern is a real import such as `lightTravelsStraight.content.question.items.question` or `lightTravelsStraight.content.answers.correct.items.straightLine` **only when those exports/paths are verified in the current source**.
 
-**Engine source and publication contract:** `parameters.flags` is a plain array of discriminated typed flags in both Config/YAML and published Props. Use `flags: []` when absent or a list of typed flag objects; there is **no** `items`, `order`, slug, or named flag patch. A Flashcard Build override replaces the entire flags array. Preserve strict localization of each flag's `value` and validate built-in flag uniqueness; multiple `custom` flags are permitted.
+The Stage 2 `production.questionReuse` records expected Question source SHA, exact export path/name, field path and intended locales as editorial evidence; it is **not** a schema extension or pseudo-reference in a ContentBlock Config. The Card cannot be materialized until the actual materializer can emit that verified, type-safe import; never silently freeze an English value into a literal or invent a `kind: questionField` node. Intentional reuse keeps the Question child identity; a **new** Flashcard-owned ContentBlock requires its own UUID. Reuse only semantically appropriate answer content, not distractors or multi-target Questions; author independently when no Question owns that fact and Methodologist scope supports it.
 
-Use a single `list` count for an actual multi-element answer, not a duplicated `(N)` in front or hint. `warning` renders UI Kit's localized label. For `acronym`, verify capitalization, complete source-word mapping, and genuine localized mnemonics; keep letter decomposition and localization strategy in the **Flashcards PR editorial evidence**, not unsupported `parts` or `localePolicy` Config properties. Custom values are translatable learner text, not JSX, arbitrary SVG, CSS or raw React elements. Confirm all typed variants against current Engine and UI Kit before approval.
+## One canonical relationship graph
 
-## Step 5 — Author one canonical typed relationship graph
+Store the **sole** authored edges in `config.relationships: {items,order}`, each named entry exactly `{relationshipId,type,source,target}` with real Card **slugs**. The map key identifies the ordered edge and `relationshipId` is stable authored identity; neither is automatically generated from endpoints. The nine exact Engine types are:
 
-The bank has exactly one named `relationships: { items, order }` collection. Each entry is `{ relationshipId, type, source, target }`, where source and target are real Flashcard **slugs** in `flashcards.items`, and type is one of the nine current Engine `flashcardRelationshipTypes` values. The deterministic builder materializes the same `relationshipId` on each endpoint, with the other Flashcard's **UUID** in `relatedFlashcardId` and the proper `position`: `peer` for symmetric `reverse/equivalent/contrast/complementary`, `source` → `target` for directed `prerequisite/partOf/exampleOf/causes/precedes`. Never author duplicate or self-referential edges. Do not assume this changes learner mastery or scheduling.
+| Kind | Meaning |
+| --- | --- |
+| `reverse`, `equivalent`, `contrast`, `complementary` | Symmetric, both endpoint `position: 'peer'` |
+| `prerequisite` | Foundation → dependent |
+| `partOf` | Part → whole |
+| `exampleOf` | Example → category |
+| `causes` | Cause → effect |
+| `precedes` | Earlier → later |
 
-The graph is a property of the bank, not a second copy of each card's `parameters.relationships`. The [Flashcard builder](../../../shared/engine/scripts/flashcardBuilder/README.md) projects these canonical edges to complete authored Configs. Link the same source media UUID only when meaningful for the retrieval objective, but give **each Flashcard ContentBlock a new UUID**.
+Directional edges materialize `position: 'source'` on the source and `'target'` on the target, each with the **other Card UUID** as `relatedFlashcardId`; symmetric edges materialize `peer` on both. The two emitted endpoint entries preserve the single authored `relationshipId`. The Stage 2 authored Card `parameters.relationships` is intentionally **absent**, never a manually maintained second graph. Reject self-links, missing Card slugs, duplicate same-type endpoint pairs (including symmetric reversals), duplicate IDs and invalid directions; a card may have many justified links including different kinds to one partner. The Stage 5 orchestration must do this deterministic projection before calling the concrete #780 Card materializer. Relation type/position never implies scheduling or mastery semantics.
 
-## Step 6 — One Engine-shaped source-language bank
+## Stage 3 — Approve or omit a small in-Lesson Flashcards Section
 
-Write **one** `content/<textbook>/data/lessons/<bucket>/<lesson-uuid>/flashcards.yaml`. The following is a shape example, **not** an editorial approval, complete Lesson, or publishable translation:
+The full bank exists independently of its Section. Use `production.section` as a discriminated `notApplicable` with rationale or `selected` with the existing/new Section identity, placement and **small ordered source Card slug selection** (not another list of Card UUIDs). Preserve existing Lesson Section UUID, copy and relative ordering; a blocked `feedc0de-` selection in Lesson Stage 6 is provisional, never a real Card. The Section owner, **after valid Card materialization**, imports the completed Cards and writes `defineFlashcardsSection.params.selection.flashcardIds` using imported `.id` values in that order. Do not embed bank content in Lesson/Section Props, change Lesson root or Questions, or publish an unresolved Section. The Section is optional even when the independent bank is required. Unselected Cards remain in full-bank publication.
 
-```yaml
-lessonId: d3048d21-8690-5255-b62c-984c69ac272c
-documentLanguage: en
-supportedLanguages: [en, uk]
-flashcards:
-  items:
-    identifyOrbit:
-      id: 00000000-0000-4000-8000-000000000001
-      slug: identifyOrbit
-      parameters:
-        tags: [astronomy]
-        disabilities: []
-        flags: []
-      content:
-        front:
-          items:
-            prompt:
-              id: 00000000-0000-4000-8000-000000000011
-              slug: prompt
-              type: text
-              params: {}
-              locale: { value: { en: 'What is an orbit?' } }
-          order: [prompt]
-        back:
-          items:
-            answer:
-              id: 00000000-0000-4000-8000-000000000012
-              slug: answer
-              type: text
-              params: {}
-              locale: { value: { en: 'The path an object follows around another body.' } }
-          order: [answer]
-  order: [identifyOrbit]
-relationships: { items: {}, order: [] }
-```
+## Independent Memory Design Review and source materialization
 
-This example uses placeholder UUIDs and **must not be placed into a real Lesson** without verified unique IDs and meaningful content. Real authors add only the source language's actual translations while retaining the Lesson's planned language scope. The top-level `type: flashcard` is not authored; `defineFlashcard` derives it internally for published Props. **Other ContentBlock/flag/relation discriminators remain required.** `status`, `approved`, `draft`, `kind`, `schemaVersion`, speculative media and redundant editorial `sources` objects do not belong in bank Config/YAML; the PR description holds the process/evidence.
+An **independent reviewer** in a distinct context verifies the **entire actual Stage 3 source** against pinned Lesson and Questions revisions. Check atomicity, accuracy, distinct answers, Card count, reverse direction, flags/acronyms/list counts, permitted restrictions, graph semantics, referenced real typed Question children, language plan, asset readiness and selected Section (including an explicit N/A). Record reviewer identity, findings, final reviewed source SHA and verdict **in the existing Flashcards PR**, not in a `Stage4` source type or Config. Reviewer may directly correct the **same** Stage 3 object, then re-pin SHA. A successful technical schema parse, TS typecheck or the author's own approval does not substitute for independent Memory Review.
 
-**Reference source:** read the purpose-`flashcards` Lesson Markdown output from #645 at the exact Lesson SHA. Its curated media references are the **only** broad media candidate index. Verify a specific referenced source file if needed; do not inventory arbitrary assets. Source language, supported languages, verified Questions/Methodologist N/A and media review belong in the PR production record.
+At **Stage 5 only**, the Coding Agent consumes `FlashcardBankWorkflowMaterializerInput`, exactly an alias of the final Stage 3 type, and invokes the verified concrete Card/Side/ContentBlock materializers through the parent #775 orchestration. Source-language draft modules must be generated deterministically, no-clobber, validated with the current Engine API and real UUID graph, and retain explicit blockers for missing media, unresolved Question imports or incomplete locales. The legacy `flashcardBuilder` and `/flashcards materialize` route are YAML-only and **not** compatible with the typed Stage 3 input; keep them for in-flight legacy sources until a verified replacement exists. The bank materializer does not edit Lesson root, Questions or Section modules.
 
-**Typed Question references:** never copy localized Question facts into literal Flashcard strings. Read the actual typed Question exports and source SHA, validate exact existing properties, then emit imports and direct type-safe references. The currently implemented Flashcard builder deliberately **rejects** unsupported Question-field pseudo-references and cannot complete unresolved physical media without real assets, rather than generating broken placeholders or fabricated values; keep such authoring cases blocked until the converter supports them. Source-only TS is not final translation or approval.
+**Publication guard:** Stage 5 is not complete until full authored bank source typechecks with the owning packages, physical/media and accessibility evidence passes, `generateAssessmentResources --kind flashcard` publishes **all** Card members, requested locale resources/manifest exist, and any embedded Section references only real eligible published Cards. No source-only draft, `TODO(asset)`, Nil UUID, placeholder, unverified translation or unfinished imported Question may pass production. Independent Stage 6 translation and Stage 7 translation review remain mandatory separately.
 
-## Semantic validation and review handoff
+## Translation and review
 
-Validate every actual card and its engine-derived YAML source against:
+Technical Translator translates the **entire bank** in the same Flashcards PR: all fronts, backs, hints, localized `acronym/custom` flags, actual media alternatives, terms, examples and precise answer meaning, for the verified Lesson language plan. Do not translate only Section-selected Cards, duplicate Question-owned translations or fabricate locale dictionaries.
 
-1. Approved Lesson Markdown/methodology and either approved complete Question bank or verified `Not Applicable` rationale.
-2. One assessable fact/concept per card, short independent front/back, justified retrieval variations, no same-direction duplicates.
-3. Question field reference integrity and localized value reuse; verified IDs, slugs, locale coverage and correct type.
-4. List counts, acronym letter/connector proof, invariant vs translated mnemonics, flag/color/icon enums.
-5. Valid ordered ContentBlock sides, clean media purpose and no answer leakage; accessibility equivalents considered before restriction metadata.
-6. Exact `parameters.disabilities` from the existing Engine union; unique values chosen **per retrieval direction**, including optional empty array.
-7. Canonical unique relationship edges, correct direction, real endpoint IDs and both mirrored materialized entries.
-8. Accurate original Lesson planned language set and separately required translation/review evidence; no fabricated locale copies.
-9. Nonoverwriting TS scaffold, existing authored source preservation, no missing referenced asset/Question, no silent YAML deletion.
-10. Independent Memory Design Review on the exact source SHA; syntactic validation, checked box or author's own review is not approval.
+An **independent linguistic reviewer** (different agent/context) uses actual source-SHA-pinned full-bank review references/manifests from the [Code-derived Flashcard review adapter](../../../shared/engine/scripts/generateFlashcardReviewArtifacts/README.md), not Lesson design Markdown. Validate every relevant Card/locale for accuracy, RTL, syntax, punctuation, acronym reconstruction, terms, media parity and accessibility; authorized fixes on the **same PR** require re-generation/re-review of affected scope. Track evidence, reviewers, source/final SHAs and verified per-locale verdicts in the PR only. Keep Draft until the owner explicitly authorizes Ready/merge.
 
-Use the **existing Lesson-owned child Draft Flashcards PR** under [Create Flashcards Flow](./create-flashcards-flow.skill.md) for the seven-stage checklist, findings and final QA. Keep `flashcards.yaml` until materialization and independent approval can actually be verified; no duplicate editorial schema or new Lesson Production Issue is created merely for this bank workflow.
+## Checkpoints
+
+- Stage 1 is **bank analysis**, never a fake complete `defineFlashcard`.
+- Stage 2 is reviewed source-language Card inventory, actual immutable Card/Block UUIDs, Source Config, flags **array** and one relationship edge graph.
+- Stage 3 separately chooses Section `selected` or `notApplicable`, with bank intact.
+- Stage 4 independent Memory Review pins source SHA; Stage 5 materialization must not precede it.
+- Stages 6 and 7 cover **all** bank Cards/locales and independent linguistic review in the **same PR**.
+- No second YAML/Markdown editor, new Stage 4 Config, fabricated asset/Question reference, extra PR or publication shortcut is valid.
