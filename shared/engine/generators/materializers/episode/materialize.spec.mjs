@@ -43,7 +43,25 @@ test('refuses directory traversal before source emission',()=>{
  assert.throws(()=>materializeEpisode(ep(),{sourceLanguage:'uk',directory:'../unsafe'}),/unsafe generated directory/);
 });
 
-test('a typed Stage 2/3 provisional Episode does not materialize as a completed Episode',()=>{
- const planned={config:{type:'episode'},production:{focus:'Learning context',purpose:'Narrative transition'}};
- assert.throws(()=>materializeEpisode(planned,ctx()),/TODO \(BLOCKER\): provisional Episode/);
+test('typed Stage 2/3 provisional Episode creates a blocked valid-TS draft without fabricated Scenes',()=>{
+ const planned={config:{type:'episode',slug:'transition'},production:{focus:'Learning context',purpose:'Narrative transition'}};
+ const context={...ctx(),deriveId:()=> 'f0000000-0000-4000-8000-000000000001'};
+ const result=materializeEpisode(planned,context);
+ assert.equal(result.id,'f0000000-0000-4000-8000-000000000001');
+ assert.ok(result.diagnostics.some(d=>d.severity==='blocker'&&d.code==='pending-episode-scenario'));
+ const index=result.files.find(f=>f.path==='index.ts').content;
+ assert.match(index,/TODO \(BLOCKER\): Not implemented/);
+ assert.match(index,/defineEpisode<"transition"/);
+ assert.match(index,/order: \[\]/);
+ assert.ok(!result.files.some(f=>f.path.includes('/sections/')));
+ assert.match(result.files.find(f=>f.path==='specification.md').content,/Learning context/);
+ assert.match(result.files.find(f=>f.path==='specification.md').content,/Narrative transition/);
+ syntax(result.files);
+ assert.deepEqual(result,materializeEpisode(planned,context));
+});
+test('provisional Episode rejects missing reviewed intent and unallocated UUIDs',()=>{
+ const value={config:{type:'episode',slug:'transition'},production:{focus:'',purpose:'Transition'}};
+ assert.throws(()=>materializeEpisode(value,{...ctx(),deriveId:()=>IDs.episode}),/nonempty reviewed focus/);
+ const planned={config:{type:'episode',slug:'transition'},production:{focus:'Bridge',purpose:'Why here'}};
+ assert.throws(()=>materializeEpisode(planned,ctx()),/parent deterministic deriveId required/);
 });

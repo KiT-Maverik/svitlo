@@ -19,12 +19,13 @@ const ep=(slug='episodeOne',id=IDs.episode)=>({config:{type:'episode',id,slug,
  params:{languages:['uk','en']},locale:{title:{uk:'Пригода',en:'Journey'}},
  section:{items:{opening:section('opening','1e2e9488-6304-4d87-b597-f13ac724c3b5')},order:['opening']}},
  production:{focus:'Narrative situation',purpose:'Contextual transition'}});
+const assessment={questionBankRequired:true,flashcardBankRequired:false,quizSectionRequired:true,flashcardsSectionRequired:false};
 const lesson=(slug,tag,lessonId=IDs.lesson)=>({config:{type:'lesson',slug,skills:[skillId]},
  production:{kind:'existing',existing:{id:lessonId,base:{locale:{title:tag}},locale:{uk:{locale:{title:tag}}}},
- matching,overrideRationale:'Adapt title to Course sequence'}});
+ matching,assessment,overrideRationale:'Adapt title to Course sequence'}});
 const newLesson=slug=>({config:{type:'lesson',slug,skills:[skillId],locale:{title:{uk:'Новий урок'}}},
  production:{kind:'new',methodology:'Reviewed comprehensive independent methodology',objective:'Describe observations',
- depth:'Introductory',sequenceReason:'Introduce facts before applying',assessmentEvidence:'Practical checkpoint'}});
+ depth:'Introductory',sequenceReason:'Introduce facts before applying',assessmentEvidence:'Practical checkpoint',assessment}});
 const unitProduction={methodology:'Methodologically reviewed unit',outcomes:{skills:[skillId]},
  prerequisites:{skills:[]},depth:'Introductory',sequenceReason:'Prerequisite order'};
 const ch=(slug='chapterOne')=>({config:{type:'chapter',slug,locale:{title:{uk:'Глава'}},
@@ -42,10 +43,16 @@ const sectionRenderer=(node,ctx)=>({id:node.config?.id??node.id,exportName:node.
  files:[{path:ctx.directory+'/index.ts',kind:'typescript',content:'export const opening = {};\n'}]});
 const reused=[];
 const lessonBridge=(node,ctx)=>{
- reused.push({location:ctx.directory,lessonId:ctx.lessonId,kind:ctx.kind,existing:ctx.existing});
- return {lessonId:ctx.lessonId??'80d31f41-75ac-4210-9a6d-7b4c75ad698e',
- exportName:node.config.slug,files:[{path:ctx.directory+'/index.ts',kind:'typescript',
- content:'export const '+node.config.slug+' = {};\n'}]};
+ reused.push({location:ctx.directory,lessonId:ctx.lessonId,kind:ctx.kind,existing:ctx.existing,
+  assessment:ctx.production.assessment,reviewedMethodology:ctx.production.methodology,language:ctx.sourceLanguage});
+ const lessonId=ctx.lessonId??'80d31f41-75ac-4210-9a6d-7b4c75ad698e';
+ if(ctx.kind==='new')return {lessonId,files:[{
+  path:'content/book/data/lessons/'+lessonId.slice(-1)+'/'+lessonId+'/index.ts',
+  kind:'typescript',content:'// Future LessonWorkflowStage1 authored source; no runtime Configurator\\nexport const lessonStage1 = {};\\n'
+ }]};
+ return {lessonId,exportName:node.config.slug,files:[{
+  path:ctx.directory+'/index.ts',kind:'typescript',content:'export const '+node.config.slug+' = {};\n'
+ }]};
 };
 const deriveId=(kind,placement)=>{
  if(kind==='module'&&placement.endsWith('moduleOne'))return IDs.module;
@@ -93,11 +100,30 @@ test('fully typed Stage 3 tree reuses one Lesson twice with independent sparse B
  assert.notEqual(reused[0].location,reused[1].location);
  assert.equal(result.placements.length,3);
  assert.equal(result.placements.find(p=>p.kind==='new').lessonId,'80d31f41-75ac-4210-9a6d-7b4c75ad698e');
+ assert.equal(result.pendingPlacements.length,1);
+ const handoff=result.files.find(f=>f.path===result.pendingPlacements[0].handoffPath);
+ assert.ok(handoff);
+ assert.match(handoff.path,/\/data\/lessons\/e\/80d31f41-75ac-4210-9a6d-7b4c75ad698e\/index\.ts$/);
+ assert.equal(result.files.filter(f=>f.path.includes('/data/lessons/')).length,1);
+ assert.ok(!result.files.find(f=>f.path==='index.ts').content.includes('import { newLesson '));
+ assert.match(result.files.find(f=>f.path==='index.ts').content,/TODO \(BLOCKER\): New Lesson Stage 1/);
+ assert.equal(reused[2].assessment.quizSectionRequired,true);
+ assert.equal(reused[2].reviewedMethodology,'Reviewed comprehensive independent methodology');
+ assert.equal(reused[2].language,'uk');
  syntax(result.files);
 });
-test('Stage 3 provisional Episode, obsolete Lesson keys, invalid order and unsafe slug are blocked',()=>{
+test('Stage 3 provisional Episode becomes a deterministic, explicitly blocked authoring draft',()=>{
  const draft=course();draft.config.content.items.directEpisode={config:{type:'episode'},production:{focus:'Situation',purpose:'Transition'}};
- assert.throws(()=>materializeCourse(draft,ctx()),/provisional Episode/);
+ const result=materializeCourse(draft,ctx());
+ assert.ok(result.diagnostics.some(d=>d.code==='pending-episode-scenario'&&d.severity==='blocker'));
+ const placeholder=result.files.find(f=>f.path==='content/directEpisode/index.ts').content;
+ assert.match(placeholder,/TODO \(BLOCKER\): Not implemented/);
+ assert.match(placeholder,/section = \{ items: \{  \}, order: \[\] \}/);
+ const sidecar=result.files.find(f=>f.path==='content/directEpisode/specification.md').content;
+ assert.match(sidecar,/Situation/);
+ assert.match(sidecar,/Transition/);
+ syntax(result.files);
+ assert.deepEqual(result.files,materializeCourse(draft,ctx()).files);
  const old=course();old.config.content.items.directLesson.config.lessonId=IDs.lesson;
  assert.throws(()=>materializeCourse(old,ctx()),/belong to production/);
  const invalid=course();invalid.config.content.order=['moduleOne'];
@@ -115,4 +141,33 @@ test('the same imported Lesson must keep a verified ID, not an unvalidated raw p
 });
 test('refuses traversal in requested source directory',()=>{
  assert.throws(()=>materializeCourse(course(),{sourceLanguage:'uk',directory:'../unsafe'}),/unsafe generated directory/);
+});
+
+test('Methodology Markdown is ordered, preserves evidence and never JSON dumps Course planning',()=>{
+ const input=course();
+ input.production.standardsAlignment=[{
+  standardId:'00000000-0000-4000-8000-000000000022',status:'intended',
+  evidence:'Reviewed scientific alignment',version:'2026',sourceUrl:'https://example.edu/standards',
+  jurisdiction:'UA',
+ }];
+ input.production.openDecisions={translation:'Await expert review'};
+ const result=materializeCourse(input,ctx());
+ const courseMarkdown=result.files.find(f=>f.path==='methodology.md').content;
+ const moduleMarkdown=result.files.find(f=>f.path==='content/moduleOne/methodology.md').content;
+ const chapterMarkdown=result.files.find(f=>f.path==='content/moduleOne/content/chapterOne/methodology.md').content;
+ assert.match(courseMarkdown,/## Standards alignment[\s\S]*Reviewed scientific alignment/);
+ assert.match(courseMarkdown,/## Open decisions[\s\S]*Await expert review/);
+ assert.ok(courseMarkdown.indexOf('## Purpose')<courseMarkdown.indexOf('## Intended learning outcomes'));
+ assert.match(moduleMarkdown,/## Intended learning outcomes[\s\S]*## Entry prerequisites[\s\S]*## Depth[\s\S]*## Sequence rationale/);
+ assert.match(chapterMarkdown,/## Sequence rationale[\s\S]*Prerequisite order/);
+ assert.ok(!moduleMarkdown.includes('"skills"'));
+ assert.ok(!result.files.some(f=>f.path==='specification.md'));
+});
+test('new Lesson handoff cannot be mistaken for a finished Configurator or generate unrelated sections',()=>{
+ const c=course();c.config.content.items.pending=newLesson('pending');c.config.content.order.push('pending');
+ const bad=ctx();bad.materializeLessonPlacement=()=>({lessonId:'80d31f41-75ac-4210-9a6d-7b4c75ad698e',
+  exportName:'pending',files:[{path:'content/course/content/pending/index.ts',kind:'typescript',content:'export const pending = {};'}]});
+ assert.throws(()=>materializeCourse(c,bad),/UUID-addressed Stage 1 index.ts/);
+ const noAssessment=course();delete noAssessment.config.content.items.directLesson.production.assessment;
+ assert.throws(()=>materializeCourse(noAssessment,ctx()),/four explicit assessment decisions/);
 });

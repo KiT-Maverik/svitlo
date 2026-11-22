@@ -19,12 +19,13 @@ const ep=(slug='episodeOne',id=IDs.episode)=>({config:{type:'episode',id,slug,
  params:{languages:['uk','en']},locale:{title:{uk:'Пригода',en:'Journey'}},
  section:{items:{opening:section('opening','1e2e9488-6304-4d87-b597-f13ac724c3b5')},order:['opening']}},
  production:{focus:'Narrative situation',purpose:'Contextual transition'}});
+const assessment={questionBankRequired:true,flashcardBankRequired:false,quizSectionRequired:true,flashcardsSectionRequired:false};
 const lesson=(slug,tag,lessonId=IDs.lesson)=>({config:{type:'lesson',slug,skills:[skillId]},
  production:{kind:'existing',existing:{id:lessonId,base:{locale:{title:tag}},locale:{uk:{locale:{title:tag}}}},
- matching,overrideRationale:'Adapt title to Course sequence'}});
+ matching,assessment,overrideRationale:'Adapt title to Course sequence'}});
 const newLesson=slug=>({config:{type:'lesson',slug,skills:[skillId],locale:{title:{uk:'Новий урок'}}},
  production:{kind:'new',methodology:'Reviewed comprehensive independent methodology',objective:'Describe observations',
- depth:'Introductory',sequenceReason:'Introduce facts before applying',assessmentEvidence:'Practical checkpoint'}});
+ depth:'Introductory',sequenceReason:'Introduce facts before applying',assessmentEvidence:'Practical checkpoint',assessment}});
 const unitProduction={methodology:'Methodologically reviewed unit',outcomes:{skills:[skillId]},
  prerequisites:{skills:[]},depth:'Introductory',sequenceReason:'Prerequisite order'};
 const ch=(slug='chapterOne')=>({config:{type:'chapter',slug,locale:{title:{uk:'Глава'}},
@@ -42,10 +43,16 @@ const sectionRenderer=(node,ctx)=>({id:node.config?.id??node.id,exportName:node.
  files:[{path:ctx.directory+'/index.ts',kind:'typescript',content:'export const opening = {};\n'}]});
 const reused=[];
 const lessonBridge=(node,ctx)=>{
- reused.push({location:ctx.directory,lessonId:ctx.lessonId,kind:ctx.kind,existing:ctx.existing});
- return {lessonId:ctx.lessonId??'80d31f41-75ac-4210-9a6d-7b4c75ad698e',
- exportName:node.config.slug,files:[{path:ctx.directory+'/index.ts',kind:'typescript',
- content:'export const '+node.config.slug+' = {};\n'}]};
+ reused.push({location:ctx.directory,lessonId:ctx.lessonId,kind:ctx.kind,existing:ctx.existing,
+  assessment:ctx.production.assessment,reviewedMethodology:ctx.production.methodology,language:ctx.sourceLanguage});
+ const lessonId=ctx.lessonId??'80d31f41-75ac-4210-9a6d-7b4c75ad698e';
+ if(ctx.kind==='new')return {lessonId,files:[{
+  path:'content/book/data/lessons/'+lessonId.slice(-1)+'/'+lessonId+'/index.ts',
+  kind:'typescript',content:'// Future LessonWorkflowStage1 authored source; no runtime Configurator\\nexport const lessonStage1 = {};\\n'
+ }]};
+ return {lessonId,exportName:node.config.slug,files:[{
+  path:ctx.directory+'/index.ts',kind:'typescript',content:'export const '+node.config.slug+' = {};\n'
+ }]};
 };
 const deriveId=(kind,placement)=>{
  if(kind==='module'&&placement.endsWith('moduleOne'))return IDs.module;
