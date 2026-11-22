@@ -235,9 +235,9 @@ export type LessonWorkflowStage2Config = Omit<LessonWorkflowStage1Config, 'secti
  * and ordered Sections/ContentBlocks. Stages 3–5 review and directly correct
  * this exact object in the existing Lesson PR; they do not create stage types.
  */
-export interface LessonWorkflowStage2 extends LessonWorkflowStage1 {
+export type LessonWorkflowStage2 = Omit<LessonWorkflowStage1, 'config'> & {
   config: LessonWorkflowStage2Config;
-}
+};
 
 /** Stage 6 materializers consume only the final Stage 5 reviewed Stage 2 source. */
 export type LessonWorkflowMaterializerInput = LessonWorkflowStage2;
