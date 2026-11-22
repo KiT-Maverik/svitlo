@@ -12,8 +12,8 @@ import { createHash } from 'node:crypto';
 import { execFileSync } from 'node:child_process';
 import { createRequire } from 'node:module';
 import { fileURLToPath } from 'node:url';
-import { inspectTyped, typedPath, github, requireActor, report } from './lesson-typed-gate.mjs';
-import { gitBlob } from '../courseMaterialization/course-gate.mjs';
+import { inspectTyped, typedPath } from './lesson-typed-gate.mjs';
+import { gitBlob, github, requireActor, report } from '../courseMaterialization/course-gate.mjs';
 
 const sha = /^[0-9a-f]{40}$/;
 const hash = /^[0-9a-f]{64}$/;
