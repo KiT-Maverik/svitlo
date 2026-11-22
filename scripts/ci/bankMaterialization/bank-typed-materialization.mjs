@@ -295,6 +295,10 @@ async function analyze(meta) {
     files,
   };
   verifyTypedManifest(reportData, meta);
+  // Semantic TypeScript analysis of ALL generated Question kinds/Card Sides,
+  // against the actual @svitlo/engine/build declarations. Read-only.
+  const { typecheckGeneratedBankModules } = await import('./bank-typed-stage3.mjs');
+  typecheckGeneratedBankModules(root, committed.commitSha, files.map(f => f.path), trustedRoot);
   const location = process.env.BANK_REPORT;
   fs.mkdirSync(path.dirname(location), { recursive: true });
   fs.writeFileSync(location, JSON.stringify(reportData) + '\n', { flag: 'wx' });
