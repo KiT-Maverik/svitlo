@@ -1,4 +1,6 @@
-# Course Stage 5 — one PR-command materialization
+# Legacy Course YAML Stage 5 — protected PR-command materialization
+
+**Migration status:** This is the existing trusted **YAML-only** `/course materialize` pathway. The [typed Course Skill](../../../studio/skills/course-workflow/create-course-flow.skill.md) must not invoke it on TypeScript objects or claim it implements the planned typed materializer. Retain its authorization, immutable-source verification and regression tests until an equivalent typed CI path is deployed and verified. Its behavior below remains accurate for legacy callers.
 
 The trusted workflow lives in .github/workflows/course-materialization.yml. It must be deployed on the repository default branch before a PR comment can trigger this implementation. Stage 5 is a Draft source handoff, not publication approval.
 

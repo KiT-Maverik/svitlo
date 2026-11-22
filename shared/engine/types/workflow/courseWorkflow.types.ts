@@ -20,7 +20,9 @@ type CourseLanguage = Course_Config['params']['languages'][number];
 
 /** The complete planned set is nonempty; publication initially uses only document. */
 export type CourseWorkflowStage1Languages = {
+  /** The actual editorial source language, not a guessed translation target. */
   document: CourseLanguage;
+  /** Nonempty intended publication languages; each requires authentic localization and review. */
   planned: readonly [CourseLanguage, ...CourseLanguage[]];
 };
 
@@ -30,23 +32,37 @@ export type CourseWorkflowStage1Languages = {
  * and source notes rather than silently skipping the decision.
  */
 export type CourseWorkflowStage1Methodology = {
+  /** Explain the learner need and why the Course should exist beyond its topic. */
   purpose: string;
+  /** Describe learners' prior knowledge, development and access needs beyond age/grade. */
   audience: string;
+  /** Explain subject-specific teaching, practice, feedback and differentiation. */
   approach: string;
+  /** State the expected application/transfer level and conceptual limits. */
   depth: string;
+  /** Plan keyboard/screen-reader equivalents, language, offline and device support. */
   accessibility: string;
+  /** Explain what is included and excluded and the pedagogical reasons why. */
   scope: string;
+  /** Separate actual learner prerequisites from competencies to be taught here. */
   entryConditions: string;
+  /** Link checkable facts, standards/source versions and any relevant uncertainty. */
   sourceNotes: string;
 };
 
 /** Evidence is production metadata, not a claim of Course accreditation. */
 export type CourseWorkflowStage1StandardAlignment = {
+  /** Refer to an actual canonical standard UUID and relevant edition. */
   standardId: NonNullable<Course_Config['params']['educationStandards']>[number];
+  /** Be explicit about intended versus partial versus source-verified mapping. */
   status: 'intended' | 'partial' | 'verified';
+  /** Explain which Course outcomes meet which cited requirements and coverage gaps. */
   evidence: string;
+  /** Record the real standard edition/version when known. */
   version?: string;
+  /** Link an authoritative source that a reviewer can independently inspect. */
   sourceUrl?: string;
+  /** Specify the standard's educational jurisdiction without guessing. */
   jurisdiction?: string;
 };
 
@@ -54,11 +70,17 @@ export type CourseWorkflowStage1StandardAlignment = {
  * Empty arrays/maps mean an explicit decision that nothing currently applies.
  */
 export type CourseWorkflowStage1Production = {
+  /** Source and planned locales live here, not config.params.languages. */
   languages: CourseWorkflowStage1Languages;
+  /** Provide full pedagogical reasoning; the Skill defines substantive adequacy. */
   methodology: CourseWorkflowStage1Methodology;
+  /** Explain observable Skill outcomes, depth and acceptable evidence. */
   outcomes: { explanation: string };
+  /** Explain real entry knowledge and its verification. */
   prerequisites: { explanation: string };
+  /** Map verified standards honestly, or explicitly choose no alignment. */
   standardsAlignment: CourseWorkflowStage1StandardAlignment[];
+  /** Name unresolved decisions/owners, or deliberately leave an empty map. */
   openDecisions: Record<string, string>;
 };
 
@@ -74,10 +96,14 @@ export type CourseWorkflowStage1 = {
  * Detailed methodology completeness is defined by the Course Workflow Skill.
  */
 export type CourseWorkflowStage2UnitProduction = {
+  /** Explain the unit's actual pedagogy, concept progression and learner challenges. */
   methodology: string;
+  /** Plan verified competencies achieved in this particular unit. */
   outcomes: NonNullable<Course_Config['params']['outcomes']>;
+  /** Identify the real entry Skills/knowledge for this unit. */
   prerequisites: NonNullable<Course_Config['params']['prerequisites']>;
   depth: string;
+  /** Justify placement, dependency and transitions in the Course order. */
   sequenceReason: string;
 };
 
@@ -86,6 +112,7 @@ export type CourseWorkflowStage2UnitProduction = {
  * Only Stage 3 resolves the slot to an existing or newly planned Lesson.
  */
 export type CourseWorkflowStage2LessonSlot = {
+  /** Only verified Skill UUIDs; do not invent a Lesson identity or title yet. */
   config: Pick<Lesson_Config, 'type'> & {
     skills: readonly [Lesson_Config['skills'][number], ...Lesson_Config['skills'][number][]];
   };
