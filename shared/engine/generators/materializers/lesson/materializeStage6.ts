@@ -203,7 +203,7 @@ export function materializeLessonStage6(
   const match = review?.sourcePath?.match(
     /^content\/([a-z][a-z0-9-]*)\/data\/lessons\/([0-9a-f])\/([0-9a-f-]{36})\/index\.ts$/,
   );
-  if (config.type !== 'lesson' || !uuid.test(config.id) || !match ||
+  if (!review || config.type !== 'lesson' || !uuid.test(config.id) || !match ||
     match[3] !== config.id || match[2] !== config.id.at(-1).toLowerCase() ||
     !sha.test(review.sourceBlobSha) || !sha.test(review.reviewCommitSha) ||
     !sha.test(review.reviewEvidenceSha) || review.stage6Authorized !== true ||
