@@ -18,6 +18,10 @@ const entityRoot = new RegExp(
   '^(content/(?:languages/)?[a-z][a-z0-9-]*/data/(?:lessons|courses)/[0-9a-f]/' + uuid + ')/',
 );
 const unresolved = /00000000-0000-0000-0000-000000000000\.(?:svg|png|jpe?g|webp|gif|avif|mp3|wav|ogg|m4a|flac|mp4|webm|vtt|srt)/i;
+const pendingId = /\bfeedc0de-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\b/i;
+// This source-only check supplements, but does not replace, the actual
+// production Build-to-Props and the pending-import lint policy (#774).
+const pendingFactory = /\bdefinePending(?:Lesson|QuizSection|FlashcardsSection)\b/;
 const sourceExtension = /\.(?:ts|tsx|mts)$/i;
 
 export function affectedEntities(changedPaths) {
@@ -45,6 +49,9 @@ function inspect(root, relative, findings) {
   for (let index = 0; index < lines.length; index++) {
     if (/TODO\(asset\)/i.test(lines[index]) || unresolved.test(lines[index])) {
       findings.push(relative + ':' + (index + 1) + ': unresolved asset TODO or reserved Nil UUID');
+    }
+    if (pendingId.test(lines[index]) || pendingFactory.test(lines[index])) {
+      findings.push(relative + ':' + (index + 1) + ': unresolved Preview UUID or Draft-only configurator');
     }
   }
 }
