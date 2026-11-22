@@ -176,7 +176,8 @@ export function materializeQuestionBank(
   input: QuestionBankWorkflowMaterializerInput,
   authorization: QuestionBankFinalAuthorization,
 ): BankSourceResult {
-  validateStage1(input, authorization.ownerLessonId);
+  validateStage1(input, authorization.ownerLessonId, authorization.independentBankAuthorization);
+  assertReviewedBankInput(input, authorization.reviewed);
   const questions = input.config.questions;
   if (!questions || typeof questions !== 'object') throw new Error('Missing complete Question inventory');
   for (const key of Object.keys(questions)) {
