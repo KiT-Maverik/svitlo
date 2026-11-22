@@ -12,16 +12,6 @@ import vm from 'node:vm';
 
 const id = (n: string) => '12345678-1234-4234-8234-1234567890' + n;
 const folder = 'content/math/data/lessons/1/' + id('01') + '/';
-const stage2Source = 'export const lesson = { config: {}, production: {} } satisfies LessonWorkflowStage2;\n';
-const blobSha = (source: string) => createHash('sha1')
-  .update('blob ' + Buffer.byteLength(source) + '\0').update(source).digest('hex');
-const reviewed = {
-  sourcePath: folder + 'index.ts',
-  sourceBlobSha: blobSha(stage2Source),
-  reviewCommitSha: '1'.repeat(40),
-  reviewEvidenceSha: '2'.repeat(40),
-  stage6Authorized: true as const,
-};
 const assessment = {
   questionBankRequired: false,
   flashcardBankRequired: false,
@@ -72,6 +62,24 @@ const valid = () => ({
     assessment: { ...assessment },
   },
 });
+// The archived bytes represent the SAME authoring object as the evaluated
+// fixture. The trusted adapter is responsible for independently checking
+// this relationship when invoking the orchestrator.
+const stage2Source = [
+  "import type { LessonWorkflowStage2 } from '@svitlo/engine/build';",
+  'export const lessonStage2 = ' + JSON.stringify(valid(), null, 2) +
+    ' satisfies LessonWorkflowStage2;',
+  '',
+].join('\n');
+const blobSha = (source: string) => createHash('sha1')
+  .update('blob ' + Buffer.byteLength(source) + '\0').update(source).digest('hex');
+const reviewed = {
+  sourcePath: folder + 'index.ts',
+  sourceBlobSha: blobSha(stage2Source),
+  reviewCommitSha: '1'.repeat(40),
+  reviewEvidenceSha: '2'.repeat(40),
+  stage6Authorized: true as const,
+};
 const options = {
   sourceText: stage2Source,
   review: reviewed,
