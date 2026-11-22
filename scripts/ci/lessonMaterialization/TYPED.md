@@ -121,6 +121,7 @@ even after technical TypeScript compilation.
 
 ~~~sh
 node --test scripts/ci/lessonMaterialization/lesson-typed-materialization.spec.mjs
+node --test scripts/ci/lessonMaterialization/lesson-typed-publish.spec.mjs
 node --test scripts/ci/lessonMaterialization/lesson-typed-source.spec.mjs
 node --test scripts/ci/lessonMaterialization/lesson-materialization.spec.mjs
 node --test scripts/ci/lessonMaterialization/lesson-publish-isolation.spec.mjs
