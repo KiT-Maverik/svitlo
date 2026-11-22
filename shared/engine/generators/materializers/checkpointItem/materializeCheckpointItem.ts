@@ -35,7 +35,7 @@ function safeDirectory(value: string): string {
 /** Emit the item from real Text/Answer child sources; never create a synthetic answer. */
 export function materializeCheckpointItem(config: CheckpointItemSource, context: CheckpointItemContext): CheckpointItemResult {
   if (!record(config) || config.type !== 'checkpointItem' || typeof config.slug !== 'string' ||
-    !slug.test(config.slug) || !uuid.test(config.id) || config.check === false) {
+    !slug.test(config.slug) || !uuid.test(config.id) || config.check !== undefined && config.check !== true) {
     throw new Error('CheckpointItem: invalid identity, type or check flag');
   }
   if (!locale.test(context.documentLanguage) || !/^(?:\.\.?\/|#|@svitlo\/)/.test(context.languagesImport)) {
