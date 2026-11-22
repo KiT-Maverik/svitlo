@@ -167,3 +167,37 @@ test('Nil UUID media remains a Draft placeholder and always blocks Production ev
     assert.doesNotThrow(() => assertMediaPublicationReady(diagnostics, 'draft'));
     assert.throws(() => assertMediaPublicationReady(diagnostics, 'production'), /unresolved resource placeholder/);
   }));
+
+
+test('strict publication rejects reserved Draft identities anywhere in real built Props without affecting Preview', () =>
+  fixture(root => {
+    const pending = 'feedc0de-12ab-8cab-abcd-0123456789ab';
+    const sources = [
+      { base: { type: 'lesson', section: [{ type: 'quiz', params: { selection: { questionIds: [pending] } } }] } },
+      { base: { type: 'course', content: { items: { blocked: { type: 'lesson', id: pending } }, order: ['blocked'] } } },
+      { base: { type: 'flashcard', locale: { value: { reference: pending } } } },
+      { base: { type: 'image', locale: { src: pending + '.webp' } } },
+    ];
+    for (const source of sources) {
+      assert.doesNotThrow(() => publish(root, source, 'draft'));
+      assert.throws(() => publish(root, source, 'production'), /Unresolved Preview value.*lesson\.ts/);
+    }
+  }));
+
+test('production blocks known pending Lesson/Quiz scaffolds and pending assessment labels, not ordinary copy', () =>
+  fixture(root => {
+    const blocked = [
+      { base: { type: 'lesson', section: [{ type: 'content', slug: 'pendingContent', locale: { title: 'Not implemented' } }] } },
+      { base: { type: 'lesson', section: [{ type: 'content', content: [{ type: 'text', slug: 'pendingNotice', locale: { value: 'Not implemented' } }] }] } },
+      { base: { type: 'lesson', section: [{ type: 'quiz', locale: { title: 'PENDING QUIZ' } }] } },
+      { base: { type: 'course', content: { items: { activity: { type: 'quest' } }, order: ['activity'] } } },
+    ];
+    for (const source of blocked) {
+      assert.doesNotThrow(() => publish(root, source, 'draft'));
+      assert.throws(() => publish(root, source, 'production'), /Preview scaffold|Preview value|Unimplemented Quest/);
+    }
+    const complete = {
+      base: { type: 'lesson', section: [{ type: 'content', slug: 'realSection', locale: { title: 'Not implemented yet in the history of this topic' } }] },
+    };
+    assert.deepEqual(publish(root, complete, 'production').diagnostics, []);
+  }));
