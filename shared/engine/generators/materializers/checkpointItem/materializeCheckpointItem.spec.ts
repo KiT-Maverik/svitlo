@@ -45,7 +45,7 @@ test('CheckpointItem delegates its enabled Text question and identified Answer i
   assert.match(code, /import \{ prompt as question \} from "\.\/question"/);
   assert.match(code, /import \{ answer as answer \} from "\.\/answer"/);
   assert.match(code, /check: true/);
-  assert.equal(ts.createSourceFile('index.ts', code, ts.ScriptTarget.Latest, true).parseDiagnostics.length, 0);
+  assert.equal(syntaxErrorCount(code), 0);
   assert.deepEqual(result, materializeCheckpointItem(item(), context()));
 });
 
@@ -81,3 +81,14 @@ test('CheckpointItem rejects an unowned sibling path returned by its question ma
     }),
   }), /outside its owned directory/);
 });
+
+
+/** Public TypeScript API: syntactic diagnostics without relying on internal SourceFile fields. */
+function syntaxErrorCount(source: string, fileName = 'index.ts'): number {
+  const result = ts.transpileModule(source, {
+    fileName,
+    reportDiagnostics: true,
+    compilerOptions: { target: ts.ScriptTarget.ES2022 },
+  });
+  return (result.diagnostics ?? []).filter(d => d.category === ts.DiagnosticCategory.Error).length;
+}
