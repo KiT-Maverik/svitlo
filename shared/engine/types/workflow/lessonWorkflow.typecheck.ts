@@ -1,4 +1,5 @@
 import type { CourseWorkflowStage3NewLesson } from './courseWorkflow.types';
+import type { ContentBlock_Text_Configurator } from '../../configurators/contentBlocks/defineText/defineText';
 import type {
   LessonWorkflowStage1,
   LessonWorkflowStage1Config,
@@ -117,7 +118,7 @@ const scene = {
     slug: 'lightExperiment',
     type: 'scene',
     params: {},
-    locale: {},
+    locale: { value: { uk: 'Light experiment' } },
   },
   production: {
     purpose: 'Explore light paths through learner-controlled inputs.',
@@ -128,6 +129,25 @@ const scene = {
 };
 
 // Section authoring uses plain config/production nodes, not defineContentSection.
+// Built configurators are not editorial Stage 2 child configs.
+declare const materializedText: ContentBlock_Text_Configurator;
+const prematureConfigurator: LessonWorkflowStage2SimpleBlock = {
+  // @ts-expect-error A materialized Configurator is not a plain Text Config object.
+  config: materializedText,
+};
+
+const missingSourceLanguage: LessonWorkflowStage1Production = {
+  ...standalone.production,
+  // @ts-expect-error Actual source document language is required.
+  languages: { planned: ['uk'] },
+};
+
+const missingPlannedLanguages: LessonWorkflowStage1Production = {
+  ...standalone.production,
+  // @ts-expect-error The planned language tuple must be nonempty.
+  languages: { document: 'uk', planned: [] },
+};
+
 const intro = {
   config: {
     id: '663572e7-bd85-4516-86e2-3de07d209e08',
@@ -194,6 +214,9 @@ const missingSections: LessonWorkflowStage2 = {
 const invalidCheckpoint: LessonWorkflowStage2Checkpoint = { config: text.config };
 
 void scene;
+void prematureConfigurator;
+void missingSourceLanguage;
+void missingPlannedLanguages;
 void courseHandoff;
 void fromCourse;
 void standalone;
