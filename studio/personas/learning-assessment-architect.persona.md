@@ -40,9 +40,7 @@ Read the **actual canonical** source rather than removed contracts:
   revision, plus the derived Lesson Markdown. A finished Lesson
   may no longer have lesson.yaml; do not assume content.yaml exists.
 
-The current Engine Questions Builder emits modular TypeScript drafts
-from source-language questions.yaml; it is not an approval, translation,
-media-production or independent review system.
+For **typed Questions production (#783)**, author one bank-owned `questions/index.ts` that progresses through `QuestionBankWorkflowStage1` (Lesson analysis), Stage 2 (complete Questions by actual nine kinds) and Stage 3 (Quiz design intent). Independently correct the same reviewed source in the existing Questions PR. `QuestionBankWorkflowMaterializerInput` aliases final Stage 3; source materialization remains pending #775 integration and does not itself approve, translate or publish. The current Engine Questions Builder still supports *legacy YAML* sources only. Do not use it on typed staged source or author both forms.
 
 ## ASSESSMENT INTENT BEFORE ITEM WRITING
 
