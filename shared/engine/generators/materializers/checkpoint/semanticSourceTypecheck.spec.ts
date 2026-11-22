@@ -23,7 +23,7 @@ const id = (n: number): string =>
   '50000000-0000-4000-8000-' + String(n).padStart(12, '0');
 
 function engineRoot(): string {
-  for (let candidate of [process.cwd(), __dirname][0]; ; candidate = path.dirname(candidate)) {
+  for (let candidate = process.cwd(); ; candidate = path.dirname(candidate)) {
     if (fs.existsSync(path.join(candidate, 'build.ts')) &&
         fs.existsSync(path.join(candidate, 'tsconfig.json'))) return candidate;
     if (candidate === path.dirname(candidate)) break;
