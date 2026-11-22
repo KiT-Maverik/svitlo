@@ -333,7 +333,21 @@ test('authored enabled Quiz and Flashcards Sections pass separate source materia
   assert.throws(() => materializeLessonStage6(input, {
     ...options, sourceText: expression,
     review: { ...reviewed, sourceBlobSha: blobSha(expression) },
-  }), /requires imported Question\\/Flashcard Configurator \\.id/);
+  }), /must reference a static member/);
+
+  // References through a named bank map must also remain references.
+  const throughBank = sourceFor(input).sourceText
+    .replace("import { reviewQuestion } from './questions/multipleChoice/example';",
+      "import { questions } from './questions';")
+    .replace('reviewQuestion.id', 'questions.multipleChoice.example.id');
+  const bankPlan = materializeLessonStage6(input, {
+    ...options, sourceText: throughBank,
+    review: { ...reviewed, sourceBlobSha: blobSha(throughBank) },
+  });
+  const bankQuiz = bankPlan.files.find(file =>
+    file.path === folder + 'sections/reviewQuiz/index.ts')!.content;
+  assert(bankQuiz.includes('import { questions as stage6_ref_0 } from "../../questions";'));
+  assert(bankQuiz.includes('"questionIds": [stage6_ref_0.multipleChoice.example.id]'));
 });
 
 test('duplicate UUID, wrong slug, invalid order and unsanctioned identity are rejected', () => {
