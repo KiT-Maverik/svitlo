@@ -37,6 +37,16 @@ Reviewed the real parent branch head `66514c2b959e4824f4307d5dd4c1e32f11beefeb`:
 
 **Compatibility verdict:** no changes to the shipped Stage 1–3 parent types are required. These five materializers are structurally compatible **after** the parent Stage-5 projection assigns identities, selects the source language and forwards Scene metadata. End-to-end compatibility remains unverified until Stage 5 orchestrator + full Engine typechecks exist.
 
+## Stage-5 staged handoff clarified in parent #775 (owner decision)
+
+The later owner clarification in [#775](https://github.com/KiT-Maverik/svitlo/pull/775#issuecomment-7082623455) supersedes the prior proposal to fabricate a runnable `defineLesson` with pending Content/Quiz/Flashcards during **Course** materialization.
+
+**Do not call any of these five complete Config source materializers merely because Course Stage 5 created a new Lesson placement.** That Course flow allocates/persists the new Lesson UUID and creates a minimal standalone **`LessonWorkflowStage1` typed authoring `index.ts`**, retaining known approved methodology/assessment and source-language data. It must not generate `defineLesson`, Sections, Question/Flashcard banks, Carousel, Checkpoint, Scene or fake pending pedagogical content.
+
+These Carousel/Checkpoint/Scene materializers are intended for **later, explicitly authorized standalone Lesson/Scene-owning work**, after the owning workflow has advanced from its typed initial handoff to an approved Config-ready tree. Similarly, future Question/Flashcard/bank materializers run in their respective owning workflow; a staged child authoring handoff is not a completed Configurator.
+
+This changes **when** the orchestrator may invoke the materializers, not the five kind-specific final Config contracts implemented here. It also does not grant approval: an incomplete staged authoring source remains non-publishable. Parent #775 owns the canonical Lesson workflow type and entrypoint; #776/#777/#780 own the corresponding handoff and later complete source boundaries. Any earlier generic reference here to 'Stage-5 consumers' is conditional on the **owning entity's final materialization stage**, never automatic recursive Course child generation.
+
 ## Parent integration contracts still required
 
 1. Confirm and wire the uniform `renderChild`/specific `renderQuestion`, `renderAnswer`, `renderItem` callback contracts into parent #775; callers must supply reviewed `documentLanguage`, stable `languagesImport`, verified Scene `registered`, and Scene-owned production specification.
