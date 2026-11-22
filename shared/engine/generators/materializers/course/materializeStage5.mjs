@@ -167,8 +167,11 @@ export function materializeCourseStage5(input, options = {}) {
     const match = production.matching;
     if (!record(existing) || !uuid.test(existing.id ?? '') ||
         !record(match) || !sha.test(match.sourceSha ?? '') ||
+        typeof match.methodologySourcePath !== 'string' || !match.methodologySourcePath.trim() ||
+        typeof match.matchingRationale !== 'string' || !match.matchingRationale.trim() ||
+        typeof match.languageEvidence !== 'string' || !match.languageEvidence.trim() ||
         typeof options.resolveExistingLesson !== 'function')
-      throw new Error(context.directory + ': verified existing Lesson resolver required');
+      throw new Error(context.directory + ': verified existing Lesson matching and resolver required');
     const lesson = options.resolveExistingLesson({
       id: existing.id, matching: match, placement: context.directory,
       languages: [sourceLanguage],
@@ -176,6 +179,14 @@ export function materializeCourseStage5(input, options = {}) {
     if (!record(lesson) || lesson.id !== existing.id ||
         lesson.sourceSha !== match.sourceSha ||
         !record(lesson.configurator) || lesson.configurator.id !== existing.id ||
+        lesson.configurator.type !== 'lesson' ||
+        !record(lesson.configurator.config?.base) ||
+        lesson.configurator.config.base.id !== existing.id ||
+        lesson.configurator.config.base.type !== 'lesson' ||
+        !Array.isArray(lesson.configurator.config.base.skills) ||
+        node.config.skills.some(skill => !lesson.configurator.config.base.skills
+          .some(actual => typeof actual === 'string' && actual.toLowerCase() === skill.toLowerCase())) ||
+        !lesson.configurator.config.base.params?.languages?.includes(sourceLanguage) ||
         typeof lesson.configurator.build?.props !== 'function' ||
         typeof lesson.configurator.build?.overrides !== 'function' ||
         typeof lesson.exportName !== 'string' || !slug.test(lesson.exportName) ||
@@ -210,9 +221,14 @@ export function materializeCourseStage5(input, options = {}) {
           const parsed = ts.createSourceFile('reviewedImport.ts', item, ts.ScriptTarget.Latest, true);
           if (parsed.parseDiagnostics.length || parsed.statements.length !== 1 ||
               !ts.isImportDeclaration(parsed.statements[0]) ||
+              !parsed.statements[0].importClause ||
               !ts.isStringLiteral(parsed.statements[0].moduleSpecifier) ||
               !item.trim().endsWith(';'))
-            throw new Error(context.directory + ': invalid reviewed patch import declaration');
+            throw new Error(context.directory + ': invalid or side-effect-only patch import declaration');
+          const specifier = parsed.statements[0].moduleSpecifier.text;
+          if (!(specifier.startsWith('#') || specifier.startsWith('@svitlo/') ||
+                /^\.\/[A-Za-z][\w/.-]*$/.test(specifier) && !specifier.includes('..')))
+            throw new Error(context.directory + ': raw patch import must use reviewed package aliases');
           patchImports.add(item.trim());
         }
       }
