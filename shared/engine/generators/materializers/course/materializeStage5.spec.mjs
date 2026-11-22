@@ -272,3 +272,13 @@ test('reviewed patch expression rejects executable side-effect imports', () => {
   });
   assert.throws(() => materializeCourseStage5(input, opts), /side-effect-only patch import/);
 });
+
+test('Lesson Stage1 refuses an authored title without the reviewed document locale', () => {
+  const source = lesson('notLocalized');
+  source.config.locale.title = { en: 'Unreviewed English only' };
+  assert.throws(() => materializeLessonDraft(source, {
+    lessonId: deriveCourseEntityId(rootId, 'lesson', 'notLocalized'),
+    sourceLanguage: 'uk', plannedLanguages: ['uk', 'en'],
+    reviewedSourceSha: sha, textbookRoot: 'content/playground',
+  }), /reviewed source-language Lesson title/);
+});
