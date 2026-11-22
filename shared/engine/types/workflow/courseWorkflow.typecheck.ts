@@ -182,9 +182,22 @@ const stage1DoesNotContainContent: CourseWorkflowStage1Config = {
   content: { items: {}, order: [] },
 };
 
-const missingStage2Order: CourseWorkflowStage2Content = {
-  // @ts-expect-error Every ordered collection needs an explicit order.
-  items: {},
+// @ts-expect-error Every ordered collection needs an explicit order.
+const missingStage2Order: CourseWorkflowStage2Content = { items: {} };
+
+const moduleUnderModule: CourseWorkflowStage2Module['config']['content']['items'] = {
+  // @ts-expect-error A Module cannot contain another Module.
+  nestedModule: module,
+};
+
+const moduleUnderChapter: CourseWorkflowStage2Chapter['config']['content']['items'] = {
+  // @ts-expect-error A Chapter cannot contain Modules.
+  nestedModule: module,
+};
+
+const chapterUnderChapter: CourseWorkflowStage2Chapter['config']['content']['items'] = {
+  // @ts-expect-error A Chapter cannot contain another Chapter.
+  nestedChapter: chapter,
 };
 
 const emptyLessonSkills: CourseWorkflowStage2LessonSlot = {
@@ -250,6 +263,9 @@ void explicitlyEmpty;
 void missingStage2Content;
 void stage1DoesNotContainContent;
 void missingStage2Order;
+void moduleUnderModule;
+void moduleUnderChapter;
+void chapterUnderChapter;
 void emptyLessonSkills;
 void prematureLessonIdentity;
 void prematureEpisodeSections;
