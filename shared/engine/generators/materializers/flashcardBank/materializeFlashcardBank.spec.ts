@@ -1,10 +1,11 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import ts from 'typescript';
+import { createHash } from 'node:crypto';
 import {
   materializeFlashcardBankDraft, materializeFlashcardBank,
 } from './materializeFlashcardBank';
-import { gitBlobSha, type BankSourceSnapshot } from '../bankSource/bankSourceSafety';
+import { gitBlobSha, authoredBankLiteral, type BankSourceSnapshot } from '../bankSource/bankSourceSafety';
 
 const sha = (c: string) => c.repeat(40);
 const id = (n: number) => 'b775647f-203d-481a-a1c7-4d331c' + String(n).padStart(6, '0');
@@ -59,6 +60,7 @@ const finalAuthorization = () => ({
     approved: true as const, reviewer: 'Independent memory-design reviewer',
     content: editor, blobSha: gitBlobSha(editor),
     reviewedSourceBlobSha: gitBlobSha(editor), reviewCommitSha: sha('f'),
+    reviewedInputSha256: createHash('sha256').update(authoredBankLiteral(completed())).digest('hex'),
   },
   blocks: { registeredSceneIds: new Set<string>(), approvedMediaBlockIds: new Set<string>() },
 });
