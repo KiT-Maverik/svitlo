@@ -66,3 +66,15 @@ test('Flashcard: source locale, duplicate flags, missing bank and pre-existing c
     languages:{document:'uk' as const,planned:['en'] as const},
   }),/languages.planned/);
 });
+
+// Stage 1 from the Lesson Flow is bank-level editorial input, not a complete Flashcard.
+test('Flashcard: an initial bank handoff must not generate cards or sides',()=>{
+  const planned={
+    config:{id:id(28),slug:'plannedCard'},
+    production:{scope:'Flashcard Bank needed; no individual card has been reviewed'},
+  };
+  assert.throws(()=>materializeFlashcard(planned as never,{
+    ...context,
+    materializeBlock:()=>{throw new Error('Unexpected Stage 1 FlashcardSide/Block materialization');},
+  }),/front and back FlashcardSide Config required/);
+});

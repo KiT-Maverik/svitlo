@@ -48,3 +48,16 @@ test('answerWithNumber: rejects missing questions, incorrect order, and pre-exis
   assert.throws(()=>materializeAnswerWithNumber(bad as never,context),/order/);
   assert.throws(()=>materializeAnswerWithNumber(fixture() as never,{...context,existingPaths:new Set(['questions/answerWithNumber/sampleQuestion.ts'])}),/no clobber/);
 });
+
+// A Lesson handoff is an editorial bank Stage 1 file, NOT a completed Question Config.
+// Do not turn the known identity/scope into a synthetic Question or delegate blocks.
+test('answerWithNumber: Stage 1 editorial handoff is not a completed Question',()=>{
+  const planned = {
+    config:{id:id(27),slug:'plannedQuestion',type:'answerWithNumber' as const},
+    production:{scope:'Question Bank needed by owning Lesson; authoring not started'},
+  };
+  assert.throws(()=>materializeAnswerWithNumber(planned as never,{
+    ...context,
+    materializeBlock:()=>{throw new Error('Unexpected Stage 1 ContentBlock materialization');},
+  }),/params\/content required/);
+});

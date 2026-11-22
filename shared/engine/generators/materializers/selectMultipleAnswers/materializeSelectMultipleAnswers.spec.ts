@@ -48,3 +48,16 @@ test('selectMultipleAnswers: rejects missing questions, incorrect order, and pre
   assert.throws(()=>materializeSelectMultipleAnswers(bad as never,context),/order/);
   assert.throws(()=>materializeSelectMultipleAnswers(fixture() as never,{...context,existingPaths:new Set(['questions/selectMultipleAnswers/sampleQuestion.ts'])}),/no clobber/);
 });
+
+// A Lesson handoff is an editorial bank Stage 1 file, NOT a completed Question Config.
+// Do not turn the known identity/scope into a synthetic Question or delegate blocks.
+test('selectMultipleAnswers: Stage 1 editorial handoff is not a completed Question',()=>{
+  const planned = {
+    config:{id:id(27),slug:'plannedQuestion',type:'selectMultipleAnswers' as const},
+    production:{scope:'Question Bank needed by owning Lesson; authoring not started'},
+  };
+  assert.throws(()=>materializeSelectMultipleAnswers(planned as never,{
+    ...context,
+    materializeBlock:()=>{throw new Error('Unexpected Stage 1 ContentBlock materialization');},
+  }),/params\/content required/);
+});

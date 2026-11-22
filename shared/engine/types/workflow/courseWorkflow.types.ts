@@ -4,6 +4,7 @@ import type { Chapter_Config } from '../../configurators/courses/defineChapter/d
 import type { Lesson_Config } from '../../configurators/lessons/defineLesson/defineLesson.schemas';
 import type { Lesson_Configurator } from '../../configurators/lessons/defineLesson/defineLesson';
 import type { Episode_Config } from '../../configurators/episodes/defineEpisode/defineEpisode.schemas';
+import type { LessonProductionAssessmentRequirements } from './lessonAssessment.types';
 
 /** Stage 1 is a plain editorial config, not a built Course Configurator. */
 export type CourseWorkflowStage1Config = Pick<Course_Config, 'id' | 'type' | 'slug'> & {
@@ -197,6 +198,11 @@ export type CourseWorkflowStage3ExistingLessonConfig = CourseWorkflowStage3Place
 export type CourseWorkflowStage3ExistingLessonReference = Pick<Lesson_Config, 'id'> &
   Partial<Pick<ReturnType<Lesson_Configurator['build']['overrides']>, 'base' | 'locale'>>;
 
+/** Course uses the same editorial assessment decisions as standalone Lessons.
+ * Only the Course's stage sequencing is Course-specific.
+ */
+export type CourseWorkflowStage3AssessmentRequirements = LessonProductionAssessmentRequirements;
+
 /** Course-specific intent for a genuinely new Lesson; editorial, not Props. */
 export type CourseWorkflowStage3LessonIntent = {
   /** Observable learning objective, not a generic topic label. */
@@ -207,6 +213,8 @@ export type CourseWorkflowStage3LessonIntent = {
   sequenceReason: string;
   /** How the intended learning will be evaluated, without inventing Question IDs. */
   assessmentEvidence: string;
+  /** Explicit assessment banks/Sections plan; each is an independent decision. */
+  assessment: CourseWorkflowStage3AssessmentRequirements;
 };
 
 /** Verification evidence for reusing an independent Lesson.
@@ -250,6 +258,8 @@ export type CourseWorkflowStage3ExistingLesson = {
     existing: CourseWorkflowStage3ExistingLessonReference;
     /** Evidence that the referenced Lesson was inspected for pedagogical reuse. */
     matching: CourseWorkflowStage3LessonMatch;
+    /** Required explicit assessment decisions for the reused Lesson placement. */
+    assessment: CourseWorkflowStage3AssessmentRequirements;
     /** Editorial explanation of Course-local changes, when there are any.
      * The Course Workflow Skill/review enforces justification for real patches.
      */
@@ -299,3 +309,9 @@ export type CourseWorkflowStage3Config = Omit<CourseWorkflowStage2Config, 'conte
 export interface CourseWorkflowStage3 extends CourseWorkflowStage2 {
   config: CourseWorkflowStage3Config;
 }
+
+/** Single canonical authored input to the Stage 5 Course source materializer.
+ * Reuse the final reviewed Stage 3/4 object; do not maintain a second copy of
+ * its schema. Implementation must additionally validate source/review evidence.
+ */
+export type CourseWorkflowMaterializerInput = CourseWorkflowStage3;

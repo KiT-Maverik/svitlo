@@ -48,3 +48,16 @@ test('fillBlanksWithText: rejects missing questions, incorrect order, and pre-ex
   assert.throws(()=>materializeFillBlanksWithText(bad as never,context),/order/);
   assert.throws(()=>materializeFillBlanksWithText(fixture() as never,{...context,existingPaths:new Set(['questions/fillBlanksWithText/sampleQuestion.ts'])}),/no clobber/);
 });
+
+// A Lesson handoff is an editorial bank Stage 1 file, NOT a completed Question Config.
+// Do not turn the known identity/scope into a synthetic Question or delegate blocks.
+test('fillBlanksWithText: Stage 1 editorial handoff is not a completed Question',()=>{
+  const planned = {
+    config:{id:id(27),slug:'plannedQuestion',type:'fillBlanksWithText' as const},
+    production:{scope:'Question Bank needed by owning Lesson; authoring not started'},
+  };
+  assert.throws(()=>materializeFillBlanksWithText(planned as never,{
+    ...context,
+    materializeBlock:()=>{throw new Error('Unexpected Stage 1 ContentBlock materialization');},
+  }),/params\/content required/);
+});

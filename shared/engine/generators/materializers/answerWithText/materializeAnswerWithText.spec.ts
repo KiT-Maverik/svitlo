@@ -48,3 +48,16 @@ test('answerWithText: rejects missing questions, incorrect order, and pre-existi
   assert.throws(()=>materializeAnswerWithText(bad as never,context),/order/);
   assert.throws(()=>materializeAnswerWithText(fixture() as never,{...context,existingPaths:new Set(['questions/answerWithText/sampleQuestion.ts'])}),/no clobber/);
 });
+
+// A Lesson handoff is an editorial bank Stage 1 file, NOT a completed Question Config.
+// Do not turn the known identity/scope into a synthetic Question or delegate blocks.
+test('answerWithText: Stage 1 editorial handoff is not a completed Question',()=>{
+  const planned = {
+    config:{id:id(27),slug:'plannedQuestion',type:'answerWithText' as const},
+    production:{scope:'Question Bank needed by owning Lesson; authoring not started'},
+  };
+  assert.throws(()=>materializeAnswerWithText(planned as never,{
+    ...context,
+    materializeBlock:()=>{throw new Error('Unexpected Stage 1 ContentBlock materialization');},
+  }),/params\/content required/);
+});

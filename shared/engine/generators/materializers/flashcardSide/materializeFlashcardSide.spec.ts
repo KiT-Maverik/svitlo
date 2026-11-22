@@ -42,3 +42,10 @@ test('FlashcardSide: order/role/slug and create-only protections',()=>{
     ...context,languages:{document:'uk' as const,planned:['en'] as const},
   }),/languages.planned/);
 });
+
+// Flashcard sides are created only from reviewed, ordered side Config data.
+test('FlashcardSide: editorial handoff does not synthesize front/back side content',()=>{
+  assert.throws(()=>materializeFlashcardSide({} as never,{
+    ...context,materializeBlock:()=>{throw new Error('Unexpected Stage 1 child call');},
+  }),/expected items\/order/);
+});
