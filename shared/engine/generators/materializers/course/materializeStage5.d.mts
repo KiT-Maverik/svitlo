@@ -39,6 +39,11 @@ export type ExistingLesson = {
   configurator: Lesson_Configurator;
   /** Original raw Lesson Build expression corresponding to reviewed built sparse output. */
   rawPatch?: Parameters<Lesson_Configurator['build']['overrides']>[0];
+  /** Source-authored raw patch expression (for nested Configurator references). */
+  rawPatchSource?: string;
+  /** Must equal the exact reviewed Course source blob SHA. */
+  rawPatchSourceSha?: string;
+  rawPatchImports?: readonly string[];
 };
 export type CourseStage5Options = {
   textbookRoot: `content/${string}`;
