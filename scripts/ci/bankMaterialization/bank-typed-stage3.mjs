@@ -21,7 +21,9 @@ function plain(expression, depth = 0) {
   if (depth > 64) throw Error('Bank source is too deeply nested');
   if (ts.isParenthesizedExpression(expression)) return plain(expression.expression, depth + 1);
   if (ts.isAsExpression(expression) &&
-      expression.type.kind === ts.SyntaxKind.ConstKeyword) {
+      (expression.type.kind === ts.SyntaxKind.ConstKeyword ||
+        (ts.isTypeReferenceNode(expression.type) &&
+          expression.type.typeName.getText() === 'const'))) {
     return plain(expression.expression, depth + 1);
   }
   if (ts.isStringLiteral(expression) || ts.isNoSubstitutionTemplateLiteral(expression)) return expression.text;
