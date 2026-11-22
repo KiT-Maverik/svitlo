@@ -81,6 +81,7 @@ export function preflightLessonStage6Commit(plan, { repoRoot } = {}) {
       plan.archivePath !== path.posix.dirname(plan.sourcePath) + '/workflow.stage2.ts' ||
       !shaPattern.test(plan.sourceBlobSha ?? '') ||
       !shaPattern.test(plan.reviewCommitSha ?? '') ||
+      !shaPattern.test(plan.reviewEvidenceSha ?? '') ||
       !Array.isArray(plan.files) || !plan.files.length ||
       plan.publishable !== false) {
     throw new Error('Invalid reviewed Lesson Stage 6 manifest or canonical UUID path');
@@ -164,7 +165,7 @@ export function commitLessonStage6Plan(plan, options = {}) {
   if (typeof options.authorizeWrite !== 'function' ||
       options.authorizeWrite({ lessonId: plan.lessonId, sourcePath: plan.sourcePath,
         sourceBlobSha: plan.sourceBlobSha, reviewCommitSha: plan.reviewCommitSha,
-        head: preflight.head }) !== true)
+        reviewEvidenceSha: plan.reviewEvidenceSha, head: preflight.head }) !== true)
     throw new Error('Trusted Lesson Stage 6 authorization was not verified');
   const branch = options.branch;
   if (typeof branch !== 'string' || !/^[A-Za-z0-9][A-Za-z0-9._/-]*$/.test(branch))
