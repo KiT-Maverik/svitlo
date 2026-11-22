@@ -2,7 +2,6 @@
 
 > **Existing trusted YAML-only bank Stage 5 commands:** `/questions materialize` and `/flashcards materialize` still invoke create-only YAML builders. New #783/#784 Stage 1 `index.ts` files occupy the future final bank entrypoint paths; #775 must implement a source-SHA-preserving, collision-safe typed Stage 5 transition before changing these commands. Keep authorization, branch/path scope, no-clobber and complete final publication checks.
 
-
 This opt-in GitHub Actions workflow follows the trusted Course materialization pattern.
 It must be **merged into the default branch** before PR comments can trigger it.
 It turns one independently reviewed bank YAML into a create-only, typed TypeScript

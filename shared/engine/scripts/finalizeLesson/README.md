@@ -2,7 +2,6 @@
 
 > **Legacy YAML-only operation:** This still-active `finalizeLesson` source-transfer and `/lesson finalize` behavior is for pre-existing approved YAML Lesson PRs. New #782 typed Lesson Stages 1/2 need a separately verified #775 adapter, collision-safe Stage 6 transition, source-SHA checks and full resource validation. Do not feed staged `index.ts` source to this YAML entrypoint or remove the existing trusted command before its replacement works.
 
-
 This command is the trusted, explicit preflight/orchestration boundary for the canonical Lesson `lesson.yaml`. It validates the accepted technical source and creates the existing Lesson Builder output; it is not a bank author, Props publisher, translator or reviewer.
 
 ## Authoring decision contract

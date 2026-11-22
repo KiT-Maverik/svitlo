@@ -2,7 +2,6 @@
 
 > **Existing trusted YAML-only Stage 6.1 command:** The `/lesson materialize` procedure below must remain available to existing PRs until #775/#782 supply a verified typed Stage 6 successor. Do not run it against a `LessonWorkflowStage1/2` file; protect actor authorization, pinned head/source blob, no-clobber, branch/path restrictions and Ready/publication gates.
 
-
 This CI workflow materializes reviewed Lesson YAML into create-only TypeScript, Markdown/Code and production handoffs on the **existing Draft Lesson PR branch**. A verified run proves **Stage 6.1 only**. Under [Create Lesson Flow](../../../studio/skills/lesson-workflow/create-lesson-flow.skill.md), **6.2** then completes and strictly typechecks generated Lesson resources (including real source media/a11y/offline handling), and **6.3** implements, registers and tests all required React Scenes via [Implement Scene](../../../studio/skills/lesson-workflow/implement-scene.skill.md). Those are **manual/specialist work on the Lesson/child PR branches**, not actions this command performs. There is no 6.4 step; final production/runtime QA is separate. This workflow never authors independent Question/Flashcard Banks (Stages 7–8), physical media, executable Scenes or translations (Stages 9–10); it does not publish Props, approve reviews, mark Ready or merge.
 
 ## Deploy before use
