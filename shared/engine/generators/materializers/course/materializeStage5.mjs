@@ -180,7 +180,7 @@ export function materializeCourseStage5(input, options = {}) {
         typeof lesson.configurator.build?.overrides !== 'function' ||
         typeof lesson.exportName !== 'string' || !slug.test(lesson.exportName) ||
         typeof lesson.importPath !== 'string' ||
-        lesson.importPath !== '#lessonsData/' + existing.id.at(-1).toLowerCase() + '/' + existing.id ||
+        lesson.importPath !== '#lessonsData/' + existing.id.at(-1).toLowerCase() + '/' + existing.id.toLowerCase() + '/index' ||
         !Array.isArray(lesson.languages) || !lesson.languages.includes(sourceLanguage))
       throw new Error(context.directory + ': imported Lesson identity, SHA, Build API or source locale not verified');
     if (knownExistingIds.has(existing.id)) {
