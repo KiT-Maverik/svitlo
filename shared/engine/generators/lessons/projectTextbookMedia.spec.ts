@@ -29,7 +29,7 @@ function fixture(run: (root: string, save: (category: string, file: string) => v
     rmSync(home, { recursive: true, force: true });
   }
 }
-function publish(root: string, props: unknown, mode: 'draft' | 'production' = 'production') {
+function publish<T>(root: string, props: T, mode: 'draft' | 'production' = 'production') {
   const diagnostics: MediaDiagnostic[] = [];
   const result = projectTextbookMedia(props, {
     textbookRoot: root,
