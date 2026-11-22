@@ -213,3 +213,26 @@ export function preflightBankSource(
   return { files: [...files].sort((a,b) => a.path.localeCompare(b.path, 'en')),
     diagnostics: [], transition: verifiedTransition, publishable: false };
 }
+
+/** A bank owns full immutable Config identities, not only its top-level members. */
+export function assertUniqueBankEntityIds(input: unknown): void {
+  const ids = new Map<string, string>();
+  const seen = new WeakSet<object>();
+  function visit(value: unknown, at: string): void {
+    if (value === null || typeof value !== 'object') return;
+    if (seen.has(value)) throw new Error(at + ': reused mutable bank source node');
+    seen.add(value);
+    if (!Array.isArray(value) && Object.hasOwn(value, 'id')) {
+      const obj = value as Record<string, unknown>;
+      if (typeof obj.type === 'string' || typeof obj.slug === 'string') {
+        if (typeof obj.id !== 'string') throw new Error(at + ': missing real immutable UUID');
+        assertBankUuid(obj.id, at);
+        const key = obj.id.toLowerCase();
+        if (ids.has(key)) throw new Error(at + ': duplicate bank entity UUID ' + obj.id + ' (first ' + ids.get(key) + ')');
+        ids.set(key, at);
+      }
+    }
+    for (const [key, entry] of Object.entries(value)) visit(entry, at + '.' + key);
+  }
+  visit(input, 'bank');
+}
