@@ -1,5 +1,8 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
+import { createRequire } from 'node:module';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { deriveCourseEntityId } from './deriveCourseEntityId.mjs';
 import { materializeLessonDraft } from './lessonDraft.mjs';
 import { materializeCourseStage5 } from './materializeStage5.mjs';
@@ -202,4 +205,51 @@ test('existing Lesson refuses stale, absent or non-equivalent raw Build provenan
   const incompatible = patchedSource();
   incompatible.config.content.items.directLesson.production.existing.base.locale.title = 'Different';
   assert.throws(() => materializeCourseStage5(incompatible, reuseOptions()), /does not reproduce/);
+});
+
+test('verified built sparse Lesson override round-trips through real Lesson and Course Build APIs', () => {
+  const engineRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../..');
+  const { defineLesson, defineCourse } = createRequire(import.meta.url)(
+    path.join(engineRoot, 'dist/build.js'));
+  const realLesson = defineLesson({
+    id: reusedLessonId, slug: 'independentLesson', type: 'lesson', skills: [skill],
+    params: { languages: ['uk'], quizRequiredForCompletion: false,
+      sections: { allowNavigation: true, allowSkipping: false, showIndexes: true } },
+    locale: { title: { uk: 'Самостійний урок' } },
+    section: { items: {}, order: [] },
+  });
+  const raw = { params: { sections: { allowSkipping: true } } };
+  const built = realLesson.build.overrides(raw, { languages: ['uk'] });
+  assert.equal(built.base.params.sections.allowSkipping, true);
+  const reviewed = source();
+  reviewed.config.content.items = {
+    reused: {
+      config: { type: 'lesson', slug: 'reused', skills: [skill] },
+      production: {
+        kind: 'existing', existing: built, matching, assessment,
+        overrideRationale: 'Verified Course-local navigation accommodation',
+      },
+    },
+  };
+  reviewed.config.content.order = ['reused'];
+  const opts = options();
+  opts.resolveExistingLesson = () => ({
+    id: reusedLessonId, sourceSha: matching.sourceSha,
+    languages: ['uk'], exportName: 'independentLesson',
+    importPath: '#lessonsData/1/' + reusedLessonId,
+    configurator: realLesson, rawPatch: raw,
+  });
+  const plan = materializeCourseStage5(reviewed, opts);
+  const authoredPatchFile = plan.files.find(file => file.path === root + '/authoredCourseOverrides.ts');
+  assert.match(authoredPatchFile.content, /allowSkipping/);
+  const actualCourse = defineCourse({
+    id: rootId, type: 'course', slug: 'skyBasics',
+    params: { languages: ['uk'] },
+    locale: { title: { uk: 'Небо' }, description: { uk: 'Основи' } },
+    content: { items: { reused: realLesson }, order: ['reused'] },
+  });
+  const actualPatch = { content: { items: { reused: raw } } };
+  const actualCourseBuild = actualCourse.build.overrides(actualPatch, { languages: ['uk'] });
+  assert.equal(actualCourseBuild.base.content[0].params.sections.allowSkipping, true);
+  assert.equal(realLesson.build.props({ languages: ['uk'] }).base.params.sections.allowSkipping, false);
 });
