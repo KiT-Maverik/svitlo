@@ -4,6 +4,7 @@
  * This module does not read a worktree, write files, approve reviews or publish.
  */
 import { createHash } from 'node:crypto';
+import { allLanguageCodes } from '../../../schemas/languages.schemas';
 
 export type BankSourceFile = {
   path: string;
@@ -55,6 +56,7 @@ const hexSha = /^[a-f0-9]{40}$/i;
 const uuid = /^[a-f0-9]{8}-(?:[a-f0-9]{4}-){3}[a-f0-9]{12}$/i;
 const safeSegment = /^[A-Za-z0-9_-]+(?:\.[A-Za-z0-9_-]+)*$/;
 const nilUuid = '00000000-0000-0000-0000-000000000000';
+const supportedCodes = new Set<string>(allLanguageCodes);
 
 export function assertBankUuid(id: string, at: string): void {
   if (!uuid.test(id) || id.toLowerCase() === nilUuid) throw new Error(at + ': real non-Nil UUID required');
@@ -97,11 +99,11 @@ export function assertBankOrder(
 export function assertBankLanguages(
   value: { document: string; planned: readonly string[] },
 ): void {
-  if (!value || !/^[a-z]{2}(?:-[A-Z]{2})?$/.test(value.document) ||
+  if (!value || !supportedCodes.has(value.document) ||
       !Array.isArray(value.planned) || !value.planned.length ||
       new Set(value.planned).size !== value.planned.length ||
       !value.planned.includes(value.document) ||
-      value.planned.some(v => !/^[a-z]{2}(?:-[A-Z]{2})?$/.test(v))) {
+      value.planned.some(v => !supportedCodes.has(v))) {
     throw new Error('Bank must retain a real document locale and unique planned locales');
   }
 }
