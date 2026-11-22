@@ -169,7 +169,8 @@ export type FlashcardBankWorkflowCard = {
 export type FlashcardBankWorkflowStage2Config = {
   flashcards: {
     items: Record<string, FlashcardBankWorkflowCard>;
-    order: string[];
+    /** A completed design contains at least one real Card. Stage 1 holds no Cards. */
+    order: [string, ...string[]];
   };
   relationships: {
     items: Record<string, FlashcardBankWorkflowRelationshipEdge>;
