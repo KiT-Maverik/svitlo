@@ -116,7 +116,7 @@ test('canonical Stage3 Course hierarchy and UUID Lesson Stage1 handoff typecheck
   const handoff = source.files.filter(file => file.path.includes('/data/lessons/') && file.kind === 'typescript');
   assert.equal(handoff.length, 1);
   assert.match(handoff[0].content, /satisfies LessonWorkflowStage1 & LessonWorkflowStage1CourseHandoff/);
-  assert.doesNotMatch(handoff[0].content, /defineLesson\\s*\\(/);
+  assert.doesNotMatch(handoff[0].content, /defineLesson\s*\(/);
   assert.equal(source.files.filter(file => file.kind === 'typescript').length, 6);
   const errors = diagnostics(source.files);
   assert.deepEqual(errors.map(error => {
