@@ -59,6 +59,7 @@ export type LessonStage6Plan = {
   archivePath: string;
   sourceBlobSha: string;
   reviewCommitSha: string;
+  reviewEvidenceSha: string;
   publishable: false;
   files: Result['files'];
   diagnostics: Result['diagnostics'];
@@ -332,6 +333,7 @@ export function materializeLessonStage6(
     archivePath: root + 'workflow.stage2.ts',
     sourceBlobSha: review.sourceBlobSha,
     reviewCommitSha: review.reviewCommitSha,
+    reviewEvidenceSha: review.reviewEvidenceSha,
     publishable: false,
     files: result.files.map(file => ({ ...file, path: root + file.path })),
     diagnostics: result.diagnostics,
