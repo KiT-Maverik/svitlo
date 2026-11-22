@@ -271,17 +271,25 @@ test('authored enabled Quiz and Flashcards Sections pass separate source materia
   };
   input.production.assessment.quizSectionRequired = true;
   input.production.assessment.flashcardsSectionRequired = true;
-  const plan = materializeLessonStage6(input, options);
+  const sourceFor = (value: LessonWorkflowMaterializerInput) => {
+    const sourceText = "import type { LessonWorkflowStage2 } from '@svitlo/engine/build';\\n" +
+      'export const stage2 = ' + JSON.stringify(value, null, 2) +
+      ' satisfies LessonWorkflowStage2;\\n';
+    return {
+      ...options, sourceText, review: { ...reviewed, sourceBlobSha: blobSha(sourceText) },
+    };
+  };
+  const plan = materializeLessonStage6(input, sourceFor(input));
   assert(plan.files.some(file => file.path === folder + 'sections/reviewQuiz/index.ts'));
   assert(plan.files.some(file => file.path === folder + 'sections/reviewCards/index.ts'));
   assert.equal(plan.diagnostics.some(diagnostic => diagnostic.code.startsWith('pending-')), false);
   assert.doesNotThrow(() => assertLessonStage6ReleaseReady(plan));
   const provisional = structuredClone(input);
-  const quiz = provisional.config.section.items.reviewQuiz as {
+  const quiz = provisional.config.section.items.reviewQuiz as unknown as {
     config: { params: { selection: { questionIds: string[] } } };
   };
   quiz.config.params.selection.questionIds = ['feedc0de-1234-4234-8234-123456789007'];
-  const blocked = materializeLessonStage6(provisional, options);
+  const blocked = materializeLessonStage6(provisional, sourceFor(provisional));
   assert.throws(() => assertLessonStage6ReleaseReady(blocked), /publication blocked/);
 });
 
