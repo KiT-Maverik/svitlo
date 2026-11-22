@@ -71,6 +71,16 @@ const standalone = {
 // @ts-expect-error Missing all Methodologist methodology and assessment intent.
 const incompleteStage1: LessonWorkflowStage1 = { config: standalone.config };
 
+const { id: _persistedId, ...withoutIdentity } = standalone.config;
+// @ts-expect-error Standalone and Course-owned Stage 1 both require a persisted Lesson ID.
+const missingLessonId: LessonWorkflowStage1Config = withoutIdentity;
+
+const missingMethodology: LessonWorkflowStage1Production = {
+  ...standalone.production,
+  // @ts-expect-error Reviewed methodology is mandatory, never a skipped field.
+  methodology: undefined,
+};
+
 const incompleteAssessments: LessonWorkflowStage1Production = {
   ...standalone.production,
   // @ts-expect-error Fourth independent decision is mandatory even without Flashcards.
@@ -225,6 +235,9 @@ void fromCourse;
 void standalone;
 void incompleteStage1;
 void incompleteAssessments;
+void _persistedId;
+void missingLessonId;
+void missingMethodology;
 void earlySection;
 void earlyLanguageConfig;
 void emptySkills;
