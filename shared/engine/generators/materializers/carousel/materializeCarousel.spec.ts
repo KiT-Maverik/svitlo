@@ -67,3 +67,23 @@ test('Carousel rejects mismatched kinds, duplicate IDs, bad paths and missing so
   assert.throws(() => materializeCarousel(original, { ...context().renderer, directory: '../../escape' }), /unsafe source directory/);
   assert.throws(() => materializeCarousel(original, { ...context().renderer, documentLanguage: 'pl' }), /missing reviewed source language/);
 });
+
+
+test('Carousel rejects files a delegated Scene or Image tries to place outside its subtree', () => {
+  assert.throws(() => materializeCarousel(carousel(), {
+    ...context().renderer,
+    renderChild: child => ({
+      exportName: child.slug,
+      files: [{ path: 'sections/intro/index.ts', content: 'unowned', kind: 'typescript' as const }],
+      diagnostics: [],
+    }),
+  }), /outside its owned directory/);
+});
+test('Carousel child Scene can remain a pending Config draft without pretending it is reviewed', () => {
+  const source = carousel();
+  const pending = { id: scene.id, slug: scene.slug, type: 'scene' as const };
+  const output = materializeCarousel({ ...source, slides: {
+    items: { diagram: image, interactive: pending }, order: ['interactive', 'diagram'],
+  } }, context().renderer);
+  assert.equal(output.files.length, 3);
+});
