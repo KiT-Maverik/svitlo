@@ -133,7 +133,7 @@ function renderQuestion(
   node: Record<string, unknown>,
   sourceLanguage: QuestionBankWorkflowMaterializerInput['production']['languages'],
   blocks: AssessmentBlockEvidence,
-): { exportName: string; files: BankSourceFile[]; diagnostics: BankSourceDiagnostic[] } {
+): { exportName: string; files: BankSourceFile[]; diagnostics?: BankSourceDiagnostic[] } {
   const context = {
     directory: 'questions/' + kind,
     languages: sourceLanguage,
@@ -235,7 +235,7 @@ export function materializeQuestionBank(
       assertBankStatement(production.distinction, 'Question distinction');
       const output = renderQuestion(kind, { config, production }, source, authorization.blocks);
       files.push(...output.files);
-      diagnostics.push(...output.diagnostics);
+      diagnostics.push(...(output.diagnostics ?? []));
       kindImports.push('export { ' + output.exportName +
         (output.exportName !== slug ? ' as ' + slug : '') + ' } from ' + JSON.stringify('./' + slug) + ';');
       const alias = 'question_' + kind + '_' + slug;
