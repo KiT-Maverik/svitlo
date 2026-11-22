@@ -165,8 +165,9 @@ test('Methodology Markdown is ordered, preserves evidence and never JSON dumps C
 });
 test('new Lesson handoff cannot be mistaken for a finished Configurator or generate unrelated sections',()=>{
  const c=course();c.config.content.items.pending=newLesson('pending');c.config.content.order.push('pending');
- const bad=ctx();bad.materializeLessonPlacement=()=>({lessonId:'80d31f41-75ac-4210-9a6d-7b4c75ad698e',
-  exportName:'pending',files:[{path:'content/course/content/pending/index.ts',kind:'typescript',content:'export const pending = {};'}]});
+ const bad=ctx();bad.materializeLessonPlacement=(node,context)=>context.kind==='existing'?
+  lessonBridge(node,context):{lessonId:'80d31f41-75ac-4210-9a6d-7b4c75ad698e',
+  exportName:'pending',files:[{path:'content/course/content/pending/index.ts',kind:'typescript',content:'export const pending = {};'}]};
  assert.throws(()=>materializeCourse(c,bad),/UUID-addressed Stage 1 index.ts/);
  const noAssessment=course();delete noAssessment.config.content.items.directLesson.production.assessment;
  assert.throws(()=>materializeCourse(noAssessment,ctx()),/four explicit assessment decisions/);
