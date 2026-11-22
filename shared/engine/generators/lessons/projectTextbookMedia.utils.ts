@@ -92,7 +92,9 @@ export function projectTextbookMedia<T>(publication: T, options: MediaPublicatio
       isRecord(value.locale) &&
       value.locale.value === 'Not implemented';
     if (pendingContent || pendingText) {
-      throw new Error('Unimplemented Preview scaffold in production publication: ' + options.source + ' at ' + location);
+      throw new Error(
+        'Unimplemented Preview scaffold in production publication: ' + options.source + ' at ' + location,
+      );
     }
   };
   const report = (location: string, blockId: string | undefined, kind: Folder, fileName: string, reason: string) => {
