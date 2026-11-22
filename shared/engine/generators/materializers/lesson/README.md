@@ -280,13 +280,26 @@ registry, media, locales or reviews yield exceptions/diagnostics and remain
   rechecks require the complete final tree to be byte-identical.
 
 The saved `workflow.stage2.ts` is the immutable **reviewed source archive**.
-It is not a second editable authoring plan. The original Stage 2 may contain
-authored expressions/imports that are not representable in evaluated Config
-values; the archive retains them byte-for-byte. The concrete source renderers
-currently serialize evaluated Config fields, so reconstructing *the original
-expression spellings* in final generated modules requires additional pinned
-AST extraction/semantic verification at the trusted caller, not unreviewed
-string rewriting. Do not claim such expression reconstruction exists yet.
+It is not a second editable authoring plan. The archive retains the entire
+Stage 2 source byte-for-byte. The Lesson-only
+`preserveAssessmentReferences()` boundary uses the pinned, reviewed
+TypeScript AST to preserve **imported Question and Flashcard Configurator
+references** in generated Quiz/Flashcards Section `selection.questionIds`
+and `selection.flashcardIds`. For example, a reviewed
+`questionIds: [reviewQuestion.id]` yields a rebased, executable import and
+`questionIds: [stage6_ref_0.id]` in the Section module; published Props still
+contain only UUIDs. This is scoped to concrete bank selection fields, not a
+general-purpose AST or expression rewriter. A nonempty selection containing
+literal UUIDs, arbitrary expressions, unimported names or mismatched rendered
+UUID values **fails closed** rather than converting a Configurator reference
+into a magic string. Pending empty selections retain their existing
+`TODO (BLOCKER)` diagnostics. The trusted caller remains responsible for
+proving the evaluated values correspond to exactly these reviewed bytes and
+that the imported bank Configurators and review provenance are authentic.
+
+Other original TypeScript expression spellings not represented in the
+generated Config remain preserved in the source archive; do not mistake the
+scoped bank-reference fix for universal expression preservation.
 
 **Verification targets:** `npm run code:check:types --workspace
 @svitlo/engine`, `npm test --workspace @svitlo/engine` (which includes
