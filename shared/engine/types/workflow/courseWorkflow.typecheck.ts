@@ -19,6 +19,8 @@ import type {
   CourseWorkflowStage3Chapter,
   CourseWorkflowStage3LessonSlot,
   CourseWorkflowStage3LessonIntent,
+  CourseWorkflowStage3AssessmentRequirements,
+  CourseWorkflowMaterializerInput,
   CourseWorkflowStage3LessonMatch,
   CourseWorkflowStage3NewLesson,
   CourseWorkflowStage3ExistingLesson,
@@ -301,6 +303,14 @@ void prematureEpisodeSections;
 void prematureModuleId;
 void missingModuleMethodology;
 
+/** Distinguish separately authored banks from their corresponding Sections. */
+const assessment = {
+  questionBankRequired: true,
+  flashcardBankRequired: false,
+  quizSectionRequired: true,
+  flashcardsSectionRequired: false,
+} satisfies CourseWorkflowStage3AssessmentRequirements;
+
 /** Stage 3 resolves every provisional Lesson using only two public variants. */
 declare const importedLesson: Lesson_Configurator;
 const newIntent = {
@@ -308,6 +318,7 @@ const newIntent = {
   depth: 'Introductory',
   sequenceReason: 'After foundational observations',
   assessmentEvidence: 'Apply the model to a new example',
+  assessment,
 } satisfies CourseWorkflowStage3LessonIntent;
 
 const match = {
@@ -342,7 +353,7 @@ const existingConfig = {
 
 const existingLesson = {
   config: existingConfig,
-  production: { kind: 'existing', existing: { id: importedLesson.id }, matching: match },
+  production: { kind: 'existing', existing: { id: importedLesson.id }, matching: match, assessment },
 } satisfies CourseWorkflowStage3ExistingLesson;
 
 const patch = importedLesson.build.overrides(
@@ -355,6 +366,7 @@ const existingWithOverrides = {
     kind: 'existing',
     existing: patch,
     matching: match,
+    assessment,
     overrideRationale: 'Course progression requires this navigation constraint',
   },
 } satisfies CourseWorkflowStage3ExistingLesson;
@@ -398,6 +410,9 @@ const resolvedCourse = {
 } satisfies CourseWorkflowStage3;
 
 const stage2View: CourseWorkflowStage2 = resolvedCourse;
+const materializerInput: CourseWorkflowMaterializerInput = resolvedCourse;
+// @ts-expect-error Stage 2 cannot directly enter a Stage 3-complete materializer.
+const prematureMaterializerInput: CourseWorkflowMaterializerInput = planned;
 
 // @ts-expect-error Unresolved Stage 2 slots cannot remain in a completed Stage 3.
 const unresolvedSlot: CourseWorkflowStage3LessonSlot = lessonSlot;
@@ -437,7 +452,7 @@ const existingConfigWithId: CourseWorkflowStage3ExistingLessonConfig = {
 const missingExistingReference: CourseWorkflowStage3ExistingLesson = {
   config: existingConfig,
   // @ts-expect-error Existing Lesson placement requires an object with an id.
-  production: { kind: 'existing', matching: match },
+  production: { kind: 'existing', matching: match, assessment },
 };
 
 const existingAsString: CourseWorkflowStage3ExistingLesson = {
@@ -445,6 +460,7 @@ const existingAsString: CourseWorkflowStage3ExistingLesson = {
   production: {
     kind: 'existing',
     matching: match,
+    assessment,
     // @ts-expect-error A string alone is not a valid existing Lesson reference.
     existing: importedLesson.id,
   },
@@ -453,7 +469,7 @@ const existingAsString: CourseWorkflowStage3ExistingLesson = {
 const existingMissingMatch: CourseWorkflowStage3ExistingLesson = {
   config: existingConfig,
   // @ts-expect-error Reuse needs verified matching evidence.
-  production: { kind: 'existing', existing: { id: importedLesson.id } },
+  production: { kind: 'existing', existing: { id: importedLesson.id }, assessment },
 };
 
 /** A single structural object shape does not impose a two-branch rationale union.
@@ -461,7 +477,7 @@ const existingMissingMatch: CourseWorkflowStage3ExistingLesson = {
  */
 const patchedForReview: CourseWorkflowStage3ExistingLesson = {
   config: existingConfig,
-  production: { kind: 'existing', matching: match, existing: patch },
+  production: { kind: 'existing', matching: match, assessment, existing: patch },
 };
 
 const rationaleForEditorialReview: CourseWorkflowStage3ExistingLesson = {
@@ -470,6 +486,7 @@ const rationaleForEditorialReview: CourseWorkflowStage3ExistingLesson = {
     kind: 'existing',
     matching: match,
     existing: { id: importedLesson.id },
+    assessment,
     overrideRationale: 'The methodology reviewer should reject an unwarranted rationale',
   },
 };
@@ -479,6 +496,7 @@ const rawOverridesAreInvalid: CourseWorkflowStage3ExistingLesson = {
   production: {
     kind: 'existing',
     matching: match,
+    assessment,
     // @ts-expect-error Raw params patches are not validated {id,base,locale} results.
     existing: { params: { sections: { allowSkipping: false } } },
     overrideRationale: 'Use validated Build output',
@@ -490,6 +508,7 @@ const patchWithoutId: CourseWorkflowStage3ExistingLesson = {
   production: {
     kind: 'existing',
     matching: match,
+    assessment,
     // @ts-expect-error A built override reference must include the owning Lesson id.
     existing: { base: {}, locale: undefined },
     overrideRationale: 'Required identity',
@@ -535,11 +554,13 @@ const missingReferenceId: CourseWorkflowStage3ExistingLesson = {
   production: {
     kind: 'existing',
     matching: match,
+    assessment,
     // @ts-expect-error Even with a patch, the reference requires an id.
     existing: { base: {}, locale: undefined },
   },
 };
 
+void assessment;
 void importedLesson;
 void newIntent;
 void match;
@@ -557,6 +578,8 @@ void resolvedChapter;
 void resolvedModule;
 void resolvedCourse;
 void stage2View;
+void materializerInput;
+void prematureMaterializerInput;
 void unresolvedSlot;
 void unresolvedCourse;
 void missingNewMethodology;
@@ -575,3 +598,19 @@ void unexpectedExistingMethodology;
 void obsoleteThirdVariant;
 void malformedReference;
 void missingReferenceId;
+
+const missingAssessmentChoice: CourseWorkflowStage3AssessmentRequirements = {
+  questionBankRequired: true,
+  quizSectionRequired: true,
+  // @ts-expect-error The Flashcard Bank decision must be explicit.
+  flashcardBankRequired: undefined,
+  flashcardsSectionRequired: false,
+};
+void missingAssessmentChoice;
+
+const existingWithoutAssessment: CourseWorkflowStage3ExistingLesson = {
+  config: existingConfig,
+  // @ts-expect-error Every reused placement needs explicit assessment decisions.
+  production: { kind: 'existing', existing: { id: importedLesson.id }, matching: match },
+};
+void existingWithoutAssessment;

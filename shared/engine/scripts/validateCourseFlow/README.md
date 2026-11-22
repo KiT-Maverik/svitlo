@@ -1,4 +1,6 @@
-# Validate temporary Course editorial YAML
+# Legacy Course YAML validator — retained for live Stage 5 callers
+
+**Migration status:** New Course Stages 1–3 use `satisfies CourseWorkflowStage1/2/3` with real source-evidence checks, not this JSON Schema validator. This read-only command remains a **legacy dependency** of `materializeCourseFlow` and the protected YAML Stage 5 workflow until the typed replacement is integrated and tested. Do not use it to validate typed Course source.
 
 This read-only Engine script validates the **temporary** Course flow plan
 `content/<book>/data/courses/<bucket>/<uuid>/course.yaml` using the manually
