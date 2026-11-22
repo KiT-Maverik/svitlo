@@ -2,7 +2,12 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { test } from 'node:test';
-import { chooseChecks, partitionBuildMutatingHosts, shouldBuildDependency, workspaceDependents } from './run-fast-gate.mjs';
+import {
+  chooseChecks,
+  partitionBuildMutatingHosts,
+  shouldBuildDependency,
+  workspaceDependents,
+} from './run-fast-gate.mjs';
 
 const packages = [
   { path: 'shared/engine', name: '@svitlo/engine' },
@@ -114,7 +119,10 @@ test('FastGate is strictly typecheck-only and still always emits the required st
     'utf8',
   );
   assert.match(workflow, /name: FastGate \/ verify/);
-  assert.match(workflow, /on:\n  pull_request:\n    types: \[opened, reopened, synchronize, ready_for_review, edited\]/);
+  assert.match(
+    workflow,
+    /on:\n  pull_request:\n    types: \[opened, reopened, synchronize, ready_for_review, edited\]/,
+  );
   assert.doesNotMatch(workflow, /branches: \[develop\]/, 'FastGate runs for every PR target');
   assert.match(workflow, /!github\.event\.pull_request\.draft/, 'Draft PRs must defer typechecking');
   assert.match(workflow, /TARGET_BRANCH: \$\{\{ github\.event\.pull_request\.base\.ref \}\}/);
@@ -222,4 +230,3 @@ test('build-mutating host checks run after independent workspace checks', () => 
     sequential: [],
   });
 });
-

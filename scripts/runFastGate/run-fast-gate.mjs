@@ -131,9 +131,7 @@ export function workspaceDependents(workspaces) {
 export function chooseChecks(changed, workspaces, { publicChanges = [], changedOnly = false } = {}) {
   const affected = new Set();
   const packages = new Map(workspaces.map(pkg => [pkg.name, pkg]));
-  const global = changed.some(
-    file => file === 'package.json' || /^tsconfig[^/]*\.json$/.test(file),
-  );
+  const global = changed.some(file => file === 'package.json' || /^tsconfig[^/]*\.json$/.test(file));
   const lockChange = changed.includes('package-lock.json');
   const triggers = new Set();
   for (const file of changed) {
@@ -224,9 +222,10 @@ async function runGate(changed, base, head, { changedOnly = false } = {}) {
   // with consumers. Other independent workspace typechecks run in parallel.
   const { parallel, sequential } = partitionBuildMutatingHosts(targets);
   async function checkWorkspace(name) {
-    const environment = name === '@svitlo/web' && process.env.SVITLO_WEB_TEST_SELECTION
-      ? { ...process.env, SVITLO_TEXTBOOK: process.env.SVITLO_WEB_TEST_SELECTION }
-      : process.env;
+    const environment =
+      name === '@svitlo/web' && process.env.SVITLO_WEB_TEST_SELECTION
+        ? { ...process.env, SVITLO_TEXTBOOK: process.env.SVITLO_WEB_TEST_SELECTION }
+        : process.env;
     await execAsync('npm', ['run', 'code:check:types', '--workspace', name], environment);
   }
   await runParallel(parallel, checkWorkspace);

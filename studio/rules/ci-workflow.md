@@ -12,14 +12,14 @@
 
 ## Validation tiers
 
-| Event                                   | Scope                                                                                                                          |
-| --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
-| Draft PR (any target)                   | Cheap source/security/artifact guards and authored `TODO (BLOCKER):` warnings; defer npm installs, builds and E2E              |
-| Ready PR to `develop`                   | Scoped typechecks in FastGate; separate Ready generator/host/browser suites, selected content build, blocking TODO checks      |
+| Event                                   | Scope                                                                                                                                                                                                 |
+| --------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Draft PR (any target)                   | Cheap source/security/artifact guards and authored `TODO (BLOCKER):` warnings; defer npm installs, builds and E2E                                                                                     |
+| Ready PR to `develop`                   | Scoped typechecks in FastGate; separate Ready generator/host/browser suites, selected content build, blocking TODO checks                                                                             |
 | Ready child PR to an integration parent | FastGate typechecks only directly changed workspaces (and builds their compilation prerequisites); other targeted checks, selected content builds and blocking authored TODO checks remain applicable |
-| Ready promotion PR to `main`            | Full production quality remains authoritative; FastGate separately checks directly changed workspaces, without replacing the full promotion gate          |
-| Manual `workflow_dispatch`              | Explicit full diagnostics/builds on a selected branch, including a Draft branch                                                |
-| Push to `main`                          | Avoid duplicating expensive pre-merge quality checks; run deployment-specific checks only when needed                          |
+| Ready promotion PR to `main`            | Full production quality remains authoritative; FastGate separately checks directly changed workspaces, without replacing the full promotion gate                                                      |
+| Manual `workflow_dispatch`              | Explicit full diagnostics/builds on a selected branch, including a Draft branch                                                                                                                       |
+| Push to `main`                          | Avoid duplicating expensive pre-merge quality checks; run deployment-specific checks only when needed                                                                                                 |
 
 ### Why Draft is a first-class CI mode
 
