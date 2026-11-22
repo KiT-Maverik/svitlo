@@ -125,3 +125,81 @@ test('Course Stage 5 fails closed on unauthorized review, duplicate order and pa
   delete unreviewedSource.review.sourceBlobSha;
   assert.throws(() => materializeCourseStage5(source(), unreviewedSource), /requires verified source/);
 });
+
+const reusedLessonId = '1368c1c9-2fd8-4007-b2c8-6bbfd98d5111';
+const matching = {
+  sourceSha: 'abcdef0123456789abcdef0123456789abcdef01',
+  methodologySourcePath: 'content/playground/data/lessons/1/' + reusedLessonId + '/methodology.md',
+  matchingRationale: 'Verified complete Skill and learner match',
+  languageEvidence: 'Verified uk Lesson source',
+};
+function patchedSource() {
+  const course = source();
+  course.config.content.items.directLesson = {
+    config: { type: 'lesson', slug: 'directLesson', skills: [skill] },
+    production: {
+      kind: 'existing',
+      existing: {
+        id: reusedLessonId,
+        base: { locale: { title: 'Adapted' } },
+        locale: { uk: { locale: { title: 'Adapted' } } },
+      },
+      matching, assessment, overrideRationale: 'Reviewed course-local title and exercise',
+    },
+  };
+  return course;
+}
+function reuseOptions() {
+  const params = options();
+  params.resolveExistingLesson = () => ({
+    id: reusedLessonId, sourceSha: matching.sourceSha,
+    languages: ['uk'],
+    exportName: 'actualLesson',
+    importPath: '#lessonsData/1/' + reusedLessonId,
+    configurator: {
+      id: reusedLessonId,
+      build: {
+        props: () => ({ base: {}, locale: undefined }),
+        overrides: (raw, selection) => {
+          assert.deepEqual(selection.languages, ['uk']);
+          assert.ok(raw.section.additionalItems.bridge);
+          return { id: reusedLessonId,
+            base: { locale: { title: 'Adapted' } },
+            locale: { uk: { locale: { title: 'Adapted' } } } };
+        },
+      },
+    },
+    rawPatch: { section: { additionalItems: {
+      bridge: { type: 'content', build: { props: () => ({}) } },
+    } } },
+    rawPatchSource: '{ section: { additionalItems: { bridge: sharedSection } } }',
+    rawPatchSourceSha: sha,
+    rawPatchImports: ['import { sharedSection } from "#lessonsData/sharedSections";'],
+  });
+  return params;
+}
+test('existing Lesson preserves verified TypeScript Configurator patch expressions and placement', () => {
+  const result = materializeCourseStage5(patchedSource(), reuseOptions());
+  const patchSource = result.files.find(file => file.path === root + '/authoredCourseOverrides.ts');
+  assert.ok(patchSource);
+  assert.match(patchSource.content, /sharedSection/);
+  assert.match(patchSource.content, /additionalItems/);
+  assert.match(patchSource.content, /"directLesson"/);
+  assert.match(patchSource.content, /import \{ sharedSection \}/);
+  const main = result.files.find(file => file.path === root + '/index.ts');
+  assert.match(main.content, /export \{ authoredCourseOverrides \}/);
+  const wrapper = result.files.find(file => file.path === root + '/content/directLesson/index.ts');
+  assert.match(wrapper.content, /export \{ actualLesson as directLesson \}/);
+  assert.equal(result.placements.find(p => p.slug === 'directLesson').lessonId, reusedLessonId);
+});
+test('existing Lesson refuses stale, absent or non-equivalent raw Build provenance', () => {
+  const stale = reuseOptions();
+  const resolver = stale.resolveExistingLesson;
+  stale.resolveExistingLesson = (...args) => ({
+    ...resolver(...args), rawPatchSourceSha: '0'.repeat(40),
+  });
+  assert.throws(() => materializeCourseStage5(patchedSource(), stale), /not pinned/);
+  const incompatible = patchedSource();
+  incompatible.config.content.items.directLesson.production.existing.base.locale.title = 'Different';
+  assert.throws(() => materializeCourseStage5(incompatible, reuseOptions()), /does not reproduce/);
+});
