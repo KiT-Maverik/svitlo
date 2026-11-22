@@ -30,3 +30,4 @@ export type {
   CourseWorkflowStage3ExistingLessonConfig,
   CourseWorkflowStage3ExistingLessonReference,
 } from './courseWorkflow.types';
+export type { LessonProductionAssessmentRequirements } from './lessonAssessment.types';

@@ -4,6 +4,7 @@ import type { Chapter_Config } from '../../configurators/courses/defineChapter/d
 import type { Lesson_Config } from '../../configurators/lessons/defineLesson/defineLesson.schemas';
 import type { Lesson_Configurator } from '../../configurators/lessons/defineLesson/defineLesson';
 import type { Episode_Config } from '../../configurators/episodes/defineEpisode/defineEpisode.schemas';
+import type { LessonProductionAssessmentRequirements } from './lessonAssessment.types';
 
 /** Stage 1 is a plain editorial config, not a built Course Configurator. */
 export type CourseWorkflowStage1Config = Pick<Course_Config, 'id' | 'type' | 'slug'> & {
@@ -197,20 +198,10 @@ export type CourseWorkflowStage3ExistingLessonConfig = CourseWorkflowStage3Place
 export type CourseWorkflowStage3ExistingLessonReference = Pick<Lesson_Config, 'id'> &
   Partial<Pick<ReturnType<Lesson_Configurator['build']['overrides']>, 'base' | 'locale'>>;
 
-/** Independent Methodologist decisions for banks versus learner-facing Sections.
- * Each boolean is required, even if the answer is false. These describe
- * editorial obligations; they are not new Lesson Config/runtime fields.
+/** Course uses the same editorial assessment decisions as standalone Lessons.
+ * Only the Course's stage sequencing is Course-specific.
  */
-export type CourseWorkflowStage3AssessmentRequirements = {
-  /** Does this placement need a separately authored Question Bank? */
-  questionBankRequired: boolean;
-  /** Does this placement need a separately authored Flashcard Bank? */
-  flashcardBankRequired: boolean;
-  /** Must a Quiz Section be present in the completed Lesson? */
-  quizSectionRequired: boolean;
-  /** Must a Flashcards Section be present in the completed Lesson? */
-  flashcardsSectionRequired: boolean;
-};
+export type CourseWorkflowStage3AssessmentRequirements = LessonProductionAssessmentRequirements;
 
 /** Course-specific intent for a genuinely new Lesson; editorial, not Props. */
 export type CourseWorkflowStage3LessonIntent = {
