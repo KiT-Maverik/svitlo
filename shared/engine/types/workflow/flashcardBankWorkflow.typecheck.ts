@@ -163,11 +163,14 @@ const tooEarly1: FlashcardBankWorkflowMaterializerInput = stage1;
 // @ts-expect-error Stage 2 lacks the separately reviewed Section decision.
 const tooEarly2: FlashcardBankWorkflowMaterializerInput = stage2;
 
-// @ts-expect-error Stage 1 handoff cannot contain fabricated Card Config.
-const invalidStage1: FlashcardBankWorkflowStage1 = { ...stage1, config: stage2.config };
+const invalidStage1: FlashcardBankWorkflowStage1 = {
+  ...stage1,
+  // @ts-expect-error Stage 1 handoff cannot contain fabricated Card Config.
+  config: stage2.config,
+};
 
-// @ts-expect-error A completed Stage 1 must carry explicit verified Questions status.
 const noQuestions: FlashcardBankWorkflowStage1 = {
+  // @ts-expect-error A completed Stage 1 must carry explicit verified Questions status.
   production: { lesson: stage1.production.lesson, analysis: stage1.production.analysis },
 };
 
@@ -206,12 +209,12 @@ const badEdge: FlashcardBankWorkflowRelationshipEdge = {
   target: 'orbitReverse',
 };
 
-// @ts-expect-error Selected Sections require a nonempty explicitly ordered subset.
 const emptySelectedSection: FlashcardBankWorkflowSectionDecision = {
   kind: 'selected',
   section: { id: uuid, slug: 'recap' },
   existingSection: false,
   placement: 'After content',
+  // @ts-expect-error Selected Sections require a nonempty explicitly ordered subset.
   selectedCardSlugs: [],
   rationale: 'Too broad',
   lessonSourceSha: 'verified',
