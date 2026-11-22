@@ -187,3 +187,29 @@ test('Reject duplicate and broken graph links, pending Cards and incompatible se
   badOrder.config.flashcards.order = ['alpha', 'alpha'];
   assert.throws(() => materializeFlashcardBank(badOrder as never, finalAuthorization(badOrder)), /order must enumerate/);
 });
+
+
+test('Flashcard Bank N/A requires explicit independent owner approval', () => {
+  const notRequired = handoff();
+  notRequired.production.lesson.assessment.flashcardBankRequired = false;
+  assert.throws(() => materializeFlashcardBankDraft(notRequired as never, draftAuthorization),
+    /Flashcards N\/A/);
+  assert.doesNotThrow(() => materializeFlashcardBankDraft(notRequired as never, {
+    ...draftAuthorization,
+    independentBankAuthorization: {
+      sourceSha: sha('a'), rationale: 'Explicitly approved independent memory reinforcement',
+    },
+  }));
+});
+test('Flashcard Bank rejects pending nested Side Blocks and stale reviewed structured input', () => {
+  const input = completed();
+  Object.assign(input.config.flashcards.items.alpha.config.content.front.items.frontText, {
+    production: { pending: true },
+  });
+  assert.throws(() => materializeFlashcardBank(input as never, finalAuthorization(input)),
+    /pending bank authoring source/);
+  const auth = finalAuthorization();
+  auth.reviewed.reviewedInputSha256 = sha('0') + '0'.repeat(24);
+  assert.throws(() => materializeFlashcardBank(completed() as never, auth),
+    /structured review input SHA-256|Structured bank input differs/);
+});
