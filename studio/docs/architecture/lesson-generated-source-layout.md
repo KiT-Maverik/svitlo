@@ -2,7 +2,6 @@
 
 > **Historical prototype, not a new typed-authoring recipe:** The PR #557 layouts and `lesson.yaml`/bank YAML source trees below document a still-supported legacy converter. The typed target uses a Lesson Stage 1 `index.ts` from Course Stage 5, progresses the same Lesson through its own review and materialization, then independent Question/Flashcard Stage 1 `index.ts` handoffs. #782–#784 are Draft; #775 has not deployed replacements for YAML/CI. Keep the snapshot fixtures as provenance; do not confuse old layouts with finished Props or new editorial source requirements.
 
-
 **Status:** Historical Stage 1 design/reference fixture, with later implemented Lesson source modules, Markdown/Code, and textbook-wide UUID media packaging in PR #615. Historical snapshots and initial open questions below are retained for traceability; current source and publication contracts are defined by the linked live Engine/Builder documentation.  
 **Scope:** YAML-to-TypeScript **Lesson draft scaffolder** and downstream source/asset handoffs, using [PR #557](https://github.com/KiT-Maverik/svitlo/pull/557) as experimental evidence.  
 **Out of scope:** changing the generator, implementing media/Scenes, publishing Lesson Props, changing existing Lesson Configs, migrating all mathematics lessons, translating content, or granting review approvals.

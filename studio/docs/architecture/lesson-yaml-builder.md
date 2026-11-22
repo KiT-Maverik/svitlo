@@ -4,7 +4,6 @@
 
 **Scope:** this is the **existing** `shared/engine/scripts/lessonBuilder/` YAML-to-TS draft converter and historical layout, not new Lesson authoring. #782 proposes one progressively typed `LessonWorkflowStage1/2` source, reviewed at Stages 3–5; only a later authorized Stage 6 orchestrator may materialize full Lesson/Section/Block source. Course Stage 5 creates **only** a typed Lesson Stage 1 handoff. No legacy conversion implies approval, Scene integration or published Props.
 
-
 > **Stage 6 boundary:** [Create Lesson Flow](../../skills/lesson-workflow/create-lesson-flow.skill.md) invokes separate [full preflight/finalization](../../../shared/engine/scripts/finalizeLesson/README.md) **outside** the create-only Lesson Builder. The Builder remains a draft-only emitter; no full Zod validation or YAML deletion is added to it.
 
 **Current input:** one `lesson.yaml` per Lesson UUID directory, with

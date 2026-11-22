@@ -2,7 +2,6 @@
 
 > **Legacy Stage 6.1 contract:** `lesson.yaml`, `sectionDrafts`, `feedc0de-` and `/lesson materialize` below remain for existing PRs, not new typed authoring. #782 owns the typed Lesson successor; #775 must implement and verify an SHA-pinned replacement before retirement. **Course Stage 5 and bank Stage 1 do not generate assessment Sections.**
 
-
 **Status:** PR #706 introduced the historical mandatory `lesson-assessment-sections` fence. PR #712 supersedes that mechanism. This document records the intended source-handoff contract; actual implementation and tests remain authoritative.
 
 ## Methodologist decisions

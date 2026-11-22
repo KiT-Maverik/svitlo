@@ -2,7 +2,6 @@
 
 > **Legacy YAML path only:** This still-live CLI converts existing approved YAML into **draft** TypeScript; it is not the new staged typed editorial source, a completed bank/Lesson, or a Props publisher. Parent #775 and Draft #782/#783/#784 must provide a tested, source-SHA-preserving typed orchestration and trusted CI replacement before this CLI, its schemas or callers can be retired. Preserve create-only/no-clobber, path security and existing tests.
 
-
 This Engine-owned script converts **one technical `lesson.yaml` file** into a named,
 nested `define*` TypeScript **draft**, plus optional production handoff Markdown.
 It is not a validator, translator, resource producer or Props publisher.
