@@ -33,7 +33,7 @@ test('FlashcardSide: correct child module paths, original order, no invented UUI
 test('FlashcardSide: order/role/slug and create-only protections',()=>{
   const first=block('first',1);
   assert.throws(()=>materializeFlashcardSide({items:{first},order:[]},context),/order/);
-  assert.throws(()=>materializeFlashcardSide({items:{},order:[]},context),/front cannot be empty/);
+  assert.throws(()=>materializeFlashcardSide({items:{},order:[]},context),/required front\/back cannot be empty/);
   assert.doesNotThrow(()=>materializeFlashcardSide({items:{},order:[]},{...context,role:'hint'}));
   assert.throws(()=>materializeFlashcardSide({items:{first},order:['first']},{
     ...context,existingPaths:new Set(['flashcards/cardOne/content/front/index.ts']),

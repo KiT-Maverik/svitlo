@@ -41,7 +41,7 @@ test('answerWithText: deterministic modular source, nested imports, source local
 });
 test('answerWithText: rejects missing questions, incorrect order, and pre-existing authored outputs',()=>{
   const noPrompt=fixture();
-  noPrompt.config.content.question.order=[];
+  Object.assign(noPrompt.config.content.question,{items:{},order:[]});
   assert.throws(()=>materializeAnswerWithText(noPrompt as never,context),/reviewed prompt/);
   const bad=fixture();
   bad.config.content.question.order=['notThere'];
