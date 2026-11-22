@@ -102,3 +102,5 @@ rejection. Real standalone Lesson Stage6 conversion and downstream bank-root
 flows are separately owned by #775 and #788. Engine TypeScript's new canonical
 `LessonWorkflowStage1` build export is in #782 via #786 and must be present
 before claiming the generated Lesson Stage1 `satisfies` check passes.
+
+**Import aliases:** `#lessonsData/*` maps to `./data/lessons/*.ts`, so a UUID-owned source is imported as `#lessonsData/<bucket>/<uuid>/index`, never `#lessonsData/<bucket>/<uuid>` (which would resolve to a missing `<uuid>.ts`). These canonical references are checked by the resolver.
