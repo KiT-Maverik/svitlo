@@ -59,10 +59,28 @@ export function materializeCourseStage5(input, options = {}) {
       !Array.isArray(planned) || !planned.length || !planned.includes(sourceLanguage) ||
       new Set(planned).size !== planned.length)
     throw new Error('Course Stage 5 requires reviewed production.languages');
-  if (!record(input.production.methodology) ||
+  const methodology = input.production.methodology;
+  if (!record(methodology) ||
+      ['purpose', 'audience', 'approach', 'depth', 'accessibility', 'scope',
+        'entryConditions', 'sourceNotes'].some(key =>
+        typeof methodology[key] !== 'string' || !methodology[key].trim()) ||
+      !record(input.production.outcomes) ||
+      typeof input.production.outcomes.explanation !== 'string' ||
+      !input.production.outcomes.explanation.trim() ||
+      !record(input.production.prerequisites) ||
+      typeof input.production.prerequisites.explanation !== 'string' ||
+      !input.production.prerequisites.explanation.trim() ||
+      !Array.isArray(input.production.standardsAlignment) ||
+      !record(input.production.openDecisions) ||
       !record(input.config.content) || !record(input.config.content.items) ||
       !Array.isArray(input.config.content.order))
-    throw new Error('Incomplete Course Stage 3 hierarchy or methodology');
+    throw new Error('Incomplete reviewed Course Stage 3 hierarchy or required methodology');
+  for (const alignment of input.production.standardsAlignment) {
+    if (!record(alignment) || !uuid.test(alignment.standardId ?? '') ||
+        !['intended', 'partial', 'verified'].includes(alignment.status) ||
+        typeof alignment.evidence !== 'string' || !alignment.evidence.trim())
+      throw new Error('Course standardsAlignment requires real UUID, status and evidence');
+  }
   const textbookRoot = options.textbookRoot;
   if (typeof textbookRoot !== 'string' || !/^content\/[a-z][a-z0-9-]*$/.test(textbookRoot))
     throw new Error('Stage 5 requires canonical content/<book> textbook root');
