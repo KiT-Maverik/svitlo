@@ -42,6 +42,12 @@ const schemas = {
 const isRecord = (value: unknown): value is Record<string, unknown> =>
   value !== null && typeof value === 'object' && !Array.isArray(value);
 
+// UUIDs minted by Draft-only pending configurators are not publishable identities.
+// These can appear anywhere in built Props, including nested Course references
+// and bank-side content that is not a media slot.
+const pendingUuid = /\bfeedc0de-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\b/i;
+const pendingAssessmentLabels = new Set(['PENDING QUIZ', 'PENDING FLASHCARDS']);
+
 function inferredFolder(field: string, value: unknown): Folder | undefined {
   if (typeof value !== 'string') return undefined;
   if (field === 'src') return schemas.images.safeParse(value).success ? 'images' : undefined;
@@ -63,6 +69,25 @@ export function projectTextbookMedia<T>(publication: T, options: MediaPublicatio
   const root = resolve(options.textbookRoot);
   const validId = /^[a-z][a-z0-9-]*$/.test(options.textbookId);
   if (!validId) throw new Error('Invalid textbook ID for media publication');
+  const rejectPending = (value: unknown, location: string) => {
+    if (options.mode !== 'production') return;
+    if (typeof value === 'string' && (pendingUuid.test(value) || pendingAssessmentLabels.has(value))) {
+      throw new Error('Unresolved Preview value in production publication: ' + options.source + ' at ' + location);
+    }
+    if (!isRecord(value)) return;
+    // A Quest has a Build Configurator but is not a playable Lesson Section yet.
+    if (value.type === 'quest') {
+      throw new Error('Unimplemented Quest in production publication: ' + options.source + ' at ' + location);
+    }
+    // Pending Lesson/Section factories return valid Build Props. Their explicit
+    // scaffold identity is not review evidence, even if an author replaced IDs.
+    if (
+      (value.type === 'content' && value.slug === 'pendingContent' && isRecord(value.locale) && value.locale.title === 'Not implemented') ||
+      (value.type === 'text' && value.slug === 'pendingNotice' && isRecord(value.locale) && value.locale.value === 'Not implemented')
+    ) {
+      throw new Error('Unimplemented Preview scaffold in production publication: ' + options.source + ' at ' + location);
+    }
+  };
   const report = (location: string, blockId: string | undefined, kind: Folder, fileName: string, reason: string) => {
     options.diagnostics.push({
       source: options.source,
@@ -75,6 +100,7 @@ export function projectTextbookMedia<T>(publication: T, options: MediaPublicatio
     });
   };
   const resolveMedia = (value: unknown, kind: Folder, location: string, blockId?: string): unknown => {
+    rejectPending(value, location);
     if (typeof value !== 'string') {
       report(location, blockId, kind, String(value), 'not a string');
       return value;
@@ -102,6 +128,7 @@ export function projectTextbookMedia<T>(publication: T, options: MediaPublicatio
     return '/textbooks/' + options.textbookId + '/assets/' + kind + '/' + value;
   };
   const visit = (value: unknown, location: string, inheritedType?: string, inheritedId?: string): unknown => {
+    rejectPending(value, location);
     if (Array.isArray(value)) return value.map((item, index) => visit(item, location + '[' + index + ']'));
     if (!isRecord(value)) return value;
     const currentType = typeof value.type === 'string' ? value.type : inheritedType;
