@@ -20,7 +20,7 @@ const handoff = () => ({
       id: ownerLessonId, sourceSha: sha('a'),
       reference: { path: 'references/flashcards.md', sourceSha: sha('b') },
       languages: { document: 'uk' as const, planned: ['uk'] as ['uk'] },
-      assessment,
+      assessment: { ...assessment },
     },
     questions: {
       kind: 'completed' as const, bankPath: 'content/math/data/questions',
