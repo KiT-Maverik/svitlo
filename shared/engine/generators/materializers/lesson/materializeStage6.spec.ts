@@ -7,7 +7,7 @@ import type { LessonWorkflowMaterializerInput } from '../../../types/workflow/le
 import { defineLesson } from '../../../configurators/lessons/defineLesson/defineLesson';
 import { defineContentSection } from '../../../configurators/sections/defineContentSection/defineContentSection';
 import { defineText } from '../../../configurators/contentBlocks/defineText/defineText';
-import { posix } from 'node:path';
+import { posix, resolve } from 'node:path';
 import vm from 'node:vm';
 
 const id = (n: string) => '12345678-1234-4234-8234-1234567890' + n;
@@ -112,6 +112,33 @@ test('reviewed source yields deterministic ordinary Lesson and nested Section/Co
     const parsed = ts.createSourceFile(file.path, file.content, ts.ScriptTarget.ES2022, true);
     assert.equal(parsed.parseDiagnostics.length, 0, 'emitted TS parses: ' + file.path);
   }
+});
+
+test('generated Lesson source passes the real TypeScript semantic checker', () => {
+  const plan = produce();
+  const workspace = resolve(process.cwd(), '../..');
+  const files = new Map(plan.files.filter(file => file.kind === 'typescript')
+    .map(file => [resolve(workspace, file.path), file.content]));
+  const options: ts.CompilerOptions = {
+    target: ts.ScriptTarget.ES2022,
+    module: ts.ModuleKind.ESNext,
+    moduleResolution: ts.ModuleResolutionKind.Bundler,
+    strict: true,
+    skipLibCheck: true,
+    noEmit: true,
+  };
+  const host = ts.createCompilerHost(options);
+  const readFile = host.readFile.bind(host);
+  const fileExists = host.fileExists.bind(host);
+  host.readFile = filename => files.get(resolve(filename)) ?? readFile(filename);
+  host.fileExists = filename => files.has(resolve(filename)) || fileExists(filename);
+  const program = ts.createProgram([...files.keys()], options, host);
+  const errors = ts.getPreEmitDiagnostics(program).filter(issue =>
+    issue.category === ts.DiagnosticCategory.Error);
+  assert.deepEqual(errors.map(issue =>
+    (issue.file?.fileName ?? '<global>') + ':' +
+    ts.flattenDiagnosticMessageText(issue.messageText, '\n')), [],
+    'emitted modules must be assignable to actual @svitlo/engine/build contracts');
 });
 
 test('generated complete Lesson runs actual Config build.props(), not a mocked factory', () => {
