@@ -202,7 +202,10 @@ test('production blocks known pending Lesson/Quiz scaffolds and pending assessme
         base: {
           type: 'lesson',
           section: [
-            { type: 'content', content: [{ type: 'text', slug: 'pendingNotice', locale: { value: 'Not implemented' } }] },
+            {
+              type: 'content',
+              content: [{ type: 'text', slug: 'pendingNotice', locale: { value: 'Not implemented' } }],
+            },
           ],
         },
       },
@@ -217,7 +220,11 @@ test('production blocks known pending Lesson/Quiz scaffolds and pending assessme
       base: {
         type: 'lesson',
         section: [
-          { type: 'content', slug: 'realSection', locale: { title: 'Not implemented yet in the history of this topic' } },
+          {
+            type: 'content',
+            slug: 'realSection',
+            locale: { title: 'Not implemented yet in the history of this topic' },
+          },
         ],
       },
     };
