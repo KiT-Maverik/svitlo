@@ -68,11 +68,6 @@ export type CourseWorkflowStage1 = {
   production: CourseWorkflowStage1Production;
 };
 
-/**
- * Stage 2 owns the pedagogical hierarchy, not materialized Configurators.
- * Reuse the Config contracts for authored metadata, but defer UUID allocation
- * for newly planned Modules, Chapters, Lessons and Episodes until Stage 5.
- */
 /** Stage 2 records scope and sequencing rationale for each planned unit.
  * Detailed methodology completeness is defined by the Course Workflow Skill.
  */
