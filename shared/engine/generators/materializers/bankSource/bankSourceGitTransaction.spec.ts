@@ -178,6 +178,26 @@ for (const kind of ['questions', 'flashcards'] as const) {
       }, evidence), /Unexpected bank-owned source/);
     } finally { rmSync(root, { recursive: true, force: true }); }
   });
+
+  test(kind + ': refuse existing identical fragments of an uncommitted final bank', () => {
+    const original = '// Reviewed Stage 3\n';
+    const { root, context } = stage3(kind, original);
+    try {
+      const partial = final(kind, original, context);
+      const fragment = partial.files.find(f => f.path !== kind + '/index.ts' &&
+        f.path.startsWith(kind + '/') && f.kind === 'typescript')!;
+      const target = path.join(root, lessonDirectory, fragment.path);
+      mkdirSync(path.dirname(target), { recursive: true });
+      writeFileSync(target, fragment.content);
+      git(root, 'add', '.');
+      git(root, 'commit', '-qm', 'Partially authored output fragment');
+      git(root, 'reset', '--hard');
+      const current = { ...context, expectedHeadSha: git(root, 'rev-parse', 'HEAD') };
+      const plan = final(kind, original, current);
+      assert.throws(() => checkBankGitPlan(kind, current, plan,
+        reviewed(kind, original, context)), /Partial reviewed bank source already exists/);
+    } finally { rmSync(root, { recursive: true, force: true }); }
+  });
 }
 
 test('Symlink ancestry, case aliases and ownership path are not authorized', () => {
