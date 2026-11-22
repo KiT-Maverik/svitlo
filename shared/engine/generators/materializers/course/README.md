@@ -88,3 +88,23 @@ The Stage 3/Stage 4 *authoring shape* is now compatible; full Stage 5 orchestrat
 - The newer parent #775 already exports `CourseWorkflowMaterializerInput = CourseWorkflowStage3` and the canonical `LessonProductionAssessmentRequirements` with four independent booleans. Child materializers accept this envelope structurally. The **parent has not yet exported `LessonWorkflowStage1` or a Lesson Stage 1 bridge/writer** at the time of this change. The actual authored shape and `satisfies LessonWorkflowStage1` typecheck, stable root-scoped UUID generator, create-only writer and no-clobber checks must be implemented by the parent, without weakening Stage 3 typing.
 - **Exact temporary callback seam:** `materializeLessonPlacement(stage3Node, { directory, placement, kind: 'new', production, sourceLanguage, plannedLanguages })` must allocate/return `lessonId` and one UUID-addressed Stage 1 `index.ts` file. For `kind: 'existing'`, it must preserve the imported Lesson identity and optional prebuilt sparse patch and return a real existing Configurator import. Do not return the incomplete Stage 1 object as a final Course child. Renderer results include `pendingPlacements` and a severity-`blocker` diagnostic for every new Lesson. The writer must preflight all paths, not overwrite existing authored sources, and prevent runtime/course publication until independent Lesson completion.
 - Tests cover the new callback payload, assessment decisions, Stage 1 source path, lack of fabricated Sections/Quiz/Flashcards, direct and nested placements, no false completed import, provisional Episode draft source and blocked diagnostics, evidence-preserving methodology rendering and deterministic output. **35/35 assertion-harness test bodies pass**; TypeScript parser calls in that harness remain stubbed, and real Engine tests/typechecks, parent writer checks and end-to-end publication gating remain unverified.
+
+## Review follow-up — high-priority verification request (2026-11-22)
+
+[PR review comment #7083085106](https://github.com/KiT-Maverik/svitlo/pull/776#issuecomment-7083085106) correctly distinguishes the earlier **35/35 isolated JavaScript test-body harness** from a real Node test run. That harness stubbed `ts.createSourceFile`, so the earlier result **does not prove emitted TypeScript validity** or satisfy the review request.
+
+**Work completed here:**
+- Added `course/materialize.build.spec.mjs`, a focused **semantic generated-source test**. It uses real `typescript.createProgram` / `getPreEmitDiagnostics`, maps `@svitlo/engine/build` to the **actual Engine `build.ts`** (not a homemade stub), and compiles deterministic complete Course → Module → Chapter → Episode sources in a virtual filesystem. The test deliberately uses complete metadata with an empty Episode Section collection to isolate the owner API contract; a reviewed storyline is not claimed. The test does not touch disk or change publication.
+- Labeled the existing fake `LessonWorkflowStage1` test output explicitly as a **test double**, not a valid Lesson production object. Its fake `export const lessonStage1 = {}` verifies only routing, metadata and UUID path, never the absent canonical Stage 1 type or writer.
+- **Executed actual Node 22 + installed TypeScript parser** for four real generated `index.ts` files from the current Course → Module → Chapter → Episode hierarchy. Each returned **zero syntax diagnostics**. Command: `node /tmp/svitlo-776-real-node/ts-diagnostics.mjs <four-emitted-source-paths>`; this is an isolated compiler parser run, **not** a package typecheck or native nine-suite test execution.
+- The full nine adjacent `node --test` suites and the new `materialize.build.spec.mjs` semantic test **have not been executed**, because this environment has no local Svitlo repository checkout and cannot reach GitHub over the container network. Existing GitHub Draft workflows check content and TODOs, not these materializer suites. **Do not mark the review as verified or merge-ready based on those Draft checks.**
+
+**Reproduction in a checked-out, dependency-installed repository:**
+
+```sh
+node --test \
+  shared/engine/generators/materializers/{course,module,chapter,episode,skill,skillGroup,skillDomain,educationStandard,assessmentMethod}/materialize.spec.mjs \
+  shared/engine/generators/materializers/course/materialize.build.spec.mjs
+```
+
+The parent #775 owns wiring these exact paths into Engine test/CI, implementing the canonical `LessonWorkflowStage1` emitter/UUID-addressed writer, and verifying actual end-to-end publication blockers. Until the native suites and semantic compiler test have succeeded on the current head, **review finding #7083085106 remains open**.
