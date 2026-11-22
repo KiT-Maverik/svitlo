@@ -232,7 +232,7 @@ test('Questions and Flashcards publishers do not load Engine builders or install
     new URL('../../../.github/workflows/bank-materialization.yml', import.meta.url),
     'utf8',
   );
-  const publishJob = workflow.split('\n  publish:\n')[1];
+  const publishJob = workflow.split('\n  publish:\n')[1]?.split('\n  typed_resolve:\n')[0];
   assert.ok(publishJob, 'separate publish job must exist');
   assert.doesNotMatch(publishJob, /npm ci|npm run package:build/, 'bank publisher must run without npm dependencies');
   assert.match(publishJob, /contents: write/);
