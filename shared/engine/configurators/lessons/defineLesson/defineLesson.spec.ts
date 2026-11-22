@@ -48,6 +48,47 @@ describe('Configurators', () => {
           section: { items: { intro: section }, order: ['intro'] },
         });
 
+      test('Lesson accepts optional audience ranges and validates their publication and sparse overrides', () => {
+        const input = {
+          id: id('70'),
+          slug: 'audienceLesson',
+          type: 'lesson' as const,
+          skills: [],
+          params: {
+            languages: ['en', 'uk'] as const,
+            quizRequiredForCompletion: false,
+            sections: { allowNavigation: true, allowSkipping: true, showIndexes: true },
+            age: { min: 6, max: 10 },
+            grade: { min: 1, max: 4 },
+          },
+          locale: { title: 'For early learners' },
+          section: { items: { intro: section }, order: ['intro'] },
+        };
+        const lesson = defineLesson(input);
+        const built = lesson.build.props({ languages: ['en'] });
+        assert.deepEqual(built.base.params.age, { min: 6, max: 10 });
+        assert.deepEqual(built.base.params.grade, { min: 1, max: 4 });
+        assert.equal(lesson_Config_Schema.safeParse(input).success, true);
+
+        const patch = lesson.build.overrides(
+          { params: { age: { min: 7 }, grade: { max: 5 } } },
+          { languages: ['en'] },
+        );
+        assert.deepEqual(patch.base.params, { age: { min: 7 }, grade: { max: 5 } });
+        assert.equal(patch.locale, undefined);
+        assert.throws(() =>
+          lesson.build.overrides({ params: { age: { min: 11 } } }, { languages: ['en'] }),
+        );
+        assert.equal(
+          lesson_Config_Schema.safeParse({ ...input, params: { ...input.params, age: { min: 11, max: 10 } } }).success,
+          false,
+        );
+        assert.equal(
+          lesson_Config_Schema.safeParse({ ...input, params: { ...input.params, grade: { min: 1, max: 41 } } }).success,
+          false,
+        );
+      });
+
       test('Lesson emits plain Section Props arrays with correct own and nested locale paths', () => {
         const lesson = makeLesson();
         const built = lesson.build.props({ languages: ['en', 'uk'] });

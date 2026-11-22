@@ -4,6 +4,12 @@ export * from './schemas';
 export * from './utils';
 export type {
   ResolveLocale,
+  CourseWorkflowStage1,
+  CourseWorkflowStage1Config,
+  CourseWorkflowStage1Languages,
+  CourseWorkflowStage1Methodology,
+  CourseWorkflowStage1Production,
+  CourseWorkflowStage1StandardAlignment,
   Review,
   ReviewEvidence,
   LessonReview,
