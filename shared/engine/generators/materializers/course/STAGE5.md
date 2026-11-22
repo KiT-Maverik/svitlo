@@ -55,7 +55,7 @@ must prove immutable ID, matching source SHA, source-language support, actual
 `Lesson_Configurator`, exported symbol and canonical import path. For Course
 local adaptation it must also provide the **original raw Lesson Build patch**
 corresponding to `production.existing.{base,locale}`. The planner invokes
-`lesson.build.overrides(rawPatch, {languages: [documentLanguage]})` and compares
+`lesson.build.overrides(rawPatch, {languages: reviewedPatchLanguages})` and compares
 the result to the reviewed built sparse object. It rejects a mismatched result,
 missing editorial rationale or invalid patch. Only the verified **raw** nested
 Course patch is emitted in `authoredCourseOverrides.ts`, re-exported from
