@@ -33,7 +33,16 @@ const sidecars=(meta,dir)=>{
  if(!record(meta))throw Error(dir+'.production: object expected');
  const outputs=[];
  if(typeof meta.methodology==='string'&&meta.methodology.trim())outputs.push({path:[dir,'methodology.md'].filter(Boolean).join('/'),kind:'markdown',content:meta.methodology.trimEnd()+'\n'});
- const rest=Object.entries(meta).filter(([key])=>!['documentLanguage','methodology','plannedLanguages','pending'].includes(key));
+ if(record(meta.methodology)){
+  const titles={purpose:'Purpose',audience:'Audience',approach:'Approach',depth:'Depth',accessibility:'Accessibility',scope:'Scope',entryConditions:'Entry conditions',sourceNotes:'Source notes'};
+  for(const key of Object.keys(titles))
+   if(typeof meta.methodology[key]!=='string'||!meta.methodology[key].trim())
+    throw Error(dir+'.production.methodology.'+key+': methodology field missing');
+  const result='# Course methodology\n\n'+Object.entries(meta.methodology)
+   .map(([key,value])=>'## '+(titles[key]??key)+'\n\n'+String(value).trimEnd()).join('\n\n')+'\n';
+  outputs.push({path:[dir,'methodology.md'].filter(Boolean).join('/'),kind:'markdown',content:result});
+ }
+ const rest=Object.entries(meta).filter(([key])=>!['documentLanguage','methodology','plannedLanguages','languages','pending'].includes(key));
  if(rest.length)outputs.push({path:[dir,'specification.md'].filter(Boolean).join('/'),kind:'specification',content:rest.map(([key,value])=>'# '+key+'\n\n'+(typeof value==='string'?value.trimEnd():JSON.stringify(value,null,2))).join('\n\n')+'\n'});
  return outputs;
 };
@@ -43,25 +52,27 @@ const sidecars=(meta,dir)=>{
 export function materializeCourse(input,context={}){
  const config=unwrap(input),meta=production(input),dir=context.directory??'';
  if(dir && dir.split('/').some(part=>!slugPattern.test(part)))throw Error(dir+': unsafe generated directory');
- const {id,slug}=identity(config,context,dir,'course'),lang=source(context);
+ const {id,slug}=identity(config,context,dir,'course'),lang=source({...context,sourceLanguage:meta?.languages?.document??context.sourceLanguage});
+ if(record(input?.config)&&(!record(meta?.languages)||!Array.isArray(meta.languages.planned)||!meta.languages.planned.length))
+  throw Error(dir+'.production.languages: Course Workflow requires { document, planned }');
  if(config.type!=='course')throw Error(dir+': expected course Config');
  const collection=config.content;
  if(!record(collection)||!record(collection.items)||!Array.isArray(collection.order))throw Error(dir+'.content: expected {items,order}');
  const keys=Object.keys(collection.items),order=collection.order;
  if(new Set(order).size!==order.length||keys.length!==order.length||order.some(key=>typeof key!=='string'||!Object.hasOwn(collection.items,key)))
   throw Error(dir+'.content.order: each child key must appear exactly once');
- const planned=config.params?.languages??meta?.plannedLanguages??context.plannedLanguages??[lang];
- if(!Array.isArray(planned)||!planned.includes(lang)||new Set(planned).size!==planned.length)throw Error(dir+'.params.languages: source language missing or duplicate');
+ const planned=meta?.languages?.planned??config.params?.languages??context.plannedLanguages??[lang];
+ if(!Array.isArray(planned)||!planned.includes(lang)||new Set(planned).size!==planned.length)throw Error(dir+'.production.languages: missing source language or invalid plan');
  const imports=[],items={},files=[],diagnostics=[],placements=[],seenIds=new Set();
  for(const key of order){
   ensure(key,dir+'.content.items.'+key);
   const node=collection.items[key],raw=unwrap(node);
   if(!record(raw)||typeof raw.type!=='string')throw Error(dir+'.content.items.'+key+': missing child type');
-  if(raw.type!=='lesson'&&raw.slug!==undefined&&raw.slug!==key)throw Error(dir+'.content.items.'+key+': child slug mismatch');
+  if(raw.slug!==undefined&&raw.slug!==key)throw Error(dir+'.content.items.'+key+': child slug mismatch');
   const nodeConfig={...raw,slug:raw.type==='lesson'?(raw.slug??key):key};
   const nested=record(node?.config)?{...node,config:nodeConfig}:nodeConfig;
   const childFolder=[dir,'content',key].filter(Boolean).join('/');
-  const childContext={...context,directory:childFolder,placement:key,plannedLanguages:planned};
+  const childContext={...context,sourceLanguage:lang,directory:childFolder,placement:key,plannedLanguages:planned};
   let child;
   switch(raw.type){
    case 'module':
@@ -71,20 +82,63 @@ export function materializeCourse(input,context={}){
     if(typeof context.materializeChapter!=='function')throw Error(childFolder+': Chapter materializer missing');
     child=context.materializeChapter(nested,childContext);break;
    case 'episode':
+    if(!record(raw.section)||!record(raw.section.items)||!Array.isArray(raw.section.order))
+     throw Error(childFolder+': TODO (BLOCKER): provisional Episode requires authorized Sections');
     if(typeof context.materializeEpisode!=='function')throw Error(childFolder+': Episode materializer missing');
     child=context.materializeEpisode(nested,childContext);break;
    case 'lesson': {
-    if(typeof context.materializeLessonPlacement!=='function')throw Error(childFolder+': parent Lesson placement bridge required');
-    if(raw.lessonId!==undefined&&!uuid.test(raw.lessonId))throw Error(childFolder+'.lessonId: verified UUID required');
-    if(raw.overrides!==undefined&&(!record(raw.overrides)||!record(raw.overrides.base)||
-       (raw.overrides.locale!==undefined&&!record(raw.overrides.locale))))
-      throw Error(childFolder+'.overrides: expected built sparse {base,locale} result, not a raw patch');
-    child=context.materializeLessonPlacement(nested,{...childContext,lessonId:raw.lessonId,overrides:raw.overrides});
-    const refId=raw.lessonId??child?.lessonId;
-    if(typeof refId!=='string'||!uuid.test(refId))throw Error(childFolder+': new Lesson handoff must allocate a persistent UUID');
-    placements.push({path:childFolder,slug:key,lessonId:refId,overrides:raw.overrides});
+    const lessonProduction=production(node);
+    if(!record(lessonProduction)||!['new','existing'].includes(lessonProduction.kind))
+      throw Error(childFolder+'.production.kind: completed Stage 3 Lesson requires new or existing');
+    if(raw.slug!==key)throw Error(childFolder+'.config.slug: must equal its placement key');
+    if(raw.id!==undefined||raw.lessonId!==undefined||raw.overrides!==undefined)
+      throw Error(childFolder+'.config: Lesson identity and sparse overrides belong to production');
+    if(!Array.isArray(raw.skills)||!raw.skills.length)
+      throw Error(childFolder+'.config.skills: nonempty verified Skills required');
+    if(typeof context.materializeLessonPlacement!=='function')
+      throw Error(childFolder+': parent Lesson placement bridge required');
+    let existing;
+    if(lessonProduction.kind==='existing'){
+      existing=lessonProduction.existing;
+      if(!record(existing)||typeof existing.id!=='string'||!uuid.test(existing.id))
+        throw Error(childFolder+'.production.existing.id: verified Lesson UUID required');
+      if(!record(lessonProduction.matching)||
+         !String(lessonProduction.matching.sourceSha??'').trim()||
+         !String(lessonProduction.matching.methodologySourcePath??'').trim())
+        throw Error(childFolder+'.production.matching: verified methodology and source revision required');
+      if(Object.keys(raw).some(field=>!['type','slug','skills'].includes(field)))
+        throw Error(childFolder+'.config: reused Lesson cannot duplicate independent Config');
+      if(Object.keys(existing).some(field=>!['id','base','locale'].includes(field))||
+         (existing.base!==undefined&&!record(existing.base))||
+         (existing.locale!==undefined&&!record(existing.locale))||
+         (record(existing.base)&&['id','slug','type','skills'].some(field=>Object.hasOwn(existing.base,field))))
+        throw Error(childFolder+'.production.existing: expected {id,base?,locale?}, not raw patches');
+      if(record(existing.locale)&&Object.keys(existing.locale).some(code=>!planned.includes(code)))
+        throw Error(childFolder+'.production.existing.locale: outside reviewed Course languages');
+    }else{
+      if(raw.locale===undefined||typeof lessonProduction.methodology!=='string'||!lessonProduction.methodology.trim())
+        throw Error(childFolder+'.production.methodology: complete new-Lesson methodology and title required');
+      if(raw.section!==undefined||raw.events!==undefined||raw.params?.languages!==undefined||
+         lessonProduction.existing!==undefined||lessonProduction.lessonId!==undefined||
+         lessonProduction.overrides!==undefined)
+        throw Error(childFolder+': new Lesson is a methodology handoff, not a completed Config');
+      for(const field of ['objective','depth','sequenceReason','assessmentEvidence'])
+        if(typeof lessonProduction[field]!=='string'||!lessonProduction[field].trim())
+          throw Error(childFolder+'.production.'+field+': Lesson editorial intent missing');
+    }
+    child=context.materializeLessonPlacement(nested,{
+      ...childContext,kind:lessonProduction.kind,existing,lessonId:existing?.id,
+      production:lessonProduction,
+    });
+    const refId=existing?.id??child?.lessonId??child?.id;
+    if(typeof refId!=='string'||!uuid.test(refId))
+      throw Error(childFolder+': parent must return the permanent new-Lesson UUID');
+    if(child?.lessonId!==undefined&&child.lessonId!==refId)
+      throw Error(childFolder+': Lesson handoff ID conflicts with verified reuse');
     if(seenIds.has(refId))throw Error(childFolder+': duplicate child UUID');
     seenIds.add(refId);
+    placements.push({path:childFolder,slug:key,kind:lessonProduction.kind,lessonId:refId,
+      ...(existing===undefined?{}:{existing})});
     break;
    }
    default:throw Error(childFolder+': disallowed child type '+raw.type);
@@ -103,6 +157,8 @@ export function materializeCourse(input,context={}){
   diagnostics.push(...(child.diagnostics??[]));
   placements.push(...(child.placements??[]));
  }
+ if(!record(config.locale)||config.locale.title===undefined||config.locale.description===undefined)
+  throw Error(dir+'.config.locale: reviewed title and description required before materialization');
  const fields={...config,id,slug};
  delete fields.content;
  delete fields.params;
@@ -117,7 +173,8 @@ export function materializeCourse(input,context={}){
  const orderSource=JSON.stringify(order);
  const itemsSource='{ '+Object.entries(items).map(([key,alias])=>JSON.stringify(key)+': '+alias).join(', ')+' }';
  const attrs=Object.entries(fields).map(([key,value])=>'  '+JSON.stringify(key)+': '+JSON.stringify(value,null,2)+',').join('\n');
- const params=config.params;
+ const params=config.params??{};
+ if(record(input?.config)&&Object.hasOwn(params,'languages'))throw Error(dir+'.config.params.languages: authoring languages belong to production');
  if(!record(params))throw Error(dir+'.params: Config params object required');
  const paramFields=Object.entries(params).filter(([key])=>key!=='languages')
    .map(([key,value])=>JSON.stringify(key)+': '+JSON.stringify(value)+',').join(' ');

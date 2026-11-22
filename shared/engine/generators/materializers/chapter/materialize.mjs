@@ -50,35 +50,78 @@ export function materializeChapter(input,context={}){
  const keys=Object.keys(collection.items),order=collection.order;
  if(new Set(order).size!==order.length||keys.length!==order.length||order.some(key=>typeof key!=='string'||!Object.hasOwn(collection.items,key)))
   throw Error(dir+'.content.order: each child key must appear exactly once');
- const planned=config.params?.languages??meta?.plannedLanguages??context.plannedLanguages??[lang];
+ const planned=context.plannedLanguages??[lang];
  if(!Array.isArray(planned)||!planned.includes(lang)||new Set(planned).size!==planned.length)throw Error(dir+'.params.languages: source language missing or duplicate');
  const imports=[],items={},files=[],diagnostics=[],placements=[],seenIds=new Set();
  for(const key of order){
   ensure(key,dir+'.content.items.'+key);
   const node=collection.items[key],raw=unwrap(node);
   if(!record(raw)||typeof raw.type!=='string')throw Error(dir+'.content.items.'+key+': missing child type');
-  if(raw.type!=='lesson'&&raw.slug!==undefined&&raw.slug!==key)throw Error(dir+'.content.items.'+key+': child slug mismatch');
+  if(raw.slug!==undefined&&raw.slug!==key)throw Error(dir+'.content.items.'+key+': child slug mismatch');
   const nodeConfig={...raw,slug:raw.type==='lesson'?(raw.slug??key):key};
   const nested=record(node?.config)?{...node,config:nodeConfig}:nodeConfig;
   const childFolder=[dir,'content',key].filter(Boolean).join('/');
-  const childContext={...context,directory:childFolder,placement:key,plannedLanguages:planned};
+  const childContext={...context,sourceLanguage:lang,directory:childFolder,placement:key,plannedLanguages:planned};
   let child;
   switch(raw.type){
    case 'episode':
+    if(!record(raw.section)||!record(raw.section.items)||!Array.isArray(raw.section.order))
+     throw Error(childFolder+': TODO (BLOCKER): provisional Episode requires authorized Sections');
     if(typeof context.materializeEpisode!=='function')throw Error(childFolder+': Episode materializer missing');
     child=context.materializeEpisode(nested,childContext);break;
    case 'lesson': {
-    if(typeof context.materializeLessonPlacement!=='function')throw Error(childFolder+': parent Lesson placement bridge required');
-    if(raw.lessonId!==undefined&&!uuid.test(raw.lessonId))throw Error(childFolder+'.lessonId: verified UUID required');
-    if(raw.overrides!==undefined&&(!record(raw.overrides)||!record(raw.overrides.base)||
-       (raw.overrides.locale!==undefined&&!record(raw.overrides.locale))))
-      throw Error(childFolder+'.overrides: expected built sparse {base,locale} result, not a raw patch');
-    child=context.materializeLessonPlacement(nested,{...childContext,lessonId:raw.lessonId,overrides:raw.overrides});
-    const refId=raw.lessonId??child?.lessonId;
-    if(typeof refId!=='string'||!uuid.test(refId))throw Error(childFolder+': new Lesson handoff must allocate a persistent UUID');
-    placements.push({path:childFolder,slug:key,lessonId:refId,overrides:raw.overrides});
+    const lessonProduction=production(node);
+    if(!record(lessonProduction)||!['new','existing'].includes(lessonProduction.kind))
+      throw Error(childFolder+'.production.kind: completed Stage 3 Lesson requires new or existing');
+    if(raw.slug!==key)throw Error(childFolder+'.config.slug: must equal its placement key');
+    if(raw.id!==undefined||raw.lessonId!==undefined||raw.overrides!==undefined)
+      throw Error(childFolder+'.config: Lesson identity and sparse overrides belong to production');
+    if(!Array.isArray(raw.skills)||!raw.skills.length)
+      throw Error(childFolder+'.config.skills: nonempty verified Skills required');
+    if(typeof context.materializeLessonPlacement!=='function')
+      throw Error(childFolder+': parent Lesson placement bridge required');
+    let existing;
+    if(lessonProduction.kind==='existing'){
+      existing=lessonProduction.existing;
+      if(!record(existing)||typeof existing.id!=='string'||!uuid.test(existing.id))
+        throw Error(childFolder+'.production.existing.id: verified Lesson UUID required');
+      if(!record(lessonProduction.matching)||
+         !String(lessonProduction.matching.sourceSha??'').trim()||
+         !String(lessonProduction.matching.methodologySourcePath??'').trim())
+        throw Error(childFolder+'.production.matching: verified methodology and source revision required');
+      if(Object.keys(raw).some(field=>!['type','slug','skills'].includes(field)))
+        throw Error(childFolder+'.config: reused Lesson cannot duplicate independent Config');
+      if(Object.keys(existing).some(field=>!['id','base','locale'].includes(field))||
+         (existing.base!==undefined&&!record(existing.base))||
+         (existing.locale!==undefined&&!record(existing.locale))||
+         (record(existing.base)&&['id','slug','type','skills'].some(field=>Object.hasOwn(existing.base,field))))
+        throw Error(childFolder+'.production.existing: expected {id,base?,locale?}, not raw patches');
+      if(record(existing.locale)&&Object.keys(existing.locale).some(code=>!planned.includes(code)))
+        throw Error(childFolder+'.production.existing.locale: outside reviewed Course languages');
+    }else{
+      if(raw.locale===undefined||typeof lessonProduction.methodology!=='string'||!lessonProduction.methodology.trim())
+        throw Error(childFolder+'.production.methodology: complete new-Lesson methodology and title required');
+      if(raw.section!==undefined||raw.events!==undefined||raw.params?.languages!==undefined||
+         lessonProduction.existing!==undefined||lessonProduction.lessonId!==undefined||
+         lessonProduction.overrides!==undefined)
+        throw Error(childFolder+': new Lesson is a methodology handoff, not a completed Config');
+      for(const field of ['objective','depth','sequenceReason','assessmentEvidence'])
+        if(typeof lessonProduction[field]!=='string'||!lessonProduction[field].trim())
+          throw Error(childFolder+'.production.'+field+': Lesson editorial intent missing');
+    }
+    child=context.materializeLessonPlacement(nested,{
+      ...childContext,kind:lessonProduction.kind,existing,lessonId:existing?.id,
+      production:lessonProduction,
+    });
+    const refId=existing?.id??child?.lessonId??child?.id;
+    if(typeof refId!=='string'||!uuid.test(refId))
+      throw Error(childFolder+': parent must return the permanent new-Lesson UUID');
+    if(child?.lessonId!==undefined&&child.lessonId!==refId)
+      throw Error(childFolder+': Lesson handoff ID conflicts with verified reuse');
     if(seenIds.has(refId))throw Error(childFolder+': duplicate child UUID');
     seenIds.add(refId);
+    placements.push({path:childFolder,slug:key,kind:lessonProduction.kind,lessonId:refId,
+      ...(existing===undefined?{}:{existing})});
     break;
    }
    default:throw Error(childFolder+': disallowed child type '+raw.type);
@@ -111,7 +154,7 @@ export function materializeChapter(input,context={}){
  const orderSource=JSON.stringify(order);
  const itemsSource='{ '+Object.entries(items).map(([key,alias])=>JSON.stringify(key)+': '+alias).join(', ')+' }';
  const attrs=Object.entries(fields).map(([key,value])=>'  '+JSON.stringify(key)+': '+JSON.stringify(value,null,2)+',').join('\n');
- const params=config.params;
+ const params=config.params??{};
  if(!record(params))throw Error(dir+'.params: Config params object required');
  const paramFields=Object.entries(params).filter(([key])=>key!=='languages')
    .map(([key,value])=>JSON.stringify(key)+': '+JSON.stringify(value)+',').join(' ');
