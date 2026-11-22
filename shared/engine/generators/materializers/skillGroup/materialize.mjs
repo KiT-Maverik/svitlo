@@ -4,7 +4,14 @@ const record=x=>x!==null&&typeof x==='object'&&!Array.isArray(x);
 const unwrap=x=>record(x?.config)?x.config:x;
 const production=x=>record(x?.config)?x.production:undefined;
 const ensure=(value,path)=>{if(typeof value!=='string'||!slugPattern.test(value)||['constructor','__proto__'].includes(value))throw Error(path+': unsafe slug');return value};
+const safeDirectory=dir=>{
+ if(typeof dir!=='string')throw Error('unsafe generated directory');
+ if(dir&&dir.split('/').some(part=>!slugPattern.test(part)||['constructor','__proto__'].includes(part)))
+  throw Error(String(dir)+': unsafe generated directory');
+ return dir;
+};
 const identity=(config,ctx,dir,kind)=>{
+ safeDirectory(dir);
  const slug=ensure(config?.slug,dir+'.slug'),id=config?.id??ctx.deriveId?.(kind,dir||slug);
  if(typeof id!=='string'||!uuid.test(id))throw Error(dir+'.id: immutable UUID or parent deterministic deriveId required');
  return {id,slug};
@@ -43,12 +50,15 @@ export function materializeSkillGroup(input,context={}){
   if(keys.has(key))throw Error(dir+': reused Skill slug '+key);
   keys.add(key);
   const raw=unwrap(config.skills[key]);
-  if(raw?.slug!==key)throw Error(dir+'.skills.'+key+': child slug mismatch');
-  if(identities.has(raw.id))throw Error(dir+'.skills.'+key+': duplicate UUID');
-  identities.add(raw.id);
+  if(raw?.slug!==undefined&&raw.slug!==key)throw Error(dir+'.skills.'+key+': child slug mismatch');
   if(typeof context.materializeSkill!=='function')throw Error(dir+'.skills.'+key+': missing Skill renderer');
-  const child=context.materializeSkill(config.skills[key],{...context,directory:[dir,'skills',key].filter(Boolean).join('/')});
+  const nested=record(config.skills[key]?.config)?{...config.skills[key],config:{...raw,slug:key}}:{...raw,slug:key};
+  const child=context.materializeSkill(nested,{...context,directory:[dir,'skills',key].filter(Boolean).join('/')});
   if(!Array.isArray(child?.files)||!child.exportName)throw Error('Invalid Skill materializer result');
+  const actualId=child.id??raw.id;
+  if(typeof actualId!=='string'||!uuid.test(actualId))throw Error(dir+'.skills.'+key+': immutable child UUID required');
+  if(identities.has(actualId))throw Error(dir+'.skills.'+key+': duplicate UUID');
+  identities.add(actualId);
   const alias='child_skill_'+key;
   imports.push('import { '+child.exportName+' as '+alias+' } from "./skills/'+key+'";');
   skills[key]=alias;
@@ -74,5 +84,5 @@ export function materializeSkillGroup(input,context={}){
  const produced=[...files,...sidecars(meta,dir),{path:[dir,'index.ts'].filter(Boolean).join('/'),kind:'typescript',content:result}];
  const visited=new Set();
  for(const item of produced){if(visited.has(item.path))throw Error('duplicate generated path: '+item.path);visited.add(item.path)}
- return {exportName:exportName(slug),files:produced,diagnostics};
+ return {id,exportName:exportName(slug),files:produced,diagnostics};
 }

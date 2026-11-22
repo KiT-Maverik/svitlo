@@ -4,7 +4,14 @@ const record=x=>x!==null&&typeof x==='object'&&!Array.isArray(x);
 const unwrap=x=>record(x?.config)?x.config:x;
 const production=x=>record(x?.config)?x.production:undefined;
 const ensure=(value,path)=>{if(typeof value!=='string'||!slugPattern.test(value)||['constructor','__proto__'].includes(value))throw Error(path+': unsafe slug');return value};
+const safeDirectory=dir=>{
+ if(typeof dir!=='string')throw Error('unsafe generated directory');
+ if(dir&&dir.split('/').some(part=>!slugPattern.test(part)||['constructor','__proto__'].includes(part)))
+  throw Error(String(dir)+': unsafe generated directory');
+ return dir;
+};
 const identity=(config,ctx,dir,kind)=>{
+ safeDirectory(dir);
  const slug=ensure(config?.slug,dir+'.slug'),id=config?.id??ctx.deriveId?.(kind,dir||slug);
  if(typeof id!=='string'||!uuid.test(id))throw Error(dir+'.id: immutable UUID or parent deterministic deriveId required');
  return {id,slug};
@@ -45,6 +52,6 @@ export function materializeSkill(input,context={}){
  'const languages = '+JSON.stringify([language])+' as const satisfies SupportedLanguages;\n\n'+
  pending+
  'export const '+name+' = defineSkill'+'<' + JSON.stringify(slug) + ', typeof languages>'+'('+JSON.stringify(data,null,2)+');\n';
- return {exportName:name,files:[...sidecars(meta,dir),{path:[dir,'index.ts'].filter(Boolean).join('/'),kind:'typescript',content:text}],
+ return {id,exportName:name,files:[...sidecars(meta,dir),{path:[dir,'index.ts'].filter(Boolean).join('/'),kind:'typescript',content:text}],
  diagnostics:pending?[{path:dir,code:'pending-locales',severity:'warning'}]:[]};
 }
