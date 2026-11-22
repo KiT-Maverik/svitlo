@@ -496,8 +496,12 @@ const unexpectedExistingMethodology: CourseWorkflowStage3ExistingLesson = {
 
 const obsoleteThirdVariant: CourseWorkflowStage3LessonSlot = {
   config: existingConfig,
-  // @ts-expect-error The old third discriminator no longer exists.
-  production: { kind: 'existingWithOverrides', existing: patch, matching: match },
+  production: {
+    // @ts-expect-error The old third discriminator no longer exists.
+    kind: 'existingWithOverrides',
+    existing: patch,
+    matching: match,
+  },
 };
 
 void importedLesson;
