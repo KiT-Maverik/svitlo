@@ -126,7 +126,7 @@ const scene = {
     accessibility: 'Keyboard control and screen-reader result descriptions.',
     offline: 'Bundled local Scene and equivalent text exercise.',
   },
-};
+} satisfies LessonWorkflowStage2SimpleBlock;
 
 // Section authoring uses plain config/production nodes, not defineContentSection.
 // Built configurators are not editorial Stage 2 child configs.
@@ -158,7 +158,10 @@ const intro = {
       title: { uk: 'Світло' },
       navigationLabel: { uk: 'Вступ' },
     },
-    content: { items: { observe: text }, order: ['observe'] },
+    content: {
+      items: { observe: text, lightExperiment: scene },
+      order: ['observe', 'lightExperiment'],
+    },
   },
   production: { purpose: 'Introduce light observation and examples.' },
 } satisfies LessonWorkflowStage2Section;
