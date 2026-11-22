@@ -70,15 +70,13 @@ const standalone = {
 // @ts-expect-error Missing all Methodologist methodology and assessment intent.
 const incompleteStage1: LessonWorkflowStage1 = { config: standalone.config };
 
-// @ts-expect-error Missing one of the four independent assessment decisions.
 const incompleteAssessments: LessonWorkflowStage1Production = {
   ...standalone.production,
+  // @ts-expect-error Fourth independent decision is mandatory even without Flashcards.
   assessment: {
     questionBankRequired: true,
     flashcardBankRequired: false,
     quizSectionRequired: true,
-    // @ts-expect-error Fourth independent decision is mandatory.
-    flashcardsSectionRequired: undefined,
   },
 };
 
@@ -118,7 +116,7 @@ const scene = {
     id: '663572e7-bd85-4516-86e2-3de07d209e07',
     slug: 'lightExperiment',
     type: 'scene',
-    params: { scene: 'LightExperiment' },
+    params: {},
     locale: {},
   },
   production: {
