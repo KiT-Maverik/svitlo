@@ -17,8 +17,8 @@ import type { ContentBlock_Video_Config } from '../../configurators/contentBlock
 import type { ContentBlock_Audio_Config } from '../../configurators/contentBlocks/defineAudio/defineAudio.schemas';
 import type { ContentBlock_Subtitles_Config } from '../../configurators/contentBlocks/defineSubtitles/defineSubtitles.schemas';
 import type { ContentBlock_Youtube_Config } from '../../configurators/contentBlocks/defineYoutube/defineYoutube.schemas';
-import type { ContentBlock_Carousel_Config } from '../../configurators/contentBlocks/defineCarousel/defineCarousel.schemas';
-import type { ContentBlock_Checkpoint_Config } from '../../configurators/contentBlocks/defineCheckpoint/defineCheckpoint.schemas';
+import type { CarouselSource } from '../../generators/materializers/carousel/materializeCarousel';
+import type { CheckpointSource } from '../../generators/materializers/checkpoint/materializeCheckpoint';
 import type { ContentBlock_Scene_Config } from '../../configurators/contentBlocks/defineScene/defineScene.schemas';
 
 /**
@@ -79,10 +79,12 @@ export type FlashcardBankWorkflowStage1 = {
   production: FlashcardBankWorkflowStage1Production;
 };
 
-/** Use the REAL Engine ContentBlock Config discriminated unions.
- * These are source-language authoring nodes, not resolved Props or fabricated
- * {kind:'questionField', fieldPath:...} references. Builders must resolve any
- * intentional imported Question Configurator field directly and type-safely.
+/** Use real Engine Config/Zod shapes for leaf ContentBlocks and the actual
+ * #779 composite materializer input types for Carousel/Checkpoint.
+ * Carousel/Checkpoint Config schemas require built child Configurators;
+ * a staged source MUST instead contain plain, ordered nested Config objects
+ * which their concrete source renderers understand. No alternate schema,
+ * fabricated QuestionField shape, Props or executable child instances.
  */
 export type FlashcardBankWorkflowContentBlockConfig =
   | ContentBlock_Text_Config
@@ -93,8 +95,8 @@ export type FlashcardBankWorkflowContentBlockConfig =
   | ContentBlock_Audio_Config
   | ContentBlock_Subtitles_Config
   | ContentBlock_Youtube_Config
-  | ContentBlock_Carousel_Config
-  | ContentBlock_Checkpoint_Config
+  | CarouselSource
+  | CheckpointSource
   | ContentBlock_Scene_Config;
 
 /** A nested node may retain materialization-only notes without putting
