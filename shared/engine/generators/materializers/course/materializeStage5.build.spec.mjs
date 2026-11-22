@@ -92,7 +92,13 @@ function diagnostics(files) {
   host.getSourceFile = (file, language, onError, createNew) => virtual.has(key(file))
     ? ts.createSourceFile(file, virtual.get(key(file)), language, true)
     : oldFile(file, language, onError, createNew);
-  return ts.getPreEmitDiagnostics(ts.createProgram([...virtual.keys()], opts, host));
+  // Also compile the actual public declaration/typed entrypoint assertions.
+  // Engine package build/test tsconfigs exclude *.typecheck.ts by design.
+  const contractFixture = path.join(engineRoot,
+    'generators/materializers/course/materializeStage5.typecheck.ts');
+  return ts.getPreEmitDiagnostics(
+    ts.createProgram([...virtual.keys(), contractFixture], opts, host),
+  );
 }
 test('canonical Stage3 Course hierarchy and UUID Lesson Stage1 handoff typecheck against actual Engine Build', () => {
   const root = 'content/playground/data/courses/3/' + id;
