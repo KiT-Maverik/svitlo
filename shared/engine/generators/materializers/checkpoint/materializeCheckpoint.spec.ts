@@ -101,3 +101,16 @@ test('Checkpoint omits a draft-disabled item rather than emitting false into fin
   assert.match(result.files.at(-1)!.content, /"second": item_second/);
   assert.doesNotMatch(result.files.at(-1)!.content, /item_first/);
 });
+
+
+test('Checkpoint rejects a delegated item that writes into another module', () => {
+  const source = example();
+  assert.throws(() => materializeCheckpoint(source, {
+    directory: 'sections/review', documentLanguage: 'uk', languagesImport: '../../languages',
+    renderItem: item => ({
+      exportName: item.slug,
+      files: [{ path: 'sections/review/index.ts', content: 'unowned', kind: 'typescript' as const }],
+      diagnostics: [],
+    }),
+  }), /outside its owned directory/);
+});
