@@ -1,0 +1,127 @@
+import assert from 'node:assert/strict';
+import test from 'node:test';
+import { deriveCourseEntityId } from './deriveCourseEntityId.mjs';
+import { materializeLessonDraft } from './lessonDraft.mjs';
+import { materializeCourseStage5 } from './materializeStage5.mjs';
+
+const rootId = '663572e7-bd85-4516-86e2-3de07d209e03';
+const skill = '663572e7-bd85-4516-86e2-3de07d209e04';
+const sha = '0123456789abcdef0123456789abcdef01234567';
+const assessment = {
+  questionBankRequired: true, flashcardBankRequired: false,
+  quizSectionRequired: true, flashcardsSectionRequired: false,
+};
+const lesson = slug => ({
+  config: { type: 'lesson', slug, skills: [skill], locale: { title: { uk: 'Урок' } },
+    params: { quizRequiredForCompletion: true } },
+  production: { kind: 'new', methodology: 'Reviewed full factual and pedagogical specification',
+    objective: 'Demonstrate the intended skill', depth: 'Introductory',
+    sequenceReason: 'First observations before synthesis',
+    assessmentEvidence: 'Describe observations', assessment },
+});
+const episode = () => ({
+  config: { type: 'episode' },
+  production: { focus: 'Real reviewed focus', purpose: 'Actual narrative rationale' },
+});
+const unitMeta = {
+  methodology: 'Unit pedagogical decisions', outcomes: { skills: [skill] },
+  prerequisites: { skills: [] }, depth: 'Early exploration', sequenceReason: 'Prepares the next unit',
+};
+const chapter = () => ({
+  config: { type: 'chapter', slug: 'chapterOne', locale: { title: { uk: 'Розділ' } },
+    content: { items: { lessonOne: lesson('lessonOne'), episodeOne: episode() },
+      order: ['lessonOne', 'episodeOne'] } },
+  production: unitMeta,
+});
+const moduleNode = () => ({
+  config: { type: 'module', slug: 'moduleOne', locale: { title: { uk: 'Модуль' } },
+    content: { items: { chapterOne: chapter() }, order: ['chapterOne'] } },
+  production: unitMeta,
+});
+const source = () => ({
+  config: { type: 'course', id: rootId, slug: 'skyBasics', params: { age: { min: 6, max: 10 } },
+    locale: { title: { uk: 'Небо' }, description: { uk: 'Спостереження' } },
+    content: { items: { moduleOne: moduleNode(), directLesson: lesson('directLesson') },
+      order: ['moduleOne', 'directLesson'] } },
+  production: { languages: { document: 'uk', planned: ['uk'] },
+    methodology: {
+      purpose: 'Real educational need', audience: 'Learners aged 6-10',
+      approach: 'Observe then reflect', depth: 'Introduction',
+      accessibility: 'Keyboard and screen reader alternatives',
+      scope: 'Daytime observations', entryConditions: 'No assumed astronomy knowledge',
+      sourceNotes: 'Checked primary educational references',
+    },
+    outcomes: { explanation: 'Recognize patterns' },
+    prerequisites: { explanation: 'None' }, standardsAlignment: [], openDecisions: {} },
+});
+const root = 'content/playground/data/courses/3/' + rootId;
+const options = () => ({
+  textbookRoot: 'content/playground',
+  review: { sourcePath: root + '/index.ts', sourceBlobSha: sha, reviewCommitSha: sha,
+    reviewer: 'independent-methodologist', evidenceUrl: 'https://github.com/KiT-Maverik/svitlo/pull/123' },
+  verifyReviewedSource: () => true,
+});
+
+test('historical UUID namespace uses full placement and remains deterministic on retry', () => {
+  const top = deriveCourseEntityId(rootId, 'lesson', 'directLesson');
+  const nested = deriveCourseEntityId(rootId, 'lesson', 'moduleOne/chapterOne/lessonOne');
+  assert.match(top, /^[0-9a-f-]{36}$/);
+  assert.equal(top, deriveCourseEntityId(rootId, 'lesson', 'directLesson'));
+  assert.notEqual(top, nested);
+  assert.notEqual(deriveCourseEntityId(rootId, 'chapter', 'moduleOne/chapterOne'), nested);
+  assert.throws(() => deriveCourseEntityId(rootId, 'lesson', '../escape'), /invalid deterministic/);
+});
+
+test('Lesson Draft emits exactly the independent typed Stage 1 source and no Configurator', () => {
+  const lessonId = deriveCourseEntityId(rootId, 'lesson', 'directLesson');
+  const result = materializeLessonDraft(lesson('directLesson'), {
+    lessonId, sourceLanguage: 'uk', plannedLanguages: ['uk', 'en'],
+    reviewedSourceSha: sha, textbookRoot: 'content/playground',
+  });
+  assert.equal(result.files.length, 1);
+  assert.equal(result.files[0].path, 'content/playground/data/lessons/' +
+    lessonId.at(-1) + '/' + lessonId + '/index.ts');
+  assert.match(result.files[0].content, /satisfies LessonWorkflowStage1/);
+  assert.match(result.files[0].content, /"quizSectionRequired": true/);
+  assert.match(result.files[0].content, /"quizRequiredForCompletion": true/);
+  assert.match(result.files[0].content, /"sourceEvidence":/);
+  assert.doesNotMatch(result.files[0].content, /defineLesson\(|defineQuizSection|feedc0de-/);
+  assert.equal(result.diagnostics[0].severity, 'blocker');
+});
+
+test('Course Stage 5 composes nested modules, chapters, episode intents and new-Lesson handoffs', () => {
+  const first = materializeCourseStage5(source(), options());
+  const second = materializeCourseStage5(source(), options());
+  assert.deepEqual(first.files, second.files);
+  const paths = first.files.map(file => file.path);
+  assert.ok(paths.includes(root + '/index.ts'));
+  assert.ok(paths.includes(root + '/content/moduleOne/chapterOne/index.ts'));
+  assert.ok(paths.includes(root + '/content/moduleOne/chapterOne/episodeOne/index.ts'));
+  assert.ok(paths.includes(root + '/methodology.md'));
+  assert.ok(paths.includes(root + '/languages.ts'));
+  const lessonFiles = paths.filter(file => file.includes('/data/lessons/'));
+  assert.equal(lessonFiles.length, 2);
+  assert.deepEqual(first.pendingPlacements.map(p => p.slug).sort(), ['directLesson', 'lessonOne']);
+  assert.ok(first.diagnostics.some(d => d.code === 'pending-lesson-stage1'));
+  assert.ok(first.diagnostics.some(d => d.code === 'pending-episode-scenario'));
+  assert.equal(first.sourcePath, root + '/index.ts');
+  assert.equal(first.sourceArchivePath, root + '/workflow.stage3.ts');
+  assert.equal(first.publishable, false);
+  assert.doesNotMatch(first.files.find(f => f.path === root + '/index.ts').content,
+    /import \{ directLesson /);
+});
+
+test('Course Stage 5 fails closed on unauthorized review, duplicate order and partial Lesson intent', () => {
+  const noReview = options();
+  noReview.verifyReviewedSource = () => false;
+  assert.throws(() => materializeCourseStage5(source(), noReview), /not independently authorized/);
+  const unordered = source();
+  unordered.config.content.order = ['moduleOne', 'moduleOne'];
+  assert.throws(() => materializeCourseStage5(unordered, options()), /order/);
+  const incomplete = source();
+  delete incomplete.config.content.items.directLesson.production.assessment;
+  assert.throws(() => materializeCourseStage5(incomplete, options()), /four explicit assessment/);
+  const unreviewedSource = options();
+  delete unreviewedSource.review.sourceBlobSha;
+  assert.throws(() => materializeCourseStage5(source(), unreviewedSource), /requires verified source/);
+});
