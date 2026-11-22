@@ -1,44 +1,30 @@
-# Agent C materializer workstream — text
+# Source materializers — Agent C
 
-**Status:** Assignment and integration contract only; no implementation is present in this bootstrap commit.
+Eight concrete TypeScript source materializers are implemented in the owned folders `text/`, `markdown/`, `code/`, `image/`, `video/`, `youtube/`, `audio/` and `subtitles/`.
 
-## Owned kinds
+## Parent integration contract
 
-- `text` -> `shared/engine/generators/materializers/text/`
-- `markdown` -> `shared/engine/generators/materializers/markdown/`
-- `code` -> `shared/engine/generators/materializers/code/`
-- `image` -> `shared/engine/generators/materializers/image/`
-- `video` -> `shared/engine/generators/materializers/video/`
-- `youtube` -> `shared/engine/generators/materializers/youtube/`
-- `audio` -> `shared/engine/generators/materializers/audio/`
-- `subtitles` -> `shared/engine/generators/materializers/subtitles/`
+Each `materialize<Kind>(draftConfig, options)` accepts a plain authoring Config derived from the corresponding real Engine Config type, with optional staged `params`/`locale` and separate production notes. It returns `{exportName, files, diagnostics}`. File paths are **relative to this concrete node's own output directory** (not the root Course/Lesson directory). `index.ts` imports the actual `define<Kind>` from `@svitlo/engine/build`, supplies exact Config identity and `typeof languages` generic; the caller must pass the relative `languagesImport` pointing to the parent-owned source-only `languages.ts`.
 
-## Work to implement
+The renderers never touch the filesystem and cannot clobber reviewed files. Parent #775 must implement atomic create-only preflight, symlink/path rejection, collision/ID checks across siblings, prefixing of relative paths and eventual typechecks against the real Engine. It must also adopt/standardize the local function signature, publish the integration exports, and wire these adjacent `*.spec.ts` tests into the package test script (the child PR cannot edit the manifest). No runtime YAML dependency or second Config parser is introduced.
 
-Primitive ContentBlocks, preserving source-localized value dictionaries and Text variables, external Markdown/Code sources with correct Engine readers, media/poster file placeholders and specs, and no fabricated assets or translations.
+## Historical parity inventory (#772, older YAML-to-TS)
 
-## Mandatory historical behavior audit
+| Kind | Specialized behavior retained | N/A / parent-owned |
+| --- | --- | --- |
+| Text | full exact inline `%_%id: camelCase; value: text%_%` text; real Zod and variable validation; source locale only | nested child maps |
+| Markdown | `markdown.md` or source-locale `<language>.md`, `readMarkdown(import.meta.url, ...)`, replacement variables and exact Markdown/math text | nested child maps |
+| Code | full language-to-extension map, exact bytes in `code.<extension>`, `readCodeSource` and Code replacement variables | nested child maps |
+| Image | source-locale filename/alt/fallback, nil UUID `.webp` pending filename and sizing/alt TODOs | child collections |
+| Video | filename `.mp4`, poster `.webp`, source-locale labels and separate pending TODOs | child collections |
+| Youtube | strict owned `defineYoutube`, mode/href/accessible label source fidelity; no physical asset placeholder | child collections |
+| Audio | filename `.mp3`, translated title/description and explicit pending TODO | child collections |
+| Subtitles | filename `.vtt` and language filtering, no fabricated WebVTT data | child collections |
 
-Read the **actual** existing YAML -> TypeScript implementation on branch `integration/unified-yaml-materialization-preview` (parent PR #769; agent PR #772):
-- `shared/engine/scripts/yamlScaffolding/recursiveMaterializer.mjs`
-- `shared/engine/scripts/yamlScaffolding/recursiveMaterializer.spec.mjs`
-- `shared/engine/scripts/yamlScaffolding/yamlScaffolding.mjs`
-- `shared/engine/scripts/yamlScaffolding/productionScaffolding.mjs`
-- `shared/engine/scripts/yamlScaffolding/README.md`
-Also inspect current develop `materializeCourseFlow`, `lessonBuilder`, `questionsBuilder`, `flashcardBuilder` only for the applicable kinds and relevant actual configurator/Zod/test contracts. **Do not import the YAML materializer or move YAML dependencies into the new source materializer.**
+Every type retains immutable UUID and slug, qualified pending diagnostics, source-language translation pruning and planned-language TODO, optional `specification.md` sidecars, stable module imports/exports, and no physical media file fabrication. All eight implement the same renderer/relative-plan shape **independently**, with adjacent tests.
 
-For **each assigned kind**, explicitly map and port applicable existing behaviors: exact factory selection and type-specific TS generics; slug-based variable/export names and stable nested imports; correct child-boundary paths and ordered collections; locale-source pruning and planned-language TODOs; location-qualified validation; TODO (BLOCKER) placement and pending semantics; external Markdown/Code text readers; source/specification sidecars; nil-UUID reserved media placeholders (never real assets); Scene/assessment pending safeguards; correct handling of special source values/expressions; no loss of authored values; syntactically valid emitted TS; deterministic, create-only behavior. Some cases do not apply to every kind; record N/A where appropriate. Also fix observed defects rather than duplicating them and add regression tests.
+**Deliberately not ported into these leaf renderers:** `items/order` and child path boundaries (parents own them), Section/Scene/assessment pending scaffolds (Agents B/D/E), global `languages.ts` ownership, identity allocation, writer, and orchestrator integration (parent #775). The previous YAML renderer's broad recursive serializer is not imported or executed. Dynamic arbitrary evaluated TS expressions not representable by a plain Config require a separately specified parent-level authoring expression contract; no unsafe raw-expression injection is implemented.
 
-## Independence and collaboration
+## Verification
 
-- Base/head ancestry: target `architecture/typed-production-materializers` (parent Draft PR #775), not `develop` or #769. All five agents work on branches created from the same parent head.
-- All implementations belong under `shared/engine/generators/materializers/<concreteKind>/`, one folder per concrete kind. Your branch owns only its assigned folders. Keep tests adjacent to each concrete kind. **Do not edit shared indexes, `package.json`, tsconfig, Studio, rules, production contracts, global generator helpers, UUID/path/writer code, original Configurators, existing YAML scripts or another agent's folders.** Integration of exports, entrypoints, production types, shared primitives and workflows belongs to parent #775.
-- Input is **already-authored, typed, plain Config object data** plus separate production metadata, not a `define*` Configurator and not a YAML document. Final Config may be incomplete during staged authoring; do not weaken real Config/Zod validators. Emit authored TypeScript/TSX/Markdown modules and sidecars, **not published JSON/Props**. Never add `build.files` to a Configurator.
-- Each kind's materializer should be simple, explicit and standalone; duplication is preferable to generic factories/registries/base classes, complex AST abstractions or cross-sibling coupling. A parent delegates to its child's materializer and never reimplements child logic. Avoid circular imports; if a child kind belongs to another agent, produce a narrow delegation boundary and test it with a fixture/test double rather than implementing that sibling.
-- The parent will implement canonical derived Production stage types and any minimal shared UUID/path/file writer contract. **Do not invent competing canonical shared types**; use local types derived from real `*_Config` where possible, and list any requested parent exports/contracts in your PR. Coordinate the final function signature through #775; keep self-contained tests passing now and state explicitly which integration checks remain pending.
-- Respect `shared/engine/generators/AGENTS.md` as the existing JSON publication guidance; it currently assumes generators only serialize Props. Source materializers are intentionally distinct, and parent #775 must update that instruction to distinguish them. Do not change it in this subtask.
-- Protect invariant IDs, explicit source identity, human-edited files and real localization/asset validation. Do not suppress TypeScript diagnostics with `as any` or `@ts-ignore`. No invented approved content or silently fabricated translations.
-
-## Required evidence
-
-Implement all owned kinds with adjacent unit tests and a cross-nesting fixture when relevant. Demonstrate exact generated module paths, imports/exports, immutable identifiers, source-language behavior, TODO blockages, warnings/errors, deterministic re-runs, and no-clobber behavior. Run the actual applicable tests/types/format where possible and report commands and results. Distinguish unit tests that passed from parent integration tests that cannot yet run because the shared Production API is still being authored. Keep the PR in Draft; do not merge without the project owner's instruction.
+Adjacent tests cover named module shape, TypeScript *syntax parsing*, non-English exact source, source-locale filtering and planned-language TODO, source reader paths, missing content/media, stable re-runs, untouched input Config, and invalid identity. Full emitted-source configurator **typechecking**, parent-level create-only preflight and integration test invocation are outstanding parent dependencies, **not claimed to pass here**.

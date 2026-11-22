@@ -1,0 +1,54 @@
+import assert from 'node:assert/strict';
+import { test } from 'node:test';
+import ts from 'typescript';
+import { materializeText } from './materializeText';
+
+const id = 'c2cc84f3-f057-493d-b1b6-1880aad8023b';
+const options = { documentLanguage: 'uk', plannedLanguages: ['uk', 'en'] };
+const valid = () => ({
+  id, slug: 'intro' as const, type: 'text' as const,
+  params: { variables: { person: { applyStyle: ['bold'] as ['bold'] } } },
+  locale: { value: { uk: 'Привіт %_%id: person; value: Оля%_%', en: 'Welcome %_%id: person; value: Ada%_%' } },
+});
+
+test('text: exact source, imports, locale pruning, deterministic non-writing plan', () => {
+  const source = valid();
+  const original = structuredClone(source);
+  const one = materializeText(source, options);
+  assert.deepEqual(one, materializeText(source, options));
+  assert.deepEqual(source, original, 'never mutate the reviewed Config source');
+  assert.equal(one.exportName, 'intro');
+  assert(one.files.some(file => file.path === 'index.ts'));
+  assert(one.files.every(file => !file.path.startsWith('/') && !file.path.includes('..')));
+  const module = one.files.find(file => file.path === 'index.ts')?.content ?? '';
+  assert.match(module, /defineText<"intro", typeof languages>/);
+  assert(module.includes(id), 'original immutable UUID retained');
+  assert(!module.includes('Welcome'), 'unreviewed locale is not materialized');
+  const parsed = ts.createSourceFile('index.ts', module, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS);
+  assert.equal(parsed.parseDiagnostics.length, 0, 'emitted TS must parse');
+  assert(one.diagnostics.some(item => item.code === 'pending-locales'));
+  assert.match(module, /Привіт/);
+  assert.match(module, /%_%id: person; value: Оля%_%/);
+  assert.match(module, /applyStyle/);
+  assert.throws(() => materializeText({ ...valid(), locale: { value: { uk: '%_%id: invalid; value: x%_%' } } },
+    { documentLanguage: 'uk' }), /Text variables validation failed/);
+});
+
+test('text: missing resources are blocked; no fictional resource files created', () => {
+  const result = materializeText(
+    { id, slug: 'intro', type: 'text', params: {}, locale: {} }, { documentLanguage: 'uk' },
+  );
+  assert(result.diagnostics.some(item => item.code.startsWith('pending-')));
+  assert.match(result.files[0].content, /TODO \(BLOCKER\):/);
+  assert(!result.files.some(file => file.path.endsWith('.md') || file.path.startsWith('code.')));
+  assert.equal(result.files.filter(file => file.kind === 'typescript').length, 1);
+});
+
+test('text: refuses unsafe identity or unsupported source language', () => {
+  assert.throws(() => materializeText({ ...valid(), id: 'invalid' }, { documentLanguage: 'uk' }),
+    /immutable, non-nil UUID/);
+  assert.throws(() => materializeText(valid(), { documentLanguage: 'en', plannedLanguages: ['uk'] }),
+    /missing source language/);
+  assert.throws(() => materializeText({ ...valid(), slug: '../bad' }, { documentLanguage: 'uk' }),
+    /unsafe or missing slug/);
+});
