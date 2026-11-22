@@ -17,7 +17,7 @@ import { materializeFillBlanksWithBlocks } from '../fillBlanksWithBlocks/materia
 import { materializeFillBlanksWithText } from '../fillBlanksWithText/materializeFillBlanksWithText';
 import {
   assertBankLanguages, assertBankOrder, assertBankPath, assertBankSha,
-  assertBankStatement, assertBankUuid, authoredBankLiteral, preflightBankSource,
+  assertBankStatement, assertBankUuid, assertUniqueBankEntityIds, authoredBankLiteral, preflightBankSource,
   type BankReviewedSource, type BankSourceSnapshot, type BankSourceResult,
   type BankSourceFile, type BankSourceDiagnostic,
 } from '../bankSource/bankSourceSafety';
@@ -30,7 +30,6 @@ const kinds = [
 ] as const;
 type Kind = (typeof kinds)[number];
 const kindSet: ReadonlySet<string> = new Set(kinds);
-const uuidPattern = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i;
 
 /** Stage 7 is authorized by the owning Lesson PR, not by absent Quiz Sections. */
 export type QuestionBankDraftAuthorization = {
@@ -39,19 +38,26 @@ export type QuestionBankDraftAuthorization = {
   lessonSourceSha: string;
   referenceSha: string;
   methodologistReviewSha: string;
+  /** Explicit additional authorization when the Lesson decided no own bank is required. */
+  independentBankAuthorization?: { sourceSha: string; rationale: string };
   snapshot: BankSourceSnapshot;
 };
 
 /** The trusted writer verifies source/review/HEAD against the hosting Git API. */
 export type QuestionBankFinalAuthorization = {
   ownerLessonId: string;
+  independentBankAuthorization?: { sourceSha: string; rationale: string };
   reviewed: BankReviewedSource;
   snapshot: BankSourceSnapshot;
   /** Concrete Scene registry and media evidence are checked before delegation. */
   blocks: AssessmentBlockEvidence;
 };
 
-function validateStage1(input: QuestionBankWorkflowStage1, lessonId: string): void {
+function validateStage1(
+  input: QuestionBankWorkflowStage1,
+  lessonId: string,
+  independent?: { sourceSha: string; rationale: string },
+): void {
   assertBankUuid(lessonId, 'Question Bank owning Lesson');
   if (!input || input.config?.ownerLessonId !== lessonId) {
     throw new Error('Question Bank must use the actual owning Lesson UUID');
@@ -79,6 +85,12 @@ function validateStage1(input: QuestionBankWorkflowStage1, lessonId: string): vo
       typeof p.assessment.quizRequiredForCompletion !== 'boolean') {
     throw new Error('Preserve all independent Lesson assessment decisions');
   }
+  if (p.assessment.questionBankRequired !== true) {
+    if (!independent) throw new Error('Questions N/A: independent bank authorization required');
+    assertBankSha(independent.sourceSha, 'Independent Question Bank authorization');
+    assertBankStatement(independent.rationale, 'Independent Question Bank rationale');
+    if (independent.sourceSha !== p.lesson.sourceSha) throw new Error('Stale independent Question Bank authorization');
+  }
   if (!Array.isArray(p.evidenceIntent) || !p.evidenceIntent.length) {
     throw new Error('Methodologist assessment evidence is required');
   }
@@ -97,7 +109,7 @@ export function materializeQuestionBankDraft(
   authorization: QuestionBankDraftAuthorization,
 ): BankSourceResult {
   if (authorization.authorized !== true) throw new Error('Lesson Stage 7 authorization missing');
-  validateStage1(input, authorization.ownerLessonId);
+  validateStage1(input, authorization.ownerLessonId, authorization.independentBankAuthorization);
   assertBankSha(authorization.methodologistReviewSha, 'Methodologist review');
   if (input.production.lesson.sourceSha !== authorization.lessonSourceSha ||
       input.production.lesson.referenceSha !== authorization.referenceSha) {
@@ -186,6 +198,7 @@ export function materializeQuestionBank(
       assertBankStatement(value.upstreamDependencies, 'Quiz upstream dependencies');
     }
   }
+  assertUniqueBankEntityIds(questions);
   const source = input.production.languages;
   const files: BankSourceFile[] = [];
   const diagnostics: BankSourceDiagnostic[] = [];
