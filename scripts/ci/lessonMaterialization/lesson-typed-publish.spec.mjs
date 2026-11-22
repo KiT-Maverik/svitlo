@@ -74,7 +74,7 @@ async function exercise({ permission = 'write', advance = false,
       ],
     };
     const report = typedManifest(plan, meta, raw, indexed(root, 'content/math'), root);
-    const reportFile = path.join(root, 'report.json');
+    const reportFile = path.join(root, '.git', 'typed-report.json');
     const reportBytes = Buffer.from(JSON.stringify(report));
     fs.writeFileSync(reportFile, corruptArtifact ? Buffer.concat([reportBytes, Buffer.from(' ')]) : reportBytes);
     Object.assign(process.env, {
