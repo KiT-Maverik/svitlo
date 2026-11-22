@@ -9,7 +9,7 @@ const ID='e69e5a56-0d62-4282-aeb0-4d1ca353a0ea';
 const SID='9b646e88-7307-413b-9e52-73027616a323';
 const GID='8795927b-f5b9-492e-9f4e-d96b9a128fac';
 const skill=slug=>({id:SID,slug,name:{uk:'Уміння',en:'Skill'},description:{methodological:'Skill method',frontend:{uk:'Опис',en:'Description'}}});
-const config=()=>({id:ID,slug:'firstDomain',title:{uk:'Домен'},description:{methodological:'Domain'},skills:{firstSkill:skill('firstSkill')},groups:{firstGroup:{id:GID,slug:'firstGroup',name:{uk:'Група'},description:{methodological:'Group'},skills:{secondSkill:{...skill('secondSkill'),id:'ae6d76ed-13a2-4c3e-9754-8e9b91cebc4d'}}}}}});
+const config=()=>({id:ID,slug:'firstDomain',title:{uk:'Домен'},description:{methodological:'Domain'},skills:{firstSkill:skill('firstSkill')},groups:{firstGroup:{id:GID,slug:'firstGroup',name:{uk:'Група'},description:{methodological:'Group'},skills:{secondSkill:{...skill('secondSkill'),id:'ae6d76ed-13a2-4c3e-9754-8e9b91cebc4d'}}}}});
 const render=()=>materializeSkillDomain({config:config(),production:{plannedLanguages:['uk','en']}},{
  sourceLanguage:'uk',materializeSkill,materializeSkillGroup});
 test('delegates nested source and emits parseable TypeScript with concrete child imports',()=>{
