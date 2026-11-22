@@ -23,8 +23,10 @@ function single(body, regex, name) {
 export function parseTypedIdentity(body) {
   if (typeof body !== 'string' || body.split(marker).length !== 2)
     throw Error('Exactly one typed Lesson Flow marker required');
-  const [id, pkg, slug] = single(body, /^- Lesson UUID \/ textbook \/ slug:\s*(.+)$/gm,
+  const fields = single(body, /^- Lesson UUID \/ textbook \/ slug:\s*(.+)$/gm,
     'Lesson UUID / textbook / slug').replaceAll(String.fromCharCode(96), '').split(/\s+\/\s+/);
+  if (fields.length !== 3) throw Error('Typed Lesson identity must contain exactly three fields');
+  const [id, pkg, slug] = fields;
   if (!uuid.test(id || '') || !/^content\/[a-z][a-z0-9-]*$/.test(pkg || '') ||
       !/^[a-z][A-Za-z0-9]*$/.test(slug || ''))
     throw Error('Invalid Lesson UUID / textbook / slug');
