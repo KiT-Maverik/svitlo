@@ -37,7 +37,7 @@ function safePath(value:string):void {
 }
 function safeSlug(value:unknown,location:string):string {
   if (typeof value!=='string' || !validSlug.test(value) ||
-      ['constructor','prototype','__proto__','default'].includes(value)) fail(location,'unsafe block slug');
+      ['constructor','prototype','__proto__'].includes(value)) fail(location,'unsafe block slug');
   return value;
 }
 /** All children must be accounted for once; do not silently reorder or drop blocks. */

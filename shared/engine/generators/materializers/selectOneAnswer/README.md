@@ -1,47 +1,45 @@
-# Agent E materializer workstream — selectOneAnswer
+# Agent E — Questions and Flashcards source materializers
 
-**Status:** Assignment and integration contract only; no implementation is present in this bootstrap commit.
+**Status:** all 11 assigned concrete kinds implemented on this child Draft PR. **Not integrated into the parent production CLI and not claimed production-ready.** This PR targets `architecture/typed-production-materializers` (#775).
 
-## Owned kinds
+## Ownership and exact generated source boundaries
 
-- `selectOneAnswer` -> `shared/engine/generators/materializers/selectOneAnswer/`
-- `selectMultipleAnswers` -> `shared/engine/generators/materializers/selectMultipleAnswers/`
-- `matchBlocks` -> `shared/engine/generators/materializers/matchBlocks/`
-- `answerWithText` -> `shared/engine/generators/materializers/answerWithText/`
-- `answerWithNumber` -> `shared/engine/generators/materializers/answerWithNumber/`
-- `orderSequence` -> `shared/engine/generators/materializers/orderSequence/`
-- `buildAnswerWithBlocks` -> `shared/engine/generators/materializers/buildAnswerWithBlocks/`
-- `fillBlanksWithBlocks` -> `shared/engine/generators/materializers/fillBlanksWithBlocks/`
-- `fillBlanksWithText` -> `shared/engine/generators/materializers/fillBlanksWithText/`
-- `flashcard` -> `shared/engine/generators/materializers/flashcard/`
-- `flashcardSide` -> `shared/engine/generators/materializers/flashcardSide/`
+Nine Question variants each have an isolated `materialize<Kind>.ts` and adjacent `*.spec.ts`. Input is a typed ordinary Config-data node and separate production metadata; it is **not** YAML, a built Configurator or published Props. Each Question produces its canonical `questions/<questionType>/<slug>.ts`; nested ContentBlocks live under `<questionType>/<slug>/content/.../index.ts`. The Question owns typed `define<Kind>` emission, ordered collections and child placement, but **delegates ContentBlock implementation** through its narrow `materializeBlock` callback supplied by the parent. No kind depends on another Question variant.
 
-## Work to implement
+`flashcard/materializeFlashcard.ts` emits `flashcards/<slug>.ts`, delegating `content.front/back/hint` to the actual `flashcardSide/materializeFlashcardSide.ts`. Each side emits `flashcards/<slug>/content/<side>/index.ts` with `defineFlashcardSide` and its ordered imported ContentBlocks. Sides have **no UUID, slug, or independent bank identity**. The card uses `defineFlashcard` without an authored `type` field, and preserves its ordered relationships and unordered flag array.
 
-Nine independently typed Question variants and Flashcard with its Side, preserving nested response/content structures, ordered collections, flags, locales, relationships, and bank identity. Leave Quiz/Flashcards Sections to Agent B.
+Each render returns a deterministic in-memory file manifest, named `exportName` and diagnostics. The parent still owns global type/stage contracts, wiring the concrete child callbacks, textbook destinations, collision detection across entities, atomic preflight/check/write, verified source expressions and production gates. `existingPaths` provides a local create-only guard for all emitted files, but is **not a replacement** for the parent's symlink, race and safe-writer checks.
 
-## Mandatory historical behavior audit
+## Specific old YAML → TypeScript parity
 
-Read the **actual** existing YAML -> TypeScript implementation on branch `integration/unified-yaml-materialization-preview` (parent PR #769; agent PR #772):
-- `shared/engine/scripts/yamlScaffolding/recursiveMaterializer.mjs`
-- `shared/engine/scripts/yamlScaffolding/recursiveMaterializer.spec.mjs`
-- `shared/engine/scripts/yamlScaffolding/yamlScaffolding.mjs`
-- `shared/engine/scripts/yamlScaffolding/productionScaffolding.mjs`
-- `shared/engine/scripts/yamlScaffolding/README.md`
-Also inspect current develop `materializeCourseFlow`, `lessonBuilder`, `questionsBuilder`, `flashcardBuilder` only for the applicable kinds and relevant actual configurator/Zod/test contracts. **Do not import the YAML materializer or move YAML dependencies into the new source materializer.**
+| Kind | Owned child paths and semantic constraints |
+| --- | --- |
+| `selectOneAnswer` | Common prompt/hint/explanation; distinct `answers.correct/incorrect/distractors` ordered blocks; exactly one correct |
+| `selectMultipleAnswers` | Same three scoring collections; at least one correct; answer-key slugs unique across groups |
+| `matchBlocks` | Named ordered `pairs.items.*.left/right` delegated separately; at least one complete pair |
+| `answerWithText` | Named localized `locale.correctAnswers`, optional placeholder; no synthetic accepted strings |
+| `answerWithNumber` | Finite nonempty numeric `params.correctAnswers`; localized placeholder |
+| `orderSequence` | Ordered `content.sequence.items`; at least one real block |
+| `buildAnswerWithBlocks` | Separate nonempty ordered `correctSequence` and ordered `distractors` |
+| `fillBlanksWithBlocks` | Named ordered `slots.items.*.correctAnswer` plus `distractors`; preserve selectors |
+| `fillBlanksWithText` | Named ordered text `slots.items.*.correctAnswers` with nested source-locale values; no child Configurator inside a text slot |
+| `flashcard` | Real front/back and optional hint Side delegation; ordered relationship UUID refs, typed `flags: []`, built-in flag uniqueness, custom/abbreviation localized values |
+| `flashcardSide` | Source-only side with no identity; exact `items/order`, role constraints and delegated child blocks |
 
-For **each assigned kind**, explicitly map and port applicable existing behaviors: exact factory selection and type-specific TS generics; slug-based variable/export names and stable nested imports; correct child-boundary paths and ordered collections; locale-source pruning and planned-language TODOs; location-qualified validation; TODO (BLOCKER) placement and pending semantics; external Markdown/Code text readers; source/specification sidecars; nil-UUID reserved media placeholders (never real assets); Scene/assessment pending safeguards; correct handling of special source values/expressions; no loss of authored values; syntactically valid emitted TS; deterministic, create-only behavior. Some cases do not apply to every kind; record N/A where appropriate. Also fix observed defects rather than duplicating them and add regression tests.
+Historical migration reference actually inspected on `integration/unified-yaml-materialization-preview` (#769/#772): `recursiveMaterializer.mjs` and tests, `yamlScaffolding.mjs`, `productionScaffolding.mjs`, its README; existing `questionsBuilder`, `flashcardBuilder`, real Engine Question/Flashcard Config schemas and factory tests. Kept: canonical concrete `define*` factories and generic types, UUIDs and slugged exports, nested imports, review TODO blockers, source-language localization filtering (including Flashcard flags), planned-language TODO, authored values and specifications, deterministic paths, explicit missing-content/order errors, and refusal to touch existing outputs. No fake translations, Questions, Flashcard relations or media.
 
-## Independence and collaboration
+**Delegated / N/A:** Markdown/Code source files and readers are owned by Agent C's concrete ContentBlock materializers. Media Nil-UUID placeholders and physical-asset TODOs likewise belong to Agent C; Scenes to Agent D. Quest/Section pending states and real assessment bank IDs are owned by Agent B and the bank production workflow. The old YAML loader is deliberately **not imported**. Global UUID allocation, approved source-expression preservation and filesystem symlink/atomic protections are parent #775 integration responsibilities, not silently reimplemented by this child.
 
-- Base/head ancestry: target `architecture/typed-production-materializers` (parent Draft PR #775), not `develop` or #769. All five agents work on branches created from the same parent head.
-- All implementations belong under `shared/engine/generators/materializers/<concreteKind>/`, one folder per concrete kind. Your branch owns only its assigned folders. Keep tests adjacent to each concrete kind. **Do not edit shared indexes, `package.json`, tsconfig, Studio, rules, production contracts, global generator helpers, UUID/path/writer code, original Configurators, existing YAML scripts or another agent's folders.** Integration of exports, entrypoints, production types, shared primitives and workflows belongs to parent #775.
-- Input is **already-authored, typed, plain Config object data** plus separate production metadata, not a `define*` Configurator and not a YAML document. Final Config may be incomplete during staged authoring; do not weaken real Config/Zod validators. Emit authored TypeScript/TSX/Markdown modules and sidecars, **not published JSON/Props**. Never add `build.files` to a Configurator.
-- Each kind's materializer should be simple, explicit and standalone; duplication is preferable to generic factories/registries/base classes, complex AST abstractions or cross-sibling coupling. A parent delegates to its child's materializer and never reimplements child logic. Avoid circular imports; if a child kind belongs to another agent, produce a narrow delegation boundary and test it with a fixture/test double rather than implementing that sibling.
-- The parent will implement canonical derived Production stage types and any minimal shared UUID/path/file writer contract. **Do not invent competing canonical shared types**; use local types derived from real `*_Config` where possible, and list any requested parent exports/contracts in your PR. Coordinate the final function signature through #775; keep self-contained tests passing now and state explicitly which integration checks remain pending.
-- Respect `shared/engine/generators/AGENTS.md` as the existing JSON publication guidance; it currently assumes generators only serialize Props. Source materializers are intentionally distinct, and parent #775 must update that instruction to distinguish them. Do not change it in this subtask.
-- Protect invariant IDs, explicit source identity, human-edited files and real localization/asset validation. Do not suppress TypeScript diagnostics with `as any` or `@ts-ignore`. No invented approved content or silently fabricated translations.
+## Verification and parent integration
 
-## Required evidence
+Each materializer has adjacent Node tests exercising deterministic filenames/source, nested delegated imports and type-specific constraints, TypeScript syntax parsing, ordered source, blocker preservation and create-only rejection. The Flashcard tests exercise side generation, flags, relationships and locale filtering.
 
-Implement all owned kinds with adjacent unit tests and a cross-nesting fixture when relevant. Demonstrate exact generated module paths, imports/exports, immutable identifiers, source-language behavior, TODO blockages, warnings/errors, deterministic re-runs, and no-clobber behavior. Run the actual applicable tests/types/format where possible and report commands and results. Distinguish unit tests that passed from parent integration tests that cannot yet run because the shared Production API is still being authored. Keep the PR in Draft; do not merge without the project owner's instruction.
+**Manual verification commands after parent merges this branch and dependencies are installed:**
+
+```sh
+npm run code:check:types --workspace @svitlo/engine
+npx tsc -p shared/engine/tsconfig.test.json
+node --test shared/engine/.test-build/generators/materializers/*/*.spec.js
+```
+
+The current Draft GitHub workflows are lightweight and may defer these type/test suites. They must **not** be marked passed until actually executed. The parent must also confirm full Engine Config validation of emitted complete source, correct generic constraints, GitHub SHA-pinned review evidence, exact writers and materialization/publisher integration. No Ready transition or merge is authorized by this subtask.

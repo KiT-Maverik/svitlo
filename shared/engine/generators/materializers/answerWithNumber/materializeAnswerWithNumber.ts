@@ -33,6 +33,7 @@ export type AnswerWithNumberContext = {
 };
 const validSlug = /^[a-z][A-Za-z0-9]*$/;
 const validIdentifier = /^[a-zA-Z_$][a-zA-Z0-9_$]*$/;
+const reservedNames = new Set(['await','break','case','catch','class','const','continue','debugger','default','delete','do','else','enum','export','extends','false','finally','for','function','if','import','in','instanceof','new','null','return','super','switch','this','throw','true','try','typeof','var','void','while','with','yield','let','static','implements','interface','private','protected','public','package']);
 const validUUID = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i;
 const validLocale = /^[a-z]{2}(?:-[A-Z]{2})?$/;
 const allowedBlocks = new Set(['text','markdown','code','image','video','youtube','audio','subtitles','scene','carousel','checkpoint']);
@@ -75,6 +76,7 @@ export function materializeAnswerWithNumber(node: AnswerWithNumberNode, context:
   const config=node.config;
   if (!isRecord(config) || config.type!=='answerWithNumber') fail('config.type','incorrect kind');
   const name=safeSlug(config.slug,'config.slug');
+  const exportedName=reservedNames.has(name)?'config_'+name:name;
   if (typeof config.id!=='string' || !validUUID.test(config.id) || config.id==='00000000-0000-0000-0000-000000000000')
     fail('config.id','immutable non-Nil Question UUID required');
   if (!validLocale.test(context.documentLanguage)) fail('documentLanguage','valid source locale required');
@@ -148,7 +150,7 @@ export function materializeAnswerWithNumber(node: AnswerWithNumberNode, context:
       "import { defineAnswerWithNumber } from '@svitlo/engine/build';",
       ...imports.sort(),'',
       ...blockers.map(reason=>'// TODO (BLOCKER): '+reason),
-      nested+'export const '+name+' = defineAnswerWithNumber<'+JSON.stringify(name)+', typeof content, ['+JSON.stringify(context.documentLanguage)+']>({\n'+
+      nested+'export const '+exportedName+' = defineAnswerWithNumber<'+JSON.stringify(name)+', typeof content, ['+JSON.stringify(context.documentLanguage)+']>({\n'+
         metadata+'\n  content,\n});\n',
     ].join('\n'),
   });
@@ -163,5 +165,5 @@ export function materializeAnswerWithNumber(node: AnswerWithNumberNode, context:
     if (context.existingPaths?.has(file.path)) fail(file.path,'existing authored file; create-only/no clobber');
     seen.add(file.path);
   }
-  return {exportName:name,files:files.sort((a,b)=>a.path.localeCompare(b.path,'en')),diagnostics};
+  return {exportName:exportedName,files:files.sort((a,b)=>a.path.localeCompare(b.path,'en')),diagnostics};
 }

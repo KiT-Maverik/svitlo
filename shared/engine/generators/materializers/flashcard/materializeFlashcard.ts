@@ -4,7 +4,7 @@
  */
 import type { Flashcard_Config } from '../../../configurators/flashcards/defineFlashcard/defineFlashcard.schemas';
 import { materializeFlashcardSide, type FlashcardSideSource, type FlashcardSideContext,
-  type PlainBlock, type SourceFile, type SourceDiagnostic, type ChildResult } from '../flashcardSide/materializeFlashcardSide';
+  type SourceFile, type SourceDiagnostic, type ChildResult } from '../flashcardSide/materializeFlashcardSide';
 
 export type FlashcardSource = Omit<Flashcard_Config,'content'> & {
   content: { front: FlashcardSideSource; back: FlashcardSideSource; hint?: FlashcardSideSource };
@@ -23,6 +23,7 @@ export type FlashcardContext = {
 const record=(v:unknown):v is Record<string,unknown>=>v!==null && typeof v==='object' && !Array.isArray(v);
 const identifier=/^[a-zA-Z_$][a-zA-Z0-9_$]*$/;
 const slug=/^[a-z][A-Za-z0-9]*$/;
+const reservedNames = new Set(['await','break','case','catch','class','const','continue','debugger','default','delete','do','else','enum','export','extends','false','finally','for','function','if','import','in','instanceof','new','null','return','super','switch','this','throw','true','try','typeof','var','void','while','with','yield','let','static','implements','interface','private','protected','public','package']);
 const uuid=/^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i;
 const localeCode=/^[a-z]{2}(?:-[A-Z]{2})?$/;
 const fail=(location:string,message:string):never=>{throw new Error('flashcard '+location+': '+message);};
@@ -90,12 +91,13 @@ export function materializeFlashcard(node:FlashcardNode,context:FlashcardContext
   if(!record(config) || typeof config.id!=='string' || !uuid.test(config.id) ||
     config.id==='00000000-0000-0000-0000-000000000000') fail('config.id','immutable non-Nil Flashcard UUID required');
   if(typeof config.slug!=='string' || !slug.test(config.slug) ||
-    ['default','constructor','__proto__'].includes(config.slug)) fail('config.slug','invalid named Flashcard slug');
+    ['constructor','__proto__'].includes(config.slug)) fail('config.slug','invalid named Flashcard slug');
   if('type' in config || Object.keys(config).some(key=>!['id','slug','parameters','content'].includes(key)))
     fail('config','Flashcard Config is not a typed Question and has no authored type field');
   if(!localeCode.test(context.documentLanguage)) fail('documentLanguage','valid source language required');
   if(!record(config.content) || !record(config.content.front) || !record(config.content.back))
     fail('content','front and back FlashcardSide Config required');
+  const exportedName=reservedNames.has(config.slug)?'config_'+config.slug:config.slug;
   validateParameters(config.parameters);
   const planned=context.plannedLanguages??[context.documentLanguage];
   if(!planned.includes(context.documentLanguage)) fail('plannedLanguages','reviewed source locale must be supported');
@@ -138,7 +140,7 @@ export function materializeFlashcard(node:FlashcardNode,context:FlashcardContext
       "import { defineFlashcard, type Flashcard_Config } from '@svitlo/engine/build';",
       ...imports,'',...blockers.map(reason=>'// TODO (BLOCKER): '+reason),
       paramsSource+contentSource+
-      'export const '+config.slug+' = defineFlashcard'+generics+'({\n'+
+      'export const '+exportedName+' = defineFlashcard'+generics+'({\n'+
         '  id: '+JSON.stringify(config.id)+',\n'+
         '  slug: '+JSON.stringify(config.slug)+',\n'+
         '  parameters,\n  content,\n});\n',
@@ -155,5 +157,5 @@ export function materializeFlashcard(node:FlashcardNode,context:FlashcardContext
     if(context.existingPaths?.has(file.path)) fail(file.path,'existing authored file; create-only/no clobber');
     paths.add(file.path);
   }
-  return {exportName:config.slug,files:files.sort((a,b)=>a.path.localeCompare(b.path,'en')),diagnostics};
+  return {exportName:exportedName,files:files.sort((a,b)=>a.path.localeCompare(b.path,'en')),diagnostics};
 }
