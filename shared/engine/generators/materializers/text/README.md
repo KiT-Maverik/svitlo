@@ -4,9 +4,9 @@ Eight concrete TypeScript source materializers are implemented in the owned fold
 
 ## Parent integration contract
 
-Each `materialize<Kind>(draftConfig, options)` accepts a plain authoring Config derived from the corresponding real Engine Config type, with optional staged `params`/`locale` and separate production notes. It returns `{exportName, files, diagnostics}`. File paths are relative to the enclosing Course/Lesson/bank source root. Callers supply an optional **`directory`** to prefix the concrete node's own files; nested callers must supply the actual relative `languagesImport`. `index.ts` imports the actual `define<Kind>` from `@svitlo/engine/build`, supplies exact Config identity and `typeof languages` generic; the caller must pass the relative `languagesImport` pointing to the parent-owned source-only `languages.ts`.
+Each `materialize<Kind>(draftConfig, options)` accepts a plain authoring Config derived from the corresponding real Engine Config type, with optional staged `params`/`locale` and separate production notes. **The materializer refuses incomplete mandatory fields before returning files**: the draft input type is intentionally broader than a valid emitted Config, and a `TODO (BLOCKER)` comment does not make a missing required property type-safe. It returns `{exportName, files, diagnostics}`. File paths are relative to the enclosing Course/Lesson/bank source root. Callers supply an optional **`directory`** to prefix the concrete node's own files; nested callers must supply the actual relative `languagesImport`. `index.ts` imports the actual `define<Kind>` from `@svitlo/engine/build`, supplies exact Config identity and `typeof languages` generic; the caller must pass the relative `languagesImport` pointing to the parent-owned source-only `languages.ts`.
 
-The renderers never touch the filesystem and cannot clobber reviewed files. Every diagnostic has `severity: 'warning'` so composition can preserve a consistent result type. Parent #775 must implement atomic create-only preflight, symlink/path rejection, collision/ID checks across siblings, prefixing of relative paths and eventual typechecks against the real Engine. It must also adopt/standardize the local function signature, publish the integration exports, and wire these adjacent `*.spec.ts` tests into the package test script (the child PR cannot edit the manifest). No runtime YAML dependency or second Config parser is introduced.
+The renderers never touch the filesystem and cannot clobber reviewed files. Every diagnostic has `severity: 'warning'` so composition can preserve a consistent result type. Parent #775 must implement atomic create-only preflight, symlink/path rejection, collision/ID checks across siblings, dispatcher integration and invocation of real Engine source typechecks. It must also adopt/standardize the local function signature, publish the integration exports, and wire these adjacent `*.spec.ts` tests into the package test script (the child PR cannot edit the manifest). No runtime YAML dependency or second Config parser is introduced.
 
 ## Historical parity inventory (#772, older YAML-to-TS)
 
@@ -21,13 +21,23 @@ The renderers never touch the filesystem and cannot clobber reviewed files. Ever
 | Audio | filename `.mp3`, translated title/description and explicit pending TODO | child collections |
 | Subtitles | filename `.vtt` and language filtering, no fabricated WebVTT data | child collections |
 
-Every type retains immutable UUID and slug, qualified pending diagnostics, source-language translation pruning and planned-language TODO, optional `specification.md` sidecars, stable module imports/exports, and no physical media file fabrication. All eight implement the same renderer/relative-plan shape **independently**, with adjacent tests.
+Every type retains immutable UUID and slug, qualified pending diagnostics, source-language translation pruning and planned-language TODO, optional `specification.md` sidecars, stable module imports/exports, and no physical media file fabrication. Incomplete mandatory fields such as Text/Markdown copy, Code source, Image sizing, or accessible media labels now **throw without returning a plan**. A reserved Nil UUID media filename, by contrast, is explicitly valid in the Engine media-reference schema: it may produce a type-valid but publication-blocked `index.ts` when other required properties are already reviewed. It is never an invented media file. All eight implement the same renderer/relative-plan shape **independently**, with adjacent tests.
 
 **Deliberately not ported into these leaf renderers:** `items/order` and child path boundaries (parents own them), Section/Scene/assessment pending scaffolds (Agents B/D/E), global `languages.ts` ownership, identity allocation, writer, and orchestrator integration (parent #775). The previous YAML renderer's broad recursive serializer is not imported or executed. Dynamic arbitrary evaluated TS expressions not representable by a plain Config require a separately specified parent-level authoring expression contract; no unsafe raw-expression injection is implemented.
 
 ## Verification
 
-Adjacent tests cover named module shape, TypeScript *syntax parsing*, non-English exact source, source-locale filtering and planned-language TODO, source reader paths, missing content/media, stable re-runs, untouched input Config, and invalid identity. Full emitted-source configurator **typechecking**, parent-level create-only preflight and integration test invocation are outstanding parent dependencies, **not claimed to pass here**.
+Adjacent tests cover named module shape, TypeScript syntax parsing, non-English exact source, source-locale filtering and planned-language TODO, source reader paths, **fail-closed incomplete mandatory Configs**, reserved valid media placeholders, stable re-runs, untouched input Config, and invalid identity.
+
+`text/typecheckGeneratedSources.spec.ts` additionally runs a semantic **TypeScript program** against the real `@svitlo/engine/build` package self-reference (`dist/build.d.ts`), including complete sources for all eight kinds plus pending-media sources for Image/Video/Audio/Subtitles; this is **not** a compiler stub and does not merely parse AST syntax. It requires an Engine package build before running. To execute it and every adjacent test from the repository root:
+
+```bash
+npm run package:build --workspace @svitlo/engine
+npm exec --workspace @svitlo/engine -- tsc -p tsconfig.test.json
+node --test shared/engine/.test-build/generators/materializers/*/*.spec.js
+```
+
+Parent #775 owns integrating these specs into the repository's normal test runner. **The new suite has been added but not executed/verified in this Draft PR** (Draft CI runs lightweight checks only); parent-level create-only preflight and end-to-end composition remain outstanding. Do not recommend merge without SHA-pinned executed validation.
 
 ## Compatibility audit against parent #775 (Course Stages 1–4)
 
