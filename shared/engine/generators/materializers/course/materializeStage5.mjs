@@ -36,9 +36,9 @@ const equal = (a, b) => JSON.stringify(canonical(a)) === JSON.stringify(canonica
 
 /**
  * Plan reviewed Course Stage 5 authored sources. The Course source index.ts is
- * preserved: complete candidates are emitted under the deliberately disjoint
- * draftSources/ tree. A later separately authorized source transition is needed
- * before a Course publisher can discover the finished root Configurator.
+ * replaced only by the authorized atomic Git writer, which copies its exact
+ * reviewed bytes to workflow.stage3.ts in the same commit before installing
+ * the new index.ts. Planning never overwrites a file.
  *
  * The trusted caller must pin the evaluated TS input to the exact Git blob,
  * verify independent review/authorization, and resolve each imported Lesson
@@ -82,7 +82,7 @@ export function materializeCourseStage5(input, options = {}) {
   const overrides = {};
   const diagnostics = [];
   const deriveId = (kind, directory) => {
-    const relative = directory.replace(/^draftSources\/content\//, '');
+    const relative = directory.replace(/^content\//, '');
     if (relative === directory || !relative) throw new Error('Unexpected Course child placement: ' + directory);
     const id = deriveCourseEntityId(rootId, kind, relative);
     if (newIds.has(id) || knownExistingIds.has(id))
@@ -91,7 +91,7 @@ export function materializeCourseStage5(input, options = {}) {
     return id;
   };
   const addPatch = (directory, patch) => {
-    const relative = directory.replace(/^draftSources\/content\//, '');
+    const relative = directory.replace(/^content\//, '');
     if (relative === directory || !relative) throw new Error('Invalid Course override placement');
     const parts = relative.split('/');
     let cursor = overrides;
@@ -173,7 +173,7 @@ export function materializeCourseStage5(input, options = {}) {
   };
 
   const context = {
-    directory: 'draftSources',
+    directory: '',
     sourceLanguage,
     plannedLanguages: planned,
     deriveId,
@@ -188,7 +188,7 @@ export function materializeCourseStage5(input, options = {}) {
       return options.materializeSection(node, {
         ...sectionContext,
         documentLanguage: sourceLanguage,
-        languagesImport: '#coursesData/' + rootId.at(-1) + '/' + rootId + '/draftSources/languages',
+        languagesImport: '#coursesData/' + rootId.at(-1) + '/' + rootId + '/languages',
       });
     },
   };
@@ -198,18 +198,20 @@ export function materializeCourseStage5(input, options = {}) {
   const languageSource = "import type { SupportedLanguages } from '@svitlo/engine/build';\n" +
     'export const languages = ' + JSON.stringify([sourceLanguage]) +
     ' as const satisfies SupportedLanguages;\n';
-  files.push({ path: root + '/draftSources/languages.ts', kind: 'typescript', content: languageSource });
+  files.push({ path: root + '/languages.ts', kind: 'typescript', content: languageSource });
   if (Object.keys(overrides).length) {
     files.push({
-      path: root + '/draftSources/authoredCourseOverrides.ts',
+      path: root + '/authoredCourseOverrides.ts',
       kind: 'typescript',
       content: '// The raw nested Config patches were independently replayed against each imported Lesson Build API.\n' +
         'export const authoredCourseOverrides = ' + JSON.stringify(overrides, null, 2) + ';\n',
     });
-    diagnostics.push({ path: root, code: 'pending-course-overrides-transition', severity: 'blocker',
-      message: 'Draft patch sources must be integrated into the final Course publisher after verified source transition' });
+    const indexFile = files.find(file => file.path === expectedSource);
+    if (!indexFile) throw new Error('Course root module not generated');
+    indexFile.content += "\nexport { authoredCourseOverrides } from './authoredCourseOverrides';\n";
   }
-  const paths = new Set([expectedSource]);
+  const sourceArchivePath = root + '/workflow.stage3.ts';
+  const paths = new Set([sourceArchivePath]);
   for (const file of files) {
     if (!record(file) || !sourceKinds.has(file.kind) || !safePath(file.path) ||
         typeof file.content !== 'string' || paths.has(file.path))
@@ -223,10 +225,10 @@ export function materializeCourseStage5(input, options = {}) {
   if (planned.length > 1)
     allDiagnostics.push({ path: root, code: 'pending-locales', severity: 'blocker',
       message: 'Planned locales do not establish translated or reviewed source' });
-  allDiagnostics.push({ path: root, code: 'pending-source-transition', severity: 'blocker',
-    message: 'Course Stage 3 reviewed index.ts remains canonical until a separate SHA-pinned final transition' });
+  allDiagnostics.push({ path: root, code: 'requires-publication-gates', severity: 'blocker',
+    message: 'Source materialization does not authorize Course publication or bypass unresolved Lesson, Episode, Scene, locale, bank and review gates' });
   return Object.freeze({
-    sourcePath: expectedSource, sourceBlobSha: review.sourceBlobSha,
+    sourcePath: expectedSource, sourceArchivePath, sourceBlobSha: review.sourceBlobSha,
     reviewCommitSha: review.reviewCommitSha,
     courseId: rootId, root, files: Object.freeze(files),
     diagnostics: Object.freeze(allDiagnostics),
