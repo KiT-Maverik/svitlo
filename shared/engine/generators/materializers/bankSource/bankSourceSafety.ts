@@ -231,11 +231,11 @@ export function preflightBankSource(
 /** A bank owns full immutable Config identities, not only its top-level members. */
 export function assertUniqueBankEntityIds(input: unknown): void {
   const ids = new Map<string, string>();
-  const seen = new WeakSet<object>();
+  const ancestors = new WeakSet<object>();
   function visit(value: unknown, at: string): void {
     if (value === null || typeof value !== 'object') return;
-    if (seen.has(value)) throw new Error(at + ': reused mutable bank source node');
-    seen.add(value);
+    if (ancestors.has(value)) throw new Error(at + ': circular authored bank source node');
+    ancestors.add(value);
     if (!Array.isArray(value) && Object.hasOwn(value, 'id')) {
       const obj = value as Record<string, unknown>;
       if (typeof obj.type === 'string' || typeof obj.slug === 'string') {
@@ -247,6 +247,7 @@ export function assertUniqueBankEntityIds(input: unknown): void {
       }
     }
     for (const [key, entry] of Object.entries(value)) visit(entry, at + '.' + key);
+    ancestors.delete(value);
   }
   visit(input, 'bank');
 }
