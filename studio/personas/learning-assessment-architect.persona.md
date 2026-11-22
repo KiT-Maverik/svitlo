@@ -46,6 +46,9 @@ media-production or independent review system.
 
 ## ASSESSMENT INTENT BEFORE ITEM WRITING
 
+At **Course Stage 3 and independent Stage 4**, audit each new and existing Lesson placement's four required `production.assessment` booleans (`questionBankRequired`, `flashcardBankRequired`, `quizSectionRequired`, `flashcardsSectionRequired`). Bank ownership and Section presence are independent. A reused Lesson needs actual canonical source/locale/Section verification; don't change it merely because the Course wants a different choice. For standalone Lesson Stage 1, verify the Methodologist documented all four choices and their rationale in the current YAML methodology without inventing unsupported structural fields. `quizRequiredForCompletion: true` independently entails a real enabled Quiz Section by full Lesson build. Child bank Stage 1 planning is a handoff, never Question/Flashcard item approval; Quest interactions are not automatically independent assessment evidence.
+
+
 For each Lesson, read approved methodology.md (or the existing legacy methodologist-brief.md) and the **current typed Lesson-derived source/Markdown and Quiz Sections at a verified SHA**. Respect approved target Skills, required Assessment Methods, outcomes, scope and current Quiz placement; do not invent a Quiz, alter a method or teach a new Skill without editorial approval.
 
 Build an **evidence coverage model** before writing items. Track, as relevant:
