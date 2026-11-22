@@ -52,7 +52,7 @@ const draftAuthorization = {
   questionSourceSha: sha('c'), questionReviewSha: sha('d'),
   snapshot: snapshot(),
 };
-const finalAuthorization = () => ({
+const finalAuthorization = (input: unknown = completed()) => ({
   ownerLessonId, lessonSourceSha: sha('a'), referenceSourceSha: sha('b'),
   questionSourceSha: sha('c'), questionReviewSha: sha('d'),
   snapshot: snapshot(editor),
@@ -60,7 +60,7 @@ const finalAuthorization = () => ({
     approved: true as const, reviewer: 'Independent memory-design reviewer',
     content: editor, blobSha: gitBlobSha(editor),
     reviewedSourceBlobSha: gitBlobSha(editor), reviewCommitSha: sha('f'),
-    reviewedInputSha256: createHash('sha256').update(authoredBankLiteral(completed())).digest('hex'),
+    reviewedInputSha256: createHash('sha256').update(authoredBankLiteral(input)).digest('hex'),
   },
   blocks: { registeredSceneIds: new Set<string>(), approvedMediaBlockIds: new Set<string>() },
 });
@@ -176,14 +176,14 @@ test('Reviewed Stage 3 retains all Cards, both Sides, original order and both UU
 test('Reject duplicate and broken graph links, pending Cards and incompatible selection', () => {
   const invalid = completed();
   invalid.config.relationships.items.reversePartner.target = 'notPublished';
-  assert.throws(() => materializeFlashcardBank(invalid as never, finalAuthorization()), /Unknown\/self relation endpoint/);
+  assert.throws(() => materializeFlashcardBank(invalid as never, finalAuthorization(invalid)), /Unknown\/self relation endpoint/);
   const self = completed();
   self.config.relationships.items.reversePartner.target = 'alpha';
-  assert.throws(() => materializeFlashcardBank(self as never, finalAuthorization()), /Unknown\/self relation endpoint/);
+  assert.throws(() => materializeFlashcardBank(self as never, finalAuthorization(self)), /Unknown\/self relation endpoint/);
   const pending = completed();
   Object.assign(pending.config.flashcards.items.alpha.production, { pending: true });
-  assert.throws(() => materializeFlashcardBank(pending as never, finalAuthorization()), /Pending Flashcard/);
+  assert.throws(() => materializeFlashcardBank(pending as never, finalAuthorization(pending)), /Pending Flashcard/);
   const badOrder = completed();
   badOrder.config.flashcards.order = ['alpha', 'alpha'];
-  assert.throws(() => materializeFlashcardBank(badOrder as never, finalAuthorization()), /order must enumerate/);
+  assert.throws(() => materializeFlashcardBank(badOrder as never, finalAuthorization(badOrder)), /order must enumerate/);
 });
