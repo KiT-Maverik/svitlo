@@ -138,6 +138,11 @@ async function courseProvenance(pr, identity, repo) {
       parent.base?.repo?.full_name !== repo || pr.base?.ref !== parent.head?.ref ||
       !safeBranch(parent.head?.ref, parent.base?.ref))
     throw Error('Lesson must target its verified open Course parent branch');
+  if (typeof parent.body !== 'string' ||
+      parent.body.split('<!-- svitlo-course-flow:v1 -->').length !== 2 ||
+      single(parent.body, /^- Course UUID:\s*([a-f0-9-]{36})\s*$/gm, 'parent Course identity') !== courseId ||
+      single(parent.body, /^- Textbook:\s*(content\/[a-z][a-z0-9-]*)\s*$/gm, 'parent textbook') !== identity.pkg)
+    throw Error('Course parent PR identity is incompatible with the Lesson handoff');
   const handoff = await github('contents/' + identity.source.split('/').map(encodeURIComponent).join('/') +
     '?ref=' + parent.head.sha);
   if (handoff?.type !== 'file' || !sha.test(handoff.sha || '') ||
