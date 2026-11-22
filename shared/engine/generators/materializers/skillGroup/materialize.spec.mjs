@@ -34,7 +34,7 @@ test('skillGroup rejects escaped destination directories',()=>{
 });
 
 test('missing Skill ID and slug are filled by parent-scoped deterministic materialization',()=>{
- const v=config();delete v.skills.skillOne.id;delete v.skills.skillOne.slug;
- const result=materializeSkillGroup(v,{sourceLanguage:'uk',materializeSkill,deriveId:(kind,placement)=>childId});
- assert.ok(result.files.some(file=>file.path==='skills/skillOne/index.ts'));
+ const v=config();delete v.skills.firstSkill.id;delete v.skills.firstSkill.slug;
+ const result=materializeSkillGroup(v,{sourceLanguage:'uk',materializeSkill,deriveId:(kind,placement)=>SID});
+ assert.ok(result.files.some(file=>file.path==='skills/firstSkill/index.ts'));
 });

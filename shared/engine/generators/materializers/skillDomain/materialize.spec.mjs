@@ -34,7 +34,7 @@ test('skillDomain rejects escaped destination directories',()=>{
 });
 
 test('missing direct Skill identity is allocated through delegated deterministic ID',()=>{
- const v=config();delete v.skills.skillOne.id;delete v.skills.skillOne.slug;
- const result=materializeSkillDomain(v,{sourceLanguage:'uk',materializeSkill,materializeSkillGroup,deriveId:(kind,location)=>kind==='skill'?childId:rootId});
- assert.ok(result.files.some(file=>file.path==='skills/skillOne/index.ts'));
+ const v=config();delete v.skills.firstSkill.id;delete v.skills.firstSkill.slug;
+ const result=materializeSkillDomain(v,{sourceLanguage:'uk',materializeSkill,materializeSkillGroup,deriveId:(kind,location)=>kind==='skill'?SID:ID});
+ assert.ok(result.files.some(file=>file.path==='skills/firstSkill/index.ts'));
 });
