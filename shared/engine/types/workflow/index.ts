@@ -21,6 +21,8 @@ export type {
   CourseWorkflowStage3Chapter,
   CourseWorkflowStage3LessonSlot,
   CourseWorkflowStage3LessonIntent,
+  CourseWorkflowStage3AssessmentRequirements,
+  CourseWorkflowMaterializerInput,
   CourseWorkflowStage3LessonMatch,
   CourseWorkflowStage3NewLesson,
   CourseWorkflowStage3ExistingLesson,
@@ -28,3 +30,4 @@ export type {
   CourseWorkflowStage3ExistingLessonConfig,
   CourseWorkflowStage3ExistingLessonReference,
 } from './courseWorkflow.types';
+export type { LessonProductionAssessmentRequirements } from './lessonAssessment.types';

@@ -1,4 +1,5 @@
 import type { Lesson_Config } from '../../../configurators/lessons/defineLesson/defineLesson.schemas';
+import type { LessonProductionAssessmentRequirements } from '../../../types/workflow/lessonAssessment.types';
 
 /**
  * Standalone Lesson source materializer. Accepts ordinary authored Config data,
@@ -9,8 +10,10 @@ export type ChildConfig = { id: string; slug: string; type: string; [key: string
 export type SourceChild = ChildConfig | { config: ChildConfig; production?: Record<string, unknown> };
 /**
  * A complete, standalone Lesson Config, not a Course Stage 3 placement.
- * Stage 3 new Lessons have no identity, publication languages or Sections;
- * Stage 5 Course orchestration must create the separate Lesson handoff.
+ * The Course Stage 5 handoff creates a typed LessonWorkflowStage1 index.ts
+ * without Sections, not a completed defineLesson source. This emitter is for
+ * the later, independently authorized standalone Lesson materialization only.
+ * Stage 3 new Lessons lack identity, publication languages and Sections.
  * Optional audience age/grade ranges remain Config params.
  */
 export type Source = Omit<Lesson_Config, 'section'> & {
@@ -22,7 +25,10 @@ export type Result = { exportName: string; files: GeneratedFile[]; diagnostics: 
 export type Options = {
   documentLanguage: string;
   directory?: string;
-  production?: Record<string, unknown>;
+  /** Review metadata is separate from Lesson Config; Sections are never synthesized here. */
+  production?: Record<string, unknown> & {
+    assessment?: LessonProductionAssessmentRequirements;
+  };
   renderSection: (config: ChildConfig, options: {
     directory: string; documentLanguage: string; languagesImport: string; production?: Record<string, unknown>;
   }) => Result;
@@ -140,9 +146,9 @@ export function materializeLesson(config: Source, options: Options): Result {
     'export const languages = '+JSON.stringify([options.documentLanguage])+' as const satisfies SupportedLanguages;',''
   ].join('\n');
   add({path:destination(dir,'languages.ts'),kind:'typescript',content:sourceLanguages});
-  if((config.params.quizRequiredForCompletion===true||options.production?.quizRequired===true)&&!hasQuiz)
+  if((config.params.quizRequiredForCompletion===true||options.production?.assessment?.quizSectionRequired===true)&&!hasQuiz)
     blockers.push('// TODO (BLOCKER): Add the editorially required Quiz Section with real reviewed Question IDs.');
-  if(options.production?.flashcardsRequired===true&&!hasFlashcards)
+  if(options.production?.assessment?.flashcardsSectionRequired===true&&!hasFlashcards)
     blockers.push('// TODO (BLOCKER): Add the editorially required Flashcards Section with real reviewed Flashcard IDs.');
   if(pendingAssessment)
     blockers.push('// TODO (BLOCKER): Resolve pending Quiz/Flashcards selections in the owned Section modules before publication.');

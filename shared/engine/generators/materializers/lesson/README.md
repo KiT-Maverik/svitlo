@@ -59,9 +59,58 @@ the child manifests are deterministic and constrained to their own directories,
 but no child is allowed to clobber authored files. The existing YAML
 `writeMaterialized()` is an audited reference, not a new runtime dependency.
 
+## Staged handoff lifecycle (owner clarification, 2026-11-22)
+
+**The later owner comment on [#777](https://github.com/KiT-Maverik/svitlo/pull/777#issuecomment-7082626039)
+supersedes the earlier request for full `Not implemented` Content/Quiz/Flashcards
+scaffolds at Course Stage 5. Do not implement the superseded request.**
+
+| Boundary | Authored output | Responsibility |
+|---|---|---|
+| Course Stage 3/4 → Stage 5 | Immutable UUID-addressed Lesson directory with a minimal `index.ts` typed as the canonical `LessonWorkflowStage1`; retain only known identity, source language, approved methodology and four assessment decisions. **No Sections or `defineLesson`.** | Parent #775 owns the canonical type and orchestrator; #776 owns Course→Lesson handoff |
+| Later standalone Lesson Flow materialization | Fully authored ordinary `defineLesson` source, own Section modules, actual ordered `section.items/order`, and blockers for unfinished content. | This #777 `materializeLesson(Source)` and concrete Section materializers |
+| Separately authorized Lesson → Question/Flashcard child | Child-owned **typed Stage 1 `index.ts`** with known source identity/editorial data; no invented Questions, Flashcard sides or reviewed bank records. | Parent #775 owns canonical stage contracts and orchestration; #780 owns completed Question/Flashcard renderers |
+| Any Quest stage/task | Follow Quest's actual Build-only Section ownership. Do not invent an independent Quest authoring workflow. | Existing Quest Section/Stage/Task scopes; parent resolves any later standalone flow |
+
+**Do not call `materializeLesson` on a `CourseWorkflowStage3NewLessonConfig`,
+a `CourseWorkflowStage3NewLesson` envelope, the Course-generated Lesson
+Stage 1 object, or an existing Lesson's `{ id, base?, locale? }` reuse
+reference.** The initial handoff has no complete `Lesson_Config.params.languages`
+or `section.items/order`, and it intentionally cannot be rendered by the
+final factory. This materializer rejects these shapes without generating
+Content/Quiz/Flashcards placeholders.
+
+Parent #775's canonical `LessonWorkflowStage1` was **not yet defined at
+the parent revision inspected** (the existing
+`LessonProductionAssessmentRequirements` type *is* exported). Therefore
+this child does not introduce a rival Stage 1 type or a temporary generic
+scaffolder. The correct type and UUID-owned output path must come from #775/
+#776 before a Course can emit the handoff; coordinate those integration tests
+there. A Source emitter's `directory` is only a caller-supplied source
+destination, not authorization to decide a new staged entity's path.
+
+For a later complete Lesson, `production.assessment` uses the **four
+canonical booleans**:
+`questionBankRequired`, `flashcardBankRequired`,
+`quizSectionRequired`, `flashcardsSectionRequired`. Bank requirements
+initiate independent authoring work; they do **not** imply Section presence.
+Quiz/Flashcards Section requirements cause explicit blockers if the fully
+authored Section tree lacks them. The separate
+`params.quizRequiredForCompletion` gate remains unchanged and likewise
+requires an actual enabled Quiz; no automatic disabled Quiz, reserved
+`feedc0de-` references or fictitious content is created at Course Stage 5.
+Question/Flashcard bank materializers in #780 run only after their own
+independent production/review stage, never to satisfy a Lesson handoff.
+
+Tests now reject both Stage 3 and Stage 1-like draft shapes and check the
+seven relevant assessment combinations (including bank-only decisions) without
+creating child files, changing completion policy or injecting production-only
+assessment flags into a final `defineLesson` Config. Full Engine compilation
+and run-time publication guard integration remain parent-owned verification.
+
 ## Compatibility with updated #775 Course stages
 
-Audited parent commit `66514c2b959e4824f4307d5dd4c1e32f11beefeb`,
+Initially audited parent commit `66514c2b959e4824f4307d5dd4c1e32f11beefeb`,
 `shared/engine/types/workflow/courseWorkflow.types.ts` and
 `defineLesson.build.overrides()`. This child branch now includes that parent
 revision as merge ancestry.

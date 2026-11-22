@@ -84,3 +84,55 @@ test('Course Stage 3 slots and built override references cannot be materialized 
   documentLanguage:'en',renderSection:noChild
  }),/complete standalone Lesson Config/);
 });
+
+test('Course Stage 5 LessonWorkflowStage1 handoff never becomes full Lesson materialization',()=>{
+ const assessment={questionBankRequired:true,flashcardBankRequired:true,quizSectionRequired:true,flashcardsSectionRequired:true};
+ const handoff={config:{id:id('77'),slug:'planned',type:'lesson',skills:[id('88')],
+   locale:{title:'Planned Lesson'}},production:{methodology:'Approved scope',assessment}};
+ let delegated=0;
+ const options={documentLanguage:'en',renderSection:()=>{delegated++;throw Error('must not delegate');}};
+ // Stage 5 emits a typed {config, production} authoring object, not a Configurator.
+ assert.throws(()=>materializeLesson(handoff as unknown as Parameters<typeof materializeLesson>[0],options),
+  /complete standalone Lesson Config/);
+ // Even feeding its inner Config is invalid: it has neither languages nor Sections.
+ assert.throws(()=>materializeLesson(handoff.config as unknown as Parameters<typeof materializeLesson>[0],options),
+  /lesson\.params\.languages/);
+ // Adding publication languages early does not authorize manufacturing Sections.
+ assert.throws(()=>materializeLesson({...handoff.config,params:{languages:['en'],
+   quizRequiredForCompletion:true}} as unknown as Parameters<typeof materializeLesson>[0],options),
+  /lesson\.section/);
+ assert.equal(delegated,0,'no Content, Quiz or Flashcards source was generated from Stage 1');
+});
+
+test('Independent Lesson materialization uses exact editorial Section decisions, not bank flags',()=>{
+ const cases=[
+  {name:'none',assessment:{questionBankRequired:false,flashcardBankRequired:false,quizSectionRequired:false,flashcardsSectionRequired:false},quiz:false,flashcards:false},
+  {name:'question bank only',assessment:{questionBankRequired:true,flashcardBankRequired:false,quizSectionRequired:false,flashcardsSectionRequired:false},quiz:false,flashcards:false},
+  {name:'quiz required by completion',assessment:{questionBankRequired:false,flashcardBankRequired:false,quizSectionRequired:false,flashcardsSectionRequired:false},completion:true,quiz:true,flashcards:false},
+  {name:'quiz Section only',assessment:{questionBankRequired:false,flashcardBankRequired:false,quizSectionRequired:true,flashcardsSectionRequired:false},quiz:true,flashcards:false},
+  {name:'Flashcards Section only',assessment:{questionBankRequired:false,flashcardBankRequired:false,quizSectionRequired:false,flashcardsSectionRequired:true},quiz:false,flashcards:true},
+  {name:'both Sections',assessment:{questionBankRequired:true,flashcardBankRequired:true,quizSectionRequired:true,flashcardsSectionRequired:true},quiz:true,flashcards:true},
+  {name:'both banks without Sections',assessment:{questionBankRequired:true,flashcardBankRequired:true,quizSectionRequired:false,flashcardsSectionRequired:false},quiz:false,flashcards:false},
+ ] as const;
+ for(const scenario of cases){
+  const config=lesson();
+  if('completion' in scenario && scenario.completion)config.params.quizRequiredForCompletion=true;
+  const produced=materializeLesson(config as Parameters<typeof materializeLesson>[0],{
+   documentLanguage:'en',production:{assessment:scenario.assessment},
+   renderSection:(child,opts)=>renderSection(child as ContentSource,{...opts,renderContentBlock})
+  });
+  const root=produced.files.find(f=>f.path==='index.ts')?.content??'';
+  const blockerQuiz=/TODO \(BLOCKER\): Add the editorially required Quiz Section/.test(root);
+  const blockerFlashcards=/TODO \(BLOCKER\): Add the editorially required Flashcards Section/.test(root);
+  assert.equal(blockerQuiz,scenario.quiz,scenario.name+' quiz');
+  assert.equal(blockerFlashcards,scenario.flashcards,scenario.name+' flashcards');
+  assert.equal(produced.files.filter(f=>f.path.startsWith('sections/')).length,2,
+    scenario.name+' only the authored Content Section and child block were materialized');
+  assert.doesNotMatch(root,/feedc0de-|Not implemented/,
+    scenario.name+' must not invent bank IDs or Section placeholders');
+  assert.equal(/"quizRequiredForCompletion": true/.test(root),
+    'completion' in scenario && !!scenario.completion,scenario.name+' completion invariant unchanged');
+  assert.doesNotMatch(root,/"questionBankRequired"|"flashcardBankRequired"|"quizSectionRequired"|"flashcardsSectionRequired"/,
+    scenario.name+' production decisions must not enter Config');
+ }
+});
