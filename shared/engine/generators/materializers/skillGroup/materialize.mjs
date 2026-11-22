@@ -70,7 +70,7 @@ export function materializeSkillGroup(input,context={}){
   ''+
   'const skills = '+map(skills)+';\n\n'+
   blocked+'export const '+exportName(slug)+' = defineSkillGroup<'+[JSON.stringify(slug),'typeof skills','typeof languages'].join(', ')+
-  '>({ ...'+JSON.stringify(data,null,2)+', skills });\n';
+  '>({\n'+Object.entries(data).map(([key,value])=>'  '+JSON.stringify(key)+': '+JSON.stringify(value,null,2)+',').join('\n')+'\n  skills,\n});\n';
  const produced=[...files,...sidecars(meta,dir),{path:[dir,'index.ts'].filter(Boolean).join('/'),kind:'typescript',content:result}];
  const visited=new Set();
  for(const item of produced){if(visited.has(item.path))throw Error('duplicate generated path: '+item.path);visited.add(item.path)}

@@ -87,7 +87,7 @@ export function materializeSkillDomain(input,context={}){
   'const groups = '+map(groups)+';\n'+
   'const skills = '+map(skills)+';\n\n'+
   blocked+'export const '+exportName(slug)+' = defineSkillDomain<'+[JSON.stringify(slug),'typeof groups','typeof skills','typeof languages'].join(', ')+
-  '>({ ...'+JSON.stringify(data,null,2)+', groups, skills });\n';
+  '>({\n'+Object.entries(data).map(([key,value])=>'  '+JSON.stringify(key)+': '+JSON.stringify(value,null,2)+',').join('\n')+'\n  groups,\n  skills,\n});\n';
  const produced=[...files,...sidecars(meta,dir),{path:[dir,'index.ts'].filter(Boolean).join('/'),kind:'typescript',content:result}];
  const visited=new Set();
  for(const item of produced){if(visited.has(item.path))throw Error('duplicate generated path: '+item.path);visited.add(item.path)}

@@ -1,6 +1,6 @@
 # Agent A materializer workstream — course
 
-**Status:** Assignment and integration contract only; no implementation is present in this bootstrap commit.
+**Status:** Nine independent draft source renderers and their adjacent tests are implemented on this branch. Parent #775 still owns the typed stage contract, UUID/path writer, entrypoint orchestration, and actual production integration. No materializer is yet integrated into the production pipeline.
 
 ## Owned kinds
 
@@ -43,3 +43,26 @@ For **each assigned kind**, explicitly map and port applicable existing behavior
 ## Required evidence
 
 Implement all owned kinds with adjacent unit tests and a cross-nesting fixture when relevant. Demonstrate exact generated module paths, imports/exports, immutable identifiers, source-language behavior, TODO blockages, warnings/errors, deterministic re-runs, and no-clobber behavior. Run the actual applicable tests/types/format where possible and report commands and results. Distinguish unit tests that passed from parent integration tests that cannot yet run because the shared Production API is still being authored. Keep the PR in Draft; do not merge without the project owner's instruction.
+
+## Implemented interface and parity record
+
+Each folder exports `materialize<Kind>(plainConfigOrEnvelope, context)` from `materialize.mjs`, returning `{ exportName, files, diagnostics }` (Course hierarchy also returns contextual Lesson `placements`; hierarchy results include `id`). All output files are a deterministic manifest of authored TS and Markdown, not Props/JSON. The parent must provide validated plain Config, `sourceLanguage`, optional deterministic `deriveId(kind, placement)`, create-only atomic writer and actual child renderers via dedicated callbacks. These callbacks are a temporary integration seam, not a universal factory/registry. The original YAML renderer is not imported.
+
+| Materializer | Independently supported behavior | Needs parent or sibling integration |
+| --- | --- | --- |
+| Course | `content.items/order`, ordered direct Module/Chapter/Episode/Lesson placements, source locale, typed defineCourse output, per-placement Lesson metadata, methodology sidecars | Verified Lesson imports + built sparse override bridge and deterministic ID/writer |
+| Module / Chapter | Typed `defineModule` / `defineChapter`, real child order, direct placement including Lessons, child metadata sidecars | Actual Lesson bridge; parent's UUID/writer |
+| Episode | `defineEpisode` generics, `section.items/order`, events, source locale, Section imports under `sections/<slug>`, specification | Agent B's concrete Section dispatcher and Section parity with Lesson |
+| Skill | Immutable UUID/slug, name and methodological/frontend descriptions, source-locale filtering | Final language coverage and parent writer |
+| SkillGroup | Actual keyed Skills map, independent Skill files, typed child imports; no invented `items/order` | Parent orchestration, language coverage |
+| SkillDomain | Actual direct Skills and grouped Skills maps, separate child files, deterministic map ordering | Parent orchestration, language coverage |
+| AssessmentMethod | Title/description source text and review-language blocker | Parent orchestration, complete locales |
+| EducationStandard | Original name, jurisdiction/source metadata, methodology and **complete** authored frontend locale dictionary; intentionally not pruned | Canonical full-locale review and parent writer |
+
+Legacy per-kind behaviors applicable here include deterministic `define*` naming/generics, immutable Config identity, language review TODO markers for supported kinds, scoped nested child imports, arbitrary educational metadata preserved in specifications, syntax-checkable TS, and explicit failures on unsafe slugs, missing child renderers, duplicate ordered keys or identities. Markdown/Code asset readers, media nil UUIDs, Scene/Quest pending factories and bank Question/Flashcard placeholders are **not applicable** to the nine owned kinds and belong to other agents. The old YAML emitter's duplicate-ID failure for two aliases of the **same reusable Lesson** is deliberately not copied across separate parent placements; distinct contextual placements must survive.
+
+**Important boundaries:** the new Course/Module/Chapter source layout follows the existing Course Stage 5 `content/<childSlug>/index.ts` convention; Episode's `sections/<slug>/` is the intentional Agent B handoff. Parent #775 must settle this layout against its source writer. Existing `Lesson` is never re-authored here. `lessonId` and a **built** sparse `{base, locale}` override travel through the placement callback with its full location; do not feed that result into the legacy `course.build.overrides(rawPatch)` parameter. New Lesson source creation remains a separate independently authorized methodology handoff.
+
+## Verification and remaining blockers
+
+Source smoke assertions were executed against all nine freshly fetched branch modules: 10 of 10 passed, including Course > Module > Chapter > Episode, direct Lesson and Episode placements, nested SkillDomain and SkillGroup, and two separate contextual overrides for one reused Lesson. The GitHub check runs on commit `652f256a465f453180e30b81fa5b39cb3dc42ff6` completed successfully for the existing Content packages build, Blocker TODOs, and label checks. **These existing checks do not prove the new `.spec.mjs` files run**, because the Engine's current `package.json` pins explicit test paths. The parent must wire all nine adjacent tests into the test command and execute full Engine TypeScript, tests, format, materialization preflight/no-clobber, and end-to-end Draft/production checks. No TypeScript typecheck of emitted completed source or safe write/no-clobber check has been claimed. Generated incomplete drafts remain blocked rather than approved.
