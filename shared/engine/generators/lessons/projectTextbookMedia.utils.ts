@@ -81,10 +81,17 @@ export function projectTextbookMedia<T>(publication: T, options: MediaPublicatio
     }
     // Pending Lesson/Section factories return valid Build Props. Their explicit
     // scaffold identity is not review evidence, even if an author replaced IDs.
-    if (
-      (value.type === 'content' && value.slug === 'pendingContent' && isRecord(value.locale) && value.locale.title === 'Not implemented') ||
-      (value.type === 'text' && value.slug === 'pendingNotice' && isRecord(value.locale) && value.locale.value === 'Not implemented')
-    ) {
+    const pendingContent =
+      value.type === 'content' &&
+      value.slug === 'pendingContent' &&
+      isRecord(value.locale) &&
+      value.locale.title === 'Not implemented';
+    const pendingText =
+      value.type === 'text' &&
+      value.slug === 'pendingNotice' &&
+      isRecord(value.locale) &&
+      value.locale.value === 'Not implemented';
+    if (pendingContent || pendingText) {
       throw new Error('Unimplemented Preview scaffold in production publication: ' + options.source + ' at ' + location);
     }
   };
