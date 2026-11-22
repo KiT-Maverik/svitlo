@@ -10,9 +10,9 @@ const assessmentKeys = [
 
 /**
  * Course Stage 5 → independent Lesson Stage 1 source, not a Lesson Configurator.
- * The public LessonWorkflowStage1 contract is owned by #782/#786; the generated
- * source imports that exact Engine build-only type and cannot compile before
- * the independently reviewed contract reaches the parent branch.
+ * The reviewed Course→Lesson handoff contract and Lesson Stage 1 source type
+ * are imported from the canonical Engine build-only exports now present in #786.
+ * No duplicate editorial stage type is introduced.
  *
  * @param {import('../../../types/workflow/courseWorkflow.types').CourseWorkflowStage3NewLesson} node
  * @param {{lessonId: string, sourceLanguage: string, plannedLanguages: readonly string[],
@@ -84,9 +84,9 @@ export function materializeLessonDraft(node, context) {
       kind: 'typescript',
       content:
         '// TODO (BLOCKER): Lesson Stage 1 authoring handoff; not a completed Lesson Configurator.\n' +
-        "import type { LessonWorkflowStage1 } from '@svitlo/engine/build';\n\n" +
+        "import type { LessonWorkflowStage1, LessonWorkflowStage1CourseHandoff } from '@svitlo/engine/build';\n\n" +
         'export const lessonStage1 = ' + JSON.stringify(source, null, 2) +
-        ' as const satisfies LessonWorkflowStage1;\n',
+        ' as const satisfies LessonWorkflowStage1 & LessonWorkflowStage1CourseHandoff;\n',
     }],
     diagnostics: [{
       path, code: 'pending-lesson-stage1', severity: 'blocker',
