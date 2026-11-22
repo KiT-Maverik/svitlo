@@ -1,0 +1,21 @@
+import assert from 'node:assert/strict';
+import test from 'node:test';
+import { materializeQuestTask } from './questTask';
+const id=(n:string)=>'12345678-1234-4234-8234-1234567890'+n;
+test('Quest Task: one Scene delegation, typed import and a visible pending blocker',()=>{
+ const out=materializeQuestTask({id:id('01'),slug:'start',type:'questTask',
+ scene:{config:{id:id('02'),slug:'interactive',type:'scene'},production:{pending:true}}} as Parameters<typeof materializeQuestTask>[0],{
+ documentLanguage:'en',directory:'tasks/start',languagesImport:'../../languages',
+ renderScene:(child,ctx)=>({exportName:child.slug,files:[{path:ctx.directory+'/index.ts',kind:'typescript',content:'//scene'}],diagnostics:[]})
+ });
+ const src=out.files.at(-1)?.content??'';
+ assert.match(src,/defineTask<"start", typeof languages>/);
+ assert.match(src,/TODO \(BLOCKER\)/);
+ assert.match(src,/child_scene/);
+ assert.equal(out.files[0].path,'tasks/start/scene/index.ts');
+});
+test('Quest Task: rejects a non-Scene child',()=>{
+ assert.throws(()=>materializeQuestTask({id:id('01'),slug:'start',type:'questTask',scene:{id:id('02'),slug:'wrong',type:'video'}} as Parameters<typeof materializeQuestTask>[0],{
+ documentLanguage:'en',languagesImport:'./languages',renderScene:()=>{throw Error('must not execute')}
+ }),/exactly one Scene/);
+});
