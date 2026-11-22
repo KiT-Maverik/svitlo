@@ -1,3 +1,4 @@
+import type { Course_Config } from '../../configurators/courses/defineCourse/defineCourse.schemas';
 import type { Lesson_Config } from '../../configurators/lessons/defineLesson/defineLesson.schemas';
 import type { QuizSection_Config } from '../../configurators/sections/defineQuizSection/defineQuizSection.schemas';
 import type { Question_SelectOneAnswer_Config } from '../../configurators/questions/defineSelectOneAnswer/defineSelectOneAnswer.schemas';
@@ -60,8 +61,16 @@ export type QuestionBankWorkflowStage1Production = {
     sourcePath: string;
     sourceSha: string;
     referencePath: string;
+    /** SHA of the reference generation source; do not trust stale Markdown. */
+    referenceSha: string;
     methodologyPath: string;
     title: string;
+  };
+  /** Optional verified origin when the Lesson is placed in a Course. */
+  course?: {
+    id: Course_Config['id'];
+    sourceSha: string;
+    placementPath: string;
   };
   /** Bank ownership is separate from local Quiz Section requirements. */
   assessment: LessonProductionAssessmentRequirements & {
