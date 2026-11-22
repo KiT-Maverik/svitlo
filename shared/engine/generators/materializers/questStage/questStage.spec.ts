@@ -18,8 +18,12 @@ test('Quest Stage: seven mandatory slots, explicit null tracks and delegated med
  assert.equal(calls.length,5);
  assert.deepEqual(calls.sort(),['stages/start/content/video/medium','stages/start/content/video/small','stages/start/content/audio/dialogue','stages/start/content/image','stages/start/content/subtitles'].sort());
  const src=out.files.at(-1)?.content??'';
- const ast=ts.createSourceFile('stage.ts',src,ts.ScriptTarget.Latest,true);
- assert.equal(ast.parseDiagnostics.length,0);
+ const parsed = ts.transpileModule(src, {
+   reportDiagnostics: true,
+   compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 },
+ });
+ assert.equal(parsed.diagnostics?.filter(issue => issue.category === ts.DiagnosticCategory.Error).length ?? 0,
+   0, 'generated TS must parse without errors');
  assert.match(src,/"narration": null/);
  assert.match(src,/defineStage<"start", typeof languages>/);
  assert.doesNotMatch(src,/TODO \(BLOCKER\)/);

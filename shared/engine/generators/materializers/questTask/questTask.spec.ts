@@ -10,8 +10,12 @@ test('Quest Task: one Scene delegation, typed import and a visible pending block
  renderScene:(child,ctx)=>({...(assert.equal(ctx.languagesImport,'../../../languages'),{}),exportName:child.slug,files:[{path:ctx.directory+'/index.ts',kind:'typescript',content:'//scene'}],diagnostics:[]})
  });
  const src=out.files.at(-1)?.content??'';
-  const ast = ts.createSourceFile('source.ts', src, ts.ScriptTarget.Latest, true);
-  assert.equal(ast.parseDiagnostics.length, 0, 'generated TS must parse without errors');
+  const parsed = ts.transpileModule(src, {
+    reportDiagnostics: true,
+    compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 },
+  });
+  assert.equal(parsed.diagnostics?.filter(issue => issue.category === ts.DiagnosticCategory.Error).length ?? 0,
+    0, 'generated TS must parse without errors');
  assert.match(src,/defineTask<"start", typeof languages>/);
  assert.match(src,/TODO \(BLOCKER\)/);
  assert.match(src,/child_scene/);

@@ -25,8 +25,12 @@ test('Lesson source retains immutable ID, order and source-only active languages
  const first=materializeLesson(lesson() as Parameters<typeof materializeLesson>[0],options);
  assert.deepEqual(materializeLesson(lesson() as Parameters<typeof materializeLesson>[0],options),first);
  const root=first.files.at(-1)?.content??'';
-  const ast = ts.createSourceFile('source.ts', root, ts.ScriptTarget.Latest, true);
-  assert.equal(ast.parseDiagnostics.length, 0, 'generated TS must parse without errors');
+  const parsed = ts.transpileModule(root, {
+    reportDiagnostics: true,
+    compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 },
+  });
+  assert.equal(parsed.diagnostics?.filter(issue => issue.category === ts.DiagnosticCategory.Error).length ?? 0,
+    0, 'generated TS must parse without errors');
  assert.match(root,/defineLesson<"basics", typeof languages, typeof section.items>/);
  assert.match(root,/"order": \["introduction"\]/);
  assert.match(root,new RegExp(id('01')));
@@ -77,7 +81,7 @@ test('Lesson audience age/grade ranges remain Config params, without source muta
 
 test('Course Stage 3 slots and built override references cannot be materialized as Lesson source',()=>{
  const noChild=()=>{throw new Error('Unexpected child materialization');};
- assert.throws(()=>materializeLesson({type:'lesson',slug:'newPlan',skills:[]} as Parameters<typeof materializeLesson>[0],{
+ assert.throws(()=>materializeLesson({type:'lesson',slug:'newPlan',skills:[]} as unknown as Parameters<typeof materializeLesson>[0],{
   documentLanguage:'en',renderSection:noChild
  }),/complete standalone Lesson Config/);
  assert.throws(()=>materializeLesson({id:id('01'),base:{},locale:undefined} as unknown as Parameters<typeof materializeLesson>[0],{

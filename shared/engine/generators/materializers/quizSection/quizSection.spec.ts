@@ -23,8 +23,12 @@ test('quiz: delegates exact subtree and preserves explicit collection/order/sour
   assert.deepEqual(materializeQuizSection(config as Parameters<typeof materializeQuizSection>[0], options), first);
   assert.equal(first.files.find(file => file.path === 'sections/introduction/content/items/prompt/index.ts')?.content, '// child\n');
   const root = first.files.find(file => file.path === 'sections/introduction/index.ts')?.content ?? '';
-  const ast = ts.createSourceFile('source.ts', root, ts.ScriptTarget.Latest, true);
-  assert.equal(ast.parseDiagnostics.length, 0, 'generated TS must parse without errors');
+  const parsed = ts.transpileModule(root, {
+    reportDiagnostics: true,
+    compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 },
+  });
+  assert.equal(parsed.diagnostics?.filter(issue => issue.category === ts.DiagnosticCategory.Error).length ?? 0,
+    0, 'generated TS must parse without errors');
   assert.match(root, /defineQuizSection|defineQuizSection/);
   assert.match(root, /typeof content.items, typeof languages/);
   assert.match(root, /"order": \["prompt"\]/);
