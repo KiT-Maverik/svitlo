@@ -16,6 +16,12 @@ on:
         type: choice
         options: [questions, flashcards]
         required: true
+      mode:
+        description: Opt in to reviewed typed Stage 3; legacy YAML remains available
+        type: choice
+        options: [legacy, typed]
+        default: legacy
+        required: true
 
 permissions: {}
 
@@ -26,7 +32,7 @@ concurrency:
 jobs:
   resolve:
     if: >-
-      github.event_name == 'workflow_dispatch' ||
+      (github.event_name == 'workflow_dispatch' && inputs.mode != 'typed') ||
       (github.event.issue.pull_request &&
        (github.event.comment.body == '/questions materialize' ||
         github.event.comment.body == '/flashcards materialize'))
@@ -136,3 +142,125 @@ jobs:
           BANK_CANDIDATE_ROOT: candidate
           BANK_REPORT: report/report.json
         run: node trusted/scripts/ci/quietRun/quiet-run.mjs -- node trusted/scripts/ci/bankMaterialization/bank-materialization.mjs publish
+
+  typed_resolve:
+    # Opt-in Stage 3 replacement. Keep the legacy YAML command unchanged
+    # until a separately approved default-branch activation/switchover.
+    if: >-
+      (github.event_name == 'workflow_dispatch' && inputs.mode == 'typed') ||
+      (github.event_name == 'issue_comment' &&
+       github.event.issue.pull_request &&
+       (github.event.comment.body == '/questions materialize typed' ||
+        github.event.comment.body == '/flashcards materialize typed'))
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      pull-requests: read
+    outputs:
+      meta: ${{ steps.authorize.outputs.meta }}
+      pr: ${{ steps.authorize.outputs.pr }}
+      head: ${{ steps.authorize.outputs.head }}
+      branch: ${{ steps.authorize.outputs.branch }}
+    steps:
+      - name: Checkout trusted Bank Stage 3 authorization
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Require exact source SHA and independent current-HEAD approval
+        id: authorize
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BANK_DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+        run: node scripts/ci/bankMaterialization/bank-typed-gate.mjs resolve
+
+  typed_analyze:
+    needs: typed_resolve
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    permissions:
+      contents: read
+      pull-requests: read
+    steps:
+      - name: Checkout trusted Engine and CLI
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+          path: trusted
+          persist-credentials: false
+      - name: Checkout pinned Bank PR as untrusted DATA, without credentials
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.typed_resolve.outputs.head }}
+          fetch-depth: 0
+          path: candidate
+          persist-credentials: false
+      - name: Bind exact candidate SHA to its local non-remote branch
+        env:
+          BANK_BRANCH: ${{ needs.typed_resolve.outputs.branch }}
+          BANK_HEAD: ${{ needs.typed_resolve.outputs.head }}
+        run: git -C candidate checkout -B "$BANK_BRANCH" "$BANK_HEAD"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: trusted/package-lock.json
+      - name: Build and validate trusted Engine and all concrete materializers
+        working-directory: trusted
+        run: |
+          node scripts/ci/quietRun/quiet-run.mjs -- npm ci --ignore-scripts --no-audit --no-fund
+          node scripts/ci/quietRun/quiet-run.mjs -- npm run code:check:types --workspace @svitlo/engine
+          node scripts/ci/quietRun/quiet-run.mjs -- npm run package:build --workspace @svitlo/engine
+          node scripts/ci/quietRun/quiet-run.mjs -- npm test --workspace @svitlo/engine
+          node scripts/ci/quietRun/quiet-run.mjs -- node --test \
+            scripts/ci/bankMaterialization/bank-typed-stage3.spec.mjs \
+            scripts/ci/bankMaterialization/bank-typed-materialization.spec.mjs
+      - name: Static Stage 3 evaluation and local trusted Git transaction
+        env:
+          BANK_META_B64: ${{ needs.typed_resolve.outputs.meta }}
+          BANK_CANDIDATE_ROOT: candidate
+          BANK_REPORT: ${{ runner.temp }}/typed-bank-materialization/report.json
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: node trusted/scripts/ci/quietRun/quiet-run.mjs -- node trusted/scripts/ci/bankMaterialization/bank-typed-materialization.mjs analyze
+      - name: Upload SHA-pinned verified typed source manifest
+        uses: actions/upload-artifact@v4
+        with:
+          name: typed-bank-stage5-${{ needs.typed_resolve.outputs.pr }}-${{ github.run_id }}
+          path: ${{ runner.temp }}/typed-bank-materialization/report.json
+          if-no-files-found: error
+          retention-days: 7
+
+  typed_publish:
+    needs: [typed_resolve, typed_analyze]
+    if: needs.typed_analyze.result == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+      pull-requests: read
+    steps:
+      - name: Checkout default-branch trusted publisher only
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+          path: trusted
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Download isolated checksummed typed source manifest
+        uses: actions/download-artifact@v4
+        with:
+          name: typed-bank-stage5-${{ needs.typed_resolve.outputs.pr }}-${{ github.run_id }}
+          path: report
+      - name: Reauthorize, verify byte-identical Git tree and CAS publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BANK_DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+          BANK_META_B64: ${{ needs.typed_resolve.outputs.meta }}
+          BANK_REPORT: report/report.json
+        run: node trusted/scripts/ci/quietRun/quiet-run.mjs -- node trusted/scripts/ci/bankMaterialization/bank-typed-materialization.mjs publish
