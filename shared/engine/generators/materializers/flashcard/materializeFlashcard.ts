@@ -27,7 +27,7 @@ const slug=/^[a-z][A-Za-z0-9]*$/;
 const reservedNames = new Set(['await','break','case','catch','class','const','continue','debugger','default','delete','do','else','enum','export','extends','false','finally','for','function','if','import','in','instanceof','new','null','return','super','switch','this','throw','true','try','typeof','var','void','while','with','yield','let','static','implements','interface','private','protected','public','package']);
 const uuid=/^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i;
 const localeCode=/^[a-z]{2}(?:-[A-Z]{2})?$/;
-const fail=(location:string,message:string):never=>{throw new Error('flashcard '+location+': '+message);};
+function fail(location: string, message: string): never { throw new Error('flashcard '+location+': '+message); }
 function safePath(value:string):void {
   if (!value || value.startsWith('/') || value.split('/').some(part=>!part || part==='.' || part==='..' ||
     !/^[a-zA-Z0-9_-]+(?:\.[a-zA-Z0-9]+)?$/.test(part))) fail(value,'unsafe output path');
@@ -64,7 +64,7 @@ function validateParameters(params:FlashcardSource['parameters']):void {
     }
     if(flag.type==='list' && (typeof flag.count!=='number' || !Number.isInteger(flag.count) || flag.count<2))
       fail('parameters.flags['+index+'].count','list count must be >= 2');
-    if(['acronym','custom'].includes(flag.type as string) && flag.value===undefined)
+    if((flag.type==='acronym' || flag.type==='custom') && flag.value===undefined)
       fail('parameters.flags['+index+'].value','localized flag value required');
     if(flag.type==='custom' && typeof flag.color!=='string')
       fail('parameters.flags['+index+'].color','custom flag color required');

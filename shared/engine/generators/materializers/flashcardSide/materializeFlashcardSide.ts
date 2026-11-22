@@ -31,7 +31,7 @@ const validLocale=/^[a-z]{2}(?:-[A-Z]{2})?$/;
 const identifier=/^[a-zA-Z_$][a-zA-Z0-9_$]*$/;
 const allowed=new Set(['text','markdown','code','image','video','youtube','audio','subtitles','scene','carousel','checkpoint']);
 const record=(v:unknown):v is Record<string,unknown>=>v!==null && typeof v==='object' && !Array.isArray(v);
-const fail=(location:string,message:string):never=>{throw new Error('flashcardSide '+location+': '+message);};
+function fail(location: string, message: string): never { throw new Error('flashcardSide '+location+': '+message); }
 function safePath(value:string):void {
   if (!value || value.startsWith('/') || value.split('/').some(part=>!part || part==='.' || part==='..' ||
       !/^[a-zA-Z0-9_-]+(?:\.[a-zA-Z0-9]+)?$/.test(part))) fail(value,'unsafe output path');

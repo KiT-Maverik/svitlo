@@ -42,7 +42,7 @@ const collectionPaths = new Set(["content.question","content.hint","content.expl
 const childPatterns = ["content.question.items.*","content.hint.items.*","content.explanation.items.*"];
 const isRecord = (value: unknown): value is Record<string, unknown> =>
   value!==null && typeof value==='object' && !Array.isArray(value);
-const fail = (location: string, reason: string): never => { throw new Error('answerWithNumber '+location+': '+reason); };
+function fail(location: string, reason: string): never { throw new Error('answerWithNumber '+location+': '+reason); }
 function safeSlug(value: unknown, location: string): string {
   if (typeof value!=='string' || !validSlug.test(value) || ['constructor','prototype','__proto__'].includes(value))
     fail(location,'invalid or unsafe slug');

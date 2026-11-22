@@ -42,7 +42,7 @@ const collectionPaths = new Set(["content.question","content.hint","content.expl
 const childPatterns = ["content.question.items.*","content.hint.items.*","content.explanation.items.*","content.answers.correct.items.*","content.answers.incorrect.items.*","content.answers.distractors.items.*"];
 const isRecord = (value: unknown): value is Record<string, unknown> =>
   value!==null && typeof value==='object' && !Array.isArray(value);
-const fail = (location: string, reason: string): never => { throw new Error('selectMultipleAnswers '+location+': '+reason); };
+function fail(location: string, reason: string): never { throw new Error('selectMultipleAnswers '+location+': '+reason); }
 function safeSlug(value: unknown, location: string): string {
   if (typeof value!=='string' || !validSlug.test(value) || ['constructor','prototype','__proto__'].includes(value))
     fail(location,'invalid or unsafe slug');
