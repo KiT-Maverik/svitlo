@@ -342,7 +342,7 @@ const existingConfig = {
 
 const existingLesson = {
   config: existingConfig,
-  production: { kind: 'existing', existing: importedLesson.id, matching: match },
+  production: { kind: 'existing', existing: { id: importedLesson.id }, matching: match },
 } satisfies CourseWorkflowStage3ExistingLesson;
 
 const patch = importedLesson.build.overrides(
@@ -360,7 +360,11 @@ const existingWithOverrides = {
 } satisfies CourseWorkflowStage3ExistingLesson;
 
 const typedReference: CourseWorkflowStage3ExistingLessonReference = patch;
-const typedIdReference: CourseWorkflowStage3ExistingLessonReference = importedLesson.id;
+const typedIdReference: CourseWorkflowStage3ExistingLessonReference = { id: importedLesson.id };
+const partialReference: CourseWorkflowStage3ExistingLessonReference = {
+  id: importedLesson.id,
+  base: { params: { sections: { allowSkipping: false } } },
+};
 const patchId: Lesson_Config['id'] = patch.id;
 
 const resolvedChapter = {
@@ -432,26 +436,42 @@ const existingConfigWithId: CourseWorkflowStage3ExistingLessonConfig = {
 
 const missingExistingReference: CourseWorkflowStage3ExistingLesson = {
   config: existingConfig,
-  // @ts-expect-error Existing Lesson placement needs a direct ID or validated override result.
+  // @ts-expect-error Existing Lesson placement requires an object with an id.
   production: { kind: 'existing', matching: match },
+};
+
+const existingAsString: CourseWorkflowStage3ExistingLesson = {
+  config: existingConfig,
+  production: {
+    kind: 'existing',
+    matching: match,
+    // @ts-expect-error A string alone is not a valid existing Lesson reference.
+    existing: importedLesson.id,
+  },
 };
 
 const existingMissingMatch: CourseWorkflowStage3ExistingLesson = {
   config: existingConfig,
   // @ts-expect-error Reuse needs verified matching evidence.
-  production: { kind: 'existing', existing: importedLesson.id },
+  production: { kind: 'existing', existing: { id: importedLesson.id } },
 };
 
-const missingOverrideRationale: CourseWorkflowStage3ExistingLesson = {
+/** A single structural object shape does not impose a two-branch rationale union.
+ * Substantive patch justification is checked during editorial review.
+ */
+const patchedForReview: CourseWorkflowStage3ExistingLesson = {
   config: existingConfig,
-  // @ts-expect-error Override results require an explicit rationale.
   production: { kind: 'existing', matching: match, existing: patch },
 };
 
-const rationaleWithoutOverrides: CourseWorkflowStage3ExistingLesson = {
+const rationaleForEditorialReview: CourseWorkflowStage3ExistingLesson = {
   config: existingConfig,
-  // @ts-expect-error Direct UUID reuse does not accept an override rationale.
-  production: { kind: 'existing', matching: match, existing: importedLesson.id, overrideRationale: 'Not needed' },
+  production: {
+    kind: 'existing',
+    matching: match,
+    existing: { id: importedLesson.id },
+    overrideRationale: 'The methodology reviewer should reject an unwarranted rationale',
+  },
 };
 
 const rawOverridesAreInvalid: CourseWorkflowStage3ExistingLesson = {
@@ -504,6 +524,22 @@ const obsoleteThirdVariant: CourseWorkflowStage3LessonSlot = {
   },
 };
 
+const malformedReference: CourseWorkflowStage3ExistingLessonReference = {
+  id: importedLesson.id,
+  // @ts-expect-error Identity must not leak into the sparse Props patch.
+  base: { id: importedLesson.id },
+};
+
+const missingReferenceId: CourseWorkflowStage3ExistingLesson = {
+  config: existingConfig,
+  production: {
+    kind: 'existing',
+    matching: match,
+    // @ts-expect-error Even with a patch, the reference requires an id.
+    existing: { base: {}, locale: undefined },
+  },
+};
+
 void importedLesson;
 void newIntent;
 void match;
@@ -515,6 +551,7 @@ void patch;
 void existingWithOverrides;
 void typedReference;
 void typedIdReference;
+void partialReference;
 void patchId;
 void resolvedChapter;
 void resolvedModule;
@@ -527,11 +564,14 @@ void newWithId;
 void newWithLanguages;
 void existingConfigWithId;
 void missingExistingReference;
+void existingAsString;
 void existingMissingMatch;
-void missingOverrideRationale;
-void rationaleWithoutOverrides;
+void patchedForReview;
+void rationaleForEditorialReview;
 void rawOverridesAreInvalid;
 void patchWithoutId;
 void unexpectedExistingLocale;
 void unexpectedExistingMethodology;
 void obsoleteThirdVariant;
+void malformedReference;
+void missingReferenceId;
