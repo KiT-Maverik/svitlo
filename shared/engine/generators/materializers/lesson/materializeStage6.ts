@@ -77,9 +77,6 @@ type RenderOptions = {
   languagesImport: string;
   production?: Record<string, unknown>;
 };
-const asSource = <F extends (config: never, ...args: never[]) => unknown>(
-  config: ChildConfig,
-): Parameters<F>[0] => config as unknown as Parameters<F>[0];
 
 function gitBlobSha(source: string): string {
   return createHash('sha1')
