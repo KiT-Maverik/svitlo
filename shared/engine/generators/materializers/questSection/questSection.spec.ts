@@ -27,5 +27,5 @@ test('Quest Section: independent start maps, no invented order, Build-only block
 });
 test('Quest Section: cannot omit start or introduce artificial order',()=>{
  const x={...q(),tasks:{}};
- assert.throws(()=>materializeQuestSection(x as Parameters<typeof materializeQuestSection>[0],{documentLanguage:'en',languagesImport:'./languages',renderStage:render,renderTask:render}),/mandatory start/);
+ assert.throws(()=>materializeQuestSection(x as Parameters<typeof materializeQuestSection>[0],{documentLanguage:'en',languagesImport:'../../languages',renderStage:render,renderTask:render}),/mandatory start/);
 });
