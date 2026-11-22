@@ -105,7 +105,8 @@ test('all eight emitted complete sources and permitted pending-media sources typ
       strict: true,
       skipLibCheck: true,
       noEmit: true,
-      types: [],
+      // Match the Engine test environment: Node owns ImportMeta.url declarations.
+      types: ['node'],
     };
     const program = ts.createProgram(roots, compiler);
     const errors = ts.getPreEmitDiagnostics(program).filter(d => d.category === ts.DiagnosticCategory.Error);
