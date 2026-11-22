@@ -6,7 +6,7 @@ import { spawnSync } from 'node:child_process';
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { typedCommand, inspectTyped } from './bank-typed-gate.mjs';
-import { verifyTypedManifest } from './bank-typed-materialization.mjs';
+import { verifyTypedManifest, assertTypedBankInventory } from './bank-typed-materialization.mjs';
 import { gitBlob, sha256 } from './bank-gate.mjs';
 
 const owner = 'd3048d21-8690-5255-b62c-984c69ac272c';
@@ -228,5 +228,59 @@ test('GitHub typed gate requires real independent exact-HEAD review and Lesson b
     else process.env.GITHUB_REPOSITORY = oldRepo;
     if (oldToken === undefined) delete process.env.GH_TOKEN;
     else process.env.GH_TOKEN = oldToken;
+  }
+});
+
+test('all nine Question kinds are checked for complete member source emission', () => {
+  const kinds = [
+    'selectOneAnswer', 'selectMultipleAnswers', 'matchBlocks',
+    'answerWithText', 'answerWithNumber', 'orderSequence',
+    'buildAnswerWithBlocks', 'fillBlanksWithBlocks', 'fillBlanksWithText',
+  ];
+  const meta = canonical('questions').meta;
+  const questions = Object.fromEntries(kinds.map((kind, i) =>
+    [kind, { ['question' + i]: { config: { type: kind } } }]));
+  const files = [
+    { path: meta.sourcePath },
+    ...kinds.flatMap((kind, i) => [
+      { path: folder + '/questions/' + kind + '/index.ts' },
+      { path: folder + '/questions/' + kind + '/question' + i + '.ts' },
+    ]),
+  ];
+  const bank = { config: { questions } };
+  assert.doesNotThrow(() => assertTypedBankInventory(meta, bank, files));
+  for (const kind of kinds) {
+    assert.throws(() => assertTypedBankInventory(meta, bank,
+      files.filter(f => f.path !== folder + '/questions/' + kind + '/index.ts')), /index/);
+    const slug = 'question' + kinds.indexOf(kind);
+    assert.throws(() => assertTypedBankInventory(meta, bank,
+      files.filter(f => f.path !== folder + '/questions/' + kind + '/' + slug + '.ts')), /omitted/);
+  }
+});
+
+test('every authored Flashcard Card, Side and nested Side Block is emitted', () => {
+  const meta = canonical('flashcards').meta;
+  const block = slug => ({ items: { [slug]: { config: { type: 'text' } } }, order: [slug] });
+  const input = { config: { flashcards: {
+    items: {
+      left: { config: { content: { front: block('prompt'), back: block('response') } } },
+      right: { config: { content: { front: block('question'), back: block('answer'), hint: block('context') } } },
+    },
+    order: ['left', 'right'],
+  } } };
+  const files = [{ path: meta.sourcePath }];
+  for (const slug of input.config.flashcards.order) {
+    files.push({ path: folder + '/flashcards/' + slug + '.ts' });
+    const sides = input.config.flashcards.items[slug].config.content;
+    for (const [side, data] of Object.entries(sides)) {
+      const prefix = folder + '/flashcards/' + slug + '/content/' + side + '/';
+      files.push({ path: prefix + 'index.ts' });
+      for (const blockSlug of data.order) files.push({ path: prefix + 'items/' + blockSlug + '/index.ts' });
+    }
+  }
+  assert.doesNotThrow(() => assertTypedBankInventory(meta, input, files));
+  for (const output of files.slice(1)) {
+    assert.throws(() => assertTypedBankInventory(meta, input,
+      files.filter(f => f !== output)), /omitted/);
   }
 });
