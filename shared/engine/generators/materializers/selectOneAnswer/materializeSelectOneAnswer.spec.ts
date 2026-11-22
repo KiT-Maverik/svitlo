@@ -43,4 +43,7 @@ test('selectOneAnswer: rejects missing questions, incorrect order, and pre-exist
   bad.config.content.question.order=['notThere'];
   assert.throws(()=>materializeSelectOneAnswer(bad as never,context),/order/);
   assert.throws(()=>materializeSelectOneAnswer(fixture() as never,{...context,existingPaths:new Set(['questions/selectOneAnswer/sampleQuestion.ts'])}),/no clobber/);
+  assert.throws(()=>materializeSelectOneAnswer(fixture() as never,{...context,
+    languages:{document:'uk' as const,planned:['en'] as const},
+  }),/languages.planned/);
 });

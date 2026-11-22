@@ -12,7 +12,7 @@ const fixture=()=>({config:{
   content:{question:collection({prompt:block('prompt',2)}),hint:collection({hint:block('hint',8)}), answers: { correct: collection({ yes: block('yes', 3), alsoYes: block('alsoYes', 4) }), incorrect: collection({ no: block('no', 5) }), distractors: collection({}) }},
 }});
 const context={
-  directory:'questions/selectMultipleAnswers',documentLanguage:'uk',plannedLanguages:['uk','en'],
+  directory:'questions/selectMultipleAnswers',languages:{document:'uk' as const,planned:['uk','en'] as const},
   materializeBlock:(node:{config:{slug:string}},props:{directory:string})=>({
     exportName:node.config.slug,
     files:[{path:props.directory+'/index.ts',content:'export const '+node.config.slug+' = {};\n',kind:'typescript' as const}],

@@ -3,6 +3,7 @@
  * never an anonymous copied ContentBlock map. No synthetic card, answer, or relationship IDs.
  */
 import type { Flashcard_Config } from '../../../configurators/flashcards/defineFlashcard/defineFlashcard.schemas';
+import type { LanguageCode, SupportedLanguages } from '../../../schemas/languages.schemas';
 import { materializeFlashcardSide, type FlashcardSideSource, type FlashcardSideContext,
   type SourceFile, type SourceDiagnostic, type ChildResult } from '../flashcardSide/materializeFlashcardSide';
 
@@ -15,8 +16,8 @@ export type FlashcardNode = {
 };
 export type FlashcardContext = {
   directory: string;
-  documentLanguage: string;
-  plannedLanguages?: readonly string[];
+  /** Production language plan matches Course Stage 1–3 without Course-specific imports. */
+  languages: { document: LanguageCode; planned: SupportedLanguages };
   existingPaths?: ReadonlySet<string>;
   materializeBlock: FlashcardSideContext['materializeBlock'];
 };
@@ -94,13 +95,15 @@ export function materializeFlashcard(node:FlashcardNode,context:FlashcardContext
     ['constructor','__proto__'].includes(config.slug)) fail('config.slug','invalid named Flashcard slug');
   if('type' in config || Object.keys(config).some(key=>!['id','slug','parameters','content'].includes(key)))
     fail('config','Flashcard Config is not a typed Question and has no authored type field');
-  if(!localeCode.test(context.documentLanguage)) fail('documentLanguage','valid source language required');
+  if(!context.languages || !localeCode.test(context.languages.document)) fail('languages.document','valid source language required');
   if(!record(config.content) || !record(config.content.front) || !record(config.content.back))
     fail('content','front and back FlashcardSide Config required');
   const exportedName=reservedNames.has(config.slug)?'config_'+config.slug:config.slug;
   validateParameters(config.parameters);
-  const planned=context.plannedLanguages??[context.documentLanguage];
-  if(!planned.includes(context.documentLanguage)) fail('plannedLanguages','reviewed source locale must be supported');
+  const planned=context.languages.planned;
+  if(!Array.isArray(planned) || !planned.length || new Set(planned).size!==planned.length ||
+    planned.some(code=>!localeCode.test(code))) fail('languages.planned','nonempty unique planned languages required');
+  if(!planned.includes(context.languages.document)) fail('languages.planned','reviewed source locale must be supported');
   safePath(context.directory);
   const files:SourceFile[]=[];
   const diagnostics:SourceDiagnostic[]=[];
@@ -110,7 +113,7 @@ export function materializeFlashcard(node:FlashcardNode,context:FlashcardContext
     if(source===undefined) continue;
     const dir=context.directory+'/'+config.slug+'/content/'+role;
     const output=materializeFlashcardSide(source,{
-      directory:dir,role,documentLanguage:context.documentLanguage,
+      directory:dir,role,languages:context.languages,
       materializeBlock:context.materializeBlock,existingPaths:context.existingPaths,
     });
     files.push(...output.files);
@@ -121,9 +124,9 @@ export function materializeFlashcard(node:FlashcardNode,context:FlashcardContext
   parameters.flags=(config.parameters.flags as unknown[]).map((flag,index)=>{
     if(!record(flag)) fail('parameters.flags['+index+']','flag Config object required');
     return ['acronym','custom'].includes(flag.type as string)?
-      { ...flag,value:sourceValue(flag.value,context.documentLanguage,'parameters.flags['+index+'].value') } : flag;
+      { ...flag,value:sourceValue(flag.value,context.languages.document,'parameters.flags['+index+'].value') } : flag;
   });
-  const languages=context.documentLanguage;
+  const languages=context.languages.document;
   const hint=config.content.hint!==undefined;
   const paramsSource='const parameters = '+literal(parameters,'parameters')+' satisfies Flashcard_Config[\'parameters\'];\n\n';
   const contentSource='const content = { front, back'+(hint?', hint':'')+' };\n\n';

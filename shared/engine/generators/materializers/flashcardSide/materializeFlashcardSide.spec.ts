@@ -4,7 +4,7 @@ import ts from 'typescript';
 import { materializeFlashcardSide } from './materializeFlashcardSide';
 const block=(slug:string,n:number)=>({config:{id:'b775647f-203d-481a-a1c7-4d331c'+String(n).padStart(6,'0'),slug,type:'text'}});
 const context={
-  directory:'flashcards/cardOne/content/front',role:'front' as const,documentLanguage:'uk',
+  directory:'flashcards/cardOne/content/front',role:'front' as const,languages:{document:'uk' as const,planned:['uk','en'] as const},
   materializeBlock:(node:{config:{slug:string}},ctx:{directory:string})=>({
     exportName:node.config.slug,
     files:[{path:ctx.directory+'/index.ts',content:'export const '+node.config.slug+' = 1;\n',kind:'typescript' as const}],

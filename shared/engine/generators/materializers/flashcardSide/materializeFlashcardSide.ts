@@ -4,6 +4,7 @@
  * This materializer delegates each concrete block to its owning materializer.
  */
 import type { FlashcardSide_Config } from '../../../configurators/flashcards/defineFlashcardSide/defineFlashcardSide.schemas';
+import type { LanguageCode, SupportedLanguages } from '../../../schemas/languages.schemas';
 
 export type PlainBlock = { id: string; slug: string; type: string } & Record<string, unknown>;
 export type BlockNode = PlainBlock | { config: PlainBlock; production?: Record<string, unknown> };
@@ -17,7 +18,7 @@ export type FlashcardSideContext = {
   /** The exact side folder, e.g. flashcards/name/content/front. */
   directory: string;
   role: 'front' | 'back' | 'hint';
-  documentLanguage: string;
+  languages: { document: LanguageCode; planned: SupportedLanguages };
   existingPaths?: ReadonlySet<string>;
   /** Owner C/D concrete block renderer, supplied by parent orchestrator. */
   materializeBlock: (node: {config: PlainBlock; production?: Record<string,unknown>}, context: {
@@ -53,7 +54,8 @@ function assertSide(source:FlashcardSideSource,role:FlashcardSideContext['role']
 }
 export function materializeFlashcardSide(source:FlashcardSideSource,context:FlashcardSideContext):ChildResult {
   assertSide(source,context.role);
-  if (!validLocale.test(context.documentLanguage)) fail('documentLanguage','invalid source language');
+  if (!context.languages || !validLocale.test(context.languages.document)) fail('languages.document','invalid source language');
+  if (!Array.isArray(context.languages.planned) || context.languages.planned.length===0 || !context.languages.planned.includes(context.languages.document)) fail('languages.planned','source language must be planned');
   safePath(context.directory);
   const files:SourceFile[]=[];
   const diagnostics:SourceDiagnostic[]=[];
@@ -73,7 +75,7 @@ export function materializeFlashcardSide(source:FlashcardSideSource,context:Flas
     safePath(childDir);
     const output=context.materializeBlock(
       {config:child as PlainBlock,...(record(node.production)?{production:node.production}:{})},
-      {directory:childDir,documentLanguage:context.documentLanguage},
+      {directory:childDir,documentLanguage:context.languages.document},
     );
     if (!output || !identifier.test(output.exportName) || !Array.isArray(output.files))
       fail('items.'+key,'invalid delegated ContentBlock output');
@@ -87,7 +89,7 @@ export function materializeFlashcardSide(source:FlashcardSideSource,context:Flas
     ...imports,'',
     'const items = {',''+entries.join('\n'),'};','',
     'export const '+context.role+' = defineFlashcardSide<typeof items, ['+
-      JSON.stringify(context.documentLanguage)+']>({ items, order: '+JSON.stringify(source.order)+' });','',
+      JSON.stringify(context.languages.document)+']>({ items, order: '+JSON.stringify(source.order)+' });','',
   ].join('\n');
   files.push({path:context.directory+'/index.ts',content:sourceText,kind:'typescript'});
   const seen=new Set<string>();

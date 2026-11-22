@@ -4,6 +4,7 @@
  * Child blocks belong to their concrete materializers (Agents C/D).
  */
 import type { Question_SelectOneAnswer_Config } from '../../../configurators/questions/defineSelectOneAnswer/defineSelectOneAnswer.schemas';
+import type { LanguageCode, SupportedLanguages } from '../../../schemas/languages.schemas';
 
 type PlainBlock = { id: string; slug: string; type: string } & Record<string, unknown>;
 type BlockNode = PlainBlock | { config: PlainBlock; production?: Record<string, unknown> };
@@ -22,8 +23,8 @@ type ChildOutput = { exportName: string; files: OutputFile[]; diagnostics?: Diag
 export type SelectOneAnswerContext = {
   /** Question-kind bank folder, e.g. questions/selectOneAnswer. */
   directory: string;
-  documentLanguage: string;
-  plannedLanguages?: readonly string[];
+  /** Same production-only language plan structure as CourseWorkflowStage1Languages. */
+  languages: { document: LanguageCode; planned: SupportedLanguages };
   /** The parent binds the matching concrete ContentBlock renderer. */
   materializeBlock: (node: { config: PlainBlock; production?: Record<string, unknown> }, context: {
     directory: string; documentLanguage: string
@@ -79,7 +80,8 @@ export function materializeSelectOneAnswer(node: SelectOneAnswerNode, context: S
   const exportedName=reservedNames.has(name)?'config_'+name:name;
   if (typeof config.id!=='string' || !validUUID.test(config.id) || config.id==='00000000-0000-0000-0000-000000000000')
     fail('config.id','immutable non-Nil Question UUID required');
-  if (!validLocale.test(context.documentLanguage)) fail('documentLanguage','valid source locale required');
+  if (!context.languages || !validLocale.test(context.languages.document))
+    fail('languages.document','valid source locale required');
   if (!isRecord(config.params) || !isRecord(config.content)) fail('config','params/content required');
   assertCollection(config.content.question,'content.question');
   if (!config.content.question.order.length) fail('content.question','reviewed prompt required');
@@ -89,8 +91,10 @@ export function materializeSelectOneAnswer(node: SelectOneAnswerNode, context: S
   if (config.content.answers.correct.order.length !== 1) fail('content.answers.correct', 'exactly one correct answer is required');
   const slugs = [...config.content.answers.correct.order, ...config.content.answers.incorrect.order, ...config.content.answers.distractors.order];
   if (slugs.length !== new Set(slugs).size) fail('content.answers', 'duplicate answer across scoring groups');
-  const planned=context.plannedLanguages ?? [context.documentLanguage];
-  if (!planned.includes(context.documentLanguage)) fail('plannedLanguages','source language must be included');
+  const planned=context.languages.planned;
+  if (!Array.isArray(planned) || planned.length===0 || new Set(planned).size!==planned.length ||
+      planned.some(code=>!validLocale.test(code))) fail('languages.planned','nonempty unique supported languages required');
+  if (!planned.includes(context.languages.document)) fail('languages.planned','source language must be included');
   checkPath(context.directory);
   const modulePath=context.directory+'/'+name+'.ts';
   const files: OutputFile[]=[];
@@ -98,7 +102,7 @@ export function materializeSelectOneAnswer(node: SelectOneAnswerNode, context: S
   const imports: string[]=[];
   const blockers: string[]=[];
   if (node.production?.pending===true) blockers.push('Independent Question Bank review and content completion required.');
-  const remaining=planned.filter(code=>code!==context.documentLanguage);
+  const remaining=planned.filter(code=>code!==context.languages.document);
   if (remaining.length) blockers.push('Restore independently reviewed translations for '+remaining.join(', ')+'.');
   const matches=(pattern: string,parts: string[])=>{
     const tokens=pattern.split('.');
@@ -119,7 +123,7 @@ export function materializeSelectOneAnswer(node: SelectOneAnswerNode, context: S
       checkPath(childDir);
       const out=context.materializeBlock(
         { config: child as PlainBlock, ...(isRecord(value.production)?{production:value.production}:{}) },
-        {directory:childDir,documentLanguage:context.documentLanguage},
+        {directory:childDir,documentLanguage:context.languages.document},
       );
       if (!out || !validIdentifier.test(out.exportName) || !Array.isArray(out.files))
         fail(location,'invalid child materializer result');
@@ -132,7 +136,7 @@ export function materializeSelectOneAnswer(node: SelectOneAnswerNode, context: S
     }
     if (collectionPaths.has(location)) assertCollection(value,location);
     if (location==='locale' || (false))
-      value=sourceLocale(value,context.documentLanguage,location);
+      value=sourceLocale(value,context.languages.document,location);
     if (typeof value==='number' && !Number.isFinite(value)) fail(location,'nonfinite numeric value');
     if (value===null || typeof value==='string' || typeof value==='number' || typeof value==='boolean')
       return JSON.stringify(value);
@@ -151,7 +155,7 @@ export function materializeSelectOneAnswer(node: SelectOneAnswerNode, context: S
       "import { defineSelectOneAnswer } from '@svitlo/engine/build';",
       ...imports.sort(),'',
       ...blockers.map(reason=>'// TODO (BLOCKER): '+reason),
-      nested+'export const '+exportedName+' = defineSelectOneAnswer<'+JSON.stringify(name)+', typeof content, ['+JSON.stringify(context.documentLanguage)+']>({\n'+
+      nested+'export const '+exportedName+' = defineSelectOneAnswer<'+JSON.stringify(name)+', typeof content, ['+JSON.stringify(context.languages.document)+']>({\n'+
         metadata+'\n  content,\n});\n',
     ].join('\n'),
   });

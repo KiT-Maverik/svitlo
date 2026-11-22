@@ -12,7 +12,7 @@ const fixture=()=>({config:{
   content:{question:collection({prompt:block('prompt',2)}),hint:collection({hint:block('hint',8)}), sequence: collection({ first: block('first', 3), second: block('second', 4) })},
 }});
 const context={
-  directory:'questions/orderSequence',documentLanguage:'uk',plannedLanguages:['uk','en'],
+  directory:'questions/orderSequence',languages:{document:'uk' as const,planned:['uk','en'] as const},
   materializeBlock:(node:{config:{slug:string}},props:{directory:string})=>({
     exportName:node.config.slug,
     files:[{path:props.directory+'/index.ts',content:'export const '+node.config.slug+' = {};\n',kind:'typescript' as const}],

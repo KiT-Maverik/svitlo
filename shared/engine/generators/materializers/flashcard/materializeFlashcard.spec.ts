@@ -56,4 +56,7 @@ test('Flashcard: source locale, duplicate flags, missing bank and pre-existing c
  assert.throws(()=>materializeFlashcard(fixture() as never,{
   ...context,existingPaths:new Set(['flashcards/cardOne.ts']),
  }),/no clobber/);
+  assert.throws(()=>materializeFlashcard(fixture() as never,{...context,
+    languages:{document:'uk' as const,planned:['en'] as const},
+  }),/languages.planned/);
 });
