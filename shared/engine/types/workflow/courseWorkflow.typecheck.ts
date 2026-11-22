@@ -1,3 +1,4 @@
+import type { Lesson_Configurator } from '../../configurators/lessons/defineLesson/defineLesson';
 import type {
   CourseWorkflowStage1,
   CourseWorkflowStage1Config,
@@ -12,6 +13,16 @@ import type {
   CourseWorkflowStage2LessonSlot,
   CourseWorkflowStage2EpisodeSlot,
   CourseWorkflowStage2EpisodeProduction,
+  CourseWorkflowStage3,
+  CourseWorkflowStage3Config,
+  CourseWorkflowStage3Module,
+  CourseWorkflowStage3Chapter,
+  CourseWorkflowStage3LessonSlot,
+  CourseWorkflowStage3LessonIntent,
+  CourseWorkflowStage3LessonMatch,
+  CourseWorkflowStage3NewLesson,
+  CourseWorkflowStage3ExistingLesson,
+  CourseWorkflowStage3OverriddenLesson,
 } from './courseWorkflow.types';
 
 const config = {
@@ -287,3 +298,167 @@ void prematureLessonIdentity;
 void prematureEpisodeSections;
 void prematureModuleId;
 void missingModuleMethodology;
+
+/** Stage 3 must resolve every provisional Lesson, regardless of nesting. */
+declare const importedLesson: Lesson_Configurator;
+const intent = {
+  objective: 'Explain patterns through observation',
+  depth: 'Introductory',
+  sequenceReason: 'After foundational observations',
+  assessmentEvidence: 'Apply the model to a new example',
+} satisfies CourseWorkflowStage3LessonIntent;
+
+const match = {
+  lessonId: importedLesson.id,
+  methodologySourcePath: 'content/example/data/lessons/a/lesson-uuid/methodology.md',
+  sourceSha: 'verified-source-revision',
+  matchingRationale: 'Methodology, Skills, audience and depth match the intended Course slot',
+  languageEvidence: 'Reviewed source language and remaining locale dependencies',
+} satisfies CourseWorkflowStage3LessonMatch;
+
+const newLesson = {
+  config: {
+    type: 'lesson',
+    slug: 'newDayNight',
+    skills: lessonSlot.config.skills,
+    locale: { title: 'Day and night' },
+  },
+  production: {
+    ...intent,
+    kind: 'new',
+    methodology: 'Complete pedagogical specification belongs here; this fixture is not approved content.',
+  },
+} satisfies CourseWorkflowStage3NewLesson;
+
+const existingLesson = {
+  config: { type: 'lesson', slug: 'reusedDayNight', skills: lessonSlot.config.skills },
+  production: { ...intent, kind: 'existing', matching: match },
+} satisfies CourseWorkflowStage3ExistingLesson;
+
+const patch = importedLesson.build.overrides(
+  { params: { sections: { allowSkipping: false } } },
+  { languages: ['uk'] },
+);
+const withOverrides = {
+  config: { type: 'lesson', slug: 'dayNightPractice', skills: lessonSlot.config.skills },
+  production: {
+    ...intent,
+    kind: 'existingWithOverrides',
+    matching: match,
+    overrides: patch,
+    overrideRationale: 'Course progression requires this navigation constraint',
+  },
+} satisfies CourseWorkflowStage3OverriddenLesson;
+
+const resolvedChapter = {
+  ...chapter,
+  config: {
+    ...chapter.config,
+    content: { items: { newLesson, existingLesson }, order: ['newLesson', 'existingLesson'] },
+  },
+} satisfies CourseWorkflowStage3Chapter;
+
+const resolvedModule = {
+  ...module,
+  config: {
+    ...module.config,
+    content: {
+      items: { observations: resolvedChapter, repeated: withOverrides, episode: episodeSlot },
+      order: ['observations', 'repeated', 'episode'],
+    },
+  },
+} satisfies CourseWorkflowStage3Module;
+
+const resolvedCourse = {
+  ...planned,
+  config: {
+    ...planned.config,
+    content: {
+      items: { skyBasics: resolvedModule, directChapter: resolvedChapter, newLesson, existingLesson, withOverrides },
+      order: ['skyBasics', 'directChapter', 'newLesson', 'existingLesson', 'withOverrides'],
+    },
+  },
+} satisfies CourseWorkflowStage3;
+
+const stage2View: CourseWorkflowStage2 = resolvedCourse;
+
+// @ts-expect-error Unresolved Stage 2 slot cannot satisfy a completed Stage 3 placement.
+const unresolvedSlot: CourseWorkflowStage3LessonSlot = lessonSlot;
+
+// @ts-expect-error Stage 3 course must replace unresolved Stage 2 Lesson slots.
+const unresolvedCourse: CourseWorkflowStage3Config = planned.config;
+
+const missingNewMethodology: CourseWorkflowStage3NewLesson = {
+  config: newLesson.config,
+  // @ts-expect-error Required for newly planned Lesson.
+  production: { ...intent, kind: 'new' },
+};
+
+const unexpectedNewLessonId: CourseWorkflowStage3NewLesson = {
+  config: newLesson.config,
+  production: {
+    ...newLesson.production,
+    // @ts-expect-error New Lesson UUIDs are allocated at Stage 5, not Stage 3.
+    lessonId: importedLesson.id,
+  },
+};
+
+const missingExistingReference: CourseWorkflowStage3ExistingLesson = {
+  config: existingLesson.config,
+  // @ts-expect-error Reused Lessons need source evidence and matching rationale.
+  production: { ...intent, kind: 'existing' },
+};
+
+const unexpectedExistingMethodology: CourseWorkflowStage3ExistingLesson = {
+  config: existingLesson.config,
+  production: {
+    ...existingLesson.production,
+    // @ts-expect-error Existing Lesson methodology is independent and must not be duplicated.
+    methodology: 'A competing copy',
+  },
+};
+
+const missingOverrides: CourseWorkflowStage3OverriddenLesson = {
+  config: withOverrides.config,
+  // @ts-expect-error Overrides case must carry the built {base, locale} publication result.
+  production: { ...intent, kind: 'existingWithOverrides', matching: match, overrideRationale: 'Needed' },
+};
+
+const rawOverridesAreInvalid: CourseWorkflowStage3OverriddenLesson = {
+  config: withOverrides.config,
+  production: {
+    ...withOverrides.production,
+    // @ts-expect-error A raw params patch is not the result of lesson.build.overrides().
+    overrides: { params: { sections: { allowSkipping: false } } },
+  },
+};
+
+const unexpectedExistingLocale: CourseWorkflowStage3ExistingLesson = {
+  config: {
+    ...existingLesson.config,
+    // @ts-expect-error Reused Lesson titles can be changed only by explicit Build overrides.
+    locale: { title: 'Implicit Course-local mutation' },
+  },
+  production: existingLesson.production,
+};
+
+void importedLesson;
+void intent;
+void match;
+void newLesson;
+void existingLesson;
+void patch;
+void withOverrides;
+void resolvedChapter;
+void resolvedModule;
+void resolvedCourse;
+void stage2View;
+void unresolvedSlot;
+void unresolvedCourse;
+void missingNewMethodology;
+void unexpectedNewLessonId;
+void missingExistingReference;
+void unexpectedExistingMethodology;
+void missingOverrides;
+void rawOverridesAreInvalid;
+void unexpectedExistingLocale;
