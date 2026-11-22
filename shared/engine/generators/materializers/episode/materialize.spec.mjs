@@ -42,3 +42,8 @@ test('Episode refuses unsupported child order and missing Section renderer',()=>
 test('refuses directory traversal before source emission',()=>{
  assert.throws(()=>materializeEpisode(ep(),{sourceLanguage:'uk',directory:'../unsafe'}),/unsafe generated directory/);
 });
+
+test('a typed Stage 2/3 provisional Episode does not materialize as a completed Episode',()=>{
+ const planned={config:{type:'episode'},production:{focus:'Learning context',purpose:'Narrative transition'}};
+ assert.throws(()=>materializeEpisode(planned,ctx()),/TODO \\(BLOCKER\\): provisional Episode/);
+});

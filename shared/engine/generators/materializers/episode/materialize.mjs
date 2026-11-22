@@ -43,6 +43,8 @@ const sidecars=(meta,dir)=>{
 export function materializeEpisode(input,context={}){
  const config=unwrap(input),meta=production(input),dir=context.directory??'';
  if(dir&&dir.split('/').some(part=>!slugPattern.test(part)))throw Error(dir+': unsafe generated directory');
+ if(!record(config.section)||!record(config.section.items)||!Array.isArray(config.section.order))
+  throw Error(dir+'.section: TODO (BLOCKER): provisional Episode requires authorized Sections before materialization');
  const {id,slug}=identity(config,context,dir,'episode'),lang=source(context);
  if(config.type!=='episode')throw Error(dir+': expected episode Config');
  const collection=config.section;
