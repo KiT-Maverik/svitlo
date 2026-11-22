@@ -111,11 +111,21 @@ function pickSelections(
     const generatedPath = posix.join(posix.dirname(sourcePath), 'sections', key, 'index.ts');
     const references = elements.map((value, i) => {
       const expression = unwrap(value as ts.Expression);
-      if (!ts.isPropertyAccessExpression(expression) ||
-        !ts.isIdentifier(expression.expression) || expression.name.text !== 'id')
+      if (!ts.isPropertyAccessExpression(expression) || expression.name.text !== 'id')
         throw new Error('Stage 6: ' + key + '.' + field +
           ' requires imported Question/Flashcard Configurator .id, not a literal UUID');
-      const binding = imports.get(expression.expression.text);
+      // A canonical bank may re-export the Configurator through a named map:
+      // questions.multipleChoice.example.id. Every step must be a static property.
+      const members: string[] = [];
+      let target: ts.Expression = expression.expression;
+      while (ts.isPropertyAccessExpression(target)) {
+        members.unshift(target.name.text);
+        target = target.expression;
+      }
+      if (!ts.isIdentifier(target))
+        throw new Error('Stage 6: ' + key + '.' + field +
+          ' must reference a static member of an imported Configurator or bank map');
+      const binding = imports.get(target.text);
       if (!binding || !identifier.test(binding.exported) && binding.form !== 'namespace')
         throw new Error('Stage 6: ' + key + '.' + field +
           ' refers to a name without an executable Configurator import');
@@ -126,7 +136,10 @@ function pickSelections(
         : binding.form === 'default'
           ? 'import ' + alias + ' from ' + specifier + ';'
           : 'import * as ' + alias + ' from ' + specifier + ';';
-      return { importDeclaration: statement, expression: alias + '.id' };
+      return {
+        importDeclaration: statement,
+        expression: alias + (members.length ? '.' + members.join('.') : '') + '.id',
+      };
     });
     selected.push({ sectionKey: key, kind, field, ids, references });
   }
