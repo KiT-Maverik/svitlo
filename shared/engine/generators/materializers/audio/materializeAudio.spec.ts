@@ -27,8 +27,9 @@ test('audio: exact source, imports, locale pruning, deterministic non-writing pl
   assert.match(module, /defineAudio<"narration", typeof languages>/);
   assert(module.includes(id), 'original immutable UUID retained');
   assert(!module.includes('English-only'), 'unreviewed locale is not materialized');
-  const parsed = ts.createSourceFile('index.ts', module, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS);
-  assert.equal(parsed.parseDiagnostics.length, 0, 'emitted TS must parse');
+  const parsed = ts.transpileModule(module, { fileName: 'index.ts', reportDiagnostics: true,
+    compilerOptions: { target: ts.ScriptTarget.ES2022, module: ts.ModuleKind.ESNext } });
+  assert.equal((parsed.diagnostics ?? []).filter(d => d.category === ts.DiagnosticCategory.Error).length, 0, 'emitted TS must parse');
   assert(one.diagnostics.some(item => item.code === 'pending-locales'));
   assert(one.diagnostics.every(item => item.severity === 'warning'));
   assert.match(module, new RegExp(id + '\\.mp3'));
