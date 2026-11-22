@@ -1,6 +1,17 @@
 # Legacy YAML → TypeScript draft scaffolding (active non-Course consumers)
 
+> **Typed-production migration (parent #775; Lesson #782, Questions #783, Flashcards #784 remain separate Drafts):** New editorial work progresses through one TypeScript source per entity. Existing YAML builders and trusted PR commands remain operational **legacy paths** until an integrated, source-SHA-pinned typed replacement is tested. Stage type declarations are not proof that the corresponding materializer or CI handoff is deployed. Never replace a source converter with a Props publisher.
+
+
 **Canonical authoring boundaries:** [Create Lesson Flow](../../skills/lesson-workflow/create-lesson-flow.skill.md) and independent bank workflows still have live YAML source/tooling dependencies. [Create Course Flow](../../skills/course-workflow/create-course-flow.skill.md) now authors Stages 1–3 in **one typed TS object** and independently corrects that source in Stage 4. The existing [Course YAML materializer](../../../shared/engine/scripts/materializeCourseFlow/README.md) is a **legacy implementation retained for live consumers** until the replacement typed Stage 5 and protected trusted command path in #775 are verified; it is not the new Course workflow.
+
+## Canonical typed sources versus remaining YAML consumers
+
+**Approved typed target, not yet a deployed end-to-end replacement:** `CourseWorkflowStage1` → `Stage2` → `Stage3` (independent Stage 4 direct correction) → `CourseWorkflowMaterializerInput` at Course Stage 5. It hands off a new Lesson's Stage 1 `index.ts` with assigned UUID and reviewed methodology/assessment intent, never completed Lesson/Quiz/Flashcards Sections. #782 advances a single typed Lesson plan through Stage 1/2 and independent specialist Stages 3–5; only authorized Lesson Stage 6 materializes its Sections/Blocks. #783/#784 advance independent bank sources through Stage 1–3 and Stage 4 review, then Stage 5 source conversion; later bank Stages 6–7 localize and independently review. A Stage 1 child file publishes nothing.
+
+`LessonProductionAssessmentRequirements` specifies **four independent decisions**: `questionBankRequired`, `flashcardBankRequired`, `quizSectionRequired`, `flashcardsSectionRequired`. A bank is not a Lesson Section, and runtime `quizRequiredForCompletion` is separate. Actual Quiz/Flashcards Section Config imports final Question/Card Configurators and references their `.id` values; do not create another selection ledger. Generated `methodology.md` is a readable derived projection, not a second editable source.
+
+**Legacy operational tooling:** the YAML examples below document still-supported commands for existing editorial PRs, not recommended new authoring. Existing `lesson.yaml`, `questions.yaml`, `flashcards.yaml`, schemas and create-only builders remain until #775 verifies compatible typed, SHA-pinned trusted Stage 6/Stage 5 successors. `generateLessonProps`, `generateAssessmentResources`, `generateLessonReviewArtifacts`, `generateQuestionReviewArtifacts`, `generateFlashcardReviewArtifacts`, and Scene support are **separate** publication, review and implementation dependencies.
 
 ## Validation boundaries across the four entity workflows
 
@@ -13,7 +24,7 @@
 
 Use Engine-derived schemas as **editor aids and final-boundary inputs**, not mandatory manual gates for every partially written draft. All four flows must fail closed on invalid completed materialization input before writes. Existing optional `--preflight`, `--check` and diagnostic commands remain available; final materialization and production CI must still run as specified. The final validation boundary never replaces an independent editorial or linguistic review, and `Ready for review` still triggers the scoped TypeScript/build/format and safety checks. Do not create a new per-commit YAML-validation workflow, duplicate CLI job, source format, review stage or status file.
 
-## Technical Lesson YAML authoring
+## Legacy technical Lesson YAML authoring (existing callers only)
 
 A Lesson uses the one `lesson.yaml` at `data/lessons/<last-uuid-hex>/<uuid>/`. Its root and nested Configurator nodes have a `config` with Engine-derived `type`, immutable `id`, `slug`, `params`, `locale` and typed collections; optional `production` fields contain editorial-only requirements for the same entity. Production metadata never flows into `define*`, `build.overrides` or published Props.
 

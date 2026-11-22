@@ -1,10 +1,15 @@
 # Required Quiz and Flashcards Section source handoff
 
+> **Legacy Stage 6.1 contract:** `lesson.yaml`, `sectionDrafts`, `feedc0de-` and `/lesson materialize` below remain for existing PRs, not new typed authoring. #782 owns the typed Lesson successor; #775 must implement and verify an SHA-pinned replacement before retirement. **Course Stage 5 and bank Stage 1 do not generate assessment Sections.**
+
+
 **Status:** PR #706 introduced the historical mandatory `lesson-assessment-sections` fence. PR #712 supersedes that mechanism. This document records the intended source-handoff contract; actual implementation and tests remain authoritative.
 
 ## Methodologist decisions
 
-The root `lesson.yaml` authoring-only `production.quizRequired` and `production.flashcardsRequired` booleans indicate whether the completed Lesson eventually needs at least one Section of that kind. Omitted and `false` mean no such requirement. The Methodologist justifies these choices in normal `production.methodology` prose; no separate machine-readable inventory is required. Multiple Quiz or Flashcards Sections may be planned, each with its own canonical UUID and ordered placement. A separate Question Bank need not imply a local Quiz Section; bank ownership and Section requirements are distinct.
+The approved typed contract `LessonProductionAssessmentRequirements` separately records `questionBankRequired`, `flashcardBankRequired`, `quizSectionRequired`, and `flashcardsSectionRequired`. Banks and in-Lesson Sections are independent. Engine `quizRequiredForCompletion` additionally requires an enabled Quiz Section; do not disable it or change the setting to hide unfinished selection. These production requirements survive Course→Lesson handoff.
+
+**Legacy YAML only:** the root `lesson.yaml` authoring-only `production.quizRequired` and `production.flashcardsRequired` booleans indicate whether the completed Lesson eventually needs at least one Section of that kind. Omitted and `false` mean no such requirement. The Methodologist justifies these choices in normal `production.methodology` prose; no separate machine-readable inventory is required. Multiple Quiz or Flashcards Sections may be planned, each with its own canonical UUID and ordered placement. A separate Question Bank need not imply a local Quiz Section; bank ownership and Section requirements are distinct.
 
 ## Canonical source and one-time materialization
 
