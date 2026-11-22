@@ -23,6 +23,8 @@ const evidence = {
   outcome: 'Explain a verified outcome',
   assessmentMethod: 'application',
   cognitiveOperation: 'Apply the concept to a new context',
+  knowledgeAspect: 'Meaning of addition',
+  cognitiveDemand: 'Apply in a novel representation',
   misconception: 'Confuses two distinct operations',
   context: 'Source-language task',
   expectedEvidence: 'Chooses the correct model and rules out a misconception',
@@ -69,6 +71,9 @@ const missingAssessment: QuestionBankWorkflowStage1Production = { languages: pro
 // @ts-expect-error Cannot leave planned languages empty.
 const missingPlanned: QuestionBankWorkflowStage1Production['languages'] = { document: 'uk', planned: [] };
 
+// @ts-expect-error A source document language is required for a bank handoff.
+const noSourceLanguage: QuestionBankWorkflowStage1Production['languages'] = { planned: ['uk'] };
+
 const prompt = {
   config: {
     id: '663572e7-bd85-4516-86e2-3de07d209e05',
@@ -106,6 +111,13 @@ const correct = {
   },
 } satisfies QuestionBankWorkflowBlockNode;
 
+const choicePrompt = {
+  config: {
+    ...prompt.config,
+    id: '663572e7-bd85-4516-86e2-3de07d209e0b',
+  },
+} satisfies QuestionBankWorkflowBlockNode;
+
 const choice = {
   config: {
     id: '663572e7-bd85-4516-86e2-3de07d209e08',
@@ -114,7 +126,7 @@ const choice = {
     params: { assessmentMethod: 'application', restrictions: [] },
     locale: {},
     content: {
-      question: { items: { prompt }, order: ['prompt'] },
+      question: { items: { prompt: choicePrompt }, order: ['prompt'] },
       answers: {
         correct: { items: { correct }, order: ['correct'] },
         incorrect: { items: { incorrect: { ...correct, config: { ...correct.config, id: '663572e7-bd85-4516-86e2-3de07d209e0a', slug: 'incorrect' } } }, order: ['incorrect'] },
@@ -129,6 +141,14 @@ const choice = {
     rationale: 'Additional diagnostic coverage requires specialist review',
   },
 } satisfies QuestionBankWorkflowQuestionNode<QuestionBankWorkflowSelectOneAnswerConfig>;
+
+// Type-specific grouping is checked by the Stage 2 map, not only by Config.type.
+const wrongQuestionGroup: QuestionBankWorkflowStage2['config']['questions'] = {
+  answerWithText: {
+    // @ts-expect-error A number-answer Config cannot appear in the text-answer group.
+    incorrectGroup: oneAnswer,
+  },
+};
 
 const stage2 = {
   ...handoff,
@@ -221,9 +241,12 @@ void premature;
 void missingOwner;
 void missingAssessment;
 void missingPlanned;
+void noSourceLanguage;
 void prompt;
 void oneAnswer;
+void choicePrompt;
 void choice;
+void wrongQuestionGroup;
 void stage2;
 void emptyGroups;
 void missingNumericAnswers;
