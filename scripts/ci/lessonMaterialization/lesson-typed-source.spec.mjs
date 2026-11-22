@@ -66,9 +66,10 @@ test('real imported Question Configurator .id can be read as static data', () =>
       '", slug: "reviewQuestion" });\n');
     const reviewed = plain
       .replace("import type", "import { reviewQuestion } from './questions/reviewQuestion';\nimport type")
-      .replace('order: [] as string[]', 'order: [reviewQuestion.id] as string[]');
+      .replace('items: {}, order: [] as string[]',
+        'items: { quiz: { config: { params: { selection: { questionIds: [reviewQuestion.id] } } } } }, order: ["quiz"] as string[]');
     const result = parseTypedLesson(root, sourcePath, reviewed);
-    assert.deepEqual([...result.config.section.order], [questionId]);
+    assert.deepEqual([...result.config.section.items.quiz.config.params.selection.questionIds], [questionId]);
     fs.writeFileSync(path.join(questions, 'reviewQuestion.ts'),
       'export const reviewQuestion = { id: "' + questionId + '" };\n');
     assert.throws(() => parseTypedLesson(root, sourcePath, reviewed),
