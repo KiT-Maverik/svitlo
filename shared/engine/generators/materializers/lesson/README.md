@@ -231,3 +231,80 @@ node --test shared/engine/.test-build/generators/materializers/*/*.spec.js
 
 This Draft branch has GitHub's lightweight PR checks; actual test/typecheck
 results must be recorded after a runnable checkout/parent integration.
+
+
+## Typed Lesson Stage 6.1 orchestrator and archive transition (#790)
+
+`materializeLessonStage6(input, options)` is an explicit **build-time** adapter from
+the real `LessonWorkflowMaterializerInput = LessonWorkflowStage2` to the existing
+`materializeLesson` and the concrete Section/ContentBlock/Quest materializers.
+It does not start Course or assessment-bank workflows, execute YAML, publish
+Props/JSON, create a second Stage 3/4/5 type, or mint missing educational IDs.
+
+The caller supplies a byte-identical `sourceText`, exact canonical
+`content/<textbook>/data/lessons/<last-uuid-character>/<uuid>/index.ts`,
+`sourceBlobSha` (the Git blob hash of those bytes), `reviewCommitSha`,
+`reviewEvidenceSha`, `stage6Authorized: true`, and a trusted
+`verifyReviewedInput(source, review, sourceText)` function. **This callback is
+a trusted boundary, not a default approval:** the caller must actually verify
+PR ownership, source/independent-review provenance, Stage 6 authorization,
+the evaluated TypeScript object and matching committed bytes. A raw JSON
+request cannot itself supply trustworthy approval. If verification fails,
+materialization refuses the source before dispatching any child. Until
+parent #775 provides its CI bridge, there is no implicit trusted caller.
+
+The adapter derives final `params.languages` from
+`production.languages.document/planned`, verifies the four independent
+assessment decisions, preserves ordered Section and nested ContentBlock
+identities and attached `production` notes, and delegates each concrete kind
+to the matching materializer. It rejects missing mandatory final Lesson
+parameters rather than inventing them. A required Quiz/Flashcards Section
+must already be enabled. Incomplete authored assessment selections, Scene
+registry, media, locales or reviews yield exceptions/diagnostics and remain
+**nonpublishable**, not silently fixed. Source artifacts retain readable
+`methodology.md` and `specification.md` sidecars.
+
+`sourceCommit.mjs` is the **Lesson-specific** source transition writer:
+
+- `preflightLessonStage6Commit(plan, {repoRoot})` is a read-only check.
+- `commitLessonStage6Plan(plan, {repoRoot, mode:'check'})` checks without
+  creating any Git objects.
+- `commitLessonStage6Plan(plan, {repoRoot, mode:'write', branch,
+  authorizeWrite})` requires a trusted authorization callback and verified
+  detached checkout. The branch must be at checked HEAD. Using a scratch Git
+  index and protected `update-ref` lease, it creates **one commit** which
+  saves the exact original editor bytes as `workflow.stage2.ts` and replaces
+  root `index.ts` together with all owned generated modules. It never
+  rewrites a live worktree, silently clobbers independently edited files,
+  follows symlinks or writes outside that Lesson UUID root. Idempotent
+  rechecks require the complete final tree to be byte-identical.
+
+The saved `workflow.stage2.ts` is the immutable **reviewed source archive**.
+It is not a second editable authoring plan. The archive retains the entire
+Stage 2 source byte-for-byte. The Lesson-only
+`preserveAssessmentReferences()` boundary uses the pinned, reviewed
+TypeScript AST to preserve **imported Question and Flashcard Configurator
+references** in generated Quiz/Flashcards Section `selection.questionIds`
+and `selection.flashcardIds`. For example, a reviewed
+`questionIds: [reviewQuestion.id]` yields a rebased, executable import and
+`questionIds: [stage6_ref_0.id]` in the Section module; published Props still
+contain only UUIDs. This is scoped to concrete bank selection fields, not a
+general-purpose AST or expression rewriter. A nonempty selection containing
+literal UUIDs, arbitrary expressions, unimported names or mismatched rendered
+UUID values **fails closed** rather than converting a Configurator reference
+into a magic string. Pending empty selections retain their existing
+`TODO (BLOCKER)` diagnostics. The trusted caller remains responsible for
+proving the evaluated values correspond to exactly these reviewed bytes and
+that the imported bank Configurators and review provenance are authentic.
+
+Other original TypeScript expression spellings not represented in the
+generated Config remain preserved in the source archive; do not mistake the
+scoped bank-reference fix for universal expression preservation.
+
+**Verification targets:** `npm run code:check:types --workspace
+@svitlo/engine`, `npm test --workspace @svitlo/engine` (which includes
+`materializeStage6.spec.ts` and `sourceCommit.spec.mjs`), exact emitted
+TypeScript semantic compilation, and Stage 6 current-SHA review. The
+standalone PR's Draft CI may defer those expensive checks. Parent #775 owns
+trusted command wiring, shared exports, downstream integration and final
+production-quality testing; these remain explicit prerequisites.
