@@ -1,6 +1,8 @@
 # Flashcard bank YAML → TypeScript scaffold
 
-This is a **create-only** source scaffolder for one existing Lesson-owned Flashcard bank, independent of the Lesson Builder and the assessment resource publisher. Follow repository `AGENTS.md`, `shared/engine/scripts/AGENTS.md`, and the Studio [Create Flashcards Flow](../../../studio/skills/lesson-workflow/create-flashcards-flow.skill.md) first.
+> **Legacy YAML path only:** This still-live CLI converts existing approved YAML into **draft** TypeScript; it is not the new staged typed editorial source, a completed bank/Lesson, or a Props publisher. Parent #775 and Draft #782/#783/#784 must provide a tested, source-SHA-preserving typed orchestration and trusted CI replacement before this CLI, its schemas or callers can be retired. Preserve create-only/no-clobber, path security and existing tests.
+
+This is a **create-only** source scaffolder for one existing Lesson-owned Flashcard bank, independent of the Lesson Builder and the assessment resource publisher. Follow repository `AGENTS.md`, `shared/engine/scripts/AGENTS.md`, and the Studio [Create Flashcards Flow](../../../../studio/skills/lesson-workflow/create-flashcards-flow.skill.md) first.
 
 ## Verify Flashcards Section selections
 
