@@ -26,9 +26,12 @@ const publishedDirectory = `public/data/pages/lessons/${relative}`;
 
 ## Lesson convention
 
+**Typed authoring target (#775/#782):** Course Stage 5 creates a new Lesson's UUID-addressed `index.ts satisfies LessonWorkflowStage1` with only reviewed methodology/assessment intent, not an implemented `defineLesson`, Sections or a Lesson PR. The authorized standalone workflow advances that same typed source. Legacy `lesson.yaml` and `lesson.identity.json` remain supported for their existing callers until separately verified retirement.
+
 ```text
 content/<book>/data/lessons/<last-hex-digit>/<uuid>/
-  <slug>.data.ts                 # when implemented
+  index.ts                       # Stage 1 editorial handoff for new typed workflow
+  <slug>.data.ts                 # existing implemented Lesson convention
   <slug>.definition.ts           # when implemented
   lesson.identity.json           # editorial-only drafts without typed Lesson data
   methodology.md                # new Lesson Methodologist briefs
@@ -37,7 +40,7 @@ content/<book>/data/lessons/<last-hex-digit>/<uuid>/
   sections/                      # when applicable
 ```
 
-**Implemented Lesson:** `<slug>.data.ts` owns `id` and `slug`. The authored Lesson stores no `group`: `resolveEntityPath(id)` derives the bucket, and the source directory must match it. The build-time generator emits localized JSON at `public/data/pages/lessons/<bucket>/<uuid>/<collection>/<language>.json`; the runtime reads **published JSON only**.
+**Implemented legacy-layout Lesson:** `<slug>.data.ts` owns `id` and `slug`. The authored Lesson stores no `group`: `resolveEntityPath(id)` derives the bucket, and the source directory must match it. The build-time generator emits localized JSON at `public/data/pages/lessons/<bucket>/<uuid>/<collection>/<language>.json`; the runtime reads **published JSON only**.
 
 **Editorial draft (e.g. Math):** until a typed `<slug>.data.ts` exists, a `lesson.identity.json` file stores the permanent UUID and human-readable slug in each Lesson directory. It is _not_ runtime data. On implementation, transfer that UUID into the typed Lesson data and remove the editorial identity file only when the canonical typed identity exists. Never regenerate an ID from a renamed slug.
 
@@ -51,7 +54,7 @@ Textbook-owned React Scenes use `content/<book>/scenes/<bucket>/<uuid>/`, with t
 
 ## Editorial workflows
 
-- Create Lesson: assign its immutable UUID, use the Engine resolver to compute the directory, then write the Brief/Content there. Never pick a numbered bucket based on capacity or assign a manually stored `group`.
+- Create Lesson: assign its immutable UUID, resolve its directory with Engine, and write the authorized typed Stage 1 source **or** preserve the existing legacy Brief/Content/YAML when resuming it. Never pick a numbered bucket based on capacity or assign a manually stored `group`.
 - Existing Lesson: find by UUID through the resolver; IDE repository search remains convenient for slug/title. Do not add a custom slug-to-path search utility.
 - Move between bucket depths only with a dedicated migration PR and verification of all imports and generated/public URLs.
 

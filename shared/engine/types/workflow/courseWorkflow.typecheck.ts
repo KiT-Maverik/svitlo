@@ -1,4 +1,5 @@
 import type { Lesson_Configurator } from '../../configurators/lessons/defineLesson/defineLesson';
+import type { Lesson_Config } from '../../configurators/lessons/defineLesson/defineLesson.schemas';
 import type {
   CourseWorkflowStage1,
   CourseWorkflowStage1Config,
