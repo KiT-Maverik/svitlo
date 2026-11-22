@@ -59,6 +59,38 @@ the child manifests are deterministic and constrained to their own directories,
 but no child is allowed to clobber authored files. The existing YAML
 `writeMaterialized()` is an audited reference, not a new runtime dependency.
 
+## Compatibility with updated #775 Course stages
+
+Audited parent commit `66514c2b959e4824f4307d5dd4c1e32f11beefeb`,
+`shared/engine/types/workflow/courseWorkflow.types.ts` and
+`defineLesson.build.overrides()`. This child branch now includes that parent
+revision as merge ancestry.
+
+- `CourseWorkflowStage1` plans methodology and languages in
+  `production.languages.document/planned`, not `config.params.languages`.
+  Stage 2 owns provisional Course hierarchy; Stage 3 only resolves Lesson
+  placement as `new` or `existing`. Stage 4 reviews the same Stage 3 source,
+  not another TypeScript Config. **No Stage 1–4 Course document is a complete
+  standalone Lesson Config.**
+- `CourseWorkflowStage3NewLessonConfig` intentionally lacks UUID,
+  publication languages and Sections. It cannot enter `materializeLesson`.
+  The parent-owned Stage 5 bridge allocates/persists IDs and produces the
+  independently authorized Lesson handoff; it must not fabricate Sections.
+- A reused Lesson's `CourseWorkflowStage3ExistingLessonReference` is the
+  uniform `{ id, base?, locale? }` shape; `id` is outside the sparse built
+  override. The Course materializer must preserve that imported source
+  reference, **not** invoke the standalone Lesson materializer or interpret
+  `id` as an overridden Props field. This is outside Agent B's owned folders.
+- Newly optional `Lesson_Config.params.age` and `grade` are preserved
+  verbatim. Their validation remains with canonical Lesson Config/Zod and
+  the final Build API, not a duplicated source-renderer schema.
+- Added `lesson.typecheck.ts` compile-time boundary tests rejecting both
+  Stage 3 placement Config types and a built Course reference as Lesson
+  source, plus runtime regressions for audience fields and incomplete inputs.
+
+Full Engine TypeScript build, tests and real generated-module compilation
+remain required before merging; cheap Draft GitHub checks do not prove them.
+
 ## Integration seam (parent #775)
 
 Each `materializeX(config, options)` accepts **plain authored Config data** with

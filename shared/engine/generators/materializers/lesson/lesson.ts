@@ -7,6 +7,12 @@ import type { Lesson_Config } from '../../../configurators/lessons/defineLesson/
  */
 export type ChildConfig = { id: string; slug: string; type: string; [key: string]: unknown };
 export type SourceChild = ChildConfig | { config: ChildConfig; production?: Record<string, unknown> };
+/**
+ * A complete, standalone Lesson Config, not a Course Stage 3 placement.
+ * Stage 3 new Lessons have no identity, publication languages or Sections;
+ * Stage 5 Course orchestration must create the separate Lesson handoff.
+ * Optional audience age/grade ranges remain Config params.
+ */
 export type Source = Omit<Lesson_Config, 'section'> & {
   section: { items: Record<string, SourceChild>; order: string[] };
 };
@@ -84,7 +90,8 @@ function validateSections(source: Source): void {
 export function materializeLesson(config: Source, options: Options): Result {
   const dir = options.directory ?? '';
   destination(dir,'index.ts');
-  if (config.type !== 'lesson' || !uuid.test(config.id)) throw new Error('lesson: invalid type/UUID');
+  if (!isObject(config) || config.type !== 'lesson' || !uuid.test(config.id))
+    throw new Error('lesson: a complete standalone Lesson Config with a persisted UUID is required, not a Course Stage 3 placement or built override');
   part(config.slug,'lesson.slug');
   if (!localeKey.test(options.documentLanguage)) throw new Error('lesson: invalid documentLanguage');
   const planned = config.params?.languages;

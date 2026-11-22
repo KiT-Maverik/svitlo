@@ -61,3 +61,26 @@ test('Rejects duplicate order, mismatched Section slug and unsafe paths',()=>{
  const x=lesson();x.section.items.introduction.slug='bad';
  assert.throws(()=>materializeLesson(x as Parameters<typeof materializeLesson>[0],{documentLanguage:'en',renderSection:()=>{throw Error('never')}}),/invalid Section/);
 });
+
+test('Lesson audience age/grade ranges remain Config params, without source mutation',()=>{
+ const original=lesson();
+ const config={...original,params:{...original.params,age:{min:6,max:10},grade:{min:1,max:4}}};
+ const result=materializeLesson(config as Parameters<typeof materializeLesson>[0],{
+  documentLanguage:'en',
+  renderSection:(child,opts)=>renderSection(child as ContentSource,{...opts,renderContentBlock})
+ });
+ const root=result.files.at(-1)?.content??'';
+ assert.match(root,/"age": \{\s*"min": 6,\s*"max": 10/);
+ assert.match(root,/"grade": \{\s*"min": 1,\s*"max": 4/);
+ assert.deepEqual(config.params.age,{min:6,max:10});
+});
+
+test('Course Stage 3 slots and built override references cannot be materialized as Lesson source',()=>{
+ const noChild=()=>{throw new Error('Unexpected child materialization');};
+ assert.throws(()=>materializeLesson({type:'lesson',slug:'newPlan',skills:[]} as Parameters<typeof materializeLesson>[0],{
+  documentLanguage:'en',renderSection:noChild
+ }),/complete standalone Lesson Config/);
+ assert.throws(()=>materializeLesson({id:id('01'),base:{},locale:undefined} as unknown as Parameters<typeof materializeLesson>[0],{
+  documentLanguage:'en',renderSection:noChild
+ }),/complete standalone Lesson Config/);
+});
