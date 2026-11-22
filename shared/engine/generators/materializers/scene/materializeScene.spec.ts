@@ -17,8 +17,7 @@ const context = () => ({
   production: { specification: '# Verified scene\n\nUse the approved interaction.\n', pending: true },
 });
 function parse(source: string) {
-  const file = ts.createSourceFile('index.ts', source, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS);
-  assert.equal(file.parseDiagnostics.length, 0);
+  assert.equal(syntaxErrorCount(source), 0);
 }
 
 test('Scene emits canonical source, source locale and the exact reviewed specification', () => {
@@ -72,3 +71,14 @@ test('Incomplete Scene staging retains an explicitly blocking, type-correct Conf
     ...context(), registered: true, production: { specification: '# Reviewed' },
   }), /completed Scene/);
 });
+
+
+/** Public TypeScript API: syntactic diagnostics without relying on internal SourceFile fields. */
+function syntaxErrorCount(source: string, fileName = 'index.ts'): number {
+  const result = ts.transpileModule(source, {
+    fileName,
+    reportDiagnostics: true,
+    compilerOptions: { target: ts.ScriptTarget.ES2022 },
+  });
+  return (result.diagnostics ?? []).filter(d => d.category === ts.DiagnosticCategory.Error).length;
+}
