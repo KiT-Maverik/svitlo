@@ -3,6 +3,7 @@
  * *plan*: parent #775 owns path joining, preflight, symlink checks and writes.
  * This is not a Props/JSON publisher, and never executes the YAML builder.
  */
+import { isDeepStrictEqual } from 'node:util';
 import type { ContentBlock_Audio_Config } from '../../../configurators/contentBlocks/defineAudio';
 import { audio_Config_Schema } from '../../../configurators/contentBlocks/defineAudio';
 
@@ -170,7 +171,7 @@ export function materializeAudio(config: AudioDraftConfig, options: AudioMateria
   }
   // Non-strict Zod objects may strip unknown keys. Never emit those extra
   // fields (invalid at TS call sites) or silently discard reviewed input.
-  if (JSON.stringify(checked.data) !== JSON.stringify(fields)) {
+  if (!isDeepStrictEqual(checked.data, fields)) {
     throw new Error('Cannot materialize type-valid Audio Config: unsupported authored fields');
   }
 

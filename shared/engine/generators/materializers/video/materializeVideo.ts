@@ -3,6 +3,7 @@
  * *plan*: parent #775 owns path joining, preflight, symlink checks and writes.
  * This is not a Props/JSON publisher, and never executes the YAML builder.
  */
+import { isDeepStrictEqual } from 'node:util';
 import type { ContentBlock_Video_Config } from '../../../configurators/contentBlocks/defineVideo';
 import { video_Config_Schema } from '../../../configurators/contentBlocks/defineVideo';
 
@@ -171,7 +172,7 @@ export function materializeVideo(config: VideoDraftConfig, options: VideoMateria
   }
   // Non-strict Zod objects may strip unknown keys. Never emit those extra
   // fields (invalid at TS call sites) or silently discard reviewed input.
-  if (JSON.stringify(checked.data) !== JSON.stringify(fields)) {
+  if (!isDeepStrictEqual(checked.data, fields)) {
     throw new Error('Cannot materialize type-valid Video Config: unsupported authored fields');
   }
 

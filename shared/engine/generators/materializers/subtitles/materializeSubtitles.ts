@@ -3,6 +3,7 @@
  * *plan*: parent #775 owns path joining, preflight, symlink checks and writes.
  * This is not a Props/JSON publisher, and never executes the YAML builder.
  */
+import { isDeepStrictEqual } from 'node:util';
 import type { ContentBlock_Subtitles_Config } from '../../../configurators/contentBlocks/defineSubtitles';
 import { subtitles_Config_Schema } from '../../../configurators/contentBlocks/defineSubtitles';
 
@@ -169,7 +170,7 @@ export function materializeSubtitles(config: SubtitlesDraftConfig, options: Subt
   }
   // Non-strict Zod objects may strip unknown keys. Never emit those extra
   // fields (invalid at TS call sites) or silently discard reviewed input.
-  if (JSON.stringify(checked.data) !== JSON.stringify(fields)) {
+  if (!isDeepStrictEqual(checked.data, fields)) {
     throw new Error('Cannot materialize type-valid Subtitles Config: unsupported authored fields');
   }
 

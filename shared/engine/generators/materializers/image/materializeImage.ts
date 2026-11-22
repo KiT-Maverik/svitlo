@@ -3,6 +3,7 @@
  * *plan*: parent #775 owns path joining, preflight, symlink checks and writes.
  * This is not a Props/JSON publisher, and never executes the YAML builder.
  */
+import { isDeepStrictEqual } from 'node:util';
 import type { ContentBlock_Image_Config } from '../../../configurators/contentBlocks/defineImage';
 import { image_Config_Schema } from '../../../configurators/contentBlocks/defineImage';
 
@@ -175,7 +176,7 @@ export function materializeImage(config: ImageDraftConfig, options: ImageMateria
   }
   // Non-strict Zod objects may strip unknown keys. Never emit those extra
   // fields (invalid at TS call sites) or silently discard reviewed input.
-  if (JSON.stringify(checked.data) !== JSON.stringify(fields)) {
+  if (!isDeepStrictEqual(checked.data, fields)) {
     throw new Error('Cannot materialize type-valid Image Config: unsupported authored fields');
   }
 

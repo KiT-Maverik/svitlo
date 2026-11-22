@@ -10,7 +10,7 @@ const productionLanguages: CourseWorkflowStage1Languages = { document: 'uk', pla
 const options = { documentLanguage: productionLanguages.document, plannedLanguages: productionLanguages.planned };
 const valid = () => ({
   id, slug: 'captions' as const, type: 'subtitles' as const, params: {},
-  locale: { fileName: { uk: 'uk.vtt', en: 'en.vtt' } },
+  locale: { fileName: { uk: `${id}.vtt`, en: '01f1d8b8-e409-4cf3-bd64-1e76f2be9db2.vtt' } },
 });
 
 test('subtitles: exact source, imports, locale pruning, deterministic non-writing plan', () => {
@@ -25,13 +25,13 @@ test('subtitles: exact source, imports, locale pruning, deterministic non-writin
   const module = one.files.find(file => file.path === 'index.ts')?.content ?? '';
   assert.match(module, /defineSubtitles<"captions", typeof languages>/);
   assert(module.includes(id), 'original immutable UUID retained');
-  assert(!module.includes('en.vtt'), 'unreviewed locale is not materialized');
+  assert(!module.includes('01f1d8b8-e409-4cf3-bd64-1e76f2be9db2.vtt'), 'unreviewed locale is not materialized');
   const parsed = ts.transpileModule(module, { fileName: 'index.ts', reportDiagnostics: true,
     compilerOptions: { target: ts.ScriptTarget.ES2022, module: ts.ModuleKind.ESNext } });
   assert.equal((parsed.diagnostics ?? []).filter(d => d.category === ts.DiagnosticCategory.Error).length, 0, 'emitted TS must parse');
   assert(one.diagnostics.some(item => item.code === 'pending-locales'));
   assert(one.diagnostics.every(item => item.severity === 'warning'));
-  assert.match(module, /uk.vtt/);
+  assert.match(module, new RegExp(id + '\\.vtt'));
   assert(!one.diagnostics.some(item => item.code === 'pending-media'));
 });
 
