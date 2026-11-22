@@ -30,8 +30,12 @@ export function materializeLessonDraft(node, context) {
       new Set(node.config.skills).size !== node.config.skills.length ||
       node.config.skills.some(id => typeof id !== 'string' || !uuidPattern.test(id)))
     throw new Error('Lesson Draft requires reviewed, unique Skill UUIDs');
-  if (!isRecord(node.config.locale) || !node.config.locale.title)
-    throw new Error('Lesson Draft requires reviewed Lesson title');
+  const title = node.config.locale?.title;
+  const document = context?.sourceLanguage;
+  if (!isRecord(node.config.locale) ||
+      !(typeof title === 'string' ? title.trim() :
+        isRecord(title) && typeof title[document] === 'string' && title[document].trim()))
+    throw new Error('Lesson Draft requires reviewed source-language Lesson title');
   if (!Array.isArray(context.plannedLanguages) || !context.plannedLanguages.length ||
       new Set(context.plannedLanguages).size !== context.plannedLanguages.length ||
       !context.plannedLanguages.includes(context.sourceLanguage))
