@@ -62,8 +62,11 @@ export function materializeCheckpointItem(config: CheckpointItemSource, context:
   }
   const files: CheckpointItemFile[] = [];
   const paths = new Set<string>();
-  for (const result of [question, answer]) {
+  for (const [result, ownedDirectory] of [[question, prefix + 'question'], [answer, prefix + 'answer']] as const) {
     for (const file of result.files) {
+      if (!file.path.startsWith(ownedDirectory + '/')) {
+        throw new Error('CheckpointItem: child emitted a file outside its owned directory: ' + file.path);
+      }
       if (paths.has(file.path) || file.path === prefix + 'index.ts') {
         throw new Error('CheckpointItem: duplicate child file ' + file.path);
       }
