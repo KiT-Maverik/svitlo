@@ -430,9 +430,9 @@ const existingConfigWithId: CourseWorkflowStage3ExistingLessonConfig = {
   id: importedLesson.id,
 };
 
-// @ts-expect-error Existing Lesson placement must include a direct ID or a validated override result.
 const missingExistingReference: CourseWorkflowStage3ExistingLesson = {
   config: existingConfig,
+  // @ts-expect-error Existing Lesson placement needs a direct ID or validated override result.
   production: { kind: 'existing', matching: match },
 };
 
@@ -442,15 +442,15 @@ const existingMissingMatch: CourseWorkflowStage3ExistingLesson = {
   production: { kind: 'existing', existing: importedLesson.id },
 };
 
-// @ts-expect-error The override result requires an explicit rationale.
 const missingOverrideRationale: CourseWorkflowStage3ExistingLesson = {
   config: existingConfig,
+  // @ts-expect-error Override results require an explicit rationale.
   production: { kind: 'existing', matching: match, existing: patch },
 };
 
-// @ts-expect-error A rationale without an override result is invalid.
 const rationaleWithoutOverrides: CourseWorkflowStage3ExistingLesson = {
   config: existingConfig,
+  // @ts-expect-error Direct UUID reuse does not accept an override rationale.
   production: { kind: 'existing', matching: match, existing: importedLesson.id, overrideRationale: 'Not needed' },
 };
 
@@ -494,9 +494,9 @@ const unexpectedExistingMethodology: CourseWorkflowStage3ExistingLesson = {
   },
 };
 
-// @ts-expect-error The old third discriminator no longer exists.
 const obsoleteThirdVariant: CourseWorkflowStage3LessonSlot = {
   config: existingConfig,
+  // @ts-expect-error The old third discriminator no longer exists.
   production: { kind: 'existingWithOverrides', existing: patch, matching: match },
 };
 
