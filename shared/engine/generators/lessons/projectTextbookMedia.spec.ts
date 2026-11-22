@@ -4,6 +4,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { test } from 'node:test';
 import { defineText } from '../../configurators/contentBlocks/defineText/defineText';
+import { defineImage } from '../../configurators/contentBlocks/defineImage/defineImage';
 import { defineContentSection } from '../../configurators/sections/defineContentSection';
 import { defineLesson } from '../../configurators/lessons/defineLesson/defineLesson';
 import { assertMediaPublicationReady, projectTextbookMedia, type MediaDiagnostic } from './projectTextbookMedia.utils';
@@ -217,9 +218,9 @@ test('production blocks known pending Lesson/Quiz scaffolds and pending assessme
     assert.deepEqual(publish(root, complete, 'production').diagnostics, []);
   }));
 
-
 test('complete typed Lesson source publishes all authored locales without Preview false positives', () =>
-  fixture(root => {
+  fixture((root, save) => {
+    save('images', image);
     const paragraph = defineText<'paragraph', ['en', 'uk']>({
       id: '550e8400-e29b-41d4-a716-446655440005',
       slug: 'paragraph',
@@ -227,13 +228,20 @@ test('complete typed Lesson source publishes all authored locales without Previe
       params: {},
       locale: { value: { en: 'A real explanation', uk: 'Справжнє пояснення' } },
     });
-    const section = defineContentSection<'introduction', { paragraph: typeof paragraph }, ['en', 'uk']>({
+    const diagram = defineImage<'diagram', ['en', 'uk']>({
+      id: '550e8400-e29b-41d4-a716-446655440008',
+      slug: 'diagram',
+      type: 'image',
+      params: { width: 640, height: 480 },
+      locale: { fileName: image, alt: 'Real diagram' },
+    });
+    const section = defineContentSection<'introduction', { paragraph: typeof paragraph; diagram: typeof diagram }, ['en', 'uk']>({
       id: '550e8400-e29b-41d4-a716-446655440006',
       slug: 'introduction',
       type: 'content',
       params: {},
       locale: { title: { en: 'Introduction', uk: 'Вступ' } },
-      content: { items: { paragraph }, order: ['paragraph'] },
+      content: { items: { paragraph, diagram }, order: ['paragraph', 'diagram'] },
     });
     const lesson = defineLesson({
       id: '550e8400-e29b-41d4-a716-446655440007',
@@ -251,6 +259,7 @@ test('complete typed Lesson source publishes all authored locales without Previe
     const publication = lesson.build.props({ languages: ['en', 'uk'] });
     const { result, diagnostics } = publish(root, publication, 'production');
     assert.deepEqual(diagnostics, []);
-    assert.deepEqual(result, publication, 'the strict guard is read-only for completed Props');
+    assert.equal(result.base.section[0]?.content?.[1]?.locale?.src, '/textbooks/math/assets/images/' + image);
+    assert.equal(publication.base.section[0]?.content?.[1]?.locale?.src, image, 'authored Build results stay unchanged');
     assert.equal(result.locale?.uk?.section?.[0]?.content?.[0]?.locale?.value, 'Справжнє пояснення');
   }));
