@@ -158,7 +158,7 @@ function reuseOptions() {
     id: reusedLessonId, sourceSha: matching.sourceSha,
     languages: ['uk'],
     exportName: 'actualLesson',
-    importPath: '#lessonsData/1/' + reusedLessonId,
+    importPath: '#lessonsData/1/' + reusedLessonId + '/index',
     configurator: {
       id: reusedLessonId,
       build: {
@@ -236,7 +236,7 @@ test('verified built sparse Lesson override round-trips through real Lesson and 
   opts.resolveExistingLesson = () => ({
     id: reusedLessonId, sourceSha: matching.sourceSha,
     languages: ['uk'], exportName: 'independentLesson',
-    importPath: '#lessonsData/1/' + reusedLessonId,
+    importPath: '#lessonsData/1/' + reusedLessonId + '/index',
     configurator: realLesson, rawPatch: raw,
   });
   const plan = materializeCourseStage5(reviewed, opts);
