@@ -108,6 +108,25 @@ function node(value: unknown, at: string): Node {
 function normalizeStage2(input: LessonWorkflowMaterializerInput) {
   const metadata = new Map<string, Record<string, unknown>>();
   const seen = new Set<string>([input.config.id]);
+  const ordered = (value: unknown, location: string, wrapped: boolean) => {
+    if (!isRecord(value) || !isRecord(value.items) || !Array.isArray(value.order))
+      throw new Error(location + ': expected authored { items, order }');
+    const keys = Object.keys(value.items);
+    if (keys.length !== value.order.length || new Set(value.order).size !== keys.length ||
+      value.order.some(key => typeof key !== 'string' || !Object.hasOwn(value.items, key)))
+      throw new Error(location + '.order: every authored child must be ordered once');
+    const items: Record<string, unknown> = {};
+    for (const key of keys) {
+      if (!safeSlug.test(key)) throw new Error(location + ': unsafe child key ' + key);
+      const raw = node(value.items[key], location + '.items.' + key);
+      if (raw.config.slug !== key)
+        throw new Error(location + '.items.' + key + ': key and child slug disagree');
+      const child = unwrap(value.items[key], location + '.items.' + key);
+      items[key] = wrapped ? { config: child, ...(raw.production ? { production: raw.production } : {}) } : child;
+    }
+    return { items, order: [...value.order] };
+  };
+
   function unwrap(value: unknown, at: string): Record<string, unknown> {
     const current = node(value, at);
     const config = current.config;
@@ -118,24 +137,7 @@ function normalizeStage2(input: LessonWorkflowMaterializerInput) {
     const normalized: Record<string, unknown> = { ...config };
     const typ = config.type;
 
-    const ordered = (value: unknown, location: string, wrapped: boolean) => {
-      if (!isRecord(value) || !isRecord(value.items) || !Array.isArray(value.order))
-        throw new Error(location + ': expected authored { items, order }');
-      const keys = Object.keys(value.items);
-      if (keys.length !== value.order.length || new Set(value.order).size !== keys.length ||
-        value.order.some(key => typeof key !== 'string' || !Object.hasOwn(value.items, key)))
-        throw new Error(location + '.order: every authored child must be ordered once');
-      const items: Record<string, unknown> = {};
-      for (const key of keys) {
-        if (!safeSlug.test(key)) throw new Error(location + ': unsafe child key ' + key);
-        const raw = node(value.items[key], location + '.items.' + key);
-        if (raw.config.slug !== key)
-          throw new Error(location + '.items.' + key + ': key and child slug disagree');
-        const child = unwrap(value.items[key], location + '.items.' + key);
-        items[key] = wrapped ? { config: child, ...(raw.production ? { production: raw.production } : {}) } : child;
-      }
-      return { items, order: [...value.order] };
-    };
+
     if (['content', 'practice', 'codingTask', 'learningFlow', 'quiz', 'flashcards'].includes(typ as string))
       normalized.content = ordered(config.content, at + '.content', true);
     else if (typ === 'carousel')
