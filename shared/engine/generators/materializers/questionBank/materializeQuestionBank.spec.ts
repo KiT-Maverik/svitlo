@@ -80,13 +80,13 @@ const question = () => ({
   },
 });
 const editorial = 'export const reviewedBank = { reviewedAtStage3: true };\n';
-const finalAuth = () => ({
+const finalAuth = (input: unknown = completeBank()) => ({
   ownerLessonId,
   reviewed: {
     approved: true as const, reviewer: 'Qualified independent reviewer',
     content: editorial, blobSha: gitBlobSha(editorial),
     reviewedSourceBlobSha: gitBlobSha(editorial), reviewCommitSha: sha('e'),
-    reviewedInputSha256: createHash('sha256').update(authoredBankLiteral(completeBank())).digest('hex'),
+    reviewedInputSha256: createHash('sha256').update(authoredBankLiteral(input)).digest('hex'),
   },
   snapshot: snapshot(editorial),
   blocks: { registeredSceneIds: new Set<string>(), approvedMediaBlockIds: new Set<string>() },
@@ -152,8 +152,8 @@ test('Question Bank final refuses source/review drift, missing groups and malfor
   assert.throws(() => materializeQuestionBank(completeBank() as never, badReview), /independently approved/);
   const empty = completeBank();
   empty.config.questions.selectOneAnswer = {} as never;
-  assert.throws(() => materializeQuestionBank(empty as never, finalAuth()), /no members/);
+  assert.throws(() => materializeQuestionBank(empty as never, finalAuth(empty)), /no members/);
   const wrong = completeBank();
   wrong.config.questions.selectOneAnswer.promptOne.config.type = 'otherKind' as never;
-  assert.throws(() => materializeQuestionBank(wrong as never, finalAuth()), /kind\/slug mismatch/);
+  assert.throws(() => materializeQuestionBank(wrong as never, finalAuth(wrong)), /kind\/slug mismatch/);
 });
