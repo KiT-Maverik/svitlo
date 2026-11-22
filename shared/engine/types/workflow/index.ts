@@ -24,5 +24,6 @@ export type {
   CourseWorkflowStage3LessonMatch,
   CourseWorkflowStage3NewLesson,
   CourseWorkflowStage3ExistingLesson,
-  CourseWorkflowStage3OverriddenLesson,
+  CourseWorkflowStage3NewLessonConfig,
+  CourseWorkflowStage3ExistingLessonConfig,
 } from './courseWorkflow.types';

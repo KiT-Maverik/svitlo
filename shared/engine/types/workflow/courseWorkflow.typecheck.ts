@@ -22,7 +22,8 @@ import type {
   CourseWorkflowStage3LessonMatch,
   CourseWorkflowStage3NewLesson,
   CourseWorkflowStage3ExistingLesson,
-  CourseWorkflowStage3OverriddenLesson,
+  CourseWorkflowStage3NewLessonConfig,
+  CourseWorkflowStage3ExistingLessonConfig,
 } from './courseWorkflow.types';
 
 const config = {
@@ -299,9 +300,9 @@ void prematureEpisodeSections;
 void prematureModuleId;
 void missingModuleMethodology;
 
-/** Stage 3 must resolve every provisional Lesson, regardless of nesting. */
+/** Stage 3 resolves every provisional Lesson using only two public variants. */
 declare const importedLesson: Lesson_Configurator;
-const intent = {
+const newIntent = {
   objective: 'Explain patterns through observation',
   depth: 'Introductory',
   sequenceReason: 'After foundational observations',
@@ -309,46 +310,54 @@ const intent = {
 } satisfies CourseWorkflowStage3LessonIntent;
 
 const match = {
-  lessonId: importedLesson.id,
   methodologySourcePath: 'content/example/data/lessons/a/lesson-uuid/methodology.md',
   sourceSha: 'verified-source-revision',
-  matchingRationale: 'Methodology, Skills, audience and depth match the intended Course slot',
+  matchingRationale: 'Methodology, Skills, audience and depth match the Course slot',
   languageEvidence: 'Reviewed source language and remaining locale dependencies',
 } satisfies CourseWorkflowStage3LessonMatch;
 
+const newConfig = {
+  type: 'lesson',
+  slug: 'newDayNight',
+  skills: lessonSlot.config.skills,
+  params: { age: { min: 6, max: 10 }, grade: { min: 1, max: 4 } },
+  locale: { title: 'Day and night' },
+} satisfies CourseWorkflowStage3NewLessonConfig;
+
 const newLesson = {
-  config: {
-    type: 'lesson',
-    slug: 'newDayNight',
-    skills: lessonSlot.config.skills,
-    locale: { title: 'Day and night' },
-  },
+  config: newConfig,
   production: {
-    ...intent,
     kind: 'new',
-    methodology: 'Complete pedagogical specification belongs here; this fixture is not approved content.',
+    ...newIntent,
+    methodology: 'Complete pedagogical specification belongs here; this test is not reviewed content.',
   },
 } satisfies CourseWorkflowStage3NewLesson;
 
+const existingConfig = {
+  type: 'lesson',
+  id: importedLesson.id,
+  slug: 'reusedDayNight',
+  skills: lessonSlot.config.skills,
+} satisfies CourseWorkflowStage3ExistingLessonConfig;
+
 const existingLesson = {
-  config: { type: 'lesson', slug: 'reusedDayNight', skills: lessonSlot.config.skills },
-  production: { ...intent, kind: 'existing', matching: match },
+  config: existingConfig,
+  production: { kind: 'existing', matching: match },
 } satisfies CourseWorkflowStage3ExistingLesson;
 
 const patch = importedLesson.build.overrides(
   { params: { sections: { allowSkipping: false } } },
   { languages: ['uk'] },
 );
-const withOverrides = {
-  config: { type: 'lesson', slug: 'dayNightPractice', skills: lessonSlot.config.skills },
+const existingWithOverrides = {
+  config: { ...existingConfig, slug: 'dayNightPractice' },
   production: {
-    ...intent,
-    kind: 'existingWithOverrides',
+    kind: 'existing',
     matching: match,
     overrides: patch,
     overrideRationale: 'Course progression requires this navigation constraint',
   },
-} satisfies CourseWorkflowStage3OverriddenLesson;
+} satisfies CourseWorkflowStage3ExistingLesson;
 
 const resolvedChapter = {
   ...chapter,
@@ -363,7 +372,7 @@ const resolvedModule = {
   config: {
     ...module.config,
     content: {
-      items: { observations: resolvedChapter, repeated: withOverrides, episode: episodeSlot },
+      items: { observations: resolvedChapter, repeated: existingWithOverrides, episode: episodeSlot },
       order: ['observations', 'repeated', 'episode'],
     },
   },
@@ -374,81 +383,111 @@ const resolvedCourse = {
   config: {
     ...planned.config,
     content: {
-      items: { skyBasics: resolvedModule, directChapter: resolvedChapter, newLesson, existingLesson, withOverrides },
-      order: ['skyBasics', 'directChapter', 'newLesson', 'existingLesson', 'withOverrides'],
+      items: { skyBasics: resolvedModule, directChapter: resolvedChapter, newLesson, existingLesson, existingWithOverrides },
+      order: ['skyBasics', 'directChapter', 'newLesson', 'existingLesson', 'existingWithOverrides'],
     },
   },
 } satisfies CourseWorkflowStage3;
 
 const stage2View: CourseWorkflowStage2 = resolvedCourse;
 
-// @ts-expect-error Unresolved Stage 2 slot cannot satisfy a completed Stage 3 placement.
+// @ts-expect-error Unresolved Stage 2 slots cannot remain in a completed Stage 3.
 const unresolvedSlot: CourseWorkflowStage3LessonSlot = lessonSlot;
 
 // @ts-expect-error Stage 3 course must replace unresolved Stage 2 Lesson slots.
 const unresolvedCourse: CourseWorkflowStage3Config = planned.config;
 
 const missingNewMethodology: CourseWorkflowStage3NewLesson = {
-  config: newLesson.config,
-  // @ts-expect-error Required for newly planned Lesson.
-  production: { ...intent, kind: 'new' },
+  config: newConfig,
+  // @ts-expect-error Newly planned Lessons require substantive methodology.
+  production: { ...newIntent, kind: 'new' },
 };
 
-const unexpectedNewLessonId: CourseWorkflowStage3NewLesson = {
-  config: newLesson.config,
-  production: {
-    ...newLesson.production,
-    // @ts-expect-error New Lesson UUIDs are allocated at Stage 5, not Stage 3.
-    lessonId: importedLesson.id,
+const newWithId: CourseWorkflowStage3NewLesson = {
+  config: {
+    ...newConfig,
+    // @ts-expect-error New Lesson UUIDs are minted only at Stage 5.
+    id: importedLesson.id,
+  },
+  production: newLesson.production,
+};
+
+const newWithLanguages: CourseWorkflowStage3NewLessonConfig = {
+  ...newConfig,
+  params: {
+    // @ts-expect-error Stage 3 planned languages belong to Course production.
+    languages: ['uk'],
   },
 };
 
-const missingExistingReference: CourseWorkflowStage3ExistingLesson = {
-  config: existingLesson.config,
-  // @ts-expect-error Reused Lessons need source evidence and matching rationale.
-  production: { ...intent, kind: 'existing' },
+const existingMissingId: CourseWorkflowStage3ExistingLesson = {
+  // @ts-expect-error Reuse needs the existing Lesson's real Config identity.
+  config: { type: 'lesson', slug: 'missingId', skills: lessonSlot.config.skills },
+  production: existingLesson.production,
 };
 
-const unexpectedExistingMethodology: CourseWorkflowStage3ExistingLesson = {
-  config: existingLesson.config,
+const existingMissingMatch: CourseWorkflowStage3ExistingLesson = {
+  config: existingConfig,
+  // @ts-expect-error Reuse needs verified matching evidence.
+  production: { kind: 'existing' },
+};
+
+// @ts-expect-error Supplying overrides without an override rationale is invalid.
+const missingOverrideRationale: CourseWorkflowStage3ExistingLesson = {
+  config: existingConfig,
+  production: { kind: 'existing', matching: match, overrides: patch },
+};
+
+// @ts-expect-error A rationale without actual overrides is also invalid.
+const rationaleWithoutOverrides: CourseWorkflowStage3ExistingLesson = {
+  config: existingConfig,
+  production: { kind: 'existing', matching: match, overrideRationale: 'Not needed' },
+};
+
+const rawOverridesAreInvalid: CourseWorkflowStage3ExistingLesson = {
+  config: existingConfig,
   production: {
-    ...existingLesson.production,
-    // @ts-expect-error Existing Lesson methodology is independent and must not be duplicated.
-    methodology: 'A competing copy',
-  },
-};
-
-const missingOverrides: CourseWorkflowStage3OverriddenLesson = {
-  config: withOverrides.config,
-  // @ts-expect-error Overrides case must carry the built {base, locale} publication result.
-  production: { ...intent, kind: 'existingWithOverrides', matching: match, overrideRationale: 'Needed' },
-};
-
-const rawOverridesAreInvalid: CourseWorkflowStage3OverriddenLesson = {
-  config: withOverrides.config,
-  production: {
-    ...withOverrides.production,
-    // @ts-expect-error A raw params patch is not the result of lesson.build.overrides().
+    kind: 'existing',
+    matching: match,
+    // @ts-expect-error Raw params patches are not the result of lesson.build.overrides().
     overrides: { params: { sections: { allowSkipping: false } } },
+    overrideRationale: 'Use validated Build output',
   },
 };
 
 const unexpectedExistingLocale: CourseWorkflowStage3ExistingLesson = {
   config: {
-    ...existingLesson.config,
-    // @ts-expect-error Reused Lesson titles can be changed only by explicit Build overrides.
+    ...existingConfig,
+    // @ts-expect-error Course-local title edits require explicit overrides, not Config mutation.
     locale: { title: 'Implicit Course-local mutation' },
   },
   production: existingLesson.production,
 };
 
+const unexpectedExistingMethodology: CourseWorkflowStage3ExistingLesson = {
+  config: existingConfig,
+  production: {
+    ...existingLesson.production,
+    // @ts-expect-error Never duplicate an independent Lesson methodology.
+    methodology: 'Competing copy',
+  },
+};
+
+// @ts-expect-error The old third discriminator no longer exists.
+const obsoleteThirdVariant: CourseWorkflowStage3LessonSlot = {
+  config: existingConfig,
+  production: { kind: 'existingWithOverrides', matching: match, overrides: patch, overrideRationale: 'Old shape' },
+};
+
 void importedLesson;
-void intent;
+void newIntent;
 void match;
+void newConfig;
 void newLesson;
+void existingConfig;
 void existingLesson;
 void patch;
-void withOverrides;
+void existingWithOverrides;
 void resolvedChapter;
 void resolvedModule;
 void resolvedCourse;
@@ -456,9 +495,13 @@ void stage2View;
 void unresolvedSlot;
 void unresolvedCourse;
 void missingNewMethodology;
-void unexpectedNewLessonId;
-void missingExistingReference;
-void unexpectedExistingMethodology;
-void missingOverrides;
+void newWithId;
+void newWithLanguages;
+void existingMissingId;
+void existingMissingMatch;
+void missingOverrideRationale;
+void rationaleWithoutOverrides;
 void rawOverridesAreInvalid;
 void unexpectedExistingLocale;
+void unexpectedExistingMethodology;
+void obsoleteThirdVariant;

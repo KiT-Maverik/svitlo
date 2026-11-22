@@ -157,90 +157,104 @@ export interface CourseWorkflowStage2 extends CourseWorkflowStage1 {
   config: CourseWorkflowStage2Config;
 }
 
-/** Stage 3 retains the Stage 2 Skill targets and a Course-local placement slug.
- * It does not instantiate or copy the independent Lesson Configurator.
+/** The planned Skills and Course-local placement slug remain from Stage 2.
+ * The lesson ID is present only for an existing, independently owned Lesson.
  */
 type CourseWorkflowStage3PlacementConfig = CourseWorkflowStage2LessonSlot['config'] &
-  Pick<Lesson_Config, 'slug'> & {
+  Pick<Lesson_Config, 'slug'>;
+
+/** Stage 3 authors the fields needed to start an independent Lesson later.
+ * Reuse the canonical Lesson Config, but defer its UUID, languages, Sections and
+ * required runtime-only settings until the Lesson's own Production process.
+ */
+export type CourseWorkflowStage3NewLessonConfig = CourseWorkflowStage3PlacementConfig &
+  Pick<Lesson_Config, 'locale'> & {
     id?: never;
-    params?: never;
+    params?: Partial<Omit<Lesson_Config['params'], 'languages'>> & {
+      languages?: never;
+    };
     section?: never;
     events?: never;
   };
 
+/** Reuse refers to the real existing Lesson by ID, never a copied Config. */
+export type CourseWorkflowStage3ExistingLessonConfig = CourseWorkflowStage3PlacementConfig &
+  Pick<Lesson_Config, 'id'> & {
+    params?: never;
+    locale?: never;
+    section?: never;
+    events?: never;
+  };
+
+/** Course-specific intent for a genuinely new Lesson; editorial, not Props. */
 export type CourseWorkflowStage3LessonIntent = {
-  /** Measurable purpose of this Course slot, not an implicit Lesson override. */
+  /** Observable learning objective, not a generic topic label. */
   objective: string;
-  /** Intended level of conceptual detail for candidate matching. */
+  /** Pedagogical level and boundaries of the proposed Lesson. */
   depth: string;
-  /** Why the slot belongs at this exact point in the Course. */
+  /** Why this Lesson belongs at this position in the Course sequence. */
   sequenceReason: string;
-  /** The learning evidence expected; details belong to the Course Workflow Skill. */
+  /** How the intended learning will be evaluated, without inventing Question IDs. */
   assessmentEvidence: string;
 };
 
+/** Verification evidence for reusing an independent Lesson.
+ * The Lesson UUID is already config.id; do not store it twice.
+ */
 export type CourseWorkflowStage3LessonMatch = {
-  /** Immutable verified UUID, usually imported as existingLesson.id. */
-  lessonId: Lesson_Config['id'];
-  /** Inspected canonical methodology path and source revision. */
+  /** Canonical Lesson methodology file inspected during candidate matching. */
   methodologySourcePath: string;
+  /** Real Git revision of the source that was read and assessed. */
   sourceSha: string;
-  /** Verified pedagogical suitability beyond simply sharing a Skill ID. */
+  /** Why the full Skill set, audience, depth and methods are suitable. */
   matchingRationale: string;
-  /** Verified available locales or a separately tracked localization dependency. */
+  /** Verified localization coverage or documented translation dependency. */
   languageEvidence: string;
 };
 
-/** New Lesson: author its complete methodology here, but no Lesson UUID/PR yet. */
+/** New Lesson: full methodology here, no separate Lesson UUID or PR yet. */
 export type CourseWorkflowStage3NewLesson = {
-  config: CourseWorkflowStage3PlacementConfig & Pick<Lesson_Config, 'locale'>;
+  config: CourseWorkflowStage3NewLessonConfig;
   production: CourseWorkflowStage3LessonIntent & {
     kind: 'new';
-    /** Full, substantive Lesson methodology; consult the Course Workflow Skill
-     * for scope, evidence, misconceptions, accessibility and source requirements.
+    /** Complete reviewable Lesson methodology, not a one-line outline.
+     * The Course Workflow Skill owns the full pedagogical acceptance criteria.
      */
     methodology: string;
     lessonId?: never;
     matching?: never;
     overrides?: never;
-  };
-};
-
-/** Existing Lesson: preserve its independent source; no implicit local patches. */
-export type CourseWorkflowStage3ExistingLesson = {
-  config: CourseWorkflowStage3PlacementConfig & { locale?: never };
-  production: CourseWorkflowStage3LessonIntent & {
-    kind: 'existing';
-    matching: CourseWorkflowStage3LessonMatch;
-    methodology?: never;
-    overrides?: never;
     overrideRationale?: never;
   };
 };
 
-/** Existing Lesson with validated Course-only changes to this placement. */
-export type CourseWorkflowStage3OverriddenLesson = {
-  config: CourseWorkflowStage3PlacementConfig & { locale?: never };
-  production: CourseWorkflowStage3LessonIntent & {
-    kind: 'existingWithOverrides';
+/** There are only TWO Lesson outcomes: new or existing.
+ * Overrides are an optional Course-local adaptation of the same existing Lesson.
+ * The internal pair requires a rationale exactly when overrides are supplied.
+ */
+export type CourseWorkflowStage3ExistingLesson = {
+  config: CourseWorkflowStage3ExistingLessonConfig;
+  production: {
+    kind: 'existing';
+    /** Evidence that the referenced Lesson was actually inspected for reuse. */
     matching: CourseWorkflowStage3LessonMatch;
-    /** Genuine {base, locale} from lesson.build.overrides(...).
-     * This is NOT a raw patch for course.build.overrides(...): the materializer
-     * must handle that contract boundary explicitly.
-     */
-    overrides: ReturnType<Lesson_Configurator['build']['overrides']>;
-    /** Why this Course-specific adaptation is pedagogically necessary. */
-    overrideRationale: string;
     methodology?: never;
-  };
+    lessonId?: never;
+  } & (
+    | { overrides?: never; overrideRationale?: never }
+    | {
+        /** Real {base, locale} returned by importedLesson.build.overrides().
+         * Never pass this directly as a raw patch to course.build.overrides().
+         */
+        overrides: ReturnType<Lesson_Configurator['build']['overrides']>;
+        overrideRationale: string;
+      }
+  );
 };
 
-export type CourseWorkflowStage3LessonSlot =
-  | CourseWorkflowStage3NewLesson
-  | CourseWorkflowStage3ExistingLesson
-  | CourseWorkflowStage3OverriddenLesson;
+export type CourseWorkflowStage3LessonSlot = CourseWorkflowStage3NewLesson | CourseWorkflowStage3ExistingLesson;
 
-/** Stage 3 changes only nested Lesson slots, not the Stage 2 module structure. */
+/** Stage 3 changes only the nested Lesson slots, keeping Stage 2 hierarchy. */
 export type CourseWorkflowStage3Chapter = Omit<CourseWorkflowStage2Chapter, 'config'> & {
   config: Omit<CourseWorkflowStage2Chapter['config'], 'content'> & {
     content: Omit<CourseWorkflowStage2Chapter['config']['content'], 'items'> & {
@@ -274,7 +288,6 @@ export type CourseWorkflowStage3Config = Omit<CourseWorkflowStage2Config, 'conte
   content: CourseWorkflowStage3Content;
 };
 
-/** Same Stage 1–2 object, now with matched or fully specified Lesson slots. */
 export interface CourseWorkflowStage3 extends CourseWorkflowStage2 {
   config: CourseWorkflowStage3Config;
 }
