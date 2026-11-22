@@ -145,24 +145,16 @@ test('emitted Checkpoint → Item → Answer → Carousel → Scene modules type
       fs.writeFileSync(dest, file.content);
     }
 
+    const configPath = path.join(engine, 'tsconfig.json');
+    const read = ts.readConfigFile(configPath, ts.sys.readFile);
+    if (read.error) throw new Error(ts.flattenDiagnosticMessageText(read.error.messageText, '\\n'));
+    const parsed = ts.parseJsonConfigFileContent(read.config, ts.sys, engine);
+    assert.equal(parsed.errors.length, 0, 'Engine tsconfig must be parseable');
     const options: ts.CompilerOptions = {
-      target: ts.ScriptTarget.ES2022,
-      module: ts.ModuleKind.ESNext,
-      moduleResolution: ts.ModuleResolutionKind.Bundler,
-      strict: true,
+      ...parsed.options,
       noEmit: true,
-      skipLibCheck: true,
-      esModuleInterop: true,
-      jsx: ts.JsxEmit.ReactJSX,
       baseUrl: engine,
-      paths: {
-        '#configurators': ['configurators/index.ts'],
-        '#lessons': ['lessons/index.ts'],
-        '#schemas': ['schemas/index.ts'],
-        '#types': ['types/index.ts'],
-        '#utils': ['utils/index.ts'],
-        '@svitlo/engine/build': ['build.ts'],
-      },
+      paths: { ...parsed.options.paths, '@svitlo/engine/build': ['build.ts'] },
     };
     const entrypoints = files.map(file => path.join(tempRoot, file.path));
     const program = ts.createProgram(entrypoints, options);
