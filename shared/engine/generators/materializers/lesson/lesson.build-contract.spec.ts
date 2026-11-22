@@ -113,3 +113,40 @@ test('real Build-valid pending Quiz stays blocked from source release without TO
   };
   assert.throws(() => assertLessonSourceReleaseReady(withoutComments), /reserved provisional assessment UUID/);
 });
+
+test('disabled Quiz is rejected by the real Lesson Build API', () => {
+  const disabledQuiz = defineQuizSection<'requiredQuiz', {}, ['en']>({
+    type: 'quiz',
+    id: id('02'),
+    slug: 'requiredQuiz',
+    params: {
+      disabled: true,
+      selection: { mode: 'all', questionIds: [id('22')] },
+      layout: { mode: 'stack' },
+      feedbackMode: 'immediate',
+      interaction: {
+        retries: 0, showErrors: true, showCorrectAnswers: true,
+        allowExplanations: false, allowDeferring: false,
+        allowQuestionNavigation: false, skippable: false,
+      },
+      results: { visibility: 'immediate', showScore: true },
+    },
+    locale: { title: 'Quiz', navigationLabel: 'Q' },
+    content: { items: {}, order: [] },
+  });
+  const lesson = defineLesson({
+    type: 'lesson',
+    id: id('01'),
+    slug: 'requiredLesson',
+    skills: [],
+    params: {
+      languages: ['en'] as const,
+      quizRequiredForCompletion: true,
+      sections: { allowNavigation: true, allowSkipping: true, showIndexes: true },
+    },
+    locale: { title: 'Lesson' },
+    section: { items: { requiredQuiz: disabledQuiz }, order: ['requiredQuiz'] },
+  });
+  assert.throws(() => lesson.build.props({ languages: ['en'] }),
+    /Lesson requires at least one enabled Quiz section/);
+});

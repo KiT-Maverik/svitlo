@@ -144,6 +144,27 @@ revision as merge ancestry.
 Full Engine TypeScript build, tests and real generated-module compilation
 remain required before merging; cheap Draft GitHub checks do not prove them.
 
+## In-flight #782 typed workflow / integration limitations
+
+Agent #782 owns the future `LessonWorkflowStage1` and progressively
+reviewed `LessonWorkflowMaterializerInput`: the latter is a Stage 2
+editorial `{ config, production? }` envelope with legitimate incomplete
+Question/Flashcard selection parameters, not a complete Engine
+`Lesson_Config`. **Do not cast or serialize that draft as Source.**
+Parent #775 owns the explicit, reviewed final-source adapter and
+its identity, section completion, released-language and bank validation.
+The full standalone Lesson emitter is deliberately fail-closed for
+missing/disabled required Sections. For this boundary,
+`lesson.spec.ts` proves source emission is refused; the emitted-source
+test executes the actual `build.props()` path for an enabled Quiz and
+checks that disabled Quiz is rejected by the real Engine factory.
+
+The parent must also resolve the create-only **root `index.ts` path
+collision** between the initial Stage 1 handoff and the later completed
+Lesson source. The shared atomic writer cannot overwrite human-authored
+Stage 1 contents without explicit SHA-pinned, reviewed transition
+semantics; do not fix this in #777 with an unsafe implicit overwrite.
+
 ## Integration seam (parent #775)
 
 Each `materializeX(config, options)` accepts **plain authored Config data** with
