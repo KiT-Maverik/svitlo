@@ -59,16 +59,16 @@ test('final readiness refuses incomplete Lesson media, bank sidecars and missing
 test('bank child PR checks its own generated resources and changed Section modules', () => {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-bank-readiness-'));
   try {
-    file(root, lesson + '/lesson.yaml', 'config: pending\n');
-    file(root, lesson + '/sections/quiz/index.ts', '// TODO(asset): unresolved quiz figure\n');
-    file(root, lesson + '/questions/index.ts', 'export const questions = {};\n');
-    file(root, lesson + '/flashcards/index.ts', '// TODO(asset): sibling bank draft\n');
+    file(root, lesson + '/lesson.yaml', 'config: pending\\n');
+    file(root, lesson + '/sections/quiz/index.ts', '// TODO(asset): unresolved quiz figure\\n');
+    file(root, lesson + '/questions/index.ts', 'export const questions = {};\\n');
+    file(root, lesson + '/flashcards/index.ts', '// TODO(asset): sibling bank draft\\n');
     const changed = [lesson + '/questions/index.ts', lesson + '/sections/quiz/index.ts'];
     assert.equal(affectedProductionScopes(changed)[0].mode, 'banks');
     const findings = verifyChangedEntities(root, changed);
     assert.equal(findings.length, 1);
     assert(findings[0].includes('sections/quiz/index.ts'), 'only changed Quiz source is blocked');
-    file(root, lesson + '/sections/quiz/index.ts', 'export const quiz = true;\n');
+    file(root, lesson + '/sections/quiz/index.ts', 'export const quiz = true;\\n');
     assert.deepEqual(verifyChangedEntities(root, changed), []);
     fs.rmSync(path.join(root, lesson, 'questions', 'index.ts'));
     assert(verifyChangedEntities(root, changed).some(item => item.includes('missing authored questions bank entrypoint')));
