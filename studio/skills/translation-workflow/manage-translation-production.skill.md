@@ -28,7 +28,7 @@ The integration PR must be sufficient to restart from a new chat/agent without t
 - `<!-- svitlo-translation-production:v2 -->`, campaign purpose, owner, package(s), entity family, source and current integration SHAs.
 - Frozen entity UUID/path × locale/field inventory with exact counts, excluded fields, languages and owner-approved changes.
 - Nonoverlapping batch table: batch key, owned UUIDs/paths/locales, translator + branch/PR, reviewer + review mode, exact author/review SHAs, translation/review states, actual verified evidence and blockers.
-- Owner authorizations for review start, edit rights, child merges and separate **parent-to-develop** Ready/merge decision. Pending actions always identify the next executable authorized step.
+- Owner authorizations for review start, edit rights, child merges and the separate **parent-to-develop** merge decision. Draft → Ready is the agent-owned CI/review handoff after completing authorized work, not an additional permission gate or merge approval. Pending actions always identify the next executable authorized step.
 - Links to canonical typed `review.ts` where supported; it indexes genuine completed PR-based evidence, not a second stage ledger. A missing or unhashed Props review cannot be replaced by invented approvals.
 
 For `Continue Translation PR #N`, re-read the PR body and comments, linked live agent PRs, real Git branches, current source files, tracked artifact manifest and CI. Compare evidence and inventory at current SHAs. Resume only the first assigned authorized unfinished scope. Status values distinguish `planned`, `in-progress`, `ready-for-review`, `reviewed`, `merged`, `blocked`, `complete`; translations merged without review remain **unreviewed**.
