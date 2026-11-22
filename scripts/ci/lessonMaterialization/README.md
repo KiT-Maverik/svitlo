@@ -47,3 +47,16 @@ npm run content:check:yaml-schemas --workspace @svitlo/engine
 The standalone Lesson finalizer supports `finalize --source <canonical lesson.yaml> --preserve-config` for a **strict first-time** source-preserving transfer; the bank-pending `handoff` always preserves YAML. Neither overwrites an existing authored entrypoint. See [Finalize Lesson](../../../shared/engine/scripts/finalizeLesson/README.md).
 
 **Operational E2E remains a separate post-merge acceptance gate:** after authorized deployment to the repository default branch, use a safe synthetic Draft Lesson PR with real Stage 1–5 evidence; record the actual workflow run ID, source commit/blob, output commit and repeat/failure outcome. Do not use production Lesson #666 as a speculative test. Unit tests and an unmerged workflow are not proof of live GitHub Actions execution.
+
+
+## Typed Stage 6.1 successor (#794)
+
+The reviewed TypeScript Lesson Stage 6.1 trusted command is specified in
+[TYPED.md](./TYPED.md). It is separate from the legacy YAML command above.
+Deploy its trusted workflow and Engine to the repository default branch and
+verify a safe synthetic Actions run before treating it as available.
+The typed operation accepts an explicitly reviewed Stage 2 index.ts, checks
+source/reviewer SHA and Course provenance, statically parses untrusted TS
+without executing it, archives the reviewed source and atomically commits the
+real generated source modules. It never completes Stages 6.2/6.3 or publishes
+Props. Do not dispatch the YAML command on this typed source.
