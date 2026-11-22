@@ -240,7 +240,7 @@ test('complete typed Lesson source publishes all authored locales without Previe
       slug: 'introduction',
       type: 'content',
       params: {},
-      locale: { title: { en: 'Introduction', uk: 'Вступ' } },
+      locale: { title: { en: 'Introduction', uk: 'Вступ' }, navigationLabel: '1' },
       content: { items: { paragraph, diagram }, order: ['paragraph', 'diagram'] },
     });
     const lesson = defineLesson({
@@ -259,7 +259,11 @@ test('complete typed Lesson source publishes all authored locales without Previe
     const publication = lesson.build.props({ languages: ['en', 'uk'] });
     const { result, diagnostics } = publish(root, publication, 'production');
     assert.deepEqual(diagnostics, []);
-    assert.equal(result.base.section[0]?.content?.[1]?.locale?.src, '/textbooks/math/assets/images/' + image);
-    assert.equal(publication.base.section[0]?.content?.[1]?.locale?.src, image, 'authored Build results stay unchanged');
-    assert.equal(result.locale?.uk?.section?.[0]?.content?.[0]?.locale?.value, 'Справжнє пояснення');
+    const publishedImage = result.base.section[0]?.content?.[1];
+    const originalImage = publication.base.section[0]?.content?.[1];
+    assert.equal(publishedImage?.type, 'image');
+    assert.equal((publishedImage?.locale as { src?: string } | undefined)?.src, '/textbooks/math/assets/images/' + image);
+    assert.equal((originalImage?.locale as { src?: string } | undefined)?.src, image, 'authored Props stay unchanged');
+    const translatedText = result.locale?.uk?.section?.[0]?.content?.[0];
+    assert.equal((translatedText?.locale as { value?: string } | undefined)?.value, 'Справжнє пояснення');
   }));
