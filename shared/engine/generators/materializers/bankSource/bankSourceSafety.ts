@@ -46,6 +46,8 @@ export type BankReviewedSource = {
   approved: true;
   reviewer: string;
   reviewedSourceBlobSha: string;
+  /** Trusted evaluation of exact reviewed Stage 3 TS, hashed after validation. */
+  reviewedInputSha256: string;
   reviewCommitSha: string;
 };
 
@@ -126,6 +128,18 @@ export function authoredBankLiteral(input: unknown): string {
   assertPlain(input, '$');
   return JSON.stringify(input, null, 2);
 }
+
+/** Pin structured data to the independently reviewed source's trusted evaluation. */
+export function assertReviewedBankInput(input: unknown, reviewed: BankReviewedSource): void {
+  if (!/^[a-f0-9]{64}$/i.test(reviewed.reviewedInputSha256)) {
+    throw new Error('Verified structured review input SHA-256 is required');
+  }
+  const current = createHash('sha256').update(authoredBankLiteral(input), 'utf8').digest('hex');
+  if (current !== reviewed.reviewedInputSha256) {
+    throw new Error('Structured bank input differs from the independently reviewed Stage 3 source');
+  }
+}
+
 export function gitBlobSha(contents: string): string {
   return createHash('sha1').update('blob ' + Buffer.byteLength(contents) + '\0').update(contents).digest('hex');
 }
