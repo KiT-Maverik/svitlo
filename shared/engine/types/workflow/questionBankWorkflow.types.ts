@@ -1,4 +1,5 @@
 import type { Lesson_Config } from '../../configurators/lessons/defineLesson/defineLesson.schemas';
+import type { QuizSection_Config } from '../../configurators/sections/defineQuizSection/defineQuizSection.schemas';
 import type { Question_SelectOneAnswer_Config } from '../../configurators/questions/defineSelectOneAnswer/defineSelectOneAnswer.schemas';
 import type { Question_SelectMultipleAnswers_Config } from '../../configurators/questions/defineSelectMultipleAnswers/defineSelectMultipleAnswers.schemas';
 import type { Question_MatchBlocks_Config } from '../../configurators/questions/defineMatchBlocks/defineMatchBlocks.schemas';
@@ -41,6 +42,10 @@ export type QuestionBankWorkflowEvidence = {
   /** Real Engine Assessment Method slug; a method is not a response widget. */
   assessmentMethod: Question_SelectOneAnswer_Config['params']['assessmentMethod'];
   cognitiveOperation: string;
+  /** Specific concept, mechanism, boundary, or relation under assessment. */
+  knowledgeAspect: string;
+  /** Demand beyond superficial difficulty or the chosen response widget. */
+  cognitiveDemand: string;
   misconception: string;
   context: string;
   expectedEvidence: string;
@@ -248,7 +253,7 @@ export type QuestionBankWorkflowQuizIntent =
       kind: 'local';
       rationale: string;
       sections: QuestionBankWorkflowOrdered<{
-        sectionId: string;
+        sectionId: QuizSection_Config['id'];
         sectionPath: string;
         selectionRationale: string;
         coverage: string;
