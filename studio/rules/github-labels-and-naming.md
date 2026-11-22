@@ -58,7 +58,7 @@ Consult the catalog for exact label names and colors. Content scopes use parchme
 
 ## Draft pull requests for coding agents
 
-Coding Agents **must create every PR as a GitHub Draft** (`draft: true`), whether it is a regular PR, an integration PR, or an agent subtask. Keep it in Draft after implementation and automated checks; only mark it Ready for review when the project owner explicitly requests that transition. This is the PR's native state, not a title prefix or a label.
+Coding Agents **must create every PR as a GitHub Draft** (`draft: true`), whether regular, integration or agent-subtask. **Draft is the active-editing state:** before starting a series of commits on an already Ready PR, convert it back to Draft to avoid repeatedly launching expensive CI. Keep it Draft while implementation, generation, review corrections or other work is unfinished. **When the assigned, authorized work is complete and the agent is handing the PR to the owner for inspection, the agent must mark it Ready for review without waiting for an additional owner command.** That transition triggers the applicable full-for-target Ready checks, even without a new commit. Investigate and repair actual failures, returning to Draft while actively committing repairs, then mark Ready again. A Ready-only check absent or deferred on Draft is *not a blocker* and is *not a pass*. Do not claim checks succeeded until the latest-head Ready runs finish. Ready is not merge authorization; preserve separate owner approval and entity-stage authorization. This is native PR state, not a title prefix or label.
 
 ## 3. Application requirements
 
