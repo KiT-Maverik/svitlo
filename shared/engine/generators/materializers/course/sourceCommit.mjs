@@ -87,7 +87,13 @@ export function preflightCourseSourceCommit(plan, { repoRoot } = {}) {
     throw new Error('Stage 5 source/archive are not the same canonical Course UUID root');
   const book = courseMatch[1];
   const lessonFile = new RegExp('^content/' + book +
-    '/data/lessons/([0-9a-f])/([0-9a-f-]{36})/index\\.ts
+    '/data/lessons/([0-9a-f])/([0-9a-f-]{36})/index\\.ts$');
+  const rootPrefix = path.posix.dirname(plan.sourcePath) + '/';
+  const permittedPath = file => file.startsWith(rootPrefix) ||
+    (() => { const match = file.match(lessonFile);
+      return !!match && match[2].at(-1).toLowerCase() === match[1]; })();
+  const root = path.resolve(repoRoot ?? '');
+  assertSafeDirectoryPath(root);
   if (git(root, ['rev-parse', '--show-toplevel']) !== root)
     throw new Error('Stage 5 writer requires the exact Git checkout root');
   const head = git(root, ['rev-parse', 'HEAD']);
@@ -131,120 +137,6 @@ export function preflightCourseSourceCommit(plan, { repoRoot } = {}) {
       if (mode === '120000' || mode && mode !== '040000')
         throw new Error('Git-tracked symlink/non-directory ancestor: ' + ancestor);
     }
-    const existingMode = trackedMode(root, head, file);
-    if (existingMode && existingMode !== '100644')
-      throw new Error('Git target is a symlink/non-file: ' + file);
-    const disk = path.resolve(root, file);
-    if (fs.existsSync(disk) && !existingMode)
-      throw new Error('Untracked local file collision: ' + file);
-    const status = git(root, ['status', '--porcelain', '--', file]);
-    if (status) throw new Error('Locally modified or untracked Course file: ' + file);
-    const before = blobAt(root, head, file);
-    if (before !== undefined && before !== contents && (file !== plan.sourcePath || already))
-      throw new Error('Refusing divergent authored target: ' + file);
-    if (before !== contents) pending.push(file);
-  }
-  if (already && pending.length)
-    throw new Error('Incomplete previously committed Course source transition; refusing partial rerun');
-  if (!already && !pending.includes(plan.sourcePath))
-    throw new Error('Course Stage 3 input is already materialized without source archive');
-  return { head, files, pending, already, archivePath: plan.sourceArchivePath };
-}
-
-/**
- * One authorized, source-SHA-pinned Git tree commit. The original reviewed
- * index.ts is copied byte-for-byte to workflow.stage3.ts in the SAME commit
- * that replaces index.ts. The worktree is never partially written.
- *
- * Requires an explicit checked-out branch ref already at HEAD, while the
- * checkout itself is DETACHED (CI convention); refuses writing the active
- * worktree's branch ref. Pushes, review approval and publication are separate.
- */
-export function commitCourseSourcePlan(plan, options = {}) {
-  const preview = preflightCourseSourceCommit(plan, options);
-  if (options.mode === 'check')
-    return { mode: 'check', head: preview.head, pending: preview.pending, already: preview.already };
-  if (options.mode !== 'write')
-    throw new Error('Specify mode check or explicit authorized write');
-  if (preview.already)
-    return { mode: 'write', head: preview.head, commitSha: preview.head, already: true, changed: 0 };
-  if (typeof options.authorizeWrite !== 'function' ||
-      options.authorizeWrite({ sourcePath: plan.sourcePath, reviewCommitSha: plan.reviewCommitSha,
-        sourceBlobSha: plan.sourceBlobSha, head: preview.head }) !== true)
-    throw new Error('Course Stage 5 Git commit was not explicitly authorized');
-  const root = path.resolve(options.repoRoot ?? '');
-  const branch = options.branch;
-  if (typeof branch !== 'string' || !branchPattern.test(branch))
-    throw new Error('Stage 5 requires a verified, explicit source branch');
-  git(root, ['check-ref-format', '--branch', branch]);
-  const attached = spawnSync('git', ['symbolic-ref', '--quiet', 'HEAD'],
-    { cwd: root, encoding: 'utf8' });
-  if (attached.status === 0) throw new Error('Refusing to advance the active checkout branch');
-  const target = 'refs/heads/' + branch;
-  const branchSha = git(root, ['rev-parse', target]);
-  if (branchSha !== preview.head)
-    throw new Error('Authorized source branch moved after review');
-  const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-course-index-'));
-  const index = path.join(directory, 'index');
-  try {
-    git(root, ['read-tree', preview.head], { index });
-    for (const file of preview.pending.slice().sort()) {
-      const blob = git(root, ['hash-object', '-w', '--stdin'],
-        { input: preview.files.get(file) });
-      git(root, ['update-index', '--add', '--cacheinfo', '100644,' + blob + ',' + file], { index });
-    }
-    const tree = git(root, ['write-tree'], { index });
-    if (!sha.test(tree)) throw new Error('Invalid staged Course source Git tree');
-    const message = 'Materialize reviewed Course source ' + plan.courseId;
-    const commitSha = git(root, ['commit-tree', tree, '-p', preview.head, '-m', message]);
-    git(root, ['update-ref', target, commitSha, preview.head]);
-    return { mode: 'write', head: preview.head, commitSha, changed: preview.pending.length,
-      archivePath: preview.archivePath, already: false };
-  } finally {
-    fs.rmSync(directory, { force: true, recursive: true });
-  }
-}
-);
-  const rootPrefix = path.posix.dirname(plan.sourcePath) + '/';
-  const permittedPath = file => file.startsWith(rootPrefix) ||
-    (() => { const match = file.match(lessonFile);
-      return !!match && match[2].at(-1).toLowerCase() === match[1]; })();
-  const root = path.resolve(repoRoot ?? '');
-  assertSafeDirectoryPath(root);
-  if (git(root, ['rev-parse', '--show-toplevel']) !== root)
-    throw new Error('Stage 5 writer requires the exact Git checkout root');
-  const head = git(root, ['rev-parse', 'HEAD']);
-  const all = new Map();
-  for (const file of plan.files) {
-    if (!permitted.has(file?.kind) || typeof file.content !== 'string' ||
-        all.has(file.path) || file.path === plan.sourceArchivePath)
-      throw new Error('Duplicate, invalid or colliding source target: ' + file?.path);
-    assertSafeTarget(root, file.path);
-    assertTypescript(file);
-    all.set(file.path, file.content);
-  }
-  if (!all.has(plan.sourcePath))
-    throw new Error('Course must replace the original root index.ts in the atomic commit');
-  assertSafeTarget(root, plan.sourcePath);
-  assertSafeTarget(root, plan.sourceArchivePath);
-  const archive = blobAt(root, head, plan.sourceArchivePath);
-  const source = archive ?? blobAt(root, head, plan.sourcePath);
-  if (source === undefined)
-    throw new Error('Reviewed Course TypeScript source has disappeared');
-  const verifiedBlob = git(root, ['hash-object', '--stdin'], { input: source });
-  if (verifiedBlob !== plan.sourceBlobSha)
-    throw new Error('Course source blob SHA differs from the reviewed source');
-  const already = archive !== undefined;
-  if (!already && head !== plan.reviewCommitSha)
-    throw new Error('Course review commit is stale; re-review current HEAD before Stage 5');
-  if (already && blobAt(root, head, plan.sourcePath) !== all.get(plan.sourcePath))
-    throw new Error('Materialized Course index.ts was edited or replaced since Stage 5');
-  if (trackedMode(root, head, plan.sourceArchivePath) === '120000')
-    throw new Error('Symlinked reviewed source archive');
-  const files = new Map(all);
-  files.set(plan.sourceArchivePath, source);
-  const pending = [];
-  for (const [file, contents] of files) {
     const existingMode = trackedMode(root, head, file);
     if (existingMode && existingMode !== '100644')
       throw new Error('Git target is a symlink/non-file: ' + file);
