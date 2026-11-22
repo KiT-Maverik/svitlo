@@ -148,14 +148,30 @@ function authorizations(meta, input, root) {
     throw Error('Flashcard Bank N/A requires separate independently approved exception');
   }
   if (questions.kind === 'completed') {
-    assertAncestor(root, questions.sourceSha, 'Completed Questions source');
-    assertAncestor(root, questions.reviewSha, 'Completed Questions review');
     const expected = lessonDirectory + '/questions/index.ts';
+    const archive = lessonDirectory + '/questions.reviewed-stage3.ts.txt';
     if (questions.integrated !== true || questions.bankPath !== expected ||
         !fs.existsSync(path.join(root, expected)) ||
-        !fs.existsSync(path.join(root, lessonDirectory, 'questions.reviewed-stage3.ts.txt')) ||
+        !fs.existsSync(path.join(root, archive)) ||
         !fs.existsSync(path.join(root, lessonDirectory, 'questionsLanguages.ts'))) {
       throw Error('Questions must have completed reviewed typed source and be integrated');
+    }
+    assertAncestor(root, questions.reviewSha, 'Completed Questions independent review');
+    assertTracked(root, expected, meta, 'Completed Questions index');
+    assertTracked(root, archive, meta, 'Completed Questions review archive');
+    const reviewedBlob = gitBlob(fs.readFileSync(path.join(root, archive)));
+    if (git(root, 'rev-parse', questions.reviewSha + ':' + expected) !== reviewedBlob) {
+      throw Error('Completed Questions review revision does not match immutable Stage 3 archive');
+    }
+    // Source provenance can refer to either the original reviewed editor or
+    // the completed index; never accept an unrelated ancestor commit or blob.
+    const sourceKind = git(root, 'cat-file', '-t', questions.sourceSha);
+    const finalizedBlob = git(root, 'rev-parse', 'HEAD:' + expected);
+    const actualSource = sourceKind === 'blob' ? questions.sourceSha :
+      sourceKind === 'commit' ? (assertAncestor(root, questions.sourceSha, 'Questions source'),
+        git(root, 'rev-parse', questions.sourceSha + ':' + expected)) : '';
+    if (![reviewedBlob, finalizedBlob].includes(actualSource)) {
+      throw Error('Questions-first source SHA does not identify reviewed or finalized Question Bank');
     }
     return {
       reviewed: evidence, blocks, ownerLessonId: meta.identity.id,
