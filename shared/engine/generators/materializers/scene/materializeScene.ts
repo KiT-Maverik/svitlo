@@ -4,6 +4,11 @@ import type { ContentBlock_Scene_Config } from '../../../configurators/contentBl
 export type SceneSourceFile = { path: string; content: string; kind: 'typescript' | 'specification' };
 export type SceneDiagnostic = { path: string; code: string; message: string; severity: 'warning' };
 export type SceneProduction = { specification?: string; pending?: boolean };
+/** Draft Scene may be awaiting source copy; strict final defineScene schema is unchanged. */
+export type SceneSource = Omit<ContentBlock_Scene_Config, 'params' | 'locale'> & {
+  params?: ContentBlock_Scene_Config['params'];
+  locale?: Partial<ContentBlock_Scene_Config['locale']>;
+};
 export type SceneSourceContext = {
   /** Relative to the owning entity's source root; '' is the root module. */
   directory: string;
@@ -65,7 +70,7 @@ function literal(value: unknown, path: string, depth = 0): string {
  * The executable SceneStub, TSX and lazy UUID registry are owned by the separate
  * sceneScaffolding workflow, not by this materializer.
  */
-export function materializeScene(config: ContentBlock_Scene_Config, context: SceneSourceContext): SceneMaterialization {
+export function materializeScene(config: SceneSource, context: SceneSourceContext): SceneMaterialization {
   if (!record(config) || config.type !== 'scene' || typeof config.slug !== 'string' || !slug.test(config.slug) ||
     !uuid.test(config.id)) throw new Error('Scene requires a canonical type, camelCase slug and immutable UUID');
   if (typeof context.documentLanguage !== 'string' || !locale.test(context.documentLanguage)) {
@@ -75,11 +80,27 @@ export function materializeScene(config: ContentBlock_Scene_Config, context: Sce
     throw new Error('Scene: invalid languages import specifier');
   }
   const directory = safeDirectory(context.directory);
-  const source = { ...config, locale: sourceCopy(config.locale, context.documentLanguage, 'scene.locale') };
+  const source = {
+    ...config,
+    params: config.params ?? {},
+    locale: {
+      ...(sourceCopy(config.locale ?? {}, context.documentLanguage, 'scene.locale') as Record<string, unknown>),
+    },
+  };
+  const incompleteSource = config.params === undefined || config.locale?.value === undefined;
+  if (incompleteSource && context.production?.pending !== true && context.registered === true) {
+    throw new Error('Scene: completed Scene must provide params and locale.value');
+  }
+  if (source.locale.value === undefined) source.locale.value = {};
+
   const exportName = reserved.has(config.slug) ? 'config_' + config.slug : config.slug;
   const pending = context.production?.pending === true || context.registered !== true;
   const diagnostics: SceneDiagnostic[] = [];
   const todos: string[] = [];
+  if (incompleteSource) {
+    todos.push('// TODO (BLOCKER): Complete Scene params/locale.value with reviewed source before production.');
+    diagnostics.push({ path: directory || '.', code: 'incomplete-scene-source', message: 'Source-localized Scene value or params remains incomplete', severity: 'warning' });
+  }
   if (pending) {
     todos.push('// TODO (BLOCKER): Implement and register Scene ' + config.id + ' before production; Draft Preview may use SceneStub.');
     diagnostics.push({ path: directory || '.', code: 'pending-scene', message: 'Scene implementation or UUID registration is not verified', severity: 'warning' });
