@@ -110,6 +110,8 @@ test('Course Stage 5 composes nested modules, chapters, episode intents and new-
   assert.equal(first.sourcePath, root + '/index.ts');
   assert.equal(first.sourceArchivePath, root + '/workflow.stage3.ts');
   assert.equal(first.publishable, false);
+  assert.match(first.files.find(f => f.path === root + '/index.ts').content,
+    /TODO \\(BLOCKER\\): Course Stage 5 source is not publication approval/);
   assert.doesNotMatch(first.files.find(f => f.path === root + '/index.ts').content,
     /import \{ directLesson /);
 });
