@@ -172,7 +172,7 @@ test('Question Bank N/A cannot start without a separately verified exception', (
 });
 test('Question Bank rejects pending nested Blocks even if the parent Question is complete', () => {
   const input = completeBank();
-  Object.assign(input.config.questions.selectOneAnswer.promptOne.config.content.question.items.prompt, {
+  Object.assign(input.config.questions.selectOneAnswer.promptOne.config.content.question.items.prompt as object, {
     production: { pending: true },
   });
   assert.throws(() => materializeQuestionBank(input as never, finalAuth(input)),
