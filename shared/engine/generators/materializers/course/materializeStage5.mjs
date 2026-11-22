@@ -290,9 +290,9 @@ export function materializeCourseStage5(input, options = {}) {
   // {publishable:false} flag alone cannot stop an unrelated publication job.
   rootIndex.content =
     '// TODO (BLOCKER): Course Stage 5 source is not publication approval. ' +
-      'Verify independent Lesson, Episode, locale, assessment and source-review gates before release.\\n' +
-    '// Reviewed Course source blob: ' + review.sourceBlobSha + '\\n' +
-    '// Independent Stage 4 review commit: ' + review.reviewCommitSha + '\\n' +
+      'Verify independent Lesson, Episode, locale, assessment and source-review gates before release.\n' +
+    '// Reviewed Course source blob: ' + review.sourceBlobSha + '\n' +
+    '// Independent Stage 4 review commit: ' + review.reviewCommitSha + '\n' +
     rootIndex.content;
   const languageSource = "import type { SupportedLanguages } from '@svitlo/engine/build';\n" +
     'export const languages = ' + JSON.stringify([sourceLanguage]) +
