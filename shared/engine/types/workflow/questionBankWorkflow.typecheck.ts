@@ -1,3 +1,12 @@
+import type { SelectOneAnswerNode } from '../../generators/materializers/selectOneAnswer/materializeSelectOneAnswer';
+import type { SelectMultipleAnswersNode } from '../../generators/materializers/selectMultipleAnswers/materializeSelectMultipleAnswers';
+import type { MatchBlocksNode } from '../../generators/materializers/matchBlocks/materializeMatchBlocks';
+import type { AnswerWithTextNode } from '../../generators/materializers/answerWithText/materializeAnswerWithText';
+import type { AnswerWithNumberNode } from '../../generators/materializers/answerWithNumber/materializeAnswerWithNumber';
+import type { OrderSequenceNode } from '../../generators/materializers/orderSequence/materializeOrderSequence';
+import type { BuildAnswerWithBlocksNode } from '../../generators/materializers/buildAnswerWithBlocks/materializeBuildAnswerWithBlocks';
+import type { FillBlanksWithBlocksNode } from '../../generators/materializers/fillBlanksWithBlocks/materializeFillBlanksWithBlocks';
+import type { FillBlanksWithTextNode } from '../../generators/materializers/fillBlanksWithText/materializeFillBlanksWithText';
 import type { Question_SelectOneAnswer_Configurator } from '../../configurators/questions/defineSelectOneAnswer';
 import type { QuizSection_Config } from '../../configurators/sections/defineQuizSection/defineQuizSection.schemas';
 import type {
@@ -9,7 +18,13 @@ import type {
   QuestionBankWorkflowMaterializerInput,
   QuestionBankWorkflowQuestionNode,
   QuestionBankWorkflowSelectOneAnswerConfig,
+  QuestionBankWorkflowSelectMultipleAnswersConfig,
+  QuestionBankWorkflowMatchBlocksConfig,
+  QuestionBankWorkflowAnswerWithTextConfig,
   QuestionBankWorkflowAnswerWithNumberConfig,
+  QuestionBankWorkflowOrderSequenceConfig,
+  QuestionBankWorkflowBuildAnswerWithBlocksConfig,
+  QuestionBankWorkflowFillBlanksWithBlocksConfig,
   QuestionBankWorkflowFillBlanksWithTextConfig,
   QuestionBankWorkflowBlockNode,
   QuestionBankWorkflowBlockConfig,
@@ -273,3 +288,19 @@ void finalInput;
 void prematureStage2;
 void duplicatedSelection;
 void actualSectionSelection;
+
+// These are compile-time assertions against the concrete #780 renderers
+// now merged into #775, not a parallel Question materializer API.
+// A new staged Config/Block shape must remain accepted by each owning kind.
+type Assignable<Target, Source extends Target> = true;
+export type QuestionBankMaterializerCompatibility = [
+  Assignable<SelectOneAnswerNode, QuestionBankWorkflowQuestionNode<QuestionBankWorkflowSelectOneAnswerConfig>>,
+  Assignable<SelectMultipleAnswersNode, QuestionBankWorkflowQuestionNode<QuestionBankWorkflowSelectMultipleAnswersConfig>>,
+  Assignable<MatchBlocksNode, QuestionBankWorkflowQuestionNode<QuestionBankWorkflowMatchBlocksConfig>>,
+  Assignable<AnswerWithTextNode, QuestionBankWorkflowQuestionNode<QuestionBankWorkflowAnswerWithTextConfig>>,
+  Assignable<AnswerWithNumberNode, QuestionBankWorkflowQuestionNode<QuestionBankWorkflowAnswerWithNumberConfig>>,
+  Assignable<OrderSequenceNode, QuestionBankWorkflowQuestionNode<QuestionBankWorkflowOrderSequenceConfig>>,
+  Assignable<BuildAnswerWithBlocksNode, QuestionBankWorkflowQuestionNode<QuestionBankWorkflowBuildAnswerWithBlocksConfig>>,
+  Assignable<FillBlanksWithBlocksNode, QuestionBankWorkflowQuestionNode<QuestionBankWorkflowFillBlanksWithBlocksConfig>>,
+  Assignable<FillBlanksWithTextNode, QuestionBankWorkflowQuestionNode<QuestionBankWorkflowFillBlanksWithTextConfig>>,
+];
