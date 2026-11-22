@@ -69,3 +69,15 @@ test('CheckpointItem refuses duplicated delegate destinations rather than silent
     }),
   }), /duplicate child file/);
 });
+
+
+test('CheckpointItem rejects an unowned sibling path returned by its question materializer', () => {
+  assert.throws(() => materializeCheckpointItem(item(), {
+    ...context(),
+    renderQuestion: () => ({
+      exportName: 'prompt',
+      files: [{ path: 'content/items/first/answer/index.ts', content: 'unowned', kind: 'typescript' as const }],
+      diagnostics: [],
+    }),
+  }), /outside its owned directory/);
+});
