@@ -7,7 +7,7 @@ test('Quest Task: one Scene delegation, typed import and a visible pending block
  const out=materializeQuestTask({id:id('01'),slug:'start',type:'questTask',
  scene:{config:{id:id('02'),slug:'interactive',type:'scene'},production:{pending:true}}} as Parameters<typeof materializeQuestTask>[0],{
  documentLanguage:'en',directory:'tasks/start',languagesImport:'../../languages',
- renderScene:(child,ctx)=>({exportName:child.slug,files:[{path:ctx.directory+'/index.ts',kind:'typescript',content:'//scene'}],diagnostics:[]})
+ renderScene:(child,ctx)=>({...(assert.equal(ctx.languagesImport,'../../../languages'),{}),exportName:child.slug,files:[{path:ctx.directory+'/index.ts',kind:'typescript',content:'//scene'}],diagnostics:[]})
  });
  const src=out.files.at(-1)?.content??'';
   const ast = ts.createSourceFile('source.ts', src, ts.ScriptTarget.Latest, true);

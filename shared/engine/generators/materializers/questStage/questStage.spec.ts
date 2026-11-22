@@ -13,7 +13,7 @@ test('Quest Stage: seven mandatory slots, explicit null tracks and delegated med
  const calls:string[]=[];
  const out=materializeQuestStage(stage() as Parameters<typeof materializeQuestStage>[0],{
   documentLanguage:'en',directory:'stages/start',languagesImport:'../../languages',
-  renderMedia:(config,ctx)=>{calls.push(ctx.directory);return {exportName:config.slug,files:[{path:ctx.directory+'/index.ts',kind:'typescript' as const,content:'//media'}],diagnostics:[]}}
+  renderMedia:(config,ctx)=>{calls.push(ctx.directory);assert.equal(ctx.languagesImport,ctx.directory.includes('/video/')||ctx.directory.includes('/audio/')?'../../../../../languages':'../../../../languages');return {exportName:config.slug,files:[{path:ctx.directory+'/index.ts',kind:'typescript' as const,content:'//media'}],diagnostics:[]}}
  });
  assert.equal(calls.length,5);
  assert.deepEqual(calls.sort(),['stages/start/content/video/medium','stages/start/content/video/small','stages/start/content/audio/dialogue','stages/start/content/image','stages/start/content/subtitles'].sort());

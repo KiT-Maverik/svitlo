@@ -1,6 +1,15 @@
 import type { QuestSection_Config } from '../../../configurators/sections/defineQuestSection/defineQuestSection.schemas';
 
 /** Build-only Quest source. No false Lesson/Episode runtime or Stage playback support. */
+/**
+ * Keep the exact Lesson/Episode languages.ts reference when child files live
+ * deeper than their parent. Package aliases remain rooted independently.
+ */
+function childLanguagesImport(parentImport: string, nestedDepth: number): string {
+  if (parentImport.startsWith('#') || parentImport.startsWith('@')) return parentImport;
+  if (!/^(?:\.\/|\.\.\/)/.test(parentImport)) throw new Error('Unsafe languages import: ' + parentImport);
+  return '../'.repeat(nestedDepth) + parentImport.replace(/^\.\//, '');
+}
 export type ChildConfig = { id: string; slug: string; type: string; [key: string]: unknown };
 export type SourceChild = ChildConfig | { config: ChildConfig; production?: Record<string, unknown> };
 export type GeneratedFile = { path: string; content: string; kind: 'typescript' | 'specification' | 'markdown' | 'code' };
@@ -120,7 +129,7 @@ export function materializeQuestSection(config: Source, options: Options): Resul
       identities.add(raw.config.id);
       const childDir=[dir,category,key].filter(Boolean).join('/');
       const child=(category==='stages'?options.renderStage:options.renderTask)(raw.config,{
-        directory:childDir,documentLanguage:options.documentLanguage,languagesImport:options.languagesImport,
+        directory:childDir,documentLanguage:options.documentLanguage,languagesImport:childLanguagesImport(options.languagesImport, 2),
         ...(raw.production?{production:raw.production}:{})
       });
       includeChild(files,seen,diagnostics,child,childDir,key);

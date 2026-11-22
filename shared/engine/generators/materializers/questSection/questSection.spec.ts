@@ -6,7 +6,7 @@ const id=(n:string)=>'12345678-1234-4234-8234-1234567890'+n;
 const q=()=>({id:id('01'),slug:'mission',type:'quest',params:{},locale:{title:{en:'Mission',uk:'Місія'},navigationLabel:'1'},
  stages:{start:{id:id('02'),slug:'start',type:'questStage'}},
  tasks:{start:{id:id('03'),slug:'start',type:'questTask'}}});
-const render=(config:{slug:string},ctx:{directory:string})=>({exportName:config.slug,files:[{path:ctx.directory+'/index.ts',kind:'typescript' as const,content:'//owned'}],diagnostics:[]});
+const render=(config:{slug:string},ctx:{directory:string;languagesImport:string})=>({...(assert.equal(ctx.languagesImport,'../../../../languages'),{}),exportName:config.slug,files:[{path:ctx.directory+'/index.ts',kind:'typescript' as const,content:'//owned'}],diagnostics:[]});
 test('Quest Section: independent start maps, no invented order, Build-only blocker',()=>{
  const ctx={documentLanguage:'en',directory:'sections/mission',languagesImport:'../../languages',renderStage:render,renderTask:render};
  const first=materializeQuestSection(q() as Parameters<typeof materializeQuestSection>[0],ctx);

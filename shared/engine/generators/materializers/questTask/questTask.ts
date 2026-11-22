@@ -1,6 +1,15 @@
 import type { Task_Config } from '../../../configurators/sections/defineQuestSection/defineTask/defineTask.schemas';
 
 /** Quest Task owns exactly one Scene; interactive Scene implementation belongs to its own agent. */
+/**
+ * Keep the exact Lesson/Episode languages.ts reference when child files live
+ * deeper than their parent. Package aliases remain rooted independently.
+ */
+function childLanguagesImport(parentImport: string, nestedDepth: number): string {
+  if (parentImport.startsWith('#') || parentImport.startsWith('@')) return parentImport;
+  if (!/^(?:\.\/|\.\.\/)/.test(parentImport)) throw new Error('Unsafe languages import: ' + parentImport);
+  return '../'.repeat(nestedDepth) + parentImport.replace(/^\.\//, '');
+}
 export type ChildConfig = { id: string; slug: string; type: string; [key: string]: unknown };
 export type SourceChild = ChildConfig | { config: ChildConfig; production?: Record<string, unknown> };
 export type GeneratedFile = { path: string; content: string; kind: 'typescript' | 'specification' | 'markdown' | 'code' };
@@ -103,7 +112,7 @@ export function materializeQuestTask(config: Source, options: Options): Result {
   const childDir = [dir, 'scene'].filter(Boolean).join('/');
   const child = options.renderScene(node.config,{
     directory: childDir, documentLanguage: options.documentLanguage,
-    languagesImport: options.languagesImport,
+    languagesImport: childLanguagesImport(options.languagesImport, 1),
     ...(node.production ? {production:node.production} : {}),
   });
   const files:GeneratedFile[] = [], diagnostics:Diagnostic[] = [...child.diagnostics];

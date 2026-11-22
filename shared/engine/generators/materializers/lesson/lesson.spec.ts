@@ -41,7 +41,7 @@ test('Section subtree source is byte-identical whether invoked by Lesson or by E
  });
  const fromLesson=materializeLesson(lesson() as Parameters<typeof materializeLesson>[0],{
   documentLanguage:'en',
-  renderSection:(child,opts)=>renderSection(child as ContentSource,{...opts,renderContentBlock})
+  renderSection:(child,opts)=>{assert.equal(opts.languagesImport,'../../languages');return renderSection(child as ContentSource,{...opts,renderContentBlock})}
  });
  const sub=fromLesson.files.filter(f=>f.path.startsWith('sections/introduction/'));
  assert.deepEqual(sub,fromEpisode.files);

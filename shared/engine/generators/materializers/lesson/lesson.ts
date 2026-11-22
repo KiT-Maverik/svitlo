@@ -109,7 +109,7 @@ export function materializeLesson(config: Source, options: Options): Result {
     if(node.config.type==='flashcards')hasFlashcards=true;
     if(node.config.type==='quest')hasQuest=true;
     const childDir=destination(dir,'sections/'+key);
-    const languagesImport='../'.repeat(childDir.split('/').length)+'languages';
+    const languagesImport='../../languages';
     const child=options.renderSection(node.config,{
       directory:childDir,documentLanguage:options.documentLanguage,languagesImport,
       ...(node.production?{production:node.production}:{})

@@ -5,6 +5,15 @@ import type { FlashcardsSection_Config } from '../../../configurators/sections/d
  * A child owns its subtree; this Section owns only content.items/order insertion.
  * Caller resolves Config-shaped child source into the owning ContentBlock materializer.
  */
+/**
+ * Keep the exact Lesson/Episode languages.ts reference when child files live
+ * deeper than their parent. Package aliases remain rooted independently.
+ */
+function childLanguagesImport(parentImport: string, nestedDepth: number): string {
+  if (parentImport.startsWith('#') || parentImport.startsWith('@')) return parentImport;
+  if (!/^(?:\.\/|\.\.\/)/.test(parentImport)) throw new Error('Unsafe languages import: ' + parentImport);
+  return '../'.repeat(nestedDepth) + parentImport.replace(/^\.\//, '');
+}
 export type ChildConfig = { id: string; slug: string; type: string; [key: string]: unknown };
 export type SourceChild = ChildConfig | { config: ChildConfig; production?: Record<string, unknown> };
 export type Source = Omit<FlashcardsSection_Config, 'content'> & {
@@ -121,7 +130,7 @@ export function materializeFlashcardsSection(config: Source, options: Options): 
     const child = options.renderContentBlock(node.config, {
       directory: childDirectory,
       documentLanguage: options.documentLanguage,
-      languagesImport: options.languagesImport,
+      languagesImport: childLanguagesImport(options.languagesImport, 3),
       ...(node.production ? { production: node.production } : {}),
     });
     if (child.exportName !== exportName(key)) throw new Error('flashcards.content.items.' + key + ': incorrect child export');

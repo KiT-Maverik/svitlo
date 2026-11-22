@@ -1,6 +1,15 @@
 import type { Stage_Config } from '../../../configurators/sections/defineQuestSection/defineStage/defineStage.schemas';
 
 /** Quest Stage source: media children own their own files, never fabricated URLs. */
+/**
+ * Keep the exact Lesson/Episode languages.ts reference when child files live
+ * deeper than their parent. Package aliases remain rooted independently.
+ */
+function childLanguagesImport(parentImport: string, nestedDepth: number): string {
+  if (parentImport.startsWith('#') || parentImport.startsWith('@')) return parentImport;
+  if (!/^(?:\.\/|\.\.\/)/.test(parentImport)) throw new Error('Unsafe languages import: ' + parentImport);
+  return '../'.repeat(nestedDepth) + parentImport.replace(/^\.\//, '');
+}
 export type ChildConfig = { id: string; slug: string; type: string; [key: string]: unknown };
 export type SourceChild = ChildConfig | { config: ChildConfig; production?: Record<string, unknown> };
 export type GeneratedFile = { path: string; content: string; kind: 'typescript' | 'specification' | 'markdown' | 'code' };
@@ -133,7 +142,7 @@ export function materializeQuestStage(config: Source, options: Options): Result 
     const childDir = [dir, 'content', ...entry.path].filter(Boolean).join('/');
     const result = options.renderMedia(raw.config, {
       directory: childDir, documentLanguage: options.documentLanguage,
-      languagesImport: options.languagesImport,
+      languagesImport: childLanguagesImport(options.languagesImport, 1 + entry.path.length),
       ...(raw.production ? { production: raw.production } : {}),
     });
     includeChild(files, seen, diagnostics, result, childDir, raw.config.slug);

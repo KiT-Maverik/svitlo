@@ -10,9 +10,10 @@ const input = () => ({
   locale: { title: { en: 'Start', uk: 'Початок' }, navigationLabel: '1' },
   content: { items: { prompt: block('prompt') }, order: ['prompt'] },
 });
-const renderContentBlock = (config: ChildConfig, options: {directory: string}) => ({
+const renderContentBlock = (config: ChildConfig, options: {directory: string; languagesImport: string}) => ({
   exportName: config.slug,
   diagnostics: [],
+  ...(assert.equal(options.languagesImport, '../../../../../languages'), {}),
   files: [{ path: options.directory + '/index.ts', kind: 'typescript' as const, content: '// child\n' }],
 });
 
