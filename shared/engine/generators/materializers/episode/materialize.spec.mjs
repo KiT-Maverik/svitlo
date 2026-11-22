@@ -45,5 +45,5 @@ test('refuses directory traversal before source emission',()=>{
 
 test('a typed Stage 2/3 provisional Episode does not materialize as a completed Episode',()=>{
  const planned={config:{type:'episode'},production:{focus:'Learning context',purpose:'Narrative transition'}};
- assert.throws(()=>materializeEpisode(planned,ctx()),/TODO \\(BLOCKER\\): provisional Episode/);
+ assert.throws(()=>materializeEpisode(planned,ctx()),/TODO \(BLOCKER\): provisional Episode/);
 });
