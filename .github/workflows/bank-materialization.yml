@@ -216,6 +216,9 @@ jobs:
           node scripts/ci/quietRun/quiet-run.mjs -- npm run code:check:types --workspace @svitlo/engine
           node scripts/ci/quietRun/quiet-run.mjs -- npm run package:build --workspace @svitlo/engine
           node scripts/ci/quietRun/quiet-run.mjs -- npm test --workspace @svitlo/engine
+          node scripts/ci/quietRun/quiet-run.mjs -- node --test \
+            scripts/ci/bankMaterialization/bank-typed-stage3.spec.mjs \
+            scripts/ci/bankMaterialization/bank-typed-materialization.spec.mjs
       - name: Static Stage 3 evaluation and local trusted Git transaction
         env:
           BANK_META_B64: ${{ needs.typed_resolve.outputs.meta }}
