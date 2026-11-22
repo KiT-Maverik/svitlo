@@ -191,7 +191,7 @@ not evidence of a successful review. An independent reviewer can make **owner-au
 
 ## Completion evidence and PR template
 
-Keep the PR Draft until explicit owner authorization. Track these
+Keep the Questions PR Draft while assigned work is unfinished or actively changing. After completing the authorized work and making it fit for owner review, **mark Ready for review automatically** and verify the target-specific latest-head checks; the owner alone authorizes merge and any separate production stage. Draft-only omission of expensive CI is intentional, not a blocker. Track these
 seven stages in the PR body, with:
 
 - Lesson UUID, parent Lesson PR, source language, supported languages,
