@@ -48,7 +48,7 @@ available from Engine Runtime. The `.d.mts` sibling declares the exact
 - New Lesson Stage 1 files are emitted in other UUID folders. The Course
   Configurator omits incomplete Lesson references and records pending
   placements with `TODO (BLOCKER)`; it cannot publish until Lesson Production
-  completes and those child imports/order are reconciled.
+  completes and those child imports/order are reconciled. The generated Course\n  root **always contains a persistent `TODO (BLOCKER)` publication marker**\n  with pinned Stage 3 source/review SHA, even when all planned items are\n  complete, because the legacy publisher could otherwise discover the new\n  UUID-root `index.ts` before #775's trusted release gates are installed.
 
 For an existing Lesson placement, a trusted `resolveExistingLesson` callback
 must prove immutable ID, matching source SHA, source-language support, actual
