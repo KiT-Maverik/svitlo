@@ -258,6 +258,60 @@ export function verifyTypedManifest(result, meta) {
   }
   return result.files;
 }
+/** Ensure every reviewed bank member and every Flashcard Side is emitted. */
+export function assertTypedBankInventory(meta, input, files) {
+  const root = meta.identity.folder + '/';
+  const paths = new Set(files.map(file => file.path));
+  if (meta.bank === 'questions') {
+    const kinds = input?.config?.questions;
+    if (!kinds || typeof kinds !== 'object' || Array.isArray(kinds)) {
+      throw Error('Missing complete reviewed nine-kind Question inventory');
+    }
+    let total = 0;
+    for (const [kind, members] of Object.entries(kinds)) {
+      if (!['selectOneAnswer', 'selectMultipleAnswers', 'matchBlocks',
+        'answerWithText', 'answerWithNumber', 'orderSequence',
+        'buildAnswerWithBlocks', 'fillBlanksWithBlocks', 'fillBlanksWithText'].includes(kind) ||
+        !members || typeof members !== 'object' || Array.isArray(members)) {
+        throw Error('Unsupported Question kind in complete bank');
+      }
+      if (!paths.has(root + 'questions/' + kind + '/index.ts')) {
+        throw Error('Missing Question kind export index ' + kind);
+      }
+      for (const slug of Object.keys(members)) {
+        if (!paths.has(root + 'questions/' + kind + '/' + slug + '.ts')) {
+          throw Error('Reviewed Question omitted from source output: ' + kind + '/' + slug);
+        }
+        total++;
+      }
+    }
+    if (!total) throw Error('Completed Question Bank must emit at least one Question');
+  } else {
+    const items = input?.config?.flashcards?.items;
+    const order = input?.config?.flashcards?.order;
+    if (!items || !Array.isArray(order) || !order.length) throw Error('No reviewed Flashcards');
+    for (const slug of order) {
+      const card = items[slug];
+      if (!card || !paths.has(root + 'flashcards/' + slug + '.ts')) {
+        throw Error('Reviewed Card omitted: ' + slug);
+      }
+      for (const side of ['front', 'back', 'hint']) {
+        const content = card.config?.content?.[side];
+        if (!content) continue;
+        const prefix = root + 'flashcards/' + slug + '/content/' + side + '/';
+        if (!paths.has(prefix + 'index.ts')) {
+          throw Error('Reviewed Flashcard Side omitted: ' + slug + '/' + side);
+        }
+        for (const block of content.order || []) {
+          if (!paths.has(prefix + 'items/' + block + '/index.ts')) {
+            throw Error('Reviewed Side ContentBlock omitted: ' + slug + '/' + side + '/' + block);
+          }
+        }
+      }
+    }
+  }
+}
+
 async function analyze(meta) {
   const { root, source } = verifyCandidate(meta);
   const { readTypedBankStage3, typecheckTypedBankStage3 } = await import('./bank-typed-stage3.mjs');
@@ -296,6 +350,7 @@ async function analyze(meta) {
     files,
   };
   verifyTypedManifest(reportData, meta);
+  assertTypedBankInventory(meta, input, files);
   // Semantic TypeScript analysis of ALL generated Question kinds/Card Sides,
   // against the actual @svitlo/engine/build declarations. Read-only.
   const { typecheckGeneratedBankModules } = await import('./bank-typed-stage3.mjs');
