@@ -16,12 +16,14 @@ export interface SubtitlesMaterializationOptions {
   plannedLanguages?: readonly string[];
   /** Relative module specifier for the parent-owned source-only languages.ts. */
   languagesImport?: string;
+  /** Node directory, relative to the enclosing authored entity root. */
+  directory?: string;
   /** Authoring-only notes, never passed to the final defineSubtitles call. */
   production?: Readonly<Record<string, unknown>>;
 }
 
 type SourceFile = { path: string; content: string; kind: 'typescript' | 'markdown' | 'code' | 'specification' };
-type Diagnostic = { path: string; code: string; message: string };
+type Diagnostic = { path: string; code: string; message: string; severity: 'warning' };
 const isRecord = (value: unknown): value is Record<string, unknown> =>
   value !== null && typeof value === 'object' && !Array.isArray(value) &&
   (Object.getPrototypeOf(value) === Object.prototype || Object.getPrototypeOf(value) === null);
@@ -83,8 +85,16 @@ export function materializeSubtitles(config: SubtitlesDraftConfig, options: Subt
   if (!planned.length || new Set(planned).size !== planned.length ||
       !planned.every(item => languagePattern.test(item)) || !planned.includes(language))
     throw new Error('$.production.plannedLanguages: invalid list or missing source language');
+  const directory = options.directory ?? '';
+  if (directory && (directory.startsWith('/') || directory.split('/').some(part =>
+      !/^[A-Za-z0-9_-]+$/.test(part) || part === '.' || part === '..')))
+    throw new Error('directory: unsafe output path');
+  if (directory && !options.languagesImport)
+    throw new Error('languagesImport: nested materializers require an explicit root languages module');
   const languagesImport = options.languagesImport ?? './languages';
-  if (!/^(?:\.\/|\.\.\/)[A-Za-z0-9./_-]+$/.test(languagesImport) || languagesImport.includes('\\'))
+  if (!(/^(?:\.\/|\.\.\/)[A-Za-z0-9./_-]+$/.test(languagesImport) ||
+        /^#[A-Za-z0-9/_-]+$/.test(languagesImport) ||
+        /^@svitlo\/[A-Za-z0-9/_-]+$/.test(languagesImport)) || languagesImport.includes('\\'))
     throw new Error('languagesImport: expected relative module specifier');
   const allowed = new Set(['id', 'slug', 'type', 'params', 'locale']);
   for (const key of Object.keys(config)) {
@@ -102,7 +112,7 @@ export function materializeSubtitles(config: SubtitlesDraftConfig, options: Subt
   const imports = ['defineSubtitles'];
   function block(field: string, code: string, instruction: string): void {
     blockers.push('// TODO (BLOCKER): ' + instruction + ' for subtitles ' + config.id + '.');
-    diagnostics.push({ path: '$.config.' + field, code, message: instruction });
+    diagnostics.push({ path: '$.config.' + field, code, message: instruction, severity: 'warning' });
   }
   function requireCopy(field: string, description: string): void {
     const locale = isRecord(fields.locale) ? fields.locale : {};
@@ -133,7 +143,7 @@ export function materializeSubtitles(config: SubtitlesDraftConfig, options: Subt
   if (planned.length > 1) {
     blockers.push('// TODO (BLOCKER): Restore reviewed languages ' + JSON.stringify(planned) + '.');
     diagnostics.push({ path: '$.production.plannedLanguages', code: 'pending-locales',
-      message: 'Only the original source language is materialized' });
+      message: 'Only the original source language is materialized', severity: 'warning' });
   }
 
 
@@ -158,5 +168,9 @@ export function materializeSubtitles(config: SubtitlesDraftConfig, options: Subt
     'export const ' + name + ' = defineSubtitles<' + JSON.stringify(config.slug) +
     ', typeof languages>(' + printValue(fields, expressions) + ');\n';
   files.unshift({ path: 'index.ts', content: source, kind: 'typescript' });
-  return { exportName: name, files, diagnostics };
+  return {
+    exportName: name,
+    files: files.map(file => ({ ...file, path: directory ? directory + '/' + file.path : file.path })),
+    diagnostics,
+  };
 }
