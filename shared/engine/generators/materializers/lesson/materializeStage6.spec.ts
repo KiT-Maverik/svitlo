@@ -272,9 +272,9 @@ test('authored enabled Quiz and Flashcards Sections pass separate source materia
   input.production.assessment.quizSectionRequired = true;
   input.production.assessment.flashcardsSectionRequired = true;
   const sourceFor = (value: LessonWorkflowMaterializerInput) => {
-    const sourceText = "import type { LessonWorkflowStage2 } from '@svitlo/engine/build';\\n" +
+    const sourceText = "import type { LessonWorkflowStage2 } from '@svitlo/engine/build';\n" +
       'export const stage2 = ' + JSON.stringify(value, null, 2) +
-      ' satisfies LessonWorkflowStage2;\\n';
+      ' satisfies LessonWorkflowStage2;\n';
     return {
       ...options, sourceText, review: { ...reviewed, sourceBlobSha: blobSha(sourceText) },
     };
