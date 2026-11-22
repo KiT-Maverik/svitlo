@@ -346,7 +346,7 @@ export function materializeLessonStage6(
  */
 export function assertLessonStage6ReleaseReady(plan: LessonStage6Plan): void {
   const pending = plan.files.filter(file =>
-    /TODO\\s*\\(BLOCKER\\)|TODO\\(asset\\)|00000000-0000-0000-0000-000000000000/i.test(file.content));
+    /TODO\s*\(BLOCKER\)|TODO\(asset\)|00000000-0000-0000-0000-000000000000/i.test(file.content));
   if (pending.length)
     throw new Error('Lesson source publication blocked by unresolved placeholders in ' +
       pending.map(file => file.path).join(', '));
