@@ -232,6 +232,39 @@ function syntaxGenerated(files) {
   }
 }
 
+/** Complete, unblocked handoffs must also typecheck against the real built
+ * Engine API. Drafts with explicit blockers defer this to Stage 6.2.
+ */
+function semanticGenerated(files, root) {
+  const requireTrusted = createRequire(import.meta.url);
+  const ts = requireTrusted(path.join(ROOT, 'node_modules/typescript'));
+  const generated = new Map(files.filter(file => file.kind === 'typescript').map(file =>
+    [path.resolve(root, file.path), file.content]));
+  const options = {
+    strict: true, noEmit: true, skipLibCheck: true,
+    target: ts.ScriptTarget.ES2022, module: ts.ModuleKind.ESNext,
+    moduleResolution: ts.ModuleResolutionKind.Bundler, baseUrl: ROOT,
+    paths: { '@svitlo/engine/build': [path.join(ROOT, 'shared/engine/dist/build.d.ts')] },
+  };
+  const host = ts.createCompilerHost(options);
+  const originalRead = host.readFile.bind(host);
+  const originalExists = host.fileExists.bind(host);
+  const originalDirectory = host.directoryExists?.bind(host);
+  host.readFile = filename => generated.get(path.resolve(filename)) ?? originalRead(filename);
+  host.fileExists = filename => generated.has(path.resolve(filename)) || originalExists(filename);
+  host.directoryExists = filename => [...generated.keys()].some(name =>
+    name.startsWith(path.resolve(filename) + path.sep)) || originalDirectory?.(filename) === true;
+  const program = ts.createProgram([...generated.keys()], options, host);
+  const errors = ts.getPreEmitDiagnostics(program).filter(error =>
+    error.category === ts.DiagnosticCategory.Error);
+  if (errors.length)
+    throw Error('Unblocked Stage 6 source failed actual Engine typechecking: ' +
+      errors.slice(0, 8).map(error =>
+        (error.file?.fileName || 'global') + ': ' +
+        ts.flattenDiagnosticMessageText(error.messageText, ' ')).join(' | '));
+  return true;
+}
+
 async function analyze(root, meta) {
   await fresh(meta);
   const tracked = indexed(root, meta.identity.pkg);
@@ -264,6 +297,9 @@ async function analyze(root, meta) {
       bytes === text && JSON.stringify(evaluated) === JSON.stringify(input),
   });
   syntaxGenerated(plan.files);
+  if (!plan.diagnostics.length && !plan.files.some(file =>
+    /TODO\s*\(BLOCKER\)|TODO\(asset\)|feedc0de-/i.test(file.content)))
+    semanticGenerated(plan.files, root);
   const manifest = typedManifest(plan, meta, original, tracked, root);
   const filename = process.env.LESSON_TYPED_REPORT;
   if (!filename) throw Error('LESSON_TYPED_REPORT is required');
