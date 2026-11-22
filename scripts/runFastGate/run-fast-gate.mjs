@@ -128,7 +128,7 @@ export function workspaceDependents(workspaces) {
   return edges;
 }
 
-export function chooseChecks(changed, workspaces, { publicChanges = [] } = {}) {
+export function chooseChecks(changed, workspaces, { publicChanges = [], changedOnly = false } = {}) {
   const affected = new Set();
   const packages = new Map(workspaces.map(pkg => [pkg.name, pkg]));
   const global = changed.some(
@@ -141,6 +141,9 @@ export function chooseChecks(changed, workspaces, { publicChanges = [] } = {}) {
     if (pkg) affected.add(pkg.name);
     if (pkg && file === pkg.path + '/package.json') triggers.add(pkg.name);
   }
+  // Non-develop Ready PRs typecheck only directly edited workspaces.
+  // Their dependency builds are still prepared later for TypeScript resolution.
+  if (changedOnly) return { affected };
   for (const file of publicChanges) {
     const pkg = packageFor(file, workspaces);
     if (pkg) triggers.add(pkg.name);
@@ -172,12 +175,12 @@ export function shouldBuildDependency(owner, dependency) {
   );
 }
 
-async function runGate(changed, base, head) {
+async function runGate(changed, base, head, { changedOnly = false } = {}) {
   const workspaces = expandWorkspaces();
   const all = new Map(workspaces.map(workspace => [workspace.name, workspace]));
-  const publicChanges = base && head ? changedPublicContracts(changed, workspaces, base, head) : [];
+  const publicChanges = !changedOnly && base && head ? changedPublicContracts(changed, workspaces, base, head) : [];
   if (publicChanges.length) console.log('Changed public contracts: ' + publicChanges.join(', '));
-  const plan = chooseChecks(changed, workspaces, { publicChanges });
+  const plan = chooseChecks(changed, workspaces, { publicChanges, changedOnly });
 
   const built = new Set();
   function ensureSharedDependencies(name, visiting = new Set()) {
@@ -235,10 +238,12 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
     const args = process.argv.slice(2);
     if (args.length === 1 && args[0] === '--all') {
       await runGate(['package.json']);
-    } else if (args.length === 2) {
-      await runGate(changedFiles(args[0], args[1]), args[0], args[1]);
+    } else if (args.length === 2 || (args.length === 3 && args[2] === '--changed-only')) {
+      await runGate(changedFiles(args[0], args[1]), args[0], args[1], {
+        changedOnly: args.length === 3,
+      });
     } else {
-      throw new Error('Usage: run-fast-gate.mjs <base-sha> <head-sha> | --all');
+      throw new Error('Usage: run-fast-gate.mjs <base-sha> <head-sha> [--changed-only] | --all');
     }
   } catch (error) {
     console.error(error.stack || error.message);
