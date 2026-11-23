@@ -6,19 +6,12 @@ on:
     types: [opened, reopened, synchronize, ready_for_review]
     paths:
       - 'shared/engine/generators/**'
-      - 'shared/engine/scripts/materializeCourseFlow/**'
-      - 'shared/engine/scripts/validateCourseFlow/**'
-      - 'shared/engine/scripts/generateYamlSchemas/**'
-      - 'shared/engine/yaml-schemas/**'
       - 'scripts/ci/courseMaterialization/**'
       - 'scripts/ci/bankMaterialization/**'
       - 'scripts/ci/lessonMaterialization/**'
       - '.github/workflows/lesson-materialization.yml'
-      - 'shared/engine/scripts/questionsBuilder/**'
       - 'shared/engine/scripts/generateQuestionReviewArtifacts/**'
-      - 'shared/engine/scripts/flashcardBuilder/**'
       - '.github/workflows/bank-materialization.yml'
-      - '.github/workflows/course-materialization.yml'
       - 'shared/engine/scripts/sceneScaffolding/**'
       - 'shared/engine/index.ts'
       - 'shared/engine/package.json'
@@ -56,7 +49,7 @@ jobs:
         with:
           node-version: '24'
       - name: Prove typed Lesson and bank publishers load without installed packages
-        run: node --test scripts/ci/lessonMaterialization/lesson-typed-publish.spec.mjs scripts/ci/bankMaterialization/bank-materialization.spec.mjs
+        run: node --test scripts/ci/lessonMaterialization/lesson-typed-publish.spec.mjs scripts/ci/bankMaterialization/bank-typed-materialization.spec.mjs
 
   generator-tests:
     # Full host/browser/generator suites only at review boundary or explicitly on demand.
@@ -92,15 +85,11 @@ jobs:
             scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.spec.mjs \
             scripts/textbook-tooling/buildTextbook/stageTextbookAssets.spec.mjs
 
-      - name: Test Course Flow regression suites
+      - name: Test typed Bank source and PR-command security
         run: |
           node scripts/ci/quietRun/quiet-run.mjs -- node --test \
-            shared/engine/scripts/materializeCourseFlow/materialize-course-flow.spec.mjs \
-            shared/engine/scripts/validateCourseFlow/validate-course-flow.spec.mjs \
-            scripts/ci/courseMaterialization/course-materialization.spec.mjs \
-            scripts/ci/bankMaterialization/bank-materialization.spec.mjs \
-            shared/engine/scripts/questionsBuilder/questionsBuilder.spec.mjs \
-            shared/engine/scripts/flashcardBuilder/flashcardBuilder.spec.mjs
+            scripts/ci/bankMaterialization/bank-typed-materialization.spec.mjs \
+            scripts/ci/bankMaterialization/bank-typed-stage3.spec.mjs
 
       - name: Test typed Lesson Stage 6 source and PR-command security
         run: |
@@ -109,27 +98,17 @@ jobs:
             scripts/ci/lessonMaterialization/lesson-typed-publish.spec.mjs \
             scripts/ci/lessonMaterialization/lesson-typed-source.spec.mjs
 
-      - name: Verify all checked-in Zod-derived YAML schemas
-        run: node scripts/ci/quietRun/quiet-run.mjs -- npm run content:check:yaml-schemas --workspace @svitlo/engine
-
-      - name: Check formatting of Course Flow sources and generated schemas
+      - name: Check formatting of typed Course Flow sources
         run: |
           node scripts/ci/quietRun/quiet-run.mjs -- npx prettier --check \
-            shared/engine/yaml-schemas/*.json \
             studio/skills/course-workflow/*.md \
             studio/docs/entities/course.md \
             studio/docs/architecture/README.md \
             shared/engine/scripts/README.md \
-            shared/engine/scripts/validateCourseFlow/README.md \
-            shared/engine/scripts/materializeCourseFlow/README.md \
             scripts/ci/courseMaterialization/README.md \
             scripts/ci/courseMaterialization/*.mjs \
-            .github/workflows/course-materialization.yml \
-            shared/engine/scripts/materializeCourseFlow/*.mjs \
-            shared/engine/scripts/validateCourseFlow/*.mjs \
             shared/engine/scripts/generateFlashcardReviewArtifacts/*.mjs \
             shared/engine/scripts/generateFlashcardReviewArtifacts/README.md \
             shared/engine/configurators/courses/defineCourse/defineCourse.schemas.ts \
             shared/engine/configurators/courses/defineCourse/courseHierarchy.spec.ts \
-            studio/skills/course-workflow/course-flow.schema.json \
             package.json shared/engine/package.json

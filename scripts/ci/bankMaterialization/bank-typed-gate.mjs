@@ -3,7 +3,6 @@
  * Trusted authorization for the opt-in typed Bank Stage 5 command.
  * GitHub PR metadata and an independent, current-SHA APPROVED review are the
  * authority. A checked stage box or author-supplied flag is never an approval.
- * Legacy YAML commands continue through bank-gate.mjs unchanged.
  */
 import fs from 'node:fs';
 import { github, parseIdentity, requireActor, requireReviewedStages, safeBranch, report } from './bank-gate.mjs';

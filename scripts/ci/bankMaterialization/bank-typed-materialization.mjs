@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Typed Question/Flashcard Stage 5, opt-in and separate from legacy YAML.
+ * Typed Question/Flashcard Stage 5 source materialization.
  *
  * analyze: no GitHub write credential; statically parse and typecheck reviewed
  * Stage 3 data, run the trusted concrete Engine Bank writer in a local Git
