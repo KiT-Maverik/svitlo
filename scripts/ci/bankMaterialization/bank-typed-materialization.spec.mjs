@@ -51,6 +51,37 @@ function sample(bank) {
   };
 }
 
+test('optional empty Flashcard hint is valid, but front and back must remain populated', () => {
+  const meta = canonical('flashcards').meta;
+  const root = folder + '/flashcards/';
+  const side = slug => ({
+    items: slug ? { [slug]: {} } : {},
+    order: slug ? [slug] : [],
+  });
+  const card = { config: { content: {
+    front: side('prompt'), back: side('answer'), hint: side(null),
+  } } };
+  const input = { config: { flashcards: {
+    items: { alpha: card }, order: ['alpha'],
+  } } };
+  const paths = [
+    'alpha.ts',
+    'alpha/content/front/index.ts',
+    'alpha/content/front/items/prompt/index.ts',
+    'alpha/content/back/index.ts',
+    'alpha/content/back/items/answer/index.ts',
+    'alpha/content/hint/index.ts',
+  ];
+  const files = paths.map(name => ({ path: root + name }));
+  assert.doesNotThrow(() => assertTypedBankInventory(meta, input, files));
+  for (const required of ['front', 'back']) {
+    const broken = structuredClone(input);
+    broken.config.flashcards.items.alpha.config.content[required] = side(null);
+    assert.throws(() => assertTypedBankInventory(meta, broken, files),
+      /must include every reviewed ContentBlock/);
+  }
+});
+
 test('typed commands require exact top-level issue_comment actor, bank and stage', () => {
   for (const [bank, body] of Object.entries(events)) {
     const event = { issue: { number: 888, pull_request: {} }, comment: {
