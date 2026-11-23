@@ -62,11 +62,11 @@ relevant named directory and read the actual entrypoint JSDoc, any local README
 and its adjacent tests.** An entrypoint's stated purpose and non-goals take
 precedence over assumptions based on names or historical workflows.
 
-For Engine generators and YAML scaffolders, first read the scoped
-[`shared/engine/scripts/AGENTS.md`](shared/engine/scripts/AGENTS.md).
-The named directories include separate YAML-to-TypeScript _draft_ scaffolders,
-JSON Schema editor guidance, and Props publishers; they are not interchangeable.
-Follow the referenced source contracts before making changes.
+For Engine typed source materializers and publication generators, read the scoped
+[`shared/engine/scripts/AGENTS.md`](shared/engine/scripts/AGENTS.md) and
+[`shared/engine/generators/AGENTS.md`](shared/engine/generators/AGENTS.md).
+Typed source emission, trusted Git transactions, and completed Props publishing are
+separate workflows. Historical YAML files are provenance, not executable new authoring input.
 
 ## Repository-wide GitHub rules
 

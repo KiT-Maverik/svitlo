@@ -77,10 +77,7 @@ PR only. Stage 5 uses `QuestionBankWorkflowMaterializerInput`, an alias to
 the final Stage 3 type, and an explicit verified source-preserving transition to
 the canonical `questions/index.ts` export plus child modules. The parent
 integration #775 owns that transition, safe writes and orchestration.
-No separate `questions.yaml` may be authored alongside the new typed source;
-the legacy builder/command remains live for existing YAML consumers until the
-parent completes migration and deploys the replacement. Never feed a typed
-index.ts to the legacy YAML command.
+No separate `questions.yaml` may be authored alongside the canonical typed source. The old YAML builder and command were retired in #775; never use them as fallbacks. The typed trusted command requires default-branch deployment, immutable source SHA and independent review.
 
 **Validation:** TypeScript `satisfies` enables early source diagnostics but
 does not prove unique order keys/UUIDs, source SHA, completed review, scoring,
@@ -226,15 +223,7 @@ manifest, locales, accessible media and textbook build. Missing artifacts,
 unreviewed locales or provisional `feedc0de-` IDs remain blockers. A draft
 source scaffold or green Draft check is not production completion.
 
-**Legacy compatibility until #775 migration:** existing
-`questions.yaml` consumers and trusted `/questions materialize` command
-continue to be documented in
-[Questions Builder](../../../shared/engine/scripts/questionsBuilder/README.md)
-and [bank CI runbook](../../../scripts/ci/bankMaterialization/README.md).
-They accept **YAML only** and are not an implementation of this typed flow.
-Do not delete them while other producers depend on them; the parent owns
-their replacement, final cross-entity validation and safe decommission.
-
+**Typed materialization:** use the trusted `/questions materialize typed` command on the existing reviewed child PR after its deployment to default branch. See [Bank materialization](../../../scripts/ci/bankMaterialization/README.md). No YAML builder is available as a parallel workflow.
 
 ## Stage 6 — Translation
 

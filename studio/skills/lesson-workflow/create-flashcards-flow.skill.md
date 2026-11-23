@@ -56,7 +56,7 @@ Emit durable `flashcards/<card>.ts`, Card-owned `flashcards/<card>/content/<fron
 
 After source completion, run the independent `generateAssessmentResources --kind flashcard` production publisher and strict owning textbook build. Confirm full `base.json`, required locale JSON and textbook-scoped manifest, including **unselected** Cards. Verify Section UUID refs against published resources and accessible candidate filtering. Missing physical assets, reserved Nil UUID/media placeholders, `TODO(asset)`, unresolved references, uncovered required locales, failed validation and incomplete bank must **block publication**. Materialization alone is never a successful Stage 5.
 
-**Legacy handoff compatibility:** the existing `flashcardBuilder` is an independently implemented, create-only **YAML → TypeScript draft** scaffolder and `/flashcards materialize` is its opt-in CI route. Neither accepts the new staged TS object or publishes resources. Do **not** invoke those commands on new typed sources, remove the old generator while it still has consumers, or treat legacy YAML as a parallel authoring requirement. Existing in-flight YAML banks need a separately verified non-destructive migration. Parent #775 owns coordinated retirement after a working typed replacement is integrated.
+**Typed materialization:** the trusted `/flashcards materialize typed` command operates only on a fully reviewed Stage 3 bank source and is available for live use only after default-branch deployment. The old YAML Builder and `/flashcards materialize` route were retired in #775. See [Bank materialization](../../../scripts/ci/bankMaterialization/README.md). Preserve historic authoring bytes and review provenance when migrating legacy work.
 
 ### 6. Translation — Technical Translator
 
