@@ -18,10 +18,6 @@ const evidence = { registeredSceneIds: new Set([id(1)]), approvedMediaBlockIds: 
 const render = (config: Record<string, unknown>) => materializeAssessmentBlock(
   { config: config as never }, context, ['uk'], 'questionsLanguages', evidence,
 );
-const nestedSpec = (files: readonly {path: string; content: string}[]) =>
-  files.find(file => file.path.endsWith('/visual/specification.md') ||
-    file.path.endsWith('/visual/slides/items/visual/specification.md'));
-
 test('Carousel retains reviewed nested Scene production specification', () => {
   const carousel = {
     id: id(2), slug: 'gallery', type: 'carousel', params: {}, locale: {},
@@ -63,6 +59,6 @@ test('Checkpoint retains reviewed Scene production in its nested answer ContentB
     '# Reviewed nested Scene\\n');
   assert.equal(result.diagnostics.length, 0);
   const pending = structuredClone(checkpoint);
-  pending.content.items.first.config.answer.config.content.items.visual.production.pending = true;
+  (pending.content.items.first.config.answer.config.content.items.visual.production as { specification: string; pending?: boolean }).pending = true;
   assert.throws(() => render(pending), /Pending ContentBlock/);
 });
