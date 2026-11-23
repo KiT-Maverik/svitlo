@@ -118,7 +118,8 @@ test('reviewed source yields deterministic ordinary Lesson and nested Section/Co
     'no unresolved resources in a complete one-locale Lesson');
   for (const file of result.files.filter(file => file.kind === 'typescript')) {
     const parsed = ts.createSourceFile(file.path, file.content, ts.ScriptTarget.ES2022, true);
-    assert.equal(parsed.parseDiagnostics.length, 0, 'emitted TS parses: ' + file.path);
+    assert.equal((parsed as ts.SourceFile & { parseDiagnostics: readonly ts.Diagnostic[] }).parseDiagnostics.length,
+      0, 'emitted TS parses: ' + file.path);
   }
 });
 
