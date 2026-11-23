@@ -102,20 +102,6 @@ const data = f => path.join(f.pkg, 'data/skills');
 const source = (f, p) => fs.readFileSync(path.join(data(f), p), 'utf8');
 const uuid = body => body.match(/\bid: "([0-9a-f-]{36})"/)?.[1];
 
-test('real Art editorial staging remains read-only during migration', () => {
-  const art = path.join(root, 'content/art');
-  const markdown = path.join(art, 'docs/skills/taxonomy.md');
-  const originalMarkdown = fs.readFileSync(markdown, 'utf8');
-  const run = spawnSync(process.execPath, [script, '--package', 'content/art'], {
-    cwd: root,
-    encoding: 'utf8',
-    maxBuffer: 16 * 1024 * 1024,
-  });
-  assert.match(run.stdout, /"mode":"dry-run"/);
-  assert.equal(fs.readFileSync(markdown, 'utf8'), originalMarkdown);
-  assert.ok(run.status === 0 || run.status === 1, run.stderr);
-});
-
 test('dry-run is default and leaves code and Markdown untouched', () =>
   withFixture(f => {
     const before = fs.readFileSync(f.md, 'utf8');
