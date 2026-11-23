@@ -1,0 +1,66 @@
+# Temporary, PR-scoped diagnostic; remove after dependency remediation is verified.
+name: PR 805 dependency audit diagnostic
+
+on:
+  push:
+    branches: [maintenance/remediate-npm-dependency-security]
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    if: github.repository == 'KiT-Maverik/svitlo'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Install locked dependencies without lifecycle scripts
+        run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Capture both npm audit scopes
+        shell: bash
+        run: |
+          set -uo pipefail
+          npm audit --json >/tmp/pr805-full.json
+          code=$?
+          if [[ $code -gt 1 ]]; then exit "$code"; fi
+          npm audit --omit=dev --json >/tmp/pr805-prod.json
+          code=$?
+          if [[ $code -gt 1 ]]; then exit "$code"; fi
+      - name: Summarize advisories, resolution paths and available fixes
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const lock = JSON.parse(fs.readFileSync('package-lock.json', 'utf8')).packages;
+          const out = [];
+          for (const scope of ['full', 'prod']) {
+            const data = JSON.parse(fs.readFileSync(`/tmp/pr805-${scope}.json`, 'utf8'));
+            out.push(`### ${scope} findings: ${JSON.stringify(data.metadata?.vulnerabilities)}`);
+            for (const [name, v] of Object.entries(data.vulnerabilities || {})) {
+              const via = (v.via || []).map(x => typeof x === 'string' ? x : `${x.url || x.name} [${x.range}]`).join('; ');
+              const seen = Object.entries(lock).filter(([p]) => p.endsWith('/node_modules/' + name) || p === 'node_modules/' + name).map(([path, obj]) => `${obj.version}@${path}`).join(', ');
+              out.push(JSON.stringify({package:name, severity:v.severity, direct:v.isDirect, range:v.range, resolved:seen, nodes:v.nodes, via, fix:v.fixAvailable}));
+            }
+          }
+          const report = out.join('\n')+'\n';
+          console.log(report);
+          fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, '<details><summary>PR 805 npm audit diagnostic</summary>\n\n```text\n'+report.slice(0,60000)+'\n```\n</details>\n');
+          NODE
+      - name: Trace deprecated and blocked-script package owners
+        shell: bash
+        run: |
+          set +e
+          for p in inflight glob rimraf whatwg-encoding boolean eslint core-js-pure electron-winstaller esbuild fsevents unrs-resolver; do
+            echo "::group::npm explain $p"
+            npm explain "$p" 2>&1 | head -45
+            echo "::endgroup::"
+          done
+      - name: Inspect affected framework versions
+        run: npm ls next eslint-config-next react react-dom react-server-dom-webpack react-server-dom-turbopack react-server-dom-parcel --all --depth=2 || true
