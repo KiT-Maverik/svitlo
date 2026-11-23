@@ -194,7 +194,7 @@ function checkOwnedPaths(kind: BankGitKind, plan: BankSourceResult): void {
     if (plan.transition.reviewedIndexPath !== index ||
         plan.transition.archivePath !== kind + '.reviewed-stage3.ts.txt' ||
         !names.has(kind + '.reviewed-stage3.ts.txt') ||
-        !names.has(kind + 'Languages.ts') ||
+        !names.has((kind + 'Languages.ts').toLowerCase()) ||
         plan.files.filter(file => file.path.startsWith(kind + '/') && file.path !== index).length === 0) {
       throw new Error('Partial reviewed bank source transition');
     }
