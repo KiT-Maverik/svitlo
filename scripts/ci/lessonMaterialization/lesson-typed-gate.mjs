@@ -26,10 +26,7 @@ function exactlyOne(body, expression, label) {
 }
 
 
-/** Require editorial Stages 1–5 and pending Stage 6. New PRs use ten stages with three
- * explicit Stage 6 subchecks. Historical eight-stage PRs remain materializable
- * during in-place tracker migration; old 7/8 translation ticks NEVER prove banks.
- */
+/** Verify the typed ten-stage Lesson tracker and separate pending Stage 6 checks. */
 export function requireStageSixPending(body) {
   const heading = exactlyOne(body, /^## Lesson stages[ \t]*$/gm, 'Lesson stages heading');
   const start = heading.index + heading[0].length;
@@ -48,26 +45,14 @@ export function requireStageSixPending(body) {
     'Translation',
     'Translation Review',
   ];
-  const oldStages = [
-    'Methodology',
-    'Content Creation',
-    'Content Review',
-    'Experience Review',
-    'Methodology Compliance',
-    'Resource Production',
-    'Translation',
-    'Translation Review',
-  ];
   const items = [...section.matchAll(/^-\s*\[([ xX])\]\s*(10|[1-9])\.\s*([^\r\n]*)$/gm)];
-  const isCurrent = items.some(item => Number(item[2]) >= 9);
-  const expected = isCurrent ? stages : oldStages;
-  if (items.length !== expected.length) throw Error('Exactly one checkbox for each canonical Lesson stage is required');
-  for (let i = 0; i < expected.length; i++) {
+  if (items.length !== stages.length) throw Error('Exactly ten canonical Lesson stages are required');
+  for (let i = 0; i < stages.length; i++) {
     const current = items.filter(item => Number(item[2]) === i + 1);
     if (
       current.length !== 1 ||
-      !current[0][3].startsWith(expected[i]) ||
-      !/^(?:$|[ \t]+(?:—|–|-|:))/.test(current[0][3].slice(expected[i].length))
+      !current[0][3].startsWith(stages[i]) ||
+      !/^(?:$|[ \t]+(?:—|–|-|:))/.test(current[0][3].slice(stages[i].length))
     )
       throw Error('Exactly one canonical Lesson Stage ' + (i + 1) + ' is required');
     if (i < 5 && current[0][1].toLowerCase() !== 'x')
@@ -76,7 +61,7 @@ export function requireStageSixPending(body) {
       throw Error('Stage 6 must be pending: materialization alone is not completion');
   }
 
-  if (isCurrent) {
+  {
     const subNames = [
       'Materialize Lesson sources',
       'Complete generated Lesson resources',
