@@ -1,4 +1,4 @@
-import type { Preview } from '@storybook/nextjs';
+import type { Preview } from '@storybook/nextjs-vite';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 
