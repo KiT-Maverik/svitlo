@@ -60,3 +60,11 @@ source/reviewer SHA and Course provenance, statically parses untrusted TS
 without executing it, archives the reviewed source and atomically commits the
 real generated source modules. It never completes Stages 6.2/6.3 or publishes
 Props. Do not dispatch the YAML command on this typed source.
+
+## Lesson YAML-to-typed cutover inventory
+
+[Lesson-owned source/CI consumer inventory and default-branch retirement gates](./CUTOVER.md)
+records the legacy entrypoints, typed Stage 6.1 parity boundary, negative-test
+expectations and required synthetic deployed-workflow evidence. The YAML-only
+command remains an intentional compatibility path for already-approved legacy
+PRs; new typed Lesson Stage 2 sources must never be passed through it.
