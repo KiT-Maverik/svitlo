@@ -12,14 +12,14 @@
 
 ## Validation tiers
 
-| Event                                   | Scope                                                                                                                          |
-| --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
-| Draft PR (any target)                   | Cheap source/security/artifact guards and authored `TODO (BLOCKER):` warnings; defer npm installs, builds and E2E              |
-| Ready PR to `develop`                   | Scoped typechecks in FastGate; separate Ready generator/host/browser suites, selected content build, blocking TODO checks      |
-| Ready child PR to an integration parent | Applicable targeted checks and selected content builds, blocking authored TODO checks; FastGate is only required for `develop` |
-| Ready promotion PR to `main`            | All textbook builds, complete package checks, E2E, full tracked-source blocker scan; no redundant FastGate                     |
-| Manual `workflow_dispatch`              | Explicit full diagnostics/builds on a selected branch, including a Draft branch                                                |
-| Push to `main`                          | Avoid duplicating expensive pre-merge quality checks; run deployment-specific checks only when needed                          |
+| Event                                   | Scope                                                                                                                                                                                                 |
+| --------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Draft PR (any target)                   | Cheap source/security/artifact guards and authored `TODO (BLOCKER):` warnings; defer npm installs, builds and E2E                                                                                     |
+| Ready PR to `develop`                   | Scoped typechecks in FastGate; separate Ready generator/host/browser suites, selected content build, blocking TODO checks                                                                             |
+| Ready child PR to an integration parent | FastGate typechecks only directly changed workspaces (and builds their compilation prerequisites); other targeted checks, selected content builds and blocking authored TODO checks remain applicable |
+| Ready promotion PR to `main`            | Full production quality remains authoritative; FastGate separately checks directly changed workspaces, without replacing the full promotion gate                                                      |
+| Manual `workflow_dispatch`              | Explicit full diagnostics/builds on a selected branch, including a Draft branch                                                                                                                       |
+| Push to `main`                          | Avoid duplicating expensive pre-merge quality checks; run deployment-specific checks only when needed                                                                                                 |
 
 ### Agent PR lifecycle: Draft during active work, Ready for owner review
 
@@ -42,7 +42,7 @@ candidate and not permission to merge unchecked code.
 
 Draft and target branch are independent dimensions: a Draft to `develop`,
 a nested Course/Lesson child Draft and a Draft targeting `main` all receive
-lightweight guards. Ready for review is the **explicit validation boundary**:
+lightweight FastGate status/guards without installing dependencies or running typechecks. Ready for review is the **explicit validation boundary**:
 `ready_for_review` must trigger the necessary checks even if no source SHA
 changes, and subsequent `synchronize` events on a Ready PR must rerun them
 for the latest revision. Draft PRs still report fast required contexts
@@ -109,14 +109,22 @@ failing build.
 ### Validation on Ready
 
 FastGate is a **typechecking gate**, not a test, coverage, lint, package-validation,
-or production application-build gate. It selects changed workspaces plus consumers
-of changed public TypeScript contracts, builds only the prerequisite published
-exports required for TypeScript resolution in dependency order, then runs
-independent `code:check:types` checks concurrently (default two;
+or production application-build gate. On **Ready PRs targeting `develop`**, it selects
+changed workspaces plus consumers of changed public TypeScript contracts. On **Ready
+PRs targeting any other branch** (including nested integration parents and `main`),
+it selects **only directly changed workspaces**, without downstream consumer
+expansion. For either scope, it builds prerequisite published exports needed for
+TypeScript resolution in dependency order, then runs independent `code:check:types`
+checks concurrently (default two;
 `SVITLO_FASTGATE_PARALLELISM=1..8`). Web/Mobile typechecks remain sequential
 because their npm pre-hooks may rewrite shared `dist/`, making concurrent checks
 unsafe without first separating preparation from compilation. Root
 `npm run code:check:types` checks all workspaces and is not the FastGate default.
+For nested Ready PRs, a root-only manifest or root tsconfig change does not
+count as a directly edited workspace; use the existing full manual
+`workflow_dispatch` (`--all`) for such global configuration changes when needed.
+The GitHub PR trigger includes `edited` so retargeting a Ready PR also re-evaluates
+its correct branch-specific scope.
 The separate `/engine-coverage` PR comment invokes optional, diagnostic-only
 Engine coverage; FastGate never invokes coverage automatically. Content Build plans scope before
 npm install: Draft defers distribution builds, Ready `develop` selects impacted
@@ -179,7 +187,7 @@ Affected Content status. Implementation details and validation commands:
 
 Use this sequence for PR diagnosis: **latest-head required check → failing job → failing step → bounded diagnostic**. A green historical run or an optional check is not evidence that the current PR can merge.
 
-1. **Establish the live target.** Read the PR number, base branch, **current head SHA**, and Draft/Ready state. Query the target branch's actual required contexts/ruleset and the check runs/statuses for that SHA (not just the PR's overall check badge). Record each required context's `queued`, `in_progress`, `completed` conclusion, missing/not-reported state and associated URL. Draft and Ready can emit different workflows; do not mistake a deliberately absent Ready-only check on Draft for a successful production gate. On `develop`, check `FastGate / verify`; on Ready `main`, check `Production Quality / verify`, alongside the shared required contexts. See [branch policy](#branch-topology) for current conventions; confirm live rulesets before claiming a check is required.
+1. **Establish the live target.** Read the PR number, base branch, **current head SHA**, and Draft/Ready state. Query the target branch's actual required contexts/ruleset and the check runs/statuses for that SHA (not just the PR's overall check badge). Record each required context's `queued`, `in_progress`, `completed` conclusion, missing/not-reported state and associated URL. Draft and Ready can emit different workflows; do not mistake a deliberately absent Ready-only check on Draft for a successful production gate. On every Ready PR, inspect `FastGate / verify`; its presence on intermediate branches is diagnostic and does not make those branches protected. On `develop`, verify the required FastGate context; on Ready `main`, verify the authoritative `Production Quality / verify` alongside shared required contexts. See [branch policy](#branch-topology) for current conventions; confirm live rulesets before claiming a check is required.
 2. **Separate current from obsolete runs.** Match a workflow/check's source head SHA and latest attempt to the PR snapshot. A superseded run, old merge ref or cancelled run is **not** a current-head pass. Distinguish cancellation due to supersession from a current-head cancellation or unresolved block; inspect the corresponding workflow run status/reason before deciding whether a retry is useful. If the PR head changes during diagnosis, re-snapshot before drawing conclusions.
 3. **Select only actionable failures.** From required checks, prioritize `failure`, `timed_out`, `action_required`, cancelled/blocked or unexpectedly missing contexts; distinguish genuinely failing jobs from skipped jobs or unfinished dependencies. Optional checks may be relevant to the defect but must be labeled **optional**. Do not infer readiness from successful jobs while a required context is pending or absent.
 4. **Narrow before reading logs.** For the affected workflow, obtain its job list, then fetch **step names, conclusions and durations** for the relevant failing job. Inspect its failing step and job summary/error annotations first. Look for `::error`, `[error]`, `error TS...`, `Error:`, `FAIL`, `not ok`, `fatal:`, and nearby `PASS`/failure markers. Retrieve only a bounded excerpt of the **specific failed job** (e.g. up to 50 relevant lines or ~12 KB), including enough surrounding context to identify the first cause rather than downstream cascade failures. If the API only supplies a whole log, filter/redact it **before** adding it to agent context; never paste full multi-job logs into the prompt.

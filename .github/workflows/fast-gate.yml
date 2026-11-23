@@ -2,8 +2,7 @@ name: FastGate
 
 on:
   pull_request:
-    branches: [develop]
-    types: [opened, reopened, synchronize, ready_for_review]
+    types: [opened, reopened, synchronize, ready_for_review, edited]
   workflow_dispatch:
 
 permissions:
@@ -63,7 +62,15 @@ jobs:
           SVITLO_WEB_TEST_SELECTION: web-fixture-alpha
           BASE_SHA: ${{ github.event.pull_request.base.sha }}
           HEAD_SHA: ${{ github.event.pull_request.head.sha }}
-        run: node scripts/runFastGate/run-fast-gate.mjs "$BASE_SHA" "$HEAD_SHA"
+          TARGET_BRANCH: ${{ github.event.pull_request.base.ref }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ "$TARGET_BRANCH" == "develop" ]]; then
+            node scripts/runFastGate/run-fast-gate.mjs "$BASE_SHA" "$HEAD_SHA"
+          else
+            node scripts/runFastGate/run-fast-gate.mjs "$BASE_SHA" "$HEAD_SHA" --changed-only
+          fi
 
       - name: Manually requested typechecks
         if: github.event_name == 'workflow_dispatch' && steps.scope.outputs.run == 'true'
