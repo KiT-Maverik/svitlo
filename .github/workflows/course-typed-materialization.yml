@@ -23,7 +23,7 @@ concurrency:
 jobs:
   verify-implementation:
     name: Typed Course / source and trust boundary tests
-    if: github.event_name == 'pull_request'
+    if: github.event_name == 'pull_request' && github.event.pull_request.draft == false
     runs-on: ubuntu-latest
     timeout-minutes: 25
     permissions:
