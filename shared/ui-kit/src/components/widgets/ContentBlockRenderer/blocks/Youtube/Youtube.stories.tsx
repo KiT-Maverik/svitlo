@@ -1,5 +1,5 @@
 import { enUiKitMessages } from '../../../../../testing/uiKitMessages.unit.fx';
-import type { Meta, StoryObj } from '@storybook/nextjs';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { Youtube } from './Youtube';
 import { ContentLanguageContext } from '../../ContentLanguageContext';
 
