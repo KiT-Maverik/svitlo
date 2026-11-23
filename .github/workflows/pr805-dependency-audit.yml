@@ -1,6 +1,10 @@
 # Temporary, PR-scoped diagnostic; remove after dependency remediation is verified.
 name: PR 805 dependency audit diagnostic
 
+concurrency:
+  group: pr805-dependency-audit-${{ github.ref }}
+  cancel-in-progress: true
+
 on:
   push:
     branches: [maintenance/remediate-npm-dependency-security]
