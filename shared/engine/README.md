@@ -50,7 +50,7 @@ Course, Lesson, Question Bank and Flashcard Bank use canonical Stage-specific Ty
 
 The YAML-only editors/builders and their derived JSON Schema tooling were retired in #775. Existing `content/math/**/lesson.yaml` remain historical, not an alternate current pipeline. Only completed `define*` authored resources enter `generateLessonProps`, `generateCourseProps` and `generateAssessmentResources`. Production must reject unresolved asset/Scene/Question/Flashcard, locale or review blockers.
 
-See [Engine scripts](./scripts/README.md) and [Studio typed production boundary](../../studio/docs/architecture/yaml-config-scaffolding.md).
+See [Engine scripts](./scripts/README.md) and [Studio typed production boundary](../../studio/docs/architecture/typed-production-materialization.md).
 
 ## Lesson and Course generation
 

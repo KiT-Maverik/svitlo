@@ -1,5 +1,7 @@
 # Typed production authoring and entity-owned source materialization
 
+> Historical proposal. Integration #775 now implements typed Course/Lesson/Question/Flashcard source materializers and retires YAML-only production builders. Read [current typed production](../../docs/architecture/typed-production-materialization.md) and actual code instead of using this original design as a live work plan.
+
 **Status:** proposed implementation specification only. The Draft PR is the work tracker. This file does not claim an implemented or validated pipeline.
 
 ## Objective and boundaries
@@ -34,7 +36,7 @@ For a **new Lesson**, Stage 3 retains full methodology and stable placement but 
 
 Allocate the root Course UUID once when Course production starts. During Stages 1–4, new nested Module/Chapter/Episode/Section/ContentBlock and other supported owned nodes do **not** require agent-invented UUIDs. On materialization derive them deterministically from the root identity, concrete entity kind and stable full placement keys.
 
-Existing **deriveCourseEntityId(courseId, kind, placement)** in **shared/engine/scripts/materializeCourseFlow/materialize-course-flow.mjs** already creates deterministic UUIDv5-shaped IDs using SHA-1. Extract/adapt a small pure Engine helper from it; extend type/placement coverage while retaining stable existing IDs where relevant. Check duplicates and invalid placement paths, never silently replace explicit or imported identities.
+Existing **deriveCourseEntityId(courseId, kind, placement)** in **shared/engine/generators/materializers/course/deriveCourseEntityId.mjs** already creates deterministic UUIDv5-shaped IDs using SHA-1. Extract/adapt a small pure Engine helper from it; extend type/placement coverage while retaining stable existing IDs where relevant. Check duplicates and invalid placement paths, never silently replace explicit or imported identities.
 
 An allocated UUID is written into final TypeScript source **once**. A subsequent slug change or move must not recalculate that identity. Existing imported Lesson/Question/Flashcard/Scene IDs remain untouched. Identical approved input and same placement produce identical first-materialization IDs and output bytes. Invalid collisions are blockers, not signals to generate random alternatives.
 
