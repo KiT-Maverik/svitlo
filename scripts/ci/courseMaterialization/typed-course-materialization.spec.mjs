@@ -234,7 +234,10 @@ test('typed Course workflow is manual-only and obsolete YAML workflow is absent'
   assert.equal(workflow.jobs.publish.permissions.contents, 'write');
   assert(!local('./typed-course-source.mjs').includes('eval('));
   assert(!local('./typed-course-source.mjs').includes('new Function('));
-  assert.equal(fs.existsSync(fileURLToPath(new URL('../../../.github/workflows/course-materialization.yml', import.meta.url))), false);
+  assert.equal(
+    fs.existsSync(fileURLToPath(new URL('../../../.github/workflows/course-materialization.yml', import.meta.url))),
+    false,
+  );
 });
 
 const reviewedStage3 = {
