@@ -4,7 +4,6 @@ import os from 'node:os';
 import path from 'node:path';
 import { test } from 'node:test';
 import ts from 'typescript';
-import yaml from 'yaml';
 import { main, runOne, renderSceneFiles, sceneSymbols } from './sceneScaffolding.mjs';
 
 const sceneId = '11111111-1111-4111-8111-11111111111a';
@@ -50,10 +49,36 @@ function fixture(t) {
     },
     production: { documentLanguage: 'uk' },
   };
-  const save = () => fs.writeFileSync(path.join(source, 'lesson.yaml'), yaml.stringify(config));
+  const save = () => {
+    const sources = path.join(source, 'sections');
+    fs.rmSync(sources, { recursive: true, force: true });
+    fs.mkdirSync(sources, { recursive: true });
+    fs.writeFileSync(path.join(source, 'index.ts'), "export const lesson = 'materialized';\\n");
+    fs.writeFileSync(path.join(source, 'workflow.stage2.ts'), "export const review = 'verified';\\n");
+    fs.writeFileSync(path.join(source, 'languages.ts'),
+      'export const languages = [' + JSON.stringify(config.production.documentLanguage) +
+      '] as const satisfies SupportedLanguages;\\n');
+    const nodes = [];
+    function collect(value) {
+      if (!value || typeof value !== 'object') return;
+      if (value.config?.type === 'scene') nodes.push(value);
+      for (const entry of Object.values(value)) collect(entry);
+    }
+    collect(config.config.section);
+    nodes.forEach((node, index) => {
+      const target = path.join(sources, 'nested', 'scene-' + index);
+      fs.mkdirSync(target, { recursive: true });
+      fs.writeFileSync(path.join(target, 'index.ts'),
+        "import { defineScene } from '@svitlo/engine/build';\\n" +
+        'export const authoredScene = defineScene(' + JSON.stringify(node.config, null, 2) + ');\\n');
+      if (typeof node.production?.specification === 'string' && node.production.specification.trim())
+        fs.writeFileSync(path.join(target, 'specification.md'), node.production.specification);
+    });
+  };
   save();
   const folder = id => path.join(book, 'scenes', id.at(-1), id);
-  return { repo, book, source, config, save, folder, scene };
+  const authoredSceneModule = () => path.join(source, 'sections/nested/scene-0/index.ts');
+  return { repo, book, source, config, save, folder, scene, authoredSceneModule };
 }
 
 test('PascalCase Scene naming supports legacy lowerCamelCase and separates Configurator symbols', () => {
@@ -154,7 +179,7 @@ test('rejects unsafe/duplicate identities and missing production specs before wr
   assert.throws(() => runOne(f.source, 'generate', f.repo), /Duplicate Scene (UUID|production identity)/);
 });
 
-test('rejects invalid textbook setup, symlinks, malformed YAML, and unsafe inputs', t => {
+test('rejects invalid textbook setup, symlinks, malformed typed source, and unsafe inputs', t => {
   const f = fixture(t);
   const manifest = path.join(f.book, 'package.json');
   const old = fs.readFileSync(manifest, 'utf8');
@@ -168,14 +193,14 @@ test('rejects invalid textbook setup, symlinks, malformed YAML, and unsafe input
   fs.mkdirSync(path.dirname(output), { recursive: true });
   fs.symlinkSync(f.book, output, 'dir');
   assert.throws(() => runOne(f.source, 'generate', f.repo), /Refusing symlink/);
-  assert.throws(() => runOne(path.join(f.repo, 'outside.yaml'), 'generate', f.repo));
+  assert.throws(() => runOne(path.join(f.repo, 'outside.ts'), 'generate', f.repo));
 });
 
 test('rejects unsafe source-language strings instead of injecting them into TS comments', t => {
   const f = fixture(t);
   f.config.production.documentLanguage = 'uk\nconst arbitrary = true';
   f.save();
-  assert.throws(() => runOne(f.source, 'generate', f.repo), /production.documentLanguage/);
+  assert.throws(() => runOne(f.source, 'generate', f.repo), /reviewed source language/);
   assert.equal(fs.existsSync(f.folder(sceneId)), false);
 });
 
@@ -190,11 +215,11 @@ test('CLI only acts on an explicit source and select option', t => {
 
 test('rendered files are deterministic and no Scene scaffolding edits Lesson data', t => {
   const f = fixture(t);
-  const configBefore = fs.readFileSync(path.join(f.source, 'lesson.yaml'), 'utf8');
+  const configBefore = fs.readFileSync(f.authoredSceneModule(), 'utf8');
   const scene = { id: sceneId, component: 'DemoScene', specification: 'Spec', documentLanguage: 'qm' };
   const rendered = renderSceneFiles(scene);
   assert.deepEqual([...rendered], [...renderSceneFiles(scene)]);
   assert.deepEqual(runOne(f.source, 'generate', f.repo)[0].changed, 7);
-  assert.equal(fs.readFileSync(path.join(f.source, 'lesson.yaml'), 'utf8'), configBefore);
-  assert.deepEqual(fs.readdirSync(f.source), ['lesson.yaml']);
+  assert.equal(fs.readFileSync(f.authoredSceneModule(), 'utf8'), configBefore);
+  assert.deepEqual(fs.readdirSync(f.source).sort(), ['index.ts', 'languages.ts', 'sections', 'workflow.stage2.ts'].sort());
 });
