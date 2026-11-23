@@ -1,334 +1,255 @@
 # Create Course Flow
 
-**Role:** durable Course production coordinator (not a standalone authoring persona). This is the sole supported Course production authoring workflow. Its seven stages and one `course.yaml` are the complete editorial protocol; do not create parallel TOC, methodology, matching or Config YAML workflows. Before doing anything read root `AGENTS.md` and `README.md`, the Studio rules, the [Course entity](../../docs/entities/course.md), [UUID addressing](../../docs/architecture/entity-uuid-addressing.md), [YAML handoff](../../docs/architecture/yaml-config-scaffolding.md), current Engine Course source/tests and the current GitHub PR/Issue state.
+**Role:** the single canonical seven-stage Course production workflow, operated in the **existing Course entity-owned PR**. Before acting read root `AGENTS.md`/`README.md`, [CI/branch rules](../../rules/ci-workflow.md), [GitHub rules](../../rules/github-labels-and-naming.md), [Course entity](../../docs/entities/course.md), [architecture index](../../docs/architecture/README.md), [UUID addressing](../../docs/architecture/entity-uuid-addressing.md), [Methodologist](../../personas/methodist.persona.md), [Assessment Architect](../../personas/learning-assessment-architect.persona.md), and the current Engine contracts, source and tests. Stage 4 must be carried out by an **independent reviewer in a separate chat/context**.
 
-## Principles and authoritative state
+## Authoritative source, contracts and PR state
 
-- Exactly **one immutable Course UUID** and one **parent integration Draft PR** own one Course production effort. The PR description (not Git-authored Runtime fields, chat history or a second status file) owns progress and next action. Git history, real files, child PRs, Production Issues, and independent reviews provide evidence.
-- The **only temporary YAML source** for a Course is `content/<book>/data/courses/<last-hex>/<uuid>/course.yaml`, edited throughout planning and independently reviewed before materialization. It contains the complete Course authoring specification, including Config-relevant fields and production/methodology content. **There is no conversion to, generation of, or persistent handoff through `config.yaml`.** Stage 5 consumes this same approved `course.yaml` **directly** and creates the final Course/Module/Chapter/Episode TypeScript and Markdown files plus new minimal Lesson YAML handoffs. The trusted `/course materialize` operation validates, writes and deletes the exact `course.yaml` as one operation, then commits generated files and YAML deletion atomically; Git history preserves the approved input. **Never retain either `course.yaml` or `config.yaml` as a second permanent Course source.**
-- Methodology decides **what, why, depth and order**. No Scenario question or mode is asked in Stages 1–2. Stage 2 may place **unresolved** Lesson/Episode placeholders in the Course hierarchy, but does not author Lesson identity/methodology or Episode scripts, Sections, Scenes, dialogues, UI, Questions or scoring schemes. A separate optional Screenwriter workflow may later create Experiences; it cannot hold up methodological Stage 4 solely for missing plot.
-- Standalone Lessons are reusable, neutral entities with separate Lesson Production and Translation Production approvals. A **matched existing Lesson** is referenced by its verified `lessonId`; a **newly planned Lesson** is described by a complete methodology **inside its Course `course.yaml` slot**, without a mandatory `lessonId`, standalone source file or production PR. Neither kind of planning starts Lesson Production. Never embed a Course ID, storyline or Course-specific logic into a standalone Lesson Config/Props.
-- **Authorization boundary:** editing a Course plan, approving Stage 3, accepting Stage 4, allocating Course/Module/Chapter structure, or saying "continue Course work" does **not** authorize opening Lesson branches/PRs. Create/reuse a Lesson PR only after an **explicit, separately scoped start of work on that specific Lesson** through [Create Lesson Flow](../lesson-workflow/create-lesson-flow.skill.md). Even a fully specified planned Lesson can remain unstarted indefinitely.
-- **Planning is not production, but materialization creates sources:** Stage 3/4 edit and approve only the Course specification. **Stage 5 automatically creates missing Lesson identities and minimal reusable `lesson.yaml` sources** from approved in-place methodologies as part of Course materialization, without starting Lesson Production PRs or generating Lesson TypeScript. Starting Lesson authoring/reviews is a later, separately authorized task.
-- **Current implementation:** the single-source `materializeCourseFlow` CLI, Stage 3 schema and validator now support planned Lesson methodology and generate Course files directly, with stable new Lesson UUIDs and minimal `lesson.yaml` files. **No `config.yaml` is written.** Its authored Module/Chapter/Episode sources now follow a single root `content/` tree with direct slug nesting, local `index.ts` and `methodology.md`, and Course package import aliases. Lesson imports remain independent. After the single Stage 5 source commit, the trusted publisher writes new Lesson UUIDs, titles, slugs and paths with the pinned source blob and commit SHA to its Actions summary; it never parses or updates the Course PR description.
-- Completion is always tied to an actual source SHA and documented evidence. A checkmark means **verified deliverables and the approval required by that specific stage**, not an agent's optimistic status message. Stage 3 has no separate independent-review gate: independent whole-Course sign-off belongs to Stage 4.
+- There is **one Course UUID**, **one evolving TypeScript Course object** and **one Course PR**. Stages 1–3 progressively type the same source with `CourseWorkflowStage1`, `CourseWorkflowStage2`, and `CourseWorkflowStage3` imported from `@svitlo/engine/build`. The final independently corrected Stage 3 object must also `satisfies CourseWorkflowMaterializerInput` **immediately before authorized Stage 5**; that type is a canonical alias to Stage 3, **not** a second schema or an additional authoring stage. The Course PR description, not a production Issue, a status file, chat memory or authored Config, is the seven-stage tracker; recorded SHA and actual source/review evidence determine completion.
+- Author the object at the canonical UUID-addressed Course location in `content/<book>/data/courses/<bucket>/<uuid>/` (resolve the exact path from the repository). Preserve immutable identity, collection keys, item order and verified references between stages. Editorial `production` metadata is _not_ built Config or runtime Props. No second `toc.yaml`, `config.yaml`, `course.yaml`, separate matching or review PR, separate Course methodology authoring document or generator-artifact ledger.
+- **TypeScript checks shape, not truth.** It does not establish that Skill IDs exist, the Git SHA was inspected, a reused Lesson is suitable, a locale is authored, a standard is verified or a plan is pedagogically adequate. Read source and record verifiable evidence; `satisfies` is necessary but insufficient.
+- The current [workflow types](../../../shared/engine/types/workflow/courseWorkflow.types.ts), [typecheck examples](../../../shared/engine/types/workflow/courseWorkflow.typecheck.ts), [Course](../../docs/entities/course.md), [Lesson](../../docs/entities/lesson.md) and [Episode](../../docs/entities/episode.md) contracts take precedence over historical YAML examples. If a schema/API has changed in the integration branch, reconcile the real code before proceeding. The detailed methodology standard is here; Engine JSDoc is only a short field-by-field authoring reminder.
+- **Migration reality:** Stage 1–3 Engine TS types, the typed Course Stage 5 materializer and a separate manual-only trusted workflow exist on integration [#775](https://github.com/KiT-Maverik/svitlo/pull/775). The typed workflow is `.github/workflows/course-typed-materialization.yml`, invoked through **Actions → Stage typed Course materialization (manual rollout)** with `pr_number`; it is **not present on default `develop`** and must not be represented as a working live command. This rollout checks a single canonical changed `index.ts`, independent APPROVED review at the exact head SHA and a write-authorized actor; read-only trusted analysis precedes an atomic, SHA-guarded publish. The Course-only legacy YAML scripts and `/course materialize` workflow were deliberately removed from the integration tree in #796. The new trusted typed workflow is the **only** Course Stage 5 implementation, but no default-branch live command is available until #775 deploys; do not bypass this gate.
+- **Authorization:** reviewing/finishing the Course plan does not authorize Stage 5, creating Lesson PRs, authoring standalone Lessons/Questions/Flashcards, translations or publication. New Lesson IDs are allocated at authorized Stage 5 only. Independently produced Lessons stay immutable; Course-local overrides are built at the Course boundary.
+- **PR state is distinct from Course stage state.** Create Draft; keep Draft during active authoring or when stage work is unfinished. Convert an already Ready PR to Draft **before active edits**. When _the specifically authorized assigned work_ is completed and fit for the owner to inspect, convert to **Ready for review** automatically, then examine current-head target-specific checks. If Ready CI finds an actionable defect, return to Draft while committing fixes and then Ready again. Absent full checks on a Draft are an intentional cost-saving deferral, **never** a blocker or a pass; Ready is **not merge approval**. A partially completed Course workflow need not claim all seven stages done merely because a bounded, authorized PR deliverable is reviewable.
 
-## Starting or resuming by PR number
+## Starting, resuming and reporting
 
-1. Inspect the exact PR number, complete body, labels, head/base branches, linked subtask PRs, historical Lesson/Translation Production Issues where they actually exist, comments, reviewer decisions, CI/check suites and immutable head SHA. Do not assume chat history or an old checklist is current.
-2. Read the source hierarchy at the UUID bucket path. During Course planning inspect the single `course.yaml`; after verified materialization inspect the generated TypeScript/Markdown Course tree and canonical Lesson sources, **not any `config.yaml`**. Inspect reused Lessons' actual methodology at their UUID-resolved source paths; a planned Lesson is reviewed at its Course slot before materialization. Reconcile the source plan and its generated outputs by immutable SHA/provenance during the transition; never invent missing evidence.
-3. **Reconcile** each Course stage, Module subtask and target locale against Git evidence and the Stage 4 review recorded in the PR. Record the SHA, blocker, owner, links and exact next authorized action; check conflicts or stale authoring/review. Never auto-approve an editorial review.
-4. **On a status-only request (including a bare PR number), report the next recommended action without executing it.** When the user explicitly authorizes work, continue the **first authorized unfinished Course planning unit** (or an independently scoped Module/locale in an assigned agent-subtask PR). A parent coordinating agent is the only editor of the manually maintained PR checklist; do not overwrite concurrent edits. The Course parent has `pr: integration`. Optional Course planning subtasks can target that branch; **Lesson Production is a separate authorization** and may later create its own PRs.
-5. Before materialization, planned new Lessons remain identified by their Course slots. After Stage 5, read the verified Git commit and SHA-pinned Actions summary to recover assigned Lesson UUIDs, titles, slugs and paths. **No PR-description registration or parsing occurs.** Do not generate Lesson IDs manually or open Lesson PRs without separate authorization.
+1. Verify the exact Course PR, labels, head/base branches and immediate parent topology; inspect comments, open changes, relevant child PRs, real source files and immutable head SHA. Reuse the existing Course PR, not a new Production Issue or review PR. Historical Issues/PRs are evidence, not the new tracker.
+2. Resolve the Course UUID and current authored TS object. Verify latest completed stage, planned Lesson slots and sources, import SHAs, assessment dependencies, checked approvals and any actual blocking owner decisions. Never infer completion from a checkbox, green Draft check or unverified materializer result.
+3. **On a status-only request**, report the next feasible action without changing files. On an explicit `do course stage N for PR #...` or other unambiguous authorization, execute the assigned stage and its in-scope corrections immediately. The coordinating agent is the sole editor of the Course PR tracker; preserve concurrent subtask evidence.
+4. After a stage, review or paused unit, report: Course UUID and PR/current SHA; **all seven stage states** (completed / in progress / not started / blocked / stale); last completed stage with evidence; first eligible next Course stage and prerequisites; **one** copyable next-action instruction or a precise decision needed. No invented eighth stage, fabricated Lesson PR or automatic authorization. Record actual results in the Course PR.
 
-## Mandatory user-facing progress report and next-action handoff
+## Stages 1–4: same typed object
 
-After **every completed or paused unit of work**, at an authorization/review blocker, and whenever asked for status (including a new-chat message containing only a Course PR number), finish with a **user-facing report**. A bare PR number means **inspect and recommend**, not execute a stage, start a Lesson or mutate files. Re-fetch the actual parent PR head/base, manual `## Workflow` checklist, source/evidence SHAs, relevant child PRs and course/lesson files; reconcile stale or contradictory checkboxes before reporting. The PR checklist remains the authoritative _workflow tracker_, but a checked box alone is not verified evidence. Do not rewrite another agent's checklist while merely reporting. This is a chat presentation contract, **not** a new Git/YAML/Engine status field.
+### 1. Create Course Methodology
 
-Always provide, in this order:
+**Owner:** Methodologist. **Target:** `CourseWorkflowStage1`; do not add a hierarchy or choose a scenario mode.
 
-1. **Course and PR**: verified Course identity, parent PR `#N`, and current evidence/head SHA (or explicitly unknown).
-2. **All seven stages in their canonical order**, with name and clear state: `✅ completed`, `▶ in progress`, `⬜ not started`, `⛔ blocked` or `↻ stale`. Use a checkmark **only** for verified, SHA-backed deliverables _and_ required approvals. Include the relevant Module or locale breakdown when a stage is partially complete. Do not infer completed translations from declared locales.
-3. **Last completed stage**: `Stage N — <name> completed` with the actual evidence, or say precisely that no new stage was completed. Name any blocker or stale evidence.
-4. **Next Course stage**: the first remaining eligible stage (with prerequisite/authorization and blocked state), or explicitly `None — all seven Course stages are complete`. Do not silently skip Stages 6–7 when recommending Lesson work instead.
-5. **Recommended next action**: _one_ concrete, separately authorized and currently feasible operation, with reason, exact PR and verified identity. Put a **single plain-text, copyable chat instruction** on its own fenced `text` line, e.g. `do course stage 6 for PR #<course-pr-number>` or `do lesson <verified-lesson-uuid> related to PR #<course-pr-number>`. This is a suggested **chat instruction**, not an existing CLI command or an instruction to the agent to execute it now. If no safe next action is verifiable, state the missing evidence/decision instead of inventing a command. Invite the user to send the command or reply `go` to the **single unambiguous proposal in the current chat**; any other clear message authorizing that same action works. A bare PR number or `go` without an unambiguous current proposal does not start work.
+Research the target textbook, expected learner population, prior knowledge, prior Skills vs competencies to teach, intended scope and exclusions, learner age/grade and jurisdiction where relevant, discipline-specific causal learning sequence, difficulty, depth, misconceptions, feedback and valid learning evidence. Verify Skill/Group/Domain UUIDs from the actual taxonomy; Domain/Group references express intended breadth, not mastery of every descendant. For standards, establish the jurisdiction, edition/version, reference source and _extent_ of alignment. Distinguish intended/partial/verified; no topic similarity implies certification.
 
-**Special handoff immediately after Stage 5, and on any later resume with Stage 5 complete:** explicitly recommend **pausing the Course workflow and starting the independent Lesson workflow** for one eligible Course Lesson, rather than automatically proceeding to Course translations. Explain that Stage 6 (Course-owned translations) remains the next Course stage and can be selected instead. Stage 5 creates only initial Lesson YAML/UUIDs; **it never creates Lesson PRs or begins Lesson Production**. Show the verified Lesson slug/title, UUID, canonical YAML path, relationship to the Course UUID and parent Course PR, plus its verified production PR state. Prefer the earliest pedagogically suitable not-yet-started Lesson in actual Course order, accounting for known prerequisite/assessment-bank dependencies; recommend **one** Lesson, not a batch. Give this exact copyable pattern with real values:
+Author **all** fields:
 
-```text
-do lesson <lesson-uuid> related to PR #<course-pr-number>
+- `config.id`, `config.type: 'course'`, `config.slug`, optional current Config metadata (`params` without `languages`/`scenarioMode`; `locale` for authored source-language title/description).
+- `production.languages.document` (actual source language) and nonempty `production.languages.planned` (planned language set). **Never** `config.params.languages` at this planning stage; planned locales are not translations.
+- `production.methodology.{purpose,audience,approach,depth,accessibility,scope,entryConditions,sourceNotes}`, plus `outcomes.explanation`, `prerequisites.explanation`, `standardsAlignment` and `openDecisions`. Empty standards/decisions lists are explicit decisions, not omitted required fields.
+
+These must contain actual, substantive editorial reasoning proportionate to scope. Audience is more than a grade. Approach describes concepts, practice, feedback and differentiation, not a pedagogical slogan. Depth and scope explain expected performance and excluded content. Entry conditions distinguish prerequisite knowledge and support needs. Accessibility covers equivalent nonvisual, keyboard, screen-reader, localization and offline implications. Source notes identify checkable evidence and uncertainty; the completed plan must be independently reviewable without guessing its meaning. No arbitrary word quota; one-line stubs do not pass methodological review.
+
+Minimal _shape example only_ (replace all explanatory strings and identifiers from real evidence):
+
+```ts
+import type { CourseWorkflowStage1 } from '@svitlo/engine/build';
+
+const courseStage1 = {
+  config: {
+    id: verifiedCourseUuid,
+    type: 'course',
+    slug: 'skyObservation',
+    params: { outcomes: { skills: [verifiedSkillUuid] }, prerequisites: { skills: [] } },
+    locale: { title: 'Sky observation', description: 'Observe and explain sky patterns' },
+  },
+  production: {
+    languages: { document: 'uk', planned: ['uk', 'en'] },
+    methodology: {
+      purpose: substantivePurpose,
+      audience: substantiveLearnerProfile,
+      approach: substantiveTeachingAndFeedbackPlan,
+      depth: substantiveExpectedDepth,
+      accessibility: substantiveAccessibilityAndOfflinePlan,
+      scope: substantiveScopeAndExclusions,
+      entryConditions: substantivePrerequisiteEvidence,
+      sourceNotes: verifiedSourceReferencesAndUncertainties,
+    },
+    outcomes: { explanation: substantiveOutcomesAndEvidence },
+    prerequisites: { explanation: substantiveEntryRequirements },
+    standardsAlignment: [],
+    openDecisions: {},
+  },
+} satisfies CourseWorkflowStage1;
 ```
 
-Before calling a Lesson eligible, reconcile actual post-materialization Course composition/TS imports, the canonical Lesson `lesson.yaml`, source/head SHA and existing open, Draft, closed and merged Lesson PR claims **by exact UUID and `svitlo-course-lesson:v1` Course/Lesson/Parent PR marker**. A matching existing Lesson PR means **resume that PR**, not start another. A matched historical/test PR with a **different** Lesson UUID is not that Lesson's production PR. Check for conflicting claims; do not infer a link from a matching slug or PR title. An absent or inconsistent Actions Lesson assignment summary is **not evidence that there are zero Lessons**: inspect the verified materialization commit and committed Lesson YAMLs, report the discrepancy and never silently reallocate or overwrite source. If no verified, unstarted Lesson exists, recommend the next properly authorized Course stage or resolving the precise blocker. This suggestion grants no permission to create a Lesson PR: only the user's subsequent, **specific** instruction (or unambiguous `go` accepting the single identified Lesson) can start [Create Lesson Flow](../lesson-workflow/create-lesson-flow.skill.md), reusing its existing UUID and parent Course branch.
+The variables above stand for actual verified authored values, **not** invented identities or copy-ready production content. Complete Stage 1 only after checking compiler shape, source IDs and substantive methodological readiness at a recorded SHA.
 
-**Terminal message:** once **all seven stages** are individually verified complete, say explicitly: **"All seven Course workflow stages are complete. There is no next Course stage. You can assign new work."** Do not continue automatically, invent an eighth stage or use an uncompleted final QA/release gate to misstate stage status. Report outstanding Lesson, bank, final QA, CI, publication or merge dependencies **separately**: seven completed workflow stages do not by themselves mean the Course is published or the PR may be merged.
+### 2. Design Course Structure
 
-## Course assessment placement and assessment-only Lesson dependencies
+**Owner:** Methodologist. **Target:** `CourseWorkflowStage2 extends CourseWorkflowStage1`. Retain _the same_ root `config`/`production` object, add required `config.content: { items, order }` (including `order` at **every** nested level).
 
-**Approved production policy:** The Methodologist decides whether a Quiz is appropriate **in an ordinary Lesson or in a separate Lesson at a Chapter/Module/Course boundary**. A Quiz is not a new entity or Lesson type: `defineQuizSection` selects real Question UUIDs from independently authored Question Banks; it does not define Questions. This policy extends, rather than replaces, the seven stages below. The Engine's cross-Lesson UUID resolver is a separate prerequisite for publishing a Quiz that uses other Lessons' Questions.
+Allowed structure: **Course → Module / Chapter / Lesson slot / Episode slot; Module → Chapter / Lesson slot / Episode slot; Chapter → Lesson slot / Episode slot**. Never nest Modules or Chapters under Chapters; no obligatory artificial Module wrapper. Each Module and Chapter has `config.type`, `slug`, source-language `locale.title`, ordered `content`, and complete `production.methodology`, `outcomes`, `prerequisites`, `depth` and `sequenceReason`. Explain why each unit exists, what it expects and produces, how cognition progresses, why its position is chosen and where reinforcement/assessment transitions are necessary. Audit gaps, repetition, cycles and cognitive load across the _whole Course_.
 
-- **Stage 1 — Course methodology:** describe how the Course will gather meaningful learning evidence; do not assume every Lesson requires a Quiz or attach an arbitrary Quiz quota. Formative feedback is allowed without Quiz.
-- **Stage 2 — macrostructure:** identify possible assessment transitions after Chapters/Modules/Course in normal pedagogical sequence, without authoring Question UUIDs, adding automatic mandatory assessment wrappers, or creating Lesson PRs.
-- **Stage 3 — Lesson placement:** ordinary, nontrivial _instructional_ Lessons should have their own meaningful independently produced Question Bank by default, even when no Quiz Section is included in the Lesson; if a bank is genuinely not pedagogically applicable (e.g. brief orientation or pure practice with different evidence), the Methodologist records a concrete rationale. No Quiz requirement is inferred from the existence of a bank. A Lesson may have zero, one or multiple justified Quiz Sections.
-- **Optional assessment Lesson:** when appropriate, insert an ordinary `type: lesson` after the relevant Course/Module/Chapter content. Its complete methodology states the covered Skills, intended evidence, **specific upstream Course Lesson slots whose Question Banks it consumes**, scope boundary, audience and assessment rationale. It may have no separate Question Bank. Its Quiz selects Question IDs from the completed upstream banks. It is allowed to be **Course-context-dependent** instead of pretending to be a fully reusable standalone Lesson; it must not encode new Course IDs or a new `assessmentLesson` Runtime discriminator in Engine Config. Keep Course placement/dependency metadata in the Course methodology and the relevant Lesson PR, not an invented runtime `dependsOn` field.
-- **Stage 4 — independent review:** confirm the overall assessment placement and every bank dependency, check coverage across the whole chapter/module and avoid repeated scoring. An assessment Lesson's dependency does **not** block review of the planned Course methodology simply because the upstream Question UUIDs do not exist yet.
-- **Stage 5 — materialization:** continue to allocate new Lesson IDs and scaffold minimal `lesson.yaml` files from approved slots. Preserve the assessment Lesson's methodology and Course ownership/slot provenance in the authored handoff; never invent Question UUIDs, generate Questions, or create Lesson Production PRs automatically.
-- **When Lesson Production is separately authorized:** record the assessment Lesson's exact upstream Lesson UUIDs, linked upstream Lesson/Question Bank PR URLs and relevant source/review SHAs in **its own Draft PR**. The agent may work on independent methodology/content, but **must not finalize Quiz `questionIds` or claim publication readiness until the required upstream Question Banks are implemented, independently reviewed, integrated into the target branch, and their referenced Questions verified in the published manifest and required locales**. Follow actual branch ancestry. A PR merely existing or having a green CI check is not sufficient. If pending, mark the Lesson PR as blocked with explicit dependencies and the next unblock step. Do not force upstream teaching PRs to depend on the downstream assessment Lesson.
-- **Assessment-only banks:** `Questions: Not Applicable` is legitimate for an assessment Lesson _only if_ its approved methodology declares external Question Banks, all selected question IDs resolve with real eligible locales, and its PR tracks upstream evidence; this is different from an unfinished own bank. For a nontrivial instructional Lesson, default to a proper bank even if its own Quiz is absent. Flashcard Bank is separately optional and retains its existing prerequisite policy.
+A provisional Lesson slot has **only** `config: { type: 'lesson', skills: [realVerifiedSkillId, ...] }`. A provisional Episode has **only** `config: { type: 'episode' }` and `production: { focus, purpose }`, explaining the educational situation and reason for its placement. At Stage 2 **do not** invent Lesson UUID/title/slug/objective/methodology, choose matched Lessons, write Episode plots/Scenes/Sections, create Questions or author translations.
 
-**Boundary:** this policy changes planning and downstream production gates, not Course/Quiz schemas or runtime behavior. The current Course `lesson.methodology` text is sufficient; no new `dependsOn` property, second YAML or schema validator is needed. Do not edit unrelated Course PRs or Lesson branches as a side effect. Verify actual cross-Lesson Question resolution, published banks, branch ancestry and locale support before declaring cross-Lesson Quiz publication operational.
+```ts
+import type { CourseWorkflowStage2, CourseWorkflowStage2LessonSlot } from '@svitlo/engine/build';
 
-## Seven-stage progression
+const observationSlot = {
+  config: { type: 'lesson', skills: [verifiedSkillUuid] },
+} satisfies CourseWorkflowStage2LessonSlot;
 
-Every stage uses five statuses: **not started** (no verified work), **in progress** (partial verified outputs), **blocked** (precise missing dependency or decision and next action), **completed** (all acceptance criteria met at a recorded SHA), **stale** (previous evidence no longer applies). Track blocking reason and next action; a Stage may be marked complete only when its declared deliverables are verified.
-
-### 1. Create Course Methodology — whole Course
-
-**Owner:** [Methodologist](../../personas/methodist.persona.md). **Reference:** [Skill Taxonomy Workflow](../skill-taxonomy-workflow/README.md). **Prerequisites:** approved Course intent; real target textbook/package; verified Course identity or authorization to create one.
-
-Interview the owner about identity, target audience (preschool through adult), level, entry knowledge, outcomes, scope/depth, teaching approach, accessibility, source language, target languages and _specific_ standards versions where relevant. Do **not** ask about `scenarioMode` or choose a story. Do not invent a narrative decision during methodological planning.
-
-Use `resolveEntityPath` for Course UUID location; initialize the parent Draft PR with the tracker below and correct GitHub labels. Generate an English taxonomy view read-only with:
-`node shared/engine/scripts/generateSkillsTaxonomy/generate-skills-taxonomy.mjs --package content/<book> --locale en --stdout`.
-Verify exact Skill/Group/Domain UUIDs against source. Distinguish **entry prerequisites** from **skills to be taught**; Domain/Group scope signals intent, not every member's guaranteed mastery. Record standards alignment evidence (jurisdiction, version, source, intended/partial/verified) without claiming certification. Declare `documentLanguage` separately from planned `supportedLanguages`; no fake translations.
-
-**Course methodology authoring standard (all fields live in the one `course.yaml`):** State an age/learner profile, previous knowledge and real entry conditions before defining objectives. Separate **prerequisites** from competencies taught; reference verified Skill, SkillGroup, SkillDomain and Course UUIDs with explicit breadth, never infer mastery of every Domain member or invent IDs. Explain the Course's specific scope and exclusions, depth, conceptual models, recurring misconceptions, causal sequence, feedback, differentiation, accessibility/offline needs and realistic assessment evidence. For each relevant EducationStandard, identify jurisdiction, edition/version, original source and the verified/partial/intended extent of alignment; do not claim certification from a topic resemblance. Define `documentLanguage` independently from the nonempty, supported, unique `supportedLanguages` set; neither is evidence of translated text. Open taxonomy/standard gaps remain explicit named decisions with owners, not placeholder competencies. A reviewer must be able to derive a coherent learning plan without inventing subject facts or pedagogy. Do **not** create a persistent Markdown, status frontmatter, parallel YAML or make a narrative-mode choice during this stage.
-
-**Output:** commit one temporary editorial `course.yaml` containing immutable ID, broad rationale and outcomes/prerequisite taxonomy scope, language intent, audience, standards evidence and open questions. No permanent `methodology.md` and no Lesson slots yet. **Complete** only after editor confirms breadth and actual taxonomy references at a recorded SHA. **Handoff:** macrostructure.
-
-### 2. Design Course Structure — whole Course
-
-**Owner:** [Methodologist](../../personas/methodist.persona.md). **Prerequisite:** accepted Stage 1 methodological scope.
-
-In the _same_ `course.yaml`, author ordered Course/Module/Chapter groups, stable keys/slugs, measurable outcomes, rationale, prerequisites, scope distribution and depth. Course may have direct Chapters or Lessons; Modules may have Chapters and/or Lessons; Chapters may have Lessons. Do not add wrapper Modules solely for bookkeeping. **Place provisional Lesson/Episode slots only where the learning sequence justifies them.** At this stage the Methodologist uses the canonical Skill taxonomy, **does not search existing Lessons**, assign Lesson identities, invent Lesson titles/objectives or design Episode narrative. Module/Chapter methodology is editorial, not an extra Runtime Props field.
-
-**Course sequence quality rules:** Build a real prerequisite graph from canonical Skill descriptions, learner readiness, conceptual dependency and the intended scope; do not follow taxonomy folder order mechanically. Choose Modules/Chapters only for meaningful pedagogical boundaries, with no mandatory wrapper depth. Order content from required foundations to conceptual application while managing cognitive load and planned reinforcement. A Skill may recur intentionally across different eventual Lesson slots at distinct depths, but redundant repetitions need an explicit learning reason; multiple related Skills may belong in one coherent future Lesson. Audit the _entire_ progression for missing preparatory knowledge, cycles, gaps, unsupported domain coverage claims and disproportionate module depth. Stage 2 establishes the macrostructure, competency-group ownership and **provisional** Lesson/Episode placements; final Lesson matching and Episode authoring belong to later, authorized work. Keep unresolved taxonomy proposals separate from real Skill UUIDs; escalate missing or incorrectly split Skills to the Methodologist rather than fabricating names or IDs.
-
-**Provisional placement format (Stage 2 only):** use temporary `content.items` collection keys, such as `TMP_lesson_1` and `TMP_episode_1`, in their exact `content.order` positions. A Lesson placeholder contains **only** `type: lesson` and a nonempty `skills` list of **real, verified Skill UUIDs**. It has **no** `slug`, `title`, `objective`, `lessonId`, `methodology` or invented ID. An optional Episode placeholder contains **only** `type: episode`; its story and Section/Scene design belong to separately authorized scenario work.
-
-```yaml
-content:
-  items:
-    TMP_lesson_1:
-      type: lesson
-      skills:
-        - 00000000-0000-4000-8000-000000000015 # verified Playground test Skill; use your textbook's real UUID
-    TMP_episode_1:
-      type: episode
-  order: [TMP_lesson_1, TMP_episode_1]
+const courseStage2 = {
+  ...courseStage1,
+  config: {
+    ...courseStage1.config,
+    content: {
+      items: {
+        firstObservation: observationSlot,
+        transition: {
+          config: { type: 'episode' },
+          production: {
+            focus: 'Apply the observation question in a new situation',
+            purpose: 'Connect observations to the next learning objective',
+          },
+        },
+      },
+      order: ['firstObservation', 'transition'],
+    },
+  },
+} satisfies CourseWorkflowStage2;
 ```
 
-**Complete:** accepted entire macrostructure, meaningful provisional placement/order and Skill coverage, with no unresolved ordering/coverage decision. The final Course must satisfy the [Course methodology completeness contract](../../docs/entities/course.md#course-methodology-completeness--pedagogical-technical-specification); Stage 1 breadth alone is not evidence of a complete educational specification. **Handoff:** Stage 3 resolves all temporary keys and carries out Lesson matching; separately authorized scenario work completes optional Episodes. Stage 2 creates **no** Lesson or Episode entities, UUIDs or PRs.
+Use stable collection keys; replace any historical `TMP_*` names by Stage 3. Type-checking cannot establish that all items are ordered exactly once, that Skill IDs exist or that sequencing is pedagogically justified; inspect these in the source. Stage 2 completion means the **entire** macrostructure and provisional Skill coverage are supported by evidence, not just a syntactically valid tree.
 
-**Validation boundary:** these deliberately incomplete `TMP_*` placeholders are **not valid under the final [Course Flow JSON Schema](./course-flow.schema.json)** and must **not** be forced through it. Do not require a Stage 2 schema/CLI/CI validation run, add dummy titles/IDs, create a Stage 2 generator or weaken the final schema. Preserve normal authoring-source review; the complete Stage 3/4 plan is validated at the actual materialization boundary. No parallel YAML input is allowed.
+### 3. Design & Match Lessons
 
-### 3. Design & Match Lessons — each Module (or bounded alternative)
+**Owners:** Methodologist and Assessment Architect. **Target:** `CourseWorkflowStage3 extends CourseWorkflowStage2` on the same nested Course tree. Resolve **every** Lesson slot into exactly **two** semantic outcomes; keep Module/Chapter methodology and Episode focus/purpose unchanged unless correcting their actual educational rationale. No `TMP_*` markers, invented Lesson UUIDs, Question IDs or separate Lesson PRs.
 
-**Owner:** [Methodologist](../../personas/methodist.persona.md), working with the [Learning Assessment Architect](../../personas/learning-assessment-architect.persona.md) on Quiz intent and assessment evidence **within the same Stage 3 authoring cycle, without a second independent Stage 3 review gate**. **Prerequisite:** accepted Stage 2 Course/Module/Chapter structure. **Authoritative output:** the **same Course `course.yaml`** and the parent Course PR description. This is **Course specification work**, not Lesson Production. Apply the pedagogical completeness requirements in the [Course](../../docs/entities/course.md#course-methodology-completeness--pedagogical-technical-specification) and [Lesson](../../docs/entities/lesson.md#lesson-methodology-completeness--pedagogical-technical-specification) entity documentation.
+**Four explicit assessment decisions for _every_ Lesson placement:** `production.assessment` is a required `LessonProductionAssessmentRequirements` decision object (also exported as `CourseWorkflowStage3AssessmentRequirements`). Set **all four booleans**: `questionBankRequired`, `flashcardBankRequired`, `quizSectionRequired`, `flashcardsSectionRequired`. Decide separately whether an independently authored Question Bank or Flashcard Bank is needed and whether an in-Lesson Quiz Section or Flashcards Section is needed. A bank may be required without a Section; an assessment-only Lesson can consume _verified upstream_ banks without owning one. Record the pedagogical rationale, precise upstream owners and target Skills in the available methodology/assessment evidence (new Lesson) or matching/override rationale (existing Lesson), without invented bank IDs or changes to an independently owned Lesson. `config.params.quizRequiredForCompletion` is **separate**: when `true`, a real enabled Quiz Section must exist by completed Lesson build; `disabled: true` cannot satisfy that structural requirement. These are planning decisions, not authority to create Sections or bank PRs during Course Stage 3.
 
-Proceed by Module or other bounded Course/Chapter unit. **Resolve every Stage 2 `TMP_lesson_N` placement**: preserve its position and real Skill IDs, perform the matching/new-Lesson work below, replace its temporary collection key with the selected stable placement key, and update the parent `content.items`, `content.order` and any references to that placement. Resolve optional `TMP_episode_N` similarly only when Episode authorship is authorized; otherwise remove/defer the placeholder without inventing narrative. Neither a temporary key nor a placeholder may reach Stage 4 approval, typed imports, UUID allocation or Stage 5 materialization. Preserve the ordered hierarchy and follow these steps **for each required Lesson placement**:
+**New Lesson (`production.kind: 'new'`):** author real partial `Lesson_Config` fields: `config.type: 'lesson'`, Course placement `slug`, verified nonempty `skills`, actual source-language `locale.title`, and suitable optional `params` (age/grade/settings except `languages`). **Do not supply** a Lesson `id`, `section` or `events`. Required `production.objective`, `depth`, `sequenceReason`, `assessmentEvidence` and complete `methodology` explain actual concepts, learning journey, prerequisite/misconception treatment, practice, differentiation, accessibility, evidence and intended Question Bank/Quiz responsibility. For an assessment-only Lesson explain exactly which _upstream Course slots_ and independent Question Banks will supply evidence; its own bank may be genuinely N/A if justified, not silently omitted.
 
-1. **Design the slot.** Determine exact verified Skill UUIDs and prerequisite relationships, learner audience, learning outcomes, depth, coverage boundary, sequencing rationale and assessment evidence. Avoid creating slots just to exercise a nesting level unless a concrete pedagogical reason is recorded for independent review. A slot is part of the Course plan, not evidence that a Lesson entity or PR exists.
-2. **Search for existing Lessons.** Query relevant Skill UUIDs with read-only `/get lesson by skill <uuid> --package content/<book>` (or `node shared/engine/scripts/queryLessons/query-lessons.mjs --by skill --skill <uuid> --package content/<book> --format json --stdout`). Inspect the query's `complete`, diagnostics, actual source SHA and language evidence: `complete: false` or missing files are **not** proof of absence. Evaluate candidates against the complete intended Skill set, target age, audience/entry conditions, conceptual depth, methodology, assessment requirements and target locale subset. Do not conflate matching Skill UUIDs with educational suitability.
-3. **Read the candidate's real methodology before reuse.** For each candidate `lessonId`, resolve the canonical UUID bucket using `resolveEntityPath(id)`: `content/<book>/data/lessons/<last-hex>/<lesson-uuid>/`. **Open and read `methodology.md` there when it exists.** If the Lesson is still in the current authoring flow and `methodology.md` is absent, inspect its actual `lesson.yaml` `production.methodology` plus verified author/review evidence; if source or completeness cannot be established, mark the match as unverified and investigate rather than guessing. Inspect substantive objectives, facts/examples, misconceptions, prerequisites, desired evidence, supported languages and implementation/readiness separately. Use the candidate only if its real methodology fits the Course's specific need.
-4. **Choose one of two slot outcomes in `course.yaml`:**
-   - **Existing, suitable Lesson — reuse.** Store its real `lessonId` with a concise, evidence-backed matching rationale and exact methodology source path/SHA in the Course planning/review record. The Lesson is still independently owned; **do not copy its full methodology into the Course plan**, silently modify it, mint a new UUID, create another PR or treat a missing translation as a reason to clone it. Missing Course languages are a separate localization dependency.
-   - **New Lesson — specify, do not produce.** Keep the slot's stable key and existing Course-level metadata, and write the **complete Lesson methodology directly at that slot** in the single `course.yaml`. This is a substantive pedagogical specification, not a one-line outline. For instructional Lessons include audience and entry conditions, exact Skill targets, observable outcomes and depth, accurate subject matter with examples/counterexamples, terminology, misconceptions, conceptual progression, assessment plan (justified zero/one/multiple Quizzes with target Skills and canonical `AssessmentMethodKey` intent), accessibility/offline considerations, references and constraints. For a separately placed **assessment-only Lesson**, specify the Skills/evidence assessed, upstream Lesson slots and bank owners, Chapter/Module/Course coverage boundary, intended Quiz, dependencies and rationale for having no own Question Bank; its methodology may depend on its **approved Course placement**. Do not claim it is a universally reusable independent teaching Lesson. Keep placement/provenance only in editorial methodology and PR descriptions, never in new Engine dependency fields. Do **not** require a `lessonId`, a standalone `lesson.yaml`, a `methodology.md` in a nonexistent Lesson directory, a Lesson branch or a Lesson PR at this stage. Review and, if editorially required, translate this specification **as part of Course planning** without inventing a production entity.
+**Existing Lesson (`production.kind: 'existing'`):** query by verified Skill IDs using [Lesson query](../../../shared/engine/scripts/queryLessons/README.md), then open the actual canonical Lesson source and methodology; verify full Skill coverage, learner/age/grade, prior knowledge, depth, accessibility, locale availability, intended assessment and current source commit. A query result or Skill overlap alone is not approval. Import the **real existing Lesson** from authored TypeScript. Preserve the Course-local `config.slug` and `skills` with no `config.id`, `params`, `locale`, `section` or `events`. For plain reuse: `production.existing: { id: existingLesson.id }`. For a Course-local adaptation: `production.existing: existingLesson.build.overrides(patch, { languages: ['uk'] })`, keeping the returned **`{ id, base?, locale? }` object** and writing substantive `production.overrideRationale`. Never store a bare ID string, construct a third `existingWithOverrides` kind, duplicate `config.id`, hand-build a raw override in the slot or modify the original Lesson. `production.matching` requires `methodologySourcePath`, _real_ `sourceSha`, `matchingRationale` and `languageEvidence`. A Course-local patch is not a mutation of standalone Lesson content/identity/languages/Skills.
 
-**Illustrative editorial snippet (validate the complete Course document, not this excerpt):**
+```ts
+import type {
+  CourseWorkflowStage3,
+  CourseWorkflowStage3LessonSlot,
+  CourseWorkflowStage3AssessmentRequirements,
+} from '@svitlo/engine/build';
+import { existingLesson } from '#lessonsData/verified-path';
 
-```yaml
-content:
-  items:
-    dayAndNight:
-      type: lesson
-      slug: dayAndNight
-      title: Day and night
-      objective: Explain why daylight and darkness alternate
-      skills:
-        - faa8f11a-cc06-42c9-8864-8151732e690a
-      methodology: |-
-        Audience, prerequisites, outcomes, subject facts, misconceptions,
-        progression, assessmentPlan and accessibility requirements
-        are authored here as a complete reviewable Lesson specification.
-        No independent Lesson entity or PR exists yet.
-  order:
-    - dayAndNight
+const assessmentPlan = {
+  questionBankRequired: true,
+  flashcardBankRequired: false,
+  quizSectionRequired: true,
+  flashcardsSectionRequired: false,
+} satisfies CourseWorkflowStage3AssessmentRequirements;
+
+const reusedSlot = {
+  config: { type: 'lesson', slug: 'observationReview', skills: [verifiedSkillUuid] },
+  production: {
+    kind: 'existing',
+    assessment: assessmentPlan,
+    existing: { id: existingLesson.id }, // or existingLesson.build.overrides(patch, { languages: ['uk'] })
+    matching: {
+      methodologySourcePath: verifiedLessonMethodologyPath,
+      sourceSha: actualInspectedCommitSha,
+      matchingRationale: substantiveMatchWithAudienceDepthAndSkills,
+      languageEvidence: actualLocalesAndAnyDependencies,
+    },
+  },
+} satisfies CourseWorkflowStage3LessonSlot;
+
+// Replace *all* provisional Lesson slots, including ones nested in Modules/Chapters.
+const courseStage3 = {
+  ...courseStage2,
+  config: {
+    ...courseStage2.config,
+    content: {
+      ...courseStage2.config.content,
+      items: { ...courseStage2.config.content.items, firstObservation: reusedSlot },
+    },
+  },
+} satisfies CourseWorkflowStage3;
 ```
 
-For an **existing** Lesson the slot instead carries the verified `lessonId`, and the reviewer follows that ID to the independent methodology source. A planned assessment-only Lesson uses exactly the same `type: lesson` slot, not a new type, and its `methodology` describes upstream Lesson slot keys and the evidence to measure. Do not invent upstream Question UUIDs during planning. For a **planned** Lesson the embedded methodology, not an allocated UUID or an implementation PR, is the basis for Stage 4 review. Do not add `draft`, `approved`, `productionStatus` or artificial Lesson entity state to editorial YAML.
+The import path and variables are illustrative: resolve them from the real textbook's aliases and source evidence. The replacement Course example preserves the Stage 2 Episode and its order. In real work, replace **every** unresolved Lesson slot throughout nested Modules/Chapters, not only the illustrated root slot. The two outcomes can be reviewed as `CourseWorkflowStage3NewLesson`/`CourseWorkflowStage3ExistingLesson` types; the single final whole-Course source must satisfy `CourseWorkflowStage3`.
 
-**Course-local edits for a reused Lesson (Stage 3):** The placement key is a Course-local alias, not the standalone Lesson's immutable slug; the slot's `slug` matches that placement key, while `lessonId` identifies the real existing Lesson. Before declaring a candidate unsuitable because its authored title, navigation or settings do not fit this Course, explicitly consider a **Course-only override**. The field `title` and `objective` remain editorial placement descriptions; neither silently rewrites the standalone Lesson. To request a change, author the exact supported **inline** Lesson Build API patch fields on the existing-`lessonId` slot: `locale.title` (invariant or genuine per-locale text), `params` (only mutable Lesson settings such as `sections.allowSkipping` or `quizRequiredForCompletion`), `events`, or `section` (existing nested `items`/ `additionalItems`/`order` patch semantics). The authoritative `lesson.build.overrides(patch, { languages })` and parent `course.build.overrides` contracts constrain valid values. Do **not** author `overrides:`, a separate override YAML, legacy operations DSL, duplicate Lesson entities, or patch `id`, `slug`, `skills` or `params.languages`. These identity/skill/language fields are immutable. `type`, `lessonId`, planned `skills`, `methodology`, `matchingRationale`, `sequenceReason` and placement fields remain **Course editorial metadata** and are not automatically applied as patches. The Course YAML title by itself does not change the reusable Lesson.
+**Course-wide assessment design:** recheck every new and existing placement's four independent booleans, their evidence/ownership rationale, intended later Section position, whether Questions/Flashcards banks belong to this Lesson or verified upstream Lessons, and the distinction from `quizRequiredForCompletion`. Stage 4 checks both the decisions and their implications for later independent bank/Section handoffs. Decide meaningful instructional Quiz locations vs a justified ordinary assessment-only Lesson at Chapter/Module/Course boundaries; define target Skills, the learner evidence, feedback and item/bank ownership without prematurely generating Quiz/Question/Flashcard Configs or IDs. A full independent Question Bank normally belongs to each nontrivial teaching Lesson even when its own Quiz is absent. Cross-Lesson Quiz publication requires the upstream reviewed banks in the actual branch ancestry and working global Question resolver; this _publication_ dependency does not block Stage 4 methodology review if ownership and planned coverage are already sound.
 
-```yaml
-content:
-  items:
-    lightLabSlot: # Course-local placement name, not the standalone Lesson slug
-      type: lesson
-      slug: lightLabSlot
-      lessonId: f760e7b7-9f77-5027-89ce-4e40d9d031a1
-      title: Discovery in our Course # editorial label, not an automatic override
-      objective: Apply the existing light-propagation Lesson here
-      skills: [00000000-0000-4000-8000-000000000015]
-      locale:
-        title:
-          en: Discovery in our Course # explicit Course-local override
-      params:
-        sections:
-          allowSkipping: false
-  order: [lightLabSlot]
+### 4. Independently review and correct the whole Course
+
+**Reviewer:** Methodologist + Learning Assessment Architect in a **separate agent/chat context** from authorship. This is a corrective, independent _review operation_ on the **same Stage 3 TypeScript source**, not `CourseWorkflowStage4`, a new PR or a backwards Stage 3 loop.
+
+1. Pin the exact current Course source Git SHA; read the **whole source**, referenced taxonomy/standards, Module/Chapter progression, new Lesson methodologies, real reused Lesson sources/SHAs, Course-local patches, Quiz/Flashcards Section and Question/Flashcard Bank decisions for **every** placement, `quizRequiredForCompletion` implications, upstream owners, locales, accessibility/offline constraints and unresolved decisions.
+2. Investigate learning science, scientific/source correctness, age/depth, Skill gaps and prerequisite loops, misconceptions, explicit learning evidence, suitability of matching and adaptations, honest standards claims and responsibility boundaries. Typechecking and a green Draft check do not establish pedagogical quality.
+3. **Immediately edit and commit every in-scope defect in this same Course PR**. This reviewer is the authorized final methodological specialist; even fundamental methodological corrections do **not** automatically reset Stage 3, require a second independent reviewer or move changes into a separate review PR. Escalate only a genuinely unresolved/out-of-scope ownership decision (e.g. changing an independently owned Lesson or Course scope not authorized by its owner).
+4. Re-read the resulting **entire corrected Stage 3 TS object**, verify actual source evidence and compiler/consistency as applicable, pin the **final corrected SHA**, and record the initial SHA, findings, exact corrective changes, remaining genuine decisions and one final Stage 4 verdict in the existing Course PR. One Stage 4 completion; do not create a second review record or silently claim that previous SHA evidence examined new content.
+
+Stage 4 approval permits a **recommendation** for independently authorized Stage 5, not materialization, new Lesson Production, translation, publication or merge.
+
+## Stages 5–7 and authorization boundaries
+
+### Final typed handoff from Stage 4 to Stage 5
+
+Use the **same** corrected Stage 3 authored object; pin its reviewed Git SHA and typecheck it against the canonical final input alias. No `CourseWorkflowStage4` authoring type, duplicate JSON Schema or alternate YAML document:
+
+```ts
+import type { CourseWorkflowMaterializerInput } from '@svitlo/engine/build';
+
+// Use the same fully resolved and independently corrected object, not a copy.
+const reviewedInput = courseStage3 satisfies CourseWorkflowMaterializerInput;
 ```
 
-A pure reuse slot with **no** `params`, `locale`, `events` or `section` leaves the Lesson unchanged. A new Lesson slot has **no `lessonId`** and a complete in-place `methodology`; it cannot carry these Course-local patches before an independent Lesson exists. Any `TMP_*` key must be replaced and all dependent `content.order`/assessment-bank slot references updated before Stage 4. Record the exact verified Lesson source revision, available locales, Skill fit, proposed patch, and rationale for every Course-local adaptation. **Stage 5** must reject unsupported patches with precise paths and emit valid nested `build.overrides` calls using only genuine existing Lesson configurators; source preservation and validation are independent of editorial Stage 3 approval.
+`CourseWorkflowMaterializerInput = CourseWorkflowStage3` in `shared/engine/types/workflow/courseWorkflow.types.ts`. The Stage 4 reviewer must have corrected and checked the actual final source; this typecheck does not authorize materialization or prove source SHA/approval. Preserve evidence of this handoff in the one Course PR.
 
-**Candidate matching and Lesson-slot review standard:** Search all relevant real Skill UUIDs, using the read-only query with `complete`/diagnostic information; a missing result from an incomplete index does _not_ prove no Lesson exists. A shared Skill UUID by itself does not prove sufficient age, depth, full target coverage, prerequisite suitability or language support. Read the candidate's actual pedagogy and authored source, compare all required outcomes, and prefer reuse over duplicating an adequate standalone Lesson. The Course's target languages must fit inside a reused Lesson's verified supported set; otherwise record a separate localization dependency rather than clone it. Do not reuse the same Lesson twice without pedagogical rationale. For genuinely new Lessons, author the complete in-place methodology and Skill set under that slot, without allocating an ID or opening a Lesson PR. Maintain Course-specific matching rationale in the parent source/review evidence; never write it into an independent Lesson. Document upstream Question Bank owners/assessment scope for cross-Lesson Quiz intent without inventing Question IDs.
+### 5. Materialize Course
 
-**Course parent PR tracker:** for each Module/bounded unit record (a) designed slots and Skills, (b) complete lookup outcome and candidate method evidence, (c) existing Lesson UUID + source reference **or** completed in-place planned methodology, and (d) Stage 3 assessment-intent decisions plus any remaining editorial questions for Stage 4. For an assessment-only slot record upstream source slot keys/known Lesson IDs, owning bank intention, coverage boundary and post-materialization production dependencies; **do not require** bank/Question UUIDs for Course Stage 3 or Stage 4. **Do not create "missing Lesson methodology" PRs as a subtask of Stage 3.** Existing independently authorized Lesson PRs, if any, remain valid and may be linked as evidence; their presence is never required for Course plan completion.
+**Owner:** Coding Agent; **requires separate authorization** after accepted Stage 4 methodology at the final SHA. The new typed materializer must demonstrably accept `CourseWorkflowMaterializerInput`, honor existing Lesson `{id,base?,locale?}` references, allocate genuine missing Course child/new Lesson IDs, create permanent Course/Module/Chapter/Episode authored TS, and generate deterministic **derived** human-readable `methodology.md` for each owning Course, Module and Chapter during Course Stage 5. A new Lesson's approved methodology stays in its _single_ `LessonWorkflowStage1` `index.ts` at Course Stage 5; the **later, separately authorized Lesson materializer** renders that Lesson's own `methodology.md`. Define a stable documented heading order (identity/scope → outcomes/prerequisites → approach/depth/sequencing → evidence and four assessment decisions/owners → accessibility/locales → standards/sources/open decisions), omitting inapplicable headings explicitly rather than dumping JSON; preserve the reviewed substantive rationale faithfully. The TypeScript planning object is the only editable authoring source; Markdown is reproducible output, not a second editorial input. Do not dump serialized JSON as methodology prose. Preserve imports/identity, check output fidelity, paths, overwrite safety and trusted source authorization. **Do not** start a Lesson PR, fabricate Questions/media/translations/Scenes, claim publisher readiness or use a YAML-only CLI as a typed materializer.
 
-**Stage 3 completion:** there are **zero `TMP_*` placeholders or references** remaining, the final `content.items/order` keys agree, and the Methodologist has completed the pedagogical specification for all actual Course Lesson slots with the Assessment Architect's assessment-intent input incorporated; placements and Skill coverage are justified; existing matches have verified methodology/source suitability; every planned slot has a complete in-place methodology appropriate to its purpose (Course-neutral for reusable instructional Lessons, with approved placement and upstream-bank rationale for assessment-only Lessons); Quiz decisions and substantive authoring questions are resolved. Record the exact Course source SHA, verified matching evidence and assessment decisions in the **parent Course PR**. Do **not** run `validateCourseFlow --stage 3-complete` as a separate Stage 3 completion gate; Stage 5 materialization performs authoritative final validation on the reviewed input. **Do not require a separate independent review of the initial Stage 3 methodology or its corrections before Stage 3 completion.** A complete Stage 3 may contain **zero Lesson Production PRs** and **planned slots without `lessonId`**. Its handoff is the **single independent whole-Course Plan Review (Stage 4)**, which reviews all Lesson methodologies and assessment intent; Stage 3 completion is not Stage 4 approval and does not authorize Lesson Production.
+**Current implementation boundary:** the only retained Course materialization instructions are the [typed Course Stage 5 runbook](../../../scripts/ci/courseMaterialization/README.md). Before invoking, confirm deployment of the trusted workflow on default `develop`, actual source SHA, independent approval and the permission gate. Legacy Course YAML tools are retired; while the typed workflow is not deployed, report Stage 5 as unavailable rather than attempting a YAML fallback. For **each approved new** `production.kind: 'new'` slot, Course Stage 5 must create its deterministic UUID-addressed Lesson directory with **only `index.ts` satisfying `LessonWorkflowStage1`**, containing the reviewed Lesson identity/methodology/assessment requirements already available from the Course. **Do not create `defineLesson`, Sections, Quiz/Flashcards drafts, `Not implemented` indicators or reserved selection IDs at Course Stage 5; do not start the Lesson PR.** This Stage 1 source is _not_ a runnable Configurator or publication-ready content. After separately authorized Lesson Production, the Lesson Methodologist/Screenwriter advances that _same Lesson TS source_ through its later stage types; only the subsequent authorized **full Lesson materialization** creates typed Section files with visible `Not implemented`, reserved Quiz/Flashcards IDs and `TODO (BLOCKER):` where incomplete, including a **real enabled Quiz** when `quizRequiredForCompletion: true`. Preserve publisher blockers until independently reviewed banks and real selections exist. See [Lesson entity](../../docs/entities/lesson.md). **Integration dependency:** verify the current canonical `LessonWorkflowStage1` Engine export and generated handoff against the integration head before claiming the full Stage 5 pipeline operational.
 
-**Current tooling:** the Stage 3 schema and read-only diagnostic CLI accept in-place Lesson methodology without a `lessonId`, but invocation is **optional while authoring**, never a separate Stage 1–4 requirement. Stage 5 internally runs the final validation; a successful schema check does not constitute Stage 4 approval or completed Lesson production. The source-pinned Stage 5 registration allocates and records new Lesson identities once; no later TypeScript-source inventory generation is part of this flow.
+### 6. Translate Course
 
-### 4. Review Course Plan — whole Course
+**Owner:** Technical Translator; authorized locales only, under [Translation Workflow](../translation-workflow/README.md). Translate Course-owned titles/descriptions and actual owned Module/Chapter/Episode text, not independently authored Lesson content. Read the source-language reference and the current Course TS modules; preserve UUIDs, keys, order and variables. Locale planning in `production.languages.planned` is **not** completed translation; TypeScript/Props/publication require genuine complete target coverage. Keep revision/provenance evidence **in the same Course PR**, no translator PR or report files.
 
-**Owner:** an independent reviewer agent in a **separate chat/execution context** from Stage 1–3 authoring. Apply the [Methodologist](../../personas/methodist.persona.md) and [Learning Assessment Architect](../../personas/learning-assessment-architect.persona.md) review responsibilities in **one substantive whole-Course pass**. The separate reviewer may use the **same GitHub account** as the author. **Review procedure:** follow the Stage 4 instructions in this canonical Create Course Flow Skill, scoped to the Course editorial plan rather than nonexistent Lesson production entities. The former standalone Course Methodology Review Skill was retired by PR #740; do not create or require a second reviewer workflow. **Prerequisites:** completed Stage 3 specification and verified taxonomy.
+### 7. Review Course Translations
 
-Review the **entire current Course specification** as one coherent plan: Course/Module/Chapter coverage, intended Skill depth, prerequisites, sequence, duplication or gaps, audience, accessibility, standards evidence, languages, and assessment validity. For each reused Lesson, inspect its actual verified methodology and source revision **and evaluate any explicit Course-local Lesson overrides for pedagogical and accessibility effects, supported locales and immutable identity**; for each planned Lesson, inspect the complete methodology and Quiz intent in its `course.yaml` slot. Check assessment-only Lesson scope, upstream bank ownership, outcome coverage and Quiz rationale across Course boundaries. Missing future Question UUIDs do not block review of a complete plan, but unidentified owners or underspecified outcomes do.
+**Owner:** independent Technical Translator reviewer in a different context, working in the **same Course PR** under [Review Translation](../translation-workflow/review-translation.skill.md). Review target-language terminology, conceptual meaning, inclusive language, structure, placeholders and actual source revision. Correct in-scope translation defects in the same branch and verify final SHA and locale scope. Missing/failed reference manifests are not approvals. Mark locales completed only with actual revision-specific evidence. Review of a Course locale does not approve standalone Lesson locales.
 
-Perform real independent editorial analysis. Record findings and corrective actions in the **parent Course PR discussion/checklist**, identifying relevant Course paths, Lesson slots and reviewed source revision. The reviewer may correct the Course YAML in the separate chat, recheck those corrections and document the result; return unresolved methodological decisions to the appropriate author instead of silently approving them. Material corrections after a completed review require the parent tracker to mark Stage 4 stale/incomplete until their review has been reconciled. Do not alter independently owned Lesson sources without separate authorization.
+**After all seven stages:** explicitly report that all seven Course workflow stages are complete and no next Course stage remains. List remaining Lesson/bank, full QA, CI and publication dependencies separately. Workflow completion never authorizes merge.
 
-**Independent review criteria:** Compare every Course/Module/Chapter outcome with the actual ordered Lesson slots and canonical taxonomy. Check prerequisite gaps, scientific/methodological accuracy, skill coverage, age/depth fit, planned practice and feedback, multiple/single-Quiz intent, intended assessment evidence, missed misconceptions and unreasonable repetition. For reused Lessons inspect their real methodology and locale coverage; for planned Lessons audit each complete in-place methodology and the feasibility of its bank dependencies. Verify standards claims against actual jurisdiction/version/source and their bounded evidence, plus accessible and offline-equivalent learning intent. Record exact reviewed source SHA, specific findings, authorized corrections and approval in the existing parent Course PR; a passing JSON Schema or superficial narrative summary is not approval. Stage 4 approves the Course _plan_ only: no Lesson implementation, story, media, override, translations, publication or Ready/merge is implied.
+## Independent Lesson and experience handoffs
 
-**Complete:** the separate review pass has examined the whole current Course plan, resolved requested corrections and recorded its outcome in the parent Course PR. Check **exactly one** `- [x] 4. Review Course Plan` item in that PR's `## Workflow` checklist when these requirements are met. Stage 4 completion is the pedagogical handoff for Stage 5; it does **not** require a separate GitHub identity, `APPROVED` review event, role/UUID/blob signature line or duplicate approval round. This is a trusted workflow declaration, not technical proof that a separate chat occurred. Course plan approval does not authorize standalone Lesson Production, Quiz publication, translations or Course release.
+A new Lesson Stage 1 handoff is an editorial starting point, not Lesson Flow Stage 1 completion or a newly authorized PR. Subsequently authorized Lesson→Questions and Lesson→Flashcards handoffs should also create a typed **child Stage 1 `index.ts`** with the actual available bank planning requirements, **not** completed Bank/Question/Flashcard Configs; each child then progresses through its own stage types and review/authorization gate. Questions and Flashcards banks are separate from Quiz/Flashcards Sections; a Quest is an independent instructional Section, **not** automatically a Question Bank, Quiz, or a separate approved Quest Production flow. Verify the real Quest contract before assigning work; the current child Stage 1 bank types/materializers are a parallel parent/child dependency, not provided by this Skill.
 
-### 5. Materialize Course — whole Course
+After Stage 5, retrieve allocated Lesson UUIDs, slugs, canonical paths and source provenance from the **verified new materializer run and actual committed sources**, not guesses or PR-description scraping. Recommend at most **one** pedagogically appropriate eligible new Lesson for separate authorization: `do lesson <verified-lesson-uuid> related to PR #<course-pr>`. Reconcile exact existing Lesson PR claims and the `svitlo-course-lesson:v1` marker before creating anything. An existing Lesson PR must be resumed, not duplicated. The separate [Lesson Flow](../lesson-workflow/create-lesson-flow.skill.md) owns its ten stages and bank children; Course Stage 5 never begins it.
 
-**Owner:** [Coding Agent](../../personas/coding-agent.persona.md). **Editorial prerequisite:** completed Stage 4 independent review and explicit maintainer authorization. The trusted automation authorizes the exact `/course materialize` request from a contributor with write permission and verifies actual PR identity and pinned YAML source; it **never reads or parses PR-description checklist items as a machine gate**. **Input:** the same, approved, temporary **`course.yaml`**, containing all Course planning and authoring specifications. **Output:** generated TypeScript/Markdown Course sources plus minimal `lesson.yaml` files for newly planned Lessons. **Never create or retain a separate `config.yaml`.** The editor and builder use one YAML document, not an editorial-YAML-to-technical-YAML conversion.
+Optional Course-specific experiences, scenario/Quest narrative or advanced Course-local overrides belong to independently approved Episode/screenwriting or Lesson adaptation work and appropriate review. The Course methodology may specify _why_ an Episode is needed, not invent its Scenes or dialogue in Stages 1–4. Course-local Build overrides are sparse and must pass the actual current Engine contract; they never change the reusable Lesson.
 
-**One-stage source-generation contract:**
+## Canonical PR tracker
 
-1. **Validate once, generate directly.** Read and validate the approved `course.yaml` against the relevant Course/Module/Chapter/Episode/Section/ContentBlock authoring contracts and methodology requirements, then generate the authoring source tree **directly from that parsed document**. The materializer can perform internal in-memory normalization to Engine Config shapes; it must **not write intermediate YAML** or require a second `config.yaml` input. Distinguish correct-but-incomplete draft TypeScript from errors in the materializer.
-2. **Create Course-owned files.** Generate canonical Course UUID directories and real source files: Course `index.ts`, Course `methodology.md`, Course content/composition modules, `review.ts` skeleton (without invented sign-offs), Module/Chapter source files and indexes, and **Episode directories, `defineEpisode` source and Section/content scaffolds when those Episodes were actually authored in the approved source**. Use actual Engine `define*` contracts and stable `items/order` relationships; never fabricate storyline, content, Questions, media, approval or translations. Store durable production specifications in their owning Markdown/source files, not in a permanent YAML.
-3. **Reuse existing Lessons.** Preserve every real, verified `lessonId` and reference the independent Lesson source without copying its methodology or changing its identity. Generate deterministic `#lessonsData/<bucket>/<uuid>/index` imports from a known canonical Lesson UUID and authored slug (or preserve a verified existing export) **even if the future Lesson implementation does not yet exist**. The resulting TypeScript module-resolution failure is an intentional Draft handoff, not grounds to omit the child, add a fake Lesson, or claim production readiness.
-4. **Materialize newly planned Lessons.** For each distinct reviewed new Lesson methodology in a `course.yaml` slot, allocate a real, unique Lesson UUID **during Stage 5**, resolve the canonical `content/<book>/data/lessons/<last-hex>/<lesson-uuid>/` directory, and create **only the minimal `lesson.yaml`** required to start future Lesson authoring: Config identity, verified Skills and intended languages plus `production.documentLanguage` and the exact approved `production.methodology`; Sections and unfinished content remain empty. Persist the assigned UUID in the generated Course references and in that new Lesson YAML. Do **not** generate Lesson TypeScript, `review.ts`, content blocks, assets, Question/Flashcard banks or a Lesson Production PR.
-5. **Ensure repeatable, non-destructive operation.** Preserve one ID for repeated planned-Lesson references. Because genuinely new UUIDs require allocation, record allocations in durable generated-source evidence or an equivalent recoverable transaction before considering them committed; deterministic UUID allocation must not change between attempts, and a rerun after successful input removal must safely refuse rather than reallocate or duplicate files. Respect existing authored data, use create-only/no-clobber guards, reject ambiguous collisions and partial transfers, and require a complete inventory/equivalence check over Course/Module/Chapter/Episode sources and the new Lesson YAMLs.
-6. **Internally verify and remove the temporary input in one operation.** The trusted materializer's sole production mode `--write` checks the complete generated inventory, path safety and input source fidelity internally, then deletes **only that Course `course.yaml` on full success**. Trusted CI records all creations and deletion in **one Git Data API commit**, with no separate `--check`, `--finalize`, preflight command or post-commit deletion phase. `--check` remains only an optional independently run read-only diagnostic. No `config.yaml` or alternate permanent Course authoring representation is created. Independent Lesson `lesson.yaml` files remain for their later Lesson workflows.
-
-**Lesson Production boundary:** materialization creates only the Lesson UUID/folder/initial `lesson.yaml`. Work on the Lesson starts later **only after explicit authorization for that specific Lesson**, through [Create Lesson Flow](../lesson-workflow/create-lesson-flow.skill.md), which must reuse the generated UUID and methodology. Neither Course approval nor source materialization opens Draft Lesson PRs.
-
-**Implementation:** `shared/engine/scripts/materializeCourseFlow/materialize-course-flow.mjs` consumes the approved single Course YAML and deterministically emits the Course `index.ts`, `constants.ts`, `review.ts` (unapproved review skeleton), `methodology.md`, Module/Chapter/Episode sources, and new Lesson YAML handoffs. Stage 5 CI invokes this generator **once with `--write`**, uses the verified SHA-pinned manifest to create all output files and delete the input **in one Git commit**, and links the resulting source commit and assigned Lesson identities in the Actions summary. The only other CLI mode, `--check`, is a manual read-only diagnostic and is not invoked from materialization CI. No Course TypeScript parsing, PR-body parsing, PR-description Lesson registry updater or separate finalize step is permitted. Generated TypeScript remains an intentionally incomplete authoring draft, not a published Course.
-
-**Complete:** the full reviewed Course tree and the necessary minimal independent Lesson YAMLs are safely materialized with stable identities and checked outputs; the temporary Course YAML is removed in the same materialization commit without losing its Git source history or review evidence. Stage 5 is source creation, **not** Lesson production, final TypeScript compilation, locale approval or release.
-
-### 6. Translate Course — per target locale
-
-**Owner:** [Technical Translator](../../personas/technical-translator.persona.md). **Skills:** [Manage Translation Production](../translation-workflow/manage-translation-production.skill.md), [Technical Translation](../translation-workflow/technical-translation.skill.md). **Prerequisite:** stable source-language Course/Module/Chapter code and authorized translation scope.
-
-Inventory Course-owned learner-facing `entity × locale` fields; exclude English-only Methodologist documentation and invariants. For **new** work, translate canonical Course/Module/Chapter/Episode sources directly in the **existing Course PR branch** and record translator identity, precise source SHA, language/field coverage and unresolved strings in its tracker. **Do not create another translation integration PR, translator PR/branch, reviewer PR/branch or production Issue.** Historical translation Issues/PRs remain accessible and must be reconciled, not closed automatically. Standalone Lesson locale gaps remain dependencies on their separately owned **Lesson PRs**, never copied into Course. Target language declarations alone are not evidence of completion.
-
-**Complete for each locale:** independently verifiable complete authored Course-owned strings at a pinned SHA, ready for independent review. **Handoff:** one independent review per required locale.
-
-### 7. Review Course Translations — per target locale
-
-**Owner:** independent [Technical Translator reviewer](../../personas/technical-translator.persona.md), using [Review Translation](../translation-workflow/review-translation.skill.md) and [Manage Translation Production](../translation-workflow/manage-translation-production.skill.md). **Prerequisite:** Stage 6 locale sources and explicit reviewer assignment.
-
-Use a **different reviewer agent/context and linguistic persona** to review the **same Course PR** at the owner's pinned source SHA. Generate **Course-UUID-and-locale-scoped** Code-derived Markdown and manifest with `/agent-artifacts generate courses <package> <course-uuid> <locale>`; verify `manifest.sourceCommit`, requested entities/fields, missing translations and `reviewReady` against the actual source revision. Read the entire Course-owned learner-facing content, checking fidelity, scientific meaning, terminology, accessibility/cultural nuance, RTL and missing fields. An unavailable/incomplete Course reference is a scoped review blocker, never permission to substitute Skills or Lesson Markdown. With explicit authorization, the independent reviewer **fixes in-scope canonical localized fields in the same Course PR**, re-generates source-pinned references, and records before/fix/final review SHAs and findings per locale. Clean tracked `.agent-ci-artifacts/` from this Course PR before merge; no separate review PR is created.
-
-**Complete for each locale:** independent language approval with exact source SHA and review evidence plus separately resolved required Lesson locale dependencies. Stage 7 ends only when every required locale passes; never mark green merely because text exists.
-
-## Course-specific experiences and Build overrides (outside the editorial stages)
-
-The seven-stage Course Flow plans pedagogical outcomes and materializes Course-owned source. Separately authorized authoring may later add Episodes, narrative transitions, Sections, Scenes and media under Course/Module/Chapter ownership. An educational Screenwriter owns their approved story and interactive requirements; an **independent scenario reviewer** checks continuity, learning integration, event/Section semantics, accessibility, localization, safe failure/recovery, existing Lesson neutrality and actual asset/runtime support. Do not treat a proposed story as an authored Episode, or assume an Engine Quest Config means a playable Quest. Record scenario findings, exact reviewed files/SHA, corrections, unresolved physical resource blockers and independent sign-off in the Course PR, **not** a second permanent scenario report or a fictional Stage 8. A change affecting narrative after review requires focused re-review.
-
-Any Course-local correction to a reused Lesson must be pedagogically warranted and authored against the **actual existing** Configurator with its stateless `course.build.overrides(patch, { languages })` API. The patch must use typed `content.items` / `additionalItems` / `order` collection semantics and valid current slugs, never mutate the standalone Lesson, change its identity/languages, invent Question scores or fabricate missing Scenes. Review methodological corrections independently from scenario decisions. For new Courses, write approved changes in the durable typed Course source only: **do not** create a separate `overrides.yaml`, `config.yaml`, TOC or operations-based override language. A generated Draft or typecheck is not an educational approval.
-
-The [four-workflow validation boundary audit](../../docs/architecture/yaml-config-scaffolding.md#validation-boundaries-across-the-four-entity-workflows) is authoritative: Course Stages 1–4 require semantic reviews and source evidence, not redundant stage-specific YAML validator calls. Do not add a second validation Action; preserve the Stage 5 fail-closed materializer and Ready/production CI.
-
-## Draft CI and final gates
-
-During Stages 1–5 a **parent Draft may be intentionally red** due to missing translation, unresolved TypeScript imports/Scenes or incomplete draft fields. Record the precise expected diagnostic and source SHA, why it is expected, the stage that will repair it and any unrelated unexpected regressions. Do not copy English into missing locales, suppress with `as any`, fabricate IDs, or repeatedly “fix” expected incompleteness. Unexpected corruption, unsafe YAML, invalid IDs, unrelated type regressions or broken workflows still require investigation.
-
-Before **Ready for Review or merge**, every mandatory CI, format/type/build/schema check, Course/Lesson reference, approval, production readiness and required language coverage must be verified green; owner approval is required to mark Ready. Relevant real commands include:
-
-`npm run package:build --workspace @svitlo/engine`
-`npm run content:generate:yaml-schemas --workspace @svitlo/engine`
-`npm run content:check:yaml-schemas --workspace @svitlo/engine`
-`node --test shared/engine/scripts/validateCourseFlow/validate-course-flow.spec.mjs shared/engine/scripts/materializeCourseFlow/materialize-course-flow.spec.mjs`
-
-Before declaring the Course ready, verify **every Course-owned Episode** has
-all required media produced (Image, Audio, Video, poster, Subtitles and nested
-Carousel/Quest dependencies). The Stage 5 Course materializer emits
-`TODO(asset)` and reserved Nil UUID media filenames for unresolved asset
-requests; those are **allowed in Drafts only** and must be absent at Ready/merge.
-Do not add media-generation side effects or production status fields to
-`defineEpisode`; the resource lifecycle belongs to the source scaffolder,
-specialists and strict production publisher. Run `generateCourseProps --preflight`
-without `--draft` and the affected textbook's production `package:build`,
-then inspect the generated Course/Episode resources and static manifest. The
-Course PR also depends on every referenced standalone Lesson's actual release
-readiness; a merged Lesson PR or generated source alone is not proof. Record
-real resource paths, language coverage and build SHA/evidence.
-
-The `Content packages build` check rejects unresolved media markers in
-changed Course UUID roots on review-ready PRs; the production build also
-rejects missing physical references. Configure protected-branch required
-checks separately to prevent bypassing CI. Run the repository's canonical
-generator/test tasks for affected packages, and report exact outcomes; commands
-are not automatically proof of approval.
-
-## Worked Stage 3/4 review and downstream dependency example
-
-This is an **editorial planning example**, not published content and not a new YAML/Runtime contract. The Methodologist records the following placements and complete methodologies in the **same** Course `course.yaml` `content.items/order` tree:
-
-| Ordered placement                                           | Lesson purpose                                                                                                                                                 | Own Question Bank                                                                                  | Own Quiz                                                         |
-| ----------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
-| Module `foundations` → Chapter `dayNight` → `earthRotation` | Substantive instruction about rotation and day/night; approved Skill UUIDs and depth                                                                           | **Required by default**; independently reviewed, published full bank                               | **None**, justified because later synthesis assesses the outcome |
-| Module `observations` → Chapter `moon` → `moonPhases`       | Substantive instruction on lunar phase observations                                                                                                            | **Required by default**; independently reviewed, published full bank                               | **None**, justified                                              |
-| Course root → `courseKnowledgeCheck` (after both Modules)   | **Ordinary `type: lesson`**, assessment-only; methodology targets both earlier Lessons' Skills and their specific upstream slot keys; no new teaching sequence | **Not Applicable once external bank evidence is verified**; it does not author duplicate Questions | **One Quiz Section**, later selected from both upstream banks    |
-
-**Stage 3:** the Course methodologist approves the placement, scope and explicit external bank ownership; no new Lesson UUID or Question UUID is fabricated and no Lesson PR is opened. **Stage 4:** an independent Methodologist and Assessment Architect inspect this evidence plan at the pinned Course SHA and may approve the complete plan despite the banks not yet being produced. Missing/unspecified _upstream ownership or outcome coverage_, unlike missing Question UUIDs, **does** block the review. **Stage 5:** the existing materializer assigns an immutable Lesson ID, copies its methodology into the initial `lesson.yaml` and retains the full Course authorship provenance. It creates no Lesson or bank PR automatically.
-
-**After separate Lesson Production authorization:** both instructional Lessons and their independent bank PRs must be completed, reviewed and **integrated into the assessment Lesson's actual branch ancestry** before the Assessment Architect can finalize the Quiz's `params.selection.questionIds`. A missing or merely green-but-unmerged `moonPhases` bank blocks **that Quiz selection and dependent assessment Lesson publication**, not the `earthRotation` Lesson's production or the Course's Stage 4 planning review. A failed/missing locale or a missing published Question UUID also blocks this assessment Lesson's publication for that requested locale. Confirm real cross-Lesson Question resolver behavior, locale support, published manifests and production gates against the current implementation. A bank-owning Lesson may legitimately have no Quiz, while the assessment-only Lesson may have no own bank; these are distinct decisions recorded in each Lesson PR.
-
-## Parent Draft PR template
-
-Copy and initialize the following **once** when creating a new Course parent integration PR. Replace bracketed example placeholders with verified identities and live status. The sentinel comments are part of the machine/human contract; **do not edit/duplicate them**.
+Initialize **once** in the Course entity PR description, then update in place with exact evidence, not optimistic checkmarks:
 
 ```md
 <!-- svitlo-course-flow:v1 -->
 
 ## Course identity
 
-- Course UUID: <uuid>
+- Course UUID: <verified uuid>
 - Textbook: content/<book>
-- Single temporary source plan: content/<book>/data/courses/<bucket>/<uuid>/course.yaml
-- Target locales: <source, targets>
+- Single authored TS source: <canonical path and export>
+- Document / planned locales: <verified languages>
 - Last reconciled head SHA: <sha>
-- Current stage: 1
-- Next authorized action: <precise action>
-- Active subtask/PR: <link or none>
+- Current stage: <1–7>
+- Next authorized action: <specific action>
 
 ## Workflow
 
 - [ ] 1. Create Course Methodology
 - [ ] 2. Design Course Structure
 - [ ] 3. Design & Match Lessons
-  - [ ] Module <slug> (or bounded Course/Chapter unit)
-    - [ ] Design Lesson slots
-    - [ ] Match existing Lessons
-    - [ ] Specify missing Lessons in-place in course.yaml (no Lesson PR)
-    - [ ] Review Quiz placement, Question Bank intent, and upstream assessment-only slot dependencies
 - [ ] 4. Review Course Plan
 - [ ] 5. Materialize Course
 - [ ] 6. Translate Course
-  - [ ] <target locale>
 - [ ] 7. Review Course Translations
-  - [ ] <target locale>
 
 ## Handoffs / blockers
 
-- <stage, Module or locale, source SHA, matching evidence or embedded method review, precise next action>
-- <each planned Lesson: approved Course slot and methodology SHA; assessment-only slots: upstream slot keys/Skills and future Question Bank dependencies; after Stage 5, allocated Lesson UUID and verified lesson.yaml path; Lesson Production remains separately authorized>
-
-Post-materialization Lesson identity handoff: see the SHA-pinned `/course materialize` Actions run summary and its committed `lesson.yaml` links. Do not maintain a second Lesson identity ledger in this PR description.
+- <stage, source/review SHA, factual evidence, real dependency, owner and exact next action>
+- <planned Lesson Course placement; after Stage 5, verified new Lesson UUID/handoff if applicable>
 ```
 
-## Stage 5 Lesson assignments in the verified Actions summary
+The sentinel and seven-stage checklist are the sole canonical tracking format. Do not parse or rewrite reviewer comments as a second production ledger. Do not label unfinished authoring as blocked solely because Draft intentionally skips Ready CI; follow [CI triage](../../rules/ci-workflow.md#agent-ci-failure-triage-low-token-default). A reviewer-approved Stage 4 source may be ready for the **owner's inspection** without granting Stage 5 authorization.
 
-**Lesson handoff identity:** Stage 3 records reused Lesson UUIDs and planned new Lessons by stable Course slot in the reviewed Course YAML. Stage 5 deterministically assigns IDs, creates the minimal Lesson YAML shells and includes these allocations in the trusted Actions summary linked to the **single materialization commit**, with the original YAML source blob SHA. The handoff never parses Course TypeScript or PR descriptions, runs a recurring synchronizer, or infers Lesson existence from slugs. Reused Lessons remain separately verified and are not re-created.
+## Final verification
 
-**Optional later Lesson Production PR marker**, only after explicit authorization to start that specific Lesson:
-
-```md
-<!-- svitlo-course-lesson:v1 -->
-
-Course: <course-uuid>
-Lesson: <lesson-uuid>
-Parent PR: #<parent-pr-number>
-```
-
-Match **only** exact validated UUIDs/parent/repository and Course membership. **Do not fabricate a Lesson claim or PR for planned slots.** Independently started Lesson PRs may be linked after source verification; never infer identity from title, slug or branch. Two active PR claims mean `Needs resolution`; closed-unmerged attempts remain history. Distinguish editorial slot state (reused methodology verified; new methodology planned/reviewed) from **Production PR status** (`Not started`, `Draft · #N`, `Open · #N`, `Merged · #N`, `Closed unmerged · #N`, `Reused / existing`, `Needs resolution`) and actual **Lesson source/readiness**. Existing independently authorized test Lesson PRs must be preserved, not closed or merged to simplify the Course workflow. “Merged” does not imply approval, translations or publication.
-
-**Handoff safety:** the trusted Stage 5 command verifies the exact generated outputs and pinned input SHA before one atomic Git commit, then publishes a source-pinned Lessons table in its Actions summary. PR descriptions are neither parsed nor rewritten. A later authorized Lesson PR may reference a committed Lesson UUID, but opening it is a separate workflow decision. Manual Course stages, locale evidence, Module tasks and review conclusions remain separate.
-
-**Verification:** the maintained Course schema, Stage 3 validator, Stage 5 materializer and trusted CI must have regression tests for planned and reused Lessons, deterministic IDs, typed Course/Episode source, one-time Lesson YAML handoffs, no-clobber and internal one-operation verification/removal. Independent editorial approval is never inferred from these tests or a green Draft status.
+For Stages 1–3 run the relevant real Engine TypeScript check/typecheck fixtures and inspect IDs, imports, collection order, source SHAs and pedagogical quality. At Stage 4 re-verify the final corrected source and check `CourseWorkflowMaterializerInput`; at Stage 5 verify the _new typed_ CLI/authorization path and tests, not a similarly named legacy YAML path. For Course source publication, complete actual locales/resources, package/build/typecheck/tests, protected Ready CI and authorized review before claiming readiness. Record **exact commands, outcomes, commit SHA and deferred checks**, never write “passed” for unexecuted suites.

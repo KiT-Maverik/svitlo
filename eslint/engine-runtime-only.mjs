@@ -5,8 +5,7 @@
 const allowed = '@svitlo/engine/runtime';
 const engine = '@svitlo/engine';
 
-const forbidden = value =>
-  value === engine || (value.startsWith(engine + '/') && value !== allowed);
+const forbidden = value => value === engine || (value.startsWith(engine + '/') && value !== allowed);
 
 const noEngineBuildImports = {
   meta: {
@@ -14,7 +13,8 @@ const noEngineBuildImports = {
     docs: { description: 'Require runtime-only Engine imports in application modules' },
     schema: [],
     messages: {
-      runtimeOnly: 'Applications may import only @svitlo/engine/runtime. Build-time Engine APIs belong to the authoring pipeline.',
+      runtimeOnly:
+        'Applications may import only @svitlo/engine/runtime. Build-time Engine APIs belong to the authoring pipeline.',
     },
   },
   create(context) {

@@ -12,7 +12,8 @@ async function Content({ params }: Props) {
   const interfaceLocale = DEFAULT_SUPPORTED_LANGUAGES.find(item => item.language === language);
   if (!interfaceLocale) notFound();
   const courses = (await loadPublishedCourseCatalog(interfaceLocale.language)).map(course => ({
-    course, href: '/' + language + '/course/' + course.id,
+    course,
+    href: '/' + language + '/course/' + course.id,
   }));
   return (
     <CoursesPage

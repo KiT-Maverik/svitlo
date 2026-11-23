@@ -16,7 +16,10 @@ export function OrderSequence({
   sceneRegistry?: SceneRegistry;
   messages: UiKitMessages;
 }) {
-  const items: QuestionItem[] = response.content.sequence.map((block, index) => ({ id: index + ':' + block.id, block }));
+  const items: QuestionItem[] = response.content.sequence.map((block, index) => ({
+    id: index + ':' + block.id,
+    block,
+  }));
   const expected = items.map(item => item.id);
   const initial = () => shuffleItems(items, response.id).map(item => item.id);
   const attempt = useQuestionAttempt<string[]>(

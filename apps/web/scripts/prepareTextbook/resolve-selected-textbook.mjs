@@ -11,7 +11,10 @@ export const webRoot = fileURLToPath(new URL('../..', import.meta.url));
 const requireFromWeb = createRequire(join(webRoot, 'package.json'));
 
 export function selectedPackageName(input = process.env.SVITLO_TEXTBOOK) {
-  if (!input) throw new Error('SVITLO_TEXTBOOK is required. Supply an installed Svitlo content package explicitly (e.g. SVITLO_TEXTBOOK=math).');
+  if (!input)
+    throw new Error(
+      'SVITLO_TEXTBOOK is required. Supply an installed Svitlo content package explicitly (e.g. SVITLO_TEXTBOOK=math).',
+    );
   if (!/^(?:@svitlo\/)?[a-z][a-z0-9-]*$/.test(input)) {
     throw new Error('Unsafe SVITLO_TEXTBOOK value: expected a Svitlo package slug or @svitlo/<slug>, not a path.');
   }
@@ -28,7 +31,10 @@ function publicExport(pkg, key, optional = false) {
   if (!/^\.\/dist\/[a-zA-Z0-9_./-]+$/.test(artifact) || artifact.split('/').includes('..')) {
     throw new Error(pkg.name + ' has an unsafe public export ' + key);
   }
-  if (key !== './styles' && (!/^\.\/dist\/[a-zA-Z0-9_./-]+$/.test(entry.types ?? '') || entry.types.split('/').includes('..'))) {
+  if (
+    key !== './styles' &&
+    (!/^\.\/dist\/[a-zA-Z0-9_./-]+$/.test(entry.types ?? '') || entry.types.split('/').includes('..'))
+  ) {
     throw new Error(pkg.name + ' is missing compiled declarations for ' + key);
   }
   return entry;
@@ -46,7 +52,10 @@ export function resolveSelectedTextbook(input = process.env.SVITLO_TEXTBOOK, sea
       break;
     }
   }
-  if (!root) throw new Error('Selected package ' + name + ' is not installed. Install it in the deployment build before running Web.');
+  if (!root)
+    throw new Error(
+      'Selected package ' + name + ' is not installed. Install it in the deployment build before running Web.',
+    );
   const manifest = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8'));
   if (manifest.name !== name) throw new Error('Installed content package identity mismatch for ' + name);
   publicExport(manifest, '.');

@@ -121,7 +121,10 @@ assert(
   !existsSync(resolve(root, 'content/playground/src/app')) && !playground.dependencies?.next,
   'Playground must be a framework-independent textbook package',
 );
-assert(!web.dependencies?.[playground.name] && !web.devDependencies?.[playground.name], 'Web must not depend on Playground');
+assert(
+  !web.dependencies?.[playground.name] && !web.devDependencies?.[playground.name],
+  'Web must not depend on Playground',
+);
 assert(
   ['.', './scenes'].every(
     key =>
@@ -318,8 +321,8 @@ for (const applicationRoot of applicationSourceRoots) {
       const specifier = match[1];
       assert(
         !/^@svitlo\/(?:playground|math|biology|physics|informatics|geography|language-literature|ukrainian|chemistry|astronomy|history|philosophy|psychology|economics|art|health-safety|engineering|platform)(?:\/|$)/.test(
-            specifier,
-          ),
+          specifier,
+        ),
         'Applications must not import another application by package name: ' + relative(root, file),
       );
       if (!specifier.startsWith('.')) continue;

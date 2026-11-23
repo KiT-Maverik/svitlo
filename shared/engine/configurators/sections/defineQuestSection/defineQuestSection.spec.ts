@@ -28,9 +28,12 @@ describe('Configurators > Sections > defineQuestSection', () => {
     assert.equal(stage.build.props(languages).base.type, 'questStage');
     assert.equal(task.build.props(languages).base.type, 'questTask');
     const original = JSON.stringify(quest.build.props(languages));
-    const changed = quest.build.overrides({
-      stages: { start: { content: { video: { small: { locale: { label: { uk: 'Економна якість' } } } } } } },
-    }, languages);
+    const changed = quest.build.overrides(
+      {
+        stages: { start: { content: { video: { small: { locale: { label: { uk: 'Економна якість' } } } } } } },
+      },
+      languages,
+    );
     assert.ok(changed.locale?.uk);
     assert.equal(JSON.stringify(quest.build.props(languages)), original, 'patch must be stateless');
     assert.throws(() => quest.build.overrides({ id: id('20') } as never, languages), /QuestSection overrides/);
@@ -39,13 +42,31 @@ describe('Configurators > Sections > defineQuestSection', () => {
 
   test('requires start stage and task and rejects mismatched keys', () => {
     const { quest, stage, task } = fixture();
-    assert.throws(() => quest.validate({
-      id: quest.id, slug: quest.slug, type: 'quest', params: {}, locale: { title: 'Title', navigationLabel: 'Quest' },
-      stages: { other: stage }, tasks: { start: task },
-    }), /start/);
-    assert.throws(() => quest.validate({
-      id: quest.id, slug: quest.slug, type: 'quest', params: {}, locale: { title: 'Title', navigationLabel: 'Quest' },
-      stages: { start: stage }, tasks: { start: task, extra: task },
-    }), /Build configurator/);
+    assert.throws(
+      () =>
+        quest.validate({
+          id: quest.id,
+          slug: quest.slug,
+          type: 'quest',
+          params: {},
+          locale: { title: 'Title', navigationLabel: 'Quest' },
+          stages: { other: stage },
+          tasks: { start: task },
+        }),
+      /start/,
+    );
+    assert.throws(
+      () =>
+        quest.validate({
+          id: quest.id,
+          slug: quest.slug,
+          type: 'quest',
+          params: {},
+          locale: { title: 'Title', navigationLabel: 'Quest' },
+          stages: { start: stage },
+          tasks: { start: task, extra: task },
+        }),
+      /Build configurator/,
+    );
   });
 });

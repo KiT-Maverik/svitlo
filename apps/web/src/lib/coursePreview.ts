@@ -3,15 +3,18 @@ import type { LanguageCode } from '@svitlo/engine/runtime';
 import type { LocalizedCourse, LocalizedCourseContent } from './courseResources';
 
 function counts(content: LocalizedCourseContent): { lessons: number; modules: number } {
-  return content.order.reduce((total, slug) => {
-    const item = content.items[slug];
-    if (item.type === 'lesson') return { ...total, lessons: total.lessons + 1 };
-    const nested = counts(item.content);
-    return {
-      lessons: total.lessons + nested.lessons,
-      modules: total.modules + nested.modules + (item.type === 'module' ? 1 : 0),
-    };
-  }, { lessons: 0, modules: 0 });
+  return content.order.reduce(
+    (total, slug) => {
+      const item = content.items[slug];
+      if (item.type === 'lesson') return { ...total, lessons: total.lessons + 1 };
+      const nested = counts(item.content);
+      return {
+        lessons: total.lessons + nested.lessons,
+        modules: total.modules + nested.modules + (item.type === 'module' ? 1 : 0),
+      };
+    },
+    { lessons: 0, modules: 0 },
+  );
 }
 
 /** Adapter fields come from the published Course, never mock preview content. */

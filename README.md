@@ -31,6 +31,10 @@ npm test
 
 Start the Web host with an explicitly installed content package, for example `SVITLO_TEXTBOOK=math npm run app:start:dev --workspace @svitlo/web`, or the Platform with `npm run app:start:dev --workspace @svitlo/platform`. Other checks and build commands are listed in the root `package.json`.
 
+## Typed educational production
+
+Course, Lesson, Question Bank and Flashcard Bank production each use one progressively typed UUID-addressed `index.ts` editorial source. Reviewed Course Stage 5, Lesson Stage 6.1 and independent Bank Stage 5 materialize authored TypeScript sources, **not** runtime Props or release approval. The trusted commands are under integration [#775](https://github.com/KiT-Maverik/svitlo/pull/775); until their workflows reach default `develop` and are exercised on authorized pinned PRs, do not claim live deployment. See [typed production architecture](studio/docs/architecture/typed-production-materialization.md), [Course workflow](studio/skills/course-workflow/create-course-flow.skill.md), [Lesson workflow](studio/skills/lesson-workflow/create-lesson-flow.skill.md) and [Engine source runbook](shared/engine/scripts/README.md). Retired YAML production entrypoints are not parallel authoring inputs; historical Lesson YAML remains untouched until separately authorized migration.
+
 ## Documentation
 
 - [CI, branch policy and quiet agent checks](studio/rules/ci-workflow.md)

@@ -4,14 +4,20 @@ import { deepStrict_Schema } from '#schemas';
 
 import { identityBase_Schema, paramsBase_Schema } from '../../_shared__configurators/common.schemas';
 import { addUnifiedLocale } from '../../_shared__configurators/addUnifiedLocale/addUnifiedLocale.utils';
-import { localizationSwitch as contentBlockLocalizationSwitch, contentBlockResolved_Schema } from '../../contentBlocks/contentBlock.schemas';
+import {
+  localizationSwitch as contentBlockLocalizationSwitch,
+  contentBlockResolved_Schema,
+} from '../../contentBlocks/contentBlock.schemas';
 import type { ContentBlock_Configurator, ContentBlock_Props } from '../../contentBlocks/contentBlock.types';
 import type { Configurator_Mode } from '../../configurator.schemas';
 
 const params = paramsBase_Schema.shape.params.extend({
   skippable: z.boolean().optional(),
   selection: z.strictObject({
-    flashcardIds: z.array(z.uuid()).nonempty().refine(ids => new Set(ids).size === ids.length, 'Flashcard UUIDs must be unique'),
+    flashcardIds: z
+      .array(z.uuid())
+      .nonempty()
+      .refine(ids => new Set(ids).size === ids.length, 'Flashcard UUIDs must be unique'),
   }),
 });
 

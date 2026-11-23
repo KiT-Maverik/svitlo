@@ -21,12 +21,8 @@
     "repo:list:packages": "npm ls --workspaces --depth=0",
     "repo:check:packages": "node scripts/checkWorkspaces/check-workspaces.mjs && node scripts/checkPackageBoundaries/check-package-boundaries.mjs && node scripts/checkExtractionReadiness/check-extraction-readiness.mjs && node scripts/checkFinalArchitecture/check-final-architecture.mjs && node --test scripts/runWorkspaceScript/run-workspace-script.spec.mjs scripts/ci/packageBuildReuse/package-build-reuse.spec.mjs && node scripts/migrateSharedImports/migrate-shared-imports.mjs --check && node --test scripts/migrateSharedImports/migrate-shared-imports.spec.mjs && node --test scripts/textbook-tooling/buildTextbook/lesson-import-alias.spec.mjs",
     "repo:check:artifacts": "node scripts/checkBuiltPackageExports/check-built-package-exports.mjs",
-    "content:generate:lessons": "node shared/engine/scripts/lessonBuilder/lessonBuilder.mjs generate",
-    "content:check:lessons": "node shared/engine/scripts/lessonBuilder/lessonBuilder.mjs check",
     "content:generate:lesson-props": "node shared/engine/scripts/generateLessonProps/generateLessonProps.mjs",
     "content:check:lesson-props": "node shared/engine/scripts/generateLessonProps/generateLessonProps.mjs",
-    "test:unit:lesson-builder": "node --test shared/engine/scripts/lessonBuilder/lessonBuilder.spec.mjs",
-    "test:unit:lesson-finalize": "node --test shared/engine/scripts/finalizeLesson/finalizeLesson.spec.mjs",
     "repo:check:imports": "node scripts/migrateSharedImports/migrate-shared-imports.mjs --check",
     "repo:fix:imports": "node scripts/migrateSharedImports/migrate-shared-imports.mjs --write",
     "content:generate:skills": "node shared/engine/scripts/generateSkills/generateSkills.mjs",
@@ -37,8 +33,8 @@
   "devDependencies": {
     "ajv": "8.20.0",
     "prettier": "3.9.10",
-    "yaml": "2.9.1",
-    "typescript": "5.9.3"
+    "typescript": "5.9.3",
+    "yaml": "2.9.1"
   },
   "workspaces": [
     "apps/*",

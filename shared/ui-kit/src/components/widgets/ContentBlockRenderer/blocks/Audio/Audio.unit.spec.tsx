@@ -64,7 +64,13 @@ describe('Audio content block', () => {
     failAudio(container.querySelector('audio')!, 4);
     expect(screen.getByRole('alert')).toHaveTextContent('Аудіо не знайдено');
 
-    rerender(<Audio messages={enUiKitMessages.audio} {...response} locale={{ ...response.locale, fileLocation: '/other.mp3' }} />);
+    rerender(
+      <Audio
+        messages={enUiKitMessages.audio}
+        {...response}
+        locale={{ ...response.locale, fileLocation: '/other.mp3' }}
+      />,
+    );
     failAudio(container.querySelector('audio')!, 3);
     expect(screen.getByRole('alert')).toHaveTextContent('Помилка відтворення');
   });
@@ -96,14 +102,22 @@ describe('Audio fallback lifecycle', () => {
     failAudio(container.querySelector('audio')!, 4);
     expect(screen.getByRole('alert')).toBeInTheDocument();
 
-    rerender(<Audio messages={enUiKitMessages.audio} {...response} locale={{ ...response.locale, fileLocation: '/new-lesson.mp3' }} />);
+    rerender(
+      <Audio
+        messages={enUiKitMessages.audio}
+        {...response}
+        locale={{ ...response.locale, fileLocation: '/new-lesson.mp3' }}
+      />,
+    );
     expect(screen.queryByRole('alert')).toBeNull();
     expect(container.querySelector('audio')).toHaveAttribute('src', '/new-lesson.mp3');
   });
 
   it('uses the built-in English fallback without author overrides', () => {
     setOnline(true);
-    const { container } = render(<Audio messages={enUiKitMessages.audio} {...response} locale={{ ...response.locale, fallback: undefined }} />);
+    const { container } = render(
+      <Audio messages={enUiKitMessages.audio} {...response} locale={{ ...response.locale, fallback: undefined }} />,
+    );
     failAudio(container.querySelector('audio')!, 4);
     expect(screen.getByRole('alert')).toHaveTextContent('This audio is unavailable.');
     expect(screen.getByRole('button', { name: 'Try again' })).toBeVisible();
@@ -186,7 +200,13 @@ describe('Waveform audio player', () => {
     fireEvent.timeUpdate(Object.assign(media, { currentTime: 60 }));
     expect(screen.getByText(/01:00.*02:00/)).toBeInTheDocument();
 
-    rerender(<Audio messages={enUiKitMessages.audio} {...response} locale={{ ...response.locale, fileLocation: '/another.mp3' }} />);
+    rerender(
+      <Audio
+        messages={enUiKitMessages.audio}
+        {...response}
+        locale={{ ...response.locale, fileLocation: '/another.mp3' }}
+      />,
+    );
     expect(screen.getByText(/00:00.*00:00/)).toBeInTheDocument();
     expect(screen.getByRole('slider', { name: 'Playback position' })).toBeDisabled();
   });

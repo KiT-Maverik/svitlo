@@ -76,7 +76,10 @@ export function planContentShards(selected, maxShards = 5) {
     throw new Error('Expected selected packages and shard limit 1..5');
   }
   // Validate even for a zero/one-selected workload.
-  validateShardCoverage(selected, selected.map(item => ({ packages: [item] })));
+  validateShardCoverage(
+    selected,
+    selected.map(item => ({ packages: [item] })),
+  );
   if (!selected.length) return { include: [] };
   const shards = Array.from({ length: Math.min(maxShards, selected.length) }, (_, i) => ({
     id: 'shard-' + (i + 1),
@@ -99,7 +102,10 @@ export function planContentShards(selected, maxShards = 5) {
 
 /** Execute every selected package even if another one fails; the caller exits nonzero. */
 export function runContentShard(packages, launch = spawnSync, reporter = console) {
-  validateShardCoverage(packages, packages.map(item => ({ packages: [item] })));
+  validateShardCoverage(
+    packages,
+    packages.map(item => ({ packages: [item] })),
+  );
   if (!packages.length) throw new Error('Refusing an empty content shard');
   const failed = [];
   for (const item of packages) {
@@ -129,7 +135,11 @@ export function runContentShard(packages, launch = spawnSync, reporter = console
     reporter.log('::endgroup::');
     if (result?.error || result?.status !== 0) {
       failed.push(item.path);
-      reporter.error('::error title=' + item.path + '::Content verification failed; expand this package group for bounded diagnostics');
+      reporter.error(
+        '::error title=' +
+          item.path +
+          '::Content verification failed; expand this package group for bounded diagnostics',
+      );
     }
   }
   if (failed.length) reporter.error('Failed content packages: ' + failed.join(', '));

@@ -14,10 +14,7 @@ export const flashcardSide_Config_Schema = z.strictObject({
 });
 export type FlashcardSide_Config = z.infer<typeof flashcardSide_Config_Schema>;
 
-export type FlashcardSide_Overrides<
-  Items extends Record<string, Block>,
-  Added extends Record<string, Block> = {},
-> = {
+export type FlashcardSide_Overrides<Items extends Record<string, Block>, Added extends Record<string, Block> = {}> = {
   items?: { [Key in keyof Items]?: Parameters<Items[Key]['build']['overrides']>[0] | false };
   additionalItems?: Added & { [Key in keyof Items]?: never };
   order?: Extract<keyof Items | keyof NoInfer<Added>, string>[];

@@ -57,16 +57,16 @@ the instructions and resources relevant to that task. **Do not assume that
 Permanent scripts live in named workflow directories, both under the repository-wide
 [`scripts/`](scripts/README.md) (read its scoped [`AGENTS.md`](scripts/AGENTS.md)) and inside owning packages (for example,
 [`shared/engine/scripts/`](shared/engine/scripts/README.md)).
-**Before changing any script, generator, YAML contract or its callers, open the
+**Before changing any script, generator, typed production contract or its callers, open the
 relevant named directory and read the actual entrypoint JSDoc, any local README
 and its adjacent tests.** An entrypoint's stated purpose and non-goals take
 precedence over assumptions based on names or historical workflows.
 
-For Engine generators and YAML scaffolders, first read the scoped
-[`shared/engine/scripts/AGENTS.md`](shared/engine/scripts/AGENTS.md).
-The named directories include separate YAML-to-TypeScript _draft_ scaffolders,
-JSON Schema editor guidance, and Props publishers; they are not interchangeable.
-Follow the referenced source contracts before making changes.
+For Engine typed source materializers and publication generators, read the scoped
+[`shared/engine/scripts/AGENTS.md`](shared/engine/scripts/AGENTS.md) and
+[`shared/engine/generators/AGENTS.md`](shared/engine/generators/AGENTS.md).
+Typed source emission, trusted Git transactions, and completed Props publishing are
+separate workflows. Historical YAML files are provenance, not executable new authoring input.
 
 ## Repository-wide GitHub rules
 
@@ -74,15 +74,19 @@ Before creating or updating GitHub Issues, pull requests, or branches, read and 
 
 ## Entity-owned translation and independent review
 
-For new **Course, Lesson, Questions and Flashcards** localization, the **existing entity-owned PR and branch** are the sole translation and independent linguistic-review workspace and stage tracker. Follow that entity's current workflow, [Technical Translation](studio/skills/translation-workflow/technical-translation.skill.md) and [Review Translation](studio/skills/translation-workflow/review-translation.skill.md). Do **not** create a translation integration PR, translator/reviewer subtask PR or branch, or a new Translation Production Issue. An independent reviewer uses a **different agent/chat context**, source-SHA-pinned and scope-verified one-day Actions references, and the **same entity PR** for findings and specifically authorized localized corrections. Review approval is not inferred from a generated report; Ready and merge of the entity PR require their own owner authorization and actual gates.
+For new **Course, Lesson, Questions and Flashcards** localization, the **existing entity-owned PR and branch** are the sole translation and independent linguistic-review workspace and stage tracker. Follow that entity's current workflow, [Technical Translation](studio/skills/translation-workflow/technical-translation.skill.md) and [Review Translation](studio/skills/translation-workflow/review-translation.skill.md). Do **not** create a translation integration PR, translator/reviewer subtask PR or branch, or a new Translation Production Issue. An independent reviewer uses a **different agent/chat context**, source-SHA-pinned and scope-verified one-day Actions references, and the **same entity PR** for findings and specifically authorized localized corrections. Review approval is not inferred from a generated report; Ready requires completed authorized work and actual gates; merge remains owner-authorized and subject to required checks.
 
 For **separate, non-entity localization campaigns** (such as explicitly authorized taxonomy/UI Kit batches), [Manage Translation Production](studio/skills/translation-workflow/manage-translation-production.skill.md) may coordinate a Draft integration PR with nonoverlapping translator/reviewer subtasks. Its separate-PR topology does **not** override the four entity workflows. Preserve prior Issue/PR campaigns, assignments, evidence and owner permissions under [legacy Issue recovery](studio/skills/translation-workflow/legacy-production-issues.md); do not migrate or close them implicitly. The source-derived Markdown/manifest arrives via the exact successful one-day Actions ZIP, never via committed report files.
+
+## Draft / Ready handoff for all agents
+
+Open agent PRs in Draft. On an already Ready PR, switch to Draft before an active commit cycle. Draft runs only cheap checks by design; absence of Ready-only CI is **not a blocker**. After completing the specifically authorized work, mark the PR **Ready for review** without a second owner prompt and inspect real current-head Ready checks for that target. Return to Draft during CI-fix commits and to Ready on completion. Ready is for the owner's review and **never** grants merge or another production stage. See [CI workflow policy](studio/rules/ci-workflow.md) and [GitHub labels policy](studio/rules/github-labels-and-naming.md).
 
 ## Lesson production Draft PR handoff
 
 For any authorized Lesson production read [Create Lesson Flow](studio/skills/lesson-workflow/create-lesson-flow.skill.md) first. Reuse the exact Lesson UUID, existing Draft Lesson PR and parent Course integration branch when present; otherwise create one Draft Lesson PR for one genuinely new Lesson. Its description is the sole stage/review coordinator; authored data remains in Git. **No new mandatory Lesson Production Issue** is required. Preserve and reconcile historical Issues via [Manage Lesson Production](studio/skills/lesson-workflow/manage-lesson-production.skill.md); do not destroy historical reviews. For new translation work, use the Draft PR protocol; old translation Issues remain recoverable without forced migration.
 
-For Lesson **Stage 6**, first check whether [Lesson PR-command materialization](scripts/ci/lessonMaterialization/README.md) has been deployed to the default branch; its exact `/lesson materialize` command on an existing Draft Lesson PR is a source-preserving handoff, not Lesson completion. Never claim success from posting a comment without verifying the Actions run and generated commit.
+For Lesson **Stage 6**, first check whether [Lesson PR-command materialization](scripts/ci/lessonMaterialization/README.md) has been deployed to the default branch; its exact `/lesson materialize typed` command on an existing Draft Lesson PR is a source-preserving handoff, not Lesson completion. Never claim success from posting a comment without verifying the Actions run and generated commit.
 
 ## Run-scoped agent CI reports
 

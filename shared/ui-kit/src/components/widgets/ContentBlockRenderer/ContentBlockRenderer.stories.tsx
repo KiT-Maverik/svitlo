@@ -4,7 +4,11 @@ import { ContentBlockRenderer } from './ContentBlockRenderer';
 import type { ContentBlockRendererProps } from './types';
 
 const textBlock = (id: string, value: string) => ({
-  id, slug: 'textBlock', type: 'text' as const, params: {}, locale: { value },
+  id,
+  slug: 'textBlock',
+  type: 'text' as const,
+  params: {},
+  locale: { value },
 });
 const mixedBlocks: NonNullable<ContentBlockRendererProps['blocks']> = [
   textBlock('intro', 'Light travels in straight lines through a uniform medium.'),

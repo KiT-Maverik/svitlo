@@ -1,7 +1,6 @@
-name: Materialize reviewed Lesson from PR command
+name: Materialize reviewed typed Lesson from PR command
 
-# Requires deployment to develop: issue_comment workflows run from the default branch.
-# Never execute candidate PR code or install its dependencies.
+# The trusted workflow runs on the default branch. Never execute candidate PR code.
 on:
   issue_comment:
     types: [created]
@@ -12,9 +11,9 @@ on:
         type: number
         required: true
       operation:
-        description: Materialize once or finalize a previously verified Lesson handoff
+        description: Reviewed typed Lesson Stage 6
         type: choice
-        options: [materialize, finalize]
+        options: [materialize-typed]
         required: true
 
 permissions: {}
@@ -24,57 +23,59 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  resolve:
+  typed-resolve:
     if: >-
-      github.event_name == 'workflow_dispatch' ||
-      (github.event.issue.pull_request &&
-       (github.event.comment.body == '/lesson materialize' ||
-        github.event.comment.body == '/lesson finalize'))
+      (github.event_name == 'workflow_dispatch' && inputs.operation == 'materialize-typed') ||
+      (github.event_name == 'issue_comment' &&
+       github.event.issue.pull_request &&
+       github.event.comment.body == '/lesson materialize typed')
     runs-on: ubuntu-latest
     timeout-minutes: 10
     permissions:
       contents: read
       pull-requests: read
+      issues: read
     outputs:
       meta: ${{ steps.gate.outputs.meta }}
       pr: ${{ steps.gate.outputs.pr }}
       head: ${{ steps.gate.outputs.head }}
     steps:
-      - name: Check out trusted default-branch gate only
+      - name: Check out immutable trusted command gate from default branch
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.repository.default_branch }}
+          ref: ${{ github.sha }}
           persist-credentials: false
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
-      - name: Authorize actor, Lesson identity and Stages 1–5 checklist
+      - name: Authorize typed Lesson actor, review source and Course origin
         id: gate
         env:
           GH_TOKEN: ${{ github.token }}
           LESSON_DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
-        run: node scripts/ci/lessonMaterialization/lesson-gate.mjs resolve
+        run: node scripts/ci/lessonMaterialization/lesson-typed-gate.mjs resolve
 
-  analyze:
-    needs: resolve
+  typed-analyze:
+    needs: typed-resolve
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 25
     permissions:
       contents: read
       pull-requests: read
+      issues: read
     outputs:
       report_sha256: ${{ steps.analysis.outputs.report_sha256 }}
     steps:
-      - name: Check out trusted implementation and Engine from default branch
+      - name: Check out pinned trusted Engine and parser
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.repository.default_branch }}
+          ref: ${{ github.sha }}
           path: trusted
           persist-credentials: false
-      - name: Check out pinned Lesson PR as untrusted data only
+      - name: Check out reviewed Lesson commit as untrusted data only
         uses: actions/checkout@v4
         with:
-          ref: ${{ needs.resolve.outputs.head }}
+          ref: ${{ needs.typed-resolve.outputs.head }}
           path: candidate
           persist-credentials: false
       - uses: actions/setup-node@v4
@@ -82,62 +83,64 @@ jobs:
           node-version: '24'
           cache: npm
           cache-dependency-path: trusted/package-lock.json
-      - name: Install trusted Engine dependencies without lifecycle scripts
+      - name: Install and build only trusted Engine code
         working-directory: trusted
-        run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --ignore-scripts --no-audit --no-fund
-      - name: Validate reviewed Lesson, generate and verify only allowlisted sources
+        run: |
+          node scripts/ci/quietRun/quiet-run.mjs -- npm ci --ignore-scripts --no-audit --no-fund
+          node scripts/ci/quietRun/quiet-run.mjs -- npm run package:build --workspace @svitlo/engine
+      - name: Statically validate Stage 2 and analyze exact Stage 6 source handoff
         id: analysis
         env:
           GH_TOKEN: ${{ github.token }}
           LESSON_DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
-          LESSON_META_B64: ${{ needs.resolve.outputs.meta }}
-          LESSON_HEAD_ROOT: candidate
-          LESSON_REPORT: ${{ runner.temp }}/lesson-materialization/report.json
-        run: node trusted/scripts/ci/quietRun/quiet-run.mjs -- node trusted/scripts/ci/lessonMaterialization/lesson-materialization.mjs analyze
-      - name: Retain exact pinned Lesson source and output evidence in this Actions run
+          LESSON_TYPED_META_B64: ${{ needs.typed-resolve.outputs.meta }}
+          LESSON_TYPED_CANDIDATE: candidate
+          LESSON_TYPED_REPORT: ${{ runner.temp }}/typed-lesson-stage6/report.json
+        run: node trusted/scripts/ci/quietRun/quiet-run.mjs -- node trusted/scripts/ci/lessonMaterialization/lesson-typed-materialization.mjs analyze
+      - name: Retain source-pinned and SHA256-attested analysis evidence
         uses: actions/upload-artifact@v4
         with:
-          name: lesson-stage6-${{ needs.resolve.outputs.pr }}-${{ github.run_id }}
-          path: ${{ runner.temp }}/lesson-materialization/report.json
-          retention-days: 7
+          name: typed-lesson-stage6-${{ needs.typed-resolve.outputs.pr }}-${{ github.run_id }}
+          path: ${{ runner.temp }}/typed-lesson-stage6/report.json
+          retention-days: 1
           if-no-files-found: error
 
-  publish:
-    needs: [resolve, analyze]
-    if: needs.analyze.result == 'success'
+  typed-publish:
+    needs: [typed-resolve, typed-analyze]
+    if: needs.typed-analyze.result == 'success'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     permissions:
       contents: write
       pull-requests: read
+      issues: read
     steps:
-      - name: Check out trusted publisher only
+      - name: Check out pinned trusted publisher with no dependencies
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.repository.default_branch }}
+          ref: ${{ github.sha }}
           path: trusted
           persist-credentials: false
-      - name: Check out pinned Lesson commit as data (never execute it)
+      - name: Check out approved Lesson HEAD as data, never execute it
         uses: actions/checkout@v4
         with:
-          ref: ${{ needs.resolve.outputs.head }}
+          ref: ${{ needs.typed-resolve.outputs.head }}
           path: candidate
           persist-credentials: false
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
-      - name: Download artifact from the exact authorized read-only job
+      - name: Download the exact read-only analyzer artifact
         uses: actions/download-artifact@v4
         with:
-          name: lesson-stage6-${{ needs.resolve.outputs.pr }}-${{ github.run_id }}
+          name: typed-lesson-stage6-${{ needs.typed-resolve.outputs.pr }}-${{ github.run_id }}
           path: report
-      - name: Revalidate authorization, artifact bytes and SHA race; publish by Git API
-        id: publish
+      - name: Verify source HEAD, review evidence and manifest before atomic commit
         env:
           GH_TOKEN: ${{ github.token }}
           LESSON_DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
-          LESSON_META_B64: ${{ needs.resolve.outputs.meta }}
-          LESSON_HEAD_ROOT: candidate
-          LESSON_REPORT: report/report.json
-          LESSON_REPORT_SHA256: ${{ needs.analyze.outputs.report_sha256 }}
-        run: node trusted/scripts/ci/quietRun/quiet-run.mjs -- node trusted/scripts/ci/lessonMaterialization/lesson-materialization.mjs publish
+          LESSON_TYPED_META_B64: ${{ needs.typed-resolve.outputs.meta }}
+          LESSON_TYPED_CANDIDATE: candidate
+          LESSON_TYPED_REPORT: report/report.json
+          LESSON_TYPED_REPORT_SHA256: ${{ needs.typed-analyze.outputs.report_sha256 }}
+        run: node trusted/scripts/ci/quietRun/quiet-run.mjs -- node trusted/scripts/ci/lessonMaterialization/lesson-typed-materialization.mjs publish

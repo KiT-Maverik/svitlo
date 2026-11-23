@@ -3,6 +3,7 @@ import { z } from 'zod';
 import type { DeepPartial } from '#types';
 import { deepStrict_Schema, languageCode_Schema } from '#schemas';
 import { identityBase_Schema, paramsBase_Schema } from '../../_shared__configurators/common.schemas';
+import { ageRange_Schema, gradeRange_Schema } from '../../_shared__configurators/audienceRange.schemas';
 import { addUnifiedLocale } from '../../_shared__configurators/addUnifiedLocale/addUnifiedLocale.utils';
 import { localizationSwitch } from '../../contentBlocks/contentBlock.schemas';
 import type { Configurator_Mode } from '../../configurator.schemas';
@@ -20,16 +21,6 @@ import type { Episode_Configurator } from '../../episodes/defineEpisode/defineEp
 import type { Episode_Props } from '../../episodes/defineEpisode/defineEpisode.schemas';
 
 /** Course audience and educational-standard references describe scope, never certification. */
-const audienceRange_Schema = (maximum: number) =>
-  z
-    .strictObject({
-      min: z.int().min(0).max(maximum),
-      max: z.int().min(0).max(maximum),
-    })
-    .refine(range => range.min <= range.max, 'Minimum must not exceed maximum');
-
-const ageRange_Schema = audienceRange_Schema(125);
-const gradeRange_Schema = audienceRange_Schema(40);
 
 const uniqueIds_Schema = z
   .array(z.uuid())

@@ -89,7 +89,6 @@ test('a missing agent ownership mapping is an error rather than a skipped build'
   );
 });
 
-
 test('Draft PRs defer all content matrix builds; Ready and manual runs retain coverage', () => {
   assert.equal(shouldDeferContentBuilds('pull_request', true), true);
   assert.equal(shouldDeferContentBuilds('pull_request', false), false);

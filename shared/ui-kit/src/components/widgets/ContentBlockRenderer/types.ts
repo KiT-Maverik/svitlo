@@ -8,7 +8,9 @@ export type ContentBlockType = ContentBlockResponse['type'];
 export type ResponseOf<Type extends ContentBlockType> = Extract<ContentBlockResponse, { type: Type }>;
 
 /** Resolve a scene by its stable content ID. */
-export type SceneRegistry = (id: string) => ComponentType<{ locales: ResponseOf<'scene'>['locale']['value'] }> | undefined;
+export type SceneRegistry = (
+  id: string,
+) => ComponentType<{ locales: ResponseOf<'scene'>['locale']['value'] }> | undefined;
 
 export type ContentBlockRendererProps = {
   messages: UiKitMessages;

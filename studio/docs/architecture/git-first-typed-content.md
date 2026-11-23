@@ -14,28 +14,16 @@ Git is **not** the store for learner answers, private progress, account data, ru
 
 ## Authoring source conventions
 
-- **Most other typed educational data objects** are **JavaScript objects authored in TypeScript modules named `<entityName>.data.ts`**; Skills are the explicit exception described above. Each module exposes its data through an intentional **named export**: `export const lesson_Data = buildLessonConfig({...})` or `export const example_Data = {...} satisfies Some_Config`, following the real owning builder/type contract. **No default exports for canonical data entities.** The `.data.ts` suffix is the architectural naming convention; it is not Markdown.
+- **Typed educational content** uses named TypeScript exports and the actual owning Engine Build contracts. Existing implemented Lessons may use `*.data.ts`; the **new staged production source** uses a UUID-addressed `index.ts` (`satisfies LessonWorkflowStage1`, `QuestionBankWorkflowStage1` or `FlashcardBankWorkflowStage1`) and advances that same object through review before final `define*` source materialization. Such Stage files are **not** Engine Configurators or runtime Props. Skills retain their separate naming convention above. Do not impose `*.data.ts` on every staged entity or add a second YAML editorial source.
 - Ensure **strict static typing** using the owning shared Engine TypeScript contract, `satisfies`, typed builder signatures and any required validation. Do not bypass schema correctness with `any`, unsafe type assertions, inferred unvalidated data or invented fields. The authoritative code contract controls the exact shape.
 - **Database-ready describes the contracts, not the filename:** define educational entities as **lightweight, normalized, nonduplicative, reusable data records**, addressable by stable IDs and relational references, suitable for later database ingestion without redesigning their information model. Do **not** add runtime database indexes, ORM decorators, persistence state, synchronization flags or arbitrary metadata to authored Data solely because future database storage is planned. Avoid embedding duplicate copies of related entities; use ID references and explicit catalog/registry boundaries. **Database-ready does not mean every current render payload can be serialized**: e.g. a `SceneResource_Config.component` may hold a React node and will require a separately designed source reference or view registry to persist safely. No general database ingestion is claimed implemented.
 - **Current Skill authoring ownership:** The obsolete Skill, Group and Domain builders and their former `DeepReadonly` contract tests were retired. `defineSkill`, `defineSkillGroup` and `defineSkillDomain` validate authored config with Zod, split `config.base` and `config.locales()`, and retain child configurators. Other builder readonly guarantees must be checked separately: do not assume that returned config is frozen or deep-readonly.
 - **IDs are stable and explicit**, held separately in named `*.ids.ts` dictionaries where that entity's convention requires them. Never generate UUIDs at runtime for authored entities or derive them from mutable names/paths; editorial moves should not silently change identity.
 - **Hierarchical exports remain level-specific** (`index.ts` exports the appropriate current collection level; `index.ids.ts` imports no Data). Do not add recursive cross-app imports or compatibility barrels simply to hide an architecture mismatch.
-- **`*.md` documents are a separate layer** for long-form text, source lesson briefs, Screenwriter scripts, captions and editorial documentation. A Markdown resource may reference such a file, but a Markdown document is **not** the storage format for canonical typed data objects. Those are **strictly typed JavaScript objects in named-export TypeScript source files** (`*.data.ts` generally, or the canonical Skills taxonomy paths above).
+- **`*.md` documents are a separate layer** for long-form content, captions, historical briefs and derived methodological views. For staged Course/Lesson/Bank authoring, `methodology.md` is **generated from the one typed `production` source**, never independently editable methodology. Markdown assets may remain file-backed, and historical YAML/briefs retain their source and review evidence until genuinely migrated.
 - Keep source assets with an owned app/content package or explicit shared distribution contract. Content can be extracted with its standalone textbook; never hide a runtime import from another textbook package.
 
-A minimal illustrative pattern (**confirm the current target contract before implementing**):
-
-```ts
-import { buildLessonConfig } from '@/utils';
-import { example_Lesson_Ids } from './example.ids';
-
-export const example_Lesson_Data = buildLessonConfig({
-  id: example_Lesson_Ids.example,
-  // ...the remaining fields required by the real Lesson_Config contract
-});
-```
-
-The example deliberately does **not** invent a full `Lesson_Config`; inspect the current Engine version and builder before populating required fields.
+**Use current examples:** consult [Create Course Flow](../../skills/course-workflow/create-course-flow.skill.md), [Create Lesson Flow](../../skills/lesson-workflow/create-lesson-flow.skill.md), and the Questions/Flashcards Skills alongside the actual Engine type exports. The old fictional `buildLessonConfig` helper is not a supported authoring API: `satisfies` checks editorial data structure, while real `define*` Configurators and separate publication run only at their authorized boundaries.
 
 ## AI is how we scale authorship, not an excuse to weaken validity
 
@@ -61,4 +49,4 @@ Svitlo's scale requires **AI-compatible, deterministic, machine-checkable struct
 - Do not duplicate factual truth across a Git catalog and a separately editable runtime entity store.
 - Mark `approved`, `draft`, `implemented`, `blocked` and `planned` distinctly; file presence is not editorial approval, and source ID presence is not proof of runtime registration.
 
-**References:** [Engine Resource types](../../../shared/engine/src/types/content/resource.types.ts), [Lesson types](../../../shared/engine/src/types/content/lesson.types.ts), [current Lesson data](../../../content/playground/src/data/howLightMoves/howLightMoves.data.ts), [System Boundaries](./system-boundaries.md), [Long Chat Overture](../../Long%20Chat%20Overture.md).
+**References:** [Engine Lesson Config](../../../shared/engine/configurators/lessons/defineLesson/defineLesson.schemas.ts), [typed production workflow contracts](../../../shared/engine/types/workflow/), [System Boundaries](./system-boundaries.md), [Long Chat Overture](../../Long%20Chat%20Overture.md).

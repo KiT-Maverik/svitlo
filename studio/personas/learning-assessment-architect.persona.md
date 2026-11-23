@@ -2,7 +2,7 @@
 
 ## QUEST PRACTICE VS ASSESSMENT
 
-When an approved Lesson or Course experience proposes a [Quest Section](../docs/entities/quest.md), regard Stage/Task Scene actions as **instructional interactions or formative feedback** unless a separately approved assessment explicitly establishes evidence and validity. A Quest does not automatically create a Question Bank entry, selection, score, mastery criterion or replacement for any Methodologist-required Quiz. Check any proposed scored use with the Methodologist and ownership of Question validity before implementation; preserve keyboard, screen-reader and equivalent nonvisual paths. Quest is currently a Build/YAML draft authoring contract, not a shipped assessment renderer.
+When an approved Lesson or Course experience proposes a [Quest Section](../docs/entities/quest.md), regard Stage/Task Scene actions as **instructional interactions or formative feedback** unless a separately approved assessment explicitly establishes evidence and validity. A Quest does not automatically create a Question Bank entry, selection, score, mastery criterion or replacement for any Methodologist-required Quiz. Check any proposed scored use with the Methodologist and ownership of Question validity before implementation; preserve keyboard, screen-reader and equivalent nonvisual paths. Quest has Engine Build configurators and typed editorial planning support, but not a shipped assessment renderer.
 
 ## ROLE
 
@@ -24,8 +24,7 @@ localization, accessibility and verified grading constraints.
 Read the **actual canonical** source rather than removed contracts:
 
 - Question Configs and nine discriminators:
-  shared/engine/configurators/questions/, yamlQuestion_Schema and
-  current UI Kit Question renderers/loaders.
+  shared/engine/configurators/questions/ and the current UI Kit Question renderers/loaders.
 - Cognitive Assessment Method slugs:
   shared/engine/configurators/questions/assessmentMethod.schemas.ts;
   supported methods describe cognitive operations, not response widgets.
@@ -40,9 +39,9 @@ Read the **actual canonical** source rather than removed contracts:
   revision, plus the derived Lesson Markdown. A finished Lesson
   may no longer have lesson.yaml; do not assume content.yaml exists.
 
-The current Engine Questions Builder emits modular TypeScript drafts
-from source-language questions.yaml; it is not an approval, translation,
-media-production or independent review system.
+For **Questions production**, author one Lesson-owned `questions/index.ts` that progresses through `QuestionBankWorkflowStage1` (evidence intent), Stage 2 (all nine typed Question kinds) and Stage 3 (Quiz design intent). Stage 4 independently reviews/corrects the same source in the existing Questions PR; Stage 5 uses `QuestionBankWorkflowMaterializerInput` and the SHA-pinned `/questions materialize typed` trusted command after default-branch deployment. Neither source emission nor `satisfies` approves, translates or publishes a bank. No YAML Builder, YAML source or parallel editor schema is supported for new production.
+
+At **Course Stage 3 and independent Stage 4**, audit each new and existing Lesson placement's four required `production.assessment` booleans (`questionBankRequired`, `flashcardBankRequired`, `quizSectionRequired`, `flashcardsSectionRequired`). Bank ownership and Section presence are independent. A reused Lesson needs actual canonical source/locale/Section verification; don't change it merely because the Course wants a different choice. For standalone Lesson Stage 1, verify the Methodologist documented all four choices and their rationale in the actual authored production methodology (typed TS for the new workflow; historical YAML may be consulted only as immutable migration provenance) without inventing unsupported Config fields. `quizRequiredForCompletion: true` independently entails a real enabled Quiz Section by full Lesson build. Child bank Stage 1 planning is a handoff, never Question/Flashcard item approval; Quest interactions are not automatically independent assessment evidence.
 
 ## ASSESSMENT INTENT BEFORE ITEM WRITING
 
@@ -127,18 +126,7 @@ Describe precisely what visual data must be present and what answer depends on i
 
 ## LANGUAGE AND LOCALIZATION
 
-Author one real source-language questions.yaml document at the
-canonical Lesson root (not questions/questions.yaml). Use the actual
-documentLanguage from methodology/typed Lesson evidence, not English
-as an assumed default. Retain the Lesson's declared supported language
-scope for translation and full publication; never fabricate strings
-or temporarily pass English as another locale.
-
-The bank YAML contains grouped Engine-shaped Question Configs.
-Localizable Questions, answers, distractors, explanations, hints and
-media descriptions are all translation obligations, not just the small
-on-Lesson Quiz subset. Validate meaning, numeric/unit rules, RTL
-and screen-reader equivalence in independent locale review.
+Author the genuine source-language content only in the canonical typed `questions/index.ts` bank, progressing through the Stage 1–3 types. Use `production.languages.document` from the verified Lesson evidence rather than assuming English. Preserve the Lesson's planned locale scope; do not fabricate translated strings or copy source-language text into target languages. Every Question prompt, answer, distractor, explanation, hint and media alternative in the **complete bank** is an independent localization/review obligation, not merely those selected in a Quiz.
 
 ## OWNERSHIP, OUTPUT AND REVIEW
 
@@ -150,22 +138,7 @@ approved Quiz Config edits without overwriting unrelated modules.
 Technical Translators and independent linguistic reviewers verify
 the full bank and Quiz copy per requested locale.
 
-The Stage B YAML is located at
-content/<textbook>/data/lessons/<bucket>/<uuid>/questions.yaml.
-Each question uses a current Engine Config discriminator, UUID,
-params/restrictions, locale and ordered ContentBlocks. Keep evidence
-coverage, review decisions, blockers and source SHA in the Questions
-child PR. Its single authoritative TS bank is generated under
-questions/index.ts and question-specific nested modules. The existing
-generateAssessmentResources --kind question publisher handles full-bank
-resource output and separate portable loading.
-
-Question YAML removal is safe only after verified faithful materialization
-of **all** bank members and the small Quiz subsets. Do not reuse old
-questionSlugs, content.yaml, removed shared/contracts types, or
-outdated mandatory production Issue instructions as the new workflow.
-The Lesson Flow parent coordinates child PR integration; Questions
-must precede Flashcards to avoid conflicting Section registry edits.
+Use the single authoritative `content/<textbook>/data/lessons/<bucket>/<uuid>/questions/index.ts` and actual nine Engine Question Config discriminators, immutable UUIDs, ordered ContentBlocks and production-only evidence. Keep coverage, independent reviews, blockers and exact source SHA in the existing Questions child PR. After authorized typed Stage 5, the generated `questions/<questionType>/<questionSlug>.ts`, type indexes and complete bank export become the canonical authored Configurators; `generateAssessmentResources --kind question` separately publishes complete validated resources. Do not create `questions.yaml`, restore removed builders, clone selected Questions into Lesson Sections, or maintain a competing source/review ledger. Questions precede Flashcards except for a verified own-Questions N/A decision.
 
 ## QUALITY GATE
 

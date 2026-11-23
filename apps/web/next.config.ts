@@ -4,7 +4,9 @@ import { readFileSync } from 'node:fs';
 if (!process.env.SVITLO_TEXTBOOK) {
   throw new Error('SVITLO_TEXTBOOK must explicitly select a content package for the Web build.');
 }
-const selection = JSON.parse(readFileSync(new URL('./src/generated/selectedTextbook.json', import.meta.url), 'utf8')) as {
+const selection = JSON.parse(
+  readFileSync(new URL('./src/generated/selectedTextbook.json', import.meta.url), 'utf8'),
+) as {
   name: string;
   hasScenes: boolean;
 };

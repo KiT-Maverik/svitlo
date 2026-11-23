@@ -39,4 +39,4 @@ Enable an international Svitlo Program to **recommend or let the learner/teacher
 
 **Implementation note:** This file is a **future design and implementation To Do**, not authorization to modify Program, Lesson, Engine or database code in the Biology documentation PR.
 
-**Related proposals:** [Subject Proposition](../../Subject%20Proposition.md) (§12в), [Create Curriculum Skill](../../skills/create-curriculum.skill.md), [Internationalization & Inclusive Access](../../docs/architecture/internationalization-and-accessibility.md).
+**Related proposals:** [Subject Proposition](../../Subject%20Proposition.md) (§12в), Create Curriculum Skill (proposed workflow), [Internationalization & Inclusive Access](../../docs/architecture/internationalization-and-accessibility.md).

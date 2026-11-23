@@ -155,7 +155,10 @@ test('real manifests use canonical operation names and preserve npm pre-hooks', 
   const packages = discoverWorkspaces();
   assert.equal(packages.length, 30);
   for (const fixture of ['@svitlo/web-fixture-alpha', '@svitlo/web-fixture-beta']) {
-    assert(packages.some(pkg => pkg.name === fixture), 'Missing independent Web contract fixture ' + fixture);
+    assert(
+      packages.some(pkg => pkg.name === fixture),
+      'Missing independent Web contract fixture ' + fixture,
+    );
   }
   assert.equal(Object.hasOwn(root.scripts, 'storybook:start'), false);
   assert.equal(Object.hasOwn(root.scripts, 'app:start:dev'), false);
@@ -190,7 +193,8 @@ test('only Web receives the explicitly selected test content; no hidden release 
   assert.equal(environmentForWorkspace('@svitlo/playground', configured), configured);
   assert.equal(environmentForWorkspace('@svitlo/web', { NODE_ENV: 'production' }).SVITLO_TEXTBOOK, undefined);
   assert.equal(
-    environmentForWorkspace('@svitlo/web', { SVITLO_TEXTBOOK: 'math', SVITLO_WEB_TEST_SELECTION: 'web-fixture-alpha' }).SVITLO_TEXTBOOK,
+    environmentForWorkspace('@svitlo/web', { SVITLO_TEXTBOOK: 'math', SVITLO_WEB_TEST_SELECTION: 'web-fixture-alpha' })
+      .SVITLO_TEXTBOOK,
     'math',
   );
 });

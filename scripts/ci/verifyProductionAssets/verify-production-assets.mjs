@@ -17,7 +17,12 @@ const uuid = '[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}';
 const entityRoot = new RegExp(
   '^(content/(?:languages/)?[a-z][a-z0-9-]*/data/(?:lessons|courses)/[0-9a-f]/' + uuid + ')/',
 );
-const unresolved = /00000000-0000-0000-0000-000000000000\.(?:svg|png|jpe?g|webp|gif|avif|mp3|wav|ogg|m4a|flac|mp4|webm|vtt|srt)/i;
+const unresolved =
+  /00000000-0000-0000-0000-000000000000\.(?:svg|png|jpe?g|webp|gif|avif|mp3|wav|ogg|m4a|flac|mp4|webm|vtt|srt)/i;
+const pendingId = /\bfeedc0de-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\b/i;
+// This source-only check supplements, but does not replace, the actual
+// production Build-to-Props and the pending-import lint policy (#774).
+const pendingFactory = /\bdefinePending(?:Lesson|QuizSection|FlashcardsSection)\b/;
 const sourceExtension = /\.(?:ts|tsx|mts)$/i;
 
 export function affectedEntities(changedPaths) {
@@ -46,6 +51,9 @@ function inspect(root, relative, findings) {
     if (/TODO\(asset\)/i.test(lines[index]) || unresolved.test(lines[index])) {
       findings.push(relative + ':' + (index + 1) + ': unresolved asset TODO or reserved Nil UUID');
     }
+    if (pendingId.test(lines[index]) || pendingFactory.test(lines[index])) {
+      findings.push(relative + ':' + (index + 1) + ': unresolved Preview UUID or Draft-only configurator');
+    }
   }
 }
 
@@ -57,15 +65,19 @@ function inspect(root, relative, findings) {
  */
 export function affectedProductionScopes(changedPaths) {
   return affectedEntities(changedPaths).map(entity => {
-    const changes = changedPaths.map(name => name.startsWith(entity + '/') ? name.slice(entity.length + 1) : null)
+    const changes = changedPaths
+      .map(name => (name.startsWith(entity + '/') ? name.slice(entity.length + 1) : null))
       .filter(Boolean);
     if (entity.includes('/data/courses/')) return { entity, mode: 'whole', banks: [], sections: [] };
     const banks = ['questions', 'flashcards'].filter(bank =>
-      changes.some(name => name === bank + '.yaml' || name.startsWith(bank + '/')));
+      changes.some(name => name === bank + '.yaml' || name.startsWith(bank + '/')),
+    );
     const sections = changes.filter(name => name.startsWith('sections/') && sourceExtension.test(name));
-    const unrelated = changes.some(name =>
-      !name.startsWith('sections/') &&
-      !['questions', 'flashcards'].some(bank => name === bank + '.yaml' || name.startsWith(bank + '/')));
+    const unrelated = changes.some(
+      name =>
+        !name.startsWith('sections/') &&
+        !['questions', 'flashcards'].some(bank => name === bank + '.yaml' || name.startsWith(bank + '/')),
+    );
     return banks.length && !unrelated
       ? { entity, mode: 'banks', banks, sections }
       : { entity, mode: 'whole', banks: [], sections: [] };
@@ -100,14 +112,12 @@ export function verifyChangedEntities(root, changedPaths) {
       continue;
     }
     const isLesson = entity.includes('/data/lessons/');
-    const hasRoot = fs.existsSync(path.join(full, 'index.ts')) ||
-      fs.readdirSync(full).some(name => name.endsWith('.data.ts'));
+    const hasRoot =
+      fs.existsSync(path.join(full, 'index.ts')) || fs.readdirSync(full).some(name => name.endsWith('.data.ts'));
     if (!hasRoot) {
       findings.push(entity + ': missing authored ' + (isLesson ? 'Lesson' : 'Course') + ' TypeScript entrypoint');
     }
-    const temporary = isLesson
-      ? ['lesson.yaml', 'questions.yaml', 'flashcards.yaml']
-      : ['course.yaml', 'config.yaml'];
+    const temporary = isLesson ? ['lesson.yaml', 'questions.yaml', 'flashcards.yaml'] : ['course.yaml', 'config.yaml'];
     for (const name of temporary) {
       if (fs.existsSync(path.join(full, name))) {
         findings.push(entity + '/' + name + ': unfinished temporary authoring YAML');
@@ -125,7 +135,10 @@ export function changedPaths(base, head, repoRoot) {
   return execFileSync('git', ['diff', '--name-only', '--diff-filter=ACMRD', base, head, '--', 'content'], {
     cwd: repoRoot,
     encoding: 'utf8',
-  }).split('\n').map(value => value.trim()).filter(Boolean);
+  })
+    .split('\n')
+    .map(value => value.trim())
+    .filter(Boolean);
 }
 
 const invoked = process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url);
@@ -138,7 +151,11 @@ if (invoked) {
     const findings = verifyChangedEntities(root, files);
     for (const finding of findings) console.error('::error::' + finding);
     if (findings.length) throw new Error(findings.length + ' unresolved production asset/source issue(s)');
-    console.log('Verified ' + checked.length + ' changed Lesson/Course entity root(s); physical media and generated Props require the strict content package build.');
+    console.log(
+      'Verified ' +
+        checked.length +
+        ' changed Lesson/Course entity root(s); physical media and generated Props require the strict content package build.',
+    );
   } catch (error) {
     console.error(error);
     process.exitCode = 1;

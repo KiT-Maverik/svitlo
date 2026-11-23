@@ -15,7 +15,7 @@ entrypoint and read the JSDoc, nearby tests, README, npm/CI callers, and write
 paths.** Do not infer its job from the filename or historical workflow.
 
 Root `scripts/` owns repository-wide orchestration only. Engine-specific
-generators and YAML draft scaffolders belong under `shared/engine/scripts/`;
+generators and typed draft scaffolders belong under `shared/engine/scripts/`;
 their additional mandatory rules are in
 [Engine scripts AGENTS.md](../shared/engine/scripts/AGENTS.md).
 UI Kit and app scripts belong to their owning packages. Do not move
