@@ -26,7 +26,7 @@ const publishedDirectory = `public/data/pages/lessons/${relative}`;
 
 ## Lesson convention
 
-**Typed authoring target (#775/#782):** Course Stage 5 creates a new Lesson's UUID-addressed `index.ts satisfies LessonWorkflowStage1` with only reviewed methodology/assessment intent, not an implemented `defineLesson`, Sections or a Lesson PR. The authorized standalone workflow advances that same typed source. Legacy `lesson.yaml` and `lesson.identity.json` remain supported for their existing callers until separately verified retirement.
+**Typed authoring (#775):** Course Stage 5 creates a new Lesson's UUID-addressed `index.ts satisfies LessonWorkflowStage1` with only reviewed methodology/assessment intent, not an implemented `defineLesson`, Sections or a Lesson PR. The authorized standalone workflow advances that same typed source. Historical `lesson.yaml` and `lesson.identity.json` may remain untouched source provenance for separately authorized migrations, not supported new-production inputs.
 
 ```text
 content/<book>/data/lessons/<last-hex-digit>/<uuid>/
@@ -34,7 +34,7 @@ content/<book>/data/lessons/<last-hex-digit>/<uuid>/
   <slug>.data.ts                 # existing implemented Lesson convention
   <slug>.definition.ts           # when implemented
   lesson.identity.json           # editorial-only drafts without typed Lesson data
-  methodology.md                # new Lesson Methodologist briefs
+  methodology.md                # derived from reviewed typed Stage 1/2 methodology at Stage 6.1
   methodologist-brief.md         # existing legacy Briefs; do not duplicate
   content.md                     # when applicable
   sections/                      # when applicable
@@ -54,10 +54,10 @@ Textbook-owned React Scenes use `content/<book>/scenes/<bucket>/<uuid>/`, with t
 
 ## Editorial workflows
 
-- Create Lesson: assign its immutable UUID, resolve its directory with Engine, and write the authorized typed Stage 1 source **or** preserve the existing legacy Brief/Content/YAML when resuming it. Never pick a numbered bucket based on capacity or assign a manually stored `group`.
+- Create Lesson: assign its immutable UUID and resolve its directory with Engine; author one typed Stage 1 `index.ts`. Preserve earlier Brief/Content/YAML as historical provenance when explicitly reviewing an unconverted Lesson, not as an alternate new source. Never pick a numbered bucket based on capacity or assign a manually stored `group`.
 - Existing Lesson: find by UUID through the resolver; IDE repository search remains convenient for slug/title. Do not add a custom slug-to-path search utility.
 - Move between bucket depths only with a dedicated migration PR and verification of all imports and generated/public URLs.
 
 ## Course methodology storage
 
-New Course methodological documents use `content/<textbook>/data/courses/<bucket>/<uuid>/methodology.md`, with `<bucket>/<uuid>` resolved by `resolveEntityPath(courseId)`. The Methodology is editorial-only and persists after runtime Course implementation. This introduces no automatic migration of existing flat `data/courses/*.data.ts` authoring files and no change to current Course publishing/discovery.
+New Course methodological content is authored in the single staged Course `index.ts` and materialized at Stage 5 to a **derived** `content/<textbook>/data/courses/<bucket>/<uuid>/methodology.md`, with `<bucket>/<uuid>` resolved by `resolveEntityPath(courseId)`. This Markdown is not a parallel editable methodology source. This introduces no automatic migration of existing flat `data/courses/*.data.ts` authoring files and no change to current Course publishing/discovery.
