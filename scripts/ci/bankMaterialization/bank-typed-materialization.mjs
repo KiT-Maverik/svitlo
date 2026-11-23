@@ -106,7 +106,7 @@ function assertSourceRevision(root, sha, pathname, meta, label) {
     }
   } else throw Error(label + ': SHA must identify source blob or ancestor commit');
 }
-function authorizations(meta, input, root) {
+function authorizations(meta, input, root, blocks) {
   const lessonDirectory = meta.identity.folder;
   const evidence = {
     approved: true,
@@ -116,13 +116,6 @@ function authorizations(meta, input, root) {
     reviewedSourceBlobSha: meta.sourceBlob,
     reviewCommitSha: meta.reviewCommitSha,
     reviewedInputSha256: sha256(JSON.stringify(input, null, 2)),
-  };
-  const blocks = {
-    // Never infer authorizations from author-controlled ContentBlock IDs.
-    // Until independent registry/asset proof is integrated, media/Scenes fail
-    // closed in their concrete Bank ContentBlock materializer.
-    registeredSceneIds: new Set(),
-    approvedMediaBlockIds: new Set(),
   };
   if (meta.bank === 'questions') {
     const lesson = input?.production?.lesson;
@@ -333,7 +326,13 @@ async function analyze(meta) {
   const { readTypedBankStage3, typecheckTypedBankStage3 } = await import('./bank-typed-stage3.mjs');
   const input = readTypedBankStage3(source, meta.bank);
   typecheckTypedBankStage3(source, trustedRoot);
-  const authorization = authorizations(meta, input, root);
+  // Only reviewed, SHA-pinned Git bytes and the independently approved
+  // Stage 3 source may authorize concrete media/Scene blocks.
+  const { resolveReviewedBankBlockEvidence } = await import('./bank-typed-block-evidence.mjs');
+  const blocks = resolveReviewedBankBlockEvidence({
+    root, meta, input, git, ts: require('typescript'),
+  });
+  const authorization = authorizations(meta, input, root, blocks);
   const engineDir = '../../../shared/engine/dist/generators/materializers/';
   const adapter = meta.bank === 'questions' ?
     require(engineDir + 'questionBank/questionBankGitTransaction.js') :
