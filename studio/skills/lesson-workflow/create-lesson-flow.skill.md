@@ -78,7 +78,7 @@ Stages 1–5 edit **one** `index.ts` object at the canonical Lesson UUID address
 
 Actual source-language localized fields belong to `config.locale` or nested node locales; future planned languages in `production.languages.planned` are **not** fabricated strings. At Stage 6 the materializer derives `config.params.languages` from the reviewed plan while preserving the actual effective Course subset at publication; translation follows on real materialized source in Stages 9/10. Never infer progress from `draft`, `approved`, `stage` or `reviewStatus` keys in the object. Record review/authorization state only in the Lesson PR, with source commit/blob SHAs.
 
-Any approved legacy `lesson.yaml`, `content.yaml`, `methodology.md` or reviewer evidence requires an **explicit non-destructive migration** with byte preservation/provenance; the old files remain historical inputs until verified transfer. Existing Questions/Flashcards YAML remains independently owned by those legacy workflows until their typed production PRs integrate. Do not create a duplicate editable Lesson `lesson.yaml`, methodology file or progress ledger.
+Any approved legacy `lesson.yaml`, `content.yaml`, `methodology.md` or reviewer evidence requires an **explicit non-destructive migration** with byte preservation/provenance; the old files remain historical inputs until verified transfer. Existing Questions/Flashcards YAML is historical bank provenance; its independent owner must authorize and verify any non-destructive transfer into the typed bank source. It is not an active production workflow. Do not create a duplicate editable Lesson `lesson.yaml`, methodology file or progress ledger.
 
 ## Lesson editorial review continuity: one independent entry, immediate role-owned fixes
 

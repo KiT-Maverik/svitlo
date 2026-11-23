@@ -10,14 +10,11 @@ it does not authorize code, translation or independent sign-off.
 
 ## Current source of truth
 
-Use the existing Lesson's canonical UUID directory. Its complete typed
-Lesson source, approved methodology.md (legacy methodologist-brief.md
-where present), and derived Lesson Markdown at an exact SHA establish
-learning content and Quiz placement. There may be no lesson.yaml after
-Resource Production. Do not recreate it, generate a new Lesson, assume
-content.yaml exists, or require a new Lesson Production Issue for
-this PR-driven flow.
-
+Use the existing Lesson's canonical UUID directory. Its complete reviewed typed Lesson `index.ts`, approved `production.methodology`
+and source-derived Lesson Markdown at an exact SHA establish learning
+content and Quiz placement. Historical `methodologist-brief.md`, `lesson.yaml`
+and `content.yaml` may remain as provenance; do not recreate them, generate
+a new Lesson, or require a new Lesson Production Issue for this PR-driven flow.
 
 Use **one Lesson-owned, progressively typed source** at:
 
@@ -138,7 +135,6 @@ independent reviewer checks scientific truth, correct grading,
 misconception validity, evidence mapping, item novelty, accessibility,
 age fit and all selected Quiz subsets at a verified SHA. Methodologist
 authority remains separate. Source changes require review refresh.
-
 
 After the independent reviewer has directly corrected and re-verified the
 Stage 3 source in the same PR at a final SHA, a separate Coding Agent

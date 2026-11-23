@@ -17,6 +17,6 @@ npm run test:locales --workspace @svitlo/ui-kit
 node --test scripts/generateTranslationReviewArtifacts/education-standards-reference.spec.mjs
 ```
 
-Code-derived review references remain available via `/agent-artifacts generate education-standards` and must be cleaned with `/agent-artifacts cleanup` before merging a PR that materializes temporary artifacts.
+Code-derived review references remain available via `/agent-artifacts generate education-standards` in a one-day Actions ZIP. The report workflow does not commit temporary artifacts to the PR.
 
 **CI:** EducationStandard definitions are checked by UI Kit's ordinary `test:locales` suite. Reference-generator regression tests belong in scoped FastGate checks; the separate EducationStandard catalog/reference GitHub workflows have been removed. On-demand agent reference generation is unchanged.

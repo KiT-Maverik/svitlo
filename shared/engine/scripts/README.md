@@ -11,7 +11,7 @@ The canonical Course/Lesson/Question Bank/Flashcard Bank editorial source is a p
 - [Lesson Props](./generateLessonProps/README.md), [Course Props](./generateCourseProps/README.md) and [Assessment resources](./generateAssessmentResources/README.md) consume **completed** typed Configurators. Never pass an incomplete Stage 1/2 bank or Lesson object to them.
 - [Scene scaffolding](./sceneScaffolding/README.md) provides opt-in React Scene **drafts**, never playable Scenes, registry updates or approved media.
 - [Asset audit](./auditTextbookMedia/README.md) is read-only. [Lesson lookup](./queryLessons/README.md) discovers existing typed Lessons or historical source; it does not materialize drafts.
-- [Review reference generators](./generateLessonReviewArtifacts/README.md), [Question references](./generateQuestionReviewArtifacts/README.md) and [Flashcard references](./generateFlashcardReviewArtifacts/README.md) remain independent source-evidence tools.
+- [Review reference generators](./generateLessonReviewArtifacts/generate-lesson-review-artifacts.mjs), [Question references](./generateQuestionReviewArtifacts/README.md) and [Flashcard references](./generateFlashcardReviewArtifacts/README.md) remain independent source-evidence tools.
 - Taxonomy scripts, content publishers and hosted textbook build orchestration remain separate from typed source materialization.
 
 Retired conversion code must not be resurrected as a hidden fallback, and generated JSON or Props must not become a second editable authoring source.

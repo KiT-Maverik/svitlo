@@ -52,7 +52,7 @@ Each Domain has **exactly one owner**. Ownership is allocated to balance **Skill
 - [ ] Require `description.fe` in shared contracts only when coverage is complete.
 - [ ] Reject missing/blank/partial dictionaries without fallbacks, update workflows/tests, run typechecks/focused tests.
 
-**Authoring rule:** the English frontend text is reviewed before all translations; `description.methodological` stays independent and English. `docs/skills/taxonomy.md` is staging material and must not be deleted. No grade ceilings, added competencies or editorial restructures. Outstanding issues and validation limits must be reported without claiming editorial approval.
+**Authoring rule:** the English frontend text is reviewed before all translations; `description.methodological` stays independent and English. The former `docs/skills/taxonomy.md` staging material was removed after reviewed promotion; Git history preserves it. No grade ceilings, added competencies or editorial restructures. Outstanding issues and validation limits must be reported without claiming editorial approval.
 
 ## Counting: English copy gate (methodologist review, before translation)
 

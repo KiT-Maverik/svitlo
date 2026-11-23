@@ -105,7 +105,7 @@ Distinguish **missing, empty, copied, fabricated, or demonstrably wrong values (
 
 Translate only the explicitly authorized content and languages. Do not create or delete Skills, Lessons, Questions or other entities; change learning objectives, approved taxonomy, UUIDs, slugs, data contracts, locale registrations, application behavior, or source-language copy without separate editorial authorization. Do not silently alter `description.methodological` when it is the canonical English-only description.
 
-For **read-only linguistic review of generated Code-derived Markdown views**, use [Review Translation](../skills/translation-workflow/review-translation.skill.md); no TypeScript or programming expertise is required for that review. For **implementing changes in strictly typed source**, use [Technical Translation](../skills/translation-workflow/technical-translation.skill.md) and its mandatory verification gates. [Common Translation](../skills/translation-workflow/common-translation.skill.md) is a **placeholder**, not an executable workflow for translating standalone Markdown or other static resources.
+For **read-only linguistic review of generated Code-derived Markdown views**, use [Review Translation](../skills/translation-workflow/review-translation.skill.md); no TypeScript or programming expertise is required for that review. For **implementing changes in strictly typed source**, use [Technical Translation](../skills/translation-workflow/technical-translation.skill.md) and its mandatory verification gates. Common Translation is a **placeholder**, not an executable workflow for translating standalone Markdown or other static resources.
 
 ## LaTeX in Markdown ContentBlocks
 
