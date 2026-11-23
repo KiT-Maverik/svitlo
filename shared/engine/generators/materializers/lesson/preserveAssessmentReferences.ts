@@ -86,7 +86,7 @@ function pickSelections(
   source: string, sourcePath: string, input: LessonWorkflowMaterializerInput,
 ): Selection[] {
   const file = ts.createSourceFile(sourcePath, source, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS);
-  if (file.parseDiagnostics.length)
+  if ((file as ts.SourceFile & { parseDiagnostics: readonly ts.Diagnostic[] }).parseDiagnostics.length)
     throw new Error('Stage 6: reviewed Stage 2 TypeScript has syntax errors');
   const root = findReviewedLesson(file);
   const imports = importedBindings(file);
@@ -149,7 +149,7 @@ function applySelection(
   source: string, filePath: string, selection: Selection,
 ): string {
   const file = ts.createSourceFile(filePath, source, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS);
-  if (file.parseDiagnostics.length) throw new Error('Stage 6: malformed rendered Section TypeScript');
+  if ((file as ts.SourceFile & { parseDiagnostics: readonly ts.Diagnostic[] }).parseDiagnostics.length) throw new Error('Stage 6: malformed rendered Section TypeScript');
   const name = selection.kind === 'quiz' ? 'defineQuizSection' : 'defineFlashcardsSection';
   const matches: ts.Expression[] = [];
   const visit = (n: ts.Node): void => {
