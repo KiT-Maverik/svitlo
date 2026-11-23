@@ -302,11 +302,41 @@ export function runOne(source, mode = 'check', repo = repoRoot, selectedSceneId)
     }
   }
   if (mode === 'generate') {
+    // One Scene is the atomic unit: prepare all files in a sibling directory,
+    // then install it with one rename. Incomplete writes never create a
+    // partially populated final UUID directory.
     for (const { scene, directory, files } of plans) {
-      fs.mkdirSync(directory, { recursive: true });
-      for (const [filename, content] of files)
-        fs.writeFileSync(path.join(directory, filename), content, { flag: 'wx' });
-      results.push({ id: scene.id, changed: files.size, skipped: false });
+      const parent = path.dirname(directory);
+      fs.mkdirSync(parent, { recursive: true });
+      noSymlinks(parent);
+      const lease = path.join(parent, '.' + scene.id + '.lock');
+      // Exclusive creation serializes competing scaffolders for this UUID.
+      // A stale lease is an explicit failure, not permission to clobber.
+      const handle = fs.openSync(lease, 'wx');
+      let staged;
+      try {
+        if (fs.existsSync(directory)) {
+          results.push({ id: scene.id, changed: 0, skipped: true });
+          continue;
+        }
+        staged = fs.mkdtempSync(path.join(parent, '.' + scene.id + '.stage-'));
+        for (const [filename, content] of files)
+          fs.writeFileSync(path.join(staged, filename), content, { flag: 'wx' });
+        // Recheck after staging; another writer may have created this
+        // directory without participating in the Scene lease protocol.
+        noSymlinks(directory);
+        if (fs.existsSync(directory)) {
+          results.push({ id: scene.id, changed: 0, skipped: true });
+          continue;
+        }
+        fs.renameSync(staged, directory);
+        staged = undefined;
+        results.push({ id: scene.id, changed: files.size, skipped: false });
+      } finally {
+        if (staged !== undefined) fs.rmSync(staged, { recursive: true, force: true });
+        fs.closeSync(handle);
+        fs.unlinkSync(lease);
+      }
     }
   }
   return results.sort((a, b) => a.id.localeCompare(b.id));

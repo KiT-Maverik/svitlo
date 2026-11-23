@@ -143,6 +143,42 @@ test('repeated creation SKIPs edited and partial scenes without overwriting any 
   assert.throws(() => runOne(f.source, 'check', f.repo), /Missing Scene scaffold file/);
 });
 
+test('failed staged Scene write leaves no partial UUID tree and a clean retry succeeds', t => {
+  const f = fixture(t);
+  const write = fs.writeFileSync;
+  let stagedWrites = 0;
+  try {
+    fs.writeFileSync = (filename, ...args) => {
+      if (String(filename).includes('.stage-') && ++stagedWrites === 3)
+        throw new Error('simulated disk write failure');
+      return write(filename, ...args);
+    };
+    assert.throws(() => runOne(f.source, 'generate', f.repo), /simulated disk write failure/);
+  } finally {
+    fs.writeFileSync = write;
+  }
+  assert.equal(fs.existsSync(f.folder(sceneId)), false, 'the final Scene must not be partial');
+  const parent = path.dirname(f.folder(sceneId));
+  assert.deepEqual(fs.readdirSync(parent), [], 'temporary files and exclusive lease are cleaned up');
+  assert.deepEqual(runOne(f.source, 'generate', f.repo), [
+    { id: sceneId, changed: 7, skipped: false },
+  ]);
+  assert.equal(runOne(f.source, 'check', f.repo)[0].changed, 0);
+});
+
+test('exclusive Scene lease refuses races without deleting the existing owner', t => {
+  const f = fixture(t);
+  const parent = path.dirname(f.folder(sceneId));
+  fs.mkdirSync(parent, { recursive: true });
+  const lease = path.join(parent, '.' + sceneId + '.lock');
+  fs.writeFileSync(lease, 'a competing writer');
+  assert.throws(() => runOne(f.source, 'generate', f.repo), /EEXIST/);
+  assert.equal(fs.readFileSync(lease, 'utf8'), 'a competing writer');
+  assert.equal(fs.existsSync(f.folder(sceneId)), false);
+  fs.unlinkSync(lease);
+  assert.equal(runOne(f.source, 'generate', f.repo)[0].changed, 7);
+});
+
 test('supports recursive Carousel/Quest Scenes and selected Scene IDs, without implicit registration', t => {
   const f = fixture(t);
   const extra = f.scene(anotherId, 'demoScene', 'An independently approved specification');
