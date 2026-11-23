@@ -39,12 +39,7 @@ must not be imported/published as the final `questions/index.ts` bank.
 Use the nine actual Engine Config/Zod variants for scoring and their
 plain nested ContentBlock Config data; specialized Stage 2 nodes hold
 production-only assessment rationale, not fields on the final Config.
-Do not maintain an editorial parallel schema, YAML, status flags,
-`questionSlugs`, or bank-level selection UUID list. The legacy
-[Questions Builder](../../../shared/engine/scripts/questionsBuilder/README.md)
-and generated `question.schema.json` remain for **pre-existing YAML
-consumers** until #775 migrates their orchestration. They cannot consume
-the new typed staged index.
+Do not maintain a parallel editor schema, YAML authoring source, status flags, `questionSlugs` or bank-level selection UUID list. The YAML-only Questions Builder and its generated editor schemas were removed in #775 and are not fallbacks.
 
 Use actual Engine code for the nine Question discriminators, all
 Assessment Method slugs, params.restrictions Disability[] and nested
@@ -158,19 +153,14 @@ selected Question Configurators in the real `defineQuizSection` and
 validates global UUID/locale resolution. The existing assessment publisher
 publishes all members, independently of Quiz selection.
 
-**Migration constraint:** the typed bridge is pending parent #775
-verification. The old YAML Questions Builder and trusted comment command
-still serve existing YAML sources, not this new TS workflow. Never run
-them against a typed staged index, nor delete active legacy scripts until
-their callers have migrated.
+**Active typed bridge:** the complete Bank Stage 5 source-materialization path is integrated in #775, using the existing Questions PR, a formal independently accepted reviewed Stage 3 source and the SHA-pinned `/questions materialize typed` trusted command. It is not live until deployed and exercised from default `develop`. The old YAML Builder and unqualified command are retired. A collision, stale SHA or partial output must leave reviewed input intact; do not delete historical YAML or pretend passing draft checks certify completion.
 
 Do not claim Custom Practice UI exists merely because those resources
 are now publishable.
 
 Keep the reviewed staged TypeScript source intact on skipped, failed, partial
 or conflicting materialization; the parent owns an explicit safe transition
-into the canonical bank index. Remove any pre-existing legacy questions.yaml
-only after source/IDs/Quiz integration have been independently verified.
+into the canonical bank index. Preserve any pre-existing historical `questions.yaml` as provenance unless its owning migration is explicitly authorized and independently verified.
 Report validation, typecheck, publisher preflight, builds and
 independent review separately; a draft generator success is not
 a completed Lesson or a valid mastery claim.

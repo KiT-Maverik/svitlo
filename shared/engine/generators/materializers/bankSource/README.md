@@ -31,6 +31,6 @@ Preflight refuses stale HEAD/review SHA or evaluated-input digest, divergent han
 
 ## Validation and release boundaries
 
-Stage 1/Stage 3 editorial source is not a `define*` Configurator. Materializer output is not published and never modifies Lesson/Quiz/Flashcards Sections. Missing translations, incomplete media or Scene evidence and unsupported typed Question field reuse fail closed or remain blockers for the independent publisher. The live YAML builders/CI and `generateAssessmentResources` remain unchanged.
+Stage 1/Stage 3 editorial source is not a `define*` Configurator. Materializer output is not published and never modifies Lesson/Quiz/Flashcards Sections. Missing translations, incomplete media or Scene evidence and unsupported typed Question field reuse fail closed or remain blockers for the independent publisher. The retired YAML builders/commands are not supported alternatives. `generateAssessmentResources` remains a distinct publisher of fully authored Configurator banks and must not publish unreviewed Stage 1–3 editorial source.
 
 Engine's test runner already includes `generators/materializers/*/*.spec.ts`. Run Engine typechecks, full Engine tests (including temporary real-Git transaction suites), semantic generated-TS Build checks and the actual owning textbook publisher/strict build. Passing syntactic transpilation alone is insufficient.

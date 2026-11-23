@@ -10,12 +10,7 @@ node shared/engine/scripts/generateAssessmentResources/generateAssessmentResourc
 
 `--check` verifies byte-for-byte generated output without writing. Each kind's independent stage is under `generated/assessmentStages/<kind>`; the final `all` publication merges both metadata manifests and is staged under `generated/assessments/`. The portable textbook build copies those resources under `static/data`, separately from Lesson Props. Full Question/Flashcard bodies remain outside `base.json` and `<locale>.json` Lesson files.
 
-The portable textbook `package:build` invokes the combined publication when authored typed bank entrypoints exist, and includes each generated file in the textbook manifest. The current implementation consumes completed existing TypeScript banks from each Lesson's `questions/index.ts` and `flashcards/index.ts`, and their owner's configured publication languages. The separate [Questions Builder](../questionsBuilder/README.md) now scaffolds
-approved Lesson-root `questions.yaml` into independent TypeScript Question modules.
-It does not edit Quiz Sections, publish Props, or delete source YAML. Approved
-Quiz Sections import typed Question Configurators and select stable `.id` values;
-normal TypeScript/Engine and strict textbook publication checks validate them.
-Flashcard YAML conversion exists via the independent [Flashcard Builder](../flashcardBuilder/README.md), but this publisher does not run it. Bank source is never modified. UUID, kind, locale and duplicate identity validation is performed before publication, and generated trees are replaced atomically.
+The portable textbook `package:build` invokes the combined publication when authored typed bank entrypoints exist, and includes each generated file in the textbook manifest. The current implementation consumes completed existing TypeScript banks from each Lesson's `questions/index.ts` and `flashcards/index.ts`, and their owner's configured publication languages. The old Questions/Flashcards YAML Builders were removed in #775. The separate reviewed typed Bank Stage 5 source-materialization transactions generate the complete authoring module trees from canonical staged `questions/index.ts`/`flashcards/index.ts`; this publisher consumes only **completed** resulting Configurators and never edits a bank or Quiz/Flashcards Section. Approved Section selections use imported Configurator `.id` values. UUID, kind, locale and duplicate-identity validation happens before publication, and generated output is replaced atomically.
 
 Media inside authored Question/Flashcard ContentBlocks is validated and resolved
 using the same textbook-wide UUID asset rules as Lesson/Course Props.

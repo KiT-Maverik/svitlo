@@ -1,83 +1,31 @@
-# Composite and Scene source materializers — Agent D
+# Composite Block and Scene typed source materializers
 
-This PR delivers five **independent authored-source renderers** inside their own kind folders:
+**Integrated in #775:** five concrete, distinct source emitters, each with its own tests and owned nested source layout. They take reviewed plain Config-shaped data plus non-publishable `production` metadata and return deterministic source-file manifests and diagnostics; they never publish Props or write into unreviewed directories.
 
-| Materializer | Factory | Owned child boundary | Source file |
-| --- | --- | --- | --- |
-| Carousel | `defineCarousel` | `slides.items/<slug>` → Image/Scene | `carousel/materializeCarousel.ts` |
-| Checkpoint | `defineCheckpoint` | `content.items/<slug>` → CheckpointItem | `checkpoint/materializeCheckpoint.ts` |
-| CheckpointItem | `defineCheckpointItem` | `question` → Text, `answer` → CheckpointAnswer | `checkpointItem/materializeCheckpointItem.ts` |
-| CheckpointAnswer | `defineCheckpointAnswer` | `content.items/<slug>` → supported non-Checkpoint ContentBlocks | `checkpointAnswer/materializeCheckpointAnswer.ts` |
-| Scene | `defineScene` | none; production specification beside authored Config | `scene/materializeScene.ts` |
+| Kind | Build factory | Owned nested source |
+| --- | --- | --- |
+| Carousel | `defineCarousel` | `slides.items/<slug>` delegates Image or Scene children |
+| Checkpoint | `defineCheckpoint` | `content.items/<slug>` delegates CheckpointItems |
+| CheckpointItem | `defineCheckpointItem` | one `question` Text and one `answer` CheckpointAnswer |
+| CheckpointAnswer | `defineCheckpointAnswer` | `content.items/<slug>` supports ordered non-Checkpoint Blocks |
+| Scene | `defineScene` | localized Scene Config plus derived `specification.md` |
 
-All paths are relative to the **parent-approved entity source root**. Each renderer returns `{ exportName, files: [{ path, content, kind }], diagnostics }`, never writing files or publishing Props. The parent is responsible for invoking each renderer, verifying collocated source and required imports, allocating any still-missing UUID once, and applying the final safe create-only file writer. The per-kind callbacks are **explicit delegation seams**, not a global registry or generic materializer.
+## Source ownership and boundaries
 
-## Historical YAML → TypeScript feature-parity review
+Each kind preserves Engine's actual typed child collection, stable UUID/slug, child order, relevant TypeScript generics, source-only locale and module import/export shape. Parents determine placement, validate full-tree UUID collisions and perform trusted atomic no-clobber writes; children delegate nested source generation rather than reimplementing their descendants' Markdown/Code/media/Scene policies. Only minimal shared path/UUID/writer infrastructure is permitted—no universal serializer, YAML registry, `build.files()` Configurator method or raw Props-to-TypeScript reconstruction.
 
-Read actual `shared/engine/scripts/yamlScaffolding/{recursiveMaterializer.mjs,recursiveMaterializer.spec.mjs,yamlScaffolding.mjs,productionScaffolding.mjs,README.md}` on `integration/unified-yaml-materialization-preview`, the current Engine Config/Zod/build tests, existing Course/Lesson materializers and PR #773 Scene scaffolding. This replacement never imports the YAML implementation.
+Carousel children are Image or Scene, not a retired `CarouselSlide` wrapper. CheckpointItem has a **single mandatory Text** question in `question/index.ts` and an independent Answer in `answer/index.ts` containing nested Block modules. The [source layout decision](../../../../../studio/docs/architecture/checkpoint-answer-source-layout.md) documents the relative tree. Scene sidecar specifications remain faithfully source-derived; `defineScene` generation **does not implement a React Scene, register it, generate physical assets or approve it**.
 
-- **Factories/generics:** Uses actual `defineCarousel<Slug, Items, Languages>`, `defineCheckpoint<Slug, Items, Languages>`, `defineCheckpointItem<Slug, Answer, Question, Languages>`, `defineCheckpointAnswer<Slug, Items, Languages>`, and `defineScene<Slug, Languages>` with source names and named child imports. There is **no** `CarouselSlide` factory.
-- **Collection order & boundaries:** Only the Engine-defined `slides.items/order`, `content.items/order`, `question` and `answer` paths are traversed; ordered modules preserve every enabled child exactly once and omit draft-disabled `false` nodes. Explicit owner callbacks emit nested source, preventing parent serializers from inventing their child's Code/Markdown/media/Scene implementation.
-- **Identity & locations:** Validates canonical UUIDs, camelCase slugs, allowed kinds, local duplicate IDs, and safe relative module directory components; the final Config has stable authored IDs, never runtime-generated IDs. Repeated calls on identical input are byte-stable. Parent must also detect **cross-subtree UUID collisions** and perform filesystem symlink/path/no-clobber preflight before writing.
-- **Source languages:** Each renderer consumes the reviewed source language passed as `documentLanguage` by the parent (for Course it is `production.languages.document`), never a fabricated translation or a pre-Stage-5 `config.params.languages`. Parent owns `languages.ts` and the `TODO (BLOCKER)` for the *complete planned language set*; each child references the parent-supplied tuple. Missing source-language translations error instead of substituting placeholders.
-- **Scene:** Emits a canonical `defineScene` Config and the exact source `production.specification` beside it. Unregistered/pending Scenes receive a visible `TODO (BLOCKER)`, and missing specifications receive a separate blocker. Does **not** touch SceneStub, React Scene TSX, lazy UUID registry or existing sceneScaffolding/registry scripts. Parent must coordinate explicit, verified Scene staging/registration with that existing workflow and treat these as separate outputs.
-- **Pending source details:** `readMarkdown`/`readCodeSource`, Code file extensions, media nil-UUID placeholders/spec sidecars and non-Scene pending cases belong to the delegated *concrete primitive materializers*, not composite parents. Quiz/Flashcard pending helpers are not emitted from these five types. The parent production stage must reject incomplete materialization and pending TODOs. Raw TypeScript expressions/source imports that cannot be round-tripped through plain JavaScript Config are **not reconstructed** here: the parent preserves those source expressions through the approved authoring/integration seam.
-- **Overrides:** Parent #775 owns the Course reuse/built sparse `{base, locale}` patch bridge and staged `additionalItems`/nested `build.overrides` expression handling; concrete composite renderers emit only the final ordered authored Config tree after approved source projection. The `false` exclusions are draft authoring filters, **not** permission to mutate an existing configurator or publish a disabled child.
+The owning materialization stage supplies the verified `documentLanguage`, planned language tuple and editorial metadata. A new Lesson created at **Course Stage 5** is merely a Stage 1 typed handoff: **do not call Carousel/Checkpoint/Scene renderers** until the later reviewed Lesson Stage 6.1 or independently reviewed bank source requires them. Pending files, Nil media UUIDs, unregistered Scene and missing translations remain visible blockers. The parent must reject invalid or unsafe nested paths, identical UUIDs, unsupported children and unauthorized source changes.
 
-## Verified compatibility with parent #775 typed Course workflow (2026-11-22)
+## Testing and publication separation
 
-Reviewed the real parent branch head `66514c2b959e4824f4307d5dd4c1e32f11beefeb`: `shared/engine/types/workflow/courseWorkflow.types.ts`, its positive/negative `courseWorkflow.typecheck.ts` fixtures, and the updated Lesson Build contract. This is a **source-contract inspection**, not an executed Engine typecheck.
-
-- **Stage 1:** the authored language is `course.production.languages.document` and the nonempty planned tuple is `course.production.languages.planned`. `course.config.params.languages` is intentionally forbidden before materialization. The Stage-5 orchestrator must map `production.languages.document` to each renderer's `documentLanguage` context and emit an approved source-only `languages.ts` with a blocker for unreviewed planned locales. No renderer should read `config.params.languages` from a Stage 1/2/3 Course plan.
-- **Stage 2:** Module and Chapter children are `{ config, production }` nodes. Provisional Episode/Lesson slots deliberately have **no UUID**. These five materializers are NOT invoked on Stage 2 source; the parent Stage-5 allocator must allocate/persist child IDs once before calling a concrete materializer. Delegates must not create IDs.
-- **Stage 3:** new Lessons remain methodological handoffs, and existing Lessons use **exactly** `production.existing: { id, base?, locale? }`. Built sparse `base/locale` patches must not be passed as raw Course overrides; the Course materializer (Agent A / parent #775) owns that conversion. The composite and Scene renderers do not import Lesson references, interpret matching rationale or serialize Stage 3 Course placement objects.
-- **Stage 4:** independent review pins the **same Stage 3 typed object** to a Git SHA; no new Stage 4 Config or implicit approval status is inferred. These source materializers may run only after that review and the Stage-5 source projection, not as part of Stage 1–4 planning.
-- **Scene and deep child source:** The Stage 1–3 Course types do not yet define a Stage-5 Lesson/Episode ContentBlock production envelope. Scene's own `production.specification` and pending/registration evidence must be carried explicitly into `SceneSourceContext.production`. Until parent finalizes that integration contract, wrappers must map nested `{ config, production }` at known boundaries without dropping the production metadata. It is **not** valid to assume a raw `SceneSource` alone contains the specification.
-- **Adjustment in this child PR:** `CarouselSlideSource` and `CheckpointAnswerBlockSource` now use this PR's explicit `SceneSource` draft projection instead of demanding a completed `ContentBlock_Scene_Config` too early. All composite delegates reject files outside their exact owned child subtree. Independent final Config schemas remain strict, and parent retains responsibility for full UUID uniqueness, safe filesystem writing and validated Stage-5 authoring.
-
-**Compatibility verdict:** no changes to the shipped Stage 1–3 parent types are required. These five materializers are structurally compatible **after** the parent Stage-5 projection assigns identities, selects the source language and forwards Scene metadata. End-to-end compatibility remains unverified until Stage 5 orchestrator + full Engine typechecks exist.
-
-## Stage-5 staged handoff clarified in parent #775 (owner decision)
-
-The later owner clarification in [#775](https://github.com/KiT-Maverik/svitlo/pull/775#issuecomment-7082623455) supersedes the prior proposal to fabricate a runnable `defineLesson` with pending Content/Quiz/Flashcards during **Course** materialization.
-
-**Do not call any of these five complete Config source materializers merely because Course Stage 5 created a new Lesson placement.** That Course flow allocates/persists the new Lesson UUID and creates a minimal standalone **`LessonWorkflowStage1` typed authoring `index.ts`**, retaining known approved methodology/assessment and source-language data. It must not generate `defineLesson`, Sections, Question/Flashcard banks, Carousel, Checkpoint, Scene or fake pending pedagogical content.
-
-These Carousel/Checkpoint/Scene materializers are intended for **later, explicitly authorized standalone Lesson/Scene-owning work**, after the owning workflow has advanced from its typed initial handoff to an approved Config-ready tree. Similarly, future Question/Flashcard/bank materializers run in their respective owning workflow; a staged child authoring handoff is not a completed Configurator.
-
-This changes **when** the orchestrator may invoke the materializers, not the five kind-specific final Config contracts implemented here. It also does not grant approval: an incomplete staged authoring source remains non-publishable. Parent #775 owns the canonical Lesson workflow type and entrypoint; #776/#777/#780 own the corresponding handoff and later complete source boundaries. Any earlier generic reference here to 'Stage-5 consumers' is conditional on the **owning entity's final materialization stage**, never automatic recursive Course child generation.
-
-## Parent integration contracts still required
-
-1. Confirm and wire the uniform `renderChild`/specific `renderQuestion`, `renderAnswer`, `renderItem` callback contracts into parent #775; callers must supply reviewed `documentLanguage`, stable `languagesImport`, verified Scene `registered`, and Scene-owned production specification.
-2. Use the parent-only source UUID allocator and **global** ID collision check, source import/expression preservation, planned-language tuple, nested override projection, and safe atomic create-only/check file writer. No local filesystem writes or shared helpers have been introduced in this child PR.
-3. Run strict TypeScript compilation **against actual `@svitlo/engine/build` definitions**, end-to-end Stage-5 materialization, Scene stub registration, a cross-parent Lesson/Episode invocation and no-clobber tests after the shared producer is integrated. Synthetic delegate-only fixtures are not full integration validation.
-4. Parent updates `shared/engine/generators/AGENTS.md` to distinguish source materializers from existing Props/JSON publishers. These five renderers do not change the existing Config/build/Props contracts.
-
-## Review response — parent reconciliation and semantic TS coverage
-
-- Reconciled the current #775 integration branch through merge commit `471120d800388fe818750656bdf106c1de82f140`, preserving all parent files and only this child's owned materializer files. The GitHub compare showed no overlapping paths; it is a real two-parent merge, not a documentation-only comparison.
-- Added `checkpoint/semanticSourceTypecheck.spec.ts`: a nested Checkpoint → CheckpointItem → CheckpointAnswer → Carousel → Scene fixture that emits independent real `define*` modules, imports a reviewed single-language tuple, and asks the TypeScript compiler to check them against **actual `shared/engine/build.ts` and actual Engine `tsconfig.json`**. It also asserts the Scene specification is preserved and that a verified Scene produces no pending diagnostics.
-- **Runner invocation (from `shared/engine` after installing workspace dependencies):**
-  ```sh
-  npm run code:check:types
-  npx tsc -p tsconfig.test.json
-  node --test .test-build/generators/materializers/{carousel,checkpoint,checkpointItem,checkpointAnswer,scene}/*.spec.js
-  ```
-  The shell brace pattern expands one directory per concrete kind; `checkpoint/*.spec.js` includes the new semantic fixture.
-- **Parent-owned CI gap:** `shared/engine/package.json` currently hardcodes its `node --test` file list and does **not** include `.test-build/generators/materializers/**/*.spec.js`. Parent #775 must register the new tests in the appropriate Engine test/CI manifest after integration. A green legacy `npm test` without that update is not evidence that these suites ran.
-- **Execution evidence remains unavailable in the current GitHub-connector-only execution environment:** there is no local Svitlo checkout or installed Engine workspace. Attempted `git ls-remote https://github.com/KiT-Maverik/svitlo.git HEAD` failed with `Could not resolve host: github.com`. Thus no actual Engine typecheck, materializer `node --test` run or semantic fixture run may be claimed as passing. This outstanding verification is a true gate to a merge recommendation; Draft CI checks do not substitute for it.
-
-## Verification
-
-Adjacent `*.spec.ts` files exercise each kind, strict ordering, forbidden types, stable identities, source-locale pruning, explicit Scene blocking/specification, delegation, syntactic TS AST parsing, and a deep Checkpoint → Item → Answer → Carousel → Scene nesting fixture. Tests only assert generated code syntax and fake delegate behavior where the parent API is missing.
-
-**Test execution status:** The agent's GitHub-connected environment lacks a checked-out repository and installed workspace dependencies. The following commands were **not executed** and must not be treated as passing:
+Adjacent `*.spec.ts` files cover order, invalid child types, UUID/slug checks, source-locale behavior, explicit Scene specs, nested delegation and generated-code syntax. The deep `checkpoint/semanticSourceTypecheck.spec.ts` exercises real Engine Build typing for Checkpoint → Item → Answer → Carousel → Scene. Run against the current branch and record actual results:
 
 ```sh
-node --test shared/engine/generators/materializers/{carousel,checkpoint,checkpointItem,checkpointAnswer,scene}/*.spec.ts
-npm test --workspace @svitlo/engine
+npm run package:build --workspace @svitlo/engine
 npm run code:check:types --workspace @svitlo/engine
+npm test --workspace @svitlo/engine
 ```
 
-Run with the repository's actual TypeScript test runner/package scripts after parent integration; `node --test` alone may require the configured TS loader. Check CI on the **latest PR head**, not a historical merge SHA. Draft remains Draft; no Ready/merge authorization is implied.
+The reviewed Stage 6.1 trusted [Lesson materialization](../../../../../scripts/ci/lessonMaterialization/README.md) enforces source/HEAD/reviewer/branch lease and no-clobber rules separately. Standalone renderer tests and Draft CI do not prove a deployed GitHub command, full locales, media, Scene registration or release readiness. Historical YAML feature-parity comparisons in #779 are **archival evidence only**, not supported migration instructions, runtime dependencies or an alternate authoring input.

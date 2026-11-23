@@ -24,6 +24,6 @@
 
 ## Migration boundary
 
-The obsolete Course-only YAML workflow, CLI, validator and manual Course editorial schema were removed in #796 at the owner's direction. The replacement typed workflow remains deployment-gated: until it is merged into default `develop` and validated in a real authorized run, **do not claim Stage 5 can execute**. Shared YAML schemas and other Lesson, Questions and Flashcards consumers are outside this Course cleanup.
+The obsolete Course-only YAML workflow, CLI, validator and manual Course editorial schema were removed in #796 at the owner's direction. The replacement typed workflow remains deployment-gated: until it is merged into default `develop` and validated in a real authorized run, **do not claim Stage 5 can execute**. The integration-wide #775 typed cutover also retires the former Lesson, Questions and Flashcards YAML-only production builders and shared editor schemas. Historical YAML retained as provenance is not a supported authoring fallback.
 
 For detailed methodology, partial/final acceptance, assessment-only Lesson dependencies, PR tracker format and Stage 5–7 handoffs, consult only [Create Course Flow](./create-course-flow.skill.md).

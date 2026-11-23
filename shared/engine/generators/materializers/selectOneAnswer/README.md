@@ -1,6 +1,6 @@
 # Agent E — Questions and Flashcards source materializers
 
-**Status:** all 11 assigned concrete kinds implemented on this child Draft PR. **Not integrated into the parent production CLI and not claimed production-ready.** This PR targets `architecture/typed-production-materializers` (#775).
+**Status:** all 11 assigned concrete kinds implemented on this child Draft PR. **Integrated as concrete kind renderers in #775, but not evidence of default-branch production deployment or approved authored banks.**
 
 ## Ownership and exact generated source boundaries
 
@@ -57,4 +57,4 @@ npx tsc -p shared/engine/tsconfig.test.json
 node --test shared/engine/.test-build/generators/materializers/*/*.spec.js
 ```
 
-The **parent #775 integration** still owns complete generator-to-production Stage 5 wiring, all-kind final Config validation, GitHub SHA-pinned editorial review, safe atomic filesystem writing and source eligibility gates. The new Stage 1 bank handoff types and Lesson→bank orchestration are also parent/#777 responsibilities. No Ready transition or merge is authorized by this subtask.
+The integrated #775 typed Bank Stage 5 orchestration owns complete generator-to-production wiring, all-kind final Config validation, GitHub SHA-pinned editorial review, safe atomic filesystem writing and source eligibility gates. The new Stage 1 bank handoff types and Lesson→bank orchestration are also parent/#777 responsibilities. No Ready transition or merge is authorized by this subtask.
