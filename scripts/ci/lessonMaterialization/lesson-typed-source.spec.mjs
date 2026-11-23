@@ -86,3 +86,40 @@ test('bank imports cannot escape the owned Lesson or call arbitrary PR code', ()
     assert.throws(() => parseTypedLesson(root, sourcePath, call),
       /Untrusted or unsupported/);
   }));
+
+test('bank selector imports reject forged UUIDs, side effects and symlink source paths', () =>
+  fixture(({ root, dir }) => {
+    const questions = path.join(dir, 'questions');
+    fs.mkdirSync(questions);
+    const imported = plain
+      .replace('import type',
+        "import { reviewedQuestion } from './questions/reviewedQuestion';\nimport type")
+      .replace('items: {}, order: [] as string[]',
+        'items: { quiz: { config: { params: { selection: { questionIds: [reviewedQuestion.id] } } } } }, order: ["quiz"] as string[]');
+    const bank = path.join(questions, 'reviewedQuestion.ts');
+    for (const unsafe of [
+      'export const reviewedQuestion = defineSelectOneAnswer({ id: "not-a-uuid" });',
+      'export const reviewedQuestion = makeQuestion({ id: "' + questionId + '" });',
+      'export const reviewedQuestion = defineSelectOneAnswer({ id: createId() });',
+      'export const reviewedQuestion = { id: "' + questionId + '" };',
+    ]) {
+      fs.writeFileSync(bank, unsafe);
+      assert.throws(() => parseTypedLesson(root, sourcePath, imported));
+    }
+    fs.rmSync(bank);
+    const external = path.join(root, 'outside.ts');
+    fs.writeFileSync(external, 'export const reviewedQuestion = defineSelectOneAnswer({ id: "' +
+      questionId + '" });');
+    fs.symlinkSync(external, bank);
+    assert.throws(() => parseTypedLesson(root, sourcePath, imported), /Symlink/);
+  }));
+
+test('reviewed Stage 2 rejects fabricated bank IDs and disabled parser protections', () =>
+  fixture(({ root }) => {
+    for (const authored of [
+      plain.replace('order: []', 'order: [process.env.SECRET]'),
+      plain.replace('slug: "intro"', 'slug: `intro-${Date.now()}`'),
+      plain.replace('items: {}, order: [] as string[]',
+        'items: { quiz: { config: { params: { selection: { questionIds: [fake.id] } } } } }, order: ["quiz"] as string[]'),
+    ]) assert.throws(() => parseTypedLesson(root, sourcePath, authored));
+  }));

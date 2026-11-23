@@ -283,7 +283,6 @@ test('typed publisher is importable without node_modules or any Engine source', 
     const files = [
       'scripts/ci/lessonMaterialization/lesson-typed-materialization.mjs',
       'scripts/ci/lessonMaterialization/lesson-typed-gate.mjs',
-      'scripts/ci/lessonMaterialization/lesson-gate.mjs',
       'scripts/ci/courseMaterialization/course-gate.mjs',
     ];
     for (const filename of files) {
@@ -304,4 +303,23 @@ test('typed publisher is importable without node_modules or any Engine source', 
     assert.match(result.stdout + result.stderr, /Missing or invalid typed Lesson authorization/);
     assert.doesNotMatch(result.stdout + result.stderr, /ERR_MODULE_NOT_FOUND|typescript|zod/);
   } finally { fs.rmSync(isolated, { recursive: true, force: true }); }
+});
+
+test('Lesson workflow has one typed-only entrypoint after YAML retirement', () => {
+  const root = fileURLToPath(new URL('../../..', import.meta.url));
+  const workflow = fs.readFileSync(
+    path.join(root, '.github/workflows/lesson-materialization.yml'), 'utf8');
+  assert.match(workflow, /^  typed-resolve:/m);
+  assert.match(workflow, /^  typed-analyze:/m);
+  assert.match(workflow, /^  typed-publish:/m);
+  assert.match(workflow, /options: \[materialize-typed\]/);
+  assert.match(workflow, /github\.event\.comment\.body == '\/lesson materialize typed'/);
+  assert.doesNotMatch(workflow, /^  (?:resolve|analyze|publish):/m);
+  assert.doesNotMatch(workflow, /options: \[[^\]]*\bfinalize\b/);
+  assert.doesNotMatch(workflow, /lesson-materialization\.mjs|lesson-gate\.mjs/);
+
+  const typedGate = fs.readFileSync(
+    path.join(root, 'scripts/ci/lessonMaterialization/lesson-typed-gate.mjs'), 'utf8');
+  assert.match(typedGate, /export function requireStageSixPending/);
+  assert.doesNotMatch(typedGate, /from '\.\/lesson-gate\.mjs'/);
 });

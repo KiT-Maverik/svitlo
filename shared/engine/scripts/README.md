@@ -6,11 +6,11 @@ The named Lesson and Course CLIs are in `generateLessonProps/` and `generateCour
 
 ## Migration status: active legacy YAML conversion
 
-New production targets one progressively typed editorial source per Course/Lesson/Question Bank/Flashcard Bank (parent #775 and Draft #782/#783/#784). Existing `lessonBuilder`, `questionsBuilder`, `flashcardBuilder`, `finalizeLesson`, `yamlScaffolding` and `generateYamlSchemas` remain callable **legacy** converters/editor tools; no typed trusted CI equivalent is yet proved. Their README commands document existing PR safety, not the recommended format for a new authoring task. `generateLessonProps`, `generateAssessmentResources`, Scene work and source-SHA/locale review generators are distinct production/evidence dependencies. See [Studio boundary](../../../studio/docs/architecture/yaml-config-scaffolding.md).
+New production targets one progressively typed editorial source per Course/Lesson/Question Bank/Flashcard Bank (parent #775 and Draft #782/#783/#784). The Lesson YAML `lessonBuilder` and `finalizeLesson` have been retired in #797. `questionsBuilder`, `flashcardBuilder`, `yamlScaffolding` and `generateYamlSchemas` remain for their other independently owned inputs until parent #775 reconciles those consumers. Their README commands document existing PR safety, not the recommended format for a new authoring task. `generateLessonProps`, `generateAssessmentResources`, Scene work and source-SHA/locale review generators are distinct production/evidence dependencies. See [Studio boundary](../../../studio/docs/architecture/yaml-config-scaffolding.md).
 
 ## New source-renderer layer: integrated, but not yet an end-to-end generator
 
-The merged #776–#780 kind-level materializers live under `../generators/materializers/<kind>/`, with adjacent tests included by the current Engine test runner. They receive plain typed Config-like source and production metadata and **return** deterministic files/diagnostics without writing them. The parent #775 must still connect staged Course/Lesson/Bank source adapters, SHA-protected `index.ts` handoffs, no-clobber writer, CI authorization and release validation. Do not repurpose these functions as a drop-in replacement for the still-live `scripts/lessonBuilder`, `questionsBuilder`, `flashcardBuilder` or trusted YAML PR commands; nor confuse them with the Props-generating `../generators/lessons/` and `../generators/courses/`.
+The merged #776–#780 kind-level materializers live under `../generators/materializers/<kind>/`, with adjacent tests included by the current Engine test runner. They receive plain typed Config-like source and production metadata and **return** deterministic files/diagnostics without writing them. The typed Lesson Stage 6.1 trusted source transition exists, while the remaining Course/Bank cutovers are independently owned. Do not repurpose source renderers as a drop-in replacement for remaining YAML bank/Course converters or confuse them with the Props-generating `../generators/lessons/` and `../generators/courses/`.
 
 ## Flashcard bank TypeScript scaffolding
 
@@ -19,7 +19,7 @@ The independent [flashcardBuilder](./flashcardBuilder/README.md) converts one En
 ## React Scene implementation handoff
 
 See [sceneScaffolding](./sceneScaffolding/README.md) for the separate, opted-in
-React Scene draft generator used when helpful in **Lesson Stage 6.3**. The required work is governed by [Implement Scene](../../../studio/skills/lesson-workflow/implement-scene.skill.md): complete the generated React drafts, register executable components and verify their behavior in the Lesson's owning package. The generator never changes the Lesson Builder's Config emission or auto-registers incomplete Scene components.
+React Scene draft generator used when helpful in **Lesson Stage 6.3**. The required work is governed by [Implement Scene](../../../studio/skills/lesson-workflow/implement-scene.skill.md): complete the generated React drafts, register executable components and verify their behavior in the Lesson's owning package. The generator never changes the trusted typed Lesson Config source emission or auto-registers incomplete Scene components.
 
 ## Unused media audit
 
