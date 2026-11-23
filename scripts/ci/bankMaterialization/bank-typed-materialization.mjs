@@ -310,7 +310,7 @@ export function assertTypedBankInventory(meta, input, files) {
         }
         if (!Array.isArray(content.order) || !content.items ||
             typeof content.items !== 'object' || Array.isArray(content.items) ||
-            !content.order.length ||
+            (side !== 'hint' && !content.order.length) ||
             new Set(content.order).size !== content.order.length ||
             content.order.some(block => typeof block !== 'string' ||
               !Object.hasOwn(content.items, block)) ||
