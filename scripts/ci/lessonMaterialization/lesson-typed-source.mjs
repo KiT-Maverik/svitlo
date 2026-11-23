@@ -123,6 +123,107 @@ function resolveBankId(root, binding, cache) {
   return found;
 }
 
+/**
+ * Resolve a complete Bank Stage 5 export map without evaluating candidate TS.
+ * The only supported map shape is the one emitted by the owned Bank materializer:
+ * a named-import index, an explicit literal map, and (for Questions) an explicit
+ * one-hop re-export from the concrete kind index.
+ */
+function resolveBankMapId(root, binding, members, cache) {
+  const bank = binding.module.endsWith('/questions') ? 'questions' :
+    binding.module.endsWith('/flashcards') ? 'flashcards' : null;
+  if (!bank || binding.exportName !== bank ||
+      members.length !== (bank === 'questions' ? 2 : 1) ||
+      members.some(member => !identifier.test(member) || ['constructor', 'prototype', '__proto__'].includes(member)))
+    throw Error('Only canonical imported Question/Flashcard Bank member maps are supported');
+
+  const file = binding.module + '/index.ts';
+  const source = parseSource(file, trackedRegular(root, file));
+  const aliases = new Map();
+  let exported = null;
+  for (const statement of source.statements) {
+    if (ts.isImportDeclaration(statement) && ts.isStringLiteral(statement.moduleSpecifier)) {
+      const spec = statement.moduleSpecifier.text;
+      const clause = statement.importClause;
+      if (!clause || clause.isTypeOnly || clause.name ||
+          !clause.namedBindings || !ts.isNamedImports(clause.namedBindings) ||
+          !/^\.\/[a-z][a-zA-Z0-9]*$/.test(spec))
+        throw Error('Unsafe bank map import');
+      for (const item of clause.namedBindings.elements) {
+        if (item.isTypeOnly || aliases.has(item.name.text))
+          throw Error('Invalid duplicate bank map import');
+        aliases.set(item.name.text, {
+          spec: spec.slice(2),
+          exportName: item.propertyName?.text || item.name.text,
+        });
+      }
+    } else if (ts.isVariableStatement(statement) &&
+        statement.modifiers?.some(mod => mod.kind === ts.SyntaxKind.ExportKeyword) &&
+        (statement.declarationList.flags & ts.NodeFlags.Const) !== 0 &&
+        statement.declarationList.declarations.length === 1) {
+      const declaration = statement.declarationList.declarations[0];
+      if (exported || !ts.isIdentifier(declaration.name) ||
+          declaration.name.text !== bank || !declaration.initializer)
+        throw Error('Ambiguous bank map export');
+      exported = unwrap(declaration.initializer);
+    } else {
+      throw Error('Only generated imports and one canonical Bank map export are allowed');
+    }
+  }
+  if (!exported || !ts.isObjectLiteralExpression(exported))
+    throw Error('Canonical Bank map is missing');
+  const visit = node => {
+    const value = unwrap(node);
+    if (ts.isIdentifier(value)) {
+      if (!aliases.has(value.text)) throw Error('Bank map references an unverified alias');
+      return;
+    }
+    if (!ts.isObjectLiteralExpression(value)) throw Error('Bank map has a dynamic value');
+    const keys = new Set();
+    for (const entry of value.properties) {
+      if (!ts.isPropertyAssignment(entry)) throw Error('Bank map contains executable syntax');
+      const name = key(entry.name);
+      if (keys.has(name) || ['constructor', 'prototype', '__proto__'].includes(name))
+        throw Error('Duplicate or unsafe Bank map key');
+      keys.add(name);
+      visit(entry.initializer);
+    }
+  };
+  visit(exported);
+  let selected = exported;
+  for (const member of members) selected = unwrap(property(selected, member));
+  if (!ts.isIdentifier(selected)) throw Error('Bank map member is not a Configurator import');
+  const imported = aliases.get(selected.text);
+  const kind = bank === 'questions' ? members[0] : members[0];
+  const slug = members.at(-1);
+  if (!imported || imported.spec !== kind || imported.exportName !== slug)
+    throw Error('Bank map member does not match its canonical Configurator import');
+
+  if (bank === 'questions') {
+    const kindPath = binding.module + '/' + kind + '/index.ts';
+    const kindSource = parseSource(kindPath, trackedRegular(root, kindPath));
+    let found = 0;
+    for (const statement of kindSource.statements) {
+      if (!ts.isExportDeclaration(statement) || !statement.exportClause ||
+          !ts.isNamedExports(statement.exportClause) ||
+          !ts.isStringLiteral(statement.moduleSpecifier) ||
+          !/^\.\/[a-z][a-zA-Z0-9]*$/.test(statement.moduleSpecifier.text))
+        throw Error('Question kind index contains an unsafe statement');
+      for (const symbol of statement.exportClause.elements) {
+        const exportedName = symbol.name.text;
+        const origin = symbol.propertyName?.text || exportedName;
+        if (exportedName === slug && origin === slug &&
+            statement.moduleSpecifier.text === './' + slug) found++;
+      }
+    }
+    if (found !== 1) throw Error('Question kind index does not re-export the reviewed member');
+  }
+  return resolveBankId(root, {
+    module: binding.module + (bank === 'questions' ? '/' + kind : '') + '/' + slug,
+    exportName: slug,
+  }, cache);
+}
+
 function evaluate(node, context, location = 'lesson') {
   const value = unwrap(node);
   if (ts.isStringLiteral(value) || ts.isNoSubstitutionTemplateLiteral(value))
@@ -152,11 +253,23 @@ function evaluate(node, context, location = 'lesson') {
     return result;
   }
   if (ts.isPropertyAccessExpression(value) && value.name.text === 'id' &&
-      ts.isIdentifier(value.expression) &&
       /(?:^|\.)(?:questionIds|flashcardIds)\[\d+\]$/.test(location)) {
-    const binding = context.bindings.get(value.expression.text);
+    const members = [];
+    let target = unwrap(value.expression);
+    while (ts.isPropertyAccessExpression(target)) {
+      members.unshift(target.name.text);
+      target = unwrap(target.expression);
+    }
+    if (!ts.isIdentifier(target))
+      throw Error('Bank selection requires static imported Configurator .id members');
+    const binding = context.bindings.get(target.text);
     if (!binding) throw Error('Bank selection must reference an imported Configurator .id');
-    return resolveBankId(context.root, binding, context.cache);
+    const bank = location.includes('questionIds[') ? '/questions' : '/flashcards';
+    if (!binding.module.startsWith(context.folder + bank))
+      throw Error('Bank selection references the wrong owned bank');
+    return members.length
+      ? resolveBankMapId(context.root, binding, members, context.cache)
+      : resolveBankId(context.root, binding, context.cache);
   }
   throw Error('Untrusted or unsupported expression at ' + location +
     '; only literal Stage 2 objects and static imported bank .id references are allowed');
@@ -191,7 +304,7 @@ export function parseTypedLesson(root, sourcePath, sourceText) {
   const folder = path.posix.dirname(sourcePath);
   const { bindings, engineType } = importsOf(file, folder);
   if (!engineType) throw Error('Stage 2 must import its actual Engine workflow type');
-  const input = evaluate(reviewedExport(file), { root, bindings, cache: new Map() });
+  const input = evaluate(reviewedExport(file), { root, folder, bindings, cache: new Map() });
   if (input?.config?.id !== folder.split('/').at(-1) ||
       input.config.type !== 'lesson' || !input.production)
     throw Error('Parsed Lesson does not match its canonical authored identity');
