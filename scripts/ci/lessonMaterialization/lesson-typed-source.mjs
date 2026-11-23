@@ -194,7 +194,7 @@ function resolveBankMapId(root, binding, members, cache) {
   for (const member of members) selected = unwrap(property(selected, member));
   if (!ts.isIdentifier(selected)) throw Error('Bank map member is not a Configurator import');
   const imported = aliases.get(selected.text);
-  const kind = bank === 'questions' ? members[0] : members[0];
+  const kind = members[0];
   const slug = members.at(-1);
   if (!imported || imported.spec !== kind || imported.exportName !== slug)
     throw Error('Bank map member does not match its canonical Configurator import');
