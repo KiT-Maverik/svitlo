@@ -47,6 +47,12 @@ function unwrapPlain(value: unknown, at: string): Record<string, unknown> {
   if (!isRecord(value)) throw new Error(at + ': expected authored node');
   return isRecord(value.config) ? value.config : value;
 }
+/** Preserve reviewed author-only evidence while concrete renderers receive plain Configs. */
+function withProduction(config: PlainBlock, authored: unknown): BlockNode {
+  return isRecord(authored) && isRecord(authored.production)
+    ? { config, production: authored.production }
+    : { config };
+}
 function ordered(value: unknown, at: string): { items: Record<string, unknown>; order: string[] } {
   if (!isRecord(value) || !isRecord(value.items) || !Array.isArray(value.order)) {
     throw new Error(at + ': expected ordered Config collection');
@@ -152,8 +158,8 @@ export function materializeAssessmentBlock(
           directory: context.directory, documentLanguage, languagesImport,
           renderChild: (child, directory) => {
             const result = materializeAssessmentBlock(
-              { config: child as PlainBlock }, { directory, documentLanguage },
-              planned, moduleName, evidence);
+              withProduction(child as PlainBlock, slides.items[child.slug]),
+              { directory, documentLanguage }, planned, moduleName, evidence);
             return { ...result };
           },
         },
@@ -177,20 +183,27 @@ export function materializeAssessmentBlock(
         { ...source, content: { items, order: content.order } } as unknown as CheckpointSource,
         {
           directory: context.directory, documentLanguage, languagesImport,
-          renderItem: (item, directory) => materializeCheckpointItem(item as CheckpointItemSource, {
-            directory, documentLanguage,
-            languagesImport: relativeLanguages(directory, moduleName),
-            renderQuestion: (question, questionDir) => materializeAssessmentBlock(
-              { config: question as PlainBlock },
-              { directory: questionDir, documentLanguage }, planned, moduleName, evidence),
-            renderAnswer: (answer, answerDir) => materializeCheckpointAnswer(answer as CheckpointAnswerSource, {
-              directory: answerDir, documentLanguage,
-              languagesImport: relativeLanguages(answerDir, moduleName),
-              renderChild: (block, blockDir) => materializeAssessmentBlock(
-                { config: block as PlainBlock }, { directory: blockDir, documentLanguage },
-                planned, moduleName, evidence),
-            }),
-          }),
+          renderItem: (item, directory) => {
+            // The Checkpoint source renderer correctly consumes *plain* Configs.
+            // Keep its matching authored wrappers for delegated descendant calls.
+            const authoredItem = unwrap(content.items[item.slug], 'Checkpoint item ' + item.slug);
+            const authoredAnswer = unwrapPlain(authoredItem.answer, 'Checkpoint answer ' + item.slug);
+            const authoredBlocks = ordered(authoredAnswer.content, 'Checkpoint answer content ' + item.slug).items;
+            return materializeCheckpointItem(item as CheckpointItemSource, {
+              directory, documentLanguage,
+              languagesImport: relativeLanguages(directory, moduleName),
+              renderQuestion: (question, questionDir) => materializeAssessmentBlock(
+                withProduction(question as PlainBlock, authoredItem.question),
+                { directory: questionDir, documentLanguage }, planned, moduleName, evidence),
+              renderAnswer: (answer, answerDir) => materializeCheckpointAnswer(answer as CheckpointAnswerSource, {
+                directory: answerDir, documentLanguage,
+                languagesImport: relativeLanguages(answerDir, moduleName),
+                renderChild: (block, blockDir) => materializeAssessmentBlock(
+                  withProduction(block as PlainBlock, authoredBlocks[block.slug]),
+                  { directory: blockDir, documentLanguage }, planned, moduleName, evidence),
+              }),
+            });
+          },
         },
       ));
     }
