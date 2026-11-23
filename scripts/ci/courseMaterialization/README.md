@@ -38,3 +38,91 @@ Verify the successful actual Actions run, pinned source commit/blob, complete cr
 PR #764 supplies an E2E Course source with three **intentional blank nested params keys** (YAML parses them as null). On that untouched input, the generator must reject the invalid nested Config **before writing generated sources, deleting the YAML or publishing a commit**. Only a legitimate editorial correction allows the positive materialization scenario.
 
 **Deployment limit:** code on an unmerged Draft PR branch does not change the trusted default-branch issue_comment workflow. Do not claim an actual live E2E run before the workflow has been deployed and exercised at the correct PR HEAD.
+
+## Separate typed Course Stage 5 rollout (PR #793)
+
+The **legacy** YAML command and workflow described above remain unchanged.
+The new workflow is .github/workflows/course-typed-materialization.yml
+and is deliberately **manual workflow_dispatch only**. It cannot be invoked
+until separately merged/deployed on the default branch; it does not replace
+the existing /course materialize command, remove YAML support or authorize publication.
+
+To exercise the staged path on an open same-repository **Draft Course PR**:
+choose **Actions → Stage typed Course materialization (manual rollout)** and
+supply pr_number. The gate requires a single changed canonical
+content/<book>/data/courses/<UUID-last-hex>/<UUID>/index.ts,
+the current source blob SHA, an independent contributor with
+write/maintain/admin access who submitted a formal **APPROVED GitHub review
+at that exact PR HEAD**, and a write-authorized invoking actor. The source
+review and authorization are separate; TypeScript satisfies alone never
+grants approval. If approval is stale or withdrawn, refuse.
+
+The **read-only analyze job** parses the Course PR TypeScript through trusted
+TypeScript AST analysis; it never runs untrusted candidate modules. Only inert
+literal objects and aliases, verified canonical Lesson imports, an imported
+Lesson's immutable `.id`, and that trusted Lesson's
+`build.overrides(rawPatch, { languages })` with reviewed literal arguments
+are supported. Every other executable call/import, computed key or spread
+fails closed. Imported Lesson code must already be present byte-for-byte
+in the trusted default branch AND in the candidate Git checkout with an
+independently pinned source revision and methodology. The trusted
+`Lesson_Configurator` and its real Build API are loaded solely from that
+default-branch implementation, never the Course PR. A Course-local sparse
+patch retains its _original raw expression_ and is replayed against the
+reviewed built result; it is never reverse-engineered from Props. Changes to
+independently authored Lessons that exist only on a nested integration branch
+must first be approved and made available to the trusted implementation.
+This conservative boundary rejects such imports rather than executing PR code.
+
+This path uses the already-implemented Course/Module/Chapter/Episode
+orchestrators, concrete Episode Section/ContentBlock renderers shared with
+Lesson Stage 6, and Course → new Lesson Stage 1 handoffs. It does not begin
+independent Lesson PRs, Question Banks, Flashcard Banks, translation, Scenes,
+or Course Props publishing. Unresolved child and release
+`TODO (BLOCKER)` markers persist in generated authored source. Generated
+TypeScript is typechecked semantically against real trusted Engine Build
+contracts as virtual in-memory files before manifest creation and again
+before a privileged write.
+
+The read-only job writes a bounded artifact containing the complete generated
+file set, exact UTF-8 bytes and SHA-256 hashes, source blob, reviewer and
+review commit. **Only trusted default-branch scripts** execute in both jobs.
+Candidate TS is not imported, compiled to executable JS, or evaluated —
+including in the privileged publisher. The publisher rechecks the actor and
+independent Stage 4 review at the pinned HEAD, rereads original source/blob,
+recreates the identical plan from inert AST, checks every target for symlinks
+and clobbers, and builds **one Git Data API tree commit** that both replaces
+index.ts and archives exact original bytes at workflow.stage3.ts. It checks
+the branch/PR before a non-force ref update. There is no PR-description edit,
+Course Props publication, child Lesson Production or automatic bank work.
+
+### Validation and activation
+
+Run on a checkout containing this PR with dependencies installed:
+
+    node --test scripts/ci/courseMaterialization/course-materialization.spec.mjs
+    node --test scripts/ci/courseMaterialization/typed-course-materialization.spec.mjs
+    node --test shared/engine/generators/materializers/course/materializeStage5.spec.mjs
+    node --test shared/engine/generators/materializers/course/materializeStage5.build.spec.mjs
+    node --test shared/engine/generators/materializers/course/sourceCommit.spec.mjs
+    npm run code:check:types --workspace @svitlo/engine
+    npm run package:build --workspace @svitlo/engine
+    npm run test:coverage --workspace @svitlo/engine
+
+Before these focused tests, run:
+
+    node scripts/ci/courseMaterialization/build-course-renderers.mjs
+
+This transient trusted-only esbuild compilation supports isolated regressions
+while the parent #775 full Engine TypeScript build currently fails in
+Lesson Stage 6 sources. It is not a substitute for those real Engine gates.
+The typed PR-targeted test job also requires the actual
+`npm run code:check:types --workspace @svitlo/engine`; failure must be
+reported and repaired in its owning workstream, not silently skipped.
+
+The Engine tests check real source renderers, generated TS compilation and
+Git-source writer. A complete successful Actions run on the default branch
+against a pinned Course PR SHA is still required. This staged route has
+**no claimed successful live run** while it exists only in this child Draft.
+Owner authorization is required before activation, switching the canonical
+command, retiring legacy YAML, or merging this subtask into #775.
