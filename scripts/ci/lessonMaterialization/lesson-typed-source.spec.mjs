@@ -76,6 +76,68 @@ test('real imported Question Configurator .id can be read as static data', () =>
       /real define\* Configurator/);
   }));
 
+test('named Question Bank map selection resolves only verified exported Configurator IDs', () =>
+  fixture(({ root, dir }) => {
+    const questions = path.join(dir, 'questions');
+    const kind = path.join(questions, 'selectOneAnswer');
+    fs.mkdirSync(kind, { recursive: true });
+    const leaf = path.join(kind, 'reviewQuestion.ts');
+    const kindIndex = path.join(kind, 'index.ts');
+    const bankIndex = path.join(questions, 'index.ts');
+    fs.writeFileSync(leaf,
+      'export const reviewQuestion = defineSelectOneAnswer({ id: "' + questionId + '" });\\n');
+    fs.writeFileSync(kindIndex, 'export { reviewQuestion } from "./reviewQuestion";\\n');
+    const validIndex = [
+      'import { reviewQuestion as question_selectOneAnswer_reviewQuestion } from "./selectOneAnswer";',
+      'export const questions = { "selectOneAnswer": { "reviewQuestion": question_selectOneAnswer_reviewQuestion } };',
+    ].join('\\n');
+    fs.writeFileSync(bankIndex, validIndex);
+    const reviewed = plain
+      .replace('import type', "import { questions } from './questions';\\nimport type")
+      .replace('items: {}, order: [] as string[]',
+        'items: { quiz: { config: { params: { selection: { questionIds: [questions.selectOneAnswer.reviewQuestion.id] } } } } }, order: ["quiz"] as string[]');
+    const parsed = parseTypedLesson(root, sourcePath, reviewed);
+    assert.deepEqual([...parsed.config.section.items.quiz.config.params.selection.questionIds], [questionId]);
+
+    for (const malicious of [
+      validIndex.replace('question_selectOneAnswer_reviewQuestion }',
+        'question_selectOneAnswer_reviewQuestion }') + '\\nsideEffect();',
+      validIndex.replace('question_selectOneAnswer_reviewQuestion } };', 'getQuestion() } };'),
+      validIndex.replace('from "./selectOneAnswer"', 'from "../outside"'),
+      validIndex.replace('reviewQuestion } };', 'unimported } };'),
+    ]) {
+      fs.writeFileSync(bankIndex, malicious);
+      assert.throws(() => parseTypedLesson(root, sourcePath, reviewed));
+    }
+    fs.writeFileSync(bankIndex, validIndex);
+    fs.writeFileSync(kindIndex, 'export { reviewQuestion } from "../outside";\\n');
+    assert.throws(() => parseTypedLesson(root, sourcePath, reviewed), /unsafe statement|re-export/);
+    fs.writeFileSync(kindIndex, 'export { reviewQuestion } from "./reviewQuestion";\\n');
+    fs.rmSync(leaf);
+    fs.symlinkSync(path.join(dir, 'index.ts'), leaf);
+    assert.throws(() => parseTypedLesson(root, sourcePath, reviewed), /Symlink/);
+  }));
+
+test('Flashcard Bank map and dynamic property expressions are checked statically', () =>
+  fixture(({ root, dir }) => {
+    const cards = path.join(dir, 'flashcards');
+    fs.mkdirSync(cards);
+    const flashcardId = '12345678-1234-4234-8234-123456789003';
+    fs.writeFileSync(path.join(cards, 'memoryCard.ts'),
+      'export const memoryCard = defineFlashcard({ id: "' + flashcardId + '" });\\n');
+    fs.writeFileSync(path.join(cards, 'index.ts'),
+      'import { memoryCard as card_memoryCard } from "./memoryCard";\\n' +
+      'export const flashcards = { "memoryCard": card_memoryCard };\\n');
+    const source = plain
+      .replace('import type', "import { flashcards } from './flashcards';\\nimport type")
+      .replace('items: {}, order: [] as string[]',
+        'items: { cards: { config: { params: { selection: { flashcardIds: [flashcards.memoryCard.id] } } } } }, order: ["cards"] as string[]');
+    assert.deepEqual(parseTypedLesson(root, sourcePath, source).config.section.items.cards.config.params.selection.flashcardIds,
+      [flashcardId]);
+    assert.throws(() => parseTypedLesson(root, sourcePath, source.replace('flashcards.memoryCard.id',
+      'flashcards["memoryCard"].id')), /Untrusted or unsupported|static imported/);
+  }));
+
 test('bank imports cannot escape the owned Lesson or call arbitrary PR code', () =>
   fixture(({ root }) => {
     const escaping = plain.replace('import type',
