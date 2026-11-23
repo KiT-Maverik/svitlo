@@ -45,11 +45,7 @@ jobs:
       - name: Test canonical Course Stage 5 source, semantic fixture and atomic writer
         run: node --test shared/engine/generators/materializers/course/materializeStage5.spec.mjs shared/engine/generators/materializers/course/materializeStage5.build.spec.mjs shared/engine/generators/materializers/course/sourceCommit.spec.mjs
       - name: Verify focused source formatting
-        run: |
-          npx prettier --check scripts/ci/courseMaterialization/*.mjs scripts/ci/courseMaterialization/README.md .github/workflows/course-typed-materialization.yml || {
-            npx prettier scripts/ci/courseMaterialization/course-gate.mjs | diff -u scripts/ci/courseMaterialization/course-gate.mjs -
-            exit 1
-          }
+        run: npx prettier --check scripts/ci/courseMaterialization/*.mjs scripts/ci/courseMaterialization/README.md .github/workflows/course-typed-materialization.yml
       - name: Verify Engine build-time type contracts
         run: npm run code:check:types --workspace @svitlo/engine
 
