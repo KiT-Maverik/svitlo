@@ -93,7 +93,7 @@ test('bank selector imports reject forged UUIDs, side effects and symlink source
     fs.mkdirSync(questions);
     const imported = plain
       .replace('import type',
-        "import { reviewedQuestion } from './questions/reviewedQuestion';\\nimport type")
+        "import { reviewedQuestion } from './questions/reviewedQuestion';\nimport type")
       .replace('items: {}, order: [] as string[]',
         'items: { quiz: { config: { params: { selection: { questionIds: [reviewedQuestion.id] } } } } }, order: ["quiz"] as string[]');
     const bank = path.join(questions, 'reviewedQuestion.ts');
