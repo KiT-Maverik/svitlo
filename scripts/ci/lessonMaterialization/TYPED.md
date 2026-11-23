@@ -1,10 +1,10 @@
 # Trusted typed Lesson Stage 6.1 (PR #794)
 
-This is a separate, SHA-pinned successor to the existing YAML-only Lesson
-materialization command. Both operations remain distinct in
-lesson-materialization.yml; neither may run on the other's source. The trusted
-workflow/scripts must first land on the default branch. A Draft integration PR
-with passing lightweight CI is not deployment or operational validation.
+This is the **only** Lesson Stage 6.1 PR-command materializer. Legacy
+YAML-only Lesson Stage 6 jobs and their converters were removed in #797.
+The trusted workflow/scripts must land on the default branch before GitHub
+issue comments can invoke them. A Draft integration PR with passing lightweight
+CI is not deployment or operational validation.
 
 ## Before authorization
 
@@ -57,8 +57,8 @@ top-level comment on the Lesson PR:
 ~~~
 
 The same operation may be dispatched from the default-branch workflow with
-the PR number and operation materialize-typed. The existing legacy commands
-/lesson materialize and /lesson finalize remain YAML-only.
+the PR number and operation materialize-typed. The retired YAML-only commands `/lesson materialize` and `/lesson finalize`
+are not supported; use only the typed command.
 
 ## Read-only analysis and restricted TypeScript
 
@@ -123,8 +123,6 @@ even after technical TypeScript compilation.
 node --test scripts/ci/lessonMaterialization/lesson-typed-materialization.spec.mjs
 node --test scripts/ci/lessonMaterialization/lesson-typed-publish.spec.mjs
 node --test scripts/ci/lessonMaterialization/lesson-typed-source.spec.mjs
-node --test scripts/ci/lessonMaterialization/lesson-materialization.spec.mjs
-node --test scripts/ci/lessonMaterialization/lesson-publish-isolation.spec.mjs
 npm run package:build --workspace @svitlo/engine
 npm run code:check:types --workspace @svitlo/engine
 ~~~
