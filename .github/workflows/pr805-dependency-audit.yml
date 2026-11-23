@@ -6,7 +6,7 @@ on:
     branches: [maintenance/remediate-npm-dependency-security]
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   audit:
@@ -21,8 +21,10 @@ jobs:
         with:
           node-version: '24'
           cache: npm
-      - name: Install locked dependencies without lifecycle scripts
-        run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Resolve updated manifests using npm without lifecycle scripts
+        run: npm install --package-lock-only --ignore-scripts --no-audit --no-fund
+      - name: Verify clean installation from generated lockfile
+        run: npm ci --no-audit --no-fund
       - name: Capture both npm audit scopes
         shell: bash
         run: |
@@ -64,3 +66,23 @@ jobs:
           done
       - name: Inspect affected framework versions
         run: npm ls next eslint-config-next react react-dom react-server-dom-webpack react-server-dom-turbopack react-server-dom-parcel --all --depth=2 || true
+      - name: Verify repository package boundaries
+        run: npm run repo:check:packages
+      - name: Commit npm-generated lockfile to this PR branch only
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_SOURCE_BRANCH: ${{ github.ref_name }}
+        run: |
+          set -euo pipefail
+          if git diff --quiet --exit-code -- package-lock.json; then
+            echo "npm lockfile unchanged"
+            exit 0
+          fi
+          test "$PR_SOURCE_BRANCH" = "maintenance/remediate-npm-dependency-security"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- package-lock.json
+          git commit -m "fix: refresh npm lockfile for patched Next.js and React"
+          authorization=$(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w0)
+          git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $authorization" push --quiet origin "HEAD:refs/heads/$PR_SOURCE_BRANCH"
