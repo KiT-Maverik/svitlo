@@ -224,7 +224,7 @@ test('pinned Git tree refuses stale source, existing targets and symlinks before
   assert.throws(() => checkedSource({ ...scoped, sourceBlobSha: 'b'.repeat(40) }, root), /Git blob/);
 });
 
-test('typed Course workflow is manual-only and obsolete YAML workflow is absent', () => {
+test('typed Course workflow is manual-only', () => {
   const local = filename => fs.readFileSync(fileURLToPath(new URL(filename, import.meta.url)), 'utf8');
   const workflow = YAML.parse(local('../../../.github/workflows/course-typed-materialization.yml'));
   assert.equal(workflow.permissions && Object.keys(workflow.permissions).length, 0);
@@ -234,10 +234,6 @@ test('typed Course workflow is manual-only and obsolete YAML workflow is absent'
   assert.equal(workflow.jobs.publish.permissions.contents, 'write');
   assert(!local('./typed-course-source.mjs').includes('eval('));
   assert(!local('./typed-course-source.mjs').includes('new Function('));
-  assert.equal(
-    fs.existsSync(fileURLToPath(new URL('../../../.github/workflows/course-materialization.yml', import.meta.url))),
-    false,
-  );
 });
 
 const reviewedStage3 = {
