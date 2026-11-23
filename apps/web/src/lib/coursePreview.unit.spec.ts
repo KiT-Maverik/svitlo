@@ -25,8 +25,12 @@ const course = {
 describe('published course presentation', () => {
   it('derives previews only from published Props, not demo textbooks', () => {
     expect(toCoursePreview(course)).toMatchObject({
-      id: course.id, title: 'Controlled title', description: 'Controlled description',
-      lessons: 1, modules: 1, languages: ['uk', 'en'],
+      id: course.id,
+      title: 'Controlled title',
+      description: 'Controlled description',
+      lessons: 1,
+      modules: 1,
+      languages: ['uk', 'en'],
     });
   });
   it('keeps host presentation language independent from educational data', () => {

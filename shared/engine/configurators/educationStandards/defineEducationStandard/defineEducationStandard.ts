@@ -30,8 +30,10 @@ export type EducationStandard_Configurator<Slug extends string = string> = {
 } & LanguageScope<AllLanguageCodes>;
 
 export function defineEducationStandard<const Slug extends string>(
-  config: Omit<EducationStandard_Config, 'slug'> & { slug: Slug } &
-    RequireLanguages<EducationStandard_Config, AllLanguageCodes>,
+  config: Omit<EducationStandard_Config, 'slug'> & { slug: Slug } & RequireLanguages<
+      EducationStandard_Config,
+      AllLanguageCodes
+    >,
 ): EducationStandard_Configurator<Slug> {
   const authored = structuredClone(config);
   const { id } = authored;

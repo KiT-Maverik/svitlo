@@ -8,7 +8,7 @@
 
 ## PURPOSE AND BOUNDARIES
 
-Complete or explicitly revise localized text in typed application/authoring resources, including `*.data.ts`, `*.locale.ts`, typed translation dictionaries and text-bearing `*.ts`/`*.tsx` modules. Work only in the selected package/files and permitted locale fields. This Skill does **not** translate standalone Markdown or other static documents; that belongs to the future [Common Translation](./common-translation.skill.md) workflow.
+Complete or explicitly revise localized text in typed application/authoring resources, including `*.data.ts`, `*.locale.ts`, typed translation dictionaries and text-bearing `*.ts`/`*.tsx` modules. Work only in the selected package/files and permitted locale fields. This Skill does **not** translate standalone Markdown or other static documents; that belongs to the future Common Translation workflow.
 
 A generator may intentionally create an English-first, TypeScript-invalid localization object. **Keep that failure visible until genuine translations make the affected resource type-safe.** No fallback language, empty/placeholder values, partial-type casts, `any`, `@ts-ignore`, weakening of required locale types or edits to TypeScript settings to conceal missing translations.
 

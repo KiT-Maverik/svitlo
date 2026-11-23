@@ -16,7 +16,16 @@ test('build selection is mandatory, accepts installed Svitlo identity and reject
   assert.throws(() => selectedPackageName(''), /SVITLO_TEXTBOOK is required/);
   assert.equal(selectedPackageName('math'), '@svitlo/math');
   assert.equal(selectedPackageName('@svitlo/test-content'), '@svitlo/test-content');
-  for (const unsafe of ['../playground', '../../etc', '/etc', '@other/book', 'math/../../../x', 'abc\\\\def', 'ABC', '']) {
+  for (const unsafe of [
+    '../playground',
+    '../../etc',
+    '/etc',
+    '@other/book',
+    'math/../../../x',
+    'abc\\\\def',
+    'ABC',
+    '',
+  ]) {
     assert.throws(() => selectedPackageName(unsafe), /Unsafe|SVITLO_TEXTBOOK is required/);
   }
 });
@@ -50,7 +59,8 @@ test('installed public contract recognizes Scene support as optional', t => {
     const path = join(packages, '@svitlo', slug);
     mkdirSync(join(path, 'dist'), { recursive: true });
     const manifest = {
-      name: '@svitlo/' + slug, version: '1.2.3',
+      name: '@svitlo/' + slug,
+      version: '1.2.3',
       exports,
       bin: { ['svitlo-' + slug]: bin },
     };
@@ -79,7 +89,14 @@ test('installed public contract recognizes Scene support as optional', t => {
   const scenes = resolveSelectedTextbook('fixture-two', [packages]);
   assert.equal(scenes.hasScenes, true);
   assert.equal(scenes.hasStyles, true);
-  for (const file of ['textbook/index.d.ts', 'textbook/index.js', 'publish.mjs', 'scenes/index.d.ts', 'scenes/index.js', 'styles.css']) {
+  for (const file of [
+    'textbook/index.d.ts',
+    'textbook/index.js',
+    'publish.mjs',
+    'scenes/index.d.ts',
+    'scenes/index.js',
+    'styles.css',
+  ]) {
     const path = join(full.path, 'dist', file);
     mkdirSync(join(path, '..'), { recursive: true });
     writeFileSync(path, '');
@@ -93,17 +110,24 @@ test('invalid public exports and unsafe Publish CLI fail closed', t => {
   const packages = join(temp, 'node_modules');
   const path = join(packages, '@svitlo', 'unsafe');
   mkdirSync(path, { recursive: true });
-  const write = manifest => writeFileSync(join(path, 'package.json'), JSON.stringify({ name: '@svitlo/unsafe', ...manifest }));
+  const write = manifest =>
+    writeFileSync(join(path, 'package.json'), JSON.stringify({ name: '@svitlo/unsafe', ...manifest }));
   write({ bin: { 'svitlo-unsafe': './dist/publish.mjs' }, exports: { '.': { default: '../src/index.js' } } });
   assert.throws(() => resolveSelectedTextbook('unsafe', [packages]), /unsafe public export/);
-  write({ bin: { 'svitlo-unsafe': '../src/publish.mjs' }, exports: {
-    '.': { default: './dist/index.js', types: './dist/index.d.ts' },
-  } });
+  write({
+    bin: { 'svitlo-unsafe': '../src/publish.mjs' },
+    exports: {
+      '.': { default: './dist/index.js', types: './dist/index.d.ts' },
+    },
+  });
   assert.throws(() => resolveSelectedTextbook('unsafe', [packages]), /Publish CLI/);
-  write({ bin: { 'svitlo-unsafe': './dist/publish.mjs' }, exports: {
-    '.': { default: './dist/index.js', types: './dist/index.d.ts' },
-    './styles': { default: './dist/styles.css' },
-  } });
+  write({
+    bin: { 'svitlo-unsafe': './dist/publish.mjs' },
+    exports: {
+      '.': { default: './dist/index.js', types: './dist/index.d.ts' },
+      './styles': { default: './dist/styles.css' },
+    },
+  });
   assert.throws(() => resolveSelectedTextbook('unsafe', [packages]), /Scene styles without a Scene registry/);
 });
 

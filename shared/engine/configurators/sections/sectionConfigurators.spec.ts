@@ -48,7 +48,11 @@ describe('Configurators', () => {
         () => definePracticeSection<'unit', { prompt: typeof prompt }, ['en', 'uk']>(input('practice')),
         () => defineCodingTaskSection<'unit', { prompt: typeof prompt }, ['en', 'uk']>(input('codingTask')),
         () => defineLearningFlowSection<'unit', { prompt: typeof prompt }, ['en', 'uk']>(input('learningFlow')),
-        () => defineFlashcardsSection<'unit', { prompt: typeof prompt }, ['en', 'uk']>({ ...input('flashcards'), params: { selection: { flashcardIds: [id('04')] } } }),
+        () =>
+          defineFlashcardsSection<'unit', { prompt: typeof prompt }, ['en', 'uk']>({
+            ...input('flashcards'),
+            params: { selection: { flashcardIds: [id('04')] } },
+          }),
       ];
 
       test('every Section publishes ordered JSON-safe ContentBlock Props without mutable override state', () => {

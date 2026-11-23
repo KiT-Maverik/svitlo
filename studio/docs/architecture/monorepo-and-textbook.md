@@ -90,7 +90,7 @@ Arrows above summarize **allowed consumption**, not a promise that every app imp
 
 | Package                       | Owns                                                                                        | Direct production dependencies / boundaries                                                            |
 | ----------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
-| Engine                        | Authored configurators, generated Props, type/locale schemas and runtime assemblers           | Separate build and runtime exports; no React, Next, MUI or app imports                                  |
+| Engine                        | Authored configurators, generated Props, type/locale schemas and runtime assemblers         | Separate build and runtime exports; no React, Next, MUI or app imports                                 |
 | IndexDB                       | `svitlo-progress` v1 persistence, Zod state validation, browser controllers                 | Depends on Engine runtime APIs and Zod; no React/Next runtime imports                                  |
 | UI Kit                        | Framework-independent React UI, Lesson, Flag assets, LearningLayout and locale dictionaries | Depends on Engine and React/MUI peer dependencies; no Next.js/application imports in production source |
 | Next.js Adapter               | Next.js App Router integration, lesson SSR composition and metadata                         | Depends on public Engine and UI Kit APIs; injects app-owned lesson loader and renderer                 |
@@ -105,7 +105,7 @@ The canonical native IndexedDB browser harness, commands and Playwright suite li
 
 ## Canonical editorial Skills Taxonomy
 
-For Mathematics, [`content/math/docs/skills/taxonomy.md`](../../../content/math/docs/skills/taxonomy.md) is the **single reviewed editorial source of truth** for the Domain → Group → Skill hierarchy. Its descriptions must explain the competencies in substance, not merely repeat their titles. The linked `content/math/src/data/skillsTaxonomy/` modules are the typed, machine-readable representation; curriculum documentation points to this canonical taxonomy rather than duplicating definitions in parallel Skill files or legacy inventory reports. The separate per-Skill definition template was retired as part of the taxonomy consolidation; do not restore it or the former `src/data/skills-inventory*.md`, `skills-taxonomy-review.md` or `UUID-MIGRATION.md` documents.
+For Mathematics, the fully promoted [typed Skills registry](../../../content/math/data/skills/index.ts) is the current Domain → Group → Skill source of truth. Each Domain and Group has an `index.ts`; each Skill has its own `<slug>.ts` with verified descriptions and UUID. The former `content/math/docs/skills/taxonomy.md` staging document was removed after promotion. Curriculum documentation must resolve Skill references against the current typed registry rather than the retired `src/data/skillsTaxonomy/` paths or inventory reports.
 
 Informatics and Physics have independent Next.js application shells. Informatics Skills Taxonomy is reviewed separately in Draft PR #48; no implemented Informatics Skills, lessons or curricula are implied.
 

@@ -1,6 +1,6 @@
 name: Get Lessons by Skill or ID
 
-# This workflow takes effect for PR comments only after it is merged to main.
+# PR comment triggers require this workflow on the default branch (develop).
 on:
   issue_comment:
     types: [created]

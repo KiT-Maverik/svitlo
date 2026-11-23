@@ -1,0 +1,448 @@
+import { createHash } from 'node:crypto';
+
+import { lesson_Config_Schema } from '../../../configurators/lessons/defineLesson/defineLesson.schemas';
+import type { LessonWorkflowMaterializerInput } from '../../../types/workflow/lessonWorkflow.types';
+import { materializeLesson, assertLessonSourceReleaseReady, type Result, type ChildConfig } from './lesson';
+import { materializeContentSection } from '../contentSection/contentSection';
+import { materializePracticeSection } from '../practiceSection/practiceSection';
+import { materializeCodingTaskSection } from '../codingTaskSection/codingTaskSection';
+import { materializeLearningFlowSection } from '../learningFlowSection/learningFlowSection';
+import { materializeQuizSection } from '../quizSection/quizSection';
+import { materializeFlashcardsSection } from '../flashcardsSection/flashcardsSection';
+import { materializeQuestSection } from '../questSection/questSection';
+import { materializeQuestStage } from '../questStage/questStage';
+import { materializeQuestTask } from '../questTask/questTask';
+import { materializeText } from '../text/materializeText';
+import { materializeMarkdown } from '../markdown/materializeMarkdown';
+import { materializeCode } from '../code/materializeCode';
+import { materializeImage } from '../image/materializeImage';
+import { materializeVideo } from '../video/materializeVideo';
+import { materializeYoutube } from '../youtube/materializeYoutube';
+import { materializeAudio } from '../audio/materializeAudio';
+import { materializeSubtitles } from '../subtitles/materializeSubtitles';
+import { materializeScene } from '../scene/materializeScene';
+import { materializeCarousel } from '../carousel/materializeCarousel';
+import { materializeCheckpoint } from '../checkpoint/materializeCheckpoint';
+import { materializeCheckpointItem } from '../checkpointItem/materializeCheckpointItem';
+import { materializeCheckpointAnswer } from '../checkpointAnswer/materializeCheckpointAnswer';
+import { preserveAssessmentReferences } from './preserveAssessmentReferences';
+
+/**
+ * An authorization must originate at a trusted PR/source reader, never from
+ * user-authored Stage 2 `production`. Stage 3–5 review the same editor file.
+ * The caller must verify the independent reviewer and exact review/source SHA.
+ */
+export type LessonStage6Review = {
+  sourcePath: string;
+  sourceBlobSha: string;
+  reviewCommitSha: string;
+  reviewEvidenceSha: string;
+  stage6Authorized: true;
+};
+export type LessonStage6Options = {
+  /** Exact reviewed index.ts blob, not a regenerated TS serialization. */
+  sourceText: string;
+  review: LessonStage6Review;
+  /**
+   * Trusted input boundary verifies that the parsed Stage 2 object came from
+   * the pinned source, the independent review evidence is genuine and Stage 6
+   * was authorized. Absent or failed verification refuses all output.
+   */
+  verifyReviewedInput: (
+    source: Readonly<LessonWorkflowMaterializerInput>,
+    review: Readonly<LessonStage6Review>,
+    sourceText: string,
+  ) => boolean;
+};
+export type LessonStage6Plan = {
+  lessonId: string;
+  sourcePath: string;
+  archivePath: string;
+  sourceBlobSha: string;
+  reviewCommitSha: string;
+  reviewEvidenceSha: string;
+  publishable: false;
+  files: Result['files'];
+  diagnostics: Result['diagnostics'];
+};
+
+const uuid = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i;
+const sha = /^[0-9a-f]{40}$/i;
+const safeSlug = /^[A-Za-z][A-Za-z0-9]*$/;
+const locale = /^[a-z]{2}(?:-[A-Z]{2})?$/;
+const isRecord = (value: unknown): value is Record<string, unknown> =>
+  value !== null && typeof value === 'object' && !Array.isArray(value);
+type Node = { config: Record<string, unknown>; production?: Record<string, unknown> };
+type RenderOptions = {
+  directory: string;
+  documentLanguage: string;
+  languagesImport: string;
+  production?: Record<string, unknown>;
+};
+
+function gitBlobSha(source: string): string {
+  return createHash('sha1')
+    .update('blob ' + Buffer.byteLength(source, 'utf8') + '\0')
+    .update(source, 'utf8')
+    .digest('hex');
+}
+function languagesFromRoot(directory: string): string {
+  return directory ? '../'.repeat(directory.split('/').length) + 'languages' : './languages';
+}
+function node(value: unknown, at: string): Node {
+  if (!isRecord(value) || !isRecord(value.config) || (!isRecord(value.production) && value.production !== undefined))
+    throw new Error(at + ': expected a plain { config, production? } Stage 2 node');
+  const config = value.config as Record<string, unknown>;
+  if (
+    typeof config.type !== 'string' ||
+    typeof config.slug !== 'string' ||
+    !safeSlug.test(config.slug) ||
+    typeof config.id !== 'string' ||
+    !uuid.test(config.id)
+  )
+    throw new Error(at + ': invalid authored entity identity');
+  return { config, ...(isRecord(value.production) ? { production: value.production } : {}) };
+}
+
+/** Convert only the already-authored nested child envelopes into Config shapes.
+ * Every original node's production remains attached to its stable UUID.
+ * Never create a Section, Block, media value, Question or Flashcard ID.
+ */
+function normalizeStage2(input: LessonWorkflowMaterializerInput) {
+  const metadata = new Map<string, Record<string, unknown>>();
+  const seen = new Set<string>([input.config.id]);
+  const ordered = (value: unknown, location: string, wrapped: boolean) => {
+    if (!isRecord(value) || !isRecord(value.items) || !Array.isArray(value.order))
+      throw new Error(location + ': expected authored { items, order }');
+    const collection = value.items;
+    const keys = Object.keys(collection);
+    if (
+      keys.length !== value.order.length ||
+      new Set(value.order).size !== keys.length ||
+      value.order.some(key => typeof key !== 'string' || !Object.hasOwn(collection, key))
+    )
+      throw new Error(location + '.order: every authored child must be ordered once');
+    const items: Record<string, unknown> = {};
+    for (const key of keys) {
+      if (!safeSlug.test(key)) throw new Error(location + ': unsafe child key ' + key);
+      const raw = node(collection[key], location + '.items.' + key);
+      if (raw.config.slug !== key) throw new Error(location + '.items.' + key + ': key and child slug disagree');
+      const child = unwrap(collection[key], location + '.items.' + key);
+      items[key] = wrapped ? { config: child, ...(raw.production ? { production: raw.production } : {}) } : child;
+    }
+    return { items, order: [...value.order] };
+  };
+
+  function unwrap(value: unknown, at: string): Record<string, unknown> {
+    const current = node(value, at);
+    const config = current.config;
+    const id = config.id as string;
+    if (seen.has(id)) throw new Error(at + ': duplicate authored UUID ' + id);
+    seen.add(id);
+    if (current.production) metadata.set(id, current.production);
+    const normalized: Record<string, unknown> = { ...config };
+    const typ = config.type;
+
+    if (['content', 'practice', 'codingTask', 'learningFlow', 'quiz', 'flashcards'].includes(typ as string))
+      normalized.content = ordered(config.content, at + '.content', true);
+    else if (typ === 'carousel') normalized.slides = ordered(config.slides, at + '.slides', false);
+    else if (typ === 'checkpoint') normalized.content = ordered(config.content, at + '.content', false);
+    else if (typ === 'checkpointItem') {
+      normalized.question = unwrap(config.question, at + '.question');
+      normalized.answer = unwrap(config.answer, at + '.answer');
+    } else if (typ === 'checkpointAnswer') normalized.content = ordered(config.content, at + '.content', false);
+    else if (typ === 'quest') {
+      for (const group of ['stages', 'tasks'] as const) {
+        if (!isRecord(config[group]) || !Object.hasOwn(config[group], 'start'))
+          throw new Error(at + '.' + group + ': mandatory start node is missing');
+        const raw = config[group] as Record<string, unknown>;
+        normalized[group] = Object.fromEntries(
+          Object.entries(raw).map(([key, value]) => {
+            const child = node(value, at + '.' + group + '.' + key);
+            if (child.config.slug !== key) throw new Error(at + '.' + group + ': slug mismatch');
+            return [
+              key,
+              {
+                config: unwrap(value, at + '.' + group + '.' + key),
+                ...(child.production ? { production: child.production } : {}),
+              },
+            ];
+          }),
+        );
+      }
+    } else if (typ === 'questStage') {
+      const content = config.content;
+      if (!isRecord(content) || !isRecord(content.video) || !isRecord(content.audio))
+        throw new Error(at + ': incomplete Quest Stage media');
+      const audio = content.audio;
+      const get = (value: unknown, location: string) => {
+        const child = node(value, location);
+        return { config: unwrap(value, location), ...(child.production ? { production: child.production } : {}) };
+      };
+      normalized.content = {
+        video: {
+          medium: get(content.video.medium, at + '.video.medium'),
+          small: get(content.video.small, at + '.video.small'),
+        },
+        audio: Object.fromEntries(
+          ['dialogue', 'narration', 'background'].map(key => [
+            key,
+            audio[key] === null ? null : get(audio[key], at + '.audio.' + key),
+          ]),
+        ),
+        image: get(content.image, at + '.image'),
+        subtitles: get(content.subtitles, at + '.subtitles'),
+      };
+    } else if (typ === 'questTask') {
+      const scene = node(config.scene, at + '.scene');
+      normalized.scene = {
+        config: unwrap(config.scene, at + '.scene'),
+        ...(scene.production ? { production: scene.production } : {}),
+      };
+    }
+    return normalized;
+  }
+  const sections = ordered(input.config.section, 'lesson.section', true);
+  return { sections, metadata };
+}
+
+/**
+ * One explicit Lesson Stage 6.1 composition, not a universal kind registry.
+ * Concrete materializers own rendering/diagnostics for their real Config
+ * kinds. Required assessment Sections are verified in materializeLesson.
+ */
+export function materializeLessonStage6(
+  input: LessonWorkflowMaterializerInput,
+  options: LessonStage6Options,
+): LessonStage6Plan {
+  if (!isRecord(input) || !isRecord(input.config) || !isRecord(input.production))
+    throw new Error('Lesson Stage 6 requires the canonical reviewed Stage 2 envelope');
+  const config = input.config;
+  const review = options?.review;
+  const match = review?.sourcePath?.match(
+    /^content\/([a-z][a-z0-9-]*)\/data\/lessons\/([0-9a-f])\/([0-9a-f-]{36})\/index\.ts$/,
+  );
+  if (
+    !review ||
+    config.type !== 'lesson' ||
+    !uuid.test(config.id) ||
+    !match ||
+    match[3] !== config.id ||
+    match[2] !== config.id.slice(-1).toLowerCase() ||
+    !sha.test(review.sourceBlobSha) ||
+    !sha.test(review.reviewCommitSha) ||
+    !sha.test(review.reviewEvidenceSha) ||
+    review.stage6Authorized !== true ||
+    typeof options.sourceText !== 'string' ||
+    gitBlobSha(options.sourceText) !== review.sourceBlobSha ||
+    typeof options.verifyReviewedInput !== 'function' ||
+    options.verifyReviewedInput(input, review, options.sourceText) !== true
+  )
+    throw new Error('Lesson Stage 6: untrusted source, stale review or missing explicit authorization');
+
+  const documentLanguage = input.production.languages?.document;
+  const planned = input.production.languages?.planned;
+  if (
+    typeof documentLanguage !== 'string' ||
+    !locale.test(documentLanguage) ||
+    !Array.isArray(planned) ||
+    !planned.length ||
+    planned.some(code => typeof code !== 'string' || !locale.test(code)) ||
+    new Set(planned).size !== planned.length ||
+    !planned.includes(documentLanguage)
+  )
+    throw new Error('Lesson Stage 6: invalid reviewed document/planned languages');
+  if (config.params?.languages !== undefined) throw new Error('Lesson Stage 2 must not contain final params.languages');
+  const params = { ...config.params, languages: [...planned] };
+  const parsed = lesson_Config_Schema.shape.params.safeParse(params);
+  if (!parsed.success)
+    throw new Error('Lesson Stage 6: incomplete or invalid Lesson Config params: ' + parsed.error.message);
+  if (!lesson_Config_Schema.shape.locale.safeParse(config.locale).success)
+    throw new Error('Lesson Stage 6: invalid source-language Lesson title/locale');
+  const assessment = input.production.assessment;
+  const assessmentKeys = [
+    'questionBankRequired',
+    'flashcardBankRequired',
+    'quizSectionRequired',
+    'flashcardsSectionRequired',
+  ] as const;
+  if (!isRecord(assessment) || assessmentKeys.some(key => typeof assessment[key] !== 'boolean'))
+    throw new Error('Lesson Stage 6: four independent assessment decisions are required');
+  const { sections, metadata } = normalizeStage2(input);
+
+  function block(config: ChildConfig, context: RenderOptions): Result {
+    const production = context.production ?? metadata.get(config.id);
+    const opts = { ...context, ...(production ? { production } : {}) };
+    const sourceOptions = { ...opts, plannedLanguages: [documentLanguage] };
+    switch (config.type) {
+      case 'text':
+        return materializeText(config as Parameters<typeof materializeText>[0], sourceOptions);
+      case 'markdown':
+        return materializeMarkdown(config as Parameters<typeof materializeMarkdown>[0], sourceOptions);
+      case 'code':
+        return materializeCode(config as Parameters<typeof materializeCode>[0], sourceOptions);
+      case 'image':
+        return materializeImage(config as Parameters<typeof materializeImage>[0], sourceOptions);
+      case 'video':
+        return materializeVideo(config as Parameters<typeof materializeVideo>[0], sourceOptions);
+      case 'youtube':
+        return materializeYoutube(config as Parameters<typeof materializeYoutube>[0], sourceOptions);
+      case 'audio':
+        return materializeAudio(config as Parameters<typeof materializeAudio>[0], sourceOptions);
+      case 'subtitles':
+        return materializeSubtitles(config as Parameters<typeof materializeSubtitles>[0], sourceOptions);
+      case 'scene':
+        return materializeScene(config as Parameters<typeof materializeScene>[0], {
+          ...opts,
+          registered: false,
+          production: {
+            specification: typeof production?.specification === 'string' ? production.specification : undefined,
+            pending: true,
+          },
+        });
+      case 'carousel':
+        return materializeCarousel(config as unknown as Parameters<typeof materializeCarousel>[0], {
+          ...opts,
+          renderChild: (child, directory) =>
+            block(child as ChildConfig, {
+              directory,
+              documentLanguage,
+              languagesImport: languagesFromRoot(directory),
+              production: metadata.get(child.id),
+            }),
+        });
+      case 'checkpoint':
+        return materializeCheckpoint(config as unknown as Parameters<typeof materializeCheckpoint>[0], {
+          ...opts,
+          renderItem: (item, directory) =>
+            materializeCheckpointItem(item, {
+              directory,
+              documentLanguage,
+              languagesImport: languagesFromRoot(directory),
+              renderQuestion: (text, childDir) =>
+                block(text as ChildConfig, {
+                  directory: childDir,
+                  documentLanguage,
+                  languagesImport: languagesFromRoot(childDir),
+                  production: metadata.get(text.id),
+                }),
+              renderAnswer: (answer, childDir) =>
+                materializeCheckpointAnswer(answer, {
+                  directory: childDir,
+                  documentLanguage,
+                  languagesImport: languagesFromRoot(childDir),
+                  renderChild: (child, deeper) =>
+                    block(child as ChildConfig, {
+                      directory: deeper,
+                      documentLanguage,
+                      languagesImport: languagesFromRoot(deeper),
+                      production: metadata.get(child.id),
+                    }),
+                }),
+            }),
+        });
+      default:
+        throw new Error('Lesson Stage 6: unsupported ContentBlock kind ' + config.type);
+    }
+  }
+  function stage(config: ChildConfig, opts: RenderOptions): Result {
+    return materializeQuestStage(config as Parameters<typeof materializeQuestStage>[0], {
+      ...opts,
+      renderMedia: (media, context) => block(media, context),
+    });
+  }
+  function task(config: ChildConfig, opts: RenderOptions): Result {
+    return materializeQuestTask(config as Parameters<typeof materializeQuestTask>[0], {
+      ...opts,
+      renderScene: (scene, context) => block(scene, context),
+    });
+  }
+  function section(config: ChildConfig, opts: RenderOptions): Result {
+    const contentOptions = {
+      ...opts,
+      renderContentBlock: (child: ChildConfig, context: RenderOptions) => block(child, context),
+    };
+    switch (config.type) {
+      case 'content':
+        return materializeContentSection(config as Parameters<typeof materializeContentSection>[0], contentOptions);
+      case 'practice':
+        return materializePracticeSection(config as Parameters<typeof materializePracticeSection>[0], contentOptions);
+      case 'codingTask':
+        return materializeCodingTaskSection(
+          config as Parameters<typeof materializeCodingTaskSection>[0],
+          contentOptions,
+        );
+      case 'learningFlow':
+        return materializeLearningFlowSection(
+          config as Parameters<typeof materializeLearningFlowSection>[0],
+          contentOptions,
+        );
+      case 'quiz':
+        return materializeQuizSection(config as Parameters<typeof materializeQuizSection>[0], contentOptions);
+      case 'flashcards':
+        return materializeFlashcardsSection(
+          config as Parameters<typeof materializeFlashcardsSection>[0],
+          contentOptions,
+        );
+      case 'quest':
+        return materializeQuestSection(config as Parameters<typeof materializeQuestSection>[0], {
+          ...opts,
+          renderStage: stage,
+          renderTask: task,
+        });
+      default:
+        throw new Error('Lesson Stage 6: unsupported Section kind ' + config.type);
+    }
+  }
+
+  const result = materializeLesson(
+    {
+      ...config,
+      params: parsed.data,
+      section: sections,
+    } as unknown as Parameters<typeof materializeLesson>[0],
+    {
+      documentLanguage,
+      production: input.production as unknown as Record<string, unknown> & { assessment: typeof assessment },
+      renderSection: section,
+    },
+  );
+  const root = review.sourcePath.slice(0, -'index.ts'.length);
+  return {
+    lessonId: config.id,
+    sourcePath: review.sourcePath,
+    archivePath: root + 'workflow.stage2.ts',
+    sourceBlobSha: review.sourceBlobSha,
+    reviewCommitSha: review.reviewCommitSha,
+    reviewEvidenceSha: review.reviewEvidenceSha,
+    publishable: false,
+    files: preserveAssessmentReferences(
+      options.sourceText,
+      review.sourcePath,
+      input,
+      result.files.map(file => ({ ...file, path: root + file.path })),
+    ),
+    diagnostics: result.diagnostics,
+  };
+}
+
+/**
+ * The Stage 6 result is never a publication certificate. Refuse all visible
+ * editorial/media placeholders even if one concrete renderer omitted a
+ * diagnostic. Downstream asset, bank, localization and provenance validation
+ * remains the independent publication boundary.
+ */
+export function assertLessonStage6ReleaseReady(plan: LessonStage6Plan): void {
+  const pending = plan.files.filter(file =>
+    /TODO\s*\(BLOCKER\)|TODO\(asset\)|00000000-0000-0000-0000-000000000000/i.test(file.content),
+  );
+  if (pending.length)
+    throw new Error(
+      'Lesson source publication blocked by unresolved placeholders in ' + pending.map(file => file.path).join(', '),
+    );
+  assertLessonSourceReleaseReady({
+    exportName: '',
+    files: plan.files,
+    diagnostics: plan.diagnostics,
+  });
+}

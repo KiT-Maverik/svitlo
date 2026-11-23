@@ -81,7 +81,9 @@ describe('Configurators', () => {
           question,
           check: true,
           answer: defineCheckpointAnswer({
-            id: id('07'), slug: 'answer', type: 'checkpointAnswer',
+            id: id('07'),
+            slug: 'answer',
+            type: 'checkpointAnswer',
             content: { items: { answer }, order: ['answer'] },
           }),
         });

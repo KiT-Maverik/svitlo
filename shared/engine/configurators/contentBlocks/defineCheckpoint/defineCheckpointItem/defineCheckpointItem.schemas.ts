@@ -1,7 +1,11 @@
 import { z } from 'zod';
 import { identityBase_Schema } from '../../../_shared__configurators/common.schemas';
 import { text_Props_Schema } from '../../defineText/defineText.schemas';
-import type { ContentBlock_Text_Configurator, ContentBlock_Text_Overrides, ContentBlock_Text_Props } from '../../defineText';
+import type {
+  ContentBlock_Text_Configurator,
+  ContentBlock_Text_Overrides,
+  ContentBlock_Text_Props,
+} from '../../defineText';
 import {
   checkpointAnswer_Child_Props_Schema,
   type Checkpoint_Allowed_Props,

@@ -10,27 +10,33 @@ it does not authorize code, translation or independent sign-off.
 
 ## Current source of truth
 
-Use the existing Lesson's canonical UUID directory. Its complete typed
-Lesson source, approved methodology.md (legacy methodologist-brief.md
-where present), and derived Lesson Markdown at an exact SHA establish
-learning content and Quiz placement. There may be no lesson.yaml after
-Resource Production. Do not recreate it, generate a new Lesson, assume
-content.yaml exists, or require a new Lesson Production Issue for
-this PR-driven flow.
+Use the existing Lesson's canonical UUID directory. Its complete reviewed typed Lesson `index.ts`, approved `production.methodology`
+and source-derived Lesson Markdown at an exact SHA establish learning
+content and Quiz placement. Historical `methodologist-brief.md`, `lesson.yaml`
+and `content.yaml` may remain as provenance; do not recreate them, generate
+a new Lesson, or require a new Lesson Production Issue for this PR-driven flow.
 
-Author exactly one temporary source-language bank at:
+Use **one Lesson-owned, progressively typed source** at:
 
-    content/<textbook>/data/lessons/<bucket>/<uuid>/questions.yaml
+    content/<textbook>/data/lessons/<last-hex>/<lesson-uuid>/questions/index.ts
 
-The current Engine YAML Config guide is
-shared/engine/yaml-schemas/question.schema.json, derived from
-yamlQuestion_Schema. Individual Questions are **real Engine-shaped
-Question Configs** grouped by Question type, then camelCase slug. The
-minimal envelope is documented in
-[Questions Builder](../../../shared/engine/scripts/questionsBuilder/README.md).
-Do not maintain a separate, contradictory editorial Question schema,
-stage flags or status/approval properties on the authored Config.
-Do not restore the removed Studio editorial `lesson-questions.schema.json` with `status`, `questionSlugs` or parallel Quiz assignment fields. Current Engine-derived `question.schema.json` and the Questions Builder own technical validation; reviews belong in the child PR.
+Stage 1 is `{ config, production } satisfies QuestionBankWorkflowStage1`,
+verified against the owning Lesson UUID and exact source SHA. It contains
+pedagogical/evidence intent but **no actual Questions yet**. Stage 2 refines
+the **same file** to `satisfies QuestionBankWorkflowStage2`, adding the
+full grouped bank in `config.questions`. Stage 3 refines that source to
+`satisfies QuestionBankWorkflowStage3` with local Quiz design intent.
+Stage 4 independent review corrects that same source and stores approval
+evidence only in the Questions PR. Stage 5 uses exactly
+`QuestionBankWorkflowMaterializerInput` and, after the parent #775 bridge
+has been verified, transitions the reviewed staging index into canonical
+`define*` modules and an actual bank export. An incomplete Stage 1 file
+must not be imported/published as the final `questions/index.ts` bank.
+
+Use the nine actual Engine Config/Zod variants for scoring and their
+plain nested ContentBlock Config data; specialized Stage 2 nodes hold
+production-only assessment rationale, not fields on the final Config.
+Do not maintain a parallel editor schema, YAML authoring source, status flags, `questionSlugs` or bank-level selection UUID list. The YAML-only Questions Builder and its generated editor schemas were removed in #775 and are not fallbacks.
 
 Use actual Engine code for the nine Question discriminators, all
 Assessment Method slugs, params.restrictions Disability[] and nested
@@ -40,8 +46,7 @@ The Question Bank is independent from Lesson Config and Props.
 
 ## 1. Evidence coverage before item writing
 
-For each intended assessment, record in the **Questions PR evidence**
-(not in additional YAML Config fields):
+For each intended assessment, record substantive source-language **production.evidenceIntent** and, per Stage 2 item, **production.evidence** and distinctness; keep review verdicts, approval SHAs and stage status only in the Questions PR:
 
 - Approved target Skill and observable outcome/subcompetency.
 - Required cognitive Assessment Method and the actual mental operation.
@@ -117,10 +122,10 @@ coverage, use a fixed curated subset. Evaluate each Quiz separately
 for appropriate outcomes, methods, item pace and cognitive load.
 Unselected bank Questions remain for future Custom Practice.
 
-Record proposed Quiz candidate subsets and rationale in the existing Questions
-PR evidence. Once authored TS is materialized, the Section owner imports
+Record the proposed Quiz placement/coverage rationale in the typed Stage 3
+`production.quiz` and the Questions PR, **not a second selection UUID ledger**. Once authored TS is materialized, the Section owner imports
 approved Question Configurators and uses their stable `.id` values in the
-actual Section Config. No duplicate selection map is kept in questions.yaml;
+actual Section Config. No duplicate selection map is kept in the bank production metadata;
 there is no legacy questionSlugs API or quizAssignments operation DSL.
 
 ## 5. Independent review and transfer
@@ -131,21 +136,27 @@ misconception validity, evidence mapping, item novelty, accessibility,
 age fit and all selected Quiz subsets at a verified SHA. Methodologist
 authority remains separate. Source changes require review refresh.
 
-The Coding Agent uses the existing [Questions Builder](../../../shared/engine/scripts/questionsBuilder/README.md)
-to validate and generate typed Question modules. It does not overwrite
-the Lesson or embedded Quiz and it does not silently prune any bank
-member. The Lesson Section owner materializes approved Quiz selections
-in existing/new modular Sections through normal typed Lesson composition
-and validates published selections using Engine and the textbook build.
-The existing generateAssessmentResources --kind question publisher publishes
-all authored Question resources separately.
+After the independent reviewer has directly corrected and re-verified the
+Stage 3 source in the same PR at a final SHA, a separate Coding Agent
+materializes via the **nine kind-owned materializers from #780**, composed
+by the #775 bank-level writer/orchestrator. The staging `questions/index.ts`
+must be transitioned with explicit source/SHA preservation: it collides
+with the canonical final bank entrypoint and cannot be quietly clobbered.
+The output is separate `questions/<type>/<slug>.ts` and grouped indexes.
+The Coding Agent does not overwrite Lesson Sections, invent missing assets,
+or prune unselected items. The actual Lesson Section owner then imports
+selected Question Configurators in the real `defineQuizSection` and
+validates global UUID/locale resolution. The existing assessment publisher
+publishes all members, independently of Quiz selection.
+
+**Active typed bridge:** the complete Bank Stage 5 source-materialization path is integrated in #775, using the existing Questions PR, a formal independently accepted reviewed Stage 3 source and the SHA-pinned `/questions materialize typed` trusted command. It is not live until deployed and exercised from default `develop`. The old YAML Builder and unqualified command are retired. A collision, stale SHA or partial output must leave reviewed input intact; do not delete historical YAML or pretend passing draft checks certify completion.
+
 Do not claim Custom Practice UI exists merely because those resources
 are now publishable.
 
-Retain questions.yaml on skips, conflicts or partial generation.
-Delete it only when all authored source content, Question IDs and
-Quiz selections have been faithfully transferred and checked against
-the current Lesson, with translations/media still explicitly tracked.
+Keep the reviewed staged TypeScript source intact on skipped, failed, partial
+or conflicting materialization; the parent owns an explicit safe transition
+into the canonical bank index. Preserve any pre-existing historical `questions.yaml` as provenance unless its owning migration is explicitly authorized and independently verified.
 Report validation, typecheck, publisher preflight, builds and
 independent review separately; a draft generator success is not
 a completed Lesson or a valid mastery claim.

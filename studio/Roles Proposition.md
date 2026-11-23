@@ -208,8 +208,8 @@ User / Editor: тема, цілі, обмеження, домен
 
 - [Skill](./docs/entities/skill.md), [SkillGroup](./docs/entities/skill-group.md), [SkillDomain](./docs/entities/skill-domain.md) — семантика сутностей; [Create Skills Taxonomy](./skills/skill-taxonomy-workflow/create-skills-taxonomy.skill.md) — методичний процес; [Implement Skill Code](./skills/skill-taxonomy-workflow/implement-skill-code.skill.md) — static UUID, локалізація, builders та dependency boundaries.
 - [Long Chat Overture](./Long%20Chat%20Overture.md) — контекст інших архітектурних домовленостей (Lesson/Program, events, injections, генератори, offline).
-- [Mathematics Skills Inventory](../content/math/src/data/skills-inventory.md) — змістовний каталог і фактичний статус `Implemented`.
-- [Lesson types](../shared/engine/src/types/content/lesson.types.ts) і [Question types](../shared/engine/src/types/content/question.types.ts) — **чинні** кодові контракти.
+- `Mathematics Skills Inventory` (historical path) — змістовний каталог і фактичний статус `Implemented`.
+- `Lesson types` (historical path) і `Question types` (historical path) — **чинні** кодові контракти.
 - [AGENTS.md](../AGENTS.md) — інструкції агента, обов'язкові під час реалізації.
 
 **Підсумкове рішення:** починати з **чотирьох чітких ролей**. Візуальну та інтерактивну режисуру тримати всередині Screenwriter, оцінювання — **окремо** від сценариста, технічну реалізацію — **окремо** від педагогічних рішень. Цей файл — **proposition/decision record**, за яким згодом можна написати repository skills; він **не** означає, що відповідні skills чи runtime вже створені.

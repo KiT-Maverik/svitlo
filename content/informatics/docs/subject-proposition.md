@@ -2,7 +2,7 @@
 
 Date: 2026-10-29
 
-A subject-specific proposal of learning directions and scenarios for Informatics. This is **not** a Curriculum, a Skills Taxonomy, implemented code, or a new category of learning content. General conventions and interdisciplinary decisions: [Studio Subject Proposition](../../../studio/Subject%20Proposition.md). Canonical competencies: [Informatics Skills Taxonomy](./skills/taxonomy.md).
+A subject-specific proposal of learning directions and scenarios for Informatics. This is **not** a Curriculum, a Skills Taxonomy, implemented code, or a new category of learning content. General conventions and interdisciplinary decisions: [Studio Subject Proposition](../../../studio/Subject%20Proposition.md). Canonical competencies: [Informatics Skills Taxonomy](../data/skills/index.ts).
 
 **Subject boundary:** using a digital tool in Music, Geography, or Engineering does not automatically turn those lessons into Informatics. An independent Informatics topic must teach algorithms, data structures, programs, or digital systems.
 
@@ -191,7 +191,7 @@ With safe fictional examples, compare a visible button label with the actual dom
 
 **Interaction: 'Why Calculate the Same Thing a Thousand Times?'** Compare repeatedly computing a constant expression **inside a loop** with computing it once **before the loop**. Moving it out is safe only when dependencies are unchanged and the move **preserves side effects**. Also illustrate an **infinite loop** with no reachable exit condition.
 
-**History of programming — ideas, technological contributions, and their creators.** The [Skills Taxonomy](./skills/taxonomy.md) identifies reusable conceptual contributions rather than creating a separate competency for each biography. Nevertheless, **named people and teams are mandatory learning content** and must not disappear when Skill headings are revised.
+**History of programming — ideas, technological contributions, and their creators.** The [Skills Taxonomy](../data/skills/index.ts) identifies reusable conceptual contributions rather than creating a separate competency for each biography. Nevertheless, **named people and teams are mandatory learning content** and must not disappear when Skill headings are revised.
 
 | Conceptual contribution                | Required historical content                                                                                                                               |
 | -------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -212,7 +212,7 @@ Use historical examples to show the foundational and long-undervalued work of wo
 
 ## 8. Elementary Algorithms — Each with Its Own Learning Model
 
-**Editorial organization:** in the [Skills Taxonomy](./skills/taxonomy.md), the Algorithms domain groups competencies **by purpose**: search, sorting, collection processing, general construction, and analysis. Each named elementary algorithm has **its own Skill** as an independently identifiable competency, such as applying linear search. Prerequisites, efficiency, and comparisons may be additional independent Skills in the same group. No separate `Algorithm` entity is being introduced: the Domain → Group → Skill hierarchy already supports classification and independent assessment. If evidence later shows a need to represent one algorithm as a separate entity linked to multiple Skills, first conduct an architecture review.
+**Editorial organization:** in the [Skills Taxonomy](../data/skills/index.ts), the Algorithms domain groups competencies **by purpose**: search, sorting, collection processing, general construction, and analysis. Each named elementary algorithm has **its own Skill** as an independently identifiable competency, such as applying linear search. Prerequisites, efficiency, and comparisons may be additional independent Skills in the same group. No separate `Algorithm` entity is being introduced: the Domain → Group → Skill hierarchy already supports classification and independent assessment. If evidence later shows a need to represent one algorithm as a separate entity linked to multiple Skills, first conduct an architecture review.
 
 | Algorithm                 | Simple explanation / learning model                                   | Important distinction                                               |
 | ------------------------- | --------------------------------------------------------------------- | ------------------------------------------------------------------- |
@@ -243,9 +243,9 @@ Use historical examples to show the foundational and long-undervalued work of wo
 
 Матеріали перенесено з [Studio Subject Proposition](../../../studio/Subject%20Proposition.md); спільні принципи залишаються там. Історичні твердження про структуру коду відображають стан пропозиції на 2026-10-28/29 і **не вважаються поточним контрактом**. Навчальна глибина й теми визначаються окремими погодженими Curricula.
 
-| № | Підручник | Основні тематичні напрями | Питальні / енциклопедичні розділи |
-| --- | --- | --- | --- |
-| 8   | **Інформатика**         | Логіка, алгоритміка, стратегії пошуку й ефективність алгоритмів, програмування, дані, статистика, ймовірність, робототехніка, архітектура програм, принципи проєктування, процедурна генерація й оптимізація, AI й промптинг, цифрова безпека                  | **«Як це працює?»** — комп’ютер, інтернет, Wi-Fi, програми, AI                                                          |
+| №   | Підручник       | Основні тематичні напрями                                                                                                                                                                                                                     | Питальні / енциклопедичні розділи                              |
+| --- | --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
+| 8   | **Інформатика** | Логіка, алгоритміка, стратегії пошуку й ефективність алгоритмів, програмування, дані, статистика, ймовірність, робототехніка, архітектура програм, принципи проєктування, процедурна генерація й оптимізація, AI й промптинг, цифрова безпека | **«Як це працює?»** — комп’ютер, інтернет, Wi-Fi, програми, AI |
 
 ## Міжпредметні напрями, що стосуються підручника
 
@@ -263,7 +263,6 @@ Use historical examples to show the foundational and long-undervalued work of wo
 | **Процедурна генерація та інженерна оптимізація**  | Інформатика; математика; мистецтво                                                                                                                                 | Створення графіки, об'єктів, світів і звуків за алгоритмами; насіння генерації, параметри, економія дискового простору та її компроміси щодо пам'яті, часу і потужності; історія гри .kkrieger (2004, приблизно 96 КБ)                                                                                                                                                       |
 | **Стратегії пошуку та ефективність алгоритмів**    | Інформатика; математика                                                                                                                                            | Випадковий перебір, послідовний і бінарний пошук, упорядкованість даних, кількість перевірок, умови застосування та наочне порівняння на прикладі «Знайди сюрприз»                                                                                                                                                                                                           |
 | **Можливість, імовірність та гарантія**            | Математика; інформатика; філософія                                                                                                                                 | Розрізнення «може трапитися», «наскільки ймовірно» та «гарантовано»; помилка «два результати означають 50/50»; значення даних і припущень для оцінки шансів                                                                                                                                                                                                                  |
-
 
 ## Розгорнуті предметні та міжпредметні пропозиції з оригінального документа
 

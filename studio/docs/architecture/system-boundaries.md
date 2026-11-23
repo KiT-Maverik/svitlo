@@ -4,20 +4,26 @@
 
 ## Separation of concerns
 
-| Concern                            | Owns                                                                                  | Explicitly does not own                                   |
-| ---------------------------------- | ------------------------------------------------------------------------------------- | --------------------------------------------------------- |
-| Git authored content               | Approved facts, configurations, resources, localized media, IDs and version history   | Per-learner answers or account-specific runtime state     |
-| Lesson                             | Reusable instructional content, ordered Sections and teaching interactions            | External Program story, learner's account/sync service    |
-| Section                            | Ordered learning step and its typed content blocks or Quiz composition                | Entire Program or global prerequisites graph              |
-| Resource                           | A typed presentation/content object (e.g. text, Markdown, image, audio, video, Scene) | Assessment evidence or user profile                       |
-| Skill                              | Atomic independently assessable catalog competency                                    | Assessment method, score, grade, prereqs, learner mastery |
-| Question / Quiz / Assessment       | Actual answers, checks, attempts, validity and scoring/evidence rules                 | Skill identity or Program narrative                       |
-| Lesson Progress                    | Section visits/completion, Lesson-specific progress                                   | Proving a Skill is mastered                               |
-| Program (planned)                  | Selection/order of Lessons, optional character/story, extra activities and triggers   | Rewriting an original Lesson's correct answers/content    |
-| Notes (planned)                    | Git-authored concise recall cues and user-specific unlock status in separate stores   | Lesson transcript or automatically scored mastery         |
-| Local repository and optional sync | Learner state and offline access, later cross-device replication                      | Authorial educational truth maintained outside Git        |
+| Concern                                          | Owns                                                                                  | Explicitly does not own                                                  |
+| ------------------------------------------------ | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
+| Git authored content                             | Approved facts, configurations, resources, localized media, IDs and version history   | Per-learner answers or account-specific runtime state                    |
+| Lesson                                           | Reusable instructional content, ordered Sections and teaching interactions            | External Program story, learner's account/sync service                   |
+| Section                                          | Ordered learning step and its typed content blocks or Quiz composition                | Entire Program or global prerequisites graph                             |
+| Resource                                         | A typed presentation/content object (e.g. text, Markdown, image, audio, video, Scene) | Assessment evidence or user profile                                      |
+| Skill                                            | Atomic independently assessable catalog competency                                    | Assessment method, score, grade, prereqs, learner mastery                |
+| Question / Quiz / Assessment                     | Actual answers, checks, attempts, validity and scoring/evidence rules                 | Skill identity or Program narrative                                      |
+| Lesson Progress                                  | Section visits/completion, Lesson-specific progress                                   | Proving a Skill is mastered                                              |
+| Course (typed authoring; runtime still evolving) | Ordered Lesson references, Modules/Chapters/Episodes and placement intent             | Owning or rewriting another Lesson's source, Questions or bank approvals |
+| Notes (planned)                                  | Git-authored concise recall cues and user-specific unlock status in separate stores   | Lesson transcript or automatically scored mastery                        |
+| Local repository and optional sync               | Learner state and offline access, later cross-device replication                      | Authorial educational truth maintained outside Git                       |
 
 A Quiz question can cite multiple Skill IDs. That does not create an extra integrational Skill merely because an exercise uses several capabilities, and one combined correct answer does not automatically validate all of them independently.
+
+## Authoring, materialization and runtime are separate
+
+**Observed versus target:** `CourseWorkflowStage1/2/3` and `CourseWorkflowMaterializerInput` exist on parent #775. #782–#784 separately develop Lesson and bank staged editorial types; their Stage 1 `index.ts` sources are incomplete authoring inputs, not runtime Lessons, Questions, Flashcards or Sections. Course Stage 5 hands a new Lesson only the Stage 1 plan; later Lesson Stage 6 and each bank Stage 5 own complete source materialization, requiring actual trusted orchestration and review SHA verification. Preserve existing YAML/CI until the replacements work. The four `LessonProductionAssessmentRequirements` flags distinguish bank creation from Section placement; runtime `quizRequiredForCompletion` remains independent. Staged source is not valid input to `generateLessonProps` or `generateAssessmentResources`.
+
+**Integrated source-renderer status:** #775 now contains the #776–#780 concrete `shared/engine/generators/materializers/<kind>/` modules and registered tests, which yield source manifests from plain authored Config data. This does **not** implement the separately required Course Stage 5 → Lesson Stage 1 handoff, Lesson Stage 6 final source transition, bank Stage 5 source transition, trusted Git writer, or Props release gate. Keep the observed per-kind layer distinct from the still-planned orchestration and deployed legacy YAML commands.
 
 ## Important implementation boundaries
 

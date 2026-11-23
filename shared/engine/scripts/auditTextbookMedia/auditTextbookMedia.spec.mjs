@@ -17,8 +17,11 @@ function inTextbook(fn) {
     mkdirSync(join(destination, '..'), { recursive: true });
     writeFileSync(destination, value);
   }
-  try { return fn({ root, put }); }
-  finally { rmSync(root, { recursive: true, force: true }); }
+  try {
+    return fn({ root, put });
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
 }
 
 test('reports only unreferenced textbook-wide physical files, with byte totals', () => {

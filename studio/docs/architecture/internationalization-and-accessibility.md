@@ -4,7 +4,7 @@
 
 ## International from the first design
 
-- **Mandatory standard locale coverage, without exceptions for convenience.** The canonical set is `DEFAULT_SUPPORTED_LANGUAGES` in [Engine language definitions](../../../shared/engine/src/types/languages.ts), plus any expressly configured textbook locales. **All required educational text, accessible descriptions, UI strings, Scene dictionaries and labels must be translated truthfully and completely for every standard locale**. Do not silently remove a standard language or reduce the set because translation is difficult. The set may grow; always read the current types, not a historical count.
+- **Mandatory standard locale coverage, without exceptions for convenience.** The canonical set is `DEFAULT_SUPPORTED_LANGUAGES` in [Engine language definitions](../../../shared/engine/schemas/languages.schemas.ts), plus any expressly configured textbook locales. **All required educational text, accessible descriptions, UI strings, Scene dictionaries and labels must be translated truthfully and completely for every standard locale**. Do not silently remove a standard language or reduce the set because translation is difficult. The set may grow; always read the current types, not a historical count.
 - All **user-visible and accessibility text** must be localized: explanations, prompts, control labels, diagrams, SVG `<title>`/`<desc>`, screen-reader labels, feedback, unit labels, media captions and notes. Keep cultural assumptions, numbering, grammar, pluralization and direction under review.
 - **No fake translations or silent fallbacks for required textual content:** do not copy English strings into another locale's entries, leave placeholder text, omit locales, suppress type errors, mark incomplete dictionaries `allLocales: true`, or add `?? en` / `|| en` as an author's shortcut. Deliver **real, meaning-preserving translations** (with appropriate terminology, numerals and context) and validate completeness for the required language/locale keys. If an agent cannot translate with adequate confidence, **raise an explicit issue in chat listing exact files/keys/locales and the necessary editorial action; do not silently submit a fallback**. Existing runtime `FALLBACK_LANGUAGE` / `FALLBACK_LOCALE` do not excuse missing authored translations.
 - **Narrow planned exception for expensive audio generation:** an explicitly signaled **audio-only language fallback** may be approved separately; the user must see the actual spoken language and have properly localized textual descriptions/transcripts/controls. It must never masquerade as a translation of standard UI, educational prose or accessible labels. See [Audio Resource TODO](../../To%20Do/media/audio-localized-playback.md).
@@ -18,7 +18,7 @@ Every educational resource, Scene, Question, layout and interaction must be desi
 
 ### What the code actually provides
 
-[`Disability` union](../../../shared/engine/src/types/disabilities.types.ts) presently lists the following **question-related limitation categories**:
+[`Disability` union](../../../shared/engine/schemas/disabilities.schemas.ts) presently lists the following **question-related limitation categories**:
 
 | Area                 | Declared values                                                                                                                               |
 | -------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -29,7 +29,7 @@ Every educational resource, Scene, Question, layout and interaction must be desi
 | Cognitive & learning | `cognitive-impairment`, `intellectual-disability`, `learning-disability`, `dyslexia`, `dyscalculia`, `attention-deficit`, `memory-impairment` |
 | Sensitivity          | `photosensitivity`, `seizure-susceptibility`                                                                                                  |
 
-The [Question types](../../../shared/engine/src/types/content/question.types.ts) include a `restrictions: Disability[]` field. **This is a declaration, not proof that the platform detects learner disabilities, adapts the UI, blocks inaccessible content, or offers an alternative renderer.** Do not infer a medical diagnosis, disability or access limitation from activity or performance.
+The [Question types](../../../shared/engine/configurators/questions/question.schemas.ts) include a `restrictions: Disability[]` field. **This is a declaration, not proof that the platform detects learner disabilities, adapts the UI, blocks inaccessible content, or offers an alternative renderer.** Do not infer a medical diagnosis, disability or access limitation from activity or performance.
 
 A restriction label describes a **potential incompatibility in a particular interaction**. It must not justify knowingly shipping avoidable barriers; developers should first provide an equivalent accessible mode where possible. Review accommodations with the learner's dignity and privacy in mind.
 
@@ -40,7 +40,7 @@ A restriction label describes a **potential incompatibility in a particular inte
 1. Identify exactly which user task is inaccessible and for whom (without diagnosing a person).
 2. Attempt to preserve the **same educational objective and core functionality** through another interaction/representation: keyboard operation, structured text/table, sonification, tactile-friendly external representation, captions, accessible alternative controls, etc., as appropriate.
 3. If no acceptable alternative exists without compromising the specified function, **do not silently remove the material or claim full accessibility**. Record a concrete limitation, intended remediation and needed editorial/architectural decision; make the exception conspicuous in the final chat/review report.
-4. For a **Scene implemented by [Design Scene Skill](../../skills/design-scene.skill.md)**, follow its stricter contract: append a precise **end-of-file `TODO(a11y)` in the main Scene `*.tsx`**, and explicitly report the barrier in the chat. A TODO does not resolve the issue.
+4. For a **Scene implemented by [Design Scene Skill](../../skills/lesson-workflow/implement-scene.skill.md)**, follow its stricter contract: append a precise **end-of-file `TODO(a11y)` in the main Scene `*.tsx`**, and explicitly report the barrier in the chat. A TODO does not resolve the issue.
 5. A future **content compatibility marker** could identify devices or accessibility needs the current implementation does not satisfy, but **no such generic filtering/flag system is assumed implemented or authorized by this document**. A flag is disclosure/support metadata, not permission to discard content.
 
 ## Verification expectations
@@ -48,7 +48,6 @@ A restriction label describes a **potential incompatibility in a particular inte
 Test LTR and RTL examples, keyboard and screen-reader semantics, localized accessible names, logical navigation, reduced motion, captions/transcripts when applicable, nonvisual interpretation of essential information and mobile readability. Favor accessible-role/name-based selectors over brittle incidental DOM selectors. Inaccessible alternatives must not be disguised by passing only TypeScript or unit checks.
 
 **Related:** [Learning Philosophy](./learning-experience-philosophy.md), [Offline & Device Support](./offline-first-and-device-compatibility.md), [Lesson Notes](./lesson-notes.md).
-
 
 ## Quest multimodal parity (planned)
 

@@ -2,6 +2,7 @@ import { z } from 'zod';
 import type { DeepPartial } from '#types';
 import { languageCode_Schema, deepStrict_Schema } from '#schemas';
 import { identityBase_Schema, paramsBase_Schema } from '../../_shared__configurators/common.schemas';
+import { ageRange_Schema, gradeRange_Schema } from '../../_shared__configurators/audienceRange.schemas';
 import { addUnifiedLocale } from '../../_shared__configurators/addUnifiedLocale/addUnifiedLocale.utils';
 import { localizationSwitch } from '../../contentBlocks/contentBlock.schemas';
 import { sectionTypes } from '../../sections/section.constants';
@@ -11,6 +12,9 @@ const languages = z
   .nonempty()
   .refine(list => new Set(list).size === list.length, 'Lesson languages must be unique');
 const params = paramsBase_Schema.shape.params.extend({
+  /** Optional target audience, matching the Course age and grade contracts. */
+  age: ageRange_Schema.optional(),
+  grade: gradeRange_Schema.optional(),
   quizRequiredForCompletion: z.boolean(),
   languages,
   sections: z.strictObject({
@@ -67,10 +71,18 @@ export type Lesson_Metadata_Overrides = {
   events?: NonNullable<Lesson_Config['events']>;
 };
 /** Keep JSON event records out of recursive deepPartial; events replace as a sparse map value. */
+/** Zod deepPartial cannot descend through the refined min/max range schemas.
+ * Use their original shapes to derive partial override validation. The merged
+ * candidate is still validated against the full age/grade refinements.
+ */
+const partializableParams_Schema = lesson_Config_Schema.shape.params.omit({ languages: true }).extend({
+  age: z.strictObject(ageRange_Schema.shape).optional(),
+  grade: z.strictObject(gradeRange_Schema.shape).optional(),
+});
 const lessonOverrideMetadataFields = z.deepPartial(
   deepStrict_Schema(
     z.object({
-      params: lesson_Config_Schema.shape.params.omit({ languages: true }),
+      params: partializableParams_Schema,
       locale: lesson_Config_Schema.shape.locale,
     }),
   ),

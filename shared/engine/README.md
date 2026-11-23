@@ -44,6 +44,14 @@ Reviewers should start from the compact PR comment, inspect the gap-only JSON
 artifact for the remaining locations, and design behavioral tests. A high
 percentage alone does not establish that the assertions detect realistic bugs.
 
+## Staged educational production versus resource generation
+
+Course, Lesson, Question Bank and Flashcard Bank use canonical Stage-specific TypeScript editorial objects with independent review evidence in their owning PRs. The `generators/materializers/` source emitters produce deterministic Configurator modules and methodology/specification files, not runtime JSON or Props. Reviewed Course Stage 5, Lesson Stage 6.1 and assessment Bank Stage 5 source transitions are wired through separate SHA-pinned trusted GitHub commands; deployment to the default branch is a separate operation.
+
+The YAML-only editors/builders and their derived JSON Schema tooling were retired in #775. Existing `content/math/**/lesson.yaml` remain historical, not an alternate current pipeline. Only completed `define*` authored resources enter `generateLessonProps`, `generateCourseProps` and `generateAssessmentResources`. Production must reject unresolved asset/Scene/Question/Flashcard, locale or review blockers.
+
+See [Engine scripts](./scripts/README.md) and [Studio typed production boundary](../../studio/docs/architecture/typed-production-materialization.md).
+
 ## Lesson and Course generation
 
 The build-time CLI entrypoints are under `scripts/generateLessonProps/` and `scripts/generateCourseProps/`, each with its own tests. Lesson and Course publication modules live under `generators/{lessons,courses}/` with their unit tests. The shared textbook build invokes the named Engine CLIs without root-level generator wrappers. Build-time APIs belong to `@svitlo/engine/build`; `@svitlo/engine/runtime` remains free of Node filesystem and authored configurators.

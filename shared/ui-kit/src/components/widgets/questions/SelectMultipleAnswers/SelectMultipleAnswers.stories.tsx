@@ -4,7 +4,12 @@ import { enUiKitMessages } from '../../../../testing/uiKitMessages.unit.fx';
 import { SelectMultipleAnswers } from './SelectMultipleAnswers';
 
 const text = (slug: string, value: string): ContentBlock_Text_Props => ({
-  id: '00000000-0000-4000-8000-' + Array.from(slug).reduce((sum, char) => sum + char.charCodeAt(0), 1).toString(16).padStart(12, '0'),
+  id:
+    '00000000-0000-4000-8000-' +
+    Array.from(slug)
+      .reduce((sum, char) => sum + char.charCodeAt(0), 1)
+      .toString(16)
+      .padStart(12, '0'),
   slug,
   type: 'text',
   params: {},

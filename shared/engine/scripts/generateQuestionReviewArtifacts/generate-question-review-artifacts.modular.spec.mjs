@@ -6,10 +6,22 @@ import { test } from 'node:test';
 import { generateQuestionReviewArtifacts } from './generate-question-review-artifacts.mjs';
 
 const lessonId = 'c042698a-de5b-5055-9e10-ff5621f80ed7';
-const names = ['identifyUnsafeOptics', 'replaceRiskyQuickLook', 'classifyCloudObservation',
-  'recognizeMakeshiftFilter', 'chooseRecordedProjection'];
-const fields = ['prompt', 'hintText', 'explanationText', 'correctChoice',
-  'otherChoice1', 'otherChoice2', 'otherChoice3'];
+const names = [
+  'identifyUnsafeOptics',
+  'replaceRiskyQuickLook',
+  'classifyCloudObservation',
+  'recognizeMakeshiftFilter',
+  'chooseRecordedProjection',
+];
+const fields = [
+  'prompt',
+  'hintText',
+  'explanationText',
+  'correctChoice',
+  'otherChoice1',
+  'otherChoice2',
+  'otherChoice3',
+];
 const uuid = n => '00000000-0000-5000-8000-' + String(n).padStart(12, '0');
 const sourceRoot = root => path.join(root, 'content/astronomy/data/lessons/7', lessonId);
 function write(root, relative, value) {
@@ -20,10 +32,17 @@ function write(root, relative, value) {
 }
 function makeFixture(root) {
   write(root, 'constants.ts', "export const languages = ['uk'] as const;\n");
-  const registry = `import { ${names.join(', ')} } from './selectOneAnswer';` +
-    '\nexport const questions = { selectOneAnswer: { ' + names.join(', ') + ' } };\n';
+  const registry =
+    `import { ${names.join(', ')} } from './selectOneAnswer';` +
+    '\nexport const questions = { selectOneAnswer: { ' +
+    names.join(', ') +
+    ' } };\n';
   write(root, 'questions/index.ts', registry);
-  write(root, 'questions/selectOneAnswer/index.ts', names.map(name => `export { ${name} } from './${name}';`).join('\n') + '\n');
+  write(
+    root,
+    'questions/selectOneAnswer/index.ts',
+    names.map(name => `export { ${name} } from './${name}';`).join('\n') + '\n',
+  );
   const expected = new Map();
   for (let i = 0; i < names.length; i++) {
     const name = names[i];
@@ -35,12 +54,17 @@ function makeFixture(root) {
       const group = j < 3 ? ['prompt', 'hintText', 'explanationText'][j] : j === 3 ? 'correct' : 'incorrect';
       const folder = j < 3 ? field : group;
       const full = `${dir}/${folder}/${field}/index.ts`;
-      const translations = Object.fromEntries(['uk', 'en', 'pl', 'qm'].map(locale =>
-        [locale, `${locale} exact value ${i + 1}/${j + 1}`]));
+      const translations = Object.fromEntries(
+        ['uk', 'en', 'pl', 'qm'].map(locale => [locale, `${locale} exact value ${i + 1}/${j + 1}`]),
+      );
       expected.set(`${name}.${field}`, { id: uuid(100 + i * 10 + j), translations, path: full });
-      write(root, full, `import { defineText } from '@svitlo/engine/build';\nexport const ${field} = defineText<"${field}", string>({\n` +
-        `  id: '${uuid(100 + i * 10 + j)}', slug: '${field}', type: 'text', params: {},\n` +
-        `  locale: { value: ${JSON.stringify(translations)} }\n});\n`);
+      write(
+        root,
+        full,
+        `import { defineText } from '@svitlo/engine/build';\nexport const ${field} = defineText<"${field}", string>({\n` +
+          `  id: '${uuid(100 + i * 10 + j)}', slug: '${field}', type: 'text', params: {},\n` +
+          `  locale: { value: ${JSON.stringify(translations)} }\n});\n`,
+      );
       imports.push(`import { ${field} } from './${name}/${folder}/${field}';`);
       items[field] = field;
     }
@@ -55,24 +79,46 @@ function makeFixture(root) {
     distractors: { items: {}, order: [] },
   },
 };`;
-    write(root, `questions/selectOneAnswer/${name}.ts`, "import { defineSelectOneAnswer } from '@svitlo/engine/build';\n" +
-      imports.join('\n') + '\n' + content + '\n' +
-      `export const ${name} = defineSelectOneAnswer<"${name}", typeof content, string>({\n` +
-      `id: '${uuid(i + 1)}', slug: '${name}', type: 'selectOneAnswer',\n` +
-      `params: {assessmentMethod: 'classification', restrictions: []}, locale: {}, content });\n`);
+    write(
+      root,
+      `questions/selectOneAnswer/${name}.ts`,
+      "import { defineSelectOneAnswer } from '@svitlo/engine/build';\n" +
+        imports.join('\n') +
+        '\n' +
+        content +
+        '\n' +
+        `export const ${name} = defineSelectOneAnswer<"${name}", typeof content, string>({\n` +
+        `id: '${uuid(i + 1)}', slug: '${name}', type: 'selectOneAnswer',\n` +
+        `params: {assessmentMethod: 'classification', restrictions: []}, locale: {}, content });\n`,
+    );
   }
-  write(root, 'sections/safeSkyChoices/index.ts', "import { defineQuizSection } from '@svitlo/engine/build';\n" +
-    "import { quizIntro } from './quizIntro';\nconst content = { items: { quizIntro }, order: ['quizIntro'] };\n" +
-    "export const safeSkyChoices = defineQuizSection< 'safeSkyChoices', typeof content.items, string>({\n" +
-    `id: '${uuid(90)}', slug: 'safeSkyChoices', type: 'quiz',\n` +
-    `params: { selection: {mode: 'all', questionIds: [${names.slice(0, 3).map((_, i) => `'${uuid(i + 1)}'`).join(', ')}], shuffle: false} },\n` +
-    "locale: { title: {uk: 'Заголовок', en: 'Heading', pl: 'Nagłówek', qm: 'Başlıq'},\n" +
-    "navigationLabel: {uk: 'Навігація', en: 'Navigation', pl: 'Nawigacja', qm: 'Yol'} }, content });\n");
-  write(root, 'sections/safeSkyChoices/quizIntro/index.ts', "import { defineMarkdown, readMarkdown } from '@svitlo/engine/build';\n" +
-    `export const quizIntro = defineMarkdown({id: '${uuid(91)}', slug:'quizIntro', type:'markdown',\n` +
-    " params:{}, locale: { value: readMarkdown(import.meta.url, ['uk','en','pl','qm']) }});\n");
-  for (const locale of ['uk', 'en', 'pl', 'qm']) write(root,
-    `sections/safeSkyChoices/quizIntro/${locale}.md`, `# ${locale} quiz introduction\n\n*${locale} accessible guidance*\n`);
+  write(
+    root,
+    'sections/safeSkyChoices/index.ts',
+    "import { defineQuizSection } from '@svitlo/engine/build';\n" +
+      "import { quizIntro } from './quizIntro';\nconst content = { items: { quizIntro }, order: ['quizIntro'] };\n" +
+      "export const safeSkyChoices = defineQuizSection< 'safeSkyChoices', typeof content.items, string>({\n" +
+      `id: '${uuid(90)}', slug: 'safeSkyChoices', type: 'quiz',\n` +
+      `params: { selection: {mode: 'all', questionIds: [${names
+        .slice(0, 3)
+        .map((_, i) => `'${uuid(i + 1)}'`)
+        .join(', ')}], shuffle: false} },\n` +
+      "locale: { title: {uk: 'Заголовок', en: 'Heading', pl: 'Nagłówek', qm: 'Başlıq'},\n" +
+      "navigationLabel: {uk: 'Навігація', en: 'Navigation', pl: 'Nawigacja', qm: 'Yol'} }, content });\n",
+  );
+  write(
+    root,
+    'sections/safeSkyChoices/quizIntro/index.ts',
+    "import { defineMarkdown, readMarkdown } from '@svitlo/engine/build';\n" +
+      `export const quizIntro = defineMarkdown({id: '${uuid(91)}', slug:'quizIntro', type:'markdown',\n` +
+      " params:{}, locale: { value: readMarkdown(import.meta.url, ['uk','en','pl','qm']) }});\n",
+  );
+  for (const locale of ['uk', 'en', 'pl', 'qm'])
+    write(
+      root,
+      `sections/safeSkyChoices/quizIntro/${locale}.md`,
+      `# ${locale} quiz introduction\n\n*${locale} accessible guidance*\n`,
+    );
   return expected;
 }
 function fixture(callback) {
@@ -81,11 +127,20 @@ function fixture(callback) {
     const expected = makeFixture(root);
     const output = path.join(root, '.agent-ci-artifacts');
     const manifest = { generated: [], failures: [], sourceCommit: '1'.repeat(40) };
-    const run = (languages = ['en', 'pl', 'qm']) => generateQuestionReviewArtifacts({
-      root, output, packageName: 'content/astronomy', lessonId, languages, manifest, saveManifest() {},
-    });
+    const run = (languages = ['en', 'pl', 'qm']) =>
+      generateQuestionReviewArtifacts({
+        root,
+        output,
+        packageName: 'content/astronomy',
+        lessonId,
+        languages,
+        manifest,
+        saveManifest() {},
+      });
     return callback({ root, output, manifest, expected, run });
-  } finally { fs.rmSync(root, { recursive: true, force: true }); }
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
 }
 
 test('modular bank preserves all five Questions, 35 Text fields and three Quiz fields for every target locale', () =>
@@ -129,36 +184,60 @@ test('missing translation yields visible marker and reviewReady=false (without f
   }));
 
 for (const [name, mutate, pattern] of [
-  ['broken imported Text module', root => fs.rmSync(sourceRoot(root) + '/questions/selectOneAnswer/identifyUnsafeOptics/prompt/prompt/index.ts'), /Unresolved canonical import/],
-  ['missing Quiz Markdown', root => fs.rmSync(sourceRoot(root) + '/sections/safeSkyChoices/quizIntro/pl.md'), /Unresolved canonical import/],
-  ['duplicate ContentBlock UUID', root => {
-    const filename = sourceRoot(root) + '/questions/selectOneAnswer/identifyUnsafeOptics/hintText/hintText/index.ts';
-    const data = fs.readFileSync(filename, 'utf8');
-    fs.writeFileSync(filename, data.replace(uuid(101), uuid(100)));
-  }, /Duplicate UUID/],
-  ['invalid answer order', root => {
-    const filename = sourceRoot(root) + '/questions/selectOneAnswer/identifyUnsafeOptics.ts';
-    fs.writeFileSync(filename, fs.readFileSync(filename, 'utf8').replace("order: ['correctChoice']", 'order: []'));
-  }, /Invalid ordered Question collection/],
-  ['unsafe imported runtime', root => {
-    const filename = sourceRoot(root) + '/questions/selectOneAnswer/identifyUnsafeOptics.ts';
-    fs.writeFileSync(filename, fs.readFileSync(filename, 'utf8').replace("./identifyUnsafeOptics/prompt/prompt'", "../../../outside'"));
-  }, /Unsupported runtime import|Unresolved canonical import|Import escapes owned source tree/],
+  [
+    'broken imported Text module',
+    root => fs.rmSync(sourceRoot(root) + '/questions/selectOneAnswer/identifyUnsafeOptics/prompt/prompt/index.ts'),
+    /Unresolved canonical import/,
+  ],
+  [
+    'missing Quiz Markdown',
+    root => fs.rmSync(sourceRoot(root) + '/sections/safeSkyChoices/quizIntro/pl.md'),
+    /Unresolved canonical import/,
+  ],
+  [
+    'duplicate ContentBlock UUID',
+    root => {
+      const filename = sourceRoot(root) + '/questions/selectOneAnswer/identifyUnsafeOptics/hintText/hintText/index.ts';
+      const data = fs.readFileSync(filename, 'utf8');
+      fs.writeFileSync(filename, data.replace(uuid(101), uuid(100)));
+    },
+    /Duplicate UUID/,
+  ],
+  [
+    'invalid answer order',
+    root => {
+      const filename = sourceRoot(root) + '/questions/selectOneAnswer/identifyUnsafeOptics.ts';
+      fs.writeFileSync(filename, fs.readFileSync(filename, 'utf8').replace("order: ['correctChoice']", 'order: []'));
+    },
+    /Invalid ordered Question collection/,
+  ],
+  [
+    'unsafe imported runtime',
+    root => {
+      const filename = sourceRoot(root) + '/questions/selectOneAnswer/identifyUnsafeOptics.ts';
+      fs.writeFileSync(
+        filename,
+        fs.readFileSync(filename, 'utf8').replace("./identifyUnsafeOptics/prompt/prompt'", "../../../outside'"),
+      );
+    },
+    /Unsupported runtime import|Unresolved canonical import|Import escapes owned source tree/,
+  ],
 ]) {
-  test('fail-closed: ' + name, () => fixture(({ root, run, manifest }) => {
-    mutate(root);
-    run(['pl']);
-    assert.equal(manifest.generated.length, 0);
-    assert.equal(manifest.failures.length, 1);
-    assert.match(manifest.failures[0].error, pattern);
-  }));
+  test('fail-closed: ' + name, () =>
+    fixture(({ root, run, manifest }) => {
+      mutate(root);
+      run(['pl']);
+      assert.equal(manifest.generated.length, 0);
+      assert.equal(manifest.failures.length, 1);
+      assert.match(manifest.failures[0].error, pattern);
+    }),
+  );
 }
 
 test('legacy flat Question entries fail instead of silently being accepted', () => {
-  fixture(({root,manifest,run}) => {
+  fixture(({ root, manifest, run }) => {
     const type = path.join(sourceRoot(root), 'questions/selectOneAnswer');
-    fs.renameSync(path.join(type, names[0] + '.ts'),
-      path.join(sourceRoot(root), 'questions', names[0] + '.ts'));
+    fs.renameSync(path.join(type, names[0] + '.ts'), path.join(sourceRoot(root), 'questions', names[0] + '.ts'));
     run(['en']);
     assert.equal(manifest.generated.length, 0);
     assert.match(manifest.failures[0].error, /Legacy|unregistered|Question|Unresolved canonical import/);

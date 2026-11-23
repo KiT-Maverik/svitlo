@@ -62,7 +62,9 @@ describe('Video content block', () => {
 
   it('retains an accessible label without an optional visible title', () => {
     setOnline(true);
-    const { container } = render(<Video messages={enUiKitMessages.video} {...response} locale={{ ...response.locale, title: undefined }} />);
+    const { container } = render(
+      <Video messages={enUiKitMessages.video} {...response} locale={{ ...response.locale, title: undefined }} />,
+    );
     expect(container.querySelector('video')).toHaveAttribute('aria-label', 'Приклад відео');
     expect(container.querySelector('figcaption')).toBeNull();
   });
@@ -73,7 +75,13 @@ describe('Video content block', () => {
     failVideo(container.querySelector('video')!, 4);
     expect(screen.getByRole('alert')).toHaveTextContent('Відео не знайдено');
 
-    rerender(<Video messages={enUiKitMessages.video} {...response} locale={{ ...response.locale, fileLocation: '/other.mp4' }} />);
+    rerender(
+      <Video
+        messages={enUiKitMessages.video}
+        {...response}
+        locale={{ ...response.locale, fileLocation: '/other.mp4' }}
+      />,
+    );
     failVideo(container.querySelector('video')!, 3);
     expect(screen.getByRole('alert')).toHaveTextContent('Помилка відтворення');
   });
@@ -105,14 +113,22 @@ describe('Video fallback lifecycle', () => {
     failVideo(container.querySelector('video')!, 4);
     expect(screen.getByRole('alert')).toBeInTheDocument();
 
-    rerender(<Video messages={enUiKitMessages.video} {...response} locale={{ ...response.locale, fileLocation: '/another.mp4' }} />);
+    rerender(
+      <Video
+        messages={enUiKitMessages.video}
+        {...response}
+        locale={{ ...response.locale, fileLocation: '/another.mp4' }}
+      />,
+    );
     expect(screen.queryByRole('alert')).toBeNull();
     expect(container.querySelector('video')).toHaveAttribute('src', '/another.mp4');
   });
 
   it('shows default English fallback copy when no custom fallback exists', () => {
     setOnline(true);
-    const { container } = render(<Video messages={enUiKitMessages.video} {...response} locale={{ ...response.locale, fallback: undefined }} />);
+    const { container } = render(
+      <Video messages={enUiKitMessages.video} {...response} locale={{ ...response.locale, fallback: undefined }} />,
+    );
     failVideo(container.querySelector('video')!, 4);
     expect(screen.getByRole('alert')).toHaveTextContent('This video is unavailable.');
     expect(screen.getByRole('button', { name: 'Try again' })).toBeVisible();
