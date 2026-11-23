@@ -52,7 +52,8 @@ const validConfig = {
   slug: 'sampleStandard',
   name: 'Зразковий навчальний стандарт',
   description: {
-    methodological: 'A synthetic framework used to test the classification of learning goals; it is not an official policy or evidence of course compliance.',
+    methodological:
+      'A synthetic framework used to test the classification of learning goals; it is not an official policy or evidence of course compliance.',
     frontend,
   },
   params: {
@@ -144,48 +145,118 @@ describe('Configurators', () => {
       });
 
       test('all canonical locales are required even for a one-language publication', () => {
-        assert.throws(invalidPublication(value => {
-          value.description.frontend = { uk: 'Опис' } as never;
-        }));
-        assert.throws(invalidPublication(value => {
-          value.description.frontend.en = '   ';
-        }));
-        assert.throws(invalidPublication(value => {
-          value.description.frontend.zh = '';
-        }));
+        assert.throws(
+          invalidPublication(value => {
+            value.description.frontend = { uk: 'Опис' } as never;
+          }),
+        );
+        assert.throws(
+          invalidPublication(value => {
+            value.description.frontend.en = '   ';
+          }),
+        );
+        assert.throws(
+          invalidPublication(value => {
+            value.description.frontend.zh = '';
+          }),
+        );
       });
 
       test('invalid identity, invariant text, and unexpected configuration fields fail', () => {
-        assert.throws(invalidPublication(value => { value.id = 'not-a-uuid'; }));
-        assert.throws(invalidPublication(value => { value.slug = 'Invalid-Slug'; }));
-        assert.throws(invalidPublication(value => { value.name = ' '; }));
-        assert.throws(invalidPublication(value => { value.name = { en: 'Name' } as never; }));
-        assert.throws(invalidPublication(value => { value.description.methodological = '  '; }));
-        assert.throws(invalidPublication(value => {
-          value.description.methodological = { en: 'Translated methodology' } as never;
-        }));
-        assert.throws(invalidPublication(value => {
-          (value as EducationStandard_Config & { disabled: true }).disabled = true;
-        }));
-        assert.throws(invalidPublication(value => {
-          value.params = { ...value.params, disabled: true } as never;
-        }));
+        assert.throws(
+          invalidPublication(value => {
+            value.id = 'not-a-uuid';
+          }),
+        );
+        assert.throws(
+          invalidPublication(value => {
+            value.slug = 'Invalid-Slug';
+          }),
+        );
+        assert.throws(
+          invalidPublication(value => {
+            value.name = ' ';
+          }),
+        );
+        assert.throws(
+          invalidPublication(value => {
+            value.name = { en: 'Name' } as never;
+          }),
+        );
+        assert.throws(
+          invalidPublication(value => {
+            value.description.methodological = '  ';
+          }),
+        );
+        assert.throws(
+          invalidPublication(value => {
+            value.description.methodological = { en: 'Translated methodology' } as never;
+          }),
+        );
+        assert.throws(
+          invalidPublication(value => {
+            (value as EducationStandard_Config & { disabled: true }).disabled = true;
+          }),
+        );
+        assert.throws(
+          invalidPublication(value => {
+            value.params = { ...value.params, disabled: true } as never;
+          }),
+        );
       });
 
       test('country lists, age/grade ranges and optional source metadata are validated', () => {
-        assert.throws(invalidPublication(value => { value.params = { countries: ['ua'] }; }));
-        assert.throws(invalidPublication(value => { value.params = { countries: ['UA', 'UA'] }; }));
-        assert.throws(invalidPublication(value => { value.params = { age: { min: 13, max: 6 } }; }));
-        assert.throws(invalidPublication(value => { value.params = { age: { min: -1, max: 10 } }; }));
-        assert.throws(invalidPublication(value => { value.params = { grade: { min: 6, max: 2 } }; }));
-        assert.throws(invalidPublication(value => { value.params = { grade: { min: 1.5, max: 3 } }; }));
-        assert.throws(invalidPublication(value => { value.params = { sourceUrl: 'not-a-url' }; }));
-        assert.throws(invalidPublication(value => { value.params = { sourceUrl: 'javascript:alert(1)' }; }));
-        assert.throws(invalidPublication(value => { value.params = { nameLanguage: 'not a tag' }; }));
-        assert.doesNotThrow(() => defineEducationStandard({
-          ...validConfig,
-          params: undefined,
-        }).build.props({ languages: ['en'] }));
+        assert.throws(
+          invalidPublication(value => {
+            value.params = { countries: ['ua'] };
+          }),
+        );
+        assert.throws(
+          invalidPublication(value => {
+            value.params = { countries: ['UA', 'UA'] };
+          }),
+        );
+        assert.throws(
+          invalidPublication(value => {
+            value.params = { age: { min: 13, max: 6 } };
+          }),
+        );
+        assert.throws(
+          invalidPublication(value => {
+            value.params = { age: { min: -1, max: 10 } };
+          }),
+        );
+        assert.throws(
+          invalidPublication(value => {
+            value.params = { grade: { min: 6, max: 2 } };
+          }),
+        );
+        assert.throws(
+          invalidPublication(value => {
+            value.params = { grade: { min: 1.5, max: 3 } };
+          }),
+        );
+        assert.throws(
+          invalidPublication(value => {
+            value.params = { sourceUrl: 'not-a-url' };
+          }),
+        );
+        assert.throws(
+          invalidPublication(value => {
+            value.params = { sourceUrl: 'javascript:alert(1)' };
+          }),
+        );
+        assert.throws(
+          invalidPublication(value => {
+            value.params = { nameLanguage: 'not a tag' };
+          }),
+        );
+        assert.doesNotThrow(() =>
+          defineEducationStandard({
+            ...validConfig,
+            params: undefined,
+          }).build.props({ languages: ['en'] }),
+        );
       });
 
       test('publication request rejects unknown, duplicated and empty language scopes', () => {

@@ -67,7 +67,13 @@ describe('Image content block', () => {
 
   it('preserves external image URLs unless their host is configured for optimization', () => {
     setOnline(true);
-    render(<Image messages={enUiKitMessages.image} {...response} locale={{ ...response.locale, src: 'https://cdn.example.com/diagram.png' }} />);
+    render(
+      <Image
+        messages={enUiKitMessages.image}
+        {...response}
+        locale={{ ...response.locale, src: 'https://cdn.example.com/diagram.png' }}
+      />,
+    );
     expect(screen.getByAltText('Схема руху світла')).toHaveAttribute('src', 'https://cdn.example.com/diagram.png');
   });
 
@@ -127,14 +133,22 @@ describe('Image fallback lifecycle', () => {
     fireEvent.error(screen.getByAltText('Схема руху світла'));
     expect(screen.getByRole('alert')).toBeInTheDocument();
 
-    rerender(<Image messages={enUiKitMessages.image} {...response} locale={{ ...response.locale, src: '/alternate-diagram.png' }} />);
+    rerender(
+      <Image
+        messages={enUiKitMessages.image}
+        {...response}
+        locale={{ ...response.locale, src: '/alternate-diagram.png' }}
+      />,
+    );
     expect(screen.queryByRole('alert')).toBeNull();
     expect(screen.getByAltText('Схема руху світла').getAttribute('src')).toContain('alternate-diagram.png');
   });
 
   it('uses its built-in fallback when localized overrides are absent', () => {
     setOnline(true);
-    render(<Image messages={enUiKitMessages.image} {...response} locale={{ ...response.locale, fallback: undefined }} />);
+    render(
+      <Image messages={enUiKitMessages.image} {...response} locale={{ ...response.locale, fallback: undefined }} />,
+    );
     fireEvent.error(screen.getByAltText('Схема руху світла'));
     expect(screen.getByRole('alert')).toHaveTextContent('This image is unavailable.');
     expect(screen.getByRole('button', { name: 'Try again' })).toBeVisible();

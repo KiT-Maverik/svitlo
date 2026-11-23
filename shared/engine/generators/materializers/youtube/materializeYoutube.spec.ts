@@ -9,9 +9,11 @@ const id = 'c2cc84f3-f057-493d-b1b6-1880aad8023b';
 const productionLanguages: CourseWorkflowStage1Languages = { document: 'uk', planned: ['uk', 'en'] };
 const options = { documentLanguage: productionLanguages.document, plannedLanguages: productionLanguages.planned };
 const valid = () => ({
-  id, slug: 'watch' as const, type: 'youtube' as const, params: { mode: 'link' as const },
-  locale: { href: 'https://www.youtube.com/watch?v=abc',
-    label: { uk: 'Переглянути', en: 'English-only' } },
+  id,
+  slug: 'watch' as const,
+  type: 'youtube' as const,
+  params: { mode: 'link' as const },
+  locale: { href: 'https://www.youtube.com/watch?v=abc', label: { uk: 'Переглянути', en: 'English-only' } },
 });
 
 test('youtube: exact source, imports, locale pruning, deterministic non-writing plan', () => {
@@ -27,9 +29,16 @@ test('youtube: exact source, imports, locale pruning, deterministic non-writing 
   assert.match(module, /defineYoutube<"watch", typeof languages>/);
   assert(module.includes(id), 'original immutable UUID retained');
   assert(!module.includes('English-only'), 'unreviewed locale is not materialized');
-  const parsed = ts.transpileModule(module, { fileName: 'index.ts', reportDiagnostics: true,
-    compilerOptions: { target: ts.ScriptTarget.ES2022, module: ts.ModuleKind.ESNext } });
-  assert.equal((parsed.diagnostics ?? []).filter(d => d.category === ts.DiagnosticCategory.Error).length, 0, 'emitted TS must parse');
+  const parsed = ts.transpileModule(module, {
+    fileName: 'index.ts',
+    reportDiagnostics: true,
+    compilerOptions: { target: ts.ScriptTarget.ES2022, module: ts.ModuleKind.ESNext },
+  });
+  assert.equal(
+    (parsed.diagnostics ?? []).filter(d => d.category === ts.DiagnosticCategory.Error).length,
+    0,
+    'emitted TS must parse',
+  );
   assert(one.diagnostics.some(item => item.code === 'pending-locales'));
   assert(one.diagnostics.every(item => item.severity === 'warning'));
   assert.match(module, /youtube.com/);
@@ -39,30 +48,42 @@ test('youtube: exact source, imports, locale pruning, deterministic non-writing 
 });
 
 test('youtube: missing mandatory Config input must not emit an invalid defineYoutube call', () => {
-  assert.throws(() => materializeYoutube(
-    { id, slug: 'watch', type: 'youtube', params: {}, locale: {} }, { documentLanguage: 'uk' },
-  ), /Cannot materialize type-valid Youtube Config.*TODO \(BLOCKER\)/);
+  assert.throws(
+    () =>
+      materializeYoutube({ id, slug: 'watch', type: 'youtube', params: {}, locale: {} }, { documentLanguage: 'uk' }),
+    /Cannot materialize type-valid Youtube Config.*TODO \(BLOCKER\)/,
+  );
 });
 
 test('youtube: refuses unsafe identity or unsupported source language', () => {
-  assert.throws(() => materializeYoutube({ ...valid(), id: 'invalid' }, { documentLanguage: 'uk' }),
-    /immutable, non-nil UUID/);
-  assert.throws(() => materializeYoutube(valid(), { documentLanguage: 'en', plannedLanguages: ['uk'] }),
-    /missing source language/);
-  assert.throws(() => materializeYoutube({ ...valid(), slug: '../bad' }, { documentLanguage: 'uk' }),
-    /unsafe or missing slug/);
+  assert.throws(
+    () => materializeYoutube({ ...valid(), id: 'invalid' }, { documentLanguage: 'uk' }),
+    /immutable, non-nil UUID/,
+  );
+  assert.throws(
+    () => materializeYoutube(valid(), { documentLanguage: 'en', plannedLanguages: ['uk'] }),
+    /missing source language/,
+  );
+  assert.throws(
+    () => materializeYoutube({ ...valid(), slug: '../bad' }, { documentLanguage: 'uk' }),
+    /unsafe or missing slug/,
+  );
 });
 
 test('youtube: composed nested source paths and Course language handoff', () => {
   const directory = 'sections/intro/content/items/youtube';
   const nested = materializeYoutube(valid(), {
-    ...options, directory, languagesImport: '../../../../../languages',
+    ...options,
+    directory,
+    languagesImport: '../../../../../languages',
     production: { specification: 'Reviewed source brief' },
   });
   assert(nested.files.every(file => file.path.startsWith(directory + '/')));
   assert(nested.files.some(file => file.path === directory + '/index.ts'));
   assert(nested.files.some(file => file.path === directory + '/specification.md'));
-  assert(nested.files.find(file => file.path.endsWith('/index.ts'))?.content.includes('from "../../../../../languages"'));
+  assert(
+    nested.files.find(file => file.path.endsWith('/index.ts'))?.content.includes('from "../../../../../languages"'),
+  );
   assert.throws(() => materializeYoutube(valid(), { ...options, directory: '../escape' }), /unsafe output path/);
   assert.throws(() => materializeYoutube(valid(), { ...options, directory }), /explicit root languages module/);
 });

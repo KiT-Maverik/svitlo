@@ -5,8 +5,14 @@
  * No implicit Playground/content fallback or authoring-source imports.
  */
 import {
-  existsSync, readFileSync, rmSync, mkdirSync, writeFileSync, readdirSync,
-  copyFileSync, lstatSync,
+  existsSync,
+  readFileSync,
+  rmSync,
+  mkdirSync,
+  writeFileSync,
+  readdirSync,
+  copyFileSync,
+  lstatSync,
 } from 'node:fs';
 import { resolve, join, relative, isAbsolute, sep, dirname, parse } from 'node:path';
 import { spawnSync } from 'node:child_process';
@@ -18,16 +24,23 @@ const selected = resolveSelectedTextbook();
 const outputRoot = join(webRoot, 'public');
 const ownedRoot = join(outputRoot, '.svitlo');
 const stagingParent = join(webRoot, '.test-build');
-const legacyResource = /^(?:data\/(?:pages\/(?:skillAnalytics|lessons|courses)|(?:skills|lessons|courses|questions|flashcards|assessments))|generated\/skills|textbooks\/[a-z][a-z0-9-]*)\/[a-zA-Z0-9_./-]+$/;
+const legacyResource =
+  /^(?:data\/(?:pages\/(?:skillAnalytics|lessons|courses)|(?:skills|lessons|courses|questions|flashcards|assessments))|generated\/skills|textbooks\/[a-z][a-z0-9-]*)\/[a-zA-Z0-9_./-]+$/;
 
-function fail(message) { throw new Error('Web content selection: ' + message); }
+function fail(message) {
+  throw new Error('Web content selection: ' + message);
+}
 function run(command, args, cwd = repoRoot) {
   const result = spawnSync(command, args, { cwd, stdio: 'inherit', env: process.env });
-  if (result.error || result.status !== 0) fail(command + ' ' + args.join(' ') + ' failed (' + (result.error?.message ?? result.status) + ')');
+  if (result.error || result.status !== 0)
+    fail(command + ' ' + args.join(' ') + ' failed (' + (result.error?.message ?? result.status) + ')');
 }
 function safeName(name) {
-  return typeof name === 'string' && legacyResource.test(name) &&
-    name.split('/').every(part => part !== '.' && part !== '..' && part.length > 0);
+  return (
+    typeof name === 'string' &&
+    legacyResource.test(name) &&
+    name.split('/').every(part => part !== '.' && part !== '..' && part.length > 0)
+  );
 }
 function safeFile(root, name) {
   if (!safeName(name)) fail('unsafe published resource path: ' + String(name));
@@ -42,10 +55,18 @@ function safeFile(root, name) {
 }
 function manifestFiles(file, identity) {
   let manifest;
-  try { manifest = JSON.parse(readFileSync(file, 'utf8')); }
-  catch (error) { fail('missing or malformed ownership manifest ' + file + ': ' + error.message); }
-  if (manifest?.version !== 1 || manifest.textbook !== identity || !Array.isArray(manifest.files) ||
-      manifest.files.some(name => !safeName(name)) || new Set(manifest.files).size !== manifest.files.length) {
+  try {
+    manifest = JSON.parse(readFileSync(file, 'utf8'));
+  } catch (error) {
+    fail('missing or malformed ownership manifest ' + file + ': ' + error.message);
+  }
+  if (
+    manifest?.version !== 1 ||
+    manifest.textbook !== identity ||
+    !Array.isArray(manifest.files) ||
+    manifest.files.some(name => !safeName(name)) ||
+    new Set(manifest.files).size !== manifest.files.length
+  ) {
     fail('invalid publication manifest for ' + identity);
   }
   return manifest.files;
@@ -71,11 +92,15 @@ function validateStaged(staged) {
       try {
         const value = JSON.parse(readFileSync(file, 'utf8'));
         if (!value || typeof value !== 'object' || Array.isArray(value)) throw Error('expected JSON object');
-      } catch (error) { fail('invalid published JSON ' + name + ': ' + error.message); }
+      } catch (error) {
+        fail('invalid published JSON ' + name + ': ' + error.message);
+      }
     }
   }
   // A published locale requires the matching base. Entire resource categories are optional.
-  for (const name of names.filter(n => /^data\/(?:skills|courses|lessons)\//.test(n) && n.endsWith('.json') && !n.endsWith('/base.json'))) {
+  for (const name of names.filter(
+    n => /^data\/(?:skills|courses|lessons)\//.test(n) && n.endsWith('.json') && !n.endsWith('/base.json'),
+  )) {
     const base = name.slice(0, name.lastIndexOf('/') + 1) + 'base.json';
     if (!names.includes(base)) fail('localized resource has no published base: ' + name);
   }
@@ -110,7 +135,11 @@ mkdirSync(stagingParent, { recursive: true });
 const staging = mkdtempSync(join(stagingParent, 'web-content-'));
 try {
   // The same Publish CLI is used for real production package deployment.
-  run(process.execPath, [join(selected.root, selected.manifest.bin[selected.cli]), 'publish', '--output', staging], selected.root);
+  run(
+    process.execPath,
+    [join(selected.root, selected.manifest.bin[selected.cli]), 'publish', '--output', staging],
+    selected.root,
+  );
   const names = validateStaged(staging);
   // UI Kit messages are host-owned and independent of the selected content package.
   const localeOutput = join(stagingParent, 'ui-kit-' + process.pid);
@@ -135,7 +164,10 @@ try {
     copyFileSync(safeFile(staging, name), destination);
   }
   mkdirSync(ownedRoot, { recursive: true });
-  copyFileSync(join(staging, '.svitlo', 'publish-' + selected.id + '.json'), join(ownedRoot, 'publish-' + selected.id + '.json'));
+  copyFileSync(
+    join(staging, '.svitlo', 'publish-' + selected.id + '.json'),
+    join(ownedRoot, 'publish-' + selected.id + '.json'),
+  );
   rmSync(join(outputRoot, 'data/uiKit'), { recursive: true, force: true });
   mkdirSync(join(outputRoot, 'data/uiKit'), { recursive: true });
   for (const directory of ['components', 'assessmentMethods', 'educationStandards']) {
@@ -154,20 +186,41 @@ try {
   const generated = join(webRoot, 'src/generated');
   mkdirSync(generated, { recursive: true });
   const source = '// Generated by prepare-textbook.mjs for explicit SVITLO_TEXTBOOK=' + selected.name + '.\n';
-  writeFileSync(join(generated, 'selectedTextbook.json'), JSON.stringify({
-    name: selected.name, id: selected.id, hasScenes: selected.hasScenes, hasStyles: selected.hasStyles,
-  }, null, 2) + '\n');
-  writeFileSync(join(generated, 'textbook.ts'), source +
-    "import type { TextbookDescriptor } from '@/lib/textbookDescriptor';\n" +
-    "import { textbook as selectedTextbook } from '" + selected.name + "';\n" +
-    'export const textbook: TextbookDescriptor = selectedTextbook;\n');
-  writeFileSync(join(generated, 'textbookScenes.ts'), source + (selected.hasScenes ?
-    "export { resolveScene, preloadScene } from '" + selected.name + "/scenes';\n" :
-    "import type { SceneRegistry } from '@svitlo/ui-kit';\n" +
-    "export const resolveScene: SceneRegistry = () => undefined;\n" +
-    "export async function preloadScene(id: string): Promise<void> { throw new Error('No Scene registry in selected package: ' + id); }\n"));
-  writeFileSync(join(generated, 'textbookStyles.ts'), source +
-    (selected.hasStyles ? "import '" + selected.name + "/styles';\n" : 'export {};\n'));
+  writeFileSync(
+    join(generated, 'selectedTextbook.json'),
+    JSON.stringify(
+      {
+        name: selected.name,
+        id: selected.id,
+        hasScenes: selected.hasScenes,
+        hasStyles: selected.hasStyles,
+      },
+      null,
+      2,
+    ) + '\n',
+  );
+  writeFileSync(
+    join(generated, 'textbook.ts'),
+    source +
+      "import type { TextbookDescriptor } from '@/lib/textbookDescriptor';\n" +
+      "import { textbook as selectedTextbook } from '" +
+      selected.name +
+      "';\n" +
+      'export const textbook: TextbookDescriptor = selectedTextbook;\n',
+  );
+  writeFileSync(
+    join(generated, 'textbookScenes.ts'),
+    source +
+      (selected.hasScenes
+        ? "export { resolveScene, preloadScene } from '" + selected.name + "/scenes';\n"
+        : "import type { SceneRegistry } from '@svitlo/ui-kit';\n" +
+          'export const resolveScene: SceneRegistry = () => undefined;\n' +
+          "export async function preloadScene(id: string): Promise<void> { throw new Error('No Scene registry in selected package: ' + id); }\n"),
+  );
+  writeFileSync(
+    join(generated, 'textbookStyles.ts'),
+    source + (selected.hasStyles ? "import '" + selected.name + "/styles';\n" : 'export {};\n'),
+  );
   console.log('Prepared explicitly selected ' + selected.name + ' (' + names.length + ' published resources) for Web');
 } finally {
   rmSync(staging, { recursive: true, force: true });

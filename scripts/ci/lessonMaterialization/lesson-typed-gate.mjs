@@ -25,7 +25,6 @@ function exactlyOne(body, expression, label) {
   return found[0];
 }
 
-
 /** Verify the typed ten-stage Lesson tracker and separate pending Stage 6 checks. */
 export function requireStageSixPending(body) {
   const heading = exactlyOne(body, /^## Lesson stages[ \t]*$/gm, 'Lesson stages heading');
@@ -87,21 +86,22 @@ export function requireStageSixPending(body) {
   return true;
 }
 
-
 export function parseTypedIdentity(body) {
   if (typeof body !== 'string' || body.split(marker).length !== 2)
     throw Error('Exactly one typed Lesson Flow marker required');
-  const fields = single(body, /^- Lesson UUID \/ textbook \/ slug:\s*(.+)$/gm,
-    'Lesson UUID / textbook / slug').replaceAll(String.fromCharCode(96), '').split(/\s+\/\s+/);
+  const fields = single(body, /^- Lesson UUID \/ textbook \/ slug:\s*(.+)$/gm, 'Lesson UUID / textbook / slug')
+    .replaceAll(String.fromCharCode(96), '')
+    .split(/\s+\/\s+/);
   if (fields.length !== 3) throw Error('Typed Lesson identity must contain exactly three fields');
   const [id, pkg, slug] = fields;
-  if (!uuid.test(id || '') || !/^content\/[a-z][a-z0-9-]*$/.test(pkg || '') ||
-      !/^[a-z][A-Za-z0-9]*$/.test(slug || ''))
+  if (!uuid.test(id || '') || !/^content\/[a-z][a-z0-9-]*$/.test(pkg || '') || !/^[a-z][A-Za-z0-9]*$/.test(slug || ''))
     throw Error('Invalid Lesson UUID / textbook / slug');
   const folder = pkg + '/data/lessons/' + id.at(-1) + '/' + id;
   const source = folder + '/index.ts';
-  const recorded = single(body, /^- (?:Source path|Canonical source):\s*(.+)$/gm,
-    'canonical typed source').replaceAll(String.fromCharCode(96), '').split(/\s+\(/)[0].trim();
+  const recorded = single(body, /^- (?:Source path|Canonical source):\s*(.+)$/gm, 'canonical typed source')
+    .replaceAll(String.fromCharCode(96), '')
+    .split(/\s+\(/)[0]
+    .trim();
   if (recorded !== source) throw Error('Lesson source path is not the canonical Stage 2 index.ts');
   const count = body.split(courseMarker).length - 1;
   if (count > 1) throw Error('Duplicate Course Lesson marker');
@@ -121,18 +121,19 @@ export function parseTypedTrigger(event, type, actor) {
   if (!/^[A-Za-z0-9-]+$/.test(actor || '')) throw Error('Invalid actor');
   let number;
   if (type === 'issue_comment') {
-    if (!event.issue?.pull_request || event.comment?.user?.login !== actor ||
-        event.comment?.body !== '/lesson materialize typed')
+    if (
+      !event.issue?.pull_request ||
+      event.comment?.user?.login !== actor ||
+      event.comment?.body !== '/lesson materialize typed'
+    )
       throw Error('Only exact top-level typed Lesson command allowed');
     number = event.issue.number;
   } else if (type === 'workflow_dispatch') {
-    if (event.inputs?.operation !== 'materialize-typed' ||
-        !/^[1-9]\d*$/.test(String(event.inputs?.pr_number ?? '')))
+    if (event.inputs?.operation !== 'materialize-typed' || !/^[1-9]\d*$/.test(String(event.inputs?.pr_number ?? '')))
       throw Error('Invalid typed Lesson dispatch');
     number = Number(event.inputs.pr_number);
   } else throw Error('Unsupported Lesson trigger');
-  if (!Number.isSafeInteger(number) || number < 1 || number > 999999999)
-    throw Error('Invalid Lesson PR number');
+  if (!Number.isSafeInteger(number) || number < 1 || number > 999999999) throw Error('Invalid Lesson PR number');
   return { number, actor };
 }
 
@@ -151,18 +152,19 @@ export function parseReviewEvidence(comments) {
     const blob = single(body, /^Source blob:\s*([a-f0-9]{40})\s*$/gm, 'review blob');
     const verdict = single(body, /^Verdict:\s*(accepted)\s*$/gm, 'review verdict');
     const reviewerContext = single(body, /^Reviewer context:\s*([A-Za-z0-9._/-]+)\s*$/gm, 'reviewer context');
-    const authorContext = stage === 3
-      ? single(body, /^Author context:\s*([A-Za-z0-9._/-]+)\s*$/gm, 'author context')
-      : null;
-    if (!sha.test(commit) || !sha.test(blob) || verdict !== 'accepted' ||
-        !/^[A-Za-z0-9-]+$/.test(comment.user?.login || '') ||
-        (stage === 3 && reviewerContext === authorContext))
+    const authorContext =
+      stage === 3 ? single(body, /^Author context:\s*([A-Za-z0-9._/-]+)\s*$/gm, 'author context') : null;
+    if (
+      !sha.test(commit) ||
+      !sha.test(blob) ||
+      verdict !== 'accepted' ||
+      !/^[A-Za-z0-9-]+$/.test(comment.user?.login || '') ||
+      (stage === 3 && reviewerContext === authorContext)
+    )
       throw Error('Invalid source-pinned review evidence or independence declaration');
-    entries.push({ stage, commit, blob, reviewerContext,
-      actor: comment.user.login, commentId: comment.id });
+    entries.push({ stage, commit, blob, reviewerContext, actor: comment.user.login, commentId: comment.id });
   }
-  if (entries.length !== 3 || [3, 4, 5].some(stage =>
-    entries.filter(item => item.stage === stage).length !== 1))
+  if (entries.length !== 3 || [3, 4, 5].some(stage => entries.filter(item => item.stage === stage).length !== 1))
     throw Error('Three unique accepted Stage 3/4/5 reviews are required');
   return [3, 4, 5].map(stage => entries.find(item => item.stage === stage));
 }
@@ -180,14 +182,14 @@ async function reviewsFor(number, source, head, sourceBlob) {
   for (let i = 0; i < evidence.length; i++) {
     const item = evidence[i];
     await requireActor(item.actor);
-    const entry = await github('contents/' + source.split('/').map(encodeURIComponent).join('/') +
-      '?ref=' + item.commit);
+    const entry = await github(
+      'contents/' + source.split('/').map(encodeURIComponent).join('/') + '?ref=' + item.commit,
+    );
     if (entry?.type !== 'file' || entry.sha !== item.blob)
       throw Error('Stage ' + item.stage + ' evidence does not match reviewed source');
     if (i) {
       const comparison = await github('compare/' + evidence[i - 1].commit + '...' + item.commit);
-      if (!['ahead', 'identical'].includes(comparison?.status))
-        throw Error('Review commits are not in ancestry order');
+      if (!['ahead', 'identical'].includes(comparison?.status)) throw Error('Review commits are not in ancestry order');
     }
   }
   if (evidence[2].commit !== head || evidence[2].blob !== sourceBlob)
@@ -204,81 +206,131 @@ async function courseProvenance(pr, identity, repo) {
   const { parentPr, courseId } = identity.parent;
   if (parentPr === pr.number) throw Error('A Lesson cannot parent itself');
   const parent = await github('pulls/' + parentPr);
-  if (!parent || parent.state !== 'open' || parent.head?.repo?.full_name !== repo ||
-      parent.base?.repo?.full_name !== repo || pr.base?.ref !== parent.head?.ref ||
-      !safeBranch(parent.head?.ref, parent.base?.ref))
+  if (
+    !parent ||
+    parent.state !== 'open' ||
+    parent.head?.repo?.full_name !== repo ||
+    parent.base?.repo?.full_name !== repo ||
+    pr.base?.ref !== parent.head?.ref ||
+    !safeBranch(parent.head?.ref, parent.base?.ref)
+  )
     throw Error('Lesson must target its verified open Course parent branch');
-  if (typeof parent.body !== 'string' ||
-      parent.body.split('<!-- svitlo-course-flow:v1 -->').length !== 2 ||
-      single(parent.body, /^- Course UUID:\s*([a-f0-9-]{36})\s*$/gm, 'parent Course identity') !== courseId ||
-      single(parent.body, /^- Textbook:\s*(content\/[a-z][a-z0-9-]*)\s*$/gm, 'parent textbook') !== identity.pkg)
+  if (
+    typeof parent.body !== 'string' ||
+    parent.body.split('<!-- svitlo-course-flow:v1 -->').length !== 2 ||
+    single(parent.body, /^- Course UUID:\s*([a-f0-9-]{36})\s*$/gm, 'parent Course identity') !== courseId ||
+    single(parent.body, /^- Textbook:\s*(content\/[a-z][a-z0-9-]*)\s*$/gm, 'parent textbook') !== identity.pkg
+  )
     throw Error('Course parent PR identity is incompatible with the Lesson handoff');
-  const handoff = await github('contents/' + identity.source.split('/').map(encodeURIComponent).join('/') +
-    '?ref=' + parent.head.sha);
-  if (handoff?.type !== 'file' || !sha.test(handoff.sha || '') ||
-      !handoff.content || handoff.size > 1024 * 1024)
+  const handoff = await github(
+    'contents/' + identity.source.split('/').map(encodeURIComponent).join('/') + '?ref=' + parent.head.sha,
+  );
+  if (handoff?.type !== 'file' || !sha.test(handoff.sha || '') || !handoff.content || handoff.size > 1024 * 1024)
     throw Error('Course parent lacks the canonical initial Stage 1 Lesson handoff');
   const bytes = Buffer.from(handoff.content.replace(/\s/g, ''), 'base64').toString('utf8');
-  if (!bytes.includes('LessonWorkflowStage1') || !bytes.includes(identity.id) ||
-      !bytes.includes(identity.slug))
+  if (!bytes.includes('LessonWorkflowStage1') || !bytes.includes(identity.id) || !bytes.includes(identity.slug))
     throw Error('Course Stage 1 handoff content does not match Lesson identity');
   return { parentPr, courseId, parentHead: parent.head.sha, handoffBlob: handoff.sha };
 }
 
 export async function inspectTyped(number, expectedHead) {
   const repo = process.env.GITHUB_REPOSITORY;
-  if (!/^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/.test(repo || ''))
-    throw Error('Invalid repository');
+  if (!/^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/.test(repo || '')) throw Error('Invalid repository');
   const pr = await github('pulls/' + number);
-  if (!pr || pr.state !== 'open' || !pr.draft || !sha.test(pr.head?.sha || '') ||
-      pr.head?.repo?.full_name !== repo || pr.base?.repo?.full_name !== repo ||
-      !safeBranch(pr.head?.ref, pr.base?.ref))
+  if (
+    !pr ||
+    pr.state !== 'open' ||
+    !pr.draft ||
+    !sha.test(pr.head?.sha || '') ||
+    pr.head?.repo?.full_name !== repo ||
+    pr.base?.repo?.full_name !== repo ||
+    !safeBranch(pr.head?.ref, pr.base?.ref)
+  )
     throw Error('Open same-repository Draft typed Lesson PR required');
-  if (expectedHead && pr.head.sha !== expectedHead)
-    throw Error('Lesson HEAD advanced; rerun command');
+  if (expectedHead && pr.head.sha !== expectedHead) throw Error('Lesson HEAD advanced; rerun command');
   const identity = parseTypedIdentity(pr.body);
   requireStageSixPending(pr.body);
   if (!/^- \[ \] 10\. Translation Review/m.test(pr.body))
     throw Error('Typed workflow requires ten-stage Lesson tracker');
   const parent = await courseProvenance(pr, identity, repo);
-  const source = await github('contents/' + identity.source.split('/').map(encodeURIComponent).join('/') +
-    '?ref=' + pr.head.sha);
-  if (source?.type !== 'file' || !sha.test(source.sha || '') ||
-      !Number.isSafeInteger(source.size) || source.size < 1 || source.size > 4 * 1024 * 1024)
+  const source = await github(
+    'contents/' + identity.source.split('/').map(encodeURIComponent).join('/') + '?ref=' + pr.head.sha,
+  );
+  if (
+    source?.type !== 'file' ||
+    !sha.test(source.sha || '') ||
+    !Number.isSafeInteger(source.size) ||
+    source.size < 1 ||
+    source.size > 4 * 1024 * 1024
+  )
     throw Error('Reviewed Stage 2 Lesson index.ts missing or oversized');
   const reviews = await reviewsFor(number, identity.source, pr.head.sha, source.sha);
   const again = await github('pulls/' + number);
-  if (again?.head?.sha !== pr.head.sha || again.head.ref !== pr.head.ref ||
-      again.base?.ref !== pr.base?.ref || !again.draft || again.state !== 'open')
+  if (
+    again?.head?.sha !== pr.head.sha ||
+    again.head.ref !== pr.head.ref ||
+    again.base?.ref !== pr.base?.ref ||
+    !again.draft ||
+    again.state !== 'open'
+  )
     throw Error('Lesson PR changed during source/review discovery');
-  return { number, repo, head: pr.head.sha, branch: pr.head.ref, base: pr.base.ref,
-    identity, sourceBlob: source.sha, reviews, parent };
+  return {
+    number,
+    repo,
+    head: pr.head.sha,
+    branch: pr.head.ref,
+    base: pr.base.ref,
+    identity,
+    sourceBlob: source.sha,
+    reviews,
+    parent,
+  };
 }
 
 export function typedPath(filename, identity) {
-  if (typeof filename !== 'string' || filename.length > 500 ||
-      !filename.startsWith(identity.folder + '/') || filename.includes('//') ||
-      filename.includes('..') || filename.includes('\\') || filename.includes('\0'))
+  if (
+    typeof filename !== 'string' ||
+    filename.length > 500 ||
+    !filename.startsWith(identity.folder + '/') ||
+    filename.includes('//') ||
+    filename.includes('..') ||
+    filename.includes('\\') ||
+    filename.includes('\0')
+  )
     return false;
   const relative = filename.slice(identity.folder.length + 1);
-  if (['index.ts', 'workflow.stage2.ts', 'languages.ts', 'methodology.md',
-      'specification.md'].includes(relative)) return true;
-  return /^sections\/(?:[A-Za-z][A-Za-z0-9]*\/){1,22}(?:index\.ts|specification\.md|methodology\.md|markdown\.md|[a-z]{2,3}(?:-[A-Za-z0-9]+)?\.md|code\.[A-Za-z0-9]+)$/.test(relative);
+  if (['index.ts', 'workflow.stage2.ts', 'languages.ts', 'methodology.md', 'specification.md'].includes(relative))
+    return true;
+  return /^sections\/(?:[A-Za-z][A-Za-z0-9]*\/){1,22}(?:index\.ts|specification\.md|methodology\.md|markdown\.md|[a-z]{2,3}(?:-[A-Za-z0-9]+)?\.md|code\.[A-Za-z0-9]+)$/.test(
+    relative,
+  );
 }
 
 async function main() {
-  if (process.argv[2] !== 'resolve' || process.argv.length !== 3)
-    throw Error('Usage: lesson-typed-gate.mjs resolve');
+  if (process.argv[2] !== 'resolve' || process.argv.length !== 3) throw Error('Usage: lesson-typed-gate.mjs resolve');
   const event = JSON.parse(fs.readFileSync(process.env.GITHUB_EVENT_PATH, 'utf8'));
   const action = parseTypedTrigger(event, process.env.GITHUB_EVENT_NAME, process.env.GITHUB_ACTOR);
   await requireActor(action.actor);
   const snapshot = await inspectTyped(action.number);
   const meta = { ...snapshot, actor: action.actor, operation: 'materialize-typed' };
-  fs.appendFileSync(process.env.GITHUB_OUTPUT, 'meta=' +
-    Buffer.from(JSON.stringify(meta)).toString('base64') + '\npr=' + action.number +
-    '\nhead=' + meta.head + '\n');
-  report('Authorized typed Lesson Stage 6.1 for #' + action.number + ', HEAD ' +
-    meta.head + ', reviewed blob ' + meta.sourceBlob);
+  fs.appendFileSync(
+    process.env.GITHUB_OUTPUT,
+    'meta=' +
+      Buffer.from(JSON.stringify(meta)).toString('base64') +
+      '\npr=' +
+      action.number +
+      '\nhead=' +
+      meta.head +
+      '\n',
+  );
+  report(
+    'Authorized typed Lesson Stage 6.1 for #' +
+      action.number +
+      ', HEAD ' +
+      meta.head +
+      ', reviewed blob ' +
+      meta.sourceBlob,
+  );
 }
 if (process.argv[1]?.endsWith('/lesson-typed-gate.mjs')) {
   main().catch(error => {

@@ -6,7 +6,11 @@ export type CarouselSlideSource = ContentBlock_Image_Config | SceneSource;
 export type CarouselSource = Omit<ContentBlock_Carousel_Config, 'slides'> & {
   slides: { items: Record<string, CarouselSlideSource | false>; order: string[] };
 };
-export type CarouselFile = { path: string; content: string; kind: 'typescript' | 'specification' | 'markdown' | 'code' };
+export type CarouselFile = {
+  path: string;
+  content: string;
+  kind: 'typescript' | 'specification' | 'markdown' | 'code';
+};
 export type CarouselDiagnostic = { path: string; code: string; message: string; severity: 'warning' };
 export type CarouselChildResult = { exportName: string; files: CarouselFile[]; diagnostics: CarouselDiagnostic[] };
 export type CarouselContext = {
@@ -19,12 +23,20 @@ export type CarouselContext = {
 const uuid = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i;
 const slug = /^[a-z][a-zA-Z0-9]*$/;
 const locale = /^[a-z]{2}(?:-[A-Z]{2})?$/;
-const reserved = new Set('await break case catch class const continue debugger default delete do else enum export extends false finally for function if import in instanceof new null return super switch this throw true try typeof var void while with yield let static'.split(' '));
+const reserved = new Set(
+  'await break case catch class const continue debugger default delete do else enum export extends false finally for function if import in instanceof new null return super switch this throw true try typeof var void while with yield let static'.split(
+    ' ',
+  ),
+);
 const record = (value: unknown): value is Record<string, unknown> =>
   value !== null && typeof value === 'object' && !Array.isArray(value);
 function safeDir(value: string): string {
   if (value === '') return value;
-  if (typeof value !== 'string' || value.startsWith('/') || value.split('/').some(x => !slug.test(x) || x === 'constructor' || x === '__proto__')) {
+  if (
+    typeof value !== 'string' ||
+    value.startsWith('/') ||
+    value.split('/').some(x => !slug.test(x) || x === 'constructor' || x === '__proto__')
+  ) {
     throw new Error('Carousel: unsafe source directory ' + value);
   }
   return value;
@@ -43,19 +55,34 @@ function expression(value: unknown, path: string, level = 0): string {
   if (value === undefined) return 'undefined';
   if (value === null || typeof value === 'string' || typeof value === 'boolean') return JSON.stringify(value);
   if (typeof value === 'number' && Number.isFinite(value)) return JSON.stringify(value);
-  if (Array.isArray(value)) return '[' + value.map((v, i) => expression(v, path + '[' + i + ']', level + 1)).join(', ') + ']';
-  if (!record(value) || Object.getPrototypeOf(value) !== Object.prototype && Object.getPrototypeOf(value) !== null) {
-    throw new Error(path + ': cannot emit executable/non-plain value; preserve the source expression through its owner');
+  if (Array.isArray(value))
+    return '[' + value.map((v, i) => expression(v, path + '[' + i + ']', level + 1)).join(', ') + ']';
+  if (!record(value) || (Object.getPrototypeOf(value) !== Object.prototype && Object.getPrototypeOf(value) !== null)) {
+    throw new Error(
+      path + ': cannot emit executable/non-plain value; preserve the source expression through its owner',
+    );
   }
   const entries = Object.entries(value);
-  return !entries.length ? '{}' : '{\n' + entries.map(([k, v]) =>
-    '  '.repeat(level + 1) + JSON.stringify(k) + ': ' + expression(v, path + '.' + k, level + 1)).join(',\n') +
-    '\n' + '  '.repeat(level) + '}';
+  return !entries.length
+    ? '{}'
+    : '{\n' +
+        entries
+          .map(([k, v]) => '  '.repeat(level + 1) + JSON.stringify(k) + ': ' + expression(v, path + '.' + k, level + 1))
+          .join(',\n') +
+        '\n' +
+        '  '.repeat(level) +
+        '}';
 }
 /** Materialize Carousel Config source, delegating every Image/Scene slide. */
 export function materializeCarousel(config: CarouselSource, context: CarouselContext): CarouselChildResult {
-  if (!record(config) || config.type !== 'carousel' || typeof config.slug !== 'string' ||
-    !slug.test(config.slug) || !uuid.test(config.id)) throw new Error('Carousel: invalid type, slug or immutable UUID');
+  if (
+    !record(config) ||
+    config.type !== 'carousel' ||
+    typeof config.slug !== 'string' ||
+    !slug.test(config.slug) ||
+    !uuid.test(config.id)
+  )
+    throw new Error('Carousel: invalid type, slug or immutable UUID');
   if (!locale.test(context.documentLanguage) || !/^(?:\.\.?\/|#|@svitlo\/)/.test(context.languagesImport)) {
     throw new Error('Carousel: reviewed source language and languages import are required');
   }
@@ -64,17 +91,31 @@ export function materializeCarousel(config: CarouselSource, context: CarouselCon
   if (!record(slides) || !record(slides.items) || !Array.isArray(slides.order)) {
     throw new Error('Carousel.slides: expected { items, order }');
   }
-  const enabled = Object.entries(slides.items).filter((entry): entry is [string, CarouselSlideSource] => entry[1] !== false);
+  const enabled = Object.entries(slides.items).filter(
+    (entry): entry is [string, CarouselSlideSource] => entry[1] !== false,
+  );
   const keys = enabled.map(([key]) => key);
-  if (!keys.length || slides.order.length !== keys.length || new Set(slides.order).size !== keys.length ||
-    slides.order.some(key => !keys.includes(key))) {
+  if (
+    !keys.length ||
+    slides.order.length !== keys.length ||
+    new Set(slides.order).size !== keys.length ||
+    slides.order.some(key => !keys.includes(key))
+  ) {
     throw new Error('Carousel.slides.order: list every enabled slide exactly once');
   }
   const ids = new Set<string>();
   for (const [key, slide] of enabled) {
-    if (!slug.test(key) || key === 'constructor' || key === '__proto__' || !record(slide) ||
-      (slide.type !== 'image' && slide.type !== 'scene') || slide.slug !== key || !uuid.test(slide.id) ||
-      ids.has(slide.id) || slide.id === config.id) {
+    if (
+      !slug.test(key) ||
+      key === 'constructor' ||
+      key === '__proto__' ||
+      !record(slide) ||
+      (slide.type !== 'image' && slide.type !== 'scene') ||
+      slide.slug !== key ||
+      !uuid.test(slide.id) ||
+      ids.has(slide.id) ||
+      slide.id === config.id
+    ) {
       throw new Error('Carousel.slides.items.' + key + ': invalid child type, slug or duplicate UUID');
     }
     ids.add(slide.id);
@@ -93,11 +134,15 @@ export function materializeCarousel(config: CarouselSource, context: CarouselCon
       throw new Error('Carousel.slides.items.' + key + ': child materializer returned no valid export');
     }
     const alias = 'slide_' + key;
-    imports.push('import { ' + result.exportName + ' as ' + alias + ' } from ' + JSON.stringify('./slides/items/' + key) + ';');
+    imports.push(
+      'import { ' + result.exportName + ' as ' + alias + ' } from ' + JSON.stringify('./slides/items/' + key) + ';',
+    );
     entries.push('    ' + JSON.stringify(key) + ': ' + alias + ',');
     for (const f of result.files) {
       if (!f.path.startsWith(childDirectory + '/')) {
-        throw new Error('Carousel.slides.items.' + key + ': child emitted a file outside its owned directory: ' + f.path);
+        throw new Error(
+          'Carousel.slides.items.' + key + ': child emitted a file outside its owned directory: ' + f.path,
+        );
       }
       if (emitted.has(f.path) || f.path === (directory ? directory + '/' : '') + 'index.ts') {
         throw new Error('Carousel: duplicate child source destination ' + f.path);
@@ -108,21 +153,31 @@ export function materializeCarousel(config: CarouselSource, context: CarouselCon
     diagnostics.push(...result.diagnostics);
   }
   const own = { ...config, locale: localized(config.locale, context.documentLanguage, 'carousel.locale') };
-  const ownFields = Object.entries(own).filter(([key]) => key !== 'slides').map(([key, value]) =>
-    '  ' + JSON.stringify(key) + ': ' + expression(value, 'carousel.' + key, 1) + ',');
+  const ownFields = Object.entries(own)
+    .filter(([key]) => key !== 'slides')
+    .map(([key, value]) => '  ' + JSON.stringify(key) + ': ' + expression(value, 'carousel.' + key, 1) + ',');
   const exportName = reserved.has(config.slug) ? 'config_' + config.slug : config.slug;
   const code = [
     "import { defineCarousel } from '@svitlo/engine/build';",
     'import { languages } from ' + JSON.stringify(context.languagesImport) + ';',
-    ...imports, '',
+    ...imports,
+    '',
     'const slides = {',
-    '  items: {', ...entries, '  },',
+    '  items: {',
+    ...entries,
+    '  },',
     '  order: ' + expression(slides.order, 'carousel.slides.order', 1) + ',',
-    '};', '',
-    'export const ' + exportName + ' = defineCarousel<' + JSON.stringify(config.slug) + ', typeof slides.items, typeof languages>({',
+    '};',
+    '',
+    'export const ' +
+      exportName +
+      ' = defineCarousel<' +
+      JSON.stringify(config.slug) +
+      ', typeof slides.items, typeof languages>({',
     ...ownFields,
     '  slides,',
-    '});', '',
+    '});',
+    '',
   ].join('\n');
   files.push({ path: (directory ? directory + '/' : '') + 'index.ts', content: code, kind: 'typescript' });
   return { exportName, files, diagnostics };

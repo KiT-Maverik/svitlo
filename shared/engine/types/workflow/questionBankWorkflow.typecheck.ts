@@ -56,7 +56,11 @@ const production = {
     methodologyPath: 'verified-methodology.md',
     title: 'Verified Lesson',
   },
-  course: { id: '663572e7-bd85-4516-86e2-3de07d209e01', sourceSha: 'pinned-course-sha', placementPath: 'module/lesson' },
+  course: {
+    id: '663572e7-bd85-4516-86e2-3de07d209e01',
+    sourceSha: 'pinned-course-sha',
+    placementPath: 'module/lesson',
+  },
   assessment: {
     questionBankRequired: true,
     flashcardBankRequired: false,
@@ -235,7 +239,10 @@ const localQuiz = {
     order: ['lastQuiz'],
   },
 } satisfies QuestionBankWorkflowQuizIntent;
-const noQuiz = { kind: 'none', rationale: 'No local Quiz approved; full bank remains' } satisfies QuestionBankWorkflowQuizIntent;
+const noQuiz = {
+  kind: 'none',
+  rationale: 'No local Quiz approved; full bank remains',
+} satisfies QuestionBankWorkflowQuizIntent;
 
 const stage3 = {
   ...stage2,
@@ -295,12 +302,21 @@ void actualSectionSelection;
 type Assignable<Target, Source extends Target> = true;
 export type QuestionBankMaterializerCompatibility = [
   Assignable<SelectOneAnswerNode, QuestionBankWorkflowQuestionNode<QuestionBankWorkflowSelectOneAnswerConfig>>,
-  Assignable<SelectMultipleAnswersNode, QuestionBankWorkflowQuestionNode<QuestionBankWorkflowSelectMultipleAnswersConfig>>,
+  Assignable<
+    SelectMultipleAnswersNode,
+    QuestionBankWorkflowQuestionNode<QuestionBankWorkflowSelectMultipleAnswersConfig>
+  >,
   Assignable<MatchBlocksNode, QuestionBankWorkflowQuestionNode<QuestionBankWorkflowMatchBlocksConfig>>,
   Assignable<AnswerWithTextNode, QuestionBankWorkflowQuestionNode<QuestionBankWorkflowAnswerWithTextConfig>>,
   Assignable<AnswerWithNumberNode, QuestionBankWorkflowQuestionNode<QuestionBankWorkflowAnswerWithNumberConfig>>,
   Assignable<OrderSequenceNode, QuestionBankWorkflowQuestionNode<QuestionBankWorkflowOrderSequenceConfig>>,
-  Assignable<BuildAnswerWithBlocksNode, QuestionBankWorkflowQuestionNode<QuestionBankWorkflowBuildAnswerWithBlocksConfig>>,
-  Assignable<FillBlanksWithBlocksNode, QuestionBankWorkflowQuestionNode<QuestionBankWorkflowFillBlanksWithBlocksConfig>>,
+  Assignable<
+    BuildAnswerWithBlocksNode,
+    QuestionBankWorkflowQuestionNode<QuestionBankWorkflowBuildAnswerWithBlocksConfig>
+  >,
+  Assignable<
+    FillBlanksWithBlocksNode,
+    QuestionBankWorkflowQuestionNode<QuestionBankWorkflowFillBlanksWithBlocksConfig>
+  >,
   Assignable<FillBlanksWithTextNode, QuestionBankWorkflowQuestionNode<QuestionBankWorkflowFillBlanksWithTextConfig>>,
 ];

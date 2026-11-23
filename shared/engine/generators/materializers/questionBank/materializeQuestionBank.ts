@@ -16,19 +16,35 @@ import { materializeBuildAnswerWithBlocks } from '../buildAnswerWithBlocks/mater
 import { materializeFillBlanksWithBlocks } from '../fillBlanksWithBlocks/materializeFillBlanksWithBlocks';
 import { materializeFillBlanksWithText } from '../fillBlanksWithText/materializeFillBlanksWithText';
 import {
-  assertBankLanguages, assertBankOrder, assertBankPath, assertBankSha,
-  assertBankStatement, assertBankUuid, assertUniqueBankEntityIds, assertNoPendingBankSources,
+  assertBankLanguages,
+  assertBankOrder,
+  assertBankPath,
+  assertBankSha,
+  assertBankStatement,
+  assertBankUuid,
+  assertUniqueBankEntityIds,
+  assertNoPendingBankSources,
   assertReviewedBankInput,
-  authoredBankLiteral, preflightBankSource,
-  type BankReviewedSource, type BankSourceSnapshot, type BankSourceResult,
-  type BankSourceFile, type BankSourceDiagnostic,
+  authoredBankLiteral,
+  preflightBankSource,
+  type BankReviewedSource,
+  type BankSourceSnapshot,
+  type BankSourceResult,
+  type BankSourceFile,
+  type BankSourceDiagnostic,
 } from '../bankSource/bankSourceSafety';
 import { materializeAssessmentBlock, type AssessmentBlockEvidence } from '../bankSource/materializeAssessmentBlock';
 
 const kinds = [
-  'selectOneAnswer', 'selectMultipleAnswers', 'matchBlocks',
-  'answerWithText', 'answerWithNumber', 'orderSequence',
-  'buildAnswerWithBlocks', 'fillBlanksWithBlocks', 'fillBlanksWithText',
+  'selectOneAnswer',
+  'selectMultipleAnswers',
+  'matchBlocks',
+  'answerWithText',
+  'answerWithNumber',
+  'orderSequence',
+  'buildAnswerWithBlocks',
+  'fillBlanksWithBlocks',
+  'fillBlanksWithText',
 ] as const;
 type Kind = (typeof kinds)[number];
 const kindSet: ReadonlySet<string> = new Set(kinds);
@@ -73,18 +89,27 @@ function validateStage1(
     ['Lesson source path', p.lesson.sourcePath],
     ['Lesson reference path', p.lesson.referencePath],
     ['Lesson methodology path', p.lesson.methodologyPath],
-  ] as const) assertBankPath(value);
+  ] as const)
+    assertBankPath(value);
   for (const [label, value] of [
-    ['Lesson title', p.lesson.title], ['Question ownership rationale', p.ownershipRationale],
-    ['audience', p.audience], ['scope', p.scope], ['prerequisites', p.prerequisites],
-    ['misconceptions', p.misconceptions], ['media needs', p.mediaNeeds],
+    ['Lesson title', p.lesson.title],
+    ['Question ownership rationale', p.ownershipRationale],
+    ['audience', p.audience],
+    ['scope', p.scope],
+    ['prerequisites', p.prerequisites],
+    ['misconceptions', p.misconceptions],
+    ['media needs', p.mediaNeeds],
     ['sources and dependencies', p.sourcesAndDependencies],
-  ] as const) assertBankStatement(value, label);
-  if (!p.assessment || typeof p.assessment.questionBankRequired !== 'boolean' ||
-      typeof p.assessment.flashcardBankRequired !== 'boolean' ||
-      typeof p.assessment.quizSectionRequired !== 'boolean' ||
-      typeof p.assessment.flashcardsSectionRequired !== 'boolean' ||
-      typeof p.assessment.quizRequiredForCompletion !== 'boolean') {
+  ] as const)
+    assertBankStatement(value, label);
+  if (
+    !p.assessment ||
+    typeof p.assessment.questionBankRequired !== 'boolean' ||
+    typeof p.assessment.flashcardBankRequired !== 'boolean' ||
+    typeof p.assessment.quizSectionRequired !== 'boolean' ||
+    typeof p.assessment.flashcardsSectionRequired !== 'boolean' ||
+    typeof p.assessment.quizRequiredForCompletion !== 'boolean'
+  ) {
     throw new Error('Preserve all independent Lesson assessment decisions');
   }
   if (p.assessment.questionBankRequired !== true) {
@@ -98,8 +123,16 @@ function validateStage1(
   }
   for (const item of p.evidenceIntent) {
     assertBankUuid(item.skillId, 'assessed Skill');
-    for (const key of ['outcome', 'assessmentMethod', 'cognitiveOperation', 'knowledgeAspect',
-      'cognitiveDemand', 'misconception', 'context', 'expectedEvidence'] as const) {
+    for (const key of [
+      'outcome',
+      'assessmentMethod',
+      'cognitiveOperation',
+      'knowledgeAspect',
+      'cognitiveDemand',
+      'misconception',
+      'context',
+      'expectedEvidence',
+    ] as const) {
       assertBankStatement(item[key], 'evidenceIntent.' + key);
     }
   }
@@ -113,17 +146,24 @@ export function materializeQuestionBankDraft(
   if (authorization.authorized !== true) throw new Error('Lesson Stage 7 authorization missing');
   validateStage1(input, authorization.ownerLessonId, authorization.independentBankAuthorization);
   assertBankSha(authorization.methodologistReviewSha, 'Methodologist review');
-  if (input.production.lesson.sourceSha !== authorization.lessonSourceSha ||
-      input.production.lesson.referenceSha !== authorization.referenceSha) {
+  if (
+    input.production.lesson.sourceSha !== authorization.lessonSourceSha ||
+    input.production.lesson.referenceSha !== authorization.referenceSha
+  ) {
     throw new Error('Stale Lesson/assessment handoff');
   }
-  const files: BankSourceFile[] = [{
-    path: 'questions/index.ts', kind: 'typescript',
-    content: "import type { QuestionBankWorkflowStage1 } from '@svitlo/engine/build';\n\n" +
-      '// Stage 1 editorial source. NOT a publishable bank or Quiz Section.\n' +
-      'export const questionBank = ' + authoredBankLiteral(input) +
-      ' satisfies QuestionBankWorkflowStage1;\n',
-  }];
+  const files: BankSourceFile[] = [
+    {
+      path: 'questions/index.ts',
+      kind: 'typescript',
+      content:
+        "import type { QuestionBankWorkflowStage1 } from '@svitlo/engine/build';\n\n" +
+        '// Stage 1 editorial source. NOT a publishable bank or Quiz Section.\n' +
+        'export const questionBank = ' +
+        authoredBankLiteral(input) +
+        ' satisfies QuestionBankWorkflowStage1;\n',
+    },
+  ];
   return preflightBankSource(files, authorization.snapshot);
 }
 
@@ -138,7 +178,10 @@ function renderQuestion(
     directory: 'questions/' + kind,
     languages: sourceLanguage,
     materializeBlock: (
-      block: { config: { id: string; slug: string; type: string } & Record<string, unknown>; production?: Record<string, unknown> },
+      block: {
+        config: { id: string; slug: string; type: string } & Record<string, unknown>;
+        production?: Record<string, unknown>;
+      },
       location: { directory: string; documentLanguage: string },
     ) => materializeAssessmentBlock(block, location, sourceLanguage.planned, 'questionsLanguages', blocks),
   };
@@ -149,7 +192,10 @@ function renderQuestion(
     case 'selectOneAnswer':
       return materializeSelectOneAnswer(node as unknown as Parameters<typeof materializeSelectOneAnswer>[0], context);
     case 'selectMultipleAnswers':
-      return materializeSelectMultipleAnswers(node as unknown as Parameters<typeof materializeSelectMultipleAnswers>[0], context);
+      return materializeSelectMultipleAnswers(
+        node as unknown as Parameters<typeof materializeSelectMultipleAnswers>[0],
+        context,
+      );
     case 'matchBlocks':
       return materializeMatchBlocks(node as unknown as Parameters<typeof materializeMatchBlocks>[0], context);
     case 'answerWithText':
@@ -159,11 +205,20 @@ function renderQuestion(
     case 'orderSequence':
       return materializeOrderSequence(node as unknown as Parameters<typeof materializeOrderSequence>[0], context);
     case 'buildAnswerWithBlocks':
-      return materializeBuildAnswerWithBlocks(node as unknown as Parameters<typeof materializeBuildAnswerWithBlocks>[0], context);
+      return materializeBuildAnswerWithBlocks(
+        node as unknown as Parameters<typeof materializeBuildAnswerWithBlocks>[0],
+        context,
+      );
     case 'fillBlanksWithBlocks':
-      return materializeFillBlanksWithBlocks(node as unknown as Parameters<typeof materializeFillBlanksWithBlocks>[0], context);
+      return materializeFillBlanksWithBlocks(
+        node as unknown as Parameters<typeof materializeFillBlanksWithBlocks>[0],
+        context,
+      );
     case 'fillBlanksWithText':
-      return materializeFillBlanksWithText(node as unknown as Parameters<typeof materializeFillBlanksWithText>[0], context);
+      return materializeFillBlanksWithText(
+        node as unknown as Parameters<typeof materializeFillBlanksWithText>[0],
+        context,
+      );
   }
 }
 
@@ -236,36 +291,49 @@ export function materializeQuestionBank(
       const output = renderQuestion(kind, { config, production }, source, authorization.blocks);
       files.push(...output.files);
       diagnostics.push(...(output.diagnostics ?? []));
-      kindImports.push('export { ' + output.exportName +
-        (output.exportName !== slug ? ' as ' + slug : '') + ' } from ' + JSON.stringify('./' + slug) + ';');
+      kindImports.push(
+        'export { ' +
+          output.exportName +
+          (output.exportName !== slug ? ' as ' + slug : '') +
+          ' } from ' +
+          JSON.stringify('./' + slug) +
+          ';',
+      );
       const alias = 'question_' + kind + '_' + slug;
       rootImports.push('import { ' + slug + ' as ' + alias + ' } from ' + JSON.stringify('./' + kind) + ';');
       entries.push('    ' + JSON.stringify(slug) + ': ' + alias + ',');
       count++;
     }
     files.push({
-      path: 'questions/' + kind + '/index.ts', kind: 'typescript',
+      path: 'questions/' + kind + '/index.ts',
+      kind: 'typescript',
       content: kindImports.join('\n') + '\n',
     });
     rootEntries.push('  ' + JSON.stringify(kind) + ': {\n' + entries.join('\n') + '\n  },');
   }
   if (!count) throw new Error('Reviewed Question Bank must be nonempty');
   files.push({
-    path: 'questions/index.ts', kind: 'typescript',
-    content: rootImports.join('\n') + '\n\nexport const questions = {\n' +
-      rootEntries.join('\n') + '\n};\n',
+    path: 'questions/index.ts',
+    kind: 'typescript',
+    content: rootImports.join('\n') + '\n\nexport const questions = {\n' + rootEntries.join('\n') + '\n};\n',
   });
   files.push({
-    path: 'questionsLanguages.ts', kind: 'typescript',
-    content: '// Original reviewed source locale only; translations require independent review.\n' +
-      'export const languages = ' + JSON.stringify([source.document]) + ' as const;\n',
+    path: 'questionsLanguages.ts',
+    kind: 'typescript',
+    content:
+      '// Original reviewed source locale only; translations require independent review.\n' +
+      'export const languages = ' +
+      JSON.stringify([source.document]) +
+      ' as const;\n',
   });
   files.push({
-    path: 'questions.reviewed-stage3.ts.txt', kind: 'archive',
+    path: 'questions.reviewed-stage3.ts.txt',
+    kind: 'archive',
     content: authorization.reviewed.content,
   });
   const result = preflightBankSource(files, authorization.snapshot, {
-    indexPath: 'questions/index.ts', archivePath: 'questions.reviewed-stage3.ts.txt',
+    indexPath: 'questions/index.ts',
+    archivePath: 'questions.reviewed-stage3.ts.txt',
     reviewed: authorization.reviewed,
   });
   // Only an external authenticated Git writer may commit this atomic transition.

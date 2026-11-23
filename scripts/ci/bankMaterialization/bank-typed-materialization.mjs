@@ -31,16 +31,20 @@ function metadata() {
   if (!/^[A-Za-z0-9+/]*={0,2}$/.test(value) || !value.length || value.length > 16000)
     throw Error('Missing/invalid pinned typed Bank metadata');
   const meta = JSON.parse(Buffer.from(value, 'base64').toString('utf8'));
-  if (!['questions', 'flashcards'].includes(meta.bank) ||
-      meta.repo !== process.env.GITHUB_REPOSITORY ||
-      !Number.isSafeInteger(meta.number) || meta.number < 1 ||
-      !SHA.test(meta.head) || !SHA.test(meta.sourceBlob) ||
-      meta.reviewCommitSha !== meta.head ||
-      !/^[A-Za-z0-9-]+$/.test(meta.actor || '') ||
-      !/^[A-Za-z0-9-]+$/.test(meta.reviewer || '') ||
-      meta.sourcePath !== meta.identity?.folder + '/' + meta.bank + '/index.ts' ||
-      meta.identity?.bank !== meta.bank ||
-      typeof meta.branch !== 'string') {
+  if (
+    !['questions', 'flashcards'].includes(meta.bank) ||
+    meta.repo !== process.env.GITHUB_REPOSITORY ||
+    !Number.isSafeInteger(meta.number) ||
+    meta.number < 1 ||
+    !SHA.test(meta.head) ||
+    !SHA.test(meta.sourceBlob) ||
+    meta.reviewCommitSha !== meta.head ||
+    !/^[A-Za-z0-9-]+$/.test(meta.actor || '') ||
+    !/^[A-Za-z0-9-]+$/.test(meta.reviewer || '') ||
+    meta.sourcePath !== meta.identity?.folder + '/' + meta.bank + '/index.ts' ||
+    meta.identity?.bank !== meta.bank ||
+    typeof meta.branch !== 'string'
+  ) {
     throw Error('Typed Bank metadata is incomplete or contradictory');
   }
   return meta;
@@ -52,17 +56,20 @@ function withoutActor(meta) {
 }
 function git(root, ...args) {
   return execFileSync('git', ['-C', root, ...args], {
-    encoding: 'utf8', maxBuffer: 64 * 1024 * 1024,
+    encoding: 'utf8',
+    maxBuffer: 64 * 1024 * 1024,
     stdio: ['pipe', 'pipe', 'pipe'],
   }).trimEnd();
 }
 function verifyCandidate(meta) {
   const root = fs.realpathSync(process.env.BANK_CANDIDATE_ROOT || '');
-  if (git(root, 'rev-parse', '--show-toplevel') !== root ||
-      git(root, 'symbolic-ref', '--short', 'HEAD') !== meta.branch ||
-      git(root, 'rev-parse', 'HEAD') !== meta.head ||
-      git(root, 'rev-parse', 'refs/heads/' + meta.branch) !== meta.head ||
-      git(root, 'status', '--porcelain=v1', '--untracked-files=all')) {
+  if (
+    git(root, 'rev-parse', '--show-toplevel') !== root ||
+    git(root, 'symbolic-ref', '--short', 'HEAD') !== meta.branch ||
+    git(root, 'rev-parse', 'HEAD') !== meta.head ||
+    git(root, 'rev-parse', 'refs/heads/' + meta.branch) !== meta.head ||
+    git(root, 'status', '--porcelain=v1', '--untracked-files=all')
+  ) {
     throw Error('Typed Bank candidate is not a clean, pinned, named PR checkout');
   }
   let current = root;
@@ -71,8 +78,7 @@ function verifyCandidate(meta) {
     if (fs.lstatSync(current).isSymbolicLink()) throw Error('Symlink on reviewed Stage 3 source path');
   }
   const bytes = fs.readFileSync(current);
-  if (gitBlob(bytes) !== meta.sourceBlob ||
-      git(root, 'rev-parse', 'HEAD:' + meta.sourcePath) !== meta.sourceBlob) {
+  if (gitBlob(bytes) !== meta.sourceBlob || git(root, 'rev-parse', 'HEAD:' + meta.sourcePath) !== meta.sourceBlob) {
     throw Error('Reviewed bank source bytes do not match pinned Git blob');
   }
   return { root, source: bytes.toString('utf8') };
@@ -84,8 +90,11 @@ function assertAncestor(root, sha, label) {
   git(root, 'merge-base', '--is-ancestor', sha, 'HEAD');
 }
 function assertTracked(root, sourcePath, meta, label) {
-  if (typeof sourcePath !== 'string' || !sourcePath.startsWith(meta.identity.folder + '/') ||
-      sourcePath.split('/').some(x => !/^[A-Za-z0-9_.-]+$/.test(x) || x === '..' || x === '.')) {
+  if (
+    typeof sourcePath !== 'string' ||
+    !sourcePath.startsWith(meta.identity.folder + '/') ||
+    sourcePath.split('/').some(x => !/^[A-Za-z0-9_.-]+$/.test(x) || x === '..' || x === '.')
+  ) {
     throw Error(label + ' outside owning Lesson');
   }
   if (git(root, 'cat-file', '-t', 'HEAD:' + sourcePath) !== 'blob') {
@@ -132,8 +141,13 @@ function authorizations(meta, input, root, blocks) {
   }
   const lesson = input?.production?.lesson;
   const questions = input?.production?.questions;
-  if (!lesson || lesson.id !== meta.identity.id || !questions ||
-      questions.kind !== meta.parentQuestions || !SHA.test(meta.parentHeadSha || '')) {
+  if (
+    !lesson ||
+    lesson.id !== meta.identity.id ||
+    !questions ||
+    questions.kind !== meta.parentQuestions ||
+    !SHA.test(meta.parentHeadSha || '')
+  ) {
     throw Error('Flashcards require the pinned parent Lesson Questions-first decision and source');
   }
   assertSourceRevision(root, lesson.sourceSha, lessonDirectory + '/index.ts', meta, 'Flashcards Lesson source');
@@ -144,10 +158,13 @@ function authorizations(meta, input, root, blocks) {
   if (questions.kind === 'completed') {
     const expected = lessonDirectory + '/questions/index.ts';
     const archive = lessonDirectory + '/questions.reviewed-stage3.ts.txt';
-    if (questions.integrated !== true || questions.bankPath !== expected ||
-        !fs.existsSync(path.join(root, expected)) ||
-        !fs.existsSync(path.join(root, archive)) ||
-        !fs.existsSync(path.join(root, lessonDirectory, 'questionsLanguages.ts'))) {
+    if (
+      questions.integrated !== true ||
+      questions.bankPath !== expected ||
+      !fs.existsSync(path.join(root, expected)) ||
+      !fs.existsSync(path.join(root, archive)) ||
+      !fs.existsSync(path.join(root, lessonDirectory, 'questionsLanguages.ts'))
+    ) {
       throw Error('Questions must have completed reviewed typed source and be integrated');
     }
     assertAncestor(root, questions.reviewSha, 'Completed Questions independent review');
@@ -161,27 +178,35 @@ function authorizations(meta, input, root, blocks) {
     // the completed index; never accept an unrelated ancestor commit or blob.
     const sourceKind = git(root, 'cat-file', '-t', questions.sourceSha);
     const finalizedBlob = git(root, 'rev-parse', 'HEAD:' + expected);
-    const actualSource = sourceKind === 'blob' ? questions.sourceSha :
-      sourceKind === 'commit' ? (assertAncestor(root, questions.sourceSha, 'Questions source'),
-        git(root, 'rev-parse', questions.sourceSha + ':' + expected)) : '';
+    const actualSource =
+      sourceKind === 'blob'
+        ? questions.sourceSha
+        : sourceKind === 'commit'
+          ? (assertAncestor(root, questions.sourceSha, 'Questions source'),
+            git(root, 'rev-parse', questions.sourceSha + ':' + expected))
+          : '';
     if (![reviewedBlob, finalizedBlob].includes(actualSource)) {
       throw Error('Questions-first source SHA does not identify reviewed or finalized Question Bank');
     }
     return {
-      reviewed: evidence, blocks, ownerLessonId: meta.identity.id,
+      reviewed: evidence,
+      blocks,
+      ownerLessonId: meta.identity.id,
       lessonSourceSha: lesson.sourceSha,
       referenceSourceSha: lesson.reference.sourceSha,
-      questionSourceSha: questions.sourceSha, questionReviewSha: questions.reviewSha,
+      questionSourceSha: questions.sourceSha,
+      questionReviewSha: questions.reviewSha,
     };
   }
   if (questions.kind === 'notApplicable') {
     assertAncestor(root, questions.methodologySourceSha, 'Methodologist Questions N/A revision');
-    if (questions.parentLessonPr !== meta.identity.parent ||
-        lesson.assessment?.questionBankRequired !== false) {
+    if (questions.parentLessonPr !== meta.identity.parent || lesson.assessment?.questionBankRequired !== false) {
       throw Error('Questions N/A must match the owning Lesson decision and parent PR');
     }
     return {
-      reviewed: evidence, blocks, ownerLessonId: meta.identity.id,
+      reviewed: evidence,
+      blocks,
+      ownerLessonId: meta.identity.id,
       lessonSourceSha: lesson.sourceSha,
       referenceSourceSha: lesson.reference.sourceSha,
       methodologySourceSha: questions.methodologySourceSha,
@@ -200,39 +225,60 @@ function context(meta, root) {
 }
 function validTypedPath(filename, meta) {
   const folder = meta.identity.folder + '/';
-  if (!filename.startsWith(folder) || filename.length > 520 ||
-      filename.includes('..') || filename.includes('//') || filename.includes('\\')) return false;
+  if (
+    !filename.startsWith(folder) ||
+    filename.length > 520 ||
+    filename.includes('..') ||
+    filename.includes('//') ||
+    filename.includes('\\')
+  )
+    return false;
   const relative = filename.slice(folder.length);
-  if (relative === meta.bank + 'Languages.ts' ||
-      relative === meta.bank + '.reviewed-stage3.ts.txt') return true;
+  if (relative === meta.bank + 'Languages.ts' || relative === meta.bank + '.reviewed-stage3.ts.txt') return true;
   if (!relative.startsWith(meta.bank + '/')) return false;
   const nested = relative.slice(meta.bank.length + 1);
-  return nested.length > 0 && nested.length < 420 &&
+  return (
+    nested.length > 0 &&
+    nested.length < 420 &&
     nested.split('/').length <= 22 &&
     nested.split('/').every(piece => /^[A-Za-z0-9_-]+(?:\.[A-Za-z0-9_-]+)*$/.test(piece)) &&
-    /\.(?:ts|md|txt|py|js|json|html|css|svg|java|cpp|c|h|rs|go|sql|sh)$/.test(nested);
+    /\.(?:ts|md|txt|py|js|json|html|css|svg|java|cpp|c|h|rs|go|sql|sh)$/.test(nested)
+  );
 }
 export function verifyTypedManifest(result, meta) {
-  if (!result || result.version !== 2 ||
-      JSON.stringify(result.meta) !== JSON.stringify(meta) ||
-      !SHA.test(result.treeSha || '') || !Array.isArray(result.files) ||
-      result.files.length < 5 || result.files.length > MAX_COUNT ||
-      !/^[a-f0-9]{64}$/.test(result.inputSha256 || '')) {
+  if (
+    !result ||
+    result.version !== 2 ||
+    JSON.stringify(result.meta) !== JSON.stringify(meta) ||
+    !SHA.test(result.treeSha || '') ||
+    !Array.isArray(result.files) ||
+    result.files.length < 5 ||
+    result.files.length > MAX_COUNT ||
+    !/^[a-f0-9]{64}$/.test(result.inputSha256 || '')
+  ) {
     throw Error('Invalid pinned typed Bank source manifest');
   }
   const unique = new Set();
   let total = 0;
   for (const file of result.files) {
-    if (!validTypedPath(file.path, meta) || unique.has(file.path) ||
-        typeof file.base64 !== 'string' || !/^[A-Za-z0-9+/]*={0,2}$/.test(file.base64)) {
+    if (
+      !validTypedPath(file.path, meta) ||
+      unique.has(file.path) ||
+      typeof file.base64 !== 'string' ||
+      !/^[A-Za-z0-9+/]*={0,2}$/.test(file.base64)
+    ) {
       throw Error('Unallowlisted or duplicated typed Bank output');
     }
     unique.add(file.path);
     const bytes = Buffer.from(file.base64, 'base64');
     total += bytes.length;
-    if (bytes.length > MAX_SINGLE || total > MAX_TOTAL ||
-        !Buffer.from(bytes.toString('utf8'), 'utf8').equals(bytes) ||
-        bytes.toString('base64') !== file.base64 || sha256(bytes) !== file.sha256) {
+    if (
+      bytes.length > MAX_SINGLE ||
+      total > MAX_TOTAL ||
+      !Buffer.from(bytes.toString('utf8'), 'utf8').equals(bytes) ||
+      bytes.toString('base64') !== file.base64 ||
+      sha256(bytes) !== file.sha256
+    ) {
       throw Error('Typed Bank source bytes or checksum mismatch: ' + file.path);
     }
   }
@@ -244,8 +290,7 @@ export function verifyTypedManifest(result, meta) {
   ]) {
     if (!unique.has(filename)) throw Error('Missing required typed Bank output ' + filename);
   }
-  const archived = result.files.find(f =>
-    f.path === root + meta.bank + '.reviewed-stage3.ts.txt');
+  const archived = result.files.find(f => f.path === root + meta.bank + '.reviewed-stage3.ts.txt');
   if (gitBlob(Buffer.from(archived.base64, 'base64')) !== meta.sourceBlob) {
     throw Error('Typed Bank source archive is not the byte-identical reviewed Stage 3 editor');
   }
@@ -262,10 +307,22 @@ export function assertTypedBankInventory(meta, input, files) {
     }
     let total = 0;
     for (const [kind, members] of Object.entries(kinds)) {
-      if (!['selectOneAnswer', 'selectMultipleAnswers', 'matchBlocks',
-        'answerWithText', 'answerWithNumber', 'orderSequence',
-        'buildAnswerWithBlocks', 'fillBlanksWithBlocks', 'fillBlanksWithText'].includes(kind) ||
-        !members || typeof members !== 'object' || Array.isArray(members)) {
+      if (
+        ![
+          'selectOneAnswer',
+          'selectMultipleAnswers',
+          'matchBlocks',
+          'answerWithText',
+          'answerWithNumber',
+          'orderSequence',
+          'buildAnswerWithBlocks',
+          'fillBlanksWithBlocks',
+          'fillBlanksWithText',
+        ].includes(kind) ||
+        !members ||
+        typeof members !== 'object' ||
+        Array.isArray(members)
+      ) {
         throw Error('Unsupported Question kind in complete bank');
       }
       if (!paths.has(root + 'questions/' + kind + '/index.ts')) {
@@ -282,11 +339,13 @@ export function assertTypedBankInventory(meta, input, files) {
   } else {
     const items = input?.config?.flashcards?.items;
     const order = input?.config?.flashcards?.order;
-    if (!items || typeof items !== 'object' || Array.isArray(items) ||
-        !Array.isArray(order) || !order.length) throw Error('No reviewed Flashcards');
-    if (new Set(order).size !== order.length ||
-        order.some(slug => typeof slug !== 'string' || !Object.hasOwn(items, slug)) ||
-        Object.keys(items).length !== order.length) {
+    if (!items || typeof items !== 'object' || Array.isArray(items) || !Array.isArray(order) || !order.length)
+      throw Error('No reviewed Flashcards');
+    if (
+      new Set(order).size !== order.length ||
+      order.some(slug => typeof slug !== 'string' || !Object.hasOwn(items, slug)) ||
+      Object.keys(items).length !== order.length
+    ) {
       throw Error('Flashcards order must include every reviewed Card exactly once');
     }
     for (const slug of order) {
@@ -301,15 +360,17 @@ export function assertTypedBankInventory(meta, input, files) {
         if (!paths.has(prefix + 'index.ts')) {
           throw Error('Reviewed Flashcard Side omitted: ' + slug + '/' + side);
         }
-        if (!Array.isArray(content.order) || !content.items ||
-            typeof content.items !== 'object' || Array.isArray(content.items) ||
-            (side !== 'hint' && !content.order.length) ||
-            new Set(content.order).size !== content.order.length ||
-            content.order.some(block => typeof block !== 'string' ||
-              !Object.hasOwn(content.items, block)) ||
-            Object.keys(content.items).length !== content.order.length) {
-          throw Error('Flashcard Side must include every reviewed ContentBlock exactly once: ' +
-            slug + '/' + side);
+        if (
+          !Array.isArray(content.order) ||
+          !content.items ||
+          typeof content.items !== 'object' ||
+          Array.isArray(content.items) ||
+          (side !== 'hint' && !content.order.length) ||
+          new Set(content.order).size !== content.order.length ||
+          content.order.some(block => typeof block !== 'string' || !Object.hasOwn(content.items, block)) ||
+          Object.keys(content.items).length !== content.order.length
+        ) {
+          throw Error('Flashcard Side must include every reviewed ContentBlock exactly once: ' + slug + '/' + side);
         }
         for (const block of content.order) {
           if (!paths.has(prefix + 'items/' + block + '/index.ts')) {
@@ -330,38 +391,49 @@ async function analyze(meta) {
   // Stage 3 source may authorize concrete media/Scene blocks.
   const { resolveReviewedBankBlockEvidence } = await import('./bank-typed-block-evidence.mjs');
   const blocks = resolveReviewedBankBlockEvidence({
-    root, meta, input, git, ts: require('typescript'),
+    root,
+    meta,
+    input,
+    git,
+    ts: require('typescript'),
   });
   const authorization = authorizations(meta, input, root, blocks);
   const engineDir = '../../../shared/engine/dist/generators/materializers/';
-  const adapter = meta.bank === 'questions' ?
-    require(engineDir + 'questionBank/questionBankGitTransaction.js') :
-    require(engineDir + 'flashcardBank/flashcardBankGitTransaction.js');
+  const adapter =
+    meta.bank === 'questions'
+      ? require(engineDir + 'questionBank/questionBankGitTransaction.js')
+      : require(engineDir + 'flashcardBank/flashcardBankGitTransaction.js');
   const gitContext = context(meta, root);
-  const checked = meta.bank === 'questions' ?
-    adapter.checkReviewedQuestionBankSource(input, authorization, gitContext) :
-    adapter.checkReviewedFlashcardBankSource(input, authorization, gitContext);
+  const checked =
+    meta.bank === 'questions'
+      ? adapter.checkReviewedQuestionBankSource(input, authorization, gitContext)
+      : adapter.checkReviewedFlashcardBankSource(input, authorization, gitContext);
   if (checked.noop || checked.changedPaths.length < 5) {
     throw Error('Expected one complete, not previously applied Stage 3 bank transition');
   }
-  const committed = meta.bank === 'questions' ?
-    adapter.writeReviewedQuestionBankSource(input, authorization, gitContext) :
-    adapter.writeReviewedFlashcardBankSource(input, authorization, gitContext);
-  if (!committed.worktreeRefreshRequired ||
-      committed.changedPaths.join('\n') !== checked.changedPaths.join('\n')) {
+  const committed =
+    meta.bank === 'questions'
+      ? adapter.writeReviewedQuestionBankSource(input, authorization, gitContext)
+      : adapter.writeReviewedFlashcardBankSource(input, authorization, gitContext);
+  if (!committed.worktreeRefreshRequired || committed.changedPaths.join('\n') !== checked.changedPaths.join('\n')) {
     throw Error('Trusted Bank writer disagrees with checked atomic source plan');
   }
-  const files = committed.changedPaths.map(filename => {
-    // Preserve exact Git blob bytes, including trailing newlines.
-    const exact = execFileSync('git', ['-C', root, 'show', committed.commitSha + ':' + filename]);
-    if (!Buffer.from(exact.toString('utf8'), 'utf8').equals(exact)) {
-      throw Error('Generated Bank source is not valid UTF-8');
-    }
-    return { path: filename, sha256: sha256(exact), base64: exact.toString('base64') };
-  }).sort((a, b) => a.path.localeCompare(b.path));
+  const files = committed.changedPaths
+    .map(filename => {
+      // Preserve exact Git blob bytes, including trailing newlines.
+      const exact = execFileSync('git', ['-C', root, 'show', committed.commitSha + ':' + filename]);
+      if (!Buffer.from(exact.toString('utf8'), 'utf8').equals(exact)) {
+        throw Error('Generated Bank source is not valid UTF-8');
+      }
+      return { path: filename, sha256: sha256(exact), base64: exact.toString('base64') };
+    })
+    .sort((a, b) => a.path.localeCompare(b.path));
   const treeSha = git(root, 'rev-parse', committed.commitSha + '^{tree}');
   const reportData = {
-    version: 2, meta, treeSha, inputSha256: authorization.reviewed.reviewedInputSha256,
+    version: 2,
+    meta,
+    treeSha,
+    inputSha256: authorization.reviewed.reviewedInputSha256,
     files,
   };
   verifyTypedManifest(reportData, meta);
@@ -369,12 +441,24 @@ async function analyze(meta) {
   // Semantic TypeScript analysis of ALL generated Question kinds/Card Sides,
   // against the actual @svitlo/engine/build declarations. Read-only.
   const { typecheckGeneratedBankModules } = await import('./bank-typed-stage3.mjs');
-  typecheckGeneratedBankModules(root, committed.commitSha, files.map(f => f.path), trustedRoot);
+  typecheckGeneratedBankModules(
+    root,
+    committed.commitSha,
+    files.map(f => f.path),
+    trustedRoot,
+  );
   const location = process.env.BANK_REPORT;
   fs.mkdirSync(path.dirname(location), { recursive: true });
   fs.writeFileSync(location, JSON.stringify(reportData) + '\n', { flag: 'wx' });
-  report('Verified typed ' + meta.bank + ' Stage 3 source at ' + meta.head +
-    '; planned ' + files.length + ' bank-owned Git objects; zero remote writes');
+  report(
+    'Verified typed ' +
+      meta.bank +
+      ' Stage 3 source at ' +
+      meta.head +
+      '; planned ' +
+      files.length +
+      ' bank-owned Git objects; zero remote writes',
+  );
 }
 async function publish(meta) {
   await requireActor(meta.actor);
@@ -416,7 +500,9 @@ async function publish(meta) {
   const tree = await github('git/trees', 'POST', {
     base_tree: original.tree.sha,
     tree: files.map(file => ({
-      path: file.path, mode: '100644', type: 'blob',
+      path: file.path,
+      mode: '100644',
+      type: 'blob',
       content: Buffer.from(file.base64, 'base64').toString('utf8'),
     })),
   });
@@ -425,17 +511,34 @@ async function publish(meta) {
   }
   await inspectTyped(meta.number, meta.bank, withoutActor(meta));
   const commit = await github('git/commits', 'POST', {
-    message: 'Materialize reviewed typed ' + meta.bank + ' bank for PR #' + meta.number +
-      '\n\nReviewed HEAD: ' + meta.head + '\nReviewed Stage 3 blob: ' + meta.sourceBlob,
-    tree: tree.sha, parents: [meta.head],
+    message:
+      'Materialize reviewed typed ' +
+      meta.bank +
+      ' bank for PR #' +
+      meta.number +
+      '\n\nReviewed HEAD: ' +
+      meta.head +
+      '\nReviewed Stage 3 blob: ' +
+      meta.sourceBlob,
+    tree: tree.sha,
+    parents: [meta.head],
   });
   await inspectTyped(meta.number, meta.bank, withoutActor(meta));
   await github('git/refs/heads/' + meta.branch, 'PATCH', {
-    sha: commit.sha, force: false,
+    sha: commit.sha,
+    force: false,
   });
-  report('Committed ' + files.length + ' reviewed typed ' + meta.bank +
-    ' source files atomically to PR #' + meta.number + ': ' + commit.sha +
-    '. Lesson root/Sections and legacy YAML were unchanged');
+  report(
+    'Committed ' +
+      files.length +
+      ' reviewed typed ' +
+      meta.bank +
+      ' source files atomically to PR #' +
+      meta.number +
+      ': ' +
+      commit.sha +
+      '. Lesson root/Sections and legacy YAML were unchanged',
+  );
 }
 async function main() {
   const mode = process.argv[2];

@@ -35,7 +35,13 @@ describe('Code content block', () => {
   });
 
   it('shows unknown languages and missing variables as readable plain text', () => {
-    const { container } = render(<Code {...response} params={{ ...response.params, language: 'made-up' }} locale={{ ...response.locale, variables: {} }} />);
+    const { container } = render(
+      <Code
+        {...response}
+        params={{ ...response.params, language: 'made-up' }}
+        locale={{ ...response.locale, variables: {} }}
+      />,
+    );
     expect(container.querySelector('code')).toHaveTextContent('const greeting = "%_%GREETING%_%";');
     expect(container.querySelector('.hljs-keyword')).toBeNull();
   });
@@ -44,7 +50,9 @@ describe('Code content block', () => {
     expect(resolveCodeVariables('const value = "%_%VALUE%_%";', { VALUE: '<script>alert(1)</script>' })).toBe(
       'const value = "<script>alert(1)</script>";',
     );
-    const { container } = render(<Code {...response} locale={{ ...response.locale, variables: { GREETING: '<script>alert(1)</script>' } }} />);
+    const { container } = render(
+      <Code {...response} locale={{ ...response.locale, variables: { GREETING: '<script>alert(1)</script>' } }} />,
+    );
     expect(container.querySelector('script')).toBeNull();
     expect(container.querySelector('code')).toHaveTextContent('<script>alert(1)</script>');
   });

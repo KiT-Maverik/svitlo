@@ -12,7 +12,7 @@ Lesson, Episode or bank production stage types is introduced.\n\n**Integration t
   `materializeCourse`, Module, Chapter, Episode, and the single shared Section
   callback. It is a **pure planner**, emitting a manifest of authored sources.
 - `lessonDraft.mjs`: `materializeLessonDraft()` creates exactly one typed
-  Lesson Stage 1 `index.ts` at the Lesson's permanent UUID path, typechecked\n  against both canonical #786 Lesson source/handoff types, from approved
+  Lesson Stage 1 `index.ts` at the Lesson's permanent UUID path, typechecked\n against both canonical #786 Lesson source/handoff types, from approved
   Course methodology, planned Skills, reviewed source language, optional
   age/grade and all four independent bank/Section assessment decisions. It
   does not generate `defineLesson`, Sections, banks, Scene content or assets.
@@ -48,7 +48,7 @@ available from Engine Runtime. The `.d.mts` sibling declares the exact
 - New Lesson Stage 1 files are emitted in other UUID folders. The Course
   Configurator omits incomplete Lesson references and records pending
   placements with `TODO (BLOCKER)`; it cannot publish until Lesson Production
-  completes and those child imports/order are reconciled. The generated Course\n  root **always contains a persistent `TODO (BLOCKER)` publication marker**\n  with pinned Stage 3 source/review SHA, even when all planned items are\n  complete, because the legacy publisher could otherwise discover the new\n  UUID-root `index.ts` before #775's trusted release gates are installed.
+  completes and those child imports/order are reconciled. The generated Course\n root **always contains a persistent `TODO (BLOCKER)` publication marker**\n with pinned Stage 3 source/review SHA, even when all planned items are\n complete, because the legacy publisher could otherwise discover the new\n UUID-root `index.ts` before #775's trusted release gates are installed.
 
 For an existing Lesson placement, a trusted `resolveExistingLesson` callback
 must prove immutable ID, matching source SHA, source-language support, actual
@@ -87,6 +87,7 @@ source writer as a production command prematurely.
 ## Verification
 
 Adjacent tests:
+
 ```sh
 node --test shared/engine/generators/materializers/course/materializeStage5.spec.mjs\nnode --test shared/engine/generators/materializers/course/materializeStage5.build.spec.mjs
 node --test shared/engine/generators/materializers/course/sourceCommit.spec.mjs

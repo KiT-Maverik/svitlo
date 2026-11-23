@@ -12,8 +12,9 @@ const root = () => join(process.cwd(), 'public/data/courses');
 
 export async function loadPublishedCourseCatalog(language: LanguageCode): Promise<CoursePreview[]> {
   let entries;
-  try { entries = await readdir(root(), { withFileTypes: true }); }
-  catch (error) {
+  try {
+    entries = await readdir(root(), { withFileTypes: true });
+  } catch (error) {
     if ((error as NodeJS.ErrnoException).code === 'ENOENT') return [];
     throw error;
   }

@@ -71,9 +71,7 @@ export interface DynamicQuestion_ArgumentValidation {
 /** Pure argument/variant config. Authored content belongs to the Question configurators. */
 export interface DynamicQuestion_Config<TArguments extends DynamicQuestion_Arguments> {
   arguments: TArguments;
-  buildVariants: (
-    config: DynamicQuestion_Config<TArguments>,
-  ) => DynamicQuestion_Variant<TArguments>[];
+  buildVariants: (config: DynamicQuestion_Config<TArguments>) => DynamicQuestion_Variant<TArguments>[];
   checkConstraints: (variant: DynamicQuestion_Variant<TArguments>) => boolean;
 }
 

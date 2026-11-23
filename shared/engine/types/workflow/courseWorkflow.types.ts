@@ -188,8 +188,7 @@ export interface CourseWorkflowStage2 extends CourseWorkflowStage1 {
 /** The planned Skills and Course-local placement slug remain from Stage 2.
  * The lesson ID is present only for an existing, independently owned Lesson.
  */
-type CourseWorkflowStage3PlacementConfig = CourseWorkflowStage2LessonSlot['config'] &
-  Pick<Lesson_Config, 'slug'>;
+type CourseWorkflowStage3PlacementConfig = CourseWorkflowStage2LessonSlot['config'] & Pick<Lesson_Config, 'slug'>;
 
 /** Stage 3 authors the fields needed to start an independent Lesson later.
  * Reuse the canonical Lesson Config, but defer its UUID, languages, Sections and

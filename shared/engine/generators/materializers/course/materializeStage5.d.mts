@@ -59,12 +59,15 @@ export type CourseStage5Options = {
     placement: string;
     languages: readonly string[];
   }) => ExistingLesson;
-  materializeSection?: (node: unknown, context: {
-    directory: string;
-    documentLanguage: string;
-    languagesImport: string;
-    [key: string]: unknown;
-  }) => SourceRenderResult;
+  materializeSection?: (
+    node: unknown,
+    context: {
+      directory: string;
+      documentLanguage: string;
+      languagesImport: string;
+      [key: string]: unknown;
+    },
+  ) => SourceRenderResult;
 };
 export type CourseStage5Plan = {
   sourcePath: string;

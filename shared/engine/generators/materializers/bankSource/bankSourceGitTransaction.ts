@@ -10,9 +10,15 @@ import { existsSync, lstatSync, mkdtempSync, realpathSync, rmSync } from 'node:f
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import {
-  assertBankPath, assertBankSha, assertBankUuid, assertReviewedBankInput,
-  gitBlobSha, preflightBankSource,
-  type BankReviewedSource, type BankSourceResult, type BankSourceSnapshot,
+  assertBankPath,
+  assertBankSha,
+  assertBankUuid,
+  assertReviewedBankInput,
+  gitBlobSha,
+  preflightBankSource,
+  type BankReviewedSource,
+  type BankSourceResult,
+  type BankSourceSnapshot,
 } from './bankSourceSafety';
 
 export type BankGitKind = 'questions' | 'flashcards';
@@ -41,11 +47,7 @@ export type BankGitCommit = BankGitCheck & {
   worktreeRefreshRequired: boolean;
 };
 
-function git(
-  context: BankGitContext,
-  args: string[],
-  options: { input?: string; index?: string } = {},
-): string {
+function git(context: BankGitContext, args: string[], options: { input?: string; index?: string } = {}): string {
   return execFileSync('git', ['-C', context.repositoryRoot, ...args], {
     encoding: 'utf8',
     input: options.input,
@@ -58,24 +60,31 @@ function git(
 function assertContext(context: BankGitContext): void {
   assertBankUuid(context.ownerLessonId, 'Bank owning Lesson');
   assertBankSha(context.expectedHeadSha, 'expected branch HEAD');
-  if (!/^[A-Za-z0-9][A-Za-z0-9/_-]*$/.test(context.branch) ||
-      context.branch.includes('//') || context.branch.endsWith('/')) {
+  if (
+    !/^[A-Za-z0-9][A-Za-z0-9/_-]*$/.test(context.branch) ||
+    context.branch.includes('//') ||
+    context.branch.endsWith('/')
+  ) {
     throw new Error('Unsafe bank source branch');
   }
   assertBankPath(context.lessonDirectory);
   const match = /^content\/[a-z][a-z0-9-]*\/data\/lessons\/([a-f0-9])\/([a-f0-9-]{36})$/.exec(context.lessonDirectory);
-  if (!match || match[2] !== context.ownerLessonId.toLowerCase() ||
-      match[2][match[2].length - 1] !== match[1]) {
+  if (!match || match[2] !== context.ownerLessonId.toLowerCase() || match[2][match[2].length - 1] !== match[1]) {
     throw new Error('Bank source must belong to the exact UUID-addressed Lesson root');
   }
   const root = path.resolve(context.repositoryRoot);
-  if (realpathSync(root) !== root || !lstatSync(root).isDirectory() ||
-      realpathSync(git(context, ['rev-parse', '--show-toplevel']).trim()) !== root) {
+  if (
+    realpathSync(root) !== root ||
+    !lstatSync(root).isDirectory() ||
+    realpathSync(git(context, ['rev-parse', '--show-toplevel']).trim()) !== root
+  ) {
     throw new Error('Bank source requires the exact local repository root');
   }
-  if (git(context, ['symbolic-ref', '--quiet', '--short', 'HEAD']).trim() !== context.branch ||
-      git(context, ['rev-parse', 'HEAD']).trim() !== context.expectedHeadSha ||
-      git(context, ['rev-parse', 'refs/heads/' + context.branch]).trim() !== context.expectedHeadSha) {
+  if (
+    git(context, ['symbolic-ref', '--quiet', '--short', 'HEAD']).trim() !== context.branch ||
+    git(context, ['rev-parse', 'HEAD']).trim() !== context.expectedHeadSha ||
+    git(context, ['rev-parse', 'refs/heads/' + context.branch]).trim() !== context.expectedHeadSha
+  ) {
     throw new Error('Stale PR HEAD or incorrect checked-out branch');
   }
   if (git(context, ['status', '--porcelain=v1', '--untracked-files=all', '-z'])) {
@@ -95,9 +104,7 @@ function assertContext(context: BankGitContext): void {
 }
 
 function treeEntries(context: BankGitContext): BankSourceSnapshot['entries'] {
-  const output = git(context, [
-    'ls-tree', '-r', '-t', '-z', context.expectedHeadSha, '--', context.lessonDirectory,
-  ]);
+  const output = git(context, ['ls-tree', '-r', '-t', '-z', context.expectedHeadSha, '--', context.lessonDirectory]);
   const prefix = context.lessonDirectory + '/';
   const entries: Record<string, { kind: 'file' | 'symlink' | 'directory'; content?: string }> = {};
   const names = new Set<string>();
@@ -137,8 +144,7 @@ function treeEntries(context: BankGitContext): BankSourceSnapshot['entries'] {
     for (const sibling of siblings) {
       if (!sibling) continue;
       const name = sibling.slice(sibling.indexOf('\t') + 1);
-      if (name.toLowerCase() === pieces[i - 1].toLowerCase() &&
-          name !== pieces[i - 1]) {
+      if (name.toLowerCase() === pieces[i - 1].toLowerCase() && name !== pieces[i - 1]) {
         throw new Error('Case-insensitive Git Lesson path collision: ' + parent + '/' + name);
       }
     }
@@ -182,20 +188,24 @@ function checkOwnedPaths(kind: BankGitKind, plan: BankSourceResult): void {
     const lower = file.path.toLowerCase();
     if (names.has(lower)) throw new Error('Case-insensitive generated bank source collision');
     names.add(lower);
-    if (!file.path.startsWith(kind + '/') &&
-        file.path !== kind + 'Languages.ts' &&
-        file.path !== kind + '.reviewed-stage3.ts.txt') {
+    if (
+      !file.path.startsWith(kind + '/') &&
+      file.path !== kind + 'Languages.ts' &&
+      file.path !== kind + '.reviewed-stage3.ts.txt'
+    ) {
       throw new Error('Plan attempts to modify non-bank-owned source: ' + file.path);
     }
   }
   const index = kind + '/index.ts';
   if (!names.has(index)) throw new Error('Missing bank index in source plan');
   if (plan.transition) {
-    if (plan.transition.reviewedIndexPath !== index ||
-        plan.transition.archivePath !== kind + '.reviewed-stage3.ts.txt' ||
-        !names.has(kind + '.reviewed-stage3.ts.txt') ||
-        !names.has((kind + 'Languages.ts').toLowerCase()) ||
-        plan.files.filter(file => file.path.startsWith(kind + '/') && file.path !== index).length === 0) {
+    if (
+      plan.transition.reviewedIndexPath !== index ||
+      plan.transition.archivePath !== kind + '.reviewed-stage3.ts.txt' ||
+      !names.has(kind + '.reviewed-stage3.ts.txt') ||
+      !names.has((kind + 'Languages.ts').toLowerCase()) ||
+      plan.files.filter(file => file.path.startsWith(kind + '/') && file.path !== index).length === 0
+    ) {
       throw new Error('Partial reviewed bank source transition');
     }
   } else if (plan.files.length !== 1 || plan.files[0].path !== index) {
@@ -214,19 +224,26 @@ function assertNoExternalEntityCollisions(context: BankGitContext, plan: BankSou
   let output = '';
   try {
     output = git(context, [
-      'grep', '-n', '-I', '-E',
+      'grep',
+      '-n',
+      '-I',
+      '-E',
       '["\x27]?id["\x27]?[[:space:]]*:[[:space:]]*["\x27][a-fA-F0-9]{8}-',
-      context.expectedHeadSha, '--', 'content',
+      context.expectedHeadSha,
+      '--',
+      'content',
     ]);
   } catch (error) {
     if ((error as { status?: number }).status !== 1) throw error;
   }
   for (const line of output.split('\n')) {
     const found = /^[a-fA-F0-9]{40}:([^:]+):\d+:(.*)$/.exec(line);
-    if (!found || found[1].startsWith(context.lessonDirectory + '/' + (plan.transition?.reviewedIndexPath ?? ''))) continue;
+    if (!found || found[1].startsWith(context.lessonDirectory + '/' + (plan.transition?.reviewedIndexPath ?? '')))
+      continue;
     // Reviewed temporary index contains the same authored identities by design.
-    const relative = found[1].startsWith(context.lessonDirectory + '/') ?
-      found[1].slice(context.lessonDirectory.length + 1) : '';
+    const relative = found[1].startsWith(context.lessonDirectory + '/')
+      ? found[1].slice(context.lessonDirectory.length + 1)
+      : '';
     if (relative && plan.files.some(file => file.path === relative)) continue;
     for (const match of found[2].matchAll(declaration)) {
       if (ids.has(match[1].toLowerCase())) {
@@ -254,10 +271,12 @@ function validateReview(
   assertBankSha(reviewed.reviewCommitSha, 'bank review commit');
   assertBankSha(reviewed.reviewedSourceBlobSha, 'reviewed source blob');
   assertReviewedBankInput(evaluatedInput, reviewed);
-  if (reviewed.blobSha !== reviewed.reviewedSourceBlobSha ||
-      reviewed.blobSha !== plan.transition.reviewedIndexBlobSha ||
-      gitBlobSha(reviewed.content) !== reviewed.blobSha ||
-      plan.transition.expectedHeadSha !== context.expectedHeadSha) {
+  if (
+    reviewed.blobSha !== reviewed.reviewedSourceBlobSha ||
+    reviewed.blobSha !== plan.transition.reviewedIndexBlobSha ||
+    gitBlobSha(reviewed.content) !== reviewed.blobSha ||
+    plan.transition.expectedHeadSha !== context.expectedHeadSha
+  ) {
     throw new Error('Bank source transition does not match approved revision');
   }
   git(context, ['merge-base', '--is-ancestor', reviewed.reviewCommitSha, context.expectedHeadSha]);
@@ -276,22 +295,29 @@ export function checkBankGitPlan(
 ): BankGitCheck {
   const snapshot = readBankGitSnapshot(context);
   checkOwnedPaths(kind, plan);
-  checkPhysicalPaths(context, plan.files.map(file => file.path));
+  checkPhysicalPaths(
+    context,
+    plan.files.map(file => file.path),
+  );
   validateReview(context, kind, plan, evidence);
   const reviewed = evidence?.reviewed;
-  preflightBankSource(plan.files, snapshot,
-    reviewed && plan.transition ? {
-      indexPath: plan.transition.reviewedIndexPath,
-      archivePath: plan.transition.archivePath,
-      reviewed,
-    } : undefined);
+  preflightBankSource(
+    plan.files,
+    snapshot,
+    reviewed && plan.transition
+      ? {
+          indexPath: plan.transition.reviewedIndexPath,
+          archivePath: plan.transition.archivePath,
+          reviewed,
+        }
+      : undefined,
+  );
   const current = snapshot.entries;
   const plannedNames = new Set(plan.files.map(file => file.path));
   const presentNames = new Map<string, string>();
   for (const name of Object.keys(current)) {
     presentNames.set(name.toLowerCase(), name);
-    if (name.startsWith(kind + '/') && current[name].kind !== 'directory' &&
-        !plannedNames.has(name)) {
+    if (name.startsWith(kind + '/') && current[name].kind !== 'directory' && !plannedNames.has(name)) {
       throw new Error('Unexpected bank-owned source outside complete reviewed plan: ' + name);
     }
   }
@@ -346,16 +372,25 @@ export function commitBankGitPlan(
     for (const file of plan.files) {
       const blob = git(context, ['hash-object', '-w', '--stdin'], { input: file.content }).trim();
       assertBankSha(blob, 'generated source blob');
-      git(context, ['update-index', '--add', '--cacheinfo', '100644', blob,
-        context.lessonDirectory + '/' + file.path], { index });
+      git(
+        context,
+        ['update-index', '--add', '--cacheinfo', '100644', blob, context.lessonDirectory + '/' + file.path],
+        { index },
+      );
     }
     const tree = git(context, ['write-tree'], { index }).trim();
     assertBankSha(tree, 'planned atomic tree');
     const commit = git(context, [
-      '-c', 'user.name=Svitlo Source Materializer',
-      '-c', 'user.email=materializer@svitlo.invalid',
-      'commit-tree', tree, '-p', context.expectedHeadSha,
-      '-m', 'Commit reviewed ' + kind + ' bank source as one transaction',
+      '-c',
+      'user.name=Svitlo Source Materializer',
+      '-c',
+      'user.email=materializer@svitlo.invalid',
+      'commit-tree',
+      tree,
+      '-p',
+      context.expectedHeadSha,
+      '-m',
+      'Commit reviewed ' + kind + ' bank source as one transaction',
     ]).trim();
     assertBankSha(commit, 'bank source commit');
     // Revalidate checkout and HEAD before the only ref mutation.

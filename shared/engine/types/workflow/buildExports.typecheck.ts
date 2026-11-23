@@ -19,9 +19,7 @@ import type { FlashcardBankWorkflowStage3 as InternalFlashcardsStage3 } from './
 
 // Compile-time public API contract. This file participates in the Engine
 // code:check:types check, but never ships in the built package.
-type Equal<Left, Right> =
-  (<T>() => T extends Left ? 1 : 2) extends
-  (<T>() => T extends Right ? 1 : 2) ? true : false;
+type Equal<Left, Right> = (<T>() => T extends Left ? 1 : 2) extends <T>() => T extends Right ? 1 : 2 ? true : false;
 type Expect<Condition extends true> = Condition;
 
 export type EngineWorkflowBuildExports = [

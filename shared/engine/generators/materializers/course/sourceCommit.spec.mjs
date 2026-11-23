@@ -6,7 +6,8 @@ import path from 'node:path';
 import test from 'node:test';
 import { preflightCourseSourceCommit, commitCourseSourcePlan } from './sourceCommit.mjs';
 
-const reviewed = "import type { CourseWorkflowMaterializerInput } from '@svitlo/engine/build';\n" +
+const reviewed =
+  "import type { CourseWorkflowMaterializerInput } from '@svitlo/engine/build';\n" +
   'export const course = {} satisfies CourseWorkflowMaterializerInput;\n';
 const generated = "export const generatedCourse = { type: 'course' };\n";
 const id = '663572e7-bd85-4516-86e2-3de07d209e03';
@@ -34,8 +35,12 @@ function fixture(t) {
   cmd(root, 'branch', 'agent/course-stage5-test');
   cmd(root, 'checkout', '-q', '--detach', head);
   const plan = {
-    courseId: id, sourcePath, sourceArchivePath: archivePath,
-    sourceBlobSha: blob, reviewCommitSha: head, publishable: false,
+    courseId: id,
+    sourcePath,
+    sourceArchivePath: archivePath,
+    sourceBlobSha: blob,
+    reviewCommitSha: head,
+    publishable: false,
     files: [
       { path: sourcePath, kind: 'typescript', content: generated },
       { path: generatedPath, kind: 'markdown', content: '# Reviewed methodology\n' },
@@ -59,10 +64,8 @@ test('read-only check does not change HEAD, refs, worktree or Git tree', t => {
 
 test('one authorized Git commit archives exact source and changes the root atomically', t => {
   const { root, plan, options, head } = fixture(t);
-  assert.throws(() => commitCourseSourcePlan(plan, { ...options, mode: 'write' }),
-    /not explicitly authorized/);
-  const result = commitCourseSourcePlan(plan,
-    { ...options, mode: 'write', authorizeWrite: () => true });
+  assert.throws(() => commitCourseSourcePlan(plan, { ...options, mode: 'write' }), /not explicitly authorized/);
+  const result = commitCourseSourcePlan(plan, { ...options, mode: 'write', authorizeWrite: () => true });
   assert.equal(result.changed, 3);
   assert.notEqual(result.commitSha, head);
   assert.equal(cmd(root, 'rev-list', '--count', head + '..' + result.commitSha), '1');
@@ -80,10 +83,11 @@ test('one authorized Git commit archives exact source and changes the root atomi
 
 test('stale reviewed SHA and changed committed source fail before creation', t => {
   const { root, plan, options, head } = fixture(t);
-  assert.throws(() => preflightCourseSourceCommit({ ...plan,
-    sourceBlobSha: '0'.repeat(40) }, options), /SHA differs/);
-  assert.throws(() => preflightCourseSourceCommit({ ...plan,
-    reviewCommitSha: '0'.repeat(40) }, options), /review commit is stale/);
+  assert.throws(() => preflightCourseSourceCommit({ ...plan, sourceBlobSha: '0'.repeat(40) }, options), /SHA differs/);
+  assert.throws(
+    () => preflightCourseSourceCommit({ ...plan, reviewCommitSha: '0'.repeat(40) }, options),
+    /review commit is stale/,
+  );
   assert.equal(cmd(root, 'rev-parse', 'HEAD'), head);
 });
 
@@ -96,7 +100,12 @@ test('symlinks, duplicate paths, untracked files and incomplete materialization 
   fs.unlinkSync(path.join(root, generatedPath));
   const target = path.join(root, 'content/playground/data/courses/3/' + id, 'other');
   fs.symlinkSync(path.dirname(path.join(root, sourcePath)), target);
-  const symlink = { ...plan, files: [...plan.files,
-    { path: sourcePath.replace('index.ts', 'other/deeper.ts'), kind: 'typescript', content: 'export {};\n' }] };
+  const symlink = {
+    ...plan,
+    files: [
+      ...plan.files,
+      { path: sourcePath.replace('index.ts', 'other/deeper.ts'), kind: 'typescript', content: 'export {};\n' },
+    ],
+  };
   assert.throws(() => preflightCourseSourceCommit(symlink, options), /Symlink in generated path/);
 });

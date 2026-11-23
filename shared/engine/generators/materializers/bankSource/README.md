@@ -2,10 +2,10 @@
 
 ## Four explicit Engine Build APIs
 
-| Lesson-owned bank | Stage 1 authorized handoff | Independently reviewed Stage 3 |
-| --- | --- | --- |
-| Question Bank | `materializeQuestionBankDraft()` | `materializeQuestionBank()` |
-| Flashcard Bank | `materializeFlashcardBankDraft()` | `materializeFlashcardBank()` |
+| Lesson-owned bank | Stage 1 authorized handoff        | Independently reviewed Stage 3 |
+| ----------------- | --------------------------------- | ------------------------------ |
+| Question Bank     | `materializeQuestionBankDraft()`  | `materializeQuestionBank()`    |
+| Flashcard Bank    | `materializeFlashcardBankDraft()` | `materializeFlashcardBank()`   |
 
 Each draft operation creates only the owning bank's editable `questions/index.ts` or `flashcards/index.ts` satisfying its canonical Stage 1 workflow type. It does not mint Questions/Cards, create Section selections or publish Props.
 

@@ -11,9 +11,16 @@ import type { ContentBlock_Youtube_Config } from '../../../configurators/content
 import type { CarouselSource } from '../carousel/materializeCarousel';
 
 export type CheckpointAnswerBlockSource =
-  | ContentBlock_Audio_Config | CarouselSource | ContentBlock_Code_Config | ContentBlock_Image_Config
-  | ContentBlock_Markdown_Config | SceneSource | ContentBlock_Subtitles_Config
-  | ContentBlock_Text_Config | ContentBlock_Video_Config | ContentBlock_Youtube_Config;
+  | ContentBlock_Audio_Config
+  | CarouselSource
+  | ContentBlock_Code_Config
+  | ContentBlock_Image_Config
+  | ContentBlock_Markdown_Config
+  | SceneSource
+  | ContentBlock_Subtitles_Config
+  | ContentBlock_Text_Config
+  | ContentBlock_Video_Config
+  | ContentBlock_Youtube_Config;
 export type CheckpointAnswerSource = Omit<ContentBlock_CheckpointAnswer_Config, 'content'> & {
   content: { items: Record<string, CheckpointAnswerBlockSource | false>; order: string[] };
 };
@@ -30,13 +37,32 @@ export type AnswerContext = {
 const slug = /^[a-z][a-zA-Z0-9]*$/;
 const uuid = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i;
 const locale = /^[a-z]{2}(?:-[A-Z]{2})?$/;
-const reserved = new Set('await break case catch class const continue debugger default delete do else enum export extends false finally for function if import in instanceof new null return super switch this throw true try typeof var void while with yield let static'.split(' '));
-const allowed = new Set(['audio', 'carousel', 'code', 'image', 'markdown', 'scene', 'subtitles', 'text', 'video', 'youtube']);
+const reserved = new Set(
+  'await break case catch class const continue debugger default delete do else enum export extends false finally for function if import in instanceof new null return super switch this throw true try typeof var void while with yield let static'.split(
+    ' ',
+  ),
+);
+const allowed = new Set([
+  'audio',
+  'carousel',
+  'code',
+  'image',
+  'markdown',
+  'scene',
+  'subtitles',
+  'text',
+  'video',
+  'youtube',
+]);
 const record = (value: unknown): value is Record<string, unknown> =>
   value !== null && typeof value === 'object' && !Array.isArray(value);
 function directory(value: string): string {
   if (value === '') return value;
-  if (typeof value !== 'string' || value.startsWith('/') || value.split('/').some(part => !slug.test(part) || part === 'constructor' || part === '__proto__')) {
+  if (
+    typeof value !== 'string' ||
+    value.startsWith('/') ||
+    value.split('/').some(part => !slug.test(part) || part === 'constructor' || part === '__proto__')
+  ) {
     throw new Error('CheckpointAnswer: unsafe destination directory ' + value);
   }
   return value;
@@ -45,17 +71,34 @@ function literal(value: unknown, path: string, level = 0): string {
   if (value === undefined) return 'undefined';
   if (value === null || typeof value === 'string' || typeof value === 'boolean') return JSON.stringify(value);
   if (typeof value === 'number' && Number.isFinite(value)) return JSON.stringify(value);
-  if (Array.isArray(value)) return '[' + value.map((part, i) => literal(part, path + '[' + i + ']', level + 1)).join(', ') + ']';
-  if (!record(value) || Object.getPrototypeOf(value) !== Object.prototype && Object.getPrototypeOf(value) !== null) {
+  if (Array.isArray(value))
+    return '[' + value.map((part, i) => literal(part, path + '[' + i + ']', level + 1)).join(', ') + ']';
+  if (!record(value) || (Object.getPrototypeOf(value) !== Object.prototype && Object.getPrototypeOf(value) !== null)) {
     throw new Error(path + ': unsupported source expression; delegate to its concrete materializer');
   }
   const entries = Object.entries(value);
-  return entries.length ? '{\n' + entries.map(([key, part]) => '  '.repeat(level + 1) + JSON.stringify(key) + ': ' + literal(part, path + '.' + key, level + 1)).join(',\n') + '\n' + '  '.repeat(level) + '}' : '{}';
+  return entries.length
+    ? '{\n' +
+        entries
+          .map(
+            ([key, part]) =>
+              '  '.repeat(level + 1) + JSON.stringify(key) + ': ' + literal(part, path + '.' + key, level + 1),
+          )
+          .join(',\n') +
+        '\n' +
+        '  '.repeat(level) +
+        '}'
+    : '{}';
 }
 /** Emit CheckpointAnswer and delegate every allowed ContentBlock, including nested composites. */
 export function materializeCheckpointAnswer(config: CheckpointAnswerSource, context: AnswerContext): AnswerResult {
-  if (!record(config) || config.type !== 'checkpointAnswer' || typeof config.slug !== 'string' ||
-    !slug.test(config.slug) || !uuid.test(config.id)) {
+  if (
+    !record(config) ||
+    config.type !== 'checkpointAnswer' ||
+    typeof config.slug !== 'string' ||
+    !slug.test(config.slug) ||
+    !uuid.test(config.id)
+  ) {
     throw new Error('CheckpointAnswer: invalid identity or type');
   }
   if (!locale.test(context.documentLanguage) || !/^(?:\.\.?\/|#|@svitlo\/)/.test(context.languagesImport)) {
@@ -65,16 +108,30 @@ export function materializeCheckpointAnswer(config: CheckpointAnswerSource, cont
   if (!record(config.content) || !record(config.content.items) || !Array.isArray(config.content.order)) {
     throw new Error('CheckpointAnswer.content: expected { items, order }');
   }
-  const enabled = Object.entries(config.content.items).filter((entry): entry is [string, CheckpointAnswerBlockSource] => entry[1] !== false);
+  const enabled = Object.entries(config.content.items).filter(
+    (entry): entry is [string, CheckpointAnswerBlockSource] => entry[1] !== false,
+  );
   const keys = enabled.map(([key]) => key);
-  if (!keys.length || config.content.order.length !== keys.length || new Set(config.content.order).size !== keys.length ||
-    config.content.order.some(key => !keys.includes(key))) {
+  if (
+    !keys.length ||
+    config.content.order.length !== keys.length ||
+    new Set(config.content.order).size !== keys.length ||
+    config.content.order.some(key => !keys.includes(key))
+  ) {
     throw new Error('CheckpointAnswer.content.order: list every enabled answer exactly once');
   }
   const ids = new Set([config.id]);
   for (const [key, child] of enabled) {
-    if (!slug.test(key) || key === 'constructor' || key === '__proto__' || !record(child) ||
-      !allowed.has(child.type) || child.slug !== key || !uuid.test(child.id) || ids.has(child.id)) {
+    if (
+      !slug.test(key) ||
+      key === 'constructor' ||
+      key === '__proto__' ||
+      !record(child) ||
+      !allowed.has(child.type) ||
+      child.slug !== key ||
+      !uuid.test(child.id) ||
+      ids.has(child.id)
+    ) {
       throw new Error('CheckpointAnswer.content.items.' + key + ': invalid kind, slug or duplicate UUID');
     }
     ids.add(child.id);
@@ -93,11 +150,15 @@ export function materializeCheckpointAnswer(config: CheckpointAnswerSource, cont
       throw new Error('CheckpointAnswer.content.items.' + key + ': invalid delegate export');
     }
     const alias = 'answer_' + key;
-    imports.push('import { ' + result.exportName + ' as ' + alias + ' } from ' + JSON.stringify('./content/items/' + key) + ';');
+    imports.push(
+      'import { ' + result.exportName + ' as ' + alias + ' } from ' + JSON.stringify('./content/items/' + key) + ';',
+    );
     items.push('    ' + JSON.stringify(key) + ': ' + alias + ',');
     for (const file of result.files) {
       if (!file.path.startsWith(target + '/')) {
-        throw new Error('CheckpointAnswer.content.items.' + key + ': child emitted a file outside its owned directory: ' + file.path);
+        throw new Error(
+          'CheckpointAnswer.content.items.' + key + ': child emitted a file outside its owned directory: ' + file.path,
+        );
       }
       if (paths.has(file.path) || file.path === (at ? at + '/' : '') + 'index.ts') {
         throw new Error('CheckpointAnswer: duplicate generated path ' + file.path);
@@ -111,17 +172,26 @@ export function materializeCheckpointAnswer(config: CheckpointAnswerSource, cont
   const code = [
     "import { defineCheckpointAnswer } from '@svitlo/engine/build';",
     'import { languages } from ' + JSON.stringify(context.languagesImport) + ';',
-    ...imports, '',
+    ...imports,
+    '',
     'const content = {',
-    '  items: {', ...items, '  },',
+    '  items: {',
+    ...items,
+    '  },',
     '  order: ' + literal(config.content.order, 'checkpointAnswer.content.order', 1) + ',',
-    '};', '',
-    'export const ' + exportName + ' = defineCheckpointAnswer<' + JSON.stringify(config.slug) + ', typeof content.items, typeof languages>({',
+    '};',
+    '',
+    'export const ' +
+      exportName +
+      ' = defineCheckpointAnswer<' +
+      JSON.stringify(config.slug) +
+      ', typeof content.items, typeof languages>({',
     '  id: ' + JSON.stringify(config.id) + ',',
     '  slug: ' + JSON.stringify(config.slug) + ',',
     "  type: 'checkpointAnswer',",
     '  content,',
-    '});', '',
+    '});',
+    '',
   ].join('\n');
   files.push({ path: (at ? at + '/' : '') + 'index.ts', content: code, kind: 'typescript' });
   return { exportName, files, diagnostics };

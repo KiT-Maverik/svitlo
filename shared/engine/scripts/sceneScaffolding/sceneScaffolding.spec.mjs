@@ -18,18 +18,26 @@ function fixture(t) {
   fs.mkdirSync(path.join(book, 'scenes'), { recursive: true });
   for (const filename of ['createSceneRegistry.ts', 'sceneLoader.ts'])
     fs.writeFileSync(path.join(book, 'scenes', filename), '');
-  fs.writeFileSync(path.join(book, 'package.json'), JSON.stringify({
-    name: '@svitlo/playground',
-    exports: { './scenes': {} },
-    scripts: { 'content:generate:scenes': 'node registry.mjs' },
-    dependencies: { react: '1', '@svitlo/engine': '1', '@svitlo/ui-kit': '1' },
-    devDependencies: { vitest: '1' },
-  }));
-  fs.writeFileSync(path.join(book, 'tsconfig.json'),
-    JSON.stringify({ include: ['data/**/*.ts', 'scenes/**/*.ts', 'scenes/**/*.tsx'] }));
+  fs.writeFileSync(
+    path.join(book, 'package.json'),
+    JSON.stringify({
+      name: '@svitlo/playground',
+      exports: { './scenes': {} },
+      scripts: { 'content:generate:scenes': 'node registry.mjs' },
+      dependencies: { react: '1', '@svitlo/engine': '1', '@svitlo/ui-kit': '1' },
+      devDependencies: { vitest: '1' },
+    }),
+  );
+  fs.writeFileSync(
+    path.join(book, 'tsconfig.json'),
+    JSON.stringify({ include: ['data/**/*.ts', 'scenes/**/*.ts', 'scenes/**/*.tsx'] }),
+  );
   const scene = (id, slug, specification) => ({
     config: {
-      id, slug, type: 'scene', params: {},
+      id,
+      slug,
+      type: 'scene',
+      params: {},
       locale: { value: { instruction: { uk: 'Порівняй', en: 'Do not duplicate' } } },
     },
     production: { specification },
@@ -37,15 +45,24 @@ function fixture(t) {
   const config = {
     config: {
       id: '33333333-3333-4333-8333-333333333330',
-      slug: 'lessonOne', type: 'lesson',
-      section: { items: {
-        intro: { config: {
-          id: '44444444-4444-4444-8444-444444444444',
-          slug: 'intro', type: 'content',
-          content: { items: { CompareGroupsScene: scene(sceneId, 'CompareGroupsScene', '# Original instruction\n') },
-            order: ['CompareGroupsScene'] },
-        } },
-      }, order: ['intro'] },
+      slug: 'lessonOne',
+      type: 'lesson',
+      section: {
+        items: {
+          intro: {
+            config: {
+              id: '44444444-4444-4444-8444-444444444444',
+              slug: 'intro',
+              type: 'content',
+              content: {
+                items: { CompareGroupsScene: scene(sceneId, 'CompareGroupsScene', '# Original instruction\n') },
+                order: ['CompareGroupsScene'],
+              },
+            },
+          },
+        },
+        order: ['intro'],
+      },
     },
     production: { documentLanguage: 'uk' },
   };
@@ -55,9 +72,12 @@ function fixture(t) {
     fs.mkdirSync(sources, { recursive: true });
     fs.writeFileSync(path.join(source, 'index.ts'), "export const lesson = 'materialized';\n");
     fs.writeFileSync(path.join(source, 'workflow.stage2.ts'), "export const review = 'verified';\n");
-    fs.writeFileSync(path.join(source, 'languages.ts'),
-      'export const languages = [' + JSON.stringify(config.production.documentLanguage) +
-      '] as const satisfies SupportedLanguages;\n');
+    fs.writeFileSync(
+      path.join(source, 'languages.ts'),
+      'export const languages = [' +
+        JSON.stringify(config.production.documentLanguage) +
+        '] as const satisfies SupportedLanguages;\n',
+    );
     const nodes = [];
     function collect(value) {
       if (!value || typeof value !== 'object') return;
@@ -68,9 +88,13 @@ function fixture(t) {
     nodes.forEach((node, index) => {
       const target = path.join(sources, 'nested', 'scene-' + index);
       fs.mkdirSync(target, { recursive: true });
-      fs.writeFileSync(path.join(target, 'index.ts'),
+      fs.writeFileSync(
+        path.join(target, 'index.ts'),
         "import { defineScene } from '@svitlo/engine/build';\n" +
-        'export const authoredScene = defineScene(' + JSON.stringify(node.config, null, 2) + ');\n');
+          'export const authoredScene = defineScene(' +
+          JSON.stringify(node.config, null, 2) +
+          ');\n',
+      );
       if (typeof node.production?.specification === 'string' && node.production.specification.trim())
         fs.writeFileSync(path.join(target, 'specification.md'), node.production.specification);
     });
@@ -82,10 +106,14 @@ function fixture(t) {
 }
 
 test('PascalCase Scene naming supports legacy lowerCamelCase and separates Configurator symbols', () => {
-  assert.deepEqual(sceneSymbols('CompareGroupsScene'),
-    { component: 'CompareGroupsScene', configurator: 'CompareGroupsSceneConfig' });
-  assert.deepEqual(sceneSymbols('lightRayDiagram'),
-    { component: 'LightRayDiagram', configurator: 'LightRayDiagramConfig' });
+  assert.deepEqual(sceneSymbols('CompareGroupsScene'), {
+    component: 'CompareGroupsScene',
+    configurator: 'CompareGroupsSceneConfig',
+  });
+  assert.deepEqual(sceneSymbols('lightRayDiagram'), {
+    component: 'LightRayDiagram',
+    configurator: 'LightRayDiagramConfig',
+  });
   for (const bad of ['../break', 'Scene-Name', 'two words', '_private', 'étiquette', ''])
     assert.throws(() => sceneSymbols(bad), /Unsafe Scene slug/);
 });
@@ -96,9 +124,13 @@ test('generates seven stable Scene files, preserves source specification, and le
   assert.deepEqual(one, [{ id: sceneId, changed: 7, skipped: false }]);
   const folder = f.folder(sceneId);
   const names = [
-    'index.ts', 'specification.md', 'CompareGroupsScene.tsx',
-    'CompareGroupsScene.module.css', 'CompareGroupsScene.stories.tsx',
-    'CompareGroupsScene.spec.tsx', 'CompareGroupsScene.constants.ts',
+    'index.ts',
+    'specification.md',
+    'CompareGroupsScene.tsx',
+    'CompareGroupsScene.module.css',
+    'CompareGroupsScene.stories.tsx',
+    'CompareGroupsScene.spec.tsx',
+    'CompareGroupsScene.constants.ts',
   ];
   assert.deepEqual(fs.readdirSync(folder).sort(), names.sort());
   assert.equal(fs.readFileSync(path.join(folder, 'specification.md'), 'utf8'), '# Original instruction\n');
@@ -112,20 +144,38 @@ test('generates seven stable Scene files, preserves source specification, and le
   assert.doesNotMatch(constants, /ariaLabel|label:/i);
   for (const name of names.filter(x => x.endsWith('.ts') || x.endsWith('.tsx'))) {
     const filepath = path.join(folder, name);
-    const ast = ts.createSourceFile(name, fs.readFileSync(filepath, 'utf8'), ts.ScriptTarget.Latest, true,
-      name.endsWith('.tsx') ? ts.ScriptKind.TSX : ts.ScriptKind.TS);
+    const ast = ts.createSourceFile(
+      name,
+      fs.readFileSync(filepath, 'utf8'),
+      ts.ScriptTarget.Latest,
+      true,
+      name.endsWith('.tsx') ? ts.ScriptKind.TSX : ts.ScriptKind.TS,
+    );
     assert.deepEqual(ast.parseDiagnostics, [], name);
   }
-  const program = ts.createProgram([path.join(folder, 'CompareGroupsScene.tsx'),
-    path.join(folder, 'CompareGroupsScene.stories.tsx')], {
-    strict: true, noEmit: true, jsx: ts.JsxEmit.ReactJSX, module: ts.ModuleKind.ESNext,
-    moduleResolution: ts.ModuleResolutionKind.Bundler, skipLibCheck: true,
-  });
-  const unresolved = ts.getPreEmitDiagnostics(program)
+  const program = ts.createProgram(
+    [path.join(folder, 'CompareGroupsScene.tsx'), path.join(folder, 'CompareGroupsScene.stories.tsx')],
+    {
+      strict: true,
+      noEmit: true,
+      jsx: ts.JsxEmit.ReactJSX,
+      module: ts.ModuleKind.ESNext,
+      moduleResolution: ts.ModuleResolutionKind.Bundler,
+      skipLibCheck: true,
+    },
+  );
+  const unresolved = ts
+    .getPreEmitDiagnostics(program)
     .filter(d => d.code === 2304)
     .map(d => ts.flattenDiagnosticMessageText(d.messageText, ' '));
-  assert(unresolved.some(x => x.includes('sceneImplementationRequired')), 'missing implementation should fail TS');
-  assert(unresolved.some(x => x.includes('sceneSourceLocaleRequired')), 'missing Storybook locale should fail TS');
+  assert(
+    unresolved.some(x => x.includes('sceneImplementationRequired')),
+    'missing implementation should fail TS',
+  );
+  assert(
+    unresolved.some(x => x.includes('sceneSourceLocaleRequired')),
+    'missing Storybook locale should fail TS',
+  );
   assert.equal(runOne(f.source, 'check', f.repo)[0].changed, 0);
 });
 
@@ -136,8 +186,11 @@ test('repeated creation SKIPs edited and partial scenes without overwriting any 
   fs.writeFileSync(file, 'author-edited');
   assert.deepEqual(runOne(f.source, 'generate', f.repo), [{ id: sceneId, changed: 0, skipped: true }]);
   assert.equal(fs.readFileSync(file, 'utf8'), 'author-edited');
-  assert.deepEqual(runOne(f.source, 'check', f.repo)[0].changed, 0,
-    'check confirms presence, not immutable generated bytes of human-edited code');
+  assert.deepEqual(
+    runOne(f.source, 'check', f.repo)[0].changed,
+    0,
+    'check confirms presence, not immutable generated bytes of human-edited code',
+  );
   fs.rmSync(path.join(f.folder(sceneId), 'index.ts'));
   assert.deepEqual(runOne(f.source, 'generate', f.repo)[0].skipped, true);
   assert.throws(() => runOne(f.source, 'check', f.repo), /Missing Scene scaffold file/);
@@ -149,8 +202,7 @@ test('failed staged Scene write leaves no partial UUID tree and a clean retry su
   let stagedWrites = 0;
   try {
     fs.writeFileSync = (filename, ...args) => {
-      if (String(filename).includes('.stage-') && ++stagedWrites === 3)
-        throw new Error('simulated disk write failure');
+      if (String(filename).includes('.stage-') && ++stagedWrites === 3) throw new Error('simulated disk write failure');
       return write(filename, ...args);
     };
     assert.throws(() => runOne(f.source, 'generate', f.repo), /simulated disk write failure/);
@@ -160,9 +212,7 @@ test('failed staged Scene write leaves no partial UUID tree and a clean retry su
   assert.equal(fs.existsSync(f.folder(sceneId)), false, 'the final Scene must not be partial');
   const parent = path.dirname(f.folder(sceneId));
   assert.deepEqual(fs.readdirSync(parent), [], 'temporary files and exclusive lease are cleaned up');
-  assert.deepEqual(runOne(f.source, 'generate', f.repo), [
-    { id: sceneId, changed: 7, skipped: false },
-  ]);
+  assert.deepEqual(runOne(f.source, 'generate', f.repo), [{ id: sceneId, changed: 7, skipped: false }]);
   assert.equal(runOne(f.source, 'check', f.repo)[0].changed, 0);
 });
 
@@ -183,8 +233,12 @@ test('supports recursive Carousel/Quest Scenes and selected Scene IDs, without i
   const f = fixture(t);
   const extra = f.scene(anotherId, 'demoScene', 'An independently approved specification');
   f.config.config.section.items.intro.config.content.items.gallery = {
-    config: { id: '55555555-5555-4555-8555-555555555555', type: 'carousel', slug: 'gallery',
-      slides: { items: { demoScene: extra }, order: ['demoScene'] } },
+    config: {
+      id: '55555555-5555-4555-8555-555555555555',
+      type: 'carousel',
+      slug: 'gallery',
+      slides: { items: { demoScene: extra }, order: ['demoScene'] },
+    },
   };
   f.save();
   const selected = runOne(f.source, 'generate', f.repo, anotherId);
@@ -257,5 +311,8 @@ test('rendered files are deterministic and no Scene scaffolding edits Lesson dat
   assert.deepEqual([...rendered], [...renderSceneFiles(scene)]);
   assert.deepEqual(runOne(f.source, 'generate', f.repo)[0].changed, 7);
   assert.equal(fs.readFileSync(f.authoredSceneModule(), 'utf8'), configBefore);
-  assert.deepEqual(fs.readdirSync(f.source).sort(), ['index.ts', 'languages.ts', 'sections', 'workflow.stage2.ts'].sort());
+  assert.deepEqual(
+    fs.readdirSync(f.source).sort(),
+    ['index.ts', 'languages.ts', 'sections', 'workflow.stage2.ts'].sort(),
+  );
 });

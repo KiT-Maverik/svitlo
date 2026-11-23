@@ -110,7 +110,9 @@ const isValidVariant = <TArguments extends DynamicQuestion_Arguments>(
   });
 };
 
-export function createDynamicQuestion<TArguments extends DynamicQuestion_Arguments>(config: DynamicQuestion_Config<TArguments>): DynamicQuestion<TArguments> {
+export function createDynamicQuestion<TArguments extends DynamicQuestion_Arguments>(
+  config: DynamicQuestion_Config<TArguments>,
+): DynamicQuestion<TArguments> {
   const defaultArgs = config.arguments;
   let args: DynamicQuestion_Variant<TArguments> | undefined;
   let variants: DynamicQuestion_Variant<TArguments>[] = [];

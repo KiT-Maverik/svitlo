@@ -90,13 +90,16 @@ function languagesFromRoot(directory: string): string {
   return directory ? '../'.repeat(directory.split('/').length) + 'languages' : './languages';
 }
 function node(value: unknown, at: string): Node {
-  if (!isRecord(value) || !isRecord(value.config) || !isRecord(value.production) &&
-      value.production !== undefined)
+  if (!isRecord(value) || !isRecord(value.config) || (!isRecord(value.production) && value.production !== undefined))
     throw new Error(at + ': expected a plain { config, production? } Stage 2 node');
   const config = value.config as Record<string, unknown>;
-  if (typeof config.type !== 'string' || typeof config.slug !== 'string' ||
-      !safeSlug.test(config.slug) || typeof config.id !== 'string' ||
-      !uuid.test(config.id))
+  if (
+    typeof config.type !== 'string' ||
+    typeof config.slug !== 'string' ||
+    !safeSlug.test(config.slug) ||
+    typeof config.id !== 'string' ||
+    !uuid.test(config.id)
+  )
     throw new Error(at + ': invalid authored entity identity');
   return { config, ...(isRecord(value.production) ? { production: value.production } : {}) };
 }
@@ -113,15 +116,17 @@ function normalizeStage2(input: LessonWorkflowMaterializerInput) {
       throw new Error(location + ': expected authored { items, order }');
     const collection = value.items;
     const keys = Object.keys(collection);
-    if (keys.length !== value.order.length || new Set(value.order).size !== keys.length ||
-      value.order.some(key => typeof key !== 'string' || !Object.hasOwn(collection, key)))
+    if (
+      keys.length !== value.order.length ||
+      new Set(value.order).size !== keys.length ||
+      value.order.some(key => typeof key !== 'string' || !Object.hasOwn(collection, key))
+    )
       throw new Error(location + '.order: every authored child must be ordered once');
     const items: Record<string, unknown> = {};
     for (const key of keys) {
       if (!safeSlug.test(key)) throw new Error(location + ': unsafe child key ' + key);
       const raw = node(collection[key], location + '.items.' + key);
-      if (raw.config.slug !== key)
-        throw new Error(location + '.items.' + key + ': key and child slug disagree');
+      if (raw.config.slug !== key) throw new Error(location + '.items.' + key + ': key and child slug disagree');
       const child = unwrap(collection[key], location + '.items.' + key);
       items[key] = wrapped ? { config: child, ...(raw.production ? { production: raw.production } : {}) } : child;
     }
@@ -138,29 +143,32 @@ function normalizeStage2(input: LessonWorkflowMaterializerInput) {
     const normalized: Record<string, unknown> = { ...config };
     const typ = config.type;
 
-
     if (['content', 'practice', 'codingTask', 'learningFlow', 'quiz', 'flashcards'].includes(typ as string))
       normalized.content = ordered(config.content, at + '.content', true);
-    else if (typ === 'carousel')
-      normalized.slides = ordered(config.slides, at + '.slides', false);
-    else if (typ === 'checkpoint')
-      normalized.content = ordered(config.content, at + '.content', false);
+    else if (typ === 'carousel') normalized.slides = ordered(config.slides, at + '.slides', false);
+    else if (typ === 'checkpoint') normalized.content = ordered(config.content, at + '.content', false);
     else if (typ === 'checkpointItem') {
       normalized.question = unwrap(config.question, at + '.question');
       normalized.answer = unwrap(config.answer, at + '.answer');
-    } else if (typ === 'checkpointAnswer')
-      normalized.content = ordered(config.content, at + '.content', false);
+    } else if (typ === 'checkpointAnswer') normalized.content = ordered(config.content, at + '.content', false);
     else if (typ === 'quest') {
       for (const group of ['stages', 'tasks'] as const) {
         if (!isRecord(config[group]) || !Object.hasOwn(config[group], 'start'))
           throw new Error(at + '.' + group + ': mandatory start node is missing');
         const raw = config[group] as Record<string, unknown>;
-        normalized[group] = Object.fromEntries(Object.entries(raw).map(([key, value]) => {
-          const child = node(value, at + '.' + group + '.' + key);
-          if (child.config.slug !== key) throw new Error(at + '.' + group + ': slug mismatch');
-          return [key, { config: unwrap(value, at + '.' + group + '.' + key),
-            ...(child.production ? { production: child.production } : {}) }];
-        }));
+        normalized[group] = Object.fromEntries(
+          Object.entries(raw).map(([key, value]) => {
+            const child = node(value, at + '.' + group + '.' + key);
+            if (child.config.slug !== key) throw new Error(at + '.' + group + ': slug mismatch');
+            return [
+              key,
+              {
+                config: unwrap(value, at + '.' + group + '.' + key),
+                ...(child.production ? { production: child.production } : {}),
+              },
+            ];
+          }),
+        );
       }
     } else if (typ === 'questStage') {
       const content = config.content;
@@ -169,23 +177,28 @@ function normalizeStage2(input: LessonWorkflowMaterializerInput) {
       const audio = content.audio;
       const get = (value: unknown, location: string) => {
         const child = node(value, location);
-        return { config: unwrap(value, location),
-          ...(child.production ? { production: child.production } : {}) };
+        return { config: unwrap(value, location), ...(child.production ? { production: child.production } : {}) };
       };
       normalized.content = {
         video: {
           medium: get(content.video.medium, at + '.video.medium'),
           small: get(content.video.small, at + '.video.small'),
         },
-        audio: Object.fromEntries(['dialogue', 'narration', 'background'].map(key =>
-          [key, audio[key] === null ? null : get(audio[key], at + '.audio.' + key)])),
+        audio: Object.fromEntries(
+          ['dialogue', 'narration', 'background'].map(key => [
+            key,
+            audio[key] === null ? null : get(audio[key], at + '.audio.' + key),
+          ]),
+        ),
         image: get(content.image, at + '.image'),
         subtitles: get(content.subtitles, at + '.subtitles'),
       };
     } else if (typ === 'questTask') {
       const scene = node(config.scene, at + '.scene');
-      normalized.scene = { config: unwrap(config.scene, at + '.scene'),
-        ...(scene.production ? { production: scene.production } : {}) };
+      normalized.scene = {
+        config: unwrap(config.scene, at + '.scene'),
+        ...(scene.production ? { production: scene.production } : {}),
+      };
     }
     return normalized;
   }
@@ -209,24 +222,37 @@ export function materializeLessonStage6(
   const match = review?.sourcePath?.match(
     /^content\/([a-z][a-z0-9-]*)\/data\/lessons\/([0-9a-f])\/([0-9a-f-]{36})\/index\.ts$/,
   );
-  if (!review || config.type !== 'lesson' || !uuid.test(config.id) || !match ||
-    match[3] !== config.id || match[2] !== config.id.slice(-1).toLowerCase() ||
-    !sha.test(review.sourceBlobSha) || !sha.test(review.reviewCommitSha) ||
-    !sha.test(review.reviewEvidenceSha) || review.stage6Authorized !== true ||
-    typeof options.sourceText !== 'string' || gitBlobSha(options.sourceText) !== review.sourceBlobSha ||
+  if (
+    !review ||
+    config.type !== 'lesson' ||
+    !uuid.test(config.id) ||
+    !match ||
+    match[3] !== config.id ||
+    match[2] !== config.id.slice(-1).toLowerCase() ||
+    !sha.test(review.sourceBlobSha) ||
+    !sha.test(review.reviewCommitSha) ||
+    !sha.test(review.reviewEvidenceSha) ||
+    review.stage6Authorized !== true ||
+    typeof options.sourceText !== 'string' ||
+    gitBlobSha(options.sourceText) !== review.sourceBlobSha ||
     typeof options.verifyReviewedInput !== 'function' ||
-    options.verifyReviewedInput(input, review, options.sourceText) !== true)
+    options.verifyReviewedInput(input, review, options.sourceText) !== true
+  )
     throw new Error('Lesson Stage 6: untrusted source, stale review or missing explicit authorization');
 
   const documentLanguage = input.production.languages?.document;
   const planned = input.production.languages?.planned;
-  if (typeof documentLanguage !== 'string' || !locale.test(documentLanguage) ||
-      !Array.isArray(planned) || !planned.length ||
-      planned.some(code => typeof code !== 'string' || !locale.test(code)) ||
-      new Set(planned).size !== planned.length || !planned.includes(documentLanguage))
+  if (
+    typeof documentLanguage !== 'string' ||
+    !locale.test(documentLanguage) ||
+    !Array.isArray(planned) ||
+    !planned.length ||
+    planned.some(code => typeof code !== 'string' || !locale.test(code)) ||
+    new Set(planned).size !== planned.length ||
+    !planned.includes(documentLanguage)
+  )
     throw new Error('Lesson Stage 6: invalid reviewed document/planned languages');
-  if (config.params?.languages !== undefined)
-    throw new Error('Lesson Stage 2 must not contain final params.languages');
+  if (config.params?.languages !== undefined) throw new Error('Lesson Stage 2 must not contain final params.languages');
   const params = { ...config.params, languages: [...planned] };
   const parsed = lesson_Config_Schema.shape.params.safeParse(params);
   if (!parsed.success)
@@ -234,8 +260,12 @@ export function materializeLessonStage6(
   if (!lesson_Config_Schema.shape.locale.safeParse(config.locale).success)
     throw new Error('Lesson Stage 6: invalid source-language Lesson title/locale');
   const assessment = input.production.assessment;
-  const assessmentKeys = ['questionBankRequired', 'flashcardBankRequired',
-    'quizSectionRequired', 'flashcardsSectionRequired'] as const;
+  const assessmentKeys = [
+    'questionBankRequired',
+    'flashcardBankRequired',
+    'quizSectionRequired',
+    'flashcardsSectionRequired',
+  ] as const;
   if (!isRecord(assessment) || assessmentKeys.some(key => typeof assessment[key] !== 'boolean'))
     throw new Error('Lesson Stage 6: four independent assessment decisions are required');
   const { sections, metadata } = normalizeStage2(input);
@@ -245,44 +275,72 @@ export function materializeLessonStage6(
     const opts = { ...context, ...(production ? { production } : {}) };
     const sourceOptions = { ...opts, plannedLanguages: [documentLanguage] };
     switch (config.type) {
-      case 'text': return materializeText(config as Parameters<typeof materializeText>[0], sourceOptions);
-      case 'markdown': return materializeMarkdown(config as Parameters<typeof materializeMarkdown>[0], sourceOptions);
-      case 'code': return materializeCode(config as Parameters<typeof materializeCode>[0], sourceOptions);
-      case 'image': return materializeImage(config as Parameters<typeof materializeImage>[0], sourceOptions);
-      case 'video': return materializeVideo(config as Parameters<typeof materializeVideo>[0], sourceOptions);
-      case 'youtube': return materializeYoutube(config as Parameters<typeof materializeYoutube>[0], sourceOptions);
-      case 'audio': return materializeAudio(config as Parameters<typeof materializeAudio>[0], sourceOptions);
-      case 'subtitles': return materializeSubtitles(config as Parameters<typeof materializeSubtitles>[0], sourceOptions);
-      case 'scene': return materializeScene(config as Parameters<typeof materializeScene>[0], {
-        ...opts, registered: false, production: {
-          specification: typeof production?.specification === 'string' ? production.specification : undefined,
-          pending: true,
-        },
-      });
-      case 'carousel': return materializeCarousel(config as unknown as Parameters<typeof materializeCarousel>[0], {
-        ...opts,
-        renderChild: (child, directory) => block(child as ChildConfig, {
-          directory, documentLanguage, languagesImport: languagesFromRoot(directory),
-          production: metadata.get(child.id),
-        }),
-      });
-      case 'checkpoint': return materializeCheckpoint(config as unknown as Parameters<typeof materializeCheckpoint>[0], {
-        ...opts,
-        renderItem: (item, directory) => materializeCheckpointItem(item, {
-          directory, documentLanguage, languagesImport: languagesFromRoot(directory),
-          renderQuestion: (text, childDir) => block(text as ChildConfig, {
-            directory: childDir, documentLanguage, languagesImport: languagesFromRoot(childDir),
-            production: metadata.get(text.id),
-          }),
-          renderAnswer: (answer, childDir) => materializeCheckpointAnswer(answer, {
-            directory: childDir, documentLanguage, languagesImport: languagesFromRoot(childDir),
-            renderChild: (child, deeper) => block(child as ChildConfig, {
-              directory: deeper, documentLanguage, languagesImport: languagesFromRoot(deeper),
+      case 'text':
+        return materializeText(config as Parameters<typeof materializeText>[0], sourceOptions);
+      case 'markdown':
+        return materializeMarkdown(config as Parameters<typeof materializeMarkdown>[0], sourceOptions);
+      case 'code':
+        return materializeCode(config as Parameters<typeof materializeCode>[0], sourceOptions);
+      case 'image':
+        return materializeImage(config as Parameters<typeof materializeImage>[0], sourceOptions);
+      case 'video':
+        return materializeVideo(config as Parameters<typeof materializeVideo>[0], sourceOptions);
+      case 'youtube':
+        return materializeYoutube(config as Parameters<typeof materializeYoutube>[0], sourceOptions);
+      case 'audio':
+        return materializeAudio(config as Parameters<typeof materializeAudio>[0], sourceOptions);
+      case 'subtitles':
+        return materializeSubtitles(config as Parameters<typeof materializeSubtitles>[0], sourceOptions);
+      case 'scene':
+        return materializeScene(config as Parameters<typeof materializeScene>[0], {
+          ...opts,
+          registered: false,
+          production: {
+            specification: typeof production?.specification === 'string' ? production.specification : undefined,
+            pending: true,
+          },
+        });
+      case 'carousel':
+        return materializeCarousel(config as unknown as Parameters<typeof materializeCarousel>[0], {
+          ...opts,
+          renderChild: (child, directory) =>
+            block(child as ChildConfig, {
+              directory,
+              documentLanguage,
+              languagesImport: languagesFromRoot(directory),
               production: metadata.get(child.id),
             }),
-          }),
-        }),
-      });
+        });
+      case 'checkpoint':
+        return materializeCheckpoint(config as unknown as Parameters<typeof materializeCheckpoint>[0], {
+          ...opts,
+          renderItem: (item, directory) =>
+            materializeCheckpointItem(item, {
+              directory,
+              documentLanguage,
+              languagesImport: languagesFromRoot(directory),
+              renderQuestion: (text, childDir) =>
+                block(text as ChildConfig, {
+                  directory: childDir,
+                  documentLanguage,
+                  languagesImport: languagesFromRoot(childDir),
+                  production: metadata.get(text.id),
+                }),
+              renderAnswer: (answer, childDir) =>
+                materializeCheckpointAnswer(answer, {
+                  directory: childDir,
+                  documentLanguage,
+                  languagesImport: languagesFromRoot(childDir),
+                  renderChild: (child, deeper) =>
+                    block(child as ChildConfig, {
+                      directory: deeper,
+                      documentLanguage,
+                      languagesImport: languagesFromRoot(deeper),
+                      production: metadata.get(child.id),
+                    }),
+                }),
+            }),
+        });
       default:
         throw new Error('Lesson Stage 6: unsupported ContentBlock kind ' + config.type);
     }
@@ -300,38 +358,55 @@ export function materializeLessonStage6(
     });
   }
   function section(config: ChildConfig, opts: RenderOptions): Result {
-    const contentOptions = { ...opts, renderContentBlock: (child: ChildConfig, context: RenderOptions) =>
-      block(child, context) };
+    const contentOptions = {
+      ...opts,
+      renderContentBlock: (child: ChildConfig, context: RenderOptions) => block(child, context),
+    };
     switch (config.type) {
       case 'content':
         return materializeContentSection(config as Parameters<typeof materializeContentSection>[0], contentOptions);
       case 'practice':
         return materializePracticeSection(config as Parameters<typeof materializePracticeSection>[0], contentOptions);
       case 'codingTask':
-        return materializeCodingTaskSection(config as Parameters<typeof materializeCodingTaskSection>[0], contentOptions);
+        return materializeCodingTaskSection(
+          config as Parameters<typeof materializeCodingTaskSection>[0],
+          contentOptions,
+        );
       case 'learningFlow':
-        return materializeLearningFlowSection(config as Parameters<typeof materializeLearningFlowSection>[0], contentOptions);
+        return materializeLearningFlowSection(
+          config as Parameters<typeof materializeLearningFlowSection>[0],
+          contentOptions,
+        );
       case 'quiz':
         return materializeQuizSection(config as Parameters<typeof materializeQuizSection>[0], contentOptions);
       case 'flashcards':
-        return materializeFlashcardsSection(config as Parameters<typeof materializeFlashcardsSection>[0], contentOptions);
+        return materializeFlashcardsSection(
+          config as Parameters<typeof materializeFlashcardsSection>[0],
+          contentOptions,
+        );
       case 'quest':
         return materializeQuestSection(config as Parameters<typeof materializeQuestSection>[0], {
-          ...opts, renderStage: stage, renderTask: task,
+          ...opts,
+          renderStage: stage,
+          renderTask: task,
         });
       default:
         throw new Error('Lesson Stage 6: unsupported Section kind ' + config.type);
     }
   }
 
-  const result = materializeLesson({
-    ...config, params: parsed.data, section: sections,
-  } as unknown as Parameters<typeof materializeLesson>[0], {
-    documentLanguage,
-    production: input.production as unknown as Record<string, unknown> &
-      { assessment: typeof assessment },
-    renderSection: section,
-  });
+  const result = materializeLesson(
+    {
+      ...config,
+      params: parsed.data,
+      section: sections,
+    } as unknown as Parameters<typeof materializeLesson>[0],
+    {
+      documentLanguage,
+      production: input.production as unknown as Record<string, unknown> & { assessment: typeof assessment },
+      renderSection: section,
+    },
+  );
   const root = review.sourcePath.slice(0, -'index.ts'.length);
   return {
     lessonId: config.id,
@@ -341,8 +416,12 @@ export function materializeLessonStage6(
     reviewCommitSha: review.reviewCommitSha,
     reviewEvidenceSha: review.reviewEvidenceSha,
     publishable: false,
-    files: preserveAssessmentReferences(options.sourceText, review.sourcePath, input,
-      result.files.map(file => ({ ...file, path: root + file.path }))),
+    files: preserveAssessmentReferences(
+      options.sourceText,
+      review.sourcePath,
+      input,
+      result.files.map(file => ({ ...file, path: root + file.path })),
+    ),
     diagnostics: result.diagnostics,
   };
 }
@@ -355,10 +434,12 @@ export function materializeLessonStage6(
  */
 export function assertLessonStage6ReleaseReady(plan: LessonStage6Plan): void {
   const pending = plan.files.filter(file =>
-    /TODO\s*\(BLOCKER\)|TODO\(asset\)|00000000-0000-0000-0000-000000000000/i.test(file.content));
+    /TODO\s*\(BLOCKER\)|TODO\(asset\)|00000000-0000-0000-0000-000000000000/i.test(file.content),
+  );
   if (pending.length)
-    throw new Error('Lesson source publication blocked by unresolved placeholders in ' +
-      pending.map(file => file.path).join(', '));
+    throw new Error(
+      'Lesson source publication blocked by unresolved placeholders in ' + pending.map(file => file.path).join(', '),
+    );
   assertLessonSourceReleaseReady({
     exportName: '',
     files: plan.files,

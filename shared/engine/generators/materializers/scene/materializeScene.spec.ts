@@ -6,7 +6,10 @@ import { materializeScene } from './materializeScene';
 
 const sceneId = '1cd999af-66ad-4f01-ae77-faf6454b56c1';
 const scene = () => ({
-  id: sceneId, slug: 'chooseShape', type: 'scene' as const, params: {},
+  id: sceneId,
+  slug: 'chooseShape',
+  type: 'scene' as const,
+  params: {},
   locale: { value: { title: { uk: 'Обери форму', en: 'Choose shape' }, prompt: 'Invariant prompt' } },
 });
 const context = () => ({
@@ -37,24 +40,45 @@ test('Scene emits canonical source, source locale and the exact reviewed specifi
 });
 
 test('Scene registered and specified is not falsely marked pending', () => {
-  const result = materializeScene(scene(), { ...context(), registered: true, production: { specification: '# Reviewed' } });
+  const result = materializeScene(scene(), {
+    ...context(),
+    registered: true,
+    production: { specification: '# Reviewed' },
+  });
   assert.equal(result.diagnostics.length, 0);
   assert.doesNotMatch(result.files.at(-1)!.content, /TODO \(BLOCKER\)/);
 });
 
 test('Scene lacking production evidence keeps a visible publication blocker', () => {
   const result = materializeScene(scene(), { ...context(), registered: true, production: undefined });
-  assert.deepEqual(result.diagnostics.map(d => d.code), ['missing-scene-specification']);
+  assert.deepEqual(
+    result.diagnostics.map(d => d.code),
+    ['missing-scene-specification'],
+  );
   assert.match(result.files[0]!.content, /TODO \(BLOCKER\)/);
-  assert.equal(result.files.some(f => f.path.endsWith('specification.md')), false);
+  assert.equal(
+    result.files.some(f => f.path.endsWith('specification.md')),
+    false,
+  );
 });
 
 test('Scene refuses unsafe paths, missing source locale and array-valued authored locale', () => {
   assert.throws(() => materializeScene(scene(), { ...context(), directory: '../other' }), /unsafe/);
-  assert.throws(() => materializeScene(scene(), { ...context(), documentLanguage: 'pl' }), /missing reviewed source language/);
-  assert.throws(() => materializeScene({
-    ...scene(), locale: { value: ['first', 'second'] as never },
-  }, context()), /arrays/);
+  assert.throws(
+    () => materializeScene(scene(), { ...context(), documentLanguage: 'pl' }),
+    /missing reviewed source language/,
+  );
+  assert.throws(
+    () =>
+      materializeScene(
+        {
+          ...scene(),
+          locale: { value: ['first', 'second'] as never },
+        },
+        context(),
+      ),
+    /arrays/,
+  );
   assert.throws(() => materializeScene({ ...scene(), id: '../../path' }, context()), /immutable UUID/);
 });
 
@@ -67,11 +91,16 @@ test('Incomplete Scene staging retains an explicitly blocking, type-correct Conf
   assert.match(code, /TODO \(BLOCKER\): Complete Scene params\/locale.value/);
   assert.equal(result.diagnostics[0]?.code, 'incomplete-scene-source');
   parse(code);
-  assert.throws(() => materializeScene(draft, {
-    ...context(), registered: true, production: { specification: '# Reviewed' },
-  }), /completed Scene/);
+  assert.throws(
+    () =>
+      materializeScene(draft, {
+        ...context(),
+        registered: true,
+        production: { specification: '# Reviewed' },
+      }),
+    /completed Scene/,
+  );
 });
-
 
 /** Public TypeScript API: syntactic diagnostics without relying on internal SourceFile fields. */
 function syntaxErrorCount(source: string, fileName = 'index.ts'): number {

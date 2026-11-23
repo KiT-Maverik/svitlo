@@ -87,17 +87,12 @@ describe('Configurators', () => {
         assert.deepEqual(built.base.params.grade, { min: 1, max: 4 });
         assert.equal(lesson_Config_Schema.safeParse(input).success, true);
 
-        const patch = lesson.build.overrides(
-          { params: { age: { min: 7 }, grade: { max: 5 } } },
-          { languages: ['en'] },
-        );
+        const patch = lesson.build.overrides({ params: { age: { min: 7 }, grade: { max: 5 } } }, { languages: ['en'] });
         assert.equal(patch.id, lesson.id);
         assert.equal('id' in patch.base, false, 'identity must never enter the sparse Props patch');
         assert.deepEqual(patch.base.params, { age: { min: 7 }, grade: { max: 5 } });
         assert.equal(patch.locale, undefined);
-        assert.throws(() =>
-          lesson.build.overrides({ params: { age: { min: 11 } } }, { languages: ['en'] }),
-        );
+        assert.throws(() => lesson.build.overrides({ params: { age: { min: 11 } } }, { languages: ['en'] }));
         assert.equal(
           lesson_Config_Schema.safeParse({ ...input, params: { ...input.params, age: { min: 11, max: 10 } } }).success,
           false,

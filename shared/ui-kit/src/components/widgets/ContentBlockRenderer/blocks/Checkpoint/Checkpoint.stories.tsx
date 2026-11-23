@@ -91,8 +91,6 @@ export const RightToLeft: Story = {
   args: {
     locale: { title: 'اختبر معلوماتك' },
     params: { enableChecks: true },
-    content: [
-      checkpointItem('arabic-item', 'كيف ينتقل الضوء في وسط متجانس؟', 'ينتقل الضوء في خطوط مستقيمة.'),
-    ],
+    content: [checkpointItem('arabic-item', 'كيف ينتقل الضوء في وسط متجانس؟', 'ينتقل الضوء في خطوط مستقيمة.')],
   },
 };

@@ -24,52 +24,176 @@ const id = 'c2cc84f3-f057-493d-b1b6-1880aad8023b';
 const videoPoster = '01f1d8b8-e409-4cf3-bd64-1e76f2be9db2.webp';
 const options = { documentLanguage: 'uk', plannedLanguages: ['uk'] };
 const full = [
-  ['text', () => materializeText({
-    id, slug: 'sampleText', type: 'text', params: {}, locale: { value: { uk: 'Reviewed text' } },
-  }, options)],
-  ['markdown', () => materializeMarkdown({
-    id, slug: 'sampleMarkdown', type: 'markdown', params: {}, locale: { value: { uk: '**Reviewed**' } },
-  }, options)],
-  ['code', () => materializeCode({
-    id, slug: 'sampleCode', type: 'code', params: { language: 'typescript', codeAsText: 'const x = 1;\n' }, locale: {},
-  }, options)],
-  ['image', () => materializeImage({
-    id, slug: 'sampleImage', type: 'image', params: { width: 160, height: 120 },
-    locale: { fileName: `${id}.webp`, alt: { uk: 'Reviewed illustration' } },
-  }, options)],
-  ['video', () => materializeVideo({
-    id, slug: 'sampleVideo', type: 'video', params: {},
-    locale: { fileName: `${id}.mp4`, posterFileName: videoPoster, label: { uk: 'Reviewed clip' } },
-  }, options)],
-  ['youtube', () => materializeYoutube({
-    id, slug: 'sampleYoutube', type: 'youtube', params: { mode: 'link' },
-    locale: { href: 'https://www.youtube.com/watch?v=reviewed', label: { uk: 'Reviewed video link' } },
-  }, options)],
-  ['audio', () => materializeAudio({
-    id, slug: 'sampleAudio', type: 'audio', params: {},
-    locale: { fileName: `${id}.mp3`, title: { uk: 'Reviewed recording' } },
-  }, options)],
-  ['subtitles', () => materializeSubtitles({
-    id, slug: 'sampleSubtitles', type: 'subtitles', params: {},
-    locale: { fileName: `${id}.vtt` },
-  }, options)],
+  [
+    'text',
+    () =>
+      materializeText(
+        {
+          id,
+          slug: 'sampleText',
+          type: 'text',
+          params: {},
+          locale: { value: { uk: 'Reviewed text' } },
+        },
+        options,
+      ),
+  ],
+  [
+    'markdown',
+    () =>
+      materializeMarkdown(
+        {
+          id,
+          slug: 'sampleMarkdown',
+          type: 'markdown',
+          params: {},
+          locale: { value: { uk: '**Reviewed**' } },
+        },
+        options,
+      ),
+  ],
+  [
+    'code',
+    () =>
+      materializeCode(
+        {
+          id,
+          slug: 'sampleCode',
+          type: 'code',
+          params: { language: 'typescript', codeAsText: 'const x = 1;\n' },
+          locale: {},
+        },
+        options,
+      ),
+  ],
+  [
+    'image',
+    () =>
+      materializeImage(
+        {
+          id,
+          slug: 'sampleImage',
+          type: 'image',
+          params: { width: 160, height: 120 },
+          locale: { fileName: `${id}.webp`, alt: { uk: 'Reviewed illustration' } },
+        },
+        options,
+      ),
+  ],
+  [
+    'video',
+    () =>
+      materializeVideo(
+        {
+          id,
+          slug: 'sampleVideo',
+          type: 'video',
+          params: {},
+          locale: { fileName: `${id}.mp4`, posterFileName: videoPoster, label: { uk: 'Reviewed clip' } },
+        },
+        options,
+      ),
+  ],
+  [
+    'youtube',
+    () =>
+      materializeYoutube(
+        {
+          id,
+          slug: 'sampleYoutube',
+          type: 'youtube',
+          params: { mode: 'link' },
+          locale: { href: 'https://www.youtube.com/watch?v=reviewed', label: { uk: 'Reviewed video link' } },
+        },
+        options,
+      ),
+  ],
+  [
+    'audio',
+    () =>
+      materializeAudio(
+        {
+          id,
+          slug: 'sampleAudio',
+          type: 'audio',
+          params: {},
+          locale: { fileName: `${id}.mp3`, title: { uk: 'Reviewed recording' } },
+        },
+        options,
+      ),
+  ],
+  [
+    'subtitles',
+    () =>
+      materializeSubtitles(
+        {
+          id,
+          slug: 'sampleSubtitles',
+          type: 'subtitles',
+          params: {},
+          locale: { fileName: `${id}.vtt` },
+        },
+        options,
+      ),
+  ],
 ] as const;
 const pendingMedia = [
-  ['image', () => materializeImage({
-    id, slug: 'pendingImage', type: 'image', params: { width: 160, height: 120 },
-    locale: { alt: { uk: 'Reviewed illustration' } },
-  }, options)],
-  ['video', () => materializeVideo({
-    id, slug: 'pendingVideo', type: 'video', params: {},
-    locale: { label: { uk: 'Reviewed clip' } },
-  }, options)],
-  ['audio', () => materializeAudio({
-    id, slug: 'pendingAudio', type: 'audio', params: {},
-    locale: { title: { uk: 'Reviewed recording' } },
-  }, options)],
-  ['subtitles', () => materializeSubtitles({
-    id, slug: 'pendingSubtitles', type: 'subtitles', params: {}, locale: {},
-  }, options)],
+  [
+    'image',
+    () =>
+      materializeImage(
+        {
+          id,
+          slug: 'pendingImage',
+          type: 'image',
+          params: { width: 160, height: 120 },
+          locale: { alt: { uk: 'Reviewed illustration' } },
+        },
+        options,
+      ),
+  ],
+  [
+    'video',
+    () =>
+      materializeVideo(
+        {
+          id,
+          slug: 'pendingVideo',
+          type: 'video',
+          params: {},
+          locale: { label: { uk: 'Reviewed clip' } },
+        },
+        options,
+      ),
+  ],
+  [
+    'audio',
+    () =>
+      materializeAudio(
+        {
+          id,
+          slug: 'pendingAudio',
+          type: 'audio',
+          params: {},
+          locale: { title: { uk: 'Reviewed recording' } },
+        },
+        options,
+      ),
+  ],
+  [
+    'subtitles',
+    () =>
+      materializeSubtitles(
+        {
+          id,
+          slug: 'pendingSubtitles',
+          type: 'subtitles',
+          params: {},
+          locale: {},
+        },
+        options,
+      ),
+  ],
 ] as const;
 
 test('all eight emitted complete sources and permitted pending-media sources typecheck against Engine build types', () => {

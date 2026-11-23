@@ -32,12 +32,7 @@ export type {
   CourseWorkflowStage3ExistingLessonConfig,
   CourseWorkflowStage3ExistingLessonReference,
 } from './workflow';
-export type {
-  Review,
-  ReviewEvidence,
-  LessonReview,
-  LessonReviewStage,
-} from './review.types';
+export type { Review, ReviewEvidence, LessonReview, LessonReviewStage } from './review.types';
 export type { ResolveLocale } from './resolveLocale';
 
 export type {

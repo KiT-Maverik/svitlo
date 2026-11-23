@@ -58,12 +58,23 @@ test('optional empty Flashcard hint is valid, but front and back must remain pop
     items: slug ? { [slug]: {} } : {},
     order: slug ? [slug] : [],
   });
-  const card = { config: { content: {
-    front: side('prompt'), back: side('answer'), hint: side(null),
-  } } };
-  const input = { config: { flashcards: {
-    items: { alpha: card }, order: ['alpha'],
-  } } };
+  const card = {
+    config: {
+      content: {
+        front: side('prompt'),
+        back: side('answer'),
+        hint: side(null),
+      },
+    },
+  };
+  const input = {
+    config: {
+      flashcards: {
+        items: { alpha: card },
+        order: ['alpha'],
+      },
+    },
+  };
   const paths = [
     'alpha.ts',
     'alpha/content/front/index.ts',
@@ -77,38 +88,82 @@ test('optional empty Flashcard hint is valid, but front and back must remain pop
   for (const required of ['front', 'back']) {
     const broken = structuredClone(input);
     broken.config.flashcards.items.alpha.config.content[required] = side(null);
-    assert.throws(() => assertTypedBankInventory(meta, broken, files),
-      /must include every reviewed ContentBlock/);
+    assert.throws(() => assertTypedBankInventory(meta, broken, files), /must include every reviewed ContentBlock/);
   }
 });
 
 test('typed commands require exact top-level issue_comment actor, bank and stage', () => {
   for (const [bank, body] of Object.entries(events)) {
-    const event = { issue: { number: 888, pull_request: {} }, comment: {
-      body, user: { login: 'owner' },
-    } };
+    const event = {
+      issue: { number: 888, pull_request: {} },
+      comment: {
+        body,
+        user: { login: 'owner' },
+      },
+    };
     assert.deepEqual(typedCommand(event, 'issue_comment', 'owner'), {
-      number: 888, bank, actor: 'owner',
+      number: 888,
+      bank,
+      actor: 'owner',
     });
-    assert.deepEqual(typedCommand({
-      inputs: { mode: 'typed', bank, pr_number: '888' },
-    }, 'workflow_dispatch', 'owner'), { number: 888, bank, actor: 'owner' });
-    for (const command of [body + ' --force', body + '\nanything', ' ' + body,
-      body.replace(' typed', ''), '/lesson materialize']) {
-      assert.throws(() => typedCommand({
-        ...event, comment: { ...event.comment, body: command },
-      }, 'issue_comment', 'owner'));
+    assert.deepEqual(
+      typedCommand(
+        {
+          inputs: { mode: 'typed', bank, pr_number: '888' },
+        },
+        'workflow_dispatch',
+        'owner',
+      ),
+      { number: 888, bank, actor: 'owner' },
+    );
+    for (const command of [
+      body + ' --force',
+      body + '\nanything',
+      ' ' + body,
+      body.replace(' typed', ''),
+      '/lesson materialize',
+    ]) {
+      assert.throws(() =>
+        typedCommand(
+          {
+            ...event,
+            comment: { ...event.comment, body: command },
+          },
+          'issue_comment',
+          'owner',
+        ),
+      );
     }
     assert.throws(() => typedCommand(event, 'issue_comment', 'intruder'));
     assert.throws(() => typedCommand({ ...event, issue: { number: 888 } }, 'issue_comment', 'owner'));
-    assert.throws(() => typedCommand({ inputs: {
-      mode: 'legacy', bank, pr_number: '888',
-    } }, 'workflow_dispatch', 'owner'));
+    assert.throws(() =>
+      typedCommand(
+        {
+          inputs: {
+            mode: 'legacy',
+            bank,
+            pr_number: '888',
+          },
+        },
+        'workflow_dispatch',
+        'owner',
+      ),
+    );
   }
   for (const n of ['0', '-1', 'foo', 'Infinity']) {
-    assert.throws(() => typedCommand({ inputs: {
-      mode: 'typed', bank: 'questions', pr_number: n,
-    } }, 'workflow_dispatch', 'owner'));
+    assert.throws(() =>
+      typedCommand(
+        {
+          inputs: {
+            mode: 'typed',
+            bank: 'questions',
+            pr_number: n,
+          },
+        },
+        'workflow_dispatch',
+        'owner',
+      ),
+    );
   }
 });
 
@@ -119,19 +174,43 @@ test('typed Bank publisher rejects mutated checksums, archive and non-bank paths
     assert.throws(() => verifyTypedManifest({ ...valid, treeSha: 'bad' }, valid.meta));
     assert.throws(() => verifyTypedManifest({ ...valid, files: valid.files.slice(1) }, valid.meta));
     assert.throws(() => verifyTypedManifest({ ...valid, files: [...valid.files, valid.files[0]] }, valid.meta));
-    assert.throws(() => verifyTypedManifest({ ...valid, files: valid.files.map((f, i) =>
-      i === 0 ? { ...f, sha256: '0'.repeat(64) } : f) }, valid.meta));
-    assert.throws(() => verifyTypedManifest({ ...valid, files: valid.files.map((f, i) =>
-      i === 2 ? file(f.path, 'modified reviewer source') : f) }, valid.meta));
-    assert.throws(() => verifyTypedManifest({ ...valid, files: valid.files.map((f, i) =>
-      i === 3 ? { ...f, path: folder + '/lesson.ts' } : f) }, valid.meta));
-    assert.throws(() => verifyTypedManifest({ ...valid, meta: {
-      ...valid.meta, head: 'c'.repeat(40),
-    } }, valid.meta));
-    assert.throws(() => verifyTypedManifest({ ...valid, files: valid.files.map((f, i) =>
-      i === 4 ? { ...f, path: folder + '/other-bank/index.ts' } : f) }, valid.meta));
-    const wrong = { ...valid, files: valid.files.map((f, i) =>
-      i === 3 ? { ...f, base64: '////' } : f) };
+    assert.throws(() =>
+      verifyTypedManifest(
+        { ...valid, files: valid.files.map((f, i) => (i === 0 ? { ...f, sha256: '0'.repeat(64) } : f)) },
+        valid.meta,
+      ),
+    );
+    assert.throws(() =>
+      verifyTypedManifest(
+        { ...valid, files: valid.files.map((f, i) => (i === 2 ? file(f.path, 'modified reviewer source') : f)) },
+        valid.meta,
+      ),
+    );
+    assert.throws(() =>
+      verifyTypedManifest(
+        { ...valid, files: valid.files.map((f, i) => (i === 3 ? { ...f, path: folder + '/lesson.ts' } : f)) },
+        valid.meta,
+      ),
+    );
+    assert.throws(() =>
+      verifyTypedManifest(
+        {
+          ...valid,
+          meta: {
+            ...valid.meta,
+            head: 'c'.repeat(40),
+          },
+        },
+        valid.meta,
+      ),
+    );
+    assert.throws(() =>
+      verifyTypedManifest(
+        { ...valid, files: valid.files.map((f, i) => (i === 4 ? { ...f, path: folder + '/other-bank/index.ts' } : f)) },
+        valid.meta,
+      ),
+    );
+    const wrong = { ...valid, files: valid.files.map((f, i) => (i === 3 ? { ...f, base64: '////' } : f)) };
     assert.throws(() => verifyTypedManifest(wrong, wrong.meta));
   }
 });
@@ -148,10 +227,15 @@ test('typed publisher imports in a zero-dependency read-only environment', () =>
     }
     assert.equal(existsSync(path.join(isolated, 'node_modules')), false);
     assert.equal(existsSync(path.join(isolated, 'shared/engine')), false);
-    const result = spawnSync(process.execPath, [
-      '--input-type=module', '-e',
-      'await import(' + JSON.stringify(pathToFileURL(path.join(dir, names[2])).href) + ')',
-    ], { encoding: 'utf8', env: { PATH: process.env.PATH ?? '' }, cwd: isolated });
+    const result = spawnSync(
+      process.execPath,
+      [
+        '--input-type=module',
+        '-e',
+        'await import(' + JSON.stringify(pathToFileURL(path.join(dir, names[2])).href) + ')',
+      ],
+      { encoding: 'utf8', env: { PATH: process.env.PATH ?? '' }, cwd: isolated },
+    );
     assert.equal(result.status, 0, result.stderr);
   } finally {
     rmSync(isolated, { recursive: true, force: true });
@@ -197,23 +281,31 @@ test('GitHub typed gate requires real independent exact-HEAD review and Lesson b
     '## Review',
   ].join('\n');
   const child = {
-    state: 'open', draft: true, user: { login: 'author' },
+    state: 'open',
+    draft: true,
+    user: { login: 'author' },
     body: identity,
     head: { sha: head, ref: 'agent/assessment-bank', repo: { full_name: process.env.GITHUB_REPOSITORY } },
     base: { ref: 'agent/lesson', sha: 'b'.repeat(40) },
   };
   const parent = {
-    state: 'open', head: { ref: 'agent/lesson' },
-    body: '<!-- svitlo-create-lesson-flow:v1 -->\n- Lesson UUID / textbook / slug: `' +
-      owner + '` / `content/math` / `unitLesson`',
+    state: 'open',
+    head: { ref: 'agent/lesson' },
+    body:
+      '<!-- svitlo-create-lesson-flow:v1 -->\n- Lesson UUID / textbook / slug: `' +
+      owner +
+      '` / `content/math` / `unitLesson`',
   };
   const review = {
-    state: 'APPROVED', commit_id: head, submitted_at: '2026-11-23T00:00:00Z',
+    state: 'APPROVED',
+    commit_id: head,
+    submitted_at: '2026-11-23T00:00:00Z',
     user: { login: 'independent' },
   };
   let overrides = {};
   const resources = () => ({
-    'pulls/888': child, 'pulls/777': parent,
+    'pulls/888': child,
+    'pulls/777': parent,
     ['contents/' + folder + '/questions/index.ts?ref=' + head]: { type: 'file', sha: source },
     'pulls/888/reviews?per_page=100': [review],
     'collaborators/independent/permission': { permission: 'write' },
@@ -224,8 +316,7 @@ test('GitHub typed gate requires real independent exact-HEAD review and Lesson b
     const endpoint = decodeURI(raw).replace(/%2F/gi, '/');
     const value = resources()[endpoint];
     if (value === undefined) return new Response('not found', { status: 404 });
-    return new Response(JSON.stringify(value), { status: 200,
-      headers: { 'Content-Type': 'application/json' } });
+    return new Response(JSON.stringify(value), { status: 200, headers: { 'Content-Type': 'application/json' } });
   };
   try {
     const ok = await inspectTyped(888, 'questions');
@@ -242,9 +333,12 @@ test('GitHub typed gate requires real independent exact-HEAD review and Lesson b
     overrides = { 'pulls/888/reviews?per_page=100': [{ ...review, user: { login: 'author' } }] };
     await assert.rejects(inspectTyped(888, 'questions'), /approval/);
 
-    overrides = { 'pulls/888/reviews?per_page=100': [
-      review, { ...review, state: 'CHANGES_REQUESTED', submitted_at: '2026-11-23T01:00:00Z' },
-    ] };
+    overrides = {
+      'pulls/888/reviews?per_page=100': [
+        review,
+        { ...review, state: 'CHANGES_REQUESTED', submitted_at: '2026-11-23T01:00:00Z' },
+      ],
+    };
     await assert.rejects(inspectTyped(888, 'questions'), /approval/);
 
     overrides = { 'pulls/888': { ...child, base: { ref: 'develop', sha: 'b'.repeat(40) } } };
@@ -264,13 +358,20 @@ test('GitHub typed gate requires real independent exact-HEAD review and Lesson b
 
 test('all nine Question kinds are checked for complete member source emission', () => {
   const kinds = [
-    'selectOneAnswer', 'selectMultipleAnswers', 'matchBlocks',
-    'answerWithText', 'answerWithNumber', 'orderSequence',
-    'buildAnswerWithBlocks', 'fillBlanksWithBlocks', 'fillBlanksWithText',
+    'selectOneAnswer',
+    'selectMultipleAnswers',
+    'matchBlocks',
+    'answerWithText',
+    'answerWithNumber',
+    'orderSequence',
+    'buildAnswerWithBlocks',
+    'fillBlanksWithBlocks',
+    'fillBlanksWithText',
   ];
   const meta = canonical('questions').meta;
-  const questions = Object.fromEntries(kinds.map((kind, i) =>
-    [kind, { ['question' + i]: { config: { type: kind } } }]));
+  const questions = Object.fromEntries(
+    kinds.map((kind, i) => [kind, { ['question' + i]: { config: { type: kind } } }]),
+  );
   const files = [
     { path: meta.sourcePath },
     ...kinds.flatMap((kind, i) => [
@@ -281,24 +382,42 @@ test('all nine Question kinds are checked for complete member source emission', 
   const bank = { config: { questions } };
   assert.doesNotThrow(() => assertTypedBankInventory(meta, bank, files));
   for (const kind of kinds) {
-    assert.throws(() => assertTypedBankInventory(meta, bank,
-      files.filter(f => f.path !== folder + '/questions/' + kind + '/index.ts')), /index/);
+    assert.throws(
+      () =>
+        assertTypedBankInventory(
+          meta,
+          bank,
+          files.filter(f => f.path !== folder + '/questions/' + kind + '/index.ts'),
+        ),
+      /index/,
+    );
     const slug = 'question' + kinds.indexOf(kind);
-    assert.throws(() => assertTypedBankInventory(meta, bank,
-      files.filter(f => f.path !== folder + '/questions/' + kind + '/' + slug + '.ts')), /omitted/);
+    assert.throws(
+      () =>
+        assertTypedBankInventory(
+          meta,
+          bank,
+          files.filter(f => f.path !== folder + '/questions/' + kind + '/' + slug + '.ts'),
+        ),
+      /omitted/,
+    );
   }
 });
 
 test('every authored Flashcard Card, Side and nested Side Block is emitted', () => {
   const meta = canonical('flashcards').meta;
   const block = slug => ({ items: { [slug]: { config: { type: 'text' } } }, order: [slug] });
-  const input = { config: { flashcards: {
-    items: {
-      left: { config: { content: { front: block('prompt'), back: block('response') } } },
-      right: { config: { content: { front: block('question'), back: block('answer'), hint: block('context') } } },
+  const input = {
+    config: {
+      flashcards: {
+        items: {
+          left: { config: { content: { front: block('prompt'), back: block('response') } } },
+          right: { config: { content: { front: block('question'), back: block('answer'), hint: block('context') } } },
+        },
+        order: ['left', 'right'],
+      },
     },
-    order: ['left', 'right'],
-  } } };
+  };
   const files = [{ path: meta.sourcePath }];
   for (const slug of input.config.flashcards.order) {
     files.push({ path: folder + '/flashcards/' + slug + '.ts' });
@@ -311,18 +430,29 @@ test('every authored Flashcard Card, Side and nested Side Block is emitted', () 
   }
   assert.doesNotThrow(() => assertTypedBankInventory(meta, input, files));
   for (const output of files.slice(1)) {
-    assert.throws(() => assertTypedBankInventory(meta, input,
-      files.filter(f => f !== output)), /omitted/);
+    assert.throws(
+      () =>
+        assertTypedBankInventory(
+          meta,
+          input,
+          files.filter(f => f !== output),
+        ),
+      /omitted/,
+    );
   }
 });
 
 test('Flashcard typed inventory refuses unlisted, repeated or empty reviewed Card and Side entries', () => {
   const meta = canonical('flashcards').meta;
   const block = slug => ({ items: { [slug]: { config: { type: 'text' } } }, order: [slug] });
-  const input = { config: { flashcards: {
-    items: { card: { config: { content: { front: block('frontBlock'), back: block('backBlock') } } } },
-    order: ['card'],
-  } } };
+  const input = {
+    config: {
+      flashcards: {
+        items: { card: { config: { content: { front: block('frontBlock'), back: block('backBlock') } } } },
+        order: ['card'],
+      },
+    },
+  };
   const files = [
     { path: meta.sourcePath },
     { path: folder + '/flashcards/card.ts' },
@@ -334,12 +464,27 @@ test('Flashcard typed inventory refuses unlisted, repeated or empty reviewed Car
   assert.doesNotThrow(() => assertTypedBankInventory(meta, input, files));
   const cards = input.config.flashcards;
   for (const order of [[], ['card', 'card'], ['absent']]) {
-    assert.throws(() => assertTypedBankInventory(meta,
-      { config: { flashcards: { ...cards, order } } }, files), /Flashcards|Card/);
+    assert.throws(
+      () => assertTypedBankInventory(meta, { config: { flashcards: { ...cards, order } } }, files),
+      /Flashcards|Card/,
+    );
   }
-  assert.throws(() => assertTypedBankInventory(meta, { config: { flashcards: {
-    ...cards, items: { ...cards.items, unlisted: cards.items.card },
-  } } }, files), /every reviewed Card/);
+  assert.throws(
+    () =>
+      assertTypedBankInventory(
+        meta,
+        {
+          config: {
+            flashcards: {
+              ...cards,
+              items: { ...cards.items, unlisted: cards.items.card },
+            },
+          },
+        },
+        files,
+      ),
+    /every reviewed Card/,
+  );
   for (const side of ['front', 'back']) {
     const original = cards.items.card.config.content;
     for (const changed of [
@@ -348,11 +493,17 @@ test('Flashcard typed inventory refuses unlisted, repeated or empty reviewed Car
       { ...original[side], items: { ...original[side].items, unexpected: {} } },
       { ...original[side], order: ['missing'] },
     ]) {
-      const changedInput = { config: { flashcards: { ...cards, items: {
-        card: { config: { content: { ...original, [side]: changed } } },
-      } } } };
-      assert.throws(() => assertTypedBankInventory(meta, changedInput, files),
-        /every reviewed ContentBlock/);
+      const changedInput = {
+        config: {
+          flashcards: {
+            ...cards,
+            items: {
+              card: { config: { content: { ...original, [side]: changed } } },
+            },
+          },
+        },
+      };
+      assert.throws(() => assertTypedBankInventory(meta, changedInput, files), /every reviewed ContentBlock/);
     }
   }
 });

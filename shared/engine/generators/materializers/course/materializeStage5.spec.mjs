@@ -11,57 +11,98 @@ const rootId = '663572e7-bd85-4516-86e2-3de07d209e03';
 const skill = '663572e7-bd85-4516-86e2-3de07d209e04';
 const sha = '0123456789abcdef0123456789abcdef01234567';
 const assessment = {
-  questionBankRequired: true, flashcardBankRequired: false,
-  quizSectionRequired: true, flashcardsSectionRequired: false,
+  questionBankRequired: true,
+  flashcardBankRequired: false,
+  quizSectionRequired: true,
+  flashcardsSectionRequired: false,
 };
 const lesson = slug => ({
-  config: { type: 'lesson', slug, skills: [skill], locale: { title: { uk: 'Урок' } },
-    params: { quizRequiredForCompletion: true } },
-  production: { kind: 'new', methodology: 'Reviewed full factual and pedagogical specification',
-    objective: 'Demonstrate the intended skill', depth: 'Introductory',
+  config: {
+    type: 'lesson',
+    slug,
+    skills: [skill],
+    locale: { title: { uk: 'Урок' } },
+    params: { quizRequiredForCompletion: true },
+  },
+  production: {
+    kind: 'new',
+    methodology: 'Reviewed full factual and pedagogical specification',
+    objective: 'Demonstrate the intended skill',
+    depth: 'Introductory',
     sequenceReason: 'First observations before synthesis',
-    assessmentEvidence: 'Describe observations', assessment },
+    assessmentEvidence: 'Describe observations',
+    assessment,
+  },
 });
 const episode = () => ({
   config: { type: 'episode' },
   production: { focus: 'Real reviewed focus', purpose: 'Actual narrative rationale' },
 });
 const unitMeta = {
-  methodology: 'Unit pedagogical decisions', outcomes: { skills: [skill] },
-  prerequisites: { skills: [] }, depth: 'Early exploration', sequenceReason: 'Prepares the next unit',
+  methodology: 'Unit pedagogical decisions',
+  outcomes: { skills: [skill] },
+  prerequisites: { skills: [] },
+  depth: 'Early exploration',
+  sequenceReason: 'Prepares the next unit',
 };
 const chapter = () => ({
-  config: { type: 'chapter', slug: 'chapterOne', locale: { title: { uk: 'Розділ' } },
-    content: { items: { lessonOne: lesson('lessonOne'), episodeOne: episode() },
-      order: ['lessonOne', 'episodeOne'] } },
+  config: {
+    type: 'chapter',
+    slug: 'chapterOne',
+    locale: { title: { uk: 'Розділ' } },
+    content: { items: { lessonOne: lesson('lessonOne'), episodeOne: episode() }, order: ['lessonOne', 'episodeOne'] },
+  },
   production: unitMeta,
 });
 const moduleNode = () => ({
-  config: { type: 'module', slug: 'moduleOne', locale: { title: { uk: 'Модуль' } },
-    content: { items: { chapterOne: chapter() }, order: ['chapterOne'] } },
+  config: {
+    type: 'module',
+    slug: 'moduleOne',
+    locale: { title: { uk: 'Модуль' } },
+    content: { items: { chapterOne: chapter() }, order: ['chapterOne'] },
+  },
   production: unitMeta,
 });
 const source = () => ({
-  config: { type: 'course', id: rootId, slug: 'skyBasics', params: { age: { min: 6, max: 10 } },
+  config: {
+    type: 'course',
+    id: rootId,
+    slug: 'skyBasics',
+    params: { age: { min: 6, max: 10 } },
     locale: { title: { uk: 'Небо' }, description: { uk: 'Спостереження' } },
-    content: { items: { moduleOne: moduleNode(), directLesson: lesson('directLesson') },
-      order: ['moduleOne', 'directLesson'] } },
-  production: { languages: { document: 'uk', planned: ['uk'] },
+    content: {
+      items: { moduleOne: moduleNode(), directLesson: lesson('directLesson') },
+      order: ['moduleOne', 'directLesson'],
+    },
+  },
+  production: {
+    languages: { document: 'uk', planned: ['uk'] },
     methodology: {
-      purpose: 'Real educational need', audience: 'Learners aged 6-10',
-      approach: 'Observe then reflect', depth: 'Introduction',
+      purpose: 'Real educational need',
+      audience: 'Learners aged 6-10',
+      approach: 'Observe then reflect',
+      depth: 'Introduction',
       accessibility: 'Keyboard and screen reader alternatives',
-      scope: 'Daytime observations', entryConditions: 'No assumed astronomy knowledge',
+      scope: 'Daytime observations',
+      entryConditions: 'No assumed astronomy knowledge',
       sourceNotes: 'Checked primary educational references',
     },
     outcomes: { explanation: 'Recognize patterns' },
-    prerequisites: { explanation: 'None' }, standardsAlignment: [], openDecisions: {} },
+    prerequisites: { explanation: 'None' },
+    standardsAlignment: [],
+    openDecisions: {},
+  },
 });
 const root = 'content/playground/data/courses/3/' + rootId;
 const options = () => ({
   textbookRoot: 'content/playground',
-  review: { sourcePath: root + '/index.ts', sourceBlobSha: sha, reviewCommitSha: sha,
-    reviewer: 'independent-methodologist', evidenceUrl: 'https://github.com/KiT-Maverik/svitlo/pull/123' },
+  review: {
+    sourcePath: root + '/index.ts',
+    sourceBlobSha: sha,
+    reviewCommitSha: sha,
+    reviewer: 'independent-methodologist',
+    evidenceUrl: 'https://github.com/KiT-Maverik/svitlo/pull/123',
+  },
   verifyReviewedSource: () => true,
 });
 
@@ -78,12 +119,17 @@ test('historical UUID namespace uses full placement and remains deterministic on
 test('Lesson Draft emits exactly the independent typed Stage 1 source and no Configurator', () => {
   const lessonId = deriveCourseEntityId(rootId, 'lesson', 'directLesson');
   const result = materializeLessonDraft(lesson('directLesson'), {
-    lessonId, sourceLanguage: 'uk', plannedLanguages: ['uk', 'en'],
-    reviewedSourceSha: sha, textbookRoot: 'content/playground',
+    lessonId,
+    sourceLanguage: 'uk',
+    plannedLanguages: ['uk', 'en'],
+    reviewedSourceSha: sha,
+    textbookRoot: 'content/playground',
   });
   assert.equal(result.files.length, 1);
-  assert.equal(result.files[0].path, 'content/playground/data/lessons/' +
-    lessonId.at(-1) + '/' + lessonId + '/index.ts');
+  assert.equal(
+    result.files[0].path,
+    'content/playground/data/lessons/' + lessonId.at(-1) + '/' + lessonId + '/index.ts',
+  );
   assert.match(result.files[0].content, /satisfies LessonWorkflowStage1/);
   assert.match(result.files[0].content, /"quizSectionRequired": true/);
   assert.match(result.files[0].content, /"quizRequiredForCompletion": true/);
@@ -110,10 +156,11 @@ test('Course Stage 5 composes nested modules, chapters, episode intents and new-
   assert.equal(first.sourcePath, root + '/index.ts');
   assert.equal(first.sourceArchivePath, root + '/workflow.stage3.ts');
   assert.equal(first.publishable, false);
-  assert.match(first.files.find(f => f.path === root + '/index.ts').content,
-    /TODO \(BLOCKER\): Course Stage 5 source is not publication approval/);
-  assert.doesNotMatch(first.files.find(f => f.path === root + '/index.ts').content,
-    /import \{ directLesson /);
+  assert.match(
+    first.files.find(f => f.path === root + '/index.ts').content,
+    /TODO \(BLOCKER\): Course Stage 5 source is not publication approval/,
+  );
+  assert.doesNotMatch(first.files.find(f => f.path === root + '/index.ts').content, /import \{ directLesson /);
 });
 
 test('Course Stage 5 fails closed on unauthorized review, duplicate order and partial Lesson intent', () => {
@@ -149,7 +196,9 @@ function patchedSource() {
         base: { locale: { title: 'Adapted' } },
         locale: { uk: { locale: { title: 'Adapted' } } },
       },
-      matching, assessment, overrideRationale: 'Reviewed course-local title and exercise',
+      matching,
+      assessment,
+      overrideRationale: 'Reviewed course-local title and exercise',
     },
   };
   return course;
@@ -157,28 +206,35 @@ function patchedSource() {
 function reuseOptions() {
   const params = options();
   params.resolveExistingLesson = () => ({
-    id: reusedLessonId, sourceSha: matching.sourceSha,
+    id: reusedLessonId,
+    sourceSha: matching.sourceSha,
     languages: ['uk'],
     exportName: 'actualLesson',
     importPath: '#lessonsData/1/' + reusedLessonId + '/index',
     configurator: {
-      id: reusedLessonId, type: 'lesson',
-      config: { base: { id: reusedLessonId, type: 'lesson',
-        skills: [skill], params: { languages: ['uk'] } } },
+      id: reusedLessonId,
+      type: 'lesson',
+      config: { base: { id: reusedLessonId, type: 'lesson', skills: [skill], params: { languages: ['uk'] } } },
       build: {
         props: () => ({ base: {}, locale: undefined }),
         overrides: (raw, selection) => {
           assert.deepEqual(selection.languages, ['uk']);
           assert.ok(raw.section.additionalItems.bridge);
-          return { id: reusedLessonId,
+          return {
+            id: reusedLessonId,
             base: { locale: { title: 'Adapted' } },
-            locale: { uk: { locale: { title: 'Adapted' } } } };
+            locale: { uk: { locale: { title: 'Adapted' } } },
+          };
         },
       },
     },
-    rawPatch: { section: { additionalItems: {
-      bridge: { type: 'content', build: { props: () => ({}) } },
-    } } },
+    rawPatch: {
+      section: {
+        additionalItems: {
+          bridge: { type: 'content', build: { props: () => ({}) } },
+        },
+      },
+    },
     rawPatchSource: '{ section: { additionalItems: { bridge: sharedSection } } }',
     rawPatchSourceSha: sha,
     rawPatchImports: ['import { sharedSection } from "#lessonsData/sharedSections";'],
@@ -203,7 +259,8 @@ test('existing Lesson refuses stale, absent or non-equivalent raw Build provenan
   const stale = reuseOptions();
   const resolver = stale.resolveExistingLesson;
   stale.resolveExistingLesson = (...args) => ({
-    ...resolver(...args), rawPatchSourceSha: '0'.repeat(40),
+    ...resolver(...args),
+    rawPatchSourceSha: '0'.repeat(40),
   });
   assert.throws(() => materializeCourseStage5(patchedSource(), stale), /not pinned/);
   const incompatible = patchedSource();
@@ -213,12 +270,17 @@ test('existing Lesson refuses stale, absent or non-equivalent raw Build provenan
 
 test('verified built sparse Lesson override round-trips through real Lesson and Course Build APIs', () => {
   const engineRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../..');
-  const { defineLesson, defineCourse } = createRequire(import.meta.url)(
-    path.join(engineRoot, 'dist/build.js'));
+  const { defineLesson, defineCourse } = createRequire(import.meta.url)(path.join(engineRoot, 'dist/build.js'));
   const realLesson = defineLesson({
-    id: reusedLessonId, slug: 'independentLesson', type: 'lesson', skills: [skill],
-    params: { languages: ['uk'], quizRequiredForCompletion: false,
-      sections: { allowNavigation: true, allowSkipping: false, showIndexes: true } },
+    id: reusedLessonId,
+    slug: 'independentLesson',
+    type: 'lesson',
+    skills: [skill],
+    params: {
+      languages: ['uk'],
+      quizRequiredForCompletion: false,
+      sections: { allowNavigation: true, allowSkipping: false, showIndexes: true },
+    },
     locale: { title: { uk: 'Самостійний урок' } },
     section: { items: {}, order: [] },
   });
@@ -230,7 +292,10 @@ test('verified built sparse Lesson override round-trips through real Lesson and 
     reused: {
       config: { type: 'lesson', slug: 'reused', skills: [skill] },
       production: {
-        kind: 'existing', existing: built, matching, assessment,
+        kind: 'existing',
+        existing: built,
+        matching,
+        assessment,
         overrideRationale: 'Verified Course-local navigation accommodation',
       },
     },
@@ -238,16 +303,21 @@ test('verified built sparse Lesson override round-trips through real Lesson and 
   reviewed.config.content.order = ['reused'];
   const opts = options();
   opts.resolveExistingLesson = () => ({
-    id: reusedLessonId, sourceSha: matching.sourceSha,
-    languages: ['uk'], exportName: 'independentLesson',
+    id: reusedLessonId,
+    sourceSha: matching.sourceSha,
+    languages: ['uk'],
+    exportName: 'independentLesson',
     importPath: '#lessonsData/1/' + reusedLessonId + '/index',
-    configurator: realLesson, rawPatch: raw,
+    configurator: realLesson,
+    rawPatch: raw,
   });
   const plan = materializeCourseStage5(reviewed, opts);
   const authoredPatchFile = plan.files.find(file => file.path === root + '/authoredCourseOverrides.ts');
   assert.match(authoredPatchFile.content, /allowSkipping/);
   const actualCourse = defineCourse({
-    id: rootId, type: 'course', slug: 'skyBasics',
+    id: rootId,
+    type: 'course',
+    slug: 'skyBasics',
     params: { languages: ['uk'] },
     locale: { title: { uk: 'Небо' }, description: { uk: 'Основи' } },
     content: { items: { reused: realLesson }, order: ['reused'] },
@@ -260,9 +330,11 @@ test('verified built sparse Lesson override round-trips through real Lesson and 
 
 test('existing Lesson fails closed for a mismatched Course Skill even if resolver claims same SHA', () => {
   const input = patchedSource();
-  input.config.content.items.directLesson.config.skills =
-    ['663572e7-bd85-4516-86e2-3de07d209e05'];
-  assert.throws(() => materializeCourseStage5(input, reuseOptions()), /identity, SHA, Build API or source locale not verified/);
+  input.config.content.items.directLesson.config.skills = ['663572e7-bd85-4516-86e2-3de07d209e05'];
+  assert.throws(
+    () => materializeCourseStage5(input, reuseOptions()),
+    /identity, SHA, Build API or source locale not verified/,
+  );
 });
 test('reviewed patch expression rejects executable side-effect imports', () => {
   const input = patchedSource();
@@ -278,9 +350,15 @@ test('reviewed patch expression rejects executable side-effect imports', () => {
 test('Lesson Stage1 refuses an authored title without the reviewed document locale', () => {
   const source = lesson('notLocalized');
   source.config.locale.title = { en: 'Unreviewed English only' };
-  assert.throws(() => materializeLessonDraft(source, {
-    lessonId: deriveCourseEntityId(rootId, 'lesson', 'notLocalized'),
-    sourceLanguage: 'uk', plannedLanguages: ['uk', 'en'],
-    reviewedSourceSha: sha, textbookRoot: 'content/playground',
-  }), /reviewed source-language Lesson title/);
+  assert.throws(
+    () =>
+      materializeLessonDraft(source, {
+        lessonId: deriveCourseEntityId(rootId, 'lesson', 'notLocalized'),
+        sourceLanguage: 'uk',
+        plannedLanguages: ['uk', 'en'],
+        reviewedSourceSha: sha,
+        textbookRoot: 'content/playground',
+      }),
+    /reviewed source-language Lesson title/,
+  );
 });

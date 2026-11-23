@@ -9,9 +9,14 @@ const id = 'c2cc84f3-f057-493d-b1b6-1880aad8023b';
 const productionLanguages: CourseWorkflowStage1Languages = { document: 'uk', planned: ['uk', 'en'] };
 const options = { documentLanguage: productionLanguages.document, plannedLanguages: productionLanguages.planned };
 const valid = () => ({
-  id, slug: 'prose' as const, type: 'markdown' as const, params: {},
-  locale: { value: { uk: 'Радіус $r$. %_%NAME%_%\n', en: 'Unreviewed' },
-    variables: { NAME: { uk: 'Світло', en: 'Unreviewed' } } },
+  id,
+  slug: 'prose' as const,
+  type: 'markdown' as const,
+  params: {},
+  locale: {
+    value: { uk: 'Радіус $r$. %_%NAME%_%\n', en: 'Unreviewed' },
+    variables: { NAME: { uk: 'Світло', en: 'Unreviewed' } },
+  },
 });
 
 test('markdown: exact source, imports, locale pruning, deterministic non-writing plan', () => {
@@ -27,44 +32,64 @@ test('markdown: exact source, imports, locale pruning, deterministic non-writing
   assert.match(module, /defineMarkdown<"prose", typeof languages>/);
   assert(module.includes(id), 'original immutable UUID retained');
   assert(!module.includes('Unreviewed'), 'unreviewed locale is not materialized');
-  const parsed = ts.transpileModule(module, { fileName: 'index.ts', reportDiagnostics: true,
-    compilerOptions: { target: ts.ScriptTarget.ES2022, module: ts.ModuleKind.ESNext } });
-  assert.equal((parsed.diagnostics ?? []).filter(d => d.category === ts.DiagnosticCategory.Error).length, 0, 'emitted TS must parse');
+  const parsed = ts.transpileModule(module, {
+    fileName: 'index.ts',
+    reportDiagnostics: true,
+    compilerOptions: { target: ts.ScriptTarget.ES2022, module: ts.ModuleKind.ESNext },
+  });
+  assert.equal(
+    (parsed.diagnostics ?? []).filter(d => d.category === ts.DiagnosticCategory.Error).length,
+    0,
+    'emitted TS must parse',
+  );
   assert(one.diagnostics.some(item => item.code === 'pending-locales'));
   assert(one.diagnostics.every(item => item.severity === 'warning'));
   assert.match(module, /readMarkdown\(import.meta.url, \["uk"\]\)/);
-  assert.equal(one.files.find(file => file.path === 'uk.md')?.content,
-    'Радіус $r$. %_%NAME%_%\n');
+  assert.equal(one.files.find(file => file.path === 'uk.md')?.content, 'Радіус $r$. %_%NAME%_%\n');
   assert(!one.files.some(file => file.path === 'en.md'));
-  assert.throws(() => materializeMarkdown({ ...valid(), locale: { value: '' } },
-    { documentLanguage: 'uk' }), /empty Markdown/);
+  assert.throws(
+    () => materializeMarkdown({ ...valid(), locale: { value: '' } }, { documentLanguage: 'uk' }),
+    /empty Markdown/,
+  );
 });
 
 test('markdown: missing mandatory Config input must not emit an invalid defineMarkdown call', () => {
-  assert.throws(() => materializeMarkdown(
-    { id, slug: 'prose', type: 'markdown', params: {}, locale: {} }, { documentLanguage: 'uk' },
-  ), /Cannot materialize type-valid Markdown Config.*TODO \(BLOCKER\)/);
+  assert.throws(
+    () =>
+      materializeMarkdown({ id, slug: 'prose', type: 'markdown', params: {}, locale: {} }, { documentLanguage: 'uk' }),
+    /Cannot materialize type-valid Markdown Config.*TODO \(BLOCKER\)/,
+  );
 });
 
 test('markdown: refuses unsafe identity or unsupported source language', () => {
-  assert.throws(() => materializeMarkdown({ ...valid(), id: 'invalid' }, { documentLanguage: 'uk' }),
-    /immutable, non-nil UUID/);
-  assert.throws(() => materializeMarkdown(valid(), { documentLanguage: 'en', plannedLanguages: ['uk'] }),
-    /missing source language/);
-  assert.throws(() => materializeMarkdown({ ...valid(), slug: '../bad' }, { documentLanguage: 'uk' }),
-    /unsafe or missing slug/);
+  assert.throws(
+    () => materializeMarkdown({ ...valid(), id: 'invalid' }, { documentLanguage: 'uk' }),
+    /immutable, non-nil UUID/,
+  );
+  assert.throws(
+    () => materializeMarkdown(valid(), { documentLanguage: 'en', plannedLanguages: ['uk'] }),
+    /missing source language/,
+  );
+  assert.throws(
+    () => materializeMarkdown({ ...valid(), slug: '../bad' }, { documentLanguage: 'uk' }),
+    /unsafe or missing slug/,
+  );
 });
 
 test('markdown: composed nested source paths and Course language handoff', () => {
   const directory = 'sections/intro/content/items/markdown';
   const nested = materializeMarkdown(valid(), {
-    ...options, directory, languagesImport: '../../../../../languages',
+    ...options,
+    directory,
+    languagesImport: '../../../../../languages',
     production: { specification: 'Reviewed source brief' },
   });
   assert(nested.files.every(file => file.path.startsWith(directory + '/')));
   assert(nested.files.some(file => file.path === directory + '/index.ts'));
   assert(nested.files.some(file => file.path === directory + '/specification.md'));
-  assert(nested.files.find(file => file.path.endsWith('/index.ts'))?.content.includes('from "../../../../../languages"'));
+  assert(
+    nested.files.find(file => file.path.endsWith('/index.ts'))?.content.includes('from "../../../../../languages"'),
+  );
   assert.throws(() => materializeMarkdown(valid(), { ...options, directory: '../escape' }), /unsafe output path/);
   assert.throws(() => materializeMarkdown(valid(), { ...options, directory }), /explicit root languages module/);
 });

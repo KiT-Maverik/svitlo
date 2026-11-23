@@ -161,9 +161,7 @@ export type QuestionBankWorkflowCheckpointConfig = Omit<ContentBlock_Checkpoint_
 };
 
 export type QuestionBankWorkflowBlockConfig =
-  | QuestionBankWorkflowSimpleBlockConfig
-  | QuestionBankWorkflowCarouselConfig
-  | QuestionBankWorkflowCheckpointConfig;
+  QuestionBankWorkflowSimpleBlockConfig | QuestionBankWorkflowCarouselConfig | QuestionBankWorkflowCheckpointConfig;
 
 type Blocks = QuestionBankWorkflowOrdered<QuestionBankWorkflowBlockNode>;
 type CommonContent = { question: Blocks; hint?: Blocks; explanation?: Blocks };
@@ -222,13 +220,22 @@ export type QuestionBankWorkflowQuestionNode<Config> = {
 
 export type QuestionBankWorkflowGroups = {
   selectOneAnswer?: Record<string, QuestionBankWorkflowQuestionNode<QuestionBankWorkflowSelectOneAnswerConfig>>;
-  selectMultipleAnswers?: Record<string, QuestionBankWorkflowQuestionNode<QuestionBankWorkflowSelectMultipleAnswersConfig>>;
+  selectMultipleAnswers?: Record<
+    string,
+    QuestionBankWorkflowQuestionNode<QuestionBankWorkflowSelectMultipleAnswersConfig>
+  >;
   matchBlocks?: Record<string, QuestionBankWorkflowQuestionNode<QuestionBankWorkflowMatchBlocksConfig>>;
   answerWithText?: Record<string, QuestionBankWorkflowQuestionNode<QuestionBankWorkflowAnswerWithTextConfig>>;
   answerWithNumber?: Record<string, QuestionBankWorkflowQuestionNode<QuestionBankWorkflowAnswerWithNumberConfig>>;
   orderSequence?: Record<string, QuestionBankWorkflowQuestionNode<QuestionBankWorkflowOrderSequenceConfig>>;
-  buildAnswerWithBlocks?: Record<string, QuestionBankWorkflowQuestionNode<QuestionBankWorkflowBuildAnswerWithBlocksConfig>>;
-  fillBlanksWithBlocks?: Record<string, QuestionBankWorkflowQuestionNode<QuestionBankWorkflowFillBlanksWithBlocksConfig>>;
+  buildAnswerWithBlocks?: Record<
+    string,
+    QuestionBankWorkflowQuestionNode<QuestionBankWorkflowBuildAnswerWithBlocksConfig>
+  >;
+  fillBlanksWithBlocks?: Record<
+    string,
+    QuestionBankWorkflowQuestionNode<QuestionBankWorkflowFillBlanksWithBlocksConfig>
+  >;
   fillBlanksWithText?: Record<string, QuestionBankWorkflowQuestionNode<QuestionBankWorkflowFillBlanksWithTextConfig>>;
 };
 

@@ -357,10 +357,7 @@ const existingLesson = {
   production: { kind: 'existing', existing: { id: importedLesson.id }, matching: match, assessment },
 } satisfies CourseWorkflowStage3ExistingLesson;
 
-const patch = importedLesson.build.overrides(
-  { params: { sections: { allowSkipping: false } } },
-  { languages: ['uk'] },
-);
+const patch = importedLesson.build.overrides({ params: { sections: { allowSkipping: false } } }, { languages: ['uk'] });
 const existingWithOverrides = {
   config: { ...existingConfig, slug: 'dayNightPractice' },
   production: {
@@ -404,7 +401,13 @@ const resolvedCourse = {
   config: {
     ...planned.config,
     content: {
-      items: { skyBasics: resolvedModule, directChapter: resolvedChapter, newLesson, existingLesson, existingWithOverrides },
+      items: {
+        skyBasics: resolvedModule,
+        directChapter: resolvedChapter,
+        newLesson,
+        existingLesson,
+        existingWithOverrides,
+      },
       order: ['skyBasics', 'directChapter', 'newLesson', 'existingLesson', 'existingWithOverrides'],
     },
   },

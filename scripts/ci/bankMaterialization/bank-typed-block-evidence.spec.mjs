@@ -18,72 +18,88 @@ const file = (root, name, source) => {
   fs.mkdirSync(path.dirname(target), { recursive: true });
   fs.writeFileSync(target, source);
 };
-const git = (root, ...args) => execFileSync('git', ['-C', root, ...args], {encoding: 'utf8'}).trimEnd();
+const git = (root, ...args) => execFileSync('git', ['-C', root, ...args], { encoding: 'utf8' }).trimEnd();
 
 function fixture(t) {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-bank-evidence-'));
-  t.after(() => fs.rmSync(root, {recursive: true, force: true}));
+  t.after(() => fs.rmSync(root, { recursive: true, force: true }));
   git(root, 'init', '-q');
   git(root, 'config', 'user.name', 'Test');
   git(root, 'config', 'user.email', 'test@example.com');
   const base = repoPath + '/scenes/' + sceneId.at(-1) + '/' + sceneId;
   const spec = '# Reviewed interaction\n';
-  file(root, repoPath + '/scenes/sceneLoader.ts', [
-    'const sceneImports = {',
-    '  "' + sceneId + '": () =>',
-    '    import("./' + sceneId.at(-1) + '/' + sceneId + '").then(mod => ({default: mod.default})),',
-    '};',
-  ].join('\n'));
+  file(
+    root,
+    repoPath + '/scenes/sceneLoader.ts',
+    [
+      'const sceneImports = {',
+      '  "' + sceneId + '": () =>',
+      '    import("./' + sceneId.at(-1) + '/' + sceneId + '").then(mod => ({default: mod.default})),',
+      '};',
+    ].join('\n'),
+  );
   file(root, base + '/index.ts', 'export { ' + sceneName + ' as default } from "./' + sceneName + '";\n');
-  file(root, base + '/' + sceneName + '.tsx',
-    'export function ' + sceneName + '() { return <div aria-label="Reviewed interaction" />; }\n');
+  file(
+    root,
+    base + '/' + sceneName + '.tsx',
+    'export function ' + sceneName + '() { return <div aria-label="Reviewed interaction" />; }\n',
+  );
   file(root, base + '/specification.md', spec);
   file(root, repoPath + '/assets/images/' + assetName, '<svg xmlns="http://www.w3.org/2000/svg" />\n');
   git(root, 'add', '.');
   git(root, 'commit', '-m', 'Reviewed fixture', '-q');
   const head = git(root, 'rev-parse', 'HEAD');
   const meta = {
-    bank: 'questions', head, reviewCommitSha: head,
+    bank: 'questions',
+    head,
+    reviewCommitSha: head,
     identity: { pkg: repoPath, folder: repoPath + '/data/lessons/1/11111111-1111-4111-8111-111111111111' },
   };
   const scene = () => ({
-    config: { type: 'scene', id: sceneId, slug: 'visual', locale: {value: {title: {uk: 'Гра'}}}, params: {} },
-    production: {specification: spec},
+    config: { type: 'scene', id: sceneId, slug: 'visual', locale: { value: { title: { uk: 'Гра' } } }, params: {} },
+    production: { specification: spec },
   });
   const image = () => ({
-    config: { type: 'image', id: imageId, slug: 'diagram',
-      locale: { fileName: assetName }, params: {} },
-    production: {mediaSourcePath: repoPath + '/assets/images/' + assetName},
+    config: { type: 'image', id: imageId, slug: 'diagram', locale: { fileName: assetName }, params: {} },
+    production: { mediaSourcePath: repoPath + '/assets/images/' + assetName },
   });
   const input = blocks => ({
-    config: { questions: { selectOneAnswer: { test: {
-      config: { type: 'selectOneAnswer', content: { question: {items: blocks, order: Object.keys(blocks)} } },
-    } } } },
-    production: { languages: {document: 'uk', planned: ['uk']} },
+    config: {
+      questions: {
+        selectOneAnswer: {
+          test: {
+            config: { type: 'selectOneAnswer', content: { question: { items: blocks, order: Object.keys(blocks) } } },
+          },
+        },
+      },
+    },
+    production: { languages: { document: 'uk', planned: ['uk'] } },
   });
-  const resolve = bank => resolveReviewedBankBlockEvidence({root, meta, input: bank, git, ts});
-  return {root,base,meta,scene,image,input,resolve};
+  const resolve = bank => resolveReviewedBankBlockEvidence({ root, meta, input: bank, git, ts });
+  return { root, base, meta, scene, image, input, resolve };
 }
 
 test('real pinned reviewed Scene and local media become independently verified block evidence', t => {
   const f = fixture(t);
-  const actual = f.resolve(f.input({visual: f.scene(), diagram: f.image()}));
+  const actual = f.resolve(f.input({ visual: f.scene(), diagram: f.image() }));
   assert.deepEqual([...actual.registeredSceneIds], [sceneId]);
   assert.deepEqual([...actual.approvedMediaBlockIds], [imageId]);
 });
 
 test('stale/tampered Scene implementation, specifications, registry and media never approve', t => {
   const f = fixture(t);
-  const good = f.input({visual: f.scene(), diagram: f.image()});
+  const good = f.input({ visual: f.scene(), diagram: f.image() });
   const implementation = f.base + '/' + sceneName + '.tsx';
   file(f.root, implementation, 'export const x = sceneImplementationRequired;\n');
   assert.throws(() => f.resolve(good), /changed since reviewed HEAD/);
   git(f.root, 'checkout', '--', implementation);
   const noSpec = structuredClone(good);
-  noSpec.config.questions.selectOneAnswer.test.config.content.question.items.visual.production.specification = 'forged spec';
+  noSpec.config.questions.selectOneAnswer.test.config.content.question.items.visual.production.specification =
+    'forged spec';
   assert.throws(() => f.resolve(noSpec), /specification is not the exact/);
   const wrongMedia = structuredClone(good);
-  wrongMedia.config.questions.selectOneAnswer.test.config.content.question.items.diagram.production.mediaSourcePath = '/tmp/escape';
+  wrongMedia.config.questions.selectOneAnswer.test.config.content.question.items.diagram.production.mediaSourcePath =
+    '/tmp/escape';
   assert.throws(() => f.resolve(wrongMedia), /mediaSourcePath differs/);
   const image = repoPath + '/assets/images/' + assetName;
   fs.rmSync(path.join(f.root, image));
@@ -95,24 +111,29 @@ test('missing, stale, placeholder and external media references fail closed', t 
   const f = fixture(t);
   const noAsset = f.image();
   noAsset.config.locale.fileName = '00000000-0000-0000-0000-000000000000.svg';
-  assert.throws(() => f.resolve(f.input({diagram: noAsset})), /Invalid reviewed UUID/);
+  assert.throws(() => f.resolve(f.input({ diagram: noAsset })), /Invalid reviewed UUID/);
   noAsset.config.locale.fileName = '99999999-9999-4999-8999-999999999999.svg';
-  assert.throws(() => f.resolve(f.input({diagram: noAsset})));
+  assert.throws(() => f.resolve(f.input({ diagram: noAsset })));
   const remote = f.image();
   remote.config.locale.fileName = 'https://cdn.example.org/image.svg';
   remote.production.mediaSourcePath = undefined;
-  assert.deepEqual([...f.resolve(f.input({diagram: remote})).approvedMediaBlockIds], [imageId]);
+  assert.deepEqual([...f.resolve(f.input({ diagram: remote })).approvedMediaBlockIds], [imageId]);
   remote.config.locale.fileName = 'http://cdn.example.org/image.svg';
-  assert.throws(() => f.resolve(f.input({diagram: remote})), /requires reviewed HTTPS/);
+  assert.throws(() => f.resolve(f.input({ diagram: remote })), /requires reviewed HTTPS/);
 });
 
 test('Youtube URL is reviewed statically and never triggers a network call', t => {
   const f = fixture(t);
-  const youtube = { config: {
-    type: 'youtube', id: imageId, slug: 'explanation',
-    locale: {href: {uk: 'https://www.youtube.com/watch?v=abcdefgh'}}, params: {mode: 'link'},
-  } };
-  assert.deepEqual([...f.resolve(f.input({video: youtube})).approvedMediaBlockIds], [imageId]);
+  const youtube = {
+    config: {
+      type: 'youtube',
+      id: imageId,
+      slug: 'explanation',
+      locale: { href: { uk: 'https://www.youtube.com/watch?v=abcdefgh' } },
+      params: { mode: 'link' },
+    },
+  };
+  assert.deepEqual([...f.resolve(f.input({ video: youtube })).approvedMediaBlockIds], [imageId]);
   youtube.config.locale.href.uk = 'https://attacker.invalid/watch?v=x';
-  assert.throws(() => f.resolve(f.input({video: youtube})), /Unverified Youtube host/);
+  assert.throws(() => f.resolve(f.input({ video: youtube })), /Unverified Youtube host/);
 });

@@ -29,14 +29,21 @@ export type SceneMaterialization = {
 const uuid = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i;
 const slug = /^[a-z][a-zA-Z0-9]*$/;
 const locale = /^[a-z]{2}(?:-[A-Z]{2})?$/;
-const reserved = new Set('await break case catch class const continue debugger default delete do else enum export extends false finally for function if import in instanceof new null return super switch this throw true try typeof var void while with yield let static'.split(' '));
+const reserved = new Set(
+  'await break case catch class const continue debugger default delete do else enum export extends false finally for function if import in instanceof new null return super switch this throw true try typeof var void while with yield let static'.split(
+    ' ',
+  ),
+);
 const record = (value: unknown): value is Record<string, unknown> =>
   value !== null && typeof value === 'object' && !Array.isArray(value);
 
 function safeDirectory(directory: string): string {
   if (directory === '') return directory;
-  if (typeof directory !== 'string' || directory.startsWith('/') ||
-    directory.split('/').some(part => !slug.test(part) || part === 'constructor' || part === '__proto__')) {
+  if (
+    typeof directory !== 'string' ||
+    directory.startsWith('/') ||
+    directory.split('/').some(part => !slug.test(part) || part === 'constructor' || part === '__proto__')
+  ) {
     throw new Error('Scene: unsafe destination directory: ' + directory);
   }
   return directory;
@@ -55,15 +62,25 @@ function literal(value: unknown, path: string, depth = 0): string {
   if (value === undefined) return 'undefined';
   if (value === null || typeof value === 'string' || typeof value === 'boolean') return JSON.stringify(value);
   if (typeof value === 'number' && Number.isFinite(value)) return JSON.stringify(value);
-  if (Array.isArray(value)) return '[' + value.map((part, i) => literal(part, path + '[' + i + ']', depth + 1)).join(', ') + ']';
-  if (!record(value) || Object.getPrototypeOf(value) !== Object.prototype && Object.getPrototypeOf(value) !== null) {
+  if (Array.isArray(value))
+    return '[' + value.map((part, i) => literal(part, path + '[' + i + ']', depth + 1)).join(', ') + ']';
+  if (!record(value) || (Object.getPrototypeOf(value) !== Object.prototype && Object.getPrototypeOf(value) !== null)) {
     throw new Error(path + ': unsupported executable/non-plain source value');
   }
   const entries = Object.entries(value);
   if (!entries.length) return '{}';
-  return '{\n' + entries.map(([key, part]) =>
-    '  '.repeat(depth + 1) + JSON.stringify(key) + ': ' + literal(part, path + '.' + key, depth + 1)).join(',\n') +
-    '\n' + '  '.repeat(depth) + '}';
+  return (
+    '{\n' +
+    entries
+      .map(
+        ([key, part]) =>
+          '  '.repeat(depth + 1) + JSON.stringify(key) + ': ' + literal(part, path + '.' + key, depth + 1),
+      )
+      .join(',\n') +
+    '\n' +
+    '  '.repeat(depth) +
+    '}'
+  );
 }
 /**
  * Emit only the Engine defineScene Config module and its verified specification.
@@ -71,8 +88,14 @@ function literal(value: unknown, path: string, depth = 0): string {
  * sceneScaffolding workflow, not by this materializer.
  */
 export function materializeScene(config: SceneSource, context: SceneSourceContext): SceneMaterialization {
-  if (!record(config) || config.type !== 'scene' || typeof config.slug !== 'string' || !slug.test(config.slug) ||
-    !uuid.test(config.id)) throw new Error('Scene requires a canonical type, camelCase slug and immutable UUID');
+  if (
+    !record(config) ||
+    config.type !== 'scene' ||
+    typeof config.slug !== 'string' ||
+    !slug.test(config.slug) ||
+    !uuid.test(config.id)
+  )
+    throw new Error('Scene requires a canonical type, camelCase slug and immutable UUID');
   if (typeof context.documentLanguage !== 'string' || !locale.test(context.documentLanguage)) {
     throw new Error('Scene: reviewed documentLanguage is required');
   }
@@ -99,16 +122,35 @@ export function materializeScene(config: SceneSource, context: SceneSourceContex
   const todos: string[] = [];
   if (incompleteSource) {
     todos.push('// TODO (BLOCKER): Complete Scene params/locale.value with reviewed source before production.');
-    diagnostics.push({ path: directory || '.', code: 'incomplete-scene-source', message: 'Source-localized Scene value or params remains incomplete', severity: 'warning' });
+    diagnostics.push({
+      path: directory || '.',
+      code: 'incomplete-scene-source',
+      message: 'Source-localized Scene value or params remains incomplete',
+      severity: 'warning',
+    });
   }
   if (pending) {
-    todos.push('// TODO (BLOCKER): Implement and register Scene ' + config.id + ' before production; Draft Preview may use SceneStub.');
-    diagnostics.push({ path: directory || '.', code: 'pending-scene', message: 'Scene implementation or UUID registration is not verified', severity: 'warning' });
+    todos.push(
+      '// TODO (BLOCKER): Implement and register Scene ' +
+        config.id +
+        ' before production; Draft Preview may use SceneStub.',
+    );
+    diagnostics.push({
+      path: directory || '.',
+      code: 'pending-scene',
+      message: 'Scene implementation or UUID registration is not verified',
+      severity: 'warning',
+    });
   }
   const specification = context.production?.specification;
   if (typeof specification !== 'string' || !specification.trim()) {
     todos.push('// TODO (BLOCKER): Provide the reviewed Scene specification for ' + config.id + '.');
-    diagnostics.push({ path: directory || '.', code: 'missing-scene-specification', message: 'Reviewed Scene specification is missing', severity: 'warning' });
+    diagnostics.push({
+      path: directory || '.',
+      code: 'missing-scene-specification',
+      message: 'Reviewed Scene specification is missing',
+      severity: 'warning',
+    });
   }
   const code = [
     "import { defineScene } from '@svitlo/engine/build';",
@@ -122,7 +164,11 @@ export function materializeScene(config: SceneSource, context: SceneSourceContex
   ].join('\n');
   const files: SceneSourceFile[] = [];
   if (typeof specification === 'string' && specification.trim()) {
-    files.push({ path: (directory ? directory + '/' : '') + 'specification.md', content: specification.trimEnd() + '\n', kind: 'specification' });
+    files.push({
+      path: (directory ? directory + '/' : '') + 'specification.md',
+      content: specification.trimEnd() + '\n',
+      kind: 'specification',
+    });
   }
   files.push({ path: (directory ? directory + '/' : '') + 'index.ts', content: code, kind: 'typescript' });
   return { exportName, files, diagnostics };

@@ -120,10 +120,7 @@ export type FlashcardBankWorkflowFlags = Flashcard_Flag_Config[];
 /** One graph edge authored ONCE with slug endpoints. Stage 5 expands to
  * Flashcard_Relationship on each real endpoint by UUID and position.
  */
-export type FlashcardBankWorkflowRelationshipEdge = Pick<
-  Flashcard_Relationship,
-  'relationshipId'
-> & {
+export type FlashcardBankWorkflowRelationshipEdge = Pick<Flashcard_Relationship, 'relationshipId'> & {
   type: Flashcard_Relationship_Type;
   source: Flashcard_Config['slug'];
   target: Flashcard_Config['slug'];

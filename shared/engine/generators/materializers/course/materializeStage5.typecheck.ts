@@ -1,9 +1,6 @@
 import { materializeCourseStage5 } from './materializeStage5.mjs';
 import { materializeLessonDraft } from './lessonDraft.mjs';
-import type {
-  CourseStage5Options,
-  CourseStage5Plan,
-} from './materializeStage5.mjs';
+import type { CourseStage5Options, CourseStage5Plan } from './materializeStage5.mjs';
 import type {
   CourseWorkflowMaterializerInput,
   CourseWorkflowStage3NewLesson,

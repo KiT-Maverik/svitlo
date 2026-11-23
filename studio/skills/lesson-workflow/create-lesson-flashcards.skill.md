@@ -10,7 +10,7 @@ Author one Lesson-owned, **source-language**, progressively enriched TypeScript 
 
 Start with a minimal `FlashcardBankWorkflowStage1`; extend the **same** `{config?, production}` authoring object to `FlashcardBankWorkflowStage2` and `FlashcardBankWorkflowStage3`. Do not create another bank UUID, a Card/Side at Stage 1, `flashcards.yaml` as a second source, a separate plan, a second source ledger or approver fields in Engine Config. The bank is **not** serialized into Lesson Props. Stage 5 materializes the independently reviewed final Stage 3 into real `defineFlashcard`/`defineFlashcardSide` modules and the complete bank export; translation and independent review follow in the **same Flashcards Draft PR**. Existing typed bank source must be preserved and non-destructively reconciled, never overwritten with a new Stage 1 object.
 
-**Question-first hard blocker:** before Stage 1, verify approved Lesson methodology and complete independently reviewed/integrated Question Bank at the exact source SHA, *or* the parent Lesson PR's explicit Methodologist-backed `Questions: Not Applicable` with rationale and revision. No local Quiz or absent Questions are **not** an exemption. If a Question changes, revalidate every dependent Card/field/locale before approval. Read the complete bank, not just a Quiz selection.
+**Question-first hard blocker:** before Stage 1, verify approved Lesson methodology and complete independently reviewed/integrated Question Bank at the exact source SHA, _or_ the parent Lesson PR's explicit Methodologist-backed `Questions: Not Applicable` with rationale and revision. No local Quiz or absent Questions are **not** an exemption. If a Question changes, revalidate every dependent Card/field/locale before approval. Read the complete bank, not just a Quiz selection.
 
 The original Lesson `documentLanguage` and `supportedLanguages` are recorded as shared `production.lesson.languages: {document,planned}`; only real source-language copy is initially authored. The Methodologist's `LessonProductionAssessmentRequirements` records four **independent** requirements: Question Bank, Flashcard Bank, Quiz Section and Flashcards Section. A full Flashcard Bank may be used for later practice without any in-Lesson Flashcards Section. Assessment-only Lessons can use approved upstream banks with explicit source ownership.
 
@@ -64,14 +64,14 @@ The Stage 2 `production.questionReuse` records expected Question source SHA, exa
 
 Store the **sole** authored edges in `config.relationships: {items,order}`, each named entry exactly `{relationshipId,type,source,target}` with real Card **slugs**. The map key identifies the ordered edge and `relationshipId` is stable authored identity; neither is automatically generated from endpoints. The nine exact Engine types are:
 
-| Kind | Meaning |
-| --- | --- |
+| Kind                                                 | Meaning                                     |
+| ---------------------------------------------------- | ------------------------------------------- |
 | `reverse`, `equivalent`, `contrast`, `complementary` | Symmetric, both endpoint `position: 'peer'` |
-| `prerequisite` | Foundation → dependent |
-| `partOf` | Part → whole |
-| `exampleOf` | Example → category |
-| `causes` | Cause → effect |
-| `precedes` | Earlier → later |
+| `prerequisite`                                       | Foundation → dependent                      |
+| `partOf`                                             | Part → whole                                |
+| `exampleOf`                                          | Example → category                          |
+| `causes`                                             | Cause → effect                              |
+| `precedes`                                           | Earlier → later                             |
 
 Directional edges materialize `position: 'source'` on the source and `'target'` on the target, each with the **other Card UUID** as `relatedFlashcardId`; symmetric edges materialize `peer` on both. The two emitted endpoint entries preserve the single authored `relationshipId`. The Stage 2 authored Card `parameters.relationships` is intentionally **absent**, never a manually maintained second graph. Reject self-links, missing Card slugs, duplicate same-type endpoint pairs (including symmetric reversals), duplicate IDs and invalid directions; a card may have many justified links including different kinds to one partner. The Stage 5 orchestrator must do this deterministic projection before calling the now-integrated concrete #780 Card materializer; `materializeFlashcard` itself does not generate mirrored edges or check the whole bank graph. Relation type/position never implies scheduling or mastery semantics.
 

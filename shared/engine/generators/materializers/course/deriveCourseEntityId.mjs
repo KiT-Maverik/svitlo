@@ -10,15 +10,20 @@ const segment = /^[A-Za-z][A-Za-z0-9]*$/;
  * that, a moved/renamed entity must retain its explicit saved identity.
  */
 export function deriveCourseEntityId(courseId, kind, placement) {
-  if (typeof courseId !== 'string' || !uuid.test(courseId) ||
-      typeof kind !== 'string' || !segment.test(kind) ||
-      typeof placement !== 'string' || !placement ||
-      placement.split('/').some(part => !segment.test(part) ||
-        ['constructor', 'prototype', '__proto__'].includes(part)))
+  if (
+    typeof courseId !== 'string' ||
+    !uuid.test(courseId) ||
+    typeof kind !== 'string' ||
+    !segment.test(kind) ||
+    typeof placement !== 'string' ||
+    !placement ||
+    placement.split('/').some(part => !segment.test(part) || ['constructor', 'prototype', '__proto__'].includes(part))
+  )
     throw new Error('invalid deterministic Course entity identity/placement');
   const bytes = createHash('sha1')
     .update('svitlo-course-source-v1:' + courseId + ':' + kind + ':' + placement)
-    .digest().subarray(0, 16);
+    .digest()
+    .subarray(0, 16);
   bytes[6] = (bytes[6] & 15) | 80;
   bytes[8] = (bytes[8] & 63) | 128;
   const hex = bytes.toString('hex');

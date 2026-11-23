@@ -8,7 +8,7 @@ import type { LanguageCode, SupportedLanguages } from '../../../schemas/language
 
 export type PlainBlock = { id: string; slug: string; type: string } & Record<string, unknown>;
 export type BlockNode = PlainBlock | { config: PlainBlock; production?: Record<string, unknown> };
-export type FlashcardSideSource = Omit<FlashcardSide_Config,'items'> & {
+export type FlashcardSideSource = Omit<FlashcardSide_Config, 'items'> & {
   items: Record<string, BlockNode>;
 };
 export type SourceFile = { path: string; content: string; kind: 'typescript' | 'markdown' | 'code' };
@@ -21,87 +21,132 @@ export type FlashcardSideContext = {
   languages: { document: LanguageCode; planned: SupportedLanguages };
   existingPaths?: ReadonlySet<string>;
   /** Owner C/D concrete block renderer, supplied by parent orchestrator. */
-  materializeBlock: (node: {config: PlainBlock; production?: Record<string,unknown>}, context: {
-    directory: string; documentLanguage: string
-  }) => ChildResult;
+  materializeBlock: (
+    node: { config: PlainBlock; production?: Record<string, unknown> },
+    context: {
+      directory: string;
+      documentLanguage: string;
+    },
+  ) => ChildResult;
 };
-const validSlug=/^[a-z][A-Za-z0-9]*$/;
-const validUUID=/^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i;
-const validLocale=/^[a-z]{2}(?:-[A-Z]{2})?$/;
-const identifier=/^[a-zA-Z_$][a-zA-Z0-9_$]*$/;
-const allowed=new Set(['text','markdown','code','image','video','youtube','audio','subtitles','scene','carousel','checkpoint']);
-const record=(v:unknown):v is Record<string,unknown>=>v!==null && typeof v==='object' && !Array.isArray(v);
-function fail(location: string, message: string): never { throw new Error('flashcardSide '+location+': '+message); }
-function safePath(value:string):void {
-  if (!value || value.startsWith('/') || value.split('/').some(part=>!part || part==='.' || part==='..' ||
-      !/^[a-zA-Z0-9_-]+(?:\.[a-zA-Z0-9]+)?$/.test(part))) fail(value,'unsafe output path');
+const validSlug = /^[a-z][A-Za-z0-9]*$/;
+const validUUID = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i;
+const validLocale = /^[a-z]{2}(?:-[A-Z]{2})?$/;
+const identifier = /^[a-zA-Z_$][a-zA-Z0-9_$]*$/;
+const allowed = new Set([
+  'text',
+  'markdown',
+  'code',
+  'image',
+  'video',
+  'youtube',
+  'audio',
+  'subtitles',
+  'scene',
+  'carousel',
+  'checkpoint',
+]);
+const record = (v: unknown): v is Record<string, unknown> => v !== null && typeof v === 'object' && !Array.isArray(v);
+function fail(location: string, message: string): never {
+  throw new Error('flashcardSide ' + location + ': ' + message);
 }
-function safeSlug(value:unknown,location:string):string {
-  if (typeof value!=='string' || !validSlug.test(value) ||
-      ['constructor','prototype','__proto__'].includes(value)) fail(location,'unsafe block slug');
+function safePath(value: string): void {
+  if (
+    !value ||
+    value.startsWith('/') ||
+    value
+      .split('/')
+      .some(part => !part || part === '.' || part === '..' || !/^[a-zA-Z0-9_-]+(?:\.[a-zA-Z0-9]+)?$/.test(part))
+  )
+    fail(value, 'unsafe output path');
+}
+function safeSlug(value: unknown, location: string): string {
+  if (typeof value !== 'string' || !validSlug.test(value) || ['constructor', 'prototype', '__proto__'].includes(value))
+    fail(location, 'unsafe block slug');
   return value;
 }
 /** All children must be accounted for once; do not silently reorder or drop blocks. */
-function assertSide(source:FlashcardSideSource,role:FlashcardSideContext['role']):void {
+function assertSide(source: FlashcardSideSource, role: FlashcardSideContext['role']): void {
   if (!record(source) || !record(source.items) || !Array.isArray(source.order))
-    fail('content.'+role,'expected items/order');
-  const keys=Object.keys(source.items);
-  if (keys.length!==source.order.length || new Set(source.order).size!==keys.length ||
-      source.order.some(key=>typeof key!=='string'||!Object.hasOwn(source.items,key)))
-    fail('content.'+role+'.order','order must include every item once');
-  if (role!=='hint' && keys.length===0) fail('content.'+role,'required front/back cannot be empty');
-  for(const key of keys) safeSlug(key,'content.'+role+'.items.'+key);
+    fail('content.' + role, 'expected items/order');
+  const keys = Object.keys(source.items);
+  if (
+    keys.length !== source.order.length ||
+    new Set(source.order).size !== keys.length ||
+    source.order.some(key => typeof key !== 'string' || !Object.hasOwn(source.items, key))
+  )
+    fail('content.' + role + '.order', 'order must include every item once');
+  if (role !== 'hint' && keys.length === 0) fail('content.' + role, 'required front/back cannot be empty');
+  for (const key of keys) safeSlug(key, 'content.' + role + '.items.' + key);
 }
-export function materializeFlashcardSide(source:FlashcardSideSource,context:FlashcardSideContext):ChildResult {
-  assertSide(source,context.role);
-  if (!context.languages || !validLocale.test(context.languages.document)) fail('languages.document','invalid source language');
-  const planned=context.languages.planned;
-  if (!Array.isArray(planned) || planned.length===0 || new Set(planned).size!==planned.length ||
-      !planned.includes(context.languages.document) || planned.some(code=>!validLocale.test(code)))
-    fail('languages.planned','unique nonempty planned languages must include the source language');
+export function materializeFlashcardSide(source: FlashcardSideSource, context: FlashcardSideContext): ChildResult {
+  assertSide(source, context.role);
+  if (!context.languages || !validLocale.test(context.languages.document))
+    fail('languages.document', 'invalid source language');
+  const planned = context.languages.planned;
+  if (
+    !Array.isArray(planned) ||
+    planned.length === 0 ||
+    new Set(planned).size !== planned.length ||
+    !planned.includes(context.languages.document) ||
+    planned.some(code => !validLocale.test(code))
+  )
+    fail('languages.planned', 'unique nonempty planned languages must include the source language');
   safePath(context.directory);
-  const files:SourceFile[]=[];
-  const diagnostics:SourceDiagnostic[]=[];
-  const imports:string[]=[];
-  const entries:string[]=[];
-  for(const key of source.order){
-    const node=source.items[key];
-    if (!record(node)) fail('items.'+key,'plain ContentBlock Config required');
+  const files: SourceFile[] = [];
+  const diagnostics: SourceDiagnostic[] = [];
+  const imports: string[] = [];
+  const entries: string[] = [];
+  for (const key of source.order) {
+    const node = source.items[key];
+    if (!record(node)) fail('items.' + key, 'plain ContentBlock Config required');
     const candidate: unknown = record(node.config) ? node.config : node;
-    if (!record(candidate) || typeof candidate.type!=='string' || !allowed.has(candidate.type))
-      fail('items.'+key,'unsupported concrete ContentBlock');
+    if (!record(candidate) || typeof candidate.type !== 'string' || !allowed.has(candidate.type))
+      fail('items.' + key, 'unsupported concrete ContentBlock');
     const child = candidate;
-    if (typeof child.id!=='string'||!validUUID.test(child.id))
-      fail('items.'+key+'.id','existing block UUID required');
-    if (safeSlug(child.slug,'items.'+key+'.slug')!==key)
-      fail('items.'+key+'.slug','slug must equal map key');
-    const childDir=context.directory+'/items/'+key;
+    if (typeof child.id !== 'string' || !validUUID.test(child.id))
+      fail('items.' + key + '.id', 'existing block UUID required');
+    if (safeSlug(child.slug, 'items.' + key + '.slug') !== key)
+      fail('items.' + key + '.slug', 'slug must equal map key');
+    const childDir = context.directory + '/items/' + key;
     safePath(childDir);
-    const output=context.materializeBlock(
-      {config:child as PlainBlock,...(record(node.production)?{production:node.production}:{})},
-      {directory:childDir,documentLanguage:context.languages.document},
+    const output = context.materializeBlock(
+      { config: child as PlainBlock, ...(record(node.production) ? { production: node.production } : {}) },
+      { directory: childDir, documentLanguage: context.languages.document },
     );
     if (!output || !identifier.test(output.exportName) || !Array.isArray(output.files))
-      fail('items.'+key,'invalid delegated ContentBlock output');
-    imports.push('import { '+output.exportName+' as child_'+key+' } from '+JSON.stringify('./items/'+key)+';');
-    entries.push('  '+key+': child_'+key+',');
+      fail('items.' + key, 'invalid delegated ContentBlock output');
+    imports.push(
+      'import { ' + output.exportName + ' as child_' + key + ' } from ' + JSON.stringify('./items/' + key) + ';',
+    );
+    entries.push('  ' + key + ': child_' + key + ',');
     files.push(...output.files);
-    diagnostics.push(...(output.diagnostics??[]));
+    diagnostics.push(...(output.diagnostics ?? []));
   }
-  const sourceText=[
+  const sourceText = [
     "import { defineFlashcardSide } from '@svitlo/engine/build';",
-    ...imports,'',
-    'const items = {',''+entries.join('\n'),'};','',
-    'export const '+context.role+' = defineFlashcardSide<typeof items, ['+
-      JSON.stringify(context.languages.document)+']>({ items, order: '+JSON.stringify(source.order)+' });','',
+    ...imports,
+    '',
+    'const items = {',
+    '' + entries.join('\n'),
+    '};',
+    '',
+    'export const ' +
+      context.role +
+      ' = defineFlashcardSide<typeof items, [' +
+      JSON.stringify(context.languages.document) +
+      ']>({ items, order: ' +
+      JSON.stringify(source.order) +
+      ' });',
+    '',
   ].join('\n');
-  files.push({path:context.directory+'/index.ts',content:sourceText,kind:'typescript'});
-  const seen=new Set<string>();
-  for(const file of files){
+  files.push({ path: context.directory + '/index.ts', content: sourceText, kind: 'typescript' });
+  const seen = new Set<string>();
+  for (const file of files) {
     safePath(file.path);
-    if (seen.has(file.path)) fail(file.path,'duplicate output path');
-    if (context.existingPaths?.has(file.path)) fail(file.path,'existing authored source; create-only/no clobber');
+    if (seen.has(file.path)) fail(file.path, 'duplicate output path');
+    if (context.existingPaths?.has(file.path)) fail(file.path, 'existing authored source; create-only/no clobber');
     seen.add(file.path);
   }
-  return {exportName:context.role,files:files.sort((a,b)=>a.path.localeCompare(b.path,'en')),diagnostics};
+  return { exportName: context.role, files: files.sort((a, b) => a.path.localeCompare(b.path, 'en')), diagnostics };
 }

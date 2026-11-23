@@ -15,46 +15,47 @@ const uuid = /^[a-f0-9]{8}-(?:[a-f0-9]{4}-){3}[a-f0-9]{12}$/i;
 const identifier = /^[a-zA-Z_$][a-zA-Z0-9_$]*$/;
 
 function unwrap(node) {
-  while (ts.isParenthesizedExpression(node) || ts.isAsExpression(node) ||
-         ts.isSatisfiesExpression(node) || ts.isNonNullExpression(node))
+  while (
+    ts.isParenthesizedExpression(node) ||
+    ts.isAsExpression(node) ||
+    ts.isSatisfiesExpression(node) ||
+    ts.isNonNullExpression(node)
+  )
     node = node.expression;
   return node;
 }
 function key(name) {
-  if (ts.isIdentifier(name) || ts.isStringLiteral(name) || ts.isNumericLiteral(name))
-    return name.text;
+  if (ts.isIdentifier(name) || ts.isStringLiteral(name) || ts.isNumericLiteral(name)) return name.text;
   throw Error('Computed, spread or dynamic TypeScript keys are forbidden');
 }
 function property(object, name) {
   const root = unwrap(object);
   if (!ts.isObjectLiteralExpression(root)) throw Error('Expected plain object at ' + name);
-  const properties = root.properties.filter(prop =>
-    ts.isPropertyAssignment(prop) && key(prop.name) === name);
+  const properties = root.properties.filter(prop => ts.isPropertyAssignment(prop) && key(prop.name) === name);
   if (properties.length !== 1) throw Error('Missing or duplicate object field ' + name);
   return properties[0].initializer;
 }
 function trackedRegular(root, filename) {
   const absolute = path.resolve(root, filename);
-  if (!absolute.startsWith(root + path.sep))
-    throw Error('Typed Lesson import escapes pinned checkout');
+  if (!absolute.startsWith(root + path.sep)) throw Error('Typed Lesson import escapes pinned checkout');
   let cursor = root;
   for (const component of filename.split('/')) {
-    if (!component || component === '.' || component === '..')
-      throw Error('Unsafe typed Lesson source path');
+    if (!component || component === '.' || component === '..') throw Error('Unsafe typed Lesson source path');
     cursor = path.join(cursor, component);
     if (fs.lstatSync(cursor).isSymbolicLink()) throw Error('Symlink in source/import path');
   }
   const stat = fs.statSync(absolute);
-  if (!stat.isFile() || stat.size > 4 * 1024 * 1024)
-    throw Error('Nonregular or oversized source/import');
+  if (!stat.isFile() || stat.size > 4 * 1024 * 1024) throw Error('Nonregular or oversized source/import');
   return fs.readFileSync(absolute, 'utf8');
 }
 
 function parseSource(filename, text) {
   const file = ts.createSourceFile(filename, text, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS);
   if (file.parseDiagnostics.length)
-    throw Error('Invalid Stage 2 source TypeScript: ' +
-      ts.flattenDiagnosticMessageText(file.parseDiagnostics[0].messageText, '\n'));
+    throw Error(
+      'Invalid Stage 2 source TypeScript: ' +
+        ts.flattenDiagnosticMessageText(file.parseDiagnostics[0].messageText, '\n'),
+    );
   return file;
 }
 function importsOf(file, folder) {
@@ -73,9 +74,11 @@ function importsOf(file, folder) {
     if (!module.startsWith('./') || !/^\.\//.test(module))
       throw Error('Only literal Lesson-owned relative bank imports are supported');
     const target = path.posix.normalize(path.posix.join(path.posix.dirname(file.fileName), module));
-    if (!target.startsWith(folder + '/questions/') &&
-        !target.startsWith(folder + '/flashcards/') &&
-        ![folder + '/questions', folder + '/flashcards'].includes(target))
+    if (
+      !target.startsWith(folder + '/questions/') &&
+      !target.startsWith(folder + '/flashcards/') &&
+      ![folder + '/questions', folder + '/flashcards'].includes(target)
+    )
       throw Error('Stage 2 value import must target an owned Question/Flashcard Bank');
     const clause = statement.importClause;
     if (clause.name || !clause.namedBindings || !ts.isNamedImports(clause.namedBindings))
@@ -95,20 +98,27 @@ function resolveBankId(root, binding, cache) {
   const paths = [base + '.ts', base + '/index.ts'];
   const filename = paths.find(candidate => fs.existsSync(path.resolve(root, candidate)));
   if (!filename) throw Error('Imported bank Configurator file is missing');
-  if (cache.has(filename + ':' + binding.exportName))
-    return cache.get(filename + ':' + binding.exportName);
+  if (cache.has(filename + ':' + binding.exportName)) return cache.get(filename + ':' + binding.exportName);
   const source = parseSource(filename, trackedRegular(root, filename));
   let found = null;
   for (const statement of source.statements) {
     if (!ts.isVariableStatement(statement)) continue;
     if (!statement.modifiers?.some(item => item.kind === ts.SyntaxKind.ExportKeyword)) continue;
     for (const declaration of statement.declarationList.declarations) {
-      if (!ts.isIdentifier(declaration.name) || declaration.name.text !== binding.exportName ||
-          !declaration.initializer) continue;
+      if (
+        !ts.isIdentifier(declaration.name) ||
+        declaration.name.text !== binding.exportName ||
+        !declaration.initializer
+      )
+        continue;
       const init = unwrap(declaration.initializer);
       let value;
-      if (ts.isCallExpression(init) && init.arguments.length >= 1 &&
-          ts.isIdentifier(init.expression) && /^define[A-Z]/.test(init.expression.text))
+      if (
+        ts.isCallExpression(init) &&
+        init.arguments.length >= 1 &&
+        ts.isIdentifier(init.expression) &&
+        /^define[A-Z]/.test(init.expression.text)
+      )
         value = property(init.arguments[0], 'id');
       else throw Error('Imported bank member must be a real define* Configurator with static id');
       const literal = unwrap(value);
@@ -130,11 +140,17 @@ function resolveBankId(root, binding, cache) {
  * one-hop re-export from the concrete kind index.
  */
 function resolveBankMapId(root, binding, members, cache) {
-  const bank = binding.module.endsWith('/questions') ? 'questions' :
-    binding.module.endsWith('/flashcards') ? 'flashcards' : null;
-  if (!bank || binding.exportName !== bank ||
-      members.length !== (bank === 'questions' ? 2 : 1) ||
-      members.some(member => !identifier.test(member) || ['constructor', 'prototype', '__proto__'].includes(member)))
+  const bank = binding.module.endsWith('/questions')
+    ? 'questions'
+    : binding.module.endsWith('/flashcards')
+      ? 'flashcards'
+      : null;
+  if (
+    !bank ||
+    binding.exportName !== bank ||
+    members.length !== (bank === 'questions' ? 2 : 1) ||
+    members.some(member => !identifier.test(member) || ['constructor', 'prototype', '__proto__'].includes(member))
+  )
     throw Error('Only canonical imported Question/Flashcard Bank member maps are supported');
 
   const file = binding.module + '/index.ts';
@@ -145,33 +161,37 @@ function resolveBankMapId(root, binding, members, cache) {
     if (ts.isImportDeclaration(statement) && ts.isStringLiteral(statement.moduleSpecifier)) {
       const spec = statement.moduleSpecifier.text;
       const clause = statement.importClause;
-      if (!clause || clause.isTypeOnly || clause.name ||
-          !clause.namedBindings || !ts.isNamedImports(clause.namedBindings) ||
-          !/^\.\/[a-z][a-zA-Z0-9]*$/.test(spec))
+      if (
+        !clause ||
+        clause.isTypeOnly ||
+        clause.name ||
+        !clause.namedBindings ||
+        !ts.isNamedImports(clause.namedBindings) ||
+        !/^\.\/[a-z][a-zA-Z0-9]*$/.test(spec)
+      )
         throw Error('Unsafe bank map import');
       for (const item of clause.namedBindings.elements) {
-        if (item.isTypeOnly || aliases.has(item.name.text))
-          throw Error('Invalid duplicate bank map import');
+        if (item.isTypeOnly || aliases.has(item.name.text)) throw Error('Invalid duplicate bank map import');
         aliases.set(item.name.text, {
           spec: spec.slice(2),
           exportName: item.propertyName?.text || item.name.text,
         });
       }
-    } else if (ts.isVariableStatement(statement) &&
-        statement.modifiers?.some(mod => mod.kind === ts.SyntaxKind.ExportKeyword) &&
-        (statement.declarationList.flags & ts.NodeFlags.Const) !== 0 &&
-        statement.declarationList.declarations.length === 1) {
+    } else if (
+      ts.isVariableStatement(statement) &&
+      statement.modifiers?.some(mod => mod.kind === ts.SyntaxKind.ExportKeyword) &&
+      (statement.declarationList.flags & ts.NodeFlags.Const) !== 0 &&
+      statement.declarationList.declarations.length === 1
+    ) {
       const declaration = statement.declarationList.declarations[0];
-      if (exported || !ts.isIdentifier(declaration.name) ||
-          declaration.name.text !== bank || !declaration.initializer)
+      if (exported || !ts.isIdentifier(declaration.name) || declaration.name.text !== bank || !declaration.initializer)
         throw Error('Ambiguous bank map export');
       exported = unwrap(declaration.initializer);
     } else {
       throw Error('Only generated imports and one canonical Bank map export are allowed');
     }
   }
-  if (!exported || !ts.isObjectLiteralExpression(exported))
-    throw Error('Canonical Bank map is missing');
+  if (!exported || !ts.isObjectLiteralExpression(exported)) throw Error('Canonical Bank map is missing');
   const visit = node => {
     const value = unwrap(node);
     if (ts.isIdentifier(value)) {
@@ -204,36 +224,45 @@ function resolveBankMapId(root, binding, members, cache) {
     const kindSource = parseSource(kindPath, trackedRegular(root, kindPath));
     let found = 0;
     for (const statement of kindSource.statements) {
-      if (!ts.isExportDeclaration(statement) || !statement.exportClause ||
-          !ts.isNamedExports(statement.exportClause) ||
-          !ts.isStringLiteral(statement.moduleSpecifier) ||
-          !/^\.\/[a-z][a-zA-Z0-9]*$/.test(statement.moduleSpecifier.text))
+      if (
+        !ts.isExportDeclaration(statement) ||
+        !statement.exportClause ||
+        !ts.isNamedExports(statement.exportClause) ||
+        !ts.isStringLiteral(statement.moduleSpecifier) ||
+        !/^\.\/[a-z][a-zA-Z0-9]*$/.test(statement.moduleSpecifier.text)
+      )
         throw Error('Question kind index contains an unsafe statement');
       for (const symbol of statement.exportClause.elements) {
         const exportedName = symbol.name.text;
         const origin = symbol.propertyName?.text || exportedName;
-        if (exportedName === slug && origin === slug &&
-            statement.moduleSpecifier.text === './' + slug) found++;
+        if (exportedName === slug && origin === slug && statement.moduleSpecifier.text === './' + slug) found++;
       }
     }
     if (found !== 1) throw Error('Question kind index does not re-export the reviewed member');
   }
-  return resolveBankId(root, {
-    module: binding.module + (bank === 'questions' ? '/' + kind : '') + '/' + slug,
-    exportName: slug,
-  }, cache);
+  return resolveBankId(
+    root,
+    {
+      module: binding.module + (bank === 'questions' ? '/' + kind : '') + '/' + slug,
+      exportName: slug,
+    },
+    cache,
+  );
 }
 
 function evaluate(node, context, location = 'lesson') {
   const value = unwrap(node);
-  if (ts.isStringLiteral(value) || ts.isNoSubstitutionTemplateLiteral(value))
-    return value.text;
+  if (ts.isStringLiteral(value) || ts.isNoSubstitutionTemplateLiteral(value)) return value.text;
   if (ts.isNumericLiteral(value)) return Number(value.text);
   if (value.kind === ts.SyntaxKind.TrueKeyword) return true;
   if (value.kind === ts.SyntaxKind.FalseKeyword) return false;
   if (value.kind === ts.SyntaxKind.NullKeyword) return null;
-  if (ts.isPrefixUnaryExpression(value) && value.operator === ts.SyntaxKind.MinusToken &&
-      ts.isNumericLiteral(value.operand)) return -Number(value.operand.text);
+  if (
+    ts.isPrefixUnaryExpression(value) &&
+    value.operator === ts.SyntaxKind.MinusToken &&
+    ts.isNumericLiteral(value.operand)
+  )
+    return -Number(value.operand.text);
   if (ts.isArrayLiteralExpression(value)) {
     if (value.elements.length > 10000) throw Error('Oversized typed Lesson array');
     return value.elements.map((item, index) => evaluate(item, context, location + '[' + index + ']'));
@@ -245,23 +274,24 @@ function evaluate(node, context, location = 'lesson') {
       if (!ts.isPropertyAssignment(prop))
         throw Error('Only explicit plain object property assignments supported at ' + location);
       const name = key(prop.name);
-      if (['__proto__', 'prototype', 'constructor'].includes(name) ||
-          Object.hasOwn(result, name))
+      if (['__proto__', 'prototype', 'constructor'].includes(name) || Object.hasOwn(result, name))
         throw Error('Prototype/duplicate key in typed Lesson source: ' + name);
       result[name] = evaluate(prop.initializer, context, location + '.' + name);
     }
     return result;
   }
-  if (ts.isPropertyAccessExpression(value) && value.name.text === 'id' &&
-      /(?:^|\.)(?:questionIds|flashcardIds)\[\d+\]$/.test(location)) {
+  if (
+    ts.isPropertyAccessExpression(value) &&
+    value.name.text === 'id' &&
+    /(?:^|\.)(?:questionIds|flashcardIds)\[\d+\]$/.test(location)
+  ) {
     const members = [];
     let target = unwrap(value.expression);
     while (ts.isPropertyAccessExpression(target)) {
       members.unshift(target.name.text);
       target = unwrap(target.expression);
     }
-    if (!ts.isIdentifier(target))
-      throw Error('Bank selection requires static imported Configurator .id members');
+    if (!ts.isIdentifier(target)) throw Error('Bank selection requires static imported Configurator .id members');
     const binding = context.bindings.get(target.text);
     if (!binding) throw Error('Bank selection must reference an imported Configurator .id');
     const bank = location.includes('questionIds[') ? '/questions' : '/flashcards';
@@ -271,8 +301,11 @@ function evaluate(node, context, location = 'lesson') {
       ? resolveBankMapId(context.root, binding, members, context.cache)
       : resolveBankId(context.root, binding, context.cache);
   }
-  throw Error('Untrusted or unsupported expression at ' + location +
-    '; only literal Stage 2 objects and static imported bank .id references are allowed');
+  throw Error(
+    'Untrusted or unsupported expression at ' +
+      location +
+      '; only literal Stage 2 objects and static imported bank .id references are allowed',
+  );
 }
 
 function reviewedExport(file) {
@@ -283,8 +316,10 @@ function reviewedExport(file) {
         throw Error('Only imports and one exported typed Lesson object are permitted');
       continue;
     }
-    if (!statement.modifiers?.some(item => item.kind === ts.SyntaxKind.ExportKeyword) ||
-        !(statement.declarationList.flags & ts.NodeFlags.Const))
+    if (
+      !statement.modifiers?.some(item => item.kind === ts.SyntaxKind.ExportKeyword) ||
+      !(statement.declarationList.flags & ts.NodeFlags.Const)
+    )
       throw Error('Lesson Stage 2 must be one exported const');
     declarations.push(...statement.declarationList.declarations);
   }
@@ -293,8 +328,11 @@ function reviewedExport(file) {
   const typed = declarations[0].initializer;
   if (!ts.isSatisfiesExpression(typed)) throw Error('Lesson object must use satisfies');
   const type = typed.type;
-  if (!ts.isTypeReferenceNode(type) || !ts.isIdentifier(type.typeName) ||
-      !['LessonWorkflowStage2', 'LessonWorkflowMaterializerInput'].includes(type.typeName.text))
+  if (
+    !ts.isTypeReferenceNode(type) ||
+    !ts.isIdentifier(type.typeName) ||
+    !['LessonWorkflowStage2', 'LessonWorkflowMaterializerInput'].includes(type.typeName.text)
+  )
     throw Error('Lesson source does not satisfy the Engine Stage 2 materializer input');
   return typed.expression;
 }
@@ -305,8 +343,7 @@ export function parseTypedLesson(root, sourcePath, sourceText) {
   const { bindings, engineType } = importsOf(file, folder);
   if (!engineType) throw Error('Stage 2 must import its actual Engine workflow type');
   const input = evaluate(reviewedExport(file), { root, folder, bindings, cache: new Map() });
-  if (input?.config?.id !== folder.split('/').at(-1) ||
-      input.config.type !== 'lesson' || !input.production)
+  if (input?.config?.id !== folder.split('/').at(-1) || input.config.type !== 'lesson' || !input.production)
     throw Error('Parsed Lesson does not match its canonical authored identity');
   return input;
 }
@@ -318,17 +355,28 @@ export function typecheckTypedLesson(root, sourcePath) {
   if (!fs.existsSync(trustedDeclaration))
     throw Error('Trusted Engine must be built before typed Lesson semantic validation');
   const options = {
-    strict: true, noEmit: true, skipLibCheck: true, target: ts.ScriptTarget.ES2022,
-    module: ts.ModuleKind.ESNext, moduleResolution: ts.ModuleResolutionKind.Bundler,
-    baseUrl: trustedRoot, paths: { '@svitlo/engine/build': [trustedDeclaration] },
+    strict: true,
+    noEmit: true,
+    skipLibCheck: true,
+    target: ts.ScriptTarget.ES2022,
+    module: ts.ModuleKind.ESNext,
+    moduleResolution: ts.ModuleResolutionKind.Bundler,
+    baseUrl: trustedRoot,
+    paths: { '@svitlo/engine/build': [trustedDeclaration] },
   };
   const program = ts.createProgram([file], options);
-  const failures = ts.getPreEmitDiagnostics(program).filter(item =>
-    item.category === ts.DiagnosticCategory.Error);
-  if (failures.length) throw Error('Stage 2 failed real TypeScript semantic check: ' +
-    failures.slice(0, 8).map(issue =>
-      (issue.file?.fileName || 'global') + ': ' +
-      ts.flattenDiagnosticMessageText(issue.messageText, ' ')).join(' | '));
+  const failures = ts.getPreEmitDiagnostics(program).filter(item => item.category === ts.DiagnosticCategory.Error);
+  if (failures.length)
+    throw Error(
+      'Stage 2 failed real TypeScript semantic check: ' +
+        failures
+          .slice(0, 8)
+          .map(
+            issue =>
+              (issue.file?.fileName || 'global') + ': ' + ts.flattenDiagnosticMessageText(issue.messageText, ' '),
+          )
+          .join(' | '),
+    );
   return true;
 }
 

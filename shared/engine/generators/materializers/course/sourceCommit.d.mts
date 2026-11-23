@@ -10,14 +10,20 @@ export type SourceCommitWriteOptions = SourceCommitOptions & {
     head: string;
   }) => boolean;
 };
-export function preflightCourseSourceCommit(plan: CourseStage5Plan, options: SourceCommitOptions): {
+export function preflightCourseSourceCommit(
+  plan: CourseStage5Plan,
+  options: SourceCommitOptions,
+): {
   head: string;
   files: Map<string, string>;
   pending: string[];
   already: boolean;
   archivePath: string;
 };
-export function commitCourseSourcePlan(plan: CourseStage5Plan, options: SourceCommitWriteOptions): {
+export function commitCourseSourcePlan(
+  plan: CourseStage5Plan,
+  options: SourceCommitWriteOptions,
+): {
   mode: 'write' | 'check';
   head: string;
   commitSha?: string;

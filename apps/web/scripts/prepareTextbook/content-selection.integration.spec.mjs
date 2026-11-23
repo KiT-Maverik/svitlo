@@ -42,7 +42,10 @@ test('production preparation switches two independent packages and cleans stale 
     assert(!existsSync(join(publicRoot, 'data/questions/a/11111111-1111-4111-8111-00000000012a/base.json')));
     assert(!existsSync(join(publicRoot, 'textbooks/web-fixture-alpha/marker.txt')));
     assert(existsSync(join(publicRoot, 'textbooks/web-fixture-beta/marker.txt')));
-    assert.match(readFileSync(join(generatedRoot, 'textbookScenes.ts'), 'utf8'), /No Scene registry in selected package/);
+    assert.match(
+      readFileSync(join(generatedRoot, 'textbookScenes.ts'), 'utf8'),
+      /No Scene registry in selected package/,
+    );
     assert.doesNotMatch(readFileSync(join(generatedRoot, 'textbookStyles.ts'), 'utf8'), /\/styles/);
     assert(existsSync(join(publicRoot, 'data/uiKit/components/uk.json')));
     assert(!existsSync(join(publicRoot, '.svitlo/publish-web-fixture-alpha.json')));

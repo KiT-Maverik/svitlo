@@ -16,25 +16,30 @@ const assetExtensions = {
 const mediaFields = {
   image: [['fileName', 'images']],
   audio: [['fileName', 'audio']],
-  video: [['fileName', 'video'], ['posterFileName', 'images']],
+  video: [
+    ['fileName', 'video'],
+    ['posterFileName', 'images'],
+  ],
   subtitles: [['fileName', 'subtitles']],
 };
 const mediaTypes = new Set([...Object.keys(mediaFields), 'youtube']);
 const isRecord = value => value !== null && typeof value === 'object' && !Array.isArray(value);
-const isBlock = value => isRecord(value) && uuid.test(value.id ?? '') &&
-  (mediaTypes.has(value.type) || value.type === 'scene');
+const isBlock = value =>
+  isRecord(value) && uuid.test(value.id ?? '') && (mediaTypes.has(value.type) || value.type === 'scene');
 
 function staticFile(ts, name, source, scriptKind = ts.ScriptKind.TS) {
   const ast = ts.createSourceFile(name, source, ts.ScriptTarget.Latest, true, scriptKind);
-  if (ast.parseDiagnostics.length)
-    throw Error('Reviewed Scene source contains TypeScript syntax errors: ' + name);
+  if (ast.parseDiagnostics.length) throw Error('Reviewed Scene source contains TypeScript syntax errors: ' + name);
   return ast;
 }
 
 function pinnedRegular(root, head, filename, git, readText = true) {
-  if (typeof filename !== 'string' || filename.startsWith('/') ||
-      filename.includes('\\') || filename.split('/').some(part =>
-        !/^[A-Za-z0-9_.-]+$/.test(part) || part === '.' || part === '..'))
+  if (
+    typeof filename !== 'string' ||
+    filename.startsWith('/') ||
+    filename.includes('\\') ||
+    filename.split('/').some(part => !/^[A-Za-z0-9_.-]+$/.test(part) || part === '.' || part === '..')
+  )
     throw Error('Unsafe reviewed asset/Scene path: ' + filename);
   let current = root;
   for (const part of filename.split('/')) {
@@ -49,14 +54,13 @@ function pinnedRegular(root, head, filename, git, readText = true) {
     throw Error('Scene/media evidence is not a regular tracked Git object: ' + filename);
   const pinned = git(root, 'rev-parse', head + ':' + filename);
   const actual = git(root, 'hash-object', '--', current);
-  if (pinned !== actual)
-    throw Error('Scene/media evidence changed since reviewed HEAD: ' + filename);
+  if (pinned !== actual) throw Error('Scene/media evidence changed since reviewed HEAD: ' + filename);
   return readText ? fs.readFileSync(current, 'utf8') : undefined;
 }
 
 function sourceValue(field, language, at) {
-  const value = typeof field === 'string' ? field :
-    isRecord(field) && Object.hasOwn(field, language) ? field[language] : undefined;
+  const value =
+    typeof field === 'string' ? field : isRecord(field) && Object.hasOwn(field, language) ? field[language] : undefined;
   if (typeof value !== 'string' || !value.trim())
     throw Error('Missing reviewed source-language media reference at ' + at);
   return value;
@@ -64,12 +68,17 @@ function sourceValue(field, language, at) {
 
 function approvedUrl(value, kind) {
   let url;
-  try { url = new URL(value); } catch { throw Error('Invalid reviewed external media URL'); }
+  try {
+    url = new URL(value);
+  } catch {
+    throw Error('Invalid reviewed external media URL');
+  }
   if (url.protocol !== 'https:' || url.username || url.password || !url.hostname)
     throw Error('External media requires reviewed HTTPS without credentials');
-  if (kind === 'youtube' &&
-      !['youtube.com', 'www.youtube.com', 'm.youtube.com', 'www.youtube-nocookie.com',
-        'youtu.be'].includes(url.hostname))
+  if (
+    kind === 'youtube' &&
+    !['youtube.com', 'www.youtube.com', 'm.youtube.com', 'www.youtube-nocookie.com', 'youtu.be'].includes(url.hostname)
+  )
     throw Error('Unverified Youtube host');
 }
 
@@ -79,8 +88,7 @@ function checkMedia(root, meta, config, production, documentLanguage, git) {
   if (config.type === 'youtube') {
     const href = sourceValue(config.locale.href, documentLanguage, config.id + '.href');
     approvedUrl(href, 'youtube');
-    if (production?.mediaSourcePath !== undefined)
-      throw Error('Youtube cannot claim a local mediaSourcePath');
+    if (production?.mediaSourcePath !== undefined) throw Error('Youtube cannot claim a local mediaSourcePath');
     return;
   }
   for (const [field, folder] of mediaFields[config.type]) {
@@ -90,24 +98,29 @@ function checkMedia(root, meta, config, production, documentLanguage, git) {
       continue;
     }
     const match = reference.match(/^([0-9a-f-]{36})\.([a-z0-9]+)$/i);
-    if (!match || !uuid.test(match[1]) ||
-        match[1].toLowerCase() === '00000000-0000-0000-0000-000000000000' ||
-        !assetExtensions[folder].has(match[2].toLowerCase()))
+    if (
+      !match ||
+      !uuid.test(match[1]) ||
+      match[1].toLowerCase() === '00000000-0000-0000-0000-000000000000' ||
+      !assetExtensions[folder].has(match[2].toLowerCase())
+    )
       throw Error('Invalid reviewed UUID media filename for ' + config.id);
     const filename = meta.identity.pkg + '/assets/' + folder + '/' + reference;
     pinnedRegular(root, meta.head, filename, git, false);
     if (field === 'fileName') primary.push(filename);
   }
-  if (production?.mediaSourcePath !== undefined &&
-      (primary.length !== 1 || production.mediaSourcePath !== primary[0]))
+  if (production?.mediaSourcePath !== undefined && (primary.length !== 1 || production.mediaSourcePath !== primary[0]))
     throw Error('Authored mediaSourcePath differs from the pinned canonical asset');
 }
 
 function property(ts, object, name) {
   if (!ts.isObjectLiteralExpression(object)) throw Error('Expected literal Scene registry map');
-  const matches = object.properties.filter(prop =>
-    ts.isPropertyAssignment(prop) &&
-    (ts.isIdentifier(prop.name) || ts.isStringLiteral(prop.name)) && prop.name.text === name);
+  const matches = object.properties.filter(
+    prop =>
+      ts.isPropertyAssignment(prop) &&
+      (ts.isIdentifier(prop.name) || ts.isStringLiteral(prop.name)) &&
+      prop.name.text === name,
+  );
   if (matches.length !== 1) throw Error('Scene registry has no unique UUID entry: ' + name);
   return matches[0].initializer;
 }
@@ -118,43 +131,57 @@ function checkScene(root, meta, config, production, git, ts) {
   const directory = meta.identity.pkg + '/scenes/' + config.id.at(-1) + '/' + config.id;
   const registryPath = meta.identity.pkg + '/scenes/sceneLoader.ts';
   const registry = staticFile(ts, registryPath, pinnedRegular(root, meta.head, registryPath, git));
-  const declarations = registry.statements.filter(ts.isVariableStatement)
+  const declarations = registry.statements
+    .filter(ts.isVariableStatement)
     .flatMap(statement => [...statement.declarationList.declarations])
     .filter(declaration => ts.isIdentifier(declaration.name) && declaration.name.text === 'sceneImports');
-  if (declarations.length !== 1 || !declarations[0].initializer)
-    throw Error('Canonical Scene loader map missing');
+  if (declarations.length !== 1 || !declarations[0].initializer) throw Error('Canonical Scene loader map missing');
   const initializer = property(ts, declarations[0].initializer, config.id);
   if (!ts.isArrowFunction(initializer) || initializer.parameters.length)
     throw Error('Scene registry entry is not a static lazy import');
   const then = initializer.body;
-  if (!ts.isCallExpression(then) || !ts.isPropertyAccessExpression(then.expression) ||
-      then.expression.name.text !== 'then')
+  if (
+    !ts.isCallExpression(then) ||
+    !ts.isPropertyAccessExpression(then.expression) ||
+    then.expression.name.text !== 'then'
+  )
     throw Error('Scene registry entry has unsupported implementation');
   const imported = then.expression.expression;
-  if (!ts.isCallExpression(imported) || imported.expression.kind !== ts.SyntaxKind.ImportKeyword ||
-      imported.arguments.length !== 1 || !ts.isStringLiteral(imported.arguments[0]) ||
-      imported.arguments[0].text !== './' + config.id.at(-1) + '/' + config.id)
+  if (
+    !ts.isCallExpression(imported) ||
+    imported.expression.kind !== ts.SyntaxKind.ImportKeyword ||
+    imported.arguments.length !== 1 ||
+    !ts.isStringLiteral(imported.arguments[0]) ||
+    imported.arguments[0].text !== './' + config.id.at(-1) + '/' + config.id
+  )
     throw Error('Scene registry UUID points to a different implementation');
 
   const indexFile = directory + '/index.ts';
   const index = staticFile(ts, indexFile, pinnedRegular(root, meta.head, indexFile, git));
-  if (index.statements.length !== 1 ||
-      !ts.isExportDeclaration(index.statements[0]) ||
-      !ts.isNamedExports(index.statements[0].exportClause) ||
-      !ts.isStringLiteral(index.statements[0].moduleSpecifier) ||
-      index.statements[0].exportClause.elements.length !== 1)
+  if (
+    index.statements.length !== 1 ||
+    !ts.isExportDeclaration(index.statements[0]) ||
+    !ts.isNamedExports(index.statements[0].exportClause) ||
+    !ts.isStringLiteral(index.statements[0].moduleSpecifier) ||
+    index.statements[0].exportClause.elements.length !== 1
+  )
     throw Error('Scene entrypoint must statically re-export its real component');
   const entry = index.statements[0];
   const symbol = entry.exportClause.elements[0];
   const component = symbol.propertyName?.text;
-  if (symbol.name.text !== 'default' || !/^[A-Za-z][A-Za-z0-9]*$/.test(component ?? '') ||
-      entry.moduleSpecifier.text !== './' + component)
+  if (
+    symbol.name.text !== 'default' ||
+    !/^[A-Za-z][A-Za-z0-9]*$/.test(component ?? '') ||
+    entry.moduleSpecifier.text !== './' + component
+  )
     throw Error('Scene entrypoint has no canonical component export');
 
   const componentPath = directory + '/' + component + '.tsx';
   const componentText = pinnedRegular(root, meta.head, componentPath, git);
   staticFile(ts, componentPath, componentText, ts.ScriptKind.TSX);
-  if (/\bsceneImplementationRequired\b|\bsceneSourceLocaleRequired\b|TODO\(scene\)|TODO\s*\(BLOCKER\)/.test(componentText))
+  if (
+    /\bsceneImplementationRequired\b|\bsceneSourceLocaleRequired\b|TODO\(scene\)|TODO\s*\(BLOCKER\)/.test(componentText)
+  )
     throw Error('Scene still contains unimplemented scaffolding: ' + config.id);
   const specification = pinnedRegular(root, meta.head, directory + '/specification.md', git);
   if (specification !== production.specification.trimEnd() + '\n')
@@ -167,16 +194,20 @@ function checkScene(root, meta, config, production, git, ts) {
  * by the Bank gate before this tokenless analysis.
  */
 export function resolveReviewedBankBlockEvidence({ root, meta, input, git, ts }) {
-  if (typeof root !== 'string' || typeof git !== 'function' || !ts ||
-      !/^[a-f0-9]{40}$/.test(meta?.head ?? '') ||
-      !/^content\/[a-z][a-z0-9-]*$/.test(meta?.identity?.pkg ?? '') ||
-      typeof meta?.identity?.folder !== 'string' ||
-      !meta.identity.folder.startsWith(meta.identity.pkg + '/data/lessons/') ||
-      git(root, 'rev-parse', 'HEAD') !== meta.head ||
-      meta.reviewCommitSha !== meta.head)
+  if (
+    typeof root !== 'string' ||
+    typeof git !== 'function' ||
+    !ts ||
+    !/^[a-f0-9]{40}$/.test(meta?.head ?? '') ||
+    !/^content\/[a-z][a-z0-9-]*$/.test(meta?.identity?.pkg ?? '') ||
+    typeof meta?.identity?.folder !== 'string' ||
+    !meta.identity.folder.startsWith(meta.identity.pkg + '/data/lessons/') ||
+    git(root, 'rev-parse', 'HEAD') !== meta.head ||
+    meta.reviewCommitSha !== meta.head
+  )
     throw Error('Reviewed Bank block evidence requires a pinned, independently approved checkout');
-  const language = meta.bank === 'questions' ? input.production?.languages?.document :
-    input.production?.lesson?.languages?.document;
+  const language =
+    meta.bank === 'questions' ? input.production?.languages?.document : input.production?.lesson?.languages?.document;
   if (typeof language !== 'string' || !/^[a-z]{2}(?:-[A-Z]{2})?$/.test(language))
     throw Error('Missing reviewed bank document language');
   const registeredSceneIds = new Set();
@@ -191,9 +222,12 @@ export function resolveReviewedBankBlockEvidence({ root, meta, input, git, ts })
       for (const child of value) visit(child);
       return;
     }
-    const node = isRecord(value.config) && isBlock(value.config) ?
-      { config: value.config, production: value.production } :
-      isBlock(value) ? { config: value, production: undefined } : null;
+    const node =
+      isRecord(value.config) && isBlock(value.config)
+        ? { config: value.config, production: value.production }
+        : isBlock(value)
+          ? { config: value, production: undefined }
+          : null;
     if (node) {
       const { config, production } = node;
       if (production?.pending === true) throw Error('Pending reviewed Block evidence: ' + config.id);

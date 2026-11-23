@@ -7,16 +7,27 @@ import type {
   FlashcardBankWorkflowMaterializerInput,
 } from '../../../types/workflow/flashcardBankWorkflow.types';
 import type {
-  Flashcard_Relationship, Flashcard_Relationship_Type,
+  Flashcard_Relationship,
+  Flashcard_Relationship_Type,
 } from '../../../configurators/flashcards/defineFlashcard/defineFlashcard.schemas';
 import { materializeFlashcard } from '../flashcard/materializeFlashcard';
 import {
-  assertBankLanguages, assertBankOrder, assertBankPath, assertBankSha,
-  assertBankStatement, assertBankUuid, assertUniqueBankEntityIds, assertNoPendingBankSources,
+  assertBankLanguages,
+  assertBankOrder,
+  assertBankPath,
+  assertBankSha,
+  assertBankStatement,
+  assertBankUuid,
+  assertUniqueBankEntityIds,
+  assertNoPendingBankSources,
   assertReviewedBankInput,
-  authoredBankLiteral, preflightBankSource,
-  type BankReviewedSource, type BankSourceSnapshot, type BankSourceResult,
-  type BankSourceFile, type BankSourceDiagnostic,
+  authoredBankLiteral,
+  preflightBankSource,
+  type BankReviewedSource,
+  type BankSourceSnapshot,
+  type BankSourceResult,
+  type BankSourceFile,
+  type BankSourceDiagnostic,
 } from '../bankSource/bankSourceSafety';
 import { materializeAssessmentBlock, type AssessmentBlockEvidence } from '../bankSource/materializeAssessmentBlock';
 
@@ -38,12 +49,17 @@ export type FlashcardBankFinalAuthorization = Omit<FlashcardBankDraftAuthorizati
   blocks: AssessmentBlockEvidence;
 };
 
-const symmetric = new Set<Flashcard_Relationship_Type>([
-  'reverse', 'equivalent', 'contrast', 'complementary',
-]);
+const symmetric = new Set<Flashcard_Relationship_Type>(['reverse', 'equivalent', 'contrast', 'complementary']);
 const relationshipTypes = new Set<Flashcard_Relationship_Type>([
-  'reverse', 'equivalent', 'contrast', 'complementary',
-  'prerequisite', 'partOf', 'exampleOf', 'causes', 'precedes',
+  'reverse',
+  'equivalent',
+  'contrast',
+  'complementary',
+  'prerequisite',
+  'partOf',
+  'exampleOf',
+  'causes',
+  'precedes',
 ]);
 const safeName = /^[a-z][A-Za-z0-9]*$/;
 
@@ -58,15 +74,17 @@ function validateStage1(
   assertBankSha(lesson.sourceSha, 'Lesson source SHA');
   assertBankSha(lesson.reference.sourceSha, 'Flashcard reference SHA');
   assertBankPath(lesson.reference.path);
-  if (auth.lessonSourceSha !== lesson.sourceSha ||
-      auth.referenceSourceSha !== lesson.reference.sourceSha) {
+  if (auth.lessonSourceSha !== lesson.sourceSha || auth.referenceSourceSha !== lesson.reference.sourceSha) {
     throw new Error('Stale Lesson/reference approval for Flashcards');
   }
   assertBankLanguages(lesson.languages);
-  if (!lesson.assessment || typeof lesson.assessment.questionBankRequired !== 'boolean' ||
-      typeof lesson.assessment.flashcardBankRequired !== 'boolean' ||
-      typeof lesson.assessment.quizSectionRequired !== 'boolean' ||
-      typeof lesson.assessment.flashcardsSectionRequired !== 'boolean') {
+  if (
+    !lesson.assessment ||
+    typeof lesson.assessment.questionBankRequired !== 'boolean' ||
+    typeof lesson.assessment.flashcardBankRequired !== 'boolean' ||
+    typeof lesson.assessment.quizSectionRequired !== 'boolean' ||
+    typeof lesson.assessment.flashcardsSectionRequired !== 'boolean'
+  ) {
     throw new Error('All four Lesson assessment decisions must be preserved');
   }
   if (lesson.assessment.flashcardBankRequired !== true) {
@@ -83,22 +101,26 @@ function validateStage1(
     assertBankSha(questions.sourceSha, 'Completed Questions source');
     assertBankSha(questions.reviewSha, 'Completed Questions review');
     assertBankPath(questions.bankPath);
-    if (questions.integrated !== true ||
-        questions.sourceSha !== auth.questionSourceSha ||
-        questions.reviewSha !== auth.questionReviewSha) {
+    if (
+      questions.integrated !== true ||
+      questions.sourceSha !== auth.questionSourceSha ||
+      questions.reviewSha !== auth.questionReviewSha
+    ) {
       throw new Error('Missing, unintegrated or stale independently reviewed Question Bank');
     }
   } else {
     assertBankStatement(questions.rationale, 'Methodologist Questions N/A rationale');
     assertBankSha(questions.methodologySourceSha, 'Methodologist Questions N/A source');
-    if (!Number.isInteger(questions.parentLessonPr) || questions.parentLessonPr <= 0 ||
-        questions.methodologySourceSha !== auth.methodologySourceSha ||
-        lesson.assessment.questionBankRequired) {
+    if (
+      !Number.isInteger(questions.parentLessonPr) ||
+      questions.parentLessonPr <= 0 ||
+      questions.methodologySourceSha !== auth.methodologySourceSha ||
+      lesson.assessment.questionBankRequired
+    ) {
       throw new Error('Unauthenticated or contradictory Questions N/A decision');
     }
   }
-  if (!analysis || !Array.isArray(analysis.recallObjectives) ||
-      !analysis.recallObjectives.length) {
+  if (!analysis || !Array.isArray(analysis.recallObjectives) || !analysis.recallObjectives.length) {
     throw new Error('Real Flashcard recall analysis required');
   }
   for (const target of analysis.recallObjectives) assertBankStatement(target, 'recall objective');
@@ -117,13 +139,18 @@ export function materializeFlashcardBankDraft(
 ): BankSourceResult {
   if (authorization.authorized !== true) throw new Error('Lesson Stage 8 authorization missing');
   validateStage1(input, authorization);
-  const files: BankSourceFile[] = [{
-    path: 'flashcards/index.ts', kind: 'typescript',
-    content: "import type { FlashcardBankWorkflowStage1 } from '@svitlo/engine/build';\n\n" +
-      '// Stage 1 editorial source. NOT a Card, Side or Flashcards Section.\n' +
-      'export const flashcardBank = ' + authoredBankLiteral(input) +
-      ' satisfies FlashcardBankWorkflowStage1;\n',
-  }];
+  const files: BankSourceFile[] = [
+    {
+      path: 'flashcards/index.ts',
+      kind: 'typescript',
+      content:
+        "import type { FlashcardBankWorkflowStage1 } from '@svitlo/engine/build';\n\n" +
+        '// Stage 1 editorial source. NOT a Card, Side or Flashcards Section.\n' +
+        'export const flashcardBank = ' +
+        authoredBankLiteral(input) +
+        ' satisfies FlashcardBankWorkflowStage1;\n',
+    },
+  ];
   return preflightBankSource(files, authorization.snapshot);
 }
 
@@ -144,14 +171,14 @@ function projectRelationships(
     const edge = edges.items[key];
     if (!relationshipTypes.has(edge.type)) throw new Error('Unsupported Flashcard relation ' + key);
     assertBankStatement(edge.relationshipId, 'relationship ID');
-    if (!Object.hasOwn(cards, edge.source) || !Object.hasOwn(cards, edge.target) ||
-        edge.source === edge.target) {
+    if (!Object.hasOwn(cards, edge.source) || !Object.hasOwn(cards, edge.target) || edge.source === edge.target) {
       throw new Error('Unknown/self relation endpoint: ' + key);
     }
     if (seenIds.has(edge.relationshipId)) throw new Error('Duplicate relationshipId ' + edge.relationshipId);
     seenIds.add(edge.relationshipId);
-    const ends = symmetric.has(edge.type) ?
-      [edge.source, edge.target].sort().join('|') : edge.source + '|' + edge.target;
+    const ends = symmetric.has(edge.type)
+      ? [edge.source, edge.target].sort().join('|')
+      : edge.source + '|' + edge.target;
     const pairKey = edge.type + '|' + ends;
     if (seenPairs.has(pairKey)) throw new Error('Duplicate or reversed relationship ' + pairKey);
     seenPairs.add(pairKey);
@@ -185,7 +212,8 @@ function checkSides(card: Card, slug: string): void {
     for (const key of side.order) {
       const node = side.items[key];
       const config = 'config' in node ? node.config : node;
-      if (config.slug !== key) throw new Error('Flashcard Side Block slug mismatch at ' + slug + '/' + role + '/' + key);
+      if (config.slug !== key)
+        throw new Error('Flashcard Side Block slug mismatch at ' + slug + '/' + role + '/' + key);
       assertBankUuid(config.id, 'Flashcard Side ContentBlock');
     }
   }
@@ -221,8 +249,13 @@ export function materializeFlashcardBank(
     assertBankStatement(card.production.grounding, 'Flashcard source grounding');
     checkSides(card, slug);
   }
-  for (const key of ['atomicityAudit', 'directionAndDuplicationAudit', 'acronymAndListAudit',
-    'mediaAndAccessibilityAudit', 'relationshipAudit'] as const) {
+  for (const key of [
+    'atomicityAudit',
+    'directionAndDuplicationAudit',
+    'acronymAndListAudit',
+    'mediaAndAccessibilityAudit',
+    'relationshipAudit',
+  ] as const) {
     assertBankStatement(input.production.design[key], 'Flashcard design audit ' + key);
   }
   const section = input.production.section;
@@ -232,11 +265,14 @@ export function materializeFlashcardBank(
   assertBankStatement(section.rationale, 'Flashcards Section rationale');
   if (section.kind === 'selected') {
     assertBankUuid(section.section.id, 'Flashcards Section UUID');
-    if (!safeName.test(section.section.slug) || !section.placement.trim() ||
-        section.lessonSourceSha !== input.production.lesson.sourceSha ||
-        !section.selectedCardSlugs.length ||
-        new Set(section.selectedCardSlugs).size !== section.selectedCardSlugs.length ||
-        section.selectedCardSlugs.some(slug => !Object.hasOwn(inventory.items, slug))) {
+    if (
+      !safeName.test(section.section.slug) ||
+      !section.placement.trim() ||
+      section.lessonSourceSha !== input.production.lesson.sourceSha ||
+      !section.selectedCardSlugs.length ||
+      new Set(section.selectedCardSlugs).size !== section.selectedCardSlugs.length ||
+      section.selectedCardSlugs.some(slug => !Object.hasOwn(inventory.items, slug))
+    ) {
       throw new Error('Flashcards Section selection/placement is not reviewed or real');
     }
   }
@@ -257,12 +293,15 @@ export function materializeFlashcardBank(
       },
     };
     const output = materializeFlashcard(
-      { config: config as unknown as Parameters<typeof materializeFlashcard>[0]['config'],
-        production: { pending: card.production.pending, specification: card.production.specification } },
       {
-        directory: 'flashcards', languages,
-        materializeBlock: (block, context) => materializeAssessmentBlock(
-          block, context, languages.planned, 'flashcardsLanguages', authorization.blocks),
+        config: config as unknown as Parameters<typeof materializeFlashcard>[0]['config'],
+        production: { pending: card.production.pending, specification: card.production.specification },
+      },
+      {
+        directory: 'flashcards',
+        languages,
+        materializeBlock: (block, context) =>
+          materializeAssessmentBlock(block, context, languages.planned, 'flashcardsLanguages', authorization.blocks),
       },
     );
     files.push(...output.files);
@@ -272,17 +311,22 @@ export function materializeFlashcardBank(
     entries.push('  ' + JSON.stringify(slug) + ': ' + alias + ',');
   }
   files.push({
-    path: 'flashcards/index.ts', kind: 'typescript',
-    content: imports.join('\n') + '\n\nexport const flashcards = {\n' +
-      entries.join('\n') + '\n};\n',
+    path: 'flashcards/index.ts',
+    kind: 'typescript',
+    content: imports.join('\n') + '\n\nexport const flashcards = {\n' + entries.join('\n') + '\n};\n',
   });
   files.push({
-    path: 'flashcardsLanguages.ts', kind: 'typescript',
-    content: '// Approved document language only; independent translations are not generated.\n' +
-      'export const languages = ' + JSON.stringify([languages.document]) + ' as const;\n',
+    path: 'flashcardsLanguages.ts',
+    kind: 'typescript',
+    content:
+      '// Approved document language only; independent translations are not generated.\n' +
+      'export const languages = ' +
+      JSON.stringify([languages.document]) +
+      ' as const;\n',
   });
   files.push({
-    path: 'flashcards.reviewed-stage3.ts.txt', kind: 'archive',
+    path: 'flashcards.reviewed-stage3.ts.txt',
+    kind: 'archive',
     content: authorization.reviewed.content,
   });
   const plan = preflightBankSource(files, authorization.snapshot, {

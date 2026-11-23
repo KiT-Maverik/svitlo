@@ -32,10 +32,7 @@ const iconByName = {
 } satisfies Record<Flashcard_Flag_Icon, ReactElement>;
 
 /** Convert typed, JSON-safe Flashcard metadata into MUI presentation props. */
-export function toFlashcardLabel(
-  flag: Flashcard_Flag_Props,
-  messages: Flashcard_Locale,
-): FlashcardLabel {
+export function toFlashcardLabel(flag: Flashcard_Flag_Props, messages: Flashcard_Locale): FlashcardLabel {
   switch (flag.type) {
     case 'list':
       return { label: String(flag.count), color: 'info', icon: iconByName.list };

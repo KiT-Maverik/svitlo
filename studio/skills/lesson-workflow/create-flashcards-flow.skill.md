@@ -31,7 +31,7 @@ Create only the **minimal bank-owned typed Stage 1 source**, `const bank = { pro
 
 Advance **the same object** to `FlashcardBankWorkflowStage2`: preserve all Stage 1 `production`, add `production.design` audits and a complete source-language `config.flashcards: { items, order }` with named Card nodes containing real immutable Card UUID/slug, `parameters.tags`, optional disability restrictions, **`parameters.flags: Flashcard_Flag_Config[]`**, and `content.front/back/hint` as real ordered `FlashcardSide` ContentBlock Config collections. Use real immutable ContentBlock IDs. No Side UUID/slug. Only source-language values are authored at this stage, while `production.lesson.languages.planned` retains the full intended translation scope; do not fake other locales.
 
-Use [Create Lesson Flashcards](./create-lesson-flashcards.skill.md) for the complete atomicity, concise answer, bidirectional recall, typed Text/Code/Markdown variables, lists, acronym connector-letter mapping, custom flags, source references, accessible media and per-direction disability guidance. Ensure Card `parameters.relationships` is **not** manually authored. Instead, author each semantic relation **once** in bank `config.relationships: { items, order }` as `{relationshipId,type,source,target}` with real card slug endpoints and one of nine exact Engine relationship types. At Stage 5 the source-to-endpoint projection preserves `relationshipId`, uses the *other Card's UUID* and generates `peer` for symmetric or `source/target` for directed links; no duplicates, self-relations or reversed semantics.
+Use [Create Lesson Flashcards](./create-lesson-flashcards.skill.md) for the complete atomicity, concise answer, bidirectional recall, typed Text/Code/Markdown variables, lists, acronym connector-letter mapping, custom flags, source references, accessible media and per-direction disability guidance. Ensure Card `parameters.relationships` is **not** manually authored. Instead, author each semantic relation **once** in bank `config.relationships: { items, order }` as `{relationshipId,type,source,target}` with real card slug endpoints and one of nine exact Engine relationship types. At Stage 5 the source-to-endpoint projection preserves `relationshipId`, uses the _other Card's UUID_ and generates `peer` for symmetric or `source/target` for directed links; no duplicates, self-relations or reversed semantics.
 
 To reuse Question fields, pin the exact Question export/field/locale/source SHA as editorial `production.questionReuse` **without** placing fake `kind: questionField` nodes into Config. A materializer may emit a direct verified typed import when implemented. Until then, that card is **blocked**, not silently copied or fabricated. New Flashcard-owned ContentBlocks get their own UUIDs; intentional reuse of an existing Question-owned Configurator retains that existing identity only after collision/ownership review. Do not invent asset paths, missing-media values, or translations.
 
@@ -40,7 +40,7 @@ To reuse Question fields, pin the exact Question export/field/locale/source SHA 
 Advance to `FlashcardBankWorkflowStage3` with **one explicit** `production.section` decision:
 
 - `{kind:'notApplicable',rationale}` when the complete bank is useful for independent or future practice but has no pedagogically warranted in-Lesson Section.
-- `{kind:'selected',section:{id,slug},existingSection,placement,selectedCardSlugs,rationale,lessonSourceSha}` for a **small, justified ordered** in-Lesson selection, expressed as existing Card *keys*, **not a competing UUID list**.
+- `{kind:'selected',section:{id,slug},existingSection,placement,selectedCardSlugs,rationale,lessonSourceSha}` for a **small, justified ordered** in-Lesson selection, expressed as existing Card _keys_, **not a competing UUID list**.
 
 Preserve the existing approved Section ID, slug, learner copy and original order, including a provisional blocked Section left by Lesson Stage 6, when present. No bank is embedded into Lesson/Section Props. **Only the owning Lesson Section integration step**, after Card materialization, imports completed Card Configurators and assigns `defineFlashcardsSection.params.selection.flashcardIds: [cardOne.id, cardTwo.id]`, replaces any reserved `feedc0de-` placeholders and verifies every chosen real published resource. A bank materializer must **never** rewrite Lesson root, Section registries or Questions. Unselected Card members still belong to the full bank and must be published.
 
@@ -74,19 +74,19 @@ When all seven stages are independently verified: **"All seven Flashcards workfl
 
 ## Mapping the retired YAML workflow to the single TS source
 
-| Previous `flashcards.yaml` / workflow item | Typed destination or PR-only evidence |
-| --- | --- |
-| `lessonId` | `production.lesson.id`, reused Lesson UUID |
-| `documentLanguage`, `supportedLanguages` | `production.lesson.languages.document/planned`, shared typed language contract |
-| source Lesson reference, methodology, Question prerequisites | `production.lesson.sourceSha/reference/assessment`, `production.questions` (Stage 1) |
-| analysis inventory/exclusions | `production.analysis` (Stage 1) |
-| `flashcards.items/order` | `config.flashcards.items/order` (Stage 2) |
-| individual Card `id/slug/parameters/content` | each `config.flashcards.items[key].config` (Stage 2); real Engine Config |
-| `parameters.flags` | real `Flashcard_Flag_Config[]` array; values localized only when authored |
-| `content.front/back/hint.items/order` | each `FlashcardBankWorkflowSideSource`, no Side identity |
-| `relationships.items/order` with `relationshipId/type/source/target` | `config.relationships.items/order` (Stage 2), expanded once at Stage 5 |
-| `sectionDrafts` / proposed Section IDs | `production.section` selected/N/A (Stage 3); existing Lesson Section source remains owner-controlled |
-| Stage 4 memory review, Stage 5 materialization evidence | existing child PR only, pinned to Stage 3 source/review SHA |
-| Stages 6/7 translation/review per Card × locale | durable typed localized Card sources; evidence and manifest/reviewer in same PR only |
+| Previous `flashcards.yaml` / workflow item                           | Typed destination or PR-only evidence                                                                |
+| -------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `lessonId`                                                           | `production.lesson.id`, reused Lesson UUID                                                           |
+| `documentLanguage`, `supportedLanguages`                             | `production.lesson.languages.document/planned`, shared typed language contract                       |
+| source Lesson reference, methodology, Question prerequisites         | `production.lesson.sourceSha/reference/assessment`, `production.questions` (Stage 1)                 |
+| analysis inventory/exclusions                                        | `production.analysis` (Stage 1)                                                                      |
+| `flashcards.items/order`                                             | `config.flashcards.items/order` (Stage 2)                                                            |
+| individual Card `id/slug/parameters/content`                         | each `config.flashcards.items[key].config` (Stage 2); real Engine Config                             |
+| `parameters.flags`                                                   | real `Flashcard_Flag_Config[]` array; values localized only when authored                            |
+| `content.front/back/hint.items/order`                                | each `FlashcardBankWorkflowSideSource`, no Side identity                                             |
+| `relationships.items/order` with `relationshipId/type/source/target` | `config.relationships.items/order` (Stage 2), expanded once at Stage 5                               |
+| `sectionDrafts` / proposed Section IDs                               | `production.section` selected/N/A (Stage 3); existing Lesson Section source remains owner-controlled |
+| Stage 4 memory review, Stage 5 materialization evidence              | existing child PR only, pinned to Stage 3 source/review SHA                                          |
+| Stages 6/7 translation/review per Card × locale                      | durable typed localized Card sources; evidence and manifest/reviewer in same PR only                 |
 
 **Validation boundary:** Stages 1–3 are editorially progressive and do **not** need to be publishable or pass full materializer schemas. The exact reviewed final Stage 3 **does** require strict typecheck, materializer validation, safe-write checks, resource build, publication/locale verification and independent reviews before release. A successful Draft fast gate is never evidence of a full Engine typecheck.

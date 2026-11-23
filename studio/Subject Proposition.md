@@ -8,23 +8,23 @@
 
 Канонічні предметні описи, розгорнуті кейси та запропоновані навчальні сценарії перенесені до відповідних пакунків. Документи є **редакційними пропозиціями**, а не Curricula, кодом чи затвердженими Skills. `content/languages` не входить до 15 базових дисциплін початкової пропозиції; `content/playground` — технічний майданчик.
 
-| Підручник | Документ |
-| --- | --- |
-| Математика | [`content/math/docs/subject-proposition.md`](../content/math/docs/subject-proposition.md) |
-| Мова та література | [`content/language-literature/docs/subject-proposition.md`](../content/language-literature/docs/subject-proposition.md) |
-| Біологія | [`content/biology/docs/subject-proposition.md`](../content/biology/docs/subject-proposition.md) |
-| Географія | [`content/geography/docs/subject-proposition.md`](../content/geography/docs/subject-proposition.md) |
-| Фізика | [`content/physics/docs/subject-proposition.md`](../content/physics/docs/subject-proposition.md) |
-| Хімія | [`content/chemistry/docs/subject-proposition.md`](../content/chemistry/docs/subject-proposition.md) |
-| Астрономія | [`content/astronomy/docs/subject-proposition.md`](../content/astronomy/docs/subject-proposition.md) |
-| Інформатика | [`content/informatics/docs/subject-proposition.md`](../content/informatics/docs/subject-proposition.md) |
-| Історія | [`content/history/docs/subject-proposition.md`](../content/history/docs/subject-proposition.md) |
-| Філософія | [`content/philosophy/docs/subject-proposition.md`](../content/philosophy/docs/subject-proposition.md) |
-| Психологія | [`content/psychology/docs/subject-proposition.md`](../content/psychology/docs/subject-proposition.md) |
-| Економіка | [`content/economics/docs/subject-proposition.md`](../content/economics/docs/subject-proposition.md) |
-| Мистецтво | [`content/art/docs/subject-proposition.md`](../content/art/docs/subject-proposition.md) |
-| Здоров’я та безпека | [`content/health-safety/docs/subject-proposition.md`](../content/health-safety/docs/subject-proposition.md) |
-| Інженерія | [`content/engineering/docs/subject-proposition.md`](../content/engineering/docs/subject-proposition.md) |
+| Підручник           | Документ                                                                                                                |
+| ------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| Математика          | [`content/math/docs/subject-proposition.md`](../content/math/docs/subject-proposition.md)                               |
+| Мова та література  | [`content/language-literature/docs/subject-proposition.md`](../content/language-literature/docs/subject-proposition.md) |
+| Біологія            | [`content/biology/docs/subject-proposition.md`](../content/biology/docs/subject-proposition.md)                         |
+| Географія           | [`content/geography/docs/subject-proposition.md`](../content/geography/docs/subject-proposition.md)                     |
+| Фізика              | [`content/physics/docs/subject-proposition.md`](../content/physics/docs/subject-proposition.md)                         |
+| Хімія               | [`content/chemistry/docs/subject-proposition.md`](../content/chemistry/docs/subject-proposition.md)                     |
+| Астрономія          | [`content/astronomy/docs/subject-proposition.md`](../content/astronomy/docs/subject-proposition.md)                     |
+| Інформатика         | [`content/informatics/docs/subject-proposition.md`](../content/informatics/docs/subject-proposition.md)                 |
+| Історія             | [`content/history/docs/subject-proposition.md`](../content/history/docs/subject-proposition.md)                         |
+| Філософія           | [`content/philosophy/docs/subject-proposition.md`](../content/philosophy/docs/subject-proposition.md)                   |
+| Психологія          | [`content/psychology/docs/subject-proposition.md`](../content/psychology/docs/subject-proposition.md)                   |
+| Економіка           | [`content/economics/docs/subject-proposition.md`](../content/economics/docs/subject-proposition.md)                     |
+| Мистецтво           | [`content/art/docs/subject-proposition.md`](../content/art/docs/subject-proposition.md)                                 |
+| Здоров’я та безпека | [`content/health-safety/docs/subject-proposition.md`](../content/health-safety/docs/subject-proposition.md)             |
+| Інженерія           | [`content/engineering/docs/subject-proposition.md`](../content/engineering/docs/subject-proposition.md)                 |
 
 ## 1. Базові принципи
 

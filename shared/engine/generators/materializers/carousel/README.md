@@ -2,13 +2,13 @@
 
 **Integrated in #775:** five concrete, distinct source emitters, each with its own tests and owned nested source layout. They take reviewed plain Config-shaped data plus non-publishable `production` metadata and return deterministic source-file manifests and diagnostics; they never publish Props or write into unreviewed directories.
 
-| Kind | Build factory | Owned nested source |
-| --- | --- | --- |
-| Carousel | `defineCarousel` | `slides.items/<slug>` delegates Image or Scene children |
-| Checkpoint | `defineCheckpoint` | `content.items/<slug>` delegates CheckpointItems |
-| CheckpointItem | `defineCheckpointItem` | one `question` Text and one `answer` CheckpointAnswer |
+| Kind             | Build factory            | Owned nested source                                           |
+| ---------------- | ------------------------ | ------------------------------------------------------------- |
+| Carousel         | `defineCarousel`         | `slides.items/<slug>` delegates Image or Scene children       |
+| Checkpoint       | `defineCheckpoint`       | `content.items/<slug>` delegates CheckpointItems              |
+| CheckpointItem   | `defineCheckpointItem`   | one `question` Text and one `answer` CheckpointAnswer         |
 | CheckpointAnswer | `defineCheckpointAnswer` | `content.items/<slug>` supports ordered non-Checkpoint Blocks |
-| Scene | `defineScene` | localized Scene Config plus derived `specification.md` |
+| Scene            | `defineScene`            | localized Scene Config plus derived `specification.md`        |
 
 ## Source ownership and boundaries
 

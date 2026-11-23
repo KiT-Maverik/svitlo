@@ -33,5 +33,4 @@ The Stage 2 authored typed Config-shaped node is **learner-facing material**, no
 
 This content quality checklist informs editorial reviews; schema validity at Stage 6 remains a separate technical check.
 
-
 **Typed Stage 2 completion:** retain the **same** Stage 1 export, enrich `config.section.items/order` with plain nested `{ config, production? }` nodes and use `satisfies LessonWorkflowStage2`. Do not create `define*` configurators at this editorial stage. Scenes/media require implementable `production.specification`, accessibility and offline equivalents; Quest is explicitly `runtimeStatus: 'unimplemented'` until real renderer support is proven. The Section/Block materializer, not the Screenwriter, later emits code. Stage 3 reviews this same object in a new context.

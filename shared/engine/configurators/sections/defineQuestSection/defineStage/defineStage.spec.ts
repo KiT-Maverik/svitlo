@@ -19,11 +19,18 @@ describe('Configurators > Sections > defineStage', () => {
   test('rejects incomplete media and validates localized overrides without changing original', () => {
     const { stage } = fixture();
     const original = JSON.stringify(stage.build.props(languages));
-    assert.throws(() => stage.validate({
-      id: stage.id, slug: stage.slug, type: 'questStage',
-      content: { ...stage.content, video: { medium: stage.content.video.medium } },
-    } as never));
-    const patch = stage.build.overrides({ content: { video: { small: { locale: { label: { uk: 'Зменшене відео' } } } } } }, languages);
+    assert.throws(() =>
+      stage.validate({
+        id: stage.id,
+        slug: stage.slug,
+        type: 'questStage',
+        content: { ...stage.content, video: { medium: stage.content.video.medium } },
+      } as never),
+    );
+    const patch = stage.build.overrides(
+      { content: { video: { small: { locale: { label: { uk: 'Зменшене відео' } } } } } },
+      languages,
+    );
     assert.ok(patch.locale?.uk);
     assert.equal(JSON.stringify(stage.build.props(languages)), original);
   });

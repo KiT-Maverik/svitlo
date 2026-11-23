@@ -28,7 +28,8 @@ void answers.unknown;
 
 const answerComposite = defineCheckpointAnswer({
   id: 'b775647f-203d-481a-a1c7-4d331c779d70',
-  type: 'checkpointAnswer', slug: 'answerContent',
+  type: 'checkpointAnswer',
+  slug: 'answerContent',
   content: { items: answers, order: ['answer'] },
 });
 const item = defineCheckpointItem({
@@ -78,16 +79,21 @@ const later = defineText({
 item.build.overrides(
   {
     question: { locale: { value: { uk: 'Оновлене питання' } } },
-    answer: { content: {
-      items: { answer: { locale: { value: 'Updated' } } },
-      additionalItems: configuratorArrayToSlugMap([later]),
-      order: ['answer', 'later'],
-    } },
+    answer: {
+      content: {
+        items: { answer: { locale: { value: 'Updated' } } },
+        additionalItems: configuratorArrayToSlugMap([later]),
+        order: ['answer', 'later'],
+      },
+    },
   },
   { languages: ['en', 'uk'] },
 );
 // @ts-expect-error Only existing answer keys can be patched.
-item.build.overrides({ answer: { content: { items: { unknown: { locale: { value: 'Unknown' } } } } } }, { languages: ['en', 'uk'] });
+item.build.overrides(
+  { answer: { content: { items: { unknown: { locale: { value: 'Unknown' } } } } } },
+  { languages: ['en', 'uk'] },
+);
 // @ts-expect-error The mandatory question cannot be disabled.
 item.build.overrides({ question: { params: { disabled: true } } }, { languages: ['en', 'uk'] });
 // @ts-expect-error Unknown slugs are forbidden in the final order.
@@ -130,7 +136,9 @@ const laterItem = defineCheckpointItem({
   slug: 'laterItem',
   question,
   answer: defineCheckpointAnswer({
-    id: 'b775647f-203d-481a-a1c7-4d331c779d71', type: 'checkpointAnswer', slug: 'laterAnswer',
+    id: 'b775647f-203d-481a-a1c7-4d331c779d71',
+    type: 'checkpointAnswer',
+    slug: 'laterAnswer',
     content: { items: configuratorArrayToSlugMap([later]), order: ['later'] },
   }),
 });

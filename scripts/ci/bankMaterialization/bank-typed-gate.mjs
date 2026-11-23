@@ -17,15 +17,17 @@ export function typedCommand(event, name, actor) {
   if (!/^[A-Za-z0-9-]+$/.test(actor || '')) throw Error('Invalid invocation actor');
   let number, bank;
   if (name === 'issue_comment') {
-    if (!event.issue?.pull_request || event.comment?.user?.login !== actor ||
-        !Object.hasOwn(COMMANDS, event.comment.body)) {
+    if (
+      !event.issue?.pull_request ||
+      event.comment?.user?.login !== actor ||
+      !Object.hasOwn(COMMANDS, event.comment.body)
+    ) {
       throw Error('Requires exact top-level typed Bank PR command');
     }
     number = event.issue.number;
     bank = COMMANDS[event.comment.body];
   } else if (name === 'workflow_dispatch') {
-    if (event.inputs?.mode !== 'typed' ||
-        !['questions', 'flashcards'].includes(event.inputs?.bank)) {
+    if (event.inputs?.mode !== 'typed' || !['questions', 'flashcards'].includes(event.inputs?.bank)) {
       throw Error('Typed dispatch mode required');
     }
     number = Number(event.inputs.pr_number);
@@ -39,15 +41,24 @@ export function typedCommand(event, name, actor) {
 
 function parentIdentity(body) {
   if (typeof body !== 'string' || !body.includes('<!-- svitlo-create-lesson-flow:v1 -->')) return null;
-  const match = /^- Lesson UUID \/ textbook \/ slug:\s*`?([a-f0-9-]{36})`?\s*\/\s*`?(content\/(?:languages\/)?[a-z][a-z0-9-]*)/m.exec(body);
+  const match =
+    /^- Lesson UUID \/ textbook \/ slug:\s*`?([a-f0-9-]{36})`?\s*\/\s*`?(content\/(?:languages\/)?[a-z][a-z0-9-]*)/m.exec(
+      body,
+    );
   return match && { id: match[1], pkg: match[2] };
 }
 
 export async function inspectTyped(number, bank, expected) {
   const repo = process.env.GITHUB_REPOSITORY;
   const pr = await github('pulls/' + number);
-  if (!pr || pr.state !== 'open' || !pr.draft || pr.head?.repo?.full_name !== repo ||
-      !SHA.test(pr.head?.sha || '') || !safeBranch(pr.head.ref, pr.base?.ref)) {
+  if (
+    !pr ||
+    pr.state !== 'open' ||
+    !pr.draft ||
+    pr.head?.repo?.full_name !== repo ||
+    !SHA.test(pr.head?.sha || '') ||
+    !safeBranch(pr.head.ref, pr.base?.ref)
+  ) {
     throw Error('Expected open same-repository Draft bank PR');
   }
   const identity = parseIdentity(pr.body, bank);
@@ -59,17 +70,23 @@ export async function inspectTyped(number, bank, expected) {
   if (identity.parent === number) throw Error('Bank PR cannot parent itself');
   const parent = await github('pulls/' + identity.parent);
   const source = parentIdentity(parent?.body);
-  if (!parent || (parent.state !== 'open' && !parent.merged) ||
-      !source || source.id !== identity.id || source.pkg !== identity.pkg) {
+  if (
+    !parent ||
+    (parent.state !== 'open' && !parent.merged) ||
+    !source ||
+    source.id !== identity.id ||
+    source.pkg !== identity.pkg
+  ) {
     throw Error('No verified owning Lesson PR/UUID correspondence');
   }
   if (parent.state === 'open' && pr.base?.ref !== parent.head?.ref) {
     throw Error('Typed Bank child must target its actual Lesson parent branch');
   }
   if (parent.merged) {
-    if (!SHA.test(parent.merge_commit_sha || '') ||
-        (pr.base?.ref !== parent.base?.ref &&
-          pr.base?.ref !== process.env.BANK_DEFAULT_BRANCH)) {
+    if (
+      !SHA.test(parent.merge_commit_sha || '') ||
+      (pr.base?.ref !== parent.base?.ref && pr.base?.ref !== process.env.BANK_DEFAULT_BRANCH)
+    ) {
       throw Error('Merged Lesson ancestry is not authorized');
     }
     const comparison = await github('compare/' + parent.merge_commit_sha + '...' + pr.base.sha);
@@ -97,9 +114,12 @@ export async function inspectTyped(number, bank, expected) {
       for (const review of reviews) {
         if (review.user?.login && review.submitted_at) latestParent.set(review.user.login, review);
       }
-      const approvedParent = [...latestParent.values()].filter(review =>
-        review.state === 'APPROVED' && review.commit_id === parent.head.sha &&
-        review.user.login !== parent.user?.login);
+      const approvedParent = [...latestParent.values()].filter(
+        review =>
+          review.state === 'APPROVED' &&
+          review.commit_id === parent.head.sha &&
+          review.user.login !== parent.user?.login,
+      );
       if (approvedParent.length !== 1) {
         throw Error('Questions N/A requires one independent approval on parent Lesson HEAD');
       }
@@ -107,8 +127,9 @@ export async function inspectTyped(number, bank, expected) {
     }
   }
   const sourcePath = identity.folder + '/' + bank + '/index.ts';
-  const sourceFile = await github('contents/' + sourcePath.split('/').map(encodeURIComponent).join('/') +
-    '?ref=' + pr.head.sha);
+  const sourceFile = await github(
+    'contents/' + sourcePath.split('/').map(encodeURIComponent).join('/') + '?ref=' + pr.head.sha,
+  );
   if (sourceFile?.type !== 'file' || !SHA.test(sourceFile.sha || '')) {
     throw Error('Exact reviewed Stage 3 bank index.ts is missing');
   }
@@ -122,23 +143,34 @@ export async function inspectTyped(number, bank, expected) {
   for (const review of reviews) {
     if (review.user?.login && review.submitted_at) latest.set(review.user.login, review);
   }
-  const approved = [...latest.values()].filter(r =>
-    r.state === 'APPROVED' && r.commit_id === pr.head.sha &&
-    r.user.login !== pr.user?.login);
+  const approved = [...latest.values()].filter(
+    r => r.state === 'APPROVED' && r.commit_id === pr.head.sha && r.user.login !== pr.user?.login,
+  );
   if (approved.length !== 1) {
     throw Error('One unambiguous independent approval on exact Bank PR HEAD required');
   }
   const reviewer = approved[0].user.login;
   await requireActor(reviewer);
   const result = {
-    repo, number, bank, actor: undefined,
-    branch: pr.head.ref, base: pr.base.ref, head: pr.head.sha,
-    sourceBlob: sourceFile.sha, sourcePath,
-    reviewer, reviewCommitSha: approved[0].commit_id,
-    parentQuestions, parentHeadSha,
+    repo,
+    number,
+    bank,
+    actor: undefined,
+    branch: pr.head.ref,
+    base: pr.base.ref,
+    head: pr.head.sha,
+    sourceBlob: sourceFile.sha,
+    sourcePath,
+    reviewer,
+    reviewCommitSha: approved[0].commit_id,
+    parentQuestions,
+    parentHeadSha,
     identity: {
-      id: identity.id, pkg: identity.pkg, parent: identity.parent,
-      folder: identity.folder, bank,
+      id: identity.id,
+      pkg: identity.pkg,
+      parent: identity.parent,
+      folder: identity.folder,
+      bank,
     },
   };
   if (expected && JSON.stringify(expected) !== JSON.stringify(result)) {
@@ -153,11 +185,21 @@ async function resolve() {
   await requireActor(command.actor);
   const info = await inspectTyped(command.number, command.bank);
   const meta = { ...info, actor: command.actor };
-  fs.appendFileSync(process.env.GITHUB_OUTPUT,
-    'meta=' + Buffer.from(JSON.stringify(meta)).toString('base64') +
-    '\npr=' + info.number + '\nhead=' + info.head + '\nbranch=' + info.branch + '\n');
-  report('Authorized typed ' + info.bank + ' source ' + info.sourceBlob +
-    ' at independently approved PR HEAD ' + info.head);
+  fs.appendFileSync(
+    process.env.GITHUB_OUTPUT,
+    'meta=' +
+      Buffer.from(JSON.stringify(meta)).toString('base64') +
+      '\npr=' +
+      info.number +
+      '\nhead=' +
+      info.head +
+      '\nbranch=' +
+      info.branch +
+      '\n',
+  );
+  report(
+    'Authorized typed ' + info.bank + ' source ' + info.sourceBlob + ' at independently approved PR HEAD ' + info.head,
+  );
 }
 if (process.argv[1] && process.argv[1].endsWith('/bank-typed-gate.mjs')) {
   if (process.argv[2] !== 'resolve' || process.argv.length !== 3) {

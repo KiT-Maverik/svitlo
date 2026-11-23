@@ -15,7 +15,10 @@ import { materializeScene } from '../scene/materializeScene';
 import { materializeCarousel, type CarouselSource } from '../carousel/materializeCarousel';
 import { materializeCheckpoint, type CheckpointSource } from '../checkpoint/materializeCheckpoint';
 import { materializeCheckpointItem, type CheckpointItemSource } from '../checkpointItem/materializeCheckpointItem';
-import { materializeCheckpointAnswer, type CheckpointAnswerSource } from '../checkpointAnswer/materializeCheckpointAnswer';
+import {
+  materializeCheckpointAnswer,
+  type CheckpointAnswerSource,
+} from '../checkpointAnswer/materializeCheckpointAnswer';
 import { assertBankPath, assertBankUuid } from './bankSourceSafety';
 
 export type AssessmentBlockEvidence = {
@@ -32,8 +35,7 @@ type ChildResult = {
   diagnostics: { path: string; code: string; message: string; severity: 'warning' }[];
 };
 
-const isRecord = (v: unknown): v is Record<string, unknown> =>
-  v !== null && typeof v === 'object' && !Array.isArray(v);
+const isRecord = (v: unknown): v is Record<string, unknown> => v !== null && typeof v === 'object' && !Array.isArray(v);
 function unwrap(value: unknown, at: string): Record<string, unknown> {
   if (!isRecord(value)) throw new Error(at + ': expected authored Config or Config node');
   const config = isRecord(value.config) ? value.config : value;
@@ -49,9 +51,7 @@ function unwrapPlain(value: unknown, at: string): Record<string, unknown> {
 }
 /** Preserve reviewed author-only evidence while concrete renderers receive plain Configs. */
 function withProduction(config: PlainBlock, authored: unknown): BlockNode {
-  return isRecord(authored) && isRecord(authored.production)
-    ? { config, production: authored.production }
-    : { config };
+  return isRecord(authored) && isRecord(authored.production) ? { config, production: authored.production } : { config };
 }
 function ordered(value: unknown, at: string): { items: Record<string, unknown>; order: string[] } {
   if (!isRecord(value) || !isRecord(value.items) || !Array.isArray(value.order)) {
@@ -60,8 +60,11 @@ function ordered(value: unknown, at: string): { items: Record<string, unknown>; 
   const items = value.items;
   const order = value.order;
   const keys = Object.keys(items);
-  if (new Set(order).size !== keys.length || keys.length !== order.length ||
-      order.some(key => typeof key !== 'string' || !Object.hasOwn(items, key))) {
+  if (
+    new Set(order).size !== keys.length ||
+    keys.length !== order.length ||
+    order.some(key => typeof key !== 'string' || !Object.hasOwn(items, key))
+  ) {
     throw new Error(at + ': every item must be ordered exactly once');
   }
   return { items, order: order as string[] };
@@ -87,8 +90,9 @@ function asChildResult(out: {
   return {
     exportName: out.exportName,
     files: out.files.map(file => ({
-      path: file.path, content: file.content,
-      kind: file.kind === 'specification' ? 'markdown' : file.kind as ChildResult['files'][number]['kind'],
+      path: file.path,
+      content: file.content,
+      kind: file.kind === 'specification' ? 'markdown' : (file.kind as ChildResult['files'][number]['kind']),
     })),
     diagnostics: [...out.diagnostics],
   };
@@ -109,11 +113,16 @@ export function materializeAssessmentBlock(
   const documentLanguage = context.documentLanguage;
   const languagesImport = relativeLanguages(context.directory, moduleName);
   const options = {
-    directory: context.directory, documentLanguage, languagesImport,
-    plannedLanguages: planned, production: node.production,
+    directory: context.directory,
+    documentLanguage,
+    languagesImport,
+    plannedLanguages: planned,
+    production: node.production,
   };
-  if (['image','video','audio','subtitles','youtube'].includes(source.type) &&
-      !evidence.approvedMediaBlockIds.has(source.id)) {
+  if (
+    ['image', 'video', 'audio', 'subtitles', 'youtube'].includes(source.type) &&
+    !evidence.approvedMediaBlockIds.has(source.id)
+  ) {
     throw new Error('Missing verified media evidence for ' + source.type + ' ' + source.id);
   }
   switch (source.type) {
@@ -137,52 +146,79 @@ export function materializeAssessmentBlock(
       if (!evidence.registeredSceneIds.has(source.id)) {
         throw new Error('Scene has no verified executable registry: ' + source.id);
       }
-      return asChildResult(materializeScene(source as Parameters<typeof materializeScene>[0], {
-        directory: context.directory, documentLanguage, languagesImport,
-        registered: true,
-        production: node.production === undefined ? undefined : {
-          ...(typeof node.production.specification === 'string'
-            ? { specification: node.production.specification } : {}),
-          ...(typeof node.production.pending === 'boolean'
-            ? { pending: node.production.pending } : {}),
-        },
-      }));
+      return asChildResult(
+        materializeScene(source as Parameters<typeof materializeScene>[0], {
+          directory: context.directory,
+          documentLanguage,
+          languagesImport,
+          registered: true,
+          production:
+            node.production === undefined
+              ? undefined
+              : {
+                  ...(typeof node.production.specification === 'string'
+                    ? { specification: node.production.specification }
+                    : {}),
+                  ...(typeof node.production.pending === 'boolean' ? { pending: node.production.pending } : {}),
+                },
+        }),
+      );
     }
     case 'carousel': {
       const slides = ordered(source.slides, 'Carousel slides');
-      const items = Object.fromEntries(Object.entries(slides.items).map(([key, child]) =>
-        [key, child === false ? false : unwrap(child, 'Carousel slide ' + key)]));
-      return asChildResult(materializeCarousel(
-        { ...source, slides: { items, order: slides.order } } as unknown as CarouselSource,
-        {
-          directory: context.directory, documentLanguage, languagesImport,
+      const items = Object.fromEntries(
+        Object.entries(slides.items).map(([key, child]) => [
+          key,
+          child === false ? false : unwrap(child, 'Carousel slide ' + key),
+        ]),
+      );
+      return asChildResult(
+        materializeCarousel({ ...source, slides: { items, order: slides.order } } as unknown as CarouselSource, {
+          directory: context.directory,
+          documentLanguage,
+          languagesImport,
           renderChild: (child, directory) => {
             const result = materializeAssessmentBlock(
               withProduction(child as PlainBlock, slides.items[child.slug]),
-              { directory, documentLanguage }, planned, moduleName, evidence);
+              { directory, documentLanguage },
+              planned,
+              moduleName,
+              evidence,
+            );
             return { ...result };
           },
-        },
-      ));
+        }),
+      );
     }
     case 'checkpoint': {
       const content = ordered(source.content, 'Checkpoint items');
-      const items = Object.fromEntries(Object.entries(content.items).map(([key, child]) => {
-        const item = unwrap(child, 'Checkpoint item ' + key);
-        const question = unwrap(item.question, 'Checkpoint question ' + key);
-        const answer = unwrapPlain(item.answer, 'Checkpoint answer ' + key);
-        const answerContent = ordered(answer.content, 'Checkpoint answer content ' + key);
-        const answerItems = Object.fromEntries(Object.entries(answerContent.items).map(([slug, block]) =>
-          [slug, block === false ? false : unwrap(block, 'Checkpoint answer block ' + slug)]));
-        return [key, {
-          ...item, question,
-          answer: { ...answer, content: { items: answerItems, order: answerContent.order } },
-        }];
-      }));
-      return asChildResult(materializeCheckpoint(
-        { ...source, content: { items, order: content.order } } as unknown as CheckpointSource,
-        {
-          directory: context.directory, documentLanguage, languagesImport,
+      const items = Object.fromEntries(
+        Object.entries(content.items).map(([key, child]) => {
+          const item = unwrap(child, 'Checkpoint item ' + key);
+          const question = unwrap(item.question, 'Checkpoint question ' + key);
+          const answer = unwrapPlain(item.answer, 'Checkpoint answer ' + key);
+          const answerContent = ordered(answer.content, 'Checkpoint answer content ' + key);
+          const answerItems = Object.fromEntries(
+            Object.entries(answerContent.items).map(([slug, block]) => [
+              slug,
+              block === false ? false : unwrap(block, 'Checkpoint answer block ' + slug),
+            ]),
+          );
+          return [
+            key,
+            {
+              ...item,
+              question,
+              answer: { ...answer, content: { items: answerItems, order: answerContent.order } },
+            },
+          ];
+        }),
+      );
+      return asChildResult(
+        materializeCheckpoint({ ...source, content: { items, order: content.order } } as unknown as CheckpointSource, {
+          directory: context.directory,
+          documentLanguage,
+          languagesImport,
           renderItem: (item, directory) => {
             // The Checkpoint source renderer correctly consumes *plain* Configs.
             // Keep its matching authored wrappers for delegated descendant calls.
@@ -190,22 +226,35 @@ export function materializeAssessmentBlock(
             const authoredAnswer = unwrapPlain(authoredItem.answer, 'Checkpoint answer ' + item.slug);
             const authoredBlocks = ordered(authoredAnswer.content, 'Checkpoint answer content ' + item.slug).items;
             return materializeCheckpointItem(item as CheckpointItemSource, {
-              directory, documentLanguage,
+              directory,
+              documentLanguage,
               languagesImport: relativeLanguages(directory, moduleName),
-              renderQuestion: (question, questionDir) => materializeAssessmentBlock(
-                withProduction(question as PlainBlock, authoredItem.question),
-                { directory: questionDir, documentLanguage }, planned, moduleName, evidence),
-              renderAnswer: (answer, answerDir) => materializeCheckpointAnswer(answer as CheckpointAnswerSource, {
-                directory: answerDir, documentLanguage,
-                languagesImport: relativeLanguages(answerDir, moduleName),
-                renderChild: (block, blockDir) => materializeAssessmentBlock(
-                  withProduction(block as PlainBlock, authoredBlocks[block.slug]),
-                  { directory: blockDir, documentLanguage }, planned, moduleName, evidence),
-              }),
+              renderQuestion: (question, questionDir) =>
+                materializeAssessmentBlock(
+                  withProduction(question as PlainBlock, authoredItem.question),
+                  { directory: questionDir, documentLanguage },
+                  planned,
+                  moduleName,
+                  evidence,
+                ),
+              renderAnswer: (answer, answerDir) =>
+                materializeCheckpointAnswer(answer as CheckpointAnswerSource, {
+                  directory: answerDir,
+                  documentLanguage,
+                  languagesImport: relativeLanguages(answerDir, moduleName),
+                  renderChild: (block, blockDir) =>
+                    materializeAssessmentBlock(
+                      withProduction(block as PlainBlock, authoredBlocks[block.slug]),
+                      { directory: blockDir, documentLanguage },
+                      planned,
+                      moduleName,
+                      evidence,
+                    ),
+                }),
             });
           },
-        },
-      ));
+        }),
+      );
     }
     default:
       throw new Error('No concrete materializer for bank ContentBlock kind: ' + source.type);

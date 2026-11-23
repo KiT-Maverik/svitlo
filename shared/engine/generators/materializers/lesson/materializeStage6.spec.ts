@@ -21,7 +21,9 @@ const assessment = {
 const valid = () => ({
   config: {
     type: 'lesson' as const,
-    id: id('01'), slug: 'basics', skills: [id('04')],
+    id: id('01'),
+    slug: 'basics',
+    skills: [id('04')],
     params: {
       quizRequiredForCompletion: false,
       sections: { allowNavigation: true, allowSkipping: true, showIndexes: true },
@@ -31,14 +33,20 @@ const valid = () => ({
       items: {
         introduction: {
           config: {
-            type: 'content' as const, id: id('02'), slug: 'introduction',
-            params: {}, locale: { title: { en: 'Introduction' }, navigationLabel: '1' },
+            type: 'content' as const,
+            id: id('02'),
+            slug: 'introduction',
+            params: {},
+            locale: { title: { en: 'Introduction' }, navigationLabel: '1' },
             content: {
               items: {
                 prompt: {
                   config: {
-                    id: id('03'), type: 'text' as const, slug: 'prompt',
-                    params: {}, locale: { value: { en: 'Read and reflect' } },
+                    id: id('03'),
+                    type: 'text' as const,
+                    slug: 'prompt',
+                    params: {},
+                    locale: { value: { en: 'Read and reflect' } },
                   },
                   production: { purpose: 'Introduce the source fact', specification: 'Preserve this guidance' },
                 },
@@ -67,12 +75,14 @@ const valid = () => ({
 // this relationship when invoking the orchestrator.
 const stage2Source = [
   "import type { LessonWorkflowStage2 } from '@svitlo/engine/build';",
-  'export const lessonStage2 = ' + JSON.stringify(valid(), null, 2) +
-    ' satisfies LessonWorkflowStage2;',
+  'export const lessonStage2 = ' + JSON.stringify(valid(), null, 2) + ' satisfies LessonWorkflowStage2;',
   '',
 ].join('\n');
-const blobSha = (source: string) => createHash('sha1')
-  .update('blob ' + Buffer.byteLength(source) + '\0').update(source).digest('hex');
+const blobSha = (source: string) =>
+  createHash('sha1')
+    .update('blob ' + Buffer.byteLength(source) + '\0')
+    .update(source)
+    .digest('hex');
 const reviewed = {
   sourcePath: folder + 'index.ts',
   sourceBlobSha: blobSha(stage2Source),
@@ -98,11 +108,14 @@ test('reviewed source yields deterministic ordinary Lesson and nested Section/Co
   assert.equal(result.sourceBlobSha, reviewed.sourceBlobSha);
   assert.equal(result.publishable, false, 'generation does not mean publishing');
   const paths = result.files.map(file => file.path);
-  assert.deepEqual(paths.filter(path => path.endsWith('index.ts')).sort(), [
-    folder + 'index.ts',
-    folder + 'sections/introduction/index.ts',
-    folder + 'sections/introduction/content/items/prompt/index.ts',
-  ].sort());
+  assert.deepEqual(
+    paths.filter(path => path.endsWith('index.ts')).sort(),
+    [
+      folder + 'index.ts',
+      folder + 'sections/introduction/index.ts',
+      folder + 'sections/introduction/content/items/prompt/index.ts',
+    ].sort(),
+  );
   assert(paths.includes(folder + 'methodology.md'));
   assert(paths.includes(folder + 'specification.md'));
   assert(paths.includes(folder + 'sections/introduction/specification.md'));
@@ -112,22 +125,30 @@ test('reviewed source yields deterministic ordinary Lesson and nested Section/Co
   assert.match(root, /"order": \["introduction"\]/);
   assert.match(root, /"id": "12345678-1234-4234-8234-123456789001"/);
   assert.doesNotMatch(root, /"methodology":/);
-  assert.match(result.files.find(file => file.path === folder + 'methodology.md')!.content,
-    /Source lesson methodology/);
-  assert.doesNotThrow(() => assertLessonStage6ReleaseReady(result),
-    'no unresolved resources in a complete one-locale Lesson');
+  assert.match(
+    result.files.find(file => file.path === folder + 'methodology.md')!.content,
+    /Source lesson methodology/,
+  );
+  assert.doesNotThrow(
+    () => assertLessonStage6ReleaseReady(result),
+    'no unresolved resources in a complete one-locale Lesson',
+  );
   for (const file of result.files.filter(file => file.kind === 'typescript')) {
     const parsed = ts.createSourceFile(file.path, file.content, ts.ScriptTarget.ES2022, true);
-    assert.equal((parsed as ts.SourceFile & { parseDiagnostics: readonly ts.Diagnostic[] }).parseDiagnostics.length,
-      0, 'emitted TS parses: ' + file.path);
+    assert.equal(
+      (parsed as ts.SourceFile & { parseDiagnostics: readonly ts.Diagnostic[] }).parseDiagnostics.length,
+      0,
+      'emitted TS parses: ' + file.path,
+    );
   }
 });
 
 test('generated Lesson source passes the real TypeScript semantic checker', () => {
   const plan = produce();
   const workspace = resolve(process.cwd(), '../..');
-  const files = new Map(plan.files.filter(file => file.kind === 'typescript')
-    .map(file => [resolve(workspace, file.path), file.content]));
+  const files = new Map(
+    plan.files.filter(file => file.kind === 'typescript').map(file => [resolve(workspace, file.path), file.content]),
+  );
   const options: ts.CompilerOptions = {
     target: ts.ScriptTarget.ES2022,
     module: ts.ModuleKind.ESNext,
@@ -142,21 +163,25 @@ test('generated Lesson source passes the real TypeScript semantic checker', () =
   const directoryExists = host.directoryExists?.bind(host);
   host.readFile = filename => files.get(resolve(filename)) ?? readFile(filename);
   host.fileExists = filename => files.has(resolve(filename)) || fileExists(filename);
-  host.directoryExists = dirname => [...files.keys()].some(filename =>
-    filename.startsWith(resolve(dirname) + sep)) || directoryExists?.(dirname) === true;
+  host.directoryExists = dirname =>
+    [...files.keys()].some(filename => filename.startsWith(resolve(dirname) + sep)) ||
+    directoryExists?.(dirname) === true;
   const program = ts.createProgram([...files.keys()], options, host);
-  const errors = ts.getPreEmitDiagnostics(program).filter(issue =>
-    issue.category === ts.DiagnosticCategory.Error);
-  assert.deepEqual(errors.map(issue =>
-    (issue.file?.fileName ?? '<global>') + ':' +
-    ts.flattenDiagnosticMessageText(issue.messageText, '\n')), [],
-    'emitted modules must be assignable to actual @svitlo/engine/build contracts');
+  const errors = ts.getPreEmitDiagnostics(program).filter(issue => issue.category === ts.DiagnosticCategory.Error);
+  assert.deepEqual(
+    errors.map(
+      issue => (issue.file?.fileName ?? '<global>') + ':' + ts.flattenDiagnosticMessageText(issue.messageText, '\n'),
+    ),
+    [],
+    'emitted modules must be assignable to actual @svitlo/engine/build contracts',
+  );
 });
 
 test('generated complete Lesson runs actual Config build.props(), not a mocked factory', () => {
   const plan = produce();
-  const sources = new Map(plan.files.filter(file => file.kind === 'typescript')
-    .map(file => [file.path.slice(folder.length), file.content]));
+  const sources = new Map(
+    plan.files.filter(file => file.kind === 'typescript').map(file => [file.path.slice(folder.length), file.content]),
+  );
   const modules = new Map<string, Record<string, unknown>>();
   function load(relative: string): Record<string, unknown> {
     const normalized = posix.normalize(relative);
@@ -167,8 +192,10 @@ test('generated complete Lesson runs actual Config build.props(), not a mocked f
     const exports: Record<string, unknown> = {};
     modules.set(normalized, exports);
     const js = ts.transpileModule(source!, {
-      fileName: normalized, compilerOptions: {
-        target: ts.ScriptTarget.ES2022, module: ts.ModuleKind.CommonJS,
+      fileName: normalized,
+      compilerOptions: {
+        target: ts.ScriptTarget.ES2022,
+        module: ts.ModuleKind.CommonJS,
       },
     }).outputText;
     const execute = vm.compileFunction(js, ['require', 'exports']);
@@ -181,9 +208,11 @@ test('generated complete Lesson runs actual Config build.props(), not a mocked f
     return exports;
   }
   const lesson = load('index.ts').basics as {
-    build: { props: (opts: { languages: string[] }) => {
-      base: { section: { type: string }[]; skills: string[] };
-    } };
+    build: {
+      props: (opts: { languages: string[] }) => {
+        base: { section: { type: string }[]; skills: string[] };
+      };
+    };
   };
   const props = lesson.build.props({ languages: ['en'] });
   assert.equal(props.base.section.length, 1);
@@ -198,17 +227,40 @@ test('Course-origin Stage 1 remains insufficient; a completed Stage 2 handoff ca
 });
 test('trust rejects source SHA drift, missing Stage 6 authorization and unverified independent review', () => {
   assert.throws(() => produce(valid(), { ...options, sourceText: 'tampered' }), /untrusted source/);
-  assert.throws(() => produce(valid(), { ...options, verifyReviewedInput: () => false }),
-    /untrusted source/);
-  assert.throws(() => produce(valid(), { ...options, review: {
-    ...reviewed, sourceBlobSha: '0'.repeat(40) },
-  }), /untrusted source/);
-  assert.throws(() => produce(valid(), { ...options, review: {
-    ...reviewed, stage6Authorized: false as never },
-  }), /untrusted source/);
-  assert.throws(() => produce(valid(), { ...options, review: {
-    ...reviewed, sourcePath: 'content/math/data/lessons/1/../../../other/index.ts',
-  } }), /untrusted source/);
+  assert.throws(() => produce(valid(), { ...options, verifyReviewedInput: () => false }), /untrusted source/);
+  assert.throws(
+    () =>
+      produce(valid(), {
+        ...options,
+        review: {
+          ...reviewed,
+          sourceBlobSha: '0'.repeat(40),
+        },
+      }),
+    /untrusted source/,
+  );
+  assert.throws(
+    () =>
+      produce(valid(), {
+        ...options,
+        review: {
+          ...reviewed,
+          stage6Authorized: false as never,
+        },
+      }),
+    /untrusted source/,
+  );
+  assert.throws(
+    () =>
+      produce(valid(), {
+        ...options,
+        review: {
+          ...reviewed,
+          sourcePath: 'content/math/data/lessons/1/../../../other/index.ts',
+        },
+      }),
+    /untrusted source/,
+  );
 });
 test('incomplete Lesson params and source-language plan fail closed without fabrication', () => {
   const input = valid();
@@ -240,15 +292,21 @@ test('authored enabled Quiz and Flashcards Sections pass separate source materia
   const input = structuredClone(valid()) as unknown as LessonWorkflowMaterializerInput;
   input.config.section.items.reviewQuiz = {
     config: {
-      type: 'quiz', id: id('05'), slug: 'reviewQuiz',
+      type: 'quiz',
+      id: id('05'),
+      slug: 'reviewQuiz',
       params: {
         selection: { mode: 'all', questionIds: [id('07')] },
         layout: { mode: 'stack' },
         feedbackMode: 'immediate',
         interaction: {
-          retries: 0, showErrors: true, showCorrectAnswers: true,
-          allowExplanations: false, allowDeferring: false,
-          allowQuestionNavigation: false, skippable: false,
+          retries: 0,
+          showErrors: true,
+          showCorrectAnswers: true,
+          allowExplanations: false,
+          allowDeferring: false,
+          allowQuestionNavigation: false,
+          skippable: false,
         },
         results: { visibility: 'immediate', showScore: true },
       },
@@ -259,7 +317,9 @@ test('authored enabled Quiz and Flashcards Sections pass separate source materia
   } as LessonWorkflowMaterializerInput['config']['section']['items'][string];
   input.config.section.items.reviewCards = {
     config: {
-      type: 'flashcards', id: id('06'), slug: 'reviewCards',
+      type: 'flashcards',
+      id: id('06'),
+      slug: 'reviewCards',
       params: { selection: { flashcardIds: [id('08')] } },
       locale: { title: 'Cards', navigationLabel: 'C' },
       content: { items: {}, order: [] },
@@ -268,17 +328,16 @@ test('authored enabled Quiz and Flashcards Sections pass separate source materia
   } as LessonWorkflowMaterializerInput['config']['section']['items'][string];
   input.config.section.order.push('reviewQuiz', 'reviewCards');
   input.config.params = {
-    ...input.config.params, quizRequiredForCompletion: true,
+    ...input.config.params,
+    quizRequiredForCompletion: true,
   };
   input.production.assessment.quizSectionRequired = true;
   input.production.assessment.flashcardsSectionRequired = true;
   const sourceFor = (value: LessonWorkflowMaterializerInput) => {
     // These are executable Configurator imports, not handwritten bank UUIDs.
     const reviewedObject = JSON.stringify(value, null, 2)
-      .replace(/"questionIds": \[\s*"[^"]+"\s*\]/,
-        '"questionIds": [reviewQuestion.id]')
-      .replace(/"flashcardIds": \[\s*"[^"]+"\s*\]/,
-        '"flashcardIds": [memoryCard.id]');
+      .replace(/"questionIds": \[\s*"[^"]+"\s*\]/, '"questionIds": [reviewQuestion.id]')
+      .replace(/"flashcardIds": \[\s*"[^"]+"\s*\]/, '"flashcardIds": [memoryCard.id]');
     const sourceText = [
       "import type { LessonWorkflowStage2 } from '@svitlo/engine/build';",
       "import { reviewQuestion } from './questions/multipleChoice/example';",
@@ -287,7 +346,9 @@ test('authored enabled Quiz and Flashcards Sections pass separate source materia
       '',
     ].join('\n');
     return {
-      ...options, sourceText, review: { ...reviewed, sourceBlobSha: blobSha(sourceText) },
+      ...options,
+      sourceText,
+      review: { ...reviewed, sourceBlobSha: blobSha(sourceText) },
     };
   };
   const plan = materializeLessonStage6(input, sourceFor(input));
@@ -295,13 +356,18 @@ test('authored enabled Quiz and Flashcards Sections pass separate source materia
   assert(plan.files.some(file => file.path === folder + 'sections/reviewCards/index.ts'));
   const quizSource = plan.files.find(file => file.path === folder + 'sections/reviewQuiz/index.ts')!.content;
   const cardsSource = plan.files.find(file => file.path === folder + 'sections/reviewCards/index.ts')!.content;
-  assert(quizSource.includes('import { reviewQuestion as stage6_ref_0 } from "../../questions/multipleChoice/example";'));
+  assert(
+    quizSource.includes('import { reviewQuestion as stage6_ref_0 } from "../../questions/multipleChoice/example";'),
+  );
   assert(cardsSource.includes('import { reviewCard as stage6_ref_0 } from "../../flashcards/example";'));
   assert(quizSource.includes('"questionIds": [stage6_ref_0.id]'));
   assert(cardsSource.includes('"flashcardIds": [stage6_ref_0.id]'));
   assert(!quizSource.includes(id('07')), 'bank UUID must not replace Configurator reference');
   assert(!cardsSource.includes(id('08')), 'bank UUID must not replace Configurator reference');
-  assert.equal(plan.diagnostics.some(diagnostic => diagnostic.code.startsWith('pending-')), false);
+  assert.equal(
+    plan.diagnostics.some(diagnostic => diagnostic.code.startsWith('pending-')),
+    false,
+  );
   assert.doesNotThrow(() => assertLessonStage6ReleaseReady(plan));
   const provisional = structuredClone(input);
   const quiz = provisional.config.section.items.reviewQuiz as unknown as {
@@ -315,38 +381,52 @@ test('authored enabled Quiz and Flashcards Sections pass separate source materia
   // nonempty selection, rather than silently producing magic UUID literals.
   const literal = [
     "import type { LessonWorkflowStage2 } from '@svitlo/engine/build';",
-    'export const stage2 = ' + JSON.stringify(input, null, 2) +
-      ' satisfies LessonWorkflowStage2;',
+    'export const stage2 = ' + JSON.stringify(input, null, 2) + ' satisfies LessonWorkflowStage2;',
     '',
   ].join('\n');
-  assert.throws(() => materializeLessonStage6(input, {
-    ...options, sourceText: literal,
-    review: { ...reviewed, sourceBlobSha: blobSha(literal) },
-  }), /requires imported Question/);
-  const unbound = sourceFor(input).sourceText
-    .replace('reviewQuestion.id', 'notImported.id');
-  assert.throws(() => materializeLessonStage6(input, {
-    ...options, sourceText: unbound,
-    review: { ...reviewed, sourceBlobSha: blobSha(unbound) },
-  }), /without an executable Configurator import/);
-  const expression = sourceFor(input).sourceText
-    .replace('reviewQuestion.id', 'getQuestion().id');
-  assert.throws(() => materializeLessonStage6(input, {
-    ...options, sourceText: expression,
-    review: { ...reviewed, sourceBlobSha: blobSha(expression) },
-  }), /must reference a static member/);
+  assert.throws(
+    () =>
+      materializeLessonStage6(input, {
+        ...options,
+        sourceText: literal,
+        review: { ...reviewed, sourceBlobSha: blobSha(literal) },
+      }),
+    /requires imported Question/,
+  );
+  const unbound = sourceFor(input).sourceText.replace('reviewQuestion.id', 'notImported.id');
+  assert.throws(
+    () =>
+      materializeLessonStage6(input, {
+        ...options,
+        sourceText: unbound,
+        review: { ...reviewed, sourceBlobSha: blobSha(unbound) },
+      }),
+    /without an executable Configurator import/,
+  );
+  const expression = sourceFor(input).sourceText.replace('reviewQuestion.id', 'getQuestion().id');
+  assert.throws(
+    () =>
+      materializeLessonStage6(input, {
+        ...options,
+        sourceText: expression,
+        review: { ...reviewed, sourceBlobSha: blobSha(expression) },
+      }),
+    /must reference a static member/,
+  );
 
   // References through a named bank map must also remain references.
-  const throughBank = sourceFor(input).sourceText
-    .replace("import { reviewQuestion } from './questions/multipleChoice/example';",
-      "import { questions } from './questions';")
+  const throughBank = sourceFor(input)
+    .sourceText.replace(
+      "import { reviewQuestion } from './questions/multipleChoice/example';",
+      "import { questions } from './questions';",
+    )
     .replace('reviewQuestion.id', 'questions.multipleChoice.example.id');
   const bankPlan = materializeLessonStage6(input, {
-    ...options, sourceText: throughBank,
+    ...options,
+    sourceText: throughBank,
     review: { ...reviewed, sourceBlobSha: blobSha(throughBank) },
   });
-  const bankQuiz = bankPlan.files.find(file =>
-    file.path === folder + 'sections/reviewQuiz/index.ts')!.content;
+  const bankQuiz = bankPlan.files.find(file => file.path === folder + 'sections/reviewQuiz/index.ts')!.content;
   assert(bankQuiz.includes('import { questions as stage6_ref_0 } from "../../questions";'));
   assert(bankQuiz.includes('"questionIds": [stage6_ref_0.multipleChoice.example.id]'));
 });

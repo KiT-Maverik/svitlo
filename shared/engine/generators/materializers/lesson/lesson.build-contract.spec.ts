@@ -22,9 +22,13 @@ function emitQuizLesson(questionId: string): Result {
       layout: { mode: 'stack' as const },
       feedbackMode: 'immediate' as const,
       interaction: {
-        retries: 0, showErrors: true, showCorrectAnswers: true,
-        allowExplanations: false, allowDeferring: false,
-        allowQuestionNavigation: false, skippable: false,
+        retries: 0,
+        showErrors: true,
+        showCorrectAnswers: true,
+        allowExplanations: false,
+        allowDeferring: false,
+        allowQuestionNavigation: false,
+        skippable: false,
       },
       results: { visibility: 'immediate' as const, showScore: true },
     },
@@ -49,7 +53,9 @@ function emitQuizLesson(questionId: string): Result {
     renderSection: (config, options) =>
       materializeQuizSection(config as Parameters<typeof materializeQuizSection>[0], {
         ...options,
-        renderContentBlock: () => { throw new Error('No Quiz blocks in this fixture'); },
+        renderContentBlock: () => {
+          throw new Error('No Quiz blocks in this fixture');
+        },
       }),
   });
 }
@@ -80,9 +86,14 @@ function executeGeneratedLesson(result: Result) {
     return exported;
   }
   return load('index.ts').requiredLesson as {
-    build: { props: (options: { languages: string[] }) => {
-      base: { params: { quizRequiredForCompletion: boolean }; section: { type: string; params: { disabled?: boolean } }[] };
-    } };
+    build: {
+      props: (options: { languages: string[] }) => {
+        base: {
+          params: { quizRequiredForCompletion: boolean };
+          section: { type: string; params: { disabled?: boolean } }[];
+        };
+      };
+    };
   };
 }
 
@@ -125,9 +136,13 @@ test('disabled Quiz is rejected by the real Lesson Build API', () => {
       layout: { mode: 'stack' },
       feedbackMode: 'immediate',
       interaction: {
-        retries: 0, showErrors: true, showCorrectAnswers: true,
-        allowExplanations: false, allowDeferring: false,
-        allowQuestionNavigation: false, skippable: false,
+        retries: 0,
+        showErrors: true,
+        showCorrectAnswers: true,
+        allowExplanations: false,
+        allowDeferring: false,
+        allowQuestionNavigation: false,
+        skippable: false,
       },
       results: { visibility: 'immediate', showScore: true },
     },
@@ -147,6 +162,5 @@ test('disabled Quiz is rejected by the real Lesson Build API', () => {
     locale: { title: 'Lesson' },
     section: { items: { requiredQuiz: disabledQuiz }, order: ['requiredQuiz'] },
   });
-  assert.throws(() => lesson.build.props({ languages: ['en'] }),
-    /Lesson requires at least one enabled Quiz section/);
+  assert.throws(() => lesson.build.props({ languages: ['en'] }), /Lesson requires at least one enabled Quiz section/);
 });

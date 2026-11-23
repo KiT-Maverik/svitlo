@@ -13,9 +13,13 @@ const record = value => value !== null && typeof value === 'object' && !Array.is
 const missing = '%%MISSING%%';
 
 function safeFile(file, root) {
-  if (!file.startsWith(root + path.sep) ||
-      !fs.existsSync(file) || !fs.lstatSync(file).isFile() || fs.lstatSync(file).isSymbolicLink() ||
-      !fs.realpathSync(file).startsWith(fs.realpathSync(root) + path.sep))
+  if (
+    !file.startsWith(root + path.sep) ||
+    !fs.existsSync(file) ||
+    !fs.lstatSync(file).isFile() ||
+    fs.lstatSync(file).isSymbolicLink() ||
+    !fs.realpathSync(file).startsWith(fs.realpathSync(root) + path.sep)
+  )
     throw new Error('Missing or unsafe Course-owned TypeScript: ' + file);
 }
 function propertyName(name) {
@@ -54,15 +58,24 @@ function parseModule(filename, root, languages) {
   const seen = new Set();
   const evaluate = node => {
     if (!node) throw new Error('Empty Course Config expression');
-    if (ts.isParenthesizedExpression(node) || ts.isAsExpression(node) ||
-        ts.isSatisfiesExpression(node) || ts.isTypeAssertionExpression(node)) return evaluate(node.expression);
+    if (
+      ts.isParenthesizedExpression(node) ||
+      ts.isAsExpression(node) ||
+      ts.isSatisfiesExpression(node) ||
+      ts.isTypeAssertionExpression(node)
+    )
+      return evaluate(node.expression);
     if (ts.isStringLiteral(node) || ts.isNoSubstitutionTemplateLiteral(node)) return node.text;
     if (ts.isNumericLiteral(node)) return Number(node.text);
     if (node.kind === ts.SyntaxKind.TrueKeyword) return true;
     if (node.kind === ts.SyntaxKind.FalseKeyword) return false;
     if (node.kind === ts.SyntaxKind.NullKeyword) return null;
-    if (ts.isPrefixUnaryExpression(node) && node.operator === ts.SyntaxKind.MinusToken &&
-        ts.isNumericLiteral(node.operand)) return -Number(node.operand.text);
+    if (
+      ts.isPrefixUnaryExpression(node) &&
+      node.operator === ts.SyntaxKind.MinusToken &&
+      ts.isNumericLiteral(node.operand)
+    )
+      return -Number(node.operand.text);
     if (ts.isArrayLiteralExpression(node)) return node.elements.map(evaluate);
     if (ts.isObjectLiteralExpression(node)) {
       const result = Object.create(null);
@@ -86,20 +99,29 @@ function parseModule(filename, root, languages) {
       if (!value) throw new Error('Unresolved Course expression: ' + node.text);
       if (seen.has(node.text)) throw new Error('Circular Course expression: ' + node.text);
       seen.add(node.text);
-      try { return evaluate(value); } finally { seen.delete(node.text); }
+      try {
+        return evaluate(value);
+      } finally {
+        seen.delete(node.text);
+      }
     }
-    if (ts.isCallExpression(node) && ts.isIdentifier(node.expression) &&
-        /^define[A-Z][A-Za-z0-9_]*$/.test(node.expression.text) &&
-        node.arguments.length >= 1) {
+    if (
+      ts.isCallExpression(node) &&
+      ts.isIdentifier(node.expression) &&
+      /^define[A-Z][A-Za-z0-9_]*$/.test(node.expression.text) &&
+      node.arguments.length >= 1
+    ) {
       return evaluate(node.arguments[0]);
     }
-    throw new Error('Non-literal Course source expression in ' + filename +
-      ': ' + node.getText(ast).slice(0, 120));
+    throw new Error('Non-literal Course source expression in ' + filename + ': ' + node.getText(ast).slice(0, 120));
   };
-  const declarations = [...variables].filter(([,value]) => {
+  const declarations = [...variables].filter(([, value]) => {
     const n = ts.isAsExpression(value) ? value.expression : value;
-    return ts.isCallExpression(n) && ts.isIdentifier(n.expression) &&
-      ['defineCourse', 'defineModule', 'defineChapter', 'defineEpisode'].includes(n.expression.text);
+    return (
+      ts.isCallExpression(n) &&
+      ts.isIdentifier(n.expression) &&
+      ['defineCourse', 'defineModule', 'defineChapter', 'defineEpisode'].includes(n.expression.text)
+    );
   });
   if (declarations.length !== 1) throw new Error('Expected one Course-owned configurator in ' + filename);
   const [name, expression] = declarations[0];
@@ -121,15 +143,14 @@ function declaredLanguages(root) {
     .find(decl => ts.isIdentifier(decl.name) && decl.name.text === 'languages');
   if (!constants) throw new Error('Missing Course languages constant');
   let node = constants.initializer;
-  while (node && (ts.isAsExpression(node) || ts.isSatisfiesExpression(node) ||
-    ts.isParenthesizedExpression(node))) node = node.expression;
+  while (node && (ts.isAsExpression(node) || ts.isSatisfiesExpression(node) || ts.isParenthesizedExpression(node)))
+    node = node.expression;
   if (!node || !ts.isArrayLiteralExpression(node)) throw new Error('Nonliteral Course languages constant');
   const values = node.elements.map(item => {
     if (!ts.isStringLiteral(item)) throw new Error('Course languages must be literal');
     return item.text;
   });
-  if (!values.length || values.length !== new Set(values).size)
-    throw new Error('Empty or duplicate Course languages');
+  if (!values.length || values.length !== new Set(values).size) throw new Error('Empty or duplicate Course languages');
   return values;
 }
 
@@ -141,11 +162,17 @@ export function readModularCourse(item, supportedLanguages) {
   // preserving the planned translation roster in this deterministic generator marker.
   // These languages are eligible for review previews, NOT production publication.
   const constants = fs.readFileSync(path.join(root, 'constants.ts'), 'utf8');
-  const marker = constants.match(/\/\/ TODO \(BLOCKER\): Restore the complete language set when translations are ready:\s*\r?\n\s*\/\/ export const languages = (\[[^\n]*\]) as const satisfies SupportedLanguages;/);
+  const marker = constants.match(
+    /\/\/ TODO \(BLOCKER\): Restore the complete language set when translations are ready:\s*\r?\n\s*\/\/ export const languages = (\[[^\n]*\]) as const satisfies SupportedLanguages;/,
+  );
   const planned = marker ? JSON.parse(marker[1]) : declared;
-  if (!Array.isArray(planned) || !planned.length || new Set(planned).size !== planned.length ||
-      declared.some(code => !planned.includes(code)) ||
-      planned.some(code => !supportedLanguages.includes(code)))
+  if (
+    !Array.isArray(planned) ||
+    !planned.length ||
+    new Set(planned).size !== planned.length ||
+    declared.some(code => !planned.includes(code)) ||
+    planned.some(code => !supportedLanguages.includes(code))
+  )
     throw new Error('Invalid planned Course language roster');
   const coursePrefix = '#coursesData/' + item.id.slice(-1) + '/' + item.id + '/';
   const visit = (file, depth, ids = new Set()) => {
@@ -157,13 +184,21 @@ export function readModularCourse(item, supportedLanguages) {
       throw new Error('Root Course identity mismatch');
     if (config.type === 'episode') return config;
     const { items, order } = config.content ?? {};
-    if (!record(items) || !Array.isArray(order) ||
-        order.length !== Object.keys(items).length || new Set(order).size !== order.length)
+    if (
+      !record(items) ||
+      !Array.isArray(order) ||
+      order.length !== Object.keys(items).length ||
+      new Set(order).size !== order.length
+    )
       throw new Error('Invalid ordered Course collection: ' + config.id);
     const children = [];
     for (const slug of order) {
-      if (!safeSlug.test(slug) || !Object.hasOwn(items, slug) ||
-          !record(items[slug]) || !record(items[slug].__courseImport))
+      if (
+        !safeSlug.test(slug) ||
+        !Object.hasOwn(items, slug) ||
+        !record(items[slug]) ||
+        !record(items[slug].__courseImport)
+      )
         throw new Error('Invalid Course child import: ' + slug);
       const spec = items[slug].__courseImport.source;
       if (spec.startsWith('#lessonsData/')) {
@@ -189,7 +224,8 @@ export function readModularCourse(item, supportedLanguages) {
   };
   const full = visit(item.entry, 0);
   return {
-    id: item.id, type: 'course',
+    id: item.id,
+    type: 'course',
     config: { base: { params: { languages: planned } } },
     project(locale) {
       if (!planned.includes(locale)) throw new Error('Locale not declared or planned by Course');
@@ -198,8 +234,11 @@ export function readModularCourse(item, supportedLanguages) {
         if (Array.isArray(input)) return input.map(localize);
         if (!record(input)) return input;
         const keys = Object.keys(input);
-        if (keys.length && keys.every(key => supportedLanguages.includes(key)) &&
-            keys.every(key => typeof input[key] === 'string')) {
+        if (
+          keys.length &&
+          keys.every(key => supportedLanguages.includes(key)) &&
+          keys.every(key => typeof input[key] === 'string')
+        ) {
           if (Object.hasOwn(input, locale)) return input[locale];
           missingCount++;
           return missing;

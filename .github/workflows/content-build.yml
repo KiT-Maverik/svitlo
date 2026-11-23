@@ -103,7 +103,6 @@ jobs:
           CONTENT_SHARD_PACKAGES: ${{ toJSON(matrix.packages) }}
         run: node scripts/ci/buildChangedContent/content-shards.mjs
 
-
   verify:
     # Keep this exact required status context from the Protect main ruleset.
     name: Affected content / build, taxonomy and packaging

@@ -27,15 +27,16 @@ describe('Configurators', () => {
         const first = makeText(firstId, 'first', 'Always visible');
         const second = makeText(secondId, 'second', { en: 'Second', uk: 'Другий' });
         const answer = defineCheckpointAnswer<
-          'answerContent', { first: typeof first; second: typeof second }, ['en', 'uk']
+          'answerContent',
+          { first: typeof first; second: typeof second },
+          ['en', 'uk']
         >({
           id: 'b775647f-203d-481a-a1c7-4d331c779d6f',
-          slug: 'answerContent', type: 'checkpointAnswer',
+          slug: 'answerContent',
+          type: 'checkpointAnswer',
           content: { items: configuratorArrayToSlugMap([first, second]), order: ['second', 'first'] },
         });
-        const item = defineCheckpointItem<
-          'example', typeof answer, typeof question, ['en', 'uk']
-        >({
+        const item = defineCheckpointItem<'example', typeof answer, typeof question, ['en', 'uk']>({
           id: itemId,
           slug: 'example',
           type: 'checkpointItem',
@@ -101,11 +102,13 @@ describe('Configurators', () => {
         const { item } = example();
         const built = item.build.overrides(
           {
-            answer: { content: {
-              items: {
-                second: { locale: { value: { uk: 'Друга відповідь' } } },
+            answer: {
+              content: {
+                items: {
+                  second: { locale: { value: { uk: 'Друга відповідь' } } },
+                },
               },
-            } },
+            },
           },
           { languages: ['en', 'uk'] },
         );
@@ -127,11 +130,13 @@ describe('Configurators', () => {
         const { item } = example();
         const later = makeText(thirdId, 'later', { en: 'Later', uk: 'Пізніше' });
         const change = {
-          answer: { content: {
-            items: { first: false as const },
-            additionalItems: configuratorArrayToSlugMap([later]),
-            order: ['later', 'second'] as ('later' | 'second')[],
-          } },
+          answer: {
+            content: {
+              items: { first: false as const },
+              additionalItems: configuratorArrayToSlugMap([later]),
+              order: ['later', 'second'] as ('later' | 'second')[],
+            },
+          },
         };
         const original = item.build.props({ languages: ['en', 'uk'] });
         const built = item.build.overrides(change, { languages: ['en', 'uk'] });
@@ -196,7 +201,9 @@ describe('Configurators', () => {
           () =>
             item.build.overrides(
               {
-                answer: { content: { additionalItems: configuratorArrayToSlugMap([first]), order: ['second', 'first'] } },
+                answer: {
+                  content: { additionalItems: configuratorArrayToSlugMap([first]), order: ['second', 'first'] },
+                },
               } as never,
               { languages: ['en', 'uk'] },
             ),

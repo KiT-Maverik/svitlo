@@ -25,7 +25,7 @@ in the parent's pinned branch. Standalone Lessons target the default branch.
 Each of the three reviews must have exactly one accepted, source-pinned
 attestation as a comment on the **same Lesson PR**:
 
-~~~text
+```text
 <!-- svitlo-lesson-review:v1 -->
 Stage: 3
 Source commit: <full 40-character Git commit SHA>
@@ -33,7 +33,7 @@ Source blob: <full 40-character Stage 2 index.ts Git blob SHA>
 Verdict: accepted
 Reviewer context: content-independent-review
 Author context: original-authoring-chat
-~~~
+```
 
 For Stage 4 and Stage 5, use the same format with Stage: 4 or Stage: 5
 and omit the Author context line. The Stage 3 review context and author
@@ -52,9 +52,9 @@ command itself cannot manufacture editorial approval.
 When authorized, a write-capable collaborator posts exactly this as a
 top-level comment on the Lesson PR:
 
-~~~text
+```text
 /lesson materialize typed
-~~~
+```
 
 The same operation may be dispatched from the default-branch workflow with
 the PR number and operation materialize-typed. The retired YAML-only commands `/lesson materialize` and `/lesson finalize`
@@ -119,13 +119,13 @@ even after technical TypeScript compilation.
 
 ## Verification
 
-~~~sh
+```sh
 node --test scripts/ci/lessonMaterialization/lesson-typed-materialization.spec.mjs
 node --test scripts/ci/lessonMaterialization/lesson-typed-publish.spec.mjs
 node --test scripts/ci/lessonMaterialization/lesson-typed-source.spec.mjs
 npm run package:build --workspace @svitlo/engine
 npm run code:check:types --workspace @svitlo/engine
-~~~
+```
 
 Tests with simulated GitHub responses cannot prove the real GitHub Actions
 permission boundary, artifact upload/download, source checkout pinning or

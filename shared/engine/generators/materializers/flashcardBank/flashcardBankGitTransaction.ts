@@ -4,12 +4,18 @@ import type {
   FlashcardBankWorkflowMaterializerInput,
 } from '../../../types/workflow/flashcardBankWorkflow.types';
 import {
-  materializeFlashcardBankDraft, materializeFlashcardBank,
-  type FlashcardBankDraftAuthorization, type FlashcardBankFinalAuthorization,
+  materializeFlashcardBankDraft,
+  materializeFlashcardBank,
+  type FlashcardBankDraftAuthorization,
+  type FlashcardBankFinalAuthorization,
 } from './materializeFlashcardBank';
 import {
-  readBankGitSnapshot, checkBankGitPlan, commitBankGitPlan,
-  type BankGitContext, type BankGitCheck, type BankGitCommit,
+  readBankGitSnapshot,
+  checkBankGitPlan,
+  commitBankGitPlan,
+  type BankGitContext,
+  type BankGitCheck,
+  type BankGitCommit,
 } from '../bankSource/bankSourceGitTransaction';
 
 export type FlashcardBankDraftGitAuthorization = Omit<FlashcardBankDraftAuthorization, 'snapshot'>;
@@ -21,7 +27,8 @@ export function checkFlashcardBankDraftSource(
   git: BankGitContext,
 ): BankGitCheck {
   const plan = materializeFlashcardBankDraft(input, {
-    ...authorization, snapshot: readBankGitSnapshot(git),
+    ...authorization,
+    snapshot: readBankGitSnapshot(git),
   });
   return checkBankGitPlan('flashcards', git, plan);
 }
@@ -32,7 +39,8 @@ export function writeFlashcardBankDraftSource(
   git: BankGitContext,
 ): BankGitCommit {
   const plan = materializeFlashcardBankDraft(input, {
-    ...authorization, snapshot: readBankGitSnapshot(git),
+    ...authorization,
+    snapshot: readBankGitSnapshot(git),
   });
   return commitBankGitPlan('flashcards', git, plan);
 }
@@ -43,10 +51,12 @@ export function checkReviewedFlashcardBankSource(
   git: BankGitContext,
 ): BankGitCheck {
   const plan = materializeFlashcardBank(input, {
-    ...authorization, snapshot: readBankGitSnapshot(git),
+    ...authorization,
+    snapshot: readBankGitSnapshot(git),
   });
   return checkBankGitPlan('flashcards', git, plan, {
-    reviewed: authorization.reviewed, evaluatedInput: input,
+    reviewed: authorization.reviewed,
+    evaluatedInput: input,
   });
 }
 
@@ -56,9 +66,11 @@ export function writeReviewedFlashcardBankSource(
   git: BankGitContext,
 ): BankGitCommit {
   const plan = materializeFlashcardBank(input, {
-    ...authorization, snapshot: readBankGitSnapshot(git),
+    ...authorization,
+    snapshot: readBankGitSnapshot(git),
   });
   return commitBankGitPlan('flashcards', git, plan, {
-    reviewed: authorization.reviewed, evaluatedInput: input,
+    reviewed: authorization.reviewed,
+    evaluatedInput: input,
   });
 }

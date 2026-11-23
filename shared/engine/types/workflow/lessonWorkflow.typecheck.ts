@@ -35,9 +35,9 @@ const courseNewLesson = {
       flashcardsSectionRequired: false,
     },
     methodology:
-      'Audience: novice observers. Entry conditions: familiar light sources. Explain reflection, '
-      + 'contrast valid examples and misconceptions, specify source checks, outcomes, cognitive '
-      + 'assessment methods, accessible representations, offline paths and excluded claims.',
+      'Audience: novice observers. Entry conditions: familiar light sources. Explain reflection, ' +
+      'contrast valid examples and misconceptions, specify source checks, outcomes, cognitive ' +
+      'assessment methods, accessible representations, offline paths and excluded claims.',
   },
 } satisfies CourseWorkflowStage3NewLesson;
 

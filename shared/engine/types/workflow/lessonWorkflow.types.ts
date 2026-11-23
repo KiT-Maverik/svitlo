@@ -146,9 +146,7 @@ export type LessonWorkflowStage2Checkpoint = {
 };
 
 export type LessonWorkflowStage2Block =
-  | LessonWorkflowStage2SimpleBlock
-  | LessonWorkflowStage2Carousel
-  | LessonWorkflowStage2Checkpoint;
+  LessonWorkflowStage2SimpleBlock | LessonWorkflowStage2Carousel | LessonWorkflowStage2Checkpoint;
 
 /** Common Section shape with a plain block map instead of Configurator children. */
 type LessonWorkflowContentSection<Config extends { content: unknown }> = {

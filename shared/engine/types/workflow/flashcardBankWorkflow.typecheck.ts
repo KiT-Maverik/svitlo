@@ -68,7 +68,10 @@ const reverseAnswer: ContentBlock_Text_Config = {
   locale: { value: { uk: 'Орбіта.' } },
 };
 const front = { items: { prompt: first }, order: ['prompt'] } satisfies FlashcardBankWorkflowSideSource;
-const back = { items: { answer, example: code }, order: ['answer', 'example'] } satisfies FlashcardBankWorkflowSideSource;
+const back = {
+  items: { answer, example: code },
+  order: ['answer', 'example'],
+} satisfies FlashcardBankWorkflowSideSource;
 const flags = [
   { type: 'list', count: 2 },
   { type: 'acronym', value: { uk: 'АБ' } },

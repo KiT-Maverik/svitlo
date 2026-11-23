@@ -19,23 +19,31 @@ export function readSupportedLanguageCodes(root = repoRoot) {
     for (const entry of statement.declarationList.declarations) {
       if (!ts.isIdentifier(entry.name) || entry.name.text !== 'DEFAULT_SUPPORTED_LANGUAGES') continue;
       let node = entry.initializer;
-      while (node && (ts.isAsExpression(node) || ts.isSatisfiesExpression(node) || ts.isParenthesizedExpression(node))) {
+      while (
+        node &&
+        (ts.isAsExpression(node) || ts.isSatisfiesExpression(node) || ts.isParenthesizedExpression(node))
+      ) {
         node = node.expression;
       }
       if (!node || !ts.isArrayLiteralExpression(node)) throw new Error('Unsupported Engine registry expression');
       definitions = node.elements.map(element => {
         if (!ts.isObjectLiteralExpression(element)) throw new Error('Invalid Engine language entry');
-        const language = element.properties.find(property =>
-          ts.isPropertyAssignment(property) &&
-          (ts.isIdentifier(property.name) || ts.isStringLiteral(property.name)) &&
-          property.name.text === 'language');
+        const language = element.properties.find(
+          property =>
+            ts.isPropertyAssignment(property) &&
+            (ts.isIdentifier(property.name) || ts.isStringLiteral(property.name)) &&
+            property.name.text === 'language',
+        );
         if (!language || !ts.isStringLiteral(language.initializer)) throw new Error('Missing language code');
         return language.initializer.text;
       });
     }
   }
-  if (!definitions?.length || definitions.some(value => !/^[a-z]{2,3}$/.test(value)) ||
-      new Set(definitions).size !== definitions.length) {
+  if (
+    !definitions?.length ||
+    definitions.some(value => !/^[a-z]{2,3}$/.test(value)) ||
+    new Set(definitions).size !== definitions.length
+  ) {
     throw new Error('Invalid Engine language registry');
   }
   return definitions;

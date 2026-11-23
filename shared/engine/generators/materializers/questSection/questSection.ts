@@ -12,13 +12,63 @@ function childLanguagesImport(parentImport: string, nestedDepth: number): string
 }
 export type ChildConfig = { id: string; slug: string; type: string; [key: string]: unknown };
 export type SourceChild = ChildConfig | { config: ChildConfig; production?: Record<string, unknown> };
-export type GeneratedFile = { path: string; content: string; kind: 'typescript' | 'specification' | 'markdown' | 'code' };
+export type GeneratedFile = {
+  path: string;
+  content: string;
+  kind: 'typescript' | 'specification' | 'markdown' | 'code';
+};
 export type Diagnostic = { path: string; code: string; message: string; severity: 'warning' };
 export type Result = { exportName: string; files: GeneratedFile[]; diagnostics: Diagnostic[] };
 const uuid = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i;
 const slug = /^[A-Za-z][A-Za-z0-9]*$/;
 const localeKey = /^[a-z]{2}(?:-[A-Z]{2})?$/;
-const reserved = new Set(['await','break','case','catch','class','const','continue','debugger','default','delete','do','else','enum','export','extends','false','finally','for','function','if','import','in','instanceof','new','null','return','super','switch','this','throw','true','try','typeof','var','void','while','with','yield','let','static','languages','content','section','stages','tasks']);
+const reserved = new Set([
+  'await',
+  'break',
+  'case',
+  'catch',
+  'class',
+  'const',
+  'continue',
+  'debugger',
+  'default',
+  'delete',
+  'do',
+  'else',
+  'enum',
+  'export',
+  'extends',
+  'false',
+  'finally',
+  'for',
+  'function',
+  'if',
+  'import',
+  'in',
+  'instanceof',
+  'new',
+  'null',
+  'return',
+  'super',
+  'switch',
+  'this',
+  'throw',
+  'true',
+  'try',
+  'typeof',
+  'var',
+  'void',
+  'while',
+  'with',
+  'yield',
+  'let',
+  'static',
+  'languages',
+  'content',
+  'section',
+  'stages',
+  'tasks',
+]);
 const isObject = (v: unknown): v is Record<string, unknown> => v !== null && typeof v === 'object' && !Array.isArray(v);
 const reference = Symbol('authored TS import');
 type Reference = { [reference]: string };
@@ -35,17 +85,24 @@ const destination = (dir: string, name = 'index.ts'): string => {
   if (dir) for (const component of dir.split('/')) part(component, 'output path');
   return [dir, name].filter(Boolean).join('/');
 };
-const exported = (name: string): string => reserved.has(name) ? 'config_' + name : name;
+const exported = (name: string): string => (reserved.has(name) ? 'config_' + name : name);
 function render(value: unknown, depth = 0): string {
   if (isObject(value) && reference in value) return String(value[reference]);
-  if (value === null || typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean') return JSON.stringify(value);
+  if (value === null || typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean')
+    return JSON.stringify(value);
   if (Array.isArray(value)) return '[' + value.map(item => render(item, depth + 1)).join(', ') + ']';
   if (!isObject(value)) throw new Error('Unsupported authored JS value');
   const entries = Object.keys(value);
   if (!entries.length) return '{}';
-  return '{\n' + entries.map(key =>
-    '  '.repeat(depth + 1) + JSON.stringify(key) + ': ' + render(value[key], depth + 1) + ','
-  ).join('\n') + '\n' + '  '.repeat(depth) + '}';
+  return (
+    '{\n' +
+    entries
+      .map(key => '  '.repeat(depth + 1) + JSON.stringify(key) + ': ' + render(value[key], depth + 1) + ',')
+      .join('\n') +
+    '\n' +
+    '  '.repeat(depth) +
+    '}'
+  );
 }
 function filterLocale(value: unknown, source: string): unknown {
   if (Array.isArray(value)) return value.map(child => filterLocale(child, source));
@@ -56,22 +113,40 @@ function filterLocale(value: unknown, source: string): unknown {
   return Object.fromEntries(keys.map(key => [key, filterLocale(value[key], source)]));
 }
 function specification(production: Record<string, unknown> | undefined, omit: string[] = []): string | undefined {
-  const entries = Object.entries(production ?? {}).filter(([key]) =>
-    !['pending','documentLanguage',...omit].includes(key));
-  return entries.length ? entries.map(([key, value]) =>
-    '# ' + key + '\n\n' + (typeof value === 'string' ? value.trimEnd() : JSON.stringify(value, null, 2))
-  ).join('\n\n') + '\n' : undefined;
+  const entries = Object.entries(production ?? {}).filter(
+    ([key]) => !['pending', 'documentLanguage', ...omit].includes(key),
+  );
+  return entries.length
+    ? entries
+        .map(
+          ([key, value]) =>
+            '# ' + key + '\n\n' + (typeof value === 'string' ? value.trimEnd() : JSON.stringify(value, null, 2)),
+        )
+        .join('\n\n') + '\n'
+    : undefined;
 }
-function verifyChild(node: SourceChild, expected: string, key: string): { config: ChildConfig; production?: Record<string, unknown> } {
+function verifyChild(
+  node: SourceChild,
+  expected: string,
+  key: string,
+): { config: ChildConfig; production?: Record<string, unknown> } {
   const resolved = sourceNode(node);
-  if (!isObject(resolved.config) || resolved.config.type !== expected ||
-      !uuid.test(resolved.config.id) || resolved.config.slug !== key)
+  if (
+    !isObject(resolved.config) ||
+    resolved.config.type !== expected ||
+    !uuid.test(resolved.config.id) ||
+    resolved.config.slug !== key
+  )
     throw new Error(key + ': invalid ' + expected + ' child identity/type/UUID');
   return resolved;
 }
 function includeChild(
-  target: GeneratedFile[], seen: Set<string>, diagnostics: Diagnostic[],
-  child: Result, dir: string, key: string
+  target: GeneratedFile[],
+  seen: Set<string>,
+  diagnostics: Diagnostic[],
+  child: Result,
+  dir: string,
+  key: string,
 ): void {
   if (child.exportName !== exported(key)) throw new Error(dir + ': mismatched child export');
   for (const file of child.files) {
@@ -96,64 +171,103 @@ export type Options = {
   documentLanguage: string;
   directory?: string;
   languagesImport: string;
-  production?: Record<string,unknown>;
-  renderStage: (config: ChildConfig, options: {
-    directory:string;documentLanguage:string;languagesImport:string;production?:Record<string,unknown>
-  }) => Result;
-  renderTask: (config: ChildConfig, options: {
-    directory:string;documentLanguage:string;languagesImport:string;production?:Record<string,unknown>
-  }) => Result;
+  production?: Record<string, unknown>;
+  renderStage: (
+    config: ChildConfig,
+    options: {
+      directory: string;
+      documentLanguage: string;
+      languagesImport: string;
+      production?: Record<string, unknown>;
+    },
+  ) => Result;
+  renderTask: (
+    config: ChildConfig,
+    options: {
+      directory: string;
+      documentLanguage: string;
+      languagesImport: string;
+      production?: Record<string, unknown>;
+    },
+  ) => Result;
 };
 export function materializeQuestSection(config: Source, options: Options): Result {
-  const dir=options.directory??'';
+  const dir = options.directory ?? '';
   destination(dir);
-  if(config.type!=='quest'||!uuid.test(config.id))throw new Error('quest: invalid type/UUID');
-  part(config.slug,'quest.slug');
-  if(!localeKey.test(options.documentLanguage))throw new Error('quest: invalid documentLanguage');
-  const files:GeneratedFile[]=[],diagnostics:Diagnostic[]=[];
-  const seen=new Set<string>(),imports:string[]=[];
-  const values:Record<string,unknown>={};
+  if (config.type !== 'quest' || !uuid.test(config.id)) throw new Error('quest: invalid type/UUID');
+  part(config.slug, 'quest.slug');
+  if (!localeKey.test(options.documentLanguage)) throw new Error('quest: invalid documentLanguage');
+  const files: GeneratedFile[] = [],
+    diagnostics: Diagnostic[] = [];
+  const seen = new Set<string>(),
+    imports: string[] = [];
+  const values: Record<string, unknown> = {};
   const identities = new Set<string>([config.id]);
-  for(const category of ['stages','tasks'] as const){
-    const source=config[category];
-    if(!isObject(source)||!Object.hasOwn(source,'start')) throw new Error('quest.'+category+': mandatory start child missing');
-    if(Object.hasOwn(source,'order'))throw new Error('quest.'+category+': order is prohibited; Quest branches via Actions');
-    const rendered:Record<string,Reference>={};
-    const ids=new Set<string>();
-    for(const key of Object.keys(source).sort()){
-      part(key,'quest.'+category+'.'+key);
-      const raw=verifyChild(source[key],category==='stages'?'questStage':'questTask',key);
-      if(ids.has(raw.config.id))throw new Error('quest.'+category+': duplicate UUID '+raw.config.id);
+  for (const category of ['stages', 'tasks'] as const) {
+    const source = config[category];
+    if (!isObject(source) || !Object.hasOwn(source, 'start'))
+      throw new Error('quest.' + category + ': mandatory start child missing');
+    if (Object.hasOwn(source, 'order'))
+      throw new Error('quest.' + category + ': order is prohibited; Quest branches via Actions');
+    const rendered: Record<string, Reference> = {};
+    const ids = new Set<string>();
+    for (const key of Object.keys(source).sort()) {
+      part(key, 'quest.' + category + '.' + key);
+      const raw = verifyChild(source[key], category === 'stages' ? 'questStage' : 'questTask', key);
+      if (ids.has(raw.config.id)) throw new Error('quest.' + category + ': duplicate UUID ' + raw.config.id);
       ids.add(raw.config.id);
-      if (identities.has(raw.config.id)) throw new Error('quest: UUID reused across stages/tasks: '+raw.config.id);
+      if (identities.has(raw.config.id)) throw new Error('quest: UUID reused across stages/tasks: ' + raw.config.id);
       identities.add(raw.config.id);
-      const childDir=[dir,category,key].filter(Boolean).join('/');
-      const child=(category==='stages'?options.renderStage:options.renderTask)(raw.config,{
-        directory:childDir,documentLanguage:options.documentLanguage,languagesImport:childLanguagesImport(options.languagesImport, 2),
-        ...(raw.production?{production:raw.production}:{})
+      const childDir = [dir, category, key].filter(Boolean).join('/');
+      const child = (category === 'stages' ? options.renderStage : options.renderTask)(raw.config, {
+        directory: childDir,
+        documentLanguage: options.documentLanguage,
+        languagesImport: childLanguagesImport(options.languagesImport, 2),
+        ...(raw.production ? { production: raw.production } : {}),
       });
-      includeChild(files,seen,diagnostics,child,childDir,key);
-      const alias='child_'+category+'_'+key;
-      rendered[key]=imported(alias);
-      imports.push('import { '+child.exportName+' as '+alias+' } from '+JSON.stringify('./'+category+'/'+key)+';');
+      includeChild(files, seen, diagnostics, child, childDir, key);
+      const alias = 'child_' + category + '_' + key;
+      rendered[key] = imported(alias);
+      imports.push(
+        'import { ' +
+          child.exportName +
+          ' as ' +
+          alias +
+          ' } from ' +
+          JSON.stringify('./' + category + '/' + key) +
+          ';',
+      );
     }
-    values[category]=rendered;
+    values[category] = rendered;
   }
-  const {stages:_ignoredStages,tasks:_ignoredTasks,...metadata}=config;
-  const own={...metadata,locale:filterLocale(metadata.locale,options.documentLanguage),stages:imported('stages'),tasks:imported('tasks')};
-  const blocker='// TODO (BLOCKER): Quest is Build-only; Lesson/Episode Section runtime and playback are not implemented.';
-  diagnostics.push({path:destination(dir),code:'quest-build-only',message:blocker,severity:'warning'});
-  const source=[
+  const { stages: _ignoredStages, tasks: _ignoredTasks, ...metadata } = config;
+  const own = {
+    ...metadata,
+    locale: filterLocale(metadata.locale, options.documentLanguage),
+    stages: imported('stages'),
+    tasks: imported('tasks'),
+  };
+  const blocker =
+    '// TODO (BLOCKER): Quest is Build-only; Lesson/Episode Section runtime and playback are not implemented.';
+  diagnostics.push({ path: destination(dir), code: 'quest-build-only', message: blocker, severity: 'warning' });
+  const source = [
     "import { defineQuestSection } from '@svitlo/engine/build';",
-    'import { languages } from '+JSON.stringify(options.languagesImport)+';',
-    ...imports,'',blocker,
-    'const stages = '+render(values.stages)+';',
-    'const tasks = '+render(values.tasks)+';',
-    'export const '+exported(config.slug)+' = defineQuestSection<'+JSON.stringify(config.slug)+', typeof stages, typeof tasks, typeof languages>(',
-    render(own)+');',''
+    'import { languages } from ' + JSON.stringify(options.languagesImport) + ';',
+    ...imports,
+    '',
+    blocker,
+    'const stages = ' + render(values.stages) + ';',
+    'const tasks = ' + render(values.tasks) + ';',
+    'export const ' +
+      exported(config.slug) +
+      ' = defineQuestSection<' +
+      JSON.stringify(config.slug) +
+      ', typeof stages, typeof tasks, typeof languages>(',
+    render(own) + ');',
+    '',
   ].join('\n');
-  const spec=specification(options.production);
-  if(spec)addOwn(files,seen,{path:destination(dir,'specification.md'),kind:'specification',content:spec});
-  addOwn(files,seen,{path:destination(dir),kind:'typescript',content:source});
-  return {exportName:exported(config.slug),files,diagnostics};
+  const spec = specification(options.production);
+  if (spec) addOwn(files, seen, { path: destination(dir, 'specification.md'), kind: 'specification', content: spec });
+  addOwn(files, seen, { path: destination(dir), kind: 'typescript', content: source });
+  return { exportName: exported(config.slug), files, diagnostics };
 }

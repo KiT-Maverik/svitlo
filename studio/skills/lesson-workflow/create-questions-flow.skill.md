@@ -65,7 +65,6 @@ Before integration, the next action is the required final QA/owner-authorized re
 
 **Terminal state:** when all seven Questions stages are verified complete, explicitly say **"All seven Questions workflow stages are complete. There is no next Questions stage. You can assign new work."** Stop; report outstanding integration, independent Flashcards, Lesson QA, publication or merge separately rather than inventing stage eight or continuing automatically. An unmerged or unpublished bank does not satisfy downstream integration/readiness gates.
 
-
 **Typed authoring boundary (migration #783, integration pending #775):** a bank
 is authored in the same Lesson-owned `questions/index.ts` from Stage 1 through
 Stage 4, with `satisfies QuestionBankWorkflowStage1`, then Stage 2 and Stage 3.
@@ -86,7 +85,6 @@ review remains editorial; Stage 5 preflight enforces identity/order/asset
 safety and full Engine Config validation, and publication verifies all bank
 members (including unselected members) and Section refs. Draft CI intentionally
 defers expensive checks. See the relevant [architecture](../../docs/architecture/lesson-assessment-bank-separation.md).
-
 
 ## Stage 1 — Lesson Analysis
 
@@ -116,7 +114,6 @@ may create this initial file **only** after explicit Lesson Stage 7
 authorization; verify no existing bank or conflicting staged source exists.
 A Stage 1 index is purposely incomplete/unpublishable.
 
-
 ## Stage 2 — Question Design
 
 Refine the **same** `questions/index.ts` to
@@ -141,7 +138,6 @@ a generic Question Config or invent correct answers. Type derivations live in
 nine Config/Zod schemas remain the scoring source of truth. A missing
 physical asset is an explicit production blocker, not a fake file reference.
 No second YAML/JSON Schema editor source is needed.
-
 
 ## Stage 3 — Quiz Section Design
 
@@ -169,7 +165,6 @@ Configurators and assigning `params.selection.questionIds:
 [approvedQuestion.id, anotherQuestion.id]`. Do not make an AST verifier,
 fabricate upstream references or automatically rewrite Section registries.
 
-
 ## Stage 4 — Independent Assessment Review
 
 A different specialist agent/chat context independently reviews the **entire**
@@ -184,7 +179,6 @@ mandatory return to Stage 2. Re-verify the corrected source and record
 baseline/final SHA, corrections, scope and outcome in the Questions PR. Escalate
 genuinely unresolved Methodologist or another entity's ownership decisions
 rather than inventing assessment semantics.
-
 
 ## Stage 5 — Resource Production
 

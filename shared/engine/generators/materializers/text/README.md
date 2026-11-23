@@ -10,16 +10,16 @@ The renderers never touch the filesystem and cannot clobber reviewed files. Ever
 
 ## Historical parity inventory (#772, older YAML-to-TS)
 
-| Kind | Specialized behavior retained | N/A / parent-owned |
-| --- | --- | --- |
-| Text | full exact inline `%_%id: camelCase; value: text%_%` text; real Zod and variable validation; source locale only | nested child maps |
-| Markdown | `markdown.md` or source-locale `<language>.md`, `readMarkdown(import.meta.url, ...)`, replacement variables and exact Markdown/math text | nested child maps |
-| Code | full language-to-extension map, exact bytes in `code.<extension>`, `readCodeSource` and Code replacement variables | nested child maps |
-| Image | source-locale filename/alt/fallback, nil UUID `.webp` pending filename and sizing/alt TODOs | child collections |
-| Video | filename `.mp4`, poster `.webp`, source-locale labels and separate pending TODOs | child collections |
-| Youtube | strict owned `defineYoutube`, mode/href/accessible label source fidelity; no physical asset placeholder | child collections |
-| Audio | filename `.mp3`, translated title/description and explicit pending TODO | child collections |
-| Subtitles | filename `.vtt` and language filtering, no fabricated WebVTT data | child collections |
+| Kind      | Specialized behavior retained                                                                                                            | N/A / parent-owned |
+| --------- | ---------------------------------------------------------------------------------------------------------------------------------------- | ------------------ |
+| Text      | full exact inline `%_%id: camelCase; value: text%_%` text; real Zod and variable validation; source locale only                          | nested child maps  |
+| Markdown  | `markdown.md` or source-locale `<language>.md`, `readMarkdown(import.meta.url, ...)`, replacement variables and exact Markdown/math text | nested child maps  |
+| Code      | full language-to-extension map, exact bytes in `code.<extension>`, `readCodeSource` and Code replacement variables                       | nested child maps  |
+| Image     | source-locale filename/alt/fallback, nil UUID `.webp` pending filename and sizing/alt TODOs                                              | child collections  |
+| Video     | filename `.mp4`, poster `.webp`, source-locale labels and separate pending TODOs                                                         | child collections  |
+| Youtube   | strict owned `defineYoutube`, mode/href/accessible label source fidelity; no physical asset placeholder                                  | child collections  |
+| Audio     | filename `.mp3`, translated title/description and explicit pending TODO                                                                  | child collections  |
+| Subtitles | filename `.vtt` and language filtering, no fabricated WebVTT data                                                                        | child collections  |
 
 Every type retains immutable UUID and slug, qualified pending diagnostics, source-language translation pruning and planned-language TODO, optional `specification.md` sidecars, stable module imports/exports, and no physical media file fabrication. Incomplete mandatory fields such as Text/Markdown copy, Code source, Image sizing, or accessible media labels now **throw without returning a plan**. A reserved Nil UUID media filename, by contrast, is explicitly valid in the Engine media-reference schema: it may produce a type-valid but publication-blocked `index.ts` when other required properties are already reviewed. It is never an invented media file. All eight implement the same renderer/relative-plan shape **independently**, with adjacent tests.
 
