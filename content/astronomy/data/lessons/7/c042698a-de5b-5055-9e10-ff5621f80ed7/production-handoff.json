@@ -1,0 +1,188 @@
+{
+  "kind": "svitlo-lesson-production-handoff",
+  "version": 1,
+  "lessonId": "c042698a-de5b-5055-9e10-ff5621f80ed7",
+  "nodes": [
+    {
+      "path": "$",
+      "id": "c042698a-de5b-5055-9e10-ff5621f80ed7",
+      "type": "lesson",
+      "production": {
+        "documentLanguage": "uk",
+        "quizRequired": true,
+        "purpose": "Навчити дитину 6–8 років безпечно дізнаватися про небо й Сонце.",
+        "audience": "6–8 років; читання, письмо, телескоп і вихід на вулицю не є передумовами.",
+        "productionNotes": "Screenwriter correction of Stage 3 CR-01–CR-06. Four Content Sections, one Quiz Section, a draft-only disabled Scene and text-first practice with three case disclosures, plus reflection and comparison Checkpoints. The Skill, Stage 1 methodology and intended locales uk/en/pl/qm remain unchanged.\nNon-reader plan applies to every Content Section: the existing Ukrainian learner copy is the read-aloud script. An adult/facilitator (or separately verified accessible text-to-speech if ever implemented) reads short paragraphs and instructions in authored order, pauses before each prompt, accepts spoken/gesture/pointing responses and reveals feedback only afterward. No camera, equipment, live solar observations, written response, internet or preinstalled assistive voice are required. This is an editorial facilitation plan, not a claim that the platform implements narration, offline packages or live human assistance automatically. Stage 6 specialists must verify that actual published interactions are independently accessible to keyboard/touch/screen-reader users.\nStage 3 independent re-review, Stage 4–5 reviews, Scene registration, full Question Bank selection/Quiz config, production build and real en/pl/qm translations remain outstanding. No fake IDs, media or locales have been authored; Lesson remains Course-neutral and Notes remain future-only.",
+        "methodology": "# Почнімо досліджувати небо\n\n## Мета та межі\nНавчити помічати небо, не наражаючи зір на небезпеку. Розмежувати цікавість до спостереження і небезпечне пряме споглядання Сонця.\n\n## Аудиторія і передумови\nДіти приблизно 6–8 років, які тільки починають навчання астрономії; читання, письмові навички, нічні спостереження і телескоп не є умовою.\nПередумови: досвід денного світла і темряви без попередніх астрономічних курсів. За відсутності власних спостережень використовувати достовірні підписані зображення або озвучені описи.\n\n## Перевірені Skills та джерела\n- b4b9b469-391d-40f8-b11d-6884c76ed106 — `content/astronomy/data/skills/observingTheSky/observationPractice/safeSolarObservation.ts` (перевірена канонічна таксономія).\n\n## Спостережувані результати\n- Назвати або показати принаймні один приклад безпечного спостереження за небом без прямого погляду на Сонце.\n- Розпізнати на доступному прикладі небезпечні способи: дивитися на Сонце, користуватися біноклем чи телескопом без спеціального сертифікованого сонячного фільтра.\n- Пояснити, що для астрономічних спостережень можна використовувати готові знімки, малюнки й описи; не потрібно дивитися на Сонце.\n\n## Науково коректні опорні твердження\n- Сонячне світло може ушкодити очі; звичайні сонцезахисні окуляри, саморобні фільтри й нефільтрована оптика не роблять пряме споглядання Сонця безпечним.\n- Небо можна описувати і без спостережень Сонця: хмари, освітленість, видимі об'єкти на перевірених фото; нічні виходи не потрібні.\n- Використовувати спеціальні методи сонячних спостережень можна лише за визначеними правилами з відповідним захистом і під відповідальним наглядом; для цього віку не призначати прямі сонячні спостереження.\n\n## Поняття, коректні приклади та рівень опанування\n- «Спостерігати небо» — помічати доступні ознаки довкілля (хмари, світло, тіні) або працювати з достовірними зображеннями; це не означає дивитися безпосередньо на Сонце. Хмари й тіні — приклади безпечного дослідження неба, але самі по собі не є методами розглядання сонячного диска.\n- «Непряме спостереження Сонця» — бачити його вже отримане зображення: перевірене фото, запис або проєкцію сонячного зображення на поверхню. Проєкцію як принцип можна показувати лише в підготовленому матеріалі чи під наглядом компетентного дорослого; дивитися крізь отвір проєктора або спрямовувати власні очі на Сонце не можна. Діти не повинні самостійно виготовляти, налаштовувати чи випробовувати сонячні пристрої.\n- Спеціалізовані належні сонячні фільтри існують, але звичайні окуляри, затемнені матеріали й фільтри, не призначені для конкретної оптики, їх не замінюють. Вивчення або практичне застосування захисної оптики й спостереження затемнень не належить до цього вступного Lesson.\n- Позитивні зразки вибору: розглядати підписаний науковий знімок Сонця, описувати хмари без пошуку Сонця поглядом, розглядати запис проєкції, підготовлений фахівцем. Контрприклади для обговорення, але ніколи для виконання: «глянути на мить», дивитися крізь бінокль, звичайні окуляри чи отвір проєктора.\n- Очікувана глибина: дитина впізнає безпечний/небезпечний спосіб та обирає безпечну заміну з коротким поясненням «це захищає очі»; знання будови ока, типів фільтрів, оптики й механіки затемнень не вимагати. Не вважати одну правильну відповідь підтвердженням стійкої майстерності.\n\n## Типові помилкові уявлення\n- «На Сонце можна швидко поглянути без ризику» — ні, таке завдання не пропонуємо.\n- «Темні окуляри або звичайний телескоп захищають» — ні; не рекомендувати жодної імпровізованої оптики.\n- «Досліджувати небо можна лише вночі» — ні.\n\n## Принципова навчальна прогресія\nВід уже знайомих денного світла, хмар і тіней перейти до питання «що можна помітити на небі?». Далі розрізнити: (1) опис довкілля без погляду на Сонце, (2) роботу з готовими науковими зображеннями/записом непрямого спостереження Сонця, (3) небезпечний прямий погляд або непідготовлену оптику. Після порівняння безпечних і небезпечних прикладів перейти до вибору безпечної альтернативи в новій ситуації та короткого пояснення причини. Автор Screenwriter визначить форму практики й доступні еквіваленти; навчальна діяльність не повинна провокувати реальні небезпечні спроби.\n\n## Межі перенесення та перевірка розуміння\nМожливі контексти: дитина хоче дізнатися, який вигляд має Сонце; бачить незнайомий прилад; має тільки фото або усний опис. Критерій успіху — обирає безпечне джерело інформації замість ризикованої дії та розпізнає, чому прямий погляд або нефільтрована оптика небезпечні. Не змішувати цей результат із навичкою ведення щоденника спостережень, яку опрацьовує інший Lesson у Course. Для майбутньої короткої Note придатна опорна ідея «Дізнаватися про Сонце можна, не дивлячись на нього»; точне формулювання і момент подачі визначить Screenwriter, механізм Notes не вважати реалізованим.\n\n## Assessment plan\n```yaml\nassessmentPlan:\n  quizRequired: true\n  quizzes:\n    - key: safeSkyChoices\n      purpose: 'Переконатися, що дитина переносить правило сонячної безпеки на нову ситуацію, а не лише повторює заборону.'\n      skills: [b4b9b469-391d-40f8-b11d-6884c76ed106]\n      requiredAssessmentMethods: [classification, application]\n```\nОдин Quiz потрібен, бо сама демонстрація правила не засвідчує, що дитина може безпечно діяти в новій ситуації. `classification` перевіряє розрізнення безпечних/небезпечних способів на прикладах; `application` — вибір безпечної альтернативи в зміненому контексті. Обидва методи прив'язані до одного перевіреного Skill; не замінювати їх типами UI-відповідей. Для змістовного навчального Lesson потрібен окремий повноцінний Question Bank; на Stage 1 його ще не існує. Це методологічне обґрунтування Quiz, а не готові запитання, бали, способи введення відповідей чи реалізація Section. Assessment Architect визначить валідні завдання, критерії та банки.\n\n## Доступність, локалізація, офлайн\nУсе має працювати без доступу до вулиці й без апаратури; зображення супроводжуються словами і доступним текстом; не вимагати читання або розпізнавання лише за кольором.\nПланові мови Lesson: uk, en, pl, qm; українська — єдина авторська мова на цьому етапі. Жодних невиконаних перекладів не імітувати. Однакові цілі мають бути досяжними у слабкій мережі/офлайн та без обов'язкових органів чуття чи письма.\n\n## Механізми перевірки достовірності і межі\nКанонічний предметний орієнтир: `content/astronomy/docs/skills/taxonomy.md` та верифіковані Code визначення вище. Для правил захисту очей і непрямого спостереження: NASA, Eclipse Viewing Safety — https://science.nasa.gov/eclipses/safety/ ; American Astronomical Society, How to View a Solar Eclipse Safely — https://eclipse.aas.org/eye-safety . Це довідкові правила безпеки, а не запрошення практикувати спостереження затемнень. Освітній стандарт із країною/версією не заявляється. Цей вступний Lesson не засвідчує повної майстерності всієї таксономічної компетентності.\nСценарій, персонажі Course, Епізоди, конкретні Sections, Questions, мультимедіа та scoring є окремими наступними рішеннями спеціалістів.\n\n## Рішення про обов'язкові Section-и оцінювання і повторення\n\nУ цьому вступному уроці потрібна одна підсумкова Quiz Section `safeSkyChoices` після рефлексії. Окрему Flashcards Section у послідовність цього короткого уроку не додаємо: первинне закріплення безпечних дій вже забезпечують три доступні ситуації, розкриття пояснень та рефлексія. Це рішення **лише про розміщення Section у Lesson**; потребу в окремому банку флешкарт можна оцінити пізніше за незалежним процесом, після готового Question Bank. Не підмінювати ним Quiz або окремий банк запитань."
+      }
+    },
+    {
+      "path": "$.config.section.items.skyAroundUs",
+      "id": "3e911ad2-0530-57f8-8aa5-10819d205c59",
+      "type": "content",
+      "production": {
+        "purpose": "Від знайомого опису хмар перейти до питання, як отримувати відомості про Сонце безпечно.",
+        "pedagogicalIntent": "Активне осмислення науково коректного правила із доступним feedback; не вимагати читання, письма, нічних спостережень або приладів.",
+        "productionNotes": "Доступ для дитини, яка не читає: дорослий послідовно читає welcome й skyExamples українською та описує два уявні неба; робить паузу після «назви дві ознаки» і «у якому описі хмари закривають більшу частину неба», приймає усну/жестову відповідь, тільки після неї розкриває skyCompareCheck і читає пояснення. Не потребує фотографії, відео, нічного виходу чи приладу. Stage 6 перевіряє клавіатурне розкриття Checkpoint. TTS/аудіозаписи не створені й не обіцяні."
+      }
+    },
+    {
+      "path": "$.config.section.items.skyAroundUs.config.content.items.welcome",
+      "id": "18ba7cd1-b973-57a6-bee5-86b50328a4da",
+      "type": "markdown",
+      "production": {
+        "purpose": "Ввести визначення спостереження та першу доступну дію.",
+        "productionNotes": "Stage 2: повний український текст готовий; переклади, незалежне рев'ю і перевірка рендерингу — пізніші етапи."
+      }
+    },
+    {
+      "path": "$.config.section.items.skyAroundUs.config.content.items.skyExamples",
+      "id": "827b5df7-917c-5e7e-9e21-65048f89e8a9",
+      "type": "markdown",
+      "production": {
+        "purpose": "Пояснити різницю між розгляданням неба й готовим зображенням Сонця.",
+        "productionNotes": "Stage 2: повний український текст готовий; переклади, незалежне рев'ю і перевірка рендерингу — пізніші етапи."
+      }
+    },
+    {
+      "path": "$.config.section.items.skyAroundUs.config.content.items.skyCompareCheck",
+      "id": "0121e00a-ab04-57f1-be3a-ea1f5571895d",
+      "type": "checkpoint",
+      "production": {
+        "purpose": "Змістовно відокремити дитячу спробу порівняння від розкриття пояснення.",
+        "productionNotes": "Read-aloud: дорослий читає обидва уявні описи, робить паузу для усної/жестової відповіді, а потім відкриває пояснення. Лише accordion; оцінок та кнопки виконання немає."
+      }
+    },
+    {
+      "path": "$.config.section.items.solarSafety",
+      "id": "12936be4-a2f0-5b31-b6eb-79a63b90687f",
+      "type": "content",
+      "production": {
+        "purpose": "Науково коректно розрізнити небезпечний прямий погляд і перегляд готового фото/запису.",
+        "pedagogicalIntent": "Активне осмислення науково коректного правила із доступним feedback; не вимагати читання, письма, нічних спостережень або приладів.",
+        "productionNotes": "Дорослий або доступний читач екрана читає whyProtectEyes і safeWays вголос з паузою після двох протилежних намірів. Дитина показує або називає «безпечний»/«небезпечний», тоді слухає і пояснює різницю. Жодної демонстрації прямого погляду, оптики чи проєктора; це лише словесне обговорення. Наукові джерела NASA/AAS закріплені в Stage 1; озвучення автоматичним TTS/медіа на Stage 2 не реалізоване."
+      }
+    },
+    {
+      "path": "$.config.section.items.solarSafety.config.content.items.whyProtectEyes",
+      "id": "5ae8cf30-7084-5d1f-aa8a-79701cca070c",
+      "type": "markdown",
+      "production": {
+        "purpose": "Правило сонячної безпеки, причинне пояснення, протиставлення ризикованого й безпечного.",
+        "productionNotes": "Stage 2: повний український текст готовий; переклади, незалежне рев'ю і перевірка рендерингу — пізніші етапи."
+      }
+    },
+    {
+      "path": "$.config.section.items.solarSafety.config.content.items.safeWays",
+      "id": "62dfa921-fff7-5b31-b975-882f8ce70b8a",
+      "type": "markdown",
+      "production": {
+        "purpose": "Сформувати позитивні безпечні альтернативи без небезпечних інструкцій.",
+        "productionNotes": "Stage 2: повний український текст готовий; переклади, незалежне рев'ю і перевірка рендерингу — пізніші етапи."
+      }
+    },
+    {
+      "path": "$.config.section.items.safeChoices",
+      "id": "382eacbe-b1a2-5988-9469-2dc6ed35d707",
+      "type": "content",
+      "production": {
+        "purpose": "Три безпечні рішення у відмінних контекстах, із зворотним зв'язком та можливістю виправлення.",
+        "pedagogicalIntent": "Активне осмислення науково коректного правила із доступним feedback; не вимагати читання, письма, нічних спостережень або приладів.",
+        "productionNotes": "Текстова вправа afterPractice + practiceReveal є первинним доступним маршрутом: дорослий читає кожну ситуацію/варіанти, чекає на усну, жестову або вказівну відповідь, лише потім розкриває правильне пояснення. Ніякої оцінки або потреби самостійного читання. Scene safeChoiceLab лишається disabled: true і стоїть останньою в order. Stage 6 окремо забезпечує реєстрацію, error boundary та справжній рівноцінний fallback до активації Scene; перевірити кейси, підписи, офлайн і слабкі пристрої."
+      }
+    },
+    {
+      "path": "$.config.section.items.safeChoices.config.content.items.practiceIntro",
+      "id": "d172d47e-8c5b-57e5-95d5-590783750974",
+      "type": "markdown",
+      "production": {
+        "purpose": "Підвести до неоцінюваної ситуаційної практики.",
+        "productionNotes": "Stage 2: повний український текст готовий; переклади, незалежне рев'ю і перевірка рендерингу — пізніші етапи."
+      }
+    },
+    {
+      "path": "$.config.section.items.safeChoices.config.content.items.safeChoiceLab",
+      "id": "98f915af-6818-5dba-a461-9756c578dd1b",
+      "type": "scene",
+      "production": {
+        "purpose": "Формувальна практика безпечних рішень із негайним поясненням.",
+        "specification": "# «Безпечний вибір»: Scene — editorial specification (not implemented)\nStatus: Scene configurator is authored, but the local Scene and its registry do not exist. The Stage 2/3 draft keeps config.params.disabled: true; the UI Kit ContentBlockRenderer skips disabled items before dispatching the Scene block. Content remains valid as a fully accessible text-first practiceReveal Checkpoint even if Scene is never mounted. No Scene playback or network-independent Scene code is claimed.\n\n## Learning experience and invariant truth\nThree situations in fixed order photo, glasses, clouds, each with a prompt, one safe and one risk action, and distinct safeFeedback/riskFeedback, sourced from this node's locale.value. All cases are unscored formative learning, not Question Bank data. Key safe is always the safe action. A mistake must lead only to explanatory feedback, never an instruction to perform an unsafe physical action or emulate a solar view.\n\n## Explicit displayed option order\nFor photo render [risk, safe]; for glasses render [safe, risk]; for clouds render [risk, safe]. These stable per-case sequences are part of the design: do not derive them from alphabetical keys, implicit map iteration, side color or a rule that always puts safe first. Preserve logical keyboard/screen-reader order equal to the visible order and semantically stable option labels. The separate text-first Checkpoint uses the matching A/B order.\n\n## Localized control copy\nRead the exact Ukrainian keys from locale.value.controls: next, restart, textAlternative, feedbackHeading and progressPhoto/progressGlasses/progressClouds. Do not hardcode «Далі» or other visible/assistive copy inside React. Resolve all future declared languages from real reviewed translations only; no English fallback masquerading as a translation.\n\n## States, actions and feedback\nInitial state: intro, progressPhoto, first case prompt and two action buttons with neither selected. Activating either action by touch, Enter or Space reveals the matching safeFeedback/riskFeedback next to the buttons and announces it once politely for screen readers. The child can activate the other option to change their mind, with a fresh explanation and no penalty. After any response next appears; require no timer, score, grade or forced-success gate. Move to the next case, then done with restart available. Restart resets all local Scene selections to case one. Maintain predictable focus and allow learner navigation to the textAlternative pathway. Avoid duplication of visible Scene and complete text practice when both are enabled; the equivalent Checkpoint must always remain independently reachable.\n\n## Accessibility and non-reader facilitation\nUse native labelled buttons, no drag/drop, flashing light, color-only coding or animated staring at Sun. Announce progress and feedback accessibly, keep focus order visible and keyboard/touch-screen-reader parity, scale content 200%, honor reduced motion and RTL semantics. For a pre-reader: the facilitator reads the prompt and the two options aloud, accepts a spoken or pointing answer, reads the distinct feedback, and pauses so the child can choose again. Recorded narration/TTS is not implemented; the source text is the approved read-aloud script. No webcam, GPS, live Sun exposure, browser audio requirement or special equipment.\n\n## Nonvisual and low-end route, crash guard\nThe text-first afterPractice + practiceReveal Checkpoint precedes this disabled Scene in section.order. It is the *primary* Draft exercise, not a fallback that appears only after a crash. Current UI Kit Scene.tsx throws on an unknown Scene ID and Suspense fallback=null does not catch that throw. At Stage 6 the Coding Agent must implement/register the real Scene and guard attempted mounting with a real error boundary or Scene-aware routing that renders the same independent text practice on missing/chunk-error/offline failure; only then may disabled be removed. Verify that children can always reach practiceReveal, including no script/network and slow devices, rather than relying on the next Markdown sibling to survive a render crash. No renderer/platform change is authored at this stage.\n\n## Visual constraints and Stage 6 evidence\nUse quiet 2D icons (photo, ordinary sunglasses, clouds), never simulated direct looking or sunlit bright-flash effects, DIY projector instructions, live camera or forbidden magnifiers. All graphics have explanatory text; preserve lesson neutrality. Scene acceptance requires real code+registry, keyboard/touch/screen reader, accessible live region, deterministic option order, all localized labels, explicit fallback, offline package/low-end verification and all three distinct feedback sets. Do not claim a CI-green YAML or successful text practice proves Scene completion.",
+        "productionNotes": "Readiness: editorial source/specification only. Scene is intentionally disabled in current Config to avoid mounting an unregistered Scene. Text-first practiceReveal is available as the required learning-equivalent route. Stage 6 must register and verify Scene, implement an error fallback, and only then enable it; no runtime behavior is claimed."
+      }
+    },
+    {
+      "path": "$.config.section.items.safeChoices.config.content.items.afterPractice",
+      "id": "15501927-9c5e-570d-aee6-8b22efa0ef31",
+      "type": "markdown",
+      "production": {
+        "purpose": "Рівноцінна текстова альтернатива кожному стану Scene.",
+        "productionNotes": "Stage 6 має показувати цей fallback замість Scene або на вибір, щоб не перевантажувати дублюванням."
+      }
+    },
+    {
+      "path": "$.config.section.items.safeChoices.config.content.items.practiceReveal",
+      "id": "470bc5ac-4631-56ab-970c-7416ad1f338f",
+      "type": "checkpoint",
+      "production": {
+        "purpose": "Основна доступна тренувальна вправа з трьома навчальними рішеннями та змістовними поясненнями, відкриваними лише після відповіді.",
+        "productionNotes": "Read-aloud: дорослий читає ситуацію і варіанти А/Б, приймає усну або жестову відповідь, потім відкриває картку і читає пояснення. Усі три ситуації доступні в українському Text, без Scene, з кнопками Accordion, без балів, таймера і перевірки правильності. Stage 6 перевіряє keyboard/touch/screen reader/офлайн."
+      }
+    },
+    {
+      "path": "$.config.section.items.reflectAndRemember",
+      "id": "48cf58e9-bac2-503c-9c03-397eb753c765",
+      "type": "content",
+      "production": {
+        "purpose": "Закріпити правило через неоцінюваний Checkpoint і лаконічну рефлексію.",
+        "pedagogicalIntent": "Активне осмислення науково коректного правила із доступним feedback; не вимагати читання, письма, нічних спостережень або приладів.",
+        "productionNotes": "Для дітей, які не читають, ведучий читає reflectIntro та обидві теми reflectionCheck, приймає усні відповіді/жести без вимоги письма і відкриває кожне пояснення лише після відповіді; closingMessage читається вголос і дитина завершує фразу. Немає балів, обов'язкових check-кнопок чи блокування. Майбутня коротка Note «Дізнаватися про Сонце можна, не дивлячись на нього» планується після reflectionCheck, до closingMessage; runtime Notes-unlock ще не існує."
+      }
+    },
+    {
+      "path": "$.config.section.items.reflectAndRemember.config.content.items.reflectIntro",
+      "id": "0e3caedf-62b9-530b-a656-997e62720845",
+      "type": "markdown",
+      "production": {
+        "purpose": "Перехід від вибору до пояснення й виправлення помилки.",
+        "productionNotes": "Stage 2: повний український текст готовий; переклади, незалежне рев'ю і перевірка рендерингу — пізніші етапи."
+      }
+    },
+    {
+      "path": "$.config.section.items.reflectAndRemember.config.content.items.reflectionCheck",
+      "id": "1c9b440c-58f2-5fa0-b9fb-a293122f7d95",
+      "type": "checkpoint",
+      "production": {
+        "purpose": "Дві неоцінювані рефлексивні перевірки з відповідями для порівняння після власної спроби.",
+        "productionNotes": "Stage 2: checkpoint Config-shaped, не Quiz/Question Bank; Stage 6 перевірити семантичне розкриття і screen-reader feedback. Усна відповідь, вказування або обдумування замінюють письмо."
+      }
+    },
+    {
+      "path": "$.config.section.items.reflectAndRemember.config.content.items.closingMessage",
+      "id": "ed026657-d710-5376-bf67-6668ba8b5f5d",
+      "type": "markdown",
+      "production": {
+        "purpose": "Закріплення переносного правила і м'який перехід до Quiz.",
+        "productionNotes": "Stage 2: повний український текст готовий; переклади, незалежне рев'ю і перевірка рендерингу — пізніші етапи."
+      }
+    },
+    {
+      "path": "$.config.section.items.safeSkyChoices",
+      "id": "2d844bab-f77e-5dc5-adb9-7891d5bb6b59",
+      "type": "quiz",
+      "production": {
+        "purpose": "Один обов'язковий оцінюваний Quiz із Stage 1 для Skill safeSolarObservation.",
+        "pedagogicalIntent": "Активне осмислення науково коректного правила із доступним feedback; не вимагати читання, письма, нічних спостережень або приладів.",
+        "productionNotes": "Quiz placement only: assessmentPlanKey=safeSkyChoices; Skill=b4b9b469-391d-40f8-b11d-6884c76ed106; methods=classification,application. params: {} deliberately incomplete pending independently reviewed Question Bank, genuine questionIds, grading, interaction and screen selection from Assessment Architect. Stage 6 preflight/publication blocked until completed. Для дитини, що не читає: ведучий читає quizIntro й майбутні реальні формулювання Questions, описує усі зображення словами, надає можливість дати усну/вказівну відповідь за валідним погодженим способом. До публікації Assessment Architect + Coding Agent мають перевірити доступність справжніх форматів Questions і відсутність допомоги, яка підказує відповідь. Аудіо/TTS та Question Bank наразі відсутні, жодного оцінювання ще немає.\nAssessment intent: safeSkyChoices\nBank integration: pending"
+      }
+    },
+    {
+      "path": "$.config.section.items.safeSkyChoices.config.content.items.quizIntro",
+      "id": "2b550f05-8866-583f-a8f4-391e6d3eec4e",
+      "type": "markdown",
+      "production": {
+        "purpose": "Готовий вступний екран, без вигаданих Question IDs або grading.",
+        "productionNotes": "Stage 2: повний український текст готовий; переклади, незалежне рев'ю і перевірка рендерингу — пізніші етапи."
+      }
+    }
+  ]
+}

@@ -427,6 +427,31 @@ test('Skill IDs resolve to imported source symbols rather than hard-coded UUIDs'
     assert.doesNotMatch(code, new RegExp(skillId));
   }));
 
+test('canonical .ts Skill sources resolve and test modules do not create duplicate Skill UUIDs', () =>
+  fixture(f => {
+    const skillId = id(98);
+    const folder = path.join(f.workspace, 'data/skills/observingTheSky/observationPractice');
+    fs.mkdirSync(folder, { recursive: true });
+    const skillSource =
+      "import { defineSkill } from '@svitlo/engine/build';\n" +
+      "export const safeSolarObservation = defineSkill({ id: '" +
+      skillId +
+      "', slug: 'safeSolarObservation' });\n";
+    fs.writeFileSync(path.join(folder, 'safeSolarObservation.ts'), skillSource);
+    fs.writeFileSync(path.join(folder, 'safeSolarObservation.spec.ts'), skillSource);
+    f.config.skills = [skillId];
+    f.save();
+    runOne(f.lesson, 'generate', f.root);
+    const code = fs.readFileSync(f.generated('index.ts'), 'utf8');
+    assert(
+      code.includes(
+        'import { safeSolarObservation } from "../../../skills/observingTheSky/observationPractice/safeSolarObservation"',
+      ),
+    );
+    assert(code.includes('skills: [safeSolarObservation.id]'));
+    assert.doesNotMatch(code, new RegExp(skillId));
+  }));
+
 test('canonical .ts Skill files resolve to real symbols without a .data suffix', () =>
   fixture(f => {
     const skillId = id(100);
@@ -1560,3 +1585,75 @@ test('mixed assessment selections preserve real UUIDs and block every incomplete
   assert.ok(scanSource('sections/quizMixed/index.ts', section).length >= 4);
   assertTypeScriptSyntax(files);
 });
+test('assessment Sections use the ordinary nested Section path with exactly one real blocker per Section', () =>
+  fixture(f => {
+    const make = (slug, number, type) => ({
+      id: id(number),
+      slug,
+      type,
+      params: {},
+      locale: { title: { uk: 'Перевірка' }, navigationLabel: { uk: 'Почати' } },
+      content: group({ opening: block('opening', number + 20, 'Уважно прочитайте інструкцію.') }),
+    });
+    f.config.section.items.quizOne = make('quizOne', 50, 'quiz');
+    f.config.section.items.cardsOne = make('cardsOne', 51, 'flashcards');
+    f.config.section.items.quizTwo = make('quizTwo', 52, 'quiz');
+    f.config.section.items.cardsTwo = make('cardsTwo', 53, 'flashcards');
+    f.config.section.order = ['cardsOne', 'intro', 'quizOne', 'quizTwo', 'cardsTwo'];
+    f.save();
+    const first = runOne(f.lesson, 'generate', f.root);
+    const files = readAll(f.lesson);
+    const ordered = files.get('sections/index.ts');
+    assert.match(ordered, /order: \[\s*"cardsOne",\s*"intro",\s*"quizOne",\s*"quizTwo",\s*"cardsTwo"/);
+    for (const [slug, factory, label] of [
+      ['quizOne', 'defineQuizSection', 'Quiz'],
+      ['quizTwo', 'defineQuizSection', 'Quiz'],
+      ['cardsOne', 'defineFlashcardsSection', 'Flashcards'],
+      ['cardsTwo', 'defineFlashcardsSection', 'Flashcards'],
+    ]) {
+      const file = 'sections/' + slug + '/index.ts';
+      const content = files.get(file);
+      assert.ok(content, file);
+      assert.match(
+        content,
+        new RegExp(
+          '\/\/ TODO \\(BLOCKER\\): This ' +
+            label +
+            ' Section is required by the Methodologist\\.\\n\/\/ Integrate[^\\n]+\\nexport const ' +
+            slug +
+            ' = ' +
+            factory,
+        ),
+      );
+      assert.match(content, /const content = \{/);
+      assert.match(content, /typeof content\.items, LessonLanguages/);
+      assert.equal((content.match(/TODO \(BLOCKER\):/g) ?? []).length, 1, file);
+      assert.ok(files.has('sections/' + slug + '/opening/index.ts'));
+    }
+    assert.doesNotMatch(files.get('sections/intro/index.ts'), /TODO \(BLOCKER\):/);
+    assert.equal(files.get('sections/quizOne/opening/index.ts').includes('Уважно прочитайте'), true);
+    assertTypeScriptSyntax(files);
+    const second = runOne(f.lesson, 'generate', f.root);
+    assert.equal(second.skipped, true, 'never overwrite a finished draft on a repeat run');
+    assert.deepEqual(readAll(f.lesson), files);
+    assert.ok(first.files.includes('sections/quizOne/index.ts'));
+  }));
+
+test('a Lesson without an assessment Section generates no assessment-specific blocker', () =>
+  fixture(f => {
+    runOne(f.lesson, 'generate', f.root);
+    const files = readAll(f.lesson);
+    assert.equal(
+      [...files].filter(
+        ([name, content]) => name.startsWith('sections/') && content.includes('This Quiz Section is required'),
+      ).length,
+      0,
+    );
+    assert.equal(
+      [...files].filter(
+        ([name, content]) => name.startsWith('sections/') && content.includes('This Flashcards Section is required'),
+      ).length,
+      0,
+    );
+  }));
+
