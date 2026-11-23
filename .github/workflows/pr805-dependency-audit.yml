@@ -26,7 +26,7 @@ jobs:
       - name: Capture both npm audit scopes
         shell: bash
         run: |
-          set -uo pipefail
+          set +e
           npm audit --json >/tmp/pr805-full.json
           code=$?
           if [[ $code -gt 1 ]]; then exit "$code"; fi
