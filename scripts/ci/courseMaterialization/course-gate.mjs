@@ -24,7 +24,10 @@ export function safeBranch(name, base) {
 
 export function gitBlob(bytes) {
   const buffer = Buffer.isBuffer(bytes) ? bytes : Buffer.from(bytes);
-  return createHash('sha1').update('blob ' + buffer.length + '\0').update(buffer).digest('hex');
+  return createHash('sha1')
+    .update('blob ' + buffer.length + '\0')
+    .update(buffer)
+    .digest('hex');
 }
 
 export async function github(route, method = 'GET', data) {
