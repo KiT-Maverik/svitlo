@@ -39,8 +39,8 @@
     "@svitlo/engine": "0.0.0",
     "@svitlo/playground": "0.0.0",
     "@svitlo/ui-kit": "0.0.0",
-    "react": "19.3.0",
-    "react-dom": "19.3.0",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
     "react-markdown": "^10.1.0",
     "rehype-raw": "^7.0.0",
     "rehype-sanitize": "^6.0.0"
@@ -57,7 +57,7 @@
     "typescript": "^5",
     "vite": "^7.3.7",
     "@eslint/js": "^9.39.5",
-    "typescript-eslint": "^8.72.0",
+    "typescript-eslint": "^8.72.3",
     "playwright": "^1.64.1"
   },
   "main": "dist-main/main.cjs"

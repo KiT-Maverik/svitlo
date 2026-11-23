@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { Celebration } from './Celebration';
 import { lesson } from '../../../data/locale/lesson';
 

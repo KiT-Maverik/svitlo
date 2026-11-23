@@ -28,7 +28,7 @@
     }
   },
   "peerDependencies": {
-    "react": "^19.3.0",
+    "react": "^19.3.1",
     "@svitlo/ui-kit": "0.0.0"
   }
 }

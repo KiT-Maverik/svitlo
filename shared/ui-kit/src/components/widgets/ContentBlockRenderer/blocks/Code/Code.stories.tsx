@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/nextjs';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { Code } from './Code';
 import { ContentLanguageContext } from '../../ContentLanguageContext';
 
