@@ -31,7 +31,7 @@ function staticFile(ts, name, source, scriptKind = ts.ScriptKind.TS) {
   return ast;
 }
 
-function pinnedRegular(root, head, filename, git) {
+function pinnedRegular(root, head, filename, git, readText = true) {
   if (typeof filename !== 'string' || filename.startsWith('/') ||
       filename.includes('\\') || filename.split('/').some(part =>
         !/^[A-Za-z0-9_.-]+$/.test(part) || part === '.' || part === '..'))
@@ -51,7 +51,7 @@ function pinnedRegular(root, head, filename, git) {
   const actual = git(root, 'hash-object', '--', current);
   if (pinned !== actual)
     throw Error('Scene/media evidence changed since reviewed HEAD: ' + filename);
-  return fs.readFileSync(current, 'utf8');
+  return readText ? fs.readFileSync(current, 'utf8') : undefined;
 }
 
 function sourceValue(field, language, at) {
@@ -95,7 +95,7 @@ function checkMedia(root, meta, config, production, documentLanguage, git) {
         !assetExtensions[folder].has(match[2].toLowerCase()))
       throw Error('Invalid reviewed UUID media filename for ' + config.id);
     const filename = meta.identity.pkg + '/assets/' + folder + '/' + reference;
-    pinnedRegular(root, meta.head, filename, git);
+    pinnedRegular(root, meta.head, filename, git, false);
     if (field === 'fileName') primary.push(filename);
   }
   if (production?.mediaSourcePath !== undefined &&
