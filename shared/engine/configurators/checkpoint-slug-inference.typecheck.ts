@@ -89,8 +89,8 @@ item.build.overrides(
   },
   { languages: ['en', 'uk'] },
 );
-// @ts-expect-error Only existing answer keys can be patched.
 item.build.overrides(
+  // @ts-expect-error Only existing answer keys can be patched.
   { answer: { content: { items: { unknown: { locale: { value: 'Unknown' } } } } } },
   { languages: ['en', 'uk'] },
 );
