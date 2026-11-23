@@ -1,5 +1,5 @@
 import { enUiKitMessages, ukUiKitMessages } from '../../../../../testing/uiKitMessages.unit.fx';
-import type { Meta, StoryObj } from '@storybook/nextjs';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { Audio } from './Audio';
 import { ContentLanguageContext } from '../../ContentLanguageContext';
 

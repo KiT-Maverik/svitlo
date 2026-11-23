@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/nextjs';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import type { ContentBlock_Carousel_SlideProps, ContentBlock_Scene_Props } from '@svitlo/engine/runtime';
 import { Carousel } from './Carousel';
 import { enUiKitMessages } from '../../../../../testing/uiKitMessages.unit.fx';
