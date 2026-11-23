@@ -24,7 +24,7 @@
     "@types/node": "^20",
     "esbuild": "^0.28.2",
     "typescript": "^5",
-    "vitest": "^3.2.4",
+    "vitest": "^5.1.1",
     "@svitlo/ui-kit": "0.0.0"
   },
   "bin": {
