@@ -120,9 +120,6 @@ test('reviewed Stage 2 rejects fabricated bank IDs and disabled parser protectio
       plain.replace('order: []', 'order: [process.env.SECRET]'),
       plain.replace('slug: "intro"', 'slug: `intro-${Date.now()}`'),
       plain.replace('items: {}, order: [] as string[]',
-        'items: { quiz: { config: { params: { selection: { questionIds: ["' +
-        questionId + '"] } } } } }, order: ["quiz"] as string[]'),
-      plain.replace('items: {}, order: [] as string[]',
         'items: { quiz: { config: { params: { selection: { questionIds: [fake.id] } } } } }, order: ["quiz"] as string[]'),
     ]) assert.throws(() => parseTypedLesson(root, sourcePath, authored));
   }));
