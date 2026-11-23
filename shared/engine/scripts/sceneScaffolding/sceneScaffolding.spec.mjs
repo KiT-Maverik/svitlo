@@ -186,7 +186,7 @@ test('rejects invalid textbook setup, symlinks, malformed typed source, and unsa
   fs.writeFileSync(manifest, JSON.stringify({ name: '@svitlo/playground' }));
   assert.throws(() => runOne(f.source, 'generate', f.repo), /not Scene-ready/);
   fs.writeFileSync(manifest, old);
-  fs.writeFileSync(path.join(f.source, 'lesson.yaml'), 'config: [bad\n');
+  fs.writeFileSync(f.authoredSceneModule(), 'export const invalid = {\n');
   assert.throws(() => runOne(f.source, 'generate', f.repo));
   f.save();
   const output = f.folder(sceneId);
