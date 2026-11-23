@@ -202,3 +202,40 @@ default-branch deployment, all-nine Question-kind and Flashcard
 Card/Side semantic/Build checks, strict assessment publication, and final
 owner approval remain separate verification gates. Do not interpret an
 unexercised command, Draft-skipped check, or syntactic parsing as a pass.
+
+## Cutover inventory and parent #775 handoff (PR #798)
+
+| Existing entrypoint / consumer | Current role | Typed replacement / cutover decision |
+| --- | --- | --- |
+| `/questions materialize` in `bank-materialization.yml` | Trusted PR-comment route to the YAML Question Builder | **Retain** for active YAML child PRs; opt-in `/questions materialize typed` uses Stage 3, exact-head independent approval and the concrete Question Bank Git transaction |
+| `/flashcards materialize` in `bank-materialization.yml` | Trusted PR-comment route to the YAML Flashcard Builder | **Retain** for active YAML child PRs; opt-in `/flashcards materialize typed` uses the concrete Card/Side writer with Question-first evidence |
+| `bank-gate.mjs` + `bank-materialization.mjs` | YAML blob SHA, legacy Stage 1–4 checklist, create-only draft safety | **Retain** as long as legacy routes exist; not interchangeable with the typed source-SHA-preserving replacement of a reviewed `index.ts` |
+| `bank-typed-gate.mjs` + `bank-typed-materialization.mjs` + `bank-typed-stage3.mjs` | Static literal Stage 3 parsing, trusted semantic check, independent GitHub approval, local atomic Git plan, verified Git tree publication | **New opt-in path**, not a publisher; both bank kinds dispatch to their existing *concrete* materializers, not a generic bank factory |
+| `shared/engine/scripts/questionsBuilder/` and `flashcardBuilder/` | YAML-to-TS draft scaffolders used by legacy bank command and their own documented manual invocations/tests | **Retain until owner-authorized cutover** and audited callers have migrated. Neither script implements typed Stage 3 materialization or independent assessment publication |
+| Engine YAML configurator/editor schemas and shared scaffolding; package manifests | Legacy schema/editor/npm dependencies beyond Bank-exclusive ownership | **Parent #775 owns cleanup**; no cross-domain deletion in this child PR |
+| `generateAssessmentResources --kind question|flashcard` and textbook build | Publish *completed* bank Configurators, global UUID manifests, real localized artifacts and runtime Props | **Retain unchanged.** Typed Stage 5 writes authored TS, never published assessment JSON |
+
+**Concrete safety distinction:** legacy YAML routes create a first TS draft while
+preserving YAML. The typed route consumes *only* the independently reviewed
+Stage 3 `questions/index.ts` or `flashcards/index.ts`, archives the exact source
+bytes and atomically replaces the editor entrypoint with final typed bank modules.
+All authored members, including those not selected by a Lesson Section, must
+survive. A selected Quiz/Flashcards Section is separately owned by the Lesson
+author and must import completed bank Configurator identities; the bank writer
+must never fabricate or modify Section selections. The typed inventory verifier
+also rejects missing, repeated, unknown or unlisted Flashcard Cards and Side
+ContentBlocks, in addition to missing concrete source modules.
+
+**Release blockers / parent decisions:** the typed command workflow must be
+merged into `develop`, safely exercised on *actual* reviewed bank child PRs
+for **both** kinds, and independently checked against generated modules,
+full-bank assessment publication, locales/physical media, Section selections
+and the owning textbook build. The trusted bridge currently rejects
+media/Scene authorizations without verified registries, unsupported nested
+language textbook roots, and unsupported own-bank N/A exceptions. None of
+these may be bypassed by fabricated assets, source text or review flags.
+Only after the owner authorizes retirement, verifies every live YAML caller
+has moved (including editor, npm and legacy PR comments), and validates the
+release gates may parent #775 remove shared YAML tooling and this PR's retained
+legacy commands. A green Draft CI run is not proof of deployed PR-command
+activation or production-ready bank resources.

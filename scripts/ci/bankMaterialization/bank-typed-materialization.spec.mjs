@@ -284,3 +284,44 @@ test('every authored Flashcard Card, Side and nested Side Block is emitted', () 
       files.filter(f => f !== output)), /omitted/);
   }
 });
+
+test('Flashcard typed inventory refuses unlisted, repeated or empty reviewed Card and Side entries', () => {
+  const meta = canonical('flashcards').meta;
+  const block = slug => ({ items: { [slug]: { config: { type: 'text' } } }, order: [slug] });
+  const input = { config: { flashcards: {
+    items: { card: { config: { content: { front: block('frontBlock'), back: block('backBlock') } } } },
+    order: ['card'],
+  } } };
+  const files = [
+    { path: meta.sourcePath },
+    { path: folder + '/flashcards/card.ts' },
+    ...['front', 'back'].flatMap(side => [
+      { path: folder + '/flashcards/card/content/' + side + '/index.ts' },
+      { path: folder + '/flashcards/card/content/' + side + '/items/' + side + 'Block/index.ts' },
+    ]),
+  ];
+  assert.doesNotThrow(() => assertTypedBankInventory(meta, input, files));
+  const cards = input.config.flashcards;
+  for (const order of [[], ['card', 'card'], ['absent']]) {
+    assert.throws(() => assertTypedBankInventory(meta,
+      { config: { flashcards: { ...cards, order } } }, files), /Flashcards|Card/);
+  }
+  assert.throws(() => assertTypedBankInventory(meta, { config: { flashcards: {
+    ...cards, items: { ...cards.items, unlisted: cards.items.card },
+  } } }, files), /every reviewed Card/);
+  for (const side of ['front', 'back']) {
+    const original = cards.items.card.config.content;
+    for (const changed of [
+      { ...original[side], order: [] },
+      { ...original[side], order: [original[side].order[0], original[side].order[0]] },
+      { ...original[side], items: { ...original[side].items, unexpected: {} } },
+      { ...original[side], order: ['missing'] },
+    ]) {
+      const changedInput = { config: { flashcards: { ...cards, items: {
+        card: { config: { content: { ...original, [side]: changed } } },
+      } } } };
+      assert.throws(() => assertTypedBankInventory(meta, changedInput, files),
+        /every reviewed ContentBlock/);
+    }
+  }
+});

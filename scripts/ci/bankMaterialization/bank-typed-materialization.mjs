@@ -289,7 +289,13 @@ export function assertTypedBankInventory(meta, input, files) {
   } else {
     const items = input?.config?.flashcards?.items;
     const order = input?.config?.flashcards?.order;
-    if (!items || !Array.isArray(order) || !order.length) throw Error('No reviewed Flashcards');
+    if (!items || typeof items !== 'object' || Array.isArray(items) ||
+        !Array.isArray(order) || !order.length) throw Error('No reviewed Flashcards');
+    if (new Set(order).size !== order.length ||
+        order.some(slug => typeof slug !== 'string' || !Object.hasOwn(items, slug)) ||
+        Object.keys(items).length !== order.length) {
+      throw Error('Flashcards order must include every reviewed Card exactly once');
+    }
     for (const slug of order) {
       const card = items[slug];
       if (!card || !paths.has(root + 'flashcards/' + slug + '.ts')) {
@@ -302,7 +308,17 @@ export function assertTypedBankInventory(meta, input, files) {
         if (!paths.has(prefix + 'index.ts')) {
           throw Error('Reviewed Flashcard Side omitted: ' + slug + '/' + side);
         }
-        for (const block of content.order || []) {
+        if (!Array.isArray(content.order) || !content.items ||
+            typeof content.items !== 'object' || Array.isArray(content.items) ||
+            !content.order.length ||
+            new Set(content.order).size !== content.order.length ||
+            content.order.some(block => typeof block !== 'string' ||
+              !Object.hasOwn(content.items, block)) ||
+            Object.keys(content.items).length !== content.order.length) {
+          throw Error('Flashcard Side must include every reviewed ContentBlock exactly once: ' +
+            slug + '/' + side);
+        }
+        for (const block of content.order) {
           if (!paths.has(prefix + 'items/' + block + '/index.ts')) {
             throw Error('Reviewed Side ContentBlock omitted: ' + slug + '/' + side + '/' + block);
           }
