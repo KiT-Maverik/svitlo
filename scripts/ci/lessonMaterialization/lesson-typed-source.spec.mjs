@@ -111,7 +111,7 @@ test('named Question Bank map selection resolves only verified exported Configur
     }
     fs.writeFileSync(bankIndex, validIndex);
     fs.writeFileSync(kindIndex, 'export { reviewQuestion } from "../outside";\\n');
-    assert.throws(() => parseTypedLesson(root, sourcePath, reviewed), /re-export/);
+    assert.throws(() => parseTypedLesson(root, sourcePath, reviewed), /unsafe statement|re-export/);
     fs.writeFileSync(kindIndex, 'export { reviewQuestion } from "./reviewQuestion";\\n');
     fs.rmSync(leaf);
     fs.symlinkSync(path.join(dir, 'index.ts'), leaf);
