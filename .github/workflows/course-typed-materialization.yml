@@ -1,6 +1,6 @@
 name: Stage typed Course materialization (manual rollout)
 
-# Separate from deployed YAML /course materialize. Activation requires owner approval.
+# Typed-only Course Stage 5. Activation requires an authorized default-branch deployment.
 on:
   pull_request:
     types: [opened, synchronize, ready_for_review]
@@ -40,8 +40,8 @@ jobs:
         run: npm ci --ignore-scripts --no-audit --no-fund
       - name: Compile trusted concrete Course renderers for focused CI
         run: node scripts/ci/courseMaterialization/build-course-renderers.mjs
-      - name: Test existing Course command and typed Stage 5 boundary
-        run: node --test scripts/ci/courseMaterialization/course-materialization.spec.mjs scripts/ci/courseMaterialization/typed-course-materialization.spec.mjs
+      - name: Test trusted typed Course Stage 5 boundary
+        run: node --test scripts/ci/courseMaterialization/typed-course-materialization.spec.mjs
       - name: Test canonical Course Stage 5 source, semantic fixture and atomic writer
         run: node --test shared/engine/generators/materializers/course/materializeStage5.spec.mjs shared/engine/generators/materializers/course/materializeStage5.build.spec.mjs shared/engine/generators/materializers/course/sourceCommit.spec.mjs
       - name: Verify focused source formatting
