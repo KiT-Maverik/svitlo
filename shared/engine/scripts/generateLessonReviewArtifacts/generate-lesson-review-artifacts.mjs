@@ -159,13 +159,13 @@ export function generateLessonReviewArtifacts({
         textbook: lesson.package,
         lesson: `${lesson.relative}`,
         locale,
-        path: `.agent-ci-artifacts/${relative.split(path.sep).join('/')}`,
+        path: relative.split(path.sep).join('/'),
         missing: 0,
         reviewReady: true,
       });
       saveManifest();
       result.generated++;
-      process.stdout.write(`Generated .agent-ci-artifacts/${relative.split(path.sep).join('/')}\n`);
+      process.stdout.write(`Generated ${relative.split(path.sep).join('/')}\n`);
     }
   }
   return result;

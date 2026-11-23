@@ -12,15 +12,57 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import ts from 'typescript';
 import YAML from 'yaml';
+import Ajv2020 from 'ajv/dist/2020.js';
 import { parseYaml, checkPlan } from '../validateCourseFlow/validate-course-flow.mjs';
 import { buildLessonIndex } from '../generateLessonsBySkill/lesson-index.mjs';
-import { renderEpisodeScaffoldSource } from './episode-draft-renderer.mjs';
+import { renderEpisodeScaffoldSource, renderCourseLessonOverrideSource } from './episode-draft-renderer.mjs';
 
 const rootDefault = path.resolve(fileURLToPath(new URL('../../../..', import.meta.url)));
 const UUID = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/;
 const PACKAGE = /^content\/[a-z][a-z0-9-]*$/;
 const SLUG = /^[a-z][A-Za-z0-9]*$/;
 const record = value => !!value && typeof value === 'object' && !Array.isArray(value);
+
+const episodeSchema = JSON.parse(
+  fs.readFileSync(fileURLToPath(new URL('../../yaml-schemas/episode.schema.json', import.meta.url)), 'utf8'),
+);
+const validateEpisodeConfig = new Ajv2020({ allErrors: true, strict: false, validateFormats: false }).compile(
+  episodeSchema,
+);
+
+/** Fail before normalization can hide null YAML mappings or invalid nested Engine values. */
+function assertEpisodeConfig(config, location) {
+  function walk(node, field) {
+    if (Array.isArray(node)) {
+      node.forEach((child, index) => walk(child, field + '[' + index + ']'));
+      return;
+    }
+    if (!record(node)) return;
+    for (const [key, value] of Object.entries(node)) {
+      if (key === 'params' && !record(value)) {
+        fail(field + '/params: expected an Engine params object; received ' + String(value));
+      }
+      if (record(value) || Array.isArray(value)) walk(value, field + '/' + key);
+    }
+  }
+  walk(config, location);
+  if (!validateEpisodeConfig(config)) {
+    const errors = (validateEpisodeConfig.errors ?? []).filter(issue => issue.keyword !== 'oneOf');
+    const issue =
+      errors.find(issue => issue.keyword === 'type' && issue.instancePath.includes('/params')) ??
+      errors.find(issue => issue.keyword === 'required') ??
+      errors[0] ??
+      (validateEpisodeConfig.errors ?? [])[0];
+    const missing = issue?.keyword === 'required' ? '/' + issue.params.missingProperty : '';
+    fail(
+      location +
+        (issue?.instancePath ?? '') +
+        missing +
+        ': invalid Engine Episode Config: ' +
+        (issue?.message ?? 'unknown schema violation'),
+    );
+  }
+}
 
 function fail(message) {
   throw new Error('Course Flow materialization: ' + message);
@@ -196,6 +238,38 @@ export function technicalFromEditorial(plan, resolveLesson = () => null) {
           newLessons.set(child.lessonId, { node: structuredClone(child), placement });
         }
         const source = resolveLesson(child.lessonId);
+        if (child.lessonId && source) {
+          if (Array.isArray(source.skills)) {
+            const knownSkills = new Set(source.skills.map(value => value.toLowerCase()));
+            for (const skill of child.skills) {
+              if (!knownSkills.has(skill.toLowerCase())) {
+                fail(
+                  placement + '/skills: reused Lesson ' + child.lessonId + ' does not teach verified Skill ' + skill,
+                );
+              }
+            }
+          }
+          if (Array.isArray(source.languages)) {
+            for (const language of plan.supportedLanguages) {
+              if (!source.languages.includes(language)) {
+                fail(
+                  placement +
+                    '/lessonId: reused Lesson ' +
+                    child.lessonId +
+                    ' does not support Course locale ' +
+                    language,
+                );
+              }
+            }
+          }
+        }
+        if (child.locale?.title && record(child.locale.title)) {
+          for (const code of Object.keys(child.locale.title)) {
+            if (!plan.supportedLanguages.includes(code)) {
+              fail(placement + '/locale/title/' + code + ': override locale is outside Course supportedLanguages');
+            }
+          }
+        }
         const config = { type: 'lesson', slug, lessonId: child.lessonId };
         if (source) config.source = source;
         items[slug] = { config };
@@ -206,6 +280,9 @@ export function technicalFromEditorial(plan, resolveLesson = () => null) {
         fail('duplicate generated entity UUID at ' + placement);
       generated.add(child.id);
       if (child.type === 'episode') {
+        if (Object.hasOwn(child, 'params') && !record(child.params)) {
+          fail(placement + '/params: expected an Engine params object');
+        }
         const config = {
           id: child.id,
           type: 'episode',
@@ -215,6 +292,7 @@ export function technicalFromEditorial(plan, resolveLesson = () => null) {
           section: child.section ?? { items: {}, order: [] },
           ...(child.events ? { events: child.events } : {}),
         };
+        assertEpisodeConfig(config, placement);
         items[slug] = { config };
         continue;
       }
@@ -303,7 +381,13 @@ function lessonSourceCoordinates(root, pkg, courseId, lessonId, index) {
     );
   if (candidates.length !== 1) return null;
   const courseFolder = path.posix.join(pkg, 'data/courses', courseId.at(-1), courseId);
-  return { path: path.posix.relative(courseFolder, entries[0].source), export: candidates[0] };
+  return {
+    path: path.posix.relative(courseFolder, entries[0].source),
+    export: candidates[0],
+    slug: entries[0].slug,
+    skills: entries[0].skills,
+    languages: entries[0].languages,
+  };
 }
 /**
  * Extract the nested Episode Config without creating a second Course.
@@ -428,6 +512,32 @@ const reservedNames = new Set([
   'in',
 ]);
 
+/** Collect ONLY explicitly requested Course-local edits from reused Lesson slots.
+ * The key path follows Course placement aliases; it never patches the reusable
+ * Lesson's immutable UUID, slug, Skills, authored source or supported languages.
+ */
+export function courseLessonPatchesFromEditorial(collection, parent = []) {
+  const items = {};
+  for (const slug of collection?.order ?? []) {
+    const child = collection.items[slug];
+    const position = [...parent, slug].join('/');
+    if (child.type === 'lesson') {
+      const patch = {};
+      for (const field of ['params', 'locale', 'events', 'section']) {
+        if (Object.hasOwn(child, field)) patch[field] = structuredClone(child[field]);
+      }
+      if (Object.keys(patch).length) {
+        if (!child.lessonId) fail('Course-local Lesson override requires existing lessonId at ' + position);
+        items[slug] = patch;
+      }
+    } else if (child.type === 'module' || child.type === 'chapter') {
+      const nested = courseLessonPatchesFromEditorial(child.content, [...parent, slug]);
+      if (Object.keys(nested).length) items[slug] = { content: { items: nested } };
+    }
+  }
+  return items;
+}
+
 /** Generate a modular, acyclic authoring draft, never a standalone Lesson implementation. */
 export function renderModularCourse(
   technical,
@@ -436,6 +546,8 @@ export function renderModularCourse(
   resolveDraftSlug = (_id, slug) => slug,
 ) {
   const { config } = technical;
+  const lessonPatches = courseLessonPatchesFromEditorial(technical.authored.content);
+  const lessonOverride = Object.keys(lessonPatches).length ? renderCourseLessonOverrideSource(lessonPatches) : null;
   const nodes = [{ node: config, file: 'index.ts' }];
   const paths = new Set(['index.ts']);
   const files = new Map();
@@ -545,8 +657,14 @@ export function renderModularCourse(
           ([specifier, bindings]) =>
             'import { ' + bindings.sort().join(', ') + ' } from ' + JSON.stringify(specifier) + ';',
         );
+    const factoryName = 'define' + node.type[0].toUpperCase() + node.type.slice(1);
     const packageImports = [
-      'import { define' + node.type[0].toUpperCase() + node.type.slice(1) + " } from '@svitlo/engine/build';",
+      'import { ' +
+        [factoryName, ...(node.type === 'course' ? (lessonOverride?.factories ?? []) : [])]
+          .filter((name, index, names) => names.indexOf(name) === index)
+          .sort()
+          .join(', ') +
+        " } from '@svitlo/engine/build';",
     ];
     const aliasImports = renderImports('#');
     const constants = '#coursesData/' + config.id.at(-1) + '/' + config.id + '/constants';
@@ -559,7 +677,6 @@ export function renderModularCourse(
       .filter(group => group.length)
       .map(group => group.join('\n'))
       .join('\n\n');
-    const factoryName = 'define' + node.type[0].toUpperCase() + node.type.slice(1);
     const source =
       imported +
       '\n\n' +
@@ -575,7 +692,15 @@ export function renderModularCourse(
       JSON.stringify(node.slug) +
       ', typeof items, CourseLanguages>({\n' +
       fields.join(',\n') +
-      '\n});\n';
+      '\n});\n' +
+      (node.type === 'course' && lessonOverride
+        ? '\n// Course-owned *input* patch. The publisher passes this through the stateless Build API.\n' +
+          'export const authoredCourseOverrides = ' +
+          lessonOverride.expression +
+          ' satisfies Parameters<typeof ' +
+          symbolOf(node) +
+          '.build.overrides>[0];\n'
+        : '');
     files.set(file, source);
   }
   // Use the real shared Review contract until a Course-specific review contract exists.
@@ -638,7 +763,7 @@ export function planArtifacts(plan, pkg, root, lessonIndex) {
         skills: [...node.skills],
         params: {
           languages: [...plan.supportedLanguages],
-          requireQuiz: node.quizRequired ?? false,
+          quizRequiredForCompletion: node.quizRequired ?? false,
           sections: { allowNavigation: true, allowSkipping: true, showIndexes: true },
         },
         locale: { title: { [plan.documentLanguage]: node.title } },
@@ -707,34 +832,37 @@ export function parseArgs(argv) {
       if (opts[key] || !value) fail('duplicate/missing option ' + key);
       opts[key] = value;
       i++;
-    } else if (['--write', '--check', '--finalize'].includes(key)) {
+    } else if (['--write', '--check'].includes(key)) {
       if (opts.action) fail('choose exactly one mode');
       opts.action = key;
-    } else if (key === '--preserve-config') {
-      if (opts.preserveConfig) fail('duplicate option ' + key);
-      opts.preserveConfig = true;
     } else fail('unknown option ' + key);
   }
   if (!PACKAGE.test(opts['--package'] ?? '') || !UUID.test(opts['--course'] ?? '') || !opts.action)
-    fail('usage: --package content/<book> --course <uuid> --write|--check|--finalize [--preserve-config]');
-  if (opts.preserveConfig && opts.action !== '--finalize') fail('--preserve-config is only valid with --finalize');
-  return { pkg: opts['--package'], id: opts['--course'], mode: opts.action, preserveConfig: !!opts.preserveConfig };
+    fail('usage: --package content/<book> --course <uuid> --write|--check');
+  return { pkg: opts['--package'], id: opts['--course'], mode: opts.action };
 }
 export function materialize(argv, root = rootDefault) {
-  const { pkg, id, mode, preserveConfig } = parseArgs(argv);
+  const { pkg, id, mode } = parseArgs(argv);
   const folder = path.join(root, pkg, 'data/courses', id.at(-1), id);
   const source = path.join(folder, 'course.yaml');
   assertPath(source);
   if (!fs.existsSync(source)) fail('missing approved temporary course.yaml: ' + source);
+  if (!fs.lstatSync(source).isFile()) fail('course.yaml must be a regular file');
   if (fs.statSync(source).size > 2 * 1024 * 1024) fail('course.yaml exceeds 2MiB');
-  const plan = parseYaml(fs.readFileSync(source, 'utf8'));
+  const sourceBytes = fs.readFileSync(source);
+  const plan = parseYaml(sourceBytes.toString('utf8'));
   if (plan.id !== id) fail('Course UUID in plan does not match canonical folder');
   const lessonIndex = buildLessonIndex(root, pkg);
   const artifacts = planArtifacts(plan, pkg, root, lessonIndex);
   checkArtifacts(artifacts, mode);
-  if (mode === '--write') writeArtifacts(artifacts);
-  else if (mode === '--finalize' && !preserveConfig) {
-    // Only after a separate successful check/commit; Git retains the plan history.
+  if (mode === '--write') {
+    writeArtifacts(artifacts);
+    // Verification is part of the one write operation, not a second CLI phase.
+    checkArtifacts(artifacts, '--check');
+    assertPath(source);
+    if (!fs.lstatSync(source).isFile() || !fs.readFileSync(source).equals(sourceBytes))
+      fail('Course YAML changed during materialization; source retained');
+    // This exact temporary input is deleted only after the complete verified write.
     fs.unlinkSync(source);
   }
   console.log(

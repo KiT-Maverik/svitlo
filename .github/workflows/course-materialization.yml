@@ -10,11 +10,6 @@ on:
         description: Open same-repository Draft Course PR number
         type: number
         required: true
-      operation:
-        description: Explicit authorized Stage 5 action
-        type: choice
-        options: [materialize, finalize]
-        required: true
 
 permissions: {}
 
@@ -27,8 +22,7 @@ jobs:
     if: >-
       github.event_name == 'workflow_dispatch' ||
       (github.event.issue.pull_request &&
-       (github.event.comment.body == '/course materialize' ||
-        github.event.comment.body == '/course finalize'))
+       github.event.comment.body == '/course materialize')
     runs-on: ubuntu-latest
     timeout-minutes: 10
     permissions:
@@ -47,7 +41,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
-      - name: Authorize actor, Course identity and Stage 4 checklist
+      - name: Authorize actor and discover the pinned canonical Course YAML
         id: gate
         env:
           GH_TOKEN: ${{ github.token }}
@@ -82,7 +76,7 @@ jobs:
       - name: Install trusted Engine dependencies without lifecycle scripts
         working-directory: trusted
         run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --ignore-scripts --no-audit --no-fund
-      - name: Validate reviewed Course, generate and verify only allowlisted sources
+      - name: Perform one internally verified Course write and capture all creates plus YAML deletion
         env:
           GH_TOKEN: ${{ github.token }}
           COURSE_DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
@@ -102,9 +96,6 @@ jobs:
     needs: [resolve, analyze]
     if: needs.analyze.result == 'success'
     runs-on: ubuntu-latest
-    outputs:
-      head: ${{ steps.publish.outputs.head }}
-      register: ${{ steps.publish.outputs.register }}
     timeout-minutes: 10
     permissions:
       contents: write
@@ -139,38 +130,3 @@ jobs:
           COURSE_HEAD_ROOT: candidate
           COURSE_REPORT: report/report.json
         run: node trusted/scripts/ci/quietRun/quiet-run.mjs -- node trusted/scripts/ci/courseMaterialization/course-materialization.mjs publish
-
-  register-lessons:
-    name: Register generated Lesson IDs once
-    needs: [resolve, publish]
-    if: needs.publish.result == 'success' && needs.publish.outputs.register == 'true'
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    permissions:
-      contents: read
-      pull-requests: write
-    steps:
-      - name: Check out trusted registration script only
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.repository.default_branch }}
-          persist-credentials: false
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '24'
-      - name: Download the exact verified materialization handoff
-        uses: actions/download-artifact@v4
-        with:
-          name: course-stage5-${{ needs.resolve.outputs.pr }}-${{ github.run_id }}
-          path: report
-      - name: Write Lesson UUIDs and Not started placeholders to Course PR
-        env:
-          GH_TOKEN: ${{ github.token }}
-          COURSE_DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
-          COURSE_META_B64: ${{ needs.resolve.outputs.meta }}
-          COURSE_PUBLISHED_HEAD: ${{ needs.publish.outputs.head }}
-          COURSE_REPORT: report/report.json
-        run: |
-          test "$(find report -maxdepth 1 -type f | wc -l)" -eq 1
-          test -f report/report.json
-          node scripts/ci/courseMaterialization/course-materialization.mjs register

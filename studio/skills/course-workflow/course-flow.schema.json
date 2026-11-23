@@ -365,6 +365,107 @@
         "quizRequired": {
           "type": "boolean",
           "description": "Optional explicit Quiz intent for the initial Lesson YAML shell; the complete plan remains in methodology."
+        },
+        "params": {
+          "type": "object",
+          "additionalProperties": false,
+          "minProperties": 1,
+          "description": "Supported Course-local Lesson parameters only; identity, Skill IDs and languages are immutable.",
+          "properties": {
+            "disabled": {
+              "const": true
+            },
+            "quizRequiredForCompletion": {
+              "type": "boolean"
+            },
+            "sections": {
+              "type": "object",
+              "additionalProperties": false,
+              "minProperties": 1,
+              "properties": {
+                "allowNavigation": {
+                  "type": "boolean"
+                },
+                "allowSkipping": {
+                  "type": "boolean"
+                },
+                "showIndexes": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        },
+        "locale": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["title"],
+          "properties": {
+            "title": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1
+                },
+                {
+                  "type": "object",
+                  "minProperties": 1,
+                  "propertyNames": {
+                    "$ref": "#/$defs/language"
+                  },
+                  "additionalProperties": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "events": {
+          "type": "object",
+          "description": "JSON event values; canonical Engine Lesson Override schema validates effective typed values.",
+          "additionalProperties": true
+        },
+        "section": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": false,
+          "description": "Optional Course-local Section patch using the existing stateless nested Build API; canonical Lesson Build API validates effective children and nested values.",
+          "properties": {
+            "items": {
+              "type": "object",
+              "propertyNames": {
+                "$ref": "#/$defs/slug"
+              },
+              "additionalProperties": {
+                "anyOf": [
+                  {
+                    "const": false
+                  },
+                  {
+                    "type": "object"
+                  }
+                ]
+              }
+            },
+            "additionalItems": {
+              "type": "object",
+              "propertyNames": {
+                "$ref": "#/$defs/slug"
+              },
+              "additionalProperties": {
+                "type": "object"
+              }
+            },
+            "order": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "$ref": "#/$defs/slug"
+              }
+            }
+          }
         }
       }
     },

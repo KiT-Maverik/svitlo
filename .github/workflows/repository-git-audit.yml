@@ -50,4 +50,4 @@ jobs:
           name: repository-git-audit-${{ github.run_id }}
           path: ${{ runner.temp }}/git-audit/
           if-no-files-found: error
-          retention-days: 7
+          retention-days: 1
