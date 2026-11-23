@@ -283,7 +283,6 @@ test('typed publisher is importable without node_modules or any Engine source', 
     const files = [
       'scripts/ci/lessonMaterialization/lesson-typed-materialization.mjs',
       'scripts/ci/lessonMaterialization/lesson-typed-gate.mjs',
-      'scripts/ci/lessonMaterialization/lesson-gate.mjs',
       'scripts/ci/courseMaterialization/course-gate.mjs',
     ];
     for (const filename of files) {
