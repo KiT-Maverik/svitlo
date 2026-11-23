@@ -1,0 +1,172 @@
+name: Stage typed Course materialization (manual rollout)
+
+# Separate from deployed YAML /course materialize. Activation requires owner approval.
+on:
+  pull_request:
+    types: [opened, synchronize, ready_for_review]
+    paths:
+      - 'scripts/ci/courseMaterialization/**'
+      - '.github/workflows/course-typed-materialization.yml'
+  workflow_dispatch:
+    inputs:
+      pr_number:
+        description: Open same-repository Draft typed Course PR with reviewed Stage 3
+        type: number
+        required: true
+
+permissions: {}
+
+concurrency:
+  group: typed-course-stage5-${{ github.event.pull_request.number || inputs.pr_number }}
+  cancel-in-progress: false
+
+jobs:
+  verify-implementation:
+    name: Typed Course / source and trust boundary tests
+    if: github.event_name == 'pull_request' && github.event.pull_request.draft == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Install pinned dependencies without lifecycle scripts
+        run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Compile trusted concrete Course renderers for focused CI
+        run: node scripts/ci/courseMaterialization/build-course-renderers.mjs
+      - name: Test existing Course command and typed Stage 5 boundary
+        run: node --test scripts/ci/courseMaterialization/course-materialization.spec.mjs scripts/ci/courseMaterialization/typed-course-materialization.spec.mjs
+      - name: Test canonical Course Stage 5 source, semantic fixture and atomic writer
+        run: node --test shared/engine/generators/materializers/course/materializeStage5.spec.mjs shared/engine/generators/materializers/course/materializeStage5.build.spec.mjs shared/engine/generators/materializers/course/sourceCommit.spec.mjs
+      - name: Verify focused source formatting
+        run: npx prettier --check scripts/ci/courseMaterialization/*.mjs scripts/ci/courseMaterialization/README.md .github/workflows/course-typed-materialization.yml
+      - name: Verify Engine build-time type contracts
+        run: npm run code:check:types --workspace @svitlo/engine
+
+  resolve:
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      pull-requests: read
+    outputs:
+      meta: ${{ steps.gate.outputs.meta }}
+      pr: ${{ steps.gate.outputs.pr }}
+      head: ${{ steps.gate.outputs.head }}
+    steps:
+      - name: Check out trusted default-branch authorization gate
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Verify exact source, independent Stage 4 review and authorized actor
+        id: gate
+        env:
+          GH_TOKEN: ${{ github.token }}
+          COURSE_DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+        run: node scripts/ci/courseMaterialization/typed-course-gate.mjs resolve
+
+  analyze:
+    needs: resolve
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    permissions:
+      contents: read
+      pull-requests: read
+    steps:
+      - name: Check out trusted materializers from default branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          path: trusted
+          persist-credentials: false
+      - name: Check out pinned PR as inert data, never a workflow or script source
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.resolve.outputs.head }}
+          path: candidate
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: trusted/package-lock.json
+      - name: Install only trusted dependencies without lifecycle scripts
+        working-directory: trusted
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --ignore-scripts --no-audit --no-fund
+      - name: Compile trusted concrete Course renderers before read-only analysis
+        working-directory: trusted
+        run: node scripts/ci/courseMaterialization/build-course-renderers.mjs
+      - name: Parse untrusted Stage 3 as inert TypeScript and emit bounded source manifest
+        env:
+          COURSE_TYPED_META_B64: ${{ needs.resolve.outputs.meta }}
+          COURSE_HEAD_ROOT: candidate
+          COURSE_TYPED_REPORT: ${{ runner.temp }}/typed-course/manifest.json
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: node trusted/scripts/ci/quietRun/quiet-run.mjs -- node trusted/scripts/ci/courseMaterialization/typed-course-source.mjs analyze
+      - name: Upload read-only job result
+        uses: actions/upload-artifact@v4
+        with:
+          name: typed-course-stage5-${{ needs.resolve.outputs.pr }}-${{ github.run_id }}
+          path: ${{ runner.temp }}/typed-course/manifest.json
+          if-no-files-found: error
+          retention-days: 7
+
+  publish:
+    needs: [resolve, analyze]
+    if: needs.analyze.result == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+      pull-requests: read
+    steps:
+      - name: Check out trusted default-branch publisher only
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          path: trusted
+          persist-credentials: false
+      - name: Check out pinned PR data; never execute PR source
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.resolve.outputs.head }}
+          path: candidate
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: trusted/package-lock.json
+      - name: Install trusted publisher dependencies without lifecycle scripts
+        working-directory: trusted
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --ignore-scripts --no-audit --no-fund
+      - name: Compile trusted concrete Course renderers for manifest replay
+        working-directory: trusted
+        run: node scripts/ci/courseMaterialization/build-course-renderers.mjs
+      - name: Download exact read-only job manifest
+        uses: actions/download-artifact@v4
+        with:
+          name: typed-course-stage5-${{ needs.resolve.outputs.pr }}-${{ github.run_id }}
+          path: report
+      - name: Recheck Stage 4, SHA, deterministic output and branch lease; write one commit
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          COURSE_DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+          COURSE_TYPED_META_B64: ${{ needs.resolve.outputs.meta }}
+          COURSE_HEAD_ROOT: candidate
+          COURSE_TYPED_REPORT: report/manifest.json
+        run: node trusted/scripts/ci/quietRun/quiet-run.mjs -- node trusted/scripts/ci/courseMaterialization/typed-course-publish.mjs publish
