@@ -111,17 +111,18 @@ function normalizeStage2(input: LessonWorkflowMaterializerInput) {
   const ordered = (value: unknown, location: string, wrapped: boolean) => {
     if (!isRecord(value) || !isRecord(value.items) || !Array.isArray(value.order))
       throw new Error(location + ': expected authored { items, order }');
-    const keys = Object.keys(value.items);
+    const collection = value.items;
+    const keys = Object.keys(collection);
     if (keys.length !== value.order.length || new Set(value.order).size !== keys.length ||
-      value.order.some(key => typeof key !== 'string' || !Object.hasOwn(value.items, key)))
+      value.order.some(key => typeof key !== 'string' || !Object.hasOwn(collection, key)))
       throw new Error(location + '.order: every authored child must be ordered once');
     const items: Record<string, unknown> = {};
     for (const key of keys) {
       if (!safeSlug.test(key)) throw new Error(location + ': unsafe child key ' + key);
-      const raw = node(value.items[key], location + '.items.' + key);
+      const raw = node(collection[key], location + '.items.' + key);
       if (raw.config.slug !== key)
         throw new Error(location + '.items.' + key + ': key and child slug disagree');
-      const child = unwrap(value.items[key], location + '.items.' + key);
+      const child = unwrap(collection[key], location + '.items.' + key);
       items[key] = wrapped ? { config: child, ...(raw.production ? { production: raw.production } : {}) } : child;
     }
     return { items, order: [...value.order] };
@@ -165,6 +166,7 @@ function normalizeStage2(input: LessonWorkflowMaterializerInput) {
       const content = config.content;
       if (!isRecord(content) || !isRecord(content.video) || !isRecord(content.audio))
         throw new Error(at + ': incomplete Quest Stage media');
+      const audio = content.audio;
       const get = (value: unknown, location: string) => {
         const child = node(value, location);
         return { config: unwrap(value, location),
@@ -176,7 +178,7 @@ function normalizeStage2(input: LessonWorkflowMaterializerInput) {
           small: get(content.video.small, at + '.video.small'),
         },
         audio: Object.fromEntries(['dialogue', 'narration', 'background'].map(key =>
-          [key, content.audio[key] === null ? null : get(content.audio[key], at + '.audio.' + key)])),
+          [key, audio[key] === null ? null : get(audio[key], at + '.audio.' + key)])),
         image: get(content.image, at + '.image'),
         subtitles: get(content.subtitles, at + '.subtitles'),
       };
@@ -208,7 +210,7 @@ export function materializeLessonStage6(
     /^content\/([a-z][a-z0-9-]*)\/data\/lessons\/([0-9a-f])\/([0-9a-f-]{36})\/index\.ts$/,
   );
   if (!review || config.type !== 'lesson' || !uuid.test(config.id) || !match ||
-    match[3] !== config.id || match[2] !== config.id.at(-1).toLowerCase() ||
+    match[3] !== config.id || match[2] !== config.id.slice(-1).toLowerCase() ||
     !sha.test(review.sourceBlobSha) || !sha.test(review.reviewCommitSha) ||
     !sha.test(review.reviewEvidenceSha) || review.stage6Authorized !== true ||
     typeof options.sourceText !== 'string' || gitBlobSha(options.sourceText) !== review.sourceBlobSha ||
@@ -232,8 +234,9 @@ export function materializeLessonStage6(
   if (!lesson_Config_Schema.shape.locale.safeParse(config.locale).success)
     throw new Error('Lesson Stage 6: invalid source-language Lesson title/locale');
   const assessment = input.production.assessment;
-  if (!isRecord(assessment) || ['questionBankRequired', 'flashcardBankRequired',
-    'quizSectionRequired', 'flashcardsSectionRequired'].some(key => typeof assessment[key] !== 'boolean'))
+  const assessmentKeys = ['questionBankRequired', 'flashcardBankRequired',
+    'quizSectionRequired', 'flashcardsSectionRequired'] as const;
+  if (!isRecord(assessment) || assessmentKeys.some(key => typeof assessment[key] !== 'boolean'))
     throw new Error('Lesson Stage 6: four independent assessment decisions are required');
   const { sections, metadata } = normalizeStage2(input);
 
