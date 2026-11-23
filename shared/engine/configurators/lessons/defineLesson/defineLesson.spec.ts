@@ -48,6 +48,61 @@ describe('Configurators', () => {
           section: { items: { intro: section }, order: ['intro'] },
         });
 
+      test('Lesson Build overrides carry the owning ID outside the sparse Props patch', () => {
+        const lesson = makeLesson();
+        const noChanges = lesson.build.overrides({}, { languages: ['en'] });
+        assert.deepEqual(noChanges, { id: lesson.id, base: {}, locale: undefined });
+        assert.equal('id' in noChanges.base, false);
+
+        const adapted = lesson.build.overrides(
+          { params: { sections: { allowSkipping: true } } },
+          { languages: ['uk'] },
+        );
+        assert.equal(adapted.id, lesson.id);
+        assert.equal('id' in adapted.base, false);
+        assert.equal('id' in (adapted.locale?.uk ?? {}), false);
+        assert.equal(lesson.build.props({ languages: ['uk'] }).base.id, lesson.id);
+        assert.deepEqual(lesson.build.overrides({}, { languages: ['en'] }), noChanges);
+      });
+
+      test('Lesson accepts optional audience ranges and validates their publication and sparse overrides', () => {
+        const input = {
+          id: id('70'),
+          slug: 'audienceLesson',
+          type: 'lesson' as const,
+          skills: [],
+          params: {
+            languages: ['en', 'uk'] as const,
+            quizRequiredForCompletion: false,
+            sections: { allowNavigation: true, allowSkipping: true, showIndexes: true },
+            age: { min: 6, max: 10 },
+            grade: { min: 1, max: 4 },
+          },
+          locale: { title: 'For early learners' },
+          section: { items: { intro: section }, order: ['intro'] },
+        };
+        const lesson = defineLesson(input);
+        const built = lesson.build.props({ languages: ['en'] });
+        assert.deepEqual(built.base.params.age, { min: 6, max: 10 });
+        assert.deepEqual(built.base.params.grade, { min: 1, max: 4 });
+        assert.equal(lesson_Config_Schema.safeParse(input).success, true);
+
+        const patch = lesson.build.overrides({ params: { age: { min: 7 }, grade: { max: 5 } } }, { languages: ['en'] });
+        assert.equal(patch.id, lesson.id);
+        assert.equal('id' in patch.base, false, 'identity must never enter the sparse Props patch');
+        assert.deepEqual(patch.base.params, { age: { min: 7 }, grade: { max: 5 } });
+        assert.equal(patch.locale, undefined);
+        assert.throws(() => lesson.build.overrides({ params: { age: { min: 11 } } }, { languages: ['en'] }));
+        assert.equal(
+          lesson_Config_Schema.safeParse({ ...input, params: { ...input.params, age: { min: 11, max: 10 } } }).success,
+          false,
+        );
+        assert.equal(
+          lesson_Config_Schema.safeParse({ ...input, params: { ...input.params, grade: { min: 1, max: 41 } } }).success,
+          false,
+        );
+      });
+
       test('Lesson emits plain Section Props arrays with correct own and nested locale paths', () => {
         const lesson = makeLesson();
         const built = lesson.build.props({ languages: ['en', 'uk'] });
@@ -325,6 +380,8 @@ describe('Configurators', () => {
           lessonCompleted: { action: 'notify' },
         };
         const patch = lesson.build.overrides({ events }, { languages: ['uk'] });
+        assert.equal(patch.id, lesson.id);
+        assert.deepEqual(Object.keys(patch).sort(), ['base', 'id', 'locale']);
         assert.deepEqual(patch.base.events, events);
         assert.equal(lesson.build.props({ languages: ['uk'] }).base.events, undefined);
         assert.equal(patch.locale, undefined);

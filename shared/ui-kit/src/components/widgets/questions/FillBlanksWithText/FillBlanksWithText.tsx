@@ -22,7 +22,9 @@ export function FillBlanksWithText({
       response.locale.slots.every(slot =>
         slot.correctAnswers.some(correct => normalizedAnswer(correct) === normalizedAnswer(value[slot.selector] ?? '')),
       ),
-    value => response.locale.slots.length > 0 && response.locale.slots.every(slot => (value[slot.selector] ?? '').trim().length > 0),
+    value =>
+      response.locale.slots.length > 0 &&
+      response.locale.slots.every(slot => (value[slot.selector] ?? '').trim().length > 0),
   );
   return (
     <QuestionFrame response={response} sceneRegistry={sceneRegistry} messages={messages} attempt={attempt}>

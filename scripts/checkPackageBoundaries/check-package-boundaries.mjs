@@ -7,7 +7,6 @@ const engine = readJson('shared/engine/package.json');
 const indexdb = readJson('shared/indexdb/package.json');
 const playground = readJson('content/playground/package.json');
 const web = readJson('apps/web/package.json');
-const selectableTextbooks = new Set(Object.values(readJson('apps/web/textbooks.json')).map(entry => entry.package));
 const platform = readJson('apps/platform/package.json');
 const math = readJson('content/math/package.json');
 const biology = readJson('content/biology/package.json');
@@ -53,16 +52,10 @@ for (const path of migratedTextbookPaths) {
       pkg.exports?.['.']?.types === './dist/textbook/index.d.ts',
     'Book must expose compiled metadata: ' + path,
   );
-  const sceneExport = pkg.exports?.['./scenes'];
   assert(
-    !sceneExport ||
-      (sceneExport.default === './dist/scenes/index.js' &&
-        sceneExport.types === './dist/scenes/index.d.ts' &&
-        existsSync(resolve(root, path, 'scenes/index.ts')) &&
-        existsSync(resolve(root, path, 'scenes/sceneLoader.ts'))),
-    'Only publish implemented, compiled Scenes: ' + path,
+    !pkg.exports?.['./scenes'] && !pkg.exports?.['./styles'],
+    'Do not publish fabricated Scenes or styles: ' + path,
   );
-  assert(!pkg.exports?.['./styles'], 'Do not publish fabricated styles: ' + path);
 }
 assert(platform.name === '@svitlo/platform', 'Unexpected Platform package name');
 assert(
@@ -129,8 +122,8 @@ assert(
   'Playground must be a framework-independent textbook package',
 );
 assert(
-  playground.exports?.['./scenes'] && web.dependencies?.[playground.name] === playground.version,
-  'Web must consume the public Playground Scene registry',
+  !web.dependencies?.[playground.name] && !web.devDependencies?.[playground.name],
+  'Web must not depend on Playground',
 );
 assert(
   ['.', './scenes'].every(
@@ -327,11 +320,9 @@ for (const applicationRoot of applicationSourceRoots) {
     for (const match of code.matchAll(/\bfrom\s*['"]([^'"]+)['"]/g)) {
       const specifier = match[1];
       assert(
-        (applicationRoot === resolve(root, 'apps/web/src') &&
-          selectableTextbooks.has(specifier.split('/').slice(0, 2).join('/'))) ||
-          !/^@svitlo\/(?:playground|math|biology|physics|informatics|geography|language-literature|ukrainian|chemistry|astronomy|history|philosophy|psychology|economics|art|health-safety|engineering|platform)(?:\/|$)/.test(
-            specifier,
-          ),
+        !/^@svitlo\/(?:playground|math|biology|physics|informatics|geography|language-literature|ukrainian|chemistry|astronomy|history|philosophy|psychology|economics|art|health-safety|engineering|platform)(?:\/|$)/.test(
+          specifier,
+        ),
         'Applications must not import another application by package name: ' + relative(root, file),
       );
       if (!specifier.startsWith('.')) continue;

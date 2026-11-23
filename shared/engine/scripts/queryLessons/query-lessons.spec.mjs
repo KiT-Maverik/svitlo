@@ -231,26 +231,25 @@ test('discovers the checked-in Playground Lesson using modern Skill.id imports',
   assert.ok(lesson.skills.includes('00000000-0000-4000-8000-000000000015'));
 });
 
-test('GitHub workflow retains split trust boundaries and read-only analysis', () => {
+test('GitHub Lesson lookup workflow delivers one-day, SHA-pinned JSON and never writes reports to a PR', () => {
   const file = path.resolve(import.meta.dirname, '../../../../.github/workflows/get-lesson.yml');
   assert.ok(fs.existsSync(file));
   const doc = yaml.parse(fs.readFileSync(file, 'utf8'));
   assert.deepEqual(doc.on.issue_comment.types, ['created']);
   assert.ok(doc.jobs.resolve);
   assert.ok(doc.jobs.analyze);
-  assert.ok(doc.jobs.publish);
+  assert.equal(Object.hasOwn(doc.jobs, 'publish'), false);
   assert.equal(doc.jobs.analyze.permissions.contents, 'read');
-  assert.equal(doc.jobs.publish.permissions.contents, 'write');
-  assert.equal(doc.jobs.publish.permissions.issues, undefined);
-  assert.ok(!doc.jobs.analyze.permissions['contents:write']);
   const analysis = JSON.stringify(doc.jobs.analyze);
   assert.match(analysis, /persist-credentials/);
   assert.match(analysis, /ignore-scripts/);
-  assert.doesNotMatch(analysis, /contents: write/);
-  const publisher = JSON.stringify(doc.jobs.publish);
-  assert.match(publisher, /\.agent-ci-artifacts\/lesson-lookup/);
-  assert.match(publisher, /PR head changed since read-only analysis/);
-  assert.match(publisher, /persist-credentials/);
-  assert.doesNotMatch(publisher, /issues\/.*comments/);
-  assert.doesNotMatch(publisher, /npm (?:ci|run)/);
+  assert.match(analysis, /HEAD_SHA/);
+  assert.match(analysis, /GITHUB_RUN_ID/);
+  assert.match(analysis, /schemaVersion: 1/);
+  assert.doesNotMatch(analysis, /git push|\.agent-ci-artifacts|contents: write/);
+  const upload = doc.jobs.analyze.steps.find(step => step.uses?.startsWith('actions/upload-artifact@'));
+  assert.ok(upload);
+  assert.equal(upload.with['retention-days'], 1);
+  assert.match(upload.with.name, /run_id/);
+  assert.match(upload.with.path, /result\.json$/);
 });

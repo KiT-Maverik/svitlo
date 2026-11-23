@@ -1,0 +1,23 @@
+# Typed production materialization and historical YAML retirement
+
+**Current implementation in integration PR #775 (23 November 2026).** The canonical editorial input for Course, Lesson, Question Bank and Flashcard Bank is a single Stage-specific TypeScript `index.ts` object. The former YAML editor schemas, generic factory registry, YAML builders, Course/Lesson/Bank legacy GitHub commands and JSON Schema generator are removed from this integration branch. There is **no supported parallel YAML authoring format** for new production.
+
+## Entity-owned source flows
+
+- **Course:** Stages 1–3 progressively author `CourseWorkflowStage1/2/3`; independent Stage 4 reviews the exact source SHA. Trusted Stage 5 emits Course/Module/Chapter/Episode sources and minimal new Lesson Stage 1 `index.ts` handoffs.
+- **Lesson:** Stage 1/2 editorial `LessonWorkflowMaterializerInput` is reviewed at Stages 3–5. Trusted Stage 6.1 safely archives the reviewed editor source and emits modular `defineLesson`, Sections and Blocks. Scene implementations/assets, Questions, Flashcards, translations and separate publications are not invented.
+- **Questions/Flashcards:** Independently authored Stage 1–3 TypeScript banks, source-SHA-pinned independent Stage 4 reviews and trusted Stage 5 materialization. The source archive and final `questions/index.ts` or `flashcards/index.ts` transition are no-clobber and atomic. Real all-bank resources, selected Sections, locales and media are independently verified.
+
+Engine's concrete source materializers live under `shared/engine/generators/materializers/`; trusted commands live under `scripts/ci/{courseMaterialization,lessonMaterialization,bankMaterialization}/`. Candidate PR TypeScript is statically inspected as inert data. Only default-branch trusted code executes, with read-only analyze and privileged manifest-checked publish separated. Git Source/HEAD SHA, reviewer, branch lease, path/symlink restrictions and exact file bytes are required; no Configurator `build.files()` is introduced.
+
+## Publication and rollout boundaries
+
+The separate `generateLessonProps`, `generateCourseProps` and `generateAssessmentResources` scripts consume **completed** typed Configurators. A source scaffold or reviewed Stage 3 plan is not publishable. `TODO (BLOCKER):`, `TODO(asset)`, Nil UUIDs, missing real selections, physical assets, implemented Scenes or languages fail publication as appropriate. A known Course/Question/Flashcard bank does not imply the associated Section is complete.
+
+Typed commands in #775 are not deployed for live PR comments until their trusted workflows merge into default `develop`. Verify real default-branch Actions with safe reviewed inputs after deployment before claiming the production pipeline operational. Old YAML commands are intentionally retired in this integration branch; they are not live fallbacks.
+
+## Historical source preservation
+
+The 109 `content/math/data/lessons/**/lesson.yaml` files are **historical user-authored source** and were preserved. They are not instructions to regenerate a Lesson using a deleted converter. Migrating any such Lesson requires explicit non-destructive provenance and semantic review of its actual authored material; this infrastructure cleanup does not silently convert or delete editorial source. Prior prototypes and removed scripts remain recoverable from Git history. Do not restore their generated editor schemas or treat archived YAML as a second source of truth.
+
+Review the current [Course Flow](../../skills/course-workflow/create-course-flow.skill.md), [Lesson Flow](../../skills/lesson-workflow/create-lesson-flow.skill.md), [Questions Flow](../../skills/lesson-workflow/create-questions-flow.skill.md) and [Flashcards Flow](../../skills/lesson-workflow/create-flashcards-flow.skill.md) for stage-specific approval and authoring rules.

@@ -2,7 +2,12 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { test } from 'node:test';
-import { chooseChecks, partitionBuildMutatingHosts, requiresWebBuild, shouldBuildDependency, workspaceDependents } from './run-fast-gate.mjs';
+import {
+  chooseChecks,
+  partitionBuildMutatingHosts,
+  shouldBuildDependency,
+  workspaceDependents,
+} from './run-fast-gate.mjs';
 
 const packages = [
   { path: 'shared/engine', name: '@svitlo/engine' },
@@ -11,23 +16,16 @@ const packages = [
   { path: 'content/biology', name: '@svitlo/biology' },
 ];
 
-test('Markdown and KaTeX styles trigger the consuming Web production build', () => {
-  const withHosts = [
+test('CSS-only changes do not trigger TypeScript consumers or application bundling', () => {
+  const workspaces = [
     ...packages,
     { path: 'shared/ui-kit', name: '@svitlo/ui-kit' },
     { path: 'apps/web', name: '@svitlo/web' },
   ];
-  const changes = [
-    'shared/ui-kit/src/components/widgets/ContentBlockRenderer/blocks/Markdown/Markdown.tsx',
-    'shared/ui-kit/src/components/widgets/ContentBlockRenderer/blocks/Markdown/Markdown.module.css',
-  ];
-  const plan = chooseChecks(changes, withHosts);
-  assert.deepEqual([...plan.affected].sort(), ['@svitlo/ui-kit', '@svitlo/web']);
-  assert.equal(requiresWebBuild(changes), true);
-
-  const unrelated = ['shared/ui-kit/src/components/widgets/ContentBlockRenderer/blocks/Text/Text.module.css'];
-  assert.deepEqual([...chooseChecks(unrelated, withHosts).affected], ['@svitlo/ui-kit']);
-  assert.equal(requiresWebBuild(unrelated), false);
+  const css = 'shared/ui-kit/src/components/widgets/ContentBlockRenderer/blocks/Markdown/Markdown.module.css';
+  assert.deepEqual([...chooseChecks([css], workspaces).affected], ['@svitlo/ui-kit']);
+  const source = css.replace('.module.css', '.tsx');
+  assert.deepEqual([...chooseChecks([source], workspaces).affected], ['@svitlo/ui-kit']);
 });
 
 test('Math authored data gets ordinary workspace checks, not taxonomy checks in FastGate', () => {
@@ -46,7 +44,7 @@ test('Engine public signature changes select graph consumers; private changes do
   ]);
 });
 
-test('IndexDB changes select only IndexDB for fast typecheck and unit/integration tests', () => {
+test('IndexDB changes select only IndexDB for fast typecheck', () => {
   const p = chooseChecks(
     ['shared/indexdb/controllers/lessonState/createLessonState/createLessonState.utils.ts'],
     packages,
@@ -63,6 +61,26 @@ test('Engine question contract changes select IndexDB dependent checks', () => {
   const changes = ['shared/engine/configurators/questions/question.schemas.ts'];
   const p = chooseChecks(changes, packages, { publicChanges: changes });
   assert.deepEqual([...p.affected].sort(), ['@svitlo/engine', '@svitlo/indexdb']);
+});
+
+test('non-develop PRs check only directly changed workspaces, not public API consumers', () => {
+  const change = 'shared/engine/configurators/questions/question.schemas.ts';
+  const selection = chooseChecks([change], packages, {
+    publicChanges: [change],
+    changedOnly: true,
+  });
+  assert.deepEqual([...selection.affected], ['@svitlo/engine']);
+  const twoChanged = chooseChecks(
+    [change, 'shared/indexdb/controllers/lessonState/createLessonState/createLessonState.utils.ts'],
+    packages,
+    { publicChanges: [change], changedOnly: true },
+  );
+  assert.deepEqual([...twoChanged.affected].sort(), ['@svitlo/engine', '@svitlo/indexdb']);
+});
+
+test('non-develop PR root-only changes do not select untouched workspaces', () => {
+  const selection = chooseChecks(['package.json', 'package-lock.json'], packages, { changedOnly: true });
+  assert.deepEqual([...selection.affected], []);
 });
 
 test('selects only changed subject workspaces', () => {
@@ -90,17 +108,35 @@ test('unrelated workflow changes do not select subject workspaces', () => {
   assert.deepEqual([...p.affected], []);
 });
 
-test('FastGate always emits a required status and scopes expensive checks, including Markdown CSS', () => {
+test('FastGate is strictly typecheck-only and still always emits the required status', () => {
   const workflow = readFileSync(
     fileURLToPath(new URL('../../.github/workflows/fast-gate.yml', import.meta.url)),
     'utf8',
   );
+  const runner = readFileSync(fileURLToPath(new URL('./run-fast-gate.mjs', import.meta.url)), 'utf8');
+  const coverage = readFileSync(
+    fileURLToPath(new URL('../../.github/workflows/engine-coverage.yml', import.meta.url)),
+    'utf8',
+  );
   assert.match(workflow, /name: FastGate \/ verify/);
-  assert.match(workflow, /git diff --no-renames --name-only/, 'renames must not hide deleted TS sources');
-  assert.doesNotMatch(workflow, /\n    paths:/, 'required checks cannot use GitHub PR paths filters');
-  assert.match(workflow, /ContentBlockRenderer\/blocks\/Markdown\//);
+  assert.match(
+    workflow,
+    /on:\n  pull_request:\n    types: \[opened, reopened, synchronize, ready_for_review, edited\]/,
+  );
+  assert.doesNotMatch(workflow, /branches: \[develop\]/, 'FastGate runs for every PR target');
+  assert.match(workflow, /!github\.event\.pull_request\.draft/, 'Draft PRs must defer typechecking');
+  assert.match(workflow, /TARGET_BRANCH: \$\{\{ github\.event\.pull_request\.base\.ref \}\}/);
+  assert.match(workflow, /--changed-only/, 'non-develop PRs must use direct-workspace checks');
+  assert.match(runner, /changedOnly: args\.length === 3/, 'new CLI flag reaches the workspace selector');
+  assert.match(workflow, /git diff --no-renames --name-only/);
+  assert.doesNotMatch(workflow, /\n    paths:/, 'required check must run even for irrelevant changes');
+  assert.match(workflow, /Typecheck changed workspaces and public API consumers/);
+  assert.match(workflow, /No changed TypeScript workspace or dependency config/);
   assert.match(workflow, /steps\.scope\.outputs\.run == 'true'/);
-  assert.match(workflow, /No changed executable source or CI config/);
+  assert.doesNotMatch(workflow, /node --test|test:coverage|test:components|app:build|Scoped quality checks/);
+  assert.match(runner, /code:check:types/);
+  assert.doesNotMatch(runner, /['"](?:test(?::[a-z-]+)?|app:build)['"]/);
+  assert.match(coverage, /github\.event\.comment\.body == '\/engine-coverage'/);
 });
 
 test('content build always reports required status and scopes package builds internally', () => {

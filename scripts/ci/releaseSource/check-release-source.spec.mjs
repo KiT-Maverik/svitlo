@@ -30,7 +30,7 @@ test('only same-repository develop → main is an authorized release', () => {
 
 test('Ready production check is rerun on edited PRs and checks source before installation', () => {
   const workflow = readFileSync(
-    fileURLToPath(new URL('../../../.github/workflows/questions.yml', import.meta.url)),
+    fileURLToPath(new URL('../../../.github/workflows/production-quality.yml', import.meta.url)),
     'utf8',
   );
   assert.match(workflow, /opened, reopened, synchronize, edited, ready_for_review/);
@@ -58,14 +58,19 @@ test('production gate CLI propagates authorized and unauthorized exit statuses',
   assert.match(denied.stderr, /Production promotion requires/);
 });
 
-test('release compiles all distributable packages before host builds and artifact validation', () => {
+test('production builds packages and apps independently, verifying each in its own runner', () => {
   const workflow = readFileSync(
-    fileURLToPath(new URL('../../../.github/workflows/questions.yml', import.meta.url)),
+    fileURLToPath(new URL('../../../.github/workflows/production-quality.yml', import.meta.url)),
     'utf8',
   );
-  const packageBuild = workflow.indexOf('npm run package:build');
-  const appBuild = workflow.indexOf('npm run app:build');
-  const artifactCheck = workflow.indexOf('npm run repo:check:artifacts');
-  assert.ok(packageBuild > 0 && packageBuild < appBuild && packageBuild < artifactCheck);
   assert.match(workflow, /name: Build all distributable packages/);
+  assert.match(workflow, /name: Verify compiled public package artifacts/);
+  assert.match(workflow, /name: Build application and all needed workspace dependencies/);
+  assert.match(workflow, /name: Validate compiled application resources\n        if: matrix.integration/);
+  assert.match(workflow, /name: Run application E2E suite\n        if: matrix.e2e/);
+  assert.match(workflow, /strategy:\n      fail-fast: false/);
+  assert.match(workflow, /name: Production Quality \/ verify/);
+  // The packages job and every app runner use clean local workspaces rather
+  // than illegally sharing dist/ across GitHub-hosted runners.
+  assert.match(workflow, /needs: \[policy, repository, types, unit, components, lint, packages, apps\]/);
 });

@@ -57,8 +57,11 @@ if (invoked) {
     if (deferred) {
       console.log('Draft PR: package builds deferred until Ready for review or workflow_dispatch.');
     } else {
-      console.log((all ? 'All content packages' : 'Selected content packages') + ': ' +
-        matrix.include.map(item => item.path).join(', '));
+      console.log(
+        (all ? 'All content packages' : 'Selected content packages') +
+          ': ' +
+          matrix.include.map(item => item.path).join(', '),
+      );
       if (!hasBuilds) console.log('No content packages require a build');
     }
     if (process.env.GITHUB_OUTPUT) {

@@ -1,126 +1,83 @@
-# Course Stage 5 PR-command automation
+# Typed Course Stage 5 — trusted manual materialization
 
-**Implemented:** .github/workflows/course-materialization.yml invokes the maintained
-Engine materializer at shared/engine/scripts/materializeCourseFlow/materialize-course-flow.mjs.
-This workflow **must be merged to the repository default branch before issue_comment events can trigger it**.
-Do not run Stage 5 on Course #653 without separate owner authorization and valid Stage 4 evidence.
+The Course-owned TypeScript Stage 3 source is the only supported editorial input. The trusted workflow is `.github/workflows/course-typed-materialization.yml`, a manual `workflow_dispatch` with `pr_number`; it is present in integration #775 but not deployed on default `develop` until the integration is merged. The obsolete Course YAML command and workflow have been removed from the integration tree. Until deployment, Stage 5 is unavailable through default-branch Actions; do not dispatch a removed command or bypass authorization.
 
-## Maintainer commands
+## Authorization and source fidelity
 
-On an open same-repository **Draft Course parent PR targeting the development branch (`develop` for new work)**, an actor with
-write/maintain/admin permission may post one exact top-level comment:
+To exercise the staged path on an open same-repository **Draft Course PR**:
+choose **Actions → Stage typed Course materialization (manual rollout)** and
+supply pr_number. The gate requires a single changed canonical
+content/<book>/data/courses/<UUID-last-hex>/<UUID>/index.ts,
+the current source blob SHA, an independent contributor with
+write/maintain/admin access who submitted a formal **APPROVED GitHub review
+at that exact PR HEAD**, and a write-authorized invoking actor. The source
+review and authorization are separate; TypeScript satisfies alone never
+grants approval. If approval is stale or withdrawn, refuse.
 
-- **/course materialize:** run the existing materializer with --package, --course,
-  --write, then --check against the pinned Course source and commit only verified
-  new Course TypeScript/Markdown and minimal Lesson YAML files to the Course PR branch.
-- **/course finalize:** after outputs have been committed, run --check then
-  --finalize and separately commit removal of **only the unchanged course.yaml**.
+The **read-only analyze job** parses the Course PR TypeScript through trusted
+TypeScript AST analysis; it never runs untrusted candidate modules. Only inert
+literal objects and aliases, verified canonical Lesson imports, an imported
+Lesson's immutable `.id`, and that trusted Lesson's
+`build.overrides(rawPatch, { languages })` with reviewed literal arguments
+are supported. Every other executable call/import, computed key or spread
+fails closed. Imported Lesson code must already be present byte-for-byte
+in the trusted default branch AND in the candidate Git checkout with an
+independently pinned source revision and methodology. The trusted
+`Lesson_Configurator` and its real Build API are loaded solely from that
+default-branch implementation, never the Course PR. A Course-local sparse
+patch retains its _original raw expression_ and is replayed against the
+reviewed built result; it is never reverse-engineered from Props. Changes to
+independently authored Lessons that exist only on a nested integration branch
+must first be approved and made available to the trusted implementation.
+This conservative boundary rejects such imports rather than executing PR code.
 
-The optional workflow_dispatch form takes a PR number and enumerated operation.
-No other event causes materialization. Generated source remains an authoring draft,
-not published Course content; no Lesson Production PRs or translations are created.
+This path uses the already-implemented Course/Module/Chapter/Episode
+orchestrators, concrete Episode Section/ContentBlock renderers shared with
+Lesson Stage 6, and Course → new Lesson Stage 1 handoffs. It does not begin
+independent Lesson PRs, Question Banks, Flashcard Banks, translation, Scenes,
+or Course Props publishing. Unresolved child and release
+`TODO (BLOCKER)` markers persist in generated authored source. Generated
+TypeScript is typechecked semantically against real trusted Engine Build
+contracts as virtual in-memory files before manifest creation and again
+before a privileged write.
 
-## Stage 4 review prerequisite
+The read-only job writes a bounded artifact containing the complete generated
+file set, exact UTF-8 bytes and SHA-256 hashes, source blob, reviewer and
+review commit. **Only trusted default-branch scripts** execute in both jobs.
+Candidate TS is not imported, compiled to executable JS, or evaluated —
+including in the privileged publisher. The publisher rechecks the actor and
+independent Stage 4 review at the pinned HEAD, rereads original source/blob,
+recreates the identical plan from inert AST, checks every target for symlinks
+and clobbers, and builds **one Git Data API tree commit** that both replaces
+index.ts and archives exact original bytes at workflow.stage3.ts. It checks
+the branch/PR before a non-force ref update. There is no PR-description edit,
+Course Props publication, child Lesson Production or automatic bank work.
 
-Stage 4 is one substantive whole-Course methodological and assessment review of
-the completed Stage 1–3 specification, performed in a **separate agent chat or
-execution context**. The reviewer may use the same GitHub account as the
-Course author. Requested corrections are resolved in the Course source; findings
-and the review outcome are recorded in the parent Course PR discussion and
-manual `## Workflow` checklist.
+### Validation and activation
 
-The Stage 5 gate requires **exactly one canonical, checked Stage 1, Stage 2,
-Stage 3 and Stage 4 item** in the parent PR's `## Workflow` section. The
-Stage 4 entry is `- [x] 4. Review Course Plan` (optional explanatory text may
-follow). Missing, unchecked, duplicate, malformed or ambiguous stage items
-fail closed. The parent PR is responsible for clearing or marking a Stage
-stale when later editorial changes require another review. A checkmark is a
-trusted owner/agent **workflow declaration**, not cryptographic proof of a
-separate chat or educational quality.
+Run on a checkout containing this PR with dependencies installed:
 
-No external GitHub reviewer account, `APPROVED` event, reviewer-role text,
-review-specific comment, `Stage 4 approval:` line, `Course YAML blob:` line
-or reviewer-commit archaeology is required. The maintainer's exact operation
-trigger authorizes running Stage 5; it is not an additional methodological
-approval. PR identity and the canonical source are independently verified.
+    node --test scripts/ci/courseMaterialization/typed-course-materialization.spec.mjs
+    node --test shared/engine/generators/materializers/course/materializeStage5.spec.mjs
+    node --test shared/engine/generators/materializers/course/materializeStage5.build.spec.mjs
+    node --test shared/engine/generators/materializers/course/sourceCommit.spec.mjs
+    npm run code:check:types --workspace @svitlo/engine
+    npm run package:build --workspace @svitlo/engine
+    npm run test:coverage --workspace @svitlo/engine
 
-## Security boundary
+Before these focused tests, run:
 
-1. Resolve the invoking actor, Course identity, current Git source blob, Stage 4
-   checklist and HEAD SHA before checking out PR content.
-2. Read-only analyze job checks out trusted default-branch scripts separately
-   from the pinned PR as **data**. It installs only trusted dependencies with
-   lifecycle scripts disabled; runs the trusted Engine materializer (root
-   explicitly points to the PR data checkout); checks all generated bytes,
-   paths, syntax, and source provenance. An Actions artifact contains a bounded
-   SHA256-verified handoff.
-3. Write-capable publish job executes **trusted code only**. It rechecks actor,
-   checklist, SHA, blob and allowlisted paths, then uses the Git Data API to make
-   a commit whose parent is the pinned HEAD. Branch ref updates are non-force:
-   a concurrent push rejects the update rather than overwriting it.
+    node scripts/ci/courseMaterialization/build-course-renderers.mjs
 
-Allowed materialize outputs: Course root index.ts, constants.ts, review.ts and
-methodology.md; nested content/<slug>/index.ts and content/<slug>/methodology.md
-for Course-owned Module/Chapter/Episode nodes (at most three nested slugs);
-and only new Lesson UUID-root lesson.yaml files. Finalize may delete only the
-Course YAML.
-Unknown files, divergent existing files, symlinks/submodules, ambiguous IDs,
-incomplete Stage 4, changed HEAD and partial output fail closed. Repeated
-materialization with identical committed files is a no-op.
+This transient trusted-only esbuild compilation supports isolated regressions
+while the parent #775 full Engine TypeScript build currently fails in
+Lesson Stage 6 sources. It is not a substitute for those real Engine gates.
+The typed PR-targeted test job also requires the actual
+`npm run code:check:types --workspace @svitlo/engine`; failure must be
+reported and repaired in its owning workstream, not silently skipped.
 
-## One-time Course Lesson registration
-
-The Engine materializer knows the Lesson UUID, slug, source-language title and
-canonical `lesson.yaml` path **while writing each file**. Stage 5 includes the
-actual assignments in its bounded, pinned CI artifact alongside the generated
-source bytes. After the trusted publisher commits the files, the separately
-permissioned `register-lessons` job reads that same artifact and replaces only
-the marker-delimited `Lessons` table in the parent Course PR Description.
-
-| Lesson         | Slug            | UUID               | Lesson PR   |
-| -------------- | --------------- | ------------------ | ----------- |
-| Example lesson | `exampleLesson` | `<generated-uuid>` | Not started |
-
-Creating the Lesson PR is **not** part of Course Stage 5. When separately
-authorized Lesson Production starts, the agent edits that row to add the
-actual PR link. Repeated materialization must not overwrite previously
-registered rows or agent-edited PR links, and finalization must not rewrite
-the table. This is a one-time identity register, **not** automatic status
-tracking or a reason to parse Course TypeScript.
-
-The updater runs trusted default-branch code with only `pull-requests:write`
-and read-only repository permissions. It verifies the pinned Course identity,
-registered IDs, exact successful publication commit, unchanged PR HEAD and
-managed Description markers before writing. The GitHub PR-body PATCH is not
-atomic compare-and-swap, so a second read narrows—but cannot eliminate—the
-race with concurrent PR-description edits.
-
-The former `sync-course-lessons.yml` PR-lifecycle workflow and its standalone
-AST/YAML status-synchronization scripts were removed. `/course-status sync`
-no longer exists; no event should continually rewrite the table.
-
-## Validation and recovery
-
-Run:
-
-    node --test scripts/ci/courseMaterialization/course-materialization.spec.mjs
-    node --test shared/engine/scripts/materializeCourseFlow/materialize-course-flow.spec.mjs shared/engine/scripts/validateCourseFlow/validate-course-flow.spec.mjs
-
-The Engine generators CI workflow executes these tests. Actions logs and step
-summaries contain precise errors and pinned SHA; published commits carry the
-Course PR number, source HEAD and reviewed YAML blob SHA. Committed source files and the generated PR Description identity table are the
-Stage 5 handoff; report files are short-lived Actions artifacts, not tracked
-.agent-ci-artifacts.
-
-After an incomplete or stale Stage 4, finish the separate-chat review,
-resolve corrections and update the parent PR checklist before retrying.
-After a concurrent push, rerun the command. After divergent generated content,
-resolve differences manually; the tool does not overwrite authored work.
-
-**E2E limitation:** GitHub cannot dispatch this issue_comment workflow until it
-is deployed on main, and a synthetic Course PR needs a completed Stage 4 checklist. Complete the
-safe synthetic-PR run after deployment and
-record its exact run and commit SHAs before claiming production E2E validation.
-Deploy this workflow to the repository default branch before attempting new Stage 5 registration.
-The change does not retroactively populate already-finalized Course PRs,
-mark PRs Ready or merge anything.
+The Engine tests check real source renderers, generated TS compilation and
+Git-source writer. A complete successful Actions run on the default branch
+against a pinned Course PR SHA is still required. This staged route has
+**no claimed successful live run** while it exists only in this child Draft.
+A successful authorized default-branch workflow run and source-SHA-pinned result remain prerequisites before treating Stage 5 as operational. No live run has been verified here.

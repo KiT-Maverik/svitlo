@@ -330,7 +330,7 @@ export function defineLesson<
       section?: { additionalItems?: AddedSections & ChildrenSupporting<Languages, AddedSections> };
     },
     options: PublicationLanguageOptions<Languages>,
-  ): Publication<OverrideBase> => {
+  ): Publication<OverrideBase> & Pick<Lesson_Config, 'id'> => {
     try {
       const languages = resolvePublicationLanguages(options);
       validate({ ...copyAuthored(), section: { items: initialSections, order: sectionOrder } });
@@ -394,7 +394,8 @@ export function defineLesson<
         throw new Error('Lesson requires at least one enabled Quiz section');
       }
       output.locale = Object.keys(files).length ? files : undefined;
-      const result = structuredClone(output);
+      // A reference to the owning Lesson, not an identity override in the sparse Props patch.
+      const result = structuredClone({ id, ...output });
       validatePublication(props(options), languages, result);
       return result;
     } catch (error) {

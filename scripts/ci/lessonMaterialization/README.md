@@ -1,46 +1,70 @@
-# Lesson Stage 6 — authorized PR-command source materialization
+# Reviewed typed Lesson Stage 6.1 materialization
 
-This CI workflow materializes the already-reviewed canonical Lesson YAML into create-only TypeScript, Markdown/Code and production handoffs on the **existing Draft Lesson PR branch**. After verifying the real run and commit, this proves only **Stage 6.1 Materialize Lesson sources**; Stage 6 also requires separate checked 6.2 Accessibility source audit, 6.3 Offline source audit, and 6.4 Validate source/handoff. It does not author or integrate Question/Flashcard Banks (parent Stages 7–8), produce Scenes/media (separate resource blockers), translate (Stages 9–10), publish, approve reviews, mark Ready or merge.
+The only supported PR command is **`/lesson materialize typed`**. The trusted
+default-branch GitHub Actions workflow has three jobs:
+`typed-resolve`, `typed-analyze`, and `typed-publish`.
 
-## Deploy before use
+The input is the exact reviewed, source-commit/source-blob-pinned Lesson
+`index.ts satisfies LessonWorkflowMaterializerInput` under the canonical
+UUID bucket. The operation archives its original bytes in
+`workflow.stage2.ts` and atomically commits the deterministic Lesson-owned
+`define*` module tree. It does not generate translations, Question/Flashcard
+Banks, assets, Scene implementations or publishable runtime Props.
 
-**The workflow and its trusted scripts must first be merged to the repository default branch with owner authorization.** GitHub issue_comment cannot execute a workflow which exists only on this Draft PR. This implementation PR is not an operational end-to-end test.
+## Trigger
 
-An agent resuming a Lesson by PR number first reads [Create Lesson Flow](../../../studio/skills/lesson-workflow/create-lesson-flow.skill.md), checks the actual PR tracker and Stage 5 evidence, immutable UUID, canonical source/blob and linked Course PR. Once deployed, a collaborator with write/maintain/admin permissions posts this **exact top-level comment** to that Lesson PR:
+On an existing, open, same-repository Draft Lesson PR whose Stages 1–5 have
+been accepted and source-SHA-attested, an authorized collaborator adds this
+**exact** top-level comment:
 
 ```text
-/lesson materialize
+/lesson materialize typed
 ```
 
-An authorized maintainer may alternatively run default-branch workflow_dispatch with pr_number and operation=materialize. Neither interface accepts arbitrary paths, refs or commands. The workflow derives the canonical `content/<book>/data/lessons/<last-uuid-hex>/<uuid>/lesson.yaml` from the verified PR identity. Never run candidate PR code or create a second Lesson PR for a retry.
+An authorized maintainer may dispatch the default-branch workflow with that
+PR number and `operation=materialize-typed`. No YAML or finalize command is
+accepted. The old `/lesson materialize` and `/lesson finalize` jobs, their
+standalone trusted scripts, and the Lesson `lesson.yaml` Builder/Finalizer
+were intentionally removed in PR #797. Historical Lesson YAML must be
+reconciled in its owning PR, preserving source and author/review provenance,
+rather than using a hidden legacy fallback.
 
-A separately authorized `/lesson finalize` (dispatch operation=finalize) checks the original unchanged YAML against fully committed materialized source and removes **only** that `lesson.yaml`. It does not regenerate, overwrite source files or assert bank/Stage 6 completion.
+## Security and stage boundaries
 
-## Trusted job isolation
+The read-only resolver verifies actor privileges, Draft/same-repository PR
+ownership, identity, Course parent provenance, canonical Stage 2 file, Stages
+1–5 state and accepted Stage 3/4/5 source review evidence. Analyzer installs
+only trusted dependencies and treats candidate TypeScript as **data**; its AST
+parser permits a conservative source subset and statically resolves
+imported owned bank Configurator `.id` values without executing candidate
+code. It uses the trusted Engine source materializer.
 
-- **Resolve:** read-only token, exact command/dispatch, write-capable actor, same-repo open Draft Lesson PR, canonical identity marker and UUID bucket, Stages 1–5 uniquely checked and Stage 6 pending (four subchecks in the current ten-stage tracker), source Git blob and immutable head. Course-originated Lessons must target the real linked Course integration branch; verify parent PR, Course UUID/textbook and Lesson inventory. Standalone Lessons target develop for new work (existing PR ancestry remains authoritative).
-- **Analyze:** trusted default-branch implementation checkout under `trusted/` and a separate pinned PR commit under `candidate/`, treated as untrusted **data only**. Install dependencies only from trusted with `npm ci --ignore-scripts`. Run trusted Engine preflight/schema/factory registry against the candidate Lesson root. Bank-pending Quiz/Flashcards Sections use `preflight-draft` then `handoff`: incomplete Section Configurators are omitted from the generated Lesson, with full authored Section data copied to temporary `sectionDrafts` of the matching bank YAML. Complete Sections use strict `preflight` and source-preserving generation. The authored `quizRequiredForCompletion` value remains unchanged. Verify the full create-only generated inventory and source fidelity, reject symlinks, overwrite, unexplained modifications, forbidden outputs and size limits; produce bounded SHA256 artifact.
-- **Publish:** separate contents:write job downloads the exact analyzer artifact, revalidates actor/stage/identity/branch/source SHA, allowed bytes/paths and tracked files, then creates a Git tree and one commit on the original HEAD. A non-force ref update rejects concurrent pushes. No shell push, PR-head script execution or persistent checkout credentials.
-- **One-time generation:** a second `/lesson materialize` after source creation fails explicitly; there is no no-op/reconciliation mode. If regeneration is genuinely needed, manually remove only verified generated output before retrying. Edited sources are never overwritten.
+The SHA256-attested manifest contains an allowlisted create-only source
+inventory, the replacement root `index.ts`, and original source bytes archive.
+The dependency-free publisher rechecks actor/source/review SHA, branch HEAD,
+parent ancestry, file hashes, no-clobber destinations and Git tree lease
+before the one non-force commit. Stale or partial writes fail closed.
 
-## Ownership and next steps
+Completion of Stage 6.1 does **not** satisfy Stage 6.2 (typed resources),
+Stage 6.3 (working Scenes), Stages 7/8 (independent assessment banks) or
+Stages 9/10 (translation and review). Missing required assessment Sections,
+unresolved scene/media assets, reserved IDs and translation drafts remain
+visible blockers and must not publish.
 
-Only new Lesson-owned `index.ts`, `constants.ts`, `review.ts`, `methodology.md`, `production-handoff.json`, nested `sections/**` source/specifications and temporary root `questions.yaml`/`flashcards.yaml` deferred-Section drafts are allowed under the single verified UUID root. Complete Quiz/Flashcards Sections remain normal Sections; unfinished Sections become real root `TODO (BLOCKER)` handoffs.
+See [full trusted typed command specification](./TYPED.md) and the
+[retirement record](./CUTOVER.md).
 
-This command never writes `questions/**`, `flashcards/**`, **existing** bank YAML, independently owned bank TS modules, external assets, Scene implementations, translated files or unrelated Course/Lesson files. It may create a new bank YAML with empty bank collections plus deferred `sectionDrafts` only where needed. Independent bank flows author and review Question/Flashcard entries.
-
-Inspect actual Actions run/artifact, pinned YAML source/head/blob, generated commit/diff and blockers. Record output SHA evidence for **6.1**, then complete 6.2 source-level accessibility, 6.3 source-level offline requirements and 6.4 Engine/schema/Builder fidelity and scoped technical checks, each with an independent checkbox in the **same Draft Lesson PR**. Check the parent Stage 6 only after all four are verified. Missing physical Scenes/media remain separately owned resource blockers, and pending independent Question/Flashcard Bank selections are handled in Lesson Stages 7–8; neither blocks completion of the Stage 6 source-preparation checklist. Final Ready/merge still requires clearing physical/bank blockers and strict production validation. A successful command alone never marks Ready, merges or publishes.
-
-## Verification
+## Scoped verification
 
 ```sh
-node --test scripts/ci/lessonMaterialization/lesson-materialization.spec.mjs
-node --test shared/engine/scripts/finalizeLesson/finalizeLesson.spec.mjs
-node --test shared/engine/scripts/lessonBuilder/lessonBuilder.spec.mjs
+node --test scripts/ci/lessonMaterialization/lesson-typed-materialization.spec.mjs
+node --test scripts/ci/lessonMaterialization/lesson-typed-publish.spec.mjs
+node --test scripts/ci/lessonMaterialization/lesson-typed-source.spec.mjs
 npm run package:build --workspace @svitlo/engine
-npm run content:check:yaml-schemas --workspace @svitlo/engine
+npm run code:check:types --workspace @svitlo/engine
 ```
 
-The standalone Lesson finalizer supports `finalize --source <canonical lesson.yaml> --preserve-config` for a **strict first-time** source-preserving transfer; the bank-pending `handoff` always preserves YAML. Neither overwrites an existing authored entrypoint. See [Finalize Lesson](../../../shared/engine/scripts/finalizeLesson/README.md).
-
-**Operational E2E remains a separate post-merge acceptance gate:** after authorized deployment to the repository default branch, use a safe synthetic Draft Lesson PR with real Stage 1–5 evidence; record the actual workflow run ID, source commit/blob, output commit and repeat/failure outcome. Do not use production Lesson #666 as a speculative test. Unit tests and an unmerged workflow are not proof of live GitHub Actions execution.
+A successful local/simulated test does not prove operational GitHub Actions
+permissions or deployment. An authorized synthetic Draft PR can validate
+the command after the trusted workflow lands on `develop`; that is a
+**test**, not a precondition for removing obsolete YAML code in this branch.

@@ -22,6 +22,7 @@ After npm ci at the monorepo root:
     npm run code:check:types --workspace @svitlo/desktop
     npm run code:lint:check --workspace @svitlo/desktop
     npm run test --workspace @svitlo/desktop
+    npm run test:integration --workspace @svitlo/desktop # after app:build
     npm run test:smoke --workspace @svitlo/desktop
     npm run app:pack --workspace @svitlo/desktop
 

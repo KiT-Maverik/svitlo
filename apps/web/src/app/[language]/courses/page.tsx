@@ -2,7 +2,8 @@ import { Suspense } from 'react';
 import { notFound } from 'next/navigation';
 import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine/runtime';
 import { CoursesPage } from '@svitlo/ui-kit';
-import { getMockCourseMessages, getMockCourses } from '@/lib/mockCourses';
+import { getCourseMessages } from '@/lib/courseMessages';
+import { loadPublishedCourseCatalog } from '@/lib/publishedCourseCatalog';
 
 type Props = { params: Promise<{ language: string }> };
 
@@ -10,16 +11,14 @@ async function Content({ params }: Props) {
   const { language } = await params;
   const interfaceLocale = DEFAULT_SUPPORTED_LANGUAGES.find(item => item.language === language);
   if (!interfaceLocale) notFound();
-
-  const courses = getMockCourses(language).map(({ preview }) => ({
-    course: preview,
-    href: `/${language}/course/${preview.id}`,
+  const courses = (await loadPublishedCourseCatalog(interfaceLocale.language)).map(course => ({
+    course,
+    href: '/' + language + '/course/' + course.id,
   }));
-
   return (
     <CoursesPage
       courses={courses}
-      messages={getMockCourseMessages(language)}
+      messages={getCourseMessages(language)}
       interfaceLanguage={interfaceLocale.language}
     />
   );

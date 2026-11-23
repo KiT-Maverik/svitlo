@@ -12,7 +12,7 @@ import type {
 } from '@svitlo/engine/runtime';
 
 export type QuestionResponse =
-  Question_SelectOneAnswer_Props
+  | Question_SelectOneAnswer_Props
   | Question_SelectMultipleAnswers_Props
   | Question_MatchBlocks_Props
   | Question_AnswerWithText_Props

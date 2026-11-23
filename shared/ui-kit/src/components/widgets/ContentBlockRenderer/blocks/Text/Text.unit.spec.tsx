@@ -85,12 +85,14 @@ describe('Text', () => {
   });
 
   it('wraps text by default and supports Typography props', () => {
-    const { container, rerender } = render(
-      <Text {...textResponse('Bare %_%id: name; value: John%_%')} />,
-    );
+    const { container, rerender } = render(<Text {...textResponse('Bare %_%id: name; value: John%_%')} />);
     expect(container.textContent).toBe('Bare John');
     expect(container.querySelector('p')).toBeInTheDocument();
-    rerender(<Text {...textResponse('Wrapped', undefined, { enabled: true, typographyProps: { component: 'h2', id: 'title' } })} />);
+    rerender(
+      <Text
+        {...textResponse('Wrapped', undefined, { enabled: true, typographyProps: { component: 'h2', id: 'title' } })}
+      />,
+    );
     expect(screen.getByRole('heading', { level: 2, name: 'Wrapped' })).toHaveAttribute('id', 'title');
   });
 

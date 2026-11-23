@@ -1,0 +1,235 @@
+name: Production quality
+# Only Ready develop → main promotions run the complete suite; preserve the
+# single protected required status while independent suites run in parallel.
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, reopened, synchronize, edited, ready_for_review]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: production-quality-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  policy:
+    name: Production / source policy
+    if: github.event_name == 'workflow_dispatch' || !github.event.pull_request.draft
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      apps: ${{ steps.apps.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Test production source and parallel workflow contracts
+        run: node --test scripts/ci/releaseSource/check-release-source.spec.mjs scripts/ci/productionQuality/production-quality.spec.mjs
+      - name: Reject non-develop production source
+        if: github.event_name == 'pull_request'
+        env:
+          PR_BASE_REF: ${{ github.event.pull_request.base.ref }}
+          PR_HEAD_REF: ${{ github.event.pull_request.head.ref }}
+          PR_HEAD_REPO: ${{ github.event.pull_request.head.repo.full_name }}
+        run: node scripts/ci/releaseSource/check-release-source.mjs
+      - name: Discover all applications and their E2E contracts
+        id: apps
+        run: node scripts/ci/productionQuality/plan-app-matrix.mjs
+
+  repository:
+    name: Production / repository integrity
+    needs: policy
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - name: Install pinned dependencies
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --no-audit --no-fund
+      - name: Verify workspace integrity and build reuse regressions
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npm run repo:check:packages
+
+  types:
+    name: Production / TypeScript
+    needs: policy
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - name: Install pinned dependencies
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --no-audit --no-fund
+      - name: Initialize job-local package build reuse
+        run: echo "SVITLO_CI_PACKAGE_BUILD_STATE=$RUNNER_TEMP/svitlo-production-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT.json" >> "$GITHUB_ENV"
+      - name: Typecheck all eligible workspaces
+        env:
+          SVITLO_WEB_TEST_SELECTION: web-fixture-alpha
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npm run code:check:types
+      - name: Report package build reuse
+        if: always()
+        run: node scripts/ci/packageBuildReuse/package-build-reuse.mjs --summary
+
+  unit:
+    name: Production / unit tests
+    needs: policy
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - name: Install pinned dependencies
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --no-audit --no-fund
+      - name: Initialize job-local package build reuse
+        run: echo "SVITLO_CI_PACKAGE_BUILD_STATE=$RUNNER_TEMP/svitlo-production-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT.json" >> "$GITHUB_ENV"
+      - name: Test every eligible workspace
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npm test
+      - name: Report package build reuse
+        if: always()
+        run: node scripts/ci/packageBuildReuse/package-build-reuse.mjs --summary
+
+  components:
+    name: Production / extra component tests
+    needs: policy
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - name: Install pinned dependencies
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --no-audit --no-fund
+      - name: Initialize job-local package build reuse
+        run: echo "SVITLO_CI_PACKAGE_BUILD_STATE=$RUNNER_TEMP/svitlo-production-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT.json" >> "$GITHUB_ENV"
+      - name: Test Playground and Web without rerunning UI Kit or Math suites
+        env:
+          SVITLO_WEB_TEST_SELECTION: web-fixture-alpha
+        run: node scripts/ci/quietRun/quiet-run.mjs -- node scripts/ci/productionQuality/run-selected-components.mjs
+      - name: Report package build reuse
+        if: always()
+        run: node scripts/ci/packageBuildReuse/package-build-reuse.mjs --summary
+
+  lint:
+    name: Production / lint
+    needs: policy
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - name: Install pinned dependencies
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --no-audit --no-fund
+      - name: Lint all eligible workspaces
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npm run code:lint:check
+
+  packages:
+    name: Production / distributable packages
+    needs: policy
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - name: Install pinned dependencies
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --no-audit --no-fund
+      - name: Initialize job-local package build reuse
+        run: echo "SVITLO_CI_PACKAGE_BUILD_STATE=$RUNNER_TEMP/svitlo-production-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT.json" >> "$GITHUB_ENV"
+      - name: Build all distributable packages
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npm run package:build
+      - name: Verify compiled public package artifacts
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npm run repo:check:artifacts
+      - name: Report package build reuse
+        if: always()
+        run: node scripts/ci/packageBuildReuse/package-build-reuse.mjs --summary
+
+  apps:
+    name: Production / ${{ matrix.slug }}
+    needs: policy
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix: ${{ fromJSON(needs.policy.outputs.apps) }}
+    env:
+      APP_WORKSPACE: ${{ matrix.workspace }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - name: Install pinned dependencies
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --no-audit --no-fund
+      - name: Initialize job-local package build reuse
+        run: echo "SVITLO_CI_PACKAGE_BUILD_STATE=$RUNNER_TEMP/svitlo-production-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT.json" >> "$GITHUB_ENV"
+      - name: Select explicit controlled content for the universal Web host
+        if: matrix.workspace == '@svitlo/web'
+        run: echo 'SVITLO_TEXTBOOK=web-fixture-alpha' >> "$GITHUB_ENV"
+      - name: Build application and all needed workspace dependencies
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npm run app:build --workspace "$APP_WORKSPACE"
+      - name: Validate compiled application resources
+        if: matrix.integration
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npm run test:integration --workspace "$APP_WORKSPACE"
+      - name: Install Chromium only for applications with E2E suites
+        if: matrix.e2e
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npx playwright install chromium
+      - name: Run application E2E suite
+        if: matrix.e2e
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npm run test:e2e --workspace "$APP_WORKSPACE"
+      - name: Report package build reuse
+        if: always()
+        run: node scripts/ci/packageBuildReuse/package-build-reuse.mjs --summary
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: production-quality-${{ matrix.slug }}-test-results
+          path: ${{ matrix.path }}/test-results/
+          if-no-files-found: ignore
+
+  verify:
+    name: Production Quality / verify
+    needs: [policy, repository, types, unit, components, lint, packages, apps]
+    # On Draft the required context must not masquerade as a validated release.
+    # On Ready the final status exists even when one prerequisite fails or skips.
+    if: >-
+      always() &&
+      (github.event_name == 'workflow_dispatch' || !github.event.pull_request.draft)
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Require every production validation suite to succeed
+        env:
+          PRODUCTION_RESULTS: ${{ toJSON(needs) }}
+        run: |
+          node --input-type=module <<'NODE'
+          const needs = JSON.parse(process.env.PRODUCTION_RESULTS);
+          const required = ['policy', 'repository', 'types', 'unit', 'components', 'lint', 'packages', 'apps'];
+          let failures = 0;
+          for (const name of required) {
+            const status = needs[name]?.result ?? 'missing';
+            console.log(name + ': ' + status);
+            if (status !== 'success') failures++;
+          }
+          if (failures) {
+            console.error('::error::Production release blocked: ' + failures + ' required suite(s) did not succeed');
+            process.exitCode = 1;
+          }
+          NODE

@@ -10,26 +10,37 @@ const option = (name, fallback) => {
 };
 const repo = resolve(option('--repo', process.cwd()));
 const output = option('--output');
-if (!output || args.some((arg, i) => arg.startsWith('--') && !['--repo', '--output'].includes(arg)) ||
-    ['--repo', '--output'].some(flag => args.includes(flag) && !args[args.indexOf(flag) + 1])) {
+if (
+  !output ||
+  args.some((arg, i) => arg.startsWith('--') && !['--repo', '--output'].includes(arg)) ||
+  ['--repo', '--output'].some(flag => args.includes(flag) && !args[args.indexOf(flag) + 1])
+) {
   console.error('Usage: node git-audit.mjs [--repo PATH] --output DIRECTORY');
   process.exit(2);
 }
-const git = (argv, input, binary = false) => execFileSync('git', argv, {
-  cwd: repo,
-  input,
-  encoding: binary ? 'buffer' : 'utf8',
-  maxBuffer: 512 * 1024 * 1024,
-});
-const optionalGit = argv => { try { return git(argv).trim(); } catch { return ''; } };
+const git = (argv, input, binary = false) =>
+  execFileSync('git', argv, {
+    cwd: repo,
+    input,
+    encoding: binary ? 'buffer' : 'utf8',
+    maxBuffer: 512 * 1024 * 1024,
+  });
+const optionalGit = argv => {
+  try {
+    return git(argv).trim();
+  } catch {
+    return '';
+  }
+};
 const number = value => Number(value) || 0;
-const bytes = value => `${(value / (1024 ** 2)).toFixed(2)} MiB`;
+const bytes = value => `${(value / 1024 ** 2).toFixed(2)} MiB`;
 const top = (items, count = 20) => items.sort((a, b) => b.bytes - a.bytes).slice(0, count);
-const table = (headers, rows) => [
-  `| ${headers.join(' | ')} |`,
-  `| ${headers.map(() => '---').join(' | ')} |`,
-  ...rows.map(row => `| ${row.map(v => String(v).replaceAll('|', '\\|').replaceAll('\n', ' ')).join(' | ')} |`),
-].join('\n');
+const table = (headers, rows) =>
+  [
+    `| ${headers.join(' | ')} |`,
+    `| ${headers.map(() => '---').join(' | ')} |`,
+    ...rows.map(row => `| ${row.map(v => String(v).replaceAll('|', '\\|').replaceAll('\n', ' ')).join(' | ')} |`),
+  ].join('\n');
 
 function snapshot(ref) {
   const entries = git(['ls-tree', '-r', '-l', '-z', ref], undefined, true).toString('utf8').split('\0');
@@ -49,7 +60,10 @@ function summarizePaths(files) {
     const directory = file.path.includes('/') ? file.path.split('/')[0] : '(root)';
     const name = file.path.split('/').at(-1);
     const extension = name.includes('.') ? `.${name.split('.').at(-1).toLowerCase()}` : '(no extension)';
-    for (const [map, key] of [[directories, directory], [extensions, extension]]) {
+    for (const [map, key] of [
+      [directories, directory],
+      [extensions, extension],
+    ]) {
       const item = map.get(key) ?? { name: key, bytes: 0, files: 0 };
       item.bytes += file.bytes;
       item.files += 1;
@@ -76,8 +90,12 @@ function audit() {
   }
   const objectList = [...objects.values()];
   if (objectList.length) {
-    const details = git(['cat-file', '--batch-check=%(objectname) %(objecttype) %(objectsize) %(objectsize:disk)'],
-      objectList.map(object => object.sha).join('\n') + '\n').trimEnd().split('\n');
+    const details = git(
+      ['cat-file', '--batch-check=%(objectname) %(objecttype) %(objectsize) %(objectsize:disk)'],
+      objectList.map(object => object.sha).join('\n') + '\n',
+    )
+      .trimEnd()
+      .split('\n');
     if (details.length !== objectList.length) throw new Error('Incomplete git cat-file object inventory');
     for (let i = 0; i < details.length; i++) {
       const match = /^([a-f0-9]+) (\w+) (\d+) (\d+)$/.exec(details[i]);
@@ -87,12 +105,18 @@ function audit() {
   }
   const blobs = objectList.filter(item => item.type === 'blob');
   const historicalOnly = blobs.filter(item => !trackedBlobs.has(item.sha));
-  const storage = Object.fromEntries(git(['count-objects', '-v']).trim().split('\n').map(line => {
-    const at = line.indexOf(':');
-    return [line.slice(0, at), number(line.slice(at + 1).trim())];
-  }));
+  const storage = Object.fromEntries(
+    git(['count-objects', '-v'])
+      .trim()
+      .split('\n')
+      .map(line => {
+        const at = line.indexOf(':');
+        return [line.slice(0, at), number(line.slice(at + 1).trim())];
+      }),
+  );
   const refs = git(['for-each-ref', '--format=%(refname)', 'refs/heads', 'refs/remotes', 'refs/tags'])
-    .split('\n').filter(Boolean);
+    .split('\n')
+    .filter(Boolean);
   const grouped = summarizePaths(tracked);
   const commits = git(['log', '--first-parent', '--format=%H%x09%cs', 'HEAD']).trim().split('\n').filter(Boolean);
   const months = new Map();
@@ -132,8 +156,13 @@ function audit() {
   const result = {
     schema_version: 1,
     generated_at: new Date().toISOString(),
-    source: { repository: optionalGit(['remote', 'get-url', 'origin']), head, branch: git(['branch', '--show-current']).trim(),
-      shallow: false, partial_clone: !!optionalGit(['config', '--get', 'extensions.partialclone']) },
+    source: {
+      repository: optionalGit(['remote', 'get-url', 'origin']),
+      head,
+      branch: git(['branch', '--show-current']).trim(),
+      shallow: false,
+      partial_clone: !!optionalGit(['config', '--get', 'extensions.partialclone']),
+    },
     totals,
     current: grouped,
     largest_blobs: top(blobs.map(item => ({ ...item }))),
@@ -152,31 +181,57 @@ function audit() {
 
 function markdown(data) {
   const t = data.totals;
-  const objectRows = files => files.map(file => [bytes(file.bytes), bytes(file.disk_bytes),
-    file.sample_path || '(no path)', file.sha.slice(0, 12)]);
-  return `# Svitlo - repository Git audit\n\n` +
+  const objectRows = files =>
+    files.map(file => [
+      bytes(file.bytes),
+      bytes(file.disk_bytes),
+      file.sample_path || '(no path)',
+      file.sha.slice(0, 12),
+    ]);
+  return (
+    `# Svitlo - repository Git audit\n\n` +
     `Generated: ${data.generated_at} | HEAD: \`${data.source.head}\`\n\n` +
-    `## Overview\n\n` + table(['Metric', 'Value'], [
-      ['Head commits', t.head_commits], ['Commits reachable from fetched refs', t.all_ref_commits],
-      ['Tracked files at HEAD', t.current_files], ['Current snapshot (raw)', bytes(t.current_snapshot_bytes)],
-      ['Unique blob objects', t.unique_blobs], ['Historical-only blobs', t.historical_only_blobs],
-      ['Historical-only bytes (raw)', bytes(t.historical_only_raw_bytes)],
-      ['All unique blobs (raw)', bytes(t.all_unique_blob_bytes)],
-      ['Git pack size (runner, approximate)', bytes(t.pack_bytes_approx)],
-      ['Loose objects', t.loose_objects], ['Packed objects', t.packed_objects],
-      ['Local / remote-tracking refs / tags', `${t.local_branches} / ${t.remote_tracking_refs} / ${t.tags}`],
-    ]) + `\n\n## Current snapshot by top-level directory\n\n` +
-    table(['Directory', 'Raw size', 'Files'], data.current.directories.map(x => [x.name, bytes(x.bytes), x.files])) +
+    `## Overview\n\n` +
+    table(
+      ['Metric', 'Value'],
+      [
+        ['Head commits', t.head_commits],
+        ['Commits reachable from fetched refs', t.all_ref_commits],
+        ['Tracked files at HEAD', t.current_files],
+        ['Current snapshot (raw)', bytes(t.current_snapshot_bytes)],
+        ['Unique blob objects', t.unique_blobs],
+        ['Historical-only blobs', t.historical_only_blobs],
+        ['Historical-only bytes (raw)', bytes(t.historical_only_raw_bytes)],
+        ['All unique blobs (raw)', bytes(t.all_unique_blob_bytes)],
+        ['Git pack size (runner, approximate)', bytes(t.pack_bytes_approx)],
+        ['Loose objects', t.loose_objects],
+        ['Packed objects', t.packed_objects],
+        ['Local / remote-tracking refs / tags', `${t.local_branches} / ${t.remote_tracking_refs} / ${t.tags}`],
+      ],
+    ) +
+    `\n\n## Current snapshot by top-level directory\n\n` +
+    table(
+      ['Directory', 'Raw size', 'Files'],
+      data.current.directories.map(x => [x.name, bytes(x.bytes), x.files]),
+    ) +
     `\n\n## Current snapshot by file extension\n\n` +
-    table(['Extension', 'Raw size', 'Files'], data.current.extensions.map(x => [x.name, bytes(x.bytes), x.files])) +
+    table(
+      ['Extension', 'Raw size', 'Files'],
+      data.current.extensions.map(x => [x.name, bytes(x.bytes), x.files]),
+    ) +
     `\n\n## Largest reachable blob objects\n\n` +
     table(['Raw size', 'Git disk size', 'Sample path', 'Object'], objectRows(data.largest_blobs)) +
     `\n\n## Largest blobs absent from current HEAD\n\n` +
     table(['Raw size', 'Git disk size', 'Sample path', 'Object'], objectRows(data.largest_historical_only_blobs)) +
     `\n\n## First-parent development trend (monthly)\n\n` +
-    table(['Month', 'Mainline commits', 'Snapshot raw size', 'Files'],
-      data.trend.map(x => [x.month, x.first_parent_commits, bytes(x.snapshot_bytes), x.snapshot_files])) +
-    `\n\n## Interpretation limits\n\n` + data.limitations.map(x => `- ${x}`).join('\n') + '\n';
+    table(
+      ['Month', 'Mainline commits', 'Snapshot raw size', 'Files'],
+      data.trend.map(x => [x.month, x.first_parent_commits, bytes(x.snapshot_bytes), x.snapshot_files]),
+    ) +
+    `\n\n## Interpretation limits\n\n` +
+    data.limitations.map(x => `- ${x}`).join('\n') +
+    '\n'
+  );
 }
 
 try {
@@ -184,7 +239,9 @@ try {
   mkdirSync(resolve(output), { recursive: true });
   writeFileSync(resolve(output, 'git-audit.json'), JSON.stringify(data, null, 2) + '\n');
   writeFileSync(resolve(output, 'git-audit.md'), markdown(data));
-  console.log(`Git audit generated for ${data.source.head}: ${data.totals.current_files} files, ${data.totals.unique_blobs} unique blobs.`);
+  console.log(
+    `Git audit generated for ${data.source.head}: ${data.totals.current_files} files, ${data.totals.unique_blobs} unique blobs.`,
+  );
 } catch (error) {
   console.error(`Git audit failed: ${error.message}`);
   process.exitCode = 1;

@@ -1,0 +1,451 @@
+import assert from 'node:assert/strict';
+import { createHash } from 'node:crypto';
+import test from 'node:test';
+import ts from 'typescript';
+import { materializeLessonStage6, assertLessonStage6ReleaseReady } from './materializeStage6';
+import type { LessonWorkflowMaterializerInput } from '../../../types/workflow/lessonWorkflow.types';
+import { defineLesson } from '../../../configurators/lessons/defineLesson/defineLesson';
+import { defineContentSection } from '../../../configurators/sections/defineContentSection/defineContentSection';
+import { defineText } from '../../../configurators/contentBlocks/defineText/defineText';
+import { posix, resolve, sep } from 'node:path';
+import vm from 'node:vm';
+
+const id = (n: string) => '12345678-1234-4234-8234-1234567890' + n;
+const folder = 'content/math/data/lessons/1/' + id('01') + '/';
+const assessment = {
+  questionBankRequired: false,
+  flashcardBankRequired: false,
+  quizSectionRequired: false,
+  flashcardsSectionRequired: false,
+};
+const valid = () => ({
+  config: {
+    type: 'lesson' as const,
+    id: id('01'),
+    slug: 'basics',
+    skills: [id('04')],
+    params: {
+      quizRequiredForCompletion: false,
+      sections: { allowNavigation: true, allowSkipping: true, showIndexes: true },
+    },
+    locale: { title: { en: 'Basics' } },
+    section: {
+      items: {
+        introduction: {
+          config: {
+            type: 'content' as const,
+            id: id('02'),
+            slug: 'introduction',
+            params: {},
+            locale: { title: { en: 'Introduction' }, navigationLabel: '1' },
+            content: {
+              items: {
+                prompt: {
+                  config: {
+                    id: id('03'),
+                    type: 'text' as const,
+                    slug: 'prompt',
+                    params: {},
+                    locale: { value: { en: 'Read and reflect' } },
+                  },
+                  production: { purpose: 'Introduce the source fact', specification: 'Preserve this guidance' },
+                },
+              },
+              order: ['prompt'],
+            },
+          },
+          production: { purpose: 'First concept', specification: 'Reviewed sequence' },
+        },
+      },
+      order: ['introduction'],
+    },
+  },
+  production: {
+    languages: { document: 'en', planned: ['en'] },
+    methodology: 'Source lesson methodology',
+    objective: 'One observable learning outcome',
+    depth: 'introductory',
+    sequenceReason: 'Concept before practice',
+    assessmentEvidence: 'Learner articulates the idea',
+    assessment: { ...assessment },
+  },
+});
+// The archived bytes represent the SAME authoring object as the evaluated
+// fixture. The trusted adapter is responsible for independently checking
+// this relationship when invoking the orchestrator.
+const stage2Source = [
+  "import type { LessonWorkflowStage2 } from '@svitlo/engine/build';",
+  'export const lessonStage2 = ' + JSON.stringify(valid(), null, 2) + ' satisfies LessonWorkflowStage2;',
+  '',
+].join('\n');
+const blobSha = (source: string) =>
+  createHash('sha1')
+    .update('blob ' + Buffer.byteLength(source) + '\0')
+    .update(source)
+    .digest('hex');
+const reviewed = {
+  sourcePath: folder + 'index.ts',
+  sourceBlobSha: blobSha(stage2Source),
+  reviewCommitSha: '1'.repeat(40),
+  reviewEvidenceSha: '2'.repeat(40),
+  stage6Authorized: true as const,
+};
+const options = {
+  sourceText: stage2Source,
+  review: reviewed,
+  verifyReviewedInput: () => true,
+};
+function produce(value = valid(), config = options) {
+  return materializeLessonStage6(value as unknown as LessonWorkflowMaterializerInput, config);
+}
+test('reviewed source yields deterministic ordinary Lesson and nested Section/ContentBlock manifests', () => {
+  const input = valid();
+  const original = structuredClone(input);
+  const result = produce(input);
+  assert.deepEqual(input, original, 'pure source planning must not mutate the authored Stage 2 object');
+  assert.deepEqual(result, produce(input), 'deterministic generated source');
+  assert.equal(result.archivePath, folder + 'workflow.stage2.ts');
+  assert.equal(result.sourceBlobSha, reviewed.sourceBlobSha);
+  assert.equal(result.publishable, false, 'generation does not mean publishing');
+  const paths = result.files.map(file => file.path);
+  assert.deepEqual(
+    paths.filter(path => path.endsWith('index.ts')).sort(),
+    [
+      folder + 'index.ts',
+      folder + 'sections/introduction/index.ts',
+      folder + 'sections/introduction/content/items/prompt/index.ts',
+    ].sort(),
+  );
+  assert(paths.includes(folder + 'methodology.md'));
+  assert(paths.includes(folder + 'specification.md'));
+  assert(paths.includes(folder + 'sections/introduction/specification.md'));
+  assert(paths.includes(folder + 'sections/introduction/content/items/prompt/specification.md'));
+  const root = result.files.find(file => file.path === folder + 'index.ts')!.content;
+  assert.match(root, /defineLesson<"basics"/);
+  assert.match(root, /"order": \["introduction"\]/);
+  assert.match(root, /"id": "12345678-1234-4234-8234-123456789001"/);
+  assert.doesNotMatch(root, /"methodology":/);
+  assert.match(
+    result.files.find(file => file.path === folder + 'methodology.md')!.content,
+    /Source lesson methodology/,
+  );
+  assert.doesNotThrow(
+    () => assertLessonStage6ReleaseReady(result),
+    'no unresolved resources in a complete one-locale Lesson',
+  );
+  for (const file of result.files.filter(file => file.kind === 'typescript')) {
+    const parsed = ts.createSourceFile(file.path, file.content, ts.ScriptTarget.ES2022, true);
+    assert.equal(
+      (parsed as ts.SourceFile & { parseDiagnostics: readonly ts.Diagnostic[] }).parseDiagnostics.length,
+      0,
+      'emitted TS parses: ' + file.path,
+    );
+  }
+});
+
+test('generated Lesson source passes the real TypeScript semantic checker', () => {
+  const plan = produce();
+  const workspace = resolve(process.cwd(), '../..');
+  const files = new Map(
+    plan.files.filter(file => file.kind === 'typescript').map(file => [resolve(workspace, file.path), file.content]),
+  );
+  const options: ts.CompilerOptions = {
+    target: ts.ScriptTarget.ES2022,
+    module: ts.ModuleKind.ESNext,
+    moduleResolution: ts.ModuleResolutionKind.Bundler,
+    strict: true,
+    skipLibCheck: true,
+    noEmit: true,
+  };
+  const host = ts.createCompilerHost(options);
+  const readFile = host.readFile.bind(host);
+  const fileExists = host.fileExists.bind(host);
+  const directoryExists = host.directoryExists?.bind(host);
+  host.readFile = filename => files.get(resolve(filename)) ?? readFile(filename);
+  host.fileExists = filename => files.has(resolve(filename)) || fileExists(filename);
+  host.directoryExists = dirname =>
+    [...files.keys()].some(filename => filename.startsWith(resolve(dirname) + sep)) ||
+    directoryExists?.(dirname) === true;
+  const program = ts.createProgram([...files.keys()], options, host);
+  const errors = ts.getPreEmitDiagnostics(program).filter(issue => issue.category === ts.DiagnosticCategory.Error);
+  assert.deepEqual(
+    errors.map(
+      issue => (issue.file?.fileName ?? '<global>') + ':' + ts.flattenDiagnosticMessageText(issue.messageText, '\n'),
+    ),
+    [],
+    'emitted modules must be assignable to actual @svitlo/engine/build contracts',
+  );
+});
+
+test('generated complete Lesson runs actual Config build.props(), not a mocked factory', () => {
+  const plan = produce();
+  const sources = new Map(
+    plan.files.filter(file => file.kind === 'typescript').map(file => [file.path.slice(folder.length), file.content]),
+  );
+  const modules = new Map<string, Record<string, unknown>>();
+  function load(relative: string): Record<string, unknown> {
+    const normalized = posix.normalize(relative);
+    const cached = modules.get(normalized);
+    if (cached) return cached;
+    const source = sources.get(normalized);
+    assert.notEqual(source, undefined, 'expected module ' + normalized);
+    const exports: Record<string, unknown> = {};
+    modules.set(normalized, exports);
+    const js = ts.transpileModule(source!, {
+      fileName: normalized,
+      compilerOptions: {
+        target: ts.ScriptTarget.ES2022,
+        module: ts.ModuleKind.CommonJS,
+      },
+    }).outputText;
+    const execute = vm.compileFunction(js, ['require', 'exports']);
+    execute((specifier: string) => {
+      if (specifier === '@svitlo/engine/build') return { defineLesson, defineContentSection, defineText };
+      assert(specifier.startsWith('.'), 'only exact imported generated modules allowed');
+      const next = posix.join(posix.dirname(normalized), specifier);
+      return load(sources.has(next + '.ts') ? next + '.ts' : next + '/index.ts');
+    }, exports);
+    return exports;
+  }
+  const lesson = load('index.ts').basics as {
+    build: {
+      props: (opts: { languages: string[] }) => {
+        base: { section: { type: string }[]; skills: string[] };
+      };
+    };
+  };
+  const props = lesson.build.props({ languages: ['en'] });
+  assert.equal(props.base.section.length, 1);
+  assert.equal(props.base.section[0].type, 'content');
+  assert.deepEqual(props.base.skills, [id('04')]);
+});
+test('Course-origin Stage 1 remains insufficient; a completed Stage 2 handoff can materialize', () => {
+  const stage1 = valid();
+  delete (stage1.config as unknown as { section?: unknown }).section;
+  assert.throws(() => produce(stage1), /expected authored \{ items, order \}/);
+  assert.equal(produce().lessonId, id('01'));
+});
+test('trust rejects source SHA drift, missing Stage 6 authorization and unverified independent review', () => {
+  assert.throws(() => produce(valid(), { ...options, sourceText: 'tampered' }), /untrusted source/);
+  assert.throws(() => produce(valid(), { ...options, verifyReviewedInput: () => false }), /untrusted source/);
+  assert.throws(
+    () =>
+      produce(valid(), {
+        ...options,
+        review: {
+          ...reviewed,
+          sourceBlobSha: '0'.repeat(40),
+        },
+      }),
+    /untrusted source/,
+  );
+  assert.throws(
+    () =>
+      produce(valid(), {
+        ...options,
+        review: {
+          ...reviewed,
+          stage6Authorized: false as never,
+        },
+      }),
+    /untrusted source/,
+  );
+  assert.throws(
+    () =>
+      produce(valid(), {
+        ...options,
+        review: {
+          ...reviewed,
+          sourcePath: 'content/math/data/lessons/1/../../../other/index.ts',
+        },
+      }),
+    /untrusted source/,
+  );
+});
+test('incomplete Lesson params and source-language plan fail closed without fabrication', () => {
+  const input = valid();
+  delete (input.config.params as { sections?: unknown }).sections;
+  assert.throws(() => produce(input), /incomplete or invalid Lesson Config params/);
+  const lang = valid();
+  lang.production.languages.planned = ['uk'];
+  assert.throws(() => produce(lang), /invalid reviewed document\/planned languages/);
+});
+test('four independent assessment decisions, enabled required Sections and completion policy', () => {
+  const bankOnly = valid();
+  bankOnly.production.assessment.questionBankRequired = true;
+  bankOnly.production.assessment.flashcardBankRequired = true;
+  assert.doesNotThrow(() => produce(bankOnly), 'bank ownership does not create Quiz or Cards Sections');
+  const quiz = valid();
+  quiz.production.assessment.quizSectionRequired = true;
+  assert.throws(() => produce(quiz), /enabled Quiz Section/);
+  const cards = valid();
+  cards.production.assessment.flashcardsSectionRequired = true;
+  assert.throws(() => produce(cards), /enabled Flashcards Section/);
+  const required = valid();
+  required.config.params.quizRequiredForCompletion = true;
+  assert.throws(() => produce(required), /enabled Quiz Section/);
+  const noPolicy = valid();
+  delete (noPolicy.production.assessment as Partial<typeof assessment>).flashcardsSectionRequired;
+  assert.throws(() => produce(noPolicy), /four independent assessment decisions/);
+});
+test('authored enabled Quiz and Flashcards Sections pass separate source materializers', () => {
+  const input = structuredClone(valid()) as unknown as LessonWorkflowMaterializerInput;
+  input.config.section.items.reviewQuiz = {
+    config: {
+      type: 'quiz',
+      id: id('05'),
+      slug: 'reviewQuiz',
+      params: {
+        selection: { mode: 'all', questionIds: [id('07')] },
+        layout: { mode: 'stack' },
+        feedbackMode: 'immediate',
+        interaction: {
+          retries: 0,
+          showErrors: true,
+          showCorrectAnswers: true,
+          allowExplanations: false,
+          allowDeferring: false,
+          allowQuestionNavigation: false,
+          skippable: false,
+        },
+        results: { visibility: 'immediate', showScore: true },
+      },
+      locale: { title: 'Quiz', navigationLabel: 'Q' },
+      content: { items: {}, order: [] },
+    },
+    production: { purpose: 'Reviewed assessment' },
+  } as LessonWorkflowMaterializerInput['config']['section']['items'][string];
+  input.config.section.items.reviewCards = {
+    config: {
+      type: 'flashcards',
+      id: id('06'),
+      slug: 'reviewCards',
+      params: { selection: { flashcardIds: [id('08')] } },
+      locale: { title: 'Cards', navigationLabel: 'C' },
+      content: { items: {}, order: [] },
+    },
+    production: { purpose: 'Reviewed recall practice' },
+  } as LessonWorkflowMaterializerInput['config']['section']['items'][string];
+  input.config.section.order.push('reviewQuiz', 'reviewCards');
+  input.config.params = {
+    ...input.config.params,
+    quizRequiredForCompletion: true,
+  };
+  input.production.assessment.quizSectionRequired = true;
+  input.production.assessment.flashcardsSectionRequired = true;
+  const sourceFor = (value: LessonWorkflowMaterializerInput) => {
+    // These are executable Configurator imports, not handwritten bank UUIDs.
+    const reviewedObject = JSON.stringify(value, null, 2)
+      .replace(/"questionIds": \[\s*"[^"]+"\s*\]/, '"questionIds": [reviewQuestion.id]')
+      .replace(/"flashcardIds": \[\s*"[^"]+"\s*\]/, '"flashcardIds": [memoryCard.id]');
+    const sourceText = [
+      "import type { LessonWorkflowStage2 } from '@svitlo/engine/build';",
+      "import { reviewQuestion } from './questions/multipleChoice/example';",
+      "import { reviewCard as memoryCard } from './flashcards/example';",
+      'export const stage2 = ' + reviewedObject + ' satisfies LessonWorkflowStage2;',
+      '',
+    ].join('\n');
+    return {
+      ...options,
+      sourceText,
+      review: { ...reviewed, sourceBlobSha: blobSha(sourceText) },
+    };
+  };
+  const plan = materializeLessonStage6(input, sourceFor(input));
+  assert(plan.files.some(file => file.path === folder + 'sections/reviewQuiz/index.ts'));
+  assert(plan.files.some(file => file.path === folder + 'sections/reviewCards/index.ts'));
+  const quizSource = plan.files.find(file => file.path === folder + 'sections/reviewQuiz/index.ts')!.content;
+  const cardsSource = plan.files.find(file => file.path === folder + 'sections/reviewCards/index.ts')!.content;
+  assert(
+    quizSource.includes('import { reviewQuestion as stage6_ref_0 } from "../../questions/multipleChoice/example";'),
+  );
+  assert(cardsSource.includes('import { reviewCard as stage6_ref_0 } from "../../flashcards/example";'));
+  assert(quizSource.includes('"questionIds": [stage6_ref_0.id]'));
+  assert(cardsSource.includes('"flashcardIds": [stage6_ref_0.id]'));
+  assert(!quizSource.includes(id('07')), 'bank UUID must not replace Configurator reference');
+  assert(!cardsSource.includes(id('08')), 'bank UUID must not replace Configurator reference');
+  assert.equal(
+    plan.diagnostics.some(diagnostic => diagnostic.code.startsWith('pending-')),
+    false,
+  );
+  assert.doesNotThrow(() => assertLessonStage6ReleaseReady(plan));
+  const provisional = structuredClone(input);
+  const quiz = provisional.config.section.items.reviewQuiz as unknown as {
+    config: { params: { selection: { questionIds: string[] } } };
+  };
+  quiz.config.params.selection.questionIds = ['feedc0de-1234-4234-8234-123456789007'];
+  const blocked = materializeLessonStage6(provisional, sourceFor(provisional));
+  assert.throws(() => assertLessonStage6ReleaseReady(blocked), /publication blocked/);
+
+  // Fail closed on handwritten UUIDs or nonimported expressions in a reviewed
+  // nonempty selection, rather than silently producing magic UUID literals.
+  const literal = [
+    "import type { LessonWorkflowStage2 } from '@svitlo/engine/build';",
+    'export const stage2 = ' + JSON.stringify(input, null, 2) + ' satisfies LessonWorkflowStage2;',
+    '',
+  ].join('\n');
+  assert.throws(
+    () =>
+      materializeLessonStage6(input, {
+        ...options,
+        sourceText: literal,
+        review: { ...reviewed, sourceBlobSha: blobSha(literal) },
+      }),
+    /requires imported Question/,
+  );
+  const unbound = sourceFor(input).sourceText.replace('reviewQuestion.id', 'notImported.id');
+  assert.throws(
+    () =>
+      materializeLessonStage6(input, {
+        ...options,
+        sourceText: unbound,
+        review: { ...reviewed, sourceBlobSha: blobSha(unbound) },
+      }),
+    /without an executable Configurator import/,
+  );
+  const expression = sourceFor(input).sourceText.replace('reviewQuestion.id', 'getQuestion().id');
+  assert.throws(
+    () =>
+      materializeLessonStage6(input, {
+        ...options,
+        sourceText: expression,
+        review: { ...reviewed, sourceBlobSha: blobSha(expression) },
+      }),
+    /must reference a static member/,
+  );
+
+  // References through a named bank map must also remain references.
+  const throughBank = sourceFor(input)
+    .sourceText.replace(
+      "import { reviewQuestion } from './questions/multipleChoice/example';",
+      "import { questions } from './questions';",
+    )
+    .replace('reviewQuestion.id', 'questions.multipleChoice.example.id');
+  const bankPlan = materializeLessonStage6(input, {
+    ...options,
+    sourceText: throughBank,
+    review: { ...reviewed, sourceBlobSha: blobSha(throughBank) },
+  });
+  const bankQuiz = bankPlan.files.find(file => file.path === folder + 'sections/reviewQuiz/index.ts')!.content;
+  assert(bankQuiz.includes('import { questions as stage6_ref_0 } from "../../questions";'));
+  assert(bankQuiz.includes('"questionIds": [stage6_ref_0.multipleChoice.example.id]'));
+});
+
+test('duplicate UUID, wrong slug, invalid order and unsanctioned identity are rejected', () => {
+  const duplicate = valid();
+  duplicate.config.section.items.introduction.config.id = id('01');
+  assert.throws(() => produce(duplicate), /duplicate authored UUID/);
+  const invalidSlug = valid();
+  invalidSlug.config.section.items.introduction.config.slug = '../escape';
+  assert.throws(() => produce(invalidSlug), /invalid authored entity identity/);
+  const ordering = valid();
+  ordering.config.section.order = ['unknown'];
+  assert.throws(() => produce(ordering), /every authored child must be ordered once/);
+});
+test('planned translations and missing Scene remain explicit nonpublishable blockers', () => {
+  const translated = valid();
+  translated.production.languages.planned.push('uk');
+  const plan = produce(translated);
+  assert(plan.diagnostics.some(item => item.code === 'pending-lesson'));
+  assert.throws(() => assertLessonStage6ReleaseReady(plan), /publication blocked/);
+});

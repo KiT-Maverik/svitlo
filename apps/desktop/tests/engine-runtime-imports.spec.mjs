@@ -5,12 +5,10 @@ import tseslint from 'typescript-eslint';
 import { engineRuntimeOnly } from '../../../eslint/engine-runtime-only.mjs';
 
 const linter = new Linter();
-const config = [
-  { files: ['**/*.{js,ts}'], languageOptions: { parser: tseslint.parser } },
-  engineRuntimeOnly,
-];
+const config = [{ files: ['**/*.{js,ts}'], languageOptions: { parser: tseslint.parser } }, engineRuntimeOnly];
 const lint = source =>
-  linter.verify(source, config, { filename: 'src/engine-import-policy.ts' })
+  linter
+    .verify(source, config, { filename: 'src/engine-import-policy.ts' })
     .filter(message => message.ruleId === 'svitlo/engine-runtime-only');
 
 test('rejects static build imports, type imports, reexports and the removed root', () => {
@@ -41,7 +39,7 @@ test('allows runtime imports and unrelated string literals', () => {
   for (const source of [
     "import { assembleSkills } from '@svitlo/engine/runtime';",
     "import type { Lesson_Props } from '@svitlo/engine/runtime';",
-    "const example = \"import from '@svitlo/engine/build'\";",
+    'const example = "import from \'@svitlo/engine/build\'";',
   ]) {
     assert.equal(lint(source).length, 0, source);
   }

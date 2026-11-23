@@ -22,7 +22,9 @@ text.build.props({ languages: ['pl'] });
 text.build.props();
 
 const answer = defineCheckpointAnswer<'answer', { intro: typeof text }, ['en', 'uk']>({
-  id: 'b775647f-203d-481a-a1c7-4d331c779d64', type: 'checkpointAnswer', slug: 'answer',
+  id: 'b775647f-203d-481a-a1c7-4d331c779d64',
+  type: 'checkpointAnswer',
+  slug: 'answer',
   content: { items: { intro: text }, order: ['intro'] },
 });
 const item = defineCheckpointItem<'item', typeof answer, typeof text, ['en', 'uk']>({

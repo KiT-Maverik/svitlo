@@ -1,101 +1,32 @@
-# Question/Flashcard Stage 5 PR-command materialization
+# Typed Question/Flashcard Stage 5 trusted PR command
 
-This opt-in GitHub Actions workflow follows the trusted Course materialization pattern.
-It must be **merged into the default branch** before PR comments can trigger it.
-It turns one independently reviewed bank YAML into a create-only, typed TypeScript
-draft on the **existing child bank Draft PR**, never on the parent Lesson branch.
+The only supported Bank materialization source is the owning Lesson's progressively authored `questions/index.ts` or `flashcards/index.ts` satisfying `QuestionBankWorkflowStage3` or `FlashcardBankWorkflowStage3`, respectively. The legacy YAML-only routes and builders were retired in integration #775. No `questions.yaml`/`flashcards.yaml` input or fallback is supported.
 
-## Commands
+## Invocation and deployment
 
-Post exactly one top-level comment on the relevant open Draft bank PR:
+After these workflow/scripts are deployed to the repository's default `develop` branch, a collaborator with write permission can post exactly `/questions materialize typed` or `/flashcards materialize typed` as a top-level comment on the corresponding existing Draft bank PR. Manual `workflow_dispatch` accepts the PR number, matching bank and `mode: typed`. On an unmerged #775 Draft, neither PR comments nor successful tests prove live default-branch availability.
 
-- /questions materialize
-- /flashcards materialize
+The bank PR must carry its existing `svitlo-create-questions-flow:v1` or `svitlo-create-flashcards-flow:v1` marker, owning Lesson UUID, textbook path, parent Lesson PR, true seven-stage checklist with Stages 1–4 complete and Stage 5 pending, and a **formal independent GitHub APPROVED review on the current HEAD SHA**. The gate verifies actor permission, source blob, actual Lesson parent ancestry and Question-first prerequisite. A self-attested checkbox or approval on an earlier SHA is insufficient.
 
-Only repository collaborators with write/maintain/admin permission may invoke
-these commands. Alternatively use the workflow_dispatch form with the same bank
-choice and Draft PR number.
+## Trusted operations
 
-The child PR Description must contain exactly one matching marker:
+- `typed_resolve`: reads immutable metadata from the real GitHub PR, current review and exact Stage 3 `index.ts`. Static stage-source parsing accepts bounded literals and refuses candidate side effects, dynamic imports and unrecognized spreads.
+- `typed_analyze`: checks out reviewed PR SHA as **untrusted data only**, compiles and executes only default-branch trusted Engine and source materializers, verifies complete Bank inventory, deterministic UUIDs/order/relationships and exact allowlisted outputs. Saves bounded UTF-8 bytes and hashes, including the archive of the reviewed original source, in a short-lived run artifact.
+- `typed_publish`: has the write permission but no Engine/npm or candidate execution. Revalidates exact actor/independent review/HEAD/branch lease, hashes and permitted paths and atomically updates the Git tree in one non-force commit. Existing edited or partial source trees, changed reviewed bytes, path collisions and symlinks fail closed.
 
-- Questions: <!-- svitlo-create-questions-flow:v1 -->
-- Flashcards: <!-- svitlo-create-flashcards-flow:v1 -->
+Question Bank and Flashcard Bank are separate complete resources; neither materializes or edits Lesson Quiz/Flashcards Sections. Source code generation does not imply publication of assessment resources or resolve missing assets, bank references, locales or independent translations. `generateAssessmentResources` and completed Lesson Config publication remain distinct downstream gates.
 
-and the following canonical identity lines (real values, no placeholders):
+## Verification
 
-    - Lesson UUID: <actual-lesson-uuid>
-    - Textbook: content/<book>
-    - Parent Lesson PR: #<actual-parent-pr>
+Run focused checks from the monorepo root:
 
-Include exactly one ## Workflow section with the true completed Stages 1-4,
-matching the corresponding [Create Questions Flow] or [Create Flashcards Flow].
-Stage 5 Resource Production must remain unchecked when invoking the command.
-Recorded independent-review approval and exact source SHAs remain editorial
-requirements; a checklist is a workflow declaration, not cryptographic review.
+```sh
+node --test scripts/ci/bankMaterialization/bank-typed-materialization.spec.mjs scripts/ci/bankMaterialization/bank-typed-stage3.spec.mjs
+npm run package:build --workspace @svitlo/engine
+npm run code:check:types --workspace @svitlo/engine
+npm test --workspace @svitlo/engine
+```
 
-## Output ownership
+Then verify an authorized **real** default-branch workflow_dispatch or comment on safe reviewed input. Preserve the resulting immutable Actions run, source/review SHAs, artifact and exact generated commit before declaring deployment operational. If the current branch is only #775, report this as pending, not a successful live run.
 
-Input:
-
-    content/<book>/data/lessons/<last-hex>/<lesson-uuid>/questions.yaml
-    content/<book>/data/lessons/<last-hex>/<lesson-uuid>/flashcards.yaml
-
-Questions runs the **existing** Engine Questions Builder --preflight, --write,
-then --check; its outputs are restricted to new questions/** modules and local
-Markdown/Code/spec files inside that exact Lesson UUID directory.
-
-Flashcards runs the **existing** Flashcard Builder --preflight, --write, then
---check; the single created file is flashcards/index.ts. No Lesson/Question
-sources or Section selections are mutated. The existing Lesson must already
-own its modular typed sources. The separate Questions-first requirement of the
-Flashcards Flow must be satisfied and declared in the parent Lesson PR.
-
-Both source YAMLs are deliberately **preserved**. The code may contain
-authoring TODO(asset) or other visible blockers and is **not publishable**
-without the remaining actual resource work, independent bank review, locales,
-Section integration and strict Props publication. No command authorizes
-translation, Ready, merge, bank-UUID assignment or YAML retirement.
-
-## Trusted workflow and safeguards
-
-1. **resolve (read-only):** load trusted default-branch gate; verify exact PR
-   command, collaborator role, child Draft PR, parent Lesson identity/branch,
-   matching bank marker, Stage 1-4 completion, stage 5 pending, canonical path,
-   current PR HEAD SHA and current YAML Git blob SHA.
-2. **analyze (read-only):** load trusted default-branch Engine/scripts in
-   a separate trusted checkout, install dependencies without lifecycle scripts,
-   build only trusted Engine, check out the immutable PR head as _untrusted
-   source data_ (never import PR code), run the real bank builder preflight,
-   create-only write and read-only check. Verify clean initial candidate,
-   generated file inventory, UTF-8 bytes, exact scope, Git SHA, no modified
-   tracked data, no symlinks and bounded counts/bytes. Upload a short-lived
-   checksummed analysis artifact.
-3. **publish (write only here):** revalidate actor/PR/source and pinned HEAD,
-   verify the trusted artifact and current Git tree for conflicts; commit
-   only allowed generated source bytes via Git Data API using the original
-   HEAD as parent and a non-force ref update. Concurrent PR changes reject
-   publication. No direct push from the PR checkout.
-
-An existing, partial, manually edited or differing bank tree **fails closed**:
-the generator never overwrites it, and the job does not delete YAML or
-silently invent a restoration. The owner can reconcile and retry a _fresh_
-source tree only after review. This CI is intentionally limited to first-time
-materialization, not editing or final bank publication.
-
-## Validation
-
-    node --test scripts/ci/bankMaterialization/bank-materialization.spec.mjs
-    node --test shared/engine/scripts/questionsBuilder/questionsBuilder.spec.mjs
-    node --test shared/engine/scripts/flashcardBuilder/flashcardBuilder.spec.mjs
-    npm run package:build --workspace @svitlo/engine
-
-The Engine generators workflow runs the controller tests on this PR and
-builder tests against actual Engine exports. A passing PR CI is not a real
-issue_comment end-to-end test: this workflow must first be deployed to main
-and separately exercised on a safe synthetic reviewed child PR. Record the
-real Actions run, exact source blob and output commit SHA before claiming
-production E2E validation.
-
-See the canonical Studio [Create Questions Flow](../../../studio/skills/lesson-workflow/create-questions-flow.skill.md),
-[Create Flashcards Flow](../../../studio/skills/lesson-workflow/create-flashcards-flow.skill.md),
-and Course counterpart at [courseMaterialization](../courseMaterialization/README.md).
+See [Questions Flow](../../../studio/skills/lesson-workflow/create-questions-flow.skill.md), [Flashcards Flow](../../../studio/skills/lesson-workflow/create-flashcards-flow.skill.md), and [Bank source materializers](../../../shared/engine/generators/materializers/).

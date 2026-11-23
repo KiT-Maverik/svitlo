@@ -1,13 +1,15 @@
 # Svitlo — Monorepo & Independent Textbooks
 
-**Canonical implementation guide (Stage 8, 2026-10-29).** Always check manifests and CI for the commit under review. [Historical migration log](../../Monorepo%20Migration.md) is **not** a current directory map. [Final audit and remaining debt](./migration-stage-8-audit.md).
+**Canonical implementation guide.** Always check current manifests, code and CI for the commit under review. [Historical migration log](../../Monorepo%20Migration.md) preserves the original migration stages but is **not** a current directory map.
 
-**2026-11-05 implementation update:** `apps/web` is the universal Next.js host for the
-build-selected textbook. `content/playground` is now a React DOM textbook
-package with authored `data/`, Scenes, generated static registry and explicit
-`@svitlo/playground` exports. `apps/web/textbooks.json` selects a declared
-workspace dependency before compilation; its build publishes textbook JSON,
-UI Kit locales and assets into the host. Other textbooks and `apps/platform`
+**2026-11-20 Web selection update (merged PR #734):** `apps/web` is the
+universal Next.js host for an explicitly selected compiled content package. The
+build input `SVITLO_TEXTBOOK` resolves the installed package's public npm
+exports, optional Scenes/styles and Publish CLI. No package is selected by
+default. `content/playground` remains an independent React DOM content package
+with authored `data/`, Scenes, generated registry and its own
+`@svitlo/playground` exports. The selected package publishes content JSON and
+media; the Web host independently stages UI Kit translations and assets. Other textbooks and `apps/platform`
 retain their existing application architecture. The Next.js integration package
 resides at `shared/adapters/nextjs` but keeps its stable npm identity
 `@svitlo/adapter-nextjs`. The Stage 8 map and dependency
@@ -34,7 +36,7 @@ Svitlo **currently** combines independently deployable Next.js apps with explici
 
 At build time a host selects one or more textbook packages and statically bundles their registries/Scenes. Build-time authored-data publishing produces runtime JSON, not runtime imports of `*.data.ts`. The full target architecture continues to require stable public package exports, build selection and parity tests, and review of server/provider coupling. The current Web, Capacitor and Electron hosts are in `apps/web`, `apps/mobile` and `apps/desktop`; the repository does not use a `books/` root. SSR/SSG can remain in the Web host; interactive Lesson UI belongs in reusable React DOM code.
 
-See the canonical [Cross-Platform Lesson Runtime](./cross-platform-lesson-runtime.md) for target dependency/DI, licensing, PWA, offline, and client-state rules. The map, dependencies, scripts and Stage 8 audit below remain a **snapshot of the current standalone-app architecture** until a separate migration changes them.
+See the canonical [Cross-Platform Lesson Runtime](./cross-platform-lesson-runtime.md) for target dependency/DI, licensing, PWA, offline, and client-state rules. The map, dependencies, scripts and Stage 8 audit below remain a **historical snapshot of the standalone-app architecture**; check current manifests and implementation for active Web package selection.
 
 ## Current repository map
 
@@ -88,7 +90,7 @@ Arrows above summarize **allowed consumption**, not a promise that every app imp
 
 | Package                       | Owns                                                                                        | Direct production dependencies / boundaries                                                            |
 | ----------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
-| Engine                        | Authored configurators, generated Props, type/locale schemas and runtime assemblers           | Separate build and runtime exports; no React, Next, MUI or app imports                                  |
+| Engine                        | Authored configurators, generated Props, type/locale schemas and runtime assemblers         | Separate build and runtime exports; no React, Next, MUI or app imports                                 |
 | IndexDB                       | `svitlo-progress` v1 persistence, Zod state validation, browser controllers                 | Depends on Engine runtime APIs and Zod; no React/Next runtime imports                                  |
 | UI Kit                        | Framework-independent React UI, Lesson, Flag assets, LearningLayout and locale dictionaries | Depends on Engine and React/MUI peer dependencies; no Next.js/application imports in production source |
 | Next.js Adapter               | Next.js App Router integration, lesson SSR composition and metadata                         | Depends on public Engine and UI Kit APIs; injects app-owned lesson loader and renderer                 |
@@ -103,7 +105,7 @@ The canonical native IndexedDB browser harness, commands and Playwright suite li
 
 ## Canonical editorial Skills Taxonomy
 
-For Mathematics, [`content/math/docs/skills/taxonomy.md`](../../../content/math/docs/skills/taxonomy.md) is the **single reviewed editorial source of truth** for the Domain → Group → Skill hierarchy. Its descriptions must explain the competencies in substance, not merely repeat their titles. The linked `content/math/src/data/skillsTaxonomy/` modules are the typed, machine-readable representation; curriculum documentation points to this canonical taxonomy rather than duplicating definitions in parallel Skill files or legacy inventory reports. The separate per-Skill definition template was retired as part of the taxonomy consolidation; do not restore it or the former `src/data/skills-inventory*.md`, `skills-taxonomy-review.md` or `UUID-MIGRATION.md` documents.
+For Mathematics, the fully promoted [typed Skills registry](../../../content/math/data/skills/index.ts) is the current Domain → Group → Skill source of truth. Each Domain and Group has an `index.ts`; each Skill has its own `<slug>.ts` with verified descriptions and UUID. The former `content/math/docs/skills/taxonomy.md` staging document was removed after promotion. Curriculum documentation must resolve Skill references against the current typed registry rather than the retired `src/data/skillsTaxonomy/` paths or inventory reports.
 
 Informatics and Physics have independent Next.js application shells. Informatics Skills Taxonomy is reviewed separately in Draft PR #48; no implemented Informatics Skills, lessons or curricula are implied.
 
@@ -134,7 +136,7 @@ npm run test:e2e:db --workspace @svitlo/indexdb                # after Playwrigh
 npm run test:e2e --workspace @svitlo/platform          # after building Platform
 ```
 
-Application entrypoints: `npm run app:start:dev --workspace @svitlo/web` (Web host with Playground content) or `npm run app:start:dev --workspace @svitlo/platform` (Platform). Content textbooks are buildable packages, not individual Next.js dev servers. The `Questions quality` workflow runs root checks and app E2E; the `Native IndexedDB browser controllers` workflow repeats real Chromium checks; `UI Kit Storybook` builds independently.
+Application entrypoints: `SVITLO_TEXTBOOK=math npm run app:start:dev --workspace @svitlo/web` (Web host with an explicitly installed content package) or `npm run app:start:dev --workspace @svitlo/platform` (Platform). Content textbooks are buildable packages, not individual Next.js dev servers. The `Questions quality` workflow runs root checks and app E2E; the `Native IndexedDB browser controllers` workflow repeats real Chromium checks; `UI Kit Storybook` builds independently.
 
 **Evidence limitations:** these checks inspect declared packages, compiled artifacts and running apps **inside the monorepo**. Independent `npm pack`/registry installation, clean-room source extraction, production deployment and real backend/offline services are separate, not-yet-proven tasks.
 

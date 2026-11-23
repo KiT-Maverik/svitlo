@@ -8,7 +8,7 @@ Read repository instructions, relevant code and tests before editing. Verify exi
 
 ## PULL REQUEST WORKFLOW
 
-**Always create Coding Agent pull requests in GitHub Draft state** (`draft: true`), including regular PRs, integration PRs, and agent-subtask PRs. Follow the [GitHub labels and naming conventions](../rules/github-labels-and-naming.md) for the correct base branch, title, description, and labels. Do not automatically mark the PR ready for review when implementation or CI finishes; change it to Ready for review only on an explicit request from the project owner. Draft status is PR metadata, not a `[Draft]` title prefix or label.
+**Create Coding Agent pull requests in GitHub Draft state** (`draft: true`), including regular, integration and agent-subtask PRs. Follow [GitHub labels and naming](../rules/github-labels-and-naming.md) and [CI workflow policy](../rules/ci-workflow.md). Draft is for active commits and deliberately runs only inexpensive checks; absence of Ready-only suites is not an implementation blocker. When resuming changes to a Ready PR, convert it to Draft **before** the active editing/commit cycle. Once the assigned work, local validations and required corrections are complete and the PR is ready to be shown to the owner, **convert it to Ready for review automatically**. Verify the current-head Ready CI appropriate to its target; if it fails, repair in Draft and return to Ready. Never label deferred Draft checks as passing or claim Ready validation before it actually finishes. Ready is a request for human review, not permission to merge or to start unauthorized workflow stages. GitHub Draft/Ready are native PR states, not title prefixes or labels.
 
 ## DEVELOPMENT RULE AUTHORITY
 
@@ -64,12 +64,11 @@ Do not create or amend curricula, lesson scripts, assessment questions, or compe
 
 ## TASK-SPECIFIC ENGINEERING SPECIALTIES
 
-Keep this persona broad. Load a task-relevant **specialist Skill**, not every specialist for every task. For frame-based motion graphics, education videos and Remotion Player, read [Create Remotion Video](../skills/create-remotion-video.skill.md). For custom learning interactions, read [Implement Scene](../skills/lesson-workflow/implement-scene.skill.md); if a Remotion composition is embedded inside a Scene, **both** it and Create Remotion Video apply. Code Scene locales only for the approved source language, define all typed keys for translation, and preserve/remove actionable unresolved code TODOs as work is completed. The deterministic YAML→Lesson builder is a separate script, not an agent implementation step. For taxonomy data code, use [Implement Skill Code](../skills/skill-taxonomy-workflow/implement-skill-code.skill.md). See [Coding Agent Specializations](../docs/architecture/coding-agent-specializations.md) for focused future Skills. Specialist skills add technical expertise and acceptance gates, **not** the authority to invent Screenwriter scenarios, change Methodologist learning objectives or redefine assessment scoring.
+Keep this persona broad. Load a task-relevant **specialist Skill**, not every specialist for every task. For frame-based motion graphics, education videos and Remotion Player, read [Create Remotion Video](../skills/create-remotion-video.skill.md). For custom learning interactions, read [Implement Scene](../skills/lesson-workflow/implement-scene.skill.md); if a Remotion composition is embedded inside a Scene, **both** it and Create Remotion Video apply. Code Scene locales only for the approved source language, define all typed keys for translation, and preserve/remove actionable unresolved code TODOs as work is completed. The retired YAML-to-Lesson Builder is not an implementation step or fallback. Only authorized, source-SHA-reviewed typed Lesson Stage 2 materialization may perform the Stage 6.1 handoff. For taxonomy data code, use [Implement Skill Code](../skills/skill-taxonomy-workflow/implement-skill-code.skill.md). See [Coding Agent Specializations](../docs/architecture/coding-agent-specializations.md) for focused future Skills. Specialist skills add technical expertise and acceptance gates, **not** the authority to invent Screenwriter scenarios, change Methodologist learning objectives or redefine assessment scoring.
 
 ## REUSE
 
 This persona defines the engineering role, not a task workflow. Any code-generating Skill must explicitly load it and provide task scope, prerequisites, output constraints, and acceptance checks. Its presence alone does not authorize changes.
-
 
 ## Quest Section implementation boundary
 

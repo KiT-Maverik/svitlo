@@ -39,7 +39,10 @@ test('audits complete HEAD and historical-only blobs without changing refs or fi
     assert.equal(data.totals.historical_only_blobs, 1);
     assert.ok(data.totals.historical_only_raw_bytes > 0);
     assert.equal(data.current.directories[0].name, 'content');
-    assert.equal(data.trend.reduce((count, month) => count + month.first_parent_commits, 0), 2);
+    assert.equal(
+      data.trend.reduce((count, month) => count + month.first_parent_commits, 0),
+      2,
+    );
     assert.match(markdown, /Largest blobs absent from current HEAD/);
     assert.equal(run(repo, 'rev-parse', 'HEAD'), head);
     assert.equal(run(repo, 'status', '--short'), '?? untracked.txt');

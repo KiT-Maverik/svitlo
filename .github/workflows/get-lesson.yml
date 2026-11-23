@@ -1,6 +1,6 @@
 name: Get Lessons by Skill or ID
 
-# This workflow takes effect for PR comments only after it is merged to main.
+# PR comment triggers require this workflow on the default branch (develop).
 on:
   issue_comment:
     types: [created]
@@ -155,10 +155,11 @@ jobs:
               diagnostics: [{ file: '', package: q.package, entityId: null,
                 reason: 'Lookup error: ' + String(error.message), incomplete: true }] };
           }
-          let body = JSON.stringify({ pr: Number(process.env.PR_NUMBER), sha: process.env.HEAD_SHA, query: q, result });
+          const envelope = { schemaVersion: 1, kind: 'lesson-lookup', runId: Number(process.env.GITHUB_RUN_ID),
+            pr: Number(process.env.PR_NUMBER), sha: process.env.HEAD_SHA, query: q, result };
+          let body = JSON.stringify(envelope);
           if (Buffer.byteLength(body) > 1024 * 1024)
-            body = JSON.stringify({ pr: Number(process.env.PR_NUMBER), sha: process.env.HEAD_SHA,
-              query: q, result: { query: q, sourceSha: process.env.HEAD_SHA, matches: [], complete: false,
+            body = JSON.stringify({ ...envelope, result: { query: q, sourceSha: process.env.HEAD_SHA, matches: [], complete: false,
                 scanned: { packages: 0, implemented: 0, drafts: 0, candidates: 0 },
                 diagnostics: [{ file: '', reason: 'Report too large; restrict with --package', incomplete: true }] } });
           fs.writeFileSync(process.env.RUNNER_TEMP + '/get-lesson/result.json', body);
@@ -166,159 +167,7 @@ jobs:
       - name: Upload report only as Actions artifact
         uses: actions/upload-artifact@v4
         with:
-          name: get-lesson-${{ needs.resolve.outputs.pr }}
+          name: get-lesson-${{ needs.resolve.outputs.pr }}-${{ github.run_id }}
           path: ${{ runner.temp }}/get-lesson/result.json
-          retention-days: 7
+          retention-days: 1
           if-no-files-found: error
-
-  publish:
-    name: Publish Lesson lookup to PR-scoped Agent CI Artifacts
-    needs: [resolve, analyze]
-    if: needs.resolve.result == 'success' && needs.resolve.outputs.valid == 'true' && needs.analyze.result == 'success'
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    concurrency:
-      group: agent-ci-publish-${{ needs.resolve.outputs.pr }}
-      cancel-in-progress: false
-    permissions:
-      contents: write
-      pull-requests: read
-    steps:
-      - name: Check out pinned PR commit as data only
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ needs.resolve.outputs.sha }}
-          persist-credentials: true
-      - name: Download result from this run only
-        uses: actions/download-artifact@v4
-        with:
-          name: get-lesson-${{ needs.resolve.outputs.pr }}
-          path: report
-      - name: Validate report and stage only Lesson lookup artifacts
-        env:
-          GH_TOKEN: ${{ github.token }}
-          PR_NUMBER: ${{ needs.resolve.outputs.pr }}
-          TARGET_BRANCH: ${{ needs.resolve.outputs.branch }}
-          HEAD_SHA: ${{ needs.resolve.outputs.sha }}
-          QUERY_B64: ${{ needs.resolve.outputs.query }}
-        run: |
-          node --input-type=module <<'NODE'
-          import crypto from 'node:crypto';
-          import fs from 'node:fs';
-          import { execFileSync } from 'node:child_process';
-
-          const repo = process.env.GITHUB_REPOSITORY;
-          const pr = Number(process.env.PR_NUMBER);
-          const sha = process.env.HEAD_SHA;
-          const branch = process.env.TARGET_BRANCH;
-          const query = JSON.parse(Buffer.from(process.env.QUERY_B64, 'base64').toString('utf8'));
-          const latest = JSON.parse(execFileSync('gh', ['api', 'repos/' + repo + '/pulls/' + pr], { encoding: 'utf8' }));
-          if (latest.state !== 'open' || latest.head?.repo?.full_name !== repo ||
-              latest.head?.sha !== sha || latest.head?.ref !== branch)
-            throw Error('PR head changed since read-only analysis; rerun lookup');
-          const files = fs.readdirSync('report');
-          if (files.length !== 1 || files[0] !== 'result.json' ||
-              !fs.lstatSync('report/result.json').isFile() ||
-              fs.statSync('report/result.json').size > 1024 * 1024)
-            throw Error('Unexpected lookup artifact');
-          const payload = JSON.parse(fs.readFileSync('report/result.json', 'utf8'));
-          const result = payload.result;
-          const uuid = s => typeof s === 'string' &&
-            /^[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}$/.test(s);
-          const safeSource = s => typeof s === 'string' && s.length < 500 &&
-            /^content\/[a-z][a-z0-9-]*\/data\/lessons\/[0-9a-f]\/[a-f0-9-]{36}\//.test(s) &&
-            s.split('/').every(part => part !== '.' && part !== '..' && /^[a-zA-Z0-9._-]+$/.test(part));
-          if (payload.pr !== pr || payload.sha !== sha ||
-              JSON.stringify(payload.query) !== JSON.stringify(query) ||
-              JSON.stringify(result?.query) !== JSON.stringify(query) || result.sourceSha !== sha ||
-              typeof result.complete !== 'boolean' ||
-              !Array.isArray(result.matches) || !Array.isArray(result.diagnostics) ||
-              !result.scanned || result.matches.length > 10000 || result.diagnostics.length > 10000)
-            throw Error('Untrusted lookup artifact binding/schema mismatch');
-          const seen = new Set();
-          for (const entry of result.matches) {
-            if (!uuid(entry.lessonId) || !/^content\/[a-z][a-z0-9-]*$/.test(entry.package) ||
-                !['implemented','editorial-draft'].includes(entry.status) || !safeSource(entry.source) ||
-                entry.source.split('/')[1] !== entry.package.split('/')[1] ||
-                !Array.isArray(entry.skills) || !entry.skills.every(uuid) ||
-                !Array.isArray(entry.matchedSkills) ||
-                !entry.matchedSkills.every(id => entry.skills.includes(id)) ||
-                (entry.methodology && !safeSource(entry.methodology)) ||
-                (entry.draftSource && !safeSource(entry.draftSource)))
-              throw Error('Unsafe Lesson candidate in artifact');
-            const key = entry.package + ':' + entry.lessonId;
-            if (seen.has(key)) throw Error('Duplicate Lesson candidate');
-            seen.add(key);
-          }
-          for (const diagnostic of result.diagnostics) {
-            if (typeof diagnostic.reason !== 'string' || diagnostic.reason.length > 1000 ||
-                (diagnostic.file && (typeof diagnostic.file !== 'string' || diagnostic.file.length > 500)))
-              throw Error('Unsafe lookup diagnostic');
-          }
-          const escape = s => String(s ?? '').slice(0, 180).replace(/[\x00-\x1f\x7f]/g, ' ')
-            .replace(/[<>&*_[\]()!#|\x60]/g, ch => '\\' + ch);
-          const sourceLink = source => 'https://github.com/' + repo + '/blob/' + sha + '/' +
-            source.split('/').map(encodeURIComponent).join('/');
-          const key = crypto.createHash('sha256').update(JSON.stringify(query)).digest('hex').slice(0, 16);
-          const lines = ['# Lesson lookup', '', 'Source PR: #' + pr, 'Analyzed PR head: ' + sha,
-            'Query: ' + escape(query.by === 'id' ? query.lessonId : query.skills.join(', ') +
-              ' (' + query.match + ')') + (query.package ? ' in ' + escape(query.package) : ' across textbooks'),
-            '', 'Verified candidates: **' + result.matches.length + '**. Index ' +
-              (result.complete ? 'complete.' : 'INCOMPLETE.'), ''];
-          for (const entry of result.matches.slice(0, 40)) {
-            lines.push('- [' + escape(entry.title || entry.slug || entry.lessonId) + '](' +
-              sourceLink(entry.source) + ') — ' + escape(entry.package) + ' · ' +
-              escape(entry.status) + ' · ' + entry.lessonId + ' · matched ' +
-              entry.matchedSkills.length + (query.by === 'skill' ? '/' + query.skills.length : '') +
-              (entry.methodology ? ' · [methodology](' + sourceLink(entry.methodology) + ')' : '') +
-              (entry.draftSource ? ' · [draft YAML](' + sourceLink(entry.draftSource) + ')' : '') +
-              ' · locales: ' + (entry.languageStatus === 'verified' && Array.isArray(entry.languages) ?
-              entry.languages.map(escape).join(', ') : 'unknown'));
-          }
-          if (result.matches.length > 40)
-            lines.push('Additional candidates in the adjacent JSON file: ' + (result.matches.length - 40));
-          if (!result.matches.length)
-            lines.push(result.complete ? 'No verified Lesson matches.' : 'No verified matches; index incomplete.');
-          if (result.diagnostics.length) {
-            lines.push('', 'Diagnostics: ' + result.diagnostics.length);
-            for (const d of result.diagnostics.slice(0, 12))
-              lines.push('- ' + escape(d.file) + ': ' + escape(d.reason));
-          }
-          lines.push('', 'Skill overlap does not establish pedagogical, readiness or language fit.');
-          const dirs = ['.agent-ci-artifacts', '.agent-ci-artifacts/lesson-lookup'];
-          for (const dir of dirs) {
-            if (fs.existsSync(dir) && (fs.lstatSync(dir).isSymbolicLink() || !fs.lstatSync(dir).isDirectory()))
-              throw Error('Unsafe Agent CI Artifacts path');
-            fs.mkdirSync(dir, { recursive: true });
-          }
-          for (const extension of ['json', 'md']) {
-            const file = '.agent-ci-artifacts/lesson-lookup/' + key + '.' + extension;
-            if (fs.existsSync(file) && !fs.lstatSync(file).isFile())
-              throw Error('Unsafe existing lookup artifact');
-          }
-          fs.writeFileSync('.agent-ci-artifacts/lesson-lookup/' + key + '.json',
-            JSON.stringify(payload, null, 2) + '\n');
-          fs.writeFileSync('.agent-ci-artifacts/lesson-lookup/' + key + '.md',
-            lines.join('\n').slice(0, 30000) + '\n');
-          NODE
-      - name: Commit lookup result to the source PR branch
-        env:
-          GH_TOKEN: ${{ github.token }}
-          TARGET_BRANCH: ${{ needs.resolve.outputs.branch }}
-          HEAD_SHA: ${{ needs.resolve.outputs.sha }}
-          PR_NUMBER: ${{ needs.resolve.outputs.pr }}
-        shell: bash
-        run: |
-          set -euo pipefail
-          latest=$(gh api "repos/$GITHUB_REPOSITORY/pulls/$PR_NUMBER")
-          test "$(jq -r '.head.sha' <<<"$latest")" = "$HEAD_SHA"
-          test "$(jq -r '.head.ref' <<<"$latest")" = "$TARGET_BRANCH"
-          git add -- .agent-ci-artifacts/lesson-lookup/
-          if git diff --cached --quiet; then
-            echo 'Lesson lookup artifact is unchanged'
-            exit 0
-          fi
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git commit -m 'chore(agent-ci): save scoped Lesson lookup result'
-          git push origin "HEAD:refs/heads/$TARGET_BRANCH"

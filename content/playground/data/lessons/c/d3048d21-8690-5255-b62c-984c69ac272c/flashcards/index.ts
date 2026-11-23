@@ -1,3 +1,4 @@
+// Lesson UUID: d3048d21-8690-5255-b62c-984c69ac272c; documentLanguage: en
 import { defineFlashcard, defineFlashcardSide } from '@svitlo/engine/build';
 import { lightTravelsStraight } from '../questions/lightTravelsStraight';
 import { fastestMedium } from '../questions/fastestMedium';
@@ -8,7 +9,7 @@ const lightTravelsStraightFlashcard = defineFlashcard({
   slug: 'lightTravelsStraightFlashcard',
   parameters: {
     tags: ['lightPropagation'],
-    flags: { items: {}, order: [] },
+    flags: [],
   },
   content: {
     front: defineFlashcardSide({
@@ -27,7 +28,7 @@ const fastestMediumFlashcard = defineFlashcard({
   slug: 'fastestMediumFlashcard',
   parameters: {
     tags: ['lightSpeed'],
-    flags: { items: {}, order: [] },
+    flags: [],
   },
   content: {
     front: defineFlashcardSide({
@@ -46,7 +47,7 @@ const opaqueObjectShadowFlashcard = defineFlashcard({
   slug: 'opaqueObjectShadowFlashcard',
   parameters: {
     tags: ['shadow'],
-    flags: { items: {}, order: [] },
+    flags: [],
   },
   content: {
     front: defineFlashcardSide({

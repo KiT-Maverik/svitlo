@@ -45,4 +45,4 @@ A Lesson can teach many Skills; a Question can reference multiple Skill IDs. A m
 
 Educational claims must be accurate and sourceable; analogies, scales and simulations must clearly state material simplifications. Audience-native language should be concrete, friendly and respectful, never academically opaque or patronizing. **Accessible, localized, low-bandwidth and offline use are fundamental**, not optional afterthoughts.
 
-**Related:** [Typed content](./git-first-typed-content.md), [Access & localization](./internationalization-and-accessibility.md), [Offline](./offline-first-and-device-compatibility.md), [System boundaries](./system-boundaries.md), [Nextgen Lesson Skill](../../skills/create-nextgen-lesson.skill.md).
+**Related:** [Typed content](./git-first-typed-content.md), [Access & localization](./internationalization-and-accessibility.md), [Offline](./offline-first-and-device-compatibility.md), [System boundaries](./system-boundaries.md), [Nextgen Lesson Skill](../../skills/lesson-workflow/create-lesson-flow.skill.md).

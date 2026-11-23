@@ -1,5 +1,10 @@
 /** Public authoring and publishing entrypoint (Node/build only). */
 export * from './index';
+
+// Typed editorial production contracts are build-only; keep runtime entrypoint unchanged.
+export type * from './types/workflow/lessonWorkflow.types';
+export type * from './types/workflow/questionBankWorkflow.types';
+export type * from './types/workflow/flashcardBankWorkflow.types';
 export {
   hashLessonReviewProps,
   lessonReviewIdentifier,
@@ -21,3 +26,28 @@ export type {
   MediaPublicationMode,
   MediaPublicationOptions,
 } from './generators/lessons/projectTextbookMedia.utils';
+
+// Explicit source-only assessment-bank Stage 1 and reviewed Stage 3 operations.
+// This API never authors a Quiz/Flashcards Section or publishes Props/JSON.
+export {
+  materializeQuestionBankDraft,
+  materializeQuestionBank,
+} from './generators/materializers/questionBank/materializeQuestionBank';
+export type {
+  QuestionBankDraftAuthorization,
+  QuestionBankFinalAuthorization,
+} from './generators/materializers/questionBank/materializeQuestionBank';
+export {
+  materializeFlashcardBankDraft,
+  materializeFlashcardBank,
+} from './generators/materializers/flashcardBank/materializeFlashcardBank';
+export type {
+  FlashcardBankDraftAuthorization,
+  FlashcardBankFinalAuthorization,
+} from './generators/materializers/flashcardBank/materializeFlashcardBank';
+export type {
+  BankSourceResult,
+  BankSourceFile,
+  BankSourceSnapshot,
+  BankReviewedSource,
+} from './generators/materializers/bankSource/bankSourceSafety';
