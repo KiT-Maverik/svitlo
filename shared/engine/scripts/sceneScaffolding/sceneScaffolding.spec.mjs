@@ -53,11 +53,11 @@ function fixture(t) {
     const sources = path.join(source, 'sections');
     fs.rmSync(sources, { recursive: true, force: true });
     fs.mkdirSync(sources, { recursive: true });
-    fs.writeFileSync(path.join(source, 'index.ts'), "export const lesson = 'materialized';\\n");
-    fs.writeFileSync(path.join(source, 'workflow.stage2.ts'), "export const review = 'verified';\\n");
+    fs.writeFileSync(path.join(source, 'index.ts'), "export const lesson = 'materialized';\n");
+    fs.writeFileSync(path.join(source, 'workflow.stage2.ts'), "export const review = 'verified';\n");
     fs.writeFileSync(path.join(source, 'languages.ts'),
       'export const languages = [' + JSON.stringify(config.production.documentLanguage) +
-      '] as const satisfies SupportedLanguages;\\n');
+      '] as const satisfies SupportedLanguages;\n');
     const nodes = [];
     function collect(value) {
       if (!value || typeof value !== 'object') return;
@@ -69,8 +69,8 @@ function fixture(t) {
       const target = path.join(sources, 'nested', 'scene-' + index);
       fs.mkdirSync(target, { recursive: true });
       fs.writeFileSync(path.join(target, 'index.ts'),
-        "import { defineScene } from '@svitlo/engine/build';\\n" +
-        'export const authoredScene = defineScene(' + JSON.stringify(node.config, null, 2) + ');\\n');
+        "import { defineScene } from '@svitlo/engine/build';\n" +
+        'export const authoredScene = defineScene(' + JSON.stringify(node.config, null, 2) + ');\n');
       if (typeof node.production?.specification === 'string' && node.production.specification.trim())
         fs.writeFileSync(path.join(target, 'specification.md'), node.production.specification);
     });
