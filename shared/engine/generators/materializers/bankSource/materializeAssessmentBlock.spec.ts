@@ -9,7 +9,7 @@ const scene = (pending = false) => ({
     locale: { value: { title: { uk: 'Сцена' } } },
   },
   production: {
-    specification: '# Reviewed nested Scene\\n',
+    specification: '# Reviewed nested Scene\n',
     ...(pending ? { pending: true } : {}),
   },
 });
@@ -25,7 +25,7 @@ test('Carousel retains reviewed nested Scene production specification', () => {
   };
   const result = render(carousel);
   assert.equal(result.files.find(file => file.path.endsWith('/slides/items/visual/specification.md'))?.content,
-    '# Reviewed nested Scene\\n');
+    '# Reviewed nested Scene\n');
   assert.equal(result.diagnostics.length, 0);
 });
 
@@ -56,7 +56,7 @@ test('Checkpoint retains reviewed Scene production in its nested answer ContentB
   };
   const result = render(checkpoint);
   assert.equal(result.files.find(file => file.path.endsWith('/answer/content/items/visual/specification.md'))?.content,
-    '# Reviewed nested Scene\\n');
+    '# Reviewed nested Scene\n');
   assert.equal(result.diagnostics.length, 0);
   const pending = structuredClone(checkpoint);
   (pending.content.items.first.config.answer.config.content.items.visual.production as { specification: string; pending?: boolean }).pending = true;
