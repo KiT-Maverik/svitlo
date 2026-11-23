@@ -57,7 +57,7 @@ the instructions and resources relevant to that task. **Do not assume that
 Permanent scripts live in named workflow directories, both under the repository-wide
 [`scripts/`](scripts/README.md) (read its scoped [`AGENTS.md`](scripts/AGENTS.md)) and inside owning packages (for example,
 [`shared/engine/scripts/`](shared/engine/scripts/README.md)).
-**Before changing any script, generator, YAML contract or its callers, open the
+**Before changing any script, generator, typed production contract or its callers, open the
 relevant named directory and read the actual entrypoint JSDoc, any local README
 and its adjacent tests.** An entrypoint's stated purpose and non-goals take
 precedence over assumptions based on names or historical workflows.
