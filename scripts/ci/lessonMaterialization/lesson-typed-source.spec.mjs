@@ -89,15 +89,15 @@ test('named Question Bank map selection resolves only verified exported Configur
     const leaf = path.join(kind, 'reviewQuestion.ts');
     const kindIndex = path.join(kind, 'index.ts');
     const bankIndex = path.join(questions, 'index.ts');
-    fs.writeFileSync(leaf, 'export const reviewQuestion = defineSelectOneAnswer({ id: "' + questionId + '" });\\n');
-    fs.writeFileSync(kindIndex, 'export { reviewQuestion } from "./reviewQuestion";\\n');
+    fs.writeFileSync(leaf, 'export const reviewQuestion = defineSelectOneAnswer({ id: "' + questionId + '" });\n');
+    fs.writeFileSync(kindIndex, 'export { reviewQuestion } from "./reviewQuestion";\n');
     const validIndex = [
       'import { reviewQuestion as question_selectOneAnswer_reviewQuestion } from "./selectOneAnswer";',
       'export const questions = { "selectOneAnswer": { "reviewQuestion": question_selectOneAnswer_reviewQuestion } };',
-    ].join('\\n');
+    ].join('\n');
     fs.writeFileSync(bankIndex, validIndex);
     const reviewed = plain
-      .replace('import type', "import { questions } from './questions';\\nimport type")
+      .replace('import type', "import { questions } from './questions';\nimport type")
       .replace(
         'items: {}, order: [] as string[]',
         'items: { quiz: { config: { params: { selection: { questionIds: [questions.selectOneAnswer.reviewQuestion.id] } } } } }, order: ["quiz"] as string[]',
@@ -107,7 +107,7 @@ test('named Question Bank map selection resolves only verified exported Configur
 
     for (const malicious of [
       validIndex.replace('question_selectOneAnswer_reviewQuestion }', 'question_selectOneAnswer_reviewQuestion }') +
-        '\\nsideEffect();',
+        '\nsideEffect();',
       validIndex.replace('question_selectOneAnswer_reviewQuestion } };', 'getQuestion() } };'),
       validIndex.replace('from "./selectOneAnswer"', 'from "../outside"'),
       validIndex.replace('reviewQuestion } };', 'unimported } };'),
@@ -116,11 +116,11 @@ test('named Question Bank map selection resolves only verified exported Configur
       assert.throws(() => parseTypedLesson(root, sourcePath, reviewed));
     }
     fs.writeFileSync(bankIndex, validIndex);
-    fs.writeFileSync(kindIndex, 'export { reviewQuestion } from "../outside";\\n');
+    fs.writeFileSync(kindIndex, 'export { reviewQuestion } from "../outside";\n');
     assert.throws(() => parseTypedLesson(root, sourcePath, reviewed), /unsafe statement|re-export/);
-    fs.writeFileSync(kindIndex, 'export { reviewQuestion } from "./reviewQuestion";\\n');
+    fs.writeFileSync(kindIndex, 'export { reviewQuestion } from "./reviewQuestion";\n');
     fs.rmSync(leaf);
-    fs.symlinkSync(path.join(dir, 'index.ts'), leaf);
+    fs.symlinkSync(bankIndex, leaf);
     assert.throws(() => parseTypedLesson(root, sourcePath, reviewed), /Symlink/);
   }));
 
@@ -131,15 +131,15 @@ test('Flashcard Bank map and dynamic property expressions are checked statically
     const flashcardId = '12345678-1234-4234-8234-123456789003';
     fs.writeFileSync(
       path.join(cards, 'memoryCard.ts'),
-      'export const memoryCard = defineFlashcard({ id: "' + flashcardId + '" });\\n',
+      'export const memoryCard = defineFlashcard({ id: "' + flashcardId + '" });\n',
     );
     fs.writeFileSync(
       path.join(cards, 'index.ts'),
-      'import { memoryCard as card_memoryCard } from "./memoryCard";\\n' +
-        'export const flashcards = { "memoryCard": card_memoryCard };\\n',
+      'import { memoryCard as card_memoryCard } from "./memoryCard";\n' +
+        'export const flashcards = { "memoryCard": card_memoryCard };\n',
     );
     const source = plain
-      .replace('import type', "import { flashcards } from './flashcards';\\nimport type")
+      .replace('import type', "import { flashcards } from './flashcards';\nimport type")
       .replace(
         'items: {}, order: [] as string[]',
         'items: { cards: { config: { params: { selection: { flashcardIds: [flashcards.memoryCard.id] } } } } }, order: ["cards"] as string[]',
