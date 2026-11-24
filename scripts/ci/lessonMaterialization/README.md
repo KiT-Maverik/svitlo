@@ -1,6 +1,6 @@
 # Typed Lesson Stage 6.1 materialization
 
-The only supported PR command is **`/lesson materialize typed`**. The trusted
+The only supported PR command is **`/lesson materialize`**. The trusted
 default-branch GitHub Actions workflow has three jobs:
 `typed-resolve`, `typed-analyze`, and `typed-publish`.
 
@@ -16,12 +16,12 @@ an authorized collaborator adds this
 **exact** top-level comment:
 
 ```text
-/lesson materialize typed
+/lesson materialize
 ```
 
 An authorized maintainer may dispatch the default-branch workflow with that
-PR number and `operation=materialize-typed`. No YAML or finalize command is
-accepted. The old `/lesson materialize` and `/lesson finalize` jobs, their
+PR number only. No format selector, YAML or finalize command is accepted.
+The retired YAML jobs and `/lesson finalize` command, their
 standalone trusted scripts, and the Lesson `lesson.yaml` Builder/Finalizer
 are not supported. Historical Lesson YAML must be
 reconciled in its owning PR, preserving source and author/review provenance,

@@ -30,7 +30,7 @@ export function typedMeta(encoded = process.env.LESSON_TYPED_META_B64) {
   if (
     !Number.isSafeInteger(info.number) ||
     info.number < 1 ||
-    info.operation !== 'materialize-typed' ||
+    info.operation !== 'lesson-stage6' ||
     info.repo !== process.env.GITHUB_REPOSITORY ||
     !sha.test(info.head || '') ||
     !sha.test(info.sourceBlob || '') ||
@@ -196,7 +196,7 @@ export function verifyTypedManifest(manifest, meta, root, tracked, original) {
     manifest?.version !== 3 ||
     !matchingSnapshot(manifest.meta || {}, meta) ||
     manifest.meta?.actor !== meta.actor ||
-    manifest.meta?.operation !== 'materialize-typed' ||
+    manifest.meta?.operation !== 'lesson-stage6' ||
     manifest.publishable !== false ||
     manifest.sourceSha256 !== digest(original) ||
     !Array.isArray(manifest.diagnostics) ||

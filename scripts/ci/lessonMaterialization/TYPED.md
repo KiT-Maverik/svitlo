@@ -20,12 +20,12 @@ When authorized, a write-capable collaborator posts exactly this as a
 top-level comment on the Lesson PR:
 
 ```text
-/lesson materialize typed
+/lesson materialize
 ```
 
 The same operation may be dispatched from the default-branch workflow with
-the PR number and operation materialize-typed. The retired YAML-only commands `/lesson materialize` and `/lesson finalize`
-are not supported; use only the typed command.
+the PR number only. No format selector, YAML fallback or `/lesson finalize`
+command is supported.
 
 ## Read-only analysis and restricted TypeScript
 
