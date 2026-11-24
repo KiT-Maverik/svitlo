@@ -52,7 +52,7 @@ const createStub = <const K extends Kind, const Slug extends string>(
 
   const validate = (): void => {
     const built = section.build.props({ languages: ['en'] });
-    if (!built.base.content.some(block => block.type === 'text' && block.locale?.value === 'Not implemented')) {
+    if (!built.base.content.some(block => block.type === 'text' && typeof block.locale === 'object' && block.locale !== null && 'value' in block.locale && block.locale.value === 'Not implemented')) {
       throw new Error('Stub preview must include a Not implemented Text ContentBlock');
     }
   };

@@ -38,9 +38,10 @@ describe('Configurators', () => {
           assert.equal(first.base.id, draft.id);
           assert.equal(first.base.slug, draft.slug);
           assert.equal(first.base.section.length, 1);
-          assert.equal(first.base.section[0]?.type, 'content');
-          assert.deepEqual(first.base.section[0]?.content.map(item => item.type), ['text']);
-          assert.equal(first.base.section[0]?.content[0]?.locale?.value, 'Not implemented');
+          const preview = first.base.section[0] as { type: string; content: Array<{ type: string; locale?: { value?: string } }> };
+          assert.equal(preview.type, 'content');
+          assert.deepEqual(preview.content.map(item => item.type), ['text']);
+          assert.equal(preview.content[0]?.locale?.value, 'Not implemented');
           assert.equal(first.locale, undefined);
           assert.equal('events' in first.base, false);
           assert.equal('questions' in first.base, false);
@@ -94,9 +95,9 @@ describe('Configurators', () => {
           ['episodeSlot', 'chapter', 'assessmentSlot', 'lessonSlot']);
         assert.deepEqual(moduleProps.content[1]?.content?.map(child => child.slug),
           ['assessmentSlot', 'lessonSlot', 'episodeSlot']);
-        assert.equal(result.base.content[0]?.draft, true);
-        assert.equal(result.base.content[2]?.draft, true);
-        assert.equal(result.base.content[3]?.draft, true);
+        assert.equal((result.base.content[0] as { draft?: boolean })?.draft, true);
+        assert.equal((result.base.content[2] as { draft?: boolean })?.draft, true);
+        assert.equal((result.base.content[3] as { draft?: boolean })?.draft, true);
         assert.doesNotThrow(() => JSON.stringify(mergeForValidation(result.base, result.locale?.en ?? {})));
       });
     });
