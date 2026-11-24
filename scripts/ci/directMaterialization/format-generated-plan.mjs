@@ -148,25 +148,8 @@ export async function formatGeneratedTypeScript(source, filename) {
   return format(unquoted, { ...options, filepath: filename });
 }
 
-/**
- * Course's trusted publisher verifies these strict handoff shapes by parsing
- * their original JSON literals (and exact quoted re-export specifiers).
- * Prettier would convert JSON strings to single quotes, unquote JSON keys and
- * alter the raw re-export, making that sealed handoff unverifiable.
- * Preserve only these Course-specific machine-consumed artifacts as emitted;
- * they are not ordinary author-facing Configurator source.
- */
-function isCourseMachineHandoff(file, operation) {
-  if (operation !== 'course-stage5' || file?.kind !== 'typescript') return false;
-  if (file.path.endsWith('/draft.ts')) return true;
-  return (
-    file.path.endsWith('/index.ts') &&
-    /^export \{ [A-Za-z][A-Za-z0-9]* as [A-Za-z][A-Za-z0-9]* \} from "[^"\n]+";\n$/.test(file.content)
-  );
-}
-
 /** Return a new plan. Never mutate source evidence, diagnostics or raw assets. */
-export async function formatGeneratedPlan(plan, { operation } = {}) {
+export async function formatGeneratedPlan(plan) {
   if (!plan || typeof plan !== 'object' || !Array.isArray(plan.files)) {
     throw Error('Materializer did not return a file plan');
   }
@@ -175,8 +158,7 @@ export async function formatGeneratedPlan(plan, { operation } = {}) {
     if (
       file?.kind === 'typescript' &&
       typeof file.path === 'string' &&
-      /\.(?:[cm]?ts|tsx)$/.test(file.path) &&
-      !isCourseMachineHandoff(file, operation)
+      /\.(?:[cm]?ts|tsx)$/.test(file.path)
     ) {
       files.push({ ...file, content: await formatGeneratedTypeScript(file.content, file.path) });
     } else {
