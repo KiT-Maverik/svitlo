@@ -4,7 +4,7 @@ import type { Youtube_Locale } from '../../../../../../data/locale/youtube';
 
 import { useEffect, useRef, useState, useSyncExternalStore } from 'react';
 
-import type { ContentBlock_Youtube_Props } from '@svitlo/engine/runtime';
+import { UNRESOLVED_YOUTUBE_HREF, type ContentBlock_Youtube_Props } from '@svitlo/engine/runtime';
 import { localizedAttributes, resolveOptionalLocalizedText } from '../../utils';
 import { useContentLanguage } from '../../ContentLanguageContext';
 import {
@@ -33,10 +33,13 @@ export const Youtube = ({
   const online = useSyncExternalStore(subscribeConnectionChange, getConnectionSnapshot, getServerConnectionSnapshot);
   const playerHost = useRef<HTMLDivElement>(null);
   const [failedHref, setFailedHref] = useState<string | null>(null);
-  const unavailable = mode === 'embed' && failedHref === href;
+  const pending = href === UNRESOLVED_YOUTUBE_HREF;
+  const unavailable = pending || (mode === 'embed' && failedHref === href);
   const attributes = localizedAttributes({ locale: { code: contentLanguage } });
-  if (mode === 'link') youtubeVideoId(href);
-  else youtubeEmbedUrl(href);
+  if (!pending) {
+    if (mode === 'link') youtubeVideoId(href);
+    else youtubeEmbedUrl(href);
+  }
 
   useEffect(() => {
     if (mode !== 'embed' || online !== true || unavailable) return;
@@ -77,7 +80,7 @@ export const Youtube = ({
   }, [href, mode, label, online, unavailable]);
 
   const fallbackKind: FallbackKind | null =
-    online === null ? 'loading' : !online ? 'offline' : unavailable ? 'unavailable' : null;
+    pending ? 'unavailable' : online === null ? 'loading' : !online ? 'offline' : unavailable ? 'unavailable' : null;
   const fallbackText =
     fallbackKind === 'loading'
       ? messages['loading']
@@ -92,7 +95,7 @@ export const Youtube = ({
     <div key="fallback" className={styles.placeholder} role="status">
       <strong>{label}</strong>
       <span>{fallbackText}</span>
-      {fallbackKind === 'unavailable' && (
+      {fallbackKind === 'unavailable' && !pending && (
         <button type="button" onClick={() => setFailedHref(null)}>
           {resolveOptionalLocalizedText(fallbackMessages?.retry, contentLanguage, 'youtube.fallback.retry') ??
             messages.retry}
