@@ -32,7 +32,11 @@ export type LessonWorkflowStage1Config = Pick<Lesson_Config, 'id' | 'type' | 'sl
   /** Cite real Skill definitions; do not copy another Lesson's skills array. */
   skills: readonly [Lesson_Config['skills'][number], ...Lesson_Config['skills'][number][]];
   /** Completion policy is separate from the four editorial bank/Section decisions. */
-  params?: Partial<Omit<Lesson_Config['params'], 'languages'>> & { languages?: never };
+  params: Pick<Lesson_Config['params'], 'quizRequiredForCompletion'> &
+    Partial<Omit<Lesson_Config['params'], 'languages' | 'quizRequiredForCompletion' | 'sections'>> & {
+      languages?: never;
+      sections?: Partial<Lesson_Config['params']['sections']>;
+    };
   section?: never;
   events?: never;
 };
