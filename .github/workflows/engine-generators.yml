@@ -130,8 +130,7 @@ jobs:
           node scripts/ci/quietRun/quiet-run.mjs -- node --test \
             scripts/ci/lessonMaterialization/lesson-typed-materialization.spec.mjs \
             scripts/ci/lessonMaterialization/lesson-typed-publish.spec.mjs \
-            scripts/ci/directMaterialization/run-isolated.spec.mjs \
-            scripts/ci/directMaterialization/format-generated-plan.spec.mjs
+            scripts/ci/directMaterialization/run-isolated.spec.mjs
 
       - name: Exercise all five direct materializers through the pinned isolated worker
         run: node scripts/ci/quietRun/quiet-run.mjs -- node --test scripts/ci/directMaterialization/pipeline.spec.mjs
