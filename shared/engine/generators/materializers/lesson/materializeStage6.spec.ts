@@ -76,7 +76,7 @@ const valid = () => ({
 // The archived bytes represent the SAME authoring object as the evaluated
 // fixture. The trusted adapter is responsible for independently checking
 // this relationship when invoking the orchestrator.
-const reviewedSkillLiteral = '"skills": [\\n      "' + verifiedMathSkillId + '"\\n    ]';
+const reviewedSkillLiteral = '"skills": [\n      "' + verifiedMathSkillId + '"\n    ]';
 const reviewedStage2 = JSON.stringify(valid(), null, 2).replace(
   reviewedSkillLiteral,
   '"skills": [identify2dShapes.id]',
