@@ -38,7 +38,7 @@ test('restores only the exact Assessment stub, preserving all siblings and order
 test('rejects spoofed UUID, parent edits, missing stub, replay and reordered siblings', () => {
   const original = parent([stub('review', id)], ['review']);
   const updated = restoreAssessmentPlacement(original, placement());
-  assert.throws(() => restoreAssessmentPlacement(original, placement('other')), /reserved|identity/);
+  assert.throws(() => restoreAssessmentPlacement(original, placement('other')), /[Rr]eserved|identity/);
   assert.throws(() => restoreAssessmentPlacement(original, placement('review', second)), /UUID\/slug/);
   assert.throws(() => restoreAssessmentPlacement(updated, placement()), /imported draft-only|reserved/);
   assert.throws(() => verifyAssessmentParentPatch(original, updated + '// unauthorized\n', placement()), /exact authorized/);
