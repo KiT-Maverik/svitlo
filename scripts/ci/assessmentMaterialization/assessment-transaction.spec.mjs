@@ -80,6 +80,7 @@ test('one source transaction permits only the exact parent and new Assessment ch
   const index = meta.sourcePath.replace('draft.ts', 'index.ts');
   const files = [
     { path: index, kind: 'typescript', content: 'export const finalReview = 1;\n' },
+    { path: meta.sourcePath.replace('draft.ts', 'languages.ts'), kind: 'typescript', content: "export const languages = ['uk'] as const;\n" },
     { path: meta.parentPath, kind: 'typescript', content: 'parent patched\n' },
   ];
   const tree = new Map([
@@ -88,7 +89,7 @@ test('one source transaction permits only the exact parent and new Assessment ch
   ]);
   assert.equal(checkAssessmentTargets(meta, files, tree), true);
   const manifest = buildAssessmentManifest(meta, { ...plan, files, diagnostics: [] });
-  assert.equal(manifest.entries.length, 2);
+  assert.equal(manifest.entries.length, 3);
   assert.ok(assessmentCommitTree(manifest).some(e => e.path === meta.sourcePath && e.sha === null));
   assert.throws(() => checkAssessmentTargets(meta, [
     ...files, { path: courseRoot + '/content/other/index.ts', kind: 'typescript', content: 'bad' },
