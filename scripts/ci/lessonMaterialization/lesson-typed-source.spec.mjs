@@ -40,12 +40,30 @@ test('one exported literal satisfies the real Lesson Stage 2 input without execu
     assert.deepEqual([...parsed.production.languages.planned], ['en']);
   }));
 
+test('a Course-owned seed is not Lesson Stage 6 input, even at the canonical draft path', () =>
+  fixture(({ root }) => {
+    const seedObject = {
+      config: { id, type: 'lesson', slug: 'intro', skills: [questionId], locale: { title: { en: 'Intro' } } },
+      proposal: {
+        methodology: 'Describe an observation', objective: 'Distinguish observation from inference',
+        depth: 'Introductory', sequenceReason: 'Before explanation', assessmentEvidence: 'Explain a new example',
+        assessment: { questionBankRequired: false, flashcardBankRequired: false, quizSectionRequired: false, flashcardsSectionRequired: false },
+      },
+      languageContext: { document: 'en', planned: ['en'] },
+    };
+    const seed = "import type { CourseWorkflowLessonSeed } from '@svitlo/engine/build';\n" +
+      'export const lessonSeed = ' + JSON.stringify(seedObject) + ' satisfies CourseWorkflowLessonSeed;\n';
+    assert.throws(() => parseTypedLesson(root, sourcePath, seed), /Stage 2|workflow type|materializer input|import/i);
+  }));
+
 test('dynamic expressions, code imports, duplicate keys and spreads fail closed', () =>
   fixture(({ root }) => {
     for (const source of [
       plain.replace('order: []', 'order: Math.random()'),
       plain.replace('order: []', 'order: [...[]]'),
       plain.replace('slug: "intro"', 'slug: (() => "intro")()'),
+      plain.replace('slug: "intro"', 'slug: "../escape"'),
+      plain.replace('slug: "intro"', 'slug: ""'),
       plain.replace('slug: "intro"', 'slug: "intro", slug: "duplicate"'),
       plain.replace('config: {', 'config: { ...malicious,'),
       plain.replace('as const satisfies LessonWorkflowStage2', 'as const'),

@@ -1,12 +1,8 @@
-import type {
-  CourseWorkflowStage3NewLesson,
-  CourseWorkflowStage1Languages,
-} from '../../../types/workflow/courseWorkflow.types';
+import type { CourseWorkflowStage3NewLesson, CourseWorkflowStage1Languages } from '../../../types/workflow/courseWorkflow.types';
 export type LessonDraftContext = {
   lessonId: string;
-  sourceLanguage: CourseWorkflowStage1Languages['document'];
-  plannedLanguages: CourseWorkflowStage1Languages['planned'];
   reviewedSourceSha: string;
+  languageContext: CourseWorkflowStage1Languages;
   textbookRoot: `content/${string}`;
 };
 export type LessonDraftResult = {
@@ -14,7 +10,7 @@ export type LessonDraftResult = {
   files: [{ path: string; kind: 'typescript'; content: string }];
   diagnostics: [{ path: string; code: 'pending-lesson-stage1'; severity: 'blocker'; message: string }];
 };
-/** The new Course placement becomes only the canonical Lesson Stage1 authored input. */
+/** The Course proposal becomes an allocated Course-owned Lesson seed, not Lesson Stage 1. */
 export function materializeLessonDraft(
   node: CourseWorkflowStage3NewLesson,
   context: LessonDraftContext,

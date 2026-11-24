@@ -1,9 +1,7 @@
-import type { CourseWorkflowStage3NewLesson } from './courseWorkflow.types';
 import type { ContentBlock_Text_Configurator } from '../../configurators/contentBlocks/defineText/defineText';
 import type {
   LessonWorkflowStage1,
   LessonWorkflowStage1Config,
-  LessonWorkflowStage1CourseHandoff,
   LessonWorkflowStage1Production,
   LessonWorkflowStage2,
   LessonWorkflowStage2Section,
@@ -14,16 +12,17 @@ import type {
 } from './lessonWorkflow.types';
 
 // Real Skill IDs and source Sha must still be verified against the repository.
-const courseNewLesson = {
+const standalone = {
   config: {
     type: 'lesson',
+    id: '663572e7-bd85-4516-86e2-3de07d209e03',
     slug: 'observeLight',
     skills: ['663572e7-bd85-4516-86e2-3de07d209e04'],
     params: { quizRequiredForCompletion: true, age: { min: 8, max: 11 } },
     locale: { title: { uk: 'Спостереження за світлом' } },
   },
   production: {
-    kind: 'new',
+    languages: { document: 'uk', planned: ['uk', 'en'] },
     objective: 'Explain observable differences between light and darkness.',
     depth: 'Introductory observation with grounded examples.',
     sequenceReason: 'After the course introduces everyday observation.',
@@ -39,40 +38,13 @@ const courseNewLesson = {
       'contrast valid examples and misconceptions, specify source checks, outcomes, cognitive ' +
       'assessment methods, accessible representations, offline paths and excluded claims.',
   },
-} satisfies CourseWorkflowStage3NewLesson;
-
-const courseHandoff = {
-  config: {
-    ...courseNewLesson.config,
-    id: '663572e7-bd85-4516-86e2-3de07d209e03',
-  },
-  production: {
-    methodology: courseNewLesson.production.methodology,
-    objective: courseNewLesson.production.objective,
-    depth: courseNewLesson.production.depth,
-    sequenceReason: courseNewLesson.production.sequenceReason,
-    assessmentEvidence: courseNewLesson.production.assessmentEvidence,
-    assessment: courseNewLesson.production.assessment,
-    languages: { document: 'uk', planned: ['uk', 'en'] },
-  },
-} satisfies LessonWorkflowStage1CourseHandoff;
-
-const fromCourse: LessonWorkflowStage1 = courseHandoff;
-
-const standalone = {
-  ...courseHandoff,
-  config: {
-    ...courseHandoff.config,
-    id: '663572e7-bd85-4516-86e2-3de07d209e05',
-    slug: 'standaloneLight',
-  },
 } satisfies LessonWorkflowStage1;
 
 // @ts-expect-error Missing all Methodologist methodology and assessment intent.
 const incompleteStage1: LessonWorkflowStage1 = { config: standalone.config };
 
 const { id: _persistedId, ...withoutIdentity } = standalone.config;
-// @ts-expect-error Standalone and Course-owned Stage 1 both require a persisted Lesson ID.
+// @ts-expect-error Lesson Stage 1 requires a persisted Lesson ID.
 const missingLessonId: LessonWorkflowStage1Config = withoutIdentity;
 
 const missingMethodology: LessonWorkflowStage1Production = {
@@ -190,9 +162,9 @@ const quizIntent = {
 } satisfies LessonWorkflowStage2QuizSection;
 
 const stage2 = {
-  ...fromCourse,
+  ...standalone,
   config: {
-    ...fromCourse.config,
+    ...standalone.config,
     section: {
       items: { introduction: intro, checkUnderstanding: quizIntent },
       order: ['introduction', 'checkUnderstanding'],
@@ -230,8 +202,6 @@ void scene;
 void prematureConfigurator;
 void missingSourceLanguage;
 void missingPlannedLanguages;
-void courseHandoff;
-void fromCourse;
 void standalone;
 void incompleteStage1;
 void incompleteAssessments;

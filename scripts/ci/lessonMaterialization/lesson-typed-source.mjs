@@ -343,7 +343,13 @@ export function parseTypedLesson(root, sourcePath, sourceText) {
   const { bindings, engineType } = importsOf(file, folder);
   if (!engineType) throw Error('Stage 2 must import its actual Engine workflow type');
   const input = evaluate(reviewedExport(file), { root, folder, bindings, cache: new Map() });
-  if (input?.config?.id !== folder.split('/').at(-1) || input.config.type !== 'lesson' || !input.production)
+  if (
+    input?.config?.id !== folder.split('/').at(-1) ||
+    input.config.type !== 'lesson' ||
+    typeof input.config.slug !== 'string' ||
+    !/^[A-Za-z][A-Za-z0-9]*$/.test(input.config.slug) ||
+    !input.production
+  )
     throw Error('Parsed Lesson does not match its canonical authored identity');
   return input;
 }

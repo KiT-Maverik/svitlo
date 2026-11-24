@@ -115,12 +115,11 @@ test('historical UUID namespace uses full placement and remains deterministic on
   assert.throws(() => deriveCourseEntityId(rootId, 'lesson', '../escape'), /invalid deterministic/);
 });
 
-test('Lesson Draft emits exactly the independent typed Stage 1 source and no Configurator', () => {
+test('Course emits its own allocated Lesson seed, not Stage 1 or a Configurator', () => {
   const lessonId = deriveCourseEntityId(rootId, 'lesson', 'directLesson');
   const result = materializeLessonDraft(lesson('directLesson'), {
     lessonId,
-    sourceLanguage: 'uk',
-    plannedLanguages: ['uk', 'en'],
+    languageContext: { document: 'uk', planned: ['uk', 'en'] },
     reviewedSourceSha: sha,
     textbookRoot: 'content/playground',
   });
@@ -129,10 +128,21 @@ test('Lesson Draft emits exactly the independent typed Stage 1 source and no Con
     result.files[0].path,
     'content/playground/data/lessons/' + lessonId.at(-1) + '/' + lessonId + '/draft.ts',
   );
-  assert.match(result.files[0].content, /satisfies LessonWorkflowStage1/);
+  assert.match(result.files[0].content, /satisfies CourseWorkflowLessonSeed/);
   assert.match(result.files[0].content, /"quizSectionRequired": true/);
   assert.match(result.files[0].content, /"quizRequiredForCompletion": true/);
-  assert.match(result.files[0].content, /"sourceEvidence":/);
+  const emitted = JSON.parse(
+    result.files[0].content.split('export const lessonSeed = ')[1].split(' as const satisfies')[0],
+  );
+  const expected = lesson('directLesson');
+  const { kind, ...proposal } = expected.production;
+  assert.deepEqual(emitted, {
+    config: { ...expected.config, id: lessonId },
+    proposal,
+    languageContext: { document: 'uk', planned: ['uk', 'en'] },
+  });
+  assert.equal(emitted.production, undefined);
+  assert.doesNotMatch(result.files[0].content, /LessonWorkflowStage1/);
   assert.doesNotMatch(result.files[0].content, /defineLesson\(|defineQuizSection|feedc0de-/);
   assert.equal(result.diagnostics[0].severity, 'blocker');
 });
@@ -346,15 +356,14 @@ test('reviewed patch expression rejects executable side-effect imports', () => {
   assert.throws(() => materializeCourseStage5(input, opts), /side-effect-only patch import/);
 });
 
-test('Lesson Stage1 refuses an authored title without the reviewed document locale', () => {
+test('Course Lesson seed refuses an authored title without the reviewed document locale', () => {
   const source = lesson('notLocalized');
   source.config.locale.title = { en: 'Unreviewed English only' };
   assert.throws(
     () =>
       materializeLessonDraft(source, {
         lessonId: deriveCourseEntityId(rootId, 'lesson', 'notLocalized'),
-        sourceLanguage: 'uk',
-        plannedLanguages: ['uk', 'en'],
+        languageContext: { document: 'uk', planned: ['uk'] },
         reviewedSourceSha: sha,
         textbookRoot: 'content/playground',
       }),
