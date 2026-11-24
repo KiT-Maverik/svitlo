@@ -171,15 +171,55 @@ test('Question Bank ignores authored resource state flags by rejecting them at t
   });
   assert.throws(() => materializeQuestionBank(input as never, finalAuth(input)), /Invalid reviewed questionBank Stage 3 input/);
 });
- on editorial bank-required status', () => {
-  const noBank = handoff();
-  noBank.production.assessment.questionBankRequired = false;
-  assert.doesNotThrow(() => materializeQuestionBankDraft(noBank as never, draftAuth));
-});
-test('Question Bank rejects pending nested Blocks even if the parent Question is complete', () => {
+
+test('Stage 5 emits missing image assets as blocked, typed Question source', () => {
   const input = completeBank();
-  Object.assign(input.config.questions.selectOneAnswer.promptOne.config.content.question.items.prompt as object, {
-    production: { pending: true },
+  const image = {
+    config: {
+      id: id(25),
+      slug: 'pendingDiagram',
+      type: 'image' as const,
+      params: { width: 640, height: 480 },
+      locale: { alt: { uk: 'Схема для пояснення' } },
+    },
+    production: { specification: 'Create a diagram for this question' },
+  };
+  Object.assign(input.config.questions.selectOneAnswer.promptOne.config.content.question.items, { pendingDiagram: image });
+  input.config.questions.selectOneAnswer.promptOne.config.content.question.order.push('pendingDiagram');
+  assert.throws(
+    () => materializeQuestionBank(input as never, finalAuth(input)),
+    /Missing verified media evidence/,
+  );
+  const authorized = finalAuth(input);
+  const planned = materializeQuestionBank(input as never, {
+    ...authorized,
+    blocks: { ...authorized.blocks, unresolvedMediaBlockIds: new Set([id(25)]) },
   });
-  assert.throws(() => materializeQuestionBank(input as never, finalAuth(input)), /pending bank authoring source/);
+  assert.equal(planned.publishable, false);
+  const source = planned.files.find(file =>
+    file.path.endsWith('content/question/items/pendingDiagram/index.ts'),
+  )?.content ?? '';
+  assert.match(source, /TODO \(BLOCKER\)/);
+  assert.match(source, /00000000-0000-0000-0000-000000000000.webp/);
+  assert(planned.diagnostics.some(diagnostic => diagnostic.code === 'pending-media'));
+});
+
+test('Stage 5 refuses forged media paths rather than emitting a TODO', () => {
+  const input = completeBank();
+  Object.assign(input.config.questions.selectOneAnswer.promptOne.config.content.question.items, {
+    pendingDiagram: {
+      config: {
+        id: id(26),
+        slug: 'pendingDiagram',
+        type: 'image',
+        params: { width: 640, height: 480 },
+        locale: { alt: { uk: 'Схема' }, fileName: '../escape.webp' },
+      },
+    },
+  });
+  input.config.questions.selectOneAnswer.promptOne.config.content.question.order.push('pendingDiagram');
+  assert.throws(
+    () => materializeQuestionBank(input as never, finalAuth(input)),
+    /Invalid reviewed questionBank Stage 3 input/,
+  );
 });
