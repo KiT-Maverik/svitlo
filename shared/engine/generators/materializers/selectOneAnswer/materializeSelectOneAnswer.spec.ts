@@ -52,7 +52,9 @@ test('selectOneAnswer: deterministic modular source, nested imports, source loca
   assert.match(main.content, /TODO \(BLOCKER\)/);
   assert.match(main.content, /child_content_question_items_prompt/);
   assert.doesNotMatch(main.content, /NOT REVIEWED/);
-  assert(a.files.some(file => file.path.endsWith('content/question/items/prompt/index.ts')));
+  assert(a.files.some(file => file.path.endsWith('/question/prompt/index.ts')));
+  assert(!a.files.some(file => file.path.includes('/items/')));
+  assert.match(main.content, /from "\.\/sampleQuestion\/question\/prompt"/);
   for (const file of a.files.filter(file => file.kind === 'typescript')) {
     const parsed = ts.transpileModule(file.content, {
       fileName: file.path,
@@ -64,6 +66,23 @@ test('selectOneAnswer: deterministic modular source, nested imports, source loca
       [],
     );
   }
+});
+test('selectOneAnswer: rejects delegated ContentBlock writing outside its semantic role', () => {
+  assert.throws(
+    () =>
+      materializeSelectOneAnswer(fixture() as never, {
+        ...context,
+        materializeBlock: () => ({
+          exportName: 'prompt',
+          files: [{
+            path: 'questions/selectOneAnswer/otherQuestion/index.ts',
+            content: 'export const prompt = {};\n',
+            kind: 'typescript' as const,
+          }],
+        }),
+      }),
+    /escaped its assigned directory/,
+  );
 });
 test('selectOneAnswer: rejects missing questions, incorrect order, and pre-existing authored outputs', () => {
   const noPrompt = fixture();
