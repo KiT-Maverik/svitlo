@@ -4,7 +4,7 @@ import type { LocalizedCourse, LocalizedCourseNode } from './courseResources';
 export type CourseNavigationTopic = {
   id: string;
   title: string;
-  type: 'module' | 'chapter' | 'lesson' | 'episode';
+  type: 'module' | 'chapter' | 'lesson' | 'episode' | 'assessment';
   href?: string;
   children?: readonly CourseNavigationTopic[];
 };
@@ -44,6 +44,8 @@ export function coursePropsToTopics(
         type: 'episode',
         href: root + '/episode/' + lessonLanguage + '/' + node.id,
       };
+    if (node.type === 'assessment')
+      return { id: node.id, title: node.locale.title, type: 'assessment' };
     return {
       id: node.id,
       title: node.locale.title,
