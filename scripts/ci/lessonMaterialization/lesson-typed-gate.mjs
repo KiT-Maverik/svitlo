@@ -11,9 +11,9 @@ const uuid = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/;
 const sha = /^[0-9a-f]{40}$/;
 /** Canonical Lesson-root draft path; no identity is obtained from PR prose. */
 export function lessonSourceIdentity(source) {
-  const match = typeof source === 'string' && source.match(
-    /^content\/([a-z][a-z0-9-]*)\/data\/lessons\/([0-9a-f])\/([0-9a-f-]{36})\/draft\.ts$/,
-  );
+  const match =
+    typeof source === 'string' &&
+    source.match(/^content\/([a-z][a-z0-9-]*)\/data\/lessons\/([0-9a-f])\/([0-9a-f-]{36})\/draft\.ts$/);
   if (!match || !uuid.test(match[3]) || match[2] !== match[3].at(-1))
     throw Error('Invalid canonical Lesson draft.ts path');
   return { id: match[3], pkg: 'content/' + match[1], folder: source.slice(0, -'/draft.ts'.length), source };
@@ -27,12 +27,11 @@ export async function discoverLessonSource(baseHead, head) {
   const comparison = await github('compare/' + baseHead + '...' + head);
   if (!Array.isArray(comparison?.files) || comparison.files.length >= 300)
     throw Error('Lesson source discovery requires a complete bounded Git comparison');
-  const candidates = comparison.files.filter(file =>
-    file.status !== 'removed' &&
-    /^content\/[^/]+\/data\/lessons\/[^/]+\/[^/]+\/draft\.ts$/.test(file.filename ?? ''),
+  const candidates = comparison.files.filter(
+    file =>
+      file.status !== 'removed' && /^content\/[^/]+\/data\/lessons\/[^/]+\/[^/]+\/draft\.ts$/.test(file.filename ?? ''),
   );
-  if (candidates.length !== 1)
-    throw Error('Expected exactly one changed Lesson draft.ts; found ' + candidates.length);
+  if (candidates.length !== 1) throw Error('Expected exactly one changed Lesson draft.ts; found ' + candidates.length);
   const candidate = candidates[0];
   const identity = lessonSourceIdentity(candidate.filename);
   const source = await github(

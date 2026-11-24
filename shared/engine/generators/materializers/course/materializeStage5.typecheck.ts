@@ -2,9 +2,7 @@ import type { LessonWorkflowStage1 } from '../../../types/workflow/lessonWorkflo
 import { materializeCourseStage5 } from './materializeStage5.mjs';
 import { materializeLessonDraft } from './lessonDraft.mjs';
 import type { CourseStage5Options, CourseStage5Plan } from './materializeStage5.mjs';
-import type {
-  CourseWorkflowMaterializerInput,
-} from '../../../types/workflow/courseWorkflow.types';
+import type { CourseWorkflowMaterializerInput } from '../../../types/workflow/courseWorkflow.types';
 
 // The root planner accepts EXACTLY the canonical Stage3 Course type, not a
 // duplicate stage schema or a final Course_Config Configurator instance.

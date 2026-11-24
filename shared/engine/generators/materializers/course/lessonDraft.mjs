@@ -46,7 +46,8 @@ export function materializeLessonDraft(node, context) {
     throw new Error('Lesson Draft requires reviewed source-language Lesson title');
   if (
     !isRecord(languages) ||
-    typeof document !== 'string' || !document.trim() ||
+    typeof document !== 'string' ||
+    !document.trim() ||
     !Array.isArray(languages.planned) ||
     !languages.planned.length ||
     languages.planned.some(language => typeof language !== 'string' || !language.trim()) ||

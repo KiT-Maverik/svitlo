@@ -36,7 +36,8 @@ test('canonical Lesson path and exact command are enforced', () => {
     source.replace('draft.ts', 'index.ts'),
     source.replace(id, '../escape'),
     source.replace(id, 'a'.repeat(36)),
-  ]) assert.throws(() => lessonSourceIdentity(bad), /canonical/);
+  ])
+    assert.throws(() => lessonSourceIdentity(bad), /canonical/);
   const event = {
     issue: { number: 794, pull_request: {} },
     comment: { body: '/lesson materialize typed', user: { login: 'owner' } },
@@ -350,6 +351,9 @@ test('Lesson workflow has one typed-only entrypoint after YAML retirement', () =
 
   const typedGate = fs.readFileSync(path.join(root, 'scripts/ci/lessonMaterialization/lesson-typed-gate.mjs'), 'utf8');
   assert.match(typedGate, /export async function discoverLessonSource/);
-  assert.doesNotMatch(typedGate, /requireStageSixPending|parseTypedIdentity|reviewsFor|courseProvenance|verifyReviewEvidence|pr\.body/);
+  assert.doesNotMatch(
+    typedGate,
+    /requireStageSixPending|parseTypedIdentity|reviewsFor|courseProvenance|verifyReviewEvidence|pr\.body/,
+  );
   assert.doesNotMatch(typedGate, /from '\.\/lesson-gate\.mjs'/);
 });

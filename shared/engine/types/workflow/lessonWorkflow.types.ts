@@ -28,15 +28,18 @@ import type { LessonProductionAssessmentRequirements } from './lessonAssessment.
  * The Methodologist verifies Skill UUIDs and source language against Git.
  * The canonical Lesson UUID is allocated once, including for Course handoffs.
  */
-export type LessonWorkflowStage1Config<Allocated extends boolean = true> = Pick<Lesson_Config, 'type' | 'slug' | 'locale'> &
+export type LessonWorkflowStage1Config<Allocated extends boolean = true> = Pick<
+  Lesson_Config,
+  'type' | 'slug' | 'locale'
+> &
   (Allocated extends true ? Pick<Lesson_Config, 'id'> : { id?: never }) & {
-  /** Cite real Skill definitions; do not copy another Lesson's skills array. */
-  skills: readonly [Lesson_Config['skills'][number], ...Lesson_Config['skills'][number][]];
-  /** Completion policy is separate from the four editorial bank/Section decisions. */
-  params?: Partial<Omit<Lesson_Config['params'], 'languages'>> & { languages?: never };
-  section?: never;
-  events?: never;
-};
+    /** Cite real Skill definitions; do not copy another Lesson's skills array. */
+    skills: readonly [Lesson_Config['skills'][number], ...Lesson_Config['skills'][number][]];
+    /** Completion policy is separate from the four editorial bank/Section decisions. */
+    params?: Partial<Omit<Lesson_Config['params'], 'languages'>> & { languages?: never };
+    section?: never;
+    events?: never;
+  };
 
 type LessonLanguage = Lesson_Config['params']['languages'][number];
 
